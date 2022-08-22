@@ -16,11 +16,16 @@ DefaultProperties
 
 	LocalizationKey=KFPawn_ZedGorefast
 	Begin Object Name=SpecialMoveHandler_0
-		SpecialMoveClasses(SM_PlayerZedAttack1)= class'KFSM_PlayerGorefast_Melee'
-		SpecialMoveClasses(SM_PlayerZedAttack2)= class'KFSM_PlayerGorefast_Melee2'
-		SpecialMoveClasses(SM_PlayerZedSpecial1)= class'KFSM_PlayerGorefast_Melee3'
-		SpecialMoveClasses(SM_PlayerZedSpecial2)= class'KFSM_PlayerGorefast_Block'
+		SpecialMoveClasses(SM_PlayerZedMove_LMB)= class'KFSM_PlayerGorefast_Melee'
+		SpecialMoveClasses(SM_PlayerZedMove_RMB)= class'KFSM_PlayerGorefast_Melee2'
+		SpecialMoveClasses(SM_PlayerZedMove_V)= class'KFSM_PlayerGorefast_Melee3'
+		SpecialMoveClasses(SM_PlayerZedMove_MMB)= class'KFSM_PlayerGorefast_Block'
 	End Object
+
+	MoveListGamepadScheme(ZGM_Melee_Square)=SM_PlayerZedMove_LMB
+	MoveListGamepadScheme(ZGM_Melee_Triangle)=SM_PlayerZedMove_RMB
+	MoveListGamepadScheme(ZGM_Block_R1)=SM_PlayerZedMove_MMB
+	MoveListGamepadScheme(ZGM_Special_R3)=SM_PlayerZedMove_V
 
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=20//25.f
@@ -31,12 +36,12 @@ DefaultProperties
 		PlayerDoorDamageMultiplier=5.f
 	End Object
 
-	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=0.35f,	SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-Melee', GBA_Name="GBA_Fire",NameLocalizationKey="Light")
-	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=0.7f,	SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-HeavyMelee', GBA_Name="GBA_IronsightsToggle", ALT_GBA_Name="GBA_IronsightsHold",NameLocalizationKey="Heavy")
-	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	GBA_Name="GBA_Reload",bShowOnHud=false)
-	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=1.7f,	SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-BladeSwing', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Spin")
-	SpecialMoveCooldowns(4)=(SMHandle=SM_PlayerZedSpecial2,		CooldownTime=0.5f,	SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block', GBA_Name="GBA_SwitchFireMode",NameLocalizationKey="Block")
-	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.f,	SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array
+	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedMove_LMB,		CooldownTime=0.35f,	SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-Melee', NameLocalizationKey="Light")
+	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB,		CooldownTime=0.7f,	SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-HeavyMelee', NameLocalizationKey="Heavy")
+	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	bShowOnHud=false)
+	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=1.7f,	SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-BladeSwing', NameLocalizationKey="Spin")
+	SpecialMoveCooldowns(4)=(SMHandle=SM_PlayerZedMove_MMB,		CooldownTime=0.5f,	SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block', NameLocalizationKey="Block")
+	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.f,	SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-Jump', bShowOnHud=false)) // Jump always at end of array
 
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.8)))  //3.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.5)))  //1.0
@@ -96,7 +101,7 @@ DefaultProperties
    // DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.15)))
 	//DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.15)))
 
-    Health=500 // 1.375x default  275 //300
+    Health=500 // 1.375x default  275
     DoshValue=28.0 // 2x default because they are harder to hit/kill
     XPValues(0)=44 // 4x default because they are harder to hit/kill
 
@@ -110,8 +115,6 @@ DefaultProperties
 
     // Blocking
 	MinBlockFOV=1 //0
-	BlockingDamageModifier=0.05f  //0.2
-	MeleeBlockingDamageModifier=0.25
 
 	//defaults
 	ThirdPersonViewOffset={(

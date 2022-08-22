@@ -29,7 +29,7 @@ function DoFreeze()
 
     if(KFPOwner.Role == ROLE_Authority)
     {
-        TimeUntilThaw = ((KFPOwner.IncapSettings[8].Duration > float(0)) ? KFPOwner.IncapSettings[8].Duration : RandRange(FreezeDuration.X, FreezeDuration.Y));
+        TimeUntilThaw = ((KFPOwner.IncapSettings[9].Duration > float(0)) ? KFPOwner.IncapSettings[9].Duration : RandRange(FreezeDuration.X, FreezeDuration.Y));
         KFPOwner.SetTimer(TimeUntilThaw, false, 'DoThaw', self);
     }
     if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)

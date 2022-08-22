@@ -264,7 +264,10 @@ simulated function StartEcho( int EchoSetIndex, int EchoIndex )
 simulated function StopEcho( int EchoSetIndex, int EchoIndex )
 {
     EchoSets[ EchoSetIndex ].Stopped[ EchoIndex ] = 1;
-    EchoSets[ EchoSetIndex ].Components[ EchoIndex ].StopEvents();
+    if( EchoSets[EchoSetIndex].Components[EchoIndex] != none )
+    {
+        EchoSets[ EchoSetIndex ].Components[ EchoIndex ].StopEvents();
+    }
 }
 
 defaultproperties

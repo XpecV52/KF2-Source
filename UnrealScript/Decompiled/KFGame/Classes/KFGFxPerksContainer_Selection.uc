@@ -27,7 +27,6 @@ var const localized string ChangesAppliedOnCloseString;
 var const localized string OncePerWaveString;
 var array<PerkData> PerksData;
 var KFGFxMenu_Perks PerksMenu;
-var GFxObject PerkList;
 var KFGameReplicationInfo KFGRI;
 var KFPlayerReplicationInfo KFPRI;
 
@@ -45,7 +44,6 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     {
         UpdatePerkSelection(KFPC.SavedPerkIndex);
     }
-    PerkList = GetObject("perkScrollingList");
     SetPerkListEnabled(!KFPRI.bReadyToPlay);
 }
 
@@ -100,10 +98,7 @@ function SetPerkListEnabled(bool bValue)
     local KFPlayerController KFPC;
 
     KFPC = KFPlayerController(Outer.GetPC());
-    if(PerkList != none)
-    {
-        PerkList.SetBool("enabled", bValue || KFPC.MyGFxManager.bAfterLobby);
-    }
+    SetBool("perkListEnabled", bValue || KFPC.MyGFxManager.bAfterLobby);
 }
 
 function UpdatePendingPerkInfo(byte SelectedPerkIndex)

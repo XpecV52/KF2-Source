@@ -16,9 +16,9 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFil
 
 defaultproperties
 {
-    HealAmount=30
+    HealAmount=15
     FireModeIconPaths=/* Array type was not detected. */
-    SingleFireMode=1
+    SingleFireSoundIndex=1
     InventorySize=3
     MagazineCapacity=40
     bHasIronSights=true
@@ -31,7 +31,7 @@ defaultproperties
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-    MaxSpareAmmo=480
+    SpareAmmoCapacity=480
     InitialSpareMags=5
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

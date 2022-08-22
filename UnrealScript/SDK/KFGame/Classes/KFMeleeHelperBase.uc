@@ -419,6 +419,7 @@ defaultproperties
 	bAllowMeleeToFracture=true
 
 	Begin Object Class=CameraShake Name=MeleeImpactCamShake0
+		bSingleInstance=true
 		OscillationDuration=0.35f
 		RotOscillation={(Pitch=(Amplitude=250.f,Frequency=60.f),
 						Yaw=(Amplitude=150.f,Frequency=70.f),

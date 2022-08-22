@@ -8,14 +8,75 @@
 class KFProj_Husk_Fireball extends KFProjectile
     hidecategories(Navigation);
 
+var protected const float BurnDuration;
+var protected const float BurnDamageInterval;
+var protected const class<KFExplosionActorLingering> GroundFireExplosionActorClass;
+var bool bSpawnGroundFire;
+var KFGameExplosion GroundFireExplosionTemplate;
+
+replication
+{
+     if(bNetInitial)
+        bSpawnGroundFire;
+}
+
 protected simulated function PrepareExplosionTemplate()
 {
     super.PrepareExplosionTemplate();
     ExplosionTemplate.bIgnoreInstigator = true;
+    GroundFireExplosionTemplate.bIgnoreInstigator = true;
+}
+
+simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
+{
+    local KFExplosionActorLingering GFExplosionActor;
+
+    if(bHasDisintegrated)
+    {
+        return;
+    }
+    if(!bHasExploded && bSpawnGroundFire)
+    {
+        GFExplosionActor = Spawn(GroundFireExplosionActorClass, self,, HitLocation + (HitNormal * 32), rotator(HitNormal));
+        if(GFExplosionActor != none)
+        {
+            GFExplosionActor.Instigator = Instigator;
+            GFExplosionActor.InstigatorController = InstigatorController;
+            GroundFireExplosionTemplate.HitLocation = HitLocation;
+            GroundFireExplosionTemplate.HitNormal = HitNormal;
+            if(GroundFireExplosionTemplate.bDirectionalExplosion)
+            {
+                HitNormal = GetExplosionDirection(HitNormal);
+            }
+            GFExplosionActor.maxTime = BurnDuration;
+            GFExplosionActor.interval = BurnDamageInterval;
+            GFExplosionActor.Explode(GroundFireExplosionTemplate, HitNormal);
+        }
+    }
+    super.TriggerExplosion(HitLocation, HitNormal, HitActor);
 }
 
 defaultproperties
 {
+    BurnDuration=4
+    BurnDamageInterval=0.5
+    GroundFireExplosionActorClass=Class'KFExplosion_HuskFireballGroundFire'
+    begin object name=ExploTemplate1 class=KFGameExplosion
+        ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_GroundFire'
+        bDirectionalExplosion=true
+        Damage=3
+        DamageRadius=150
+        MyDamageType=Class'KFDT_Fire_ZedGround'
+        KnockDownStrength=0
+        MomentumTransferScale=0
+        ExploLight=PointLightComponent'Default__KFProj_Husk_Fireball.FlamePointLight'
+        ExploLightFadeOutTime=0.3
+        ExploLightStartFadeOutTime=1.5
+        FractureMeshRadius=0
+        CamShake=none
+    object end
+    // Reference: KFGameExplosion'Default__KFProj_Husk_Fireball.ExploTemplate1'
+    GroundFireExplosionTemplate=ExploTemplate1
     bAutoStartAmbientSound=true
     bStopAmbientSoundOnExplode=true
     ExplosionActorClass=Class'KFGame.KFExplosionActor'
@@ -24,6 +85,7 @@ defaultproperties
         Damage=25
         DamageRadius=300
         MyDamageType=Class'KFDT_Fire_HuskFireball'
+        MomentumTransferScale=60000
         ExplosionSound=AkEvent'WW_ZED_Husk.ZED_Husk_SFX_Ranged_Shot_Impact'
         ExploLight=PointLightComponent'Default__KFProj_Husk_Fireball.ExplosionPointLight'
         ExploLightFadeOutTime=0.5

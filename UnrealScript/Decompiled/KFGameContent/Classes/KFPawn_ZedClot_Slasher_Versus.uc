@@ -46,6 +46,7 @@ defaultproperties
     DoshValue=20
     XPValues=32
     DamageTypeModifiers=/* Array type was not detected. */
+    MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     JumpBumpDamageType=Class'KFDT_Bludgeon_ZedJump'
     LocalizationKey=KFPawn_ZedClot_Slasher
@@ -54,14 +55,12 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedClot_Slasher_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    bMovesFastInZedTime=true
     HitZones=/* Array type was not detected. */
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedClot_Slasher_Versus.Afflictions'
     IncapSettings=/* Array type was not detected. */
     SprintSpeed=650
     SprintStrafeSpeed=450
     TeammateCollisionRadiusPercent=0.3
-    ZedTimeSpeedScale=0.75
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

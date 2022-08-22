@@ -35,6 +35,8 @@ struct PilotLight
 
 var protected transient bool bFireSpraying;
 var protected bool bPilotLightOn;
+/** Whether this weapon should warn AI when it fires */
+var() const bool bWarnAIWhenFiring;
 var globalconfig bool bArePilotLightsAllowed;
 var protected transient int NextFlamePoolIdx;
 var protected transient KFSprayActor FlamePool[2];
@@ -334,6 +336,8 @@ protected simulated function TurnOffFireSpray()
     bFireSpraying = false;
 }
 
+function Timer_CheckForAIWarning();
+
 simulated function DetachWeapon()
 {
     TurnOffPilot();
@@ -417,6 +421,11 @@ simulated state SprayingFire extends WeaponFiring
     {
         AmmoConsumed = 0;
         TurnOnFireSpray();
+        if(bWarnAIWhenFiring)
+        {
+            Timer_CheckForAIWarning();
+            SetTimer(0.5, true, 'Timer_CheckForAIWarning');
+        }
         super.BeginState(PreviousStateName);
     }
 
@@ -429,6 +438,10 @@ simulated state SprayingFire extends WeaponFiring
         ClearFlashLocation();
         ClearTimer('RefireCheckTimer');
         ClearPendingFire(0);
+        if(bWarnAIWhenFiring)
+        {
+            ClearTimer('Timer_CheckForAIWarning');
+        }
         super.EndState(NextStateName);
     }
 
@@ -445,6 +458,35 @@ simulated state SprayingFire extends WeaponFiring
             return false;
         }
         return (StillFiring(CurrentFireMode)) || AmmoConsumed < MinAmmoConsumed;
+    }
+
+    function Timer_CheckForAIWarning()
+    {
+        local Vector Direction, DangerPoint, TraceStart, Projection;
+        local Pawn P;
+        local KFPawn_Monster HitMonster;
+
+        TraceStart = Instigator.GetWeaponStartTraceLocation();
+        Direction = vector(GetAdjustedAim(TraceStart));
+        foreach WorldInfo.AllPawns(Class'Pawn', P)
+        {
+            if(((P.GetTeamNum() != Instigator.GetTeamNum()) && !P.IsHumanControlled()) && P.IsAliveAndWell())
+            {
+                Projection = P.Location - TraceStart;
+                if(VSizeSq(Projection) < MaxAIWarningDistSQ)
+                {
+                    PointDistToLine(P.Location, Direction, TraceStart, DangerPoint);
+                    if(VSizeSq(DangerPoint - P.Location) < MaxAIWarningDistFromPointSQ)
+                    {
+                        HitMonster = KFPawn_Monster(P);
+                        if((HitMonster != none) && HitMonster.MyKFAIC != none)
+                        {
+                            HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint, TraceStart, self);
+                        }
+                    }
+                }
+            }            
+        }        
     }
 
     simulated function bool IsFiring()
@@ -518,6 +560,8 @@ defaultproperties
     // Reference: KFParticleSystemComponent'Default__KFWeap_FlameBase.FlameEndSpray0'
     PSC_EndSpray=FlameEndSpray0
     bWeaponNeedsServerPosition=true
+    MaxAIWarningDistSQ=1000000
+    MaxAIWarningDistFromPointSQ=40000
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_FlameBase.MeleeHelper'
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

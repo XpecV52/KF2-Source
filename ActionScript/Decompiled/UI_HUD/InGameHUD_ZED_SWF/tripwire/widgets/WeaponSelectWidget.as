@@ -16,6 +16,8 @@ package tripwire.widgets
     {
          
         
+        public var bIsControllerVersion:Boolean = false;
+        
         public var throwIndicator;
         
         public var WeaponCategoryContainer0:WeaponSelectGroupContainer;
@@ -104,7 +106,14 @@ package tripwire.widgets
             this.WeaponBlurIn();
             this._weaponSelectFadeTimer.reset();
             this._weaponSelectFadeTimer.start();
-            HudManager.manager.RhythmCounter.hidden = true;
+            if(HudManager.manager != null && HudManager.manager.RhythmCounter != null)
+            {
+                HudManager.manager.RhythmCounter.hidden = true;
+            }
+            this.WeaponCategoryContainer0.bControllerParent = this.bIsControllerVersion;
+            this.WeaponCategoryContainer1.bControllerParent = this.bIsControllerVersion;
+            this.WeaponCategoryContainer2.bControllerParent = this.bIsControllerVersion;
+            this.WeaponCategoryContainer3.bControllerParent = this.bIsControllerVersion;
         }
         
         public function close(param1:TimerEvent = null) : *
@@ -196,6 +205,7 @@ package tripwire.widgets
             this._currentGroupIndex = param1;
             this._currentSelectedIndex = param2;
             this.weaponGroupContainers[param1].selectedIndex = param2;
+            this.weaponGroupContainers[param1].alpha = 1;
         }
         
         public function showOnlyHUDGroup(param1:int) : void

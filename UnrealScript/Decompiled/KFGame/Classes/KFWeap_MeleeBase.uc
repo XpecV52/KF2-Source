@@ -72,21 +72,6 @@ var ParticleSystem BlockParticleSystem;
 var ParticleSystem ParryParticleSystem;
 var name BlockEffectsSocketName;
 
-simulated function bool HasAnyAmmo()
-{
-    return true;
-}
-
-simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
-{
-    Amount = 1;
-    if(FireModeNum == 4)
-    {
-        return super.HasAmmo(FireModeNum, Amount);
-    }
-    return true;
-}
-
 simulated function bool ShouldOwnerWalk()
 {
     return bMoveAtWalkingSpeed;
@@ -247,13 +232,13 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
 
 simulated function UpkeepComplete();
 
-simulated function bool CanReload()
+simulated function bool CanReload(optional byte FireModeNum)
 {
     if(FiringStatesArray[2] == 'WeaponUpkeep')
     {
         return true;
     }
-    return super.CanReload();
+    return super.CanReload(FireModeNum);
 }
 
 simulated function PlayMeleeSettleAnim()
@@ -409,7 +394,7 @@ simulated state WeaponUpkeep
 {
     simulated function byte GetWeaponStateId()
     {
-        return 24;
+        return 23;
     }
 
     simulated function BeginState(name PreviousStateName)
@@ -471,23 +456,23 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
         switch(MeleeAttackHelper.CurrentAttackDir)
         {
             case 0:
-                return 17;
-            case 4:
-                return 17;
-            case 5:
-                return 17;
-            case 1:
-                return 18;
-            case 6:
-                return 18;
-            case 7:
-                return 18;
-            case 2:
-                return 15;
-            case 3:
                 return 16;
+            case 4:
+                return 16;
+            case 5:
+                return 16;
+            case 1:
+                return 17;
+            case 6:
+                return 17;
+            case 7:
+                return 17;
+            case 2:
+                return 14;
+            case 3:
+                return 15;
             default:
-                return 13;
+                return 12;
                 break;
         }
     }
@@ -581,21 +566,21 @@ simulated state MeleeHeavyAttacking extends MeleeAttackBasic
         switch(MeleeAttackHelper.CurrentAttackDir)
         {
             case 0:
-                return 21;
-            case 4:
-                return 21;
-            case 5:
-                return 21;
-            case 1:
-                return 22;
-            case 6:
-                return 22;
-            case 7:
-                return 22;
-            case 2:
-                return 19;
-            case 3:
                 return 20;
+            case 4:
+                return 20;
+            case 5:
+                return 20;
+            case 1:
+                return 21;
+            case 6:
+                return 21;
+            case 7:
+                return 21;
+            case 2:
+                return 18;
+            case 3:
+                return 19;
             default:
                 return 0;
                 break;
@@ -733,7 +718,7 @@ simulated state MeleeSustained extends WeaponFiring
 
     simulated function byte GetWeaponStateId()
     {
-        return 14;
+        return 13;
     }
     stop;    
 }
@@ -744,7 +729,7 @@ simulated state MeleeBlocking
 
     simulated function byte GetWeaponStateId()
     {
-        return 23;
+        return 22;
     }
 
     simulated function BeginState(name PreviousStateName)
@@ -897,7 +882,6 @@ simulated state BlockingCooldown extends Active
 
     simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
     {
-        Amount = 1;
         if(FireModeNum == 1)
         {
             return false;
@@ -970,6 +954,12 @@ defaultproperties
     FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Melee'
     InventoryGroup=EInventoryGroup.IG_Melee
     bTargetAdhesionEnabled=false
+    AmmoCost(0)=0
+    AmmoCost(1)=0
+    AmmoCost(2)=0
+    AmmoCost(3)=0
+    AmmoCost(4)=0
+    AmmoCost(5)=0
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         bUseDirectionalMelee=true
         bHasChainAttacks=true

@@ -77,9 +77,9 @@ defaultproperties
     DoshValue=260
     XPValues=102
     DamageTypeModifiers=/* Array type was not detected. */
-    BlockingDamageModifier=0.25
-    MeleeBlockingDamageModifier=0.25
+    MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
+    MinBlockFOV=0
     LocalizationKey=KFPawn_ZedScrake
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

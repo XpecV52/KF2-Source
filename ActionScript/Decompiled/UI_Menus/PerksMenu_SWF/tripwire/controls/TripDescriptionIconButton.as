@@ -4,7 +4,7 @@ package tripwire.controls
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.text.TextField;
-    import scaleform.clik.controls.UILoader;
+    import scaleform.gfx.TextFieldEx;
     
     public class TripDescriptionIconButton extends TripButton
     {
@@ -12,9 +12,13 @@ package tripwire.controls
         
         public var descriptionTextfield:TextField;
         
-        public var iconLoader:UILoader;
+        public var iconLoader:TripUILoaderQueue;
         
         public var activeIndicator:MovieClip;
+        
+        public var bumpers:MovieClip;
+        
+        public var enabledBG:MovieClip;
         
         public var tier:int = 0;
         
@@ -22,7 +26,7 @@ package tripwire.controls
         
         public var titleColor:uint = 14538703;
         
-        public var baseColor:uint = 12234399;
+        public var baseColor:uint = 14538703;
         
         public var highlightColor:uint = 14538703;
         
@@ -33,6 +37,9 @@ package tripwire.controls
             this.iconColor = new Color();
             super();
             preventAutosizing = true;
+            overSoundEffect = "PERK_CONFIGURE_SKILLS_ITEM_ROLLOVER";
+            this.bumpers.visible = false;
+            TextFieldEx.setVerticalAlign(this.descriptionTextfield,TextFieldEx.VALIGN_CENTER);
         }
         
         public function setData(param1:Object) : void
@@ -70,6 +77,7 @@ package tripwire.controls
         public function set active(param1:*) : void
         {
             this.activeIndicator.visible = param1;
+            this.bumpers.visible = param1;
             this.unhighlightButton();
         }
         
@@ -105,12 +113,12 @@ package tripwire.controls
         override public function set enabled(param1:Boolean) : void
         {
             super.enabled = param1;
+            this.bumpers.visible = param1;
+            this.enabledBG.visible = !param1;
             if(!param1)
             {
                 this.iconColor.setTint(this.disabledColor,1);
                 this.iconLoader.transform.colorTransform = this.iconColor;
-                textField.textColor = this.disabledColor;
-                this.descriptionTextfield.textColor = this.disabledColor;
             }
         }
     }

@@ -36,10 +36,6 @@
 `define STATID_Demo_Progress				60
 `define STATID_Demo_Build					61
 
-/** Ninja 70 */
-`define STATID_Ninja_Progress				70
-`define STATID_Ninja_Build					71
-
 /** Gunslinger 80 */
 `define STATID_Guns_Progress				80
 `define STATID_Guns_Build					81

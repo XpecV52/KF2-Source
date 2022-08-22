@@ -13,7 +13,7 @@ class KFPawn_Customization extends KFPawn_Human
 struct native sReplicatedMovementData
 {
 	var vector NewLocation;
-	var byte NewRotationYaw;
+	var rotator NewRotation;
 };
 
 /** Post-spawn replicated location (we skip actor property replication, this allows us to update after spawn) */
@@ -34,6 +34,7 @@ cpptext
 {
 	virtual UBOOL IsAliveAndWell() const;
 	virtual void PostNetReceiveLocation();
+    UBOOL SetDesiredRotation( FRotator TargetDesiredRotation,UBOOL InLockDesiredRotation=FALSE,UBOOL InUnlockWhenReached=FALSE,FLOAT InterpolationTime=-1.000000,UBOOL bResetRotationRate=TRUE );
 }
 
 replication
@@ -67,7 +68,7 @@ simulated event ReplicatedEvent( name VarName )
 function SetUpdatedMovementData( vector NewLoc, rotator NewRot )
 {
 	ReplicatedMovementData.NewLocation = NewLoc;
-	ReplicatedMovementData.NewRotationYaw = ( NewRot.Yaw & 65535 ) >> 8;
+	ReplicatedMovementData.NewRotation = NewRot;
 
 	// Set directly on listen server
 	OnMovementDataUpdated();
@@ -79,11 +80,8 @@ function SetUpdatedMovementData( vector NewLoc, rotator NewRot )
 /** Sets our updated movement data on client/listen server */
 simulated function OnMovementDataUpdated()
 {
-	local rotator TempRotation;
-
 	SetLocation( ReplicatedMovementData.NewLocation );
-	TempRotation.Yaw = NormalizeRotAxis( ReplicatedMovementData.NewRotationYaw << 8 );
-	SetRotation( TempRotation );
+	SetRotation( ReplicatedMovementData.NewRotation );
 
 	// Update visibility on listen server/clients
 	if( WorldInfo.NetMode != NM_DedicatedServer )
@@ -108,6 +106,10 @@ function SetServerHidden( bool bNewHidden )
 	// Update on network immediately
 	bForceNetUpdate = true;
 }
+
+/** Overridden, we don't want anything to stomp on SetUpdatedMovementData() */
+function ClientSetRotation( rotator NewRotation ) {}
+simulated function FaceRotation(rotator NewRotation, float DeltaTime) {}
 
 /*********************************************************************************************
 Initialization
@@ -148,8 +150,7 @@ simulated function SetCharacterAnimationInfo()
 	}
 
 	Mesh.UpdateAnimations();
-
-	PlayRandomIdleAnimation();
+	PlayRandomIdleAnimation(true);
 }
 
 function AttachWeaponByItemDefinition( int ItemDefinition )
@@ -188,17 +189,19 @@ function AttachWeaponByItemDefinition( int ItemDefinition )
 	
 }
 
-simulated function PlayRandomIdleAnimation()
+simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
 {
 	local byte AnimIndex;
 	local name AnimName;
 	local AnimSet AnimSet;
+	local float BlendInTime;
 
 	AnimSet =  Mesh.AnimSets[Mesh.AnimSets.Length - 1];
 	AnimIndex = Rand(AnimSet.Sequences.Length);
 	AnimName = AnimSet.Sequences[AnimIndex].SequenceName;
+	BlendInTime = (bNewCharacter) ? 0.f : 0.4;
 
-	BodyStanceNodes[EAS_FullBody].PlayCustomAnim(AnimName, 1.f, 0.4, 0.4, false, true);
+	BodyStanceNodes[EAS_FullBody].PlayCustomAnim(AnimName, 1.f, BlendInTime, 0.4, false, true);
 	BodyStanceNodes[EAS_FullBody].SetActorAnimEndNotification( TRUE );
 }
 
@@ -289,6 +292,7 @@ defaultproperties
 	bDisableTurnInPlace=true
 	bEnableAimOffset=false
 	bSkipActorPropertyReplication=true
+	bReplicateMovement=false
 	bDisableMeshRotationSmoothing=true
 
 	// Default the customization pawn to walking so that IK is enabled

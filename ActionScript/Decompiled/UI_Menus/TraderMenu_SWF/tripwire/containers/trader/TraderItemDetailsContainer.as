@@ -1,12 +1,12 @@
 package tripwire.containers.trader
 {
     import fl.motion.Color;
+    import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
-    import scaleform.clik.controls.UILoader;
     import scaleform.clik.events.ButtonEvent;
     import tripwire.containers.TripContainer;
-    import tripwire.controls.trader.TraderButton;
+    import tripwire.controls.TripUILoaderQueue;
     import tripwire.managers.MenuManager;
     
     public class TraderItemDetailsContainer extends TripContainer
@@ -21,11 +21,9 @@ package tripwire.containers.trader
         
         public var nameTextField:TextField;
         
-        public var weaponLoader:UILoader;
+        public var weaponLoader:TripUILoaderQueue;
         
-        public var perkLoader:UILoader;
-        
-        public var buySellButton:TraderButton;
+        public var perkLoader:TripUILoaderQueue;
         
         private var activeColor:uint = 38006;
         
@@ -37,6 +35,10 @@ package tripwire.containers.trader
         
         private var _unfavoriteString:String;
         
+        public var _bIsFavorite:Boolean;
+        
+        public var _bCanFavorite:Boolean;
+        
         private var cachedFavorite_X:Number;
         
         private var cachedItemData:Object;
@@ -45,7 +47,6 @@ package tripwire.containers.trader
         {
             this._iconColor = new Color();
             super();
-            this.buySellButton.addEventListener(ButtonEvent.PRESS,this.buyItem,false,0,true);
             this.detailedStats.favoriteButton.addEventListener(ButtonEvent.PRESS,this.onFavoriteItem,false,0,true);
             tabChildren = false;
             tabEnabled = false;
@@ -77,37 +78,22 @@ package tripwire.containers.trader
             {
                 visible = true;
             }
-            this.typeTextField.text = !!param1.type ? param1.type : "";
-            this.nameTextField.text = !!param1.name ? param1.name : "";
-            this.buySellButton.setUsableButtonVisability(param1.bCanBuyOrSell);
-            if(param1.bCanBuyOrSell)
-            {
-                this.buySellButton.label = param1.buyOrSellLabel;
-            }
-            else
-            {
-                this.buySellButton.cannotUseTextField.text = param1.cannotBuyOrSellLabel;
-            }
-            this.detailedStats.favoriteButton.visible = param1.bCanFavorite;
-            this.detailedStats.favoriteTextField.visible = param1.bCanFavorite;
-            this.buySellButton.buttonValue = param1.price;
-            this.buySellButton.enabled = param1.bCanBuyOrSell;
+            this.nameTextField.text = !!param1.type ? param1.type : "";
             if(MenuManager.manager && MenuManager.manager.bUsingGamepad)
             {
-                this.buySellButton.controllerIcon.visible = param1.bCanBuyOrSell;
-                this.detailedStats.favoriteControllerIcon.visible = param1.bCanFavorite;
-                this.detailedStats.favoriteTextField.x = this.cachedFavorite_X - (this.detailedStats.favoriteControllerIcon.width + 5);
+                this.detailedStats.favoriteIcon.visible = param1.bCanFavorite;
+                this.detailedStats.favoriteButton.visible = false;
             }
             else
             {
-                this.buySellButton.controllerIcon.visible = false;
-                this.detailedStats.favoriteControllerIcon.visible = false;
-                this.detailedStats.favoriteTextField.x = this.cachedFavorite_X;
+                this.detailedStats.favoriteIcon.visible = false;
+                this.detailedStats.favoriteButton.visible = param1.bCanFavorite;
             }
             this.weaponLoader.source = !!param1.texturePath ? param1.texturePath : "";
             this.weaponLoader.visible = true;
             this.perkLoader.source = !!param1.perkIconPath ? param1.perkIconPath : "";
             this.SetHideStats(param1.bHideStats);
+            this.bCanFavorite = !!param1.bCanFavorite ? Boolean(param1.bCanFavorite) : false;
             if(!param1.bHideStats)
             {
                 this.detailedStats.damageValue.text = param1.damageValue;
@@ -122,15 +108,21 @@ package tripwire.containers.trader
                 this.detailedStats.accuracyBar.gotoAndStop(param1.accuracyPercent);
                 this.detailedStats.descriptionTextField.text = param1.description;
                 this.detailedStats.weightValue.text = param1.weight;
+                this.detailedStats.weightValue.visible = param1.weight > 0;
+                this.detailedStats.weightIcon.visible = param1.weight > 0;
                 if(param1.bIsFavorite)
                 {
-                    this.detailedStats.favoriteButton.gotoAndStop("favorited");
-                    this.detailedStats.favoriteTextField.text = this._unfavoriteString;
+                    this.detailedStats.favoriteIcon.gotoAndStop("favorited");
+                    this.detailedStats.favoriteButton.selected = true;
+                    this.detailedStats.favoriteButton.label = this._unfavoriteString;
+                    this.bIsFavorite = true;
                 }
                 else
                 {
-                    this.detailedStats.favoriteButton.gotoAndStop("notFavorited");
-                    this.detailedStats.favoriteTextField.text = this._favoriteString;
+                    this.detailedStats.favoriteIcon.gotoAndStop("notFavorited");
+                    this.detailedStats.favoriteButton.selected = false;
+                    this.detailedStats.favoriteButton.label = this._favoriteString;
+                    this.bIsFavorite = false;
                 }
                 if(param1.bCanCarry)
                 {
@@ -148,20 +140,36 @@ package tripwire.containers.trader
             {
                 this.noStatsDescriptionTextField.text = param1.description;
             }
+            if(this.visible)
+            {
+                this.dispatchEvent(new Event("ItemUpdated"));
+            }
+        }
+        
+        public function get bIsFavorite() : *
+        {
+            return this._bIsFavorite;
+        }
+        
+        public function set bIsFavorite(param1:Boolean) : void
+        {
+            this._bIsFavorite = param1;
+        }
+        
+        public function get bCanFavorite() : *
+        {
+            return this._bCanFavorite;
+        }
+        
+        public function set bCanFavorite(param1:Boolean) : void
+        {
+            this._bCanFavorite = param1;
         }
         
         public function updateControllerVisibility() : *
         {
-            this.buySellButton.controllerIcon.visible = bManagerUsingGamepad;
-            this.detailedStats.favoriteControllerIcon.visible = bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite;
-            if(bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite)
-            {
-                this.detailedStats.favoriteTextField.x = this.cachedFavorite_X - this.detailedStats.favoriteControllerIcon.width;
-            }
-            else
-            {
-                this.detailedStats.favoriteTextField.x = this.cachedFavorite_X;
-            }
+            this.detailedStats.favoriteButton.visible = !bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite;
+            this.detailedStats.favoriteIcon.visible = bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite;
         }
         
         public function favoriteItem() : *

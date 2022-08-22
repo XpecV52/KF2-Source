@@ -358,6 +358,7 @@ class KFPawnVoiceGroup_Rae extends KFPawnVoiceGroup;
 
 
 
+
 	
 
 
@@ -719,6 +720,7 @@ defaultproperties
    DialogEvents(226)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Rae.Play_Rae_OBJE_PackageDead_Base')
    DialogEvents(227)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Rae.Play_Rae_OBJE_PlayerDiedPackage_Base')
    DialogEvents(228)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Rae.Play_Rae_OBJE_PackageSecured_Base')
+   DialogEvents(229)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Rae.Play_Rae_KZED_SprintTowardsZ_Base')
    Name="Default__KFPawnVoiceGroup_Rae"
    ObjectArchetype=KFPawnVoiceGroup'KFGame.Default__KFPawnVoiceGroup'
 }

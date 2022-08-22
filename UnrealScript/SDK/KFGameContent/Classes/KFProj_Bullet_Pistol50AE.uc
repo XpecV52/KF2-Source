@@ -8,7 +8,7 @@
 // John "Ramm-Jaeger" Gibson
 //=============================================================================
 
-class KFProj_Bullet_Pistol50AE extends KFProj_Bullet_RackEmUp
+class KFProj_Bullet_Pistol50AE extends KFProj_Bullet
 	hidedropdown;
 
 defaultproperties

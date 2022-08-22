@@ -91,8 +91,7 @@ const CrouchShootAnim = 'ADD_CH_Shoot';
 const IronShootAnim = 'ADD_Iron_Shoot';
 const WeaponFireAnim = 'Shoot';
 const WeaponAltFireAnim = 'Shoot';
-const WeaponSecondaryShootAndReload = 'Reload_Empty';
-const WeaponSecondaryShoot = 'Shoot';
+const WeaponIronFireAnim = 'Iron_Shoot';
 
 enum EWeaponState
 {
@@ -105,9 +104,8 @@ enum EWeaponState
     WEP_ReloadSingleEmpty,
     WEP_ReloadSingle_Elite,
     WEP_ReloadSingleEmpty_Elite,
-    WEP_Firing,
-    WEP_FiringSecondary,
-    WEP_FiringSecondaryAndReload,
+    WEP_ReloadSecondary,
+    WEP_ReloadSecondary_Elite,
     WEP_MeleeBasic,
     WEP_MeleeChain,
     WEP_MeleeSustained,
@@ -178,6 +176,7 @@ var() bool bHasLaserSight;
 /** Enable recoile skeletal controls */
 var(Anims) bool bPlayIKRecoil;
 var transient bool bSynchronizeWeaponAnim;
+var transient bool bSyncAnimCheckRelevance;
 var transient bool bLoopSynchedWeaponAnim;
 var transient bool bIsReloading;
 var() const KFLaserSightAttachment LaserSightArchetype;
@@ -200,7 +199,6 @@ var(Anims) float ShootBlendOutTime;
 var transient byte LastMeleeAnimIdx;
 var transient AnimNodeSlot SyncPawnNode;
 var transient name SyncAnimName;
-var transient float SyncAnimStartTime;
 var transient name LoopingAnim;
 var transient name LoopIntroAnim;
 var transient name LoopOutroAnim;
@@ -387,16 +385,13 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
 
 simulated function PlayWeaponFireAnim()
 {
-    if((Instigator.FiringMode == 1) && 'Shoot' != 'None')
+    if(Instigator.bIsWalking)
     {
-        WeapMesh.PlayAnim('Shoot',,, true);        
+        WeapMesh.PlayAnim('Iron_Shoot',,, true);        
     }
     else
     {
-        if('Shoot' != 'None')
-        {
-            WeapMesh.PlayAnim('Shoot',,, true);
-        }
+        WeapMesh.PlayAnim('Shoot',,, true);
     }
 }
 
@@ -555,56 +550,53 @@ simulated function UpdateThirdPersonWeaponAction(KFWeaponAttachment.EWeaponState
     }
     switch(NewWeaponState)
     {
-        case 25:
+        case 24:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Equip_CH' : 'Equip'));
             break;
-        case 26:
+        case 25:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'PutAway_CH' : 'PutAway'));
             break;
-        case 27:
+        case 26:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Nade_Throw_CH' : 'Nade_Throw'));
             break;
-        case 28:
+        case 27:
             PlayHealAnim(P);
             break;
-        case 29:
+        case 28:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Heal_Quick_CH' : 'Heal_Quick'));
             break;
-        case 30:
+        case 29:
             PlayWeldAnim(P);
             break;
-        case 24:
+        case 23:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Clean_NoBlood_CH' : 'Clean_NoBlood'));
             break;
-        case 10:
-            PlayCharacterMeshAnim(P, 'Shoot');
-            break;
         case 11:
-            PlayCharacterMeshAnim(P, 'Reload_Empty', true);
-            break;
-        case 12:
-        case 18:
         case 17:
-        case 15:
         case 16:
-        case 22:
+        case 14:
+        case 15:
         case 21:
-        case 19:
         case 20:
+        case 18:
+        case 19:
             PlayMeleeAtkAnim(NewWeaponState, P);
             break;
-        case 14:
+        case 13:
             PlayMeleeSustainedAnim(P);
             break;
-        case 23:
+        case 22:
             PlayMeleeBlockAnim(P);
             break;
         case 1:
         case 2:
         case 3:
         case 4:
+        case 9:
+        case 10:
             bIsReloading = true;
             PlayReloadMagazineAnim(NewWeaponState, P);
+            break;
         case 5:
         case 7:
         case 6:
@@ -628,31 +620,31 @@ simulated function float PlayMeleeAtkAnim(KFWeaponAttachment.EWeaponState NewWea
     }
     switch(NewWeaponState)
     {
-        case 12:
+        case 11:
             AnimName = ((P.bIsCrouched) ? 'Melee_CH' : 'Melee');
             break;
-        case 22:
+        case 21:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_B_CH' : 'Atk_H_B');
             break;
-        case 21:
+        case 20:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_F_CH' : 'Atk_H_F');
             break;
-        case 19:
+        case 18:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_L_CH' : 'Atk_H_L');
             break;
-        case 20:
+        case 19:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_R_CH' : 'Atk_H_R');
             break;
-        case 18:
+        case 17:
             AnimName = ((P.bIsCrouched) ? 'Atk_B_CH' : 'Atk_B');
             break;
-        case 17:
+        case 16:
             AnimName = ((P.bIsCrouched) ? 'Atk_F_CH' : 'Atk_F');
             break;
-        case 15:
+        case 14:
             AnimName = ((P.bIsCrouched) ? 'Atk_L_CH' : 'Atk_L');
             break;
-        case 16:
+        case 15:
             AnimName = ((P.bIsCrouched) ? 'Atk_R_CH' : 'Atk_R');
             break;
         default:
@@ -697,7 +689,7 @@ simulated function LoopWeaponMeleeAnim()
     P = KFPawn(Owner);
     if((P != none) && !P.IsDoingSpecialMove())
     {
-        UpdateThirdPersonWeaponAction(13, P);
+        UpdateThirdPersonWeaponAction(12, P);
     }
 }
 
@@ -832,7 +824,7 @@ simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool
             bSynchronizeWeaponAnim = true;
             SyncPawnNode = SyncNode;
             SyncAnimName = AnimName;
-            SyncAnimStartTime = WorldInfo.TimeSeconds;
+            bSyncAnimCheckRelevance = false;
         }
     }
 }
@@ -841,7 +833,7 @@ simulated event Tick(float DeltaTime)
 {
     if(((!bWeapMeshIsPawnMesh && bSynchronizeWeaponAnim) && SyncPawnNode != none) && WeapMesh.bForceRefpose == 0)
     {
-        if((!SyncPawnNode.bIsPlayingCustomAnim || !SyncPawnNode.bRelevant && (WorldInfo.TimeSeconds - SyncAnimStartTime) > 0.01) || SyncPawnNode.GetPlayedAnimation() != SyncAnimName)
+        if((!SyncPawnNode.bIsPlayingCustomAnim || !SyncPawnNode.bRelevant && bSyncAnimCheckRelevance) || SyncPawnNode.GetPlayedAnimation() != SyncAnimName)
         {
             if(WeapAnimNode.bPlaying && WeapAnimNode.AnimSeqName == SyncAnimName)
             {
@@ -849,6 +841,7 @@ simulated event Tick(float DeltaTime)
             }
             bSynchronizeWeaponAnim = false;
         }
+        bSyncAnimCheckRelevance = true;
     }
 }
 

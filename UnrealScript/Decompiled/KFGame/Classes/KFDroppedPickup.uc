@@ -15,6 +15,7 @@ var const float AngErrorAccumulator;
 var transient bool bCollisionSoundsEnabled;
 var const bool bEnableStaticMeshRBPhys;
 var const bool bIgnoreBlockingVolumes;
+var protected const bool bUseLowHealthDelay;
 var protectedwrite export editinline MeshComponent MyMeshComp;
 var protectedwrite export editinline CylinderComponent MyCylinderComp;
 var private int SkinItemId;
@@ -313,7 +314,7 @@ auto state Pickup
         }
         if(Other == Instigator)
         {
-            if(((float(Instigator.Health / Instigator.HealthMax) <= 0.2) && (WorldInfo.TimeSeconds - CreationTime) < 1) || (WorldInfo.TimeSeconds - CreationTime) < 0.1)
+            if(((bUseLowHealthDelay && float(Instigator.Health / Instigator.HealthMax) <= 0.2) && (WorldInfo.TimeSeconds - CreationTime) < 1) || (WorldInfo.TimeSeconds - CreationTime) < 0.1)
             {
                 return false;
             }
@@ -379,6 +380,7 @@ defaultproperties
 {
     bCollisionSoundsEnabled=true
     bEnableStaticMeshRBPhys=true
+    bUseLowHealthDelay=true
     begin object name=Sprite class=SpriteComponent
         ReplacementPrimitive=none
     object end

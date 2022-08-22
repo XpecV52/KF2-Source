@@ -358,6 +358,7 @@ class KFPawnVoiceGroup_Briar_Classic extends KFPawnVoiceGroup;
 
 
 
+
 	
 
 
@@ -719,6 +720,7 @@ defaultproperties
    DialogEvents(226)=(DefaultAudioCue=AkEvent'ww_vox_CHR_Briar_Mark.Play_Mark_OBJE_PackageDead_Base')
    DialogEvents(227)=(DefaultAudioCue=AkEvent'ww_vox_CHR_Briar_Mark.Play_Mark_OBJE_PlayerDiedPackage_Base')
    DialogEvents(228)=(DefaultAudioCue=AkEvent'ww_vox_CHR_Briar_Mark.Play_Mark_OBJE_PackageSecured_Base')
+   DialogEvents(229)=(DefaultAudioCue=AkEvent'ww_vox_CHR_Briar_Mark.Play_Mark_KZED_SprintTowardsZ_Base')
    Name="Default__KFPawnVoiceGroup_Briar_Classic"
    ObjectArchetype=KFPawnVoiceGroup'KFGame.Default__KFPawnVoiceGroup'
 }

@@ -43,11 +43,28 @@ replication
 {
 	if ( Role == ROLE_Authority && !bNetOwner )
 		bDud;
+
+    if( bNetInitial && !bNetOwner )
+        ArmDistSquared;
 }
 
 simulated function SyncOriginalLocation()
 {
-	// If server has already collided we need to recover our velocity.  Reuse the code
+	local KFPerk InstigatorPerk;
+    local KFPawn KFP;
+
+    KFP = KFPawn(Instigator);
+
+    if( KFP != none ) 
+    {
+        InstigatorPerk = KFP.GetPerk();
+        if( InstigatorPerk != none && InstigatorPerk.ShouldNeverDud() )
+        {
+            ArmDistSquared = 0;
+        }
+    }
+
+    // If server has already collided we need to recover our velocity.  Reuse the code
 	// in super by zeroing velocity.
     if ( Physics == PHYS_Falling && Role < ROLE_Authority 
         && Instigator != none && Instigator.IsLocallyControlled() )
@@ -63,6 +80,7 @@ simulated event PreBeginPlay()
     Super.PreBeginPlay();
     AdjustCanDisintigrate();
 }
+
 
 /**
  * This is only here to handle Projectile class calls
@@ -329,33 +347,36 @@ simulated protected function PrepareExplosionTemplate()
     local KFPlayerController KFPC;
     local KFPerk InstigatorPerk;
 
-    if( bWasTimeDilated && Instigator != none )
+    if( Instigator != none )
     {
-        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
-        if( InstigatorPRI != none )
+        if( bWasTimeDilated )
         {
-            if( InstigatorPRI.bNukeActive && class'KFPerk_Demolitionist'.static.ProjectileShouldNuke( self ) )
+            InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+            if( InstigatorPRI != none )
             {
-                ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
-                ExplosionTemplate.Damage = default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
-                ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
-                ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;        
-            }
-            else if( InstigatorPRI.bConcussiveActive && AltExploEffects != none )
-            {
-                ExplosionTemplate.ExplosionEffects = AltExploEffects;
-                ExplosionTemplate.ExplosionSound = class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
+                if( InstigatorPRI.bNukeActive && class'KFPerk_Demolitionist'.static.ProjectileShouldNuke( self ) )
+                {
+                    ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
+                    ExplosionTemplate.Damage = default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
+                    ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
+                    ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;        
+                }
+                else if( InstigatorPRI.bConcussiveActive && AltExploEffects != none )
+                {
+                    ExplosionTemplate.ExplosionEffects = AltExploEffects;
+                    ExplosionTemplate.ExplosionSound = class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
+                }
             }
         }
-    }
 
-    KFPC = KFPlayerController(Instigator.Controller);
-    // Change the radius and damage based on the perk
-    if( Instigator.Role == ROLE_Authority && KFPC != none )
-    {
-        InstigatorPerk = KFPC.GetPerk();
-        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
-        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+        KFPC = KFPlayerController(Instigator.Controller);
+        // Change the radius and damage based on the perk
+        if( Instigator.Role == ROLE_Authority && KFPC != none )
+        {
+            InstigatorPerk = KFPC.GetPerk();
+            ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
+            ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+        }
     }
 
     super.PrepareExplosionTemplate();
@@ -367,7 +388,7 @@ simulated protected function SetExplosionActorClass()
 
     if( bWasTimeDilated && Instigator != none )
     {
-       InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
         if( InstigatorPRI != none )
         {
             if( InstigatorPRI.bNukeActive && class'KFPerk_Demolitionist'.static.ProjectileShouldNuke( self ) )

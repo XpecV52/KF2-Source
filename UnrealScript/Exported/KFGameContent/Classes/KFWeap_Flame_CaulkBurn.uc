@@ -81,6 +81,7 @@ defaultproperties
    End Object
    PSC_PilotLight2=PilotLight1
    PilotLight2SocketName="FXPilot2"
+   bWarnAIWhenFiring=True
    FlameSprayArchetype=SprayActor_Flame'WEP_CaulkBurn_ARCH.WEP_CaulkBurn_Flame'
    Begin Object Class=KFParticleSystemComponent Name=PilotLight0 Archetype=KFParticleSystemComponent'KFGame.Default__KFWeap_FlameBase:PilotLight0'
       Template=ParticleSystem'WEP_CaulkBurn_EMIT.FX_CaulkBurn_pilot_light_01'
@@ -116,8 +117,8 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.000000
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
-   MaxSpareAmmo(0)=400
-   InitialSpareMags(0)=4
+   SpareAmmoCapacity(0)=500
+   InitialSpareMags(0)=5
    AmmoPickupScale(0)=0.500000
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
@@ -170,6 +171,7 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
+   InstantHitDamage(3)=25.000000
    InstantHitDamageTypes(2)=None
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_CaulkBurn'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)

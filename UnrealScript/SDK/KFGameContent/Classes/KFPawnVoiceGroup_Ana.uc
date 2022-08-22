@@ -51,6 +51,7 @@ DefaultProperties
 	DialogEvents[`ACT_AmmoLowResp]=(DefaultAudioCue=AkEvent'ww_vox_chr_AnaLarive.Play_AnaLarive_ACT_LowAmmo_Advice',TraderTimeAudioCue=none)
 	DialogEvents[`ACT_AttackHeavy]=(DefaultAudioCue=AkEvent'ww_vox_chr_AnaLarive.Play_AnaLarive_ACT_HardAttack_Base',TraderTimeAudioCue=none)
 	DialogEvents[`ACT_AttackLight]=(DefaultAudioCue=AkEvent'ww_vox_chr_AnaLarive.Play_AnaLarive_ACT_LightAttack_Base',TraderTimeAudioCue=none)
+	DialogEvents[`ACT_BerserkerRage]=(DefaultAudioCue=AkEvent'ww_vox_chr_AnaLarive.Play_AnaLarive_KZED_SprintTowardsZ_Base',TraderTimeAudioCue=none)
 
 	// Ana only has one generic "favorite weapon" dialog
 	DialogEvents[`ACT_SelectFaveWeap1]=(DefaultAudioCue=AkEvent'ww_vox_chr_AnaLarive.Play_AnaLarive_ACT_SelectFave1_Base',TraderTimeAudioCue=none)

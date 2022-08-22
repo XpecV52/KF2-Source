@@ -127,7 +127,7 @@ package tripwire.containers
         
         public function closeHelpText() : void
         {
-            if(this.helperTextContainer.visible)
+            if(this.helperTextContainer.alpha > 0)
             {
                 this.fadeTimeline.reverse(0);
             }
@@ -183,7 +183,7 @@ package tripwire.containers
         {
             this._bIsSoloGame = param1;
             this.serverTypeButton.visible = !param1;
-            this.privacyButton.visible = false;
+            this.privacyButton.visible = !param1;
             this.inProgressButton.visible = !param1;
             if(param1)
             {
@@ -195,7 +195,7 @@ package tripwire.containers
             }
             else
             {
-                this.startGameButton.y = this.inProgressButton.y + this.inProgressButton.height + 24;
+                this.startGameButton.y = this.serverTypeButton.y + this.serverTypeButton.height + 24;
                 this.backButton.y = this.startGameButton.y + this.startGameButton.height;
                 this.optionsHeader.text = this.matchMakingString;
                 this.backButton.label = this.leaveMatchmakingString;
@@ -336,6 +336,7 @@ package tripwire.containers
             currentElement = defaultFirstElement = this.startGameButton;
             this.initializeLists();
             this.setTabIndex();
+            this.mapList.alpha = 0;
             this.backButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.startGameButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.modeButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
@@ -373,6 +374,16 @@ package tripwire.containers
             rightSidePanels.push(this.privacyList);
             rightSidePanels.push(this.inProgressList);
             this.makeAnims();
+            if(bManagerConsoleBuild)
+            {
+                this.serverTypeButton.visible = false;
+            }
+            this.mapList.addEventListener(MouseEvent.MOUSE_OUT,this.resetMap,false,0,true);
+        }
+        
+        public function resetMap(param1:MouseEvent) : void
+        {
+            ExternalInterface.call("Callback_MapSelection",this.currentSelectedMapIndex);
         }
         
         public function makeAnims() : void
@@ -514,6 +525,7 @@ package tripwire.containers
             if(bManagerUsingGamepad)
             {
                 showDimLeftSide(true);
+                ExternalInterface.call("Callback_OptionListOpened",this._currentList.name,this._currentList.selectedIndex);
             }
         }
         
@@ -527,6 +539,10 @@ package tripwire.containers
                 _loc4_ = param1.index;
                 if(this._currentList != this.mapList)
                 {
+                    if(this._currentList == this.serverTypeList && bManagerConsoleBuild)
+                    {
+                        return;
+                    }
                     ExternalInterface.call("Callback_OptionListOpened",this._currentList.name,_loc4_);
                 }
             }
@@ -537,7 +553,7 @@ package tripwire.containers
             if(_loc4_ != this._currentLoadedImageIndex)
             {
                 this._currentLoadedImageIndex = _loc4_;
-                if(this.mapList.bOpen)
+                if(this._currentList == this.mapList && this.mapList.alpha == 1)
                 {
                     ExternalInterface.call("Callback_RecieveMap",_loc4_);
                 }

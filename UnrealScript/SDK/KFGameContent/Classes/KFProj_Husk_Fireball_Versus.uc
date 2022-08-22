@@ -8,75 +8,12 @@
 //=============================================================================
 class KFProj_Husk_Fireball_Versus extends KFProj_Husk_Fireball;
 
-/** How long the ground fire should stick around */
-var const protected float BurnDuration;
-
-/** How often, in seconds, we should apply burn */
-var const protected float BurnDamageInterval;
-
-/** Explosion actor class to use for ground fire */
-var const protected class<KFExplosionActorLingering> GroundFireExplosionActorClass;
-
-/** Explosion template to use for ground fire */
-var KFGameExplosion GroundFireExplosionTemplate;
-
-/** Ground fire should ignore the instigator for damage */
-simulated protected function PrepareExplosionTemplate()
-{
-	super.PrepareExplosionTemplate();
-
-	GroundFireExplosionTemplate.bIgnoreInstigator = true;
-}
-
-/** Spawn our groundfire explosion */
-simulated function TriggerExplosion( Vector HitLocation, Vector HitNormal, Actor HitActor )
-{
-	local KFExplosionActorLingering GFExplosionActor;
-
-	if( bHasDisintegrated )
-	{
-		return;
-	}
-
-	if (!bHasExploded)
-	{
-		// Spawn our explosion and set up its parameters
-	    GFExplosionActor = Spawn( GroundFireExplosionActorClass, self,, HitLocation + (HitNormal * 32.f), rotator(HitNormal) );
-		if (GFExplosionActor != None)
-		{
-			GFExplosionActor.Instigator = Instigator;
-			GFExplosionActor.InstigatorController = InstigatorController;
-
-			// These are needed for the decal tracing later in GameExplosionActor.Explode()
-			GroundFireExplosionTemplate.HitLocation = HitLocation;
-			GroundFireExplosionTemplate.HitNormal = HitNormal;
-
-			// Apply explosion direction
-			if( GroundFireExplosionTemplate.bDirectionalExplosion )
-			{
-				HitNormal = GetExplosionDirection( HitNormal );
-			}
-
-			// Set our duration
-			GFExplosionActor.MaxTime = BurnDuration;
-
-			// Set our burn interval
-			GFExplosionActor.Interval = BurnDamageInterval;
-
-			// Boom
-			GFExplosionActor.Explode( GroundFireExplosionTemplate, HitNormal );
-		}
-	}
-
-	super.TriggerExplosion( HitLocation, HitNormal, HitActor );
-}
-
 DefaultProperties
 {
 	ProjFlightTemplate=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_Rocket_Projectile'
 
 	// Explosion template
-	Begin Object Class=KFGameExplosion Name=ExploTemplate0
+	Begin Object Name=ExploTemplate0
 		Damage=23
 		DamageRadius=450
 		DamageFalloffExponent=1.f
@@ -107,12 +44,13 @@ DefaultProperties
 	ExplosionTemplate=ExploTemplate0
 
 	// Ground fire
+	bSpawnGroundFire=true
 	BurnDuration=4.f
 	BurnDamageInterval=0.25f
 	GroundFireExplosionActorClass=class'KFExplosion_HuskFireballGroundFire'
 
 	// Fire light
-	Begin Object Class=PointLightComponent Name=FlamePointLight
+	Begin Object Name=FlamePointLight
 	    LightColor=(R=245,G=190,B=140,A=255)
 		Brightness=4.f
 		Radius=500.f
@@ -124,7 +62,7 @@ DefaultProperties
 		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
 	End Object
 
-	Begin Object Class=KFGameExplosion Name=ExploTemplate1
+	Begin Object Name=ExploTemplate1
 		Damage=1
 		DamageRadius=150
 		DamageFalloffExponent=1.f

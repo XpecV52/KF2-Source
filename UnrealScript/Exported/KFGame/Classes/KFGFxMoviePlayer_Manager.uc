@@ -19,6 +19,65 @@ class KFGFxMoviePlayer_Manager extends GFxMoviePlayer
  *  Menus
  ************************************/
 
+
+
+
+
+const KFID_QuickWeaponSelect = 100;
+const KFID_CurrentLayoutIndex = 101;
+const KFID_ForceFeedbackEnabled = 103;
+const KFID_SavedPerkIndex = 105;
+const KFID_AllowBloodSplatterDecals = 106;
+const KFID_GoreLevel = 107;
+const KFID_StoredCharIndex = 111;
+const KFID_MasterVolumeMultiplier = 112;
+const KFID_DialogVolumeMultiplier = 113;
+const KFID_MusicVolumeMultiplier = 114;
+const KFID_SFXVolumeMultiplier = 115;
+const KFID_GammaMultiplier = 117;
+const KFID_MusicVocalsEnabled = 118;
+const KFID_MinimalChatter = 119;
+const KFID_ShowCrossHair = 121;
+const KFID_FOVOptionsPercentageValue = 122;
+const KFID_ShowKillTicker = 123;
+const KFID_FriendlyHudScale = 125;
+const KFID_FavoriteWeapons = 127;
+const KFID_GearLoadouts = 128;
+const KFID_SetGamma = 129;
+const KFID_RequiresPushToTalk = 130;
+const KFID_InvertController = 131;
+const KFID_AutoTargetEnabled = 132;
+const KFID_GamepadSensitivityScale = 133;
+const KFID_ZoomedSensitivityScale = 134;
+const KFID_GamepadZoomedSensitivityScale = 135;
+const KFID_EnableMouseSmoothing = 136;
+const KFID_MouseSensitivity = 138;
+const KFID_TargetAdhesionEnabled = 139;
+const KFID_TargetFrictionEnabled = 140;
+const KFID_InvertMouse = 142;
+const KFID_VOIPVolumeMultiplier = 143;
+const KFID_SavedSoloModeIndex = 144;
+const KFID_SavedSoloMapString = 145;
+const KFID_SavedSoloDifficultyIndex = 146;
+const KFID_SavedSoloLengthIndex = 147;
+const KFID_SavedModeIndex = 148;
+const KFID_SavedMapString = 149;
+const KFID_SavedDifficultyIndex = 150;
+const KFID_SavedLengthIndex = 151;
+const KFID_SavedPrivacyIndex = 152;
+const KFID_SavedServerTypeIndex = 153;
+const KFID_SavedInProgressIndex = 154;
+const KFID_ControllerSoundEnabled = 155;
+const KFID_MatchmakingRegion = 156;
+const KFID_UseAltAimOnDuals = 157; 
+const KFID_HideBossHealthBar = 158; 
+const KFID_AntiMotionSickness = 159; 
+const KFID_ShowWelderInInventory = 160; 
+const KFID_AutoTurnOff = 161;			
+const KFID_ReduceHightPitchSounds = 162; 
+
+#linenumber 22
+
 /** Connects a menu ID with its path */
 enum EUIIndex
 {
@@ -39,7 +98,6 @@ enum EUIIndex
 	UI_Trader,
 	UI_ServerBrowserMenu,
 	UI_IIS,
-	UI_MAX,
 };
 
 struct SMenuPaths
@@ -47,6 +105,7 @@ struct SMenuPaths
 	var string BaseSWFPath;
 	var string ConsoleSWFPath;
 };
+
 /** Points to the .swf location of each menu and is controlled by the EUIIndex */
 var array<SMenuPaths> MenuSWFPaths;
 
@@ -69,6 +128,8 @@ var KFGFxMenu_Trader TraderMenu;
 var KFGFxMenu_ServerBrowser ServerBrowserMenu;
 var KFGFxMenu_Exit ExitMenu;
 var KFGFxMenu_IIS IISMenu;
+
+var KFProfileSettings CachedProfile;
 
 var bool bPostGameState;
 
@@ -99,6 +160,16 @@ enum EPopUpType
 	EPopUpMax,
 	EInputPrompt,
 };
+
+struct DelayedPopup
+{
+	var		EPopUpType	PopupType;
+	var		string		Title;
+	var		string		Description;
+	var		string		LeftButton;
+};
+
+var array<DelayedPopup> DelayedPopups;
 
 /** Reference to the popup that is currently open */
 var KFGFxObject_Popup CurrentPopup;
@@ -172,12 +243,17 @@ var bool bKickVotePopupActive;
 var bool bUsingGamepad; // True if we are using a gamepad, otherwise we are using mouse and keyboard
 var bool bAfterLobby;	// Set to true once we have readied up
 var bool bMenusOpen;	// true if we're using menus, otherwise we're using the HUD
+var bool bMenusActive;  //@HSL - JRO - 6/21/2016 - Same as bMenusOpen but doesn't include the closing animation
 var bool bSearchingForGame; // true if we are in the process of finding a game
 var bool bCanCloseMenu;	// Set to true after a menu has been completely opened and allows a player to close the menu
 var bool bPlayerInLobby;
-var globalconfig bool bSetGamma;	// Set to true if we've already set the gamma on the first launch
-
+//@HSL_MOD_BEGIN - amiller 5/11/2016 - Adding support to save extra data into profile settings - removing config
+var bool bSetGamma;	// Set to true if we've already set the gamma on the first launch
+//@HSL_MOD_END
 var OnlineSubsystem OnlineSub;
+
+/** The playfab interface used for console */
+var PlayfabInterface PlayfabInter;
 
 //Delegates for popups.  These are used to hold the delegates while the swf is loading. once it is loaded, it will pass it to the GFX object
 //@TODO: Rewrite the pop up system to keep the pop ups loaded in at all times so the pending delegates are not needed. (Hide and show them as needed)
@@ -191,6 +267,7 @@ function Init(optional LocalPlayer LocPlay)
 	local Vector2D ViewportSize;
 	local GameViewportClient GVC;
 	local float ScaleStage;
+	
 	TimerHelper = GetPC().Spawn(class'KFHUDTimerHelper');
 	// Initialize datastores
 	class'KFUIDataStore_GameResource'.static.InitializeProviders();
@@ -205,8 +282,16 @@ function Init(optional LocalPlayer LocPlay)
 		if( OnlineSub != none )
 		{
 			OnlineLobby = OnlineSub.GetLobbyInterface();
+
+			CachedProfile = KFProfileSettings( OnlineSub.PlayerInterface.GetProfileSettings( GetLP().ControllerId ) );
+			if( CachedProfile != none )
+			{
+				bSetGamma = CachedProfile.GetProfileBool( KFID_SetGamma );
+			}
 		}
 	}
+
+	PlayfabInter = class'GameEngine'.static.GetPlayfabInterface();
 
 	TimerHelper.SetTimer( 1.0, true, nameof(OneSecondLoop), self );
 	SetTimingMode(TM_Real);
@@ -222,16 +307,33 @@ function Init(optional LocalPlayer LocPlay)
 	UpdateDynamicIgnoreKeys();
 }
 
+
+function OnProfileSettingsRead()
+{
+	CachedProfile = KFProfileSettings( OnlineSub.PlayerInterface.GetProfileSettings( GetLP().ControllerId ) );
+	// Only set this if profile has finished reading
+	if( CachedProfile != None && CachedProfile.AsyncState == OPAS_Finished )
+	{
+		bSetGamma = CachedProfile.GetProfileBool( KFID_SetGamma );
+
+		// Now that profile settings have been read in, show the gamma popup if needed
+		if( !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() )
+		{
+			ManagerObject.SetBool("bStartUpGamma", true);   // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
+			OpenPopup(EGamma, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
+		}
+	}
+}
+
+
 /** Called at the creation of the movie player, used to create the starting menus */
 function LaunchMenus( optional bool bForceSkipLobby )
 {
 	local GFxWidgetBinding WidgetBinding;
 	local bool bSkippedLobby, bShowIIS;
 	local KFGameViewportClient GVC;
-	local bool bShouldGamma, bShowMenuBg;
+	local bool bShowMenuBg;
 	local TextureMovie BGTexture;
-	
-	bShouldGamma = true;
 
 	GVC = KFGameViewportClient(GetGameViewportClient());
 	// Add either the in game party or out of game party widget
@@ -286,17 +388,25 @@ function LaunchMenus( optional bool bForceSkipLobby )
 	if (!bSkippedLobby)
 	{
 		LoadWidgets(WidgetPaths);
+
 		// Console should check to see if we've seen the IIS and display it if this is the first time we've launched the menu.
 		if(class'WorldInfo'.static.IsConsoleBuild() && bShowIIS)
 		{
 			OpenMenu(UI_IIS,false);
-			bShouldGamma = false;
 		}
 		else
 		{
 			OpenMenu(UI_Start);
 		}
 		AllowCloseMenu();
+
+		//@HSL_BEGIN - JRO - 6/30/2016 - PSN disconnect/logout
+		if(GVC.bNeedDisconnectMessage)
+		{
+			TimerHelper.SetTimer(0.1f, false, 'DelayedShowDisconnectMessage', self);
+			GVC.bNeedDisconnectMessage = false;
+		}
+		//@HSL_END
 	}
 
 	// do this stuff in case CheckSkipLobby failed
@@ -306,12 +416,73 @@ function LaunchMenus( optional bool bForceSkipLobby )
 		CloseMenus(true);
 	}
 
-	if(bShouldGamma && !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck())
+	// Only read if cached profile has finished reading in
+	if( !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() && CachedProfile != None && CachedProfile.AsyncState != OPAS_Read  )
 	{
 		ManagerObject.SetBool("bStartUpGamma", true);   // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
 		OpenPopup(EGamma, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
 	}
 }
+
+//@HSL_BEGIN - JRO - 6/30/2016 - PSN disconnect/logout
+function DelayedShowDisconnectMessage()
+{
+	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying())
+	{
+		TimerHelper.SetTimer(0.1f, false, 'DelayedShowDisconnectMessage', self);
+	}
+	else
+	{
+		OpenPopup(ENotification,
+			Localize("Notifications", "ConnectionLostTitle",   "KFGameConsole"),
+			Localize("Notifications", "ConnectionLostMessage", "KFGameConsole"),
+			class'KFCommon_LocalizedStrings'.default.OKString);
+	}
+}
+
+function SetDelayedShowPopup( EPopUpType PopUpType, string TitleString, string DescriptionString,
+	optional string LeftButtonString)
+{
+	local DelayedPopup Popup;
+	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentPopup != None)
+	{
+		Popup.PopupType = PopUpType;
+		Popup.Title = TitleString;
+		Popup.Description = DescriptionString;
+		Popup.LeftButton = LeftButtonString;
+		DelayedPopups.AddItem(Popup);
+
+		TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
+	}
+	else
+	{
+		OpenPopup(PopUpType,
+			TitleString,
+			DescriptionString,
+			LeftButtonString);
+	}
+}
+
+function ShowDelayedPopupMessage()
+{
+	local DelayedPopup Popup;
+	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentPopup != None)
+	{
+		TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
+	}
+
+	if(DelayedPopups.Length > 0)
+	{
+		Popup = DelayedPopups[0];
+		DelayedPopups.Remove(0, 1);
+
+		OpenPopup(Popup.PopupType,
+			Popup.Title,
+			Popup.Description,
+			Popup.LeftButton);
+	}	
+}
+//@HSL_END
 
 /** Skip the UI Lobby if we are using the command line or in the editor */
 function bool CheckSkipLobby()
@@ -544,6 +715,22 @@ function AllowCloseMenu()
 	bCanCloseMenu = true;
 }
 
+
+function ForceUpdateNextFrame()
+{
+	// Forces the update on the next frame
+	TimerHelper.SetTimer( 0.01, false, nameof(OnForceUpdate), self );
+}
+
+
+function OnForceUpdate()
+{
+	OneSecondLoop();
+	// Make sure this doesn't trigger again for another second
+	TimerHelper.SetTimer( 1.0, true, nameof(OneSecondLoop), self );
+}
+
+
 /** Call this every and our current menu every second */
 function OneSecondLoop()
 {
@@ -580,7 +767,8 @@ function SetMenusOpen(bool bIsOpen)
 	TimerHelper.SetTickIsDisabled( !bIsOpen );
 	SetPause( !bIsOpen );
 	bMenusOpen = bIsOpen;
-
+	bMenusActive = bIsOpen; //@HSL - JRO - 6/21/2016 - Mostly just useful for when bIsOpen is true. Set to false elsewhere, as this gets called too late to be useful in that case
+	SetMovieCanReceiveInput(bIsOpen);
 	HudWrapper = KFGFxHudWrapper(HUD);
 	if( HudWrapper != none && HudWrapper.HudMovie != none )
 	{
@@ -637,13 +825,23 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		ManagerObject.SetBool("backgroundVisible", true);
 	}
 
+	//@HSL_BEGIN - JRO - 6/30/2016 - PSN disconnect/logout
+	if (NewMenuIndex == UI_IIS)
+	{
+		BackgroundMovie.Stop();
+		ManagerObject.SetBool("backgroundVisible", false);
+		IISMovie.Play();
+		ManagerObject.SetBool("IISMovieVisible", true);
+	}
+	//@HSL_END
+
 	if (NewMenuIndex != UI_Trader)
 	{
 		CurrentMenuIndex = NewMenuIndex;
 	}
 	else
 	{
-		PlaySoundFromTheme('TraderMenu_Open', SoundThemeName);
+		PlaySoundFromTheme('TRADER_OPEN_MENU', 'UI');
 
 		// fix for auto-close when use/close are bound to the same key
 		if( PC != none && PC.PlayerInput != none )
@@ -679,7 +877,7 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		 	}
 		 }
 	}
-
+	
 	UpdateMenuBar();
 	if ( class'WorldInfo'.static.IsConsoleBuild() && MenuSWFPaths[NewMenuIndex].ConsoleSWFPath != "" )
 	{
@@ -690,6 +888,7 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		MenuPath = MenuSWFPaths[NewMenuIndex].BaseSWFPath;
 	}
 	LoadMenu( MenuPath, bShowWidgets );
+	SetMovieCanReceiveInput(true);
 }
 
 /** Tells actionscript which .swf to open up */
@@ -744,15 +943,17 @@ function CloseMenus(optional bool bForceClose=false)
 		{
 			if( CurrentMenu == TraderMenu )
 			{
-				PlaySoundFromTheme('TraderMenu_Close', SoundThemeName);
+				PlaySoundFromTheme('TRADER_EXIT_BUTTON_CLICK', 'UI');
 			}
 
 			CurrentMenu.OnClose();
 			CurrentMenu = none;
 		}
 
+		bMenusActive = false; //@HSL - JRO - 6/21/2016 - Make sure this is set before the pause conditions are checked
 		ConditionalPauseGame(false);
 		SetMenuVisibility( false );
+		SetMovieCanReceiveInput(false);
 		SetHUDVisiblity( true) ;
 	}
 }
@@ -776,6 +977,12 @@ event OnCleanup()
 	{
 		OnlineSub.ClearAllInventoryReadCompleteDelegates();
 	}
+
+	// Nuke all inventory read delegates from playfab
+	if( PlayfabInter != none )
+	{
+		PlayfabInter.InventoryReadDelegates.Length = 0;
+	}
 	GetGameViewportClient().HandleInputAxis = none;
 }
 
@@ -786,14 +993,14 @@ function bool ToggleMenus()
 	{
 		ManagerObject.SetBool("bOpenedInGame",true);
 		if (CurrentMenuIndex >= MenuSWFPaths.length)
-	{
+		{
 			LaunchMenus();
-	}
+		}
 		else
-	{
+		{
 			OpenMenu(UI_Perks);
 			UpdateMenuBar();
-	}
+		}
 
 		// set the timer to mark when the menu is completely open and we can close the menu down
 		bCanCloseMenu = false;
@@ -809,7 +1016,7 @@ function bool ToggleMenus()
 
 		if (CurrentMenu != TraderMenu)
 		{
-			PlaySoundFromTheme('MainMenu_Close', SoundThemeName);
+			PlaySoundFromTheme('MAINMENU_CLOSE', 'UI'); 
 		}
 
     	CloseMenus();
@@ -822,13 +1029,13 @@ function bool ToggleMenus()
 			bMenusOpen = false;
 			OpenMenu(UI_Perks);
 			SetWidgetsVisible(true);
-	}
+		}
 		else
-	{
+		{
 			ManagerObject.SetBool("bOpenedInGame",false);
 			OpenMenu(UI_PostGame);
 			SetWidgetsVisible(false);
-	}
+		}
 	}
 
 	return false;
@@ -851,6 +1058,7 @@ event MenusFinishedClosing()
 //This is to force the widgets visible.  AKA a special case for the AAR
 function SetWidgetsVisible( bool bVisible )
 {
+	LogInternal("BRIAN:: SetWidgetsVisible"@bVisible);
 	ManagerObject.ActionScriptVoid("setWidgetsVisiblity");
 }
 
@@ -969,7 +1177,7 @@ function InitializePopup(name WidgetPath, KFGFxObject_Popup Widget )
 
 /** Open the popup based on it's pop up type and set the response delegates to its buttons */
 function OpenPopup( EPopUpType PopUpType, string TitleString, string DescriptionString,
-	string LeftButtonString,
+	optional string LeftButtonString,
 	optional string RightButtonString,
 	optional delegate<PendingLeftButtonDelegate>LeftButtonDelegate,
 	optional delegate<PendingRightButtonDelegate>RightButtonDelegate,
@@ -1064,7 +1272,7 @@ function ConditionalPauseGame(bool bPause)
 				return;
 			}
 
-			GetPC().SetPause(true);
+			GetPC().SetPause(true, CanUnpauseMenuClosed); //@HSL - JRO - 6/21/2016 - Giving pause menu a CanUnpause delegate so it can play nicely with controller disconnects
 		}
 		else if( GetPC() != none )
 		{
@@ -1072,6 +1280,14 @@ function ConditionalPauseGame(bool bPause)
 		}
 	}
 }
+
+//@HSL_BEGIN - JRO - 6/21/2016 - Giving pause menu a CanUnpause delegate so it can play nicely with controller disconnects
+function bool CanUnpauseMenuClosed()
+{
+	LogInternal("JOPILA - CanUnpauseMenuClosed"@bMenusActive);
+	return !bMenusActive;
+}
+//@HSL_END
 
 function ClientRecieveNewTeam();
 
@@ -1185,7 +1401,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 	local KFPlayerReplicationInfo KFPRI;
 
 	KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
-
+	
 	if ( class'KFGameEngine'.static.IsFullScreenMoviePlaying() )
 	{
 		return true;
@@ -1193,20 +1409,39 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
     
 	// Handle closing out of currently active menu
 	if ( (bAfterLobby || GetPC().WorldInfo.GRI.bMatchIsOver) && InputEvent == EInputEvent.IE_Pressed
-		&& (ButtonName == 'Escape' || ButtonName == 'XboxTypeS_Start') )
+		&& (ButtonName == 'Escape' || ButtonName == 'XboxTypeS_Start') 
+		&& bMenusOpen && (bCanCloseMenu || bPostGameState))
 	{
 		return ToggleMenus();
 	}
-	else if(InputEvent == EInputEvent.IE_Pressed && ButtonName == 'XboxTypeS_Start')
+	else if (InputEvent == EInputEvent.IE_Pressed )
 	{
-		if(!GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby)
+		if(ButtonName == 'XboxTypeS_RightThumbstick')
 		{
-			CurrentMenu.Callback_ReadyClicked(!KFPRI.bReadyToPlay);
-			PartyWidget.SetBool("bReady", KFPRI.bReadyToPlay);
-			PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);
+			if(!GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby && !class'WorldInfo'.static.IsMenuLevel() && CurrentPopup == none )
+			{
+				CurrentMenu.Callback_ReadyClicked(!KFPRI.bReadyToPlay);
+				PartyWidget.SetBool("bReady", KFPRI.bReadyToPlay);
+				PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);
+			}
 		}
+		else
+		{
+			if(MenuBarWidget != none)
+			{
+				if(ButtonName == 'XboxTypeS_RightShoulder')
+				{
+					MenuBarWidget.CalloutButtonBumperPress(1);
+				}
+				else if(ButtonName == 'XboxTypeS_LeftShoulder')
+				{
+					MenuBarWidget.CalloutButtonBumperPress(-1);
+				}
+			}
+		}
+		
 	}
-
+	
 	if ( CurrentMenu != none )
 	{
 		CurrentMenu.FilterButtonInput( ControllerId, ButtonName, InputEvent );
@@ -1402,7 +1637,6 @@ defaultproperties
    MenuSWFPaths(15)=(BaseSWFPath="../UI_Menus/ServerBrowserMenu_SWF.swf")
    MenuSWFPaths(16)=(BaseSWFPath="../UI_Menus/IISMenu_SWF.swf")
    CurrentMenuIndex=255
-   bSetGamma=True
    InGamePartyWidgetClass=Class'KFGame.KFGFxWidget_PartyInGame'
    PopupData(0)=(SWFPath="../UI_PopUps/ConfirmationPopup_SWF.swf")
    PopupData(1)=(SWFPath="../UI_PopUps/GammaPopup_SWF.swf")
@@ -1428,6 +1662,7 @@ defaultproperties
    SoundThemes(0)=(ThemeName="SoundTheme_Crate",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Crate')
    SoundThemes(1)=(ThemeName="ButtonSoundTheme",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Buttons')
    SoundThemes(2)=(ThemeName="AAR",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_AAR')
+   SoundThemes(3)=(ThemeName="UI",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_UI')
    WidgetBindings(0)=(WidgetName="GammaPopup",WidgetClass=Class'KFGame.KFGFxPopup_Gamma')
    WidgetBindings(1)=(WidgetName="ConnectionErrorPopup",WidgetClass=Class'KFGame.KFGFxPopup_ConnectionError')
    WidgetBindings(2)=(WidgetName="ConfirmationPopup",WidgetClass=Class'KFGame.KFGFxPopup_Confirmation')

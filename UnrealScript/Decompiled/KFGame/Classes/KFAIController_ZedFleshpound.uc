@@ -96,7 +96,7 @@ function NotifyMeleeDamageDealt()
 
 function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum)
 {
-    super(Controller).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
+    super(KFAIController).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
     if((RagePlugin != none) && InstigatedBy != self)
     {
         RagePlugin.AccumulatedDOT += Damage;
@@ -134,11 +134,12 @@ simulated event bool IsEnraged()
 
 function bool ShouldSprint()
 {
-    if((MyKFPawn != none) && MyKFPawn.IsEnraged())
-    {
-        return true;
-    }
-    return false;
+    return IsEnraged();
+}
+
+function bool CanSetSprinting(bool bNewSprintStatus)
+{
+    return !bNewSprintStatus || MyKFPawn.IsEnraged();
 }
 
 simulated function StartSteering();
@@ -210,8 +211,8 @@ defaultproperties
     ChargeStuckCheckDistance=10
     RagePluginClass=Class'KFAIPluginRage_Fleshpound'
     bUseRunOverWarning=true
-    MinRunOverSpeed=150
-    MinRunOverWarningAim=0.88
+    MinRunOverSpeed=360
+    MinRunOverWarningAim=0.85
     bCanTeleportCloser=false
     bCanDoHeavyBump=true
     bIsProbingMeleeRangeEvents=true
@@ -223,6 +224,10 @@ defaultproperties
     HiddenRelocateTeleportThreshold=7
     EvadeGrenadeChance=0.6
     LowIntensityAttackCooldown=5
+    DangerEvadeSettings(0)=(ClassName=KFWeap_Rifle_Winchester1894,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
+    DangerEvadeSettings(1)=(ClassName=KFWeap_Bow_Crossbow,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
+    DangerEvadeSettings(2)=(ClassName=KFWeap_Rifle_M14EBR,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
+    DangerEvadeSettings(3)=(ClassName=KFWeap_Rifle_RailGun,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
     bNotifyApex=true
     MinHitWall=-0.42
 }

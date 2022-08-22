@@ -118,4 +118,7 @@ defaultproperties
 	bCanObliterate=true
 	ObliterationHealthThreshold=-80
 	ObliterationDamageThreshold=160
+
+	// Doors
+	bAllowAIDoorDestruction=true
 }

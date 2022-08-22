@@ -23,13 +23,13 @@ var() float WeldingRange;
 var() float FastenRate;
 /** How many points to subtract from a door's weld integrity per use (use rate determined by FireInterval) */
 var() float UnFastenRate;
+/** Percent repaired per fire interval */
+var() float RepairRate;
 
 /** Give the welder extra range when it has a WeldTarget to avoid the ready animation 
 activating / deactivating on door that is is currently being damaged */
 var const float ExtraWeldingRange;
 
-/** How much ammo each use consumes (use rate determined by FireInterval) */
-var() float AmmoCost;
 /** How long (in seconds) it takes to recharge ammo by 1 unit */
 var() float AmmoRechargeRate;
 
@@ -56,12 +56,22 @@ var KFGFxWorld_WelderScreen ScreenUI;
 
 simulated event PreBeginPlay()
 {
+	local KFGameEngine KFGEngine;
+
 	Super.PreBeginPlay();
-	if(class'KFGameEngine'.default.bShowWelderInInv)
+
+	KFGEngine = KFGameEngine( Class'KFGameEngine'.static.GetEngine() );
+
+	if(KFGEngine != none)
 	{
-		InventoryGroup=IG_Equipment;
-		bAutoUnequip=false;
+		SetShownInInventory(KFGEngine.bShowWelderInInv);
 	}
+}
+
+simulated function SetShownInInventory(bool bValue)
+{
+	InventoryGroup= bValue ? IG_Equipment : IG_None ;
+	bAutoUnequip=bValue;
 }
 
 /** Turn on the UI screen when we equip the healer */
@@ -169,11 +179,11 @@ simulated function bool HasAnyAmmo()
 	return true;
 }
 
-simulated function bool HasAmmo( byte FireModeNum, optional int Amount=1 )
+simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
 {
 	if ( FireModeNum == DEFAULT_FIREMODE || FireModeNum == ALTFIRE_FIREMODE )
 	{
-		if ( AmmoCount[0] - AmmoCost > 0 )
+		if ( AmmoCount[0] >= AmmoCost[FireModeNum])
 		{
 			// Requires a valid WeldTarget (see ServerSetWeldTarget)
 			return ( WeldTarget != None && CanWeldTarget(FireModeNum) );
@@ -259,7 +269,11 @@ simulated function CustomFire()
 		GetPerk().ModifyWeldingRate(CurrentFastenRate, CurrentUnfastenRate);
 		SetTimer(AmmoRechargeRate, true, nameof(RechargeAmmo));
 
-		if ( CurrentFireMode == DEFAULT_FIREMODE )
+		if ( WeldTarget.bIsDestroyed )
+		{
+			WeldTarget.RepairDoor(RepairRate);
+		}
+		else if ( CurrentFireMode == DEFAULT_FIREMODE )
 		{
 			WeldTarget.FastenDoor(CurrentFastenRate, KFPawn(Instigator));
 		}
@@ -314,7 +328,7 @@ function RechargeAmmo()
 		AmmoCount[0]++;
 
 		// If we are holding down the mouse when we regen enough ammo, fire again
-		if ( AmmoCount[0] == AmmoCost )
+		if ( AmmoCount[0] == AmmoCost[0] )
 		{
 		 	Refire();
 			if ( !Instigator.IsLocallyControlled() )
@@ -349,19 +363,6 @@ simulated function Refire()
 reliable client function ClientRefire()
 {
  	Refire();
-}
-
-/** @see KFWeapon::ConsumeAmmo */
-simulated function ConsumeAmmo( byte FireModeNum )
-{
-	if ( Role == ROLE_Authority )
-	{
-		// Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
-		if (MagazineCapacity[0] > 0 && AmmoCount[0] > 0)
-		{
-			AmmoCount[0] = Max(AmmoCount[0] - AmmoCost, 0);
-		}
-	}
 }
 
 /** If we recieve a valid door target after the fire key was already pressed down */
@@ -423,6 +424,7 @@ simulated function bool TickWeldTarget()
 	return false;
 }
 
+/** Network: All */
 simulated function KFDoorActor TraceDoorActors()
 {
 	local KFDoorActor Door;
@@ -448,6 +450,45 @@ simulated function KFDoorActor TraceDoorActors()
 			LastTraceHitTime = WorldInfo.TimeSeconds;
 			return Door;
 		}
+	}
+
+	return FindRepairableDoor();
+}
+
+/** Try to find a nearby destroyed door.  Can't use TraceActors because the door geometry is gone! */
+simulated function KFDoorActor FindRepairableDoor()
+{
+	local KFDoorTrigger DoorTrigger;
+	local KFInterface_Usable UsableTrigger;
+	local float FacingDot;
+	local vector Dir2d;
+	local KFPlayerController KFPC;
+
+	// On local player we can detect the interaction message and early out for perf
+	// On the server this is only called when firing (instead of on tick) so it's not as bad,
+	// but if needed we could add a LastInteractionMessage var to UpdateInteractionMessages()
+	if ( Instigator.IsLocallyControlled() )
+	{
+		KFPC = KFPlayerController(Instigator.Controller);
+		if ( KFPC.MyGFxHUD.CurrentInteractionIndex != IMT_RepairDoor )
+		{
+			return None;
+		}
+	}
+
+	UsableTrigger = class'KFPlayerController'.static.GetCurrentUsableActor(Instigator);	
+	DoorTrigger = KFDoorTrigger(UsableTrigger);
+
+	// if we didn't find a door that could be welded, maybe there is one that can be repaired?
+	if ( DoorTrigger != None && DoorTrigger.DoorActor != None && DoorTrigger.DoorActor.bIsDestroyed )
+	{
+		// zero Z to give us a 2d dot product
+		Dir2d = Normal2d(DoorTrigger.DoorActor.Location - Instigator.Location);
+		FacingDot = vector(Instigator.Rotation) dot (Dir2d);
+		if ( FacingDot > 0.87 )
+		{
+			return DoorTrigger.DoorActor;
+		}			
 	}
 
 	return None;
@@ -534,7 +575,7 @@ simulated state Active
 			TickWeldTarget();	// will trace each call, but it's decently fast (zero-extent)
 			UpdateScreenUI();
 
-			if ( bAutoUnequip )
+			if ( !bAutoUnequip )
 			{
 				TickAutoUnequip();
 			}
@@ -637,6 +678,7 @@ defaultproperties
 	ExtraWeldingRange=10
 	FastenRate=68.f
 	UnFastenRate=-110.f
+	RepairRate=0.03f  //0.05f
 	IdleWeldAnim=Idle_Weld
 	WeldOpenAnim=Weld_On
 	WeldCloseAnim=Weld_Off
@@ -646,9 +688,8 @@ defaultproperties
 	bTargetAdhesionEnabled=false
 	
 	// Ammo
-	AmmoCost=7.f
 	MagazineCapacity[0]=100
-	MaxSpareAmmo[0]=0
+	SpareAmmoCapacity[0]=0
 	bInfiniteSpareAmmo=true
 	AmmoRechargeRate=0.08f
 	bAllowClientAmmoTracking=false
@@ -662,18 +703,23 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponWelding
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Custom
 	FireInterval(DEFAULT_FIREMODE)=+0.2
+	AmmoCost(DEFAULT_FIREMODE)=7
 
 	// Un-Weld
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponWelding
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Custom
 	FireInterval(ALTFIRE_FIREMODE)=+0.2
+	AmmoCost(ALTFIRE_FIREMODE)=7
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Welder_ARCH.Wep_Welder_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Welder.Play_WEP_SA_Welder_Fire_Loop_M', FirstPersonCue=AkEvent'WW_WEP_SA_Welder.Play_WEP_SA_Welder_Fire_Loop_S')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Welder.Play_WEP_SA_Welder_Fire_Loop_M', FirstPersonCue=AkEvent'WW_WEP_SA_Welder.Play_WEP_SA_Welder_Fire_Loop_S')
+
+	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Welder'
+	InstantHitDamage(BASH_FIREMODE)=20
 
 	// Advanced (High RPM) Fire Effects
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true

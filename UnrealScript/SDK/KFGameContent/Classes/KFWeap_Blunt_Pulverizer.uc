@@ -189,7 +189,7 @@ simulated function SendToFiringState(byte FireModeNum)
 }
 
 /** Always allow reload and choose the correct state in SendToFiringState() */
-simulated function bool CanReload()
+simulated function bool CanReload(optional byte FireModeNum)
 {
 	return true;
 }
@@ -245,7 +245,7 @@ simulated state MeleeHeavyAttacking
 				return;
 			}
 
-			if ( AmmoCount[0] > 0 && !IsTimerActive(nameof(BeginPulverizerFire)) )
+			if ( AmmoCount[0] >= AmmoCost[CUSTOM_FIREMODE] && !IsTimerActive(nameof(BeginPulverizerFire)) )
 			{
 				BlastAttachee = HitActor;
 
@@ -305,7 +305,7 @@ defaultproperties
 	End Object
 
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-	InstantHitDamage(DEFAULT_FIREMODE)=85 //70
+	InstantHitDamage(DEFAULT_FIREMODE)=70
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Bludgeon_Pulverizer'
 
 	FireModeIconPaths(HEAVY_ATK_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
@@ -320,6 +320,7 @@ defaultproperties
 	FiringStatesArray(CUSTOM_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(CUSTOM_FIREMODE)=EWFT_Custom
 	FireInterval(CUSTOM_FIREMODE)=1.0f
+	AmmoCost(CUSTOM_FIREMODE)=1
 
 	BlastSpawnOffset=-10.f
 
@@ -332,7 +333,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=5
-	MaxSpareAmmo[0]=15
+	SpareAmmoCapacity[0]=15
 	InitialSpareMags[0]=0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true

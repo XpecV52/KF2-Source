@@ -30,7 +30,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=45
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_Deagle_TEX.UI_WeaponSelect_DualDeagle'
-    MaxSpareAmmo=98
+    SpareAmmoCapacity=98
     InitialSpareMags=2
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

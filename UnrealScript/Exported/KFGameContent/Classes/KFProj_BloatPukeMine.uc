@@ -96,7 +96,7 @@ simulated event PostBeginPlay()
 
 	if( WorldInfo.NetMode != NM_Client )
 	{		
-		if( InstigatorController != none )
+		if( InstigatorController != none || IsAIProjectile() )
 		{
 			class'KFGameplayPoolManager'.static.GetPoolManager().AddProjectileToPool( self, PPT_PukeMine );
 		}
@@ -335,7 +335,7 @@ simulated singular event Touch( Actor Other, PrimitiveComponent OtherComp, vecto
 singular event TakeDamage( int inDamage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser )
 {
 	// Don't blow up when fading out and don't let mines blow each other up, no matter what team
-	if( bFadingOut || DamageCauser.class == class || DamageType == ExplosionTemplate.MyDamageType )
+	if( bFadingOut || DamageCauser.class == class || DamageType == ExplosionTemplate.MyDamageType || (WorldInfo.TimeSeconds - CreationTime) < 0.5f )
 	{
 		return;
 	}
@@ -434,6 +434,9 @@ simulated function FadeOut()
 		return;
 	}
 
+	// Remove ownership
+	SetOwner( none );
+
 	// Turn off collision
 	SetCollision( false, false );
 
@@ -444,16 +447,18 @@ simulated function FadeOut()
 		bFadingOut = true;
 		FadeOutTime = WorldInfo.TimeSeconds + default.FadeOutTime;		
 	}
+	else
+	{
+		// Delay destruction slightly
+		SetTimer( 0.2f, false, nameOf(Destroy) );
+	}
 
 	// Tell clients to tear off and fade out on their own
 	if( WorldInfo.NetMode != NM_Client )
 	{
 		bTearOff = true;
+		bNetDirty = true;
 		bForceNetUpdate = true;
-		NetUpdateFrequency = 1000;
-
-		// Delay destruction slightly
-		SetTimer( 0.1f, false, nameOf(Destroy) );
 	}
 }
 
@@ -547,14 +552,11 @@ defaultproperties
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000
       ExplosionSound=AkEvent'WW_ZED_Bloat.Play_Bloat_Mine_Explode'
-      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_BloatPukeMine:ExplosionPointLight'
-      ExploLightFadeOutTime=0.250000
-      ExploLightStartFadeOutTime=0.300000
-      ExploLightFlickerIntensity=5.000000
-      ExploLightFlickerInterpSpeed=15.000000
       FractureMeshRadius=0.000000
       FracturePartVel=0.000000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+      CamShakeInnerRadius=200.000000
+      CamShakeOuterRadius=400.000000
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
@@ -570,8 +572,8 @@ defaultproperties
       ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
    End Object
    AmbientComponent=AmbientAkSoundComponent
-   Speed=2000.000000
-   MaxSpeed=2000.000000
+   Speed=500.000000
+   MaxSpeed=500.000000
    bBlockedByInstigator=False
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProjectile:CollisionCylinder'
       CollisionHeight=10.000000

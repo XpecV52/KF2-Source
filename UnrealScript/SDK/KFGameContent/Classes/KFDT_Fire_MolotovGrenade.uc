@@ -26,7 +26,9 @@ defaultproperties
 	BurnPower=10
 
 	// DOT
-	DoT_DamageScale=0.2
+	DoT_Duration=3.0 //5.0
+	DoT_Interval=0.5
+	DoT_DamageScale=0.5 //0.2
 	bIgnoreSelfInflictedScale=false
 
 	WeaponDef=class'KFWeapDef_Grenade_Firebug'

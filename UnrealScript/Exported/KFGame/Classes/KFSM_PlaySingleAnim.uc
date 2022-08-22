@@ -32,24 +32,17 @@ function SpecialMoveStarted(bool bForced, Name PrevMove)
 	// Play animation
 	PlayAnimation();
 
-	if ( bUseRootMotion && AnimStance == EAS_FullBody )
+	if( bUseRootMotion && AnimStance == EAS_FullBody )
 	{
-		// Turn on root motion on animation node
-		KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Translate, RBA_Translate, RBA_Translate);
-
-		// Turn on Root motion on mesh.
-		KFPOwner.Mesh.RootMotionMode = RMM_Accel;
+		EnableRootMotion();
 	}
 }
 
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
-	if ( bUseRootMotion )
+	if( bUseRootMotion )
 	{
-		// Restore default root motion mode
-		PawnOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
-		// Turn off Root motion on animation node
-		KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
+		DisableRootMotion();
 	}
 
 	// If still playing an upperbody or fullbody animation allow it to be interrupted

@@ -26,7 +26,7 @@ defaultproperties
     GroupPriority=25
     WeaponSelectTexture=Texture2D'WEP_UI_Deagle_TEX.UI_WeaponSelect_Deagle'
     DualClass=Class'KFWeap_Pistol_DualDeagle'
-    MaxSpareAmmo=105
+    SpareAmmoCapacity=105
     InitialSpareMags=5
     AmmoPickupScale=2
     IdleFidgetAnims=/* Array type was not detected. */

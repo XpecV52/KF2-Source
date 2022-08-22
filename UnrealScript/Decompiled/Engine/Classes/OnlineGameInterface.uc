@@ -32,24 +32,7 @@ function AddGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> GetP
 
 function ClearGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> GetPlayerListCompleteDelegate);
 
-function ClearServerFilters(OnlineGameSearch Search);
-
 function bool RemoveSearchResultFromFavorites(int Index);
-
-function AddServerFilter(OnlineGameSearch Search, string Key, optional string Val, optional int Location)
-{
-    Val = "";
-    Location = -1;
-}
-
-function TestAddBoolGametagFilter(out string GametagString, bool Test, name Property, byte BoolVal);
-
-function AddGametagFilter(out string GametagString, name Property, string Val);
-
-function TestAddServerFilter(OnlineGameSearch Search, bool Test, string Key, optional string Val)
-{
-    Val = "";
-}
 
 function ClearOnlineDelegates();
 
@@ -193,6 +176,18 @@ function AddGameInviteAcceptedDelegate(byte LocalUserNum, delegate<OnGameInviteA
 function ClearGameInviteAcceptedDelegate(byte LocalUserNum, delegate<OnGameInviteAccepted> GameInviteAcceptedDelegate);
 
 function bool AcceptGameInvite(byte LocalUserNum, name SessionName, const out OnlineGameSearchResult DesiredGame);
+
+delegate OnPlayTogetherStarted();
+
+function AddPlayTogetherStartedDelegate(byte LocalUserNum, delegate<OnPlayTogetherStarted> PlayTogetherStartedDelegate);
+
+function ClearPlayTogetherStartedDelegate(byte LocalUserNum, delegate<OnPlayTogetherStarted> PlayTogetherStartedDelegate);
+
+function array<string> GetPendingMembersToInvite();
+
+function ResetPendingMembersToInvite();
+
+function SetPendingMembersToInvite(array<string> Members);
 
 function bool RecalculateSkillRating(name SessionName, const out array<UniqueNetId> Players);
 

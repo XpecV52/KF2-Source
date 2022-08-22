@@ -28,6 +28,7 @@ enum EGameMessageType
     GMT_FailedDropInventory,
     GMT_ReceivedGrenadesFrom,
     GMT_GaveGrenadesTo,
+    GMT_ReceivedAmmoAndArmor,
     GMT_FoundCollectible,
     GMT_FoundAllCollectibles,
     GMT_UserSharingContent,
@@ -82,6 +83,7 @@ static function string GetHexColor(int Switch)
     switch(Switch)
     {
         case 1:
+        case 19:
         case 0:
         case 2:
         case 3:
@@ -112,6 +114,7 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
     {
         case 1:
             return default.GaveAmmoToMessage @ RelatedPRI_1.PlayerName;
+        case 19:
         case 0:
             return default.ReceivedAmmoFromMessage @ RelatedPRI_1.PlayerName;
         case 2:
@@ -147,15 +150,15 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
             return default.GaveGrenadesToMessage @ RelatedPRI_1.PlayerName;
         case 17:
             return default.ReceivedGrenadesFromMessage @ RelatedPRI_1.PlayerName;
-        case 19:
-            return default.FoundAMapCollectibleMessage;
         case 20:
-            return default.FoundAllMapCollectiblesMessage;
+            return default.FoundAMapCollectibleMessage;
         case 21:
-            return RelatedPRI_1.PlayerName @ default.SharingContentString;
+            return default.FoundAllMapCollectiblesMessage;
         case 22:
-            return RelatedPRI_2.PlayerName $ (GetKilledByZedMessage(OptionalObject));
+            return RelatedPRI_1.PlayerName @ default.SharingContentString;
         case 23:
+            return RelatedPRI_2.PlayerName $ (GetKilledByZedMessage(OptionalObject));
+        case 24:
             return RelatedPRI_2.PlayerName @ default.SuicideMessage;
         default:
             return "";
@@ -209,8 +212,8 @@ static function float GetPos(int Switch, HUD myHUD)
 {
     switch(Switch)
     {
-        case 22:
         case 23:
+        case 24:
             return 0.1;
         default:
             return 0.8;

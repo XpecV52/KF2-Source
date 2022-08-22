@@ -15,12 +15,14 @@ var bool bCompletedInitialGrabAttack;
 var bool bPathAroundDestructiblesICantBreak;
 var bool bRepathOnInvalidStrike;
 var bool bUseRunOverWarning;
+var bool bEvadeOnRunOverWarning;
 var float MinDistanceToPerformGrabAttack;
 var float MinTimeBetweenGrabAttacks;
 var float LastAttackTime_Grab;
 var float MinRunOverSpeed;
 var float LastRunOverWarningTime;
 var float MinRunOverWarningAim;
+var float RunOverEvadeDelayScale;
 
 function InitPlayerReplicationInfo()
 {
@@ -65,21 +67,15 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
 
 function SetPawnDefaults()
 {
-    local float SprintChance, SprintDamagedChance, HiddenSpeedMod;
-    local KFCharacterInfo_Monster MonsterInfo;
-    local float GameDifficulty;
-    local KFDifficultyInfo DifficultyInfo;
+    local float SprintChance, SprintDamagedChance, HiddenSpeedMod, GameDifficulty;
+    local KFGameDifficultyInfo DifficultyInfo;
     local KFGameInfo KFGI;
 
     KFGI = KFGameInfo(WorldInfo.Game);
-    MonsterInfo = MyKFPawn.GetCharacterMonsterInfo();
     GameDifficulty = KFGI.GameDifficulty;
     DifficultyInfo = KFGI.DifficultyInfo;
-    if(MonsterInfo != none)
-    {
-        SprintChance = DifficultyInfo.GetCharSprintChanceByDifficulty(MonsterInfo, GameDifficulty);
-        SprintDamagedChance = DifficultyInfo.GetCharSprintWhenDamagedChanceByDifficulty(MonsterInfo, GameDifficulty);
-    }
+    SprintChance = DifficultyInfo.GetCharSprintChanceByDifficulty(MyKFPawn, GameDifficulty);
+    SprintDamagedChance = DifficultyInfo.GetCharSprintWhenDamagedChanceByDifficulty(MyKFPawn, GameDifficulty);
     HiddenSpeedMod = DifficultyInfo.GetAIHiddenSpeedModifier(KFGI.GetLivingPlayerCount());
     MyKFPawn.HiddenGroundSpeed = MyKFPawn.default.HiddenGroundSpeed * HiddenSpeedMod;
     if(MyKFPawn.PawnAnimInfo != none)
@@ -203,7 +199,7 @@ event bool CanGrabAttack()
     {
         return false;
     }
-    if(((MyKFPawn.bIsHeadless || MyKFPawn.Physics == 2) || IsDoingAttackSpecialMove()) || IsInStumble())
+    if(((MyKFPawn.bIsHeadless || MyKFPawn.Physics == 2) || IsDoingAttackSpecialMove()) || !MyKFPawn.IsCombatCapable())
     {
         return false;
     }
@@ -338,10 +334,22 @@ function bool HandleZedBlockedPath()
     return false;
 }
 
+event RunOverWarning(KFPawn IncomingKFP, float IncomingSpeedSquared, Vector RunOverPoint)
+{
+    local float Delay;
+
+    if(bEvadeOnRunOverWarning && CanEvade(true))
+    {
+        Delay = (VSize(IncomingKFP.Location - MyKFPawn.Location) / Sqrt(IncomingSpeedSquared)) * RunOverEvadeDelayScale;
+        DoEvade(GetBestEvadeDir(RunOverPoint,, false), IncomingKFP,, Delay, true);
+    }
+}
+
 defaultproperties
 {
     MinDistanceToPerformGrabAttack=188
     MinTimeBetweenGrabAttacks=5
+    RunOverEvadeDelayScale=0.25
     DefaultCommandClass=Class'AICommand_Base_Zed'
     bIsPlayer=false
     SightCounterInterval=0.35

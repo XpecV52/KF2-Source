@@ -49,6 +49,7 @@ defaultproperties
 {
     bCanGrabAttack=true
     bKnockdownWhenJumpedOn=true
+    bIsClotClass=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Undev_Archetype'
     begin object name=MeleeHelper class=KFMeleeHelperAI
         MyDamageType=Class'KFDT_Slashing_ZedWeak'

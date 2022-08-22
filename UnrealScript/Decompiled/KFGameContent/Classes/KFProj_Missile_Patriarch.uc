@@ -104,7 +104,7 @@ simulated event ReplicatedEvent(name VarName)
 
 simulated event Tick(float DeltaTime)
 {
-    super.Tick(DeltaTime);
+    super(Actor).Tick(DeltaTime);
     if((FlightLight != none) && WorldInfo.NetMode != NM_DedicatedServer)
     {
         FlightLight.Radius = 120 + (FlightLight.default.Radius * Abs(Cos(WorldInfo.TimeSeconds * (DeltaTime * 800))));

@@ -95,7 +95,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
-    MaxSpareAmmo=15
+    SpareAmmoCapacity=15
     InitialSpareMags=4
     AmmoPickupScale=2
     IdleFidgetAnims=/* Array type was not detected. */

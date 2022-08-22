@@ -11,9 +11,9 @@ class KFSM_Husk_FireBallAttack extends KFSM_PlaySingleAnim;
 protected function bool InternalCanDoSpecialMove()
 {
 	// Case for player-controlled Husk
-	if( KFPOwner.Controller != none && AIOwner == none )
+	if( KFPOwner.IsHumanControlled() )
 	{
-		return KFPOwner.IsAliveAndWell();
+		return KFPOwner.IsCombatCapable();
 	}
 
 	if( AIOwner == none || AIOwner.MyKFPawn == none || AIOwner.Enemy == none )
@@ -21,7 +21,7 @@ protected function bool InternalCanDoSpecialMove()
 		return false;
 	}
 
-	if( AIOwner.MyKFPawn.IsImpaired() )
+	if( !KFPOwner.IsCombatCapable() )
 	{
 		return false;
 	}
@@ -39,6 +39,8 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 {
 	super.SpecialMoveStarted( bForced, PrevMove );	
 
+	SetLockPawnRotation( false );
+
 	if( AIOwner != none )
 	{
 		if( AIOwner!= None ) { AIOwner.AILog_Internal(self@"started for"@AIOwner,'Husk'); };
@@ -46,9 +48,17 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 	}
 }
 
+/** Notification from KFPawn_ZedHusk that the animnotify to fire a shot has been triggered */
+function NotifyFireballFired()
+{
+	SetLockPawnRotation( true );
+}
+
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
 	super.SpecialMoveEnded( PrevMove, NextMove );
+
+	SetLockPawnRotation( false );
 
 	if( AIOwner != none )
 	{
@@ -77,7 +87,7 @@ defaultproperties
    bDisableMovement=True
    bDisableSteering=False
    bDisableTurnInPlace=True
-   CustomRotationRate=(Pitch=66000,Yaw=100000,Roll=66000)
+   CustomRotationRate=(Pitch=66000,Yaw=30000,Roll=66000)
    Handle="KFSM_Husk_FireBallAttack"
    Name="Default__KFSM_Husk_FireBallAttack"
    ObjectArchetype=KFSM_PlaySingleAnim'KFGame.Default__KFSM_PlaySingleAnim'

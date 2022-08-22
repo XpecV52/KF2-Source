@@ -299,6 +299,7 @@ defaultproperties
     bDoHitboxObstructionTrace=true
     bAllowMeleeToFracture=true
     begin object name=MeleeImpactCamShake0 class=CameraShake
+        bSingleInstance=true
         OscillationDuration=0.35
         RotOscillation=(Pitch=(Amplitude=250,Frequency=60),Yaw=(Amplitude=150,Frequency=70),Roll=(Amplitude=150,Frequency=100))
     object end

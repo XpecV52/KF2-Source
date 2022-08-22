@@ -37,13 +37,15 @@ const WeaponStatMax_Parry = 10.f;
 const WeaponStatMax_HealAmount = 50.f;
 const WeaponStatMax_HealRechargeSpeed = 10.f; // charge per second
 
+var KFPlayerController KFPC;
+
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	super.Initialize( NewParentMenu );
 	MyTraderMenu = KFGFxMenu_Trader( NewParentMenu );
 
 	DetailsContainer = GetObject("detailedStats");
-
+	KFPC = KFPlayerController(GetPC());
 	LocalizeContainer();
 }
 
@@ -115,10 +117,10 @@ function SetPlayerItemDetails(out STraderItem TraderItem, int ItemPrice)
 	ItemData.SetString("cannotBuyOrSellLabel", CannotSellString);
 	
  	ItemData.SetBool("bCanCarry", true);
- 	ItemData.SetBool("bCanBuyOrSell", MyTraderMenu.IsSellable(TraderItem));
+ 	ItemData.SetBool("bCanBuyOrSell", KFPC.GetPurchaseHelper().IsSellable(TraderItem));
  	ItemData.SetBool("bHideStats", (TraderItem.WeaponStats.Length == 0));
  	
- 	ItemData.SetBool("bCanFavorite", MyTraderMenu.IsSellable(TraderItem));
+ 	ItemData.SetBool("bCanFavorite", KFPC.GetPurchaseHelper().IsSellable(TraderItem));
 
  	SetGenericItemDetails(TraderItem, ItemData);
 }

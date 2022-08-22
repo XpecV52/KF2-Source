@@ -10,6 +10,7 @@ class KFDT_Ballistic_RPG7Impact extends KFDT_Ballistic_Shell
 
 defaultproperties
 {
+    WeaponDef=Class'KFGame.KFWeapDef_RPG7'
     KnockdownPower=200
     StumblePower=340
     GunHitPower=275

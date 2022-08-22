@@ -54,6 +54,12 @@ defaultproperties
 	PlayerViewOffset=(X=1,Y=8,Z=-5)
 	IronSightPosition=(X=-13,Y=0,Z=0)
 
+	// AI warning system
+	bWarnAIWhenAiming=true
+    MaxAIWarningDistSQ=4000000
+	AimWarningDelay=(X=0.4f, Y=0.8f)
+	AimWarningCooldown=0.0f
+
     // 2D scene capture
 	Begin Object Name=SceneCapture2DComponent0
 	   TextureTarget=TextureRenderTarget2D'Wep_Mat_Lib.WEP_ScopeLense_Target'
@@ -82,7 +88,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	MaxSpareAmmo[0]=34
+	SpareAmmoCapacity[0]=34
 	InitialSpareMags[0]=13
 	AmmoPickupScale[0]=3.0 // 3 arrows
 	bCanBeReloaded=true
@@ -110,7 +116,6 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bolt_Crossbow'
 	InstantHitDamage(DEFAULT_FIREMODE)=350.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Piercing_Crossbow'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Crossbow'
 	PenetrationPower(DEFAULT_FIREMODE)=4.0
 	FireInterval(DEFAULT_FIREMODE)=0.4 // For this weapon, this is not the fire rate, but the time when the auto reload anim kicks in
 	Spread(DEFAULT_FIREMODE)=0.007
@@ -124,6 +129,11 @@ defaultproperties
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Crossbow_ARCH.Wep_Crossbow_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Crossbow.Play_WEP_SA_Crossbow_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_Crossbow.Play_WEP_SA_Crossbow_Fire_1P')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_Crossbow.Play_WEP_SA_Crossbow_DryFire'
+
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Crossbow'
+	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Custom animations
 	FireSightedAnims=(Shoot_Iron, Shoot_Iron2, Shoot_Iron3)

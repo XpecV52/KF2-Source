@@ -15,11 +15,14 @@ class KFCharacterInfo_Monster extends KFCharacterInfoBase
 /** Character mesh to use */
 var(ThirdPerson) SkeletalMesh CharacterMesh<DisplayName=Body Mesh>;
 
-var(Versus) array<MaterialInterface> PlayerControlledSkins;
-var(Versus) array<MaterialInterface> PlayerControlledGoreSkins;
+var(ThirdPerson) array<MaterialInterface> PlayerControlledSkins;
+var(ThirdPerson) array<MaterialInterface> PlayerControlledGoreSkins;
 
 /** Aggressively optimized mesh for the server with minimal bones */
-var(Performance) SkeletalMesh ServerMesh;
+var(Server) SkeletalMesh ServerMesh;
+
+/** Additional material IDs that require MICs for gameplay material params */
+var(Effects) array<int> ExtraMICIndices;
 
 /************************************************************************/
 /*  Audio                                                   */
@@ -31,55 +34,7 @@ struct native DoorSoundFx
 	var() AkEvent Wood;
 };
 
-var(Audio) DoorSoundFx		DoorHitSound;
-
-/************************************************************************/
-/*  Difficulty Info                                                     */
-/************************************************************************/
-
-/** Zed difficulty settings per difficulty level */
-struct native ZedDifficultySettings
-{
-	/** The individual health modifier for this zed type */
-	var() float HealthMod;
-	/** The individual head health modifier for this zed type */
-	var() float HeadHealthMod;
-	/** The chance that a zed can use sprinting at a specific difficulty */
-	var() float SprintChance;
-	/** The chance that a zed will start sprinting when damaged */
-	var() float DamagedSprintChance;
-	/** A per zed damage mod configurable by difficulty */
-	var() float DamageMod;
-	/** A per zed damage mod configurable by difficulty when playing solo/offline */
-	var() float SoloDamageMod;
- 	structdefaultproperties
-	{
-		HealthMod=1.0f;
-		HeadHealthMod=1.0f;
-	    SprintChance=0.f;
-	    DamagedSprintChance=0.f;
-	    DamageMod=1.f;
-	    SoloDamageMod=1.f;
-	}
-};
-
-/** ZedDifficultySettings struct for Normal difficulty level */
-var(Difficulty) ZedDifficultySettings Normal;
-/** ZedDifficultySettings struct for Hard difficulty level */
-var(Difficulty) ZedDifficultySettings Hard;
-/** ZedDifficultySettings struct for Suicidal difficulty level */
-var(Difficulty) ZedDifficultySettings Suicidal;
-/** ZedDifficultySettings struct for HellOnEarth difficulty level */
-var(Difficulty) ZedDifficultySettings HellOnEarth;
-
-/** Add an additional percentage of body health per player beyond 1 player. */
-var(Difficulty) float NumPlayersScale_BodyHealth;
-/** Add an additional percentage of head health per player beyond 1 player. */
-var(Difficulty) float NumPlayersScale_HeadHealth;
-
-/** Alterantive health scaling for player controlled zeds (versus mode */
-var(Versus) float NumPlayersScale_BodyHealth_Versus;
-var(Versus) float NumPlayersScale_HeadHealth_Versus;
+var(Effects) DoorSoundFx		DoorHitSound;
 
 /************************************************************************/
 /*  Gore Info														    */
@@ -125,7 +80,7 @@ var(Gore) ParticleSystem ExplosionEffectTemplate<DisplayName=Gib Explosion Templ
 var(Gore) ParticleSystem ObliterationEffectTemplate<DisplayName=Obliteration Effect Template>;
 
 /** Particle effect to be spawned when knocked down, stunned, etc */
-var(Stun) ParticleSystem DazedEffectTemplate<DisplayName=Stunned/Knocked Down Effect Template>;
+var(Effects) ParticleSystem DazedEffectTemplate<DisplayName=Stunned/Knocked Down Effect Template>;
 
 /** Use to scale the number of gibs when the character explodes. Values greater than 1
 	scale up, and values smaller than 0 scale down. Must be greater than 0. This is for
@@ -146,6 +101,7 @@ var(Gore) float ExplosionImpulseScale<DisplayName=Gib Impulse Scale|UIMin=0|Clam
 simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplicationInfo KFPRI )
 {
 	local int i;
+	local int MaterialIndex;
 
 	super.SetCharacterMeshFromArch( KFP, KFPRI );
 
@@ -190,15 +146,16 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 	{
 		KFP.CharacterMICs.Length = 0;
 		KFP.CharacterMICs[0] = KFP.Mesh.CreateAndSetMaterialInstanceConstant(0);
+
+		foreach ExtraMICIndices(MaterialIndex)
+		{
+			KFP.CharacterMICs.AddItem(KFP.Mesh.CreateAndSetMaterialInstanceConstant(MaterialIndex));
+		}
 	}
 }
 
 defaultproperties
 {
-   Normal=(HealthMod=1.000000,HeadHealthMod=1.000000,DamageMod=0.500000,SoloDamageMod=1.000000)
-   Hard=(HealthMod=1.000000,HeadHealthMod=1.000000,DamageMod=1.000000,SoloDamageMod=1.000000)
-   Suicidal=(HealthMod=1.000000,HeadHealthMod=1.000000,DamageMod=1.250000,SoloDamageMod=1.000000)
-   HellOnEarth=(HealthMod=1.000000,HeadHealthMod=1.000000,DamageMod=1.750000,SoloDamageMod=1.000000)
    ExplosionGibScale=1.000000
    ExplosionImpulseScale=1.000000
    Name="Default__KFCharacterInfo_Monster"

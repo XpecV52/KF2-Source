@@ -104,6 +104,13 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 
 	for (i = 0; i < StoreItemArray.Length; i++)
 	{
+		// Hide PSN items
+		if( StoreItemArray[i].ProductId != "" && StoreItemArray[i].SignedOfferId == "" )
+		{
+			LogInternal("Skipping PSN store item"@StoreItemArray[i].Definition@"since it has no store offer ID");
+			continue;
+		}
+
 		if(CurrentStoreFilter < EStore_Market_WeaponSkins)
 		{
 			if(StoreItemArray[i].Price != "" && (IsFilterSame(StoreItemArray[i].Type, CurrentStoreFilter) || CurrentStoreFilter == EStore_All ))

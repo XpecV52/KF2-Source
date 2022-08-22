@@ -16,11 +16,21 @@ class KFAISpawnManager extends Object
 
 `include(KFGame\KFGameAnalytics.uci);
 
+/** Struct containing difficulty-based wave settings */
+struct sDifficultyWaveInfo
+{
+    /** All the waves*/
+    var array<KFAIWaveInfo> Waves;
+};
+
+/** Wave settings per difficulty */
+var array<sDifficultyWaveInfo> DifficultyWaveSettings;
+
+/** The current settings for this difficulty */
+var sDifficultyWaveInfo WaveSettings;
+
 /** The spawn group setup of a wave */
 var array<KFAISpawnSquad>				AvailableSquads;
-
-/** All the waves*/
-var	array<KFAIWaveInfo>					Waves;
 
 /** Controls the frequency of the AI spawning sine wave. Used to increase/decrease speed and intensity of AI spawning */
 var float								SineWaveFreq;
@@ -33,7 +43,7 @@ var float								TimeUntilNextSpawn;
 /** Total num AI spawned in this wave */
 var	int									WaveTotalAI;
 /** Maximum number of AI that can be active at one time */
-var byte							MaxMonsters;
+var byte							    MaxMonsters;
 /** Maximum number of AI that can be active at one time in solo, by difficulty */
 var() byte							    MaxMonstersSolo[4];
 
@@ -163,6 +173,9 @@ function Initialize()
 {
 	`log("KFAISpawnManager.Initialize()", bLogAISpawning);
 
+    // Sets the wave settings for this difficulty
+    GetWaveSettings( WaveSettings );
+
 	//LoadAIClasses();
 	RegisterSpawnVolumes();
 }
@@ -191,7 +204,7 @@ function SetupNextWave(byte NextWaveIndex)
 {
 	local KFGameReplicationInfo KFGRI;
 
-	if( NextWaveIndex < Waves.Length )
+	if( NextWaveIndex < WaveSettings.Waves.Length )
 	{
         // Recycle special squads on higher difficulties
     	if( GameDifficulty < RecycleSpecialSquad.Length )
@@ -215,15 +228,15 @@ function SetupNextWave(byte NextWaveIndex)
         NumSpecialSquadRecycles = 0;
 
         // Scale the number of zeds if the wave can be recycled
-        if( Waves[NextWaveIndex].bRecycleWave )
+        if( WaveSettings.Waves[NextWaveIndex].bRecycleWave )
         {
-        	WaveTotalAI =	Waves[NextWaveIndex].MaxAI *
+        	WaveTotalAI =	WaveSettings.Waves[NextWaveIndex].MaxAI *
 							DifficultyInfo.GetPlayerNumMaxAIModifier( GetNumHumanTeamPlayers() ) *
 							DifficultyInfo.GetDifficultyMaxAIModifier();
         }
         else
         {
-         	WaveTotalAI =	Waves[NextWaveIndex].MaxAI;
+         	WaveTotalAI =	WaveSettings.Waves[NextWaveIndex].MaxAI;
 		}
 
         GetAvailableSquads(NextWaveIndex, true);
@@ -255,20 +268,26 @@ function SetupNextWave(byte NextWaveIndex)
 	`log("KFAISpawnManager.SetupNextWave() NextWave:" @ NextWaveIndex @ "WaveTotalAI:" @ WaveTotalAI, bLogAISpawning || bLogWaveSpawnTiming);
 }
 
+/** Retrieves the wave settings for the current difficulty */
+function GetWaveSettings( out sDifficultyWaveInfo WaveInfo )
+{
+    WaveInfo = DifficultyWaveSettings[Min(GameDifficulty, DifficultyWaveSettings.Length-1)];
+}
+
 function GetAvailableSquads(byte MyWaveIndex, optional bool bNeedsSpecialSquad=false)
 {
 	local int i, j, TotalZedsInSquads;
 
-    if( Waves[MyWaveIndex] != none )
+    if( WaveSettings.Waves[MyWaveIndex] != none )
 	{
 		NumSpawnListCycles++;
 
-        Waves[MyWaveIndex].GetNewSquadList(AvailableSquads);
+        WaveSettings.Waves[MyWaveIndex].GetNewSquadList(AvailableSquads);
 
 		`log("KFAISpawnManager NEW SQUAD LIST for Wave:" @ MyWaveIndex, bLogAISpawning);
 		if( bNeedsSpecialSquad )
 		{
-		 	Waves[MyWaveIndex].GetSpecialSquad(AvailableSquads);
+		 	WaveSettings.Waves[MyWaveIndex].GetSpecialSquad(AvailableSquads);
 		 	`log("KFAISpawnManager SPECIAL SQUAD for Wave:" @ MyWaveIndex, bLogAISpawning);
 
             for( i = 0; i < AvailableSquads.Length; i++ )
@@ -396,6 +415,77 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
 {
 	local array< class<KFPawn_Monster> >  NewSquad, RequiredSquad;
 	local int RandNum, AINeeded;
+    local bool bNeedsNewDesiredSquadType;
+    local int EntryIdx;
+
+	if( !IsAISquadAvailable() )
+	{
+		if( !bSummoningBossMinions )
+		{
+            // WaveNum Displays 1 - Length, Squads are ordered 0 - (Length - 1)
+            if( bRecycleSpecialSquad && NumSpawnListCycles % 2 == 1 && (MaxSpecialSquadRecycles == -1 || NumSpecialSquadRecycles < MaxSpecialSquadRecycles) )
+            {
+                //`log("Recycling special squad!!! NumSpawnListCycles: "$NumSpawnListCycles);
+                GetAvailableSquads(MyKFGRI.WaveNum - 1, true);
+                ++NumSpecialSquadRecycles;
+            }
+            else
+            {
+                //`log("Not recycling special squad!!! NumSpawnListCycles: "$NumSpawnListCycles);
+                GetAvailableSquads(MyKFGRI.WaveNum - 1);
+            }
+        }
+        else
+        {
+            // Replace the regular squads with boss minions
+            AvailableSquads = BossMinionsSpawnSquads;
+        }
+	}
+
+	// select a random squad from the list
+	RandNum = Rand(AvailableSquads.Length);
+
+	// If we're forcing the required squad, and it already got picked, clear the flag
+	if( bForceRequiredSquad && RandNum == (AvailableSquads.Length - 1) )
+	{
+       //`log("We spawned the required squad!");
+	   bForceRequiredSquad=false;
+	}
+
+    if( bLogAISpawning )
+    {
+        LogAvailableSquads();
+    }
+
+	`log("KFAISpawnManager.GetNextAIGroup() Wave:"@MyKFGRI.WaveNum@"Squad:"@AvailableSquads[RandNum]@"Index:"@RandNum, bLogAISpawning);
+
+	// generate list of classes to spawn
+	GetSpawnListFromSquad(RandNum, AvailableSquads, NewSquad);
+
+	// Grab the required squad (special squad) which will be the last squad in the array,
+	// if we're about to run out of zeds we can spawn, and the special squad hasn't spawned yet
+	if( bForceRequiredSquad )
+	{
+    	// generate list of classes to spawn
+    	GetSpawnListFromSquad((AvailableSquads.Length - 1), AvailableSquads, RequiredSquad);
+
+        if( (NumAISpawnsQueued + NewSquad.Length + RequiredSquad.Length) > WaveTotalAI )
+        {
+            NewSquad = RequiredSquad;
+            RandNum = (AvailableSquads.Length - 1);
+            //LogMonsterList(NewSquad, "RequiredSquad");
+            //`log("Spawning required squad NumAISpawnsQueued: "$NumAISpawnsQueued$" NewSquad.Length: "$NewSquad.Length$" RequiredSquad.Length: "$RequiredSquad.Length$" WaveTotalAI: "$WaveTotalAI);
+            bForceRequiredSquad=false;
+        }
+	}
+
+	// remove selected squad from the list of available squads
+	AvailableSquads.Remove(RandNum, 1);
+
+    if( bLogAISpawning )
+    {
+        LogAvailableSquads();
+    }
 
     // Use the LeftoverSpawnSquad if it exists
     if( LeftoverSpawnSquad.Length > 0 )
@@ -404,83 +494,19 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
         {
             LogMonsterList(LeftoverSpawnSquad, "Leftover LeftoverSpawnSquad");
         }
-        NewSquad = LeftoverSpawnSquad;
 
-        // Make sure we properly initialize the DesiredSquadType for the leftover squads, otherwise they will just use whatever size data was left in the system
-        SetDesiredSquadTypeForZedList( NewSquad );
+        // Insert the leftover squad, in order, before the new squad
+        while( LeftoverSpawnSquad.Length > 0 )
+        {
+            EntryIdx = LeftoverSpawnSquad.Length-1;
+            NewSquad.Insert( 0, 1 );
+            NewSquad[0] = LeftoverSpawnSquad[EntryIdx];
+            LeftoverSpawnSquad.Length = EntryIdx;
+        }
+
+        // Set our desired squad type at the end of the function
+        bNeedsNewDesiredSquadType = true;
     }
-    // Otherwise grab a new squad
-    else
-    {
-    	if( !IsAISquadAvailable() )
-    	{
-    		if( !bSummoningBossMinions )
-    		{
-                // WaveNum Displays 1 - Length, Squads are ordered 0 - (Length - 1)
-                if( bRecycleSpecialSquad && NumSpawnListCycles % 2 == 1 && (MaxSpecialSquadRecycles == -1 || NumSpecialSquadRecycles < MaxSpecialSquadRecycles) )
-                {
-                    //`log("Recycling special squad!!! NumSpawnListCycles: "$NumSpawnListCycles);
-                    GetAvailableSquads(MyKFGRI.WaveNum - 1, true);
-                    ++NumSpecialSquadRecycles;
-                }
-                else
-                {
-                    //`log("Not recycling special squad!!! NumSpawnListCycles: "$NumSpawnListCycles);
-                    GetAvailableSquads(MyKFGRI.WaveNum - 1);
-                }
-            }
-            else
-            {
-                // Replace the regular squads with boss minions
-                AvailableSquads = BossMinionsSpawnSquads;
-            }
-    	}
-
-    	// select a random squad from the list
-    	RandNum = Rand(AvailableSquads.Length);
-
-    	// If we're forcing the required squad, and it already got picked, clear the flag
-    	if( bForceRequiredSquad && RandNum == (AvailableSquads.Length - 1) )
-    	{
-           //`log("We spawned the required squad!");
-    	   bForceRequiredSquad=false;
-    	}
-
-        if( bLogAISpawning )
-        {
-            LogAvailableSquads();
-        }
-
-    	`log("KFAISpawnManager.GetNextAIGroup() Wave:"@MyKFGRI.WaveNum@"Squad:"@AvailableSquads[RandNum]@"Index:"@RandNum, bLogAISpawning);
-
-    	// generate list of classes to spawn
-    	GetSpawnListFromSquad(RandNum, AvailableSquads, NewSquad);
-
-    	// Grab the required squad (special squad) which will be the last squad in the array,
-    	// if we're about to run out of zeds we can spawn, and the special squad hasn't spawned yet
-    	if( bForceRequiredSquad )
-    	{
-        	// generate list of classes to spawn
-        	GetSpawnListFromSquad((AvailableSquads.Length - 1), AvailableSquads, RequiredSquad);
-
-            if( (NumAISpawnsQueued + NewSquad.Length + RequiredSquad.Length) > WaveTotalAI )
-            {
-                NewSquad = RequiredSquad;
-                RandNum = (AvailableSquads.Length - 1);
-                //LogMonsterList(NewSquad, "RequiredSquad");
-                //`log("Spawning required squad NumAISpawnsQueued: "$NumAISpawnsQueued$" NewSquad.Length: "$NewSquad.Length$" RequiredSquad.Length: "$RequiredSquad.Length$" WaveTotalAI: "$WaveTotalAI);
-                bForceRequiredSquad=false;
-            }
-    	}
-
-    	// remove selected squad from the list of available squads
-    	AvailableSquads.Remove(RandNum, 1);
-
-        if( bLogAISpawning )
-        {
-            LogAvailableSquads();
-        }
-	}
 
 	// Clamp list by NumAINeeded()
 	AINeeded = GetNumAINeeded();
@@ -492,6 +518,9 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
 
         // Cut off the leftovers from the new monster list
         NewSquad.Length = AINeeded;
+
+        // Set our desired squad type at the end of the function
+        bNeedsNewDesiredSquadType = true;
 	}
 	else
 	{
@@ -503,6 +532,13 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     {
     	LogMonsterList(NewSquad, "NewSquad");
     	LogMonsterList(LeftoverSpawnSquad, "LeftoverSpawnSquad");
+    }
+
+    if( bNeedsNewDesiredSquadType )
+    {
+        // Make sure we properly initialize the DesiredSquadType for the leftover squads,
+        // otherwise they will just use whatever size data was left in the system
+        SetDesiredSquadTypeForZedList( NewSquad );
     }
 
 	return NewSquad;
@@ -717,6 +753,13 @@ function float GetNextSpawnTimeMod()
 
         `log("Late waves final  SpawnTimeMod = "$SpawnTimeMod, bLogAISpawning);
 	}
+
+    // Apply difficulty based modifier
+    if ( DifficultyInfo != None )
+    {
+        SpawnTimeMod *= DifficultyInfo.GetSpawnRateModifier();
+        `log("Spawn rate modifier (difficulty):"@DifficultyInfo.GetSpawnRateModifier(), bLogAISpawning);
+    }
 
 	return SpawnTimeMod * GameConductor.CurrentSpawnRateModification;
 }
@@ -1189,9 +1232,9 @@ defaultproperties
     EarlyWaveIndex=7
 
 	MaxMonstersSolo(0)=16
-	MaxMonstersSolo(1)=24
-	MaxMonstersSolo(2)=24
-	MaxMonstersSolo(3)=24
+	MaxMonstersSolo(1)=16 //Hard //24
+	MaxMonstersSolo(2)=16 //Suicidal //24
+	MaxMonstersSolo(3)=16 //HOE //24
 
 	// Normal
     SoloWaveSpawnRateModifier(0)={(RateModifier[0]=1.0,     // Wave 1

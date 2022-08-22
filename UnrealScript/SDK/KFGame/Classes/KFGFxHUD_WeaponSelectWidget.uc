@@ -50,7 +50,6 @@ function SetThowButton()
 
 	if(KFPI != none)
 	{
-		KFPI.SetGamepadLayout(KFPI.CurrentLayoutIndex);
 		KFPI.GetKeyBindFromCommand(BoundKey, ThrowGBA, false);
 
 		SetString("throwButton", String(BoundKey.Name) );
@@ -98,9 +97,18 @@ simulated function SetWeaponGroupList(out array<KFWeapon> WeaponList, byte Group
 	    TempObj = CreateObject( "Object" );
 	    TempObj.SetString( "weaponName", WeaponList[i].ItemName );
 	    TempObj.SetString( "texturePath",  "img://"$PathName(WeaponList[i].WeaponSelectTexture));
-		// TODO: Add in secondary ammo here
 		TempObj.SetInt( "ammoCount", WeaponList[i].AmmoCount[0]);
 		TempObj.SetInt( "spareAmmoCount", WeaponList[i].SpareAmmoCount[0]);
+		//secondary ammo shenanigans
+		TempObj.SetBool("bUsesSecondaryAmmo", WeaponList[i].UsesSecondaryAmmo()&&WeaponList[i].bCanRefillSecondaryAmmo);
+		TempObj.SetBool("bEnabled", WeaponList[i].HasAnyAmmo());
+		if(WeaponList[i].UsesSecondaryAmmo() && WeaponList[i].bCanRefillSecondaryAmmo)
+		{
+			TempObj.SetBool("bCanRefillSecondaryAmmo", WeaponList[i].SpareAmmoCapacity[1] > 0);
+			TempObj.SetInt( "secondaryAmmoCount", WeaponList[i].AmmoCount[1]);
+			TempObj.SetInt( "secondarySpareAmmoCount", WeaponList[i].SpareAmmoCount[1]);
+		}
+
 		TempObj.SetBool( "throwable", WeaponList[i].CanThrow());
 
 		bUsesAmmo = (WeaponList[i].static.UsesAmmo());
@@ -223,5 +231,5 @@ function FadeOut()
 
 DefaultProperties
 {
-	ThrowGBA="GBA_Grenade_Gamepad"
+	ThrowGBA="GBA_AltFire_Gamepad"
 }

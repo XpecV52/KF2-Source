@@ -50,15 +50,20 @@ defaultproperties
    DamageTypeModifiers(35)=(DamageType=Class'kfgamecontent.KFDT_Slashing_EvisceratorProj',DamageScale=(0.300000))
    DamageTypeModifiers(36)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Eviscerator',DamageScale=(0.300000))
    DamageTypeModifiers(37)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_DragonsBreath',DamageScale=(1.300000))
+   MoveListGamepadScheme(0)=SM_None
+   MoveListGamepadScheme(1)=SM_PlayerZedMove_MMB
+   MoveListGamepadScheme(2)=SM_PlayerZedMove_LMB
+   MoveListGamepadScheme(3)=SM_PlayerZedMove_V
+   MoveListGamepadScheme(4)=SM_None
+   MoveListGamepadScheme(5)=SM_None
+   MoveListGamepadScheme(6)=SM_PlayerZedMove_RMB
+   SpecialMoveCooldowns(0)=(CoolDownTime=0.350000,SMHandle=SM_PlayerZedMove_LMB,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-Melee',NameLocalizationKey="Light")
+   SpecialMoveCooldowns(1)=(CoolDownTime=0.700000,SMHandle=SM_PlayerZedMove_RMB,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-HeavyMelee',NameLocalizationKey="Heavy")
+   SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,bShowOnHud=False)
+   SpecialMoveCooldowns(3)=(CoolDownTime=1.700000,SMHandle=SM_PlayerZedMove_V,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-BladeSwing',NameLocalizationKey="Spin")
+   SpecialMoveCooldowns(4)=(CoolDownTime=0.500000,SMHandle=SM_PlayerZedMove_MMB,SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block',NameLocalizationKey="Block")
+   SpecialMoveCooldowns(5)=(CoolDownTime=1.000000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-Jump',bShowOnHud=False)
    MinBlockFOV=1.000000
-   BlockingDamageModifier=0.050000
-   MeleeBlockingDamageModifier=0.250000
-   SpecialMoveCooldowns(0)=(CoolDownTime=0.350000,SMHandle=SM_PlayerZedAttack1,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-Melee',NameLocalizationKey="Light",GBA_Name="GBA_Fire")
-   SpecialMoveCooldowns(1)=(CoolDownTime=0.700000,SMHandle=SM_PlayerZedAttack2,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-HeavyMelee',NameLocalizationKey="Heavy",GBA_Name="GBA_IronsightsToggle",ALT_GBA_NAME="GBA_IronsightsHold")
-   SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,GBA_Name="GBA_Reload",bShowOnHud=False)
-   SpecialMoveCooldowns(3)=(CoolDownTime=1.700000,SMHandle=SM_PlayerZedSpecial1,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-BladeSwing',NameLocalizationKey="Spin",GBA_Name="GBA_TertiaryFire")
-   SpecialMoveCooldowns(4)=(CoolDownTime=0.500000,SMHandle=SM_PlayerZedSpecial2,SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block',NameLocalizationKey="Block",GBA_Name="GBA_SwitchFireMode")
-   SpecialMoveCooldowns(5)=(CoolDownTime=1.000000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-Jump',GBA_Name="GBA_Jump",bShowOnHud=False)
    LocalizationKey="KFPawn_ZedGorefast"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedGorefast:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -99,9 +104,10 @@ defaultproperties
    IncapSettings(4)=(Cooldown=3.000000,Vulnerability=(0.500000))
    IncapSettings(5)=(Duration=2.000000,Cooldown=3.000000,Vulnerability=(0.500000,0.500000,0.100000,0.100000,0.100000))
    IncapSettings(6)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(1.000000))
-   IncapSettings(7)=(Cooldown=3.000000,Vulnerability=(0.500000))
-   IncapSettings(8)=(Vulnerability=(1.000000))
-   IncapSettings(9)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(0.000000))
+   IncapSettings(7)=()
+   IncapSettings(8)=(Cooldown=3.000000,Vulnerability=(0.500000))
+   IncapSettings(9)=(Vulnerability=(1.000000))
+   IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(0.000000))
    SprintSpeed=550.000000
    SprintStrafeSpeed=300.000000
    TeammateCollisionRadiusPercent=0.300000
@@ -134,19 +140,21 @@ defaultproperties
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
       SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
-      SpecialMoveClasses(16)=None
+      SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
       SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_PlayerGorefast_Melee'
-      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_PlayerGorefast_Melee2'
-      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_PlayerGorefast_Melee3'
-      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerGorefast_Block'
-      SpecialMoveClasses(25)=None
-      SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_PlayerGorefast_Melee'
+      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerGorefast_Melee2'
+      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerGorefast_Melee3'
+      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerGorefast_Block'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedGorefast:SpecialMoveHandler_0'
    End Object
@@ -213,6 +221,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedGorefast:KFPawnSkeletalMeshComponent'
    End Object

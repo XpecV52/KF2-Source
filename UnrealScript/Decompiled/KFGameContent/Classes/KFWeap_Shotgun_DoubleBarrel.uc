@@ -91,17 +91,6 @@ simulated function CauseMuzzleFlash(byte FireModeNum)
 
 simulated state WeaponDoubleBarrelFiring extends WeaponSingleFiring
 {
-    simulated function ConsumeAmmo(byte FireModeNum)
-    {
-        if((Role == ROLE_Authority) || bAllowClientAmmoTracking)
-        {
-            if((MagazineCapacity[0] > 0) && AmmoCount[0] > 0)
-            {
-                AmmoCount[0] -= 2;
-            }
-        }
-    }
-
     simulated function ModifyRecoil(out float CurrentRecoilModifier)
     {
         super(KFWeapon).ModifyRecoil(CurrentRecoilModifier);
@@ -156,7 +145,8 @@ defaultproperties
     DOF_FG_FocalRadius=65
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_DBShotgun'
-    MaxSpareAmmo=46
+    AmmoCost=/* Array type was not detected. */
+    SpareAmmoCapacity=46
     InitialSpareMags=11
     AmmoPickupScale=3
     FireAnim=Shoot_Single
@@ -199,7 +189,7 @@ defaultproperties
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Shotgun_DoubleBarrel.FirstPersonMesh'
     Mesh=FirstPersonMesh
-    ItemName="Double-barreled Boomstick"
+    ItemName="Double-barrel Boomstick"
     begin object name=StaticPickupComponent class=StaticMeshComponent
         StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Double_Barrel_Pickup'
         ReplacementPrimitive=none

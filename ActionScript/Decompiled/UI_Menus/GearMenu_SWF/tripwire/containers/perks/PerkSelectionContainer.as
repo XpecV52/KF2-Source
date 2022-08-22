@@ -7,6 +7,7 @@ package tripwire.containers.Perks
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ListEvent;
     import scaleform.clik.managers.FocusHandler;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.controls.perks.PerkSelectLineRenderer;
     import tripwire.managers.MenuManager;
@@ -97,12 +98,13 @@ package tripwire.containers.Perks
                     dispatchEvent(new Event("changePerk",true));
                 }
                 FocusHandler.getInstance().setFocus(this.perkScrollingList);
+                FocusManager.setModalClip(this.perkScrollingList);
             }
         }
         
         public function onPerkChanged(param1:ListEvent) : *
         {
-            if(bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bLostFocus && !this._bFirstChange)
+            if(!bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bLostFocus && !this._bFirstChange)
             {
                 TweenMax.killTweensOf(this);
                 TweenMax.to(this,ANIM_TIME,{
@@ -112,6 +114,7 @@ package tripwire.containers.Perks
                 });
                 dispatchEvent(new Event("changePerk",true));
                 FocusHandler.getInstance().setFocus(this.perkScrollingList);
+                FocusManager.setModalClip(this.perkScrollingList);
             }
             this._bLostFocus = !this.perkScrollingList.hasFocus;
             this._bFirstChange = false;
@@ -134,6 +137,7 @@ package tripwire.containers.Perks
                     if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                     {
                         FocusHandler.getInstance().setFocus(_loc2_);
+                        FocusManager.setModalClip(this.perkScrollingList);
                     }
                 }
                 _loc3_++;

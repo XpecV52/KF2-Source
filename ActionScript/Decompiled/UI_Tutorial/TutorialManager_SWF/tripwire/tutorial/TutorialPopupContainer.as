@@ -13,9 +13,13 @@ package tripwire.tutorial
     import flash.text.TextField;
     import flash.ui.Keyboard;
     import flash.utils.getDefinitionByName;
+    import scaleform.clik.constants.InputValue;
+    import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.controls.Button;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.events.InputEvent;
+    import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import scaleform.gfx.TextFieldEx;
     import tripwire.controls.TripUILoader;
@@ -43,6 +47,18 @@ package tripwire.tutorial
         public var nextString:String;
         
         public var doneString:String;
+        
+        public var skipTextField:TextField;
+        
+        public var backTextField:TextField;
+        
+        public var nextTextField:TextField;
+        
+        public var skipButtonIcon:MovieClip;
+        
+        public var backButtonIcon:MovieClip;
+        
+        public var nextButtonIcon:MovieClip;
         
         protected var _dataArray:Array;
         
@@ -291,10 +307,12 @@ package tripwire.tutorial
             this.nextButton.addEventListener(ButtonEvent.PRESS,this.nextPage,false,0,true);
             this.backButton.addEventListener(ButtonEvent.PRESS,this.previousPage,false,0,true);
             this.skipButton.addEventListener(ButtonEvent.PRESS,this.skipButtonPressed,false,0,true);
+            stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             this.nextButton.preventAutosizing = true;
             this.backButton.preventAutosizing = true;
             this.skipButton.preventAutosizing = true;
             TextFieldEx.setVerticalAlign(this.textField,TextFieldEx.VALIGN_CENTER);
+            this.updateControllerVisibility();
         }
         
         public function makeAnims() : void
@@ -365,11 +383,11 @@ package tripwire.tutorial
             },"-=4");
         }
         
-        public function nextPage(param1:ButtonEvent) : void
+        public function nextPage() : void
         {
-            var _loc2_:int = this._pageIndex + 1;
+            var _loc1_:int = this._pageIndex + 1;
             this.bIsNextPage = true;
-            if(this._dataArray && _loc2_ < this._dataArray.length)
+            if(this._dataArray && _loc1_ < this._dataArray.length)
             {
                 this.changePageTimeline.restart();
             }
@@ -395,27 +413,61 @@ package tripwire.tutorial
         {
             if(param1 != this._bUsingGamepad)
             {
-                if(param1)
-                {
-                    FocusManager.setFocus(this.nextButton);
-                }
                 this._bUsingGamepad = param1;
+                this.updateControllerVisibility();
             }
         }
         
-        public function previousPage(param1:ButtonEvent) : void
+        public function updateControllerVisibility() : void
+        {
+            TweenMax.allTo([this.backTextField,this.backButtonIcon],0,{"visible":(this._bUsingGamepad && this._pageIndex != 0 ? true : false)});
+            TweenMax.allTo([this.skipTextField,this.nextTextField,this.skipButtonIcon,this.nextButtonIcon],0,{"visible":(!!this._bUsingGamepad ? true : false)});
+            TweenMax.allTo([this.backButton,this.skipButton,this.nextButton],0,{"visible":(!this._bUsingGamepad ? true : false)});
+        }
+        
+        override public function handleInput(param1:InputEvent) : void
+        {
+            if(param1.handled)
+            {
+                return;
+            }
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN)
+            {
+                switch(_loc2_.navEquivalent)
+                {
+                    case NavigationCode.GAMEPAD_B:
+                        if(_loc2_.code == 97 && this._pageIndex > 0)
+                        {
+                            this.previousPage();
+                            param1.handled;
+                        }
+                        break;
+                    case NavigationCode.GAMEPAD_A:
+                        this.nextPage();
+                        param1.handled;
+                        break;
+                    case NavigationCode.GAMEPAD_Y:
+                        this.skipButtonPressed();
+                        param1.handled;
+                }
+            }
+        }
+        
+        public function previousPage() : void
         {
             this.bIsNextPage = false;
             this.changePageTimeline.reverse(0);
         }
         
-        public function skipButtonPressed(param1:ButtonEvent) : void
+        public function skipButtonPressed() : void
         {
             this.closeTutorial("Callback_Skip");
         }
         
         public function closeTutorial(param1:String = null) : void
         {
+            stage.removeEventListener(InputEvent.INPUT,this.handleInput);
             this.openCloseTimeline.call(parent.dispatchEvent,[new Event("FadeOut")],"-=6");
             this.openCloseTimeline.call(ExternalInterface.call,[param1],"-=2");
             this.openCloseTimeline.progress(0,false);
@@ -430,6 +482,8 @@ package tripwire.tutorial
                 this.backButton.label = !!param1.back ? param1.back : "_previous";
                 this.nextString = !!param1.next ? param1.next : "_next";
                 this.doneString = !!param1.done ? param1.done : "_done";
+                this.skipTextField.text = !!param1.skip ? param1.skip : "_skip";
+                this.backTextField.text = !!param1.back ? param1.back : "_previous";
             }
         }
         
@@ -443,11 +497,13 @@ package tripwire.tutorial
                 TextFieldEx.setImageSubstitutions(this.textField,this.controllerIconObjects);
                 this.displayImage.source = !!this._dataArray[param1].image ? this._dataArray[param1].image : "";
                 this.nextButton.label = param1 < this._dataArray.length - 1 ? this.nextString : this.doneString;
+                this.nextTextField.text = param1 < this._dataArray.length - 1 ? this.nextString : this.doneString;
                 this.backButton.enabled = param1 > 0;
                 this.countTextField.text = (param1 + 1).toString() + "/" + this._dataArray.length.toString();
                 if(this._bUsingGamepad)
                 {
                     FocusManager.setFocus(this.nextButton);
+                    TweenMax.allTo([this.backTextField,this.backButtonIcon],0,{"visible":(param1 > 0 ? true : false)});
                 }
             }
         }

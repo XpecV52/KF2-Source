@@ -85,8 +85,7 @@ function PlayGrabAnim()
     PlaySpecialMoveAnim(GrabStartAnimName, 0);
     if(bUseRootMotion)
     {
-        KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(2, 2, 2);
-        KFPOwner.Mesh.RootMotionMode = 3;
+        EnableRootMotion();
     }
 }
 
@@ -171,10 +170,9 @@ function BeginGrapple(optional KFPawn Victim)
     {
         PawnOwner.SetTimer(MinPlayerGrabTime, false, 'CheckIfPlayerReleasedGrapple', self);
     }
-    if(bUseRootMotion && PawnOwner.Mesh.RootMotionMode == 3)
+    if(bUseRootMotion && PawnOwner.Mesh.RootMotionMode == SMRootMotionMode)
     {
-        PawnOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
-        KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
+        DisableRootMotion();
     }
     PawnOwner.SetTimer(InteractionStartTimeOut, false, 'InteractionStartTimedOut', self);
     CheckReadyToStartInteraction();
@@ -190,11 +188,6 @@ function StartInteraction()
         if(KFWeapon(Follower.Weapon) != none)
         {
             KFWeapon(Follower.Weapon).ZedGrabGrenadeTossCooldown = Follower.WorldInfo.TimeSeconds + 0.35;
-        }
-        if((Follower.Controller != none) && KFPlayerController(Follower.Controller) != none)
-        {
-            KFPlayerController(Follower.Controller).ForceLookAtPawn = KFPOwner;
-            KFPlayerController(Follower.Controller).bLockToForceLookAtPawn = true;
         }
         if(KFPOwner.MyKFAIC != none)
         {
@@ -274,10 +267,9 @@ function OnFollowerLeavingSpecialMove()
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     PawnOwner.ClearTimer('CheckGrapple', self);
-    if(bUseRootMotion && PawnOwner.Mesh.RootMotionMode == 3)
+    if(bUseRootMotion && PawnOwner.Mesh.RootMotionMode == SMRootMotionMode)
     {
-        PawnOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
-        KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
+        DisableRootMotion();
     }
     if(bStopFullBodyWhenMoveEnds)
     {
@@ -364,6 +356,7 @@ defaultproperties
     MinPlayerGrabTime=3
     FollowerSpecialMove=ESpecialMove.SM_GrappleVictim
     bAlignPawns=true
+    bAlignFollowerRotation=false
     bStopAlignFollowerRotationAtGoal=true
     AlignDistance=92
     AlignFollowerInterpSpeed=22

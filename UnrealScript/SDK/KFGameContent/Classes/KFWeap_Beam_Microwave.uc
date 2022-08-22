@@ -27,8 +27,6 @@ var(Animations) const editconst	name	FireLoopEndLastSightedAnim;
 
 /** Alt-fire explosion template */
 var() GameExplosion 		ExplosionTemplate;
-/** Alt-fire ammo cost */
-var byte 				BlastAmmoCost;
 
 /** Handle one-hand fire anims */
 simulated function name GetWeaponFireAnim(byte FireModeNum)
@@ -115,7 +113,7 @@ simulated function name GetLoopEndFireAnim(byte FireModeNum)
 }
 
 /**
- * Toggle between DEFAULT and ALTFIRE
+ * Instead of a toggle, just immediately fire alternate fire.
  */
 simulated function AltFireMode()
 {
@@ -172,52 +170,6 @@ simulated function CustomFire()
 	}
 }
 
-/**
- * @see Weapon::ConsumeAmmo
- */
-simulated function ConsumeAmmo( byte FireModeNum )
-{
-    local int AmmoGroup;
-
-   	if ( FireModeNum == ALTFIRE_FIREMODE )
-	{
-		// BEGIN SUPER COPY (replaced with BlastAmmoCost)
-`if(`notdefined(ShippingPC))
-	    if( bInfiniteAmmo )
-	    {
-	        return;
-	    }
-`endif
-
-		// If AmmoCount is being replicated, don't allow the client to modify it here
-		if ( Role == ROLE_Authority || bAllowClientAmmoTracking )
-		{
-			AmmoGroup = GetAmmoType(FireModeNum);
-	        // Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
-			if (MagazineCapacity[AmmoGroup] > 0 && AmmoCount[AmmoGroup] > 0)
-			{
-				AmmoCount[AmmoGroup] -= BlastAmmoCost;
-			}
-		}
-		// END SUPER DUPLICATE
-	}
-	else
-	{
-		Super.ConsumeAmmo(FireModeNum);
-	}
-}
-
-/** Use BlastAmmoCost for alt-fire */
-simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
-{
-	if ( FireModeNum == ALTFIRE_FIREMODE )
-	{
-		return Super.HasAmmo(FireModeNum, BlastAmmoCost);
-	}
-
-	return Super.HasAmmo(FireModeNum, Amount);
-}
-
 /** Disable auto-reload for alt-fire */
 simulated function bool ShouldAutoReload(byte FireModeNum)
 {
@@ -233,6 +185,11 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
     }
 
     return bRequestReload;
+}
+
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Electric;
 }
 
 defaultproperties
@@ -276,7 +233,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=100
-	MaxSpareAmmo[0]=400
+	SpareAmmoCapacity[0]=500
 	InitialSpareMags[0]=0
 	AmmoPickupScale[0]=0.4
 	bCanBeReloaded=true
@@ -317,9 +274,12 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Custom
 	FireInterval(ALTFIRE_FIREMODE)=+1.0
-	BlastAmmoCost=10
+	AmmoCost(ALTFIRE_FIREMODE)=10
 
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_MicrowaveGun'
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Flamethrower'
+	InstantHitDamage(BASH_FIREMODE)=30
 
 	Begin Object Class=GameExplosion Name=ExploTemplate0
 		bDirectionalExplosion=True
@@ -348,7 +308,7 @@ defaultproperties
 	// Advanced (High RPM) Fire Effects
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true
 	bLoopingFireSnd(DEFAULT_FIREMODE)=true
-	SingleFireMode=FIREMODE_NONE
+	SingleFireSoundIndex=FIREMODE_NONE
 
 	// Attachments
 	bHasIronSights=true
@@ -357,6 +317,8 @@ defaultproperties
    	AssociatedPerkClass=class'KFPerk_Firebug'
 
    	BonesToLockOnEmpty=(RW_Handle1, RW_BatteryCylinder1, RW_BatteryCylinder2, RW_LeftArmSpinner, RW_RightArmSpinner, RW_LockEngager2, RW_LockEngager1)
+
+ 	// AI Warning
+ 	bWarnAIWhenFiring=true
+    MaxAIWarningDistSQ=2250000
 }
-
-

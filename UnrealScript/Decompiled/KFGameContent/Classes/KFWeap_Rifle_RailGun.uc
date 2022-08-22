@@ -26,7 +26,7 @@ var(Locking) float LockAcquireTime;
 var(Locking) float LockAcquireTime_Large;
 /** How long does the player need to target a boss to lock on to it */
 var(Locking) float LockAcquireTime_Boss;
-/** How long does the player need to target a boss to lock on to it */
+/** How long does the player need to target a versus zed to lock on to it */
 var(Locking) float LockAcquireTime_Versus;
 /** Once locked, how long can the player go without painting the object before they lose the lock */
 var(Locking) float LockTolerance;
@@ -559,6 +559,18 @@ simulated function Vector2D WorldToCanvas(Canvas Canvas, Vector WorldPoint)
     return ScreenPoint;
 }
 
+auto simulated state Inactive
+{
+    simulated function BeginState(name PreviousStateName)
+    {
+        super.BeginState(PreviousStateName);
+        StopAmbientSound();
+        AdjustLockTarget(none);
+        ClearTimer('PlayTargetingBeepTimer');
+    }
+    stop;    
+}
+
 simulated state WeaponEquipping
 {
     simulated function BeginState(name PreviousStateName)
@@ -584,16 +596,6 @@ simulated state WeaponAbortEquip
     simulated event BeginState(name PreviousStateName)
     {
         super(WeaponPuttingDown).BeginState(PreviousStateName);
-        StopAmbientSound();
-    }
-    stop;    
-}
-
-auto simulated state Inactive
-{
-    simulated function BeginState(name PreviousStateName)
-    {
-        super.BeginState(PreviousStateName);
         StopAmbientSound();
     }
     stop;    
@@ -634,6 +636,7 @@ defaultproperties
     InventorySize=10
     MagazineCapacity=1
     bHasIronSights=true
+    bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     PenetrationPower=/* Array type was not detected. */
@@ -643,10 +646,12 @@ defaultproperties
     DOF_BlendInSpeed=3
     DOF_FG_FocalRadius=0
     DOF_FG_MaxNearBlurSize=3.5
+    AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun'
-    MaxSpareAmmo=20
+    SpareAmmoCapacity=20
     InitialSpareMags=6
+    AmmoPickupScale=3
     FireSightedAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

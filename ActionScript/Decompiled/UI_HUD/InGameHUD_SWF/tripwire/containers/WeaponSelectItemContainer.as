@@ -45,32 +45,49 @@ package tripwire.containers
             }
             this.WeaponInfoContainer.WeaponName.text = param1.weaponName;
             this.updateCurrentAmmo(param1.ammoCount,param1.spareAmmoCount,param1.bUsesAmmo);
+            this.updateSecondaryAmmo(param1.secondaryAmmoCount,param1.secondarySpareAmmoCount,param1.bUsesSecondaryAmmo,param1.bCanRefillSecondaryAmmo);
+            this.enabled = !!param1.bEnabled ? Boolean(param1.bEnabled) : false;
         }
         
         public function updateCurrentAmmo(param1:int, param2:int, param3:Boolean) : *
         {
             if(param3)
             {
-                if(param1 == 0 && param2 == 0)
-                {
-                    this.enabled = false;
-                }
-                else
-                {
-                    this.enabled = true;
-                }
                 this.ammoString = param1 + "/" + param2;
             }
             else
             {
-                this.enabled = true;
                 this.ammoString = "";
+            }
+        }
+        
+        public function updateSecondaryAmmo(param1:int, param2:int, param3:Boolean, param4:Boolean) : *
+        {
+            if(param3)
+            {
+                if(param4)
+                {
+                    this.secondaryAmmoString = "〘 " + param1 + "/" + param2 + " 〙";
+                }
+                else
+                {
+                    this.secondaryAmmoString = "〘 " + param1.toString() + " 〙";
+                }
+            }
+            else
+            {
+                this.secondaryAmmoString = "";
             }
         }
         
         public function set ammoString(param1:String) : *
         {
             this.WeaponInfoContainer.WeaponAmmo.text = param1;
+        }
+        
+        public function set secondaryAmmoString(param1:String) : *
+        {
+            this.WeaponInfoContainer.WeaponSecondaryAmmo.text = param1;
         }
         
         public function selected() : void

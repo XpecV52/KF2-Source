@@ -209,10 +209,18 @@ static function string GetMessageString(int Switch, optional out String Secondar
 				return default.WaveEndMessage;
 			}
 		case GMT_MatchWon:
-		     SecondaryString = default.SquadSurvivedMessage;
+			if(class'WorldInfo'.static.GetWorldInfo().NetMode != NM_Standalone)
+			{
+				SecondaryString = default.SquadSurvivedMessage;
+			}
+			
 			return default.YouWonMessage;
 		case GMT_MatchLost:
-		    SecondaryString = default.SquadWipedOutMessage;
+			if(class'WorldInfo'.static.GetWorldInfo().NetMode != NM_Standalone)
+			{
+				SecondaryString = default.SquadWipedOutMessage;
+			}
+		    
 			return default.YouLostMessage;
 		case GMT_ObjectiveStart:
 			return default.ObjectiveStartMessage;

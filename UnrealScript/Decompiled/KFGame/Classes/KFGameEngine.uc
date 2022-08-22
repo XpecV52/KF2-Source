@@ -29,17 +29,18 @@ enum EConnectionError
 var int LastFocusedGameStateID;
 var Font KFCanvasFont;
 var float KFFontScale;
-var const float DefaultGammaMult;
-var config float MusicVolumeMultiplier;
-var config float SFxVolumeMultiplier;
-var config float DialogVolumeMultiplier;
-var config float MasterVolumeMultiplier;
-var config float GammaMultiplier;
-var config bool bMusicVocalsEnabled;
-var config bool bMinimalChatter;
-var config bool bShowKillTicker;
-var config bool bHideBossHealthBar;
+var float DefaultGammaMult;
+var float MusicVolumeMultiplier;
+var float SFxVolumeMultiplier;
+var float DialogVolumeMultiplier;
+var float MasterVolumeMultiplier;
+var float PadVolumeMultiplier;
+var float GammaMultiplier;
+var bool bMusicVocalsEnabled;
+var bool bMinimalChatter;
 var config bool bShowWelderInInv;
+var config bool bUseAltAimOnDual;
+var config bool bAntiMotionSickness;
 var private config bool bShowCrossHair;
 var private bool bShowCrossHairConsole;
 var config bool bMuteOnLossOfFocus;
@@ -95,6 +96,9 @@ native static function SetWWiseVoiceVolume(float Volume);
 // Export UKFGameEngine::execSetWWiseMasterVolume(FFrame&, void* const)
 native static function SetWWiseMasterVolume(float Volume);
 
+// Export UKFGameEngine::execSetWWisePADVolume(FFrame&, void* const)
+native static function SetWWisePADVolume(float Volume);
+
 // Export UKFGameEngine::execSetVoIPRecieveVolume(FFrame&, void* const)
 native static function SetVoIPRecieveVolume(float Volume);
 
@@ -128,25 +132,14 @@ static function float GetKFFontScale()
 
 static function bool IsCrosshairEnabled()
 {
-    if(Class'WorldInfo'.static.IsConsoleBuild())
-    {
-        return default.bShowCrossHairConsole;        
-    }
-    else
-    {
-        return default.bShowCrossHair;
-    }
+    return default.bShowCrossHair;
 }
 
 static function SetCrosshairEnabled(bool bEnable)
 {
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    default.bShowCrossHair = bEnable;
+    if(!Class'WorldInfo'.static.IsConsoleBuild())
     {
-        default.bShowCrossHair = bEnable;        
-    }
-    else
-    {
-        default.bShowCrossHair = bEnable;
         StaticSaveConfig();
     }
 }
@@ -195,6 +188,7 @@ event bool CheckHandshakeComplete(Engine.PlayerController.EProgressMessageType M
                 if(Title == "HandshakeDone")
                 {
                     SuppressPopup = HandshakeCompleteCallback(true, Title, SuppressPasswordRetry);
+                    ClearOnlineDelegates();
                 }
                 break;
             default:
@@ -223,17 +217,89 @@ function UnlockServer()
 // Export UKFGameEngine::execKillPendingServerConnection(FFrame&, void* const)
 native function KillPendingServerConnection();
 
+function ReadPFStoreData()
+{
+    GetPlayfabInterface().AddStoreDataReadCompleteDelegate(OnPlayfabStoreReadComplete);
+    GetPlayfabInterface().ReadStoreData();
+}
+
+function OnPlayfabStoreReadComplete(bool bSuccessful)
+{
+    GetPlayfabInterface().ClearStoreDataReadCompleteDelegate(OnPlayfabStoreReadComplete);
+    if(bSuccessful)
+    {
+        GetOnlineSubsystem().PlayerInterfaceEx.AddStoreDataReadCompleteDelegate(OnStoreDataRead);
+        GetOnlineSubsystem().PlayerInterfaceEx.ReadStoreData();
+    }
+}
+
+function OnStoreDataRead(bool bSuccessful)
+{
+    GetOnlineSubsystem().PlayerInterfaceEx.ClearStoreDataReadCompleteDelegate(OnStoreDataRead);
+    GetPlayfabInterface().AddInventoryReadCompleteDelegate(OnPlayfabInventoryReadComplete);
+    GetPlayfabInterface().ReadInventory();
+}
+
+function OnPlayfabInventoryReadComplete(bool bSuccessful)
+{
+    GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnPlayfabInventoryReadComplete);
+}
+
+function OnConnectionStatusChanged(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus)
+{
+    local KFGameViewportClient GVC;
+
+    if((GamePlayers[0].Actor != none) && KFPlayerController(GamePlayers[0].Actor) != none)
+    {
+        KFPlayerController(GamePlayers[0].Actor).HandleConnectionStatusChange(ConnectionStatus);        
+    }
+    else
+    {
+        GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
+        GVC = KFGameViewportClient(Class'GameEngine'.static.GetEngine().GameViewport);
+        GVC.bNeedDisconnectMessage = true;        
+        GVC.ConsoleCommand("open KFMainMenu");
+    }
+}
+
+function OnLoginStatusChanged(Engine.OnlineSubsystem.ELoginStatus NewStatus, UniqueNetId NewId)
+{
+    local KFGameViewportClient GVC;
+
+    if((GamePlayers[0].Actor != none) && KFPlayerController(GamePlayers[0].Actor) != none)
+    {
+        KFPlayerController(GamePlayers[0].Actor).HandleLoginStatusChange(NewStatus == 2);        
+    }
+    else
+    {
+        if(NewStatus == 0)
+        {
+            GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
+            GVC = KFGameViewportClient(Class'GameEngine'.static.GetEngine().GameViewport);
+            GVC.bNeedSignoutMessage = true;            
+            GVC.ConsoleCommand("open KFMainMenu");
+        }
+    }
+}
+
+function RegisterOnlineDelegates()
+{
+    GetOnlineSubsystem().SystemInterface.AddConnectionStatusChangeDelegate(OnConnectionStatusChanged);
+    GetOnlineSubsystem().PlayerInterface.AddLoginStatusChangeDelegate(OnLoginStatusChanged, 0);
+}
+
+function ClearOnlineDelegates()
+{
+    GetOnlineSubsystem().SystemInterface.ClearConnectionStatusChangeDelegate(OnConnectionStatusChanged);
+    GetOnlineSubsystem().PlayerInterface.ClearLoginStatusChangeDelegate(OnLoginStatusChanged, 0);
+}
+
 defaultproperties
 {
     KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
-    KFFontScale=0.56
+    KFFontScale=0.6
     DefaultGammaMult=0.68
-    MusicVolumeMultiplier=50
-    SFxVolumeMultiplier=100
-    DialogVolumeMultiplier=100
-    MasterVolumeMultiplier=100
-    GammaMultiplier=0.68
-    bShowCrossHairConsole=true
     bMuteOnLossOfFocus=true
     FOVOptionsPercentageValue=1
+    bDisableAILogging=true
 }

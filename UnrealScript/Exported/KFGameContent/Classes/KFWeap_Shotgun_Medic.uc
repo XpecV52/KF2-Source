@@ -30,7 +30,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 
 	for (i = 0; i < NumPellets[CurrentFireMode]; i++)
 	{
-		Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot)));
+		Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(class'KFWeap_ShotgunBase'.static.AddMultiShotSpread(AimRot, Spread[CurrentFireMode])));
 	}
 
 	return None;
@@ -40,27 +40,6 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 simulated function rotator AddSpread(rotator BaseAim)
 {
 	return BaseAim; // do nothing
-}
-
- /** Same as AddSpread(), but used with MultiShotSpread */
-simulated function rotator AddMultiShotSpread(rotator BaseAim)
-{
-	local vector X, Y, Z;
-	local float CurrentSpread, RandY, RandZ;
-
-	CurrentSpread = Spread[CurrentFireMode];
-	if (CurrentSpread == 0)
-	{
-		return BaseAim;
-	}
-	else
-	{
-		// Add in any spread.
-		GetAxes(BaseAim, X, Y, Z);
-		RandY = FRand() - 0.5;
-		RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
-		return rotator(X + RandY * CurrentSpread * Y + RandZ * CurrentSpread * Z);
-	}
 }
 
 /** Notification that a weapon attack has has happened */
@@ -108,8 +87,7 @@ defaultproperties
 {
    NumPellets(0)=6
    NumPellets(1)=1
-   HealAmount=30
-   HealAmmoCost=40
+   HealAmount=15
    HealFullRechargeSeconds=12.000000
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
@@ -128,7 +106,8 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-   MaxSpareAmmo(0)=80
+   AmmoCost(1)=40
+   SpareAmmoCapacity(0)=80
    InitialSpareMags(0)=3
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_1P')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_1P')
@@ -183,7 +162,7 @@ defaultproperties
    InstantHitDamage(0)=20.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=20.000000
+   InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Shotgun_Medic'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

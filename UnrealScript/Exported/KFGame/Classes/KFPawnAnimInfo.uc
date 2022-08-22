@@ -448,6 +448,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 	if( Attack.bIsBattlePhaseAttack && (P.GetCurrentBattlePhase() < Attack.BattlePhaseMinimum || P.GetCurrentBattlePhase() > Attack.BattlePhaseMaximum) )
 	{
 		if (bDebugLog) LogInternal(P@GetFuncName()$"() rejecting attack idx "$idx$" because not allowed in this Battle Phase");
+		return false;
 	}
 
 	if( P.MyKFAIC != none && !P.MyKFAIC.CheckOverallCooldownTimer())
@@ -579,7 +580,7 @@ function Vector2D GetAttackRangeExtent(name AttackName)
  *********************************************************************************************/
 
 /** Cache any values from the difficulty info that we may be using */
-function SetDifficultyValues( KFDifficultyInfo DifficultyInfo )
+function SetDifficultyValues( KFGameDifficultyInfo DifficultyInfo )
 {
 	WeakAttackChance = DifficultyInfo.GetWeakAttackChance();
 	MediumAttackChance = DifficultyInfo.GetMediumAttackChance();

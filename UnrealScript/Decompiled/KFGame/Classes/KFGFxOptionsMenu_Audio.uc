@@ -7,6 +7,59 @@
  *******************************************************************************/
 class KFGFxOptionsMenu_Audio extends KFGFxObject_Menu within GFxMoviePlayer;
 
+const KFID_QuickWeaponSelect = 100;
+const KFID_CurrentLayoutIndex = 101;
+const KFID_ForceFeedbackEnabled = 103;
+const KFID_SavedPerkIndex = 105;
+const KFID_AllowBloodSplatterDecals = 106;
+const KFID_GoreLevel = 107;
+const KFID_StoredCharIndex = 111;
+const KFID_MasterVolumeMultiplier = 112;
+const KFID_DialogVolumeMultiplier = 113;
+const KFID_MusicVolumeMultiplier = 114;
+const KFID_SFXVolumeMultiplier = 115;
+const KFID_GammaMultiplier = 117;
+const KFID_MusicVocalsEnabled = 118;
+const KFID_MinimalChatter = 119;
+const KFID_ShowCrossHair = 121;
+const KFID_FOVOptionsPercentageValue = 122;
+const KFID_ShowKillTicker = 123;
+const KFID_FriendlyHudScale = 125;
+const KFID_FavoriteWeapons = 127;
+const KFID_GearLoadouts = 128;
+const KFID_SetGamma = 129;
+const KFID_RequiresPushToTalk = 130;
+const KFID_InvertController = 131;
+const KFID_AutoTargetEnabled = 132;
+const KFID_GamepadSensitivityScale = 133;
+const KFID_ZoomedSensitivityScale = 134;
+const KFID_GamepadZoomedSensitivityScale = 135;
+const KFID_EnableMouseSmoothing = 136;
+const KFID_MouseSensitivity = 138;
+const KFID_TargetAdhesionEnabled = 139;
+const KFID_TargetFrictionEnabled = 140;
+const KFID_InvertMouse = 142;
+const KFID_VOIPVolumeMultiplier = 143;
+const KFID_SavedSoloModeIndex = 144;
+const KFID_SavedSoloMapString = 145;
+const KFID_SavedSoloDifficultyIndex = 146;
+const KFID_SavedSoloLengthIndex = 147;
+const KFID_SavedModeIndex = 148;
+const KFID_SavedMapString = 149;
+const KFID_SavedDifficultyIndex = 150;
+const KFID_SavedLengthIndex = 151;
+const KFID_SavedPrivacyIndex = 152;
+const KFID_SavedServerTypeIndex = 153;
+const KFID_SavedInProgressIndex = 154;
+const KFID_ControllerSoundEnabled = 155;
+const KFID_MatchmakingRegion = 156;
+const KFID_UseAltAimOnDuals = 157;
+const KFID_HideBossHealthBar = 158;
+const KFID_AntiMotionSickness = 159;
+const KFID_ShowWelderInInventory = 160;
+const KFID_AutoTurnOff = 161;
+const KFID_ReduceHightPitchSounds = 162;
+
 var const localized string SectionNameString;
 var const localized string OptionsString;
 var const localized string AudioString;
@@ -43,7 +96,8 @@ function LocalizeText()
         LocalizedObject.SetString("header", (Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[1]) $ "/") $ Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[0]));
         LocalizedObject.SetString("sectionName", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[1]));
         LocalizedObject.SetString("options", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[0]));
-        LocalizedObject.SetString("configureMic", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaString);        
+        LocalizedObject.SetString("configureMic", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaString);
+        LocalizedObject.SetString("controllerSound", Localize("KFGFxOptionsMenu_Audio", "ControllerSound", "KFGameConsole"));        
     }
     else
     {
@@ -64,19 +118,30 @@ function LocalizeText()
 function InitValues()
 {
     local float VoIPCurrent;
+    local KFPlayerInput KFPI;
+    local bool bControllerSoundEnabled;
 
     if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
+        KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
         Class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
-        SetFloat("voipVolume", (VoIPCurrent / VoIPMax) * float(100));
+        VoIPCurrent = Manager.CachedProfile.GetProfileFloat(143);
         SetBool("bPushToTalk", Class'KFPlayerInput'.default.bRequiresPushToTalk);
+        SetFloat("voipVolume", (VoIPCurrent / VoIPMax) * float(100));
+        SetBool("bPushToTalk", KFPI.bRequiresPushToTalk);        
     }
-    SetFloat("masterVolume", Class'KFGameEngine'.default.MasterVolumeMultiplier);
-    SetFloat("dialogVolume", Class'KFGameEngine'.default.DialogVolumeMultiplier);
-    SetFloat("musicVolume", Class'KFGameEngine'.default.MusicVolumeMultiplier);
-    SetFloat("sFxVolume", Class'KFGameEngine'.default.SFxVolumeMultiplier);
-    SetBool("vocalsEnabled", Class'KFGameEngine'.default.bMusicVocalsEnabled);
-    SetBool("battleChatter", Class'KFGameEngine'.default.bMinimalChatter);
+    else
+    {
+        bControllerSoundEnabled = Manager.CachedProfile.GetProfileBool(155);
+        SetBool("controllerSound", bControllerSoundEnabled);
+        Class'KFGameEngine'.static.SetWWisePADVolume(((bControllerSoundEnabled) ? 100 : 0));
+    }
+    SetFloat("masterVolume", Manager.CachedProfile.GetProfileFloat(112));
+    SetFloat("dialogVolume", Manager.CachedProfile.GetProfileFloat(113));
+    SetFloat("musicVolume", Manager.CachedProfile.GetProfileFloat(114));
+    SetFloat("sFxVolume", Manager.CachedProfile.GetProfileFloat(115));
+    SetBool("vocalsEnabled", Manager.CachedProfile.GetProfileBool(118));
+    SetBool("battleChatter", Manager.CachedProfile.GetProfileBool(119));
 }
 
 function SetVoIPMinMax(float MinVol, float MaxVol)
@@ -86,6 +151,7 @@ function SetVoIPMinMax(float MinVol, float MaxVol)
 
 event OnClose()
 {
+    Manager.CachedProfile.Save(byte(Outer.GetLP().ControllerId));
     SaveConfigValues();
 }
 
@@ -121,7 +187,7 @@ function Callback_ConfigureMicPress()
 
 function Callback_ConfigureBattleChatter(bool bMinimalChatter)
 {
-    Class'KFGameEngine'.default.bMinimalChatter = bMinimalChatter;
+    Manager.CachedProfile.SetProfileSettingValueInt(119, ((bMinimalChatter) ? 1 : 0));
     KFGameEngine(Class'Engine'.static.GetEngine()).bMinimalChatter = bMinimalChatter;
 }
 
@@ -143,8 +209,18 @@ function Callback_PushToTalkChanged(bool bValue)
 
 function Callback_ConfigureVocals(bool bEnabled)
 {
-    Class'KFGameEngine'.default.bMusicVocalsEnabled = bEnabled;
+    Manager.CachedProfile.SetProfileSettingValueInt(118, ((bEnabled) ? 1 : 0));
     KFGameEngine(Class'Engine'.static.GetEngine()).bMusicVocalsEnabled = bEnabled;
+}
+
+function Callback_ConfigureControllerSound(bool bEnabled)
+{
+    local bool bWasEnabled;
+
+    bWasEnabled = Manager.CachedProfile.GetProfileBool(155);
+    Manager.CachedProfile.SetProfileSettingValueInt(155, ((bEnabled) ? 1 : 0));
+    KFGameEngine(Class'Engine'.static.GetEngine()).PadVolumeMultiplier = ((bEnabled) ? 100 : 0);
+    Class'KFGameEngine'.static.SetWWisePADVolume(((bEnabled) ? 100 : 0));
 }
 
 function Callback_MasterVolumeChanged(float NewVolume)
@@ -153,7 +229,7 @@ function Callback_MasterVolumeChanged(float NewVolume)
 
     MasterVolumeMultiplier = NewVolume;
     Class'KFGameEngine'.static.SetWWiseMasterVolume(MasterVolumeMultiplier);
-    Class'KFGameEngine'.default.MasterVolumeMultiplier = MasterVolumeMultiplier;
+    Manager.CachedProfile.SetProfileSettingValueFloat(112, MasterVolumeMultiplier);
     KFGameEngine(Class'Engine'.static.GetEngine()).MasterVolumeMultiplier = MasterVolumeMultiplier;
 }
 
@@ -164,7 +240,7 @@ function Callback_DialogVolumeChanged(float NewVolume)
     DialogVolumeMultiplier = NewVolume;
     Class'KFGameEngine'.static.SetWWiseVoiceVolume(DialogVolumeMultiplier);
     Outer.GetPC().SetAudioGroupVolume('Voice', DialogVolumeMultiplier / float(100));
-    Class'KFGameEngine'.default.DialogVolumeMultiplier = DialogVolumeMultiplier;
+    Manager.CachedProfile.SetProfileSettingValueFloat(113, DialogVolumeMultiplier);
     KFGameEngine(Class'Engine'.static.GetEngine()).DialogVolumeMultiplier = DialogVolumeMultiplier;
 }
 
@@ -175,7 +251,7 @@ function Callback_MusicVolumeChanged(float NewVolume)
     MusicVolumeMultiplier = NewVolume;
     Class'KFGameEngine'.static.SetWWiseMusicVolume(MusicVolumeMultiplier);
     Outer.GetPC().SetAudioGroupVolume('Music', MusicVolumeMultiplier / float(100));
-    Class'KFGameEngine'.default.MusicVolumeMultiplier = MusicVolumeMultiplier;
+    Manager.CachedProfile.SetProfileSettingValueFloat(114, MusicVolumeMultiplier);
     KFGameEngine(Class'Engine'.static.GetEngine()).MusicVolumeMultiplier = MusicVolumeMultiplier;
 }
 
@@ -186,13 +262,14 @@ function Callback_SFxVolumeChanged(float NewVolume)
     SFxVolumeMultiplier = NewVolume;
     Class'KFGameEngine'.static.SetWWiseSFXVolume(SFxVolumeMultiplier);
     Outer.GetPC().SetAudioGroupVolume('SFX', SFxVolumeMultiplier / float(100));
-    Class'KFGameEngine'.default.SFxVolumeMultiplier = SFxVolumeMultiplier;
+    Manager.CachedProfile.SetProfileSettingValueFloat(115, SFxVolumeMultiplier);
     KFGameEngine(Class'Engine'.static.GetEngine()).SFxVolumeMultiplier = SFxVolumeMultiplier;
 }
 
 function Callback_VOIPVolumeChanged(float NewVolume)
 {
-    Class'KFGameEngine'.static.SetVoIPRecieveVolume((NewVolume / float(100)) * VoIPMax);
+    Manager.CachedProfile.SetProfileSettingValueFloat(143, NewVolume / float(100));
+    Class'KFGameEngine'.static.SetVoIPRecieveVolume(NewVolume / float(100));
 }
 
 function CallBack_ResetAudioOptions()
@@ -202,22 +279,29 @@ function CallBack_ResetAudioOptions()
 
 function ResetAudioOptions()
 {
-    local float DefaultGamma;
     local KFGameEngine KFGE;
 
     if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
-    {        
+    {
+        Manager.CachedProfile.SetProfileSettingValueFloat(143, Manager.CachedProfile.GetDefaultFloat(143));
+        Manager.CachedProfile.SetProfileSettingValueInt(130, Manager.CachedProfile.GetDefaultInt(130));        
     }
     else
     {
-        DefaultGamma = Class'KFGameEngine'.default.DefaultGammaMult;
         KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
-        KFGE.GammaMultiplier = DefaultGamma;
+        KFGE.GammaMultiplier = Manager.CachedProfile.GetDefaultFloat(117);
+        KFGE.SetGamma(KFGE.GammaMultiplier);
+        Manager.CachedProfile.SetProfileSettingValueFloat(117, KFGE.GammaMultiplier);
         KFGE.SaveConfig();
-        Class'KFGameEngine'.static.SetGamma(DefaultGamma);
-        Class'KFGameEngine'.default.GammaMultiplier = DefaultGamma;
-        Class'KFGameEngine'.static.StaticSaveConfig();
+        Manager.CachedProfile.SetProfileSettingValueInt(155, Manager.CachedProfile.GetDefaultInt(155));
     }
+    Manager.CachedProfile.SetProfileSettingValueFloat(112, Manager.CachedProfile.GetDefaultFloat(112));
+    Manager.CachedProfile.SetProfileSettingValueFloat(113, Manager.CachedProfile.GetDefaultFloat(113));
+    Manager.CachedProfile.SetProfileSettingValueFloat(114, Manager.CachedProfile.GetDefaultFloat(114));
+    Manager.CachedProfile.SetProfileSettingValueFloat(115, Manager.CachedProfile.GetDefaultFloat(115));
+    Manager.CachedProfile.SetProfileSettingValueInt(118, Manager.CachedProfile.GetDefaultInt(118));
+    Manager.CachedProfile.SetProfileSettingValueInt(119, Manager.CachedProfile.GetDefaultInt(119));
+    InitValues();
 }
 
 defaultproperties

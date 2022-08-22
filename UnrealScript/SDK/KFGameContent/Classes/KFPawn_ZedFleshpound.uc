@@ -26,6 +26,9 @@ var transient PointLightComponent BattlePhaseLightTemplateYellow;
 var transient PointLightComponent BattlePhaseLightTemplateRed;
 var transient PointLightComponent BattlePhaseLightFront;
 
+/** TRUE if we are playing our rage sprint sound, false if we are not */
+var transient bool bPlayingRageSound;
+
 /*********************************************************************************************
 * Initialization
 ********************************************************************************************* */
@@ -105,6 +108,12 @@ function SetSprinting( bool bNewSprintStatus )
 * Rage Related
 ********************************************************************************************* */
 
+/** Returns TRUE if this zed can block attacks */
+function bool CanBlock()
+{
+	return !IsEnraged() && super.CanBlock();
+}
+
 /** Turns hunt and heal backpack vent smoke off on termination */
 simulated function TerminateEffectsOnDeath()
 {
@@ -172,6 +181,12 @@ simulated function SetEnraged( bool bNewEnraged )
 	{
 		bIsEnraged = bNewEnraged;
 
+		// End blocking on rage
+		if( IsDoingSpecialMove(SM_Block) )
+		{
+			EndSpecialMove();
+		}
+
 		// Sprint right away if we're AI
 		if( !IsHumanControlled() )
 		{
@@ -181,15 +196,6 @@ simulated function SetEnraged( bool bNewEnraged )
 
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		if( bNewEnraged )
-		{
-			PostAkEvent( RageStartSound, true, true );
-		}
-		else
-		{
-			PostAkEvent( RageStopSound, true, true );
-		}
-
 		/** Set the proper glow material */
 		UpdateGameplayMICParams();
 	}
@@ -305,6 +311,26 @@ simulated function GetOverheadDebugText( KFHUDBase HUD, out array<string> Overhe
 	OverheadColors[OverheadTexts.Length - 1] = ModifyTextColor;
 }
 
+/** Track the fleshpound's speed and play the appropriate cues */
+simulated event Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( IsEnraged() && Physics == PHYS_Walking && VSizeSQ(Velocity) >= Square(SprintSpeed) * 0.9f )
+	{
+		if( !bPlayingRageSound )
+		{
+			bPlayingRageSound = true;
+			PostAkEvent( RageStartSound, true, true );
+		}
+	}
+	else if( bPlayingRageSound )
+	{
+		bPlayingRageSound = false;
+		PostAkEvent( RageStopSound, true, true );
+	}		
+}
+
 /*********************************************************************************************
 * Dialog
 **********************************************************************************************/
@@ -344,8 +370,7 @@ DefaultProperties
 	// Content
 	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Fleshpound_ARCH.ZED_Fleshpound_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
-	//RageStartSound=AkEvent'ww_zed_fleshpound.Play_Fleshpound_Drill_Sprint'
-	//RageStopSound=AkEvent'ww_zed_fleshpound.Stop_Fleshpound_Drill_Sprint'
+	DifficultySettings=class'KFDifficulty_Fleshpound'
 
 	EnragedGlowColor=(R=1,G=0)
 	//DebugRange_Melee_Material=Material'ENG_EditorResources_MAT.Debug_Radius_M'
@@ -386,7 +411,9 @@ DefaultProperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25)))	
     //DamageTypeModifiers.Add((DamageType=class'KFDamageType', 	DamageScale=(0.5))) // All others
 
-	WeakSpotSocketNames.Add(WeakPointSocket1) // Chest
+	// ---------------------------------------------
+	// Block Settings
+	MinBlockFOV=0.1f
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 	HeadlessBleedOutTime=7.f
@@ -395,9 +422,9 @@ DefaultProperties
 	HitZones[5]		  =(ZoneName=lforearm, BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.2, SkinID=3)
 	HitZones[8]		  =(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.2, SkinID=3)
 
+	WeakSpotSocketNames.Add(WeakPointSocket1) // Chest
+
 	DoshValue=200
-
-
 
 	// ---------------------------------------------
 	// Movement Physics
@@ -426,6 +453,7 @@ DefaultProperties
 	Begin Object Name=SpecialMoveHandler_0
 		SpecialMoveClasses(SM_Taunt)=class'KFGame.KFSM_Zed_Taunt'
 		SpecialMoveClasses(SM_Evade)=class'KFSM_Evade'
+		SpecialMoveClasses(SM_Block)=class'KFSM_Block'
 	End Object
 	RotationRate=(Pitch=50000,Yaw=40000,Roll=50000)
 
@@ -437,9 +465,10 @@ DefaultProperties
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                         Cooldown=1.2)
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                      Cooldown=20.5, Duration=5.0)
 	IncapSettings(AF_Microwave)=(Vulnerability=(0.8),                         Cooldown=17.0, Duration=2.5)
-	IncapSettings(AF_FirePanic)=(Vulnerability=(0.7),                         Cooldown=12.0, Duration=3.5)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.7),                         Cooldown=10.0, Duration=3.5)
 	IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                        Cooldown=10.0, Duration=2.2)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(0.95),                        Cooldown=1.5,  Duration=1.0)
+	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 3.0, 1.0, 1.0),     Cooldown=8.5,  Duration=5.0)
 
 	Begin Object Name=Afflictions_0
 		FireFullyCharredDuration=5
@@ -447,7 +476,9 @@ DefaultProperties
 	End Object
 
 	ParryResistance=4
-
+	// sounds
+	RageStartSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Start'
+	RageStopSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Stop'
     // ---------------------------------------------
     // effects
 	Begin Object Class=CameraShake Name=FootstepCameraShake0

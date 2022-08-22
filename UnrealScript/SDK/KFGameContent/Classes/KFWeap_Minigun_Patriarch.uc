@@ -93,7 +93,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=60
-	MaxSpareAmmo[0]=270
+	SpareAmmoCapacity[0]=270
 	InitialSpareMags[0]=3
 	bCanBeReloaded=false//true
 	bReloadFromMagazine=false//true
@@ -142,7 +142,7 @@ defaultproperties
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true
 	bLoopingFireSnd(DEFAULT_FIREMODE)=true
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_ZED_Patriarch.Play_Mini_Gun_Tail', FirstPersonCue=AkEvent'WW_ZED_Patriarch.Play_Mini_Gun_Tail')
-	SingleFireMode=ALTFIRE_FIREMODE
+	SingleFireSoundIndex=ALTFIRE_FIREMODE
 
 	// Attachments
 	bHasIronSights=true

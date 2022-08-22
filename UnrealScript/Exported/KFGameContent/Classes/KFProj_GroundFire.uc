@@ -12,6 +12,27 @@ class KFProj_GroundFire extends KFProjectile;
 
 var() float BurnDamageInterval;
 
+/** Warns AI that this projectile has been fired */
+function WarnAI( vector Direction )
+{
+	local KFPawn_Monster KFPM;
+	local vector DangerPoint;
+
+	DangerPoint = Location;
+
+	foreach VisibleCollidingActors( class'KFPawn_Monster', KFPM, 300.f, Location, true )
+	{
+        if( KFPM.MyKFAIC != none && KFPM.IsAliveAndWell() )
+        {
+        	// Scale danger point up to pawn's Z location
+        	DangerPoint.Z = KFPM.Location.Z;
+
+	        // Tell the zed to evade away from the DangerPoint
+	        KFPM.MyKFAIC.ReceiveLocationalWarning( DangerPoint, Location, self );
+	    }
+	}
+}
+
 simulated event ReplicatedEvent( name VarName )
 {
 	if( VarName == nameof( bHasExploded ) )
@@ -86,7 +107,7 @@ defaultproperties
       bAllowPerMaterialFX=True
       Damage=15.000000
       DamageRadius=200.000000
-      MyDamageType=Class'kfgamecontent.KFDT_Fire_Ground'
+      MyDamageType=Class'KFGame.KFDT_Fire_Ground'
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_GroundFire:FlamePointLight'

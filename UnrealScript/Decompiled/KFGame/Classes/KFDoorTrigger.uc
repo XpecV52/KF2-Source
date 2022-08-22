@@ -39,9 +39,25 @@ simulated event UnTouch(Actor Other)
     }
 }
 
+function OnDestroyOrReset()
+{
+    local KFPawn_Human P;
+
+    foreach TouchingActors(Class'KFPawn_Human', P)
+    {
+        ~UnknownLocal_0;
+        @NULL
+    }
+}
+
 simulated function bool GetIsUsable(Pawn User)
 {
-    if((DoorActor != none) && !DoorActor.bIsDestroyed)
+    local bool bCanRepairDoors;
+    local KFPawn KFP;
+
+    KFP = KFPawn(User);
+    bCanRepairDoors = ((KFP != none) && KFP.GetPerk() != none) && KFP.GetPerk().CanRepairDoors();
+    if((DoorActor != none) && bCanRepairDoors || !DoorActor.bIsDestroyed)
     {
         return true;
     }
@@ -50,13 +66,20 @@ simulated function bool GetIsUsable(Pawn User)
 
 function int GetInteractionIndex()
 {
-    if(DoorActor.WeldIntegrity > 0)
+    if(DoorActor.bIsDestroyed)
     {
-        return 6;        
+        return 7;        
     }
     else
     {
-        return 5;
+        if(DoorActor.WeldIntegrity > 0)
+        {
+            return 6;            
+        }
+        else
+        {
+            return 5;
+        }
     }
 }
 

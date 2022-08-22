@@ -121,6 +121,8 @@ var duplicatetransient const Guid LightGuid;
 var duplicatetransient const Guid LightmapGuid;
 var() interp const float Brightness<UIMin=0.0|UIMax=20.0>;
 var() interp const Color LightColor;
+/** Used to control the contribution of NdotL Lambertian lighting factor. Primary use case if for fill lights that have DisableSpecular=True */
+var() float Hardness<UIMin=0.0|UIMax=1.0|ClampMin=0.0|ClampMax=1.0>;
 /**  
  *The light function to be applied to this light.
  * Note that only non-lightmapped lights (UseDirectLightMap=False) can have a light function.
@@ -306,6 +308,7 @@ defaultproperties
 {
     Brightness=1
     LightColor=(B=255,G=255,R=255,A=0)
+    Hardness=1
     bEnabled=true
     CastShadows=true
     CastStaticShadows=true

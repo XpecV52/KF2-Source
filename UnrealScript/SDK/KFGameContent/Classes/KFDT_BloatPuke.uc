@@ -19,4 +19,5 @@ defaultproperties
 
 	PoisonPower=0.f
 	bConsideredIndirectOrAoE=true
+	bNoInstigatorDamage=true
 }

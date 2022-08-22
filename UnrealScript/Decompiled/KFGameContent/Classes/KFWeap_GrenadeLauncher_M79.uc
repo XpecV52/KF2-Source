@@ -23,7 +23,7 @@ defaultproperties
     FastZoomOutTime=0.2
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
-    MaxSpareAmmo=26
+    SpareAmmoCapacity=26
     InitialSpareMags=9
     AmmoPickupScale=2
     WeaponFireSnd=/* Array type was not detected. */

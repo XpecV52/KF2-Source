@@ -81,6 +81,10 @@ function bool QuitLobby();
 
 function bool GetLobbyAdmin(UniqueNetId LobbyId, out UniqueNetId AdminId);
 
+//@HSL_BEGIN - JRO - 7/16/2016 - Make sure we can get the party member ID instead of the account ID on PS4
+function UniqueNetId GetMyId();
+//@HSL_END
+
 function string GetFriendNickname(UniqueNetId FriendId, optional bool IncludeSelf = true);
 
 function SetLobbyData( string Key, string Value );

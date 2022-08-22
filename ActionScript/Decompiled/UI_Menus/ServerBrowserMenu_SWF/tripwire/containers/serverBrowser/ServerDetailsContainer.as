@@ -80,6 +80,7 @@ package tripwire.containers.serverBrowser
             this.refreshButton.visible = false;
             this.vacLabelText.visible = false;
             this.vacValueText.visible = false;
+            defaultNumPrompts = 2;
         }
         
         public function set localizedText(param1:Object) : void

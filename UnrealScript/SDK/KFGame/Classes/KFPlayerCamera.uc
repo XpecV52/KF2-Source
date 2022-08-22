@@ -11,6 +11,8 @@
 class KFPlayerCamera extends GamePlayerCamera
 	config(Camera);
 
+`include(KFProfileSettings.uci);
+
 /** Implements typical third person camera. */
 var(Camera) editinline transient KFCustomizationCamera			CustomizationCam;
 /** Class to use for third person camera. */
@@ -139,9 +141,18 @@ function TransitionFOV(float NewFOV, float TransitionTime)
 function  float GetOptionsFOVScale()
 {
 	local float FOVScale;
+	local KFProfileSettings Settings;
 
-	FOVScale = class'KFGameEngine'.default.FOVOptionsPercentageValue;
-
+	if(class'WorldInfo'.static.IsConsoleBuild())
+	{
+		
+		Settings = KFProfileSettings(class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(LocalPlayer(PCOwner.Player).ControllerId));
+		FOVScale = Settings.GetProfileFloat(KFID_FOVOptionsPercentageValue);
+	}
+	else // PC
+	{
+		FOVScale = class'KFGameEngine'.default.FOVOptionsPercentageValue;
+	}
 	return FClamp(FOVScale, 0.75f, 1.25f);
 }
 

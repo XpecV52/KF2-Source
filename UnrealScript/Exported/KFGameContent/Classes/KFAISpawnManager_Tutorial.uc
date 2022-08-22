@@ -10,9 +10,7 @@ class KFAISpawnManager_Tutorial extends KFAISpawnManager;
 
 defaultproperties
 {
-   Waves(0)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave1'
-   Waves(1)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave2'
-   Waves(2)=None
+   DifficultyWaveSettings(0)=(Waves=(KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave1',KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave2',None))
    SoloWaveSpawnRateModifier(0)=(RateModifier=(1.500000,1.500000,1.000000,1.000000))
    EarlyWaveIndex=2
    Name="Default__KFAISpawnManager_Tutorial"

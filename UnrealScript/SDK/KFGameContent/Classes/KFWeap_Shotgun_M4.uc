@@ -51,7 +51,6 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
 	InstantHitDamage(DEFAULT_FIREMODE)=25.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M4Shotgun'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_M4Shotgun'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	FireInterval(DEFAULT_FIREMODE)=0.225 // 265 RPM
 	FireOffset=(X=30,Y=5,Z=-4)
@@ -62,6 +61,10 @@ defaultproperties
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_M4Shotgun'
+	InstantHitDamage(BASH_FIREMODE)=28
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_M4Shotgun_ARCH.Wep_M4Shotgun_MuzzleFlash'
@@ -78,7 +81,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=8
-	MaxSpareAmmo[0]=64
+	SpareAmmoCapacity[0]=64
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=false

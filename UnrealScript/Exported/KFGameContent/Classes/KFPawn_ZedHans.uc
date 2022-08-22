@@ -50,7 +50,6 @@ var AkEvent AmbientBreathingEvent;
 var AkEvent LowHealthAmbientBreathingEvent;
 
 /** Restricts how often tickdialog can be called */
-var float LastTickDialogTime;
 var float TickDialogInterval;
 
 /** Backpack vent particle system (used when in hunt and heal mode) */
@@ -148,15 +147,18 @@ simulated event PostBeginPlay()
     AmbientAkComponent.CachedObjectPosition = Location;
 	SetPawnAmbientSound( AmbientBreathingEvent );
 
-	// add a little delay to begin ticking dialog
-	LastTickDialogTime = WorldInfo.TimeSeconds;
-
 	// Disable the KFPawn optimization because Hans uses weapon bones to spawn projectiles :(
 	// @todo: Do something else to get the bones like ForceUpdateSkel() or SetForceRefPose()
 	if ( WorldInfo.NetMode == NM_DedicatedServer )
 	{
 		Mesh.bPauseAnims = false;
 	}
+
+    // Start the dialog timer
+    if( WorldInfo.NetMode != NM_Client )
+    {
+        SetTimer( 2.f, false, nameOf(Timer_TickHansDialog) );
+    }
 }
 
 /** Cache weapon holster skel controls */
@@ -415,10 +417,10 @@ function bool CacheGrenadeThrowLocation( optional bool bLeftHand )
 
     // Scale resulting toss velocity a little
     // @NOTE: TossVelocity() is pretty shitty. Does not really give accurate velocity predictions. -MattF
-    if( VSizeSQ(MyKFAIC.Enemy.Velocity) < 2500 )
+    if( Velocity == vect(0,0,0) )
     {
         // Scale velocity down 10% if enemy is standing still
-        TossVelocity *= 0.8f;
+        TossVelocity *= 0.9f;
     }
     TossVelocity.X *= 0.75f;
     TossVelocity.Y *= 0.75f;
@@ -426,6 +428,9 @@ function bool CacheGrenadeThrowLocation( optional bool bLeftHand )
     // Add velocity modifier. We're scaling this up because we want the grenade to explode
     // around the time the player runs over it.
     TossVelocity += MyKFAIC.Enemy.Velocity * 1.5f;
+
+    // Subtract our own velocity
+    TossVelocity -= Velocity;
 
     // Used cached grenade throw values if we can't find any good ones
     if( !bFoundVel && (WorldInfo.TimeSeconds - CachedGoodGrenadeToss.TossTime) < 5.0 )
@@ -555,18 +560,11 @@ simulated function rotator AddGrenadeSpread(rotator BaseAim)
 	local vector X, Y, Z;
 	local float RandY, RandZ;
 
-	if (GrenadeTossSpread == 0)
-	{
-		return BaseAim;
-	}
-	else
-	{
-		// Add in any spread.
-		GetAxes(BaseAim, X, Y, Z);
-		RandY = FRand() - 0.5;
-		RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
-		return rotator(X + RandY * GrenadeTossSpread * Y + RandZ * GrenadeTossSpread * Z);
-	}
+	// Add in any spread.
+	GetAxes(BaseAim, X, Y, Z);
+	RandY = FRand() - 0.5;
+	RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
+	return rotator(X + RandY * GrenadeTossSpread.Y * Y + RandZ * GrenadeTossSpread.Z * Z);
 }
 
 /** Return true if busy throwing grenade(s) or using AICommand_ThrowGrenade */
@@ -576,8 +574,10 @@ function bool IsThrowingGrenade()
 	{
 		return false;
 	}
-	return( IsDoingSpecialMove(SM_Hans_ThrowGrenade) || IsDoingSpecialMove(SM_Hans_GrenadeBarrage) ||
-		AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none );
+	return IsDoingSpecialMove(SM_Hans_ThrowGrenade)
+            || IsDoingSpecialMove(SM_Hans_GrenadeBarrage)
+            || IsDoingSpecialMove(SM_Hans_GrenadeHalfBarrage)
+		    || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
 }
 
 
@@ -633,21 +633,21 @@ static function int GetTraderAdviceID()
 	return 47;//TRAD_AdviceHans
 }
 
-simulated function Tick( float DeltaTime )
+/** Players dialog such as taunts at regular intervals */
+function Timer_TickHansDialog()
 {
-    super.Tick( DeltaTime );
-
-    if( (WorldInfo.TimeSeconds - LastTickDialogTime) > TickDialogInterval )
+    if( !IsAliveAndWell() )
     {
-    	LastTickDialogTime = WorldInfo.TimeSeconds;
-		// don't start saying random stuff right away... we need to wait a little bit to make sure our monologue goes off
-	    if( (WorldInfo.TimeSeconds - SpawnTime) > 2.f && IsAliveAndWell() && !IsDoingSpecialMove() )
-	    {
-	        if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHansTickDialog( self );
-	    }
-	}
-}
+        return;
+    }
 
+    if( !IsDoingSpecialMove() )
+    {
+        if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHansTickDialog( self );
+    }
+
+    SetTimer( TickDialogInterval, false, nameOf(Timer_TickHansDialog) );
+}
 
 /** Play music for this boss (overridden for each boss) */
 function PlayBossMusic()
@@ -1147,16 +1147,16 @@ defaultproperties
    ShieldCoreColorOrange=(B=0,G=105,R=255,A=0)
    ShieldColorRed=(B=20,G=20,R=255,A=0)
    ShieldCoreColorRed=(B=10,G=10,R=255,A=0)
-   BattlePhases(0)=(bSprintingBehavior=False,GlobalOffensiveNadePhaseCooldown=12.000000,bCanTossNerveGas=True,bCanUseGuns=True,GunAttackPhaseCooldown=0.000000,GunAttackLengthPhase=99999.000000,HealThresholds=(0.600000,0.600000,0.600000,0.600000),HealAmounts=(0.325000,0.325000,0.325000,0.325000),MaxShieldHealth=(400,900,1000,1100))
-   BattlePhases(1)=(bCanFrenzy=True,GlobalOffensiveNadePhaseCooldown=15.000000,bCanTossNerveGas=True,NerveGasTossPhaseCooldown=20.000000,bCanUseGuns=True,GunAttackPhaseCooldown=30.000000,GunAttackLengthPhase=8.000000,bCanTossGrenade=True,HENadeTossPhaseCooldown=20.000000,HealThresholds=(0.410000,0.410000,0.410000,0.410000),HealAmounts=(0.275000,0.275000,0.275000,0.275000),MaxShieldHealth=(400,900,1000,1100))
-   BattlePhases(2)=(bCanFrenzy=True,bCanBarrageNerveGas=True,bCanUseGuns=True,bCanTossGrenade=True,HealThresholds=(0.250000,0.250000,0.250000,0.250000),HealAmounts=(0.125000,0.125000,0.125000,0.125000),MaxShieldHealth=(400,900,1000,1100))
-   BattlePhases(3)=(bCanFrenzy=True,bCanBarrageNerveGas=True,bCanUseGuns=True,bCanBarrageGrenades=True)
+   BattlePhases(0)=(bSprintingBehavior=False,GlobalOffensiveNadePhaseCooldown=25.000000,bCanTossNerveGas=True,bCanUseGuns=True,GunAttackPhaseCooldown=0.000000,GunAttackLengthPhase=99999.000000,bCanMoveWhileThrowingGrenades=(False,False,False,False),HealThresholds=(0.600000,0.600000,0.600000,0.600000),HealAmounts=(0.325000,0.325000,0.325000,0.325000),MaxShieldHealth=(686,980,1400,1820))
+   BattlePhases(1)=(GlobalOffensiveNadePhaseCooldown=25.000000,bCanTossNerveGas=True,NerveGasTossPhaseCooldown=20.000000,bCanUseGuns=True,GunAttackLengthPhase=10.000000,bCanTossGrenade=True,HENadeTossPhaseCooldown=20.000000,bCanMoveWhileThrowingGrenades=(False,False,False,True),HealThresholds=(0.410000,0.410000,0.410000,0.410000),HealAmounts=(0.275000,0.275000,0.275000,0.275000),MaxShieldHealth=(860,1225,1750,2275))
+   BattlePhases(2)=(bCanFrenzy=True,GlobalOffensiveNadePhaseCooldown=20.000000,bCanBarrageNerveGas=True,bCanUseGuns=True,GunAttackLengthPhase=5.000000,bCanTossGrenade=True,bCanMoveWhileThrowingGrenades=(False,False,True,True),HealThresholds=(0.250000,0.250000,0.250000,0.250000),HealAmounts=(0.125000,0.125000,0.125000,0.125000),MaxShieldHealth=(1030,1470,2100,2730))
+   BattlePhases(3)=(bCanFrenzy=True,GlobalOffensiveNadePhaseCooldown=10.000000,bCanUseGuns=True,GunAttackPhaseCooldown=30.000000,GunAttackLengthPhase=4.000000,bCanBarrageGrenades=True,bCanMoveWhileThrowingGrenades=(False,False,True,True))
    ExplosiveGrenadeClass=Class'kfgamecontent.KFProj_HansHEGrenade'
    NerveGasGrenadeClass=Class'kfgamecontent.KFProj_HansNerveGasGrenade'
    SmokeGrenadeClass=Class'kfgamecontent.KFProj_HansSmokeGrenade'
    RightHandSocketName="RightHandSocket"
    LeftHandSocketName="LeftHandSocket"
-   GrenadeTossSpread=0.200000
+   GrenadeTossSpread=(X=0.000000,Y=0.200000,Z=0.040000)
    SmokeTossCooldown=5.000000
    BossName="Dr. Hans Volter"
    BossCaptionStrings(0)="When seriously injured Hans puts a shield up while he seeks a victim to drain health from. If you destroy this shield he cannot heal!"
@@ -1170,7 +1170,7 @@ defaultproperties
    SummonWaves(1)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Three')
    SummonWaves(2)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Three')
    SummonWaves(3)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Three')
-   NumMinionsToSpawn=8
+   NumMinionsToSpawn=(X=1.000000,Y=18.000000)
    CurrentBattlePhase=1
    TheatricCameraSocketName="TheatricCameraRootSocket"
    bLargeZed=True
@@ -1194,19 +1194,21 @@ defaultproperties
    XPValues(3)=1843.000000
    WeakSpotSocketNames(1)="Chest_FX"
    WeakSpotSocketNames(2)="WeakPointSocket1"
-   DamageTypeModifiers(0)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.600000))
-   DamageTypeModifiers(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.600000))
-   DamageTypeModifiers(2)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.600000))
-   DamageTypeModifiers(3)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.600000))
-   DamageTypeModifiers(4)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.700000))
-   DamageTypeModifiers(5)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.600000))
-   DamageTypeModifiers(6)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.600000))
+   DamageTypeModifiers(0)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.800000))
+   DamageTypeModifiers(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.800000))
+   DamageTypeModifiers(2)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.800000))
+   DamageTypeModifiers(3)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.800000))
+   DamageTypeModifiers(4)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.900000))
+   DamageTypeModifiers(5)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.800000))
+   DamageTypeModifiers(6)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.800000))
    DamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(1.100000))
-   DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(1.500000))
+   DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(1.200000))
    DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive')
-   DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.600000))
+   DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.800000))
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.100000))
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Explosive_RPG7',DamageScale=(1.200000))
+   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_RailGun',DamageScale=(0.900000))
+   DifficultySettings=Class'kfgamecontent.KFDifficulty_Hans'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    OnDeathAchievementID=133
    PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
@@ -1218,25 +1220,25 @@ defaultproperties
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
    bEnableAimOffset=True
-   HitZones(0)=(GoreHealth=2147483647,DmgScale=1.300000)
+   HitZones(0)=(GoreHealth=2147483647,DmgScale=1.200000)
    HitZones(1)=()
    HitZones(2)=()
-   HitZones(3)=(DmgScale=1.300000,SkinID=2)
-   HitZones(4)=(DmgScale=0.300000,SkinID=3)
-   HitZones(5)=(GoreHealth=20,DmgScale=0.300000,SkinID=3)
-   HitZones(6)=()
-   HitZones(7)=(DmgScale=0.300000,SkinID=3)
-   HitZones(8)=(GoreHealth=20,DmgScale=0.300000,SkinID=3)
-   HitZones(9)=()
+   HitZones(3)=(DmgScale=1.050000,SkinID=2)
+   HitZones(4)=(SkinID=3)
+   HitZones(5)=(GoreHealth=20,DmgScale=0.200000,SkinID=3)
+   HitZones(6)=(DmgScale=0.200000,SkinID=3)
+   HitZones(7)=(SkinID=3)
+   HitZones(8)=(GoreHealth=20,DmgScale=0.200000,SkinID=3)
+   HitZones(9)=(BoneName="LeftForearm",DmgScale=0.200000,Limb=BP_LeftArm,SkinID=3)
    HitZones(10)=()
    HitZones(11)=()
-   HitZones(12)=(DmgScale=0.300000,SkinID=3)
-   HitZones(13)=(DmgScale=0.300000,SkinID=3)
+   HitZones(12)=(SkinID=3)
+   HitZones(13)=(SkinID=3)
    HitZones(14)=()
-   HitZones(15)=(DmgScale=0.300000,SkinID=3)
-   HitZones(16)=(DmgScale=0.300000,SkinID=3)
+   HitZones(15)=(SkinID=3)
+   HitZones(16)=(SkinID=3)
    HitZones(17)=()
-   HitZones(18)=(ZoneName="Armor",BoneName="Spine2",GoreHealth=2147483647,DmgScale=0.300000,Limb=BP_Special,SkinID=3)
+   HitZones(18)=(ZoneName="Armor",BoneName="Spine2",GoreHealth=2147483647,DmgScale=0.800000,Limb=BP_Special,SkinID=3)
    PenetrationResistance=4.000000
    Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn_ZedHansBase:Afflictions_0'
       FireFullyCharredDuration=2.500000
@@ -1249,14 +1251,15 @@ defaultproperties
    IncapSettings(1)=(Duration=1.200000,Cooldown=15.000000,Vulnerability=(0.650000))
    IncapSettings(2)=(Cooldown=2.000000,Vulnerability=(0.500000,0.950000,0.500000,0.500000,0.750000))
    IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.100000,0.100000,0.100000,0.100000,0.500000))
-   IncapSettings(4)=(Cooldown=8.000000,Vulnerability=(0.100000,0.300000,0.100000,0.100000,0.400000))
+   IncapSettings(4)=(Cooldown=10.000000,Vulnerability=(0.100000,0.300000,0.100000,0.100000,0.400000))
    IncapSettings(5)=(Duration=1.000000,Cooldown=17.000000,Vulnerability=(0.100000,0.550000,0.100000,0.100000,0.550000))
    IncapSettings(6)=(Vulnerability=(0.000000))
-   IncapSettings(7)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
-   IncapSettings(8)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.950000))
-   IncapSettings(9)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
+   IncapSettings(7)=(Duration=3.000000,Cooldown=10.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000,1.000000))
+   IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
+   IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.950000))
+   IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
    KnockdownImpulseScale=1.000000
-   SprintSpeed=650.000000
+   SprintSpeed=675.000000
    DefaultInventory(0)=Class'kfgamecontent.KFWeap_AssaultRifle_DualMKb42_Hans'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_ZedHansBase:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
@@ -1286,8 +1289,8 @@ defaultproperties
       SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(14)=None
-      SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=None
+      SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
+      SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
@@ -1298,14 +1301,16 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(29)=None
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
-      SpecialMoveClasses(31)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
-      SpecialMoveClasses(32)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
-      SpecialMoveClasses(33)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
-      SpecialMoveClasses(34)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(33)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
+      SpecialMoveClasses(34)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
+      SpecialMoveClasses(35)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
+      SpecialMoveClasses(36)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_ZedHansBase:SpecialMoveHandler_0'
    End Object
@@ -1348,8 +1353,8 @@ defaultproperties
    DamageRecoveryTimeHeavy=0.700000
    DamageRecoveryTimeMedium=0.850000
    Mass=275.000000
-   GroundSpeed=210.000000
-   Health=8000
+   GroundSpeed=285.000000
+   Health=7420
    ControllerClass=Class'KFGame.KFAIController_Hans'
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_ZedHansBase:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
@@ -1375,6 +1380,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_ZedHansBase:KFPawnSkeletalMeshComponent'
    End Object

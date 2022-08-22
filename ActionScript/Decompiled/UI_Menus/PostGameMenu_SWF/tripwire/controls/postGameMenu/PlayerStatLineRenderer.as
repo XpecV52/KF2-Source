@@ -28,6 +28,12 @@ package tripwire.controls.postGameMenu
         
         public const statWidth:Number = 532;
         
+        public var statRevealSoundEffect:String = "AAR_STATLINE_TEXT";
+        
+        public var statCountupSoundEffect:String = "AAR_STATLINE_SCORECOUNT";
+        
+        public var noStatSoundEffect:String = "AAR_XP_ZERO";
+        
         public function PlayerStatLineRenderer()
         {
             super();
@@ -35,6 +41,8 @@ package tripwire.controls.postGameMenu
         
         public function awardAnimIn(param1:Boolean = false) : void
         {
+            var _loc2_:String = this.finalNum == 0 ? this.noStatSoundEffect : this.statCountupSoundEffect;
+            trace(this.name + " finalnum: " + this.finalNum);
             if(!param1)
             {
                 TweenMax.to(this,1,{
@@ -45,7 +53,9 @@ package tripwire.controls.postGameMenu
                 TweenMax.to(this.statMask,4 * this.timeScale,{
                     "delay":1 * this.timeScale,
                     "width":this.statWidth,
-                    "useFrames":true
+                    "useFrames":true,
+                    "onStart":this.playSound,
+                    "onStartParams":[this.statRevealSoundEffect]
                 });
                 TweenMax.to(this,8 * this.timeScale,{
                     "delay":4 * this.timeScale,
@@ -53,6 +63,8 @@ package tripwire.controls.postGameMenu
                     "onUpdate":this.changeNum,
                     "ease":Cubic.easeOut,
                     "useFrames":true,
+                    "onStart":this.playSound,
+                    "onStartParams":[_loc2_],
                     "onComplete":this.doneAndDone
                 });
             }
@@ -65,9 +77,16 @@ package tripwire.controls.postGameMenu
             }
         }
         
+        public function playSound(param1:String) : void
+        {
+            if(Extensions.enabled)
+            {
+                Extensions.gfxProcessSound(this,"UI",param1);
+            }
+        }
+        
         public function doneAndDone(param1:Event = null) : void
         {
-            Extensions.gfxProcessSound(this,"AAR","Generic_Beep");
             parent.dispatchEvent(new Event("PlayerNextAnim"));
         }
         

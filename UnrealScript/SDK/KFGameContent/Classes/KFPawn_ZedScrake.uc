@@ -63,15 +63,15 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 		if( KFAICM != none )
 		{
 	        // Determine what rage health threshold to use
-	        if( KFAICM.Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
+	        if( KFAICM.Skill == class'KFGameDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
 	        {
 	            RageHealthThreshold = RageHealthThresholdNormal;
 	        }
-	        else if( KFAICM.Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
+	        else if( KFAICM.Skill <= class'KFGameDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
 	        {
 	            RageHealthThreshold = RageHealthThresholdHard;
 	        }
-	        else if( KFAICM.Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
+	        else if( KFAICM.Skill <= class'KFGameDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
 	        {
 	            RageHealthThreshold = RageHealthThresholdSuicidal;
 	        }
@@ -144,12 +144,24 @@ simulated function SetEnraged( bool bNewEnraged )
 	{
 		bIsEnraged = bNewEnraged;
 
+		// End blocking on rage
+		if( IsDoingSpecialMove(SM_Block) )
+		{
+			EndSpecialMove();
+		}
+
 		// Sprint right away if we're AI
 		if( !IsHumanControlled() )
 		{
 			SetSprinting( bNewEnraged );
 		}
 	}
+}
+
+/** Returns TRUE if this zed can block attacks */
+function bool CanBlock()
+{
+	return !bIsEnraged && super.CanBlock();
 }
 
 /** Overridden to support secondary body material */
@@ -256,6 +268,7 @@ defaultproperties
 	// Content
 	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Scrake_ARCH.ZED_Scrake_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
+	DifficultySettings=class'KFDifficulty_Scrake'
 
 	ExhaustTemplate=ParticleSystem'ZED_Scrake_EMIT.FX_Scrake_Smoke_Idle_01'
 	ExhaustSocketName=FX_Exhaust
@@ -265,19 +278,21 @@ defaultproperties
 	Begin Object Name=SpecialMoveHandler_0
 		SpecialMoveClasses(SM_Taunt)=class'KFGame.KFSM_Zed_Taunt'
 		SpecialMoveClasses(SM_Evade)=class'KFSM_Evade'
+		SpecialMoveClasses(SM_Block)=class'KFSM_Block'
 	End Object
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
     IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 1.0, 0.5, 0.5, 0.5), Cooldown=10.0, Duration=1.2)
     IncapSettings(AF_Knockdown)=(Vulnerability=(0.4, 0.4, 0.5, 0.4),      Cooldown=10)  //leg0.4
-    IncapSettings(AF_Stumble)=	(Vulnerability=(0.3),                     Cooldown=2.5)
+    IncapSettings(AF_Stumble)=	(Vulnerability=(0.3),                     Cooldown=3.5) //2.5
     IncapSettings(AF_GunHit)=	(Vulnerability=(0.2),                     Cooldown=1.7)
     IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=1.35)
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
-    IncapSettings(AF_Microwave)=(Vulnerability=(1.0),                     Cooldown=10.0,  Duration=2.5)
-    IncapSettings(AF_FirePanic)=(Vulnerability=(0.9),                     Cooldown=5.0,  Duration=3.0)
+    IncapSettings(AF_Microwave)=(Vulnerability=(1.0),                     Cooldown=10.0, Duration=2.5)
+    IncapSettings(AF_FirePanic)=(Vulnerability=(0.8),                     Cooldown=7.0,  Duration=3.5)
     IncapSettings(AF_EMP)=		(Vulnerability=(0.98),                    Cooldown=10.0, Duration=2.2)
     IncapSettings(AF_Freeze)=	(Vulnerability=(0.98),                    Cooldown=1.5,  Duration=1.0)
+    IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0),      Cooldown=5.5,  Duration=3.0)
 
 	Begin Object Name=Afflictions_0
         FireFullyCharredDuration=5
@@ -305,13 +320,13 @@ defaultproperties
 	// Penetration
     PenetrationResistance=4.0
 
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.5)))
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.7)))
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.8)))  //0.75
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.80)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(1.0))) //0.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(1.0))) //0.7
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.9)))  //0.8
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.80))) //0.8
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(1.0)))
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.75)))
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.75)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(1.0))) //0.75
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(1.0))) //0.75
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.3)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 				    DamageScale=(1.0)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 				    DamageScale=(0.4)))
@@ -319,13 +334,14 @@ defaultproperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_RPG7Impact', 	    DamageScale=(4.f)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25)))
 
+	// ---------------------------------------------
+	// Block Settings
+	MinBlockFOV=0.1f
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 	HeadlessBleedOutTime=6.f
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=600, DmgScale=1.1, SkinID=1)
-	HitZones[8]		  =(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.5, SkinID=2)
-
-
+	HitZones[8]		  =(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.2, SkinID=2)
 
 	// ---------------------------------------------
 	// Movement / Physics

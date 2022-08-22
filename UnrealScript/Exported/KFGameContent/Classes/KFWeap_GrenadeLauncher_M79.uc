@@ -25,7 +25,7 @@ defaultproperties
    FastZoomOutTime=0.200000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
-   MaxSpareAmmo(0)=26
+   SpareAmmoCapacity(0)=26
    InitialSpareMags(0)=9
    AmmoPickupScale(0)=2.000000
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_S')
@@ -75,7 +75,7 @@ defaultproperties
    InstantHitDamage(0)=150.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_M79Impact'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

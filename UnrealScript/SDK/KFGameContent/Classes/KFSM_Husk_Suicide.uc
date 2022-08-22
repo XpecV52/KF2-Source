@@ -15,7 +15,7 @@ protected function bool InternalCanDoSpecialMove()
 {
 	if( KFPOwner.IsHumanControlled() )
 	{
-		return KFPOwner.IsAliveAndWell();
+		return KFPOwner.IsCombatCapable();
 	}
 
 	if( AIOwner == none || AIOwner.MyKFPawn == none || AIOwner.Enemy == none )
@@ -23,7 +23,7 @@ protected function bool InternalCanDoSpecialMove()
 		return false;
 	}
 
-	if( AIOwner.MyKFPawn.IsImpaired() )
+	if( KFPOwner.IsCombatCapable() )
 	{
 		return false;
 	}

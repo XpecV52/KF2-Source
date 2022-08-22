@@ -41,6 +41,14 @@ var bool bAllowThirdPersonWeaponAnims;
 /** If set, sets Pawn.RotationRate to CustomRotationRate for the duration of the move */
 var bool bUseCustomRotationRate;
 var rotator CustomRotationRate;
+/** Used when deferring special move animations till post sync due to physics calls. */
+var name DeferredSeqName;
+
+/** Default root motion mode to be used for this move */
+var ERootMotionMode SMRootMotionMode;
+
+/** When TRUE, tells our physics smoothing code to use a higher threshold when in root motion. */
+var bool bUseHigherMeshSmoothingThreshold;
 
 /*********************************************************************************************
  * Weapon firing
@@ -103,6 +111,7 @@ var	const			bool	bDisablePhysics;
 /** If TRUE, disables physics adjustments on the clients. Where drastic velocity changes are needed, this can help with rubberbanding */
 var const 			bool 	bServerOnlyPhysics;
 var 				bool 	bAllowFireAnims;
+var					bool	bShouldDeferToPostTick;
 var	AICommand_PushedBySM	AICommand;
 /** Default AICommand to push on AI when SpecialMove starts */
 var class<AICommand_PushedBySM>	DefaultAICommandClass;
@@ -415,6 +424,24 @@ final function SetMovementLock(bool bEnable)
 	}
 }
 
+function EnableRootMotion()
+{
+	// Turn on root motion on animation node
+	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption( RBA_Translate, RBA_Translate, RBA_Translate );
+
+	// Turn on Root motion on mesh.
+	KFPOwner.Mesh.RootMotionMode = SMRootMotionMode;
+}
+
+function DisableRootMotion()
+{
+	// Restore default root motion mode
+	KFPOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
+
+	// Turn off Root motion on animation node
+	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
+}
+
 /** Overridden to restrict movement when on the ground */
 function Tick( float DeltaTime )
 {
@@ -541,6 +568,18 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
 	KFPOwner.EndSpecialMove();
 }
 
+/**
+ * This is a callback function that will be kicked off from KFPawn.uc OnAnimEnd. Some animations cause
+ * physics to happen when they end so we defer certain end animations till post tick.
+ */
+function DeferOnAnimEnd()
+{
+	if( KFPOwner.SpecialMoves[KFPOwner.SpecialMove] == self)
+	{
+		AnimEndNotify(None, 0, 0);
+	}
+	
+}
 /*********************************************************************************************
  * Gameplay notications/hooks
  *********************************************************************************************/
@@ -575,10 +614,13 @@ event ModifyInteractionPawn(out KFPawn OtherPawn);
 defaultproperties
 {
 	Handle=KFSpecialMove
+	SMRootMotionMode=RMM_Accel
 	bDisableSteering=true
 	bDisableAIAttackRangeChecks=true
 	bAllowHitReactions=false
 	bCanOnlyWanderAtEnd=false
+	bShouldDeferToPostTick=false
+	bUseHigherMeshSmoothingThreshold=false
 	CustomTurnInPlaceAnimRate=0.f
 
 	// Camera view offset/FOV

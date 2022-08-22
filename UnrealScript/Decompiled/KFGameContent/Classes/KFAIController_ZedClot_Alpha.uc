@@ -9,30 +9,81 @@ class KFAIController_ZedClot_Alpha extends KFAIController_ZedClot
     config(AI)
     hidecategories(Navigation);
 
-function bool ShouldSprint()
+var protected const byte MinAIRequiredForRally;
+var protected float RallyChance;
+var protected float RallyCooldown;
+
+function InitRallySettings()
 {
-    if((((MyKFPawn == none) || (Enemy == none) && DoorEnemy == none) || !MyKFPawn.IsAliveAndWell()) || !Enemy.IsAliveAndWell())
+    local class<KFDifficulty_ClotAlpha> MyDifficultySettings;
+
+    MyDifficultySettings = class<KFDifficulty_ClotAlpha>(MyKFPawn.DifficultySettings);
+    if(FRand() < MyDifficultySettings.default.RallyTriggerSettings[int(WorldInfo.Game.GameDifficulty)].SpawnChance)
     {
-        return false;
+        RallyChance = MyDifficultySettings.default.RallyTriggerSettings[int(WorldInfo.Game.GameDifficulty)].RallyChance;
+        RallyCooldown = MyDifficultySettings.default.RallyTriggerSettings[int(WorldInfo.Game.GameDifficulty)].Cooldown;
     }
-    if(bCanSprint || bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax)
-    {
-        return true;
-    }
-    return false;
 }
 
-event RunOverWarning(KFPawn IncomingKFP, float IncomingSpeed, Vector IncomingDir)
+function bool IsSpecialAlpha()
 {
-    if(CanEvade())
+    return RallyChance > 0;
+}
+
+event SeePlayer(Pawn Seen)
+{
+    super(KFAIController).SeePlayer(Seen);
+    if((RallyChance > 0) && !IsTimerActive('Timer_CheckForRally'))
     {
-        DoEvade(GetBestEvadeDir(IncomingKFP.Location, IncomingKFP, false),,, true, true);
+        SetTimer(2 + (FRand() * 3), false, 'Timer_CheckForRally');
     }
+}
+
+function Timer_CheckForRally()
+{
+    local float RallyDistSQ;
+    local byte NumPawnsForRally;
+    local Pawn P;
+
+    if(MyKFPawn.IsHeadless() || !MyKFPawn.IsAliveAndWell())
+    {
+        return;
+    }
+    if(MyKFPawn.IsDoingSpecialMove() || !MyKFPawn.CanDoSpecialMove(18))
+    {
+        SetTimer(0.5, false, 'Timer_CheckForRally');
+        return;
+    }
+    if(FRand() < RallyChance)
+    {
+        RallyDistSQ = Square(Class'KFSM_AlphaRally'.default.RallyRadius);
+        foreach WorldInfo.AllPawns(Class'Pawn', P)
+        {
+            if((P.GetTeamNum() != GetTeamNum()) || !P.IsAliveAndWell())
+            {
+                continue;                
+            }
+            if(VSizeSq(P.Location - MyKFPawn.Location) < RallyDistSQ)
+            {
+                ++ NumPawnsForRally;
+                if(NumPawnsForRally == MinAIRequiredForRally)
+                {
+                    MyKFPawn.DoSpecialMove(18, true,, Class'KFSM_AlphaRally'.static.PackRallyFlags());
+                    SetTimer(RallyCooldown, false, 'Timer_CheckForRally');                    
+                    return;
+                }
+            }            
+        }        
+    }
+    SetTimer(1.5, false, 'Timer_CheckForRally');
 }
 
 defaultproperties
 {
+    MinAIRequiredForRally=4
+    RunOverEvadeDelayScale=0.5
     SprintWithinEnemyRange=(X=520,Y=1200)
     StrikeRangePercentage=0.6
     EvadeGrenadeChance=0.75
+    DangerEvadeSettings=/* Array type was not detected. */
 }

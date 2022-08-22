@@ -128,11 +128,10 @@ package tripwire.controls
             }
             visible = true;
             mouseEnabled = true;
-            this._fadeIn = TweenMax.fromTo(this,6,{
+            TweenMax.killTweensOf(this);
+            this._fadeIn = TweenMax.fromTo(this,4,{
                 "z":48,
-                "alpha":0,
-                "ease":Cubic.easeIn,
-                "useFrames":true
+                "alpha":0
             },{
                 "z":0,
                 "alpha":(!!param1 ? this._defaultAlpha : this._dimmedAlpha),
@@ -146,7 +145,6 @@ package tripwire.controls
         
         public function indexChanged(param1:IndexEvent) : void
         {
-            trace("INDEX CHANGED: ",param1.index);
         }
         
         protected function close(param1:FocusEvent = null) : void
@@ -156,11 +154,8 @@ package tripwire.controls
                 this.associatedButton.selected = false;
             }
             mouseEnabled = false;
-            this._fadeOut = TweenMax.fromTo(this,6,{
-                "alpha":1,
-                "ease":Cubic.easeOut,
-                "useFrames":true
-            },{
+            TweenMax.killTweensOf(this);
+            this._fadeOut = TweenMax.fromTo(this,4,{"alpha":1},{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true,
@@ -247,7 +242,7 @@ package tripwire.controls
             {
                 FocusManager.setModalClip(this);
             }
-            TripList.onOpen(this);
+            TripList.onOpen(this,this.bManagerUsingGamepad);
         }
         
         function onClose(param1:Event = null) : void

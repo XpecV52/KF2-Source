@@ -49,6 +49,7 @@ package tripwire.tutorial
             super.addedToStage(param1);
             this.mCursor.mouseEnabled = false;
             this.mCursor.tabEnabled = false;
+            enableInitCallback = true;
             stage.addEventListener(MouseEvent.MOUSE_MOVE,this.handleMouseMove,false,0,true);
             this.addEventListener(FADE_IN,this.openBG,false,0,true);
             this.addEventListener(FADE_OUT,this.closeBG,false,0,true);
@@ -78,13 +79,8 @@ package tripwire.tutorial
         
         public function set bUsingGamepad(param1:Boolean) : void
         {
-            if(param1 != this._bUsingGamepad)
-            {
-                if(!param1)
-                {
-                }
-            }
-            this.mCursor.visible = param1;
+            this.tutorialPopup.bUsingGamepad = param1;
+            this.mCursor.visible = !param1;
         }
     }
 }

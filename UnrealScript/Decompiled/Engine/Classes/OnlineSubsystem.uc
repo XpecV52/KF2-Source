@@ -634,8 +634,10 @@ struct native CurrentInventoryEntry
 struct native ItemProperties
 {
     var int Definition;
+    var string PlayfabItemId;
     var string ProductId;
     var string SignedOfferId;
+    var string RequiredKeyId;
     var string Name;
     var OnlineSubsystem.ItemType Type;
     var OnlineSubsystem.ItemRarity Rarity;
@@ -654,8 +656,10 @@ struct native ItemProperties
     structdefaultproperties
     {
         Definition=0
+        PlayfabItemId=""
         ProductId=""
         SignedOfferId=""
+        RequiredKeyId=""
         Name=""
         Type=ItemType.ITP_WeaponSkin
         Rarity=ItemRarity.ITR_Common
@@ -710,6 +714,7 @@ var OnlineVoiceInterface VoiceInterface;
 var OnlineStatsInterface StatsInterface;
 var OnlineNewsInterface NewsInterface;
 var OnlinePartyChatInterface PartyChatInterface;
+var OnlinePartyInterface PartyInterface;
 var OnlineTitleFileInterface TitleFileInterface;
 var OnlineTitleFileCacheInterface TitleFileCacheInterface;
 var UserCloudFileInterface UserCloudInterface;
@@ -726,6 +731,7 @@ var config string IniLocPatcherClassName;
 var transient IniLocPatcher Patcher;
 var config float AsyncMinCompletionTime;
 var const array<CurrentInventoryEntry> CurrentInventory;
+var const array<string> OwnedEntitlementIds;
 var array<ItemProperties> ItemPropertiesList;
 var array<ExchangeRuleSets> ExchangeRuleSetList;
 var delegate<OnInventoryReadComplete> __OnInventoryReadComplete__Delegate;
@@ -752,6 +758,9 @@ native function ClearInFlight();
 
 // Export UOnlineSubsystem::execExchangeReady(FFrame&, void* const)
 native function bool ExchangeReady(const out ExchangeRuleSets Rule);
+
+// Export UOnlineSubsystem::execHasKeyForItem(FFrame&, void* const)
+native function bool HasKeyForItem(const int ItemDefinition, out int OutRequiredItem);
 
 // Export UOnlineSubsystem::execExchange(FFrame&, void* const)
 native function bool Exchange(const out ExchangeRuleSets Rule);
@@ -879,6 +888,12 @@ event bool SetPartyChatInterface(Object NewInterface)
 {
     PartyChatInterface = OnlinePartyChatInterface(NewInterface);
     return NotEqual_InterfaceInterface(PartyChatInterface, (none));
+}
+
+event bool SetPartyInterface(Object NewInterface)
+{
+    PartyInterface = OnlinePartyInterface(NewInterface);
+    return NotEqual_InterfaceInterface(PartyInterface, (none));
 }
 
 event bool SetTitleFileInterface(Object NewInterface)
@@ -1122,6 +1137,8 @@ native function GetPlayerGroups(out array<UniqueNetId> UserGroups);
 
 // Export UOnlineSubsystem::execCheckPlayerGroup(FFrame&, void* const)
 native function bool CheckPlayerGroup(UniqueNetId Group);
+
+function SetSharedPassword(string ServerPassword);
 
 defaultproperties
 {

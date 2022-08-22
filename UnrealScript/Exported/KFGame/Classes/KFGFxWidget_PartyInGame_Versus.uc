@@ -98,28 +98,43 @@ function RefreshSlot( int SlotIndex, KFPlayerReplicationInfo KFPRI )
 	local class<KFPerk> CurrentPerkClass;
 	local byte CurrentPerkLevel;
 	local byte CurrentTeamIndex;
+	local PlayerController PC;
+
+	PC = GetPC();
 
 	CurrentTeamIndex = KFPRI.GetTeamNum();
 	PlayerID = KFPRI.UniqueId;
-	OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId );
+	if( OnlineLobby != none )
+	{
+		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId );
+	}
 	bIsLeader = (PlayerID == AdminId);
 	// Check if this is our player we are updating
-	bIsMyPlayer = ( GetPC().PlayerReplicationInfo.UniqueId == PlayerID );
+	bIsMyPlayer = ( PC.PlayerReplicationInfo.UniqueId == PlayerID );
 
    	UpdatePlayerReady( SlotIndex, KFPRI.bReadyToPlay && !KFGRI.bMatchHasBegun );
 
    	if( KFPRI.Team == none )
    	{
+		EmptySlot(SlotIndex);
    		return;
    	}
-  
-   	CurrentPerkClass = KFPRI.CurrentPerkClass;
+
+   	CurrentPerkClass = KFPRI.CurrentPerkClass;  
 
    	if( CurrentTeamIndex == 255 ) //zed team
    	{
-   		PerkIconPath = "img://" $ PathName(ZedIConTexture);
-   		MemberSlots[SlotIndex].PerkClass = class'KFPerk_Monster';
-		UpdatePerk( SlotIndex, "", "", PerkIconPath );			
+		if(CurrentPerkClass == none)
+		{
+			EmptySlot(SlotIndex);
+		}
+		else
+		{
+   			PerkIconPath = "img://" $ PathName(ZedIConTexture);
+
+   			MemberSlots[SlotIndex].PerkClass = class'KFPerk_Monster';
+			UpdatePerk( SlotIndex, "", "", PerkIconPath );			
+		}
    	}
    	else//human team
    	{
@@ -143,17 +158,22 @@ function RefreshSlot( int SlotIndex, KFPlayerReplicationInfo KFPRI )
 	MemberSlots[SlotIndex].PlayerUID = PlayerID;
 	
 	// Update the players slot
-	if(MemberSlots[SlotIndex].PRI == none || KFPRI.UniqueId != MemberSlots[SlotIndex].PRI.UniqueId)
-	{
-		MemberSlots[SlotIndex].PRI = KFPRI;
-		
-		SlotChanged( SlotIndex, true, bIsMyPlayer, bIsLeader );
-		MemberSlots[SlotIndex].PRI.UniqueId = KFPRI.UniqueId;
-	}
+	MemberSlots[SlotIndex].PRI = KFPRI;
+	SlotChanged( SlotIndex, true, bIsMyPlayer, bIsLeader );
+	// Update the muted state of this slotobject. -HSL_BB
+	MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted", PC.IsPlayerMuted(PlayerID) );
+
 	//
 	CreatePlayerOptions( KFPRI.UniqueId, SlotIndex );
-	
-	MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+
+	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+	{
+ 		MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetPS4Avatar(KFPRI.PlayerName));
+	}
+	else
+	{
+		MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+	}
    	// Update this slots player name
  	PlayerName = KFPRI.PlayerName;
 	UpdatePlayerName( SlotIndex, PlayerName );
@@ -163,7 +183,7 @@ defaultproperties
 {
    SwitchTeamsString="SWITCH TEAMS"
    balanceWarningString="WARNING: Teams will be auto-balanced"
-   ZedIConTexture=Texture2D'UI_Widgets.MenuBarWidget_SWF_IF'
+   ZedIconTexture=Texture2D'UI_Widgets.MenuBarWidget_SWF_IF'
    PlayerSlots=12
    Name="Default__KFGFxWidget_PartyInGame_Versus"
    ObjectArchetype=KFGFxWidget_PartyInGame'KFGame.Default__KFGFxWidget_PartyInGame'

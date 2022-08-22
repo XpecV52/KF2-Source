@@ -54,17 +54,6 @@ simulated function StartFire(byte FireModeNum)
 	Super(KFWeapon).StartFire(FireModeNum);
 }
 
-/** skip over the MeleeBase version of HasAmmo */
-simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
-{
-	if ( FireModeNum == BLOCK_FIREMODE )
-	{
-		return true;
-	}
-
-	return Super(KFWeapon).HasAmmo(FireModeNum, Amount);
-}
-
  /**
  * Returns which ammo pool a fire mode should pull from, primary or secondary.
  @ param    FiringMode  the fire mode we want to check against
@@ -72,7 +61,8 @@ simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
  */
 simulated function int GetAmmoType(byte FiringMode)
 {
-    if( FiringMode == HEAVY_ATK_FIREMODE )
+	//UI looking for altfire
+    if( FiringMode == HEAVY_ATK_FIREMODE || FiringMode == ALTFIRE_FIREMODE)
 	{
         return 1;
 	}
@@ -290,6 +280,11 @@ static simulated event EFilterTypeUI GetTraderFilter()
 	return FT_Projectile;
 }
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+	return FT_Melee;
+}
+
 defaultproperties
 {
 	// Inventory
@@ -329,12 +324,14 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=0.95 // 63 RPM
 	FireOffset=(X=25,Y=5.0,Z=-10)
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Sawblade'
+	AmmoCost(DEFAULT_FIREMODE) = 1
 
 	// Saw attack (uses fuel)
 	FiringStatesArray(HEAVY_ATK_FIREMODE)=MeleeSustained
 	InstantHitDamage(HEAVY_ATK_FIREMODE)=29
 	InstantHitDamageTypes(HEAVY_ATK_FIREMODE)=class'KFDT_Slashing_Eviscerator'
 	FireInterval(HEAVY_ATK_FIREMODE)=+0.12
+	AmmoCost(HEAVY_ATK_FIREMODE)=1
 	MeleeSustainedWarmupTime=0.1
 
 	// BASH_FIREMODE
@@ -367,7 +364,7 @@ defaultproperties
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 	MagazineCapacity[0]=5
-	MaxSpareAmmo[0]=25
+	SpareAmmoCapacity[0]=25
 	InitialSpareMags[0]=0
 	MagazineCapacity[1]=250 // 30 seconds of fuel
 	AmmoPickupScale[1]=0.5

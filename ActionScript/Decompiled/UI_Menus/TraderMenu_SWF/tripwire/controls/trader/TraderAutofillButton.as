@@ -2,6 +2,7 @@ package tripwire.controls.trader
 {
     import flash.display.MovieClip;
     import flash.text.TextField;
+    import scaleform.gfx.Extensions;
     import tripwire.controls.TripButton;
     
     public class TraderAutofillButton extends TripButton
@@ -16,13 +17,15 @@ package tripwire.controls.trader
         
         private var _buttonValue:String;
         
+        private var _buttonState:int;
+        
         public var ArrowIcon:MovieClip;
         
         public function TraderAutofillButton()
         {
             super();
-            this.buttonIcon.visible = false;
-            this.ArrowIcon.visible = true;
+            clickSoundEffect = "TRADER_MAGFILL_BUTTON_CLICK";
+            overSoundEffect = "TRADER_MAGFILL_BUTTON_ROLLOVER";
         }
         
         public function get buttonValue() : String
@@ -39,8 +42,6 @@ package tripwire.controls.trader
             this._buttonValue = param1;
             this.valueTextField.text = param1;
             invalidateData();
-            this.buttonIcon.visible = false;
-            this.ArrowIcon.visible = true;
         }
         
         override protected function updateText() : void
@@ -52,8 +53,14 @@ package tripwire.controls.trader
             }
         }
         
+        public function get buttonState() : int
+        {
+            return this._buttonState;
+        }
+        
         public function set buttonState(param1:int) : *
         {
+            this._buttonState = param1;
             if(param1 == 0)
             {
                 enabled = true;
@@ -77,30 +84,29 @@ package tripwire.controls.trader
         {
             if(this.bUsingGamepad)
             {
-                this.buttonIcon.visible = focused == 1;
                 selected = focused == 1;
             }
             else
             {
-                this.buttonIcon.visible = false;
-                this.ArrowIcon.visible = true;
                 selected = false;
             }
         }
         
         override protected function highlightButton() : *
         {
-            if(this.bUsingGamepad)
+            if(!this.bUsingGamepad)
             {
-                this.ArrowIcon.visible = false;
+            }
+            if(Extensions.gfxProcessSound != null && enabled == true)
+            {
+                Extensions.gfxProcessSound(this,"UI",overSoundEffect);
             }
         }
         
         override protected function unhighlightButton() : *
         {
-            if(this.bUsingGamepad)
+            if(!this.bUsingGamepad)
             {
-                this.ArrowIcon.visible = true;
             }
         }
     }

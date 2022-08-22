@@ -121,7 +121,7 @@ var config array<config string> ServerActors;
 var string TravelURL;
 var byte TravelType;
 var string TakeoverURL;
-var bool bUsedForTakeover;
+var config bool bUsedForTakeover;
 var bool bAvailableForTakeover;
 var const transient bool bWorldWasLoadedThisTick;
 var const transient bool bCheckForMovieCapture;
@@ -181,9 +181,13 @@ native function TakeoverServer(string InHostStr, string InUrlStr);
 // Export UGameEngine::execGetWebAdminPort(FFrame&, void* const)
 native static function int GetWebAdminPort();
 
+// Export UGameEngine::execDisableServerTakeover(FFrame&, void* const)
+native final function DisableServerTakeover();
+
 defaultproperties
 {
     LastURL=(Protocol="",Host="",Port=0,Map="",Op=none,Portal="",Valid=1)
     LastRemoteURL=(Protocol="",Host="",Port=0,Map="",Op=none,Portal="",Valid=1)
     ServerActors(0)="IpDrv.WebServer"
+    bUsedForTakeover=true
 }

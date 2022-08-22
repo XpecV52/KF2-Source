@@ -43,7 +43,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=6
-	MaxSpareAmmo[0]=186
+	SpareAmmoCapacity[0]=186
 	InitialSpareMags[0]=15
 	AmmoPickupScale[0]=2.0
 	bCanBeReloaded=true
@@ -73,13 +73,17 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.2
 	InstantHitDamage(DEFAULT_FIREMODE)=30.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Rem1858'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Rem1858'
 	Spread(DEFAULT_FIREMODE)=0.015
 	FireOffset=(X=20,Y=4.0,Z=-3)
 
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+
+
+	// BASH_FIREMODE
+	InstantHitDamage(BASH_FIREMODE)=22
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Rem1858'
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Remington_1858_ARCH.Wep_Remington_1858_MuzzleFlash'

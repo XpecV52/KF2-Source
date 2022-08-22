@@ -9,6 +9,11 @@
 //=============================================================================
 class KFWeap_Shotgun_DragonsBreath extends KFWeap_ShotgunBase;
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+	return FT_Flame;
+}
+
 defaultproperties
 {
 	// Inventory
@@ -47,7 +52,6 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_DragonsBreath'
 	InstantHitDamage(DEFAULT_FIREMODE)=15
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_DragonsBreath'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_DragonsBreath'
 	PenetrationPower(DEFAULT_FIREMODE)=3.0
 	FireInterval(DEFAULT_FIREMODE)=0.77 // 78 RPM
 	FireOffset=(X=30,Y=3,Z=-3)
@@ -59,6 +63,12 @@ defaultproperties
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_DragonsBreath'
+	InstantHitDamage(BASH_FIREMODE)=25
+
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_DragonsBreath_ARCH.Wep_DragonsBreath_MuzzleFlash_3P'
@@ -76,7 +86,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=6
-	MaxSpareAmmo[0]=45
+	SpareAmmoCapacity[0]=45
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=false

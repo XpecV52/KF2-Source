@@ -10,5 +10,5 @@ class KFDT_Bludgeon_P90 extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-    WeaponDef=Class'KFWeapDef_P90'
+    WeaponDef=Class'KFGame.KFWeapDef_P90'
 }

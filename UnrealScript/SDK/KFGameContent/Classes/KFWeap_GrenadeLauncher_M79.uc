@@ -44,7 +44,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	MaxSpareAmmo[0]=26
+	SpareAmmoCapacity[0]=26
 	InitialSpareMags[0]=9
 	AmmoPickupScale[0]=2.0
 	bCanBeReloaded=true
@@ -77,13 +77,16 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.25
 	InstantHitDamage(DEFAULT_FIREMODE)=150.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M79Impact'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_M79'
 	Spread(DEFAULT_FIREMODE)=0.015
 	FireOffset=(X=23,Y=4.0,Z=-3)
 
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_M79'
+	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_M79_ARCH.Wep_M79_MuzzleFlash'

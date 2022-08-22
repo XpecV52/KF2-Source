@@ -30,6 +30,10 @@ var(TouchTypes) array<class<Actor> >		ClassProximityTypes<AllowAbstract>;
 /** List of class types that are considered valid for this event */
 var(TouchTypes) array<class<Actor> >		IgnoredClassProximityTypes<AllowAbstract>;
 
+
+/** If set, perform additional trace from camera to trigger when using */
+var(TW) bool bUseLineCheck;
+
 defaultproperties
 {
    bAimToInteract=True

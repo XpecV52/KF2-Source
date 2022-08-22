@@ -33,6 +33,7 @@ defaultproperties
       ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'
    End Object
    ProjLight=ProjPointLight
+   bWarnAIWhenFired=True
    GravityScale=0.350000
    TerminalVelocity=7000.000000
    ProjFlightTemplate=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer'

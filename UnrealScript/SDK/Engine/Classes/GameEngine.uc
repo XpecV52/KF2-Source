@@ -90,7 +90,7 @@ var			byte			TravelType;
 
 `if(`__TW_NETWORKING_)
 var 		string 			TakeoverURL;
-var         bool            bUsedForTakeover;
+var config  bool            bUsedForTakeover;
 var         bool            bAvailableForTakeover;
 `endif
 
@@ -324,6 +324,7 @@ native static final noexport function bool HasSecondaryScreenActive();
 `if(`__TW_NETWORKING_)
 native function TakeoverServer( string InHostStr, string InUrlStr );
 native static function int GetWebAdminPort();
+native final function DisableServerTakeover();
 `endif
 
 cpptext

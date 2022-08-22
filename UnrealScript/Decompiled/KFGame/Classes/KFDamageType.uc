@@ -37,6 +37,7 @@ enum EGoreDamageGroup
 var class<KFWeaponDefinition> WeaponDef;
 var bool bNoInstigatorDamage;
 var bool bConsideredIndirectOrAoE;
+var bool bAllowAIDoorDestruction;
 var bool bAnyPerk;
 var bool bShouldSpawnBloodSplat;
 var bool bShouldSpawnPersistentBlood;
@@ -146,11 +147,6 @@ static function int GetDamageeDialogID()
 static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
 {
     return default.DoT_Type != 0;
-}
-
-static function bool IsToxicDartWithACMedicPerk()
-{
-    return false;
 }
 
 static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDirection, byte HitZoneIndex, optional Pawn HitInstigator)

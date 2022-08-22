@@ -91,7 +91,7 @@ defaultproperties
    GroupPriority=15.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Remington_1858_TEX.UI_WeaponSelect_Remington'
    DualClass=Class'kfgamecontent.KFWeap_Revolver_DualRem1858'
-   MaxSpareAmmo(0)=186
+   SpareAmmoCapacity(0)=186
    InitialSpareMags(0)=15
    AmmoPickupScale(0)=2.000000
    IdleFidgetAnims(3)="Guncheck_v4"
@@ -144,7 +144,7 @@ defaultproperties
    InstantHitDamage(0)=30.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=22.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Rem1858'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

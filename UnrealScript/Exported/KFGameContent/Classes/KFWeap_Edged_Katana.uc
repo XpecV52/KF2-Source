@@ -41,12 +41,13 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Katana:MeleeHelper_0'
-   InstantHitDamage(0)=34.000000
+   AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
+   InstantHitDamage(0)=68.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=68.000000
    InstantHitDamage(4)=()
-   InstantHitDamage(5)=68.000000
+   InstantHitDamage(5)=90.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_Katana'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()

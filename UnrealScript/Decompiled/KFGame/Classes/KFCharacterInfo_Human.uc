@@ -59,8 +59,7 @@ struct native AttachmentOverrideList
     var() bool bArmband;
     /** List of booleans that will effect which items can be attached with the current attachment */
     var() bool bBackpack;
-    /** List of cosmetic indices that this attachment will detach, if they are currently attached to a player */
-    var() array<byte> SpecialOverrideIds;
+    var array<byte> SpecialOverrideIds;
 
     structdefaultproperties
     {
@@ -86,17 +85,18 @@ struct native AttachmentVariants
     var() string MeshName;
     var name SocketName;
     /** Translation relative to given socket (for additional control) */
-    var() Vector RelativeTranslation<EditCondition=!bIsSkeletalAttachment>;
+    var() Vector RelativeTranslation;
     /** Rotation relative to given socket (for additional control) */
-    var() Rotator RelativeRotation<EditCondition=!bIsSkeletalAttachment>;
+    var() Rotator RelativeRotation;
     /** Scale relative to given socket (for additional control) */
     var() Vector RelativeScale;
     var float MaxDrawDistance;
     var int SkinMaterialID;
     var array<SkinVariant> SkinVariations;
     var AttachmentOverrideList OverrideList;
+    var array<byte> SpecialOverrideIds;
     /** List of cosmetic indices that this attachment will detach, if they are currently attached to a player */
-    var() array<byte> SpecialOverrideIds;
+    var() array<KFCharacterAttachment> SpecialOverrideAttachments;
 
     structdefaultproperties
     {
@@ -115,6 +115,7 @@ struct native AttachmentVariants
         SkinVariations=none
         OverrideList=(bHat=false,bFace=false,bEyes=false,bJaw=false,bArmband=false,bBackpack=false,SpecialOverrideIds=none)
         SpecialOverrideIds=none
+        SpecialOverrideAttachments=none
     }
 };
 
@@ -261,10 +262,42 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             ++ AttachmentIdx;
             goto J0x1C4;
         }
-        if(bMaskHeadMesh && KFP.CharacterMICs[1] != none)
+        InitCharacterMICs(KFP, bMaskHeadMesh);
+    }
+}
+
+private final function InitCharacterMICs(KFPawn P, optional bool bMaskHead)
+{
+    local int I;
+
+    if(P.WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
+    P.CharacterMICs.Remove(0, P.CharacterMICs.Length;
+    if(P.Mesh != none)
+    {
+        P.CharacterMICs[0] = P.Mesh.CreateAndSetMaterialInstanceConstant(BodyMaterialID);
+    }
+    if(P.ThirdPersonHeadMeshComponent != none)
+    {
+        P.CharacterMICs[1] = P.ThirdPersonHeadMeshComponent.CreateAndSetMaterialInstanceConstant(HeadMaterialID);
+        if(bMaskHead)
         {
-            KFP.CharacterMICs[1].SetScalarParameterValue('Scalar_Mask', 1);
+            P.CharacterMICs[1].SetScalarParameterValue('Scalar_Mask', 1);
         }
+    }
+    I = 0;
+    J0x1E1:
+
+    if(I < 3)
+    {
+        if(P.ThirdPersonAttachments[I] != none)
+        {
+            P.CharacterMICs.AddItem(P.ThirdPersonAttachments[I].CreateAndSetMaterialInstanceConstant(0);
+        }
+        ++ I;
+        goto J0x1E1;
     }
 }
 
@@ -314,10 +347,6 @@ protected simulated function SetBodySkinMaterial(OutfitVariants CurrentVariant, 
             }
         }
     }
-    if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFP.Mesh != none)
-    {
-        KFP.CharacterMICs[0] = KFP.Mesh.CreateAndSetMaterialInstanceConstant(BodyMaterialID);
-    }
 }
 
 protected simulated function SetHeadSkinMaterial(OutfitVariants CurrentVariant, byte NewSkinIndex, KFPawn KFP)
@@ -343,10 +372,6 @@ protected simulated function SetHeadSkinMaterial(OutfitVariants CurrentVariant, 
                 goto J0x12B;
             }
         }
-    }
-    if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFP.ThirdPersonHeadMeshComponent != none)
-    {
-        KFP.CharacterMICs[1] = KFP.ThirdPersonHeadMeshComponent.CreateAndSetMaterialInstanceConstant(HeadMaterialID);
     }
 }
 
@@ -377,7 +402,6 @@ function bool IsAttachmentAvailable(const out AttachmentVariants Attachment, Paw
 {
     if(!Class'KFUnlockManager'.static.GetAvailableAttachment(Attachment))
     {
-        LogInternal(("Attachment" @ Attachment.MeshName) @ "is not purchased.");
         return false;        
     }
     else
@@ -560,16 +584,19 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
 
 function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
 {
-    if(CosmeticVariants[AttachmentIndex2].SpecialOverrideIds.Length > 0)
+    local KFCharacterAttachment Attachment1;
+
+    Attachment1 = CosmeticVariants[AttachmentIndex1].AttachmentItem;
+    if(CosmeticVariants[AttachmentIndex2].SpecialOverrideAttachments.Length > 0)
     {
-        if(CosmeticVariants[AttachmentIndex2].SpecialOverrideIds.Find(AttachmentIndex1 != -1)
+        if(CosmeticVariants[AttachmentIndex2].SpecialOverrideAttachments.Find(Attachment1 != -1)
         {
             return true;
         }        
     }
     else
     {
-        if(CosmeticVariants[AttachmentIndex2].AttachmentItem.SpecialOverrideIds.Find(AttachmentIndex1 != -1)
+        if(CosmeticVariants[AttachmentIndex2].AttachmentItem.DefaultSpecialOverrideAttachments.Find(Attachment1 != -1)
         {
             return true;
         }

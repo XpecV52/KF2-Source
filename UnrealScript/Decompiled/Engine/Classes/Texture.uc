@@ -58,6 +58,7 @@ enum EPixelFormat
     PF_FloatR11G11B10,
     PF_A4R4G4B4,
     PF_R5G6B5,
+    PF_R8G8,
     PF_MAX
 };
 

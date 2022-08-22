@@ -332,6 +332,9 @@ function bool HitboxSimpleWorldTrace()
 
 simulated function BeginMeleeAttack(optional bool bIsChainAttack)
 {
+    local Pawn P;
+    local KFPawn_Monster KFPM;
+    local Vector Projection;
     local float MeleeDuration;
 
     bHasAlreadyHit = false;
@@ -342,6 +345,24 @@ simulated function BeginMeleeAttack(optional bool bIsChainAttack)
     }
     bResetChainSequence = false;
     CurrentAttackDir = NextAttackDir;
+    if(Outer.WorldInfo.NetMode != NM_Client)
+    {
+        foreach Outer.WorldInfo.AllPawns(Class'Pawn', P)
+        {
+            if(((P.GetTeamNum() != Outer.Instigator.GetTeamNum()) && P.IsAliveAndWell()) && !P.IsHumanControlled())
+            {
+                Projection = Outer.Instigator.Location - P.Location;
+                if(VSizeSq(Projection) <= Square(MaxHitRange + P.CylinderComponent.CollisionRadius))
+                {
+                    KFPM = KFPawn_Monster(P);
+                    if((KFPM != none) && KFPM.MyKFAIC != none)
+                    {
+                        KFPM.MyKFAIC.ReceiveMeleeWarning(CurrentAttackDir, Projection, Outer.Instigator);
+                    }
+                }
+            }            
+        }        
+    }
     MeleeDuration = PlayMeleeAttackAnimation();
     if(MeleeDuration > 0)
     {
@@ -625,26 +646,26 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
 
 defaultproperties
 {
-    ChainSequence_F(0)=193
-    ChainSequence_F(1)=23
+    ChainSequence_F(0)=201
+    ChainSequence_F(1)=24
     ChainSequence_F(2)=0
     ChainSequence_F(3)=0
     ChainSequence_F(4)=0
-    ChainSequence_B(0)=189
-    ChainSequence_B(1)=23
+    ChainSequence_B(0)=197
+    ChainSequence_B(1)=24
     ChainSequence_B(2)=0
     ChainSequence_B(3)=0
     ChainSequence_B(4)=0
     ChainSequence_B(5)=0
     ChainSequence_B(6)=0
-    ChainSequence_L(0)=196
-    ChainSequence_L(1)=23
+    ChainSequence_L(0)=204
+    ChainSequence_L(1)=24
     ChainSequence_L(2)=0
     ChainSequence_L(3)=0
     ChainSequence_L(4)=0
     ChainSequence_L(5)=0
-    ChainSequence_R(0)=193
-    ChainSequence_R(1)=23
+    ChainSequence_R(0)=201
+    ChainSequence_R(1)=24
     ChainSequence_R(2)=0
     ChainSequence_R(3)=0
     ChainSequence_R(4)=0

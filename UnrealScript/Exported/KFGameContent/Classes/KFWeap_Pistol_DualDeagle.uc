@@ -33,7 +33,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=45.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_Deagle_TEX.UI_WeaponSelect_DualDeagle'
-   MaxSpareAmmo(0)=98
+   SpareAmmoCapacity(0)=98
    InitialSpareMags(0)=2
    BonesToLockOnEmpty(0)="RW_Slide"
    BonesToLockOnEmpty(1)="RW_Bullets1"
@@ -81,7 +81,7 @@ defaultproperties
    InstantHitDamage(0)=91.000000
    InstantHitDamage(1)=91.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=10.000000
+   InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Deagle'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_Deagle'
    InstantHitDamageTypes(2)=None

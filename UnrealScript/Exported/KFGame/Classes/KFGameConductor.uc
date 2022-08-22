@@ -122,6 +122,11 @@ var()	float           PlayerDeathForceLullLength;
 /** When we lasted forced a low intensity lull for a player dying */
 var()	float           PlayerDeathForceLullTime;
 
+/** How long to force a low intensity lull for if a solo player is surrounded */
+var()   float           SoloPlayerSurroundedForceLullLength;
+/** When we lasted forced a low intensity lull for a surrounded solo player */
+var()   float           SoloPlayerSurroundedForceLullTime;
+
 /*********************************************************************************************
  * @name Player Experience Level
 **********************************************************************************************/
@@ -138,6 +143,15 @@ var float CurrentTargetPerkRank;
 /*********************************************************************************************
  * @name Gameplay modification
 ********************************************************************************************* */
+
+/** Struct containing settings for the lull state */
+struct sLullInfo
+{
+    /** Maximum allowed lull duration */
+    var float MaxDuration;
+    /** Cooldown until next lull period is allowed */
+    var float Cooldown;
+};
 
 /** How much the spawn rate can be modified by difficulty based on perk rank and how well the team is doing. At 0 it will be as slow is you want it to go, at 1.0 as fast as you want it to go, and at 0.5 should be no change */
 var() InterpCurveFloat      SpawnRateModificationRangeCurve[4];
@@ -168,6 +182,11 @@ var	    float           CurrentVersusZedDamageMod;
 
 /** Whether or not this game difficulty allows low intensity zed mode when players get low on health, forced lull, etc */
 var()   int             AllowLowIntensityZedModeByDifficulty[4];
+
+/** Per-difficulty settings for the lull state */
+var() array<sLullInfo>  LullSettings;
+/** Last time the lull cooldown was triggered */
+var transient float     LullCooldownStartTime;
 
 /*********************************************************************************************
  * @name Logging and debugging
@@ -220,6 +239,18 @@ function NotifyHumanTeamPlayerDeath()
 
         GameConductorStatus = GCS_ForceLull;
         PlayerDeathForceLullTime = WorldInfo.TimeSeconds;
+    }
+}
+
+/** Let the game conductor know that the solo player has been surrounded */
+function NotifySoloPlayerSurrounded()
+{
+    if( !MyKFGRI.IsFinalWave() && GameConductorStatus != GCS_ForceLull )
+    {
+        if (bLogGameConductor) LogInternal("Human solo player surrounded, forcing a lull for "$SoloPlayerSurroundedForceLullLength$" seconds!");
+
+        GameConductorStatus = GCS_ForceLull;
+        SoloPlayerSurroundedForceLullTime = WorldInfo.TimeSeconds;
     }
 }
 
@@ -503,10 +534,13 @@ function UpdateOverallStatus()
     local float LifeSpanModifier;
     local float HighlySkilledAccuracy, LessSkilledAccuracy;
     local float HighlySkilledZedLifespan, LessSkilledZedLifespan;
+    local bool bPlayerHealthLow;
     local int i;
 
     // Take us out of a forced lull if the time is up
-    if( GameConductorStatus == GCS_ForceLull && (WorldInfo.TimeSeconds - PlayerDeathForceLullTime) > PlayerDeathForceLullLength )
+    if( GameConductorStatus == GCS_ForceLull
+        && (WorldInfo.TimeSeconds - PlayerDeathForceLullTime) > PlayerDeathForceLullLength
+        && (WorldInfo.TimeSeconds - SoloPlayerSurroundedForceLullTime) > SoloPlayerSurroundedForceLullLength )
     {
         GameConductorStatus = GCS_Normal;
         if (bLogGameConductor) LogInternal("Forced lull completed");
@@ -530,13 +564,25 @@ function UpdateOverallStatus()
     }
 
     // Forced lull, or most of the team dead, or single player nearly dead, so slow things down
-    if( GameConductorStatus == GCS_ForceLull || (PlayersHealthStatus < PlayersLowHealthThreshold) )
+    bPlayerHealthLow = PlayersHealthStatus < PlayersLowHealthThreshold;
+    if( GameConductorStatus == GCS_ForceLull
+        || (bPlayerHealthLow && (LullCooldownStartTime == 0.f || (WorldInfo.TimeSeconds - LullCooldownStartTime) > LullSettings[GameDifficulty].Cooldown)) )
     {
         OverallRankAndSkillModifier = 0.0;
         if (bLogGameConductor) LogInternal("Players low on health PlayersHealthStatus: "$PlayersHealthStatus$" chilling things out, OverallRankAndSkillModifier= "$OverallRankAndSkillModifier);
         MyKFGRI.OverallRankAndSkillModifierTracker[ArrayCount(MyKFGRI.OverallRankAndSkillModifierTracker) -1] = OverallRankAndSkillModifier;
+
+        // Start the lull timer. Don't allow lulls to last too long
+        if( bPlayerHealthLow && !MyKFGRI.IsTimerActive(nameOf(Timer_EndLull), self) )
+        {
+            MyKFGRI.SetTimer( LullSettings[GameDifficulty].MaxDuration, false, nameOf(Timer_EndLull), self );
+        }
+
         return;
     }
+
+    // No longer in a lull, reset duration timer
+    MyKFGRI.ClearTimer( nameOf(Timer_EndLull), self );
 
     if( WithinRange(TargetPerkRankRange[GameDifficulty],AveragePlayerPerkRank) )
     {
@@ -768,6 +814,12 @@ function bool WithinRange( vector2d Range, float TestValue )
     return false;
 }
 
+/** Ends the lull period and puts it on cooldown */
+function Timer_EndLull()
+{
+    LullCooldownStartTime = WorldInfo.TimeSeconds;
+}
+
 defaultproperties
 {
    PlayersLowHealthThreshold=0.500000
@@ -795,6 +847,7 @@ defaultproperties
    AccuracyPercentOfOverallSkill=0.250000
    ZedLifeSpanPercentOfOverallSkill=0.500000
    PlayerDeathForceLullLength=15.000000
+   SoloPlayerSurroundedForceLullLength=10.000000
    TargetPerkRankRange(0)=(X=0.000000,Y=7.000000)
    TargetPerkRankRange(1)=(X=0.000000,Y=12.000000)
    TargetPerkRankRange(2)=(X=12.000000,Y=25.000000)
@@ -813,6 +866,10 @@ defaultproperties
    AllowLowIntensityZedModeByDifficulty(0)=1
    AllowLowIntensityZedModeByDifficulty(1)=1
    AllowLowIntensityZedModeByDifficulty(2)=1
+   LullSettings(0)=(MaxDuration=10.000000,Cooldown=12.000000)
+   LullSettings(1)=(MaxDuration=8.000000,Cooldown=14.000000)
+   LullSettings(2)=(MaxDuration=6.000000,Cooldown=16.000000)
+   LullSettings(3)=(MaxDuration=5.000000,Cooldown=18.000000)
    Name="Default__KFGameConductor"
    ObjectArchetype=Object'Core.Default__Object'
 }

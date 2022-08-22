@@ -10,3 +10,13 @@ class KFMapSummary extends UIMapSummary
     config(Game)
     perobjectconfig
     hidecategories(Object,UIRoot);
+
+enum EAssociationIdentifier
+{
+    EAI_Custom,
+    EAI_OfficialCustom,
+    EAI_TripwireOfficial,
+    EAI_MAX
+};
+
+var config KFMapSummary.EAssociationIdentifier MapAssociation;

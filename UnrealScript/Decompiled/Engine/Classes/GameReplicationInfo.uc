@@ -16,6 +16,7 @@ var repnotify class<GameInfo> GameClass;
 var bool bStopCountDown;
 var repnotify bool bMatchHasBegun;
 var repnotify bool bMatchIsOver;
+var bool bWaitingForAAR;
 var bool bPendingMusicTrackChange;
 var int RemainingTime;
 var int ElapsedTime;
@@ -226,6 +227,28 @@ simulated function bool IsCoopMultiplayerGame()
 simulated event bool ShouldShowGore()
 {
     return true;
+}
+
+simulated event PlayerReplicationInfo GetPRIByPlayfabId(const string InPlayfabPlayerId)
+{
+    local int I;
+
+    if(InPlayfabPlayerId != "")
+    {
+        I = 0;
+        J0x1B:
+
+        if(I < PRIArray.Length)
+        {
+            if(PRIArray[I].PlayfabPlayerId == InPlayfabPlayerId)
+            {
+                return PRIArray[I];
+            }
+            ++ I;
+            goto J0x1B;
+        }
+    }
+    return none;
 }
 
 defaultproperties

@@ -120,13 +120,23 @@ function ShowLeaveGamePopUp()
 
 function OnLeaveGameConfirm()
 {
-    ConfirmLeaveParty();
+    if(!Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        ConfirmLeaveParty();        
+    }
+    else
+    {
+        if(!Class'WorldInfo'.static.IsMenuLevel())
+        {
+            Outer.ConsoleCommand("Disconnect");
+        }
+    }
 }
 
 defaultproperties
 {
     HeaderString="EXIT GAME"
-    ExitToMainDescription="Leave current game and return to the title screen?"
-    ExitToMainMenu="Exit to Title Screen"
+    ExitToMainDescription="Leave current game and return to the Home Menu?"
+    ExitToMainMenu="Exit to Home Menu"
     ExitKF2="Exit to Desktop"
 }

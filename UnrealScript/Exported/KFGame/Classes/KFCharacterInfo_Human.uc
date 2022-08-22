@@ -61,7 +61,7 @@ struct native AttachmentOverrideList
 	var() bool bBackpack;
 
 	/** List of cosmetic indices that this attachment will detach, if they are currently attached to a player */
-	var() array<byte> SpecialOverrideIds;
+	var array<byte> SpecialOverrideIds;
 };
 
 struct native AttachmentVariants
@@ -85,9 +85,9 @@ struct native AttachmentVariants
 		can still be used for conflit resolution. */
 	var name SocketName;
 	/** Translation relative to given socket (for additional control) */
-	var() vector RelativeTranslation<EditCondition=!bIsSkeletalAttachment>;
+	var() vector RelativeTranslation;
 	/** Rotation relative to given socket (for additional control) */
-	var() rotator RelativeRotation<EditCondition=!bIsSkeletalAttachment>;
+	var() rotator RelativeRotation;
 	/** Scale relative to given socket (for additional control) */
 	var() vector RelativeScale;
 	/** Distance at which the attachment will be hidden (distance culled). If 0, it is never culled */
@@ -100,8 +100,10 @@ struct native AttachmentVariants
 	var AttachmentOverrideList OverrideList;
 
 	/** List of cosmetic indices that this attachment will detach, if they are currently attached to a player */
-	var() array<byte> SpecialOverrideIds;
+	var array<byte> SpecialOverrideIds;
 
+	var() array<KFCharacterAttachment> SpecialOverrideAttachments;
+	
 	structdefaultproperties
 	{
 		RelativeScale=(X=1.f,Y=1.f,Z=1.f)
@@ -298,10 +300,46 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 			}
 		}
 
-		// initial mask for new MIC (also see ResetHeadMaskParam())
-		if ( bMaskHeadMesh && KFP.CharacterMICs[1] != None )
+		InitCharacterMICs(KFP, bMaskHeadMesh);
+	}
+}
+
+/** Create all the MICs we'll need for material params later */
+private function InitCharacterMICs(KFPawn P, optional bool bMaskHead)
+{
+	local int i;
+
+	if( P.WorldInfo.NetMode == NM_DedicatedServer )
+	{
+		return;
+	}
+
+	P.CharacterMICs.Remove(0, P.CharacterMICs.Length);
+
+	// body MIC
+	if ( P.Mesh != None )
+	{
+		P.CharacterMICs[0] = P.Mesh.CreateAndSetMaterialInstanceConstant(BodyMaterialID);
+	}
+
+	// head MIC
+	if( P.ThirdPersonHeadMeshComponent != None )
+	{
+		P.CharacterMICs[1] = P.ThirdPersonHeadMeshComponent.CreateAndSetMaterialInstanceConstant(HeadMaterialID);
+		
+		if ( bMaskHead )
 		{
-			KFP.CharacterMICs[1].SetScalarParameterValue('Scalar_Mask', 1.f);
+			// initial mask for new head MIC (also see ResetHeadMaskParam())
+			P.CharacterMICs[1].SetScalarParameterValue('Scalar_Mask', 1.f);
+		}
+	}
+
+	// attachment MIC
+	for( i=0; i < 3; i++ )
+	{
+		if( P.ThirdPersonAttachments[i] != none )
+		{
+			P.CharacterMICs.AddItem(P.ThirdPersonAttachments[i].CreateAndSetMaterialInstanceConstant(0));
 		}
 	}
 }
@@ -360,12 +398,6 @@ protected simulated function SetBodySkinMaterial(OutfitVariants CurrentVariant, 
 			}
 		}
 	}
-
-	// Initialize MICs
-	if( KFP.WorldInfo.NetMode != NM_DedicatedServer && KFP.Mesh != None )
-	{
-		KFP.CharacterMICs[0] = KFP.Mesh.CreateAndSetMaterialInstanceConstant(BodyMaterialID);
-	}
 }
 
 protected simulated function SetHeadSkinMaterial(OutfitVariants CurrentVariant, byte NewSkinIndex, KFPawn KFP)
@@ -387,12 +419,6 @@ protected simulated function SetHeadSkinMaterial(OutfitVariants CurrentVariant, 
 				KFP.ThirdPersonHeadMeshComponent.SetMaterial(i, none);
 			}
 		}
-	}
-
-	// Initialize MICs
-	if( KFP.WorldInfo.NetMode != NM_DedicatedServer && KFP.ThirdPersonHeadMeshComponent != None )
-	{
-		KFP.CharacterMICs[1] = KFP.ThirdPersonHeadMeshComponent.CreateAndSetMaterialInstanceConstant(HeadMaterialID);
 	}
 }
 
@@ -437,7 +463,7 @@ function bool IsAttachmentAvailable(const out AttachmentVariants Attachment, Paw
 {
 	if ( !class'KFUnlockManager'.static.GetAvailableAttachment(Attachment) )
 		{
-		LogInternal("Attachment" @ Attachment.MeshName @ "is not purchased.");
+		//`log("Attachment" @ Attachment.MeshName @ "is not purchased.");
 		return FALSE;
 		}
 	else if ( Attachment.AttachmentItem.bIsSkeletalAttachment && Attachment.AttachmentItem.SocketName != '' 
@@ -673,16 +699,19 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
  */
 function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
 {
-	if (CosmeticVariants[AttachmentIndex2].SpecialOverrideIds.length > 0)
+	local KFCharacterAttachment Attachment1;
+	Attachment1 = CosmeticVariants[AttachmentIndex1].AttachmentItem;
+
+	if (CosmeticVariants[AttachmentIndex2].SpecialOverrideAttachments.length > 0)
 	{
-		if ( CosmeticVariants[AttachmentIndex2].SpecialOverrideIds.Find(AttachmentIndex1) != INDEX_NONE )
+		if ( CosmeticVariants[AttachmentIndex2].SpecialOverrideAttachments.Find(Attachment1) != INDEX_NONE )
 		{
 			return TRUE;
 		}
 	}
 	else
 	{
-		if ( CosmeticVariants[AttachmentIndex2].AttachmentItem.SpecialOverrideIds.Find(AttachmentIndex1) != INDEX_NONE )
+		if ( CosmeticVariants[AttachmentIndex2].AttachmentItem.DefaultSpecialOverrideAttachments.Find(Attachment1) != INDEX_NONE )
 		{
 			return TRUE;
 		}

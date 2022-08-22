@@ -305,6 +305,14 @@ function bool QuitLobby()
     return Success;
 }
 
+function UniqueNetId GetMyId()
+{
+    local UniqueNetId LoggedInPlayer;
+
+    Outer.GetUniquePlayerId(0, LoggedInPlayer);
+    return LoggedInPlayer;
+}
+
 // Export UKFOnlineLobbySteamworks::execJoinServer(FFrame&, void* const)
 native function bool JoinServer(string ServerIP, UniqueNetId ServerID);
 
@@ -321,7 +329,7 @@ native function string GetLobbyServerIP(const out UniqueNetId LobbyId);
 native function string GetConnectedServerIP();
 
 // Export UKFOnlineLobbySteamworks::execAppendPasswordToURL(FFrame&, void* const)
-native function string AppendPasswordToURL(string Password);
+native function string AppendPasswordToURL(string URL, string Password);
 
 function bool LobbyJoinGame(optional string ServerIP)
 {

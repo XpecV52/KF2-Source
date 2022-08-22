@@ -184,10 +184,16 @@ static function string GetMessageString(int Switch, optional out string Secondar
                 return default.WaveEndMessage;
             }
         case 2:
-            SecondaryString = default.SquadSurvivedMessage;
+            if(Class'WorldInfo'.static.GetWorldInfo().NetMode != NM_Standalone)
+            {
+                SecondaryString = default.SquadSurvivedMessage;
+            }
             return default.YouWonMessage;
         case 3:
-            SecondaryString = default.SquadWipedOutMessage;
+            if(Class'WorldInfo'.static.GetWorldInfo().NetMode != NM_Standalone)
+            {
+                SecondaryString = default.SquadWipedOutMessage;
+            }
             return default.YouLostMessage;
         case 4:
             return default.ObjectiveStartMessage;

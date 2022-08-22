@@ -217,4 +217,5 @@ defaultproperties
 	Handle=KFSM_MeleeAttack
 	bDisableSteering=false
 	bDisableMovement=true
+	bUseHigherMeshSmoothingThreshold=true
 }

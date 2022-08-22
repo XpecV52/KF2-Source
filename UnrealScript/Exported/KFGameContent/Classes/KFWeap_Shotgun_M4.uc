@@ -27,7 +27,7 @@ defaultproperties
    DOF_FG_FocalRadius=25.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
-   MaxSpareAmmo(0)=64
+   SpareAmmoCapacity(0)=64
    InitialSpareMags(0)=3
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Fire_1P')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Fire_1P')
@@ -79,7 +79,7 @@ defaultproperties
    InstantHitDamage(0)=25.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=28.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_M4Shotgun'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

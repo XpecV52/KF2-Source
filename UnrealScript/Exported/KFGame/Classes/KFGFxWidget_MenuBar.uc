@@ -36,6 +36,11 @@ function InitializeCurrentMenu(byte CurrentMenuIndex)
 	UpdateMenu(CurrentMenuIndex);
 }
 
+function CalloutButtonBumperPress(int Delta)
+{
+	SetInt("calloutButtonBumperPress", Delta);
+}
+
 function  UpdateMenu(byte CurrentMenuIndex)
 {
 	local GFxObject DataProvider;
@@ -187,7 +192,8 @@ function string GetHomeButtonName()
 function bool ShouldStartMenuPulse()
 {
 	if(Manager != none &&
-		class'WorldInfo'.static.IsMenuLevel())
+		class'WorldInfo'.static.IsMenuLevel() &&
+			OnlineLobby != none )
 	{
 		return Manager.CurrentMenuIndex != UI_Start && OnlineLobby.IsInLobby();
 	}
@@ -233,7 +239,7 @@ defaultproperties
    TitleStrings(1)="Leaving so soon?"
    TitleStrings(2)="Tired of getting chewed on?"
    DescriptionStrings(0)="Fine, go on and run for your pathetic life. You wouldn't last five minutes on the Killing Floor."
-   DescriptionStrings(1)="Each second you are away another horde of freaks is born to feast on your friends. Are you just going to abandon them?"
+   DescriptionStrings(1)="Each second you are away, another horde of freaks is born to feast on your friends. Are you just going to abandon them?"
    DescriptionStrings(2)="They're going to find you either way. They'll find you and they'll eat your heart, like a fleshy little snack."
    Name="Default__KFGFxWidget_MenuBar"
    ObjectArchetype=KFGFxObject_Menu'KFGame.Default__KFGFxObject_Menu'

@@ -21,13 +21,13 @@ protected function bool InternalCanDoSpecialMove()
 
     if(KFPOwner.IsHumanControlled())
     {
-        return KFPOwner.IsAliveAndWell();
+        return KFPOwner.IsCombatCapable();
     }
     if(((AIOwner == none) || AIOwner.MyKFPawn == none) || AIOwner.Enemy == none)
     {
         return false;
     }
-    if(AIOwner.MyKFPawn.IsImpaired())
+    if(!KFPOwner.IsCombatCapable())
     {
         return false;
     }

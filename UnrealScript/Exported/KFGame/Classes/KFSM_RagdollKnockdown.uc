@@ -57,8 +57,11 @@ protected function bool InternalCanDoSpecialMove()
 /** Notification called when Special Move starts */
 function SpecialMoveStarted(bool bForced, Name PrevMove )
 {
+	local TWDeferredWorkManager DeferredWorkManager;
+	DeferredWorkManager = TWDeferredWorkManager(KFPOwner.WorldInfo.DeferredWorkManager);
+
 	// KnockdownImpulse is replicated before this move (if this has problems go back to repnotify KnockdownImpulse)
-	ApplyKnockdownImpulse(KFPOwner.KnockdownImpulse);
+	DeferredWorkManager.SetTimer(0.0001, false, nameof(DeferApplyKnockdownImpulse), self);
 
 	// Spawn the dazed particle effect
 	if( KFPOwner.WorldInfo.NetMode != NM_DedicatedServer )
@@ -70,6 +73,10 @@ function SpecialMoveStarted(bool bForced, Name PrevMove )
 /** Notification called when Special Move starts */
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
+	local TWDeferredWorkManager DeferredWorkManager;
+	DeferredWorkManager = TWDeferredWorkManager(KFPOwner.WorldInfo.DeferredWorkManager);
+	DeferredWorkManager.ClearTimer(nameof(DeferApplyKnockdownImpulse), self);
+	
 	// Make sure dazed particle effect is always deactivated
 	if( DazedPSC != none && DazedPSC.bIsActive )
 	{
@@ -85,6 +92,13 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 		TermKnockdownRagdoll(KFPOwner);
 	}
 }
+
+
+function DeferApplyKnockdownImpulse()
+{
+	ApplyKnockdownImpulse(KFPOwner.KnockdownImpulse);
+}
+
 
 /** Applies the contents of KnockdownImpulse. */
 function ApplyKnockdownImpulse(const out KnockdownImpulseInfo Info)
@@ -161,7 +175,7 @@ protected function PlayFallDown()
 	if( KFPOwner.InitRagdoll() )
 	{
 		// Move into post so that we are hitting physics from last frame, rather than animated from this
-		//PawnOwner.Mesh.SetTickGroup(TG_PostAsyncWork);
+		PawnOwner.Mesh.SetTickGroup(TG_PostAsyncWork);
 		PawnOwner.SetTickGroup(TG_PostAsyncWork);
 
 		if( PawnOwner.Mesh.PhysicsAssetInstance != None )

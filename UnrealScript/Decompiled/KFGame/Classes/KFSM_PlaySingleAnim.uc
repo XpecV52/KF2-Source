@@ -25,8 +25,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     PlayAnimation();
     if(bUseRootMotion && AnimStance == 0)
     {
-        KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(2, 2, 2);
-        KFPOwner.Mesh.RootMotionMode = 3;
+        EnableRootMotion();
     }
 }
 
@@ -34,8 +33,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     if(bUseRootMotion)
     {
-        PawnOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
-        KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
+        DisableRootMotion();
     }
     if(bCanBeInterrupted && KFPOwner.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim)
     {

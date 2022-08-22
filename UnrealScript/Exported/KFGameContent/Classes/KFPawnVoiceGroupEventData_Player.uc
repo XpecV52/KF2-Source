@@ -368,6 +368,7 @@ class KFPawnVoiceGroupEventData_Player extends KFPawnVoiceGroupEventData;
 
 
 
+
 	
 
 
@@ -541,14 +542,14 @@ defaultproperties
    Events(39)=(EventID=39,Priority=5,Chance=1.000000,Delay=0.750000,Radius=750.000000,CoolDownCategory=6)
    Events(40)=(EventID=40,Priority=3,CoolDownTime=1.000000)
    Events(41)=(EventID=41,Priority=3,CoolDownTime=1.000000)
-   Events(42)=(EventID=42,Priority=6,CoolDownTime=5.000000,Delay=0.750000,CoolDownCategory=7)
-   Events(43)=(EventID=43,Priority=6,CoolDownTime=5.000000,Delay=0.750000,CoolDownCategory=7)
-   Events(44)=(EventID=44,Priority=6,CoolDownTime=5.000000,Delay=0.750000,CoolDownCategory=7)
-   Events(45)=(EventID=45,Priority=6,CoolDownTime=5.000000,Delay=0.750000,CoolDownCategory=7)
-   Events(46)=(EventID=46,Priority=6,CoolDownTime=5.000000,Delay=0.750000,CoolDownCategory=7)
-   Events(47)=(EventID=47,Priority=6,CoolDownTime=5.000000,Delay=0.750000,CoolDownCategory=7)
-   Events(48)=(EventID=48,Priority=6,CoolDownTime=5.000000,Delay=0.750000,CoolDownCategory=7)
-   Events(49)=(EventID=49,Priority=6,CoolDownTime=5.000000,Delay=0.750000,CoolDownCategory=7)
+   Events(42)=(EventID=42,Priority=6,CoolDownTime=20.000000,Delay=0.750000,CoolDownCategory=7)
+   Events(43)=(EventID=43,Priority=6,CoolDownTime=20.000000,Delay=0.750000,CoolDownCategory=7)
+   Events(44)=(EventID=44,Priority=6,CoolDownTime=20.000000,Delay=0.750000,CoolDownCategory=7)
+   Events(45)=(EventID=45,Priority=6,CoolDownTime=20.000000,Delay=0.750000,CoolDownCategory=7)
+   Events(46)=(EventID=46,Priority=6,CoolDownTime=20.000000,Delay=0.750000,CoolDownCategory=7)
+   Events(47)=(EventID=47,Priority=6,CoolDownTime=20.000000,Delay=0.750000,CoolDownCategory=7)
+   Events(48)=(EventID=48,Priority=6,CoolDownTime=20.000000,Delay=0.750000,CoolDownCategory=7)
+   Events(49)=(EventID=49,Priority=6,CoolDownTime=20.000000,Delay=0.750000,CoolDownCategory=7)
    Events(50)=(EventID=50,Priority=7,Chance=1.000000,CoolDownTime=0.000000,bOnlyPlayLocally=True)
    Events(51)=(EventID=51,Priority=7,Chance=1.000000,CoolDownTime=0.000000,bOnlyPlayLocally=True)
    Events(52)=(EventID=52,Priority=7,Chance=1.000000,CoolDownTime=0.000000,bOnlyPlayLocally=True)
@@ -728,6 +729,7 @@ defaultproperties
    Events(226)=(EventID=226)
    Events(227)=(EventID=227)
    Events(228)=(EventID=228)
+   Events(229)=(EventID=229,Chance=1.000000,CoolDownTime=1.000000,CoolDownRadius=10.000000)
    Name="Default__KFPawnVoiceGroupEventData_Player"
    ObjectArchetype=KFPawnVoiceGroupEventData'KFGame.Default__KFPawnVoiceGroupEventData'
 }

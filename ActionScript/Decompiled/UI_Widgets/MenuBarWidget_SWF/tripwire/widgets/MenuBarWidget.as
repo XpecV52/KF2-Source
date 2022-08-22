@@ -3,13 +3,9 @@ package tripwire.widgets
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.external.ExternalInterface;
-    import scaleform.clik.constants.InputValue;
-    import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.controls.ButtonBar;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonBarEvent;
-    import scaleform.clik.events.InputEvent;
-    import scaleform.clik.ui.InputDetails;
     import tripwire.containers.TripContainer;
     import tripwire.managers.MenuManager;
     
@@ -67,25 +63,20 @@ package tripwire.widgets
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            this.controllerIconContainer.visible = bManagerUsingGamepad;
-        }
-        
-        override public function selectContainer() : void
-        {
-            super.selectContainer();
-            stage.addEventListener(InputEvent.INPUT,this.handleMenubarInput,false,0,true);
-        }
-        
-        override public function closeContainer() : void
-        {
-            super.closeContainer();
-            stage.removeEventListener(InputEvent.INPUT,this.handleMenubarInput);
+            stage.addEventListener(MenuManager.PARTYFOCUS_CHANGED,this.onPartyFocusChanged,false,0,true);
+            if(MenuManager.manager != null)
+            {
+                this.controllerIconContainer.visible = bManagerUsingGamepad && !MenuManager.manager.bPartyWidgetFocused;
+            }
         }
         
         override protected function onInputChange(param1:Event) : *
         {
             super.onInputChange(param1);
-            this.controllerIconContainer.visible = bManagerUsingGamepad;
+            if(MenuManager.manager != null)
+            {
+                this.controllerIconContainer.visible = bManagerUsingGamepad && !MenuManager.manager.bPartyWidgetFocused;
+            }
         }
         
         protected function handleButtonSelect(param1:ButtonBarEvent) : void
@@ -95,26 +86,6 @@ package tripwire.widgets
                 ExternalInterface.call("Callback_MenuBarTabChanged",param1.index);
             }
             this._currentIndex = param1.index;
-        }
-        
-        public function handleMenubarInput(param1:InputEvent) : void
-        {
-            var _loc2_:InputDetails = param1.details;
-            if(_loc2_.value == InputValue.KEY_DOWN)
-            {
-                switch(param1.details.navEquivalent)
-                {
-                    case NavigationCode.GAMEPAD_L1:
-                        this.calloutButtonBumperPress(-1);
-                        break;
-                    case NavigationCode.GAMEPAD_R1:
-                        this.calloutButtonBumperPress(1);
-                        break;
-                    case NavigationCode.GAMEPAD_L2:
-                        break;
-                    case NavigationCode.GAMEPAD_R2:
-                }
-            }
         }
         
         public function set dataObject(param1:Array) : void
@@ -142,34 +113,49 @@ package tripwire.widgets
             }
         }
         
-        private function calloutButtonBumperPress(param1:int) : *
+        public function set calloutButtonBumperPress(param1:int) : *
         {
-            if(MenuManager.manager != null && !MenuManager.manager.bPopUpOpen)
+            if(MenuManager.manager != null && !MenuManager.manager.bPopUpOpen && _bOpen)
             {
                 this._currentIndex += param1;
                 if(this._currentIndex < 0)
                 {
-                    this._currentIndex = 0;
-                    return;
+                    this._currentIndex = this.menuButtonBar.dataProvider.length - 1;
                 }
                 if(this._currentIndex >= this.menuButtonBar.dataProvider.length)
                 {
-                    this._currentIndex = this.menuButtonBar.dataProvider.length - 1;
-                    return;
+                    this._currentIndex = 0;
                 }
                 if(!this.menuButtonBar.getButtonAt(this._currentIndex).enabled)
                 {
-                    this.calloutButtonBumperPress(param1);
+                    this.calloutButtonBumperPress = param1;
                     return;
                 }
                 this.menuButtonBar.selectedIndex = this._currentIndex;
                 ExternalInterface.call("Callback_MenuBarTabChanged",this._currentIndex);
+            }
+            else
+            {
+                trace("!!!!!!!!!!dsadasds!!");
             }
         }
         
         private function onQuit() : *
         {
             ExternalInterface.call("Callback_Quit");
+        }
+        
+        public function ShowNavBumpers(param1:Boolean) : *
+        {
+            this.controllerIconContainer.visible = param1;
+        }
+        
+        protected function onPartyFocusChanged(param1:Event) : *
+        {
+            if(MenuManager.manager.bUsingGamepad)
+            {
+                this.controllerIconContainer.visible = !MenuManager.manager.bPartyWidgetFocused;
+            }
         }
     }
 }

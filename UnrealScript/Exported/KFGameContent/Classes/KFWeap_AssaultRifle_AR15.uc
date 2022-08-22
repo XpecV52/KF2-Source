@@ -26,7 +26,7 @@ defaultproperties
    DOF_FG_FocalRadius=75.000000
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=25.000000
-   MaxSpareAmmo(0)=240
+   SpareAmmoCapacity(0)=240
    InitialSpareMags(0)=6
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
@@ -64,8 +64,8 @@ defaultproperties
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()
-   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
-   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Pistol9mm'
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_Pistol9mm'
    FireInterval(0)=0.120000
    FireInterval(1)=0.120000
    FireInterval(2)=()
@@ -73,10 +73,10 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.010000
    Spread(1)=0.010000
-   InstantHitDamage(0)=20.000000
-   InstantHitDamage(1)=20.000000
+   InstantHitDamage(0)=30.000000
+   InstantHitDamage(1)=30.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_AR15'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_AR15'
    InstantHitDamageTypes(2)=None

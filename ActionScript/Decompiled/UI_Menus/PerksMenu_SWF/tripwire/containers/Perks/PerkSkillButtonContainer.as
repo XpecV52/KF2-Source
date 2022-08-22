@@ -1,10 +1,13 @@
 package tripwire.containers.Perks
 {
+    import flash.display.MovieClip;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import flash.text.TextLineMetrics;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.gfx.Extensions;
     import tripwire.controls.TripDescriptionIconButton;
     
     public class PerkSkillButtonContainer extends UIComponent
@@ -20,6 +23,16 @@ package tripwire.containers.Perks
         public var tierUnlockTextField:TextField;
         
         public var sectionText:TextField;
+        
+        public var leftDiv:MovieClip;
+        
+        public var rightDiv:MovieClip;
+        
+        public const CONTAINER_WIDTH:int = 960;
+        
+        public var _selectedSkill:int = 0;
+        
+        public var skillActiveSoundEffect:String = "PERK_CONFIGURE_SKILLS_CLICK";
         
         public function PerkSkillButtonContainer()
         {
@@ -44,11 +57,19 @@ package tripwire.containers.Perks
         {
             if(param1.currentTarget == this.skillButton0)
             {
+                if(Extensions.gfxProcessSound != null && this.selectedSkill != 1)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.skillActiveSoundEffect);
+                }
                 this.selectedSkill = 1;
                 ExternalInterface.call("Callback_SkillSelected",this.skillButton0.tier,1);
             }
             else
             {
+                if(Extensions.gfxProcessSound != null && this.selectedSkill != 2)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.skillActiveSoundEffect);
+                }
                 this.selectedSkill = 2;
                 ExternalInterface.call("Callback_SkillSelected",this.skillButton1.tier,2);
             }
@@ -77,6 +98,7 @@ package tripwire.containers.Perks
                     this.skillButton1.setData(param1.skill1);
                 }
                 this.selectedSkill = !!param1.selectedSkill ? int(param1.selectedSkill) : 0;
+                this.expandDivLines();
             }
             else
             {
@@ -84,8 +106,14 @@ package tripwire.containers.Perks
             }
         }
         
+        public function get selectedSkill() : int
+        {
+            return this._selectedSkill;
+        }
+        
         public function set selectedSkill(param1:int) : void
         {
+            this._selectedSkill = param1;
             switch(param1)
             {
                 case 1:
@@ -105,6 +133,13 @@ package tripwire.containers.Perks
         public function set sectionName(param1:String) : void
         {
             this.sectionText.text = param1;
+        }
+        
+        public function expandDivLines() : void
+        {
+            var _loc1_:TextLineMetrics = this.sectionText.getLineMetrics(0);
+            this.leftDiv.width = (this.CONTAINER_WIDTH - _loc1_.width - 32) / 2;
+            this.rightDiv.width = this.leftDiv.width;
         }
         
         public function set levelUnlockText(param1:String) : void

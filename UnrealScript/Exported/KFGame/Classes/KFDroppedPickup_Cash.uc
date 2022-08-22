@@ -27,18 +27,17 @@ function GiveTo( Pawn P )
 		if( KFPRI != none && KFPRI != TosserPRI && KFPH != none )
 		{
 			KFPH.UpdateDoshCaught( CashAmount, TosserPRI );
+			AddDoshForBenefector( TosserPRI );
 		}
 
 		if( KFPRI != none )
 		{
 			KFPRI.AddDosh( CashAmount );
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("dosh_picked_up", KFPRI, "#"$CashAmount);
+			if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("dosh_picked_up", KFPRI, "#"$CashAmount);
 		}
 
 		bForceNetUpdate = true;
 		P.PlaySoundBase(PickUpSound);
-
-		AddDoshForBenefector( TosserPRI );
 	}
 
 	PickedUpBy(P);
@@ -76,9 +75,34 @@ event Destroyed()
 	Inventory = none;
 }
 
+/*********************************************************************************************
+ * State Pickup
+ * Pickup is active
+ *********************************************************************************************/
+
+auto state Pickup
+{
+	/** Allow instigator to pick up dosh thrown at feet */
+	event OnSleepRBPhysics()
+	{
+		local Pawn P;
+
+		Global.OnSleepRBPhysics();
+
+		foreach TouchingActors(class'Pawn', P)
+		{
+			if ( P == Instigator )
+			{
+				Touch( P, None, Location, vect(0,0,1) );
+			}
+		}
+	}
+}
+
 defaultproperties
 {
    PickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Dosh'
+   bUseLowHealthDelay=False
    Begin Object Class=SpriteComponent Name=Sprite Archetype=SpriteComponent'KFGame.Default__KFDroppedPickup:Sprite'
       Sprite=Texture2D'EditorResources.S_Inventory'
       SpriteCategoryName="Inventory"

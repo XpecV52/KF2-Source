@@ -1,8 +1,8 @@
 package
 {
-    import tripwire.controls.TripButton;
+    import tripwire.controls.TripBackButton;
     
-    public dynamic class $BackButton extends TripButton
+    public dynamic class $BackButton extends TripBackButton
     {
          
         

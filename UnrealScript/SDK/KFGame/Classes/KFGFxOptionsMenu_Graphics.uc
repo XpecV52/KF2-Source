@@ -11,6 +11,9 @@
 class KFGFxOptionsMenu_Graphics extends KFGFxObject_Menu
 	native(UI);
 
+//@HSL_MOD_BEGIN - amiller 5/25/2016 - Adding support to save extra data into profile settings
+`include(KFProfileSettings.uci);
+//@HSL_MOD_END
 `define MIN 0
 `define MAX 1
 
@@ -2389,6 +2392,8 @@ function InitValues()
 	local int FlexSettingIndex;
 
 	ValuesObject = GetObject("options");
+
+	// TODO:SAVE - need to find PC Values to be included here
 
 	//
 	// Basic Graphics Quality Setting

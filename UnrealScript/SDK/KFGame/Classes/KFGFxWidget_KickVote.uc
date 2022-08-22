@@ -19,7 +19,6 @@ var const string GBA_VoteNo;
 function InitializeHUD()
 {
     LocalizeText();
-    UpdateUsingGamepad(GetPC().PlayerInput.bUsingGamepad);
 }
 
 function LocalizeText()
@@ -62,6 +61,8 @@ function ShowKickVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowCh
 function SendVoteKickToAS3(string PlayerName, byte VoteDuration, bool bShowChoices)
 {
 	ActionScriptVoid("voteKick");
+	UpdateUsingGamepad(GetPC().PlayerInput.bUsingGamepad);  // Moved call to here as the initialize seemed to be too early to show controller controls in some cases (orbis mainly) - HSL
+
 }
 
 function UpdateUsingGamepad(bool bIsUsingGamepad)

@@ -146,7 +146,7 @@ defaultproperties
     WeaponFire2RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_S')
     WeaponFire3RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_S')
     FireModeIconPaths=/* Array type was not detected. */
-    SingleFireMode=1
+    SingleFireSoundIndex=1
     BurstAmount=3
     InventorySize=6
     MagazineCapacity=30
@@ -158,7 +158,7 @@ defaultproperties
     PlayerIronSightFOV=70
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
-    MaxSpareAmmo=330
+    SpareAmmoCapacity=300
     InitialSpareMags=3
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

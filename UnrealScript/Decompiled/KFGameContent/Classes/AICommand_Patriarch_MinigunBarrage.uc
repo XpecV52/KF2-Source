@@ -30,7 +30,6 @@ function Pushed()
 {
     super.Pushed();
     Outer.StopAllLatentMovement();
-    Outer.AIZeroMovementVariables();
     if(Outer.Enemy != none)
     {
         Outer.Focus = Outer.Enemy;
@@ -44,6 +43,8 @@ function Pushed()
     Outer.bCanEvaluateAttacks = false;
     bBeganFire = false;
 }
+
+function LockdownAI();
 
 function Popped()
 {
@@ -109,6 +110,10 @@ state Command_SpecialMove
 
         if((Outer.MyPatPawn != none) && Outer.MyPatPawn.CanDoSpecialMove(InSpecialMove))
         {
+            if(bIsFanFire || !Outer.MyPatPawn.CanMoveWhenMinigunning())
+            {
+                LockdownAI();
+            }
             return Class'KFSM_Patriarch_MinigunBarrage'.static.PackSMFlags(bIsFanFire);
         }
         return 255;
@@ -116,7 +121,7 @@ state Command_SpecialMove
 
     function KFGame.KFPawn.ESpecialMove GetSpecialMove()
     {
-        return 19;
+        return 21;
     }
     stop;    
 }

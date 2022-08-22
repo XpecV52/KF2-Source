@@ -15,7 +15,7 @@ defaultproperties
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
-    MaxSpareAmmo=390
+    SpareAmmoCapacity=390
     InitialSpareMags=4
     AttachmentArchetype=KFWeaponAttachment'WEP_L85A2_ARCH.Wep_L85A2_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssetDummy.MeleeHelper'

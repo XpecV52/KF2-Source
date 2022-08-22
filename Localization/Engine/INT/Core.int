@@ -131,6 +131,6 @@ HelpParamNames[2]="webhelp"
 HelpParamDescriptions[2]="Launches a browser with the URL of the web page that documents the commandlet"
 
 [SaveData]
-TitleLabel=Killing Floor 2 Localized
-SubTitleLabel=Killing Floor 2 - PS4 Localized
-DescriptionLabel=Localized Settings and Progression data for Killing Floor 2
+TitleLabel=Killing Floor 2
+SubTitleLabel=Killing Floor 2
+DescriptionLabel=Settings and Progression data for Killing Floor 2

@@ -10,8 +10,9 @@
 
 class KFGameViewportClient extends GameViewportClient
 	native(UI);
-
-
+var array<string> TripWireOfficialMaps;
+var array<string> CommunityOfficialMaps;
+var LinearColor BackgroundColor;
 /** The message that the front ends pop up will display if there is a connection issue */
 var string ErrorTitle;
 var string ErrorMessage;
@@ -19,11 +20,16 @@ var string ErrorMessage;
 var string LastConnectionAttemptAddress;
 
 var localized array<string> RandomLoadingStrings;
+var localized string OfficialCommunityString;
+var localized string TripWireOfficialString;
+var localized string CommunityCustomString;
 var FONT MessageFont;
 var float FontScale;
 
 /** Keep track of whether we have seen the Initial Interaction Screen. */
 var bool bSeenIIS;
+var bool bNeedDisconnectMessage;
+var bool bNeedSignoutMessage;
 
 cpptext
 {
@@ -89,8 +95,12 @@ function string GetRandomLoadingMessage()
  */
 function DrawTransitionMessage(Canvas Canvas,string Message)
 {
+	local String MapName;
+
 	FontScale = float(Canvas.SizeY) / float(1080);
 
+	MapName = KFGameEngine(Class'Engine'.static.GetEngine()).TransitionDescription;
+	DrawMapInfo(Canvas, MapName);
 	Class'Engine'.static.AddOverlay(MessageFont, message, 0.15, 0.85, FontScale, FontScale, true);
 	
 `if(`isdefined(ShippingPC) || `isdefined(FINAL_RELEASE))
@@ -100,9 +110,58 @@ function DrawTransitionMessage(Canvas Canvas,string Message)
 	Super.DrawTransitionMessage(Canvas, Message);
 }
 
+function DrawMapInfo(Canvas Canvas, String MapName)
+{
+	local KFMapSummary MapData;
+	local String GameModeString;
+	local array<string> GamemModeStringArray;
+
+	ParseStringIntoArray(KFGameEngine(Class'Engine'.static.GetEngine()).TransitionGameType, GamemModeStringArray, ".", true);
+
+	if(Caps(GamemModeStringArray[0]) == Caps("KFGameContent"))
+	{
+		GameModeString = Localize(GamemModeStringArray[1], "GameName", "KFGameContent" );
+	}
+	else
+	{
+		GameModeString = GamemModeStringArray[1];
+	}
+
+	MapData = class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
+	if ( MapData == none )
+	{
+		MapData = class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName("KF-Default");
+    }
+    if(MapData.DisplayName != "")
+    {
+    	Class'Engine'.static.AddOverlay(MessageFont, Class'KFCommon_LocalizedStrings'.default.LoadingString, 0.12, 0.12, FontScale, FontScale, false);
+		Class'Engine'.static.AddOverlay(MessageFont, MapData.DisplayName@"-"@GetAssociationIdentifier(MapData), 0.135, 0.15, FontScale, FontScale, false);
+		Class'Engine'.static.AddOverlay(MessageFont, GameModeString, 0.135, 0.18, FontScale, FontScale, false);
+    }
+}
+
+function string GetAssociationIdentifier(KFMapSummary MapData)
+{
+	switch (MapData.MapAssociation)
+	{
+				
+		case EAI_OfficialCustom:
+			return OfficialCommunityString;
+		case EAI_TripwireOfficial:
+			return TripWireOfficialString;
+		case EAI_Custom:
+			return CommunityCustomString;
+		default:
+			return CommunityCustomString;
+	}
+}
+
 DefaultProperties
 {
+	TripWireOfficialMaps=("KF-BioticsLab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-VolterManor","KF-Outpost","KF-Prison")
+	CommunityOfficialMaps=("KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm")
 	//defaults
 	MessageFont=Font'UI_Canvas_Fonts.Font_Main'
-	FontScale=1
+	FontScale=1.0f
+	BackgroundColor=(R=1.0,G=1.0,B=1.0,A=1.0)
 }

@@ -12,6 +12,7 @@ class KFProj_CaulkNBurn_GroundFire extends KFProj_GroundFire;
 
 defaultproperties
 {
+   bWarnAIWhenFired=True
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Impacts'
       bAllowPerMaterialFX=True
@@ -19,7 +20,7 @@ defaultproperties
       DamageRadius=100.000000
       MyDamageType=Class'kfgamecontent.KFDT_Fire_Ground_CaulkNBurn'
       KnockDownStrength=0.000000
-      MomentumTransferScale=0.000000
+      MomentumTransferScale=1.000000
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_CaulkNBurn_GroundFire:FlamePointLight'
       ExploLightFadeOutTime=0.500000
       ExploLightStartFadeOutTime=1.500000

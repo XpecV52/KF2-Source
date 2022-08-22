@@ -15,6 +15,7 @@ defaultproperties
 {
    FuseTime=1.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MK3_Grenade'
+   bWarnAIWhenFired=True
    ExplosionActorClass=Class'KFGame.KFExplosionActor'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.HEGrenade_Explosion'

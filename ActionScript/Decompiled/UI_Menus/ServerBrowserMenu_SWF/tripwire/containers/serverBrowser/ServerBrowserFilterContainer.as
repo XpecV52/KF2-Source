@@ -98,6 +98,7 @@ package tripwire.containers.serverBrowser
             this.backButton.focusable = false;
             this.initCheckBoxes();
             this.initLists();
+            defaultNumPrompts = 2;
         }
         
         override public function selectContainer() : void
@@ -114,12 +115,12 @@ package tripwire.containers.serverBrowser
             var _loc1_:int = 0;
             while(_loc1_ < this.NUM_OF_FILTERS)
             {
-                this["filterCheckBox" + _loc1_].removeEventListener(ButtonEvent.CLICK,this.onFilterClick);
+                this["filterCheckBox" + _loc1_].removeEventListener(ButtonEvent.PRESS,this.onFilterClick);
                 _loc1_++;
             }
-            this.backButton.removeEventListener(ButtonEvent.CLICK,this.handleButtonEvent);
-            this.applyButton.removeEventListener(ButtonEvent.CLICK,this.handleButtonEvent);
-            this.resetButton.removeEventListener(ButtonEvent.CLICK,this.handleButtonEvent);
+            this.backButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
+            this.applyButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
+            this.resetButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.deactivateList(this.gameModeScrollingList,this.gameModeButton);
             this.deactivateList(this.mapScrollingList,this.mapButton);
             this.deactivateList(this.difficultyScrollingList,this.difficultyButton);
@@ -197,9 +198,9 @@ package tripwire.containers.serverBrowser
         
         private function initButtons() : void
         {
-            this.backButton.addEventListener(ButtonEvent.CLICK,this.handleButtonEvent,false,0,true);
-            this.applyButton.addEventListener(ButtonEvent.CLICK,this.handleButtonEvent,false,0,true);
-            this.resetButton.addEventListener(ButtonEvent.CLICK,this.handleButtonEvent,false,0,true);
+            this.backButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.applyButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.resetButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.backButton.tabIndex = this._lastTabIndex;
             ++this._lastTabIndex;
             this.applyButton.tabIndex = this._lastTabIndex;
@@ -223,7 +224,7 @@ package tripwire.containers.serverBrowser
             param1.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack,false,0,true);
             param1.bOpen = false;
             param1.associatedButton = param2;
-            param2.addEventListener(ButtonEvent.CLICK,this.handleButtonEvent,false,0,true);
+            param2.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             param2.tabIndex = this._lastTabIndex;
             ++this._lastTabIndex;
         }
@@ -231,7 +232,7 @@ package tripwire.containers.serverBrowser
         private function deactivateList(param1:TripScrollingList, param2:TripButton) : void
         {
             param1.removeEventListener(IndexEvent.INDEX_CHANGE,this.onBack);
-            param2.removeEventListener(ButtonEvent.CLICK,this.handleButtonEvent);
+            param2.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
         }
         
         private function resetFilters() : void

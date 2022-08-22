@@ -16,8 +16,6 @@ const ShootDartIronAnim = 'Shoot_Iron_Dart';
 var class<DamageType> HealingDartDamageType;
 /** How much to heal for when using this weapon */
 var(Healing) int HealAmount;
-/** Cost of healing per fire */
-var(Healing) int HealAmmoCost;
 /** How many points of heal ammo to recharge per second */
 var(Healing) float HealFullRechargeSeconds;
 var float HealingIncrement;
@@ -45,8 +43,6 @@ var repnotify Actor LockedTarget;
 var repnotify Actor PendingLockedTarget;
 /** angle for locking for lock targets */
 var(Locking) float LockAim;
-/** The frequency with which we play the Lock Targeting sound */
-var(Locking) float LockTargetingSoundInterval;
 var AkBaseSoundObject LockAcquiredSoundFirstPerson;
 var AkBaseSoundObject LockTargetingStopEvent;
 var AkBaseSoundObject LockTargetingStopEventFirstPerson;
@@ -108,6 +104,10 @@ simulated event ReplicatedEvent(name VarName)
         else
         {
             super(Actor).ReplicatedEvent(VarName);
+            if(VarName == 'SpareAmmoCount')
+            {
+                AmmoCount[1] = byte(SpareAmmoCount[1]);
+            }
         }
     }
 }
@@ -134,31 +134,19 @@ simulated function AltFireMode()
     StartFire(1);
 }
 
-simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
-{
-    Amount = 1;
-    if(FireModeNum == 1)
-    {
-        return AmmoCount[1] >= HealAmmoCost;
-    }
-    return super.HasAmmo(FireModeNum, Amount);
-}
-
 simulated function ConsumeAmmo(byte FireModeNum)
 {
-    local int AmmoGroup;
-
     if(FireModeNum != 1)
     {
         super.ConsumeAmmo(FireModeNum);
         return;
     }
-    if((Role == ROLE_Authority) || bAllowClientAmmoTracking)
+    if(Role == ROLE_Authority)
     {
-        AmmoGroup = GetAmmoType(FireModeNum);
-        if((MagazineCapacity[AmmoGroup] > 0) && AmmoCount[AmmoGroup] > 0)
+        if((MagazineCapacity[1] > 0) && AmmoCount[1] > 0)
         {
-            AmmoCount[AmmoGroup] = byte(Max(AmmoCount[AmmoGroup] - HealAmmoCost, 0));
+            AmmoCount[1] = byte(Max(AmmoCount[1] - AmmoCost[1], 0));
+            SpareAmmoCount[1] = Max(SpareAmmoCount[1] - AmmoCost[1], 0);
         }
     }
 }
@@ -177,10 +165,6 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
             Healer.AddShotsHit(1);
         }
         HealTarget.HealDamage(HealAmount, Instigator.Controller, HealingDartDamageType);
-        if(Healer != none)
-        {
-            Healer.GetPerk().CheckForAirborneAgent(HealTarget, HealingDartDamageType, HealAmount);
-        }
         if(((HealImpactSoundPlayEvent != none) && HealTarget != none) && !bSuppressSounds)
         {
             HealTarget.PlaySoundBase(HealImpactSoundPlayEvent, false, false,, Impact.HitLocation);
@@ -208,9 +192,13 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
     return SpawnedProjectile;
 }
 
-simulated event bool CanHealFire()
+simulated function StartFire(byte FireModeNum)
 {
-    return AmmoCount[1] >= HealAmmoCost;
+    if((FireModeNum == 1) && !HasAmmo(FireModeNum, AmmoCost[1]))
+    {
+        return;
+    }
+    super.StartFire(FireModeNum);
 }
 
 function GivenTo(Pawn thisPawn, optional bool bDoNotActivate)
@@ -222,14 +210,14 @@ function GivenTo(Pawn thisPawn, optional bool bDoNotActivate)
     }
 }
 
-simulated function StartHealRecharge()
+function StartHealRecharge()
 {
     local KFPerk InstigatorPerk;
     local float UsedHealRechargeTime;
 
-    InstigatorPerk = GetPerk();
-    if((Role == ROLE_Authority) || bAllowClientAmmoTracking)
+    if(Role == ROLE_Authority)
     {
+        InstigatorPerk = GetPerk();
         UsedHealRechargeTime = HealFullRechargeSeconds;
         InstigatorPerk.ModifyHealerRechargeTime(UsedHealRechargeTime);
         HealRechargePerSecond = float(MagazineCapacity[1]) / UsedHealRechargeTime;
@@ -237,34 +225,31 @@ simulated function StartHealRecharge()
     }
 }
 
-simulated function HealAmmoRegeneration(float DeltaTime)
+function HealAmmoRegeneration(float DeltaTime)
 {
-    HealingIncrement += (HealRechargePerSecond * DeltaTime);
-    if((HealingIncrement >= 1) && AmmoCount[1] < MagazineCapacity[1])
+    if(Role == ROLE_Authority)
     {
-        ++ AmmoCount[1];
-        HealingIncrement -= 1;
+        HealingIncrement += (HealRechargePerSecond * DeltaTime);
+        if(SpareAmmoCount[1] > AmmoCount[1])
+        {
+            SpareAmmoCount[1] = AmmoCount[1];
+        }
+        if((HealingIncrement >= 1) && SpareAmmoCount[1] < MagazineCapacity[1])
+        {
+            ++ SpareAmmoCount[1];
+            AmmoCount[1] = byte(SpareAmmoCount[1]);
+            HealingIncrement -= 1;
+        }
     }
 }
 
-simulated function bool ShouldAutoReload(byte FireModeNum)
+simulated function bool HasAnyAmmo()
 {
-    local bool bHasAmmo;
-
-    bHasAmmo = HasAmmo(FireModeNum);
-    if(((!bHasAmmo && WeaponDryFireSnd[FireModeNum] != none) && Instigator != none) && Instigator.IsLocallyControlled())
+    if((HasSpareAmmo()) || HasAmmo(0))
     {
-        WeaponPlaySound(WeaponDryFireSnd[FireModeNum]);
-        if(Role < ROLE_Authority)
-        {
-            ServerPlayDryFireSound(FireModeNum);
-        }
+        return true;
     }
-    if(FireModeNum == 1)
-    {
-        return false;
-    }
-    return !bHasAmmo && CanReload();
+    return false;
 }
 
 function AdjustLockTarget(Actor NewLockTarget)
@@ -283,7 +268,10 @@ function AdjustLockTarget(Actor NewLockTarget)
             {
                 OpticsUI.ClearLockOn();
             }
-            ClientPlayTargetingSound(LockLostSoundFirstPerson);
+            if(bUsingSights)
+            {
+                ClientPlayTargetingSound(LockLostSoundFirstPerson);
+            }
         }        
     }
     else
@@ -331,7 +319,6 @@ function CheckTargetLock()
     {
         AdjustLockTarget(none);
         PendingLockedTarget = none;
-        ClearTimer('PlayTargetingBeepTimer');
         return;
     }
     if(LockedTarget != none)
@@ -381,12 +368,14 @@ function CheckTargetLock()
                 PendingLockedTarget = BestTarget;
                 PendingLockTimeout = LockTolerance;
                 PendingLockAcquireTimeLeft = LockAcquireTime;
-                SetTimer(LockTargetingSoundInterval, true, 'PlayTargetingBeepTimer');
                 if(OpticsUI != none)
                 {
                     OpticsUI.StartLockOn();
                 }
-                ClientPlayTargetingSound(LockTargetingSoundFirstPerson);
+                if(bUsingSights)
+                {
+                    ClientPlayTargetingSound(LockTargetingSoundFirstPerson);
+                }
             }
         }
         if(PendingLockedTarget != none)
@@ -396,7 +385,6 @@ function CheckTargetLock()
             {
                 AdjustLockTarget(PendingLockedTarget);
                 PendingLockedTarget = none;
-                ClearTimer('PlayTargetingBeepTimer');
             }
         }        
     }
@@ -412,7 +400,6 @@ function CheckTargetLock()
                 {
                     OpticsUI.ClearLockOn();
                 }
-                ClearTimer('PlayTargetingBeepTimer');
             }
         }
     }
@@ -424,11 +411,6 @@ function CheckTargetLock()
             AdjustLockTarget(none);
         }
     }
-}
-
-function PlayTargetingBeepTimer()
-{
-    ClientPlayTargetingSound(LockTargetingSoundFirstPerson);
 }
 
 unreliable client simulated function ClientPlayTargetingSound(AkBaseSoundObject Sound)
@@ -479,9 +461,9 @@ reliable client simulated function ClientWeaponSet(bool bOptionalSet, optional b
         if(KFIM != none)
         {
             OpticsUI = KFGFxWorld_MedicOptics(KFIM.GetOpticsUIMovie(OpticsUIClass));
-            StartHealRecharge();
         }
     }
+    StartHealRecharge();
 }
 
 function ItemRemovedFromInvManager()
@@ -517,7 +499,7 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
         OpticsUI.SetPause(false);
         OpticsUI.ClearLockOn();
         UpdateOpticsUI(true);
-        OpticsUI.SetShotPercentCost(float(HealAmmoCost));
+        OpticsUI.SetShotPercentCost(float(AmmoCost[1]));
     }
 }
 
@@ -550,9 +532,9 @@ simulated function UpdateOpticsUI(optional bool bForceUpdate)
             StoredSecondaryAmmo = AmmoCount[1];
             OpticsUI.SetHealerCharge(StoredSecondaryAmmo);
         }
-        if(OpticsUI.MinPercentPerShot != float(HealAmmoCost))
+        if(OpticsUI.MinPercentPerShot != float(AmmoCost[1]))
         {
-            OpticsUI.SetShotPercentCost(float(HealAmmoCost));
+            OpticsUI.SetShotPercentCost(float(AmmoCost[1]));
         }
     }
 }
@@ -579,15 +561,6 @@ simulated state WeaponSingleFiring
         }
         super.FireAmmunition();
     }
-
-    simulated function BeginFire(byte FireModeNum)
-    {
-        if((FireModeNum == 1) && !CanHealFire())
-        {
-            return;
-        }
-        super(KFWeapon).BeginFire(FireModeNum);
-    }
     stop;    
 }
 
@@ -603,7 +576,6 @@ auto simulated state Inactive
             ClearTimer('CheckTargetLock');
         }
         PendingLockedTarget = none;
-        ClearTimer('PlayTargetingBeepTimer');
     }
 
     simulated function EndState(name NextStateName)
@@ -628,7 +600,6 @@ defaultproperties
 {
     HealingDartDamageType=Class'KFDT_Dart_Healing'
     HealAmount=20
-    HealAmmoCost=50
     HealFullRechargeSeconds=15
     HealImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Heal'
     HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
@@ -639,7 +610,6 @@ defaultproperties
     LockAcquireTime=0.2
     LockTolerance=0.2
     LockAim=0.98
-    LockTargetingSoundInterval=0.07
     LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locked_1P'
     LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
     LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
@@ -647,6 +617,8 @@ defaultproperties
     MagazineCapacity[1]=100
     bCanRefillSecondaryAmmo=false
     AimCorrectionSize=40
+    AmmoCost=/* Array type was not detected. */
+    SpareAmmoCount[1]=100
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_MedicBase.MeleeHelper'
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */

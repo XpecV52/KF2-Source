@@ -161,6 +161,7 @@ defaultproperties
    SpineLightSocketNames(1)="FXPilot3"
    SpineLightSocketNames(2)="FXPilot4"
    SpineLightSocketNames(3)="FXPilot5"
+   bWarnAIWhenFiring=True
    FlameSprayArchetype=SprayActor_Flame'WEP_Flamethrower_ARCH.WEP_Flamethrower_Flame'
    PilotLightPlayEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_PilotLight_Loop'
    PilotLightStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_PilotLight_Loop'
@@ -199,7 +200,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
-   MaxSpareAmmo(0)=400
+   SpareAmmoCapacity(0)=500
    InitialSpareMags(0)=1
    AmmoPickupScale(0)=0.400000
    bLoopingFireAnim(0)=True
@@ -253,6 +254,7 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
+   InstantHitDamage(3)=28.000000
    InstantHitDamageTypes(2)=None
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Flamethrower'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)

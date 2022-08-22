@@ -1490,16 +1490,16 @@ Begin Object Class=SeqAct_AkStartAmbientSound Name=SeqAct_AkStartAmbientSound_0
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_0
-   SizeX=1561
-   SizeY=2625
+   SizeX=631
+   SizeY=375
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2896
    ObjPosY=1016
    ObjComment="Sounds"
-   DrawWidth=1561
-   DrawHeight=2625
+   DrawWidth=631
+   DrawHeight=375
    Name="SequenceFrame_0"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
@@ -2095,4 +2095,362 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
    DrawHeight=32
    Name="SeqVar_Object_19"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_20
+   InputLinks(0)=(DrawY=1733,OverrideDelta=14)
+   InputLinks(1)=(DrawY=1754,OverrideDelta=35)
+   InputLinks(2)=(DrawY=1775,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=1754,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_128',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_129',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_130',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_131',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_132',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_133',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_135',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_136'),DrawX=3790,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=3841,OverrideDelta=76)
+   EventLinks(0)=(DrawX=3890,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3752
+   ObjPosY=1696
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_20"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_128
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_82'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3640
+   ObjPosY=1880
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_128"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_129
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_81'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3744
+   ObjPosY=1880
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_129"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_130
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_85'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3840
+   ObjPosY=1880
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_130"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_131
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_86'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3944
+   ObjPosY=1880
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_131"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_132
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_83'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3640
+   ObjPosY=1976
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_132"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_133
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_84'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3744
+   ObjPosY=1976
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_133"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_135
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_87'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3840
+   ObjPosY=1976
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_135"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_136
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_88'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3944
+   ObjPosY=1976
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_136"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_21
+   InputLinks(0)=(DrawY=2133,OverrideDelta=14)
+   InputLinks(1)=(DrawY=2154,OverrideDelta=35)
+   InputLinks(2)=(DrawY=2175,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=2154,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_138',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_140',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_141',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_143',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_144',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_146'),DrawX=3766,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=3817,OverrideDelta=76)
+   EventLinks(0)=(DrawX=3866,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3728
+   ObjPosY=2096
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_21"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_138
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_89'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3664
+   ObjPosY=2264
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_138"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_140
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_95'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3768
+   ObjPosY=2264
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_140"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_141
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_94'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3864
+   ObjPosY=2264
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_141"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_142
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_93'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3616
+   ObjPosY=2328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_142"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_143
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_92'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3712
+   ObjPosY=2328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_143"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_144
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_91'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3816
+   ObjPosY=2328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_144"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_146
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_90'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3912
+   ObjPosY=2328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_146"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_22
+   InputLinks(0)=(DrawY=2573,OverrideDelta=14)
+   InputLinks(1)=(DrawY=2594,OverrideDelta=35)
+   InputLinks(2)=(DrawY=2615,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=2594,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_147',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_149',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_151',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_153',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_154',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_156'),DrawX=3814,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=3865,OverrideDelta=76)
+   EventLinks(0)=(DrawX=3914,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3776
+   ObjPosY=2536
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_22"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_147
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_96'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3696
+   ObjPosY=2696
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_147"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_149
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_97'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3800
+   ObjPosY=2696
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_149"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_151
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_98'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3896
+   ObjPosY=2696
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_151"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_153
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_99'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3688
+   ObjPosY=2776
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_153"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_154
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_100'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3784
+   ObjPosY=2776
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_154"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_156
+   ObjValue=KFPlayerStart'KF-ContainmentStation.TheWorld:PersistentLevel.KFPlayerStart_101'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3888
+   ObjPosY=2776
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_156"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_8
+   MaxTriggerCount=0
+   MaxWidth=136
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_4')),DrawY=2117,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=2138,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_23',InputLinkIdx=1)),DrawY=2159,OverrideDelta=56)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=2616
+   ObjPosY=2048
+   DrawWidth=137
+   Name="SeqEvent_LevelLoaded_8"
+   ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_4
+   LinkCount=3
+   IncrementAmount=0
+   InputLinks(0)=(DrawY=2082,OverrideDelta=19)
+   InputLinks(1)=(DrawY=2114,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_20')),DrawY=2077,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21')),LinkDesc="Link 2",DrawY=2098,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_22')),LinkDesc="Link 3",DrawY=2119,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=2956,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=2912
+   ObjPosY=2040
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_4"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_23
+   InputLinks(0)=(DrawY=1869,OverrideDelta=14)
+   InputLinks(1)=(DrawY=1890,OverrideDelta=35)
+   InputLinks(2)=(DrawY=1911,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_4')),ActivateDelay=1.000000,DrawY=1890,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_128',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_129',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_130',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_131',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_132',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_133',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_135',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_136',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_138',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_140',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_141',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_143',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_144',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_146',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_147',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_149',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_151',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_153',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_154',SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_156'),DrawX=2814,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=2865,OverrideDelta=76)
+   EventLinks(0)=(DrawX=2914,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=2776
+   ObjPosY=1832
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_23"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object

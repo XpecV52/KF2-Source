@@ -50,7 +50,6 @@ var AkEvent AmbientBreathingEvent;
 var AkEvent LowHealthAmbientBreathingEvent;
 
 /** Restricts how often tickdialog can be called */
-var float LastTickDialogTime;
 var float TickDialogInterval;
 
 /** Backpack vent particle system (used when in hunt and heal mode) */
@@ -148,15 +147,18 @@ simulated event PostBeginPlay()
     AmbientAkComponent.CachedObjectPosition = Location;
 	SetPawnAmbientSound( AmbientBreathingEvent );
 
-	// add a little delay to begin ticking dialog
-	LastTickDialogTime = WorldInfo.TimeSeconds;
-
 	// Disable the KFPawn optimization because Hans uses weapon bones to spawn projectiles :(
 	// @todo: Do something else to get the bones like ForceUpdateSkel() or SetForceRefPose()
 	if ( WorldInfo.NetMode == NM_DedicatedServer )
 	{
 		Mesh.bPauseAnims = false;
 	}
+
+    // Start the dialog timer
+    if( WorldInfo.NetMode != NM_Client )
+    {
+        SetTimer( 2.f, false, nameOf(Timer_TickHansDialog) );
+    }
 }
 
 /** Cache weapon holster skel controls */
@@ -415,10 +417,10 @@ function bool CacheGrenadeThrowLocation( optional bool bLeftHand )
 
     // Scale resulting toss velocity a little
     // @NOTE: TossVelocity() is pretty shitty. Does not really give accurate velocity predictions. -MattF
-    if( VSizeSQ(MyKFAIC.Enemy.Velocity) < 2500 )
+    if( Velocity == vect(0,0,0) )
     {
         // Scale velocity down 10% if enemy is standing still
-        TossVelocity *= 0.8f;
+        TossVelocity *= 0.9f;
     }
     TossVelocity.X *= 0.75f;
     TossVelocity.Y *= 0.75f;
@@ -426,6 +428,9 @@ function bool CacheGrenadeThrowLocation( optional bool bLeftHand )
     // Add velocity modifier. We're scaling this up because we want the grenade to explode
     // around the time the player runs over it.
     TossVelocity += MyKFAIC.Enemy.Velocity * 1.5f;
+
+    // Subtract our own velocity
+    TossVelocity -= Velocity;
 
     // Used cached grenade throw values if we can't find any good ones
     if( !bFoundVel && `TimeSince(CachedGoodGrenadeToss.TossTime) < 5.0 )
@@ -555,18 +560,11 @@ simulated function rotator AddGrenadeSpread(rotator BaseAim)
 	local vector X, Y, Z;
 	local float RandY, RandZ;
 
-	if (GrenadeTossSpread == 0)
-	{
-		return BaseAim;
-	}
-	else
-	{
-		// Add in any spread.
-		GetAxes(BaseAim, X, Y, Z);
-		RandY = FRand() - 0.5;
-		RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
-		return rotator(X + RandY * GrenadeTossSpread * Y + RandZ * GrenadeTossSpread * Z);
-	}
+	// Add in any spread.
+	GetAxes(BaseAim, X, Y, Z);
+	RandY = FRand() - 0.5;
+	RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
+	return rotator(X + RandY * GrenadeTossSpread.Y * Y + RandZ * GrenadeTossSpread.Z * Z);
 }
 
 /** Return true if busy throwing grenade(s) or using AICommand_ThrowGrenade */
@@ -576,8 +574,10 @@ function bool IsThrowingGrenade()
 	{
 		return false;
 	}
-	return( IsDoingSpecialMove(SM_Hans_ThrowGrenade) || IsDoingSpecialMove(SM_Hans_GrenadeBarrage) ||
-		AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none );
+	return IsDoingSpecialMove(SM_Hans_ThrowGrenade)
+            || IsDoingSpecialMove(SM_Hans_GrenadeBarrage)
+            || IsDoingSpecialMove(SM_Hans_GrenadeHalfBarrage)
+		    || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
 }
 
 
@@ -633,21 +633,21 @@ static function int GetTraderAdviceID()
 	return 47;//TRAD_AdviceHans
 }
 
-simulated function Tick( float DeltaTime )
+/** Players dialog such as taunts at regular intervals */
+function Timer_TickHansDialog()
 {
-    super.Tick( DeltaTime );
-
-    if( `TimeSince(LastTickDialogTime) > TickDialogInterval )
+    if( !IsAliveAndWell() )
     {
-    	LastTickDialogTime = WorldInfo.TimeSeconds;
-		// don't start saying random stuff right away... we need to wait a little bit to make sure our monologue goes off
-	    if( `TimeSince(SpawnTime) > 2.f && IsAliveAndWell() && !IsDoingSpecialMove() )
-	    {
-	        `DialogManager.PlayHansTickDialog( self );
-	    }
-	}
-}
+        return;
+    }
 
+    if( !IsDoingSpecialMove() )
+    {
+        `DialogManager.PlayHansTickDialog( self );
+    }
+
+    SetTimer( TickDialogInterval, false, nameOf(Timer_TickHansDialog) );
+}
 
 /** Play music for this boss (overridden for each boss) */
 function PlayBossMusic()
@@ -1115,13 +1115,14 @@ DefaultProperties
 	// Content
 	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
+
 	MeleeAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Melee_Master'
 	GunsAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Gun_Master'
 	ExplosiveGrenadeClass=class'KFGameContent.KFProj_HansHEGrenade'
 	NerveGasGrenadeClass=class'KFGameContent.KFProj_HansNerveGasGrenade'
 	SmokeGrenadeClass=class'KFGameContent.KFProj_HansSmokeGrenade'
-
 	HeavyBumpDamageType=class'KFGameContent.KFDT_HeavyZedBump'
+    DifficultySettings=class'KFDifficulty_Hans'
 
     TheatricCameraSocketName=TheatricCameraRootSocket
 
@@ -1133,13 +1134,16 @@ DefaultProperties
 		SpecialMoveClasses(SM_Hans_ThrowGrenade)=class'KFSM_Hans_ThrowGrenade'
 		SpecialMoveClasses(SM_Hans_GrenadeHalfBarrage)=class'KFSM_Hans_GrenadeHalfBarrage'
 		SpecialMoveClasses(SM_Hans_GrenadeBarrage)=class'KFSM_Hans_GrenadeBarrage'
+		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
+		SpecialMoveClasses(SM_Block)=class'KFSM_Block'
+
 	End Object
 
 
     // for reference: Vulnerability=(default, head, legs, arms, special)
     IncapSettings(AF_Stun)=     (Vulnerability=(0.1, 0.55, 0.1, 0.1, 0.55), Cooldown=17.0, Duration=1.0)   //0.5, 0.55, 0.5, 0.4, 0.55
     IncapSettings(AF_Knockdown)=(Vulnerability=(0.1, 0.4, 0.1, 0.1, 0.25),  Cooldown=20.0)                 //0.2, 0.2, 0.4, 0.2, 0.25
-    IncapSettings(AF_Stumble)=  (Vulnerability=(0.1, 0.3, 0.1, 0.1, 0.4),   Cooldown=8.0)                  //0.2, 0.2, 0.2, 0.2, 0.4   Cooldown=5.0)
+    IncapSettings(AF_Stumble)=  (Vulnerability=(0.1, 0.3, 0.1, 0.1, 0.4),   Cooldown=10.0)                  //0.2, 0.2, 0.2, 0.2, 0.4   Cooldown=5.0)
     IncapSettings(AF_GunHit)=   (Vulnerability=(0.1, 0.1, 0.1, 0.1, 0.5),   Cooldown=1.7)                  //0.1, 0.1, 0.1, 0.1, 0.5
     IncapSettings(AF_MeleeHit)= (Vulnerability=(0.5, 0.95, 0.5, 0.5, 0.75), Cooldown=2.0)                  //1.0    Cooldown=1.2
     IncapSettings(AF_Poison)=   (Vulnerability=(0))
@@ -1147,6 +1151,7 @@ DefaultProperties
     IncapSettings(AF_FirePanic)=(Vulnerability=(0.65),                      Cooldown=15.0, Duration=1.2)   //0.65
     IncapSettings(AF_EMP)=      (Vulnerability=(0.95),                      Cooldown=10.0, Duration=2.5)   //0.95
     IncapSettings(AF_Freeze)=   (Vulnerability=(0.95),                      Cooldown=10.0, Duration=1.0)   //0.95
+    IncapSettings(AF_Snare)=    (Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0),   Cooldown=10.5, Duration=3.0)
 
 	ParryResistance=4
 
@@ -1161,7 +1166,7 @@ DefaultProperties
 		MyDamageType=class'KFDT_Slashing_Hans'
 	End Object
 
-	Health=8000
+	Health=7420 //8000 //6600 //6000 //6250 //6500
 	DoshValue=500
 	Mass=275.f
 	RightHandSocketName=RightHandSocket
@@ -1169,39 +1174,46 @@ DefaultProperties
 	bEnableAimOffset=true
 
     // Resistant damage types
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun',    DamageScale=(0.6))) //0.5
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle',     DamageScale=(0.6)))  //0.5
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun',          DamageScale=(0.6)))  //0.5
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun',          DamageScale=(0.6)))  //0.5
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle',            DamageScale=(0.7)))  //0.6
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing',                   DamageScale=(0.6)))  //0.5
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon',                   DamageScale=(0.6)))  //0.5
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Fire',                       DamageScale=(1.1)))  //1
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave',                  DamageScale=(1.5)))  //0.5
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive',                  DamageScale=(1.0)))  //1.5
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing',                   DamageScale=(0.6)))  //0.5
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic',                      DamageScale=(0.1))) 
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun',    DamageScale=(0.8))) //0.6
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle',     DamageScale=(0.8)))  //0.6
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun',          DamageScale=(0.8)))  //0.6
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun',          DamageScale=(0.8)))  //0.6
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle',            DamageScale=(0.9)))  //0.7
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing',                   DamageScale=(0.8)))  //0.6
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon',                   DamageScale=(0.8)))  //0.6
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Fire',                       DamageScale=(1.1)))  //1.1
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave',                  DamageScale=(1.2)))  //1.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive',                  DamageScale=(1.0)))  //1.0
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing',                   DamageScale=(0.8)))  //0.6
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic',                      DamageScale=(0.1)))  //0.1
 
     //special case
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive_RPG7',             DamageScale=(1.2))) //2.0
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive_RPG7',             DamageScale=(1.2))) //1.2
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_RailGun',          DamageScale=(0.9))) //1.2 0.4 //0.75
+
+	// ---------------------------------------------
+	// Block Settings
+	MinBlockFOV=0.1f
 
 	// Penetration
     PenetrationResistance=4.0
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 	HeadlessBleedOutTime=6.f
-    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=MaxInt, DmgScale=1.3, SkinID=1)  //1.1
-	HitZones[3]       =(ZoneName=heart,	    BoneName=Spine2,	   Limb=BP_Special,  GoreHealth=150, DmgScale=1.3, SkinID=2)  //1.1
-	HitZones[4]		  =(ZoneName=lupperarm, BoneName=LeftArm,	   Limb=BP_LeftArm,  GoreHealth=50,  DmgScale=0.3, SkinID=3)  //0.5
-	HitZones[5]		  =(ZoneName=lforearm,  BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.3, SkinID=3)   //0.5
-	HitZones[7]		  =(ZoneName=rupperarm, BoneName=RightArm,	   Limb=BP_RightArm, GoreHealth=50,  DmgScale=0.3, SkinID=3)  //0.5
-	HitZones[8]		  =(ZoneName=rforearm,  BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.3, SkinID=3)  //0.5
-	HitZones[12]	  =(ZoneName=lthigh,	BoneName=LeftUpLeg,	   Limb=BP_LeftLeg,  GoreHealth=75,  DmgScale=0.3, SkinID=3)  //0.5
-	HitZones[13]	  =(ZoneName=lcalf,	    BoneName=LeftLeg,	   Limb=BP_LeftLeg,  GoreHealth=25,  DmgScale=0.3, SkinID=3)  //0.5
-	HitZones[15]	  =(ZoneName=rthigh,	BoneName=RightUpLeg,   Limb=BP_RightLeg, GoreHealth=75,  DmgScale=0.3, SkinID=3)  //0.5
-	HitZones[16]	  =(ZoneName=rcalf,     BoneName=RightLeg,	   Limb=BP_RightLeg, GoreHealth=25,  DmgScale=0.3, SkinID=3)  //0.5
+    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=MaxInt, DmgScale=1.2, SkinID=1)  //1.1
+	HitZones[3]       =(ZoneName=heart,	    BoneName=Spine2,	   Limb=BP_Special,  GoreHealth=150, DmgScale=1.05, SkinID=2)  //1.3 //1.2
+	HitZones[4]		  =(ZoneName=lupperarm, BoneName=LeftArm,	   Limb=BP_LeftArm,  GoreHealth=50,  DmgScale=1.0, SkinID=3)  //0.3
+	HitZones[5]		  =(ZoneName=lforearm,  BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.2, SkinID=3)   //0.3
+    HitZones[6]       =(ZoneName=lhand,     BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.2, SkinID=3)
+	HitZones[7]		  =(ZoneName=rupperarm, BoneName=RightArm,	   Limb=BP_RightArm, GoreHealth=50,  DmgScale=1.0, SkinID=3)  //0.3
+	HitZones[8]		  =(ZoneName=rforearm,  BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.2, SkinID=3)  //0.3
+    HitZones[9]       =(ZoneName=rhand,     BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.2, SkinID=3)
+	HitZones[12]	  =(ZoneName=lthigh,	BoneName=LeftUpLeg,	   Limb=BP_LeftLeg,  GoreHealth=75,  DmgScale=1.0, SkinID=3)  //0.3
+	HitZones[13]	  =(ZoneName=lcalf,	    BoneName=LeftLeg,	   Limb=BP_LeftLeg,  GoreHealth=25,  DmgScale=1.0, SkinID=3)  //0.3
+	HitZones[15]	  =(ZoneName=rthigh,	BoneName=RightUpLeg,   Limb=BP_RightLeg, GoreHealth=75,  DmgScale=1.0, SkinID=3)  //0.3
+	HitZones[16]	  =(ZoneName=rcalf,     BoneName=RightLeg,	   Limb=BP_RightLeg, GoreHealth=25,  DmgScale=1.0, SkinID=3)  //0.3
 	// unique zone for backpack / armor plates
-	HitZones.Add((ZoneName=armor, BoneName=Spine2, Limb=BP_Special, GoreHealth=MaxInt, DmgScale=0.3, SkinID=3)  //0.5
+	HitZones.Add((ZoneName=armor, BoneName=Spine2, Limb=BP_Special, GoreHealth=MaxInt, DmgScale=0.8, SkinID=3)  //0.3
 
     WeakSpotSocketNames.Add(Chest_FX) // Chest
     WeakSpotSocketNames.Add(WeakPointSocket1) // Backpack
@@ -1214,8 +1226,8 @@ DefaultProperties
 
     RotationRate=(Pitch=50000,Yaw=50000,Roll=50000)
 
-	GroundSpeed=210.f
-	SprintSpeed=650.f
+	GroundSpeed=285.f //210  //265
+	SprintSpeed=675.f //650
 	ReachedEnemyThresholdScale=1.f
 	KnockdownImpulseScale=1.0f
 
@@ -1233,54 +1245,85 @@ DefaultProperties
 	SummonWaves(1)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Three')
 	SummonWaves(2)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Three')
 	SummonWaves(3)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Three')
-	NumMinionsToSpawn=8
+	NumMinionsToSpawn=(X=1, Y=18)
 
     // Battle phases
     BattlePhases(0)={(bCanFrenzy=false,
                     bSprintingBehavior=false,
-                    GlobalOffensiveNadePhaseCooldown=12,
+                    //grenades
+                    GlobalOffensiveNadePhaseCooldown=25, //12
                     bCanTossNerveGas=true,
                     bCanBarrageNerveGas=false,
+                    bCanTossGrenade=false,
+                    bCanBarrageGrenades=false,
+                    bCanMoveWhileThrowingGrenades={(false, false, false, false)}, // Normal,Hard,Suicidal,HoE
+                    //guns
                     bCanUseGuns=true,
                     GunAttackPhaseCooldown=0,
                     GunAttackLengthPhase=99999,
-                    bCanTossGrenade=false,
+                    //hunt and heal
                     HealThresholds={(0.6f, 0.6f, 0.6f, 0.6f)}, // Normal,Hard,Suicidal,HoE
                     HealAmounts={(0.325f, 0.325f, 0.325f, 0.325f)}, // Normal,Hard,Suicidal,HoE
-                    MaxShieldHealth={(400, 900, 1000, 1100)}, // Normal,Hard,Suicidal,HoE  //1500  1400, 1500, 1500, 1500  //500, 600, 700, 800
-                    bCanBarrageGrenades=false)}
-    BattlePhases(1)={(bCanFrenzy=true,
-                    GlobalOffensiveNadePhaseCooldown=15,
+                    MaxShieldHealth={(686, 980, 1400, 1820)}, // Normal,Hard,Suicidal,HoE  //1500  1400, 1500, 1500, 1500  //400, 900, 2000, 1100
+                    )}
+                    
+    BattlePhases(1)={(bCanFrenzy=false, //true
+                    //grenades
+                    GlobalOffensiveNadePhaseCooldown=25, //15 //35
                     HENadeTossPhaseCooldown=20,
                     NerveGasTossPhaseCooldown=20,
                     bCanTossNerveGas=true,
                     bCanBarrageNerveGas=false,
-                    bCanUseGuns=true,
-                    GunAttackPhaseCooldown=30,
-                    GunAttackLengthPhase=8,
                     bCanTossGrenade=true,
+                    bCanBarrageGrenades=false,
+                    bCanMoveWhileThrowingGrenades={(false, false, false, true)}, // Normal,Hard,Suicidal,HoE
+                    //guns
+                    bCanUseGuns=true,
+                    GunAttackPhaseCooldown=20, //30
+                    GunAttackLengthPhase=10,
+                    //hunt and heal
                     HealThresholds={(0.41f, 0.41f, 0.41f, 0.41f)}, // Normal,Hard,Suicidal,HoE
                     HealAmounts={(0.275f, 0.275f, 0.275f, 0.275f)}, // Normal,Hard,Suicidal,HoE
-                    MaxShieldHealth={(400, 900, 1000, 1100)}, // Normal,Hard,Suicidal,HoE   //1500  1300, 1400, 1400, 1400
-                    bCanBarrageGrenades=false)}
+                    MaxShieldHealth={(860, 1225, 1750, 2275)}, // Normal,Hard,Suicidal,HoE   //400, 900, 2500, 1100
+                    )}
+
     BattlePhases(2)={(bCanFrenzy=true,
+                    bSprintingBehavior=true,
+                    //grenades
+                    GlobalOffensiveNadePhaseCooldown=20, //55 //25 //30
                     bCanTossNerveGas=false,
                     bCanBarrageNerveGas=true,
-                    bCanUseGuns=true,
                     bCanTossGrenade=true,
+                    bCanBarrageGrenades=false,
+                    bCanMoveWhileThrowingGrenades={(false, false, true, true)}, // Normal,Hard,Suicidal,HoE
+                    //guns
+                    bCanUseGuns=true,
+                    GunAttackPhaseCooldown=20, //30 //15
+                    GunAttackLengthPhase=5,  //10
+                    //hunt and heal
                     HealThresholds={(0.25f, 0.25f, 0.25f, 0.25f)}, // Normal,Hard,Suicidal,HoE
                     HealAmounts={(0.125f, 0.125f, 0.125f, 0.125f)}, // Normal,Hard,Suicidal,HoE
-                    MaxShieldHealth={(400, 900, 1000, 1100)}, // Normal,Hard,Suicidal,HoE   //1500  1200, 1300, 1300, 1300
-                    bCanBarrageGrenades=false)} 
+                    MaxShieldHealth={(1030, 1470, 2100, 2730)}, // Normal,Hard,Suicidal,HoE   //400, 900, 3000, 1100
+                    )}
+
     BattlePhases(3)={(bCanFrenzy=true,
+                    bSprintingBehavior=true,
+                    //grenades
+                    GlobalOffensiveNadePhaseCooldown=10, //15 //35 //30
                     bCanTossNerveGas=false,
-                    bCanBarrageNerveGas=true,
-                    bCanUseGuns=true,
+                    bCanBarrageNerveGas=false,
                     bCanTossGrenade=false,
-                    bCanBarrageGrenades=true)}
+                    bCanBarrageGrenades=true,
+                    bCanMoveWhileThrowingGrenades={(false, false, true, true)},
+                    // guns
+                    bCanUseGuns=true,
+                    GunAttackPhaseCooldown=30, //55 //40
+                    GunAttackLengthPhase=4,  //15  //3
+                    )}
+
     CurrentBattlePhase=1
 
-    GrenadeTossSpread=0.2
+    GrenadeTossSpread=(Y=0.2, Z=0.04)
     SmokeTossCooldown=5
 
     AmbientBreathingEvent=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Breathing_Base'

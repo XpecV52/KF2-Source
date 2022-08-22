@@ -171,6 +171,11 @@ function bool ShowLoginUI(optional bool bShowOnlineOnly = false);
  * @return true if the async call started ok, false otherwise
  */
 function bool Login(byte LocalUserNum,string LoginName,string Password,optional bool bWantsLocalOnly);
+//@HSL_BEGIN - BWJ - 6-21-16 - login callback support
+delegate OnLoginComplete( byte LocalUserNum, bool bWasSuccessful, EOnlineServerConnectionStatus ErrorCode );
+function AddLoginCompleteDelegate(byte LocalUserNum, delegate<OnLoginComplete> InDelegate);
+function ClearLoginCompleteDelegate(byte LocalUserNum, delegate<OnLoginComplete> InDelegate);
+//@HSL_END
 
 /**
  * Logs the player into the online service using parameters passed on the
@@ -1290,6 +1295,18 @@ function bool IsControllerConnected(int ControllerId)
 	return false;
 }
 
+//@HSL_BEGIN - JRO - Make sure we can properly disable multiplayer features when not connected
+/**
+ * Retrieves the current connection status
+ *
+ * @return the current connection status
+ */
+function EOnlineServerConnectionStatus GetCurrentConnectionStatus()
+{
+	return OSCS_Connected;
+}
+//@HSL_END
+
 /**
  * Delegate fire when the online server connection state changes
  *
@@ -1667,6 +1684,10 @@ function bool SendGameInviteToFriend(byte LocalUserNum,UniqueNetId Friend,option
  */
 function bool SendGameInviteToFriends(byte LocalUserNum,array<UniqueNetId> Friends,optional string Text);
 
+//@HSL_BEGIN - JRO - 6/10/2016 - Programmatic invites
+function bool SendGameInviteToUsers(string SessionId, array<string> MembersToInvite, optional string Text);
+//@HSL_END
+
 /**
  * Called when the online system receives a game invite that needs handling
  *
@@ -1864,6 +1885,14 @@ function EOnlineEnumerationReadState GetAchievements(byte LocalUserNum,out array
 delegate OnPrivilegeLevelChecked(byte LocalUserNum, EFeaturePrivilege Privilege, EFeaturePrivilegeLevel PrivilegeLevel);
 function AddPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
 function ClearPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+
+
+//@HSL_BEGIN - BWJ - 6-15-16 - Auth support for backend service
+delegate OnOnlineServiceAuthComplete();
+function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
+function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
+function AuthWithOnlineService();
+//@HSL_END
 
 defaultproperties
 {

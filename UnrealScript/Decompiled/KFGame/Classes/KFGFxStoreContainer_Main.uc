@@ -99,20 +99,27 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
 
     if(I < StoreItemArray.Length)
     {
-        if(CurrentStoreFilter < 4)
+        if((StoreItemArray[I].ProductId != "") && StoreItemArray[I].SignedOfferId == "")
         {
-            if((StoreItemArray[I].Price != "") && (IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter)) || CurrentStoreFilter == 0)
-            {
-                DataProvider.SetElementObject(ItemCount, CreateStoreItem(StoreItemArray[I]));
-                ++ ItemCount;
-            }            
+            LogInternal(("Skipping PSN store item" @ string(StoreItemArray[I].Definition)) @ "since it has no store offer ID");            
         }
         else
         {
-            if((StoreItemArray[I].Price == "") && IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter))
+            if(CurrentStoreFilter < 4)
             {
-                DataProvider.SetElementObject(ItemCount, CreateStoreItem(StoreItemArray[I]));
-                ++ ItemCount;
+                if((StoreItemArray[I].Price != "") && (IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter)) || CurrentStoreFilter == 0)
+                {
+                    DataProvider.SetElementObject(ItemCount, CreateStoreItem(StoreItemArray[I]));
+                    ++ ItemCount;
+                }                
+            }
+            else
+            {
+                if((StoreItemArray[I].Price == "") && IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter))
+                {
+                    DataProvider.SetElementObject(ItemCount, CreateStoreItem(StoreItemArray[I]));
+                    ++ ItemCount;
+                }
             }
         }
         ++ I;

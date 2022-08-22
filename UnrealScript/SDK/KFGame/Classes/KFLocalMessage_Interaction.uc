@@ -21,6 +21,7 @@ enum EInteractionMessageType
 	IMT_UseTrader,
 	IMT_UseDoor,
 	IMT_UseDoorWelded,
+	IMT_RepairDoor,
 
 	// conditional messaging
 	IMT_GamepadWeaponSelectHint,
@@ -31,7 +32,8 @@ enum EInteractionMessageType
 
 var localized string			UseTraderMessage;
 var localized string			UseDoorMessage;
-var localized string			UseDoorWeldedMessage;
+var localized string			EquipWelderMessage;
+var localized string 			RepairDoorMessage;
 var localized string			AcceptObjectiveMessage;
 var localized string			ReceiveAmmoMessage;
 var localized string			ReceiveGrenadesMessage;
@@ -105,6 +107,7 @@ static function string GetKeyBind( PlayerController P, optional int Switch )
 		}
 		case IMT_UseTrader:
 		case IMT_UseDoor:
+		case IMT_RepairDoor:
 		case IMT_AcceptObjective:
 		case IMT_ReceiveAmmo:
 		case IMT_ReceiveGrenades:
@@ -161,7 +164,9 @@ static function string GetString(
 			{
 				return default.ZedUseDoorWeldedMessage;
 			}
-			return default.UseDoorWeldedMessage;
+			return default.EquipWelderMessage;
+		case IMT_RepairDoor:
+			return default.RepairDoorMessage;
 		case IMT_AcceptObjective:
 			return default.AcceptObjectiveMessage;
 		case IMT_ReceiveAmmo:

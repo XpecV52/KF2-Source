@@ -19,7 +19,7 @@ class KFAISubsystem extends BaseAISubsystem
 /** Used to access the difficulty values from KFGame for BaseAI */
 event float GetDifficultyValue(int Index)
 {
-	return class'KFDifficultyInfo'.static.GetDifficultyValue( Index );
+	return class'KFGameDifficultyInfo'.static.GetDifficultyValue( Index );
 }
 
 // (cpptext)

@@ -4,6 +4,8 @@ package tripwire.controls
     import flash.events.MouseEvent;
     import scaleform.clik.controls.Button;
     import scaleform.gfx.Extensions;
+    import scaleform.gfx.TextFieldEx;
+    import tripwire.managers.MenuManager;
     
     public class TripButton extends Button
     {
@@ -19,7 +21,11 @@ package tripwire.controls
         
         public var doAnimations:Boolean = false;
         
-        public var clickSoundEffect:String = "Button_Selected";
+        public var _bHasVerticalAlign:Boolean;
+        
+        public var clickSoundEffect:String = "SHARED_BUTTON_CLICK";
+        
+        public var overSoundEffect:String = "SHARED_BUTTON_MOUSEOVER";
         
         public function TripButton()
         {
@@ -40,6 +46,17 @@ package tripwire.controls
             focusable = param1;
         }
         
+        public function get bHasVerticalAlign() : Boolean
+        {
+            return this._bHasVerticalAlign;
+        }
+        
+        public function set bHasVerticalAlign(param1:Boolean) : void
+        {
+            this._bHasVerticalAlign = param1;
+            TextFieldEx.setVerticalAlign(textField,TextFieldEx.VALIGN_CENTER);
+        }
+        
         protected function handleFocusIn(param1:FocusEvent) : *
         {
             if(!this.enabled)
@@ -51,6 +68,10 @@ package tripwire.controls
             if(!selected)
             {
                 this.highlightButton();
+            }
+            if(Extensions.gfxProcessSound != null && this.enabled == true && MenuManager.manager.bUsingGamepad)
+            {
+                Extensions.gfxProcessSound(this,"UI",this.overSoundEffect);
             }
         }
         
@@ -79,6 +100,10 @@ package tripwire.controls
             {
                 this.highlightButton();
             }
+            if(Extensions.gfxProcessSound != null && this.enabled == true)
+            {
+                Extensions.gfxProcessSound(this,"UI",this.overSoundEffect);
+            }
         }
         
         override protected function handleMouseRollOut(param1:MouseEvent) : void
@@ -101,9 +126,9 @@ package tripwire.controls
                 return;
             }
             super.handleMousePress(param1);
-            if(Extensions.gfxProcessSound != null)
+            if(Extensions.gfxProcessSound != null && this.enabled == true)
             {
-                Extensions.gfxProcessSound(this,"ButtonSoundTheme",this.clickSoundEffect);
+                Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
             }
         }
         
@@ -114,9 +139,9 @@ package tripwire.controls
                 return;
             }
             super.handlePress(param1);
-            if(Extensions.gfxProcessSound != null)
+            if(Extensions.gfxProcessSound != null && this.enabled == true)
             {
-                Extensions.gfxProcessSound(this,"ButtonSoundTheme",this.clickSoundEffect);
+                Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
             }
         }
         
@@ -127,6 +152,15 @@ package tripwire.controls
             {
                 this.unhighlightButton();
             }
+        }
+        
+        override protected function updateText() : void
+        {
+            if(this.bHasVerticalAlign)
+            {
+                TextFieldEx.setVerticalAlign(textField,TextFieldEx.VALIGN_CENTER);
+            }
+            super.updateText();
         }
         
         protected function highlightButton() : *

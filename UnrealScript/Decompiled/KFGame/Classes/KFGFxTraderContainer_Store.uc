@@ -10,13 +10,25 @@ class KFGFxTraderContainer_Store extends KFGFxObject_Container within GFxMoviePl
 var KFGFxMenu_Trader MyTraderMenu;
 var array<STraderItem> SlotsItemList;
 var const localized string TraderString;
+var KFPlayerController KFPC;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
+    KFPC = KFPlayerController(Outer.GetPC());
     MyTraderMenu = KFGFxMenu_Trader(NewParentMenu);
     SetString("shopHeaderName", TraderString);
+    LocalizeContainer();
     Outer.GetPC().SetTimer(0.1, false, 'DelayedRefresh', self);
+}
+
+function LocalizeContainer()
+{
+    local GFxObject LocalizedObject;
+
+    LocalizedObject = Outer.CreateObject("Object");
+    LocalizedObject.SetString("buyPrompt", Localize("KFGFxTraderContainer_ItemDetails", "BuyString", "KFGame"));
+    SetObject("localizeStrings", LocalizedObject);
 }
 
 function DelayedRefresh()
@@ -37,29 +49,27 @@ function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemLi
     local int I, SlotIndex;
     local GFxObject ItemDataArray;
     local array<STraderItem> FullItemList;
-    local KFPlayerController KFPC;
 
-    KFPC = KFPlayerController(Outer.GetPC());
     if(KFPC != none)
     {
         SlotIndex = 0;
         ItemList.Length = 0;
         ItemDataArray = Outer.CreateArray();
-        FullItemList = MyTraderMenu.TraderItems.SaleItems;
+        FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
         I = 0;
-        J0xC9:
+        J0xAE:
 
         if(I < FullItemList.Length)
         {
             if(IsItemFiltered(FullItemList[I]))
             {
-                goto J0x22E;                
+                goto J0x213;                
             }
             else
             {
                 if((FullItemList[I].AssociatedPerkClass != none) && (FilterIndex >= KFPC.PerkList.Length) || FullItemList[I].AssociatedPerkClass != KFPC.PerkList[FilterIndex].PerkClass)
                 {
-                    goto J0x22E;                    
+                    goto J0x213;                    
                 }
                 else
                 {
@@ -68,10 +78,10 @@ function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemLi
                     ++ SlotIndex;
                 }
             }
-            J0x22E:
+            J0x213:
 
             ++ I;
-            goto J0xC9;
+            goto J0xAE;
         }
         SetObject("shopData", ItemDataArray);
     }
@@ -86,15 +96,15 @@ function RefreshItemsByType(byte FilterIndex, out array<STraderItem> ItemList)
     SlotIndex = 0;
     ItemList.Length = 0;
     ItemDataArray = Outer.CreateArray();
-    FullItemList = MyTraderMenu.TraderItems.SaleItems;
+    FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
     I = 0;
-    J0x88:
+    J0x9F:
 
     if(I < FullItemList.Length)
     {
-        if((IsItemFiltered(FullItemList[I])) || FilterIndex != FullItemList[I].TraderFilter)
+        if((IsItemFiltered(FullItemList[I])) || !(FilterIndex == FullItemList[I].TraderFilter) || FilterIndex == FullItemList[I].AltTraderFilter)
         {
-            goto J0x15A;            
+            goto J0x1AD;            
         }
         else
         {
@@ -102,10 +112,10 @@ function RefreshItemsByType(byte FilterIndex, out array<STraderItem> ItemList)
             SetItemInfo(ItemDataArray, FullItemList[I], SlotIndex);
             ++ SlotIndex;
         }
-        J0x15A:
+        J0x1AD:
 
         ++ I;
-        goto J0x88;
+        goto J0x9F;
     }
     SetObject("shopData", ItemDataArray);
 }
@@ -119,15 +129,15 @@ function RefreshFavoriteItems(out array<STraderItem> ItemList)
     SlotIndex = 0;
     ItemList.Length = 0;
     ItemDataArray = Outer.CreateArray();
-    FullItemList = MyTraderMenu.TraderItems.SaleItems;
+    FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
     I = 0;
-    J0x88:
+    J0x9F:
 
     if(I < FullItemList.Length)
     {
         if((IsItemFiltered(FullItemList[I])) || !MyTraderMenu.GetIsFavorite(FullItemList[I].ClassName))
         {
-            goto J0x16C;            
+            goto J0x183;            
         }
         else
         {
@@ -135,10 +145,10 @@ function RefreshFavoriteItems(out array<STraderItem> ItemList)
             SetItemInfo(ItemDataArray, FullItemList[I], SlotIndex);
             ++ SlotIndex;
         }
-        J0x16C:
+        J0x183:
 
         ++ I;
-        goto J0x88;
+        goto J0x9F;
     }
     SetObject("shopData", ItemDataArray);
 }
@@ -152,15 +162,15 @@ function RefreshAllItems(out array<STraderItem> ItemList)
     SlotIndex = 0;
     ItemList.Length = 0;
     ItemDataArray = Outer.CreateArray();
-    FullItemList = MyTraderMenu.TraderItems.SaleItems;
+    FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
     I = 0;
-    J0x88:
+    J0x9F:
 
     if(I < FullItemList.Length)
     {
         if(IsItemFiltered(FullItemList[I]))
         {
-            goto J0x120;            
+            goto J0x137;            
         }
         else
         {
@@ -168,10 +178,10 @@ function RefreshAllItems(out array<STraderItem> ItemList)
             SetItemInfo(ItemDataArray, FullItemList[I], SlotIndex);
             ++ SlotIndex;
         }
-        J0x120:
+        J0x137:
 
         ++ I;
-        goto J0x88;
+        goto J0x9F;
     }
     SetObject("shopData", ItemDataArray);
 }
@@ -193,15 +203,16 @@ function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, in
     {
         IconPath = "img://" $ Class'KFGFxObject_TraderItems'.default.OffPerkIconPath;
     }
+    SlotObject.SetString("buyText", Localize("KFGFxTraderContainer_ItemDetails", "BuyString", "KFGame"));
     SlotObject.SetString("weaponSource", ItemTexPath);
     SlotObject.SetString("perkIconSource", IconPath);
     SlotObject.SetString("weaponName", TraderItem.WeaponDef.static.GetItemName());
     SlotObject.SetString("weaponType", TraderItem.WeaponDef.static.GetItemCategory());
     SlotObject.SetInt("weaponWeight", MyTraderMenu.GetDisplayedBlocksRequiredFor(TraderItem));
-    AdjustedBuyPrice = MyTraderMenu.GetAdjustedBuyPriceFor(TraderItem);
+    AdjustedBuyPrice = KFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(TraderItem);
     SlotObject.SetInt("weaponCost", AdjustedBuyPrice);
-    bCanAfford = GetCanAfford(AdjustedBuyPrice);
-    bCanCarry = CanCarry(TraderItem);
+    bCanAfford = KFPC.GetPurchaseHelper().GetCanAfford(AdjustedBuyPrice);
+    bCanCarry = KFPC.GetPurchaseHelper().CanCarry(TraderItem);
     SlotObject.SetBool("bCanAfford", bCanAfford);
     SlotObject.SetBool("bCanCarry", bCanCarry);
     ItemDataArray.SetElementObject(SlotIndex, SlotObject);
@@ -209,15 +220,15 @@ function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, in
 
 function bool IsItemFiltered(const out STraderItem Item)
 {
-    if(MyTraderMenu.IsInOwnedItemList(Item.ClassName))
+    if(KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.ClassName))
     {
         return true;
     }
-    if(MyTraderMenu.IsInOwnedItemList(Item.DualClassName))
+    if(KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.DualClassName))
     {
         return true;
     }
-    if(!MyTraderMenu.IsSellable(Item))
+    if(!KFPC.GetPurchaseHelper().IsSellable(Item))
     {
         return true;
     }
@@ -226,24 +237,6 @@ function bool IsItemFiltered(const out STraderItem Item)
         return true;
     }
     return false;
-}
-
-function bool GetCanAfford(int BuyPrice)
-{
-    if(BuyPrice > MyTraderMenu.TotalDosh)
-    {
-        return false;
-    }
-    return true;
-}
-
-function bool CanCarry(const out STraderItem Item)
-{
-    if((MyTraderMenu.TotalBlocks + MyTraderMenu.GetDisplayedBlocksRequiredFor(Item)) > MyTraderMenu.MaxBlocks)
-    {
-        return false;
-    }
-    return true;
 }
 
 defaultproperties

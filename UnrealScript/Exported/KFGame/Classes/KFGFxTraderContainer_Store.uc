@@ -20,16 +20,34 @@ var array< STraderItem > SlotsItemList;	// The Trader Item Info for each Item sl
 
 var localized string TraderString;
 
+var KFPlayerController KFPC;
+
 //==============================================================
 // Initialization
 //==============================================================
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	super.Initialize( NewParentMenu );
+	KFPC = KFPlayerController(GetPC());
 	MyTraderMenu = KFGFxMenu_Trader( NewParentMenu );
 	SetString("shopHeaderName", TraderString);
+	LocalizeContainer();
 	GetPC().SetTimer(0.1f, false,'DelayedRefresh', self);
 }
+
+function LocalizeContainer()
+{
+	local GFxOBject LocalizedObject;
+
+	LocalizedObject = CreateObject("Object");
+
+	//Prompt strings
+	LocalizedObject.SetString("buyPrompt", Localize("KFGFxTraderContainer_ItemDetails", "BuyString", "KFGame"));
+
+	SetObject("localizeStrings", LocalizedObject);
+}
+
+
 
 //@todo Hack to get around AS clearing the weapon list once it's populated
 function DelayedRefresh()
@@ -57,16 +75,14 @@ function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemLi
  	local int i, SlotIndex;
 	local GFxObject ItemDataArray; // This array of information is sent to ActionScript to update the Item data
 	local array<STraderItem> FullItemList;
-	local KFPlayerController KFPC;
-
-	KFPC = KFPlayerController(GetPC());
+	
 	if (KFPC != none)
 	{
 		SlotIndex = 0;
 	    ItemList.length = 0;	    
 	    ItemDataArray = CreateArray();
 
-		FullItemList = MyTraderMenu.TraderItems.SaleItems;
+		FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
 
 		for (i = 0; i < FullItemList.Length; i++)
 		{
@@ -101,11 +117,11 @@ function RefreshItemsByType(byte FilterIndex, out array<STraderItem> ItemList)
     ItemList.length = 0;
 	
     ItemDataArray = CreateArray();
-    FullItemList = MyTraderMenu.TraderItems.SaleItems;
+    FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
 
 	for (i = 0; i < FullItemList.Length; i++)
 	{
-		if ( IsItemFiltered(FullItemList[i]) || FilterIndex != FullItemList[i].TraderFilter )
+		if ( IsItemFiltered(FullItemList[i]) || !(FilterIndex == FullItemList[i].TraderFilter || FilterIndex == FullItemList[i].AltTraderFilter) )
 		{
 			continue; // Skip this item if it's in our inventory
 		}
@@ -131,7 +147,7 @@ function RefreshFavoriteItems(out array<STraderItem> ItemList)
     ItemList.length = 0;
 
     ItemDataArray = CreateArray();
-	FullItemList = MyTraderMenu.TraderItems.SaleItems;
+	FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
 
 	for (i = 0; i < FullItemList.Length; i++)
 	{
@@ -161,7 +177,7 @@ function RefreshAllItems(out array<STraderItem> ItemList)
     ItemList.length = 0;
 	
     ItemDataArray = CreateArray();
-    FullItemList = MyTraderMenu.TraderItems.SaleItems;
+    FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
 
 	for (i = 0; i < FullItemList.Length; i++)
 	{
@@ -199,20 +215,21 @@ function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, in
 	{
 		IconPath = "img://"$class'KFGFxObject_TraderItems'.default.OffPerkIconPath;
 	}
+	SlotObject.SetString("buyText", Localize("KFGFxTraderContainer_ItemDetails", "BuyString", "KFGame"));
 
-	SlotObject.SetString( "weaponSource", ItemTexPath );
+	SlotObject.SetString("weaponSource", ItemTexPath);
 	SlotObject.SetString( "perkIconSource", IconPath );
 
 	SlotObject.SetString( "weaponName", TraderItem.WeaponDef.static.GetItemName() );
 	SlotObject.SetString( "weaponType", TraderItem.WeaponDef.static.GetItemCategory() );
 	SlotObject.SetInt( "weaponWeight", MyTraderMenu.GetDisplayedBlocksRequiredFor(TraderItem) );
 
-	AdjustedBuyPrice = MyTraderMenu.GetAdjustedBuyPriceFor(TraderItem);
+	AdjustedBuyPrice = KFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(TraderItem);
 
 	SlotObject.SetInt( "weaponCost",  AdjustedBuyPrice );
 
-	bCanAfford = GetCanAfford(AdjustedBuyPrice);
-	bCanCarry = CanCarry( TraderItem );
+	bCanAfford = KFPC.GetPurchaseHelper().GetCanAfford(AdjustedBuyPrice);
+	bCanCarry = KFPC.GetPurchaseHelper().CanCarry( TraderItem );
 
 	SlotObject.SetBool("bCanAfford", bCanAfford);
 	SlotObject.SetBool("bCanCarry", bCanCarry);
@@ -223,36 +240,16 @@ function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, in
 /** returns true if this item should not be displayed */
 function bool IsItemFiltered(const out STraderItem Item)
 {
-	if ( MyTraderMenu.IsInOwnedItemList(Item.ClassName) )
+	if ( KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.ClassName) )
 		return true;
-	if ( MyTraderMenu.IsInOwnedItemList(Item.DualClassName) )
+	if ( KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.DualClassName) )
 		return true;
-	if ( !MyTraderMenu.IsSellable(Item) )
+	if ( !KFPC.GetPurchaseHelper().IsSellable(Item) )
 		return true;
 	if ( Item.WeaponDef.default.SharedUnlockId != SCU_None && !class'KFUnlockManager'.static.IsSharedContentUnlocked(Item.WeaponDef.default.SharedUnlockId) )
      	 	return true;
 
    	return false;
-}
-
-// Checks if we can have enough dosh to buy this item
-function bool GetCanAfford(int BuyPrice)
-{
-	if (BuyPrice > MyTraderMenu.TotalDosh)
-	{
-		return false;
-	}
-	return true;
-}
-
-// Checks if we can have enough blocks to hold this item
-function bool CanCarry( const out STraderItem Item )
-{
-	if (MyTraderMenu.TotalBlocks + MyTraderMenu.GetDisplayedBlocksRequiredFor(Item) > MyTraderMenu.MaxBlocks)
-	{
-    	return false;
-	}
-	return true;
 }
 
 defaultproperties

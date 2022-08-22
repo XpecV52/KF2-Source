@@ -14,27 +14,29 @@ class KFPerk_Support extends KFPerk
 `include(KFOnlineStats.uci)
 
 /** Passives */
-var()	const		PerkSkill 					Ammo;       				// Increased ammo
-var()	const		PerkSkill 					WeldingProficiency;         // Welding speed modifier
-var()	const		PerkSkill 					ShotgunDamage;              // Shotgun dmg modifier
-var()	const		PerkSkill 					ShotgunPenetration;			// Shotgun extra penetration Use INTs only
-var()	const		PerkSkill 					GrenadeDamage;              // Grenade dmg modifier
+var private	const PerkSkill 					Ammo;       				// Increased ammo
+var private const PerkSkill 					WeldingProficiency;         // Welding speed modifier
+var	private const PerkSkill 					ShotgunDamage;              // Shotgun dmg modifier
+var	private const PerkSkill 					ShotgunPenetration;			// Shotgun extra penetration Use INTs only
+var	private const PerkSkill 					Strength;              
 
-var					Array<KFPawn_Human> 		SuppliedPawnList;
-
-var 				int 						SafeguardRangeSQ;
+var	private		  Array<KFPawn_Human> 			SuppliedPawnList;
+var	private const float 						BarrageFiringRate;
+var	private const float 						ResupplyMaxSpareAmmoModifier;
+var private const AkEvent						ReceivedAmmoSound;
+var private const AkEvent						ReceivedAmmoAndArmorSound;
 
 enum ESupportPerkSkills
 {
-	ESupportAmmo,
-	ESupportSupplier,
-	ESupportFortitude,
-	ESupportRegeneration,
-	ESupportBombard,
+	ESupportHighCapMags,
 	ESupportTacticalReload,
-	ESupportStrength,
-	ESupportTenacity,
-	ESupportSafeguard,
+	ESupportFortitude,
+	ESupportSalvo,
+	ESupportAPShot,
+	ESupportTightChoke,
+	ESupportResupply,
+	ESupportConcussionRounds,
+	ESupportPerforate,
 	ESupportBarrage,
 };
 
@@ -53,15 +55,24 @@ function ApplySkillsToPawn()
 	KFIM = KFInventoryManager(OwnerPawn.InvManager);
 	if( KFIM != none )
 	{
-		if( IsStrengthActive() )
-		{
-			`QALog( "Strength Mod" @ GetPercentage(KFIM.MaxCarryBlocks, KFIM.default.MaxCarryBlocks + PerkSkills[ESupportStrength].StartingValue), bLogPerk );
-			KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks + GetSkillValue( PerkSkills[ESupportStrength] );
-		}
+		`QALog( "Strength Mod" @ GetPercentage(KFIM.MaxCarryBlocks, KFIM.default.MaxCarryBlocks + GetExtraStrength( CurrentLevel )), bLogPerk );
+		KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks + GetExtraStrength( CurrentLevel );
 	}
 
 	ResetSupplier();
 }
+
+/**
+ * @brief Calculates the additional carry blocks per perk level
+ *
+ * @param Level Current perk level
+ * @return additional blocks
+ */
+simulated private final static function float GetExtraStrength( int Level )
+{
+	return default.Strength.Increment * FFloor( float( Level ) / 5.f );
+}
+
 
 /**
  * @brief Sets up the supplier skill
@@ -97,17 +108,6 @@ simulated final private function ResetSupplier()
 	}
 }
 
-/**
- * @brief Modifies skill related attributes
- */
-simulated protected event PostSkillUpdate()
-{
-	super.PostSkillUpdate();
-
-	// enable tick if we have the regeneration skill
-	SetTickIsDisabled( !IsRegenerationActive() );
-}
-
 /*********************************************************************************************
 * @name	 Passives
 ********************************************************************************************* */
@@ -122,49 +122,35 @@ simulated protected event PostSkillUpdate()
  */
 simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
-	local KFWeapon MyKFWeapon;
+	local KFWeapon KFW;
 	local float TempDamage;
-	local float ShotgunDamageMod;
 
 	TempDamage = InDamage;
 	`QALog( GetFuncName() @ "BaseDamage =" @ InDamage, bLogPerk );
 	
+
+	TempDamage = InDamage;
+
 	if( DamageCauser != none )
 	{
-		if( ClassIsChildOf( DamageCauser.class, class'KFProj_Grenade') )
-		{
-			TempDamage += InDamage * GetPassiveValue( GrenadeDamage, CurrentLevel );
-			`QALog( GetFuncName() @ "+ Extra Grenade Damage =" @ TempDamage, bLogPerk );
-		}
-		else if( DamageInstigator != none && DamageInstigator.Pawn != none &&
-				 !ClassIsChildOf( DamageType, class'KFDT_Explosive') )
-		{
-			MyKFWeapon = KFWeapon(DamageInstigator.Pawn.Weapon);
-			if( MyKFWeapon != none )
-			{
-				if( IsWeaponOnPerk( MyKFWeapon ) && IsDamageTypeOnPerk( DamageType ) )
-				{
-					ShotgunDamageMod = GetPassiveValue( ShotgunDamage, CurrentLevel );
-					TempDamage = ShotgunDamageMod > 0 ? TempDamage += InDamage * ShotgunDamageMod : TempDamage;
-					`QALog( GetFuncName() @ "+ Extra Shotgun Damage =" @ TempDamage, bLogPerk );
+		KFW = GetWeaponFromDamageCauser( DamageCauser );
+	}
 
-					if( IsTenacityActive() )
-					{
-						TempDamage += InDamage * GetSkillValue( PerkSkills[ESupportTenacity] );
-						`QALog( GetFuncName() @ "+ Tenacity Damage =" @ TempDamage, bLogPerk );
-					}
-				}
-			}
-		}
+	if( ((KFW != none && IsWeaponOnPerk( KFW )) || (DamageType != none && IsDamageTypeOnPerk( DamageType ))) &&
+		!ClassIsChildOf( DamageType, class'KFDT_Explosive' )  )
+	{		
+		TempDamage += InDamage * GetPassiveValue( ShotgunDamage, CurrentLevel );
+		`QALog( GetFuncName() @ "+ Extra Shotgun Damage =" @ TempDamage, bLogPerk );
 
-		if( IsBarrageActive() )
+		if( IsSalvoActive() )
 		{
-			TempDamage += InDamage * GetSkillValue( PerkSkills[ESupportBarrage] );
-			`QALog( GetFuncName() @ "+ Barrage Damage =" @ TempDamage, bLogPerk );
+			TempDamage += InDamage * GetSkillValue( PerkSkills[ESupportSalvo] );
+			`QALog( GetFuncName() @ "+ Salvo Damage =" @ TempDamage, bLogPerk );
 		}
 	}
-	`QALog( "Total Damage Given" @ Damagetype @ MyKFWeapon @ GetPercentage( InDamage, FCeil(TempDamage) ), bLogPerk );
-	InDamage = FCeil( TempDamage );
+
+	`QALog( "Total Damage Given" @ Damagetype @ KFW @ GetPercentage( InDamage, Round(TempDamage) ), bLogPerk );
+	InDamage = Round( TempDamage );
 }
 
 /** Welding Proficiency - faster welding/unwelding */
@@ -195,18 +181,55 @@ simulated function ModifyWeldingRate( out float FastenRate, out float UnfastenRa
  */
 simulated function float GetPenetrationModifier( byte Level, class<KFDamageType> DamageType, optional bool bForce  )
 {
+    local float PenetrationPower;
     // Only buff damage types that are associated with support
     if( !bForce && (DamageType == none || !IsDamageTypeOnPerk( Damagetype )) )
     {
         return 0;
     }
 
-    return GetPassiveValue( ShotgunPenetration, Level );
+    PenetrationPower = IsAPShotActive() ? GetSkillValue( PerkSkills[ESupportAPShot] ) : 0.f;
+    PenetrationPower = IsPerforateActive() ? GetSkillValue( PerkSkills[ESupportPerforate] ) : PenetrationPower;
+    `QALog( "PenetrationPower" @ PenetrationPower + GetPassiveValue( ShotgunPenetration, Level ), bLogPerk );
+
+    return PenetrationPower + GetPassiveValue( ShotgunPenetration, Level );
+}
+
+simulated function bool IgnoresPenetrationDmgReduction()
+{ 
+	return IsPerforateActive();
 }
 
 /*********************************************************************************************
 * @name	 Selectable skills
 ********************************************************************************************* */
+/**
+ * @brief Modifies mag capacity and count
+ *
+ * @param KFW the weapon
+ * @param MagazineCapacity modified mag capacity
+ * @param WeaponPerkClass the weapon's associated perk class (optional)
+ */
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false )
+{
+	local float TempCapacity;
+
+	TempCapacity = MagazineCapacity;
+
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && (KFW == none || !KFW.bNoMagazine) )
+	{
+		if( KFW != none )
+		{
+			if( IsHighCapMagsMagActive() )
+			{
+				TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ESupportHighCapMags] );
+			}
+		}
+	}
+
+	MagazineCapacity = Round(TempCapacity);
+}
+
 /**
  * @brief Modifies starting spare ammo
  *
@@ -214,7 +237,7 @@ simulated function float GetPenetrationModifier( byte Level, class<KFDamageType>
  * @param PrimarySpareAmmo ammo amount
  * @param TraderItem the weapon's associated trader item info
  */
-simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem)
+simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary )
 {
 	local float TempSpareAmmoAmount;
 	local class<KFPerk> WeaponPerkClass;
@@ -223,7 +246,7 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) )
 	{
 		TempSpareAmmoAmount = PrimarySpareAmmo;
-		TempSpareAmmoAmount += PrimarySpareAmmo * GetSkillValue( PerkSkills[ESupportAmmo] );
+		TempSpareAmmoAmount += PrimarySpareAmmo * GetPassiveValue( Ammo, CurrentLevel );
 		PrimarySpareAmmo = Round( TempSpareAmmoAmount );
 	}
 }
@@ -235,18 +258,32 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
  * @param PrimarySpareAmmo ammo amount
  * @param TraderItem the weapon's associated trader item info
  */
-simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem)
+simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false )
 {
 	local float TempMaxSpareAmmoAmount;
 	local class<KFPerk> WeaponPerkClass;
 
 	WeaponPerkClass = (KFW == none) ? TraderItem.AssociatedPerkClass : KFW.AssociatedPerkClass;
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) )
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && MaxSpareAmmo > 0 )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
-		TempMaxSpareAmmoAmount += MaxSpareAmmo* GetSkillValue( PerkSkills[ESupportAmmo] );
+		TempMaxSpareAmmoAmount += MaxSpareAmmo * GetPassiveValue( Ammo, CurrentLevel );
+		 `QALog( "Ammo Passive, MaxSpareAmmo = +" @ (MaxSpareAmmo + MaxSpareAmmo * GetPassiveValue( Ammo, CurrentLevel )) / MaxSpareAmmo $ "%", bLogPerk );
+
+
+		if( IsResupplyActive() )
+		{
+			TempMaxSpareAmmoAmount += MaxSpareAmmo * GetResupplyMaxSpareAmmoModifier();
+			`QALog( "Resupply skill, MaxSpareAmmo = +" @ (MaxSpareAmmo + MaxSpareAmmo * GetResupplyMaxSpareAmmoModifier()) / MaxSpareAmmo $ "%", bLogPerk );
+		}
+
 		MaxSpareAmmo = Round( TempMaxSpareAmmoAmount );
 	}
+}
+
+simulated private static function float GetResupplyMaxSpareAmmoModifier()
+{
+	return default.ResupplyMaxSpareAmmoModifier;
 }
 
 /**
@@ -277,116 +314,25 @@ function ModifyHealth( out int InHealth )
 	}
 }
 
-/**
- * @brief Player entering zed time, Server only
- */
-function NotifyZedTimeStarted()
-{
-	if( IsSafeguardActive() || IsBarrageActive() )
+simulated function float GetTightChokeModifier()
+{ 
+	if( IsTightChokeActive() )
 	{
-		CheckOwnerPawn();
-		GivePlayerBuffs();
-
-		if( IsSafeguardActive() && !OwnerPawn.bHasSupportSafeguardBuff )
-		{
-			`QALog( "SafeGuard Armor" @ GetPercentage(OwnerPawn.Armor, OwnerPawn.Armor * PerkSkills[ESupportSafeGuard].StartingValue), bLogPerk );
-			OwnerPawn.SetSupportSafeguardBuff( true );
-			OwnerPawn.AddArmor( GetSkillValue( PerkSkills[ESupportSafeGuard] ) * OwnerPawn.MaxArmor );
-		}
-
-		if( IsBarrageActive() && !OwnerPawn.bHasSupportBarrageBuff )
-		{
-			OwnerPawn.SetSupportBarrageBuff( true );
-		}
-	}
-}
-
-/**
- * @brief Player exiting zed time, Server only
- */
-function NotifyZedTimeEnded()
-{
-	if( IsSafeguardActive() || IsBarrageActive() )
-	{
-		ResetPlayerBuffs();
-		CheckOwnerPawn();
-
-		if( IsSafeguardActive() && OwnerPawn.bHasSupportSafeguardBuff )
-		{
-			OwnerPawn.SetSupportSafeguardBuff( false );
-		}
-
-		if( IsBarrageActive() && OwnerPawn.bHasSupportBarrageBuff )
-		{
-			OwnerPawn.SetSupportBarrageBuff( false );
-		}
-	}
-}
-
-/**
- * @brief gives other players temporarily additional buffs
- */
-function GivePlayerBuffs()
-{
-	local KFPawn_Human OtherPawn;
-
-	if( CheckOwnerPawn() && OwnerPawn.IsAliveAndWell() )
-	{
-		foreach WorldInfo.Allpawns(class'KFPawn_Human', OtherPawn)
-		{
-			if( OtherPawn != OwnerPawn && VSizeSQ(OtherPawn.Location - OwnerPawn.Location) <= SafeguardRangeSQ )
-			{
-				if( IsSafeguardActive() && !OtherPawn.bHasSupportSafeguardBuff )
-				{
-					OtherPawn.SetSupportSafeguardBuff( true );
-					BuffedPlayerInfos.Insert( 0, 1 );
-					BuffedPlayerInfos[0].BuffedPawn = OtherPawn;
-					OtherPawn.AddArmor( GetSkillValue( PerkSkills[ESupportSafeGuard] ) * OtherPawn.MaxArmor );
-					`QALog( "Squad Safeguard Buff" @ OtherPawn.Armor, bLogPerk );
-				}
-				else if( IsBarrageActive() && !OtherPawn.bHasSupportBarrageBuff )
-				{
-					OtherPawn.SetSupportBarrageBuff( true );
-					BuffedPlayerInfos.Insert( 0, 1 );
-					BuffedPlayerInfos[0].BuffedPawn = OtherPawn;
-				}
-			}
-		}
-	}
-}
-
-/**
- * @brief removes temporary buffs
- */
-function ResetPlayerBuffs()
-{
-	local int i;
-
-	for( i = 0; i < BuffedPlayerInfos.Length; i++ )
-	{
-		if( IsSafeguardActive() )
-		{
-			BuffedPlayerInfos[i].BuffedPawn.SetSupportSafeguardBuff( false );
-		}
-
-		if( IsBarrageActive() )
-		{
-			BuffedPlayerInfos[i].BuffedPawn.SetSupportBarrageBuff( false );
-		}
+		return GetSkillValue( PerkSkills[ESupportTightChoke] );
 	}
 
-	BuffedPlayerInfos.Remove( 0, BuffedPlayerInfos.Length );
+	return super.GetTightChokeModifier();
 }
 
 /**
  * @brief skills and weapons can modify the stumbling power
- * @return stumpling power modifier
+ * @return stumbling power modifier
  */
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
-	if( IsWeaponOnPerk( GetOwnerWeapon() ) && IsBombardActive() )
+	if( IsWeaponOnPerk( GetOwnerWeapon() ) && IsConcussionRoundsActive() )
 	{
-		return 1.f + GetSkillValue( PerkSkills[ESupportBombard] );
+		return 1.f + GetSkillValue( PerkSkills[ESupportConcussionRounds] );
 	}
 
 	return 1.f;
@@ -418,25 +364,30 @@ simulated function Interact( KFPawn_Human KFPH )
 		}
 
 		// resupply 1 mag for every 5 initial mags
-		MagCount = Max( KFW.InitialSpareMags[0] / 3, 1 );
-		`QALog( "Supply Ammo Primary" @ MagCount * KFW.MagazineCapacity[0], bLogPerk );
-		bReceivedAmmo = bReceivedAmmo ? true : (KFW.AddAmmo( MagCount * KFW.MagazineCapacity[0] ) > 0 );
+		MagCount = Max( KFW.InitialSpareMags[0] / 1.5, 1 ); // 3, 1
+		`QALog( "Supply Ammo Primary Weapon " @ KFW @ MagCount * KFW.MagazineCapacity[0], bLogPerk );
+		bReceivedAmmo = (KFW.AddAmmo( MagCount * KFW.MagazineCapacity[0] ) > 0 ) ? true : bReceivedAmmo;
 
         if( KFW.CanRefillSecondaryAmmo() )
         {
         	// resupply 1 mag for every 5 initial mags
-        	`QALog( "Supply Ammo Secondary" @ Max( KFW.InitialSpareMags[1] / 3, 1 ), bLogPerk );
-        	bReceivedAmmo = bReceivedAmmo ? true : (KFW.AddSecondaryAmmo( Max( KFW.InitialSpareMags[1] / 3, 1 ) ) > 0);
+        	`QALog( "Supply Ammo Secondary Weapon" @ KFW @ Max( KFW.InitialSpareMags[1] / 3, 1 ), bLogPerk );
+        	bReceivedAmmo = (KFW.AddSecondaryAmmo( Max( KFW.InitialSpareMags[1] / 3, 1 ) ) > 0) ? true : bReceivedAmmo;
         }
 	}
 	
+	if( IsResupplyActive() )
+	{
+		KFPH.AddArmor( KFPH.MaxArmor * GetSkillValue( PerkSkills[ESupportResupply] ) );
+	}
+
 	if( bReceivedAmmo ) 
 	{
 		if( Role == ROLE_Authority )
 		{
 			KFPC = KFPlayerController(KFPH.Controller);
 			OwnerPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_GaveAmmoTo, KFPC.PlayerReplicationInfo );
-			KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_ReceivedAmmoFrom, OwnerPC.PlayerReplicationInfo );
+			KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', IsResupplyActive() ? GMT_ReceivedAmmoAndArmor : GMT_ReceivedAmmoFrom, OwnerPC.PlayerReplicationInfo );
 
 			UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
 			OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
@@ -461,30 +412,36 @@ simulated function bool CanInteract( KFPawn_HUman MyKFPH )
 	return IsSupplierActive() && SuppliedPawnList.Find( MyKFPH ) == INDEX_NONE;
 }
 
+simulated static function AKEvent GetReceivedAmmoSound()
+{
+	return default.ReceivedAmmoSound;
+}
+
+simulated static function AKEvent GetReceivedAmmoAndArmorSound()
+{
+	return default.ReceivedAmmoAndArmorSound;
+}
+
 /**
- * @brief Do we need to tick the perk?
+ * @brief Skills can modify the zed time time delation
  *
- * @return true if perk needs to be ticked
+ * @param StateName used weapon's state
+ * @return time dilation modifier
  */
-simulated function bool PerkNeedsTick()
+simulated function float GetZedTimeModifier( KFWeapon W )
 {
-	return IsRegenerationActive();
-}
+	local name StateName;
+	StateName = W.GetStateName();
 
-/**
- * @brief script tick (server)
-  *
- * @param DeltaTime time since the last tick
- */
-event Tick( float DeltaTime )
-{
-	super.Tick( DeltaTime );
-
-	if( IsRegenerationActive() )
+	if( IsWeaponOnPerk( W ) && CouldBarrageActive() && 
+		ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 	{
-		TickRegen( DeltaTime );
+		return BarrageFiringRate;
 	}
+
+	return 0.f;
 }
+
 
 /**
  * @brief Reset the perk to the defaults
@@ -500,12 +457,16 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	PassiveValues[0] = Round( (GetPassiveValue( default.WeldingProficiency, Level ) - 1) * 100) $ "%";
 	PassiveValues[1] = Round( GetPassiveValue( default.ShotgunDamage, Level ) * 100) $ "%";
 	PassiveValues[2] = Round( GetPassiveValue( default.ShotgunPenetration, Level ) * 100) $ "%";
-	PassiveValues[3] = Round( GetPassiveValue( default.GrenadeDamage, Level ) * 100) $ "%";
+	PassiveValues[3] = Round( GetPassiveValue( default.Ammo, Level ) * 100) $ "%";
+	PassiveValues[4] = "";
+	PassiveValues[5] = "";
 
-	Increments[0] = "[" @ (Int(default.WeldingProficiency.Increment * 100))  $ "% /" @ default.LevelString @ "]";
-	Increments[1] = "[" @ (Int(default.ShotgunDamage.Increment * 100))  $ "% /" @ default.LevelString @ "]";
-	Increments[2] = "[" @ (Int(default.ShotgunPenetration.Increment * 100))  $"% /" @ default.LevelString @ "]";
-	Increments[3] = "[" @ (Int(default.GrenadeDamage.Increment * 100))  $ "% /" @ default.LevelString @ "]";
+	Increments[0] = "[" @ Left( string( default.WeldingProficiency.Increment * 100 ), InStr(string(default.WeldingProficiency.Increment * 100), ".") + 2 )	$ "% /" @ default.LevelString @ "]";
+	Increments[1] = "[" @ Left( string( default.ShotgunDamage.Increment * 100 ), InStr(string(default.ShotgunDamage.Increment * 100), ".") + 2 )			$ "% /" @ default.LevelString @ "]";
+	Increments[2] = "[" @ Left( string( default.ShotgunPenetration.Increment * 100 ), InStr(string(default.ShotgunPenetration.Increment * 100), ".") + 2 )	$ "% /" @ default.LevelString @ "]";
+	Increments[3] = "[" @ Left( string( default.Ammo.Increment * 100 ), InStr(string(default.Ammo.Increment * 100), ".") + 2 )								$ "% /" @ default.LevelString @ "]";
+	Increments[4] = "";
+	Increments[5] = "";
 }
 
 /*********************************************************************************************
@@ -518,7 +479,7 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
  */
 simulated function bool IsSupplierActive()
 {
-	return PerkSkills[ESupportSupplier].bActive;
+	return true;
 }
 
 /**
@@ -526,9 +487,14 @@ simulated function bool IsSupplierActive()
  *
  * @return true if we have the skill enabled
  */
-final private function bool IsBarrageActive()
+private function bool IsBarrageActive()
 {
 	return PerkSkills[ESupportBarrage].bActive && WorldInfo.TimeDilation < 1.f;
+}
+
+simulated private function bool CouldBarrageActive()
+{
+	return PerkSkills[ECommandoRapidFire].bActive;
 }
 
 /**
@@ -536,9 +502,9 @@ final private function bool IsBarrageActive()
  *
  * @return true if we have the skill enabled
  */
-final simulated private function bool IsAmmoActive()
+simulated private function bool IsHighCapMagsMagActive()
 {
-	return PerkSkills[ESupportAmmo].bActive;
+	return PerkSkills[ESupportHighCapMags].bActive;
 }
 
 /**
@@ -546,29 +512,39 @@ final simulated private function bool IsAmmoActive()
  *
  * @return true if we have the skill enabled
  */
-final private function bool IsFortitudeActive()
+private function bool IsFortitudeActive()
 {
 	return PerkSkills[ESupportFortitude].bActive;
 }
 
 /**
- * @brief Checks if the regeneration skill is active
+ * @brief Checks if the Salvo skill is active
  *
  * @return true if we have the skill enabled
  */
-final private function bool IsRegenerationActive()
+private function bool IsSalvoActive()
 {
-	return PerkSkills[ESupportRegeneration].bActive;
+	return PerkSkills[ESupportSalvo].bActive;
 }
 
 /**
- * @brief Checks if the bombard skill is active
+ * @brief Checks if the Armor Piercing Shot skill is active
  *
  * @return true if we have the skill enabled
  */
-final private function bool IsBombardActive()
+simulated private function bool IsAPShotActive()
 {
-	return PerkSkills[ESupportBombard].bActive;
+	return PerkSkills[ESupportAPShot].bActive;
+}
+
+/**
+ * @brief Checks if the Tight Choke skill is active
+ *
+ * @return true if we have the skill enabled
+ */
+private function bool IsTightChokeActive()
+{
+	return PerkSkills[ESupportTightChoke].bActive;
 }
 
 /**
@@ -576,41 +552,47 @@ final private function bool IsBombardActive()
  *
  * @return true/false
  */
-simulated final private function bool IsTacticalReloadActive()
+simulated private function bool IsTacticalReloadActive()
 {
 	return PerkSkills[ESupportTacticalReload].bActive;
 }
 
 /**
- * @brief Checks if the strength skill is active
+ * @brief Checks if the Concussion Rounds skill is active
  *
  * @return true/false
  */
-final private function bool IsStrengthActive()
+private function bool IsConcussionRoundsActive()
 {
-	return PerkSkills[ESupportStrength].bActive;
+	return PerkSkills[ESupportConcussionRounds].bActive;
 }
 
 /**
- * @brief Checks if the tenacity skill is active
+ * @brief Checks if the Resupply skill is active
  *
  * @return true/false
  */
-final private function bool IsTenacityActive()
+private function bool IsResupplyActive()
 {
-	return PerkSkills[ESupportTenacity].bActive;
+	return PerkSkills[ESupportResupply].bActive;
 }
 
 /**
- * @brief Checks if the safeguard skill is active
+ * @brief Checks if the Perforate skill is active
  *
  * @return true/false
  */
-final private function bool IsSafeguardActive()
+simulated private function bool IsPerforateActive()
 {
-	return PerkSkills[ESupportSafeguard].bActive;
+	return PerkSkills[ESupportPerforate].bActive && WorldInfo.TimeDilation < 1.f;
 }
 
+/**
+ * @brief Checks if we can repair doors
+ *
+ * @return true/false
+ */
+native function bool CanRepairDoors();
 
 /*********************************************************************************************
 * @name	 Logging / debug
@@ -636,13 +618,13 @@ simulated function LogPerkSkills()
 
 	if( bLogPerk )
 	{
-		`log( "PASSIVE PERKS" );
+/**		`log( "PASSIVE PERKS" );
 		`log( "-Welding Modifier:" @ (GetPassiveValue(WeldingProficiency, CurrentLevel) - 1) *100 $"%" );
 		`log( "-Shotgun Damage Modifier:" @ (GetPassiveValue(ShotgunDamage, CurrentLevel) - 1) *100 $"%" );
 		`log( "-Shotgun Penetration Modifier:" @ GetPassiveValue(default.ShotgunPenetration, CurrentLevel) );
 		`log( "-Grenade Damage Modifier:" @ GetPassiveValue(GrenadeDamage, CurrentLevel, 100.f)*100 $"%" );
 
-/**	    `log( "Skill Tree" );
+	    `log( "Skill Tree" );
 	    `log( "-Ammo:" @ PerkSkills[ESupportTacticalReload].bActive );
 		`log( "-Supplier:" @ IsSupplierActive()) ;
 		`log( "-Fortitude:" @ PerkSkills[ESupportFortitude].bActive );
@@ -668,11 +650,6 @@ simulated function PlayerDied()
 
 DefaultProperties
 {
-	RegenerationAmount=4
-	RegenerationInterval=2.5f
-
-	SafeguardRangeSQ=1000000;
-
 	ProgressStatID=`STATID_Sup_Progress
 	PerkBuildStatID=`STATID_Sup_Build
 
@@ -683,21 +660,28 @@ DefaultProperties
 	KnifeWeaponDef=class'KFWeapDef_Knife_Support'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Support'
 
-	ShotgunDamage=(Name="Shotgun Damage",Increment=0.01f,Rank=0,StartingValue=0.f,MaxValue=0.25f)
-	ShotgunPenetration=(Name="Shotgun Penetration",Increment=0.25,Rank=0,StartingValue=0.0f,MaxValue=6.25f)
-	WeldingProficiency=(Name="Welding Proficiency",Increment=0.02f,Rank=0,StartingValue=1.f,MaxValue=1.50f)
-	GrenadeDamage=(Name="Grenade Damage",Increment=0.02f,Rank=0,StartingValue=0.f,MaxValue=0.5f)
+	BarrageFiringRate=0.9f
+	ResupplyMaxSpareAmmoModifier=0.20 //0.15
 
-	PerkSkills(ESupportAmmo)=(Name="Ammo",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Ammo",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
-	PerkSkills(ESupportSupplier)=(Name="Supplier",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Supplier",Increment=0.f,Rank=0,StartingValue=1.15f,MaxValue=0.f)
-	PerkSkills(ESupportFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Fortitude",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
-	PerkSkills(ESupportRegeneration)=(Name="Regeneration",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Regeneration",Increment=0.f,Rank=0,StartingValue=0.15f,MaxValue=0.15f)
-	PerkSkills(ESupportBombard)=(Name="Bombard",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Bombard",Increment=0.f,Rank=0,StartingValue=0.6f,MaxValue=0.6f)
+	ReceivedAmmoSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Ammo'
+	ReceivedAmmoAndArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
+
+	Ammo=(Name="Ammo",Increment=0.02f,Rank=0,StartingValue=0.0,MaxValue=0.5f) //0.4
+	WeldingProficiency=(Name="Welding Proficiency",Increment=0.03f,Rank=0,StartingValue=1.f,MaxValue=1.75f) //1.5
+	ShotgunDamage=(Name="Shotgun Damage",Increment=0.01f,Rank=0,StartingValue=0.f,MaxValue=0.25f)
+	ShotgunPenetration=(Name="Shotgun Penetration",Increment=0.20,Rank=0,StartingValue=0.0f,MaxValue=5.0f) //6.25
+	Strength=(Name="Strength",Increment=1.f,Rank=0,StartingValue=0.f,MaxValue=5.f)
+
+	PerkSkills(ESupportHighCapMags)=(Name="HighCapMags",IconPath="UI_PerkTalent_TEX.support.UI_Talents_Support_HighCapacityMags",Increment=0.f,Rank=0,StartingValue=0.5,MaxValue=0.5) //0.25
 	PerkSkills(ESupportTacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_TacticalReload",Increment=0.f,Rank=0,StartingValue=0.8f,MaxValue=0.f)
-	PerkSkills(ESupportStrength)=(Name="Strength",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Strength",Increment=0.f,Rank=0,StartingValue=5.0f,MaxValue=5.0f)
-	PerkSkills(ESupportTenacity)=(Name="Tenacity",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Tenacity",Increment=0.f ,Rank=0,StartingValue=0.1f,MaxValue=0.1f)
-	PerkSkills(ESupportSafeguard)=(Name="Safeguard",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Safeguard",Increment=0.f,Rank=0,StartingValue=0.05f,MaxValue=0.05f)
-	PerkSkills(ESupportBarrage)=(Name="Barrage",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Barrage",Increment=0.f,Rank=0,StartingValue=0.15f,MaxValue=0.15f)
+	PerkSkills(ESupportFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Fortitude",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
+	PerkSkills(ESupportSalvo)=(Name="Salvo",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Salvo",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
+	PerkSkills(ESupportAPShot)=(Name="APShot",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_ArmorPiercing",Increment=0.f,Rank=0,StartingValue=4.f,MaxValue=4.f) //3
+	PerkSkills(ESupportTightChoke)=(Name="TightChoke",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_TightChoke",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f) //0.7
+	PerkSkills(ESupportResupply)=(Name="Resupply",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_ResupplyPack",Increment=0.f ,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
+	PerkSkills(ESupportConcussionRounds)=(Name="ConcussionRounds",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_ConcussionRounds",Increment=0.f,Rank=0,StartingValue=1.5f,MaxValue=1.5f)
+	PerkSkills(ESupportPerforate)=(Name="Perforate",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Penetrator",Increment=0.f,Rank=0,StartingValue=40.f,MaxValue=40.f)
+	PerkSkills(ESupportBarrage)=(Name="Barrage",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Barrage",Increment=0.f,Rank=0,StartingValue=5.f,MaxValue=5.f)
 
 	SecondaryXPModifier[0]=6
 	SecondaryXPModifier[1]=8
@@ -707,4 +691,9 @@ DefaultProperties
     // Skill tracking
 	HitAccuracyHandicap=-6.0
 	HeadshotAccuracyHandicap=-3.0
+	AutoBuyLoadOutPath=(class'KFWeapDef_MB500', class'KFWeapDef_DoubleBarrel', class'KFWeapDef_M4', class'KFWeapDef_AA12')
+
+	ZedTimeModifyingStates(0)="WeaponFiring"
+   	ZedTimeModifyingStates(1)="WeaponBurstFiring"
+   	ZedTimeModifyingStates(2)="WeaponSingleFiring"
 }

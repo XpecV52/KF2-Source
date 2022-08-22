@@ -10,5 +10,5 @@ class KFSM_Evade_Fear extends KFSM_Evade;
 defaultproperties
 {
     EvadeAnims=/* Array type was not detected. */
-    Handle=SM_Evade_Fear
+    Handle=KFSM_Evade_Fear
 }

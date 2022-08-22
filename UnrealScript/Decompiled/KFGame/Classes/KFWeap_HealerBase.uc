@@ -17,8 +17,6 @@ const HealTeamAnim = 'Heal_Team';
 const HealTeamReloadAnim = 'Heal_Team_Reload';
 const QuickHealAnim = 'Heal_Quick';
 
-/** Cost of healing per fire mode */
-var() array<int> AmmoCost;
 /** How many points of heal ammo to recharge per second */
 var() float HealSelfRechargeSeconds;
 /** How many points of heal ammo to recharge per second when healing ourselves */
@@ -124,17 +122,7 @@ simulated function bool HasAnyAmmo()
     return true;
 }
 
-simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
-{
-    Amount = 1;
-    if((FireModeNum == 0) || FireModeNum == 1)
-    {
-        Amount *= float(AmmoCost[FireModeNum]);
-    }
-    return super.HasAmmo(FireModeNum, Amount);
-}
-
-simulated function PerformReload()
+simulated function PerformReload(optional byte FireModeNum)
 {
     local KFPerk InstigatorPerk;
 
@@ -165,21 +153,7 @@ function HealAmmoRegeneration(float DeltaTime)
     }
 }
 
-simulated function bool CanReload()
-{
-    return false;
-}
-
-simulated function ConsumeAmmo(byte FireModeNum)
-{
-    if(Role == ROLE_Authority)
-    {
-        if((MagazineCapacity[0] > 0) && AmmoCount[0] > 0)
-        {
-            AmmoCount[0] = byte(Max(AmmoCount[0] - AmmoCost[FireModeNum], 0));
-        }
-    }
-}
+simulated function bool CanReload(optional byte FireModeNum);
 
 simulated function AltFireMode()
 {
@@ -251,24 +225,9 @@ simulated function StartFire(byte FireModeNum)
 
 simulated function bool IsValidHealingTarget(Pawn Healee)
 {
-    local KFPawn_Human HumanHealee;
-    local KFPerk InstigatorPerk;
-
-    HumanHealee = KFPawn_Human(Healee);
-    if(HumanHealee != none)
+    if(Healee != none)
     {
-        InstigatorPerk = KFPawn_Human(Instigator).GetPerk();
-        if(InstigatorPerk != none)
-        {
-            return ((Healee.Health < Healee.HealthMax) || (HumanHealee.Armor < HumanHealee.MaxArmor) && InstigatorPerk.CanRepairArmor()) && Healee.IsAliveAndWell();
-        }        
-    }
-    else
-    {
-        if(Healee != none)
-        {
-            return (Healee.Health < Healee.HealthMax) && Healee.IsAliveAndWell();
-        }
+        return (Healee.Health < Healee.HealthMax) && Healee.IsAliveAndWell();
     }
     return false;
 }
@@ -379,7 +338,7 @@ simulated function UpdateInteractionMessage()
         if((Instigator.Health <= InstigatorKFPC.LowHealthThreshold) && AmmoCount[0] >= AmmoCost[1])
         {
             bIsQuickHealMessageShowing = true;
-            InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 8);
+            InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 9);
         }
     }
 }
@@ -496,7 +455,7 @@ simulated state WeaponHealing extends WeaponSingleFiring
 {
     simulated function byte GetWeaponStateId()
     {
-        return 28;
+        return 27;
     }
 
     simulated event BeginState(name PreviousStateName)
@@ -541,7 +500,7 @@ simulated state WeaponQuickHeal extends WeaponHealing
 {
     simulated function byte GetWeaponStateId()
     {
-        return 29;
+        return 28;
     }
 
     simulated event BeginState(name PreviousStateName)
@@ -593,8 +552,6 @@ simulated state WeaponQuickHeal extends WeaponHealing
 
 defaultproperties
 {
-    AmmoCost(0)=100
-    AmmoCost(1)=100
     HealSelfRechargeSeconds=15
     HealOtherRechargeSeconds=7.5
     RechargeCompleteSound=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_Charged'
@@ -611,6 +568,8 @@ defaultproperties
     bInfiniteSpareAmmo=true
     bAllowClientAmmoTracking=false
     GroupPriority=6
+    AmmoCost(0)=100
+    AmmoCost(1)=100
     FireTweenTime=0.3
     WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_3P_Fire_Single',FirstPersonCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_1P_Fire_Single')
     WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_3P_Fire_Single',FirstPersonCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_1P_Fire_Single')

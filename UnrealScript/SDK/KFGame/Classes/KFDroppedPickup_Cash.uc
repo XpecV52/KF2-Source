@@ -27,6 +27,7 @@ function GiveTo( Pawn P )
 		if( KFPRI != none && KFPRI != TosserPRI && KFPH != none )
 		{
 			KFPH.UpdateDoshCaught( CashAmount, TosserPRI );
+			AddDoshForBenefector( TosserPRI );
 		}
 
 		if( KFPRI != none )
@@ -37,8 +38,6 @@ function GiveTo( Pawn P )
 
 		bForceNetUpdate = true;
 		P.PlaySoundBase(PickUpSound);
-
-		AddDoshForBenefector( TosserPRI );
 	}
 
 	PickedUpBy(P);
@@ -76,8 +75,33 @@ event Destroyed()
 	Inventory = none;
 }
 
+/*********************************************************************************************
+ * State Pickup
+ * Pickup is active
+ *********************************************************************************************/
+
+auto state Pickup
+{
+	/** Allow instigator to pick up dosh thrown at feet */
+	event OnSleepRBPhysics()
+	{
+		local Pawn P;
+
+		Global.OnSleepRBPhysics();
+
+		foreach TouchingActors(class'Pawn', P)
+		{
+			if ( P == Instigator )
+			{
+				Touch( P, None, Location, vect(0,0,1) );
+			}
+		}
+	}
+}
+
 DefaultProperties
 {
 	LifeSpan=120
+	bUseLowHealthDelay=FALSE
 	PickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Dosh'
 }

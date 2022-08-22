@@ -89,7 +89,7 @@ function PlayThawAnimation()
 		KFPOwner.SetTimer( 0.1f, true, nameof(UpdateFreezeOutParam), self );
 		// Match the material param blend time to the animation length
 		FreezeOutTime = PawnOwner.Mesh.GetAnimLength(ThawAnims[ThawIndex]);
-	}	
+	}
 }
 
 /* Play the wakeup animation for all clients */

@@ -166,7 +166,7 @@ function ApproveServerBroswerLeave()
 
 function HandleCloseRequest()
 {
-	if(OnlineLobby.IsInLobby())
+	if(OnlineLobby.IsInLobby() && !class'WorldInfo'.static.IsConsoleBuild())
 	{
 		Manager.OpenPopup(EConfirmation, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, LeaveMenuString,
 		 MultiplayerMenuString, Class'KFCommon_LocalizedStrings'.default.CancelString, GoToMultiplayerMenu, CancelLeaveMenu,
@@ -228,7 +228,7 @@ function Callback_FilterChanged(int FilterKey, bool Selected)
 
 function Callback_SortList(int ButtonIndex, int SortOrder)
 {
-	ServerListContainer.SortServerResultsRequest(ButtonIndex, SortOrder);
+	ServerListContainer.SortServerResultsRequest(ButtonIndex+1, SortOrder);
 }
 
 //filters from drop downs
@@ -287,14 +287,14 @@ function CallBack_SearchTabChanged(int TabIndex)
 		break;
 
 	}
-	if (ApplyFilters)
+	/*if (ApplyFilters)
 	{
-		LogInternal("Enable filter button here");
+		`log("Enable filter button here");
 	}
 	else
 	{
-		LogInternal("Disable filter button here");
-	}
+		`log("Disable filter button here");
+	}*/
 }
 
 function CallBack_ServerFavorited(bool bFavorite)
@@ -421,9 +421,23 @@ function Callback_ResetFilters()
 	FiltersContainer.ResetFilters();
 }
 
+function OneSecondLoop()
+{
+	local KFOnlineGameSearch LatestGameSearch;
+
+	LatestGameSearch = KFOnlineGameSearch(ServerListContainer.SearchDataStore.GetActiveGameSearch());
+	if(LatestGameSearch == none)
+	{
+		return;
+	}
+	if ( LatestGameSearch.SortIfChanged() )
+	{
+		ServerListContainer.UpdateListDataProvider();
+	}
+}
+
 defaultproperties
 {
-   bLogServerBrowser=True
    FavoriteString="FAVORITE"
    NameString="NAME"
    RefreshString="REFRESH"

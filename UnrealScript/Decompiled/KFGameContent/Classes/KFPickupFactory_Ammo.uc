@@ -40,7 +40,7 @@ function GiveTo(Pawn P)
             {
                 WorldInfo.LogGameBalance((((string('Pickup') $ ",") $ P.PlayerReplicationInfo.PlayerName) $ ",") $ "Ammo");
             }
-            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
             {
                 WorldInfo.TWLogEvent("pickup", P.PlayerReplicationInfo, "ammo");
             }

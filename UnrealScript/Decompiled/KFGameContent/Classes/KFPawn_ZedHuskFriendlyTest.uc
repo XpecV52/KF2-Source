@@ -23,8 +23,6 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     }
 }
 
-function ANIMNOTIFY_BurnTargets();
-
 defaultproperties
 {
     ExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedHuskFriendlyTest.ExploTemplate0'

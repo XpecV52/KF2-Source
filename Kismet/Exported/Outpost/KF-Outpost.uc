@@ -11719,7 +11719,7 @@ End Object
 Begin Object Class=SeqEvent_PlayerSpawned Name=SeqEvent_PlayerSpawned_0
    MaxTriggerCount=0
    MaxWidth=156
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6',InputLinkIdx=1)),DrawY=546,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6',InputLinkIdx=1),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_4')),DrawY=546,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-1760,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-1690,OverrideDelta=96)
    ObjInstanceVersion=1
@@ -11733,17 +11733,17 @@ Begin Object Class=SeqEvent_PlayerSpawned Name=SeqEvent_PlayerSpawned_0
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
-   InputLinks(0)=(DrawY=413,OverrideDelta=14)
-   InputLinks(1)=(DrawY=434,ActivateDelay=20.000000,OverrideDelta=35)
-   InputLinks(2)=(DrawY=455,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=434,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30'),DrawX=-1370,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-1319,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-1270,OverrideDelta=119)
+   InputLinks(0)=(DrawY=1517,OverrideDelta=14)
+   InputLinks(1)=(DrawY=1538,OverrideDelta=35)
+   InputLinks(2)=(DrawY=1559,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=1538,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30'),DrawX=-498,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-447,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-398,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1408
-   ObjPosY=376
+   ObjPosX=-536
+   ObjPosY=1480
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_4"
@@ -11766,8 +11766,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
    ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_9'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1536
-   ObjPosY=792
+   ObjPosX=-688
+   ObjPosY=1664
    ObjComment="Helipad Spawns"
    DrawWidth=32
    DrawHeight=32
@@ -11779,8 +11779,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
    ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_7'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1464
-   ObjPosY=816
+   ObjPosX=-616
+   ObjPosY=1688
    ObjComment="Helipad Spawns"
    DrawWidth=32
    DrawHeight=32
@@ -11792,8 +11792,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
    ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_11'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1392
-   ObjPosY=840
+   ObjPosX=-544
+   ObjPosY=1712
    ObjComment="Helipad Spawns"
    DrawWidth=32
    DrawHeight=32
@@ -11805,8 +11805,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
    ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_10'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1280
-   ObjPosY=776
+   ObjPosX=-432
+   ObjPosY=1648
    ObjComment="Helipad Spawns"
    DrawWidth=32
    DrawHeight=32
@@ -11818,8 +11818,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
    ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_8'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1192
-   ObjPosY=800
+   ObjPosX=-344
+   ObjPosY=1672
    ObjComment="Helipad Spawns"
    DrawWidth=32
    DrawHeight=32
@@ -11831,25 +11831,13 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
    ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1104
-   ObjPosY=832
+   ObjPosX=-256
+   ObjPosY=1704
    ObjComment="Helipad Spawns"
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_30"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_10
-   SizeX=680
-   SizeY=184
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1584
-   ObjPosY=752
-   ObjComment="Helipad Spawns"
-   Name="SequenceFrameWrapped_10"
-   ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
@@ -12141,4 +12129,266 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
    DrawHeight=32
    Name="SeqVar_Object_32"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_18
+   InputLinks(0)=(DrawY=1173,OverrideDelta=14)
+   InputLinks(1)=(DrawY=1194,OverrideDelta=35)
+   InputLinks(2)=(DrawY=1215,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=1194,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_116',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_117',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_118',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_119',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_120',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_121'),DrawX=-490,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-439,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-390,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-528
+   ObjPosY=1136
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_18"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_116
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_71'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-624
+   ObjPosY=1296
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_116"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_117
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_72'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-528
+   ObjPosY=1296
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_117"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_118
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_69'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-424
+   ObjPosY=1296
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_118"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_119
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_73'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-608
+   ObjPosY=1384
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_119"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_120
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_74'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-504
+   ObjPosY=1384
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_120"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_121
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_70'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-408
+   ObjPosY=1384
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_121"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_1
+   EventName="SpawnsOff"
+   MaxWidth=188
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_18',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_19',InputLinkIdx=1)),DrawY=1306,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-1178,OverrideDelta=62)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1272
+   ObjPosY=1240
+   ObjComment="SpawnsOFF"
+   DrawWidth=114
+   DrawHeight=128
+   Name="SeqEvent_RemoteEvent_1"
+   ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
+End Object
+
+Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_4
+   EventName="SpawnsOff"
+   InputLinks(0)=(DrawY=370,ActivateDelay=20.000000,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=370,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-1252,OverrideDelta=92)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1376
+   ObjPosY=336
+   ObjComment="SpawnsOFF"
+   DrawWidth=249
+   DrawHeight=61
+   Name="SeqAct_ActivateRemoteEvent_4"
+   ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_19
+   InputLinks(0)=(DrawY=2013,OverrideDelta=14)
+   InputLinks(1)=(DrawY=2034,OverrideDelta=35)
+   InputLinks(2)=(DrawY=2055,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=2034,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_122',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_123',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_124',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_125',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_126',SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_127'),DrawX=-490,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-439,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-390,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-528
+   ObjPosY=1976
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_19"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_122
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_76'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-616
+   ObjPosY=2152
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_122"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_123
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_77'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-520
+   ObjPosY=2152
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_123"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_124
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_75'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-416
+   ObjPosY=2152
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_124"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_125
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_78'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-624
+   ObjPosY=2216
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_125"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_126
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_79'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-520
+   ObjPosY=2216
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_126"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_127
+   ObjValue=KFPlayerStart'KF-Outpost.TheWorld:PersistentLevel.KFPlayerStart_80'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-424
+   ObjPosY=2216
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_127"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_3
+   MaxTriggerCount=0
+   MaxWidth=136
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_3')),DrawY=1549,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=1570,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_3')),DrawY=1591,OverrideDelta=56)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1832
+   ObjPosY=1480
+   DrawWidth=137
+   Name="SeqEvent_LevelLoaded_3"
+   ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_3
+   LinkCount=3
+   IncrementAmount=0
+   InputLinks(0)=(DrawY=1650,OverrideDelta=19)
+   InputLinks(1)=(DrawY=1682,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_18')),DrawY=1645,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),LinkDesc="Link 2",DrawY=1666,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_19')),LinkDesc="Link 3",DrawY=1687,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1292,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1336
+   ObjPosY=1608
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_3"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_3
+   EventName="SpawnsOff"
+   InputLinks(0)=(DrawY=1466,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_3')),ActivateDelay=1.000000,DrawY=1466,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-1316,OverrideDelta=92)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1440
+   ObjPosY=1432
+   ObjComment="SpawnsOFF"
+   DrawWidth=249
+   DrawHeight=61
+   Name="SeqAct_ActivateRemoteEvent_3"
+   ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object

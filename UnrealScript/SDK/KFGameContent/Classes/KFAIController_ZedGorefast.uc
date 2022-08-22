@@ -18,12 +18,7 @@ var bool	bExecutedSprint;
 /** Timer function called during latent moves that determines whether NPC should sprint or stop sprinting */
 function bool ShouldSprint()
 {
-	return ( MyKFPawn.bIsSprinting );
-// 	Only sprints when in radius and line of sight of character.
-// 		When GF loses sight of target he stops sprinting.
-// 		If the target gets outside of the radius the GF will stop sprinting.
-// 		When in headless the GF should not stay sprinting. This is a bug
-	if( Enemy != none && MyKFPawn != none && !MyKFPawn.IsImpaired() && (bExecutedSprint ||
+	if( Enemy != none && MyKFPawn != none && MyKFPawn.IsCombatCapable() && (bExecutedSprint ||
 		MyKFPawn.Health < MyKFPawn.HealthMax || (VSizeSq(Enemy.Location - Pawn.Location) <= (SprintWithinEnemyRange.Y * SprintWithinEnemyRange.Y))) )
 	{
 		bExecutedSprint = true;
@@ -35,10 +30,18 @@ function bool ShouldSprint()
 	}
 }
 
+/** Called from KFPawn_Monster::SetSprinting() */
+function bool CanSetSprinting( bool bNewSprintStatus )
+{
+	return bExecutedSprint;
+}
+
+/** Turn off sprinting if we've lost sight of our enemy */
 event EnemyNotVisible()
 {
 	if( MyKFPawn.bIsSprinting && !bForceFrustration && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold )  // don't stop sprinting if we're in frustration mode
 	{
+		bExecutedSprint = false;
 		MyKFPawn.SetSprinting( false );
 	}
 	bEnemyIsVisible = false;
@@ -46,24 +49,12 @@ event EnemyNotVisible()
 	EnableSeePlayer();
 }
 
-// event SeePlayer( Pawn Seen )
-// {
-// 	if ( Enemy == Seen )
-// 	{
-// 		CachedVisibleEnemy = Enemy;
-// 		EnemyVisibilityTime = WorldInfo.TimeSeconds;
-// 		bEnemyIsVisible = true;
-// 		EnableEnemyNotVisible();
-// 	}
-// }
-
-/**
- * Update sprint settings based on Frustration
- */
+/** Update sprint settings based on Frustration */
 function UpdateSprintFrustration( optional byte bForceFrustrationState=255 )
 {
 	if( bForceFrustration )
 	{
+		bExecutedSprint = true;
 		bCanSprint = true;
 	}
 }
@@ -78,84 +69,6 @@ function bool IsFrustrated()
 	return false;
 }
 
-/** Test code, mirrors KF1 Gorefast sprint decisions (also done in Tick) */
-simulated function Tick( float DeltaTime )
-{
-	super.Tick( DeltaTime );
-
-	if( bForceFrustration )
-	{
-		return;
-	}
-
-	// @todo: why is this sprint code gorefast specific?
-	if( MyKFPawn != none && !bHasDebugCommand && (LastSprintChangeTime == 0.f || `TimeSince(LastSprintChangeTime) > 1.f) )
-	{
-		if( !MyKFPawn.bIsHeadless && !MyKFPawn.bEmpPanicked && Enemy != none && bEnemyIsVisible && !MyKFPawn.bIsSprinting &&
-            ((MyKFPawn.Health < MyKFPawn.HealthMax) ||	(VSizeSq(Enemy.Location - Pawn.Location) <= (SprintWithinEnemyRange.Y * SprintWithinEnemyRange.Y))) )
-		{
-			bExecutedSprint = true;
-			MyKFPawn.SetSprinting( true );
-			LastSprintChangeTime = WorldInfo.TimeSeconds;
-		}
-
-		if( MyKFPawn.bIsSprinting && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold && (Enemy == none || !bEnemyIsVisible) )  // don't stop sprinting if we're in frustration mode
-		{
-			MyKFPawn.SetSprinting( false );
-			LastSprintChangeTime = WorldInfo.TimeSeconds;
-		}
-	}
-}
-
-/*********************************************************************************************
-* Sight/Hearing/Bump events
-********************************************************************************************* */
-
-event HearNoise( float Loudness, Actor NoiseMaker, optional Name NoiseType )
-{
-	/*  @todo check if this is desired
-	local KFWeapon WeaponNoiseMaker;
-	local KFPawn NoiseMakerPawn;
-	local float DistFromNoiseMaker, DistFromEnemy;
-
-	WeaponNoiseMaker = KFWeapon( NoiseMaker );
-
-	if( !MyKFPawn.IsDoingSpecialMove() && (NoiseType == 'PlayerFiring' || NoiseType == 'PlayerReload') )
-	{
-		DisableHearNoise();
-
-		`AILog( self$" HearNoise event, Loudness: "$Loudness$" NoiseMaker: "$NoiseMaker$" Type: "$NoiseType$" Dist: "$VSize( NoiseMaker.Location - Pawn.Location )$"... Disabling HearNoise", 'HearNoise' );
-		if( WeaponNoiseMaker != none )
-		{
-			NoiseMakerPawn = KFPawn(WeaponNoiseMaker.Instigator);
-
-			if( NoiseMakerPawn != none && Enemy != none )
-			{
-				if( Enemy == NoiseMakerPawn )
-				{
-					return;
-				}
-
-				DistFromNoiseMaker = VSize( NoiseMakerPawn.Location - Pawn.Location );
-				DistFromEnemy = VSize( Enemy.Location - Pawn.Location );
-
-				if( DistFromEnemy > 512.f && (DistFromEnemy > DistFromNoiseMaker) && FRand() < 0.8f )
-				{
-					Enemy = NoiseMakerPawn;
-					return;
-				}
-
-				if( FRand() < 0.45f && Enemy.Health > KFPawn(Enemy).HealthMax * 0.5f && ActorReachable(NoiseMakerPawn) )
-				{
-					Enemy = NoiseMakerPawn;
-					return;
-				}
-			}
-		}
-	}
-	*/
-}
-
 DefaultProperties
 {
 	// ---------------------------------------------
@@ -164,6 +77,8 @@ DefaultProperties
 	DefaultCommandClass=class'AICommand_Base_Zed'
 	SprintWithinEnemyRange=(X=0,Y=800.f)
 	EvadeGrenadeChance=0.75f
+	bEvadeOnRunOverWarning=true
+	RunOverEvadeDelayScale=0.5f
 
 	// ---------------------------------------------
 	// Combat
@@ -171,5 +86,45 @@ DefaultProperties
 	StrikeRangePercentage=0.75f
 	MaxMeleeHeightAngle=0.68f
 	LowIntensityAttackCooldown=3.0
-}
 
+    // ---------------------------------------------
+	// Danger Evasion Settings
+	DangerEvadeSettings.Empty
+
+	//Grenades
+	DangerEvadeSettings(2)={(ClassName="KFProj_FragGrenade",
+								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
+								EvadeChances=(0.0, 0.2, 0.5, 0.8),
+								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
+								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
+								SoloChanceMultiplier=1.0)}	
+	DangerEvadeSettings(3)={(ClassName="KFProj_MolotovGrenade",
+								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
+								EvadeChances=(0.0, 0.2, 0.5, 0.8),
+								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
+								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
+								SoloChanceMultiplier=1.0)}	
+	DangerEvadeSettings(4)={(ClassName="KFProj_DynamiteGrenade",
+								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
+								EvadeChances=(0.0, 0.2, 0.5, 0.8),
+								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
+								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
+								SoloChanceMultiplier=1.0)}	
+	DangerEvadeSettings(5)={(ClassName="KFProj_NailBombGrenade",
+								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
+								EvadeChances=(0.0, 0.2, 0.5, 0.8),
+								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
+								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
+								SoloChanceMultiplier=1.0)}	
+	DangerEvadeSettings(6)={(ClassName="KFProj_HEGrenade",
+								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
+								EvadeChances=(0.0, 0.2, 0.5, 0.8),
+								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
+								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},	
+								SoloChanceMultiplier=1.0)}
+	DangerEvadeSettings(7)={(ClassName="KFWeap_Beam_Microwave",
+							    Cooldowns=(3.0, 3.0, 2.5,  1.5), // Normal, Hard, Suicidal, HoE
+								EvadeChances=(0.0, 0.3, 0.5, 0.8),
+								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.00))},
+								SoloChanceMultiplier=1.0)}
+}

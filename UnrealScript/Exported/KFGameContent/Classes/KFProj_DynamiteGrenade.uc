@@ -71,35 +71,37 @@ simulated protected function PrepareExplosionTemplate()
     local KFPlayerController KFPC;
     local KFPerk InstigatorPerk;
 
-    if( WorldInfo.TimeDilation < 1.f && Instigator != none )
+    if( Instigator != none )
     {
-        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
-        if( InstigatorPRI != none )
-        {
-            if( InstigatorPRI.bNukeActive && class'KFPerk_Demolitionist'.static.ProjectileShouldNuke( self ) )
-            {
-                ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
-                ExplosionTemplate.Damage = default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
-                ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
-                ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;        
-            }
-            else if( InstigatorPRI.bConcussiveActive && AltExploEffects != none )
-            {
-                ExplosionTemplate.ExplosionEffects = AltExploEffects;
-                ExplosionTemplate.ExplosionSound = class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
-            }
-        }
-    }
+	    if( bWasTimeDilated )
+	    {
+	        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+	        if( InstigatorPRI != none )
+	        {
+	            if( InstigatorPRI.bNukeActive && class'KFPerk_Demolitionist'.static.ProjectileShouldNuke( self ) )
+	            {
+	                ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
+	                ExplosionTemplate.Damage = default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
+	                ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
+	                ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;        
+	            }
+	            else if( InstigatorPRI.bConcussiveActive && AltExploEffects != none )
+	            {
+	                ExplosionTemplate.ExplosionEffects = AltExploEffects;
+	                ExplosionTemplate.ExplosionSound = class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
+	            }
+	        }
+	    }
 
-    KFPC = KFPlayerController(Instigator.Controller);
-    // Change the radius and damage based on the perk
-    if( Instigator.Role == ROLE_Authority && KFPC != none )
-    {
-        InstigatorPerk = KFPC.GetPerk();
-        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
-        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
-    }
-
+	    KFPC = KFPlayerController(Instigator.Controller);
+	    // Change the radius and damage based on the perk
+	    if( Instigator.Role == ROLE_Authority && KFPC != none )
+	    {
+	        InstigatorPerk = KFPC.GetPerk();
+	        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
+	        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+	    }
+	}
 
     super.PrepareExplosionTemplate();
 }
@@ -148,6 +150,7 @@ defaultproperties
    DampenFactorParallel=0.300000
    LandedTranslationOffset=(X=-8.000000,Y=0.000000,Z=0.000000)
    WeaponSelectTexture=Texture2D'wep_ui_dynamite_tex.UI_WeaponSelect_Dynamite'
+   bWarnAIWhenFired=True
    GlassShatterType=FMGS_ShatterNone
    TossZ=400.000000
    ExplosionActorClass=Class'KFGame.KFExplosionActor'

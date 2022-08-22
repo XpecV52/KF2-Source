@@ -9,9 +9,6 @@ class KFPawn_ZedBloat_Versus extends KFPawn_ZedBloat
     config(Game)
     hidecategories(Navigation);
 
-var class<KFProjectile> PukeMineProjectileClass;
-var array<Rotator> DeathPukeMineRotations;
-
 simulated function ANIMNOTIFY_PukeMineAttack()
 {
     local Vector SpawnLocation;
@@ -24,61 +21,8 @@ simulated function ANIMNOTIFY_PukeMineAttack()
     }
 }
 
-function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLocation)
-{
-    local int I;
-
-    if(!HitFxInfo.bObliterated)
-    {
-        I = 0;
-        J0x2D:
-
-        if(I < DeathPukeMineRotations.Length)
-        {
-            SpawnPukeMine(Location, Normalize(Rotation + DeathPukeMineRotations[I]));
-            ++ I;
-            goto J0x2D;
-        }
-    }
-    return super(KFPawn_Monster).Died(Killer, DamageType, HitLocation);
-}
-
-function SpawnPukeMine(Vector SpawnLocation, Rotator SpawnRotation)
-{
-    local KFProjectile PukeMine;
-
-    PukeMine = Spawn(PukeMineProjectileClass, self,, SpawnLocation, SpawnRotation,, true);
-    PukeMine.Init(vector(SpawnRotation));
-}
-
 defaultproperties
 {
-    PukeMineProjectileClass=Class'KFProj_BloatPukeMine'
-    DeathPukeMineRotations(0)=
-/* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    DeathPukeMineRotations(1)=
-/* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    DeathPukeMineRotations(2)=
-/* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     VomitDamage=20
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=60,Z=60),OffsetMid=(X=-160,Y=50,Z=10),OffsetLow=(X=-220,Y=100,Z=50))
@@ -90,9 +34,9 @@ Parameter name: index
     DoshValue=25
     XPValues=40
     DamageTypeModifiers=/* Array type was not detected. */
-    BlockingDamageModifier=0.3
-    MeleeBlockingDamageModifier=0.3
+    MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
+    MinBlockFOV=0
     LocalizationKey=KFPawn_ZedBloat
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

@@ -10,6 +10,9 @@
 class KFThirdPersonCamera extends GameThirdPersonCamera
 	config(Camera);
 
+var bool bInvertY;
+
+/** Used to change view offset per zed */
 simulated function SetViewOffset( ViewOffsetData NewViewOffset, optional bool bInterpolate, optional float InterpTime )
 {
 	if( bInterpolate )
@@ -23,7 +26,24 @@ simulated function SetViewOffset( ViewOffsetData NewViewOffset, optional bool bI
 	    ThirdPersonCamDefault.BlendTime = ThirdPersonCamDefault.default.BlendTime;
 	}
 
+	if ( bInvertY )
+	{
+		NewViewOffset.OffsetHigh.Y *= -1;
+		NewViewOffset.OffsetMid.Y *= -1;
+		NewViewOffset.OffsetLow.Y *= -1;
+	}
+
     ThirdPersonCamDefault.SetViewOffset( NewViewOffset );	
+}
+
+/** Access protected member ThirdPersonCamDefault */
+simulated function InvertViewOffset(bool bNewInvertY)
+{
+	if ( bInvertY != bNewInvertY )
+	{
+		bInvertY = bNewInvertY;
+		KFThirdPersonCameraMode(ThirdPersonCamDefault).InvertViewOffset();
+	}
 }
 
 defaultproperties

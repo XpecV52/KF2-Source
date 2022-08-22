@@ -69,7 +69,7 @@ function bool ShouldSprint()
 
 function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum)
 {
-    super(Controller).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
+    super(KFAIController).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
 }
 
 defaultproperties

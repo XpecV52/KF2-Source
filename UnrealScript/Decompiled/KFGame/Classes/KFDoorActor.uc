@@ -77,6 +77,7 @@ var() KFDoorActor.EDoorMaterialType DoorMaterial;
 var(Opening) KFDoorActor.EDoorMechanism DoorMechanism;
 var KFDoorActor.EDoorFastening FastenerType;
 var repnotify transient byte HitCount;
+var byte RepairProgress;
 /** The amount of time before a door can be used again */
 var(Opening) float CoolDownTime;
 /** The time it takes to open / close a door */
@@ -96,6 +97,7 @@ var transient bool bReverseHinge;
 var transient bool bHasBeenDirtied;
 var repnotify transient bool bShouldExplode;
 var repnotify transient bool bIsDestroyed;
+var repnotify transient bool bWasRepaired;
 var bool bMonitorDoor;
 var transient float LastUsedTime;
 /** Starting health for a door */
@@ -119,11 +121,16 @@ var transient SkelControlSingleBone MovementControl;
 var transient AnimNodeSlot BashSlot;
 /** A scaler to fit a door into its proper frame. Double the frame size if we are only using one door for this actor */
 var() float FrameSizeOfTwoDoors;
+/** Particle effect spawned when a door has been fully repaired */
+var() ParticleSystem RepairFXTemplate;
+/** Repair sound event */
+var() AkEvent RepairSound;
 var NavigationPoint MyMarker;
 /** The impulse to provide the doors when they are destroyed */
 var() float BrokenDoorImpulse;
 /** The maximum angular velocity applied to a broken hinged door */
 var() float MaxAngularVelocity;
+var array<KActor> BrokenDoorPhysicsActors;
 /** sound played when the mover is interpolated forward */
 var(Sound) AkBaseSoundObject OpenSound;
 /** looping sound while opening */
@@ -146,6 +153,7 @@ var() DestroyedEffectParams DamageEmitter;
 var() array<DestroyedEffectParams> DestroyedEmitters;
 var export editinline transient array<export editinline ParticleSystemComponent> BrokenDoorParticleEffects;
 var const localized string WeldIntegrityString;
+var const localized string RepairProgressString;
 var const localized string ExplosiveString;
 
 replication
@@ -154,10 +162,13 @@ replication
         DemoWeld, Health, 
         HitCount, WeldIntegrity, 
         bIsDestroyed, bIsDoorOpen, 
-        bShouldExplode;
+        bShouldExplode, bWasRepaired;
 
      if(bNetDirty && DoorMechanism == 0)
         bReverseHinge;
+
+     if(bNetDirty && bIsDestroyed)
+        RepairProgress;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -187,25 +198,35 @@ simulated event ReplicatedEvent(name VarName)
         }
         else
         {
-            if(VarName == 'Health')
+            if(VarName == 'bWasRepaired')
             {
-                UpdateHealthMICs();
-                if(Health <= 0)
+                if(bWasRepaired)
                 {
-                    UpdateIntegrityMIC();
+                    ResetDoor(true);
                 }                
             }
             else
             {
-                if((VarName == 'WeldIntegrity') || VarName == 'bShouldExplode')
+                if(VarName == 'Health')
                 {
-                    UpdateIntegrityMIC();                    
+                    UpdateHealthMICs();
+                    if(Health <= 0)
+                    {
+                        UpdateIntegrityMIC();
+                    }                    
                 }
                 else
                 {
-                    if(VarName == 'HitCount')
+                    if((VarName == 'WeldIntegrity') || VarName == 'bShouldExplode')
                     {
-                        PlayTakeHitEffects();
+                        UpdateIntegrityMIC();                        
+                    }
+                    else
+                    {
+                        if(VarName == 'HitCount')
+                        {
+                            PlayTakeHitEffects();
+                        }
                     }
                 }
             }
@@ -600,6 +621,7 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
 {
     local KFPawn_Monster KFPM;
     local KFCharacterInfo_Monster MonsterInfo;
+    local class<KFDamageType> KFDT;
 
     if(Role < ROLE_Authority)
     {
@@ -630,19 +652,7 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
         UpdateIntegrityMIC();
         if((WeldIntegrity <= 0) || Health <= 0)
         {
-            WeldIntegrity = 0;
-            DemoWeld = 0;
-            Health = 0;
-            UpdateIntegrityMIC();
-            PlayDestroyed();
-            if((MyMarker != none) && bMonitorDoor)
-            {
-                if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-                {
-                    KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIDestroyedDoor(KFAIController(EventInstigator), self, "Health:" $ string(Health));
-                }
-                NotifyAIDoorOpened();
-            }
+            DestroyDoor(EventInstigator);
         }
         if(!bIsDestroyed)
         {
@@ -658,10 +668,39 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
     }
     else
     {
-        if(!bIsDoorOpen && class<KFDT_Ballistic>(DamageType) == none)
+        if(((!bIsDoorOpen && EventInstigator != none) && !EventInstigator.bIsPlayer) && EventInstigator.Pawn != none)
         {
-            OpenDoor(EventInstigator.Pawn);
+            KFDT = class<KFDamageType>(DamageType);
+            if((KFDT != none) && KFDT.default.bAllowAIDoorDestruction)
+            {
+                IncrementHitCount(EventInstigator.Pawn);
+                DestroyDoor(EventInstigator);                
+            }
+            else
+            {
+                if(class<KFDT_Ballistic>(DamageType) == none)
+                {
+                    OpenDoor(EventInstigator.Pawn);
+                }
+            }
         }
+    }
+}
+
+function DestroyDoor(optional Controller DestructionInstigator)
+{
+    WeldIntegrity = 0;
+    DemoWeld = 0;
+    Health = 0;
+    UpdateIntegrityMIC();
+    PlayDestroyed();
+    if((MyMarker != none) && bMonitorDoor)
+    {
+        if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
+        {
+            KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIDestroyedDoor(KFAIController(DestructionInstigator), self, "Health:" $ string(Health));
+        }
+        NotifyAIDoorOpened();
     }
 }
 
@@ -782,6 +821,35 @@ function FastenDoor(int Amount, optional KFPawn Welder)
     }
 }
 
+function RepairDoor(float Amount)
+{
+    local byte ByteAmount;
+
+    if(bIsDestroyed)
+    {
+        ByteAmount = FloatToByte(Amount);
+        if((RepairProgress + ByteAmount) >= 255)
+        {
+            ResetDoor(true);
+            if(WorldInfo.NetMode != NM_Standalone)
+            {
+                bWasRepaired = true;
+                SetTimer(0.1, false, 'Timer_ResetRepairFlag');
+            }            
+        }
+        else
+        {
+            RepairProgress += ByteAmount;
+        }
+        bForceNetUpdate = true;
+    }
+}
+
+function Timer_ResetRepairFlag()
+{
+    bWasRepaired = false;
+}
+
 function AddExplosiveWeld(int Amount, KFPlayerController PC)
 {
     DemoWeld = Min(DemoWeld + Amount, DemoWeldRequired);
@@ -863,6 +931,8 @@ simulated function PlayDestroyed()
     bForceNetUpdate = true;
     SetTickIsDisabled(false);
     bIsDestroyed = true;
+    RepairProgress = 0;
+    WeldIntegrity = 0;
     bHasBeenDirtied = true;
     if(DestroyedSound != none)
     {
@@ -881,6 +951,7 @@ simulated function PlayDestroyed()
         PlayExplosion();
         bShouldExplode = false;
     }
+    DoorTrigger.OnDestroyOrReset();
 }
 
 simulated function PlayExplosion()
@@ -931,7 +1002,7 @@ simulated function DestroyNonPhysicsDoor()
     }
 }
 
-simulated function ResetDoor()
+simulated function ResetDoor(optional bool bRepaired)
 {
     local int I;
     local DoorMarker DoorNav;
@@ -941,37 +1012,64 @@ simulated function ResetDoor()
         Health = MaxHealth;
         bIsDestroyed = false;
         bShouldExplode = false;
-        bIsDoorOpen = true;
         WeldIntegrity = 0;
         DemoWeld = 0;
+        if(bRepaired)
+        {
+            bIsDoorOpen = false;            
+        }
+        else
+        {
+            bIsDoorOpen = true;
+        }
         bNetDirty = true;
         bForceNetUpdate = true;
     }
     ExplosionInstigatorController = none;
     bDoorMoveCompleted = true;
-    bLocalIsDoorOpen = true;
     bHasBeenDirtied = false;
     SetTickIsDisabled(true);
-    SetRBCollideWithDeadPawn(false);
     if(DoorMechanism == 0)
     {
-        ResetHingedDoor();        
+        ResetHingedDoor(bRepaired);        
     }
     else
     {
         BashSlot.StopCustomAnim(0);
     }
-    MovementControl.SetSkelControlActive(true);
-    MovementControl.SetSkelControlStrength(1, 0);
+    if(bRepaired)
+    {
+        bLocalIsDoorOpen = false;
+        SetRBCollideWithDeadPawn(true);
+        MovementControl.SetSkelControlStrength(0, 0);
+        TryPushPawns();        
+    }
+    else
+    {
+        bLocalIsDoorOpen = true;
+        MovementControl.SetSkelControlStrength(1, 0);
+        SetRBCollideWithDeadPawn(false);
+    }
     SkeletalMeshComp.ForceSkelUpdate();
-    if(bMonitorDoor)
+    if(bMonitorDoor && !bRepaired)
     {
         DoorNav = DoorMarker(MyMarker);
         if(DoorNav != none)
         {
             DoorNav.MoverOpened();
         }
-        bMonitorDoor = false;
+        bMonitorDoor = false;        
+    }
+    else
+    {
+        if(bRepaired)
+        {
+            DoorNav = DoorMarker(MyMarker);
+            if(DoorNav != none)
+            {
+                DoorNav.MoverClosed();
+            }
+        }
     }
     UpdateHealthScalars('doorHealthA', 0);
     UpdateHealthScalars('doorHealthB', 0);
@@ -982,7 +1080,7 @@ simulated function ResetDoor()
         AmbientSoundComponent.StopEvents();
     }
     I = 0;
-    J0x28C:
+    J0x358:
 
     if(I < BrokenDoorParticleEffects.Length)
     {
@@ -991,9 +1089,25 @@ simulated function ResetDoor()
             BrokenDoorParticleEffects[I].DeactivateSystem();
         }
         ++ I;
-        goto J0x28C;
+        goto J0x358;
     }
     BrokenDoorParticleEffects.Length = 0;
+    I = 0;
+    J0x405:
+
+    if(I < BrokenDoorPhysicsActors.Length)
+    {
+        BrokenDoorPhysicsActors[I].Destroy();
+        ++ I;
+        goto J0x405;
+    }
+    BrokenDoorPhysicsActors.Length = 0;
+    if(bRepaired && WorldInfo.MyEmitterPool != none)
+    {
+        WorldInfo.MyEmitterPool.SpawnEmitter(RepairFXTemplate, SoundOrigin, rotator(vect(0, 0, 1)), self);
+        PlaySoundBase(RepairSound,,,, SoundOrigin);
+    }
+    DoorTrigger.OnDestroyOrReset();
 }
 
 simulated function UpdateHealthMICs()
@@ -1045,6 +1159,8 @@ simulated function UpdateHealthScalars(name ScalarName, float Value)
 simulated function UpdateIntegrityMIC()
 {
     local float IntegrityScaler, ExplosiveScaler;
+    local KFDoorMarker DoorMarker;
+    local int AttackerCount, QueuedCount;
 
     if(IntegrityMIC != none)
     {
@@ -1070,6 +1186,15 @@ simulated function UpdateIntegrityMIC()
             {
                 CenterWeldComponent.SetHidden(true);
             }
+        }
+    }
+    if(((WorldInfo.NetMode != NM_Client) && WeldIntegrity > 0) && MyMarker != none)
+    {
+        DoorMarker = KFDoorMarker(MyMarker);
+        if(DoorMarker != none)
+        {
+            GetQueuedDoorAICounts(AttackerCount, QueuedCount);
+            DoorMarker.UpdatePathingCost(AttackerCount, QueuedCount);
         }
     }
 }
@@ -1157,6 +1282,7 @@ simulated function SpawnBrokenDoors(bool bReverseDir)
                 InitAngVel.Z = MaxAngularVelocity * FRand();
                 SpawnedKActor.StaticMeshComponent.SetRBAngularVelocity(InitAngVel);
                 SpawnedKActor.StaticMeshComponent.WakeRigidBody();
+                BrokenDoorPhysicsActors.AddItem(SpawnedKActor;
             }
         }
         if(MeshAttachments[I].Component != none)
@@ -1170,12 +1296,12 @@ simulated function SpawnBrokenDoors(bool bReverseDir)
     }
 }
 
-simulated function ResetHingedDoor()
+simulated function ResetHingedDoor(optional bool bRepaired)
 {
     local byte I;
 
     I = 0;
-    J0x0C:
+    J0x0D:
 
     if(I < MeshAttachments.Length)
     {
@@ -1183,9 +1309,12 @@ simulated function ResetHingedDoor()
         MeshAttachments[I].Component.SetActorCollision(true, true);
         MeshAttachments[I].Component.SetHidden(false);
         ++ I;
-        goto J0x0C;
+        goto J0x0D;
     }
-    OpenSwingingDoor(none);
+    if(!bRepaired)
+    {
+        OpenSwingingDoor(none);
+    }
     SkeletalMeshComp.bComponentUseFixedSkelBounds = true;
 }
 
@@ -1273,42 +1402,52 @@ function NotifyAIDoorOpened()
     }
 }
 
-simulated event DrawTemporaryWeldIcon(HUD HUD, Canvas C)
+simulated event DrawDoorHUD(HUD HUD, Canvas C)
 {
     local PlayerController PC;
-    local Canvas Canvas;
     local Vector CameraLoc, ScreenLoc;
     local Rotator CameraRot;
-    local string Str;
-    local float X, Y;
-    local FontRenderInfo FRI;
-    local float Dot;
+    local float X, Y, Dot;
     local Texture2D Icon;
-    local float WeldPercentageFloat;
-    local int WeldPercentage;
-    local float FontScale;
 
     PC = HUD.PlayerOwner;
-    Canvas = C;
-    Canvas.SetDrawColor(255, 255, 255);
-    Canvas.Font = Class'KFGameEngine'.static.GetKFCanvasFont();
+    C.SetDrawColor(255, 255, 255);
+    C.Font = Class'KFGameEngine'.static.GetKFCanvasFont();
     PC.GetPlayerViewPoint(CameraLoc, CameraRot);
     Dot = vector(CameraRot) Dot (Location - CameraLoc);
     if(Dot < 0.5)
     {
         return;
     }
-    ScreenLoc = Canvas.Project(Location + (vect(0, 0, 1) * 164));
-    if(((ScreenLoc.X < float(0)) || ScreenLoc.X >= HUD.Canvas.ClipX) || (ScreenLoc.Y < float(0)) && ScreenLoc.Y >= HUD.Canvas.ClipY)
+    ScreenLoc = C.Project(Location + (vect(0, 0, 1) * 164));
+    if(((ScreenLoc.X < float(0)) || ScreenLoc.X >= C.ClipX) || (ScreenLoc.Y < float(0)) && ScreenLoc.Y >= C.ClipY)
     {
         return;
     }
     Icon = Texture2D'welder_door_icon';
-    Canvas.SetPos(ScreenLoc.X - float(Icon.SizeX / 2), ScreenLoc.Y - float(Icon.SizeY / 2), ScreenLoc.Z);
-    Canvas.DrawTexture(Icon, 1);
+    C.SetPos(ScreenLoc.X - float(Icon.SizeX / 2), ScreenLoc.Y - float(Icon.SizeY / 2), ScreenLoc.Z);
+    C.DrawTexture(Icon, 1);
     X = (ScreenLoc.X + float(Icon.SizeX / 2)) + float(5);
     Y = ScreenLoc.Y - float(Icon.SizeY / 2);
-    Canvas.SetPos(X, Y);
+    C.SetPos(X, Y);
+    if(bIsDestroyed)
+    {
+        DrawRepairHUD(C, HUD);        
+    }
+    else
+    {
+        DrawWeldHUD(C, HUD, X, Y);
+    }
+}
+
+simulated function DrawWeldHUD(Canvas C, HUD HUD, float PosX, float PosY)
+{
+    local float WeldPercentageFloat;
+    local int WeldPercentage;
+    local float FontScale;
+    local FontRenderInfo FRI;
+    local string Str;
+
     FontScale = Class'KFGameEngine'.static.GetKFFontScale();
     WeldPercentageFloat = (float(WeldIntegrity) / float(MaxWeldIntegrity)) * 100;
     if((WeldPercentageFloat < 1) && WeldPercentageFloat > 0)
@@ -1324,14 +1463,59 @@ simulated event DrawTemporaryWeldIcon(HUD HUD, Canvas C)
     }
     WeldPercentage = int(WeldPercentageFloat);
     Str = (WeldIntegrityString @ string(WeldPercentage)) $ "%";
-    Canvas.DrawText(Str, true, FontScale, FontScale, FRI);
+    C.DrawText(Str, true, FontScale, FontScale, FRI);
     if((DemoWeld > 0) && !bShouldExplode)
     {
-        Canvas.SetPos(X, Y + 20);
+        C.SetPos(PosX, PosY + 20);
         WeldPercentage = int((float(DemoWeld) / float(DemoWeldRequired)) * 100);
         Str = (ExplosiveString @ string(WeldPercentage)) $ "%";
-        Canvas.DrawText(Str, true, FontScale, FontScale, FRI);
+        C.DrawText(Str, true, FontScale, FontScale, FRI);
     }
+}
+
+simulated function DrawRepairHUD(Canvas C, HUD HUD)
+{
+    local float RepairPercentageFloat;
+    local int RepairPercentage;
+    local float FontScale;
+    local FontRenderInfo FRI;
+    local string Str;
+
+    FontScale = Class'KFGameEngine'.static.GetKFFontScale();
+    RepairPercentageFloat = (float(RepairProgress) / float(255)) * 100;
+    if((RepairPercentageFloat > 99) && RepairPercentageFloat < 100)
+    {
+        RepairPercentageFloat = 99;
+    }
+    RepairPercentage = int(RepairPercentageFloat);
+    Str = (RepairProgressString @ string(RepairPercentage)) $ "%";
+    C.DrawText(Str, true, FontScale, FontScale, FRI);
+}
+
+function GetQueuedDoorAICounts(out int DoorAttackers, out int DoorQueuers)
+{
+    local KFAIController KFAIC;
+
+    foreach WorldInfo.AllControllers(Class'KFAIController', KFAIC)
+    {
+        if(KFAIC.DoorEnemy == self)
+        {
+            ++ DoorAttackers;
+            continue;
+        }
+        if(KFAIC.PendingDoor == self)
+        {
+            ++ DoorQueuers;
+        }        
+    }    
+}
+
+function float GetAIDoorDamageScale()
+{
+    local int AttackerCount, QueuedCount;
+
+    GetQueuedDoorAICounts(AttackerCount, QueuedCount);
+    return 1 + FMin(float(AttackerCount) * 0.1, 1);
 }
 
 simulated function Reset()
@@ -1382,10 +1566,13 @@ defaultproperties
     CombatWeldModifier=0.6
     CombatLength=1.25
     FrameSizeOfTwoDoors=256
+    RepairFXTemplate=ParticleSystem'FX_Gameplay_EMIT_TWO.FX_Door_Repair_Complete_01'
+    RepairSound=AkEvent'WW_ENV_Destruction.Play_Door_Heal'
     BrokenDoorImpulse=750
     MaxAngularVelocity=2
     DamageEmitter=(ParticleEffect=none,RelativeOffset=(X=0,Y=0,Z=0),RelativeRotation=(Pitch=0,Yaw=0,Roll=0),MaxSpawnDist=4000,PSC=none)
     WeldIntegrityString="Weld Integrity:"
+    RepairProgressString="Repair Progress:"
     ExplosiveString="Door Trap:"
     begin object name=Sprite class=SpriteComponent
         Sprite=Texture2D'EditorResources.door'

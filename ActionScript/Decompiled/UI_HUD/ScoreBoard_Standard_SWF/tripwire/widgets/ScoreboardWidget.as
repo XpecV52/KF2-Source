@@ -41,7 +41,7 @@ package tripwire.widgets
             super();
             _enableInitCallback = true;
             visible = false;
-            this.SCORE_ANIM_TIME = 5;
+            this.SCORE_ANIM_TIME = 4;
             this.SCORE_START_Z = 288;
             this.SCORE_OFFSET_Z = 112;
         }

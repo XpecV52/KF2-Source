@@ -165,6 +165,7 @@ defaultproperties
     SpineLightSocketNames[1]=FXPilot3
     SpineLightSocketNames[2]=FXPilot4
     SpineLightSocketNames[3]=FXPilot5
+    bWarnAIWhenFiring=true
     FlameSprayArchetype=SprayActor_Flame'WEP_Flamethrower_ARCH.WEP_Flamethrower_Flame'
     PilotLightPlayEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_PilotLight_Loop'
     PilotLightStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_PilotLight_Loop'
@@ -195,7 +196,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
-    MaxSpareAmmo=400
+    SpareAmmoCapacity=500
     InitialSpareMags=1
     AmmoPickupScale=0.4
     bLoopingFireAnim=/* Array type was not detected. */
@@ -231,6 +232,7 @@ defaultproperties
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
+    InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

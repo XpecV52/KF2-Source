@@ -24,7 +24,7 @@ defaultproperties
     DOF_FG_FocalRadius=75
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=25
-    MaxSpareAmmo=240
+    SpareAmmoCapacity=240
     InitialSpareMags=6
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

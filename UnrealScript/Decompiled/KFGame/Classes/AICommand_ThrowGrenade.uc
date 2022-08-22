@@ -28,11 +28,19 @@ static function bool ThrowGrenade(KFAIController_Hans AI, optional int inGrenade
 function Pushed()
 {
     Outer.AIActionStatus = "Attempting to throw grenade";
-    Outer.AIZeroMovementVariables();
     Outer.DisableMeleeRangeEventProbing();
     Outer.SetFocalPoint(vect(0, 0, 0));
     Outer.Focus = Outer.Enemy;
     super.Pushed();
+}
+
+function LockdownAI()
+{
+    if(Outer.MyHansPawn.CanMoveWhileThrowingGrenades())
+    {
+        return;
+    }
+    super.LockdownAI();
 }
 
 function Popped()
@@ -73,17 +81,17 @@ state Command_SpecialMove
     {
         if(GrenadeBarrage == 0)
         {
-            return 32;            
+            return 34;            
         }
         else
         {
             if(GrenadeBarrage == 1)
             {
-                return 33;                
+                return 35;                
             }
             else
             {
-                return 34;
+                return 36;
             }
         }
     }

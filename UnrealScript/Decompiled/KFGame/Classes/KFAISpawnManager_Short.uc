@@ -10,11 +10,10 @@ class KFAISpawnManager_Short extends KFAISpawnManager within KFGameInfo
 
 defaultproperties
 {
-    Waves(0)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave1'
-    Waves(1)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave2'
-    Waves(2)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave3'
-    Waves(3)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave4'
-    Waves(4)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Boss'
+    DifficultyWaveSettings(0)=(Waves=(KFAIWaveInfo'GP_Spawning_ARCH.Short.Norm.ZED_Wave1_Short_Norm',KFAIWaveInfo'GP_Spawning_ARCH.Short.Norm.ZED_Wave2_Short_Norm',KFAIWaveInfo'GP_Spawning_ARCH.Short.Norm.ZED_Wave3_Short_Norm',KFAIWaveInfo'GP_Spawning_ARCH.Short.Norm.ZED_Wave4_Short_Norm',KFAIWaveInfo'GP_Spawning_ARCH.Short.Norm.ZED_Boss_Short_Norm'))
+    DifficultyWaveSettings(1)=(Waves=(KFAIWaveInfo'GP_Spawning_ARCH.Short.Hard.ZED_Wave1_Short_Hard',KFAIWaveInfo'GP_Spawning_ARCH.Short.Hard.ZED_Wave2_Short_Hard',KFAIWaveInfo'GP_Spawning_ARCH.Short.Hard.ZED_Wave3_Short_Hard',KFAIWaveInfo'GP_Spawning_ARCH.Short.Hard.ZED_Wave4_Short_Hard',KFAIWaveInfo'GP_Spawning_ARCH.Short.Hard.ZED_Boss_Short_Hard'))
+    DifficultyWaveSettings(2)=(Waves=(KFAIWaveInfo'GP_Spawning_ARCH.Short.SUI.ZED_Wave1_Short_Sui',KFAIWaveInfo'GP_Spawning_ARCH.Short.SUI.ZED_Wave2_Short_Sui',KFAIWaveInfo'GP_Spawning_ARCH.Short.SUI.ZED_Wave3_Short_Sui',KFAIWaveInfo'GP_Spawning_ARCH.Short.SUI.ZED_Wave4_Short_Sui',KFAIWaveInfo'GP_Spawning_ARCH.Short.SUI.ZED_Boss_Short_Sui'))
+    DifficultyWaveSettings(3)=(Waves=(KFAIWaveInfo'GP_Spawning_ARCH.Short.HOE.ZED_Wave1_Short_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Short.HOE.ZED_Wave2_Short_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Short.HOE.ZED_Wave3_Short_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Short.HOE.ZED_Wave4_Short_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Short.HOE.ZED_Boss_Short_HOE'))
     SoloWaveSpawnRateModifier[0]=(RateModifier=(1.5,1.5,1.5,1.5))
     SoloWaveSpawnRateModifier[1]=(RateModifier=(1.5,1.5,1.5,1.5))
     SoloWaveSpawnRateModifier[2]=(RateModifier=(1.5,1.5,1.5,1.5))

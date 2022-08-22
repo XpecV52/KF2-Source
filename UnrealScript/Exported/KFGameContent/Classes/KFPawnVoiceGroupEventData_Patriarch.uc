@@ -367,6 +367,7 @@ class KFPawnVoiceGroupEventData_Patriarch extends KFPawnVoiceGroupEventData;
 
 
 
+
 	
 
 
@@ -498,9 +499,9 @@ class KFPawnVoiceGroupEventData_Patriarch extends KFPawnVoiceGroupEventData;
 
 defaultproperties
 {
-   Events(1)=(EventID=1,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
-   Events(2)=(EventID=2,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0)
-   Events(3)=(EventID=3,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0)
+   Events(1)=(EventID=1,Priority=3,Chance=1.000000,CoolDownTime=20.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
+   Events(2)=(EventID=2,Priority=3,Chance=1.000000,CoolDownTime=20.000000,bCanBeMinimized=0)
+   Events(3)=(EventID=3,Priority=3,Chance=1.000000,CoolDownTime=20.000000,bCanBeMinimized=0)
    Events(4)=(EventID=4,Priority=2,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0)
    Events(5)=(EventID=5,Priority=2,Chance=1.000000,CoolDownTime=8.000000,bCanBeMinimized=0)
    Events(6)=(EventID=6,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
@@ -513,7 +514,7 @@ defaultproperties
    Events(13)=()
    Events(14)=(EventID=14,Priority=2,Chance=1.000000,bCanBeMinimized=0)
    Events(15)=(EventID=15,Priority=2,Chance=1.000000,bCanBeMinimized=0)
-   Events(16)=(EventID=16,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
+   Events(16)=(EventID=16,Priority=1,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(17)=(EventID=17,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(18)=(EventID=18,Priority=1,Chance=1.000000,bCanBeMinimized=0)
    Events(19)=(EventID=19,Priority=1,Chance=1.000000,bCanBeMinimized=0)
@@ -526,8 +527,8 @@ defaultproperties
    Events(26)=(EventID=26,Priority=1,Chance=1.000000,bCanBeMinimized=0)
    Events(27)=(EventID=27,Priority=1,Chance=1.000000,bCanBeMinimized=0)
    Events(28)=(EventID=28,Priority=1,Chance=1.000000,bCanBeMinimized=0)
-   Events(29)=(EventID=29,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
-   Events(30)=(EventID=30,Priority=1,Chance=1.000000,CoolDownTime=6.000000,bCanBeMinimized=0)
+   Events(29)=(EventID=29,Priority=1,CoolDownTime=0.000000,bCanBeMinimized=0)
+   Events(30)=(EventID=30,Priority=1,CoolDownTime=6.000000,bCanBeMinimized=0)
    Events(31)=(EventID=31,Priority=1,Chance=1.000000,bCanBeMinimized=0)
    Events(32)=(EventID=32,Priority=1,Chance=1.000000,bCanBeMinimized=0)
    Events(33)=(EventID=33,Priority=1,Chance=1.000000,bCanBeMinimized=0)

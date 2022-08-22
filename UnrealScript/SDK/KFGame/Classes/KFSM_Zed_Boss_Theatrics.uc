@@ -105,8 +105,6 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 			}
 		}
 	}
-
-
 }
 
 function PlayAnimation()
@@ -156,6 +154,11 @@ function PlayAnimation()
 	{
 		foreach BossController.WorldInfo.AllControllers( class'KFPlayerController', KFPC )
 		{
+			if( !KFPC.CanViewCinematics() )
+			{
+				continue;
+			}
+
 			KFPC.SetBossCamera( BossPawn );
 		}
 	}
@@ -170,25 +173,27 @@ function PlayAnimation()
 	if( BossPawn.WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		KFPC = GetALocalKFPlayerController();
-
-		// Play a camera fade
-		KFPC.ClientSetCameraFade( true, FadeInColor, vect2d(1.f, 0.f), FadeInTime, true );
-
-		// Set view target and camera mode
-		KFPC.SetViewTarget( BossPawn );
-		//KFPC.ClientSetCameraMode( 'Boss' );
-
-		// Play a camera anim if we have one
-		if( CameraAnim != none )
+		if( KFPC.CanViewCinematics() )
 		{
-			BossPawn.bUseAnimatedTheatricCamera = true;
-			BossPawn.TheatricCameraAnimOffset = CameraAnimOffset;
+			// Play a camera fade
+			KFPC.ClientSetCameraFade( true, FadeInColor, vect2d(1.f, 0.f), FadeInTime, true );
 
-			// Set cinematic mode
-			KFPC.SetCinematicMode( true, false, false, true, true, true );
+			// Set view target and camera mode
+			KFPC.SetViewTarget( BossPawn );
+			//KFPC.ClientSetCameraMode( 'Boss' );
 
-			// Lengthen and add a tiny bit of blend out time to avoid snapping
-			KFPC.ClientPlayCameraAnim( CameraAnim, 1.f, 0.99f, BlendInTime, BlendOutTime + 0.03f, false, false );
+			// Play a camera anim if we have one
+			if( CameraAnim != none )
+			{
+				BossPawn.bUseAnimatedTheatricCamera = true;
+				BossPawn.TheatricCameraAnimOffset = CameraAnimOffset;
+
+				// Set cinematic mode
+				KFPC.SetCinematicMode( true, false, false, true, true, true );
+
+				// Lengthen and add a tiny bit of blend out time to avoid snapping
+				KFPC.ClientPlayCameraAnim( CameraAnim, 1.f, 0.99f, BlendInTime, BlendOutTime + 0.03f, false, false );
+			}
 		}
 	}
 
@@ -211,7 +216,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 		BossPawn.bUseAnimatedTheatricCamera = false;
 		BossPawn.TheatricCameraAnimOffset = vect(0,0,0);
 
-		if( BossPawn.WorldInfo.NetMode != NM_DedicatedServer )
+		if( BossPawn.WorldInfo.NetMode != NM_DedicatedServer && KFPC.CanViewCinematics() )
 		{	
 			if( CurrentTheatricType == THEATRIC_Entrance )
 			{
@@ -243,6 +248,11 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 			{
 				foreach AIOwner.WorldInfo.AllControllers( class'KFPlayerController', OtherKFPC )
 				{
+					if( !OtherKFPC.CanViewCinematics() )
+					{
+						continue;
+					}
+
 					if( OtherKFPC.Pawn != none )
 					{
 						OtherKFPC.SetViewTarget( OtherKFPC.Pawn );
@@ -259,6 +269,11 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 			{
 				foreach PCOwner.WorldInfo.AllControllers( class'KFPlayerController', OtherKFPC )
 				{
+					if( !OtherKFPC.CanViewCinematics() )
+					{
+						continue;
+					}
+
 					if( OtherKFPC.Pawn != none )
 					{
 						OtherKFPC.SetViewTarget( OtherKFPC.Pawn );
@@ -283,7 +298,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 		}
 
 		// Reset cinematic mode on clients
-		if( BossPawn.WorldInfo.NetMode != NM_DedicatedServer )
+		if( BossPawn.WorldInfo.NetMode != NM_DedicatedServer && KFPC.CanViewCinematics() )
 		{
 			KFPC.SetCinematicMode( false, false, true, true, true, false );
 			if( KFPC.Pawn != none )

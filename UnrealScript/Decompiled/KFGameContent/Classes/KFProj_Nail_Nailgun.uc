@@ -35,9 +35,9 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
             }
             SetPhysics(0);
             LifeSpan = 5;
-            if((bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none) && AmbientComponent != none)
+            if(bStopAmbientSoundOnExplode)
             {
-                AmbientComponent.StopEvents();
+                StopAmbientSound();
             }
         }
         bBounce = false;
@@ -65,7 +65,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
 simulated function Tick(float DeltaTime)
 {
-    super(KFProj_Bullet).Tick(DeltaTime);
+    super(Actor).Tick(DeltaTime);
     if((WorldInfo.NetMode != NM_DedicatedServer) && Physics != 0)
     {
         SetRotation(rotator(Normal(Velocity)));
@@ -80,15 +80,16 @@ simulated function Landed(Vector HitNormal, Actor FloorActor)
     }
     SetPhysics(0);
     LifeSpan = 5;
-    if((bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none) && AmbientComponent != none)
+    if(bStopAmbientSoundOnExplode)
     {
-        AmbientComponent.StopEvents();
+        StopAmbientSound();
     }
 }
 
 defaultproperties
 {
     RicochetEffects=KFImpactEffectInfo'WEP_Nail_Shotgun_ARCH.NailBulletImpacts'
+    bWarnAIWhenFired=true
     ProjFlightTemplate=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer'
     ProjFlightTemplateZedTime=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer_ZEDTime'
     AmbientComponent=AkComponent'Default__KFProj_Nail_Nailgun.AmbientAkSoundComponent'

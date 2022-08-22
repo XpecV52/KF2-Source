@@ -38,6 +38,7 @@ struct PatriarchBattlePhaseInfo
     var int TentacleDamage;
     var float MinigunAttackCooldownTime;
     var bool bCanSummonMinions;
+    var array<bool> bCanMoveWhenMinigunning;
     var array<float> HealAmounts;
 
     structdefaultproperties
@@ -57,6 +58,7 @@ struct PatriarchBattlePhaseInfo
         TentacleDamage=0
         MinigunAttackCooldownTime=0
         bCanSummonMinions=false
+        bCanMoveWhenMinigunning=none
         HealAmounts=none
     }
 };
@@ -121,6 +123,7 @@ var ParticleSystem BattleDamageFX_Tentacle_LowDmg;
 var ParticleSystem BattleDamageFX_Tentacle_MidDmg;
 var ParticleSystem BattleDamageFX_Tentacle_HighDmg;
 var ParticleSystem BattleDamageFX_Smoke_HighDmg;
+var float TickDialogInterval;
 var int LastFXBattlePhase;
 var array<PatriarchBattlePhaseInfo> BattlePhases;
 var float SprintCooldownTime;
@@ -187,6 +190,10 @@ simulated event PostBeginPlay()
     }
     AmbientAkComponent.CachedObjectPosition = Location;
     SetPawnAmbientSound(AmbientBreathingEvent);
+    if(WorldInfo.NetMode != NM_Client)
+    {
+        SetTimer(2, false, 'Timer_TickPatriarchDialog');
+    }
 }
 
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
@@ -295,7 +302,7 @@ function SummonChildren()
         if(MyKFGameInfo.SpawnManager != none)
         {
             MyKFGameInfo.SpawnManager.LeftoverSpawnSquad.Length = 0;
-            MyKFGameInfo.SpawnManager.SummonBossMinions(MinionWave.Squads, NumMinionsToSpawn);
+            MyKFGameInfo.SpawnManager.SummonBossMinions(MinionWave.Squads, GetNumMinionsToSpawn());
         }
     }
 }
@@ -326,9 +333,7 @@ simulated function ANIMNOTIFY_SpawnedKActor(KFKActorSpawnable NewKActor, AnimNod
     SyringeMIC = NewKActor.StaticMeshComponent.CreateAndSetMaterialInstanceConstant(0);
     SyringeMIC.SetScalarParameterValue('Scalar_GlowIntensity', 0.02 + FClamp((0.98 * SyringeInjectTimeRemaining) / SyringeInjectTimeDuration, 0, 0.98));
     NewKActor.StaticMeshComponent.SetLightingChannels(HealingSyringeMeshes[CurrentSyringeMeshNum].LightingChannels);
-    NewKActor.StaticMeshComponent.bCastDynamicShadow = true;
-    NewKActor.StaticMeshComponent.bAllowPerObjectShadows = true;
-    NewKActor.StaticMeshComponent.PerObjectShadowCullDistance = 4000;
+    NewKActor.StaticMeshComponent.bCastDynamicShadow = false;
     Mesh.DetachComponent(HealingSyringeMeshes[CurrentSyringeMeshNum]);
     HealingSyringeMeshes[CurrentSyringeMeshNum] = none;
     HealingSyringeMICs[CurrentSyringeMeshNum] = none;
@@ -401,7 +406,7 @@ function FleeAndHealBump()
     local float ClosestDist;
     local KFAIController_ZedPatriarch KFAICP;
 
-    if((((MyKFAIC == none) || MyKFAIC.Enemy == none) || MyKFAIC.RouteGoal == none) || IsDoingSpecialMove(16))
+    if((((MyKFAIC == none) || MyKFAIC.Enemy == none) || MyKFAIC.RouteGoal == none) || IsDoingSpecialMove(17))
     {
         return;
     }
@@ -489,6 +494,23 @@ function bool CanDoMortarBarrage()
     return BattlePhases[CurrentBattlePhase - 1].bCanDoMortarBarrage;
 }
 
+function bool CanBlock()
+{
+    return !bIsCloaking && super(KFPawn_Monster).CanBlock();
+}
+
+simulated function bool CanMoveWhenMinigunning()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && BattlePhases[CurrentBattlePhase - 1].bCanMoveWhenMinigunning[KFGRI.GameDifficulty])
+    {
+        return true;
+    }
+    return LocalIsOnePlayerLeftInTeamGame();
+}
+
 simulated function SpinMinigunBarrels(bool bEnableSpin)
 {
     if(WorldInfo.NetMode != NM_DedicatedServer)
@@ -558,22 +580,35 @@ function class<KFProj_Missile_Patriarch> GetMissileClass()
 function GetMissileAimDirAndTargetLoc(int MissileNum, Vector MissileLoc, Rotator MissileRot, out Vector AimDir, out Vector TargetLoc)
 {
     local Vector X, Y, Z;
-    local Pawn EnemyPawn;
     local int EnemyIndex;
     local KFAIController_ZedPatriarch MyPatController;
+    local KFPawn EnemyPawn;
 
-    EnemyPawn = Controller.Enemy;
     MyPatController = KFAIController_ZedPatriarch(Controller);
-    if((MyPatController != none) && !MyPatController.CanSee(EnemyPawn))
+    if(MyPatController == none)
     {
-        EnemyIndex = MyPatController.RecentlySeenEnemyList.Find('TrackedEnemy', KFPawn(EnemyPawn);
+        return;
+    }
+    if(MyPatController.Enemy == none)
+    {
+        MyPatController.ForceSetEnemy(MyPatController.GetClosestEnemy());
+    }
+    if(MyPatController.Enemy == none)
+    {
+        EndSpecialMove();
+        return;
+    }
+    EnemyPawn = KFPawn(MyPatController.Enemy);
+    if(!MyPatController.CanSee(EnemyPawn))
+    {
+        EnemyIndex = MyPatController.RecentlySeenEnemyList.Find('TrackedEnemy', EnemyPawn;
         if(EnemyIndex != -1)
         {
             TargetLoc = MyPatController.RecentlySeenEnemyList[EnemyIndex].LastVisibleLocation;            
         }
         else
         {
-            EnemyIndex = MyPatController.HiddenEnemies.Find('TrackedEnemy', KFPawn(EnemyPawn);
+            EnemyIndex = MyPatController.HiddenEnemies.Find('TrackedEnemy', EnemyPawn;
             if(EnemyIndex != -1)
             {
                 TargetLoc = MyPatController.HiddenEnemies[EnemyIndex].LastVisibleLocation;                
@@ -1461,6 +1496,22 @@ function PlayGrabbedPlayerDialog(KFPawn_Human Target)
     }
 }
 
+function Timer_TickPatriarchDialog()
+{
+    if(!IsAliveAndWell())
+    {
+        return;
+    }
+    if(!IsDoingSpecialMove())
+    {
+        if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
+        {
+            KFGameInfo(WorldInfo.Game).DialogManager.PlayPatriarchTickDialog(self);
+        }
+    }
+    SetTimer(TickDialogInterval, false, 'Timer_TickPatriarchDialog');
+}
+
 function PlayBossMusic()
 {
     if(KFGameInfo(WorldInfo.Game) != none)
@@ -1578,11 +1629,56 @@ defaultproperties
     BattleDamageFX_Tentacle_MidDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_MidD_01'
     BattleDamageFX_Tentacle_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_HighD_01'
     BattleDamageFX_Smoke_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Pat_smoke_HighD_01'
+    TickDialogInterval=0.5
     LastFXBattlePhase=1
-    BattlePhases(0)=(bAllowedToSprint=true,SprintCooldownTime=3,bCanTentacleGrab=false,TentacleGrabCooldownTime=0,bCanUseMissiles=true,MissileAttackCooldownTime=10,bCanUseMortar=false,MortarAttackCooldownTime=0,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=14,MaxRageAttacks=0,TentacleDamage=0,MinigunAttackCooldownTime=2.25,bCanSummonMinions=true,HealAmounts=(0.75,0.85,0.95,0.99))
-    BattlePhases(1)=(bAllowedToSprint=true,SprintCooldownTime=2.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=10,bCanUseMissiles=true,MissileAttackCooldownTime=8,bCanUseMortar=true,MortarAttackCooldownTime=10,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=10,MaxRageAttacks=4,TentacleDamage=10,MinigunAttackCooldownTime=2,bCanSummonMinions=true,HealAmounts=(0.65,0.75,0.85,0.95))
-    BattlePhases(2)=(bAllowedToSprint=true,SprintCooldownTime=2,bCanTentacleGrab=true,TentacleGrabCooldownTime=9,bCanUseMissiles=true,MissileAttackCooldownTime=7,bCanUseMortar=true,MortarAttackCooldownTime=9,bCanDoMortarBarrage=true,bCanChargeAttack=true,ChargeAttackCooldownTime=9,MaxRageAttacks=5,TentacleDamage=10,MinigunAttackCooldownTime=1.75,bCanSummonMinions=true,HealAmounts=(0.55,0.65,0.75,0.85))
-    BattlePhases(3)=(bAllowedToSprint=true,SprintCooldownTime=1.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=7,bCanUseMissiles=true,MissileAttackCooldownTime=5,bCanUseMortar=true,MortarAttackCooldownTime=7,bCanDoMortarBarrage=true,bCanChargeAttack=true,ChargeAttackCooldownTime=7,MaxRageAttacks=6,TentacleDamage=10,MinigunAttackCooldownTime=1.25,bCanSummonMinions=false,HealAmounts=none)
+    BattlePhases(0)=bAllowedToSprint=true,SprintCooldownTime=3,bCanTentacleGrab=false,TentacleGrabCooldownTime=0,bCanUseMissiles=true,MissileAttackCooldownTime=10,bCanUseMortar=false,MortarAttackCooldownTime=0,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=14,MaxRageAttacks=0,TentacleDamage=0,MinigunAttackCooldownTime=2.25,bCanSummonMinions=true,bCanMoveWhenMinigunning=(
+/* Exception thrown while deserializing bCanMoveWhenMinigunning
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing bCanMoveWhenMinigunning
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing bCanMoveWhenMinigunning
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing bCanMoveWhenMinigunning
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
+/* Exception thrown while deserializing BattlePhases
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_235' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    BattlePhases(1)=
+/* Exception thrown while deserializing BattlePhases
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_3' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    BattlePhases(2)=
+/* Exception thrown while deserializing BattlePhases
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    BattlePhases(3)=
+/* Exception thrown while deserializing BattlePhases
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     TentacleDamageType=Class'KFDT_Slashing_PatTentacle'
     HeavyBumpDamageType=Class'KFDT_HeavyZedBump'
     MissileProjectileClass=Class'KFProj_Missile_Patriarch'
@@ -1599,7 +1695,7 @@ defaultproperties
     SummonWaves[1]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_Three')
     SummonWaves[2]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_Three')
     SummonWaves[3]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Three')
-    NumMinionsToSpawn=10
+    NumMinionsToSpawn=(X=6,Y=10)
     CurrentBattlePhase=1
     TheatricCameraSocketName=TheatricCameraRootSocket
     bLargeZed=true
@@ -1622,6 +1718,7 @@ defaultproperties
     XPValues[3]=1843
     WeakSpotSocketNames=/* Array type was not detected. */
     DamageTypeModifiers=/* Array type was not detected. */
+    DifficultySettings=Class'KFDifficulty_Patriarch'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     FootstepCameraShakeInnerRadius=200
     FootstepCameraShakeOuterRadius=900

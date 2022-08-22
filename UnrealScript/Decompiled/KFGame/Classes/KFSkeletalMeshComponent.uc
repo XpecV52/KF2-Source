@@ -10,9 +10,13 @@ class KFSkeletalMeshComponent extends SkeletalMeshComponent
     editinlinenew
     hidecategories(Object);
 
+var BoneAtom CachedExtractedRootMotionDelta;
+var int bCachedHasRootMotion;
+var bool bNeedsProcessRootMotion;
+var bool bForceLoadTextures;
+var bool bPendingDeferredWork;
 /** This changes the FOV used for rendering the skeletal mesh component. A value of 0 means to use the default. */
 var() const float FOV;
-var bool bForceLoadTextures;
 var float ClearStreamingTime;
 /**  
  *If > 0, ensure the DeltaTime does not go above this value.

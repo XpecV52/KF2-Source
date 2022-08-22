@@ -16,6 +16,8 @@ enum ECrateSeries
 	Ecrate_EmergencyIssue,
 	Ecrate_Swat,
 	Ecrate_Exhibit,
+	Ecrate_EliteMedic,
+	Ecrate_Victorian,
 	ECrate_HorzineSupply_S1,
 	ECrate_HorzineSupply_S2,
 	ECrate_HorzineSupply_S3,
@@ -24,6 +26,11 @@ enum ECrateSeries
 	ECrate_HorzineSupply_S6,
 	ECrate_HorzineSupply_S7,
 	ECrate_HorzineSupply_S8,
+	ECrate_HorzineSupply_S9,
+	ECrate_PSNHorzineSupply_CS1,
+	ECrate_PSNHorzineSupply_CS2,
+	ECrate_PSNHorzineSupply_WS1,
+	ECrate_PSNHorzineSupply_WS2,
 };
 
 enum EItemDisplayContainerType
@@ -88,6 +95,8 @@ DefaultProperties
 	ItemKeyArray[Ecrate_EmergencyIssue]=(ContainerID=3594, KeyID=3595, ItemSeriesName=emergencyissue, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_Swat]=(ContainerID=4134, KeyID=4135, ItemSeriesName=swat, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_Exhibit]=(ContainerID=4115, KeyID=4114, ItemSeriesName=exhibit, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_EliteMedic]=(ContainerID=4145, KeyID=4144, ItemSeriesName=elitemedic, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_Victorian]=(ContainerID=4214, KeyID=4215, ItemSeriesName=victorian, ContainerType=IDT_USB)
 	ItemKeyArray[ECrate_HorzineSupply_S1]=(ContainerID=3284, KeyID=3282, ItemSeriesName=horzine1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S2]=(ContainerID=3285, KeyID=3283, ItemSeriesName=horzine2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S3]=(ContainerID=3598, KeyID=3599, ItemSeriesName=horzine3, ContainerType=IDT_Crate)
@@ -96,4 +105,9 @@ DefaultProperties
 	ItemKeyArray[ECrate_HorzineSupply_S6]=(ContainerID=3883, KeyID=3881, ItemSeriesName=horzine6, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S7]=(ContainerID=4107, KeyID=4105, ItemSeriesName=horzine7, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S8]=(ContainerID=4108, KeyID=4106, ItemSeriesName=horzine8, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_HorzineSupply_S9]=(ContainerID=4207, KeyID=4208, ItemSeriesName=horzine9, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_CS1]=(ContainerID=4304, KeyID=4303, ItemSeriesName=psncrate_cs1, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_CS2]=(ContainerID=4305, KeyID=4303, ItemSeriesName=psncrate_cs2, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS1]=(ContainerID=4307, KeyID=4303, ItemSeriesName=psncrate_ws1, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS2]=(ContainerID=4306, KeyID=4303, ItemSeriesName=psncrate_ws2, ContainerType=IDT_Crate)
 }

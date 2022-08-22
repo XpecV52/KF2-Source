@@ -35,7 +35,7 @@ event TickRage()
 
 function bool CanDoRage()
 {
-    if(bIsEnraged || Outer.MyKFPawn.IsImpaired())
+    if(bIsEnraged || !Outer.MyKFPawn.IsCombatCapable())
     {
         return false;
     }

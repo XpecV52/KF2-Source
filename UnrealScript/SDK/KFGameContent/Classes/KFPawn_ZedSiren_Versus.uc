@@ -10,7 +10,7 @@ class KFPawn_ZedSiren_Versus extends KFPawn_ZedSiren;
 
 function SetSprinting( bool bNewSprintStatus )
 {
-	if( bNewSprintStatus && (IsDoingSpecialMove(SM_PlayerZedAttack1) || IsDoingSpecialMove(SM_PlayerZedAttack2)) )
+	if( bNewSprintStatus && (IsDoingSpecialMove(SM_PlayerZedMove_LMB) || IsDoingSpecialMove(SM_PlayerZedMove_RMB)) )
 	{
 		return;
 	}
@@ -40,16 +40,20 @@ defaultproperties
 	MeleeAttackHelper=MeleeHelper_0
 
 	Begin Object Name=SpecialMoveHandler_0
-	SpecialMoveClasses(SM_PlayerZedAttack1)=class'KFSM_PlayerSiren_NormalScream'
-	SpecialMoveClasses(SM_PlayerZedAttack2)=class'KFSM_PlayerSiren_VortexScream'
-	SpecialMoveClasses(SM_PlayerZedSpecial1)=class'KFSM_PlayerSiren_Melee'
+		SpecialMoveClasses(SM_PlayerZedMove_LMB)=class'KFSM_PlayerSiren_NormalScream'
+		SpecialMoveClasses(SM_PlayerZedMove_RMB)=class'KFSM_PlayerSiren_VortexScream'
+		SpecialMoveClasses(SM_PlayerZedMove_V)=class'KFSM_PlayerSiren_Melee'
 	End Object
 
-	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=2.5f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Scream', GBA_Name="GBA_Fire",NameLocalizationKey="Scream")
-	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=12.0f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-PullIn', GBA_Name="GBA_IronsightsToggle",NameLocalizationKey="Vortex") //8.0
-	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,		GBA_Name="GBA_Reload",bShowOnHud=false)
-	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=0.0f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Bite', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Bite")
-	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.5f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array
+	MoveListGamepadScheme(ZGM_Melee_Square)=SM_PlayerZedMove_V
+	MoveListGamepadScheme(ZGM_Attack_L2)=SM_PlayerZedMove_RMB
+	MoveListGamepadScheme(ZGM_Attack_R2)=SM_PlayerZedMove_LMB
+
+	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedMove_LMB,		CooldownTime=2.5f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Scream', NameLocalizationKey="Scream")
+	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB,		CooldownTime=12.0f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-PullIn', NameLocalizationKey="Vortex") //8.0
+	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,		bShowOnHud=false)
+	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=0.0f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Bite', NameLocalizationKey="Bite")
+	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.5f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Jump', bShowOnHud=false)) // Jump always at end of array
 
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.8)))  //3.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.5)))  //1.0
@@ -63,7 +67,6 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.5)))  //0.85  0.35
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.4)))   //1.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.30)))  //0.88
-
 
 // special case
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',              DamageScale=(1.0))
@@ -79,8 +82,6 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_Eviscerator', 	     DamageScale=(0.3)))  //0.9
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_DragonsBreath', 	 DamageScale=(1.1)))  //0.9
 
-
-
 	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.5, 0.1, 0.1, 0.1), Cooldown=3.0, Duration=2.0)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(0.5),                     Cooldown=3.0)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(0.5),                     Cooldown=3.0)
@@ -95,7 +96,6 @@ defaultproperties
     SprintSpeed=430.0f  //450
     SprintStrafeSpeed=300.f
     GroundSpeed=200.0f
-
 
 // Custom Hit Zones (HeadHealth, SkinTypes, etc...)
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=155, DmgScale=1.01, SkinID=1) // KF1=200

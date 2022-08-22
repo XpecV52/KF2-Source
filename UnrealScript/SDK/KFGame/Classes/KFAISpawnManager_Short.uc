@@ -13,13 +13,38 @@ DefaultProperties
 {
 	EarlyWaveIndex=2
 
-	Waves(0)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave1'
-	Waves(1)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave2'
-	Waves(2)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave3'
-	Waves(3)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Wave4'
+	// ---------------------------------------------
+	// Wave settings
+	// Normal
+	DifficultyWaveSettings(0)={(Waves[0]=KFAIWaveInfo'GP_Spawning_ARCH.Short.Norm.ZED_Wave1_Short_Norm',
+								Waves[1]=KFAIWaveInfo'GP_Spawning_ARCH.Short.Norm.ZED_Wave2_Short_Norm',
+								Waves[2]=KFAIWaveInfo'GP_Spawning_ARCH.Short.Norm.ZED_Wave3_Short_Norm',
+								Waves[3]=KFAIWaveInfo'GP_Spawning_ARCH.Short.Norm.ZED_Wave4_Short_Norm',
+								Waves[4]=KFAIWaveInfo'GP_Spawning_ARCH.Short.Norm.ZED_Boss_Short_Norm')}
 
-	Waves(4)=KFAIWaveInfo'GP_Spawning_ARCH.Short.ZED_Boss'
+	// Hard
+	DifficultyWaveSettings(1)={(Waves[0]=KFAIWaveInfo'GP_Spawning_ARCH.Short.Hard.ZED_Wave1_Short_Hard',
+								Waves[1]=KFAIWaveInfo'GP_Spawning_ARCH.Short.Hard.ZED_Wave2_Short_Hard',
+								Waves[2]=KFAIWaveInfo'GP_Spawning_ARCH.Short.Hard.ZED_Wave3_Short_Hard',
+								Waves[3]=KFAIWaveInfo'GP_Spawning_ARCH.Short.Hard.ZED_Wave4_Short_Hard',
+								Waves[4]=KFAIWaveInfo'GP_Spawning_ARCH.Short.Hard.ZED_Boss_Short_Hard')}
 
+	// Suicidal
+	DifficultyWaveSettings(2)={(Waves[0]=KFAIWaveInfo'GP_Spawning_ARCH.Short.SUI.ZED_Wave1_Short_Sui',
+								Waves[1]=KFAIWaveInfo'GP_Spawning_ARCH.Short.SUI.ZED_Wave2_Short_Sui',
+								Waves[2]=KFAIWaveInfo'GP_Spawning_ARCH.Short.SUI.ZED_Wave3_Short_Sui',
+								Waves[3]=KFAIWaveInfo'GP_Spawning_ARCH.Short.SUI.ZED_Wave4_Short_Sui',
+								Waves[4]=KFAIWaveInfo'GP_Spawning_ARCH.Short.SUI.ZED_Boss_Short_Sui')}
+
+	// Hell On Earth
+	DifficultyWaveSettings(3)={(Waves[0]=KFAIWaveInfo'GP_Spawning_ARCH.Short.HOE.ZED_Wave1_Short_HOE',
+								Waves[1]=KFAIWaveInfo'GP_Spawning_ARCH.Short.HOE.ZED_Wave2_Short_HOE',
+								Waves[2]=KFAIWaveInfo'GP_Spawning_ARCH.Short.HOE.ZED_Wave3_Short_HOE',
+								Waves[3]=KFAIWaveInfo'GP_Spawning_ARCH.Short.HOE.ZED_Wave4_Short_HOE',
+								Waves[4]=KFAIWaveInfo'GP_Spawning_ARCH.Short.HOE.ZED_Boss_Short_HOE')}
+
+	// ---------------------------------------------
+	// Solo Spawn Rates
 	// Normal
 	SoloWaveSpawnRateModifier(0)={(RateModifier[0]=1.5,     // Wave 1
                                    RateModifier[1]=1.5,     // Wave 2

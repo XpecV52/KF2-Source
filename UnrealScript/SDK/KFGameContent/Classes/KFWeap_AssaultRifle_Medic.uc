@@ -23,8 +23,7 @@ static simulated event EFilterTypeUI GetTraderFilter()
 defaultproperties
 {
 	// Healing charge
-    HealAmount=40
-	HealAmmoCost=30
+    HealAmount=15
 	HealFullRechargeSeconds=10
 
 	// Inventory
@@ -64,7 +63,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=30
-	MaxSpareAmmo[0]=390
+	SpareAmmoCapacity[0]=390
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -91,14 +90,17 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Assault_Medic'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Assault_Medic'
 	FireInterval(DEFAULT_FIREMODE)=+0.0923 // 650 RPM
 	Spread(DEFAULT_FIREMODE)=0.0085
 	InstantHitDamage(DEFAULT_FIREMODE)=40.0
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
+	// ALTFIRE_FIREMODE
+	AmmoCost(ALTFIRE_FIREMODE)=30
+
 	// BASH_FIREMODE
-	InstantHitDamage(BASH_FIREMODE)=15.0
+	InstantHitDamage(BASH_FIREMODE)=27
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Assault_Medic'
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_MuzzleFlash'
@@ -112,7 +114,7 @@ defaultproperties
 	// Advanced (High RPM) Fire Effects
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true
 	bLoopingFireSnd(DEFAULT_FIREMODE)=true
-	SingleFireMode=ALTFIRE_FIREMODE
+	SingleFireSoundIndex=ALTFIRE_FIREMODE
 
 	// Attachments
 	bHasIronSights=true

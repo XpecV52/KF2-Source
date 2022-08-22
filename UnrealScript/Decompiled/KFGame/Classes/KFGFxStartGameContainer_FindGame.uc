@@ -5,9 +5,28 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFGFxStartGameContainer_FindGame extends KFGFxObject_Container within GFxMoviePlayer;
+class KFGFxStartGameContainer_FindGame extends KFGFxObject_Container within GFxMoviePlayer
+    config(UI);
+
+struct SWhatsNew
+{
+    var string ImageURL;
+    var string TextField;
+    var string RedirectURL;
+    var string PSNProductId;
+
+    structdefaultproperties
+    {
+        ImageURL=""
+        TextField=""
+        RedirectURL=""
+        PSNProductId=""
+    }
+};
 
 var KFGFxMenu_StartGame StartMenu;
+var array<SWhatsNew> WhatsNewItems;
+var const config array<config SWhatsNew> PS4WhatsNewItems;
 var const localized string MultiplayerString;
 var const localized string SoloString;
 var const localized string TutorialString;
@@ -17,6 +36,48 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     super.Initialize(NewParentMenu);
     StartMenu = KFGFxMenu_StartGame(NewParentMenu);
     LocalizeMenu();
+    SetWhatsNewItems();
+}
+
+function SetWhatsNewItems()
+{
+    local GFxObject DataObject, DataArray;
+    local int I;
+
+    DataArray = Outer.CreateArray();
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        I = 0;
+        J0x57:
+
+        if(I < PS4WhatsNewItems.Length)
+        {
+            DataObject = Outer.CreateObject("Object");
+            DataObject.SetString("label", Localize("WhatsNewMessages", PS4WhatsNewItems[I].TextField, "KFGame"));
+            DataObject.SetString("imageURL", PS4WhatsNewItems[I].ImageURL);
+            DataObject.SetString("redirectURL", PS4WhatsNewItems[I].RedirectURL);
+            DataArray.SetElementObject(I, DataObject);
+            ++ I;
+            goto J0x57;
+        }        
+    }
+    else
+    {
+        I = 0;
+        J0x203:
+
+        if(I < WhatsNewItems.Length)
+        {
+            DataObject = Outer.CreateObject("Object");
+            DataObject.SetString("label", Localize("WhatsNewMessages", WhatsNewItems[I].TextField, "KFGame"));
+            DataObject.SetString("imageURL", WhatsNewItems[I].ImageURL);
+            DataObject.SetString("redirectURL", WhatsNewItems[I].RedirectURL);
+            DataArray.SetElementObject(I, DataObject);
+            ++ I;
+            goto J0x203;
+        }
+    }
+    SetObject("whatsNew", DataArray);
 }
 
 function LocalizeMenu()
@@ -34,6 +95,15 @@ function LocalizeMenu()
 
 defaultproperties
 {
+    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_BullsEyeUpdate",TextField="LatestUpdate",RedirectURL="http://www.killingfloor2.com/bullseye",PSNProductId="")
+    WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
+    WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Tormentor_07",TextField="HorzineSupplyCrateKey7",RedirectURL="https://store.steampowered.com/buyitem/232090/4105",PSNProductId="")
+    WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_CombatStar_08",TextField="HorzineSupplyCrateKey8",RedirectURL="https://store.steampowered.com/buyitem/232090/4106",PSNProductId="")
+    WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/",PSNProductId="")
+    WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/",PSNProductId="")
+    WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap",PSNProductId="")
+    WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="https://tripwire.gomerch.com/",PSNProductId="")
+    WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/",PSNProductId="")
     MultiplayerString="Online Matchmaking"
     SoloString="Play Solo Offline"
     TutorialString="Basic Training"

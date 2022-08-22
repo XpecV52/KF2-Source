@@ -12,6 +12,8 @@ class KFProj_FlameThrower_GroundFire extends KFProj_GroundFire;
 
 defaultproperties
 {
+	bWarnAIWhenFired=true
+
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		Damage=10

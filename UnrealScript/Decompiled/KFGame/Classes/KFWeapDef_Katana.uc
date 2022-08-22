@@ -12,6 +12,6 @@ defaultproperties
 {
     WeaponClassPath="KFGameContent.KFWeap_Edged_Katana"
     ImagePath="ui_weaponselect_tex.UI_WeaponSelect_Katana"
-    BuyPrice=200
+    BuyPrice=600
     EffectiveRange=2
 }

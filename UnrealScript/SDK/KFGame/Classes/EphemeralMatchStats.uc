@@ -435,7 +435,6 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
 	bLargeZedKill = bKilled && TargetPawn.IsLargeZed();
 
 	WeaponIndex = WeaponDamageList.Find('WeaponDef', WeaponDef);
-
 	// Set actual damage
 	Damage = TargetPawn.Health > 0 ? Damage : TargetPawn.Health + Damage;
 

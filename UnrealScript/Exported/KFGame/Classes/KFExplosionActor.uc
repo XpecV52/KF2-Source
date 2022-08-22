@@ -337,6 +337,12 @@ simulated function float CalcStackingDamageScale(KFPawn Victim, float MinDamageI
 		{
 			// cleanup destroyed actors
 			Victim.RecentExplosiveStacks.Remove(i, 1);
+
+			// We need to decrement ExistingIdx if it was a higher index than the one we just removed
+			if( ExistingIdx != INDEX_NONE && ExistingIdx > i )
+			{
+				--ExistingIdx;
+			}
 		}
 		else if ( OtherExplosion.ExplosionTemplate.MyDamageType == ExplosionTemplate.MyDamageType 
 			&& (WorldInfo.TimeSeconds - Victim.RecentExplosiveStacks[i].LastHitTime) < MinDamageInterval )

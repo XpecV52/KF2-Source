@@ -10,21 +10,7 @@ class KFProj_Bullet extends KFProjectile
     native
     hidecategories(Navigation);
 
-var bool bCheckRackEmUp;
 var float ProjEffectsScale;
-
-simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
-{
-    if(bCheckRackEmUp && LastTouchComponent == none)
-    {
-        CheckForComboBreaker();
-        bCheckRackEmUp = false;
-    }
-    super(Projectile).HitWall(HitNormal, Wall, WallComp);
-}
-
-// Export UKFProj_Bullet::execCheckForComboBreaker(FFrame&, void* const)
-protected native simulated function CheckForComboBreaker();
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
@@ -87,43 +73,6 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Instigator,, ImpactEffects);
-    }
-}
-
-simulated event Tick(float DeltaTime)
-{
-    local float DeltaFade;
-    local Vector ScaleVector;
-
-    super.Tick(DeltaTime);
-    if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
-    {
-        if(!bFadingOutProjEffects)
-        {
-            if(ProjEffectsScale < 1)
-            {
-                ProjEffectsScale += (DeltaTime * (default.Speed / float(950)));                
-            }
-            else
-            {
-                ProjEffectsScale = 1;
-            }
-            ScaleVector = vect(1, 1, 1);
-            ScaleVector *= ProjEffectsScale;
-            ProjEffects.SetVectorParameter('Scale_Tracer', ScaleVector);
-            ProjEffects.SetVectorParameter('Scale_Distortion', ScaleVector);            
-        }
-        else
-        {
-            if(bFadingOutProjEffects && ProjEffectsFadeOutDuration >= 0)
-            {
-                DeltaFade = ProjEffectsFadeOutDuration / default.ProjEffectsFadeOutDuration;
-                ScaleVector = vect(1, 1, 1);
-                ScaleVector *= Lerp(ProjEffectsScale, 0, 1 - DeltaFade);
-                ProjEffects.SetVectorParameter('Scale_Tracer', ScaleVector);
-                ProjEffects.SetVectorParameter('Scale_Distortion', ScaleVector);
-            }
-        }
     }
 }
 

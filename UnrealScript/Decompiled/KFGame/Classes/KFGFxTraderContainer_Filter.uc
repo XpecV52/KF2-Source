@@ -50,6 +50,7 @@ function SetPerkFilterData(byte FilterIndex)
             {
                 FilterObject = Outer.CreateObject("Object");
                 FilterObject.SetString("source", "img://" $ KFPC.PerkList[I].PerkClass.static.GetPerkIconPath());
+                FilterObject.SetBool("isMyPerk", KFPC.PerkList[I].PerkClass == KFPC.CurrentPerk.Class);
                 DataProvider.SetElementObject(I, FilterObject);
                 ++ I;
                 goto J0x1C6;

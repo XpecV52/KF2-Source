@@ -11,7 +11,7 @@ class KFPawn_ZedSiren_Versus extends KFPawn_ZedSiren
 
 function SetSprinting(bool bNewSprintStatus)
 {
-    if(bNewSprintStatus && IsDoingSpecialMove(21) || IsDoingSpecialMove(22))
+    if(bNewSprintStatus && IsDoingSpecialMove(23) || IsDoingSpecialMove(24))
     {
         return;
     }
@@ -31,6 +31,7 @@ defaultproperties
     MeleeAttackHelper=MeleeHelper
     XPValues=22
     DamageTypeModifiers=/* Array type was not detected. */
+    MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedSiren
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

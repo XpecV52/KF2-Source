@@ -29,7 +29,7 @@ defaultproperties
    GroupPriority=20.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M1911_TEX.UI_WeaponSelect_M1911Colt'
    DualClass=Class'kfgamecontent.KFWeap_Pistol_DualColt1911'
-   MaxSpareAmmo(0)=136
+   SpareAmmoCapacity(0)=136
    InitialSpareMags(0)=7
    AmmoPickupScale(0)=2.000000
    IdleFidgetAnims(3)="Guncheck_v4"
@@ -83,7 +83,7 @@ defaultproperties
    InstantHitDamage(0)=50.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=22.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Colt1911'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

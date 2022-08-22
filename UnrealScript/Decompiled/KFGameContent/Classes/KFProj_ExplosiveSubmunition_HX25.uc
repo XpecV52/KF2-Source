@@ -8,6 +8,23 @@
 class KFProj_ExplosiveSubmunition_HX25 extends KFProj_BallisticExplosive
     hidecategories(Navigation);
 
+var protected KFWeapon OwnerWeapon;
+
+function Init(Vector Direction)
+{
+    super(KFProjectile).Init(Direction);
+    OwnerWeapon = KFWeapon(Owner);
+    if(OwnerWeapon != none)
+    {
+        OwnerWeapon.LastPelletFireTime = WorldInfo.TimeSeconds;
+    }
+}
+
+function bool ShouldWarnAIWhenFired()
+{
+    return (super(KFProjectile).ShouldWarnAIWhenFired() && OwnerWeapon != none) && OwnerWeapon.LastPelletFireTime < WorldInfo.TimeSeconds;
+}
+
 protected simulated function PrepareExplosionTemplate()
 {
     ExplosionTemplate.bIgnoreInstigator = true;
@@ -26,6 +43,7 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 
 defaultproperties
 {
+    bWarnAIWhenFired=true
     AlwaysRelevantDistanceSquared=2250000
     TossZ=150
     GravityScale=0.25

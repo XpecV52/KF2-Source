@@ -25,6 +25,7 @@ defaultproperties
     XPValues[2]=11
     XPValues[3]=11
     DamageTypeModifiers=/* Array type was not detected. */
+    DifficultySettings=Class'KFDifficulty_ClotCyst'
     KnockedDownBySonicWaveOdds=0.35
     PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.UnDevClot_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

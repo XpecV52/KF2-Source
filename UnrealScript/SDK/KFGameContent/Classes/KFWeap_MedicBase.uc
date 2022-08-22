@@ -19,9 +19,6 @@ var	class<DamageType>   HealingDartDamageType;
 /** How much to heal for when using this weapon */
 var(Healing) int		HealAmount;
 
-/** Cost of healing per fire */
-var(Healing) int        HealAmmoCost;
-
 /** How many points of heal ammo to recharge per second */
 var(Healing) float      HealFullRechargeSeconds;
 
@@ -75,9 +72,6 @@ var repnotify Actor		PendingLockedTarget;
 /** angle for locking for lock targets */
 var(Locking) float 		LockAim;
 
-/** The frequency with which we play the Lock Targeting sound */
-var(Locking) float		LockTargetingSoundInterval;
-
 /** Sound Effects to play when Locking */
 var AkBaseSoundObject   LockAcquiredSoundFirstPerson;
 var AkBaseSoundObject   LockTargetingStopEvent;
@@ -122,39 +116,45 @@ replication
 */
 simulated event ReplicatedEvent(name VarName)
 {
-    if (VarName == nameof(LockedTarget))
+	if (VarName == nameof(LockedTarget))
 	{
 		// Clear the lock if we lost our LockedTarget and don't have a new PendingLockedTarget
 		if( OpticsUI != none )
 		{
-		if (LockedTarget == none && PendingLockedTarget == none)
-		{
-			OpticsUI.ClearLockOn();
+			if (LockedTarget == none && PendingLockedTarget == none)
+			{
+				OpticsUI.ClearLockOn();
+			}
+			else if (LockedTarget != none)
+			{
+				OpticsUI.LockedOn();
+			}
 		}
-		else if (LockedTarget != none)
-		{
-			OpticsUI.LockedOn();
-		}
-	}
 	}
 	else if (VarName == nameof(PendingLockedTarget))
 	{
 		// Clear the lock if we lost our LockedTarget and don't have a new PendingLockedTarget
 		if( OpticsUI != none )
 		{
-		if (PendingLockedTarget == none && LockedTarget == none)
-		{
-			OpticsUI.ClearLockOn();
+			if (PendingLockedTarget == none && LockedTarget == none)
+			{
+				OpticsUI.ClearLockOn();
+			}
+			else if (PendingLockedTarget != none)
+			{
+				OpticsUI.StartLockOn();
+			}
 		}
-		else if (PendingLockedTarget != none)
-		{
-			OpticsUI.StartLockOn();
-		}
-	}
 	}
 	else
 	{
 		Super.ReplicatedEvent(VarName);
+
+		// This same variable has a replicated event in a base class, so it is not on the normal path.
+		if (VarName == nameof(SpareAmmoCount))
+		{
+			AmmoCount[1] = SpareAmmoCount[1];
+		}
 	}
 }
 
@@ -198,21 +198,9 @@ simulated function AltFireMode()
 	StartFire(ALTFIRE_FIREMODE);
 }
 
-simulated function bool HasAmmo(byte FireModeNum, optional int Amount = 1)
-{
-	if(FireModeNum == ALTFIRE_FIREMODE)
-	{
-		return AmmoCount[ALTFIRE_FIREMODE] >= HealAmmoCost;
-	}
-
-	return Super.HasAmmo(FireModeNum, Amount);
-}
-
 /** @see KFWeapon::ConsumeAmmo */
 simulated function ConsumeAmmo( byte FireModeNum )
 {
-    local int AmmoGroup;
-
     // If its not the healing fire mode, return
     if( FireModeNum != ALTFIRE_FIREMODE )
     {
@@ -228,14 +216,14 @@ simulated function ConsumeAmmo( byte FireModeNum )
 `endif
 
 	// If AmmoCount is being replicated, don't allow the client to modify it here
-	if ( Role == ROLE_Authority || bAllowClientAmmoTracking )
+	if ( Role == ROLE_Authority )
 	{
-		AmmoGroup = GetAmmoType(FireModeNum);
         // Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
-		if (MagazineCapacity[AmmoGroup] > 0 && AmmoCount[AmmoGroup] > 0)
+		if (MagazineCapacity[1] > 0 && AmmoCount[1] > 0)
 		{
 			// Reduce ammo amount by heal ammo cost
-            AmmoCount[AmmoGroup] = Max(AmmoCount[AmmoGroup] - HealAmmoCost, 0);
+            AmmoCount[1] = Max(AmmoCount[1] - AmmoCost[1], 0);
+            SpareAmmoCount[1] = Max(SpareAmmoCount[1] - AmmoCost[1], 0);
 		}
 	}
 }
@@ -262,10 +250,6 @@ simulated function ProcessInstantHitEx( byte FiringMode, ImpactInfo Impact, opti
 
     	HealTarget.HealDamage(HealAmount, Instigator.Controller, HealingDartDamageType);
 
-    	if( Healer != none )
-    	{
-    		Healer.GetPerk().CheckForAirborneAgent( HealTarget, HealingDartDamageType, HealAmount );
-    	}
         // Play a healed impact sound for the healee
         if( HealImpactSoundPlayEvent != None && HealTarget != None && !bSuppressSounds  )
     	{
@@ -317,27 +301,17 @@ simulated state WeaponSingleFiring
 
         Super.FireAmmunition();
 	}
-
-	/**
-	 * We override BeginFire() so that we can check for zooming and/or empty weapons
-	 */
-	simulated function BeginFire(Byte FireModeNum)
-	{
-		if( FireModeNum == ALTFIRE_FIREMODE && !CanHealFire() )
-		{
-            return;
-		}
-
-        Super.BeginFire(FireModeNum);
-	}
 }
 
-/**
- * Has enough heal charge to fire a dart
- */
-simulated event bool CanHealFire()
+// This makes it impossible for the server to fire before the fire animation has the chance to play on the client side.
+simulated function StartFire(byte FireModeNum)
 {
-	return AmmoCount[ALTFIRE_FIREMODE] >= HealAmmoCost;
+	if(FireModeNum == ALTFIRE_FIREMODE && !HasAmmo(FireModeNum, AmmoCost[1]))
+	{
+		return;
+	}
+
+	Super.StartFire(FireModeNum);
 }
 
 /*********************************************************************************************
@@ -359,60 +333,56 @@ function GivenTo( Pawn thisPawn, optional bool bDoNotActivate )
 }
 
 /** Start the heal recharge cycle */
-simulated function StartHealRecharge()
+function StartHealRecharge()
 {
 	local KFPerk InstigatorPerk;
 	local float UsedHealRechargeTime;
 
-	InstigatorPerk = GetPerk();
 	// begin ammo recharge on server
-	if ( Role == ROLE_Authority || bAllowClientAmmoTracking )
+	if( Role == ROLE_Authority )
 	{
+		InstigatorPerk = GetPerk();
 		UsedHealRechargeTime = HealFullRechargeSeconds;
 
         InstigatorPerk.ModifyHealerRechargeTime( UsedHealRechargeTime );
 		// Set the healing recharge rate whenever we start charging
-        HealRechargePerSecond = MagazineCapacity[ALTFIRE_FIREMODE]/UsedHealRechargeTime;
+        HealRechargePerSecond = MagazineCapacity[ALTFIRE_FIREMODE] / UsedHealRechargeTime;
 		HealingIncrement = 0;
 	}
 }
 
 /** Heal Ammo Regen */
-simulated function HealAmmoRegeneration(float DeltaTime)
+function HealAmmoRegeneration(float DeltaTime)
 {
-    HealingIncrement += HealRechargePerSecond * DeltaTime;
+	if( Role == ROLE_Authority )
+	{
+		HealingIncrement += HealRechargePerSecond * DeltaTime;
 
-    if( HealingIncrement >= 1.0 && AmmoCount[ALTFIRE_FIREMODE] < MagazineCapacity[ALTFIRE_FIREMODE] )
-    {
-        AmmoCount[ALTFIRE_FIREMODE]++;
-        HealingIncrement -= 1.0;
-    }
+		if( SpareAmmoCount[ALTFIRE_FIREMODE] > AmmoCount[ALTFIRE_FIREMODE] )
+		{
+			SpareAmmoCount[ALTFIRE_FIREMODE] = AmmoCount[ALTFIRE_FIREMODE];
+		}
+
+		if( HealingIncrement >= 1.0 && SpareAmmoCount[ALTFIRE_FIREMODE] < MagazineCapacity[ALTFIRE_FIREMODE] )
+		{
+			// Use SpareAmmoCount to replicate the actual ammo you should have.
+			SpareAmmoCount[ALTFIRE_FIREMODE]++;
+			AmmoCount[ALTFIRE_FIREMODE] = SpareAmmoCount[ALTFIRE_FIREMODE];
+
+			HealingIncrement -= 1.0;
+		}
+	}
 }
 
-/** Returns true if weapon should be auto-reloaded */
-simulated function bool ShouldAutoReload(byte FireModeNum)
+/** Healing charge doesn't count as ammo for purposes of inventory management (e.g. switching) */
+simulated function bool HasAnyAmmo()
 {
-    local bool bHasAmmo;
+	if ( HasSpareAmmo() || HasAmmo(DEFAULT_FIREMODE) )
+	{
+		return true;
+	}
 
-    bHasAmmo = HasAmmo(FireModeNum);
-
-    // do dry fire sounds
-    if( !bHasAmmo && WeaponDryFireSnd[FireModeNum] != none && Instigator != none && Instigator.IsLocallyControlled() )
-    {
-        WeaponPlaySound(WeaponDryFireSnd[FireModeNum]);
-        if( Role < ROLE_Authority )
-        {
-            ServerPlayDryFireSound(FireModeNum);
-        }
-    }
-
-    // If its the healing fire mode, don't auto reload
-    if( FireModeNum == ALTFIRE_FIREMODE )
-    {
-        return false;
-    }
-
-	return (!bHasAmmo && CanReload());
+	return false;
 }
 
 /*********************************************************************************************
@@ -444,7 +414,10 @@ function AdjustLockTarget(actor NewLockTarget)
 				OpticsUI.ClearLockOn();
 			}
 
-			ClientPlayTargetingSound(LockLostSoundFirstPerson);
+			if ( bUsingSights )
+			{
+				ClientPlayTargetingSound(LockLostSoundFirstPerson);
+			}
 		}
 	}
 	else
@@ -509,7 +482,6 @@ function CheckTargetLock()
 	{
 		AdjustLockTarget(None);
 		PendingLockedTarget = None;
-		ClearTimer(nameof(PlayTargetingBeepTimer));
 		return;
 	}
 
@@ -576,17 +548,18 @@ function CheckTargetLock()
 			PendingLockTimeout = LockTolerance;
 			PendingLockAcquireTimeLeft = LockAcquireTime;
 
-			SetTimer(LockTargetingSoundInterval, true, nameof(PlayTargetingBeepTimer));
-
 			if (OpticsUI != none)
 			{
 				// Optics UI only exists for local players
 				OpticsUI.StartLockOn();
 			}
 
-			// Play the "targeting" beep when we begin attempting to lock onto a target
-			// that we haven't locked onto yet
-			ClientPlayTargetingSound(LockTargetingSoundFirstPerson);
+			if ( bUsingSights )
+			{
+				// Play the "targeting" beep when we begin attempting to lock onto a target
+				// that we haven't locked onto yet
+				ClientPlayTargetingSound(LockTargetingSoundFirstPerson);
+			}
 		}
 		// Acquire new target if LockAcquireTime has passed
 		if ( PendingLockedTarget != None )
@@ -596,7 +569,6 @@ function CheckTargetLock()
 			{
 				AdjustLockTarget(PendingLockedTarget);
 				PendingLockedTarget = None;
-				ClearTimer(nameof(PlayTargetingBeepTimer));
 			}
 		}
 	}
@@ -612,7 +584,6 @@ function CheckTargetLock()
 				// Optics UI only exists for local players
 				OpticsUI.ClearLockOn();
 			}
-			ClearTimer(nameof(PlayTargetingBeepTimer));
 		}
 	}
 
@@ -625,12 +596,6 @@ function CheckTargetLock()
 			AdjustLockTarget(None);
 		}
 	}
-}
-
-/** Called while we have a new pending lock-on target */
-function PlayTargetingBeepTimer()
-{
-	ClientPlayTargetingSound(LockTargetingSoundFirstPerson);
 }
 
 /** Plays a first person targeting beep sound (Local Player Only) */
@@ -697,10 +662,11 @@ reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNot
 		{
 			//Create the screen's UI piece
 			OpticsUI = KFGFxWorld_MedicOptics(KFIM.GetOpticsUIMovie(OpticsUIClass));
-			// Initialize our displayed ammo count and healer charge
-			StartHealRecharge();
 		}
 	}
+
+	// Initialize our displayed ammo count and healer charge
+	StartHealRecharge();
 }
 
 function ItemRemovedFromInvManager()
@@ -744,7 +710,7 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional Name 
 		OpticsUI.SetPause(false);
 		OpticsUI.ClearLockOn();
 		UpdateOpticsUI(true);
-		OpticsUI.SetShotPercentCost( HealAmmoCost );
+		OpticsUI.SetShotPercentCost( AmmoCost[ALTFIRE_FIREMODE]);
 	}
 }
 
@@ -783,9 +749,9 @@ simulated function UpdateOpticsUI(optional bool bForceUpdate)
 			OpticsUI.SetHealerCharge(StoredSecondaryAmmo);
 		}
 
-		if(OpticsUI.MinPercentPerShot != HealAmmoCost)
+		if(OpticsUI.MinPercentPerShot != AmmoCost[ALTFIRE_FIREMODE])
 		{
-			OpticsUI.SetShotPercentCost( HealAmmoCost );
+			OpticsUI.SetShotPercentCost( AmmoCost[ALTFIRE_FIREMODE] );
 		}
 	}
 }
@@ -810,7 +776,6 @@ auto simulated state Inactive
 
 		// force stop beep/lock
 		PendingLockedTarget = None;
-		ClearTimer(nameof(PlayTargetingBeepTimer));
 	}
 
 	simulated function EndState(Name NextStateName)
@@ -858,7 +823,6 @@ defaultproperties
 {
 	// Healing charge
     HealAmount=20
-	HealAmmoCost=50
 	HealFullRechargeSeconds=15
 	HealDartShotWeakZedGrabCooldown=0.5
 
@@ -877,14 +841,16 @@ defaultproperties
 	InstantHitDamage(ALTFIRE_FIREMODE)=0	//Acidic compound skill can adjust that
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Dart_Toxic'
 	Spread(ALTFIRE_FIREMODE)=0.015
+	AmmoCost(ALTFIRE_FIREMODE)=50
 	HealingDartDamageType=class'KFDT_Dart_Healing'
 	DartFireSnd=(DefaultCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_1P')
 
 	MagazineCapacity[1]=100
+	// HACK: Used to initialize the medic guns replicated ammo count.
+	SpareAmmoCount[1]=100
 	bCanRefillSecondaryAmmo=false
 
     // Lock on sounds
-    LockTargetingSoundInterval=0.07
 	LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locked_1P'
 	LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
 	LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'

@@ -100,7 +100,7 @@ simulated event Tick(float DeltaTime)
     local KFDestructibleActor Destructible;
     local Actor StuckTo;
 
-    super.Tick(DeltaTime);
+    super(Actor).Tick(DeltaTime);
     StuckTo = StuckToActor;
     if(StuckTo != none)
     {

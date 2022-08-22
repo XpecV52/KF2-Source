@@ -9,15 +9,15 @@ class KFSM_Husk_FireBallAttack extends KFSM_PlaySingleAnim;
 
 protected function bool InternalCanDoSpecialMove()
 {
-    if((KFPOwner.Controller != none) && AIOwner == none)
+    if(KFPOwner.IsHumanControlled())
     {
-        return KFPOwner.IsAliveAndWell();
+        return KFPOwner.IsCombatCapable();
     }
     if(((AIOwner == none) || AIOwner.MyKFPawn == none) || AIOwner.Enemy == none)
     {
         return false;
     }
-    if(AIOwner.MyKFPawn.IsImpaired())
+    if(!KFPOwner.IsCombatCapable())
     {
         return false;
     }
@@ -31,6 +31,7 @@ protected function bool InternalCanDoSpecialMove()
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     super.SpecialMoveStarted(bForced, PrevMove);
+    SetLockPawnRotation(false);
     if(AIOwner != none)
     {
         if(AIOwner != none)
@@ -41,9 +42,15 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     }
 }
 
+function NotifyFireballFired()
+{
+    SetLockPawnRotation(true);
+}
+
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     super.SpecialMoveEnded(PrevMove, NextMove);
+    SetLockPawnRotation(false);
     if(AIOwner != none)
     {
         if(AIOwner != none)
@@ -70,6 +77,6 @@ defaultproperties
     bDisableMovement=true
     bDisableSteering=false
     bDisableTurnInPlace=true
-    CustomRotationRate=(Pitch=66000,Yaw=100000,Roll=66000)
+    CustomRotationRate=(Pitch=66000,Yaw=30000,Roll=66000)
     Handle=KFSM_Husk_FireBallAttack
 }

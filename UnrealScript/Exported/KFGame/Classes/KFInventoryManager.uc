@@ -328,6 +328,9 @@ var array<TransactionItem> TransactionItems;
 /** Whether to log all the Inventory stuff */
 var bool bLogInventory;
 
+/** Keeps track of what our controller weapon select index is for each group - HSL */
+var int SelectedGroupIndicies[4];
+
 //
 // Network replication.
 //
@@ -386,7 +389,7 @@ simulated function float GetPrimaryAmmoPercentage()
 		{
         	// For weapons that have no primary ammo such as melee weapons, just return 1/1.
         	// That basically means they are "full" since they don't run out of ammo
-            if( Weapon.MaxSpareAmmo[Weapon.GetAmmoType(0)] == 0 )
+            if( Weapon.GetMaxAmmoAmount(0) == 0 )
         	{
         		TotalAmmo += 1.0;
         		MaxAmmo += 1.0;
@@ -656,7 +659,7 @@ reliable server final function ServerRemoveFromInventory(Inventory ItemToRemove)
 
 		/* __TW_ Analytics */
 		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Sell$","$Instigator.PlayerReplicationInfo.PlayerName$","$ItemToRemove.Class);
-		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("sell", Instigator.PlayerReplicationInfo, ItemToRemove.Class);
+		if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("sell", Instigator.PlayerReplicationInfo, ItemToRemove.Class);
 	}
 }
 
@@ -766,10 +769,12 @@ simulated function KFWeapon GetBestPerkWeaponWithAmmo( class<KFPerk> PerkClass, 
 }
 
 /** Get the next weapon in the specified group */
-simulated function KFWeapon GetNextGroupedWeapon( byte GroupID, optional bool bGetFirstWeapon )
+simulated function KFWeapon GetNextGroupedWeapon(byte GroupID, optional bool bGetFirstWeapon, optional bool bGamePadWeaponSelectOpen)
 {
 	local KFWeapon EquippedWeapon, NewWeapon;
-	local bool bFoundCurrentWeapon;
+	local int WeaponIndex;
+
+	WeaponIndex = 0;
 
 	if (Instigator == none)
 	{
@@ -786,33 +791,36 @@ simulated function KFWeapon GetNextGroupedWeapon( byte GroupID, optional bool bG
 		EquippedWeapon = KFWeapon( Instigator.Weapon );
 	}
 
+	// If we are going through the same group increment our selected index for this group.
+	if (EquippedWeapon.InventoryGroup == GroupID && !bGetFirstWeapon)
+	{
+		SelectedGroupIndicies[GroupID] +=1;
+	}
+
 	// If we are switching from a different group, we want to grab the first weapon in that group
-	if ( EquippedWeapon == none || EquippedWeapon.InventoryGroup != GroupID )
+	if ((EquippedWeapon == none || EquippedWeapon.InventoryGroup != GroupID) && !bGamePadWeaponSelectOpen)
 	{
      	bGetFirstWeapon = true;
 	}
 
-	foreach InventoryActors( class'KFWeapon', NewWeapon )
+	foreach InventoryActors(class'KFWeapon', NewWeapon)
 	{
-		if ( bGetFirstWeapon || bFoundCurrentWeapon )
+		if (GroupID == NewWeapon.InventoryGroup)
 		{
-        	if ( GroupID == NewWeapon.InventoryGroup )
+			// If this weapon index is the same as our saved weapon or we want the 1st one send it otherwise keep going
+			if (SelectedGroupIndicies[GroupID] == WeaponIndex || bGetFirstWeapon)
 			{
 				return NewWeapon;
 			}
-		}
-
-		if ( EquippedWeapon == NewWeapon )
-		{
-		 	bFoundCurrentWeapon = true;
-			continue;
+			WeaponIndex++;
 		}
 	}
 
 	// If we are on the last weapon in this group, grab the first weapon in the group
 	if ( !bGetFirstWeapon )
 	{
-	    return GetNextGroupedWeapon( GroupID, true );
+		SelectedGroupIndicies[GroupID] = 0;
+	    return GetNextGroupedWeapon( GroupID, true, bGamePadWeaponSelectOpen );
     }
     return none;
 }
@@ -1059,7 +1067,6 @@ simulated function HighlightNextWeapon()
 simulated function HighlightWeapon( Weapon CandidateWeapon )
 {
 	SetPendingWeapon(CandidateWeapon);
-	ShowAllHUDGroups();
     UpdateHUD();
 }
 
@@ -1235,6 +1242,9 @@ simulated function UpdateHUD()
 		{
 			KFGFxHUD.WeaponSelectWidget.SetSelectedWeapon(KFPendingWeapon.InventoryGroup, WeaponIndex);
 			KFGFxHUD.WeaponSelectWidget.RefreshWeaponSelect();
+
+			// Save the index for the group when we select it to keep things in sync - HSL
+			SelectedGroupIndicies[KFPendingWeapon.InventoryGroup] = WeaponIndex;
 		}
 	}
 }
@@ -1652,7 +1662,7 @@ function KFWeapon CombineWeaponsOnPickup( KFWeapon AddedWeapon )
 				AddedDual.SpareAmmoCount[0] += InvWeap.SpareAmmoCount[0] + ExtraAmmo;
 
 				// remove spare ammo beyond capacity
-				AddedDual.SpareAmmoCount[0] = Min( AddedDual.SpareAmmoCount[0], AddedDual.default.MaxSpareAmmo[0] );
+				AddedDual.SpareAmmoCount[0] = Min( AddedDual.SpareAmmoCount[0], AddedDual.default.SpareAmmoCapacity[0] );
 
 				AddedDual.ClientForceAmmoUpdate(AddedDual.AmmoCount[0],AddedDual.SpareAmmoCount[0]);
 				AddedDual.ClientForceSecondaryAmmoUpdate(AddedDual.AmmoCount[1]);
@@ -1686,7 +1696,7 @@ function KFWeapon CombineWeaponsOnPickup( KFWeapon AddedWeapon )
 
 					NewDual.AmmoCount[1] = InvWeap.AmmoCount[1] + AddedWeapon.AmmoCount[1];
 
-					NewDual.SpareAmmoCount[0] = Min( InvWeap.SpareAmmoCount[0] + AddedWeapon.SpareAmmoCount[0] + ExtraAmmo, NewDual.default.MaxSpareAmmo[0] );
+					NewDual.SpareAmmoCount[0] = Min( InvWeap.SpareAmmoCount[0] + AddedWeapon.SpareAmmoCount[0] + ExtraAmmo, NewDual.default.SpareAmmoCapacity[0] );
 
 					NewDual.ClientForceAmmoUpdate(NewDual.AmmoCount[0],NewDual.SpareAmmoCount[0]);
 					NewDual.ClientForceSecondaryAmmoUpdate(NewDual.AmmoCount[1]);
@@ -1735,7 +1745,7 @@ reliable server function ServerCloseTraderMenu()
 
 	    	/* __TW_ Analytics */
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$KFWClass);
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, KFWClass);
+			if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, KFWClass);
 		}
 
 		TransactionItems.Remove(i, 1);
@@ -1798,7 +1808,7 @@ reliable server final private function ServerBuyAmmo(int AmountPurchased, byte C
 
 		    		/* __TW_ Analytics */
 					if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"S.Ammo,"@KFW.class$","@AmountPurchased);
-					if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "S.ammo", KFW.class, "#"$AmountPurchased);
+					if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "S.ammo", KFW.class, "#"$AmountPurchased);
 				}
 				else
 				{
@@ -1818,7 +1828,7 @@ reliable server final private function ServerBuyAmmo(int AmountPurchased, byte C
 
 		    		/* __TW_ Analytics */
 					if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"Ammo,"@KFW.class$","@AmountPurchased);
-					if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "ammo", KFW.class, "#"$AmountPurchased);
+					if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "ammo", KFW.class, "#"$AmountPurchased);
 		    	}
 			}
 			else
@@ -1850,12 +1860,12 @@ reliable server final private event ServerAddTransactionAmmo( int AmountAdded, b
 				if ( bSecondaryAmmo )
 				{
 					if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"S.Ammo,"@WeaponItem.ClassName$","@AmountAdded);
-					if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "S.ammo", WeaponItem.ClassName, "#"$AmountAdded);
+					if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "S.ammo", WeaponItem.ClassName, "#"$AmountAdded);
 				}
 				else
 				{
 					if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"Ammo,"@WeaponItem.ClassName$","@AmountAdded);
-					if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "ammo", WeaponItem.ClassName, "#"$AmountAdded);
+					if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "ammo", WeaponItem.ClassName, "#"$AmountAdded);
 				}
 			}
 		}
@@ -1883,7 +1893,7 @@ reliable server final private function ServerBuyArmor( int PercentPurchased )
 		    /* __TW_ Analytics */
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"Armor,"@PercentPurchased);
 			// this is a bit spammy, since it buys armor in increments of '3'
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "armor", "#"$PercentPurchased);
+			if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "armor", "#"$PercentPurchased);
 		}
 	}
 }
@@ -1899,7 +1909,7 @@ reliable server final private function ServerBuyGrenade( int AmountPurchased )
 
 	    	/* __TW_ Analytics */
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"Grenades(s),"$","@AmountPurchased);
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "grenades", "#"$AmountPurchased);
+			if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "grenades", "#"$AmountPurchased);
     	}
     }
 }

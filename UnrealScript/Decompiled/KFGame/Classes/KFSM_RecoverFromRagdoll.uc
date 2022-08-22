@@ -41,6 +41,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     PawnOwner.Mesh.bUpdateKinematicBonesFromAnimation = false;
     PawnOwner.Mesh.PhysicsWeight = 1;
     PawnOwner.Mesh.MinDistFactorForKinematicUpdate = PawnOwner.default.Mesh.MinDistFactorForKinematicUpdate;
+    PawnOwner.Mesh.SetTickGroup(PawnOwner.default.Mesh.TickGroup);
     PawnOwner.SetTickGroup(0);
     PawnOwner.SetPhysics(0);
     PlayRecoveryAnim();
@@ -175,8 +176,7 @@ function PlayRecoveryAnim()
         PawnOwner.SetRotation(NewRotation);
     }
     PlaySpecialMoveAnim(GetRecoveryAnim(bGetUpFromBack), 0, 0, 0.33, 1);
-    KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(2, 2, 2);
-    KFPOwner.Mesh.RootMotionMode = 3;
+    EnableRootMotion();
 }
 
 function name GetRecoveryAnim(bool bGetUpFromBack)
@@ -197,8 +197,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         FinishedBlendToGetUp();
     }
     bBlendToGetUp = false;
-    PawnOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
-    KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
+    DisableRootMotion();
     super.SpecialMoveEnded(PrevMove, NextMove);
 }
 

@@ -22,6 +22,9 @@ struct native sProjectilePoolInfo
 
 	// Projectiles owned by this player
 	var array<KFProjectile> Projectiles;
+
+	// Set to TRUE if any of the projectiles are flagged bIsAIProjectile=TRUE
+	var bool bIsAIPlayer;
 };
 
 /** The maximum global number of C4 that can be active in play */
@@ -83,31 +86,36 @@ private function AddProjectileToPool_Internal( out array<sProjectilePoolInfo> Po
 	local float OldestProjCreationTime;
 	local int OldestProjInfoIdx;
 
-	Idx = -1;
+	Idx = INDEX_NONE;
 	for( i = 0; i < PoolInfos.Length; ++i )
 	{
-		// If a player has left, reabsorb projectile slots into pool
-		if( PoolInfos[i].ProjController == none || PoolInfos[i].ProjController.bDeleteMe )
+		// AI projectiles get their own projectile info
+		if( !Proj.IsAIProjectile() )
 		{
-			for( j = 0; j < PoolInfos[i].Projectiles.Length; ++j )
+			// If a player has left, reabsorb projectile slots into pool
+			if( PoolInfos[i].ProjController == none || PoolInfos[i].ProjController.bDeleteMe )
 			{
-				PoolInfos[i].Projectiles[j].SetTimer( 1.f + Rand(5) + fRand(), false, nameOf(PoolInfos[i].Projectiles[j].Timer_Explode) );
+				for( j = 0; j < PoolInfos[i].Projectiles.Length; ++j )
+				{
+					PoolInfos[i].Projectiles[j].SetTimer( 1.f + Rand(5) + fRand(), false, nameOf(PoolInfos[i].Projectiles[j].Timer_Explode) );
+				}
+				PoolInfos.Remove( i, 1 );
+				--i;
+				continue;
 			}
-			PoolInfos.Remove( i, 1 );
-			--i;
-			continue;
-		}
-		else if( PoolInfos[i].ProjController == Proj.InstigatorController )
-		{
-			// Get our controller index in the array
-			Idx = i;
+			else if( PoolInfos[i].ProjController == Proj.InstigatorController )
+			{
+				// Get our controller index in the array
+				Idx = i;
+			}
 		}
 
 		// Count the total number of projectiles
 		TotalProjectiles += PoolInfos[i].Projectiles.Length;
 
 		// Get the index of the oldest projectile
-		if( OldestProjCreationTime == 0.f || PoolInfos[i].Projectiles[0].CreationTime < OldestProjCreationTime )
+		if( OldestProjCreationTime == 0.f
+			|| (PoolInfos[i].Projectiles.Length > 0 && PoolInfos[i].Projectiles[0] != none && PoolInfos[i].Projectiles[0].CreationTime < OldestProjCreationTime) )
 		{
 			OldestProjCreationTime = PoolInfos[i].Projectiles[0].CreationTime;
 			OldestProj = PoolInfos[i].Projectiles[0];
@@ -120,6 +128,7 @@ private function AddProjectileToPool_Internal( out array<sProjectilePoolInfo> Po
 	{
 		Idx = PoolInfos.Length;
 		PoolInfos.Insert( Idx, 1 );
+		PoolInfos[Idx].bIsAIPlayer = Proj.IsAIProjectile();
 		PoolInfos[Idx].ProjController = KFPlayerController(Proj.InstigatorController);
 	}
 
@@ -128,7 +137,7 @@ private function AddProjectileToPool_Internal( out array<sProjectilePoolInfo> Po
 	{
 		PoolInfos[OldestProjInfoIdx].Projectiles.Remove( 0, 1 );
 	}
-	else if( PoolInfos[Idx].Projectiles.Length >= MaxProjectilesPerPlayer )
+	else if( !PoolInfos[Idx].bIsAIPlayer && PoolInfos[Idx].Projectiles.Length >= MaxProjectilesPerPlayer )
 	{
 		OldestProj = PoolInfos[Idx].Projectiles[0];
 		PoolInfos[Idx].Projectiles.Remove( 0, 1 );
@@ -153,14 +162,39 @@ private function RemoveProjectileFromPool_Internal( out array<sProjectilePoolInf
 {
 	local int Idx, ProjIdx;
 
-	Idx = PoolInfos.Find( 'ProjController', KFPlayerController(Proj.InstigatorController) );
-	if( Idx != INDEX_NONE )
+	// AI projectiles get their own pool infos, so we need to remove them via projectile lookup
+	if( Proj.IsAIProjectile() )
 	{
-		ProjIdx = PoolInfos[Idx].Projectiles.Find( Proj );
-		if( ProjIdx != INDEX_NONE )
+		for( Idx = 0; Idx < PoolInfos.Length; ++Idx )
 		{
-			PoolInfos[Idx].Projectiles.Remove( ProjIdx, 1 );
+			ProjIdx = PoolInfos[Idx].Projectiles.Find( Proj );
+			if( ProjIdx != INDEX_NONE )
+			{
+				PoolInfos[Idx].Projectiles.Remove( ProjIdx, 1 );
+				if( PoolInfos[Idx].Projectiles.Length == 0 )
+				{
+					PoolInfos.Remove( Idx, 1 );
+				}
+
+				return;
+			}
 		}
+	}
+	else
+	{
+		Idx = PoolInfos.Find( 'ProjController', KFPlayerController(Proj.InstigatorController) );
+		if( Idx != INDEX_NONE )
+		{
+			ProjIdx = PoolInfos[Idx].Projectiles.Find( Proj );
+			if( ProjIdx != INDEX_NONE )
+			{
+				PoolInfos[Idx].Projectiles.Remove( ProjIdx, 1 );
+				if( PoolInfos[Idx].Projectiles.Length == 0 )
+				{
+					PoolInfos.Remove( Idx, 1 );
+				}
+			}
+		}		
 	}
 }
 

@@ -14,9 +14,6 @@ class KFWeap_HealerBase extends KFWeapon
  Ammo / Reload
 ********************************************************************************************* */
 
-/** Cost of healing per fire mode */
-var() array<int> AmmoCost;
-
 /** How many points of heal ammo to recharge per second */
 var()        float      HealSelfRechargeSeconds;
 
@@ -181,18 +178,8 @@ simulated function bool HasAnyAmmo()
 	return true;
 }
 
-simulated function bool HasAmmo( byte FireModeNum, optional int Amount=1 )
-{
-	if ( FireModeNum == DEFAULT_FIREMODE || FireModeNum == ALTFIRE_FIREMODE )
-	{
-		Amount *= AmmoCost[FireModeNum];
-	}
-
-	return Super.HasAmmo(FireModeNum, Amount);
-}
-
 /** Performs actual ammo reloading */
-simulated function PerformReload()
+simulated function PerformReload(optional byte FireModeNum)
 {
 	local KFPerk InstigatorPerk;
 
@@ -231,24 +218,8 @@ function HealAmmoRegeneration(float DeltaTime)
 }
 
 /** Returns true if weapon can potentially be reloaded */
-simulated function bool CanReload()
-{
-	// reload is handled automatically, see bPlayHealAndReload
-	return false;
-}
-
-/** @see KFWeapon::ConsumeAmmo */
-simulated function ConsumeAmmo( byte FireModeNum )
-{
-	if ( Role == ROLE_Authority )
-	{
-		// Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
-		if (MagazineCapacity[0] > 0 && AmmoCount[0] > 0)
-		{
-			AmmoCount[0] = Max(AmmoCount[0] - AmmoCost[FireModeNum], 0);
-		}
-	}
-}
+// reload is handled automatically, see bPlayHealAndReload
+simulated function bool CanReload(optional byte FireModeNum);
 
 /*********************************************************************************************
  Firing / Projectile
@@ -349,21 +320,7 @@ simulated function StartFire(byte FireModeNum)
 
 simulated function bool IsValidHealingTarget( Pawn Healee )
 {
-	local KFPawn_Human HumanHealee;
-	local KFPerk InstigatorPerk;
-
-	HumanHealee = KFPawn_Human(Healee);
-	if( HumanHealee != none )
-	{
-		InstigatorPerk = KFPawn_Human(Instigator).GetPerk();
-		if( InstigatorPerk != none )
-		{
-			return  (Healee.Health < Healee.HealthMax || 
-					 (HumanHealee.Armor < HumanHealee.MaxArmor && InstigatorPerk.CanRepairArmor())) &&
-				    Healee.IsAliveAndWell();
-		}
-	}
-	else if( Healee != none )
+	if( Healee != none )
 	{
 		return Healee.Health < Healee.HealthMax && Healee.IsAliveAndWell();
 	}
@@ -806,7 +763,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=100
-	MaxSpareAmmo[0]=0
+	SpareAmmoCapacity[0]=0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 	bInfiniteSpareAmmo=true

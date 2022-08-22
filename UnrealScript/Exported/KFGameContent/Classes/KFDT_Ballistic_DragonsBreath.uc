@@ -66,7 +66,7 @@ defaultproperties
    StumblePower=21.000000
    LegStumblePower=21.000000
    GunHitPower=12.000000
-   BurnPower=5.000000
+   BurnPower=25.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
    CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Fire'
    BloodSpread=0.400000

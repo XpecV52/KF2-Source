@@ -15,7 +15,6 @@ var const string GBA_VoteNo;
 function InitializeHUD()
 {
     LocalizeText();
-    UpdateUsingGamepad(Outer.GetPC().PlayerInput.bUsingGamepad);
 }
 
 function LocalizeText()
@@ -53,6 +52,7 @@ function ShowKickVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowCh
 function SendVoteKickToAS3(string PlayerName, byte VoteDuration, bool bShowChoices)
 {
     ActionScriptVoid("voteKick");
+    UpdateUsingGamepad(Outer.GetPC().PlayerInput.bUsingGamepad);
 }
 
 function UpdateUsingGamepad(bool bIsUsingGamepad)

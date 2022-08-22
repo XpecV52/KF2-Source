@@ -36,6 +36,11 @@ function InitializeCurrentMenu(byte CurrentMenuIndex)
 	UpdateMenu(CurrentMenuIndex);
 }
 
+function CalloutButtonBumperPress(int Delta)
+{
+	SetInt("calloutButtonBumperPress", Delta);
+}
+
 function  UpdateMenu(byte CurrentMenuIndex)
 {
 	local GFxObject DataProvider;
@@ -187,7 +192,8 @@ function string GetHomeButtonName()
 function bool ShouldStartMenuPulse()
 {
 	if(Manager != none &&
-		class'WorldInfo'.static.IsMenuLevel())
+		class'WorldInfo'.static.IsMenuLevel() &&
+			OnlineLobby != none )
 	{
 		return Manager.CurrentMenuIndex != UI_Start && OnlineLobby.IsInLobby();
 	}

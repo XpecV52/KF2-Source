@@ -27,16 +27,20 @@ defaultproperties
 	MeleeAttackHelper=MeleeHelper_0
 
 	Begin Object Name=SpecialMoveHandler_0
-		SpecialMoveClasses(SM_PlayerZedAttack1)=class'KFSM_PlayerAlpha_Melee'
-		SpecialMoveClasses(SM_PlayerZedAttack2)=class'KFSM_PlayerAlpha_Grab'
-		SpecialMoveClasses(SM_PlayerZedSpecial1)=class'KFSM_PlayerAlpha_Rally'
+		SpecialMoveClasses(SM_PlayerZedMove_LMB)=class'KFSM_PlayerAlpha_Melee'
+		SpecialMoveClasses(SM_PlayerZedMove_RMB)=class'KFSM_PlayerAlpha_Grab'
+		SpecialMoveClasses(SM_PlayerZedMove_V)=class'KFSM_PlayerAlpha_Rally'
 	End Object
 
-	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=0.25f, SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Melee', GBA_Name="GBA_Fire",NameLocalizationKey="Melee")
-	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=0.0f,  SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Grab', GBA_Name="GBA_IronsightsToggle", ALT_GBA_Name="GBA_IronsightsHold",NameLocalizationKey="Grab")
-	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,  GBA_Name="GBA_Reload",bShowOnHud=false)
-	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=1.5f,  SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Enrage', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Rally")
-	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.f, 	SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array
+	MoveListGamepadScheme(ZGM_Melee_Square)=SM_PlayerZedMove_LMB
+	MoveListGamepadScheme(ZGM_Melee_Triangle)=SM_PlayerZedMove_RMB
+	MoveListGamepadScheme(ZGM_Special_R3)=SM_PlayerZedMove_V
+
+	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedMove_LMB,		CooldownTime=0.25f, SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Melee', NameLocalizationKey="Melee")
+	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB,		CooldownTime=0.0f,  SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Grab', NameLocalizationKey="Grab")
+	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,  bShowOnHud=false)
+	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=1.5f,  SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Enrage', NameLocalizationKey="Rally")
+	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.f, 	SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Jump', bShowOnHud=false)) // Jump always at end of array
 
 	bWeakZedGrab=false
 
@@ -53,7 +57,6 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.4)))   //1.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(1.0)))  //0.88
 
-
 // special case
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',              DamageScale=(1.0))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MB500', 	         DamageScale=(1.0)))  //0.9
@@ -61,13 +64,11 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Colt1911', 	     DamageScale=(0.65)))  //0.9
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm', 	             DamageScale=(1.6)))  //0.9
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Pistol_Medic', 	 DamageScale=(1.5)))  //0.9
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Winchester', 	     DamageScale=(0.6)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Winchester', 	     DamageScale=(0.6)))  //0.9 0.7
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_CaulkBurn', 	         DamageScale=(0.9)))  //0.9
 	DamageTypeModifiers.Add((DamageType=class'KFDT_ExplosiveSubmunition_HX25', 	 DamageScale=(0.6)))  //0.9
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_EvisceratorProj', 	 DamageScale=(0.3)))  //0.9
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_Eviscerator', 	     DamageScale=(0.3)))  //0.9
-
-
 
 	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.5, 0.1, 0.1, 0.1), Cooldown=3.0, Duration=2.0)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(0.5),                     Cooldown=3.0)
@@ -80,7 +81,7 @@ defaultproperties
 	IncapSettings(AF_EMP)=		(Vulnerability=(1.0),                     Cooldown=5.0, Duration=3.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5, Duration=2.0)
 
-    Health=200 // 4.5x default //300.f
+    Health=200 // 4.5x default //300.f  //455
     // Override Head GoreHealth (aka HeadHealth)
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=85, DmgScale=1.01, SkinID=1) // default is 20
     DoshValue=20.0 // 2x default because they are harder to hit

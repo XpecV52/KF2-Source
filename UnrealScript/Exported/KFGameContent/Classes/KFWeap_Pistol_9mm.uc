@@ -27,7 +27,7 @@ defaultproperties
    GroupPriority=10.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_9mm'
    DualClass=Class'kfgamecontent.KFWeap_Pistol_Dual9mm'
-   MaxSpareAmmo(0)=225
+   SpareAmmoCapacity(0)=225
    InitialSpareMags(0)=7
    IdleFidgetAnims(3)="Guncheck_v4"
    FireSightedAnims(1)="Shoot_Iron2"

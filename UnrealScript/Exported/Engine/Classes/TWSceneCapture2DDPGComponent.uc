@@ -29,7 +29,6 @@ defaultproperties
 {
    bRenderForegroundDPG=True
    bRenderWorldDPG=True
-   bSkipRenderingDepthPrepass=False
    Name="Default__TWSceneCapture2DDPGComponent"
    ObjectArchetype=SceneCapture2DComponent'Engine.Default__SceneCapture2DComponent'
 }

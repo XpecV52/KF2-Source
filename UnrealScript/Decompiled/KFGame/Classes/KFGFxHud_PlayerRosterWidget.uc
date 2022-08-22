@@ -7,6 +7,19 @@
  *******************************************************************************/
 class KFGFxHud_PlayerRosterWidget extends GFxObject within GFxMoviePlayer;
 
+struct SZedPlayerInfo
+{
+    var string AvatarPath;
+    var int PlayerID;
+
+    structdefaultproperties
+    {
+        AvatarPath=""
+        PlayerID=-1
+    }
+};
+
+var array<SZedPlayerInfo> ZedPlayerInfoList;
 var PlayerReplicationInfo MyPRI;
 
 function InitializeHUD()
@@ -27,6 +40,9 @@ function UpdatePlayerData()
     local KFPlayerController KFPC;
     local KFGameReplicationInfo KFGRI;
     local array<KFPlayerReplicationInfo> CurrentPlayerList;
+    local string AvatarIconPath;
+    local SZedPlayerInfo ZedPlayerInfo;
+    local int SearchIndex;
 
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI == none)
@@ -49,8 +65,38 @@ function UpdatePlayerData()
         if((CurrentPlayerList[I].GetTeamNum() == MyPRI.GetTeamNum()) && MyPRI != CurrentPlayerList[I])
         {
             KFPRI = CurrentPlayerList[I];
+            SearchIndex = ZedPlayerInfoList.Find('PlayerID', KFPRI.PlayerID;
             TempData = Outer.CreateObject("Object");
-            TempData.SetString("playerIcon", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+            if(Class'WorldInfo'.static.IsConsoleBuild(8))
+            {
+                if(SearchIndex == -1)
+                {
+                    AvatarIconPath = KFPC.GetPS4Avatar(KFPRI.PlayerName);
+                    ZedPlayerInfo.PlayerID = KFPRI.PlayerID;
+                    ZedPlayerInfo.AvatarPath = AvatarIconPath;
+                    ZedPlayerInfoList.AddItem(ZedPlayerInfo;                    
+                }
+                else
+                {
+                    AvatarIconPath = ZedPlayerInfoList[SearchIndex].AvatarPath;
+                }
+                TempData.SetString("avatar", AvatarIconPath);                
+            }
+            else
+            {
+                if(SearchIndex == -1)
+                {
+                    AvatarIconPath = KFPC.GetSteamAvatar(KFPRI.UniqueId);
+                    ZedPlayerInfo.PlayerID = KFPRI.PlayerID;
+                    ZedPlayerInfo.AvatarPath = AvatarIconPath;
+                    ZedPlayerInfoList.AddItem(ZedPlayerInfo;                    
+                }
+                else
+                {
+                    AvatarIconPath = ZedPlayerInfoList[SearchIndex].AvatarPath;
+                }
+                TempData.SetString("playerIcon", AvatarIconPath);
+            }
             if(KFPRI.CharPortrait != none)
             {
                 TempData.SetString("zedIcon", "img://" $ PathName(KFPRI.CharPortrait));

@@ -59,7 +59,7 @@ simulated event PostBeginPlay()
     super.PostBeginPlay();
     if(WorldInfo.NetMode != NM_Client)
     {
-        if(InstigatorController != none)
+        if((InstigatorController != none) || IsAIProjectile())
         {
             Class'KFGameplayPoolManager'.static.GetPoolManager().AddProjectileToPool(self, 1);            
         }
@@ -247,7 +247,7 @@ singular simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector
 
 singular event TakeDamage(int InDamage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
-    if((bFadingOut || DamageCauser.Class == Class) || DamageType == ExplosionTemplate.MyDamageType)
+    if(((bFadingOut || DamageCauser.Class == Class) || DamageType == ExplosionTemplate.MyDamageType) || (WorldInfo.TimeSeconds - CreationTime) < 0.5)
     {
         return;
     }
@@ -290,7 +290,7 @@ simulated event Tick(float DeltaTime)
 {
     local float FadeOutSize;
 
-    super.Tick(DeltaTime);
+    super(Actor).Tick(DeltaTime);
     if(bFadingOut)
     {
         FadeOutSize = (FadeOutTime - WorldInfo.TimeSeconds) / default.FadeOutTime;
@@ -324,18 +324,22 @@ simulated function FadeOut()
     {
         return;
     }
+    SetOwner(none);
     SetCollision(false, false);
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         bFadingOut = true;
-        FadeOutTime = WorldInfo.TimeSeconds + default.FadeOutTime;
+        FadeOutTime = WorldInfo.TimeSeconds + default.FadeOutTime;        
+    }
+    else
+    {
+        SetTimer(0.2, false, 'Destroy');
     }
     if(WorldInfo.NetMode != NM_Client)
     {
         bTearOff = true;
+        bNetDirty = true;
         bForceNetUpdate = true;
-        NetUpdateFrequency = 1000;
-        SetTimer(0.1, false, 'Destroy');
     }
 }
 
@@ -419,14 +423,11 @@ defaultproperties
         KnockDownStrength=0
         MomentumTransferScale=0
         ExplosionSound=AkEvent'WW_ZED_Bloat.Play_Bloat_Mine_Explode'
-        ExploLight=PointLightComponent'Default__KFProj_BloatPukeMine.ExplosionPointLight'
-        ExploLightFadeOutTime=0.25
-        ExploLightStartFadeOutTime=0.3
-        ExploLightFlickerIntensity=5
-        ExploLightFlickerInterpSpeed=15
         FractureMeshRadius=0
         FracturePartVel=0
         CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+        CamShakeInnerRadius=200
+        CamShakeOuterRadius=400
     object end
     // Reference: KFGameExplosion'Default__KFProj_BloatPukeMine.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
@@ -440,8 +441,8 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFProj_BloatPukeMine.AmbientAkSoundComponent'
     AmbientComponent=AmbientAkSoundComponent
-    Speed=2000
-    MaxSpeed=2000
+    Speed=500
+    MaxSpeed=500
     bBlockedByInstigator=false
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=10

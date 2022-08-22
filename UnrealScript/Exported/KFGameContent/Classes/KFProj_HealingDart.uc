@@ -87,41 +87,6 @@ simulated event Tick(float DeltaTime)
 	}
 }
 
-/** Handle bullet collision and damage */
-simulated function ProcessBulletTouch( Actor Other, Vector HitLocation, Vector HitNormal )
-{
-	local KFPerk InstigatorPerk;
-	local KFPawn_Monster KFPM;
-	local KFPawn_Human KFPH;
-
-	super.ProcessBulletTouch( Other, HitLocation, HitNormal );
-
-	if( Instigator != None )
-	{
-		InstigatorPerk = KFPawn(Instigator).GetPerk();
-		if( InstigatorPerk != none )
-		{
-			KFPM = KFPawn_Monster(Other);
-			if( InstigatorPerk.ShouldSedate() && KFPM != none )
-			{
-				KFPM.DoSpecialMove( SM_Stunned );
-				return;
-			}
-
-			if( WorldInfo.NetMode != NM_DedicatedServer && 
-				WorldInfo.TimeDilation < 1.f && 
-				InstigatorPerk.ShouldPlayAAEffect() )
-			{
-				KFPH = KFPawn_Human(Other);
-				if( KFPH != none )
-				{
-					KFPH.WorldInfo.MyEmitterPool.SpawnEmitter(class'KFPerk_FieldMedic'.static.GetAAEffect(), KFPH.Location);
-				}
-			}
-		}
-	}
-}
-
 /** Skip projectile HitWall since the healing dart does no damage and just explode/shutdown */
 simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {

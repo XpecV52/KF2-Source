@@ -59,6 +59,8 @@ var bool bAutoStartAmbientSound;
 var bool bStopAmbientSoundOnExplode;
 var bool bImportantAmbientSound;
 var bool bAmbientSoundZedTimeOnly;
+var protected bool bIsAIProjectile;
+var protected const bool bWarnAIWhenFired;
 var float AlwaysRelevantDistanceSquared;
 var repnotify float InitialPenetrationPower;
 var float PenetrationPower;
@@ -77,6 +79,7 @@ var(Projectile) float TerminalVelocity;
 var class<GameExplosionActor> ExplosionActorClass;
 /** Defines the explosion. */
 var(Projectile) export editinline KFGameExplosion ExplosionTemplate;
+var AkEvent DisintegrateSound;
 /** Effects Template for projectile being disintegrated by siren's scream */
 var(Projectile) ParticleSystem ProjDisintegrateTemplate;
 var export editinline ParticleSystemComponent ProjDisintegrateEffects;
@@ -91,9 +94,11 @@ var float ProjEffectsFadeOutDuration;
 var(Projectile) ParticleSystem ProjFlightTemplateZedTime;
 var AkEvent AmbientSoundPlayEvent;
 var AkEvent AmbientSoundStopEvent;
-var export editinline AkComponent AmbientComponent;
+var private export editinline AkComponent AmbientComponent;
 var KFImpactEffectInfo ImpactEffects;
 var class<KFPerk> AssociatedPerkClass;
+var protected const float MaxAIWarningDistSQ;
+var protected const float MaxAIWarningDistFromPointSQ;
 
 replication
 {
@@ -115,6 +120,15 @@ replication
 
 // Export UKFProjectile::execGetTerminalVelocity(FFrame&, void* const)
 native function float GetTerminalVelocity();
+
+// Export UKFProjectile::execStopAmbientSound(FFrame&, void* const)
+native function StopAmbientSound(optional bool bForce);
+
+event PreBeginPlay()
+{
+    super.PreBeginPlay();
+    bIsAIProjectile = (InstigatorController == none) || !InstigatorController.bIsPlayer;
+}
 
 simulated function PostBeginPlay()
 {
@@ -140,6 +154,47 @@ function Init(Vector Direction)
         OriginalLocation = Location;
         SyncOriginalLocation();
     }
+    if((WorldInfo.NetMode != NM_Client) && ShouldWarnAIWhenFired())
+    {
+        WarnAI(Direction);
+    }
+}
+
+function WarnAI(Vector Direction)
+{
+    local Pawn P;
+    local KFPawn_Monster HitMonster;
+    local Vector Projection, DangerPoint;
+
+    foreach WorldInfo.AllPawns(Class'Pawn', P)
+    {
+        if(((P.GetTeamNum() != Instigator.GetTeamNum()) && !P.IsHumanControlled()) && P.IsAliveAndWell())
+        {
+            Projection = P.Location - Location;
+            if(VSizeSq(Projection) < MaxAIWarningDistSQ)
+            {
+                PointDistToLine(P.Location, Direction, Location, DangerPoint);
+                if(VSizeSq(DangerPoint - P.Location) < MaxAIWarningDistFromPointSQ)
+                {
+                    HitMonster = KFPawn_Monster(P);
+                    if((HitMonster != none) && HitMonster.MyKFAIC != none)
+                    {
+                        HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint, Location, self);
+                    }
+                }
+            }
+        }        
+    }    
+}
+
+function bool ShouldWarnAIWhenFired()
+{
+    return bWarnAIWhenFired;
+}
+
+function bool IsAIProjectile()
+{
+    return bIsAIProjectile;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -479,9 +534,16 @@ simulated function Disintegrate(Rotator InDisintegrateEffectRotation)
         DisintegrateEffectRotation = rotator(-Velocity);
     }
     SetPhysics(0);
-    if((ProjDisintegrateTemplate != none) && WorldInfo.NetMode != NM_DedicatedServer)
+    if(WorldInfo.NetMode != NM_DedicatedServer)
     {
-        ProjDisintegrateEffects = WorldInfo.MyEmitterPool.SpawnEmitter(ProjDisintegrateTemplate, Location, InDisintegrateEffectRotation);
+        if(ProjDisintegrateTemplate != none)
+        {
+            ProjDisintegrateEffects = WorldInfo.MyEmitterPool.SpawnEmitter(ProjDisintegrateTemplate, Location, InDisintegrateEffectRotation);
+        }
+        if(DisintegrateSound != none)
+        {
+            PlaySoundBase(DisintegrateSound, true);
+        }
     }
     bHasDisintegrated = true;
     DeferredDestroy(0.1);
@@ -501,9 +563,9 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
         {
             bWasTimeDilated = WorldInfo.TimeDilation < 1;
         }
-        if((bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none) && AmbientComponent != none)
+        if(bStopAmbientSoundOnExplode)
         {
-            AmbientComponent.StopEvents();
+            StopAmbientSound();
         }
         if(ExplosionTemplate != none)
         {
@@ -563,9 +625,9 @@ protected simulated function SetExplosionActorClass();
 
 simulated function ShutDown()
 {
-    if((bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none) && AmbientComponent != none)
+    if(bStopAmbientSoundOnExplode)
     {
-        AmbientComponent.StopEvents();
+        StopAmbientSound();
     }
     if(bShuttingDown)
     {
@@ -624,42 +686,12 @@ simulated function Destroyed()
         WorldInfo.MyEmitterPool.OnParticleSystemFinished(ProjEffects);
         ProjEffects = none;
     }
-    if((AmbientSoundStopEvent != none) && AmbientComponent != none)
-    {
-        AmbientComponent.StopEvents();
-    }
+    StopAmbientSound();
     super(Actor).Destroyed();
 }
 
 // Export UKFProjectile::execGetGravityZ(FFrame&, void* const)
 native function float GetGravityZ();
-
-simulated event Tick(float DeltaTime)
-{
-    super(Actor).Tick(DeltaTime);
-    if(WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        if(((((AmbientSoundPlayEvent != none) && bAmbientSoundZedTimeOnly) && !self.WorldInfo.TimeDilation < 1) && AmbientSoundStopEvent != none) && AmbientComponent != none)
-        {
-            AmbientComponent.StopEvents();
-            AmbientComponent = none;
-        }
-        if(((ProjEffects != none) && bFadingOutProjEffects) && bShuttingDown)
-        {
-            if(ProjEffectsFadeOutDuration >= 0)
-            {
-                ProjEffectsFadeOutDuration -= DeltaTime;
-                if(ProjEffectsFadeOutDuration <= 0)
-                {
-                    bFadingOutProjEffects = false;
-                    ProjEffectsFadeOutDuration = 0;
-                    ProjEffects.KillParticlesForced();
-                    Destroy();
-                }
-            }
-        }
-    }
-}
 
 simulated function SpawnFlightEffects()
 {
@@ -719,7 +751,10 @@ simulated function OnInstigatorControllerLeft();
 defaultproperties
 {
     GravityScale=1
+    DisintegrateSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Siren_Grenade_Dis'
     PostExplosionLifetime=1
+    MaxAIWarningDistSQ=4000000
+    MaxAIWarningDistFromPointSQ=16384
     Speed=4000
     MaxSpeed=4000
     MomentumTransfer=1

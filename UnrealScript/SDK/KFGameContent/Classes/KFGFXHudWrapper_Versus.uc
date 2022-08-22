@@ -19,8 +19,8 @@ var int HumanStatusBarLengthMax;
 const FriendlyZedInfoShowDistanceSQ = 562000;
 
 /** Boss icon texture/values */
-var Texture2D BossIconTexture;
-var color BossIconColor;
+var const Texture2D BossIconTexture;
+var const color BossIconColor;
 
 /** String displayed to player zeds waiting for the next spawn cycle */
 var localized string WaitingToSpawnString;
@@ -81,7 +81,7 @@ function class<KFGFxMoviePlayer_HUD> GetHUDClass()
 function DrawHUD()
 {
     local float ThisDot;
-    local vector ViewLocation, ViewVector;
+    local vector ViewLocation, ViewVector, TestPawnLocation;
     local rotator ViewRotation;
     local Pawn TestPawn;
     local KFPawn_Human HumanPawn;
@@ -119,11 +119,16 @@ function DrawHUD()
                 continue;
             }
 
-            if( TestPawn.IsAliveAndWell() && TestPawn != BossPawn && TestPawn != KFPlayerOwner.Pawn )
+            if( TestPawn.IsAliveAndWell()
+                && TestPawn.Mesh.SkeletalMesh != none
+                && TestPawn.Mesh.bAnimTreeInitialised
+                && TestPawn != BossPawn
+                && TestPawn != KFPlayerOwner.Pawn )
             {
                 if( TestPawn.Mesh != none && `TimeSince( TestPawn.Mesh.LastRenderTime ) < 0.2f )
                 {
-                    ThisDot = Normal(TestPawn.Location - ViewLocation) dot ViewVector;
+                    TestPawnLocation = TestPawn.Mesh.GetPosition() + ( TestPawn.CylinderComponent.CollisionHeight * vect(0,0,1) );
+                    ThisDot = Normal(TestPawnLocation - ViewLocation) dot ViewVector;
                     if( ThisDot > 0.f )
                     {
                         HumanPawn = KFPawn_Human(TestPawn);
@@ -142,7 +147,7 @@ function DrawHUD()
                         }
                         else if( MyTeamNum == 255 && TestPawn.GetTeamNum() == 255 )
                         {
-                            if( VSizeSq( KFPlayerOwner.ViewTarget.Location - TestPawn.Location ) <= FriendlyZedInfoShowDistanceSQ )
+                            if( VSizeSq( KFPlayerOwner.ViewTarget.Location - TestPawnLocation ) <= FriendlyZedInfoShowDistanceSQ )
                             {
                                 DrawFriendlyZedPawnIcon( TestPawn );
                             }
@@ -160,6 +165,13 @@ function DrawHUD()
 
         CheckAndDrawHiddenPlayerIcons( VisibleHumanPlayers, HiddenHumanPlayers );
     }
+    
+    
+    // Draw boss pawn icon if needed
+    CheckAndDrawBossPawnIcon( ViewLocation, ViewVector );
+    
+     // Disable stencil test
+    Canvas.EnableStencilTest(false);
 
     // Draw spawn time remaining
     if( (MyTeamNum == 255 || MyKFGRIV.bRoundIsOver)
@@ -169,15 +181,9 @@ function DrawHUD()
     {
         if( MyKFGRIV.TimeUntilNextSpawn != 255 || MyKFGRIV.PlayerZedSpawnWaitTimeData.bTakeOverActive )
         {
-            DrawRemainingTimeUntilSpawn( MyKFGRIV.TimeUntilNextSpawn, MyKFGRIV.PlayerZedSpawnWaitTimeData.bTakeOverActive );
+             DrawRemainingTimeUntilSpawn( MyKFGRIV.TimeUntilNextSpawn, MyKFGRIV.PlayerZedSpawnWaitTimeData.bTakeOverActive );
         }
     }
-
-    // Draw boss pawn icon if needed
-    CheckAndDrawBossPawnIcon( ViewLocation, ViewVector );
-
-    // Disable stencil test
-    Canvas.EnableStencilTest(false);
 }
 
 /**
@@ -190,17 +196,21 @@ function DrawHUD()
 simulated function CheckAndDrawBossPawnIcon( vector ViewLocation, vector ViewVector )
 {
     local float ThisDot;
+    local vector BossPawnLocation;
 
     if( BossPawn != none
+        && BossPawn.Mesh.SkeletalMesh != none
+        && BossPawn.Mesh.bAnimTreeInitialised
         && BossPawn != PlayerOwner.Pawn
         && BossPawn.IsAliveAndWell()
         && `TimeSince( BossPawn.Mesh.LastRenderTime ) > 0.2f
         && (PlayerOwner.GetTeamNum() == 255 || BossPawn.ShouldDrawBossIcon()) )
     {
-        ThisDot = Normal( BossPawn.Location - ViewLocation ) dot ViewVector;
+        BossPawnLocation = BossPawn.Mesh.GetPosition();
+        ThisDot = Normal( (BossPawnLocation + (BossPawn.CylinderComponent.CollisionHeight * vect(0,0,1))) - ViewLocation ) dot ViewVector;
         if( ThisDot > 0.f )
         {
-            DrawBossPawnIcon();
+            DrawBossPawnIcon( BossPawnLocation );
         }
     }
 }
@@ -223,7 +233,7 @@ simulated function DrawFriendlyZedPawnIcon( Pawn MonsterPawn )
     BarLength = FMin(HumanStatusBarLengthMax * (float(Canvas.SizeX) / 1024.f), HumanStatusBarLengthMax) * FriendlyHudScale;
     BarHeight = FMin(8.f * (float(Canvas.SizeX) / 1024.f), 8.f) * FriendlyHudScale;
 
-    TargetLocation = MonsterPawn.Location + vect(0,0,1) * MonsterPawn.GetCollisionHeight() * 1.2;
+    TargetLocation = MonsterPawn.Mesh.GetPosition() + ( MonsterPawn.CylinderComponent.CollisionHeight * vect(0,0,2.2f) );
 
     ScreenPos = Canvas.Project(TargetLocation);
     if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
@@ -266,7 +276,7 @@ function bool DrawPreciseHumanPlayerInfo( KFPawn_Human KFPH )
     BarLength = FMin( HumanStatusBarLengthMax * (float(Canvas.SizeX) / 1024.f), HumanStatusBarLengthMax ) * FriendlyHudScale;
     BarHeight = FMin( 8.f * (float(Canvas.SizeX) / 1024.f), 8.f ) * FriendlyHudScale;
 
-    TargetLocation = KFPH.Location + vect(0,0,1) * KFPH.GetCollisionHeight() * 1.2;
+    TargetLocation = KFPH.Mesh.GetPosition() + ( KFPH.CylinderComponent.CollisionHeight * vect(0,0,2.2f) );
 
     ScreenPos = Canvas.Project(TargetLocation);
     if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
@@ -296,12 +306,12 @@ function bool DrawPreciseHumanPlayerInfo( KFPawn_Human KFPH )
  * 
  * @param BossPawn The boss' pawn
  */
-function DrawBossPawnIcon()
+function DrawBossPawnIcon( vector BossLocation )
 {
     local vector ScreenPos, TargetLocation;
     local float IconSizeMult;
 
-    TargetLocation = BossPawn.Location + vect(0,0,1) * BossPawn.GetCollisionHeight() * 1.2;
+    TargetLocation = BossLocation + ( BossPawn.CylinderComponent.CollisionHeight * vect(0,0,2.2f) );
     ScreenPos = Canvas.Project( TargetLocation );
     IconSizeMult = PlayerStatusIconSize * FriendlyHudScale * 0.5f;
     ScreenPos.X -= IconSizeMult;
@@ -345,7 +355,7 @@ function DrawRemainingTimeUntilSpawn( byte RemainingTime, bool bTakeOverIsActive
         }
     }
 
-    TextScale = class'KFGameEngine'.Static.GetKFFontScale() * (Canvas.ClipY / 384.f);
+    TextScale = class'KFGameEngine'.Static.GetKFFontScale() * (Canvas.ClipY / 512.f);
     Canvas.Font = class'KFGameEngine'.Static.GetKFCanvasFont();
     Canvas.TextSize( Repl( WaitingToSpawnString, "%x%", "00", true ), XL, YL, TextScale, TextScale );
     ScreenPos.X = (Canvas.ClipX * 0.5f) - (XL * 0.5f);

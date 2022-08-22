@@ -23,6 +23,8 @@ defaultproperties
     ArmDistSquared=150000 // 4.0 meters
     LifeSpan=+25.f
 
+	bWarnAIWhenFired=true
+
 	ProjFlightTemplate=ParticleSystem'WEP_3P_M79_EMIT.FX_M79_40mm_Projectile'
 	ProjFlightTemplateZedTime=ParticleSystem'WEP_3P_M79_EMIT.FX_M79_40mm_Projectile_ZEDTIME'
 	ProjDudTemplate=ParticleSystem'WEP_3P_M79_EMIT.FX_M79_40mm_Projectile_Dud'

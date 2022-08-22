@@ -66,6 +66,7 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 
 defaultproperties
 {
+   DeathExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedCrawler_Versus:ExploTemplate0'
    bVersusZed=True
    bHasExtraSprintJumpVelocity=True
    ThirdPersonViewOffset=(OffsetHigh=(X=-300.000000,Y=60.000000,Z=60.000000),OffsetMid=(X=-250.000000,Y=60.000000,Z=-30.000000),OffsetLow=(X=-220.000000,Y=60.000000,Z=25.000000))
@@ -82,37 +83,44 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedCrawler_Versus:MeleeHelper_0'
    DoshValue=25
    XPValues(0)=32.000000
-   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(1.300000))
-   DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.700000))
-   DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.300000))
-   DamageTypeModifiers(16)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.400000))
-   DamageTypeModifiers(17)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.500000))
-   DamageTypeModifiers(18)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.500000))
-   DamageTypeModifiers(19)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.500000))
-   DamageTypeModifiers(20)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.500000))
-   DamageTypeModifiers(21)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(0.350000))
-   DamageTypeModifiers(22)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.350000))
-   DamageTypeModifiers(23)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.400000))
-   DamageTypeModifiers(24)=(DamageType=Class'KFGame.KFDT_Toxic')
-   DamageTypeModifiers(25)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AR15',DamageScale=(1.200000))
-   DamageTypeModifiers(26)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MB500',DamageScale=(0.500000))
-   DamageTypeModifiers(27)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858',DamageScale=(0.750000))
-   DamageTypeModifiers(28)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Colt1911',DamageScale=(0.650000))
-   DamageTypeModifiers(29)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm',DamageScale=(1.600000))
-   DamageTypeModifiers(30)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Pistol_Medic',DamageScale=(1.500000))
-   DamageTypeModifiers(31)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Winchester',DamageScale=(0.700000))
-   DamageTypeModifiers(32)=(DamageType=Class'kfgamecontent.KFDT_Fire_CaulkBurn',DamageScale=(0.900000))
-   DamageTypeModifiers(33)=(DamageType=Class'kfgamecontent.KFDT_ExplosiveSubmunition_HX25',DamageScale=(0.600000))
-   DamageTypeModifiers(34)=(DamageType=Class'kfgamecontent.KFDT_Slashing_EvisceratorProj',DamageScale=(0.300000))
-   DamageTypeModifiers(35)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Eviscerator',DamageScale=(0.300000))
-   SpecialMoveCooldowns(0)=(CoolDownTime=0.650000,SMHandle=SM_PlayerZedAttack1,SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-LightLeap',NameLocalizationKey="Light",GBA_Name="GBA_Fire")
-   SpecialMoveCooldowns(1)=(CoolDownTime=1.000000,SMHandle=SM_PlayerZedAttack2,SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-HeavyLeap',NameLocalizationKey="Heavy",GBA_Name="GBA_IronsightsToggle",ALT_GBA_NAME="GBA_IronsightsHold")
-   SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,GBA_Name="GBA_Reload",bShowOnHud=False)
+   DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(1.300000))
+   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.700000))
+   DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.300000))
+   DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.400000))
+   DamageTypeModifiers(16)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.500000))
+   DamageTypeModifiers(17)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.500000))
+   DamageTypeModifiers(18)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.500000))
+   DamageTypeModifiers(19)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.500000))
+   DamageTypeModifiers(20)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(0.350000))
+   DamageTypeModifiers(21)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.350000))
+   DamageTypeModifiers(22)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.400000))
+   DamageTypeModifiers(23)=(DamageType=Class'KFGame.KFDT_Toxic')
+   DamageTypeModifiers(24)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AR15',DamageScale=(1.200000))
+   DamageTypeModifiers(25)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MB500',DamageScale=(0.500000))
+   DamageTypeModifiers(26)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858',DamageScale=(0.750000))
+   DamageTypeModifiers(27)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Colt1911',DamageScale=(0.650000))
+   DamageTypeModifiers(28)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm',DamageScale=(1.600000))
+   DamageTypeModifiers(29)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Pistol_Medic',DamageScale=(1.500000))
+   DamageTypeModifiers(30)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Winchester',DamageScale=(0.700000))
+   DamageTypeModifiers(31)=(DamageType=Class'kfgamecontent.KFDT_Fire_CaulkBurn',DamageScale=(0.900000))
+   DamageTypeModifiers(32)=(DamageType=Class'kfgamecontent.KFDT_ExplosiveSubmunition_HX25',DamageScale=(0.600000))
+   DamageTypeModifiers(33)=(DamageType=Class'kfgamecontent.KFDT_Slashing_EvisceratorProj',DamageScale=(0.300000))
+   DamageTypeModifiers(34)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Eviscerator',DamageScale=(0.300000))
+   MoveListGamepadScheme(0)=SM_None
+   MoveListGamepadScheme(1)=SM_None
+   MoveListGamepadScheme(2)=SM_PlayerZedMove_LMB
+   MoveListGamepadScheme(3)=SM_None
+   MoveListGamepadScheme(4)=SM_PlayerZedMove_G
+   MoveListGamepadScheme(5)=SM_None
+   MoveListGamepadScheme(6)=SM_PlayerZedMove_RMB
+   SpecialMoveCooldowns(0)=(CoolDownTime=0.650000,SMHandle=SM_PlayerZedMove_LMB,SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-LightLeap',NameLocalizationKey="Light")
+   SpecialMoveCooldowns(1)=(CoolDownTime=1.000000,SMHandle=SM_PlayerZedMove_RMB,SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-HeavyLeap',NameLocalizationKey="Heavy")
+   SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,bShowOnHud=False)
    SpecialMoveCooldowns(3)=()
    SpecialMoveCooldowns(4)=()
    SpecialMoveCooldowns(5)=()
-   SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedSpecial4,SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Explode',NameLocalizationKey="Suicide",GBA_Name="GBA_Grenade")
-   SpecialMoveCooldowns(7)=(CoolDownTime=0.850000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Jump',GBA_Name="GBA_Jump",bShowOnHud=False)
+   SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Explode',NameLocalizationKey="Suicide")
+   SpecialMoveCooldowns(7)=(CoolDownTime=0.850000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Jump',bShowOnHud=False)
    JumpBumpDamageType=Class'kfgamecontent.KFDT_Bludgeon_ZedJump'
    LocalizationKey="KFPawn_ZedCrawler"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedCrawler:ThirdPersonHead0'
@@ -154,9 +162,10 @@ defaultproperties
    IncapSettings(4)=(Cooldown=3.000000,Vulnerability=(0.500000))
    IncapSettings(5)=(Duration=2.000000,Cooldown=3.000000,Vulnerability=(0.500000,0.500000,0.100000,0.100000,0.100000))
    IncapSettings(6)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(1.000000))
-   IncapSettings(7)=(Cooldown=3.000000,Vulnerability=(0.500000))
-   IncapSettings(8)=(Vulnerability=(1.000000))
-   IncapSettings(9)=(Duration=2.000000,Cooldown=5.000000)
+   IncapSettings(7)=()
+   IncapSettings(8)=(Cooldown=3.000000,Vulnerability=(0.500000))
+   IncapSettings(9)=(Vulnerability=(1.000000))
+   IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000)
    SprintSpeed=700.000000
    SprintStrafeSpeed=500.000000
    TeammateCollisionRadiusPercent=0.300000
@@ -194,14 +203,16 @@ defaultproperties
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
       SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_PlayerCrawler_Melee'
-      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_PlayerCrawler_Melee2'
-      SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_PlayerCrawler_Melee'
+      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerCrawler_Melee2'
       SpecialMoveClasses(25)=None
-      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerCrawler_Suicide'
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=Class'kfgamecontent.KFSM_PlayerCrawler_Suicide'
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedCrawler:SpecialMoveHandler_0'
    End Object
@@ -268,6 +279,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedCrawler:KFPawnSkeletalMeshComponent'
    End Object

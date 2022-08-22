@@ -21,6 +21,8 @@ defaultproperties
     MomentumTransfer=50000.0
     ArmDistSquared=150000 // 4 meters
 
+	bWarnAIWhenFired=true
+
 	ProjFlightTemplate=ParticleSystem'WEP_RPG7_EMIT.FX_RPG7_Projectile'
 	ProjFlightTemplateZedTime=ParticleSystem'WEP_RPG7_EMIT.FX_RPG7_Projectile_ZED_TIME'
 	ProjDudTemplate=ParticleSystem'WEP_RPG7_EMIT.FX_RPG7_Projectile_Dud'

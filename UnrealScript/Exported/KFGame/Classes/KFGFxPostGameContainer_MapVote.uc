@@ -57,8 +57,8 @@ function SetMapOptions()
 		for (i = 0; i < ServerMapList.length; i++)
 		{
 			MapObject = CreateObject("Object");
-			MapObject.SetString("label", ServerMapList[i]);
-			MapObject.SetString("mapSource", GetMapSource(ServerMapList[i]));
+			MapObject.SetString("label", class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(ServerMapList[i]) );
+			MapObject.SetString("mapSource", GetMapSource(ServerMapList[i]) );
 			MapList.SetElementObject(i, MapObject);
 		}
 	}
@@ -100,7 +100,7 @@ function GFxObject IndexToTopMapObject(string MapName, int VoteCount)
 	local GFxObject MapObject;
 
 	MapObject = CreateObject("Object");
-	MapObject.SetString("label", MapName);
+	MapObject.SetString("label", class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(MapName) );
 	MapObject.SetString("secondaryText", String(VoteCount));
 	MapObject.SetString("mapSource", GetMapSource(MapName));
 		

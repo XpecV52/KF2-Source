@@ -19,7 +19,7 @@ var float DeCloakSpeed;
 
 simulated event PostBeginPlay()
 {
-    super(KFPawn).PostBeginPlay();
+    super.PostBeginPlay();
     SetCloaked(true);
     PlayStealthSoundLoop();
 }
@@ -44,7 +44,7 @@ function SetCloaked(bool bNewCloaking)
 {
     if(bCanCloak)
     {
-        if(bNewCloaking && (IsImpaired()) || IsIncapacitated())
+        if(bNewCloaking && !IsCombatCapable())
         {
             return;
         }
@@ -224,19 +224,20 @@ function CallOutCloakingExpired()
     UpdateGameplayMICParams();
 }
 
-simulated function Rally(ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem PlayerRallyEffect, name PlayerRallyEffectBoneNames[2], Vector PlayerRallyEffectOffset)
+simulated function Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem AltRallyEffect, name AltEffectBoneNames[2], Vector AltEffectOffset, optional bool bSkipEffects)
 {
     local PlayerController PC;
 
+    bSkipEffects = false;
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         PC = WorldInfo.GetALocalPlayerController();
         if(((((bIsCloaking && !bIsCloakingSpottedByLP) && !bIsCloakingSpottedByTeam) && PC.GetTeamNum() < 255) && PC.Pawn != none) && PC.Pawn.IsAliveAndWell())
         {
-            return;
+            bSkipEffects = true;
         }
     }
-    super.Rally(RallyEffect, EffectBoneName, EffectOffset, PlayerRallyEffect, PlayerRallyEffectBoneNames, PlayerRallyEffectOffset);
+    super.Rally(RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects);
 }
 
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
@@ -345,6 +346,7 @@ defaultproperties
     XPValues[2]=10
     XPValues[3]=10
     DamageTypeModifiers=/* Array type was not detected. */
+    DifficultySettings=Class'KFDifficulty_Stalker'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

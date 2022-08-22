@@ -14,37 +14,37 @@ class KFPerk_Sharpshooter extends KFPerk
 
 `include(KFOnlineStats.uci)
 
-//Passives
-var 		const				PerkSkill				HeadshotDamage;
-var 		const				PerkSkill				Recoil;
-var 		const				PerkSkill				WeaponSwitchSpeed;
-
-var 		protected 	const	AkEvent					RhythmMethodSoundReset;
-var 		protected 	const	AkEvent					RhythmMethodSoundHit;
-var 		protected 	const	AkEvent					RhythmMethodSoundTop;
-
-var 		protected 	const 	name 					RhytmMethodRTPCName;
+var private const PerkSkill		HeadshotDamage;
+var private	const PerkSkill		Recoil;
+var private	const PerkSkill		WeaponSwitchSpeed;
+var private	const AkEvent		RhythmMethodSoundReset;
+var private	const AkEvent		RhythmMethodSoundHit;
+var private	const AkEvent		RhythmMethodSoundTop;
+var private	const name 			RhytmMethodRTPCName;
 
 enum ESharpshooterPerkSkills
 {
-	ESharpshooterStationaryAim,		// 10% more damage in ironsights when standing still
-	ESharpshooterTrigger,			// 10% faster firing, 10% faster movement
-	ESharpshooterCrouchAim,			// 10% more damage in ironsights when crouched
-	ESharpshooterStun,				// 30% more stun power with perk weapons
-	ESharpshooterRhythmMethod,		// 5% more damage per consecutive headshot (up to 50%, resets on miss)
-	ESharpshooterTacticalReload,	// Play tactical reload anims
-	ESharpshooterScoped,			// 10% less recoil and 10% more damage on headshots when in scope or sights
-	ESharpshooterAmmoPouch,			// 25% more ammo and grenades
-	ESharpshooterZTKnockdown,		// Headshots with perk weapons cause knockdown in Zed Time
-	ESharpshooterZTStun				// Headshots with perk weapons cause stun in Zed Time
+	ESharpshooterStationaryAim,		
+	ESharpshooterTrigger,			
+	ESharpshooterCrouchAim,			
+	ESharpshooterStun,				
+	ESharpshooterRhythmMethod,		
+	ESharpshooterTacticalReload,	
+	ESharpshooterScoped,			
+	ESharpshooterAmmoPouch,			
+	ESharpshooterZTKnockdown,		
+	ESharpshooterZTStun				
 };
 
-//Selectable skills
-var 		private 		int							HeadShotComboCount;
-var 		private 		int							HeadShotComboCountDisplay;
-var 		private const	int 						MaxHeadShotComboCount;
+var private 	  int			HeadShotComboCount;
+var private 	  int			HeadShotComboCountDisplay;
+var private const float 		HeadShotCountdownIntervall;
+var private const int 			MaxHeadShotComboCount;
+var private const float 		CameraViewShakeScale;
+var private const float 		TriggerMovementSpeedModifier;
+var private const float 		CrouchAimMovementSpeedModifier;
+var private const float 		CrouchAimReloadSpeedModifier;
 
-var 		private const 	float 						CameraViewShakeScale;
 
 /** The % chance that zed time will be activated when damage is done when the Zed Time perk skills are active */
 var float SkillZedTimeChance;
@@ -60,14 +60,12 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	PassiveValues[2] = Round(GetPassiveValue( default.WeaponSwitchSpeed, Level ) * 100) $ "%";
 	PassiveValues[3] = "";
 	PassiveValues[4] = "";
-	PassiveValues[5] = "";
 
-	Increments[0] = "[" @ int(default.HeadshotDamage.Increment * 100) $"% /" @ default.LevelString @ "]";
-	Increments[1] = "[" @ int(default.Recoil.Increment * 100)  $ "% /" @ default.LevelString @ "]";
-	Increments[2] = "[" @ int(default.WeaponSwitchSpeed.Increment * 100) $ "% /" @ default.LevelString @ "]";
+	Increments[0] = "[" @ Left( string( default.HeadshotDamage.Increment * 100 ), InStr(string(default.HeadshotDamage.Increment * 100), ".") + 2 )$"% /" @ default.LevelString @ "]";
+	Increments[1] = "[" @ Left( string( default.Recoil.Increment * 100 ), InStr(string(default.Recoil.Increment * 100), ".") + 2 )$ "% /" @ default.LevelString @ "]";
+	Increments[2] = "[" @ Left( string( default.WeaponSwitchSpeed.Increment * 100 ), InStr(string(default.WeaponSwitchSpeed.Increment * 100), ".") + 2 )$ "% /" @ default.LevelString @ "]";
 	Increments[3] = "";
 	Increments[4] = "";
-	Increments[5] = "";
 }
 
 /**
@@ -88,10 +86,16 @@ simulated static function int GetHeadshotXP( byte Difficulty )
   */
 simulated function ModifySpeed( out float Speed )
 {
-	if( IsTriggerActive() )// && IsWeaponOnPerk( KFW ) )
+	if( IsTriggerActive() )
 	{
-		`QALog( "(Trigger) speed" @ Speed @ GetPercentage(Speed, (Speed * (1.f + PerkSkills[ESharpshooterTrigger].MaxValue))), bLogPerk );
-		Speed *= (1.f + PerkSkills[ESharpshooterTrigger].MaxValue);
+		`QALog( "(Trigger) speed" @ Speed @ GetPercentage(Speed, (Speed += Speed * static.GetTriggerMovementSpeedModifier())), bLogPerk );
+		Speed += Speed * static.GetTriggerMovementSpeedModifier();
+	}
+
+	if( IsCrouchAimActive() )
+	{
+		`QALog( "(Crouch Aim / Stability) speed" @ Speed @ GetPercentage(Speed, (Speed += Speed * static.GetCrouchAimMovementSpeedModifier())), bLogPerk );
+		Speed += Speed * static.GetCrouchAimMovementSpeedModifier();	
 	}
 }
 
@@ -148,6 +152,12 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 					MyKFGI.DramaticEvent( SkillZedTimeChance );
 				}
 			}
+
+			if( GetZTKnockdownActive() )
+			{
+				`QALog( "(Assassin), damage mod=" $GetSkillValue( PerkSkills[ESharpshooterZTKnockdown] ), bLogPerk );
+				TempDamage += InDamage * GetSkillValue( PerkSkills[ESharpshooterZTKnockdown] );
+			}
 		}
 
 		if( IsStationaryAimActive() && VSizeSq(OwnerPawn.Velocity) <= 0 )
@@ -156,9 +166,9 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ESharpshooterStationaryAim] );
 		}
 
-		if( IsCrouchAimActive() && OwnerPawn.bIsCrouched )
+		if( IsCrouchAimActive() )
 		{
-			`QALog( "(Crouched), damage mod=" $GetSkillValue( PerkSkills[ESharpshooterCrouchAim] ), bLogPerk );
+			`QALog( "(Crouched), damage mod=" $ GetSkillValue( PerkSkills[ESharpshooterCrouchAim] ), bLogPerk );
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ESharpshooterCrouchAim] );
 		}
 
@@ -184,9 +194,26 @@ simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
 {
 	if( IsTriggerActive() && IsWeaponOnPerk(KFW) )
 	{
-		`QALog( "(Trigger)" @ KFW @ GetPercentage( InRate, ( InRate - InRate *  PerkSkills[ESharpshooterTrigger].StartingValue ) ), bLogPerk );
-		InRate -= InRate * PerkSkills[ESharpshooterTrigger].StartingValue;
+		`QALog( "(Trigger)" @ KFW @ GetPercentage( InRate, ( InRate - InRate * GetSkillValue( PerkSkills[ESharpshooterTrigger] ) ) ), bLogPerk );
+		InRate -= InRate * GetSkillValue( PerkSkills[ESharpshooterTrigger] );
 	}
+}
+
+/**
+ * @brief Modifies the reload speed for sharpshooter weapons
+ *
+ * @param ReloadDuration Length of the reload animation
+ * @param GiveAmmoTime Time after the weapon actually gets some ammo
+ */
+simulated function float GetReloadRateScale( KFWeapon KFW )
+{
+	if( IsCrouchAimActive() && IsWeaponOnPerk( KFW ) )
+	{
+		`QALog( "Crouch Aim/Stabilty reload rate =" @ 1.f - GetCrouchAimReloadSpeedModifier(), bLogPerk  );
+		return 1.f - GetCrouchAimReloadSpeedModifier();
+	}
+
+	return 1.f;
 }
 
 /**
@@ -227,7 +254,7 @@ simulated final static function float GetCameraViewShakeScale()
  * @param MaxSpareAmmo ammo amount
  * @param TraderItem the weapon's associated trader item info
  */
-simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem)
+simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false )
 {
 	local float TempMaxSpareAmmoAmount;
 
@@ -254,6 +281,8 @@ simulated protected event PostSkillUpdate()
 	}
 
 	super.PostSkillUpdate();
+	
+	SetTickIsDisabled( !IsRhythmMethodActive() );
 
 	if( Role == Role_Authority )
 	{
@@ -308,21 +337,6 @@ function float GetStunPowerModifier( optional class<DamageType> DamageType, opti
 }
 
 /**
- * @brief Skills can can chnage the knock down power
- * @return knock down power in %
- */
-function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting=false )
-{
-	if( WorldInfo.TimeDilation < 1.f && BodyPart == BP_Head && IsZTKnockdownActive() && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)) )
-	{
-		`QALog( "(Knockdown)" @ BodyPart @ GetSkillValue( PerkSkills[ESharpshooterZTKnockdown] ), bLogPerk );
-		return GetSkillValue( PerkSkills[ESharpshooterZTKnockdown] );
-	}
-
-	return 1.f;
-}
-
-/**
  * @brief Checks if the Stationary Aim skill is active
  *
  * @return true/false
@@ -349,7 +363,7 @@ simulated function bool IsTriggerActive()
  */
 function bool IsCrouchAimActive()
 {
-	return PerkSkills[ESharpshooterCrouchAim].bActive;
+	return PerkSkills[ESharpshooterCrouchAim].bActive && OwnerPawn.bIsCrouched && IsWeaponOnPerk( GetOwnerWeapon() );
 }
 
 /**
@@ -447,7 +461,7 @@ simulated function bool GetZTStunActive()
 	return IsZTStunActive() && WorldInfo.TimeDilation < 1.f;
 }
 
-static function int GetMaxHeadShotsValue()
+static function int GetMaxHeadShotComboCount()
 {
 	return default.MaxHeadShotComboCount;
 }
@@ -459,16 +473,13 @@ static function int GetMaxHeadShotsValue()
  */
 function AddToHeadShotCombo( class<KFDamageType> KFDT, KFPawn_Monster KFPM )
 {
-	if( IsRhythmMethodActive() )
+	if( IsDamageTypeOnPerk( KFDT ) )
 	{
-		if( IsDamageTypeOnPerk( KFDT ) )
-		{
-			++HeadShotComboCount;
-			HeadShotComboCountDisplay++;
-			HeadShotComboCount = Min( HeadShotComboCount, MaxHeadShotComboCount );
-
-			HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay,, KFPM );
-		}
+		++HeadShotComboCount;
+		HeadShotComboCountDisplay++;
+		HeadShotComboCount = Min( HeadShotComboCount, MaxHeadShotComboCount );
+		HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay,, KFPM );
+		SetTimer( HeadShotCountdownIntervall, true, nameOf( SubstractHeadShotCombo ) );
 	}
 }
 
@@ -477,25 +488,19 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
    	local int HitZoneIdx;
    	local KFPawn_Monster KFPM;
 
-   	KFPM = KFPawn_Monster(Impact.HitActor);
-   	if( KFPM == none )
-   	{
-   		if( Numhit < 1 )
-   		{
-   			SubstractHeadShotCombo();
-   		}
-
-   		return;
-   	}
-
-   	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
-   	if( HitZoneIdx == HZI_Head && KFPM.IsAliveAndWell() )
+   	if( !IsRhythmMethodActive() )
 	{
-		AddToHeadShotCombo( class<KFDamageType>(DamageType), KFPM  );
+		return;
 	}
-	else if( NumHit < 1 )
-	{
-		SubstractHeadShotCombo();
+
+   	KFPM = KFPawn_Monster(Impact.HitActor);
+   	if( KFPM != none )
+   	{
+	   	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
+	   	if( HitZoneIdx == HZI_Head && KFPM != none && KFPM.IsAliveAndWell() )
+		{
+			AddToHeadShotCombo( class<KFDamageType>(DamageType), KFPM  );
+		}
 	}
 }
 
@@ -524,15 +529,15 @@ reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, o
 		case 0:
 			TempAkEvent = RhythmMethodSoundReset;
 			break;
-		case 1:	case 2:	case 3:	case 4:	case 5:
-		case 6:
+		case 1:	case 2:	case 3:	
+		case 4:	
 			if( !bMissed )
 			{
 				OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShot');
 				TempAkEvent = RhythmMethodSoundHit;
 			}
 			break;
-		case 7:
+		case 5:
 			if( !bMissed )
 			{
 				OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShotPing');
@@ -561,27 +566,41 @@ function SubstractHeadShotCombo()
 		HeadShotComboCountDisplay = HeadShotComboCount;
 		HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay, true );
 	}
+	else if( HeadShotComboCount <= 0 )
+	{
+		ClearTimer( nameOf( SubstractHeadShotCombo ) );
+	}
 }
 
-/**
- * @brief Ccccccombo breaker ( Rhytm method )
- */
-reliable private final server event ServerResetHeadShotCombo()
-{
-	SubstractHeadShotCombo();
-}
 
 reliable private final server function ServerClearHeadShotsCombo()
 {
-	HeadShotComboCountDisplay =0;
-	HeadShotComboCount=0;
+	HeadShotComboCountDisplay = 0;
+	HeadShotComboCount = 0;
 	HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay );
+	ClearTimer( nameOf( SubstractHeadShotCombo ) );
 }
 
 simulated event bool GetIsHeadShotComboActive()
 {
 	return IsRhythmMethodActive();
 }
+
+simulated private static function float GetTriggerMovementSpeedModifier()
+{
+	return default.TriggerMovementSpeedModifier;
+}
+
+simulated private static function float GetCrouchAimMovementSpeedModifier()
+{
+	return default.CrouchAimMovementSpeedModifier;
+}
+
+simulated private static function float GetCrouchAimReloadSpeedModifier()
+{
+	return default.CrouchAimReloadSpeedModifier;
+}
+
 
 DefaultProperties
 {
@@ -594,11 +613,15 @@ DefaultProperties
 	ProgressStatID=`STATID_Shrp_Progress
    	PerkBuildStatID=`STATID_Shrp_Build
 
-   	MaxHeadShotComboCount=4
+   	MaxHeadShotComboCount=5
+   	HeadShotCountdownIntervall=2.f
    	RhytmMethodRTPCName="R_Method"
    	RhythmMethodSoundReset=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Reset'
 	RhythmMethodSoundHit=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Hit'
 	RhythmMethodSoundTop=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Top'
+	TriggerMovementSpeedModifier=0.1 //0.15
+	CrouchAimMovementSpeedModifier=0.5f //0.1 //0.5
+	CrouchAimReloadSpeedModifier=0.2 //0.15 //0.2
 
    	HeadshotDamage=(Name="Headshot Damage",Increment=0.01f,Rank=0,StartingValue=0.0f,MaxValue=0.25f)
    	Recoil=(Name="Recoil",Increment=0.01f,Rank=0,StartingValue=0.0f,MaxValue=0.25f)
@@ -608,16 +631,16 @@ DefaultProperties
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"
    	ZedTimeModifyingStates(2)="WeaponSingleFiring"
 
-   	PerkSkills(ESharpshooterStationaryAim)=(Name="StationaryAim",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_StationaryAim",			Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)    //0.1
-	PerkSkills(ESharpshooterTrigger)=(Name="Trigger",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Trigger",						Increment=0.f,Rank=0,StartingValue=0.25f,MaxValue=0.1f)
-	PerkSkills(ESharpshooterCrouchAim)=(Name="CrouchAim",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_CrouchAim",				Increment=0.f,Rank=0,StartingValue=0.30,MaxValue=0.30)
-	PerkSkills(ESharpshooterStun)=(Name="Stun",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Stun",							Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
-	PerkSkills(ESharpshooterRhythmMethod)=(Name="RhythmMethod",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_RackUmUp",			Increment=0.f,Rank=0,StartingValue=0.17f,MaxValue=0.17f)
-	PerkSkills(ESharpshooterTacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_TacticalReload",			Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
-	PerkSkills(ESharpshooterScoped)=(Name="Scoped",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Scoped",							Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.1f)
-	PerkSkills(ESharpshooterAmmoPouch)=(Name="AmmoPouch",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_AmmoPouch",					Increment=0.f,Rank=0,StartingValue=0.25f,MaxValue=0.25f)
-	PerkSkills(ESharpshooterZTKnockdown)=(Name="ZTKnockdown",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_ZED-KnockDown",					Increment=0.f,Rank=0,StartingValue=17.0,MaxValue=17.0)
-	PerkSkills(ESharpshooterZTStun)=(Name="ZTStun",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_ZED-Stun",						Increment=0.f,Rank=0,StartingValue=5.0,MaxValue=5.0)
+   	PerkSkills(ESharpshooterStationaryAim)=(Name="StationaryAim",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_StationaryAim", Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)    //0.1
+	PerkSkills(ESharpshooterTrigger)=(Name="Trigger",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Trigger",	Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
+	PerkSkills(ESharpshooterCrouchAim)=(Name="CrouchAim",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_CrouchAim", Increment=0.f,Rank=0,StartingValue=0.30,MaxValue=0.30)
+	PerkSkills(ESharpshooterStun)=(Name="Stun",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Stun", Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
+	PerkSkills(ESharpshooterRhythmMethod)=(Name="RhythmMethod",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_RackUmUp", Increment=0.f,Rank=0,StartingValue=0.10f,MaxValue=0.10f)
+	PerkSkills(ESharpshooterTacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_TacticalReload", Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
+	PerkSkills(ESharpshooterScoped)=(Name="Scoped",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Scoped", Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.1f)
+	PerkSkills(ESharpshooterAmmoPouch)=(Name="AmmoPouch",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_AmmoPouch", Increment=0.f,Rank=0,StartingValue=0.25f,MaxValue=0.25f)
+	PerkSkills(ESharpshooterZTKnockdown)=(Name="ZTKnockdown",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_ZED-KnockDown", Increment=0.f,Rank=0,StartingValue=0.35f,MaxValue=0.35f) //0.35
+	PerkSkills(ESharpshooterZTStun)=(Name="ZTStun",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_ZED-Stun", Increment=0.f,Rank=0,StartingValue=5.0,MaxValue=5.0)
 
 	SkillZedTimeChance=0.05  //0.05
 
@@ -632,4 +655,6 @@ DefaultProperties
    	SecondaryXPModifier(3)=3
 
    	CameraViewShakeScale=0.5
+   	AutoBuyLoadOutPath=(class'KFWeapDef_Winchester1894', class'KFWeapDef_Crossbow', class'KFWeapDef_M14EBR', class'KFWeapDef_RailGun')
+   	AssistDoshModifier=1.1f
 }

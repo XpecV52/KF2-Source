@@ -13,6 +13,6 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_AssaultRifle_AR15"
     ImagePath="ui_weaponselect_tex.UI_WeaponSelect_AR15"
     BuyPrice=200
-    AmmoPricePerMag=14
+    AmmoPricePerMag=20
     EffectiveRange=60
 }

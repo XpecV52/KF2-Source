@@ -154,7 +154,7 @@ simulated function SendToFiringState(byte FireModeNum)
     super.SendToFiringState(FireModeNum);
 }
 
-simulated function bool CanReload()
+simulated function bool CanReload(optional byte FireModeNum)
 {
     return true;
 }
@@ -188,7 +188,7 @@ simulated state MeleeHeavyAttacking
             {
                 return;
             }
-            if((AmmoCount[0] > 0) && !IsTimerActive('BeginPulverizerFire'))
+            if((AmmoCount[0] >= AmmoCost[6]) && !IsTimerActive('BeginPulverizerFire'))
             {
                 BlastAttachee = HitActor;
                 SetTimer(0.001, false, 'BeginPulverizerFire');
@@ -224,7 +224,8 @@ defaultproperties
     bReloadFromMagazine=true
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
-    MaxSpareAmmo=15
+    AmmoCost=/* Array type was not detected. */
+    SpareAmmoCapacity=15
     WeaponFireSnd=/* Array type was not detected. */
     AttachmentArchetype=KFWeapAttach_Pulverizer'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon

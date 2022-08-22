@@ -61,30 +61,6 @@ simulated function SendToFiringState(byte FireModeNum)
 
 simulated state WeaponDoubleBarrelFiring extends WeaponSingleFiring
 {
-    /**
-     * @see Weapon::ConsumeAmmo
-     */
-    simulated function ConsumeAmmo( byte FireModeNum )
-    {
-`if(`notdefined(ShippingPC))
-        if( bInfiniteAmmo )
-        {
-            return;
-        }
-`endif
-
-    	// If AmmoCount is being replicated, don't allow the client to modify it here
-    	if ( Role == ROLE_Authority || bAllowClientAmmoTracking )
-    	{
-    		// Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
-    		if (MagazineCapacity[0] > 0 && AmmoCount[0] > 0)
-    		{
-    			// Both barrels, double the ammo
-                AmmoCount[0]-=2;
-    		}
-    	}
-    }
-
     /** Overrideen to include the DoubleFireRecoilModifier*/
     simulated function ModifyRecoil( out float CurrentRecoilModifier )
 	{
@@ -238,13 +214,17 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Pellet'
 	InstantHitDamage(ALTFIRE_FIREMODE)=25.0
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_DBShotgun'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_DBShotgun'
 	PenetrationPower(ALTFIRE_FIREMODE)=2.0
 	FireInterval(ALTFIRE_FIREMODE)=0.25 // 240 RPM
 	NumPellets(ALTFIRE_FIREMODE)=24
 	Spread(ALTFIRE_FIREMODE)=0.25
+	AmmoCost(ALTFIRE_FIREMODE)=2
 	DoubleBarrelKickMomentum=1000
 	FallingMomentumReduction=0.5
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_DBShotgun'
+	InstantHitDamage(BASH_FIREMODE)=24
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Shotgun_DoubleBarrel_ARCH.Wep_Shotgun_DoubleBarrel_MuzzleFlash'
@@ -261,7 +241,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=2
-	MaxSpareAmmo[0]=46
+	SpareAmmoCapacity[0]=46
 	InitialSpareMags[0]=11
 	AmmoPickupScale[0]=3.0
 	bCanBeReloaded=true

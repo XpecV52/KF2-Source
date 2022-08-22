@@ -23,5 +23,7 @@ defaultproperties
 	LegStumblePower=14
 	GunHitPower=39
 
+	WeaponDef=class'KFWeapDef_HX25'
+
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'
 }

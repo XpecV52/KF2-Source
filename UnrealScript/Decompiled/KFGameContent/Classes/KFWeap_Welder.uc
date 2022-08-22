@@ -17,9 +17,9 @@ var() float WeldingRange;
 var() float FastenRate;
 /** How many points to subtract from a door's weld integrity per use (use rate determined by FireInterval) */
 var() float UnfastenRate;
+/** Percent repaired per fire interval */
+var() float RepairRate;
 var const float ExtraWeldingRange;
-/** How much ammo each use consumes (use rate determined by FireInterval) */
-var() float AmmoCost;
 /** How long (in seconds) it takes to recharge ammo by 1 unit */
 var() float AmmoRechargeRate;
 var name IdleWeldAnim;
@@ -32,12 +32,20 @@ var KFGFxWorld_WelderScreen ScreenUI;
 
 simulated event PreBeginPlay()
 {
+    local KFGameEngine KFGEngine;
+
     super.PreBeginPlay();
-    if(Class'KFGameEngine'.default.bShowWelderInInv)
+    KFGEngine = KFGameEngine(Class'KFGameEngine'.static.GetEngine());
+    if(KFGEngine != none)
     {
-        InventoryGroup = 3;
-        bAutoUnequip = false;
+        SetShownInInventory(KFGEngine.bShowWelderInInv);
     }
+}
+
+simulated function SetShownInInventory(bool bValue)
+{
+    InventoryGroup = ((bValue) ? 3 : 4);
+    bAutoUnequip = bValue;
 }
 
 simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name SocketName)
@@ -135,10 +143,9 @@ simulated function bool HasAnyAmmo()
 
 simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
 {
-    Amount = 1;
     if((FireModeNum == 0) || FireModeNum == 1)
     {
-        if((float(AmmoCount[0]) - AmmoCost) > float(0))
+        if(AmmoCount[0] >= AmmoCost[FireModeNum])
         {
             return (WeldTarget != none) && CanWeldTarget(FireModeNum);
         }
@@ -200,13 +207,20 @@ simulated function CustomFire()
         CurrentUnfastenRate = UnfastenRate;
         GetPerk().ModifyWeldingRate(CurrentFastenRate, CurrentUnfastenRate);
         SetTimer(AmmoRechargeRate, true, 'RechargeAmmo');
-        if(CurrentFireMode == 0)
+        if(WeldTarget.bIsDestroyed)
         {
-            WeldTarget.FastenDoor(int(CurrentFastenRate), KFPawn(Instigator));            
+            WeldTarget.RepairDoor(RepairRate);            
         }
         else
         {
-            WeldTarget.FastenDoor(int(CurrentUnfastenRate), KFPawn(Instigator));
+            if(CurrentFireMode == 0)
+            {
+                WeldTarget.FastenDoor(int(CurrentFastenRate), KFPawn(Instigator));                
+            }
+            else
+            {
+                WeldTarget.FastenDoor(int(CurrentUnfastenRate), KFPawn(Instigator));
+            }
         }
     }
     if(Instigator.IsLocallyControlled())
@@ -247,7 +261,7 @@ function RechargeAmmo()
     if(AmmoCount[0] < MagazineCapacity[0])
     {
         ++ AmmoCount[0];
-        if(float(AmmoCount[0]) == AmmoCost)
+        if(AmmoCount[0] == AmmoCost[0])
         {
             Refire();
             if(!Instigator.IsLocallyControlled())
@@ -286,17 +300,6 @@ simulated function Refire()
 reliable client simulated function ClientRefire()
 {
     Refire();
-}
-
-simulated function ConsumeAmmo(byte FireModeNum)
-{
-    if(Role == ROLE_Authority)
-    {
-        if((MagazineCapacity[0] > 0) && AmmoCount[0] > 0)
-        {
-            AmmoCount[0] = byte(Max(int(float(AmmoCount[0]) - AmmoCost), 0));
-        }
-    }
 }
 
 simulated function CheckDelayedStartFire()
@@ -362,6 +365,36 @@ simulated function KFDoorActor TraceDoorActors()
             return door;
         }        
     }    
+    return FindRepairableDoor();
+}
+
+simulated function KFDoorActor FindRepairableDoor()
+{
+    local KFDoorTrigger DoorTrigger;
+    local KFInterface_Usable UsableTrigger;
+    local float FacingDot;
+    local Vector Dir2d;
+    local KFPlayerController KFPC;
+
+    if(Instigator.IsLocallyControlled())
+    {
+        KFPC = KFPlayerController(Instigator.Controller);
+        if(KFPC.MyGFxHUD.CurrentInteractionIndex != 7)
+        {
+            return none;
+        }
+    }
+    UsableTrigger = Class'KFPlayerController'.static.GetCurrentUsableActor(Instigator);
+    DoorTrigger = KFDoorTrigger(bool(UsableTrigger));
+    if(((DoorTrigger != none) && DoorTrigger.DoorActor != none) && DoorTrigger.DoorActor.bIsDestroyed)
+    {
+        Dir2d = Normal2D(DoorTrigger.DoorActor.Location - Instigator.Location);
+        FacingDot = vector(Instigator.Rotation) Dot Dir2d;
+        if(FacingDot > 0.87)
+        {
+            return DoorTrigger.DoorActor;
+        }
+    }
     return none;
 }
 
@@ -445,7 +478,7 @@ simulated state Active
         {
             TickWeldTarget();
             UpdateScreenUI();
-            if(bAutoUnequip)
+            if(!bAutoUnequip)
             {
                 TickAutoUnequip();
             }
@@ -490,7 +523,7 @@ simulated state WeaponWelding extends WeaponFiring
 {
     simulated function byte GetWeaponStateId()
     {
-        return 30;
+        return 29;
     }
 
     simulated function BeginState(name PrevStateName)
@@ -513,8 +546,8 @@ defaultproperties
     WeldingRange=100
     FastenRate=68
     UnfastenRate=-110
+    RepairRate=0.03
     ExtraWeldingRange=10
-    AmmoCost=7
     AmmoRechargeRate=0.08
     IdleWeldAnim=Idle_Weld
     WeldOpenAnim=Weld_On
@@ -528,6 +561,7 @@ defaultproperties
     bAllowClientAmmoTracking=false
     GroupPriority=5
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
+    AmmoCost=/* Array type was not detected. */
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     FireTweenTime=0.2
@@ -540,6 +574,7 @@ defaultproperties
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
+    InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     bCanThrow=false
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

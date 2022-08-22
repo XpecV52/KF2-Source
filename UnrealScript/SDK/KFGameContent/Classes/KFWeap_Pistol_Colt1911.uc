@@ -38,7 +38,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=8
-	MaxSpareAmmo[0]=136
+	SpareAmmoCapacity[0]=136
 	InitialSpareMags[0]=7
 	AmmoPickupScale[0]=2.0
 	bCanBeReloaded=true
@@ -67,7 +67,6 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.175
 	InstantHitDamage(DEFAULT_FIREMODE)=50.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Colt1911'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Colt1911'
 	Spread(DEFAULT_FIREMODE)=0.015
 	PenetrationPower(DEFAULT_FIREMODE)=1.0
 	FireOffset=(X=20,Y=4.0,Z=-3)
@@ -75,6 +74,11 @@ defaultproperties
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Colt1911'
+	InstantHitDamage(BASH_FIREMODE)=22
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_M1911_ARCH.Wep_M1911_MuzzleFlash'

@@ -11,7 +11,7 @@ class KFAIController_ZedSiren extends KFAIController_Monster
 
 function PreMoveToEnemy()
 {
-    if((MyKFPawn.SpecialMove == 17) || (MyKFPawn.SpecialMove == 0) && !IsTimerActive('DoScream'))
+    if((MyKFPawn.SpecialMove == 19) || (MyKFPawn.SpecialMove == 0) && !IsTimerActive('DoScream'))
     {
         DoScream(true);        
     }
@@ -27,11 +27,11 @@ function PreMoveToEnemy()
 function DoScream(optional bool bCalledFromPreMove)
 {
     bCalledFromPreMove = false;
-    if((((MyKFPawn == none) || !MyKFPawn.IsAliveAndWell()) || MyKFPawn.IsImpaired()) || MyKFPawn.IsIncapacitated())
+    if((MyKFPawn == none) || !MyKFPawn.IsCombatCapable())
     {
         return;
     }
-    if((MyKFPawn.SpecialMove == 0) || MyKFPawn.SpecialMove == 17)
+    if((MyKFPawn.SpecialMove == 0) || MyKFPawn.SpecialMove == 19)
     {
         Class'AICommand_Siren_Scream'.static.Scream(self);
     }
@@ -45,7 +45,7 @@ function AcquireEnemyAndScream(optional bool bStartScreamTimer)
 {
     local Pawn BestTarget;
 
-    if(((((MyKFPawn == none) || !MyKFPawn.IsAliveAndWell()) || MyKFPawn.IsImpaired()) || MyKFPawn.IsIncapacitated()) || IsTimerActive('DoScream'))
+    if(((MyKFPawn == none) || !MyKFPawn.IsCombatCapable()) || IsTimerActive('DoScream'))
     {
         return;
     }
@@ -75,7 +75,7 @@ function NotifySpecialMoveStarted(KFSpecialMove SM)
     {
         return;
     }
-    if(MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated())
+    if(!MyKFPawn.IsCombatCapable())
     {
         ScreamCommand = FindCommandOfClass(Class'AICommand_Siren_Scream');
         if(ScreamCommand != none)

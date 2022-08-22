@@ -117,7 +117,6 @@ public:
 	 * @return TRUE if the actor was ticked, FALSE if it was aborted (e.g. because it's in stasis)
 	 */
 	virtual UBOOL 	Tick(FLOAT DeltaTime, enum ELevelTick TickType);
-	virtual void 	UpdateComponentsInternal(UBOOL bCollisionUpdate = FALSE);
 
 	/** Returns the material parameter value when synching with this light */
 	FLOAT GetLightMICParamValue();

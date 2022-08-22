@@ -5,56 +5,14 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFSM_PlayerAlpha_Rally extends KFSM_PlayerMeleeBase;
-
-var float RallyRadius;
-var ParticleSystem RallyEffect;
-var ParticleSystem PlayerRallyEffect;
-var name RallyEffectBoneName;
-var name PlayerRallyEffectBoneNames[2];
-var Vector RallyEffectOffset;
-var Vector PlayerRallyEffectOffset;
+class KFSM_PlayerAlpha_Rally extends KFSM_AlphaRally;
 
 protected function bool InternalCanDoSpecialMove()
 {
-    if((KFPOwner == none) || KFPOwner.Physics != 1)
-    {
-        return false;
-    }
-    return super(KFSpecialMove).InternalCanDoSpecialMove();
+    return (!KFPOwner.IsHeadless() && KFPOwner.IsAliveAndWell()) && super.InternalCanDoSpecialMove();
 }
 
-function SpecialMoveStarted(bool bForced, name PrevMove)
+static function byte PackFlagsBase(KFPawn P)
 {
-    super.SpecialMoveStarted(bForced, PrevMove);
-    if(KFPOwner != none)
-    {
-        KFPOwner.SetTimer(0.3, false, 'RallyZeds', self);
-    }
-}
-
-function RallyZeds()
-{
-    local KFPawn_Monster KFPM;
-
-    foreach KFPOwner.VisibleCollidingActors(Class'KFPawn_Monster', KFPM, RallyRadius, KFPOwner.Location)
-    {
-        if(KFPM.IsHeadless() || !KFPM.IsAliveAndWell())
-        {
-            continue;            
-        }
-        KFPM.Rally(RallyEffect, RallyEffectBoneName, RallyEffectOffset, PlayerRallyEffect, PlayerRallyEffectBoneNames, PlayerRallyEffectOffset);        
-    }    
-}
-
-defaultproperties
-{
-    RallyRadius=1000
-    RallyEffect=ParticleSystem'ZED_Clot_EMIT.FX_ClotA_Rage_01'
-    PlayerRallyEffect=ParticleSystem'ZED_Clot_EMIT.FX_Player_Zed_Buff_01'
-    RallyEffectBoneName=Root
-    PlayerRallyEffectBoneNames[0]=RightHand
-    PlayerRallyEffectBoneNames[1]=LeftHand
-    RallyEffectOffset=(X=0,Y=0,Z=2)
-    Attacks=/* Array type was not detected. */
+    return Class'KFSM_AlphaRally'.static.PackRallyFlags();
 }

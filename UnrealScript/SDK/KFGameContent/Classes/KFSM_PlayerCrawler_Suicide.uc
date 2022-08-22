@@ -33,22 +33,27 @@ simulated function SpecialMoveEnded( name PrevMove, name NextMove )
 {
     //if( !bPendingStopFire )
     //{
-    	TriggerExplosion( KFPOwner );
+    	TriggerExplosion( KFPOwner, default.SuicideGasExplosionTemplate );
     //}
 
 	super.SpecialMoveEnded( PrevMove, NextMove );
 }
 
 /** Called when crawler suicides */
-static function TriggerExplosion( KFPawn CrawlerOwner, optional bool bForceExplosion )
+static function TriggerExplosion( KFPawn CrawlerOwner, KFGameExplosion ExplosionTemplate, optional bool bForceExplosion )
 {
 	local KFExplosion_PlayerCrawlerSuicide ExploActor;
+    local KFPawn_ZedCrawler_Versus CrawlerOwnerV;
 
 	// Only living crawlers can explode
-	if( !CrawlerOwner.bPlayedDeath || bForceExplosion )
+	if( CrawlerOwner != none && (!CrawlerOwner.bPlayedDeath || bForceExplosion) )
 	{
         // Cache controller
-        KFPawn_ZedCrawler_Versus(CrawlerOwner).OldController = CrawlerOwner.Controller;
+        CrawlerOwnerV = KFPawn_ZedCrawler_Versus( CrawlerOwner );
+        if( CrawlerOwnerV != none )
+        {
+            KFPawn_ZedCrawler_Versus(CrawlerOwner).OldController = CrawlerOwner.Controller;
+        }
 
     	// Explode using the given template
 		ExploActor = CrawlerOwner.Spawn( class'KFExplosion_PlayerCrawlerSuicide', CrawlerOwner,, CrawlerOwner.Location, rotator(vect(0,0,1)) );
@@ -56,7 +61,7 @@ static function TriggerExplosion( KFPawn CrawlerOwner, optional bool bForceExplo
 		{
             ExploActor.InstigatorController = CrawlerOwner.Controller;
             ExploActor.Instigator = CrawlerOwner;
-            ExploActor.Explode( default.SuicideGasExplosionTemplate );
+            ExploActor.Explode( ExplosionTemplate );
 		}
 
 		// Make sure we're dead!
@@ -105,6 +110,7 @@ defaultproperties
 	// SpecialMove
 	Handle=KFSM_PlayerCrawler_Suicide
 	bPawnRotationLocked=true
+	bShouldDeferToPostTick=true
 
 	// ---------------------------------------------
 	// Animations
@@ -113,7 +119,7 @@ defaultproperties
 	bUseRootMotion=true
 
 	/** Suicide explosion point light */
-    Begin Object Class=PointLightComponent Name=ExplosionPointLight
+    /*Begin Object Class=PointLightComponent Name=ExplosionPointLight
         LightColor=(R=200,G=200,B=0,A=255)
         Brightness=4.f
         Radius=500.f
@@ -123,7 +129,7 @@ defaultproperties
         CastDynamicShadows=True
         bEnabled=FALSE
         LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
-    End Object
+    End Object*/
 
     /** Used for suicide gas AOE attack "explosion" template */
     Begin Object Class=KFGameExplosion Name=ExploTemplate1
@@ -143,11 +149,12 @@ defaultproperties
         MomentumTransferScale=100
 
         // Dynamic Light
-        ExploLight=ExplosionPointLight
-        ExploLightStartFadeOutTime=7.0
-        ExploLightFadeOutTime=1.0
-        ExploLightFlickerIntensity=5.f
-        ExploLightFlickerInterpSpeed=15.f
+        ExploLight=none
+        //ExploLight=ExplosionPointLight
+        //ExploLightStartFadeOutTime=7.0
+        //ExploLightFadeOutTime=1.0
+        //ExploLightFlickerIntensity=5.f
+        //ExploLightFlickerInterpSpeed=15.f
 
         // Camera Shake
         CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'

@@ -49,6 +49,7 @@ var array<GFxMoviePlayer> OpticsUIMovies;
 var const float StartedWithWeaponPriceModifier;
 var const float SellPriceModifier;
 var array<TransactionItem> TransactionItems;
+var int SelectedGroupIndicies[4];
 
 replication
 {
@@ -103,7 +104,7 @@ simulated function float GetPrimaryAmmoPercentage()
         Weapon = KFWeapon(InventoryItem);
         if((((Weapon != none) && !Weapon.bIsBackupWeapon) && Weapon.InventoryGroup != 4) && Weapon.InventoryGroup != 3)
         {
-            if(Weapon.MaxSpareAmmo[Weapon.GetAmmoType(0)] == 0)
+            if(Weapon.GetMaxAmmoAmount(0) == 0)
             {
                 TotalAmmo += 1;
                 MaxAmmo += 1;                
@@ -362,7 +363,7 @@ reliable server final function ServerRemoveFromInventory(Inventory ItemToRemove)
         {
             WorldInfo.LogGameBalance((((string('Sell') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ string(ItemToRemove.Class));
         }
-        if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+        if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
         {
             WorldInfo.TWLogEvent("sell", Instigator.PlayerReplicationInfo, string(ItemToRemove.Class));
         }
@@ -462,11 +463,12 @@ simulated function KFWeapon GetBestPerkWeaponWithAmmo(class<KFPerk> PerkClass, o
     return ((PerkWeapon != none) ? PerkWeapon : BackupWeapon);
 }
 
-simulated function KFWeapon GetNextGroupedWeapon(byte GroupID, optional bool bGetFirstWeapon)
+simulated function KFWeapon GetNextGroupedWeapon(byte GroupID, optional bool bGetFirstWeapon, optional bool bGamePadWeaponSelectOpen)
 {
     local KFWeapon EquippedWeapon, NewWeapon;
-    local bool bFoundCurrentWeapon;
+    local int WeaponIndex;
 
+    WeaponIndex = 0;
     if(Instigator == none)
     {
         return none;
@@ -479,28 +481,29 @@ simulated function KFWeapon GetNextGroupedWeapon(byte GroupID, optional bool bGe
     {
         EquippedWeapon = KFWeapon(Instigator.Weapon);
     }
-    if((EquippedWeapon == none) || EquippedWeapon.InventoryGroup != GroupID)
+    if((EquippedWeapon.InventoryGroup == GroupID) && !bGetFirstWeapon)
+    {
+        SelectedGroupIndicies[GroupID] += 1;
+    }
+    if(((EquippedWeapon == none) || EquippedWeapon.InventoryGroup != GroupID) && !bGamePadWeaponSelectOpen)
     {
         bGetFirstWeapon = true;
     }
     foreach InventoryActors(Class'KFWeapon', NewWeapon)
     {
-        if(bGetFirstWeapon || bFoundCurrentWeapon)
+        if(GroupID == NewWeapon.InventoryGroup)
         {
-            if(GroupID == NewWeapon.InventoryGroup)
+            if((SelectedGroupIndicies[GroupID] == WeaponIndex) || bGetFirstWeapon)
             {                
                 return NewWeapon;
             }
-        }
-        if(EquippedWeapon == NewWeapon)
-        {
-            bFoundCurrentWeapon = true;
-            continue;            
+            ++ WeaponIndex;
         }        
     }    
     if(!bGetFirstWeapon)
     {
-        return GetNextGroupedWeapon(GroupID, true);
+        SelectedGroupIndicies[GroupID] = 0;
+        return GetNextGroupedWeapon(GroupID, true, bGamePadWeaponSelectOpen);
     }
     return none;
 }
@@ -705,7 +708,6 @@ simulated function HighlightNextWeapon()
 simulated function HighlightWeapon(Weapon CandidateWeapon)
 {
     SetPendingWeapon(CandidateWeapon);
-    ShowAllHUDGroups();
     UpdateHUD();
 }
 
@@ -850,6 +852,7 @@ simulated function UpdateHUD()
         {
             KFGFxHUD.WeaponSelectWidget.SetSelectedWeapon(KFPendingWeapon.InventoryGroup, WeaponIndex);
             KFGFxHUD.WeaponSelectWidget.RefreshWeaponSelect();
+            SelectedGroupIndicies[KFPendingWeapon.InventoryGroup] = WeaponIndex;
         }
     }
 }
@@ -1195,7 +1198,7 @@ function KFWeapon CombineWeaponsOnPickup(KFWeapon AddedWeapon)
                 AddedDual.AmmoCount[0] -= byte(ExtraAmmo);
                 AddedDual.AmmoCount[1] += InvWeap.AmmoCount[1];
                 AddedDual.SpareAmmoCount[0] += (InvWeap.SpareAmmoCount[0] + ExtraAmmo);
-                AddedDual.SpareAmmoCount[0] = Min(AddedDual.SpareAmmoCount[0], AddedDual.default.MaxSpareAmmo[0]);
+                AddedDual.SpareAmmoCount[0] = Min(AddedDual.SpareAmmoCount[0], AddedDual.default.SpareAmmoCapacity[0]);
                 AddedDual.ClientForceAmmoUpdate(AddedDual.AmmoCount[0], AddedDual.SpareAmmoCount[0]);
                 AddedDual.ClientForceSecondaryAmmoUpdate(AddedDual.AmmoCount[1]);
                 break;
@@ -1220,7 +1223,7 @@ function KFWeapon CombineWeaponsOnPickup(KFWeapon AddedWeapon)
                         ExtraAmmo = Max(NewDual.AmmoCount[0] - NewDual.default.MagazineCapacity[0], 0);
                         NewDual.AmmoCount[0] -= byte(ExtraAmmo);
                         NewDual.AmmoCount[1] = byte(InvWeap.AmmoCount[1] + AddedWeapon.AmmoCount[1]);
-                        NewDual.SpareAmmoCount[0] = Min((InvWeap.SpareAmmoCount[0] + AddedWeapon.SpareAmmoCount[0]) + ExtraAmmo, NewDual.default.MaxSpareAmmo[0]);
+                        NewDual.SpareAmmoCount[0] = Min((InvWeap.SpareAmmoCount[0] + AddedWeapon.SpareAmmoCount[0]) + ExtraAmmo, NewDual.default.SpareAmmoCapacity[0]);
                         NewDual.ClientForceAmmoUpdate(NewDual.AmmoCount[0], NewDual.SpareAmmoCount[0]);
                         NewDual.ClientForceSecondaryAmmoUpdate(NewDual.AmmoCount[1]);
                         if(bEquipNewDual)
@@ -1262,7 +1265,7 @@ reliable server function ServerCloseTraderMenu()
             {
                 WorldInfo.LogGameBalance((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ string(KFWClass));
             }
-            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
             {
                 WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, string(KFWClass));
             }
@@ -1330,7 +1333,7 @@ private reliable server final function ServerBuyAmmo(int AmountPurchased, byte C
                     {
                         WorldInfo.LogGameBalance(((((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "S.Ammo,") @ string(KFW.Class)) $ ",") @ string(AmountPurchased));
                     }
-                    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+                    if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
                     {
                         WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, "S.ammo", string(KFW.Class), "#" $ string(AmountPurchased));
                     }                    
@@ -1351,7 +1354,7 @@ private reliable server final function ServerBuyAmmo(int AmountPurchased, byte C
                     {
                         WorldInfo.LogGameBalance(((((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "Ammo,") @ string(KFW.Class)) $ ",") @ string(AmountPurchased));
                     }
-                    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+                    if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
                     {
                         WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, "ammo", string(KFW.Class), "#" $ string(AmountPurchased));
                     }
@@ -1386,7 +1389,7 @@ private reliable server final event ServerAddTransactionAmmo(int AmountAdded, by
                     {
                         WorldInfo.LogGameBalance(((((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "S.Ammo,") @ string(WeaponItem.ClassName)) $ ",") @ string(AmountAdded));
                     }
-                    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+                    if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
                     {
                         WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, "S.ammo", string(WeaponItem.ClassName), "#" $ string(AmountAdded));
                     }                    
@@ -1397,7 +1400,7 @@ private reliable server final event ServerAddTransactionAmmo(int AmountAdded, by
                     {
                         WorldInfo.LogGameBalance(((((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "Ammo,") @ string(WeaponItem.ClassName)) $ ",") @ string(AmountAdded));
                     }
-                    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+                    if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
                     {
                         WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, "ammo", string(WeaponItem.ClassName), "#" $ string(AmountAdded));
                     }
@@ -1425,7 +1428,7 @@ private reliable server final function ServerBuyArmor(int PercentPurchased)
             {
                 WorldInfo.LogGameBalance(((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "Armor,") @ string(PercentPurchased));
             }
-            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
             {
                 WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, "armor", "#" $ string(PercentPurchased));
             }
@@ -1444,7 +1447,7 @@ private reliable server final function ServerBuyGrenade(int AmountPurchased)
             {
                 WorldInfo.LogGameBalance((((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "Grenades(s),") $ ",") @ string(AmountPurchased));
             }
-            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
             {
                 WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, "grenades", "#" $ string(AmountPurchased));
             }

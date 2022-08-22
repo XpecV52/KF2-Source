@@ -22,10 +22,10 @@ package
             this.__setProp_mapButton_GameOptionsContainerMC_Buttons_0();
             this.__setProp_difficultyButton_GameOptionsContainerMC_Buttons_0();
             this.__setProp_lengthButton_GameOptionsContainerMC_Buttons_0();
-            this.__setProp_serverTypeButton_GameOptionsContainerMC_Buttons_0();
+            this.__setProp_privacyButton_GameOptionsContainerMC_Buttons_0();
             this.__setProp_startGameButton_GameOptionsContainerMC_Buttons_0();
             this.__setProp_inProgressButton_GameOptionsContainerMC_Buttons_0();
-            this.__setProp_privacyButton_GameOptionsContainerMC_Buttons_0();
+            this.__setProp_serverTypeButton_GameOptionsContainerMC_Buttons_0();
             this.__setProp_backButton_GameOptionsContainerMC_Buttons_0();
         }
         
@@ -434,29 +434,29 @@ package
             }
         }
         
-        function __setProp_serverTypeButton_GameOptionsContainerMC_Buttons_0() : *
+        function __setProp_privacyButton_GameOptionsContainerMC_Buttons_0() : *
         {
             try
             {
-                serverTypeButton["componentInspectorSetting"] = true;
+                privacyButton["componentInspectorSetting"] = true;
             }
             catch(e:Error)
             {
             }
-            serverTypeButton.autoRepeat = false;
-            serverTypeButton.autoSize = "none";
-            serverTypeButton.data = "";
-            serverTypeButton.enabled = true;
-            serverTypeButton.enableInitCallback = false;
-            serverTypeButton.focusable = true;
-            serverTypeButton.infoString = "_info";
-            serverTypeButton.label = "_Server Type";
-            serverTypeButton.selected = false;
-            serverTypeButton.toggle = false;
-            serverTypeButton.visible = true;
+            privacyButton.autoRepeat = false;
+            privacyButton.autoSize = "none";
+            privacyButton.data = "";
+            privacyButton.enabled = true;
+            privacyButton.enableInitCallback = false;
+            privacyButton.focusable = true;
+            privacyButton.infoString = "_info";
+            privacyButton.label = "_Server Type";
+            privacyButton.selected = false;
+            privacyButton.toggle = false;
+            privacyButton.visible = true;
             try
             {
-                serverTypeButton["componentInspectorSetting"] = false;
+                privacyButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {
@@ -520,29 +520,29 @@ package
             }
         }
         
-        function __setProp_privacyButton_GameOptionsContainerMC_Buttons_0() : *
+        function __setProp_serverTypeButton_GameOptionsContainerMC_Buttons_0() : *
         {
             try
             {
-                privacyButton["componentInspectorSetting"] = true;
+                serverTypeButton["componentInspectorSetting"] = true;
             }
             catch(e:Error)
             {
             }
-            privacyButton.autoRepeat = false;
-            privacyButton.autoSize = "none";
-            privacyButton.data = "";
-            privacyButton.enabled = true;
-            privacyButton.enableInitCallback = false;
-            privacyButton.focusable = true;
-            privacyButton.infoString = "_info";
-            privacyButton.label = "_Privacy";
-            privacyButton.selected = false;
-            privacyButton.toggle = false;
-            privacyButton.visible = true;
+            serverTypeButton.autoRepeat = false;
+            serverTypeButton.autoSize = "none";
+            serverTypeButton.data = "";
+            serverTypeButton.enabled = true;
+            serverTypeButton.enableInitCallback = false;
+            serverTypeButton.focusable = true;
+            serverTypeButton.infoString = "_info";
+            serverTypeButton.label = "_Privacy";
+            serverTypeButton.selected = false;
+            serverTypeButton.toggle = false;
+            serverTypeButton.visible = true;
             try
             {
-                privacyButton["componentInspectorSetting"] = false;
+                serverTypeButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

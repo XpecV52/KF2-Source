@@ -385,12 +385,12 @@ private function CheckHealth()
 			// Perform an autoheal if necessary
 			if( SpecialMoveCooldowns[5].Charges > 0 && HealthPct <= AutoHealThreshold )
 			{
-				if( IsDoingSpecialMove() && !IsDoingSpecialMove(SM_PlayerZedSpecial3) )
+				if( IsDoingSpecialMove() && !IsDoingSpecialMove(SM_PlayerZedMove_Q) )
 				{
 					EndSpecialMove();
 				}
 				bAutoHealed = true;
-				DoSpecialMove( SM_PlayerZedSpecial3, true );
+				DoSpecialMove( SM_PlayerZedMove_Q, true );
 			}
 		}
 
@@ -442,6 +442,12 @@ function NotifyHealed()
 simulated function bool ShouldDrawBossIcon()
 {
 	return !(bIsCloaking);
+}
+
+/** Returns TRUE if we're aiming with the husk cannon */
+simulated function bool UseAdjustedControllerSensitivity()
+{
+	return IsDoingSpecialMove( SM_PlayerZedMove_RMB ) || IsDoingSpecialMove( SM_PlayerZedMove_MMB );
 }
 
 /*********************************************************************************************
@@ -541,7 +547,7 @@ defaultproperties
    bVersusZed=True
    ThirdPersonViewOffset=(OffsetHigh=(X=-200.000000,Y=90.000000,Z=45.000000),OffsetMid=(X=-185.000000,Y=110.000000,Z=45.000000),OffsetLow=(X=-220.000000,Y=130.000000,Z=55.000000))
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedPatriarch:MeleeHelper_0'
-      BaseDamage=55.000000
+      BaseDamage=40.000000
       MyDamageType=Class'kfgamecontent.KFDT_Bludgeon_Patriarch'
       MomentumTransfer=40000.000000
       MaxHitRange=375.000000
@@ -550,15 +556,22 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedPatriarch_Versus:MeleeHelper_0'
    XPValues(0)=2500.000000
-   SpecialMoveCooldowns(0)=(CoolDownTime=0.500000,SMHandle=SM_PlayerZedAttack1,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-HeavyMelee',NameLocalizationKey="Melee",GBA_Name="GBA_Fire")
-   SpecialMoveCooldowns(1)=(CoolDownTime=4.000000,SMHandle=SM_PlayerZedAttack2,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-MiniGun',NameLocalizationKey="Minigun",GBA_Name="GBA_IronsightsToggle",ALT_GBA_NAME="GBA_IronsightsHold")
-   SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,GBA_Name="GBA_Reload",bShowOnHud=False)
-   SpecialMoveCooldowns(3)=(CoolDownTime=5.000000,SMHandle=SM_PlayerZedSpecial1,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-TentacleAttack',NameLocalizationKey="Grab",GBA_Name="GBA_TertiaryFire")
-   SpecialMoveCooldowns(4)=(CoolDownTime=5.000000,SMHandle=SM_PlayerZedSpecial2,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Rocket',NameLocalizationKey="Rocket",GBA_Name="GBA_SwitchFireMode")
-   SpecialMoveCooldowns(5)=(CoolDownTime=6.000000,SMHandle=SM_PlayerZedSpecial3,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Heal',Charges=3,NameLocalizationKey="Heal",GBA_Name="GBA_QuickHeal")
-   SpecialMoveCooldowns(6)=(CoolDownTime=2.350000,SMHandle=SM_PlayerZedSpecial4,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-MortarStrike',NameLocalizationKey="Mortar",GBA_Name="GBA_Grenade")
-   SpecialMoveCooldowns(7)=(CoolDownTime=999.000000,SMHandle=SM_Custom1,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Cloak',Charges=60)
-   SpecialMoveCooldowns(8)=(CoolDownTime=1.000000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Jump',GBA_Name="GBA_Jump",bShowOnHud=False)
+   MoveListGamepadScheme(0)=SM_PlayerZedMove_RMB
+   MoveListGamepadScheme(1)=SM_PlayerZedMove_Q
+   MoveListGamepadScheme(2)=SM_PlayerZedMove_LMB
+   MoveListGamepadScheme(3)=SM_PlayerZedMove_V
+   MoveListGamepadScheme(4)=SM_PlayerZedMove_G
+   MoveListGamepadScheme(5)=SM_PlayerZedMove_MMB
+   MoveListGamepadScheme(6)=SM_PlayerZedMove_V
+   SpecialMoveCooldowns(0)=(CoolDownTime=0.500000,SMHandle=SM_PlayerZedMove_LMB,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-HeavyMelee',NameLocalizationKey="Melee")
+   SpecialMoveCooldowns(1)=(CoolDownTime=4.000000,SMHandle=SM_PlayerZedMove_RMB,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-MiniGun',NameLocalizationKey="Minigun")
+   SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,bShowOnHud=False)
+   SpecialMoveCooldowns(3)=(CoolDownTime=5.000000,SMHandle=SM_PlayerZedMove_V,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-TentacleAttack',NameLocalizationKey="Grab")
+   SpecialMoveCooldowns(4)=(CoolDownTime=5.000000,SMHandle=SM_PlayerZedMove_MMB,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Rocket',NameLocalizationKey="Rocket")
+   SpecialMoveCooldowns(5)=(CoolDownTime=6.000000,SMHandle=SM_PlayerZedMove_Q,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Heal',Charges=3,NameLocalizationKey="Heal")
+   SpecialMoveCooldowns(6)=(CoolDownTime=2.350000,SMHandle=SM_PlayerZedMove_G,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-MortarStrike',NameLocalizationKey="Mortar")
+   SpecialMoveCooldowns(7)=(CoolDownTime=999.000000,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Cloak',Charges=60)
+   SpecialMoveCooldowns(8)=(CoolDownTime=1.000000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Jump',bShowOnHud=False)
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedPatriarch_Versus:FootstepCameraShake0'
    LocalizationKey="KFPawn_ZedPatriarch"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:ThirdPersonHead0'
@@ -580,6 +593,7 @@ defaultproperties
       AfflictionClasses(7)=()
       AfflictionClasses(8)=()
       AfflictionClasses(9)=()
+      AfflictionClasses(10)=()
       FireFullyCharredDuration=50.000000
       FireCharPercentThreshhold=0.350000
       Name="Afflictions_0"
@@ -619,21 +633,23 @@ defaultproperties
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(14)=None
       SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=Class'kfgamecontent.KFSM_Patriarch_Heal'
-      SpecialMoveClasses(17)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
-      SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
-      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
-      SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_PlayerPatriarch_Melee'
-      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_PlayerPatriarch_MinigunBarrage'
-      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_PlayerPatriarch_TentacleGrab'
-      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerPatriarch_MissileAttack'
-      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerPatriarch_Heal'
-      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerPatriarch_MortarAttack'
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(29)=None
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
+      SpecialMoveClasses(17)=Class'kfgamecontent.KFSM_Patriarch_Heal'
+      SpecialMoveClasses(18)=None
+      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
+      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_PlayerPatriarch_Melee'
+      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerPatriarch_MinigunBarrage'
+      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerPatriarch_TentacleGrab'
+      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerPatriarch_MissileAttack'
+      SpecialMoveClasses(27)=Class'kfgamecontent.KFSM_PlayerPatriarch_Heal'
+      SpecialMoveClasses(28)=Class'kfgamecontent.KFSM_PlayerPatriarch_MortarAttack'
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedPatriarch:SpecialMoveHandler_0'
    End Object
@@ -698,6 +714,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:KFPawnSkeletalMeshComponent'
    End Object

@@ -20,6 +20,7 @@ var KFTutorialSectionInfo HealSelfInfo;
 var KFTutorialSectionInfo ZedTimeInfo;
 var KFTutorialSectionInfo MeleeTutorial;
 var KFTutorialSectionInfo TraderMenuTutorial;
+var KFTutorialSectionInfo PerkMenuTutorial;
 var KFTutorialSectionInfo GearMenuTutorial;
 var KFTutorialSectionInfo InventoryMenuTutorial;
 var KFTutorialSectionInfo StoreMenuTutorial;
@@ -27,9 +28,11 @@ var bool bShowedHealSelf;
 var bool bShowedZedTime;
 var bool bShowedTraderTutorial;
 var bool bShowedMeleeTutorial;
+var bool bShowedPerkMenuTutorial;
 var bool bShowedGearMenuTutorial;
 var bool bShowedInventoryMenuTutorial;
 var bool bShowedStoreMenuTutorial;
+var bool bShowedTraderCloseInfo;
 var int TimeAfterTrading;
 var int StartingDosh;
 var KFPlayerController MyPC;
@@ -115,7 +118,21 @@ function EndOfMatch(bool bVictory)
     super.EndOfMatch(bVictory);
     if(bVictory)
     {
+        if(WorldInfo.IsConsoleBuild())
+        {
+            PlayfabInter.AddOnCloudScriptExecutionCompleteDelegate(OnTutorialRewardsComplete);
+            PlayfabInter.ExecuteCloudScript("ClaimTutorialRewards", none);
+        }
         CreateTutorialHUD(VictoryInfo);
+    }
+}
+
+function OnTutorialRewardsComplete(bool bWasSuccessful, string FunctionName, JsonObject FunctionResult)
+{
+    PlayfabInter.ClearOnCloudScriptExecutionCompleteDelegate(OnTutorialRewardsComplete);
+    if(bWasSuccessful && FunctionName == "ClaimTutorialRewards")
+    {
+        Class'GameEngine'.static.GetPlayfabInterface().ReadInventory();
     }
 }
 
@@ -165,6 +182,14 @@ function NotifyMenuOpened(byte MenuIndex)
 {
     switch(MenuIndex)
     {
+        case 1:
+            if(!bShowedPerkMenuTutorial)
+            {
+                CreateTutorialHUD(PerkMenuTutorial);
+                bShowedPerkMenuTutorial = true;
+                return;
+            }
+            break;
         case 2:
             if(!bShowedGearMenuTutorial)
             {
@@ -277,7 +302,11 @@ function OnTraderMenuClosed()
     {
         MyKFGRI.RemainingTime = TimeAfterTrading;
         MyKFGRI.RemainingMinute = TimeAfterTrading;
-        CreateTutorialHUD(TraderCloseInfo);
+        if(!bShowedTraderCloseInfo)
+        {
+            CreateTutorialHUD(TraderCloseInfo);
+            bShowedTraderCloseInfo = true;
+        }
         SetTimer(float(TimeAfterTrading), false, 'CloseTraderTimer');
     }
 }
@@ -307,10 +336,20 @@ state TraderOpen
                     {
                         CreateTutorialHUD(TraderMenuTutorial);
                         bShowedTraderTutorial = true;
-                        return;
+                        return;                        
+                    }
+                    else
+                    {
+                        MyKFGRI.RemainingTime = TimeBetweenWaves;
+                        MyKFGRI.RemainingMinute = TimeBetweenWaves;
                     }
                 }
-            }
+            }            
+        }
+        if(MyPC.bClientTraderMenuOpen)
+        {
+            MyKFGRI.RemainingTime = TimeBetweenWaves;
+            MyKFGRI.RemainingMinute = TimeBetweenWaves;
         }
         global.CheckPlayerAction();
     }
@@ -329,6 +368,7 @@ defaultproperties
     ZedTimeInfo=KFTutorialSectionInfo'GP_Tutorial_ARCH.ZedTimeArch'
     MeleeTutorial=KFTutorialSectionInfo'GP_Tutorial_ARCH.MeleeArch'
     TraderMenuTutorial=KFTutorialSectionInfo'GP_Tutorial_ARCH.TraderOpenArch'
+    PerkMenuTutorial=KFTutorialSectionInfo'GP_Tutorial_ARCH.PerkMenuArch'
     GearMenuTutorial=KFTutorialSectionInfo'GP_Tutorial_ARCH.GearMenuArch'
     InventoryMenuTutorial=KFTutorialSectionInfo'GP_Tutorial_ARCH.InventoryMenuArch'
     StoreMenuTutorial=KFTutorialSectionInfo'GP_Tutorial_ARCH.StoreMenuArch'
@@ -338,4 +378,5 @@ defaultproperties
     KFGFxManagerClass=Class'KFGFxMoviePlayer_Manager_Tutorial'
     MaxGameDifficulty=0
     SpawnManagerClasses=/* Array type was not detected. */
+    GameName="Basic Training"
 }

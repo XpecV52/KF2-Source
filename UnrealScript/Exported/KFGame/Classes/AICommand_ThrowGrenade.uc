@@ -40,12 +40,21 @@ function Pushed()
 	/** Update debug AI status */
 	AIActionStatus = "Attempting to throw grenade";
 	/** Stop moving and stop probing melee range */
-	AIZeroMovementVariables();
 	DisableMeleeRangeEventProbing();
 	//Pawn.SetDesiredRotation( rotator(Enemy.Location - Location) );
 	SetFocalPoint(vect(0,0,0));
 	Focus = Enemy;
 	Super.Pushed();
+}
+
+function LockdownAI()
+{
+	if( MyHansPawn.CanMoveWhileThrowingGrenades() )
+	{
+		return;
+	}
+
+	super.LockdownAI();
 }
 
 function Popped()

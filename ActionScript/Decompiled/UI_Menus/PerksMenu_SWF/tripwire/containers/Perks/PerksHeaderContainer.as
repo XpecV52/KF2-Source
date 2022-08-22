@@ -2,7 +2,8 @@ package tripwire.containers.Perks
 {
     import flash.display.MovieClip;
     import flash.text.TextField;
-    import scaleform.clik.controls.UILoader;
+    import scaleform.gfx.TextFieldEx;
+    import tripwire.controls.TripUILoaderQueue;
     
     public class PerksHeaderContainer extends PerkContainerBase
     {
@@ -16,7 +17,7 @@ package tripwire.containers.Perks
         
         public var perkRankTextField:TextField;
         
-        public var perkIcon:UILoader;
+        public var perkIcon:TripUILoaderQueue;
         
         public var progressBar:MovieClip;
         
@@ -30,6 +31,7 @@ package tripwire.containers.Perks
         {
             super();
             ANIM_OFFSET_X = 0;
+            TextFieldEx.setTextAutoSize(this.perkNameTextfield,"shrink");
         }
         
         public function set perkData(param1:Object) : void

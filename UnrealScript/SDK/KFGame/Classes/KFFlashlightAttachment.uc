@@ -48,6 +48,12 @@ var float TeammateSwitchTimer;
 /** Debug logging */
 var bool bDebug;
 
+/** Maximum distance to warn AI */
+var protected const float MaxAIWarningDistSQ;
+
+/** Maximum distance from center of line to warn AI */
+var protected const float MaxAIWarningDistFromPointSQ;
+
 /** Create/Attach flashlight components */
 function AttachFlashlight(SkeletalMeshComponent Mesh, optional name SocketNameOverride)
 {
@@ -129,7 +135,69 @@ protected function SetEnabled(bool bNewEnabled)
 
 	bEnabled = bNewEnabled;
 
+	if( OwnerMesh.Outer != none && class'WorldInfo'.static.GetWorldInfo().NetMode != NM_Client )
+	{
+		if( bEnabled )
+		{
+			Timer_WarnAI();
+			Actor(OwnerMesh.Outer).SetTimer( 1.f, true, nameOf(Timer_WarnAI), self );
+		}
+		else
+		{
+			Actor(OwnerMesh.Outer).ClearTimer( nameOf(Timer_WarnAI), self );
+		}
+	}
+
 	`log("Turning flashlight"@bNewEnabled@"for teammate:"@OwnerMesh.Outer, bDebug);
+}
+
+/** Warns AI when flaslight is on */
+function Timer_WarnAI()
+{
+    local Pawn Instigator, P;
+    local KFWeapon OwnerWeapon;
+    local KFPawn_Monster HitMonster;
+    local vector Direction, Projection, DangerPoint;
+
+    // Get owner pawn
+    Instigator = Pawn( OwnerMesh.Outer );
+    if( Instigator == none )
+    {
+    	return;
+    }
+
+    // Get owner weapon. Don't process AI warnings if weapon is already doing so.
+    OwnerWeapon = KFWeapon( Instigator.Weapon );
+    if( OwnerWeapon != none && OwnerWeapon.IsWarningAI() )
+    {
+    	return;
+    }
+
+    Direction = vector( Instigator.GetBaseAimRotation() );
+
+    // Iterate through pawns and find AI we want to warn
+    foreach Instigator.WorldInfo.AllPawns( class'Pawn', P )
+    {
+        if( P.GetTeamNum() != Instigator.GetTeamNum() && !P.IsHumanControlled() && P.IsAliveAndWell() )
+        {
+            // Determine if AI is within range as well as within our field of view
+            Projection = P.Location - Instigator.Location;
+            if( VSizeSQ(Projection) < MaxAIWarningDistSQ )
+            {
+                PointDistToLine( P.Location, Direction, Instigator.Location, DangerPoint );
+
+                if( VSizeSQ(DangerPoint - P.Location) < MaxAIWarningDistFromPointSQ )
+                {
+                    // Tell the AI to evade away from the DangerPoint
+                    HitMonster = KFPawn_Monster( P );
+                    if( HitMonster != none && HitMonster.MyKFAIC != none )
+                    {
+                        HitMonster.MyKFAIC.ReceiveLocationalWarning( DangerPoint, Instigator.Location, self );
+                    }
+                }
+            }
+        }
+    }
 }
 
 /** Called once the first time the light is activated.  Seperated from AttachFlashlight and the AttachmentMesh */
@@ -394,4 +462,7 @@ defaultproperties
 
 	TeammateSwitchRadius=1500 // 15m
 	TeammateSwitchTimer=10.f
+
+	MaxAIWarningDistSQ=4000000
+	MaxAIWarningDistFromPointSQ=16384
 }

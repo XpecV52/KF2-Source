@@ -17,6 +17,7 @@ package tripwire.controls.trader
             var _loc3_:TraderFilterButton = null;
             _loc3_ = param1 as TraderFilterButton;
             _loc3_.source = _dataProvider.requestItemAt(param2).source;
+            _loc3_.bIsMyPerk = _dataProvider.requestItemAt(param2).isMyPerk;
             super.populateRendererData(param1,param2);
         }
     }

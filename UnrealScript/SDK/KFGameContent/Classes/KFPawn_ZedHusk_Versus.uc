@@ -26,7 +26,7 @@ var protected float FireballStrength;
 /** Turns flamethrower on (FX, damage) */
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if( IsDoingSpecialMove(SM_PlayerZedAttack2) )
+    if( IsDoingSpecialMove(SM_PlayerZedMove_RMB) )
 	{
 		KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
 	}
@@ -38,7 +38,7 @@ function ANIMNOTIFY_HuskFireballAttack()
 	local float FireballStartTime;
 
 	// Determine how strong the fireball attack will be
-	if( IsDoingSpecialMove(SM_PlayerZedAttack1) )
+	if( IsDoingSpecialMove(SM_PlayerZedMove_LMB) )
 	{
 		FireballStartTime = KFSM_PlayerHusk_FireBallAttack( SpecialMoves[SpecialMove] ).HoldStartTime;
 		FireballStrength = fClamp( (WorldInfo.TimeSeconds - FireballStartTime) * FireballStrengthPerSecond, FireballStrengthRange.X, FireballStrengthRange.Y );
@@ -61,52 +61,69 @@ function ShootFireball()
 	local vector SocketLocation;
     local rotator ShootRotation;
 	local vector HitLocation, HitNormal;
-    local vector TraceStart, TraceEnd;
+    local vector Dir, TraceStart, TraceEnd;
 
-    if( Role == ROLE_Authority && IsHumanControlled() )
+    if( Role == ROLE_Authority && Health > 0.f && IsDoingSpecialMove(SM_PlayerZedMove_LMB) && IsHumanControlled() )
     {
-	    PC = PlayerController(Controller);
+	    PC = PlayerController( Controller );
 	    if( PC == none )
 	    {
 	        return;
 	    }
 
-		SocketLocation = GetPawnViewLocation() + ( PlayerFireOffset >> GetViewRotation() );
+		Mesh.GetSocketWorldLocationAndRotation( 'FireballSocket', SocketLocation );
 
+	    Dir = vector( Rotation );
 	    TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
-	    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + vector(PC.PlayerCamera.CameraCache.POV.Rotation)*100000;
+	    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + ( vector(PC.PlayerCamera.CameraCache.POV.Rotation)*100000 );
 
-	    HitActor = Trace( HitLocation, HitNormal, TraceEnd, TraceStart, TRUE,,, TRACEFLAG_Bullet );
+	    // Make sure our own pawn can never get in the way, and make sure we're targeting things in front of us
+		foreach TraceActors( class'Actor', HitActor, HitLocation, HitNormal, TraceEnd, TraceStart,,, TRACEFLAG_Bullet )
+		{
+			if( HitActor == self )
+			{
+				HitActor = none;
+				continue;
+			}
 
+			if( Normal(HitActor.Location - SocketLocation) dot Dir < 0.f )
+			{
+				HitActor = none;
+				continue;
+			}
+
+			// Stop at the first hit in front of us
+			break;
+		}
+
+		// Set our desired rotation, from the socket to the hit location
 	    if( HitActor != none )
 	    {
 	        ShootRotation = Rotator( HitLocation - SocketLocation );
 	    }
 	    else
 	    {
+	    	// Otherwise use the end of the trace
 	    	ShootRotation = Rotator( TraceEnd - SocketLocation );
 		}
 
-		if( Health > 0.f && IsDoingSpecialMove(SM_PlayerZedAttack1) )
+		// Shoot the fireball
+		MyFireball = Spawn( FireballClass, self,, SocketLocation, ShootRotation );
+		MyFireball.Instigator						= Self;
+		MyFireball.InstigatorController				= Controller;
+		MyFireball.Speed							= FireballSpeed;
+		MyFireball.MaxSpeed							= FireballSpeed;
+		MyFireball.ExplosionTemplate.Damage 		= GetRallyBoostDamage( MyFireball.default.ExplosionTemplate.Damage ) * FireballStrength;
+		MyFireball.ExplosionTemplate.DamageRadius   = MyFireball.default.ExplosionTemplate.DamageRadius * (FireballStrength * FireballStrengthRadiusMultiplier);
+
+		// Apply fireball size if our projectile is a husk fireball
+		HuskFireball = KFProj_Husk_Fireball_Versus( MyFireball );
+		if( HuskFireball != none )
 		{
-			// Shoot the fireball
-			MyFireball = Spawn( FireballClass, self,, SocketLocation, ShootRotation );
-			MyFireball.Instigator						= Self;
-			MyFireball.InstigatorController				= Controller;
-			MyFireball.Speed							= FireballSpeed;
-			MyFireball.MaxSpeed							= FireballSpeed;
-			MyFireball.ExplosionTemplate.Damage 		= GetRallyBoostDamage( MyFireball.default.ExplosionTemplate.Damage ) * FireballStrength;
-			MyFireball.ExplosionTemplate.DamageRadius   = MyFireball.default.ExplosionTemplate.DamageRadius * (FireballStrength * FireballStrengthRadiusMultiplier);
-
-			// Apply fireball size if our projectile is a husk fireball
-			HuskFireball = KFProj_Husk_Fireball_Versus( MyFireball );
-			if( HuskFireball != none )
-			{
-				HuskFireball.SetDrawScale( fMax(FireballStrength, 1.f) );
-			}
-
-			MyFireball.Init( vector(ShootRotation) );
+			HuskFireball.SetDrawScale( fMax(FireballStrength, 1.f) );
 		}
+
+		MyFireball.Init( vector(ShootRotation) );
 	}
 }
 
@@ -126,6 +143,14 @@ simulated function OnExploded( Controller SuicideController )
 	    }
     }
 }
+
+
+/** Returns TRUE if we're aiming with the husk cannon */
+simulated function bool UseAdjustedControllerSensitivity()
+{
+	return IsDoingSpecialMove( SM_PlayerZedMove_LMB );
+}
+
 
 /** Accessors */
 simulated function vector2D GetFireballStrengthRange()
@@ -153,18 +178,23 @@ DefaultProperties
     GroundSpeed=170.0f
 
 	Begin Object Name=SpecialMoveHandler_0
-		SpecialMoveClasses(SM_PlayerZedAttack1)=class'KFSM_PlayerHusk_FireBallAttack'
-		SpecialMoveClasses(SM_PlayerZedAttack2)=class'KFSM_PlayerHusk_FlameThrowerAttack'
-		SpecialMoveClasses(SM_PlayerZedSpecial1)=class'KFSM_PlayerHusk_Melee'
-		SpecialMoveClasses(SM_PlayerZedSpecial4)=class'KFSM_PlayerHusk_Suicide'
+		SpecialMoveClasses(SM_PlayerZedMove_LMB)=class'KFSM_PlayerHusk_FireBallAttack'
+		SpecialMoveClasses(SM_PlayerZedMove_RMB)=class'KFSM_PlayerHusk_FlameThrowerAttack'
+		SpecialMoveClasses(SM_PlayerZedMove_V)=class'KFSM_PlayerHusk_Melee'
+		SpecialMoveClasses(SM_PlayerZedMove_G)=class'KFSM_PlayerHusk_Suicide'
 	End Object
 
-	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=0.95f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Fireball', GBA_Name="GBA_Fire",NameLocalizationKey="Shoot")
-	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=2.0f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Flamethrower', GBA_Name="GBA_IronsightsToggle", ALT_GBA_Name="GBA_IronsightsHold",NameLocalizationKey="Flame")
-	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=1.0f,	GBA_Name="GBA_Reload",bShowOnHud=false,bShowOnHud=false))
-	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=0.1f,	SpecialMoveIcon=Texture2D'ZED_clot_UI.ZED-VS_Icons_AlphaClot-Melee', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Melee")
-	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedSpecial4,		CooldownTime=0.0f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Explode', GBA_Name="GBA_Grenade",NameLocalizationKey="Suicide")
-	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array)) // Jump always at end of array
+	MoveListGamepadScheme(ZGM_Melee_Square)=SM_PlayerZedMove_V
+	MoveListGamepadScheme(ZGM_Explosive_Ll)=SM_PlayerZedMove_G
+	MoveListGamepadScheme(ZGM_Attack_L2)=SM_PlayerZedMove_RMB
+	MoveListGamepadScheme(ZGM_Attack_R2)=SM_PlayerZedMove_LMB
+
+	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedMove_LMB,		CooldownTime=0.95f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Fireball', NameLocalizationKey="Shoot")
+	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB,		CooldownTime=2.0f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Flamethrower', NameLocalizationKey="Flame")
+	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=1.0f,	bShowOnHud=false,bShowOnHud=false))
+	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=0.1f,	SpecialMoveIcon=Texture2D'ZED_clot_UI.ZED-VS_Icons_AlphaClot-Melee', NameLocalizationKey="Melee")
+	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,		CooldownTime=0.0f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Explode', NameLocalizationKey="Suicide")
+	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Jump', bShowOnHud=false)) // Jump always at end of array)) // Jump always at end of array
 
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.8)))  //3.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.5)))  //1.0

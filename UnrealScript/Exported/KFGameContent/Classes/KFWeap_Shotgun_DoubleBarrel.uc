@@ -61,30 +61,6 @@ simulated function SendToFiringState(byte FireModeNum)
 
 simulated state WeaponDoubleBarrelFiring extends WeaponSingleFiring
 {
-    /**
-     * @see Weapon::ConsumeAmmo
-     */
-    simulated function ConsumeAmmo( byte FireModeNum )
-    {
-
-
-
-
-
-
-
-    	// If AmmoCount is being replicated, don't allow the client to modify it here
-    	if ( Role == ROLE_Authority || bAllowClientAmmoTracking )
-    	{
-    		// Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
-    		if (MagazineCapacity[0] > 0 && AmmoCount[0] > 0)
-    		{
-    			// Both barrels, double the ammo
-                AmmoCount[0]-=2;
-    		}
-    	}
-    }
-
     /** Overrideen to include the DoubleFireRecoilModifier*/
     simulated function ModifyRecoil( out float CurrentRecoilModifier )
 	{
@@ -206,7 +182,8 @@ defaultproperties
    DOF_FG_FocalRadius=65.000000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_DBShotgun'
-   MaxSpareAmmo(0)=46
+   AmmoCost(1)=2
+   SpareAmmoCapacity(0)=46
    InitialSpareMags(0)=11
    AmmoPickupScale(0)=3.000000
    FireAnim="Shoot_Single"
@@ -264,7 +241,7 @@ defaultproperties
    InstantHitDamage(0)=25.000000
    InstantHitDamage(1)=25.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_DBShotgun'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_DBShotgun'
    InstantHitDamageTypes(2)=None
@@ -285,7 +262,7 @@ defaultproperties
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ShotgunBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
-   ItemName="Double-barreled Boomstick"
+   ItemName="Double-barrel Boomstick"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_ShotgunBase:StaticPickupComponent'
       StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Double_Barrel_Pickup'
       ReplacementPrimitive=None

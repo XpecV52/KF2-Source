@@ -32,18 +32,9 @@ simulated function StartFire(byte FireModeNum)
     super(KFWeapon).StartFire(FireModeNum);
 }
 
-simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
-{
-    if(FireModeNum == 1)
-    {
-        return true;
-    }
-    return super(KFWeapon).HasAmmo(FireModeNum, Amount);
-}
-
 simulated function int GetAmmoType(byte FiringMode)
 {
-    if(FiringMode == 5)
+    if((FiringMode == 5) || FiringMode == 1)
     {
         return 1;        
     }
@@ -132,6 +123,11 @@ static simulated function float CalculateTraderWeaponStatDamage()
 static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
 {
     return 3;
+}
+
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTraderFilter()
+{
+    return 8;
 }
 
 simulated state Active
@@ -223,7 +219,8 @@ defaultproperties
     QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
-    MaxSpareAmmo=25
+    AmmoCost=/* Array type was not detected. */
+    SpareAmmoCapacity=25
     AmmoPickupScale[1]=0.5
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

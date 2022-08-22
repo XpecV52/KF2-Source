@@ -109,6 +109,9 @@ var ParticleSystem BattleDamageFX_Tentacle_MidDmg;
 var ParticleSystem BattleDamageFX_Tentacle_HighDmg;
 var ParticleSystem BattleDamageFX_Smoke_HighDmg;
 
+/** Interval between dialog play attempts */
+var float TickDialogInterval;
+
 /*********************************************************************************************
 * General Gameplay
 **********************************************************************************************/
@@ -146,6 +149,8 @@ struct PatriarchBattlePhaseInfo
     var 			float 			MinigunAttackCooldownTime;
     /** Whether or not we can summon minions this battle phase */
     var 			bool 			bCanSummonMinions;
+    /** Per-phase, per-difficulty flag that when set to TRUE allows the Patriarch to move with his minigun */
+    var 			array<bool> 	bCanMoveWhenMinigunning;
     /** Heal amount (MaxHealth x HealAmount) per difficulty level */
     var 			array<float> 	HealAmounts;
 
@@ -300,6 +305,12 @@ simulated event PostBeginPlay()
     // PostBeginPlay is called before we do our first audio update, so we need to set a valid initial position so the ambient sound works right
     AmbientAkComponent.CachedObjectPosition = Location;
     SetPawnAmbientSound( AmbientBreathingEvent );
+
+    // Start the dialog timer
+    if( WorldInfo.NetMode != NM_Client )
+    {
+        SetTimer( 2.f, false, nameOf(Timer_TickPatriarchDialog) );
+    }
 }
 
 /** Overloaded to support loading the alternate body mic */
@@ -425,7 +436,7 @@ function SummonChildren()
 		if( MyKFGameInfo.SpawnManager != none )
 		{
 			MyKFGameInfo.SpawnManager.LeftoverSpawnSquad.Length = 0;
-		 	MyKFGameInfo.SpawnManager.SummonBossMinions( MinionWave.Squads, NumMinionsToSpawn );
+		 	MyKFGameInfo.SpawnManager.SummonBossMinions( MinionWave.Squads, GetNumMinionsToSpawn() );
 		}
 	}
 }
@@ -461,9 +472,7 @@ simulated function ANIMNOTIFY_SpawnedKActor( KFKActorSpawnable NewKActor, AnimNo
 	SyringeMIC = NewKActor.StaticMeshComponent.CreateAndSetMaterialInstanceConstant( 0 );
 	SyringeMIC.SetScalarParameterValue( 'Scalar_GlowIntensity', 0.02f + fClamp(0.98f*SyringeInjectTimeRemaining/SyringeInjectTimeDuration, 0.f, 0.98f) );
 	NewKActor.StaticMeshComponent.SetLightingChannels(HealingSyringeMeshes[CurrentSyringeMeshNum].LightingChannels);
-	NewKActor.StaticMeshComponent.bCastDynamicShadow = true;
-	NewKActor.StaticMeshComponent.bAllowPerObjectShadows = true;
-	NewKActor.StaticMeshComponent.PerObjectShadowCullDistance = 4000;
+	NewKActor.StaticMeshComponent.bCastDynamicShadow = false;
 
 	// Remove the mesh from the hand and clear all references
 	Mesh.DetachComponent( HealingSyringeMeshes[CurrentSyringeMeshNum] );
@@ -651,9 +660,32 @@ function bool CanMortarAttack()
 	return BattlePhases[CurrentBattlePhase-1].bCanUseMortar;
 }
 
+/** Used by AI to determine if we can mortar barrage this phase */
 function bool CanDoMortarBarrage()
 {
 	return BattlePhases[CurrentBattlePhase-1].bCanDoMortarBarrage;
+}
+
+/** Only allow blocking when uncloaked */
+function bool CanBlock()
+{
+	return !bIsCloaking && super.CanBlock();
+}
+
+/** Only allow movement with the minigun if any conditions are met */
+simulated function bool CanMoveWhenMinigunning()
+{
+	local KFGameReplicationInfo KFGRI;
+
+	// See if this battle phase allows it
+	KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
+	if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhenMinigunning[KFGRI.GameDifficulty] )
+	{
+		return true;
+	}
+
+	// Allow moving when there's only one player left
+	return LocalIsOnePlayerLeftInTeamGame();
 }
 
 /** Toggles barrel spinning on and off */
@@ -740,23 +772,42 @@ function class<KFProj_Missile_Patriarch> GetMissileClass()
 function GetMissileAimDirAndTargetLoc( int MissileNum, vector MissileLoc, rotator MissileRot, out vector AimDir, out vector TargetLoc )
 {
 	local vector X,Y,Z;
-	local Pawn EnemyPawn;
 	local int EnemyIndex;
 	local KFAIController_ZedPatriarch MyPatController;
+	local KFPawn EnemyPawn;
 
-	// Get the best location to aim at
-	EnemyPawn = Controller.Enemy;
 	MyPatController = KFAIController_ZedPatriarch( Controller );
-	if( MyPatController != none && !MyPatController.CanSee(EnemyPawn) )
+	if( MyPatController == none )
 	{
-		EnemyIndex = MyPatController.RecentlySeenEnemyList.Find( 'TrackedEnemy', KFPawn(EnemyPawn) );
+		return;
+	}
+
+	// Make sure we have an enemy!
+	if( MyPatController.Enemy == none )
+	{
+		MyPatController.ForceSetEnemy( MyPatController.GetClosestEnemy() );
+	}
+
+	// Abort if still no enemy
+	if( MyPatController.Enemy == none )
+	{
+		EndSpecialMove();
+		return;
+	}
+
+	EnemyPawn = KFPawn( MyPatController.Enemy );
+
+	// If this enemy isn't visible, fire at its last known location
+	if( !MyPatController.CanSee(EnemyPawn) )
+	{
+		EnemyIndex = MyPatController.RecentlySeenEnemyList.Find( 'TrackedEnemy', EnemyPawn );
 		if( EnemyIndex != INDEX_NONE )
 		{
 			TargetLoc = MyPatController.RecentlySeenEnemyList[EnemyIndex].LastVisibleLocation;
 		}
 		else
 		{
-			EnemyIndex = MyPatController.HiddenEnemies.Find( 'TrackedEnemy', KFPawn(EnemyPawn) );
+			EnemyIndex = MyPatController.HiddenEnemies.Find( 'TrackedEnemy', EnemyPawn );
 			if( EnemyIndex != INDEX_NONE )
 			{
 				TargetLoc = MyPatController.HiddenEnemies[EnemyIndex].LastVisibleLocation;
@@ -1730,6 +1781,22 @@ function PlayGrabbedPlayerDialog( KFPawn_Human Target )
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayPlayerGrabbedByPatriarchDialog( Target );
 }
 
+/** Players dialog such as taunts at regular intervals */
+function Timer_TickPatriarchDialog()
+{
+	if( !IsAliveAndWell() )
+	{
+		return;
+	}
+
+    if( !IsDoingSpecialMove() )
+    {
+        if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayPatriarchTickDialog( self );
+    }
+
+    SetTimer( TickDialogInterval, false, nameOf(Timer_TickPatriarchDialog) );
+}
+
 /** Play music for this boss (overridden for each boss) */
 function PlayBossMusic()
 {
@@ -1840,11 +1907,12 @@ defaultproperties
    BattleDamageFX_Tentacle_MidDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_MidD_01'
    BattleDamageFX_Tentacle_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_HighD_01'
    BattleDamageFX_Smoke_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Pat_smoke_HighD_01'
+   TickDialogInterval=0.500000
    LastFXBattlePhase=1
-   BattlePhases(0)=(bAllowedToSprint=True,SprintCooldownTime=3.000000,bCanUseMissiles=True,MissileAttackCooldownTime=10.000000,bCanChargeAttack=True,ChargeAttackCooldownTime=14.000000,MinigunAttackCooldownTime=2.250000,bCanSummonMinions=True,HealAmounts=(0.750000,0.850000,0.950000,0.990000))
-   BattlePhases(1)=(bAllowedToSprint=True,SprintCooldownTime=2.500000,bCanTentacleGrab=True,TentacleGrabCooldownTime=10.000000,bCanUseMissiles=True,MissileAttackCooldownTime=8.000000,bCanUseMortar=True,MortarAttackCooldownTime=10.000000,bCanChargeAttack=True,ChargeAttackCooldownTime=10.000000,MaxRageAttacks=4,TentacleDamage=10,MinigunAttackCooldownTime=2.000000,bCanSummonMinions=True,HealAmounts=(0.650000,0.750000,0.850000,0.950000))
-   BattlePhases(2)=(bAllowedToSprint=True,SprintCooldownTime=2.000000,bCanTentacleGrab=True,TentacleGrabCooldownTime=9.000000,bCanUseMissiles=True,MissileAttackCooldownTime=7.000000,bCanUseMortar=True,MortarAttackCooldownTime=9.000000,bCanDoMortarBarrage=True,bCanChargeAttack=True,ChargeAttackCooldownTime=9.000000,MaxRageAttacks=5,TentacleDamage=10,MinigunAttackCooldownTime=1.750000,bCanSummonMinions=True,HealAmounts=(0.550000,0.650000,0.750000,0.850000))
-   BattlePhases(3)=(bAllowedToSprint=True,SprintCooldownTime=1.500000,bCanTentacleGrab=True,TentacleGrabCooldownTime=7.000000,bCanUseMissiles=True,MissileAttackCooldownTime=5.000000,bCanUseMortar=True,MortarAttackCooldownTime=7.000000,bCanDoMortarBarrage=True,bCanChargeAttack=True,ChargeAttackCooldownTime=7.000000,MaxRageAttacks=6,TentacleDamage=10,MinigunAttackCooldownTime=1.250000)
+   BattlePhases(0)=(bAllowedToSprint=True,SprintCooldownTime=3.000000,bCanUseMissiles=True,MissileAttackCooldownTime=10.000000,bCanChargeAttack=True,ChargeAttackCooldownTime=14.000000,MinigunAttackCooldownTime=2.250000,bCanSummonMinions=True,bCanMoveWhenMinigunning=(False,False,False,False),HealAmounts=(0.750000,0.850000,0.950000,0.990000))
+   BattlePhases(1)=(bAllowedToSprint=True,SprintCooldownTime=2.500000,bCanTentacleGrab=True,TentacleGrabCooldownTime=10.000000,bCanUseMissiles=True,MissileAttackCooldownTime=8.000000,bCanUseMortar=True,MortarAttackCooldownTime=10.000000,bCanChargeAttack=True,ChargeAttackCooldownTime=10.000000,MaxRageAttacks=4,TentacleDamage=10,MinigunAttackCooldownTime=2.000000,bCanSummonMinions=True,bCanMoveWhenMinigunning=(False,False,False,True),HealAmounts=(0.650000,0.750000,0.850000,0.950000))
+   BattlePhases(2)=(bAllowedToSprint=True,SprintCooldownTime=2.000000,bCanTentacleGrab=True,TentacleGrabCooldownTime=9.000000,bCanUseMissiles=True,MissileAttackCooldownTime=7.000000,bCanUseMortar=True,MortarAttackCooldownTime=9.000000,bCanDoMortarBarrage=True,bCanChargeAttack=True,ChargeAttackCooldownTime=9.000000,MaxRageAttacks=5,TentacleDamage=10,MinigunAttackCooldownTime=1.750000,bCanSummonMinions=True,bCanMoveWhenMinigunning=(False,False,True,True),HealAmounts=(0.550000,0.650000,0.750000,0.850000))
+   BattlePhases(3)=(bAllowedToSprint=True,SprintCooldownTime=1.500000,bCanTentacleGrab=True,TentacleGrabCooldownTime=7.000000,bCanUseMissiles=True,MissileAttackCooldownTime=5.000000,bCanUseMortar=True,MortarAttackCooldownTime=7.000000,bCanDoMortarBarrage=True,bCanChargeAttack=True,ChargeAttackCooldownTime=7.000000,MaxRageAttacks=6,TentacleDamage=10,MinigunAttackCooldownTime=1.250000,bCanMoveWhenMinigunning=(False,True,True,True))
    TentacleDamageType=Class'kfgamecontent.KFDT_Slashing_PatTentacle'
    HeavyBumpDamageType=Class'kfgamecontent.KFDT_HeavyZedBump'
    MissileProjectileClass=Class'kfgamecontent.KFProj_Missile_Patriarch'
@@ -1866,7 +1934,7 @@ defaultproperties
    SummonWaves(1)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_Three')
    SummonWaves(2)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_Three')
    SummonWaves(3)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Three')
-   NumMinionsToSpawn=10
+   NumMinionsToSpawn=(X=6.000000,Y=10.000000)
    CurrentBattlePhase=1
    TheatricCameraSocketName="TheatricCameraRootSocket"
    bLargeZed=True
@@ -1901,7 +1969,8 @@ defaultproperties
    DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(0.900000))
    DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.400000))
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.500000))
-   DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.500000))
+   DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
+   DifficultySettings=Class'kfgamecontent.KFDifficulty_Patriarch'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    FootstepCameraShakeInnerRadius=200.000000
    FootstepCameraShakeOuterRadius=900.000000
@@ -1951,6 +2020,7 @@ defaultproperties
       AfflictionClasses(7)=()
       AfflictionClasses(8)=()
       AfflictionClasses(9)=()
+      AfflictionClasses(10)=()
       FireFullyCharredDuration=50.000000
       FireCharPercentThreshhold=0.350000
       Name="Afflictions_0"
@@ -1961,12 +2031,13 @@ defaultproperties
    IncapSettings(1)=(Duration=1.200000,Cooldown=15.000000,Vulnerability=(0.650000))
    IncapSettings(2)=(Cooldown=2.000000,Vulnerability=(0.100000,0.950000,0.100000,0.100000,0.750000))
    IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.100000,0.100000,0.100000,0.100000,0.500000))
-   IncapSettings(4)=(Cooldown=8.000000,Vulnerability=(0.100000,0.300000,0.100000,0.100000,0.400000))
+   IncapSettings(4)=(Cooldown=10.000000,Vulnerability=(0.100000,0.300000,0.100000,0.100000,0.400000))
    IncapSettings(5)=(Duration=1.000000,Cooldown=17.000000,Vulnerability=(0.100000,0.550000,0.100000,0.100000,0.550000))
    IncapSettings(6)=(Vulnerability=(0.000000))
-   IncapSettings(7)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
-   IncapSettings(8)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.950000))
-   IncapSettings(9)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
+   IncapSettings(7)=(Duration=3.000000,Cooldown=10.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000,1.000000))
+   IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
+   IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.950000))
+   IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=650.000000
    DefaultInventory(0)=Class'kfgamecontent.KFWeap_Minigun_Patriarch'
@@ -1999,21 +2070,23 @@ defaultproperties
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(14)=None
       SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=Class'kfgamecontent.KFSM_Patriarch_Heal'
-      SpecialMoveClasses(17)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
-      SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
-      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
-      SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
+      SpecialMoveClasses(17)=Class'kfgamecontent.KFSM_Patriarch_Heal'
+      SpecialMoveClasses(18)=None
+      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
+      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
       SpecialMoveClasses(22)=None
       SpecialMoveClasses(23)=None
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(29)=None
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_MonsterBoss:SpecialMoveHandler_0'
    End Object
@@ -2083,6 +2156,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_MonsterBoss:KFPawnSkeletalMeshComponent'
    End Object

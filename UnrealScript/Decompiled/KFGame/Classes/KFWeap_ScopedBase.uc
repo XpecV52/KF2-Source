@@ -70,7 +70,8 @@ simulated function InitFOV(float SizeX, float SizeY, float DefaultPlayerFOV)
     }
     if(CurrentScopeTextureSize != NewScopeTextureSize)
     {
-        SniperScopeTextureTarget = Class'TextureRenderTarget2D'.static.Create(NewScopeTextureSize, NewScopeTextureSize, 2);
+        SniperScopeTextureTarget = Class'TextureRenderTarget2D'.static.Create(NewScopeTextureSize, NewScopeTextureSize, 10);
+        SniperScopeTextureTarget.TargetGamma = 1;
         SceneCapture.SetCaptureParameters(SniperScopeTextureTarget);
         if(ScopeLenseMIC != none)
         {

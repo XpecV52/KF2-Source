@@ -417,6 +417,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
         {
             LogInternal((((string(P) @ string(GetFuncName())) $ "() rejecting attack idx ") $ string(Idx)) $ " because not allowed in this Battle Phase");
         }
+        return false;
     }
     if((P.MyKFAIC != none) && !P.MyKFAIC.CheckOverallCooldownTimer())
     {
@@ -565,7 +566,7 @@ function Vector2D GetAttackRangeExtent(name AttackName)
     return vect2d(MinRange, MaxRange);
 }
 
-function SetDifficultyValues(KFDifficultyInfo DifficultyInfo)
+function SetDifficultyValues(KFGameDifficultyInfo DifficultyInfo)
 {
     WeakAttackChance = DifficultyInfo.GetWeakAttackChance();
     MediumAttackChance = DifficultyInfo.GetMediumAttackChance();

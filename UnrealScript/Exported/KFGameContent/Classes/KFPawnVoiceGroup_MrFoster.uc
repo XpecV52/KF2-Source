@@ -358,6 +358,7 @@ class KFPawnVoiceGroup_MrFoster extends KFPawnVoiceGroup;
 
 
 
+
 	
 
 
@@ -719,6 +720,7 @@ defaultproperties
    DialogEvents(226)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Foster.Play_Foster_OBJE_PackageDead_Base')
    DialogEvents(227)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Foster.Play_Foster_OBJE_PlayerDiedPackage_Base')
    DialogEvents(228)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Foster.Play_Foster_OBJE_PackageSecured_Base')
+   DialogEvents(229)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Foster.Play_Foster_KZED_SprintTowardsZ_Base')
    Name="Default__KFPawnVoiceGroup_MrFoster"
    ObjectArchetype=KFPawnVoiceGroup'KFGame.Default__KFPawnVoiceGroup'
 }

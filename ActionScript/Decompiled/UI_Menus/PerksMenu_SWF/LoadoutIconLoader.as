@@ -1,8 +1,8 @@
 package
 {
-    import scaleform.clik.controls.UILoader;
+    import tripwire.controls.TripUILoaderQueue;
     
-    public dynamic class LoadoutIconLoader extends UILoader
+    public dynamic class LoadoutIconLoader extends TripUILoaderQueue
     {
          
         

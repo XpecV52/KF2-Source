@@ -16,6 +16,7 @@ enum EInteractionMessageType
     IMT_UseTrader,
     IMT_UseDoor,
     IMT_UseDoorWelded,
+    IMT_RepairDoor,
     IMT_GamepadWeaponSelectHint,
     IMT_HealSelfWarning,
     IMT_ClotGrabWarning,
@@ -25,7 +26,8 @@ enum EInteractionMessageType
 
 var const localized string UseTraderMessage;
 var const localized string UseDoorMessage;
-var const localized string UseDoorWeldedMessage;
+var const localized string EquipWelderMessage;
+var const localized string RepairDoorMessage;
 var const localized string AcceptObjectiveMessage;
 var const localized string ReceiveAmmoMessage;
 var const localized string ReceiveGrenadesMessage;
@@ -62,7 +64,7 @@ static function float GetMessageDuration(int Switch)
 {
     switch(Switch)
     {
-        case 7:
+        case 8:
             return 2;
         default:
             return 0;
@@ -91,13 +93,14 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
             }
         case 4:
         case 5:
+        case 7:
         case 1:
         case 2:
         case 3:
             KFInput.GetKeyBindFromCommand(BoundKey, default.USE_COMMAND, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 8:
+        case 9:
             if(KFInput.bUsingGamepad)
             {
                 KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND_CONTROLLER, false);                
@@ -108,11 +111,11 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
             }
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 9:
+        case 10:
             KFInput.GetKeyBindFromCommand(BoundKey, default.BASH_COMMAND, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 7:
+        case 8:
             KFInput.GetKeyBindFromCommand(BoundKey, default.WEAPON_SELECT_CONTROLLER, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
@@ -141,21 +144,23 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
             {
                 return default.ZedUseDoorWeldedMessage;
             }
-            return default.UseDoorWeldedMessage;
+            return default.EquipWelderMessage;
+        case 7:
+            return default.RepairDoorMessage;
         case 1:
             return default.AcceptObjectiveMessage;
         case 2:
             return default.ReceiveAmmoMessage;
         case 3:
             return default.ReceiveGrenadesMessage;
-        case 8:
+        case 9:
             Input = Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerInput;
             return (((Input != none) && Input.bUsingGamepad) ? default.HealSelfGamepadWarning : default.HealSelfWarning);
-        case 9:
-            return default.PressToBashWarning;
         case 10:
+            return default.PressToBashWarning;
+        case 11:
             return default.PlayerClotGrabWarningMessage;
-        case 7:
+        case 8:
             return default.GamepadWeaponSelectHint;
         default:
             return "";
@@ -175,18 +180,18 @@ static function string GetHexColor(int Switch)
 
 defaultproperties
 {
-    UseTraderMessage="<%x%>USE TRADER"
-    UseDoorMessage="OPEN/CLOSE
-[HOLD] EQUIP WELDER"
-    UseDoorWeldedMessage="[HOLD]<%x%> EQUIP WELDER"
-    AcceptObjectiveMessage="<%x%>ACCEPT OBJECTIVE"
-    ReceiveAmmoMessage="<%x%>RECEIVE AMMO"
-    ReceiveGrenadesMessage="<%x%>RECEIVE GRENADES"
-    HealSelfWarning="<%x%>HEAL SELF"
-    HealSelfGamepadWarning="[HOLD]<%x%> HEAL SELF"
-    PressToBashWarning="<%x%>BASH"
-    GamepadWeaponSelectHint="[HOLD] WEAPON SELECT"
-    ZedUseDoorMessage="<%x%>OPEN/CLOSE"
+    UseTraderMessage="USE TRADER<%HOLD%>AUTO-UPGRADE"
+    UseDoorMessage="OPEN/CLOSE<%HOLD%>EQUIP WELDER"
+    EquipWelderMessage="<%HOLD%>EQUIP WELDER"
+    RepairDoorMessage="<%HOLD%>EQUIP WELDER TO FIX DOOR"
+    AcceptObjectiveMessage="ACCEPT OBJECTIVE"
+    ReceiveAmmoMessage="RECEIVE AMMO"
+    ReceiveGrenadesMessage="RECEIVE GRENADES"
+    HealSelfWarning="HEAL SELF"
+    HealSelfGamepadWarning="<%HOLD%>HEAL SELF"
+    PressToBashWarning="BASH"
+    GamepadWeaponSelectHint="<%HOLD%>WEAPON SELECT"
+    ZedUseDoorMessage="OPEN/CLOSE"
     ZedUseDoorWeldedMessage="DOOR WELDED, BREAK IT DOWN!"
     PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
     USE_COMMAND="GBA_Use"

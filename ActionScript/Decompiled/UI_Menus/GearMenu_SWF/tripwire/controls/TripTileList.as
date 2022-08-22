@@ -30,6 +30,8 @@ package tripwire.controls
         
         private var _fadeOut:TweenMax;
         
+        private var _bResetSelectedIndex:Boolean = true;
+        
         public function TripTileList()
         {
             super();
@@ -44,6 +46,16 @@ package tripwire.controls
                 return MenuManager.manager.bUsingGamepad;
             }
             return false;
+        }
+        
+        public function get bResetSelectedIndex() : *
+        {
+            return this._bResetSelectedIndex;
+        }
+        
+        public function set bResetSelectedIndex(param1:Boolean) : void
+        {
+            this._bResetSelectedIndex = param1;
         }
         
         public function open() : void
@@ -74,7 +86,10 @@ package tripwire.controls
             tabEnabled = false;
             tabChildren = false;
             focused = 0;
-            selectedIndex = 0;
+            if(this.bResetSelectedIndex)
+            {
+                selectedIndex = 0;
+            }
             if(this._bOpen)
             {
                 this._bOpen = false;

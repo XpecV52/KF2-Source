@@ -26,6 +26,9 @@ var() bool	bSynchronizeNodesInEditor;
 /** If set, calculate speed from owner's base instead of owner */
 var() bool  bUseOwnersBase;
 
+/** If set, ignore z-axis velocity/acceleration */
+var() bool  bUse2DMovement;
+
 cpptext
 {
 	/** for MoveCycleFirstStepStartPosition */
@@ -54,6 +57,7 @@ defaultproperties
 
 	bScaleAnimPlayRateBySpeed=FALSE
 	bSynchronizeNodesInEditor=TRUE
+	bUse2DMovement=TRUE
 
 	BlendUpTime=0.3f
     BlendDownTime=0.3f

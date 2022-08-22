@@ -10,6 +10,7 @@ package tripwire.menus
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.Extensions;
     import scaleform.gfx.FocusManager;
     import tripwire.containers.GearListContainer;
     import tripwire.containers.SectionHeaderContainer;
@@ -94,6 +95,10 @@ package tripwire.menus
         private var _prevX:int = 0;
         
         private var _bRotating:Boolean;
+        
+        public var headCameraSoundEffect:String = "GEAR_CHAR_ZOOMIN";
+        
+        public var bodyCameraSoundEffect:String = "GEAR_CHAR_ZOOMOUT";
         
         public function GearMenu()
         {
@@ -273,7 +278,7 @@ package tripwire.menus
             {
                 currentElement = defaultFirstElement = !!this.bodyButton.enabled ? this.bodyButton : this.attachmentButton;
             }
-            if(!MenuManager.manager.bPopUpOpen && bManagerUsingGamepad)
+            if(!MenuManager.manager.bPopUpOpen && bManagerUsingGamepad && bSelected)
             {
                 FocusManager.setFocus(currentElement);
             }
@@ -376,10 +381,18 @@ package tripwire.menus
             if(this._selectedButton == this.headButton || this._selectedButton == this.attachmentButton)
             {
                 ExternalInterface.call("Callback_HeadCamera");
+                if(Extensions.gfxProcessSound != null && enabled == true)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.headCameraSoundEffect);
+                }
             }
             else
             {
                 ExternalInterface.call("Callback_BodyCamera");
+                if(Extensions.gfxProcessSound != null && enabled == true)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.bodyCameraSoundEffect);
+                }
             }
             switch(this._selectedButton)
             {
@@ -425,9 +438,10 @@ package tripwire.menus
             }
         }
         
-        protected function setOptionList(param1:GearListContainer, param2:Array, param3:String) : void
+        protected function setOptionList(param1:GearListContainer, param2:Array, param3:String, param4:Boolean = false) : void
         {
             this.deselectContainer();
+            param1.bIsSubMenu = param4;
             if(sectionHeader != null && bOpen)
             {
                 sectionHeader.controllerIconVisible = false;
@@ -488,6 +502,39 @@ package tripwire.menus
                         this.chosenItem(this._attachments,param1.index,"Callback_Attachment");
                 }
             }
+            else if(param1.target.bIsSubMenu)
+            {
+                switch(this._selectedButton)
+                {
+                    case this.characterButton:
+                        this.setOptionList(this.gearList,this._characters,this._charactersString);
+                        if(bManagerUsingGamepad)
+                        {
+                            this.gearList.tileList.selectedIndex = this._selectedCharacterIndex;
+                        }
+                        break;
+                    case this.headButton:
+                        this.buttonPressed(this._heads,this._headsString);
+                        if(bManagerUsingGamepad)
+                        {
+                            this.gearList.tileList.selectedIndex = this._selectedHeadIndex;
+                        }
+                        break;
+                    case this.bodyButton:
+                        this.buttonPressed(this._bodies,this._bodiesString);
+                        if(bManagerUsingGamepad)
+                        {
+                            this.gearList.tileList.selectedIndex = this._selectedBodyIndex;
+                        }
+                        break;
+                    case this.attachmentButton:
+                        this.buttonPressed(this._attachments,this._attachmentString);
+                        if(bManagerUsingGamepad)
+                        {
+                            this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex;
+                        }
+                }
+            }
             else
             {
                 this.selectButton();
@@ -503,7 +550,7 @@ package tripwire.menus
                 this._meshIndex = this._selectedButton != this.attachmentButton ? int(param2) : int(param2);
                 if(this._meshIndex >= 0 && param1[param2].skinInfo && param1[param2].skinInfo.length > 0)
                 {
-                    this.setOptionList(this.skinList,param1[param2].skinInfo,this._skinsString);
+                    this.setOptionList(this.skinList,param1[param2].skinInfo,this._skinsString,true);
                 }
                 else
                 {
@@ -567,10 +614,18 @@ package tripwire.menus
                 if(param1.currentTarget == this.headButton)
                 {
                     ExternalInterface.call("Callback_HeadCamera");
+                    if(Extensions.gfxProcessSound != null && enabled == true)
+                    {
+                        Extensions.gfxProcessSound(this,"UI",this.headCameraSoundEffect);
+                    }
                 }
                 else
                 {
                     ExternalInterface.call("Callback_BodyCamera");
+                    if(Extensions.gfxProcessSound != null && enabled == true)
+                    {
+                        Extensions.gfxProcessSound(this,"UI",this.bodyCameraSoundEffect);
+                    }
                 }
             }
         }
@@ -613,8 +668,10 @@ package tripwire.menus
         override protected function onInputChange(param1:Event) : *
         {
             super.onInputChange(param1);
-            this.skinList.backButton.visible = !bManagerUsingGamepad;
-            this.gearList.backButton.visible = !bManagerUsingGamepad;
+            this.skinList.backButton.visible = !bManagerUsingGamepad && !this.skinList.bIsSubMenu ? true : false;
+            this.gearList.backButton.visible = !bManagerUsingGamepad && !this.gearList.bIsSubMenu ? true : false;
+            this.skinList.arrowBackButton.visible = !bManagerUsingGamepad && this.skinList.bIsSubMenu ? true : false;
+            this.gearList.backButton.visible = !bManagerUsingGamepad && this.gearList.bIsSubMenu ? true : false;
         }
         
         private function testMenu() : *

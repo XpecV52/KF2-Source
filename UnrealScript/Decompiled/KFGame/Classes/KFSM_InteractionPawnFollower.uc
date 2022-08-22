@@ -33,7 +33,10 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     if((Leader != none) && Leader.IsDoingSpecialMove(LeaderSpecialMove))
     {
         LeaderSM = KFSM_InteractionPawnLeader(Leader.SpecialMoves[LeaderSpecialMove]);
-        LeaderSM.OnFollowerLeavingSpecialMove();
+        if(LeaderSM != none)
+        {
+            LeaderSM.OnFollowerLeavingSpecialMove();
+        }
     }
     Leader = none;
     LeaderSpecialMove = 0;

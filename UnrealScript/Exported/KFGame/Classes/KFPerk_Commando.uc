@@ -61,10 +61,6 @@ class KFPerk_Commando extends KFPerk
 
 
 
- 
-
-
-
 
 
  
@@ -285,9 +281,12 @@ function ModifyArmor( out byte MaxArmor )
 {
 	local float TempArmor;
 
-	TempArmor = MaxArmor;
-	TempArmor += MaxArmor * GetSkillValue( PerkSkills[ECommandoHealthIncrease] );
-	MaxArmor = Round( TempArmor );
+	if( IsHealthIncreaseActive() )
+	{
+		TempArmor = MaxArmor;
+		TempArmor += MaxArmor * GetSkillValue( PerkSkills[ECommandoHealthIncrease] );
+		MaxArmor = Round( TempArmor );
+	}
 }
 
 /*********************************************************************************************
@@ -312,7 +311,7 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false )
 {
 	local float TempCapacity;
 
@@ -344,11 +343,12 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
  * @param MaxSpareAmmo ammo amount
  * @param TraderItem the weapon's associated trader item info
  */
-simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem)
+simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false )
 {
 	local float TempMaxSpareAmmoAmount;
 
-	if( IsAmmoVestActive() && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClass ) )
+	if( IsAmmoVestActive() && (IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClass ) ||
+		IsBackupWeapon( KFW )) )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
 		TempMaxSpareAmmoAmount += MaxSpareAmmo * GetSkillValue( PerkSkills[ECommandoAmmoVest] );
@@ -367,7 +367,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	local name StateName;
 	StateName = W.GetStateName();
 
-	if( IsProfessionalActive() )
+	if( IsProfessionalActive() && IsWeaponOnPerk( W ) )
 	{
 		if( StateName == 'Reloading' )
 		{
@@ -379,7 +379,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 		}
 	}
 
-	if( CouldRapidFireActive() && ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
+	if( IsWeaponOnPerk( W ) && CouldRapidFireActive() && ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 	{
 		return RapidFireFiringRate;
 	}
@@ -588,10 +588,11 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	PassiveValues[4] = "";
 	PassiveValues[5] = "";
 
-	Increments[0] = "["@Int(default.WeaponDamage.Increment * 100) $"% /" @default.LevelString @"]";
-	Increments[1] = "["@Int(default.CloakedEnemyDetection.Increment / 100)  $"m /" @default.LevelString @"]";
-	Increments[2] = "["@Int(default.ZedTimeExtension.StartingValue) @"+" @Int(default.ZedTimeExtension.Increment)   @"sec / 5" @default.LevelString @"]";
-	Increments[3] = "["@Int(default.ReloadSpeed.Increment * 100) $ "% / 5" @ default.LevelString @ "]";
+	Increments[0] = "["@Left( string( default.WeaponDamage.Increment * 100 ), InStr(string(default.WeaponDamage.Increment * 100), ".") + 2 ) 	$"% /" @default.LevelString @"]";
+	Increments[1] = "["@ Int(default.CloakedEnemyDetection.StartingValue / 100 ) @"+" @Int(default.CloakedEnemyDetection.Increment / 100 ) 		$"m /" @default.LevelString @"]";
+	Increments[2] = "["@Left( string( default.ZedTimeExtension.StartingValue ), InStr(string(default.ZedTimeExtension.StartingValue ), ".") + 2 )@"+" 
+						@Left( string( default.ZedTimeExtension.Increment ), InStr(string(default.ZedTimeExtension.Increment ), ".") + 2 )		@"sec / 5" @default.LevelString @"]";
+	Increments[3] = "["@Left( string( default.ReloadSpeed.Increment * 100 ), InStr(string(default.ReloadSpeed.Increment * 100), ".") + 2 ) 		$ "% / 5" @ default.LevelString @ "]";
 	Increments[4] = "";
 	Increments[5] = "";
 }
@@ -667,11 +668,11 @@ simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM)
 		C.EnableStencilTest(true);
 		C.SetDrawColor(0, 0, 0, 255);
 		C.SetPos(ScreenPos.X - HealthBarLength * 0.5, ScreenPos.Y);
-		C.DrawTileStretched(WhiteMaterial, HealthbarLength, HealthbarHeight, 0, 0, 32, 32);
+		C.DrawTile(WhiteMaterial, HealthbarLength, HealthbarHeight, 0, 0, 32, 32);
 
 		C.SetDrawColor(237, 8, 0, 255);
 		C.SetPos(ScreenPos.X - HealthBarLength * 0.5 + 1.0, ScreenPos.Y + 1.0);
-		C.DrawTileStretched(WhiteMaterial, (HealthBarLength - 2.0) * HealthScale, HealthbarHeight - 2.0, 0, 0, 32, 32);
+		C.DrawTile(WhiteMaterial, (HealthBarLength - 2.0) * HealthScale, HealthbarHeight - 2.0, 0, 0, 32, 32);
 		C.EnableStencilTest(false);
 	}
 }
@@ -737,14 +738,14 @@ defaultproperties
    SecondaryXPModifier(2)=6
    SecondaryXPModifier(3)=9
    PerkName="Commando"
-   Passives(0)=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.")
-   Passives(1)=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level")
-   Passives(2)=(Title="Zed Time Extension",Description="Zed time lasts %x% longer")
-   Passives(3)=(Title="Reload Speed",Description="%x%% increase every 5 levels")
+   Passives(0)=(Title="Perk Weapon Damage",Description="Perk weapon damage increases %x% per level")
+   Passives(1)=(Title="Cloaked Enemy & Health Bar Detection",Description="Range of 5m plus %x%m per level")
+   Passives(2)=(Title="Zed Time Extension",Description="Zed time increases %x% every 5 levels")
+   Passives(3)=(Title="Reload Speed",Description="Perk weapon reload speed increases %x%% every 5 levels")
    Passives(4)=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles")
    Passives(5)=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units")
-   SkillCatagories(0)="Tactics"
-   SkillCatagories(1)="Advanced Tactics"
+   SkillCatagories(0)="Ammo Management"
+   SkillCatagories(1)="Tactics"
    SkillCatagories(2)="Survival"
    SkillCatagories(3)="Weapon Specialist"
    SkillCatagories(4)="Advanced Training"
@@ -753,12 +754,12 @@ defaultproperties
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Commando'
    PerkSkills(0)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_TacticalReload")
    PerkSkills(1)=(Name="LargeMags",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_LargeMag")
-   PerkSkills(2)=(Name="Backup",StartingValue=0.600000,MaxValue=0.600000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Backup")
+   PerkSkills(2)=(Name="Backup",StartingValue=2.100000,MaxValue=2.100000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Backup")
    PerkSkills(3)=(Name="Impact",StartingValue=1.500000,MaxValue=1.500000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Impact")
    PerkSkills(4)=(Name="HealthIncrease",StartingValue=0.250000,MaxValue=0.250000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_HP")
    PerkSkills(5)=(Name="AmmoVest",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_AmmoVest")
-   PerkSkills(6)=(Name="HollowPoints",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire")
-   PerkSkills(7)=(Name="EatLead",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire")
+   PerkSkills(6)=(Name="HollowPoints",StartingValue=0.300000,MaxValue=0.300000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire")
+   PerkSkills(7)=(Name="EatLead",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire")
    PerkSkills(8)=(Name="Professional",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Professional")
    PerkSkills(9)=(Name="RapidFire",StartingValue=0.030000,MaxValue=0.030000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_RapidFire")
    ZedTimeModifyingStates(0)="WeaponFiring"
@@ -767,6 +768,10 @@ defaultproperties
    bCanSeeCloakedZeds=True
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_AR15'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'
+   AutoBuyLoadOutPath(0)=Class'KFGame.KFWeapDef_AR15'
+   AutoBuyLoadOutPath(1)=Class'KFGame.KFWeapDef_Bullpup'
+   AutoBuyLoadOutPath(2)=Class'KFGame.KFWeapDef_AK12'
+   AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_SCAR'
    HeadshotAccuracyHandicap=-3.000000
    Name="Default__KFPerk_Commando"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'

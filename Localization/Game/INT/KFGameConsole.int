@@ -3,13 +3,16 @@
 KFMainMenu="Main Menu"
 KF-Bioticslab="Playing Biotics Lab"
 KF-BlackForest="Playing Black Forest"
-KF-BurningParis="Playing Burnig Paris"
+KF-BurningParis="Playing Burning Paris"
 KF-Catacombs="Playing Catacombs"
 KF-EvacuationPoint="Playing Evacuation Point"
 KF-Farmhouse="Playing Farmhouse"
-KF-Manor="Playing Manor"
-KF-MineShaft="Playing Mine Shaft"
+KF-VolterManor="Playing Volter Manor"
 KF-Outpost="Playing Outpost"
+KF-Prison="Playing Prison"
+KF-ContainmentStation="Playing Containment Station"
+KF-InfernalRealm="Playing Infernal Realm"
+KF-HostileGrounds="Playing Hostile Grounds"
 
 [ActivityFeed]
 BossKillCondensedCaption="Boss defeated!"
@@ -21,16 +24,90 @@ PerkLevelUpCaption="$USER_NAME_OR_ID has unlocked the level %x% %y% skill"
 
 [KFGFxMenu_IIS]
 PressButtonToStart=Press XboxTypeS_A To Start
+LoginButtonPrompt=Log in
 LoggingIn=Logging in...
+LoginFailed=Login Failed
+NoOnlinePlay=Can't play online
+TooYoung=Online service is disabled on your Sony Entertainment Network account due to parental control restrictions.
+PatchAvailable=Patch available. You must update the application to use network features.
+NotLoggedInOnlinePSN=You must be signed in to PlayStation™Network to use online features.
+NetworkError=A network error has occurred, please check your network connection.
+ErrorNoPlayfabDescription=A connection to the game Master Servers could not be established. Please try again in a few minutes.
+ErrorTSSFailedDescription=A connection to the game balance server could not be established. Please ensure you are connected to the internet and please try again.
 
 [Notifications]
 ControllerDisconnectedTitle=Controller Disconnected
 ControllerDisconnectedPS4Message=Wireless controller has been disconnected. Please reconnect the wireless controller for the User that booted the game.
 PlayGoBusyTitle=Still installing
 PlayGoBusyMessage=Limited content and features are available while the game finishes installing.
+UnableToJoinInviteTitle=Unable to Join
+UnableToJoinInviteMessage=Session is full or no longer available. Please try again later.
+InitiatingPlayTogetherTitle=Hold On!
+InitiatingPlayTogetherMessage=We're creating a game for your Play Together experience.
+UnableToPlayTogetherTitle=Play Together Failed
+UnableToPlayTogetherMessage=Unable to create a Play Together game. Try again later or create one manually.
+CheckPlusTitle=Checking PlayStation®Plus Status
+CheckPlusMessage=Please wait while we check PlayStation®Plus status.
+ConnectionLostTitle=Connection Lost
+ConnectionLostMessage=Your online connection has been lost.  You have been returned to the Home Menu.
+PSNSignoutMessage=You have been signed out of PlayStation™Network. You have been returned to the Home Menu.
+InviteMessage=Come blow up some Zeds with me!
+NotConnectedTitle=Network Error
+NotConnectedMessage=Not connected to the internet. Check your connection and try again.
+NotConnectedForOnlinePlay=Not connected to the internet. Check your connection and try again to use online features.
+PartySizeTitle=Party Warning
+PartySizeMessage=Too many members in your party. Not all members will show up in your squad and not all will get into a survival game.
 
 [KFGFxWidget_BaseParty]
 ViewProfileString=View Player Profile
 
 [KFGFxObject_Menu]
 ResetDefaults=Are you sure you want to reset settings to default values?
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="PERK"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound=Controller Sound
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString=REGION
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString=REGION
+
+[Entitlements]
+BriarBobbyBundleProductName=London Bobby Briar Uniform Bundle
+BriarBobbyBundleShortDescription=Get a new classic London Bobby uniform for playable character PC Rob Briar. Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles).
+
+BikerTanakaBundleProductName=Tanaka Biker Uniform Bundle
+BikerTanakaBundlehortDescription=Get a new biker uniform for playable character Hayato Tanaka. Comes with Tanaka's Motorcycle Uniform (includes 7 skin styles) and Helmet Cosmetic Accessory (includes 7 skin styles).
+
+ClassicFosterBundleProductName=Mr.Foster Classic Uniform Bundle
+ClassicFosterBundlehortDescription=Get a new classic suit uniform for playable character Mr. Foster. Comes with Foster's Classic Suit Uniform (includes 9 skin styles), Bow Tie Cosmetic Accessory and Classic Tie Cosmetic Accessory (includes 7 skin styles for each).
+
+CardboardKnightBundleProductName=Cardboard Knight Uniform Bundle
+CardboardKnightBundleShortDescription=Get a hilarious new cardboard knight armor uniform useable for most playable characters. Comes with a Cardboard Knight Armor for the body(includes 6 skin styles) and Cardboard Knight Helmet Cosmetic Accessory (includes 6 skin styles).
+
+HorzineSecurityForceBundleProductName=Horzine Security Force Uniform Bundle
+HorzineSecurityForceBundleShortDescription=Get an awesome new Horzine Security uniform useable for most playable characters. Comes with a high tech Horzine Security Suit for the body and Horzine Security Helmet Cosmetic Accessory.
+
+HorzineSupplyCrateKeyProductName=Horzine Supply Crate Key
+HorzineSupplyCrateKeyShortDesription=Purchase a Horzine Supply Crate Key, an in-game consumable key that will open any Horzine Supply Crate. You will need this key and any Horzine Supply Crate to use it.
+
+HorzineSupplyCrate1ProductName=Horzine Supply Crate Series 1
+HorzineSupplyCrate1ShortDesription=This Horzine Supply Crate contains a cosmetic accessory. It requires a Horzine Supply Crate Key to open. Contains one rare or better of the following cosmetic items: Tactical Hat, Tactical Mask, Tactical Headset MK1/MK2, Headband, GS9 Helmet, GS9 Mask, Russian Military Glasses, Russian Military Helmet, Russian Military Mask or an Exceedingly Rare Precious Accessory!
+
+HorzineSupplyCrate2ProductName=Horzine Supply Crate Series 2
+HorzineSupplyCrate2ShortDesription=This Horzine Supply Crate contains a cosmetic accessory. It requires a Horzine Supply Crate Key to open. Contains one rare or better of the following cosmetic items: Devtac Ballistic Mask, US Gas Mask, Ski Mask, Baseball Hat, Tactical Backbag, German Gas Mask, Chemical Gas Mask, RPG7 Backbag, M2 Flamethrower Tank, or an Exceedingly Rare Precious Accessory!
+
+HorzineSupplyCrate3ProductName=Horzine Supply Crate Series 3
+HorzineSupplyCrate3ShortDesription=This Horzine Supply Crate contains a weapon skin. It requires a Horzine Supply Crate Key to open. Contains one rare or better of the following weapon skins:
+
+HorzineSupplyCrate4ProductName=Horzine Supply Crate Series 4
+HorzineSupplyCrate4ShortDesription=This Horzine Supply Crate contains a weapon skin. It requires a Horzine Supply Crate Key to open. Contains one rare or better of the following weapon skins:
+
+StoreGameLegalText=Software subject to license (us.playstation.com/softwarelicense). Online activity subject to Terms of Services and User Agreement (www.playstationnetwork.com/terms-of-service). One-time license fee for play on account’s designated primary PS4™ system and other PS4™ systems when signed in with that account. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® is a registered trademark of Tripwire Interactive in the USA and other countries. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. All rights reserved. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere. All other trademarks, logos and copyrights are property of their respective owners. All rights reserved.
+
+StoreItemLegalText=This item requires the full Killing Floor 2 game in order to use it. Usage of this item is subject to the same End User License Agreement as the original game.
+

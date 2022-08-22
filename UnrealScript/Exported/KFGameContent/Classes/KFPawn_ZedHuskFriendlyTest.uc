@@ -27,12 +27,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	}
 }
 
-/** AnimNotify which launches the fireball projectile */
-function ANIMNOTIFY_BurnTargets()
-{
-	// Stub to get rid of log spam
-}
-
 defaultproperties
 {
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHuskFriendlyTest:ExploTemplate0'
@@ -63,6 +57,7 @@ defaultproperties
       AfflictionClasses(7)=()
       AfflictionClasses(8)=()
       AfflictionClasses(9)=()
+      AfflictionClasses(10)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -100,17 +95,19 @@ defaultproperties
       SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
-      SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
-      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
-      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Husk_Suicide'
-      SpecialMoveClasses(21)=None
-      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(18)=None
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
+      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Husk_Suicide'
       SpecialMoveClasses(23)=None
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHusk:SpecialMoveHandler_0'
    End Object
@@ -177,6 +174,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHusk:KFPawnSkeletalMeshComponent'
    End Object

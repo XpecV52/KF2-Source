@@ -144,6 +144,10 @@ function PlayAnimation()
     {
         foreach BossController.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
         {
+            if(!KFPC.CanViewCinematics())
+            {
+                continue;                
+            }
             KFPC.SetBossCamera(BossPawn);            
         }        
     }
@@ -154,14 +158,17 @@ function PlayAnimation()
     if(BossPawn.WorldInfo.NetMode != NM_DedicatedServer)
     {
         KFPC = GetALocalKFPlayerController();
-        KFPC.ClientSetCameraFade(true, FadeInColor, vect2d(1, 0), FadeInTime, true);
-        KFPC.SetViewTarget(BossPawn);
-        if(CameraAnim != none)
+        if(KFPC.CanViewCinematics())
         {
-            BossPawn.bUseAnimatedTheatricCamera = true;
-            BossPawn.TheatricCameraAnimOffset = CameraAnimOffset;
-            KFPC.SetCinematicMode(true, false, false, true, true, true);
-            KFPC.ClientPlayCameraAnim(CameraAnim, 1, 0.99, BlendInTime, BlendOutTime + 0.03, false, false);
+            KFPC.ClientSetCameraFade(true, FadeInColor, vect2d(1, 0), FadeInTime, true);
+            KFPC.SetViewTarget(BossPawn);
+            if(CameraAnim != none)
+            {
+                BossPawn.bUseAnimatedTheatricCamera = true;
+                BossPawn.TheatricCameraAnimOffset = CameraAnimOffset;
+                KFPC.SetCinematicMode(true, false, false, true, true, true);
+                KFPC.ClientPlayCameraAnim(CameraAnim, 1, 0.99, BlendInTime, BlendOutTime + 0.03, false, false);
+            }
         }
     }
     if(BossPawn.Role == ROLE_Authority)
@@ -181,7 +188,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     {
         BossPawn.bUseAnimatedTheatricCamera = false;
         BossPawn.TheatricCameraAnimOffset = vect(0, 0, 0);
-        if(BossPawn.WorldInfo.NetMode != NM_DedicatedServer)
+        if((BossPawn.WorldInfo.NetMode != NM_DedicatedServer) && KFPC.CanViewCinematics())
         {
             if(CurrentTheatricType == 0)
             {
@@ -206,6 +213,10 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
             {
                 foreach AIOwner.WorldInfo.AllControllers(Class'KFPlayerController', OtherKFPC)
                 {
+                    if(!OtherKFPC.CanViewCinematics())
+                    {
+                        continue;                        
+                    }
                     if(OtherKFPC.Pawn != none)
                     {
                         OtherKFPC.SetViewTarget(OtherKFPC.Pawn);
@@ -223,6 +234,10 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
                 {
                     foreach PCOwner.WorldInfo.AllControllers(Class'KFPlayerController', OtherKFPC)
                     {
+                        if(!OtherKFPC.CanViewCinematics())
+                        {
+                            continue;                            
+                        }
                         if(OtherKFPC.Pawn != none)
                         {
                             OtherKFPC.SetViewTarget(OtherKFPC.Pawn);
@@ -247,7 +262,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
                 }
             }
         }
-        if(BossPawn.WorldInfo.NetMode != NM_DedicatedServer)
+        if((BossPawn.WorldInfo.NetMode != NM_DedicatedServer) && KFPC.CanViewCinematics())
         {
             KFPC.SetCinematicMode(false, false, true, true, true, false);
             if(KFPC.Pawn != none)

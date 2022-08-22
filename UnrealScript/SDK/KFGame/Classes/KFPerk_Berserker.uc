@@ -26,11 +26,14 @@ var const 	private  	float 		ParrySpeed;
 var const 	private  	float 		FurySpeed;
 var const 	private 	float 		SmashKnockdownMultiplier;
 var const 	private 	float 		SpartanZedTimeResistance;
-var const 	private 	float 		FlashZedTimeResistance;
 var const 	private 	float 		SpeedDamageModifier;
 var const 	private 	float 		SmashHeadDamageModifier;
 var const 	private 	float 		VampireAttackSpeedModifier;
-
+var const	private		float		ParryDamageReduction;
+var const	private		int			RageRadius;
+var const	private		float		RageFleeDuration;
+var const	private		int			RageFleeDistance;
+var const	private		int			RageDialogEvent;
 
 // Events to play when parry skill is activated / deactivated
 var AkEvent ParrySkillSoundModeStart;
@@ -46,8 +49,8 @@ enum EBerserkPerkSkills
 	EBerserkerParry,
 	EBerserkerSmash,
 	EBerserkerFury,
-	EBerserkerSpartan,
-	EBerserkerFlash
+	EBerserkerRage,
+	EBerserkerSpartan
 };
 
 cpptext
@@ -144,12 +147,6 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 				`QALog( GetFuncName() @ "Parry extra damage:" @  InDamage * GetSkillValue( PerkSkills[EBerserkerParry] ), bLogPerk);
 			}
 
-			if( IsFuryActive() )
-			{
-				TempDamage += InDamage * GetSkillValue( PerkSkills[EBerserkerFury] );	
-				`QALog( GetFuncName() @ "Fury extra damage:" @  InDamage * GetSkillValue( PerkSkills[EBerserkerFury] ), bLogPerk);
-			}
-
 			if( HitZoneIdx == HZI_HEAD && IsSmashActive() )
 			{
 				TempDamage += InDamage * static.GetSmashHeadDamageModifier();
@@ -181,25 +178,29 @@ simulated function ModifyMeleeAttackSpeed( out float InDuration, KFWeapon KFW )
 	if( IsSpeedActive() )
 	{
 		`QALog("Speed reduced the attack delay duration by:" @ TempDuration * GetSkillValue( PerkSkills[EBerserkerSpeed] ), bLogPerk);
-		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerSpeed] );
+		TempDuration -= InDuration * GetSkillValue( PerkSkills[EBerserkerSpeed] );
+		`QALog( "Speed Melee Attack Speed pct" @ GetSkillValue( PerkSkills[EBerserkerSpeed] ) @ InDuration @ TempDuration, bLogPerk );
 	}
 
 	if( GetParryActive() )
 	{
 		`QALog("Parry reduced the attack delay duration by:" @ TempDuration * ParrySpeed, bLogPerk);
-		TempDuration -= TempDuration * ParrySpeed;
+		TempDuration -= InDuration * ParrySpeed;
+		`QALog( "Parry Melee Attack Speed pct" @ ParrySpeed, bLogPerk );
 	}
 
 	if( IsFuryActive() && KFW.CurrentFireMode == 0 )
 	{
 		`QALog("Fury reduced the attack delay duration by:" @ TempDuration * GetSkillValue( PerkSkills[EBerserkerFury] ), bLogPerk);
-		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerFury] );
+		TempDuration -= InDuration * GetFurySpeed();
+		`QALog( "Fury Melee Attack Speed pct" @ GetFurySpeed(), bLogPerk );
 	}
 
 	if( IsVampireActive() )
 	{
-		`QALog("Vampire reduced the attack delay duration by:" @ TempDuration * GetVampireAttackSpeedModifier(), bLogPerk);
-		TempDuration -= TempDuration * GetVampireAttackSpeedModifier();
+		`QALog("Vampire reduced the attack delay duration by:" @ TempDuration * static.GetVampireAttackSpeedModifier(), bLogPerk);
+		TempDuration -= InDuration * static.GetVampireAttackSpeedModifier();
+		`QALog( "Vampire Melee Attack Speed pct" @ static.GetVampireAttackSpeedModifier(), bLogPerk );
 	}
 
 	`QALog( "Total, Melee Attack Speed" @ GetPercentage( InDuration, TempDuration ) @ "Start/End" @ InDuration @ TempDuration, bLogPerk );
@@ -289,6 +290,11 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 {
 	local float TempDamage;
 
+	if( InDamage <= 0 )
+	{
+		return;
+	}
+	
 	TempDamage = InDamage;
 
 	if( IsResistanceActive() )
@@ -299,6 +305,12 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 		{
 			TempDamage -= InDamage * GetSkillValue( PerkSkills[EBerserkerResistance] );
 		}
+	}
+
+	if( GetParryActive() )
+	{
+		TempDamage -= InDamage * static.GetParryDamageModifier();
+		`QALog( "Parry DamageResistance =" @ InDamage * static.GetParryDamageModifier(), bLogPerk );
 	}
 
 	TempDamage -= InDamage * GetPassiveDamageResistance( CurrentLevel );
@@ -333,8 +345,8 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	PassiveValues[2] = "";
 	PassiveValues[3] = "";
 
-	Increments[0] = "[" @ (Int(default.BerserkerDamage.Increment * 100))  $"% /" @ default.LevelString @ "]";
-	Increments[1] = "[" @ (Int(default.DamageResistance.Increment * 100))  $"% / 5" @ default.LevelString @ "]";
+	Increments[0] = "[" @ Left( string( default.BerserkerDamage.Increment * 100 ), InStr(string(default.BerserkerDamage.Increment * 100), ".") + 2 )$"% /" @ default.LevelString @ "]";
+	Increments[1] = "[" @ Left( string( default.DamageResistance.Increment * 100 ), InStr(string(default.DamageResistance.Increment * 100), ".") + 2 )$"% / 5" @ default.LevelString @ "]";
 	Increments[2] = "";
 	Increments[3] = "";
 }
@@ -506,11 +518,49 @@ simulated function float GetSirenScreamStrength()
 
 function NotifyZedTimeStarted()
 {
-	if( IsSpartanActive() && OwnerPawn != none )
+	local Pawn P;
+	local KFAIController KFAIC;
+	local bool bScaredAI;
+
+	if( IsRageActive() && OwnerPawn != none )
 	{
-		OwnerPawn.Health += OwnerPawn.HealthMax * GetSkillValue( PerkSkills[EBerserkerSpartan] );
+		OwnerPawn.Health += OwnerPawn.HealthMax * GetSkillValue( PerkSkills[EBerserkerRage] );
 		OwnerPawn.Health = Min( OwnerPawn.Health, OwnerPawn.HealthMax );
+
+		foreach WorldInfo.AllPawns( class'Pawn', P, OwnerPawn.Location, static.GetRageRadius() )
+		{
+			KFAIC = KFAIController(P.Controller);
+			if( KFAIC != none )
+			{
+				KFAIC.DoFleeFrom( OwnerPawn, static.GetRageFleeDuration(), static.GetRageFleeDistance() );
+				bScaredAI = true;
+			}
+			else
+			{
+				continue;
+			}
+		}
+
+		if( bScaredAI )
+		{
+			KFGameInfo(Owner.WorldInfo.Game).DialogManager.PlayDialogEvent( OwnerPawn, RageDialogEvent );
+		}
 	}
+}
+
+private static function int GetRageRadius()
+{
+	return default.RageRadius;
+}
+
+private static function float GetRageFleeDuration()
+{
+	return default.RageFleeDuration;
+}
+
+private static function int GetRageFleeDistance()
+{
+	return default.RageFleeDistance;
 }
 
 /**
@@ -527,15 +577,11 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 
 	`QALog(GetFuncName() @ "StateName =" @ StateName, bLogPerk);
 
-	if( ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
+	if( IsWeaponOnPerk( W ) && ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 	{
 		if( CouldSpartanBeActive() )
 		{
 			return default.SpartanZedTimeResistance;
-		}
-		else if( CouldFlashBeActive() )
-		{
-			return default.FlashZedTimeResistance;
 		}
 	}
 
@@ -557,7 +603,10 @@ private static function float GetVampireAttackSpeedModifier()
 	return default.VampireAttackSpeedModifier;
 }
 
-
+private static function float GetParryDamageModifier()
+{
+	return default.ParryDamageReduction;
+}
 /*********************************************************************************************
 * @name	 Getters / Setters
 ********************************************************************************************* */
@@ -589,7 +638,7 @@ simulated final private function bool IsNinjaActive()
  *
  * @return true if we have the skill enabled
  */
-final private function bool IsVampireActive()
+simulated private function bool IsVampireActive()
 {
 	return PerkSkills[EBerserkerVampire].bActive;
 }
@@ -708,7 +757,17 @@ function bool CanNotBeGrabbed()
  *
  * @return true if we have the skill enabled
  */
-simulated private event bool IsSpartanActive()
+simulated private event bool IsRageActive()
+{
+	return PerkSkills[EBerserkerRage].bActive && WorldInfo.TimeDilation < 1.f;
+}
+
+/**
+ * @brief Checks if the Spartan skill is active and if we are in zed time
+ *
+ * @return true if we have the skill enabled
+ */
+simulated final private event bool IsSpartanActive()
 {
 	return PerkSkills[EBerserkerSpartan].bActive && WorldInfo.TimeDilation < 1.f;
 }
@@ -719,28 +778,13 @@ simulated private event bool CouldSpartanBeActive()
 }
 
 /**
- * @brief Checks if the Flash skill is active and if we are in zed time
+ * @brief Spartan resists zed time. You move at normal speed.
  *
- * @return true if we have the skill enabled
- */
-simulated final private event bool IsFlashActive()
-{
-	return PerkSkills[EBerserkerFlash].bActive && WorldInfo.TimeDilation < 1.f;
-}
-
-simulated private event bool CouldFlashBeActive()
-{
-	return PerkSkills[EBerserkerFlash].bActive;
-}
-
-/**
- * @brief Menace and Spartan resist zed time. You move at normal speed.
- *
- * @return true if Menace or Spartan are active
+ * @return true if Spartan are active
  */
 function bool IsFastInZedTime()
 {
-	return PerkSkills[EBerserkerFlash].bActive;
+	return PerkSkills[EBerserkerSpartan].bActive;
 }
 
 /*********************************************************************************************
@@ -767,23 +811,6 @@ simulated function LogPerkSkills()
 
 	if ( bLogPerk )
 	{
-/**		`log( "PASSIVE PERKS" );
-		`log( "-Berserker Damage:" @ (GetPassiveValue(BerserkerDamage, CurrentLevel) - 1) * 100 $"%" );
-		`log( "-MeleeAttackSpeed:" @ GetPassiveValue(default.MeleeAttackSpeed, CurrentLevel) * 100 $"%" );
-		`log( "-Movement:" @ (GetPassiveValue(default.Movement, CurrentLevel) - 1) * 100 $"%" );
-		`log( "-DamageResistance:" @ (GetPassiveValue(default.DamageResistance, CurrentLevel)) * 100 $"%" );
-
-	    `log( "Skill Tree" );
-	    `log( "PoisonResistance" @ PerkSkills[EBerserkerPoisonResistance].bActive );
-	    `log( "SonicResistance" @ PerkSkills[EBerserkerSonicResistance].bActive );
-	    `log( "Vampire" @ PerkSkills[EBerserkerVampire].bActive );
-	    `log( "Fortitude" @ PerkSkills[EBerserkerFortitude].bActive );
-	    `log( "FuriousDefender" @ PerkSkills[EBerserkerFuriousDefender].bActive );
-	    `log( "Block" @ PerkSkills[EBerserkerBlock].bActive );
-	    `log( "Parry" @ PerkSkills[EBerserkerParry].bActive );
-	    `log( "Smash" @ PerkSkills[EBerserkerSmash].bActive );
-	    `log( "Spartan" @ PerkSkills[EBerserkerSpartan].bActive );
-	    `log( "Menace" @ PerkSkills[EBerserkerMenace].bActive );*/
 	}
 }
 
@@ -793,12 +820,16 @@ DefaultProperties
 	ParrySpeed=0.05
 	FurySpeed=0.05
 	NinjaSprintModifer=0.25
-	SmashStumbleModifier=2.0
-	SpartanZedTimeResistance=0.5		//Attack speed zed time resistance
-	FlashZedTimeResistance=1.0 			//Attack speed zed time resistance
+	SmashStumbleModifier=2.f
+	SpartanZedTimeResistance=1.f 			//Attack speed zed time resistance
 	SpeedDamageModifier=0.2
 	SmashHeadDamageModifier=0.25
-	VampireAttackSpeedModifier=0.15
+	VampireAttackSpeedModifier=0.2f
+	ParryDamageReduction=0.4f //0.75
+	RageRadius=650 //300
+	RageFleeDuration=3.f
+	RageFleeDistance=2500 //5000
+	RageDialogEvent=229
 
 	RegenerationInterval=1
 	RegenerationAmount=2
@@ -828,16 +859,16 @@ DefaultProperties
 	DamageResistance=(Name="Damage Resistance",Increment=0.02f,Rank=0,StartingValue=0.f,MaxValue=0.10f)
 	NightVision=(Name="Night Vision",Increment=0.f,Rank=0,StartingValue=0.f,MaxValue=0.f)
 
-	PerkSkills(EBerserkerFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
+	PerkSkills(EBerserkerFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",Increment=0.f,Rank=0,StartingValue=0.75,MaxValue=0.75)
 	PerkSkills(EBerserkerNinja)=(Name="Ninja",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Ninja",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EBerserkerVampire)=(Name="Vampire",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",Increment=0.f,Rank=0,StartingValue=4.f,MaxValue=4.f)
-	PerkSkills(EBerserkerSpeed)=(Name="Speed",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Speed",Increment=0.f,Rank=0,StartingValue=0.2,MaxValue=0.2)
+	PerkSkills(EBerserkerSpeed)=(Name="Speed",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Speed",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EBerserkerResistance)=(Name="Resistance",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_PoisonResistance",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EBerserkerParry)=(Name="Parry",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",Increment=0.f,Rank=0,StartingValue=0.35,MaxValue=0.35)
-	PerkSkills(EBerserkerSmash)=(Name="Smash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",Increment=0.f,Rank=0,StartingValue=0.5,MaxValue=0.5)
-	PerkSkills(EBerserkerFury)=(Name="Fury",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Intimidate",Increment=0.f,Rank=0,StartingValue=0.2,MaxValue=0.2)
-	PerkSkills(EBerserkerSpartan)=(Name="Spartan",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan",Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
-	PerkSkills(EBerserkerFlash)=(Name="Flash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Flash",Increment=0.f,Rank=0,StartingValue=0.0,MaxValue=0.0)
+	PerkSkills(EBerserkerSmash)=(Name="Smash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
+	PerkSkills(EBerserkerFury)=(Name="Fury",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Intimidate",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
+	PerkSkills(EBerserkerRage)=(Name="Rage",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
+	PerkSkills(EBerserkerSpartan)=(Name="Spartan",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Flash",Increment=0.f,Rank=0,StartingValue=0.f,MaxValue=0.f)
 
 	ParrySkillSoundModeStart=AkEvent'WW_GLO_Runtime.Play_Beserker_Parry_Mode'
 	ParrySkillSoundModeStop=AkEvent'WW_GLO_Runtime.Stop_Beserker_Parry_Mode'
@@ -845,5 +876,5 @@ DefaultProperties
     // Skill tracking
 	HitAccuracyHandicap=2.5
 	HeadshotAccuracyHandicap=-2.0
+	AutoBuyLoadOutPath=(class'KFWeapDef_Crovel', class'KFWeapDef_Nailgun', class'KFWeapDef_Pulverizer', class'KFWeapDef_Eviscerator')
 }
-

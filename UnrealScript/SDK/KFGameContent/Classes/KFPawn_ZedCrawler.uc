@@ -4,27 +4,73 @@
 // Crawler
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedCrawler extends KFPawn_Monster;
 
 var actor LastBumpLevelActor;
 var float LastBumpLevelTime;
 
-/**
- * PossessedBy() - Called when a new controller possesses this pawn
- *
- * @param	C	Controller taking possession of this pawn
- * @param	bVehicleTransition	Legacy, true if pawn is transitioning from vehicle to on-foot (or vice-versa)
- */
-function PossessedBy( Controller C, bool bVehicleTransition )
+/** Template used by special crawlers when exploding during death */
+var protected const KFGameExplosion DeathExplosionTemplate;
+
+/** TRUE when difficulty has dictated that this is a special crawler type */
+var repnotify protected bool bIsSpecialCrawler;
+
+replication
 {
-	super.PossessedBy( C, bVehicleTransition );
-	LastBumpLevelActor = none;
-	if( KFAIController_ZedCrawler(MyKFAIC) != none )
+	if( bNetInitial )
+		bIsSpecialCrawler;
+}
+
+simulated event ReplicatedEvent( name VarName )
+{
+	if( VarName == nameOf(bIsSpecialCrawler) )
 	{
-		KFAIController_ZedCrawler(MyKFAIC).OriginalMeshTranslation = Mesh.Translation;
+		UpdateBodyMIC();
+		return;
+	}
+
+	super.ReplicatedEvent( VarName );
+}
+
+event PossessedBy( Controller C, bool bVehicleTransition )
+{
+	local KFAIController_ZedCrawler CrawlerController;
+
+	super.PossessedBy( C, bVehicleTransition );
+
+	LastBumpLevelActor = none;
+
+	CrawlerController = KFAIController_ZedCrawler( MyKFAIC );
+	if( CrawlerController != none )
+	{
+		CrawlerController.OriginalMeshTranslation = Mesh.Translation;
+
+		// See if we should spawn as an alternate crawler type
+		if( fRand() < class<KFDifficulty_Crawler>(DifficultySettings).static.GetSpecialCrawlerChance(self, KFGameReplicationInfo(WorldInfo.GRI)) )
+		{
+			bIsSpecialCrawler = true;
+			if( WorldInfo.NetMode != NM_DedicatedServer )
+			{
+				UpdateBodyMIC();
+			}
+		}
+	}
+}
+
+/** If true, assign custom player controlled skin when available */
+simulated event bool UsePlayerControlledZedSkin()
+{
+	return bIsSpecialCrawler || super.UsePlayerControlledZedSkin();
+}
+
+/** Change body MIC if we're a special crawler */
+simulated protected function UpdateBodyMIC()
+{
+	if( GetCharacterMonsterInfo() != none )
+	{
+		CharacterMICs[0].SetParent( GetCharacterMonsterInfo().PlayerControlledSkins[0] );
 	}
 }
 
@@ -189,6 +235,40 @@ event SpiderBumpLevel( vector HitLocation, vector HitNormal, optional actor Wall
 	}
 }
 
+simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
+{
+	local bool bShouldGib;
+	local KFGoreManager GoreManager;
+	local array<name> OutGibBoneList;
+	local int NumGibs;
+
+	if( bIsSpecialCrawler && !bPlayedDeath && DamageType != class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType )
+	{
+		class'KFSM_PlayerCrawler_Suicide'.static.TriggerExplosion( self, DeathExplosionTemplate, true );
+		bShouldGib = true;
+	}
+
+	super.PlayDying( DamageType, HitLoc );
+
+	if( bShouldGib && WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		GoreManager = KFGoreManager( WorldInfo.MyGoreEffectManager );
+		if( GoreManager != none )
+		{
+			NumGibs = 10 + Rand(4);
+			NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
+			GetClosestHitBones( NumGibs, Location, OutGibBoneList );
+
+			GoreManager.CauseGibsAndApplyImpulse( self,
+												Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType,
+												Location,
+												OutGibBoneList,
+												none,
+												Mesh.GetBoneLocation(Mesh.GetBoneName(0)) );
+		}
+	}
+}
+
 // Disabled for Early Access 1/14/15 as part of disabling wall walking - Ramm
 //simulated event RootMotionProcessed(SkeletalMeshComponent SkelComp)
 //{
@@ -307,6 +387,9 @@ function int GetSpotterDialogID()
 	return 125;//SPOTZ_Generic
 }
 
+/** Added knockdown when jumped on */
+
+
 defaultproperties
 {
 	// Third person body component
@@ -335,6 +418,7 @@ defaultproperties
 	// Content
 	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_Crawler_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
+	DifficultySettings=class'KFDifficulty_Crawler'
 
 	// ---------------------------------------------
 	// Gameplay
@@ -366,16 +450,13 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(1.0)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 		                DamageScale=(1.0)))
 
-	//Special Case damage resistance
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm',              DamageScale=(1.0))
-
 	// ---------------------------------------------
 	// Movement / Physics
 	// Disabled for Early Access 1/14/15 as part of disabling wall walking - Ramm
 	ReachedGoalThresh_Walking=0.f//=30.f
 	//ReachedGoalThresh_Spider=30.f
 	RotationRate=(Pitch=90000,Yaw=45000,Roll=90000)
-	GroundSpeed=280.f
+	GroundSpeed=400.f //280
 	SprintSpeed=500.f
 	bCrawler=false//true - // Disabled for Early Access 1/14/15 as part of disabling wall walking - Ramm
 	bCanClimbCeilings=false//true - // Disabled for Early Access 1/14/15 as part of disabling wall walking - Ramm
@@ -404,18 +485,48 @@ defaultproperties
 	End Object
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
-	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0, Duration=2.5)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0,  Duration=2.5)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(2.f),                     Cooldown=1.0)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(2.f),                     Cooldown=0.2)
 	IncapSettings(AF_GunHit)=	(Vulnerability=(2.5),                     Cooldown=0.2)
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),                     Cooldown=0.0)
 	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                     Cooldown=7.5, Duration=5.5)
-	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=7.5, Duration=3.0)
-	IncapSettings(AF_FirePanic)=(Vulnerability=(3),                       Cooldown=7.0, Duration=5)
-	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0, Duration=5.0)
-	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5, Duration=2.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=7.5,  Duration=3.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(3),                       Cooldown=7.0,  Duration=5)
+	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=2.0)
+	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
 
 	ParryResistance=1
+
+    // Used for special crawler gas AOE attack "explosion" template
+    Begin Object Class=KFGameExplosion Name=ExploTemplate0
+        Damage=4
+        DamageRadius=600
+        DamageFalloffExponent=0.f
+        DamageDelay=0.f
+        MyDamageType=class'KFDT_Toxic_PlayerCrawlerSuicide'
+
+        // Damage Effects
+        KnockDownStrength=0
+        KnockDownRadius=0
+        FractureMeshRadius=0
+        FracturePartVel=0
+        ExplosionEffects=KFImpactEffectInfo'ZED_Crawler_ARCH.ToxicGasAoE_Explosion'
+        ExplosionSound=AkEvent'WW_WEP_EXP_Dynamite.Play_WEP_EXP_Dynamite_Explosion'
+        MomentumTransferScale=100
+
+        // Dynamic Light
+        ExploLight=none
+
+        // Camera Shake
+        CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+        CamShakeInnerRadius=450
+        CamShakeOuterRadius=900
+        CamShakeFalloff=1.f
+        bOrientCameraShakeTowardsEpicenter=true
+    End Object
+    DeathExplosionTemplate=ExploTemplate0
 
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'UI_ZEDRadar_TEX.MapIcon_Crawler';

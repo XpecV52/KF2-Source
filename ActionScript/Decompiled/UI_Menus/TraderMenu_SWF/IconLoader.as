@@ -1,8 +1,8 @@
 package
 {
-    import tripwire.controls.TripUILoader;
+    import tripwire.controls.TripUILoaderQueue;
     
-    public dynamic class IconLoader extends TripUILoader
+    public dynamic class IconLoader extends TripUILoaderQueue
     {
          
         

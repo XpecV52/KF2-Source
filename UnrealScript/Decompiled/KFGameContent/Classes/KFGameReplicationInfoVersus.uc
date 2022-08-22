@@ -45,10 +45,6 @@ simulated event ReplicatedEvent(name VarName)
 {
     local KFPlayerController KFPC;
 
-    if((VarName == 'bTraderIsOpen') && bTraderIsOpen)
-    {
-        FadeOutCrawlerSuicides();
-    }
     if(VarName == 'PlayerZedSpawnWaitTimeData')
     {
         TimeUntilNextSpawn = PlayerZedSpawnWaitTimeData.SpawnWaitTime;
@@ -201,21 +197,6 @@ simulated function bool AreTeamsOutOfBalanced()
     return false;
 }
 
-function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
-{
-    local KFProj_BloatPukeMine PukeMine;
-
-    super.SetWaveActive(bWaveActive, NewMusicIntensity);
-    if(bTraderIsOpen)
-    {
-        foreach DynamicActors(Class'KFProj_BloatPukeMine', PukeMine)
-        {
-            PukeMine.FadeOut();            
-        }        
-        FadeOutCrawlerSuicides();
-    }
-}
-
 simulated function int GetCurrentRoundNumber()
 {
     return CurrentRound;
@@ -224,16 +205,6 @@ simulated function int GetCurrentRoundNumber()
 simulated event bool CanChangePerks()
 {
     return super.CanChangePerks() || bRoundIsOver;
-}
-
-simulated function FadeOutCrawlerSuicides()
-{
-    local KFExplosion_PlayerCrawlerSuicide CrawlerSuicideExplosion;
-
-    foreach DynamicActors(Class'KFExplosion_PlayerCrawlerSuicide', CrawlerSuicideExplosion)
-    {
-        CrawlerSuicideExplosion.FadeOut();        
-    }    
 }
 
 function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
@@ -256,13 +227,13 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
     }
 }
 
+simulated function OnRoundIncremented();
+
 function Reset()
 {
     WaveNum = 0;
     super(GameReplicationInfo).Reset();
 }
-
-simulated function OnRoundIncremented();
 
 defaultproperties
 {

@@ -33,5 +33,5 @@ var() int SkinMaterialID;
 var() array<SkinVariant> SkinVariations;
 /** List of sockets that this attachment will detach, if they are currently attached to a player */
 var() AttachmentOverrideList OverrideList;
-/** List of cosmetic indices that this attachment will detach, if they are currently attached to a player */
-var() array<byte> SpecialOverrideIds;
+var array<byte> SpecialOverrideIds;
+var() array<KFCharacterAttachment> DefaultSpecialOverrideAttachments;

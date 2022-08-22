@@ -11,22 +11,19 @@ class KFAIController_ZedClot extends KFAIController_Monster
     config(AI)
     hidecategories(Navigation);
 
-event RunOverWarning(KFPawn IncomingKFP, float IncomingSpeed, Vector IncomingDir)
-{
-    if(CanEvade())
-    {
-        DoEvade(GetBestEvadeDir(IncomingKFP.Location, IncomingKFP, true),,, true);
-    }
-}
-
 function bool ShouldSprint()
 {
-    if((((MyKFPawn != none) && MyKFPawn.IsAliveAndWell()) && Enemy != none) && Enemy.IsAliveAndWell())
+    if(((((MyKFPawn == none) || MyKFPawn.bIsBlocking) || (Enemy == none) && DoorEnemy == none) || !MyKFPawn.IsAliveAndWell()) || !Enemy.IsAliveAndWell())
     {
-        if(bCanSprint || bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax)
-        {
-            return true;
-        }
+        return false;
+    }
+    if(IsFrustrated())
+    {
+        return true;
+    }
+    if(bCanSprint || bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax)
+    {
+        return true;
     }
     return false;
 }
@@ -64,6 +61,7 @@ event DoGrabAttack(optional Pawn NewEnemy, optional float InPostSpecialMoveSleep
 
 defaultproperties
 {
+    bEvadeOnRunOverWarning=true
     bIsProbingMeleeRangeEvents=true
     SprintWithinEnemyRange=(X=600,Y=1200)
 }

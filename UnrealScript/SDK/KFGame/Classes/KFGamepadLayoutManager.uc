@@ -78,8 +78,8 @@ defaultproperties
 						ButtonCommands[5]=(Name="XboxTypeS_RightX",Command="GBA_TurnLeft_Gamepad"),
 						ButtonCommands[6]=(Name="XboxTypeS_RightY",Command="GBA_Look_Gamepad"),
 						ButtonCommands[7]=(Name="XboxTypeS_RightThumbStick",Command="GBA_TertiaryFire"),
-						ButtonCommands[8]=(Name="XboxTypeS_LeftShoulder",Command="GBA_Grenade_Gamepad"),
-						ButtonCommands[9]=(Name="XboxTypeS_RightShoulder",Command="GBA_SwitchFireMode"),
+						ButtonCommands[8]=(Name="XboxTypeS_LeftShoulder",Command="GBA_Grenade"),
+						ButtonCommands[9]=(Name="XboxTypeS_RightShoulder",Command="GBA_AltFire_Gamepad"),
 						ButtonCommands[10]=(Name="XboxTypeS_LeftTrigger",Command="GBA_IronsightsHold"),
 						ButtonCommands[11]=(Name="XboxTypeS_RightTrigger",Command="GBA_Fire")
 					)}
@@ -93,9 +93,9 @@ defaultproperties
 						ButtonCommands[4]=(Name="XboxTypeS_LeftThumbStick",Command="GBA_SprintAndCrouch"),
 						ButtonCommands[5]=(Name="XboxTypeS_RightX",Command="GBA_TurnLeft_Gamepad"),
 						ButtonCommands[6]=(Name="XboxTypeS_RightY",Command="GBA_Look_Gamepad"),
-						ButtonCommands[7]=(Name="XboxTypeS_RightThumbStick",Command="GBA_Grenade_Gamepad"),
+						ButtonCommands[7]=(Name="XboxTypeS_RightThumbStick",Command="GBA_Grenade"),
 						ButtonCommands[8]=(Name="XboxTypeS_LeftShoulder",Command="GBA_Jump"),
-						ButtonCommands[9]=(Name="XboxTypeS_RightShoulder",Command="GBA_SwitchFireMode"),
+						ButtonCommands[9]=(Name="XboxTypeS_RightShoulder",Command="GBA_AltFire_Gamepad"),
 						ButtonCommands[10]=(Name="XboxTypeS_LeftTrigger",Command="GBA_IronsightsHold"),
 						ButtonCommands[11]=(Name="XboxTypeS_RightTrigger",Command="GBA_Fire"),
 					)}
@@ -110,9 +110,9 @@ defaultproperties
 						ButtonCommands[4]=(Name="XboxTypeS_LeftThumbStick",Command="GBA_SprintAndCrouch"),
 						ButtonCommands[5]=(Name="XboxTypeS_RightX",Command="GBA_TurnLeft_Gamepad"),
 						ButtonCommands[6]=(Name="XboxTypeS_RightY",Command="GBA_Look_Gamepad"),
-						ButtonCommands[7]=(Name="XboxTypeS_RightThumbStick",Command="GBA_Grenade_Gamepad"),
+						ButtonCommands[7]=(Name="XboxTypeS_RightThumbStick",Command="GBA_Grenade"),
 						ButtonCommands[8]=(Name="XboxTypeS_LeftShoulder",Command="GBA_WeaponSelect_Gamepad"),
-						ButtonCommands[9]=(Name="XboxTypeS_RightShoulder",Command="GBA_SwitchFireMode"),
+						ButtonCommands[9]=(Name="XboxTypeS_RightShoulder",Command="GBA_AltFire_Gamepad"),
 						ButtonCommands[10]=(Name="XboxTypeS_LeftTrigger",Command="GBA_IronsightsHold"),
 						ButtonCommands[11]=(Name="XboxTypeS_RightTrigger",Command="GBA_Fire"),
 					)}
@@ -127,8 +127,8 @@ defaultproperties
 						ButtonCommands[5]=(Name="XboxTypeS_RightX",Command="GBA_StrafeLeft_Gamepad"),
 						ButtonCommands[6]=(Name="XboxTypeS_RightY",Command="GBA_MoveForward_GamepadSouthpaw"),
 						ButtonCommands[7]=(Name="XboxTypeS_RightThumbStick",Command="GBA_SprintAndCrouch"),
-						ButtonCommands[8]=(Name="XboxTypeS_LeftShoulder",Command="GBA_SwitchFireMode"),
-						ButtonCommands[9]=(Name="XboxTypeS_RightShoulder",Command="GBA_Grenade_Gamepad"),
+						ButtonCommands[8]=(Name="XboxTypeS_LeftShoulder",Command="GBA_AltFire_Gamepad"),
+						ButtonCommands[9]=(Name="XboxTypeS_RightShoulder",Command="GBA_Grenade"),
 						ButtonCommands[10]=(Name="XboxTypeS_LeftTrigger",Command="GBA_Fire"),
 						ButtonCommands[11]=(Name="XboxTypeS_RightTrigger",Command="GBA_IronsightsHold"),
 					)}

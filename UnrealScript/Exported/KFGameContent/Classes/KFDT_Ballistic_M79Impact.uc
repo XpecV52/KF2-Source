@@ -14,6 +14,7 @@ class KFDT_Ballistic_M79Impact extends KFDT_Ballistic_Shell
 
 defaultproperties
 {
+   WeaponDef=Class'KFGame.KFWeapDef_M79'
    KnockdownPower=125.000000
    StumblePower=340.000000
    GunHitPower=275.000000

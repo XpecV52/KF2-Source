@@ -27,8 +27,10 @@ protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
 
 simulated function Explode(GameExplosion NewExplosionTemplate, optional Vector Direction)
 {
+    NewExplosionTemplate.MyDamageType = NewExplosionTemplate.default.MyDamageType;
     super.Explode(NewExplosionTemplate, Direction);
     ExplosionTemplate.Damage = float(Class'KFPerk_Demolitionist'.static.GetLingeringPoisonDamage());
+    ExplosionTemplate.MyDamageType = Class'KFPerk_Demolitionist'.static.GetLingeringDamageType();
 }
 
 protected simulated function bool ExplodePawns()

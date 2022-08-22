@@ -47,6 +47,7 @@ defaultproperties
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Piercing')
    DamageTypeModifiers(12)=(DamageType=Class'KFGame.KFDT_Toxic')
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Knife')
+   DifficultySettings=Class'kfgamecontent.KFDifficulty_ClotCyst'
    KnockedDownBySonicWaveOdds=0.350000
    PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.UnDevClot_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:ThirdPersonHead0'
@@ -64,15 +65,16 @@ defaultproperties
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedClot_Cyst:Afflictions_0'
    IncapSettings(0)=(Vulnerability=(2.500000))
-   IncapSettings(1)=(Cooldown=7.000000,Vulnerability=(3.000000))
+   IncapSettings(1)=(Cooldown=7.000000,Vulnerability=(1.500000))
    IncapSettings(2)=(Cooldown=0.000000)
    IncapSettings(3)=(Cooldown=0.200000)
    IncapSettings(4)=(Cooldown=0.200000,Vulnerability=(1.300000))
    IncapSettings(5)=(Duration=3.000000,Vulnerability=(2.000000,2.000000,1.000000,1.000000,1.000000))
    IncapSettings(6)=(Duration=4.500000,Cooldown=6.000000,Vulnerability=(5.000000))
-   IncapSettings(7)=(Cooldown=1.000000,Vulnerability=(1.000000))
-   IncapSettings(8)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
-   IncapSettings(9)=(Duration=4.500000,Cooldown=8.000000,Vulnerability=(0.000000))
+   IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000,10.000000,10.000000,10.000000))
+   IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
+   IncapSettings(9)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
+   IncapSettings(10)=(Duration=4.500000,Cooldown=8.000000,Vulnerability=(0.000000))
    KnockdownImpulseScale=1.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
@@ -114,8 +116,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedClot:SpecialMoveHandler_0'
    End Object
@@ -182,6 +186,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:KFPawnSkeletalMeshComponent'
    End Object

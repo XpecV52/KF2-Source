@@ -10,7 +10,7 @@ class KFDT_Ballistic_Pistol_Medic extends KFDT_Ballistic_Handgun
 
 static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
 {
-    return Class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicBleed(InDamage, KFDT, InstigatedBy);
+    return Class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicToxic(InDamage, KFDT, InstigatedBy);
 }
 
 defaultproperties

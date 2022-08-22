@@ -17,7 +17,7 @@ var protected float FireballStrength;
 
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(IsDoingSpecialMove(22))
+    if(IsDoingSpecialMove(24))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -27,7 +27,7 @@ function ANIMNOTIFY_HuskFireballAttack()
 {
     local float FireballStartTime;
 
-    if(IsDoingSpecialMove(21))
+    if(IsDoingSpecialMove(23))
     {
         FireballStartTime = KFSM_PlayerHusk_FireBallAttack(SpecialMoves[SpecialMove]).HoldStartTime;
         FireballStrength = FClamp((WorldInfo.TimeSeconds - FireballStartTime) * FireballStrengthPerSecond, FireballStrengthRange.X, FireballStrengthRange.Y);        
@@ -47,19 +47,33 @@ function ShootFireball()
     local Actor HitActor;
     local Vector SocketLocation;
     local Rotator ShootRotation;
-    local Vector HitLocation, HitNormal, TraceStart, TraceEnd;
+    local Vector HitLocation, HitNormal, Dir, TraceStart, TraceEnd;
 
-    if((Role == ROLE_Authority) && IsHumanControlled())
+    if((((Role == ROLE_Authority) && float(Health) > 0) && IsDoingSpecialMove(23)) && IsHumanControlled())
     {
         PC = PlayerController(Controller);
         if(PC == none)
         {
             return;
         }
-        SocketLocation = (GetPawnViewLocation()) + (PlayerFireOffset >> (GetViewRotation()));
+        Mesh.GetSocketWorldLocationAndRotation('FireballSocket', SocketLocation);
+        Dir = vector(Rotation);
         TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
         TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + (vector(PC.PlayerCamera.CameraCache.POV.Rotation) * float(100000));
-        HitActor = Trace(HitLocation, HitNormal, TraceEnd, TraceStart, true,,, 1);
+        foreach TraceActors(Class'Actor', HitActor, HitLocation, HitNormal, TraceEnd, TraceStart,,, 1)
+        {
+            if(HitActor == self)
+            {
+                HitActor = none;
+                continue;                
+            }
+            if((Normal(HitActor.Location - SocketLocation) Dot Dir) < 0)
+            {
+                HitActor = none;
+                continue;                
+            }
+            break;            
+        }        
         if(HitActor != none)
         {
             ShootRotation = rotator(HitLocation - SocketLocation);            
@@ -68,22 +82,19 @@ function ShootFireball()
         {
             ShootRotation = rotator(TraceEnd - SocketLocation);
         }
-        if((float(Health) > 0) && IsDoingSpecialMove(21))
+        MyFireball = Spawn(FireballClass, self,, SocketLocation, ShootRotation);
+        MyFireball.Instigator = self;
+        MyFireball.InstigatorController = Controller;
+        MyFireball.Speed = FireballSpeed;
+        MyFireball.MaxSpeed = FireballSpeed;
+        MyFireball.ExplosionTemplate.Damage = float(GetRallyBoostDamage(int(MyFireball.default.ExplosionTemplate.Damage))) * FireballStrength;
+        MyFireball.ExplosionTemplate.DamageRadius = MyFireball.default.ExplosionTemplate.DamageRadius * (FireballStrength * FireballStrengthRadiusMultiplier);
+        HuskFireball = KFProj_Husk_Fireball_Versus(MyFireball);
+        if(HuskFireball != none)
         {
-            MyFireball = Spawn(FireballClass, self,, SocketLocation, ShootRotation);
-            MyFireball.Instigator = self;
-            MyFireball.InstigatorController = Controller;
-            MyFireball.Speed = FireballSpeed;
-            MyFireball.MaxSpeed = FireballSpeed;
-            MyFireball.ExplosionTemplate.Damage = float(GetRallyBoostDamage(int(MyFireball.default.ExplosionTemplate.Damage))) * FireballStrength;
-            MyFireball.ExplosionTemplate.DamageRadius = MyFireball.default.ExplosionTemplate.DamageRadius * (FireballStrength * FireballStrengthRadiusMultiplier);
-            HuskFireball = KFProj_Husk_Fireball_Versus(MyFireball);
-            if(HuskFireball != none)
-            {
-                HuskFireball.SetDrawScale(FMax(FireballStrength, 1));
-            }
-            MyFireball.Init(vector(ShootRotation));
+            HuskFireball.SetDrawScale(FMax(FireballStrength, 1));
         }
+        MyFireball.Init(vector(ShootRotation));
     }
 }
 
@@ -100,6 +111,11 @@ simulated function OnExploded(Controller SuicideController)
             KFPlayerCamera_Versus(KFPC.PlayerCamera).SwapToZedSuicideCam(Location);
         }
     }
+}
+
+simulated function bool UseAdjustedControllerSensitivity()
+{
+    return IsDoingSpecialMove(23);
 }
 
 simulated function Vector2D GetFireballStrengthRange()
@@ -145,6 +161,7 @@ defaultproperties
     DoshValue=20
     XPValues=30
     DamageTypeModifiers=/* Array type was not detected. */
+    MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedHusk
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

@@ -114,8 +114,7 @@ function name PlayEmerge()
 	PlaySpecialMoveAnim( EmergeAnim, EAS_FullBody, 0.0f, BlendOutTime, 1.f, false );
 	
 	// Turn on Root translation
-	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Translate, RBA_Translate, RBA_Translate);
-	KFPOwner.Mesh.RootMotionMode = RMM_Translate;
+	EnableRootMotion();
 
 	// Use root rotation to rotate the actor.
 	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneRotationOption(RRO_Extract, RRO_Extract, RRO_Extract);
@@ -141,8 +140,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	KFPOwner.Mesh.RootMotionRotationMode = RMRM_Ignore;
 
 	// Reset root translation
-	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
-	KFPOwner.Mesh.RootMotionMode = KFPOwner.default.Mesh.RootMotionMode;
+	DisableRootMotion();
 
 	KFPOwner.bAlwaysRelevant = PawnOwner.default.bAlwaysRelevant;
 
@@ -232,9 +230,11 @@ function FindAnchorFailsafe()
 defaultproperties
 {
 	Handle=SM_Emerge
+	SMRootMotionMode=RMM_Translate
 	bPawnRotationLocked=true
 	bDisablePhysics=true
 	bCanOnlyWanderAtEnd=true
+	bShouldDeferToPostTick=true
 
 	// animations
 	FloorEmerge=(Enter_Floor_V1, Enter_Floor_V2, Enter_Floor_V3)

@@ -42,7 +42,7 @@ function UpdatePlayerInfo()
     if(SpectatedKFPRI.GetTeamNum() == 255)
     {
         TempObject.SetString("playerPerk", Class'KFCommon_LocalizedStrings'.default.ZedString);
-        TempObject.SetString("iconPath", "img://" $ PathName(Class'KFGFxWidget_PartyInGame_Versus'.default.ZedIConTexture));        
+        TempObject.SetString("iconPath", "img://" $ PathName(Class'KFGFxWidget_PartyInGame_Versus'.default.ZedIconTexture));        
     }
     else
     {

@@ -9,6 +9,11 @@ class KFWeap_Shotgun_DragonsBreath extends KFWeap_ShotgunBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTraderFilter()
+{
+    return 4;
+}
+
 defaultproperties
 {
     NumPellets=/* Array type was not detected. */
@@ -26,7 +31,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
-    MaxSpareAmmo=45
+    SpareAmmoCapacity=45
     InitialSpareMags=3
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

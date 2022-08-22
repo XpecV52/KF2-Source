@@ -30,19 +30,19 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     local byte Type, Variant;
 
-    super.SpecialMoveStarted(bForced, PrevMove);
     MyPatPawn = KFPawn_ZedPatriarch(KFPOwner);
-    MyPatPawn.SetCloaked(false);
     Type = byte(MyPatPawn.SpecialMoveFlags & 15);
     Variant = byte(MyPatPawn.SpecialMoveFlags >> 4);
     if(Type > 0)
     {
+        bDisableMovement = true;
         MyPatPawn.bSprayingFire = true;
         bIsFanFire = true;
         AnimName = FanAnimNames[Variant];        
     }
     else
     {
+        bDisableMovement = !MyPatPawn.CanMoveWhenMinigunning();
         MyPatPawn.bSprayingFire = false;
         if(MyPatPawn.Role == ROLE_Authority)
         {
@@ -50,6 +50,9 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         }
         AnimName = default.AnimName;
     }
+    super.SpecialMoveStarted(bForced, PrevMove);
+    MyPatPawn.SetCloaked(false);
+    MyPatPawn.SetSprinting(false);
     MyPatPawn.SpecialMoveFlags = 255;
     MyPatPawn.ZeroMovementVariables();
     MyPatPawn.PlayMinigunWarnDialog();
@@ -65,11 +68,26 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     bInterrupted = false;
 }
 
+function KFGame.KFPawn.EAnimSlotStance GetAnimStance()
+{
+    return ((bDisableMovement) ? 0 : 1);
+}
+
 function PlayAnimation();
 
 function PlayWindUpAnimation()
 {
-    PlaySpecialMoveAnim(WindUpAnimName, 0, BlendInTime, BlendOutTime, 1);
+    if(MyPatPawn.bSprayingFire)
+    {
+        bUseRootMotion = true;
+        AnimStance = 0;
+        EnableRootMotion();        
+    }
+    else
+    {
+        AnimStance = 1;
+    }
+    PlaySpecialMoveAnim(WindUpAnimName, AnimStance, BlendInTime, BlendOutTime, 1);
     MyPatPawn.SpinMinigunBarrels(true);
     MyPatPawn.PostAkEventOnBone(MinigunLoop, 'BarrelSpinner', true, true);
 }
@@ -98,14 +116,7 @@ function SpecialMoveFlagsUpdated()
     {
         case 64:
             bInterrupted = true;
-            if(!bIsFanFire)
-            {
-                MyPatPawn.StopBodyAnim(1, 0.1);                
-            }
-            else
-            {
-                MyPatPawn.StopBodyAnim(0, 0.1);
-            }
+            MyPatPawn.StopBodyAnim(AnimStance, 0.1);
             PlayWindDownAnim();
             break;
         case 128:
@@ -128,19 +139,17 @@ function PlayFireAnim()
     {
         MyPatPawn.bDisableTurnInPlace = true;
         bUseRootMotion = true;
-        MyPatPawn.Mesh.RootMotionMode = 3;
         AnimStance = 0;
-        MyPatPawn.BodyStanceNodes[AnimStance].SetRootBoneAxisOption(2, 2, 2);
+        EnableRootMotion();
         PlaySpecialMoveAnim(AnimName, AnimStance, 0.1, 0.2);        
     }
     else
     {
-        bUseRootMotion = false;
-        MyPatPawn.Mesh.RootMotionMode = KFPOwner.Mesh.default.RootMotionMode;
         MyPatPawn.RotationRate = FocusFireRotationRate;
         MyPatPawn.bDisableTurnInPlace = false;
+        bUseRootMotion = false;
         AnimStance = 1;
-        MyPatPawn.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
+        DisableRootMotion();
         PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1);
     }
     MyPatPawn.ZeroMovementVariables();
@@ -232,7 +241,7 @@ function PlayWindDownAnim()
 {
     if(bObstructed)
     {
-        MyPatPawn.StopBodyAnim(0, 0.33);
+        MyPatPawn.StopBodyAnim(AnimStance, 0.33);
     }
     MyPatPawn.ClearTimer('Timer_CheckIfFireAllowed', self);
     MyPatPawn.ClearTimer('Timer_SearchForMinigunTargets', self);
@@ -242,18 +251,22 @@ function PlayWindDownAnim()
         MyPatPawn.Weapon.GotoState('Active');
     }
     MyPatPawn.ZeroMovementVariables();
-    bUseRootMotion = true;
-    MyPatPawn.Mesh.RootMotionMode = 3;
-    MyPatPawn.BodyStanceNodes[0].SetRootBoneAxisOption(2, 2, 2);
+    if(bDisableMovement)
+    {
+        bUseRootMotion = true;
+        AnimStance = 0;
+        EnableRootMotion();
+    }
     MyPatPawn.SpinMinigunBarrels(false);
     MyPatPawn.SetGunTracking(false);
-    PlaySpecialMoveAnim(WindDownAnimName, 0, BlendInTime, BlendOutTime, 1);
+    AnimStance = GetAnimStance();
+    PlaySpecialMoveAnim(WindDownAnimName, AnimStance, BlendInTime, BlendOutTime, 1);
     MyPatPawn.PostAkEventOnBone(MinigunLoopEnd, 'BarrelSpinner', true, true);
 }
 
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
-    switch(SeqNode.AnimSeqName)
+    switch(DeferredSeqName)
     {
         case WindUpAnimName:
             PlayFireAnim();
@@ -327,5 +340,6 @@ defaultproperties
     bDisableMovement=true
     bDisableSteering=false
     bAllowFireAnims=true
+    bShouldDeferToPostTick=true
     Handle=KFSM_Patriarch_MinigunBarrage
 }

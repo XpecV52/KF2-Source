@@ -10,61 +10,40 @@ class KFPerk_FieldMedic extends KFPerk
     config(Game)
     hidecategories(Navigation,Movement,Collision);
 
-const ToxicDartDamage = 15;
-const AARangeSq = 250000;
-const VaccinationResist = 0.25;
-
 enum EMedicPerkSkills
 {
     EMedicHealingSurge,
-    EMedicEnforcer,
+    EMedicSurvivalist,
+    EMedicHealingSpeedBoost,
     EMedicCombatant,
-    EMedicArmament,
-    EMedicRegeneration,
-    EMedicLacerate,
-    EMedicVaccination,
+    EMedicHealingDamageBoost,
     EMedicAcidicCompound,
+    EMedicHealingShield,
+    EMedicEnforcer,
     EMedicAirborneAgent,
-    EMedicSedative,
+    EMedicSlug,
     EMedicPerkSkills_MAX
 };
 
-/** Passive skills */
-var() const PerkSkill HealerRecharge;
-/** more potent medical injections per level (max 50%) */
-var() const PerkSkill HealPotency;
-/** 25% less damage from Bloat Bile */
-var() const PerkSkill BloatBileResistance;
-/** 1% increased movement speed every level (max 25%) */
-var() const PerkSkill MovementSpeed;
-/** 3% more armor each level (max 75%) */
-var() const PerkSkill Armor;
-var array<name> VaccinationResistableDamageTypeNames;
-var private const int VaccBloatBileResistance;
+var const PerkSkill HealerRecharge;
+var const PerkSkill HealPotency;
+var const PerkSkill BloatBileResistance;
+var const PerkSkill MovementSpeed;
+var const PerkSkill Armor;
+var private const float SelfHealingSurgePct;
+var private const float MaxSurvivalistResistance;
+var private const float CombatantSpeedModifier;
+var private const float MaxHealingSpeedBoost;
+var private const float HealingSpeedBoostDuration;
+var private const float MaxHealingDamageBoost;
+var private const float HealingDamageBoostDuration;
+var private const float MaxHealingShield;
+var private const float HealingShieldDuration;
 var private const ParticleSystem AAParticleSystem;
-
-function SetPlayerDefaults(Pawn PlayerPawn)
-{
-    super.SetPlayerDefaults(PlayerPawn);
-    if((OwnerPawn.Role == ROLE_Authority) && IsCombatantActive())
-    {
-        OwnerPawn.GiveMaxArmor();
-    }
-}
-
-protected simulated event PostSkillUpdate()
-{
-    super.PostSkillUpdate();
-    SetTickIsDisabled(!IsRegenerationActive());
-}
-
-function ModifyACDamage(out int InDamage)
-{
-    if(IsAcidicCompoundActive())
-    {
-        InDamage += 15;
-    }
-}
+var private const float SnarePower;
+var private KFGameExplosion AAExplosionTemplate;
+var private const string AAExplosionActorClassPath;
+var private const string AAExplosionDamageTypePath;
 
 simulated function ModifyHealerRechargeTime(out float RechargeRate)
 {
@@ -77,17 +56,17 @@ simulated function ModifyHealerRechargeTime(out float RechargeRate)
 function bool ModifyHealAmount(out float HealAmount)
 {
     HealAmount *= (GetPassiveValue(HealPotency, GetLevel()));
-    if(IsArmamentActive())
-    {
-        HealAmount -= (PerkSkills[3].StartingValue * HealAmount);
-    }
-    return IsArmamentActive() || IsVaccinationActive();
+    return IsHealingSurgeActive();
 }
 
 function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy)
 {
-    local float TempDamage;
+    local float TempDamage, SurvivalistResistance;
 
+    if(InDamage <= 0)
+    {
+        return;
+    }
     TempDamage = float(InDamage);
     switch(DamageType.Name)
     {
@@ -98,12 +77,29 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
         default:
             break;
     }
+    if(IsSurvivalistActive())
+    {
+        SurvivalistResistance = float(OwnerPawn.HealthMax - OwnerPawn.Health) * (GetSkillValue(PerkSkills[1]));
+        TempDamage -= (TempDamage * FMin(SurvivalistResistance, MaxSurvivalistResistance));
+    }
     InDamage = Round(TempDamage);
 }
 
 simulated function ModifySpeed(out float Speed)
 {
-    Speed *= (GetPassiveValue(MovementSpeed, GetLevel()));
+    local float TempSpeed;
+
+    TempSpeed = Speed + (Speed * (GetPassiveValue(MovementSpeed, GetLevel())));
+    if(IsCombatantActive())
+    {
+        TempSpeed += (Speed * GetComabatantSpeedModifier());
+    }
+    Speed = TempSpeed;
+}
+
+private static final simulated function float GetComabatantSpeedModifier()
+{
+    return default.CombatantSpeedModifier;
 }
 
 function ModifyArmor(out byte MaxArmor)
@@ -122,180 +118,148 @@ function ModifyHealth(out int InHealth)
     if(IsHealingSurgeActive())
     {
         TempHealth = float(InHealth);
-        TempHealth *= FMin(PerkSkills[0].MaxValue, PerkSkills[0].StartingValue);
+        TempHealth += (float(InHealth) * (GetSkillValue(PerkSkills[0])));
         InHealth = Round(TempHealth);
     }
 }
 
-simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo, const optional out STraderItem TraderItem)
+simulated function float GetSelfHealingSurgePct()
 {
-    local float TempAmmo;
-    local class<KFPerk> WeaponPerkClass;
-
-    WeaponPerkClass = ((KFW == none) ? TraderItem.AssociatedPerkClass : KFW.AssociatedPerkClass);
-    if(IsEnforcerActive() && (IsWeaponOnPerk(KFW, WeaponPerkClass)) || IsBackupWeapon(KFW))
-    {
-        TempAmmo = float(PrimarySpareAmmo);
-        TempAmmo += (TempAmmo * (GetSkillValue(PerkSkills[1])));
-        PrimarySpareAmmo = Round(TempAmmo);
-    }
+    return default.SelfHealingSurgePct;
 }
 
-simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, const optional out STraderItem TraderItem)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary)
 {
-    local float TempMaxSpareAmmoAmount;
-    local class<KFPerk> WeaponPerkClass;
+    local float TempCapacity;
 
-    WeaponPerkClass = ((KFW == none) ? TraderItem.AssociatedPerkClass : KFW.AssociatedPerkClass);
-    if(IsEnforcerActive() && (IsWeaponOnPerk(KFW, WeaponPerkClass)) || IsBackupWeapon(KFW))
+    bSecondary = false;
+    TempCapacity = float(MagazineCapacity);
+    if(((IsWeaponOnPerk(KFW, WeaponPerkClass)) && (KFW == none) || !KFW.bNoMagazine) && !bSecondary)
     {
-        TempMaxSpareAmmoAmount = float(MaxSpareAmmo);
-        TempMaxSpareAmmoAmount += (TempMaxSpareAmmoAmount * (GetSkillValue(PerkSkills[1])));
-        MaxSpareAmmo = Round(TempMaxSpareAmmoAmount);
-    }
-}
-
-simulated function float GetArmorDiscountMod()
-{
-    if(IsCombatantActive())
-    {
-        return 1 - (GetSkillValue(PerkSkills[2]));
-    }
-    return 1;
-}
-
-simulated function bool PerkNeedsTick()
-{
-    return IsRegenerationActive();
-}
-
-function bool RepairArmor(Pawn HealTarget)
-{
-    local KFPawn_Human KFPH;
-    local float TempArmor;
-    local bool bRepairedArmor;
-
-    if(IsArmamentActive())
-    {
-        KFPH = KFPawn_Human(HealTarget);
-        if((KFPH != none) && KFPH.Armor < KFPH.MaxArmor)
+        if(IsCombatantActive())
         {
-            TempArmor = float(KFPH.MaxArmor) * PerkSkills[3].MaxValue;
-            KFPH.AddArmor(Round(TempArmor));
-            bRepairedArmor = true;
+            TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[3])));
         }
     }
-    if(IsVaccinationActive())
+    MagazineCapacity = byte(Round(TempCapacity));
+}
+
+simulated function bool GetHealingSpeedBoostActive()
+{
+    return IsHealingSpeedBoostActive();
+}
+
+static simulated function byte GetHealingSpeedBoost()
+{
+    return byte(GetSkillValue(default.PerkSkills[2]));
+}
+
+static simulated function byte GetMaxHealingSpeedBoost()
+{
+    return byte(default.MaxHealingSpeedBoost);
+}
+
+static simulated function float GetHealingSpeedBoostDuration()
+{
+    return default.HealingSpeedBoostDuration;
+}
+
+simulated function bool GetHealingDamageBoostActive()
+{
+    return IsHealingDamageBoostActive();
+}
+
+static simulated function byte GetHealingDamageBoost()
+{
+    return byte(GetSkillValue(default.PerkSkills[4]));
+}
+
+static simulated function byte GetMaxHealingDamageBoost()
+{
+    return byte(default.MaxHealingDamageBoost);
+}
+
+static simulated function float GetHealingDamageBoostDuration()
+{
+    return default.HealingDamageBoostDuration;
+}
+
+simulated function bool GetHealingShieldActive()
+{
+    return IsHealingShieldActive();
+}
+
+static simulated function byte GetHealingShield()
+{
+    return byte(GetSkillValue(default.PerkSkills[6]));
+}
+
+static simulated function byte GetMaxHealingShield()
+{
+    return byte(default.MaxHealingShield);
+}
+
+static simulated function float GetHealingShieldDuration()
+{
+    return default.HealingShieldDuration;
+}
+
+simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
+{
+    local KFWeapon KFW;
+    local float TempDamage;
+
+    TempDamage = float(InDamage);
+    if(DamageCauser != none)
     {
-        KFPH = KFPawn_Human(HealTarget);
-        if(KFPH != none)
+        KFW = GetWeaponFromDamageCauser(DamageCauser);
+    }
+    if(KFW != none)
+    {
+        if(IsEnforcerActive() && IsWeaponOnPerk(KFW))
         {
-            KFPH.EnableMedicVaccinationBuff();
-            if(KFPH.Armor < KFPH.MaxArmor)
-            {
-                TempArmor = float(KFPH.MaxArmor) * FMin(PerkSkills[6].StartingValue, PerkSkills[6].MaxValue);
-                KFPH.AddArmor(Round(TempArmor));
-                bRepairedArmor = true;
-            }
+            TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[7])));
         }
     }
-    return bRepairedArmor;
+    if((IsSlugActive() && DamageType != none) && ClassIsChildOf(DamageType, Class'KFDT_Toxic'))
+    {
+        TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[9])));
+    }
+    InDamage = Round(TempDamage);
 }
 
-simulated function bool CanRepairArmor()
-{
-    return IsVaccinationActive() || IsArmamentActive();
-}
-
-static function float GetBloatBileResistance()
-{
-    return float(default.VaccBloatBileResistance);
-}
-
-static function ModifyBleedDmg(out int BleedDamage)
+static function ModifyToxicDmg(out int ToxicDamage)
 {
     local float TempDamage;
 
-    TempDamage = float(BleedDamage) * FMin(default.PerkSkills[5].StartingValue, default.PerkSkills[5].MaxValue);
-    BleedDamage = FCeil(TempDamage);
+    TempDamage = float(ToxicDamage) * (GetSkillValue(default.PerkSkills[5]));
+    ToxicDamage = FCeil(TempDamage);
 }
 
-event Tick(float DeltaTime)
+function NotifyZedTimeStarted()
 {
-    super(Actor).Tick(DeltaTime);
-    if(IsRegenerationActive())
+    if((IsAirborneAgentActive() && OwnerPawn != none) && OwnerPawn.IsAliveAndWell())
     {
-        TickRegen(DeltaTime);
+        OwnerPawn.StartAirBorneAgentEvent();
     }
 }
 
-static function ModifyVaccinationDamage(out float InDamage, class<DamageType> dmgType, optional int MedicLevel)
+static simulated function KFGameExplosion GetAAExplosionTemplate()
 {
-    MedicLevel = -1;
-    if(IsDmgTypeVaccinationResistable(dmgType))
-    {
-        if(MedicLevel == -1)
-        {
-            InDamage *= (float(1) - 0.25);            
-        }
-        else
-        {
-            InDamage -= (InDamage * FMin(default.BloatBileResistance.MaxValue - (default.BloatBileResistance.StartingValue * float(MedicLevel)), 0.25));
-        }
-    }
+    return default.AAExplosionTemplate;
 }
 
-function CheckForAirborneAgent(KFPawn HealTarget, class<DamageType> DamType, int HealAmount)
+static simulated function class<DamageType> GetAADamageTypeClass()
 {
-    if(IsAirborneAgentActive())
-    {
-        GiveMedicAirborneAgentHealth(HealTarget, DamType, HealAmount);
-    }
+    local class<KFDamageType> DamageTypeClass;
+
+    DamageTypeClass = class<KFDamageType>(DynamicLoadObject(default.AAExplosionDamageTypePath, Class'Class'));
+    return DamageTypeClass;
 }
 
-private final function GiveMedicAirborneAgentHealth(KFPawn HealTarget, class<DamageType> DamType, int HealAmount)
+static simulated function class<KFExplosion_AirborneAgent> GetAAExplosionActorClass()
 {
-    local KFPawn KFP;
-    local int RoundedExtraHealAmount;
-
-    RoundedExtraHealAmount = FCeil(float(HealAmount) * FMin(PerkSkills[8].StartingValue, PerkSkills[8].MaxValue));
-    foreach WorldInfo.AllPawns(Class'KFPawn', KFP)
-    {
-        if(((VSizeSq(KFP.Location - HealTarget.Location) <= float(250000)) && KFP.IsAliveAndWell()) && WorldInfo.GRI.OnSameTeam(HealTarget, KFP))
-        {
-            if(HealTarget == KFP)
-            {
-                KFP.HealDamage(RoundedExtraHealAmount, OwnerPawn.Controller, DamType);
-                continue;
-            }
-            KFP.HealDamage(RoundedExtraHealAmount + HealAmount, OwnerPawn.Controller, DamType);
-        }        
-    }    
-}
-
-function bool ShouldSedate()
-{
-    return IsSedadtiveActive();
-}
-
-static function bool IsDmgTypeVaccinationResistable(class<DamageType> dmgType)
-{
-    return default.VaccinationResistableDamageTypeNames.Find(dmgType.Name != -1;
-}
-
-private final function bool IsSedadtiveActive()
-{
-    return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
-}
-
-private final function bool IsAirborneAgentActive()
-{
-    return PerkSkills[8].bActive && WorldInfo.TimeDilation < 1;
-}
-
-simulated function bool ShouldPlayAAEffect()
-{
-    return PerkSkills[8].bActive;
+    return Class'KFExplosion_AirborneAgent';
 }
 
 static simulated function ParticleSystem GetAAEffect()
@@ -303,49 +267,68 @@ static simulated function ParticleSystem GetAAEffect()
     return default.AAParticleSystem;
 }
 
+simulated function float GetSnarePower(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+{
+    if((IsSlugActive() && DamageType != none) && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
+    {
+        return default.SnarePower;
+    }
+    return 0;
+}
+
+private final function bool IsAirborneAgentActive()
+{
+    return PerkSkills[8].bActive;
+}
+
 function bool IsAcidicCompoundActive()
-{
-    return PerkSkills[7].bActive;
-}
-
-function bool IsBleedDmgActive()
-{
-    return IsLacerateActive() && IsWeaponOnPerk(GetOwnerWeapon());
-}
-
-private final simulated function bool IsEnforcerActive()
-{
-    return PerkSkills[1].bActive;
-}
-
-private final simulated function bool IsCombatantActive()
-{
-    return PerkSkills[2].bActive;
-}
-
-private final function bool IsRegenerationActive()
-{
-    return PerkSkills[4].bActive;
-}
-
-private final function bool IsHealingSurgeActive()
-{
-    return PerkSkills[0].bActive;
-}
-
-private final simulated function bool IsArmamentActive()
-{
-    return PerkSkills[3].bActive;
-}
-
-private final function bool IsLacerateActive()
 {
     return PerkSkills[5].bActive;
 }
 
-private final simulated function bool IsVaccinationActive()
+function bool IsToxicDmgActive()
+{
+    return (IsAcidicCompoundActive()) && IsWeaponOnPerk(GetOwnerWeapon());
+}
+
+private final simulated function bool IsHealingSpeedBoostActive()
+{
+    return PerkSkills[2].bActive;
+}
+
+private final simulated function bool IsHealingDamageBoostActive()
+{
+    return PerkSkills[4].bActive;
+}
+
+private final simulated function bool IsHealingShieldActive()
 {
     return PerkSkills[6].bActive;
+}
+
+private final simulated function bool IsCombatantActive()
+{
+    return PerkSkills[3].bActive;
+}
+
+private final simulated function bool IsEnforcerActive()
+{
+    return PerkSkills[7].bActive;
+}
+
+simulated function bool IsHealingSurgeActive()
+{
+    return PerkSkills[0].bActive;
+}
+
+simulated function bool IsSurvivalistActive()
+{
+    return PerkSkills[1].bActive;
+}
+
+private final simulated function bool IsSlugActive()
+{
+    return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
 }
 
 simulated function class<EmitterCameraLensEffectBase> GetPerkLensEffect(class<KFDamageType> dmgType)
@@ -367,7 +350,7 @@ static simulated function GetPassiveStrings(out array<string> PassiveValues, out
     Increments[0] = ((("[" @ string(Round(default.HealerRecharge.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
     Increments[1] = ((("[" @ string(Round(default.HealPotency.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
     Increments[2] = ((("[" @ string(Round(default.BloatBileResistance.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
-    Increments[3] = ((("[" @ string(Round(default.MovementSpeed.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
+    Increments[3] = ((("[" @ Left(string(default.MovementSpeed.Increment * float(100)), 3)) $ "% /") @ default.LevelString) @ "]";
     Increments[4] = ((("[" @ string(Round(default.Armor.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
 }
 
@@ -383,29 +366,41 @@ simulated function LogPerkSkills()
         LogInternal(("-MovementSpeed:" @ string(int((MovementSpeed.Increment * float(GetLevel())) * float(100)))) $ "%");
         LogInternal(("-Armor:" @ string(int((Armor.Increment * float(GetLevel())) * float(100)))) $ "%");
         LogInternal("Skill Tree");
-        LogInternal("-HealingSurge:" @ string(PerkSkills[0].bActive));
-        LogInternal("-Enforcer:" @ string(PerkSkills[1].bActive));
-        LogInternal("-Combatant:" @ string(PerkSkills[2].bActive));
-        LogInternal("-ArmamentHealth:" @ string(PerkSkills[3].bActive));
-        LogInternal("-Regeneration:" @ string(PerkSkills[4].bActive));
-        LogInternal("-Lacerate:" @ string(PerkSkills[5].bActive));
-        LogInternal("-Vaccination:" @ string(PerkSkills[6].bActive));
-        LogInternal("-AcidicCompound:" @ string(PerkSkills[7].bActive));
-        LogInternal("-AirborneAgent:" @ string(PerkSkills[8].bActive));
-        LogInternal("-Sedative:" @ string(PerkSkills[9].bActive));
     }
 }
 
 defaultproperties
 {
     HealerRecharge=(Name="Healer Recharge",Increment=0.08,Rank=0,StartingValue=1,MaxValue=3,ModifierValue=0,IconPath="",bActive=false)
-    HealPotency=(Name="Healer Recharge",Increment=0.02,Rank=0,StartingValue=1,MaxValue=1.5,ModifierValue=0,IconPath="",bActive=false)
+    HealPotency=(Name="Healer Potency",Increment=0.02,Rank=0,StartingValue=1,MaxValue=1.5,ModifierValue=0,IconPath="",bActive=false)
     BloatBileResistance=(Name="Bloat Bile Resistance",Increment=0.02,Rank=0,StartingValue=0,MaxValue=0.5,ModifierValue=0,IconPath="",bActive=false)
-    MovementSpeed=(Name="Movement Speed",Increment=0.01,Rank=0,StartingValue=1,MaxValue=1.25,ModifierValue=0,IconPath="",bActive=false)
+    MovementSpeed=(Name="Movement Speed",Increment=0.004,Rank=0,StartingValue=0,MaxValue=0.1,ModifierValue=0,IconPath="",bActive=false)
     Armor=(Name="Armor",Increment=0.03,Rank=0,StartingValue=1,MaxValue=1.75,ModifierValue=0,IconPath="",bActive=false)
-    VaccinationResistableDamageTypeNames(0)=KFDT_BloatPuke
-    VaccinationResistableDamageTypeNames(1)=KFDT_Toxic
+    SelfHealingSurgePct=0.1
+    MaxSurvivalistResistance=0.5
+    CombatantSpeedModifier=0.1
+    MaxHealingSpeedBoost=30
+    HealingSpeedBoostDuration=5
+    MaxHealingDamageBoost=20
+    HealingDamageBoostDuration=5
+    MaxHealingShield=30
+    HealingShieldDuration=5
     AAParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Medic_Airborne_Agent_01'
+    SnarePower=100
+    begin object name=ExploTemplate0 class=KFGameExplosion
+        ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.Medic_Perk_Explosion'
+        Damage=50
+        DamageRadius=350
+        DamageFalloffExponent=0
+        KnockDownStrength=0
+        MomentumTransferScale=0
+        ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Medic.Play_WEP_EXP_Grenade_Medic_Explosion'
+        FractureMeshRadius=0
+        FracturePartVel=0
+    object end
+    // Reference: KFGameExplosion'Default__KFPerk_FieldMedic.ExploTemplate0'
+    AAExplosionTemplate=ExploTemplate0
+    AAExplosionDamageTypePath="KFGameContent.KFDT_Toxic_MedicGrenade"
     ProgressStatID=40
     PerkBuildStatID=41
     SecondaryXPModifier[0]=4
@@ -413,35 +408,38 @@ defaultproperties
     SecondaryXPModifier[2]=4
     SecondaryXPModifier[3]=4
     PerkName="Field Medic"
-    Passives(0)=(Title="Syringe Recharge Rate",Description="%x% decrease im syringe recharge rate",IconPath="")
-    Passives(1)=(Title="Syringe Potency",Description="Health restored by syringe increased by %x%",IconPath="")
-    Passives(2)=(Title="Bloat Bile Resistance",Description="Damage from Bloat Bile reduced by %x%",IconPath="")
-    Passives(3)=(Title="Movement Speed",Description="%x% faster movement",IconPath="")
-    Passives(4)=(Title="Armor Bonus",Description="Armor increased by %x%",IconPath="")
+    Passives(0)=(Title="Syringe Recharge Rate",Description="Decrease syringe recharge rate %x% per level",IconPath="")
+    Passives(1)=(Title="Syringe Potency",Description="Increase Health restored by syringe %x% per level",IconPath="")
+    Passives(2)=(Title="Bloat Bile Resistance",Description="Decrease damage from poison %x% per level",IconPath="")
+    Passives(3)=(Title="Movement Speed",Description="Increase movement speed %x% every five levels",IconPath="")
+    Passives(4)=(Title="Armor Bonus",Description="Increase Armor %x% per level",IconPath="")
     SkillCatagories[0]="Conditioning"
-    SkillCatagories[1]="Medical Technician"
-    SkillCatagories[2]="Weapon Handling"
+    SkillCatagories[1]="Movement"
+    SkillCatagories[2]="Damage"
     SkillCatagories[3]="Combat Technician"
-    SkillCatagories[4]="Advanced Training"
-    EXPAction1="Dealing Medic weapon damage"
+    SkillCatagories[4]="Advanced Tech"
+    EXPAction1="Dealing Field Medic weapon damage"
     EXPAction2="Healing teammates"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Medic'
-    PerkSkills(0)=(Name="HealingSurge",Increment=0,Rank=0,StartingValue=1.2,MaxValue=1.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Medic.UI_Talents_Medic_HealingSurge",bActive=false)
-    PerkSkills(1)=(Name="Enforcer",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Enforcer",bActive=false)
-    PerkSkills(2)=(Name="Combatant",Increment=0,Rank=0,StartingValue=0.6,MaxValue=0.6,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Combatant",bActive=false)
-    PerkSkills(3)=(Name="Armament",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.01,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Armament",bActive=false)
-    PerkSkills(4)=(Name="Regeneration",Increment=0,Rank=0,StartingValue=0.02,MaxValue=0.02,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Regenerate",bActive=false)
-    PerkSkills(5)=(Name="Lacerate",Increment=0,Rank=0,StartingValue=0.02,MaxValue=0.02,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Lacerate",bActive=false)
-    PerkSkills(6)=(Name="VaccinationArmor",Increment=0,Rank=0,StartingValue=0.02,MaxValue=0.02,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Vaccination",bActive=false)
-    PerkSkills(7)=(Name="VaccinationDamageMod",Increment=0,Rank=0,StartingValue=0.75,MaxValue=0.75,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AcidicCompound",bActive=false)
+    PerkSkills(0)=(Name="HealingSurge",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Medic.UI_Talents_Medic_HealingSurge",bActive=false)
+    PerkSkills(1)=(Name="Survivalist",Increment=0,Rank=0,StartingValue=0.01,MaxValue=0.01,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Resilience",bActive=false)
+    PerkSkills(2)=(Name="HealingSpeedBoost",Increment=0,Rank=0,StartingValue=10,MaxValue=10,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AdrenalineShot",bActive=false)
+    PerkSkills(3)=(Name="Combatant",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_CombatantDoctor",bActive=false)
+    PerkSkills(4)=(Name="HealingDamageBoost",Increment=0,Rank=0,StartingValue=5,MaxValue=5,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_FocusInjection",bActive=false)
+    PerkSkills(5)=(Name="AcidicCompound",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AcidicRounds",bActive=false)
+    PerkSkills(6)=(Name="HealingShield",Increment=0,Rank=0,StartingValue=10,MaxValue=10,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_CoagulantBooster",bActive=false)
+    PerkSkills(7)=(Name="Enforcer",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_BattleSurgeon",bActive=false)
     PerkSkills(8)=(Name="AirborneAgent",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AirborneAgent",bActive=false)
-    PerkSkills(9)=(Name="Sedative",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Anesthetist",bActive=false)
-    RegenerationInterval=5
-    RegenerationAmount=2
+    PerkSkills(9)=(Name="Sedative",Increment=0,Rank=0,StartingValue=100,MaxValue=100,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Zedative",bActive=false)
     VaccinationDuration=10
+    ToxicDmgTypeClass=Class'KFDT_Toxic_AcidicRounds'
     PrimaryWeaponDef=Class'KFWeapDef_MedicPistol'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Medic'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Medic'
+    AutoBuyLoadOutPath(0)=class'KFWeapDef_MedicPistol'
+    AutoBuyLoadOutPath(1)=class'KFWeapDef_MedicSMG'
+    AutoBuyLoadOutPath(2)=class'KFWeapDef_MedicShotgun'
+    AutoBuyLoadOutPath(3)=class'KFWeapDef_MedicRifle'
     HitAccuracyHandicap=5
     HeadshotAccuracyHandicap=-0.75
 }

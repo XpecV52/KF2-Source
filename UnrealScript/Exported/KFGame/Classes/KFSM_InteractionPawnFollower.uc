@@ -45,7 +45,10 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	{
 		// Let our leader know that we're now ready to be detached from him.
 		LeaderSM = KFSM_InteractionPawnLeader(Leader.SpecialMoves[LeaderSpecialMove]);
-		LeaderSM.OnFollowerLeavingSpecialMove();
+		if( LeaderSM != none )
+		{
+			LeaderSM.OnFollowerLeavingSpecialMove();
+		}
 	}
 
 	// Clear reference to our leader.

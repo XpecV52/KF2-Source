@@ -43,7 +43,7 @@ struct DelayedDialogInfo
 var bool bEnabled;
 var config bool bLogDialog;
 var bool bIsTraderTime;
-var array<DialogCoolDownInfo> CoolDowns;
+var array<DialogCoolDownInfo> Cooldowns;
 var transient Pawn NextSpotterPawn;
 var transient float LastSpotUpdateTime;
 var array<DelayedDialogInfo> DelayedDialog;
@@ -331,23 +331,23 @@ function bool DialogIsCoolingDown(KFPawn KFP, int EventID, int EventCoolDownCate
     I = 0;
     J0x34:
 
-    if(I < CoolDowns.Length)
+    if(I < Cooldowns.Length)
     {
-        CoolDownID = CoolDowns[I].EventID;
+        CoolDownID = Cooldowns[I].EventID;
         iCoolDownCategory = GetEventCoolDownCategory(CoolDownID, EventDataClass);
         if((((EventID == CoolDownID) || EventCoolDownCategory == 5) || iCoolDownCategory == 6) || (EventCoolDownCategory != 255) && EventCoolDownCategory == iCoolDownCategory)
         {
-            if(CoolDowns[I].EndTime <= WorldInfo.TimeSeconds)
+            if(Cooldowns[I].EndTime <= WorldInfo.TimeSeconds)
             {
-                CoolDowns.Remove(-- I, 1;                
+                Cooldowns.Remove(-- I, 1;                
             }
             else
             {
-                if(KFP == CoolDowns[I].Speaker)
+                if(KFP == Cooldowns[I].Speaker)
                 {
                     return true;
                 }
-                if(VSizeSq(CoolDowns[I].Location - KFP.Location) < (GetEventCoolDownRadiusSq(CoolDownID, EventDataClass)))
+                if(VSizeSq(Cooldowns[I].Location - KFP.Location) < (GetEventCoolDownRadiusSq(CoolDownID, EventDataClass)))
                 {
                     return true;
                 }
@@ -412,7 +412,7 @@ function bool DialogEventCanBePlayed(KFPawn KFP, const out DialogEventInfo Event
         }
         return false;
     }
-    if((KFP.SpecialMove == 28) && EventInfo.Priority > InterruptPriorityThreshold)
+    if((KFP.SpecialMove == 30) && EventInfo.Priority > InterruptPriorityThreshold)
     {
         if(bLogDialog)
         {
@@ -492,7 +492,7 @@ function PlayDialogEvent(KFPawn Speaker, int EventID)
         CoolDownInfo.Speaker = Speaker;
         CoolDownInfo.Location = Speaker.Location;
         CoolDownInfo.EndTime = WorldInfo.TimeSeconds + EventInfo.CoolDownTime;
-        CoolDowns.AddItem(CoolDownInfo;
+        Cooldowns.AddItem(CoolDownInfo;
     }
     if(EventInfo.bOnlyPlayLocally)
     {
@@ -2398,6 +2398,36 @@ function PlayHansBattlePhaseDialog(KFPawn Hans, int CurrBattlePhase)
     }
 }
 
+function PlayPatriarchTickDialog(KFPawn Patty)
+{
+    local int NumPlayers, NumLivingPlayers, NumOptions, BestOptionID;
+    local float PlayersAlivePct;
+
+    BestOptionID = -1;
+    NumPlayers = WorldInfo.Game.NumPlayers;
+    NumLivingPlayers = KFGameInfo(WorldInfo.Game).GetLivingPlayerCount();
+    if(NumLivingPlayers > 0)
+    {
+        PlayersAlivePct = float(NumLivingPlayers) / float(NumPlayers);
+        if(PlayersAlivePct >= 0.5)
+        {
+            AddRandomDialogOption(Patty, 1, NumOptions, BestOptionID);            
+        }
+        else
+        {
+            if(PlayersAlivePct >= 0.25)
+            {
+                AddRandomDialogOption(Patty, 2, NumOptions, BestOptionID);                
+            }
+            else
+            {
+                AddRandomDialogOption(Patty, 3, NumOptions, BestOptionID);
+            }
+        }
+    }
+    PlayDialogEvent(Patty, BestOptionID);
+}
+
 function PlayPattyMinigunWarnDialog(KFPawn Patty)
 {
     PlayDialogEvent(Patty, 16);
@@ -2439,13 +2469,13 @@ function PlayPattyBattlePhaseDialog(KFPawn Patty, int CurrBattlePhase)
     }
     switch(CurrBattlePhase)
     {
-        case 2:
+        case 1:
             PlayDialogEvent(Patty, 26);
             break;
-        case 3:
+        case 2:
             PlayDialogEvent(Patty, 27);
             break;
-        case 4:
+        case 3:
             PlayDialogEvent(Patty, 28);
             break;
         default:

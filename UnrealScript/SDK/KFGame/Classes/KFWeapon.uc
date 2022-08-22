@@ -45,7 +45,7 @@ var array<Texture2D>		FireModeIconPaths;
   * single fire mode for use by the sound system when in zed time. If set
   * to 255 then the standard looping fire sound will still be played in
   * zed time */
-var byte SingleFireMode;
+var byte SingleFireSoundIndex;
 
 /** Alt-fire mode is selected, all default fires will be converted */
 var bool bUseAltFireMode;
@@ -222,6 +222,30 @@ var(Positioning)    bool	bWeaponNeedsServerPosition;
 /** If true, weapon position should follow camera anims played on the weapon AnimSeq */
 var(Positioning)	bool	bFollowAnimSeqCamera;
 
+/** If TRUE, will use system to warn AI when a player has been aiming at them for too long */
+var(IronSight) protected const bool bWarnAIWhenAiming;
+
+/** The maximum distance at which to warn AI, squared */
+var(IronSight) protected const float MaxAIWarningDistSQ;
+
+/** The maximum distance from the danger point that AI should be warned */
+var(IronSight) protected const float MaxAIWarningDistFromPointSQ;
+
+/** How long the weapon needs to be relatively settled before warning AI. X=MinDuration, Y=MaxDuration */
+var(IronSight) protected const vector2d AimWarningDelay;
+
+/** How long to wait after a warning before checking if AI should be warned again */
+var(IronSight) protected const float AimWarningCooldown;
+
+/** Last aim rotation between settled checks */
+var transient private rotator LastAimRotation;
+
+/** Last time we warned AI */
+var transient private float LastAimWarningTime;
+
+/** How much accumulated time the weapon has been settled for */
+var transient private float CurrentAimSettledTime;
+
 /*********************************************************************************************
  * @name	Inventory Grouping/etc.
 ********************************************************************************************* */
@@ -276,6 +300,8 @@ const SECONDARY_AMMO	= 1;
 var				byte	AmmoCount[2];
 /** Size of the weapon magazine, i.e. how many rounds it can hold */
 var(Inventory)	byte	MagazineCapacity[2];
+/** How much ammo does it take to fire this firemode? */
+var(Inventory) protected Array<byte> AmmoCost;
 /** Is this a no magazine/clip weapon e.g. the hunting shotgun? */
 var(Inventory)	bool 	bNoMagazine;
 
@@ -284,8 +310,8 @@ var(Inventory)	bool 	bNoMagazine;
 
 /** Spare ammo, contained in extra magazines (outside of what's currently in the weapon) */
 var repnotify	int		SpareAmmoCount[2];
-/** Maximum amount of amount that can be carried for this gun, not counting what is in the magazine. Total amount this weapon can carry is MaxSpareAmmo + MagazineCapacity */
-var(Inventory)	int		MaxSpareAmmo[2];
+/** Maximum amount of amount that can be carried for this gun, not counting what is in the magazine. Total amount this weapon can carry is SpareAmmoCapacity + MagazineCapacity */
+var(Inventory)	int		SpareAmmoCapacity[2];
 /** Number of additional magazines to start with. Starting ammo total is (InitialSpareMags * MagazineCapacity) + MagazineCapacity */
 var	int		InitialSpareMags[2];
 
@@ -593,6 +619,9 @@ var(Attachments)		bool			   bHasLaserSight;
 const MaxAimAdjust_Angle = 0.1f;	// Radians
 const MaxAimAdjust_Cos = 0.995f;	// Cos(MaxAimAdjust)
 
+/** Used only by shotgun classes. Needed here to function with both the Medic shotgun and regular shotguns, since they extend different base classes */
+var float LastPelletFireTime;
+
 /*********************************************************************************************
  * @name	Firing
 ********************************************************************************************* */
@@ -780,7 +809,7 @@ replication
 	if (bNetDirty && (bNetInitial || !bAllowClientAmmoTracking) )
 		AmmoCount;
 	if (bNetDirty)
-		SpareAmmoCount, MagazineCapacity, MaxSpareAmmo, bGivenAtStart;
+		SpareAmmoCount, MagazineCapacity, SpareAmmoCapacity, bGivenAtStart;
 }
 
 /*********************************************************************************************
@@ -843,6 +872,8 @@ simulated event PreBeginPlay()
 		AttachLaserSight();
 	}
 }
+
+function SetShownInInventory(bool bValue);
 
 /** Cache Anim Nodes from the tree
 * 	@note: skipped on server because AttachComponent/AttachWeaponTo is not called
@@ -1227,7 +1258,7 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 				KFWInv.AmmoCount[1] -= default.MagazineCapacity[1] - AmmoCount[1];
 
 				KFWInv.SpareAmmoCount[0] -= (default.InitialSpareMags[0] * default.MagazineCapacity[0]) - SpareAmmoCount[0];
-				KFWInv.SpareAmmoCount[0] = Min( KFWInv.SpareAmmoCount[0], KFWInv.MaxSpareAmmo[0] - KFWInv.MagazineCapacity[0] );
+				KFWInv.SpareAmmoCount[0] = Min( KFWInv.SpareAmmoCount[0], KFWInv.SpareAmmoCapacity[0] );
 
 				KFWInv.ClientForceAmmoUpdate(KFWInv.AmmoCount[0],KFWInv.SpareAmmoCount[0]);
 				KFWInv.ClientForceSecondaryAmmoUpdate(KFWInv.AmmoCount[1]);
@@ -1264,11 +1295,11 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 		// Unless ammo is full, allow the pickup to handle giving ammo
 		if( CanRefillSecondaryAmmo() )
 		{
-			bDenyPickUp =((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0] && AmmoCount[1] >= MagazineCapacity[1]);
+			bDenyPickUp =((SpareAmmoCount[0] + MagazineCapacity[0]) >= GetMaxAmmoAmount(0) && AmmoCount[1] >= MagazineCapacity[1]);
 		}
 		else
 		{
-			bDenyPickUp = ((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0]);
+			bDenyPickUp = ((SpareAmmoCount[0] + MagazineCapacity[0]) >= GetMaxAmmoAmount(0));
 		}
 
 		if(bDenyPickUp)
@@ -1277,7 +1308,7 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 			//show non critical message for deny pickup
 			if ( KFPC != None )
  			{
- 				KFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Game', GMT_AmmoIsFull);
+ 				KFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Game', IsMeleeWeapon() ? GMT_AlreadyCarryingWeapon : GMT_AmmoIsFull);
  			}
 		}
 	}
@@ -1564,6 +1595,15 @@ simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
 		`DialogManager.PlayIronsightsDialog( KFPawn(Instigator) );
 	}
 
+	// Start timer to check if AI should be warned
+	if( bWarnAIWhenAiming && Instigator != none && WorldInfo.NetMode != NM_Client )
+	{
+		LastAimWarningTime = 0.f;
+		CurrentAimSettledTime = 0.f;
+		LastAimRotation = GetAdjustedAim( Instigator.GetWeaponStartTraceLocation() );
+		SetTimer( 0.1f, true, nameOf(Timer_CheckForAIWarning) );
+	}
+
 	bUsingSights = true;
 }
 
@@ -1658,6 +1698,12 @@ simulated function ZoomOut(bool bAnimateTransition, float ZoomTimeToGo)
 		`DialogManager.StopBreathingDialog( KFPawn(Instigator) );
 	}
 
+	// Stop timer to check if AI should be warned
+	if( bWarnAIWhenAiming && WorldInfo.NetMode != NM_Client )
+	{
+		ClearTimer( nameOf(Timer_CheckForAIWarning) );
+	}
+
 	bUsingSights = false;
 }
 
@@ -1689,6 +1735,66 @@ simulated event OnZoomOutFinished()
 	OnAnimEnd(none,0.f,0.f);
 }
 
+/** Returns TRUE if this weapon is currently warning AI when aiming */
+function bool IsWarningAI()
+{
+	return bWarnAIWhenAiming && bUsingSights;
+}
+
+/** Runs on a loop when zoomed to determine if AI should be warned */
+function Timer_CheckForAIWarning()
+{
+	local vector Direction, DangerPoint;
+	local vector TraceStart, Projection;
+	local rotator NewAimRotation;
+	local Pawn P;
+	local KFPawn_Monster HitMonster;
+
+	TraceStart = Instigator.GetWeaponStartTraceLocation();
+	NewAimRotation = Instigator.GetBaseAimRotation();
+	if( RSize(Normalize(LastAimRotation - NewAimRotation)) < 400.f )
+	{
+		CurrentAimSettledTime += 0.1f;
+	}
+
+	// Warn AI if the weapon is off cooldown
+	if( CurrentAimSettledTime >= RandRange(AimWarningDelay.X, AimWarningDelay.Y)
+		&& `TimeSince(LastAimWarningTime) > AimWarningCooldown )
+	{
+        // Grab our destination test location (trace offset + trace range)
+        Direction = vector( NewAimRotation );
+
+	    // Trace along a line from Location to TestLocation, warning zeds on its path
+	    foreach WorldInfo.AllPawns( class'Pawn', P )
+	    {
+	        if( P.GetTeamNum() != Instigator.GetTeamNum() && !P.IsHumanControlled() && P.IsAliveAndWell() )
+	        {
+	            // Determine if AI is within range as well as within our field of view
+	            Projection = P.Location - TraceStart;
+	            if( VSizeSQ(Projection) < MaxAIWarningDistSQ )
+	            {
+	                PointDistToLine( P.Location, Direction, TraceStart, DangerPoint );
+
+		            if( VSizeSQ(DangerPoint - P.Location) < MaxAIWarningDistFromPointSQ )
+		            {
+		                // Tell the AI to evade away from the DangerPoint
+		                HitMonster = KFPawn_Monster( P );
+		                if( HitMonster != none && HitMonster.MyKFAIC != None )
+		                {
+		                    HitMonster.MyKFAIC.ReceiveLocationalWarning( DangerPoint, TraceStart, self );
+		                }
+		            }
+		        }
+	        }
+	    }
+
+        // Reset settled time and start cooldown
+        LastAimWarningTime = WorldInfo.TimeSeconds;
+        CurrentAimSettledTime = 0.f;
+	}
+
+	LastAimRotation = NewAimRotation;
+}
 
 /*********************************************************************************************
  * @name	Instigator / movement
@@ -1713,7 +1819,7 @@ simulated function SetWeaponSprint(bool bNewSprintStatus)
 	{
 		if ( bUsingSights )
 		{
-			PerformZoom(false);
+			SetIronSights( false );
 		}
 
 		if ( CurrentFireMode < GetPendingFireLength() && PendingFire(CurrentFireMode) )
@@ -2368,7 +2474,7 @@ simulated function StopLoopingFireEffects(byte FireModeNum)
 simulated function bool ShouldForceSingleFireSound()
 {
 	// If this weapon has a single-shot firemode, disable looping fire sounds during zedtime
-	if ( `IsInZedTime(self) && SingleFireMode != FIREMODE_None )
+	if ( `IsInZedTime(self) && SingleFireSoundIndex != 255 )
 	{
 		return true;
 	}
@@ -2421,7 +2527,7 @@ simulated function PlayFiringSound( byte FireModeNum )
 		// Use the single fire sound if we're in zed time and want to play single fire sounds
 		if( FireModeNum < bLoopingFireSnd.Length && bLoopingFireSnd[FireModeNum] && ShouldForceSingleFireSound() )
         {
-            UsedFireModeNum = SingleFireMode;
+            UsedFireModeNum = SingleFireSoundIndex;
         }
 
         if ( UsedFireModeNum < WeaponFireSnd.Length )
@@ -3236,6 +3342,9 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 	local InterpCurveFloat PenetrationCurve;
     local KFPawn KFP;
     local float InitialPenetrationPower, OriginalPenetrationVal;
+    local KFPerk CurrentPerk;
+    local bool bNoPenetrationDmgReduction;
+
 
 	if (Impact.HitActor != None)
 	{
@@ -3267,8 +3376,17 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 			}
 			else
 			{
+                CurrentPerk = GetPerk();
+                if( CurrentPerk != none )
+                {
+                	bNoPenetrationDmgReduction = CurrentPerk.IgnoresPenetrationDmgReduction();
+				}
+
                 PenetrationCurve = PenetrationDamageReductionCurve[FiringMode];
-                TotalDamage *= EvalInterpCurveFloat(PenetrationCurve, out_PenetrationVal/GetInitialPenetrationPower(FiringMode));
+                if( !bNoPenetrationDmgReduction )
+                {
+               		TotalDamage *= EvalInterpCurveFloat(PenetrationCurve, out_PenetrationVal/GetInitialPenetrationPower(FiringMode));
+               	}
 
                 // Reduce penetration power for every KFPawn penetrated
                 KFP = KFPawn(Impact.HitActor);
@@ -3534,7 +3652,7 @@ simulated function int GetAmmoType(byte FiringMode)
  */
 static simulated event bool UsesAmmo()
 {
-    return default.MaxSpareAmmo[0] > 0;
+    return default.SpareAmmoCapacity[0] > 0;
 }
 
  /**
@@ -3562,34 +3680,14 @@ function InitializeAmmo()
 
 	CurrentPerk = GetPerk();
 
-	MagazineCapacity[0] = default.MagazineCapacity[0];
-	MagazineCapacity[1] = default.MagazineCapacity[1];
-	SpareAmmoCount[0] = default.SpareAmmoCount[0];
-
-	// The weapons max spare ammo includes our current magazine as well
-	MaxSpareAmmo[0] = default.MaxSpareAmmo[0] + default.MagazineCapacity[0];
-	MaxSpareAmmo[1] = default.MaxSpareAmmo[1] + default.MagazineCapacity[1];
-
 	// Let the perk change mag numbers etc if needed
 	if( CurrentPerk != none )
 	{
 		CurrentPerk.ModifyMagSizeAndNumber( self, MagazineCapacity[0] );
-		CurrentPerk.ModifyMagSizeAndNumber( self, MagazineCapacity[1] );
+		CurrentPerk.ModifyMagSizeAndNumber( self, MagazineCapacity[1],, true );
 
-		// Update MaxSpareAmmo if we have modified mags
-		if( CurrentPerk.ShouldMagSizeModifySpareAmmo(self) )
-		{
-			MaxSpareAmmo[0] = default.MaxSpareAmmo[0] + MagazineCapacity[0];
-			MaxSpareAmmo[1] = default.MaxSpareAmmo[1] + MagazineCapacity[1];
-		}
-		else
-		{
-			MaxSpareAmmo[0] = default.MaxSpareAmmo[0] + default.MagazineCapacity[0];
-			MaxSpareAmmo[1] = default.MaxSpareAmmo[1] + default.MagazineCapacity[1];
-		}
-
-		CurrentPerk.ModifyMaxSpareAmmoAmount( self, MaxSpareAmmo[0] );
-		CurrentPerk.ModifyMaxSpareAmmoAmount( self, MaxSpareAmmo[1] );
+		CurrentPerk.ModifyMaxSpareAmmoAmount( self, SpareAmmoCapacity[0] );
+		CurrentPerk.ModifyMaxSpareAmmoAmount( self, SpareAmmoCapacity[1],, true );
 	}
 
 	AmmoCount[0] = MagazineCapacity[0];
@@ -3600,9 +3698,10 @@ function InitializeAmmo()
 	if( CurrentPerk != none )
 	{
 		CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[0]);
+		CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[1],, true);
 	}
 
-	// Finalize our spare ammo values
+	// HACK: Finalize our spare ammo values
 	AddAmmo(0);
 
 	bForceNetUpdate	= TRUE;
@@ -3615,25 +3714,16 @@ function ReInitializeAmmoCounts(KFPerk CurrentPerk)
 {
 	if( CurrentPerk != none )
 	{
-		MagazineCapacity[0] = default.MagazineCapacity[0];
-		MagazineCapacity[1] = default.MagazineCapacity[1];
+		MagazineCapacity[0]		= default.MagazineCapacity[0];
+		MagazineCapacity[1]		= default.MagazineCapacity[1];
+		SpareAmmoCapacity[0]	= default.SpareAmmoCapacity[0];
+		SpareAmmoCapacity[1]	= default.SpareAmmoCapacity[1];
 
 		CurrentPerk.ModifyMagSizeAndNumber( self, MagazineCapacity[0] );
-		CurrentPerk.ModifyMagSizeAndNumber( self, MagazineCapacity[1] );
+		CurrentPerk.ModifyMagSizeAndNumber( self, MagazineCapacity[1],, true );
 
-		if( CurrentPerk.ShouldMagSizeModifySpareAmmo(self) )
-		{
-			MaxSpareAmmo[0] = default.MaxSpareAmmo[0] + MagazineCapacity[0];
-			MaxSpareAmmo[1] = default.MaxSpareAmmo[1] + MagazineCapacity[1];
-		}
-		else
-		{
-			MaxSpareAmmo[0] = default.MaxSpareAmmo[0] + default.MagazineCapacity[0];
-			MaxSpareAmmo[1] = default.MaxSpareAmmo[1] + default.MagazineCapacity[1];
-		}
-
-		CurrentPerk.ModifyMaxSpareAmmoAmount( self, MaxSpareAmmo[0] );
-		CurrentPerk.ModifyMaxSpareAmmoAmount( self, MaxSpareAmmo[1] );
+		CurrentPerk.ModifyMaxSpareAmmoAmount( self, SpareAmmoCapacity[0] );
+		CurrentPerk.ModifyMaxSpareAmmoAmount( self, SpareAmmoCapacity[1],, true );
 
 		// We don't want to modify current ammo, but spare ammo should respect perk and level
 		AddAmmo(0);
@@ -3645,7 +3735,7 @@ function ReInitializeAmmoCounts(KFPerk CurrentPerk)
  */
 simulated function ConsumeAmmo( byte FireModeNum )
 {
-    local int AmmoGroup;
+    local byte AmmoType;
     local KFPerk InstigatorPerk;
 
 `if(`notdefined(ShippingPC))
@@ -3655,11 +3745,10 @@ simulated function ConsumeAmmo( byte FireModeNum )
     }
 `endif
 
-	AmmoGroup = GetAmmoType(FireModeNum);
+	AmmoType = GetAmmoType(FireModeNum);
 
 	InstigatorPerk = GetPerk();
-	if( InstigatorPerk != none && InstigatorPerk.GetIsUberAmmoActive( self ) &&
-		 AmmoCount[AmmoGroup] > 0 )
+	if( InstigatorPerk != none && InstigatorPerk.GetIsUberAmmoActive( self ) )
 	{
 		return;
 	}
@@ -3668,9 +3757,10 @@ simulated function ConsumeAmmo( byte FireModeNum )
 	if ( Role == ROLE_Authority || bAllowClientAmmoTracking )
 	{
 	    // Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
-		if (MagazineCapacity[AmmoGroup] > 0 && AmmoCount[AmmoGroup] > 0)
+		if (MagazineCapacity[AmmoType] > 0 && AmmoCount[AmmoType] > 0)
 		{
-			AmmoCount[AmmoGroup]--;
+			// Ammo cost needs to be firemodenum because it is independent of ammo type.
+			AmmoCount[AmmoType] = Max(AmmoCount[AmmoType] - AmmoCost[FireModeNum], 0);
 		}
 	}
 }
@@ -3683,18 +3773,18 @@ function int AddAmmo(int Amount)
 	local int OldSpareAmmo;
 
 	// If we can't accept spare ammo, then abort
-	if( MaxSpareAmmo[0] <= 0 )
+	if( GetMaxAmmoAmount(0) <= 0 )
 	{
 		return 0;
 	}
 
 	`log(self@"Add Amount =" @ Amount, bLogAmmo);
-	`log(self@"MaxSpareAmmo[0] =" @ MaxSpareAmmo[0], bLogAmmo);
+	`log(self@"SpareAmmoCapacity[0] =" @ GetMaxAmmoAmount(0), bLogAmmo);
 	`log(self@"SpareAmmoCount[0] =" @ SpareAmmoCount[0], bLogAmmo);
 	`log(self@"AmmoCount[0] =" @ AmmoCount[0], bLogAmmo);
 
 	OldSpareAmmo = SpareAmmoCount[0];
-	SpareAmmoCount[0]	= Min(SpareAmmoCount[0] + Amount, MaxSpareAmmo[0] - AmmoCount[0]);
+	SpareAmmoCount[0]	= Min(SpareAmmoCount[0] + Amount, GetMaxAmmoAmount(0) - AmmoCount[0]);
 	bForceNetUpdate	= TRUE;
 
 	`log(self@"SpareAmmoCount[0] AFTER =" @ SpareAmmoCount[0], bLogAmmo);
@@ -3832,8 +3922,9 @@ unreliable client function NotifyHUDofWeapon( Pawn P )
 /**
  * @see Weapon::HasAmmo
  */
-simulated event bool HasAmmo( byte FireModeNum, optional int Amount=1 )
+simulated event bool HasAmmo( byte FireModeNum, optional int Amount )
 {
+	local KFPerk InstigatorPerk;
 	// we can always do a melee attack
 	if( FireModeNum == BASH_FIREMODE )
 	{
@@ -3851,13 +3942,19 @@ simulated event bool HasAmmo( byte FireModeNum, optional int Amount=1 )
         }
 	}
 
-	// Assume we ask for at least 1 bullet to be there.
-	if( Amount == 0 )
+	InstigatorPerk = GetPerk();
+	if( InstigatorPerk != none && InstigatorPerk.GetIsUberAmmoActive( self ) )
 	{
-		Amount = 1;
+		return true;
 	}
 
-	return (AmmoCount[GetAmmoType(FireModeNum)] - Amount) >= 0;
+	// If passed in ammo isn't set, use default ammo cost.
+	if( Amount == 0 )
+	{
+		Amount = AmmoCost[FireModeNum];
+	}
+
+	return AmmoCount[GetAmmoType(FireModeNum)] >= Amount;
 }
 
 /**
@@ -3870,7 +3967,7 @@ simulated function bool HasAnyAmmo()
 		return true;
 	}
 
-    if( UsesSecondaryAmmo() && HasAmmo(ALTFIRE_FIREMODE) )
+    if( UsesSecondaryAmmo() && (HasSpareAmmo(ALTFIRE_FIREMODE) || HasAmmo(ALTFIRE_FIREMODE) ))
     {
 		return true;
 	}
@@ -3879,9 +3976,9 @@ simulated function bool HasAnyAmmo()
 }
 
 /** Returns true if spare ammo is available (outside of current magazine) */
-simulated final event bool HasSpareAmmo()
+simulated event bool HasSpareAmmo(optional byte FireModeNum)
 {
-	return (bInfiniteSpareAmmo || SpareAmmoCount[0] > 0);
+	return (bInfiniteSpareAmmo || SpareAmmoCount[GetAmmoType(FireModeNum)] > 0);
 }
 
 simulated event int GetTotalAmmoAmount(byte FiringMode)
@@ -3891,18 +3988,17 @@ simulated event int GetTotalAmmoAmount(byte FiringMode)
 
 simulated event int GetMaxAmmoAmount(byte FiringMode)
 {
-	// @todo: [MAXSPAREAMMO] Why was MagazineCapacity added to MaxSpareAmmo in BeginPlay?!?
-	return MaxSpareAmmo[GetAmmoType(FiringMode)];// + MagazineCapacity[GetAmmoType(FiringMode)];
+	return SpareAmmoCapacity[GetAmmoType(FiringMode)] + MagazineCapacity[GetAmmoType(FiringMode)];
 }
 
 simulated event int GetMissingSpareAmmoAmount(byte FiringMode)
 {
-    return MaxSpareAmmo[GetAmmoType(FiringMode)] - SpareAmmoCount[GetAmmoType(FiringMode)];
+    return SpareAmmoCapacity[GetAmmoType(FiringMode)] - SpareAmmoCount[GetAmmoType(FiringMode)];
 }
 
 simulated function float GetAmmoPercentage(optional byte FiringMode)
 {
-	if( MaxSpareAmmo[GetAmmoType(FiringMode)] == 0 )
+	if( SpareAmmoCapacity[GetAmmoType(FiringMode)] == 0 )
 	{
 		return -1.f;
 	}
@@ -3938,20 +4034,23 @@ simulated function bool ForceReload()
 }
 
 /** Returns true if weapon can potentially be reloaded */
-simulated function bool CanReload()
+simulated function bool CanReload(optional byte FireModeNum)
 {
 	local KFPawn	P;
 	local bool		bInstigatorCanReload;
+	local byte		AmmoType;
 
 	P = KFPawn(Instigator);
+
+	AmmoType = GetAmmoType(FireModeNum);
 
 	// Cannot reload weapon when doing a special move
 	bInstigatorCanReload = (P != None && P.CanReloadWeapon());
 
 	return(	bCanBeReloaded                       &&	// Weapon can be reloaded
 			bInstigatorCanReload                 &&	// Instigator can reload weapon
-			AmmoCount[0] < MagazineCapacity[0]   &&	// we fired at least a shot
-			HasSpareAmmo()					    // and we have more ammo to fill current magazine
+			AmmoCount[AmmoType] < MagazineCapacity[AmmoType]   &&	// we fired at least a shot
+			HasSpareAmmo(AmmoType)					// and we have more ammo to fill current magazine
 			);
 }
 
@@ -3969,7 +4068,7 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
 		{
 			if( CanSwitchWeapons() )
 			{
-                if ( !HasSpareAmmo() )
+                if ( !HasAnyAmmo() )
     			{
     				Instigator.Controller.ClientSwitchToBestWeapon(false);
     			}
@@ -3984,7 +4083,7 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
 			{
 				ServerPlayDryFireSound(FireModeNum);
 			}
-			bPendingAutoSwitchOnDryFire = !HasSpareAmmo();
+			bPendingAutoSwitchOnDryFire = !HasAnyAmmo();
 		}
     }
 
@@ -4023,7 +4122,7 @@ simulated function bool ShouldAutoReloadGunslinger( byte FireModeNum )
 		{
 			if( CanSwitchWeapons() )
 			{
-                if( !HasSpareAmmo() )
+                if( !HasAnyAmmo() )
     			{
     				Instigator.Controller.ClientSwitchToBestWeapon(false);
     			}
@@ -4039,7 +4138,7 @@ simulated function bool ShouldAutoReloadGunslinger( byte FireModeNum )
 			{
 				ServerPlayDryFireSound(FireModeNum);
 			}
-			bPendingAutoSwitchOnDryFire = !HasSpareAmmo();
+			bPendingAutoSwitchOnDryFire = !HasAnyAmmo();
 		}
     }
 
@@ -4085,7 +4184,7 @@ simulated function GetWeaponDebug( out Array<String> DebugInfo )
 	super.GetWeaponDebug( DebugInfo );
 
 	DebugInfo[DebugInfo.Length] = "AmmoCount Primary:" $ AmmoCount[0] @ "MagazineSize Primary:" $ MagazineCapacity[0];
-	DebugInfo[DebugInfo.Length] = "SpareAmmoCount Primary:" $ SpareAmmoCount[0] @ "MaxSpareAmmo Primary:" $ MaxSpareAmmo[0];
+	DebugInfo[DebugInfo.Length] = "SpareAmmoCount Primary:" $ SpareAmmoCount[0] @ "SpareAmmoCapacity Primary:" $ GetMaxAmmoAmount(0);
 	DebugInfo[DebugInfo.Length] = "AmmoCount Secondary:" $ AmmoCount[1] @ "MagazineSize Secondary:" $ MagazineCapacity[1];
 	if( KFInventoryManager(InvManager) != none )
 	{
@@ -4449,7 +4548,7 @@ simulated state Active
 	{
 		local int IdleIndex;
 
-		if ( Instigator.IsFirstPerson() )
+		if ( Instigator.IsLocallyControlled() )
 		{
 			if( bUsingSights && IdleSightedAnims.Length > 0 )
 			{
@@ -4508,13 +4607,6 @@ simulated state Active
 			InvManager.LastAttemptedSwitchToWeapon = none;
 		}
 
-		if( bHasLaserSight && LaserSight != none )
-		{
-			// Blend in when entering active state.
-			// Also, cancel any active blend out
-			LaserSight.SetAimBlendState(true, false);
-		}
-
 		// test ironsights in the same way Super.BeginState() tests pending fire
 		CheckPendingIronsights();
 
@@ -4527,13 +4619,6 @@ simulated state Active
 	{
 		ClearTimer(nameof(IdleFidgetTimer));
 		ToggleAdditiveBobAnim(false);
-
-		if( bHasLaserSight && LaserSight != none )
-		{
-			// Blend out when exiting active state.
-			// Also, cancel any active blend in
-			LaserSight.SetAimBlendState(false, true);
-		}
 
 		Super.EndState(NextStateName);
 	}
@@ -4623,33 +4708,17 @@ simulated state Active
 
 			PlayAnimation(AnimName);
 			LastIdleFidgetAnimTime = WorldInfo.TimeSeconds;
-			SetTimer((MySkelMesh.GetAnimLength(AnimName) * DefaultAnimSpeed),false,nameof(FidgetAnimEnd));
-    		if( bHasLaserSight )
-    		{
-    			// Blend out when exiting active state.
-    			// Also, cancel any active blend in
-    			LaserSight.SetAimBlendState(false, true);
-    		}
+
 			return true;
 		}
 
 		return false;
 	}
 
-	simulated function FidgetAnimEnd()
-	{
-		if( bHasLaserSight )
-		{
-			// Blend in when entering active state.
-			// Also, cancel any active blend out
-			LaserSight.SetAimBlendState(true, false);
-		}
-	}
-
 	/** Returns true if weapon can potentially be reloaded */
-	simulated function bool CanReload()
+	simulated function bool CanReload(optional byte FireModeNum)
 	{
-		if ( Global.CanReload() )
+		if ( Global.CanReload(FireModeNum) )
 		{
 			return true;
 		}
@@ -4693,6 +4762,17 @@ simulated state Active
 				BeginFire(i);
 			}
 		}
+	}
+
+	/**
+	 * @see Weapon::HasAnyAmmo
+	 */
+	simulated function bool HasAnyAmmo()
+	{
+		// If we have grenades don't let Weapon.Active.BeginState() skip checking
+		// PendingFire[].  It's hacky, but do this in active state so that it can't 
+		// interfere with other (e.g InvManager) uses of HasAnyAmmo()
+		return Global.HasAnyAmmo() || (PendingFire(GRENADE_FIREMODE) && HasAmmo(GRENADE_FIREMODE));
 	}
 }
 
@@ -4886,9 +4966,9 @@ simulated function bool CanSwitchWeapons()
 *********************************************************************************************/
 simulated state WeaponDownSimple
 {
-	simulated function bool CanTransitionToIronSights() {return false;}
+	simulated function bool CanTransitionToIronSights();
 	simulated function bool DenyClientWeaponSet() {return true;}
-	simulated function bool CanReload() {return false;}
+	simulated function bool CanReload(optional byte FireModeNum);
     simulated function SetIronSights(bool bNewIronSights){}
 	simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime){}
 
@@ -4897,10 +4977,7 @@ simulated state WeaponDownSimple
 		return (Instigator == none || Instigator.Health <= 0);
 	}
 
-    simulated function bool CanSwitchWeapons()
-    {
-        return false;
-    }
+    simulated function bool CanSwitchWeapons();
 
     exec function SimplePutDown()
     {
@@ -5379,6 +5456,12 @@ simulated state GrenadeFiring extends WeaponSingleFiring
 	{
 		`LogInv("PreviousStateName:" @ PreviousStateName);
 
+		// Force exit ironsights (affects IS toggle key bind)
+		if ( bUsingSights )
+		{
+			ZoomOut(false, default.ZoomOutTime);
+		}
+
         // Don't let a weak zed grab us right after throwing a grenade
         SetWeakZedGrabCooldownOnPawn(GrenadeTossWeakZedGrabCooldown);
 
@@ -5611,7 +5694,7 @@ simulated state Reloading
 		CheckBoltLockPostReload();
 		NotifyEndState();
 
-		`DialogManager.PlayAmmoDialog( KFPawn(Instigator), float(SpareAmmoCount[0]) / float(MaxSpareAmmo[0]) );
+		`DialogManager.PlayAmmoDialog( KFPawn(Instigator), float(SpareAmmoCount[0]) / float(GetMaxAmmoAmount(0)) );
 	}
 
 	simulated function BeginFire(byte FireModeNum)
@@ -5790,7 +5873,7 @@ simulated function bool UseTacticalReload()
 }
 
 /** Move to the next valid reload status */
-simulated function EReloadStatus GetNextReloadStatus()
+simulated function EReloadStatus GetNextReloadStatus(optional byte FireModeNum)
 {
 	// Magazine reloading
 	if ( bReloadFromMagazine )
@@ -5810,7 +5893,7 @@ simulated function EReloadStatus GetNextReloadStatus()
 		case RS_OpeningBolt:
 			return RS_Reloading;
 		case RS_Reloading:
-			if ( HasSpareAmmo() && ReloadAmountLeft > 0 )
+			if ( HasSpareAmmo(FiremodeNum) && ReloadAmountLeft > 0 )
 			{
 				return RS_Reloading;
 			}
@@ -5854,13 +5937,16 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 }
 
 /** Performs actual ammo reloading */
-simulated function PerformReload()
+simulated function PerformReload(optional byte FireModeNum)
 {
 	local int ReloadAmount;
+	local int AmmoType;
+
+	AmmoType = GetAmmoType(FireModeNum);
 
 	if ( bInfiniteSpareAmmo )
 	{
-		AmmoCount[0] = MagazineCapacity[0];
+		AmmoCount[AmmoType] = MagazineCapacity[AmmoType];
 		ReloadAmountLeft = 0;
 		return;
 	}
@@ -5872,12 +5958,12 @@ simulated function PerformReload()
 	if ( Role == ROLE_Authority || bAllowClientAmmoTracking )
 `endif
 	{
-		if( MaxSpareAmmo[0] > 0 && SpareAmmoCount[0] > 0 )
+		if( GetMaxAmmoAmount(AmmoType) > 0 && SpareAmmoCount[AmmoType] > 0 )
 		{
 			if ( bReloadFromMagazine )
 			{
 				// clamp reload amount to spare ammo size
-				ReloadAmount = Min(ReloadAmountLeft, SpareAmmoCount[0]);
+				ReloadAmount = Min(ReloadAmountLeft, SpareAmmoCount[AmmoType]);
 			}
 			else
 			{
@@ -5885,18 +5971,18 @@ simulated function PerformReload()
 			}
 
 			// increment and clamp magazine ammo
-			AmmoCount[0] = Min(AmmoCount[0] + ReloadAmount, MagazineCapacity[0]);
+			AmmoCount[AmmoType] = Min(AmmoCount[AmmoType] + ReloadAmount, MagazineCapacity[AmmoType]);
 
 `if(`USE_RELOAD_SYNC)
 			// Update SpareAmmo, even if this is the client (for immediate feedback).  This is safe as long as
 			// the server doesn't consume SpareAmmo first which is enforced by ServerSyncReload
-			SpareAmmoCount[0] -= ReloadAmount;
+			SpareAmmoCount[AmmoType] -= ReloadAmount;
 `else
 			if ( Role == ROLE_Authority )
 			{
 				// Only update SpareAmmo on the server and make the client wait, so if the
 				// server executes this code early the client won't consume ammo twice
-				SpareAmmoCount[0] -= ReloadAmount;
+				SpareAmmoCount[AmmoType] -= ReloadAmount;
 			}
 `endif
 		}
@@ -5955,7 +6041,11 @@ simulated state WeaponSprinting
 
 	simulated function EndState(Name NextStateName)
 	{
-		PlaySprintEnd();
+		// skip the outro if sights interrupted because it interferes with the procedural anim
+		if ( !bUsingSights )
+		{
+			PlaySprintEnd();
+		}
 	}
 
 	simulated function SprintLoopTimer()
@@ -6233,7 +6323,19 @@ reliable private server function ServerSyncWeaponFiring( byte FireModeNum )
 		}
 		else
 		{
-			`warn("Failed to sync weapon ammo.");
+			`warn("KFWeapon::ServerSyncWeaponFiring().Reloading - Failed to sync weapon ammo.");
+		}
+	}
+	else if( IsInState('WeaponEquipping') )
+	{
+		// Move immediately to the firing state, as long as we have ammo
+		if( HasAmmo(FireModeNum) )
+		{
+			SendToFiringState( FireModeNum );
+		}
+		else
+		{
+			`warn("KFWeapon::ServerSyncWeaponFiring().WeaponEquipping - Failed to sync weapon ammo.");
 		}
 	}
 }
@@ -6326,6 +6428,11 @@ static simulated function float CalculateTraderWeaponStatFireRate()
 /** Returns trader filter index based on weapon type */
 static simulated event EFilterTypeUI GetTraderFilter();
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+	return FT_None;
+}
+
 defaultproperties
 {
 	Begin Object class=KFAnimSeq_Tween Name=MeshSequenceA
@@ -6407,6 +6514,7 @@ defaultproperties
 	InstantHitMomentum(DEFAULT_FIREMODE)=1.0
 	PenetrationPower(DEFAULT_FIREMODE)=0.0
 	PenetrationDamageReductionCurve(DEFAULT_FIREMODE)=(Points=((InVal=0.f,OutVal=0.f),(InVal=1.f, OutVal=1.f)))
+	AmmoCost(DEFAULT_FIREMODE)=1
 
 	// ALTFIRE_FIREMODE
 	FireModeIconPaths[ALTFIRE_FIREMODE]=none
@@ -6417,6 +6525,7 @@ defaultproperties
 	InstantHitMomentum(ALTFIRE_FIREMODE)=1.0
 	PenetrationPower(ALTFIRE_FIREMODE)=0.0
 	PenetrationDamageReductionCurve(ALTFIRE_FIREMODE)=(Points=((InVal=0.f,OutVal=0.f),(InVal=1.f, OutVal=1.f)))
+	AmmoCost(ALTFIRE_FIREMODE)=1
 
 	// RELOAD
 	FiringStatesArray(RELOAD_FIREMODE)="Reloading"
@@ -6496,7 +6605,7 @@ defaultproperties
 	WeaponFireSnd(DEFAULT_FIREMODE)=()
 	ShakeScaleStandard=1.0
 	ShakeScaleSighted=0.4
-	SingleFireMode=FIREMODE_NONE
+	SingleFireSoundIndex=FIREMODE_NONE
 
 	BobDamping=0.85000
 	JumpDamping=1.0
@@ -6561,6 +6670,10 @@ defaultproperties
 	TargetFrictionDistanceMax=4000.0f
     bTargetAdhesionEnabled=True
     TargetAdhesionDistanceMax=2000.0f
+
+ 	// AI Warning
+    MaxAIWarningDistSQ=6250000
+    MaxAIWarningDistFromPointSQ=5625
 
     TargetAdhesionDistanceScaleCurve={(Points=((InVal=0.100000,OutVal=1.000000),
     											(InVal=0.200000,OutVal=0.600000),

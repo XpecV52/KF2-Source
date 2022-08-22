@@ -21,7 +21,6 @@ var(Animations) const editconst name FireLoopEndLastAnim;
 var(Animations) const editconst name FireLoopEndLastSightedAnim;
 /** Alt-fire explosion template */
 var() GameExplosion ExplosionTemplate;
-var byte BlastAmmoCost;
 
 simulated function name GetWeaponFireAnim(byte FireModeNum)
 {
@@ -143,36 +142,6 @@ simulated function CustomFire()
     }
 }
 
-simulated function ConsumeAmmo(byte FireModeNum)
-{
-    local int AmmoGroup;
-
-    if(FireModeNum == 1)
-    {
-        if((Role == ROLE_Authority) || bAllowClientAmmoTracking)
-        {
-            AmmoGroup = GetAmmoType(FireModeNum);
-            if((MagazineCapacity[AmmoGroup] > 0) && AmmoCount[AmmoGroup] > 0)
-            {
-                AmmoCount[AmmoGroup] -= BlastAmmoCost;
-            }
-        }        
-    }
-    else
-    {
-        super(KFWeapon).ConsumeAmmo(FireModeNum);
-    }
-}
-
-simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
-{
-    if(FireModeNum == 1)
-    {
-        return super(KFWeapon).HasAmmo(FireModeNum, BlastAmmoCost);
-    }
-    return super(KFWeapon).HasAmmo(FireModeNum, Amount);
-}
-
 simulated function bool ShouldAutoReload(byte FireModeNum)
 {
     local bool bRequestReload;
@@ -184,6 +153,11 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
         return false;
     }
     return bRequestReload;
+}
+
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 5;
 }
 
 defaultproperties
@@ -205,7 +179,7 @@ defaultproperties
     object end
     // Reference: GameExplosion'Default__KFWeap_Beam_Microwave.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
-    BlastAmmoCost=10
+    bWarnAIWhenFiring=true
     FlameSprayArchetype=SprayActor_Flame'WEP_Microwave_Gun_ARCH.WEP_Microwave_Gun_Flame'
     PilotLightPlayEvent=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_PilotLight_Loop'
     PilotLightStopEvent=AkEvent'WW_WEP_SA_Microwave_Gun.Stop_SA_MicrowaveGun_PilotLight_Loop'
@@ -232,9 +206,11 @@ defaultproperties
     IronSightPosition=(X=3,Y=0,Z=0)
     DOF_FG_FocalRadius=150
     DOF_FG_MaxNearBlurSize=1
+    MaxAIWarningDistSQ=2250000
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
-    MaxSpareAmmo=400
+    AmmoCost=/* Array type was not detected. */
+    SpareAmmoCapacity=500
     AmmoPickupScale=0.4
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
@@ -267,6 +243,7 @@ defaultproperties
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
+    InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

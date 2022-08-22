@@ -67,7 +67,7 @@ state Command_SpecialMove
             {
                 return false;
             }
-            if(Outer.MyKFPawn.IsImpaired() || Outer.MyKFPawn.IsIncapacitated())
+            if(!Outer.MyKFPawn.IsCombatCapable())
             {
                 return false;
             }

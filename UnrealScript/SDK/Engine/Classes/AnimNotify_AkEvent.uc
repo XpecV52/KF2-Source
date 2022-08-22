@@ -10,6 +10,8 @@ var()	Name		BoneName;
 
 `if(`__TW_WWISE_)
 var()   bool        bIgnoreIfActorHidden;
+/** Useful to ensure it won't activate while blending from this anim into a death anim */
+var()   bool        bIgnoreIfActorDead;
 /** This is the percent to play this Sound.  Defaults to 100% (aka 1.0f) **/
 var()   float       PercentToPlay;
 `endif
@@ -32,6 +34,7 @@ defaultproperties
 	bFollowActor=true
 
 `if(`__TW_WWISE_)
-    PercentToPlay=1.0;
+    PercentToPlay=1.0
+    bIgnoreIfActorDead=true
 `endif
 }

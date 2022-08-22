@@ -22,6 +22,10 @@ static simulated event EFilterTypeUI GetTraderFilter()
 
 defaultproperties
 {
+
+	// Healing charge
+    HealAmount=15
+	
 	// Inventory
 	InventoryGroup=IG_Secondary
 	InventorySize=1
@@ -65,7 +69,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=15
-	MaxSpareAmmo[0]=240
+	SpareAmmoCapacity[0]=240
 	InitialSpareMags[0]=8
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -98,7 +102,7 @@ defaultproperties
 	FireOffset=(X=20,Y=4.0,Z=-3)
 
 	// BASH_FIREMODE
-	InstantHitDamage(BASH_FIREMODE)=10.0
+	InstantHitDamage(BASH_FIREMODE)=21
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Pistol_ARCH.Wep_Medic_Pistol_MuzzleFlash'

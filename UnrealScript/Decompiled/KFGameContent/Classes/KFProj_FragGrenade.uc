@@ -11,6 +11,7 @@ class KFProj_FragGrenade extends KFProj_Grenade
 defaultproperties
 {
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Grenade'
+    bWarnAIWhenFired=true
     ExplosionActorClass=Class'KFGame.KFExplosionActor'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ShardClass=Class'KFProj_GrenadeShard'

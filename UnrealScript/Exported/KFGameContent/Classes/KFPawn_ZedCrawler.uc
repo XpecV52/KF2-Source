@@ -4,27 +4,73 @@
 // Crawler
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedCrawler extends KFPawn_Monster;
 
 var actor LastBumpLevelActor;
 var float LastBumpLevelTime;
 
-/**
- * PossessedBy() - Called when a new controller possesses this pawn
- *
- * @param	C	Controller taking possession of this pawn
- * @param	bVehicleTransition	Legacy, true if pawn is transitioning from vehicle to on-foot (or vice-versa)
- */
-function PossessedBy( Controller C, bool bVehicleTransition )
+/** Template used by special crawlers when exploding during death */
+var protected const KFGameExplosion DeathExplosionTemplate;
+
+/** TRUE when difficulty has dictated that this is a special crawler type */
+var repnotify protected bool bIsSpecialCrawler;
+
+replication
 {
-	super.PossessedBy( C, bVehicleTransition );
-	LastBumpLevelActor = none;
-	if( KFAIController_ZedCrawler(MyKFAIC) != none )
+	if( bNetInitial )
+		bIsSpecialCrawler;
+}
+
+simulated event ReplicatedEvent( name VarName )
+{
+	if( VarName == nameOf(bIsSpecialCrawler) )
 	{
-		KFAIController_ZedCrawler(MyKFAIC).OriginalMeshTranslation = Mesh.Translation;
+		UpdateBodyMIC();
+		return;
+	}
+
+	super.ReplicatedEvent( VarName );
+}
+
+event PossessedBy( Controller C, bool bVehicleTransition )
+{
+	local KFAIController_ZedCrawler CrawlerController;
+
+	super.PossessedBy( C, bVehicleTransition );
+
+	LastBumpLevelActor = none;
+
+	CrawlerController = KFAIController_ZedCrawler( MyKFAIC );
+	if( CrawlerController != none )
+	{
+		CrawlerController.OriginalMeshTranslation = Mesh.Translation;
+
+		// See if we should spawn as an alternate crawler type
+		if( fRand() < class<KFDifficulty_Crawler>(DifficultySettings).static.GetSpecialCrawlerChance(self, KFGameReplicationInfo(WorldInfo.GRI)) )
+		{
+			bIsSpecialCrawler = true;
+			if( WorldInfo.NetMode != NM_DedicatedServer )
+			{
+				UpdateBodyMIC();
+			}
+		}
+	}
+}
+
+/** If true, assign custom player controlled skin when available */
+simulated event bool UsePlayerControlledZedSkin()
+{
+	return bIsSpecialCrawler || super.UsePlayerControlledZedSkin();
+}
+
+/** Change body MIC if we're a special crawler */
+simulated protected function UpdateBodyMIC()
+{
+	if( GetCharacterMonsterInfo() != none )
+	{
+		CharacterMICs[0].SetParent( GetCharacterMonsterInfo().PlayerControlledSkins[0] );
 	}
 }
 
@@ -189,6 +235,40 @@ event SpiderBumpLevel( vector HitLocation, vector HitNormal, optional actor Wall
 	}
 }
 
+simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
+{
+	local bool bShouldGib;
+	local KFGoreManager GoreManager;
+	local array<name> OutGibBoneList;
+	local int NumGibs;
+
+	if( bIsSpecialCrawler && !bPlayedDeath && DamageType != class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType )
+	{
+		class'KFSM_PlayerCrawler_Suicide'.static.TriggerExplosion( self, DeathExplosionTemplate, true );
+		bShouldGib = true;
+	}
+
+	super.PlayDying( DamageType, HitLoc );
+
+	if( bShouldGib && WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		GoreManager = KFGoreManager( WorldInfo.MyGoreEffectManager );
+		if( GoreManager != none )
+		{
+			NumGibs = 10 + Rand(4);
+			NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
+			GetClosestHitBones( NumGibs, Location, OutGibBoneList );
+
+			GoreManager.CauseGibsAndApplyImpulse( self,
+												Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType,
+												Location,
+												OutGibBoneList,
+												none,
+												Mesh.GetBoneLocation(Mesh.GetBoneName(0)) );
+		}
+	}
+}
+
 // Disabled for Early Access 1/14/15 as part of disabling wall walking - Ramm
 //simulated event RootMotionProcessed(SkeletalMeshComponent SkelComp)
 //{
@@ -307,8 +387,11 @@ function int GetSpotterDialogID()
 	return 125;//SPOTZ_Generic
 }
 
+/** Added knockdown when jumped on */
+
 defaultproperties
 {
+   DeathExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedCrawler:ExploTemplate0'
    bKnockdownWhenJumpedOn=True
    bIsCrawlerClass=True
    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_Crawler_Archetype'
@@ -339,7 +422,7 @@ defaultproperties
    DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive')
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing')
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic')
-   DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm')
+   DifficultySettings=Class'kfgamecontent.KFDifficulty_Crawler'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -365,9 +448,10 @@ defaultproperties
    IncapSettings(4)=(Cooldown=0.200000,Vulnerability=(2.000000))
    IncapSettings(5)=(Duration=2.500000,Cooldown=5.000000,Vulnerability=(2.000000,2.000000,1.000000,1.000000,1.000000))
    IncapSettings(6)=(Duration=5.500000,Cooldown=7.500000,Vulnerability=(10.000000))
-   IncapSettings(7)=(Cooldown=1.000000,Vulnerability=(2.000000))
-   IncapSettings(8)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
-   IncapSettings(9)=(Duration=3.000000,Cooldown=7.500000,Vulnerability=(0.000000))
+   IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000,10.000000,10.000000,10.000000))
+   IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(2.000000))
+   IncapSettings(9)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
+   IncapSettings(10)=(Duration=3.000000,Cooldown=7.500000,Vulnerability=(0.000000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=500.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
@@ -410,8 +494,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -453,7 +539,7 @@ defaultproperties
    DialogAkComponent=DialogAkSoundComponent
    DamageRecoveryTimeHeavy=0.750000
    Mass=50.000000
-   GroundSpeed=280.000000
+   GroundSpeed=400.000000
    MaxFallSpeed=6000.000000
    Health=55
    ControllerClass=Class'KFGame.KFAIController_ZedCrawler'
@@ -481,6 +567,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
    End Object

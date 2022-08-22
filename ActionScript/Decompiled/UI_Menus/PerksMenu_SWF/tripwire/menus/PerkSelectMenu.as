@@ -7,6 +7,8 @@ package tripwire.menus
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.Extensions;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.Perks.PerkDetailsContainer;
     import tripwire.containers.Perks.PerkSelectionContainer;
     import tripwire.containers.Perks.PerksConfigureSkillsContainer;
@@ -39,6 +41,10 @@ package tripwire.menus
         
         public var bCanUseMenu:Boolean = false;
         
+        public var openSkillConfigSoundEffect:String = "PERK_CONFIGURE_SKILLS_CLICK";
+        
+        public var openPerkDetailsSoundEffect:String = "PERK_MENU_BUTTON_CLICK";
+        
         public function PerkSelectMenu()
         {
             super();
@@ -50,7 +56,7 @@ package tripwire.menus
             super.addedToStage(param1);
             this.SelectedPerkSummaryContainer.owner = this;
             this.SelectedPerkSummaryContainer.configureButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
-            this.SelectedPerkSummaryContainer.configureButton.clickSoundEffect = "Button_Selected";
+            this.SelectedPerkSummaryContainer.configureButton.clickSoundEffect = "SHARED_BUTTON_CLICK";
             this.SkillsContainer.confirmButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
             this.addEventListener("changePerk",this.swapPerk);
             sectionHeader = this.SelectionContainer.header;
@@ -102,6 +108,7 @@ package tripwire.menus
         {
             super.onOpened(param1);
             this.bCanUseMenu = true;
+            FocusManager.setModalClip(this.SelectionContainer.perkScrollingList);
         }
         
         override public function closeContainer() : void
@@ -110,6 +117,7 @@ package tripwire.menus
             this.bCanUseMenu = false;
             this.SkillsContainer.closeContainer();
             this.SelectionContainer.closeContainer();
+            FocusManager.setModalClip(null);
         }
         
         public function set locked(param1:Boolean) : void
@@ -144,6 +152,9 @@ package tripwire.menus
         
         private function openSkillConfigure() : void
         {
+            if(Extensions.gfxProcessSound != null)
+            {
+            }
             currentElement = this.SkillsContainer;
             TweenMax.killTweensOf([this.DetailsContainer,this.HeaderContainer,this.SelectedPerkSummaryContainer]);
             this.closePerkDetails();
@@ -155,6 +166,7 @@ package tripwire.menus
                 "onComplete":this.SkillsContainer.openContainer
             });
             showDimLeftSide(true);
+            FocusManager.setModalClip(this.SkillsContainer);
         }
         
         private function closeSkillConfigure() : void
@@ -175,6 +187,7 @@ package tripwire.menus
             this.DetailsContainer.openContainer();
             this.HeaderContainer.openContainer();
             this.SelectedPerkSummaryContainer.openContainer();
+            FocusManager.setModalClip(this.SelectionContainer.perkScrollingList);
         }
         
         private function closePerkDetails() : void
@@ -213,6 +226,9 @@ package tripwire.menus
                     "useFrames":true,
                     "onComplete":this.SkillsContainer.openContainer
                 });
+                if(Extensions.gfxProcessSound != null)
+                {
+                }
             }
             else
             {
@@ -221,6 +237,10 @@ package tripwire.menus
                     "useFrames":true,
                     "onComplete":this.openPerkDetails
                 });
+                if(Extensions.gfxProcessSound != null)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.openPerkDetailsSoundEffect);
+                }
             }
         }
         

@@ -17,6 +17,7 @@ defaultproperties
    DampenFactor=0.400000
    DampenFactorParallel=0.600000
    WeaponSelectTexture=Texture2D'wep_ui_nailbomb_tex.UI_WeaponSelect_GunslingerGrenade'
+   bWarnAIWhenFired=True
    ExplosionActorClass=Class'KFGame.KFExplosionActor'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ShardClass=Class'kfgamecontent.KFProj_NailShard'

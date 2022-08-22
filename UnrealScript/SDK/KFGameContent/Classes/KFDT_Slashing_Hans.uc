@@ -18,4 +18,6 @@ defaultproperties
 	KDamageImpulse=400
 	KDeathUpKick=200
 	KDeathVel=750
+
+	bAllowAIDoorDestruction=true
 }

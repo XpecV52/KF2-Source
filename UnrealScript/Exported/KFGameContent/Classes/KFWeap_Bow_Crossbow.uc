@@ -61,6 +61,7 @@ defaultproperties
    InventorySize=6
    MagazineCapacity(0)=1
    bHasIronSights=True
+   bWarnAIWhenAiming=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bAllowClientAmmoTracking=False
@@ -73,9 +74,11 @@ defaultproperties
    DOF_BlendInSpeed=3.000000
    DOF_FG_FocalRadius=0.000000
    DOF_FG_MaxNearBlurSize=3.500000
+   MaxAIWarningDistSQ=4000000.000000
+   AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Crossbow_TEX.UI_WeaponSelect_Crossbow'
-   MaxSpareAmmo(0)=34
+   SpareAmmoCapacity(0)=34
    InitialSpareMags(0)=13
    AmmoPickupScale(0)=3.000000
    FireSightedAnims(1)="Shoot_Iron2"
@@ -126,7 +129,7 @@ defaultproperties
    InstantHitDamage(0)=350.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Piercing_Crossbow'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

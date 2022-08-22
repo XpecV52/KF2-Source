@@ -47,7 +47,14 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	}	
 	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
 
-	OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+	if( class'WorldInfo'.static.IsConsoleBuild() )
+	{
+		class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( SearchPlayfabInventoryForNewItem );
+	}
+	else
+	{
+		OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+	}
 
 	LocalizeText();
 	//SetPlayerInfo(); //no more name plate
@@ -87,6 +94,15 @@ function LocalizeText()
     }
 
 	SetObject("localizedText", TextObject);
+}
+
+
+function SearchPlayfabInventoryForNewItem( bool bSuccess )
+{
+	if( bSuccess )
+	{
+		SearchInventoryForNewItem();
+	}
 }
 
 function SearchInventoryForNewItem()
@@ -156,9 +172,17 @@ function SetSumarryInfo()
 		GameDifficultyString =  class'KFCommon_LocalizedStrings'.static.GetDifficultyString(KFGRI.GameDifficulty);
 		GameTypeString =   class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
 
-    	TextObject.SetString("mapName", CurrentMapName);
+    	TextObject.SetString("mapName", class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(CurrentMapName) );
 		TextObject.SetString("typeDifficulty", GameTypeString @"-" @GameDifficultyString);
-		TextObject.SetString("waveTime", WaveString @KFGRI.WaveNum $"/" $(KFGRI.WaveMax - 1) @"-" @FormatTime(KFGRI.ElapsedTime));
+		if(KFGRI.WaveNum == KFGRI.WaveMax)
+		{
+			TextObject.SetString("waveTime", class'KFGFxHUD_WaveInfo'.default.BossWaveString @"-" @FormatTime(KFGRI.ElapsedTime));
+		}
+		else
+		{
+			TextObject.SetString("waveTime", WaveString @KFGRI.WaveNum $"/" $(KFGRI.WaveMax - 1) @"-" @FormatTime(KFGRI.ElapsedTime));
+		}
+		
 		TextObject.SetString("winLost", KFGRI.bMatchVictory ? VictoryString : DefeatString);
 	}
 	//end get match info
@@ -301,7 +325,13 @@ function  string FormatTime(int TimeInSeconds)
 
 function OnOpen()
 {
-	if(OnlineSub != none)
+	if( class'WorldInfo'.static.IsConsoleBuild() )
+	{
+		class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( SearchPlayfabInventoryForNewItem );
+		// Now read inventory to see if anything changed
+		class'GameEngine'.static.GetPlayfabInterface().ReadInventory();
+	}
+	else if( OnlineSub != none )
 	{
 		OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
 	}
@@ -309,7 +339,11 @@ function OnOpen()
 
 function OnClose()
 {
-	if(OnlineSub != none)
+	if( class'WorldInfo'.static.IsConsoleBuild() )
+	{
+		class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate( SearchPlayfabInventoryForNewItem );
+	}
+	else if( OnlineSub != none )
 	{
 		OnlineSub.ClearOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
 	}

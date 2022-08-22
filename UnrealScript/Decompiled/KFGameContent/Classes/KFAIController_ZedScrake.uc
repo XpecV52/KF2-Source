@@ -27,6 +27,11 @@ function bool ShouldSprint()
     return false;
 }
 
+function bool CanSetSprinting(bool bNewSprintStatus)
+{
+    return !bNewSprintStatus || MyKFPawn.bIsEnraged;
+}
+
 function UpdateSprintFrustration(optional byte bForceFrustrationState)
 {
     bForceFrustrationState = 255;
@@ -43,6 +48,9 @@ function bool CanEvadeGrenade()
 
 defaultproperties
 {
+    bUseRunOverWarning=true
+    MinRunOverSpeed=270
+    MinRunOverWarningAim=0.85
     bCanTeleportCloser=false
     FrustrationThreshold=0
     TeleportCooldown=10
@@ -50,4 +58,5 @@ defaultproperties
     EvadeGrenadeChance=0.75
     FrustrationDelay=5
     LowIntensityAttackCooldown=5
+    DangerEvadeSettings=/* Array type was not detected. */
 }

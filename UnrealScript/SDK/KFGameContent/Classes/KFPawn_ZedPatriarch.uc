@@ -109,6 +109,9 @@ var ParticleSystem BattleDamageFX_Tentacle_MidDmg;
 var ParticleSystem BattleDamageFX_Tentacle_HighDmg;
 var ParticleSystem BattleDamageFX_Smoke_HighDmg;
 
+/** Interval between dialog play attempts */
+var float TickDialogInterval;
+
 /*********************************************************************************************
 * General Gameplay
 **********************************************************************************************/
@@ -146,6 +149,8 @@ struct PatriarchBattlePhaseInfo
     var 			float 			MinigunAttackCooldownTime;
     /** Whether or not we can summon minions this battle phase */
     var 			bool 			bCanSummonMinions;
+    /** Per-phase, per-difficulty flag that when set to TRUE allows the Patriarch to move with his minigun */
+    var 			array<bool> 	bCanMoveWhenMinigunning;
     /** Heal amount (MaxHealth x HealAmount) per difficulty level */
     var 			array<float> 	HealAmounts;
 
@@ -300,6 +305,12 @@ simulated event PostBeginPlay()
     // PostBeginPlay is called before we do our first audio update, so we need to set a valid initial position so the ambient sound works right
     AmbientAkComponent.CachedObjectPosition = Location;
     SetPawnAmbientSound( AmbientBreathingEvent );
+
+    // Start the dialog timer
+    if( WorldInfo.NetMode != NM_Client )
+    {
+        SetTimer( 2.f, false, nameOf(Timer_TickPatriarchDialog) );
+    }
 }
 
 /** Overloaded to support loading the alternate body mic */
@@ -425,7 +436,7 @@ function SummonChildren()
 		if( MyKFGameInfo.SpawnManager != none )
 		{
 			MyKFGameInfo.SpawnManager.LeftoverSpawnSquad.Length = 0;
-		 	MyKFGameInfo.SpawnManager.SummonBossMinions( MinionWave.Squads, NumMinionsToSpawn );
+		 	MyKFGameInfo.SpawnManager.SummonBossMinions( MinionWave.Squads, GetNumMinionsToSpawn() );
 		}
 	}
 }
@@ -461,9 +472,7 @@ simulated function ANIMNOTIFY_SpawnedKActor( KFKActorSpawnable NewKActor, AnimNo
 	SyringeMIC = NewKActor.StaticMeshComponent.CreateAndSetMaterialInstanceConstant( 0 );
 	SyringeMIC.SetScalarParameterValue( 'Scalar_GlowIntensity', 0.02f + fClamp(0.98f*SyringeInjectTimeRemaining/SyringeInjectTimeDuration, 0.f, 0.98f) );
 	NewKActor.StaticMeshComponent.SetLightingChannels(HealingSyringeMeshes[CurrentSyringeMeshNum].LightingChannels);
-	NewKActor.StaticMeshComponent.bCastDynamicShadow = true;
-	NewKActor.StaticMeshComponent.bAllowPerObjectShadows = true;
-	NewKActor.StaticMeshComponent.PerObjectShadowCullDistance = 4000;
+	NewKActor.StaticMeshComponent.bCastDynamicShadow = false;
 
 	// Remove the mesh from the hand and clear all references
 	Mesh.DetachComponent( HealingSyringeMeshes[CurrentSyringeMeshNum] );
@@ -651,9 +660,32 @@ function bool CanMortarAttack()
 	return BattlePhases[CurrentBattlePhase-1].bCanUseMortar;
 }
 
+/** Used by AI to determine if we can mortar barrage this phase */
 function bool CanDoMortarBarrage()
 {
 	return BattlePhases[CurrentBattlePhase-1].bCanDoMortarBarrage;
+}
+
+/** Only allow blocking when uncloaked */
+function bool CanBlock()
+{
+	return !bIsCloaking && super.CanBlock();
+}
+
+/** Only allow movement with the minigun if any conditions are met */
+simulated function bool CanMoveWhenMinigunning()
+{
+	local KFGameReplicationInfo KFGRI;
+
+	// See if this battle phase allows it
+	KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
+	if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhenMinigunning[KFGRI.GameDifficulty] )
+	{
+		return true;
+	}
+
+	// Allow moving when there's only one player left
+	return LocalIsOnePlayerLeftInTeamGame();
 }
 
 /** Toggles barrel spinning on and off */
@@ -740,23 +772,42 @@ function class<KFProj_Missile_Patriarch> GetMissileClass()
 function GetMissileAimDirAndTargetLoc( int MissileNum, vector MissileLoc, rotator MissileRot, out vector AimDir, out vector TargetLoc )
 {
 	local vector X,Y,Z;
-	local Pawn EnemyPawn;
 	local int EnemyIndex;
 	local KFAIController_ZedPatriarch MyPatController;
+	local KFPawn EnemyPawn;
 
-	// Get the best location to aim at
-	EnemyPawn = Controller.Enemy;
 	MyPatController = KFAIController_ZedPatriarch( Controller );
-	if( MyPatController != none && !MyPatController.CanSee(EnemyPawn) )
+	if( MyPatController == none )
 	{
-		EnemyIndex = MyPatController.RecentlySeenEnemyList.Find( 'TrackedEnemy', KFPawn(EnemyPawn) );
+		return;
+	}
+
+	// Make sure we have an enemy!
+	if( MyPatController.Enemy == none )
+	{
+		MyPatController.ForceSetEnemy( MyPatController.GetClosestEnemy() );
+	}
+
+	// Abort if still no enemy
+	if( MyPatController.Enemy == none )
+	{
+		EndSpecialMove();
+		return;
+	}
+
+	EnemyPawn = KFPawn( MyPatController.Enemy );
+
+	// If this enemy isn't visible, fire at its last known location
+	if( !MyPatController.CanSee(EnemyPawn) )
+	{
+		EnemyIndex = MyPatController.RecentlySeenEnemyList.Find( 'TrackedEnemy', EnemyPawn );
 		if( EnemyIndex != INDEX_NONE )
 		{
 			TargetLoc = MyPatController.RecentlySeenEnemyList[EnemyIndex].LastVisibleLocation;
 		}
 		else
 		{
-			EnemyIndex = MyPatController.HiddenEnemies.Find( 'TrackedEnemy', KFPawn(EnemyPawn) );
+			EnemyIndex = MyPatController.HiddenEnemies.Find( 'TrackedEnemy', EnemyPawn );
 			if( EnemyIndex != INDEX_NONE )
 			{
 				TargetLoc = MyPatController.HiddenEnemies[EnemyIndex].LastVisibleLocation;
@@ -1730,6 +1781,22 @@ function PlayGrabbedPlayerDialog( KFPawn_Human Target )
 	`DialogManager.PlayPlayerGrabbedByPatriarchDialog( Target );
 }
 
+/** Players dialog such as taunts at regular intervals */
+function Timer_TickPatriarchDialog()
+{
+	if( !IsAliveAndWell() )
+	{
+		return;
+	}
+
+    if( !IsDoingSpecialMove() )
+    {
+        `DialogManager.PlayPatriarchTickDialog( self );
+    }
+
+    SetTimer( TickDialogInterval, false, nameOf(Timer_TickPatriarchDialog) );
+}
+
 /** Play music for this boss (overridden for each boss) */
 function PlayBossMusic()
 {
@@ -1750,15 +1817,18 @@ defaultproperties
 
     // ---------------------------------------------
     // Content
+    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Patriarch_ARCH.ZED_Patriarch_Archetype'
+    PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
+
 	CloakedBodyMaterial=MaterialInstanceConstant'ZED_Patriarch_MAT.ZED_Patriarch_Mech_Cloak_M'
 	CloakedBodyAltMaterial=MaterialInstanceConstant'ZED_Patriarch_MAT.ZED_Patriarch_Cloak_M'
 	SpottedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Visible_MAT'
 	BodyMaterial=MaterialInstanceConstant'ZED_Patriarch_MAT.ZED_Patriarch_Mech_M'
 	BodyAltMaterial=MaterialInstanceConstant'ZED_Patriarch_MAT.ZED_Patriarch_M'
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Patriarch_ARCH.ZED_Patriarch_Archetype'
-    PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
+
     HeavyBumpDamageType=class'KFGameContent.KFDT_HeavyZedBump'
     TentacleDamageType=class'KFDT_Slashing_PatTentacle'
+	DifficultySettings=class'KFDifficulty_Patriarch'
 
     // FX
 	CloakFX=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_Cloaking_01'
@@ -1912,12 +1982,13 @@ defaultproperties
         SpecialMoveClasses(SM_GrappleAttack)=class'KFSM_Patriarch_Grapple'
 		SpecialMoveClasses(SM_StandAndShootAttack)=class'KFSM_Patriarch_MissileAttack'
 		SpecialMoveClasses(SM_SonicAttack)=class'KFSM_Patriarch_MortarAttack'
+		SpecialMoveClasses(SM_Block)=class'KFSM_Block'
 	End Object
 
     // for reference: Vulnerability=(default, head, legs, arms, special)
     IncapSettings(AF_Stun)=		(Vulnerability=(0.1, 0.55, 0.1, 0.1, 0.55), Cooldown=17.0, Duration=1.0)   // 0.5, 0.55, 0.5, 0.4, 0.55
     IncapSettings(AF_Knockdown)=(Vulnerability=(0.1, 0.4, 0.1, 0.1, 0.25),  Cooldown=20.0)                 // 0.2, 0.2, 0.4, 0.2, 0.25
-    IncapSettings(AF_Stumble)=  (Vulnerability=(0.1, 0.3, 0.1, 0.1, 0.4),   Cooldown=8.0)                  // 0.2, 0.2, 0.2, 0.2, 0.4
+    IncapSettings(AF_Stumble)=  (Vulnerability=(0.1, 0.3, 0.1, 0.1, 0.4),   Cooldown=10.0)                  // 0.2, 0.2, 0.2, 0.2, 0.4
     IncapSettings(AF_GunHit)=	(Vulnerability=(0.1, 0.1, 0.1, 0.1, 0.5),   Cooldown=1.7)                  // 0.1, 0.1, 0.1, 0.1, 0.5
     IncapSettings(AF_MeleeHit)=	(Vulnerability=(0.1, 0.95, 0.1, 0.1, 0.75), Cooldown=2.0)                  //1.0
     IncapSettings(AF_Poison)=	(Vulnerability=(0))
@@ -1925,6 +1996,7 @@ defaultproperties
     IncapSettings(AF_FirePanic)=(Vulnerability=(0.65),                      Cooldown=15.0, Duration=1.2)
     IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                      Cooldown=10.0, Duration=2.2)
     IncapSettings(AF_Freeze)=   (Vulnerability=(0.95),                      Cooldown=10.0, Duration=1.0)
+    IncapSettings(AF_Snare)=    (Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0),   Cooldown=10.5, Duration=3.0)
 
 	Begin Object Class=Name=Afflictions_0
 		FireFullyCharredDuration=50.f
@@ -1982,10 +2054,11 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.9)))  //0.5  //1.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.4)))  //0.6  0.5
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.5)))
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.5)))	
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.05)))	
 
-    //special case
-
+	// ---------------------------------------------
+	// Block Settings
+	MinBlockFOV=0.1f
 
 	// Penetration
     PenetrationResistance=4.0
@@ -2047,7 +2120,7 @@ defaultproperties
 	SummonWaves(1)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_Three')
 	SummonWaves(2)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_Three')
 	SummonWaves(3)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Three')
-	NumMinionsToSpawn=10
+	NumMinionsToSpawn=(X=6, Y=10)
 
 	BattlePhases(0)={(bAllowedToSprint=true,
 					  SprintCooldownTime=3.f,
@@ -2059,6 +2132,7 @@ defaultproperties
 					  bCanChargeAttack=true,
 					  ChargeAttackCooldownTime=14.f,
 					  MinigunAttackCooldownTime=2.25f,
+					  bCanMoveWhenMinigunning={(false, false, false, false)}, // Normal,Hard,Suicidal,HoE
 					  HealAmounts={(0.75f, 0.85f, 0.95f, 0.99f)}, // Normal,Hard,Suicidal,HoE
 					  bCanSummonMinions=true)}
 	BattlePhases(1)={(bAllowedToSprint=true,
@@ -2073,6 +2147,7 @@ defaultproperties
 					  bCanChargeAttack=true,
 					  ChargeAttackCooldownTime=10.f,
 					  MinigunAttackCooldownTime=2.0f,
+					  bCanMoveWhenMinigunning={(false, false, false, true)}, // Normal,Hard,Suicidal,HoE
 					  HealAmounts={(0.65f, 0.75f, 0.85f, 0.95f)}, // Normal,Hard,Suicidal,HoE
 					  MaxRageAttacks=4,
 					  bCanSummonMinions=true)}
@@ -2089,6 +2164,7 @@ defaultproperties
 					  bCanChargeAttack=true,
 					  ChargeAttackCooldownTime=9.f,
 					  MinigunAttackCooldownTime=1.75f,
+					  bCanMoveWhenMinigunning={(false, false, true, true)}, // Normal,Hard,Suicidal,HoE
 					  HealAmounts={(0.55f, 0.65f, 0.75f, 0.85f)}, // Normal,Hard,Suicidal,HoE
 					  MaxRageAttacks=5,
 					  bCanSummonMinions=true)}
@@ -2105,6 +2181,7 @@ defaultproperties
 					  bCanChargeAttack=true,
 					  ChargeAttackCooldownTime=7.f,
 					  MinigunAttackCooldownTime=1.25f,
+					  bCanMoveWhenMinigunning={(false, true, true, true)}, // Normal,Hard,Suicidal,HoE
 					  MaxRageAttacks=6,
 					  bCanSummonMinions=false)}
 
@@ -2113,6 +2190,8 @@ defaultproperties
     MinSpawnSquadSizeType=EST_Boss
 	LastFXBattlePhase=1
 	CurrentBattlePhase=1
+
+	TickDialogInterval=0.5f
 
 	OnDeathAchievementID=KFACHID_QuickOnTheTrigger
 }

@@ -22,13 +22,14 @@ package tripwire.controls
         
         public var hitbox2:MovieClip;
         
-        public const hitboxZ:int = 32;
+        public const hitboxZ:int = 0;
         
         public function CategoryButton()
         {
             super();
             doAnimations = true;
             TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
+            overSoundEffect = "TITLE_BUTTON_ROLLOVER";
         }
         
         public function get infoString() : String

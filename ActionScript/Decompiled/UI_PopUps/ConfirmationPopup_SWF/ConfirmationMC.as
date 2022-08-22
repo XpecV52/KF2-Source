@@ -9,9 +9,33 @@ package
         public function ConfirmationMC()
         {
             super();
+            this.__setProp_promptsContainer_ConfirmationMC_Prompts_0();
             this.__setProp_middleButton_ConfirmationMC_SecondFunctionbutton_0();
             this.__setProp_leftButton_ConfirmationMC_AcceptButton_0();
             this.__setProp_rightButton_ConfirmationMC_AcceptButton_0();
+        }
+        
+        function __setProp_promptsContainer_ConfirmationMC_Prompts_0() : *
+        {
+            try
+            {
+                promptsContainer["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            promptsContainer.bUseWidthForBoundry = true;
+            promptsContainer.enabled = true;
+            promptsContainer.enableInitCallback = false;
+            promptsContainer.promptSpacing = 32;
+            promptsContainer.visible = true;
+            try
+            {
+                promptsContainer["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
         }
         
         function __setProp_middleButton_ConfirmationMC_SecondFunctionbutton_0() : *
@@ -28,7 +52,7 @@ package
             middleButton.data = "";
             middleButton.enabled = true;
             middleButton.enableInitCallback = false;
-            middleButton.focusable = true;
+            middleButton.focusable = false;
             middleButton.label = "Middle Text";
             middleButton.selected = false;
             middleButton.toggle = false;
@@ -56,7 +80,7 @@ package
             leftButton.data = "";
             leftButton.enabled = true;
             leftButton.enableInitCallback = false;
-            leftButton.focusable = true;
+            leftButton.focusable = false;
             leftButton.label = "LeftText";
             leftButton.selected = false;
             leftButton.toggle = false;
@@ -84,7 +108,7 @@ package
             rightButton.data = "";
             rightButton.enabled = true;
             rightButton.enableInitCallback = false;
-            rightButton.focusable = true;
+            rightButton.focusable = false;
             rightButton.label = "Right Text";
             rightButton.selected = false;
             rightButton.toggle = false;

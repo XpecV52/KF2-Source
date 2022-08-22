@@ -79,10 +79,13 @@ package tripwire.widgets
         
         public function set bUsingGamepad(param1:Boolean) : void
         {
-            this.aIcon.visible = param1;
-            this.bIcon.visible = param1;
-            this.yesKeyText.visible = !param1;
-            this.noKeyText.visible = !param1;
+            if(this._bChoicesVisible)
+            {
+                this.aIcon.visible = param1;
+                this.bIcon.visible = param1;
+                this.yesKeyText.visible = !param1;
+                this.noKeyText.visible = !param1;
+            }
         }
         
         public function set localizedText(param1:Object) : void

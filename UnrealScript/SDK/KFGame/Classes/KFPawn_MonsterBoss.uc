@@ -33,7 +33,7 @@ struct native BossMinionWaveInfo
 var	BossMinionWaveInfo				SummonWaves[4];
 
 /** The base amount of minions to spawn when boss goes into hunt and heal mode */
-var             int                 NumMinionsToSpawn;
+var             vector2D                 NumMinionsToSpawn;
 
 /** The current phase of the battle we're in */
 var repnotify   int 				CurrentBattlePhase;
@@ -46,6 +46,24 @@ var 			Name 				TheatricCameraSocketName;
 
 /** The relative offset to use for the cinematic camera */
 var 			vector 				TheatricCameraAnimOffset;
+
+/** Scalar to apply to attack range when there is only one player remaining in a multiplayer game */
+var 			float				LastPlayerAliveAttackRangeScale;
+
+/** Set when the speed increase timer detects that there is only one player left */
+var protected 	float 				LastPlayerAliveStartTime;
+
+/** How long after spawn before the boss starts to increase its speed */
+var protected const float			TimeUntilSpeedIncrease;
+
+/** How high the speed limit can go */
+var protected const float 			SpeedLimitScalar;
+
+/** How much to increase the sprint speed by (per minute) when the speed increase timer elapses */
+var protected const	float 			SpeedPctIncreasePerMinute;
+
+/** The final sprint speed after being modified by SetMonsterDefaults() */
+var protected 	float 				ActualSprintSpeed;
 
 replication
 {
@@ -81,10 +99,14 @@ simulated event PreBeginPlay()
 }
 
 // Mostly indistinguishable from PreBeginPlay().  Following Pawn conventions only one is 'simulated'
-event PostBeginPlay()
+simulated event PostBeginPlay()
 {
 	Super.PostBeginPlay();
-	`AnalyticsLog(("boss_spawn", None, Class.Name));
+
+	if( WorldInfo.NetMode != NM_Client )
+	{
+		`AnalyticsLog(("boss_spawn", None, Class.Name));
+	}
 }
 
 /** Called from Possessed event when this controller has taken control of a Pawn */
@@ -93,6 +115,42 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	Super.PossessedBy( C, bVehicleTransition );
 
 	PlayBossMusic();
+
+	// Set a timer to begin increasing this boss's speed after enough time has elapsed
+	if( !IsHumanControlled() )
+	{
+		ActualSprintSpeed = SprintSpeed;
+		SetTimer( TimeUntilSpeedIncrease, false, nameOf(Timer_IncreaseSpeed) );
+	}
+}
+
+/** Gradually increases sprint speed */
+function Timer_IncreaseSpeed()
+{
+	SetTimer( 10.f, false, nameOf(Timer_IncreaseSpeed) );
+
+	if( IsOnePlayerLeftInTeamGame() )
+	{
+		if( LastPlayerAliveStartTime == 0.f )
+		{
+			LastPlayerAliveStartTime = WorldInfo.TimeSeconds;
+		}
+
+		// Adjust sprint speed but don't let it go below original or higher than 2x
+		SprintSpeed = fClamp( ActualSprintSpeed + ((`TimeSince(LastPlayerAliveStartTime) / 60.f) 
+						* (ActualSprintSpeed * SpeedPctIncreasePerMinute)), ActualSprintSpeed, ActualSprintSpeed * SpeedLimitScalar );
+	}
+	else
+	{
+		LastPlayerAliveStartTime = 0.f;
+		SprintSpeed = ActualSprintSpeed;
+	}
+}
+
+/** Returns the number of minions to spawn based on number of players */
+function byte GetNumMinionsToSpawn()
+{
+	return byte( Lerp(NumMinionsToSpawn.X, NumMinionsToSpawn.Y, fMax(WorldInfo.Game.NumPlayers, 1)/float(WorldInfo.Game.MaxPlayers)) );
 }
 
 /** sends any notifications to anything that needs to know this pawn has taken damage */
@@ -126,7 +184,7 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
     super.PlayDying( DamageType, HitLoc );
 
 	//@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
-	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(BossName, class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(WorldInfo.GetMapName(true)).DisplayName);
+	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(string(Class.Name), BossName, class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(WorldInfo.GetMapName(true)).DisplayName);
 	//@HSL_END
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
@@ -172,15 +230,91 @@ simulated function OnBattlePhaseChanged()
 
 simulated function UpdateBattlePhaseOnLocalPlayerUI()
 {
-	if(!KFPC.IsLocalController())
-    {
-        return;
-    }
-    if(KFPC != none && KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.bossHealthBar != none)
-    {
-        KFPC.MyGFxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);   
-    }
+	if( KFPC == none || KFPC.MyGFxHUD == none || KFPC.MyGFxHUD.bossHealthBar == none )
+	{
+		return;
+	}
+
+    KFPC.MyGFxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);   
 }
+
+/** Called from AICommand_MoveToGoal::NotifyHitWall() and AICommand_MoveToGoal::ReachedIntermediateMoveGoal() */
+function bool HandleAIDoorBump( KFDoorActor Door )
+{
+	return TryDestroyDoor( Door );
+}
+
+/** Destroy unwelded doors instantly when there are few players remaining */
+function bool TryDestroyDoor( KFDoorActor Door )
+{
+	if( Door != none && !Door.bIsDoorOpen && !Door.bIsDestroyed && Door.WeldIntegrity == 0 && CanObliterateDoors() )
+	{
+		Door.IncrementHitCount( self );
+		Door.DestroyDoor( Controller );
+		return true;
+	}
+
+	return false;
+}
+
+/** If we're a player, process hitwall and destroy doors here if all conditions are met */
+event HitWall( vector HitNormal, actor Wall, PrimitiveComponent WallComp )
+{
+	local KFDoorActor Door;
+
+	if( IsHumanControlled() )
+	{
+		if( !Wall.bStatic && IsAliveAndWell() )
+		{
+			Door = KFDoorActor( Wall );
+			if( Door != none )
+			{
+				TryDestroyDoor( Door );
+			}
+		}
+	}
+
+	super.HitWall( HitNormal, Wall, WallComp );
+}
+
+/** Determines if this boss can plow through doors */
+function bool CanObliterateDoors()
+{
+	// We only want the kool-aid man effect if we're sprinting
+	if( !bIsSprinting )
+	{
+		return false;
+	}
+
+	// Only allow door obliteration if there is one player remaining in a multiplayer game
+	return true;//IsOnePlayerLeftInTeamGame();
+}
+
+/** Returns the attack range scalar when there is only one player remaining */
+function float GetAttackRangeScale()
+{
+	if( IsOnePlayerLeftInTeamGame() )
+	{
+		return LastPlayerAliveAttackRangeScale;
+	}
+
+	return 1.f;
+}
+
+/** Returns true if there is only one player remaining in a multiplayer game */
+function bool IsOnePlayerLeftInTeamGame()
+{
+
+	if( WorldInfo.Game.NumPlayers > 1 )
+	{
+		return KFGameInfo(WorldInfo.Game).GetLivingPlayerCount() == 1;
+	}
+
+	return false;
+}
+
+/** Similar to IsOnePlayerLeftInTeamGame(), but more expensive and can be called on clients */
+native function bool LocalIsOnePlayerLeftInTeamGame();
 
 /************************************
  * @name	Ephemeral Stats Tracking
@@ -200,6 +334,8 @@ function bool Died( Controller Killer, class<DamageType> DamageType, vector HitL
 	{
 		KFGameInfo(WorldInfo.Game).BossDied(Killer);
 	}
+
+	ClearTimer( nameOf(Timer_IncreaseSpeed) );
 
 	return result;
 }
@@ -271,4 +407,11 @@ defaultproperties
     MinSpawnSquadSizeType=EST_Boss
 
     bWeakZedGrab=false
+
+	// ---------------------------------------------
+	// Last Player Remaining Difficulty
+	LastPlayerAliveAttackRangeScale=0.75f
+	TimeUntilSpeedIncrease=60.0
+	SpeedPctIncreasePerMinute=0.20
+	SpeedLimitScalar=1.30
 }

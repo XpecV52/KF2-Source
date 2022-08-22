@@ -10,8 +10,9 @@
 
 class KFGameViewportClient extends GameViewportClient
 	native(UI);
-
-
+var array<string> TripWireOfficialMaps;
+var array<string> CommunityOfficialMaps;
+var LinearColor BackgroundColor;
 /** The message that the front ends pop up will display if there is a connection issue */
 var string ErrorTitle;
 var string ErrorMessage;
@@ -19,11 +20,16 @@ var string ErrorMessage;
 var string LastConnectionAttemptAddress;
 
 var localized array<string> RandomLoadingStrings;
+var localized string OfficialCommunityString;
+var localized string TripWireOfficialString;
+var localized string CommunityCustomString;
 var FONT MessageFont;
 var float FontScale;
 
 /** Keep track of whether we have seen the Initial Interaction Screen. */
 var bool bSeenIIS;
+var bool bNeedDisconnectMessage;
+var bool bNeedSignoutMessage;
 
 // (cpptext)
 // (cpptext)
@@ -89,8 +95,12 @@ function string GetRandomLoadingMessage()
  */
 function DrawTransitionMessage(Canvas Canvas,string Message)
 {
+	local String MapName;
+
 	FontScale = float(Canvas.SizeY) / float(1080);
 
+	MapName = KFGameEngine(Class'Engine'.static.GetEngine()).TransitionDescription;
+	DrawMapInfo(Canvas, MapName);
 	Class'Engine'.static.AddOverlay(MessageFont, message, 0.15, 0.85, FontScale, FontScale, true);
 	
 
@@ -100,8 +110,67 @@ function DrawTransitionMessage(Canvas Canvas,string Message)
 	Super.DrawTransitionMessage(Canvas, Message);
 }
 
+function DrawMapInfo(Canvas Canvas, String MapName)
+{
+	local KFMapSummary MapData;
+	local String GameModeString;
+	local array<string> GamemModeStringArray;
+
+	ParseStringIntoArray(KFGameEngine(Class'Engine'.static.GetEngine()).TransitionGameType, GamemModeStringArray, ".", true);
+
+	if(Caps(GamemModeStringArray[0]) == Caps("KFGameContent"))
+	{
+		GameModeString = Localize(GamemModeStringArray[1], "GameName", "KFGameContent" );
+	}
+	else
+	{
+		GameModeString = GamemModeStringArray[1];
+	}
+
+	MapData = class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
+	if ( MapData == none )
+	{
+		MapData = class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName("KF-Default");
+    }
+    if(MapData.DisplayName != "")
+    {
+    	Class'Engine'.static.AddOverlay(MessageFont, Class'KFCommon_LocalizedStrings'.default.LoadingString, 0.12, 0.12, FontScale, FontScale, false);
+		Class'Engine'.static.AddOverlay(MessageFont, MapData.DisplayName@"-"@GetAssociationIdentifier(MapData), 0.135, 0.15, FontScale, FontScale, false);
+		Class'Engine'.static.AddOverlay(MessageFont, GameModeString, 0.135, 0.18, FontScale, FontScale, false);
+    }
+}
+
+function string GetAssociationIdentifier(KFMapSummary MapData)
+{
+	switch (MapData.MapAssociation)
+	{
+				
+		case EAI_OfficialCustom:
+			return OfficialCommunityString;
+		case EAI_TripwireOfficial:
+			return TripWireOfficialString;
+		case EAI_Custom:
+			return CommunityCustomString;
+		default:
+			return CommunityCustomString;
+	}
+}
+
 defaultproperties
 {
+   TripWireOfficialMaps(0)="KF-BioticsLab"
+   TripWireOfficialMaps(1)="KF-BlackForest"
+   TripWireOfficialMaps(2)="KF-BurningParis"
+   TripWireOfficialMaps(3)="KF-Catacombs"
+   TripWireOfficialMaps(4)="KF-EvacuationPoint"
+   TripWireOfficialMaps(5)="KF-Farmhouse"
+   TripWireOfficialMaps(6)="KF-VolterManor"
+   TripWireOfficialMaps(7)="KF-Outpost"
+   TripWireOfficialMaps(8)="KF-Prison"
+   CommunityOfficialMaps(0)="KF-ContainmentStation"
+   CommunityOfficialMaps(1)="KF-HostileGrounds"
+   CommunityOfficialMaps(2)="KF-InfernalRealm"
+   BackgroundColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000)
    RandomLoadingStrings(0)="The fleshpound is vulnerable to explosives but resistant to bullets."
    RandomLoadingStrings(1)="The scrake is resistant to explosives but vulnerable to bullets."
    RandomLoadingStrings(2)="You can only carry a limited amount of weight. Sell weaker weapons to make room for better ones."
@@ -113,7 +182,7 @@ defaultproperties
    RandomLoadingStrings(8)="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
    RandomLoadingStrings(9)="Stick together. Getting singled out decreases your chances of survival if things get hairy."
    RandomLoadingStrings(10)="Players can use the syringe to heal themselves as well as their teammates."
-   RandomLoadingStrings(11)="Welding doors can hold Zeds back. Doors do not come back once destroyed."
+   RandomLoadingStrings(11)="Welding doors can hold Zeds back, but they can evenutally break them down."
    RandomLoadingStrings(12)="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
    RandomLoadingStrings(13)="Got some extra dosh? Drop some for your team; they may return the favor."
    RandomLoadingStrings(14)="Choose your targets. Different weapons are more or less effective against different types of Zeds."
@@ -124,7 +193,7 @@ defaultproperties
    RandomLoadingStrings(19)="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
    RandomLoadingStrings(20)="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
    RandomLoadingStrings(21)="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
-   RandomLoadingStrings(22)="Melee attacks are directional based on your movement. Forward = overhead, side = swipe, and back = uppercut."
+   RandomLoadingStrings(22)="Melee attacks are directional based on your movement."
    RandomLoadingStrings(23)="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
    RandomLoadingStrings(24)="Don't get close to even the weakest Zeds; they can grab you and hold on until their bigger friends arrive."
    RandomLoadingStrings(25)="Want Medic XP and some dosh? Heal your team -- both parties benefit!"
@@ -136,13 +205,16 @@ defaultproperties
    RandomLoadingStrings(31)="Always make sure you have a way out. Getting boxed in is a sure way to take a dirt nap."
    RandomLoadingStrings(32)="Armor is your friend. You can never go wrong getting more armor."
    RandomLoadingStrings(33)="Fire is a great way to keep Zeds away from you. Fire alone takes awhile to kill Zeds, but it keeps them occupied."
-   RandomLoadingStrings(34)="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective.  Run!"
+   RandomLoadingStrings(34)="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective. Run!"
    RandomLoadingStrings(35)="Lighting Zeds on fire can cause them to panic. Time to play everyone's favorite game: Oh my god, I'm on fire!"
    RandomLoadingStrings(36)="Submachine guns have a high chance to cause targets to stumble, allowing you to keep them at a distance."
    RandomLoadingStrings(37)="The rail gun can fire through multiple Zeds if you line them up right."
    RandomLoadingStrings(38)="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."
    RandomLoadingStrings(39)="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
    RandomLoadingStrings(40)="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
+   OfficialCommunityString="Official Community Map"
+   TripWireOfficialString="Tripwire Official Map"
+   CommunityCustomString="Community Custom Map"
    MessageFont=Font'UI_Canvas_Fonts.Font_Main'
    FontScale=1.000000
    Name="Default__KFGameViewportClient"

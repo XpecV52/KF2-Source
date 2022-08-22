@@ -90,6 +90,8 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking)
 	{
 		if(MemberSlots[i].PlayerUID == KFPRI.UniqueId)
 		{
+			// TODO:  Right now we are using VOIPStatus to determine if someone is talking.  This does not take into account if we SHOULD show that someone is talking 
+			// (i.e. Player 1 mutes Player 2.  Right now Player 2 can see that Player 1 is still talking. )
 			MemberSlots[i].MemberSlotObject.SetBool("isTalking", bIsTalking);
 		}
 	}
@@ -167,8 +169,10 @@ function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
 	local class<KFPerk> CurrentPerkClass;
 	local byte CurrentPerkLevel;
 	local KFGameReplicationInfo KFGRI;
+	local PlayerController PC;
 
-	KFGRI = KFGameReplicationInfo( GetPC().WorldInfo.GRI );
+	PC = GetPC();
+	KFGRI = KFGameReplicationInfo( PC.WorldInfo.GRI );
 
 	if(KFPC.CurrentPerk == none || KFPRI.CurrentPerkClass == none)
 	{
@@ -199,7 +203,12 @@ function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
 		PlayerID = KFPRI.UniqueId;
 		MemberSlots[SlotIndex].PlayerUID = PlayerID;
 		MemberSlots[SlotIndex].PRI = KFPRI;
-		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
+
+		if( OnlineLobby != none )
+		{
+			OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
+		}
+
 		if ( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
 		{
 			// Console check to make sure we aren't in a solo game
@@ -222,6 +231,8 @@ function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
 
 		// Update the players slot
 		SlotChanged( SlotIndex, true, bIsMyPlayer, bIsLeader );
+		// Update the muted state of this slotobject.
+		MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted", PC.IsPlayerMuted(PlayerID) );
  	}
 	// E3 build force update of player name
 	else if( class'WorldInfo'.static.IsE3Build() )
@@ -263,12 +274,21 @@ function ToggelMuteOnPlayer(int SlotIndex)
 		PlayerNetID = KFPRIArray[SlotIndex].UniqueId;
 		if(PC.IsPlayerMuted(PlayerNetID))
 		{
-			PC.ServerUnMutePlayer(PlayerNetID);
+			PC.ServerUnMutePlayer(PlayerNetID, !class'WorldInfo'.static.IsConsoleBuild()); //@HSL - JRO - 8/2/2016 - 1-way muting on consoles
+			if ( MemberSlots[SlotIndex].MemberSlotObject != None )
+			{
+				MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted",false);
+			}
 		}
 		else
 		{
-			PC.ServerMutePlayer(PlayerNetID);	
-		}		
+			PC.ServerMutePlayer(PlayerNetID, !class'WorldInfo'.static.IsConsoleBuild()); //@HSL - JRO - 8/2/2016 - 1-way muting on consoles
+			if ( MemberSlots[SlotIndex].MemberSlotObject != None )
+			{
+				MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted",true);
+			}	
+		}
+		CreatePlayerOptions(PlayerNetID,SlotIndex);		
 	}
 }
 

@@ -12,14 +12,6 @@ class KFDT_Dart_Toxic extends KFDT_Toxic
 	abstract
 	hidedropdown;
 
-/** If true, damage zeds when the acidic compund perk is active 
-  * Completely overrides super 
-  */
-static function bool IsToxicDartWithACMedicPerk()
-{
-	return true;
-}
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Healer'

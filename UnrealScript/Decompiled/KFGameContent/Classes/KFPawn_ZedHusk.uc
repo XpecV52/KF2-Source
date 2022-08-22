@@ -11,14 +11,42 @@ class KFPawn_ZedHusk extends KFPawn_Monster
 
 const BackpackZoneIndex = 3;
 
-var const class<KFProjectile> FireballClass;
+struct sHuskFireballSettings
+{
+    var bool bSpawnGroundFire;
+    var float ExplosionMomentum;
+
+    structdefaultproperties
+    {
+        bSpawnGroundFire=false
+        ExplosionMomentum=0
+    }
+};
+
+var const class<KFProj_Husk_Fireball> FireballClass;
+var transient sHuskFireballSettings FireballSettings;
 var Vector PlayerFireOffset;
 var KFGameExplosion ExplosionTemplate;
 var transient bool bHasExploded;
 
+function PossessedBy(Controller C, bool bVehicleTransition)
+{
+    local KFGameReplicationInfo KFGRI;
+
+    super.PossessedBy(C, bVehicleTransition);
+    if(!bVersusZed)
+    {
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+        if(KFGRI != none)
+        {
+            FireballSettings = class<KFDifficulty_Husk>(DifficultySettings).static.GetFireballSettings(self, KFGRI);
+        }
+    }
+}
+
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(IsDoingSpecialMove(19))
+    if(IsDoingSpecialMove(21))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -26,7 +54,7 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 
 simulated function ANIMNOTIFY_FlameThrowerOff()
 {
-    if(IsDoingSpecialMove(19))
+    if(IsDoingSpecialMove(21))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOffFlamethrower();
     }
@@ -81,7 +109,7 @@ function ANIMNOTIFY_WarnZedsOfFireball()
             if(HitMonster.MyKFAIC != none)
             {
                 PointDistToLine(HitMonster.Location, AimDirection, Location, DangerPoint);
-                HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint);
+                HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint, Location);
             }            
         }        
     }
@@ -90,6 +118,7 @@ function ANIMNOTIFY_WarnZedsOfFireball()
 function ANIMNOTIFY_HuskFireballAttack()
 {
     local KFAIController_ZedHusk HuskAIC;
+    local KFSM_Husk_FireBallAttack FireballSM;
 
     if(MyKFAIC != none)
     {
@@ -97,6 +126,11 @@ function ANIMNOTIFY_HuskFireballAttack()
         if(HuskAIC != none)
         {
             HuskAIC.ShootFireball(FireballClass);
+        }
+        FireballSM = KFSM_Husk_FireBallAttack(SpecialMoves[SpecialMove]);
+        if(FireballSM != none)
+        {
+            FireballSM.NotifyFireballFired();
         }
     }
 }
@@ -121,7 +155,7 @@ simulated event Vector GetWeaponStartTraceLocation(optional Weapon CurrentWeapon
 
 simulated function TerminateEffectsOnDeath()
 {
-    if(IsDoingSpecialMove(19))
+    if(IsDoingSpecialMove(21))
     {
         SpecialMoveHandler.EndSpecialMove();
     }
@@ -193,7 +227,7 @@ simulated function OnExploded(Controller SuicideController);
 function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
     super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
-    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(20))
+    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(22))
     {
         InDamage = 10000;
     }
@@ -227,7 +261,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
 function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
 {
     super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
-    if(bEmpDisrupted && IsDoingSpecialMove(20))
+    if(bEmpDisrupted && IsDoingSpecialMove(22))
     {
         Died(InstigatedBy, DamageType, HitLocation);
     }
@@ -242,7 +276,7 @@ function OnStackingAfflictionChanged(byte Id)
     }
     if(bEmpDisrupted)
     {
-        if(IsDoingSpecialMove(18) || IsDoingSpecialMove(19))
+        if(IsDoingSpecialMove(20) || IsDoingSpecialMove(21))
         {
             EndSpecialMove();
         }
@@ -287,6 +321,7 @@ defaultproperties
     XPValues[3]=31
     WeakSpotSocketNames=/* Array type was not detected. */
     DamageTypeModifiers=/* Array type was not detected. */
+    DifficultySettings=Class'KFDifficulty_Husk'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

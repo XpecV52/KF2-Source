@@ -26,7 +26,7 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
 
     if(I < NumPellets[CurrentFireMode])
     {
-        super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot)));
+        super.SpawnProjectile(KFProjClass, RealStartLoc, vector(Class'KFWeap_ShotgunBase'.static.AddMultiShotSpread(AimRot, Spread[CurrentFireMode])));
         ++ I;
         goto J0x58;
     }
@@ -36,25 +36,6 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
 simulated function Rotator AddSpread(Rotator BaseAim)
 {
     return BaseAim;
-}
-
-simulated function Rotator AddMultiShotSpread(Rotator BaseAim)
-{
-    local Vector X, Y, Z;
-    local float CurrentSpread, RandY, RandZ;
-
-    CurrentSpread = Spread[CurrentFireMode];
-    if(CurrentSpread == float(0))
-    {
-        return BaseAim;        
-    }
-    else
-    {
-        GetAxes(BaseAim, X, Y, Z);
-        RandY = FRand() - 0.5;
-        RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
-        return rotator((X + ((RandY * CurrentSpread) * Y)) + ((RandZ * CurrentSpread) * Z));
-    }
 }
 
 function HandleWeaponShotTaken(byte FireMode)
@@ -88,8 +69,7 @@ defaultproperties
 {
     NumPellets(0)=6
     NumPellets(1)=1
-    HealAmount=30
-    HealAmmoCost=40
+    HealAmount=15
     HealFullRechargeSeconds=12
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
@@ -106,7 +86,8 @@ defaultproperties
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-    MaxSpareAmmo=80
+    AmmoCost=/* Array type was not detected. */
+    SpareAmmoCapacity=80
     InitialSpareMags=3
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

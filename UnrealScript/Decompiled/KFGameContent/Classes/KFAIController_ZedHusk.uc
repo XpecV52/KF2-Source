@@ -64,19 +64,19 @@ event PostBeginPlay()
             bCanUseFlameThrower = true;
         }
     }
-    if(Skill == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
+    if(Skill == Class'KFGameDifficultyInfo'.static.GetDifficultyValue(0))
     {
         BaseTimeBetweenFireBalls = FireballFireIntervalNormal;        
     }
     else
     {
-        if(Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(1))
+        if(Skill <= Class'KFGameDifficultyInfo'.static.GetDifficultyValue(1))
         {
             BaseTimeBetweenFireBalls = FireballFireIntervalHard;            
         }
         else
         {
-            if(Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(2))
+            if(Skill <= Class'KFGameDifficultyInfo'.static.GetDifficultyValue(2))
             {
                 BaseTimeBetweenFireBalls = FireballFireIntervalSuicidal;                
             }
@@ -152,7 +152,7 @@ function bool IsSuicidal()
 
 function bool CanDoSuicide(float DistToTargetSq)
 {
-    if((DistToTargetSq <= (MinDistanceToSuicide * MinDistanceToSuicide)) && MyKFPawn.CanDoSpecialMove(20))
+    if((DistToTargetSq <= (MinDistanceToSuicide * MinDistanceToSuicide)) && MyKFPawn.CanDoSpecialMove(22))
     {
         return true;
     }
@@ -165,7 +165,7 @@ function bool CanDoFlamethrower(float DistToTargetSq)
     {
         return false;
     }
-    if(((bCanUseFlameThrower && (LastFlameThrowerTime == float(0)) || (WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(19))
+    if(((bCanUseFlameThrower && (LastFlameThrowerTime == float(0)) || (WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(21))
     {
         return true;
     }
@@ -178,7 +178,7 @@ function bool CanDoFireball(float DistToTargetSq)
     {
         return false;
     }
-    if((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq <= float(MaxDistanceForFireBall * MaxDistanceForFireBall)) && MyKFPawn.CanDoSpecialMove(18))
+    if((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq <= float(MaxDistanceForFireBall * MaxDistanceForFireBall)) && MyKFPawn.CanDoSpecialMove(20))
     {
         return true;
     }
@@ -187,7 +187,7 @@ function bool CanDoFireball(float DistToTargetSq)
 
 event bool SetEnemy(Pawn NewEnemy)
 {
-    if((MyKFPawn == none) || MyKFPawn.IsDoingSpecialMove(18))
+    if((MyKFPawn == none) || MyKFPawn.IsDoingSpecialMove(20))
     {
         if(MyKFPawn.NeedToTurn(NewEnemy.Location))
         {
@@ -219,10 +219,10 @@ function DoStrike()
     super.DoStrike();
 }
 
-function ShootFireball(class<KFProjectile> FireballClass)
+function ShootFireball(class<KFProj_Husk_Fireball> FireballClass)
 {
     local Vector SocketLocation, DirToEnemy, HitLocation, HitNormal;
-    local KFProjectile MyFireball;
+    local KFProj_Husk_Fireball MyFireball;
     local Actor HitActor;
     local Vector AimLocation, GroundAimLocation;
     local float SplashAimChance;
@@ -230,6 +230,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
     local float randDraw;
     local Vector displacementToHitLoc;
     local float distanceToHitLoc;
+    local KFPawn_ZedHusk MyHuskPawn;
 
     if(MyKFPawn == none)
     {
@@ -241,22 +242,22 @@ function ShootFireball(class<KFProjectile> FireballClass)
         return;
     }
     SocketLocation = MyKFPawn.GetPawnViewLocation() + (FireOffset >> Pawn.GetViewRotation());
-    if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(18))
+    if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(20))
     {
         AimLocation = Enemy.Location;
-        if(Skill == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
+        if(Skill == Class'KFGameDifficultyInfo'.static.GetDifficultyValue(0))
         {
             SplashAimChance = SplashAimChanceNormal;            
         }
         else
         {
-            if(Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(1))
+            if(Skill <= Class'KFGameDifficultyInfo'.static.GetDifficultyValue(1))
             {
                 SplashAimChance = SplashAimChanceHard;                
             }
             else
             {
-                if(Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(2))
+                if(Skill <= Class'KFGameDifficultyInfo'.static.GetDifficultyValue(2))
                 {
                     SplashAimChance = SplashAimChanceSuicidal;                    
                 }
@@ -312,7 +313,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
                 {
                     self.AILog_Internal(((((((string(GetFuncName()) @ " HitActor: ") @ string(HitActor)) @ " Is NOT My Enemy: ") @ string(Enemy)) @ " and distanceToHitLoc: ") @ string(distanceToHitLoc)) @ " is too close so not firing!!!", 'FireBall');
                 }
-                MyKFPawn.SpecialMoves[18].AbortedByAICommand();
+                MyKFPawn.SpecialMoves[20].AbortedByAICommand();
                 LastFireBallTime = WorldInfo.TimeSeconds;
                 return;                
             }
@@ -326,11 +327,14 @@ function ShootFireball(class<KFProjectile> FireballClass)
                 }
             }
         }
+        MyHuskPawn = KFPawn_ZedHusk(MyKFPawn);
         MyFireball = Spawn(FireballClass, MyKFPawn,, SocketLocation, rotator(DirToEnemy));
         MyFireball.Instigator = MyKFPawn;
         MyFireball.InstigatorController = self;
         MyFireball.Speed = FireballSpeed;
         MyFireball.MaxSpeed = FireballSpeed;
+        MyFireball.ExplosionTemplate.MomentumTransferScale = MyHuskPawn.FireballSettings.ExplosionMomentum;
+        MyFireball.bSpawnGroundFire = MyHuskPawn.FireballSettings.bSpawnGroundFire;
         MyFireball.Init(DirToEnemy);
         LastFireBallTime = WorldInfo.TimeSeconds;
     }

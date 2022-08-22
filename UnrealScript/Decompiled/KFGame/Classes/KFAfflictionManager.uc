@@ -39,6 +39,7 @@ enum EAfflictionType
     AF_Stumble,
     AF_Stun,
     AF_Poison,
+    AF_Snare,
     AF_Knockdown,
     AF_Freeze,
     AF_Microwave,
@@ -113,7 +114,7 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
 {
     local KFAfflictionManager.EHitZoneBodyPart BodyPart;
     local byte HitZoneIdx;
-    local float KnockdownPower, StumblePower, StunPower;
+    local float KnockdownPower, StumblePower, StunPower, SnarePower;
 
     if(IsZero(HitDir))
     {
@@ -129,10 +130,11 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
         KnockdownPower *= InstigatorPerk.GetKnockdownPowerModifier(DamageType, BodyPart, Outer.bIsSprinting);
         StumblePower *= InstigatorPerk.GetStumblePowerModifier(Outer, DamageType,, BodyPart);
         StunPower *= InstigatorPerk.GetStunPowerModifier(DamageType, HitZoneIdx);
+        SnarePower = InstigatorPerk.GetSnarePower(DamageType, HitZoneIdx);
     }
     if((KnockdownPower > float(0)) && Outer.CanDoSpecialMove(6))
     {
-        AccrueAffliction(7, KnockdownPower, BodyPart);
+        AccrueAffliction(8, KnockdownPower, BodyPart);
     }
     if((StunPower > float(0)) && Outer.CanDoSpecialMove(8))
     {
@@ -144,7 +146,11 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     }
     if((DamageType.default.FreezePower > float(0)) && Outer.CanDoSpecialMove(9))
     {
-        AccrueAffliction(8, DamageType.default.FreezePower, BodyPart);
+        AccrueAffliction(9, DamageType.default.FreezePower, BodyPart);
+    }
+    if(SnarePower > float(0))
+    {
+        AccrueAffliction(7, SnarePower, BodyPart);
     }
 }
 
@@ -191,19 +197,26 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
     {
         if(DamageType.default.EMPPower > float(0))
         {
-            AccrueAffliction(0, DamageType.default.EMPPower);
+            AccrueAffliction(0, DamageType.default.EMPPower);            
+        }
+        else
+        {
+            if((InstigatorPerk != none) && InstigatorPerk.ShouldGetDaZeD(DamageType))
+            {
+                AccrueAffliction(0, InstigatorPerk.GetDaZedEMPPower());
+            }
         }
         if(DamageType.default.BurnPower > float(0))
         {
             AccrueAffliction(1, DamageType.default.BurnPower);
         }
-        if(((DamageType.default.PoisonPower > float(0)) && DamageType.static.AlwaysPoisons()) || (InstigatorPerk != none) && InstigatorPerk.IsAcidicCompoundActive())
+        if((DamageType.default.PoisonPower > float(0)) && DamageType.static.AlwaysPoisons())
         {
             AccrueAffliction(6, DamageType.default.PoisonPower);
         }
         if(DamageType.default.MicrowavePower > float(0))
         {
-            AccrueAffliction(9, DamageType.default.MicrowavePower);
+            AccrueAffliction(10, DamageType.default.MicrowavePower);
         }
     }
 }
@@ -322,6 +335,10 @@ function ToggleEffects(KFAfflictionManager.EAfflictionType Type, bool bPrimary, 
     {
         return;
     }
+    if(Outer.bPlayedDeath)
+    {
+        return;
+    }
     if((Type >= Afflictions.Length) || Afflictions[Type] == none)
     {
         if((!bPrimary && !bSecondary) || !VerifyAfflictionInstance(Type))
@@ -357,7 +374,8 @@ defaultproperties
     AfflictionClasses(4)=class'KFAffliction_Stumble'
     AfflictionClasses(5)=class'KFAffliction_Stun'
     AfflictionClasses(6)=class'KFAffliction_Poison'
-    AfflictionClasses(7)=class'KFAffliction_Knockdown'
-    AfflictionClasses(8)=class'KFAffliction_Freeze'
-    AfflictionClasses(9)=class'KFAffliction_Microwave'
+    AfflictionClasses(7)=class'KFAffliction_Snare'
+    AfflictionClasses(8)=class'KFAffliction_Knockdown'
+    AfflictionClasses(9)=class'KFAffliction_Freeze'
+    AfflictionClasses(10)=class'KFAffliction_Microwave'
 }

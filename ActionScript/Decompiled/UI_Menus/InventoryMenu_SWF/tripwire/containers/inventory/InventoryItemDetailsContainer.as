@@ -11,6 +11,7 @@ package tripwire.containers.inventory
     import flash.ui.Keyboard;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.gfx.FocusManager;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripUILoader;
@@ -58,6 +59,8 @@ package tripwire.containers.inventory
             super();
             enableInitCallback = true;
             defaultNumPrompts = 2;
+            TextFieldEx.setTextAutoSize(this.itemNameText,"shrink");
+            TextFieldEx.setTextAutoSize(this.itemTypeText,"shrink");
         }
         
         public function set localizedText(param1:Object) : void
@@ -141,6 +144,9 @@ package tripwire.containers.inventory
                 FocusManager.setFocus(!!this.equipButton.visible ? this.equipButton : this.cancelButton);
             }
             this.itemTypeText.text = !!param1.typeRarity ? param1.typeRarity : "";
+            var _loc2_:Boolean = !!param1.newlyAdded ? Boolean(param1.newlyAdded) : false;
+            this.itemCountText.visible = !_loc2_ && this._itemCount > 0;
+            this.itemCountBG.visible = !_loc2_ && this._itemCount > 0;
         }
         
         public function set itemCount(param1:int) : void

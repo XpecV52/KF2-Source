@@ -3,15 +3,21 @@ package tripwire.containers
     import com.greensock.events.TweenEvent;
     import flash.events.Event;
     import flash.external.ExternalInterface;
+    import scaleform.clik.constants.InputValue;
+    import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
+    import scaleform.clik.events.InputEvent;
     import scaleform.clik.managers.FocusHandler;
+    import scaleform.clik.ui.InputDetails;
     import tripwire.controls.TripButton;
     import tripwire.managers.MenuManager;
     
     public class StartFindGameContainer extends TripContainer
     {
+        
+        public static var WHATS_NEW_CLICKED = "WhatsNewClicked";
          
         
         private const NUM_FINDGAME_OPTIONS:int = 3;
@@ -26,10 +32,24 @@ package tripwire.containers
         
         public var findGameHeader:SectionHeaderContainer;
         
+        public var whatsNewButton:WhatsNewButton;
+        
         public function StartFindGameContainer()
         {
             super();
             sectionHeader = this.findGameHeader;
+            this.whatsNewButton.autoSize = "none";
+        }
+        
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+            if(bManagerConsoleBuild)
+            {
+                this.serverBrowserButton.visible = false;
+                this.tutorialButton.y = this.soloOfflineButton.y;
+                this.soloOfflineButton.y = this.serverBrowserButton.y;
+            }
         }
         
         public function set localizedText(param1:Object) : void
@@ -44,9 +64,12 @@ package tripwire.containers
             }
         }
         
-        override protected function addedToStage(param1:Event) : void
+        public function set whatsNew(param1:Array) : void
         {
-            super.addedToStage(param1);
+            if(param1)
+            {
+                this.whatsNewButton.dataArray = param1;
+            }
         }
         
         override public function selectContainer() : void
@@ -56,16 +79,18 @@ package tripwire.containers
             this.tutorialButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.matchMakingButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.serverBrowserButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.whatsNewButton.addEventListener(WHATS_NEW_CLICKED,this.whatsNewClicked,false,0,true);
         }
         
         override public function deselectContainer() : void
         {
-            defaultFirstElement = currentElement;
+            defaultFirstElement = currentElement == this.whatsNewButton ? this.matchMakingButton : currentElement;
             super.deselectContainer();
             this.tutorialButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.soloOfflineButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.matchMakingButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.serverBrowserButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
+            this.whatsNewButton.removeEventListener(WHATS_NEW_CLICKED,this.whatsNewClicked);
         }
         
         override protected function onOpened(param1:TweenEvent = null) : void
@@ -82,6 +107,7 @@ package tripwire.containers
                 this.serverBrowserButton.tabIndex = 2;
                 this.soloOfflineButton.tabIndex = 3;
                 this.tutorialButton.tabIndex = 4;
+                this.whatsNewButton.tabIndex = 5;
             }
             else if(!this.matchMakingButton.enabled)
             {
@@ -89,6 +115,7 @@ package tripwire.containers
                 this.serverBrowserButton.tabIndex = -1;
                 this.soloOfflineButton.tabIndex = 1;
                 this.tutorialButton.tabIndex = 2;
+                this.whatsNewButton.tabIndex = 3;
             }
             if(currentElement == null)
             {
@@ -98,7 +125,7 @@ package tripwire.containers
             {
                 defaultFirstElement = currentElement = !!this.matchMakingButton.enabled ? this.matchMakingButton : this.soloOfflineButton;
             }
-            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
+            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen && bSelected)
             {
                 FocusHandler.getInstance().setFocus(currentElement);
             }
@@ -122,10 +149,33 @@ package tripwire.containers
             }
         }
         
+        public function whatsNewClicked(param1:Event = null) : void
+        {
+            ExternalInterface.call("Callback_OnWhatsNewClicked",this.whatsNewButton.itemIndex);
+        }
+        
         override protected function onInputChange(param1:Event) : *
         {
             super.onInputChange(param1);
             this.setTabIndexes();
+        }
+        
+        override public function handleInput(param1:InputEvent) : void
+        {
+            super.handleInput(param1);
+            if(param1.handled)
+            {
+                return;
+            }
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN)
+            {
+                switch(_loc2_.navEquivalent)
+                {
+                    case NavigationCode.RIGHT:
+                        param1.handled = true;
+                }
+            }
         }
     }
 }

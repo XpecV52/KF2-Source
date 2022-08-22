@@ -10,6 +10,58 @@ class KFPlayerReplicationInfo extends PlayerReplicationInfo
     nativereplication
     hidecategories(Navigation,Movement,Collision);
 
+const KFID_QuickWeaponSelect = 100;
+const KFID_CurrentLayoutIndex = 101;
+const KFID_ForceFeedbackEnabled = 103;
+const KFID_SavedPerkIndex = 105;
+const KFID_AllowBloodSplatterDecals = 106;
+const KFID_GoreLevel = 107;
+const KFID_StoredCharIndex = 111;
+const KFID_MasterVolumeMultiplier = 112;
+const KFID_DialogVolumeMultiplier = 113;
+const KFID_MusicVolumeMultiplier = 114;
+const KFID_SFXVolumeMultiplier = 115;
+const KFID_GammaMultiplier = 117;
+const KFID_MusicVocalsEnabled = 118;
+const KFID_MinimalChatter = 119;
+const KFID_ShowCrossHair = 121;
+const KFID_FOVOptionsPercentageValue = 122;
+const KFID_ShowKillTicker = 123;
+const KFID_FriendlyHudScale = 125;
+const KFID_FavoriteWeapons = 127;
+const KFID_GearLoadouts = 128;
+const KFID_SetGamma = 129;
+const KFID_RequiresPushToTalk = 130;
+const KFID_InvertController = 131;
+const KFID_AutoTargetEnabled = 132;
+const KFID_GamepadSensitivityScale = 133;
+const KFID_ZoomedSensitivityScale = 134;
+const KFID_GamepadZoomedSensitivityScale = 135;
+const KFID_EnableMouseSmoothing = 136;
+const KFID_MouseSensitivity = 138;
+const KFID_TargetAdhesionEnabled = 139;
+const KFID_TargetFrictionEnabled = 140;
+const KFID_InvertMouse = 142;
+const KFID_VOIPVolumeMultiplier = 143;
+const KFID_SavedSoloModeIndex = 144;
+const KFID_SavedSoloMapString = 145;
+const KFID_SavedSoloDifficultyIndex = 146;
+const KFID_SavedSoloLengthIndex = 147;
+const KFID_SavedModeIndex = 148;
+const KFID_SavedMapString = 149;
+const KFID_SavedDifficultyIndex = 150;
+const KFID_SavedLengthIndex = 151;
+const KFID_SavedPrivacyIndex = 152;
+const KFID_SavedServerTypeIndex = 153;
+const KFID_SavedInProgressIndex = 154;
+const KFID_ControllerSoundEnabled = 155;
+const KFID_MatchmakingRegion = 156;
+const KFID_UseAltAimOnDuals = 157;
+const KFID_HideBossHealthBar = 158;
+const KFID_AntiMotionSickness = 159;
+const KFID_ShowWelderInInventory = 160;
+const KFID_AutoTurnOff = 161;
+const KFID_ReduceHightPitchSounds = 162;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -46,12 +98,7 @@ var private byte ActivePerkLevel;
 var byte PlayerHealth;
 var byte PlayerHealthPercent;
 var byte SharedUnlocks;
-var const array<KFCharacterInfo_Human> CharacterArchetypes;
-var repnotify const CustomizationInfo RepCustomizationInfo;
-var Texture CharPortrait;
-var int DamageDealtOnTeam;
-var class<KFPerk> CurrentPerkClass;
-var int Assists;
+var bool bClientActiveSpawn;
 var bool bExtraFireRange;
 var bool bSplashActive;
 var bool bNukeActive;
@@ -60,6 +107,14 @@ var bool bPerkCanSupply;
 var bool bPerkSupplyUsed;
 var bool bObjectivePlayer;
 var bool bShowNonRelevantPlayers;
+var string LastCrateGiftTimestamp;
+var int SecondsOfGameplay;
+var const array<KFCharacterInfo_Human> CharacterArchetypes;
+var repnotify const CustomizationInfo RepCustomizationInfo;
+var Texture CharPortrait;
+var int DamageDealtOnTeam;
+var class<KFPerk> CurrentPerkClass;
+var int Assists;
 var private Vector PawnLocationCompressed;
 var private Vector LastReplicatedSmoothedLocation;
 var KFPlayerController KFPlayerOwner;
@@ -71,10 +126,10 @@ replication
         CharPortrait, CurrentPerkClass, 
         DamageDealtOnTeam, NetPerkIndex, 
         PlayerHealth, PlayerHealthPercent, 
-        RepCustomizationInfo, bConcussiveActive, 
-        bExtraFireRange, bNukeActive, 
-        bObjectivePlayer, bPerkCanSupply, 
-        bSplashActive;
+        RepCustomizationInfo, bClientActiveSpawn, 
+        bConcussiveActive, bExtraFireRange, 
+        bNukeActive, bObjectivePlayer, 
+        bPerkCanSupply, bSplashActive;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -111,9 +166,9 @@ simulated event ReplicatedEvent(name VarName)
                     if(LocalPC != none)
                     {
                         LocalPC.RecentlyMetPlayers.AddItem(PlayerName;
-                        if((WorldInfo.IsE3Build() && LocalPC.MyGFxManager != none) && LocalPC.MyGFxManager.PartyWidget != none)
+                        if(LocalPC.MyGFxManager != none)
                         {
-                            LocalPC.MyGFxManager.PartyWidget.RefreshParty();
+                            LocalPC.MyGFxManager.ForceUpdateNextFrame();
                         }
                     }
                 }
@@ -381,6 +436,12 @@ simulated function VOIPStatusChanged(PlayerReplicationInfo Talker, bool bIsTalki
     }    
 }
 
+simulated function UnregisterPlayerFromSession()
+{
+    VOIPStatusChanged(self, false);
+    super.UnregisterPlayerFromSession();
+}
+
 reliable client simulated function ShowKickVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices)
 {
     local KFPlayerController KFPC;
@@ -529,15 +590,24 @@ simulated function ClientInitialize(Controller C)
     }
 }
 
-private final simulated event SelectCharacter(optional int CharIndex)
+simulated event SelectCharacter(optional int CharIndex)
 {
+    local OnlineProfileSettings Settings;
+
     CharIndex = -1;
+    Settings = Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(LocalPlayer(GetALocalPlayerController().Player).ControllerId));
+    if(Settings == none)
+    {
+        LogInternal("Not selecting character just yet since there's no profile settings");
+        return;
+    }
     LoadCharacterConfig(CharIndex);
     if(!Class'KFUnlockManager'.static.GetAvailable((CharacterArchetypes[CharIndex])))
     {
         CharIndex = GetAnyAvailableCharacter(byte(CharIndex));
         LoadCharacterConfig(CharIndex);
     }
+    Settings.SetProfileSettingValueInt(111, CharIndex);
     if(Role < ROLE_Authority)
     {
         ServerSetCharacterCustomization(RepCustomizationInfo);        
@@ -577,7 +647,7 @@ simulated event CharacterCustomizationChanged()
     local KFPawn_Human KFP;
     local KFCharacterInfoBase NewCharArch;
 
-    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+    if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
     {
         WorldInfo.TWLogEvent("character_change", self, string(CharacterArchetypes[RepCustomizationInfo.CharacterIndex].Name));
     }
@@ -603,7 +673,7 @@ private reliable server final event ServerAnnounceNewSharedContent()
 {
     if((WorldInfo.GRI != none) && WorldInfo.GRI.bMatchHasBegun)
     {
-        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 21, self);
+        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 22, self);
     }
 }
 
@@ -646,7 +716,7 @@ function UpdateReplicatedVariables()
 
 function UpdatePawnLocation()
 {
-    PawnLocationCompressed = KFPlayerOwner.Pawn.Location;
+    PawnLocationCompressed = KFPlayerOwner.Pawn.Mesh.GetPosition();
     PawnLocationCompressed *= 0.01;
 }
 
@@ -786,6 +856,8 @@ simulated function ResetSupplierUsed()
 
 defaultproperties
 {
+    bShowNonRelevantPlayers=true
+    SecondsOfGameplay=-1
     CharacterArchetypes(0)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype'
     CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Knight_Archetype'
     CharacterArchetypes(2)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype'
@@ -801,5 +873,4 @@ defaultproperties
     CharacterArchetypes(12)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
     CharacterArchetypes(13)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype'
     RepCustomizationInfo=(CharacterIndex=0,HeadMeshIndex=0,HeadSkinIndex=0,BodyMeshIndex=0,BodySkinIndex=0,AttachmentMeshIndices=255,AttachmentMeshIndices[1]=255,AttachmentMeshIndices[2]=255,AttachmentSkinIndices=0,AttachmentSkinIndices[1]=0,AttachmentSkinIndices[2]=0)
-    bShowNonRelevantPlayers=true
 }

@@ -12,7 +12,7 @@ class KFWeap_AssaultRifle_SCAR extends KFWeap_RifleBase
 defaultproperties
 {
     FireModeIconPaths=/* Array type was not detected. */
-    SingleFireMode=1
+    SingleFireSoundIndex=1
     InventorySize=6
     MagazineCapacity=20
     bHasIronSights=true
@@ -25,7 +25,7 @@ defaultproperties
     DOF_FG_FocalRadius=150
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
-    MaxSpareAmmo=340
+    SpareAmmoCapacity=340
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

@@ -54,7 +54,7 @@ function SetCloaked(bool bNewCloaking)
 {
 	if ( bCanCloak )
 	{
-		if( bNewCloaking && (IsImpaired() || IsIncapacitated()) )
+		if( bNewCloaking && !IsCombatCapable() )
 		{
 			return;
 		}
@@ -270,12 +270,14 @@ function CallOutCloakingExpired()
 
 /** Applies the rally buff and spawns a rally effect */
 simulated function Rally(
+							KFPawn 			RallyInstigator,
 							ParticleSystem 	RallyEffect,
 							name 			EffectBoneName,
 							vector			EffectOffset,
-							ParticleSystem	PlayerRallyEffect,
-							name 			PlayerRallyEffectBoneNames[2],
-							vector 			PlayerRallyEffectOffset
+							ParticleSystem	AltRallyEffect,
+							name 			AltEffectBoneNames[2],
+							vector 			AltEffectOffset,
+							optional bool	bSkipEffects=false
 						)
 {
 	local PlayerController PC;
@@ -284,7 +286,7 @@ simulated function Rally(
 	{
 		PC = WorldInfo.GetALocalPlayerController();
 
-		// Don't spawn rally effect if cloaking but not spotted
+		// Don't spawn rally effects if cloaking but not spotted
 		if( bIsCloaking
 			&& !bIsCloakingSpottedByLP
 			&& !bIsCloakingSpottedByTeam
@@ -292,11 +294,11 @@ simulated function Rally(
 			&& PC.Pawn != none
 			&& PC.Pawn.IsAliveAndWell() )
 		{
-			return;
+			bSkipEffects = true;
 		}
 	}
 
-	super.Rally( RallyEffect, EffectBoneName, EffectOffset, PlayerRallyEffect, PlayerRallyEffectBoneNames, PlayerRallyEffectOffset );
+	super.Rally( RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects );
 }
 
 /* PlayDying() is called on server/standalone game when killed
@@ -420,6 +422,8 @@ DefaultProperties
 	// Content
 	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Stalker_ARCH.ZED_Stalker_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
+	DifficultySettings=class'KFDifficulty_Stalker'
+
 	SpottedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Visible_MAT'
 
 	// ---------------------------------------------
@@ -431,16 +435,17 @@ DefaultProperties
 	End Object
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
-	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0, Duration=3.0)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0), Cooldown=5.0, Duration=3.0)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(1.5),                     Cooldown=1.0)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(1.f),                     Cooldown=0.5)
 	IncapSettings(AF_GunHit)=	(Vulnerability=(0.75),                    Cooldown=0.0)
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),                     Cooldown=0.0)
 	IncapSettings(AF_FirePanic)=(Vulnerability=(3),                       Cooldown=3.0,  Duration=4.0)
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
-	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                     Cooldown=7.5,  Duration=5.5)
+	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                    Cooldown=7.5,  Duration=5.5)
 	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=20.5, Duration=5.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=2.0)
+	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
 
 	ParryResistance=1
 
@@ -462,9 +467,12 @@ DefaultProperties
 
 	bIsStalkerClass=true
 
+	// ---------------------------------------------
 	// Penetration
     PenetrationResistance=0.5
 
+	// ---------------------------------------------
+	// Resistance & Vulnerability
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.9))) //0.8
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(1.5))) //2.5
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(1.0)))  //0.7
@@ -477,11 +485,6 @@ DefaultProperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive',            	    DamageScale=(0.75))) //0.6
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(1.0)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(1.0)))
-
-	// ---------------------------------------------
-	// Resistance & Vulnerability
-
-
 
     // ---------------------------------------------
 	// Movement / Physics
@@ -498,7 +501,8 @@ DefaultProperties
 
 	RotationRate=(Pitch=50000,Yaw=45000,Roll=50000)
 
-	// cloaking
+	// ---------------------------------------------
+	// Cloaking
 	bIsCloaking=true
 	bCanCloak=true
 	bCloakOnMeleeEnd=true
@@ -507,7 +511,8 @@ DefaultProperties
 	CloakSpeed=4.0f
 	//CloakDuration=1.2
 
-	// audio
+	// ---------------------------------------------
+	// Audio
 	CloakedLoop=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP'
 	CloakedLoopEnd=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP_Stop'
 

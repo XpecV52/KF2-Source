@@ -21,7 +21,7 @@ package tripwire.controls.scoreboard
                 visible = true;
                 this.scoreText.text = !!param1.score ? param1.score : "0";
                 playerID = !!param1.playerID ? int(param1.playerID) : -1;
-                playerNameText.text = !!param1.playername ? param1.playername : "---";
+                playerName = !!param1.playername ? param1.playername : "---";
                 pingText.text = !!param1.ping ? param1.ping : "-";
                 killsText.text = !!param1.kills ? param1.kills : "0";
                 assistsText.text = !!param1.assists ? param1.assists : "0";

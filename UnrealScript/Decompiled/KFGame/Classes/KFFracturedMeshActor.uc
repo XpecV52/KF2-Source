@@ -273,6 +273,7 @@ defaultproperties
     object end
     // Reference: FracturedSkinnedMeshComponent'Default__KFFracturedMeshActor.FracturedSkinnedComponent0'
     SkinnedComponent=FracturedSkinnedComponent0
+    bHasShownMissingSoundWarning=true
     FractureCullMaxDistance=100000
     begin object name=FracturedSkinnedComponent0 class=FracturedSkinnedMeshComponent
         ReplacementPrimitive=none

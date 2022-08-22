@@ -351,6 +351,22 @@ var float PainSoundCoolDown;
 /** the last time a pain sound was played */
 var float PainSoundLastPlayedTime;
 
+var string PerkFXEmitterPoolClassPath;
+var transient EmitterPool PerkFXEmitterPool;
+
+/** Default values for material based damage effects on death */
+var const name DefaultDeathMaterialEffectParamName;
+var const float DefaultDeathMaterialEffectDuration;
+
+/**
+ * Book keeping variables for material based damage effects.
+ * Note: Although multiple effects can coexist, only single effect interpolation is supported at any given time.
+ * This works as long as the interp time is not too long. Consider making this an array if that does not hold true.
+ */
+var transient float DeathMaterialEffectDuration;
+var transient float DeathMaterialEffectTimeRemaining;
+var transient name DeathMaterialEffectParamName;
+
 /*********************************************************************************************
 * @name Flashlight (aka Torch)
 ********************************************************************************************* */
@@ -402,14 +418,24 @@ var float	ArmorAbsorbModifier_Medium;
 var float	ArmorAbsorbModifier_Low;
 
 /*********************************************************************************************
+* @name Solo Surrounded Difficulty Reduction
+********************************************************************************************* */
+
+/** Minimum number of enemies to trigger surrounded difficulty reduction when playing solo */
+var byte MinEnemiesToTriggerSurrounded;
+/** Health percent threshold that must be reached to trigger surrounded when solo */
+var float MinHealthPctToTriggerSurrounded;
+
+/*********************************************************************************************
 * @name Perk @ToDo: Move stuff to PRI and combine in a byte/INT
 ********************************************************************************************* */
-var repnotify bool 	bHasSupportSafeguardBuff;
-var repnotify bool 	bHasSupportBarrageBuff;
-var repnotify bool 	bHasMedicVaccinationBuff;
-
-var bool bBuffsUpdated;
 var array<string> ActiveSkillIconPaths;
+
+var private byte HealingSpeedBoost;
+var private byte HealingDamageBoost;
+var private byte HealingShield;
+
+var transient KFExplosion_AirborneAgent AAExplosionActor;
 
 /*********************************************************************************************
 * @name Objectives
@@ -452,17 +478,15 @@ replication
 {
 	// Replicated to ALL
 	if(bNetDirty)
-		Armor, MaxArmor, bObjectivePlayer, WeaponSkinItemId;
+		Armor, MaxArmor, bObjectivePlayer, WeaponSkinItemId, HealingSpeedBoost, 
+		HealingDamageBoost, HealingShield;
 
 	// Replicated to all but the owning client
 	if(bNetDirty && (!bNetOwner || bDemoRecording))
 		CurrentWeaponState, bFlashlightOn;
-
-	// Replicated to owning client
-	if( bNetDirty && bNetOwner )
-		bHasSupportSafeguardBuff, bHasSupportBarrageBuff, bHasMedicVaccinationBuff;
 }
 
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -499,6 +523,14 @@ simulated event Tick( float DeltaTime )
 			UpdateGroundSpeed();
 		}
 	}
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( DeathMaterialEffectTimeRemaining > 0 )
+		{
+			UpdateDeathMaterialEffect( DeltaTime );
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -508,12 +540,21 @@ simulated event Tick( float DeltaTime )
 // Called immediately after gameplay begins.
 simulated event PreBeginPlay()
 {
+	local class<EmitterPool> PoolClass;
+	
 	super.PreBeginPlay();
-	//@TODO: Remove me if this is final
-	//Using canvas to draw this instead for the time being.
-	//PlayerPartyInfo = new class'KFGFxMoviePlayer_PlayerInfo';
-	//PlayerPartyInfo.Init();
-	//PlayerPartyInfo.SetPlayerPawn(self);
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( PerkFXEmitterPoolClassPath != "" )
+		{
+			PoolClass = class<EmitterPool>(DynamicLoadObject(PerkFXEmitterPoolClassPath, class'Class'));
+			if( PoolClass != None )
+			{
+				PerkFXEmitterPool = Spawn(PoolClass, self,, vect(0,0,0), rot(0,0,0));
+			}
+		}
+	}
 }
 
 function PossessedBy(Controller C, bool bVehicleTransition)
@@ -521,11 +562,17 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 	Super.PossessedBy(C, bVehicleTransition);
 
 	// Reset perk buffs
-	bHasSupportSafeguardBuff = false;
-	bHasSupportBarrageBuff = false;
-	bHasMedicVaccinationBuff = false;
+	ResetHealingSpeedBoost();
+	ResetHealingDamageBoost();
+	ResetHealingShield();
 
 	ResetIdleStartTime();
+
+	// See if we should start our surrounded timer
+	if( WorldInfo.Game.NumPlayers == 1 && KFGameInfo(WorldInfo.Game).bOnePlayerAtStart )
+	{
+		SetTimer( 1.f, true, nameOf(Timer_CheckSurrounded) );
+	}
 }
 
 simulated function NotifyTeamChanged()
@@ -564,22 +611,6 @@ simulated event ReplicatedEvent(name VarName)
 	case nameof(bFlashlightOn):
 		SetFlashlight(bFlashlightOn, false);
 		break;
-	case nameof(bHasMedicVaccinationBuff):
-		if(bHasMedicVaccinationBuff)
-		{
-			EnableMedicVaccinationBuff();
-		}
-		else
-		{
-			DisableMedicVaccinationBuff();
-		}
-		break;
-	case nameof(bHasSupportSafeguardBuff):
-		SetSupportSafeguardBuff(bHasSupportSafeguardBuff);
-		break;
-	case nameof(bHasSupportBarrageBuff):
-		SetSupportBarrageBuff(bHasSupportBarrageBuff);
-		break;
 	}
 
 	Super.ReplicatedEvent(VarName);
@@ -596,6 +627,11 @@ simulated event Destroyed()
 	if ( Flashlight != None )
 	{
 		Flashlight.DetachFlashlight();
+	}
+
+	if( AAExplosionActor != none )
+	{
+		AAExplosionActor.Destroy();
 	}
 
 	super.Destroyed();
@@ -641,7 +677,9 @@ function AddDefaultInventory()
         MyPerk.AddDefaultInventory(self);
     }
 
-	DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject("KFGameContent.KFWeap_Pistol_9mm", class'Class')));
+/** DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject("KFGameContent.KFWeap_Pistol_9mm", class'Class')));
+	Loading the secondary weapon in the perk again */
+
 	DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject("KFGameContent.KFWeap_Healer_Syringe", class'Class')));
 	DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject("KFGameContent.KFWeap_Welder", class'Class')));
 	DefaultInventory.AddItem(class<Inventory>(DynamicLoadObject("KFGameContent.KFInventory_Money", class'Class')));
@@ -664,6 +702,32 @@ simulated function PlayWeaponSwitch(Weapon OldWeapon, Weapon NewWeapon)
 }
 
 /**
+ * Event called from native code when Pawn starts crouching.
+ * Called on non owned Pawns through bIsCrouched replication.
+ * Network: ALL
+ *
+ * @param	HeightAdjust	height difference in unreal units between default collision height, and actual crouched cylinder height.
+ */
+simulated event StartCrouch( float HeightAdjust )
+{
+	super.StartCrouch( HeightAdjust );
+	UpdateGroundSpeed();
+}
+
+/**
+ * Event called from native code when Pawn stops crouching.
+ * Called on non owned Pawns through bIsCrouched replication.
+ * Network: ALL
+ *
+ * @param	HeightAdjust	height difference in unreal units between default collision height, and actual crouched cylinder height.
+ */
+simulated event EndCrouch( float HeightAdjust )
+{
+	Super.EndCrouch( HeightAdjust );
+	UpdateGroundSpeed();
+}
+
+/**
  * Reset/update GroundSpeed based on perk/weapon selection.  GroundSpeed is used instead of
  * MaxSpeedModifier() so that other physics code reacts properly (e.g. bLimitFallAccel)
  * Network: Server Only
@@ -682,6 +746,7 @@ function UpdateGroundSpeed()
 
 	// First reset to default so multipliers do not stack
 	GroundSpeed = default.GroundSpeed * WeightMod * HealthMod;
+
 	// reset sprint too, because perk may want to scale it
 	SprintSpeed = default.SprintSpeed * WeightMod * HealthMod;
 
@@ -763,10 +828,28 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 
 	InstigatorPC = KFPlayerController(Healer);
 	InstigatorPerk = InstigatorPC != None ? InstigatorPC.GetPerk() : None;
-	if( InstigatorPerk != None && bCanRepairArmor )
+	if( InstigatorPerk != None )
 	{
-		// Instigator might be able to repair some armomr
-		bRepairedArmor = InstigatorPerk.RepairArmor( self );
+		if( bCanRepairArmor )
+		{
+			// Instigator might be able to repair some armomr
+			bRepairedArmor = InstigatorPerk.RepairArmor( self );
+		}
+
+		if( InstigatorPerk.GetHealingSpeedBoostActive() )
+		{
+			UpdateHealingSpeedBoost();
+		}
+
+		if( InstigatorPerk.GetHealingDamageBoostActive() )
+		{
+			UpdateHealingDamageBoost();
+		}
+
+		if( InstigatorPerk.GetHealingShieldActive() )
+		{
+			UpdateHealingShield();
+		}
 	}
 
     if( Amount > 0 && IsAliveAndWell() && Health < HealthMax )
@@ -793,7 +876,16 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 			UsedHealAmount = Amount;
 			if( InstigatorPerk != none )
 			{
-				InstigatorPerk.ModifyHealAmount( UsedHealAmount );
+				if( InstigatorPerk.ModifyHealAmount( UsedHealAmount ) )
+				{
+					if( Controller != Healer && InstigatorPerk.IsHealingSurgeActive() )
+					{	
+						if( InstigatorPC.Pawn != none )
+						{
+							InstigatorPC.Pawn.HealDamage(InstigatorPC.Pawn.HealthMax * InstigatorPerk.GetSelfHealingSurgePct(), InstigatorPC, class'KFDT_Healing');
+						}
+					}
+				}
 			}
 
 			// You can never have a HealthToRegen value that's greater than HealthMax
@@ -904,9 +996,19 @@ function ShieldAbsorb( out int InDamage )
 {
 	local float AbsorbedPct;
 	local int AbsorbedDmg;
+	local KFPerk MyPerk;
+
+	MyPerk = GetPerk();
+	if( MyPerk != none && MyPerk.HasHeavyArmor() )
+	{
+		AbsorbedDmg = Min(InDamage, Armor);
+		Armor -= AbsorbedDmg;
+		InDamage -= AbsorbedDmg;
+		return;
+	}
 
 	// Three levels of armor integrity
-	if( Armor >= IntegrityLevel_High || bHasSupportSafeguardBuff )
+	if( Armor >= IntegrityLevel_High )
 	{
 		AbsorbedPct = ArmorAbsorbModifier_High;
 	}
@@ -1089,6 +1191,11 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 
 	super.PlayDying(DamageType, HitLoc);
 
+	if( AAExplosionActor != none )
+	{
+		AAExplosionActor.Destroy();
+	}
+
 	// If ragdoll was successful
 	if ( Physics == PHYS_RigidBody && !Mesh.HiddenGame )
 	{
@@ -1098,9 +1205,9 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 		SetTimer(BloodPoolDelay,false,nameof(LeaveBloodPool));
 
 		// Death material effect (damage type based)
-		PlayDamageMaterialEffects(
-			(KFDT != None && KFDT.default.DeathMaterialEffectParamName != '') ? KFDT.default.DeathMaterialEffectParamName : default.DeathMaterialEffectParamName,
-			(KFDT != None && KFDT.default.DeathMaterialEffectDuration != 0.f) ? KFDT.default.DeathMaterialEffectDuration : default.DeathMaterialEffectDuration
+		PlayDeathMaterialEffects(
+			(KFDT != None && KFDT.default.DeathMaterialEffectParamName != '') ? KFDT.default.DeathMaterialEffectParamName : DefaultDeathMaterialEffectParamName,
+			(KFDT != None && KFDT.default.DeathMaterialEffectDuration != 0.f) ? KFDT.default.DeathMaterialEffectDuration : DefaultDeathMaterialEffectDuration
 			);
 	}
 
@@ -1114,6 +1221,9 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 
 function bool Died(Controller Killer, class<DamageType> damageType, vector HitLocation)
 {
+	// Don't check if we're surrounded when we're dead
+	ClearTimer( nameOf(Timer_CheckSurrounded) );
+
 	if( Super.Died( Killer, DamageType, HitLocation ) )
 	{
 		if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayPlayerDeathDialog( self );
@@ -1129,8 +1239,9 @@ adjust damage based on inventory, other attributes
 */
 function AdjustDamage(out int InDamage, out vector Momentum, Controller InstigatedBy, vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
-	local KFPerk MyKFPerk, MyMedicPerk;
+	local KFPerk MyKFPerk;
 	local float TempDamage;
+	local bool bHasSacrificeSkill;
 
 	if (bLogTakeDamage) LogInternal(self @ GetFuncName()@"Adjusted Damage BEFORE =" @ InDamage);
 	super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
@@ -1139,24 +1250,10 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	if( MyKFPerk != none )
 	{
 		MyKFPerk.ModifyDamageTaken( InDamage, DamageType, InstigatedBy );
-		MyMedicPerk = KFPerk_FieldMedic(MyKFPerk);
+		bHasSacrificeSkill = MyKFPerk.ShouldSacrifice();
 	}
 
 	TempDamage = InDamage;
-
-	if( TempDamage > 0 && bHasMedicVaccinationBuff )
-	{
-		if( MyMedicPerk != none )
-		{
-			class'KFPerk_FieldMedic'.static.ModifyVaccinationDamage( TempDamage, DamageType, MyMedicPerk.GetLevel() );
-		}
-		else
-	{
-			class'KFPerk_FieldMedic'.static.ModifyVaccinationDamage( TempDamage, DamageType );
-		}
-
-		TempDamage = TempDamage < 1.f ? 1.f : TempDamage;
-	}
 
 	if( TempDamage > 0 && class'KFPerk_Demolitionist'.static.IsDmgTypeExplosiveResistable( DamageType ) && HasExplosiveResistance() )
 	{
@@ -1164,12 +1261,19 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		TempDamage = TempDamage < 1.f ? 1.f : TempDamage;
 	}
 
+	TempDamage *= GetHealingShieldModifier();
 	InDamage = Round( TempDamage );
 
 	// Reduce damage based on you current armor integrity
 	if( InDamage > 0 && Armor > 0 && DamageType.default.bArmorStops )
 	{
 		ShieldAbsorb( InDamage );
+	}
+
+	if( bHasSacrificeSkill && Health >= 5 && Health - InDamage < 5 )
+	{
+		Health = InDamage + 5;
+		SacrificeExplode();
 	}
 
 	// register damage to divide up score
@@ -1236,9 +1340,159 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	ResetIdleStartTime();
 }
 
+/** Plays damagetype-specific material effects upon death */
+simulated function PlayDeathMaterialEffects(name DamageMICParamName, float Duration)
+{
+	DeathMaterialEffectTimeRemaining = Duration;
+	DeathMaterialEffectDuration = Duration;
+	DeathMaterialEffectParamName = DamageMICParamName;
+}
+
+/** Update any material effects */
+function UpdateDeathMaterialEffect(float DeltaTime)
+{
+	local float Intensity;
+	local MaterialInstanceConstant MIC;
+
+	if( DeathMaterialEffectTimeRemaining > 0.f )
+	{
+		if( DeathMaterialEffectTimeRemaining > DeltaTime )
+		{
+			DeathMaterialEffectTimeRemaining -= DeltaTime;
+			Intensity = 1.f - fClamp( DeathMaterialEffectTimeRemaining/DeathMaterialEffectDuration, 0.f, 1.f );
+		}
+		else
+		{
+			DeathMaterialEffectTimeRemaining = 0.f;
+			Intensity = 1.f;
+		}
+
+		// Update the materials
+		foreach CharacterMICs( MIC )
+		{
+   			MIC.SetScalarParameterValue( DeathMaterialEffectParamName, Intensity );
+   		}
+	}
+}
+
 /*********************************************************************************************
 * @name Perks
 ********************************************************************************************* */
+
+function SacrificeExplode()
+{
+	local KFExplosionActorReplicated ExploActor;
+	local GameExplosion	ExplosionTemplate;
+	local KFPerk_Demolitionist DemoPerk;
+
+	if ( Role < ROLE_Authority )
+	{
+		return;
+	}
+
+	DemoPerk = KFPerk_Demolitionist(GetPerk());
+
+	// explode using the given template
+	ExploActor = Spawn(class'KFExplosionActorReplicated', self,, Location,,, true);
+	if( ExploActor != None )
+	{
+		ExploActor.InstigatorController = Controller;
+		ExploActor.Instigator = self;
+
+		ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetSacrificeExplosionTemplate();
+		ExplosionTemplate.bIgnoreInstigator = true;
+		ExploActor.Explode( ExplosionTemplate );
+
+		if( DemoPerk != none )
+		{
+			DemoPerk.NotifyPerkSacrificeExploded();
+		}
+	}
+}
+
+function StartAirBorneAgentEvent()
+{
+	local KFGameExplosion AAExplosionTemplate;
+	local class<KFExplosion_AirborneAgent> AAExplosionActorClass;
+
+	if( AAExplosionActor != none )
+	{
+		AAExplosionActor.Destroy();
+	}
+
+	AAExplosionTemplate = class'KFPerk_FieldMedic'.static.GetAAExplosionTemplate();
+	AAExplosionTemplate.MyDamageType = class'KFPerk_FieldMedic'.static.GetAADamageTypeClass();
+	AAExplosionActorClass = class'KFPerk_FieldMedic'.static.GetAAExplosionActorClass();
+	
+	AAExplosionActor = Spawn( AAExplosionActorClass, Self,, Location );
+	if( AAExplosionActor != None )
+	{
+		AAExplosionActor.Instigator = self;
+		AAExplosionActor.InstigatorController = Controller;
+		AAExplosionActor.MyPawn = self;
+		AAExplosionActor.SetPhysics( PHYS_NONE );
+		AAExplosionActor.SetBase( self,, Mesh );
+		AAExplosionActor.Explode( AAExplosionTemplate );
+	}
+}
+
+simulated function UpdateHealingSpeedBoost()
+{
+	HealingSpeedBoost = Min( HealingSpeedBoost + class'KFPerk_FieldMedic'.static.GetHealingSpeedBoost(), class'KFPerk_FieldMedic'.static.GetMaxHealingSpeedBoost() );
+	SetTimer( class'KFPerk_FieldMedic'.static.GetHealingSpeedBoostDuration(),, nameOf(ResetHealingSpeedBoost) );
+}
+
+simulated function ResetHealingSpeedBoost()
+{
+	HealingSpeedBoost = 0;
+
+	if( IsTimerActive( nameOf( ResetHealingSpeedBoost ) ) )
+	{
+		ClearTimer( nameOf( ResetHealingSpeedBoost ) );
+	}
+}
+
+simulated function float GetHealingDamageBoostModifier()
+{
+	return 1 + (float(HealingDamageBoost) / 100);
+}
+
+simulated function UpdateHealingDamageBoost()
+{
+	HealingDamageBoost = Min( HealingDamageBoost + class'KFPerk_FieldMedic'.static.GetHealingDamageBoost(), class'KFPerk_FieldMedic'.static.GetMaxHealingDamageBoost() );
+	SetTimer( class'KFPerk_FieldMedic'.static.GetHealingDamageBoostDuration(),, nameOf(ResetHealingDamageBoost) );
+}
+
+simulated function ResetHealingDamageBoost()
+{
+	HealingDamageBoost = 0;
+
+	if( IsTimerActive( nameOf( ResetHealingDamageBoost ) ) )
+	{
+		ClearTimer( nameOf( ResetHealingDamageBoost ) );
+	}
+}
+
+simulated function float GetHealingShieldModifier()
+{
+	return 1 - (float(HealingShield) / 100);
+}
+
+simulated function UpdateHealingShield()
+{
+	HealingShield = Min( HealingShield + class'KFPerk_FieldMedic'.static.GetHealingShield(), class'KFPerk_FieldMedic'.static.GetMaxHealingShield() );
+	SetTimer( class'KFPerk_FieldMedic'.static.GetHealingShieldDuration(),, nameOf(ResetHealingShield) );
+}
+
+simulated function ResetHealingShield()
+{
+	HealingShield = 0;
+
+	if( IsTimerActive( nameOf( ResetHealingShield ) ) )
+	{
+		ClearTimer( nameOf( ResetHealingShield ) );
+	}
+}
 
 /**
  * @brief Checks if we are close to a demo player with explosivbe resistance skill enabled
@@ -1278,103 +1532,8 @@ function float GetPerkDoTScaler( optional Controller InstigatedBy, optional clas
 	return DoTScaler;
 }
 
-simulated function SetSupportBarrageBuff(bool bEnabled)
-{
-	if( Role == ROLE_Authority )
-	{
-		bHasSupportBarrageBuff = bEnabled;
-		bForceNetUpdate = true;
-	}
-
-	if( IsLocallyControlled() )
-	{
-		NotifyBuffUpdate(class'KFPerk_Support'.default.PerkSkills[ESupportBarrage].IconPath, bHasSupportBarrageBuff);
-	}
-}
-
-simulated function SetSupportSafeguardBuff(bool bEnabled)
-{
-	if( Role == ROLE_Authority )
-	{
-		bHasSupportSafeguardBuff = bEnabled;
-		bForceNetUpdate = true;
-	}
-
-	if( IsLocallyControlled() )
-	{
-		NotifyBuffUpdate(class'KFPerk_Support'.default.PerkSkills[ESupportSafeGuard].IconPath, bHasSupportSafeguardBuff);
-	}
-}
-
-simulated function EnableMedicVaccinationBuff()
-{
-	if( Role == ROLE_Authority )
-	{
-		bHasMedicVaccinationBuff = true;
-		SetTimer(class'KFPerk_FieldMedic'.static.GetVaccinationDuration(), false, nameOf( DisableMedicVaccinationBuff ));
-		bForceNetUpdate = true;
-	}
-
-	if( IsLocallyControlled() )
-	{
-		NotifyBuffUpdate(class'KFPerk_FieldMedic'.Default.PerkSkills[EMedicVaccination].IconPath, bHasMedicVaccinationBuff);
-	}
-}
-
-simulated function DisableMedicVaccinationBuff()
-{
-	if( Role == ROLE_Authority )
-	{
-		bHasMedicVaccinationBuff = false;
-		bForceNetUpdate = true;
-	}
-
-	if( IsLocallyControlled() )
-	{
-		NotifyBuffUpdate(class'KFPerk_FieldMedic'.Default.PerkSkills[EMedicVaccination].IconPath, bHasMedicVaccinationBuff);
-	}
-}
-
-simulated function NotifyBuffUpdate(string BuffIconPath, bool bAddItem)
-{
-	local KFPlayerController KFPC;
-
-	if( IsLocallyControlled() )
-	{
-		if( bAddItem )
-		{
-			// prevent adding duplicates
-			if(ActiveSkillIconPaths.Find(BuffIconPath) == INDEX_NONE)
-			{
-				ActiveSkillIconPaths.AddItem(BuffIconPath);
-			}
-		}
-		else
-		{
-			ActiveSkillIconPaths.RemoveItem(BuffIconPath);
-		}
-
-		KFPC = KFPlayerController(Controller);
-
-		KFPC.MyGFxHUD.PlayerStatusContainer.ShowActiveIndicators(ActiveSkillIconPaths);
-	}
-}
-
-simulated function ClearBuffIcons()
-{
-	local KFPlayerController KFPC;
-	if( IsLocallyControlled() )
-	{
-		ActiveSkillIconPaths.length = 0;
-		KFPC = KFPlayerController(Controller);
-
-		KFPC.MyGFxHUD.PlayerStatusContainer.ShowActiveIndicators(ActiveSkillIconPaths);
-	}
-}
-
 function array<string> GetUpdatedSkillIndicators()
 {
-	bBuffsUpdated = false;
 	return ActiveSkillIconPaths;
 }
 
@@ -1558,6 +1717,49 @@ function bool DoJump( bool bUpdating )
 	}
 
 	return false;
+}
+
+simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNormal )
+{
+	local KFPerk MyPerk;
+	local KFPawn_Monster KFPM;
+
+	if( WorldInfo.TimeDilation < 1.f && !IsZero( Velocity ) )
+	{
+		MyPerk = GetPerk();
+		if( MyPerk != none && MyPerk.ShouldKnockDownOnBump() &&
+			Normal(Velocity) dot Normal(Vector(Rotation)) > 0.7f )
+		{
+			KFPM = KFPawn_Monster(Other);
+			if( KFPM != none )
+			{
+				if( KFPM.CanDoSpecialMove( SM_Knockdown ) )
+				{
+					KFPM.Knockdown( Velocity * 3, vect(1,1,1), KFPM.Location, 1000, 100 );
+				}
+				else if( KFPM.CanDoSpecialMove( SM_Stumble ) )
+				{
+					KFPM.DoSpecialMove(SM_Stumble,,, class'KFSM_Stumble'.static.PackRandomSMFlags(KFPM));
+				}
+			}
+		}
+	}
+}
+
+/** Checks if we are surrounded and notifies the game conductor */
+function Timer_CheckSurrounded()
+{
+	local KFGameInfo KFGI;
+
+	// Only check surrounded if we still have only one player and if we are below the health threshold
+	if( WorldInfo.Game.NumPlayers == 1 && GetHealthPercentage() < MinHealthPctToTriggerSurrounded && IsSurrounded(true, MinEnemiesToTriggerSurrounded, 250.f) )
+	{
+		KFGI = KFGameInfo( WorldInfo.Game );
+		if( KFGI != none && KFGI.GameConductor != none )
+		{
+			KFGI.GameConductor.NotifySoloPlayerSurrounded();
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -1777,12 +1979,14 @@ defaultproperties
    IntegrityLevel_High=75
    IntegrityLevel_Medium=50
    IntegrityLevel_Low=25
+   MinEnemiesToTriggerSurrounded=2
    DeathFaceAnims(0)="Death_V1"
    DeathFaceAnims(1)="Death_V2"
    DeathFaceAnims(2)="Death_V3"
    BloodPoolDelay=2.000000
    PainSoundChanceOnHit=1.000000
    PainSoundCoolDown=1.000000
+   PerkFXEmitterPoolClassPath="KFGame.KFPerkFXEmitterPool"
    FlashLightTemplate=KFFlashlightAttachment'KFGame.Default__KFPawn_Human:FlashLight_0'
    BatteryDrainRate=0.800000
    BatteryRechargeRate=6.000000
@@ -1793,6 +1997,7 @@ defaultproperties
    ArmorAbsorbModifier_High=0.750000
    ArmorAbsorbModifier_Medium=0.650000
    ArmorAbsorbModifier_Low=0.550000
+   MinHealthPctToTriggerSurrounded=0.950000
    Begin Object Class=AkComponent Name=TraderDialogAkSoundComponent
       BoneName="Root"
       bForceOcclusionUpdateInterval=True
@@ -1829,8 +2034,6 @@ defaultproperties
    BattleBloodParamName="Scalar_Blood_Contrast"
    MinBattleBloodValue=0.200000
    BattleBloodRangeSq=40000.000000
-   DeathMaterialEffectParamName="scalar_dead"
-   DeathMaterialEffectDuration=0.100000
    Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn:Afflictions_0'
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
@@ -1880,8 +2083,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object
@@ -1946,6 +2151,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn:KFPawnSkeletalMeshComponent'
    End Object

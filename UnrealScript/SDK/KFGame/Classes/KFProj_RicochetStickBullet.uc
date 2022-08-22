@@ -88,12 +88,6 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 	SetRotation(rotator(Normal(Velocity)));
 	SetPhysics(PHYS_Falling);
 
-	if( bCheckRackEmUp && PenetrationPower == InitialPenetrationPower )
-    {     
-        CheckForComboBreaker();
-        bCheckRackEmUp = false;
-    }
-
 	// check if we should do a bounce, otherwise stick
 	if( !Bounce(HitNormal, Wall) )
 	{
@@ -325,9 +319,9 @@ simulated function Stick(StickInfo MyStickInfo, bool bReplicated )
 	}
 
 	// Stop ambient sounds when this projectile ShutsDown
-	if( bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none && AmbientComponent != none )
+	if( bStopAmbientSoundOnExplode )
 	{
-		AmbientComponent.StopEvents();
+		StopAmbientSound();
 	}
 
 	// Do stick next frame to give owning client time for CSHD

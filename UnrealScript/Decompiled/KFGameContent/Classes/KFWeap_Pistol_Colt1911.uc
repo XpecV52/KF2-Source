@@ -27,7 +27,7 @@ defaultproperties
     GroupPriority=20
     WeaponSelectTexture=Texture2D'WEP_UI_M1911_TEX.UI_WeaponSelect_M1911Colt'
     DualClass=Class'KFWeap_Pistol_DualColt1911'
-    MaxSpareAmmo=136
+    SpareAmmoCapacity=136
     InitialSpareMags=7
     AmmoPickupScale=2
     IdleFidgetAnims=/* Array type was not detected. */

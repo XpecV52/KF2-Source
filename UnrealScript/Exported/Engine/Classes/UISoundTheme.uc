@@ -31,7 +31,11 @@ event ProcessSoundEvent(name SoundEventName, optional PlayerController SoundOwne
 	EventIndex = SoundEventBindings.Find('SoundEventName', SoundEventName);
 	if( EventIndex != INDEX_NONE )
 	{
-		LogInternal("ProcessSoundEvent - Sound Event: "$SoundEventName$", Sound Theme: "$self$", Sound: "$SoundEventBindings[EventIndex].SoundToPlay,'DevGFxUI');
+
+
+
+
+//__TW_WWISE_
 		if( SoundOwner != None )
 		{
 			// If there's a specific PlayerOwner, use it to play the sound
@@ -53,7 +57,11 @@ event ProcessSoundEvent(name SoundEventName, optional PlayerController SoundOwne
 	}
 	else
 	{
-		LogInternal(self$": ProcessSoundEvent - Unable to find a binding for event: "$SoundEventName);
+
+
+
+
+//__TW_WWISE_
 	}
 }
 

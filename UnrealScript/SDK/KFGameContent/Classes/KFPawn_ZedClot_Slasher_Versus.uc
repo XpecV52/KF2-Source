@@ -46,17 +46,20 @@ defaultproperties
 
 	Begin Object Name=SpecialMoveHandler_0
 		SpecialMoveClasses(SM_GrappleAttack)=none
-		SpecialMoveClasses(SM_PlayerZedAttack1)= class'KFSM_PlayerSlasher_Melee'
-		SpecialMoveClasses(SM_PlayerZedAttack2)= class'KFSM_PlayerSlasher_Melee2'
-		SpecialMoveClasses(SM_PlayerZedSpecial1)= class'KFSM_PlayerSlasher_Roll'
+		SpecialMoveClasses(SM_PlayerZedMove_LMB)= class'KFSM_PlayerSlasher_Melee'
+		SpecialMoveClasses(SM_PlayerZedMove_RMB)= class'KFSM_PlayerSlasher_Melee2'
+		SpecialMoveClasses(SM_PlayerZedMove_V)= class'KFSM_PlayerSlasher_Roll'
 	End Object
 
-	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=0.25f,	SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Melee', GBA_Name="GBA_Fire",NameLocalizationKey="Light")
-	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-HeavyMelee', GBA_Name="GBA_IronsightsToggle", ALT_GBA_Name="GBA_IronsightsHold",NameLocalizationKey="Heavy")
-	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	GBA_Name="GBA_Reload",bShowOnHud=false)
-	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=0.2f,	SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Evade', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Evade")
-	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Jump', GBA_Name="GBA_Jump",NameLocalizationKey="Jump")) // Jump always at end of array)) // Jump always at end of array
+	MoveListGamepadScheme(ZGM_Melee_Square)=SM_PlayerZedMove_LMB
+	MoveListGamepadScheme(ZGM_Melee_Triangle)=SM_PlayerZedMove_RMB
+	MoveListGamepadScheme(ZGM_Special_R3)=SM_PlayerZedMove_V
 
+	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedMove_LMB,		CooldownTime=0.25f,	SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Melee', NameLocalizationKey="Light")
+	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB,		CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-HeavyMelee', NameLocalizationKey="Heavy")
+	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	bShowOnHud=false)
+	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=0.2f,	SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Evade', NameLocalizationKey="Evade")
+	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Jump', bShowOnHud=false)) // Jump always at end of array)) // Jump always at end of array
 
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.8)))  //3.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.5)))  //1.0
@@ -71,7 +74,6 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.4)))   //1.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(1.0)))  //0.88
 
-
 // special case
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',              DamageScale=(1.0))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MB500', 	         DamageScale=(1.0)))  //0.9
@@ -85,8 +87,6 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_EvisceratorProj', 	 DamageScale=(0.3)))  //0.9
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_Eviscerator', 	     DamageScale=(0.3)))  //0.9
 
-
-
 	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.5, 0.1, 0.1, 0.1), Cooldown=3.0, Duration=2.0)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(0.5),                     Cooldown=3.0)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(0.5),                     Cooldown=3.0)
@@ -97,7 +97,6 @@ defaultproperties
 	IncapSettings(AF_FirePanic)=(Vulnerability=(0.5),                     Cooldown=7.0, Duration=3)
 	IncapSettings(AF_EMP)=		(Vulnerability=(1.0),                     Cooldown=5.0, Duration=3.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5, Duration=2.0)
-
 
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=15.0 // 12.f //20
@@ -122,8 +121,6 @@ defaultproperties
     MegaJumpZ=1250
     MegaJumpForwardScale=0.25
     JumpBumpDamageType=class'KFDT_Bludgeon_ZedJump'
-    bMovesFastInZedTime=true
-    ZedTimeSpeedScale=0.75
 
 	ThirdPersonViewOffset={(
 		OffsetHigh=(X=-175,Y=50,Z=0),

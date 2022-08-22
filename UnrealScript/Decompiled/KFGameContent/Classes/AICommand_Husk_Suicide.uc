@@ -68,7 +68,7 @@ state Command_SpecialMove
 {
     function KFGame.KFPawn.ESpecialMove GetSpecialMove()
     {
-        return 20;
+        return 22;
     }
 
     function bool ExecuteSpecialMove()

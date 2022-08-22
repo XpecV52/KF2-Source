@@ -14,6 +14,7 @@ defaultproperties
     InventorySize=5
     MagazineCapacity=10
     bHasIronSights=true
+    bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bHasFireLastAnims=true
     PenetrationPower=/* Array type was not detected. */
@@ -21,9 +22,10 @@ defaultproperties
     MeshIronSightFOV=45
     PlayerIronSightFOV=65
     DOF_FG_MaxNearBlurSize=3.5
+    AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=25
     WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
-    MaxSpareAmmo=60
+    SpareAmmoCapacity=60
     InitialSpareMags=3
     FireSightedAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */

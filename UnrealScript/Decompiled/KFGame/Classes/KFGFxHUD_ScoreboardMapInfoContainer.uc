@@ -26,7 +26,7 @@ function LocalizeText()
     local string MatchInfoString, GameDifficultyString;
     local KFGameReplicationInfo KFGRI;
 
-    CurrentMapName = Outer.GetPC().WorldInfo.GetMapName();
+    CurrentMapName = Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(Outer.GetPC().WorldInfo.GetMapName());
     GameTypeString = Class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI != none)
@@ -38,25 +38,10 @@ function LocalizeText()
     }
     LocalizedObject = Outer.CreateObject("Object");
     LocalizedObject.SetString("waveText", WaveString);
-    LocalizedObject.SetString("mapText", GetFriendlyMapName(CurrentMapName));
+    LocalizedObject.SetString("mapText", Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(CurrentMapName));
     LocalizedObject.SetString("matchInfo", MatchInfoString);
     SetObject("localizeText", LocalizedObject);
     bLocalized = true;
-}
-
-function string GetFriendlyMapName(string MapName)
-{
-    local KFMapSummary MapData;
-
-    MapData = Class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
-    if((MapData != none) && MapData.DisplayName != "")
-    {
-        return MapData.DisplayName;        
-    }
-    else
-    {
-        return MapName;
-    }
 }
 
 function UpdateMatchInfo()
@@ -91,7 +76,7 @@ function UpdateWaveCount()
         return;
     }
     CurrentWaveNum = KFGRI.WaveNum;
-    if(CurrentWaveNum == (KFGRI.WaveMax - 1))
+    if(CurrentWaveNum == KFGRI.WaveMax)
     {
         SetString("waveNumber", FinalString);        
     }

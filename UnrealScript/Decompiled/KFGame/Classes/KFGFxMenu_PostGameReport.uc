@@ -38,7 +38,14 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
         KFGRI.ProcessChanceDrop();
     }
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
-    OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        Class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(SearchPlayfabInventoryForNewItem);        
+    }
+    else
+    {
+        OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+    }
     LocalizeText();
     SetSumarryInfo();
     InitPlayerList();
@@ -71,6 +78,14 @@ function LocalizeText()
         TextObject.SetString("serverIP", WI.GetAddressURL());
     }
     SetObject("localizedText", TextObject);
+}
+
+function SearchPlayfabInventoryForNewItem(bool bSuccess)
+{
+    if(bSuccess)
+    {
+        SearchInventoryForNewItem();
+    }
 }
 
 function SearchInventoryForNewItem()
@@ -122,9 +137,16 @@ function SetSumarryInfo()
         KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
         GameDifficultyString = Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(float(KFGRI.GameDifficulty));
         GameTypeString = Class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
-        TextObject.SetString("mapName", CurrentMapName);
+        TextObject.SetString("mapName", Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(CurrentMapName));
         TextObject.SetString("typeDifficulty", (GameTypeString @ "-") @ GameDifficultyString);
-        TextObject.SetString("waveTime", ((((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.WaveMax - 1)) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));
+        if(KFGRI.WaveNum == KFGRI.WaveMax)
+        {
+            TextObject.SetString("waveTime", (Class'KFGFxHUD_WaveInfo'.default.BossWaveString @ "-") @ (FormatTime(KFGRI.ElapsedTime)));            
+        }
+        else
+        {
+            TextObject.SetString("waveTime", ((((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.WaveMax - 1)) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));
+        }
         TextObject.SetString("winLost", ((KFGRI.bMatchVictory) ? VictoryString : DefeatString));
     }
     SetObject("gameSummary", TextObject);
@@ -147,7 +169,7 @@ function SetPlayerInfo()
     else
     {
         TextObject.SetString("playerName", KFPC.PlayerReplicationInfo.PlayerName);
-        TextObject.SetString("perkIcon", "img://" $ PathName(Class'KFGFxWidget_PartyInGame_Versus'.default.ZedIConTexture));
+        TextObject.SetString("perkIcon", "img://" $ PathName(Class'KFGFxWidget_PartyInGame_Versus'.default.ZedIconTexture));
         TextObject.SetString("perkName", Class'KFCommon_LocalizedStrings'.default.ZedString);
         TextObject.SetInt("perkLevel", 0);
     }
@@ -259,17 +281,32 @@ function string FormatTime(int TimeInSeconds)
 
 function OnOpen()
 {
-    if(OnlineSub != none)
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+        Class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(SearchPlayfabInventoryForNewItem);
+        Class'GameEngine'.static.GetPlayfabInterface().ReadInventory();        
+    }
+    else
+    {
+        if(OnlineSub != none)
+        {
+            OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+        }
     }
 }
 
 function OnClose()
 {
-    if(OnlineSub != none)
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        OnlineSub.ClearOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+        Class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(SearchPlayfabInventoryForNewItem);        
+    }
+    else
+    {
+        if(OnlineSub != none)
+        {
+            OnlineSub.ClearOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+        }
     }
 }
 

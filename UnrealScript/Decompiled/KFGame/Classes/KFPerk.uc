@@ -102,6 +102,7 @@ var array<string> ColumnOneIcons;
 var array<string> ColumnTwoIcons;
 var Texture2D InteractIcon;
 var const localized string WeaponDroppedMessage;
+var private const float AssistDoshModifier;
 var array<PerkSkill> PerkSkills;
 var protected byte SelectedSkills[5];
 var byte MaxAbilityPoints;
@@ -129,7 +130,7 @@ var() const float SignatureRecoilScale;
 var int CurrentAbilityPoints;
 /** Shared Skills */
 var() const PerkSkill TacticalReload;
-var protected const class<KFDamageType> BleedDmgTypeClass;
+var protected const class<KFDamageType> ToxicDmgTypeClass;
 var int SavedBuild;
 var class<KFWeaponDefinition> PrimaryWeaponDef;
 var class<KFWeaponDefinition> SecondaryWeaponDef;
@@ -139,6 +140,7 @@ var class<KFProj_Grenade> GrenadeClass;
 var int InitialGrenadeCount;
 var int MaxGrenadeCount;
 var array<name> BackupWeaponDamageTypeNames;
+var array< class<KFWeaponDefinition> > AutoBuyLoadOutPath;
 var float HitAccuracyHandicap;
 var float HeadshotAccuracyHandicap;
 var KFPlayerReplicationInfo MyPRI;
@@ -328,7 +330,11 @@ static function bool IsBackupDamageTypeOnPerk(class<DamageType> DT)
 
 static function bool IsDamageTypeOnThisPerk(class<KFDamageType> KFDT, class<KFPerk> PerkClass)
 {
-    return KFDT.default.ModifierPerkList.Find(PerkClass > -1;
+    if(KFDT != none)
+    {
+        return KFDT.default.ModifierPerkList.Find(PerkClass > -1;
+    }
+    return false;
 }
 
 static function MultiplySecondaryXPPoints(out int XP, byte Difficulty)
@@ -639,14 +645,30 @@ function AddDefaultInventory(KFPawn P)
         {
             KFIM.GiveInitialGrenadeCount();
         }
-        P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(PrimaryWeaponDef.default.WeaponClassPath, Class'Class'));
-        P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(KnifeWeaponDef.default.WeaponClassPath, Class'Class'));
+        P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), Class'Class'));
+        P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), Class'Class'));
+        P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetKnifeWeaponClassPath(), Class'Class'));
     }
 }
 
 simulated function class<KFProj_Grenade> GetGrenadeClass()
 {
     return GrenadeClass;
+}
+
+simulated function string GetPrimaryWeaponClassPath()
+{
+    return PrimaryWeaponDef.default.WeaponClassPath;
+}
+
+simulated function string GetSecondaryWeaponClassPath()
+{
+    return SecondaryWeaponDef.default.WeaponClassPath;
+}
+
+simulated function string GetKnifeWeaponClassPath()
+{
+    return KnifeWeaponDef.default.WeaponClassPath;
 }
 
 simulated function bool PerkNeedsTick()
@@ -778,13 +800,22 @@ function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, option
 
 function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy);
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass);
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary)
+{
+    bSecondary = false;
+}
 
-simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo, const optional out STraderItem TraderItem);
+simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo, const optional out STraderItem TraderItem, optional bool bSecondary)
+{
+    bSecondary = false;
+}
 
 simulated function MaximizeSpareAmmoAmount(class<KFPerk> WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo);
 
-simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, const optional out STraderItem TraderItem);
+simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, const optional out STraderItem TraderItem, optional bool bSecondary)
+{
+    bSecondary = false;
+}
 
 simulated function bool ShouldMagSizeModifySpareAmmo(KFWeapon KFW, optional class<KFPerk> WeaponPerkClass)
 {
@@ -819,6 +850,16 @@ function float GetReactionModifier(optional class<KFDamageType> DamageType)
     return 1;
 }
 
+function GameExplosion GetExplosionTemplate()
+{
+    return none;
+}
+
+function bool ShouldGetAllTheXP()
+{
+    return false;
+}
+
 simulated function ModifyWeldingRate(out float FastenRate, out float UnfastenRate);
 
 simulated function bool CanInteract(KFPawn_Human KFPH)
@@ -833,6 +874,11 @@ simulated function float GetPenetrationModifier(byte Level, class<KFDamageType> 
 static function float GetBarrageDamageModifier()
 {
     return default.BarrageDamageModifier;
+}
+
+simulated function float GetTightChokeModifier()
+{
+    return 1;
 }
 
 simulated function bool IsCallOutActive()
@@ -893,11 +939,6 @@ function bool IsUnAffectedByZedTime()
     return false;
 }
 
-function bool IsAcidicCompoundActive()
-{
-    return false;
-}
-
 function ModifyHealerRechargeTime(out float RechargeRate);
 
 function bool ModifyHealAmount(out float HealAmount)
@@ -912,50 +953,49 @@ simulated function float GetArmorDiscountMod()
     return 1;
 }
 
+// Export UKFPerk::execCanRepairDoors(FFrame&, void* const)
+native function bool CanRepairDoors();
+
 function bool RepairArmor(Pawn HealTarget);
 
-function bool IsBleedDmgActive()
+function bool IsToxicDmgActive()
 {
     return false;
 }
 
-static function class<KFDamageType> GetBleedDmgTypeClass()
+static function class<KFDamageType> GetToxicDmgTypeClass()
 {
-    return default.BleedDmgTypeClass;
+    return default.ToxicDmgTypeClass;
 }
 
-static function ModifyBleedDmg(out int BleedDamage);
-
-static final function float GetVaccinationDuration()
-{
-    return default.VaccinationDuration;
-}
-
-static function ModifyVaccinationDamage(out float InDamage, class<DamageType> dmgType, optional int MedicLevel)
-{
-    MedicLevel = -1;
-}
-
-function CheckForAirborneAgent(KFPawn HealTarget, class<DamageType> DamType, int HealAmount);
-
-function bool ShouldSedate()
-{
-    return false;
-}
-
-function ModifyACDamage(out int InDamage);
-
-simulated function bool CanRepairArmor()
-{
-    return false;
-}
+static function ModifyToxicDmg(out int ToxicDamage);
 
 simulated function float GetSirenScreamStrength()
 {
     return 1;
 }
 
-simulated function bool ShouldPlayAAEffect()
+simulated function bool IsHealingSurgeActive()
+{
+    return false;
+}
+
+simulated function float GetSelfHealingSurgePct()
+{
+    return 0;
+}
+
+simulated function bool GetHealingSpeedBoostActive()
+{
+    return false;
+}
+
+simulated function bool GetHealingDamageBoostActive()
+{
+    return false;
+}
+
+simulated function bool GetHealingShieldActive()
 {
     return false;
 }
@@ -965,7 +1005,7 @@ simulated function bool IsFlarotovActive()
     return false;
 }
 
-function ModifyDoTScaler(out float DoTScaler, optional class<KFDamageType> KFDT);
+function ModifyDoTScaler(out float DoTScaler, optional class<KFDamageType> KFDT, optional bool bNapalmInfected);
 
 function bool GetFireStumble(optional KFPawn KFP, optional class<DamageType> DamageType)
 {
@@ -996,8 +1036,6 @@ simulated function bool IsRangeActive()
 {
     return false;
 }
-
-static function ModifyAssistDosh(out int EarnedDosh);
 
 simulated function bool IsOnContactActive()
 {
@@ -1035,6 +1073,21 @@ simulated function float GetAeODamageModifier()
 }
 
 simulated function bool DoorShouldNuke()
+{
+    return false;
+}
+
+simulated function bool ShouldGetDaZeD(class<KFDamageType> DamageType)
+{
+    return false;
+}
+
+simulated function float GetDaZedEMPPower()
+{
+    return 0;
+}
+
+simulated function bool ShouldNeverDud()
 {
     return false;
 }
@@ -1078,18 +1131,51 @@ simulated event float GetCameraViewShakeModifier(KFWeapon OwnerWeapon)
     return 1;
 }
 
+simulated function bool IgnoresPenetrationDmgReduction()
+{
+    return false;
+}
+
+simulated event float GetCrouchSpeedModifier(KFWeapon KFW)
+{
+    return 1;
+}
+
+simulated function float GetSnarePower(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+{
+    return 0;
+}
+
+simulated function bool HasHeavyArmor()
+{
+    return false;
+}
+
+simulated function bool ShouldKnockDownOnBump()
+{
+    return false;
+}
+
+static function ModifyAssistDosh(out int EarnedDosh)
+{
+    local float TempDosh;
+
+    TempDosh = float(EarnedDosh);
+    TempDosh *= (GetAssistDoshModifer());
+    EarnedDosh = Round(TempDosh);
+}
+
+protected static function float GetAssistDoshModifer()
+{
+    return default.AssistDoshModifier;
+}
+
 function string GetModifierString(byte ModifierIndex)
 {
     return "";
 }
 
-function ModifyBloatBileDoT(out float DoTScaler)
-{
-    if(OwnerPawn.bHasMedicVaccinationBuff)
-    {
-        DoTScaler -= Class'KFPerk_FieldMedic'.static.GetBloatBileResistance();
-    }
-}
+function ModifyBloatBileDoT(out float DoTScaler);
 
 function KFWeapon GetOwnerWeapon()
 {
@@ -1114,11 +1200,14 @@ function OnWaveEnded()
 
 protected reliable client simulated function ClientOnWaveEnded()
 {
-    if(MyPRI == none)
+    if((MyPRI == none) && OwnerPawn != none)
     {
         MyPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
     }
-    MyPRI.ResetSupplierUsed();
+    if(MyPRI != none)
+    {
+        MyPRI.ResetSupplierUsed();
+    }
 }
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
@@ -1267,12 +1356,13 @@ defaultproperties
     LevelString="Level"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'
     WeaponDroppedMessage="You dropped%%%% because of your new carrying capacity!"
+    AssistDoshModifier=1
     CurrentLevel=255
     RegenerationInterval=1
     BarrageDamageModifier=1.15
     FormidableDamageModifier=0.75
     SignatureDamageScale=1
-    BleedDmgTypeClass=Class'KFDT_Bleeding'
+    ToxicDmgTypeClass=Class'KFDT_Toxic'
     SecondaryWeaponDef=Class'KFWeapDef_9mm'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Commando'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Berserker'

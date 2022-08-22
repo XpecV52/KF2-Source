@@ -9,6 +9,11 @@
 //=============================================================================
 class KFWeap_Shotgun_DragonsBreath extends KFWeap_ShotgunBase;
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+	return FT_Flame;
+}
+
 defaultproperties
 {
    NumPellets(0)=10
@@ -29,7 +34,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
-   MaxSpareAmmo(0)=45
+   SpareAmmoCapacity(0)=45
    InitialSpareMags(0)=3
    BonesToLockOnEmpty(0)="RW_Hammer"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Fire_1P')
@@ -83,7 +88,7 @@ defaultproperties
    InstantHitDamage(0)=15.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=25.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_DragonsBreath'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

@@ -39,7 +39,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=10
-	MaxSpareAmmo[0]=60
+	SpareAmmoCapacity[0]=60
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=false
@@ -47,6 +47,11 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=8.0,Y=7,Z=-3.5)
 	IronSightPosition=(X=0,Y=0,Z=0)
+
+	// AI warning system
+	bWarnAIWhenAiming=true
+	AimWarningDelay=(X=0.4f, Y=0.8f)
+	AimWarningCooldown=0.0f
 
 	// Recoil
 	maxRecoilPitch=500
@@ -72,7 +77,6 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Winchester1894'
 	InstantHitDamage(DEFAULT_FIREMODE)=105.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Winchester'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Winchester'
 	FireInterval(DEFAULT_FIREMODE)=0.75 // 70 RPM  0.85
 	Spread(DEFAULT_FIREMODE)=0.007
 	PenetrationPower(DEFAULT_FIREMODE)=1.5
@@ -86,6 +90,10 @@ defaultproperties
 	FireSightedAnims=(Shoot_Iron, Shoot_Iron2, Shoot_Iron3)
 	BonesToLockOnEmpty=(RW_Hammer)
 	bHasFireLastAnims=true
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Winchester'
+	InstantHitDamage(BASH_FIREMODE)=25
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'wep_winchester_arch.Wep_Winchester_MuzzleFlash'

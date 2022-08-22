@@ -28,6 +28,7 @@ DefaultProperties
 	// Content
 	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Gorefast_ARCH.ZED_Gorefast_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Gorefast_Anim.Gorefast_AnimGroup'
+	DifficultySettings=class'KFDifficulty_Gorefast'
 
 	//DebugRange_Melee_Material=Material'ENG_EditorResources_MAT.Debug_Radius_M'
 	RotationRate=(Pitch=50000,Yaw=45000,Roll=50000)
@@ -51,7 +52,7 @@ DefaultProperties
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 	HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=50, DmgScale=1.1, SkinID=1)
-	HitZones[8]=(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20, DmgScale=0.5, SkinID=2)
+	HitZones[8]=(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20, DmgScale=0.1, SkinID=2)
 
 	// ---------------------------------------------
 	// Movement Physics
@@ -78,6 +79,8 @@ DefaultProperties
 		SpecialMoveClasses(SM_Taunt)=class'KFGame.KFSM_Zed_Taunt'
 		SpecialMoveClasses(SM_Evade)=class'KFSM_Evade'
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
+		SpecialMoveClasses(SM_Block)=class'KFSM_Block'
+
 	End Object
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
@@ -86,11 +89,12 @@ DefaultProperties
 	IncapSettings(AF_Stumble)=	(Vulnerability=(1.f),                     Cooldown=0.5)
 	IncapSettings(AF_GunHit)=	(Vulnerability=(1.75),                    Cooldown=0.0)
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),                     Cooldown=0.3)
-	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                     Cooldown=10,   Duration=3.5)
+	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                    Cooldown=10,   Duration=3.5)
 	IncapSettings(AF_Microwave)=(Vulnerability=(2.0),                     Cooldown=6.0,  Duration=3.5)
-	IncapSettings(AF_FirePanic)=(Vulnerability=(0.2),                     Cooldown=6.0,  Duration=3.5)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.75),                     Cooldown=6.0,  Duration=3.5)  //0.2
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.0),                     Cooldown=5.0,  Duration=5.0)
 	IncapSettings(AF_Freeze)=   (Vulnerability=(2.0),                     Cooldown=1.5,  Duration=2.0)
+	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
 
 	ParryResistance=2
 
@@ -111,6 +115,10 @@ DefaultProperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm',              DamageScale=(1.0))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rem1858',          DamageScale=(1.0))
 
+	// ---------------------------------------------
+	// Block Settings
+	MinBlockFOV=0.1f
+	
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'UI_ZEDRadar_TEX.MapIcon_Gorefast';
 `endif

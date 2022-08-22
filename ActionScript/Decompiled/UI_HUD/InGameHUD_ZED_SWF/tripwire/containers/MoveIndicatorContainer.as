@@ -4,9 +4,7 @@ package tripwire.containers
     import flash.events.Event;
     import flash.text.TextField;
     import scaleform.clik.core.UIComponent;
-    import scaleform.gfx.TextFieldEx;
     import tripwire.controls.TripUILoader;
-    import tripwire.managers.HudManager;
     
     public class MoveIndicatorContainer extends UIComponent
     {
@@ -19,6 +17,8 @@ package tripwire.containers
         public var moveBlood:MovieClip;
         
         public var progressBarDefaultWidth:Number;
+        
+        public var buttonIconContainer:MovieClip;
         
         public var keyBindTxt:TextField;
         
@@ -56,6 +56,8 @@ package tripwire.containers
             visible = false;
             this.progressBarDefaultWidth = this.progressBarMC.width;
             this.progressBarMC.visible = false;
+            this.buttonIconContainer.stop();
+            this.buttonIconContainer.visible = false;
         }
         
         public function set data(param1:Object) : void
@@ -104,12 +106,18 @@ package tripwire.containers
         
         public function updateButtonString(param1:String) : void
         {
-            if(param1.length > 15)
+            if(param1.indexOf(this.controllerIconPrefix) >= 0)
             {
-                param1 = param1.substring(this.controllerIconPrefix.length);
+                this.buttonIconContainer.visible = true;
+                this.keyBindTxt.text = "";
+                param1 = param1.toLowerCase();
+                this.buttonIconContainer.gotoAndStop(param1);
             }
-            this.keyBindTxt.text = param1;
-            TextFieldEx.setImageSubstitutions(this.keyBindTxt,HudManager.manager.controllerIconObjects);
+            else
+            {
+                this.buttonIconContainer.visible = false;
+                this.keyBindTxt.text = param1;
+            }
         }
     }
 }

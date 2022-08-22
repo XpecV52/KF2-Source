@@ -52,6 +52,7 @@ defaultproperties
     DoshValue=30
     XPValues=32
     DamageTypeModifiers=/* Array type was not detected. */
+    MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedStalker
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

@@ -34,6 +34,7 @@ var float LanQueryTimeLeft;
 var config float LanQueryTimeout;
 var native const transient Pointer LanBeacon;
 var private native const transient Pointer SessionInfo;
+var array<string> PendingMembersToInvite;
 var delegate<OnFindOnlineGamesComplete> __OnFindOnlineGamesComplete__Delegate;
 var delegate<OnCreateOnlineGameComplete> __OnCreateOnlineGameComplete__Delegate;
 var delegate<OnUpdateOnlineGameComplete> __OnUpdateOnlineGameComplete__Delegate;
@@ -47,6 +48,7 @@ var delegate<OnStartOnlineGameComplete> __OnStartOnlineGameComplete__Delegate;
 var delegate<OnEndOnlineGameComplete> __OnEndOnlineGameComplete__Delegate;
 var delegate<OnArbitrationRegistrationComplete> __OnArbitrationRegistrationComplete__Delegate;
 var delegate<OnGameInviteAccepted> __OnGameInviteAccepted__Delegate;
+var delegate<OnPlayTogetherStarted> __OnPlayTogetherStarted__Delegate;
 var delegate<OnRecalculateSkillRatingComplete> __OnRecalculateSkillRatingComplete__Delegate;
 var delegate<OnMigrateOnlineGameComplete> __OnMigrateOnlineGameComplete__Delegate;
 var delegate<OnJoinMigratedOnlineGameComplete> __OnJoinMigratedOnlineGameComplete__Delegate;
@@ -328,6 +330,27 @@ function ClearGameInviteAcceptedDelegate(byte LocalUserNum, delegate<OnGameInvit
 
 function bool AcceptGameInvite(byte LocalUserNum, name SessionName, const out OnlineGameSearchResult DesiredGame);
 
+delegate OnPlayTogetherStarted();
+
+function AddPlayTogetherStartedDelegate(byte LocalUserNum, delegate<OnPlayTogetherStarted> PlayTogetherStartedDelegate);
+
+function ClearPlayTogetherStartedDelegate(byte LocalUserNum, delegate<OnPlayTogetherStarted> PlayTogetherStartedDelegate);
+
+function array<string> GetPendingMembersToInvite()
+{
+    return PendingMembersToInvite;
+}
+
+function ResetPendingMembersToInvite()
+{
+    PendingMembersToInvite.Length = 0;
+}
+
+function SetPendingMembersToInvite(array<string> Members)
+{
+    PendingMembersToInvite = Members;
+}
+
 function bool RecalculateSkillRating(name SessionName, const out array<UniqueNetId> Players);
 
 delegate OnRecalculateSkillRatingComplete(name SessionName, bool bWasSuccessful);
@@ -446,24 +469,7 @@ function AddGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> GetP
 
 function ClearGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> GetPlayerListCompleteDelegate);
 
-function ClearServerFilters(OnlineGameSearch Search);
-
 function bool RemoveSearchResultFromFavorites(int Index);
-
-function AddServerFilter(OnlineGameSearch Search, string Key, optional string Val, optional int Location)
-{
-    Val = "";
-    Location = -1;
-}
-
-function TestAddBoolGametagFilter(out string GametagString, bool Test, name Property, byte BoolVal);
-
-function AddGametagFilter(out string GametagString, name Property, string Val);
-
-function TestAddServerFilter(OnlineGameSearch Search, bool Test, string Key, optional string Val)
-{
-    Val = "";
-}
 
 function ClearOnlineDelegates()
 {

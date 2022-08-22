@@ -9,34 +9,46 @@ package
         public function SquadContainerMC()
         {
             super();
+            this.__setProp_promptsDisplay_SquadContainerMC_prompts_0();
             this.__setProp_leaveButton_SquadContainerMC_LeaveButton_0();
             this.__setProp_switchTeamsButton_SquadContainerMC_SwitchTeams_0();
             this.__setProp_readyButton_SquadContainerMC_ReadyButton_0();
             this.__setProp_createPartyButton_SquadContainerMC_CreatePartyButton_0();
-            this.__setProp_perksList11_SquadContainerMC_perkList11_0();
             this.__setProp_optionsList11_SquadContainerMC_optionList11_0();
-            this.__setProp_perksList10_SquadContainerMC_perkList10_0();
             this.__setProp_optionsList10_SquadContainerMC_optionList10_0();
-            this.__setProp_perksList9_SquadContainerMC_perkList9_0();
             this.__setProp_optionsList9_SquadContainerMC_optionList9_0();
-            this.__setProp_perksList8_SquadContainerMC_perkList8_0();
             this.__setProp_optionsList8_SquadContainerMC_optionList8_0();
-            this.__setProp_perksList7_SquadContainerMC_perkList7_0();
             this.__setProp_optionsList7_SquadContainerMC_optionList7_0();
-            this.__setProp_perksList6_SquadContainerMC_perkList6_0();
             this.__setProp_optionsList6_SquadContainerMC_optionList6_0();
-            this.__setProp_perksList5_SquadContainerMC_perkList5_0();
             this.__setProp_optionsList5_SquadContainerMC_optionList5_0();
-            this.__setProp_perksList4_SquadContainerMC_perkList4_0();
             this.__setProp_optionsList4_SquadContainerMC_optionList4_0();
-            this.__setProp_perksList3_SquadContainerMC_perkList3_0();
             this.__setProp_optionsList3_SquadContainerMC_optionList3_0();
-            this.__setProp_perksList2_SquadContainerMC_perkList2_0();
             this.__setProp_optionsList2_SquadContainerMC_optionList2_0();
-            this.__setProp_perksList1_SquadContainerMC_perkList1_0();
             this.__setProp_optionsList1_SquadContainerMC_optionList1_0();
-            this.__setProp_perksList0_SquadContainerMC_perkList0_0();
             this.__setProp_optionsList0_SquadContainerMC_optionList0_0();
+        }
+        
+        function __setProp_promptsDisplay_SquadContainerMC_prompts_0() : *
+        {
+            try
+            {
+                promptsDisplay["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            promptsDisplay.bUseWidthForBoundry = true;
+            promptsDisplay.enabled = true;
+            promptsDisplay.enableInitCallback = false;
+            promptsDisplay.promptSpacing = 45;
+            promptsDisplay.visible = true;
+            try
+            {
+                promptsDisplay["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
         }
         
         function __setProp_leaveButton_SquadContainerMC_LeaveButton_0() : *
@@ -152,40 +164,6 @@ package
             }
         }
         
-        function __setProp_perksList11_SquadContainerMC_perkList11_0() : *
-        {
-            try
-            {
-                perksList11["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList11.enabled = true;
-            perksList11.enableInitCallback = false;
-            perksList11.focusable = true;
-            perksList11.itemRendererName = "PerkDropdownRenderer";
-            perksList11.itemRendererInstanceName = "";
-            perksList11.margin = 0;
-            perksList11.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList11.rowHeight = 40;
-            perksList11.scrollBar = "";
-            perksList11.visible = false;
-            perksList11.wrapping = "stick";
-            try
-            {
-                perksList11["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
         function __setProp_optionsList11_SquadContainerMC_optionList11_0() : *
         {
             try
@@ -214,40 +192,6 @@ package
             try
             {
                 optionsList11["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_perksList10_SquadContainerMC_perkList10_0() : *
-        {
-            try
-            {
-                perksList10["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList10.enabled = true;
-            perksList10.enableInitCallback = false;
-            perksList10.focusable = true;
-            perksList10.itemRendererName = "PerkDropdownRenderer";
-            perksList10.itemRendererInstanceName = "";
-            perksList10.margin = 0;
-            perksList10.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList10.rowHeight = 40;
-            perksList10.scrollBar = "";
-            perksList10.visible = false;
-            perksList10.wrapping = "stick";
-            try
-            {
-                perksList10["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {
@@ -288,40 +232,6 @@ package
             }
         }
         
-        function __setProp_perksList9_SquadContainerMC_perkList9_0() : *
-        {
-            try
-            {
-                perksList9["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList9.enabled = true;
-            perksList9.enableInitCallback = false;
-            perksList9.focusable = true;
-            perksList9.itemRendererName = "PerkDropdownRenderer";
-            perksList9.itemRendererInstanceName = "";
-            perksList9.margin = 0;
-            perksList9.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList9.rowHeight = 40;
-            perksList9.scrollBar = "";
-            perksList9.visible = false;
-            perksList9.wrapping = "stick";
-            try
-            {
-                perksList9["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
         function __setProp_optionsList9_SquadContainerMC_optionList9_0() : *
         {
             try
@@ -350,40 +260,6 @@ package
             try
             {
                 optionsList9["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_perksList8_SquadContainerMC_perkList8_0() : *
-        {
-            try
-            {
-                perksList8["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList8.enabled = true;
-            perksList8.enableInitCallback = false;
-            perksList8.focusable = true;
-            perksList8.itemRendererName = "PerkDropdownRenderer";
-            perksList8.itemRendererInstanceName = "";
-            perksList8.margin = 0;
-            perksList8.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList8.rowHeight = 40;
-            perksList8.scrollBar = "";
-            perksList8.visible = false;
-            perksList8.wrapping = "stick";
-            try
-            {
-                perksList8["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {
@@ -424,40 +300,6 @@ package
             }
         }
         
-        function __setProp_perksList7_SquadContainerMC_perkList7_0() : *
-        {
-            try
-            {
-                perksList7["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList7.enabled = true;
-            perksList7.enableInitCallback = false;
-            perksList7.focusable = true;
-            perksList7.itemRendererName = "PerkDropdownRenderer";
-            perksList7.itemRendererInstanceName = "";
-            perksList7.margin = 0;
-            perksList7.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList7.rowHeight = 40;
-            perksList7.scrollBar = "";
-            perksList7.visible = false;
-            perksList7.wrapping = "stick";
-            try
-            {
-                perksList7["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
         function __setProp_optionsList7_SquadContainerMC_optionList7_0() : *
         {
             try
@@ -486,40 +328,6 @@ package
             try
             {
                 optionsList7["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_perksList6_SquadContainerMC_perkList6_0() : *
-        {
-            try
-            {
-                perksList6["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList6.enabled = true;
-            perksList6.enableInitCallback = false;
-            perksList6.focusable = true;
-            perksList6.itemRendererName = "PerkDropdownRenderer";
-            perksList6.itemRendererInstanceName = "";
-            perksList6.margin = 0;
-            perksList6.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList6.rowHeight = 40;
-            perksList6.scrollBar = "";
-            perksList6.visible = false;
-            perksList6.wrapping = "stick";
-            try
-            {
-                perksList6["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {
@@ -560,40 +368,6 @@ package
             }
         }
         
-        function __setProp_perksList5_SquadContainerMC_perkList5_0() : *
-        {
-            try
-            {
-                perksList5["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList5.enabled = true;
-            perksList5.enableInitCallback = false;
-            perksList5.focusable = true;
-            perksList5.itemRendererName = "PerkDropdownRenderer";
-            perksList5.itemRendererInstanceName = "";
-            perksList5.margin = 0;
-            perksList5.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList5.rowHeight = 40;
-            perksList5.scrollBar = "";
-            perksList5.visible = false;
-            perksList5.wrapping = "stick";
-            try
-            {
-                perksList5["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
         function __setProp_optionsList5_SquadContainerMC_optionList5_0() : *
         {
             try
@@ -622,40 +396,6 @@ package
             try
             {
                 optionsList5["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_perksList4_SquadContainerMC_perkList4_0() : *
-        {
-            try
-            {
-                perksList4["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList4.enabled = true;
-            perksList4.enableInitCallback = false;
-            perksList4.focusable = true;
-            perksList4.itemRendererName = "PerkDropdownRenderer";
-            perksList4.itemRendererInstanceName = "";
-            perksList4.margin = 0;
-            perksList4.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList4.rowHeight = 40;
-            perksList4.scrollBar = "";
-            perksList4.visible = false;
-            perksList4.wrapping = "stick";
-            try
-            {
-                perksList4["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {
@@ -696,40 +436,6 @@ package
             }
         }
         
-        function __setProp_perksList3_SquadContainerMC_perkList3_0() : *
-        {
-            try
-            {
-                perksList3["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList3.enabled = true;
-            perksList3.enableInitCallback = false;
-            perksList3.focusable = true;
-            perksList3.itemRendererName = "PerkDropdownRenderer";
-            perksList3.itemRendererInstanceName = "";
-            perksList3.margin = 0;
-            perksList3.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList3.rowHeight = 40;
-            perksList3.scrollBar = "";
-            perksList3.visible = false;
-            perksList3.wrapping = "stick";
-            try
-            {
-                perksList3["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
         function __setProp_optionsList3_SquadContainerMC_optionList3_0() : *
         {
             try
@@ -758,40 +464,6 @@ package
             try
             {
                 optionsList3["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_perksList2_SquadContainerMC_perkList2_0() : *
-        {
-            try
-            {
-                perksList2["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList2.enabled = true;
-            perksList2.enableInitCallback = false;
-            perksList2.focusable = true;
-            perksList2.itemRendererName = "PerkDropdownRenderer";
-            perksList2.itemRendererInstanceName = "";
-            perksList2.margin = 0;
-            perksList2.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList2.rowHeight = 40;
-            perksList2.scrollBar = "";
-            perksList2.visible = false;
-            perksList2.wrapping = "stick";
-            try
-            {
-                perksList2["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {
@@ -832,40 +504,6 @@ package
             }
         }
         
-        function __setProp_perksList1_SquadContainerMC_perkList1_0() : *
-        {
-            try
-            {
-                perksList1["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList1.enabled = true;
-            perksList1.enableInitCallback = false;
-            perksList1.focusable = true;
-            perksList1.itemRendererName = "PerkDropdownRenderer";
-            perksList1.itemRendererInstanceName = "";
-            perksList1.margin = 0;
-            perksList1.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList1.rowHeight = 40;
-            perksList1.scrollBar = "";
-            perksList1.visible = false;
-            perksList1.wrapping = "stick";
-            try
-            {
-                perksList1["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
         function __setProp_optionsList1_SquadContainerMC_optionList1_0() : *
         {
             try
@@ -894,40 +532,6 @@ package
             try
             {
                 optionsList1["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_perksList0_SquadContainerMC_perkList0_0() : *
-        {
-            try
-            {
-                perksList0["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            perksList0.enabled = true;
-            perksList0.enableInitCallback = false;
-            perksList0.focusable = true;
-            perksList0.itemRendererName = "PerkDropdownRenderer";
-            perksList0.itemRendererInstanceName = "";
-            perksList0.margin = 0;
-            perksList0.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":8,
-                "left":0
-            };
-            perksList0.rowHeight = 40;
-            perksList0.scrollBar = "";
-            perksList0.visible = false;
-            perksList0.wrapping = "stick";
-            try
-            {
-                perksList0["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

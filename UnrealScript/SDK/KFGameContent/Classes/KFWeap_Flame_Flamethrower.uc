@@ -231,7 +231,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=100
-	MaxSpareAmmo[0]=400
+	SpareAmmoCapacity[0]=500
 	InitialSpareMags[0]=1
 	AmmoPickupScale[0]=0.4
 	bCanBeReloaded=true
@@ -273,7 +273,10 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
     WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
 
+
+	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Flamethrower'
+	InstantHitDamage(BASH_FIREMODE)=28
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Flamethrower_ARCH.Wep_Flamethrower_MuzzleFlash'
@@ -287,13 +290,14 @@ defaultproperties
 	// Advanced (High RPM) Fire Effects
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true
 	bLoopingFireSnd(DEFAULT_FIREMODE)=true
-	SingleFireMode=FIREMODE_NONE
+	SingleFireSoundIndex=FIREMODE_NONE
 
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
 
+ 	// AI Warning
+ 	bWarnAIWhenFiring=true
+
    	AssociatedPerkClass=class'KFPerk_Firebug'
 }
-
-

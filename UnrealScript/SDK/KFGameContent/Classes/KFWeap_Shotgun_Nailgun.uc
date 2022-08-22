@@ -153,13 +153,16 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Nail_Nailgun'
 	InstantHitDamage(ALTFIRE_FIREMODE)=30
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_NailShotgun'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_NailShotgun'
 	Spread(ALTFIRE_FIREMODE)=0.02
 	PenetrationPower(ALTFIRE_FIREMODE)=2.0
 	FireInterval(ALTFIRE_FIREMODE)=0.4 // 150 RPM
 	AltFireRecoilModifier=0.5
 	// Shotgun
 	NumPellets(ALTFIRE_FIREMODE)=1
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_NailShotgun'
+	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_MuzzleFlash'
@@ -176,7 +179,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=42
-	MaxSpareAmmo[0]=336
+	SpareAmmoCapacity[0]=336
 	InitialSpareMags[0]=4
 	bCanBeReloaded=true
 	bReloadFromMagazine=true

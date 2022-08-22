@@ -148,8 +148,8 @@ function RecieveChatMessage(PlayerReplicationInfo PRI, string ChatMessage, name 
 
 unreliable client function NotifyOfAutoBalance()
 {
-	MyGFxManager.OpenPopup(ENotification, "NOTICE", "You have been team swapped", "OK");
-	MyGFxHUD.ShowNonCriticalMessage("You have been team swapped");
+	MyGFxManager.OpenPopup(ENotification, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.TeamSwappedString, Class'KFCommon_LocalizedStrings'.default.OKString);
+	MyGFxHUD.ShowNonCriticalMessage(Class'KFCommon_LocalizedStrings'.default.TeamSwappedString);
 }
 
 //override from base PlayerController
@@ -205,15 +205,27 @@ state Dead
 {
 	event BeginState(Name PreviousStateName)
 	{
-		local ViewOffsetData DefaultViewOffset;
-
 		super.BeginState( PreviousStateName );
 
 		// Reset camera offset
 		if( GetTeamNum() == 255 )
 		{
-		    KFThirdPersonCamera(KFPlayerCamera(PlayerCamera).ThirdPersonCam).SetViewOffset( DefaultViewOffset );
+		    KFThirdPersonCamera(KFPlayerCamera(PlayerCamera).ThirdPersonCam).SetViewOffset( class'KFThirdPersonCameraMode'.static.GetDefaultOffset() );
 		}
+	}
+}
+
+/** Called when view target is changed while in spectating state */
+function NotifyChangeSpectateViewTarget()
+{
+	local KFPawn_Monster KFPM;
+
+	super.NotifyChangeSpectateViewTarget();
+
+	KFPM = KFPawn_Monster( ViewTarget );
+	if( KFPM != none )
+	{
+	    KFThirdPersonCamera(KFPlayerCamera(PlayerCamera).ThirdPersonCam).SetViewOffset( KFPM.default.ThirdPersonViewOffset );
 	}
 }
 

@@ -40,7 +40,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=15
-	MaxSpareAmmo[0]=225
+	SpareAmmoCapacity[0]=225
 	InitialSpareMags[0]=7
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -67,13 +67,16 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.175
 	InstantHitDamage(DEFAULT_FIREMODE)=15.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_9mm'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_9mm'
 	Spread(DEFAULT_FIREMODE)=0.015
 	FireOffset=(X=20,Y=4.0,Z=-3)
 
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_9mm'
+	InstantHitDamage(BASH_FIREMODE)=20
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_9MM_ARCH.Wep_9MM_MuzzleFlash'

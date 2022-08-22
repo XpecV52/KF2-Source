@@ -34,6 +34,12 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional vector D
 			CachedInstigatorPerk = KFP.GetPerk();
 		}
 	}
+
+	if (Role == Role_Authority)
+	{
+		//DelayedExplosionDamage();
+		SetTimer(Interval, true, nameof(DelayedExplosionDamage), self);
+	}
 }
 
 /**
@@ -51,12 +57,15 @@ protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
 		MonsterVictim = KFPawn_Monster(Victim);
 		if( MonsterVictim != none )
 		{
-			if( CachedInstigatorPerk != none && CachedInstigatorPerk.ShouldSedate() )
+			if( bWasFadedOut|| bDeleteMe || bPendingDelete )
 			{
-				MonsterVictim.DoSpecialMove( SM_Stunned );
+				return;
 			}
-		
-			super.AffectsPawn(Victim, DamageScale);
+
+
+			Victim.TakeRadiusDamage(InstigatorController, ExplosionTemplate.Damage * DamageScale, ExplosionTemplate.DamageRadius,
+			ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, bDoFullDamage,
+			(Owner != None) ? Owner : self, ExplosionTemplate.DamageFalloffExponent);
 		}
 		else 
 		{
@@ -78,6 +87,17 @@ protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
 			}
 		}
 	}
+}
+
+simulated function SpawnExplosionParticleSystem(ParticleSystem Template)
+{
+	// If the template is none, grab the default
+    if( !ExplosionTemplate.bAllowPerMaterialFX && Template == none )
+	{
+	   Template = KFGameExplosion(ExplosionTemplate).ExplosionEffects.DefaultImpactEffect.ParticleTemplate;
+	}
+
+    WorldInfo.MyEmitterPool.SpawnEmitter(Template, Location, rotator(ExplosionTemplate.HitNormal));
 }
 
 defaultproperties

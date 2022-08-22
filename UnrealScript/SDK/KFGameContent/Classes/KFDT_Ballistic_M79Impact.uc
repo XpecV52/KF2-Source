@@ -22,5 +22,7 @@ defaultproperties
 	StumblePower=340
 	GunHitPower=275
 
+	WeaponDef=class'KFWeapDef_M79'
+
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'
 }

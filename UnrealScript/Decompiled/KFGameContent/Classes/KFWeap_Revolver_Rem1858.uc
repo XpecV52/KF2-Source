@@ -32,7 +32,7 @@ defaultproperties
     GroupPriority=15
     WeaponSelectTexture=Texture2D'WEP_UI_Remington_1858_TEX.UI_WeaponSelect_Remington'
     DualClass=Class'KFWeap_Revolver_DualRem1858'
-    MaxSpareAmmo=186
+    SpareAmmoCapacity=186
     InitialSpareMags=15
     AmmoPickupScale=2
     IdleFidgetAnims=/* Array type was not detected. */

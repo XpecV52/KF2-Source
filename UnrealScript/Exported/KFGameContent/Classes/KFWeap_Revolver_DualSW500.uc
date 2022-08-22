@@ -138,7 +138,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_SW_500_TEX.UI_WeaponSelect_DualSW500'
-   MaxSpareAmmo(0)=95
+   SpareAmmoCapacity(0)=95
    InitialSpareMags(0)=2
    BonesToLockOnEmpty(0)="RW_Hammer"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Fire_1P')
@@ -186,7 +186,7 @@ defaultproperties
    InstantHitDamage(0)=150.000000
    InstantHitDamage(1)=150.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=10.000000
+   InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_SW500'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_SW500'
    InstantHitDamageTypes(2)=None

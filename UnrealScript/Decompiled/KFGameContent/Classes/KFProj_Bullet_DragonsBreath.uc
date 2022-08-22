@@ -30,6 +30,7 @@ defaultproperties
     object end
     // Reference: PointLightComponent'Default__KFProj_Bullet_DragonsBreath.ProjPointLight'
     ProjLight=ProjPointLight
+    bWarnAIWhenFired=true
     GravityScale=0.35
     TerminalVelocity=7000
     ProjFlightTemplate=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer'

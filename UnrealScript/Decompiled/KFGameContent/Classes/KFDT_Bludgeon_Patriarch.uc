@@ -15,6 +15,7 @@ static function int GetKillerDialogID()
 
 defaultproperties
 {
+    bAllowAIDoorDestruction=true
     bExtraMomentumZ=true
     KDamageImpulse=1000
     KDeathVel=950

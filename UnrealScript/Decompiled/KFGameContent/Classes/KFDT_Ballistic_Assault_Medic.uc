@@ -27,20 +27,20 @@ static simulated function bool CanDismemberHitZone(name InHitZoneName)
 
 static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
 {
-    return Class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicBleed(InDamage, KFDT, InstigatedBy);
+    return Class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicToxic(InDamage, KFDT, InstigatedBy);
 }
 
-static function bool CheckMedicBleed(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
+static function bool CheckMedicToxic(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
 {
     local KFPerk InstigatorPerk;
 
     InstigatorPerk = KFPlayerController(InstigatedBy).GetPerk();
-    if((InstigatorPerk == none) || !InstigatorPerk.IsBleedDmgActive())
+    if((InstigatorPerk == none) || !InstigatorPerk.IsToxicDmgActive())
     {
         return false;
     }
-    InstigatorPerk.ModifyBleedDmg(InDamage);
-    KFDT = InstigatorPerk.GetBleedDmgTypeClass();
+    InstigatorPerk.ModifyToxicDmg(InDamage);
+    KFDT = InstigatorPerk.GetToxicDmgTypeClass();
     return true;
 }
 

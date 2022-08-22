@@ -7,6 +7,7 @@ package tripwire.containers
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import tripwire.controls.OverviewButton;
     import tripwire.controls.TripButton;
@@ -37,13 +38,24 @@ package tripwire.containers
         
         public var sharedContentListContainer:SharedContentListContainer;
         
+        private const PERMISSIONS_START_Y:int = 640;
+        
+        private const PERMISSIONS_NOSERVERTYPE_Y:int = 584;
+        
         public function StartOverviewContainer()
         {
             super();
-            this.sharedContentButton.focusable = true;
-            this.sharedContentListContainer.sharedContentConfirmButton.focusable = true;
-            this.sharedContentButton.tabIndex = 1;
-            this.sharedContentListContainer.sharedContentConfirmButton.tabIndex = 2;
+            if(bManagerConsoleBuild)
+            {
+                this.sharedContentButton.visible = false;
+            }
+            else
+            {
+                this.sharedContentButton.focusable = true;
+                this.sharedContentListContainer.sharedContentConfirmButton.focusable = true;
+                this.sharedContentButton.tabIndex = 1;
+                this.sharedContentListContainer.sharedContentConfirmButton.tabIndex = 2;
+            }
             sectionHeader = this.overviewHeader;
         }
         
@@ -58,13 +70,21 @@ package tripwire.containers
                     this.sharedContentButton.focused = 1;
                 }
             }
+            else if(this.serverWelcomeScreen.visible)
+            {
+                currentElement = this.serverWelcomeScreen.confirmButton;
+                if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
+                {
+                    this.serverWelcomeScreen.confirmButton.focused = 1;
+                }
+            }
             if(currentElement)
             {
                 currentElement.tabEnabled = true;
                 currentElement.tabChildren = true;
-                if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
+                if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen && currentElement.visible)
                 {
-                    currentElement.focused = 1;
+                    FocusHandler.getInstance().setFocus(currentElement);
                 }
             }
         }
@@ -97,15 +117,21 @@ package tripwire.containers
         {
             super.addedToStage(param1);
             this.initPermissionsItems();
-            defaultFirstElement = this.sharedContentButton;
-            currentElement = this.sharedContentButton;
+            if(!bManagerConsoleBuild)
+            {
+                defaultFirstElement = this.sharedContentButton;
+                currentElement = this.sharedContentButton;
+            }
             this.serverWelcomeScreen.visible = false;
         }
         
         private function initPermissionsItems() : void
         {
-            this.sharedContentButton.addEventListener(ButtonEvent.PRESS,this.onSharedContentPress,false,0,true);
-            this.sharedContentListContainer.sharedContentConfirmButton.addEventListener(ButtonEvent.PRESS,this.hideSharedContentList,false,0,true);
+            if(!bManagerConsoleBuild)
+            {
+                this.sharedContentButton.addEventListener(ButtonEvent.PRESS,this.onSharedContentPress,false,0,true);
+                this.sharedContentListContainer.sharedContentConfirmButton.addEventListener(ButtonEvent.PRESS,this.hideSharedContentList,false,0,true);
+            }
             this.serverWelcomeScreen.confirmButton.addEventListener(ButtonEvent.PRESS,this.hideWelcomeScreen,false,0,true);
             this.permissionsButton.visible = false;
             this.permissionsList.visible = false;
@@ -116,9 +142,9 @@ package tripwire.containers
         public function hideWelcomeScreen(param1:ButtonEvent = null) : void
         {
             this.serverWelcomeScreen.closeContainer();
-            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
+            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen && this.sharedContentButton.visible)
             {
-                this.sharedContentButton.focused = 1;
+                FocusHandler.getInstance().setFocus(this.sharedContentButton);
             }
         }
         
@@ -126,9 +152,9 @@ package tripwire.containers
         {
             this.sharedContentListContainer.closeAnimation();
             currentElement = this.sharedContentButton;
-            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
+            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen && currentElement.visible)
             {
-                this.sharedContentButton.focused = 1;
+                FocusHandler.getInstance().setFocus(this.sharedContentButton);
             }
         }
         
@@ -138,9 +164,9 @@ package tripwire.containers
             this.sharedContentListContainer.alpha = 0;
             this.sharedContentListContainer.visible = true;
             this.sharedContentListContainer.openAnimation();
-            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
+            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen && this.sharedContentListContainer.sharedContentConfirmButton.visible)
             {
-                this.sharedContentListContainer.sharedContentConfirmButton.focused = 1;
+                FocusHandler.getInstance().setFocus(this.sharedContentListContainer.sharedContentConfirmButton);
             }
         }
         
@@ -232,6 +258,7 @@ package tripwire.containers
         public function set permissionsText(param1:String) : void
         {
             this.permissionsButton.label = param1;
+            this.permissionsButton.y = param1 == "" ? Number(this.PERMISSIONS_NOSERVERTYPE_Y) : Number(this.PERMISSIONS_START_Y);
         }
         
         override protected function onBPressed(param1:InputDetails) : void
@@ -240,6 +267,15 @@ package tripwire.containers
             if(!this.permissionsList.bOpen)
             {
                 ExternalInterface.call("Callback_ControllerCloseMenu");
+            }
+        }
+        
+        override public function deselectContainer() : void
+        {
+            super.deselectContainer();
+            if(sectionHeader != null && bOpen)
+            {
+                sectionHeader.controllerIconVisible = !bSelected && (!!bManagerConsoleBuild ? Boolean(this.serverWelcomeScreen.visible) : true);
             }
         }
     }

@@ -45,7 +45,11 @@ function SetXPList()
 		//Temp XP Print out on AAR player stats
 		for (i = 0; i < StatCollector.PerkXPList.length; i++)
 		{
-			ObjectArray.SetElementObject(ItemCount, MakePerkXPObject(StatCollector.PerkXPList[i]));
+			// Only show perks with progress this match
+			if ( StatCollector.PerkXPList[i].XPDelta > 0 )
+			{
+				ObjectArray.SetElementObject(ItemCount, MakePerkXPObject(StatCollector.PerkXPList[i]));
+			}
 		}
 	}
 

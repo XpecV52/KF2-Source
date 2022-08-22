@@ -156,6 +156,7 @@ defaultproperties
    ThrowAkEvent=AkEvent'WW_WEP_EXP_MOLOTOV.Play_WEP_EXP_Molotov_Throw'
    FuseTime=10.000000
    WeaponSelectTexture=Texture2D'wep_ui_molotov_tex.UI_WeaponSelect_MolotovCocktail'
+   bWarnAIWhenFired=True
    TossZ=650.000000
    TerminalVelocity=2000.000000
    ExplosionActorClass=Class'KFGame.KFExplosionActor'

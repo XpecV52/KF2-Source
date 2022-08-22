@@ -370,6 +370,7 @@ class KFDialogManager extends Actor
 
 
 
+
 	
 
 
@@ -3189,6 +3190,36 @@ function PlayHansBattlePhaseDialog( KFPawn Hans, int CurrBattlePhase )
  * Patriarch Dialog
  ************************************************/
 
+function PlayPatriarchTickDialog( KFPawn Patty )
+{
+    local int NumPlayers, NumLivingPlayers, NumOptions, BestOptionID;
+    local float PlayersAlivePct;
+
+    BestOptionID = -1;
+
+    NumPlayers = WorldInfo.Game.NumPlayers;
+    NumLivingPlayers = KFGameInfo( WorldInfo.Game ).GetLivingPlayerCount();
+    if( NumLivingPlayers > 0 )
+    {
+        PlayersAlivePct = float(NumLivingPlayers) / float(NumPlayers);
+
+        if( PlayersAlivePct >= 0.5 )
+        {
+            AddRandomDialogOption( Patty, 1, NumOptions, BestOptionID );
+        }
+        else if( PlayersAlivePct >= 0.25 )
+        {
+            AddRandomDialogOption( Patty, 2, NumOptions, BestOptionID );
+        }
+        else
+        {
+            AddRandomDialogOption( Patty, 3, NumOptions, BestOptionID );
+        }
+    }
+
+    PlayDialogEvent( Patty, BestOptionID );
+}
+
 function PlayPattyMinigunWarnDialog( KFPawn Patty )
 {
     PlayDialogEvent( Patty, 16);
@@ -3234,15 +3265,15 @@ function PlayPattyBattlePhaseDialog( KFPawn Patty, int CurrBattlePhase )
 
     switch( CurrBattlePhase )
     {
-    case 2:
+    case 1:
         PlayDialogEvent( Patty, 26);
         break;
 
-    case 3:
+    case 2:
         PlayDialogEvent( Patty, 27);
         break;
 
-    case 4:
+    case 3:
         PlayDialogEvent( Patty, 28);
         break;
     };

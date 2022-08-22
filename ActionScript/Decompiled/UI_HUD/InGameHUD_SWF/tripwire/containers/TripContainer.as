@@ -71,6 +71,12 @@ package tripwire.containers
         
         public var leftSidePanels:Array;
         
+        private var _bBlockContainerFocus:Boolean = false;
+        
+        public var openSoundEffect:String = "";
+        
+        public var closeSoundEffect:String = "";
+        
         public function TripContainer()
         {
             this.rightSidePanels = new Array();
@@ -134,6 +140,20 @@ package tripwire.containers
             return this._bOpen;
         }
         
+        public function get bBlockContainerFocus() : Boolean
+        {
+            return this._bBlockContainerFocus;
+        }
+        
+        public function set bBlockContainerFocus(param1:Boolean) : void
+        {
+            if(param1 == this._bBlockContainerFocus)
+            {
+                return;
+            }
+            this._bBlockContainerFocus = param1;
+        }
+        
         public function openContainer(param1:Boolean = true) : void
         {
             if(!this._bOpen)
@@ -161,6 +181,10 @@ package tripwire.containers
                     this.alpha = 0;
                     this.openAnimation(param1);
                 }
+                if(Extensions.gfxProcessSound != null)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.openSoundEffect);
+                }
                 this._bOpen = true;
             }
         }
@@ -176,7 +200,7 @@ package tripwire.containers
             {
                 stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             }
-            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen)
+            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen && this.currentElement.visible)
             {
                 this.currentElement.tabEnabled = true;
                 this.currentElement.tabChildren = true;
@@ -201,6 +225,10 @@ package tripwire.containers
                 if(this.currentElement)
                 {
                     this.currentElement = null;
+                }
+                if(Extensions.gfxProcessSound != null)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.closeSoundEffect);
                 }
             }
         }
@@ -257,6 +285,10 @@ package tripwire.containers
         
         protected function onInputChange(param1:Event) : *
         {
+            if(!this.bManagerUsingGamepad)
+            {
+                this.unDimSides();
+            }
         }
         
         override public function handleInput(param1:InputEvent) : void
@@ -344,6 +376,30 @@ package tripwire.containers
         public function handleRightSideOver(param1:MouseEvent) : void
         {
             this.showDimLeftSide(true);
+        }
+        
+        public function unDimSides() : void
+        {
+            var _loc1_:int = 0;
+            var _loc2_:int = 0;
+            if(this.leftSidePanels.length > 0)
+            {
+                _loc1_ = 0;
+                while(_loc1_ < this.leftSidePanels.length)
+                {
+                    this.leftSidePanels[_loc1_].alpha = this._defaultAlpha;
+                    _loc1_++;
+                }
+            }
+            if(this.rightSidePanels.length > 0)
+            {
+                _loc2_ = 0;
+                while(_loc2_ < this.rightSidePanels.length)
+                {
+                    this.rightSidePanels[_loc2_].alpha = this._defaultAlpha;
+                    _loc2_++;
+                }
+            }
         }
         
         protected function openAnimation(param1:Boolean = true) : *

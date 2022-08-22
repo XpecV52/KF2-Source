@@ -54,6 +54,7 @@ struct TopVotes
 };
 
 var byte VoteTime;
+var byte ShortenedTime;
 var byte YesVotes;
 var byte NoVotes;
 var byte KickedPlayers;
@@ -418,6 +419,10 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
                 case 0:
                     TopVotesObject.Map1Votes = byte(MapVoteList[I].VoterPRIList.Length);
                     TopVotesObject.Map1Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[I].MapIndex];
+                    if(CheckMajorityPlayersVotedOnMap(PRIs, MapVoteList[I].VoterPRIList.Length))
+                    {
+                        ShortenVoteTime(KFGI);
+                    }
                     break;
                 case 1:
                     TopVotesObject.Map2Votes = byte(MapVoteList[I].VoterPRIList.Length);
@@ -435,25 +440,38 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
         {
             ++ I;
             goto J0x1DF;
-        }/* !MISMATCHING REMOVE, tried Loop got Type:Else Position:0x4C8! */
+        }/* !MISMATCHING REMOVE, tried Loop got Type:Else Position:0x518! */
         I = 0;
-        J0x4E1:
+        J0x531:
 
         if(I < PRIs.Length)
         {
             PRIs[I].RecieveTopMaps(TopVotesObject);
             ++ I;
-            goto J0x4E1;
+            goto J0x531;
         }
-        if((CheckAllPlayerVoted(PRIs)) && !bAllPlayersVotedOnMap)
+        if(CheckAllPlayerVoted(PRIs))
         {
-            bAllPlayersVotedOnMap = true;
-            if(KFGI != none)
-            {
-                KFGI.UpdateCurrentMapVoteTime(5, true);
-            }
+            ShortenVoteTime(KFGI);
         }
     }/* !MISMATCHING REMOVE, tried Else got Type:Loop Position:0x1DF! */
+}
+
+function ShortenVoteTime(KFGameInfo KFGI)
+{
+    if(!bAllPlayersVotedOnMap && KFGI != none)
+    {
+        bAllPlayersVotedOnMap = true;
+        KFGI.UpdateCurrentMapVoteTime(ShortenedTime, true);
+    }
+}
+
+function bool CheckMajorityPlayersVotedOnMap(out array<KFPlayerReplicationInfo> PRIs, int NumOfVotesOnMap)
+{
+    local float VotePercentage;
+
+    VotePercentage = float(NumOfVotesOnMap) / float(PRIs.Length);
+    return VotePercentage > 0.5;
 }
 
 function bool CheckAllPlayerVoted(out array<KFPlayerReplicationInfo> PRIs)
@@ -501,6 +519,7 @@ function int MapVoteSort(MapVote A, MapVote B)
 defaultproperties
 {
     VoteTime=30
+    ShortenedTime=10
     TopResultsToShow=3
     ActiveTimeUntilVoteEnabled=30
     TopVotesObject=(Map1Name="",Map1Votes=255,Map2Name="",Map2Votes=255,Map3Name="",Map3Votes=255)

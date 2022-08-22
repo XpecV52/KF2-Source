@@ -33,7 +33,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=40.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_M1911_TEX.UI_WeaponSelect_DualM1911'
-   MaxSpareAmmo(0)=128
+   SpareAmmoCapacity(0)=128
    InitialSpareMags(0)=3
    BonesToLockOnEmpty(1)="RW_Bullets1"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Fire_Single_M',FirstPersonCue=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Fire_Single_S')
@@ -81,7 +81,7 @@ defaultproperties
    InstantHitDamage(0)=50.000000
    InstantHitDamage(1)=50.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=10.000000
+   InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Colt1911'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_Colt1911'
    InstantHitDamageTypes(2)=None

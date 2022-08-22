@@ -9,20 +9,10 @@ class KFAIController_ZedClot_Slasher extends KFAIController_ZedClot
     config(AI)
     hidecategories(Navigation);
 
-function bool ShouldSprint()
-{
-    if(bCanSprint || bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax)
-    {
-        return true;        
-    }
-    else
-    {
-        return false;
-    }
-}
-
 defaultproperties
 {
+    RunOverEvadeDelayScale=0.5
     SprintWithinEnemyRange=(X=120,Y=700)
     EvadeGrenadeChance=0.6
+    DangerEvadeSettings=/* Array type was not detected. */
 }

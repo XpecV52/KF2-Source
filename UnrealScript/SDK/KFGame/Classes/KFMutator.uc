@@ -6,6 +6,9 @@
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
 // Jeff Robinson
+//Enjoy modding and want to join the community?  
+//Discord: https://discord.gg/UjApa
+//Tripwire Forums: http://forums.tripwireinteractive.com/forum/killing-floor-2/killing-floor-2-modifications/general-modding-discussion-ad
 //=============================================================================
 class KFMutator extends Mutator
 	abstract;

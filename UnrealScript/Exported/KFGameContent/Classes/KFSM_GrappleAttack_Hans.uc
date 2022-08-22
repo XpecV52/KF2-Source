@@ -83,15 +83,15 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
     if( KFPOwner != none && KFPOwner.MyKFAIC != none )
     {
         // Determine what life draw threshold to use
-        if( KFPOwner.MyKFAIC.Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
+        if( KFPOwner.MyKFAIC.Skill == class'KFGameDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
         {
             EnemyDrawLifeThreshold = MaxEnemyLifeDrawThresholdNormal;
         }
-        else if( KFPOwner.MyKFAIC.Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
+        else if( KFPOwner.MyKFAIC.Skill <= class'KFGameDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
         {
             EnemyDrawLifeThreshold = MaxEnemyLifeDrawThresholdHard;
         }
-        else if( KFPOwner.MyKFAIC.Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
+        else if( KFPOwner.MyKFAIC.Skill <= class'KFGameDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
         {
             EnemyDrawLifeThreshold = MaxEnemyLifeDrawThresholdSuicidal;
         }

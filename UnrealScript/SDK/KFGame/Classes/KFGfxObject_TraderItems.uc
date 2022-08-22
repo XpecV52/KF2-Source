@@ -40,7 +40,8 @@ enum EFilterTypeUI
 	FT_Explosive,
 	FT_Assault,
 	FT_Melee,
-	FT_SMG
+	FT_SMG,
+	FT_None
 };
 
 struct native STraderItemWeaponStats
@@ -68,22 +69,34 @@ struct native STraderItem
 	var class<KFPerk> AssociatedPerkClass;
 
 	var int MaxSpareAmmo;
-	var int InitialSpareMags, MaxSecondaryAmmoCount;
-    var byte MagazineCapacity, BlocksRequired;
 
     /** Trader image for secondary ammo type */
 	var string SecondaryAmmoImagePath;
 
-	/** Determine which group a weapon will show up for the weapon type filter */
-	var EFilterTypeUI TraderFilter;
-
-	/** The group that this weapon belongs to */
-	var byte InventoryGroup;
 	/** The priority of the weapon within this group */
 	var float GroupPriority;
 
 	/** Dynamic array of stats to display. Each weapon has the opportunity to set its own stats. */
 	var() editconst array<STraderItemWeaponStats> WeaponStats;
+
+/** BYTES - For alignment */
+
+	var byte InitialSpareMags;
+	var byte MagazineCapacity;
+	var byte BlocksRequired;
+	var byte InitialSecondaryAmmo;
+	var byte MaxSecondaryAmmo;
+
+	/** Determine which group a weapon will show up for the weapon type filter */
+	var EFilterTypeUI TraderFilter;
+	var EFilterTypeUI AltTraderFilter;
+	/** The group that this weapon belongs to */
+	var byte InventoryGroup;
+
+	StructDefaultProperties
+	{
+		AltTraderFilter=FT_None
+	}
 };
 
 var() editoronly transient bool bBuildItemInfo;

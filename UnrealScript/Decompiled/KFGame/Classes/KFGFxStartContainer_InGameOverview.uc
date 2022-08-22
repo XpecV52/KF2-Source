@@ -13,6 +13,7 @@ var byte LastLengthIndex;
 var byte LastPrivacyIndex;
 var const localized string OverviewString;
 var const localized string ChangeString;
+var const localized string AuthorString;
 var const localized string SharedByString;
 var const localized string SharedContentString;
 var GFxObject SharedContentButton;
@@ -22,6 +23,9 @@ var KFHTTPImageDownloader ImageDownLoader;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
+    local PlayerController PC;
+
+    PC = Outer.GetPC();
     StartMenu = KFGFxMenu_StartGame(NewParentMenu);
     ServerWelcomeScreen = GetObject("serverWelcomeScreen");
     LocalizeContainer();
@@ -29,9 +33,12 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     SharedContentButton = GetObject("sharedContentButton");
     if(SharedContentButton != none)
     {
-        SharedContentButton.SetVisible(Outer.GetPC().WorldInfo.NetMode != NM_Standalone);
+        SharedContentButton.SetVisible((PC.WorldInfo.NetMode != NM_Standalone) && !PC.WorldInfo.IsConsoleBuild());
     }
-    UpdateSharedContent();
+    if(!PC.WorldInfo.IsConsoleBuild())
+    {
+        UpdateSharedContent();
+    }
     if(!Class'WorldInfo'.static.IsE3Build())
     {
         ShowWelcomeScreen();
@@ -64,7 +71,7 @@ function LocalizeContainer()
     I = 0;
     J0x3C5:
 
-    if(I < Class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray().Length)
+    if(I < Class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(Outer.GetPC().WorldInfo.IsConsoleBuild()).Length)
     {
         TempObj = Outer.CreateObject("Object");
         TempObj.SetString("label", Class'KFCommon_LocalizedStrings'.static.GetPermissionString(float(I)));
@@ -75,7 +82,7 @@ function LocalizeContainer()
     LocalizedObject.SetObject("permissionOptions", DataProvider);
     if(!Class'WorldInfo'.static.IsMenuLevel())
     {
-        LocalizedObject.SetString("authorName", Outer.GetPC().WorldInfo.Author);
+        LocalizedObject.SetString("authorName", AuthorString $ Outer.GetPC().WorldInfo.Author);
     }
     SetObject("localizedText", LocalizedObject);
     LocalizeWelcomeScreen();
@@ -124,7 +131,7 @@ function ShowWelcomeScreen()
     {
         return;
     }
-    if((KFGRI.ServerAdInfo.BannerLink != "") && KFGRI.ServerAdInfo.ServerMOTD != "")
+    if(((KFGRI.ServerAdInfo.BannerLink != "") && KFGRI.ServerAdInfo.ServerMOTD != "") && !Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
         ImageDownLoader = new (Outer) Class'KFHTTPImageDownloader';
         ImageDownLoader.DownloadImageFromURL(KFGRI.ServerAdInfo.BannerLink, ImageDownloadComplete);
@@ -284,7 +291,7 @@ function UpdateOverviewInGame()
         UpdateServerType(Class'KFCommon_LocalizedStrings'.static.GetServerTypeString(float(int(KFGRI.bCustom))));
         if(StartMenu.OptionsComponent != none)
         {
-            CurrentPrivacyIndex = StartMenu.OptionsComponent.SavedPrivacyIndex;
+            CurrentPrivacyIndex = StartMenu.OptionsComponent.GetPrivacyIndex();
             if(LastPrivacyIndex != CurrentPrivacyIndex)
             {
                 UpdatePrivacy(Class'KFCommon_LocalizedStrings'.static.GetPermissionString(float(CurrentPrivacyIndex)));
@@ -300,7 +307,7 @@ function SetCurrentMapInfo()
 
     CurrentMapName = Outer.GetPC().WorldInfo.GetMapName(true);
     MapSource = StartMenu.GetMapSource(CurrentMapName);
-    FriendlyName = StartMenu.GetFriendlyMapName(CurrentMapName);
+    FriendlyName = Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(CurrentMapName);
     UpdateMap(FriendlyName, MapSource);
 }
 
@@ -311,6 +318,7 @@ defaultproperties
     LastPrivacyIndex=255
     OverviewString="MATCH OVERVIEW"
     ChangeString="CHANGE"
+    AuthorString="By "
     SharedByString="Shared by:"
     SharedContentString="SHARED CONTENT"
 }

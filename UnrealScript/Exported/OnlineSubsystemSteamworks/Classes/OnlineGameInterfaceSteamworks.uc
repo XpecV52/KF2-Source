@@ -193,9 +193,6 @@ struct native FavoriteServer
 /** A list of favorites retrieved from Steam, so we can check this against search result to flag servers as a favorite or not */
 var array<FavoriteServer> FavoriteServerList;
 
-native function string GetGametagString(name PropertyName, string StringVal);
-native function string GetGametagStringBool(name PropertyName, byte BoolVal);
-
 delegate OnGetPlayerListComplete(OnlineGameSettings PlayerListSettings, bool Success);
 
 function SetMatchmakingTypeMode(ESteamMatchmakingType InMatchmakingTypeMode)
@@ -259,62 +256,6 @@ native function bool RemoveSearchResultFromFavorites(int Index);
  * @return true if the search result at the specified index is a favorite, false if not
  */
 native function bool IsSearchResultInFavoritesList(int Index);
-
-function AddServerFilter(OnlineGameSearch Search, string Key, optional string Val = "", optional int location = -1)
-{
-	//`log("AddServerFilter:"@Key@Val@string(location));
-	if (location < 0)
-	{
-		//`log("Adding filter"@Key$"="$Val);
-		Search.MasterServerSearchKeys.AddItem(Key);
-		Search.MasterServerSearchValues.AddItem(Val);
-	}
-	else
-	{
-		//`log("Adding filter"@Key$"="$Val@"at position"@location);
-		Search.MasterServerSearchKeys.InsertItem(location, Key);
-		Search.MasterServerSearchValues.InsertItem(location, Val);
-	}
-}
-
-function TestAddBoolGametagFilter(out string GametagString, bool Test, name Property, byte BoolVal)
-{
-	//`log("TestAddBoolGametagFilter:"@string(Property)@string(BoolVal));
-	if (Test)
-	{
-		if (Len(GametagString) > 0)
-		{
-			GametagString $= ",";
-		}
-		GametagString $= GetGametagStringBool(Property, BoolVal);
-	}
-	//`log("TestAddBoolGametagFilter:"@GametagString);
-}
-
-function AddGametagFilter(out string GametagString, name Property, string Val)
-{
-	//`log("AddGametagFilter:"@string(Property)@Val);
-	if (Len(GametagString) > 0)
-	{
-		GametagString $= ",";
-	}
-	GametagString $= GetGametagString(Property, Val);
-	//`log("AddGametagFilter:"@GametagString);
-}
-
-function TestAddServerFilter(OnlineGameSearch Search, bool Test, string Key, optional string Val = "")
-{
-	if (Test)
-	{
-		AddServerFilter(Search, Key, Val);
-	}
-}
-
-function ClearServerFilters(OnlineGameSearch Search)
-{
-	Search.MasterServerSearchKeys.Length = 0;
-	Search.MasterServerSearchValues.Length = 0;
-}
 
 
 

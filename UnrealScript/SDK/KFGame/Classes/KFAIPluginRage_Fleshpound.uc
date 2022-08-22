@@ -47,7 +47,7 @@ event TickRage()
 /** Checks if it's possible to enter rage */
 function bool CanDoRage()
 {
-	if( bIsEnraged || MyKFPawn.IsImpaired() )
+	if( bIsEnraged || !MyKFPawn.IsCombatCapable() )
 	{
 		return false;
 	}

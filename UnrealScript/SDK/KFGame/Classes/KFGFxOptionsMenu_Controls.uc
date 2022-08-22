@@ -10,6 +10,8 @@
 
 class KFGFxOptionsMenu_Controls extends KFGFxObject_Menu;
 
+`include(KFProfileSettings.uci)
+
 var KFGFxControlsContainer_Keybinding KeybindingsContainer;
 var KFGFxControlsContainer_Input InputContainer;
 var KFGFxControlsContainer_ControllerPresets ControllerPresetsContainer;
@@ -149,6 +151,7 @@ function Callback_ControllerSensitivity( float NewSensitivity )
 	KFPI = KFPlayerInput(GetPC().PlayerInput);
 
 	KFPI.GamepadSensitivityScale = NewSensitivity / 100;
+	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GamepadSensitivityScale, KFPI.GamepadSensitivityScale);
 }
 
 function Callback_ControllerZoomSensitivity( float NewSensitivity )
@@ -158,6 +161,7 @@ function Callback_ControllerZoomSensitivity( float NewSensitivity )
 	KFPI = KFPlayerInput(GetPC().PlayerInput);
 
 	KFPI.GamepadZoomedSensitivityScale = NewSensitivity / 100;
+	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GamepadZoomedSensitivityScale, KFPI.GamepadZoomedSensitivityScale);
 }
 
 function Callback_ControllerInvertChanged( bool bInvertController )
@@ -166,6 +170,7 @@ function Callback_ControllerInvertChanged( bool bInvertController )
 
 	KFPI = KFPlayerInput(GetPC().PlayerInput);
 	KFPI.bInvertController = bInvertController;
+	Manager.CachedProfile.SetProfileSettingValueInt(KFID_InvertController, KFPI.bInvertController ? 1: 0);
 }
 
 function Callback_MouseSensitivity( float NewSensitivity )
@@ -199,6 +204,8 @@ function Callback_AimAssistZoomLockOnChanged( bool NewValue )
 	KFPI = KFPlayerInput(GetPC().PlayerInput);
 
 	KFPI.bAutoTargetEnabled = NewValue;
+
+	Manager.CachedProfile.SetProfileSettingValueInt(KFID_AutoTargetEnabled, KFPI.bAutoTargetEnabled ? 1: 0);
 }
 
 function Callback_AimAssistRotationChanged( bool NewValue )
@@ -208,6 +215,7 @@ function Callback_AimAssistRotationChanged( bool NewValue )
 	KFPI = KFPlayerInput(GetPC().PlayerInput);
 
 	KFPI.bTargetAdhesionEnabled = NewValue;
+	Manager.CachedProfile.SetProfileSettingValueInt(KFID_TargetAdhesionEnabled, KFPI.bTargetAdhesionEnabled ? 1: 0);
 }
 
 function Callback_AimAssistSlowDownChanged( bool NewValue )
@@ -217,6 +225,8 @@ function Callback_AimAssistSlowDownChanged( bool NewValue )
 	KFPI = KFPlayerInput(GetPC().PlayerInput);
 
 	KFPI.bTargetFrictionEnabled = NewValue;
+	Manager.CachedProfile.SetProfileSettingValueInt(KFID_TargetFrictionEnabled, KFPI.bTargetFrictionEnabled ? 1: 0);
+
 }
 
 function Callback_ForceFeedbackChanged( bool NewValue )
@@ -225,6 +235,7 @@ function Callback_ForceFeedbackChanged( bool NewValue )
 
 	KFPI = KFPlayerInput(GetPC().PlayerInput);
 	KFPI.bForceFeedbackEnabled = NewValue;	
+	Manager.CachedProfile.SetProfileSettingValueInt(KFID_ForceFeedbackEnabled , KFPI.bForceFeedbackEnabled ? 1: 0);
 }
 
 
@@ -255,6 +266,8 @@ function Callback_AcceptBind()
 function Callback_CloseMenu()
 {
 	Manager.OpenMenu( UI_OptionsSelection );
+
+	Manager.CachedProfile.Save( GetLP().ControllerId );
 }
 
 function Callback_UpdateControllerPreset(int PresetIndex)
@@ -262,8 +275,8 @@ function Callback_UpdateControllerPreset(int PresetIndex)
 	if(ControllerPresetsContainer != none)
 	{
 		ControllerPresetsContainer.UpdateCurrentPresetArray(PresetIndex);
+		Manager.CachedProfile.SetProfileSettingValueInt(KFID_CurrentLayoutIndex, PresetIndex);
 	}
-
 }
 
 function CallBack_ResetPresetOptions()

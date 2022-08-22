@@ -1,9 +1,12 @@
 package tripwire.controls.inventory
 {
     import flash.display.MovieClip;
+    import flash.events.MouseEvent;
     import flash.text.TextField;
     import scaleform.clik.controls.ListItemRenderer;
     import scaleform.clik.controls.UILoader;
+    import scaleform.gfx.Extensions;
+    import tripwire.managers.MenuManager;
     
     public class InventoryListItemRenderer extends ListItemRenderer
     {
@@ -19,9 +22,55 @@ package tripwire.controls.inventory
         
         public var _itemCount:int;
         
+        public var overSoundEffect:String = "INVENTORY_ITEM_ROLLOVER";
+        
+        public var clickSoundEffect:String = "GEAR_ITEM_CLICK";
+        
         public function InventoryListItemRenderer()
         {
             super();
+        }
+        
+        override protected function handlePress(param1:uint = 0) : void
+        {
+            super.handlePress(param1);
+            if(Extensions.gfxProcessSound != null && enabled == true)
+            {
+                Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
+            }
+        }
+        
+        override protected function handleMousePress(param1:MouseEvent) : void
+        {
+            super.handleMousePress(param1);
+            if(Extensions.gfxProcessSound != null && enabled == true)
+            {
+                Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
+            }
+        }
+        
+        override protected function handleMouseRollOver(param1:MouseEvent) : void
+        {
+            super.handleMouseRollOver(param1);
+            if(!selected)
+            {
+                if(Extensions.gfxProcessSound != null && enabled == true)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.overSoundEffect);
+                }
+            }
+        }
+        
+        override public function set selected(param1:Boolean) : void
+        {
+            if(param1 && super.selected == false)
+            {
+                if(Extensions.gfxProcessSound != null && enabled == true && MenuManager.manager.bUsingGamepad)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.overSoundEffect);
+                }
+            }
+            super.selected = param1;
         }
         
         override public function set data(param1:Object) : void

@@ -22,6 +22,11 @@ var repnotify bool bMatchHasBegun;
 /** Match is over (replicated) */
 var repnotify bool bMatchIsOver;
 
+//@HSL_BEGIN - JRO - 6/15/2016 - Make sure we're still at full speed before the end of game menu shows up
+/** Match is almost over, but not quite */
+var bool bWaitingForAAR;
+//@HSL_END
+
 /** Used for counting down time in time limited games */
 var int  RemainingTime, ElapsedTime, RemainingMinute;
 
@@ -299,6 +304,27 @@ simulated event bool ShouldShowGore()
 {
 	return TRUE;
 }
+
+
+//@HSL_BEGIN - BWJ - 6-8-16 - Playfab hooks for server
+simulated event PlayerReplicationInfo GetPRIByPlayfabId( const string InPlayfabPlayerId )
+{
+	local int i;
+
+	if( InPlayfabPlayerId != "" )
+	{
+		for( i = 0; i < PRIArray.Length; i++ )
+		{
+			if( PRIArray[i].PlayfabPlayerId == InPlayfabPlayerId )
+			{
+				return PRIArray[i];
+			}
+		}
+	}
+
+	return none;
+}
+//@HSL_END
 
 defaultproperties
 {

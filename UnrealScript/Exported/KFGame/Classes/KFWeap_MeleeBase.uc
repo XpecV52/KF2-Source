@@ -133,23 +133,6 @@ var() byte EstimatedFireRate;
 // (cpptext)
 // (cpptext)
 
-//------------------------------------------------------------------------------
-
-simulated function bool HasAnyAmmo()
-{
-	return true;
-}
-
-simulated function bool HasAmmo( byte FireModeNum, optional int Amount=1 )
-{
-	if ( FireModeNum == GRENADE_FIREMODE )
-	{
-		return Super.HasAmmo(FireModeNum, Amount);
-	}
-
-	return true;
-}
-
 /*********************************************************************************************
  * @name		Instigator Movement Speed
 ********************************************************************************************* */
@@ -384,14 +367,14 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
 simulated function UpkeepComplete();
 
 /** Returns true if weapon can potentially be reloaded */
-simulated function bool CanReload()
+simulated function bool CanReload(optional byte FireModeNum)
 {
 	if ( FiringStatesArray[RELOAD_FIREMODE] == 'WeaponUpkeep' )
 	{
 		return true;
 	}
 
-	return Super.CanReload();
+	return Super.CanReload(FireModeNum);
 }
 
 simulated state WeaponUpkeep
@@ -1057,7 +1040,7 @@ simulated state BlockingCooldown extends Active
 	}
 
 	// prevent going to block/parry state
-	simulated function bool HasAmmo( byte FireModeNum, optional int Amount=1 )
+	simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
 	{
 		if ( FireModeNum == BLOCK_FIREMODE )
 		{
@@ -1199,6 +1182,12 @@ defaultproperties
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Melee'
    InventoryGroup=IG_Melee
    bTargetAdhesionEnabled=False
+   AmmoCost(0)=0
+   AmmoCost(1)=0
+   AmmoCost(2)=0
+   AmmoCost(3)=0
+   AmmoCost(4)=0
+   AmmoCost(5)=0
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True

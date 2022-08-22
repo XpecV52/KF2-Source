@@ -73,11 +73,11 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum, int TitleId);
 
 function bool ShowCustomMessageUI(byte LocalUserNum, const out array<UniqueNetId> Recipients, string MessageTitle, string NonEditableMessage, optional string EditableMessage);
 
-function PostActivityFeedBossKill(string BossName, string MapName);
+function PostActivityFeedBossKill(string BossName, string BossLoc, string MapLoc);
 
-function PostActivityFeedTeamAward(string AwardName);
+function PostActivityFeedTeamAward(string AwardName, string AwardLoc);
 
-function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
+function PostActivityFeedPerkLevelUp(string PerkClassName, string PerkClassLoc, int Level);
 
 function ReadStoreData();
 
@@ -86,3 +86,15 @@ delegate OnStoreDataRead(bool bSuccessful);
 function AddStoreDataReadCompleteDelegate(delegate<OnStoreDataRead> InDelegate);
 
 function ClearStoreDataReadCompleteDelegate(delegate<OnStoreDataRead> InDelegate);
+
+function ReadEntitlements();
+
+delegate OnEntitlementsRead(bool bSuccess);
+
+function AddOnEntitlementsReadDelegate(delegate<OnEntitlementsRead> InDelegate);
+
+function ClearOnEntitlementsReadDelegate(delegate<OnEntitlementsRead> InDelegate);
+
+function UpsellPremiumOnlineService();
+
+function bool ShowCustomErrorUI(int ErrorCode, optional string ErrorContext, optional string DialogTitle, optional string DialogContent);

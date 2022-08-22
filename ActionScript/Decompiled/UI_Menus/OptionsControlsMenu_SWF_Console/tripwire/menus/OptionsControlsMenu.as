@@ -3,6 +3,8 @@ package tripwire.menus
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.utils.Timer;
+    import scaleform.clik.constants.InputValue;
+    import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.controls.ButtonBar;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
@@ -10,6 +12,7 @@ package tripwire.menus
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.Extensions;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     import tripwire.containers.optionsControls.ControlsInputContainer;
@@ -43,10 +46,12 @@ package tripwire.menus
         
         private var myIdentifier:Timer;
         
+        public var tabClickSoundEffect = "SHARED_BUTTON_CLICK";
+        
         public function OptionsControlsMenu()
         {
             super();
-            defaultNumPrompts = 2;
+            defaultNumPrompts = 3;
             enableInitCallback = true;
             defaultFirstElement = this.tabButtonBar;
             this.closeButton.addEventListener(ButtonEvent.PRESS,this.closeMenu,false,0,true);
@@ -89,6 +94,8 @@ package tripwire.menus
                 {
                     this.tabButtonBar.getButtonAt(1).enabled = !bManagerUsingGamepad;
                 }
+                this.inputContainer.defaultButton.visible = !bManagerUsingGamepad;
+                this.controllerPresetsContainer.defaultButton.visible = !bManagerUsingGamepad;
             }
             this.closeButton.visible = !bManagerUsingGamepad;
         }
@@ -173,6 +180,13 @@ package tripwire.menus
             {
                 if(param1 >= 0)
                 {
+                    if(bManagerUsingGamepad)
+                    {
+                        if(Extensions.gfxProcessSound != null && enabled == true)
+                        {
+                            Extensions.gfxProcessSound(this,"UI",this.tabClickSoundEffect);
+                        }
+                    }
                     this.currentIndex = param1;
                     if(this._currentContainer)
                     {
@@ -238,6 +252,27 @@ package tripwire.menus
         override public function handleInput(param1:InputEvent) : void
         {
             super.handleInput(param1);
+            if(param1.handled)
+            {
+                return;
+            }
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN)
+            {
+                switch(_loc2_.navEquivalent)
+                {
+                    case NavigationCode.GAMEPAD_X:
+                        if(this.currentIndex == MENU_STATE_INPUT)
+                        {
+                            ExternalInterface.call("CallBack_ResetInputOptions");
+                        }
+                        else if(this.currentIndex == MENU_STATE_CONTROLLER || bManagerConsoleBuild)
+                        {
+                            ExternalInterface.call("CallBack_ResetPresetOptions");
+                        }
+                        param1.handled = true;
+                }
+            }
         }
     }
 }

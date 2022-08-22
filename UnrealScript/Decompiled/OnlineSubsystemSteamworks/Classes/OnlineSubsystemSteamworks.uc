@@ -344,6 +344,7 @@ var LocalTalkerSteam CurrentLocalTalker;
 var const float LastLocalTalkerElapsedTime;
 var float LastLocalPlayerTalkTime;
 var float TalkTimeOutValue;
+var const string SharedServerPassword;
 var array<RemoteTalker> RemoteTalkers;
 var const int AppID;
 var const OnlineStatsRead CurrentStatsRead;
@@ -365,6 +366,8 @@ var const localized string GameInviteMessage;
 var float ConnectionPresenceTimeInterval;
 var const float ConnectionPresenceElapsedTime;
 var const array<UniqueNetId> MuteList;
+var config string ProfileDataDirectory;
+var config string ProfileDataExtension;
 var array<SteamUserCloud> UserCloudFiles;
 var array<SteamUserCloudMetadata> UserCloudMetadata;
 var array<TitleFile> SharedFileCache;
@@ -384,6 +387,7 @@ var delegate<OnLoginChange> __OnLoginChange__Delegate;
 var delegate<OnLoginCancelled> __OnLoginCancelled__Delegate;
 var delegate<OnMutingChange> __OnMutingChange__Delegate;
 var delegate<OnFriendsChange> __OnFriendsChange__Delegate;
+var delegate<OnLoginComplete> __OnLoginComplete__Delegate;
 var delegate<OnLoginFailed> __OnLoginFailed__Delegate;
 var delegate<OnLogoutCompleted> __OnLogoutCompleted__Delegate;
 var delegate<OnPrivilegeLevelChecked> __OnPrivilegeLevelChecked__Delegate;
@@ -419,12 +423,14 @@ var delegate<OnReadOnlineAvatarComplete> __OnReadOnlineAvatarComplete__Delegate;
 var delegate<OnGetNumberOfCurrentPlayersComplete> __OnGetNumberOfCurrentPlayersComplete__Delegate;
 var delegate<OnReadCrossTitleProfileSettingsComplete> __OnReadCrossTitleProfileSettingsComplete__Delegate;
 var delegate<OnStoreDataRead> __OnStoreDataRead__Delegate;
+var delegate<OnEntitlementsRead> __OnEntitlementsRead__Delegate;
 var delegate<OnEnumerateUserFilesComplete> __OnEnumerateUserFilesComplete__Delegate;
 var delegate<OnReadUserFileComplete> __OnReadUserFileComplete__Delegate;
 var delegate<OnWriteUserFileComplete> __OnWriteUserFileComplete__Delegate;
 var delegate<OnDeleteUserFileComplete> __OnDeleteUserFileComplete__Delegate;
 var delegate<OnReadSharedFileComplete> __OnReadSharedFileComplete__Delegate;
 var delegate<OnWriteSharedFileComplete> __OnWriteSharedFileComplete__Delegate;
+var delegate<OnOnlineServiceAuthComplete> __OnOnlineServiceAuthComplete__Delegate;
 
 // Export UOnlineSubsystemSteamworks::execInit(FFrame&, void* const)
 native event bool Init();
@@ -447,6 +453,12 @@ function bool ShowLoginUI(optional bool bShowOnlineOnly)
 
 // Export UOnlineSubsystemSteamworks::execLogin(FFrame&, void* const)
 native function bool Login(byte LocalUserNum, string LoginName, string Password, optional bool bWantsLocalOnly);
+
+delegate OnLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.OnlineSubsystem.EOnlineServerConnectionStatus ErrorCode);
+
+function AddLoginCompleteDelegate(byte LocalUserNum, delegate<OnLoginComplete> InDelegate);
+
+function ClearLoginCompleteDelegate(byte LocalUserNum, delegate<OnLoginComplete> InDelegate);
 
 // Export UOnlineSubsystemSteamworks::execAutoLogin(FFrame&, void* const)
 native function bool AutoLogin();
@@ -1076,6 +1088,11 @@ function ClearControllerChangeDelegate(delegate<OnControllerChange> ControllerCh
 
 function bool IsControllerConnected(int ControllerId);
 
+function Engine.OnlineSubsystem.EOnlineServerConnectionStatus GetCurrentConnectionStatus()
+{
+    return 1;
+}
+
 delegate OnConnectionStatusChange(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus);
 
 function AddConnectionStatusChangeDelegate(delegate<OnConnectionStatusChange> ConnectionStatusDelegate)
@@ -1238,6 +1255,8 @@ native function bool SendGameInviteToFriend(byte LocalUserNum, UniqueNetId Frien
 
 // Export UOnlineSubsystemSteamworks::execSendGameInviteToFriends(FFrame&, void* const)
 native function bool SendGameInviteToFriends(byte LocalUserNum, array<UniqueNetId> Friends, optional string Text);
+
+function bool SendGameInviteToUsers(string SessionId, array<string> MembersToInvite, optional string Text);
 
 delegate OnReceivedGameInvite(byte LocalUserNum, string InviterName);
 
@@ -1554,6 +1573,9 @@ delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Ava
 // Export UOnlineSubsystemSteamworks::execReadOnlineAvatar(FFrame&, void* const)
 native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate);
 
+// Export UOnlineSubsystemSteamworks::execSetSharedPassword(FFrame&, void* const)
+native function SetSharedPassword(string ServerPassword);
+
 // Export UOnlineSubsystemSteamworks::execGetNumberOfCurrentPlayers(FFrame&, void* const)
 native function bool GetNumberOfCurrentPlayers();
 
@@ -1597,11 +1619,11 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum, int TitleId);
 
 function bool ShowCustomMessageUI(byte LocalUserNum, const out array<UniqueNetId> Recipients, string MessageTitle, string NonEditableMessage, optional string EditableMessage);
 
-function PostActivityFeedBossKill(string BossName, string MapName);
+function PostActivityFeedBossKill(string BossName, string BossLoc, string MapLoc);
 
-function PostActivityFeedTeamAward(string AwardName);
+function PostActivityFeedTeamAward(string AwardName, string AwardLoc);
 
-function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
+function PostActivityFeedPerkLevelUp(string PerkClassName, string PerkClassLoc, int Level);
 
 function ReadStoreData();
 
@@ -1610,6 +1632,18 @@ delegate OnStoreDataRead(bool bSuccessful);
 function AddStoreDataReadCompleteDelegate(delegate<OnStoreDataRead> InDelegate);
 
 function ClearStoreDataReadCompleteDelegate(delegate<OnStoreDataRead> InDelegate);
+
+function ReadEntitlements();
+
+delegate OnEntitlementsRead(bool bSuccess);
+
+function AddOnEntitlementsReadDelegate(delegate<OnEntitlementsRead> InDelegate);
+
+function ClearOnEntitlementsReadDelegate(delegate<OnEntitlementsRead> InDelegate);
+
+function UpsellPremiumOnlineService();
+
+function bool ShowCustomErrorUI(int ErrorCode, optional string ErrorContext, optional string DialogTitle, optional string DialogContent);
 
 // Export UOnlineSubsystemSteamworks::execResetStats(FFrame&, void* const)
 native function bool ResetStats(bool bResetAchievements);
@@ -1885,10 +1919,19 @@ function bool ShowGamerCardUIByUsername(byte LocalUserNum, string UserName);
 
 function bool RecordPlayersRecentlyMet(byte LocalUserNum, out array<string> Players, string GameDescription);
 
+delegate OnOnlineServiceAuthComplete();
+
+function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
+
+function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
+
+function AuthWithOnlineService();
+
 defaultproperties
 {
     CurrentNotificationPosition=ENetworkNotificationPosition.NNP_TopRight
     LoggedInPlayerName="Local Profile"
     TalkTimeOutValue=0.5
     ConnectionPresenceTimeInterval=0.5
+    ProfileDataDirectory="..\\..\\KFGame\\SaveData"
 }

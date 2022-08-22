@@ -12,5 +12,6 @@ class KFAIController_ZedClot_Cyst extends KFAIController_ZedClot
 defaultproperties
 {
     EvadeGrenadeChance=0.5
+    DangerEvadeSettings=/* Array type was not detected. */
     SightCounterInterval=0.5
 }

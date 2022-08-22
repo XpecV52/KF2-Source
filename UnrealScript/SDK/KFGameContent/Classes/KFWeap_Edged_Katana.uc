@@ -49,10 +49,10 @@ defaultproperties
 	End Object
 	
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Slashing_Katana'
-	InstantHitDamage(DEFAULT_FIREMODE)=34
+	InstantHitDamage(DEFAULT_FIREMODE)=68// 34
 	
 	InstantHitDamageTypes(HEAVY_ATK_FIREMODE)=class'KFDT_Slashing_KatanaHeavy'
-	InstantHitDamage(HEAVY_ATK_FIREMODE)=68
+	InstantHitDamage(HEAVY_ATK_FIREMODE)=90 //68
 
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Piercing_KatanaStab'
 	InstantHitDamage(BASH_FIREMODE)=68
@@ -61,7 +61,7 @@ defaultproperties
 	GroupPriority=100
 	InventorySize=3
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
-	AssociatedPerkClass=none//class'KFPerk_MartialArtist'
+	AssociatedPerkClass=class'KFPerk_Berserker'
 	
 	// Block Sounds
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'

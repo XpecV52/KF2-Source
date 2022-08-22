@@ -76,6 +76,7 @@ package tripwire.containers.serverBrowser
             this.controllerIcon_X.visible = false;
             this.controllerIcon_RightThumbStick.visible = false;
             TextFieldEx.setVerticalAlign(this.filterListTextfield,TextFieldEx.VALIGN_CENTER);
+            defaultNumPrompts = 2;
         }
         
         override public function selectContainer() : void

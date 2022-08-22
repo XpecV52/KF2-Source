@@ -24,7 +24,7 @@ struct TraderDialogCoolDownInfo
 };
 
 var bool bEnabled;
-var transient array<TraderDialogCoolDownInfo> CoolDowns;
+var transient array<TraderDialogCoolDownInfo> Cooldowns;
 var transient class<KFTraderVoiceGroupBase> TraderVoiceGroupClass;
 var transient TraderDialogEventInfo ActiveEventInfo;
 var float FewZedsDeadPct;
@@ -44,7 +44,7 @@ simulated function EndOfDialogTimer()
     CoolDownInfo.EventID = ActiveEventInfo.EventID;
     CoolDownInfo.Priority = ActiveEventInfo.Priority;
     CoolDownInfo.EndTime = WorldInfo.TimeSeconds + ActiveEventInfo.Cooldown;
-    CoolDowns.AddItem(CoolDownInfo;
+    Cooldowns.AddItem(CoolDownInfo;
     ActiveEventInfo.AudioCue = none;
 }
 
@@ -52,14 +52,14 @@ simulated function bool DialogIsCoolingDown(int EventID)
 {
     local int CoolDownIndex;
 
-    CoolDownIndex = CoolDowns.Find('EventID', EventID;
+    CoolDownIndex = Cooldowns.Find('EventID', EventID;
     if(CoolDownIndex == -1)
     {
         return false;
     }
-    if(CoolDowns[CoolDownIndex].EndTime <= WorldInfo.TimeSeconds)
+    if(Cooldowns[CoolDownIndex].EndTime <= WorldInfo.TimeSeconds)
     {
-        CoolDowns.Remove(CoolDownIndex, 1;
+        Cooldowns.Remove(CoolDownIndex, 1;
         return false;
     }
     return true;

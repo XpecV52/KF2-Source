@@ -16,14 +16,37 @@ cpptext
 {
 	/** Creates a FKFSkeletalMeshSceneProxy (defined in UTWeapon.cpp) */
 	virtual FPrimitiveSceneProxy* CreateSceneProxy();
+	
+	/** Default tick. */
 	virtual void Tick(FLOAT DeltaTime);
+	
+	/** The KFSkeletalMesh ticks during async as well as post async, performing different work. */
+	void TickPostAsync(FLOAT DeltaTime);
+	
+	/** Overridden ProcessRootMotion so that we can defer root motion until post asycn work. */
+	virtual void ProcessRootMotion( FLOAT DeltaTime, FBoneAtom& ExtractedRootMotionDelta, INT& bHasRootMotion );
 }
+
+
+/** This variable is set during async tick so that we have the cached value when we tick physics calls in the post tick. */
+var BoneAtom CachedExtractedRootMotionDelta;
+
+/** This variable is set during async tick so that we have the cached value when we tick physics calls in the post tick. */
+var int bCachedHasRootMotion;
+
+/** This variable is set during async tick so that we have the cached value when we tick physics calls in the post tick. */
+var bool bNeedsProcessRootMotion;
 
 /** This changes the FOV used for rendering the skeletal mesh component. A value of 0 means to use the default. */
 var() const float FOV;
 
 /** whether textures are currently forced loaded */
 var		bool		bForceLoadTextures;
+
+/** When this component is ticking in async time, we need to know if there is pending work that needs to be ticked in post async
+ * because we actually switch during ragdoll to post async and don't want to perform deferred tick work.
+ */
+var 	bool		bPendingDeferredWork;
 
 /** when to clear forced streaming */
 var		float		ClearStreamingTime;

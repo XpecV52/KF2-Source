@@ -40,7 +40,10 @@ protected function bool InternalCanDoSpecialMove()
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
-    ApplyKnockdownImpulse(KFPOwner.KnockdownImpulse);
+    local TWDeferredWorkManager DeferredWorkManager;
+
+    DeferredWorkManager = TWDeferredWorkManager(KFPOwner.WorldInfo.DeferredWorkManager);
+    DeferredWorkManager.SetTimer(0.0001, false, 'DeferApplyKnockdownImpulse', self);
     if(KFPOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
         DazedPSC = Class'KFSM_Stunned'.static.AttachDazedEffect(KFPawn_Monster(KFPOwner));
@@ -49,6 +52,10 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
 
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
+    local TWDeferredWorkManager DeferredWorkManager;
+
+    DeferredWorkManager = TWDeferredWorkManager(KFPOwner.WorldInfo.DeferredWorkManager);
+    DeferredWorkManager.ClearTimer('DeferApplyKnockdownImpulse', self);
     if((DazedPSC != none) && DazedPSC.bIsActive)
     {
         DazedPSC.DeactivateSystem();
@@ -59,6 +66,11 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         PawnOwner.ClearTimer('KnockdownTimer', self);
         TermKnockdownRagdoll(KFPOwner);
     }
+}
+
+function DeferApplyKnockdownImpulse()
+{
+    ApplyKnockdownImpulse(KFPOwner.KnockdownImpulse);
 }
 
 function ApplyKnockdownImpulse(const out KnockdownImpulseInfo Info)
@@ -117,6 +129,7 @@ protected function PlayFallDown()
     KFPOwner.PrepareRagdoll();
     if(KFPOwner.InitRagdoll())
     {
+        PawnOwner.Mesh.SetTickGroup(2);
         PawnOwner.SetTickGroup(2);
         if(PawnOwner.Mesh.PhysicsAssetInstance != none)
         {

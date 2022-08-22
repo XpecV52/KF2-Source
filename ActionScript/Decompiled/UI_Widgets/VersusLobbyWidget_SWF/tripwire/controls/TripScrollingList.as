@@ -27,7 +27,7 @@ package tripwire.controls
         
         public var redBar:MovieClip;
         
-        public var bStayOpenOnSelection:Boolean;
+        public var bStayOpenOnSelection:Boolean = false;
         
         protected var _defaultAlpha:Number;
         
@@ -42,6 +42,10 @@ package tripwire.controls
         private var _fadeOut:TweenMax;
         
         private var _startingIndex:int;
+        
+        public var Owner:Object;
+        
+        public var bDropDown:Boolean = false;
         
         public function TripScrollingList()
         {
@@ -124,11 +128,10 @@ package tripwire.controls
             }
             visible = true;
             mouseEnabled = true;
-            this._fadeIn = TweenMax.fromTo(this,6,{
+            TweenMax.killTweensOf(this);
+            this._fadeIn = TweenMax.fromTo(this,4,{
                 "z":48,
-                "alpha":0,
-                "ease":Cubic.easeIn,
-                "useFrames":true
+                "alpha":0
             },{
                 "z":0,
                 "alpha":(!!param1 ? this._defaultAlpha : this._dimmedAlpha),
@@ -142,7 +145,6 @@ package tripwire.controls
         
         public function indexChanged(param1:IndexEvent) : void
         {
-            trace("INDEX CHANGED: ",param1.index);
         }
         
         protected function close(param1:FocusEvent = null) : void
@@ -152,11 +154,8 @@ package tripwire.controls
                 this.associatedButton.selected = false;
             }
             mouseEnabled = false;
-            this._fadeOut = TweenMax.fromTo(this,6,{
-                "alpha":1,
-                "ease":Cubic.easeOut,
-                "useFrames":true
-            },{
+            TweenMax.killTweensOf(this);
+            this._fadeOut = TweenMax.fromTo(this,4,{"alpha":1},{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true,
@@ -184,6 +183,11 @@ package tripwire.controls
             }
             super.handleInput(param1);
             var _loc2_:InputDetails = param1.details;
+            if(this.bDropDown)
+            {
+                param1.handled = false;
+                return;
+            }
             if(_loc2_.value == InputValue.KEY_DOWN)
             {
                 switch(_loc2_.navEquivalent)
@@ -223,9 +227,12 @@ package tripwire.controls
             {
                 if(this.bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                 {
-                    FocusManager.setModalClip(null);
                     FocusManager.setFocus(this.associatedButton);
                 }
+            }
+            if(FocusManager.getModalClip() == this)
+            {
+                FocusManager.setModalClip(null);
             }
         }
         
@@ -233,14 +240,18 @@ package tripwire.controls
         {
             if(param1)
             {
-                TripList.onOpen(this);
                 FocusManager.setModalClip(this);
             }
+            TripList.onOpen(this,this.bManagerUsingGamepad);
         }
         
         function onClose(param1:Event = null) : void
         {
             TripList.onClose(this);
+            if(FocusManager.getModalClip() == this)
+            {
+                FocusManager.setModalClip(null);
+            }
         }
     }
 }

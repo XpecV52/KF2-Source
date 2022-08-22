@@ -14,4 +14,6 @@ class KFDT_Fire_Ground_FlameThrower extends KFDT_Fire_Ground
 defaultproperties
 {
 	WeaponDef=class'KFWeapDef_FlameThrower'
+
+	BurnPower=10.5 //2.5
 }

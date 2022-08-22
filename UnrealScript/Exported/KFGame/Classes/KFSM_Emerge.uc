@@ -114,8 +114,7 @@ function name PlayEmerge()
 	PlaySpecialMoveAnim( EmergeAnim, EAS_FullBody, 0.0f, BlendOutTime, 1.f, false );
 	
 	// Turn on Root translation
-	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Translate, RBA_Translate, RBA_Translate);
-	KFPOwner.Mesh.RootMotionMode = RMM_Translate;
+	EnableRootMotion();
 
 	// Use root rotation to rotate the actor.
 	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneRotationOption(RRO_Extract, RRO_Extract, RRO_Extract);
@@ -141,8 +140,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	KFPOwner.Mesh.RootMotionRotationMode = RMRM_Ignore;
 
 	// Reset root translation
-	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
-	KFPOwner.Mesh.RootMotionMode = KFPOwner.default.Mesh.RootMotionMode;
+	DisableRootMotion();
 
 	KFPOwner.bAlwaysRelevant = PawnOwner.default.bAlwaysRelevant;
 
@@ -251,9 +249,11 @@ defaultproperties
    CeilingEmerge(2)="Enter_Ceiling_V3"
    CeilingEmerge(3)="Enter_Ceiling_V4"
    BlendOutTime=0.200000
+   SMRootMotionMode=RMM_Translate
    bCanOnlyWanderAtEnd=True
    bPawnRotationLocked=True
    bDisablePhysics=True
+   bShouldDeferToPostTick=True
    DefaultAICommandClass=Class'KFGame.AICommand_PushedBySM'
    Handle="SM_Emerge"
    Name="Default__KFSM_Emerge"

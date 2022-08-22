@@ -41,7 +41,7 @@ simulated event Tick(float DeltaTime)
     local Vector SeekingVector, ForceDir;
     local float VelMag;
 
-    super.Tick(DeltaTime);
+    super(Actor).Tick(DeltaTime);
     if(bShuttingDown || SeekTarget == none)
     {
         return;
@@ -66,36 +66,6 @@ simulated event Tick(float DeltaTime)
     else
     {
         Acceleration = vect(0, 0, 0);
-    }
-}
-
-simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector HitNormal)
-{
-    local KFPerk InstigatorPerk;
-    local KFPawn_Monster KFPM;
-    local KFPawn_Human KFPH;
-
-    super(KFProjectile).ProcessBulletTouch(Other, HitLocation, HitNormal);
-    if(Instigator != none)
-    {
-        InstigatorPerk = KFPawn(Instigator).GetPerk();
-        if(InstigatorPerk != none)
-        {
-            KFPM = KFPawn_Monster(Other);
-            if(InstigatorPerk.ShouldSedate() && KFPM != none)
-            {
-                KFPM.DoSpecialMove(8);
-                return;
-            }
-            if(((WorldInfo.NetMode != NM_DedicatedServer) && WorldInfo.TimeDilation < 1) && InstigatorPerk.ShouldPlayAAEffect())
-            {
-                KFPH = KFPawn_Human(Other);
-                if(KFPH != none)
-                {
-                    KFPH.WorldInfo.MyEmitterPool.SpawnEmitter(Class'KFPerk_FieldMedic'.static.GetAAEffect(), KFPH.Location);
-                }
-            }
-        }
     }
 }
 

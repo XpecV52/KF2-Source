@@ -46,6 +46,11 @@ var OnlineNewsInterface NewsInterface;
 /** The interface to use for accessing online party chat methods */
 var OnlinePartyChatInterface PartyChatInterface;
 
+//@HSL_BEGIN - JRO - 7/16/2016 - Support for PS4 party interface
+/** The interface for party functionality */
+var OnlinePartyInterface PartyInterface;
+//@HSL_END
+
 /** The interface to use for downloading files from the network platform */
 var OnlineTitleFileInterface TitleFileInterface;
 
@@ -925,6 +930,9 @@ struct native CurrentInventoryEntry
 };
 var const array<CurrentInventoryEntry> CurrentInventory;
 
+/** The list of owned entitlement IDs */
+var const array<string> OwnedEntitlementIds;
+
 enum ItemType
 {
 	ITP_WeaponSkin,
@@ -951,10 +959,14 @@ enum ItemRarity
 struct native ItemProperties
 {
 	var int Definition;
+	/** The playfab item name. It can differ from Definition if its mapped to an entitlement */
+	var string PlayfabItemId;
 	/** The product ID as exists in PSN */
 	var string ProductId;
 	/** signed offer ID for PSN item */
 	var string SignedOfferId;
+	/** Key ID used to open this item (used for playfab locked containers) */
+	var string RequiredKeyId;
 	var string Name;
 	var ItemType Type;
 	var ItemRarity Rarity;
@@ -969,6 +981,24 @@ struct native ItemProperties
 	var string Exchange;
 	var string Bundle;
 	var bool UniqueToOwn;
+
+	structcpptext
+	{
+	public:
+		FItemProperties() {}
+		FItemProperties(EEventParm)
+		{
+			appMemzero(this, sizeof(FItemProperties));
+		}
+
+		// Retrieves a list of bundled items based on the Bundle property
+		TArray<INT> GetBundledItems() const;
+		// Localizes properties that require localizing
+		void LocalizeProperties();
+	private:
+		UBOOL LocalizeString( FString& InString );
+		const TCHAR* GetLocSectionName();
+	}
 };
 var array<ItemProperties> ItemPropertiesList;
 
@@ -1000,6 +1030,9 @@ native function ClearInFlight();
 // Are the requirements met to recieve the target SKU with the given
 // Rule (from IsExchangeable() above)
 native function bool ExchangeReady( const out ExchangeRuleSets Rule );
+
+// Some playfab items require keys that are separate from the exchange system
+native function bool HasKeyForItem( const int ItemDefinition, out int OutRequiredItem );
 
 // do the exchange with the given rule. Inventory will be scanned and
 // appropriate items removed to make the exchange
@@ -1370,6 +1403,14 @@ event bool SetPartyChatInterface(Object NewInterface)
 	// This will return false, if the interface wasn't supported
 	return PartyChatInterface != None;
 }
+
+//@HSL_BEGIN - JRO - 7/16/2016 - Support for PS4 party interface
+event bool SetPartyInterface(Object NewInterface)
+{
+	PartyInterface = OnlinePartyInterface(NewInterface);
+	return PartyInterface != none;
+}
+//@HSL_END
 
 /**
  * Called from native code to assign the title file interface
@@ -1789,7 +1830,13 @@ native function GetPlayerGroups(out array<UniqueNetId> UserGroups);
  *
  * @return whether the player is a member of that group
  */
- native function bool CheckPlayerGroup(UniqueNetId Group);
+native function bool CheckPlayerGroup(UniqueNetId Group);
+
+ /**
+  * Set a password that will be shared with friends, so they can log into your server.
+  * Set it to empty string to disable.
+  */
+function SetSharedPassword(string ServerPassword);
 
 //(`__TW_ONLINESUBSYSTEM_)
 

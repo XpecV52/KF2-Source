@@ -50,7 +50,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=16
-	MaxSpareAmmo[0]=128
+	SpareAmmoCapacity[0]=128
 	InitialSpareMags[0]=3
 	AmmoPickupScale[0]=1.0
 	bCanBeReloaded=true
@@ -97,7 +97,7 @@ defaultproperties
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
 
 	// BASH_FIREMODE
-	InstantHitDamage(BASH_FIREMODE)=10.0
+	InstantHitDamage(BASH_FIREMODE)=24
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Colt1911'
 
 	// Fire Effects

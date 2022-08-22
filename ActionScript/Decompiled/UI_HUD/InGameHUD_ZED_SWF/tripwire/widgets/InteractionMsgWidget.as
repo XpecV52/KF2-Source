@@ -18,17 +18,33 @@ package tripwire.widgets
         
         public var hitbox:MovieClip;
         
+        public var bigButtonText:TextField;
+        
         public var buttonText:TextField;
         
         public var textField:TextField;
         
-        public var tempText:TextField;
-        
-        public var currentString:String;
-        
         public var Scanlines:MovieClip;
         
         public var BG:MovieClip;
+        
+        public var currentMainString:String;
+        
+        public var currentSubString:String;
+        
+        public var tempString:String;
+        
+        public var mainInteractionString:String;
+        
+        public var buttonString:String;
+        
+        public var holdString:String;
+        
+        public var tapString:String;
+        
+        public var subInteractionString:String;
+        
+        public var bIsHold:Boolean;
         
         public var introTimeline:TimelineMax;
         
@@ -58,7 +74,9 @@ package tripwire.widgets
         
         public const TARGET_ALPHA:Number = 0.88;
         
-        public const BRACKET_OFFSET_X:int = 8;
+        public const BRACKET_OFFSET_X:int = 6;
+        
+        public const BIGBUTTON_OFFSET_X:int = 24;
         
         public function InteractionMsgWidget()
         {
@@ -83,65 +101,37 @@ package tripwire.widgets
             super.addedToStage(param1);
             TextFieldEx.setVerticalAlign(this.textField,TextFieldEx.VALIGN_CENTER);
             TextFieldEx.setVerticalAlign(this.buttonText,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.bigButtonText,TextFieldEx.VALIGN_CENTER);
             this.textField.autoSize = TextFieldAutoSize.LEFT;
             this.buttonText.autoSize = TextFieldAutoSize.RIGHT;
+            this.bigButtonText.autoSize = TextFieldAutoSize.CENTER;
         }
         
         public function set interactionMessageData(param1:Object) : void
         {
             if(param1)
             {
-                if(param1.holdMessage)
-                {
-                    trace(param1.holdMessage);
-                }
-                else
-                {
-                    trace("no hold message");
-                }
-                if(param1.bHoldCommand)
-                {
-                    trace(param1.bHoldCommand);
-                }
-                else
-                {
-                    trace("not a hold command action");
-                }
-                if(param1.message)
-                {
-                    trace(param1.message);
-                }
-                else
-                {
-                    trace("no message? thats not good");
-                }
-                if(param1.buttonName)
-                {
-                    trace(param1.buttonName);
-                }
-                else
-                {
-                    trace("no button");
-                }
-                if(param1.holdString)
-                {
-                    trace(param1.holdString);
-                }
-                else
-                {
-                    trace("no hold string!");
-                }
+                this.mainInteractionString = !!param1.message ? param1.message : "";
+                this.subInteractionString = !!param1.holdMessage ? param1.holdMessage : "";
+                this.buttonString = !!param1.buttonName ? param1.buttonName : "";
+                this.holdString = !!param1.holdString ? param1.holdString : "";
+                this.tapString = !!param1.tapString ? param1.tapString : "";
+                this.bIsHold = !!param1.bHoldCommand ? Boolean(param1.bHoldCommand) : false;
+                this.displayInteractionMessage();
             }
         }
         
         public function showInteractionMessage(param1:String = "", param2:String = "") : void
         {
-            param1 = param1.split("<%X%>").join("");
-            this.tempText.text = param1;
-            if(this.textField.alpha > 0 && this.textField.text == this.tempText.text)
+        }
+        
+        public function displayInteractionMessage() : void
+        {
+            if(this.textField.alpha > 0 && this.mainInteractionString == this.currentMainString && this.subInteractionString == this.currentSubString)
             {
                 this.textField.alpha = 1;
                 this.buttonText.alpha = 1;
+                this.bigButtonText.alpha = 1;
             }
             else
             {
@@ -149,27 +139,51 @@ package tripwire.widgets
                 this.BGTargetTweenTime = this.textField.alpha > 0 ? int(this.BGTransitionTweenTime) : int(this.BGFullTweenTime);
                 this.textField.alpha = 0;
                 this.buttonText.alpha = 0;
-                this.assignVals(param1,param2);
+                this.bigButtonText.alpha = 0;
+                this.assignVals();
             }
         }
         
-        public function assignVals(param1:String = "", param2:String = "") : *
+        public function assignVals() : *
         {
-            var _loc3_:Number = this.hitbox.width;
+            var _loc1_:Number = this.hitbox.width;
             this.buttonText.width = 0;
             this.textField.width = 0;
+            this.bigButtonText.width = 0;
+            this.currentMainString = this.mainInteractionString;
+            this.currentSubString = this.subInteractionString;
             this.buttonText.text = "";
-            if(param2 != "")
+            this.bigButtonText.text = "";
+            if(this.buttonString != "")
             {
-                this.buttonText.text = "〘 " + param2 + " 〙";
+                this.buttonText.text = "〘 " + this.buttonString + " 〙";
+                if(this.bIsHold)
+                {
+                    this.buttonText.text = this.mainInteractionString == "" ? "〘 " + this.holdString + " " + this.buttonString + " 〙" : " " + " " + this.tapString + "\n " + " " + this.holdString;
+                    this.bigButtonText.text = this.mainInteractionString == "" ? "" : "〘 " + this.buttonString + " 〙";
+                }
             }
-            this.textField.text = param1;
+            if(this.mainInteractionString == "")
+            {
+                this.textField.text = this.subInteractionString;
+            }
+            if(this.mainInteractionString != "")
+            {
+                this.textField.text = this.subInteractionString == "" ? this.mainInteractionString : " " + " " + this.mainInteractionString + "\n " + " " + this.subInteractionString;
+            }
             TextFieldEx.setImageSubstitutions(this.buttonText,HudManager.manager.controllerIconObjects);
-            _loc3_ -= this.textField.width + this.buttonText.width;
+            if(this.bigButtonText.text != "")
+            {
+                TextFieldEx.setImageSubstitutions(this.bigButtonText,HudManager.manager.controllerIconObjects);
+            }
+            _loc1_ -= this.textField.width + this.buttonText.width + this.bigButtonText.width;
             this.BGTargetHeight = this.textField.numLines > 1 ? int(this.BGMaxHeight) : int(this.BGStartHeight);
             this.BGTargetWidth = this.buttonText.width + this.textField.width + this.ADJUST_X;
-            this.buttonText.x = param2 == "" ? Number(_loc3_ / 2) : Number(_loc3_ / 2 - this.BRACKET_OFFSET_X);
+            this.BGTargetWidth += this.bigButtonText.text == "" ? 0 : this.bigButtonText.width - this.BIGBUTTON_OFFSET_X;
+            this.bigButtonText.x = _loc1_ / 2;
+            this.buttonText.x = this.bigButtonText.text == "" ? Number(this.bigButtonText.x - this.BRACKET_OFFSET_X) : Number(this.bigButtonText.x + this.bigButtonText.width - this.BIGBUTTON_OFFSET_X);
             this.textField.x = this.buttonText.x + this.buttonText.width;
+            this.textField.x += this.buttonString == "" ? this.BRACKET_OFFSET_X : 0;
             this.makeIntroTimeline();
         }
         
@@ -189,7 +203,7 @@ package tripwire.widgets
                 "height":this.BGTargetHeight,
                 "ease":Expo.easeOut
             }));
-            this.introTimeline.append(TweenMax.allTo([this.textField,this.buttonText],3,{
+            this.introTimeline.append(TweenMax.allTo([this.textField,this.buttonText,this.bigButtonText],3,{
                 "alpha":1,
                 "ease":Circ.easeOut
             }));
@@ -201,7 +215,7 @@ package tripwire.widgets
             this.introTimeline.stop();
             this.outroTimeline.stop();
             this.outroTimeline.clear();
-            this.outroTimeline.append(TweenMax.allTo([this.textField,this.buttonText],3,{
+            this.outroTimeline.append(TweenMax.allTo([this.textField,this.buttonText,this.bigButtonText],3,{
                 "alpha":0,
                 "ease":Circ.easeOut
             }));

@@ -23,6 +23,12 @@ function bool ShowLoginUI(optional bool bShowOnlineOnly)
 
 function bool Login(byte LocalUserNum, string LoginName, string Password, optional bool bWantsLocalOnly);
 
+delegate OnLoginComplete(byte LocalUserNum, bool bWasSuccessful, OnlineSubsystem.EOnlineServerConnectionStatus ErrorCode);
+
+function AddLoginCompleteDelegate(byte LocalUserNum, delegate<OnLoginComplete> InDelegate);
+
+function ClearLoginCompleteDelegate(byte LocalUserNum, delegate<OnLoginComplete> InDelegate);
+
 function bool AutoLogin();
 
 delegate OnLoginFailed(byte LocalUserNum, OnlineSubsystem.EOnlineServerConnectionStatus ErrorCode);
@@ -205,6 +211,8 @@ function bool SendGameInviteToFriend(byte LocalUserNum, UniqueNetId Friend, opti
 
 function bool SendGameInviteToFriends(byte LocalUserNum, array<UniqueNetId> Friends, optional string Text);
 
+function bool SendGameInviteToUsers(string SessionId, array<string> MembersToInvite, optional string Text);
+
 delegate OnReceivedGameInvite(byte LocalUserNum, string InviterName);
 
 function AddReceivedGameInviteDelegate(byte LocalUserNum, delegate<OnReceivedGameInvite> ReceivedGameInviteDelegate);
@@ -257,3 +265,11 @@ function OnlineSubsystem.EOnlineEnumerationReadState GetAchievements(byte LocalU
 {
     TitleId = 0;
 }
+
+delegate OnOnlineServiceAuthComplete();
+
+function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
+
+function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
+
+function AuthWithOnlineService();

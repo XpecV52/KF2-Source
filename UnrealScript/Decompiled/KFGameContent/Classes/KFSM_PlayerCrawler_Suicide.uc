@@ -25,23 +25,28 @@ protected function bool InternalCanDoSpecialMove()
 
 simulated function SpecialMoveEnded(name PrevMove, name NextMove)
 {
-    TriggerExplosion(KFPOwner);
+    TriggerExplosion(KFPOwner, default.SuicideGasExplosionTemplate);
     super.SpecialMoveEnded(PrevMove, NextMove);
 }
 
-static function TriggerExplosion(KFPawn CrawlerOwner, optional bool bForceExplosion)
+static function TriggerExplosion(KFPawn CrawlerOwner, KFGameExplosion ExplosionTemplate, optional bool bForceExplosion)
 {
     local KFExplosion_PlayerCrawlerSuicide ExploActor;
+    local KFPawn_ZedCrawler_Versus CrawlerOwnerV;
 
-    if(!CrawlerOwner.bPlayedDeath || bForceExplosion)
+    if((CrawlerOwner != none) && !CrawlerOwner.bPlayedDeath || bForceExplosion)
     {
-        KFPawn_ZedCrawler_Versus(CrawlerOwner).OldController = CrawlerOwner.Controller;
+        CrawlerOwnerV = KFPawn_ZedCrawler_Versus(CrawlerOwner);
+        if(CrawlerOwnerV != none)
+        {
+            KFPawn_ZedCrawler_Versus(CrawlerOwner).OldController = CrawlerOwner.Controller;
+        }
         ExploActor = CrawlerOwner.Spawn(Class'KFExplosion_PlayerCrawlerSuicide', CrawlerOwner,, CrawlerOwner.Location, rotator(vect(0, 0, 1)));
         if(ExploActor != none)
         {
             ExploActor.InstigatorController = CrawlerOwner.Controller;
             ExploActor.Instigator = CrawlerOwner;
-            ExploActor.Explode(default.SuicideGasExplosionTemplate);
+            ExploActor.Explode(ExplosionTemplate);
         }
         if(((CrawlerOwner.Role == ROLE_Authority) && !CrawlerOwner.bPlayedDeath) && !bForceExplosion)
         {
@@ -61,11 +66,6 @@ defaultproperties
         KnockDownStrength=0
         MomentumTransferScale=100
         ExplosionSound=AkEvent'WW_WEP_EXP_Dynamite.Play_WEP_EXP_Dynamite_Explosion'
-        ExploLight=PointLightComponent'Default__KFSM_PlayerCrawler_Suicide.ExplosionPointLight'
-        ExploLightFadeOutTime=1
-        ExploLightStartFadeOutTime=7
-        ExploLightFlickerIntensity=5
-        ExploLightFlickerInterpSpeed=15
         FractureMeshRadius=0
         FracturePartVel=0
         CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
@@ -76,5 +76,6 @@ defaultproperties
     AnimName=Player_Suicide
     bUseRootMotion=true
     bPawnRotationLocked=true
+    bShouldDeferToPostTick=true
     Handle=KFSM_PlayerCrawler_Suicide
 }

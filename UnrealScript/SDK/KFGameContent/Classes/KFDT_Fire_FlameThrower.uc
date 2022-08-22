@@ -30,11 +30,11 @@ defaultproperties
 	WeaponDef=class'KFWeapDef_FlameThrower'
 
 	DoT_Type=DOT_Fire
-	DoT_Duration=5.0
-	DoT_Interval=1.0
-	DoT_DamageScale=0.6
+	DoT_Duration=1.7 //5.0
+	DoT_Interval=0.5
+	DoT_DamageScale=0.8
 	bIgnoreSelfInflictedScale=true
 
-	BurnPower=2.5
+	BurnPower=10.5 //2.5
 	StumblePower=20
 

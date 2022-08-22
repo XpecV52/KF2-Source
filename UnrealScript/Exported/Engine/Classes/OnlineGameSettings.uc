@@ -92,7 +92,7 @@ var const int BuildUniqueId;
 var const bool bShouldShrinkArbitratedSessions;
 
 //@HSL_BEGIN - BWJ - 4-11-16 - Playfab support
-var const string LobbyId;
+var string LobbyId;
 //@HSL_END
 
 

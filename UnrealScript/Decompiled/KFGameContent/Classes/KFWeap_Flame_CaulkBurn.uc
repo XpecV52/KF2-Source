@@ -66,6 +66,7 @@ defaultproperties
     // Reference: KFParticleSystemComponent'Default__KFWeap_Flame_CaulkBurn.PilotLight1'
     PSC_PilotLight2=PilotLight1
     PilotLight2SocketName=FXPilot2
+    bWarnAIWhenFiring=true
     FlameSprayArchetype=SprayActor_Flame'WEP_CaulkBurn_ARCH.WEP_CaulkBurn_Flame'
     begin object name=PilotLight0 class=KFParticleSystemComponent
         Template=ParticleSystem'WEP_CaulkBurn_EMIT.FX_CaulkBurn_pilot_light_01'
@@ -93,8 +94,8 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2
     GroupPriority=25
     WeaponSelectTexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
-    MaxSpareAmmo=400
-    InitialSpareMags=4
+    SpareAmmoCapacity=500
+    InitialSpareMags=5
     AmmoPickupScale=0.5
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
@@ -129,6 +130,7 @@ defaultproperties
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
+    InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

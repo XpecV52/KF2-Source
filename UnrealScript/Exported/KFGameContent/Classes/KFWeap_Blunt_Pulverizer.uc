@@ -189,7 +189,7 @@ simulated function SendToFiringState(byte FireModeNum)
 }
 
 /** Always allow reload and choose the correct state in SendToFiringState() */
-simulated function bool CanReload()
+simulated function bool CanReload(optional byte FireModeNum)
 {
 	return true;
 }
@@ -245,7 +245,7 @@ simulated state MeleeHeavyAttacking
 				return;
 			}
 
-			if ( AmmoCount[0] > 0 && !IsTimerActive(nameof(BeginPulverizerFire)) )
+			if ( AmmoCount[0] >= AmmoCost[CUSTOM_FIREMODE] && !IsTimerActive(nameof(BeginPulverizerFire)) )
 			{
 				BlastAttachee = HitActor;
 
@@ -289,7 +289,8 @@ defaultproperties
    bReloadFromMagazine=True
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
-   MaxSpareAmmo(0)=15
+   AmmoCost(6)=1
+   SpareAmmoCapacity(0)=15
    WeaponFireSnd(6)=(DefaultCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_1P')
    AttachmentArchetype=KFWeapAttach_Pulverizer'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
@@ -332,7 +333,7 @@ defaultproperties
    WeaponFireTypes(6)=EWFT_Custom
    FireInterval(5)=0.000000
    FireInterval(6)=1.000000
-   InstantHitDamage(0)=85.000000
+   InstantHitDamage(0)=70.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=20.000000

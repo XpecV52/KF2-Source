@@ -14,6 +14,18 @@ enum EGameConductorStatus
     GCS_MAX
 };
 
+struct sLullInfo
+{
+    var float MaxDuration;
+    var float Cooldown;
+
+    structdefaultproperties
+    {
+        MaxDuration=0
+        Cooldown=0
+    }
+};
+
 var float PlayersHealthStatus;
 var float PlayersAmmoStatus;
 var float AggregatePlayersStatus;
@@ -70,6 +82,10 @@ var KFGameConductor.EGameConductorStatus GameConductorStatus;
 var() float PlayerDeathForceLullLength;
 /** When we lasted forced a low intensity lull for a player dying */
 var() float PlayerDeathForceLullTime;
+/** How long to force a low intensity lull for if a solo player is surrounded */
+var() float SoloPlayerSurroundedForceLullLength;
+/** When we lasted forced a low intensity lull for a surrounded solo player */
+var() float SoloPlayerSurroundedForceLullTime;
 var float AveragePlayerPerkRank;
 /** The target perk range for each difficulty level */
 var() Vector2D TargetPerkRankRange[4];
@@ -96,6 +112,9 @@ var float CurrentVersusZedHealthMod;
 var float CurrentVersusZedDamageMod;
 /** Whether or not this game difficulty allows low intensity zed mode when players get low on health, forced lull, etc */
 var() int AllowLowIntensityZedModeByDifficulty[4];
+/** Per-difficulty settings for the lull state */
+var() array<sLullInfo> LullSettings;
+var transient float LullCooldownStartTime;
 /** Whether or not to log Game Conductor activity */
 var() bool bLogGameConductor;
 /** When true bypass the game conductor making any adjustments */
@@ -128,6 +147,19 @@ function NotifyHumanTeamPlayerDeath()
         }
         GameConductorStatus = 1;
         PlayerDeathForceLullTime = Outer.WorldInfo.TimeSeconds;
+    }
+}
+
+function NotifySoloPlayerSurrounded()
+{
+    if(!Outer.MyKFGRI.IsFinalWave() && GameConductorStatus != 1)
+    {
+        if(bLogGameConductor)
+        {
+            LogInternal(("Human solo player surrounded, forcing a lull for " $ string(SoloPlayerSurroundedForceLullLength)) $ " seconds!");
+        }
+        GameConductorStatus = 1;
+        SoloPlayerSurroundedForceLullTime = Outer.WorldInfo.TimeSeconds;
     }
 }
 
@@ -377,9 +409,10 @@ function UpdateOverallStatus()
     local float PerkRankModifier, SkillModifier, LifeSpanModifier, HighlySkilledAccuracy, LessSkilledAccuracy, HighlySkilledZedLifespan,
 	    LessSkilledZedLifespan;
 
+    local bool bPlayerHealthLow;
     local int I;
 
-    if((GameConductorStatus == 1) && (Outer.WorldInfo.TimeSeconds - PlayerDeathForceLullTime) > PlayerDeathForceLullLength)
+    if(((GameConductorStatus == 1) && (Outer.WorldInfo.TimeSeconds - PlayerDeathForceLullTime) > PlayerDeathForceLullLength) && (Outer.WorldInfo.TimeSeconds - SoloPlayerSurroundedForceLullTime) > SoloPlayerSurroundedForceLullLength)
     {
         GameConductorStatus = 0;
         if(bLogGameConductor)
@@ -390,13 +423,13 @@ function UpdateOverallStatus()
     Outer.MyKFGRI.CurrentGameConductorStatus = GameConductorStatus;
     Outer.MyKFGRI.CurrentParZedLifeSpan = GetParZedLifeSpan();
     I = 0;
-    J0x11B:
+    J0x169:
 
     if(I < (10 - 1))
     {
         Outer.MyKFGRI.OverallRankAndSkillModifierTracker[I] = Outer.MyKFGRI.OverallRankAndSkillModifierTracker[I + 1];
         ++ I;
-        goto J0x11B;
+        goto J0x169;
     }
     if(bBypassGameConductor || Outer.MyKFGRI.IsFinalWave())
     {
@@ -408,7 +441,8 @@ function UpdateOverallStatus()
         Outer.MyKFGRI.OverallRankAndSkillModifierTracker[10 - 1] = OverallRankAndSkillModifier;
         return;
     }
-    if((GameConductorStatus == 1) || PlayersHealthStatus < PlayersLowHealthThreshold)
+    bPlayerHealthLow = PlayersHealthStatus < PlayersLowHealthThreshold;
+    if((GameConductorStatus == 1) || bPlayerHealthLow && (LullCooldownStartTime == 0) || (Outer.WorldInfo.TimeSeconds - LullCooldownStartTime) > LullSettings[int(Outer.GameDifficulty)].Cooldown)
     {
         OverallRankAndSkillModifier = 0;
         if(bLogGameConductor)
@@ -416,8 +450,13 @@ function UpdateOverallStatus()
             LogInternal((("Players low on health PlayersHealthStatus: " $ string(PlayersHealthStatus)) $ " chilling things out, OverallRankAndSkillModifier= ") $ string(OverallRankAndSkillModifier));
         }
         Outer.MyKFGRI.OverallRankAndSkillModifierTracker[10 - 1] = OverallRankAndSkillModifier;
+        if(bPlayerHealthLow && !Outer.MyKFGRI.IsTimerActive('Timer_EndLull', self))
+        {
+            Outer.MyKFGRI.SetTimer(LullSettings[int(Outer.GameDifficulty)].MaxDuration, false, 'Timer_EndLull', self);
+        }
         return;
     }
+    Outer.MyKFGRI.ClearTimer('Timer_EndLull', self);
     if(WithinRange(TargetPerkRankRange[int(Outer.GameDifficulty)], AveragePlayerPerkRank))
     {
         PerkRankModifier = GetRangePctByValue(TargetPerkRankRange[int(Outer.GameDifficulty)], AveragePlayerPerkRank);        
@@ -651,6 +690,11 @@ function bool WithinRange(Vector2D Range, float TestValue)
     return false;
 }
 
+function Timer_EndLull()
+{
+    LullCooldownStartTime = Outer.WorldInfo.TimeSeconds;
+}
+
 defaultproperties
 {
     PlayersLowHealthThreshold=0.5
@@ -678,6 +722,7 @@ defaultproperties
     AccuracyPercentOfOverallSkill=0.25
     ZedLifeSpanPercentOfOverallSkill=0.5
     PlayerDeathForceLullLength=15
+    SoloPlayerSurroundedForceLullLength=10
     TargetPerkRankRange[0]=(X=0,Y=7)
     TargetPerkRankRange[1]=(X=0,Y=12)
     TargetPerkRankRange[2]=(X=12,Y=25)
@@ -696,4 +741,8 @@ defaultproperties
     AllowLowIntensityZedModeByDifficulty[0]=1
     AllowLowIntensityZedModeByDifficulty[1]=1
     AllowLowIntensityZedModeByDifficulty[2]=1
+    LullSettings(0)=(MaxDuration=10,Cooldown=12)
+    LullSettings(1)=(MaxDuration=8,Cooldown=14)
+    LullSettings(2)=(MaxDuration=6,Cooldown=16)
+    LullSettings(3)=(MaxDuration=5,Cooldown=18)
 }

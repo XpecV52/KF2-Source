@@ -51,6 +51,7 @@ defaultproperties
 {
    bCanGrabAttack=True
    bKnockdownWhenJumpedOn=True
+   bIsClotClass=True
    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Undev_Archetype'
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=6.000000
@@ -83,9 +84,10 @@ defaultproperties
    IncapSettings(4)=(Cooldown=1.000000,Vulnerability=(2.000000))
    IncapSettings(5)=(Cooldown=3.000000,Vulnerability=(2.000000))
    IncapSettings(6)=()
-   IncapSettings(7)=(Cooldown=8.000000,Vulnerability=(2.000000))
-   IncapSettings(8)=()
+   IncapSettings(7)=()
+   IncapSettings(8)=(Cooldown=8.000000,Vulnerability=(2.000000))
    IncapSettings(9)=()
+   IncapSettings(10)=()
    SprintSpeed=400.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
@@ -127,8 +129,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -194,6 +198,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
    End Object

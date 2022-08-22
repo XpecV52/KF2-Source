@@ -42,7 +42,7 @@ var(Locking) float		LockAcquireTime_Large;
 /** How long does the player need to target a boss to lock on to it*/
 var(Locking) float		LockAcquireTime_Boss;
 
-/** How long does the player need to target a boss to lock on to it*/
+/** How long does the player need to target a versus zed to lock on to it */
 var(Locking) float		LockAcquireTime_Versus;
 
 /** Once locked, how long can the player go without painting the object before they lose the lock */
@@ -218,66 +218,6 @@ simulated function StartAmbientSound()
 simulated function StopAmbientSound()
 {
     PostAkEventOnBone(AmbientSoundStopEvent, AmbientSoundSocketName, false, true);
-}
-
-/*********************************************************************************************
- * State WeaponEquipping
- * The Weapon is in this state while transitioning from Inactive to Active state.
- * Typically, the weapon will remain in this state while its selection animation is being played.
- * While in this state, the weapon cannot be fired.
-*********************************************************************************************/
-
-simulated state WeaponEquipping
-{
-	simulated function BeginState(Name PreviousStateName)
-	{
-		super.BeginState(PreviousStateName);
-        StartAmbientSound();
-	}
-}
-
-/*********************************************************************************************
- * State WeaponPuttingDown
- * Putting down weapon in favor of a new one.
- * Weapon is transitioning to the Inactive state.
-*********************************************************************************************/
-
-simulated state WeaponPuttingDown
-{
-	simulated event BeginState(Name PreviousStateName)
-	{
-		super.BeginState(PreviousStateName);
-		StopAmbientSound();
-	}
-}
-
-/*********************************************************************************************
-* State WeaponAbortEquip
-* Special PuttingDown state used when WeaponEquipping is interrupted.  Must come after
-* WeaponPuttingDown definition or this willextend the super version.
-*********************************************************************************************/
-
-simulated state WeaponAbortEquip
-{
-	simulated event BeginState(Name PreviousStateName)
-	{
-		super.BeginState(PreviousStateName);
-		StopAmbientSound();
-	}
-}
-
-/*********************************************************************************************
- * state Inactive
- * This state is the default state.  It needs to make sure Zooming is reset when entering/leaving
- *********************************************************************************************/
-
-auto simulated state Inactive
-{
-	simulated function BeginState(name PreviousStateName)
-	{
-		Super.BeginState(PreviousStateName);
-		StopAmbientSound();
-	}
 }
 
 /**
@@ -891,6 +831,68 @@ simulated function vector2d WorldToCanvas( Canvas Canvas, vector WorldPoint)
 }
 */
 
+/*********************************************************************************************
+ * state Inactive
+ * This state is the default state.  It needs to make sure Zooming is reset when entering/leaving
+ *********************************************************************************************/
+
+auto simulated state Inactive
+{
+	simulated function BeginState(name PreviousStateName)
+	{
+		Super.BeginState(PreviousStateName);
+		StopAmbientSound();
+		AdjustLockTarget(None);
+		ClearTimer(nameof(PlayTargetingBeepTimer));
+	}
+}
+
+/*********************************************************************************************
+ * State WeaponEquipping
+ * The Weapon is in this state while transitioning from Inactive to Active state.
+ * Typically, the weapon will remain in this state while its selection animation is being played.
+ * While in this state, the weapon cannot be fired.
+*********************************************************************************************/
+
+simulated state WeaponEquipping
+{
+	simulated function BeginState(Name PreviousStateName)
+	{
+		super.BeginState(PreviousStateName);
+        StartAmbientSound();
+	}
+}
+
+/*********************************************************************************************
+ * State WeaponPuttingDown
+ * Putting down weapon in favor of a new one.
+ * Weapon is transitioning to the Inactive state.
+*********************************************************************************************/
+
+simulated state WeaponPuttingDown
+{
+	simulated event BeginState(Name PreviousStateName)
+	{
+		super.BeginState(PreviousStateName);
+		StopAmbientSound();
+	}
+}
+
+/*********************************************************************************************
+* State WeaponAbortEquip
+* Special PuttingDown state used when WeaponEquipping is interrupted.  Must come after
+* WeaponPuttingDown definition or this willextend the super version.
+*********************************************************************************************/
+
+simulated state WeaponAbortEquip
+{
+	simulated event BeginState(Name PreviousStateName)
+	{
+		super.BeginState(PreviousStateName);
+		StopAmbientSound();
+	}
+}
+
 defaultproperties
 {
 	// Inventory / Grouping
@@ -931,14 +933,20 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	MaxSpareAmmo[0]=20
+	SpareAmmoCapacity[0]=20
 	InitialSpareMags[0]=6
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
+	AmmoPickupScale[0]=3.0
 
 	// Zooming/Position
 	PlayerViewOffset=(X=3.0,Y=7,Z=-2)
 	IronSightPosition=(X=-0.25,Y=0,Z=0) // any further back along X and the scope clips through the camera during firing
+
+	// AI warning system
+	bWarnAIWhenAiming=true
+	AimWarningDelay=(X=0.4f, Y=0.8f)
+	AimWarningCooldown=0.0f
 
 	// Recoil
 	maxRecoilPitch=600
@@ -960,13 +968,12 @@ defaultproperties
 	HippedRecoilModifier=2.33333
 
 	// DEFAULT_FIREMODE
-	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity' // TODO: get a real icon
+	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_AutoTarget'
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=none
 	InstantHitDamage(DEFAULT_FIREMODE)=375  //750
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_RailGun'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_RailGun'
 	FireInterval(DEFAULT_FIREMODE)=0.4
 	PenetrationPower(DEFAULT_FIREMODE)=10.0
 	Spread(DEFAULT_FIREMODE)=0.005
@@ -976,7 +983,7 @@ defaultproperties
 	IronSightsSpreadMod=0.01
 
 	// ALT_FIREMODE
-	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle' // TODO: get a real icon
+	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_ManualTarget'
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(ALTFIRE_FIREMODE)=none
@@ -985,6 +992,11 @@ defaultproperties
 	FireInterval(ALTFIRE_FIREMODE)=0.4
 	PenetrationPower(ALTFIRE_FIREMODE)=10.0
 	Spread(ALTFIRE_FIREMODE)=0.005
+
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_RailGun'
+	InstantHitDamage(BASH_FIREMODE)=30
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_RailGun_ARCH.Wep_RailGun_MuzzleFlash'

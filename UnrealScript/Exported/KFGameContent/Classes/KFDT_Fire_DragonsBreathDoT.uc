@@ -30,8 +30,10 @@ static function int GetDamageeDialogID()
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
-   DoT_DamageScale=1.000000
-   BurnPower=12.500000
+   DoT_Duration=2.700000
+   DoT_Interval=0.500000
+   DoT_DamageScale=0.700000
+   BurnPower=18.500000
    Name="Default__KFDT_Fire_DragonsBreathDoT"
    ObjectArchetype=KFDT_Fire'KFGame.Default__KFDT_Fire'
 }

@@ -208,7 +208,7 @@ static simulated function PlayPlayerDiedStinger( PlayerController P )
 	local KFPlayerController KFPC;
 
 	KFPC = KFPlayerController( P );
-	if( KFPC == none )
+	if( KFPC == none || class'Engine'.static.IsEditor() )
 		return;
 
 	// allow player died stinger to interrupt others

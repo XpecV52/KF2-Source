@@ -222,7 +222,7 @@ function Actor FindEnemyFor(KFAIController RequestingAI, optional bool bSkipCurr
             }
             else
             {
-                if((((DistToPlayer < DistToEnemy) && FRand() < 0.9) || ((KFPawn(P).IsDoingSpecialMove(27) && DistToPlayer < 1200) && RequestingAI.CanSee(P)) && FRand() < 0.85) || (float(RequestingAI.Pawn.Health) < (0.33 * float(RequestingAI.Pawn.default.Health))) && FRand() < 0.65)
+                if((((DistToPlayer < DistToEnemy) && FRand() < 0.9) || ((KFPawn(P).IsDoingSpecialMove(29) && DistToPlayer < 1200) && RequestingAI.CanSee(P)) && FRand() < 0.85) || (float(RequestingAI.Pawn.Health) < (0.33 * float(RequestingAI.Pawn.default.Health))) && FRand() < 0.65)
                 {
                     return P;
                 }

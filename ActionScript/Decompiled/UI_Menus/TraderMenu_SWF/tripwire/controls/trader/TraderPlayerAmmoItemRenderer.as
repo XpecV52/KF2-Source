@@ -14,15 +14,23 @@ package tripwire.controls.trader
         
         private var _buttonValue:String;
         
+        private var _buttonState:int;
+        
         public var PlusIcon:MovieClip;
         
         public var AmmoIcon:MovieClip;
+        
+        public var hitMC:MovieClip;
+        
+        public var BG:MovieClip;
         
         public function TraderPlayerAmmoItemRenderer()
         {
             super();
             preventAutosizing = true;
             this.controllerIconVisibility = false;
+            clickSoundEffect = "TRADER_MAGFILL_BUTTON_CLICK";
+            overSoundEffect = "TRADER_MAGFILL_BUTTON_ROLLOVER";
         }
         
         public function get buttonValue() : String
@@ -56,6 +64,7 @@ package tripwire.controls.trader
         
         override public function setData(param1:Object) : void
         {
+            hitArea = this.hitMC;
             if(param1)
             {
                 super.setData(param1);
@@ -69,8 +78,18 @@ package tripwire.controls.trader
             }
         }
         
+        public function get buttonState() : int
+        {
+            return this._buttonState;
+        }
+        
         public function set buttonState(param1:int) : void
         {
+            this._buttonState = param1;
+            if(this.buttonIcon.visible)
+            {
+                this.controllerIconVisibility = bManagerUsingGamepad;
+            }
             if(param1 == 0)
             {
                 enabled = true;
@@ -80,14 +99,16 @@ package tripwire.controls.trader
             }
             else if(param1 == 1)
             {
-                enabled = true;
+                enabled = false;
                 alpha = 0.32;
-                mouseEnabled = false;
+                setState("up");
+                mouseEnabled = true;
                 selectable = false;
             }
             else
             {
                 enabled = false;
+                mouseEnabled = true;
                 selectable = false;
                 alpha = 1;
             }
@@ -95,9 +116,27 @@ package tripwire.controls.trader
         
         public function set controllerIconVisibility(param1:Boolean) : void
         {
-            this.buttonIcon.visible = param1;
-            this.PlusIcon.visible = !param1;
-            this.AmmoIcon.visible = !param1;
+            if(this.buttonState != 0)
+            {
+                this.buttonIcon.visible = false;
+                this.PlusIcon.visible = true;
+                this.AmmoIcon.visible = true;
+            }
+            else
+            {
+                if(param1)
+                {
+                    trace("MAG/FILL ICONS SHOWN: " + this.index);
+                }
+                this.buttonIcon.visible = param1;
+                this.PlusIcon.visible = !param1;
+                this.AmmoIcon.visible = !param1;
+            }
+        }
+        
+        public function set bgVisibility(param1:Boolean) : void
+        {
+            this.BG.visible = param1;
         }
         
         override protected function highlightButton() : *

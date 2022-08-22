@@ -5,14 +5,15 @@ package tripwire.controls.perks
     import flash.events.FocusEvent;
     import flash.events.MouseEvent;
     import flash.text.TextField;
-    import scaleform.clik.controls.UILoader;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.controls.TripListItemRenderer;
+    import tripwire.controls.TripUILoaderQueue;
     
     public class PerkSelectLineRenderer extends TripListItemRenderer
     {
          
         
-        public var iconLoader:UILoader;
+        public var iconLoader:TripUILoaderQueue;
         
         public var perkLevelText:TextField;
         
@@ -57,6 +58,7 @@ package tripwire.controls.perks
                 this.disableButton();
             }
             this.active = false;
+            TextFieldEx.setTextAutoSize(textField,"shrink");
         }
         
         override public function setData(param1:Object) : void
@@ -125,6 +127,7 @@ package tripwire.controls.perks
             {
                 this.perkLevelText.text = this._perkLevelStr;
             }
+            TextFieldEx.setTextAutoSize(textField,"shrink");
         }
         
         protected function handleFocusIn(param1:FocusEvent) : *

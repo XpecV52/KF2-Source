@@ -96,7 +96,7 @@ simulated event PostBeginPlay()
 
 	if( WorldInfo.NetMode != NM_Client )
 	{		
-		if( InstigatorController != none )
+		if( InstigatorController != none || IsAIProjectile() )
 		{
 			class'KFGameplayPoolManager'.static.GetPoolManager().AddProjectileToPool( self, PPT_PukeMine );
 		}
@@ -335,7 +335,7 @@ simulated singular event Touch( Actor Other, PrimitiveComponent OtherComp, vecto
 singular event TakeDamage( int inDamage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser )
 {
 	// Don't blow up when fading out and don't let mines blow each other up, no matter what team
-	if( bFadingOut || DamageCauser.class == class || DamageType == ExplosionTemplate.MyDamageType )
+	if( bFadingOut || DamageCauser.class == class || DamageType == ExplosionTemplate.MyDamageType || `TimeSince(CreationTime) < 0.5f )
 	{
 		return;
 	}
@@ -434,6 +434,9 @@ simulated function FadeOut()
 		return;
 	}
 
+	// Remove ownership
+	SetOwner( none );
+
 	// Turn off collision
 	SetCollision( false, false );
 
@@ -444,16 +447,18 @@ simulated function FadeOut()
 		bFadingOut = true;
 		FadeOutTime = WorldInfo.TimeSeconds + default.FadeOutTime;		
 	}
+	else
+	{
+		// Delay destruction slightly
+		SetTimer( 0.2f, false, nameOf(Destroy) );
+	}
 
 	// Tell clients to tear off and fade out on their own
 	if( WorldInfo.NetMode != NM_Client )
 	{
 		bTearOff = true;
+		bNetDirty = true;
 		bForceNetUpdate = true;
-		NetUpdateFrequency = 1000;
-
-		// Delay destruction slightly
-		SetTimer( 0.1f, false, nameOf(Destroy) );
 	}
 }
 
@@ -521,8 +526,8 @@ defaultproperties
 	LifeSpan=0
 	FuseDuration=300
 	PostExplosionLifetime=1
-	Speed=2000
-	MaxSpeed=2000
+	Speed=500
+	MaxSpeed=500
 	Physics=PHYS_Falling
 	bBounce=true
 	bNetTemporary=false
@@ -591,19 +596,6 @@ defaultproperties
 	// Fade out properties
 	FadeOutTime=1.75f
 
-	// Explosion light
-	Begin Object Class=PointLightComponent Name=ExplosionPointLight
-	    LightColor=(R=200,G=200,B=0,A=255)
-		Brightness=0.25f
-		Radius=500.f
-		FalloffExponent=10.f
-		CastShadows=False
-		CastStaticShadows=FALSE
-		CastDynamicShadows=True
-		bEnabled=FALSE
-		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
-	End Object
-
 	// Explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		Damage=30 //45
@@ -623,16 +615,12 @@ defaultproperties
 		MomentumTransferScale=0
 
         // Dynamic Light
-        ExploLight=ExplosionPointLight
-        ExploLightStartFadeOutTime=0.3f
-        ExploLightFadeOutTime=0.25f
-        ExploLightFlickerIntensity=5.f
-        ExploLightFlickerInterpSpeed=15.f
+        ExploLight=none
 
 		// Camera Shake
 		CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
-		CamShakeInnerRadius=450
-		CamShakeOuterRadius=900
+		CamShakeInnerRadius=200
+		CamShakeOuterRadius=400
 		CamShakeFalloff=1.f
 		bOrientCameraShakeTowardsEpicenter=true
 	End Object

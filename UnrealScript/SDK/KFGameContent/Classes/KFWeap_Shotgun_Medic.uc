@@ -30,7 +30,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 
 	for (i = 0; i < NumPellets[CurrentFireMode]; i++)
 	{
-		Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot)));
+		Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(class'KFWeap_ShotgunBase'.static.AddMultiShotSpread(AimRot, Spread[CurrentFireMode])));
 	}
 
 	return None;
@@ -40,27 +40,6 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 simulated function rotator AddSpread(rotator BaseAim)
 {
 	return BaseAim; // do nothing
-}
-
- /** Same as AddSpread(), but used with MultiShotSpread */
-simulated function rotator AddMultiShotSpread(rotator BaseAim)
-{
-	local vector X, Y, Z;
-	local float CurrentSpread, RandY, RandZ;
-
-	CurrentSpread = Spread[CurrentFireMode];
-	if (CurrentSpread == 0)
-	{
-		return BaseAim;
-	}
-	else
-	{
-		// Add in any spread.
-		GetAxes(BaseAim, X, Y, Z);
-		RandY = FRand() - 0.5;
-		RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
-		return rotator(X + RandY * CurrentSpread * Y + RandZ * CurrentSpread * Z);
-	}
 }
 
 /** Notification that a weapon attack has has happened */
@@ -107,8 +86,7 @@ static simulated event EFilterTypeUI GetTraderFilter()
 defaultproperties
 {
 	// Healing charge
-    HealAmount=30
-	HealAmmoCost=40
+    HealAmount=15 //30
 	HealFullRechargeSeconds=12
 
 	// Inventory
@@ -142,9 +120,6 @@ defaultproperties
 
 	AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_3P'
 
-
-
-
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
@@ -152,19 +127,21 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
 	InstantHitDamage(DEFAULT_FIREMODE)=20.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Shotgun_Medic'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Shotgun_Medic'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	FireInterval(DEFAULT_FIREMODE)=0.2 // 300 RPM
 	FireOffset=(X=30,Y=3,Z=-3)
 	Spread(DEFAULT_FIREMODE)=0.07
 	// Shotgun
 	NumPellets(DEFAULT_FIREMODE)=6
-	NumPellets(ALTFIRE_FIREMODE)=1
 
+	// ALTFIRE_FIREMODE
+	NumPellets(ALTFIRE_FIREMODE)=1
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
+	AmmoCost(ALTFIRE_FIREMODE)=40
 
 	// BASH_FIREMODE - Waiting on animations
-	InstantHitDamage(BASH_FIREMODE)=20.0
+	InstantHitDamage(BASH_FIREMODE)=26.0
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Shotgun_Medic'
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_MuzzleFlash'
@@ -181,7 +158,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=10
-	MaxSpareAmmo[0]=80
+	SpareAmmoCapacity[0]=80
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=true

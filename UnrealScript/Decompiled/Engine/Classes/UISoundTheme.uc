@@ -32,7 +32,6 @@ event ProcessSoundEvent(name SoundEventName, optional PlayerController SoundOwne
     EventIndex = SoundEventBindings.Find('SoundEventName', SoundEventName;
     if(EventIndex != -1)
     {
-        LogInternal((((("ProcessSoundEvent - Sound Event: " $ string(SoundEventName)) $ ", Sound Theme: ") $ string(self)) $ ", Sound: ") $ string(SoundEventBindings[EventIndex].SoundToPlay), 'DevGFxUI');
         if(SoundOwner != none)
         {
             SoundOwner.PlaySoundBase(SoundEventBindings[EventIndex].SoundToPlay, true, true, true);            
@@ -41,9 +40,5 @@ event ProcessSoundEvent(name SoundEventName, optional PlayerController SoundOwne
         {
             Class'WorldInfo'.static.GetWorldInfo().PlaySoundBase(SoundEventBindings[EventIndex].SoundToPlay, true, true, true);
         }        
-    }
-    else
-    {
-        LogInternal((string(self) $ ": ProcessSoundEvent - Unable to find a binding for event: ") $ string(SoundEventName));
     }
 }

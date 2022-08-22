@@ -122,7 +122,236 @@ function bool ShouldStartMatch()
     return ( WorldInfo.NetMode == NM_StandAlone || (Teams[0].Size > 0 && Teams[1].Size > 0) );
 }
 
+function StripAbsentPlayers()
+{
+	local int GroupIndex, PlayerIndex;
+	local UniqueNetId StupidUnrealBS;
+
+	if (bLogGroupTeamBalance) LogInternal("StripAbsentPlayers: Stripping players who are no longer logged in from matchmaking groups.");
+	for (GroupIndex = PlayerGroups.length - 1; GroupIndex >= 0; --GroupIndex)
+	{
+		for (PlayerIndex = PlayerGroups[GroupIndex].PlayerGroup.Length - 1; PlayerIndex >= 0; --PlayerIndex)
+		{
+			if (GetPRIById(PlayerGroups[GroupIndex].PlayerGroup[PlayerIndex]) == none)
+			{
+				if (bLogGroupTeamBalance)
+				{
+					StupidUnrealBS = PlayerGroups[GroupIndex].PlayerGroup[PlayerIndex];
+					if (bLogGroupTeamBalance) LogInternal("StripAbsentPlayers: Removing player" @ class'OnlineSubsystem'.static.UniqueNetIdToString(StupidUnrealBS) @ "from group" @ GroupIndex @ "because they are no longer logged in.");
+				}
+				PlayerGroups[GroupIndex].PlayerGroup.Remove(PlayerIndex, 1);
+			}
+		}
+		if (PlayerGroups[GroupIndex].PlayerGroup.length == 0)
+		{
+			if (bLogGroupTeamBalance) LogInternal("StripAbsentPlayers: Removing empty matchmaking group " @ GroupIndex @ "from group list because it is empty.");
+			PlayerGroups.Remove(GroupIndex, 1);
+		}
+	}
+}
+
+function SplitArrayByTeam(out PlayerGroupStruct Group, out PlayerGroupStruct Other)
+{
+	local int i;
+	local PlayerReplicationInfo PRI;
+	local UniqueNetId StupidUnrealscriptBS;
+
+	//Clear out the Other struct
+	Other.PlayerGroup.length = 0;
+	Other.Team = Group.Team == 1 ? 0 : 1;
+
+	//The group should have a team by now, but doublecheck and clear it out
+	//if it doesn't and quit
+	if (Group.Team == 128)
+	{
+		LogInternal("SplitArrayByTeam: Aborting and removing group because it hasn't yet been assigned a team.");
+		Other.Team = 128;
+		Group.PlayerGroup.length = 0;
+		return;
+	}
+	//Iterate backwards because that makes the logic of removing an item simpler
+	for (i = Group.PlayerGroup.length - 1; i >= 0; --i)
+	{
+		PRI = GetPRIById(Group.PlayerGroup[i]);
+		//Check again that the player in the group is still connected
+		if (PRI == none)
+		{
+			if (bLogGroupTeamBalance)
+			{
+				StupidUnrealscriptBS = Group.PlayerGroup[i];
+				LogInternal("SplitArrayByTeam: Removing player" @ class'OnlineSubsystem'.static.UniqueNetIdToString(StupidUnrealscriptBS) @ "from group because they are not logged in.");
+			}
+			Group.PlayerGroup.Remove(i, 1);
+			continue;
+		}
+		//If the team they're currently in doesn't match the one they were assigned, put them into
+		//the other player group with the other team
+		if (PRI.Team != Teams[Group.Team])
+		{
+			if (bLogGroupTeamBalance)
+			{
+				StupidUnrealscriptBS = Group.PlayerGroup[i];
+				LogInternal("SplitArrayByTeam: Moving player" @ class'OnlineSubsystem'.static.UniqueNetIdToString(StupidUnrealscriptBS) @ "from group in team" @ Group.Team @ "to group in team" @ Other.Team @ "because they chose that team");
+			}
+			Other.PlayerGroup.AddItem(Group.PlayerGroup[i]);
+			Group.PlayerGroup.Remove(i, 1);
+		}
+	}
+}
+
+function SplitGroups()
+{
+	//if players have chosen to be in different teams, consider them as singles or separate groups
+	//for balancing purposes
+	local int i;
+	local PlayerGroupStruct NewGroup;
+	local PlayerGroupStruct StupidUnrealscriptBS;
+
+	if (bLogGroupTeamBalance) LogInternal("SplitGroups: Splitting groups with players on separate teams.");
+
+	//iterate from end to make adding and removing elements logic simpler
+	for (i = PlayerGroups.length - 1; i >= 0; --i)
+	{
+		StupidUnrealscriptBS = PlayerGroups[i];
+		SplitArrayByTeam(StupidUnrealscriptBS, NewGroup);
+		PlayerGroups[i] = StupidUnrealscriptBS;
+		if (PlayerGroups[i].PlayerGroup.length < 2)
+		{
+			if (NewGroup.PlayerGroup.length > 1)
+			{
+				if (bLogGroupTeamBalance) LogInternal("SplitGroups: Changing group number" @ i @ "from team" @ PlayerGroups[i].Team @ "to team" @ NewGroup.Team @ "(now has" @ NewGroup.PlayerGroup.length @ "members).");
+				PlayerGroups[i] = NewGroup;
+			}
+			else
+			{
+				if (bLogGroupTeamBalance) LogInternal("SplitGroups: Removing empty group number" @ i);
+				PlayerGroups.Remove(i,1);
+			}
+		}
+		else
+		{
+			if (NewGroup.PlayerGroup.length > 0)
+			{
+				if (bLogGroupTeamBalance) LogInternal("SplitGroups: Adding a new group of team" @ NewGroup.Team @ "at position" @ i+1 @ "with" @ NewGroup.PlayerGroup.length @ "members.");
+				PlayerGroups.Insert(i+1, 1);
+				PlayerGroups[i+1] = NewGroup;
+			}
+		}
+	}
+}
+
+//Returns human team size - zed team size
+function int GetDelta()
+{
+	return Teams[0].Size - Teams[1].Size;
+}
+
+//Returns true if the game is playable (neither team over 6) by only moving players not in a group
+//AdditionalDelta is number moved from Zed to Human team, negative for the other direction
+function bool IsBalanceable(int NumHumanSingles, int NumZedSingles, optional int AdditionalDelta = 0)
+{
+	if (Teams[0].Size > 0 && Teams[0].Size <= 6&& Teams[1].Size <= 6)
+	{
+		return true;
+	}
+	if (Teams[0].Size - NumHumanSingles + AdditionalDelta > 6|| Teams[1].Size - NumZedSingles - AdditionalDelta > 6)
+	{
+		return false;
+	}
+	return true;
+}
+
+//Returns true if it's possible to play a Versus match with the current team balance
+//Does not mean balance is optimal (Delta within
+function bool IsLegal()
+{
+	return Teams[0].Size > 0 && Teams[0].Size <= 6&& Teams[1].Size <= 6;
+}
+
+//Moves single players from team to team until they are equal or within one of each other
+//If bTryAnyway is false, will do nothing if they can't be balanced within 1
+//If bTryAnyway is true, will get as close as possible
+//Returns true if any players were moved or the teams already within 1
+function bool BalanceSingles(out array<PlayerReplicationInfo> HumanSingles, out array<PlayerReplicationInfo> ZedSingles, optional bool bTryAnyway = false)
+{
+	local int Delta;
+	local bool rc;
+
+
+	if (!IsBalanceable(HumanSingles.length, ZedSingles.length) && !bTryAnyway)
+	{
+		return false;
+	}
+
+	Delta = GetDelta();
+
+	if (abs(Delta) <= 1)
+	{
+		return true;
+	}
+
+	rc = false;
+	if (Delta < 0)
+	{
+		while (ZedSingles.length > 0 && Delta < 0)
+		{
+			SwapTeamFor(ZedSingles[ZedSingles.length-1]);
+			ZedSingles.Remove(ZedSingles.length-1, 1);
+			Delta = GetDelta();
+			rc = true;
+		}
+	}
+	else
+	{
+		while (HumanSingles.length > 0 && Delta > 0)
+		{
+			SwapTeamFor(HumanSingles[HumanSingles.length-1]);
+			HumanSingles.Remove(HumanSingles.length-1, 1);
+			Delta = GetDelta();
+			rc = true;
+		}
+	}
+	return rc;
+}
+
 function BalanceTeams()
+{
+    local int Delta;
+    local PlayerReplicationInfo PRI;
+	local array<PlayerReplicationInfo> HumanSingles, ZedSingles;
+
+	StripAbsentPlayers();
+	SplitGroups();
+
+	Delta = Teams[0].Size - Teams[1].Size;
+    if ( Delta == 0 )
+        return;
+
+	foreach MyKFGRIV.PRIArray(PRI)
+	{
+		if (GetPRIById(PRI.UniqueId) == none)
+		{
+			if (PRI.Team == Teams[0])
+			{
+				HumanSingles.AddItem(PRI);
+			}
+			else
+			{
+				ZedSingles.AddItem(PRI);
+			}
+		}
+	}
+	if (BalanceSingles(HumanSingles, ZedSingles))
+	{
+		return;
+	}
+	else
+	{
+		BalanceTeamsOld();
+	}
+}
+
+function BalanceTeamsOld()
 {
     local int Delta, AutoBalanceRemaining, i;
     local TeamInfo TI;
@@ -183,20 +412,115 @@ function CreateTeam(int TeamIndex)
     }
 }
 
-/** Called by Gameinfo::Login(), initial team pick */
-function byte PickTeam(byte Current, Controller C)
+function int GetPlayerGroup(const out UniqueNetId PlayerId, optional out int IdIndex)
 {
-    // Make sure teams are balanced
-    if( Teams[1].Size < Teams[0].Size || (Teams[0].Size > 0 && Teams[1].Size == Teams[0].Size && fRand() < 0.5f) )
+	local PlayerGroupStruct Group;
+	local UniqueNetId Id;
+	local int GroupIndex, Index;
+
+	IdIndex = INDEX_NONE;
+	foreach PlayerGroups(Group, GroupIndex)
 	{
-		// Zed team
-        return 1;
+		foreach Group.PlayerGroup(Id, Index)
+		{
+			if (id == PlayerId)
+			{
+				IdIndex = Index;
+				return GroupIndex;
+			}
+		}
+	}
+	return INDEX_NONE;
+}
+
+function byte PickGroupTeam(optional int GroupSize = 1)
+{
+	local int Human, Zed;
+	
+	GetReservedTotals(Human, Zed);
+	//Keep the human team ahead of Zeds, since there will always be AI Zeds to fill in
+	if (Zed + GroupSize <= Human)
+	{
+		if (bLogGroupTeamBalance) LogInternal("PickGroupTeam: Team totals are Humans" @ Human @ "Zeds" @ Zed @ ", adding new group to Zed team");
+		//Zed team
+		return 1;
 	}
 	else
 	{
-	    // Human team
-        return 0;
+		if (bLogGroupTeamBalance) LogInternal("PickGroupTeam: Team totals are Humans" @ Human @ "Zeds" @ Zed @ ", adding new group to Human team");
+		//Human team
+		return 0;
 	}
+}
+
+function PlayerReplicationInfo GetPRIById(const UniqueNetId Id)
+{
+	local PlayerReplicationInfo PRI;
+
+	foreach MyKFGRIV.PRIArray(PRI)
+	{
+		if (PRI.UniqueId == Id)
+		{
+			return PRI;
+		}
+	}
+	return none;
+}
+
+/* Adds up the players on each team, including those who are in a group
+   assigned to a team but not yet logged in */
+function GetReservedTotals(out int Human, out int Zed)
+{
+	local PlayerGroupStruct Group;
+	local UniqueNetId Id;
+
+	//First total who is logged in
+	Human = Teams[0].Size;
+	Zed = Teams[1].Size;
+
+	foreach PlayerGroups(Group)
+	{
+		foreach Group.PlayerGroup(Id)
+		{
+			//If they they have a PRI they have already logged in and were counted in the
+			//Team[].Size values above
+			if (GetPRIById(Id) == none)
+			{
+				//If they haven't logged in but their group has been assigned a team, count them
+				//in that team. If Team is something other than 0 or 1 they haven't been assigned a
+				//team and so don't count them yet
+				if (Group.Team == 0)
+				{
+					++Human;
+				}
+				else if (Group.Team == 1)
+				{
+					++Zed;
+				}
+			}
+		}
+	}
+}
+
+/** Called by Gameinfo::Login(), initial team pick */
+function byte PickTeam(byte Current, Controller C, const out UniqueNetId PlayerId)
+{
+    local int Group;
+
+	Group = GetPlayerGroup(PlayerId);
+	if (Group == INDEX_NONE)
+	{
+		//If they're not in a group, consider them as a group of one
+		return PickGroupTeam();
+	}
+	else if (PlayerGroups[Group].Team != 0 && PlayerGroups[Group].Team != 1)
+	{
+		//If their group hasn't been assigned a team yet (should only happen for the first member
+		//who connects), pick a team for them based on their group size
+		PlayerGroups[Group].Team = PickGroupTeam(PlayerGroups[Group].PlayerGroup.length);
+	}
+	//If we make it here, they should have a team, so return it
+	return PlayerGroups[Group].Team;
 }
 
 /** Return whether a team change is allowed. */
@@ -381,19 +705,19 @@ function RestartPlayer(Controller NewPlayer)
 /* @see GameInfo::SetPlayerDefaults */
 function SetPlayerDefaults(Pawn PlayerPawn)
 {
-    local KFPawn_Human P;
+	local KFPawn_Human P;
 
-    Super.SetPlayerDefaults(PlayerPawn);
+	Super.SetPlayerDefaults(PlayerPawn);
 
-    // humans get full armor for the first wave
-    if ( MyKFGRIV.WaveNum == 0 )
-    {
-        P = KFPawn_Human(PlayerPawn);
-        if ( P != none )
-        {
-            P.GiveMaxArmor();
-        }
-    }
+	// humans get full armor for the first wave
+	if ( MyKFGRIV.WaveNum == 0 )
+	{
+		P = KFPawn_Human(PlayerPawn);
+		if ( P != none )
+		{
+			P.GiveMaxArmor();
+		}
+	}
 }
 
 function int GetAIControlledMonsterAliveCount()
@@ -484,28 +808,27 @@ function ReduceDamage( out int Damage, Pawn Injured, Controller InstigatedBy, ve
 
         if( DamageType != AntiGriefDamageTypeClass )
         {
-            if( InstigatorPawn != none && InjuredPawn != none && 
+            if( InstigatorPawn != none && InjuredPawn != none &&
                 InstigatorPawn.GetTeamNum() != InjuredPawn.GetTeamNum() )
             {
                 InstigatorPawn.UpdateLastTimeDamageHappened();
                 InjuredPawn.UpdateLastTimeDamageHappened();
             }
         }
+
+        // Don't let player zeds damage AI zeds
+        if( InstigatedBy.GetTeamNum() == 255
+            && Injured.GetTeamNum() == 255
+            && InstigatedBy.bIsPlayer
+            && !Injured.IsHumanControlled() )
+        {
+            Momentum = vect(0,0,0);
+            Damage = 0;
+            return;
+        }
     }
 
-    // Don't let player zeds damage AI zeds
-    if( InstigatedBy.GetTeamNum() == 255
-        && Injured.GetTeamNum() == 255
-        && InstigatedBy.bIsPlayer
-        && !Injured.IsHumanControlled() )
-    {
-        Momentum = vect(0,0,0);
-        Damage = 0;
-    }
-    else
-    {
-        super.ReduceDamage( Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser );       
-    }
+    super.ReduceDamage( Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser );
 }
 
 function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> damageType )
@@ -532,7 +855,7 @@ function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller Insti
             {
                 //damage taken from boss
                 BossSurvivorDamageTaken += DamageAmount;
-            }   
+            }
         }
     }
     else
@@ -542,7 +865,7 @@ function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller Insti
         {
             //damage done to boss
             BossDamageDone += DamageAmount;
-        }    
+        }
     }
 }
 
@@ -590,19 +913,19 @@ function EndOfMatch(bool bVictory)
     local int TempScore;
     local KFPlayerReplicationInfoVersus KFPRIV;
 
-    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("match_end", None, "#"$WaveNum, "#"$(bVictory ? "1" : "0"), "#"$GameConductor.ZedVisibleAverageLifespan);
+    if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("match_end", None, "#"$WaveNum, "#"$(bVictory ? "1" : "0"), "#"$GameConductor.ZedVisibleAverageLifespan);
 
     if(bVictory)
     {
         SetTimer(EndCinematicDelay, false, nameof(SetWonGameCamera));
-        BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_HumansWin);        
+        BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_HumansWin);
     }
     else
     {
-        BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_ZedsWin);           
+        BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_ZedsWin);
         SetZedsToVictoryState();
     }
-    
+
     foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
     {
         if( bVictory )
@@ -613,7 +936,7 @@ function EndOfMatch(bool bVictory)
         KFPRIV = KFPlayerReplicationInfoVersus(KFPC.PlayerReplicationInfo);
         if(KFPRIV != none)
         {
-            KFPRIV.RecordEndGameInfo();   
+            KFPRIV.RecordEndGameInfo();
         }
     }
 
@@ -625,16 +948,20 @@ function EndOfMatch(bool bVictory)
 
     if( bVictory )
     {
-        CheckRoundEndAchievements( 0 ); 
+        CheckRoundEndAchievements( 0 );
         TempScore += POINTS_FOR_BOSS_KILL;
         TempScore -= BossSurvivorDamageTaken;
     }
     else
     {
         CheckRoundEndAchievements( 255 );
-        WaveBonus += int( float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe );
-        
+
+        if( MyKFGRI.WaveNum != MyKFGRI.WaveMax )
+        {
+            WaveBonus += Max( int(float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe), 0 );
+        }
     }
+    
     TempScore += WaveBonus;
     TempScore -= POINTS_PENALTY_FOR_DEATH * HumanDeaths;
     Teams[0].AddRoundScore( TempScore, true );
@@ -672,7 +999,7 @@ function WaveEnded( EWaveEndCondition WinCondition )
     ClearTimer( nameOf(CheckPawnsForGriefing) );
 
     // If game ended on a wipe, record how many zeds were killed as well as wave reached
-    if( WinCondition == WEC_TeamWipedOut && SpawnManager != none )
+    if( WinCondition == WEC_TeamWipedOut && SpawnManager != none && MyKFGRI.WaveNum != MyKFGRI.WaveMax )
     {
         PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
     }
@@ -749,15 +1076,15 @@ protected function CheckPawnsForGriefing( optional bool bInitial=false )
 /** Called to reset all the types of pickups */
 function ResetAllPickups()
 {
-    if ( !bDisablePickups )
-    {
-        // Reset ALL pickups each wave (ignoring NumPickups) 
+	if ( !bDisablePickups )
+	{
+		// Reset ALL pickups each wave (ignoring NumPickups) 
  		// -1, so that we always have a different pickup to activate
-        NumWeaponPickups = ItemPickups.Length - 1;
-        NumAmmoPickups = AmmoPickups.Length - 1;
-    }
+		NumWeaponPickups = Max(ItemPickups.Length - 1, 0);
+		NumAmmoPickups = Max(AmmoPickups.Length - 1, 0);
+ 	}
 
-    Super.ResetAllPickups();
+ 	Super.ResetAllPickups();
 }
 
 function OpenPostRoundMenu()
@@ -778,7 +1105,6 @@ function UpdateFirstRoundTeamScore()
 {
     // Cache team score
     Teams[1].TeamScoreDataPacket.RoundScore = Teams[0].TeamScoreDataPacket.RoundScore;
-
     // Cache wave reached
     Teams[1].TeamScoreDataPacket.WaveBonus = WaveBonus;
 
@@ -800,6 +1126,7 @@ function UpdateFirstRoundTeamScore()
         Teams[1].TeamScoreDataPacket.BossDamageDone = 0;
         Teams[1].TeamScoreDataPacket.BossDamageTaken = 0;
     }
+
 
     // Reset merc team stats for second round
     Teams[0].TeamScoreDataPacket.RoundScore = 0;
@@ -910,7 +1237,7 @@ protected function ClosePostRoundMenu( optional bool bMatchOver=false )
 /** Announces the next round to players */
 protected function Timer_AnnounceNextRound()
 {
-    BroadcastLocalizedMessage( class'KFLocalMessage_Priority', GMT_NextRoundBegin );    
+    BroadcastLocalizedMessage( class'KFLocalMessage_Priority', GMT_NextRoundBegin );
 }
 
 /** Checks to ensure a game is actually playable and balances accordingly */
@@ -1106,19 +1433,14 @@ defaultproperties
    bIsVersusGame=True
    KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager_Versus'
    MinNetPlayers=2
-   DifficultyTemplate=KFDifficultyInfo'GP_Difficulty_ARCH.Difficulty_Versus'
+   DifficultyInfoClass=Class'kfgamecontent.KFGameDifficulty_Versus'
+   DifficultyInfoConsoleClass=Class'kfgamecontent.KFGameDifficulty_Versus_Console'
    MaxGameDifficulty=0
    GameLengthDoshScale(0)=1.000000
    GameLengthDoshScale(1)=()
    GameLengthDoshScale(2)=()
    SpawnManagerClasses(0)=Class'kfgamecontent.KFAISpawnManager_Versus'
    GameConductorClass=Class'kfgamecontent.KFGameConductorVersus'
-   InValidMaps(0)="KF-Outpost"
-   InValidMaps(1)="KF-Catacombs"
-   InValidMaps(2)="KF-EvacuationPoint"
-   InValidMaps(3)="KF-BlackForest"
-   InValidMaps(4)="KF-ContainmentStation"
-   InValidMaps(5)="KF-HostileGrounds"
    DefaultPawnClass=Class'kfgamecontent.KFPawn_Human_Versus'
    HUDType=Class'kfgamecontent.KFGFXHudWrapper_Versus'
    MaxPlayers=12

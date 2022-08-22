@@ -22,6 +22,7 @@ defaultproperties
     InventorySize=7
     MagazineCapacity=20
     bHasIronSights=true
+    bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasLaserSight=true
@@ -31,9 +32,10 @@ defaultproperties
     PlayerIronSightFOV=70
     DOF_FG_FocalRadius=0
     DOF_FG_MaxNearBlurSize=3.5
+    AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_M14EBR_TEX.UI_WeaponSelect_SM14-EBR'
-    MaxSpareAmmo=160
+    SpareAmmoCapacity=160
     InitialSpareMags=2
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

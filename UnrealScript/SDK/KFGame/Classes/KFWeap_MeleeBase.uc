@@ -133,23 +133,6 @@ cpptext
 	virtual class UParticleSystem* GetAnimTrailParticleSystem(const class UAnimNotify_Trails* AnimNotifyData) const;
 }
 
-//------------------------------------------------------------------------------
-
-simulated function bool HasAnyAmmo()
-{
-	return true;
-}
-
-simulated function bool HasAmmo( byte FireModeNum, optional int Amount=1 )
-{
-	if ( FireModeNum == GRENADE_FIREMODE )
-	{
-		return Super.HasAmmo(FireModeNum, Amount);
-	}
-
-	return true;
-}
-
 /*********************************************************************************************
  * @name		Instigator Movement Speed
 ********************************************************************************************* */
@@ -384,14 +367,14 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
 simulated function UpkeepComplete();
 
 /** Returns true if weapon can potentially be reloaded */
-simulated function bool CanReload()
+simulated function bool CanReload(optional byte FireModeNum)
 {
 	if ( FiringStatesArray[RELOAD_FIREMODE] == 'WeaponUpkeep' )
 	{
 		return true;
 	}
 
-	return Super.CanReload();
+	return Super.CanReload(FireModeNum);
 }
 
 simulated state WeaponUpkeep
@@ -1057,7 +1040,7 @@ simulated state BlockingCooldown extends Active
 	}
 
 	// prevent going to block/parry state
-	simulated function bool HasAmmo( byte FireModeNum, optional int Amount=1 )
+	simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
 	{
 		if ( FireModeNum == BLOCK_FIREMODE )
 		{
@@ -1184,6 +1167,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Custom
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Slashing'
 	InstantHitDamage(DEFAULT_FIREMODE)=20
+	AmmoCost(DEFAULT_FIREMODE)=0
 
 	// ALT_FIREMODE
 	FireModeIconPaths(HEAVY_ATK_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Melee'
@@ -1192,6 +1176,7 @@ defaultproperties
 	InstantHitDamageTypes(HEAVY_ATK_FIREMODE)=class'KFDT_Slashing'
 	InstantHitDamage(HEAVY_ATK_FIREMODE)=50
 	InstantHitMomentum(HEAVY_ATK_FIREMODE)=1.f
+	AmmoCost(HEAVY_ATK_FIREMODE)=0
 
 	// RELOAD_FIREMODE
 	FiringStatesArray(RELOAD_FIREMODE)=WeaponUpkeep
@@ -1200,6 +1185,7 @@ defaultproperties
 	FiringStatesArray(BLOCK_FIREMODE)=MeleeBlocking
 	WeaponFireTypes(BLOCK_FIREMODE)=EWFT_Custom
 	FireInterval(BLOCK_FIREMODE)=1.f
+	AmmoCost(BLOCK_FIREMODE)=0
 
 	Begin Object Name=MeleeHelper_0
 		bUseDirectionalMelee=true

@@ -26,6 +26,8 @@ defaultproperties
 	Speed=7000.0
 	TerminalVelocity=7000.0
 
+	bWarnAIWhenFired=true
+
 	DamageRadius=0
 	GravityScale=0.35
 	TossZ=0

@@ -51,7 +51,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(DEFAULT_FIREMODE)=25.0
+	InstantHitDamage(DEFAULT_FIREMODE)=20.0 //25
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AA12Shotgun'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	FireInterval(DEFAULT_FIREMODE)=0.2 // 300 RPM
@@ -64,15 +64,19 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(ALTFIRE_FIREMODE)=25.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=20.0 //25
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_AA12Shotgun'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_AA12Shotgun'
 	PenetrationPower(ALTFIRE_FIREMODE)=2.0
 	FireInterval(ALTFIRE_FIREMODE)=0.2 // 300 RPM
 	Spread(ALTFIRE_FIREMODE)=0.07
 
 	// Shotgun
 	NumPellets(ALTFIRE_FIREMODE)=7
+
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_AA12Shotgun'
+	InstantHitDamage(BASH_FIREMODE)=30
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_AA12_ARCH.Wep_AA12_MuzzleFlash'
@@ -89,8 +93,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=20
-	MaxSpareAmmo[0]=80
-	InitialSpareMags[0]=0
+	SpareAmmoCapacity[0]=120
+	InitialSpareMags[0]=1
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 	bHasFireLastAnims=false

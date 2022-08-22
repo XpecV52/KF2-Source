@@ -64,9 +64,8 @@ function PlayFireAnimation()
 	}
 
 	bUseRootMotion = false;
-	MyPatPawn.Mesh.RootMotionMode = MyPatPawn.Mesh.default.RootMotionMode;
+	DisableRootMotion();
 	MyPatPawn.RotationRate = MissileFireRotationRate;
-	MyPatPawn.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
 	PlaySpecialMoveAnim( AnimName, EAS_UpperBody, 0.f, BlendOutTime, 1.f );
 
 	// Force animation to first frame so we have an accurate fire start point

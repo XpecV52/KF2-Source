@@ -42,7 +42,7 @@ var(Locking) float		LockAcquireTime_Large;
 /** How long does the player need to target a boss to lock on to it*/
 var(Locking) float		LockAcquireTime_Boss;
 
-/** How long does the player need to target a boss to lock on to it*/
+/** How long does the player need to target a versus zed to lock on to it */
 var(Locking) float		LockAcquireTime_Versus;
 
 /** Once locked, how long can the player go without painting the object before they lose the lock */
@@ -218,66 +218,6 @@ simulated function StartAmbientSound()
 simulated function StopAmbientSound()
 {
     PostAkEventOnBone(AmbientSoundStopEvent, AmbientSoundSocketName, false, true);
-}
-
-/*********************************************************************************************
- * State WeaponEquipping
- * The Weapon is in this state while transitioning from Inactive to Active state.
- * Typically, the weapon will remain in this state while its selection animation is being played.
- * While in this state, the weapon cannot be fired.
-*********************************************************************************************/
-
-simulated state WeaponEquipping
-{
-	simulated function BeginState(Name PreviousStateName)
-	{
-		super.BeginState(PreviousStateName);
-        StartAmbientSound();
-	}
-}
-
-/*********************************************************************************************
- * State WeaponPuttingDown
- * Putting down weapon in favor of a new one.
- * Weapon is transitioning to the Inactive state.
-*********************************************************************************************/
-
-simulated state WeaponPuttingDown
-{
-	simulated event BeginState(Name PreviousStateName)
-	{
-		super.BeginState(PreviousStateName);
-		StopAmbientSound();
-	}
-}
-
-/*********************************************************************************************
-* State WeaponAbortEquip
-* Special PuttingDown state used when WeaponEquipping is interrupted.  Must come after
-* WeaponPuttingDown definition or this willextend the super version.
-*********************************************************************************************/
-
-simulated state WeaponAbortEquip
-{
-	simulated event BeginState(Name PreviousStateName)
-	{
-		super.BeginState(PreviousStateName);
-		StopAmbientSound();
-	}
-}
-
-/*********************************************************************************************
- * state Inactive
- * This state is the default state.  It needs to make sure Zooming is reset when entering/leaving
- *********************************************************************************************/
-
-auto simulated state Inactive
-{
-	simulated function BeginState(name PreviousStateName)
-	{
-		Super.BeginState(PreviousStateName);
-		StopAmbientSound();
-	}
 }
 
 /**
@@ -891,6 +831,68 @@ simulated function vector2d WorldToCanvas( Canvas Canvas, vector WorldPoint)
 }
 */
 
+/*********************************************************************************************
+ * state Inactive
+ * This state is the default state.  It needs to make sure Zooming is reset when entering/leaving
+ *********************************************************************************************/
+
+auto simulated state Inactive
+{
+	simulated function BeginState(name PreviousStateName)
+	{
+		Super.BeginState(PreviousStateName);
+		StopAmbientSound();
+		AdjustLockTarget(None);
+		ClearTimer(nameof(PlayTargetingBeepTimer));
+	}
+}
+
+/*********************************************************************************************
+ * State WeaponEquipping
+ * The Weapon is in this state while transitioning from Inactive to Active state.
+ * Typically, the weapon will remain in this state while its selection animation is being played.
+ * While in this state, the weapon cannot be fired.
+*********************************************************************************************/
+
+simulated state WeaponEquipping
+{
+	simulated function BeginState(Name PreviousStateName)
+	{
+		super.BeginState(PreviousStateName);
+        StartAmbientSound();
+	}
+}
+
+/*********************************************************************************************
+ * State WeaponPuttingDown
+ * Putting down weapon in favor of a new one.
+ * Weapon is transitioning to the Inactive state.
+*********************************************************************************************/
+
+simulated state WeaponPuttingDown
+{
+	simulated event BeginState(Name PreviousStateName)
+	{
+		super.BeginState(PreviousStateName);
+		StopAmbientSound();
+	}
+}
+
+/*********************************************************************************************
+* State WeaponAbortEquip
+* Special PuttingDown state used when WeaponEquipping is interrupted.  Must come after
+* WeaponPuttingDown definition or this willextend the super version.
+*********************************************************************************************/
+
+simulated state WeaponAbortEquip
+{
+	simulated event BeginState(Name PreviousStateName)
+	{
+		super.BeginState(PreviousStateName);
+		StopAmbientSound();
+	}
+}
+
 defaultproperties
 {
    ForceReloadTime=0.500000
@@ -931,11 +933,12 @@ defaultproperties
    SceneCapture=SceneCapture2DComponent0
    ScopeLenseMICTemplate=MaterialInstanceConstant'WEP_1P_RailGun_MAT.Wep_1stP_RailGun_Lens_MIC'
    ScopedSensitivityMod=16.000000
-   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
-   FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
+   FireModeIconPaths(0)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_AutoTarget'
+   FireModeIconPaths(1)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_ManualTarget'
    InventorySize=10
    MagazineCapacity(0)=1
    bHasIronSights=True
+   bWarnAIWhenAiming=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    PenetrationPower(0)=10.000000
@@ -946,10 +949,12 @@ defaultproperties
    DOF_BlendInSpeed=3.000000
    DOF_FG_FocalRadius=0.000000
    DOF_FG_MaxNearBlurSize=3.500000
+   AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun'
-   MaxSpareAmmo(0)=20
+   SpareAmmoCapacity(0)=20
    InitialSpareMags(0)=6
+   AmmoPickupScale(0)=3.000000
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    BonesToLockOnEmpty(0)="RW_TopLeft_RadShield1"
@@ -1026,7 +1031,7 @@ defaultproperties
    InstantHitDamage(0)=375.000000
    InstantHitDamage(1)=750.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=30.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_RailGun'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_RailGun'
    InstantHitDamageTypes(2)=None

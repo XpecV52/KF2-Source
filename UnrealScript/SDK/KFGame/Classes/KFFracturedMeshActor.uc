@@ -340,6 +340,9 @@ defaultproperties
 	TotalHealth=5000
 	bSpawnPartsWhenDestroyed=true
 
+	// Suppress sound warning
+	bHasShownMissingSoundWarning=true
+
 	// Default multiplier if we are vulnerable to any damage types
 	VulnerableMultiplier=6
 

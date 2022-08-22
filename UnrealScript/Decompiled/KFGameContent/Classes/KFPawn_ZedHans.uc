@@ -39,7 +39,6 @@ var class<KFDamageType> HeavyBumpDamageType;
 var ProjectileTossInfo CachedGoodGrenadeToss;
 var AkEvent AmbientBreathingEvent;
 var AkEvent LowHealthAmbientBreathingEvent;
-var float LastTickDialogTime;
 var float TickDialogInterval;
 var ParticleSystem BackPackSmokeEffectTemplate;
 var export editinline ParticleSystemComponent BackPackSmokePSC;
@@ -99,7 +98,7 @@ simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'bGunsEquipped')
     {
-        if(SpecialMove != 31)
+        if(SpecialMove != 33)
         {
             SetWeaponStance(bGunsEquipped);
         }        
@@ -116,10 +115,13 @@ simulated event PostBeginPlay()
     AddDefaultInventory();
     AmbientAkComponent.CachedObjectPosition = Location;
     SetPawnAmbientSound(AmbientBreathingEvent);
-    LastTickDialogTime = WorldInfo.TimeSeconds;
     if(WorldInfo.NetMode == NM_DedicatedServer)
     {
         Mesh.bPauseAnims = false;
+    }
+    if(WorldInfo.NetMode != NM_Client)
+    {
+        SetTimer(2, false, 'Timer_TickHansDialog');
     }
 }
 
@@ -318,13 +320,14 @@ function bool CacheGrenadeThrowLocation(optional bool bLeftHand)
         TossZPct = 0.85;
         bFoundVel = SuggestTossVelocity(TossVelocity, TargetLocation, StartThrowLocation, UsedGrenadeClass.default.Speed,, TossZPct, Extent);
     }
-    if(VSizeSq(MyKFAIC.Enemy.Velocity) < float(2500))
+    if(Velocity == vect(0, 0, 0))
     {
-        TossVelocity *= 0.8;
+        TossVelocity *= 0.9;
     }
     TossVelocity.X *= 0.75;
     TossVelocity.Y *= 0.75;
     TossVelocity += (MyKFAIC.Enemy.Velocity * 1.5);
+    TossVelocity -= Velocity;
     if(!bFoundVel && (WorldInfo.TimeSeconds - CachedGoodGrenadeToss.TossTime) < 5)
     {
         TossVelocity = CachedGoodGrenadeToss.TossVelocity;
@@ -442,17 +445,10 @@ simulated function Rotator AddGrenadeSpread(Rotator BaseAim)
     local Vector X, Y, Z;
     local float RandY, RandZ;
 
-    if(GrenadeTossSpread == float(0))
-    {
-        return BaseAim;        
-    }
-    else
-    {
-        GetAxes(BaseAim, X, Y, Z);
-        RandY = FRand() - 0.5;
-        RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
-        return rotator((X + ((RandY * GrenadeTossSpread) * Y)) + ((RandZ * GrenadeTossSpread) * Z));
-    }
+    GetAxes(BaseAim, X, Y, Z);
+    RandY = FRand() - 0.5;
+    RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
+    return rotator((X + ((RandY * GrenadeTossSpread.Y) * Y)) + ((RandZ * GrenadeTossSpread.Z) * Z));
 }
 
 function bool IsThrowingGrenade()
@@ -461,7 +457,7 @@ function bool IsThrowingGrenade()
     {
         return false;
     }
-    return (IsDoingSpecialMove(32) || IsDoingSpecialMove(34)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
+    return ((IsDoingSpecialMove(34) || IsDoingSpecialMove(36)) || IsDoingSpecialMove(35)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
 }
 
 function DrawDebugOverheadText(KFHUDBase HUD, out Vector2D ScreenPos)
@@ -506,20 +502,20 @@ static function int GetTraderAdviceID()
     return 47;
 }
 
-simulated function Tick(float DeltaTime)
+function Timer_TickHansDialog()
 {
-    super(KFPawn).Tick(DeltaTime);
-    if((WorldInfo.TimeSeconds - LastTickDialogTime) > TickDialogInterval)
+    if(!IsAliveAndWell())
     {
-        LastTickDialogTime = WorldInfo.TimeSeconds;
-        if((((WorldInfo.TimeSeconds - SpawnTime) > 2) && IsAliveAndWell()) && !IsDoingSpecialMove())
+        return;
+    }
+    if(!IsDoingSpecialMove())
+    {
+        if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
         {
-            if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
-            {
-                KFGameInfo(WorldInfo.Game).DialogManager.PlayHansTickDialog(self);
-            }
+            KFGameInfo(WorldInfo.Game).DialogManager.PlayHansTickDialog(self);
         }
     }
+    SetTimer(TickDialogInterval, false, 'Timer_TickHansDialog');
 }
 
 function PlayBossMusic()
@@ -1043,7 +1039,7 @@ defaultproperties
     SmokeGrenadeClass=Class'KFProj_HansSmokeGrenade'
     RightHandSocketName=RightHandSocket
     LeftHandSocketName=LeftHandSocket
-    GrenadeTossSpread=0.2
+    GrenadeTossSpread=(X=0,Y=0.2,Z=0.04)
     SmokeTossCooldown=5
     BossName="Dr. Hans Volter"
     BossCaptionStrings=/* Array type was not detected. */
@@ -1051,7 +1047,7 @@ defaultproperties
     SummonWaves[1]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Three')
     SummonWaves[2]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Three')
     SummonWaves[3]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Three')
-    NumMinionsToSpawn=8
+    NumMinionsToSpawn=(X=1,Y=18)
     CurrentBattlePhase=1
     TheatricCameraSocketName=TheatricCameraRootSocket
     bLargeZed=true
@@ -1074,6 +1070,7 @@ defaultproperties
     XPValues[3]=1843
     WeakSpotSocketNames=/* Array type was not detected. */
     DamageTypeModifiers=/* Array type was not detected. */
+    DifficultySettings=Class'KFDifficulty_Hans'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     OnDeathAchievementID=133
     PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
@@ -1088,7 +1085,7 @@ defaultproperties
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedHans.Afflictions'
     IncapSettings=/* Array type was not detected. */
     KnockdownImpulseScale=1
-    SprintSpeed=650
+    SprintSpeed=675
     DefaultInventory=/* Array type was not detected. */
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
@@ -1108,8 +1105,8 @@ defaultproperties
     DamageRecoveryTimeHeavy=0.7
     DamageRecoveryTimeMedium=0.85
     Mass=275
-    GroundSpeed=210
-    Health=8000
+    GroundSpeed=285
+    Health=7420
     ControllerClass=Class'KFGame.KFAIController_Hans'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

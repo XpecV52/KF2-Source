@@ -27,8 +27,6 @@ var(Animations) const editconst	name	FireLoopEndLastSightedAnim;
 
 /** Alt-fire explosion template */
 var() GameExplosion 		ExplosionTemplate;
-/** Alt-fire ammo cost */
-var byte 				BlastAmmoCost;
 
 /** Handle one-hand fire anims */
 simulated function name GetWeaponFireAnim(byte FireModeNum)
@@ -115,7 +113,7 @@ simulated function name GetLoopEndFireAnim(byte FireModeNum)
 }
 
 /**
- * Toggle between DEFAULT and ALTFIRE
+ * Instead of a toggle, just immediately fire alternate fire.
  */
 simulated function AltFireMode()
 {
@@ -172,52 +170,6 @@ simulated function CustomFire()
 	}
 }
 
-/**
- * @see Weapon::ConsumeAmmo
- */
-simulated function ConsumeAmmo( byte FireModeNum )
-{
-    local int AmmoGroup;
-
-   	if ( FireModeNum == ALTFIRE_FIREMODE )
-	{
-		// BEGIN SUPER COPY (replaced with BlastAmmoCost)
-
-
-
-
-
-
-
-		// If AmmoCount is being replicated, don't allow the client to modify it here
-		if ( Role == ROLE_Authority || bAllowClientAmmoTracking )
-		{
-			AmmoGroup = GetAmmoType(FireModeNum);
-	        // Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
-			if (MagazineCapacity[AmmoGroup] > 0 && AmmoCount[AmmoGroup] > 0)
-			{
-				AmmoCount[AmmoGroup] -= BlastAmmoCost;
-			}
-		}
-		// END SUPER DUPLICATE
-	}
-	else
-	{
-		Super.ConsumeAmmo(FireModeNum);
-	}
-}
-
-/** Use BlastAmmoCost for alt-fire */
-simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
-{
-	if ( FireModeNum == ALTFIRE_FIREMODE )
-	{
-		return Super.HasAmmo(FireModeNum, BlastAmmoCost);
-	}
-
-	return Super.HasAmmo(FireModeNum, Amount);
-}
-
 /** Disable auto-reload for alt-fire */
 simulated function bool ShouldAutoReload(byte FireModeNum)
 {
@@ -235,6 +187,11 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
     return bRequestReload;
 }
 
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Electric;
+}
+
 defaultproperties
 {
    FireHeavyAnim="Shoot_Heavy"
@@ -243,7 +200,7 @@ defaultproperties
    FireLoopEndLastAnim="ShootLoop_End_Last"
    FireLoopEndLastSightedAnim="ShootLoop_Iron_End_Last"
    ExplosionTemplate=GameExplosion'kfgamecontent.Default__KFWeap_Beam_Microwave:ExploTemplate0'
-   BlastAmmoCost=10
+   bWarnAIWhenFiring=True
    FlameSprayArchetype=SprayActor_Flame'WEP_Microwave_Gun_ARCH.WEP_Microwave_Gun_Flame'
    PilotLightPlayEvent=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_PilotLight_Loop'
    PilotLightStopEvent=AkEvent'WW_WEP_SA_Microwave_Gun.Stop_SA_MicrowaveGun_PilotLight_Loop'
@@ -277,9 +234,11 @@ defaultproperties
    IronSightPosition=(X=3.000000,Y=0.000000,Z=0.000000)
    DOF_FG_FocalRadius=150.000000
    DOF_FG_MaxNearBlurSize=1.000000
+   MaxAIWarningDistSQ=2250000.000000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
-   MaxSpareAmmo(0)=400
+   AmmoCost(1)=10
+   SpareAmmoCapacity(0)=500
    AmmoPickupScale(0)=0.400000
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
@@ -338,8 +297,9 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
+   InstantHitDamage(3)=30.000000
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_MicrowaveGun'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Flamethrower'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_FlameBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_Microwave_Gun_MESH.Wep_1stP_Microwave_Gun_Rig'

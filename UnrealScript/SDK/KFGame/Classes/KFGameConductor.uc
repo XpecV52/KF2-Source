@@ -122,6 +122,11 @@ var()	float           PlayerDeathForceLullLength;
 /** When we lasted forced a low intensity lull for a player dying */
 var()	float           PlayerDeathForceLullTime;
 
+/** How long to force a low intensity lull for if a solo player is surrounded */
+var()   float           SoloPlayerSurroundedForceLullLength;
+/** When we lasted forced a low intensity lull for a surrounded solo player */
+var()   float           SoloPlayerSurroundedForceLullTime;
+
 /*********************************************************************************************
  * @name Player Experience Level
 **********************************************************************************************/
@@ -138,6 +143,15 @@ var float CurrentTargetPerkRank;
 /*********************************************************************************************
  * @name Gameplay modification
 ********************************************************************************************* */
+
+/** Struct containing settings for the lull state */
+struct sLullInfo
+{
+    /** Maximum allowed lull duration */
+    var float MaxDuration;
+    /** Cooldown until next lull period is allowed */
+    var float Cooldown;
+};
 
 /** How much the spawn rate can be modified by difficulty based on perk rank and how well the team is doing. At 0 it will be as slow is you want it to go, at 1.0 as fast as you want it to go, and at 0.5 should be no change */
 var() InterpCurveFloat      SpawnRateModificationRangeCurve[4];
@@ -168,6 +182,11 @@ var	    float           CurrentVersusZedDamageMod;
 
 /** Whether or not this game difficulty allows low intensity zed mode when players get low on health, forced lull, etc */
 var()   int             AllowLowIntensityZedModeByDifficulty[4];
+
+/** Per-difficulty settings for the lull state */
+var() array<sLullInfo>  LullSettings;
+/** Last time the lull cooldown was triggered */
+var transient float     LullCooldownStartTime;
 
 /*********************************************************************************************
  * @name Logging and debugging
@@ -220,6 +239,18 @@ function NotifyHumanTeamPlayerDeath()
 
         GameConductorStatus = GCS_ForceLull;
         PlayerDeathForceLullTime = WorldInfo.TimeSeconds;
+    }
+}
+
+/** Let the game conductor know that the solo player has been surrounded */
+function NotifySoloPlayerSurrounded()
+{
+    if( !MyKFGRI.IsFinalWave() && GameConductorStatus != GCS_ForceLull )
+    {
+        `log("Human solo player surrounded, forcing a lull for "$SoloPlayerSurroundedForceLullLength$" seconds!", bLogGameConductor);
+
+        GameConductorStatus = GCS_ForceLull;
+        SoloPlayerSurroundedForceLullTime = WorldInfo.TimeSeconds;
     }
 }
 
@@ -503,10 +534,13 @@ function UpdateOverallStatus()
     local float LifeSpanModifier;
     local float HighlySkilledAccuracy, LessSkilledAccuracy;
     local float HighlySkilledZedLifespan, LessSkilledZedLifespan;
+    local bool bPlayerHealthLow;
     local int i;
 
     // Take us out of a forced lull if the time is up
-    if( GameConductorStatus == GCS_ForceLull && `TimeSince(PlayerDeathForceLullTime) > PlayerDeathForceLullLength )
+    if( GameConductorStatus == GCS_ForceLull
+        && `TimeSince(PlayerDeathForceLullTime) > PlayerDeathForceLullLength
+        && `TimeSince(SoloPlayerSurroundedForceLullTime) > SoloPlayerSurroundedForceLullLength )
     {
         GameConductorStatus = GCS_Normal;
         `log("Forced lull completed", bLogGameConductor);
@@ -530,13 +564,25 @@ function UpdateOverallStatus()
     }
 
     // Forced lull, or most of the team dead, or single player nearly dead, so slow things down
-    if( GameConductorStatus == GCS_ForceLull || (PlayersHealthStatus < PlayersLowHealthThreshold) )
+    bPlayerHealthLow = PlayersHealthStatus < PlayersLowHealthThreshold;
+    if( GameConductorStatus == GCS_ForceLull
+        || (bPlayerHealthLow && (LullCooldownStartTime == 0.f || `TimeSince(LullCooldownStartTime) > LullSettings[GameDifficulty].Cooldown)) )
     {
         OverallRankAndSkillModifier = 0.0;
         `log("Players low on health PlayersHealthStatus: "$PlayersHealthStatus$" chilling things out, OverallRankAndSkillModifier= "$OverallRankAndSkillModifier, bLogGameConductor);
         MyKFGRI.OverallRankAndSkillModifierTracker[ArrayCount(MyKFGRI.OverallRankAndSkillModifierTracker) -1] = OverallRankAndSkillModifier;
+
+        // Start the lull timer. Don't allow lulls to last too long
+        if( bPlayerHealthLow && !MyKFGRI.IsTimerActive(nameOf(Timer_EndLull), self) )
+        {
+            MyKFGRI.SetTimer( LullSettings[GameDifficulty].MaxDuration, false, nameOf(Timer_EndLull), self );
+        }
+
         return;
     }
+
+    // No longer in a lull, reset duration timer
+    MyKFGRI.ClearTimer( nameOf(Timer_EndLull), self );
 
     if( WithinRange(TargetPerkRankRange[GameDifficulty],AveragePlayerPerkRank) )
     {
@@ -768,27 +814,33 @@ function bool WithinRange( vector2d Range, float TestValue )
     return false;
 }
 
+/** Ends the lull period and puts it on cooldown */
+function Timer_EndLull()
+{
+    LullCooldownStartTime = WorldInfo.TimeSeconds;
+}
+
 defaultproperties
 {
-    TargetPerkRankRange(0)=(X=0,Y=7) // Normal
-    TargetPerkRankRange(1)=(X=0,Y=12) // Hard
-    TargetPerkRankRange(2)=(X=12,Y=25) // Suicidal
-    TargetPerkRankRange(3)=(X=24.999,Y=25) // HOE
+    TargetPerkRankRange(`DIFFICULTY_NORMAL)     =(X=0,Y=7)
+    TargetPerkRankRange(`DIFFICULTY_HARD)       =(X=0,Y=12)
+    TargetPerkRankRange(`DIFFICULTY_SUICIDAL)   =(X=12,Y=25)
+    TargetPerkRankRange(`DIFFICULTY_HELLONEARTH)=(X=24.999,Y=25)
 
-    SpawnRateModificationRangeCurve(0)=(Points=((InVal=0.f,OutVal=1.25f),(InVal=0.5f, OutVal=1.0),(InVal=1.f, OutVal=0.75f)))  // Normal
-    SpawnRateModificationRangeCurve(1)=(Points=((InVal=0.f,OutVal=1.25f),(InVal=0.5f, OutVal=1.0),(InVal=1.f, OutVal=0.75f)))  // Hard
-    SpawnRateModificationRangeCurve(2)=(Points=((InVal=0.f,OutVal=1.25f),(InVal=0.5f, OutVal=1.0),(InVal=1.f, OutVal=0.5f)))   // Suicidal
-    SpawnRateModificationRangeCurve(3)=(Points=((InVal=0.f,OutVal=1.0f),(InVal=0.5f, OutVal=1.0),(InVal=1.f, OutVal=0.75f)))   // HOE
+    SpawnRateModificationRangeCurve(`DIFFICULTY_NORMAL)     =(Points=((InVal=0.f,OutVal=1.25f),(InVal=0.5f, OutVal=1.0),(InVal=1.f, OutVal=0.75f)))
+    SpawnRateModificationRangeCurve(`DIFFICULTY_HARD)       =(Points=((InVal=0.f,OutVal=1.25f),(InVal=0.5f, OutVal=1.0),(InVal=1.f, OutVal=0.75f)))
+    SpawnRateModificationRangeCurve(`DIFFICULTY_SUICIDAL)   =(Points=((InVal=0.f,OutVal=1.25f),(InVal=0.5f, OutVal=1.0),(InVal=1.f, OutVal=0.5f)))
+    SpawnRateModificationRangeCurve(`DIFFICULTY_HELLONEARTH)=(Points=((InVal=0.f,OutVal=1.0f),(InVal=0.5f, OutVal=1.0),(InVal=1.f, OutVal=0.75f)))
 
-    AIMovementSpeedModificationRange(0)=(X=0.5,Y=0.5)  // Normal
-    AIMovementSpeedModificationRange(1)=(X=0.5,Y=0.5)  // Hard
-    AIMovementSpeedModificationRange(2)=(X=0.5,Y=0.65)  // Suicidal
-    AIMovementSpeedModificationRange(3)=(X=0.0,Y=0.0)  // HOE
+    AIMovementSpeedModificationRange(`DIFFICULTY_NORMAL)        =(X=0.5,Y=0.5)
+    AIMovementSpeedModificationRange(`DIFFICULTY_HARD)          =(X=0.5,Y=0.5)
+    AIMovementSpeedModificationRange(`DIFFICULTY_SUICIDAL)      =(X=0.5,Y=0.65)
+    AIMovementSpeedModificationRange(`DIFFICULTY_HELLONEARTH)   =(X=0.0,Y=0.0)
 
-    AllowLowIntensityZedModeByDifficulty(0)=1   // Normal
-    AllowLowIntensityZedModeByDifficulty(1)=1   // Hard
-    AllowLowIntensityZedModeByDifficulty(2)=1   // Suicidal
-    AllowLowIntensityZedModeByDifficulty(3)=0   // HOE
+    AllowLowIntensityZedModeByDifficulty(`DIFFICULTY_NORMAL)        =1
+    AllowLowIntensityZedModeByDifficulty(`DIFFICULTY_HARD)          =1
+    AllowLowIntensityZedModeByDifficulty(`DIFFICULTY_SUICIDAL)      =1
+    AllowLowIntensityZedModeByDifficulty(`DIFFICULTY_HELLONEARTH)   =0
 
     CurrentSpawnRateModification=1.0
     CurrentAIMovementSpeedMod=1.0
@@ -797,14 +849,14 @@ defaultproperties
 
     ParShotAccuracy=48.0
     ParHeadshotAccuracy=10.0
-    ParZedLifeSpan(0)= 35.0 // Normal
-    ParZedLifeSpan(1)= 32.0 // Hard
-    ParZedLifeSpan(2)= 28.0 // Suicidal
-    ParZedLifeSpan(3)= 22.0 // HOE
-    ParZedLifeSpanSolo(0)= 23.0 // Normal
-    ParZedLifeSpanSolo(1)= 23.0 // Hard
-    ParZedLifeSpanSolo(2)= 22.0 // Suicidal
-    ParZedLifeSpanSolo(3)= 17.0 // HOE
+    ParZedLifeSpan(`DIFFICULTY_NORMAL)      =35.0
+    ParZedLifeSpan(`DIFFICULTY_HARD)        =32.0
+    ParZedLifeSpan(`DIFFICULTY_SUICIDAL)    =28.0
+    ParZedLifeSpan(`DIFFICULTY_HELLONEARTH) =22.0
+    ParZedLifeSpanSolo(`DIFFICULTY_NORMAL)      =23.0
+    ParZedLifeSpanSolo(`DIFFICULTY_HARD)        =23.0
+    ParZedLifeSpanSolo(`DIFFICULTY_SUICIDAL)    =22.0
+    ParZedLifeSpanSolo(`DIFFICULTY_HELLONEARTH) =17.0
 
     HighlySkilledAccuracyMod=1.25
     HighlySkilledAccuracyModMax=1.5
@@ -823,8 +875,14 @@ defaultproperties
     ZedLifeSpanPercentOfOverallSkill=0.5
     PlayersLowHealthThreshold=0.5
 
+    LullSettings(`DIFFICULTY_NORMAL)        ={(MaxDuration=10.0, Cooldown=12.0)}
+    LullSettings(`DIFFICULTY_HARD)          ={(MaxDuration=8.0, Cooldown=14.0)}
+    LullSettings(`DIFFICULTY_SUICIDAL)      ={(MaxDuration=6.0, Cooldown=16.0)}
+    LullSettings(`DIFFICULTY_HELLONEARTH)   ={(MaxDuration=5.0, Cooldown=18.0)}
+
     bLogGameConductor=false
     bBypassGameConductor=false
     GameConductorStatus=GCS_Normal
     PlayerDeathForceLullLength=15.0
+    SoloPlayerSurroundedForceLullLength=10.0    
 }

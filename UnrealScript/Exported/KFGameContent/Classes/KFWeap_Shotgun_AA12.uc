@@ -29,7 +29,8 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
-   MaxSpareAmmo(0)=80
+   SpareAmmoCapacity(0)=120
+   InitialSpareMags(0)=1
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Fire_1P')
@@ -78,10 +79,10 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   InstantHitDamage(0)=25.000000
-   InstantHitDamage(1)=25.000000
+   InstantHitDamage(0)=20.000000
+   InstantHitDamage(1)=20.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=30.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_AA12Shotgun'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_AA12Shotgun'
    InstantHitDamageTypes(2)=None

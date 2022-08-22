@@ -3,11 +3,14 @@ package tripwire.menus
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import scaleform.clik.constants.InputValue;
+    import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.controls.Button;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.events.SliderEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.Extensions;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     import tripwire.controls.SliderOption;
@@ -46,7 +49,19 @@ package tripwire.menus
         
         public var minimalDialogueCheckBox:TripCheckBox;
         
+        public var controllerSoundCheckBox:TripCheckBox;
+        
         private const voIPSliderInterval:Number = 0.1;
+        
+        public var genericSliderSoundEffect:String = "GEN_Click";
+        
+        public var musicSliderSoundEffect:String = "MUSIC_Click";
+        
+        public var sfxSliderSoundEffect:String = "SFX_Click";
+        
+        public var voSliderSoundEffect:String = "VO_Click";
+        
+        public var voipSliderSoundEffect:String = "VOIP_Click";
         
         public function OptionsAudioMenu()
         {
@@ -55,7 +70,7 @@ package tripwire.menus
             this.setTabIndex();
             defaultFirstElement = this.masterVolumeSlider;
             sectionHeader = this.header;
-            defaultNumPrompts = 2;
+            defaultNumPrompts = 3;
         }
         
         public function setTabIndex() : *
@@ -73,6 +88,10 @@ package tripwire.menus
             }
             this.vocalsCheckBox.tabIndex = _loc2_++;
             this.minimalDialogueCheckBox.tabIndex = _loc2_++;
+            if(_loc1_)
+            {
+                this.controllerSoundCheckBox.tabIndex = _loc2_++;
+            }
             this.configureMicrophoneButton.tabIndex = _loc2_++;
             this.closeButton.tabIndex = _loc2_++;
             if(!_loc1_)
@@ -100,6 +119,10 @@ package tripwire.menus
                 this.pushToTalkBox.label = !!param1.pushToTalk ? param1.pushToTalk : "";
                 this.defaultButton.label = !!param1.resetDefault ? param1.resetDefault : "";
             }
+            else
+            {
+                this.controllerSoundCheckBox.label = !!param1.controllerSound ? param1.controllerSound : "";
+            }
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -125,6 +148,11 @@ package tripwire.menus
                 this.voipVolumeSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
                 this.pushToTalkBox.addEventListener(Event.SELECT,this.onPushToTalkChanged,false,0,true);
                 this.defaultButton.addEventListener(ButtonEvent.PRESS,this.onButtonClick,false,0,true);
+                this.defaultButton.visible = !bManagerUsingGamepad;
+            }
+            else
+            {
+                this.controllerSoundCheckBox.addEventListener(Event.SELECT,this.onControllerSoundChanged,false,0,true);
             }
         }
         
@@ -144,6 +172,10 @@ package tripwire.menus
                 this.voipVolumeSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
                 this.pushToTalkBox.removeEventListener(ButtonEvent.PRESS,this.onPushToTalkChanged);
                 this.defaultButton.removeEventListener(ButtonEvent.PRESS,this.onButtonClick);
+            }
+            else
+            {
+                this.controllerSoundCheckBox.removeEventListener(Event.SELECT,this.onControllerSoundChanged);
             }
         }
         
@@ -200,6 +232,11 @@ package tripwire.menus
             this.sFxSlider.sliderValue = param1;
         }
         
+        public function set controllerSound(param1:Boolean) : void
+        {
+            this.controllerSoundCheckBox.selected = param1;
+        }
+        
         protected function onButtonClick(param1:ButtonEvent) : void
         {
             if(param1.target == this.closeButton)
@@ -212,6 +249,14 @@ package tripwire.menus
             }
         }
         
+        public function playSound(param1:String = "") : void
+        {
+            if(Extensions.gfxProcessSound != null)
+            {
+                Extensions.gfxProcessSound(this,"UI",param1);
+            }
+        }
+        
         protected function onSliderChanged(param1:SliderEvent) : void
         {
             if(bManagerConsoleBuild)
@@ -219,15 +264,19 @@ package tripwire.menus
                 switch(param1.target)
                 {
                     case this.musicSlider.slider:
+                        this.playSound(this.musicSliderSoundEffect);
                         ExternalInterface.call("Callback_MusicVolumeChanged",param1.value);
                         break;
                     case this.sFxSlider.slider:
+                        this.playSound(this.sfxSliderSoundEffect);
                         ExternalInterface.call("Callback_SFxVolumeChanged",param1.value);
                         break;
                     case this.masterVolumeSlider.slider:
+                        this.playSound(this.genericSliderSoundEffect);
                         ExternalInterface.call("Callback_MasterVolumeChanged",param1.value);
                         break;
                     case this.dialogSlider.slider:
+                        this.playSound(this.voSliderSoundEffect);
                         ExternalInterface.call("Callback_DialogVolumeChanged",param1.value);
                 }
             }
@@ -236,18 +285,23 @@ package tripwire.menus
                 switch(param1.target)
                 {
                     case this.musicSlider.slider:
+                        this.playSound(this.musicSliderSoundEffect);
                         ExternalInterface.call("Callback_MusicVolumeChanged",param1.value);
                         break;
                     case this.sFxSlider.slider:
+                        this.playSound(this.sfxSliderSoundEffect);
                         ExternalInterface.call("Callback_SFxVolumeChanged",param1.value);
                         break;
                     case this.masterVolumeSlider.slider:
+                        this.playSound(this.genericSliderSoundEffect);
                         ExternalInterface.call("Callback_MasterVolumeChanged",param1.value);
                         break;
                     case this.dialogSlider.slider:
+                        this.playSound(this.voSliderSoundEffect);
                         ExternalInterface.call("Callback_DialogVolumeChanged",param1.value);
                         break;
                     case this.voipVolumeSlider.slider:
+                        this.playSound(this.voipSliderSoundEffect);
                         ExternalInterface.call("Callback_VOIPVolumeChanged",param1.value);
                 }
             }
@@ -279,6 +333,11 @@ package tripwire.menus
             ExternalInterface.call("Callback_ConfigureMicPress");
         }
         
+        private function onControllerSoundChanged(param1:Event) : void
+        {
+            ExternalInterface.call("Callback_ConfigureControllerSound",this.controllerSoundCheckBox.selected);
+        }
+        
         override protected function onBPressed(param1:InputDetails) : void
         {
             this.goBackToOptionsSelection();
@@ -287,6 +346,20 @@ package tripwire.menus
         override public function handleInput(param1:InputEvent) : void
         {
             super.handleInput(param1);
+            if(param1.handled)
+            {
+                return;
+            }
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN)
+            {
+                switch(_loc2_.navEquivalent)
+                {
+                    case NavigationCode.GAMEPAD_X:
+                        ExternalInterface.call("CallBack_ResetAudioOptions");
+                        param1.handled = true;
+                }
+            }
         }
     }
 }

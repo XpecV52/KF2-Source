@@ -17,19 +17,27 @@ package tripwire.containers.trader
         
         public var selectPerkTextField:TextField;
         
+        public var PlayerInventoryContainerRef:TraderPlayerInventoryContainer;
+        
         public function TraderPerkListContainer()
         {
             super();
         }
         
+        override public function closeContainer() : void
+        {
+            super.closeContainer();
+            this.PlayerInventoryContainerRef.selectContainer();
+        }
+        
         override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.killTweensOf(this);
-            TweenMax.fromTo(this,6,{
+            TweenMax.fromTo(this,4,{
                 "autoAlpha":0,
                 "useFrames":true
             },{
-                "delay":6,
+                "delay":2,
                 "autoAlpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Cubic.easeOut,
                 "useFrames":true,
@@ -42,7 +50,7 @@ package tripwire.containers.trader
         {
             this.perkList.focusable = false;
             TweenMax.killTweensOf(this);
-            TweenMax.fromTo(this,12,{
+            TweenMax.fromTo(this,4,{
                 "alpha":alpha,
                 "useFrames":true
             },{

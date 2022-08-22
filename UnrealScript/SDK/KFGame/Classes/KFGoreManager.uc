@@ -12,6 +12,8 @@ class KFGoreManager extends Actor
 	native(Effect)
 	config(Game);
 
+`include(KFProfileSettings.uci);
+
 /**
  * Predefined values
  */
@@ -25,6 +27,10 @@ class KFGoreManager extends Actor
  `define GIB_SPLAT_COOLDOWN 0.08
  `define GIB_IMPULSE_MAX 0.1
 
+/**
+ *  Transient Values managed outside of class
+ */
+ var transient int DesiredGoreLevel;
 
 /**
  * Effect Lifetimes
@@ -115,8 +121,24 @@ var bool bLogGore;
 
 event PostBeginPlay()
 {
+	local KFGameEngine KFGE;
+	local KFProfileSettings KFPS;
 	Super.PostBeginPlay();
 
+	if(!class'WorldInfo'.static.IsConsoleBuild())
+	{
+		// Legacy support
+		DesiredGoreLevel = class'GameInfo'.default.GoreLevel;
+	}
+	else
+	{
+		KFGE = KFGameEngine(class'Engine'.static.GetEngine());
+		KFPS = KFProfileSettings(KFGE.OnlineSubsystem.PlayerInterface.GetProfileSettings(KFGE.GamePlayers[0].ControllerId));
+		
+		DesiredGoreLevel = KFPS.GetProfileInt(KFID_GoreLevel);
+		`QAlog(`location@`showvar(KFGE)@`showvar(KFPS)@`showvar(DesiredGoreLevel), true);
+	}
+	
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		// Wound decal manager
@@ -162,7 +184,7 @@ simulated function LeaveABodyWoundDecal(KFpawn InPawn, vector InHitLocation, vec
  	if( WorldInfo.NetMode == NM_DedicatedServer || WorldInfo.bDropDetail )
 		return;
 
-    if( class'GameInfo'.default.GoreLevel <= `WOUND_DECAL_GORE_LEVEL )
+    if( DesiredGoreLevel <= `WOUND_DECAL_GORE_LEVEL )
 	{
 		if ( DmgType != None && DmgType.default.BodyWoundDecalMaterials.length > 0 )
 		{
@@ -261,7 +283,7 @@ simulated function LeaveABloodSplatterDecal(KFPawn InPawn, vector HitLoc, vector
 	if( WorldInfo.NetMode == NM_DedicatedServer || WorldInfo.bDropDetail || !bAllowBloodSplatterDecals )
 		return;
 
-	if( class'GameInfo'.default.GoreLevel <= `BLOOD_SPLATTER_GORE_LEVEL )
+	if( DesiredGoreLevel <= `BLOOD_SPLATTER_GORE_LEVEL )
 	{
 		TraceStart = HitLoc;
 		TraceDest =  HitLoc  + normal(HitNorm) * `BLOOD_SPLATTER_TRACE_LENGTH;
@@ -311,7 +333,7 @@ simulated function LeaveABloodPoolDecal(KFPawn InPawn)
 		return;
 	}
 
-    if( class'GameInfo'.default.GoreLevel <= `BLOOD_POOL_GORE_LEVEL )
+    if( DesiredGoreLevel <= `BLOOD_POOL_GORE_LEVEL )
 	{
 		// If given bone is valid, trace from its world space location. Otherwise, trace from root bone
 		OriginBone = InPawn.CharacterArch.BloodPoolOriginBoneName;
@@ -350,12 +372,12 @@ simulated function LeaveABloodPoolDecal(KFPawn InPawn)
  *********************************************************************************************/
 simulated final function bool AllowMutilation()
 {
-	return class'GameInfo'.default.GoreLevel <= `MUTILATION_GORE_LEVEL;
+	return DesiredGoreLevel <= `MUTILATION_GORE_LEVEL;
 }
 
 simulated final function bool AllowHeadless()
 {
-	return class'GameInfo'.default.GoreLevel <= `HEADLESS_GORE_LEVEL;
+	return DesiredGoreLevel <= `HEADLESS_GORE_LEVEL;
 }
 
 static function float GetGibImpulseMax()
@@ -1124,6 +1146,7 @@ cpptext
 
 defaultproperties
 {
+	TickGroup=TG_PreAsyncWork
 	// Actor
 	bTickIsDisabled=false
 

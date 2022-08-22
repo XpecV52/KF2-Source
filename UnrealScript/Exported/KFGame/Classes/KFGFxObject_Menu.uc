@@ -53,7 +53,13 @@ function OnLobbyStatusChanged(bool bIsInParty){}
 
 function ShowLeavePartyPopUp()
 {
-	if(Manager != none)
+	//@HSL_BEGIN - JRO - PS4 has it's own confirmation window, don't need our own
+	if(class'WorldInfo'.static.IsConsoleBuild())
+	{
+		OnlineLobby.QuitLobby();
+	}
+	//@HSL_END
+	else if(Manager != none)
 	{
 		Manager.OpenPopup(EConfirmation, LeavePartyTitleString, LeavePartyDescriptionString, LeaveString, class'KFCommon_LocalizedStrings'.Default.CancelString, ConfirmLeaveParty, CancelLeaveParty);
 	}
@@ -88,6 +94,13 @@ function CancelLeaveParty()
 	//Do nothing
 }
 
+
+function string ConsoleLocalize( string Key, optional string SectionName )
+{
+	return Localize( SectionName != "" ? SectionName : string(self.Class.Name), Key, "KFGameConsole" );
+}
+
+
 //==============================================================
 // ActionScript Callbacks
 //==============================================================
@@ -96,19 +109,21 @@ function Callback_ControllerCloseMenu()
 {
 	local KFPlayerReplicationInfo KFPRI;
 	KFPRI = KFPlayerReplicationInfo( GetPC().PlayerReplicationInfo );
-	    
 	if( Manager != none && KFPRI != none )
 	{
 		if( !class'WorldInfo'.static.IsMenuLevel() && Manager.bUsingGamepad )
 		{
-			if ( KFPRI.WorldInfo.GRI.bMatchHasBegun )
+			if(KFPRI.bClientActiveSpawn || KFPRI.bOnlySpectator)
 			{
-				Manager.CloseMenus();
-			}
-			else if ( Manager.bAfterLobby && ( Manager.CurrentMenu != None && Manager.PostGameMenu != None && Manager.CurrentMenu != Manager.PostGameMenu) ) 
-			{
-				// Allow for backing out of the pause screen into the AAR.
-				Manager.ToggleMenus();
+				if ( KFPRI.WorldInfo.GRI.bMatchHasBegun )
+				{
+					Manager.CloseMenus();
+				}
+				else if ( Manager.bAfterLobby && ( Manager.CurrentMenu != None && Manager.PostGameMenu != None && Manager.CurrentMenu != Manager.PostGameMenu) ) 
+				{
+					// Allow for backing out of the pause screen into the AAR.
+					Manager.ToggleMenus();
+				}
 			}
 		}
 	}
@@ -243,7 +258,7 @@ function Callback_ProfileOption(int OptionIndex, int SlotIndex)
 
 function Callback_CreateParty()
 {
-	if( OnlineLobby != none && Manager.GetMultiplayerMenuActive() )
+	if( OnlineLobby != none && (Manager.GetMultiplayerMenuActive() || Class'WorldInfo'.Static.IsConsoleBuild()) )
 	{
 		OnlineLobby.MakeLobby( 6, LV_Private);	// returns false if we're already in a lobby
 		OnlineLobby.ShowLobbyInviteInterface();
@@ -259,7 +274,15 @@ function Callback_InviteFriend()
 {
 	if ( Class'WorldInfo'.Static.IsConsoleBuild() )
 	{
-		class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.ShowInviteUI(Manager.GetLP().ControllerId, "");
+		// We have main menu parties and in game sessions, be sure to show the right interface when we want to invite someone
+		if(class'WorldInfo'.static.IsMenuLevel())
+		{
+			OnlineLobby.ShowLobbyInviteInterface();
+		}
+		else
+		{
+			class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.ShowInviteUI(Manager.GetLP().ControllerId, "");
+		}
 	}
 	else if ( OnlineLobby != none )
 	{

@@ -54,7 +54,7 @@ function SetCloaked(bool bNewCloaking)
 {
 	if ( bCanCloak )
 	{
-		if( bNewCloaking && (IsImpaired() || IsIncapacitated()) )
+		if( bNewCloaking && !IsCombatCapable() )
 		{
 			return;
 		}
@@ -270,12 +270,14 @@ function CallOutCloakingExpired()
 
 /** Applies the rally buff and spawns a rally effect */
 simulated function Rally(
+							KFPawn 			RallyInstigator,
 							ParticleSystem 	RallyEffect,
 							name 			EffectBoneName,
 							vector			EffectOffset,
-							ParticleSystem	PlayerRallyEffect,
-							name 			PlayerRallyEffectBoneNames[2],
-							vector 			PlayerRallyEffectOffset
+							ParticleSystem	AltRallyEffect,
+							name 			AltEffectBoneNames[2],
+							vector 			AltEffectOffset,
+							optional bool	bSkipEffects=false
 						)
 {
 	local PlayerController PC;
@@ -284,7 +286,7 @@ simulated function Rally(
 	{
 		PC = WorldInfo.GetALocalPlayerController();
 
-		// Don't spawn rally effect if cloaking but not spotted
+		// Don't spawn rally effects if cloaking but not spotted
 		if( bIsCloaking
 			&& !bIsCloakingSpottedByLP
 			&& !bIsCloakingSpottedByTeam
@@ -292,11 +294,11 @@ simulated function Rally(
 			&& PC.Pawn != none
 			&& PC.Pawn.IsAliveAndWell() )
 		{
-			return;
+			bSkipEffects = true;
 		}
 	}
 
-	super.Rally( RallyEffect, EffectBoneName, EffectOffset, PlayerRallyEffect, PlayerRallyEffectBoneNames, PlayerRallyEffectOffset );
+	super.Rally( RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects );
 }
 
 /* PlayDying() is called on server/standalone game when killed
@@ -437,6 +439,7 @@ defaultproperties
    DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.750000))
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing')
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic')
+   DifficultySettings=Class'kfgamecontent.KFDifficulty_Stalker'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -460,11 +463,12 @@ defaultproperties
    IncapSettings(2)=(Vulnerability=(2.000000))
    IncapSettings(3)=(Vulnerability=(0.750000))
    IncapSettings(4)=(Cooldown=0.500000,Vulnerability=(1.000000))
-   IncapSettings(5)=(Duration=3.000000,Cooldown=5.000000,Vulnerability=(2.000000,2.000000,1.000000,1.000000,1.000000))
+   IncapSettings(5)=(Duration=3.000000,Cooldown=5.000000,Vulnerability=(2.000000,2.000000,1.000000,1.000000))
    IncapSettings(6)=(Duration=5.500000,Cooldown=7.500000,Vulnerability=(10.000000))
-   IncapSettings(7)=(Cooldown=1.000000,Vulnerability=(1.500000))
-   IncapSettings(8)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
-   IncapSettings(9)=(Cooldown=20.500000,Vulnerability=(0.000000))
+   IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000,10.000000,10.000000,10.000000))
+   IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.500000))
+   IncapSettings(9)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
+   IncapSettings(10)=(Cooldown=20.500000,Vulnerability=(0.000000))
    PhysRagdollImpulseScale=0.900000
    KnockdownImpulseScale=0.900000
    SprintSpeed=500.000000
@@ -508,8 +512,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -577,6 +583,7 @@ defaultproperties
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
    End Object

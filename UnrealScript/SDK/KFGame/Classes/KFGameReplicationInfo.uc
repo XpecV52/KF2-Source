@@ -353,6 +353,7 @@ simulated event ReplicatedEvent(name VarName)
 	{
 		if ( bTraderIsOpen )
 		{
+	        FadeOutLingeringExplosions();
 			NotifyWaveEnded();
 			EndOfWave();
 			OpenTrader();
@@ -525,6 +526,17 @@ simulated function GetKFPRIArray(out array<KFPlayerReplicationInfo> KFPRIArray, 
     }
 }
 
+/** Fades out any lingering explosions in the world, called from ::ReplicatedEvent() */
+simulated function FadeOutLingeringExplosions()
+{
+    local KFExplosionActorLingering LingeringExplosion;
+
+    foreach DynamicActors( class'KFExplosionActorLingering', LingeringExplosion )
+    {
+        LingeringExplosion.FadeOut();
+    }
+}
+
 simulated function OpenTrader(optional int time)
 {
     local KFPlayerController KFPC;
@@ -635,6 +647,13 @@ simulated function int GetTraderTimeRemaining()
 {
 	return max(0, RemainingTime);
 }
+
+
+function float GetHeartbeatAccumulatorAmount()
+{
+	return SteamHeartbeatAccumulator;
+}
+
 
 //After action report
 simulated function OnOpenAfterActionReport(optional float time)
@@ -1264,7 +1283,7 @@ simulated function PlayNewMusicTrack( optional bool bGameStateChanged, optional 
         }
     }
 
-    UpdateMusicTrack( NextMusicTrackInfo, class'KFGameEngine'.default.bMusicVocalsEnabled );
+    UpdateMusicTrack( NextMusicTrackInfo, KFGameEngine(Class'Engine'.static.GetEngine()).bMusicVocalsEnabled );
 }
 
 simulated function ForceNewMusicTrack( KFMusicTrackInfo ForcedTrackInfo )
@@ -1274,7 +1293,7 @@ simulated function ForceNewMusicTrack( KFMusicTrackInfo ForcedTrackInfo )
         ReplicatedMusicTrackInfo = ForcedTrackInfo;
     }
 
-    UpdateMusicTrack( ForcedTrackInfo, class'KFGameEngine'.default.bMusicVocalsEnabled );
+    UpdateMusicTrack( ForcedTrackInfo, KFGameEngine(Class'Engine'.static.GetEngine()).bMusicVocalsEnabled );
 }
 
 /***********************************************************

@@ -35,6 +35,7 @@ struct InventoryHelper
 
 var const localized string RecycleOneString;
 var const localized string RecycleDuplicatesString;
+var const localized string NoItemsString;
 var const localized string InventoryString;
 var const localized string EquipString;
 var const localized string UnequipString;
@@ -57,6 +58,8 @@ var const localized array<localized string> CraftWeaponStrings;
 var const localized array<localized string> CraftCosmeticStrings;
 var const localized string FailedToExchangeString;
 var const localized string MoreItemsString;
+var const localized string ItemExchangeTimeOutString;
+var const localized string TryAgainString;
 var const localized string FailedToCraftItemString;
 var const localized string CraftRequirementString;
 var const localized string CraftCosmeticDescriptionString;
@@ -71,6 +74,7 @@ var GFxObject EquipButton;
 var GFxObject CraftWeaponButton;
 var GFxObject CraftCosmeticButton;
 var OnlineSubsystem OnlineSub;
+var PlayfabInterface PlayfabInter;
 var KFPawn_Customization KFPH;
 var bool bInitialInventoryPassComplete;
 var int TempItemIdHolder;
@@ -100,7 +104,15 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     LocalizeText();
     KFPC = KFPlayerController(Outer.GetPC());
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
-    OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+    PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        PlayfabInter.AddInventoryReadCompleteDelegate(OnReadPlayfabInventoryComplete);        
+    }
+    else
+    {
+        OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+    }
     KFPH = KFPawn_Customization(KFPC.Pawn);
     CraftingSubMenu = GetObject("craftingPanelContainer");
     ItemDetailsContainer = GetObject("itemDetailsContainer");
@@ -128,9 +140,16 @@ function UpdateCraftButtons()
 
 function OnOpen()
 {
-    if(OnlineSub != none)
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+        PlayfabInter.AddInventoryReadCompleteDelegate(OnReadPlayfabInventoryComplete);        
+    }
+    else
+    {
+        if(OnlineSub != none)
+        {
+            OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+        }
     }
     InitInventory();
     if(Class'WorldInfo'.static.IsMenuLevel())
@@ -143,9 +162,16 @@ function OnOpen()
 function OnClose()
 {
     ClearMatinee();
-    if(OnlineSub != none)
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        OnlineSub.ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+        PlayfabInter.ClearInventoryReadCompleteDelegate(OnReadPlayfabInventoryComplete);        
+    }
+    else
+    {
+        if(OnlineSub != none)
+        {
+            OnlineSub.ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+        }
     }
     if(Class'WorldInfo'.static.IsMenuLevel())
     {
@@ -199,7 +225,7 @@ function InitInventory()
                 ItemObject.SetString("price", TempItemDetailsHolder.Price);
                 ItemObject.SetString("typeRarity", TempItemDetailsHolder.ShortDescription);
                 ItemObject.SetInt("type", TempItemDetailsHolder.Type);
-                ItemObject.SetBool("exchangeable", ((ExchangeRules.Length > 0) && TempItemDetailsHolder.Type == 2) && Class'WorldInfo'.static.IsMenuLevel());
+                ItemObject.SetBool("exchangeable", (IsItemExchangeable(TempItemDetailsHolder, ExchangeRules)) && Class'WorldInfo'.static.IsMenuLevel());
                 ItemObject.SetBool("recyclable", (IsItemRecyclable(TempItemDetailsHolder, ExchangeRules)) && Class'WorldInfo'.static.IsMenuLevel());
                 bActiveItem = IsItemActive(OnlineSub.CurrentInventory[I].Definition);
                 ItemObject.SetBool("active", bActiveItem);
@@ -222,16 +248,22 @@ function InitInventory()
     }
     OnlineSub.ClearNewlyAdded();
     I = 0;
-    J0x998:
+    J0x97E:
 
     if(I < ActiveItems.Length)
     {
         ItemArray.SetElementObject(I, ActiveItems[I].GfxItemObject);
         ++ I;
-        goto J0x998;
+        goto J0x97E;
     }
     SetObject("inventoryList", ItemArray);
     bInitialInventoryPassComplete = true;
+}
+
+function OnItemExhangeTimeOut()
+{
+    Manager.OpenPopup(2, ItemExchangeTimeOutString, TryAgainString, Class'KFCommon_LocalizedStrings'.default.OKString);
+    SetVisible(true);
 }
 
 function FinishCraft()
@@ -273,6 +305,14 @@ function ClearMatinee()
     KFPC.ResetCustomizationCamera();
 }
 
+function OnReadPlayfabInventoryComplete(bool bSuccess)
+{
+    if(bSuccess)
+    {
+        InitInventory();
+    }
+}
+
 function OnInventoryReadComplete()
 {
     InitInventory();
@@ -281,6 +321,11 @@ function OnInventoryReadComplete()
 function bool IsItemRecyclable(ItemProperties ItemDetailsHolder, const out array<ExchangeRuleSets> ExchangeRules)
 {
     return (ExchangeRules.Length > 0) && (ItemDetailsHolder.Type == 0) || ItemDetailsHolder.Type == 1;
+}
+
+function bool IsItemExchangeable(out ItemProperties ItemDetailsHolder, const out array<ExchangeRuleSets> ExchangeRules)
+{
+    return ((ExchangeRules.Length > 0) || ItemDetailsHolder.RequiredKeyId != "") && ItemDetailsHolder.Type == 2;
 }
 
 function bool IsItemActive(int ItemDefinition)
@@ -306,6 +351,7 @@ function LocalizeText()
     local GFxObject LocalizedObject;
 
     LocalizedObject = Outer.CreateObject("Object");
+    LocalizedObject.SetString("noItems", NoItemsString);
     LocalizedObject.SetString("inventory", InventoryString);
     LocalizedObject.SetString("back", Class'KFCommon_LocalizedStrings'.default.BackString);
     LocalizedObject.SetString("ok", Class'KFCommon_LocalizedStrings'.default.OKString);
@@ -445,6 +491,49 @@ function int GetCountOfItem(int ItemDefinition)
     return Count;
 }
 
+function OnPlayfabExchangeComplete(bool bWasSuccessful, string FunctionName, JsonObject FunctionResult)
+{
+    if(bWasSuccessful && FunctionName == "ExchangeItems")
+    {
+        PlayfabInter.ReadInventory();
+    }
+    PlayfabInter.ClearOnCloudScriptExecutionCompleteDelegate(OnPlayfabExchangeComplete);
+}
+
+function PerformExchange(ExchangeRuleSets ForRuleset, optional int NumBatches)
+{
+    local JsonObject Parms, ItemObj, ItemsObj;
+    local int I;
+
+    NumBatches = 1;
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        Parms = new Class'JsonObject';
+        Parms.SetStringValue("RequestedItem", string(ForRuleset.Target));
+        ItemsObj = new Class'JsonObject';
+        Parms.SetObject("ExchangeData", ItemsObj);
+        Parms.SetIntValue("NumBatches", NumBatches);
+        I = 0;
+        J0x119:
+
+        if(I < ForRuleset.Sources.Length)
+        {
+            ItemObj = new Class'JsonObject';
+            ItemObj.SetStringValue("ItemID", string(ForRuleset.Sources[I].Definition));
+            ItemObj.SetIntValue("Count", ForRuleset.Sources[I].Quantity);
+            ItemsObj.ObjectArray.AddItem(ItemObj;
+            ++ I;
+            goto J0x119;
+        }
+        PlayfabInter.AddOnCloudScriptExecutionCompleteDelegate(OnPlayfabExchangeComplete);
+        PlayfabInter.ExecuteCloudScript("ExchangeItems", Parms);        
+    }
+    else
+    {
+        OnlineSub.Exchange(ForRuleset);
+    }
+}
+
 function ConfirmRecycle()
 {
     local array<ExchangeRuleSets> ExchangeRules;
@@ -454,7 +543,7 @@ function ConfirmRecycle()
     {
         OnlineSub.ClearInFlight();
         SetVisible(false);
-        OnlineSub.Exchange(ExchangeRules[0]);        
+        PerformExchange(ExchangeRules[0]);        
         KFPC.ConsoleCommand("CE Recycle_Start");        
     }
     else
@@ -478,10 +567,17 @@ function ConfirmDuplicatesRecycle()
     OnlineSub.IsExchangeable(TempItemIdHolder, ExchangeRules);
     if(OnlineSub.ExchangeReady(ExchangeRules[0]))
     {
-        OnlineSub.ClearInFlight();
         RuleToExchange = ExchangeRules[0];
         SetVisible(false);
-        KFPC.SetTimer(0.1, false, 'ExchangeDuplicatesEx', self);        
+        OnlineSub.ClearInFlight();
+        if(Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            PerformExchange(RuleToExchange, 10);            
+        }
+        else
+        {
+            KFPC.SetTimer(0.1, false, 'ExchangeDuplicatesEx', self);
+        }        
         KFPC.ConsoleCommand("CE Recycle_Start");        
     }
     else
@@ -508,7 +604,7 @@ function ConfirmCraft()
     {
         if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]))
         {
-            OnlineSub.Exchange(ExchangeRules[RuleIndex]);
+            PerformExchange(ExchangeRules[RuleIndex]);
             SetVisible(false);            
             KFPC.ConsoleCommand("CE Craft_Start");
             return;
@@ -640,25 +736,36 @@ function Callback_Equip(int ItemDefinition)
 function CallBack_ItemDetailsClicked(int ItemDefinition)
 {
     local array<ExchangeRuleSets> ExchangeRules;
-    local ItemProperties NeededItem;
+    local ItemProperties NeededItem, CurrItem;
     local int NeededItemID;
 
-    OnlineSub.IsExchangeable(ItemDefinition, ExchangeRules);
-    if(ExchangeRules.Length <= 0)
+    CurrItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', ItemDefinition];
+    if(CurrItem.RequiredKeyId != "")
     {
-        LogInternal("NO RULES EXIST FOR THIS ITEM!" @ string(ItemDefinition));
-        return;
+        OnlineSub.HasKeyForItem(ItemDefinition, NeededItemID);        
     }
-    if(!OnlineSub.ExchangeReady(ExchangeRules[0]))
+    else
     {
-        if(ExchangeRules[0].Sources[0].Definition == ItemDefinition)
+        OnlineSub.IsExchangeable(ItemDefinition, ExchangeRules);
+        if(ExchangeRules.Length <= 0)
         {
-            NeededItemID = ExchangeRules[0].Sources[1].Definition;            
+            LogInternal("NO RULES EXIST FOR THIS ITEM!" @ string(ItemDefinition));
+            return;
         }
-        else
+        if(!OnlineSub.ExchangeReady(ExchangeRules[0]))
         {
-            NeededItemID = ExchangeRules[0].Sources[0].Definition;
+            if(ExchangeRules[0].Sources[0].Definition == ItemDefinition)
+            {
+                NeededItemID = ExchangeRules[0].Sources[1].Definition;                
+            }
+            else
+            {
+                NeededItemID = ExchangeRules[0].Sources[0].Definition;
+            }
         }
+    }
+    if(NeededItemID > 0)
+    {
         NeededItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', NeededItemID];
         if(NeededItem.Price == "")
         {
@@ -675,41 +782,52 @@ function Callback_UseItem(int ItemDefinition)
 {
     local array<ExchangeRuleSets> ExchangeRules;
     local string ItemSeriesCommand;
-    local ItemProperties NeededItem;
+    local ItemProperties NeededItem, CurrItem;
     local int NeededItemID;
 
-    OnlineSub.IsExchangeable(ItemDefinition, ExchangeRules);
-    if(OnlineSub.ExchangeReady(ExchangeRules[0]))
+    CurrItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', ItemDefinition];
+    if(CurrItem.RequiredKeyId != "")
     {
-        OnlineSub.Exchange(ExchangeRules[0]);
-        SetVisible(false);
-        ItemSeriesCommand = "CE open_" $ string(Class'KFInventoryCatalog'.static.GetItemSeries(ItemDefinition));        
-        KFPC.ConsoleCommand(ItemSeriesCommand);        
+        if(OnlineSub.HasKeyForItem(ItemDefinition, NeededItemID))
+        {
+            PlayfabInter.UnlockContainer(string(ItemDefinition));
+            SetVisible(false);
+            ItemSeriesCommand = "CE open_" $ string(Class'KFInventoryCatalog'.static.GetItemSeries(ItemDefinition));            
+            KFPC.ConsoleCommand(ItemSeriesCommand);
+        }        
     }
     else
     {
-        if(ExchangeRules[0].Sources[0].Definition == ItemDefinition)
+        OnlineSub.IsExchangeable(ItemDefinition, ExchangeRules);
+        if(OnlineSub.ExchangeReady(ExchangeRules[0]))
         {
-            NeededItemID = ExchangeRules[0].Sources[1].Definition;            
+            PerformExchange(ExchangeRules[0]);
+            SetVisible(false);
+            ItemSeriesCommand = "CE open_" $ string(Class'KFInventoryCatalog'.static.GetItemSeries(ItemDefinition));            
+            KFPC.ConsoleCommand(ItemSeriesCommand);            
         }
         else
         {
-            NeededItemID = ExchangeRules[0].Sources[0].Definition;
-        }
-        NeededItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', NeededItemID];
-        if(NeededItem.Price == "")
-        {
-            if(OnlineSub != none)
+            if(ExchangeRules[0].Sources[0].Definition == ItemDefinition)
             {
-                OnlineSub.OpenMarketPlaceSearch(NeededItem);
-            }            
-        }
-        else
-        {
-            if(OnlineSub != none)
-            {
-                OnlineSub.OpenItemPurchaseOverlay(NeededItemID);
+                NeededItemID = ExchangeRules[0].Sources[1].Definition;                
             }
+            else
+            {
+                NeededItemID = ExchangeRules[0].Sources[0].Definition;
+            }
+        }
+    }
+    if(NeededItemID > 0)
+    {
+        NeededItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', NeededItemID];
+        if((NeededItem.Price == "") || NeededItem.SignedOfferId != "")
+        {
+            OnlineSub.OpenMarketPlaceSearch(NeededItem);            
+        }
+        else
+        {
+            OnlineSub.OpenItemPurchaseOverlay(NeededItemID);
         }
     }
 }
@@ -774,8 +892,9 @@ function Callback_PreviewItem(int ItemDefinition)
 
 defaultproperties
 {
-    RecycleOneString="Recycle One"
-    RecycleDuplicatesString="Recycle Duplicates"
+    RecycleOneString="RECYCLE ONE"
+    RecycleDuplicatesString="RECYCLE DUPLICATES"
+    NoItemsString="You have no Inventory items within the currently selected filter."
     InventoryString="INVENTORY"
     EquipString="EQUIP"
     UnequipString="UNEQUIP"
@@ -791,8 +910,8 @@ defaultproperties
     CraftWeaponString="CRAFT WEAPON SKIN"
     CraftCosmeticString="CRAFT COSMETIC"
     CraftItemString="Confirm Craft Item?"
-    ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
-    RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
+    ConfirmCraftItemString="Crafting this item will use resources and cannot be undone."
+    RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item."
     RecycleItemString="Recycle Item?"
     CraftWeaponStrings(0)="Uncommon
 Weapon Skin"
@@ -812,10 +931,12 @@ Cosmetic"
 Cosmetic"
     FailedToExchangeString="CANNOT OPEN CRATE"
     MoreItemsString="You require a matching key and crate. You can purchase a key from the in game store."
+    ItemExchangeTimeOutString="Failed to Reach Item Server"
+    TryAgainString="Client failed to exhange item. Please try again later. If this issue persists, contact support."
     FailedToCraftItemString="Failed to Craft Item"
     CraftRequirementString="Insufficient quantity of required crafting materials"
-    CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
-    CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
+    CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle."
+    CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle."
     RequiresString="Requires: "
     PurchaseKeyString="BUY KEY: "
     LookUpOnMarketString="Lookup on Market"

@@ -8,6 +8,25 @@
 class KFThirdPersonCameraMode extends GameThirdPersonCameraMode_Default
     config(Camera);
 
+simulated function InvertViewOffset()
+{
+    local ViewOffsetData NewViewOffset;
+
+    NewViewOffset = ViewOffset;
+    NewViewOffset.OffsetHigh.Y *= float(-1);
+    NewViewOffset.OffsetMid.Y *= float(-1);
+    NewViewOffset.OffsetLow.Y *= float(-1);
+    bInterpViewOffsetOnlyForCamTransition = default.bInterpViewOffsetOnlyForCamTransition;
+    BlendTime = default.BlendTime;
+    ViewOffsetInterp = 1 / BlendTime;
+    SetViewOffset(NewViewOffset);
+}
+
+static function ViewOffsetData GetDefaultOffset()
+{
+    return default.ViewOffset;
+}
+
 defaultproperties
 {
     ViewOffset=(OffsetHigh=(X=-96,Y=56,Z=16),OffsetMid=(X=-120,Y=48,Z=0),OffsetLow=(X=-120,Y=48,Z=16))

@@ -120,11 +120,7 @@ function PlayGrabAnim()
 
 	if ( bUseRootMotion )
 	{
-		// Turn on root motion on animation node
-		KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Translate, RBA_Translate, RBA_Translate);
-
-		// Turn on Root motion on mesh.
-		KFPOwner.Mesh.RootMotionMode = RMM_Accel;
+		EnableRootMotion();
 	}
 }
 
@@ -240,12 +236,9 @@ function BeginGrapple(optional KFPawn Victim)
 	}
 
 	// stop root motion
-	if ( bUseRootMotion && PawnOwner.Mesh.RootMotionMode == RMM_Accel )
+	if ( bUseRootMotion && PawnOwner.Mesh.RootMotionMode == SMRootMotionMode )
 	{
-		// Restore default root motion mode
-		PawnOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
-		// Turn off Root motion on animation node
-		KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
+		DisableRootMotion();
 	}
 
     // Set up a safety net in case interaction cannot be started
@@ -268,13 +261,6 @@ function StartInteraction()
 	    if( KFWeapon(Follower.Weapon) != none )
 	    {
 	        KFWeapon(Follower.Weapon).ZedGrabGrenadeTossCooldown = Follower.WorldInfo.TimeSeconds + 0.35;
-	    }
-
-	    // Force the player to look at the zed if grabbed
-	    if( Follower.Controller != none && KFPlayerController(Follower.Controller) != none )
-	    {
-	        KFPlayerController(Follower.Controller).ForceLookAtPawn = KFPOwner;
-	        KFPlayerController(Follower.Controller).bLockToForceLookAtPawn = true;
 	    }
 
 		// Try to let the game's KFAIDirector know about the successful grab, so it can alert nearby Zeds
@@ -366,12 +352,9 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	PawnOwner.ClearTimer(nameof(CheckGrapple), Self);
 
 	// stop root motion
-	if ( bUseRootMotion && PawnOwner.Mesh.RootMotionMode == RMM_Accel )
+	if ( bUseRootMotion && PawnOwner.Mesh.RootMotionMode == SMRootMotionMode )
 	{
-		// Restore default root motion mode
-		PawnOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
-		// Turn off Root motion on animation node
-		KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
+		DisableRootMotion();
 	}
 
 	if( bStopFullBodyWhenMoveEnds )
@@ -476,7 +459,9 @@ defaultproperties
     bServerOnlyPhysics=true
 	bAlignPawns=true
 	AlignDistance=92
-	bAlignFollowerRotation=true
+
+	// @deprecated: see ForceLookAtPawn
+	bAlignFollowerRotation=false
 	bAlignHumanFollowerControllerRotation=false
 	bStopAlignFollowerRotationAtGoal=true
 	AlignFollowerInterpSpeed=22.f

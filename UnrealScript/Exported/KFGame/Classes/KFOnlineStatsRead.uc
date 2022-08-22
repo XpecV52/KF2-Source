@@ -61,10 +61,6 @@ class KFOnlineStatsRead extends OnlineStatsRead
 
 
 
- 
-
-
-
 
 
  
@@ -137,27 +133,25 @@ defaultproperties
    ColumnIds(11)=51
    ColumnIds(12)=60
    ColumnIds(13)=61
-   ColumnIds(14)=70
-   ColumnIds(15)=71
-   ColumnIds(16)=80
-   ColumnIds(17)=81
-   ColumnIds(18)=90
-   ColumnIds(19)=91
-   ColumnIds(20)=200
-   ColumnIds(21)=201
-   ColumnIds(22)=22
-   ColumnIds(23)=42
-   ColumnIds(24)=202
-   ColumnIds(25)=203
-   ColumnIds(26)=2000
-   ColumnIds(27)=2001
-   ColumnIds(28)=2002
-   ColumnIds(29)=2003
-   ColumnIds(30)=2004
-   ColumnIds(31)=2005
-   ColumnIds(32)=2006
-   ColumnIds(33)=2007
-   ColumnIds(34)=3000
+   ColumnIds(14)=80
+   ColumnIds(15)=81
+   ColumnIds(16)=90
+   ColumnIds(17)=91
+   ColumnIds(18)=200
+   ColumnIds(19)=201
+   ColumnIds(20)=22
+   ColumnIds(21)=42
+   ColumnIds(22)=202
+   ColumnIds(23)=203
+   ColumnIds(24)=2000
+   ColumnIds(25)=2001
+   ColumnIds(26)=2002
+   ColumnIds(27)=2003
+   ColumnIds(28)=2004
+   ColumnIds(29)=2005
+   ColumnIds(30)=2006
+   ColumnIds(31)=2007
+   ColumnIds(32)=3000
    ColumnMappings(0)=(Id=1)
    ColumnMappings(1)=(Id=2)
    ColumnMappings(2)=(Id=10)
@@ -172,27 +166,25 @@ defaultproperties
    ColumnMappings(11)=(Id=51)
    ColumnMappings(12)=(Id=60)
    ColumnMappings(13)=(Id=61)
-   ColumnMappings(14)=(Id=70)
-   ColumnMappings(15)=(Id=71)
-   ColumnMappings(16)=(Id=80)
-   ColumnMappings(17)=(Id=81)
-   ColumnMappings(18)=(Id=90)
-   ColumnMappings(19)=(Id=91)
-   ColumnMappings(20)=(Id=200)
-   ColumnMappings(21)=(Id=201)
-   ColumnMappings(22)=(Id=22)
-   ColumnMappings(23)=(Id=42)
-   ColumnMappings(24)=(Id=202)
-   ColumnMappings(25)=(Id=203)
-   ColumnMappings(26)=(Id=2000)
-   ColumnMappings(27)=(Id=2001)
-   ColumnMappings(28)=(Id=2002)
-   ColumnMappings(29)=(Id=2003)
-   ColumnMappings(30)=(Id=2004)
-   ColumnMappings(31)=(Id=2005)
-   ColumnMappings(32)=(Id=2006)
-   ColumnMappings(33)=(Id=2007)
-   ColumnMappings(34)=(Id=3000)
+   ColumnMappings(14)=(Id=80)
+   ColumnMappings(15)=(Id=81)
+   ColumnMappings(16)=(Id=90)
+   ColumnMappings(17)=(Id=91)
+   ColumnMappings(18)=(Id=200)
+   ColumnMappings(19)=(Id=201)
+   ColumnMappings(20)=(Id=22)
+   ColumnMappings(21)=(Id=42)
+   ColumnMappings(22)=(Id=202)
+   ColumnMappings(23)=(Id=203)
+   ColumnMappings(24)=(Id=2000)
+   ColumnMappings(25)=(Id=2001)
+   ColumnMappings(26)=(Id=2002)
+   ColumnMappings(27)=(Id=2003)
+   ColumnMappings(28)=(Id=2004)
+   ColumnMappings(29)=(Id=2005)
+   ColumnMappings(30)=(Id=2006)
+   ColumnMappings(31)=(Id=2007)
+   ColumnMappings(32)=(Id=3000)
    Name="Default__KFOnlineStatsRead"
    ObjectArchetype=OnlineStatsRead'Engine.Default__OnlineStatsRead'
 }

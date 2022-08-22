@@ -22,10 +22,10 @@ static simulated event EFilterTypeUI GetTraderFilter()
 
 defaultproperties
 {
-   HealAmount=30
+   HealAmount=15
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=()
-   SingleFireMode=1
+   SingleFireSoundIndex=1
    InventorySize=3
    MagazineCapacity(0)=40
    bHasIronSights=True
@@ -38,7 +38,7 @@ defaultproperties
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-   MaxSpareAmmo(0)=480
+   SpareAmmoCapacity(0)=480
    InitialSpareMags(0)=5
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
@@ -83,7 +83,7 @@ defaultproperties
    InstantHitDamage(0)=15.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=23.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_SMG_Medic'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

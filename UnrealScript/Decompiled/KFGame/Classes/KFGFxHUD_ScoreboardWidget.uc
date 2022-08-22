@@ -84,6 +84,11 @@ function TickHud(float DeltaTime)
     }
 }
 
+function ForceUpdateNextFrame()
+{
+    LastScoreboardUpdateTime = 0;
+}
+
 function SetOpen(bool bOpen)
 {
     SetBool("showScore", bOpen);
@@ -171,7 +176,7 @@ function UpdatePlayerData()
     if(I < CurrentPlayerList.Length)
     {
         KFPRI = CurrentPlayerList[I];
-        if(KFPRI.GetTeamNum() != 255)
+        if((KFPRI.GetTeamNum() != 255) && KFPRI.bClientActiveSpawn)
         {
             TempData = Outer.CreateObject("Object");
             TempData.SetString("playername", KFPRI.PlayerName);

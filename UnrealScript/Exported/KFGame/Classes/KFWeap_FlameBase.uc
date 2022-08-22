@@ -44,6 +44,9 @@ var float                           BarrelHeat;
 /** How hot the Barrel was last frame */
 var float                           LastBarrelHeat;
 
+/** Whether this weapon should warn AI when it fires */
+var() const bool					bWarnAIWhenFiring;
+
 /*********************************************************************************************
 * @name Optional dynamic pilot lights
 ********************************************************************************************* */
@@ -458,12 +461,23 @@ simulated protected function TurnOffFireSpray()
  * This is the default Firing State for flame weapons.
  *********************************************************************************************/
 
+/** Runs on a loop when firing to determine if AI should be warned */
+function Timer_CheckForAIWarning();
+
 simulated state SprayingFire extends WeaponFiring
 {
 	simulated function BeginState( Name PreviousStateName )
 	{
 		AmmoConsumed = 0;
 		TurnOnFireSpray();
+
+		// Start timer to warn AI
+		if( bWarnAIWhenFiring )
+		{
+			Timer_CheckForAIWarning();
+			SetTimer( 0.5f, true, nameOf(Timer_CheckForAIWarning) );
+		}
+
 		super.BeginState(PreviousStateName);
 	}
 
@@ -478,6 +492,12 @@ simulated state SprayingFire extends WeaponFiring
 		ClearTimer('RefireCheckTimer');
 		ClearPendingFire(0);
 
+		// Clear AI warning timer
+		if( bWarnAIWhenFiring )
+		{
+			ClearTimer( nameOf(Timer_CheckForAIWarning) );
+		}
+
 		super.EndState(NextStateName);
 	}
 
@@ -487,7 +507,7 @@ simulated state SprayingFire extends WeaponFiring
 		global.ConsumeAmmo(FireMode);
 
 		AmmoConsumed++;
-		}
+	}
 
 	/**
 	 * Check if current fire mode can/should keep on firing.
@@ -499,10 +519,10 @@ simulated state SprayingFire extends WeaponFiring
 	 * @return	true to fire again, false to stop firing and return to Active State.
 	 */
 	simulated function bool ShouldRefire()
-		{
+	{
 		// if doesn't have ammo to keep on firing, then stop
 		if( !HasAmmo( CurrentFireMode ) )
-			{
+		{
 			return false;
 		}
 
@@ -511,6 +531,41 @@ simulated state SprayingFire extends WeaponFiring
 		return ( StillFiring(CurrentFireMode) || AmmoConsumed < MinAmmoConsumed );
 	}
 
+	/** Runs on a loop when firing to determine if AI should be warned */
+	function Timer_CheckForAIWarning()
+	{
+		local vector Direction, DangerPoint;
+		local vector TraceStart, Projection;
+		local Pawn P;
+		local KFPawn_Monster HitMonster;
+
+		TraceStart = Instigator.GetWeaponStartTraceLocation();
+		Direction = vector( GetAdjustedAim(TraceStart) );
+
+	    // Warn all zeds within range
+	    foreach WorldInfo.AllPawns( class'Pawn', P )
+	    {
+	        if( P.GetTeamNum() != Instigator.GetTeamNum() && !P.IsHumanControlled() && P.IsAliveAndWell() )
+	        {
+	            // Determine if AI is within range as well as within our field of view
+	            Projection = P.Location - TraceStart;
+	            if( VSizeSQ(Projection) < MaxAIWarningDistSQ )
+	            {
+	                PointDistToLine( P.Location, Direction, TraceStart, DangerPoint );
+
+		            if( VSizeSQ(DangerPoint - P.Location) < MaxAIWarningDistFromPointSQ )
+		            {
+		                // Tell the AI to evade away from the DangerPoint
+		                HitMonster = KFPawn_Monster( P );
+		                if( HitMonster != none && HitMonster.MyKFAIC != None )
+		                {
+		                    HitMonster.MyKFAIC.ReceiveLocationalWarning( DangerPoint, TraceStart, self );
+		                }
+		            }
+		        }
+	        }
+	    }
+	}
 
 	simulated function bool IsFiring()
 	{
@@ -716,6 +771,8 @@ defaultproperties
    End Object
    PSC_EndSpray=FlameEndSpray0
    bWeaponNeedsServerPosition=True
+   MaxAIWarningDistSQ=1000000.000000
+   MaxAIWarningDistFromPointSQ=40000.000000
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"

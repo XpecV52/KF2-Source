@@ -32,10 +32,10 @@ defaultproperties
 	WeaponDef=class'KFWeapDef_DragonsBreath'
 
 	DoT_Type=DOT_Fire
-	DoT_Duration=5.0
-	DoT_Interval=1.0
-	DoT_DamageScale=1.0
+	DoT_Duration=2.7 //5.0 //1.0
+	DoT_Interval=0.5
+	DoT_DamageScale=0.7 //1.0
 
-	BurnPower=12.5
+	BurnPower=18.5 //1.0
 }
 

@@ -132,7 +132,7 @@ var LocalizedStringSetting Query;
 var databinding bool bIsLanQuery;
 var databinding bool bUsesArbitration;
 var const bool bIsSearchInProgress;
-var string GameMode;
+var array<string> GameModes;
 var class<OnlineGameSettings> GameSettingsClass;
 var const array<OnlineGameSearchResult> Results;
 var OverrideSkill ManualSkillOverride;
@@ -161,6 +161,64 @@ native event bool SetNamedProperty(name PropertyName, string Value);
 
 // Export UOnlineGameSearch::execGetNamedProperty(FFrame&, void* const)
 native event bool GetNamedProperty(name PropertyName, out string Value);
+
+function ClearServerFilters()
+{
+    MasterServerSearchKeys.Length = 0;
+    MasterServerSearchValues.Length = 0;
+}
+
+function AddServerFilter(string Key, optional string Val, optional int Location)
+{
+    Val = "";
+    Location = -1;
+    if(Location < 0)
+    {
+        MasterServerSearchKeys.AddItem(Key;
+        MasterServerSearchValues.AddItem(Val;        
+    }
+    else
+    {
+        MasterServerSearchKeys.InsertItem(Location, Key;
+        MasterServerSearchValues.InsertItem(Location, Val;
+    }
+}
+
+function TestAddServerFilter(bool Test, string Key, optional string Val)
+{
+    Val = "";
+    if(Test)
+    {
+        AddServerFilter(Key, Val);
+    }
+}
+
+function TestAddBoolGametagFilter(out string GametagString, bool Test, name Property, byte BoolVal)
+{
+    if(Test)
+    {
+        if(Len(GametagString) > 0)
+        {            
+            GametagString $= ",";
+        }        
+        GametagString $= (GetGametagStringBool(Property, BoolVal));
+    }
+}
+
+function AddGametagFilter(out string GametagString, name Property, string Val)
+{
+    if(Len(GametagString) > 0)
+    {        
+        GametagString $= ",";
+    }    
+    GametagString $= (GetGametagString(Property, Val));
+}
+
+// Export UOnlineGameSearch::execGetGametagString(FFrame&, void* const)
+native function string GetGametagString(name PropertyName, string StringVal);
+
+// Export UOnlineGameSearch::execGetGametagStringBool(FFrame&, void* const)
+native function string GetGametagStringBool(name PropertyName, byte BoolVal);
 
 defaultproperties
 {

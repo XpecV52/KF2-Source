@@ -2,6 +2,7 @@ package tripwire.managers
 {
     import flash.display.Loader;
     import flash.display.MovieClip;
+    import flash.display.Sprite;
     import flash.display.StageScaleMode;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
@@ -27,11 +28,15 @@ package tripwire.managers
         public static var INPUT_CHANGED:String = "INPUT_CHANGED";
         
         public static var PROMPT_CHANGED:String = "PROMPT_CHANGED";
+        
+        public static var PARTYFOCUS_CHANGED:String = "PARTYFOCUS_CHANGED";
          
         
         public var mCursor:MovieClip;
         
         public var renderTexture:MovieClip;
+        
+        public var renderTexture_IIS:MovieClip;
         
         public var MenuBackground:MovieClip;
         
@@ -85,6 +90,10 @@ package tripwire.managers
         
         private var _numPrompts:int = 2;
         
+        private var CachedModalClip:Sprite;
+        
+        public var bPartyWidgetFocused:Boolean = true;
+        
         private var menuList:Array;
         
         public function MenuManager()
@@ -111,6 +120,11 @@ package tripwire.managers
         public function set backgroundVisible(param1:Boolean) : void
         {
             this.renderTexture.visible = param1;
+        }
+        
+        public function set IISMovieVisible(param1:Boolean) : void
+        {
+            this.renderTexture_IIS.visible = param1;
         }
         
         public function get bUsingGamepad() : Boolean
@@ -216,8 +230,7 @@ package tripwire.managers
                     CLIK.queueInitCallback(this.menuList[_loc3_].menuObject);
                     this._currentMenuIndex = _loc3_;
                     this.setMenuVisibility(true);
-                    this.menuList[this._currentMenuIndex].menuObject.selectContainer();
-                    this.controllerEnableWidgets(false);
+                    this.setFocusBackToMenu();
                     return;
                 }
                 _loc3_++;
@@ -243,6 +256,7 @@ package tripwire.managers
             this._widgets.push(_loc2_);
             stage.addChildAt(_loc2_,stage.numChildren - 1);
             _loc2_.openContainer();
+            _loc2_.deselectContainer();
         }
         
         public function loadCurrentPopup(param1:String, param2:String, param3:String, param4:String, param5:String, param6:String) : void
@@ -274,10 +288,11 @@ package tripwire.managers
             _loc2_.menuObject = param1.target.content.getChildAt(0) as TripContainer;
             this.menuList.push(_loc2_);
             this._currentMenuIndex = this.menuList.length - 1;
+            this.bPartyWidgetFocused = true;
             this.setMenuVisibility(true);
             if(!this.bPopUpOpen)
             {
-                this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+                this.setFocusBackToMenu();
             }
             this.controllerEnableWidgets(false);
             stage.addChildAt(_loc2_.menuObject,this.MenuLayer);
@@ -362,28 +377,47 @@ package tripwire.managers
             {
                 switch(param1.details.navEquivalent)
                 {
-                    case NavigationCode.GAMEPAD_L2:
-                        if(!this.menuList[this._currentMenuIndex].menuObject.bSelected)
-                        {
-                            this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
-                            this.controllerEnableWidgets(false);
-                        }
-                        break;
-                    case NavigationCode.GAMEPAD_R2:
-                        this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
-                        this.controllerEnableWidgets(true);
+                    case NavigationCode.GAMEPAD_BACK:
+                        this.togglePartyWidgetFocus();
                 }
+            }
+        }
+        
+        public function togglePartyWidgetFocus() : *
+        {
+            if(this.bPartyWidgetFocused)
+            {
+                this.setFocusBackToMenu();
+            }
+            else
+            {
+                this.setFocusToPartyWidget();
             }
         }
         
         public function setFocusToPartyWidget() : void
         {
+            this.CachedModalClip = FocusManager.getModalClip(0);
+            FocusManager.setModalClip(null,0);
             this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
             this.controllerEnableWidgets(true);
+            this.CachedModalClip = null;
+        }
+        
+        public function setFocusBackToMenu(param1:Boolean = false) : void
+        {
+            if(this.CachedModalClip != null)
+            {
+                FocusManager.setModalClip(this.CachedModalClip,0);
+            }
+            this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
+            this.controllerEnableWidgets(false);
         }
         
         public function setWidgetsVisiblity(param1:Boolean) : void
         {
+            trace("BRIAN:: [" + this + "] value: " + param1);
+            trace("BRIAN:: [" + this + "] _widgets.length: " + this._widgets.length);
             var _loc2_:int = 0;
             while(_loc2_ < this._widgets.length)
             {
@@ -493,17 +527,24 @@ package tripwire.managers
         protected function controllerEnableWidgets(param1:Boolean) : void
         {
             var _loc2_:int = 0;
-            while(_loc2_ < this._widgets.length)
+            if(this.bPartyWidgetFocused != param1)
             {
-                if(param1)
+                this.bPartyWidgetFocused = !this.bPartyWidgetFocused;
+                _loc2_ = 0;
+                while(_loc2_ < this._widgets.length)
                 {
-                    this._widgets[_loc2_].selectContainer();
+                    if(param1)
+                    {
+                        this._widgets[_loc2_].selectContainer();
+                        this.menuList[this._currentMenuIndex].menuObject.alpha = 0.6;
+                    }
+                    else
+                    {
+                        this._widgets[_loc2_].deselectContainer();
+                        this.menuList[this._currentMenuIndex].menuObject.alpha = 1;
+                    }
+                    _loc2_++;
                 }
-                else
-                {
-                    this._widgets[_loc2_].deselectContainer();
-                }
-                _loc2_++;
             }
         }
         

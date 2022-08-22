@@ -33,6 +33,7 @@ defaultproperties
 	// Content
 	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_UnDev_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.UndevClot_AnimGroup'
+	DifficultySettings=class'KFDifficulty_ClotCyst'
 
 	CharacterMonsterArchDebug=KFCharacterInfo_Monster'ZED_AI_DEBUG_Clot_ARCH.ZED_Clot_Undev_Archetype_DEBUG'
 
@@ -49,9 +50,10 @@ defaultproperties
 	IncapSettings(AF_MeleeHit)=	  (Vulnerability=(2.0),                     Cooldown=0.0)
 	IncapSettings(AF_Poison)=	  (Vulnerability=(5), 	                    Cooldown=6.0,  Duration=4.5)
 	IncapSettings(AF_Microwave)=  (Vulnerability=(0.0), 	                Cooldown=8.0,  Duration=4.5)
-	IncapSettings(AF_FirePanic)=  (Vulnerability=(3), 	                    Cooldown=7.0,  Duration=5)
+	IncapSettings(AF_FirePanic)=  (Vulnerability=(1.5), 	                Cooldown=7.0,  Duration=5)
 	IncapSettings(AF_EMP)=		  (Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
 	IncapSettings(AF_Freeze)=	  (Vulnerability=(2.5),                     Cooldown=1.5,  Duration=2.0)
+	IncapSettings(AF_Snare)=	  (Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
 
     ParryResistance=0	
 

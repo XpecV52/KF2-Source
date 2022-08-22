@@ -6,8 +6,10 @@ package tripwire.menus
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.ListEvent;
+    import scaleform.clik.events.SliderEvent;
     import scaleform.clik.interfaces.IDataProvider;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.Extensions;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     import tripwire.controls.SliderOption;
@@ -130,6 +132,8 @@ package tripwire.menus
         public var iniOverrideString:String;
         
         public var physicsSuggestions:Array;
+        
+        public var genericSliderSoundEffect:String = "GEN_Click";
         
         public function OptionsGraphicsMenu()
         {
@@ -406,11 +410,13 @@ package tripwire.menus
         {
             super.openContainer();
             this.cancelButton.visible = !bManagerUsingGamepad;
+            this.filmGrainSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
         }
         
         override public function closeContainer() : void
         {
             super.closeContainer();
+            this.filmGrainSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -484,6 +490,19 @@ package tripwire.menus
         private function onClose(param1:ButtonEvent) : void
         {
             this.goBackToOptionsSelection();
+        }
+        
+        public function playSound(param1:String = "") : void
+        {
+            if(Extensions.gfxProcessSound != null)
+            {
+                Extensions.gfxProcessSound(this,"UI",param1);
+            }
+        }
+        
+        protected function onSliderChanged(param1:SliderEvent) : void
+        {
+            this.playSound(this.genericSliderSoundEffect);
         }
     }
 }

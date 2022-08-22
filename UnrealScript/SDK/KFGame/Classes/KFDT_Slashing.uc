@@ -88,7 +88,15 @@ static simulated function AddBloodSpread(KFPawn_Monster InPawn, vector HitDirect
 	local Quat Rotation;
 	local vector InstigatorFaceDir, SlashPlaneNormal;
 
-	InstigatorRotation = InPawn.HitFxInstigator.GetBaseAimRotation();
+	if( InPawn.HitFxInstigator != none )
+	{
+		InstigatorRotation = InPawn.HitFxInstigator.GetBaseAimRotation();
+	}
+	else
+	{
+		// Use inverse of pawn yaw in the event our FX instigator has been destroyed
+		InstigatorRotation.Yaw = NormalizeRotAxis( -InPawn.Rotation.Yaw );
+	}
 	InstigatorFaceDir = GetRotatorAxis(InstigatorRotation, 0);
 
 	// Cross the face direction of the instigator with the hit direction to find

@@ -19,6 +19,7 @@ var name BattlePhaseLightFrontSocketName;
 var export editinline transient PointLightComponent BattlePhaseLightTemplateYellow;
 var export editinline transient PointLightComponent BattlePhaseLightTemplateRed;
 var export editinline transient PointLightComponent BattlePhaseLightFront;
+var transient bool bPlayingRageSound;
 
 simulated event PreBeginPlay()
 {
@@ -70,6 +71,11 @@ function SetSprinting(bool bNewSprintStatus)
         return;
     }
     super.SetSprinting(bNewSprintStatus);
+}
+
+function bool CanBlock()
+{
+    return !IsEnraged() && super.CanBlock();
 }
 
 simulated function TerminateEffectsOnDeath()
@@ -128,6 +134,10 @@ simulated function SetEnraged(bool bNewEnraged)
     if(Role == ROLE_Authority)
     {
         bIsEnraged = bNewEnraged;
+        if(IsDoingSpecialMove(16))
+        {
+            EndSpecialMove();
+        }
         if(!IsHumanControlled())
         {
             SetSprinting(bNewEnraged);
@@ -135,14 +145,6 @@ simulated function SetEnraged(bool bNewEnraged)
     }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
-        if(bNewEnraged)
-        {
-            PostAkEvent(RageStartSound, true, true);            
-        }
-        else
-        {
-            PostAkEvent(RageStopSound, true, true);
-        }
         UpdateGameplayMICParams();
     }
 }
@@ -237,6 +239,27 @@ STATE: ") $ string(MyKFAIC.GetActiveCommand().GetStateName());
     OverheadColors[OverheadTexts.Length - 1] = ModifyTextColor;
 }
 
+simulated event Tick(float DeltaTime)
+{
+    super(KFPawn).Tick(DeltaTime);
+    if(((IsEnraged()) && Physics == 1) && VSizeSq(Velocity) >= (Square(SprintSpeed) * 0.9))
+    {
+        if(!bPlayingRageSound)
+        {
+            bPlayingRageSound = true;
+            PostAkEvent(RageStartSound, true, true);
+        }        
+    }
+    else
+    {
+        if(bPlayingRageSound)
+        {
+            bPlayingRageSound = false;
+            PostAkEvent(RageStopSound, true, true);
+        }
+    }
+}
+
 function int GetSpotterDialogID()
 {
     return 130;
@@ -249,6 +272,8 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
+    RageStartSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Start'
+    RageStopSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Stop'
     DefaultGlowColor=(R=1,G=0.35,B=0,A=1)
     EnragedGlowColor=(R=1,G=0,B=0,A=1)
     DeadGlowColor=(R=0,G=0,B=0,A=1)
@@ -295,6 +320,7 @@ defaultproperties
     WeakSpotSocketNames=/* Array type was not detected. */
     DamageTypeModifiers=/* Array type was not detected. */
     ZedBumpDamageScale=0
+    DifficultySettings=Class'KFDifficulty_Fleshpound'
     BumpFrequency=0.1
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     FootstepCameraShakeInnerRadius=200

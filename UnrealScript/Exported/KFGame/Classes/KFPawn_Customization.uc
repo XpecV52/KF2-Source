@@ -13,7 +13,7 @@ class KFPawn_Customization extends KFPawn_Human
 struct native sReplicatedMovementData
 {
 	var vector NewLocation;
-	var byte NewRotationYaw;
+	var rotator NewRotation;
 };
 
 /** Post-spawn replicated location (we skip actor property replication, this allows us to update after spawn) */
@@ -30,6 +30,7 @@ var AnimSet FemaleCustomizationAnimSet;
 
 var bool bUsingCustomizationPoint; // This is true if we have been placed on a KFCustomizationPoint
 
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -67,7 +68,7 @@ simulated event ReplicatedEvent( name VarName )
 function SetUpdatedMovementData( vector NewLoc, rotator NewRot )
 {
 	ReplicatedMovementData.NewLocation = NewLoc;
-	ReplicatedMovementData.NewRotationYaw = ( NewRot.Yaw & 65535 ) >> 8;
+	ReplicatedMovementData.NewRotation = NewRot;
 
 	// Set directly on listen server
 	OnMovementDataUpdated();
@@ -79,11 +80,8 @@ function SetUpdatedMovementData( vector NewLoc, rotator NewRot )
 /** Sets our updated movement data on client/listen server */
 simulated function OnMovementDataUpdated()
 {
-	local rotator TempRotation;
-
 	SetLocation( ReplicatedMovementData.NewLocation );
-	TempRotation.Yaw = NormalizeRotAxis( ReplicatedMovementData.NewRotationYaw << 8 );
-	SetRotation( TempRotation );
+	SetRotation( ReplicatedMovementData.NewRotation );
 
 	// Update visibility on listen server/clients
 	if( WorldInfo.NetMode != NM_DedicatedServer )
@@ -108,6 +106,10 @@ function SetServerHidden( bool bNewHidden )
 	// Update on network immediately
 	bForceNetUpdate = true;
 }
+
+/** Overridden, we don't want anything to stomp on SetUpdatedMovementData() */
+function ClientSetRotation( rotator NewRotation ) {}
+simulated function FaceRotation(rotator NewRotation, float DeltaTime) {}
 
 /*********************************************************************************************
 Initialization
@@ -148,8 +150,7 @@ simulated function SetCharacterAnimationInfo()
 	}
 
 	Mesh.UpdateAnimations();
-
-	PlayRandomIdleAnimation();
+	PlayRandomIdleAnimation(true);
 }
 
 function AttachWeaponByItemDefinition( int ItemDefinition )
@@ -188,17 +189,19 @@ function AttachWeaponByItemDefinition( int ItemDefinition )
 	
 }
 
-simulated function PlayRandomIdleAnimation()
+simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
 {
 	local byte AnimIndex;
 	local name AnimName;
 	local AnimSet AnimSet;
+	local float BlendInTime;
 
 	AnimSet =  Mesh.AnimSets[Mesh.AnimSets.Length - 1];
 	AnimIndex = Rand(AnimSet.Sequences.Length);
 	AnimName = AnimSet.Sequences[AnimIndex].SequenceName;
+	BlendInTime = (bNewCharacter) ? 0.f : 0.4;
 
-	BodyStanceNodes[EAS_FullBody].PlayCustomAnim(AnimName, 1.f, 0.4, 0.4, false, true);
+	BodyStanceNodes[EAS_FullBody].PlayCustomAnim(AnimName, 1.f, BlendInTime, 0.4, false, true);
 	BodyStanceNodes[EAS_FullBody].SetActorAnimEndNotification( TRUE );
 }
 
@@ -351,8 +354,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Human:SpecialMoveHandler_0'
    End Object
@@ -414,6 +419,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Human:KFPawnSkeletalMeshComponent'
    End Object
@@ -456,6 +462,7 @@ defaultproperties
    Components(7)=DialogAkSoundComponent
    Components(8)=TraderDialogAkSoundComponent
    Physics=PHYS_Walking
+   bReplicateMovement=False
    bSkipActorPropertyReplication=True
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_Customization"

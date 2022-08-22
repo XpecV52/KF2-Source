@@ -9,7 +9,8 @@
 //=============================================================================
 
 class KFLaserSightAttachment extends Object
-	hidecategories(Object);
+	hidecategories(Object)
+	native(Effect);
 
 /** Distance at which we should start scaling the dot size and depth bias (5m) */
 var() float LaserDotLerpStartDistance;
@@ -53,9 +54,8 @@ var() float AnimBlendRate;
 /** How strongly the laser sight should adhere to the aim direction.
 	Used to blend in and out of the weapon's active state
  */
-var transient 			float 			   LaserSightAimStrength;
-var transient 			bool 			   LaserAimBlendIn;
-var transient 			bool 			   LaserAimBlendOut;
+var transient 			float 			LaserSightAimStrength;
+var transient 			float 			DesiredAimStrength;
 
 /** Create/Attach lasersight components */
 function AttachLaserSight(SkeletalMeshComponent OwnerMesh, bool bFirstPerson, optional name SocketNameOverride)
@@ -133,14 +133,10 @@ simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingC
 	}
 }
 
-/** Set aim blending state - called from weapon */
-simulated function SetAimBlendState(bool bBlendIn, bool bBlendOut)
-{
-	LaserAimBlendIn = bBlendIn;
-	LaserAimBlendOut = bBlendOut;
-}
-
-/** Update function called from weapon */
+/** 
+ * Update function called from currently equipped 1st person weapon 
+ * @todo: move to c++?
+ */
 simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 {
 	local vector TraceStart, TraceEnd;
@@ -152,44 +148,24 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 	local Actor	HitActor;
 	local rotator SocketRotation;
 	local matrix SocketToWorldTransform;
-	local float MaxAimStrength;
 	local vector DirA, DirB;
 	local Quat Q;
 	local TraceHitInfo		HitInfo;
 
 	if( OwningWeapon != None &&
 		OwningWeapon.Instigator != None &&
+		OwningWeapon.Instigator.Weapon == OwningWeapon &&
 		OwningWeapon.Instigator.IsFirstPerson() )
 	{
-		MaxAimStrength = 1.f - AnimWeight;
+		UpdateFirstPersonAimStrength(DeltaTime, OwningWeapon);
 
-		// Handle blending of the aim strength when entering in and out of states
-		// The LaserSightAimStrength determines how closely the laser sight should
-		// match the aim of the weapon. We want it to match the aim when the weapon
-		// is in idle "aim" position, but want to let it move with the weapon when
-		// reloading, sprinting, etc.
-		if( LaserAimBlendIn && LaserSightAimStrength < MaxAimStrength )
-		{
-			LaserSightAimStrength = FMin(LaserSightAimStrength + AnimBlendRate * DeltaTime, MaxAimStrength);
-		}
-		else if( LaserAimBlendOut && LaserSightAimStrength > 0.f )
-		{
-			LaserSightAimStrength = FMax(LaserSightAimStrength - AnimBlendRate * DeltaTime, 0.f);
-		}
-		else
-		{
-			// Done blending in or out
-			LaserAimBlendIn = false;
-			LaserAimBlendOut = false;
-		}
+		// This is where we would start an instant trace
+		TraceStart = OwningWeapon.Instigator.GetWeaponStartTraceLocation();
+		TraceAimDir = Vector(OwningWeapon.Instigator.GetAdjustedAimFor( OwningWeapon, TraceStart ));
 
 		// Do aim calculations only when weapon is in active state
-		if( OwningWeapon.IsInState('Active') )
+		if( LaserSightAimStrength > 0.f )
 		{
-			// This is where we would start an instant trace
-			TraceStart = OwningWeapon.Instigator.GetWeaponStartTraceLocation();
-			TraceAimDir = Vector(OwningWeapon.Instigator.GetAdjustedAimFor( OwningWeapon, TraceStart ));
-
 			// Simulate an instant trace where weapon is aiming, Get hit info.
 			// Take minimal part of CalcWeaponFire()
 			TraceEnd = TraceStart + TraceAimDir * LaserSightRange;
@@ -267,16 +243,26 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 				LaserDotMeshComp.SetHidden(true);
 			}
 		}
-		else if( !OwningWeapon.IsInState('Inactive') )
+		else
 		{
 			// Weapon is in "Inactive" state when it is unequipped. Skip these
 			// calculations when unequipped
 			if( OwningWeapon.MySkelMesh != None &&
 				OwningWeapon.MySkelMesh.GetSocketWorldLocationAndRotation(LaserSightSocketName,  TraceStart,  SocketRotation) )
 			{
+				DirA = vector(SocketRotation);
+				DirB = TraceAimDir;
+
+				// If we're off by more than 20 degrees just hide the dot.  This 
+				// covers up an issue where the weapon FOV adjustment causes a desync
+				if ( (DirA dot DirB) < 0.94f)
+				{
+					LaserDotMeshComp.SetHidden(true);
+					return;
+				}
+
 				TraceEnd = TraceStart + vector(SocketRotation) * LaserSightRange;
 				HitActor = OwningWeapon.GetTraceOwner().Trace(HitLocation, HitNormal, TraceEnd, TraceStart, TRUE, vect(0,0,0), HitInfo, OwningWeapon.TRACEFLAG_Bullet);
-
 				if( HitActor != None )
 				{
 					// Unhide the dot mesh and make it point at given hit location
@@ -294,6 +280,31 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 	}
 }
 
+/** Determine how much to weigh screen center versus weapon socket */
+function UpdateFirstPersonAImStrength(float DeltaTime, KFWeapon W)
+{
+	// aim at center of screen
+	if ( W.IsInState('Active') &&
+		// If additive bob is off we're playing a fidget animation and need to follow weapon
+		W.IdleBobBlendNode != None && W.IdleBobBlendNode.Child2WeightTarget == 1.f )
+	{
+		DesiredAimStrength = 1.f - AnimWeight;
+	}
+	// follow weapon
+	else 
+	{
+		DesiredAimStrength = 0.f;
+	}
+
+	if( LaserSightAimStrength < DesiredAimStrength )
+	{
+		LaserSightAimStrength = FMin(LaserSightAimStrength + AnimBlendRate * DeltaTime, DesiredAimStrength);
+	}
+	else if( LaserSightAimStrength > DesiredAimStrength )
+	{
+		LaserSightAimStrength = FMax(LaserSightAimStrength - AnimBlendRate * DeltaTime, DesiredAimStrength);
+	}
+}
 
 /**
  * Draw the laser dot at the given world space location and oriented in the direction of the given hit normal
@@ -328,6 +339,14 @@ function AimAt(vector HitLocation, vector HitNormal, SkeletalMeshComponent Paren
 	// END DEBUG
 }
 
+/** 
+ * Since 1st person weapons have a custom rendered FOV when we need accuracy 
+ * GetSocketWorldLocationAndRotation() is not good enough.  This is not without
+ * problems as it's expensive to compute and introduces a frame lag because
+ * skeletal mesh FOV is adjusted on the render thread.
+ */
+native function bool GetFOVAdjustedLaserSocket(KFSkeletalMeshComponent Mesh, name InSocketName, out vector OutLocation, out rotator OutRotation);
+
 defaultproperties
 {
    LaserDotLerpStartDistance=25.000000
@@ -335,7 +354,7 @@ defaultproperties
    LaserDotMaxScale=10.000000
    LaserDotDepthBias=0.950000
    LaserSightRange=20000.000000
-   AnimBlendRate=1.000000
+   AnimBlendRate=3.000000
    Name="Default__KFLaserSightAttachment"
    ObjectArchetype=Object'Core.Default__Object'
 }

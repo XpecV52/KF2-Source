@@ -30,18 +30,6 @@ package tripwire.widgets
         
         public var squadMember11:PartySlotButton;
         
-        public var perksList6:TripScrollingList;
-        
-        public var perksList7:TripScrollingList;
-        
-        public var perksList8:TripScrollingList;
-        
-        public var perksList9:TripScrollingList;
-        
-        public var perksList10:TripScrollingList;
-        
-        public var perksList11:TripScrollingList;
-        
         public var optionsList6:TripScrollingList;
         
         public var optionsList7:TripScrollingList;
@@ -91,12 +79,12 @@ package tripwire.widgets
         
         override protected function addedToStage(param1:Event) : void
         {
-            super.addedToStage(param1);
-            this.switchTeamsButton.addEventListener(ButtonEvent.PRESS,this.requestSwitchTeams,false,0,true);
+            this.switchTeamsButton.addEventListener(ButtonEvent.CLICK,this.requestSwitchTeams,false,0,true);
             this.balanceWarning = "";
+            super.addedToStage(param1);
         }
         
-        public function requestSwitchTeams(param1:ButtonEvent) : void
+        private function requestSwitchTeams(param1:ButtonEvent) : void
         {
             ExternalInterface.call("Callback_RequestTeamSwitch");
         }
@@ -157,6 +145,16 @@ package tripwire.widgets
                 }
                 this.lastTeamId = param1;
             }
+        }
+        
+        override public function updateControllerIconVisibility() : *
+        {
+            super.updateControllerIconVisibility();
+            if(!bManagerUsingGamepad)
+            {
+                this.switchTeamsButton.focused = 0;
+            }
+            this.switchTeamsButton.focusable = bManagerUsingGamepad;
         }
     }
 }

@@ -130,9 +130,8 @@ function PlayFireAnimation()
 	}
 
 	bUseRootMotion = false;
-	MyPatPawn.Mesh.RootMotionMode = MyPatPawn.Mesh.default.RootMotionMode;
+	DisableRootMotion();
 	MyPatPawn.RotationRate = MissileFireRotationRate;
-	MyPatPawn.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
 	PlaySpecialMoveAnim( AnimName, EAS_UpperBody, 0.f, BlendOutTime, 1.f );
 
 	// Shoot some missiles on the server
@@ -220,15 +219,16 @@ function PlayWindDownAnimation()
 
 	MyPatPawn.StopBodyAnim( EAS_FullBody, 0.33f );
 	bUseRootMotion = true;
-	MyPatPawn.Mesh.RootMotionMode = RMM_Accel;
-	MyPatPawn.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Translate, RBA_Translate, RBA_Translate);
+	EnableRootMotion();
 	PlaySpecialMoveAnim( WindDownAnimName, EAS_FullBody, 0.33f, BlendOutTime, 1.f );
 }
 
 /** Plays subsequent animations in the barrage */
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
-	switch( SeqNode.AnimSeqName )
+    local name SeqNodeName;
+    SeqNodeName  = bShouldDeferToPostTick ? DeferredSeqName : SeqNode.AnimSeqName;
+	switch( SeqNodeName )
 	{
 		case LoadAnim:
 			PlayFireAnimation();
@@ -283,6 +283,7 @@ defaultproperties
    AbortBlendOutTime=0.100000
    bDisableMovement=True
    bDisableSteering=False
+   bShouldDeferToPostTick=True
    Handle="KFSM_Patriarch_MissileAttack"
    Name="Default__KFSM_Patriarch_MissileAttack"
    ObjectArchetype=KFSM_PlaySingleAnim'KFGame.Default__KFSM_PlaySingleAnim'

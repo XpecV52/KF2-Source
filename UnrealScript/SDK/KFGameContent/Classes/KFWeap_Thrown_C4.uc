@@ -115,7 +115,7 @@ simulated function UpdateScreenUI()
 	{
 		if ( ScreenUI != none )
 		{
-			ScreenUI.SetMaxCharges(MaxSpareAmmo[0]);
+			ScreenUI.SetMaxCharges(GetMaxAmmoAmount(0));
 			ScreenUI.SetActiveCharges(NumDeployedCharges);
 			TimeSinceLastUpdate=0.0f;
 		}
@@ -138,24 +138,6 @@ simulated function Projectile ProjectileFire()
 	}
 
 	return P;
-}
-
-/**
- * This function checks to see if the weapon has any ammo available for a given fire mode.
- *
- * @param	FireModeNum		- The Fire Mode to Test For
- * @param	Amount			- [Optional] Check to see if this amount is available.
- * @return	true if ammo is available for Firemode FireModeNum.
- */
-simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
-{
-	// always allow detonate firemode
-	if( FireModeNum == DETONATE_FIREMODE )
-	{
-		return true;
-	}
-
-	return super.HasAmmo( FireModeNum, Amount );
 }
 
 /** Detonates the oldest charge */
@@ -229,13 +211,8 @@ static simulated event bool UsesAmmo()
     return true;
 }
 
-/**
- * Toggle between DEFAULT and ALTFIRE
- */
-simulated function AltFireMode()
-{
-	// do nothing, as we have no alt fire mode
-}
+// do nothing, as we have no alt fire mode
+simulated function AltFireMode();
 
 
 /*********************************************************************************************
@@ -396,7 +373,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	MaxSpareAmmo[0]=1
+	SpareAmmoCapacity[0]=1
 	InitialSpareMags[0]=1
 	AmmoPickupScale[0]=1.0
 
@@ -408,7 +385,11 @@ defaultproperties
 	// DETONATE_FIREMODE
 	FiringStatesArray(DETONATE_FIREMODE)=WeaponDetonating
 	WeaponFireTypes(DETONATE_FIREMODE)=EWFT_Custom
+	AmmoCost(DETONATE_FIREMODE)=0
+
+	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_C4'
+	InstantHitDamage(BASH_FIREMODE)=23
 
 	// Inventory / Grouping
 	InventoryGroup=IG_Primary

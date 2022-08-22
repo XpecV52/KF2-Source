@@ -125,6 +125,7 @@ var globalconfig float MinTimeMargin;
 var array<PlayerReplicationInfo> InactivePRIArray;
 var array< delegate<CanUnpause> > Pausers;
 var OnlineSubsystem OnlineSub;
+var PlayfabInterface PlayfabInter;
 var OnlineGameInterface GameInterface;
 var class<OnlineStatsWrite> OnlineStatsWriteClass;
 var int LeaderboardId;
@@ -182,13 +183,33 @@ function CoverReplicator GetCoverReplicator()
 
 event PostBeginPlay()
 {
+    local OnlineGameSettings GameSettings;
+
     if(MaxIdleTime > float(0))
     {
         MaxIdleTime = FMax(MaxIdleTime, 20);
     }
-    if(WorldInfo.NetMode == NM_DedicatedServer)
+    PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
+    if(WorldInfo.IsConsoleDedicatedServer())
     {
-        UpdateGameSettings();
+        if((PlayfabInter != none) && PlayfabInter.GetGameSettings() == none)
+        {
+            PlayfabInter.CreateGameSettings(OnlineGameSettingsClass);
+            GameSettings = PlayfabInter.GetGameSettings();
+            GameSettings.UpdateFromURL(ServerOptions, self);
+            if(!WasLaunchedByPlayfab())
+            {
+                UpdateGameSettings();
+                PlayfabInter.ServerRegisterGame(GetFriendlyNameForCurrentGameMode());
+            }
+        }        
+    }
+    else
+    {
+        if(WorldInfo.NetMode == NM_DedicatedServer)
+        {
+            UpdateGameSettings();
+        }
     }
 }
 
@@ -876,7 +897,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
     }
     bPerfTesting = (ParseOption(Options, "AutomatedPerfTesting")) ~= "1";
     bSpectator = bPerfTesting || (ParseOption(Options, "SpectatorOnly")) ~= "1";
-    InName = Left(ParseOption(Options, "Name"), 20);
+    InName = Left(ParseOption(Options, "Name"), 32);
     InTeam = byte(GetIntOption(Options, "Team", 255));
     InPassword = ParseOption(Options, "Password");
     if(AccessControl != none)
@@ -898,7 +919,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
     {
         bSpectator = true;
     }
-    InTeam = PickTeam(InTeam, none);
+    InTeam = PickTeam(InTeam, none, UniqueId);
     StartSpot = FindPlayerStart(none, InTeam, Portal);
     if(StartSpot == none)
     {
@@ -1677,7 +1698,7 @@ function bool ChangeTeam(Controller Other, int N, bool bNewTeam)
     return true;
 }
 
-function byte PickTeam(byte Current, Controller C)
+function byte PickTeam(byte Current, Controller C, const out UniqueNetId PlayerID)
 {
     return Current;
 }
@@ -2695,6 +2716,13 @@ function InitCrowdPopulationManager()
 }
 
 function ClearOnlineDelegates();
+
+event OnRetreivedPFInternalUserData(const string ForPlayerId, array<string> Keys, array<string> Values);
+
+// Export UGameInfo::execWasLaunchedByPlayfab(FFrame&, void* const)
+native function bool WasLaunchedByPlayfab();
+
+function string GetFriendlyNameForCurrentGameMode();
 
 auto state PendingMatch
 {

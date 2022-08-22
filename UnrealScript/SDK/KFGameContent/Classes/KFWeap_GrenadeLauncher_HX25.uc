@@ -13,6 +13,9 @@ class KFWeap_GrenadeLauncher_HX25 extends KFWeap_GrenadeLauncher_Base;
 var(Weapon) array<byte>	NumPellets;
 var array<vector2D> PelletSpread;
 
+/** Last time a submunition projectile was fired from this weapon */
+var float LastSubmunitionFireTime;
+
 /*********************************************************************************************
  Firing / Projectile
 ********************************************************************************************* */
@@ -119,6 +122,11 @@ static simulated function float CalculateTraderWeaponStatDamage()
 	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
 }
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+	return FT_Pistol;
+}
+
 defaultproperties
 {
 	ForceReloadTime=0.3f
@@ -169,7 +177,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	MaxSpareAmmo[0]=29
+	SpareAmmoCapacity[0]=29
 	InitialSpareMags[0]=17
 	AmmoPickupScale[0]=3.0
 	bCanBeReloaded=true
@@ -201,7 +209,6 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_ExplosiveSubMunition_HX25'
 	InstantHitDamage(DEFAULT_FIREMODE)=10.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_HX25SubmunitionImpact'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_HX25'
 	Spread(DEFAULT_FIREMODE)=0.1f
 	FireInterval(DEFAULT_FIREMODE)=0.25
 	FireOffset=(X=23,Y=4.0,Z=-3)
@@ -211,6 +218,10 @@ defaultproperties
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_HX25'
+	InstantHitDamage(BASH_FIREMODE)=24
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_HX25_Pistol_ARCH.Wep_HX25_Pistol_MuzzleFlash'

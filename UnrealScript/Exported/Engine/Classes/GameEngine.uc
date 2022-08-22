@@ -90,7 +90,7 @@ var			byte			TravelType;
 
 
 var 		string 			TakeoverURL;
-var         bool            bUsedForTakeover;
+var config  bool            bUsedForTakeover;
 var         bool            bAvailableForTakeover;
 
 
@@ -324,6 +324,7 @@ native static final noexport function bool HasSecondaryScreenActive();
 
 native function TakeoverServer( string InHostStr, string InUrlStr );
 native static function int GetWebAdminPort();
+native final function DisableServerTakeover();
 
 
 // (cpptext)
@@ -569,6 +570,7 @@ defaultproperties
    LastURL=(Valid=1)
    LastRemoteURL=(Valid=1)
    ServerActors(0)="IpDrv.WebServer"
+   bUsedForTakeover=True
    Name="Default__GameEngine"
    ObjectArchetype=Engine'Engine.Default__Engine'
 }

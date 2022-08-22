@@ -26,6 +26,9 @@ var() bool	bSynchronizeNodesInEditor;
 /** If set, calculate speed from owner's base instead of owner */
 var() bool  bUseOwnersBase;
 
+/** If set, ignore z-axis velocity/acceleration */
+var() bool  bUse2DMovement;
+
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -49,6 +52,7 @@ native function SetActiveChild( INT ChildIndex, FLOAT BlendTime );
 defaultproperties
 {
    bSynchronizeNodesInEditor=True
+   bUse2DMovement=True
    MoveCycleFirstStepStartPosition=0.300000
    SynchGroupName="RunWalk"
    BlendUpTime=0.300000

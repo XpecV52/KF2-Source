@@ -131,6 +131,8 @@ var	bool	bAttachExplosionToHitMover;
 
 /** If TRUE, can be disintegrated (currently by Siren's scream) */
 var bool	bCanDisintegrate;
+/** Sound to use when disintegrated */
+var AkEvent DisintegrateSound;
 
 /** Effects Template for projectile being disintegrated by siren's scream */
 var(Projectile) ParticleSystem ProjDisintegrateTemplate;
@@ -179,8 +181,8 @@ var bool bSuppressSounds;
 var AKEvent	AmbientSoundPlayEvent;
 /** The AKEvent to trigger the ambient sound to stop playing */
 var AKEvent	AmbientSoundStopEvent;
-/** The audio component for the ambient sound */
-var AkComponent  AmbientComponent;
+/** The audio component for the ambient sound (private: use function calls!) */
+var private AkComponent  AmbientComponent;
 /** Whether to start playing the ambient sound automatically */
 var bool        bAutoStartAmbientSound;
 /** Whether to stop the ambient sound when the projectile explodes/impacts */
@@ -201,6 +203,22 @@ var KFImpactEffectInfo ImpactEffects;
 var class<KFPerk> AssociatedPerkClass;
 
 /*********************************************************************************************
+* @name AI
+********************************************************************************************* */
+
+/** Set to TRUE when spawned by an AI */
+var protected bool bIsAIProjectile;
+
+/** If TRUE, warns AI along a cone when this projectile is spawned */
+var protected const bool bWarnAIWhenFired;
+
+/** The maximum distance at which to warn AI, squared */
+var protected const float MaxAIWarningDistSQ;
+
+/** The maximum distance from the danger point that AI should be warned */
+var protected const float MaxAIWarningDistFromPointSQ;
+
+/*********************************************************************************************
 * End Vars
 ********************************************************************************************* */
 
@@ -210,6 +228,7 @@ cpptext
 	virtual void performPhysics(FLOAT DeltaTime);
 	virtual void TickExtraTouchCollision(FLOAT DeltaTime, FVector MoveDelta);
 	virtual INT* GetOptimizedRepList( BYTE* InDefault, FPropertyRetirement* Retire, INT* Ptr, UPackageMap* Map, UActorChannel* Channel );
+    virtual void TickSpecial(float DeltaTime);
 }
 
 replication
@@ -238,9 +257,18 @@ replication
 */
 native function float GetTerminalVelocity();
 
+native function StopAmbientSound(optional bool bForce);
+
 /*********************************************************************************************
 * @name Initialization / construction / replication
 ********************************************************************************************* */
+
+event PreBeginPlay()
+{
+    super.PreBeginPlay();
+
+    bIsAIProjectile = InstigatorController == none || !InstigatorController.bIsPlayer;
+}
 
 /**
  * When this actor begins its life, play any ambient sounds attached to it
@@ -277,6 +305,56 @@ function Init(vector Direction)
         OriginalLocation = Location;
 		SyncOriginalLocation();
     }
+
+    // Warn AI, let them handle evades, etc
+    if( WorldInfo.NetMode != NM_Client && ShouldWarnAIWhenFired() )
+    {
+        WarnAI( Direction );
+    }
+}
+
+/** Warns AI that this projectile has been fired */
+function WarnAI( vector Direction )
+{
+    local Pawn P;
+    local KFPawn_Monster HitMonster;
+    local vector Projection, DangerPoint;
+
+    // Iterate through pawns and find AI we want to warn
+    foreach WorldInfo.AllPawns( class'Pawn', P )
+    {
+        if( P.GetTeamNum() != Instigator.GetTeamNum() && !P.IsHumanControlled() && P.IsAliveAndWell() )
+        {
+            // Determine if AI is within range as well as within our field of view
+            Projection = P.Location - Location;
+            if( VSizeSQ(Projection) < MaxAIWarningDistSQ )
+            {
+                PointDistToLine( P.Location, Direction, Location, DangerPoint );
+
+                if( VSizeSQ(DangerPoint - P.Location) < MaxAIWarningDistFromPointSQ )
+                {
+                    // Tell the AI to evade away from the DangerPoint
+                    HitMonster = KFPawn_Monster( P );
+                    if( HitMonster != none && HitMonster.MyKFAIC != none )
+                    {
+                        HitMonster.MyKFAIC.ReceiveLocationalWarning( DangerPoint, Location, self );
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** Can be overridden in subclasses to add additional criteria */
+function bool ShouldWarnAIWhenFired()
+{
+    return bWarnAIWhenFired;
+}
+
+/** Accessor */
+function bool IsAIProjectile()
+{
+    return bIsAIProjectile;
 }
 
 /* epic ===============================================
@@ -732,13 +810,22 @@ simulated function Disintegrate( rotator InDisintegrateEffectRotation )
 
     SetPhysics( PHYS_None );
 
-    if( ProjDisintegrateTemplate != None && WorldInfo.NetMode != NM_DedicatedServer )
+    if ( WorldInfo.NetMode != NM_DedicatedServer )
     {
-        ProjDisintegrateEffects = WorldInfo.MyEmitterPool.SpawnEmitter( ProjDisintegrateTemplate, Location, inDisintegrateEffectRotation );
+        if( ProjDisintegrateTemplate != None )
+        {
+            ProjDisintegrateEffects = WorldInfo.MyEmitterPool.SpawnEmitter( ProjDisintegrateTemplate, Location, inDisintegrateEffectRotation );
+        }
+
+        if ( DisintegrateSound != None )
+        {
+            PlaySoundBase(DisintegrateSound, true);
+        }
     }
 
-	bHasDisintegrated = true;
+	bHasDisintegrated = true;    
 	DeferredDestroy(0.1f); // cleanup/destroy projectile
+    
 }
 
 /**
@@ -761,9 +848,9 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
         }
 
         // Stop ambient sounds when this projectile explodes
-    	if( bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none && AmbientComponent != none )
+    	if( bStopAmbientSoundOnExplode )
     	{
-            AmbientComponent.StopEvents();
+            StopAmbientSound();
     	}
 
 		if (ExplosionTemplate != None)
@@ -860,9 +947,9 @@ simulated protected function SetExplosionActorClass();
 simulated function Shutdown()
 {
 	// Stop ambient sounds when this projectile ShutsDown
-	if( bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none && AmbientComponent != none )
+	if( bStopAmbientSoundOnExplode )
 	{
-        AmbientComponent.StopEvents();
+        StopAmbientSound();
 	}
 
 	// If cleanup has already begun, just wait
@@ -938,11 +1025,7 @@ simulated function Destroyed()
     }
 
     // Stop ambient sounds when this projectile is destroyed
-    if( AmbientSoundStopEvent != none && AmbientComponent != none)
-    {
-        // @todo: Fade out the ambient sound
-        AmbientComponent.StopEvents();
-    }
+    StopAmbientSound();
 
     super.Destroyed();
 }
@@ -956,40 +1039,6 @@ simulated function Destroyed()
  */
 native function float GetGravityZ();
 
-simulated event Tick(float DeltaTime)
-{
-    super.Tick(DeltaTime);
-
-    if( WorldInfo.NetMode != NM_DedicatedServer )
-    {
-        // Stop zed time only ambient sounds if zed time gets deactivated
-        if( AmbientSoundPlayEvent != None && bAmbientSoundZedTimeOnly && `NotInZedTime(self)
-            && AmbientSoundStopEvent != none && AmbientComponent != none )
-        {
-            // TODO: Fade this out - Ramm
-            AmbientComponent.StopEvents();
-            AmbientComponent = None;
-        }
-
-        if( ProjEffects!=None && bFadingOutProjEffects && bShuttingDown )
-        {
-            if( ProjEffectsFadeOutDuration >= 0.0 )
-            {
-                ProjEffectsFadeOutDuration -= DeltaTime;
-
-                if( ProjEffectsFadeOutDuration <= 0.0 )
-                {
-                    bFadingOutProjEffects=false;
-                    ProjEffectsFadeOutDuration=0.0;
-                    ProjEffects.KillParticlesForced();
-
-                    // If we were waiting for the fade out, it's safe to destroy now
-                    Destroy();
-                }
-            }
-        }
-    }
-}
 
 /*********************************************************************************************
 * @name Effects
@@ -1073,10 +1122,16 @@ defaultproperties
 	TossZ=0.0
 	GravityScale=1.0
 
+    MaxAIWarningDistSQ=4000000
+    MaxAIWarningDistFromPointSQ=16384
+
 	MyDamageType=class'KFDT_Ballistic'
 	MomentumTransfer=1.f
 
 	PostExplosionLifetime=1
 
 	TouchTimeThreshhold=0.0
+
+    // global shared content
+    DisintegrateSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Siren_Grenade_Dis'
 }

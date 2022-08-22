@@ -11,6 +11,8 @@
 class KFGFxControlsContainer_Input extends KFGFxObject_Container
 	config(UI);
 
+`include(KFProfileSettings.uci);
+
 var localized string SensitivityString, InvertedString;
 var localized string ControllerSensitivityString;
 var localized string ControllerString;
@@ -101,33 +103,47 @@ function InitializeOptions()
 
 function ResetInputOptions()
 {
-	// Currently doing nothing with the reset button is pressed since current system overrides default .ini settings. HSL_BB
-	// TODO: Restore settings back to defaults.
+	local KFPlayerInput KFPI;
 	
-	//local GFxObject ValuesObject;
-	//local KFPlayerInput KFPI;
-
-	//KFPI = KFPlayerInput(GetPC().PlayerInput);
-	//ValuesObject = CreateObject( "Object" );
-	//// Don't try to set values of objects that aren't there on Console.
-	//if ( !GetPC().WorldInfo.IsConsoleBuild() )
-	//{
-	//	ValuesObject.SetFloat("sensitivityValue"				, /*Default value*/);
-	//	ValuesObject.SetFloat("zoomSensitivityValue"			, /*Default value*/);
-
-	//	ValuesObject.SetBool("invertedValue"					, /*Default value*/);
-	//	ValuesObject.SetBool("mouseSmoothingLabel"				, /*Default value*/);
-	//	ValuesObject.SetBool("forceFeedbackValue"				, /*Default value*/);
-	//}
-
-	//ValuesObject.SetFloat("controllerSensitivityValue"			, /*Default value*/);
-	//ValuesObject.SetFloat("controllerZoomSensitivityValue"		, /*Default value*/);
-
-	//ValuesObject.SetBool("controllerInvertedValue"				, /*Default value*/);
-	//ValuesObject.SetBool("aimAssistLockOnValue"					, /*Default value*/);
-	//ValuesObject.SetBool("aimAssistRotationValue"				, /*Default value*/);
-	//ValuesObject.SetBool("aimAssistSlowDownValue"				, /*Default value*/);
+	KFPI = KFPlayerInput(GetPC().PlayerInput);
 
 	//SetObject("initializeOptions", ValuesObject);
+	if ( !GetPC().WorldInfo.IsConsoleBuild() )
+	{
+		KFPI.MouseSensitivity = ControlsMenu.Manager.CachedProfile.GetDefaultFloat(KFID_MouseSensitivity);
+		ControlsMenu.Manager.CachedProfile.SetProfileSettingValueFloat(KFID_MouseSensitivity, KFPI.MouseSensitivity);
+
+		KFPI.ZoomedSensitivityScale = ControlsMenu.Manager.CachedProfile.GetDefaultFloat(KFID_ZoomedSensitivityScale);
+		ControlsMenu.Manager.CachedProfile.SetProfileSettingValueFloat(KFID_ZoomedSensitivityScale, KFPI.ZoomedSensitivityScale);
+		
+		KFPI.bInvertMouse = ControlsMenu.Manager.CachedProfile.GetDefaultBool(KFID_InvertMouse);
+		ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(KFID_InvertMouse, KFPI.bInvertMouse);
+		
+		KFPI.bEnableMouseSmoothing = ControlsMenu.Manager.CachedProfile.GetDefaultBool(KFID_EnableMouseSmoothing);		
+		ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(KFID_EnableMouseSmoothing, KFPI.bEnableMouseSmoothing);
+
+		KFPI.bForceFeedbackEnabled = ControlsMenu.Manager.CachedProfile.GetDefaultBool(KFID_ForceFeedbackEnabled);
+		ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(KFID_ForceFeedbackEnabled, KFPI.bForceFeedbackEnabled);
+	}
+
+	KFPI.GamepadSensitivityScale = ControlsMenu.Manager.CachedProfile.GetDefaultFloat(KFID_GamepadSensitivityScale);
+	ControlsMenu.Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GamepadSensitivityScale, KFPI.GamepadSensitivityScale);
+
+	KFPI.GamepadZoomedSensitivityScale = ControlsMenu.Manager.CachedProfile.GetDefaultFloat(KFID_GamepadZoomedSensitivityScale);
+	ControlsMenu.Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GamepadZoomedSensitivityScale, KFPI.GamepadZoomedSensitivityScale);
+	
+	KFPI.bInvertController = ControlsMenu.Manager.CachedProfile.GetDefaultBool(KFID_InvertController);
+	ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(KFID_InvertController, KFPI.bInvertController);
+
+	KFPI.bAutoTargetEnabled = ControlsMenu.Manager.CachedProfile.GetDefaultBool(KFID_AutoTargetEnabled);
+	ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(KFID_AutoTargetEnabled, KFPI.bAutoTargetEnabled);
+
+	KFPI.bTargetAdhesionEnabled = ControlsMenu.Manager.CachedProfile.GetDefaultBool(KFID_TargetAdhesionEnabled);	
+	ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(KFID_TargetAdhesionEnabled, KFPI.bTargetAdhesionEnabled);
+
+	KFPI.bTargetFrictionEnabled = ControlsMenu.Manager.CachedProfile.GetDefaultBool(KFID_TargetFrictionEnabled);
+	ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(KFID_TargetFrictionEnabled, KFPI.bTargetFrictionEnabled);
+	
+	InitializeOptions();
 }
 

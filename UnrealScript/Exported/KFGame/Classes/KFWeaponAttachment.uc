@@ -103,9 +103,8 @@ enum EWeaponState
 	WEP_ReloadSingleEmpty,
 	WEP_ReloadSingle_Elite,
 	WEP_ReloadSingleEmpty_Elite,
-	WEP_Firing,
-	WEP_FiringSecondary,
-	WEP_FiringSecondaryAndReload,
+	WEP_ReloadSecondary,
+	WEP_ReloadSecondary_Elite,
 	WEP_MeleeBasic,
 	WEP_MeleeChain,		// @deprecated
 	WEP_MeleeSustained,
@@ -235,11 +234,9 @@ const ShootAnim			= 'ADD_Shoot';
 const CrouchShootAnim	= 'ADD_CH_Shoot';
 const IronShootAnim		= 'ADD_Iron_Shoot';
 /** Weapon shoots */
-const WeaponFireAnim	= 'Shoot';
-const WeaponAltFireAnim	= 'Shoot';
-/** Secondary Weapon Shoots */
-const WeaponSecondaryShootAndReload = 'Reload_Empty';
-const WeaponSecondaryShoot 			= 'Shoot';
+const WeaponFireAnim	 = 'Shoot';
+const WeaponAltFireAnim	 = 'Shoot';
+const WeaponIronFireAnim = 'Iron_Shoot';
 
 /** (TEMP) blend settings */
 var(Anims) float DefaultBlendInTime;
@@ -257,7 +254,7 @@ var transient byte LastMeleeAnimIdx;
 var transient bool bSynchronizeWeaponAnim;
 var transient AnimNodeSlot	SyncPawnNode;
 var transient name			SyncAnimName;
-var transient float			SyncAnimStartTime;
+var transient bool			bSyncAnimCheckRelevance;
 
 /** Info for state LoopingWeaponAction */
 var transient name LoopingAnim;
@@ -496,11 +493,11 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
 /** Plays fire animation on weapon mesh */
 simulated function PlayWeaponFireAnim()
 {
-	if (Instigator.FiringMode == 1 && WeaponAltFireAnim != 'None')
+	if ( Instigator.bIsWalking )
 	{
-		WeapMesh.PlayAnim(WeaponAltFireAnim,,, true);
+		WeapMesh.PlayAnim(WeaponIronFireAnim,,, true);
 	}
-	else if (WeaponFireAnim != 'None')
+	else 
 	{
 		WeapMesh.PlayAnim(WeaponFireAnim,,, true);
 	}
@@ -709,12 +706,6 @@ simulated function UpdateThirdPersonWeaponAction(EWeaponState NewWeaponState, KF
 	case WEP_Cleaning:
 		PlayCharacterMeshAnim(P, P.bIsCrouched ? CH_CleanWeaponAnim : CleanWeaponAnim);
 		break;
-	case WEP_FiringSecondary:
-		PlayCharacterMeshAnim(P, WeaponSecondaryShoot);
-		break;
-	case WEP_FiringSecondaryAndReload:
-		PlayCharacterMeshAnim(P, WeaponSecondaryShootAndReload, true);
-		break;
 	case WEP_MeleeBasic:
 	//case WEP_MeleeChain:
 	case WEP_Melee_B:
@@ -737,8 +728,11 @@ simulated function UpdateThirdPersonWeaponAction(EWeaponState NewWeaponState, KF
 	case WEP_ReloadEmpty:
 	case WEP_Reload_Elite:
 	case WEP_ReloadEmpty_Elite:
+	case WEP_ReloadSecondary:
+	case WEP_ReloadSecondary_Elite:
 		bIsReloading = true;
 		PlayReloadMagazineAnim(NewWeaponState, P);
+		break;
 	case WEP_ReloadSingle:
 	case WEP_ReloadSingle_Elite:
 	case WEP_ReloadSingleEmpty:
@@ -973,7 +967,7 @@ simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool
 			bSynchronizeWeaponAnim = true;
 			SyncPawnNode = SyncNode;
 			SyncAnimName = AnimName;
-			SyncAnimStartTime = WorldInfo.TimeSeconds;
+			bSyncAnimCheckRelevance = false;
 		}
 	}
 }
@@ -986,7 +980,7 @@ simulated event Tick( float DeltaTime )
 	{
 		// check to see if the character anim is still playing
 		if ( !SyncPawnNode.bIsPlayingCustomAnim
-			|| (!SyncPawnNode.bRelevant && (WorldInfo.TimeSeconds - SyncAnimStartTime) > 0.01f)
+			|| (!SyncPawnNode.bRelevant && bSyncAnimCheckRelevance)
 			|| SyncPawnNode.GetPlayedAnimation() != SyncAnimName )
 		{
 			if ( WeapAnimNode.bPlaying && WeapAnimNode.AnimSeqName == SyncAnimName )
@@ -995,6 +989,9 @@ simulated event Tick( float DeltaTime )
 			}
 			bSynchronizeWeaponAnim = false;
 		}
+
+		// After character mesh has been ticked once start checking node relevance
+		bSyncAnimCheckRelevance = true;
 	}
 }
 

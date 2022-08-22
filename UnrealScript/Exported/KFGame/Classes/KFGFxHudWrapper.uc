@@ -121,18 +121,18 @@ exec function SetShowScores(bool bNewValue)
   */
 event DrawHUD()
 {
-	local vector ViewPoint;
-	local rotator ViewRotation;
+	//local vector ViewPoint;
+	//local rotator ViewRotation;
 	local float XL, YL, YPos;
 
 	super.DrawHUD();
 
-	if ( KFGRI != None && !KFGRI.bMatchIsOver )
+	/*if ( KFGRI != None && !KFGRI.bMatchIsOver )
 	{
 		Canvas.Font = GetFontSizeIndex(0);
 		PlayerOwner.GetPlayerViewPoint(ViewPoint, ViewRotation);
 		DrawActorOverlays(Viewpoint, ViewRotation);
-	}
+	}*/
 
 	if ( bCrosshairOnFriendly )
 	{
@@ -207,11 +207,6 @@ function LocalizedMessage
 	}
 
 	KFPC = KFPlayerController(PlayerOwner);
-	if( HudMovie == none)
-	{
-	   Super.LocalizedMessage(InMessageClass,RelatedPRI_1,RelatedPRI_2,MessageString,Switch,Position,LifeTime,FontSize,DrawColor,OptionalObject);
-	   return;
-    }
 
     if( !InMessageClass.default.bIsSpecial )
     {
@@ -232,12 +227,12 @@ function LocalizedMessage
     {
         HexClr = class 'KFLocalMessage'.default.ConnectionColor ;
     }
-    if( HudMovie.HudChatBox != none )
+    if( HudMovie != none && HudMovie.HudChatBox != none )
     {
     	HudMovie.HudChatBox.AddChatMessage(MessageString, HexClr);
 	}
     //Todo: Try to separate this from the HUD. 
-    if(KFPC.MyGFxManager.PartyWidget != none)
+    if(KFPC.MyGFxManager != none && KFPC.MyGFxManager.PartyWidget != none)
     {
     	KFPC.MyGFxManager.PartyWidget.ReceiveMessage(MessageString, HexClr);	
     }

@@ -117,7 +117,7 @@ defaultproperties
    IronSightPosition=(X=12.000000,Y=0.000000,Z=0.000000)
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
-   MaxSpareAmmo(0)=336
+   SpareAmmoCapacity(0)=336
    InitialSpareMags(0)=4
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
@@ -172,7 +172,7 @@ defaultproperties
    InstantHitDamage(0)=30.000000
    InstantHitDamage(1)=30.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_NailShotgun'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_NailShotgun'
    InstantHitDamageTypes(2)=None

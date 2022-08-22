@@ -66,17 +66,19 @@ enum ESpecialMove
     SM_WalkingTaunt,
     SM_Evade,
     SM_Evade_Fear,
+    SM_Block,
     SM_Heal,
+    SM_Rally,
     SM_SonicAttack,
     SM_StandAndShootAttack,
     SM_HoseWeaponAttack,
     SM_Suicide,
-    SM_PlayerZedAttack1,
-    SM_PlayerZedAttack2,
-    SM_PlayerZedSpecial1,
-    SM_PlayerZedSpecial2,
-    SM_PlayerZedSpecial3,
-    SM_PlayerZedSpecial4,
+    SM_PlayerZedMove_LMB,
+    SM_PlayerZedMove_RMB,
+    SM_PlayerZedMove_V,
+    SM_PlayerZedMove_MMB,
+    SM_PlayerZedMove_Q,
+    SM_PlayerZedMove_G,
     SM_GrappleVictim,
     SM_HansGrappleVictim,
     SM_SirenVortexVictim,
@@ -368,11 +370,6 @@ var const name BattleBloodParamName;
 var const float MinBattleBloodValue;
 var const float BattleBloodRangeSq;
 var transient float BattleBloodParamValue;
-var const name DeathMaterialEffectParamName;
-var const float DeathMaterialEffectDuration;
-var transient float MaterialEffectDuration;
-var transient float MaterialEffectTimeRemaining;
-var transient name MaterialEffectParamName;
 var name LeftFootBoneName;
 var name RightFootBoneName;
 var name LeftHandBoneName;
@@ -408,7 +405,8 @@ var float SprintSpeed;
 var float SprintStrafeSpeed;
 var repnotify Vector ReplicatedFloor;
 var float TeammateCollisionRadiusPercent;
-var float ZedTimeSpeedScale;
+var protected float ZedTimeSpeedScale;
+var float AfflictionSpeedModifier;
 /** Base crouched eye height from bottom of the collision cylinder. */
 var(Camera) float BaseCrouchEyeHeight;
 var const float Bob<ClampMin=-0.05|ClampMax=0.05>;
@@ -472,6 +470,7 @@ var protected export editinline AkComponent WeaponAkComponent;
 var export editinline KFWeaponAmbientEchoHandler WeaponAmbientEchoHandler;
 var protected export editinline AkComponent FootstepAkComponent;
 var protected export editinline AkComponent DialogAkComponent;
+var protected AkEvent OnDeathStopEvent;
 var float LastReplicateTime;
 var KFAIController MyKFAIC;
 var const float ExtraCostForPath;
@@ -512,7 +511,7 @@ replication
         DeathFireStackedPower;
 
      if(bNetDirty && bNetOwner)
-        SprintSpeed;
+        AfflictionSpeedModifier, SprintSpeed;
 
      if((bNetDirty && bNetOwner) && bNetInitial)
         bIgnoreTeamCollision;
@@ -783,7 +782,7 @@ simulated function UpdateGameplayMICParams()
     }
 }
 
-simulated function bool UsePlayerControlledZedSkin();
+simulated event bool UsePlayerControlledZedSkin();
 
 simulated function bool CalcCamera(float fDeltaTime, out Vector out_CamLoc, out Rotator out_CamRot, out float out_FOV)
 {
@@ -1326,7 +1325,7 @@ simulated function bool GetAutoTargetBones(out array<name> WeakBones, out array<
     {
         WeakBones.AddItem(HeadBoneName;
     }
-    NormalBones.AddItem(TorsoBoneName;
+    NormalBones.AddItem('Spine1';
     NormalBones.AddItem(PelvisBoneName;
     return true;
 }
@@ -1802,9 +1801,16 @@ function int RecentDamageFrom(Pawn CheckKFP, optional out int DamageAmount)
 
 function AddTakenDamage(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType)
 {
-    if(Damage > 0)
+    if(!DamagerController.bIsPlayer && !DamagerController.bIsPlayer)
     {
-        UpdateDamageHistory(DamagerController, Damage, DamageCauser, DamageType);
+        NotifyFriendlyAIDamageTaken(DamagerController, Damage, DamageCauser, DamageType);        
+    }
+    else
+    {
+        if((Damage > 0) && DamagerController.GetTeamNum() != GetTeamNum())
+        {
+            UpdateDamageHistory(DamagerController, Damage, DamageCauser, DamageType);
+        }
     }
 }
 
@@ -1821,9 +1827,9 @@ function UpdateDamageHistory(Controller DamagerController, int Damage, Actor Dam
     {
         DamageHistory.Insert(0, 1;
     }
-    KFAIC = KFAIController(Controller);
-    if(DamagerController.bIsPlayer)
+    if((Controller != none) && !Controller.bIsPlayer)
     {
+        KFAIC = KFAIController(Controller);
         if(KFAIC != none)
         {
             DamageThreshold = float(HealthMax) * KFAIC.AggroPlayerHealthPercentage;
@@ -1843,32 +1849,12 @@ function UpdateDamageHistory(Controller DamagerController, int Damage, Actor Dam
                 {
                     bChangedEnemies = KFAIC.SetEnemy(BlockerPawn);
                 }
-            }            
-        }
-        else
-        {
-            UpdateDamageHistoryValues(DamagerController, Damage, DamageCauser, 0, Info, DamageType);
+            }
         }        
     }
     else
     {
-        if(KFAIC != none)
-        {
-            DamageThreshold = float(HealthMax) * KFAIC.AggroZedHealthPercentage;
-            UpdateDamageHistoryValues(DamagerController, Damage, DamageCauser, KFAIC.AggroZedResetTime, Info, DamageType);
-            if((KFAIC.IsAggroEnemySwitchAllowed() && DamagerController.Pawn != KFAIC.Enemy) && Info.Damage >= DamageThreshold)
-            {
-                BlockerPawn = KFAIC.GetPawnBlockingPathTo(DamagerController.Pawn);
-                if(BlockerPawn == none)
-                {
-                    bChangedEnemies = KFAIC.SetEnemyToZed(DamagerController.Pawn);
-                }
-            }            
-        }
-        else
-        {
-            UpdateDamageHistoryValues(DamagerController, Damage, DamageCauser, 0, Info, DamageType);
-        }
+        UpdateDamageHistoryValues(DamagerController, Damage, DamageCauser, 0, Info, DamageType);
     }
     DamageHistory[HistoryIndex] = Info;
     if((KFAIC != none) && bChangedEnemies)
@@ -1893,10 +1879,6 @@ function UpdateDamageHistoryValues(Controller DamagerController, int Damage, Act
 {
     local class<KFPerk> WeaponPerk;
 
-    if(DamagerController.GetTeamNum() == GetTeamNum())
-    {
-        return;
-    }
     InInfo.DamagerController = DamagerController;
     if((WorldInfo.TimeSeconds - InInfo.LastTimeDamaged) > DamageResetTime)
     {
@@ -1914,6 +1896,8 @@ function UpdateDamageHistoryValues(Controller DamagerController, int Damage, Act
         InInfo.DamagePerks.AddItem(WeaponPerk;
     }
 }
+
+function NotifyFriendlyAIDamageTaken(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType);
 
 function class<KFPerk> GetUsedWeaponPerk(Controller DamagerController, Actor DamageCauser, class<KFDamageType> DamageType)
 {
@@ -2018,13 +2002,6 @@ simulated function PrepareRagdoll()
     }
 }
 
-simulated function PlayDamageMaterialEffects(name DamageMICParamName, float Duration)
-{
-    MaterialEffectTimeRemaining = Duration;
-    MaterialEffectDuration = Duration;
-    MaterialEffectParamName = DamageMICParamName;
-}
-
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     TerminateEffectsOnDeath();
@@ -2079,6 +2056,7 @@ simulated function PlayRagdollDeath(class<DamageType> DamageType, Vector HitLoc)
     PrepareRagdoll();
     if(InitRagdoll())
     {
+        Mesh.SetTickGroup(2);
         SetTickGroup(2);
         Mesh.SetRBChannel(16);
         Mesh.SetRBCollidesWithChannel(16, ShouldCorpseCollideWithDead());
@@ -2154,9 +2132,14 @@ function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
     return false;
 }
 
+simulated function bool IsCombatCapable()
+{
+    return ((IsAliveAndWell() && !IsHeadless()) && !IsImpaired()) && !IsIncapacitated();
+}
+
 simulated function bool IsImpaired();
 
-function bool IsIncapacitated()
+simulated function bool IsIncapacitated()
 {
     return (((IsDoingSpecialMove(4) || IsDoingSpecialMove(8)) || IsDoingSpecialMove(9)) || IsDoingSpecialMove(6)) || IsDoingSpecialMove(5);
 }
@@ -2175,6 +2158,10 @@ simulated function TerminateEffectsOnDeath()
     WeaponAmbientEchoHandler.StopAllEchoes(bPendingDelete);
     DialogAkComponent.StopEvents();
     AfflictionHandler.ShutDown();
+    if(OnDeathStopEvent != none)
+    {
+        PostAkEvent(OnDeathStopEvent);
+    }
 }
 
 // Export UKFPawn::execCalcOctagonRegion(FFrame&, void* const)
@@ -2724,7 +2711,15 @@ simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float Exce
 {
     if(SpecialMove != 0)
     {
-        SpecialMoves[SpecialMove].AnimEndNotify(SeqNode, PlayedTime, ExcessTime);
+        if(SpecialMoves[SpecialMove].bShouldDeferToPostTick)
+        {
+            SpecialMoves[SpecialMove].DeferredSeqName = SeqNode.AnimSeqName;
+            TWDeferredWorkManager(WorldInfo.DeferredWorkManager).DeferSpecialMoveAnimEnd(SpecialMoves[SpecialMove]);            
+        }
+        else
+        {
+            SpecialMoves[SpecialMove].AnimEndNotify(SeqNode, PlayedTime, ExcessTime);
+        }
     }
 }
 
@@ -2983,10 +2978,6 @@ simulated event Tick(float DeltaTime)
             TickDamageOverTime(DeltaTime);
         }
     }
-    if(WeaponAmbientEchoHandler.EchoSets.Length > 0)
-    {
-        WeaponAmbientEchoHandler.TickEchoes();
-    }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         if(bNeedsProcessHitFx)
@@ -2994,9 +2985,9 @@ simulated event Tick(float DeltaTime)
             ProcessHitFx();
             bNeedsProcessHitFx = false;
         }
-        if(MaterialEffectTimeRemaining > float(0))
+        if(WeaponAmbientEchoHandler.EchoSets.Length > 0)
         {
-            UpdateMaterialEffect(DeltaTime);
+            WeaponAmbientEchoHandler.TickEchoes();
         }
     }
     if((SpecialMove != 0) && SpecialMoves[SpecialMove] != none)
@@ -3004,30 +2995,6 @@ simulated event Tick(float DeltaTime)
         SpecialMoves[SpecialMove].Tick(DeltaTime);
     }
     bNeedsProcessHitFx = false;
-}
-
-function UpdateMaterialEffect(float DeltaTime)
-{
-    local float Intensity;
-    local MaterialInstanceConstant MIC;
-
-    if(MaterialEffectTimeRemaining > 0)
-    {
-        if(MaterialEffectTimeRemaining > DeltaTime)
-        {
-            MaterialEffectTimeRemaining -= DeltaTime;
-            Intensity = 1 - FClamp(MaterialEffectTimeRemaining / MaterialEffectDuration, 0, 1);            
-        }
-        else
-        {
-            MaterialEffectTimeRemaining = 0;
-            Intensity = 1;
-        }
-        foreach CharacterMICs(MIC,)
-        {
-            MIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);            
-        }        
-    }
 }
 
 simulated function ProcessHitFx()
@@ -3195,7 +3162,7 @@ simulated event bool IsMovementDisabledDuringSpecialMove()
 
 function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling)
 {
-    if((((Health <= 0) || (Physics == 2) && !bIgnoreFalling) || IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(27))
+    if((((Health <= 0) || (Physics == 2) && !bIgnoreFalling) || IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(29))
     {
         return false;
     }
@@ -3472,6 +3439,7 @@ defaultproperties
     SprintSpeed=460
     TeammateCollisionRadiusPercent=0.8
     ZedTimeSpeedScale=1
+    AfflictionSpeedModifier=1
     BaseCrouchEyeHeight=48
     Bob=0.01
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -3515,8 +3483,10 @@ defaultproperties
         SpecialMoveClasses(24)=none
         SpecialMoveClasses(25)=none
         SpecialMoveClasses(26)=none
-        SpecialMoveClasses(27)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(28)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(27)=none
+        SpecialMoveClasses(28)=none
+        SpecialMoveClasses(29)=class'KFSM_GrappleVictim'
+        SpecialMoveClasses(30)=class'KFSM_HansGrappleVictim'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler
@@ -3594,6 +3564,7 @@ defaultproperties
         ScriptRigidBodyCollisionThreshold=200
         PerObjectShadowCullDistance=2500
         bAllowPerObjectShadows=true
+        TickGroup=ETickingGroup.TG_DuringAsyncWork
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn.KFPawnSkeletalMeshComponent'
     Mesh=KFPawnSkeletalMeshComponent
@@ -3648,6 +3619,7 @@ defaultproperties
         ScriptRigidBodyCollisionThreshold=200
         PerObjectShadowCullDistance=2500
         bAllowPerObjectShadows=true
+        TickGroup=ETickingGroup.TG_DuringAsyncWork
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn.KFPawnSkeletalMeshComponent'
     Components(3)=KFPawnSkeletalMeshComponent

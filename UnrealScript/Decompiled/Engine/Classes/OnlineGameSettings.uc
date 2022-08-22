@@ -50,7 +50,7 @@ var databinding int PingInMs;
 var databinding float MatchQuality;
 var databinding const OnlineSubsystem.EOnlineGameState GameState;
 var const int BuildUniqueId;
-var const string LobbyId;
+var string LobbyId;
 var int GfxID;
 var int ElementIdx;
 var array<PlayerResult> PlayersInGame;

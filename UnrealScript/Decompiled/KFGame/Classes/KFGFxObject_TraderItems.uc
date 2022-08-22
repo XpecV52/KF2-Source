@@ -35,6 +35,7 @@ enum EFilterTypeUI
     FT_Assault,
     FT_Melee,
     FT_SMG,
+    FT_None,
     FT_MAX
 };
 
@@ -59,16 +60,18 @@ struct native STraderItem
     var name DualClassName;
     var class<KFPerk> AssociatedPerkClass;
     var int MaxSpareAmmo;
-    var int InitialSpareMags;
-    var int MaxSecondaryAmmoCount;
-    var byte MagazineCapacity;
-    var byte BlocksRequired;
     var string SecondaryAmmoImagePath;
-    var KFGFxObject_TraderItems.EFilterTypeUI TraderFilter;
-    var byte InventoryGroup;
     var float GroupPriority;
     /** Dynamic array of stats to display. Each weapon has the opportunity to set its own stats. */
     var() editconst array<editconst STraderItemWeaponStats> WeaponStats;
+    var byte InitialSpareMags;
+    var byte MagazineCapacity;
+    var byte BlocksRequired;
+    var byte InitialSecondaryAmmo;
+    var byte MaxSecondaryAmmo;
+    var KFGFxObject_TraderItems.EFilterTypeUI TraderFilter;
+    var KFGFxObject_TraderItems.EFilterTypeUI AltTraderFilter;
+    var byte InventoryGroup;
 
     structdefaultproperties
     {
@@ -78,15 +81,17 @@ struct native STraderItem
         DualClassName=None
         AssociatedPerkClass=none
         MaxSpareAmmo=0
-        InitialSpareMags=0
-        MaxSecondaryAmmoCount=0
-        MagazineCapacity=0
-        BlocksRequired=0
         SecondaryAmmoImagePath=""
-        TraderFilter=EFilterTypeUI.FT_Pistol
-        InventoryGroup=0
         GroupPriority=0
         WeaponStats=none
+        InitialSpareMags=0
+        MagazineCapacity=0
+        BlocksRequired=0
+        InitialSecondaryAmmo=0
+        MaxSecondaryAmmo=0
+        TraderFilter=EFilterTypeUI.FT_Pistol
+        AltTraderFilter=EFilterTypeUI.FT_None
+        InventoryGroup=0
     }
 };
 

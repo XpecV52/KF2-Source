@@ -10,7 +10,7 @@ package tripwire.containers.trader
     import flash.text.TextField;
     import scaleform.clik.constants.InputValue;
     import scaleform.clik.constants.NavigationCode;
-    import scaleform.clik.controls.Button;
+    import scaleform.clik.core.UIComponent;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
@@ -20,12 +20,16 @@ package tripwire.containers.trader
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
     import tripwire.containers.TripContainer;
+    import tripwire.controls.TripButton;
     import tripwire.controls.TripScrollingList;
     import tripwire.controls.trader.TraderArmorItem;
     import tripwire.controls.trader.TraderAutofillButton;
     import tripwire.controls.trader.TraderGrenadeItem;
     import tripwire.controls.trader.TraderPlayerAmmoItemRenderer;
+    import tripwire.controls.trader.TraderPlayerBuySellRenderer;
+    import tripwire.controls.trader.TraderPlayerInventoryInfoRenderer;
     import tripwire.menus.TraderMenu;
+    import tripwire.widgets.MultiPromptDisplay;
     
     public class TraderPlayerInventoryContainer extends TripContainer
     {
@@ -34,6 +38,8 @@ package tripwire.containers.trader
         public var playerInfoContainer:TraderPlayerInfoContainer;
         
         public var infoList:TripScrollingList;
+        
+        public var sellList:TripScrollingList;
         
         public var magList:TripScrollingList;
         
@@ -57,9 +63,51 @@ package tripwire.containers.trader
         
         public var lastFillItem:TraderPlayerAmmoItemRenderer;
         
-        public var changePerkButton:Button;
+        public var lastSellItem:TraderPlayerBuySellRenderer;
+        
+        public var lastInfoItem:TraderPlayerInventoryInfoRenderer;
+        
+        public var changePerkButton:TripButton;
         
         private var _bCanUseMenu:Boolean = false;
+        
+        public var cachedCurrentElement:UIComponent;
+        
+        public var currentSelectedIndex:int = -1;
+        
+        public var promptsDisplay:MultiPromptDisplay;
+        
+        public var disabledPromptAlpha:Number = 0.25;
+        
+        public var autofillValue:String;
+        
+        public var autofillState:int;
+        
+        public var bListFocused:Boolean = false;
+        
+        public var bGrenadeFocused:Boolean = false;
+        
+        public var bArmorFocused:Boolean = false;
+        
+        public var itemSoldSoundEffect:String = "TRADER_SELL_WEAPON";
+        
+        public const MAG_LIST_GAMEPAD_LOCATION:int = 422;
+        
+        public const MAG_LIST_KBM_LOCATION:int = 30;
+        
+        public const FILL_LIST_GAMEPAD_LOCATION:int = 526;
+        
+        public const FILL_LIST_KBM_LOCATION:int = 142;
+        
+        public const SELL_LIST_GAMEPAD_LOCATION:int = 678;
+        
+        public const SELL_LIST_KBM_LOCATION:int = 646;
+        
+        public const INFO_LIST_GAMEPAD_LOCATION:int = -202;
+        
+        public const INFO_LIST_KBM_LOCATION:int = 30;
+        
+        private var _bPerkMenuOpen:Boolean;
         
         public function TraderPlayerInventoryContainer()
         {
@@ -69,19 +117,32 @@ package tripwire.containers.trader
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            this.changePerkButton.bHasVerticalAlign = true;
+            this.promptsDisplay.visible = false;
+            this.armorItem.addEventListener(MouseEvent.MOUSE_OVER,this.armorMouseOver,false,0,true);
+            this.armorItem.fillButton.addEventListener(MouseEvent.MOUSE_OVER,this.armorMouseOver,false,0,true);
+            this.grenadeItem.addEventListener(MouseEvent.MOUSE_OVER,this.grenadeMouseOver,false,0,true);
+            this.grenadeItem.magButton.addEventListener(MouseEvent.MOUSE_OVER,this.grenadeMouseOver,false,0,true);
+            this.grenadeItem.fillButton.addEventListener(MouseEvent.MOUSE_OVER,this.grenadeMouseOver,false,0,true);
             this.armorItem.fillButton.addEventListener(ButtonEvent.PRESS,this.fillArmor,false,0,true);
             this.grenadeItem.magButton.addEventListener(ButtonEvent.PRESS,this.buyGrenade,false,0,true);
             this.grenadeItem.fillButton.addEventListener(ButtonEvent.PRESS,this.fillGrenades,false,0,true);
             this.autoFillButton.addEventListener(ButtonEvent.PRESS,this.autoFill,false,0,true);
             this.changePerkButton.addEventListener(ButtonEvent.PRESS,this.playerInfoContainer.togglePerkList,false,0,true);
             this.infoList.addEventListener(ListEvent.INDEX_CHANGE,this.onItemSelected,false,0,true);
-            this.infoList.addEventListener(ListEvent.ITEM_PRESS,this.sellSelectedController,false,0,true);
+            this.infoList.addEventListener(ListEvent.ITEM_PRESS,this.onControllerBuyMag,false,0,true);
             this.infoList.addEventListener(MouseEvent.DOUBLE_CLICK,this.sellSelected,false,0,true);
+            this.infoList.addEventListener(ListEvent.ITEM_ROLL_OVER,this.selectItem,false,0,true);
             this.magList.addEventListener(IndexEvent.INDEX_CHANGE,this.buyMag,false,0,true);
+            this.magList.addEventListener(ListEvent.ITEM_ROLL_OVER,this.selectItem,false,0,true);
+            this.sellList.addEventListener(IndexEvent.INDEX_CHANGE,this.sellItem,false,0,true);
+            this.sellList.addEventListener(ListEvent.ITEM_ROLL_OVER,this.selectItem,false,0,true);
             this.fillButtonList.addEventListener(IndexEvent.INDEX_CHANGE,this.fillAmmo,false,0,true);
+            this.fillButtonList.addEventListener(ListEvent.ITEM_ROLL_OVER,this.selectItem,false,0,true);
             this.autoFillButton.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
-            this.grenadeItem.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
+            this.grenadeItem.fillButton.addEventListener(MouseEvent.MOUSE_OVER,this.changeFocusIn,false,0,true);
             this.armorItem.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
+            this.grenadeItem.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
             this.autoFillButton.addEventListener(FocusEvent.FOCUS_OUT,this.changeFocusOut,false,0,true);
             this.grenadeItem.addEventListener(FocusEvent.FOCUS_OUT,this.changeFocusOut,false,0,true);
             this.armorItem.addEventListener(FocusEvent.FOCUS_OUT,this.changeFocusOut,false,0,true);
@@ -89,17 +150,19 @@ package tripwire.containers.trader
             this.armorItem.addEventListener(ButtonEvent.PRESS,this.armorSelected,false,0,true);
             this.infoList.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
             this.playerInfoContainer.addEventListener(IndexEvent.INDEX_CHANGE,this.onTogglePlayerInfoMenu,false,0,true);
-            this.changePerkButton.tabIndex = 1;
-            this.autoFillButton.tabIndex = 2;
-            this.armorItem.tabIndex = 3;
-            this.grenadeItem.tabIndex = 4;
+            this.armorItem.tabIndex = 1;
+            this.grenadeItem.tabIndex = 2;
             this.infoList.tabIndex = 5;
             currentElement = this.armorItem.armorInfoContainer;
             this.updateControllerVisibility();
             this.parent.addEventListener("FadeOutAssets",this.fadeoutAssets);
             this.infoList.bStayOpenOnSelection = true;
             this.magList.bStayOpenOnSelection = true;
+            this.sellList.bStayOpenOnSelection = true;
             this.fillButtonList.bStayOpenOnSelection = true;
+            this.autoFillButton.tabEnabled = false;
+            this.changePerkButton.tabEnabled = false;
+            this.playerInfoContainer.owner = this;
         }
         
         override public function selectContainer() : void
@@ -127,14 +190,29 @@ package tripwire.containers.trader
                 this.grenadeItem.focused = 0;
                 this.grenadeItem.grenadeInfoContainer.focused = 0;
                 this.grenadeItem.grenadeInfoContainer.selected = false;
-                FocusHandler.getInstance().setFocus(this.armorItem);
-                this.infoList.focused = 0;
-                this.infoList.selectedIndex = -1;
+                if(this.cachedCurrentElement)
+                {
+                    FocusHandler.getInstance().setFocus(this.cachedCurrentElement);
+                }
+                else
+                {
+                    FocusHandler.getInstance().setFocus(this.armorItem);
+                }
+                if(this.cachedCurrentElement == this.infoList)
+                {
+                    this.infoList.selectedIndex = this.currentSelectedIndex == -1 ? 0 : int(this.currentSelectedIndex);
+                    this.infoList.focused = 1;
+                }
+                else
+                {
+                    this.infoList.selectedIndex = -1;
+                }
             }
         }
         
         override public function deselectContainer() : void
         {
+            this.currentSelectedIndex = this.infoList.selectedIndex;
             this.infoList.focused = 0;
             this.infoList.selectedIndex = -1;
             this.autoFillButton.selected = false;
@@ -161,6 +239,14 @@ package tripwire.containers.trader
             currentElement = null;
         }
         
+        public function swapLists() : void
+        {
+            this.infoList.x = !!bManagerUsingGamepad ? Number(this.INFO_LIST_GAMEPAD_LOCATION) : Number(this.INFO_LIST_KBM_LOCATION);
+            this.sellList.x = !!bManagerUsingGamepad ? Number(this.SELL_LIST_GAMEPAD_LOCATION) : Number(this.SELL_LIST_KBM_LOCATION);
+            this.fillButtonList.x = !!bManagerUsingGamepad ? Number(this.FILL_LIST_GAMEPAD_LOCATION) : Number(this.FILL_LIST_KBM_LOCATION);
+            this.magList.x = !!bManagerUsingGamepad ? Number(this.MAG_LIST_GAMEPAD_LOCATION) : Number(this.MAG_LIST_KBM_LOCATION);
+        }
+        
         public function set bCanUseMenu(param1:Boolean) : void
         {
             this._bCanUseMenu = param1;
@@ -179,6 +265,20 @@ package tripwire.containers.trader
             this.armorItem.fillTitle = !!param1.armorLabel ? param1.armorLabel : "";
             this.grenadeItem.magButton.label = !!param1.grenadeLabel ? param1.grenadeLabel : "";
             this.grenadeItem.fillButton.label = !!param1.fillLabel ? param1.fillLabel : "";
+            var _loc2_:String = !!param1.magLabel ? param1.magLabel : "";
+            var _loc3_:String = !!param1.sellPrompt ? param1.sellPrompt : "";
+            var _loc4_:String = !!param1.perkPrompt ? param1.perkPrompt : "";
+        }
+        
+        public function get bPerkMenuOpen() : *
+        {
+            return this._bPerkMenuOpen;
+        }
+        
+        public function set bPerkMenuOpen(param1:Boolean) : void
+        {
+            this._bPerkMenuOpen = param1;
+            this.dispatchEvent(new Event("PerkMenuChanged"));
         }
         
         public function set perkChangeLocked(param1:Boolean) : void
@@ -190,6 +290,12 @@ package tripwire.containers.trader
         {
             this.infoList.dataProvider = new DataProvider(param1);
             this.infoList.invalidateData();
+        }
+        
+        public function set sellData(param1:Array) : void
+        {
+            this.sellList.dataProvider = new DataProvider(param1);
+            this.sellList.invalidateData();
         }
         
         public function set magData(param1:Array) : void
@@ -206,8 +312,11 @@ package tripwire.containers.trader
         
         public function set autoFillCost(param1:Object) : void
         {
+            this.autofillValue = param1.buttonValue;
+            this.autofillState = param1.buttonState;
             this.autoFillButton.buttonValue = param1.buttonValue;
             this.autoFillButton.buttonState = param1.buttonState;
+            dispatchEvent(new Event("AutoFillChanged"));
         }
         
         public function set armorInfo(param1:Object) : void
@@ -228,28 +337,41 @@ package tripwire.containers.trader
         public function updateControllerVisibility() : void
         {
             var _loc1_:TraderPlayerAmmoItemRenderer = null;
-            var _loc2_:int = 0;
+            var _loc2_:TraderPlayerBuySellRenderer = null;
             this.autoFillButton.bUsingGamepad = bManagerUsingGamepad;
             this.playerInfoContainer.updateControllerVisibility();
+            this.swapLists();
             this.autoFillButton.focusable = bManagerUsingGamepad;
+            this.armorItem.updateControllerVisibility(bManagerUsingGamepad);
+            this.grenadeItem.updateControllerVisibility(bManagerUsingGamepad);
+            this.autoFillButton.visible = !bManagerUsingGamepad;
+            this.changePerkButton.visible = !bManagerUsingGamepad;
+            var _loc3_:int = 0;
+            while(_loc3_ < this.infoList.rowCount)
+            {
+                _loc1_ = TraderPlayerAmmoItemRenderer(this.magList.getRendererAt(_loc3_));
+                if(_loc1_ != null)
+                {
+                    _loc1_.controllerIconVisibility = false;
+                    _loc1_.bgVisibility = !bManagerUsingGamepad;
+                }
+                _loc1_ = TraderPlayerAmmoItemRenderer(this.fillButtonList.getRendererAt(_loc3_));
+                if(_loc1_ != null)
+                {
+                    _loc1_.controllerIconVisibility = false;
+                    _loc1_.bgVisibility = !bManagerUsingGamepad;
+                }
+                _loc2_ = TraderPlayerBuySellRenderer(this.sellList.getRendererAt(_loc3_));
+                if(_loc2_ != null)
+                {
+                    _loc2_.controllerIconVisibility = false;
+                    _loc2_.bgVisibility = !bManagerUsingGamepad;
+                }
+                _loc3_++;
+            }
             if(!bManagerUsingGamepad)
             {
                 dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,TraderMenu.SHOW_DETAILS));
-                _loc2_ = 0;
-                while(_loc2_ < this.infoList.rowCount)
-                {
-                    _loc1_ = TraderPlayerAmmoItemRenderer(this.magList.getRendererAt(_loc2_));
-                    if(_loc1_ != null)
-                    {
-                        _loc1_.controllerIconVisibility = bManagerUsingGamepad;
-                    }
-                    _loc1_ = TraderPlayerAmmoItemRenderer(this.fillButtonList.getRendererAt(_loc2_));
-                    if(_loc1_ != null)
-                    {
-                        _loc1_.controllerIconVisibility = bManagerUsingGamepad;
-                    }
-                    _loc2_++;
-                }
             }
             else
             {
@@ -269,11 +391,23 @@ package tripwire.containers.trader
             {
                 switch(_loc2_.navEquivalent)
                 {
-                    case NavigationCode.GAMEPAD_X:
-                        this.onControllerBuyMag();
-                        break;
                     case NavigationCode.GAMEPAD_Y:
+                        this.sellSelectedController();
+                        param1.handled = true;
+                        break;
+                    case NavigationCode.GAMEPAD_X:
                         this.onControllerFillAmmo();
+                        param1.handled = true;
+                        break;
+                    case NavigationCode.GAMEPAD_A:
+                        if(this.bCanUseMenu)
+                        {
+                            if(currentElement == this.grenadeItem && this.grenadeItem.magButton.enabled)
+                            {
+                                ExternalInterface.call("Callback_BuyGrenade");
+                                param1.handled = true;
+                            }
+                        }
                 }
             }
         }
@@ -309,6 +443,7 @@ package tripwire.containers.trader
         
         public function OpenPerkSelect() : void
         {
+            this.bPerkMenuOpen = true;
             this.autoFillButton.enabled = false;
             this.fadeoutAssets();
             this.updateFocusableOnFillButtons(false);
@@ -324,6 +459,7 @@ package tripwire.containers.trader
         
         public function ClosePerkSelect() : void
         {
+            this.bPerkMenuOpen = false;
             this.autoFillButton.enabled = true;
             this.fadeinAssets();
             this.updateFocusableOnFillButtons(true);
@@ -331,6 +467,9 @@ package tripwire.containers.trader
             this.updateFocusableOnInfoList(true);
             this.playerInfoContainer.perkListContainer.perkList.focusable = false;
             this.armorItem.focused = 1;
+            if(!bManagerUsingGamepad)
+            {
+            }
         }
         
         protected function tabEnableButtons(param1:Boolean) : void
@@ -371,6 +510,8 @@ package tripwire.containers.trader
         {
             var _loc2_:TraderPlayerAmmoItemRenderer = null;
             var _loc3_:TraderPlayerAmmoItemRenderer = null;
+            var _loc4_:TraderPlayerBuySellRenderer = null;
+            var _loc5_:TraderPlayerInventoryInfoRenderer = null;
             if(this.lastMagItem)
             {
                 this.lastMagItem.controllerIconVisibility = false;
@@ -379,14 +520,24 @@ package tripwire.containers.trader
             {
                 this.lastFillItem.controllerIconVisibility = false;
             }
+            if(this.lastSellItem)
+            {
+                this.lastSellItem.controllerIconVisibility = false;
+            }
+            if(this.lastInfoItem)
+            {
+                this.lastInfoItem.gamepadHighlight.visible = false;
+            }
             if(param1.index >= 0)
             {
                 dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,TraderMenu.SHOW_DETAILS));
                 ExternalInterface.call("Callback_PlayerItemSelected",param1.index);
                 if(bManagerUsingGamepad)
                 {
-                    _loc2_ = TraderPlayerAmmoItemRenderer(this.magList.getRendererAt(param1.index));
-                    _loc3_ = TraderPlayerAmmoItemRenderer(this.fillButtonList.getRendererAt(param1.index));
+                    _loc2_ = TraderPlayerAmmoItemRenderer(this.magList.getRendererAt(param1.index,this.infoList.scrollPosition));
+                    _loc3_ = TraderPlayerAmmoItemRenderer(this.fillButtonList.getRendererAt(param1.index,this.infoList.scrollPosition));
+                    _loc4_ = TraderPlayerBuySellRenderer(this.sellList.getRendererAt(param1.index,this.infoList.scrollPosition));
+                    _loc5_ = TraderPlayerInventoryInfoRenderer(this.infoList.getRendererAt(param1.index,this.infoList.scrollPosition));
                     if(_loc2_)
                     {
                         _loc2_.controllerIconVisibility = true;
@@ -397,11 +548,22 @@ package tripwire.containers.trader
                         _loc3_.controllerIconVisibility = true;
                         this.lastFillItem = _loc3_;
                     }
+                    if(_loc4_)
+                    {
+                        _loc4_.controllerIconVisibility = true;
+                        this.lastSellItem = _loc4_;
+                    }
+                    if(_loc5_)
+                    {
+                        _loc5_.gamepadHighlight.visible = true;
+                        this.lastInfoItem = _loc5_;
+                    }
+                    this.currentSelectedIndex = param1.index;
                 }
             }
         }
         
-        protected function sellSelectedController(param1:ListEvent) : void
+        protected function sellSelectedController() : void
         {
             if(this.bCanUseMenu)
             {
@@ -423,22 +585,35 @@ package tripwire.containers.trader
             }
         }
         
+        protected function selectItem(param1:ListEvent) : void
+        {
+            this.grenadeItem.grenadeInfoContainer.selected = false;
+            this.armorItem.armorInfoContainer.selected = false;
+            this.infoList.selectedIndex = param1.index;
+        }
+        
         public function itemSold() : *
         {
-            Extensions.gfxProcessSound(this,"ButtonSoundTheme","TraderSell_Select");
+            if(Extensions.gfxProcessSound != null)
+            {
+                Extensions.gfxProcessSound(this,"UI",this.itemSoldSoundEffect);
+            }
         }
         
         protected function onControllerBuyMag() : void
         {
             if(this.bCanUseMenu)
             {
-                if(currentElement == this.grenadeItem && this.grenadeItem.magButton.enabled)
+                if(bManagerUsingGamepad)
                 {
-                    ExternalInterface.call("Callback_BuyGrenade");
-                }
-                else if(this.infoList.selectedIndex >= 0 && this.magList.getRendererAt(this.infoList.selectedIndex).selectable)
-                {
-                    ExternalInterface.call("Callback_BuyMagazine",this.infoList.selectedIndex);
+                    if(currentElement == this.grenadeItem && this.grenadeItem.magButton.enabled)
+                    {
+                        ExternalInterface.call("Callback_BuyGrenade");
+                    }
+                    else if(this.infoList.selectedIndex >= 0 && this.magList.getRendererAt(this.infoList.selectedIndex).selectable)
+                    {
+                        ExternalInterface.call("Callback_BuyMagazine",this.infoList.selectedIndex);
+                    }
                 }
             }
         }
@@ -451,11 +626,22 @@ package tripwire.containers.trader
             }
         }
         
+        protected function sellItem(param1:IndexEvent) : void
+        {
+            if(this.bCanUseMenu)
+            {
+                if(!bManagerUsingGamepad)
+                {
+                    ExternalInterface.call("Callback_BuyOrSellItem");
+                }
+            }
+        }
+        
         protected function onControllerFillAmmo() : void
         {
             if(this.bCanUseMenu)
             {
-                if(currentElement == this.grenadeItem && this.grenadeItem.magButton.enabled)
+                if(currentElement == this.grenadeItem && this.grenadeItem.fillButton.enabled)
                 {
                     ExternalInterface.call("Callback_FillGrenades");
                 }
@@ -510,18 +696,16 @@ package tripwire.containers.trader
             }
         }
         
-        protected function changeFocusIn(param1:FocusEvent) : void
+        public function globalAutoFill() : void
         {
-            if(param1.target == this.armorItem)
-            {
-                this.armorItem.armorInfoContainer.selected = true;
-                ExternalInterface.call("Callback_ArmorItemSelected");
-            }
-            else if(param1.target == this.grenadeItem)
-            {
-                this.grenadeItem.grenadeInfoContainer.selected = true;
-                ExternalInterface.call("Callback_GrenadeItemSelected");
-            }
+            ExternalInterface.call("Callback_AutoFill");
+        }
+        
+        protected function armorMouseOver(param1:MouseEvent) : void
+        {
+            ExternalInterface.call("Callback_ArmorItemSelected");
+            this.armorItem.armorInfoContainer.selected = true;
+            this.grenadeItem.grenadeInfoContainer.selected = false;
             if(param1.target != this.infoList)
             {
                 this.infoList.selectedIndex = -1;
@@ -529,6 +713,60 @@ package tripwire.containers.trader
             else if(bManagerUsingGamepad)
             {
                 this.infoList.selectedIndex = 0;
+            }
+        }
+        
+        protected function grenadeMouseOver(param1:MouseEvent) : void
+        {
+            ExternalInterface.call("Callback_GrenadeItemSelected");
+            this.grenadeItem.grenadeInfoContainer.selected = true;
+            this.armorItem.armorInfoContainer.selected = false;
+            if(param1.target != this.infoList)
+            {
+                this.infoList.selectedIndex = -1;
+            }
+            else if(bManagerUsingGamepad)
+            {
+                this.infoList.selectedIndex = 0;
+            }
+        }
+        
+        protected function changeFocusIn(param1:FocusEvent) : void
+        {
+            this.bArmorFocused = false;
+            this.bListFocused = false;
+            this.bGrenadeFocused = false;
+            if(param1.target == this.armorItem)
+            {
+                this.armorItem.armorInfoContainer.selected = true;
+                this.cachedCurrentElement = this.armorItem;
+                ExternalInterface.call("Callback_ArmorItemSelected");
+                this.bArmorFocused = true;
+            }
+            else if(param1.target == this.grenadeItem)
+            {
+                this.grenadeItem.grenadeInfoContainer.selected = true;
+                this.cachedCurrentElement = this.grenadeItem;
+                ExternalInterface.call("Callback_GrenadeItemSelected");
+                this.bGrenadeFocused = true;
+            }
+            else if(param1.target == this.autoFillButton)
+            {
+                this.autoFillButton.selected = true;
+                this.cachedCurrentElement = this.autoFillButton;
+            }
+            if(param1.target != this.infoList)
+            {
+                this.infoList.selectedIndex = -1;
+                this.currentSelectedIndex = -1;
+            }
+            else if(bManagerUsingGamepad)
+            {
+                this.cachedCurrentElement = this.infoList;
+                this.infoList.selectedIndex = this.currentSelectedIndex == -1 ? 0 : int(this.currentSelectedIndex);
+                this.grenadeItem.grenadeInfoContainer.selected = false;
+                this.armorItem.armorInfoContainer.selected = false;
+                this.bListFocused = true;
             }
         }
         
@@ -566,42 +804,48 @@ package tripwire.containers.trader
         
         protected function fadeoutAssets() : void
         {
-            TweenMax.to(this.armorItem,12,{
+            this.autoFillButton.mouseEnabled = false;
+            TweenMax.to(this.armorItem,4,{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.divLine,12,{
+            TweenMax.to(this.divLine,4,{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.grenadeItem,12,{
+            TweenMax.to(this.grenadeItem,4,{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.autoFillButton,12,{
+            TweenMax.to(this.autoFillButton,4,{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.infoList,12,{
+            TweenMax.to(this.infoList,4,{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.magList,12,{
+            TweenMax.to(this.magList,4,{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.fillButtonList,12,{
+            TweenMax.to(this.sellList,4,{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.playerScrollBar,12,{
+            TweenMax.to(this.fillButtonList,4,{
+                "alpha":0,
+                "ease":Cubic.easeOut,
+                "useFrames":true
+            });
+            TweenMax.to(this.playerScrollBar,4,{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true
@@ -610,50 +854,57 @@ package tripwire.containers.trader
         
         protected function fadeinAssets() : void
         {
-            TweenMax.to(this.armorItem,12,{
-                "delay":6,
+            this.autoFillButton.mouseEnabled = true;
+            TweenMax.to(this.armorItem,4,{
+                "delay":2,
                 "alpha":1,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.divLine,12,{
-                "delay":6,
+            TweenMax.to(this.divLine,4,{
+                "delay":2,
                 "alpha":1,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.grenadeItem,12,{
-                "delay":6,
+            TweenMax.to(this.grenadeItem,4,{
+                "delay":2,
                 "alpha":1,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.autoFillButton,12,{
-                "delay":6,
+            TweenMax.to(this.autoFillButton,4,{
+                "delay":2,
                 "alpha":1,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.infoList,12,{
-                "delay":6,
+            TweenMax.to(this.infoList,4,{
+                "delay":2,
                 "alpha":1,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.magList,12,{
-                "delay":6,
+            TweenMax.to(this.magList,4,{
+                "delay":2,
                 "alpha":1,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.fillButtonList,12,{
-                "delay":6,
+            TweenMax.to(this.sellList,4,{
+                "delay":2,
                 "alpha":1,
                 "ease":Cubic.easeOut,
                 "useFrames":true
             });
-            TweenMax.to(this.playerScrollBar,12,{
-                "delay":6,
+            TweenMax.to(this.fillButtonList,4,{
+                "delay":2,
+                "alpha":1,
+                "ease":Cubic.easeOut,
+                "useFrames":true
+            });
+            TweenMax.to(this.playerScrollBar,4,{
+                "delay":2,
                 "alpha":1,
                 "ease":Cubic.easeOut,
                 "useFrames":true

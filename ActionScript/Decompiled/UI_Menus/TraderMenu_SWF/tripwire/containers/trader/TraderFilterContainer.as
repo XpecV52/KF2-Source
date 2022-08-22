@@ -1,6 +1,7 @@
 package tripwire.containers.trader
 {
     import flash.display.MovieClip;
+    import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
     import scaleform.clik.data.DataProvider;
@@ -8,6 +9,7 @@ package tripwire.containers.trader
     import scaleform.clik.events.IndexEvent;
     import tripwire.containers.TripContainer;
     import tripwire.controls.trader.TraderFilterButtonBar;
+    import tripwire.controls.trader.TraderFilterTab;
     import tripwire.controls.trader.TraderFilterTabBar;
     
     public class TraderFilterContainer extends TripContainer
@@ -35,6 +37,14 @@ package tripwire.containers.trader
         private var _filterIndex:int = 0;
         
         private var _tabIndex:int = 0;
+        
+        private const START_WIDTH:int = 760;
+        
+        private const FILTER_WIDTH:int = 56;
+        
+        private const FILTER_NAME_ORIGINAL_Y:Number = 132.8;
+        
+        private const FILTER_NAME_NOFILTER_Y:Number = 76.8;
         
         public function TraderFilterContainer()
         {
@@ -77,12 +87,14 @@ package tripwire.containers.trader
         public function set filterSource(param1:Array) : void
         {
             this.filterButtonBar.dataProvider = new DataProvider(param1);
+            this.filterButtonBar.x = (this.START_WIDTH - this.filterButtonBar.dataProvider.length * this.FILTER_WIDTH) / 2;
         }
         
         public function set selectedTab(param1:int) : void
         {
             this.tabBar.selectedIndex = param1;
             this._tabIndex = param1;
+            this.filterText = !!this.filterButtonBar.visible ? this.filterName.text : TraderFilterTab(this.tabBar.getButtonAt(param1)).label;
         }
         
         public function get selectedTab() : int
@@ -103,9 +115,15 @@ package tripwire.containers.trader
         
         public function set filterVisibliity(param1:Boolean) : void
         {
-            this.filterButtonBar.visible = param1;
-            this.leftArrow.visible = param1;
-            this.rightArrow.visible = param1;
+            if(this.filterButtonBar.visible != param1)
+            {
+                this.filterButtonBar.visible = param1;
+                this.leftArrow.visible = param1;
+                this.rightArrow.visible = param1;
+                this.controllerIconVisibility = bManagerUsingGamepad;
+                this.filterName.y = !!param1 ? Number(this.FILTER_NAME_ORIGINAL_Y) : Number(this.FILTER_NAME_NOFILTER_Y);
+                dispatchEvent(new Event("UpdateShopListPosition"));
+            }
         }
         
         public function changeTabIndex(param1:int) : Boolean
@@ -133,8 +151,8 @@ package tripwire.containers.trader
         {
             this.leftButtonIcon.visible = param1;
             this.rightButtonIcon.visible = param1;
-            this.leftTriggerIcon.visible = param1;
-            this.rightTriggerIcon.visible = param1;
+            this.leftTriggerIcon.visible = !!this.filterButtonBar.visible ? Boolean(param1) : false;
+            this.rightTriggerIcon.visible = !!this.filterButtonBar.visible ? Boolean(param1) : false;
         }
     }
 }

@@ -11,14 +11,56 @@ class KFPawn_ZedCrawler extends KFPawn_Monster
 
 var Actor LastBumpLevelActor;
 var float LastBumpLevelTime;
+var protected const KFGameExplosion DeathExplosionTemplate;
+var protected repnotify bool bIsSpecialCrawler;
 
-function PossessedBy(Controller C, bool bVehicleTransition)
+replication
 {
+     if(bNetInitial)
+        bIsSpecialCrawler;
+}
+
+simulated event ReplicatedEvent(name VarName)
+{
+    if(VarName == 'bIsSpecialCrawler')
+    {
+        UpdateBodyMIC();
+        return;
+    }
+    super.ReplicatedEvent(VarName);
+}
+
+event PossessedBy(Controller C, bool bVehicleTransition)
+{
+    local KFAIController_ZedCrawler CrawlerController;
+
     super.PossessedBy(C, bVehicleTransition);
     LastBumpLevelActor = none;
-    if(KFAIController_ZedCrawler(MyKFAIC) != none)
+    CrawlerController = KFAIController_ZedCrawler(MyKFAIC);
+    if(CrawlerController != none)
     {
-        KFAIController_ZedCrawler(MyKFAIC).OriginalMeshTranslation = Mesh.Translation;
+        CrawlerController.OriginalMeshTranslation = Mesh.Translation;
+        if(FRand() < class<KFDifficulty_Crawler>(DifficultySettings).static.GetSpecialCrawlerChance(self, KFGameReplicationInfo(WorldInfo.GRI)))
+        {
+            bIsSpecialCrawler = true;
+            if(WorldInfo.NetMode != NM_DedicatedServer)
+            {
+                UpdateBodyMIC();
+            }
+        }
+    }
+}
+
+simulated event bool UsePlayerControlledZedSkin()
+{
+    return bIsSpecialCrawler || super.UsePlayerControlledZedSkin();
+}
+
+protected simulated function UpdateBodyMIC()
+{
+    if((GetCharacterMonsterInfo()) != none)
+    {
+        CharacterMICs[0].SetParent(GetCharacterMonsterInfo().PlayerControlledSkins[0]);
     }
 }
 
@@ -58,6 +100,32 @@ event SpiderBumpLevel(Vector HitLocation, Vector HitNormal, optional Actor Wall)
                     MyKFAIC.AILog_Internal((((("(Pawn) [PHYS_FALLING] " $ string(GetFuncName())) $ " Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'Crawler');
                 }
             }
+        }
+    }
+}
+
+simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
+{
+    local bool bShouldGib;
+    local KFGoreManager GoreManager;
+    local array<name> OutGibBoneList;
+    local int NumGibs;
+
+    if((bIsSpecialCrawler && !bPlayedDeath) && DamageType != Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType)
+    {
+        Class'KFSM_PlayerCrawler_Suicide'.static.TriggerExplosion(self, DeathExplosionTemplate, true);
+        bShouldGib = true;
+    }
+    super.PlayDying(DamageType, HitLoc);
+    if(bShouldGib && WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
+        if(GoreManager != none)
+        {
+            NumGibs = 10 + Rand(4);
+            NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
+            GetClosestHitBones(NumGibs, Location, OutGibBoneList);
+            GoreManager.CauseGibsAndApplyImpulse(self, Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType, Location, OutGibBoneList, none, Mesh.GetBoneLocation(Mesh.GetBoneName(0)));
         }
     }
 }
@@ -147,6 +215,21 @@ function int GetSpotterDialogID()
 
 defaultproperties
 {
+    begin object name=ExploTemplate0 class=KFGameExplosion
+        ExplosionEffects=KFImpactEffectInfo'ZED_Crawler_ARCH.ToxicGasAoE_Explosion'
+        Damage=4
+        DamageRadius=600
+        DamageFalloffExponent=0
+        MyDamageType=Class'KFDT_Toxic_PlayerCrawlerSuicide'
+        KnockDownStrength=0
+        MomentumTransferScale=100
+        ExplosionSound=AkEvent'WW_WEP_EXP_Dynamite.Play_WEP_EXP_Dynamite_Explosion'
+        FractureMeshRadius=0
+        FracturePartVel=0
+        CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+    object end
+    // Reference: KFGameExplosion'Default__KFPawn_ZedCrawler.ExploTemplate0'
+    DeathExplosionTemplate=ExploTemplate0
     bKnockdownWhenJumpedOn=true
     bIsCrawlerClass=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_Crawler_Archetype'
@@ -164,6 +247,7 @@ defaultproperties
     XPValues[2]=10
     XPValues[3]=10
     DamageTypeModifiers=/* Array type was not detected. */
+    DifficultySettings=Class'KFDifficulty_Crawler'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -194,7 +278,7 @@ defaultproperties
     DialogAkComponent=AkComponent'Default__KFPawn_ZedCrawler.DialogAkSoundComponent'
     DamageRecoveryTimeHeavy=0.75
     Mass=50
-    GroundSpeed=280
+    GroundSpeed=400
     MaxFallSpeed=6000
     Health=55
     ControllerClass=Class'KFGame.KFAIController_ZedCrawler'

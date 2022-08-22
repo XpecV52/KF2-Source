@@ -1,5 +1,7 @@
 package tripwire.containers.inventory
 {
+    import com.greensock.TweenMax;
+    import com.greensock.easing.*;
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.FocusEvent;
@@ -8,16 +10,19 @@ package tripwire.containers.inventory
     import flash.text.TextField;
     import scaleform.clik.constants.InputValue;
     import scaleform.clik.constants.NavigationCode;
+    import scaleform.clik.controls.ScrollBar;
     import scaleform.clik.controls.TileList;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.events.FocusHandlerEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.events.ListEvent;
     import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
     import tripwire.managers.MenuManager;
@@ -25,6 +30,10 @@ package tripwire.containers.inventory
     public class InventoryItemListContainer extends TripContainer
     {
          
+        
+        public var ListBG:MovieClip;
+        
+        public var scrollbar:ScrollBar;
         
         public var inventoryItemScrollingList:TileList;
         
@@ -34,7 +43,11 @@ package tripwire.containers.inventory
         
         public var itemDescriptionText:TextField;
         
+        public var _inventoryListSelectedIndex:int = 0;
+        
         public var filtersText:TextField;
+        
+        public var noItemsText:TextField;
         
         public var allButton:TripButton;
         
@@ -62,10 +75,30 @@ package tripwire.containers.inventory
         
         public var Owner:TripContainer;
         
+        private var listWidgetsArray:Array;
+        
         public function InventoryItemListContainer()
         {
             this.buttonList = new Vector.<TripButton>();
+            this.listWidgetsArray = new Array();
             super();
+            TextFieldEx.setTextAutoSize(this.noItemsText,"shrink");
+        }
+        
+        override public function openContainer(param1:Boolean = true) : void
+        {
+            var _loc2_:Number = NaN;
+            super.openContainer(param1);
+            if(bManagerUsingGamepad)
+            {
+                _loc2_ = 0;
+                while(_loc2_ < this.listWidgetsArray.length)
+                {
+                    this.listWidgetsArray[_loc2_].visible = false;
+                    _loc2_++;
+                }
+                this.scrollbar.alpha = 0;
+            }
         }
         
         override public function selectContainer() : void
@@ -81,6 +114,7 @@ package tripwire.containers.inventory
                 showDimLeftSide(false);
                 this.inventoryItemScrollingList.focused = 0;
                 this.inventoryItemScrollingList.selectedIndex = -1;
+                this.showList(false);
                 FocusManager.setModalClip(null);
                 if(MenuManager.manager != null)
                 {
@@ -89,12 +123,38 @@ package tripwire.containers.inventory
             }
             else
             {
+                this.showList(true);
                 this.inventoryItemScrollingList.focused = 1;
+                this.inventoryItemScrollingList.selectedIndex = !!bManagerUsingGamepad ? int(this._inventoryListSelectedIndex) : -1;
                 FocusManager.setModalClip(this.inventoryItemScrollingList);
                 if(MenuManager.manager != null)
                 {
                     MenuManager.manager.numPrompts = 2;
                 }
+            }
+        }
+        
+        private function showList(param1:Boolean) : *
+        {
+            var _loc2_:Number = NaN;
+            if(!bManagerUsingGamepad)
+            {
+                _loc2_ = 0;
+                while(_loc2_ < this.listWidgetsArray.length)
+                {
+                    this.listWidgetsArray[_loc2_].visible = true;
+                    _loc2_++;
+                }
+                this.scrollbar.alpha = 1;
+                return;
+            }
+            if(param1)
+            {
+                this.openListAnimation();
+            }
+            else if(this.ListBG.visible)
+            {
+                this.closeListAnimation();
             }
         }
         
@@ -110,6 +170,7 @@ package tripwire.containers.inventory
                 this.craftingMatsButton.label = !!param1.craftingMats ? param1.craftingMats : "";
                 this.craftWeaponsButton.label = !!param1.craftWeapon ? param1.craftWeapon : "";
                 this.craftCosmeticsButton.label = !!param1.craftCosmetic ? param1.craftCosmetic : "";
+                this.noItemsText.text = !!param1.noItems ? param1.noItems : "";
             }
         }
         
@@ -133,6 +194,8 @@ package tripwire.containers.inventory
             this.inventoryItemScrollingList.tabIndex = 6;
             this.craftWeaponsButton.tabIndex = 7;
             this.craftCosmeticsButton.tabIndex = 8;
+            this.inventoryItemScrollingList.addEventListener(FocusHandlerEvent.FOCUS_IN,this.onInventoryListFocusChange,false,0,true);
+            this.inventoryItemScrollingList.addEventListener(FocusHandlerEvent.FOCUS_OUT,this.onInventoryListFocusChange,false,0,true);
             this.allButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.weaponSkinsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.cosmeticsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
@@ -157,8 +220,13 @@ package tripwire.containers.inventory
             rightSidePanels.push(this.inventoryItemScrollingList);
             rightSidePanels.push(this.itemDescriptionText);
             rightSidePanels.push(this.itemNameText);
+            this.listWidgetsArray.push(this.inventoryItemScrollingList);
+            this.listWidgetsArray.push(this.ListBG);
+            this.listWidgetsArray.push(this.itemDescriptionText);
+            this.listWidgetsArray.push(this.itemNameText);
             this.currentFilter = this.allButton;
             this.inventoryItemScrollingList.addEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver,false,0,true);
+            this.noItemsText.visible = false;
         }
         
         public function onItemRollOver(param1:ListEvent) : void
@@ -168,7 +236,7 @@ package tripwire.containers.inventory
         
         override public function handleInput(param1:InputEvent) : void
         {
-            if(!this.Owner.bOpen)
+            if(!this.Owner.bOpen || !this.Owner.bSelected)
             {
                 param1.handled = false;
                 super.handleInput(param1);
@@ -183,18 +251,21 @@ package tripwire.containers.inventory
                         if(this.leftSideFocused && this.allButton.focused == 1)
                         {
                             param1.handled = true;
+                            return;
                         }
                         break;
                     case NavigationCode.DOWN:
                         if(this.leftSideFocused && this.craftCosmeticsButton.focused == 1)
                         {
                             param1.handled = true;
+                            return;
                         }
                         break;
                     case NavigationCode.LEFT:
                         if(this.leftSideFocused)
                         {
                             param1.handled = true;
+                            return;
                         }
                         break;
                     case NavigationCode.GAMEPAD_B:
@@ -219,6 +290,27 @@ package tripwire.containers.inventory
             }
         }
         
+        public function onInventoryListFocusChange(param1:FocusHandlerEvent) : void
+        {
+            if(param1.target.hasFocus)
+            {
+                FocusManager.setModalClip(this.inventoryItemScrollingList);
+                this.leftSideFocused = false;
+                showDimLeftSide(true);
+                this.showList(true);
+                if(MenuManager.manager != null)
+                {
+                    MenuManager.manager.numPrompts = 2;
+                }
+            }
+            else
+            {
+                this._inventoryListSelectedIndex = !!bManagerUsingGamepad ? int(param1.target.selectedIndex) : -1;
+                param1.target.selectedIndex = -1;
+                FocusManager.setModalClip(null);
+            }
+        }
+        
         public function onCraftFocusIn(param1:FocusEvent) : void
         {
             var _loc2_:int = 0;
@@ -239,7 +331,6 @@ package tripwire.containers.inventory
                 if(this.buttonList[_loc3_] == _loc2_)
                 {
                     this.buttonList[_loc3_].selected = true;
-                    ExternalInterface.call("Callback_InventoryFilter",_loc3_);
                 }
                 else
                 {
@@ -261,11 +352,17 @@ package tripwire.containers.inventory
                     this.currentFilter = _loc2_;
                     ExternalInterface.call("Callback_InventoryFilter",_loc3_);
                     this.inventoryItemScrollingList.focusable = true;
-                    this.inventoryItemScrollingList.selectedIndex = 0;
-                    this.leftSideFocused = false;
-                    showDimLeftSide(true);
-                    FocusManager.setFocus(this.inventoryItemScrollingList);
-                    FocusManager.setModalClip(this.inventoryItemScrollingList);
+                    this.inventoryItemScrollingList.selectedIndex = !!bManagerUsingGamepad ? 0 : -1;
+                    if(bManagerUsingGamepad)
+                    {
+                        FocusManager.setFocus(this.inventoryItemScrollingList);
+                        FocusManager.setModalClip(this.inventoryItemScrollingList);
+                        this.showList(true);
+                    }
+                    else
+                    {
+                        FocusManager.setFocus(null);
+                    }
                     if(MenuManager.manager != null)
                     {
                         MenuManager.manager.numPrompts = 2;
@@ -296,7 +393,6 @@ package tripwire.containers.inventory
                 }
                 this.itemNameText.text = param1.label;
                 this.itemDescriptionText.text = !!param1.typeRarity ? param1.typeRarity : "";
-                FocusManager.setModalClip(null);
             }
         }
         
@@ -308,18 +404,75 @@ package tripwire.containers.inventory
             if(param1.length > 0)
             {
                 this.itemDetails = param1[0];
+                this.noItemsText.visible = false;
+                this.scrollbar.visible = true;
             }
             else
             {
                 this.inventoryItemScrollingList.focusable = false;
                 this.leftSideFocused = true;
                 showDimLeftSide(false);
+                this.showList(false);
                 this.inventoryItemScrollingList.focused = 0;
                 this.inventoryItemScrollingList.selectedIndex = -1;
                 FocusManager.setModalClip(null);
                 FocusHandler.getInstance().setFocus(this.currentFilter);
+                this.noItemsText.visible = true;
+                this.scrollbar.visible = false;
             }
             this.inventoryItemScrollingList.scrollPosition = 0;
+        }
+        
+        override protected function onInputChange(param1:Event) : *
+        {
+            var _loc2_:Number = NaN;
+            super.onInputChange(param1);
+            if(!bManagerUsingGamepad)
+            {
+                _loc2_ = 0;
+                while(_loc2_ < this.listWidgetsArray.length)
+                {
+                    this.listWidgetsArray[_loc2_].visible = true;
+                    this.listWidgetsArray[_loc2_].alpha = 1;
+                    _loc2_++;
+                }
+                this.scrollbar.alpha = 1;
+            }
+        }
+        
+        protected function openListAnimation() : *
+        {
+            TweenMax.killTweensOf(this.listWidgetsArray);
+            TweenMax.fromTo(this.listWidgetsArray,ANIM_TIME,{
+                "z":ANIM_OFFSET_Z,
+                "alpha":0,
+                "ease":Linear.easeNone,
+                "useFrames":true
+            },{
+                "z":ANIM_START_Z,
+                "autoAlpha":1,
+                "ease":Linear.easeNone,
+                "delay":ANIM_TIME,
+                "useFrames":true
+            });
+            this.scrollbar.alpha = 1;
+        }
+        
+        protected function closeListAnimation() : *
+        {
+            TweenMax.killTweensOf(this.listWidgetsArray);
+            TweenMax.fromTo(this.listWidgetsArray,ANIM_TIME,{
+                "z":ANIM_START_Z,
+                "alpha":1,
+                "ease":Linear.easeNone,
+                "useFrames":true
+            },{
+                "z":ANIM_OFFSET_Z,
+                "autoAlpha":0,
+                "ease":Linear.easeNone,
+                "useFrames":true
+            });
+            this.scrollbar.alpha = 0;
         }
     }
 }

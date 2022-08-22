@@ -15,8 +15,10 @@ var localized array<string> DifficultyStrings;
 var localized array<string> LengthStrings;
 var localized array<string> ServerTypeStrings;
 var localized array<string> PermissionStrings;
+var localized array<string> ConsolePermissionStrings;
 var localized array<string> ModeStrings;
 
+var localized string TeamSwappedString;
 var localized string NoPreferenceString;
 var localized string OKString;
 var localized string ConfirmString;
@@ -41,6 +43,15 @@ var localized string NoSwitchReasonString;
 
 var localized string TeamString;
 var localized string AllString;
+var localized string LoadingString;
+
+var localized string AutoTradeCompleteString;
+var localized string AutoFillCompleteString;
+var localized string WeaponUpgradeComepleteString;
+var localized string SecondaryWeaponPurchasedString;
+var localized string NoItemsPurchasedString;
+
+var localized string SetTakeoverServerPasswordTitle;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -51,7 +62,7 @@ static function string GetDifficultyString( float GameDifficulty )
 {
 	local byte DifficultyIndex;
 
-	DifficultyIndex = class'KFDifficultyInfo'.static.GetDifficultyIndex(GameDifficulty);
+	DifficultyIndex = class'KFGameDifficultyInfo'.static.GetDifficultyIndex(GameDifficulty);
 	if( 0 < default.DifficultyStrings.length && DifficultyIndex < default.DifficultyStrings.length )
 	{
 		return default.DifficultyStrings[DifficultyIndex];
@@ -92,9 +103,17 @@ static function string GetPermissionString( float PermissionIndex )
  	return default.NoPreferenceString;
 }
 
-static function array<string> GetPermissionStringsArray()
+static function array<string> GetPermissionStringsArray(bool bConsoleBuild)
 {
-	return default.PermissionStrings;
+	if(bConsoleBuild)
+	{
+		return default.ConsolePermissionStrings;
+	}
+	else
+	{
+		return default.PermissionStrings;
+	}
+	
 }
 
 static function array<string> GetGameModeStringsArray()
@@ -114,4 +133,22 @@ static function string GetGameModeString( int GameModeIndex )
 		return default.ModeStrings[GameModeIndex];
 	}
  	return default.NoPreferenceString;
+}
+
+
+
+static function string GetFriendlyMapName(string MapName)
+{
+	local KFMapSummary MapData;
+
+	MapData = class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
+
+	if ( MapData != none && MapData.DisplayName != "")
+	{
+		return MapData.DisplayName;
+	}
+	else
+	{
+     	return MapName;
+	}
 }

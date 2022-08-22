@@ -4,6 +4,7 @@ package tripwire.containers.Perks
     import scaleform.clik.controls.ScrollingList;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.data.DataProvider;
+    import tripwire.controls.TripUILoaderQueue;
     import tripwire.controls.perks.PerksPassiveDataLineRenderer;
     
     public class PerkDetailsContainer extends PerkContainerBase
@@ -28,13 +29,13 @@ package tripwire.containers.Perks
         
         public var weaponIconTextField3:TextField;
         
-        public var weaponIcon0:UILoader;
+        public var weaponIcon0:TripUILoaderQueue;
         
-        public var weaponIcon1:UILoader;
+        public var weaponIcon1:TripUILoaderQueue;
         
-        public var weaponIcon2:UILoader;
+        public var weaponIcon2:TripUILoaderQueue;
         
-        public var weaponIcon3:UILoader;
+        public var weaponIcon3:TripUILoaderQueue;
         
         public var passivesList:ScrollingList;
         

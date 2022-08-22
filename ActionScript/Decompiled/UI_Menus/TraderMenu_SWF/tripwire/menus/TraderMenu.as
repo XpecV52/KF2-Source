@@ -1,6 +1,7 @@
 package tripwire.menus
 {
     import com.greensock.TweenMax;
+    import com.greensock.easing.Cubic;
     import com.greensock.easing.Linear;
     import com.greensock.events.TweenEvent;
     import flash.display.MovieClip;
@@ -16,11 +17,13 @@ package tripwire.menus
     import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import tripwire.containers.TripContainer;
+    import tripwire.containers.trader.TraderButtonPromptContainer;
     import tripwire.containers.trader.TraderItemDetailsContainer;
     import tripwire.containers.trader.TraderPlayerInfoContainer;
     import tripwire.containers.trader.TraderPlayerInventoryContainer;
     import tripwire.containers.trader.TraderShopContainer;
     import tripwire.controls.TripButton;
+    import tripwire.controls.trader.TraderFilterTabBar;
     
     public class TraderMenu extends TripContainer
     {
@@ -28,6 +31,12 @@ package tripwire.menus
         public static const HIDE_DETAILS:int = 255;
         
         public static const SHOW_DETAILS:int = 254;
+        
+        public static var ITEM_UPDATED = "ItemUpdated";
+        
+        public static var PERK_MENU_CHANGED = "PerkMenuChanged";
+        
+        public static var AUTOFILL_CHANGED = "AutoFillChanged";
          
         
         public var playerInventoryContainer:TraderPlayerInventoryContainer;
@@ -36,9 +45,13 @@ package tripwire.menus
         
         public var itemDetailsContainer:TraderItemDetailsContainer;
         
+        public var gameInfoContainer:MovieClip;
+        
         public var exitButton:TripButton;
         
         public var cancelPrompt:MovieClip;
+        
+        public var centralPrompts:TraderButtonPromptContainer;
         
         private const SELECTED_ALPHA = 1;
         
@@ -50,9 +63,33 @@ package tripwire.menus
         
         private const StoreContainer = 1;
         
+        private var _favoriteString:String;
+        
+        private var _unfavoriteString:String;
+        
+        private var _changePerkString:String;
+        
+        private var _autoTradeString:String;
+        
+        private var _selectString:String;
+        
         private var _exitPromptString;
         
         private var _backPromptString;
+        
+        public var disabledPromptAlpha:Number = 0.24;
+        
+        private var _bCanAutoTrade:Boolean = true;
+        
+        private var CONTAINER_ROT;
+        
+        private var shopStartX:int;
+        
+        private var inventoryStartX:int;
+        
+        private const CONTAINER_OFFSET_X:int = 16;
+        
+        public var bRightSideFocused:Boolean;
         
         public function TraderMenu()
         {
@@ -67,9 +104,13 @@ package tripwire.menus
             this.playerInventoryContainer.addEventListener(IndexEvent.INDEX_CHANGE,this.selectedItemChanged,false,0,true);
             this.playerInventoryContainer.addEventListener(FocusEvent.FOCUS_IN,this.containerFocusIn,false,0,true);
             this.shopContainer.addEventListener(FocusEvent.FOCUS_IN,this.containerFocusIn,false,0,true);
-            this.shopContainer.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
-            this.playerInventoryContainer.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.shopContainer.shopList.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            TraderFilterTabBar(this.shopContainer.filterContainer.tabBar).addEventListener(IndexEvent.INDEX_CHANGE,this.shopTabChanged,false,0,true);
+            this.playerInventoryContainer.grenadeItem.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.playerInventoryContainer.playerInfoContainer.addEventListener(IndexEvent.INDEX_CHANGE,this.onPerkContainer,false,0,true);
+            this.itemDetailsContainer.addEventListener(ITEM_UPDATED,this.itemUpdated,false,0,true);
+            this.playerInventoryContainer.addEventListener(PERK_MENU_CHANGED,this.perkMenuChanged,false,0,true);
+            this.playerInventoryContainer.addEventListener(AUTOFILL_CHANGED,this.autofillChanged,false,0,true);
             leftSidePanels.push(this.shopContainer);
             rightSidePanels.push(this.playerInventoryContainer);
             this.exitButton.focusable = false;
@@ -79,6 +120,10 @@ package tripwire.menus
                 this.playerInventoryContainer.selectContainer();
             }
             this.updateControllerVisibility();
+            this.CONTAINER_ROT = this.playerInventoryContainer.rotationY;
+            this.shopStartX = this.shopContainer.x;
+            this.inventoryStartX = this.playerInventoryContainer.x;
+            this.updateCentralPrompts();
         }
         
         public function set selectedMenuIndex(param1:int) : void
@@ -121,9 +166,81 @@ package tripwire.menus
             this._backPromptString = param1;
         }
         
+        public function set localizeCentralPrompts(param1:Object) : void
+        {
+            this.centralPrompts.autofillText = !!param1.autoFillString ? param1.autoFillString : "M_AUTOFILL_M";
+            this._favoriteString = !!param1.favoriteString ? param1.favoriteString : "M_FAVORITE_M";
+            this._unfavoriteString = !!param1.unFavoriteString ? param1.unFavoriteString : "M_UNFAVORITE_M";
+            this._changePerkString = !!param1.changePerkString ? param1.changePerkString : "M_CHANGE PERK_M";
+            this._autoTradeString = !!param1.autoTradeString ? param1.autoTradeString : "M_AUTOTRADE_M";
+            this._selectString = !!param1.selectString ? param1.selectString : "M_SELECT_M";
+        }
+        
+        public function set autofillCost(param1:String) : void
+        {
+            this.centralPrompts.autofillNum = param1;
+            this.centralPrompts.autofillState = this.playerInventoryContainer.autofillState;
+        }
+        
+        public function updateCentralPrompts(param1:Boolean = false) : void
+        {
+            var _loc2_:Array = new Array();
+            var _loc3_:String = !!this.itemDetailsContainer.bIsFavorite ? this._unfavoriteString : this._favoriteString;
+            this.centralPrompts.alpha = !!param1 ? Number(0) : Number(1);
+            if(this.playerInventoryContainer.bPerkMenuOpen)
+            {
+                this.centralPrompts.bShowAutoFill = false;
+                _loc2_.push({
+                    "promptText":this._selectString,
+                    "buttonDisplay":"xboxtypes_a"
+                });
+                _loc2_.push({
+                    "promptText":this._backPromptString,
+                    "buttonDisplay":"xboxtypes_b"
+                });
+                this.centralPrompts.promptData = _loc2_;
+                this.centralPrompts.buttonPromptContainer.setPromptAlpha("xboxtypes_a",1);
+                this.centralPrompts.buttonPromptContainer.setPromptAlpha("xboxtypes_b",1);
+            }
+            else
+            {
+                this.centralPrompts.bShowAutoFill = true;
+                _loc2_.push({
+                    "promptText":_loc3_,
+                    "buttonDisplay":"xboxtypes_back"
+                });
+                _loc2_.push({
+                    "promptText":this._changePerkString,
+                    "buttonDisplay":"xboxtypes_rightthumbstick"
+                });
+                _loc2_.push({
+                    "promptText":this._exitPromptString,
+                    "buttonDisplay":"xboxtypes_b"
+                });
+                this.centralPrompts.promptData = _loc2_;
+                this.centralPrompts.buttonPromptContainer.setPromptAlpha("xboxtypes_back",!!this.itemDetailsContainer.bCanFavorite ? Number(1) : Number(this.disabledPromptAlpha));
+                this.centralPrompts.buttonPromptContainer.setPromptAlpha("xboxtypes_rightthumbstick",!!this.playerInventoryContainer.changePerkButton.enabled ? Number(1) : Number(this.disabledPromptAlpha));
+            }
+        }
+        
+        public function itemUpdated(param1:Event) : void
+        {
+            this.updateCentralPrompts();
+        }
+        
+        public function perkMenuChanged(param1:Event) : void
+        {
+            this.updateCentralPrompts(true);
+        }
+        
+        public function autofillChanged(param1:Event) : void
+        {
+            this.autofillCost = this.playerInventoryContainer.autofillValue;
+        }
+        
         public function updateControllerVisibility() : *
         {
-            this.cancelPrompt.visible = bManagerUsingGamepad;
+            this.centralPrompts.visible = bManagerUsingGamepad;
             this.exitButton.visible = !bManagerUsingGamepad;
             this.exitPromptString = this._exitPromptString;
             this.shopContainer.updateControllerVisibility();
@@ -131,27 +248,39 @@ package tripwire.menus
             this.itemDetailsContainer.updateControllerVisibility();
         }
         
+        public function shopTabChanged(param1:IndexEvent) : void
+        {
+            if(!bManagerUsingGamepad)
+            {
+                this.playerInventoryContainer.infoList.selectedIndex = -1;
+                this.playerInventoryContainer.grenadeItem.grenadeInfoContainer.selected = false;
+                this.playerInventoryContainer.armorItem.armorInfoContainer.selected = false;
+            }
+        }
+        
         protected function containerFocusIn(param1:FocusEvent) : void
         {
             if(param1.target != this.playerInventoryContainer)
             {
-                this.playerInventoryContainer.infoList.selectedIndex = -1;
             }
             if(param1.target != this.shopContainer)
             {
-                this.shopContainer.shopList.selectedIndex = -1;
             }
         }
         
         protected function selectedItemChanged(param1:IndexEvent) : void
         {
             this.itemDetailsContainer.visible = param1.index == SHOW_DETAILS;
+            if(!bManagerUsingGamepad)
+            {
+                this.shopContainer.shopList.selectedIndex = -1;
+            }
         }
         
         override public function handleInput(param1:InputEvent) : void
         {
             var _loc2_:InputDetails = param1.details;
-            if(!bOpen)
+            if(!bOpen || !_bReadyForInput)
             {
                 return;
             }
@@ -159,28 +288,52 @@ package tripwire.menus
             {
                 switch(param1.details.navEquivalent)
                 {
-                    case NavigationCode.LEFT:
-                        if(this._selectedMenuIndex < this.StoreContainer && this.playerInventoryContainer.changePerkButton.focused != 1 && !this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen)
+                    case NavigationCode.RIGHT:
+                        if(this._selectedMenuIndex < this.StoreContainer && this.playerInventoryContainer.autoFillButton.focused != 1 && !this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen)
                         {
                             this.selectedMenuIndex += 1;
+                            param1.handled = true;
                         }
                         break;
                     case NavigationCode.GAMEPAD_B:
                         if(!this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen)
                         {
                             ExternalInterface.call("Callback_Close");
+                            param1.handled = true;
                         }
                         break;
-                    case NavigationCode.RIGHT:
+                    case NavigationCode.LEFT:
                         if(this._selectedMenuIndex > this.PlayerInventory)
                         {
                             this.selectedMenuIndex = this.selectedMenuIndex - 1;
+                            param1.handled = true;
+                        }
+                        break;
+                    case NavigationCode.GAMEPAD_L3:
+                        if(!this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen)
+                        {
+                            this.playerInventoryContainer.globalAutoFill();
+                            param1.handled = true;
+                        }
+                        break;
+                    case NavigationCode.GAMEPAD_BACK:
+                        if(this.itemDetailsContainer.visible && this.itemDetailsContainer.bCanFavorite == true && !this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen)
+                        {
+                            this.itemDetailsContainer.favoriteItem();
+                            this.updateCentralPrompts();
+                            param1.handled = true;
                         }
                         break;
                     case NavigationCode.GAMEPAD_R3:
-                        if(this.itemDetailsContainer.visible)
+                        if(!this.playerInventoryContainer.bPerkMenuOpen && this.playerInventoryContainer.changePerkButton.enabled)
                         {
-                            this.itemDetailsContainer.favoriteItem();
+                            if(this._selectedMenuIndex > this.PlayerInventory)
+                            {
+                                this.selectedMenuIndex = this.selectedMenuIndex - 1;
+                            }
+                            this.playerInventoryContainer.playerInfoContainer.doTogglePerkList();
+                            this.updateCentralPrompts();
+                            param1.handled = true;
                         }
                 }
             }
@@ -200,14 +353,22 @@ package tripwire.menus
                 this.setSelectedContainer(true,true);
                 this.shopContainer.deselectContainer();
                 this.playerInventoryContainer.deselectContainer();
+                this.resetBothSides();
             }
             this.updateControllerVisibility();
         }
         
         private function setSelectedContainer(param1:Boolean, param2:Boolean) : void
         {
-            this.shopContainer.alpha = !!param1 ? Number(this.SELECTED_ALPHA) : Number(this.UNSELECTED_ALPHA);
-            this.playerInventoryContainer.alpha = !!param2 ? Number(this.SELECTED_ALPHA) : Number(this.UNSELECTED_ALPHA);
+            if(param1)
+            {
+                showDimLeftSide(false);
+            }
+            else
+            {
+                showDimLeftSide(true);
+            }
+            this.ShowPanelPrompts(param1,param2);
         }
         
         protected function exitMenu(param1:ButtonEvent) : *
@@ -303,6 +464,69 @@ package tripwire.menus
                         this.cancelPrompt.textField.text = this._exitPromptString;
                 }
             }
+        }
+        
+        public function ShowPanelPrompts(param1:Boolean, param2:Boolean) : *
+        {
+            if(bManagerUsingGamepad)
+            {
+                this.shopContainer.promptsDisplay.visible = param1;
+                this.playerInventoryContainer.promptsDisplay.visible = param2;
+            }
+        }
+        
+        override public function dimLeftSide(param1:Boolean) : void
+        {
+            if(bManagerUsingGamepad)
+            {
+                TweenMax.to(this.shopContainer,4,{
+                    "ease":Cubic.easeOut,
+                    "useFrames":true,
+                    "alpha":(!param1 ? this.SELECTED_ALPHA : this.UNSELECTED_ALPHA),
+                    "rotationY":(!!param1 ? -this.CONTAINER_ROT : 0),
+                    "x":(!param1 ? this.shopStartX + this.CONTAINER_OFFSET_X : this.shopStartX)
+                });
+            }
+            if(param1)
+            {
+                this.shopContainer.shopList.selectedIndex = -1;
+            }
+        }
+        
+        override public function dimRightSide(param1:Boolean) : void
+        {
+            if(bManagerUsingGamepad)
+            {
+                TweenMax.to(this.playerInventoryContainer,4,{
+                    "ease":Cubic.easeOut,
+                    "useFrames":true,
+                    "alpha":(!param1 ? this.SELECTED_ALPHA : this.UNSELECTED_ALPHA),
+                    "rotationY":(!!param1 ? this.CONTAINER_ROT : 0),
+                    "x":(!param1 ? this.inventoryStartX - this.CONTAINER_OFFSET_X : this.inventoryStartX)
+                });
+            }
+            if(param1)
+            {
+                this.playerInventoryContainer.infoList.selectedIndex = -1;
+                this.playerInventoryContainer.grenadeItem.grenadeInfoContainer.selected = false;
+                this.playerInventoryContainer.armorItem.armorInfoContainer.selected = false;
+            }
+        }
+        
+        public function resetBothSides() : void
+        {
+            TweenMax.killTweensOf(this.shopContainer);
+            TweenMax.killTweensOf(this.playerInventoryContainer);
+            TweenMax.set(this.shopContainer,{
+                "alpha":this.SELECTED_ALPHA,
+                "rotationY":-this.CONTAINER_ROT,
+                "x":this.shopStartX
+            });
+            TweenMax.set(this.playerInventoryContainer,{
+                "alpha":this.SELECTED_ALPHA,
+                "rotationY":this.CONTAINER_ROT,
+                "x":this.inventoryStartX
+            });
         }
     }
 }

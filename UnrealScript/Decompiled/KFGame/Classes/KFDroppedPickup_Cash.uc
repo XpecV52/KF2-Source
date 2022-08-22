@@ -24,18 +24,18 @@ function GiveTo(Pawn P)
         if(((KFPRI != none) && KFPRI != TosserPRI) && KFPH != none)
         {
             KFPH.UpdateDoshCaught(CashAmount, TosserPRI);
+            AddDoshForBenefector(TosserPRI);
         }
         if(KFPRI != none)
         {
             KFPRI.AddDosh(CashAmount);
-            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
             {
                 WorldInfo.TWLogEvent("dosh_picked_up", KFPRI, "#" $ string(CashAmount));
             }
         }
         bForceNetUpdate = true;
         P.PlaySoundBase(PickupSound);
-        AddDoshForBenefector(TosserPRI);
     }
     PickedUpBy(P);
 }
@@ -66,9 +66,28 @@ event Destroyed()
     Inventory = none;
 }
 
+auto state Pickup
+{
+    event OnSleepRBPhysics()
+    {
+        local Pawn P;
+
+        global.OnSleepRBPhysics();
+        foreach TouchingActors(Class'Pawn', P)
+        {
+            if(P == Instigator)
+            {
+                Touch(P, none, Location, vect(0, 0, 1));
+            }            
+        }        
+    }
+    stop;    
+}
+
 defaultproperties
 {
     PickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Dosh'
+    bUseLowHealthDelay=false
     begin object name=Sprite class=SpriteComponent
         ReplacementPrimitive=none
     object end

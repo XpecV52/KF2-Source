@@ -7,6 +7,7 @@ package tripwire.containers.Perks
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ListEvent;
     import scaleform.clik.managers.FocusHandler;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.controls.perks.PerkSelectLineRenderer;
     import tripwire.managers.MenuManager;
@@ -61,6 +62,25 @@ package tripwire.containers.Perks
             this.perkScrollingList.addEventListener(ListEvent.INDEX_CHANGE,this.onPerkChanged,false,0,true);
         }
         
+        public function set perkListEnabled(param1:Boolean) : void
+        {
+            var _loc2_:int = 0;
+            if(!param1)
+            {
+                _loc2_ = 0;
+                while(_loc2_ < this.perkScrollingList.dataProvider.length)
+                {
+                    PerkSelectLineRenderer(this.perkScrollingList.getRendererAt(_loc2_)).selected = false;
+                    _loc2_++;
+                }
+            }
+            else
+            {
+                PerkSelectLineRenderer(this.perkScrollingList.getRendererAt(this.perkScrollingList.selectedIndex)).selected = true;
+            }
+            this.perkScrollingList.enabled = param1;
+        }
+        
         public function setPendingPerkChanges(param1:String, param2:String, param3:String) : void
         {
             if(param1 != null && param1 != "")
@@ -97,6 +117,7 @@ package tripwire.containers.Perks
                     dispatchEvent(new Event("changePerk",true));
                 }
                 FocusHandler.getInstance().setFocus(this.perkScrollingList);
+                FocusManager.setModalClip(this.perkScrollingList);
             }
         }
         
@@ -112,6 +133,7 @@ package tripwire.containers.Perks
                 });
                 dispatchEvent(new Event("changePerk",true));
                 FocusHandler.getInstance().setFocus(this.perkScrollingList);
+                FocusManager.setModalClip(this.perkScrollingList);
             }
             this._bLostFocus = !this.perkScrollingList.hasFocus;
             this._bFirstChange = false;
@@ -134,6 +156,7 @@ package tripwire.containers.Perks
                     if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                     {
                         FocusHandler.getInstance().setFocus(_loc2_);
+                        FocusManager.setModalClip(this.perkScrollingList);
                     }
                 }
                 _loc3_++;

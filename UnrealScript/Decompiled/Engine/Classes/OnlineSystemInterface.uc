@@ -34,6 +34,8 @@ function ClearControllerChangeDelegate(delegate<OnControllerChange> ControllerCh
 
 function bool IsControllerConnected(int ControllerId);
 
+function OnlineSubsystem.EOnlineServerConnectionStatus GetCurrentConnectionStatus();
+
 delegate OnConnectionStatusChange(OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus);
 
 function AddConnectionStatusChangeDelegate(delegate<OnConnectionStatusChange> ConnectionStatusDelegate);

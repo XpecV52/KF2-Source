@@ -23,4 +23,6 @@ defaultproperties
 	GunHitPower=275
 
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'
+
+	WeaponDef=class'KFWeapDef_RPG7'
 }

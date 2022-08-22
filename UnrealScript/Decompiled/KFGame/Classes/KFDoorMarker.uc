@@ -12,8 +12,7 @@ class KFDoorMarker extends DoorMarker
 var(KF2) KFDoorActor MyKFDoor;
 /** Optionally override the distance at which my door will be considered reached by NPCs */
 var(KF2) float AdjustedReachThreshold;
-/** Optionally override the extra cost for Zeds to want to path through this door if it's closed & welded */
-var(KF2) int ExtraCostWhenWelded;
+var transient int ExtraCostWhenWelded;
 
 event bool SuggestMovePreparation(Pawn Other)
 {
@@ -33,7 +32,7 @@ event bool SuggestMovePreparation(Pawn Other)
                 ++ Count;
             }            
         }        
-        if(Count > 3)
+        if(Count > 5)
         {
             if(KFPawn(Other).MyKFAIC != none)
             {
@@ -45,50 +44,6 @@ event bool SuggestMovePreparation(Pawn Other)
         }
     }
     return false;
-    if((MyKFDoor == none) || MyKFDoor.IsCompletelyOpen())
-    {
-        return false;
-    }
-    if((KFPawn(Other) != none) && !KFPawn(Other).IsHumanControlled())
-    {
-        if(KFPawn(Other).MyKFAIC != none)
-        {
-            KFPawn(Other).MyKFAIC.AILog_Internal((((((string(GetFuncName()) $ " ") $ string(self)) $ " by ") $ string(KFPawn(Other).MyKFAIC)) $ " Dist: ") $ string(VSize(Location - Other.Location)), 'Doors');
-        }
-    }
-    if((VSize(Location - Other.Location) < 72) || (Other.Controller != none) && Other.Controller.ActorReachable(self))
-    {
-        if(MyKFDoor.WeldIntegrity > 0)
-        {
-            if((KFPawn(Other) != none) && !KFPawn(Other).IsHumanControlled())
-            {
-                if(KFPawn(Other).MyKFAIC != none)
-                {
-                    KFPawn(Other).MyKFAIC.AILog_Internal(((((string(GetFuncName()) $ " ") $ string(self)) $ " by ") $ string(KFPawn(Other).MyKFAIC)) $ " calling WaitForDoor and NotifyAttacKDoor", 'Doors');
-                }
-            }
-            KFAIController(Other.Controller).WaitForDoor(MyKFDoor);
-            KFAIController(Other.Controller).NotifyAttackDoor(MyKFDoor);
-            return true;            
-        }
-        else
-        {
-            if((KFPawn(Other) != none) && !KFPawn(Other).IsHumanControlled())
-            {
-                if(KFPawn(Other).MyKFAIC != none)
-                {
-                    KFPawn(Other).MyKFAIC.AILog_Internal(((((string(GetFuncName()) $ " ") $ string(self)) $ " by ") $ string(KFPawn(Other).MyKFAIC)) $ " calling WaitForDoor and UseDoor", 'Doors');
-                }
-            }
-            KFAIController(Other.Controller).WaitForDoor(MyKFDoor);
-            MyKFDoor.UseDoor(Other);
-            return true;
-        }        
-    }
-    else
-    {
-        return false;
-    }
 }
 
 function MoverOpened()
@@ -103,6 +58,29 @@ function MoverClosed()
     bBlocked = bInitiallyClosed && bBlockedWhenClosed;
     bDoorOpen = !bInitiallyClosed;
     WorldInfo.Game.NotifyNavigationChanged(self);
+}
+
+function UpdatePathingCost(int AttackerCount, int QueuedCount)
+{
+    local float IntegrityPct;
+
+    if(MyKFDoor.WeldIntegrity > 0)
+    {
+        IntegrityPct = float(MyKFDoor.WeldIntegrity) / float(MyKFDoor.MaxWeldIntegrity);
+        if((IntegrityPct > 0.75) && (AttackerCount + QueuedCount) > 10)
+        {
+            ExtraCostWhenWelded = 100000;
+            return;
+        }
+        ExtraCostWhenWelded = 1000;
+        ExtraCostWhenWelded += (int(IntegrityPct * 100) * 10);
+        ExtraCostWhenWelded += Min(AttackerCount * 100, 500);
+        ExtraCostWhenWelded += Min(QueuedCount * 100, 1000);        
+    }
+    else
+    {
+        ExtraCostWhenWelded = 1000;
+    }
 }
 
 function bool ProceedWithMove(Pawn Other)
@@ -155,7 +133,6 @@ event Actor SpecialHandling(Pawn Other)
 defaultproperties
 {
     AdjustedReachThreshold=72
-    ExtraCostWhenWelded=3000
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

@@ -99,6 +99,15 @@ function ClearControllerChangeDelegate(delegate<OnControllerChange> ControllerCh
  */
 function bool IsControllerConnected(int ControllerId);
 
+//@HSL_BEGIN - JRO - Make sure we can properly disable multiplayer features when not connected
+/**
+ * Retrieves the current connection status
+ *
+ * @return the current connection status
+ */
+function EOnlineServerConnectionStatus GetCurrentConnectionStatus();
+//@HSL_END
+
 /**
  * Delegate fire when the online server connection state changes
  *

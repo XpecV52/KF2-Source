@@ -1,7 +1,11 @@
 package tripwire.containers
 {
+    import com.greensock.TweenMax;
+    import com.greensock.easing.*;
     import flash.display.MovieClip;
+    import flash.text.TextField;
     import scaleform.clik.core.UIComponent;
+    import scaleform.gfx.TextFieldEx;
     
     public class WeaponSelectGroupContainer extends UIComponent
     {
@@ -15,7 +19,7 @@ package tripwire.containers
         
         private var _weaponList:Array;
         
-        private var _selectedIndex:int;
+        private var _selectedIndex:int = 0;
         
         private var _selectedItem:WeaponSelectItemContainer;
         
@@ -29,10 +33,53 @@ package tripwire.containers
         
         public var bControllerParent:Boolean;
         
+        public var bForceHidden:Boolean;
+        
+        public var fadedAlpha:Number = 0.5;
+        
+        public var widgetLocation:String = "LEFT";
+        
+        private const EWL_LEFT:int = 0;
+        
+        private const EWL_RIGHT:int = 1;
+        
+        private const EWL_TOP:int = 2;
+        
+        private const EWL_BOTTOM:int = 3;
+        
+        private var myTween:TweenMax;
+        
+        private var myTween2:TweenMax;
+        
+        private var weaponContainer0_BaseX:Number;
+        
+        private var weaponContainer1_BaseX:Number;
+        
+        private var weaponContainer2_BaseX:Number;
+        
+        private var weaponContainer0_BaseY:Number;
+        
+        private var weaponContainer1_BaseY:Number;
+        
+        private var weaponContainer2_BaseY:Number;
+        
+        private var weaponContainer0_BaseAlpha:Number;
+        
+        private var weaponContainer1_BaseAlpha:Number;
+        
+        private var weaponContainer2_BaseAlpha:Number;
+        
+        private var weaponContainer0_BaseScale:Number;
+        
+        private var weaponContainer1_BaseScale:Number;
+        
+        private var weaponContainer2_BaseScale:Number;
+        
         public function WeaponSelectGroupContainer()
         {
             super();
             this.updateContainers();
+            this.alpha = this.fadedAlpha;
         }
         
         public function get weaponList() : Array
@@ -54,8 +101,13 @@ package tripwire.containers
         
         public function set header(param1:String) : void
         {
+            var _loc2_:TextField = this.WeaponCategoryHeaderContainer.CategoryTextContainer.CategoryText;
             this._headerName = param1;
-            this.WeaponCategoryHeaderContainer.CategoryTextContainer.CategoryText.text = param1;
+            _loc2_.htmlText = param1;
+            if(this.bControllerParent)
+            {
+                TextFieldEx.setVerticalAlign(_loc2_,TextFieldEx.VALIGN_CENTER);
+            }
         }
         
         public function updateContainers() : *
@@ -68,6 +120,18 @@ package tripwire.containers
                 this._weaponItemContainers.push(this["WeaponItem" + _loc1_]);
                 _loc1_++;
             }
+            this.weaponContainer0_BaseX = this._weaponItemContainers[0].x;
+            this.weaponContainer1_BaseX = this._weaponItemContainers[1].x;
+            this.weaponContainer2_BaseX = this._weaponItemContainers[2].x;
+            this.weaponContainer0_BaseY = this._weaponItemContainers[0].y;
+            this.weaponContainer1_BaseY = this._weaponItemContainers[1].y;
+            this.weaponContainer2_BaseY = this._weaponItemContainers[2].y;
+            this.weaponContainer0_BaseAlpha = this._weaponItemContainers[0].alpha;
+            this.weaponContainer1_BaseAlpha = this._weaponItemContainers[1].alpha;
+            this.weaponContainer2_BaseAlpha = this._weaponItemContainers[2].alpha;
+            this.weaponContainer0_BaseScale = this._weaponItemContainers[0].scaleX;
+            this.weaponContainer1_BaseScale = this._weaponItemContainers[1].scaleX;
+            this.weaponContainer2_BaseScale = this._weaponItemContainers[2].scaleX;
         }
         
         public function showAllElements() : *
@@ -86,7 +150,7 @@ package tripwire.containers
                     _loc1_ = this.firstItemIndex + _loc2_;
                     if(_loc1_ > this.weaponList.length - 1)
                     {
-                        _loc1_ %= this.weaponList.length - 1;
+                        _loc1_ %= this.weaponList.length;
                     }
                     this._weaponItemContainers[_loc2_].data = this.weaponList[_loc1_];
                     if(_loc2_ == 0)
@@ -112,8 +176,17 @@ package tripwire.containers
             var _loc2_:int = 0;
             while(_loc2_ < this.MAX_WEAPONS)
             {
-                if(_loc2_ < this.weaponList.length)
+                if(this.weaponList.length == 0)
                 {
+                    this.visible = false;
+                    this.bForceHidden = true;
+                }
+                else if(_loc2_ < this.weaponList.length)
+                {
+                    if(!this.visible)
+                    {
+                        this.visible = true;
+                    }
                     if(!this._weaponItemContainers[_loc2_].visible)
                     {
                         this._weaponItemContainers[_loc2_].visible = true;
@@ -176,6 +249,10 @@ package tripwire.containers
                 this._selectedItem = this._weaponItemContainers[param1 - this.firstItemIndex];
             }
             this._selectedItem.selected();
+            if(this.bControllerParent && _loc2_ != this._selectedIndex)
+            {
+                this.playSelectAnim();
+            }
         }
         
         public function get firstItemIndex() : int
@@ -196,9 +273,21 @@ package tripwire.containers
         {
             if(this._selectedItem != null)
             {
-                this.selectedIndex = 0;
-                this._selectedItem.unselected();
-                this._selectedItem = null;
+                if(this.bControllerParent)
+                {
+                    this._weaponItemContainers[0].unselected();
+                    this._selectedItem = null;
+                }
+                else
+                {
+                    this.selectedIndex = 0;
+                    this._selectedItem.unselected();
+                    this._selectedItem = null;
+                }
+                if(this.visible && this.bControllerParent)
+                {
+                    this.alpha = this.fadedAlpha;
+                }
             }
         }
         
@@ -245,6 +334,212 @@ package tripwire.containers
                 this.DownArrow.visible = false;
             }
             this.UpArrow.visible = false;
+        }
+        
+        private function playSelectAnim() : *
+        {
+            switch(this.widgetLocation)
+            {
+                case "LEFT":
+                    TweenMax.killTweensOf(this._weaponItemContainers[0]);
+                    TweenMax.killTweensOf(this._weaponItemContainers[1]);
+                    TweenMax.killTweensOf(this._weaponItemContainers[2]);
+                    TweenMax.fromTo(this._weaponItemContainers[1],6,{
+                        "x":this.weaponContainer1_BaseX,
+                        "alpha":this.weaponContainer1_BaseAlpha,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "x":this.weaponContainer1_BaseX + this._weaponItemContainers[0].width,
+                        "alpha":0.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":this.resetWidgets,
+                        "onCompleteParams":[this._weaponItemContainers[1],this.weaponContainer1_BaseX,this.weaponContainer1_BaseY,this.weaponContainer1_BaseAlpha,this.weaponContainer1_BaseScale]
+                    });
+                    TweenMax.fromTo(this._weaponItemContainers[2],6,{
+                        "x":this.weaponContainer2_BaseX,
+                        "alpha":this.weaponContainer2_BaseAlpha,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "x":this.weaponContainer2_BaseX + this._weaponItemContainers[0].width,
+                        "alpha":0.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":this.resetWidgets,
+                        "onCompleteParams":[this._weaponItemContainers[2],this.weaponContainer2_BaseX,this.weaponContainer2_BaseY,this.weaponContainer2_BaseAlpha,this.weaponContainer2_BaseScale]
+                    });
+                    TweenMax.fromTo(this._weaponItemContainers[0],8,{
+                        "scaleX":1,
+                        "scaleY":1,
+                        "alpha":1,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "x":this._weaponItemContainers[0],
+                        "scaleX":1.15,
+                        "scaleY":1.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":function():*
+                        {
+                            _weaponItemContainers[0].scaleX = 1;
+                            _weaponItemContainers[0].scaleY = 1;
+                        }
+                    });
+                    break;
+                case "RIGHT":
+                    TweenMax.fromTo(this._weaponItemContainers[1],6,{
+                        "x":this.weaponContainer1_BaseX,
+                        "alpha":this.weaponContainer1_BaseAlpha,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "x":this.weaponContainer1_BaseX - this._weaponItemContainers[0].width,
+                        "alpha":0.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":this.resetWidgets,
+                        "onCompleteParams":[this._weaponItemContainers[1],this.weaponContainer1_BaseX,this.weaponContainer1_BaseY,this.weaponContainer1_BaseAlpha,this.weaponContainer1_BaseScale]
+                    });
+                    TweenMax.fromTo(this._weaponItemContainers[2],6,{
+                        "x":this.weaponContainer2_BaseX,
+                        "alpha":this.weaponContainer2_BaseAlpha,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "x":this.weaponContainer2_BaseX - this._weaponItemContainers[0].width,
+                        "alpha":0.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":this.resetWidgets,
+                        "onCompleteParams":[this._weaponItemContainers[2],this.weaponContainer2_BaseX,this.weaponContainer2_BaseY,this.weaponContainer2_BaseAlpha,this.weaponContainer2_BaseScale]
+                    });
+                    TweenMax.fromTo(this._weaponItemContainers[0],8,{
+                        "scaleX":1,
+                        "scaleY":1,
+                        "alpha":1,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "x":this._weaponItemContainers[0],
+                        "scaleX":1.15,
+                        "scaleY":1.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":function():*
+                        {
+                            _weaponItemContainers[0].scaleX = 1;
+                            _weaponItemContainers[0].scaleY = 1;
+                        }
+                    });
+                    break;
+                case "UP":
+                    TweenMax.fromTo(this._weaponItemContainers[1],6,{
+                        "y":this.weaponContainer1_BaseY,
+                        "alpha":this.weaponContainer1_BaseAlpha,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "y":this.weaponContainer1_BaseY + this._weaponItemContainers[0].height,
+                        "alpha":0.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":this.resetWidgets,
+                        "onCompleteParams":[this._weaponItemContainers[1],this.weaponContainer1_BaseX,this.weaponContainer1_BaseY,this.weaponContainer1_BaseAlpha,this.weaponContainer1_BaseScale]
+                    });
+                    TweenMax.fromTo(this._weaponItemContainers[2],6,{
+                        "y":this.weaponContainer2_BaseY,
+                        "alpha":this.weaponContainer2_BaseAlpha,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "y":this.weaponContainer2_BaseY + this._weaponItemContainers[0].height,
+                        "alpha":0.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":this.resetWidgets,
+                        "onCompleteParams":[this._weaponItemContainers[2],this.weaponContainer2_BaseX,this.weaponContainer2_BaseY,this.weaponContainer2_BaseAlpha,this.weaponContainer2_BaseScale]
+                    });
+                    TweenMax.fromTo(this._weaponItemContainers[0],8,{
+                        "scaleX":1,
+                        "scaleY":1,
+                        "alpha":1,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "x":this._weaponItemContainers[0],
+                        "scaleX":1.15,
+                        "scaleY":1.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":function():*
+                        {
+                            _weaponItemContainers[0].scaleX = 1;
+                            _weaponItemContainers[0].scaleY = 1;
+                        }
+                    });
+                    break;
+                case "DOWN":
+                    TweenMax.fromTo(this._weaponItemContainers[1],6,{
+                        "y":this.weaponContainer1_BaseY,
+                        "alpha":this.weaponContainer1_BaseAlpha,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "y":this.weaponContainer1_BaseY - this._weaponItemContainers[0].height,
+                        "alpha":0.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":this.resetWidgets,
+                        "onCompleteParams":[this._weaponItemContainers[1],this.weaponContainer1_BaseX,this.weaponContainer1_BaseY,this.weaponContainer1_BaseAlpha,this.weaponContainer1_BaseScale]
+                    });
+                    TweenMax.fromTo(this._weaponItemContainers[2],6,{
+                        "y":this.weaponContainer2_BaseY,
+                        "alpha":this.weaponContainer2_BaseAlpha,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "y":this.weaponContainer2_BaseY - this._weaponItemContainers[0].height,
+                        "alpha":0.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":this.resetWidgets,
+                        "onCompleteParams":[this._weaponItemContainers[2],this.weaponContainer2_BaseX,this.weaponContainer2_BaseY,this.weaponContainer2_BaseAlpha,this.weaponContainer2_BaseScale]
+                    });
+                    TweenMax.fromTo(this._weaponItemContainers[0],8,{
+                        "scaleX":1,
+                        "scaleY":1,
+                        "alpha":1,
+                        "ease":Linear.easeNone,
+                        "useFrames":true
+                    },{
+                        "x":this._weaponItemContainers[0],
+                        "scaleX":1.15,
+                        "scaleY":1.15,
+                        "ease":Linear.easeNone,
+                        "useFrames":true,
+                        "onComplete":function():*
+                        {
+                            _weaponItemContainers[0].scaleX = 1;
+                            _weaponItemContainers[0].scaleY = 1;
+                        }
+                    });
+            }
+        }
+        
+        private function resetWidgets(param1:Object, param2:Number, param3:Number, param4:Number, param5:Number) : *
+        {
+            TweenMax.to(param1,4,{
+                "x":param2,
+                "y":param3,
+                "alpha":param4,
+                "scaleX":param5,
+                "scaleY":param5,
+                "ease":Linear.easeNone,
+                "useFrames":true
+            });
         }
     }
 }

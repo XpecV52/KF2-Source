@@ -15,6 +15,9 @@ var float			ScreamDamageFrequency;
 /** The number of times damage has been dealt by a single scream */
 var byte 			ScreamCount;
 
+/** Last time a scream was executed */
+var float 			LastScreamTime;
+
 /** Maximum number of times a scream can deal damage */
 const DAMAGE_COUNT_PER_SCREAM = 4;
 
@@ -22,6 +25,12 @@ const DAMAGE_COUNT_PER_SCREAM = 4;
 var GameExplosion ExplosionTemplate;
 
 var const class<GameExplosionActor> ExplosionActorClass;
+
+/** Set to TRUE when the scream ends on its own (not interrupted) */
+var bool bEndedNormally;
+
+/** Stop event played when this scream was interrupted too early */
+var AkEvent ScreamInterruptSound;
 
 /** The explosion actor to store when this projectile is created */
 var GameExplosionActor ExplosionActor;
@@ -49,6 +58,9 @@ function bool CanOverrideMoveWith( Name NewMove )
 function SpecialMoveStarted( bool bForced, name PrevMove )
 {
 	super.SpecialMoveStarted( bForced, PrevMove );
+
+	bEndedNormally = false;
+	LastScreamTime = 0.f;
 
 	//ShieldDestroyTime = KFSkeletalMeshComponent(KFPOwner.Mesh).GetAnimInterruptTime( AnimName );
 	KFPOwner.SetTimer( ProjectileShieldLifetime, false, nameof(Timer_DestroyProjectileShield), self );
@@ -134,11 +146,13 @@ function InitializeSirenExplosion()
 /** Called on a timer to deal damage in a radius */
 function ScreamExplosion()
 {
-	if( !KFPOwner.IsAliveAndWell() || KFPawn_Monster(KFPOwner).IsImpaired() )
+	if( !KFPOwner.IsCombatCapable() )
 	{
 		KFPOwner.EndSpecialMove();
 		return;
 	}
+
+	LastScreamTime = KFPOwner.WorldInfo.TimeSeconds;
 
 	ExplosionTemplate.Damage = KFPawn_Monster(KFPOwner).GetRallyBoostDamage( default.ExplosionTemplate.Damage );
 	ExplosionActor.Explode(ExplosionTemplate);		// go bewm
@@ -146,13 +160,24 @@ function ScreamExplosion()
 	ScreamCount++;
 	if( ScreamCount >= DAMAGE_COUNT_PER_SCREAM )
 	{
+		bEndedNormally = true;
 		KFPOwner.EndSpecialMove();
+	}
+}
+
+function CheckIfScreamWasInterrupted()
+{
+	if( !bEndedNormally && LastScreamTime > 0.f && KFPOwner.WorldInfo.TimeSeconds - LastScreamTime < 0.5f )
+	{
+		KFPOwner.PlayAkevent( ScreamInterruptSound, false, true );
 	}
 }
 
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
 	super.SpecialMoveEnded( PrevMove, NextMove );
+
+	CheckIfScreamWasInterrupted();
 
 	KFPOwner.ClearTimer(nameof(ScreamExplosion), self);
 	ScreamCount = 0;
@@ -178,6 +203,7 @@ DefaultProperties
    	bCanBeInterrupted=true
 
 	ScreamDamageFrequency=1.0f
+	ScreamInterruptSound=AkEvent'WW_ZED_Siren.Stop_Siren_Scream'
 
    	bDrawProjectileShield=false
 	bDrawWaveRadius=false

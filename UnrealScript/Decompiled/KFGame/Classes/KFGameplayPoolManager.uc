@@ -20,11 +20,13 @@ struct native sProjectilePoolInfo
 {
     var KFPlayerController ProjController;
     var array<KFProjectile> Projectiles;
+    var bool bIsAIPlayer;
 
     structdefaultproperties
     {
         ProjController=none
         Projectiles=none
+        bIsAIPlayer=false
     }
 };
 
@@ -82,36 +84,39 @@ private final function AddProjectileToPool_Internal(out array<sProjectilePoolInf
 
     if(I < PoolInfos.Length)
     {
-        if((PoolInfos[I].ProjController == none) || PoolInfos[I].ProjController.bDeleteMe)
+        if(!Proj.IsAIProjectile())
         {
-            J = 0;
-            J0xAA:
+            if((PoolInfos[I].ProjController == none) || PoolInfos[I].ProjController.bDeleteMe)
+            {
+                J = 0;
+                J0xCE:
 
-            if(J < PoolInfos[I].Projectiles.Length)
-            {
-                PoolInfos[I].Projectiles[J].SetTimer((1 + float(Rand(5))) + FRand(), false, 'Timer_Explode');
-                ++ J;
-                goto J0xAA;
+                if(J < PoolInfos[I].Projectiles.Length)
+                {
+                    PoolInfos[I].Projectiles[J].SetTimer((1 + float(Rand(5))) + FRand(), false, 'Timer_Explode');
+                    ++ J;
+                    goto J0xCE;
+                }
+                PoolInfos.Remove(I, 1;
+                -- I;
+                goto J0x36B;                
             }
-            PoolInfos.Remove(I, 1;
-            -- I;
-            goto J0x2E8;            
-        }
-        else
-        {
-            if(PoolInfos[I].ProjController == Proj.InstigatorController)
+            else
             {
-                Idx = I;
+                if(PoolInfos[I].ProjController == Proj.InstigatorController)
+                {
+                    Idx = I;
+                }
             }
         }
         TotalProjectiles += PoolInfos[I].Projectiles.Length;
-        if((OldestProjCreationTime == 0) || PoolInfos[I].Projectiles[0].CreationTime < OldestProjCreationTime)
+        if((OldestProjCreationTime == 0) || ((PoolInfos[I].Projectiles.Length > 0) && PoolInfos[I].Projectiles[0] != none) && PoolInfos[I].Projectiles[0].CreationTime < OldestProjCreationTime)
         {
             OldestProjCreationTime = PoolInfos[I].Projectiles[0].CreationTime;
             OldestProj = PoolInfos[I].Projectiles[0];
             OldestProjInfoIdx = I;
         }
-        J0x2E8:
+        J0x36B:
 
         ++ I;
         goto J0x1A;
@@ -120,6 +125,7 @@ private final function AddProjectileToPool_Internal(out array<sProjectilePoolInf
     {
         Idx = PoolInfos.Length;
         PoolInfos.Insert(Idx, 1;
+        PoolInfos[Idx].bIsAIPlayer = Proj.IsAIProjectile();
         PoolInfos[Idx].ProjController = KFPlayerController(Proj.InstigatorController);
     }
     if(TotalProjectiles >= MaxActiveProjectiles)
@@ -128,7 +134,7 @@ private final function AddProjectileToPool_Internal(out array<sProjectilePoolInf
     }
     else
     {
-        if(PoolInfos[Idx].Projectiles.Length >= MaxProjectilesPerPlayer)
+        if(!PoolInfos[Idx].bIsAIPlayer && PoolInfos[Idx].Projectiles.Length >= MaxProjectilesPerPlayer)
         {
             OldestProj = PoolInfos[Idx].Projectiles[0];
             PoolInfos[Idx].Projectiles.Remove(0, 1;            
@@ -149,13 +155,41 @@ private final function RemoveProjectileFromPool_Internal(out array<sProjectilePo
 {
     local int Idx, ProjIdx;
 
-    Idx = PoolInfos.Find('ProjController', KFPlayerController(Proj.InstigatorController);
-    if(Idx != -1)
+    if(Proj.IsAIProjectile())
     {
-        ProjIdx = PoolInfos[Idx].Projectiles.Find(Proj;
-        if(ProjIdx != -1)
+        Idx = 0;
+        J0x2D:
+
+        if(Idx < PoolInfos.Length)
         {
-            PoolInfos[Idx].Projectiles.Remove(ProjIdx, 1;
+            ProjIdx = PoolInfos[Idx].Projectiles.Find(Proj;
+            if(ProjIdx != -1)
+            {
+                PoolInfos[Idx].Projectiles.Remove(ProjIdx, 1;
+                if(PoolInfos[Idx].Projectiles.Length == 0)
+                {
+                    PoolInfos.Remove(Idx, 1;
+                }
+                return;
+            }
+            ++ Idx;
+            goto J0x2D;
+        }        
+    }
+    else
+    {
+        Idx = PoolInfos.Find('ProjController', KFPlayerController(Proj.InstigatorController);
+        if(Idx != -1)
+        {
+            ProjIdx = PoolInfos[Idx].Projectiles.Find(Proj;
+            if(ProjIdx != -1)
+            {
+                PoolInfos[Idx].Projectiles.Remove(ProjIdx, 1;
+                if(PoolInfos[Idx].Projectiles.Length == 0)
+                {
+                    PoolInfos.Remove(Idx, 1;
+                }
+            }
         }
     }
 }
@@ -186,6 +220,5 @@ defaultproperties
     MAX_ACTIVE_C4=40
     MAX_C4_PER_PLAYER=10
     MAX_ACTIVE_PUKE_MINES=30
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bTickIsDisabled=true
 }

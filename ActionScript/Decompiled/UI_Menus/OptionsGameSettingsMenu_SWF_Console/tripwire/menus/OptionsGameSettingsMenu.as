@@ -3,10 +3,13 @@ package tripwire.menus
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import scaleform.clik.constants.InputValue;
+    import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.events.SliderEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.Extensions;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     import tripwire.controls.SliderOption;
@@ -55,7 +58,21 @@ package tripwire.menus
         
         public var killTickerCheckBox:TripCheckBox;
         
+        public var hideBossHealthBarCheckBox:TripCheckBox;
+        
+        public var showWelderInInvCheckBox:TripCheckBox;
+        
+        public var useAltAimOnDualCheckBox:TripCheckBox;
+        
+        public var antiMotionSicknessCheckBox:TripCheckBox;
+        
+        public var autoTurnOffCheckBox:TripCheckBox;
+        
+        public var reduceHighPitchNoiseCheckBox:TripCheckBox;
+        
         public var defaultButton:TripButton;
+        
+        public var genericSliderSoundEffect:String = "GEN_Click";
         
         public function OptionsGameSettingsMenu()
         {
@@ -64,7 +81,7 @@ package tripwire.menus
             this.setTabIndex();
             defaultFirstElement = this.fovSlider;
             sectionHeader = this.header;
-            defaultNumPrompts = 2;
+            defaultNumPrompts = 3;
         }
         
         public function setTabIndex() : *
@@ -75,6 +92,12 @@ package tripwire.menus
             this.goreSlider.tabIndex = _loc1_++;
             this.friendlyHudSlider.tabIndex = _loc1_++;
             this.crosshairCheckBox.tabIndex = _loc1_++;
+            this.hideBossHealthBarCheckBox.tabIndex = _loc1_++;
+            this.showWelderInInvCheckBox.tabIndex = _loc1_++;
+            this.useAltAimOnDualCheckBox.tabIndex = _loc1_++;
+            this.antiMotionSicknessCheckBox.tabIndex = _loc1_++;
+            this.autoTurnOffCheckBox.tabIndex = _loc1_++;
+            this.reduceHighPitchNoiseCheckBox.tabIndex = _loc1_++;
             if(!_loc2_)
             {
                 this.classicWeaponSelectCheckBox.tabIndex = _loc1_++;
@@ -104,6 +127,12 @@ package tripwire.menus
                 this.classicWeaponSelectCheckBox.label = !!param1.classicWeaponSelect ? param1.classicWeaponSelect : "";
                 this.defaultButton.label = !!param1.resetDefault ? param1.resetDefault : "";
             }
+            this.hideBossHealthBarCheckBox.label = !!param1.hideBossHealthBar ? param1.hideBossHealthBar : "";
+            this.showWelderInInvCheckBox.label = !!param1.showWelderInInv ? param1.showWelderInInv : "";
+            this.useAltAimOnDualCheckBox.label = !!param1.useAltAimOnDual ? param1.useAltAimOnDual : "";
+            this.antiMotionSicknessCheckBox.label = !!param1.antiMotionSickness ? param1.antiMotionSickness : "";
+            this.autoTurnOffCheckBox.label = !!param1.autoTurnOff ? param1.autoTurnOff : "";
+            this.reduceHighPitchNoiseCheckBox.label = !!param1.reduceHighPitchNoise ? param1.reduceHighPitchNoise : "";
             this.fovMinimumText.text = !!param1.normal ? param1.normal : "";
             this.fovMaximumText.text = !!param1.wider ? param1.wider : "";
             this.killTickerCheckBox.label = !!param1.killTicker ? param1.killTicker : "";
@@ -120,6 +149,12 @@ package tripwire.menus
                 this.classicWeaponSelectCheckBox.selected = !!param1.classicWeaponSelect ? Boolean(param1.classicWeaponSelect) : false;
             }
             this.killTickerCheckBox.selected = !!param1.killTicker ? Boolean(param1.killTicker) : false;
+            this.hideBossHealthBarCheckBox.selected = !!param1.hideBossHealthBar ? Boolean(param1.hideBossHealthBar) : false;
+            this.showWelderInInvCheckBox.selected = !!param1.showWelderInInv ? Boolean(param1.showWelderInInv) : false;
+            this.useAltAimOnDualCheckBox.selected = !!param1.useAltAimOnDual ? Boolean(param1.useAltAimOnDual) : false;
+            this.antiMotionSicknessCheckBox.selected = !!param1.antiMotionSickness ? Boolean(param1.antiMotionSickness) : false;
+            this.autoTurnOffCheckBox.selected = !!param1.autoTurnOff ? Boolean(param1.autoTurnOff) : false;
+            this.reduceHighPitchNoiseCheckBox.selected = !!param1.reduceHighPitchNoise ? Boolean(param1.reduceHighPitchNoise) : false;
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -128,6 +163,9 @@ package tripwire.menus
             this.openContainer();
             this.fovSlider.slider.snapInterval = this.FOVStepValue;
             this.closeButton.visible = !bManagerUsingGamepad;
+            this.defaultButton.visible = !bManagerUsingGamepad;
+            this.antiMotionSicknessCheckBox.visible = false;
+            this.reduceHighPitchNoiseCheckBox.visible = false;
         }
         
         override public function openContainer(param1:Boolean = true) : void
@@ -136,14 +174,53 @@ package tripwire.menus
             this.fovSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
             this.goreSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
             this.friendlyHudSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
-            this.crosshairCheckBox.addEventListener(Event.SELECT,this.onCrosshairChanged,false,0,true);
+            this.crosshairCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             if(!bManagerConsoleBuild)
             {
-                this.classicWeaponSelectCheckBox.addEventListener(Event.SELECT,this.onWeaponSelectChanged,false,0,true);
+                this.classicWeaponSelectCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
                 this.defaultButton.addEventListener(ButtonEvent.PRESS,this.onButtonClick,false,0,true);
             }
-            this.killTickerCheckBox.addEventListener(Event.SELECT,this.onTickerClicked,false,0,true);
+            this.killTickerCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            this.hideBossHealthBarCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            this.showWelderInInvCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            this.useAltAimOnDualCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            this.antiMotionSicknessCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            this.autoTurnOffCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            this.reduceHighPitchNoiseCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.closeButton.addEventListener(ButtonEvent.PRESS,this.onButtonClick,false,0,true);
+        }
+        
+        public function onCheckBoxClicked(param1:Event) : void
+        {
+            switch(param1.target)
+            {
+                case this.killTickerCheckBox:
+                    ExternalInterface.call("Callback_KillTickerChanged",this.killTickerCheckBox.selected);
+                    break;
+                case this.classicWeaponSelectCheckBox:
+                    ExternalInterface.call("Callback_WeaponSelectChanged",this.classicWeaponSelectCheckBox.selected);
+                    break;
+                case this.crosshairCheckBox:
+                    ExternalInterface.call("Callback_ToggleCrosshair",this.crosshairCheckBox.selected);
+                    break;
+                case this.hideBossHealthBarCheckBox:
+                    ExternalInterface.call("Callback_HideBossHealthBarChanged",this.hideBossHealthBarCheckBox.selected);
+                    break;
+                case this.showWelderInInvCheckBox:
+                    ExternalInterface.call("Callback_bShowWelderInInvChanged",this.showWelderInInvCheckBox.selected);
+                    break;
+                case this.useAltAimOnDualCheckBox:
+                    ExternalInterface.call("Callback_UseAltAimOnDualsChanged",this.useAltAimOnDualCheckBox.selected);
+                    break;
+                case this.antiMotionSicknessCheckBox:
+                    ExternalInterface.call("Callback_AntiMotionSicknessChanged",this.antiMotionSicknessCheckBox.selected);
+                    break;
+                case this.autoTurnOffCheckBox:
+                    ExternalInterface.call("Callback_AutoTurnOffChanged",this.autoTurnOffCheckBox.selected);
+                    break;
+                case this.reduceHighPitchNoiseCheckBox:
+                    ExternalInterface.call("Callback_ReduceHighPitchNoiseChanged",this.reduceHighPitchNoiseCheckBox.selected);
+            }
         }
         
         override public function selectContainer() : void
@@ -157,13 +234,19 @@ package tripwire.menus
             this.fovSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
             this.goreSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
             this.friendlyHudSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
-            this.crosshairCheckBox.removeEventListener(Event.SELECT,this.onCrosshairChanged);
+            this.crosshairCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             if(!bManagerConsoleBuild)
             {
-                this.classicWeaponSelectCheckBox.removeEventListener(Event.SELECT,this.onWeaponSelectChanged);
+                this.classicWeaponSelectCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
                 this.defaultButton.removeEventListener(ButtonEvent.PRESS,this.onButtonClick);
             }
-            this.killTickerCheckBox.removeEventListener(Event.SELECT,this.onTickerClicked);
+            this.killTickerCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            this.hideBossHealthBarCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            this.showWelderInInvCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            this.useAltAimOnDualCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            this.antiMotionSicknessCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            this.autoTurnOffCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            this.reduceHighPitchNoiseCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             this.closeButton.removeEventListener(ButtonEvent.PRESS,this.onButtonClick);
         }
         
@@ -172,11 +255,6 @@ package tripwire.menus
             super.onInputChange(param1);
             this.closeButton.visible = !bManagerUsingGamepad;
             this.defaultButton.visible = !bManagerUsingGamepad;
-        }
-        
-        public function onTickerClicked(param1:Event) : void
-        {
-            ExternalInterface.call("Callback_KillTickerChanged",this.killTickerCheckBox.selected);
         }
         
         public function set goreOptions(param1:Array) : void
@@ -234,7 +312,7 @@ package tripwire.menus
         
         protected function updateFOVText() : *
         {
-            this.fovText.text = String(this.fovSlider.slider.value + "%");
+            this.fovText.text = this.fovSlider.slider.value.toFixed(0).toString() + "%";
         }
         
         protected function onButtonClick(param1:ButtonEvent) : void
@@ -249,18 +327,29 @@ package tripwire.menus
             }
         }
         
+        public function playSound(param1:String = "") : void
+        {
+            if(Extensions.gfxProcessSound != null)
+            {
+                Extensions.gfxProcessSound(this,"UI",param1);
+            }
+        }
+        
         protected function onSliderChanged(param1:SliderEvent) : void
         {
             switch(param1.target)
             {
                 case this.fovSlider.slider:
+                    this.playSound(this.genericSliderSoundEffect);
                     ExternalInterface.call("Callback_FOVChanged",param1.value / 100);
                     this.updateFOVText();
                     break;
                 case this.friendlyHudSlider.slider:
+                    this.playSound(this.genericSliderSoundEffect);
                     ExternalInterface.call("Callback_FriendlyHudChanged",param1.value / 100);
                     break;
                 case this.goreSlider.slider:
+                    this.playSound(this.genericSliderSoundEffect);
                     ExternalInterface.call("Callback_GoreChanged",this.goreSlider.slider.maximum - param1.value);
             }
         }
@@ -271,16 +360,6 @@ package tripwire.menus
             ExternalInterface.call("Callback_CloseMenu");
         }
         
-        private function onWeaponSelectChanged(param1:Event) : void
-        {
-            ExternalInterface.call("Callback_WeaponSelectChanged",this.classicWeaponSelectCheckBox.selected);
-        }
-        
-        private function onCrosshairChanged(param1:Event) : void
-        {
-            ExternalInterface.call("Callback_ToggleCrosshair",this.crosshairCheckBox.selected);
-        }
-        
         override protected function onBPressed(param1:InputDetails) : void
         {
             this.goBackToOptionsSelection();
@@ -289,6 +368,20 @@ package tripwire.menus
         override public function handleInput(param1:InputEvent) : void
         {
             super.handleInput(param1);
+            if(param1.handled)
+            {
+                return;
+            }
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN)
+            {
+                switch(_loc2_.navEquivalent)
+                {
+                    case NavigationCode.GAMEPAD_X:
+                        ExternalInterface.call("CallBack_ResetGameOptions");
+                        param1.handled = true;
+                }
+            }
         }
     }
 }

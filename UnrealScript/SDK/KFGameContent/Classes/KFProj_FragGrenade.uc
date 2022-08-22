@@ -13,7 +13,7 @@ class KFProj_FragGrenade extends KFProj_Grenade
 
 defaultproperties
 {
-	
+	bWarnAIWhenFired=true
 	
     LandedTranslationOffset=(X=2)
 

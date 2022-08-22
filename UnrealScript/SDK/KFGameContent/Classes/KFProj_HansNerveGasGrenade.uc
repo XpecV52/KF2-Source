@@ -60,7 +60,7 @@ defaultproperties
 	// Grenade explosion light
 	Begin Object Name=ExplosionPointLight
 	    LightColor=(R=200,G=200,B=0,A=255)
-		Brightness=4.f
+		Brightness=2.f
 		Radius=500.f
 		FalloffExponent=10.f
 		CastShadows=False

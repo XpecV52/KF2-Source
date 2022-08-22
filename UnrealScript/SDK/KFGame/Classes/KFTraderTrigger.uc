@@ -21,8 +21,8 @@ var() name OpenAnimName;
 var() name IdleLoopAnimName;
 
 /** Sounds for Trader Pod */
-var 	AkEvent					TraderOpenSound;
-var 	AkEvent					TraderCloseSound;
+var() 	AkEvent					TraderOpenSound;
+var() 	AkEvent					TraderCloseSound;
 
 /** current state of the trader */
 var	transient bool  bOpened;
@@ -105,6 +105,7 @@ function bool UsedBy(Pawn User)
 simulated function OpenTrader()
 {
 	local float AnimDuration;
+	local Pawn P;
 
 	SetCollision(true, false);
 	bOpened = true;
@@ -121,6 +122,11 @@ simulated function OpenTrader()
 		}
 
 		ShowTraderPath();
+	}
+
+	foreach TouchingActors(class'Pawn',  P)
+	{
+		class'KFPlayerController'.static.UpdateInteractionMessages( P );
 	}
 }
 

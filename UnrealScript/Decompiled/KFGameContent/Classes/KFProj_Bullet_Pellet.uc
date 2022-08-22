@@ -8,10 +8,30 @@
 class KFProj_Bullet_Pellet extends KFProj_Bullet
     hidecategories(Navigation);
 
+var protected KFWeapon OwnerWeapon;
+
+function Init(Vector Direction)
+{
+    super(KFProjectile).Init(Direction);
+    OwnerWeapon = KFWeapon(Owner);
+    if(OwnerWeapon != none)
+    {
+        OwnerWeapon.LastPelletFireTime = WorldInfo.TimeSeconds;
+    }
+}
+
+function bool ShouldWarnAIWhenFired()
+{
+    return (super(KFProjectile).ShouldWarnAIWhenFired() && OwnerWeapon != none) && OwnerWeapon.LastPelletFireTime < WorldInfo.TimeSeconds;
+}
+
 defaultproperties
 {
+    bWarnAIWhenFired=true
     ProjFlightTemplate=ParticleSystem'WEP_1P_MB500_EMIT.FX_MB500_Tracer'
     ProjFlightTemplateZedTime=ParticleSystem'WEP_1P_MB500_EMIT.FX_MB500_Tracer_ZEDTime'
+    AmbientSoundPlayEvent=none
+    AmbientSoundStopEvent=none
     AmbientComponent=AkComponent'Default__KFProj_Bullet_Pellet.AmbientAkSoundComponent'
     Speed=7000
     MaxSpeed=7000

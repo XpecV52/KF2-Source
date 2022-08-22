@@ -49,6 +49,8 @@ package tripwire.controls.postGameMenu
         
         public const awardWidth:Number = 1088;
         
+        public var slideInSoundEffect:String = "AAR_TOPWEAPON_SLIDEIN";
+        
         public function TopWeaponDataContainer()
         {
             super();
@@ -57,7 +59,6 @@ package tripwire.controls.postGameMenu
         
         public function awardAnimIn(param1:Boolean = false) : void
         {
-            Extensions.gfxProcessSound(this,"AAR","Top_Weapon");
             if(!param1)
             {
                 TweenMax.fromTo(this,4 * this.timeDialation,{
@@ -72,7 +73,9 @@ package tripwire.controls.postGameMenu
                     "delay":4 * this.timeDialation,
                     "width":this.awardWidth,
                     "ease":Cubic.easeOut,
-                    "useFrames":true
+                    "useFrames":true,
+                    "onStart":this.playSound,
+                    "onStartParams":[this.slideInSoundEffect]
                 });
                 TweenMax.to(this.awardInfo,4 * this.timeDialation,{
                     "delay":8 * this.timeDialation,
@@ -112,6 +115,14 @@ package tripwire.controls.postGameMenu
                 this.awardInfo.headshotValueTextField.text = this.finishHeadShotsValue;
                 this.awardInfo.largeZedValueTextField.text = this.finishLargeZedsValue;
                 this.doneAndDone();
+            }
+        }
+        
+        public function playSound(param1:String) : void
+        {
+            if(Extensions.enabled)
+            {
+                Extensions.gfxProcessSound(this,"UI",param1);
             }
         }
         

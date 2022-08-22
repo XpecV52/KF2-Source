@@ -17,6 +17,8 @@ package tripwire.controls
         {
             super();
             defaultColor = 14538703;
+            clickSoundEffect = "GEAR_ITEM_CLICK";
+            overSoundEffect = "GEAR_ITEM_ROLLOVER";
         }
         
         override public function setData(param1:Object) : void

@@ -367,6 +367,7 @@ class KFDT_Bludgeon_PatriarchKick extends KFDT_Bludgeon_Patriarch
 
 
 
+
 	
 
 

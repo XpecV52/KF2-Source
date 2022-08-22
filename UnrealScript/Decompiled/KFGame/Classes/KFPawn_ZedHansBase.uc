@@ -38,6 +38,7 @@ struct HansBattlePhaseInfo
     var float HENadeTossPhaseCooldown;
     var bool bCanBarrageGrenades;
     var float HENadeBarragePhaseCooldown;
+    var array<bool> bCanMoveWhileThrowingGrenades;
     var array<float> HealThresholds;
     var array<float> HealAmounts;
     var array<int> MaxShieldHealth;
@@ -58,6 +59,7 @@ struct HansBattlePhaseInfo
         HENadeTossPhaseCooldown=10
         bCanBarrageGrenades=false
         HENadeBarragePhaseCooldown=20
+        bCanMoveWhileThrowingGrenades=none
         HealThresholds=none
         HealAmounts=none
         MaxShieldHealth=none
@@ -86,7 +88,7 @@ var const class<KFProj_Grenade> NerveGasGrenadeClass;
 var const class<KFProj_Grenade> SmokeGrenadeClass;
 var name RightHandSocketName;
 var name LeftHandSocketName;
-var float GrenadeTossSpread;
+var Vector GrenadeTossSpread;
 var int BarrageTossCount;
 var float GlobalOffensiveNadeCooldown;
 var float LastOffensiveNadeTime;
@@ -167,7 +169,7 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
 
 simulated function AdjustAffliction(out float AfflictionPower)
 {
-    super(KFPawn).AdjustAffliction(AfflictionPower);
+    super(KFPawn_Monster).AdjustAffliction(AfflictionPower);
     if(bInHuntAndHealMode)
     {
         AfflictionPower *= IncapPowerScaleWhenHealing;
@@ -230,6 +232,11 @@ function bool DesireSprintingInThisPhase()
 function bool ShouldPlaySpecialMeleeAnims()
 {
     return CanFrenzyInThisPhase();
+}
+
+function bool CanBlock()
+{
+    return (!bGunsEquipped && !bInHuntAndHealMode) && super(KFPawn_Monster).CanBlock();
 }
 
 function bool OffensiveGrenadeCooldownComplete()
@@ -312,6 +319,18 @@ function SetActiveGrenadeClassNerveGas()
     ActiveGrenadeClass = NerveGasGrenadeClass;
 }
 
+simulated function bool CanMoveWhileThrowingGrenades()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && BattlePhases[CurrentBattlePhase - 1].bCanMoveWhileThrowingGrenades[KFGRI.GameDifficulty])
+    {
+        return true;
+    }
+    return bInHuntAndHealMode || LocalIsOnePlayerLeftInTeamGame();
+}
+
 function PlayDrawGunsDialog()
 {
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
@@ -333,7 +352,7 @@ function PlayGrenadeDialog(bool bBarrage)
         case SmokeGrenadeClass:
             if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
             {
-                KFGameInfo(WorldInfo.Game).DialogManager.PlayHansSmokeDialog(self, bBarrage);
+                KFGameInfo(WorldInfo.Game).DialogManager.PlayHansSmokeDialog(self, false);
             }
             break;
         case NerveGasGrenadeClass:
@@ -350,7 +369,6 @@ function PlayGrenadeDialog(bool bBarrage)
 simulated function SetHuntAndHealMode(bool bOn)
 {
     local KFGameInfo KFGI;
-    local KFCharacterInfo_Monster MonsterInfo;
     local float HealthMod, HeadHealthMod;
 
     bInHuntAndHealMode = bOn;
@@ -363,8 +381,7 @@ simulated function SetHuntAndHealMode(bool bOn)
             KFGI = KFGameInfo(WorldInfo.Game);
             if(KFGI != none)
             {
-                MonsterInfo = GetCharacterMonsterInfo();
-                KFGI.DifficultyInfo.GetAIHealthModifier(MonsterInfo, KFGI.GameDifficulty, byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
+                KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
             }
             ShieldHealthMax = float(BattlePhases[CurrentBattlePhase - 1].MaxShieldHealth[int(WorldInfo.Game.GameDifficulty)]) * HealthMod;
             ShieldHealth = ShieldHealthMax;
@@ -420,19 +437,19 @@ function SummonMinions()
     {
         Skill = int(MyHansController.Skill);
     }
-    if(float(Skill) == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
+    if(float(Skill) == Class'KFGameDifficultyInfo'.static.GetDifficultyValue(0))
     {
         DifficultyIndex = 0;        
     }
     else
     {
-        if(float(Skill) <= Class'KFDifficultyInfo'.static.GetDifficultyValue(1))
+        if(float(Skill) <= Class'KFGameDifficultyInfo'.static.GetDifficultyValue(1))
         {
             DifficultyIndex = 1;            
         }
         else
         {
-            if(float(Skill) <= Class'KFDifficultyInfo'.static.GetDifficultyValue(2))
+            if(float(Skill) <= Class'KFGameDifficultyInfo'.static.GetDifficultyValue(2))
             {
                 DifficultyIndex = 2;                
             }
@@ -464,7 +481,7 @@ function SummonMinions()
     SpawnManager = MyKFGameInfo.SpawnManager;
     if(SpawnManager != none)
     {
-        SpawnManager.SummonBossMinions(MinionWave.Squads, NumMinionsToSpawn);
+        SpawnManager.SummonBossMinions(MinionWave.Squads, GetNumMinionsToSpawn());
     }
 }
 

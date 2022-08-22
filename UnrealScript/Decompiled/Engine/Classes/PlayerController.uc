@@ -246,6 +246,7 @@ var array<ConnectedPeerInfo> ConnectedPeers;
 var array<UniqueNetId> BestNextHostPeers;
 var OnlineGameSearch MigratedSearchToJoin;
 var OnlineSubsystem OnlineSub;
+var PlayfabInterface PlayfabInter;
 var OnlineVoiceInterface VoiceInterface;
 var UIDataStore_OnlinePlayerData OnlinePlayerData;
 var OnlineGameSearchResult CachedInviteResult;
@@ -402,6 +403,7 @@ simulated event PostBeginPlay()
     SetViewTarget(self);
     LastActiveTime = WorldInfo.TimeSeconds;
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
     if(WorldInfo.NetMode == NM_Client)
     {
         InitNavigationHandle();
@@ -1697,10 +1699,12 @@ function RegisterOnlineDelegates()
         {
             OnlineSub.SystemInterface.AddExternalUIChangeDelegate(OnExternalUIChanged);
             OnlineSub.SystemInterface.AddControllerChangeDelegate(OnControllerChanged);
+            OnlineSub.SystemInterface.AddConnectionStatusChangeDelegate(OnConnectionStatusChange);
         }
         if(NotEqual_InterfaceInterface(OnlineSub.GameInterface, (none)))
         {
             OnlineSub.GameInterface.AddGameInviteAcceptedDelegate(byte(LP.ControllerId), OnGameInviteAccepted);
+            OnlineSub.GameInterface.AddPlayTogetherStartedDelegate(byte(LP.ControllerId), OnPlayTogetherStarted);
         }
         if(NotEqual_InterfaceInterface(OnlineSub.PartyChatInterface, (none)))
         {
@@ -1728,12 +1732,14 @@ event ClearOnlineDelegates()
             {
                 OnlineSub.SystemInterface.ClearExternalUIChangeDelegate(OnExternalUIChanged);
                 OnlineSub.SystemInterface.ClearControllerChangeDelegate(OnControllerChanged);
+                OnlineSub.SystemInterface.ClearConnectionStatusChangeDelegate(OnConnectionStatusChange);
             }
             if(LP != none)
             {
                 if(NotEqual_InterfaceInterface(OnlineSub.GameInterface, (none)))
                 {
                     OnlineSub.GameInterface.ClearGameInviteAcceptedDelegate(byte(LP.ControllerId), OnGameInviteAccepted);
+                    OnlineSub.GameInterface.ClearPlayTogetherStartedDelegate(byte(LP.ControllerId), OnPlayTogetherStarted);
                 }
                 if(NotEqual_InterfaceInterface(OnlineSub.PartyChatInterface, (none)))
                 {
@@ -4886,10 +4892,11 @@ function GameplayUnmutePlayer(UniqueNetId PlayerNetId)
     }
 }
 
-reliable server event ServerMutePlayer(UniqueNetId PlayerNetId)
+reliable server event ServerMutePlayer(UniqueNetId PlayerNetId, optional bool bMuteOther)
 {
     local PlayerController Other;
 
+    bMuteOther = true;
     if(VoiceMuteList.Find('Uid', PlayerNetId.Uid == -1)
     {
         VoiceMuteList.AddItem(PlayerNetId;
@@ -4900,7 +4907,7 @@ reliable server event ServerMutePlayer(UniqueNetId PlayerNetId)
     }
     ClientMutePlayer(PlayerNetId);
     Other = GetPlayerControllerFromNetId(PlayerNetId);
-    if(Other != none)
+    if((Other != none) && bMuteOther)
     {
         if(Other.VoicePacketFilter.Find('Uid', PlayerReplicationInfo.UniqueId.Uid == -1)
         {
@@ -4910,18 +4917,28 @@ reliable server event ServerMutePlayer(UniqueNetId PlayerNetId)
     }
 }
 
-reliable server event ServerUnmutePlayer(UniqueNetId PlayerNetId)
+reliable server event ServerUnmutePlayer(UniqueNetId PlayerNetId, optional bool bUnmuteOther)
 {
     local PlayerController Other;
     local int RemoveIndex;
 
+    bUnmuteOther = true;
     RemoveIndex = VoiceMuteList.Find('Uid', PlayerNetId.Uid;
     if(RemoveIndex != -1)
     {
         VoiceMuteList.Remove(RemoveIndex, 1;
     }
+    if(!bUnmuteOther)
+    {
+        RemoveIndex = VoicePacketFilter.Find('Uid', PlayerNetId.Uid;
+        if(RemoveIndex != -1)
+        {
+            VoicePacketFilter.Remove(RemoveIndex, 1;
+        }
+        ClientUnmutePlayer(PlayerNetId);
+    }
     Other = GetPlayerControllerFromNetId(PlayerNetId);
-    if(Other != none)
+    if((Other != none) && bUnmuteOther)
     {
         if((GameplayVoiceMuteList.Find('Uid', PlayerNetId.Uid == -1) && Other.VoiceMuteList.Find('Uid', PlayerReplicationInfo.UniqueId.Uid == -1)
         {
@@ -5035,6 +5052,10 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, Onl
     }
 }
 
+function OnConnectionStatusChange(OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus);
+
+function OnPlayTogetherStarted();
+
 function bool InviteHasEnoughSpace(OnlineGameSettings InviteSettings)
 {
     local int NumLocalPlayers;
@@ -5128,8 +5149,9 @@ function OnInviteJoinComplete(name SessionName, bool bWasSuccessful)
     ClearInviteDelegates();
 }
 
-function NotifyInviteFailed()
+function NotifyInviteFailed(optional string LocKey)
 {
+    LocKey = "UnableToJoinInvite";
     LogInternal("SESSIONS - Invite handling failed");
     ClearInviteDelegates();
 }

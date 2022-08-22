@@ -11,6 +11,8 @@ class SeqEvent_Used extends SequenceEvent
 
 /** if true, requires player to aim at trigger to be able to interact with it. False, simple radius check will be performed */
 var() bool bAimToInteract;
+/** If set, perform additional trace from camera to trigger when using */
+var(TW) bool bUseLineCheck;
 /** Max distance from instigator to allow interactions. */
 var() float InteractDistance;
 /** Text to display when looking at this event */

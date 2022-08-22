@@ -16,6 +16,7 @@ var KFGameInfo_Tutorial KFGI;
 var KFTutorialSectionInfo TutorialSectionInfo;
 
 var bool bUsingGamepad;
+var GFxObject ManagerObject;
 
 function Init(optional LocalPlayer LocPlay)
 {
@@ -33,6 +34,17 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 
 	switch ( WidgetName )
 	{
+		case ( 'root1' ):
+			if ( ManagerObject == none )
+			{
+				ManagerObject = Widget;
+				// Let the menuManager know if we are on console.
+				if ( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+				{
+					ManagerObject.SetBool("bUsingGamepad", true);
+				}
+			}
+		break;
 		case ( 'tutorialPopup' ):
 			if ( TutorialContainer == none )
 			{
@@ -79,7 +91,10 @@ function CheckIfUsingGamepad()
 function OnInputTypeChanged(bool bGamePad)
 {
 	bUsingGamepad = bGamepad;
-	TutorialContainer.UpdateUsingGamePad(bUsingGamepad);
+	if(ManagerObject != none)
+	{
+		ManagerObject.SetBool("bUsingGamepad", bGamePad);
+	}	
 }
 
 /** Return whether the player input says we are currently using the gamepad */
@@ -117,6 +132,7 @@ defaultproperties
    SoundThemeName="ButtonSoundTheme"
    MovieInfo=SwfMovie'UI_Tutorial.TutorialManager_SWF'
    bAutoPlay=True
+   bCaptureInput=True
    bCaptureMouseInput=True
    CaptureKeys(0)="XboxTypeS_A"
    CaptureKeys(1)="XboxTypeS_B"
@@ -125,6 +141,7 @@ defaultproperties
    CaptureKeys(4)="XboxTypeS_LeftTrigger"
    CaptureKeys(5)="XboxTypeS_RightTrigger"
    SoundThemes(0)=(ThemeName="ButtonSoundTheme",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Buttons')
+   SoundThemes(1)=(ThemeName="UI",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_UI')
    WidgetBindings(0)=(WidgetName="tutorialPopup",WidgetClass=Class'kfgamecontent.KFGFxTutorialContainer')
    Name="Default__KFGFxMoviePlayer_Tutorial"
    ObjectArchetype=GFxMoviePlayer'GFxUI.Default__GFxMoviePlayer'

@@ -745,6 +745,8 @@ var string ImpactEffectManagerClassPath;
 var transient Actor MyImpactEffectManager;
 var string GoreEffectManagerClassPath;
 var transient Actor MyGoreEffectManager;
+var string TWDeferredWorkManagerClassPath;
+var transient Actor DeferredWorkManager;
 var string TurbEffectPoolClassPath;
 var transient Actor MyTurbEffectPool;
 var string GroundFireEmitterPoolClassPath;
@@ -815,9 +817,6 @@ native static final simulated function bool IsDemoBuild();
 // Export UWorldInfo::execIsConsoleDedicatedServer(FFrame&, void* const)
 native static final function bool IsConsoleDedicatedServer();
 
-// Export UWorldInfo::execIsPlayfabServer(FFrame&, void* const)
-native static final function bool IsPlayfabServer();
-
 // Export UWorldInfo::execIsE3Build(FFrame&, void* const)
 native static final simulated function bool IsE3Build();
 
@@ -826,6 +825,9 @@ native static final simulated function bool IsConsoleBuild(optional WorldInfo.EC
 {
     ConsoleType = 0;            
 }
+
+// Export UWorldInfo::execGetResolutionBasedHUDScale(FFrame&, void* const)
+native static final function float GetResolutionBasedHUDScale();
 
 // Export UWorldInfo::execIsWithGFx(FFrame&, void* const)
 native static final simulated function bool IsWithGFx();
@@ -987,6 +989,10 @@ simulated function PreBeginPlay()
         }
         ExplosionDecalManager = Spawn(Class'DecalManager', self,, vect(0, 0, 0), rot(0, 0, 0));
         ExplosionDecalManager.MaxActiveDecals = MaxExplosionDecals;
+    }
+    if(IsInPersistentLevel())
+    {
+        DeferredWorkManager = Spawn(Class'TWDeferredWorkManager', self,, vect(0, 0, 0), rot(0, 0, 0));
     }
     if((WorldInfo.NetMode != NM_Client) && IsInPersistentLevel())
     {
@@ -1251,6 +1257,7 @@ defaultproperties
     GameplayPoolManagerClassPath="KFGame.KFGameplayPoolManager"
     ImpactEffectManagerClassPath="KFGame.KFImpactEffectManager"
     GoreEffectManagerClassPath="KFGame.KFGoreManager"
+    TWDeferredWorkManagerClassPath="Engine.TWDeferredWorkManager"
     GroundFireEmitterPoolClassPath="KFGame.GroundFireEmitterPool"
     ImpactFXEmitterPoolClassPath="KFGame.KFImpactFXEmitterPool"
     MaxExplosionDecals=15

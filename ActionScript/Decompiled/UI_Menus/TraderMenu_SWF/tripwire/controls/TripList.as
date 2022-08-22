@@ -20,9 +20,9 @@ package tripwire.controls
             param1.visible = true;
         }
         
-        public static function onOpen(param1:CoreList) : *
+        public static function onOpen(param1:CoreList, param2:Boolean = true) : *
         {
-            if(param1.selectedIndex == -1)
+            if(param1.selectedIndex == -1 && param2)
             {
                 param1.selectedIndex = 0;
             }

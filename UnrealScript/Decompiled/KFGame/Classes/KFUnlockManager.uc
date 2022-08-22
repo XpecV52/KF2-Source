@@ -33,7 +33,6 @@ struct native SharedContent
 var array<SharedContent> SharedContentList;
 var OnlineSubsystem MyOnlineSubsystem;
 var const bool bDebugUnlocks;
-var const int SteamGroupAppId;
 
 // Export UKFUnlockManager::execInitSharedUnlocksFor(FFrame&, void* const)
 native static function InitSharedUnlocksFor(KFPlayerReplicationInfo PRI);
@@ -166,5 +165,4 @@ defaultproperties
 {
     SharedContentList(0)=(Name=None,IconPath="",Id=0)
     SharedContentList(1)=(Name=KFWeap_Edged_Zweihander,IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",Id=219640)
-    SteamGroupAppId=1
 }

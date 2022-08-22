@@ -29,11 +29,17 @@ var KFPlayerController KFPC;
 var const localized string BossName;
 var const localized array<localized string> BossCaptionStrings;
 var BossMinionWaveInfo SummonWaves[4];
-var int NumMinionsToSpawn;
+var Vector2D NumMinionsToSpawn;
 var repnotify int CurrentBattlePhase;
 var bool bUseAnimatedTheatricCamera;
 var name TheatricCameraSocketName;
 var Vector TheatricCameraAnimOffset;
+var float LastPlayerAliveAttackRangeScale;
+var protected float LastPlayerAliveStartTime;
+var protected const float TimeUntilSpeedIncrease;
+var protected const float SpeedLimitScalar;
+var protected const float SpeedPctIncreasePerMinute;
+var protected float ActualSprintSpeed;
 
 replication
 {
@@ -67,12 +73,15 @@ simulated event PreBeginPlay()
     }
 }
 
-event PostBeginPlay()
+simulated event PostBeginPlay()
 {
-    super(KFPawn).PostBeginPlay();
-    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+    super.PostBeginPlay();
+    if(WorldInfo.NetMode != NM_Client)
     {
-        WorldInfo.TWLogEvent("boss_spawn", none, string(Class.Name));
+        if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+        {
+            WorldInfo.TWLogEvent("boss_spawn", none, string(Class.Name));
+        }
     }
 }
 
@@ -80,6 +89,34 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super.PossessedBy(C, bVehicleTransition);
     PlayBossMusic();
+    if(!IsHumanControlled())
+    {
+        ActualSprintSpeed = SprintSpeed;
+        SetTimer(TimeUntilSpeedIncrease, false, 'Timer_IncreaseSpeed');
+    }
+}
+
+function Timer_IncreaseSpeed()
+{
+    SetTimer(10, false, 'Timer_IncreaseSpeed');
+    if(IsOnePlayerLeftInTeamGame())
+    {
+        if(LastPlayerAliveStartTime == 0)
+        {
+            LastPlayerAliveStartTime = WorldInfo.TimeSeconds;
+        }
+        SprintSpeed = FClamp(ActualSprintSpeed + (((WorldInfo.TimeSeconds - LastPlayerAliveStartTime) / 60) * (ActualSprintSpeed * SpeedPctIncreasePerMinute)), ActualSprintSpeed, ActualSprintSpeed * SpeedLimitScalar);        
+    }
+    else
+    {
+        LastPlayerAliveStartTime = 0;
+        SprintSpeed = ActualSprintSpeed;
+    }
+}
+
+function byte GetNumMinionsToSpawn()
+{
+    return byte(Lerp(NumMinionsToSpawn.X, NumMinionsToSpawn.Y, FMax(float(WorldInfo.Game.NumPlayers), 1) / float(WorldInfo.Game.MaxPlayers)));
 }
 
 function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum, Actor DamageCauser)
@@ -105,7 +142,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
     local KFGameReplicationInfo KFGRI;
 
     super.PlayDying(DamageType, HitLoc);
-    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(BossName, Class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(WorldInfo.GetMapName(true)).DisplayName);
+    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(string(Class.Name), BossName, Class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(WorldInfo.GetMapName(true)).DisplayName);
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if((KFGRI != none) && !KFGRI.IsFinalWave())
     {
@@ -141,15 +178,76 @@ simulated function OnBattlePhaseChanged()
 
 simulated function UpdateBattlePhaseOnLocalPlayerUI()
 {
-    if(!KFPC.IsLocalController())
+    if(((KFPC == none) || KFPC.MyGFxHUD == none) || KFPC.MyGFxHUD.bossHealthBar == none)
     {
         return;
     }
-    if(((KFPC != none) && KFPC.MyGFxHUD != none) && KFPC.MyGFxHUD.bossHealthBar != none)
-    {
-        KFPC.MyGFxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);
-    }
+    KFPC.MyGFxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);
 }
+
+function bool HandleAIDoorBump(KFDoorActor door)
+{
+    return TryDestroyDoor(door);
+}
+
+function bool TryDestroyDoor(KFDoorActor door)
+{
+    if(((((door != none) && !door.bIsDoorOpen) && !door.bIsDestroyed) && door.WeldIntegrity == 0) && CanObliterateDoors())
+    {
+        door.IncrementHitCount(self);
+        door.DestroyDoor(Controller);
+        return true;
+    }
+    return false;
+}
+
+event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
+{
+    local KFDoorActor door;
+
+    if(IsHumanControlled())
+    {
+        if(!Wall.bStatic && IsAliveAndWell())
+        {
+            door = KFDoorActor(Wall);
+            if(door != none)
+            {
+                TryDestroyDoor(door);
+            }
+        }
+    }
+    super.HitWall(HitNormal, Wall, WallComp);
+}
+
+function bool CanObliterateDoors()
+{
+    if(!bIsSprinting)
+    {
+        return false;
+    }
+    return true;
+}
+
+function float GetAttackRangeScale()
+{
+    if(IsOnePlayerLeftInTeamGame())
+    {
+        return LastPlayerAliveAttackRangeScale;
+    }
+    return 1;
+}
+
+function bool IsOnePlayerLeftInTeamGame()
+{
+    if(WorldInfo.Game.NumPlayers > 1)
+    {
+        return KFGameInfo(WorldInfo.Game).GetLivingPlayerCount() == 1;
+    }
+    return false;
+}
+
+// Export UKFPawn_MonsterBoss::execLocalIsOnePlayerLeftInTeamGame(FFrame&, void* const)
+native function bool LocalIsOnePlayerLeftInTeamGame();
 
 static function bool IsABoss()
 {
@@ -165,6 +263,7 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
     {
         KFGameInfo(WorldInfo.Game).BossDied(Killer);
     }
+    ClearTimer('Timer_IncreaseSpeed');
     return Result;
 }
 
@@ -225,6 +324,10 @@ defaultproperties
     BossName="Boss"
     BossCaptionStrings(0)="Boss caption 1"
     BossCaptionStrings(1)="Boss caption 2"
+    LastPlayerAliveAttackRangeScale=0.75
+    TimeUntilSpeedIncrease=60
+    SpeedLimitScalar=1.3
+    SpeedPctIncreasePerMinute=0.2
     MinSpawnSquadSizeType=ESquadType.EST_Boss
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_MonsterBoss.MeleeHelper'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -267,10 +370,12 @@ defaultproperties
         SpecialMoveClasses(24)=none
         SpecialMoveClasses(25)=none
         SpecialMoveClasses(26)=none
-        SpecialMoveClasses(27)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(28)=class'KFSM_HansGrappleVictim'
-        SpecialMoveClasses(29)=none
-        SpecialMoveClasses(30)=class'KFSM_Zed_Boss_Theatrics'
+        SpecialMoveClasses(27)=none
+        SpecialMoveClasses(28)=none
+        SpecialMoveClasses(29)=class'KFSM_GrappleVictim'
+        SpecialMoveClasses(30)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(31)=none
+        SpecialMoveClasses(32)=class'KFSM_Zed_Boss_Theatrics'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_MonsterBoss.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

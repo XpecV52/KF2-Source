@@ -44,11 +44,6 @@ simulated event ReplicatedEvent( name VarName )
 {
 	local KFPlayerController KFPC;
 
-    if( VarName == nameOf(bTraderIsOpen) && bTraderIsOpen )
-    {
-        FadeOutCrawlerSuicides();
-    }
-
     if( VarName == nameOf(PlayerZedSpawnWaitTimeData) )
     {
     	TimeUntilNextSpawn = PlayerZedSpawnWaitTimeData.SpawnWaitTime;
@@ -202,26 +197,6 @@ simulated function bool AreTeamsOutOfBalanced()
 	return false;
 }
 
-/** Called from the GameInfo when the trader pod should be activated */
-function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
-{
-    local KFProj_BloatPukeMine PukeMine;
-
-    super.SetWaveActive( bWaveActive, NewMusicIntensity );
-
-    if( bTraderIsOpen )
-    {
-        // Destroy all puke mine projectiles
-        foreach DynamicActors( class'KFProj_BloatPukeMine', PukeMine )
-        {
-            PukeMine.FadeOut();
-        }
-
-        // Destroy all lingering crawler suicide explosions
-        FadeOutCrawlerSuicides();
-    }
-}
-
 simulated function int GetCurrentRoundNumber()
 {
 	return CurrentRound;
@@ -231,16 +206,6 @@ simulated function int GetCurrentRoundNumber()
 simulated event bool CanChangePerks()
 {
 	return super.CanChangePerks() || bRoundIsOver;
-}
-
-simulated function FadeOutCrawlerSuicides()
-{
-    local KFExplosion_PlayerCrawlerSuicide CrawlerSuicideExplosion;
-
-    foreach DynamicActors( class'KFExplosion_PlayerCrawlerSuicide', CrawlerSuicideExplosion )
-    {
-        CrawlerSuicideExplosion.FadeOut();
-    }    
 }
 
 function ServerStartVoteKick( PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker )
@@ -264,6 +229,9 @@ function ServerStartVoteKick( PlayerReplicationInfo PRI_Kickee, PlayerReplicatio
 	}
 }
 
+/** Performs client-specific resets */
+simulated function OnRoundIncremented();
+
 /** Resets the GRI */
 function Reset()
 {
@@ -271,9 +239,6 @@ function Reset()
 
 	super.Reset();
 }
-
-/** Performs client-specific resets */
-simulated function OnRoundIncremented();
 
 DefaultProperties
 {

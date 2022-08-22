@@ -72,6 +72,7 @@ enum EAfflictionType
 	AF_Stumble,
 	AF_Stun,
 	AF_Poison,
+	AF_Snare,
 
 	/** uncommon */
 	AF_Knockdown,
@@ -175,7 +176,7 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
 {
 	local EHitZoneBodyPart BodyPart;
 	local byte HitZoneIdx;
-	local float KnockdownPower, StumblePower, StunPower;
+	local float KnockdownPower, StumblePower, StunPower, SnarePower;
 
 	// This is for damage over time, DoT shall never have momentum
 	if( IsZero( HitDir ) )
@@ -197,6 +198,7 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
         KnockdownPower *= InstigatorPerk.GetKnockdownPowerModifier( DamageType, BodyPart, bIsSprinting );
         StumblePower *= InstigatorPerk.GetStumblePowerModifier( Outer, DamageType,, BodyPart );
         StunPower *= InstigatorPerk.GetStunPowerModifier( DamageType, HitZoneIdx );
+        SnarePower = InstigatorPerk.GetSnarePower( DamageType, HitZoneIdx );
     }
 
     // increment affliction power
@@ -215,6 +217,10 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
 	if ( DamageType.default.FreezePower > 0 && CanDoSpecialMove(SM_Frozen) )
 	{
 		AccrueAffliction(AF_Freeze, DamageType.default.FreezePower, BodyPart);
+	}
+	if( SnarePower > 0 )
+	{
+		AccrueAffliction(AF_Snare, SnarePower, BodyPart);
 	}
 }
 
@@ -275,12 +281,15 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
 		{
 			AccrueAffliction(AF_EMP, DamageType.default.EMPPower);
 		}
+		else if( InstigatorPerk != none && InstigatorPerk.ShouldGetDaZeD( DamageType ) )
+		{
+			AccrueAffliction(AF_EMP, InstigatorPerk.GetDaZedEMPPower() );
+		}
 		if ( DamageType.default.BurnPower > 0 )
 		{
 			AccrueAffliction(AF_FirePanic, DamageType.default.BurnPower);
 		}
-		if ( DamageType.default.PoisonPower > 0 && DamageType.static.AlwaysPoisons()
-			|| (InstigatorPerk != None && InstigatorPerk.IsAcidicCompoundActive()) )
+		if ( DamageType.default.PoisonPower > 0 && DamageType.static.AlwaysPoisons() )
 		{
 			AccrueAffliction(AF_Poison, DamageType.default.PoisonPower);
 		}
@@ -416,9 +425,16 @@ simulated function Shutdown()
 * @name		Functions that are needed clientside for VFX.
 ********************************************************************************************* */
 
+/** Called from the pawn when we need to update FX outside of the affliction class (e.g. client repnotify) */
 function ToggleEffects(EAfflictionType Type, bool bPrimary, optional bool bSecondary)
 {
     if ( WorldInfo.NetMode == NM_DedicatedServer )
+	{
+		return;
+	}
+
+	// After death FX are soley owned by the affliction class (simplifies TearOff/Replication issues)
+	if ( bPlayedDeath )
 	{
 		return;
 	}
@@ -463,9 +479,10 @@ defaultproperties
    AfflictionClasses(4)=Class'KFGame.KFAffliction_Stumble'
    AfflictionClasses(5)=Class'KFGame.KFAffliction_Stun'
    AfflictionClasses(6)=Class'KFGame.KFAffliction_Poison'
-   AfflictionClasses(7)=Class'KFGame.KFAffliction_Knockdown'
-   AfflictionClasses(8)=Class'KFGame.KFAffliction_Freeze'
-   AfflictionClasses(9)=Class'KFGame.KFAffliction_Microwave'
+   AfflictionClasses(7)=Class'KFGame.KFAffliction_Snare'
+   AfflictionClasses(8)=Class'KFGame.KFAffliction_Knockdown'
+   AfflictionClasses(9)=Class'KFGame.KFAffliction_Freeze'
+   AfflictionClasses(10)=Class'KFGame.KFAffliction_Microwave'
    Name="Default__KFAfflictionManager"
    ObjectArchetype=Object'Core.Default__Object'
 }

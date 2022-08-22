@@ -71,27 +71,27 @@ DefaultProperties
 
 	LocalizationKey=KFPawn_ZedScrake
 
-
-
 	Begin Object Name=SpecialMoveHandler_0
-		SpecialMoveClasses(SM_PlayerZedAttack1)= class'KFSM_PlayerScrake_Melee'
-		SpecialMoveClasses(SM_PlayerZedAttack2)= class'KFSM_PlayerScrake_Melee2'
-		SpecialMoveClasses(SM_PlayerZedSpecial1)= class'KFSM_PlayerScrake_Melee3'
-		SpecialMoveClasses(SM_PlayerZedSpecial2)= class'KFSM_PlayerScrake_Block'
+		SpecialMoveClasses(SM_PlayerZedMove_LMB)= class'KFSM_PlayerScrake_Melee'
+		SpecialMoveClasses(SM_PlayerZedMove_RMB)= class'KFSM_PlayerScrake_Melee2'
+		SpecialMoveClasses(SM_PlayerZedMove_V)= class'KFSM_PlayerScrake_Melee3'
+		SpecialMoveClasses(SM_PlayerZedMove_MMB)= class'KFSM_PlayerScrake_Block'
 	End Object
 
-	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=0.5f,  SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-LightLunge', GBA_Name="GBA_Fire",NameLocalizationKey="Light")
-	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=1.5f,  SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-HeavyLunge', GBA_Name="GBA_IronsightsToggle", ALT_GBA_Name="GBA_IronsightsHold",NameLocalizationKey="Heavy")
-	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=1.0f,  GBA_Name="GBA_Reload",bShowOnHud=false)
-	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=2.5f,  SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-SpinAttack', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Spin")
-	SpecialMoveCooldowns(4)=(SMHandle=SM_PlayerZedSpecial2,		CooldownTime=0.5,	SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block', GBA_Name="GBA_SwitchFireMode",NameLocalizationKey="Block")
-	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.25f, SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array
+	MoveListGamepadScheme(ZGM_Melee_Square)=SM_PlayerZedMove_LMB
+	MoveListGamepadScheme(ZGM_Melee_Triangle)=SM_PlayerZedMove_RMB
+	MoveListGamepadScheme(ZGM_Block_R1)=SM_PlayerZedMove_MMB
+	MoveListGamepadScheme(ZGM_Special_R3)=SM_PlayerZedMove_V
 
+	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedMove_LMB,		CooldownTime=0.5f,  SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-LightLunge', NameLocalizationKey="Light")
+	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB,		CooldownTime=1.5f,  SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-HeavyLunge', NameLocalizationKey="Heavy")
+	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=1.0f,  bShowOnHud=false)
+	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=2.5f,  SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-SpinAttack', NameLocalizationKey="Spin")
+	SpecialMoveCooldowns(4)=(SMHandle=SM_PlayerZedMove_MMB,		CooldownTime=0.5,	SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block', NameLocalizationKey="Block")
+	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.25f, SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-Jump', bShowOnHud=false)) // Jump always at end of array
 
     DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.6)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.5)))
-
-
 
 	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 1.0, 0.5, 0.5, 0.5), Cooldown=10.0, Duration=1.5)
     IncapSettings(AF_Knockdown)=(Vulnerability=(0.2),                     Cooldown=10)
@@ -141,9 +141,7 @@ DefaultProperties
 
 	// Blocking
 	MinBlockFOV=0.f
-	BlockingDamageModifier=0.25 //0.5
-	MeleeBlockingDamageModifier=0.25
-
+	
 	//defaults
 	ThirdPersonViewOffset={(
 		OffsetHigh=(X=-175,Y=60,Z=60),

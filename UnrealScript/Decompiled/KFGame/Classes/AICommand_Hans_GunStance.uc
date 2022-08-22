@@ -55,7 +55,7 @@ state Command_SpecialMove
 {
     function KFPawn.ESpecialMove GetSpecialMove()
     {
-        return 31;
+        return 33;
     }
 
     function bool ExecuteSpecialMove()

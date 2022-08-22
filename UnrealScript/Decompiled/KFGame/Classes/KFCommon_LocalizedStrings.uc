@@ -11,7 +11,9 @@ var const localized array<localized string> DifficultyStrings;
 var const localized array<localized string> LengthStrings;
 var const localized array<localized string> ServerTypeStrings;
 var const localized array<localized string> PermissionStrings;
+var const localized array<localized string> ConsolePermissionStrings;
 var const localized array<localized string> ModeStrings;
+var const localized string TeamSwappedString;
 var const localized string NoPreferenceString;
 var const localized string OKString;
 var const localized string ConfirmString;
@@ -32,6 +34,13 @@ var const localized string UnableToSwitchTeamString;
 var const localized string NoSwitchReasonString;
 var const localized string TeamString;
 var const localized string AllString;
+var const localized string LoadingString;
+var const localized string AutoTradeCompleteString;
+var const localized string AutoFillCompleteString;
+var const localized string WeaponUpgradeComepleteString;
+var const localized string SecondaryWeaponPurchasedString;
+var const localized string NoItemsPurchasedString;
+var const localized string SetTakeoverServerPasswordTitle;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -42,7 +51,7 @@ static function string GetDifficultyString(float GameDifficulty)
 {
     local byte DifficultyIndex;
 
-    DifficultyIndex = Class'KFDifficultyInfo'.static.GetDifficultyIndex(GameDifficulty);
+    DifficultyIndex = Class'KFGameDifficultyInfo'.static.GetDifficultyIndex(GameDifficulty);
     if((0 < default.DifficultyStrings.Length) && DifficultyIndex < default.DifficultyStrings.Length)
     {
         return default.DifficultyStrings[DifficultyIndex];
@@ -82,9 +91,16 @@ static function string GetPermissionString(float PermissionIndex)
     return default.NoPreferenceString;
 }
 
-static function array<string> GetPermissionStringsArray()
+static function array<string> GetPermissionStringsArray(bool bConsoleBuild)
 {
-    return default.PermissionStrings;
+    if(bConsoleBuild)
+    {
+        return default.ConsolePermissionStrings;        
+    }
+    else
+    {
+        return default.PermissionStrings;
+    }
 }
 
 static function array<string> GetGameModeStringsArray()
@@ -105,6 +121,21 @@ static function string GetGameModeString(int GameModeIndex)
     return default.NoPreferenceString;
 }
 
+static function string GetFriendlyMapName(string MapName)
+{
+    local KFMapSummary MapData;
+
+    MapData = Class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
+    if((MapData != none) && MapData.DisplayName != "")
+    {
+        return MapData.DisplayName;        
+    }
+    else
+    {
+        return MapName;
+    }
+}
+
 defaultproperties
 {
     DifficultyStrings(0)="Normal"
@@ -119,9 +150,12 @@ defaultproperties
     ServerTypeStrings(2)="Unranked"
     PermissionStrings(0)="Public"
     PermissionStrings(1)="Friends only"
-    PermissionStrings(2)="Private"
+    PermissionStrings(2)="Private-Password"
+    ConsolePermissionStrings(0)="Public"
+    ConsolePermissionStrings(1)="Invite Only"
     ModeStrings(0)="Survival"
     ModeStrings(1)="VS Survival"
+    TeamSwappedString="You have been team swapped"
     NoPreferenceString="ANY"
     OKString="OK"
     ConfirmString="CONFIRM"
@@ -131,8 +165,8 @@ defaultproperties
     NoticeString="NOTICE!"
     AcceptString="Accept"
     DeclineString="Decline"
-    YesString="Yes"
-    NoString="No"
+    YesString="YES"
+    NoString="NO"
     DisbandPartyString="DISBAND PARTY"
     LeaveCurrentMenuString="Leave current menu?"
     ZedString="ZED"
@@ -142,4 +176,11 @@ defaultproperties
     NoSwitchReasonString="Switching teams would upset team balance"
     TeamString="TEAM"
     AllString="ALL"
+    LoadingString="Loading..."
+    AutoTradeCompleteString="Auto Trade Complete: "
+    AutoFillCompleteString="Autofilled Supplies"
+    WeaponUpgradeComepleteString="Weapon Upgraded"
+    SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
+    NoItemsPurchasedString="No Items Purchased"
+    SetTakeoverServerPasswordTitle="Enter a new password to protect your game:"
 }

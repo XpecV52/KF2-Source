@@ -164,6 +164,20 @@ const KFACHID_VsHumanWin = 146;
 const KFACHID_HoldOut = 147;
 const KFACHID_IGotYourBack = 148;
 const KFACHID_Benefactor = 149;
+const KFACHID_InfernalRealmNormal = 150;
+const KFACHID_InfernalRealmHard = 151;
+const KFACHID_InfernalRealmSuicidal = 152;
+const KFACHID_InfernalRealmHellOnEarth = 153;
+const KFACHID_InfernalRealmCollectibles = 154;
+const KFACHID_SWAT_Lvl5 = 155;
+const KFACHID_SWAT_Lvl10 = 156;
+const KFACHID_SWAT_Lvl15 = 157;
+const KFACHID_SWAT_Lvl20 = 158;
+const KFACHID_SWAT_Lvl25 = 159;
+const KFACHID_SWATNormal = 160;
+const KFACHID_SWATHard = 161;
+const KFACHID_SWATSuicidal = 162;
+const KFACHID_SWATHellOnEarth = 163;
 
 var KFPlayerController MyKFPC;
 var private int Kills;
@@ -204,6 +218,10 @@ var private int SharpshooterXP;
 var private int SharpshooterLVL;
 var private int SharpshooterPSG;
 var private int SharpshooterBuild;
+var private int SwatXP;
+var private int SwatLVL;
+var private int SwatPSG;
+var private int SwatBuild;
 var private int PersonalBest_KnifeKills;
 var private int PersonalBest_PistolKills;
 var private int PersonalBest_HeadShots;
@@ -406,7 +424,24 @@ event CacheStatsValue(int StatId, float Value)
             SharpshooterBuild = int(Value);
             if(bLogStatsWrite)
             {
-                LogInternal((string(GetFuncName()) @ "GunslingerBuild:") @ string(SharpshooterBuild));
+                LogInternal((string(GetFuncName()) @ "SharpshooterBuild:") @ string(SharpshooterBuild));
+            }
+            break;
+        case 90:
+            SwatXP = GetXPFromProgress(int(Value));
+            SwatLVL = GetLVLFromProgress(int(Value));
+            SwatPSG = GetPSGFromProgress(int(Value));
+            CheckPerkLvlAchievement(Class'KFPerk_SWAT', SwatLVL);
+            if(bLogStatsWrite)
+            {
+                LogInternal(((((string(GetFuncName()) @ "SwatXP:") @ string(SwatXP)) @ string(SwatLVL)) @ "VALUE:") @ string(Round(Value)));
+            }
+            break;
+        case 91:
+            SwatBuild = int(Value);
+            if(bLogStatsWrite)
+            {
+                LogInternal((string(GetFuncName()) @ "SwatBuild:") @ string(SwatBuild));
             }
             break;
         case 200:
@@ -540,6 +575,9 @@ private final event GetPerkBuildFromStats(class<KFPerk> PerkClass, out int Build
         case Class'KFPerk_Sharpshooter':
             Build = SharpshooterBuild;
             break;
+        case Class'KFPerk_SWAT':
+            Build = SwatBuild;
+            break;
         default:
             break;
     }
@@ -635,6 +673,8 @@ private final event int GetPerkXP(int StatId)
             return GunslingerXP;
         case 50:
             return SharpshooterXP;
+        case 90:
+            return SwatXP;
         default:
             return 0;
             break;
@@ -661,6 +701,8 @@ private final event int GetPerkLVLInternal(int StatId)
             return GunslingerLVL;
         case 50:
             return SharpshooterLVL;
+        case 90:
+            return SwatLVL;
         default:
             return 0;
             break;
@@ -687,6 +729,8 @@ private final event int GetPerkPSG(int StatId)
             return GunslingerPSG;
         case 50:
             return SharpshooterPSG;
+        case 90:
+            return SwatPSG;
         default:
             return 0;
             break;
@@ -786,9 +830,16 @@ private final event AddToKills(class<KFPawn_Monster> MonsterClass, byte Difficul
             }
             else
             {
-                if(IsBloatKill(MonsterClass, DT))
+                if(IsClotKill(MonsterClass, DT))
                 {
-                    AddBloatKill(Difficulty);
+                    AddClotKill(Difficulty);                    
+                }
+                else
+                {
+                    if(IsBloatKill(MonsterClass, DT))
+                    {
+                        AddBloatKill(Difficulty);
+                    }
                 }
             }
         }
@@ -857,6 +908,16 @@ private final function AddFleshpoundKill(byte Difficulty)
     KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += Class'KFPerk_Demolitionist'.static.GetFleshpoundKillXP(Difficulty);
 }
 
+private final function AddClotKill(byte Difficulty)
+{
+    AddXP(Class'KFPerk_SWAT', Class'KFPerk_SWAT'.static.GetClotKillXP(Difficulty));
+    if(((MyKFPC != none) && MyKFPC.MatchStats != none) && Class'KFPerk_SWAT' != none)
+    {
+        MyKFPC.MatchStats.RecordSecondaryXPGain(Class'KFPerk_SWAT', Class'KFPerk_SWAT'.static.GetClotKillXP(Difficulty));
+    }
+    KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += Class'KFPerk_SWAT'.static.GetClotKillXP(Difficulty);
+}
+
 private final function AddBloatKill(byte Difficulty)
 {
     AddXP(Class'KFPerk_Firebug', Class'KFPerk_Firebug'.static.GetBloatKillXP(Difficulty));
@@ -880,6 +941,11 @@ private final function bool IsStalkerKill(class<KFPawn_Monster> MonsterClass, cl
 private final function bool IsFleshPoundKill(class<KFPawn_Monster> MonsterClass, class<DamageType> DT)
 {
     return MonsterClass.static.IsFleshpoundClass() && Class'KFPerk'.static.IsDamageTypeOnThisPerk(class<KFDamageType>(DT), Class'KFPerk_Demolitionist'.static.GetPerkClass());
+}
+
+private final function bool IsClotKill(class<KFPawn_Monster> MonsterClass, class<DamageType> DT)
+{
+    return MonsterClass.static.IsClotClass() && Class'KFPerk'.static.IsDamageTypeOnThisPerk(class<KFDamageType>(DT), Class'KFPerk_SWAT'.static.GetPerkClass());
 }
 
 private final function bool IsBloatKill(class<KFPawn_Monster> MonsterClass, class<DamageType> DT)

@@ -1,0 +1,1616 @@
+[TestItems]
+LocTestName=Loc Test Name
+LocTestType=Loc Test Type
+LocTestDescription=Loc Test Game Description
+LocTestSteamDescription=Loc Test Steam Description
+
+[Bundles]
+;Bundle Names
+BriarsBobbyBundleName=Briar's Bobby Bundle
+FosterClassicBundleName=Foster Classic Bundle
+TanakasBikerBundleName=Tanaka's Biker Bundle
+CardboardKnightBundleName=Cardboard Knight Bundle
+
+;Bundle Descriptions
+BriarsBobbyBundleDescription=Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles) Not tradeable or marketable.
+FosterClassicBundleDescription=Comes with Foster's Classic Suit Uniform (includes 9 skin styles), Classic Tie Accessory (includes 8 skin styles) and Bow Tie Accessory. Not tradeable or marketable.
+TanakasBikerBundleDescription=Comes with Tanaka's Motorcycle Uniform (includes 7 skin styles) and Helmet Cosmetic Accessory (includes 7 skin styles) Not tradeable or marketable.
+CardboardKnightBundleDescription=Comes with a Cardboard Knight Armor for the body(includes 6 skin styles) and Cardboard Knight Helmet Cosmetic Accessory (includes 6 skin styles).
+
+;PSN Bundle Descriptions
+BriarsBobbyBundlePSNDescription=Get a new classic London Bobby uniform for playable character PC Rob Briar. Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles).
+FosterClassicBundlePSNDescription=Get a new biker uniform for playable character Hayato Tanaka. Comes with Tanaka's Motorcycle Uniform (includes 7 skin styles) and Helmet Cosmetic Accessory (includes 7 skin styles).
+TanakasBikerBundlePSNDescription=Get a new classic suit uniform for playable character Mr. Foster. Comes with Foster's Classic Suit Uniform (includes 9 skin styles), Bow Tie Cosmetic Accessory and Classic Tie Cosmetic Accessory (includes 7 skin styles for each).
+CardboardKnightBundlePSNDescription=Get a hilarious new cardboard knight armor uniform useable for most playable characters. Comes with a Cardboard Knight Armor for the body(includes 6 skin styles) and Cardboard Knight Helmet Cosmetic Accessory (includes 6 skin styles).
+
+;Bundle Type Section
+BundleType=Bundle
+
+;Uniform Type Section
+CosmeticUniformType=Player Uniform Variant
+CosmeticAccessoryType=Player Accessory
+
+;bundle items
+Briars"London"UniformName=Briar's "London" Uniform
+BriarsCustodianHelmetName=Briar's Custodian Helmet
+FostersClassicSuitName=Foster's Classic Suit
+FostersClassicTieName=Foster's Classic Tie
+FostersBowTieName=Foster's Bow Tie
+TanakasBikerName=Tanaka's Biker
+TanakasBikerHelmetName=Tanaka's Biker Helmet
+HorzineMark7HelmetName=Horzine Mark 7 Helmet
+HorzineMark7SuitName=Horzine Mark 7 Suit
+CardboardKnightName=Cardboard Knight
+CardboardKnightHelmetName=Cardboard Knight Helmet
+
+;bundle item descriptions
+Briars"London"UniformDescription=Walking the beat alone. Compatible with Briar and Classic Briar. Not tradeable or marketable.
+BriarsCustodianHelmetDescription=Keep the noggin safe. Compatible with Oisten Jägerhorn, DJ Scully, Mr. Foster, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner Not tradeable or marketable.
+FostersClassicSuitDescription=Kill zeds and look classy doing it! Compatible with Mr. Foster. Not tradeable or marketable.
+FostersClassicTieDescription=Nice straight tie. Only compatible with Classic Foster Suit. Not tradeable or marketable.
+FostersBowTieDescription=Nice bow tie. Only compatible with Classic Foster Suit. Not tradeable or marketable.
+TanakasBikerDescription=Kill stuff and look cool doing it. Compatible with Tanaka. Not tradeable or marketable.
+TanakasBikerHelmetDescription=Keep the noggin safe. Compatible with Tanaka. Not tradeable or marketable.
+HorzineMark7HelmetDescription=Full face helmet to complement your Horzine Security Armor. Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins. Not tradeable or marketable.
+HorzineMark7SuitDescription=Elite Horzine Security Armor. Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins. Not tradeable or marketable.
+CardboardKnightDescription=Armor for the discerning knight. Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser. Not tradeable or marketable.
+CardboardKnightHelmetDescription=The crowning glory for a classic look. Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser. Not tradeable or marketable.
+
+[KeyCrates]
+;Key and Crate Type Section
+WeaponSkinKeyType=Weapon Skin Blueprint Decryption Key
+WeaponSkinCrateType=Encrypted Weapon Skin Blueprint
+CosmeticKeyType=Horzine Supply Crate Key
+CosmeticCrateType=Accessory Supply Crate
+PSWeaponSkinCrateType=Weapon Skin Supply Crate
+
+;Crate Names
+HorzineSupplyCrateSeries1Name=Horzine Supply Crate | Series #1
+HorzineSupplyCrateSeries2Name=Horzine Supply Crate | Series #2
+HorzineSupplyCrateSeries3Name=Horzine Supply Crate | Series #3
+HorzineSupplyCrateSeries4Name=Horzine Supply Crate | Series #4
+HorzineSupplyCrateSeries5Name=Horzine Supply Crate | Series #5
+HorzineSupplyCrateSeries6Name=Horzine Supply Crate | Series #6
+HorzineSupplyCrateSeries7Name=Horzine Supply Crate | Series #7
+HorzineSupplyCrateSeries8Name=Horzine Supply Crate | Series #8
+HorzineSupplyCrateSeries9Name=Horzine Supply Crate | Series #9
+
+;Crate Descriptions
+HorzineSupplyCrateSeries1Description=Requires a Series #1 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Doctors Mask</font><br><font color="#4b69cd">Aviators</font><br><font color="#4b69cd">Devtac Ballistic Mask</font><br><font color="#4b69cd">Baseball Hat</font><br><font color="#4b69cd">Eyepatch</font><br><font color="#4b69cd">Flatcap</font><br><font color="#4b69cd">Welding Mask</font><br><font color="#6600a1">Excellent Hat</font><br><font color="#6600a1">Chemical Gas Mask</font><br><font color="#6600a1">Boxing Headgear</font><br><font color="#6600a1">German Gas Mask</font><br><font color="#8847ff">Van Alberts Cloak</font><br><font color="#8847ff">Van Alberts Hat</font><br><font color="#8847ff">Skull Breaker Mask</font><br><font color="#8847ff">Skull Breaker Helmet</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCrateSeries2Description=Requires a Series #2 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Headband</font><br><font color="#4b69cd">Mempo</font><br><font color="#4b69cd">Retro Sunglasses</font><br><font color="#4b69cd">Ski Mask</font><br><font color="#4b69cd">UK Kevlar Helmet</font><br><font color="#6600a1">German Officer's Hat</font><br><font color="#6600a1">Holy Glasses</font><br><font color="#6600a1">UK Nightvision Helmet</font><br><font color="#6600a1">Front Row Protection</font><br><font color="#6600a1">Flight Mask</font><br><font color="#6600a1">Flight Helmet</font><br><font color="#8847ff">Criminally Insane Mask</font><br><font color="#8847ff">Reinforced Helmet</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCrateSeries3Description=Requires a Series #3 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">EMS Arm Band</font><br><font color="#4b69cd">Aviator Goggles</font><br><font color="#4b69cd">Military Beanie</font><br><font color="#4b69cd">The Longhorn</font><br><font color="#4b69cd">Pork Pie Hat</font><br><font color="#6600a1">The Inquisitor</font><br><font color="#6600a1">Broken Mask</font><br><font color="#8847ff">Bloody Games Helmet</font><br><font color="#8847ff">EMS Backpack</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCrateSeries4Description=Requires a Series #4 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Protective Glasses</font><br><font color="#4b69cd">Street Punks Glasses</font><br><font color="#4b69cd">Street Punks Bandana</font><br><font color="#4b69cd">JFront Baseball Cap</font><br><font color="#4b69cd">Boonie Cap</font><br><font color="#6600a1">Wasteland Goggles</font><br><font color="#6600a1">Sawblade Battle Helmet</font><br><font color="#6600a1">Sawtooth Mask</font><br><font color="#8847ff">Discount T-REX Mask</font><br><font color="#8847ff">Infiltrator Helm</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCrateSeries5Description=Requires a Series #5 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Visage de Poupee</font><br><font color="#4b69cd">Justice Helmet</font><br><font color="#4b69cd">Justice Goggles</font><br><font color="#4b69cd">Motorcycle Helmet</font><br><font color="#4b69cd">Wearble Air Filtering Device</font><br><font color="#6600a1">Cybernetic Gas Mask</font><br><font color="#6600a1">Motorcycle Helmet Damaged</font><br><font color="#6600a1">Justice Mask</font><br><font color="#8847ff">Mask of the Abyss</font><br><font color="#8847ff">Samurai Mask</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCrateSeries6Description=Requires a Series #6 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">US Gas Mask</font><br><font color="#4b69cd">Russian Gas Mask PMK-2</font><br><font color="#4b69cd">Enforcer Goggles</font><br><font color="#4b69cd">Enforcer Helmet</font><br><font color="#6600a1">RPG-7 Backbag</font><br><font color="#6600a1">Tactical Backbag</font><br><font color="#8847ff">Enforcer Mask</font><br><font color="#8847ff">M2 Flamethrower Tank</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCrateSeries7Description=Requires a Series #7 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Venom Mask</font><br><font color="#4b69cd">Venom Goggles</font><br><font color="#4b69cd">Venom Goggles Down</font><br><font color="#4b69cd">Venom 
+Headphones</font><br><font color="#6600a1">Venom Mask Filtered</font><br><font color="#6600a1">Venom Goggles Up</font><br><font color="#6600a1">Tormentor Mask</font><br><font color="#8847ff">Tormentor Headgear</font><br><font color="#8847ff">Tormentor Tubes Mask</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCrateSeries8Description=Requires a Series #8 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Tactical Hat</font><br><font color="#4b69cd">Tactical Mask</font><br><font color="#4b69cd">Tactical Headset MK1/MK2</font><br><font color="#6600a1">GS9 Helmet</font><br><font color="#6600a1">GS9 Mask</font><br><font color="#8847ff">Russian Military Helmet</font><br><font color="#8847ff">Russian Military Mask</font><br><font color="#8847ff">Russian Military Glasses</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCrateSeries9Description=Requires a Series #9 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Psycho Goggles</font><br><font color="#4b69cd">Psycho Mask Closed</font><br><font color="#4b69cd">Psycho Mask Open</font><br><font color="#4b69cd">Psycho Mask Smile</font><br><font color="#6600a1">Psycho Goggles Bloody</font><br><font color="#6600a1">Psycho Mask Closed Bloody</font><br><font color="#6600a1">Psycho Mask Open Bloody</font><br><font color="#6600a1">Psycho Mask Smile Bloody</font><br><font color="#8847ff">Psycho Pain Goggles Closed</font><br><font color="#8847ff">Psycho Pain Goggles Open</font><br><font color="#8847ff">Psycho Pain Mask Closed</font><br><font color="#8847ff">Psycho Pain Mask Open</font><br><font color="#8847ff">Psycho Pain Mask Smile</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+;Key Names
+HorzineSupplyCrateKeySeries1Name=Horzine Supply Crate Key | Series #1
+HorzineSupplyCrateKeySeries2Name=Horzine Supply Crate Key | Series #2
+HorzineSupplyCrateKeySeries3Name=Horzine Supply Crate Key | Series #3
+HorzineSupplyCrateKeySeries4Name=Horzine Supply Crate Key | Series #4
+HorzineSupplyCrateKeySeries5Name=Horzine Supply Crate Key | Series #5
+HorzineSupplyCrateKeySeries6Name=Horzine Supply Crate Key | Series #6
+HorzineSupplyCrateKeySeries7Name=Horzine Supply Crate Key | Series #7
+HorzineSupplyCrateKeySeries8Name=Horzine Supply Crate Key | Series #8
+HorzineSupplyCrateKeySeries9Name=Horzine Supply Crate Key | Series #9
+
+;Key Descriptions
+HorzineSupplyCrateKeySeries1Description=This key only opens the Horzine Series #1 Supply Crate.
+HorzineSupplyCrateKeySeries2Description=This key only opens the Horzine Series #2 Supply Crate.
+HorzineSupplyCrateKeySeries3Description=This key only opens the Horzine Series #3 Supply Crate.
+HorzineSupplyCrateKeySeries4Description=This key only opens the Horzine Series #4 Supply Crate.
+HorzineSupplyCrateKeySeries5Description=This key only opens the Horzine Series #5 Supply Crate.
+HorzineSupplyCrateKeySeries6Description=This key only opens the Horzine Series #6 Supply Crate.
+HorzineSupplyCrateKeySeries7Description=This key only opens the Horzine Series #7 Supply Crate.
+HorzineSupplyCrateKeySeries8Description=This key only opens the Horzine Series #8 Supply Crate.
+HorzineSupplyCrateKeySeries9Description=This key only opens the Horzine Series #9 Supply Crate.
+
+;UsbNames
+CyberboneEncryptedUSBName=Cyberbone Encrypted USB
+DragonfireEncryptedUSBName=Dragonfire Encrypted USB
+EmergencyIssueEncryptedUSBName=Emergency Issue Encrypted USB
+HorzineFirstEncounterEncryptedUSBName=Horzine First Encounter Encrypted USB
+HorzineIssueEncryptedUSBName=Horzine Issue Encrypted USB
+MedicEncryptedUSBName=Medic Encrypted USB
+OlExhibitEncryptedUSBName=Ol' Exhibit Encrypted USB
+PredatorEncryptedUSBName=Predator Encrypted USB
+StoriesofWarEncryptedUSBName=Stories of War Encrypted USB
+StreetPunksEncryptedUSBName=Street Punks Encrypted USB
+SWATEncryptedUSBName=SWAT Encrypted USB
+TacticalHorzineEncryptedUSBName=Tactical Horzine Encrypted USB
+VictorianEncryptedUSBName=Victorian Encrypted USB
+ZedKillerEncryptedUSBName=Zed Killer Encrypted USB
+
+;Usb descriptions
+CyberboneEncryptedUSBDescription=Requires a Cyberbone Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">AR15 | Cyberbone</font><br><font color="#4b69cd">AK12 | Cyberbone</font><br><font color="#4b69cd">AA12 | Cyberbone</font><br><font color="#4b69cd">Katana | Cyberbone</font><br><font color="#8847ff">M79 | Putrid Bile</font><br><font color="#8847ff">AR15 | Containment</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+
+DragonfireEncryptedUSBDescription=Requires a Dragonfire Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Caulk n Burn | Dragonfire</font><br><font color="#4b69cd">Flamethrower | Dragonfire</font><br><font color="#4b69cd">Dragonsbreath | Dragonfire</font><br><font color="#4b69cd">Firebug Knife | Dragonfire</font><br><font color="#8847ff">Dragonsbreath | Heat</font><br><font color="#8847ff">Boomstick | Heat</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+
+EmergencyIssueEncryptedUSBDescription=Requires a Emergency Issue Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">9MM | Emergency Issue</font><br><font color="#4b69cd">Caulk n Burn | Emergency Issue</font><br><font color="#4b69cd">Desert Eagle | Emergency Issue</font><br><font color="#4b69cd">SG500 | Emergency Issue</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Emergency Issue</font><br><font color="#6600a1">Flamethrower | Emergency Issue</font><br><font color="#8847ff">Microwave Gun | Emergency Issue</font><br><font color="#8847ff">Eviscerator | Emergency Issue</font><br><font color="#caab05">or an Exceedingly Rare Precious Commando Skin!</font>
+
+HorzineFirstEncounterEncryptedUSBDescription=Requires a Horzine First Encounter Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">SG500 | Horzine First Encounter</font><br><font color="#4b69cd">AA12 | Horzine First Encounter</font><br><font color="#4b69cd">Healer | Horzine First Encounter</font><br><font color="#4b69cd">Welder | Horzine First Encounter</font><br><font color="#6600a1">AK12 | Elite AK12 Green</font><br><font color="#6600a1">AK12 | Elite AK12 White</font><br><font color="#8847ff">AK12 | Elite AK12 Red</font><br><font color="#8847ff">AK12 | Elite AK12 Blue</font><br><font color="#caab05">or an Exceedingly Rare Precious Demolition Skin!</font>
+
+HorzineIssueEncryptedUSBDescription=Requires a Horzine Issue Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">M4 | Monster Killer</font><br><font color="#4b69cd">9mm | Airlock</font><br><font color="#4b69cd">L85A2 | Aeronaut</font><br><font color="#4b69cd">Boomstick | Sharkteeth</font><br><font color="#8847ff">Scar | Horzine Elite Red</font><br><font color="#8847ff">Scar | Horzine Elite Blue</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+
+MedicEncryptedUSBDescription=Requires a Medic Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">HMTech-101 Pistol | Elite Unit</font><br><font color="#4b69cd">HMTech-201 SMG | Elite Unit</font><br><font color="#4b69cd">HMTech-301 Shotgun | Elite Unit</font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Elite Unit</font><br><font color="#6600a1">HMTech-001 Scapel | Elite Unit</font><br><font color="#6600a1">HMTech Healer | Elite Unit</font><br><font color="#6600a1">HMTech-101 Pistol | Elite Unit Green</font><br><font color="#6600a1">HMTech-201 SMG | Elite Unit Green</font><br><font color="#8847ff">HMTech-301 Shotgun | Elite Unit Red</font><br><font color="#8847ff">HMTech-401 Assault Rifle | Elite Unit Red</font><br><font color="#caab05">or an Exceedingly Rare Precious Medic Skin!</font>
+
+OlExhibitEncryptedUSBDescription=Requires an Ol' Exhibit Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">L85A2 | Junkyard Racer</font><br><font color="#4b69cd">1858 Revolver | Junkyard Racer</font><br><font color="#4b69cd">Winchester 1984 | Junkyard Racer</font><br><font color="#4b69cd">9MM | Gunner Classic</font><br><font color="#6600a1">9MM | Tripwire Gunner</font><br><font color="#6600a1">Healer | Outmoded</font><br><font color="#8847ff">AA12 | Clot Cola</font><br><font color="#8847ff">Microwave Gun | Human Popcorn</font><br><font color="#caab05">or an Exceedingly Rare Precious 9mm Skin!</font>
+
+PredatorEncryptedUSBDescription=Requires a Predator Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">AK12 | Predator</font><br><font color="#4b69cd">HX25 | Predator</font><br><font color="#4b69cd">L85A2 | Predator</font><br><font color="#4b69cd">SG500 | Predator</font><br><font color="#6600a1">Pulverizer | Flesh</font><br><font color="#8847ff">AA12 | Carcass</font><br><font color="#8847ff">HX25 | Vertebrae</font><br><font color="#caab05">or an Exceedingly Rare Precious Support Skin!</font>
+
+StoriesofWarEncryptedUSBDescription=Requires a Stories of War Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">M4 | Stories of War</font><br><font color="#4b69cd">Scar | Stories of War</font><br><font color="#4b69cd">Dragonsbreath | Stories of War</font><br><font color="#4b69cd">M79 | Stories of War</font><br><font color="#6600a1">M79 | Peace Maker</font><br><font color="#8847ff">AA12 | Stories of War</font><br><font color="#8847ff">RPG-7 | Stories of War</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+
+StreetPunksEncryptedUSBDescription=Requires a Street Punks Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">9MM | Street Punks</font><br><font color="#4b69cd">AK12 | Street Punks</font><br><font color="#4b69cd">AR15 | Street Punks</font><br><font color="#4b69cd">Caulk n Burn | Street Punks</font><br><font color="#4b69cd">Desert Eagle | Street Punks</font><br><font color="#4b69cd">KF-BAR | Street Punks</font><br><font color="#4b69cd">SG500 | Street Punks</font><br><font color="#6600a1">Scar | Spray Can</font><br><font color="#8847ff">AK12 | Leviathan</font><br><font color="#caab05">or an Exceedingly Rare Precious Firebug Skin!</font>
+
+SWATEncryptedUSBDescription=Requires a SWAT Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">9MM | SWAT</font><br><font color="#4b69cd">MB500 | SWAT</font><br><font color="#4b69cd">Pulverizer | SWAT</font><br><font color="#4b69cd">AK12 | SWAT</font><br><font color="#6600a1">AA12 | SWAT</font><br><font color="#8847ff">SCAR | SWAT</font><br><font color="#caab05">or an Exceedingly Rare Precious Commando Skin!</font>
+
+TacticalHorzineEncryptedUSBDescription=Requires a Tactical Horzine Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">500 Magnum Revolver | Tactical</font><br><font color="#4b69cd">9MM | Tactical</font><br><font color="#4b69cd">AR15 | Tactical</font><br><font color="#4b69cd">Desert Eagle | Tactical</font><br><font color="#4b69cd">M1911 | Tactical</font><br><font color="#6600a1">L85A2 | Elite L85A2 Green</font><br><font color="#6600a1">L85A2 | Elite L85A2 White</font><br><font color="#8847ff">L85A2 | Elite L85A2 Red</font><br><font color="#8847ff">L85A2 | Elite L85A2 Blue</font><br><font color="#caab05">or an Exceedingly Rare Precious Gunslinger Skin!</font>
+
+VictorianEncryptedUSBDescription=Requires a Victorian Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Support Knife | Victorian</font><br><font color="#4b69cd">SG 500 | Victorian</font><br><font color="#4b69cd">Double Barrel | Victorian</font><br><font color="#4b69cd">M4 | Victorian</font><br><font color="#6600a1">AA12 | Victorian</font><br><font color="#8847ff">SCAR | Opulence</font><br><font color="#caab05">or an Exceedingly Rare Precious Support Skin!</font>
+
+ZedKillerEncryptedUSBDescription=Requires a Zed Killer Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Scar | Clot Commando</font><br><font color="#4b69cd">9MM | Bloated</font><br><font color="#4b69cd">AA12 | Fleshpounder</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Arachnid</font><br><font color="#6600a1">Crovel | Grave Digger</font><br><font color="#8847ff">SG 500 | Rusted Death</font><br><font color="#8847ff">Pulverizer | Skullcracker</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+
+;usb key names
+CyberboneUSBKeyName=Cyberbone USB Key
+DragonfireUSBKeyName=Dragonfire USB Key
+EmergencyIssueUSBKeyName=Emergency Issue USB Key
+HorzineFirstEncounterUSBKeyName=Horzine First Encounter USB Key
+HorzineIssueUSBKeyName=Horzine Issue USB Key
+MedicUSBKeyName=Medic USB Key
+OlExhibitUSBKeyName=Ol' Exhibit USB Key
+PredatorUSBKeyName=Predator USB Key
+StoriesofWarUSBKeyName=Stories of War USB Key
+StreetPunksUSBKeyName=Street Punks USB Key
+SWATUSBKeyName=SWAT USB Key
+TacticalHorzineUSBKeyName=Tactical Horzine USB Key
+VictorianUSBKeyName=Victorian USB Key
+ZedKillerUSBKeyName=Zed Killer USB Key
+
+;usb key descriptions
+CyberboneUSBKeyDescription=This key only decrypts the Cyberbone Encrypted Blueprint
+DragonfireUSBKeyDescription=This key only decrypts the Dragonfire Encrypted Blueprint
+EmergencyIssueUSBKeyDescription=This key only decrypts the Emergency Issue Encrypted Blueprint
+HorzineFirstEncounterUSBKeyDescription=This key only decrypts the Horzine First Encounter Encrypted Blueprint
+HorzineIssueUSBKeyDescription=This key only decrypts the Horzine Issue Encrypted Blueprint
+MedicUSBKeyDescription=This key only decrypts the Medic Encrypted Blueprint
+OlExhibitUSBKeyDescription=This key only decrypts the Ol' Exhibit Encrypted Blueprint
+PredatorUSBKeyDescription=This key only decrypts the Predator Encrypted Blueprint
+StoriesofWarUSBKeyDescription=This key only decrypts the Stories of War Encrypted Blueprint
+StreetPunksUSBKeyDescription=This key only decrypts the Street Punks Encrypted Blueprint
+SWATUSBKeyDescription=This key only decrypts the SWAT Encrypted Blueprint
+TacticalHorzineUSBKeyDescription=This key only decrypts the Tactical Horzine Encrypted Blueprint
+VictorianUSBKeyDescription=This key only decrypts the Victorian Encrypted Blueprint
+ZedKillerUSBKeyDescription=This key only decrypts the Zed Killer Encrypted Blueprint
+
+;PSN crate names
+HorzineSupplyCosmeticCrateSeries1Name=Horzine Supply Cosmetic Crate | Series #1
+HorzineSupplyCosmeticCrateSeries2Name=Horzine Supply Cosmetic Crate | Series #2
+HorzineSupplyWeaponSkinCrateSeries1Name=Horzine Supply Weapon Skin Crate | Series #1
+HorzineSupplyWeaponSkinCrateSeries2Name=Horzine Supply Weapon Skin Crate | Series #2
+
+;PSN Crate Descriptions
+HorzineSupplyCosmeticCrateSeries1Description=Requires a Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Devtac Ballistic Mask</font><br><font color="#4b69cd">US Gas Mask</font><br><font color="#4b69cd">Ski Mask</font><br><font color="#4b69cd">Baseball Hat</font><br><font color="#6600a1">Tactical Backbag</font><br><font color="#6600a1">German Gas Mask</font><br><font color="#6600a1">Chemical Gas Mask</font><br><font color="#6600a1">RPG7 Backbag</font><br><font color="#8847ff">M2 Flamethrower Tank</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCosmeticCrateSeries2Description=Requires a Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Tactical Hat</font><br><font color="#4b69cd">Tactical Mask</font><br><font color="#4b69cd">Tactical Headset MK1/MK2</font><br><font color="#4b69cd">Headband</font><br><font color="#6600a1">GS9 Helmet</font><br><font color="#6600a1">GS9 Mask</font><br><font color="#8847ff">Russian Military Glasses</font><br><font color="#8847ff">Russian Military Helmet</font><br><font color="#8847ff">Russian Military Mask</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyWeaponSkinCrateSeries1Description=Requires a Horzine Supply Crate Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Scar | Clot Commando</font><br><font color="#4b69cd">9MM | Bloated</font><br><font color="#4b69cd">AA12 | Fleshpounder</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Arachnid</font><br><font color="#6600a1">Crovel | Grave Digger</font><br><font color="#8847ff">SG 500 | Rusted Death</font><br><font color="#8847ff">Pulverizer | Skullcracker</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+
+HorzineSupplyWeaponSkinCrateSeries2Description=Requires a Horzine Supply Crate Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">L85A2 | Junkyard Racer</font><br><font color="#4b69cd">1858 Revolver | Junkyard Racer</font><br><font color="#4b69cd">Winchester 1984 | Junkyard Racer</font><br><font color="#4b69cd">9MM | Gunner Classic</font><br><font color="#6600a1">9MM | Tripwire Gunner</font><br><font color="#6600a1">Healer | Outmoded</font><br><font color="#8847ff">AA12 | Clot Cola</font><br><font color="#8847ff">Microwave Gun | Human Popcorn</font><br><font color="#caab05">or an Exceedingly Rare Precious 9mm Skin!</font>
+
+;PSN Key Names
+HorzineSupplyCrateKeyName=Horzine Supply Crate Key
+
+;PSN Key Descriptions
+PSHorzineSupplyCrateKeyDescription=This key opens all Horzine Series Supply Crates.
+
+[TypeSection]
+;Weapon Skin Type Section
+WeaponSkinCommonType=Common Weapon Skin
+WeaponSkinUnCommonType=Uncommon Weapon Skin
+WeaponSkinRareType=Rare Weapon Skin
+WeaponSkinExceptionalType=Exceptional Weapon Skin
+WeaponSkinMasterCraftedType=Master Crafted Weapon Skin
+WeaponSkinPreciousType=Exceedingly Rare Weapon Skin
+
+;Cosmetic Type Section
+CosmeticCommonType=Common Player Accessory
+CosmeticUnCommonType=Uncommon Player Accessory
+CosmeticRareType=Rare Player Accessory
+CosmeticExceptionalType=Exceptional Player Accessory
+CosmeticMasterCraftedType=Master Crafted Player Accessory
+CosmeticPreciousType=Exceedingly Rare Player Accessory
+
+;Crafting Type Section
+CosmeticCommonCraftingType=Common Cosmetic Crafting Material
+CosmeticUnCommonCraftingType=Uncommon Cosmetic Crafting Material
+CosmeticRareCraftingType=Rare Cosmetic Crafting Material
+CosmeticExceptionalCraftingType=Exceptional Cosmetic Crafting Material
+WeaponSkinCommonCraftingType=Common Weapon Skin Crafting Material
+WeaponSkinUnCommonCraftingType=Uncommon Weapon Skin Crafting Material
+WeaponSkinRareCraftingType=Rare Weapon Skin Crafting Material
+WeaponSkinExceptionalCraftingType=Exceptional Weapon Skin Crafting Material
+
+[WeaponSkins]
+
+;HMTech Healer Descriptions
+HMTechHealerMintDescription=Exterior: Mint | HMTech Healer
+HMTechHealerFieldTestedDescription=Exterior: Field-Tested | HMTech Healer
+HMTechHealerBattleScarredDescription=Exterior: Battle-Scarred | HMTech Healer
+HMTechHealerPreciousDescription=Exterior: Precious | Healer
+
+;HMTech Healer Names
+HMTechHealerPrecious=Exterior: Precious | HMTech Healer
+HMTechHealerHorzineFirstEncounterMintName=HMTech Healer | Horzine First Encounter | Mint
+HMTechHealerHorzineFirstEncounterFieldTestedName=HMTech Healer | Horzine First Encounter | Field-Tested
+HMTechHealerHorzineFirstEncounterBattleScarredName=HMTech Healer | Horzine First Encounter | Battle-Scarred
+HMTechHealerOutmodedMintName=HMTech Healer | Outmoded | Mint
+HMTechHealerOutmodedFieldTestedName=HMTech Healer | Outmoded | Field-Tested
+HMTechHealerOutmodedBattleScarredName=HMTech Healer | Outmoded | Battle-Scarred
+HMTechHealerEliteUnitMintName=HMTech Healer | Elite Unit | Mint
+HMTechHealerEliteUnitFieldTestedName=HMTech Healer | Elite Unit | Field-Tested
+HMTechHealerEliteUnitBattleScarredName=HMTech Healer | Elite Unit | Battle-Scarred
+HMTechHealerPreciousName=HMTech Healer | Precious
+
+;1858 Revolver Descriptions
+1858RevolverMintDescription=Exterior: Mint | A wonderful example of the .44-caliber Remington 'Model 1858' 6-shot single-action Army revolver. Ancient, but still potent.
+1858RevolverFieldTestedDescription=Exterior: Field-Tested |A wonderful example of the .44-caliber Remington 'Model 1858' 6-shot single-action Army revolver. Ancient, but still potent.
+1858RevolverBattleScarredDescription=Exterior: Battle-Scarred | A wonderful example of the .44-caliber Remington 'Model 1858' 6-shot single-action Army revolver. Ancient, but still potent.
+1858RevolverPreciousDescription=Exterior: Precious | A wonderful example of the .44-caliber Remington 'Model 1858' 6-shot single-action Army revolver. Ancient, but still potent.
+
+;1858 Revolver Names
+1858RevolverConstitutionMintName=1858 Revolver | Constitution | Mint
+1858RevolverConstitutionFieldTestedName=1858 Revolver | Constitution | Field-Tested
+1858RevolverConstitutionBattleScarredName=1858 Revolver | Constitution | Battle-Scarred
+1858RevolverBloodCamoMintName=1858 Revolver | Blood Camo | Mint
+1858RevolverBloodCamoFieldTestedName=1858 Revolver | Blood Camo | Field-Tested
+1858RevolverBloodCamoBattleScarredName=1858 Revolver | Blood Camo | Battle-Scarred
+1858RevolverJunkyardRacerMintName=1858 Revolver | Junkyard Racer | Mint
+1858RevolverJunkyardRacerFieldTestedName=1858 Revolver | Junkyard Racer | Field-Tested
+1858RevolverJunkyardRacerBattleScarredName=1858 Revolver | Junkyard Racer | Battle-Scarred
+1858RevolverPreciousName=1858 Revolver | Precious
+
+;500 Magnum Revolver Descriptions
+500MagnumRevolverMintDescription=Exterior: Mint | True hand artillery in the form of a long-barrelled .50-caliber 'Bone Collector' revolver, firing full-load magnum rounds. For the serious Gunslinger.
+500MagnumRevolverFieldTestedDescription=Exterior: Field-Tested | True hand artillery in the form of a long-barrelled .50-caliber 'Bone Collector' revolver, firing full-load magnum rounds. For the serious Gunslinger.
+500MagnumRevolverBattleScarredDescription=Exterior: Battle-Scarred | True hand artillery in the form of a long-barrelled .50-caliber 'Bone Collector' revolver, firing full-load magnum rounds. For the serious Gunslinger.
+500MagnumRevolverPreciousDescription=Exterior: Precious | True hand artillery in the form of a long-barrelled .50-caliber 'Bone Collector' revolver, firing full-load magnum rounds. For the serious Gunslinger.
+
+;500 Magnum Revolver Names
+500MagnumRevolverPreciousName=500 Magnum Revolver | Precious
+500MagnumRevolverSnakeSkinMintName=500 Magnum Revolver | Snakeskin | Mint
+500MagnumRevolverSnakeSkinFieldTestedName=500 Magnum Revolver | Snakeskin | Field-Tested
+500MagnumRevolverSnakeSkinBattleScarredName=500 Magnum Revolver | Snakeskin | Battle-Scarred
+500MagnumRevolverPreciousName=500 Magnum Revolver | Precious
+500MagnumRevolverTacticalMintName=500 Magnum Revolver | Tactical | Mint
+500MagnumRevolverTacticalFieldTestedName=500 Magnum Revolver | Tactical | Field-Tested
+500MagnumRevolverTacticalBattleScarredName=500 Magnum Revolver | Tactical | Battle-Scarred
+
+;9mm Descriptions
+9MMMintDescription=Exterior: Mint | Simple and cheap (very cheap, frankly, to you), it is the basic sidearm for all Horzine operatives.
+9MMFieldTestedDescription=Exterior: Field-Tested | Simple and cheap (very cheap, frankly, to you), it is the basic sidearm for all Horzine operatives.
+9MMBattleScarredDescription=Exterior: Battle-Scarred | Simple and cheap (very cheap, frankly, to you), it is the basic sidearm for all Horzine operatives.
+9MMPreciousDescription=Exterior: Precious | Simple and cheap (very cheap, frankly, to you), it is the basic sidearm for all Horzine operatives.
+
+;9mm Names
+9MMAirlockMintName=9MM | Airlock | Mint
+9MMAirlockFieldTestedName=9MM | Airlock | Field-Tested
+9MMAirlockBattleScarredName=9MM | Airlock | Battle-Scarred
+9MMBloatedMintName=9MM | Bloated | Mint
+9MMBloatedFieldTestedName=9MM | Bloated | Field-Tested
+9MMBloatedBattleScarredName=9MM | Bloated | Battle-Scarred
+9MMEmergencyIssueMintName=9MM | Emergency Issue | Mint
+9MMEmergencyIssueFieldTestedName=9MM | Emergency Issue | Field-Tested
+9MMEmergencyIssueBattleScarredName=9MM | Emergency Issue | Battle-Scarred
+9MMGunnerClassicMintName=9MM | Gunner Classic | Mint
+9MMGunnerClassicFieldTestedName=9MM | Gunner Classic | Field-Tested
+9MMGunnerClassicBattleScarredName=9MM | Gunner Classic | Battle-Scarred
+9MMStreetPunksMintName=9MM | Street Punks | Mint
+9MMStreetPunksFieldTestedName=9MM | Street Punks | Field-Tested
+9MMStreetPunksBattleScarredName=9MM | Street Punks | Battle-Scarred
+9MMSWATMintName=9MM | SWAT | Mint
+9MMSWATFieldTestedName=9MM | SWAT | Field-Tested
+9MMSWATBattleScarredName=9MM | SWAT | Battle-Scarred
+9MMTacticalMintName=9MM | Tactical | Mint
+9MMTacticalFieldTestedName=9MM | Tactical | Field-Tested
+9MMTacticalBattleScarredName=9MM | Tactical | Battle-Scarred
+9MMTripwireGunnerMintName=9MM | Tripwire Gunner | Mint
+9MMTripwireGunnerFieldTestedName=9MM | Tripwire Gunner | Field-Tested
+9MMTripwireGunnerBattleScarredName=9MM | Tripwire Gunner | Battle-Scarred
+9MMHorzineEliteMintName=9MM | Horzine Elite | Mint
+9MMHorzineEliteFieldTestedName=9MM | Horzine Elite | Field-Tested
+9MMHorzineEliteBattleScarredName=9MM | Horzine Elite | Battle-Scarred
+9MMPreciousName=9MM | Precious
+
+;AA12 Descriptions
+AA12MintDescription=Exterior: Mint | The AA-12 is an automatic shotgun. It has devastating firepower at close to medium range, but eats ammunition on full auto!
+AA12FieldTestedDescription=Exterior: Field-Tested | The AA-12 is an automatic shotgun. It has devastating firepower at close to medium range, but eats ammunition on full auto!
+AA12BattleScarredDescription=Exterior: Battle-Scarred | The AA-12 is an automatic shotgun. It has devastating firepower at close to medium range, but eats ammunition on full auto!
+AA12PreciousDescription=Exterior: Precious | The AA-12 is an automatic shotgun. It has devastating firepower at close to medium range, but eats ammunition on full auto!
+
+;AA12 Names
+AA12CarcassMintName=AA12 | Carcass | Mint
+AA12CarcassFieldTestedName=AA12 | Carcass | Field-Tested
+AA12CarcassBattleScarredName=AA12 | Carcass | Battle-Scarred
+AA12ClotColaMintName=AA12 | Clot Cola | Mint
+AA12ClotColaTestedName=AA12 | Clot Cola | Field-Tested
+AA12ClotColaBattleScarredName=AA12 | Clot Cola | Battle-Scarred
+AA12CyberboneMintName=AA12 | Cyberbone | Mint
+AA12CyberboneTestedName=AA12 | Cyberbone | Field-Tested
+AA12CyberboneBattleScarredName=AA12 | Cyberbone | Battle-Scarred
+AA12FleshpounderMintName=AA12 | Fleshpounder | Mint
+AA12FleshpounderTestedName=AA12 | Fleshpounder | Field-Tested
+AA12FleshpounderBattleScarredName=AA12 | Fleshpounder | Battle-Scarred
+AA12HorzineFirstEncounterMintName=AA12 | Horzine First Encounter | Mint
+AA12HorzineFirstEncounterTestedName=AA12 | Horzine First Encounter | Field-Tested
+AA12HorzineFirstEncounterBattleScarredName=AA12 | Horzine First Encounter | Battle-Scarred
+AA12SnakeskinMintName=AA12 | Snakeskin | Mint
+AA12SnakeskinTestedName=AA12 | Snakeskin | Field-Tested
+AA12SnakeskinBattleScarredName=AA12 | Snakeskin | Battle-Scarred
+AA12StoriesofWarMintName=AA12 | Stories of War | Mint
+AA12StoriesofWarTestedName=AA12 | Stories of War | Field-Tested
+AA12StoriesofWarBattleScarredName=AA12 | Stories of War | Battle-Scarred
+AA12SWATMintName=AA12 | SWAT | Mint
+AA12SWATTestedName=AA12 | SWAT | Field-Tested
+AA12SWATBattleScarredName=AA12 | SWAT | Battle-Scarred
+AA12VictorianMintName=AA12 | Victorian | Mint
+AA12VictorianTestedName=AA12 | Victorian | Field-Tested
+AA12VictorianBattleScarredName=AA12 | Victorian | Battle-Scarred
+AA12WoodlandMintName=AA12 | Woodland | Mint
+AA12WoodlandTestedName=AA12 | Woodland | Field-Tested
+AA12WoodlandBattleScarredName=AA12 | Woodland | Battle-Scarred
+AA12PreciousName=AA12 | Precious
+
+;AK12 Descriptions
+AK12MintDescription=Exterior: Mint | This AK-12 was taken from a dead Russian Spetsnaz operative for scanning.
+AK12FieldTestedDescription=Exterior: Field-Tested | This AK-12 was taken from a dead Russian Spetsnaz operative for scanning.
+AK12BattleScarredDescription=Exterior: Battle-Scarred | This AK-12 was taken from a dead Russian Spetsnaz operative for scanning.
+AK12PreciousDescription=Exterior: Precious | This AK-12 was taken from a dead Russian Spetsnaz operative for scanning.
+
+;AK12 Names
+AK12CyberboneMintName=AK12 | Cyberbone | Mint
+AK12CyberboneTestedName=AK12 | Cyberbone | Field-Tested
+AK12CyberboneBattleScarredName=AK12 | Cyberbone | Battle-Scarred
+AK12HorzineEliteBlueMintName=AK12 | Horzine Elite Blue | Mint
+AK12HorzineEliteBlueTestedName=AK12 | Horzine Elite Blue | Field-Tested
+AK12HorzineEliteBlueBattleScarredName=AK12 | Horzine Elite Blue | Battle-Scarred
+AK12HorzineEliteGreenMintName=AK12 | Horzine Elite Green | Mint
+AK12HorzineEliteGreenTestedName=AK12 | Horzine Elite Green | Field-Tested
+AK12HorzineEliteGreenBattleScarredName=AK12 | Horzine Elite Green | Battle-Scarred
+AK12HorzineEliteRedMintName=AK12 | Horzine Elite Red | Mint
+AK12HorzineEliteRedTestedName=AK12 | Horzine Elite Red | Field-Tested
+AK12HorzineEliteRedBattleScarredName=AK12 | Horzine Elite Red | Battle-Scarred
+AK12HorzineEliteWhiteMintName=AK12 | Horzine Elite White | Mint
+AK12HorzineEliteWhiteTestedName=AK12 | Horzine Elite White | Field-Tested
+AK12HorzineEliteWhiteBattleScarredName=AK12 | Horzine Elite White | Battle-Scarred
+AK12LeviathanMintName=AK12 | Leviathan | Mint
+AK12LeviathanTestedName=AK12 | Leviathan | Field-Tested
+AK12LeviathanBattleScarredName=AK12 | Leviathan | Battle-Scarred
+AK12PredatorMintName=AK12 | Predator | Mint
+AK12PredatorTestedName=AK12 | Predator | Field-Tested
+AK12PredatorBattleScarredName=AK12 | Predator | Battle-Scarred
+AK12StoriesofWarMintName=AK12 | Stories of War | Mint
+AK12StoriesofWarTestedName=AK12 | Stories of War | Field-Tested
+AK12StoriesofWarBattleScarredName=AK12 | Stories of War | Battle-Scarred
+AK12StreetPunksMintName=AK12 | Street Punks | Mint
+AK12StreetPunksTestedName=AK12 | Street Punks | Field-Tested
+AK12StreetPunksBattleScarredName=AK12 | Street Punks | Battle-Scarred
+AK12SWATMintName=AK12 | SWAT | Mint
+AK12SWATTestedName=AK12 | SWAT | Field-Tested
+AK12SWATBattleScarredName=AK12 | SWAT | Battle-Scarred
+AK12TigerMintName=AK12 | Tiger | Mint
+AK12TigerTestedName=AK12 | Tiger | Field-Tested
+AK12TigerBattleScarredName=AK12 | Tiger | Battle-Scarred
+AK12PreciousName=AK12 | Precious
+
+;AR15 Descriptions
+AR15MintDescription=Exterior: Mint | This is for Zeds, not 'varmints.'
+AR15FieldTestedDescription=Exterior: Field-Tested | This is for Zeds, not 'varmints.'
+AR15BattleScarredDescription=Exterior: Battle-Scarred | This is for Zeds, not 'varmints.'
+AR15PreciousDescription=Exterior: Precious | This is for Zeds, not 'varmints.'
+
+;AR15 Names
+AR15AnodizedHazardMintName=AR15 | Anodized Hazard | Mint
+AR15AnodizedHazardTestedName=AR15 | Anodized Hazard | Field-Tested
+AR15AnodizedHazardBattleScarredName=AR15 | Anodized Hazard | Battle-Scarred
+AR15ContainmentMintName=AR15 | Containment | Mint
+AR15ContainmentTestedName=AR15 | Containment | Field-Tested
+AR15ContainmentBattleScarredName=AR15 | Containment | Battle-Scarred
+AR15CyberboneMintName=AR15 | Cyberbone | Mint
+AR15CyberboneTestedName=AR15 | Cyberbone | Field-Tested
+AR15CyberboneBattleScarredName=AR15 | Cyberbone | Battle-Scarred
+AR15StoriesofWarMintName=AR15 | Stories of War | Mint
+AR15StoriesofWarTestedName=AR15 | Stories of War | Field-Tested
+AR15StoriesofWarBattleScarredName=AR15 | Stories of War | Battle-Scarred
+AR15StreetPunksMintName=AR15 | Street Punks | Mint
+AR15StreetPunksTestedName=AR15 | Street Punks | Field-Tested
+AR15StreetPunksBattleScarredName=AR15 | Street Punks | Battle-Scarred
+AR15TacticalMintName=AR15 | Tactical | Mint
+AR15TacticalTestedName=AR15 | Tactical | Field-Tested
+AR15TacticalBattleScarredName=AR15 | Tactical | Battle-Scarred
+AR15PreciousName=AR15 | Precious
+
+;Berserker Knife Descriptions
+BerserkerKnifeMintDescription=Exterior: Mint | Yes, it is actually a lawn-mower blade. Enjoy it!
+BerserkerKnifeFieldTestedDescription=Exterior: Field-Tested | Yes, it is actually a lawn-mower blade. Enjoy it!
+BerserkerKnifeBattleScarredDescription=Exterior: Battle-Scarred | Yes, it is actually a lawn-mower blade. Enjoy it!
+BerserkerKnifePreciousDescription=Exterior: Precious | Yes, it is actually a lawn-mower blade. Enjoy it!
+
+;Berserker Knife Names
+BerserkerKnifePreciousName=Berserker Knife | Precious
+
+;Boomstick Descriptions
+BoomstickMintDescription=Exterior: Mint | Double-barrelled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger!
+BoomstickFieldTestedDescription=Exterior: Field-Tested | Double-barrelled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger!
+BoomstickBattleScarredDescription=Exterior: Battle-Scarred | Double-barrelled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger!
+BoomstickPreciousDescription=Exterior: Precious | Double-barrelled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger!
+
+;Boomstick Names
+BoomstickHeatMintName=Boomstick | Heat | Mint
+BoomstickHeatFieldTestedName=Boomstick | Heat | Field-Tested
+BoomstickHeatBattleScarredName=Boomstick | Heat | Battle-Scarred
+BoomstickSharkteethMintName=Boomstick | Sharkteeth | Mint
+BoomstickSharkteethFieldTestedName=Boomstick | Sharkteeth | Field-Tested
+BoomstickSharkteethBattleScarredName=Boomstick | Sharkteeth | Battle-Scarred
+BoomstickWoodlandMintName=Boomstick | Woodland | Mint
+BoomstickWoodlandFieldTestedName=Boomstick | Woodland | Field-Tested
+BoomstickWoodlandBattleScarredName=Boomstick | Woodland | Battle-Scarred
+BoomstickVictorianMintName=Boomstick | Victorian | Mint
+BoomstickVictorianFieldTestedName=Boomstick | Victorian | Field-Tested
+BoomstickVictorianBattleScarredName=Boomstick | Victorian | Battle-Scarred
+BoomstickPreciousName=Boomstick | Precious
+
+;Caulk n Burn Descriptions
+CaulknBurnMintDescription=Exterior: Mint | Hand-held, home-made flamethrower. Please do NOT try this at home.
+CaulknBurnFieldTestedDescription=Exterior: Field-Tested | Hand-held, home-made flamethrower. Please do NOT try this at home.
+CaulknBurnBattleScarredDescription=Exterior: Battle-Scarred | Hand-held, home-made flamethrower. Please do NOT try this at home.
+CaulknBurnPreciousDescription=Exterior: Precious | Hand-held, home-made flamethrower. Please do NOT try this at home.
+
+;Caulk n Burn Names
+CaulknBurnDragonfireMintName=Caulk n Burn | Dragonfire | Mint
+CaulknBurnDragonfireFieldTestedName=Caulk n Burn | Dragonfire | Field-Tested
+CaulknBurnDragonfireBattleScarredName=Caulk n Burn | Dragonfire | Battle-Scarred
+CaulknBurnEmergencyIssueMintName=Caulk n Burn | Emergency Issue | Mint
+CaulknBurnEmergencyIssueFieldTestedName=Caulk n Burn | Emergency Issue | Field-Tested
+CaulknBurnEmergencyIssueBattleScarredName=Caulk n Burn | Emergency Issue | Battle-Scarred
+CaulknBurnStreetPunksMintName=Caulk n Burn | Street Punks | Mint
+CaulknBurnStreetPunksFieldTestedName=Caulk n Burn | Street Punks | Field-Tested
+CaulknBurnStreetPunksBattleScarredName=Caulk n Burn | Street Punks | Battle-Scarred
+CaulknBurnPreciousName=Caulk n Burn | Precious
+
+;Crossbow Descriptions
+CrossbowMintDescription=Exterior: Mint | A high-powered hunting crossbow, giving good penetration and good stopping power!
+CrossbowFieldTestedDescription=Exterior: Field-Tested | A high-powered hunting crossbow, giving good penetration and good stopping power!
+CrossbowBattleScarredDescription=Exterior: Battle-Scarred | A high-powered hunting crossbow, giving good penetration and good stopping power!
+CrossbowPreciousDescription=Exterior: Precious | A high-powered hunting crossbow, giving good penetration and good stopping power!
+
+;Crossbow Names
+CrossbowPreciousName=Crossbow | Precious
+
+;Crovel Descriptions
+CrovelMintDescription=Exterior: Mint | Part crowbar, part shovel, all quite deadly.
+CrovelFieldTestedDescription=Exterior: Field-Tested | Part crowbar, part shovel, all quite deadly.
+CrovelBattleScarredDescription=Exterior: Battle-Scarred | Part crowbar, part shovel, all quite deadly.
+CrovelPreciousDescription=Exterior: Precious | Part crowbar, part shovel, all quite deadly.
+
+;Crovel Names
+CrovelGraveDiggerMintName=Crovel | Grave Digger | Mint
+CrovelGraveDiggerFieldTestedName=Crovel | Grave Digger | Field-Tested
+CrovelGraveDiggerBattleScarredName=Crovel | Grave Digger | Battle-Scarred
+CrovelPreciousName=Crovel | Precious
+
+;Desert Eagle Descriptions
+DesertEagleMintDescription=Exterior: Mint | The Desert Eagle is the beast of hand guns, which is why we all know it as the 'Hand Cannon.'
+DesertEagleFieldTestedDescription=Exterior: Field-Tested | The Desert Eagle is the beast of hand guns, which is why we all know it as the 'Hand Cannon.'
+DesertEagleBattleScarredDescription=Exterior: Battle-Scarred | The Desert Eagle is the beast of hand guns, which is why we all know it as the 'Hand Cannon.'
+DesertEaglePreciousDescription=Exterior: Precious | The Desert Eagle is the beast of hand guns, which is why we all know it as the 'Hand Cannon.'
+
+;Desert Eagle Names
+DesertEagleEmergencyIssueMintName=Desert Eagle | Emergency Issue | Mint
+DesertEagleEmergencyIssueFieldTestedName=Desert Eagle | Emergency Issue | Field-Tested
+DesertEagleEmergencyIssueBattleScarredName=Desert Eagle | Emergency Issue | Battle-Scarred
+DesertEagleStreetPunksMintName=Desert Eagle | Street Punks | Mint
+DesertEagleStreetPunksFieldTestedName=Desert Eagle | Street Punks | Field-Tested
+DesertEagleStreetPunksBattleScarredName=Desert Eagle | Street Punks | Battle-Scarred
+DesertEagleTacticalMintName=Desert Eagle | Tactical | Mint
+DesertEagleTacticalFieldTestedName=Desert Eagle | Tactical | Field-Tested
+DesertEagleTacticalBattleScarredName=Desert Eagle | Tactical | Battle-Scarred
+DesertEaglePreciousName=Desert Eagle | Precious
+
+;Dragonsbreath Descriptions
+DragonsbreathMintDescription=Exterior: Mint | A shotgun using Dragon's Breath Incendiary Rounds. Not only deadly, but looks wonderful too.
+DragonsbreathFieldTestedDescription=Exterior: Field-Tested | A shotgun using Dragon's Breath Incendiary Rounds. Not only deadly, but looks wonderful too.
+DragonsbreathBattleScarredDescription=Exterior: Battle-Scarred | A shotgun using Dragon's Breath Incendiary Rounds. Not only deadly, but looks wonderful too.
+DragonsbreathPreciousDescription=Exterior: Precious | A shotgun using Dragon's Breath Incendiary Rounds. Not only deadly, but looks wonderful too.
+
+;Dragonsbreath Names
+DragonsbreathDragonfireMintName=Dragonsbreath | Dragonfire | Mint
+DragonsbreathDragonfireFieldTestedName=Dragonsbreath | Dragonfire | Field-Tested
+DragonsbreathDragonfireBattleScarredName=Dragonsbreath | Dragonfire | Battle-Scarred
+DragonsbreathHeatMintName=Dragonsbreath | Heat | Mint
+DragonsbreathHeatFieldTestedName=Dragonsbreath | Heat | Field-Tested
+DragonsbreathHeatBattleScarredName=Dragonsbreath | Heat | Battle-Scarred
+DragonsbreathStoriesofWarMintName=Dragonsbreath | Stories of War | Mint
+DragonsbreathStoriesofWarFieldTestedName=Dragonsbreath | Stories of War | Field-Tested
+DragonsbreathStoriesofWarBattleScarredName=Dragonsbreath | Stories of War | Battle-Scarred
+DragonsbreathPreciousName=Dragonsbreath | Precious
+
+;Eviscerator Descriptions
+EvisceratorMintDescription=Exterior: Mint | Originally designed by Horzine's SDS group in one of their wilder moments, this beast isn't subtle.
+EvisceratorFieldTestedDescription=Exterior: Field-Tested | Originally designed by Horzine's SDS group in one of their wilder moments, this beast isn't subtle.
+EvisceratorBattleScarredDescription=Exterior: Battle-Scarred | Originally designed by Horzine's SDS group in one of their wilder moments, this beast isn't subtle.
+EvisceratorPreciousDescription=Exterior: Precious | Originally designed by Horzine's SDS group in one of their wilder moments, this beast isn't subtle.
+
+;Eviscerator Names
+EvisceratorEmergencyIssueMintName=Eviscerator | Emergency Issue | Mint
+EvisceratorEmergencyIssueFieldTestedName=Eviscerator | Emergency Issue | Field-Tested
+EvisceratorEmergencyIssueBattleScarredName=Eviscerator | Emergency Issue | Battle-Scarred
+EvisceratorPreciousName=Eviscerator | Precious
+
+;Firemans Knife Descriptions
+FiremansKnifeMintDescription=Exterior: Mint | It's a firemans knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it.
+FiremansKnifeFieldTestedDescription=Exterior: Field-Tested | It's a firemans knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it.
+FiremansKnifeBattleScarredDescription=Exterior: Battle-Scarred | It's a firemans knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it.
+FiremansKnifePreciousDescription=Exterior: Precious | It's a firemans knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it.
+
+;Firemans Knife Names
+FiremansKnifeDragonfireMintName=Firemans Knife | Dragonfire | Mint
+FiremansKnifeDragonfireFieldTestedName=Firemans Knife | Dragonfire | Field-Tested
+FiremansKnifeDragonfireBattleScarredName=Firemans Knife | Dragonfire | Battle-Scarred
+FiremansKnifePreciousName=Firemans Knife | Precious
+
+;Flamethrower Descriptions
+FlamethrowerMintDescription=Exterior: Mint | A classic in any generation. If in doubt, simply burn everything down.
+FlamethrowerFieldTestedDescription=Exterior: Field-Tested | A classic in any generation. If in doubt, simply burn everything down.
+FlamethrowerBattleScarredDescription=Exterior: Battle-Scarred | A classic in any generation. If in doubt, simply burn everything down.
+FlamethrowerPreciousDescription=Exterior: Precious | A classic in any generation. If in doubt, simply burn everything down.
+
+;Flamethrower Names
+FlamethrowerDragonfireMintName=Flamethrower | Dragonfire | Mint
+FlamethrowerDragonfireFieldTestedName=Flamethrower | Dragonfire | Field-Tested
+FlamethrowerDragonfireBattleScarredName=Flamethrower | Dragonfire | Battle-Scarred
+FlamethrowerEmergencyIssuefireMintName=Flamethrower | Emergency Issue | Mint
+FlamethrowerEmergencyIssueFieldTestedName=Flamethrower | Emergency Issue | Field-Tested
+FlamethrowerEmergencyIssueBattleScarredName=Flamethrower | Emergency Issue | Battle-Scarred
+FlamethrowerPreciousName=Flamethrower | Precious
+
+;HMTech-001 Scalpel Descriptions
+HMTech001ScalpelMintDescription=Exterior: Mint | It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it.
+HMTech001ScalpelFieldTestedDescription=Exterior: Field-Tested | It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it.
+HMTech001ScalpelBattleScarredDescription=Exterior: Battle-Scarred | It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it.
+HMTech001ScalpelPreciousDescription=Exterior: Precious | It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it.
+
+;HMTech-001 Scalpel Names
+HMTech001ScalpelElite UnitMintName=HMTech-001 Scalpel | Elite Unit | Mint
+HMTech001ScalpelElite UnitFieldTestedName=HMTech-001 Scalpel | Elite Unit | Field-Tested
+HMTech001ScalpelElite UnitBattleScarredName=HMTech-001 Scalpel | Elite Unit | Battle-Scarred
+HMTech001ScalpelPreciousName=HMTech-001 Scalpel | Precious
+
+;HMTech-101 Pistol Descriptions
+HMTech101PistolMintDescription=Exterior: Mint | Shoots healing darts to heal team members. It uses caseless ammunition and counts the rounds for you.
+HMTech101PistolFieldTestedDescription=Exterior: Field-Tested | Shoots healing darts to heal team members. It uses caseless ammunition and counts the rounds for you.
+HMTech101PistolBattleScarredDescription=Exterior: Battle-Scarred | Shoots healing darts to heal team members. It uses caseless ammunition and counts the rounds for you.
+HMTech101PistolPreciousDescription=Exterior: Precious | Shoots healing darts to heal team members. It uses caseless ammunition and counts the rounds for you.
+
+;HMTech-101 Pistol Names
+HMTech101PistolCarbonFiberMintName=HMTech-101 Pistol | Carbon Fiber | Mint
+HMTech101PistolCarbonFiberFieldTestedName=HMTech-101 Pistol | Carbon Fiber | Field-Tested
+HMTech101PistolCarbonFiberBattleScarredName=HMTech-101 Pistol | Carbon Fiber | Battle-Scarred
+HMTech101PistolEliteUnitMintName=HMTech-101 Pistol | Elite Unit | Mint
+HMTech101PistolEliteUnitFieldTestedName=HMTech-101 Pistol | Elite Unit | Field-Tested
+HMTech101PistolEliteUnitBattleScarredName=HMTech-101 Pistol | Elite Unit | Battle-Scarred
+HMTech101PistolEliteUnitGreenMintName=HMTech-101 Pistol | Elite Unit Green | Mint
+HMTech101PistolEliteUnitGreenFieldTestedName=HMTech-101 Pistol | Elite Unit Green | Field-Tested
+HMTech101PistolEliteUnitGreenBattleScarredName=HMTech-101 Pistol | Elite Unit Green | Battle-Scarred
+HMTech101PistolPreciousName=HMTech-101 Pistol | Precious
+
+;HMTech-201 SMG Descriptions
+HMTech201SMGMintDescription=Exterior: Mint | Shoots healing darts to heal team members. Your pistol, beefed up!
+HMTech201SMGFieldTestedDescription=Exterior: Field-Tested | Shoots healing darts to heal team members. Your pistol, beefed up!
+HMTech201SMGBattleScarredDescription=Exterior: Battle-Scarred | Shoots healing darts to heal team members. Your pistol, beefed up!
+HMTech201SMGPreciousDescription=Exterior: Precious | Shoots healing darts to heal team members. Your pistol, beefed up!
+
+;HMTech-201 SMG Names
+HMTech201SMGCarbonFiberMintName=HMTech-201 SMG | Carbon Fiber | Mint
+HMTech201SMGCarbonFiberFieldTestedName=HMTech-201 SMG | Carbon Fiber | Field-Tested
+HMTech201SMGCarbonFiberBattleScarredName=HMTech-201 SMG | Carbon Fiber | Battle-Scarred
+HMTech201SMGEliteUnitMintName=HMTech-201 SMG | Elite Unit | Mint
+HMTech201SMGEliteUnitFieldTestedName=HMTech-201 SMG | Elite Unit | Field-Tested
+HMTech201SMGEliteUnitBattleScarredName=HMTech-201 SMG | Elite Unit | Battle-Scarred
+HMTech201SMGEliteUnitGreenMintName=HMTech-201 SMG | Elite Unit Green | Mint
+HMTech201SMGEliteUnitGreenFieldTestedName=HMTech-201 SMG | Elite Unit Green | Field-Tested
+HMTech201SMGEliteUnitGreenBattleScarredName=HMTech-201 SMG | Elite Unit Green | Battle-Scarred
+HMTech201SMGPreciousName=HMTech-201 SMG | Precious
+
+;HMTech-301 Shotgun Descriptions
+HMTech301ShotgunMintDescription=Exterior: Mint | The combat shotgun version of the HMTech pistol.
+HMTech301ShotgunFieldTestedDescription=Exterior: Field-Tested | The combat shotgun version of the HMTech pistol.
+HMTech301ShotgunBattleScarredDescription=Exterior: Battle-Scarred | The combat shotgun version of the HMTech pistol.
+HMTech301ShotgunPreciousDescription=Exterior: Precious | The combat shotgun version of the HMTech pistol.
+
+;HMTech-301 Shotgun Names
+HMTech301ShotgunEliteUnitMintName=HMTech-301 Shotgun | Elite Unit | Mint
+HMTech301ShotgunEliteUnitFieldTestedName=HMTech-301 Shotgun | Elite Unit | Field-Tested
+HMTech301ShotgunEliteUnitBattleScarredName=HMTech-301 Shotgun | Elite Unit | Battle-Scarred
+HMTech301ShotgunEliteUnitRedMintName=HMTech-301 Shotgun | Elite Unit Red | Mint
+HMTech301ShotgunEliteUnitRedFieldTestedName=HMTech-301 Shotgun | Elite Unit Red | Field-Tested
+HMTech301ShotgunEliteUnitRedBattleScarredName=HMTech-301 Shotgun | Elite Unit Red | Battle-Scarred
+HMTech301ShotgunPreciousName=HMTech-301 Shotgun | Precious
+
+;HMTech-401 Assault Rifle Descriptions
+HMTech401AssaultRifleMintDescription=Exterior: Mint | The full-blown assault rifle version of the HMTech pistol.
+HMTech401AssaultRifleFieldTestedDescription=Exterior: Field-Tested | The full-blown assault rifle version of the HMTech pistol.
+HMTech401AssaultRifleBattleScarredDescription=Exterior: Battle-Scarred | The full-blown assault rifle version of the HMTech pistol.
+HMTech401AssaultPreciousDescription=Exterior: Precious | The full-blown assault rifle version of the HMTech pistol.
+
+;HMTech-401 Assault Rifle Names
+HMTech401AssaultRifleEliteUnitMintName=HMTech-401 Assault Rifle | Elite Unit | Mint
+HMTech401AssaultRifleEliteUnitFieldTestedName=HMTech-401 Assault Rifle | Elite Unit | Field-Tested
+HMTech401AssaultRifleEliteUnitBattleScarredName=HMTech-401 Assault Rifle | Elite Unit | Battle-Scarred
+HMTech401AssaultRifleEliteUnitRedMintName=HMTech-401 Assault Rifle | Elite Unit Red | Mint
+HMTech401AssaultRifleEliteUnitRedFieldTestedName=HMTech-401 Assault Rifle | Elite Unit Red | Field-Tested
+HMTech401AssaultRifleEliteUnitRedBattleScarredName=HMTech-401 Assault Rifle | Elite Unit Red | Battle-Scarred
+HMTech401AssaultRiflePreciousName=HMTech-401 Assault Rifle | Precious
+
+;HX25 Descriptions
+HX25MintDescription=Exterior: Mint | Fire mode shoots multiple submunitions that explode on contact.
+HX25FieldTestedDescription=Exterior: Field-Tested | Fire mode shoots multiple submunitions that explode on contact.
+HX25BattleScarredDescription=Exterior: Battle-Scarred | Fire mode shoots multiple submunitions that explode on contact.
+HX25PreciousDescription=Exterior: Precious | Fire mode shoots multiple submunitions that explode on contact.
+
+;HX25 Names
+HX25CircuitMintName=HX25 | Circuit | Mint
+HX25CircuitFieldTestedName=HX25 | Circuit | Field-Tested
+HX25CircuitBattleScarredName=HX25 | Circuit | Battle-Scarred
+HX25CircuitGlowMintName=HX25 | Circuit Glow | Mint
+HX25CircuitGlowFieldTestedName=HX25 | Circuit Glow | Field-Tested
+HX25CircuitGlowBattleScarredName=HX25 | Circuit Glow | Battle-Scarred
+HX25PredatorMintName=HX25 | Predator | Mint
+HX25PredatorFieldTestedName=HX25 | Predator | Field-Tested
+HX25PredatorBattleScarredName=HX25 | Predator | Battle-Scarred
+HX25TigerMintName=HX25 | Tiger | Mint
+HX25TigerFieldTestedName=HX25 | Tiger | Field-Tested
+HX25TigerBattleScarredName=HX25 | Tiger | Battle-Scarred
+HX25VertabraeMintName=HX25 | Vertabrae | Mint
+HX25VertabraeFieldTestedName=HX25 | Vertabrae | Field-Tested
+HX25VertabraeBattleScarredName=HX25 | Vertabrae | Battle-Scarred
+HX25PreciousName=HX25 | Precious
+
+;Katana Descriptions
+KatanaMintDescription=Exterior: Mint | Try and show a little respect for its class.
+KatanaFieldTestedDescription=Exterior: Field-Tested | Try and show a little respect for its class.
+KatanaBattleScarredDescription=Exterior: Battle-Scarred | Try and show a little respect for its class.
+KatanaPreciousDescription=Exterior: Precious | Try and show a little respect for its class.
+
+;Katana Names
+KatanaCyberboneMintName=Katana | Cyberbone | Mint
+KatanaCyberboneFieldTestedName=Katana | Cyberbone | Field-Tested
+KatanaCyberboneBattleScarredName=Katana | Cyberbone | Battle-Scarred
+KatanaGlowTextMintName=Katana | Glow Text | Mint
+KatanaGlowTextFieldTestedName=Katana | Glow Text | Field-Tested
+KatanaGlowTextBattleScarredName=Katana | Glow Text | Battle-Scarred
+KatanaPreciousName=Katana | Precious
+
+;KF-BAR Descriptions
+KFBARMintDescription=Exterior: Mint | Horzine's version of the classic commando knife.
+KFBARFieldTestedDescription=Exterior: Field-Tested | Horzine's version of the classic commando knife.
+KFBARBattleScarredDescription=Exterior: Battle-Scarred | Horzine's version of the classic commando knife.
+KFBARPreciousDescription=Exterior: Precious | Horzine's version of the classic commando knife.
+
+;KF-BAR Names
+KFBARStreetPunksMintName=KF-BAR | Street Punks | Mint
+KFBARStreetPunksFieldTestedName=KF-BAR | Street Punks | Field-Tested
+KFBARStreetPunksBattleScarredName=KF-BAR | Street Punks | Battle-Scarred
+KFBARPreciousName=KF-BAR | Precious
+
+;L85A2 Descriptions
+L85A2MintDescription=Exterior: Mint | The SA80 was the British Army's standard weapon, before the Army was, well, eaten.
+L85A2FieldTestedDescription=Exterior: Field-Tested | The SA80 was the British Army's standard weapon, before the Army was, well, eaten.
+L85A2BattleScarredDescription=Exterior: Battle-Scarred | The SA80 was the British Army's standard weapon, before the Army was, well, eaten.
+L85A2PreciousDescription=Exterior: Precious | The SA80 was the British Army's standard weapon, before the Army was, well, eaten.
+
+;L85A2 Names
+L85A2AeronautMintName=L85A2 | Aeronaut | Mint
+L85A2AeronautFieldTestedName=L85A2 | Aeronaut | Field-Tested
+L85A2AeronautBattleScarredName=L85A2 | Aeronaut | Battle-Scarred
+L85A2DoshMintName=L85A2 | Dosh | Mint
+L85A2DoshFieldTestedName=L85A2 | Dosh | Field-Tested
+L85A2DoshBattleScarredName=L85A2 | Dosh | Battle-Scarred
+L85A2HorzineEliteBlueMintName=L85A2 | Horzine Elite Blue | Mint
+L85A2HorzineEliteBlueFieldTestedName=L85A2 | Horzine Elite Blue | Field-Tested
+L85A2HorzineEliteBlueBattleScarredName=L85A2 | Horzine Elite Blue | Battle-Scarred
+L85A2HorzineEliteGreenMintName=L85A2 | Horzine Elite Green | Mint
+L85A2HorzineEliteGreenFieldTestedName=L85A2 | Horzine Elite Green | Field-Tested
+L85A2HorzineEliteGreenBattleScarredName=L85A2 | Horzine Elite Green | Battle-Scarred
+L85A2HorzineEliteRedMintName=L85A2 | Horzine Elite Red | Mint
+L85A2HorzineEliteRedFieldTestedName=L85A2 | Horzine Elite Red | Field-Tested
+L85A2HorzineEliteRedBattleScarredName=L85A2 | Horzine Elite Red | Battle-Scarred
+L85A2JunkyardRacerMintName=L85A2 | Junkyard Racer | Mint
+L85A2JunkyardRacerFieldTestedName=L85A2 | Junkyard Racer | Field-Tested
+L85A2JunkyardRacerBattleScarredName=L85A2 | Junkyard Racer | Battle-Scarred
+L85A2PredatorMintName=L85A2 | Predator | Mint
+L85A2PredatorFieldTestedName=L85A2 | Predator | Field-Tested
+L85A2PredatorBattleScarredName=L85A2 | Predator | Battle-Scarred
+L85A2WoodlandMintName=L85A2 | Woodland | Mint
+L85A2WoodlandFieldTestedName=L85A2 | Woodland | Field-Tested
+L85A2WoodlandBattleScarredName=L85A2 | Woodland | Battle-Scarred
+L85A2PreciousName=L85A2 | Precious
+
+;M1911 Descriptions
+M1911MintDescription=Exterior: Mint | The classic Colt 1911 semi-automatic pistol.
+M1911FieldTestedDescription=Exterior: Field-Tested | The classic Colt 1911 semi-automatic pistol.
+M1911BattleScarredDescription=Exterior: Battle-Scarred | The classic Colt 1911 semi-automatic pistol.
+M1911PreciousDescription=Exterior: Precious | The classic Colt 1911 semi-automatic pistol.
+
+;M1911 Names
+M1911TacticalMintName=M1911 | Tactical | Mint
+M1911TacticalFieldTestedName=M1911 | Tactical | Field-Tested
+M1911TacticalBattleScarredName=M1911 | Tactical | Battle-Scarred
+M1911PreciousName=M1911 | Precious
+
+;M4 Descriptions
+M4MintDescription=Exterior: Mint | Benelli designed the M4 Combat Shotgun for the US military. It is semi-automatic, allowing for a good, steady rate of fire.
+M4FieldTestedDescription=Exterior: Field-Tested | Benelli designed the M4 Combat Shotgun for the US military. It is semi-automatic, allowing for a good, steady rate of fire.
+M4BattleScarredDescription=Exterior: Battle-Scarred | Benelli designed the M4 Combat Shotgun for the US military. It is semi-automatic, allowing for a good, steady rate of fire.
+M4PreciousDescription=Exterior: Precious | Benelli designed the M4 Combat Shotgun for the US military. It is semi-automatic, allowing for a good, steady rate of fire.
+
+;M4 Names
+M4MonsterKillerMintName=M4 | Monster Killer | Mint
+M4MonsterKillerFieldTestedName=M4 | Monster Killer | Field-Tested
+M4MonsterKillerBattleScarredName=M4 | Monster Killer | Battle-Scarred
+M4StoriesofWarMintName=M4 | Stories of War | Mint
+M4StoriesofWarFieldTestedName=M4 | Stories of War | Field-Tested
+M4StoriesofWarBattleScarredName=M4 | Stories of War | Battle-Scarred
+M4VictorianMintName=M4 | Victorian | Mint
+M4VictorianFieldTestedName=M4 | Victorian | Field-Tested
+M4VictorianBattleScarredName=M4 | Victorian | Battle-Scarred
+M4PreciousName=M4 | Precious
+
+;M79 Descriptions
+M79MintDescription=Exterior: Mint | Only arms itself a few meters down-range, so you don't blow your own face off.
+M79FieldTestedDescription=Exterior: Field-Tested | Only arms itself a few meters down-range, so you don't blow your own face off.
+M79BattleScarredDescription=Exterior: Battle-Scarred | Only arms itself a few meters down-range, so you don't blow your own face off.
+M79PreciousDescription=Exterior: Precious | Only arms itself a few meters down-range, so you don't blow your own face off.
+
+;M79 Names
+M79PeaceMakerMintName=M79 | Peace Maker | Mint
+M79PeaceMakerFieldTestedName=M79 | Peace Maker | Field-Tested
+M79PeaceMakerBattleScarredName=M79 | Peace Maker | Battle-Scarred
+M79PutridBileMintName=M79 | Putrid Bile | Mint
+M79PutridBileFieldTestedName=M79 | Putrid Bile | Field-Tested
+M79PutridBileBattleScarredName=M79 | Putrid Bile | Battle-Scarred
+M79StoriesofWarMintName=M79 | Stories of War | Mint
+M79StoriesofWarFieldTestedName=M79 | Stories of War | Field-Tested
+M79StoriesofWarBattleScarredName=M79 | Stories of War | Battle-Scarred
+M79TigerMintName=M79 | Tiger | Mint
+M79TigerFieldTestedName=M79 | Tiger | Field-Tested
+M79TigerBattleScarredName=M79 | Tiger | Battle-Scarred
+M79PreciousName=M79 | Precious
+
+;Microwave Gun Descriptions
+MicrowaveGunMintDescription=Exterior: Mint | The wonders of modern technology: a handheld Zed-cooker.
+MicrowaveGunFieldTestedDescription=Exterior: Field-Tested | The wonders of modern technology: a handheld Zed-cooker.
+MicrowaveGunBattleScarredDescription=Exterior: Battle-Scarred | The wonders of modern technology: a handheld Zed-cooker.
+MicrowaveGunPreciousDescription=Exterior: Precious | The wonders of modern technology: a handheld Zed-cooker.
+
+;Microwave Gun Names
+MicrowaveGunEmergencyIssueMintName=Microwave Gun | Emergency Issue | Mint
+MicrowaveGunEmergencyIssueFieldTestedName=Microwave Gun | Emergency Issue | Field-Tested
+MicrowaveGunEmergencyIssueBattleScarredName=Microwave Gun | Emergency Issue | Battle-Scarred
+MicrowaveGunHumanPopcornMintName=Microwave Gun | Human Popcorn | Mint
+MicrowaveGunHumanPopcornFieldTestedName=Microwave Gun | Human Popcorn | Field-Tested
+MicrowaveGunHumanPopcornBattleScarredName=Microwave Gun | Human Popcorn | Battle-Scarred
+MicrowaveGunPreciousName=Microwave Gun | Precious
+
+;Pulverizer Descriptions
+PulverizerMintDescription=Exterior: Mint | Why wouldn't you want a combination shotgun sledghammer?
+PulverizerFieldTestedDescription=Exterior: Field-Tested | Why wouldn't you want a combination shotgun sledghammer?
+PulverizerBattleScarredDescription=Exterior: Battle-Scarred | Why wouldn't you want a combination shotgun sledghammer?
+PulverizerPreciousDescription=Exterior: Precious | Why wouldn't you want a combination shotgun sledghammer?
+
+;Pulverizer Names
+PulverizerFleshMintName=Pulverizer | Flesh | Mint
+PulverizerFleshFieldTestedName=Pulverizer | Flesh | Field-Tested
+PulverizerFleshBattleScarredName=Pulverizer | Flesh | Battle-Scarred
+PulverizerSkullcrackerMintName=Pulverizer | Skullcracker | Mint
+PulverizerSkullcrackerFieldTestedName=Pulverizer | Skullcracker | Field-Tested
+PulverizerSkullcrackerBattleScarredName=Pulverizer | Skullcracker | Battle-Scarred
+PulverizerSWATMintName=Pulverizer | SWAT | Mint
+PulverizerSWATFieldTestedName=Pulverizer | SWAT | Field-Tested
+PulverizerSWATBattleScarredName=Pulverizer | SWAT | Battle-Scarred
+PulverizerEmergencyIssueMintName=Pulverizer | Emergency Issue | Mint
+PulverizerEmergencyIssueFieldTestedName=Pulverizer | Emergency Issue | Field-Tested
+PulverizerEmergencyIssueBattleScarredName=Pulverizer | Emergency Issue | Battle-Scarred
+PulverizerPreciousName=Pulverizer | Precious
+
+;RPG-7 Descriptions
+RPG7MintDescription=Exterior: Mint | Only arms itself a few meters down-range, so you don't blow your own face off. Watch the back-blast!
+RPG7FieldTestedDescription=Exterior: Field-Tested | Only arms itself a few meters down-range, so you don't blow your own face off. Watch the back-blast!
+RPG7BattleScarredDescription=Exterior: Battle-Scarred | Only arms itself a few meters down-range, so you don't blow your own face off. Watch the back-blast!
+RPG7PreciousDescription=Exterior: Precious | Only arms itself a few meters down-range, so you don't blow your own face off. Watch the back-blast!
+
+;RPG-7 Names
+RPG7StoriesofWarMintName=RPG-7 | Stories of War | Mint
+RPG7StoriesofWarFieldTestedName=RPG-7 | Stories of War | Field-Tested
+RPG7StoriesofWarBattleScarredName=RPG-7 | Stories of War | Battle-Scarred
+RPG7TigerMintName=RPG-7 | Tiger | Mint
+RPG7TigerFieldTestedName=RPG-7 | Tiger | Field-Tested
+RPG7TigerBattleScarredName=RPG-7 | Tiger | Battle-Scarred
+RPG7PreciousName=RPG-7 | Precious
+
+;Scar Descriptions
+ScarMintDescription=Exterior: Mint | Designed originally for the US Special Operations Command, it is, indeed, special!
+ScarFieldTestedDescription=Exterior: Field-Tested | Designed originally for the US Special Operations Command, it is, indeed, special!
+ScarBattleScarredDescription=Exterior: Battle-Scarred | Designed originally for the US Special Operations Command, it is, indeed, special!
+ScarPreciousDescription=Exterior: Precious | Designed originally for the US Special Operations Command, it is, indeed, special!
+
+;Scar Names
+ScarClotCommandoMintName=Scar | Clot Commando | Mint
+ScarClotCommandoFieldTestedName=Scar | Clot Commando | Field-Tested
+ScarClotCommandoBattleScarredName=Scar | Clot Commando | Battle-Scarred
+ScarHorzineEliteBlueMintName=Scar | Horzine Elite Blue | Mint
+ScarHorzineEliteBlueFieldTestedName=Scar | Horzine Elite Blue | Field-Tested
+ScarHorzineEliteBlueBattleScarredName=Scar | Horzine Elite Blue | Battle-Scarred
+ScarHorzineEliteGreenMintName=Scar | Horzine Elite Green | Mint
+ScarHorzineEliteGreenFieldTestedName=Scar | Horzine Elite Green | Field-Tested
+ScarHorzineEliteGreenBattleScarredName=Scar | Horzine Elite Green | Battle-Scarred
+ScarHorzineEliteRedMintName=Scar | Horzine Elite Red | Mint
+ScarHorzineEliteRedFieldTestedName=Scar | Horzine Elite Red | Field-Tested
+ScarHorzineEliteRedBattleScarredName=Scar | Horzine Elite Red | Battle-Scarred
+ScarHorzineEliteWhiteMintName=Scar | Horzine Elite White | Mint
+ScarHorzineEliteWhiteFieldTestedName=Scar | Horzine Elite White | Field-Tested
+ScarHorzineEliteWhiteBattleScarredName=Scar | Horzine Elite White | Battle-Scarred
+ScarOpulenceMintName=Scar | Opulence | Mint
+ScarOpulenceFieldTestedName=Scar | Opulence | Field-Tested
+ScarOpulenceBattleScarredName=Scar | Opulence | Battle-Scarred
+ScarSprayCanMintName=Scar | Spray Can | Mint
+ScarSprayCanFieldTestedName=Scar | Spray Can | Field-Tested
+ScarSprayCanBattleScarredName=Scar | Spray Can | Battle-Scarred
+ScarStoriesofWarMintName=Scar | Stories of War | Mint
+ScarStoriesofWarFieldTestedName=Scar | Stories of War | Field-Tested
+ScarStoriesofWarBattleScarredName=Scar | Stories of War | Battle-Scarred
+ScarSWATMintName=Scar | SWAT | Mint
+ScarSWATFieldTestedName=Scar | SWAT | Field-Tested
+ScarSWATBattleScarredName=Scar | SWAT | Battle-Scarred
+ScarWoodlandMintName=Scar | Woodland | Mint
+ScarWoodlandFieldTestedName=Scar | Woodland | Field-Tested
+ScarWoodlandBattleScarredName=Scar | Woodland | Battle-Scarred
+ScarPreciousName=Scar | Precious
+
+;SG500 Descriptions
+SG500MintDescription=Exterior: Mint | The pump-action Mossberg SG 500, with the pistol grip, is a wonderful close-quarters Zed-killer. Simple and effective.
+SG500FieldTestedDescription=Exterior: Field-Tested | The pump-action Mossberg SG 500, with the pistol grip, is a wonderful close-quarters Zed-killer. Simple and effective.
+SG500BattleScarredDescription=Exterior: Battle-Scarred | The pump-action Mossberg SG 500, with the pistol grip, is a wonderful close-quarters Zed-killer. Simple and effective.
+SG500PreciousDescription=Exterior: Precious | The pump-action Mossberg SG 500, with the pistol grip, is a wonderful close-quarters Zed-killer. Simple and effective.
+
+;SG500 Names
+SG500DoshMintName=SG 500 | Dosh | Mint
+SG500DoshFieldTestedName=SG 500 | Dosh | Field-Tested
+SG500DoshBattleScarredName=SG 500 | Dosh | Battle-Scarred
+SG500RustedDeathMintName=SG 500 | Rusted Death | Mint
+SG500RustedDeathFieldTestedName=SG 500 | Rusted Death | Field-Tested
+SG500RustedDeathBattleScarredName=SG 500 | Rusted Death | Battle-Scarred
+SG500SWATMintName=SG 500 | SWAT | Mint
+SG500SWATFieldTestedName=SG 500 | SWAT | Field-Tested
+SG500SWATBattleScarredName=SG 500 | SWAT | Battle-Scarred
+SG500VictorianMintName=SG 500 | Victorian | Mint
+SG500VictorianFieldTestedName=SG 500 | Victorian | Field-Tested
+SG500VictorianBattleScarredName=SG 500 | Victorian | Battle-Scarred
+SG500EmergencyIssueMintName=SG 500 | Emergency Issue | Mint
+SG500EmergencyIssueFieldTestedName=SG 500 | Emergency Issue | Field-Tested
+SG500EmergencyIssueBattleScarredName=SG 500 | Emergency Issue | Battle-Scarred
+SG500HorzineFirstEncounterMintName=SG 500 | Horzine First Encounter | Mint
+SG500HorzineFirstEncounterFieldTestedName=SG 500 | Horzine First Encounter | Field-Tested
+SG500HorzineFirstEncounterBattleScarredName=SG 500 | Horzine First Encounter | Battle-Scarred
+SG500PredatorMintName=SG 500 | Predator | Mint
+SG500PredatorFieldTestedName=SG 500 | Predator | Field-Tested
+SG500PredatorBattleScarredName=SG 500 | Predator | Battle-Scarred
+SG500StreetPunksMintName=SG 500 | Street Punks | Mint
+SG500StreetPunksFieldTestedName=SG 500 | Street Punks | Field-Tested
+SG500StreetPunksBattleScarredName=SG 500 | Street Punks | Battle-Scarred
+SG500PreciousName=SG 500 | Precious
+
+;Support Knife Descriptions
+SupportKnifeMintDescription=Exterior: Mint | Don't go feeling all special just because we gave you the biggest knife.
+SupportKnifeFieldTestedDescription=Exterior: Field-Tested | Don't go feeling all special just because we gave you the biggest knife.
+SupportKnifeBattleScarredDescription=Exterior: Battle-Scarred | Don't go feeling all special just because we gave you the biggest knife.
+SupportKnifePreciousDescription=Exterior: Precious | Don't go feeling all special just because we gave you the biggest knife.
+
+;Support Knife Names
+SupportKnifeCyberboneMintName=Support Knife | Cyberbone | Mint
+SupportKnifeCyberboneFieldTestedName=Support Knife | Cyberbone | Field-Tested
+SupportKnifeCyberboneBattleScarredName=Support Knife | Cyberbone | Battle-Scarred
+SupportKnifeVictorianMintName=Support Knife | Victorian | Mint
+SupportKnifeVictorianFieldTestedName=Support Knife | Victorian | Field-Tested
+SupportKnifeVictorianBattleScarredName=Support Knife | Victorian | Battle-Scarred
+SupportKnifePreciousName=Support Knife | Precious
+
+;VLAD-1000 Nailgun Descriptions
+VLAD1000NailgunMintDescription=Exterior: Mint | We understand that one of the Horzine scientists borrowed the original nailgun from a (dead) maintenance man.
+VLAD1000NailgunFieldTestedDescription=Exterior: Field-Tested | We understand that one of the Horzine scientists borrowed the original nailgun from a (dead) maintenance man.
+VLAD1000NailgunBattleScarredDescription=Exterior: Battle-Scarred | We understand that one of the Horzine scientists borrowed the original nailgun from a (dead) maintenance man.
+VLAD1000NailgunPreciousDescription=Exterior: Precious | We understand that one of the Horzine scientists borrowed the original nailgun from a (dead) maintenance man.
+
+;VLAD-1000 Nailgun Names
+VLAD1000NailgunArachnidMintName=VLAD-1000 Nailgun | Arachnid | Mint
+VLAD1000NailgunArachnidFieldTestedName=VLAD-1000 Nailgun | Arachnid | Field-Tested
+VLAD1000NailgunArachnidBattleScarredName=VLAD-1000 Nailgun | Arachnid | Battle-Scarred
+VLAD1000NailgunEmergencyIssueMintName=VLAD-1000 Nailgun | Emergency Issue | Mint
+VLAD1000NailgunEmergencyIssueFieldTestedName=VLAD-1000 Nailgun | Emergency Issue | Field-Tested
+VLAD1000NailgunEmergencyIssueBattleScarredName=VLAD-1000 Nailgun | Emergency Issue | Battle-Scarred
+VLAD1000NailgunPreciousName=VLAD-1000 Nailgun | Precious
+
+;Welder Descriptions
+WelderMintDescription=Exterior: Mint | Welder, I'm welding this door!
+WelderFieldTestedDescription=Exterior: Field-Tested | Welder, I'm welding this door!
+WelderBattleScarredDescription=Exterior: Battle-Scarred | Welder, I'm welding this door!
+WelderPreciousDescription=Exterior: Precious | Welder, I'm welding this door!
+
+;Welder Names
+WelderHorzineFirstEncounterMintName=Welder | Horzine First Encounter | Mint
+WelderHorzineFirstEncounterFieldTestedName=Welder | Horzine First Encounter | Field-Tested
+WelderHorzineFirstEncounterBattleScarredName=Welder | Horzine First Encounter | Battle-Scarred
+WelderPreciousName=Welder | Precious
+
+;Winchester 1894 Descriptions
+Winchester1894MintDescription=Exterior: Mint | The classic Model 1894 Winchester lever-action rifle.
+Winchester1894FieldTestedDescription=Exterior: Field-Tested | The classic Model 1894 Winchester lever-action rifle.
+Winchester1894BattleScarredDescription=Exterior: Battle-Scarred | The classic Model 1894 Winchester lever-action rifle.
+Winchester1894PreciousDescription=Exterior: Precious | The classic Model 1894 Winchester lever-action rifle.
+
+;Winchester 1894 Names
+Winchester1894JunkyardRacerMintName=Winchester 1894 | Junkyard Racer | Mint
+Winchester1894JunkyardRacerFieldTestedName=Winchester 1894 | Junkyard Racer | Field-Tested
+Winchester1894JunkyardRacerBattleScarredName=Winchester 1894 | Junkyard Racer | Battle-Scarred
+Winchester1894PreciousName=Winchester 1894 | Precious
+
+;GunslingerKnife Descriptions
+GunslingerKnifeMintDescription=Exterior: Mint | The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now.
+GunslingerKnifeFieldTestedDescription=Exterior: Field-Tested | The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now.
+GunslingerKnifeBattleScarredDescription=Exterior: Battle-Scarred | The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now.
+GunslingerKnifePreciousDescription=Exterior: Precious | The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now.
+
+;GunslingerKnife Names
+GunslingerKnifePreciousName=Gunslinger Knife | Precious
+
+;Demo Knife Descriptions
+DemoKnifeMintDescription=Exterior: Mint | It's a box cutter. Perfect for opening any boxes you may come across on the killing floor.
+DemoKnifeFieldTestedDescription=Exterior: Field-Tested | It's a box cutter. Perfect for opening any boxes you may come across on the killing floor.
+DemoKnifeBattleScarredDescription=Exterior: Battle-Scarred | It's a box cutter. Perfect for opening any boxes you may come across on the killing floor.
+DemoKnifePreciousDescription=Exterior: Precious | It's a box cutter. Perfect for opening any boxes you may come across on the killing floor.
+
+;Demo Knife Names
+DemoKnifePreciousName=Demo Knife | Precious
+
+;C4 Descriptions
+C4MintDescription=Exterior: Mint | A block of C4, wired for on-demand remote detonation.
+C4FieldTestedDescription=Exterior: Field-Tested | A block of C4, wired for on-demand remote detonation.
+C4BattleScarredDescription=Exterior: Battle-Scarred | A block of C4, wired for on-demand remote detonation.
+C4PreciousDescription=Exterior: Precious | A block of C4, wired for on-demand remote detonation.
+
+;C4 Names
+C4PreciousName=C4 | Precious
+
+[CosmeticSection]
+
+;Cosmetic Names
+AviatorGogglesNoCharmBlueName=Aviator Goggles (No Charm) | Blue
+AviatorGogglesNoCharmDesertName=Aviator Goggles (No Charm) | Desert
+AviatorGogglesNoCharmGreenName=Aviator Goggles (No Charm) | Green
+AviatorGogglesNoCharmPreciousName=Aviator Goggles (No Charm) | Precious
+AviatorGogglesNoCharmWhiteName=Aviator Goggles (No Charm) | White
+AviatorGogglesBlueName=Aviator Goggles | Blue
+AviatorGogglesDesertName=Aviator Goggles | Desert
+AviatorGogglesGreenName=Aviator Goggles | Green
+AviatorGogglesPreciousName=Aviator Goggles | Precious
+AviatorGogglesWhiteName=Aviator Goggles | White
+AviatorsBlueName=Aviators | Blue
+AviatorsGreenName=Aviators | Green
+AviatorsRedName=Aviators | Red
+AviatorsWhiteRimsName=Aviators | White Rims
+BaseballHatBlueName=Baseball Hat | Blue
+BaseballHatCAName=Baseball Hat | CA
+BaseballHatDEName=Baseball Hat | DE
+BaseballHatGoldName=Baseball Hat | Gold
+BaseballHatRUName=Baseball Hat | RU
+BaseballHatUKName=Baseball Hat | UK
+BaseballHatUSAName=Baseball Hat | USA
+BloodyGamesHelmetBlackName=Bloody Games Helmet | Black
+BloodyGamesHelmetBlueName=Bloody Games Helmet | Blue
+BloodyGamesHelmetRedName=Bloody Games Helmet | Red
+BloodyGamesHelmetYellowName=Bloody Games Helmet | Yellow
+BoonieCapBlueDigiName=Boonie Cap | Blue Digi
+BoonieCapBlueTigerName=Boonie Cap | Blue Tiger
+BoonieCapDefaultName=Boonie Cap | Default
+BoonieCapGreenName=Boonie Cap | Green
+BoonieCapGreenDigiName=Boonie Cap | Green Digi
+BoonieCapRedDigiName=Boonie Cap | Red Digi
+BoonieCapRedTigerName=Boonie Cap | Red Tiger
+BoxingHeadgearBlueName=Boxing Headgear | Blue
+BoxingHeadgearBrownName=Boxing Headgear | Brown
+BoxingHeadgearRedName=Boxing Headgear | Red
+BoxingHeadgearYellowName=Boxing Headgear | Yellow
+BrokenMaskGeishaName=Broken Mask | Geisha
+BrokenMaskMetalName=Broken Mask | Metal
+BrokenMaskSkinName=Broken Mask | Skin
+BrokenMaskSugarPurpleName=Broken Mask | Sugar Purple
+BrokenMaskSugarRedName=Broken Mask | Sugar Red
+BrokenMaskWhiteYellowName=Broken Mask | White Yellow
+ChefHatBloodyName=Chef Hat | Bloody
+ChefHatStripedName=Chef Hat | Striped
+ChefHatWhiteName=Chef Hat | White
+ChemicalGasMaskBlackName=Chemical Gas Mask | Black
+ChemicalGasMaskGreenName=Chemical Gas Mask | Green
+ChemicalGasMaskStandardName=Chemical Gas Mask | Standard
+ChemicalGasMaskYellowName=Chemical Gas Mask | Yellow
+CowboyHatName=Cowboy Hat
+CriminallyInsaneMaskName=Criminally Insane Mask
+CustodianHelmetPreciousName=Custodian Helmet | Precious
+CyberneticGasMaskBlueName=Cybernetic Gas Mask | Blue
+CyberneticGasMaskGreenName=Cybernetic Gas Mask | Green
+CyberneticGasMaskPinkName=Cybernetic Gas Mask | Pink
+DevtacBallisticMaskBlackName=Devtac Ballistic Mask | Black
+DevtacBallisticMaskBlueName=Devtac Ballistic Mask | Blue
+DevtacBallisticMaskGreenName=Devtac Ballistic Mask | Green
+DevtacBallisticMaskRedName=Devtac Ballistic Mask | Red
+DiscountTREXMaskBlueName=Discount T-REX Mask | Blue
+DiscountTREXMaskGreenName=Discount T-REX Mask | Green
+DiscountTREXMaskPreciousName=Discount T-REX Mask | Precious
+DiscountTREXMaskRedName=Discount T-REX Mask | Red
+DoctorsMaskBlueName=Doctor's Mask | Blue
+DoctorsMaskGreenName=Doctor's Mask | Green
+DoctorsMaskWhiteName=Doctor's Mask | White
+EMSArmBandBlueName=EMS Arm Band | Blue
+EMSArmBandRedName=EMS Arm Band | Red
+EMSBackpackBlueName=EMS Backpack | Blue
+EMSBackpackRedName=EMS Backpack | Red
+EnforcerGogglesBlackCoatName=Enforcer Goggles | Black Coat
+EnforcerGogglesBlackCoatBlueName=Enforcer Goggles | Black Coat Blue
+EnforcerGogglesBlackCoatGreenName=Enforcer Goggles | Black Coat Green
+EnforcerGogglesBlackCoatRedName=Enforcer Goggles | Black Coat Red
+EnforcerGogglesBlueCoatName=Enforcer Goggles | Blue Coat
+EnforcerGogglesGreenCoatName=Enforcer Goggles | Green Coat
+EnforcerGogglesRedCoatName=Enforcer Goggles | Red Coat
+EnforcerHelmetBlackCoatName=Enforcer Helmet | Black Coat
+EnforcerHelmetBlueCoatName=Enforcer Helmet | Blue Coat
+EnforcerHelmetGreenCoatName=Enforcer Helmet | Green Coat
+EnforcerHelmetRedCoatName=Enforcer Helmet | Red Coat
+EnforcerMaskBlackEyesName=Enforcer Mask | Black Eyes
+EnforcerMaskBlueEyesName=Enforcer Mask | Blue Eyes
+EnforcerMaskBlueFilterName=Enforcer Mask | Blue Filter
+EnforcerMaskGreenEyesName=Enforcer Mask | Green Eyes
+EnforcerMaskGreenFilterName=Enforcer Mask | Green Filter
+EnforcerMaskRedEyesName=Enforcer Mask | Red Eyes
+EnforcerMaskRedFilterName=Enforcer Mask | Red Filter
+EyePatchAsianName=Eye Patch | Asian
+EyePatchBioName=Eye Patch | Bio
+EyePatchBlueName=Eye Patch | Blue
+EyePatchCamoName=Eye Patch | Camo
+EyePatchDoshName=Eye Patch | Dosh
+EyePatchEyeName=Eye Patch | Eye
+EyePatchFancyName=Eye Patch | Fancy
+EyePatchFlameName=Eye Patch | Flame
+EyePatchPlaidName=Eye Patch | Plaid
+EyePatchPurpleName=Eye Patch | Purple
+EyePatchSkullName=Eye Patch | Skull
+EyePatchSplatterName=Eye Patch | Splatter
+EyePatchStandardName=Eye Patch | Standard
+EyePatchTieDyeName=Eye Patch | Tie Dye
+FlatcapBlackName=Flatcap | Black
+FlatcapBlueName=Flatcap | Blue
+FlatcapBrownName=Flatcap | Brown
+FlatcapWhiteName=Flatcap | White
+FlatcapYellowName=Flatcap | Yellow
+FlightHelmetBloodyName=Flight Helmet | Bloody
+FlightHelmetBubbleName=Flight Helmet | Bubble
+FlightHelmetCrimsonName=Flight Helmet | Crimson
+FlightHelmetFlameName=Flight Helmet | Flame
+FlightHelmetNinjaName=Flight Helmet | Ninja
+FlightHelmetStandardName=Flight Helmet | Standard
+FlightMaskBloodyName=Flight Mask | Bloody
+FlightMaskBubbleName=Flight Mask | Bubble
+FlightMaskCrimsonName=Flight Mask | Crimson
+FlightMaskFlameName=Flight Mask | Flame
+FlightMaskNinjaName=Flight Mask | Ninja
+FlightMaskStandardName=Flight Mask | Standard
+FrontRowProtectionDownBiohazardName=Front Row Protection Down | Biohazard
+FrontRowProtectionDownBloodbathName=Front Row Protection Down | Bloodbath
+FrontRowProtectionDownBritishBoneDomeName=Front Row Protection Down | British Bone Dome
+FrontRowProtectionDownCamoName=Front Row Protection Down | Camo
+FrontRowProtectionDownGermanSprayName=Front Row Protection Down | German Spray
+FrontRowProtectionDownSkulltacularName=Front Row Protection Down | Skulltacular
+FrontRowProtectionDownStainedName=Front Row Protection Down | Stained
+FrontRowProtectionDownStandardName=Front Row Protection Down | Standard
+FrontRowProtectionUpBiohazardName=Front Row Protection Up | Biohazard
+FrontRowProtectionUpBloodbathName=Front Row Protection Up | Bloodbath
+FrontRowProtectionUpBritishBoneDomeName=Front Row Protection Up | British Bone Dome
+FrontRowProtectionUpCamoName=Front Row Protection Up | Camo
+FrontRowProtectionUpGermanSprayName=Front Row Protection Up | German Spray
+FrontRowProtectionUpSkulltacularName=Front Row Protection Up | Skulltacular
+FrontRowProtectionUpStainedName=Front Row Protection Up | Stained
+FrontRowProtectionUpStandardName=Front Row Protection Up | Standard
+GermanGasMaskName=German Gas Mask
+GermanOfficersHatBlueName=German Officer's Hat | Blue
+GermanOfficersHatGreenName=German Officer's Hat | Green
+GraduationCapBlackName=Graduation Cap | Black
+GS9HelmetBlackName=GS9 Helmet | Black
+GS9HelmetBlueName=GS9 Helmet | Blue
+GS9HelmetBrownName=GS9 Helmet | Brown
+GS9HelmetCamo1Name=GS9 Helmet | Camo 1
+GS9HelmetCamo2Name=GS9 Helmet | Camo 2
+GS9HelmetNavyName=GS9 Helmet | Navy
+GS9HelmetOliveName=GS9 Helmet | Olive
+GS9HelmetRedName=GS9 Helmet | Red
+GS9MaskBlackName=GS9 Mask | Black
+GS9MaskBlueName=GS9 Mask | Blue
+GS9MaskBrownName=GS9 Mask | Brown
+GS9MaskCamoName=GS9 Mask | Camo
+GS9MaskOliveName=GS9 Mask | Olive
+GS9MaskRedName=GS9 Mask | Red
+GS9MaskWhiteName=GS9 Mask | White
+HeadbandAsianWhiteName=Headband | Asian White
+HeadbandBlackRedName=Headband | Black Red
+HeadbandBlueName=Headband | Blue
+HeadbandCamoName=Headband | Camo
+HeadbandDarkPurpleName=Headband | Dark Purple
+HeadbandFlameName=Headband | Flame
+HeadbandGreenName=Headband | Green
+HeadbandJapanName=Headband | Japan
+HeadbandLightBlueName=Headband | Light Blue
+HeadbandPurpleName=Headband | Purple
+HeadbandRedName=Headband | Red
+HeadbandRedBlackName=Headband | Red Black
+HeadbandRedPatternName=Headband | Red Pattern
+HeadbandStandardName=Headband | Standard
+HeadbandStarName=Headband | Star
+HeadbandStripeName=Headband | Stripe
+HeadbandTieDyeName=Headband | Tie Dye
+HeadbandWhiteName=Headband | White
+HeadbandYellowName=Headband | Yellow
+HolyGlassesName=Holy Glasses
+InfiltratorHelmBlueName=Infiltrator Helm | Blue
+InfiltratorHelmGreenName=Infiltrator Helm | Green
+InfiltratorHelmPreciousName=Infiltrator Helm | Precious
+InfiltratorHelmRedName=Infiltrator Helm | Red
+JFrontBaseballCapBlackName=JFront Baseball Cap | Black
+JFrontBaseballCapBlueName=JFront Baseball Cap | Blue
+JFrontBaseballCapGreenName=JFront Baseball Cap | Green
+JFrontBaseballCapRedName=JFront Baseball Cap | Red
+JusticeGogglesStealthBlackName=Justice Goggles | Stealth Black
+JusticeHelmetMiamiBlueName=Justice Helmet | Miami Blue
+JusticeHelmetSavageRedName=Justice Helmet | Savage Red
+JusticeHelmetStealthBlackName=Justice Helmet | Stealth Black
+JusticeHelmetTacticalGreenName=Justice Helmet | Tactical Green
+JusticeMaskBlueMagnumName=Justice Mask | Blue Magnum
+JusticeMaskBlueSteelName=Justice Mask | Blue Steel
+JusticeMaskGreenRallyName=Justice Mask | Green Rally
+JusticeMaskGreenSynergyName=Justice Mask | Green Synergy
+JusticeMaskMiamiBlueName=Justice Mask | Miami Blue
+JusticeMaskReaperBlackName=Justice Mask | Reaper Black
+JusticeMaskRedCheeksName=Justice Mask | Red Cheeks
+JusticeMaskRedFaceName=Justice Mask | Red Face
+JusticeMaskSavageRedName=Justice Mask | Savage Red
+JusticeMaskStealthBlackName=Justice Mask | Stealth Black
+JusticeMaskTacticalGreenName=Justice Mask | Tactical Green
+KevlarHelmetCamoName=Kevlar Helmet | Camo
+M2FlamethrowerTankOliveGreyName=M2 Flamethrower Tank | Olive Grey
+MaskoftheAbyssBlackName=Mask of the Abyss | Black
+MaskoftheAbyssBlueName=Mask of the Abyss | Blue
+MaskoftheAbyssGreenName=Mask of the Abyss | Green
+MaskoftheAbyssOrangeName=Mask of the Abyss | Orange
+MaskoftheAbyssPreciousName=Mask of the Abyss | Precious
+MempoPurpleName=Mempo | Purple
+MempoRedName=Mempo | Red
+MempoStandardName=Mempo | Standard
+MempoYellowName=Mempo | Yellow
+MilitarySurplusBeanieBeigeName=Military Surplus Beanie | Beige
+MilitarySurplusBeanieBlackName=Military Surplus Beanie | Black
+MilitarySurplusBeanieBlueName=Military Surplus Beanie | Blue
+MilitarySurplusBeanieGreenName=Military Surplus Beanie | Green
+MilitarySurplusBeanieRedName=Military Surplus Beanie | Red
+MotorcycleHelmetBlackName=Motorcycle Helmet | Black
+MotorcycleHelmetBlueName=Motorcycle Helmet | Blue
+MotorcycleHelmetOrangeName=Motorcycle Helmet | Orange
+MotorcycleHelmetOrangeFadeName=Motorcycle Helmet | Orange Fade
+MotorcycleHelmetPreciousName=Motorcycle Helmet | Precious
+MotorcycleHelmetPurpleFadeName=Motorcycle Helmet | Purple Fade
+MotorcycleHelmetRedName=Motorcycle Helmet | Red
+MotorcycleHelmetRedWhiteName=Motorcycle Helmet | Red White
+MotorcycleHelmetSilverName=Motorcycle Helmet | Silver
+MotorcycleHelmetTealWhiteName=Motorcycle Helmet | Teal White
+MotorcycleHelmetDamagedBlackName=Motorcycle Helmet Damaged | Black
+MotorcycleHelmetDamagedBlueName=Motorcycle Helmet Damaged | Blue
+MotorcycleHelmetDamagedOrangeName=Motorcycle Helmet Damaged | Orange
+MotorcycleHelmetDamagedOrangeFadeName=Motorcycle Helmet Damaged | Orange Fade
+MotorcycleHelmetDamagedPreciousName=Motorcycle Helmet Damaged | Precious
+MotorcycleHelmetDamagedPurpleFadeName=Motorcycle Helmet Damaged | Purple Fade
+MotorcycleHelmetDamagedRedName=Motorcycle Helmet Damaged | Red
+MotorcycleHelmetDamagedRedWhiteName=Motorcycle Helmet Damaged | Red White
+MotorcycleHelmetDamagedSilverName=Motorcycle Helmet Damaged | Silver
+MotorcycleHelmetDamagedTealWhiteName=Motorcycle Helmet Damaged | Teal White
+NightvisionHelmetBlueGlowName=Nightvision Helmet | Blue Glow
+PorkPieHatBlackName=PorkPie Hat | Black
+ProtectiveGlassesBlueName=Protective Glasses | Blue
+ProtectiveGlassesGreenName=Protective Glasses | Green
+ProtectiveGlassesPreciousName=Protective Glasses | Precious
+ProtectiveGlassesPurpleName=Protective Glasses | Purple
+ProtectiveGlassesRedName=Protective Glasses | Red
+ProtectiveGlassesStandardName=Protective Glasses | Standard
+PsychoGogglesBlackName=Psycho Goggles | Black
+PsychoGogglesBloodyName=Psycho Goggles | Bloody
+PsychoGogglesRedName=Psycho Goggles | Red
+PsychoGogglesWhiteName=Psycho Goggles | White
+PsychoMaskClosedBlackName=Psycho Mask Closed | Black
+PsychoMaskClosedBloodyName=Psycho Mask Closed | Bloody
+PsychoMaskClosedRedName=Psycho Mask Closed | Red
+PsychoMaskClosedWhiteName=Psycho Mask Closed | White
+PsychoMaskOpenBlackName=Psycho Mask Open | Black
+PsychoMaskOpenBloodyName=Psycho Mask Open | Bloody
+PsychoMaskOpenRedName=Psycho Mask Open | Red
+PsychoMaskOpenWhiteName=Psycho Mask Open | White
+PsychoMaskSmileBlackName=Psycho Mask Smile | Black
+PsychoMaskSmileBloodyName=Psycho Mask Smile | Bloody
+PsychoMaskSmileRedName=Psycho Mask Smile | Red
+PsychoMaskSmileWhiteName=Psycho Mask Smile | White
+PsychoPainGogglesClosedLatexName=Psycho Pain Goggles Closed | Latex
+PsychoPainGogglesClosedLeatherName=Psycho Pain Goggles Closed | Leather
+PsychoPainGogglesClosedRustedIronName=Psycho Pain Goggles Closed | Rusted Iron
+PsychoPainGogglesClosedSteelName=Psycho Pain Goggles Closed | Steel
+PsychoPainGogglesOpenLatexName=Psycho Pain Goggles Open | Latex
+PsychoPainGogglesOpenLeatherName=Psycho Pain Goggles Open | Leather
+PsychoPainGogglesOpenPreciousName=Psycho Pain Goggles Open | Precious
+PsychoPainGogglesOpenRustedIronName=Psycho Pain Goggles Open | Rusted Iron
+PsychoPainGogglesOpenSteelName=Psycho Pain Goggles Open | Steel
+PsychoPainMaskClosedLatexName=Psycho Pain Mask Closed | Latex
+PsychoPainMaskClosedLeatherName=Psycho Pain Mask Closed | Leather
+PsychoPainMaskClosedRustedIronName=Psycho Pain Mask Closed | Rusted Iron
+PsychoPainMaskClosedSteelName=Psycho Pain Mask Closed | Steel
+PsychoPainMaskOpenLatexName=Psycho Pain Mask Open | Latex
+PsychoPainMaskOpenLeatherName=Psycho Pain Mask Open | Leather
+PsychoPainMaskOpenRustedIronName=Psycho Pain Mask Open | Rusted Iron
+PsychoPainMaskOpenSteelName=Psycho Pain Mask Open | Steel
+PsychoPainMaskSmileLatexName=Psycho Pain Mask Smile | Latex
+PsychoPainMaskSmileLeatherName=Psycho Pain Mask Smile | Leather
+PsychoPainMaskSmilePreciousName=Psycho Pain Mask Smile | Precious
+PsychoPainMaskSmileRustedIronName=Psycho Pain Mask Smile | Rusted Iron
+PsychoPainMaskSmileSteelName=Psycho Pain Mask Smile | Steel
+RAFGogglesBlackGlowBlackBlueName=RAF Goggles | Black Glow Black Blue
+RAFGogglesBlackGlowBlackOrangeName=RAF Goggles | Black Glow Black Orange
+RAFGogglesBlackGlowBlueName=RAF Goggles | Black Glow Blue
+RAFGogglesBlackGlowGreenBlueName=RAF Goggles | Black Glow Green Blue
+RAFGogglesBlackGlowGreenOrangeName=RAF Goggles | Black Glow Green Orange
+RAFGogglesBlackGlowOrangeName=RAF Goggles | Black Glow Orange
+ReinforcedHelmetName=Reinforced Helmet
+RetroSunglassesBlackName=Retro Sunglasses | Black
+RetroSunglassesCamoName=Retro Sunglasses | Camo
+RetroSunglassesTigerName=Retro Sunglasses | Tiger
+RetroSunglassesUSAName=Retro Sunglasses | USA
+RoboScullyCleanSlateName=Robo Scully | Clean Slate
+RoboScullyOldschoolPattyName=Robo Scully | Oldschool Patty
+RoboScullyPreciousName=Robo Scully | Precious
+RoboScullySelloutName=Robo Scully | Sellout
+RoboScullyStillScullyName=Robo Scully | Still Scully
+RoboScullyTrueNeutralName=Robo Scully | True Neutral
+RPG7BackbagBackwoodsCamoName=RPG7 Backbag | Backwoods Camo
+RPG7BackbagBlackCamoName=RPG7 Backbag | Black Camo
+RPG7BackbagDesertCamoName=RPG7 Backbag | Desert Camo
+RPG7BackbagForestCamoName=RPG7 Backbag | Forest Camo
+RPG7BackbagGreenCamoName=RPG7 Backbag | Green Camo
+RPG7BackbagSierraCamoName=RPG7 Backbag | Sierra Camo
+RPG7BackbagZebrastripeCamoName=RPG7 Backbag | Zebrastripe Camo
+RussianGasMaskPMK2BlackName=Russian Gas Mask PMK-2 | Black
+RussianGasMaskPMK2GreenName=Russian Gas Mask PMK-2 | Green
+RussianGasMaskPMK2PreciousName=Russian Gas Mask PMK-2 | Precious
+RussianGasMaskPMK2RedName=Russian Gas Mask PMK-2 | Red
+RussianMilitaryGlassesBlackName=Russian Military Glasses| Black
+RussianMilitaryGlassesBlackBlueName=Russian Military Glasses| Black Blue
+RussianMilitaryGlassesBlackGreenName=Russian Military Glasses| Black Green
+RussianMilitaryGlassesBlackOrangeName=Russian Military Glasses| Black Orange
+RussianMilitaryGlassesPreciousName=Russian Military Glasses| Precious
+RussianMilitaryGlassesWhiteName=Russian Military Glasses| White
+RussianMilitaryGlassesWhiteBlueName=Russian Military Glasses| White Blue
+RussianMilitaryGlassesWhiteGreenName=Russian Military Glasses| White Green
+RussianMilitaryGlassesWhiteOrangeName=Russian Military Glasses| White Orange
+RussianMilitaryHelmetBlackName=Russian Military Helmet | Black
+RussianMilitaryHelmetBlueName=Russian Military Helmet | Blue
+RussianMilitaryHelmetGreenName=Russian Military Helmet | Green
+RussianMilitaryHelmetOliveName=Russian Military Helmet | Olive
+RussianMilitaryHelmetPreciousName=Russian Military Helmet | Precious
+RussianMilitaryHelmetRedName=Russian Military Helmet | Red
+RussianMilitaryHelmetWhiteName=Russian Military Helmet | White
+RussianMilitaryMaskBlackName=Russian Military Mask | Black
+RussianMilitaryMaskBlueName=Russian Military Mask | Blue
+RussianMilitaryMaskGreenName=Russian Military Mask | Green
+RussianMilitaryMaskOliveName=Russian Military Mask | Olive
+RussianMilitaryMaskPreciousName=Russian Military Mask | Precious
+RussianMilitaryMaskRedName=Russian Military Mask | Red
+RussianMilitaryMaskWhiteName=Russian Military Mask | White
+S10NBCMaskPreciousName=S10 NBC Mask | Precious
+SamuraiHelmDefaultName=Samurai Helm | Default
+SamuraiMaskBlueName=Samurai Mask | Blue
+SamuraiMaskGreenName=Samurai Mask | Green
+SamuraiMaskPreciousName=Samurai Mask | Precious
+SamuraiMaskRedName=Samurai Mask | Red
+SawbladeBattleHelmetSteelName=Sawblade Battle Helmet | Steel
+SawtoothMaskJawsomeName=Sawtooth Mask | Jawsome
+SawtoothMaskPreciousName=Sawtooth Mask | Precious
+SawtoothMaskRedToothName=Sawtooth Mask | Red Tooth
+SawtoothMaskWaspName=Sawtooth Mask | Wasp
+ScullyphonesPreciousName=Scullyphones | Precious
+SkiMaskAsianName=Ski Mask | Asian
+SkiMaskBlackRedName=Ski Mask | Black Red
+SkiMaskBlueGreenName=Ski Mask | Blue Green
+SkiMaskBlueWhiteName=Ski Mask | Blue White
+SkiMaskBlueYellowName=Ski Mask | Blue Yellow
+SkiMaskCamoName=Ski Mask | Camo
+SkiMaskDarkPurpleName=Ski Mask | Dark Purple
+SkiMaskFlamesName=Ski Mask | Flames
+SkiMaskGreenBlueName=Ski Mask | Green Blue
+SkiMaskGreenYellowName=Ski Mask | Green Yellow
+SkiMaskPastelName=Ski Mask | Pastel
+SkiMaskPurpleName=Ski Mask | Purple
+SkiMaskPurpleBlackName=Ski Mask | Purple Black
+SkiMaskRainbowName=Ski Mask | Rainbow
+SkiMaskRedWhiteName=Ski Mask | Red White
+SkiMaskStandardName=Ski Mask | Standard
+SkiMaskWhiteBlackName=Ski Mask | White Black
+SkiMaskYellowBlackName=Ski Mask | Yellow Black
+SkullBreakerHelmetName=Skull Breaker Helmet
+SkullBreakerMaskName=Skull Breaker Mask
+StreetPunksBandanaBlackName=Street Punks Bandana | Black
+StreetPunksBandanaBlueName=Street Punks Bandana | Blue
+StreetPunksBandanaGreenName=Street Punks Bandana | Green
+StreetPunksBandanaPreciousName=Street Punks Bandana | Precious
+StreetPunksBandanaPurpleName=Street Punks Bandana | Purple
+StreetPunksBandanaRedName=Street Punks Bandana | Red
+StreetPunksBandanaWhiteName=Street Punks Bandana | White
+StreetPunksGlassesScratchedBlueName=Street Punks Glasses | Scratched Blue
+StreetPunksGlassesScratchedGreenName=Street Punks Glasses | Scratched Green
+StreetPunksGlassesScratchedNightName=Street Punks Glasses | Scratched Night
+StreetPunksGlassesScratchedPreciousName=Street Punks Glasses | Scratched Precious
+StreetPunksGlassesScratchedPurpleName=Street Punks Glasses | Scratched Purple
+StreetPunksGlassesScratchedRedName=Street Punks Glasses | Scratched Red
+StreetPunksGlassesXBlueName=Street Punks Glasses | X Blue
+StreetPunksGlassesXGreenName=Street Punks Glasses | X Green
+StreetPunksGlassesXGreyName=Street Punks Glasses | X Grey
+StreetPunksGlassesXPreciousName=Street Punks Glasses | X Precious
+StreetPunksGlassesXPurpleName=Street Punks Glasses | X Purple
+StreetPunksGlassesXStandardName=Street Punks Glasses | X Standard
+TacticalBackbagBackwoodsCamoName=Tactical Backbag | Backwoods Camo
+TacticalBackbagBlackName=Tactical Backbag | Black
+TacticalBackbagDesertCamoName=Tactical Backbag | Desert Camo
+TacticalBackbagForestCamoName=Tactical Backbag | Forest Camo
+TacticalBackbagOliveCamoName=Tactical Backbag | Olive Camo
+TacticalBackbagSierraCamoName=Tactical Backbag | Sierra Camo
+TacticalHatBlackName=Tactical Hat | Black
+TacticalHatBrownName=Tactical Hat | Brown
+TacticalHatCamoName=Tactical Hat | Camo
+TacticalHatGreyName=Tactical Hat | Grey
+TacticalHatNavyName=Tactical Hat | Navy
+TacticalHatOliveName=Tactical Hat | Olive
+TacticalHatRedName=Tactical Hat | Red
+TacticalHeadsetMK1BlackName=Tactical Headset MK1 | Black
+TacticalHeadsetMK1BrownName=Tactical Headset MK1 | Brown
+TacticalHeadsetMK1GreenName=Tactical Headset MK1 | Green
+TacticalHeadsetMK1GreyName=Tactical Headset MK1 | Grey
+TacticalHeadsetMK1NavyName=Tactical Headset MK1 | Navy
+TacticalHeadsetMK1OliveName=Tactical Headset MK1 | Olive
+TacticalHeadsetMK1RedName=Tactical Headset MK1 | Red
+TacticalHeadsetMK2BlackName=Tactical Headset MK2 | Black
+TacticalHeadsetMK2BrownName=Tactical Headset MK2 | Brown
+TacticalHeadsetMK2GreenName=Tactical Headset MK2 | Green
+TacticalHeadsetMK2GreyName=Tactical Headset MK2 | Grey
+TacticalHeadsetMK2NavyName=Tactical Headset MK2 | Navy
+TacticalHeadsetMK2OliveName=Tactical Headset MK2 | Olive
+TacticalHeadsetMK2RedName=Tactical Headset MK2 | Red
+TacticalMaskBlackName=Tactical Mask | Black
+TacticalMaskBrownName=Tactical Mask | Brown
+TacticalMaskCamoName=Tactical Mask | Camo
+TacticalMaskGreyName=Tactical Mask | Grey
+TacticalMaskNavyName=Tactical Mask | Navy
+TacticalMaskOliveName=Tactical Mask | Olive
+TacticalMaskRedName=Tactical Mask | Red
+TheInquisitorLeatherName=The Inquisitor | Leather
+TheInquisitorWhiteName=The Inquisitor | White
+TheLonghornBlackName=The Longhorn | Black
+TheLonghornBrownName=The Longhorn | Brown
+TheLonghornPreciousName=The Longhorn | Precious
+TheLonghornRedName=The Longhorn | Red
+TheLonghornWhiteName=The Longhorn | White
+TormentorHeadgearBlackName=Tormentor Headgear | Black
+TormentorHeadgearBlueName=Tormentor Headgear | Blue
+TormentorHeadgearGreenName=Tormentor Headgear | Green
+TormentorHeadgearPreciousName=Tormentor Headgear | Precious
+TormentorHeadgearRedName=Tormentor Headgear | Red
+TormentorMaskBlackName=Tormentor Mask | Black
+TormentorMaskBlueName=Tormentor Mask | Blue
+TormentorMaskGreenName=Tormentor Mask | Green
+TormentorMaskRedName=Tormentor Mask | Red
+TormentorTubesMaskBlackName=Tormentor Tubes Mask | Black
+TormentorTubesMaskBlueName=Tormentor Tubes Mask | Blue
+TormentorTubesMaskGreenName=Tormentor Tubes Mask | Green
+TormentorTubesMaskPreciousName=Tormentor Tubes Mask | Precious
+TormentorTubesMaskRedName=Tormentor Tubes Mask | Red
+USGasMaskBlackName=US Gas Mask | Black
+USGasMaskBlueName=US Gas Mask | Blue
+USGasMaskGreenName=US Gas Mask | Green
+USGasMaskPreciousName=US Gas Mask | Precious
+USGasMaskRedName=US Gas Mask | Red
+VanAlbertsCloakClassicCaperName=Van Alberts Cloak | Classic Caper
+VanAlbertsCloakHellSingerName=Van Alberts Cloak | Hell Singer
+VanAlbertsCloakHierophantName=Van Alberts Cloak | Hierophant
+VanAlbertsHatClassicCaperName=Van Alberts Hat | Classic Caper
+VanAlbertsHatHellSingerName=Van Alberts Hat | Hell Singer
+VanAlbertsHatHierophantName=Van Alberts Hat | Hierophant
+VenomGogglesBlackName=Venom Goggles | Black
+VenomGogglesBlueName=Venom Goggles | Blue
+VenomGogglesDarkGreenName=Venom Goggles | Dark Green
+VenomGogglesGreenName=Venom Goggles | Green
+VenomGogglesRedName=Venom Goggles | Red
+VenomGogglesVioletName=Venom Goggles | Violet
+VenomGogglesWhiteName=Venom Goggles | White
+VenomGogglesDownBlackName=Venom Goggles Down | Black
+VenomGogglesDownBlueName=Venom Goggles Down | Blue
+VenomGogglesDownDarkGreenName=Venom Goggles Down | Dark Green
+VenomGogglesDownGreenName=Venom Goggles Down | Green
+VenomGogglesDownPreciousName=Venom Goggles Down | Precious
+VenomGogglesDownRedName=Venom Goggles Down | Red
+VenomGogglesDownVioletName=Venom Goggles Down | Violet
+VenomGogglesDownWhiteName=Venom Goggles Down | White
+VenomGogglesUpBlackName=Venom Goggles Up | Black
+VenomGogglesUpBlueName=Venom Goggles Up | Blue
+VenomGogglesUpDarkGreenName=Venom Goggles Up | Dark Green
+VenomGogglesUpGreenName=Venom Goggles Up | Green
+VenomGogglesUpRedName=Venom Goggles Up | Red
+VenomGogglesUpVioletName=Venom Goggles Up | Violet
+VenomGogglesUpWhiteName=Venom Goggles Up | White
+VenomHeadphonesBlackName=Venom Headphones | Black
+VenomHeadphonesBlueName=Venom Headphones | Blue
+VenomHeadphonesDarkGreenName=Venom Headphones | Dark Green
+VenomHeadphonesGreenName=Venom Headphones | Green
+VenomHeadphonesRedName=Venom Headphones | Red
+VenomHeadphonesVioletName=Venom Headphones | Violet
+VenomHeadphonesWhiteName=Venom Headphones | White
+VenomMaskBlackName=Venom Mask | Black
+VenomMaskBlueName=Venom Mask | Blue
+VenomMaskDarkGreenName=Venom Mask | Dark Green
+VenomMaskGreenName=Venom Mask | Green
+VenomMaskRedName=Venom Mask | Red
+VenomMaskVioletName=Venom Mask | Violet
+VenomMaskWhiteName=Venom Mask | White
+VenomMaskFilteredBlackName=Venom Mask Filtered | Black
+VenomMaskFilteredBlueName=Venom Mask Filtered | Blue
+VenomMaskFilteredDarkGreenName=Venom Mask Filtered | Dark Green
+VenomMaskFilteredGreenName=Venom Mask Filtered | Green
+VenomMaskFilteredPreciousName=Venom Mask Filtered | Precious
+VenomMaskFilteredRedName=Venom Mask Filtered | Red
+VenomMaskFilteredVioletName=Venom Mask Filtered | Violet
+VenomMaskFilteredWhiteName=Venom Mask Filtered | White
+VisagedePoupeeBloodyName=Visage de Poupee | Bloody
+VisagedePoupeeDollFaceName=Visage de Poupee | Doll Face
+VisagedePoupeeHarlequinName=Visage de Poupee | Harlequin
+VisagedePoupeeMuertoName=Visage de Poupee | Muerto
+VisagedePoupeeSkelingtonName=Visage de Poupee | Skelington
+VisagedePoupeeSquaresName=Visage de Poupee | Squares
+VisagedePoupeeZedName=Visage de Poupee | Zed
+WastelandGogglesBoneName=Wasteland Goggles | Bone
+WastelandGogglesCoalName=Wasteland Goggles | Coal
+WastelandGogglesFrostName=Wasteland Goggles | Frost
+WastelandGogglesPreciousName=Wasteland Goggles | Precious
+WastelandGogglesRedName=Wasteland Goggles | Red
+WearableAirFilteringDeviceBeigeName=Wearable Air Filtering Device | Beige
+WearableAirFilteringDeviceBlackName=Wearable Air Filtering Device | Black
+WearableAirFilteringDeviceGreenName=Wearable Air Filtering Device | Green
+WearableAirFilteringDeviceSkullName=Wearable Air Filtering Device | Skull
+WeldingMaskDarkMetalName=Welding Mask | Dark Metal
+ZEDDundeeHatBrownName=ZED Dundee Hat | Brown
+
+;Cosmetic Descriptions
+
+AviatorGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+AviatorsDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+BaseballHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+BaseballHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+BloodyGamesHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+BoonieCapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+BoxingHeadgearDescription=Equipable from the gear menu; Compatible with Donovan Neal, Rae Higgins
+BrokenMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Anton Strasser, Tom Banner
+ChefHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+ChemicalGasMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive, Classic Briar, Classic Masterson, Rae Higgins
+CowboyHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+CriminallyInsaneMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+CustodianHelmetPreciousDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, Mr. Foster, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+CyberneticGasMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+DevtacBallisticMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+DiscountT-REXMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+Doctor'sMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
+EMSArmBandDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+EMSBackpackDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+EnforcerGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson
+EnforcerHelmetDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson, Rae Higgins
+EnforcerMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson
+EyePatchDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+FlatcapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+FlightHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+FlightMaskDescription=Equipable from the gear menu; Compatible with Lt. Bill Masterson
+FrontRowProtectionDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+FrontRowProtectionDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+GermanGasMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+GermanOfficer'sHatDescription=Equipable from the gear menu; Compatible with Anton Strasser, Rae Higgins
+GraduationCapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+GS9HelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+GS9MaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+HeadbandDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+HolyGlassesDescription=Equipable from the gear menu; Compatible with Reverend Alberts
+InfiltratorHelmDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+JFrontBaseballCapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+JusticeGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson
+JusticeHelmetDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson, Rae Higgins
+JusticeMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson
+KevlarHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+M2FlamethrowerTankDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+MaskoftheAbyssDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+MempoDescription=Equipable from the gear menu; Compatible with Hayato Tanaka
+MilitarySurplusBeanieDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+MotorcycleHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+NightvisionHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+PorkPieHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+ProtectiveGlassesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+PsychoGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
+PsychoMaskClosedDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
+PsychoPainGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
+PsychoPainMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
+RAFGogglesBlackDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+ReinforcedHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, Rae Higgins
+RetroSunglassesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+RoboScullyDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+RPG7BackbagSierraDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+RussianGasMaskPMK-2Description=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+RussianMilitaryGlassesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+RussianMilitaryHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+RussianMilitaryMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Lt. Bill Masterson, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+S10NBCMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson
+SamuraiHelmDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+SamuraiMaskDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+SawbladeBattleHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+SawtoothMaskJawsomeDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+ScullyphonesPreciousDescription=Equipable from the gear menu; Compatible with DJ Scully, Mr. Foster, Donovan Neal, Hayato Tanaka
+SkiMaskAsianDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+SkullBreakerHelmetDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson
+SkullBreakerMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson
+StreetPunksBandanaDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+StreetPunksGlassesXSDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+TacticalBackbagDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+TacticalHatDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins
+TacticalHeadsetMK1Description=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins
+TacticalHeadsetMK2Description=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins
+TacticalMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
+TheInquisitorLeatherDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+TheLonghornDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+TormentorHeadgearDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+TormentorMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser
+TormentorTubesMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser
+USGasMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+VanAlbertsCloakDescription=Equipable from the gear menu; Compatible with Reverend Alberts
+VanAlbertsHatDescription=Equipable from the gear menu; Compatible with Reverend Alberts
+VenomGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+VenomHeadphonesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+VenomMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+VenomMaskFilteredDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+VisagedePoupeeDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+WastelandGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
+WearableAirFilteringDeviceDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+WeldingMaskDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+ZEDDundeeHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
+

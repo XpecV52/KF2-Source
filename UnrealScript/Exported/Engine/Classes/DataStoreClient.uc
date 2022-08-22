@@ -232,6 +232,7 @@ defaultproperties
    GlobalDataStoreClasses(2)="Engine.UIDataStore_InputAlias"
    GlobalDataStoreClasses(3)="KFGame.KFUIDataStore_GameResource"
    GlobalDataStoreClasses(4)="KFGame.KFDataStore_OnlineGameSearch"
+   PlayerDataStoreClassNames(0)="Engine.UIDataStore_OnlinePlayerData"
    Name="Default__DataStoreClient"
    ObjectArchetype=UIRoot'Engine.Default__UIRoot'
 }

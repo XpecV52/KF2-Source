@@ -1,9 +1,11 @@
 package tripwire.containers.trader
 {
+    import com.greensock.TweenMax;
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import flash.text.TextFormat;
     import scaleform.clik.constants.InputValue;
     import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.controls.UILoader;
@@ -12,6 +14,7 @@ package tripwire.containers.trader
     import scaleform.clik.events.IndexEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.events.ListEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
@@ -34,6 +37,12 @@ package tripwire.containers.trader
         
         public var xpBar:MovieClip;
         
+        public var BG:MovieClip;
+        
+        public const KBM_FRAME_STRING:String = "kbm";
+        
+        public const CONTROLLER_FRAME_STRING:String = "controller";
+        
         public var perkListContainer:TraderPerkListContainer;
         
         public var characterLoader:UILoader;
@@ -41,6 +50,26 @@ package tripwire.containers.trader
         public var perkIconLoader:UILoader;
         
         public var bCanUseMenu:Boolean;
+        
+        public const PERK_ICON_KBM_SIZE:int = 40;
+        
+        public const PERK_ICON_GAMEPAD_SIZE:int = 64;
+        
+        public const PERK_ICON_Y:int = 8;
+        
+        public const PERK_NAME_KBM_X:Number = -604.35;
+        
+        public const PERK_NAME_GAMEPAD_X:Number = -581.35;
+        
+        public const PERK_NAME_KBM_Y:Number = -15.2;
+        
+        public const PERK_NAME_GAMEPAD_Y:Number = 4.7;
+        
+        public const PERK_NAME_KBM_FONTSIZE:int = 32;
+        
+        public const PERK_NAME_GAMEPAD_FONTSIZE:int = 42;
+        
+        public var owner:TraderPlayerInventoryContainer;
         
         public function TraderPlayerInfoContainer()
         {
@@ -69,6 +98,7 @@ package tripwire.containers.trader
         {
             super.addedToStage(param1);
             this.perkListContainer.deselectContainer();
+            this.perkListContainer.PlayerInventoryContainerRef = this.owner;
         }
         
         public function set LocalizedText(param1:Object) : void
@@ -88,7 +118,22 @@ package tripwire.containers.trader
         
         public function updateControllerVisibility() : void
         {
+            var _loc1_:String = !!bManagerUsingGamepad ? this.CONTROLLER_FRAME_STRING : this.KBM_FRAME_STRING;
+            var _loc2_:TextFormat = new TextFormat();
             this.perkListContainer.CancelButton.visible = !bManagerUsingGamepad;
+            this.BG.gotoAndStop(_loc1_);
+            _loc2_ = this.perkNameTextField.getTextFormat();
+            _loc2_.size = !!bManagerUsingGamepad ? this.PERK_NAME_GAMEPAD_FONTSIZE : this.PERK_NAME_KBM_FONTSIZE;
+            this.perkNameTextField.setTextFormat(_loc2_);
+            TweenMax.set(this.perkIconLoader,{
+                "y":(!!bManagerUsingGamepad ? this.PERK_ICON_Y : -this.PERK_ICON_Y),
+                "width":(!!bManagerUsingGamepad ? this.PERK_ICON_GAMEPAD_SIZE : this.PERK_ICON_KBM_SIZE),
+                "height":(!!bManagerUsingGamepad ? this.PERK_ICON_GAMEPAD_SIZE : this.PERK_ICON_KBM_SIZE)
+            });
+            TweenMax.set(this.perkNameTextField,{
+                "x":(!!bManagerUsingGamepad ? this.PERK_NAME_GAMEPAD_X : this.PERK_NAME_KBM_X),
+                "y":(!!bManagerUsingGamepad ? this.PERK_NAME_GAMEPAD_Y : this.PERK_NAME_KBM_Y)
+            });
         }
         
         public function set perkIconPath(param1:String) : void
@@ -103,7 +148,8 @@ package tripwire.containers.trader
         
         public function set perkLevel(param1:String) : void
         {
-            this.perkLevelTextField.text = param1;
+            this.perkNameTextField.text = param1 + " " + this.perkNameTextField.text;
+            this.updateControllerVisibility();
         }
         
         public function set dosh(param1:int) : void
@@ -143,6 +189,11 @@ package tripwire.containers.trader
         
         public function togglePerkList(param1:ButtonEvent = null) : void
         {
+            this.doTogglePerkList();
+        }
+        
+        public function doTogglePerkList() : *
+        {
             if(!this.bCanUseMenu)
             {
                 return;
@@ -152,12 +203,14 @@ package tripwire.containers.trader
                 dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,CLOSE_INDEX));
                 deselectContainer();
                 this.closeList();
+                this.owner.selectContainer();
             }
             else
             {
                 dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,OPEN_INDEX));
                 selectContainer();
                 this.perkListContainer.openContainer();
+                FocusHandler.getInstance().setFocus(this.perkListContainer.perkList);
             }
         }
         

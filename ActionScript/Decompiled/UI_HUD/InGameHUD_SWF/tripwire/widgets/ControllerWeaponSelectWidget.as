@@ -18,6 +18,13 @@ package tripwire.widgets
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            throwIndicator.visible = true;
+        }
+        
+        override public function open() : void
+        {
+            bIsControllerVersion = true;
+            super.open();
         }
         
         public function set throwButton(param1:String) : void
@@ -35,7 +42,7 @@ package tripwire.widgets
             var _loc2_:int = 0;
             while(_loc2_ < weaponGroupContainers.length)
             {
-                if(!weaponGroupContainers[_loc2_].visible)
+                if(!weaponGroupContainers[_loc2_].visible && !weaponGroupContainers[_loc2_].bForceHidden)
                 {
                     weaponGroupContainers[_loc2_].visible = true;
                 }
@@ -69,7 +76,7 @@ package tripwire.widgets
             super.updateIndex(param1,param2);
             if(weaponGroupContainers[param1] && weaponGroupContainers[param1].weaponList[param2] && throwIndicator)
             {
-                throwIndicator.visible = weaponGroupContainers[param1].weaponList[param2].throwable;
+                throwIndicator.alpha = !!weaponGroupContainers[param1].weaponList[param2].throwable ? 1 : 0.5;
             }
         }
     }

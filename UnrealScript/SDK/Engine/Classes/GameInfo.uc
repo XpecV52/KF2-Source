@@ -167,6 +167,10 @@ var array<delegate<CanUnpause> > Pausers;
 /** Cached online subsystem variable */
 var OnlineSubsystem OnlineSub;
 
+//@HSL_BEGIN - BWJ - 6-16-16 - Playfab support
+var PlayfabInterface PlayfabInter;
+//@HSL_END
+
 /** Cached online game interface variable */
 var OnlineGameInterface GameInterface;
 
@@ -359,11 +363,35 @@ function CoverReplicator GetCoverReplicator()
 
 event PostBeginPlay()
 {
+	local OnlineGameSettings GameSettings;
+
 	if ( MaxIdleTime > 0 )
 	{
 		MaxIdleTime = FMax(MaxIdleTime, 20);
 	}
 
+//@HSL_BEGIN - BWJ - 6-16-16 - Playfab support
+	PlayfabInter = class'GameEngine'.static.GetPlayfabInterface();
+	if( WorldInfo.IsConsoleDedicatedServer() )
+	{
+		if( PlayfabInter != none && PlayfabInter.GetGameSettings() == None )
+		{
+			PlayfabInter.CreateGameSettings( OnlineGameSettingsClass );
+			GameSettings = PlayfabInter.GetGameSettings();
+			GameSettings.UpdateFromURL(ServerOptions, self);
+
+			// If this server wasn't launched by playfab, register the server now
+			if( !WasLaunchedByPlayfab() )
+			{
+				// First we update game settings
+				UpdateGameSettings();
+				// Now register the game
+				PlayfabInter.ServerRegisterGame( GetFriendlyNameForCurrentGameMode() );
+			}
+		}
+	}
+	else // So that it'll get deleted if Hardsuit ever removes this block
+//@HSL_END
 	if (WorldInfo.NetMode == NM_DedicatedServer)
 	{
 		// Update any online advertised settings
@@ -1239,7 +1267,12 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 	bSpectator = bPerfTesting || ( ParseOption( Options, "SpectatorOnly" ) ~= "1" );
 
 	// Get URL options.
+`if(`__TW_)	
+	// Steam names can contain up to 32 characters
+	InName     = Left(ParseOption ( Options, "Name"), 32);
+`else
 	InName     = Left(ParseOption ( Options, "Name"), 20);
+`endif
 	InTeam     = GetIntOption( Options, "Team", 255 ); // default to "no team"
 	//InAdminName= ParseOption ( Options, "AdminName");
 	InPassword = ParseOption ( Options, "Password" );
@@ -1280,8 +1313,11 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 	}
 
 	// Pick a team (if need teams)
+`if(`__TW_)
+	InTeam = PickTeam(InTeam,None,UniqueID);
+`else
 	InTeam = PickTeam(InTeam,None);
-
+`endif
 	// Find a start spot.
 	StartSpot = FindPlayerStart( None, InTeam, Portal );
 
@@ -2308,7 +2344,11 @@ function bool ChangeTeam(Controller Other, int N, bool bNewTeam)
 
 /* Return a picked team number if none was specified
 */
+`if(`__TW_)
+function byte PickTeam(byte Current, Controller C, const out UniqueNetId PlayerId)
+`else
 function byte PickTeam(byte Current, Controller C)
+`endif
 {
 	return Current;
 }
@@ -3892,6 +3932,16 @@ function InitCrowdPopulationManager()
  * Cleans up any online subsystem delegates that are set
  */
 function ClearOnlineDelegates();
+
+
+//@HSL_BEGIN - BWJ - 6-8-16 - Playfab hooks for server. Not using delegates for these because they are one-off and don't have to worry about cleanup
+event OnRetreivedPFInternalUserData( const string ForPlayerId, array<string> Keys, array<string> Values );
+
+/** returns TRUE if this server was launched by playfab */
+native function bool WasLaunchedByPlayfab();
+
+function string GetFriendlyNameForCurrentGameMode();
+//@HSL_END
 
 
 defaultproperties

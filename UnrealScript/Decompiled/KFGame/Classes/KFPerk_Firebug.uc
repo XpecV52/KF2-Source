@@ -12,16 +12,16 @@ class KFPerk_Firebug extends KFPerk
 
 enum EFirebugSkills
 {
-    EFirebugFullyStocked,
-    EFirebugFlarotovCoctail,
+    EFirebugBringTheHeat,
+    EFirebugHighCapFuelTank,
     EFirebugFuse,
-    EFirebugHeatWave,
-    EFirebugZedShrapnel,
+    EFirebugGroundFire,
     EFirebugNapalm,
-    EFirebugRange,
+    EFirebugZedShrapnel,
     EFirebugSplashDamage,
-    EFirebugCombustion,
+    EFirebugRange,
     EFirebugScorch,
+    EFirebugInferno,
     EFirebugSkills_MAX
 };
 
@@ -33,8 +33,9 @@ var const PerkSkill StartingAmmo;
 var const int HeatWaveRadiusSQ;
 var const float ShrapnelChance;
 var GameExplosion ExplosionTemplate;
-var const string ShrapnelExplosionDamageTypeName;
-var private const float AssistDoshModifier;
+var private const float SnarePower;
+var private const class<DamageType> SnareCausingDmgTypeClass;
+var private const int NapalmDamage;
 
 function ApplySkillsToPawn()
 {
@@ -59,6 +60,18 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     if(((KFW != none) && IsWeaponOnPerk(KFW)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
     {
         TempDamage *= (GetPassiveValue(WeaponDamage, CurrentLevel));
+        if(IsBringTheHeatActive())
+        {
+            TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[0])));
+        }
+        if(IsInfernoActive())
+        {
+            TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[9])));
+        }
+    }
+    if((IsGroundFireActive() && DamageType != none) && ClassIsChildOf(DamageType, SnareCausingDmgTypeClass))
+    {
+        TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[3])));
     }
     InDamage = Round(TempDamage);
 }
@@ -77,6 +90,10 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     local float TempDamage;
     local PerkSkill UsedResistance;
 
+    if(InDamage <= 0)
+    {
+        return;
+    }
     TempDamage = float(InDamage);
     if(ClassIsChildOf(DamageType, Class'KFDT_Fire'))
     {
@@ -86,7 +103,7 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     InDamage = Round(TempDamage);
 }
 
-simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo, const optional out STraderItem TraderItem)
+simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo, const optional out STraderItem TraderItem, optional bool bSecondary)
 {
     local float TempSpareAmmoAmount;
     local class<KFPerk> WeaponPerkClass;
@@ -101,46 +118,58 @@ simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo,
     }
     if(IsWeaponOnPerk(KFW, WeaponPerkClass))
     {
-        if((KFW != none) && IsFullyStockedActive())
-        {
-            PrimarySpareAmmo = KFW.MaxSpareAmmo[0] - KFW.AmmoCount[0];            
-        }
-        else
-        {
-            TempSpareAmmoAmount = float(PrimarySpareAmmo);
-            TempSpareAmmoAmount *= (float(1) + GetStartingAmmoPercent(CurrentLevel));
-            PrimarySpareAmmo = Round(TempSpareAmmoAmount);
-        }
+        TempSpareAmmoAmount = float(PrimarySpareAmmo);
+        TempSpareAmmoAmount *= (float(1) + GetStartingAmmoPercent(CurrentLevel));
+        PrimarySpareAmmo = Round(TempSpareAmmoAmount);
     }
 }
 
-simulated function MaximizeSpareAmmoAmount(class<KFPerk> WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo)
-{
-    if(WeaponPerkClass == default.Class)
-    {
-        if(IsFullyStockedActive())
-        {
-            PrimarySpareAmmo = MaxPrimarySpareAmmo;
-        }
-    }
-}
+simulated function MaximizeSpareAmmoAmount(class<KFPerk> WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo);
 
 private static final simulated function float GetStartingAmmoPercent(int Level)
 {
     return default.StartingAmmo.Increment * float(FFloor(float(Level) / 5));
 }
 
-function ModifyDoTScaler(out float DoTScaler, optional class<KFDamageType> KFDT)
+function ModifyDoTScaler(out float DoTScaler, optional class<KFDamageType> KFDT, optional bool bNapalmInfected)
 {
+    local float TempScaler;
+
     if(IsFuseActive() && IsDamageTypeOnPerk(KFDT))
     {
-        DoTScaler *= (GetSkillValue(PerkSkills[2]));
+        TempScaler = GetSkillValue(PerkSkills[2]);
     }
+    if(IsNapalmActive() && IsDamageTypeOnPerk(KFDT))
+    {
+        TempScaler += (GetSkillValue(PerkSkills[4]));
+    }
+    DoTScaler = TempScaler;
+}
+
+static function int GetNapalmDamage()
+{
+    return default.NapalmDamage;
 }
 
 function bool InHeatRange(KFPawn KFP)
 {
     return VSizeSq(OwnerPawn.Location - KFP.Location) <= float(HeatWaveRadiusSQ);
+}
+
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary)
+{
+    local float TempCapacity;
+
+    bSecondary = false;
+    TempCapacity = float(MagazineCapacity);
+    if(IsHighCapFuelTankActive())
+    {
+        if(KFW != none)
+        {
+            TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[1])));
+        }
+    }
+    MagazineCapacity = byte(Round(TempCapacity));
 }
 
 function bool CanSpreadNapalm()
@@ -150,30 +179,22 @@ function bool CanSpreadNapalm()
 
 function bool CouldBeZedShrapnel(class<KFDamageType> KFDT)
 {
-    return (IsZedShrapnelActive() || IsCombustionSelected()) && IsDamageTypeOnPerk(KFDT);
+    return IsZedShrapnelActive() && IsDamageTypeOnPerk(KFDT);
 }
 
 simulated function float GetSplashDamageModifier()
 {
-    return ((IsSplashDamageActive()) ? GetSkillValue(PerkSkills[7]) : 1);
+    return ((IsSplashDamageActive()) ? GetSkillValue(PerkSkills[6]) : 1);
 }
 
 simulated function bool ShouldShrapnel()
 {
-    return IsCombustionActive() || IsZedShrapnelActive() && FRand() <= default.ShrapnelChance;
+    return IsZedShrapnelActive() && FRand() <= default.ShrapnelChance;
 }
 
-static function GameExplosion GetExplosionTemplate()
+function GameExplosion GetExplosionTemplate()
 {
     return default.ExplosionTemplate;
-}
-
-static function class<KFDamageType> GetShrapnelDamageTypeClass()
-{
-    local class<KFDamageType> DamageTypeClass;
-
-    DamageTypeClass = class<KFDamageType>(DynamicLoadObject(default.ShrapnelExplosionDamageTypeName, Class'Class'));
-    return DamageTypeClass;
 }
 
 simulated function float GetZedTimeModifier(KFWeapon W)
@@ -185,7 +206,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
         StateName = W.GetStateName();
         if(ZedTimeModifyingStates.Find(StateName != -1)
         {
-            return GetSkillValue(PerkSkills[9]);
+            return GetSkillValue(PerkSkills[8]);
         }
     }
     return 0;
@@ -195,19 +216,37 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 {
     if((IsHeatWaveActive() && IsDamageTypeOnPerk(DamageType)) && InHeatRange(KFP))
     {
-        CooldownModifier = GetSkillValue(PerkSkills[3]);
+        CooldownModifier = GetSkillValue(PerkSkills[6]);
         return 1000;
     }
     CooldownModifier = 1;
     return 1;
 }
 
-private final simulated function bool IsFullyStockedActive()
+simulated function float GetSnarePower(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+{
+    if((IsGroundFireActive() && DamageType != none) && ClassIsChildOf(DamageType, SnareCausingDmgTypeClass))
+    {
+        return default.SnarePower;
+    }
+    if(IsInfernoActive() && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
+    {
+        return default.SnarePower;
+    }
+    return 0;
+}
+
+simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
+{
+    return (IsWeaponOnPerk(KFW)) && GetScorchActive();
+}
+
+private final simulated function bool IsBringTheHeatActive()
 {
     return PerkSkills[0].bActive;
 }
 
-simulated function bool IsFlarotovActive()
+simulated function bool IsHighCapFuelTankActive()
 {
     return PerkSkills[1].bActive;
 }
@@ -217,49 +256,49 @@ private final simulated function bool IsFuseActive()
     return PerkSkills[2].bActive;
 }
 
-private final simulated function bool IsHeatWaveActive()
+private final simulated function bool IsGroundFireActive()
 {
     return PerkSkills[3].bActive;
 }
 
-private final simulated function bool IsZedShrapnelActive()
-{
-    return PerkSkills[4].bActive;
-}
-
-private final simulated function bool IsNapalmActive()
-{
-    return PerkSkills[5].bActive;
-}
-
-simulated function bool IsRangeActive()
+private final simulated function bool IsHeatWaveActive()
 {
     return PerkSkills[6].bActive;
 }
 
-private final simulated function bool IsSplashDamageActive()
+private final simulated function bool IsZedShrapnelActive()
+{
+    return PerkSkills[5].bActive;
+}
+
+private final simulated function bool IsNapalmActive()
+{
+    return PerkSkills[4].bActive;
+}
+
+simulated function bool IsRangeActive()
 {
     return PerkSkills[7].bActive;
 }
 
-private final simulated function bool IsCombustionSelected()
+private final simulated function bool IsSplashDamageActive()
 {
-    return PerkSkills[8].bActive;
+    return false;
 }
 
-private final simulated function bool IsCombustionActive()
-{
-    return PerkSkills[8].bActive && WorldInfo.TimeDilation < 1;
-}
-
-private final simulated function bool GetScorchActive()
+private final simulated function bool IsInfernoActive()
 {
     return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
 }
 
+private final simulated function bool GetScorchActive()
+{
+    return IsScorchActive() && WorldInfo.TimeDilation < 1;
+}
+
 private final simulated function bool IsScorchActive()
 {
-    return PerkSkills[9].bActive;
+    return PerkSkills[8].bActive;
 }
 
 static simulated function int GetCrawlerKillXP(byte Difficulty)
@@ -272,20 +311,6 @@ static simulated function int GetBloatKillXP(byte Difficulty)
     return default.SecondaryXPModifier[Difficulty];
 }
 
-static function ModifyAssistDosh(out int EarnedDosh)
-{
-    local float TempDosh;
-
-    TempDosh = float(EarnedDosh);
-    TempDosh *= GetAssistDoshModifer();
-    EarnedDosh = Round(TempDosh);
-}
-
-private static final function float GetAssistDoshModifer()
-{
-    return default.AssistDoshModifier;
-}
-
 static simulated function GetPassiveStrings(out array<string> PassiveValues, out array<string> Increments, byte Level)
 {
     PassiveValues[0] = string(Round(((GetPassiveValue(default.WeaponDamage, Level)) * float(100)) - float(100))) $ "%";
@@ -293,11 +318,11 @@ static simulated function GetPassiveStrings(out array<string> PassiveValues, out
     PassiveValues[2] = string(Round((GetPassiveValue(default.FireResistance, Level)) * float(100))) $ "%";
     PassiveValues[3] = string(Round((GetPassiveValue(default.OwnFireResistance, Level)) * float(100))) $ "%";
     PassiveValues[4] = string(Round(GetStartingAmmoPercent(Level) * float(100))) $ "%";
-    Increments[0] = ((("[" @ string(int(default.WeaponDamage.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
-    Increments[1] = ((("[" @ string(int(default.WeaponReload.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
-    Increments[2] = (((((("[" @ string(int(default.FireResistance.StartingValue * float(100)))) $ "%") @ "+") @ string(int(default.FireResistance.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
-    Increments[3] = (((((("[" @ string(int(default.OwnFireResistance.StartingValue * float(100)))) $ "%") @ "+") @ string(int(default.OwnFireResistance.Increment * float(100)))) @ "%") @ default.LevelString) @ "]";
-    Increments[4] = ((("[" @ string(int(default.StartingAmmo.Increment * float(100)))) $ "% / 5") @ default.LevelString) @ "]";
+    Increments[0] = ((("[" @ Left(string(default.WeaponDamage.Increment * float(100)), InStr(string(default.WeaponDamage.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
+    Increments[1] = ((("[" @ Left(string(default.WeaponReload.Increment * float(100)), InStr(string(default.WeaponReload.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
+    Increments[2] = (((((("[" @ Left(string(default.WeaponDamage.StartingValue * float(100)), InStr(string(default.WeaponDamage.StartingValue * float(100)), ".") + 2)) $ "%") @ "+") @ Left(string(default.FireResistance.Increment * float(100)), InStr(string(default.FireResistance.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
+    Increments[3] = (((((("[" @ Left(string(default.OwnFireResistance.StartingValue * float(100)), InStr(string(default.OwnFireResistance.StartingValue * float(100)), ".") + 2)) $ "%") @ "+") @ Left(string(default.OwnFireResistance.Increment * float(100)), InStr(string(default.OwnFireResistance.Increment * float(100)), ".") + 2)) @ "%") @ default.LevelString) @ "]";
+    Increments[4] = ((("[" @ Left(string(default.StartingAmmo.Increment * float(100)), InStr(string(default.StartingAmmo.Increment * float(100)), ".") + 2)) $ "% / 5") @ default.LevelString) @ "]";
 }
 
 simulated function LogPerkSkills()
@@ -312,39 +337,37 @@ simulated function LogPerkSkills()
         LogInternal(("-OwnFireResistance:" @ string(GetPassiveValue(default.OwnFireResistance, GetLevel()))) $ "%");
         LogInternal(("-Ammo:" @ string(GetStartingAmmoPercent(GetLevel()))) $ "%");
         LogInternal("Skill Tree");
-        LogInternal("-FullyStoked:" @ string(PerkSkills[0].bActive));
-        LogInternal("-FlarotovCoctail:" @ string(PerkSkills[1].bActive));
         LogInternal("-Fuse:" @ string(PerkSkills[2].bActive));
-        LogInternal("-HeatWave:" @ string(PerkSkills[3].bActive));
-        LogInternal("-ZedShrapnel:" @ string(PerkSkills[4].bActive));
-        LogInternal("-Napalm:" @ string(PerkSkills[5].bActive));
-        LogInternal("-Range:" @ string(PerkSkills[6].bActive));
-        LogInternal(("-SplashDamage:" @ string(PerkSkills[7].bActive)) @ string(GetSplashDamageModifier()));
-        LogInternal("-Combustion:" @ string(PerkSkills[8].bActive));
-        LogInternal("-Scorch:" @ string(PerkSkills[9].bActive));
+        LogInternal("-ZedShrapnel:" @ string(PerkSkills[5].bActive));
+        LogInternal("-Napalm:" @ string(PerkSkills[4].bActive));
+        LogInternal("-Range:" @ string(PerkSkills[7].bActive));
+        LogInternal(("-SplashDamage:" @ string(PerkSkills[6].bActive)) @ string(GetSplashDamageModifier()));
+        LogInternal("-Scorch:" @ string(PerkSkills[8].bActive));
     }
 }
 
 defaultproperties
 {
-    WeaponDamage=(Name="Weapon Damage",Increment=0.01,Rank=0,StartingValue=1,MaxValue=1.25,ModifierValue=0,IconPath="",bActive=false)
-    WeaponReload=(Name="Weapon Reload Speed",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
+    WeaponDamage=(Name="Weapon Damage",Increment=0.008,Rank=0,StartingValue=1,MaxValue=1.2,ModifierValue=0,IconPath="",bActive=false)
+    WeaponReload=(Name="Weapon Reload Speed",Increment=0.008,Rank=0,StartingValue=0,MaxValue=0.2,ModifierValue=0,IconPath="",bActive=false)
     FireResistance=(Name="Fire Resistance",Increment=0.02,Rank=0,StartingValue=0.3,MaxValue=0.8,ModifierValue=0,IconPath="",bActive=false)
     OwnFireResistance=(Name="Own fire Resistance",Increment=0.03,Rank=0,StartingValue=0.25,MaxValue=1,ModifierValue=0,IconPath="",bActive=false)
-    StartingAmmo=(Name="Starting Ammo",Increment=0.05,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
+    StartingAmmo=(Name="Starting Ammo",Increment=0.1,Rank=0,StartingValue=0,MaxValue=0.5,ModifierValue=0,IconPath="",bActive=false)
     HeatWaveRadiusSQ=90000
     ShrapnelChance=0.2
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Explosions_ARCH.FX_Combustion_Explosion'
         Damage=10
         DamageRadius=200
+        MyDamageType=Class'KFDT_Explosive_Shrapnel'
         ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
         CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Perk_ShrapnelCombustion'
     object end
     // Reference: KFGameExplosion'Default__KFPerk_Firebug.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
-    ShrapnelExplosionDamageTypeName="KFGameContent.KFDT_Explosive_Shrapnel"
-    AssistDoshModifier=2
+    SnarePower=100
+    SnareCausingDmgTypeClass=Class'KFDT_Fire_Ground'
+    NapalmDamage=50
     ProgressStatID=30
     PerkBuildStatID=31
     SecondaryXPModifier[0]=2
@@ -352,11 +375,11 @@ defaultproperties
     SecondaryXPModifier[2]=3
     SecondaryXPModifier[3]=5
     PerkName="Firebug"
-    Passives(0)=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%",IconPath="")
-    Passives(1)=(Title="Perk Weapon Reload",Description="Perk weapon reload speed increased by %x%",IconPath="")
-    Passives(2)=(Title="Resist Zed Fire Damage",Description="%x% resistance to fire damage",IconPath="")
-    Passives(3)=(Title="Immunity to your own Fire",Description="%x% resistance to personal fire damage",IconPath="")
-    Passives(4)=(Title="Starting Ammo",Description="%x% more starting ammo",IconPath="")
+    Passives(0)=(Title="Perk Weapon Damage",Description="Increase perk weapon damage %x% per level",IconPath="")
+    Passives(1)=(Title="Perk Weapon Reload",Description="Increase perk weapon reload speed %x% per level",IconPath="")
+    Passives(2)=(Title="Resist Zed Fire Damage",Description="Increase resistance to Zed fire gains 30%, which increases %x% per level",IconPath="")
+    Passives(3)=(Title="Immunity to your own Fire",Description="Increase resistance to your own fire gains 25%, which increases %x% per level",IconPath="")
+    Passives(4)=(Title="Starting Ammo",Description="Increase starting ammo %x% every five levels",IconPath="")
     SkillCatagories[0]="Supplies"
     SkillCatagories[1]="Spicy"
     SkillCatagories[2]="Burn"
@@ -365,16 +388,16 @@ defaultproperties
     EXPAction1="Dealing Firebug weapon damage"
     EXPAction2="Killing Crawlers with Firebug weapons"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
-    PerkSkills(0)=(Name="FullyStocked",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_FullyStocked",bActive=false)
-    PerkSkills(1)=(Name="FlarotovCoctail",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_FlarotovCocktail",bActive=false)
-    PerkSkills(2)=(Name="Fuse",Increment=0,Rank=0,StartingValue=1.7,MaxValue=1.7,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Fuse",bActive=false)
-    PerkSkills(3)=(Name="HeatWave",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HeatWave",bActive=false)
-    PerkSkills(4)=(Name="ZedShrapnel",Increment=0,Rank=0,StartingValue=1.2,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_ZedShrapnel",bActive=false)
-    PerkSkills(5)=(Name="Napalm",Increment=0,Rank=0,StartingValue=1.5,MaxValue=1.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Napalm",bActive=false)
-    PerkSkills(6)=(Name="Range",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Range",bActive=false)
-    PerkSkills(7)=(Name="SplashDamage",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_SplashDamage",bActive=false)
-    PerkSkills(8)=(Name="Combustion",Increment=0,Rank=0,StartingValue=1.03,MaxValue=1.03,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Combustion",bActive=false)
-    PerkSkills(9)=(Name="Scorch",Increment=0,Rank=0,StartingValue=0.9,MaxValue=0.9,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Scorch",bActive=false)
+    PerkSkills(0)=(Name="BringTheHeat",Increment=0,Rank=0,StartingValue=0.35,MaxValue=0.35,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_BringtheHeat",bActive=false)
+    PerkSkills(1)=(Name="HighCapFuelTank",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HighCapacityFuel",bActive=false)
+    PerkSkills(2)=(Name="Fuse",Increment=0,Rank=0,StartingValue=2.5,MaxValue=2.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Fuse",bActive=false)
+    PerkSkills(3)=(Name="GroundFire",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_GroundFire",bActive=false)
+    PerkSkills(4)=(Name="Napalm",Increment=0,Rank=0,StartingValue=2.5,MaxValue=2.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Napalm",bActive=false)
+    PerkSkills(5)=(Name="ZedShrapnel",Increment=0,Rank=0,StartingValue=1.2,MaxValue=1.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_ZedShrapnel",bActive=false)
+    PerkSkills(6)=(Name="SplashDamage",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_SplashDamage",bActive=false)
+    PerkSkills(7)=(Name="Range",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Range",bActive=false)
+    PerkSkills(8)=(Name="Scorch",Increment=0,Rank=0,StartingValue=0.9,MaxValue=0.9,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Scorch",bActive=false)
+    PerkSkills(9)=(Name="Inferno",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Inferno",bActive=false)
     ZedTimeModifyingStates(0)=WeaponFiring
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
@@ -382,6 +405,10 @@ defaultproperties
     PrimaryWeaponDef=Class'KFWeapDef_CaulkBurn'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Firebug'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Firebug'
+    AutoBuyLoadOutPath(0)=class'KFWeapDef_CaulkBurn'
+    AutoBuyLoadOutPath(1)=class'KFWeapDef_DragonsBreath'
+    AutoBuyLoadOutPath(2)=class'KFWeapDef_FlameThrower'
+    AutoBuyLoadOutPath(3)=class'KFWeapDef_MicrowaveGun'
     HitAccuracyHandicap=-2
     HeadshotAccuracyHandicap=5
 }

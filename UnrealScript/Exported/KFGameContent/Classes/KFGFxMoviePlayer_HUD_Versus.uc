@@ -175,7 +175,7 @@ function ReceivePawn(KFPawn NewPawn)
 
 	if(MoveListContainer != none)
 	{
-		MoveListContainer.MyKFPM = KFPawn_Monster(NewPawn);
+		MoveListContainer.ChangeOwner(KFPawn_Monster(NewPawn));
 	}
 }
 
@@ -184,8 +184,7 @@ function PawnDied()
 	super.PawnDied();
 	if(MoveListContainer != none)
 	{
-		MoveListContainer.MyKFPM = none;
-		MoveListContainer.ClearMovieList();
+		MoveListContainer.ClearMoveList();
 	}
 }
 

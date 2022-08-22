@@ -273,7 +273,11 @@ simulated function float CalcStackingDamageScale(KFPawn Victim, float MinDamageI
         }
         if(OtherExplosion == none)
         {
-            Victim.RecentExplosiveStacks.Remove(I, 1;            
+            Victim.RecentExplosiveStacks.Remove(I, 1;
+            if((ExistingIdx != -1) && ExistingIdx > I)
+            {
+                -- ExistingIdx;
+            }            
         }
         else
         {

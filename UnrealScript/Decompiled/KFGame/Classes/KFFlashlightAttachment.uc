@@ -26,6 +26,8 @@ var export editinline transient StaticMeshComponent AttachmentMeshComp;
 var() name FlashlightSocketName;
 var float TeammateSwitchRadius;
 var float TeammateSwitchTimer;
+var protected const float MaxAIWarningDistSQ;
+var protected const float MaxAIWarningDistFromPointSQ;
 
 function AttachFlashlight(SkeletalMeshComponent Mesh, optional name SocketNameOverride)
 {
@@ -90,10 +92,61 @@ protected function SetEnabled(bool bNewEnabled)
         LightConeMeshComp.SetHidden(!bNewEnabled || IsOwnerFirstPerson());
     }
     bEnabled = bNewEnabled;
+    if((OwnerMesh.Outer != none) && Class'WorldInfo'.static.GetWorldInfo().NetMode != NM_Client)
+    {
+        if(bEnabled)
+        {
+            Timer_WarnAI();
+            Actor(OwnerMesh.Outer).SetTimer(1, true, 'Timer_WarnAI', self);            
+        }
+        else
+        {
+            Actor(OwnerMesh.Outer).ClearTimer('Timer_WarnAI', self);
+        }
+    }
     if(bDebug)
     {
         LogInternal((("Turning flashlight" @ string(bNewEnabled)) @ "for teammate:") @ string(OwnerMesh.Outer));
     }
+}
+
+function Timer_WarnAI()
+{
+    local Pawn Instigator, P;
+    local KFWeapon OwnerWeapon;
+    local KFPawn_Monster HitMonster;
+    local Vector Direction, Projection, DangerPoint;
+
+    Instigator = Pawn(OwnerMesh.Outer);
+    if(Instigator == none)
+    {
+        return;
+    }
+    OwnerWeapon = KFWeapon(Instigator.Weapon);
+    if((OwnerWeapon != none) && OwnerWeapon.IsWarningAI())
+    {
+        return;
+    }
+    Direction = vector(Instigator.GetBaseAimRotation());
+    foreach Instigator.WorldInfo.AllPawns(Class'Pawn', P)
+    {
+        if(((P.GetTeamNum() != Instigator.GetTeamNum()) && !P.IsHumanControlled()) && P.IsAliveAndWell())
+        {
+            Projection = P.Location - Instigator.Location;
+            if(VSizeSq(Projection) < MaxAIWarningDistSQ)
+            {
+                PointDistToLine(P.Location, Direction, Instigator.Location, DangerPoint);
+                if(VSizeSq(DangerPoint - P.Location) < MaxAIWarningDistFromPointSQ)
+                {
+                    HitMonster = KFPawn_Monster(P);
+                    if((HitMonster != none) && HitMonster.MyKFAIC != none)
+                    {
+                        HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint, Instigator.Location, self);
+                    }
+                }
+            }
+        }        
+    }    
 }
 
 protected function InitializeLight()
@@ -326,4 +379,6 @@ defaultproperties
     FlashlightSocketName=FlashLight
     TeammateSwitchRadius=1500
     TeammateSwitchTimer=10
+    MaxAIWarningDistSQ=4000000
+    MaxAIWarningDistFromPointSQ=16384
 }

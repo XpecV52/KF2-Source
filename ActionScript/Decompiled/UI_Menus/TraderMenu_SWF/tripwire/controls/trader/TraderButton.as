@@ -35,7 +35,10 @@ package tripwire.controls.trader
                 return;
             }
             this._buttonValue = param1;
-            this.valueTextField.text = param1;
+            if(this.valueTextField != null)
+            {
+                this.valueTextField.text = param1;
+            }
             invalidateData();
             this.setUsableButtonVisability(enabled);
         }
@@ -52,11 +55,22 @@ package tripwire.controls.trader
         
         public function setUsableButtonVisability(param1:Boolean) : *
         {
-            this.cannotUseTextField.visible = !param1;
-            textField.visible = param1;
-            this.doshIcon.visible = param1;
-            this.valueTextField.visible = param1;
-            this.doshIcon.visible = param1;
+            if(this.cannotUseTextField != null)
+            {
+                this.cannotUseTextField.visible = !param1;
+            }
+            if(textField != null)
+            {
+                textField.visible = param1;
+            }
+            if(this.doshIcon != null)
+            {
+                this.doshIcon.visible = param1;
+            }
+            if(this.valueTextField != null)
+            {
+                this.valueTextField.visible = param1;
+            }
         }
     }
 }

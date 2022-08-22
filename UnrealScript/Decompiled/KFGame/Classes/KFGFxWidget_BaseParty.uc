@@ -74,6 +74,7 @@ var OnlineSubsystem OnlineSub;
 var TWOnlineLobby OnlineLobby;
 var bool bInLobby;
 var bool bReadyButtonVisible;
+var bool bCreatePartyVisible;
 var KFPlayerController KFPC;
 var KFGFxHUD_ChatBoxWidget PartyChatWidget;
 var const string PerkPrefix;
@@ -115,6 +116,7 @@ function InitializeWidget()
     }
     LeaveButton = GetObject("leaveButton");
     CreatePartyButton = GetObject("createPartyButton");
+    SetBool("partyButtonVisible", bCreatePartyVisible);
     ReadyButton = GetObject("readyButton");
     SquadHeader = GetObject("squadHeader");
     InitNotificationUI();
@@ -130,6 +132,8 @@ function LocalizeText()
     CreatePartyButton.SetString("label", CreatePartyString);
     SetString("deployingString", DeployingString);
     SetString("waitingString", WaitingString);
+    SetString("selectPromptString", Localize("KFGFxWidget_ButtonPrompt", "ConfirmString", "KFGame"));
+    SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
 }
 
 function InitNotificationUI()
@@ -161,10 +165,6 @@ function InitializeMemberSlot(int SlotIndex)
     MemberSlots[SlotIndex].MemberSlotObject = GetObject("squadMember" $ string(SlotIndex));
     MemberSlots[SlotIndex].PlayerNameTextField = MemberSlots[SlotIndex].MemberSlotObject.GetObject("playerNameText");
     MemberSlots[SlotIndex].MemberSlotObject.SetString("leaderText", PartyLeaderString);
-    if(KFPC != none)
-    {
-        CreatePerkList(MemberSlots[SlotIndex].MemberSlotObject.GetObject("perksList"));
-    }
     EmptySlot(SlotIndex);
 }
 
@@ -249,7 +249,13 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 
 function UpdateInLobby(bool bIsInLobby)
 {
-    bInLobby = bIsInLobby;
+    local bool bShouldShowCreateParty;
+
+    if(bIsInLobby != bInLobby)
+    {
+        bInLobby = bIsInLobby;
+        RefreshParty();
+    }
     if(bInLobby)
     {
         if(Class'WorldInfo'.static.IsMenuLevel())
@@ -263,15 +269,26 @@ function UpdateInLobby(bool bIsInLobby)
     }
     else
     {
-        if(Class'WorldInfo'.static.IsMenuLevel() && Manager.GetMultiplayerMenuActive())
+        LeaveButton.SetVisible(false);
+    }
+    if(Manager.StartMenu != none)
+    {
+        if(Outer.GetPC().WorldInfo.IsMenuLevel())
         {
-            CreatePartyButton.SetVisible(true);            
+            bShouldShowCreateParty = Manager.GetMultiplayerMenuActive() && !bInLobby;            
         }
         else
         {
-            CreatePartyButton.SetVisible(false);
+            if(Class'WorldInfo'.static.IsConsoleBuild())
+            {
+                bShouldShowCreateParty = (Outer.GetPC().WorldInfo.NetMode != NM_Standalone) && !bInLobby;
+            }
         }
-        LeaveButton.SetVisible(false);
+        if(bCreatePartyVisible != bShouldShowCreateParty)
+        {
+            bCreatePartyVisible = bShouldShowCreateParty;
+            SetBool("partyButtonVisible", bCreatePartyVisible);
+        }
     }
     SetBool("bInParty", bIsInLobby);
 }
@@ -327,6 +344,7 @@ function CreateList(GFxObject OptionList, array<string> TextArray, byte Selected
         goto J0x44;
     }
     DataProvider.ActionScriptVoid("invalidateData");
+    OptionList.ActionScriptVoid("invalidateData");
 }
 
 function ProfileOptionClicked(int OptionIndex, int SlotIndex)
@@ -334,25 +352,34 @@ function ProfileOptionClicked(int OptionIndex, int SlotIndex)
     local PlayerController PC;
 
     PC = Outer.GetPC();
-    if((PC.WorldInfo.IsConsoleBuild() && OptionIndex == 0) || OptionIndex == (ProfileOptions.Length - 1))
+    switch(OptionIndex)
     {
-        ViewProfile(SlotIndex);        
-    }
-    else
-    {
-        switch(OptionIndex)
-        {
-            case 0:
+        case 0:
+            if(PC.WorldInfo.IsConsoleBuild() || PC.WorldInfo.IsMenuLevel())
+            {
+                ViewProfile(SlotIndex);                
+            }
+            else
+            {
                 AddFriend(SlotIndex);
-                break;
-            case 1:
+            }
+            break;
+        case 1:
+            if(PC.WorldInfo.IsMenuLevel())
+            {
+                ViewProfile(SlotIndex);                
+            }
+            else
+            {
                 ToggelMuteOnPlayer(SlotIndex);
-                break;
-            case 2:
-                KickPlayer(SlotIndex);
-            default:
-                break;
-        }
+            }
+            break;
+        case 2:
+            KickPlayer(SlotIndex);
+            break;
+        default:
+            ViewProfile(SlotIndex);
+            break;
     }
 }
 
@@ -394,7 +421,6 @@ function StatsInit()
 {
     if(MemberSlots[0].MemberSlotObject != none)
     {
-        CreatePerkList(MemberSlots[0].MemberSlotObject.GetObject("perksList"));
     }
 }
 
@@ -402,13 +428,19 @@ function EmptySlot(int SlotIndex)
 {
     MemberSlots[SlotIndex].PlayerUID = ZeroUniqueId;
     MemberSlots[SlotIndex].bIsSlotTaken = false;
+    MemberSlots[SlotIndex].bIsReady = false;
+    MemberSlots[SlotIndex].bIsLeader = false;
+    MemberSlots[SlotIndex].PerkClass = none;
+    MemberSlots[SlotIndex].PRI = none;
+    MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", "");
+    MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted", false);
     UpdatePlayerName(SlotIndex, DefaultPlayerName $ string(SlotIndex));
     SlotChanged(SlotIndex, false, false, false);
 }
 
 function UpdatePlayerName(int SlotIndex, string PlayerName)
 {
-    MemberSlots[SlotIndex].PlayerNameTextField.SetText(PlayerName);
+    MemberSlots[SlotIndex].MemberSlotObject.SetString("playerNameString", PlayerName);
 }
 
 function UpdatePerk(int SlotIndex, string PerkString, string Level, string IconPath)
@@ -496,7 +528,7 @@ defaultproperties
     DefaultPlayerName="Player"
     SquadString="SQUAD"
     SoloString="SOLO"
-    CreatePartyString="INVITE FRIENDS"
+    CreatePartyString="CREATE PARTY"
     WaitingString="WAITING FOR PLAYERS"
     DeployingString="DEPLOYING IN "
     PlayerReadyString="[ READY ]"
@@ -513,7 +545,7 @@ defaultproperties
     PartyLeaderInOtherMenuString="is in another menu..."
     SearchingForGameString="Searching for online game..."
     PartHostLeftString="The party host has left"
-    PartyLeaderChangedString="is now the new party host."
+    PartyLeaderChangedString="is now the new party host"
     DownLoadingString="Downloading:"
     RemainingString="Remaining:"
     bReadyButtonVisible=true

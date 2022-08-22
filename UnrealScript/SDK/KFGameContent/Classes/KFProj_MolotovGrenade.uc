@@ -151,6 +151,8 @@ function SpawnResidualFlame( vector SpawnLoc, vector SpawnVel )
 
 defaultproperties
 {
+	bWarnAIWhenFired=true
+
 	FuseTime=10 // molotov should only explode on contact, but it's probably good to have a fallback
 
 	Speed=1200

@@ -9,10 +9,10 @@ package
         public function DetailedStatsMC()
         {
             super();
-            this.__setProp_favoriteButton_DetailedStatsMC_Layer1_0();
+            this.__setProp_favoriteButton_DetailedStatsMC_favbutton_0();
         }
         
-        function __setProp_favoriteButton_DetailedStatsMC_Layer1_0() : *
+        function __setProp_favoriteButton_DetailedStatsMC_favbutton_0() : *
         {
             try
             {
@@ -27,7 +27,7 @@ package
             favoriteButton.data = "";
             favoriteButton.enabled = true;
             favoriteButton.enableInitCallback = false;
-            favoriteButton.focusable = true;
+            favoriteButton.focusable = false;
             favoriteButton.label = "";
             favoriteButton.selected = false;
             favoriteButton.toggle = false;

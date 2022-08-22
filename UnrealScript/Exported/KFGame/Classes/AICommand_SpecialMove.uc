@@ -130,12 +130,7 @@ function LockdownAI()
 	AILog_Internal(GetFuncName(),'Command_SpecialMove',);
 
 	bPreparingMove = true;	// Don't move until move done
-
-	if( MyKFPawn != None )
-	{
-		// (Need to look into this) 
-		MyKFPawn.ZeroMovementVariables();
-	}
+	AIZeroMovementVariables();
 }
 
 function UnlockAI()

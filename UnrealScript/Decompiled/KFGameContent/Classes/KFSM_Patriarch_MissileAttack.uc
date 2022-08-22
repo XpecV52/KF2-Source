@@ -75,9 +75,8 @@ function PlayFireAnimation()
         return;
     }
     bUseRootMotion = false;
-    MyPatPawn.Mesh.RootMotionMode = MyPatPawn.Mesh.default.RootMotionMode;
+    DisableRootMotion();
     MyPatPawn.RotationRate = MissileFireRotationRate;
-    MyPatPawn.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
     PlaySpecialMoveAnim(AnimName, 1, 0, BlendOutTime, 1);
     if(MyPatPawn.Role == ROLE_Authority)
     {
@@ -160,14 +159,16 @@ function PlayWindDownAnimation()
     MyPatPawn.ZeroMovementVariables();
     MyPatPawn.StopBodyAnim(0, 0.33);
     bUseRootMotion = true;
-    MyPatPawn.Mesh.RootMotionMode = 3;
-    MyPatPawn.BodyStanceNodes[0].SetRootBoneAxisOption(2, 2, 2);
+    EnableRootMotion();
     PlaySpecialMoveAnim(WindDownAnimName, 0, 0.33, BlendOutTime, 1);
 }
 
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
-    switch(SeqNode.AnimSeqName)
+    local name SeqNodeName;
+
+    SeqNodeName = ((bShouldDeferToPostTick) ? DeferredSeqName : SeqNode.AnimSeqName);
+    switch(SeqNodeName)
     {
         case LoadAnim:
             PlayFireAnimation();
@@ -218,5 +219,6 @@ defaultproperties
     AbortBlendOutTime=0.1
     bDisableMovement=true
     bDisableSteering=false
+    bShouldDeferToPostTick=true
     Handle=KFSM_Patriarch_MissileAttack
 }

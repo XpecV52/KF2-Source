@@ -56,19 +56,19 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     }
     if((KFPOwner != none) && KFPOwner.MyKFAIC != none)
     {
-        if(KFPOwner.MyKFAIC.Skill == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
+        if(KFPOwner.MyKFAIC.Skill == Class'KFGameDifficultyInfo'.static.GetDifficultyValue(0))
         {
             EnemyDrawLifeThreshold = MaxEnemyLifeDrawThresholdNormal;            
         }
         else
         {
-            if(KFPOwner.MyKFAIC.Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(1))
+            if(KFPOwner.MyKFAIC.Skill <= Class'KFGameDifficultyInfo'.static.GetDifficultyValue(1))
             {
                 EnemyDrawLifeThreshold = MaxEnemyLifeDrawThresholdHard;                
             }
             else
             {
-                if(KFPOwner.MyKFAIC.Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(2))
+                if(KFPOwner.MyKFAIC.Skill <= Class'KFGameDifficultyInfo'.static.GetDifficultyValue(2))
                 {
                     EnemyDrawLifeThreshold = MaxEnemyLifeDrawThresholdSuicidal;                    
                 }
@@ -211,7 +211,7 @@ function Timer_DrainHealth()
     local KFPawn_ZedHansBase HansPawn;
     local int Damage;
 
-    if(((((KFPOwner != none) && KFPOwner.Health > 0) && Follower != none) && Follower.Health >= 0) && Follower.IsDoingSpecialMove(28))
+    if(((((KFPOwner != none) && KFPOwner.Health > 0) && Follower != none) && Follower.Health >= 0) && Follower.IsDoingSpecialMove(30))
     {
         if(NumDrainsRemaining > 0)
         {

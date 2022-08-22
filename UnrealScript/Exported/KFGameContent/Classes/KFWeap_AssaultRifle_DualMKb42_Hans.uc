@@ -48,7 +48,7 @@ simulated function ConsumeAmmo( byte FireModeNum )
 
 defaultproperties
 {
-   SingleFireMode=1
+   SingleFireSoundIndex=1
    InventorySize=6
    MagazineCapacity(0)=60
    bHasIronSights=True
@@ -58,7 +58,7 @@ defaultproperties
    PlayerIronSightFOV=70.000000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
-   MaxSpareAmmo(0)=270
+   SpareAmmoCapacity(0)=270
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
@@ -104,7 +104,7 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   Spread(0)=0.100000
+   Spread(0)=0.145000
    InstantHitDamage(0)=10.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()

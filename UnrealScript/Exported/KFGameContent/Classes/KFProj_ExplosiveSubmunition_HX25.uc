@@ -11,6 +11,27 @@
 class KFProj_ExplosiveSubmunition_HX25 extends KFProj_BallisticExplosive
 	hidedropdown;
 
+/** Cached reference to owner weapon */
+var protected KFWeapon OwnerWeapon;
+
+/** Initialize the projectile */
+function Init( vector Direction )
+{
+	super.Init( Direction );
+
+	OwnerWeapon = KFWeapon( Owner );
+	if( OwnerWeapon != none )
+	{
+		OwnerWeapon.LastPelletFireTime = WorldInfo.TimeSeconds;
+	}
+}
+
+/** Don't allow more than one pellet projectile to perform this check in a single frame */
+function bool ShouldWarnAIWhenFired()
+{
+	return super.ShouldWarnAIWhenFired() && OwnerWeapon != none && OwnerWeapon.LastPelletFireTime < WorldInfo.TimeSeconds;
+}
+
 /**
  * Force the fire not to burn the instigator, since setting it in the default props is not working for some reason - Ramm
  */
@@ -38,6 +59,7 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
 
 defaultproperties
 {
+   bWarnAIWhenFired=True
    AlwaysRelevantDistanceSquared=2250000.000000
    TossZ=150.000000
    GravityScale=0.250000

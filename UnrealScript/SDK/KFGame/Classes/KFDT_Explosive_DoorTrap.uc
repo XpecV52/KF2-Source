@@ -21,7 +21,7 @@ defaultproperties
 	KDeathUpKick=1000
 	KDeathVel=300
 
-	KnockdownPower=300 // knockdown any non-boss zed in one hit
+	KnockdownPower=300 // 400 
 	StumblePower=500
 	StunPower=0 // stun any non-boss zed in one hit
 

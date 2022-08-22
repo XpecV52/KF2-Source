@@ -4,8 +4,10 @@ package tripwire.controls
     import flash.display.MovieClip;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import flash.text.TextFormat;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.events.IndexEvent;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.containers.TripContainer;
     
     public class PartySlotButton extends TripButton
@@ -14,11 +16,11 @@ package tripwire.controls
         
         public var optionsList:TripScrollingList;
         
-        public var perksList:TripScrollingList;
-        
         public var leaderIcon:MovieClip;
         
         public var voipIcon:MovieClip;
+        
+        public var mutedIcon:MovieClip;
         
         public var BG:MovieClip;
         
@@ -37,6 +39,8 @@ package tripwire.controls
         public var HitboxMC:MovieClip;
         
         public var AddHitboxMC:MovieClip;
+        
+        public var profileLoader:UILoader;
         
         public var profileImageContainer:MovieClip;
         
@@ -70,6 +74,18 @@ package tripwire.controls
         
         public var zedColor:uint = 12453376;
         
+        public var playerNameFormat:TextFormat;
+        
+        private const PLAYER_NAME_SIZE_OFFSET:int = 5;
+        
+        private const PS4_NAME_LIMIT:int = 16;
+        
+        public var playerNameOriginalSize:int;
+        
+        public var currentPlayerNameString:String;
+        
+        private var _bIsMuted:Boolean;
+        
         var perkLevelOriginalLocation:Number;
         
         var playerNameOriginalLocation:Number;
@@ -83,15 +99,20 @@ package tripwire.controls
         public function PartySlotButton()
         {
             this.iconTint = new Color();
+            this.playerNameFormat = new TextFormat();
             super();
-            doAnimations = true;
             preventAutosizing = true;
             this.ready = false;
-            this.perkIconLoader = this.perkIconLoaderContainer.perkIconLoader;
+            this.profileLoader = UILoader(this.profileImageContainer.profileLoader);
+            this.perkIconLoader = UILoader(this.perkIconLoaderContainer.perkIconLoader);
             this.perkIconOriginalLocation = this.perkIconLoaderContainer.x;
             this.perkLevelOriginalLocation = this.perkLevelText.x;
             this.playerNameOriginalLocation = this.playerNameText.x;
             this.profileImageOriginalLocation = this.profileImageContainer.x;
+            this.isMuted = false;
+            this.playerNameFormat = this.playerNameText.defaultTextFormat;
+            this.playerNameOriginalSize = int(this.playerNameFormat.size);
+            TextFieldEx.setVerticalAlign(this.playerNameText,TextFieldEx.VALIGN_CENTER);
         }
         
         override public function set selected(param1:Boolean) : void
@@ -130,6 +151,8 @@ package tripwire.controls
                     this.activeColor = this.humanColor;
                     this.inactiveColor = this.humanColor;
                 }
+                this.playerNameFormat.color = this.activeColor;
+                this.playerNameText.setTextFormat(this.playerNameFormat);
             }
         }
         
@@ -191,7 +214,6 @@ package tripwire.controls
                 return;
             }
             this.optionsList.visible = false;
-            this.perksList.visible = false;
             this.isTalking = false;
             this._bIsMyPlayer = param1;
             this.activeList = this.optionsList;
@@ -213,12 +235,37 @@ package tripwire.controls
             }
         }
         
-        public function handleGamePadB() : *
+        public function set playerNameString(param1:String) : void
+        {
+            var _loc2_:int = 0;
+            var _loc3_:int = 0;
+            this.playerNameText.text = param1;
+            this.playerNameFormat.size = this.playerNameOriginalSize;
+            this.playerNameText.setTextFormat(this.playerNameFormat);
+            if(this.playerNameText.textWidth > this.playerNameText.width)
+            {
+                this.playerNameFormat.size = this.playerNameOriginalSize - this.PLAYER_NAME_SIZE_OFFSET;
+                this.playerNameText.setTextFormat(this.playerNameFormat);
+                if(param1.length > this.PS4_NAME_LIMIT)
+                {
+                    _loc2_ = this.playerNameText.getCharIndexAtPoint(this.playerNameText.width - 16,this.playerNameText.height / 2);
+                    _loc3_ = this.playerNameText.getCharIndexAtPoint(this.playerNameText.width - 2,this.playerNameText.height / 2);
+                    _loc3_ -= _loc3_ < param1.length ? _loc3_ - _loc2_ : 0;
+                    this.playerNameText.text = param1.slice(0,_loc3_);
+                    this.playerNameText.appendText(_loc3_ < param1.length ? "..." : "");
+                    this.playerNameText.setTextFormat(this.playerNameFormat);
+                }
+            }
+        }
+        
+        public function handleGamePadB() : Boolean
         {
             if(this.activeList != null && this.activeList.visible)
             {
                 this.closeList();
+                return true;
             }
+            return false;
         }
         
         public function updatePerk(param1:String, param2:String, param3:String) : *
@@ -282,7 +329,20 @@ package tripwire.controls
         
         public function set isTalking(param1:Boolean) : *
         {
-            this.voipIcon.visible = param1;
+            if(!this._bIsMuted)
+            {
+                this.voipIcon.visible = param1;
+            }
+        }
+        
+        public function set isMuted(param1:Boolean) : *
+        {
+            this._bIsMuted = param1;
+            if(this._bIsMuted && this.voipIcon.visible)
+            {
+                this.voipIcon.visible = false;
+            }
+            this.mutedIcon.visible = this._bIsMuted;
         }
         
         override public function set visible(param1:Boolean) : void
@@ -292,10 +352,6 @@ package tripwire.controls
         
         public function openList() : *
         {
-            if(this.activeList == this.perksList)
-            {
-                return;
-            }
             if((this.activeList as TripScrollingList).dataProvider.length > 0)
             {
                 mouseEnabled = false;
@@ -306,10 +362,6 @@ package tripwire.controls
         
         public function closeList() : *
         {
-            if(this.activeList == this.perksList)
-            {
-                return;
-            }
             if(this.activeList.bOpen)
             {
                 mouseEnabled = true;
@@ -322,14 +374,7 @@ package tripwire.controls
         {
             if(param1.index != TripContainer.CANCELLED_INDEX)
             {
-                if(this.activeList == this.perksList)
-                {
-                    ExternalInterface.call("Callback_PerkChanged",param1.index);
-                }
-                else
-                {
-                    ExternalInterface.call("Callback_ProfileOption",param1.index,this.slotIndex);
-                }
+                ExternalInterface.call("Callback_ProfileOption",param1.index,this.slotIndex);
             }
             this.closeList();
         }

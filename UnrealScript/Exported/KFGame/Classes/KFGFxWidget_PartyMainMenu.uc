@@ -11,20 +11,42 @@
 class KFGFxWidget_PartyMainMenu extends KFGFxWidget_BaseParty;
 
 var bool bIsInParty;
+var int prevMemberCount;
 
 function OneSecondLoop()
 {
+	local ActiveLobbyInfo LobbyInfo;
+
+	RefreshParty(); //@HSL - JRO - Moving this here so the +people icons properly go away when leaving parties
 	if ( OnlineLobby != none && OnlineLobby.IsInLobby())
 	{
 	    SendMyOptions();
 	    SendSearching();
 	    UpdateInLobby(true);
+
+		//@HSL_BEGIN - JRO - 8/2/2016 - Making sure users are aware of party discrepancies.
+		OnlineLobby.GetCurrentLobby(LobbyInfo);
+		if(prevMemberCount != LobbyInfo.Members.length && LobbyInfo.Members.length > 6)
+		{
+			Manager.OpenPopup(ENotification,
+				Localize("Notifications", "PartySizeTitle",   "KFGameConsole"),
+				Localize("Notifications", "PartySizeMessage", "KFGameConsole"),
+				class'KFCommon_LocalizedStrings'.default.OKString);
+		}
+		prevMemberCount = LobbyInfo.Members.length;
+		//@HSL_END
 	}	
 	else
 	{
+		//@HSL_BEGIN - JRO - 8/3/2016 - Make sure non-leader members don't get stuck in the overview screen when leaving a party
+		if(class'WorldInfo'.static.IsConsoleBuild() && prevMemberCount != 0 && Manager != none && Manager.StartMenu != none)
+		{
+			Manager.StartMenu.ShowOverview(false, false, true, false);
+		}
+		//@HSL_END
+		prevMemberCount = 0;
 		UpdateInLobby(false);
 	}
-	RefreshParty();
 }
 
 function InitializeWidget()
@@ -48,7 +70,7 @@ function SendSearching()
 	if(OnlineLobby != none && OnlineLobby.IsInLobby())
 	{
 		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
-		bIsLeader = GetPC().PlayerReplicationInfo.UniqueId  == AdminId;	
+		bIsLeader = OnlineLobby.GetMyId() == AdminId;
 
 		if(bIsLeader)
 		{
@@ -60,10 +82,16 @@ function SendSearching()
 					SetSearchingText(SearchingTextString);
 					SearchingMessage = SearchingForGame;
 				}
-				else
+				//@HSL_BEGIN - JRO - PS4 supports parties outside of multiplayer menus
+				else if(Manager.StartMenu.GetStartMenuState() == EMatchmaking)
 				{
 					SearchingMessage = UpdatingOptions;
 				}
+				else
+				{
+					SearchingMessage = InOtherMenu;
+				}
+				//@HSL_END
 			}
 			else if(Manager.CurrentMenuIndex == UI_ServerBrowserMenu)
 			{
@@ -105,12 +133,18 @@ function RefreshParty()
 	super.RefreshParty();
 	
 	if ( OnlineLobby != none && OnlineLobby.GetCurrentLobby(LobbyInfo) )
-	{		
+	{
+		//@HSL - JRO - Your own party slot wasn't updating in parties, this fixes it
+		if(class'WorldInfo'.static.IsConsoleBuild())
+		{
+			InitializePerk();
+		}
+
 		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
 
 		if(PartyChatWidget != none)
 		{
-			PartyChatWidget.SetLobbyChatVisible(LobbyInfo.Members.Length > 1);	
+			PartyChatWidget.SetLobbyChatVisible(LobbyInfo.Members.Length > 1);
 		}
 
 		if( AdminId != LastLeaderID )
@@ -124,7 +158,7 @@ function RefreshParty()
 		{
 			//clear out the first slot since that is where you are
 			EmptySlot(0);
-			bIsInParty = bInParty;	
+			bIsInParty = bInParty;
 		}
 
 		for ( SlotIndex = 0; SlotIndex < PlayerSlots; SlotIndex++ )
@@ -162,7 +196,7 @@ function RefreshParty()
 	    
 	    if(PartyChatWidget != none)
 		{
-	    	PartyChatWidget.SetLobbyChatVisible(false);	
+	    	PartyChatWidget.SetLobbyChatVisible(false);
 		}
 	    // Clear out the rest of the list if we are not in a lobby
 	    for ( SlotIndex = 1; SlotIndex < PlayerSlots; SlotIndex++ )
@@ -185,7 +219,7 @@ function HandleLeaderChange(UniqueNetId AdminId)
 	}
 	
 	HostName = OnlineLobby.GetFriendNickname(AdminId);
-	Manager.HandleSteamLobbyLeaderTakeOver(AdminId);	
+	Manager.HandleSteamLobbyLeaderTakeOver(AdminId);
 	if(LastLeaderID != ZeroUniqueId )
 	{
 		Manager.OpenPopup(ENotification, PartHostLeftString, HostName@PartyLeaderChangedString, class'KFCommon_LocalizedStrings'.default.OKString);
@@ -210,15 +244,7 @@ function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
 	}
 	
-	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
-	{
-		// Console check to make sure we aren't in a solo game or the basic start menu.
-		bIsLeader = (PlayerUID == AdminId) && (Manager.StartMenuState != ESoloGame && Manager.StartMenuState != 255);
-	}
-	else
-	{
-		bIsLeader = (PlayerUID == AdminId);
-	}
+	bIsLeader = (PlayerUID == AdminId);
 
 	if ( !MemberSlots[SlotIndex].bIsSlotTaken )
 	{
@@ -337,8 +363,8 @@ function UpdateSearching(string Message)
 		
 	if(OnlineLobby != none)
 	{
-	OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
-	PartyLeaderName = OnlineLobby.GetFriendNickname(AdminId);
+		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
+		PartyLeaderName = OnlineLobby.GetFriendNickname(AdminId);
 	}
 
 	switch (Message)
@@ -399,8 +425,7 @@ function ViewProfile(int SlotIndex)
 	{
 		if ( GetPC().WorldInfo.IsConsoleBuild(CONSOLE_Orbis) )
 		{
-			OnlineSub.PlayerInterfaceEx.ShowGamerCardUIByUsername(GetLP().ControllerId,MemberSlots[SlotIndex].PRI.PlayerName);
-
+			OnlineSub.PlayerInterfaceEx.ShowGamerCardUIByUsername(GetLP().ControllerId,OnlineLobby.GetFriendNickname(LobbyInfo.Members[SlotIndex].PlayerUID));
 		}
 		else
 		{
@@ -450,6 +475,7 @@ function SendMyOptions()
 	local string CurrentLevel;
 	local string PerkMessage;
 	local string UIDStrings;
+	local UniqueNetId MyUniqueId;
 
 
 
@@ -457,11 +483,12 @@ function SendMyOptions()
 	PerkIndex = KFPC.GetPerkIndexFromClass(CurrentPerk.Class);
 	CurrentLevel = string(KFPC.GetLevel());
 
-	UIDStrings = class'OnlineSubsystem'.static.UniqueNetIdToString(GetPC().PlayerReplicationInfo.UniqueId);
+	MyUniqueId = OnlineLobby.GetMyId();
+	UIDStrings = class'OnlineSubsystem'.static.UniqueNetIdToString(MyUniqueId);
 	PerkMessage = PerkPrefix$UIDStrings$"/"$string(PerkIndex)$"/"$CurrentLevel;
-        if(OnlineLobby != none)
+	if(OnlineLobby != none)
 	{
-	OnlineLobby.LobbyMessage(PerkMessage);   	
+		OnlineLobby.LobbyMessage(PerkMessage);
 	}
 }
 

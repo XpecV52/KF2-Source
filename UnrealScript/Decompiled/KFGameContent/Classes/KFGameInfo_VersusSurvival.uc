@@ -82,7 +82,261 @@ function bool ShouldStartMatch()
     return (WorldInfo.NetMode == NM_Standalone) || (Teams[0].Size > 0) && Teams[1].Size > 0;
 }
 
+function StripAbsentPlayers()
+{
+    local int GroupIndex, PlayerIndex;
+    local UniqueNetId StupidUnrealBS;
+
+    if(bLogGroupTeamBalance)
+    {
+        LogInternal("StripAbsentPlayers: Stripping players who are no longer logged in from matchmaking groups.");
+    }
+    GroupIndex = PlayerGroups.Length - 1;
+    J0x83:
+
+    if(GroupIndex >= 0)
+    {
+        PlayerIndex = PlayerGroups[GroupIndex].PlayerGroup.Length - 1;
+        J0xC6:
+
+        if(PlayerIndex >= 0)
+        {
+            if((GetPRIById(PlayerGroups[GroupIndex].PlayerGroup[PlayerIndex])) == none)
+            {
+                if(bLogGroupTeamBalance)
+                {
+                    StupidUnrealBS = PlayerGroups[GroupIndex].PlayerGroup[PlayerIndex];
+                    if(bLogGroupTeamBalance)
+                    {
+                        LogInternal(((("StripAbsentPlayers: Removing player" @ Class'OnlineSubsystem'.static.UniqueNetIdToString(StupidUnrealBS)) @ "from group") @ string(GroupIndex)) @ "because they are no longer logged in.");
+                    }
+                }
+                PlayerGroups[GroupIndex].PlayerGroup.Remove(PlayerIndex, 1;
+            }
+            -- PlayerIndex;
+            goto J0xC6;
+        }
+        if(PlayerGroups[GroupIndex].PlayerGroup.Length == 0)
+        {
+            if(bLogGroupTeamBalance)
+            {
+                LogInternal(("StripAbsentPlayers: Removing empty matchmaking group " @ string(GroupIndex)) @ "from group list because it is empty.");
+            }
+            PlayerGroups.Remove(GroupIndex, 1;
+        }
+        -- GroupIndex;
+        goto J0x83;
+    }
+}
+
+function SplitArrayByTeam(out PlayerGroupStruct Group, out PlayerGroupStruct Other)
+{
+    local int I;
+    local PlayerReplicationInfo PRI;
+    local UniqueNetId StupidUnrealscriptBS;
+
+    Other.PlayerGroup.Length = 0;
+    Other.Team = ((Group.Team == 1) ? 0 : 1);
+    if(Group.Team == 128)
+    {
+        LogInternal("SplitArrayByTeam: Aborting and removing group because it hasn't yet been assigned a team.");
+        Other.Team = 128;
+        Group.PlayerGroup.Length = 0;
+        return;
+    }
+    I = Group.PlayerGroup.Length - 1;
+    J0x158:
+
+    if(I >= 0)
+    {
+        PRI = GetPRIById(Group.PlayerGroup[I]);
+        if(PRI == none)
+        {
+            if(bLogGroupTeamBalance)
+            {
+                StupidUnrealscriptBS = Group.PlayerGroup[I];
+                LogInternal(("SplitArrayByTeam: Removing player" @ Class'OnlineSubsystem'.static.UniqueNetIdToString(StupidUnrealscriptBS)) @ "from group because they are not logged in.");
+            }
+            Group.PlayerGroup.Remove(I, 1;            
+        }
+        else
+        {
+            if(PRI.Team != Teams[Group.Team])
+            {
+                if(bLogGroupTeamBalance)
+                {
+                    StupidUnrealscriptBS = Group.PlayerGroup[I];
+                    LogInternal(((((("SplitArrayByTeam: Moving player" @ Class'OnlineSubsystem'.static.UniqueNetIdToString(StupidUnrealscriptBS)) @ "from group in team") @ string(Group.Team)) @ "to group in team") @ string(Other.Team)) @ "because they chose that team");
+                }
+                Other.PlayerGroup.AddItem(Group.PlayerGroup[I];
+                Group.PlayerGroup.Remove(I, 1;
+            }
+        }
+        -- I;
+        goto J0x158;
+    }
+}
+
+function SplitGroups()
+{
+    local int I;
+    local PlayerGroupStruct NewGroup, StupidUnrealscriptBS;
+
+    if(bLogGroupTeamBalance)
+    {
+        LogInternal("SplitGroups: Splitting groups with players on separate teams.");
+    }
+    I = PlayerGroups.Length - 1;
+    J0x66:
+
+    if(I >= 0)
+    {
+        StupidUnrealscriptBS = PlayerGroups[I];
+        SplitArrayByTeam(StupidUnrealscriptBS, NewGroup);
+        PlayerGroups[I] = StupidUnrealscriptBS;
+        if(PlayerGroups[I].PlayerGroup.Length < 2)
+        {
+            if(NewGroup.PlayerGroup.Length > 1)
+            {
+                if(bLogGroupTeamBalance)
+                {
+                    LogInternal(((((((("SplitGroups: Changing group number" @ string(I)) @ "from team") @ string(PlayerGroups[I].Team)) @ "to team") @ string(NewGroup.Team)) @ "(now has") @ string(NewGroup.PlayerGroup.Length)) @ "members).");
+                }
+                PlayerGroups[I] = NewGroup;                
+            }
+            else
+            {
+                if(bLogGroupTeamBalance)
+                {
+                    LogInternal("SplitGroups: Removing empty group number" @ string(I));
+                }
+                PlayerGroups.Remove(I, 1;
+            }            
+        }
+        else
+        {
+            if(NewGroup.PlayerGroup.Length > 0)
+            {
+                if(bLogGroupTeamBalance)
+                {
+                    LogInternal(((((("SplitGroups: Adding a new group of team" @ string(NewGroup.Team)) @ "at position") @ string(I + 1)) @ "with") @ string(NewGroup.PlayerGroup.Length)) @ "members.");
+                }
+                PlayerGroups.Insert(I + 1, 1;
+                PlayerGroups[I + 1] = NewGroup;
+            }
+        }
+        -- I;
+        goto J0x66;
+    }
+}
+
+function int GetDelta()
+{
+    return Teams[0].Size - Teams[1].Size;
+}
+
+function bool IsBalanceable(int NumHumanSingles, int NumZedSingles, optional int AdditionalDelta)
+{
+    AdditionalDelta = 0;
+    if(((Teams[0].Size > 0) && Teams[0].Size <= 6) && Teams[1].Size <= 6)
+    {
+        return true;
+    }
+    if((((Teams[0].Size - NumHumanSingles) + AdditionalDelta) > 6) || ((Teams[1].Size - NumZedSingles) - AdditionalDelta) > 6)
+    {
+        return false;
+    }
+    return true;
+}
+
+function bool IsLegal()
+{
+    return ((Teams[0].Size > 0) && Teams[0].Size <= 6) && Teams[1].Size <= 6;
+}
+
+function bool BalanceSingles(out array<PlayerReplicationInfo> HumanSingles, out array<PlayerReplicationInfo> ZedSingles, optional bool bTryAnyway)
+{
+    local int Delta;
+    local bool RC;
+
+    bTryAnyway = false;
+    if(!IsBalanceable(HumanSingles.Length, ZedSingles.Length) && !bTryAnyway)
+    {
+        return false;
+    }
+    Delta = GetDelta();
+    if(Abs(float(Delta)) <= float(1))
+    {
+        return true;
+    }
+    RC = false;
+    if(Delta < 0)
+    {
+        J0x82:
+
+        if((ZedSingles.Length > 0) && Delta < 0)
+        {
+            SwapTeamFor(ZedSingles[ZedSingles.Length - 1]);
+            ZedSingles.Remove(ZedSingles.Length - 1, 1;
+            Delta = GetDelta();
+            RC = true;
+            goto J0x82;
+        }        
+    }
+    else
+    {
+        J0x103:
+
+        if((HumanSingles.Length > 0) && Delta > 0)
+        {
+            SwapTeamFor(HumanSingles[HumanSingles.Length - 1]);
+            HumanSingles.Remove(HumanSingles.Length - 1, 1;
+            Delta = GetDelta();
+            RC = true;
+            goto J0x103;
+        }
+    }
+    return RC;
+}
+
 function BalanceTeams()
+{
+    local int Delta;
+    local PlayerReplicationInfo PRI;
+    local array<PlayerReplicationInfo> HumanSingles, ZedSingles;
+
+    StripAbsentPlayers();
+    SplitGroups();
+    Delta = Teams[0].Size - Teams[1].Size;
+    if(Delta == 0)
+    {
+        return;
+    }
+    foreach MyKFGRIV.PRIArray(PRI,)
+    {
+        if((GetPRIById(PRI.UniqueId)) == none)
+        {
+            if(PRI.Team == Teams[0])
+            {
+                HumanSingles.AddItem(PRI;                
+            }
+            else
+            {
+                ZedSingles.AddItem(PRI;
+            }
+        }        
+    }    
+    if(BalanceSingles(HumanSingles, ZedSingles))
+    {
+        return;        
+    }
+    else
+    {
+        BalanceTeamsOld();
+    }
+}
+
+function BalanceTeamsOld()
 {
     local int Delta, AutoBalanceRemaining, I;
     local TeamInfo TI;
@@ -150,16 +404,112 @@ function CreateTeam(int TeamIndex)
     }
 }
 
-function byte PickTeam(byte Current, Controller C)
+function int GetPlayerGroup(const out UniqueNetId PlayerID, optional out int IdIndex)
 {
-    if((Teams[1].Size < Teams[0].Size) || ((Teams[0].Size > 0) && Teams[1].Size == Teams[0].Size) && FRand() < 0.5)
+    local PlayerGroupStruct Group;
+    local UniqueNetId Id;
+    local int GroupIndex, Index;
+
+    IdIndex = -1;
+    foreach PlayerGroups(Group, GroupIndex)
     {
+        foreach Group.PlayerGroup(Id, Index)
+        {
+            if(Id == PlayerID)
+            {
+                IdIndex = Index;
+                break;                
+                return GroupIndex;
+            }            
+        }                
+    }    
+    return -1;
+}
+
+function byte PickGroupTeam(optional int GroupSize)
+{
+    local int Human, Zed;
+
+    GroupSize = 1;
+    GetReservedTotals(Human, Zed);
+    if((Zed + GroupSize) <= Human)
+    {
+        if(bLogGroupTeamBalance)
+        {
+            LogInternal(((("PickGroupTeam: Team totals are Humans" @ string(Human)) @ "Zeds") @ string(Zed)) @ ", adding new group to Zed team");
+        }
         return 1;        
     }
     else
     {
+        if(bLogGroupTeamBalance)
+        {
+            LogInternal(((("PickGroupTeam: Team totals are Humans" @ string(Human)) @ "Zeds") @ string(Zed)) @ ", adding new group to Human team");
+        }
         return 0;
     }
+}
+
+function PlayerReplicationInfo GetPRIById(const UniqueNetId Id)
+{
+    local PlayerReplicationInfo PRI;
+
+    foreach MyKFGRIV.PRIArray(PRI,)
+    {
+        if(PRI.UniqueId == Id)
+        {            
+            return PRI;
+        }        
+    }    
+    return none;
+}
+
+function GetReservedTotals(out int Human, out int Zed)
+{
+    local PlayerGroupStruct Group;
+    local UniqueNetId Id;
+
+    Human = Teams[0].Size;
+    Zed = Teams[1].Size;
+    foreach PlayerGroups(Group,)
+    {
+        foreach Group.PlayerGroup(Id,)
+        {
+            if((GetPRIById(Id)) == none)
+            {
+                if(Group.Team == 0)
+                {
+                    ++ Human;                    
+                }
+                else
+                {
+                    if(Group.Team == 1)
+                    {
+                        ++ Zed;
+                    }
+                }
+            }            
+        }                
+    }    
+}
+
+function byte PickTeam(byte Current, Controller C, const out UniqueNetId PlayerID)
+{
+    local int Group;
+
+    Group = GetPlayerGroup(PlayerID);
+    if(Group == -1)
+    {
+        return PickGroupTeam();        
+    }
+    else
+    {
+        if((PlayerGroups[Group].Team != 0) && PlayerGroups[Group].Team != 1)
+        {
+            PlayerGroups[Group].Team = PickGroupTeam(PlayerGroups[Group].PlayerGroup.Length);
+        }
+    }
+    return PlayerGroups[Group].Team;
 }
 
 function bool ChangeTeam(Controller Other, int N, bool bNewTeam)
@@ -394,16 +744,14 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
                 InjuredPawn.UpdateLastTimeDamageHappened();
             }
         }
+        if((((InstigatedBy.GetTeamNum() == 255) && injured.GetTeamNum() == 255) && InstigatedBy.bIsPlayer) && !injured.IsHumanControlled())
+        {
+            Momentum = vect(0, 0, 0);
+            Damage = 0;
+            return;
+        }
     }
-    if((((InstigatedBy.GetTeamNum() == 255) && injured.GetTeamNum() == 255) && InstigatedBy.bIsPlayer) && !injured.IsHumanControlled())
-    {
-        Momentum = vect(0, 0, 0);
-        Damage = 0;        
-    }
-    else
-    {
-        super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
-    }
+    super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
 }
 
 function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType)
@@ -482,7 +830,7 @@ function EndOfMatch(bool bVictory)
     local int TempScore;
     local KFPlayerReplicationInfoVersus KFPRIV;
 
-    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+    if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
     {
         WorldInfo.TWLogEvent("match_end", none, "#" $ string(WaveNum), "#" $ ((bVictory) ? "1" : "0"), "#" $ string(GameConductor.ZedVisibleAverageLifespan));
     }
@@ -520,7 +868,10 @@ function EndOfMatch(bool bVictory)
     else
     {
         CheckRoundEndAchievements(255);
-        WaveBonus += int(float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe);
+        if(MyKFGRI.WaveNum != MyKFGRI.WaveMax)
+        {
+            WaveBonus += Max(int(float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe), 0);
+        }
     }
     TempScore += WaveBonus;
     TempScore -= (POINTS_PENALTY_FOR_DEATH * HumanDeaths);
@@ -552,12 +903,12 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 
     MyKFGRIV.SetPlayerZedSpawnTime(255, false);
     ClearTimer('CheckPawnsForGriefing');
-    if((WinCondition == 1) && SpawnManager != none)
+    if(((WinCondition == 1) && SpawnManager != none) && MyKFGRI.WaveNum != MyKFGRI.WaveMax)
     {
         PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
     }
     I = 0;
-    J0xB2:
+    J0xF9:
 
     if(I < WorldInfo.GRI.PRIArray.Length)
     {
@@ -571,19 +922,19 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             {
                 WaveKills = KFPRIV.Kills;
                 J = 0;
-                J0x233:
+                J0x27A:
 
                 if(J < KFPRIV.WaveKills.Length)
                 {
                     WaveKills -= KFPRIV.WaveKills[J];
                     ++ J;
-                    goto J0x233;
+                    goto J0x27A;
                 }
                 KFPRIV.WaveKills[MyKFGRI.WaveNum] = WaveKills;
             }
         }
         ++ I;
-        goto J0xB2;
+        goto J0xF9;
     }
     super.WaveEnded(WinCondition);
 }
@@ -629,8 +980,8 @@ function ResetAllPickups()
 {
     if(!bDisablePickups)
     {
-        NumWeaponPickups = byte(ItemPickups.Length - 1);
-        NumAmmoPickups = byte(AmmoPickups.Length - 1);
+        NumWeaponPickups = byte(Max(ItemPickups.Length - 1, 0));
+        NumAmmoPickups = byte(Max(AmmoPickups.Length - 1, 0));
     }
     super.ResetAllPickups();
 }
@@ -912,12 +1263,12 @@ defaultproperties
     bIsVersusGame=true
     KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager_Versus'
     MinNetPlayers=2
-    DifficultyTemplate=KFDifficultyInfo'GP_Difficulty_ARCH.Difficulty_Versus'
+    DifficultyInfoClass=Class'KFGameDifficulty_Versus'
+    DifficultyInfoConsoleClass=Class'KFGameDifficulty_Versus_Console'
     MaxGameDifficulty=0
     GameLengthDoshScale=/* Array type was not detected. */
     SpawnManagerClasses=/* Array type was not detected. */
     GameConductorClass=Class'KFGameConductorVersus'
-    InValidMaps=/* Array type was not detected. */
     DefaultPawnClass=Class'KFPawn_Human_Versus'
     HUDType=Class'KFGFXHudWrapper_Versus'
     MaxPlayers=12

@@ -14,6 +14,8 @@ class AnimNotify_AkEvent extends AnimNotify
 var() AkEvent AkEvent;
 var() bool bFollowActor;
 var() bool bIgnoreIfActorHidden;
+/** Useful to ensure it won't activate while blending from this anim into a death anim */
+var() bool bIgnoreIfActorDead;
 var() name BoneName;
 /** This is the percent to play this Sound.  Defaults to 100% (aka 1.0f) */
 var() float PercentToPlay;
@@ -21,5 +23,6 @@ var() float PercentToPlay;
 defaultproperties
 {
     bFollowActor=true
+    bIgnoreIfActorDead=true
     PercentToPlay=1
 }

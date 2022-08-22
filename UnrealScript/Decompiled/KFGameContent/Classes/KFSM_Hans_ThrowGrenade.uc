@@ -11,19 +11,29 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     local KFPawn_ZedHansBase HansPawn;
 
+    HansPawn = KFPawn_ZedHansBase(PawnOwner);
+    if(HansPawn != none)
+    {
+        HansPawn.PlayGrenadeDialog(false);
+        if(HansPawn.CanMoveWhileThrowingGrenades())
+        {
+            AnimStance = 1;
+            bDisableMovement = false;            
+        }
+        else
+        {
+            AnimStance = 0;
+            bDisableMovement = true;
+            HansPawn.ZeroMovementVariables();
+        }
+    }
     super.SpecialMoveStarted(bForced, PrevMove);
-    KFPOwner.ZeroMovementVariables();
     if(AIOwner != none)
     {
         if(AIOwner != none)
         {
             AIOwner.AILog_Internal((string(self) @ "started for") @ string(AIOwner), 'Siren');
         }
-    }
-    HansPawn = KFPawn_ZedHansBase(PawnOwner);
-    if(HansPawn != none)
-    {
-        HansPawn.PlayGrenadeDialog(false);
     }
 }
 

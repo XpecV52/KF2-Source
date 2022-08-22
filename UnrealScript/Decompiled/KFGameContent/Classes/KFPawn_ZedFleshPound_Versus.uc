@@ -97,9 +97,9 @@ defaultproperties
     DoshValue=300
     XPValues=105
     DamageTypeModifiers=/* Array type was not detected. */
-    BlockingDamageModifier=0.7
-    MeleeBlockingDamageModifier=0.7
+    MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
+    MinBlockFOV=0
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshPound_Versus.FootstepCameraShake0'
     LocalizationKey=KFPawn_ZedFleshpound
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

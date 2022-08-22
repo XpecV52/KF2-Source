@@ -385,12 +385,12 @@ private function CheckHealth()
 			// Perform an autoheal if necessary
 			if( SpecialMoveCooldowns[5].Charges > 0 && HealthPct <= AutoHealThreshold )
 			{
-				if( IsDoingSpecialMove() && !IsDoingSpecialMove(SM_PlayerZedSpecial3) )
+				if( IsDoingSpecialMove() && !IsDoingSpecialMove(SM_PlayerZedMove_Q) )
 				{
 					EndSpecialMove();
 				}
 				bAutoHealed = true;
-				DoSpecialMove( SM_PlayerZedSpecial3, true );
+				DoSpecialMove( SM_PlayerZedMove_Q, true );
 			}
 		}
 
@@ -444,6 +444,12 @@ simulated function bool ShouldDrawBossIcon()
 	return !(bIsCloaking);
 }
 
+/** Returns TRUE if we're aiming with the husk cannon */
+simulated function bool UseAdjustedControllerSensitivity()
+{
+	return IsDoingSpecialMove( SM_PlayerZedMove_RMB ) || IsDoingSpecialMove( SM_PlayerZedMove_MMB );
+}
+
 /*********************************************************************************************
 * Zed Summoning
 **********************************************************************************************/
@@ -483,14 +489,14 @@ DefaultProperties
 	HealThreshold=0.5f
 	AutoHealThreshold=0.25f
 	LowHealthThreshold=0.3f
-    Health=2240 //2540
+	Health=2240 //2540
 
 	SprintSpeed=700.f
 	SprintStrafeSpeed=400.f
 	GroundSpeed=260.f
 
 	Begin Object Name=MeleeHelper_0
-		BaseDamage=55.f //45.f
+		BaseDamage=40.f //45.f
 		MaxHitRange=375.f
 		MomentumTransfer=40000.f
 		MyDamageType=class'KFDT_Bludgeon_Patriarch'
@@ -500,25 +506,33 @@ DefaultProperties
     DefaultInventory(0)=class'KFWeap_Minigun_Patriarch_Versus'
 
 	Begin Object Name=SpecialMoveHandler_0
-		SpecialMoveClasses(SM_PlayerZedAttack1)=class'KFSM_PlayerPatriarch_Melee'
-		SpecialMoveClasses(SM_PlayerZedAttack2)=class'KFSM_PlayerPatriarch_MinigunBarrage'
-		SpecialMoveClasses(SM_PlayerZedSpecial1)=class'KFSM_PlayerPatriarch_TentacleGrab'
-		SpecialMoveClasses(SM_PlayerZedSpecial2)=class'KFSM_PlayerPatriarch_MissileAttack'
-		SpecialMoveClasses(SM_PlayerZedSpecial3)=class'KFSM_PlayerPatriarch_Heal'
-		SpecialMoveClasses(SM_PlayerZedSpecial4)=class'KFSM_PlayerPatriarch_MortarAttack'
+		SpecialMoveClasses(SM_PlayerZedMove_LMB)=class'KFSM_PlayerPatriarch_Melee'
+		SpecialMoveClasses(SM_PlayerZedMove_RMB)=class'KFSM_PlayerPatriarch_MinigunBarrage'
+		SpecialMoveClasses(SM_PlayerZedMove_V)=class'KFSM_PlayerPatriarch_TentacleGrab'
+		SpecialMoveClasses(SM_PlayerZedMove_MMB)=class'KFSM_PlayerPatriarch_MissileAttack'
+		SpecialMoveClasses(SM_PlayerZedMove_Q)=class'KFSM_PlayerPatriarch_Heal'
+		SpecialMoveClasses(SM_PlayerZedMove_G)=class'KFSM_PlayerPatriarch_MortarAttack'
 		SpecialMoveClasses(SM_Taunt)=class'KFSM_Patriarch_Taunt'
 	End Object
 
+	MoveListGamepadScheme(ZGM_Attack_R2)=SM_PlayerZedMove_RMB
+	MoveListGamepadScheme(ZGM_Attack_L2)=SM_PlayerZedMove_MMB
+	MoveListGamepadScheme(ZGM_Melee_Square)=SM_PlayerZedMove_LMB
+	MoveListGamepadScheme(ZGM_Melee_Triangle)=SM_PlayerZedMove_V
+	MoveListGamepadScheme(ZGM_Block_R1)=SM_PlayerZedMove_Q
+	MoveListGamepadScheme(ZGM_Explosive_Ll)=SM_PlayerZedMove_G
+	MoveListGamepadScheme(ZGM_Special_R3)=SM_PlayerZedMove_V
+
 	// Gun stance cooldowns
-	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=0.5f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-HeavyMelee', GBA_Name="GBA_Fire",NameLocalizationKey="Melee")
-	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=4.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-MiniGun', GBA_Name="GBA_IronsightsToggle", ALT_GBA_Name="GBA_IronsightsHold",NameLocalizationKey="Minigun")
-	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	GBA_Name="GBA_Reload",bShowOnHud=false))
-	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=5.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-TentacleAttack', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Grab")
-	SpecialMoveCooldowns(4)=(SMHandle=SM_PlayerZedSpecial2,		CooldownTime=5.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Rocket', GBA_Name="GBA_SwitchFireMode",NameLocalizationKey="Rocket")
-	SpecialMoveCooldowns(5)=(SMHandle=SM_PlayerZedSpecial3,		CooldownTime=6.f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Heal', GBA_Name="GBA_QuickHeal", Charges=3,NameLocalizationKey="Heal")
-	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedSpecial4,		CooldownTime=2.35f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-MortarStrike', GBA_Name="GBA_Grenade",NameLocalizationKey="Mortar")
-	SpecialMoveCooldowns(7)=(SMHandle=SM_Custom1,				CooldownTime=999.f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Cloak', Charges=60)
-	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array
+	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedMove_LMB,		CooldownTime=0.5f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-HeavyMelee', NameLocalizationKey="Melee")
+	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB,		CooldownTime=4.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-MiniGun', NameLocalizationKey="Minigun")
+	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	bShowOnHud=false))
+	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=5.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-TentacleAttack', NameLocalizationKey="Grab")
+	SpecialMoveCooldowns(4)=(SMHandle=SM_PlayerZedMove_MMB,		CooldownTime=5.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Rocket', NameLocalizationKey="Rocket")
+	SpecialMoveCooldowns(5)=(SMHandle=SM_PlayerZedMove_Q,	CooldownTime=6.f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Heal', Charges=3,NameLocalizationKey="Heal")
+	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,	CooldownTime=2.35f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-MortarStrike', NameLocalizationKey="Mortar")
+	SpecialMoveCooldowns(7)=(SMHandle=SM_None,					CooldownTime=999.f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Cloak', Charges=60)
+	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Jump', bShowOnHud=false)) // Jump always at end of array
 
 	BattlePhases(0)={(HealAmounts={(1.0f)},
 					  TentacleDamage=10,

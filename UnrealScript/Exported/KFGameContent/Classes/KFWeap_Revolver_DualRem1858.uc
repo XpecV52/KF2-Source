@@ -156,7 +156,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=35.000000
    WeaponSelectTexture=Texture2D'WEP_UI_DualRemington1858_TEX.UI_WeaponSelect_DualRemington'
-   MaxSpareAmmo(0)=180
+   SpareAmmoCapacity(0)=180
    InitialSpareMags(0)=7
    IdleFidgetAnims(3)="Guncheck_v4"
    BonesToLockOnEmpty(0)="RW_Hammer"
@@ -206,7 +206,7 @@ defaultproperties
    InstantHitDamage(0)=30.000000
    InstantHitDamage(1)=30.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=10.000000
+   InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Rem1858'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_Rem1858'
    InstantHitDamageTypes(2)=None

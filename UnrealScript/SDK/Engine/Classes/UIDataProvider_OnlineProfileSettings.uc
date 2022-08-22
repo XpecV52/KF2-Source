@@ -24,7 +24,10 @@ class UIDataProvider_OnlineProfileSettings extends UIDataProvider_OnlinePlayerSt
   */
  function bool ReadData(OnlinePlayerInterface PlayerInterface, byte LocalUserNum, int DeviceId, OnlinePlayerStorage PlayerStorage)
  {
- 	return PlayerInterface.ReadProfileSettings(LocalUserNum, OnlineProfileSettings(PlayerStorage));
+//@HSL_BEGIN - BWJ - 6-22-16 - We want to manually read this data. Not when the datastore registers
+	 return true;
+ //	return PlayerInterface.ReadProfileSettings(LocalUserNum, OnlineProfileSettings(PlayerStorage));
+//@HSL_END
  }
  
  /**

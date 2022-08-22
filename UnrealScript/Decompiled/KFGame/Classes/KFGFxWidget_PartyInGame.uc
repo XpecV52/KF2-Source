@@ -158,8 +158,10 @@ function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
     local class<KFPerk> CurrentPerkClass;
     local byte CurrentPerkLevel;
     local KFGameReplicationInfo KFGRI;
+    local PlayerController PC;
 
-    KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
+    PC = Outer.GetPC();
+    KFGRI = KFGameReplicationInfo(PC.WorldInfo.GRI);
     if((KFPC.CurrentPerk == none) || KFPRI.CurrentPerkClass == none)
     {
         LogInternal("FAILED TO UPDATE SLOT: " @ string(SlotIndex), 'DevGFxUI');
@@ -180,7 +182,10 @@ function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
         PlayerID = KFPRI.UniqueId;
         MemberSlots[SlotIndex].PlayerUID = PlayerID;
         MemberSlots[SlotIndex].PRI = KFPRI;
-        OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
+        if(OnlineLobby != none)
+        {
+            OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
+        }
         if(Class'WorldInfo'.static.IsConsoleBuild(8))
         {
             bIsLeader = PlayerID == AdminId && Outer.GetPC().WorldInfo.NetMode != NM_Standalone;            
@@ -192,7 +197,8 @@ function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
         bIsMyPlayer = Outer.GetPC().PlayerReplicationInfo.UniqueId == PlayerID;
         PlayerName = KFPRI.PlayerName;
         UpdatePlayerName(SlotIndex, PlayerName);
-        SlotChanged(SlotIndex, true, bIsMyPlayer, bIsLeader);        
+        SlotChanged(SlotIndex, true, bIsMyPlayer, bIsLeader);
+        MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted", PC.IsPlayerMuted(PlayerID));        
     }
     else
     {
@@ -230,12 +236,21 @@ function ToggelMuteOnPlayer(int SlotIndex)
         PlayerNetId = KFPRIArray[SlotIndex].UniqueId;
         if(PC.IsPlayerMuted(PlayerNetId))
         {
-            PC.ServerUnmutePlayer(PlayerNetId);            
+            PC.ServerUnmutePlayer(PlayerNetId, !Class'WorldInfo'.static.IsConsoleBuild());
+            if(MemberSlots[SlotIndex].MemberSlotObject != none)
+            {
+                MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted", false);
+            }            
         }
         else
         {
-            PC.ServerMutePlayer(PlayerNetId);
+            PC.ServerMutePlayer(PlayerNetId, !Class'WorldInfo'.static.IsConsoleBuild());
+            if(MemberSlots[SlotIndex].MemberSlotObject != none)
+            {
+                MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted", true);
+            }
         }
+        CreatePlayerOptions(PlayerNetId, SlotIndex);
     }
 }
 

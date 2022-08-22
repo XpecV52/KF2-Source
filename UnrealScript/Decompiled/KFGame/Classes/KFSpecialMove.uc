@@ -17,6 +17,7 @@ var KFPlayerController PCOwner;
 var KFAIController AIOwner;
 var transient Object AISpecialOwner;
 var transient KFPawn.ESpecialMove SMIndex;
+var Engine.SkeletalMeshComponent.ERootMotionMode SMRootMotionMode;
 var AnimNodeSlot ActiveSlotNode;
 var bool bOverridePawnSpeedModifier;
 var bool bAllowHitReactions;
@@ -24,6 +25,7 @@ var bool bAllowMomentumPush;
 var bool bCanOnlyWanderAtEnd;
 var bool bAllowThirdPersonWeaponAnims;
 var bool bUseCustomRotationRate;
+var bool bUseHigherMeshSmoothingThreshold;
 var bool bDisablesWeaponFiring;
 var bool bOnlyInteractionPawnCanDamageMe;
 var bool bCanModifyInteractionPawn;
@@ -44,7 +46,9 @@ var const bool bDisableTurnInPlace;
 var const bool bDisablePhysics;
 var const bool bServerOnlyPhysics;
 var bool bAllowFireAnims;
+var bool bShouldDeferToPostTick;
 var Rotator CustomRotationRate;
+var name DeferredSeqName;
 var ViewOffsetData CustomThirdPersonViewOffset;
 var float ViewOffsetInterpTime;
 var float CustomCameraFOV;
@@ -291,6 +295,18 @@ final function SetMovementLock(bool bEnable)
     }
 }
 
+function EnableRootMotion()
+{
+    KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(2, 2, 2);
+    KFPOwner.Mesh.RootMotionMode = SMRootMotionMode;
+}
+
+function DisableRootMotion()
+{
+    KFPOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
+    KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
+}
+
 function Tick(float DeltaTime)
 {
     super.Tick(DeltaTime);
@@ -374,6 +390,14 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
     KFPOwner.EndSpecialMove();
 }
 
+function DeferOnAnimEnd()
+{
+    if(KFPOwner.SpecialMoves[KFPOwner.SpecialMove] == self)
+    {
+        AnimEndNotify(none, 0, 0);
+    }
+}
+
 function AbortedByAICommand();
 
 function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy);
@@ -396,6 +420,7 @@ event ModifyInteractionPawn(out KFPawn OtherPawn);
 
 defaultproperties
 {
+    SMRootMotionMode=ERootMotionMode.RMM_Accel
     bDisableAIAttackRangeChecks=true
     bDisableSteering=true
     CameraFOVTransitionTime=1

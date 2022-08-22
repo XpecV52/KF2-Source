@@ -104,7 +104,7 @@ function OnLoginChange(byte LocalUserNum)
         if(OnlineSub != none)
         {
             PlayerInterface = OnlineSub.PlayerInterface;
-            if(NotEqual_InterfaceInterface(PlayerInterface, (none)) && PlayerInterface.GetLoginStatus(byte(PlayerControllerId)) > 0)
+            if(NotEqual_InterfaceInterface(PlayerInterface, (none)) && (PlayerInterface.GetLoginStatus(byte(PlayerControllerId)) > 0) || Class'WorldInfo'.static.IsConsoleBuild(8))
             {
                 PlayerNick = PlayerInterface.GetPlayerNickname(byte(PlayerControllerId));                
             }
@@ -178,6 +178,8 @@ defaultproperties
 {
     PlayerControllerId=-1
     PlayerNick="PlayerNickNameHere"
+    ProfileSettingsClassName="KFGame.KFProfileSettings"
+    PlayerStorageClassName="KFGame.KFProfileSettings"
     PartyChatProviderClassName="Engine.UIDataProvider_OnlinePartyChatList"
     Tag=OnlinePlayerData
 }

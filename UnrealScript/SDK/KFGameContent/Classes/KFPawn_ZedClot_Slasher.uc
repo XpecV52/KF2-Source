@@ -28,6 +28,7 @@ DefaultProperties
 	// Content
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Slasher_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.SlasherClot_AnimGroup'
+	DifficultySettings=class'KFDifficulty_ClotSlasher'
 
 	// ---------------------------------------------
 	// Gameplay
@@ -62,6 +63,7 @@ DefaultProperties
 	IncapSettings(AF_FirePanic)=(Vulnerability=(0.7),                     Cooldown=7.0, Duration=5)
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0, Duration=5.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5, Duration=2.0)
+	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5, Duration=4.0)
 
 	ParryResistance=0
 
@@ -77,7 +79,6 @@ DefaultProperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(1.0)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(1.0)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(1.0)))
-
 
 	// special case
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_Knife',              DamageScale=(1.0))

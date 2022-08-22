@@ -28,8 +28,11 @@ static function int GetDamageeDialogID()
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_FlameThrower'
-   DoT_DamageScale=0.600000
+   DoT_Duration=1.700000
+   DoT_Interval=0.500000
+   DoT_DamageScale=0.800000
    StumblePower=20.000000
+   BurnPower=10.500000
    Name="Default__KFDT_Fire_FlameThrower"
    ObjectArchetype=KFDT_Fire'KFGame.Default__KFDT_Fire'
 }

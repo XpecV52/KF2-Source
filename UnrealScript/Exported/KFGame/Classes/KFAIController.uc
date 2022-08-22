@@ -756,8 +756,84 @@ var const int			ZedBumpEffectThreshold;
 var const float			ZedBumpObliterationEffectChance;
 
 /*********************************************************************************************
+ Evasion / Blocking
+ ********************************************************************************************* */
+
+/** Struct containing info for forced evade directions and their chance of being selected  */
+struct native sForcedEvadeChanceInfo
+{
+	/** Forward-Left */
+	var float FL;
+
+	/** Forward-Right */
+	var float FR;
+};
+
+/** Struct containing information for AI to evade danger */
+struct native sDangerEvadeInfo
+{
+	/** Projectile class to check against */
+	var name ClassName;
+
+	/** Cooldown period, per-difficulty. Difficulty ranges are 0 to 3, Normal-Hard-Suicidal-HoE */
+	var array<float> Cooldowns;
+	
+	/** Maximum evade chance, per-difficulty */
+	var array<float> EvadeChances;
+
+	/** Forced evade chances per difficulty */
+	var array<sForcedEvadeChanceInfo> ForcedEvadeChances;
+
+	/** Minimum and maximum delay before AI reacts to a projectile of this type */
+	var array<vector2d> ReactionDelayRanges;
+
+	/** Chances to block instead of evade */
+	var array<float> BlockChances;
+
+	/** How much to multiply the chance by when in a solo game */
+	var float SoloChanceMultiplier;
+
+	/** Last time a projectile of this type was evaded */
+	var transient float LastEvadeTime;
+};
+
+/** Struct containing information for AI to evade on damage */
+struct native sEvadeOnDamageInfo
+{
+	var float Chance;
+	var float DamagedHealthPctToTrigger;
+	var sForcedEvadeChanceInfo ForcedEvadeChance;
+
+	structdefaultproperties
+	{
+		Chance=0.f
+	}
+};
+
+/** Settings used for danger evasion, set on a per-projectile or per-weapon basis */
+var protected array<sDangerEvadeInfo> DangerEvadeSettings;
+
+/** What percentage of max health AccumulatedEvadeDamage needs to reach before an evade is triggered */
+var transient sEvadeOnDamageInfo EvadeOnDamageSettings;
+
+/** How much damage we've accumulated towards our next evade trigger */
+var transient protected int AccumulatedEvadeDamage;
+
+/** How much damage we've accumulated towards our next block trigger */
+var transient protected int AccumulatedBlockDamage;
+
+/*********************************************************************************************
  Aggro
  ********************************************************************************************* */
+struct native sFriendlyDamageInfo
+{
+	var Controller DamagerController;
+	var int Damage;
+};
+
+/** Array containing all friendly AI that have damaged us */
+var array<sFriendlyDamageInfo> FriendlyDamageHistory;
+
 var byte CurrentEnemysHistoryIndex;
 /** The percentage of damage that needs to be dealt to a zed to make this controller consider attacking the player */
 var const float AggroPlayerHealthPercentage;
@@ -769,7 +845,8 @@ var float		MinDistanceToAggroZed;
 var const float AggroZedResetTime;
 /** The percentage of damage that needs to be taken from another zed to make this controller consider attacking him */
 var const float AggroZedHealthPercentage;
-
+/** How long to wait between aggro switches */
+var const float AggroEnemySwitchWaitTime;
 
 /*********************************************************************************************
  AI Commands
@@ -951,7 +1028,7 @@ native function bool IgnoreNotifies() const;
 /** Returns true if CheckPawn is currently moving away from my pawn, optionally at MinSpeed */
 native function bool IsPawnMovingAwayFromMe( Pawn CheckPawn, optional float MinSpeed );
 /** Returns a KFPawn if there is one blocking the path to EnemyPawn */
-native function KFPawn GetPawnBlockingPathTo( Pawn EnemyPawn, optional bool bTestTeam );
+native function Pawn GetPawnBlockingPathTo( Pawn EnemyPawn, optional bool bTestTeam );
 /** Lock the AI pawn rotation to a specific rotation, to unlock the pawn pass in zero */
 native function LockPawnRotationTo( Rotator NewRotation );
 /** Unlock the AI pawn's rotation */
@@ -2578,10 +2655,6 @@ native function InitSteering();
 native function KFAISteering GetSteering();
 // Calculates distance along current path, using NPC's routecache if valid
 final native function float GetRouteCacheDistance();
-// Returns true if my pawn is currently doing a stumble move/AI Command
-// @todo: Used to restrict AI behavior, but doesn't include all incapacitations (e.g. Stun).  We should get a
-//	 more robust system like IsImpaired().  Running out of good names for hit reactions!
-simulated final native function bool IsInStumble();
 // < -1 = Already passed LocB, nearly zero = nearly parallel
 native function float CalcClosestPointTime( Vector LocA, Vector VelocityA, Vector LocB, Vector VelocityB );
 // Used in checking direct reachability to goal while pawn is moving along a path
@@ -3026,7 +3099,7 @@ function DoStrike();
 function bool CanDoStrike();
 
 /** Notification I'm about to be run into by a Zed which has bUseRunOverWarning set to true */
-event RunOverWarning( KFPawn IncomingKFP, float IncomingSpeed, vector IncomingDir ) {}
+event RunOverWarning( KFPawn IncomingKFP, float IncomingSpeedSquared, vector RunOverPoint );
 
 /** Triggers an evade from the PendingEvadeProjectile, if possible and it's still on target */
 final function DoProjectileEvade()
@@ -3042,7 +3115,7 @@ final function DoProjectileEvade()
 		BestDir = GetBestEvadeDir( PendingEvadeProjectile.Location, PendingEvadeProjectile.Instigator );
 		if( BestDir != DIR_None )
 		{
-			DoEvade( BestDir, PendingEvadeProjectile, 0.1f + FRand() * 0.2f, true );
+			DoEvade( BestDir, PendingEvadeProjectile,, 0.1f + FRand() * 0.2f, true );
 		}
 	}
 	PendingEvadeProjectile = None;
@@ -3051,10 +3124,10 @@ final function DoProjectileEvade()
 /** Called just prior to setting MoveToEnemy */
 function PreMoveToEnemy();
 
-function DoEvade( byte EvadeDir, optional actor EvadeActor, optional float Delay, optional bool bFrightened, optional bool bTurnToThreat )
+function DoEvade( byte EvadeDir, optional actor EvadeActor, optional vector DangerInstigatorLocation=vect(0,0,0), optional float Delay, optional bool bFrightened, optional bool bTurnToThreat )
 {
 	AILog_Internal(GetFuncName()@EvadeDir@Pawn.Physics@Pawn.Anchor,'Command_Evade',);
-	class'AICommand_Evade'.static.Evade( self, EvadeDir, Delay, bFrightened );
+	class'AICommand_Evade'.static.Evade( self, EvadeDir, Delay, bFrightened,, DangerInstigatorLocation );
 }
 
 function DoStumble( vector Momentum, EHitZoneBodyPart HitZoneLimb )
@@ -3287,7 +3360,7 @@ function SetSprintingDisabled( bool bNewSprintStatus )
 {
 	bSprintingDisabled = bNewSprintStatus;
 
-	if ( !bCanSprint || bSprintingDisabled )
+	if ( MyKFPawn != none && (!bCanSprint || bSprintingDisabled) )
 	{
 		MyKFPawn.bIsSprinting = false;
 	}
@@ -3323,6 +3396,12 @@ function bool ShouldSprint()
 
 	if( MyKFPawn != none && MyKFPawn.IsAliveAndWell() && Enemy != none && Enemy.IsAliveAndWell() )
 	{
+		// Don't allow sprinting when blocking attacks
+		if( MyKFPawn.IsDoingSpecialMove(SM_Block) )
+		{
+			return false;
+		}
+
 		// Sprint if we've reached the frustration threshold
 		if ( IsFrustrated() )
 		{
@@ -4108,16 +4187,16 @@ function EvaluateStuckPossibility(float DeltaTime)
         	if( MyKFGameInfo.MyKFGRI.AIRemaining > 5 || TotalStuckCheckCloseRangeTime < 5.0f )
         	{
 		        if( LastStuckCheckCloseRangeTime > 0.f )
-        {
+                {
 		        	TotalStuckCheckCloseRangeTime += (WorldInfo.TimeSeconds - LastStuckCheckCloseRangeTime);
 		        }
 		        LastStuckCheckCloseRangeTime = WorldInfo.TimeSeconds;
 
-            StuckPossiblity=0;
-            bTryingToGetUnstuck=false;
-            return;
+                StuckPossiblity=0;
+                bTryingToGetUnstuck=false;
+                return;
+            }
         }
-    }
         else
         {
 			TotalStuckCheckCloseRangeTime = 0.f;
@@ -4459,7 +4538,7 @@ function bool ShouldReduceZedOnZedCollisionOnBumpForNavigating()
     {
         DistToEnemySquared = VSizeSq(Enemy.Location - Pawn.Location);
 
-        if( bEnemyIsVisible || LineOfSightTo(Enemy) )
+        if( bEnemyIsVisible )
         {
             if( DistToEnemySquared <  NavigationBumpTeamCollisionThreshholdSquared )
             {
@@ -6079,7 +6158,7 @@ function DoDebugTurnInPlace( KFPlayerController KFPC, optional bool bAllowMelee=
 /** To override in subclasses */
 function bool IsAggroEnemySwitchAllowed()
 {
-	if( LastEnemySwitchTime > 0.f && (WorldInfo.TimeSeconds - LastEnemySwitchTime) < 5.f )
+	if( LastEnemySwitchTime > 0.f && (WorldInfo.TimeSeconds - LastEnemySwitchTime) < AggroEnemySwitchWaitTime )
 	{
 		return false;
 	}
@@ -6244,44 +6323,297 @@ simulated function DrawBehaviorTreeIconOverhead(KFHUDBase HUD)
 }
 
 /*********************************************************************************************
-* Evade / Evasion
+* Evade / Evasion / Blocking
 **********************************************************************************************/
 
-/** Warns the AI that it needs to evade from a particular location */
-function ReceiveLocationalWarning(vector DangerPoint)
+/** Returns a reaction delay only if the projectile/weapon can be evaded */
+function bool GetDangerEvadeDelay( Name InstigatorClassName, out float ReactionDelay, out byte ForcedEvadeDir, out byte bShouldBlock )
 {
+	local int Index, D;
+	local sBlockInfo BlockSettings;
+
+	Index = DangerEvadeSettings.Find( 'ClassName', InstigatorClassName );
+
+	if( Index != INDEX_NONE )
+	{
+		bShouldBlock = 0;
+
+		// Cache difficulty
+		D = WorldInfo.Game.GameDifficulty;
+
+		// Check cooldown
+		if( DangerEvadeSettings[Index].LastEvadeTime > 0.f
+			&& (WorldInfo.TimeSeconds - DangerEvadeSettings[Index].LastEvadeTime) < DangerEvadeSettings[Index].Cooldowns[D] )
+		{
+			return false;
+		}
+
+		// Check evade chance
+		if( D >= DangerEvadeSettings[Index].EvadeChances.Length
+			|| fRand() > DangerEvadeSettings[Index].EvadeChances[D]	* (WorldInfo.Game.NumPlayers == 1 ? DangerEvadeSettings[Index].SoloChanceMultiplier : 1.f) )
+		{
+			// Check block chance
+			if( D < DangerEvadeSettings[Index].BlockChances.Length )
+			{
+				BlockSettings = MyKFPawn.GetBlockSettings();
+				if( (WorldInfo.TimeSeconds - MyKFPawn.LastBlockTime) >= BlockSettings.Cooldown
+					&& fRand() < DangerEvadeSettings[Index].BlockChances[D] * (WorldInfo.Game.NumPlayers == 1 ? BlockSettings.SoloChanceMultiplier : 1.f) )
+				{
+					// We are blocking
+					bShouldBlock = 1;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		// Check forced evade chances
+		if( bShouldBlock == 0 )
+		{
+			ForcedEvadeDir = DIR_None;
+			if( DangerEvadeSettings[Index].ForcedEvadeChances.Length > D )
+			{
+				if( fRand() < DangerEvadeSettings[Index].ForcedEvadeChances[D].FL )
+				{
+					ForcedEvadeDir = DIR_ForwardLeft;
+				}
+				else if( fRand() < DangerEvadeSettings[Index].ForcedEvadeChances[D].FR )
+				{
+					ForcedEvadeDir = DIR_ForwardRight;
+				}
+			}
+
+			// Set our delay
+			ReactionDelay = RandRange( DangerEvadeSettings[Index].ReactionDelayRanges[D].X, DangerEvadeSettings[Index].ReactionDelayRanges[D].Y );
+		}
+
+		// Set our evade time for cooldowns
+		DangerEvadeSettings[Index].LastEvadeTime = WorldInfo.TimeSeconds;
+
+		return true;
+	}
+
+	return false;
+}
+
+/** Receives a melee warning including direction of attack and direction from pawn to attacker */
+function ReceiveMeleeWarning( EPawnOctant MeleeDir, vector ProjectionToAttacker, Pawn Attacker )
+{
+	local vector NormalDir;
+	local EPawnOctant AttackerDir;
 	local byte BestDir;
 
-	if( MyKFPawn != none )
+	// Early out if blocking isn't possible
+	if( !MyKFPawn.CanBlock() )
 	{
-		BestDir = GetBestEvadeDir( DangerPoint, , false );
+		return;
+	}
+
+	NormalDir = Normal( ProjectionToAttacker );
+
+	// No blocking attacks from behind 
+	if( vector(MyKFPawn.Rotation) dot NormalDir < MyKFPawn.GetMinBlockFOV() )
+	{
+		return;
+	}
+
+	BestDir = DIR_None;
+
+	// Start with which direction attack is coming from
+	AttackerDir = class'KFPawn'.static.CalcQuadRegion( MyKFPawn.Rotation, NormalDir );
+	if( AttackerDir == DIR_Left || AttackerDir == DIR_Right )
+	{
+		BestDir = AttackerDir;
+	}
+	else if( AttackerDir == DIR_Forward )
+	{
+		// If we're being attacked from the front, use melee direction to determine block
+		BestDir = MeleeDir == DIR_Left ? DIR_Right : DIR_Left;
+	}
+
+	if( BestDir != DIR_None )
+	{
+		MyKFPawn.DoSpecialMove( SM_Block, MyKFPawn.bIsBlocking,, class'KFSM_Block'.static.PackBlockSMFlags(BestDir) );
+	}
+}
+
+/** Deprecated, doesn't work well for our purposes */
+function ReceiveProjectileWarning( Projectile Proj );
+
+/** Warns the AI that it needs to evade from a particular location */
+function ReceiveLocationalWarning( vector DangerPoint, vector DangerInstigatorLocation, optional Object EvadeCauser )
+{
+	local byte BestDir;
+	local float ReactionDelay;
+	local byte bWantsBlock;
+
+	if( MyKFPawn == none )
+	{
+		return;
+	}
+
+	if( CanEvade() || MyKFPawn.CanDoSpecialMove(SM_Block) )
+	{
+		// Make sure we're not evading something we can't even see
+		if( vector(MyKFPawn.Rotation) dot Normal(DangerInstigatorLocation - MyKFPawn.Location) < 0.1f )
+		{
+			return;
+		}
+
+		// Attempt to look up our danger evade settings
+		if( EvadeCauser != none )
+		{
+			// Returns false if it has no entry, is on cooldown, or it failed the evade chance check
+			if( !GetDangerEvadeDelay(EvadeCauser.class.name, ReactionDelay, BestDir, bWantsBlock) )
+			{
+				return;
+			}
+		}
+		else
+		{
+			// Make sure we always have a valid reaction delay
+			ReactionDelay = RandRange( 0.f, 0.2f );
+		}
+
+		// Do blocks first
+		if( bWantsBlock == 1 )
+		{
+			BestDir = class'KFPawn'.static.CalcQuadRegion( MyKFPawn.Rotation, DangerPoint - MyKFPawn.Location );
+			if( BestDir != DIR_None )
+			{
+				MyKFPawn.DoSpecialMove( SM_Block, MyKFPawn.bIsBlocking,, class'KFSM_Block'.static.PackBlockSMFlags(BestDir) );
+			}
+			return;
+		}
+
+		// Calculate evade direction if there was no forced direction
+		if( BestDir == DIR_None )
+		{
+			BestDir = GetBestEvadeDir( DangerPoint,, true );
+		}
+
 		if( BestDir != DIR_None )
 		{
-			DoEvade( BestDir, , FRand() * 0.2f, true );
+			DoEvade( BestDir,, DangerInstigatorLocation, ReactionDelay, true );
 		}
 	}
 }
 
-function ReceiveProjectileWarning( Projectile Proj )
+function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage, class<DamageType> damageType, vector Momentum )
 {
-	local KFAIController OtherKFAIC;
+	local sBlockInfo BlockSettings;
+	local byte BestDir;
 
+	super.NotifyTakeHit( InstigatedBy, HitLocation, Damage, damageType, Momentum );
+
+	// See if we should trigger our block
+	if( !MyKFPawn.bIsBlocking )
+	{
+		BlockSettings = MyKFPawn.GetBlockSettings();
+
+		// If there's no blocking chance, early out
+		if( BlockSettings.Chance > 0.f )
+		{
+			AccumulatedBlockDamage += Damage;
+
+			// If accumulated damage has reached or exceeded the threshold, attempt to trigger a block
+			if( AccumulatedBlockDamage >= MyKFPawn.HealthMax * BlockSettings.DamagedHealthPctToTrigger
+				&& MyKFPawn.Physics == PHYS_Walking
+				&& MyKFPawn.IsCombatCapable()
+				&& MyKFPawn.CanBlock() )
+			{
+				AccumulatedBlockDamage = 0;
+
+				// Get direction we should block
+				BestDir = class'KFPawn'.static.CalcQuadRegion( MyKFPawn.Rotation, Momentum );
+				MyKFPawn.DoSpecialMove( SM_Block, MyKFPawn.bIsBlocking,, class'KFSM_Block'.static.PackBlockSMFlags(BestDir) );
+				return;
+			}
+		}
+	}
+
+	// See if we should trigger our evade
+	if( EvadeOnDamageSettings.Chance > 0.f )
+	{
+		AccumulatedEvadeDamage += Damage;
+
+		// If accumulated damage has reached or exceeded the threshold, attempt to trigger an evade
+		if( AccumulatedEvadeDamage >= MyKFPawn.HealthMax * EvadeOnDamageSettings.DamagedHealthPctToTrigger
+			&& fRand() < EvadeOnDamageSettings.Chance
+			&& CanEvade() )
+		{
+			AccumulatedEvadeDamage = 0;
+
+			// Get direction we should evade
+			BestDir = DIR_None;
+			if( EvadeOnDamageSettings.ForcedEvadeChance.FL > 0.f && fRand() < EvadeOnDamageSettings.ForcedEvadeChance.FL )
+			{
+				BestDir = DIR_ForwardLeft;
+			}
+			else if( EvadeOnDamageSettings.ForcedEvadeChance.FR > 0.f && fRand() < EvadeOnDamageSettings.ForcedEvadeChance.FR )
+			{
+				BestDir = DIR_ForwardRight;
+			}
+
+			// If we don't have a forced evade direction, pick one based on the hit location
+			if( BestDir == DIR_None )
+			{
+				BestDir = GetBestEvadeDir( HitLocation,, true );
+			}
+
+			if( BestDir != DIR_None )
+			{
+				DoEvade( BestDir,, (InstigatedBy != none && InstigatedBy.Pawn != none) ? InstigatedBy.Pawn.Location : vect(0,0,0), RandRange(0.f, 0.2f), true );
+			}
+		}
+	}
+}
+
+/** Notification that we've been damaged by a friendly AI */
+function NotifyFriendlyAIDamageTaken( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
+{
+	local int Idx;
+	local Pawn BlockerPawn;
+
+	// Retrieves the index and, if necessary, creates a new entry
+	Idx = UpdateFriendlyDamageHistory( DamagerController, Damage );
+	if( Idx == INDEX_NONE )
+	{
+		return;
+	}
+
+	if( IsAggroEnemySwitchAllowed()
+		&& DoorEnemy == none
+		&& PendingDoor == none
+		&& DamagerController.Pawn != Enemy
+		&& FriendlyDamageHistory[Idx].Damage >= float(Pawn.HealthMax) * AggroZedHealthPercentage )
+	{
+		BlockerPawn = GetPawnBlockingPathTo( DamagerController.Pawn );
+		if( BlockerPawn == none )
+		{
+			SetEnemyToZed( DamagerController.Pawn );
+		}
+	}
+}
+
+/** Updates our friendly damage history, and returns the index in the damage history array  */
+native function int UpdateFriendlyDamageHistory( Controller DamagerController, int Damage );
+
+/** Called from KFProjectile after certain impact criteria is met, to warn AI of a pending explosion */
+function DoProjectileWarning( KFProjectile KFProj )
+{
 	if( MyKFPawn == none || MyKFPawn.Health <= 0 || (!MyKFPawn.CanDoSpecialMove(SM_Evade) && !MyKFPawn.CanDoSpecialMove(SM_Evade_Fear)) )
 	{
 		return;
 	}
 
-	HandleProjectileWarning( Proj );
-	foreach WorldInfo.AllControllers( class'KFAIController', OtherKFAIC )
-	{
-		if( OtherKFAIC != self && OtherKFAIC.Pawn != none && OtherKFAIC.Pawn.Health > 0 && OtherKFAIC.PendingEvadeProjectile == none )
-		{
-			if( VSizeSq(OtherKFAIC.Pawn.Location - Proj.Location) < 810000.f ) // 900uu
-			{
-				OtherKFAIC.HandleProjectileWarning( Proj );
-			}
-		}
-	}
+	HandleProjectileWarning( KFProj );
 }
 
 function HandleProjectileWarning( Projectile Proj )
@@ -6326,22 +6658,19 @@ final function Timer_DoProjectileEvade()
 		BestDir = GetBestEvadeDir( PendingEvadeProjectile.Location, PendingEvadeProjectile.Instigator );
 		if( BestDir != DIR_None )
 		{
-			DoEvade( BestDir, PendingEvadeProjectile, 0.1f + FRand() * 0.2f, true );
+			DoEvade( BestDir, PendingEvadeProjectile,, 0.1f + FRand() * 0.2f, true );
 		}
 	}
 	PendingEvadeProjectile = None;
 }
 
 /** Returns true if my pawn is permitted to evade away from something. */
-function bool CanEvade()
+function bool CanEvade( optional bool bOverrideSpecialMove )
 {
-	if( MyKFPawn == none || MyKFPawn.Health <= 0 || MyKFPawn.Physics != PHYS_Walking
-		|| MyKFPawn.IsDoingSpecialMove() || MyKFPawn.IsImpaired() )
-	{
-		return false;
-	}
-
-	return true;
+	return MyKFPawn.Physics == PHYS_Walking
+			&& (MyKFPawn.CanDoSpecialMove(SM_Evade) || MyKFPawn.CanDoSpecialMove(SM_Evade_Fear))
+			&& (bOverrideSpecialMove || !MyKFPawn.IsDoingSpecialMove())
+			&& MyKFPawn.IsCombatCapable();
 }
 
 /** Pick best direction to evade */
@@ -6470,6 +6799,7 @@ event WaitForDoor( KFDoorActor Door )
 	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIDoor(class'KFGameplayEventsWriter'.const.GAMEEVENT_AI_WAITFORDOOR,self,Pawn.Location,Door,"Waiting at "$WorldInfo.TimeSeconds);};
 	AILog_Internal(GetFuncName()$"() Waiting for door "$Door$" to open or be destroyed",'Doors',);
 	SetTimer( 5.f, true, nameof(Timer_WaitingForDoor) );
+	DoorEnemy = none;
 	PendingDoor = Door;
 	Door.bMonitorDoor = true;
 	bPreparingMove = true;
@@ -6525,7 +6855,45 @@ function bool DoorFinished()
 /** Notification that NPC needs to attack this door */
 function NotifyAttackDoor( KFDoorActor Door )
 {
+	local KFDoorMarker DoorMarker;
+	local int AttackerCount, QueuedCount;
 	local byte SMFlags;
+
+	DoorMarker = KFDoorMarker(Door.MyMarker);
+	if( DoorMarker != none )
+	{
+		Door.GetQueuedDoorAICounts( AttackerCount, QueuedCount );
+
+		// Force a repath if there are too many zeds queued at this door
+		if( AttackerCount + QueuedCount > 8 && DoorEnemy != Door )
+		{
+			DoorEnemy = none;
+			PendingDoor = none;
+
+			if( Enemy != none && Focus != Enemy )
+			{
+				Focus = none;
+			}
+
+			if( Enemy == none )
+			{
+				ChangeEnemy( GetClosestEnemy(), false );
+			}
+
+			// Update the cost of this door marker based on the number queued
+			DoorMarker.UpdatePathingCost( AttackerCount, QueuedCount );
+
+			// Tell our move commands that we're leaving
+			NotifyNeedRepath();
+
+			return;
+		}
+		else
+		{
+			// Update the cost of this door marker based on the number queued
+			DoorMarker.UpdatePathingCost( AttackerCount + (DoorEnemy != Door ? 1 : 0), QueuedCount );
+		}
+	}
 
 	AILog_Internal(GetFuncName()$"() initializing AICommand_Attack_Melee, MoveTarget: "$MoveTarget$" Dist: "$VSize( Door.MyMarker.Location - Pawn.Location ),'Doors',);
 
@@ -7510,6 +7878,7 @@ defaultproperties
    MinDistanceToAggroZed=1500.000000
    AggroZedResetTime=30.000000
    AggroZedHealthPercentage=0.150000
+   AggroEnemySwitchWaitTime=5.000000
    RepeatWalkingTauntTime=15.000000
    bAlwaysAssignEnemy=False
    PlugInHistoryNum=25

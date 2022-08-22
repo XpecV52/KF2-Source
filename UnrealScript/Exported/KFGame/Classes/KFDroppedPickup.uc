@@ -30,6 +30,9 @@ var const bool bEnableStaticMeshRBPhys;
 /** (TW) If set this pickups passes (and can be picked) through blocking volumes) */
 var const bool bIgnoreBlockingVolumes;
 
+/** When TRUE, there is a delay before the owner is allowed to re-pickup if they are low on health */
+var protected const bool bUseLowHealthDelay;
+
 /** Skin assigned from dropped weapon */
 var private int SkinItemId;
 
@@ -392,7 +395,7 @@ auto state Pickup
 		if ( Other == Instigator )
 		{
 			// If low on health, wait a little longer to allow pickup again
-			if( ((Instigator.Health / Instigator.HealthMax) <= 0.2f && (WorldInfo.TimeSeconds - CreationTime) < 1.f)
+			if( (bUseLowHealthDelay && (Instigator.Health / Instigator.HealthMax) <= 0.2f && (WorldInfo.TimeSeconds - CreationTime) < 1.f)
 				|| (WorldInfo.TimeSeconds - CreationTime) < 0.1f )
 			{
 				return false;
@@ -513,6 +516,7 @@ function TryFadeOut()
 defaultproperties
 {
    bEnableStaticMeshRBPhys=True
+   bUseLowHealthDelay=True
    Begin Object Class=SpriteComponent Name=Sprite Archetype=SpriteComponent'Engine.Default__DroppedPickup:Sprite'
       Sprite=Texture2D'EditorResources.S_Inventory'
       SpriteCategoryName="Inventory"

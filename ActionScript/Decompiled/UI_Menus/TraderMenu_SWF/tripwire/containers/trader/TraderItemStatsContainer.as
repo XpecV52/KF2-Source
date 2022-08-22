@@ -53,6 +53,8 @@ package tripwire.containers.trader
         
         public var favoriteControllerIcon:MovieClip;
         
+        public var favoriteIcon:MovieClip;
+        
         public function TraderItemStatsContainer()
         {
             super();

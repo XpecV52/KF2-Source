@@ -37,17 +37,7 @@ function AddGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> GetP
 
 function ClearGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> GetPlayerListCompleteDelegate);
 
-function ClearServerFilters(OnlineGameSearch Search);
-
 function bool RemoveSearchResultFromFavorites(int Index);
-
-function AddServerFilter(OnlineGameSearch Search, string Key, optional string Val = "", optional int location = -1);
-
-function TestAddBoolGametagFilter(out string GametagString, bool Test, name Property, byte BoolVal);
-
-function AddGametagFilter(out string GametagString, name Property, string Val);
-
-function TestAddServerFilter(OnlineGameSearch Search, bool Test, string Key, optional string Val = "");
 
 function ClearOnlineDelegates();
 
@@ -621,6 +611,16 @@ function ClearGameInviteAcceptedDelegate(byte LocalUserNum,delegate<OnGameInvite
 //@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions - Adding game info parameter so we can accept the right game
 function bool AcceptGameInvite(byte LocalUserNum,name SessionName,const out OnlineGameSearchResult DesiredGame);
 //@HSL_END
+
+//@HSL_BEGIN - JRO - 6/10/2016 - Play Together
+delegate OnPlayTogetherStarted();
+function AddPlayTogetherStartedDelegate(byte LocalUserNum,delegate<OnPlayTogetherStarted> PlayTogetherStartedDelegate);
+function ClearPlayTogetherStartedDelegate(byte LocalUserNum,delegate<OnPlayTogetherStarted> PlayTogetherStartedDelegate);
+function array<string> GetPendingMembersToInvite();
+function ResetPendingMembersToInvite();
+function SetPendingMembersToInvite(array<string> Members);
+//@HSL_END
+
 
 /**
  * Updates the current session's skill rating using the list of players' skills

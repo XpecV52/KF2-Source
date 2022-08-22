@@ -53,6 +53,8 @@ struct HansBattlePhaseInfo
     var             bool            bCanBarrageGrenades;
     /** Info on how often we can barrage HENades in this battle phase */
     var             float           HENadeBarragePhaseCooldown;
+    /** Whether Hans can move when throwing grenades, per difficulty level */
+    var             array<bool>     bCanMoveWhileThrowingGrenades;
     /** Heal threshold (MaxHealth * HealThreshold) per difficulty level */
     var             array<float>    HealThresholds;
     /** Heal amount Health + MaxHealth*(MaxHealth * HealAmount) per difficulty level */
@@ -133,7 +135,7 @@ enum EHansNadeType
 };
 
 /** Grenade accuracy TODO: Make this based on skill level for AI*/
-var float                           GrenadeTossSpread;
+var vector GrenadeTossSpread;
 
 /** Waiting to do a smoke grenade barrage as soon as the guns are put away */
 var bool bPendingSmokeGrenadeBarrage;
@@ -332,6 +334,12 @@ function bool ShouldPlaySpecialMeleeAnims()
 	return CanFrenzyInThisPhase();
 }
 
+/** Only allow blocking when in melee */
+function bool CanBlock()
+{
+    return !bGunsEquipped && !bInHuntAndHealMode && super.CanBlock();
+}
+
 /** Has the offensive grenade cooldown time elapsed */
 function bool OffensiveGrenadeCooldownComplete()
 {
@@ -434,6 +442,21 @@ function SetActiveGrenadeClassNerveGas()
     ActiveGrenadeClass=NerveGasGrenadeClass;
 }
 
+/** Returns TRUE if all conditions are met to allow movement while throwing grenades */
+simulated function bool CanMoveWhileThrowingGrenades()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    // See if this battle phase allows it
+    KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
+    if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhileThrowingGrenades[KFGRI.GameDifficulty] )
+    {
+        return true;
+    }
+
+    return bInHuntAndHealMode || LocalIsOnePlayerLeftInTeamGame();
+}
+
 function PlayDrawGunsDialog()
 {
     if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHansDrawGunsDialog( self );
@@ -448,7 +471,7 @@ function PlayGrenadeDialog( bool bBarrage )
         break;
 
     case SmokeGrenadeClass:
-        if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHansSmokeDialog( self, bBarrage );
+        if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHansSmokeDialog( self, false );
         break;
 
     case NerveGasGrenadeClass:
@@ -461,7 +484,6 @@ function PlayGrenadeDialog( bool bBarrage )
 simulated function SetHuntAndHealMode( bool bOn )
 {
     local KFGameInfo KFGI;
-    local KFCharacterInfo_Monster MonsterInfo;
     local float HealthMod;
     local float HeadHealthMod;
 
@@ -478,10 +500,8 @@ simulated function SetHuntAndHealMode( bool bOn )
             KFGI = KFGameInfo( WorldInfo.Game );
             if( KFGI != none )
             {
-                MonsterInfo = GetCharacterMonsterInfo();            
-
                 KFGI.DifficultyInfo.GetAIHealthModifier(
-                    MonsterInfo,
+                    self,
                     KFGI.GameDifficulty,
                     KFGI.GetLivingPlayerCount(),
                     HealthMod,
@@ -557,15 +577,15 @@ function SummonMinions()
     }
 
     // Determine which summon squad to spawn by difficulty
-    if( Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
+    if( Skill == class'KFGameDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
     {
         DifficultyIndex = 0;
     }
-    else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
+    else if( Skill <= class'KFGameDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
     {
         DifficultyIndex = 1;
     }
-    else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
+    else if( Skill <= class'KFGameDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
     {
         DifficultyIndex = 2;
     }
@@ -595,7 +615,7 @@ function SummonMinions()
     SpawnManager = MyKFGameInfo.SpawnManager;
     if ( SpawnManager != none )
     {
-        SpawnManager.SummonBossMinions( MinionWave.Squads, NumMinionsToSpawn );
+        SpawnManager.SummonBossMinions( MinionWave.Squads, GetNumMinionsToSpawn() );
     }
 }
 
@@ -765,10 +785,12 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(29)=None
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_MonsterBoss:SpecialMoveHandler_0'
    End Object
@@ -832,6 +854,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_MonsterBoss:KFPawnSkeletalMeshComponent'
    End Object

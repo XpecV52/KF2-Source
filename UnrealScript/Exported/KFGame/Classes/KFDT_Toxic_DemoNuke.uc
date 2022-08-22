@@ -21,9 +21,15 @@ static function bool AlwaysPoisons()
 defaultproperties
 {
    bNoInstigatorDamage=True
+   bShouldSpawnPersistentBlood=True
+   DoT_Type=DOT_None
+   DoT_Duration=5.000000
    DoT_Interval=0.300000
-   DoT_DamageScale=1.000000
    PoisonPower=1000.000000
+   ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
+   KDeathVel=300.000000
+   KDeathUpKick=1000.000000
+   RadialDamageImpulse=3000.000000
    Name="Default__KFDT_Toxic_DemoNuke"
    ObjectArchetype=KFDT_Toxic'KFGame.Default__KFDT_Toxic'
 }

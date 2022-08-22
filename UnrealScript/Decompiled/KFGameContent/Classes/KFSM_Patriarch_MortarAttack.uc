@@ -47,9 +47,8 @@ function PlayFireAnimation()
         BlendOutTime = 0;
     }
     bUseRootMotion = false;
-    MyPatPawn.Mesh.RootMotionMode = MyPatPawn.Mesh.default.RootMotionMode;
+    DisableRootMotion();
     MyPatPawn.RotationRate = MissileFireRotationRate;
-    MyPatPawn.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
     PlaySpecialMoveAnim(AnimName, 1, 0, BlendOutTime, 1);
     AnimNodeSeq = MyPatPawn.BodyStanceNodes[1].GetCustomAnimNodeSeq();
     if(AnimNodeSeq != none)

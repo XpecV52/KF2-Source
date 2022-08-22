@@ -53,17 +53,20 @@ defaultproperties
 	LocalizationKey=KFPawn_ZedStalker
 
 	Begin Object Name=SpecialMoveHandler_0
-		SpecialMoveClasses(SM_PlayerZedAttack1)= class'KFSM_PlayerStalker_Melee'
-		SpecialMoveClasses(SM_PlayerZedAttack2)= class'KFSM_PlayerStalker_Melee2'
-		SpecialMoveClasses(SM_PlayerZedSpecial1)= class'KFSM_PlayerStalker_Roll'
+		SpecialMoveClasses(SM_PlayerZedMove_LMB)= class'KFSM_PlayerStalker_Melee'
+		SpecialMoveClasses(SM_PlayerZedMove_RMB)= class'KFSM_PlayerStalker_Melee2'
+		SpecialMoveClasses(SM_PlayerZedMove_V)= class'KFSM_PlayerStalker_Roll'
 	End Object
 
-	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=0.25f,	SpecialMoveIcon=Texture2D'ZED_Stalker_UI.ZED-VS_Icons_Stalker-Melee', GBA_Name="GBA_Fire",NameLocalizationKey="Light")
-	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Stalker_UI.ZED-VS_Icons_Stalker-HeavyMelee', GBA_Name="GBA_IronsightsToggle", ALT_GBA_Name="GBA_IronsightsHold",NameLocalizationKey="Heavy")
-	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	GBA_Name="GBA_Reload",bShowOnHud=false)
-	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=0.35f,	SpecialMoveIcon=Texture2D'ZED_Stalker_UI.ZED-VS_Icons_Stalker-Evade', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Evade")
-	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Stalker_UI.ZED-VS_Icons_Stalker-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array)) // Jump always at end of array
+	MoveListGamepadScheme(ZGM_Melee_Square)=SM_PlayerZedMove_LMB
+	MoveListGamepadScheme(ZGM_Melee_Triangle)=SM_PlayerZedMove_RMB
+	MoveListGamepadScheme(ZGM_Special_R3)=SM_PlayerZedMove_V
 
+	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedMove_LMB,		CooldownTime=0.25f,	SpecialMoveIcon=Texture2D'ZED_Stalker_UI.ZED-VS_Icons_Stalker-Melee', NameLocalizationKey="Light")
+	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB,		CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Stalker_UI.ZED-VS_Icons_Stalker-HeavyMelee', NameLocalizationKey="Heavy")
+	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	bShowOnHud=false)
+	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=0.35f,	SpecialMoveIcon=Texture2D'ZED_Stalker_UI.ZED-VS_Icons_Stalker-Evade', NameLocalizationKey="Evade")
+	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Stalker_UI.ZED-VS_Icons_Stalker-Jump', bShowOnHud=false)) // Jump always at end of array)) // Jump always at end of array
 
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(1.1)))  //3.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.7)))  //1.0

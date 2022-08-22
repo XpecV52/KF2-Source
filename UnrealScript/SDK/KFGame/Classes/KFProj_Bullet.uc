@@ -11,23 +11,14 @@ class KFProj_Bullet extends KFProjectile
     native
 	abstract;
 
-var bool bCheckRackEmUp;
-
 /** Store the current scale of the ProjEffects for procedurally ramping them up/down */
 var float ProjEffectsScale;
 
-simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallComp)
+
+cpptext
 {
-    if( bCheckRackEmUp && LastTouchComponent == None )
-    { 
-        CheckForComboBreaker();
-        bCheckRackEmUp = false;
-    }
-
-    Super.HitWall(HitNormal, Wall, WallComp);
+    virtual void TickSpecial( FLOAT DeltaTime );
 }
-
-native simulated protected function CheckForComboBreaker();
 
 /** Call ProcessBulletTouch */
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
@@ -107,50 +98,7 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
 	}
 }
 
-/** Handle flight FX fading */
-simulated event Tick(float DeltaTime)
-{
-    local float DeltaFade;
-    local vector ScaleVector;
 
-    super.Tick(DeltaTime);
-
-	if ( WorldInfo.NetMode != NM_DedicatedServer && ProjEffects!=None )
-	{
-        // Scale the ProjEffects up over time
-        if( !bFadingOutProjEffects )
-    	{
-            if( ProjEffectsScale < 1.0 )
-            {
-                // Scale the tracer up based on the speed of the round
-                ProjEffectsScale += DeltaTime * (default.Speed/950);
-            }
-            else
-            {
-                ProjEffectsScale = 1.0;
-            }
-
-            ScaleVector = vect(1.0,1.0,1.0);
-            ScaleVector *= ProjEffectsScale;
-
-            ProjEffects.SetVectorParameter('Scale_Tracer', ScaleVector);
-            ProjEffects.SetVectorParameter('Scale_Distortion', ScaleVector);
-        }
-        // Scale the ProjEffects down when the effects are being faded out
-        else if( bFadingOutProjEffects && ProjEffectsFadeOutDuration >= 0.0 )
-        {
-            // Calculate the delta of remaining fade out time
-            DeltaFade = (ProjEffectsFadeOutDuration/Default.ProjEffectsFadeOutDuration);
-
-            ScaleVector = vect(1.0,1.0,1.0);
-
-            // Scale down the effects based on how much time is left to fade out
-            ScaleVector *= Lerp(ProjEffectsScale,0, (1.0-DeltaFade));
-            ProjEffects.SetVectorParameter('Scale_Tracer', ScaleVector);
-            ProjEffects.SetVectorParameter('Scale_Distortion', ScaleVector);
-        }
-	}
-}
 
 defaultproperties
 {

@@ -27,12 +27,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	}
 }
 
-/** AnimNotify which launches the fireball projectile */
-function ANIMNOTIFY_BurnTargets()
-{
-	// Stub to get rid of log spam
-}
-
 DefaultProperties
 {
 

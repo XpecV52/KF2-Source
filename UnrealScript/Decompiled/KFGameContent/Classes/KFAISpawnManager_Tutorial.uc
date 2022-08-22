@@ -10,7 +10,7 @@ class KFAISpawnManager_Tutorial extends KFAISpawnManager within KFGameInfo
 
 defaultproperties
 {
-    Waves=/* Array type was not detected. */
+    DifficultyWaveSettings=/* Array type was not detected. */
     SoloWaveSpawnRateModifier=RateModifier=/* Array type was not detected. */,
 /* Exception thrown while deserializing SoloWaveSpawnRateModifier
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.

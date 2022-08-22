@@ -67,16 +67,17 @@ defaultproperties
 	End Object
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
-	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 2.0, 0.5, 0.5, 2.0), Cooldown=5.0, Duration=1.5)
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 2.0, 0.5, 0.5, 2.0), Cooldown=5.0,  Duration=1.5)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(1.0),                     Cooldown=1.0)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(1.0),                     Cooldown=1.0)   //0.4
 	IncapSettings(AF_GunHit)=	(Vulnerability=(0.9),                     Cooldown=0.2)
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=0.0)
-	IncapSettings(AF_FirePanic)=(Vulnerability=(3),                       Cooldown=3.0, Duration=8.0)
-	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0, Duration=5.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.9),                       Cooldown=6.0,  Duration=5.0)
+	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
-	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=6.5, Duration=4.0)
-	IncapSettings(AF_Freeze)=	(Vulnerability=(2.0),                     Cooldown=1.5, Duration=2.2)
+	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=6.5,  Duration=4.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(2.0),                     Cooldown=1.5,  Duration=2.2)
+	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0), Cooldown=5.5,  Duration=3.0)
 
 	Begin Object Name=Afflictions_0
 		AfflictionClasses(AF_EMP)=class'KFAffliction_EMPDisrupt'
@@ -101,6 +102,9 @@ defaultproperties
 	//Special Case damage resistance
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm',              DamageScale=(1.0))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rem1858',          DamageScale=(1.0))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_DBShotgun',        DamageScale=(1.1))
+
+KFDT_Ballistic_DBShotgun
 
 	// ---------------------------------------------
 	// Gameplay

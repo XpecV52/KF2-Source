@@ -15,7 +15,13 @@ static function bool AlwaysPoisons()
 defaultproperties
 {
     bNoInstigatorDamage=true
+    bShouldSpawnPersistentBlood=true
+    DoT_Type=EDamageOverTimeGroup.DOT_None
+    DoT_Duration=5
     DoT_Interval=0.3
-    DoT_DamageScale=1
     PoisonPower=1000
+    ModifierPerkList(0)=class'KFPerk_Demolitionist'
+    KDeathVel=300
+    KDeathUpKick=1000
+    RadialDamageImpulse=3000
 }

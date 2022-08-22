@@ -13,6 +13,8 @@ class KFProj_HEGrenade extends KFProj_Grenade
 
 defaultproperties
 {
+	bWarnAIWhenFired=true
+
     LandedTranslationOffset=(X=2)
 
 	ProjFlightTemplate=ParticleSystem'WEP_3P_MK3_EMIT.FX_MK3_Grenade_Mesh'

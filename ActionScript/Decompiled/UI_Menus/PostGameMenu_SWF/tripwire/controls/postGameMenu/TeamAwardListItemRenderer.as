@@ -43,6 +43,8 @@ package tripwire.controls.postGameMenu
         
         public var teamAwardTimeline;
         
+        public var teamAwardSoundEffect:String = "AAR_PERSONALBEST_NEWPERSONALBEST";
+        
         public function TeamAwardListItemRenderer()
         {
             this._bgColor = new Color();
@@ -53,7 +55,6 @@ package tripwire.controls.postGameMenu
             super();
             preventAutosizing = true;
             alpha = 0;
-            this.setAnimations();
             this.Arrows.visible = false;
         }
         
@@ -69,7 +70,9 @@ package tripwire.controls.postGameMenu
                 "visible":true
             },{
                 "alpha":1,
-                "ease":Cubic.easeOut
+                "ease":Cubic.easeOut,
+                "onStart":this.playSound,
+                "onStartParams":[this.teamAwardSoundEffect]
             }).to(this.awardBG,1,{"alpha":1}).to(this.awardBG,7,{
                 "width":this.frameWidth,
                 "ease":Cubic.easeOut
@@ -82,10 +85,6 @@ package tripwire.controls.postGameMenu
         
         public function animate() : void
         {
-            if(Extensions.enabled)
-            {
-                Extensions.gfxProcessSound(this,"AAR","Team_Award");
-            }
             if(PostGameMenu.bkillAnims)
             {
                 this.teamAwardTimeline.timeScale(20);
@@ -95,6 +94,14 @@ package tripwire.controls.postGameMenu
             {
                 this.teamAwardTimeline.timeScale(this.timeDialation);
                 this.teamAwardTimeline.play();
+            }
+        }
+        
+        public function playSound(param1:String) : void
+        {
+            if(Extensions.enabled)
+            {
+                Extensions.gfxProcessSound(this,"UI",param1);
             }
         }
         
@@ -130,6 +137,7 @@ package tripwire.controls.postGameMenu
                     this.awardIconLoader.source = param1.icon;
                 }
             }
+            this.setAnimations();
         }
     }
 }

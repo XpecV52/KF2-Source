@@ -140,7 +140,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	MaxSpareAmmo[0]=15
+	SpareAmmoCapacity[0]=15
 	InitialSpareMags[0]=4
 	AmmoPickupScale[0]=2.0
 	bCanBeReloaded=true
@@ -173,7 +173,6 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.25
 	InstantHitDamage(DEFAULT_FIREMODE)=150.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_RPG7Impact'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_RPG7'
 	Spread(DEFAULT_FIREMODE)=0.025
 	FireOffset=(X=20,Y=4.0,Z=-3)
 	BackBlastOffset=(X=-20,Y=4.0,Z=-3)
@@ -185,6 +184,10 @@ defaultproperties
 	// Back blash explosion settings.  Using archetype so that clients can serialize the content
 	// without loading the 1st person weapon content (avoid 'Begin Object')!
 	ExplosionTemplate=KFGameExplosion'WEP_RPG7_ARCH.Wep_RPG7_BackBlastExplosion'
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_RPG7'
+	InstantHitDamage(BASH_FIREMODE)=29
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_RPG7_ARCH.Wep_RPG7_MuzzleFlash'

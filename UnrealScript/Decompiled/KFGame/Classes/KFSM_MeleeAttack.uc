@@ -171,6 +171,7 @@ defaultproperties
 {
     BlendInTime=0.2
     AbortBlendOutTime=0.5
+    bUseHigherMeshSmoothingThreshold=true
     bDisableMovement=true
     bDisableSteering=false
     Handle=KFSM_MeleeAttack

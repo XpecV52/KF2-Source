@@ -368,6 +368,7 @@ class KFDT_Explosive extends KFDamageType
 
 
 
+
 	
 
 
@@ -581,6 +582,7 @@ static simulated function GetBoneToDismember(KFPawn_Monster InPawn, vector HitDi
 
 defaultproperties
 {
+   bAllowAIDoorDestruction=True
    bShouldSpawnBloodSplat=True
    bCanGib=True
    bCanObliterate=True

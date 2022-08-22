@@ -15,7 +15,7 @@ protected function bool InternalCanDoSpecialMove()
 {
 	if( KFPOwner.IsHumanControlled() )
 	{
-		return KFPOwner.IsAliveAndWell();
+		return KFPOwner.IsCombatCapable();
 	}
 
 	if( AIOwner == none || AIOwner.MyKFPawn == none || AIOwner.Enemy == none )
@@ -23,7 +23,7 @@ protected function bool InternalCanDoSpecialMove()
 		return false;
 	}
 
-	if( AIOwner.MyKFPawn.IsImpaired() )
+	if( KFPOwner.IsCombatCapable() )
 	{
 		return false;
 	}
@@ -63,6 +63,7 @@ defaultproperties
    AnimName="Atk_Suicide_V1"
    bUseRootMotion=True
    bPawnRotationLocked=True
+   bShouldDeferToPostTick=True
    Handle="KFSM_HuskSuicide"
    Name="Default__KFSM_Husk_Suicide"
    ObjectArchetype=KFSM_PlaySingleAnim'KFGame.Default__KFSM_PlaySingleAnim'

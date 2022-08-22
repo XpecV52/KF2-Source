@@ -146,6 +146,10 @@ var float LastLocalPlayerTalkTime;
 var float TalkTimeOutValue; //seconds
 `endif
 
+`if(`__TW_ONLINESUBSYSTEM_)
+var const string SharedServerPassword;
+`endif
+
 /** This is the list of remote talkers */
 var array<RemoteTalker> RemoteTalkers;
 
@@ -284,6 +288,12 @@ var const config bool bShouldUseMcp;
 
 /**  Where Steamworks notifications will be displayed on the screen */
 var config ENetworkNotificationPosition CurrentNotificationPosition;
+
+/** The directory profile data should be stored in */
+var config string ProfileDataDirectory;
+
+/** The file extension to use when saving profile data */
+var config string ProfileDataExtension;
 
 /** Struct that matches one download object per file for parallel downloading */
 struct native SteamUserCloud
@@ -624,6 +634,11 @@ function bool ShowLoginUI(optional bool bShowOnlineOnly = false);
  * @return true if the async call started ok, false otherwise
  */
 native function bool Login(byte LocalUserNum,string LoginName,string Password,optional bool bWantsLocalOnly);
+//@HSL_BEGIN - BWJ - 6-21-16 - login callback support
+delegate OnLoginComplete( byte LocalUserNum, bool bWasSuccessful, EOnlineServerConnectionStatus ErrorCode );
+function AddLoginCompleteDelegate(byte LocalUserNum, delegate<OnLoginComplete> InDelegate);
+function ClearLoginCompleteDelegate(byte LocalUserNum, delegate<OnLoginComplete> InDelegate);
+//@HSL_END
 
 /**
  * Logs the player into the online service using parameters passed on the
@@ -2004,6 +2019,18 @@ function ClearControllerChangeDelegate(delegate<OnControllerChange> ControllerCh
  */
 function bool IsControllerConnected(int ControllerId);
 
+//@HSL_BEGIN - JRO - Make sure we can properly disable multiplayer features when not connected
+/**
+ * Retrieves the current connection status
+ *
+ * @return the current connection status
+ */
+function EOnlineServerConnectionStatus GetCurrentConnectionStatus()
+{
+	return OSCS_Connected;
+}
+//@HSL_END
+
 /**
  * Delegate fire when the online server connection state changes
  *
@@ -2379,6 +2406,10 @@ native function bool SendGameInviteToFriend(byte LocalUserNum,UniqueNetId Friend
  * @return true if successful, false otherwise
  */
 native function bool SendGameInviteToFriends(byte LocalUserNum,array<UniqueNetId> Friends,optional string Text);
+
+//@HSL_BEGIN - JRO - 6/10/2016 - Programmatic invites
+function bool SendGameInviteToUsers(string SessionId, array<string> MembersToInvite, optional string Text);
+//@HSL_END
 
 /**
  * Called when the online system receives a game invite that needs handling
@@ -3043,6 +3074,8 @@ delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Ava
  * @param ReadOnlineAvatarCompleteDelegate The delegate to call with results.
  */
 native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate);
+
+native function SetSharedPassword(string ServerPassword);
 `endif
 
 /**
@@ -3174,9 +3207,9 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum,int TitleId);
 function bool ShowCustomMessageUI(byte LocalUserNum,const out array<UniqueNetId> Recipients,string MessageTitle,string NonEditableMessage,optional string EditableMessage);
 
 //@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
-function PostActivityFeedBossKill(string BossName, string MapName);
-function PostActivityFeedTeamAward(string AwardName);
-function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
+function PostActivityFeedBossKill(string BossName, string BossLoc, string MapLoc);
+function PostActivityFeedTeamAward(string AwardName, string AwardLoc);
+function PostActivityFeedPerkLevelUp(string PerkClassName, string PerkClassLoc, int Level);
 //@HSL_END
 
 //@HSL_BEGIN - BWJ - 5-26-16 - Support for reading store data
@@ -3184,6 +3217,29 @@ function ReadStoreData();
 delegate OnStoreDataRead( bool bSuccessful );
 function AddStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate );
 function ClearStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate ); 
+
+function ReadEntitlements();
+delegate OnEntitlementsRead( bool bSuccess );
+function AddOnEntitlementsReadDelegate( delegate<OnEntitlementsRead> InDelegate );
+function ClearOnEntitlementsReadDelegate( delegate<OnEntitlementsRead> InDelegate );
+//@HSL_END
+
+//@HSL_BEGIN - JRO - 6/1/2016 - Upsell
+function UpsellPremiumOnlineService();
+//@HSL_END
+
+//@HSL_BEGIN - BWJ - 6-21-16 - Error dialog support
+/**
+ * Shows a customized system dialog with the given error code, context, title and content
+ *
+ * @param ErrorCode the error code to display
+ * @param ErrorContext the error context to display
+ * @param DialogTitle the title of the dialog
+ * @param DialogContent the content of the dialog
+ *
+ * @return true of successful, false otherwise
+ */
+function bool ShowCustomErrorUI(int ErrorCode, optional string ErrorContext, optional string DialogTitle, optional string DialogContent);
 //@HSL_END
 
 /**
@@ -3751,6 +3807,14 @@ function bool AddInGamePost( int InPostID, optional string InPostParam );
 function bool ShowGamerCardUIByUsername(byte LocalUserNum, string UserName);
 function bool RecordPlayersRecentlyMet( byte LocalUserNum, out array<string> Players, string GameDescription ); //@HSL_BEGIN - JRO - 4/28/2016 - PS4 needs player names
 // @zombie_ps4_end
+
+
+//@HSL_BEGIN - BWJ - 6-15-16 - Auth support for backend service
+delegate OnOnlineServiceAuthComplete();
+function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
+function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
+function AuthWithOnlineService();
+//@HSL_END
 
 defaultproperties
 {

@@ -333,6 +333,7 @@ defaultproperties
 	// DEPLOY_FIREMODE
 	FiringStatesArray(THROW_FIREMODE)=WeaponThrowing
 	FireInterval(THROW_FIREMODE)=0.6
+	AmmoCost(THROW_FIREMODE)=1
 
 	ConsumeSpareAmmoDelay=1.0
 

@@ -37,12 +37,14 @@ var const localized string CannotBuyString;
 var const localized string FavoriteString;
 var const localized string UnfavoriteString;
 var GFxObject DetailsContainer;
+var KFPlayerController KFPC;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
     MyTraderMenu = KFGFxMenu_Trader(NewParentMenu);
     DetailsContainer = GetObject("detailedStats");
+    KFPC = KFPlayerController(Outer.GetPC());
     LocalizeContainer();
 }
 
@@ -105,9 +107,9 @@ function SetPlayerItemDetails(out STraderItem TraderItem, int ItemPrice)
     ItemData.SetString("buyOrSellLabel", SellString);
     ItemData.SetString("cannotBuyOrSellLabel", CannotSellString);
     ItemData.SetBool("bCanCarry", true);
-    ItemData.SetBool("bCanBuyOrSell", MyTraderMenu.IsSellable(TraderItem));
+    ItemData.SetBool("bCanBuyOrSell", KFPC.GetPurchaseHelper().IsSellable(TraderItem));
     ItemData.SetBool("bHideStats", TraderItem.WeaponStats.Length == 0);
-    ItemData.SetBool("bCanFavorite", MyTraderMenu.IsSellable(TraderItem));
+    ItemData.SetBool("bCanFavorite", KFPC.GetPurchaseHelper().IsSellable(TraderItem));
     SetGenericItemDetails(TraderItem, ItemData);
 }
 

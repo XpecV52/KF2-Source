@@ -8,6 +8,7 @@ package tripwire.containers.store
     import flash.text.TextField;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.gfx.FocusManager;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripUILoader;
@@ -38,6 +39,7 @@ package tripwire.containers.store
             enableInitCallback = true;
             defaultFirstElement = this.addCartButton;
             defaultNumPrompts = 2;
+            TextFieldEx.setTextAutoSize(this.itemNameText,"shrink");
         }
         
         public function set localizedText(param1:Object) : void

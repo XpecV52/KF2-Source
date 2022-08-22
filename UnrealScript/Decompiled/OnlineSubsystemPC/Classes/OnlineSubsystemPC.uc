@@ -28,6 +28,7 @@ var delegate<OnMutingChange> __OnMutingChange__Delegate;
 var delegate<OnReadTitleFileComplete> __OnReadTitleFileComplete__Delegate;
 var delegate<OnPlayerTalkingStateChange> __OnPlayerTalkingStateChange__Delegate;
 var delegate<OnFriendsChange> __OnFriendsChange__Delegate;
+var delegate<OnLoginComplete> __OnLoginComplete__Delegate;
 var delegate<OnLoginFailed> __OnLoginFailed__Delegate;
 var delegate<OnLogoutCompleted> __OnLogoutCompleted__Delegate;
 var delegate<OnReadProfileSettingsComplete> __OnReadProfileSettingsComplete__Delegate;
@@ -55,6 +56,7 @@ var delegate<OnFriendMessageReceived> __OnFriendMessageReceived__Delegate;
 var delegate<OnUnlockAchievementComplete> __OnUnlockAchievementComplete__Delegate;
 var delegate<OnReadAchievementsComplete> __OnReadAchievementsComplete__Delegate;
 var delegate<OnPrivilegeLevelChecked> __OnPrivilegeLevelChecked__Delegate;
+var delegate<OnOnlineServiceAuthComplete> __OnOnlineServiceAuthComplete__Delegate;
 
 // Export Uonlinesubsystempc::execInit(FFrame&, void* const)
 native event bool Init();
@@ -91,6 +93,12 @@ function bool ShowLoginUI(optional bool bShowOnlineOnly)
 }
 
 function bool Login(byte LocalUserNum, string LoginName, string Password, optional bool bWantsLocalOnly);
+
+delegate OnLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.OnlineSubsystem.EOnlineServerConnectionStatus ErrorCode);
+
+function AddLoginCompleteDelegate(byte LocalUserNum, delegate<OnLoginComplete> InDelegate);
+
+function ClearLoginCompleteDelegate(byte LocalUserNum, delegate<OnLoginComplete> InDelegate);
 
 function bool AutoLogin();
 
@@ -508,6 +516,11 @@ function bool IsControllerConnected(int ControllerId)
     return false;
 }
 
+function Engine.OnlineSubsystem.EOnlineServerConnectionStatus GetCurrentConnectionStatus()
+{
+    return 1;
+}
+
 delegate OnConnectionStatusChange(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus);
 
 function AddConnectionStatusChangeDelegate(delegate<OnConnectionStatusChange> ConnectionStatusDelegate);
@@ -613,6 +626,8 @@ function bool SendGameInviteToFriend(byte LocalUserNum, UniqueNetId Friend, opti
 
 function bool SendGameInviteToFriends(byte LocalUserNum, array<UniqueNetId> Friends, optional string Text);
 
+function bool SendGameInviteToUsers(string SessionId, array<string> MembersToInvite, optional string Text);
+
 delegate OnReceivedGameInvite(byte LocalUserNum, string InviterName);
 
 function AddReceivedGameInviteDelegate(byte LocalUserNum, delegate<OnReceivedGameInvite> ReceivedGameInviteDelegate);
@@ -675,6 +690,14 @@ delegate OnPrivilegeLevelChecked(byte LocalUserNum, Engine.OnlineSubsystem.EFeat
 function AddPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
 
 function ClearPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+
+delegate OnOnlineServiceAuthComplete();
+
+function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
+
+function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
+
+function AuthWithOnlineService();
 
 defaultproperties
 {

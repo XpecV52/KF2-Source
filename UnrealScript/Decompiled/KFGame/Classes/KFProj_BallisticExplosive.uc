@@ -29,10 +29,25 @@ replication
 {
      if((Role == ROLE_Authority) && !bNetOwner)
         bDud;
+
+     if(bNetInitial && !bNetOwner)
+        ArmDistSquared;
 }
 
 simulated function SyncOriginalLocation()
 {
+    local KFPerk InstigatorPerk;
+    local KFPawn KFP;
+
+    KFP = KFPawn(Instigator);
+    if(KFP != none)
+    {
+        InstigatorPerk = KFP.GetPerk();
+        if((InstigatorPerk != none) && InstigatorPerk.ShouldNeverDud())
+        {
+            ArmDistSquared = 0;
+        }
+    }
     if((((Physics == 2) && Role < ROLE_Authority) && Instigator != none) && Instigator.IsLocallyControlled())
     {
         Velocity = vect(0, 0, 0);
@@ -42,7 +57,7 @@ simulated function SyncOriginalLocation()
 
 simulated event PreBeginPlay()
 {
-    super(Projectile).PreBeginPlay();
+    super.PreBeginPlay();
     AdjustCanDisintigrate();
 }
 
@@ -239,34 +254,37 @@ protected simulated function PrepareExplosionTemplate()
     local KFPlayerController KFPC;
     local KFPerk InstigatorPerk;
 
-    if(bWasTimeDilated && Instigator != none)
+    if(Instigator != none)
     {
-        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
-        if(InstigatorPRI != none)
+        if(bWasTimeDilated)
         {
-            if(InstigatorPRI.bNukeActive && Class'KFPerk_Demolitionist'.static.ProjectileShouldNuke(self))
+            InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+            if(InstigatorPRI != none)
             {
-                ExplosionTemplate = Class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
-                ExplosionTemplate.Damage = default.ExplosionTemplate.Damage * Class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
-                ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius * Class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
-                ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;                
-            }
-            else
-            {
-                if(InstigatorPRI.bConcussiveActive && AltExploEffects != none)
+                if(InstigatorPRI.bNukeActive && Class'KFPerk_Demolitionist'.static.ProjectileShouldNuke(self))
                 {
-                    ExplosionTemplate.ExplosionEffects = AltExploEffects;
-                    ExplosionTemplate.ExplosionSound = Class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
+                    ExplosionTemplate = Class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
+                    ExplosionTemplate.Damage = default.ExplosionTemplate.Damage * Class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
+                    ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius * Class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
+                    ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;                    
+                }
+                else
+                {
+                    if(InstigatorPRI.bConcussiveActive && AltExploEffects != none)
+                    {
+                        ExplosionTemplate.ExplosionEffects = AltExploEffects;
+                        ExplosionTemplate.ExplosionSound = Class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
+                    }
                 }
             }
         }
-    }
-    KFPC = KFPlayerController(Instigator.Controller);
-    if((Instigator.Role == ROLE_Authority) && KFPC != none)
-    {
-        InstigatorPerk = KFPC.GetPerk();
-        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
-        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+        KFPC = KFPlayerController(Instigator.Controller);
+        if((Instigator.Role == ROLE_Authority) && KFPC != none)
+        {
+            InstigatorPerk = KFPC.GetPerk();
+            ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
+            ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+        }
     }
     super.PrepareExplosionTemplate();
 }
@@ -309,7 +327,7 @@ defaultproperties
     GlassShatterType=FracturedMeshGlassShatterType.FMGS_ShatterAll
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_7372' was not found.
+System.ArgumentException: Requested value '!=_7665' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

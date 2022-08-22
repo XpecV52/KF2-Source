@@ -77,16 +77,20 @@ DefaultProperties
     XPValues(0)=32.0    // 4x default because they are harder to hit
 
 	Begin Object Name=SpecialMoveHandler_0
-		SpecialMoveClasses(SM_PlayerZedAttack1)=class'KFSM_PlayerCrawler_Melee'
-		SpecialMoveClasses(SM_PlayerZedAttack2)=class'KFSM_PlayerCrawler_Melee2'
-		SpecialMoveClasses(SM_PlayerZedSpecial4)=class'KFSM_PlayerCrawler_Suicide'
+		SpecialMoveClasses(SM_PlayerZedMove_LMB)=class'KFSM_PlayerCrawler_Melee'
+		SpecialMoveClasses(SM_PlayerZedMove_RMB)=class'KFSM_PlayerCrawler_Melee2'
+		SpecialMoveClasses(SM_PlayerZedMove_G)=class'KFSM_PlayerCrawler_Suicide'
 	End Object
 
-	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=0.65f,	SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-LightLeap', GBA_Name="GBA_Fire",NameLocalizationKey="Light")
-	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2, 		CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-HeavyLeap', GBA_Name="GBA_IronsightsToggle", ALT_GBA_Name="GBA_IronsightsHold",NameLocalizationKey="Heavy")
-	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt, 				CooldownTime=0.0f,	GBA_Name="GBA_Reload",bShowOnHud=false)
-	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedSpecial4,		CooldownTime=0.0f,	SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Explode', GBA_Name="GBA_Grenade",NameLocalizationKey="Suicide")
-	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=0.85f,	SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Jump', GBA_Name="GBA_Jump", bShowOnHud=false)) // Jump always at end of array
+	MoveListGamepadScheme(ZGM_Melee_Square)=SM_PlayerZedMove_LMB
+	MoveListGamepadScheme(ZGM_Melee_Triangle)=SM_PlayerZedMove_RMB
+	MoveListGamepadScheme(ZGM_Explosive_Ll)=SM_PlayerZedMove_G
+
+	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedMove_LMB,		CooldownTime=0.65f,	SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-LightLeap', NameLocalizationKey="Light")
+	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB, 		CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-HeavyLeap', NameLocalizationKey="Heavy")
+	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt, 				CooldownTime=0.0f,	bShowOnHud=false)
+	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,	CooldownTime=0.0f,	SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Explode', NameLocalizationKey="Suicide")
+	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=0.85f,	SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Jump', bShowOnHud=false)) // Jump always at end of array
 
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(1.3)))  //3.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.7)))  //1.0

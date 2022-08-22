@@ -150,8 +150,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=50
-	MaxSpareAmmo[0]=400
-	InitialSpareMags[0]=4
+	SpareAmmoCapacity[0]=500
+	InitialSpareMags[0]=5
 	AmmoPickupScale[0]=0.5
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -192,7 +192,10 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
     WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
 
+
+		// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_CaulkBurn'
+	InstantHitDamage(BASH_FIREMODE)=25
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_CaulkBurn_ARCH.Wep_CaulkBurn_MuzzleFlash'
@@ -206,13 +209,14 @@ defaultproperties
 	// Advanced (High RPM) Fire Effects
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true
 	bLoopingFireSnd(DEFAULT_FIREMODE)=true
-	SingleFireMode=FIREMODE_NONE
+	SingleFireSoundIndex=FIREMODE_NONE
 
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
 
+ 	// AI Warning
+ 	bWarnAIWhenFiring=true
+
    	AssociatedPerkClass=class'KFPerk_Firebug'
 }
-
-

@@ -3431,3 +3431,521 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
    Name="SequenceFrame_0"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
+   InputLinks(0)=(DrawY=-5211,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5190,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5169,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-5190,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29'),DrawX=5526,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=5577,OverrideDelta=76)
+   EventLinks(0)=(DrawX=5626,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5488
+   ObjPosY=-5248
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_1"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5384
+   ObjPosY=-5024
+   ObjComment="DNA Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_11"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5480
+   ObjPosY=-5024
+   ObjComment="DNA Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_23"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5584
+   ObjPosY=-5024
+   ObjComment="DNA Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_24"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5680
+   ObjPosY=-5024
+   ObjComment="DNA Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_25"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5376
+   ObjPosY=-4944
+   ObjComment="DNA Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_26"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5472
+   ObjPosY=-4944
+   ObjComment="DNA Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_27"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_6'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5576
+   ObjPosY=-4944
+   ObjComment="DNA Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_28"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5672
+   ObjPosY=-4944
+   ObjComment="DNA Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_29"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_21
+   InputLinks(0)=(DrawY=-5571,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5550,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5529,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-5550,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_38',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_39',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_40',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_97',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_98',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_99'),DrawX=5526,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=5577,OverrideDelta=76)
+   EventLinks(0)=(DrawX=5626,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5488
+   ObjPosY=-5608
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_21"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_15'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5384
+   ObjPosY=-5440
+   ObjComment="Tank Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_30"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_14'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5480
+   ObjPosY=-5440
+   ObjComment="Tank Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_37"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_8'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5584
+   ObjPosY=-5440
+   ObjComment="Tank Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_38"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5680
+   ObjPosY=-5440
+   ObjComment="Tank Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_39"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5392
+   ObjPosY=-5360
+   ObjComment="Tank Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_40"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_97
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5488
+   ObjPosY=-5360
+   ObjComment="Tank Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_97"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_98
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_12'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5592
+   ObjPosY=-5360
+   ObjComment="Tank Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_98"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_99
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_13'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5688
+   ObjPosY=-5360
+   ObjComment="Tank Room"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_99"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_22
+   InputLinks(0)=(DrawY=-5923,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5902,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5881,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-5902,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_100',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_101',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_102',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_103',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_104',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_105',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_106',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_107',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_108'),DrawX=5550,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=5601,OverrideDelta=76)
+   EventLinks(0)=(DrawX=5650,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5512
+   ObjPosY=-5960
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_22"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_100
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_22'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5384
+   ObjPosY=-5784
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_100"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_101
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_21'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5488
+   ObjPosY=-5784
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_101"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_102
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5584
+   ObjPosY=-5784
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_102"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_103
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_23'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5688
+   ObjPosY=-5784
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_103"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_104
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_26'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5328
+   ObjPosY=-5704
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_104"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_105
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5432
+   ObjPosY=-5704
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_105"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_106
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_18'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5528
+   ObjPosY=-5704
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_106"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_107
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_16'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5632
+   ObjPosY=-5704
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_107"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_108
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_17'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5728
+   ObjPosY=-5704
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_108"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_23
+   InputLinks(0)=(DrawY=-5563,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5542,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5521,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-5542,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_109',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_110',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_111',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_112',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_113',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_114',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_115',SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_116'),DrawX=4950,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=5001,OverrideDelta=76)
+   EventLinks(0)=(DrawX=5050,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4912
+   ObjPosY=-5600
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_23"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_109
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_53'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4792
+   ObjPosY=-5392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_109"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_110
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_54'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4888
+   ObjPosY=-5392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_110"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_111
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_55'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4992
+   ObjPosY=-5392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_111"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_112
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_56'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5088
+   ObjPosY=-5392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_112"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_113
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_52'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4792
+   ObjPosY=-5296
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_113"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_114
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_49'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4888
+   ObjPosY=-5296
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_114"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_115
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_50'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4992
+   ObjPosY=-5296
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_115"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_116
+   ObjValue=KFPlayerStart'KF-BioticsLab.TheWorld:PersistentLevel.KFPlayerStart_51'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5088
+   ObjPosY=-5296
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_116"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_4
+   MaxTriggerCount=0
+   MaxWidth=136
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=-5419,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-5398,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=-5377,OverrideDelta=56)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4296
+   ObjPosY=-5488
+   DrawWidth=137
+   Name="SeqEvent_LevelLoaded_4"
+   ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
+   LinkCount=4
+   InputLinks(0)=(DrawY=-5392,OverrideDelta=25)
+   InputLinks(1)=(DrawY=-5348,OverrideDelta=69)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_23',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_22')),DrawY=-5403,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_23',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21')),LinkDesc="Link 2",DrawY=-5381,OverrideDelta=36)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_23',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),LinkDesc="Link 3",DrawY=-5359,OverrideDelta=58)
+   OutputLinks(3)=(LinkDesc="Link 4",DrawY=-5337,OverrideDelta=80)
+   VariableLinks(0)=(DrawX=4596,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4552
+   ObjPosY=-5440
+   DrawWidth=89
+   DrawHeight=149
+   Name="SeqAct_RandomSwitch_0"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object

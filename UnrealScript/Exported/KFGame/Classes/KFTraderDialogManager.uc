@@ -369,6 +369,7 @@ class KFTraderDialogManager extends Actor
 
 
 
+
 	
 
 

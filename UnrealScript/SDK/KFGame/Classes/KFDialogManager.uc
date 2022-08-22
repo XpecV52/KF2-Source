@@ -2704,6 +2704,36 @@ function PlayHansBattlePhaseDialog( KFPawn Hans, int CurrBattlePhase )
  * Patriarch Dialog
  ************************************************/
 
+function PlayPatriarchTickDialog( KFPawn Patty )
+{
+    local int NumPlayers, NumLivingPlayers, NumOptions, BestOptionID;
+    local float PlayersAlivePct;
+
+    BestOptionID = -1;
+
+    NumPlayers = WorldInfo.Game.NumPlayers;
+    NumLivingPlayers = KFGameInfo( WorldInfo.Game ).GetLivingPlayerCount();
+    if( NumLivingPlayers > 0 )
+    {
+        PlayersAlivePct = float(NumLivingPlayers) / float(NumPlayers);
+
+        if( PlayersAlivePct >= 0.5 )
+        {
+            AddRandomDialogOption( Patty, `BOSS_TauntBase, NumOptions, BestOptionID );
+        }
+        else if( PlayersAlivePct >= 0.25 )
+        {
+            AddRandomDialogOption( Patty, `BOSS_Taunt_LT50, NumOptions, BestOptionID );
+        }
+        else
+        {
+            AddRandomDialogOption( Patty, `BOSS_Taunt_LT25, NumOptions, BestOptionID );
+        }
+    }
+
+    PlayDialogEvent( Patty, BestOptionID );
+}
+
 function PlayPattyMinigunWarnDialog( KFPawn Patty )
 {
     PlayDialogEvent( Patty, `PATTY_MinigunWarn );
@@ -2749,15 +2779,15 @@ function PlayPattyBattlePhaseDialog( KFPawn Patty, int CurrBattlePhase )
 
     switch( CurrBattlePhase )
     {
-    case 2:
+    case 1:
         PlayDialogEvent( Patty, `PATTY_NextBattlePhase1 );
         break;
 
-    case 3:
+    case 2:
         PlayDialogEvent( Patty, `PATTY_NextBattlePhase2 );
         break;
 
-    case 4:
+    case 3:
         PlayDialogEvent( Patty, `PATTY_NextBattlePhase3 );
         break;
     };

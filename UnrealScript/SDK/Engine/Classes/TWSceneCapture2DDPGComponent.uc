@@ -29,5 +29,5 @@ defaultproperties
 {
    bRenderForegroundDPG=true
    bRenderWorldDPG=true
-   bSkipRenderingDepthPrepass=false
+   bSkipRenderingDepthPrepass=true
 }

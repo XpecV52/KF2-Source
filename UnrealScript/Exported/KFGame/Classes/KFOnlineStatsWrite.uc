@@ -62,10 +62,6 @@ class KFOnlineStatsWrite extends OnlineStatsWrite
 
 
 
- 
-
-
-
 
 
  
@@ -174,6 +170,8 @@ var private	int 	GunslingerXP, GunslingerLVL, GunslingerPSG;
 var private	int 	GunslingerBuild;
 var private	int 	SharpshooterXP, SharpshooterLVL, SharpshooterPSG;
 var private	int 	SharpshooterBuild;
+var private	int 	SwatXP, SwatLVL, SwatPSG;
+var private	int 	SwatBuild;
 
 var private int 	PersonalBest_KnifeKills;
 var private int 	PersonalBest_PistolKills;
@@ -354,6 +352,23 @@ const KFACHID_HoldOut							=	147;
 const KFACHID_IGotYourBack						=	148;
 const KFACHID_Benefactor						=	149;
 
+const KFACHID_InfernalRealmNormal				=	150;
+const KFACHID_InfernalRealmHard					=	151;
+const KFACHID_InfernalRealmSuicidal				=	152;
+const KFACHID_InfernalRealmHellOnEarth			=	153;
+const KFACHID_InfernalRealmCollectibles			= 	154;
+
+const KFACHID_SWAT_Lvl5							= 	155;
+const KFACHID_SWAT_Lvl10						= 	156;
+const KFACHID_SWAT_Lvl15						= 	157;
+const KFACHID_SWAT_Lvl20						= 	158;
+const KFACHID_SWAT_Lvl25						= 	159;
+
+const KFACHID_SWATNormal						=	160;
+const KFACHID_SWATHard							=	161;
+const KFACHID_SWATSuicidal						=	162;
+const KFACHID_SWATHellOnEarth					=	163;
+
 
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
@@ -506,7 +521,18 @@ event CacheStatsValue(int StatID, float Value)
 			break;
 		case 51:
 			SharpshooterBuild = Value;
-			if (bLogStatsWrite) LogInternal(GetFuncName() @ "GunslingerBuild:" @ SharpshooterBuild);
+			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SharpshooterBuild:" @ SharpshooterBuild);
+			break;
+		case 90:
+			SwatXP = GetXPFromProgress( Value );
+			SwatLVL = GetLVLFromProgress( Value );
+			SwatPSG = GetPSGFromProgress( Value );
+			CheckPerkLvlAchievement( class'KFPerk_Swat', SwatLVL );
+			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SwatXP:" @ SwatXP @ SwatLVL @ "VALUE:" @ Round( value ));
+			break;
+		case 91:
+			SwatBuild = Value;
+			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SwatBuild:" @ SwatBuild);
 			break;
 		// end of perk progress stats
 		case 200:
@@ -597,6 +623,9 @@ private event GetPerkBuildFromStats( class<KFPerk> PerkClass, out int Build )
 		case class'KFPerk_Sharpshooter':
 			Build = SharpshooterBuild;
 			break;
+		case class'KFPerk_Swat':
+			Build = SwatBuild;
+			break;
 	}
 }
 
@@ -673,6 +702,7 @@ private event int GetPerkXP( int StatID )
 		case 60:			return DemoXP;
 		case 80:			return GunslingerXP;
 		case 50:			return SharpshooterXP;
+		case 90:			return SwatXP;
 	}
 
 	return 0;
@@ -691,6 +721,8 @@ private event int GetPerkLVLInternal( int StatID )
 		case 60:			return DemoLVL;
 		case 80:			return GunslingerLVL;
 		case 50:			return SharpshooterLVL;
+		case 90:			return SwatLVL;		
+
 	}
 
 	return 0;
@@ -709,6 +741,7 @@ private event int GetPerkPSG( int StatID )
 		case 60:			return DemoPSG;
 		case 80:			return GunslingerPSG;
 		case 50:			return SharpshooterPSG;
+		case 90:			return SwatPSG;
 	}
 
 	return 0;
@@ -790,6 +823,10 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
 	{
 		AddFleshpoundKill( Difficulty );
 	}
+	else if( IsClotKill( MonsterClass, DT ) )
+	{
+		AddClotKill( Difficulty );
+	}
 	else if( IsBloatKill( MonsterClass, DT ) )
 	{
 		AddBloatKill( Difficulty );
@@ -869,6 +906,21 @@ private function AddFleshpoundKill( byte Difficulty )
 }
 
 /**
+ * @brief Adds EXP for a qualified clot kill
+ * @details The SWAT perk only receives extra EXP when a Fleshpound is killed
+ * 			with a demo weapon. The currently selected skill does not matter
+ * @param Difficulty current game difficulty
+ */
+private function AddClotKill( byte Difficulty )
+{
+	AddXP( class'KFPerk_SWAT', class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
+
+	//AAR
+	if(MyKFPC!= none && MyKFPC.MatchStats != none && class'KFPerk_SWAT'!= none){MyKFPC.MatchStats.RecordSecondaryXPGain(class'KFPerk_SWAT',class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ));};
+	KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty );
+}
+
+/**
  * @brief Adds EXP for a qualified bloat kill
  * @details The Firebug perk only receives extra EXP when a bloat is killed
  * 			with a Firebug weapon. The currently selected skill does not matter
@@ -884,7 +936,7 @@ private function AddBloatKill( byte Difficulty )
 }
 
 /**
- * @brief Checks if a stalker kill qualifies for Firebug EXP
+ * @brief Checks if a crawler kill qualifies for Firebug EXP
  *
  * @param DT Used damage type
  * @param MonsterClass the killed zed's class
@@ -920,6 +972,19 @@ private final function bool IsFleshPoundKill( class<KFPawn_Monster> MonsterClass
 {
 	return  MonsterClass.static.IsFleshpoundClass() &&
 			class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Demolitionist'.static.GetPerkClass() );
+}
+
+/**
+ * @brief Checks if a clot kill qualifies for swat EXP
+ *
+ * @param DT Used damage type
+ * @param MonsterClass the killed zed's class
+ * @return true if the zed was a stalker and the damage type is on perk
+ */
+private final function bool IsClotKill( class<KFPawn_Monster> MonsterClass, class<DamageType> DT )
+{
+	return  MonsterClass.static.IsClotClass() &&
+			class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_SWAT'.static.GetPerkClass() );
 }
 
 /**
@@ -1211,42 +1276,39 @@ defaultproperties
    XPTable(22)=23745
    XPTable(23)=26238
    XPTable(24)=28993
-   Properties(0)=(Data=(Type=SDT_Int32))
-   Properties(1)=(PropertyId=1,Data=(Type=SDT_Int32))
-   Properties(2)=(PropertyId=2,Data=(Type=SDT_Int32))
-   Properties(3)=(PropertyId=10,Data=(Type=SDT_Int32))
-   Properties(4)=(PropertyId=11,Data=(Type=SDT_Int32))
-   Properties(5)=(PropertyId=20,Data=(Type=SDT_Int32))
-   Properties(6)=(PropertyId=21,Data=(Type=SDT_Int32))
-   Properties(7)=(PropertyId=30,Data=(Type=SDT_Int32))
-   Properties(8)=(PropertyId=31,Data=(Type=SDT_Int32))
-   Properties(9)=(PropertyId=40,Data=(Type=SDT_Int32))
-   Properties(10)=(PropertyId=41,Data=(Type=SDT_Int32))
-   Properties(11)=(PropertyId=50,Data=(Type=SDT_Int32))
-   Properties(12)=(PropertyId=51,Data=(Type=SDT_Int32))
-   Properties(13)=(PropertyId=60,Data=(Type=SDT_Int32))
-   Properties(14)=(PropertyId=61,Data=(Type=SDT_Int32))
-   Properties(15)=(PropertyId=70,Data=(Type=SDT_Int32))
-   Properties(16)=(PropertyId=71,Data=(Type=SDT_Int32))
-   Properties(17)=(PropertyId=80,Data=(Type=SDT_Int32))
-   Properties(18)=(PropertyId=81,Data=(Type=SDT_Int32))
-   Properties(19)=(PropertyId=90,Data=(Type=SDT_Int32))
-   Properties(20)=(PropertyId=91,Data=(Type=SDT_Int32))
-   Properties(21)=(PropertyId=200,Data=(Type=SDT_Int32))
-   Properties(22)=(PropertyId=201,Data=(Type=SDT_Int32))
-   Properties(23)=(PropertyId=22,Data=(Type=SDT_Int32))
-   Properties(24)=(PropertyId=42,Data=(Type=SDT_Int32))
-   Properties(25)=(PropertyId=202,Data=(Type=SDT_Int32))
-   Properties(26)=(PropertyId=203,Data=(Type=SDT_Int32))
-   Properties(27)=(PropertyId=2000,Data=(Type=SDT_Int32))
-   Properties(28)=(PropertyId=2001,Data=(Type=SDT_Int32))
-   Properties(29)=(PropertyId=2002,Data=(Type=SDT_Int32))
-   Properties(30)=(PropertyId=2003,Data=(Type=SDT_Int32))
-   Properties(31)=(PropertyId=2004,Data=(Type=SDT_Int32))
-   Properties(32)=(PropertyId=2005,Data=(Type=SDT_Int32))
-   Properties(33)=(PropertyId=2006,Data=(Type=SDT_Int32))
-   Properties(34)=(PropertyId=2007,Data=(Type=SDT_Int32))
-   Properties(35)=(PropertyId=3000,Data=(Type=SDT_Int32))
+   Properties(0)=(PropertyId=1,Data=(Type=SDT_Int32))
+   Properties(1)=(PropertyId=2,Data=(Type=SDT_Int32))
+   Properties(2)=(PropertyId=10,Data=(Type=SDT_Int32))
+   Properties(3)=(PropertyId=11,Data=(Type=SDT_Int32))
+   Properties(4)=(PropertyId=20,Data=(Type=SDT_Int32))
+   Properties(5)=(PropertyId=21,Data=(Type=SDT_Int32))
+   Properties(6)=(PropertyId=30,Data=(Type=SDT_Int32))
+   Properties(7)=(PropertyId=31,Data=(Type=SDT_Int32))
+   Properties(8)=(PropertyId=40,Data=(Type=SDT_Int32))
+   Properties(9)=(PropertyId=41,Data=(Type=SDT_Int32))
+   Properties(10)=(PropertyId=50,Data=(Type=SDT_Int32))
+   Properties(11)=(PropertyId=51,Data=(Type=SDT_Int32))
+   Properties(12)=(PropertyId=60,Data=(Type=SDT_Int32))
+   Properties(13)=(PropertyId=61,Data=(Type=SDT_Int32))
+   Properties(14)=(PropertyId=80,Data=(Type=SDT_Int32))
+   Properties(15)=(PropertyId=81,Data=(Type=SDT_Int32))
+   Properties(16)=(PropertyId=90,Data=(Type=SDT_Int32))
+   Properties(17)=(PropertyId=91,Data=(Type=SDT_Int32))
+   Properties(18)=(PropertyId=200,Data=(Type=SDT_Int32))
+   Properties(19)=(PropertyId=201,Data=(Type=SDT_Int32))
+   Properties(20)=(PropertyId=22,Data=(Type=SDT_Int32))
+   Properties(21)=(PropertyId=42,Data=(Type=SDT_Int32))
+   Properties(22)=(PropertyId=202,Data=(Type=SDT_Int32))
+   Properties(23)=(PropertyId=203,Data=(Type=SDT_Int32))
+   Properties(24)=(PropertyId=2000,Data=(Type=SDT_Int32))
+   Properties(25)=(PropertyId=2001,Data=(Type=SDT_Int32))
+   Properties(26)=(PropertyId=2002,Data=(Type=SDT_Int32))
+   Properties(27)=(PropertyId=2003,Data=(Type=SDT_Int32))
+   Properties(28)=(PropertyId=2004,Data=(Type=SDT_Int32))
+   Properties(29)=(PropertyId=2005,Data=(Type=SDT_Int32))
+   Properties(30)=(PropertyId=2006,Data=(Type=SDT_Int32))
+   Properties(31)=(PropertyId=2007,Data=(Type=SDT_Int32))
+   Properties(32)=(PropertyId=3000,Data=(Type=SDT_Int32))
    ViewIds(0)=1
    Name="Default__KFOnlineStatsWrite"
    ObjectArchetype=OnlineStatsWrite'Engine.Default__OnlineStatsWrite'

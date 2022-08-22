@@ -11,6 +11,7 @@ package tripwire.containers.optionsControls
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.events.SliderEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.Extensions;
     import tripwire.containers.TripContainer;
     import tripwire.controls.SliderOption;
     import tripwire.controls.TripButton;
@@ -62,9 +63,19 @@ package tripwire.containers.optionsControls
         
         public var controllerZoomSensitivityMaximumText:TextField;
         
+        public var sensitivityValueText:TextField;
+        
+        public var zoomSensitivityValueText:TextField;
+        
+        public var controllerSensitivityValueText:TextField;
+        
+        public var controllerZoomSensitivityValueText:TextField;
+        
         public var defaultButton:TripButton;
         
         public var bOptionsInit;
+        
+        public var genericSliderSoundEffect:String = "GEN_Click";
         
         public function ControlsInputContainer()
         {
@@ -77,6 +88,7 @@ package tripwire.containers.optionsControls
                 this.mouseSmoothingCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
                 this.forceFeedbackCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
                 this.defaultButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
+                this.defaultButton.visible = !bManagerUsingGamepad;
             }
             this.controllerSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
             this.controllerZoomSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
@@ -138,13 +150,15 @@ package tripwire.containers.optionsControls
                 this.sensitivitySliderOption.sliderValue = !!param1.sensitivityValue ? int(param1.sensitivityValue) : 0;
                 this.sensitivitySliderOption.slider.minimum = !!param1.sensitivityValueMin ? Number(param1.sensitivityValueMin) : Number(0);
                 this.sensitivitySliderOption.slider.maximum = !!param1.sensitivityValueMax ? Number(param1.sensitivityValueMax) : Number(1);
+                this.sensitivityValueText.text = !!param1.sensitivityValue ? param1.sensitivityValue.toFixed(1).toString() : "0";
                 this.zoomSensitivitySliderOption.sliderValue = !!param1.zoomSensitivityValue ? int(param1.zoomSensitivityValue) : 0;
                 this.zoomSensitivitySliderOption.slider.minimum = !!param1.zoomSensitivityValueMin ? Number(param1.zoomSensitivityValueMin) : Number(0);
                 this.zoomSensitivitySliderOption.slider.maximum = !!param1.zoomSensitivityValueMax ? Number(param1.zoomSensitivityValueMax) : Number(1);
-                this.sensitivityMinimumText.text = (this.sensitivitySliderOption.slider.minimum / 100).toFixed(2).toString();
-                this.sensitivityMaximumText.text = (this.sensitivitySliderOption.slider.maximum / 100).toFixed(2).toString();
-                this.zoomSensitivityMinimumText.text = (this.zoomSensitivitySliderOption.slider.minimum / 100).toFixed(2).toString();
-                this.zoomSensitivityMaximumText.text = (this.zoomSensitivitySliderOption.slider.maximum / 100).toFixed(2).toString();
+                this.zoomSensitivityValueText.text = !!param1.zoomSensitivityValue ? param1.zoomSensitivityValue.toFixed(1).toString() : "0";
+                this.sensitivityMinimumText.text = this.sensitivitySliderOption.slider.minimum.toFixed(0).toString();
+                this.sensitivityMaximumText.text = this.sensitivitySliderOption.slider.maximum.toFixed(0).toString();
+                this.zoomSensitivityMinimumText.text = this.zoomSensitivitySliderOption.slider.minimum.toFixed(0).toString();
+                this.zoomSensitivityMaximumText.text = this.zoomSensitivitySliderOption.slider.maximum.toFixed(0).toString();
                 this.mouseSmoothingCheckBox.selected = !!param1.mouseSmoothingValue ? Boolean(param1.mouseSmoothingValue) : false;
                 this.invertYCheckBox.selected = !!param1.invertedValue ? Boolean(param1.invertedValue) : false;
                 this.forceFeedbackCheckBox.selected = !!param1.forceFeedbackValue ? Boolean(param1.forceFeedbackValue) : false;
@@ -152,13 +166,15 @@ package tripwire.containers.optionsControls
             this.controllerSensitivitySliderOption.slider.minimum = param1.controllerSensitivityValueMin != undefined ? Number(param1.controllerSensitivityValueMin) : Number(0);
             this.controllerSensitivitySliderOption.slider.maximum = param1.controllerSensitivityValueMax != undefined ? Number(param1.controllerSensitivityValueMax) : Number(1);
             this.controllerSensitivitySliderOption.sliderValue = param1.controllerSensitivityValue != undefined ? int(param1.controllerSensitivityValue) : 0;
+            this.controllerSensitivityValueText.text = param1.controllerSensitivityValue != undefined ? param1.controllerSensitivityValue.toFixed(1).toString() : "0";
             this.controllerZoomSensitivitySliderOption.slider.minimum = param1.controllerZoomSensitivityValueMin != undefined ? Number(param1.controllerZoomSensitivityValueMin) : Number(0);
             this.controllerZoomSensitivitySliderOption.slider.maximum = param1.controllerZoomSensitivityValueMax != undefined ? Number(param1.controllerZoomSensitivityValueMax) : Number(1);
             this.controllerZoomSensitivitySliderOption.sliderValue = param1.controllerZoomSensitivityValue != undefined ? int(param1.controllerZoomSensitivityValue) : 0;
-            this.controllerSensitivityMinimumText.text = (this.controllerSensitivitySliderOption.slider.minimum / 100).toFixed(2).toString();
-            this.controllerSensitivityMaximumText.text = (this.controllerSensitivitySliderOption.slider.maximum / 100).toFixed(2).toString();
-            this.controllerZoomSensitivityMinimumText.text = (this.controllerZoomSensitivitySliderOption.slider.minimum / 100).toFixed(2).toString();
-            this.controllerZoomSensitivityMaximumText.text = (this.controllerZoomSensitivitySliderOption.slider.maximum / 100).toFixed(2).toString();
+            this.controllerZoomSensitivityValueText.text = param1.controllerZoomSensitivityValue != undefined ? param1.controllerZoomSensitivityValue.toFixed(1).toString() : "0";
+            this.controllerSensitivityMinimumText.text = this.controllerSensitivitySliderOption.slider.minimum.toFixed(0).toString();
+            this.controllerSensitivityMaximumText.text = this.controllerSensitivitySliderOption.slider.maximum.toFixed(0).toString();
+            this.controllerZoomSensitivityMinimumText.text = this.controllerZoomSensitivitySliderOption.slider.minimum.toFixed(0).toString();
+            this.controllerZoomSensitivityMaximumText.text = this.controllerZoomSensitivitySliderOption.slider.maximum.toFixed(0).toString();
             this.aimAssistZoomLockOnCheckBox.selected = !!param1.aimAssistLockOnValue ? Boolean(param1.aimAssistLockOnValue) : false;
             this.aimAssistRotationCheckBox.selected = !!param1.aimAssistRotationValue ? Boolean(param1.aimAssistRotationValue) : false;
             this.aimAssistSlowDownCheckBox.selected = !!param1.aimAssistSlowDownValue ? Boolean(param1.aimAssistSlowDownValue) : false;
@@ -169,6 +185,14 @@ package tripwire.containers.optionsControls
         override protected function onBPressed(param1:InputDetails) : void
         {
             dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,CANCELLED_INDEX));
+        }
+        
+        public function playSound(param1:String = "") : void
+        {
+            if(Extensions.gfxProcessSound != null)
+            {
+                Extensions.gfxProcessSound(this,"UI",param1);
+            }
         }
         
         private function onSliderValueChanged(param1:SliderEvent) : void
@@ -184,9 +208,13 @@ package tripwire.containers.optionsControls
                 switch(_loc2_)
                 {
                     case this.controllerSensitivitySliderOption.slider:
+                        this.playSound(this.genericSliderSoundEffect);
+                        this.controllerSensitivityValueText.text = param1.value.toFixed(1).toString();
                         ExternalInterface.call("Callback_ControllerSensitivity",param1.value);
                         break;
                     case this.controllerZoomSensitivitySliderOption.slider:
+                        this.playSound(this.genericSliderSoundEffect);
+                        this.controllerZoomSensitivityValueText.text = param1.value.toFixed(1).toString();
                         ExternalInterface.call("Callback_ControllerZoomSensitivity",param1.value);
                 }
             }
@@ -195,15 +223,23 @@ package tripwire.containers.optionsControls
                 switch(_loc2_)
                 {
                     case this.sensitivitySliderOption.slider:
+                        this.playSound(this.genericSliderSoundEffect);
+                        this.sensitivityValueText.text = param1.value.toFixed(1).toString();
                         ExternalInterface.call("Callback_MouseSensitivity",param1.value);
                         break;
                     case this.zoomSensitivitySliderOption.slider:
+                        this.playSound(this.genericSliderSoundEffect);
+                        this.zoomSensitivityValueText.text = param1.value.toFixed(1).toString();
                         ExternalInterface.call("Callback_MouseZoomSensitivity",param1.value);
                         break;
                     case this.controllerSensitivitySliderOption.slider:
+                        this.playSound(this.genericSliderSoundEffect);
+                        this.controllerSensitivityValueText.text = param1.value.toFixed(1).toString();
                         ExternalInterface.call("Callback_ControllerSensitivity",param1.value);
                         break;
                     case this.controllerZoomSensitivitySliderOption.slider:
+                        this.playSound(this.genericSliderSoundEffect);
+                        this.controllerZoomSensitivityValueText.text = param1.value.toFixed(1).toString();
                         ExternalInterface.call("Callback_ControllerZoomSensitivity",param1.value);
                 }
             }

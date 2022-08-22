@@ -281,6 +281,11 @@ native function AppendVersionToReadIds();
  */
 event ModifyAvailableProfileSettings();
 
+//@HSL_MOD_BEGIN - amiller 5/11/2016 - Adding support to save extra data into profile settings
+native function FlattenExtraToProfileSettings();
+native function ExpandExtraFromProfileSettings();
+//@HSL_MOD_END
+
 defaultproperties
 {
 	// This must be set by subclasses

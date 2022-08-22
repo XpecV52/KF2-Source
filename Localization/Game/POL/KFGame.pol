@@ -1,4 +1,5 @@
 [KFCommon_LocalizedStrings]
+LoadingString="Loading..."
 DifficultyStrings[0]="Normalny"
 DifficultyStrings[1]="Wysoki"
 DifficultyStrings[2]="Samobójczy"
@@ -17,6 +18,9 @@ PermissionStrings[0]="Publiczny"
 PermissionStrings[1]="Tylko dla znajomych"
 PermissionStrings[2]="Prywatny"
 
+ConsolePermissionStrings[0]="Public"
+ConsolePermissionStrings[1]="Invite Only"
+
 ModeStrings[0]="Przetrwanie"
 ModeStrings[1]="Przetrwanie (Kontra)"
 
@@ -31,6 +35,7 @@ NoticeString="UWAGA!"
 PerkUpdateNoticeString="Zmiany w talentach mogą być dokonywane tylko raz w ciągu fali!"
 YesString="Tak"
 NoString="Nie"
+TeamSwappedString="You have been team swapped"
 
 DisbandPartyString="ROZWIĄŻ GRUPĘ"
 LeaveCurrentMenuString="Opuścić bieżące menu?"
@@ -43,7 +48,13 @@ AllString="WSZYSCY"
 UnableToSwitchTeamString="Nie można zmienić drużyny"
 NoSwitchReasonString="Zmiana drużyny spowodowałaby zakłócenie balansu"
 
+AutoTradeCompleteString="Auto Trade Complete: "
+AutoFillCompleteString="Autofilled Supplies"
+WeaponUpgradeComepleteString="Weapon Upgraded"
+SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
+NoItemsPurchasedString="No Items Purchased"
 
+SetTakeoverServerPasswordTitle=Enter a new password to protect your game:
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="BRAK"
@@ -52,17 +63,19 @@ BrowseServersString="PRZEGLĄDAJ SERWERY"
 HasInvitedToGameString=" zaprasza cię do gry."
 JoinGameString="Dołączyć do gry?"
 
-
 [KFGFxObject_Menu]
 LeavePartyTitleString="OPUSZCZAM GRUPĘ"
 LeavePartyDescriptionString="Na pewno chcesz opuścić tę grupę?"
 LeaveString="OPUŚĆ"
 
-
-
+ErrorNoPlaystationNetworkTitle="Login Failed - PlayStation™Network"
+ErrorNoPlaystationNetworkDescription="Could not connect to PlayStation™Network, which is required to play."
+ErrorNoPlaystationPlusTitle="Login Failed - PlayStation®Plus"
+ErrorNoPlaystationPlusDescription="A PlayStation®Plus account is required to play."
 
 [KFDoorActor]
 WeldIntegrityString="Integralność spawu:"
+RepairProgressString="Repair Progress:"
 ExplosiveString="Pułapka:"
 
 [KFGFxMenu_StartGame]
@@ -88,7 +101,8 @@ FindGameString="MENU GŁÓWNE"
 LeaveMenuString="Opuszczenie tego okna rozwiąże twoją grupę. Czy przejść zamiast tego do przeglądarki serwerów?"
 
 CouldNotFindGameTitleString="Nie znaleziono"
-CouldNotFindGameDescriptionString="Nie znaleziono serwerów spełniających kryteria wyszukiwania. Spróbuj innych ustawień lub skorzystaj z przeglądarki serwerów."
+CouldNotFindGameDescriptionStringPC="No servers matching the search settings were found. Try different filters or use the server browser."
+CouldNotFindGameDescriptionStringOrbis="No servers matching the search settings were found. Try different filters."
 
 [KFGFxStartGameContainer_FindGame]
 MultiplayerString="Szukaj gier online"
@@ -111,7 +125,7 @@ serverTypeList0="Rankingowy - dowolna mapa, brak modyfikacji, brak ognia przyjac
 serverTypeList1="Rankingowy (domyślny) - tylko oficjalne mapy, brak modyfikacji, brak ognia przyjacielskiego, do 6 graczy"
 serverTypeList2="Rankingowy (niestandardowy) - dowolna mapa, zatwierdzone modyfikacje, dowolne ustawienia serwera"
 serverTypeList3="Nierankingowy (niestandardowy) - tylko niezatwierdzone mapy"
-serverTypeList4="No preference - Will look for any of the previous selections"
+serverTypeList4="No preference - Any of the other server types"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -137,6 +151,7 @@ CustomServerString="Rankingowy - niestandardowy"
 StandardServerString="Rankingowy - standardowy"
 AllowInProgressString="Zezwól na trwające gry"
 NotStartedString="Tylko nowe gry"
+CreateNewGameString="Create New Game"
 
 
 [KFGFxStartContainer_MatchMaking]
@@ -149,6 +164,7 @@ OverviewString="PRZEGLĄD GRY"
 ChangeString="ZMIEŃ"
 SharedByString="Udostępnione przez:"
 SharedContentString="UDOSTĘPNIONE"
+AuthorString="By "
 
 [KFGFxStartContainer_ServerBrowserOverview]
 OverviewString="PRZEGLĄD GRY"
@@ -454,6 +470,9 @@ WeaponsString="Uzbrojenie"
 WeaponsInfoString="Dostosuj"
 
 [KFGFxMenu_Inventory]
+NoItemsString="You have no Inventory items within the currently selected filter."
+ItemExchangeTimeOutString="Failed to Reach Item Server"
+TryAgainString="Client failed to exhange item. Please try again later. If this issue persists, contact support."
 RecycleOneString="Tylko jeden"
 RecycleDuplicatesString="Duplikaty"
 InventoryString="EKWIPUNEK"
@@ -838,6 +857,12 @@ NormalString="Normalny"
 WiderString="Szeroki"
 FriendlyHudScaleString="Przyjazne wskaźniki"
 KillTickerString="Powiadomienia o zabójstwach"
+HideBossHealthBarString="Hide Boss Healthbar"
+ShowWelderInInvString="Show Welder In Inventory"
+UseAltAimOnDualString="Use Alt Dual Pistol Aim"
+AntiMotionSicknessString="Anti Motion Sickness"
+AutoTurnOffString="No Auto Turn On Clot Grab"
+ReduceHighPitchNoiseString="Reduce High Pitch Noise"
 
 [LocalizedControls]
 ControllerLayoutDefault="Domyślny"
@@ -895,6 +920,7 @@ GBA_SwitchFireMode="Alt. ostrzał/ Blok"
 GBA_TertiaryFire="Uderzenie"
 GBA_ToggleFlashlight="Latarka"
 GBA_AltFire="Alt. ostrzał / Blok"
+GBA_AltFire_Gamepad="Alt. Fire / Block"
 
 GBA_WeaponSelect_Gamepad="Wybór broni (przytrzymaj)"
 GBA_NextWeapon="Następna broń"
@@ -963,6 +989,7 @@ PresetStrings[3]="Układ 4"
 BashString="Uderzenie"
 BlockString="Blokowanie (trzymaj)"
 HoldString="(Trzymaj)"
+TapString="TAP"
 
 [KFInventoryManager]
 FullHealthMsg="Pełne zdrowie"
@@ -1061,9 +1088,10 @@ ZedWaitingForNextRoundString="Horda zedów nadciąga!"
 [KFLocalMessage_Interaction]
 UseTraderMessage="<%x%> HANDLUJ"
 UseDoorMessage="OTWÓRZ/ZAMKNIJ\n[TRZYMAJ] SPAWARKA"
-UseDoorWeldedMessage="[TRZYMAJ] <%x%> SPAWARKA"
+EquipWelderMessage="<%HOLD%>EQUIP WELDER"
 ZedUseDoorMessage="<%x%> OTWÓRZ/ZAMKNIJ"
 ZedUseDoorWeldedMessage="Drzwi są zaspawane, zniszcz je!"
+RepairDoorMessage="<%HOLD%>EQUIP WELDER TO FIX DOOR"
 AcceptObjectiveMessage="<%x%> ZAAKCEPTUJ CEL"
 ReceiveAmmoMessage="<%x%> WEŹ AMUNICJĘ"
 ReceiveGrenadesMessage="<%x%> WEŹ GRANATY"
@@ -1161,8 +1189,8 @@ FuryDescription="Lekkie ataki przy użyciu broni berserkera są o 5% szybsze i z
 Spartan="ZWOLNIONE TEMPO – Spartanin"
 SpartanDescription="Niczym w „300”: poruszaj się z niemal rzeczywistą prędkością oraz zyskaj 25% całkowitej liczby punktów życia."
 
-Flash="ZWOLNIONE TEMPO - Furia berserkera"
-FlashDescription="Zedy cię znienawidzą: poruszaj się i atakuj z niemal rzeczywistą prędkością."
+Rage="ZED TIME - Berserker Rage"
+RageDescription="Heal 25% Health and Zeds close to you try to flee when you enter Zed time."
 
 [KFPerk_Commando]
 PerkName="Komandos"
@@ -1229,6 +1257,8 @@ Passives[1]=(Title="Odporność na wybuchy",Description="%x% odporność na obra
 Passives[2]=(Title="Dodatkowe środki wybuchowe",Description="%x% więcej środków wybuchowych na początek");
 Passives[3]=(Title="+Zaopatrzeniowiec",Description="Członkowie drużyny mogą od ciebie wziąć dodatkowy granat w trakcie fali");
 Passives[4]=(Title="+Wybuchowe drzwi",Description="Zaspawane przez ciebie drzwi eksplodują po wyważeniu");
+Passives[5]=(Title="Reactive Armor",Description="When first reduced to 0 Health your armor will explode and leave you with 1 Health");
+
 
 Damage="Bombardier"
 DamageDescription="Bronie człowieka demolki zadają 25% więcej obrażeń."
@@ -1279,26 +1309,26 @@ Passives[4]=(Title="Bonusowy pancerz",Description="Liczba punktów pancerza wzra
 HealingSurge="Przypływ sił"
 HealingSurgeDescription="Zastosuj wiedzę medyczną: zwiększ liczbę punktów życia o 20%."
 
-Enforcer="Wymuszenie"
-EnforcerDescription="Starczy tej opieki: powiększ ilość amunicji o 20% w przypadku broni medyka polowego oraz broni zapasowej."
+Survivalist="Resilience"
+SurvivalistDescription="Increase damage resistance 1% per Health point lost, up to 50%."
+
+HealingSpeedBoost="Adrenaline Shot"
+HealingSpeedBoostDescription="Shooting teammates with healing darts increases their movement speed 10% for 5 seconds. This can stack up to a 30% bonus."
 
 Combatant="Bojownik"
 CombatantDescription="Nie bądź zwykłym medykiem – bądź bojowym medykiem. Na początek dostaniesz wymarzony pancerz i zniżkę w wysokości 60% na wszelkie zakupy pancerzy!"
 
-Armament="Uzbrojenie"
-ArmamentDescription="Nie zajmuj się tylko leczeniem: poświęć 25% skuteczności leczenia drużyny, aby w zamian naprawiać 1% ich całkowitego pancerza!"
+HealingDamageBoost="Focus Injection"
+HealingDamageBoostDescription="Shooting teammates with healing darts increases the damage they inflict 5% for 5 seconds. This can stack up to a 20% bonus. "
 
-Regeneration="Regeneracja"
-RegenerationDescription="Nafaszeruj się lekami: dzięki nanobotom Horzine odzyskujesz 1 punkt życia na sekundę."
+AcidicCompound="Acidic Rounds"
+AcidicCompoundDescription="Perk weapons can poison Zeds, inflicting poison damage over time."
 
-Lacerate="Bolesne rany"
-LacerateDescription="Ostrożnie z tym skalpelem: przez ciebie zedy mocniej krwawią po potraktowaniu ich dowolną bronią medyka polowego."
+HealingShield="Coagulant Booster"
+HealingShieldDescription="Shooting teammates with healing darts increases their damage resistance 10% for 5 seconds. This can stack up to a 30% bonus. "
 
-VaccinationArmor="Szczepienie"
-VaccinationArmorDescription="Powstrzymaj zbierającą obfite żniwo śmierć: leczenie naprawia 2% pancerza członków drużyny oraz tymczasowo zwiększa odporność na żółć spaślaka."
-
-VaccinationDamageMod="Związek kwasowy"
-VaccinationDamageModDescription="Uzdrowienie dla jednych... śmierć dla drugich! Twoje strzałki leczące mogą zatruć zedy. Zadaj wystarczająco obrażeń strzałkami i granatami, a zedy wpadną w panikę."
+Enforcer="Wymuszenie"
+EnforcerDescription="Starczy tej opieki: powiększ ilość amunicji o 20% w przypadku broni medyka polowego oraz broni zapasowej."
 
 AirborneAgent="ZWOLNIONE TEMPO – Powietrzny agent"
 AirborneAgentDescription="Mówią, że czas leczy rany: twoje strzałki tworzą uzdrawiającą chmurę, która daje członkom drużyny dodatkowe 20% twojego leczenia."
@@ -1327,17 +1357,17 @@ Passives[2]=(Title="Odporność na siłę ognia Zedów",Description="%x% odporno
 Passives[3]=(Title="Odporność na własne strzały",Description="%x% odporność na swoje wystrzały");
 Passives[4]=(Title="Początkowa amunicja",Description="%x% więcej amunicji na początek");
 
-FullyStocked="Spory zapas"
-FullyStockedDescription="Zgodnie z tytułem: bronie zakupione u handlarki mają 60% całkowitej amunicji."
+BringTheHeat="Bring the Heat"
+BringTheHeatDescription="Increase damage with fire weapons 35%."
 
-FlarotovCoctail="Koktajl Flarotowa"
-FlarotovCoctailDescription="Tak jak nazwa wskazuje: wsuń flarę do koktajlu Mołotowa a otrzymasz Flarotowa, który oświetli otoczenie na 30 sekund."
+HighCapFuelTank="High Capacity Fuel Tank"
+HighCapFuelTankDescription="Increase fuel tank capacity and magazines for all perk weapons 100%."
 
 Fuse="Grill"
 FuseDescription="Dobrze wysmażony: spalanie trwa o 70% dłużej, powodując większe obrażenia."
 
-HeatWave="Fala ciepła"
-HeatWaveDescription="Upał lata: zedy trafione ogniem z bezpośredniej odległości zostaną odepchnięte."
+GroundFire="Ground Fire"
+GroundFireDescription="Ground fires do massively increased damage and reduce Zed movement speed 20%."
 
 ZedShrapnel="Stos"
 ZedShrapnelDescription="Zed robi BUM: każdy zed zabity od ognia ma 20% szansy na eksplozję, która zada obrażenia oraz obali pobliskie zedy."
@@ -1351,8 +1381,8 @@ RangeDescription="Zwiększ zasięg wszystkich broni ogniowych. No dalej, przecie
 SplashDamage="Palące uderzenie"
 SplashDamageDescription="Albo zwiększ siłę obrażeń zadawanych przez rozbryzg broni zapalających. Jak tu się na coś zdecydować?!"
 
-Combustion="ZWOLNIONE TEMPO – Podpalacz"
-CombustionDescription="Podczas zwolnionego tempa każdy zed zabity od ognia eksploduje, podpalając wszystko w zasięgu wybuchu."
+Inferno="ZED TIME - Inferno"
+InfernoDescription="During Zed time, any Zeds hit with fire are slowed 30% and take 50% more burning damage."
 
 Scorch="ZWOLNIONE TEMPO – Piromanta"
 ScorchDescription="Jarasz się! No cóż, może nie dosłownie. Podczas zwolnionego tempa bronie piromana strzelają z prędkością zbliżoną do normalnej."
@@ -1372,6 +1402,7 @@ Passives[0]=(Title="Obrażenia zadawane bronią talentu",Description="Obrażenia
 Passives[1]=(Title="Odporność na kule",Description="Odporność na obrażenia zadawane przez pociski zwiększona o %x%");
 Passives[2]=(Title="Szybkość ruchu",Description="Szybkość ruchu zwiększona o %x%");
 Passives[3]=(Title="Odrzut",Description="Odrzut słabszy o %x%");
+Passives[4]=(Title="Zedtime Reload", Description="Increase reload speed in Zed time %x% per level");
 
 ShootnMove="Napieranie"
 ShootnMoveDescription="Nie stój jak ten kołek: gdy używasz broni rewolwerowca, poruszasz się o 200% szybciej przy celowaniu przez przyrządy oraz masz zmniejszone wahanie się broni."
@@ -1391,20 +1422,17 @@ SpeedReloadDescription="Efektowniej, szybciej, skuteczniej: przeładowuj bronie 
 Penetration="Penetracja"
 PenetrationDescription="W rzędzie i po grzędzie: każdy strzał z broni rewolwerowca przebija dodatkowego zeda."
 
-CenterMass="Środek masy"
-CenterMassDescription="Jeśli wycelujesz w środek masy... trafienia w klatkę piersiową z broni rewolwerowca mają siłę odrzucającą większą o 40%."
+Skullcracker="Skullcracker"
+SkullcrackerDescription="Headshots with perk weapons slow Zeds 30%.
 
-LimbShots="Strzały w nogę"
-LimbShotsDescription="Albo strzelaj im po nogach... siła obalająca strzałów z broni rewolwerowca w nogi biegnących zedów jest zwiększona trzykrotnie."
+KnockEmDown="Knock 'em Down"
+KnockEmDownDescription="Shooting sprinting Zeds in the legs massively increases knockdown power. Shooting Zeds in the chest with perk weapons massively increases stumble power."
 
 Fanfare="ZWOLNIONE TEMPO - Salwa"
 FanfareDescription="Wystrzałowa salwa: strzelaj 3 razy szybciej z broni rewolwerowca w zwolnionym tempie."
 
 UberAmmo="ZWOLNIONE TEMPO - Nadładowanie"
 UberAmmoDescription="Odpal się: nie tracisz amunicji w broniach rewolwerowca podczas zwolnionego tempa."
-
-[KFPerk_MartialArtist]
-PerkName="Mistrz sztuk walki"
 
 [KFPerk_Sharpshooter]
 PerkName="Strzelec wyborowy"
@@ -1418,9 +1446,9 @@ SkillCatagories[2]="Skill"
 SkillCatagories[3]="Equipment"
 SkillCatagories[4]="Master Techniques"
 
-Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %x%");
-Passives[1]=(Title="Recoil",Description="%x% less recoil");
-Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
+Passives[0]=(Title="Headshot Damage",Description="Increase headshot damage %x% per level");
+Passives[1]=(Title="Recoil",Description="Decrease recoil %x% per level");
+Passives[2]=(Title="Weapon Switch",Description="Increase weapon switch speed %x% per level");
 
 StationaryAim="Snajper"
 StationaryAimDescription="Zadawaj 25% więcej obrażeń gdy nie jesteś w ruchu i używasz broni strzelca wyborowego."
@@ -1452,8 +1480,6 @@ ZTKnockdownDescription="Strzały w głowę z broni strzelca wyborowego mają zna
 ZTStun="ZWOLNIONE TEMPO - Łupieżca"
 ZTStunDescription="Strzały w głowę z broni strzelca wyborowego mają znacznie zwiększoną siłę ogłuszającą."
 
-
-
 [KFPerk_Support]
 PerkName="Spec. wsparcia"
 
@@ -1468,48 +1494,90 @@ Passives[1]=(Title="Obrażenia zadawane bronią talentu",Description="Obrażenia
 Passives[2]=(Title="Penetracja bronią talentu",Description="Bronie talentu zyskują %x% mocy penetracji za każdy poziom");
 Passives[3]=(Title="Obrażenia zadawane granatami",Description="Obrażenia zadawane granatami wzrosły o %x%");
 Passives[4]=(Title="",Description="");
-
-;Passives[0]=(Title="Sprawność spawania",Description="Wzrost szybkości spawania o 2% (maksymalnie 50%")");
-;Passives[1]=(Title="Obrażenia zadawane strzelbami",Description="Wzrost obrażeń zadawanych strzelbami o 2% (maksymalnie 50%")");
-;Passives[2]=(Title="Penetracja śrutem",Description="Strzelby zyskują na każdym poziomie 25% siły penetracji");
-;Passives[3]=(Title="Obrażenia zadawane granatami",Description="Wzrost obrażeń zadawanych granatami o 2% (maksymalnie 50%")");
-;Passives[4]=(Title="",Description="");
+Passives[5]=(Title="Ammo Backpack + Door repair",Description="Once per round players can get ammo from backpack - repair destroyed doors");
 
 EXPAction1="Zadawanie obrażeń bronią spec. wsparcia"
 EXPAction2="Spawanie drzwi"
 
-Ammo="Amunicja"
-AmmoDescription="Robi się poważnie: zwiększ początkową oraz całkowitą ilość amunicji dla broni specjalisty wsparcia o 20%."
-
-Supplier="Zaopatrzeniowiec"
-SupplierDescription="Wszyscy cię pokochają: noś plecak, z którego każdy członek drużyny może wziąć dodatkową amunicję raz w trakcie fali."
-
-Fortitude="Hart"
-FortitudeDescription="Daj sobie szansę: zwiększ liczbę punktów życia o 50%."
-
-Regeneration="Regeneracja"
-RegenerationDescription="Puść Medyka z torbami: twoje zdrowie powoli regeneruje się wraz z upływem czasu dzięki nanobotom od Horzine."
-
-Bombard="Bombardowanie"
-BombardDescription="Dodaj trochę mocy: zwiększ szansę na odrzucenie zeda przy pomocy broni specjalisty wsparcia o 60%."
+HighCapMags="High Capacity Magazines"
+HighCapMagsDescription="Increase magazine capacity of perk weapons 50%."
 
 TacticalReload="Taktyczne przeładowanie"
 TacticalReloadDescription="Bądź cool. Bądź szybki. Przeładowuj bronie specjalisty wsparcia szybciej, wyglądając przy tym na zawodowca."
 
-Strength="Siła"
-StrengthDescription="Idź na siłownię. Przypakuj i zwiększ pojemność ekwipunku o 5."
+Fortitude="Hart"
+FortitudeDescription="Daj sobie szansę: zwiększ liczbę punktów życia o 50%."
 
-Tenacity="Uporczywość"
-TenacityDescription="Zainwestuj w siebie trochę czasu, aby zadawać 10% więcej obrażeń przy pomocy broni specjalisty wsparcia."
+Salvo="Salvo"
+SalvoDescription="Increase damage of perk weapons 30%."
 
-Safeguard="ZWOLNIONE TEMPO – Ochrona"
-SafeguardDescription="Wzmocnij pancerz o 5% - twój ORAZ pobliskich członków drużyny!"
+APShot="Armor Piercing Shot"
+APShotDescription="Greatly increase penetration with perk weapons."
+
+TightChoke="Tight Choke"
+TightChokeDescription="Decrease shot spread of perk weapons by 50%."
+
+Resupply="Resupply Pack"
+ResupplyDescription="Your teammates can get 30% ammo and 20% armor restored by interacting with you once per wave.  You can carry up to 20% more ammo for perk weapons."
+
+ConcussionRounds="Concussion Rounds"
+ConcussionRoundsDescription="Increase stumble power for perk weapons 150%."
+
+Perforate="ZED TIME - Penetrator"
+PerforateDescription="During Zed time, your perk weapons penetrate through any targets they hit."
 
 Barrage="ZWOLNIONE TEMPO – Ogień zaporowy"
 BarrageDescription="Wykorzystaj ten czas maksymalnie, powodując 15% więcej obrażeń, które będziesz zadawać ty ORAZ pobliscy członkowie drużyny!"
 
 [KFPerk_Sharpshooter]
 PerkName="Strzelec wyborowy"
+
+[KFPerk_SWAT]
+PerkName="SWAT"
+EXPAction1="Dealing SWAT weapon damage"
+EXPAction2="Killing Clots with SWAT weapons"
+
+SkillCatagories[0]="Specialization"
+SkillCatagories[1]="Assault Techniques"
+SkillCatagories[2]="Equipment"
+SkillCatagories[3]="Defensive Techniques"
+SkillCatagories[4]="Specialist Training"
+
+Passives[0]=(Title="Perk Weapon Damage",Description="Increase perk weapon damage %x% per level");
+Passives[1]=(Title="Bullet Resistance",Description="Increase resistance to projectile damage 5%, increases %x% each level");
+Passives[2]=(Title="Increased Mag Size",Description="Increase magazine size %x% per level");
+Passives[3]=(Title="Weapon Switch Speed",Description="Increase weapon switch speed %x% per level");
+
+HeavyArmor="Heavy Armor Training"
+HeavyArmorDescription="While you have body armor, you only take Health damage from sonic attacks and clots can’t grab you. You begin each game with 50% Armor."
+
+TacticalMovement="Tactical Movement"
+TacticalMovementDescription="No movement penalty for using iron sights or crouch movement."
+
+Backup="Close Combat Training"
+BackupDescription="Increase damage with your 9mm pistol and knife 100%. You begin each game with dual 9mm pistols."
+
+TacticalReload="Tactical Reload"
+TacticalReloadDescription="Increase reload speed with perk weapons."
+
+SpecialAmmunition="Suppression Rounds"
+SpecialAmmunitionDescription="Increase stumble power 100% with all perk weapons."
+
+AmmoVest="Ammo Vest"
+AmmoVestDescription="Carry up to 30% more ammo for each perk weapon."
+
+BodyArmor="Assault Armor"
+BodyArmorDescription="Maximum Armor increases by 50%. You begin each game with 50% Armor, which stacks with Armor gained from Heavy Armor Training."
+
+Cripple="Cripple"
+CrippleDescription="Multiple hits with perk weapons will slow Zeds down up to 30%. Hitting the legs is most effective."
+
+SWATEnforcer="ZED TIME - Battering Ram"
+SWATEnforcerDescription="During Zed time, you move in real-time and have massive knockdown power when you run into a Zed."
+
+RapidAssault="ZED TIME - Rapid Assault"
+RapidAssaultDescription="During Zed time, when using perk weapons you have unlimited ammo, shoot in near real-time, and increase stumble power by 100%."
+
 
 [Fonts]
 Bicubik="Dwusześcienna"
@@ -1556,6 +1624,9 @@ ObjectiveStatusTitle="ODZYSKAJ 30% FORSY"
 ObjectiveTimeString="s DO KOŃCA"
 
 [KFGameViewportClient]
+TripWireOfficialString="Tripwire Official Map"
+OfficialCommunityString="Official Community Map"
+CommunityCustomString="Community Custom Map"
 RandomLoadingStrings[0]="Mięśniaki są odporne na pociski, ale przyjmują zwiększone obrażenia od ładunków wybuchowych."
 RandomLoadingStrings[1]="Rzeźnicy są odporni na ładunku wybuchowe, ale przyjmują zwiększone obrażenia od pocisków."
 RandomLoadingStrings[2]="Nie jesteś koniem pociągowym, wszystkiego nie uniesiesz. Sprzedaj słabsze bronie, by móc nosić te mocniejsze."
@@ -1598,7 +1669,51 @@ RandomLoadingStrings[38]="Działo mikrofalowe zadaje zwiększone obrażenia prze
 RandomLoadingStrings[39]="Wypróbuj alternatywny tryb ostrzału dla swoich broni. Nie wszystkie go mają, ale może się przydać."
 RandomLoadingStrings[40]="Forsę i punkty doświadczenia otrzymujesz nie tylko za zabójstwa, ale również za asysty. Czuj się więc swobodnie, pomagając kolegom z drużyny."
 
- 
+[WhatsNewMessages]
+Jaegorhorn="Follow Community To Unlock Jaegorhorn"
+HorzineSupplyCrateKey1="Horzine Supply Crate Key | Series #1 - $2.49"
+HorzineSupplyCrateKey2="Horzine Supply Crate Key | Series #2 - $2.49"
+HorzineSupplyCrateKey3="Horzine Supply Crate Key | Series #3 - $2.49"
+HorzineSupplyCrateKey4="Horzine Supply Crate Key | Series #4 - $2.49"
+HorzineSupplyCrateKey5="Horzine Supply Crate Key | Series #5 - $2.49"
+HorzineSupplyCrateKey6="Horzine Supply Crate Key | Series #6 - $2.49"
+HorzineSupplyCrateKey7="Horzine Supply Crate Key | Series #7 - $2.49"
+HorzineSupplyCrateKey8="Horzine Supply Crate Key | Series #8 - $2.49"
+HorzineSupplyCrateKey9="Horzine Supply Crate Key | Series #9 - $2.49"
+USBCyberboneKey="Cyberbone USB Key - $2.49"
+USBDragonfireKey="Dragonfire USB Key - $2.49"
+USBEmergencyIssueKey="Emergency Issue USB Key - $2.49"
+USBHorzineFirstEncounterKey="Horzine First Encounter USB Key - $2.49"
+USBHorzineIssueKey="Horzine Issue USB Key - $2.49"
+USBMedicKey="Medic USB Key - $2.49"
+USBOlExhibitKey="Ol' Exhibit USB Key - $2.49"
+USBPredatorKey="Predator USB Key - $2.49"
+USBStoriesofWarKey="Stories of War USB Key - $2.49"
+USBStreetPunksKey="Street Punks USB Key - $2.49"
+USBSWATKey="SWAT USB Key - $2.49"
+USBTacticalHorzineKey="Tactical Horzine USB Key - $2.49"
+USBVictorianKey="Victorian USB Key - $2.49"
+USBZedKillerKey="Zed Killer USB Key - $2.49"
+BullseyeUpdate="Latest New Content - Bullseye Update"
+LatestUpdate="Latest Content Update"
+Forums="Visit Our Community Forums"
+Survey="Take the Gameplay Survey"
+CommunityTracker="Track Community Issue Requests"
+FeaturedCrateKey="Featured Horzine Supply Crate Key - $2.49"
+FeaturedUsbKey="Featured Weapon Skin USB Key - $2.49"
+FeaturedRareItem="Featured Rare Item - $3.99"
+FeaturedExceptionalItem="Featured Exceptional Item - $7.49"
+FeaturedMasterCraftedItem="Featured Master Crafted Item - $9.99"
+FeaturedItemBundle="Featured Item Bundle"
+Merch="Get Official Tripwire Merch!"
+PS4AnnounceMent="Insert PS4 Specific News Here"
+PS4Key="Horzine Crate Key - Open Any Crate! $2.49"
+PS4CosmeticCrate1="Horzine Supply Cosmetic Crate | Series #1"
+PS4CosmeticCrate2="Horzine Supply Cosmetic Crate | Series #2"
+PS4WeaponSkinCrate1="Horzine Supply Weapon Skin Crate | Series #1"
+PS4WeaponSkinCrate2="Horzine Supply Weapon Skin Crate | Series #2"
+Artbook="Killing Floor 2 Digital Art Book"
+Uncovered="Watch Killing Floor: Uncovered Live Action Film"
 
 [Zeds]
 KFPawn_ZedBloat="Spaślak"
@@ -1769,6 +1884,9 @@ DisplayName="Stacja badawcza"
 
 [KF-HostileGrounds KFMapSummary]
 DisplayName="Strefa zagrożenia"
+
+[KF-InfernalRealm KFMapSummary]
+DisplayName="Infernal Realm"
 
 
 [KFMapInfo]

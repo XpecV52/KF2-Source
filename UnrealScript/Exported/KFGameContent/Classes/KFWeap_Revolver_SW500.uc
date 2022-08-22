@@ -83,7 +83,7 @@ defaultproperties
    GroupPriority=30.000000
    WeaponSelectTexture=Texture2D'WEP_UI_SW_500_TEX.UI_WeaponSelect_SW500'
    DualClass=Class'kfgamecontent.KFWeap_Revolver_DualSW500'
-   MaxSpareAmmo(0)=100
+   SpareAmmoCapacity(0)=100
    InitialSpareMags(0)=5
    AmmoPickupScale(0)=2.000000
    IdleFidgetAnims(3)="Guncheck_v4"
@@ -136,7 +136,7 @@ defaultproperties
    InstantHitDamage(0)=150.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=23.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_SW500'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

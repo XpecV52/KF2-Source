@@ -82,6 +82,7 @@ static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDi
 
 defaultproperties
 {
+    bAllowAIDoorDestruction=true
     bShouldSpawnBloodSplat=true
     bCanGib=true
     bCanObliterate=true

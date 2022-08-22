@@ -21,8 +21,8 @@ defaultproperties
     ProjPickupTemplate=ParticleSystem'WEP_Crossbow_EMIT.FX_Crossbow_Projectile_Pickup'
     LifeSpanAfterStick=180
     BouncesLeft=0
-    bCheckRackEmUp=true
     bNoReplicationToInstigator=false
+    bWarnAIWhenFired=true
     ProjFlightTemplate=ParticleSystem'WEP_Crossbow_EMIT.FX_Crossbow_Projectile'
     AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Crossbow.Play_Bolt_Fly_By'
     AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Crossbow.Stop_Bolt_Fly_By'

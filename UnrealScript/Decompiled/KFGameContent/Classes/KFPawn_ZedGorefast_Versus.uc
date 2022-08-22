@@ -23,10 +23,9 @@ defaultproperties
     DoshValue=28
     XPValues=44
     DamageTypeModifiers=/* Array type was not detected. */
-    MinBlockFOV=1
-    BlockingDamageModifier=0.05
-    MeleeBlockingDamageModifier=0.25
+    MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
+    MinBlockFOV=1
     LocalizationKey=KFPawn_ZedGorefast
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

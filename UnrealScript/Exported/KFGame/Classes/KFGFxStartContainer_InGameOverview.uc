@@ -17,6 +17,7 @@ var byte LastDifficultyIndex, LastLengthIndex, LastPrivacyIndex;
 
 var localized string OverviewString;
 var localized string ChangeString;
+var localized string AuthorString;
 
 var localized string SharedByString;
 var localized string SharedContentString;
@@ -30,6 +31,9 @@ var KFHTTPImageDownloader ImageDownLoader;
 
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
+	local PlayerController PC;
+
+	PC = GetPC();
 	StartMenu = KFGfxMenu_StartGame(NewParentMenu);
 	ServerWelcomeScreen = GetObject("serverWelcomeScreen");
  	LocalizeContainer();
@@ -37,14 +41,18 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	SharedContentButton = GetObject("sharedContentButton");
 	if(SharedContentButton != none)
 	{
-		SharedContentButton.SetVisible((GetPC().WorldInfo.NetMode != NM_Standalone));
+		SharedContentButton.SetVisible((PC.WorldInfo.NetMode != NM_Standalone) && !PC.WorldInfo.IsConsoleBuild());
 	}
-	UpdateSharedContent();
+	if(!PC.WorldInfo.IsConsoleBuild())
+	{
+		UpdateSharedContent();
+	}
 	// BWJ - 5-5-16 - Hiding this for E3 build. Not guaranteed internet connection to download the images
 	if( !class'WorldInfo'.static.IsE3Build() )
 	{
 		ShowWelcomeScreen();
 	}
+
 }
 
 function LocalizeContainer()
@@ -77,7 +85,7 @@ function LocalizeContainer()
 
 	DataProvider = CreateArray();
 
-	for (i = 0; i < class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray().length; i++)
+	for (i = 0; i < class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(GetPC().WorldInfo.IsConsoleBuild()).length; i++)
 	{
 		TempObj = CreateObject("Object");
 		TempObj.SetString("label", class'KFCommon_LocalizedStrings'.static.GetPermissionString(i));
@@ -88,7 +96,7 @@ function LocalizeContainer()
 
 	if( !class'WorldInfo'.static.IsMenuLevel() )
 	{
-		LocalizedObject.SetString("authorName", GetPC().WorldInfo.Author);
+		LocalizedObject.SetString("authorName", AuthorString$GetPC().WorldInfo.Author);
 	}
 
 	SetObject("localizedText", LocalizedObject);
@@ -149,7 +157,7 @@ function ShowWelcomeScreen()
 		return;
 	}
 
-	if(KFGRI.ServerAdInfo.BannerLink != "" && KFGRI.ServerAdInfo.ServerMOTD != "")
+	if(KFGRI.ServerAdInfo.BannerLink != "" && KFGRI.ServerAdInfo.ServerMOTD != "" && !GetPC().WorldInfo.IsConsoleBuild())
 	{
 		ImageDownloader = new(Outer) class'KFHTTPImageDownloader';
 		ImageDownloader.DownloadImageFromURL(KFGRI.ServerAdInfo.BannerLink, ImageDownloadComplete);
@@ -332,7 +340,7 @@ function UpdateOverviewInGame()
 		
 		if( StartMenu.OptionsComponent != none )
 		{
-			CurrentPrivacyIndex = StartMenu.OptionsComponent.SavedPrivacyIndex;
+			CurrentPrivacyIndex = StartMenu.OptionsComponent.GetPrivacyIndex();
 			if(LastPrivacyIndex != CurrentPrivacyIndex)
 			{
 				UpdatePrivacy( class'KFCommon_LocalizedStrings'.static.GetPermissionString(CurrentPrivacyIndex) );
@@ -348,7 +356,7 @@ function SetCurrentMapInfo()
 
 	CurrentMapName = GetPC().WorldInfo.GetMapName(true);
 	MapSource = StartMenu.GetMapSource(CurrentMapName);
-	FriendlyName = StartMenu.GetFriendlyMapName(CurrentMapName);
+	FriendlyName = class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(CurrentMapName);
 	UpdateMap(FriendlyName, MapSource);
 }
 
@@ -359,6 +367,7 @@ defaultproperties
    LastPrivacyIndex=255
    OverviewString="MATCH OVERVIEW"
    ChangeString="CHANGE"
+   AuthorString="By "
    SharedByString="Shared by:"
    SharedContentString="SHARED CONTENT"
    Name="Default__KFGFxStartContainer_InGameOverview"

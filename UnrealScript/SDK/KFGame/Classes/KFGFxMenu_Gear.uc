@@ -119,6 +119,18 @@ function OnOpen()
 	UpdateGear();
 }
 
+//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
+function SaveChanges()
+{	
+	local KFPlayerController KFPC; 
+
+	KFPC = KFPlayerController(GetPC());
+	KFPC.SaveConfig();
+
+	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.WriteProfileSettings(GetLP().ControllerId, Manager.CachedProfile );
+}
+//@HSL_MOD_END
+
 function LocalizeText()
 {
 	local GFxObject LocalizedObject;
@@ -183,10 +195,9 @@ function UpdateWeaponList()
 	}
 
 	SetObject("weaponArray", DataProvider);
-//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
-	KFPC = KFPlayerController(GetPC());
-	KFPC.SaveConfig();
-//@HSL_MOD_END
+	//@HSL_MOD_BEGIN - amiller 5/23/2016 - Unifying Gear saving so that it doesn't make multiple write requests unnecessarily
+	SaveChanges();
+	//@HSL_MOD_END
 }
 
 function UpdateWeaponVariants(class<KFWeaponDefinition> WeaponDef, out GFxObject MeshObject)
@@ -224,6 +235,9 @@ function UpdateWeaponVariants(class<KFWeaponDefinition> WeaponDef, out GFxObject
 	}
 
 	MeshObject.SetObject("skinInfo", DataProvider);
+	//@HSL_MOD_BEGIN - amiller 5/23/2016 - Unifying Gear saving so that it doesn't make multiple write requests unnecessarily
+	SaveChanges();
+	//@HSL_MOD_END
 }
 
 function UpdateCharacterList()
@@ -231,7 +245,6 @@ function UpdateCharacterList()
 	local byte i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath;
-	local KFPlayerController KFPC; 
 
 	ItemIndex = 0;
 	DataProvider = CreateArray();
@@ -250,19 +263,17 @@ function UpdateCharacterList()
 		}
 		else
 		{
-			`log(MyKFPRI.CharacterArchetypes[i] @ "is not purchased.");
+			//`log(MyKFPRI.CharacterArchetypes[i] @ "is not purchased.");
 		}
 	}
 	
 	SetObject("characterArray", DataProvider);
-//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
-	KFPC = KFPlayerController(GetPC());
-	KFPC.SaveConfig();
-//@HSL_MOD_END
 }
 
 function UpdateGear()
 {
+	local KFProfileSettings KFPS;
+
 	CurrentCharInfo = MyKFPRI.CharacterArchetypes[MyKFPRI.RepCustomizationInfo.CharacterIndex];
 	CharInfoPath = String(CurrentCharInfo.Name);
 	// Set the list of usable bodies for this character
@@ -271,6 +282,11 @@ function UpdateGear()
 	UpdateMeshList(HeadMeshKey, HeadSkinKey, CurrentCharInfo.HeadVariants, "headsArray");
 	// Set the list of usable attachments for this character
 	UpdateAttachmentsList(CurrentCharInfo.CosmeticVariants);
+	KFPS = KFProfileSettings(class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId));
+	if(KFPS != none)
+	{
+		KFPS.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
+	}
 
 	SetCurrentCharacterButtons();
 }
@@ -294,7 +310,7 @@ function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> 
 			SlotObject.SetInt("ItemIndex", i);
 			SlotObject.SetString("label", Localize(CharInfoPath, OutfitKey$i, KFCharacterInfoString));
 			SlotObject.SetBool("enabled", true);
-			FirstSkin = UpdateVariants( OutfitKey, SkinKey, Outfit.SkinVariations, i, SlotObject );
+			FirstSkin = UpdateOutfitVariants( OutfitKey, SkinKey, Outfit.SkinVariations, i, SlotObject );
 			TexturePath = "img://"$PathName(FirstSkin.UITexture);
 			SlotObject.SetString("source", TexturePath);
 
@@ -305,7 +321,7 @@ function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> 
 		}
 		else
 		{
-			`log("Outfit" @ Outfit.MeshName @ "is not purchased.");
+			//`log("Outfit" @ Outfit.MeshName @ "is not purchased.");
 		}
 	}
 	
@@ -320,7 +336,7 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 	local AttachmentVariants Variant;
 	local Pawn MyPawn;
 	local SkinVariant FirstSkin;
-
+	local string AttachmentName;
 	ItemIndex = 0;
 	DataProvider = CreateArray();
 	MyPawn = GetPC().Pawn;
@@ -340,8 +356,11 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 		{
 			SlotObject = CreateObject( "Object" );
 			SlotObject.SetInt("ItemIndex", i);
-			FirstSkin= UpdateVariants( AttachmentKey, AttachmentSkinKey, Variant.AttachmentItem.SkinVariations, i, SlotObject );
-			SlotObject.SetString("label", Localize(CharInfoPath, AttachmentKey$i, KFCharacterInfoString));
+			FirstSkin = UpdateCosmeticVariants( AttachmentKey, AttachmentSkinKey, Variant.AttachmentItem, i, SlotObject );
+			AttachmentName = Localize(string(Variant.AttachmentItem.Name), AttachmentKey,  KFCharacterInfoString);
+			//Asc return the Unicode value of the first character in the String
+			//Use it to check if the first character is ?, which is the case when a localization isn't found
+			SlotObject.SetString("label", AttachmentName);
 			SlotObject.SetBool("enabled", true);
 			TexturePath = "img://"$PathName(FirstSkin.UITexture);
 			SlotObject.SetString("source", TexturePath);
@@ -354,7 +373,51 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 	SetObject("attachmentsArray", DataProvider);
 }
 
-function SkinVariant UpdateVariants(string OutfitKey, string KeyName, out array<SkinVariant> SkinVariations, int OutfitIndex, out GFxObject MeshObject)
+function SkinVariant UpdateCosmeticVariants(string OutfitKey, string KeyName, KFCharacterAttachment Attachment, int OutfitIndex, out GFxObject MeshObject)
+{
+	local byte i, ItemIndex;
+	local GFxObject DataProvider, SlotObject;
+	local SkinVariant Skin;
+	local SkinVariant FirstSkin;
+	local string TexturePath;
+	local bool bFoundFirst;
+	local string SkinName;
+
+	ItemIndex = 0;
+	DataProvider = CreateArray();
+
+	for (i = 0; i < Attachment.SkinVariations.length; i++)
+	{
+		Skin = Attachment.SkinVariations[i];
+		if (class'KFUnlockManager'.static.GetAvailableSkin(Skin))
+		{
+			if(!bFoundFirst)
+			{
+				FirstSkin = Skin;
+				bFoundFirst = true;
+			}
+			SlotObject = CreateObject( "Object" );
+			SlotObject.SetInt("ItemIndex", i);
+			SkinName = Localize(string(Attachment.Name), KeyName$i, KFCharacterInfoString);
+			SlotObject.SetString("label", SkinName);
+			TexturePath = "img://"$PathName(Skin.UITexture);
+			SlotObject.SetBool("enabled", true);
+			SlotObject.SetString("source", TexturePath);
+
+			DataProvider.SetElementObject(ItemIndex, SlotObject);
+			ItemIndex++;
+		}
+		else
+		{
+			//`log("Skin" @ Skin.UITexture.Name @ "is not purchased.");
+		}
+	}
+	MeshObject.SetObject("skinInfo", DataProvider);
+
+	return FirstSkin;
+}
+
+function SkinVariant UpdateOutfitVariants(string OutfitKey, string KeyName, out array<SkinVariant> SkinVariations, int OutfitIndex, out GFxObject MeshObject)
 {
 	local byte i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
@@ -390,7 +453,7 @@ function SkinVariant UpdateVariants(string OutfitKey, string KeyName, out array<
 		}
 		else
 		{
-			`log("Skin" @ Skin.UITexture.Name @ "is not purchased.");
+			//`log("Skin" @ Skin.UITexture.Name @ "is not purchased.");
 		}
 	}
 	MeshObject.SetObject("skinInfo", DataProvider);
@@ -401,6 +464,7 @@ function SkinVariant UpdateVariants(string OutfitKey, string KeyName, out array<
 function SetCurrentCharacterButtons()
 {
 	local GFxObject DataObject;
+	local KFProfileSettings KFPS;
 
 	DataObject = CreateObject("Object");
 
@@ -409,13 +473,21 @@ function SetCurrentCharacterButtons()
 	DataObject.SetInt( "selectedCharacterIndex", MyKFPRI.RepCustomizationInfo.CharacterIndex );
 
 	SetObject( "selectedCharacter", DataObject);
-
+	
 	//set head
 	SetGearButtons(MyKFPRI.RepCustomizationInfo.HeadMeshIndex, MyKFPRI.RepCustomizationInfo.HeadSkinIndex, HeadMeshKey, HeadSkinKey, HeadFunctionKey);
 	//set body
 	SetGearButtons(MyKFPRI.RepCustomizationInfo.BodyMeshIndex, MyKFPRI.RepCustomizationInfo.BodySkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
 	//set attachments
 	SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
+//@HSL_MOD_BEGIN - amiller 5/11/2016 - Adding support to save extra data into profile settings
+	KFPS = KFProfileSettings(class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId));
+	if(KFPS != none)
+	{
+		//`log(`location@"Setting new gear customization now!!");
+		KFPS.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
+	}
+//@HSL_MOD_END
 }
 
 /** Update the labels for our gear buttons */
@@ -425,7 +497,6 @@ function SetGearButtons(byte MeshIndex, byte SkinIndex, string MeshKey, string S
 	local string CurrentMesh;
 	local string SkinName, MeshName;
 	local GFxObject DataObject;
-	local KFPlayerController KFPC; 
 
 	DataObject = CreateObject("Object");
 
@@ -447,20 +518,15 @@ function SetGearButtons(byte MeshIndex, byte SkinIndex, string MeshKey, string S
 	DataObject.SetInt( (sectionFunctionName$"SkinIndex"), SkinIndex);
 
 	SetObject( sectionFunctionName, DataObject);
-//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
-	KFPC = KFPlayerController(GetPC());
-	KFPC.SaveConfig();
-//@HSL_MOD_END
 }
 
 /** Update the labels for our currently equipped attachments */
 function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionName)
 {
-	local string CurrentMesh, FinishedString;
+	local string FinishedString;
 	local GFxObject DataObject;
 	local byte i, AttachmentIndex;
-	local KFPlayerController KFPC; 
-
+	local KFProfileSettings KFPS;
 	DataObject = CreateObject("Object");
 
 	for(i = 0; i < `MAX_COSMETIC_ATTACHMENTS; i++)
@@ -472,18 +538,21 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
 		}
 		else
 		{
-			CurrentMesh = AttachmentMeshKey$AttachmentIndex;
-			FinishedString $= Localize(CharInfoPath, CurrentMesh, KFCharacterInfoString)$"\n";
+			FinishedString $= Localize(string(CurrentCharInfo.CosmeticVariants[AttachmentIndex].AttachmentItem.Name), AttachmentMeshKey, KFCharacterInfoString)$"\n";
 		}
 	}
 
 	DataObject.SetString( sectionFunctionName, FinishedString );
 
 	SetObject( sectionFunctionName, DataObject);
-//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
-	KFPC = KFPlayerController(GetPC());
-	KFPC.SaveConfig();
-//@HSL_MOD_END
+//@HSL_MOD_BEGIN - amiller 5/11/2016 - Adding support to save extra data into profile settings
+
+	KFPS = KFProfileSettings(class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId));
+	if(KFPS != none)
+	{
+		KFPS.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
+	}
+	//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
 }
 
 event OnClose()
@@ -491,6 +560,8 @@ event OnClose()
 	local PlayerController PC;
 
 	super.OnClose();
+
+	Manager.CachedProfile.Save( GetLP().ControllerId );
 
 	GetGameViewportClient().HandleInputAxis = none;
 
@@ -605,8 +676,9 @@ private function Callback_Head( byte MeshIndex, byte SkinIndex )
 			SelectCustomizationOption(KFP, CO_Head, MeshIndex, SkinIndex);
 		}
 	}
-
+	
 	SetGearButtons(MeshIndex, SkinIndex, HeadMeshKey, HeadSkinKey, HeadFunctionKey);
+	Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 
 private function Callback_Body( byte MeshIndex, byte SkinIndex )
@@ -630,6 +702,7 @@ private function Callback_Body( byte MeshIndex, byte SkinIndex )
 	}
 
 	SetGearButtons(MeshIndex, SkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
+	Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 
 private function Callback_Attachment( byte MeshIndex, byte SkinIndex )
@@ -654,6 +727,7 @@ private function Callback_Attachment( byte MeshIndex, byte SkinIndex )
 	}
 
 	SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
+	Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 
 /** Update our character parts when the UI is being used */

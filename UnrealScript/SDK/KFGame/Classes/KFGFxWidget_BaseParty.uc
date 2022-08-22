@@ -61,6 +61,7 @@ struct SMemberSlot
 };
 
 var bool bReadyButtonVisible;
+var bool bCreatePartyVisible;
 
 var SMemberSlot MemberSlots[`KF_MAX_PLAYERS_VERSUS];
 
@@ -69,25 +70,26 @@ function InitializeWidget()
 	local int SlotIndex;
 	KFPC = KFPlayerController(GetPC());
 	OnlineSub = KFPC.OnlineSub;
-	if(OnlineSub != none)
-    {
-                OnlineLobby = OnlineSub.GetLobbyInterface();
+	if (OnlineSub != none)
+	{
+		OnlineLobby = OnlineSub.GetLobbyInterface();
 	}
 
-	for ( SlotIndex = 0; SlotIndex < PlayerSlots; SlotIndex++ )
+	for (SlotIndex = 0; SlotIndex < PlayerSlots; SlotIndex++)
 	{
 		InitializeMemberSlot(SlotIndex);
 	}
 
 	LeaveButton = GetObject("leaveButton");
 	CreatePartyButton = GetObject("createPartyButton");
+	SetBool("partyButtonVisible", bCreatePartyVisible);
 	ReadyButton = GetObject("readyButton");
 	SquadHeader = GetObject("squadHeader");
 	InitNotificationUI();
 
 	LocalizeText();
 
-	UpdateInLobby(Manager.IsInLobby());	
+	UpdateInLobby(Manager.IsInLobby());
 	RefreshParty();
 }
 
@@ -99,6 +101,9 @@ function  LocalizeText()
 
 	SetString("deployingString", DeployingString);
 	SetString("waitingString", WaitingString);
+
+	SetString("selectPromptString", Localize("KFGFxWidget_ButtonPrompt", "ConfirmString", "KFGame"));
+	SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
 }
 
 function InitNotificationUI()
@@ -137,11 +142,6 @@ function InitializeMemberSlot( int SlotIndex )
 	MemberSlots[SlotIndex].PlayerNameTextField = MemberSlots[SlotIndex].MemberSlotObject.GetObject("playerNameText");	
 
 	MemberSlots[SlotIndex].MemberSlotObject.SetString("leaderText",PartyLeaderString);
-
-	if (KFPC != none)
-	{
-		CreatePerkList(MemberSlots[SlotIndex].MemberSlotObject.GetObject("perksList"));
-	}
 	
 	EmptySlot( SlotIndex );
 }
@@ -187,6 +187,7 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 	if( !PC.WorldInfo.IsMenuLevel() && PlayerID != PC.PlayerReplicationInfo.UniqueId ) //temp for now since voip and such does not work in the main menu
 	{
 		//Are they muted?
+		// TODO:  This needs to check more than muted because if player 1 mutes player 2 then player 2 gets the unmute option that does nothing.
 		if(PC.IsPlayerMuted(PlayerID))
 		{
 			ProfileOptions.AddItem(UnmuteString);
@@ -234,7 +235,14 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 
 function UpdateInLobby(bool bIsInLobby)
 {
-	bInLobby = bIsInLobby;
+	local bool bShouldShowCreateParty;
+
+	if(bIsInLobby != bInLobby)
+	{
+		bInLobby = bIsInLobby;
+		RefreshParty();
+	}
+	
 	if (bInLobby)
 	{
 		if(class'WorldInfo'.static.IsMenuLevel())
@@ -247,19 +255,32 @@ function UpdateInLobby(bool bIsInLobby)
 		}
 	}
 	else
+	{	
+		LeaveButton.SetVisible(false);
+
+		//clear all party buttons other than your own
+	}
+	//@HSL_BEGIN - JRO - Handle the create party button in both situations for PS4
+	if ( Manager.StartMenu != None)
 	{
-		if( class'WorldInfo'.static.IsMenuLevel() && Manager.GetMultiplayerMenuActive() )
+		if(GetPC().WorldInfo.IsMenuLevel())
 		{
-			CreatePartyButton.SetVisible(true);
+			bShouldShowCreateParty = Manager.GetMultiplayerMenuActive() && !bInLobby;
 		}
-		else
+		else if(class'WorldInfo'.static.IsConsoleBuild())
 		{
-			CreatePartyButton.SetVisible(false);
+			bShouldShowCreateParty = GetPC().WorldInfo.NetMode != NM_Standalone && !bInLobby;
 		}
 		
-		LeaveButton.SetVisible(false);
+		if(bCreatePartyVisible != bShouldShowCreateParty)
+		{
+			bCreatePartyVisible = bShouldShowCreateParty;
+			SetBool("partyButtonVisible",bCreatePartyVisible);
+		}
 	}
-	SetBool("bInParty", bIsInLobby);	
+
+	//@HSL_END
+	SetBool("bInParty", bIsInLobby);
 }
 
 function  UpdateSoloSquadText()
@@ -307,36 +328,42 @@ function CreateList( GFxObject OptionList, array<string> TextArray, byte Selecte
 		ItemSlot.SetString("label", TextArray[i] );
 		DataProvider.SetElementObject(i, ItemSlot);		
     }
-    DataProvider.ActionScriptVoid("invalidateData");
+	DataProvider.ActionScriptVoid("invalidateData");
+	OptionList.ActionScriptVoid("invalidateData");
 }
 
 function ProfileOptionClicked(int OptionIndex, int SlotIndex)
 {
 	local PlayerController PC;
 	PC = GetPC();
-
-	if( (PC.WorldInfo.IsConsoleBuild() && OptionIndex == 0) || OptionIndex == ProfileOptions.length - 1 )
-	{
-		// So the View Profile option is either going to be the first index on console (overriding Add Friend since we can't do that)
-		// or it's going to be the last index on PC because you can't mute or kick in the menus.
-		ViewProfile(SlotIndex);
-	}
-	else
-	{
-		switch (OptionIndex)
-		{
-		case EAdd_Friend:
-			AddFriend(SlotIndex);
-			break;
-		case EToggle_Mute:
-			ToggelMuteOnPlayer(SlotIndex);
-			break;
-		case EKick_Player:
-			KickPlayer(SlotIndex);
-		default:
-
-		}
-	}
+    switch (OptionIndex)
+    {
+	    case EAdd_Friend:
+	        if ( PC.WorldInfo.IsConsoleBuild() || PC.WorldInfo.IsMenuLevel()) // Console's first index is view profile.  HSL_BB
+	        {
+	            ViewProfile(SlotIndex);
+	        }
+	        else
+	        {
+	            AddFriend(SlotIndex);
+	        }
+	        break;
+	    case EToggle_Mute:
+	        if ( PC.WorldInfo.IsMenuLevel() ) // Can't mute in the menulevel so view profile. HSL_BB
+	        {
+	            ViewProfile(SlotIndex);
+	        }
+	        else
+	        {
+	            ToggelMuteOnPlayer(SlotIndex);
+	        }
+	        break;
+	    case EKick_Player:
+	        KickPlayer(SlotIndex);
+	        break;
+	    default:
+	        ViewProfile(SlotIndex);
+    }
 }
 
 function bool IsPlayerAFriend(UniqueNetId PlayerID)
@@ -402,7 +429,7 @@ function StatsInit()
 {
 	if(MemberSlots[0].MemberSlotObject != none)
 	{
-		CreatePerkList(MemberSlots[0].MemberSlotObject.GetObject("perksList"));
+//		CreatePerkList(MemberSlots[0].MemberSlotObject.GetObject("perksList"));
 	}
 }
 
@@ -412,13 +439,20 @@ function EmptySlot( int SlotIndex )
 {
 	MemberSlots[SlotIndex].PlayerUID = ZeroUniqueId;
    	MemberSlots[SlotIndex].bIsSlotTaken = false;
+	MemberSlots[SlotIndex].bIsReady = false;
+	MemberSlots[SlotIndex].bIsLeader = false;
+	MemberSlots[SlotIndex].PerkClass = none;
+	MemberSlots[SlotIndex].PRI = none;
+	MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", "");
+	MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted",false);
+
 	UpdatePlayerName( SlotIndex, DefaultPlayerName$SlotIndex );
     SlotChanged( SlotIndex, false, false, false );
 }
 
 function UpdatePlayerName( int SlotIndex, string PlayerName )
 {
-	MemberSlots[SlotIndex].PlayerNameTextField.SetText( PlayerName );
+	MemberSlots[SlotIndex].MemberSlotObject.SetString( "playerNameString", PlayerName );
 }
 
 function UpdatePerk( int SlotIndex, string PerkString, string Level, string IconPath )
@@ -512,7 +546,7 @@ DefaultProperties
 	PlayerSlots=6
 	//defaults
 	bReadyButtonVisible=true
-	PerkPrefix="%&1&%"
+	PerkPrefix="%&1&%" //@HSL - JRO - Also copied in KFOnlineLobbyNP::LobbyMessage(). Needed to cache the messages so as not to spam the network
 	SearchingPrefix="%&2&%"
 	ServerBrowserOpen="ServerBrowser"
 	SearchingForGame="SearchingForGame"

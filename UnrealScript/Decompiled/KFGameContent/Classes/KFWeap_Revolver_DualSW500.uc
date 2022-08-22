@@ -38,7 +38,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_SW_500_TEX.UI_WeaponSelect_DualSW500'
-    MaxSpareAmmo=95
+    SpareAmmoCapacity=95
     InitialSpareMags=2
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

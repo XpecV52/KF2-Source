@@ -42,7 +42,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=20
-	MaxSpareAmmo[0]=340
+	SpareAmmoCapacity[0]=340
 	InitialSpareMags[0]=4
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -74,7 +74,6 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SCAR'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_SCAR'
 	FireInterval(DEFAULT_FIREMODE)=+0.096 // 625 RPM
 	Spread(DEFAULT_FIREMODE)=0.007
 	InstantHitDamage(DEFAULT_FIREMODE)=50.0
@@ -90,6 +89,10 @@ defaultproperties
 	InstantHitDamage(ALTFIRE_FIREMODE)=50.0
 	Spread(ALTFIRE_FIREMODE)=0.007
 
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_SCAR'
+	InstantHitDamage(BASH_FIREMODE)=26
+
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_SCAR_ARCH.Wep_Scar_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Fire_Loop_M', FirstPersonCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Fire_Loop_S')
@@ -101,7 +104,7 @@ defaultproperties
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true
 	bLoopingFireSnd(DEFAULT_FIREMODE)=true
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Fire_Loop_End_M', FirstPersonCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Fire_Loop_End_S')
-	SingleFireMode=ALTFIRE_FIREMODE
+	SingleFireSoundIndex=ALTFIRE_FIREMODE
 
 	// Attachments
 	bHasIronSights=true

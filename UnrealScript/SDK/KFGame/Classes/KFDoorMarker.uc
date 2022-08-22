@@ -11,10 +11,12 @@ class KFDoorMarker extends DoorMarker
 	hidecategories(DoorMarker);
 
 var(KF2) KFDoorActor	MyKFDoor;
+
 /** Optionally override the distance at which my door will be considered reached by NPCs */
 var(KF2) float			AdjustedReachThreshold;
-/** Optionally override the extra cost for Zeds to want to path through this door if it's closed & welded */
-var(KF2) int			ExtraCostWhenWelded;
+
+/** The computed cost when this door is welded */
+var transient int 		ExtraCostWhenWelded;
 
 cpptext
 {
@@ -58,7 +60,9 @@ event bool SuggestMovePreparation( Pawn Other )
 				Count++;
 			}
 		}
-		if( Count > 3 )
+
+		// Only allow up to 5 attackers
+		if( Count > 5 )
 		{
 			`AILog_Ext( GetFuncName()$"() "$self$" - telling "$Other$" to wait for "$MyKFDoor$" to open", 'Doors', KFPawn(Other).MyKFAIC );
 			Other.ZeroMovementVariables();
@@ -69,49 +73,6 @@ event bool SuggestMovePreparation( Pawn Other )
 	}
 
 	return false;
-
-	if( MyKFDoor == None || MyKFDoor.IsCompletelyOpen() )
-	{
-		return false;
-	}
-`if(`__TW_PATHFINDING_)
-		if( KFPawn(Other) != none && !KFPawn(Other).IsHumanControlled() )
-		{
-			`AILog_Ext( GetFuncName()$" "$self$" by "$KFPawn(Other).MyKFAIC$" Dist: "$VSize(Location-Other.Location), 'Doors',  KFPawn(Other).MyKFAIC );
-		}
-`endif
-	if( VSize(Location - Other.Location) < 72.f || (Other.Controller != none && Other.Controller.ActorReachable(self)) )
-	{
-		// Door is welded shut
-		if( MyKFDoor.WeldIntegrity > 0 )
-		{
-`if(`__TW_PATHFINDING_)
-			if( KFPawn(Other) != none && !KFPawn(Other).IsHumanControlled() )
-			{
-				`AILog_Ext( GetFuncName()$" "$self$" by "$KFPawn(Other).MyKFAIC$" calling WaitForDoor and NotifyAttacKDoor", 'Doors',  KFPawn(Other).MyKFAIC );
-			}
-`endif
-			KFAIController( Other.Controller ).WaitForDoor( MyKFDoor );
-			KFAIController( Other.Controller ).NotifyAttackDoor( MyKFDoor );
-			return true;
-		}
-		else
-		{
-`if(`__TW_PATHFINDING_)
-			if( KFPawn(Other) != none && !KFPawn(Other).IsHumanControlled() )
-			{
-				`AILog_Ext( GetFuncName()$" "$self$" by "$KFPawn(Other).MyKFAIC$" calling WaitForDoor and UseDoor", 'Doors',  KFPawn(Other).MyKFAIC );
-			}
-`endif
-			KFAIController( Other.Controller ).WaitForDoor( MyKFDoor );
-			MyKFDoor.UseDoor( Other );
-			return true;
-		}
-	}
-	else
-	{
-		return false;
-	}
 }
 
 function MoverOpened()
@@ -128,16 +89,53 @@ function MoverClosed()
 	WorldInfo.Game.NotifyNavigationChanged(self);
 }
 
+/** Updates the pathing cost based on weld integrity, number of attackers and number queued */
+function UpdatePathingCost( int AttackerCount, int QueuedCount )
+{
+	local float IntegrityPct;
+
+	if( MyKFDoor.WeldIntegrity > 0 )
+	{
+		IntegrityPct = float(MyKFDoor.WeldIntegrity) / float(MyKFDoor.MaxWeldIntegrity);
+
+		// If there are simply too many AI waiting on this door, and it's heavily welded, just skip it
+		if( IntegrityPct > 0.75f && AttackerCount + QueuedCount > 10 )
+		{
+			ExtraCostWhenWelded = 100000;
+			return;
+		}
+
+		// Initialize at 1000
+		ExtraCostWhenWelded = 1000;
+
+		// Add cost based on the strength of the weld (10-1000)
+		ExtraCostWhenWelded += int( IntegrityPct * 100.f ) * 10;
+
+		// Add cost based on the number of attackers (0-500)
+		ExtraCostWhenWelded += Min( AttackerCount * 100, 500 );
+
+		// Add cost based on the number of queued AI (0-1000)
+		ExtraCostWhenWelded += Min( QueuedCount * 100, 1000 );
+	}
+	else
+	{
+		// Reset to base cost
+		ExtraCostWhenWelded = 1000;
+	}
+
+	//`log("updating door pathing cost:"@extracostwhenwelded);
+}
+
 function bool ProceedWithMove(Pawn Other)
 {
 	local KFAIController KFAIC;
 
-	`if(`__TW_PATHFINDING_)
+`if(`__TW_PATHFINDING_)
 		if( KFPawn(Other) != none && !KFPawn(Other).IsHumanControlled() )
 		{
 			`AILog_Ext( GetFuncName()$" "$self$" for "$Other, 'Doors',  KFPawn(Other).MyKFAIC );
 		}
-	`endif
+`endif
 
 	KFAIC = KFAIController( Other.Controller );
 
@@ -198,6 +196,4 @@ DefaultProperties
 {
 	AdjustedReachThreshold=72.f
 	bBuildLongPaths=false
-	ExtraCostWhenWelded=3000
 }
-

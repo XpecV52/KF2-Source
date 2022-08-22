@@ -74,7 +74,7 @@ simulated function rotator AddSpread(rotator BaseAim)
 
 defaultproperties
 {
-   SingleFireMode=1
+   SingleFireSoundIndex=1
    InventorySize=6
    MagazineCapacity(0)=60
    bHasIronSights=True
@@ -83,7 +83,7 @@ defaultproperties
    MeshIronSightFOV=33.000000
    PlayerIronSightFOV=70.000000
    GroupPriority=50.000000
-   MaxSpareAmmo(0)=270
+   SpareAmmoCapacity(0)=270
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True

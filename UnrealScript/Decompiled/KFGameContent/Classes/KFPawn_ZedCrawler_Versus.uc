@@ -15,7 +15,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     local KFPlayerController KFPC;
 
-    super(KFPawn_Monster).PlayDying(DamageType, HitLoc);
+    super.PlayDying(DamageType, HitLoc);
     if((OldController != none) && DamageType == Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType)
     {
         KFPC = KFPlayerController(OldController);
@@ -33,6 +33,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 
 defaultproperties
 {
+    DeathExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedCrawler_Versus.ExploTemplate0'
     bVersusZed=true
     bHasExtraSprintJumpVelocity=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-300,Y=60,Z=60),OffsetMid=(X=-250,Y=60,Z=-30),OffsetLow=(X=-220,Y=60,Z=25))
@@ -46,6 +47,7 @@ defaultproperties
     DoshValue=25
     XPValues=32
     DamageTypeModifiers=/* Array type was not detected. */
+    MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     JumpBumpDamageType=Class'KFDT_Bludgeon_ZedJump'
     LocalizationKey=KFPawn_ZedCrawler

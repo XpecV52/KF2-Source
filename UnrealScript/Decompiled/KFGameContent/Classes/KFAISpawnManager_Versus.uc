@@ -41,28 +41,28 @@ function SetupNextWave(byte NextWaveIndex)
 
     super.SetupNextWave(NextWaveIndex);
     LargestSquadSize = 0;
-    Waves[NextWaveIndex].GetNewSquadList(SquadList);
+    WaveSettings.Waves[NextWaveIndex].GetNewSquadList(SquadList);
     I = 0;
-    J0x5D:
+    J0x70:
 
     if(I < AvailableSquads.Length)
     {
         SquadZedCount = 0;
         J = 0;
-        J0x8B:
+        J0x9E:
 
         if(J < AvailableSquads[I].MonsterList.Length)
         {
             SquadZedCount += AvailableSquads[I].MonsterList[J].Num;
             ++ J;
-            goto J0x8B;
+            goto J0x9E;
         }
         if(SquadZedCount > LargestSquadSize)
         {
             LargestSquadSize = SquadZedCount;
         }
         ++ I;
-        goto J0x5D;
+        goto J0x70;
     }
     if(NextWaveIndex < PlayerZedWaves.Length)
     {
@@ -709,7 +709,7 @@ function Timer_CheckForZedTakeovers()
 
 function SpawnRemainingReservedZeds(optional bool bSpawnAllReservedZeds)
 {
-    local int I, NumZedsSpawned;
+    local int I, NumZedsSpawned, NumWaitingZedPlayers;
     local array< class<KFPawn_Monster> > TempSquad;
 
     if(!IsPlayerZedSpawnAllowed() || ReservedPlayerZeds.Length == 0)
@@ -723,29 +723,37 @@ function SpawnRemainingReservedZeds(optional bool bSpawnAllReservedZeds)
         ReservedPlayerZeds.Length = 0;
         return;
     }
+    NumWaitingZedPlayers = GetNumWaitingZedPlayers();
     if(ReservedPlayerZeds.Length > 0)
     {
         I = 0;
-        J0xD1:
+        J0xE5:
 
         if((I < ReservedPlayerZeds.Length) && bSpawnAllReservedZeds || NumZedsSpawned < 2)
         {
             if((Outer.AIAliveCount + (NumZedsSpawned + 1)) > Outer.MyKFGRI.AIRemaining)
             {
                 ReservedPlayerZeds.Length = 0;
-                goto J0x250;
+                goto J0x292;
             }
-            if(!ClassIsChildOf(Outer.PlayerZedClasses[6], ReservedPlayerZeds[I]) && !ClassIsChildOf(Outer.PlayerZedClasses[7], ReservedPlayerZeds[I]))
+            if((NumWaitingZedPlayers == 0) || !ClassIsChildOf(Outer.PlayerZedClasses[6], ReservedPlayerZeds[I]) && !ClassIsChildOf(Outer.PlayerZedClasses[7], ReservedPlayerZeds[I]))
             {
                 TempSquad.AddItem(ReservedPlayerZeds[I];
                 ReservedPlayerZeds.Remove(I, 1;
                 ++ NumZedsSpawned;
-                -- I;
+                -- I;                
+            }
+            else
+            {
+                if(NumWaitingZedPlayers > 0)
+                {
+                    -- NumWaitingZedPlayers;
+                }
             }
             ++ I;
-            goto J0xD1;
+            goto J0xE5;
         }
-        J0x250:
+        J0x292:
 
         if(TempSquad.Length > 0)
         {
@@ -988,6 +996,21 @@ protected function bool HaveZedPlayers()
     return false;
 }
 
+protected function int GetNumWaitingZedPlayers()
+{
+    local KFPlayerControllerVersus KFPCV;
+    local int NumWaiting;
+
+    foreach Outer.WorldInfo.AllControllers(Class'KFPlayerControllerVersus', KFPCV)
+    {
+        if((((KFPCV.PlayerZedSpawnInfo.PendingZedPawnClass == none) && KFPCV.GetTeamNum() == 255) && KFPCV.CanRestartPlayer()) && (KFPCV.Pawn == none) || !KFPCV.Pawn.IsAliveAndWell())
+        {
+            ++ NumWaiting;
+        }        
+    }    
+    return NumWaiting;
+}
+
 protected function int GetNumActiveZedsOfClass(class<KFPawn_Monster> ZedClass)
 {
     local KFPawn_Monster MonsterPawn;
@@ -1009,15 +1032,15 @@ protected function int GetNumActiveZedsOfClass(class<KFPawn_Monster> ZedClass)
 
 protected function bool CanSpawnPlayerBoss()
 {
-    local KFPlayerController KFPC;
+    local KFPlayerControllerVersus KFPCV;
 
     if(bBossSpawned)
     {
         return true;
     }
-    foreach Outer.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    foreach Outer.WorldInfo.AllControllers(Class'KFPlayerControllerVersus', KFPCV)
     {
-        if(((KFPC.GetTeamNum() == 255) && KFPC.CanRestartPlayer()) && (KFPC.Pawn == none) || !KFPC.Pawn.IsAliveAndWell())
+        if(((KFPCV.GetTeamNum() == 255) && KFPCV.CanRestartPlayer()) && (KFPCV.Pawn == none) || !KFPCV.Pawn.IsAliveAndWell())
         {            
             return true;
         }        
@@ -1052,7 +1075,7 @@ defaultproperties
     MaxActivePlayerFleshpounds=2
     BossSpawnPlayerInterval=40
     FinalSurvivorBossSpawnPlayerInterval=20
-    Waves=/* Array type was not detected. */
+    DifficultyWaveSettings=/* Array type was not detected. */
     SoloWaveSpawnRateModifier[0]=RateModifier=/* Array type was not detected. */,
 /* Exception thrown while deserializing SoloWaveSpawnRateModifier
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.

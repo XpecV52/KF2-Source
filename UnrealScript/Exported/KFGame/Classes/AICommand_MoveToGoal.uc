@@ -922,6 +922,12 @@ function ReachedIntermediateMoveGoal()
 
     	if( DM != none && DM.MyKFDoor != none && !DM.MyKFDoor.IsCompletelyOpen() )
     	{
+    		// Allow pawn to handle door bump events first
+    		if( MyKFPawn.HandleAIDoorBump(DM.MyKFDoor) )
+    		{
+    			return;
+    		}
+
     		AILog_Internal(GetFuncName()$" Reached IntermediateMoveGoal DoorMarker "$DM$" for closed door Dist: "$VSize(DM.Location - Pawn.Location),'Doors',);
     		if( DM.MyKFDoor.WeldIntegrity <= 0 )
     		{
@@ -1106,37 +1112,51 @@ state MovingToGoal
 {
 	function bool NotifyHitWall( vector HitNormal, actor Wall )
 	{
+		local KFDoorActor Door;
+
 		DisableNotifyHitWall( 0.2f );
 		AILog_Internal("NotifyHitWall() while in MoveToGoal, HitNormal: "$HitNormal$" Wall: "$Wall$" LastHitWall: "$LastHitWall$" WallHitCount: "$WallHitCount$" MoveTarget: "$MoveTarget,'PathWarning',);
 		AIActionStatus = "Received NotifyHitWall event";
-		if( KFDoorActor( Wall ) == none )
+
+		if( !Wall.bStatic )
 		{
-			AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal,'HitWall',);
-		}
-		else
-		{
-			if( KFDoorActor(Wall).WeldIntegrity <= 0 && KFDoorMarker(KFDoorActor(Wall).MyMarker) != none && !KFDoorActor(Wall).IsCompletelyOpen() )
+			Door = KFDoorActor( Wall );
+			if( Door == none )
 			{
-				DisableNotifyHitWall(0.25f);
-				WaitForDoor( KFDoorActor(Wall) );
-				AILog_Internal("NotifyHitWall() while in MoveToGoal, Wall: "$Wall$" Using door and waiting for it to open",'Doors',);
-				KFDoorActor(Wall).UseDoor(Pawn);
+				AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal,'HitWall',);
+			}
+			else
+			{
+				// Allow pawn to handle door bump events first
+				if( MyKFPawn.HandleAIDoorBump(Door) )
+				{
+					return true;
+				}
+
+				if( Door.WeldIntegrity <= 0 && KFDoorMarker(Door.MyMarker) != none && !Door.IsCompletelyOpen() )
+				{
+					DisableNotifyHitWall(0.25f);
+					WaitForDoor( Door );
+					AILog_Internal("NotifyHitWall() while in MoveToGoal, Wall: "$Wall$" Using door and waiting for it to open",'Doors',);
+					Door.UseDoor( Pawn );
+
+					return true;
+				}
+				// NOTE: Unless returning true, if the Wall is a closed door, SuggestMovePreparation event will be called on the associated KFDoorMarker
+				AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal$" ran into a door!",'Doors',);
+				if( !Door.IsCompletelyOpen() && Door.WeldIntegrity > 0 && (Pawn.Anchor == Door.MyMarker || (DoorEnemy != none && (DoorEnemy == Door || PendingDoor == Door))) )
+				{
+					DisableNotifyHitWall(0.25f);
+					AILog_Internal(GetFuncName()$"() calling NotifyAttackDoor for "$Wall,'Doors',);
+					NotifyAttackDoor( Door );
+
+					return true;
+				}
+			}
+			if( Pawn.Physics == PHYS_Falling )
+			{
 				return true;
 			}
-			// NOTE: Unless returning true, if the Wall is a closed door, SuggestMovePreparation event will be called on the associated KFDoorMarker
-			AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal$" ran into a door!",'Doors',);
-			if( !KFDoorActor(Wall).IsCompletelyOpen() && KFDoorActor(Wall).WeldIntegrity > 0 && (Pawn.Anchor == KFDoorActor(Wall).MyMarker || (DoorEnemy != none && (DoorEnemy == KFDoorActor(Wall) || PendingDoor == KFDoorActor(Wall)))) )
-			{
-				DisableNotifyHitWall(0.25f);
-				AILog_Internal(GetFuncName()$"() calling NotifyAttackDoor for "$Wall,'Doors',);
-				NotifyAttackDoor( KFDoorActor(Wall) );
-				return true;
-				//`AILog( GetFuncName()$"() has door enemy "$DoorEnemy, 'Doors' );
-			}
-		}
-		if( Pawn.Physics == PHYS_Falling )
-		{
-			return true;
 		}
 
 		if( LastHitWall != none && Wall != LastHitWall )

@@ -206,8 +206,11 @@ function OnLoginChange(byte LocalUserNum)
 		{
 			// Grab the player interface to verify the subsystem supports it
 			PlayerInterface = OnlineSub.PlayerInterface;
+//@HSL_BEGIN - JRO - 7/27/2016 - Orbis login status only applies to PSN status. You always have an account active when a game is open,
+//                               so resetting profile info isn't necessary and in fact is causing problems
 			if (PlayerInterface != None &&
-				PlayerInterface.GetLoginStatus(PlayerControllerId) > LS_NotLoggedIn)
+				(PlayerInterface.GetLoginStatus(PlayerControllerId) > LS_NotLoggedIn || class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis)))
+//@HSL_END
 			{
 				// Get the name and force a refresh
 				PlayerNick = PlayerInterface.GetPlayerNickname(PlayerControllerId);

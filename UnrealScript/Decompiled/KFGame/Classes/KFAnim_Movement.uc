@@ -15,6 +15,8 @@ var() bool bScaleAnimPlayRateBySpeed;
 var() bool bSynchronizeNodesInEditor;
 /** If set, calculate speed from owner's base instead of owner */
 var() bool bUseOwnersBase;
+/** If set, ignore z-axis velocity/acceleration */
+var() bool bUse2DMovement;
 /** Position of the movement cycle when starting to move */
 var() float MoveCycleFirstStepStartPosition;
 var const transient AnimTree RootNode;
@@ -26,6 +28,7 @@ native function SetActiveChild(int ChildIndex, float BlendTime);
 defaultproperties
 {
     bSynchronizeNodesInEditor=true
+    bUse2DMovement=true
     MoveCycleFirstStepStartPosition=0.3
     SynchGroupName=RunWalk
     BlendUpTime=0.3

@@ -156,6 +156,22 @@ var transient AnimNodeSlot BashSlot;
 var() float FrameSizeOfTwoDoors;
 
 /*********************************************************************************************
+ * @name	Repair
+ ********************************************************************************************* */
+
+/** Percent of repair complete from 0-255 */
+var byte RepairProgress;
+
+/** When set to TRUE, notifies clients that door needs to be repaired */
+var repnotify transient bool bWasRepaired;
+
+/** Particle effect spawned when a door has been fully repaired */
+var() ParticleSystem RepairFXTemplate;
+
+/** Repair sound event */
+var() AkEvent RepairSound;
+
+/*********************************************************************************************
  * @name	AI
  ********************************************************************************************* */
 
@@ -186,6 +202,9 @@ const SlidingPushForce = 750;
 
 /** Adjusts the "push" plane of the door (the threshold for pushing forward or backward) along its X-axis */
 //var() float PushOriginOffset;
+
+/** Cache of physical broken door pieces, needed so they can be deleted when the door is restored through a non-reset method */
+var array<KActor> BrokenDoorPhysicsActors;
 
 /*********************************************************************************************
  * @name	Effects
@@ -224,6 +243,7 @@ var() array<DestroyedEffectParams> DestroyedEmitters;
 var transient array<ParticleSystemComponent> BrokenDoorParticleEffects;
 
 var localized string WeldIntegrityString;
+var localized string RepairProgressString;
 var localized string ExplosiveString;
 
 cpptext
@@ -253,11 +273,14 @@ cpptext
 replication
 {
 	if ( bNetDirty )
-		bIsDoorOpen, Health, WeldIntegrity, bIsDestroyed, HitCount, DemoWeld, 
-		bShouldExplode;
+		HitCount, bIsDoorOpen, Health, WeldIntegrity, bIsDestroyed, DemoWeld, 
+		bShouldExplode, bWasRepaired;
 
 	if ( bNetDirty && DoorMechanism == EDM_Hinge )
 		bReverseHinge;
+
+	if ( bNetDirty && bIsDestroyed )
+		RepairProgress;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -282,6 +305,13 @@ simulated event ReplicatedEvent(name VarName)
 		if ( bIsDestroyed )
 		{
 			PlayDestroyed();
+		}
+	}
+	else if( VarName == nameOf(bWasRepaired) )
+	{
+		if( bWasRepaired )
+		{
+			ResetDoor( true );
 		}
 	}
 	else if ( VarName == nameof(Health) )
@@ -751,6 +781,7 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 {
 	local KFPawn_Monster KFPM;
 	local KFCharacterInfo_Monster MonsterInfo;
+	local class<KFDamageType> KFDT;
 
 	if ( Role < ROLE_Authority )
 	{
@@ -791,21 +822,7 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 		// if weld is broken
 		if ( WeldIntegrity <= 0 || Health <= 0 )
 		{
-			WeldIntegrity = 0;
-			DemoWeld = 0;
-			Health = 0;
-
-			//UpdateHealthMICs();
-            UpdateIntegrityMIC();
-
-			// Weld and health are gone, destroy the door!
-			PlayDestroyed();
-
-			if( MyMarker != none && bMonitorDoor )
-			{
-				`RecordAIDestroyedDoor( KFAIController(EventInstigator), self, "Health:"$Health );
-				NotifyAIDoorOpened();
-			}
+			DestroyDoor( EventInstigator );
 		}
 
 		if ( !bIsDestroyed )
@@ -820,10 +837,39 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 		bForceNetUpdate = true;
 	}
 	// failsafe for AI deciding to attack the door instead of opening it
-	else if ( !bIsDoorOpen && class<KFDT_Ballistic>(DamageType) == none )
+	else if( !bIsDoorOpen && EventInstigator != none && !EventInstigator.bIsPlayer && EventInstigator.Pawn != none )
 	{
-		OpenDoor(EventInstigator.Pawn);
+		KFDT = class<KFDamageType>( DamageType );
+		if( KFDT != none && KFDT.default.bAllowAIDoorDestruction )
+		{
+			IncrementHitCount( EventInstigator.Pawn );
+			DestroyDoor( EventInstigator );
+		}
+		else if( class<KFDT_Ballistic>(DamageType) == none )
+		{
+			OpenDoor( EventInstigator.Pawn );
+		}
 	}
+}
+
+/** Destroys this door */
+function DestroyDoor( optional Controller DestructionInstigator )
+{
+	WeldIntegrity = 0;
+	DemoWeld = 0;
+	Health = 0;
+
+	//UpdateHealthMICs();
+    UpdateIntegrityMIC();
+
+	// Weld and health are gone, destroy the door!
+	PlayDestroyed();
+
+	if( MyMarker != none && bMonitorDoor )
+	{
+		`RecordAIDestroyedDoor( KFAIController(DestructionInstigator), self, "Health:"$Health );
+		NotifyAIDoorOpened();
+	}	
 }
 
 /** Returns true if the specificed damage causer can damage this door */
@@ -949,6 +995,38 @@ function FastenDoor(int Amount, optional KFPawn Welder)
 	}
 }
 
+/** Increase the weld integrity - Network: Server only */
+function RepairDoor(float Amount)
+{
+	local byte ByteAmount;
+
+	if ( bIsDestroyed )
+	{
+		ByteAmount = FloatToByte(Amount);
+		if ( RepairProgress + ByteAmount >= 255 )
+		{
+			ResetDoor( true );
+			if( WorldInfo.NetMode != NM_StandAlone )
+			{
+				bWasRepaired = true;
+				SetTimer( 0.1f, false, nameOf(Timer_ResetRepairFlag) );
+			}
+		} 
+		else
+		{
+			RepairProgress += ByteAmount;
+		}
+
+		bForceNetUpdate = true;
+	}
+}
+
+/** Restores repair flag to FALSE so door can be repaired later */
+function Timer_ResetRepairFlag()
+{
+	bWasRepaired = false;
+}
+
 function AddExplosiveWeld( int Amount, KFPlayerController PC )
 {
 	DemoWeld = Min( DemoWeld + Amount, DemoWeldRequired );
@@ -1050,6 +1128,9 @@ simulated function PlayDestroyed()
     SetTickIsDisabled(false);
 
 	bIsDestroyed = true;
+	
+	RepairProgress = 0;
+    WeldIntegrity = 0;
 
 	// If door is destroyed, it's dirty
 	bHasBeenDirtied = true;
@@ -1074,6 +1155,9 @@ simulated function PlayDestroyed()
 		PlayExplosion();
 		bShouldExplode = false;
 	}
+
+	// notify owning trigger
+	DoorTrigger.OnDestroyOrReset();
 }
 
 simulated function PlayExplosion()
@@ -1125,7 +1209,7 @@ simulated function DestroyNonPhysicsDoor()
 }
 
 /** Restores this door to the way it was at the start of a map */
-simulated function ResetDoor()
+simulated function ResetDoor( optional bool bRepaired )
 {
 	local int i;
 	local DoorMarker DoorNav;
@@ -1136,9 +1220,18 @@ simulated function ResetDoor()
 		Health = MaxHealth;
 	    bIsDestroyed = false;
 	    bShouldExplode = false;
-	    bIsDoorOpen = true;
 		WeldIntegrity = 0;
 	    DemoWeld = 0;
+
+	    // Only open door if this wasn't a repair
+	    if( bRepaired )
+	    {
+		    bIsDoorOpen = false;
+		}
+		else
+		{
+			bIsDoorOpen = true;
+		}
 
 		// Update clients immediately
 		bNetDirty = true;
@@ -1148,32 +1241,48 @@ simulated function ResetDoor()
 	// Reset non-replicated variables
 	ExplosionInstigatorController = none;
  	bDoorMoveCompleted = true;
-	bLocalIsDoorOpen = true;
  	bHasBeenDirtied = false;
 
 	// Door has not been dirtied and does not need to be ticked yet
     SetTickIsDisabled( true );
 
-	// Set rigid body collision params
-    SetRBCollideWithDeadPawn( false );
-
     // Reset hinged doors a little differently
    	if( DoorMechanism == EDM_Hinge )
 	{
-      	ResetHingedDoor();
+      	ResetHingedDoor( bRepaired );
 	}
 	else
 	{
 		BashSlot.StopCustomAnim( 0 );
 	}
 
-	// Restore door to open position
-	MovementControl.SetSkelControlActive( true );
-	MovementControl.SetSkelControlStrength( 1.f, 0.f );
+	// Restore door to closed position if this was a repair
+	if( bRepaired )
+	{
+		bLocalIsDoorOpen = false;
+
+		// Set rigid body collision params
+	    SetRBCollideWithDeadPawn( true );
+
+		MovementControl.SetSkelControlStrength( 0.f, 0.f );
+
+		// Need to push any pawns out of door collision (they could get stuck!)
+		TryPushPawns();
+	}
+	else
+	{
+		bLocalIsDoorOpen = true;
+
+		// Otherwise it stays open
+		MovementControl.SetSkelControlStrength( 1.f, 0.f );	
+
+		// Set rigid body collision params
+	    SetRBCollideWithDeadPawn( false );
+	}
 	SkeletalMeshComp.ForceSkelUpdate();
 
-	// Make sure door is considered open by AI
-	if( bMonitorDoor )
+	// Make sure door is considered open by AI (if not a repair)
+	if( bMonitorDoor && !bRepaired )
 	{
 		DoorNav = DoorMarker(MyMarker);
 		if (DoorNav != None)
@@ -1182,12 +1291,21 @@ simulated function ResetDoor()
 		}
 		bMonitorDoor = false;
 	}
+	else if( bRepaired )
+	{
+		// We need to notify AI that this door is no longer open
+		DoorNav = DoorMarker(MyMarker);
+		if (DoorNav != None)
+		{
+			DoorNav.MoverClosed();
+		}
+	}
 
 	// Update health MIC scalars
-	UpdateHealthScalars('doorHealthA', 0);
-	UpdateHealthScalars('doorHealthB', 0);
-	UpdateHealthScalars('doorHealthC', 0);
-	UpdateHealthScalars('doorHealthD', 0);
+	UpdateHealthScalars( 'doorHealthA', 0 );
+	UpdateHealthScalars( 'doorHealthB', 0 );
+	UpdateHealthScalars( 'doorHealthC', 0 );
+	UpdateHealthScalars( 'doorHealthD', 0 );
 
 	// Stop any sounds that might have been playing
 	if( AmbientSoundComponent != none && AmbientSoundComponent.IsPlaying() )
@@ -1204,6 +1322,23 @@ simulated function ResetDoor()
 		}
 	}
 	BrokenDoorParticleEffects.Length = 0;
+
+	// Delete broken door particle effects and empty cache
+	for( i = 0; i < BrokenDoorPhysicsActors.Length; ++i )
+	{
+		BrokenDoorPhysicsActors[i].Destroy();
+	}
+	BrokenDoorPhysicsActors.Length = 0;
+
+	// When repaired, spawn an effect and play a sound
+	if( bRepaired && WorldInfo.MyEmitterPool != none )
+	{
+		WorldInfo.MyEmitterPool.SpawnEmitter( RepairFXTemplate, SoundOrigin, rotator(vect(0,0,1)), self );
+		PlaySoundBase( RepairSound,,,, SoundOrigin );
+	}
+
+	// notify owning trigger
+	DoorTrigger.OnDestroyOrReset();
 }
 
 /** As the door takes damage, scale its damage paramaters to make it look more beaten */
@@ -1260,6 +1395,8 @@ simulated function UpdateHealthScalars(name ScalarName, float Value)
 simulated function UpdateIntegrityMIC()
 {
 	local float IntegrityScaler, ExplosiveScaler;
+	local KFDoorMarker DoorMarker;
+	local int AttackerCount, QueuedCount;
 
 	if ( IntegrityMIC != none )
 	{
@@ -1289,6 +1426,16 @@ simulated function UpdateIntegrityMIC()
 		else if( !CenterWeldComponent.HiddenGame && WeldIntegrity <= 0 )
 		{
 			CenterWeldComponent.SetHidden(true);
+		}
+	}
+
+	if( WorldInfo.NetMode != NM_Client && WeldIntegrity > 0 && MyMarker != none )
+	{
+		DoorMarker = KFDoorMarker( MyMarker );
+		if( DoorMarker != none )
+		{
+			GetQueuedDoorAICounts( AttackerCount, QueuedCount );
+			DoorMarker.UpdatePathingCost( AttackerCount, QueuedCount );
 		}
 	}
 }
@@ -1378,6 +1525,9 @@ simulated function SpawnBrokenDoors( bool bReverseDir )
 
 				// Start awake
 				SpawnedKActor.StaticMeshComponent.WakeRigidBody();
+
+				// Add to array so we can delete these when the door needs to be repaired
+				BrokenDoorPhysicsActors.AddItem( SpawnedKActor );
 			}
 		}
 
@@ -1392,7 +1542,7 @@ simulated function SpawnBrokenDoors( bool bReverseDir )
 }
 
 /** Hinged doors are special and need to reset physics pieces and collision */
-simulated function ResetHingedDoor()
+simulated function ResetHingedDoor( optional bool bRepaired )
 {
 	local byte i;
 
@@ -1403,7 +1553,12 @@ simulated function ResetHingedDoor()
 		MeshAttachments[i].Component.SetHidden( false );
 	}
 
-	OpenSwingingDoor( none );
+	// Repaired doors start closed
+	if( !bRepaired )
+	{
+		OpenSwingingDoor( none );
+	}
+
 	SkeletalMeshComp.bComponentUseFixedSkelBounds = TRUE;
 }
 
@@ -1520,25 +1675,18 @@ function NotifyAIDoorOpened()
  * @name	HUD
  ********************************************************************************************* */
 
-simulated event DrawTemporaryWeldIcon( HUD HUD, Canvas C )
+simulated event DrawDoorHUD( HUD HUD, Canvas C )
 {
 	local PlayerController	PC;
-	local Canvas	Canvas;
 	local Vector	CameraLoc, ScreenLoc;
 	local Rotator	CameraRot;
-	local String	Str;
 	local float		X, Y;
-	local FontRenderInfo FRI;
 	local float DOT;
 	local Texture2D Icon;
-	local float WeldPercentageFloat;
-	local int WeldPercentage;
-	local float FontScale;
 
 	PC = HUD.PlayerOwner;
-	Canvas = C; //HUD.Canvas;
-	Canvas.SetDrawColor(255,255,255);
-	Canvas.Font = class'KFGameEngine'.Static.GetKFCanvasFont();
+	C.SetDrawColor(255,255,255);
+	C.Font = class'KFGameEngine'.Static.GetKFCanvasFont();
 	// project location onto the hud
 	PC.GetPlayerViewPoint( CameraLoc, CameraRot );
 
@@ -1547,18 +1695,36 @@ simulated event DrawTemporaryWeldIcon( HUD HUD, Canvas C )
 	{
 		return;
 	}
-	ScreenLoc = Canvas.Project( Location + (vect(0,0,1) * 164.f) );
-	if( ScreenLoc.X < 0 || ScreenLoc.X >= HUD.Canvas.ClipX || ScreenLoc.Y < 0 && ScreenLoc.Y >= HUD.Canvas.ClipY)
+	ScreenLoc = C.Project( Location + (vect(0,0,1) * 164.f) );
+	if( ScreenLoc.X < 0 || ScreenLoc.X >= C.ClipX || ScreenLoc.Y < 0 && ScreenLoc.Y >= C.ClipY)
 	{
 		return;
 	}
 	Icon = Texture2D'UI_World_TEX.welder_door_icon';
-	Canvas.SetPos(ScreenLoc.X - Icon.SizeX / 2, ScreenLoc.Y - Icon.SizeY / 2, ScreenLoc.Z);
-	Canvas.DrawTexture( Icon, 1.f );
+	C.SetPos(ScreenLoc.X - Icon.SizeX / 2, ScreenLoc.Y - Icon.SizeY / 2, ScreenLoc.Z);
+	C.DrawTexture( Icon, 1.f );
 
 	X = ScreenLoc.X + Icon.SizeX/2 + 5;
 	Y = ScreenLoc.Y - Icon.SizeY/2;
-	Canvas.SetPos( X, Y );
+	C.SetPos( X, Y );
+
+	if ( bIsDestroyed )
+	{
+		DrawRepairHUD( C, HUD );
+	}
+	else
+	{
+		DrawWeldHUD( C, HUD, X, Y );
+	}
+}
+
+simulated function DrawWeldHUD( Canvas C, HUD HUD, float PosX, float PosY )
+{
+	local float WeldPercentageFloat;
+	local int WeldPercentage;
+	local float FontScale;
+	local FontRenderInfo FRI;
+	local String Str;
 
 	// Display weld integrity as a percentage
 	FontScale = class'KFGameEngine'.Static.GetKFFontScale();
@@ -1573,15 +1739,63 @@ simulated event DrawTemporaryWeldIcon( HUD HUD, Canvas C )
 	}
 	WeldPercentage = int(WeldPercentageFloat);
 	Str = WeldIntegrityString@WeldPercentage$"%";
-	Canvas.DrawText( Str, TRUE, FontScale, FontScale, FRI );
+	C.DrawText( Str, TRUE, FontScale, FontScale, FRI );
 
 	if( DemoWeld > 0 && !bShouldExplode )
 	{
-		Canvas.SetPos( X, Y + 20.f );	
+		C.SetPos( PosX, PosY + 20.f );	
 		WeldPercentage = float(DemoWeld) / float(DemoWeldRequired) * 100.0;
 		Str = ExplosiveString @ WeldPercentage $ "%";
-		Canvas.DrawText( Str, TRUE, FontScale, FontScale, FRI );		
+		C.DrawText( Str, TRUE, FontScale, FontScale, FRI );		
+	}	
+}
+
+simulated function DrawRepairHUD( Canvas C, HUD HUD )
+{
+	local float RepairPercentageFloat;
+	local int RepairPercentage;
+	local float FontScale;
+	local FontRenderInfo FRI;
+	local String Str;
+
+	// Display weld integrity as a percentage
+	FontScale = class'KFGameEngine'.Static.GetKFFontScale();
+	RepairPercentageFloat = ( float(RepairProgress) / float(255) ) * 100.0;
+	if( RepairPercentageFloat > 99.f && RepairPercentageFloat < 100.f )
+	{
+		RepairPercentageFloat = 99.f;
 	}
+	RepairPercentage = int( RepairPercentageFloat );
+	Str = RepairProgressString @ RepairPercentage $ "%" ;
+	C.DrawText( Str, TRUE, FontScale, FontScale, FRI );
+}
+
+/** Outputs the number of AI attacking and/or queued for this door */
+function GetQueuedDoorAICounts( out int DoorAttackers, out int DoorQueuers )
+{
+	local KFAIController KFAIC;
+
+	foreach WorldInfo.AllControllers( class'KFAIController', KFAIC )
+	{
+		if( KFAIC.DoorEnemy == self )
+		{
+			++DoorAttackers;
+		}
+		else if( KFAIC.PendingDoor == self )
+		{
+			++DoorQueuers;
+		}
+	}
+}
+
+/** Scalar to use in KFMeleeHelperAI to break doors faster when more zeds are piled on it */
+function float GetAIDoorDamageScale()
+{
+	local int AttackerCount, QueuedCount;
+
+	GetQueuedDoorAICounts( AttackerCount, QueuedCount );
+
+	return 1.f + fMin( float(AttackerCount) * 0.1f, 1.f );
 }
 
 /**
@@ -1715,6 +1929,9 @@ defaultproperties
 
 	MeshAttachments.Add((Component=StaticMeshComponent0, AttachTo=DoorLeft))
 	MeshAttachments.Add((Component=StaticMeshComponent1, AttachTo=DoorRight))
+
+	RepairFXTemplate=ParticleSystem'FX_Gameplay_EMIT_TWO.FX_Door_Repair_Complete_01'
+	RepairSound=AkEvent'WW_ENV_Destruction.Play_Door_Heal'
 
 	//NavigationHandleClass=class'KFNavigationHandle'
 }

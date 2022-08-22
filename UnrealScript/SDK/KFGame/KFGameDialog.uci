@@ -246,6 +246,7 @@
 `define OBJ_EscortPackDead            	226
 `define OBJ_EscortPlayerDied          	227
 `define OBJ_EscortPackSecured         	228
+`define ACT_BerserkerRage				229
 
 // Trader dialog IDs
 `define TRAD_Wave20pctDead				0

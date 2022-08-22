@@ -98,7 +98,7 @@ simulated function UpdateScreenUI()
     {
         if(ScreenUI != none)
         {
-            ScreenUI.SetMaxCharges(MaxSpareAmmo[0]);
+            ScreenUI.SetMaxCharges(GetMaxAmmoAmount(0));
             ScreenUI.SetActiveCharges(NumDeployedCharges);
             TimeSinceLastUpdate = 0;
         }
@@ -118,15 +118,6 @@ simulated function Projectile ProjectileFire()
         NumDeployedCharges = DeployedCharges.Length;
     }
     return P;
-}
-
-simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
-{
-    if(FireModeNum == 5)
-    {
-        return true;
-    }
-    return super(KFWeapon).HasAmmo(FireModeNum, Amount);
 }
 
 simulated function Detonate()
@@ -293,7 +284,8 @@ defaultproperties
     MagazineCapacity=1
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
-    MaxSpareAmmo=1
+    AmmoCost=/* Array type was not detected. */
+    SpareAmmoCapacity=1
     InitialSpareMags=1
     FireAnim=C4_Throw
     FireLastAnim=C4_Throw_Last
@@ -305,6 +297,7 @@ defaultproperties
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
+    InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=25,Y=15,Z=0)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

@@ -235,17 +235,6 @@ var const float MinBattleBloodValue;
 var const float BattleBloodRangeSq;
 var transient float	BattleBloodParamValue;
 
-// Default values for material based damage effects on death
-var const name DeathMaterialEffectParamName;
-var const float DeathMaterialEffectDuration;
-
-// Book keeping variables for material based damage effects.
-// Note: Although multiple effects can coexist, only single effect interpolation is supported at any given time.
-// This works as long as the interp time is not too long. Consider making this an array if that does not hold true.
-var transient float MaterialEffectDuration;
-var transient float MaterialEffectTimeRemaining;
-var transient name MaterialEffectParamName;
-
 /** Names for specific bones in the skeleton */
 var name	LeftFootBoneName;
 var name	RightFootBoneName;
@@ -382,8 +371,10 @@ var bool bUnaffectedByZedTime;
 var bool bMovesFastInZedTime;
 
 /** Scale to use when moving in zed time. bMovesFastInZedTime must be set to TRUE */
-var float ZedTimeSpeedScale;
+var protected float ZedTimeSpeedScale;
 
+/** Scale to use when moving with a speed reducing affliction. */
+var float AfflictionSpeedModifier;
 /*********************************************************************************************
  * @name	Camera
  ********************************************************************************************* */
@@ -571,7 +562,9 @@ enum ESpecialMove
 	SM_WalkingTaunt,
 	SM_Evade,
 	SM_Evade_Fear,
+	SM_Block,
 	SM_Heal,
+	SM_Rally,
 
 	/** ZED special attacks */
 	SM_SonicAttack,
@@ -580,12 +573,13 @@ enum ESpecialMove
 	SM_Suicide,
 
 	/** Versus */
-	SM_PlayerZedAttack1,
-	SM_PlayerZedAttack2,
-	SM_PlayerZedSpecial1,
-	SM_PlayerZedSpecial2,
-	SM_PlayerZedSpecial3,
-	SM_PlayerZedSpecial4,
+	/** Correlates to firemode input (label w/ default bind for readability) */
+	SM_PlayerZedMove_LMB,
+	SM_PlayerZedMove_RMB,
+	SM_PlayerZedMove_V,
+	SM_PlayerZedMove_MMB,
+	SM_PlayerZedMove_Q,
+	SM_PlayerZedMove_G,
 
 	/** Human Moves */
 	SM_GrappleVictim,
@@ -711,6 +705,9 @@ var protected AkComponent DialogAkComponent;
 /** Whether foostep sounds are allowed. Always allow sounds for local player */
 var globalconfig bool bAllowFootstepSounds;
 
+/** Special stop event to let the audio system stop certain sounds */
+var protected AKEvent 		OnDeathStopEvent;
+
 /*********************************************************************************************
  * @name	Network
  ********************************************************************************************* */
@@ -793,7 +790,7 @@ replication
 
 	// Replicated to owning client
 	if ( bNetDirty && bNetOwner )
-		SprintSpeed;
+		SprintSpeed, AfflictionSpeedModifier;
 	if ( bNetDirty && bNetOwner && bNetInitial )
 		bIgnoreTeamCollision;
 
@@ -831,6 +828,7 @@ cpptext
 	virtual void physFalling(FLOAT deltaTime, INT Iterations);
 	virtual void physRigidBody(FLOAT DeltaTime);
 	virtual void Crouch(INT bClientSimulation=0);
+	virtual void UnCrouch(INT bClientSimulation=0);
 	virtual FLOAT MaxSpeedModifier();
 	virtual void UpdateTimeDilation();
 	virtual void UpdateEyeHeight(FLOAT DeltaSeconds);
@@ -1222,7 +1220,7 @@ simulated function UpdateGameplayMICParams()
 }
 
 /** If true, assign custom player controlled skin when available */
-simulated function bool UsePlayerControlledZedSkin();
+simulated event bool UsePlayerControlledZedSkin();
 
 /*********************************************************************************************
  * @name	Camera Methods
@@ -1924,7 +1922,7 @@ simulated function bool GetAutoTargetBones(out array<name> WeakBones, out array<
 	{
 		WeakBones.AddItem(HeadBoneName);
 	}
-	NormalBones.AddItem(TorsoBoneName);
+	NormalBones.AddItem('Spine1');
 	NormalBones.AddItem(PelvisBoneName);
 	return true;
 }
@@ -2487,9 +2485,14 @@ function int RecentDamageFrom( Pawn CheckKFP, optional out int DamageAmount )
 
 function AddTakenDamage( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
 {
-	if( Damage > 0 )
+	// Allow AI to process friendly fire differently
+	if( !DamagerController.bIsPlayer && !DamagerController.bIsPlayer )
 	{
-		UpdateDamageHistory(DamagerController, Damage, DamageCauser, DamageType);
+		NotifyFriendlyAIDamageTaken( DamagerController, Damage, DamageCauser, DamageType );
+	}
+	else if( Damage > 0 && DamagerController.GetTeamNum() != GetTeamNum() )
+	{
+		UpdateDamageHistory( DamagerController, Damage, DamageCauser, DamageType );
 	}
 }
 
@@ -2507,66 +2510,40 @@ function UpdateDamageHistory( Controller DamagerController, int Damage, Actor Da
 		DamageHistory.Insert(0, 1);
 	}
 
-    KFAIC = KFAIController(Controller);
+    if( Controller != none && !Controller.bIsPlayer )
+    {
+	    KFAIC = KFAIController( Controller );
+	    if( KFAIC != none )
+	    {
+			DamageThreshold = float(HealthMax) * KFAIC.AggroPlayerHealthPercentage;
 
-	if( DamagerController.bIsPlayer )
-	{
-        if( KFAIC != none )
-        {
-    		DamageThreshold = float(HealthMax) * KFAIC.AggroPlayerHealthPercentage;
+	        UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, KFAIC.AggroPlayerResetTime, Info, DamageType );
 
-            UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, KFAIC.AggroPlayerResetTime, Info, DamageType );
+			if( `TimeSince(DamageHistory[KFAIC.CurrentEnemysHistoryIndex].LastTimeDamaged) > 10 )
+			{
+				DamageHistory[KFAIC.CurrentEnemysHistoryIndex].Damage = 0;
+			}
 
-    		if( `TimeSince(DamageHistory[KFAIC.CurrentEnemysHistoryIndex].LastTimeDamaged) > 10 )
-    		{
-    			DamageHistory[KFAIC.CurrentEnemysHistoryIndex].Damage = 0;
-    		}
-
-    		if( KFAIC.IsAggroEnemySwitchAllowed()
-    			&& DamagerController.Pawn != KFAIC.Enemy
-    			&& Info.Damage >= DamageThreshold
-    			&& Info.Damage > DamageHistory[KFAIC.CurrentEnemysHistoryIndex].Damage )
-    		{
-    			BlockerPawn = KFAIC.GetPawnBlockingPathTo( DamagerController.Pawn, true );
-    			if( BlockerPawn == none )
-    			{
-    				bChangedEnemies = KFAIC.SetEnemy(DamagerController.Pawn);
-    			}
-    			else
-    			{
-    				bChangedEnemies = KFAIC.SetEnemy( BlockerPawn );
-    			}
-    		}
-
-		}
-		else
-		{
-            UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, 0, Info, DamageType );
+			if( KFAIC.IsAggroEnemySwitchAllowed()
+				&& DamagerController.Pawn != KFAIC.Enemy
+				&& Info.Damage >= DamageThreshold
+				&& Info.Damage > DamageHistory[KFAIC.CurrentEnemysHistoryIndex].Damage )
+			{
+				BlockerPawn = KFAIC.GetPawnBlockingPathTo( DamagerController.Pawn, true );
+				if( BlockerPawn == none )
+				{
+					bChangedEnemies = KFAIC.SetEnemy(DamagerController.Pawn);
+				}
+				else
+				{
+					bChangedEnemies = KFAIC.SetEnemy( BlockerPawn );
+				}
+			}
 		}
 	}
 	else
 	{
-        if( KFAIC != none )
-        {
-    		DamageThreshold = float(HealthMax) * KFAIC.AggroZedHealthPercentage;
-
-            UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, KFAIC.AggroZedResetTime, Info, DamageType );
-
-    		if( KFAIC.IsAggroEnemySwitchAllowed()
-    			&& DamagerController.Pawn != KFAIC.Enemy
-    			&& Info.Damage >= DamageThreshold )
-    		{
-    			BlockerPawn = KFAIC.GetPawnBlockingPathTo( DamagerController.Pawn );
-    			if( BlockerPawn == none )
-    			{
-    				bChangedEnemies = KFAIC.SetEnemyToZed(DamagerController.Pawn);
-    			}
-    		}
-		}
-		else
-		{
-            UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, 0, Info, DamageType );
-		}
+        UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, 0, Info, DamageType );
 	}
 
 	DamageHistory[HistoryIndex] = Info;
@@ -2582,10 +2559,10 @@ function bool GetDamageHistory( Controller DamagerController, out DamageInfo InI
 	// Check if this controller is already in our Damage History
 	InHistoryIndex = DamageHistory.Find( 'DamagerController', DamagerController );
 	if( InHistoryIndex != INDEX_NONE )
-		{
-			InInfo = DamageHistory[InHistoryIndex];
-			return true;
-		}
+	{
+		InInfo = DamageHistory[InHistoryIndex];
+		return true;
+	}
 
 	InHistoryIndex = 0;
 	return false;
@@ -2594,12 +2571,6 @@ function bool GetDamageHistory( Controller DamagerController, out DamageInfo InI
 function UpdateDamageHistoryValues( Controller DamagerController, int Damage, Actor DamageCauser, float DamageResetTime, out DamageInfo InInfo, class<KFDamageType> DamageType )
 {
 	local class<KFPerk> WeaponPerk;
-
-	// Don't count friendly fire
-	if( DamagerController.GetTeamNum() == GetTeamNum() )
-	{
-		return;
-	}
 
 	// Update the history
 	InInfo.DamagerController = DamagerController;
@@ -2626,6 +2597,8 @@ function UpdateDamageHistoryValues( Controller DamagerController, int Damage, Ac
 		InInfo.DamagePerks.AddItem( WeaponPerk );
 	}
 }
+
+function NotifyFriendlyAIDamageTaken( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType );
 
 function class<KFPerk> GetUsedWeaponPerk( Controller DamagerController, Actor DamageCauser, class<KFDamageType> DamageType )
 {
@@ -2760,14 +2733,6 @@ simulated function PrepareRagdoll()
 	}
 }
 
-/** Plays damagetype specific material effects */
-simulated function PlayDamageMaterialEffects(name DamageMICParamName, float Duration)
-{
-	MaterialEffectTimeRemaining = Duration;
-	MaterialEffectDuration = Duration;
-	MaterialEffectParamName = DamageMICParamName;
-}
-
 /* PlayDying() is called on server/standalone game when killed
 and also on net client when pawn gets bTearOff set to true (and bPlayedDeath is false)
 */
@@ -2782,7 +2747,7 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 		HitDamageType	= DamageType;
 		TakeHitLocation	= HitLoc;
 	}
-
+	
 	// Abort current special move
 	if( IsDoingSpecialMove() )
 	{
@@ -2846,12 +2811,12 @@ simulated function PlayRagdollDeath(class<DamageType> DamageType, vector HitLoc)
 	local vector HitDirection;
 
 	PrepareRagdoll();
-
+	
 	if ( InitRagdoll() )
 	{
 		// Switch to a good RigidBody TickGroup to fix projectiles passing through the mesh
 		// https://udn.unrealengine.com/questions/190581/projectile-touch-not-called.html
-		//Mesh.SetTickGroup(TG_PostAsyncWork);
+		Mesh.SetTickGroup(TG_PostAsyncWork);
 		SetTickGroup(TG_PostAsyncWork);
 
 		// Allow all ragdoll bodies to collide with all physics objects (ie allow collision with things marked RigidBodyIgnorePawns)
@@ -2953,11 +2918,17 @@ function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 	return FALSE;
 }
 
+/** Checks all factors that would impede combat and returns TRUE if none of them are active */
+simulated function bool IsCombatCapable()
+{
+	return IsAliveAndWell() && !IsHeadless() && !IsImpaired() && !IsIncapacitated();
+}
+
 /** Overridden in subclasses, determines if pawn is impaired (panicked, etc) */
 simulated function bool IsImpaired();
 
 /** Returns true if pawn is incapacitated in any way */
-function bool IsIncapacitated()
+simulated function bool IsIncapacitated()
 {
 	return IsDoingSpecialMove(SM_Stumble)
 			|| IsDoingSpecialMove(SM_Stunned)
@@ -2986,6 +2957,12 @@ simulated function TerminateEffectsOnDeath()
 	DialogAkComponent.StopEvents();
 
 	AfflictionHandler.Shutdown();
+
+	// send a special stop event to the audio system
+	if ( OnDeathStopEvent != None )
+	{
+		PostAkEvent( OnDeathStopEvent );
+	}
 }
 
 /*********************************************************************************************
@@ -3692,13 +3669,23 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	}
 }
 
+
 /** Event called when an AnimNodeSequence reaches the end and stops. */
 simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
-{
+{	
 	if( SpecialMove != SM_None )
 	{
 		//`Log"SpecialMove ==" @ SpecialMove @ "calling AnimEndNotify()");
-		SpecialMoves[SpecialMove].AnimEndNotify(SeqNode, PlayedTime, ExcessTime);
+		if(SpecialMoves[SpecialMove].bShouldDeferToPostTick)
+		{
+            SpecialMoves[SpecialMove].DeferredSeqName = SeqNode.AnimSeqName;
+			`DeferredWorkManager.DeferSpecialMoveAnimEnd(SpecialMoves[SpecialMove]);
+		}
+		else
+		{
+			SpecialMoves[SpecialMove].AnimEndNotify(SeqNode, PlayedTime, ExcessTime);
+		}
+		
 	}
 }
 
@@ -4001,11 +3988,6 @@ simulated event Tick( float DeltaTime )
     	}
     }
 
-	if( WeaponAmbientEchoHandler.EchoSets.Length > 0 )
-	{
-    	WeaponAmbientEchoHandler.TickEchoes();
-    }
-
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		if( bNeedsProcessHitFx )
@@ -4014,10 +3996,10 @@ simulated event Tick( float DeltaTime )
 			bNeedsProcessHitFx = false;
 		}
 
-		if( MaterialEffectTimeRemaining > 0 )
+		if( WeaponAmbientEchoHandler.EchoSets.Length > 0 )
 		{
-			UpdateMaterialEffect(DeltaTime);
-		}
+	    	WeaponAmbientEchoHandler.TickEchoes();
+	    }
 	}
 
 	// Tick special moves
@@ -4028,33 +4010,6 @@ simulated event Tick( float DeltaTime )
 
 	// always clear for server (client already clears in ProcessHitFx)
 	bNeedsProcessHitFx = false;
-}
-
-/** Update any material effects */
-function UpdateMaterialEffect(float DeltaTime)
-{
-	local float Intensity;
-	local MaterialInstanceConstant MIC;
-
-	if( MaterialEffectTimeRemaining > 0.f )
-	{
-		if( MaterialEffectTimeRemaining > DeltaTime )
-		{
-			MaterialEffectTimeRemaining -= DeltaTime;
-			Intensity = 1.f - FClamp(MaterialEffectTimeRemaining/MaterialEffectDuration, 0.f, 1.f);
-		}
-		else
-		{
-			MaterialEffectTimeRemaining = 0.f;
-			Intensity = 1.f;
-		}
-
-		// Update the materials
-		foreach CharacterMICs(MIC)
-		{
-   			MIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-	}
 }
 
 /** Process all hit effects that have occured this frame */
@@ -4643,7 +4598,7 @@ defaultproperties
 
     // Third person body component
 	Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent
-		//TickGroup = AsyncDuring
+		TickGroup=TG_DuringAsyncWork
 		// Animation
 		AnimTreeTemplate=None
 		bIgnoreControllersWhenNotRendered=true
@@ -4839,6 +4794,8 @@ defaultproperties
 
 	IncapSettings(AF_EMP)=(Duration=5.0,Cooldown=5.0)
 	IncapSettings(AF_FirePanic)=(Duration=5.0,Cooldown=5.0)
+
+	AfflictionSpeedModifier=1.f
 
 	// ---------------------------------------------
 	// AI / Navigation

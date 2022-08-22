@@ -33,22 +33,27 @@ simulated function SpecialMoveEnded( name PrevMove, name NextMove )
 {
     //if( !bPendingStopFire )
     //{
-    	TriggerExplosion( KFPOwner );
+    	TriggerExplosion( KFPOwner, default.SuicideGasExplosionTemplate );
     //}
 
 	super.SpecialMoveEnded( PrevMove, NextMove );
 }
 
 /** Called when crawler suicides */
-static function TriggerExplosion( KFPawn CrawlerOwner, optional bool bForceExplosion )
+static function TriggerExplosion( KFPawn CrawlerOwner, KFGameExplosion ExplosionTemplate, optional bool bForceExplosion )
 {
 	local KFExplosion_PlayerCrawlerSuicide ExploActor;
+    local KFPawn_ZedCrawler_Versus CrawlerOwnerV;
 
 	// Only living crawlers can explode
-	if( !CrawlerOwner.bPlayedDeath || bForceExplosion )
+	if( CrawlerOwner != none && (!CrawlerOwner.bPlayedDeath || bForceExplosion) )
 	{
         // Cache controller
-        KFPawn_ZedCrawler_Versus(CrawlerOwner).OldController = CrawlerOwner.Controller;
+        CrawlerOwnerV = KFPawn_ZedCrawler_Versus( CrawlerOwner );
+        if( CrawlerOwnerV != none )
+        {
+            KFPawn_ZedCrawler_Versus(CrawlerOwner).OldController = CrawlerOwner.Controller;
+        }
 
     	// Explode using the given template
 		ExploActor = CrawlerOwner.Spawn( class'KFExplosion_PlayerCrawlerSuicide', CrawlerOwner,, CrawlerOwner.Location, rotator(vect(0,0,1)) );
@@ -56,7 +61,7 @@ static function TriggerExplosion( KFPawn CrawlerOwner, optional bool bForceExplo
 		{
             ExploActor.InstigatorController = CrawlerOwner.Controller;
             ExploActor.Instigator = CrawlerOwner;
-            ExploActor.Explode( default.SuicideGasExplosionTemplate );
+            ExploActor.Explode( ExplosionTemplate );
 		}
 
 		// Make sure we're dead!
@@ -106,6 +111,7 @@ defaultproperties
    AnimName="Player_Suicide"
    bUseRootMotion=True
    bPawnRotationLocked=True
+   bShouldDeferToPostTick=True
    Handle="KFSM_PlayerCrawler_Suicide"
    Name="Default__KFSM_PlayerCrawler_Suicide"
    ObjectArchetype=KFSM_PlaySingleAnim'KFGame.Default__KFSM_PlaySingleAnim'

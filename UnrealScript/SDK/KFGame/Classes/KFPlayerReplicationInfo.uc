@@ -19,11 +19,18 @@ class KFPlayerReplicationInfo extends PlayerReplicationInfo
 
 `include(KFGame\KFGameAnalytics.uci);
 `include(KFGame\KFMatchStats.uci);
+`include(KFProfileSettings.uci);
 
 /** The time at which this PRI left the game */
 var float LastQuitTime;
 /** The number of times this PRI has reconnected to this game */
 var byte NumTimesReconnected;
+
+var bool bClientActiveSpawn;
+/** UTC timestamp representing the last time a crate was gifted to this player. Tracked by server only */
+var string LastCrateGiftTimestamp;
+/** Seconds of gameplay for this player for crate gifting. Tracked by server only */
+var int SecondsOfGameplay;
 
 /************************************
  *  Character class related variables
@@ -46,6 +53,25 @@ struct native CustomizationInfo
 	var const byte BodySkinIndex;
 	var const byte AttachmentMeshIndices[`MAX_COSMETIC_ATTACHMENTS];
 	var const byte AttachmentSkinIndices[`MAX_COSMETIC_ATTACHMENTS];
+
+	structcpptext
+	{
+		FCustomizationInfo& operator=(FCustomizationInfo& rhs)
+		{
+			CharacterIndex = rhs.CharacterIndex;
+			HeadMeshIndex = rhs.HeadMeshIndex;
+			HeadSkinIndex = rhs.HeadSkinIndex;
+			BodyMeshIndex = rhs.BodyMeshIndex;
+			BodySkinIndex = rhs.BodySkinIndex;
+			for(INT i = 0; i < 3 /*MAX_COSMETIC_ATTACHMENTS*/; ++i)
+			{
+				AttachmentMeshIndices[i] = rhs.AttachmentMeshIndices[i];
+				AttachmentSkinIndices[i] = rhs.AttachmentSkinIndices[i];
+			}
+
+			return *this;
+		}
+	}
 
 	structdefaultproperties
 	{
@@ -129,7 +155,7 @@ cpptext
 replication
 {
 	if ( bNetDirty )
-		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel,
+		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, bClientActiveSpawn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, bPerkCanSupply,
 		CharPortrait, DamageDealtOnTeam;
@@ -167,11 +193,9 @@ simulated event ReplicatedEvent(name VarName)
 			LocalPC.RecentlyMetPlayers.AddItem(PlayerName);
 
 			// Refresh the party widget when the name changes
-			if( WorldInfo.IsE3Build() &&
-				LocalPC.MyGFxManager != none &&
-				LocalPC.MyGFxManager.PartyWidget != none)
+			if( LocalPC.MyGFxManager != none )
 			{
-				LocalPC.MyGFxManager.PartyWidget.RefreshParty();
+				LocalPC.MyGFxManager.ForceUpdateNextFrame();
 			}
 		}
 	}
@@ -455,6 +479,14 @@ simulated function VOIPStatusChanged( PlayerReplicationInfo Talker, bool bIsTalk
 	}
 }
 
+//@HSL_BEGIN - JRO - Make sure the talking icon doesn't continue to show up after leaving
+simulated function UnregisterPlayerFromSession()
+{
+	VOIPStatusChanged(self, false);
+	super.UnregisterPlayerFromSession();
+}
+//@HSL_END
+
 /*********************************************************************************************
 `* Kick Voting
 ********************************************************************************************* */
@@ -627,9 +659,18 @@ simulated function ClientInitialize(Controller C)
 }
 
 /** Network: Local Player */
-private simulated event SelectCharacter( optional int CharIndex=INDEX_None )
+simulated event SelectCharacter( optional int CharIndex=INDEX_None )
 {
+	local OnlineProfileSettings Settings;
 	// INDEX_NONE will load last character from config
+	
+	Settings = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings( LocalPlayer(GetALocalPlayerController().Player).ControllerId );
+	if( Settings == none )
+	{
+		`log("Not selecting character just yet since there's no profile settings");
+		return;
+	}
+
 	LoadCharacterConfig(CharIndex);
 
 	if(!class'KFUnlockManager'.static.GetAvailable(CharacterArchetypes[CharIndex]))
@@ -637,6 +678,8 @@ private simulated event SelectCharacter( optional int CharIndex=INDEX_None )
 		CharIndex = GetAnyAvailableCharacter(CharIndex);
 		LoadCharacterConfig(CharIndex);
 	}
+
+	Settings.SetProfileSettingValueInt(KFID_StoredCharIndex, CharIndex);
 
 	if ( Role < Role_Authority )
     {
@@ -756,7 +799,8 @@ function UpdateReplicatedVariables()
 /** Called once per second while on the human team to refresh replicated position */
 function UpdatePawnLocation()
 {
-		PawnLocationCompressed = KFPlayerOwner.Pawn.Location;
+		PawnLocationCompressed = KFPlayerOwner.Pawn.Mesh.GetPosition();
+
 		// Compress
 		PawnLocationCompressed *= 0.01f;
 }
@@ -931,4 +975,6 @@ defaultproperties
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype')
 
 	bShowNonRelevantPlayers=true
+
+	SecondsOfGameplay=-1
 }

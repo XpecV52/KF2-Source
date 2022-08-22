@@ -119,7 +119,14 @@ function ShowLeaveGamePopUp()
 
 function OnLeaveGameConfirm()
 {
-	ConfirmLeaveParty();
+	if(!class'WorldInfo'.static.IsConsoleBuild())
+	{
+		ConfirmLeaveParty();
+	}
+	else if (!class'WorldInfo'.static.IsMenuLevel())
+	{
+		ConsoleCommand("Disconnect");
+	}
 }
 
 defaultproperties

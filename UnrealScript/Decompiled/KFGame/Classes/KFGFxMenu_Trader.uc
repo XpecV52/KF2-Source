@@ -6,8 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFGFxMenu_Trader extends KFGFxObject_Menu within GFxMoviePlayer
-    native(UI)
-    config(Game);
+    native(UI);
 
 enum EItemType
 {
@@ -39,7 +38,7 @@ struct native SItemInformation
     var bool bIsSecondaryAmmo;
     var int SpareAmmoCount;
     var int MaxSpareAmmo;
-    var int MaxSecondaryAmmoCount;
+    var int MaxSecondaryAmmo;
     var int SellPrice;
     var byte MagazineCapacity;
     var byte SecondaryAmmoCount;
@@ -52,21 +51,16 @@ struct native SItemInformation
         bIsSecondaryAmmo=false
         SpareAmmoCount=0
         MaxSpareAmmo=0
-        MaxSecondaryAmmoCount=0
+        MaxSecondaryAmmo=0
         SellPrice=0
         MagazineCapacity=0
         SecondaryAmmoCount=0
         AutoFillDosh=0
         AmmoPricePerMagazine=0
-        DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,InitialSpareMags=0,MaxSecondaryAmmoCount=0,MagazineCapacity=0,BlocksRequired=0,SecondaryAmmoImagePath="",TraderFilter=EFilterTypeUI.FT_Pistol,InventoryGroup=0,GroupPriority=0,WeaponStats=none)
+        DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0)
     }
 };
 
-var array<SItemInformation> OwnedItemList;
-var SItemInformation GrenadeItem;
-var SItemInformation ArmorItem;
-var KFGFxObject_TraderItems TraderItems;
-var array<STraderItem> ShopWeaponList;
 var KFPlayerController MyKFPC;
 var KFPlayerReplicationInfo MyKFPRI;
 var KFInventoryManager MyKFIM;
@@ -76,63 +70,73 @@ var KFGFxTraderContainer_Store ShopContainer;
 var KFGFxTraderContainer_PlayerInventory PlayerInventoryContainer;
 var KFGFxTraderContainer_PlayerInfo PlayerInfoContainer;
 var KFGFxTraderContainer_ItemDetails ItemDetails;
-var int CurrentFilterIndex;
-var int TotalDosh;
-var bool bPendingDoshUpdate;
 var bool bGenericItemSelected;
 var bool bCanBuyOrSellItem;
-var int TotalBlocks;
-var byte MaxBlocks;
-var KFGFxMenu_Trader.TabIndices CurrentTab;
-var byte SelectedList;
-var byte SelectedItemIndex;
 var STraderItem LastDefaultItemInfo;
 var SItemInformation LastItemInfo;
 var const localized string ExitMenuString;
 var int PrevArmor;
-var config array<config name> FavoritedItems;
+var KFGFxMenu_Trader.TabIndices CurrentTab;
+var byte SelectedList;
+var byte SelectedItemIndex;
+var int CurrentFilterIndex;
+var array<name> FavoritedItems;
 var KFPerk LastPerkClass;
+var array<SItemInformation> OwnedItemList;
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
     super.InitializeMenu(InManager);
-    MyKFPC = KFPlayerController(Outer.GetPC());
     SetString("exitMenuString", ExitMenuString);
     SetString("exitPromptString", ExitMenuString);
     SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
+    LocalizeText();
+}
+
+function LocalizeText()
+{
+    local GFxObject TextObject;
+
+    TextObject = Outer.CreateObject("Object");
+    TextObject.SetString("favoriteString", Class'KFGFxTraderContainer_ItemDetails'.default.FavoriteString);
+    TextObject.SetString("unFavoriteString", Class'KFGFxTraderContainer_ItemDetails'.default.UnfavoriteString);
+    TextObject.SetString("changePerkString", Class'KFGFxTraderContainer_PlayerInventory'.default.ChangePerkString);
+    TextObject.SetString("selectString", Class'KFGFxWidget_ButtonPrompt'.default.ConfirmString);
+    TextObject.SetString("autoFillString", Class'KFGFxTraderContainer_PlayerInventory'.default.AutoFillString);
+    SetObject("localizeCentralPrompts", TextObject);
 }
 
 function OnOpen()
 {
+    local int I;
+    local name WeaponName;
+
+    MyKFPC = KFPlayerController(Outer.GetPC());
     if(MyKFPC == none)
     {
         return;
     }
-    if((MyKFPC.Pawn != none) && MyKFPC.PlayerReplicationInfo != none)
+    MyKFPC.GetPurchaseHelper().Initialize();
+    MyKFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
+    MyKFIM = KFInventoryManager(Outer.GetPC().Pawn.InvManager);
+    CurrentTab = 0;
+    CurrentFilterIndex = GetPerkIndex();
+    FavoritedItems.Remove(0, FavoritedItems.Length;
+    I = 0;
+    J0x15D:
+
+    if(I < MyKFPC.MyGFxManager.CachedProfile.FavoriteWeapons.Length)
     {
-        MyKFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
-        MyKFIM = KFInventoryManager(Outer.GetPC().Pawn.InvManager);
-        CurrentTab = 0;
-        CurrentFilterIndex = GetPerkIndex();
-        if((MyKFPRI != none) && MyKFIM != none)
-        {
-            InitializeOwnedItemList();
-            TotalBlocks = MyKFIM.CurrentCarryBlocks;
-            TotalDosh = int(MyKFPRI.Score);
-            MaxBlocks = MyKFIM.MaxCarryBlocks;
-            CurrentFilterIndex = MyKFPRI.NetPerkIndex;
-            UpdatePlayerInfo();            
-        }
-        else
-        {
-            MyKFPC.CloseTraderMenu();
-        }        
+        WeaponName = name(MyKFPC.MyGFxManager.CachedProfile.FavoriteWeapons[I]);
+        FavoritedItems.AddItem(WeaponName;
+        ++ I;
+        goto J0x15D;
     }
-    else
+    if((MyKFPC.Pawn != none) || MyKFPC.PlayerReplicationInfo != none)
     {
         MyKFPC.CloseTraderMenu();
     }
-    RefreshItemComponents();
+    RefreshItemComponents(true);
     if(PlayerInventoryContainer != none)
     {
         PlayerInventoryContainer.UpdateLock();
@@ -153,8 +157,8 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             {
                 GameInfoContainer = KFGFxTraderContainer_GameInfo(Widget);
                 GameInfoContainer.Initialize(self);
-                GameInfoContainer.SetDosh(TotalDosh);
-                GameInfoContainer.SetCurrentWeight(TotalBlocks, MaxBlocks);
+                GameInfoContainer.SetDosh(MyKFPC.GetPurchaseHelper().TotalDosh);
+                GameInfoContainer.SetCurrentWeight(MyKFPC.GetPurchaseHelper().TotalBlocks, MyKFPC.GetPurchaseHelper().MaxBlocks);
             }
             break;
         case 'FilterContainer':
@@ -215,45 +219,9 @@ event OnClose()
         MyKFPC.MyGFxHUD.WeaponSelectWidget.RefreshWeaponSelect();
     }
     OwnedItemList.Length = 0;
-    TotalDosh = 0;
+    MyKFPC.GetPurchaseHelper().TotalDosh = 0;
     super.OnClose();
     MyKFPC.bClientTraderMenuOpen = false;
-}
-
-function AddDosh(int AddedDosh)
-{
-    TotalDosh = Max(TotalDosh + AddedDosh, 0);
-    if(Outer.GetPC().Role < ROLE_Authority)
-    {
-        bPendingDoshUpdate = true;
-        Outer.GetPC().SetTimer(2, false, 'UpdateCurrentDosh', self);
-    }
-}
-
-simulated function NotifyDoshChanged()
-{
-    if(bPendingDoshUpdate)
-    {
-        bPendingDoshUpdate = false;
-        if(MyKFPRI.Score != float(TotalDosh))
-        {
-            return;
-        }
-    }
-    UpdateCurrentDosh();
-}
-
-simulated function UpdateCurrentDosh()
-{
-    TotalDosh = Max(int(MyKFPRI.Score), 0);
-    RefreshItemComponents();
-    bPendingDoshUpdate = false;
-    Outer.GetPC().ClearTimer('UpdateCurrentDosh', self);
-}
-
-function AddBlocks(int AddedBlocks)
-{
-    TotalBlocks = Max(TotalBlocks + AddedBlocks, 0);
 }
 
 function OneSecondLoop()
@@ -267,7 +235,7 @@ function OneSecondLoop()
     KFP = KFPawn_Human(MyKFPC.Pawn);
     if((KFP != none) && PrevArmor != KFP.Armor)
     {
-        ArmorItem.SpareAmmoCount = KFP.Armor;
+        MyKFPC.GetPurchaseHelper().ArmorItem.SpareAmmoCount = KFP.Armor;
         PrevArmor = KFP.Armor;
         RefreshItemComponents();
     }
@@ -288,42 +256,6 @@ function UpdatePlayerInfo()
     }
 }
 
-function InitializeOwnedItemList()
-{
-    local Inventory Inv;
-    local KFWeapon KFW;
-    local KFPawn_Human KFP;
-
-    OwnedItemList.Length = 0;
-    TraderItems = KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).TraderItems;
-    KFP = KFPawn_Human(MyKFPC.Pawn);
-    if(KFP != none)
-    {
-        ArmorItem.SpareAmmoCount = KFP.Armor;
-        ArmorItem.MaxSpareAmmo = KFP.GetMaxArmor();
-        ArmorItem.AmmoPricePerMagazine = int(float(TraderItems.ArmorPrice) * MyKFPC.CurrentPerk.GetArmorDiscountMod());
-        ArmorItem.DefaultItem.WeaponDef = TraderItems.ArmorDef;
-        GrenadeItem.SpareAmmoCount = MyKFIM.GrenadeCount;
-        GrenadeItem.MaxSpareAmmo = KFP.GetPerk().MaxGrenadeCount;
-        GrenadeItem.AmmoPricePerMagazine = TraderItems.GrenadePrice;
-        GrenadeItem.DefaultItem.WeaponDef = MyKFPC.CurrentPerk.GrenadeWeaponDef;
-        GrenadeItem.DefaultItem.AssociatedPerkClass = MyKFPC.CurrentPerk.Class;
-        Inv = MyKFIM.InventoryChain;
-        J0x39A:
-
-        if(Inv != none)
-        {
-            KFW = KFWeapon(Inv);
-            if(KFW != none)
-            {
-                SetWeaponInformation(KFW);
-            }
-            Inv = Inv.Inventory;
-            goto J0x39A;
-        }
-    }
-}
-
 function GiveExternalWeapon(KFWeapon KFW)
 {
     local int I;
@@ -340,7 +272,7 @@ function GiveExternalWeapon(KFWeapon KFW)
         ++ I;
         goto J0x0B;
     }
-    if((TotalBlocks + KFW.InventorySize) > MaxBlocks)
+    if((MyKFPC.GetPurchaseHelper().TotalBlocks + KFW.InventorySize) > MyKFPC.GetPurchaseHelper().MaxBlocks)
     {
         if(MyKFPC.Pawn != none)
         {
@@ -349,317 +281,10 @@ function GiveExternalWeapon(KFWeapon KFW)
     }
     else
     {
-        AddBlocks(KFW.InventorySize);
-        SetWeaponInformation(KFW);
+        MyKFPC.GetPurchaseHelper().AddBlocks(KFW.InventorySize);
+        MyKFPC.GetPurchaseHelper().SetWeaponInformation(KFW);
         RefreshItemComponents();
     }
-}
-
-function SetWeaponInformation(KFWeapon KFW)
-{
-    local int I;
-
-    I = 0;
-    J0x0B:
-
-    if(I < TraderItems.SaleItems.Length)
-    {
-        if(KFW.Class.Name == TraderItems.SaleItems[I].ClassName)
-        {
-            SetWeaponInfo(KFW, TraderItems.SaleItems[I]);
-            return;
-        }
-        ++ I;
-        goto J0x0B;
-    }
-}
-
-function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
-{
-    local SItemInformation WeaponInfo;
-
-    WeaponInfo.SpareAmmoCount = KFW.SpareAmmoCount[0] + KFW.AmmoCount[0];
-    WeaponInfo.MaxSpareAmmo = KFW.MaxSpareAmmo[0];
-    WeaponInfo.MagazineCapacity = KFW.MagazineCapacity[0];
-    WeaponInfo.SecondaryAmmoCount = KFW.AmmoCount[1];
-    WeaponInfo.MaxSecondaryAmmoCount = KFW.MagazineCapacity[1];
-    WeaponInfo.DefaultItem = DefaultItem;
-    WeaponInfo.AmmoPricePerMagazine = DefaultItem.WeaponDef.default.AmmoPricePerMag;
-    WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor(DefaultItem, KFW);
-    AddItemByPriority(WeaponInfo);
-    if(DefaultItem.WeaponDef.static.UsesSecondaryAmmo())
-    {
-        WeaponInfo.bIsSecondaryAmmo = true;
-        if(MyKFIM.bLogInventory)
-        {
-            LogInternal(("SetWeaponInfo: Adding" @ string(DefaultItem.ClassName)) @ "to OwnedItemList");
-        }
-        OwnedItemList.AddItem(WeaponInfo;
-    }
-    if(DefaultItem.SingleClassName != 'None')
-    {
-        RemoveWeaponFromOwnedItemList(,, DefaultItem.SingleClassName, true);
-    }
-}
-
-function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDoNotBuy)
-{
-    local SItemInformation WeaponInfo;
-    local KFPerk CurrentPerk;
-    local byte ItemIndex, DefaultMagazineCapacity;
-    local int AddedWeaponIndex, OwnedSingleIdx, SingleDualAmmoDiff;
-    local bool bShouldMagSizeModifySpareAmmo, bAddingDual;
-
-    CurrentPerk = MyKFPC.CurrentPerk;
-    if(MyKFIM.bLogInventory)
-    {
-        LogInternal("AddWeaponToOwnedItemList: DefaultItem=" $ string(DefaultItem.ClassName));
-    }
-    WeaponInfo.MagazineCapacity = DefaultItem.MagazineCapacity;
-    DefaultMagazineCapacity = WeaponInfo.MagazineCapacity;
-    CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass);
-    bShouldMagSizeModifySpareAmmo = CurrentPerk.ShouldMagSizeModifySpareAmmo(none, DefaultItem.AssociatedPerkClass);
-    WeaponInfo.MaxSpareAmmo = DefaultItem.MaxSpareAmmo + ((bShouldMagSizeModifySpareAmmo) ? WeaponInfo.MagazineCapacity : DefaultMagazineCapacity);
-    CurrentPerk.ModifyMaxSpareAmmoAmount(none, WeaponInfo.MaxSpareAmmo, DefaultItem);
-    WeaponInfo.SpareAmmoCount = DefaultItem.InitialSpareMags * DefaultItem.MagazineCapacity;
-    CurrentPerk.ModifySpareAmmoAmount(none, WeaponInfo.SpareAmmoCount, DefaultItem);
-    WeaponInfo.SpareAmmoCount += ((bShouldMagSizeModifySpareAmmo) ? WeaponInfo.MagazineCapacity : DefaultMagazineCapacity);
-    bAddingDual = DefaultItem.SingleClassName != 'None';
-    if(bAddingDual)
-    {
-        OwnedSingleIdx = 0;
-        J0x386:
-
-        if(OwnedSingleIdx < OwnedItemList.Length)
-        {
-            if(OwnedItemList[OwnedSingleIdx].DefaultItem.ClassName == DefaultItem.SingleClassName)
-            {
-                SingleDualAmmoDiff = OwnedItemList[OwnedSingleIdx].SpareAmmoCount - WeaponInfo.SpareAmmoCount;
-                WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount;
-                goto J0x49A;
-            }
-            ++ OwnedSingleIdx;
-            goto J0x386;
-        }
-    }
-    J0x49A:
-
-    CurrentPerk.MaximizeSpareAmmoAmount(DefaultItem.AssociatedPerkClass, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity);
-    WeaponInfo.SecondaryAmmoCount = byte(DefaultItem.MaxSecondaryAmmoCount);
-    CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.SecondaryAmmoCount, DefaultItem.AssociatedPerkClass);
-    WeaponInfo.MaxSecondaryAmmoCount = DefaultItem.MaxSecondaryAmmoCount;
-    CurrentPerk.ModifyMaxSpareAmmoAmount(none, WeaponInfo.MaxSecondaryAmmoCount, DefaultItem);
-    WeaponInfo.AmmoPricePerMagazine = DefaultItem.WeaponDef.default.AmmoPricePerMag;
-    WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor(DefaultItem);
-    WeaponInfo.DefaultItem = DefaultItem;
-    AddedWeaponIndex = AddItemByPriority(WeaponInfo);
-    if(!bDoNotBuy)
-    {
-        if(MyKFIM.bLogInventory)
-        {
-            LogInternal("AddWeaponToOwnedItemList: Calling ServerBuyWeapon on" @ string(DefaultItem.ClassName));
-        }
-        TraderItems.GetItemIndicesFromArche(ItemIndex, DefaultItem.ClassName);
-        MyKFIM.ServerBuyWeapon(ItemIndex);        
-    }
-    else
-    {
-        TraderItems.GetItemIndicesFromArche(ItemIndex, DefaultItem.ClassName);
-        if(MyKFIM.bLogInventory)
-        {
-            LogInternal("AddWeaponToOwnedItemList: Calling ServerAddTransactionItem on" @ string(DefaultItem.ClassName));
-        }
-        MyKFIM.ServerAddTransactionItem(ItemIndex);
-        AddBlocks(DefaultItem.BlocksRequired);
-    }
-    if(bAddingDual)
-    {
-        AddTransactionAmmo(ItemIndex, SingleDualAmmoDiff, false);
-        RemoveWeaponFromOwnedItemList(,, DefaultItem.SingleClassName, true);
-    }
-    return AddedWeaponIndex;
-}
-
-function RemoveWeaponFromOwnedItemList(optional int OwnedListIdx, optional name ClassName, optional bool bDoNotSell)
-{
-    local SItemInformation ItemInfo;
-    local byte ItemIndex;
-    local int SingleOwnedIndex;
-
-    OwnedListIdx = -1;        
-    if(MyKFIM.bLogInventory)
-    {
-        LogInternal((((("RemoveWeaponFromOwnedItemList: OwnedListIdx=" $ string(OwnedListIdx)) @ "ClassName=") $ string(ClassName)) @ "bDoNotSell=") $ string(bDoNotSell));
-    }
-    if((OwnedListIdx == -1) && ClassName != 'None')
-    {
-        OwnedListIdx = 0;
-        J0xDA:
-
-        if(OwnedListIdx < OwnedItemList.Length)
-        {
-            if(OwnedItemList[OwnedListIdx].DefaultItem.ClassName == ClassName)
-            {
-                goto J0x14A;
-            }
-            ++ OwnedListIdx;
-            goto J0xDA;
-        }
-    }
-    J0x14A:
-
-    if(MyKFIM.bLogInventory)
-    {
-        LogInternal("RemoveWeaponFromOwnedItemList: OwnedItemList.length=" $ string(OwnedItemList.Length));
-    }
-    if(OwnedListIdx >= OwnedItemList.Length)
-    {
-        return;
-    }
-    ItemInfo = OwnedItemList[OwnedListIdx];
-    if(MyKFIM.bLogInventory)
-    {
-        LogInternal((((("RemoveWeaponFromOwnedItemList: ItemInfo.ClassName=" $ string(ItemInfo.DefaultItem.ClassName)) @ "ItemInfo.SingleClassName=") $ string(ItemInfo.DefaultItem.SingleClassName)) @ "ItemInfo.DualClassName=") $ string(ItemInfo.DefaultItem.DualClassName));
-    }
-    if(!bDoNotSell)
-    {
-        TraderItems.GetItemIndicesFromArche(ItemIndex, ItemInfo.DefaultItem.ClassName);
-        if(MyKFIM.bLogInventory)
-        {
-            LogInternal("RemoveWeaponFromOwnedItemList: Calling ServerSellWeapon on" @ string(ItemInfo.DefaultItem.ClassName));
-        }
-        MyKFIM.ServerSellWeapon(ItemIndex);        
-    }
-    else
-    {
-        TraderItems.GetItemIndicesFromArche(ItemIndex, ItemInfo.DefaultItem.ClassName);
-        if(MyKFIM.bLogInventory)
-        {
-            LogInternal("RemoveWeaponFromOwnedItemList: Calling ServerRemoveTransactionItem on" @ string(ItemInfo.DefaultItem.ClassName));
-        }
-        MyKFIM.ServerRemoveTransactionItem(ItemIndex);
-        AddBlocks(-ItemInfo.DefaultItem.BlocksRequired);
-    }
-    if(MyKFIM.bLogInventory)
-    {
-        LogInternal((("RemoveWeaponFromOwnedItemList: OwnedListIdx=" $ string(OwnedListIdx)) @ "OwnedItemList[OwnedListIdx]=") $ string(OwnedItemList[OwnedListIdx].DefaultItem.ClassName));
-    }
-    if(OwnedItemList[OwnedListIdx].bIsSecondaryAmmo)
-    {
-        if(MyKFIM.bLogInventory)
-        {
-            LogInternal(("RemoveWeaponFromOwnedItemList: Removing" @ string(OwnedItemList[OwnedListIdx].DefaultItem.ClassName)) @ "from OwnedItemList");
-        }
-        OwnedItemList.Remove(OwnedListIdx, 1;
-        if((OwnedListIdx - 1) >= 0)
-        {
-            if(MyKFIM.bLogInventory)
-            {
-                LogInternal(("RemoveWeaponFromOwnedItemList: Removing" @ string(OwnedItemList[OwnedListIdx - 1].DefaultItem.ClassName)) @ "from OwnedItemList");
-            }
-            OwnedItemList.Remove(OwnedListIdx - 1, 1;
-        }        
-    }
-    else
-    {
-        if(OwnedItemList[OwnedListIdx].DefaultItem.WeaponDef.static.UsesSecondaryAmmo())
-        {
-            if((OwnedListIdx + 1) < OwnedItemList.Length)
-            {
-                if(MyKFIM.bLogInventory)
-                {
-                    LogInternal(("RemoveWeaponFromOwnedItemList: Removing" @ string(OwnedItemList[OwnedListIdx + 1].DefaultItem.ClassName)) @ "from OwnedItemList");
-                }
-                OwnedItemList.Remove(OwnedListIdx + 1, 1;
-                if(MyKFIM.bLogInventory)
-                {
-                    LogInternal(("RemoveWeaponFromOwnedItemList: Removing" @ string(OwnedItemList[OwnedListIdx].DefaultItem.ClassName)) @ "from OwnedItemList");
-                }
-                OwnedItemList.Remove(OwnedListIdx, 1;
-            }            
-        }
-        else
-        {
-            if(MyKFIM.bLogInventory)
-            {
-                LogInternal(("RemoveWeaponFromOwnedItemList: Removing" @ string(OwnedItemList[OwnedListIdx].DefaultItem.ClassName)) @ "from OwnedItemList");
-            }
-            OwnedItemList.Remove(OwnedListIdx, 1;
-        }
-    }
-    if(MyKFIM.bLogInventory)
-    {
-        LogInternal("RemoveWeaponFromOwnedItemList: ItemInfo.DefaultItem.SingleClassName=" $ string(ItemInfo.DefaultItem.SingleClassName));
-    }
-    if(ItemInfo.DefaultItem.SingleClassName != 'None')
-    {
-        if(TraderItems.GetItemIndicesFromArche(ItemIndex, ItemInfo.DefaultItem.SingleClassName))
-        {
-            SingleOwnedIndex = AddWeaponToOwnedItemList(TraderItems.SaleItems[ItemIndex], true);
-            AddTransactionAmmo(ItemIndex, OwnedItemList[OwnedListIdx].SpareAmmoCount - OwnedItemList[SingleOwnedIndex].SpareAmmoCount, false);
-            OwnedItemList[SingleOwnedIndex].SpareAmmoCount = OwnedItemList[OwnedListIdx].SpareAmmoCount;
-        }
-    }
-}
-
-// Export UKFGFxMenu_Trader::execAddTransactionAmmo(FFrame&, void* const)
-private native final function AddTransactionAmmo(byte ItemIndex, int Amount, bool bSecondaryAmmo);
-
-function int AddItemByPriority(out SItemInformation WeaponInfo)
-{
-    local byte I, WeaponGroup, WeaponPriority, BestIndex;
-
-    BestIndex = 0;
-    WeaponGroup = WeaponInfo.DefaultItem.InventoryGroup;
-    WeaponPriority = byte(WeaponInfo.DefaultItem.GroupPriority);
-    I = 0;
-    J0x8C:
-
-    if(I < OwnedItemList.Length)
-    {
-        if(WeaponGroup < OwnedItemList[I].DefaultItem.InventoryGroup)
-        {
-            BestIndex = I;
-            goto J0x2B5;            
-        }
-        else
-        {
-            if(WeaponGroup == OwnedItemList[I].DefaultItem.InventoryGroup)
-            {
-                if(float(WeaponPriority) > OwnedItemList[I].DefaultItem.GroupPriority)
-                {
-                    BestIndex = I;
-                    goto J0x2B5;                    
-                }
-                else
-                {
-                    if((float(WeaponPriority) == OwnedItemList[I].DefaultItem.GroupPriority) && MyKFPC.CurrentPerk.Class == WeaponInfo.DefaultItem.AssociatedPerkClass)
-                    {
-                        BestIndex = I;
-                        goto J0x2B5;
-                    }
-                }                
-            }
-            else
-            {
-                BestIndex = byte(I + 1);
-            }
-        }
-        ++ I;
-        goto J0x8C;
-    }
-    J0x2B5:
-
-    if(MyKFIM.bLogInventory)
-    {
-        LogInternal(("AddItemByPriority: Inserting" @ string(WeaponInfo.DefaultItem.ClassName)) @ "into OwnedItemList");
-    }
-    OwnedItemList.InsertItem(BestIndex, WeaponInfo;
-    if(WeaponInfo.DefaultItem.WeaponDef.static.UsesSecondaryAmmo())
-    {
-        WeaponInfo.bIsSecondaryAmmo = true;
-    }
-    return BestIndex;
 }
 
 function SetTraderItemDetails(int ItemIndex)
@@ -670,12 +295,12 @@ function SetTraderItemDetails(int ItemIndex)
     SelectedList = 0;
     if((ItemDetails != none) && ShopContainer != none)
     {
-        if((ShopWeaponList.Length >= 0) && ItemIndex < ShopWeaponList.Length)
+        if((MyKFPC.GetPurchaseHelper().ShopWeaponList.Length >= 0) && ItemIndex < MyKFPC.GetPurchaseHelper().ShopWeaponList.Length)
         {
             SelectedItemIndex = byte(ItemIndex);
-            SelectedItem = ShopWeaponList[ItemIndex];
-            bCanAfford = ShopContainer.GetCanAfford(GetAdjustedBuyPriceFor(SelectedItem));
-            bCanCarry = ShopContainer.CanCarry(SelectedItem);
+            SelectedItem = MyKFPC.GetPurchaseHelper().ShopWeaponList[ItemIndex];
+            bCanAfford = MyKFPC.GetPurchaseHelper().GetCanAfford(MyKFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(SelectedItem));
+            bCanCarry = MyKFPC.GetPurchaseHelper().CanCarry(SelectedItem);
             if(!bCanAfford || !bCanCarry)
             {
                 bCanBuyItem = false;                
@@ -684,7 +309,7 @@ function SetTraderItemDetails(int ItemIndex)
             {
                 bCanBuyItem = true;
             }
-            ItemDetails.SetShopItemDetails(SelectedItem, GetAdjustedBuyPriceFor(SelectedItem), bCanCarry, bCanBuyItem);
+            ItemDetails.SetShopItemDetails(SelectedItem, MyKFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(SelectedItem), bCanCarry, bCanBuyItem);
             bCanBuyOrSellItem = bCanBuyItem;            
         }
         else
@@ -705,7 +330,7 @@ function SetPlayerItemDetails(int ItemIndex)
         SelectedItemIndex = byte(ItemIndex);
         SelectedItem = OwnedItemList[ItemIndex].DefaultItem;
         ItemDetails.SetPlayerItemDetails(SelectedItem, OwnedItemList[ItemIndex].SellPrice);
-        bCanBuyOrSellItem = IsSellable(SelectedItem);
+        bCanBuyOrSellItem = MyKFPC.GetPurchaseHelper().IsSellable(SelectedItem);
     }
 }
 
@@ -718,7 +343,7 @@ function SetGenericItemDetails(out STraderItem DefaultItemInfo, out SItemInforma
         LastDefaultItemInfo = DefaultItemInfo;
         bGenericItemSelected = true;
         ItemDetails.SetPlayerItemDetails(DefaultItemInfo, ItemInfo.SellPrice);
-        bCanBuyOrSellItem = IsSellable(DefaultItemInfo);
+        bCanBuyOrSellItem = MyKFPC.GetPurchaseHelper().IsSellable(DefaultItemInfo);
     }
 }
 
@@ -733,23 +358,6 @@ function SetNewSelectedIndex(int ListLength)
     }
 }
 
-function bool IsSellable(const out STraderItem TraderItem)
-{
-    return (TraderItem.WeaponDef != none) && TraderItem.WeaponDef.default.BuyPrice > 0;
-}
-
-function BoughtAmmo(int AmountPurchased, int Price, KFGFxMenu_Trader.EItemType ItemType, optional name ClassName, optional bool bIsSecondaryAmmo)
-{
-    local byte ItemIndex;
-
-    AddDosh(-Price);
-    if(ItemType == 0)
-    {
-        TraderItems.GetItemIndicesFromArche(ItemIndex, ClassName);
-    }
-    MyKFIM.BuyAmmo(AmountPurchased, ItemType, ItemIndex, bIsSecondaryAmmo);
-}
-
 function OnPerkChanged(int PerkIndex)
 {
     if(CurrentTab == 0)
@@ -759,15 +367,21 @@ function OnPerkChanged(int PerkIndex)
     }
 }
 
-function RefreshItemComponents()
+function RefreshItemComponents(optional bool bInitOwnedItems)
 {
+    bInitOwnedItems = false;
     if((PlayerInventoryContainer != none) && PlayerInfoContainer != none)
     {
+        if(bInitOwnedItems)
+        {
+            MyKFPC.GetPurchaseHelper().InitializeOwnedItemList();
+        }
+        OwnedItemList = MyKFPC.GetPurchaseHelper().OwnedItemList;
         PlayerInventoryContainer.RefreshPlayerInventory();
         RefreshShopItemList(CurrentTab, byte(CurrentFilterIndex));
         GameInfoContainer.UpdateGameInfo();
-        GameInfoContainer.SetDosh(TotalDosh);
-        GameInfoContainer.SetCurrentWeight(TotalBlocks, MaxBlocks);
+        GameInfoContainer.SetDosh(MyKFPC.GetPurchaseHelper().TotalDosh);
+        GameInfoContainer.SetCurrentWeight(MyKFPC.GetPurchaseHelper().TotalBlocks, MyKFPC.GetPurchaseHelper().MaxBlocks);
         if(SelectedList == 0)
         {
             SetTraderItemDetails(SelectedItemIndex);            
@@ -793,19 +407,19 @@ function RefreshShopItemList(KFGFxMenu_Trader.TabIndices TabIndex, byte FilterIn
         switch(TabIndex)
         {
             case 0:
-                ShopContainer.RefreshWeaponListByPerk(FilterIndex, ShopWeaponList);
+                ShopContainer.RefreshWeaponListByPerk(FilterIndex, MyKFPC.GetPurchaseHelper().ShopWeaponList);
                 FilterContainer.SetPerkFilterData(FilterIndex);
                 break;
             case 1:
-                ShopContainer.RefreshItemsByType(FilterIndex, ShopWeaponList);
+                ShopContainer.RefreshItemsByType(FilterIndex, MyKFPC.GetPurchaseHelper().ShopWeaponList);
                 FilterContainer.SetTypeFilterData(FilterIndex);
                 break;
             case 2:
-                ShopContainer.RefreshFavoriteItems(ShopWeaponList);
+                ShopContainer.RefreshFavoriteItems(MyKFPC.GetPurchaseHelper().ShopWeaponList);
                 FilterContainer.ClearFilters();
                 break;
             case 3:
-                ShopContainer.RefreshAllItems(ShopWeaponList);
+                ShopContainer.RefreshAllItems(MyKFPC.GetPurchaseHelper().ShopWeaponList);
                 FilterContainer.ClearFilters();
                 break;
             default:
@@ -815,9 +429,9 @@ function RefreshShopItemList(KFGFxMenu_Trader.TabIndices TabIndex, byte FilterIn
         FilterContainer.SetInt("selectedFilter", FilterIndex);
         if(SelectedList == 0)
         {
-            if(SelectedItemIndex >= ShopWeaponList.Length)
+            if(SelectedItemIndex >= MyKFPC.GetPurchaseHelper().ShopWeaponList.Length)
             {
-                SelectedItemIndex = byte(ShopWeaponList.Length - 1);
+                SelectedItemIndex = byte(MyKFPC.GetPurchaseHelper().ShopWeaponList.Length - 1);
             }
             SetTraderItemDetails(SelectedItemIndex);
             ShopContainer.SetSelectedIndex(SelectedItemIndex);
@@ -858,23 +472,20 @@ function ToggleFavorite(name ClassName)
         {
             FavoritedItems.Remove(I, 1;
             bUnfavoriteItem = true;
-            goto J0x7D;
+            Manager.CachedProfile.UnFavoriteWeapon(ClassName);
+            goto J0xBA;
         }
         ++ I;
         goto J0x0C;
     }
-    J0x7D:
+    J0xBA:
 
     if(!bUnfavoriteItem)
     {
         FavoritedItems.AddItem(ClassName;
+        Manager.CachedProfile.FavoriteWeapon(ClassName);
     }
     SaveConfig();
-}
-
-simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem)
-{
-    return MyKFIM.GetAdjustedBuyPriceFor(ShopItem, OwnedItemList);
 }
 
 simulated function int GetDisplayedBlocksRequiredFor(const out STraderItem Item)
@@ -882,57 +493,18 @@ simulated function int GetDisplayedBlocksRequiredFor(const out STraderItem Item)
     return MyKFIM.GetDisplayedBlocksRequiredFor(Item);
 }
 
-function bool IsInOwnedItemList(name ItemName)
-{
-    local int I;
-    local name OwnedItemClassName;
-
-    I = 0;
-    J0x0B:
-
-    if(I < OwnedItemList.Length)
-    {
-        OwnedItemClassName = OwnedItemList[I].DefaultItem.ClassName;
-        if(OwnedItemClassName == 'None')
-        {
-            WarnInternal("Owned item with Class NAME_None");
-            goto J0xBF;            
-        }
-        else
-        {
-            if(OwnedItemClassName == ItemName)
-            {
-                return true;
-            }
-        }
-        J0xBF:
-
-        ++ I;
-        goto J0x0B;
-    }
-    return false;
-}
-
 function Callback_BuyOrSellItem()
 {
     local STraderItem ShopItem;
     local SItemInformation ItemInfo;
-    local bool bCanAfford, bCanCarry;
 
     if(bCanBuyOrSellItem)
     {
         if(SelectedList == 0)
         {
-            ShopItem = ShopWeaponList[SelectedItemIndex];
-            AddDosh(-GetAdjustedBuyPriceFor(ShopItem));
-            AddBlocks(ShopItem.BlocksRequired);
-            if(MyKFIM.bLogInventory)
-            {
-                LogInternal("Callback_BuyOrSellItem: ShopItem=" $ string(ShopItem.ClassName));
-            }
-            AddWeaponToOwnedItemList(ShopItem);
-            RefreshItemComponents();
-            SetNewSelectedIndex(ShopWeaponList.Length);
+            ShopItem = MyKFPC.GetPurchaseHelper().ShopWeaponList[SelectedItemIndex];
+            MyKFPC.GetPurchaseHelper().PurchaseWeapon(ShopItem);
+            SetNewSelectedIndex(MyKFPC.GetPurchaseHelper().ShopWeaponList.Length);
             SetTraderItemDetails(SelectedItemIndex);
             ShopContainer.ActionScriptVoid("itemBought");            
         }
@@ -947,10 +519,7 @@ function Callback_BuyOrSellItem()
             {
                 LogInternal("Callback_BuyOrSellItem: ItemInfo=" $ string(ItemInfo.DefaultItem.ClassName));
             }
-            AddDosh(ItemInfo.SellPrice);
-            AddBlocks(-ItemInfo.DefaultItem.BlocksRequired);
-            RemoveWeaponFromOwnedItemList(SelectedItemIndex);
-            RefreshItemComponents();
+            MyKFPC.GetPurchaseHelper().SellWeapon(ItemInfo, SelectedItemIndex);
             SetNewSelectedIndex(OwnedItemList.Length);
             SetPlayerItemDetails(SelectedItemIndex);
             PlayerInventoryContainer.ActionScriptVoid("itemSold");
@@ -960,23 +529,21 @@ function Callback_BuyOrSellItem()
     {
         if(SelectedList == 0)
         {
-            ShopItem = ShopWeaponList[SelectedItemIndex];
-            bCanAfford = ShopContainer.GetCanAfford(GetAdjustedBuyPriceFor(ShopItem));
-            bCanCarry = ShopContainer.CanCarry(ShopItem);
-            MyKFPC.PlayTraderSelectItemDialog(!bCanAfford, !bCanCarry);
+            ShopItem = MyKFPC.GetPurchaseHelper().ShopWeaponList[SelectedItemIndex];
+            MyKFPC.PlayTraderSelectItemDialog(!MyKFPC.GetPurchaseHelper().GetCanAfford(MyKFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(ShopItem)), !MyKFPC.GetPurchaseHelper().CanCarry(ShopItem));
         }
     }
+    RefreshItemComponents();
 }
 
 function Callback_FavoriteItem()
 {
     if(SelectedList == 0)
     {
-        ToggleFavorite(ShopWeaponList[SelectedItemIndex].ClassName);
+        ToggleFavorite(MyKFPC.GetPurchaseHelper().ShopWeaponList[SelectedItemIndex].ClassName);
         if(CurrentTab == 2)
         {
-            RefreshItemComponents();
-            SetNewSelectedIndex(ShopWeaponList.Length);
+            SetNewSelectedIndex(MyKFPC.GetPurchaseHelper().ShopWeaponList.Length);
         }
         SetTraderItemDetails(SelectedItemIndex);        
     }
@@ -985,6 +552,7 @@ function Callback_FavoriteItem()
         ToggleFavorite(OwnedItemList[SelectedItemIndex].DefaultItem.ClassName);
         SetPlayerItemDetails(SelectedItemIndex);
     }
+    RefreshItemComponents();
 }
 
 function Callback_FilterChanged(int FilterIndex)
@@ -1011,7 +579,7 @@ function Callback_BuyGrenade()
 {
     if(PlayerInventoryContainer != none)
     {
-        PlayerInventoryContainer.BuyGrenade(GrenadeItem);
+        MyKFPC.GetPurchaseHelper().BuyGrenade();
         RefreshItemComponents();
     }
 }
@@ -1020,7 +588,7 @@ function Callback_FillGrenades()
 {
     if(PlayerInventoryContainer != none)
     {
-        PlayerInventoryContainer.FillAmmo(GrenadeItem, true);
+        MyKFPC.GetPurchaseHelper().FillAmmo(MyKFPC.GetPurchaseHelper().GrenadeItem, true);
         RefreshItemComponents();
     }
 }
@@ -1029,7 +597,7 @@ function Callback_FillArmor()
 {
     if(PlayerInventoryContainer != none)
     {
-        PlayerInventoryContainer.FillArmor(ArmorItem);
+        MyKFPC.GetPurchaseHelper().FillArmor();
         RefreshItemComponents();
     }
 }
@@ -1038,30 +606,22 @@ function Callback_FillAmmo(int ItemIndex)
 {
     local SItemInformation ItemInfo;
 
-    if(PlayerInventoryContainer != none)
-    {
-        ItemInfo = OwnedItemList[ItemIndex];
-        PlayerInventoryContainer.FillAmmo(ItemInfo);
-        OwnedItemList[ItemIndex] = ItemInfo;
-        RefreshItemComponents();
-    }
+    ItemInfo = OwnedItemList[ItemIndex];
+    MyKFPC.GetPurchaseHelper().FillAmmo(ItemInfo);
+    MyKFPC.GetPurchaseHelper().OwnedItemList[ItemIndex] = ItemInfo;
+    RefreshItemComponents();
 }
 
 function Callback_BuyMagazine(int ItemIndex)
 {
-    if(PlayerInventoryContainer != none)
-    {
-        PlayerInventoryContainer.BuyMagazine(ItemIndex);
-        RefreshItemComponents();
-    }
+    MyKFPC.GetPurchaseHelper().BuyMagazine(ItemIndex);
+    RefreshItemComponents();
 }
 
 function Callback_AutoFill(int ItemIndex)
 {
-    if(PlayerInventoryContainer != none)
-    {
-        PlayerInventoryContainer.StartAutoFill();
-    }
+    MyKFPC.GetPurchaseHelper().StartAutoFill();
+    RefreshItemComponents();
 }
 
 function Callback_ShopItemSelected(int ItemIndex)
@@ -1076,12 +636,12 @@ function Callback_PlayerItemSelected(int ItemIndex)
 
 function Callback_ArmorItemSelected()
 {
-    SetGenericItemDetails(ArmorItem.DefaultItem, ArmorItem);
+    SetGenericItemDetails(MyKFPC.GetPurchaseHelper().ArmorItem.DefaultItem, MyKFPC.GetPurchaseHelper().ArmorItem);
 }
 
 function Callback_GrenadeItemSelected()
 {
-    SetGenericItemDetails(GrenadeItem.DefaultItem, GrenadeItem);
+    SetGenericItemDetails(MyKFPC.GetPurchaseHelper().GrenadeItem.DefaultItem, MyKFPC.GetPurchaseHelper().GrenadeItem);
 }
 
 function Callback_PerkChanged(int PerkIndex)
@@ -1106,6 +666,8 @@ function Callback_Close()
 
 defaultproperties
 {
+    LastDefaultItemInfo=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0)
+    LastItemInfo=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,MagazineCapacity=0,SecondaryAmmoCount=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0))
     ExitMenuString="EXIT MENU"
     SubWidgetBindings=/* Array type was not detected. */
 }

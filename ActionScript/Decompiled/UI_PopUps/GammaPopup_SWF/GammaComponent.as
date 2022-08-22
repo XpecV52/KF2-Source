@@ -28,7 +28,7 @@ package
             ApplyButton.data = "";
             ApplyButton.enabled = true;
             ApplyButton.enableInitCallback = false;
-            ApplyButton.focusable = true;
+            ApplyButton.focusable = false;
             ApplyButton.label = "<<BACK NOW";
             ApplyButton.selected = false;
             ApplyButton.toggle = false;
@@ -56,7 +56,7 @@ package
             DefaultButton.data = "";
             DefaultButton.enabled = true;
             DefaultButton.enableInitCallback = false;
-            DefaultButton.focusable = true;
+            DefaultButton.focusable = false;
             DefaultButton.label = "<<BACK NOW";
             DefaultButton.selected = false;
             DefaultButton.toggle = false;

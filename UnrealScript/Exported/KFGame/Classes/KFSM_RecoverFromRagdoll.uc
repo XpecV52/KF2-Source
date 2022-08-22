@@ -12,7 +12,7 @@
 
 class KFSM_RecoverFromRagdoll extends KFSpecialMove
 	native(SpecialMoves);
-
+	
 // Recovery anims
 var() Name GetUpFrontAnim;
 var() Name GetUpBackAnim;
@@ -63,7 +63,7 @@ function SpecialMoveStarted(bool bForced, Name PrevMove)
 	PawnOwner.Mesh.MinDistFactorForKinematicUpdate = PawnOwner.default.Mesh.MinDistFactorForKinematicUpdate;
 
 	// Restore tick group
-	//PawnOwner.Mesh.SetTickGroup(TG_PreAsyncWork);
+	PawnOwner.Mesh.SetTickGroup(PawnOwner.Default.Mesh.TickGroup);
 	PawnOwner.SetTickGroup(TG_PreAsyncWork);
 
 	// This will fix all bones, and stop Actor location being changed.
@@ -235,8 +235,7 @@ function PlayRecoveryAnim()
 	PlaySpecialMoveAnim(GetRecoveryAnim(bGetUpFromBack), EAS_FullBody, 0.f, 0.33f, 1.f);
 
 	// Enable Root Motion
-	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Translate, RBA_Translate, RBA_Translate);
-	KFPOwner.Mesh.RootMotionMode = RMM_Accel;
+	EnableRootMotion();
 }
 
 /** Helper for PlayRecoveryAnim */
@@ -264,9 +263,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 
 	bBlendToGetUp = FALSE;
 
-	// Restore default root motion mode
-	PawnOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
-	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
+	DisableRootMotion();
 
 	Super.SpecialMoveEnded(PrevMove, NextMove);
 }

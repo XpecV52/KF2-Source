@@ -6,6 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFLaserSightAttachment extends Object
+    native(Effect)
     hidecategories(Object);
 
 /** Distance at which we should start scaling the dot size and depth bias (5m) */
@@ -32,8 +33,7 @@ var float AnimWeight;
 /** Specifies blending rate between aim and animation */
 var() float AnimBlendRate;
 var transient float LaserSightAimStrength;
-var transient bool LaserAimBlendIn;
-var transient bool LaserAimBlendOut;
+var transient float DesiredAimStrength;
 
 function AttachLaserSight(SkeletalMeshComponent OwnerMesh, bool bFirstPerson, optional name SocketNameOverride)
 {
@@ -98,12 +98,6 @@ simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingC
     }
 }
 
-simulated function SetAimBlendState(bool bBlendIn, bool bBlendOut)
-{
-    LaserAimBlendIn = bBlendIn;
-    LaserAimBlendOut = bBlendOut;
-}
-
 simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 {
     local Vector TraceStart, TraceEnd, InstantTraceHitLocation, InstantTraceHitNormal, HitLocation, HitNormal,
@@ -112,34 +106,17 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
     local Actor HitActor;
     local Rotator SocketRotation;
     local Matrix SocketToWorldTransform;
-    local float MaxAimStrength;
     local Vector DirA, DirB;
     local Quat Q;
     local TraceHitInfo HitInfo;
 
-    if(((OwningWeapon != none) && OwningWeapon.Instigator != none) && OwningWeapon.Instigator.IsFirstPerson())
+    if((((OwningWeapon != none) && OwningWeapon.Instigator != none) && OwningWeapon.Instigator.Weapon == OwningWeapon) && OwningWeapon.Instigator.IsFirstPerson())
     {
-        MaxAimStrength = 1 - AnimWeight;
-        if(LaserAimBlendIn && LaserSightAimStrength < MaxAimStrength)
+        UpdateFirstPersonAImStrength(DeltaTime, OwningWeapon);
+        TraceStart = OwningWeapon.Instigator.GetWeaponStartTraceLocation();
+        TraceAimDir = vector(OwningWeapon.Instigator.GetAdjustedAimFor(OwningWeapon, TraceStart));
+        if(LaserSightAimStrength > 0)
         {
-            LaserSightAimStrength = FMin(LaserSightAimStrength + (AnimBlendRate * DeltaTime), MaxAimStrength);            
-        }
-        else
-        {
-            if(LaserAimBlendOut && LaserSightAimStrength > 0)
-            {
-                LaserSightAimStrength = FMax(LaserSightAimStrength - (AnimBlendRate * DeltaTime), 0);                
-            }
-            else
-            {
-                LaserAimBlendIn = false;
-                LaserAimBlendOut = false;
-            }
-        }
-        if(OwningWeapon.IsInState('Active'))
-        {
-            TraceStart = OwningWeapon.Instigator.GetWeaponStartTraceLocation();
-            TraceAimDir = vector(OwningWeapon.Instigator.GetAdjustedAimFor(OwningWeapon, TraceStart));
             TraceEnd = TraceStart + (TraceAimDir * LaserSightRange);
             HitActor = OwningWeapon.GetTraceOwner().Trace(InstantTraceHitLocation, InstantTraceHitNormal, TraceEnd, TraceStart, true, vect(0, 0, 0), HitInfo, OwningWeapon.1);
             if(HitActor != none)
@@ -186,23 +163,50 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
         }
         else
         {
-            if(!OwningWeapon.IsInState('Inactive'))
+            if((OwningWeapon.MySkelMesh != none) && OwningWeapon.MySkelMesh.GetSocketWorldLocationAndRotation(LaserSightSocketName, TraceStart, SocketRotation))
             {
-                if((OwningWeapon.MySkelMesh != none) && OwningWeapon.MySkelMesh.GetSocketWorldLocationAndRotation(LaserSightSocketName, TraceStart, SocketRotation))
+                DirA = vector(SocketRotation);
+                DirB = TraceAimDir;
+                if((DirA Dot DirB) < 0.94)
                 {
-                    TraceEnd = TraceStart + (vector(SocketRotation) * LaserSightRange);
-                    HitActor = OwningWeapon.GetTraceOwner().Trace(HitLocation, HitNormal, TraceEnd, TraceStart, true, vect(0, 0, 0), HitInfo, OwningWeapon.1);
-                    if(HitActor != none)
-                    {
-                        LaserDotMeshComp.SetHidden(false);
-                        AimAt(HitLocation, HitNormal, OwningWeapon.MySkelMesh);                        
-                    }
-                    else
-                    {
-                        LaserDotMeshComp.SetHidden(true);
-                    }
+                    LaserDotMeshComp.SetHidden(true);
+                    return;
+                }
+                TraceEnd = TraceStart + (vector(SocketRotation) * LaserSightRange);
+                HitActor = OwningWeapon.GetTraceOwner().Trace(HitLocation, HitNormal, TraceEnd, TraceStart, true, vect(0, 0, 0), HitInfo, OwningWeapon.1);
+                if(HitActor != none)
+                {
+                    LaserDotMeshComp.SetHidden(false);
+                    AimAt(HitLocation, HitNormal, OwningWeapon.MySkelMesh);                    
+                }
+                else
+                {
+                    LaserDotMeshComp.SetHidden(true);
                 }
             }
+        }
+    }
+}
+
+function UpdateFirstPersonAImStrength(float DeltaTime, KFWeapon W)
+{
+    if((W.IsInState('Active') && W.IdleBobBlendNode != none) && W.IdleBobBlendNode.Child2WeightTarget == 1)
+    {
+        DesiredAimStrength = 1 - AnimWeight;        
+    }
+    else
+    {
+        DesiredAimStrength = 0;
+    }
+    if(LaserSightAimStrength < DesiredAimStrength)
+    {
+        LaserSightAimStrength = FMin(LaserSightAimStrength + (AnimBlendRate * DeltaTime), DesiredAimStrength);        
+    }
+    else
+    {
+        if(LaserSightAimStrength > DesiredAimStrength)
+        {
+            LaserSightAimStrength = FMax(LaserSightAimStrength - (AnimBlendRate * DeltaTime), DesiredAimStrength);
         }
     }
 }
@@ -223,6 +227,9 @@ function AimAt(Vector HitLocation, Vector HitNormal, SkeletalMeshComponent Paren
     LaserDotScale = 1 + ((LaserDotMaxScale - 1) * FMax((SocketSpaceAimLocation.X - LaserDotLerpStartDistance) / (LaserDotLerpEndDistance - LaserDotLerpStartDistance), 0));
     LaserDotMeshComp.SetScale(LaserDotScale);
 }
+
+// Export UKFLaserSightAttachment::execGetFOVAdjustedLaserSocket(FFrame&, void* const)
+native function bool GetFOVAdjustedLaserSocket(KFSkeletalMeshComponent Mesh, name InSocketName, out Vector OutLocation, out Rotator OutRotation);
 
 defaultproperties
 {
@@ -264,5 +271,5 @@ defaultproperties
     // Reference: KFSkeletalMeshComponent'Default__KFLaserSightAttachment.LaserBeamMeshComp'
     LaserBeamMeshComp=LaserBeamMeshComp
     LaserSightRange=20000
-    AnimBlendRate=1
+    AnimBlendRate=3
 }

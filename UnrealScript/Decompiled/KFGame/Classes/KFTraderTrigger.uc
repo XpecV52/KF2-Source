@@ -17,8 +17,9 @@ var() SkeletalMeshActor TraderMeshActor;
 var() name OpenAnimName;
 /** Looping anim to play while trader is open */
 var() name IdleLoopAnimName;
-var AkEvent TraderOpenSound;
-var AkEvent TraderCloseSound;
+/** Sounds for Trader Pod */
+var() AkEvent TraderOpenSound;
+var() AkEvent TraderCloseSound;
 var transient bool bOpened;
 var config bool bLogTrader;
 var const float DistanceOffNavMeshTheTragerIsAllowedToBe;
@@ -81,6 +82,7 @@ function bool UsedBy(Pawn User)
 simulated function OpenTrader()
 {
     local float AnimDuration;
+    local Pawn P;
 
     SetCollision(true, false);
     bOpened = true;
@@ -95,6 +97,10 @@ simulated function OpenTrader()
         }
         ShowTraderPath();
     }
+    foreach TouchingActors(Class'Pawn', P)
+    {
+        Class'KFPlayerController'.static.UpdateInteractionMessages(P);        
+    }    
 }
 
 simulated function StartTraderLoopAnim()

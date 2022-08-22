@@ -222,7 +222,7 @@ static simulated function PlayPlayerDiedStinger(PlayerController P)
     local KFPlayerController KFPC;
 
     KFPC = KFPlayerController(P);
-    if(KFPC == none)
+    if((KFPC == none) || Class'Engine'.static.IsEditor())
     {
         return;
     }

@@ -528,6 +528,10 @@ function ReachedIntermediateMoveGoal()
         DM = KFDoorMarker(IntermediateMoveGoal);
         if(((DM != none) && DM.MyKFDoor != none) && !DM.MyKFDoor.IsCompletelyOpen())
         {
+            if(Outer.MyKFPawn.HandleAIDoorBump(DM.MyKFDoor))
+            {
+                return;
+            }
             Outer.AILog_Internal((((string(GetFuncName()) $ " Reached IntermediateMoveGoal DoorMarker ") $ string(DM)) $ " for closed door Dist: ") $ string(VSize(DM.Location - Outer.Pawn.Location)), 'Doors');
             if(DM.MyKFDoor.WeldIntegrity <= 0)
             {
@@ -776,35 +780,45 @@ state MovingToGoal
 
     function bool NotifyHitWall(Vector HitNormal, Actor Wall)
     {
+        local KFDoorActor door;
+
         Outer.DisableNotifyHitWall(0.2);
         Outer.AILog_Internal((((((((("NotifyHitWall() while in MoveToGoal, HitNormal: " $ string(HitNormal)) $ " Wall: ") $ string(Wall)) $ " LastHitWall: ") $ string(Outer.LastHitWall)) $ " WallHitCount: ") $ string(WallHitCount)) $ " MoveTarget: ") $ string(Outer.MoveTarget), 'PathWarning');
         Outer.AIActionStatus = "Received NotifyHitWall event";
-        if(KFDoorActor(Wall) == none)
+        if(!Wall.bStatic)
         {
-            Outer.AILog_Internal((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'HitWall');            
-        }
-        else
-        {
-            if(((KFDoorActor(Wall).WeldIntegrity <= 0) && KFDoorMarker(KFDoorActor(Wall).MyMarker) != none) && !KFDoorActor(Wall).IsCompletelyOpen())
+            door = KFDoorActor(Wall);
+            if(door == none)
             {
-                Outer.DisableNotifyHitWall(0.25);
-                Outer.WaitForDoor(KFDoorActor(Wall));
-                Outer.AILog_Internal(("NotifyHitWall() while in MoveToGoal, Wall: " $ string(Wall)) $ " Using door and waiting for it to open", 'Doors');
-                KFDoorActor(Wall).UseDoor(Outer.Pawn);
+                Outer.AILog_Internal((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'HitWall');                
+            }
+            else
+            {
+                if(Outer.MyKFPawn.HandleAIDoorBump(door))
+                {
+                    return true;
+                }
+                if(((door.WeldIntegrity <= 0) && KFDoorMarker(door.MyMarker) != none) && !door.IsCompletelyOpen())
+                {
+                    Outer.DisableNotifyHitWall(0.25);
+                    Outer.WaitForDoor(door);
+                    Outer.AILog_Internal(("NotifyHitWall() while in MoveToGoal, Wall: " $ string(Wall)) $ " Using door and waiting for it to open", 'Doors');
+                    door.UseDoor(Outer.Pawn);
+                    return true;
+                }
+                Outer.AILog_Internal(((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal)) $ " ran into a door!", 'Doors');
+                if((!door.IsCompletelyOpen() && door.WeldIntegrity > 0) && (Outer.Pawn.Anchor == door.MyMarker) || (Outer.DoorEnemy != none) && (Outer.DoorEnemy == door) || Outer.PendingDoor == door)
+                {
+                    Outer.DisableNotifyHitWall(0.25);
+                    Outer.AILog_Internal((string(GetFuncName()) $ "() calling NotifyAttackDoor for ") $ string(Wall), 'Doors');
+                    Outer.NotifyAttackDoor(door);
+                    return true;
+                }
+            }
+            if(Outer.Pawn.Physics == 2)
+            {
                 return true;
             }
-            Outer.AILog_Internal(((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal)) $ " ran into a door!", 'Doors');
-            if((!KFDoorActor(Wall).IsCompletelyOpen() && KFDoorActor(Wall).WeldIntegrity > 0) && (Outer.Pawn.Anchor == KFDoorActor(Wall).MyMarker) || (Outer.DoorEnemy != none) && (Outer.DoorEnemy == KFDoorActor(Wall)) || Outer.PendingDoor == KFDoorActor(Wall))
-            {
-                Outer.DisableNotifyHitWall(0.25);
-                Outer.AILog_Internal((string(GetFuncName()) $ "() calling NotifyAttackDoor for ") $ string(Wall), 'Doors');
-                Outer.NotifyAttackDoor(KFDoorActor(Wall));
-                return true;
-            }
-        }
-        if(Outer.Pawn.Physics == 2)
-        {
-            return true;
         }
         if((Outer.LastHitWall != none) && Wall != Outer.LastHitWall)
         {

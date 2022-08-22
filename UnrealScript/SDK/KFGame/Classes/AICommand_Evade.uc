@@ -38,9 +38,20 @@ var bool			bTurnToThreat;
 /** There used to be a check when the special move completes, to see if another immediate evade is necessary.
 	This code is currently commented out (see SpecialMoveFinished() below). RepeatDistSq was used with this. */
 var float			RepeatDistSq;
+/** If TRUE, AI will use the LookAt system to glance at what they're evading */
+var bool 			bLookAtDangerInstigator;
+/** Location to look at if bLookAtDangerInstigator is TRUE */
+var vector 			LookAtLocation;
+/** Previous value of MyKFPawn.bIsHeadTrackingActive */
+var bool bOldHeadTrackingActive;
 
 /** Simple constructor that pushes a new instance of the command for the AI */
-static function bool Evade( KFAIController AI, byte Direction, optional float InEvadeDelay, optional bool InFrightened, optional bool InTurnToThreat )
+static function bool Evade( KFAIController AI,
+							byte Direction,
+							optional float InEvadeDelay,
+							optional bool InFrightened,
+							optional bool InTurnToThreat,
+							optional vector InLookAtLocation )
 {
 	local AICommand_Evade Cmd;
 
@@ -54,6 +65,12 @@ static function bool Evade( KFAIController AI, byte Direction, optional float In
 			Cmd.SMFlags		   = Direction;
 			Cmd.bFrightened	   = InFrightened;
 			Cmd.bTurnToThreat  = InTurnToThreat;
+
+			if( InLookAtLocation != vect(0,0,0) )
+			{
+				Cmd.bLookAtDangerInstigator = true;
+				Cmd.LookAtLocation = InLookAtLocation;
+			}
 
 			AI.PushCommand( Cmd );
 			return true;
@@ -100,6 +117,14 @@ function Popped()
 		MyKFPawn.StopLookingAtPawn();
 	}
 	Focus = none;
+
+    // Disable head tracking
+    if( bLookAtDangerInstigator && MyKFPawn != none && MyKFPawn.bCanHeadTrack)
+    {
+	    MyKFPawn.bIsHeadTrackingActive = bOldHeadTrackingActive;
+		MyKFPawn.MyLookAtInfo.ForcedLookAtLocation = vect(0,0,0);
+	}
+
 	Super.Popped();
 }
 
@@ -110,6 +135,25 @@ function bool CanEvade()
 
 state Wait
 {
+	/** Look at what we're evading if bLookAtDangerInstigator=TRUE */
+	function BeginState( name PreviousStateName )
+	{
+		if( bLookAtDangerInstigator && MyKFPawn.bCanHeadTrack )
+		{
+		    // Head tracking
+		    if( MyKFPawn.IK_Look_Head == none )
+			{
+				MyKFPawn.IK_Look_Head = SkelControlLookAt( MyKFPawn.Mesh.FindSkelControl('HeadLook') );
+			}
+			bOldHeadTrackingActive = MyKFPawn.bIsHeadTrackingActive;
+		    MyKFPawn.bIsHeadTrackingActive = true;
+			MyKFPawn.MyLookAtInfo.LookAtPct = 1.f;
+			MyKFPawn.MyLookAtInfo.BlendOut = 0.33f;
+			MyKFPawn.MyLookAtInfo.BlendIn = fMax( EvadeDelay * 0.95f, 0.2f );
+			MyKFPawn.MyLookAtInfo.ForcedLookAtLocation = LookAtLocation;
+		}
+	}
+
 Begin:
 	Sleep( EvadeDelay );
 	GotoState('Command_SpecialMove');

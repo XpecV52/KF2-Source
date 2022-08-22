@@ -10,25 +10,10 @@ class KFDT_Slashing_KnifeHeavy_Medic extends KFDT_Slashing_KnifeHeavy
 
 static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
 {
-    return Class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicBleed(InDamage, KFDT, InstigatedBy);
-}
-
-static function bool CheckMedicBleed(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
-{
-    local KFPerk InstigatorPerk;
-
-    InstigatorPerk = KFPlayerController(InstigatedBy).GetPerk();
-    if((InstigatorPerk == none) || !InstigatorPerk.IsBleedDmgActive())
-    {
-        return false;
-    }
-    InstigatorPerk.ModifyBleedDmg(InDamage);
-    KFDT = InstigatorPerk.GetBleedDmgTypeClass();
-    return true;
+    return Class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicToxic(InDamage, KFDT, InstigatedBy);
 }
 
 defaultproperties
 {
-    WeaponDef=Class'KFGame.KFWeapDef_Knife_Medic'
     MeleeHitPower=113
 }

@@ -9,11 +9,25 @@ class KFPawn_ZedBloat extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
-var name PukeSocketName;
-var float VomitRange;
-var int VomitDamage;
-var bool bHasExploded;
-var float ExplodeRange;
+var protected const name PukeSocketName;
+var protected const float VomitRange;
+var protected const int VomitDamage;
+var protected const float ExplodeRange;
+var protected bool bHasExploded;
+var protected const class<KFProjectile> PukeMineProjectileClass;
+var protected array<Rotator> DeathPukeMineRotations;
+var protected byte NumPukeMinesToSpawnOnDeath;
+var protected Vector OldLocation;
+var protected Rotator OldRotation;
+
+simulated function PostBeginPlay()
+{
+    super.PostBeginPlay();
+    if(WorldInfo.Game != none)
+    {
+        NumPukeMinesToSpawnOnDeath = class<KFDifficulty_Bloat>(DifficultySettings).static.GetPukeMinesToSpawnOnDeath(self, WorldInfo.Game);
+    }
+}
 
 function ANIMNOTIFY_PukeAttack()
 {
@@ -79,13 +93,20 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
     return super(KFPawn).CanInjureHitZone(DamageType, HitZoneIdx);
 }
 
+function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLocation)
+{
+    OldLocation = Location;
+    OldRotation = Rotation;
+    return super.Died(Killer, DamageType, HitLocation);
+}
+
 function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZoneIdx, Vector InstigatorLocation)
 {
     local int HitZoneIndex;
     local name HitBoneName;
 
     super.TakeHitZoneDamage(Damage, DamageType, HitZoneIdx, InstigatorLocation);
-    if((((Role == ROLE_Authority) && bPlayedDeath) && TimeOfDeath == WorldInfo.TimeSeconds) && !bHasExploded)
+    if((((Role == ROLE_Authority) && bPlayedDeath) && !bHasExploded) && TimeOfDeath == WorldInfo.TimeSeconds)
     {
         HitZoneIndex = HitFxInfo.HitBoneIndex;
         if((HitZoneIndex != 255) && (InjuredHitZones & (1 << HitZoneIndex)) > 0)
@@ -95,6 +116,7 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
             {
                 DealExplosionDamage();
                 bHasExploded = true;
+                SpawnPukeMinesOnDeath();
             }
         }
     }
@@ -143,6 +165,32 @@ function DealExplosionDamage()
     }    
 }
 
+function SpawnPukeMine(Vector SpawnLocation, Rotator SpawnRotation)
+{
+    local KFProjectile PukeMine;
+
+    PukeMine = Spawn(PukeMineProjectileClass, self,, SpawnLocation, SpawnRotation,, true);
+    if(PukeMine != none)
+    {
+        PukeMine.Init(vector(SpawnRotation));
+    }
+}
+
+function SpawnPukeMinesOnDeath()
+{
+    local int I;
+
+    J0x00:
+    if((NumPukeMinesToSpawnOnDeath > 0) && DeathPukeMineRotations.Length > 0)
+    {
+        I = Rand(DeathPukeMineRotations.Length);
+        SpawnPukeMine(OldLocation, Normalize(OldRotation + DeathPukeMineRotations[I]));
+        DeathPukeMineRotations.Remove(I, 1;
+        -- NumPukeMinesToSpawnOnDeath;
+        goto J0x00;
+    }
+}
+
 static function int GetTraderAdviceID()
 {
     return 41;
@@ -153,6 +201,31 @@ defaultproperties
     VomitRange=350
     VomitDamage=12
     ExplodeRange=500
+    PukeMineProjectileClass=Class'KFProj_BloatPukeMine'
+    DeathPukeMineRotations(0)=
+/* Exception thrown while deserializing DeathPukeMineRotations
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_6999' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    DeathPukeMineRotations(1)=
+/* Exception thrown while deserializing DeathPukeMineRotations
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    DeathPukeMineRotations(2)=
+/* Exception thrown while deserializing DeathPukeMineRotations
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_638' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     bIsBloatClass=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Bloat_ARCH.ZED_Bloat_Archetype'
     HeadlessBleedOutTime=6
@@ -172,6 +245,7 @@ defaultproperties
     XPValues[2]=30
     XPValues[3]=34
     DamageTypeModifiers=/* Array type was not detected. */
+    DifficultySettings=Class'KFDifficulty_Bloat'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

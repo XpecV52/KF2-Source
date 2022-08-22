@@ -70,6 +70,7 @@ var bool bUsingGamepad;
 var int CurrentInteractionIndex;
 
 var const string ControllerStringPrefix;
+var const string HoldCommandDelimiter;
 
 var const string ZEDTeamTextColor;
 var const string HumanTeamTextColor;
@@ -629,39 +630,39 @@ function DisplayInteractionMessage( string MessageString, int MessageIndex, opti
 {
     if( InteractionMessageContainer != none )
     {
-            if( MessageIndex == IMT_None )
-            {
-                HideInteractionMessage();
-            }
+        if( MessageIndex == IMT_None )
+        {
+            HideInteractionMessage();
+        }   
         // allow messages of the same priority to replace each other (unless it's the same message)
         else if( MessageIndex != CurrentInteractionIndex && GetInteractionMessagePriority(MessageIndex) >= GetInteractionMessagePriority(CurrentInteractionIndex) )
+        {
+            MessageString = Caps(MessageString);
+            if ( KFPC != None )
             {
-                MessageString = Caps(MessageString);
-                if ( KFPC != None )
+                KFPC.ClearTimer(nameOf(HideInteractionMessage), self);
+                if ( Duration > 0.f )
                 {
-                    KFPC.ClearTimer(nameOf(HideInteractionMessage), self);
-                    if ( Duration > 0.f )
-                    {
-                        KFPC.SetTimer(Duration, false, nameOf(HideInteractionMessage), self);
-                    }
+                    KFPC.SetTimer(Duration, false, nameOf(HideInteractionMessage), self);
                 }
-
-                //Check to see if removing the controller prefix will result in a single character.  If we send a single character
-                // bad things will happen. 
-                if(class'Actor'.static.Len(ButtonName) - class'Actor'.static.Len(ControllerStringPrefix) > 1)
-                {
-                    //Image Replacing a string in AS3 cannot take a substring larger than 15 characters.  We remove the prefix for controllers
-                    //because these are common accross all controller inputs.  
-                    class'Actor'.static.ReplaceText(ButtonName, ControllerStringPrefix, "" );
-                }
-                // Put the command into the string so that it can be replaced  Scaleform will not try to image replace a keyboard command unless
-                // we actually put an icon and object for it. 
-                //class'Actor'.static.ReplaceText(MessageString, "<%X%>", ButtonName );
-                
-                SendInteractionMessageToGFX(MessageString, ButtonName);
-            CurrentInteractionIndex = MessageIndex;
             }
+
+            //Check to see if removing the controller prefix will result in a single character.  If we send a single character
+            // bad things will happen. 
+            if(class'Actor'.static.Len(ButtonName) - class'Actor'.static.Len(ControllerStringPrefix) > 1)
+            {
+                //Image Replacing a string in AS3 cannot take a substring larger than 15 characters.  We remove the prefix for controllers
+                //because these are common accross all controller inputs.  
+                class'Actor'.static.ReplaceText(ButtonName, ControllerStringPrefix, "" );
+            }
+            // Put the command into the string so that it can be replaced  Scaleform will not try to image replace a keyboard command unless
+            // we actually put an icon and object for it. 
+            //class'Actor'.static.ReplaceText(MessageString, "<%X%>", ButtonName );
+            
+            SendInteractionMessageToGFX(MessageString, ButtonName);
+            CurrentInteractionIndex = MessageIndex;
         }
+    }
 }
 
 /** Allows client to group message indices together in the same priority (e.g. all usable trigger messages get same priority even though enum id is different) */
@@ -679,7 +680,30 @@ function int GetInteractionMessagePriority( int MessageIndex )
 /** Display a message that corresponds to input */
 function SendInteractionMessageToGFX(string MessageString, string ButtonName)
 {
-    InteractionMessageContainer.ActionScriptVoid("showInteractionMessage");
+    local GFxObject TextObject;
+    local array<String> StringArray;
+
+    TextObject = CreateObject("Object");
+
+    StringArray = SplitString(MessageString, HoldCommandDelimiter);
+
+    if(StringArray.length > 1)
+    {
+        TextObject.SetString("holdMessage", StringArray[1]);    
+        TextObject.SetBool("bHoldCommand", true);
+    }
+    else
+    {
+        TextObject.SetBool("bHoldCommand", false);
+    }
+
+    TextObject.SetString("message", StringArray[0]);
+    TextObject.SetString("buttonName", ButtonName);
+    TextObject.SetString("holdString", class'KFGFxControlsContainer_ControllerPresets'.default.HoldString);
+    TextObject.SetString("tapString", class'KFGFxControlsContainer_ControllerPresets'.default.TapString);
+
+    InteractionMessageContainer.SetObject("interactionMessageData", TextObject);
+    InteractionMessageContainer.ActionScriptVoid("showInteractionMessage"); //@TODO:Remove this once the new interaction message is implemented
 }
 
 /** 
@@ -795,7 +819,7 @@ function UpdateScale()
 {
     if(KFGXHUDManager != none)
     {
-        KFGXHUDManager.SetFloat("HUDScale", HUDScale);
+        KFGXHUDManager.SetFloat("HUDScale", HUDScale * class'WorldInfo'.static.GetResolutionBasedHUDScale());
     }
 }
 
@@ -818,7 +842,7 @@ function ClearBuffIcons()
 
 function PawnDied()
 {
-	ClearBuffIcons();
+    ClearBuffIcons();
 }
 
 function ReceivePawn(KFPawn NewPawn); 
@@ -894,6 +918,7 @@ defaultproperties
    ScoreBoardClass=Class'KFGame.KFGFxMoviePlayer_ScoreBoard'
    HUDScale=1.000000
    ControllerStringPrefix="XboxTypeS_"
+   HoldCommandDelimiter="<%HOLD%>"
    ZEDTeamTextColor="0xBE0600"
    HumanTeamTextColor="0xBAFFFF"
    UpdateInterval=0.100000

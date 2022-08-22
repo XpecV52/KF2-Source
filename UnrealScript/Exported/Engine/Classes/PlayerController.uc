@@ -180,6 +180,10 @@ var OnlineGameSearch MigratedSearchToJoin;
 /** Cached online subsystem variable */
 var OnlineSubsystem OnlineSub;
 
+//@HSL_BEGIN - BWJ - 8-4-16 - Playfab support
+var PlayfabInterface PlayfabInter;
+//@HSL_END
+
 /** Cached online voice interface variable */
 var OnlineVoiceInterface VoiceInterface;
 
@@ -652,6 +656,10 @@ simulated event PostBeginPlay()
 	LastActiveTime = WorldInfo.TimeSeconds;
 
 	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+
+//@HSL_BEGIN - BWJ - 8-4-16 - Playfab support
+	PlayfabInter = class'GameEngine'.static.GetPlayfabInterface();
+//@HSL_END
 
 	// if we're a client do this here because super is not going to
 	if ( WorldInfo.NetMode == NM_Client )
@@ -2350,11 +2358,14 @@ function RegisterOnlineDelegates()
 			OnlineSub.SystemInterface.AddExternalUIChangeDelegate(OnExternalUIChanged);
 			// This will pause/unpause a single player game based upon the controller state
 			OnlineSub.SystemInterface.AddControllerChangeDelegate(OnControllerChanged);
+			// This will kick you back to the IIS when you lose connection or log out of PSN
+			OnlineSub.SystemInterface.AddConnectionStatusChangeDelegate(OnConnectionStatusChange);
 		}
 		// Register for accepting game invites if possible
 		if (OnlineSub.GameInterface != None)
 		{
 			OnlineSub.GameInterface.AddGameInviteAcceptedDelegate(LP.ControllerId,OnGameInviteAccepted);
+			OnlineSub.GameInterface.AddPlayTogetherStartedDelegate(LP.ControllerId,OnPlayTogetherStarted);
 		}
 		if (OnlineSub.PartyChatInterface != None)
 		{
@@ -2408,6 +2419,7 @@ event ClearOnlineDelegates()
 			{
 				OnlineSub.SystemInterface.ClearExternalUIChangeDelegate(OnExternalUIChanged);
 				OnlineSub.SystemInterface.ClearControllerChangeDelegate(OnControllerChanged);
+				OnlineSub.SystemInterface.ClearConnectionStatusChangeDelegate(OnConnectionStatusChange);
 			}
 
 			if (LP != None)
@@ -2416,6 +2428,7 @@ event ClearOnlineDelegates()
 				if (OnlineSub.GameInterface != None)
 				{
 					OnlineSub.GameInterface.ClearGameInviteAcceptedDelegate(LP.ControllerId, OnGameInviteAccepted);
+					OnlineSub.GameInterface.ClearPlayTogetherStartedDelegate(LP.ControllerId,OnPlayTogetherStarted);
 				}
 				if (OnlineSub.PartyChatInterface != None)
 				{
@@ -7446,7 +7459,9 @@ function GameplayUnmutePlayer(UniqueNetId PlayerNetId)
  *
  * @param PlayerNetId the remote player to mute
  */
-reliable server event ServerMutePlayer(UniqueNetId PlayerNetId)
+//@HSL_BEGIN - JRO - 8/2/2016 - Adding the option of 1-way muting.
+reliable server event ServerMutePlayer(UniqueNetId PlayerNetId, optional bool bMuteOther = true)
+//@HSL_END
 {
 	local PlayerController Other;
 
@@ -7463,7 +7478,7 @@ reliable server event ServerMutePlayer(UniqueNetId PlayerNetId)
 	ClientMutePlayer(PlayerNetId);
 	// Find the muted player's player controller so it can be notified
 	Other = GetPlayerControllerFromNetId(PlayerNetId);
-	if (Other != None)
+	if (Other != None && bMuteOther) //@HSL - JRO - 8/2/2016 - 1-way muting
 	{
 		// Update their packet filter list too
 		if (Other.VoicePacketFilter.Find('Uid',PlayerReplicationInfo.UniqueId.Uid) == INDEX_NONE)
@@ -7482,7 +7497,9 @@ reliable server event ServerMutePlayer(UniqueNetId PlayerNetId)
  *
  * @param PlayerNetId the remote player to unmute
  */
-reliable server event ServerUnmutePlayer(UniqueNetId PlayerNetId)
+//@HSL_BEGIN - JRO - 8/2/2016 - Adding the option of 1-way muting.
+reliable server event ServerUnmutePlayer(UniqueNetId PlayerNetId, optional bool bUnmuteOther = true)
+//@HSL_END
 {
 	local PlayerController Other;
 	local int RemoveIndex;
@@ -7493,9 +7510,21 @@ reliable server event ServerUnmutePlayer(UniqueNetId PlayerNetId)
 	{
 		VoiceMuteList.Remove(RemoveIndex,1);
 	}
+	//@HSL_BEGIN - JRO - 8/2/2016 - Adding the option of 1-way muting.
+	if(!bUnmuteOther)
+	{
+		// Add them to the packet filter list if not already on it
+		RemoveIndex = VoicePacketFilter.Find('Uid',PlayerNetId.Uid); 
+		if (RemoveIndex != INDEX_NONE)
+		{
+			VoicePacketFilter.Remove(RemoveIndex,1);
+		}
+		ClientUnmutePlayer(PlayerNetId);
+	}
+	//@HSL_END
 	// Find the muted player's player controller so it can be notified
 	Other = GetPlayerControllerFromNetId(PlayerNetId);
-	if (Other != None)
+	if (Other != None && bUnmuteOther) //@HSL - JRO - 8/2/2016 - 1-way muting
 	{
 		// Make sure this player isn't muted for gameplay reasons
 		if (GameplayVoiceMuteList.Find('Uid',PlayerNetId.Uid) == INDEX_NONE &&
@@ -7680,6 +7709,15 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, OnG
 	}
 }
 
+//@HSL_BEGIN - JRO - 6/10/2016 - Overloaded in KFPlayerController
+function OnConnectionStatusChange(EOnlineServerConnectionStatus ConnectionStatus)
+{
+}
+function OnPlayTogetherStarted()
+{
+}
+//@HSL_END
+
 /**
  * Counts the number of local players to verify there is enough space
  *
@@ -7833,7 +7871,7 @@ function OnInviteJoinComplete(name SessionName,bool bWasSuccessful)
 }
 
 /** Override to display a message to the user */
-function NotifyInviteFailed()
+function NotifyInviteFailed(optional string LocKey = "UnableToJoinInvite")
 {
 	LogInternal("SESSIONS - Invite handling failed");
 	ClearInviteDelegates();

@@ -26,6 +26,9 @@ var transient PointLightComponent BattlePhaseLightTemplateYellow;
 var transient PointLightComponent BattlePhaseLightTemplateRed;
 var transient PointLightComponent BattlePhaseLightFront;
 
+/** TRUE if we are playing our rage sprint sound, false if we are not */
+var transient bool bPlayingRageSound;
+
 /*********************************************************************************************
 * Initialization
 ********************************************************************************************* */
@@ -105,6 +108,12 @@ function SetSprinting( bool bNewSprintStatus )
 * Rage Related
 ********************************************************************************************* */
 
+/** Returns TRUE if this zed can block attacks */
+function bool CanBlock()
+{
+	return !IsEnraged() && super.CanBlock();
+}
+
 /** Turns hunt and heal backpack vent smoke off on termination */
 simulated function TerminateEffectsOnDeath()
 {
@@ -172,6 +181,12 @@ simulated function SetEnraged( bool bNewEnraged )
 	{
 		bIsEnraged = bNewEnraged;
 
+		// End blocking on rage
+		if( IsDoingSpecialMove(SM_Block) )
+		{
+			EndSpecialMove();
+		}
+
 		// Sprint right away if we're AI
 		if( !IsHumanControlled() )
 		{
@@ -181,15 +196,6 @@ simulated function SetEnraged( bool bNewEnraged )
 
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		if( bNewEnraged )
-		{
-			PostAkEvent( RageStartSound, true, true );
-		}
-		else
-		{
-			PostAkEvent( RageStopSound, true, true );
-		}
-
 		/** Set the proper glow material */
 		UpdateGameplayMICParams();
 	}
@@ -305,6 +311,26 @@ simulated function GetOverheadDebugText( KFHUDBase HUD, out array<string> Overhe
 	OverheadColors[OverheadTexts.Length - 1] = ModifyTextColor;
 }
 
+/** Track the fleshpound's speed and play the appropriate cues */
+simulated event Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( IsEnraged() && Physics == PHYS_Walking && VSizeSQ(Velocity) >= Square(SprintSpeed) * 0.9f )
+	{
+		if( !bPlayingRageSound )
+		{
+			bPlayingRageSound = true;
+			PostAkEvent( RageStartSound, true, true );
+		}
+	}
+	else if( bPlayingRageSound )
+	{
+		bPlayingRageSound = false;
+		PostAkEvent( RageStopSound, true, true );
+	}		
+}
+
 /*********************************************************************************************
 * Dialog
 **********************************************************************************************/
@@ -323,6 +349,8 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
+   RageStartSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Start'
+   RageStopSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Stop'
    DefaultGlowColor=(R=1.000000,G=0.350000,B=0.000000,A=1.000000)
    EnragedGlowColor=(R=1.000000,G=0.000000,B=0.000000,A=1.000000)
    DeadGlowColor=(R=0.000000,G=0.000000,B=0.000000,A=1.000000)
@@ -363,6 +391,7 @@ defaultproperties
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.750000))
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.250000))
    ZedBumpDamageScale=0.000000
+   DifficultySettings=Class'kfgamecontent.KFDifficulty_Fleshpound'
    BumpFrequency=0.100000
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    FootstepCameraShakeInnerRadius=200.000000
@@ -407,6 +436,7 @@ defaultproperties
       AfflictionClasses(7)=()
       AfflictionClasses(8)=()
       AfflictionClasses(9)=()
+      AfflictionClasses(10)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -414,15 +444,16 @@ defaultproperties
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedFleshpound:Afflictions_0'
    IncapSettings(0)=(Duration=2.200000,Cooldown=10.000000,Vulnerability=(0.950000))
-   IncapSettings(1)=(Duration=3.500000,Cooldown=12.000000,Vulnerability=(0.700000))
+   IncapSettings(1)=(Duration=3.500000,Cooldown=10.000000,Vulnerability=(0.700000))
    IncapSettings(2)=(Cooldown=1.200000,Vulnerability=(1.000000))
    IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.000000,0.000000,0.000000,0.000000,0.500000))
    IncapSettings(4)=(Cooldown=5.000000,Vulnerability=(0.200000,0.250000,0.250000,0.000000,0.400000))
    IncapSettings(5)=(Duration=1.200000,Cooldown=10.000000,Vulnerability=(0.500000,0.550000,0.500000,0.000000,0.550000))
    IncapSettings(6)=(Cooldown=20.500000,Vulnerability=(0.150000))
-   IncapSettings(7)=(Cooldown=10.000000,Vulnerability=(0.250000,0.250000,0.500000,0.250000,0.400000))
-   IncapSettings(8)=(Duration=1.000000,Cooldown=1.500000,Vulnerability=(0.950000))
-   IncapSettings(9)=(Duration=2.500000,Cooldown=17.000000,Vulnerability=(0.800000))
+   IncapSettings(7)=(Cooldown=8.500000,Vulnerability=(1.000000,1.000000,3.000000,1.000000,1.000000))
+   IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.250000,0.250000,0.500000,0.250000,0.400000))
+   IncapSettings(9)=(Duration=1.000000,Cooldown=1.500000,Vulnerability=(0.950000))
+   IncapSettings(10)=(Duration=2.500000,Cooldown=17.000000,Vulnerability=(0.800000))
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=2.000000
    SprintSpeed=725.000000
@@ -455,7 +486,7 @@ defaultproperties
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
       SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=None
+      SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
@@ -466,8 +497,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -537,6 +570,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
    End Object

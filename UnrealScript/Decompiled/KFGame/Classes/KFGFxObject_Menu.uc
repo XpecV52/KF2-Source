@@ -47,9 +47,16 @@ function OnLobbyStatusChanged(bool bIsInParty);
 
 function ShowLeavePartyPopUp()
 {
-    if(Manager != none)
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        Manager.OpenPopup(0, LeavePartyTitleString, LeavePartyDescriptionString, LeaveString, Class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmLeaveParty, CancelLeaveParty);
+        OnlineLobby.QuitLobby();        
+    }
+    else
+    {
+        if(Manager != none)
+        {
+            Manager.OpenPopup(0, LeavePartyTitleString, LeavePartyDescriptionString, LeaveString, Class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmLeaveParty, CancelLeaveParty);
+        }
     }
 }
 
@@ -77,6 +84,11 @@ function ConfirmLeaveParty()
 
 function CancelLeaveParty();
 
+function string ConsoleLocalize(string Key, optional string SectionName)
+{
+    return Localize(((SectionName != "") ? SectionName : string(self.Class.Name)), Key, "KFGameConsole");
+}
+
 function Callback_ControllerCloseMenu()
 {
     local KFPlayerReplicationInfo KFPRI;
@@ -86,15 +98,18 @@ function Callback_ControllerCloseMenu()
     {
         if(!Class'WorldInfo'.static.IsMenuLevel() && Manager.bUsingGamepad)
         {
-            if(KFPRI.WorldInfo.GRI.bMatchHasBegun)
+            if(KFPRI.bClientActiveSpawn || KFPRI.bOnlySpectator)
             {
-                Manager.CloseMenus();                
-            }
-            else
-            {
-                if(Manager.bAfterLobby && ((Manager.CurrentMenu != none) && Manager.PostGameMenu != none) && Manager.CurrentMenu != Manager.PostGameMenu)
+                if(KFPRI.WorldInfo.GRI.bMatchHasBegun)
                 {
-                    Manager.ToggleMenus();
+                    Manager.CloseMenus();                    
+                }
+                else
+                {
+                    if(Manager.bAfterLobby && ((Manager.CurrentMenu != none) && Manager.PostGameMenu != none) && Manager.CurrentMenu != Manager.PostGameMenu)
+                    {
+                        Manager.ToggleMenus();
+                    }
                 }
             }
         }
@@ -202,7 +217,7 @@ function Callback_ProfileOption(int OptionIndex, int SlotIndex)
 
 function Callback_CreateParty()
 {
-    if((OnlineLobby != none) && Manager.GetMultiplayerMenuActive())
+    if((OnlineLobby != none) && Manager.GetMultiplayerMenuActive() || Class'WorldInfo'.static.IsConsoleBuild())
     {
         OnlineLobby.MakeLobby(6, 2);
         OnlineLobby.ShowLobbyInviteInterface();
@@ -218,7 +233,14 @@ function Callback_InviteFriend()
 {
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.ShowInviteUI(byte(Manager.GetLP().ControllerId), "");        
+        if(Class'WorldInfo'.static.IsMenuLevel())
+        {
+            OnlineLobby.ShowLobbyInviteInterface();            
+        }
+        else
+        {
+            Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.ShowInviteUI(byte(Manager.GetLP().ControllerId), "");
+        }        
     }
     else
     {

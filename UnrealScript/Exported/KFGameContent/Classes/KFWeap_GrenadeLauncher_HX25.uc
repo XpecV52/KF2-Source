@@ -13,6 +13,9 @@ class KFWeap_GrenadeLauncher_HX25 extends KFWeap_GrenadeLauncher_Base;
 var(Weapon) array<byte>	NumPellets;
 var array<vector2D> PelletSpread;
 
+/** Last time a submunition projectile was fired from this weapon */
+var float LastSubmunitionFireTime;
+
 /*********************************************************************************************
  Firing / Projectile
 ********************************************************************************************* */
@@ -119,6 +122,11 @@ static simulated function float CalculateTraderWeaponStatDamage()
 	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
 }
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+	return FT_Pistol;
+}
+
 defaultproperties
 {
    NumPellets(0)=7
@@ -142,7 +150,7 @@ defaultproperties
    FastZoomOutTime=0.200000
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
-   MaxSpareAmmo(0)=29
+   SpareAmmoCapacity(0)=29
    InitialSpareMags(0)=17
    AmmoPickupScale(0)=3.000000
    FireSightedAnims(1)="Shoot_Iron2"
@@ -194,7 +202,7 @@ defaultproperties
    InstantHitDamage(0)=10.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_HX25SubmunitionImpact'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

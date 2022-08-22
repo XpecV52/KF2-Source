@@ -1,6 +1,8 @@
 package tripwire.controls
 {
     import flash.display.MovieClip;
+    import scaleform.gfx.Extensions;
+    import tripwire.managers.MenuManager;
     
     public class TitleButton extends TripButton
     {
@@ -14,12 +16,13 @@ package tripwire.controls
         
         public var hitbox2:MovieClip;
         
-        public const hitboxZ:int = 32;
+        public const hitboxZ:int = 0;
         
         public function TitleButton()
         {
             super();
             doAnimations = true;
+            overSoundEffect = "TITLE_BUTTON_ROLLOVER";
         }
         
         override public function set selected(param1:Boolean) : void
@@ -28,6 +31,10 @@ package tripwire.controls
             if(param1)
             {
                 this.highlightButton();
+                if(Extensions.gfxProcessSound != null && enabled == true && MenuManager.manager.bUsingGamepad)
+                {
+                    Extensions.gfxProcessSound(this,"UI",overSoundEffect);
+                }
             }
             else
             {

@@ -10,6 +10,8 @@
 
 class KFGFxMenu_Perks extends KFGFxObject_Menu;
 
+`include(KFProfileSettings.uci)
+
 var KFGFxPerksContainer_Selection 		SelectionContainer;
 var KFGFxPerksContainer_Header			HeaderContainer;
 var KFGFxPerksContainer_Details			DetailsContainer;
@@ -169,6 +171,7 @@ event OnClose()
   		}
   	}
 
+	Manager.CachedProfile.Save( GetLP().ControllerId );
 	super.OnClose();
 }
 
@@ -337,17 +340,19 @@ function Callback_PerkSelected(byte NewPerkIndex, bool bClickedIndex)
 	if(LastPerkIndex != NewPerkIndex || bClickedIndex)
 	{
 		PerkChanged(NewPerkIndex,bClickedIndex);
+		Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPerkIndex, NewPerkIndex);
 	}
 }
 
 function Callback_SkillSelected( byte TierIndex, byte SkillIndex )
 {
-  	if ( KFPC != none )
+	if ( KFPC != none )
   	{
   		bModifiedSkills = true;
   		bChangesMadeDuringLobby = !IsMatchStarted();
 		SelectedSkillsHolder[TierIndex] = SkillIndex;
 		UpdateSkillsUI(KFPC.PerkList[LastPerkIndex].PerkClass);
+		SavePerkData();
   	}
 }
 

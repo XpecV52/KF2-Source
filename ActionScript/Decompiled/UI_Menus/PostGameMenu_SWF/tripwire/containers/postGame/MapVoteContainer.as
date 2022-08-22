@@ -16,7 +16,7 @@ package tripwire.containers.postGame
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
-    import tripwire.controls.TripUILoader;
+    import tripwire.controls.TripUILoaderQueue;
     import tripwire.menus.PostGameMenu;
     
     public class MapVoteContainer extends TripContainer
@@ -31,7 +31,7 @@ package tripwire.containers.postGame
         
         public var yourMapVoteIndex:int = -1;
         
-        public var mapImageLoader:TripUILoader;
+        public var mapImageLoader:TripUILoaderQueue;
         
         public var votedMapNameText:TextField;
         
@@ -206,7 +206,7 @@ package tripwire.containers.postGame
         {
             var _loc3_:Object = null;
             var _loc4_:int = 0;
-            var _loc2_:TripUILoader = this.mapImageLoader;
+            var _loc2_:TripUILoaderQueue = this.mapImageLoader;
             if(this.mapVoteList.dataProvider.length == 0)
             {
                 return;
@@ -251,13 +251,12 @@ package tripwire.containers.postGame
         
         public function set mapSource(param1:String) : *
         {
-            var _loc2_:TripUILoader = this.mapImageLoader;
+            var _loc2_:TripUILoaderQueue = this.mapImageLoader;
             var _loc3_:String = param1;
             if(_loc3_ != _loc2_.source)
             {
-                z;
+                _loc2_.source = param1;
             }
-            _loc2_.source = param1;
         }
         
         public function makeFakeMapChoices() : *

@@ -13,7 +13,7 @@ defaultproperties
 {
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
-   SingleFireMode=1
+   SingleFireSoundIndex=1
    InventorySize=6
    MagazineCapacity(0)=30
    bHasIronSights=True
@@ -25,7 +25,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
-   MaxSpareAmmo(0)=300
+   SpareAmmoCapacity(0)=270
    InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
@@ -75,10 +75,10 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.008500
    Spread(1)=0.008500
-   InstantHitDamage(0)=25.000000
-   InstantHitDamage(1)=25.000000
+   InstantHitDamage(0)=30.000000
+   InstantHitDamage(1)=30.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Bullpup'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_Bullpup'
    InstantHitDamageTypes(2)=None

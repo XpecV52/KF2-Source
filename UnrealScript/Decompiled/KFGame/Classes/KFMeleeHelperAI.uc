@@ -187,7 +187,7 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
 function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
 {
     local KFAIController KFAIC;
-    local float MomentumScalar;
+    local float DoorDamageScale, MomentumScalar;
     local bool bDealtDmg;
     local class<KFDamageType> CurrentDamageType;
 
@@ -200,7 +200,11 @@ function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
     CurrentDamageType = ((Notify.CustomDamageType != none) ? Notify.CustomDamageType : MyDamageType);
     if((KFAIC != none) && (KFAIC.DoorEnemy != none) || KFAIC.ActorEnemy != none)
     {
-        bDealtDmg = CheckEnemyImpact(int(Notify.DamageScale * BaseDamage), MomentumScalar, CurrentDamageType);        
+        if(KFAIC.DoorEnemy != none)
+        {
+            DoorDamageScale = KFAIC.DoorEnemy.GetAIDoorDamageScale();
+        }
+        bDealtDmg = CheckEnemyImpact(int((Notify.DamageScale * BaseDamage) * DoorDamageScale), MomentumScalar, CurrentDamageType);        
     }
     else
     {

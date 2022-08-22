@@ -63,6 +63,9 @@ var array<KFPawn> LastMinigunEnemies;
 /** Minimum distance for a minigun attack */
 var float MinMinigunRangeSQ;
 
+/** Maximum distance for a minigun attack */
+var float MaxMinigunRangeSQ;
+
 /** Maximum distance enemies are allowed to be for a fan fire attack */
 var float MaxFanFireRangeSQ;
 
@@ -101,6 +104,9 @@ var float LastMissileAttackTime;
 
 /** Min distance an enemy can be for a missile attack */
 var float MinMissileRangeSQ;
+
+/** Max distance an enemy can be for a missile attack */
+var float MaxMissileRangeSQ;
 
 /** Last time we executed a mortar attack */
 var float LastMortarAttackTime;
@@ -350,6 +356,12 @@ event bool SetEnemy( Pawn NewEnemy )
 	}
 
 	return super.SetEnemy( NewEnemy );
+}
+
+/** Forces the enemy to the new pawn, bypassing CanSwitchEnemies() */
+function ForceSetEnemy( Pawn NewEnemy )
+{
+	super.SetEnemy( NewEnemy );
 }
 
 /** Overridden to stop retargeting enemies when fleeing or cloaked */
@@ -673,7 +685,7 @@ function EvaluateAttacks( float DeltaTime )
 		&& (WorldInfo.TimeSeconds - LastGrabAttackTime) > MyPatPawn.TentacleGrabCooldownTime
 		&& (!MyPatPawn.bIsCloaking || fRand() < 0.25f) )
 	{
-		if( SetBestTarget(LastGrabbedPlayers, MinTentacleRangeSQ, Square(class'KFSM_Patriarch_Grapple'.default.MaxRange*0.85f), 0.6f, true, true) )
+		if( SetBestTarget(LastGrabbedPlayers, MinTentacleRangeSQ, Square(class'KFSM_Patriarch_Grapple'.default.MaxRange*0.85f*MyPatPawn.GetAttackRangeScale()), 0.6f, true, true) )
 		{
 			MyPatPawn.SetCloaked( false );
 			class'AICommand_Patriarch_Grab'.static.TentacleGrab( self );
@@ -749,12 +761,12 @@ function EvaluateAttacks( float DeltaTime )
 		// Decide whether we should fire a missile or the minigun
 		bShouldFireMissile = !bShouldFireMortar && bCanFireMissile
 							&& (((bCanFireMinigun || !bHadMinigunAttack) && fRand() < 0.2f) || fRand() < 0.6f)
-							&& SetBestTarget(LastMissileEnemies, MinMissileRangeSQ,, 0.5f, true, true);
+							&& SetBestTarget( LastMissileEnemies, MinMissileRangeSQ, MaxMissileRangeSQ*MyPatPawn.GetAttackRangeScale(), 0.5f, true, true );
 
 		// No other attacks, find a minigun target!
 		if( bCanFireMinigun && !bShouldFireMissile && !bShouldFireMortar )
 		{
-			bCanFireMinigun = SetBestTarget(LastMinigunEnemies, MinMinigunRangeSQ,, 0.25f, false, true);
+			bCanFireMinigun = SetBestTarget( LastMinigunEnemies, MinMinigunRangeSQ, MaxMinigunRangeSQ*MyPatPawn.GetAttackRangeScale(), 0.25f, false, true );
 		}
 
 		if( bShouldFireMortar )
@@ -850,6 +862,12 @@ function bool ShouldSprint()
 {
 	if( Enemy != none && MyPatPawn != none && !MyPatPawn.bIsHeadless && !MyPatPawn.bEmpPanicked )
 	{
+		// Don't allow sprinting in minigun attack
+		if( MyPatPawn.IsDoingSpecialMove(SM_HoseWeaponAttack) )
+		{
+			return false;
+		}
+
 		// Always sprint if cloaked
 		if( MyPatPawn.bIsCloaking )
 		{
@@ -894,6 +912,12 @@ function bool ShouldSprint()
 	}
 	//`log(self@GetFuncName()$" Generic should sprint = false!");
 	return false;
+}
+
+/** Disallow sprinting if we're in a minigun */
+function bool CanSetSprinting( bool bNewSprintStatus )
+{
+	return super.CanSetSprinting( bNewSprintStatus ) && ( !bNewSprintStatus || !MyPatPawn.IsDoingSpecialMove(SM_HoseWeaponAttack) );
 }
 
 /*********************************************************************************************
@@ -1872,10 +1896,12 @@ defaultproperties
    VisibleAggroDmgThreshold=260.000000
    HiddenAggroDmgThreshold=200.000000
    MinMinigunRangeSQ=160000.000000
+   MaxMinigunRangeSQ=16000000.000000
    MaxFanFireRangeSQ=640000.000000
    MinChargeRangeSQ=810000.000000
    MinTentacleRangeSQ=90000.000000
    MinMissileRangeSQ=360000.000000
+   MaxMissileRangeSQ=16000000.000000
    LastRecentSeenEnemyListUpdateTime=0.100000
    RetargetWaitTime=5.000000
    MaxRageRangeSQ=1440000.000000
@@ -1886,9 +1912,16 @@ defaultproperties
    MaxFleeDuration=25.000000
    MaxFleeDistance=20000.000000
    bRepathOnInvalidStrike=True
+   bUseRunOverWarning=True
+   MinRunOverSpeed=360.000000
+   MinRunOverWarningAim=0.850000
    bCanDoHeavyBump=True
    DefaultCommandClass=Class'kfgamecontent.AICommand_Base_Patriarch'
    MeleeCommandClass=Class'kfgamecontent.AICommand_Base_Patriarch'
+   DangerEvadeSettings(0)=(ClassName="KFWeap_Rifle_Winchester1894",Cooldowns=(0.000000,0.000000,0.300000,0.200000),BlockChances=(0.000000,0.000000,1.000000,1.000000))
+   DangerEvadeSettings(1)=(ClassName="KFWeap_Bow_Crossbow",Cooldowns=(0.000000,0.000000,0.300000,0.200000),BlockChances=(0.000000,0.000000,1.000000,1.000000))
+   DangerEvadeSettings(2)=(ClassName="KFWeap_Rifle_M14EBR",Cooldowns=(0.000000,0.000000,0.300000,0.200000),BlockChances=(0.000000,0.000000,1.000000,1.000000))
+   DangerEvadeSettings(3)=(ClassName="KFWeap_Rifle_RailGun",Cooldowns=(0.000000,0.000000,0.300000,0.200000),BlockChances=(0.000000,0.000000,1.000000,1.000000))
    Name="Default__KFAIController_ZedPatriarch"
    ObjectArchetype=KFAIController_ZedBoss'KFGame.Default__KFAIController_ZedBoss'
 }

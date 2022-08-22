@@ -358,6 +358,7 @@ class KFPawnVoiceGroup_DJSkully extends KFPawnVoiceGroup;
 
 
 
+
 	
 
 
@@ -719,6 +720,7 @@ defaultproperties
    DialogEvents(226)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DJSkully.Play_DJSkully_OBJE_PackageDead_Base')
    DialogEvents(227)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DJSkully.Play_DJSkully_OBJE_PlayerDiedPackage_Base')
    DialogEvents(228)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DJSkully.Play_DJSkully_OBJE_PackageSecured_Base')
+   DialogEvents(229)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DJSkully.Play_DJSkully_KZED_SprintTowardsZ_Base')
    Name="Default__KFPawnVoiceGroup_DJSkully"
    ObjectArchetype=KFPawnVoiceGroup'KFGame.Default__KFPawnVoiceGroup'
 }

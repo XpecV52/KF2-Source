@@ -49,7 +49,6 @@ function SetThowButton()
     KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
     if(KFPI != none)
     {
-        KFPI.SetGamepadLayout(KFPI.CurrentLayoutIndex);
         KFPI.GetKeyBindFromCommand(BoundKey, ThrowGBA, false);
         SetString("throwButton", string(BoundKey.Name));
     }
@@ -102,6 +101,14 @@ simulated function SetWeaponGroupList(out array<KFWeapon> WeaponList, byte Group
         TempObj.SetString("texturePath", "img://" $ PathName(WeaponList[I].WeaponSelectTexture));
         TempObj.SetInt("ammoCount", WeaponList[I].AmmoCount[0]);
         TempObj.SetInt("spareAmmoCount", WeaponList[I].SpareAmmoCount[0]);
+        TempObj.SetBool("bUsesSecondaryAmmo", WeaponList[I].UsesSecondaryAmmo() && WeaponList[I].bCanRefillSecondaryAmmo);
+        TempObj.SetBool("bEnabled", WeaponList[I].HasAnyAmmo());
+        if(WeaponList[I].UsesSecondaryAmmo() && WeaponList[I].bCanRefillSecondaryAmmo)
+        {
+            TempObj.SetBool("bCanRefillSecondaryAmmo", WeaponList[I].SpareAmmoCapacity[1] > 0);
+            TempObj.SetInt("secondaryAmmoCount", WeaponList[I].AmmoCount[1]);
+            TempObj.SetInt("secondarySpareAmmoCount", WeaponList[I].SpareAmmoCount[1]);
+        }
         TempObj.SetBool("throwable", WeaponList[I].CanThrow());
         bUsesAmmo = WeaponList[I].UsesAmmo();
         TempObj.SetBool("bUsesAmmo", bUsesAmmo);
@@ -228,5 +235,5 @@ defaultproperties
     MeleeString="MELEE"
     SecondaryString="SECONDARY"
     ThrowString="THROW WEAPON"
-    ThrowGBA="GBA_Grenade_Gamepad"
+    ThrowGBA="GBA_AltFire_Gamepad"
 }

@@ -128,7 +128,7 @@ Begin:
 	}
 
 	// Don't do any sort of AI processing in incap states
-	if( IsInStumble() || MyKFPawn.IsInCapacitated() )
+	if( MyKFPawn.IsIncapacitated() )
 	{
 		DisableMeleeRangeEventProbing();
 		Sleep( 0.1f );

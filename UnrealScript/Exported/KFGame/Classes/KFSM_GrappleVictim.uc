@@ -30,7 +30,12 @@ function SpecialMoveStarted(bool bForced, Name PrevMove )
 		if( OwnerController.IsLocalController() )
 		{
 			OwnerController.PostAkEvent(GrabbedSoundModeStartEvent);
-		}
+
+			if ( bDisableLook || !OwnerController.bSkipNonCriticalForceLookAt )
+			{
+				OwnerController.SetForceLookAtPawn(Leader);
+			}
+		}	
 	}
 
 	if( PawnOwner.Role == ROLE_Authority )
@@ -63,8 +68,7 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 	if( OwnerController != none )
 	{
         // Clear the force look at from being grabbed
-        OwnerController.ForceLookAtPawn = none;
-        OwnerController.bLockToForceLookAtPawn = false;
+        OwnerController.SetForceLookAtPawn(None);
 
 		SetGrabEffect(OwnerController, false);
 		if( OwnerController.IsLocalController() )

@@ -10,12 +10,13 @@ var public transient enum ESortOrder
 {
 	SORTORDER_None,
 	SORTORDER_ACENDING,
-	SORTODER_DECENDING,
+	SORTORDER_DECENDING,
 
 } SortOrder;
 
 var public transient enum ESortType
 {
+	SORTTYPE_None,
 	SORTTYPE_Name,//alphabetic
 	SORTTYPE_Mode,//alphabetic
 	SORTTYPE_Difficulty,//numeric 
@@ -25,14 +26,29 @@ var public transient enum ESortType
 	SORTTYPE_Ping,//numeric
 } SortType;
 
+var transient int LastResultsSize;
+
 //Make fake results so we can test the server browser
 native final function MakeFakeServerResults();
-native final function SortResults(ESortType NewSortType, ESortOrder NewSortOrder);
+native final function SortResults(optional ESortType NewSortType = SORTTYPE_None, optional ESortOrder NewSortOrder = SORTORDER_None);
+
+function bool SortIfChanged()
+{
+	if (Results.length != LastResultsSize)
+	{
+		LastResultsSize = Results.length;
+		SortResults();
+		return true;
+	}
+	return false;
+}
 
 defaultproperties
 {
 	GameSettingsClass=class'KFGame.KFOnlineGameSettings'
-	
+	SortOrder=SORTORDER_ACENDING
+	SortType=SORTTYPE_Ping
 	bIsLanQuery=false
 	MaxSearchResults=25
+	LastResultsSize=0
 }

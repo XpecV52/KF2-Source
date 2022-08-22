@@ -15,7 +15,7 @@ defaultproperties
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
-   MaxSpareAmmo(0)=390
+   SpareAmmoCapacity(0)=390
    InitialSpareMags(0)=4
    AttachmentArchetype=KFWeaponAttachment'WEP_L85A2_ARCH.Wep_L85A2_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'

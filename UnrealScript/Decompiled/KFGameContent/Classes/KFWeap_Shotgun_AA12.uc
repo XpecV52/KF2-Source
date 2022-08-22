@@ -26,7 +26,8 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
-    MaxSpareAmmo=80
+    SpareAmmoCapacity=120
+    InitialSpareMags=1
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

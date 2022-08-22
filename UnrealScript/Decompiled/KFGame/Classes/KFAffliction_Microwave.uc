@@ -37,7 +37,7 @@ function SetMicrowavePanicked(bool bEnabled)
         if(MonsterOwner.bMicrowavePanicked != bEnabled)
         {
             MonsterOwner.bMicrowavePanicked = bEnabled;
-            MonsterOwner.OnStackingAfflictionChanged(9);
+            MonsterOwner.OnStackingAfflictionChanged(10);
         }
     }
 }

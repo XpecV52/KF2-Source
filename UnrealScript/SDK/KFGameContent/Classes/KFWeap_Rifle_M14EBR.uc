@@ -52,7 +52,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=20
-	MaxSpareAmmo[0]=160
+	SpareAmmoCapacity[0]=160
 	InitialSpareMags[0]=2
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -60,6 +60,11 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=15.0,Y=11.5,Z=-4)
 	IronSightPosition=(X=0.0,Y=0,Z=0)
+
+	// AI warning system
+	bWarnAIWhenAiming=true
+	AimWarningDelay=(X=0.4f, Y=0.8f)
+	AimWarningCooldown=0.0f
 
 	// Recoil
 	maxRecoilPitch=225
@@ -84,7 +89,6 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_M14EBR'
 	InstantHitDamage(DEFAULT_FIREMODE)=75.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M14EBR'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_M14EBR'
 	FireInterval(DEFAULT_FIREMODE)=0.2
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	Spread(DEFAULT_FIREMODE)=0.006
@@ -93,6 +97,11 @@ defaultproperties
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_M14EBR'
+	InstantHitDamage(BASH_FIREMODE)=27
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_M14EBR_ARCH.Wep_M14EBR_MuzzleFlash'
@@ -106,6 +115,7 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=false
 	bHasLaserSight=true
+
 }
 
 

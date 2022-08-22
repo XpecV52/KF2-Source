@@ -44,11 +44,18 @@ var CylinderRotationInfo CylinderRotInfo_L;
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
+    local KFGameEngine KFGEngine;
+
     super.PostInitAnimTree(SkelComp);
     EmptyMagBlendNode_L = AnimNodeBlendPerBone(SkelComp.FindAnimNode('EmptyMagBlend_L'));
     if((EmptyMagBlendNode_L != none) && BonesToLockOnEmpty_L.Length > 0)
     {
         BuildEmptyMagNodeWeightList(EmptyMagBlendNode_L, BonesToLockOnEmpty_L);
+    }
+    KFGEngine = KFGameEngine(Class'KFGameEngine'.static.GetEngine());
+    if(KFGEngine != none)
+    {
+        bUseAltFireMode = KFGEngine.bUseAltAimOnDual;
     }
     if(!bRevolver)
     {
@@ -344,9 +351,9 @@ function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
     P.InventoryClass = SingleClass;
 }
 
-simulated function PerformReload()
+simulated function PerformReload(optional byte FireModeNum)
 {
-    super(KFWeapon).PerformReload();
+    super(KFWeapon).PerformReload(FireModeNum);
     if(!bRevolver)
     {
         return;
@@ -578,6 +585,15 @@ simulated state Active
             StartIdleFidgetTimer();
             ToggleAdditiveBobAnim(!bUsingSights);
         }
+    }
+
+    simulated function bool CanPlayIdleFidget(optional bool bOnReload)
+    {
+        if(AmmoCount[0] < 2)
+        {
+            return false;
+        }
+        return super.CanPlayIdleFidget(bOnReload);
     }
     stop;    
 }

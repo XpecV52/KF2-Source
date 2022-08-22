@@ -49,7 +49,7 @@ simulated event ReplicatedEvent(name VarName)
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super.PossessedBy(C, bVehicleTransition);
-    ServerDoSpecialMove(30);
+    ServerDoSpecialMove(32);
     MyKFPC = KFPlayerController(C);
     SetTimer(2 + FRand(), false, 'Timer_EnableCloak');
 }
@@ -164,7 +164,7 @@ private final function UpdateHealAvailable()
         if((MyKFPC != none) && !bIsQuickHealMessageShowing)
         {
             bIsQuickHealMessageShowing = true;
-            MyKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 8);
+            MyKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 9);
             SpecialMoveCooldowns[5].LastUsedTime = 0;
         }        
     }
@@ -304,12 +304,12 @@ private final function CheckHealth()
         {
             if((SpecialMoveCooldowns[5].Charges > 0) && HealthPct <= AutoHealThreshold)
             {
-                if(IsDoingSpecialMove() && !IsDoingSpecialMove(25))
+                if(IsDoingSpecialMove() && !IsDoingSpecialMove(27))
                 {
                     EndSpecialMove();
                 }
                 bAutoHealed = true;
-                DoSpecialMove(25, true);
+                DoSpecialMove(27, true);
             }
         }
         if((((!bWarnedLowHealthThisPhase && IsLocallyControlled()) && MyKFPC.MyGFxHUD != none) && HealthPct <= LowHealthThreshold) && SpecialMoveCooldowns[5].Charges > 0)
@@ -347,6 +347,11 @@ function NotifyHealed()
 simulated function bool ShouldDrawBossIcon()
 {
     return !bIsCloaking;
+}
+
+simulated function bool UseAdjustedControllerSensitivity()
+{
+    return IsDoingSpecialMove(24) || IsDoingSpecialMove(26);
 }
 
 singular function SummonChildren()
@@ -391,16 +396,65 @@ defaultproperties
     // Reference: StaticMeshComponent'Default__KFPawn_ZedPatriarch_Versus.KFSyringeStaticMeshComponent3'
     HealingSyringeMeshes(2)=KFSyringeStaticMeshComponent3
     BoilLightComponent=PointLightComponent'Default__KFPawn_ZedPatriarch_Versus.BoilLightComponent0'
-    BattlePhases(0)=(bAllowedToSprint=true,SprintCooldownTime=3,bCanTentacleGrab=false,TentacleGrabCooldownTime=0,bCanUseMissiles=true,MissileAttackCooldownTime=10,bCanUseMortar=false,MortarAttackCooldownTime=0,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=14,MaxRageAttacks=0,TentacleDamage=10,MinigunAttackCooldownTime=2.25,bCanSummonMinions=true,HealAmounts=(1))
-    BattlePhases(1)=(bAllowedToSprint=true,SprintCooldownTime=2.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=10,bCanUseMissiles=true,MissileAttackCooldownTime=8,bCanUseMortar=true,MortarAttackCooldownTime=10,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=10,MaxRageAttacks=4,TentacleDamage=10,MinigunAttackCooldownTime=2,bCanSummonMinions=true,HealAmounts=(1))
-    BattlePhases(2)=(bAllowedToSprint=true,SprintCooldownTime=2,bCanTentacleGrab=true,TentacleGrabCooldownTime=9,bCanUseMissiles=true,MissileAttackCooldownTime=7,bCanUseMortar=true,MortarAttackCooldownTime=9,bCanDoMortarBarrage=true,bCanChargeAttack=true,ChargeAttackCooldownTime=9,MaxRageAttacks=5,TentacleDamage=10,MinigunAttackCooldownTime=1.75,bCanSummonMinions=true,HealAmounts=(0.9))
-    BattlePhases(3)=(bAllowedToSprint=true,SprintCooldownTime=1.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=7,bCanUseMissiles=true,MissileAttackCooldownTime=5,bCanUseMortar=true,MortarAttackCooldownTime=7,bCanDoMortarBarrage=true,bCanChargeAttack=true,ChargeAttackCooldownTime=7,MaxRageAttacks=6,TentacleDamage=10,MinigunAttackCooldownTime=1.25,bCanSummonMinions=true,HealAmounts=none)
+    BattlePhases(0)=bAllowedToSprint=true,SprintCooldownTime=3,bCanTentacleGrab=false,TentacleGrabCooldownTime=0,bCanUseMissiles=true,MissileAttackCooldownTime=10,bCanUseMortar=false,MortarAttackCooldownTime=0,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=14,MaxRageAttacks=0,TentacleDamage=10,MinigunAttackCooldownTime=2.25,bCanSummonMinions=true,bCanMoveWhenMinigunning=(
+/* Exception thrown while deserializing bCanMoveWhenMinigunning
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing bCanMoveWhenMinigunning
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing bCanMoveWhenMinigunning
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing bCanMoveWhenMinigunning
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
+/* Exception thrown while deserializing BattlePhases
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_235' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    BattlePhases(1)=
+/* Exception thrown while deserializing BattlePhases
+System.ArgumentException: Requested value '1P_Sawblade_Animtree' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    BattlePhases(2)=
+/* Exception thrown while deserializing BattlePhases
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    BattlePhases(3)=
+/* Exception thrown while deserializing BattlePhases
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_854' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     MissileProjectileClass=Class'KFProj_Missile_Patriarch_Versus'
     MaxMortarRangeSQ=6250000
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-200,Y=90,Z=45),OffsetMid=(X=-185,Y=110,Z=45),OffsetLow=(X=-220,Y=130,Z=55))
-    MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedPatriarch_Versus.MeleeHelper'
+    begin object name=MeleeHelper class=KFMeleeHelperAI
+        BaseDamage=40
+    object end
+    // Reference: KFMeleeHelperAI'Default__KFPawn_ZedPatriarch_Versus.MeleeHelper'
+    MeleeAttackHelper=MeleeHelper
     XPValues=2500
+    MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedPatriarch_Versus.FootstepCameraShake0'
     LocalizationKey=KFPawn_ZedPatriarch

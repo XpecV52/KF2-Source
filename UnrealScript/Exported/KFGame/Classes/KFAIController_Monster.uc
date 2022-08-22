@@ -291,7 +291,13 @@ var float		MinRunOverSpeed;
 var	float		LastRunOverWarningTime;
 /** Minimum angle to victim required to transmit RunOverWarning (if bUseRunOverWarning=true) */
 var	float		MinRunOverWarningAim;
+/** When TRUE, this Zed will attempt to evade when warned of being run over */
+var bool 		bEvadeOnRunOverWarning;
+/** Scales the delay from the initial warning notification. Increase for zeds that are fast evaders, decrease for slow evaders */
+var float 		RunOverEvadeDelayScale;
 
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -358,25 +364,17 @@ function SetPawnDefaults()
 	local float SprintChance;
 	local float SprintDamagedChance;
 	local float HiddenSpeedMod;
-
-	local KFCharacterInfo_Monster MonsterInfo;
-
 	local float GameDifficulty;
-	local KFDifficultyInfo DifficultyInfo;
+	local KFGameDifficultyInfo DifficultyInfo;
 	local KFGameInfo KFGI;
 
 	KFGI = KFGameInfo( WorldInfo.Game );
 
-    MonsterInfo = MyKFPawn.GetCharacterMonsterInfo();
     GameDifficulty = KFGI.GameDifficulty;
     DifficultyInfo = KFGI.DifficultyInfo;
 
-    if( MonsterInfo != none )
-    {
-		SprintChance = DifficultyInfo.GetCharSprintChanceByDifficulty( MonsterInfo, GameDifficulty );
-		SprintDamagedChance = DifficultyInfo.GetCharSprintWhenDamagedChanceByDifficulty( MonsterInfo, GameDifficulty );
-	}
-
+	SprintChance = DifficultyInfo.GetCharSprintChanceByDifficulty( MyKFPawn, GameDifficulty );
+	SprintDamagedChance = DifficultyInfo.GetCharSprintWhenDamagedChanceByDifficulty( MyKFPawn, GameDifficulty );
 	HiddenSpeedMod = DifficultyInfo.GetAIHiddenSpeedModifier( KFGI.GetLivingPlayerCount() );
 	MyKFPawn.HiddenGroundSpeed = MyKFPawn.default.HiddenGroundSpeed * HiddenSpeedMod;
 
@@ -536,7 +534,7 @@ event bool CanGrabAttack()
 	}
 
 	// If I'm crippled, falling, busy doing an attack, or incapacitated, refuse.
-	if( MyKFPawn.bIsHeadless || (MyKFPawn.Physics == PHYS_Falling) || IsDoingAttackSpecialMove() || IsInStumble() )
+	if( MyKFPawn.bIsHeadless || (MyKFPawn.Physics == PHYS_Falling) || IsDoingAttackSpecialMove() || !MyKFPawn.IsCombatCapable() )
 	{
 		return false;
 	}
@@ -746,10 +744,23 @@ function bool HandleZedBlockedPath()
 	return false;
 }
 
+/** Notification I'm about to be run into by a Zed which has bUseRunOverWarning set to true */
+event RunOverWarning( KFPawn IncomingKFP, float IncomingSpeedSquared, vector RunOverPoint )
+{
+	local float Delay;
+
+	if( bEvadeOnRunOverWarning && CanEvade(true) )
+	{
+		Delay = ( VSize(IncomingKFP.Location - MyKFPawn.Location) / Sqrt(IncomingSpeedSquared) ) * RunOverEvadeDelayScale;
+		DoEvade( GetBestEvadeDir(RunOverPoint,, false), IncomingKFP,, Delay, true );
+	}
+}
+
 defaultproperties
 {
    MinDistanceToPerformGrabAttack=188.000000
    MinTimeBetweenGrabAttacks=5.000000
+   RunOverEvadeDelayScale=0.250000
    DefaultCommandClass=Class'KFGame.AICommand_Base_Zed'
    bIsPlayer=False
    SightCounterInterval=0.350000

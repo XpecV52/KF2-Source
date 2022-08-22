@@ -44,7 +44,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=20
-	MaxSpareAmmo[0]=240
+	SpareAmmoCapacity[0]=240
 	InitialSpareMags[0]=6
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -75,11 +75,10 @@ defaultproperties
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponBurstFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
-	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
+	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pistol9mm'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AR15'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_AR15'
 	FireInterval(DEFAULT_FIREMODE)=+0.12
-	InstantHitDamage(DEFAULT_FIREMODE)=20.0
+	InstantHitDamage(DEFAULT_FIREMODE)=30.0 //20
 	Spread(DEFAULT_FIREMODE)=0.01
 	FireOffset=(X=30,Y=4.5,Z=-4)
 	BurstAmount=3
@@ -88,11 +87,15 @@ defaultproperties
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
-	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
+	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Pistol9mm'
 	FireInterval(ALTFIRE_FIREMODE)=+0.12 // 500 RPM
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_AR15'
-	InstantHitDamage(ALTFIRE_FIREMODE)=20.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=30.0 //20
 	Spread(ALTFIRE_FIREMODE)=0.01
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_AR15'
+	InstantHitDamage(BASH_FIREMODE)=24
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_AR15_9mm_ARCH.Wep_AR15_9MM_MuzzleFlash'

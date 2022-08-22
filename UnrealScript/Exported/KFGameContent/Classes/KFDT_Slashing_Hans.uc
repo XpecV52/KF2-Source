@@ -13,6 +13,7 @@ class KFDT_Slashing_Hans extends KFDT_Slashing
 
 defaultproperties
 {
+   bAllowAIDoorDestruction=True
    bExtraMomentumZ=True
    KDamageImpulse=400.000000
    KDeathVel=750.000000

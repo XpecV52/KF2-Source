@@ -13,6 +13,8 @@ class KFProj_NailBombGrenade extends KFProj_Grenade
 
 defaultproperties
 {
+	bWarnAIWhenFired=true
+
     LandedTranslationOffset=(X=2)
 
 	ProjFlightTemplate=ParticleSystem'WEP_Nailbomb_EMIT.FX_Nailbomb_Mesh'

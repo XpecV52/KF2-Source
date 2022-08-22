@@ -81,12 +81,14 @@ var transient string CachedModeName;
 var transient int CachedDifficulty;
 var transient int CachedLength;
 var transient array<string> MapList;
+var int NumDifficultyStrings;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
     ServerMenu = KFGFxMenu_ServerBrowser(NewParentMenu);
     SavedGameModeIndexPending = SavedGameModeIndex;
+    NumDifficultyStrings = Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length;
     AdjustSavedFiltersToMode();
     ServerMenu.Manager.StartMenu.GetMapList(MapList);
     InitFiltersArray();
@@ -120,39 +122,14 @@ function AdjustSavedFiltersToMode()
     SavedLengthIndexPending = SavedLengthIndex;
 }
 
-exec function string GetSelectedMap()
-{
-    if((SavedMapIndex < 0) || SavedMapIndex >= MapList.Length)
-    {
-        return "";
-    }
-    return MapList[SavedMapIndex];
-}
+// Export UKFGFxServerBrowser_Filters::execGetSelectedMap(FFrame&, void* const)
+native exec function string GetSelectedMap();
 
-exec function int GetSelectedDifficulty()
-{
-    if((SavedDifficultyIndex < 0) || SavedDifficultyIndex >= Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length)
-    {
-        return -1;
-    }
-    return SavedDifficultyIndex;
-}
+// Export UKFGFxServerBrowser_Filters::execGetSelectedDifficulty(FFrame&, void* const)
+native exec function int GetSelectedDifficulty();
 
-exec function int GetSelectedGameLength()
-{
-    switch(SavedLengthIndex)
-    {
-        case 0:
-            return 4;
-        case 1:
-            return 7;
-        case 2:
-            return 10;
-        default:
-            return -1;
-            break;
-    }
-}
+// Export UKFGFxServerBrowser_Filters::execGetSelectedGameLength(FFrame&, void* const)
+native exec function int GetSelectedGameLength();
 
 function InitFiltersArray()
 {
@@ -225,7 +202,10 @@ function SetModeMenus(string DifficultyListString, string LengthListString, int 
     if(I < 5)
     {
         DifficultyDataProvider.SetElementObject(I, none);
-        LengthDataProvider.SetElementObject(I, none);
+        if(I < 4)
+        {
+            LengthDataProvider.SetElementObject(I, none);
+        }
         ++ I;
         goto J0x91;
     }

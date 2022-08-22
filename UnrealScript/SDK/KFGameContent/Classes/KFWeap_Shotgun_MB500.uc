@@ -45,7 +45,6 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
 	InstantHitDamage(DEFAULT_FIREMODE)=20.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_MB500'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_MB500'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	FireInterval(DEFAULT_FIREMODE)=0.77 // 78 RPM
 	FireOffset=(X=30,Y=3,Z=-3)
@@ -56,6 +55,10 @@ defaultproperties
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_MB500'
+	InstantHitDamage(BASH_FIREMODE)=25
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_MB500_ARCH.Wep_MB500_MuzzleFlash'
@@ -73,7 +76,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=8
-	MaxSpareAmmo[0]=56
+	SpareAmmoCapacity[0]=56
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=false

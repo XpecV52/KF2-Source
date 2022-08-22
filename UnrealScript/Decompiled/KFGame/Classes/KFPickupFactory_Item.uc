@@ -152,7 +152,7 @@ function GiveArmor(Pawn P)
         {
             WorldInfo.LogGameBalance((((string('Pickup') $ ",") $ P.PlayerReplicationInfo.PlayerName) $ ",") $ "Armor");
         }
-        if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+        if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
         {
             WorldInfo.TWLogEvent("pickup", P.PlayerReplicationInfo, "armor");
         }
@@ -202,7 +202,7 @@ function GiveWeapon(Pawn P)
         {
             WorldInfo.LogGameBalance((((string('Pickup') $ ",") $ P.PlayerReplicationInfo.PlayerName) $ ",") $ string(InventoryClass));
         }
-        if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+        if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
         {
             WorldInfo.TWLogEvent("pickup", P.PlayerReplicationInfo, string(InventoryClass));
         }

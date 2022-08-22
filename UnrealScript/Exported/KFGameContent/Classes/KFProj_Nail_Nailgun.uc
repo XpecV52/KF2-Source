@@ -49,9 +49,9 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
             LifeSpan = 5.0;
 
         	// Stop ambient sounds when this projectile ShutsDown
-        	if( bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none && AmbientComponent != none )
+        	if( bStopAmbientSoundOnExplode )
         	{
-                AmbientComponent.StopEvents();
+                StopAmbientSound();
         	}
 
 			//@todo: check for pinned victim
@@ -108,15 +108,16 @@ simulated function Landed( Vector HitNormal, actor FloorActor )
     LifeSpan = 5.0;
 
 	// Stop ambient sounds when this projectile ShutsDown
-	if( bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none && AmbientComponent != none )
+	if( bStopAmbientSoundOnExplode )
 	{
-        AmbientComponent.StopEvents();
+        StopAmbientSound();
 	}
 }
 
 defaultproperties
 {
    RicochetEffects=KFImpactEffectInfo'WEP_Nail_Shotgun_ARCH.NailBulletImpacts'
+   bWarnAIWhenFired=True
    ProjFlightTemplate=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer'
    ProjFlightTemplateZedTime=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer_ZEDTime'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'KFGame.Default__KFProj_PinningBullet:AmbientAkSoundComponent'

@@ -8,11 +8,6 @@
 class KFDT_Dart_Toxic extends KFDT_Toxic
     abstract;
 
-static function bool IsToxicDartWithACMedicPerk()
-{
-    return true;
-}
-
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Healer'

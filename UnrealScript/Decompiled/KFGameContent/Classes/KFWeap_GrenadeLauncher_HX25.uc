@@ -11,6 +11,7 @@ class KFWeap_GrenadeLauncher_HX25 extends KFWeap_GrenadeLauncher_Base
 
 var(Weapon) array<byte> NumPellets;
 var array<Vector2D> PelletSpread;
+var float LastSubmunitionFireTime;
 
 simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
 {
@@ -96,6 +97,11 @@ static simulated function float CalculateTraderWeaponStatDamage()
     return (BaseDamage * float(default.NumPellets[0])) + DoTDamage;
 }
 
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTraderFilter()
+{
+    return 0;
+}
+
 defaultproperties
 {
     NumPellets(0)=7
@@ -169,7 +175,7 @@ Parameter name: index
     FastZoomOutTime=0.2
     GroupPriority=25
     WeaponSelectTexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
-    MaxSpareAmmo=29
+    SpareAmmoCapacity=29
     InitialSpareMags=17
     AmmoPickupScale=3
     FireSightedAnims=/* Array type was not detected. */

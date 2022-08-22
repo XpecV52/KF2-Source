@@ -50,14 +50,21 @@ function UpdateSpectateeInfo(optional bool bForceUpdate)
 {
     local byte CurrentPerkLevel;
 
-    if((((SpectatedKFPRI == none) || SpectatedKFPRI == Outer.GetPC().PlayerReplicationInfo) || Outer.GetPC().PlayerCamera.CameraStyle == 'Boss') || SpectatedKFPRI.CurrentPerkClass == none)
+    if((((SpectatedKFPRI == none) || Outer.GetPC().PlayerCamera.CameraStyle == 'Boss') || SpectatedKFPRI.CurrentPerkClass == none) || Outer.GetPC().WorldInfo.NetMode == NM_Standalone)
     {
         SetVisible(false);
         return;        
     }
     else
     {
-        SetVisible(true);
+        if((((SpectatedKFPRI == Outer.GetPC().PlayerReplicationInfo) && Outer.GetPC().Pawn != none) && Outer.GetPC().Pawn.IsAliveAndWell()) || SpectatedKFPRI == none)
+        {
+            SetVisible(false);            
+        }
+        else
+        {
+            SetVisible(true);
+        }
     }
     CurrentPerkLevel = SpectatedKFPRI.GetActivePerkLevel();
     if(((LastPerkClass != SpectatedKFPRI.CurrentPerkClass) || LastPerkLevel != CurrentPerkLevel) || bForceUpdate)

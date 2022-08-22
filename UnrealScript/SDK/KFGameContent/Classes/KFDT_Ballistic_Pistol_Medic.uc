@@ -12,10 +12,10 @@ class KFDT_Ballistic_Pistol_Medic extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
-/** Allows the damage type to customize exactly which hit zones it can dismember */
+/** Whether this damage type can apply damage over time */
 static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy ) 
 {
-	return class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicBleed(InDamage, KFDT, InstigatedBy);
+	return class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicToxic( InDamage, KFDT, InstigatedBy );
 }
 
 defaultproperties

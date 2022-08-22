@@ -17,94 +17,27 @@ class KFAIController_ZedClot extends KFAIController_Monster
 // (cpptext)
 
 /*********************************************************************************************
-* Notifications & Events
-********************************************************************************************* */
-
-/** Notification I'm about to be run into by a Zed which has bUseRunOverWarning set to true */
-event RunOverWarning( KFPawn IncomingKFP, float IncomingSpeed, vector IncomingDir )
-{
-	if( CanEvade() )
-	{
-		DoEvade( GetBestEvadeDir( IncomingKFP.Location, IncomingKFP, true ),,, true );
-	}
-}
-
-/*********************************************************************************************
 * Movement Methods
 ********************************************************************************************* */
-
-/*function UpdateSprintFrustration( optional byte bForceFrustration=255 )
-{
-	local name AttackTag;
-
-	if( MyKFPawn != none && MyKFPawn.IsAliveAndWell() && Enemy != none && Enemy.IsAliveAndWell() )
-	{
-		// Sprint if we've reached the frustration threshold (and not in melee range)
-		if( bForceFrustration == 1 || (IsFrustrated() && bForceFrustration != 0) )
-		{
-			if( Enemy.Velocity dot (Pawn.Location - Enemy.Location) < 0.f )
-			{
-				if( !MyKFPawn.InAnyAttackTagRange(Enemy.Location, AttackTag) )
-				{
-					super.UpdateSprintFrustration(1);
-				}
-			}
-			else if( !MyKFPawn.InAnyAttackTagRange(Enemy.Location, AttackTag) )
-			{
-				super.UpdateSprintFrustration(1);
-			}
-			else
-			{
-				MyKFPawn.bCanSprint = false;
-				MyKFPawn.bCanSprintWhenDamaged = MyKFPawn.default.bCanSprintWhenDamaged;
-			}
-		}
-		else
-		{
-			super.UpdateSprintFrustration(0);
-		}		
-	}
-}
-
-function bool ShouldSprint()
-{
-	local name AttackTag;
-
-	if( MyKFPawn != none && MyKFPawn.IsAliveAndWell() && Enemy != none && Enemy.IsAliveAndWell() )
-	{
-		// Sprint if we've reached the frustration threshold (and not in melee range)
-		if( IsFrustrated() )
-		{
-			if( Enemy.Velocity dot ( Pawn.Location - Enemy.Location ) < 0.f )
-			{
-				if( !MyKFPawn.InAnyAttackTagRange(Enemy.Location, AttackTag) )
-				{
-					return true;
-				}
-			}
-			else if( !MyKFPawn.InAnyAttackTagRange(Enemy.Location, AttackTag) )
-			{
-				return true;
-			}
-		}
-		else if( MyKFPawn.bCanSprint || (MyKFPawn.bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax) )
-		{
-			return true;
-		}
-	}
-
-	return false;
-}*/
 
 /** Timer function called during latent moves that determines whether NPC should sprint or stop sprinting */
 function bool ShouldSprint()
 {
-	if( MyKFPawn != none && MyKFPawn.IsAliveAndWell() && Enemy != none && Enemy.IsAliveAndWell() )
+	if( MyKFPawn == none || MyKFPawn.bIsBlocking || (Enemy == none && DoorEnemy == none) || !MyKFPawn.IsAliveAndWell() || !Enemy.IsAliveAndWell() )
 	{
-		if( bCanSprint || (bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax) )
-		{
-			return true;
-		}
+		return false;
+	}
+
+	// Sprint if we've reached the frustration threshold
+	if ( IsFrustrated() )
+	{
+		return true;
+	}
+
+	// Sprint if we've been damaged and sprinting is allowed
+	if( bCanSprint || (bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax) )
+	{
+		return true;
 	}
 
 	return false;
@@ -144,33 +77,9 @@ event DoGrabAttack( optional Pawn NewEnemy, optional float InPostSpecialMoveSlee
 	}
 }
 
-
-/*
-function DoMeleeAttack( optional Pawn NewEnemy, optional Actor InTarget, optional byte AttackFlags )
-{
-	local float DistSq;
-
-	if( CommandList == None || AICommand(CommandList).bAllowedToAttack )
-	{
-		DistSq = VSizeSq( Enemy.Location - Pawn.Location );
-
-		if( DistSq < 32400.f || DistSq > 10000.f )
-		{
-			if( CanGrabAttack() )
-			{
-			//	DumpCommandStack();
-				DoGrabAttack();
-				return;
-			}
-		}
-	}
-	//super.NewDoMeleeAttack( NewEnemy, inTarget, AttackFlags );
-	super.DoMeleeAttack( NewEnemy, inTarget, AttackFlags );
-}
-*/
-
 defaultproperties
 {
+   bEvadeOnRunOverWarning=True
    bIsProbingMeleeRangeEvents=True
    SprintWithinEnemyRange=(X=600.000000,Y=1200.000000)
    Name="Default__KFAIController_ZedClot"

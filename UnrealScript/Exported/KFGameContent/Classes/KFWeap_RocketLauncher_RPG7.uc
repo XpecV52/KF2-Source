@@ -120,7 +120,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
-   MaxSpareAmmo(0)=15
+   SpareAmmoCapacity(0)=15
    InitialSpareMags(0)=4
    AmmoPickupScale(0)=2.000000
    BonesToLockOnEmpty(0)="RW_Grenade1"
@@ -171,7 +171,7 @@ defaultproperties
    InstantHitDamage(0)=150.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=29.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_RPG7Impact'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

@@ -33,6 +33,7 @@ var config int MaxCachedFileAge;
 var transient OnlineTitleFileInterface TitleFileInterface;
 var transient OnlineTitleFileCacheInterface TitleFileCacheInterface;
 var array< delegate<OnReadTitleFileComplete> > ReadTitleFileCompleteDelegates;
+var array< delegate<OnAllTitleFilesCompleted> > AllTitleFilesCompletedDelegates;
 var delegate<OnReadTitleFileComplete> __OnReadTitleFileComplete__Delegate;
 var delegate<OnAllTitleFilesCompleted> __OnAllTitleFilesCompleted__Delegate;
 
@@ -107,6 +108,7 @@ function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
     local JsonObject Root;
     local int JsonObjectIdx;
     local IniLocFileEntry RequestFileEntry;
+    local int Index;
 
     TitleFileInterface.ClearRequestTitleFileListCompleteDelegate(OnRequestTitleFileListComplete);
     if(bWasSuccessful)
@@ -133,11 +135,39 @@ function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
         else
         {
             LogInternal(((((((("(" $ string(Name)) $ ") IniLocPatcher::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "Download of file list failed. Bad json.") @ "ResultStr=") $ ResultStr);
+            Index = 0;
+            J0x334:
+
+            if(Index < AllTitleFilesCompletedDelegates.Length)
+            {
+                if(AllTitleFilesCompletedDelegates[Index] != none)
+                {
+                    __OnAllTitleFilesCompleted__Delegate = AllTitleFilesCompletedDelegates[Index];
+                    OnAllTitleFilesCompleted();
+                    __OnAllTitleFilesCompleted__Delegate = None;
+                }
+                ++ Index;
+                goto J0x334;
+            }
         }        
     }
     else
     {
-        LogInternal(((((("(" $ string(Name)) $ ") IniLocPatcher::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "Download of file list failed.");
+        LogInternal(((((("(" $ string(Name)) $ ") IniLocPatcher::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "Download of file list failed.", 'DevConfig');
+        Index = 0;
+        J0x437:
+
+        if(Index < AllTitleFilesCompletedDelegates.Length)
+        {
+            if(AllTitleFilesCompletedDelegates[Index] != none)
+            {
+                __OnAllTitleFilesCompleted__Delegate = AllTitleFilesCompletedDelegates[Index];
+                OnAllTitleFilesCompleted();
+                __OnAllTitleFilesCompleted__Delegate = None;
+            }
+            ++ Index;
+            goto J0x437;
+        }
     }
 }
 
@@ -145,47 +175,40 @@ function StartLoadingFiles()
 {
     local int Index;
 
-    if(bRequestEmsFileList)
+    if(bRequestEmsFileList && NotEqual_InterfaceInterface(TitleFileCacheInterface, (none)))
     {
-        if(NotEqual_InterfaceInterface(TitleFileCacheInterface, (none)))
-        {
-            Index = 0;
-            J0x38:
+        LogInternal((((((((("(" $ string(Name)) $ ") IniLocPatcher::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "if (bRequestEmsFileList && TitleFileCacheInterface != None)") @ "Files.Length:'") $ string(Files.Length)) $ "'", 'DevConfig');
+        Index = 0;
+        J0xE8:
 
-            if(Index < Files.Length)
+        if(Index < Files.Length)
+        {
+            if(Files[Index].ReadState == 0)
             {
-                if(Files[Index].ReadState == 0)
+                Files[Index].ReadState = 1;
+                if(!TitleFileCacheInterface.LoadTitleFile(Files[Index].DLName))
                 {
-                    Files[Index].ReadState = 1;
-                    if(!TitleFileCacheInterface.LoadTitleFile(Files[Index].DLName))
-                    {
-                        if((Files[Index].ReadState != 2) && Files[Index].ReadState != 3)
-                        {
-                            Files[Index].ReadState = 1;                            
-                        }
-                        else
-                        {
-                            Files[Index].ReadState = 3;
-                        }
-                    }
+                    Files[Index].ReadState = 3;
                 }
-                ++ Index;
-                goto J0x38;
             }
+            ++ Index;
+            goto J0xE8;
         }        
     }
     else
     {
         if(NotEqual_InterfaceInterface(TitleFileInterface, (none)))
         {
+            LogInternal((((((((("(" $ string(Name)) $ ") IniLocPatcher::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "else if (TitleFileInterface != None)") @ "Files.Length:'") $ string(Files.Length)) $ "'", 'DevConfig');
             Index = 0;
-            J0x1EA:
+            J0x2A1:
 
             if(Index < Files.Length)
             {
                 if(Files[Index].ReadState == 0)
                 {
                     Files[Index].Filename = UpdateLocFileName(Files[Index].Filename);
+                    Files[Index].DLName = UpdateLocFileName(Files[Index].DLName);
                     if(TitleFileInterface.ReadTitleFile(Files[Index].DLName))
                     {
                         Files[Index].ReadState = 1;                        
@@ -196,7 +219,7 @@ function StartLoadingFiles()
                     }
                 }
                 ++ Index;
-                goto J0x1EA;
+                goto J0x2A1;
             }
         }
     }
@@ -270,11 +293,8 @@ function OnFileCacheLoadComplete(bool bWasSuccessful, string Filename)
                     {
                         Files[Index].ReadState = 2;
                         bRequiresDownload = false;
-                        if(InStr(Files[Index].Filename, ".bin", false, true) == -1)
-                        {
-                            ProcessIniLocFile(Files[Index].Filename, Files[Index].bIsUnicode, FileData);
-                            TitleFileCacheInterface.ClearCachedFile(Filename);
-                        }
+                        ProcessIniLocFile(Files[Index].Filename, Files[Index].bIsUnicode, FileData);
+                        TitleFileCacheInterface.ClearCachedFile(Filename);
                     }                    
                 }
                 else
@@ -282,12 +302,12 @@ function OnFileCacheLoadComplete(bool bWasSuccessful, string Filename)
                     LogInternal(((("Hash for file cache entry not valid." @ "DLName=") $ Files[Index].DLName) @ "Filename=") $ Files[Index].Filename);
                 }
             }
-            goto J0x2A9;
+            goto J0x26E;
         }
         ++ Index;
         goto J0x17;
     }
-    J0x2A9:
+    J0x26E:
 
     if(bRequiresDownload)
     {
@@ -309,13 +329,7 @@ function OnFileCacheLoadComplete(bool bWasSuccessful, string Filename)
 
 function OnFileCacheSaveComplete(bool bWasSuccessful, string Filename)
 {
-    local string LogicalName;
-
-    LogicalName = TitleFileCacheInterface.GetTitleFileLogicalName(Filename);
-    if(InStr(LogicalName, ".bin", false, true) == -1)
-    {
-        TitleFileCacheInterface.ClearCachedFile(Filename);
-    }
+    TitleFileCacheInterface.ClearCachedFile(Filename);
 }
 
 function TriggerDownloadCompleteDelegates(bool bSuccess, string Filename)
@@ -359,7 +373,20 @@ function CheckForAllFilesComplete()
     }
     if(bAllFilesComplete)
     {
-        OnAllTitleFilesCompleted();
+        Index = 0;
+        J0xC5:
+
+        if(Index < AllTitleFilesCompletedDelegates.Length)
+        {
+            if(AllTitleFilesCompletedDelegates[Index] != none)
+            {
+                __OnAllTitleFilesCompleted__Delegate = AllTitleFilesCompletedDelegates[Index];
+                OnAllTitleFilesCompleted();
+                __OnAllTitleFilesCompleted__Delegate = None;
+            }
+            ++ Index;
+            goto J0xC5;
+        }
     }
 }
 
@@ -402,6 +429,25 @@ function ClearReadFileDelegate(delegate<OnReadTitleFileComplete> ReadTitleFileCo
     if(RemoveIndex != -1)
     {
         ReadTitleFileCompleteDelegates.Remove(RemoveIndex, 1;
+    }
+}
+
+function AddAllTitleFilesCompletedDelegate(delegate<OnAllTitleFilesCompleted> InDelegate)
+{
+    if(AllTitleFilesCompletedDelegates.Find(InDelegate == -1)
+    {
+        AllTitleFilesCompletedDelegates[AllTitleFilesCompletedDelegates.Length] = InDelegate;
+    }
+}
+
+function ClearAllTitleFilesCompletedDelegate(delegate<OnAllTitleFilesCompleted> InDelegate)
+{
+    local int RemoveIndex;
+
+    RemoveIndex = AllTitleFilesCompletedDelegates.Find(InDelegate;
+    if(RemoveIndex != -1)
+    {
+        AllTitleFilesCompletedDelegates.Remove(RemoveIndex, 1;
     }
 }
 

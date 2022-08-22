@@ -12,8 +12,8 @@ class KFAIWaveInfo extends Object
 var() const bool bRecycleWave;
 /** List of available squads to spawn for each wave */
 var() const array<KFAISpawnSquad> Squads;
-/** The special squad - spawned once per wave */
-var() const KFAISpawnSquad SpecialSquad;
+/** The special squads - spawned once per wave */
+var() const array<KFAISpawnSquad> SpecialSquads;
 /** Total number of AI that spawn for 1 player on Normal */
 var() const int MaxAI<ClampMin=1|ClampMax=200|DisplayName=TotalAIBase>;
 var() const array<KFAISpawnSquad> EventSquads;
@@ -39,9 +39,9 @@ function GetNewSquadList(out array<KFAISpawnSquad> out_SquadList)
 
 function GetSpecialSquad(out array<KFAISpawnSquad> out_SquadList)
 {
-    if(SpecialSquad != none)
+    if(SpecialSquads.Length > 0)
     {
-        out_SquadList.AddItem(SpecialSquad;
+        out_SquadList.AddItem(SpecialSquads[Rand(SpecialSquads.Length)];
     }
 }
 

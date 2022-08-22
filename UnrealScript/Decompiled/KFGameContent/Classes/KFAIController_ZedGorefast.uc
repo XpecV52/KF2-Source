@@ -13,8 +13,7 @@ var bool bExecutedSprint;
 
 function bool ShouldSprint()
 {
-    return MyKFPawn.bIsSprinting;
-    if((((Enemy != none) && MyKFPawn != none) && !MyKFPawn.IsImpaired()) && (bExecutedSprint || MyKFPawn.Health < MyKFPawn.HealthMax) || VSizeSq(Enemy.Location - Pawn.Location) <= (SprintWithinEnemyRange.Y * SprintWithinEnemyRange.Y))
+    if((((Enemy != none) && MyKFPawn != none) && MyKFPawn.IsCombatCapable()) && (bExecutedSprint || MyKFPawn.Health < MyKFPawn.HealthMax) || VSizeSq(Enemy.Location - Pawn.Location) <= (SprintWithinEnemyRange.Y * SprintWithinEnemyRange.Y))
     {
         bExecutedSprint = true;
         return true;        
@@ -25,10 +24,16 @@ function bool ShouldSprint()
     }
 }
 
+function bool CanSetSprinting(bool bNewSprintStatus)
+{
+    return bExecutedSprint;
+}
+
 event EnemyNotVisible()
 {
     if((MyKFPawn.bIsSprinting && !bForceFrustration) && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold)
     {
+        bExecutedSprint = false;
         MyKFPawn.SetSprinting(false);
     }
     bEnemyIsVisible = false;
@@ -41,6 +46,7 @@ function UpdateSprintFrustration(optional byte bForceFrustrationState)
     bForceFrustrationState = 255;
     if(bForceFrustration)
     {
+        bExecutedSprint = true;
         bCanSprint = true;
     }
 }
@@ -54,37 +60,15 @@ function bool IsFrustrated()
     return false;
 }
 
-simulated function Tick(float DeltaTime)
-{
-    super(KFAIController).Tick(DeltaTime);
-    if(bForceFrustration)
-    {
-        return;
-    }
-    if(((MyKFPawn != none) && !bHasDebugCommand) && (LastSprintChangeTime == 0) || (WorldInfo.TimeSeconds - LastSprintChangeTime) > 1)
-    {
-        if(((((!MyKFPawn.bIsHeadless && !MyKFPawn.bEmpPanicked) && Enemy != none) && bEnemyIsVisible) && !MyKFPawn.bIsSprinting) && (MyKFPawn.Health < MyKFPawn.HealthMax) || VSizeSq(Enemy.Location - Pawn.Location) <= (SprintWithinEnemyRange.Y * SprintWithinEnemyRange.Y))
-        {
-            bExecutedSprint = true;
-            MyKFPawn.SetSprinting(true);
-            LastSprintChangeTime = WorldInfo.TimeSeconds;
-        }
-        if((MyKFPawn.bIsSprinting && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold) && (Enemy == none) || !bEnemyIsVisible)
-        {
-            MyKFPawn.SetSprinting(false);
-            LastSprintChangeTime = WorldInfo.TimeSeconds;
-        }
-    }
-}
-
-event HearNoise(float Loudness, Actor NoiseMaker, optional name NoiseType);
-
 defaultproperties
 {
+    bEvadeOnRunOverWarning=true
+    RunOverEvadeDelayScale=0.5
     bIsProbingMeleeRangeEvents=true
     SprintWithinEnemyRange=(X=0,Y=800)
     StrikeRangePercentage=0.75
     MaxMeleeHeightAngle=0.68
     EvadeGrenadeChance=0.75
     LowIntensityAttackCooldown=3
+    DangerEvadeSettings=/* Array type was not detected. */
 }

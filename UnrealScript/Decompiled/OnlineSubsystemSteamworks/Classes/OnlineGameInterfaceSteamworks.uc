@@ -130,12 +130,6 @@ var delegate<OnGameInviteAccepted> __OnGameInviteAccepted__Delegate;
 var delegate<OnRegisterPlayerComplete> __OnRegisterPlayerComplete__Delegate;
 var delegate<OnUnregisterPlayerComplete> __OnUnregisterPlayerComplete__Delegate;
 
-// Export UOnlineGameInterfaceSteamworks::execGetGametagString(FFrame&, void* const)
-native function string GetGametagString(name PropertyName, string StringVal);
-
-// Export UOnlineGameInterfaceSteamworks::execGetGametagStringBool(FFrame&, void* const)
-native function string GetGametagStringBool(name PropertyName, byte BoolVal);
-
 delegate OnGetPlayerListComplete(OnlineGameSettings PlayerListSettings, bool Success);
 
 function SetMatchmakingTypeMode(Engine.OnlineGameInterface.ESteamMatchmakingType InMatchmakingTypeMode)
@@ -184,58 +178,6 @@ native function bool RemoveSearchResultFromFavorites(int Index);
 
 // Export UOnlineGameInterfaceSteamworks::execIsSearchResultInFavoritesList(FFrame&, void* const)
 native function bool IsSearchResultInFavoritesList(int Index);
-
-function AddServerFilter(OnlineGameSearch Search, string Key, optional string Val, optional int Location)
-{
-    Val = "";
-    Location = -1;
-    if(Location < 0)
-    {
-        Search.MasterServerSearchKeys.AddItem(Key;
-        Search.MasterServerSearchValues.AddItem(Val;        
-    }
-    else
-    {
-        Search.MasterServerSearchKeys.InsertItem(Location, Key;
-        Search.MasterServerSearchValues.InsertItem(Location, Val;
-    }
-}
-
-function TestAddBoolGametagFilter(out string GametagString, bool Test, name Property, byte BoolVal)
-{
-    if(Test)
-    {
-        if(Len(GametagString) > 0)
-        {            
-            GametagString $= ",";
-        }        
-        GametagString $= (GetGametagStringBool(Property, BoolVal));
-    }
-}
-
-function AddGametagFilter(out string GametagString, name Property, string Val)
-{
-    if(Len(GametagString) > 0)
-    {        
-        GametagString $= ",";
-    }    
-    GametagString $= (GetGametagString(Property, Val));
-}
-
-function TestAddServerFilter(OnlineGameSearch Search, bool Test, string Key, optional string Val)
-{
-    Val = "";
-    if(Test)
-    {
-        AddServerFilter(Search, Key, Val);
-    }
-}
-
-function ClearServerFilters(OnlineGameSearch Search)
-{
-    Search.MasterServerSearchKeys.Length = 0;
-    Search.MasterServerSearchValues.Length = 0;
-}
 
 // Export UOnlineGameInterfaceSteamworks::execUpdateOnlineGame(FFrame&, void* const)
 native function bool UpdateOnlineGame(name SessionName, OnlineGameSettings UpdatedGameSettings, optional bool bShouldRefreshOnlineData)

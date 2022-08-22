@@ -79,7 +79,7 @@ defaultproperties
 	// Even though with do DOT in a different class, we still
 	// Need burn power here for the initial incap from the pellet
 	// hit
-    BurnPower=5
+    BurnPower=25.0// 5
 
 	CameraLensEffectTemplate=class'KFCameraLensEmit_Fire'
 	EffectGroup=FXG_IncendiaryRound

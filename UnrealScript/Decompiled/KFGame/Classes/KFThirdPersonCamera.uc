@@ -7,6 +7,8 @@
  *******************************************************************************/
 class KFThirdPersonCamera extends GameThirdPersonCamera;
 
+var bool bInvertY;
+
 simulated function SetViewOffset(ViewOffsetData NewViewOffset, optional bool bInterpolate, optional float InterpTime)
 {
     if(bInterpolate)
@@ -19,7 +21,22 @@ simulated function SetViewOffset(ViewOffsetData NewViewOffset, optional bool bIn
         ThirdPersonCamDefault.bInterpViewOffsetOnlyForCamTransition = true;
         ThirdPersonCamDefault.BlendTime = ThirdPersonCamDefault.default.BlendTime;
     }
+    if(bInvertY)
+    {
+        NewViewOffset.OffsetHigh.Y *= float(-1);
+        NewViewOffset.OffsetMid.Y *= float(-1);
+        NewViewOffset.OffsetLow.Y *= float(-1);
+    }
     ThirdPersonCamDefault.super(KFThirdPersonCamera).SetViewOffset(NewViewOffset);
+}
+
+simulated function InvertViewOffset(bool bNewInvertY)
+{
+    if(bInvertY != bNewInvertY)
+    {
+        bInvertY = bNewInvertY;
+        KFThirdPersonCameraMode(ThirdPersonCamDefault).InvertViewOffset();
+    }
 }
 
 defaultproperties

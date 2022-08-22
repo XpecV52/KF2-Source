@@ -35,7 +35,7 @@ var databinding string MapName;
 /** The number of waves in the match */
 var databinding int Difficulty;
 
-/** The number of waves in the match */
+/** The game mode, versus, survival, etc. */
 var databinding int Mode;
 
 /** Have mutators been applied to this server? **/

@@ -28,7 +28,7 @@ defaultproperties
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Deagle_TEX.UI_WeaponSelect_Deagle'
    DualClass=Class'kfgamecontent.KFWeap_Pistol_DualDeagle'
-   MaxSpareAmmo(0)=105
+   SpareAmmoCapacity(0)=105
    InitialSpareMags(0)=5
    AmmoPickupScale(0)=2.000000
    IdleFidgetAnims(3)="Guncheck_v4"
@@ -80,7 +80,7 @@ defaultproperties
    InstantHitDamage(0)=91.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=22.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Deagle'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

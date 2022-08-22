@@ -34,10 +34,6 @@ var OnlineSubsystem MyOnlineSubsystem;
 /** Unlock cosmetics in dev build */
 var const bool bDebugUnlocks;
 
-/** Pseudo-appid that, if an asset is set to unlock by this appid, will unlock the asset when the user is a member
-    of the Killing Floor 2 steam group */
-var const int SteamGroupAppId;
-
 cpptext
 {
 	/** Checks if a Steam AppID is owned by the logged-in player */
@@ -222,5 +218,4 @@ static native function TestSteamAPI(PlayerReplicationInfo PRI, byte CallFlags);
 defaultproperties
 {
 	SharedContentList(SCU_Zweihander)=(Name=KFWeap_Edged_Zweihander,IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",ID=219640)
-	SteamGroupAppId=1
 }

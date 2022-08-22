@@ -34,7 +34,7 @@ function LocalizeText()
     local string GameDifficultyString;
     local KFGameReplicationInfo KFGRI;
 
-	CurrentMapName = GetPC().WorldInfo.GetMapName();	
+	CurrentMapName = class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(GetPC().WorldInfo.GetMapName());
 	GameTypeString = class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
 	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
 
@@ -50,28 +50,12 @@ function LocalizeText()
 	LocalizedObject = CreateObject( "Object" );
 
 	LocalizedObject.SetString("waveText", WaveString);
-	LocalizedObject.SetString("mapText", GetFriendlyMapName(CurrentMapName));
+	LocalizedObject.SetString("mapText", class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(CurrentMapName));
 	LocalizedObject.SetString("matchInfo", MatchInfoString);
 	
 	SetObject("localizeText", LocalizedObject);
 
 	bLocalized = true;
-}
-
-function string GetFriendlyMapName(string MapName)
-{
-	local KFMapSummary MapData;
-
-	MapData = class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
-
-	if ( MapData != none && MapData.DisplayName != "")
-	{
-		return MapData.DisplayName;
-	}
-	else
-	{
-     	return MapName;
-	}
 }
 
 // Elapsed time, difficulty, map name.
@@ -111,10 +95,9 @@ function UpdateWaveCount()
 	}
 
 	CurrentWaveNum = KFGRI.WaveNum;
-    if(CurrentWaveNum == KFGRI.WaveMax-1)
+    if(CurrentWaveNum == KFGRI.WaveMax)
     {
-	    	SetString("waveNumber", FinalString);
-    		
+	   	SetString("waveNumber", FinalString);
     }
     else
     {

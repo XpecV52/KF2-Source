@@ -79,7 +79,15 @@ function UpdatePlayerData()
                 TempData.SetString("iconPath", "img://"$KFPRI.CurrentPerkClass.static.GetPerkIconPath());
             }*/
 
-            TempData.SetString("avatar", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+			if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+			{
+				TempData.SetString("avatar", KFPC.GetPS4Avatar(KFPRI.PlayerName));
+			}
+			else
+			{
+				TempData.SetString("avatar", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+			}
+            
 
             TempData.SetFloat("health", KFPRI.PlayerHealth);  
             TempData.SetFloat("healthPercent", ByteToFloat(KFPRI.PlayerHealthPercent) * 100);  

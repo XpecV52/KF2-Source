@@ -20,18 +20,24 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 {
 	local int i;
 	local rotator AimRot;
+	local KFPerk InstigatorPerk;
 
     if( CurrentFireMode == GRENADE_FIREMODE )
     {
         return Super.SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
     }
 
+    InstigatorPerk = GetPerk();
+    if( InstigatorPerk != none )
+    {
+    	Spread[CurrentFireMode] = default.Spread[CurrentFireMode] * InstigatorPerk.GetTightChokeModifier();
+    }
+
 	AimRot = rotator(AimDir);
 
 	for (i = 0; i < GetNumProjectilesToFire(CurrentFireMode); i++)
 	{
-		Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot)));
-	}
+		Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(class'KFWeap_ShotgunBase'.static.AddMultiShotSpread(AimRot, Spread[CurrentFireMode])));	}
 
 	return None;
 }
@@ -58,12 +64,11 @@ simulated function rotator AddSpread(rotator BaseAim)
 }
 
  /** Same as AddSpread(), but used with MultiShotSpread */
-simulated function rotator AddMultiShotSpread(rotator BaseAim)
+static function rotator AddMultiShotSpread( rotator BaseAim, float CurrentSpread )
 {
 	local vector X, Y, Z;
-	local float CurrentSpread, RandY, RandZ;
+	local float RandY, RandZ;
 
-	CurrentSpread = Spread[CurrentFireMode];
 	if (CurrentSpread == 0)
 	{
 		return BaseAim;

@@ -7,16 +7,6 @@
  *******************************************************************************/
 class KFSM_Evade extends KFSM_PlaySingleAnim;
 
-enum EEvadeDir
-{
-    EVADE_None,
-    EVADE_Forward,
-    EVADE_Backward,
-    EVADE_Left,
-    EVADE_Right,
-    EVADE_MAX
-};
-
 var array<AnimVariants> EvadeAnims;
 
 static function byte PackAnimFlag(byte EvadeDir)
@@ -25,53 +15,6 @@ static function byte PackAnimFlag(byte EvadeDir)
 
     Variant = byte(Rand(2));
     return byte(EvadeDir + (Variant << 4));
-}
-
-static function byte GetEvadeDirection(KFPawn CheckPawn, Vector EvadePoint, optional Pawn Attacker)
-{
-    local byte EvadeDir;
-    local Vector X, Y, Z;
-
-    EvadeDir = 255;
-    if(((((Attacker != none) && Attacker.Health > 0) && CheckPawn.MyKFAIC != none) && CheckPawn.MyKFAIC.CanSee(Attacker)) && VSize(Attacker.Location - CheckPawn.Location) < 1024)
-    {
-        EvadeDir = Class'KFPawn'.static.CalcQuadRegion(CheckPawn.GetViewRotation(), CheckPawn.Location - Attacker.Location);
-        if(((CheckPawn.MyKFAIC != none) && Attacker != none) && CheckPawn.MyKFAIC.PendingEvadeProjectile != none)
-        {
-            GetAxes(CheckPawn.Rotation, X, Y, Z);
-            if((vector(Attacker.Rotation) Dot Y) > 0)
-            {
-                return 2;                
-            }
-            else
-            {
-                return 3;
-            }
-        }
-    }
-    switch(EvadeDir)
-    {
-        case 0:
-            EvadeDir = 0;
-            break;
-        case 1:
-            EvadeDir = 1;
-            break;
-        case 2:
-            EvadeDir = 2;
-            break;
-        case 3:
-            EvadeDir = 3;
-            break;
-        default:
-            break;
-    }
-    return EvadeDir;
-}
-
-protected function bool InternalCanDoSpecialMove()
-{
-    return PawnOwner.Physics == 1;
 }
 
 function PlayAnimation()
@@ -95,7 +38,9 @@ defaultproperties
     EvadeAnims(6)=(Anims=(Evade_BL_V1,Evade_BL_V2))
     EvadeAnims(7)=(Anims=(Evade_BR_V1,Evade_BR_V2))
     bUseRootMotion=true
+    BlendInTime=0.15
+    bUseHigherMeshSmoothingThreshold=true
     bDisablesWeaponFiring=true
     bPawnRotationLocked=true
-    Handle=SM_Evade
+    Handle=KFSM_Evade
 }

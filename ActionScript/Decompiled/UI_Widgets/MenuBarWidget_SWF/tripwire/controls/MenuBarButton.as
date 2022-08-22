@@ -3,9 +3,9 @@ package tripwire.controls
     import fl.motion.Color;
     import flash.display.MovieClip;
     import flash.text.TextField;
-    import flash.text.TextFieldAutoSize;
     import flash.text.TextFormat;
-    import scaleform.gfx.TextFieldEx;
+    import scaleform.gfx.Extensions;
+    import tripwire.managers.MenuManager;
     
     public class MenuBarButton extends TripButton
     {
@@ -40,12 +40,12 @@ package tripwire.controls
             this.menuTextFormat = new TextFormat();
             super();
             this.menuText = textField;
-            this.menuText.autoSize = TextFieldAutoSize.CENTER;
             this.enabled = true;
             this.menuTextFormat = this.menuText.getTextFormat();
             this.menuTextFormat.letterSpacing = 2;
             this.menuText.defaultTextFormat = this.menuTextFormat;
-            TextFieldEx.setVerticalAlign(this.menuText,TextFieldEx.VALIGN_CENTER);
+            clickSoundEffect = "MENUBAR_BUTTON_CLICK";
+            overSoundEffect = "MENUBAR_BUTTON_ROLLOVER";
         }
         
         public function set bPulsing(param1:Boolean) : void
@@ -68,16 +68,19 @@ package tripwire.controls
         
         override public function set selected(param1:Boolean) : void
         {
-            super.selected = param1;
             this.highlight.visible = param1;
             this.superHighlight.visible = false;
             this.highlight.alpha = 1;
-            if(param1)
+            if(param1 && super.selected == false)
             {
                 this.menuText.textColor = this.HighLightColor;
                 if(this._bPulsing)
                 {
                     this.pausePulse();
+                }
+                if(Extensions.gfxProcessSound != null && enabled == true && MenuManager.manager.bUsingGamepad)
+                {
+                    Extensions.gfxProcessSound(this,"UI",clickSoundEffect);
                 }
             }
             else
@@ -85,6 +88,7 @@ package tripwire.controls
                 this.menuText.textColor = this.UnhighLightColor;
                 this.bPulsing = this._bPulsing;
             }
+            super.selected = param1;
         }
         
         override protected function highlightButton() : *

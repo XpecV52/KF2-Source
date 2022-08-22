@@ -49,9 +49,9 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
             LifeSpan = 5.0;
 
         	// Stop ambient sounds when this projectile ShutsDown
-        	if( bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none && AmbientComponent != none )
+        	if( bStopAmbientSoundOnExplode )
         	{
-                AmbientComponent.StopEvents();
+                StopAmbientSound();
         	}
 
 			//@todo: check for pinned victim
@@ -108,9 +108,9 @@ simulated function Landed( Vector HitNormal, actor FloorActor )
     LifeSpan = 5.0;
 
 	// Stop ambient sounds when this projectile ShutsDown
-	if( bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none && AmbientComponent != none )
+	if( bStopAmbientSoundOnExplode )
 	{
-        AmbientComponent.StopEvents();
+        StopAmbientSound();
 	}
 }
 
@@ -118,6 +118,8 @@ defaultproperties
 {
 	MaxSpeed=7000.0
 	Speed=7000.0
+
+     bWarnAIWhenFired=true
 
 	DamageRadius=0
 

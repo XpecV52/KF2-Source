@@ -49,18 +49,39 @@ simulated event UnTouch(Actor Other)
 	}
 }
 
+/** Update interaction message (toggle between use and repair) */
+function OnDestroyOrReset()
+{
+	local KFPawn_Human P;
+
+	foreach TouchingActors(class'KFPawn_Human', P)
+	{
+		class'KFPlayerController'.static.UpdateInteractionMessages( P );
+	}
+}
+
 simulated function bool GetIsUsable( Pawn User )
 {
-	if ( DoorActor != None && !DoorActor.bIsDestroyed )
+	local bool bCanRepairDoors;
+	local KFPawn KFP;
+
+	KFP = KFPawn( User );
+	bCanRepairDoors = ( KFP != none && KFP.GetPerk() != none && KFP.GetPerk().CanRepairDoors() );
+	if ( DoorActor != None && (bCanRepairDoors || !DoorActor.bIsDestroyed) )
 	{
 		return true;
 	}
+
 	return false;
 }
 
 function int GetInteractionIndex()
 {
-	if( DoorActor.WeldIntegrity > 0 )
+	if ( DoorActor.bIsDestroyed )
+	{
+		return IMT_RepairDoor;
+	}
+	else if( DoorActor.WeldIntegrity > 0 )
 	{
 		return IMT_UseDoorWelded;
 	}

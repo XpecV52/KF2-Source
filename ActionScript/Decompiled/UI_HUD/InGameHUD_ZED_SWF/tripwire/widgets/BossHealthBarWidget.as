@@ -167,10 +167,10 @@ package tripwire.widgets
             switch(param1.keyCode)
             {
                 case Keyboard.A:
-                    this.currentHealthPercentValue += 0.01 * (Math.floor(Math.random() * (10 - 2 + 1)) + 2);
+                    this.currentShieldPercecntValue += 0.1;
                     break;
                 case Keyboard.B:
-                    this.currentHealthPercentValue -= 0.01 * (Math.floor(Math.random() * (10 - 2 + 1)) + 2);
+                    this.currentShieldPercecntValue -= 0.1;
             }
         }
     }

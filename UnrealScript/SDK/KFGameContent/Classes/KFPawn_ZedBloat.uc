@@ -8,15 +8,44 @@
 //=============================================================================
 class KFPawn_ZedBloat extends KFPawn_Monster;
 
-var name  PukeSocketName;
+/** Socket used to attach puke effect */
+var protected const name PukeSocketName;
+
 /** How far away the bloat's vomit can damage enemies */
-var float VomitRange;
+var protected const float VomitRange;
+
 /** At a base level how much damage this zed's vomit will do */
-var int	  VomitDamage;
-var bool bHasExploded;
+var protected const int VomitDamage;
 
 /** Any pawn in this range will take damage when the bloat explodes */
-var float ExplodeRange;
+var protected const float ExplodeRange;
+
+/** Set to TRUE when bloat has exploded */
+var protected bool bHasExploded;
+
+/** Projectile to spawn for puke mine attack */
+var protected const class<KFProjectile> PukeMineProjectileClass;
+
+/** Rotation offsets to use when spawning our 3 puke mins on death */
+var protected array<rotator> DeathPukeMineRotations;
+
+/** Number of puke mines to spawn when bloat is killed, as long as it wasn't obliterated */
+var protected byte NumPukeMinesToSpawnOnDeath;
+
+/** Pre-death location and rotation */
+var protected vector OldLocation;
+var protected rotator OldRotation;
+
+simulated function PostBeginPlay()
+{
+	super.PostBeginPlay();
+
+	// Set the number of puke mines we're allowed to spawn on death
+	if( WorldInfo.Game != none )
+	{
+		NumPukeMinesToSpawnOnDeath = class<KFDifficulty_Bloat>(DifficultySettings).static.GetPukeMinesToSpawnOnDeath( self, WorldInfo.Game );
+	}
+}
 
 /** Script AnimNotify which makes the Bloat begin to discharge vomit */
 function ANIMNOTIFY_PukeAttack()
@@ -91,6 +120,15 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 	return super.CanInjureHitZone(DamageType, HitZoneIdx);
 }
 
+/** This pawn has died. */
+function bool Died(Controller Killer, class<DamageType> damageType, vector HitLocation)
+{
+	OldLocation = Location;
+	OldRotation = Rotation;
+
+	return super.Died( Killer, damageType, HitLocation );
+}
+
 // Override to deal explosive damage for the killing shot of an explosive bone
 function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZoneIdx, vector InstigatorLocation)
 {
@@ -100,7 +138,7 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
 	super.TakeHitZoneDamage( Damage, DamageType, HitZoneIdx, InstigatorLocation );
 
 	// Only deal explosive damage on the killing shot
-	if( Role == ROLE_Authority && bPlayedDeath && TimeOfDeath == WorldInfo.TimeSeconds && !bHasExploded )
+	if( Role == ROLE_Authority && bPlayedDeath && !bHasExploded && TimeOfDeath == WorldInfo.TimeSeconds )
 	{
 		HitZoneIndex = HitFxInfo.HitBoneIndex;
 		if ( HitZoneIndex != 255 && (InjuredHitZones & (1 << HitZoneIndex)) > 0 )	// INDEX_None -> 255 after byte conversion
@@ -110,6 +148,9 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
 		    {
 		    	DealExplosionDamage();
 		    	bHasExploded = true;
+
+		    	// Spawn some puke mines
+		    	SpawnPukeMinesOnDeath();
 		    }
 		}
 	}
@@ -159,6 +200,34 @@ function DealExplosionDamage()
 	}
 }
 
+/** Spawns a puke mine at the specified location and rotation. Network: SERVER */
+function SpawnPukeMine( vector SpawnLocation, rotator SpawnRotation )
+{
+	local KFProjectile PukeMine;
+
+	PukeMine = Spawn( PukeMineProjectileClass, self,, SpawnLocation, SpawnRotation,, true );
+	if( PukeMine != none )
+	{
+		PukeMine.Init( vector(SpawnRotation) );
+	}
+}
+
+/** Spawns several puke mines when dying */
+function SpawnPukeMinesOnDeath()
+{
+	local int i;
+
+	// Spawn puke mines
+	while( NumPukeMinesToSpawnOnDeath > 0 && DeathPukeMineRotations.Length > 0 )
+	{
+		i = Rand( DeathPukeMineRotations.Length );
+		SpawnPukeMine( OldLocation, Normalize(OldRotation + DeathPukeMineRotations[i]) );
+		DeathPukeMineRotations.Remove( i, 1 );
+
+		--NumPukeMinesToSpawnOnDeath;
+	}	
+}
+
 /**
  * Dialog
  **/
@@ -189,12 +258,14 @@ DefaultProperties
 	// Content
 	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Bloat_ARCH.ZED_Bloat_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
+	DifficultySettings=class'KFDifficulty_Bloat'
 
 	// ---------------------------------------------
 	// Special Moves
 	Begin Object Name=SpecialMoveHandler_0
 		SpecialMoveClasses(SM_Evade)=class'KFSM_Evade'
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
+		SpecialMoveClasses(SM_Block)=class'KFSM_Block'
 	End Object
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
@@ -204,10 +275,11 @@ DefaultProperties
 	IncapSettings(AF_GunHit)=	(Vulnerability=(0.35),	                  Cooldown=0.1)
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),	                  Cooldown=0.3)
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
-	IncapSettings(AF_Microwave)=(Vulnerability=(4.0),	                  Cooldown=5.0, Duration=8.0)
-	IncapSettings(AF_FirePanic)=(Vulnerability=(4),		                  Cooldown=5.0,	 Duration=8.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(4.0),	                  Cooldown=5.0,  Duration=8.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(1),		                  Cooldown=5.0,	 Duration=3.7) //duration 8 
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=3.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=3.0,  Duration=2.0)
+    IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0),      Cooldown=5.5,  Duration=3.0)
 
 	Begin Object Name=Afflictions_0
 		FireFullyCharredDuration=3.5
@@ -231,6 +303,8 @@ DefaultProperties
 	HeadlessBleedOutTime=6.f
 	// Override Head GoreHealth (aka HeadHealth)
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=75, DmgScale=1.0001, SkinID=1)
+    HitZones[6]       =(ZoneName=lhand,     BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.2, SkinID=2)
+    HitZones[9]       =(ZoneName=rhand,     BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.2, SkinID=2)
     //HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=40, DmgScale=1.1, SkinID=1) orginal setting
 	DoshValue=17
 	Mass=130.f
@@ -245,16 +319,19 @@ DefaultProperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.30)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.3)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.3)))
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(1.6)))  //1.2
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(1.0)))  //1.2 //1.6
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.8)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.5)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.25)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 		                DamageScale=(0.25)))
 
-
 	//Special Case damage resistance
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm',              DamageScale=(0.65))
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',             DamageScale=(0.40))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',             DamageScale=(0.40))
+
+	// ---------------------------------------------
+	// Block Settings
+	MinBlockFOV=0.1f
 
 	// ---------------------------------------------
 	// Movement / Physics
@@ -274,6 +351,13 @@ DefaultProperties
 	BumpDamageType=class'KFDT_NPCBump_Large'
 	DamageRecoveryTimeHeavy=0.85f
 	DamageRecoveryTimeMedium=1.0f
+
+	// ---------------------------------------------
+	// Puke Mines
+	PukeMineProjectileClass=class'KFProj_BloatPukeMine'
+	DeathPukeMineRotations(0)=(Pitch=7000,Yaw=10480,Roll=0)
+	DeathPukeMineRotations(1)=(Pitch=7000,Yaw=32767,Roll=0)
+	DeathPukeMineRotations(2)=(Pitch=7000,Yaw=-10480,Roll=0)
 
 	// ---------------------------------------------
 

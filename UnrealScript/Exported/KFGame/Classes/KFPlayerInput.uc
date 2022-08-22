@@ -15,7 +15,7 @@ class KFPlayerInput extends MobilePlayerInput within KFPlayerController
 var config bool bRequiresPushToTalk;
 
 /** Set to false if we want to use KF1 style weapon switching */
-var config bool bQuickWeaponSelect;
+var bool bQuickWeaponSelect;
 
 /** Start time when player last pressed jump.  Used by CannotJumpNow() */
 var transient float PressedJumpTime;
@@ -23,12 +23,6 @@ var transient float PressedJumpTime;
 /** Unlike other weapons states ironsights doesn't use PendingFire (see InventoryManager).
  This concept is useful for Ironsights(HOLD), which is accomplished by this bool. */
 var transient bool bIronsightsHeld;
-
-/** cached magnitude of 2d input move vector */
-var transient float RawJoyMagnitude;
-
-/** cached magnitude of 2d input look vector */
-var transient float RawJoyLookMagnitude;
 
 /*********************************************************************************************
  * @name Gamepad Specific Controls
@@ -40,13 +34,13 @@ var bool 		bGamepadWeaponSelectOpen;
 var bool 		bShowGamepadWeaponSelectHint;
 
 /** Set to true if we want to invert the Y on the controller */
-var config bool bInvertController;
+var bool bInvertController;
 
 /** The amount of time the weapon switch button must be held to perform various actions */
 var config float GamepadButtonHoldTime;
 
 /** Amount thumbstick should be pressed to activate sprint */
-var config float SprintAnalogThreshold;
+var const float SprintAnalogThreshold;
 
 /** On tap weapon switch: TRUE for last weapon, FALSE for cycle next */
 var config bool bUseGamepadLastWeapon;
@@ -58,7 +52,13 @@ var transient bool bExtendedSprinting;
 var transient float GamepadSprintAnalogStart;
 
 /** The index of the preset layout to use for controller mappings. Used with GamepadLayoutManager */
-var config int CurrentLayoutIndex;
+var int CurrentLayoutIndex;
+
+/** cached magnitude of 2d input move vector */
+var transient float RawJoyMagnitude;
+
+/** cached magnitude of 2d input look vector */
+var transient float RawJoyLookMagnitude;
 
 /*********************************************************************************************
  * @name Aim assists
@@ -74,7 +74,7 @@ var(AimAssistGlobal) config bool bAimAssistEnabled;
 var(Sensitivity) InterpCurveFloat LookSensitivityScaleCurve;
 var(Sensitivity) InterpCurveFloat MoveSensitivityScaleCurve;
 /** Unified global scalar for joystick sensitivity */
-var(Sensitivity) config float GamepadSensitivityScale;
+var(Sensitivity) float GamepadSensitivityScale;
 /** Multiplier used to scale look sensitivity while sprinting. */
 var(Sensitivity) float SprintingSensitivityScale;
 /** Used to scale the sensitivity of the mouse based on how zoomed the player is. */
@@ -121,7 +121,7 @@ var float RemainingaLookUp;
 // Target Friction
 
 /** Whether TargetFriction is enabled or not **/
-var(Friction) config bool bTargetFrictionEnabled;
+var(Friction) bool bTargetFrictionEnabled;
 
 /** How much friction reduces rotation */
 var(Friction) float FrictionScale;
@@ -148,7 +148,7 @@ var(Friction) float ViewAccelerationFrictionScale;
 // Target Adhesion
 
 /** Whether TargetAdhesion is enabled or not **/
-var(Adhesion) config bool bTargetAdhesionEnabled;
+var(Adhesion) bool bTargetAdhesionEnabled;
 
 /** Interp curve to scale Adhesion angle for different ranges **/
 var(Adhesion) InterpCurveFloat AdhesionAngleCurve;
@@ -164,7 +164,7 @@ var transient vector AdhesionTargetLastLoc, AdhesionPawnLastLoc;
 // Auto Target
 
 /** Whether TargetAdhesion is enabled or not **/
-var(AutoTarget) config bool bAutoTargetEnabled;
+var(AutoTarget) bool bAutoTargetEnabled;
 
 /** How long to auto target for when going to iron sights **/
 var(AutoTarget) float 	AutoTargetTimeLeft;
@@ -198,7 +198,7 @@ var(AutoTarget) float ForceLookAtPawnDampenedRotationRate;
 * @name	Force Feedback
 ********************************************************************************************* */
 
-var(ForceFeedback) config bool bForceFeedbackEnabled;
+var(ForceFeedback) bool bForceFeedbackEnabled;
 
 /*********************************************************************************************
  * @name Flashlight / Night vision
@@ -208,7 +208,9 @@ var const float DoubleTapDelay;
 /*********************************************************************************************
 * @name	Game class
 ********************************************************************************************* */
-var bool bVersusInput;
+var bool 	bVersusInput;
+/** Cached value of bUsingGamepad so we can handle button releases across devices */
+var bool    bUsingVersusGamepadScheme;
 
 // (cpptext)
 // (cpptext)
@@ -247,6 +249,19 @@ native function string GetBindDisplayName(out KeyBind MyKeyBind);
 
 /** Used to display in-game controls */
 native function string GetGameBindableAction(const out Name Key);
+
+event bool FilterButtonInput(int ControllerId, Name Key, EInputEvent Event, float AmountDepressed, bool bGamepad)
+{
+	if( !class'Engine'.static.IsEditor() && Event == IE_Pressed && (Key == 'XboxTypeS_Start' || Key == 'Escape') && !class'WorldInfo'.static.IsMenuLevel() 
+		&& (MyGfxManager.bAfterLobby || WorldInfo.GRI.bMatchIsOver)
+		)
+	{
+		MyGFxManager.ToggleMenus();	
+		return true;
+	}
+
+	return false;
+}
 
 /*********************************************************************************************
 * @name	Debugging
@@ -418,7 +433,7 @@ event PlayerInput( float DeltaTime )
 
 	// Look up/down.
 	aLookup += aMouseY;
-	if ( (!GetUsingGamePad(Outer) && bInvertMouse) || (bInvertController && GetUsingGamePad(Outer)) )
+	if ( (!bUsingGamepad && bInvertMouse) || (bInvertController && bUsingGamepad) )
 	{
 		aLookup *= -1.f;
 	}
@@ -513,32 +528,15 @@ event PlayerInput( float DeltaTime )
     }
 }
 
-// Overridden to do custom FOV scaling, especially for weapons with 3d scopes
+/** Overridden to do custom FOV scaling, especially for weapons with 3D scopes */
 function AdjustMouseSensitivity(float FOVScale)
 {
-	local float UsedFOVAngle;
-	local bool bUsingSights;
-
-	// Take FOV into account (lower FOV == less sensitivity).
 	if ( bEnableFOVScaling )
 	{
-        if( Pawn != none && Pawn.Weapon != none )
-        {
-			bUsingSights = Pawn.bIsWalking;
-            UsedFOVAngle = Pawn.Weapon.GetModifiedFOVAngle();
-        }
-        else
-        {
-            UsedFOVAngle = GetFOVAngle();
-        }
-
-		if( UsedFOVAngle != DefaultFOV && bUsingSights )
-            FOVScale = UsedFOVAngle * 0.01333 * ZoomedSensitivityScale; // 0.01333 = 1 / 75.0 - the default FOV
-        else
-            FOVScale = 1.0;
+		FOVScale = GetSensitivityByFOV( ZoomedSensitivityScale );
 	}
 
-	Super.AdjustMouseSensitivity(FOVScale);
+	Super.AdjustMouseSensitivity( FOVScale );
 }
 
 
@@ -607,17 +605,8 @@ function SwapPositions(KeyBind MyKeyBind, string BindCommand, bool bIsAlt)
 	}
 }
 
-static function bool GetUsingGamePad(PlayerController PC)
-{
-    if ( PC == none || PC.PlayerInput == none )
-	{
-		return false;
-	}
-    return PC.PlayerInput.bUsingGamepad;
-}
-
 /*********************************************************************************************
-* @name	Gamepad sprinting
+* @name	Gamepad Specific GBAs
 ********************************************************************************************* */
 
 exec function GamepadSprint()
@@ -691,49 +680,47 @@ function bool ShouldActivateGamepadSprint()
 	return (Distance + Bias) > SprintAnalogThreshold;
 }
 
-/*********************************************************************************************
-* @name	Crouch/Duck
-********************************************************************************************* */
-
-/** Abort/Cancel crouch when jumping */
-exec function Jump()
+/** 
+ * GBA_Reload_Gamepad
+ * Tap: Reload
+ * Hold: Quick Heal
+ */
+exec function GamepadReload()
 {
-	if( bVersusInput )
+	if ( bVersusInput && CustomStartFireVersus(2) )
 	{
-		JumpVersus();
 		return;
 	}
 
-	bDuck = 0;
-	PressedJumpTime = WorldInfo.TimeSeconds;
-	Super.Jump();
+	SetTimer(GamepadButtonHoldTime, false, nameof(GamepadReloadTimer), self);
 }
 
-/** GBA_CrouchHold */
-exec function StartCrouch()
+/** GBA_Reload_Gamepad */
+exec function GamepadReloadRelease()
 {
-	if (Pawn != none && Pawn.bCanCrouch)
+	if ( IsTimerActive(nameof(GamepadReloadTimer), self) )
 	{
-		bDuck = 1;
+		if ( Pawn != None )
+		{
+			Pawn.StartFire(2);
+
+			// It's unusual to kill a pending fire on the same frame since it
+			// has to replicate.  Seems to work well enough for reload.
+			Pawn.StopFire(2);
+		}
+
+		ClearTimer(nameof(GamepadReloadTimer), self);
+	}
+	else if ( bVersusInput )
+	{
+		CustomStopFireVersus(2);
 	}
 }
 
-/** GBA_CrouchHold */
-exec function StopCrouch()
+/** GBA_Reload_Gamepad */
+function GamepadReloadTimer()
 {
-	if( bDuck == 1 )
-	{
-		bDuck = 0;
-	}
-}
-
-/** GBA_CrouchToggle */
-exec function ToggleCrouch()
-{
-	if (Pawn != none && Pawn.bCanCrouch)
-	{
-		bDuck = (bDuck == 0) ? 1 : 0;
-	}
+	QuickHeal();
 }
 
 /** GBA_GamepadCrouch
@@ -791,6 +778,74 @@ function GamepadJumpTimer()
 	ToggleCrouch();
 }
 
+/** GBA_Altfire_Gamepad */
+exec function GamepadSwitchFire()
+{
+	local Weapon W;
+
+	if ( bGamepadWeaponSelectOpen )
+	{
+		if(MyGFxHUD.WeaponSelectWidget != none)
+		{
+			W = Pawn.Weapon;
+			if ( W != None )
+			{
+				ServerThrowOtherWeapon(W);
+				//ThrowWeapon();
+			}
+		}
+	}
+	else
+	{
+		SwitchFire();
+	}
+}
+
+/*********************************************************************************************
+* @name	Crouch/Duck
+********************************************************************************************* */
+
+/** Abort/Cancel crouch when jumping */
+exec function Jump()
+{
+	if( bVersusInput )
+	{
+		JumpVersus();
+		return;
+	}
+
+	bDuck = 0;
+	PressedJumpTime = WorldInfo.TimeSeconds;
+	Super.Jump();
+}
+
+/** GBA_CrouchHold */
+exec function StartCrouch()
+{
+	if (Pawn != none && Pawn.bCanCrouch)
+	{
+		bDuck = 1;
+	}
+}
+
+/** GBA_CrouchHold */
+exec function StopCrouch()
+{
+	if( bDuck == 1 )
+	{
+		bDuck = 0;
+	}
+}
+
+/** GBA_CrouchToggle */
+exec function ToggleCrouch()
+{
+	if (Pawn != none && Pawn.bCanCrouch)
+	{
+		bDuck = (bDuck == 0) ? 1 : 0;
+	}
+}
+
 /*********************************************************************************************
 * @name	Ironsights
 ********************************************************************************************* */
@@ -802,7 +857,7 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 {
 	local KFWeapon KFW;
 
-	if( bVersusInput && IronSightsVersus( bHoldButtonMode ) )
+	if( bVersusInput && CustomStartFireVersus(5) )
 	{ 
 		return;
 	}
@@ -835,7 +890,7 @@ simulated exec function IronSightsRelease(optional bool bHoldButtonMode)
 {
 	local KFWeapon KFW;
 
-	if( bVersusInput && IronSightsReleaseVersus( bHoldButtonMode ) )
+	if( bVersusInput && CustomStopFireVersus(5) )
 	{
 		return;
 	}
@@ -960,138 +1015,28 @@ function InternalToggleNightVision()
 }
 
 /*********************************************************************************************
-* @name	Special weapon firemodes
+* @name	Weapon firemodes
 ********************************************************************************************* */
 
-/** (V/L1) special melee attack for all weapon types */
-exec function StartTertiaryFire()
+// The player wants to alternate-fire.
+exec function CustomStartFire( optional Byte FireModeNum )
 {
-	if ( Pawn != None )
+	if ( bVersusInput && CustomStartFireVersus(FireModeNum) )
 	{
-		Pawn.StartFire(3);
-		if ( bGamepadWeaponSelectOpen && MyGFxHUD.WeaponSelectWidget != none )
-		{
-			MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(false);
-			bGamepadWeaponSelectOpen = false;
-		}
+		return;
 	}
+
+	StartFire( FireModeNum );
 }
 
-/** (V/L1) special melee attack for all weapon types */
-exec function StopTertiaryFire()
+exec function CustomStopFire( optional byte FireModeNum )
 {
-	if ( Pawn != None )
+	if ( bVersusInput && CustomStopFireVersus(FireModeNum) )
 	{
-		Pawn.StopFire(3);
+		return;
 	}
-}
 
-/** GBA_Reload */
-exec function Reload()
-{
-	if ( Pawn != None )
-	{
-		Pawn.StartFire(2);
-		if ( bGamepadWeaponSelectOpen && MyGFxHUD.WeaponSelectWidget != none )
-		{
-			MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(false);
-			bGamepadWeaponSelectOpen = false;
-		}
-	}
-}
-
-/** GBA_Reload */
-exec function ReloadRelease()
-{
-	if ( Pawn != None )
-	{
-		Pawn.StopFire(2);
-	}
-}
-
-/** GBA_Reload_Gamepad */
-exec function GamepadReload()
-{
-	SetTimer(GamepadButtonHoldTime, false, nameof(GamepadReloadTimer), self);
-}
-
-/** GBA_Reload_Gamepad */
-function GamepadReloadTimer()
-{
-	QuickHeal();
-}
-
-/** GBA_Reload_Gamepad */
-exec function GamepadReloadRelease()
-{
-	if ( IsTimerActive(nameof(GamepadReloadTimer), self) )
-	{
-		if ( Pawn != None )
-		{
-			Pawn.StartFire(2);
-
-			// It's unusual to kill a pending fire on the same frame since it
-			// has to replicate.  Seems to work well enough for reload.
-			Pawn.StopFire(2);
-		}
-
-		ClearTimer(nameof(GamepadReloadTimer), self);
-	}
-}
-
-/** GBA_Grenade */
-exec function Grenade()
-{
-	if ( Pawn != None )
-	{
-		if( bVersusInput && GrenadeVersus() )
-		{
-			return;
-		}
-		
-		Pawn.StartFire(4);
-	}
-}
-
-/** GBA_Grenade */
-exec function GrenadeRelease()
-{
-	if ( Pawn != None )
-	{
-		if( Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire() )
-		{
-			Pawn.StopFire(6);
-			return;
-		}
-
-		Pawn.StopFire(4);
-	}
-}
-
-/** GBA_Grenade_Gamepad */
-exec function GamepadGrenade()
-{
-	local Weapon W;
-
-	if ( Pawn != None )
-	{
-		if ( bGamepadWeaponSelectOpen )
-		{
-			if(MyGFxHUD.WeaponSelectWidget != none)
-			{
-				W = MyGFxHUD.WeaponSelectWidget.GetSelectedWeapon();
-				if ( W != None )
-				{
-					ServerThrowOtherWeapon(W);
-					//ThrowWeapon();
-				}
-			}
-		}
-		else
-		{
-			Grenade();
-		}
-	}
+	StopFire( FireModeNum );
 }
 
 /** GBA_SwitchAltFire */
@@ -1101,7 +1046,7 @@ exec function SwitchFire()
 
 	if( Pawn != none )
 	{
-		if( bVersusInput && SwitchFireVersus() )
+		if( bVersusInput && CustomStartFireVersus(1) )
 		{
 			return;
 		}
@@ -1124,7 +1069,7 @@ exec function SwitchFireRelease()
 
 	if( Pawn != none )
 	{
-		if( bVersusInput && SwitchFireReleaseVersus() )
+		if( bVersusInput && CustomStopFireVersus(1) )
 		{
 			return;
 		}
@@ -1136,23 +1081,6 @@ exec function SwitchFireRelease()
 		}
 	}
 }
-
-/** GBA_GamepadStartFire */
-/*exec function GamepadStartFire()
-{
-	local KFWeapon KFW;
-
-	if( Pawn != none )
-	{
-		KFW = KFWeapon(Pawn.Weapon);
-		if ( KFW != None )
-		{
-			KFW.bGamepadFireEntry = TRUE;
-			StartFire();
-			KFW.bGamepadFireEntry = FALSE;
-		}
-	}
-}*/
 
 /*********************************************************************************************
 * @name	Weapon Select
@@ -1233,7 +1161,7 @@ exec function SelectLastWeapon()
 		if ( KFIM != None )
 		{
 			KFIM.SwitchToLastWeapon();
-			KFIM.ShowAllHUDGroups();
+			//KFIM.ShowAllHUDGroups();
 		}
 	}
 }
@@ -1245,6 +1173,11 @@ exec function SelectLastWeapon()
 exec function GamepadWeaponSelect()
 {
 	local KFWeapon KFW;
+
+	if ( bVersusInput && CustomStartFireVersus(6) )
+	{
+		return; // player zed move override
+	}
 
 	if (Pawn != none)
 	{
@@ -1267,6 +1200,11 @@ exec function ReleaseGamepadWeaponSelect()
 {
 	local KFInventoryManager KFIM;
 	local KFWeapon KFW;
+
+	if ( bVersusInput && CustomStopFireVersus(6) )
+	{
+		return; // player zed move override
+	}
 
 	// close menu
 	if ( bGamepadWeaponSelectOpen && MyGFxHUD.WeaponSelectWidget != none )
@@ -1374,7 +1312,7 @@ exec function SwitchWeaponGroup( byte GroupID )
 
 	if ( KFIM != none )
 	{
-		NextGroupedWeapon = KFIM.GetNextGroupedWeapon(GroupID);
+		NextGroupedWeapon = KFIM.GetNextGroupedWeapon(GroupID, false, bUsingGamepad && bGamepadWeaponSelectOpen);
 		if (bUsingGamepad)
 		{
 			if (bGamepadWeaponSelectOpen)
@@ -1459,6 +1397,12 @@ exec function GamepadDpadLeft()
 	}
 	else
 	{
+		// taunt while playing as zed
+		if ( bVersusInput && ChangeZedCamera(true) )
+		{
+			return; // player zed move override
+		}
+
 		ShowVoiceComms();
 	}
 }
@@ -1479,6 +1423,12 @@ exec function GamepadDpadDown()
 	}
 	else
 	{
+		// taunt while playing as zed
+		if ( bVersusInput && CustomStartFireVersus(7) )
+		{
+			return; // player zed move override
+		}
+
 		ToggleFlashlight();
 	}
 }
@@ -1499,6 +1449,12 @@ exec function GamepadDpadRight()
 	}
 	else
 	{
+		// taunt while playing as zed
+		if ( bVersusInput && ChangeZedCamera(false) )
+		{
+			return; // player zed move override
+		}
+
 		TossMoney();
 	}
 }
@@ -1515,6 +1471,12 @@ exec function GamepadDpadUp()
 	}
 	else
 	{
+		// taunt while playing as zed
+		if ( bVersusInput && CustomStartFireVersus(7) )
+		{
+			return; // player zed move override
+		}
+
 		// toggle between healer and last weapon
 		if ( Pawn != None && Pawn.Weapon != None && Pawn.Weapon.IsA('KFWeap_HealerBase') )
 		{
@@ -1525,6 +1487,22 @@ exec function GamepadDpadUp()
 			SwitchWeaponGroup(3);
 		}
 	}
+}
+
+/** Toggle between right/left side third person camera */
+exec function bool ChangeZedCamera(bool bInvertY)
+{
+	local KFPawn_Monster P;
+
+	P = KFPawn_Monster(Pawn);
+
+	if ( P != None )
+	{
+		KFThirdPersonCamera(KFPlayerCamera(PlayerCamera).ThirdPersonCam).InvertViewOffset(bInvertY);
+		return true;
+	}
+
+	return false;
 }
 
 exec function ShowVoiceComms()
@@ -1608,11 +1586,26 @@ exec function InteractRelease()
 exec function InteractTimer()
 {
 	local KFInventoryManager KFIM;
+	local KFInterface_Usable UsableTrigger;	
 
 	KFIM = KFInventoryManager(Pawn.InvManager);
-	if( KFIM != none )
+	if( KFIM != none && KFIM.Instigator != none )
 	{
-		KFIM.QuickWeld();
+		UsableTrigger = GetCurrentUsableActor( KFIM.Instigator );
+
+		if( UsableTrigger == none)
+		{
+			return;
+		}
+		if(UsableTrigger.IsA('KFDoorTrigger'))
+		{
+			KFIM.QuickWeld();
+		}
+		else if(UsableTrigger.IsA('KFTraderTrigger'))
+		{
+			DoAutoPurchase();
+		}
+		
 	}
 }
 
@@ -1690,7 +1683,7 @@ function PreProcessGamepadInput( float DeltaTime )
 		CurrLookUp = ScaledJoyMagnitude * (RawJoyLookUp/RawJoyLookMagnitude);
 	}
 
-	// sets CurrTurn/CurrLookUp directly if applicable, does not multiply
+	// sets CurrTurn/CurrLookUp directly if applicable, does not multiply (aka Turn Assist)
 	if( CanApplyViewAcceleration() )
 	{
 		ApplyViewAcceleration( DeltaTime );
@@ -1711,7 +1704,7 @@ function PreProcessGamepadInput( float DeltaTime )
 	}
 
 	// Apply FOV zoomed/iron sight sensitivity scaling
-    FOVScale = GetFOVAdjustedControllerSensitivity();
+    FOVScale = GetSensitivityByFOV( GamepadZoomedSensitivityScale );
 
 	CurrTurn *= FOVScale;
 	CurrLookUp *= FOVScale;
@@ -1789,22 +1782,23 @@ function bool IsDirectingJoyStick(float Threshold)
  **/
 function ApplyViewAcceleration( float DeltaTime )
 {
-		ViewAccel_BlendTimer += DeltaTime;
-		if( ViewAccel_BlendTimer >= ViewAccel_BlendTime )
-		{
-			ViewAccel_BlendTimer = ViewAccel_BlendTime;
-		}
+	ViewAccel_BlendTimer += DeltaTime;
+	if( ViewAccel_BlendTimer >= ViewAccel_BlendTime )
+	{
+		ViewAccel_BlendTimer = ViewAccel_BlendTime;
+	}
 
-		if( CurrTurn > 0 )
-		{
-			CurrTurn = Lerp( CurrTurn, ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime );
-		}
-		else
-		{
-			CurrTurn = Lerp( CurrTurn, -ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime );
-		}
+	if( CurrTurn > 0 )
+	{
+		CurrTurn = Lerp( CurrTurn, ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime );
+	}
+	else
+	{
+		CurrTurn = Lerp( CurrTurn, -ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime );
+	}
 }
 
+/** Gamepad turn assist/acceleration */
 function bool CanApplyViewAcceleration()
 {
 	if( !bViewAccelerationEnabled )
@@ -1813,7 +1807,7 @@ function bool CanApplyViewAcceleration()
 	}
 
 	// don't accelerate in iron sights
-	if( Pawn == none || KFWeapon(Pawn.Weapon) == none || KFWeapon(Pawn.Weapon).bUsingSights )
+	if( Pawn == none || (KFWeapon(Pawn.Weapon) != none && KFWeapon(Pawn.Weapon).bUsingSights) )
 	{
 		return false;
 	}
@@ -1903,7 +1897,7 @@ function InitAutoTarget()
 
 	// look for a new target
 	MaxDistance = AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length-1].InVal;
-	CurrentAutoTarget = GetTargetAdhesionFrictionTarget( MaxDistance, CamLoc, CamRot, AutoTargetAngleCurve );
+	CurrentAutoTarget = GetTargetAdhesionFrictionTarget( MaxDistance, CamLoc, CamRot, AutoTargetAngleCurve, true );
 	if (CurrentAutoTarget != None)
 	{
 		CurrentAutoTargetBone = '';
@@ -2386,14 +2380,12 @@ function GetAimAssistViewOffsetFromTarget( vector ViewLoc, rotator ViewRot, Acto
 	Offset.Z = PointDistToLine( AimLoc, (TargetLoc - ViewLoc), ViewLoc );
 }
 
-// Overridden to do custom FOV scaling, especially for weapons with 3d scopes
-function float GetFOVAdjustedControllerSensitivity()
+/** Do custom FOV scaling, especially for weapons with 3D scopes */
+function float GetSensitivityByFOV( float ZoomSensitivityScale )
 {
-	local float FOVScale;
+	local KFPawn_Monster KFPM;
     local float UsedFOVAngle;
 	local bool bUsingSights;
-
-    FOVScale=1.0;
 
 	// Take FOV into account (lower FOV == less sensitivity).
 	if ( bEnableFOVScaling )
@@ -2407,15 +2399,24 @@ function float GetFOVAdjustedControllerSensitivity()
         {
             UsedFOVAngle = GetFOVAngle();
         }
+		
+		// Allow monster pawns to do sensitivity adjustments first
+		if( bVersusInput && !bUsingSights )
+		{
+			KFPM = KFPawn_Monster( Pawn );
+			if( KFPM != none && KFPM.UseAdjustedControllerSensitivity() )
+			{
+				bUsingSights =  true;
+			}
+		}
 
 		if( UsedFOVAngle != DefaultFOV && bUsingSights )
-            FOVScale = UsedFOVAngle * 0.01333 * GamepadZoomedSensitivityScale; // 0.01333 = 1 / 75.0 - the default FOV
-        else
-            FOVScale = 1.0;
+		{
+            return UsedFOVAngle * 0.01333 * ZoomSensitivityScale; // 0.01333 = 1 / 75.0 - the default FOV
+		}
 	}
 
-	return FOVScale;
-
+	return 1.f;
 }
 
 /** Toggle debug display for view acceleration **/
@@ -2476,6 +2477,126 @@ function bool IsAimAssistAutoTargetEnabled()
 /*********************************************************************************************
 * Versus
 ********************************************************************************************* */
+
+/** Returns special move associated with a firemode input */
+simulated function ESpecialMove GetVersusZedMoveType(KFPawn_Monster P, byte FireModeNum)
+{
+	if ( bUsingGamepad )
+	{
+		return GetVersusZedMoveTypeGamepad(P, FireModeNum);
+	}
+
+	switch (FireModeNum)
+	{
+		case class'KFWeapon'.const.DEFAULT_FIREMODE:
+			return SM_PlayerZedMove_LMB;
+
+		case 5: // Ironsights Key
+			return SM_PlayerZedMove_RMB;
+
+		case class'KFWeapon'.const.BASH_FIREMODE:
+			return SM_PlayerZedMove_V;
+
+	    case class'KFWeapon'.const.ALTFIRE_FIREMODE: 
+			return SM_PlayerZedMove_MMB;
+
+	    case 8: // Quick heal key
+			return SM_PlayerZedMove_Q;
+
+        case class'KFWeapon'.const.GRENADE_FIREMODE:
+			return SM_PlayerZedMove_G;
+
+        case class'KFWeapon'.const.RELOAD_FIREMODE:
+        	return SM_Taunt;
+	}
+
+	return SM_None;
+}
+
+/** Returns special move associated with a firemode input */
+simulated function ESpecialMove GetVersusZedMoveTypeGamepad(KFPawn_Monster P, byte FireModeNum)
+{
+	if ( FireModeNum < P.MoveListGamepadScheme.Length )
+	{
+		if ( P.MoveListGamepadScheme[FireModeNum] != SM_None )
+		{
+			return P.MoveListGamepadScheme[FireModeNum];
+		}
+		// else, fall-through to switch statement
+	}
+	else if ( FireModeNum == 7 )
+	{
+		return SM_Taunt;
+	}
+
+	// certain buttons can be used as secondary options when empty
+	switch ( FireModeNum )
+	{
+		case class'KFWeapon'.const.DEFAULT_FIREMODE:
+			return P.MoveListGamepadScheme[ZGM_Melee_Square];
+
+		case 5: // Ironsights Key
+			return P.MoveListGamepadScheme[ZGM_Melee_Triangle];
+
+		case 6: // Weapon Select Key
+			return P.MoveListGamepadScheme[ZGM_Melee_Square];
+
+		default:
+	}
+
+	return SM_None;
+}
+
+function bool CustomStartFireVersus( optional Byte FireModeNum )
+{
+	local KFPawn_Monster P;
+
+	if( Pawn != none && (Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire()) )
+	{
+		P = KFPawn_Monster(Pawn);
+		if ( P != None )
+		{
+			bUsingVersusGamepadScheme = bUsingGamepad;
+			P.StartPlayerZedMove(GetVersusZedMoveType(P, FireModeNum));
+			return true;
+		}
+	}
+	return false;
+}
+
+function bool CustomStopFireVersus( optional Byte FireModeNum )
+{
+	local KFPawn_Monster P;
+
+	if( Pawn != none && (Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire()) )
+	{
+		P = KFPawn_Monster(Pawn);
+		if ( P != None )
+		{
+			// bUsingGamepad uses a custom scheme, so when it's toggled we mayis toggled it
+			if ( bUsingVersusGamepadScheme != bUsingGamepad )
+			{
+				if( P != None && P.IsDoingSpecialMove() )
+				{
+					P.SpecialMoves[P.SpecialMove].SpecialMoveButtonReleased();
+				}
+			}
+			P.StopPlayerZedMove(GetVersusZedMoveType(P, FireModeNum));
+			return true;
+		}
+	}
+	return false;
+}
+
+function bool QuickHealVersus()
+{
+	if( CustomStartFireVersus(8) )
+	{
+		return true;
+	}
+	return false;
+}
+
 function JumpVersus()
 {
 	local KFPawn_Monster KFPM;
@@ -2491,7 +2612,7 @@ function JumpVersus()
 			KFPM = KFPawn_Monster(Pawn);
 			if( KFPM != none )
 			{
-				if( KFPM.GetSpecialMoveCooldownTimeRemainingByHandle(SM_Jump) > 0.f )
+				if( KFPM.GetSpecialMoveCooldownTimeRemaining(SM_Jump) > 0.f )
 				{
 					return;
 				}
@@ -2500,69 +2621,6 @@ function JumpVersus()
 
 		bPressedJump = true;
 	}
-}
-
-simulated function bool IronSightsVersus( optional bool bHoldButtonMode )
-{
-	// For pawns without weapons let KFPawn_Monster::StartFire() have a chance to perform
-	// an alt-fire for zeds.  Since PendingFire is not set no StopFire() is needed.
-	if( Pawn != none && (Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire()) )
-	{
-		Pawn.StartFire(1);
-		return true;
-	}
-	return false;
-}
-
-function bool IronSightsReleaseVersus( optional bool bHoldButtonMode )
-{
-	if( Pawn != none && (Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire()) )
-	{
-		Pawn.StopFire(1);
-		return true;
-	}
-	return false;
-}
-
-function bool GrenadeVersus()
-{
-	if( Pawn != none && Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire() )
-	{
-		Pawn.StartFire(6);
-		return true;
-	}
-
-	return false;
-}
-
-function bool SwitchFireVersus()
-{
-	if( Pawn != none && Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire() )
-	{
-		Pawn.StartFire(4);
-		return true;
-	}
-	return false;
-}
-
-function bool SwitchFireReleaseVersus()
-{
-	if( Pawn != none && Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire() )
-	{
-		Pawn.StopFire(4);
-		return true;
-	}
-	return false;
-}
-
-function bool QuickHealVersus()
-{
-	if( Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire() )
-	{
-		Pawn.StartFire(5);
-		return true;
-	}
-	return false;
 }
 
 /*********************************************************************************************
@@ -2705,20 +2763,13 @@ exec function UnsuppressScoring()
 defaultproperties
 {
    bRequiresPushToTalk=True
-   bQuickWeaponSelect=True
    bShowGamepadWeaponSelectHint=True
    bAimAssistEnabled=True
    bViewSmoothingEnabled=True
    bViewAccelerationEnabled=True
-   bTargetFrictionEnabled=True
-   bTargetAdhesionEnabled=True
-   bAutoTargetEnabled=True
-   bForceFeedbackEnabled=True
    GamepadButtonHoldTime=0.250000
-   SprintAnalogThreshold=0.600000
    LookSensitivityScaleCurve=(Points=((ArriveTangent=0.500000,LeaveTangent=0.500000,InterpMode=CIM_CurveAuto),(InVal=0.800000,OutVal=0.600000,ArriveTangent=2.000000,LeaveTangent=2.000000,InterpMode=CIM_CurveAuto),(InVal=1.000000,OutVal=1.300000,ArriveTangent=8.000000,LeaveTangent=8.000000,InterpMode=CIM_CurveAuto)))
    MoveSensitivityScaleCurve=(Points=((OutVal=0.300000,InterpMode=CIM_Constant),(InVal=0.300000,OutVal=0.300000),(InVal=0.900000,OutVal=1.000000)))
-   GamepadSensitivityScale=1.000000
    SprintingSensitivityScale=0.675000
    ZoomedSensitivityScale=0.350000
    GamepadZoomedSensitivityScale=0.650000
@@ -2735,8 +2786,8 @@ defaultproperties
    AdhesionFactor=16.000000
    AutoTargetTimeLeft=0.100000
    AutoTargetAngleCurve=(Points=((OutVal=0.939700),(InVal=1500.000000,OutVal=0.984800),(InVal=6000.000000,OutVal=1.000000)))
-   AutoTargetWeakspotCurve=(Points=((OutVal=0.996200),(InVal=1000.000000,OutVal=0.999400),(InVal=2000.000000,OutVal=1.000000)))
-   AutoTargetCooldown=0.500000
+   AutoTargetWeakspotCurve=(Points=((OutVal=0.996200),(InVal=1000.000000,OutVal=0.999800),(InVal=2000.000000,OutVal=1.000000)))
+   AutoTargetCooldown=0.750000
    ForceLookAtPawnMinAngle=0.900000
    ForceLookAtPawnRotationRate=22.000000
    ForceLookAtPawnDampenedRotationRate=8.000000

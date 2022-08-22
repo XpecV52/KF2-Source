@@ -38,6 +38,7 @@ var bool bIsVisible;
 var bool bUsingGamepad;
 var int CurrentInteractionIndex;
 var const string ControllerStringPrefix;
+var const string HoldCommandDelimiter;
 var const string ZEDTeamTextColor;
 var const string HumanTeamTextColor;
 var const float UpdateInterval;
@@ -576,15 +577,34 @@ function DisplayInteractionMessage(string MessageString, int MessageIndex, optio
 
 function int GetInteractionMessagePriority(int MessageIndex)
 {
-    if(MessageIndex < 7)
+    if(MessageIndex < 8)
     {
-        return 7 - 1;
+        return 8 - 1;
     }
     return MessageIndex;
 }
 
 function SendInteractionMessageToGFX(string MessageString, string ButtonName)
 {
+    local GFxObject TextObject;
+    local array<string> StringArray;
+
+    TextObject = CreateObject("Object");
+    StringArray = SplitString(MessageString, HoldCommandDelimiter);
+    if(StringArray.Length > 1)
+    {
+        TextObject.SetString("holdMessage", StringArray[1]);
+        TextObject.SetBool("bHoldCommand", true);        
+    }
+    else
+    {
+        TextObject.SetBool("bHoldCommand", false);
+    }
+    TextObject.SetString("message", StringArray[0]);
+    TextObject.SetString("buttonName", ButtonName);
+    TextObject.SetString("holdString", Class'KFGFxControlsContainer_ControllerPresets'.default.HoldString);
+    TextObject.SetString("tapString", Class'KFGFxControlsContainer_ControllerPresets'.default.TapString);
+    InteractionMessageContainer.SetObject("interactionMessageData", TextObject);
     InteractionMessageContainer.ActionScriptVoid("showInteractionMessage");
 }
 
@@ -674,7 +694,7 @@ function UpdateScale()
 {
     if(KFGXHUDManager != none)
     {
-        KFGXHUDManager.SetFloat("HUDScale", HUDScale);
+        KFGXHUDManager.SetFloat("HUDScale", HUDScale * Class'WorldInfo'.static.GetResolutionBasedHUDScale());
     }
 }
 
@@ -768,6 +788,7 @@ defaultproperties
     ScoreBoardClass=Class'KFGFxMoviePlayer_ScoreBoard'
     HUDScale=1
     ControllerStringPrefix="XboxTypeS_"
+    HoldCommandDelimiter="<%HOLD%>"
     ZEDTeamTextColor="0xBE0600"
     HumanTeamTextColor="0xBAFFFF"
     UpdateInterval=0.1

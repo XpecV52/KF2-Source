@@ -55,14 +55,22 @@ function SetSpectatedKFPRI( KFPlayerReplicationInfo TempKFPRI )
 function UpdateSpectateeInfo(optional bool bForceUpdate)
 {
     local byte CurrentPerkLevel;
-    if( SpectatedKFPRI == none || SpectatedKFPRI == GetPC().PlayerReplicationInfo || GetPC().PlayerCamera.CameraStyle == 'Boss' || SpectatedKFPRI.CurrentPerkClass == none)
+    if( SpectatedKFPRI == none || GetPC().PlayerCamera.CameraStyle == 'Boss' || SpectatedKFPRI.CurrentPerkClass == none || GetPC().WorldInfo.NetMode == NM_Standalone )
     {
+
         SetVisible(false);  
         return;
     }
     else
     {
-        SetVisible(true);
+        if( SpectatedKFPRI == GetPC().PlayerReplicationInfo && GetPC().Pawn != none && GetPC().Pawn.IsAliveAndWell() || SpectatedKFPRI == none)
+        {
+            SetVisible(false);
+        }
+        else
+        {
+            SetVisible(true);
+        }
     }
 
     CurrentPerkLevel = SpectatedKFPRI.GetActivePerkLevel();

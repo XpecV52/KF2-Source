@@ -47,6 +47,7 @@ var array<Patriarch_TrackedEnemyInfo> RecentlySeenEnemyList;
 var array<Patriarch_TrackedEnemyInfo> HiddenEnemies;
 var array<KFPawn> LastMinigunEnemies;
 var float MinMinigunRangeSQ;
+var float MaxMinigunRangeSQ;
 var float MaxFanFireRangeSQ;
 var array<KFPawn> LastChargedPlayers;
 var float MinChargeRangeSQ;
@@ -58,6 +59,7 @@ var float MinTentacleRangeSQ;
 var array<KFPawn> LastMissileEnemies;
 var float LastMissileAttackTime;
 var float MinMissileRangeSQ;
+var float MaxMissileRangeSQ;
 var float LastMortarAttackTime;
 var float LastSuccessfulAttackTime;
 /** How often to update RecentlySeenEnemyList */
@@ -124,12 +126,12 @@ simulated event Destroyed()
 
 function bool IsAggroEnemySwitchAllowed()
 {
-    return ((super(KFAIController).IsAggroEnemySwitchAllowed() && !MyPatPawn.IsDoingSpecialMove(18)) && !MyPatPawn.IsDoingSpecialMove(19)) && !MyPatPawn.IsDoingSpecialMove(3);
+    return ((super(KFAIController).IsAggroEnemySwitchAllowed() && !MyPatPawn.IsDoingSpecialMove(20)) && !MyPatPawn.IsDoingSpecialMove(21)) && !MyPatPawn.IsDoingSpecialMove(3);
 }
 
 function bool CanSwitchEnemies()
 {
-    return ((((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bIsCloaking) && !MyPatPawn.IsDoingSpecialMove(16)) && !MyPatPawn.IsDoingSpecialMove(18)) && !MyPatPawn.IsDoingSpecialMove(17)) && !MyPatPawn.IsDoingSpecialMove(3);
+    return ((((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bIsCloaking) && !MyPatPawn.IsDoingSpecialMove(17)) && !MyPatPawn.IsDoingSpecialMove(20)) && !MyPatPawn.IsDoingSpecialMove(19)) && !MyPatPawn.IsDoingSpecialMove(3);
 }
 
 function float GetAggroRating(KFPawn KFP)
@@ -189,6 +191,11 @@ event bool SetEnemy(Pawn NewEnemy)
         return false;
     }
     return super.SetEnemy(NewEnemy);
+}
+
+function ForceSetEnemy(Pawn NewEnemy)
+{
+    SetEnemy(NewEnemy);
 }
 
 event ChangeEnemy(Pawn NewEnemy, optional bool bCanTaunt)
@@ -442,7 +449,7 @@ function EvaluateAttacks(float DeltaTime)
     }
     if(((MyPatPawn.CanTentacleGrab() && RecentlySeenEnemyList.Length > 0) && (WorldInfo.TimeSeconds - LastGrabAttackTime) > MyPatPawn.TentacleGrabCooldownTime) && !MyPatPawn.bIsCloaking || FRand() < 0.25)
     {
-        if(SetBestTarget(LastGrabbedPlayers, MinTentacleRangeSQ, Square(Class'KFSM_Patriarch_Grapple'.default.MaxRange * 0.85), 0.6, true, true))
+        if(SetBestTarget(LastGrabbedPlayers, MinTentacleRangeSQ, Square((Class'KFSM_Patriarch_Grapple'.default.MaxRange * 0.85) * MyPatPawn.GetAttackRangeScale()), 0.6, true, true))
         {
             MyPatPawn.SetCloaked(false);
             Class'AICommand_Patriarch_Grab'.static.TentacleGrab(self);
@@ -489,10 +496,10 @@ function EvaluateAttacks(float DeltaTime)
                 }
             }
         }
-        bShouldFireMissile = ((!bShouldFireMortar && bCanFireMissile) && ((bCanFireMinigun || !bHadMinigunAttack) && FRand() < 0.2) || FRand() < 0.6) && SetBestTarget(LastMissileEnemies, MinMissileRangeSQ,, 0.5, true, true);
+        bShouldFireMissile = ((!bShouldFireMortar && bCanFireMissile) && ((bCanFireMinigun || !bHadMinigunAttack) && FRand() < 0.2) || FRand() < 0.6) && SetBestTarget(LastMissileEnemies, MinMissileRangeSQ, MaxMissileRangeSQ * MyPatPawn.GetAttackRangeScale(), 0.5, true, true);
         if((bCanFireMinigun && !bShouldFireMissile) && !bShouldFireMortar)
         {
-            bCanFireMinigun = SetBestTarget(LastMinigunEnemies, MinMinigunRangeSQ,, 0.25, false, true);
+            bCanFireMinigun = SetBestTarget(LastMinigunEnemies, MinMinigunRangeSQ, MaxMinigunRangeSQ * MyPatPawn.GetAttackRangeScale(), 0.25, false, true);
         }
         if(bShouldFireMortar)
         {
@@ -577,6 +584,10 @@ function bool ShouldSprint()
 {
     if((((Enemy != none) && MyPatPawn != none) && !MyPatPawn.bIsHeadless) && !MyPatPawn.bEmpPanicked)
     {
+        if(MyPatPawn.IsDoingSpecialMove(21))
+        {
+            return false;
+        }
         if(MyPatPawn.bIsCloaking)
         {
             return true;
@@ -604,6 +615,11 @@ function bool ShouldSprint()
         }
     }
     return false;
+}
+
+function bool CanSetSprinting(bool bNewSprintStatus)
+{
+    return super(KFAIController).CanSetSprinting(bNewSprintStatus) && !bNewSprintStatus || !MyPatPawn.IsDoingSpecialMove(21);
 }
 
 function bool IsCeilingClear()
@@ -850,7 +866,7 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
     }
     else
     {
-        if((((((!bWantsToFlee && !bFleeing) && !bRagedThisPhase) && MyPatPawn.MaxRageAttacks > 0) && !MyPatPawn.IsDoingSpecialMove(16)) && Killed != self) && Killed.GetTeamNum() == GetTeamNum())
+        if((((((!bWantsToFlee && !bFleeing) && !bRagedThisPhase) && MyPatPawn.MaxRageAttacks > 0) && !MyPatPawn.IsDoingSpecialMove(17)) && Killed != self) && Killed.GetTeamNum() == GetTeamNum())
         {
             if(CanSee(KilledPawn))
             {
@@ -863,9 +879,9 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
         }
         else
         {
-            if((Killed.Pawn == Enemy) && MyPatPawn.IsDoingSpecialMove(19))
+            if((Killed.Pawn == Enemy) && MyPatPawn.IsDoingSpecialMove(21))
             {
-                KFSM_Patriarch_MinigunBarrage(MyPatPawn.SpecialMoves[19]).Timer_SearchForMinigunTargets();
+                KFSM_Patriarch_MinigunBarrage(MyPatPawn.SpecialMoves[21]).Timer_SearchForMinigunTargets();
             }
         }
     }
@@ -914,7 +930,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
             }
         }
     }
-    if(((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bHealedThisPhase) && MyPatPawn.CanSummonChildren()) && !MyPatPawn.IsDoingSpecialMove(16))
+    if(((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bHealedThisPhase) && MyPatPawn.CanSummonChildren()) && !MyPatPawn.IsDoingSpecialMove(17))
     {
         if(!bSummonedThisPhase && GetHealthPercentage() < (FleeHealthThreshold + 0.075))
         {
@@ -941,7 +957,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
             MyPatPawn.SetFleeAndHealMode(true);
         }
     }
-    super(Controller).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
+    super(KFAIController).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
 }
 
 function StartPaternalInstinct()
@@ -1244,7 +1260,7 @@ function NotifyFleeFinished(optional bool bAcquireNewEnemy)
         ClearTimer('Timer_SearchForFleeObstructions');
         bWantsToFlee = false;
         bFleeing = false;
-        MyPatPawn.DoSpecialMove(16,,, Class'KFSM_Patriarch_Heal'.static.PackSMFlags(MyPatPawn.CurrentBattlePhase - 1));
+        MyPatPawn.DoSpecialMove(17,,, Class'KFSM_Patriarch_Heal'.static.PackSMFlags(MyPatPawn.CurrentBattlePhase - 1));
     }
     EnableMeleeRangeEventProbing();
     BeginCombatCommand(GetDefaultCommand(), "Restarting default command");
@@ -1331,10 +1347,12 @@ defaultproperties
     VisibleAggroDmgThreshold=260
     HiddenAggroDmgThreshold=200
     MinMinigunRangeSQ=160000
+    MaxMinigunRangeSQ=1.6E+07
     MaxFanFireRangeSQ=640000
     MinChargeRangeSQ=810000
     MinTentacleRangeSQ=90000
     MinMissileRangeSQ=360000
+    MaxMissileRangeSQ=1.6E+07
     LastRecentSeenEnemyListUpdateTime=0.1
     RetargetWaitTime=5
     MaxRageRangeSQ=1440000
@@ -1345,7 +1363,11 @@ defaultproperties
     MaxFleeDuration=25
     MaxFleeDistance=20000
     bRepathOnInvalidStrike=true
+    bUseRunOverWarning=true
+    MinRunOverSpeed=360
+    MinRunOverWarningAim=0.85
     bCanDoHeavyBump=true
     DefaultCommandClass=Class'AICommand_Base_Patriarch'
     MeleeCommandClass=Class'AICommand_Base_Patriarch'
+    DangerEvadeSettings=/* Array type was not detected. */
 }

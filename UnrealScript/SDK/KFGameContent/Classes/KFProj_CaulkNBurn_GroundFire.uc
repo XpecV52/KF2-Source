@@ -12,6 +12,8 @@ class KFProj_CaulkNBurn_GroundFire extends KFProj_GroundFire;
 
 defaultproperties
 {
+	bWarnAIWhenFired=true
+
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		Damage=10
@@ -36,7 +38,7 @@ defaultproperties
 		FracturePartVel=0
 	    ExplosionEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Impacts'
 		ExplosionSound=none
-		MomentumTransferScale=0
+		MomentumTransferScale=1
 		bAllowPerMaterialFX=true
 
 		// Camera Shake

@@ -14,11 +14,14 @@ package tripwire.controls.trader
         public function TraderFilterTab()
         {
             super();
+            tabClickSoundEffect = "TRADER_STORE_FILTER_CLICK";
+            tabOverSoundEffect = "TRADER_STORE_FILTER_ROLLOVER";
         }
         
         override public function set selected(param1:Boolean) : void
         {
             super.selected = param1;
+            mouseEnabled = mouseChildren = !param1;
         }
         
         public function get source() : String

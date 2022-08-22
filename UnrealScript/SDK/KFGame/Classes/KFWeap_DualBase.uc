@@ -79,12 +79,20 @@ cpptext
 */
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
+	local KFGameEngine KFGEngine;
 	super.PostInitAnimTree( SkelComp );
 
 	EmptyMagBlendNode_L = AnimNodeBlendPerBone(SkelComp.FindAnimNode('EmptyMagBlend_L'));
 	if( EmptyMagBlendNode_L != none && BonesToLockOnEmpty_L.Length > 0 )
 	{
 		BuildEmptyMagNodeWeightList( EmptyMagBlendNode_L, BonesToLockOnEmpty_L );
+	}
+
+	KFGEngine = KFGameEngine(Class'KFGameEngine'.static.GetEngine());
+
+	if(KFGEngine != none)
+	{
+		bUseAltFireMode = KFGEngine.bUseAltAimOnDual;
 	}
 
 	if( !bRevolver )
@@ -160,6 +168,17 @@ simulated state Active
 			StartIdleFidgetTimer();
 			ToggleAdditiveBobAnim(!bUsingSights);
 		}
+	}
+
+	simulated function bool CanPlayIdleFidget(optional bool bOnReload)
+	{
+		// Make sure we can't play idle fidget if one of the pistols is empty.
+		if(AmmoCount[0] < 2)
+		{
+			return false;
+		}
+
+		return Super.CanPlayIdleFidget(bOnReload);
 	}
 }
 
@@ -593,9 +612,9 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 ********************************************************************************************* */
 
 // /** Performs actual ammo reloading */
-simulated function PerformReload()
+simulated function PerformReload(optional byte FireModeNum)
 {
-	super.PerformReload();
+	super.PerformReload(FireModeNum);
 
 	if( !bRevolver )
 	{

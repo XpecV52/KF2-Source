@@ -14,6 +14,7 @@ var array<STutorialSlide> TargetTutorialArray;
 var KFGameInfo_Tutorial KFGI;
 var KFTutorialSectionInfo TutorialSectionInfo;
 var bool bUsingGamepad;
+var GFxObject ManagerObject;
 
 function Init(optional LocalPlayer LocPlay)
 {
@@ -28,6 +29,16 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     bHandled = true;
     switch(WidgetName)
     {
+        case 'root1':
+            if(ManagerObject == none)
+            {
+                ManagerObject = Widget;
+                if(Class'WorldInfo'.static.IsConsoleBuild(8))
+                {
+                    ManagerObject.SetBool("bUsingGamepad", true);
+                }
+            }
+            break;
         case 'tutorialPopup':
             if(TutorialContainer == none)
             {
@@ -69,7 +80,10 @@ function CheckIfUsingGamepad()
 function OnInputTypeChanged(bool bGamepad)
 {
     bUsingGamepad = bGamepad;
-    TutorialContainer.UpdateUsingGamepad(bUsingGamepad);
+    if(ManagerObject != none)
+    {
+        ManagerObject.SetBool("bUsingGamepad", bGamepad);
+    }
 }
 
 function bool GetUsingGamepad()
@@ -105,6 +119,7 @@ defaultproperties
     SoundThemeName=ButtonSoundTheme
     MovieInfo=SwfMovie'UI_Tutorial.TutorialManager_SWF'
     bAutoPlay=true
+    bCaptureInput=true
     bCaptureMouseInput=true
     CaptureKeys=/* Array type was not detected. */
     SoundThemes=/* Array type was not detected. */

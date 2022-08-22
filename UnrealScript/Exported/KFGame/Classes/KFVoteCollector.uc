@@ -12,7 +12,7 @@ struct sKickVoteInfo
 };
 
 var byte VoteTime;
-
+var byte ShortenedTime;
 var sKickVoteInfo CurrentVote;
 var bool bIsVoteInProgress;
 var bool bIsFailedVoteTimerActive;
@@ -450,6 +450,10 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
 				case 0:
 					TopVotesObject.Map1Votes = MapVoteList[i].VoterPRIList.length;
 					TopVotesObject.Map1Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[i].MapIndex];
+					if(CheckMajorityPlayersVotedOnMap(PRIs, MapVoteList[i].VoterPRIList.length))
+					{
+						ShortenVoteTime(KFGI);
+					}
 					break;
 			
 				case 1:
@@ -471,15 +475,28 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
 		PRIs[i].RecieveTopMaps(TopVotesObject);
 	}
 
-	if(CheckAllPlayerVoted(PRIs) && !bAllPlayersVotedOnMap)
+	if(CheckAllPlayerVoted(PRIs))
+	{
+		ShortenVoteTime(KFGI);
+	}
+}
+
+function ShortenVoteTime(KFGameInfo KFGI)
+{
+	if( !bAllPlayersVotedOnMap && KFGI != none)
 	{
 		bAllPlayersVotedOnMap = true;
-		
-		if(KFGI != none)
-		{
-			KFGI.UpdateCurrentMapVoteTime(5, true);
-		}
+		KFGI.UpdateCurrentMapVoteTime(ShortenedTime, true);
 	}
+}
+
+function bool CheckMajorityPlayersVotedOnMap(out array<KFPlayerReplicationInfo> PRIs, int NumOfVotesOnMap)
+{
+	local float VotePercentage;
+
+	VotePercentage = Float(NumOfVotesOnMap) / Float(PRIs.Length);
+
+	return VotePercentage > 0.5f;
 }
 
 function bool CheckAllPlayerVoted(out array<KFPlayerReplicationInfo> PRIs)
@@ -518,6 +535,7 @@ function int MapVoteSort(MapVote A, MapVote B)
 defaultproperties
 {
    VoteTime=30
+   ShortenedTime=10
    TopResultsToShow=3
    ActiveTimeUntilVoteEnabled=30
    TopVotesObject=(Map1Votes=255,Map2Votes=255,Map3Votes=255)

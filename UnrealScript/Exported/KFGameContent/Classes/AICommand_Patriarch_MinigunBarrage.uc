@@ -34,7 +34,6 @@ function Pushed()
 {
 	Super.Pushed();
 	StopAllLatentMovement();
-	AIZeroMovementVariables();
 
 	if( Enemy != none )
 	{
@@ -52,6 +51,7 @@ function Pushed()
 	bBeganFire = false;
 }
 
+function LockdownAI();
 
 function Popped()
 {
@@ -116,6 +116,12 @@ state Command_SpecialMove
 
 		if( MyPatPawn != none && MyPatPawn.CanDoSpecialMove(InSpecialMove) )
 		{
+			// Disallow movement only in fan fire
+			if( bIsFanFire || !MyPatPawn.CanMoveWhenMinigunning() )
+			{
+				super.LockdownAI();
+			}
+
 			return class'KFSM_Patriarch_MinigunBarrage'.static.PackSMFlags( bIsFanFire );
 		}
 

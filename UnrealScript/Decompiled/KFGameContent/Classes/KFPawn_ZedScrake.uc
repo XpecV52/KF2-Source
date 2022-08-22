@@ -28,7 +28,7 @@ var(RageCharge) float RageHealthThreshold;
 
 simulated event PostBeginPlay()
 {
-    super(KFPawn).PostBeginPlay();
+    super.PostBeginPlay();
     ChainsawIdleAkComponent.PlayEvent(PlayChainsawIdleAkEvent);
     CreateExhaustFx();
 }
@@ -52,19 +52,19 @@ function PossessedBy(Controller C, bool bVehicleTransition)
         KFAICM = KFAIController_Monster(C);
         if(KFAICM != none)
         {
-            if(KFAICM.Skill == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
+            if(KFAICM.Skill == Class'KFGameDifficultyInfo'.static.GetDifficultyValue(0))
             {
                 RageHealthThreshold = RageHealthThresholdNormal;                
             }
             else
             {
-                if(KFAICM.Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(1))
+                if(KFAICM.Skill <= Class'KFGameDifficultyInfo'.static.GetDifficultyValue(1))
                 {
                     RageHealthThreshold = RageHealthThresholdHard;                    
                 }
                 else
                 {
-                    if(KFAICM.Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(2))
+                    if(KFAICM.Skill <= Class'KFGameDifficultyInfo'.static.GetDifficultyValue(2))
                     {
                         RageHealthThreshold = RageHealthThresholdSuicidal;                        
                     }
@@ -140,11 +140,20 @@ simulated function SetEnraged(bool bNewEnraged)
     if(Role == ROLE_Authority)
     {
         bIsEnraged = bNewEnraged;
+        if(IsDoingSpecialMove(16))
+        {
+            EndSpecialMove();
+        }
         if(!IsHumanControlled())
         {
             SetSprinting(bNewEnraged);
         }
     }
+}
+
+function bool CanBlock()
+{
+    return !bIsEnraged && super.CanBlock();
 }
 
 simulated event NotifyGoreMeshActive()
@@ -251,6 +260,7 @@ defaultproperties
     XPValues[3]=69
     DamageTypeModifiers=/* Array type was not detected. */
     ZedBumpDamageScale=0.1
+    DifficultySettings=Class'KFDifficulty_Scrake'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     OnDeathAchievementID=132
     PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'

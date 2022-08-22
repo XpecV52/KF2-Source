@@ -95,6 +95,11 @@ var const duplicatetransient guid	LightmapGuid;
 var() const interp float Brightness <UIMin=0.0 | UIMax=20.0>;
 var() const interp color LightColor;
 
+`if(`__TW_LIGHTING_MODIFICATIONS_)
+/** Used to control the contribution of NdotL Lambertian lighting factor. Primary use case if for fill lights that have DisableSpecular=True */
+var() float Hardness <UIMin=0.0 | UIMax=1.0 | ClampMin=0.0 | ClampMax=1.0>;
+`endif
+
 /**
  * The light function to be applied to this light.
  * Note that only non-lightmapped lights (UseDirectLightMap=False) can have a light function.
@@ -469,6 +474,11 @@ defaultproperties
 	// Use cheap modulated shadowing by default
 	LightShadowMode=LightShadow_Modulate
 `endif
+
+`if(`__TW_LIGHTING_MODIFICATIONS_)
+	Hardness=1.0
+`endif 
+
 	ModShadowFadeoutExponent=3.0
 	// default to PCF shadow projection
 	ShadowProjectionTechnique=ShadowProjTech_Default

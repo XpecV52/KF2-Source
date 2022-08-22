@@ -59,58 +59,58 @@ simulated state WeaponBurstFiring
 	}
 
 
-    /**
-     * PlayFireEffects Is the root function that handles all of the effects associated with
-     * a weapon.  This function creates the 1st person effects.  It should only be called
-     * on a locally controlled player.
-     */
-    simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocation )
-    {
-    	local name WeaponFireAnimName;
+	/**
+	 * PlayFireEffects Is the root function that handles all of the effects associated with
+	 * a weapon.  This function creates the 1st person effects.  It should only be called
+	 * on a locally controlled player.
+	 */
+	simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocation )
+	{
+		local name WeaponFireAnimName;
 
-        // Only play the burst fire sound on the first shot as the sound includes additional shot sounds baked in
-        if( FireModeNum != ALTFIRE_FIREMODE || (FireModeNum == ALTFIRE_FIREMODE &&
-            (!bBurstPlayedFireEffects || `IsInZedTime(self))) )
-        {
-            PlayFiringSound(CurrentFireMode);
-    	}
+		// Only play the burst fire sound on the first shot as the sound includes additional shot sounds baked in
+		if( FireModeNum != ALTFIRE_FIREMODE || (FireModeNum == ALTFIRE_FIREMODE &&
+			(!bBurstPlayedFireEffects || `IsInZedTime(self))) )
+		{
+			PlayFiringSound(CurrentFireMode);
+		}
 
-    	if( Instigator != none && Instigator.IsFirstPerson() )
-    	{
-    	    if ( !bPlayingLoopingFireAnim && (FireModeNum != ALTFIRE_FIREMODE || (FireModeNum == ALTFIRE_FIREMODE &&
-                !bBurstPlayedFireEffects)) )
-    	    {
-    		    WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
+		if( Instigator != none && Instigator.IsFirstPerson() )
+		{
+			if ( !bPlayingLoopingFireAnim && (FireModeNum != ALTFIRE_FIREMODE || (FireModeNum == ALTFIRE_FIREMODE &&
+				!bBurstPlayedFireEffects)) )
+			{
+				WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
 
-    		    if ( WeaponFireAnimName != '' )
-    		    {
-    			    PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),,FireTweenTime);
-    		    }
-    	    }
+				if ( WeaponFireAnimName != '' )
+				{
+					PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),,FireTweenTime);
+				}
+			}
 
-    		HandleRecoil();
+			HandleRecoil();
 
-    	    ShakeView();
+			ShakeView();
 
-    	    // Start muzzle flash effect
-    	    CauseMuzzleFlash(FireModeNum);
-    	}
+			// Start muzzle flash effect
+			CauseMuzzleFlash(FireModeNum);
+		}
 
-    	bBurstPlayedFireEffects = true;
-    }
+		bBurstPlayedFireEffects = true;
+	}
 
-    /** Overridden to include the BurstFireModifier*/
+	/** Overridden to include the BurstFireModifier*/
 	simulated function ModifyRecoil( out float CurrentRecoilModifier )
 	{
 		super.ModifyRecoil( CurrentRecoilModifier );
 		CurrentRecoilModifier *= BurstFireRecoilModifier;
 	}
 
-    /** Get name of the animation to play for PlayFireEffects. Overriden to play the right animation for the number of shots in the burst fire */
-    simulated function name GetWeaponFireAnim(byte FireModeNum)
-    {
-    	if( BurstAmount == 3 )
-        {
+	/** Get name of the animation to play for PlayFireEffects. Overriden to play the right animation for the number of shots in the burst fire */
+	simulated function name GetWeaponFireAnim(byte FireModeNum)
+	{
+		if( BurstAmount == 3 )
+		{
 			if ( bUsingSights )
 			{
 				return BurstFire3RdSightedAnim;
@@ -129,32 +129,32 @@ simulated state WeaponBurstFiring
 		{
 			return super.GetWeaponFireAnim(FireModeNum);
 		}
-    }
+	}
 
-    /**
-     * Tells the weapon to play a firing sound (uses CurrentFireMode)
-     */
-    simulated function PlayFiringSound( byte FireModeNum )
-    {
-    	if ( !bPlayingLoopingFireSnd && BurstAmount > 1 && `NotInZedTime(self) )
-    	{
-    		MakeNoise(1.0, 'PlayerFiring');
-            if( BurstAmount == 3 )
-            {
-            	WeaponPlayFireSound(WeaponFire3RdSnd.DefaultCue, WeaponFire3RdSnd.FirstPersonCue);
-    		}
-    		else if( BurstAmount == 2 )
-    		{
-            	WeaponPlayFireSound(WeaponFire2RdSnd.DefaultCue, WeaponFire2RdSnd.FirstPersonCue);
-    		}
-    	}
-    	else
+	/**
+	 * Tells the weapon to play a firing sound (uses CurrentFireMode)
+	 */
+	simulated function PlayFiringSound( byte FireModeNum )
+	{
+		if ( !bPlayingLoopingFireSnd && BurstAmount > 1 && `NotInZedTime(self) )
+		{
+			MakeNoise(1.0, 'PlayerFiring');
+			if( BurstAmount == 3 )
+			{
+				WeaponPlayFireSound(WeaponFire3RdSnd.DefaultCue, WeaponFire3RdSnd.FirstPersonCue);
+			}
+			else if( BurstAmount == 2 )
+			{
+				WeaponPlayFireSound(WeaponFire2RdSnd.DefaultCue, WeaponFire2RdSnd.FirstPersonCue);
+			}
+		}
+		else
 		{
 			super.PlayFiringSound( FireModeNum );
 		}
-    }
+	}
 
-    simulated event EndState( Name NextStateName )
+	simulated event EndState( Name NextStateName )
 	{
 		// Set recoil settings back to normal
 		RecoilRate=default.RecoilRate;
@@ -165,17 +165,17 @@ simulated state WeaponBurstFiring
 			RecoilYawBlendOutRate = maxRecoilYaw/RecoilRate * RecoilBlendOutRatio;
 			RecoilPitchBlendOutRate = maxRecoilPitch/RecoilRate * RecoilBlendOutRatio;
 		}
-		
+
 		Super.EndState(NextStateName);
 	}
 }
 
 defaultproperties
 {
-    // FOV
-    MeshFOV=75
+	// FOV
+	MeshFOV=75
 	MeshIronSightFOV=33
-    PlayerIronSightFOV=70
+	PlayerIronSightFOV=70
 
 	// Depth of field
 	DOF_FG_FocalRadius=50
@@ -200,7 +200,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=30
-	MaxSpareAmmo[0]=330
+	SpareAmmoCapacity[0]=300
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -235,9 +235,8 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	FireInterval(DEFAULT_FIREMODE)=+0.1 // 600 RPM
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AK12'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_AK12'
 	Spread(DEFAULT_FIREMODE)=0.0085
-	InstantHitDamage(DEFAULT_FIREMODE)=35.0
+	InstantHitDamage(DEFAULT_FIREMODE)=40.0
 	FireOffset=(X=32,Y=4.0,Z=-5)
 
 	// ALT_FIREMODE
@@ -247,7 +246,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	FireInterval(ALTFIRE_FIREMODE)=+0.06 // 1000 RPM
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_AK12'
-	InstantHitDamage(ALTFIRE_FIREMODE)=35.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=40.0
 	Spread(ALTFIRE_FIREMODE)=0.0085
 	BurstAmount=3
 	BurstFire2RdAnim=Shoot_Burst2
@@ -256,6 +255,11 @@ defaultproperties
 	BurstFire3RdSightedAnim=Shoot_Burst_Iron
 	WeaponFire2RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_M', FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_S')
 	WeaponFire3RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_M', FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_S')
+
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_AK12'
+	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_AK12_ARCH.Wep_AK12_MuzzleFlash'
@@ -269,7 +273,7 @@ defaultproperties
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true
 	bLoopingFireSnd(DEFAULT_FIREMODE)=true
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_End_M', FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_End_S')
-	SingleFireMode=ALTFIRE_FIREMODE
+	SingleFireSoundIndex=ALTFIRE_FIREMODE
 
 	// Attachments
 	bHasIronSights=true

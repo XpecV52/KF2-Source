@@ -40,7 +40,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=7
-	MaxSpareAmmo[0]=105
+	SpareAmmoCapacity[0]=105
 	InitialSpareMags[0]=5
 	AmmoPickupScale[0]=2.0
 	bCanBeReloaded=true
@@ -68,7 +68,6 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.2
 	InstantHitDamage(DEFAULT_FIREMODE)=91.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Deagle'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Deagle'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	Spread(DEFAULT_FIREMODE)=0.01
 	FireOffset=(X=20,Y=4.0,Z=-3)
@@ -76,6 +75,10 @@ defaultproperties
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Deagle'
+	InstantHitDamage(BASH_FIREMODE)=22
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Deagle_ARCH.Wep_Deagle_MuzzleFlash'

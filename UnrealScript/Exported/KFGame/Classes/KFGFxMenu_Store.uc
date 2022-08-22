@@ -40,12 +40,28 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	LocalizeText();
 	OnlineSub =  Class'GameEngine'.static.GetOnlineSubsystem();
 
-	OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+	if( class'WorldInfo'.static.IsConsoleBuild() )
+	{
+		class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( OnReadPlayfabInventoryComplete );
+	}
+	else if( OnlineSub != none )
+	{
+		OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+	}
 }
 
 function OnOpen()
 {
-	if(OnlineSub != none)
+	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+	{
+		CheckForEmptyStore();
+	}
+
+	if( class'WorldInfo'.static.IsConsoleBuild() )
+	{
+		class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( OnReadPlayfabInventoryComplete );
+	}
+	else if( OnlineSub != none )
 	{
 		OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
 	}
@@ -55,7 +71,11 @@ function OnOpen()
 
 function OnClose()
 {
-	if(OnlineSub != none)
+	if( class'WorldInfo'.static.IsConsoleBuild() )
+	{
+		class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate( OnReadPlayfabInventoryComplete );
+	}
+	else if( OnlineSub != none )
 	{
 		OnlineSub.ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
 	}
@@ -64,6 +84,14 @@ function OnClose()
 function OnInventoryReadComplete()
 {
 	RefreshItemList();
+}
+
+function OnReadPlayfabInventoryComplete( bool bSuccess )
+{
+	if( bSuccess )
+	{
+		RefreshItemList();
+	}
 }
 
 function RefreshItemList()
@@ -131,7 +159,14 @@ function Callback_AddToCartClicked(int ItemSKU)
 	{
 		StoreItemDetails = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', ItemSKU)];
 
-		if(StoreItemDetails.Price == "")
+		if( class'WorldInfo'.static.IsConsoleBuild() )
+		{
+			if( StoreItemDetails.SignedOfferId != "" )
+			{
+				OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);
+			}
+		}
+		else if( StoreItemDetails.Price == "" )
 		{
 			OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);
 		}
@@ -173,6 +208,28 @@ function GFxObject CreateStoreItem(ItemProperties DesiredStoreItem)
 	DataObject.SetInt("SKU", DesiredStoreItem.Definition);
 
 	return DataObject;
+}
+
+
+function CheckForEmptyStore()
+{
+	local int i;
+
+	// Check existing inventory for at least one PSN item. If none exist, throw up empty store dialog
+	for( i = 0; i < OnlineSub.ItemPropertiesList.Length; i++ )
+	{
+		if( OnlineSub.ItemPropertiesList[i].SignedOfferId != "" )
+		{
+			return;
+		}
+	}
+
+	// Only show this message if the player is logged in
+	if( OnlineSub.PlayerInterface.GetLoginStatus(0) == LS_LoggedIn )
+	{
+		// 0 is code for SCE_MSG_DIALOG_SYSMSG_TYPE_TRC_EMPTY_STORE
+		OnlineSub.PlayerInterfaceEx.ShowCustomErrorUI(0);
+	}
 }
 
 defaultproperties

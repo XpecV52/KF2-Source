@@ -41,7 +41,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=30
-	MaxSpareAmmo[0]=300
+	SpareAmmoCapacity[0]=270
 	InitialSpareMags[0]=4
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -76,10 +76,9 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Bullpup'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Bullpup'
 	FireInterval(DEFAULT_FIREMODE)=+0.0909 // 660 RPM
 	Spread(DEFAULT_FIREMODE)=0.0085
-	InstantHitDamage(DEFAULT_FIREMODE)=25.0
+	InstantHitDamage(DEFAULT_FIREMODE)=30.0 //25
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -89,8 +88,12 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_Bullpup'
 	FireInterval(ALTFIRE_FIREMODE)=+0.1
-	InstantHitDamage(ALTFIRE_FIREMODE)=25.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=30.0 //25
 	Spread(ALTFIRE_FIREMODE)=0.0085
+
+	// BASH_FIREMODE
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Bullpup'
+	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_L85A2_ARCH.Wep_L85A2_MuzzleFlash'
@@ -104,7 +107,7 @@ defaultproperties
 	// Advanced (High RPM) Fire Effects
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true
 	bLoopingFireSnd(DEFAULT_FIREMODE)=true
-	SingleFireMode=ALTFIRE_FIREMODE
+	SingleFireSoundIndex=ALTFIRE_FIREMODE
 
 	// Attachments
 	bHasIronSights=true

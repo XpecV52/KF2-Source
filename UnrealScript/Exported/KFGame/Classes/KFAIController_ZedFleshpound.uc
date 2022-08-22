@@ -186,12 +186,13 @@ simulated event bool IsEnraged()
 /** Fleshpounds only sprint when Enraged */
 function bool ShouldSprint()
 {
-	if( MyKFPawn != none && MyKFPawn.IsEnraged() )
-	{
-		return true;
-	}
+	return IsEnraged();
+}
 
-	return false;
+/** Called from KFPawn_Monster::SetSprinting() */
+function bool CanSetSprinting( bool bNewSprintStatus )
+{
+	return !bNewSprintStatus || MyKFPawn.IsEnraged();
 }
 
 /** Fleshpounds aren't concerned with steering away from other KFPawn_Monster classes */
@@ -285,8 +286,8 @@ defaultproperties
    ChargeStuckCheckDistance=10.000000
    RagePluginClass=Class'KFGame.KFAIPluginRage_Fleshpound'
    bUseRunOverWarning=True
-   MinRunOverSpeed=150.000000
-   MinRunOverWarningAim=0.880000
+   MinRunOverSpeed=360.000000
+   MinRunOverWarningAim=0.850000
    bCanTeleportCloser=False
    bCanDoHeavyBump=True
    bIsProbingMeleeRangeEvents=True
@@ -298,6 +299,10 @@ defaultproperties
    HiddenRelocateTeleportThreshold=7.000000
    EvadeGrenadeChance=0.600000
    LowIntensityAttackCooldown=5.000000
+   DangerEvadeSettings(0)=(ClassName="KFWeap_Rifle_Winchester1894",Cooldowns=(0.500000,0.400000,0.300000,0.200000),BlockChances=(0.100000,0.200000,0.700000,0.850000))
+   DangerEvadeSettings(1)=(ClassName="KFWeap_Bow_Crossbow",Cooldowns=(0.500000,0.400000,0.300000,0.200000),BlockChances=(0.100000,0.200000,0.700000,0.850000))
+   DangerEvadeSettings(2)=(ClassName="KFWeap_Rifle_M14EBR",Cooldowns=(0.500000,0.400000,0.300000,0.200000),BlockChances=(0.100000,0.200000,0.700000,0.850000))
+   DangerEvadeSettings(3)=(ClassName="KFWeap_Rifle_RailGun",Cooldowns=(0.500000,0.400000,0.300000,0.200000),BlockChances=(0.100000,0.200000,0.700000,0.850000))
    bNotifyApex=True
    MinHitWall=-0.420000
    Name="Default__KFAIController_ZedFleshpound"

@@ -413,6 +413,9 @@ function bool HitboxSimpleWorldTrace()
 /** Called from state MeleeAtacking */
 simulated function BeginMeleeAttack(optional bool bIsChainAttack)
 {
+	local Pawn P;
+	local KFPawn_Monster KFPM;
+	local vector Projection;
 	local float MeleeDuration;
 
     // Don't let a weak zed grab us when we just melee attacked
@@ -435,6 +438,26 @@ simulated function BeginMeleeAttack(optional bool bIsChainAttack)
 
 	// save the direction of this attack
 	CurrentAttackDir = NextAttackDir;
+
+	// Notify enemy pawns of melee strike
+	if( WorldInfo.NetMode != NM_Client )
+	{
+		foreach WorldInfo.AllPawns( class'Pawn', P )
+		{
+			if( P.GetTeamNum() != Instigator.GetTeamNum() && P.IsAliveAndWell() && !P.IsHumanControlled() )
+			{
+				Projection = Instigator.Location - P.Location;
+				if( VSizeSQ(Projection) <= Square(MaxHitRange + P.CylinderComponent.CollisionRadius) )
+				{
+					KFPM = KFPawn_Monster( P );
+					if( KFPM != none && KFPM.MyKFAIC != none )
+					{
+						KFPM.MyKFAIC.ReceiveMeleeWarning( CurrentAttackDir, Projection, Instigator );
+					}
+				}
+			}
+		}
+	}
 
 	// Select and play attack animation
 	MeleeDuration = PlayMeleeAttackAnimation();

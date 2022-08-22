@@ -69,6 +69,12 @@ package tripwire.controls.postGameMenu
         
         private var levelsToIncrement:int = 0;
         
+        public var xpOpenSoundEffect:String = "AAR_XP_OPEN";
+        
+        public var xpCountUpSoundEffect:String = "AAR_XP_MAINCOUNTUP";
+        
+        public var noXPSoundEffect:String = "AAR_XP_ZERO";
+        
         public function PerkXPTileObject()
         {
             super();
@@ -133,15 +139,19 @@ package tripwire.controls.postGameMenu
         
         public function awardAnimIn() : void
         {
+            var _loc1_:String = this.xpDelta == 0 ? this.noXPSoundEffect : this.xpCountUpSoundEffect;
+            var _loc2_:String = this.finishSubXP1 == 0 ? this.noXPSoundEffect : this.xpCountUpSoundEffect;
+            var _loc3_:String = this.finishSubXP2 == 0 ? this.noXPSoundEffect : this.xpCountUpSoundEffect;
             if(this.xpDelta == 0)
             {
                 this.perkInfo.perkXPBar.width = this.finishXPPercentage / 100 * this.XPBarWidth;
             }
-            Extensions.gfxProcessSound(this,"AAR","NumberUpdate");
             TweenMax.fromTo(this,4 * this.timeDialation,{"alpha":0},{
                 "alpha":1,
                 "ease":Cubic.easeOut,
-                "useFrames":true
+                "useFrames":true,
+                "onStart":this.playSound,
+                "onStartParams":[this.xpOpenSoundEffect]
             });
             TweenMax.to(this.perkLevel,4 * this.timeDialation,{
                 "delay":4 * this.timeDialation,
@@ -158,6 +168,8 @@ package tripwire.controls.postGameMenu
             TweenMax.to(this,8 * this.timeDialation,{
                 "delay":12 * this.timeDialation,
                 "xpCounter":this.xpDelta,
+                "onStart":this.playSound,
+                "onStartParams":[_loc1_],
                 "onUpdate":this.changeXP,
                 "useFrames":true,
                 "ease":Cubic.easeOut
@@ -175,6 +187,8 @@ package tripwire.controls.postGameMenu
             TweenMax.to(this,8 * this.timeDialation,{
                 "delay":24 * this.timeDialation,
                 "startSubXP1":this.finishSubXP1,
+                "onStart":this.playSound,
+                "onStartParams":[_loc2_],
                 "onUpdate":this.changeSubXP1,
                 "useFrames":true,
                 "ease":Cubic.easeOut
@@ -189,6 +203,16 @@ package tripwire.controls.postGameMenu
                 "width":this.perkSubWidth,
                 "useFrames":true
             });
+            TweenMax.to(this,8 * this.timeDialation,{
+                "delay":24 * this.timeDialation,
+                "startSubXP2":this.finishSubXP2,
+                "onStart":this.playSound,
+                "onStartParams":[_loc3_],
+                "onUpdate":this.changeSubXP2,
+                "useFrames":true,
+                "ease":Cubic.easeOut,
+                "onComplete":this.doneAndDone
+            });
             if(this.startLevel == this.finishLevel)
             {
                 TweenMax.to(this.perkInfo.perkXPBar,8 * this.timeDialation,{
@@ -196,14 +220,6 @@ package tripwire.controls.postGameMenu
                     "width":this.finishXPPercentage / 100 * this.XPBarWidth,
                     "useFrames":true,
                     "ease":Cubic.easeOut
-                });
-                TweenMax.to(this,8 * this.timeDialation,{
-                    "delay":24 * this.timeDialation,
-                    "startSubXP2":this.finishSubXP2,
-                    "onUpdate":this.changeSubXP2,
-                    "useFrames":true,
-                    "ease":Cubic.easeOut,
-                    "onComplete":this.doneAndDone
                 });
             }
             else
@@ -220,10 +236,17 @@ package tripwire.controls.postGameMenu
             }
         }
         
+        public function playSound(param1:String) : void
+        {
+            if(Extensions.enabled)
+            {
+                Extensions.gfxProcessSound(this,"UI",param1);
+            }
+        }
+        
         private function doneAndDone() : *
         {
             parent.dispatchEvent(new Event("PlayerNextAnim"));
-            Extensions.gfxProcessSound(this,"AAR","Generic_Beep");
         }
         
         public function animDone() : *

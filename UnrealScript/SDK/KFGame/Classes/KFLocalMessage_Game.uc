@@ -31,6 +31,7 @@ enum EGameMessageType
     GMT_FailedDropInventory,
     GMT_ReceivedGrenadesFrom,
 	GMT_GaveGrenadesTo,
+	GMT_ReceivedAmmoAndArmor,
 
     GMT_FoundCollectible,
     GMT_FoundAllCollectibles,
@@ -93,6 +94,7 @@ static function string GetHexColor(int Switch)
     switch ( Switch )
 	{
 		case GMT_GaveAmmoTo:
+		case GMT_ReceivedAmmoAndArmor:
 		case GMT_ReceivedAmmoFrom:
 		case GMT_HealedBy:
         case GMT_HealedPlayer:
@@ -128,6 +130,7 @@ static function string GetString(
 	{
 		case GMT_GaveAmmoTo:
 			return default.GaveAmmoToMessage @RelatedPRI_1.PlayerName;
+		case GMT_ReceivedAmmoAndArmor:
 		case GMT_ReceivedAmmoFrom:
 			return default.ReceivedAmmoFromMessage @RelatedPRI_1.PlayerName;
 		case GMT_HealedBy:

@@ -4,10 +4,147 @@
 // Alpha clot
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedClot_Alpha extends KFPawn_ZedClot;
+
+/** TRUE when difficulty has dictated that this is a special Alpha type */
+var repnotify protected bool bIsSpecialAlpha;
+
+/** Self-rally damage modifiers */
+var protected float SelfRallyDealtDamageModifier;
+var protected float SelfRallyTakenDamageModifier;
+
+/** If TRUE, this rally was applied to ourselves */
+var bool bWasSelfRally;
+
+replication
+{
+	if( bNetInitial )
+		bIsSpecialAlpha;
+}
+
+simulated event ReplicatedEvent( name VarName )
+{
+	if( VarName == nameOf(bIsSpecialAlpha) )
+	{
+		UpdateBodyMIC();
+		return;
+	}
+
+	super.ReplicatedEvent( VarName );
+}
+
+/** Called immediately after gameplay begins */
+simulated event PostBeginPlay()
+{
+	local class<KFDifficulty_ClotAlpha> MyDifficultySettings;
+	local KFGameReplicationInfo KFGRI;
+
+	super.PostBeginPlay();
+
+	if( bIsSpecialAlpha )
+	{
+		MyDifficultySettings = class<KFDifficulty_ClotAlpha>( DifficultySettings );
+		if( MyDifficultySettings != none )
+		{
+			// Set our (Network: ALL) difficulty-based settings
+			KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
+			if( KFGRI != none )
+			{
+				SelfRallyDealtDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GameDifficulty].SelfDealtDamageModifier;
+				SelfRallyTakenDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GameDifficulty].SelfTakenDamageModifier;
+			}
+		}
+	}
+}
+
+event PossessedBy( Controller C, bool bVehicleTransition )
+{
+	local KFAIController_ZedClot_Alpha AlphaController;
+
+	super.PossessedBy( C, bVehicleTransition );
+
+	// Initialize our rally settings
+	AlphaController = KFAIController_ZedClot_Alpha( MyKFAIC );
+	if( AlphaController != none )
+	{
+		AlphaController.InitRallySettings();
+		if( AlphaController.IsSpecialAlpha() )
+		{
+			bIsSpecialAlpha = true;
+			if( WorldInfo.NetMode != NM_DedicatedServer )
+			{
+				UpdateBodyMIC();
+			}
+		}
+	}
+}
+
+/** If true, assign custom player controlled skin when available */
+simulated event bool UsePlayerControlledZedSkin()
+{
+	return bIsSpecialAlpha || super.UsePlayerControlledZedSkin();
+}
+
+/** Change body MIC if we're a special alpha */
+simulated protected function UpdateBodyMIC()
+{
+	if( GetCharacterMonsterInfo() != none )
+	{
+		CharacterMICs[0].SetParent( GetCharacterMonsterInfo().PlayerControlledSkins[0] );
+	}
+}
+
+/** Applies the rally buff and spawns a rally effect */
+simulated function Rally(
+							KFPawn 			RallyInstigator,
+							ParticleSystem 	RallyEffect,
+							name 			EffectBoneName,
+							vector			EffectOffset,
+							ParticleSystem	AltRallyEffect,
+							name 			AltEffectBoneNames[2],
+							vector 			AltEffectOffset,
+							optional bool	bSkipEffects=false
+						)
+{
+	super.Rally( RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects );
+
+	if( RallyInstigator == self )
+	{
+		bWasSelfRally = true;
+	}
+	else
+	{
+		bWasSelfRally = false;
+	}
+}
+
+/** Applies the rally damage boost if applicable */
+simulated function int GetRallyBoostDamage( int NewDamage )
+{
+	if( bWasSelfRally && SelfRallyDealtDamageModifier > 0.f )
+	{
+		return NewDamage * ( IsTimerActive(nameOf(Timer_EndRallyBoost)) ? SelfRallyDealtDamageModifier : 1.f );
+	}
+	else
+	{
+		return super.GetRallyBoostDamage( NewDamage );
+	}
+}
+
+/** Applies the rally damage reduction if applicable */
+simulated function int GetRallyBoostResistance( int NewDamage )
+{
+	if( bWasSelfRally && SelfRallyTakenDamageModifier > 0.f )
+	{
+		return NewDamage * ( IsTimerActive(nameOf(Timer_EndRallyBoost)) ? SelfRallyTakenDamageModifier : 1.f );
+	}
+	else
+	{
+		return super.GetRallyBoostDamage( NewDamage );
+	}
+}
 
 /** Returns (hardcoded) trader advice dialog ID */
 static function int GetTraderAdviceID()
@@ -46,6 +183,7 @@ defaultproperties
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Piercing')
    DamageTypeModifiers(12)=(DamageType=Class'KFGame.KFDT_Toxic')
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Knife')
+   DifficultySettings=Class'kfgamecontent.KFDifficulty_ClotAlpha'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -61,15 +199,16 @@ defaultproperties
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedClot_Alpha:Afflictions_0'
    IncapSettings(0)=(Vulnerability=(2.500000))
-   IncapSettings(1)=(Cooldown=7.000000,Vulnerability=(2.000000))
+   IncapSettings(1)=(Cooldown=7.000000,Vulnerability=(1.500000))
    IncapSettings(2)=(Cooldown=0.000000)
    IncapSettings(3)=(Cooldown=0.200000,Vulnerability=(2.500000))
    IncapSettings(4)=(Cooldown=0.200000,Vulnerability=(1.300000))
    IncapSettings(5)=(Duration=3.000000,Vulnerability=(2.000000,2.000000,1.000000,1.000000,1.000000))
    IncapSettings(6)=(Duration=3.000000,Cooldown=6.000000,Vulnerability=(3.000000))
-   IncapSettings(7)=(Cooldown=1.000000,Vulnerability=(1.000000))
-   IncapSettings(8)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
-   IncapSettings(9)=(Duration=2.000000,Cooldown=10.000000,Vulnerability=(0.000000))
+   IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000,10.000000,10.000000,10.000000))
+   IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
+   IncapSettings(9)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
+   IncapSettings(10)=(Duration=2.000000,Cooldown=10.000000,Vulnerability=(0.000000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=500.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:FirstPersonArms'
@@ -103,7 +242,7 @@ defaultproperties
       SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
-      SpecialMoveClasses(18)=None
+      SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_AlphaRally'
       SpecialMoveClasses(19)=None
       SpecialMoveClasses(20)=None
       SpecialMoveClasses(21)=None
@@ -112,8 +251,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedClot:SpecialMoveHandler_0'
    End Object
@@ -180,6 +321,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:KFPawnSkeletalMeshComponent'
    End Object

@@ -183,6 +183,12 @@ native function AppendVersionToReadIds();
 
 event ModifyAvailableProfileSettings();
 
+// Export UOnlineProfileSettings::execFlattenExtraToProfileSettings(FFrame&, void* const)
+native function FlattenExtraToProfileSettings();
+
+// Export UOnlineProfileSettings::execExpandExtraFromProfileSettings(FFrame&, void* const)
+native function ExpandExtraFromProfileSettings();
+
 defaultproperties
 {
     OwnerMappings(0)=(Id=0,Name=None)

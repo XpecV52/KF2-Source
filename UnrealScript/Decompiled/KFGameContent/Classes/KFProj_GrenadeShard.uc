@@ -45,7 +45,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
 simulated function Tick(float DeltaTime)
 {
-    super(KFProj_Bullet).Tick(DeltaTime);
+    super(Actor).Tick(DeltaTime);
     if((WorldInfo.NetMode != NM_DedicatedServer) && Physics != 0)
     {
         SetRotation(rotator(Normal(Velocity)));

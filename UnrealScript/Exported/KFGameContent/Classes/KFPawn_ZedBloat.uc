@@ -8,15 +8,44 @@
 //=============================================================================
 class KFPawn_ZedBloat extends KFPawn_Monster;
 
-var name  PukeSocketName;
+/** Socket used to attach puke effect */
+var protected const name PukeSocketName;
+
 /** How far away the bloat's vomit can damage enemies */
-var float VomitRange;
+var protected const float VomitRange;
+
 /** At a base level how much damage this zed's vomit will do */
-var int	  VomitDamage;
-var bool bHasExploded;
+var protected const int VomitDamage;
 
 /** Any pawn in this range will take damage when the bloat explodes */
-var float ExplodeRange;
+var protected const float ExplodeRange;
+
+/** Set to TRUE when bloat has exploded */
+var protected bool bHasExploded;
+
+/** Projectile to spawn for puke mine attack */
+var protected const class<KFProjectile> PukeMineProjectileClass;
+
+/** Rotation offsets to use when spawning our 3 puke mins on death */
+var protected array<rotator> DeathPukeMineRotations;
+
+/** Number of puke mines to spawn when bloat is killed, as long as it wasn't obliterated */
+var protected byte NumPukeMinesToSpawnOnDeath;
+
+/** Pre-death location and rotation */
+var protected vector OldLocation;
+var protected rotator OldRotation;
+
+simulated function PostBeginPlay()
+{
+	super.PostBeginPlay();
+
+	// Set the number of puke mines we're allowed to spawn on death
+	if( WorldInfo.Game != none )
+	{
+		NumPukeMinesToSpawnOnDeath = class<KFDifficulty_Bloat>(DifficultySettings).static.GetPukeMinesToSpawnOnDeath( self, WorldInfo.Game );
+	}
+}
 
 /** Script AnimNotify which makes the Bloat begin to discharge vomit */
 function ANIMNOTIFY_PukeAttack()
@@ -91,6 +120,15 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 	return super.CanInjureHitZone(DamageType, HitZoneIdx);
 }
 
+/** This pawn has died. */
+function bool Died(Controller Killer, class<DamageType> damageType, vector HitLocation)
+{
+	OldLocation = Location;
+	OldRotation = Rotation;
+
+	return super.Died( Killer, damageType, HitLocation );
+}
+
 // Override to deal explosive damage for the killing shot of an explosive bone
 function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZoneIdx, vector InstigatorLocation)
 {
@@ -100,7 +138,7 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
 	super.TakeHitZoneDamage( Damage, DamageType, HitZoneIdx, InstigatorLocation );
 
 	// Only deal explosive damage on the killing shot
-	if( Role == ROLE_Authority && bPlayedDeath && TimeOfDeath == WorldInfo.TimeSeconds && !bHasExploded )
+	if( Role == ROLE_Authority && bPlayedDeath && !bHasExploded && TimeOfDeath == WorldInfo.TimeSeconds )
 	{
 		HitZoneIndex = HitFxInfo.HitBoneIndex;
 		if ( HitZoneIndex != 255 && (InjuredHitZones & (1 << HitZoneIndex)) > 0 )	// INDEX_None -> 255 after byte conversion
@@ -110,6 +148,9 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
 		    {
 		    	DealExplosionDamage();
 		    	bHasExploded = true;
+
+		    	// Spawn some puke mines
+		    	SpawnPukeMinesOnDeath();
 		    }
 		}
 	}
@@ -159,6 +200,34 @@ function DealExplosionDamage()
 	}
 }
 
+/** Spawns a puke mine at the specified location and rotation. Network: SERVER */
+function SpawnPukeMine( vector SpawnLocation, rotator SpawnRotation )
+{
+	local KFProjectile PukeMine;
+
+	PukeMine = Spawn( PukeMineProjectileClass, self,, SpawnLocation, SpawnRotation,, true );
+	if( PukeMine != none )
+	{
+		PukeMine.Init( vector(SpawnRotation) );
+	}
+}
+
+/** Spawns several puke mines when dying */
+function SpawnPukeMinesOnDeath()
+{
+	local int i;
+
+	// Spawn puke mines
+	while( NumPukeMinesToSpawnOnDeath > 0 && DeathPukeMineRotations.Length > 0 )
+	{
+		i = Rand( DeathPukeMineRotations.Length );
+		SpawnPukeMine( OldLocation, Normalize(OldRotation + DeathPukeMineRotations[i]) );
+		DeathPukeMineRotations.Remove( i, 1 );
+
+		--NumPukeMinesToSpawnOnDeath;
+	}	
+}
+
 /**
  * Dialog
  **/
@@ -174,6 +243,10 @@ defaultproperties
    VomitRange=350.000000
    VomitDamage=12
    ExplodeRange=500.000000
+   PukeMineProjectileClass=Class'kfgamecontent.KFProj_BloatPukeMine'
+   DeathPukeMineRotations(0)=(Pitch=7000,Yaw=10480,Roll=0)
+   DeathPukeMineRotations(1)=(Pitch=7000,Yaw=32767,Roll=0)
+   DeathPukeMineRotations(2)=(Pitch=7000,Yaw=-10480,Roll=0)
    bIsBloatClass=True
    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Bloat_ARCH.ZED_Bloat_Archetype'
    HeadlessBleedOutTime=6.000000
@@ -200,13 +273,14 @@ defaultproperties
    DamageTypeModifiers(4)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.300000))
    DamageTypeModifiers(5)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.300000))
    DamageTypeModifiers(6)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.300000))
-   DamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(1.600000))
+   DamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Fire')
    DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(0.800000))
    DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.500000))
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.250000))
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.250000))
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm',DamageScale=(0.650000))
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AR15',DamageScale=(0.400000))
+   DifficultySettings=Class'kfgamecontent.KFDifficulty_Bloat'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -222,10 +296,10 @@ defaultproperties
    HitZones(3)=()
    HitZones(4)=()
    HitZones(5)=()
-   HitZones(6)=()
+   HitZones(6)=(DmgScale=0.200000,SkinID=2)
    HitZones(7)=()
    HitZones(8)=()
-   HitZones(9)=()
+   HitZones(9)=(BoneName="LeftForearm",DmgScale=0.200000,Limb=BP_LeftArm,SkinID=2)
    HitZones(10)=()
    HitZones(11)=()
    HitZones(12)=()
@@ -243,15 +317,16 @@ defaultproperties
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedBloat:Afflictions_0'
    IncapSettings(0)=(Duration=3.000000,Vulnerability=(2.500000))
-   IncapSettings(1)=(Duration=8.000000,Vulnerability=(4.000000))
+   IncapSettings(1)=(Duration=3.700000,Vulnerability=(1.000000))
    IncapSettings(2)=(Cooldown=0.300000,Vulnerability=(2.000000))
    IncapSettings(3)=(Cooldown=0.100000,Vulnerability=(0.350000))
    IncapSettings(4)=(Cooldown=1.000000,Vulnerability=(0.400000))
    IncapSettings(5)=(Duration=1.500000,Cooldown=5.000000,Vulnerability=(0.500000,1.000000,0.500000,0.500000,0.500000))
    IncapSettings(6)=(Cooldown=20.500000,Vulnerability=(0.150000))
-   IncapSettings(7)=(Cooldown=1.000000,Vulnerability=(1.000000))
-   IncapSettings(8)=(Duration=2.000000,Cooldown=3.000000,Vulnerability=(1.000000))
-   IncapSettings(9)=(Duration=8.000000,Vulnerability=(4.000000))
+   IncapSettings(7)=(Duration=3.000000,Cooldown=5.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000))
+   IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
+   IncapSettings(9)=(Duration=2.000000,Cooldown=3.000000,Vulnerability=(1.000000))
+   IncapSettings(10)=(Duration=8.000000,Vulnerability=(4.000000))
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=1.500000
    SprintSpeed=210.000000
@@ -284,7 +359,7 @@ defaultproperties
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
       SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
-      SpecialMoveClasses(16)=None
+      SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
@@ -295,8 +370,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -364,6 +441,7 @@ defaultproperties
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
+      TickGroup=TG_DuringAsyncWork
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
    End Object

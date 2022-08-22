@@ -91,6 +91,8 @@ function bool QuitLobby();
 
 function bool GetLobbyAdmin(UniqueNetId LobbyId, out UniqueNetId AdminId);
 
+function UniqueNetId GetMyId();
+
 function string GetFriendNickname(UniqueNetId FriendId, optional bool IncludeSelf)
 {
     IncludeSelf = true;

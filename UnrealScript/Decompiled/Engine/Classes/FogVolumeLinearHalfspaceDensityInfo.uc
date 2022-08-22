@@ -30,5 +30,4 @@ defaultproperties
     // Reference: StaticMeshComponent'Default__FogVolumeLinearHalfspaceDensityInfo.AutomaticMeshComponent0'
     Components(1)=AutomaticMeshComponent0
     Components(2)=FogVolumeLinearHalfspaceDensityComponent'Default__FogVolumeLinearHalfspaceDensityInfo.FogVolumeComponent0'
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

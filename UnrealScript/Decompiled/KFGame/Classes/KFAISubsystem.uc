@@ -11,5 +11,5 @@ class KFAISubsystem extends BaseAISubsystem
 
 event float GetDifficultyValue(int Index)
 {
-    return Class'KFDifficultyInfo'.static.GetDifficultyValue(byte(Index));
+    return Class'KFGameDifficultyInfo'.static.GetDifficultyValue(byte(Index));
 }

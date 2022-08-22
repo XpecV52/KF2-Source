@@ -388,7 +388,7 @@ function InitSpawnManager()
 {
 	SpawnManager = new(self) SpawnManagerClasses[GameLength];
 	SpawnManager.Initialize();
-	WaveMax = SpawnManager.Waves.Length;
+	WaveMax = SpawnManager.WaveSettings.Waves.Length;
 	MyKFGRI.WaveMax = WaveMax;
 }
 
@@ -545,7 +545,7 @@ function RestartPlayer(Controller NewPlayer)
 
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(GBE_Respawn$","$KFPRI.PlayerName$","$"$"$KFPRI.Score);
 
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("player_respawn",
+			if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("player_respawn",
 						   KFPRI,
 						   "#"$MyKFGRI.WaveNum,
 						   "#"$KFPRI.Score );
@@ -623,7 +623,15 @@ function UpdateGameSettings()
 		if (GameInterface != None)
 		{
 			SessionName = PlayerReplicationInfoClass.default.SessionName;
-			KFGameSettings = KFOnlineGameSettings(GameInterface.GetGameSettings(SessionName));
+
+			if( PlayfabInter != none && PlayfabInter.GetGameSettings() != none )
+			{
+				KFGameSettings = KFOnlineGameSettings(PlayfabInter.GetGameSettings());
+			}
+			else
+			{
+				KFGameSettings = KFOnlineGameSettings(GameInterface.GetGameSettings(SessionName));
+			}
 			//Ensure bug-for-bug compatibility with KF1
 
 			if (KFGameSettings != None)
@@ -673,8 +681,15 @@ function UpdateGameSettings()
 					KFGameSettings.NumOpenPublicConnections = KFGameSettings.NumPublicConnections - NumHumanPlayers;
 				}
 
-				//Trigger re-broadcast of game settings
-				GameInterface.UpdateOnlineGame(SessionName, KFGameSettings, true);
+				if( PlayfabInter != none && PlayfabInter.IsRegisteredWithPlayfab() )
+				{
+					PlayfabInter.ServerUpdateOnlineGame();
+				}
+				else
+				{
+					//Trigger re-broadcast of game settings
+					GameInterface.UpdateOnlineGame(SessionName, KFGameSettings, true);
+				}
 			}
 		}
 	}
@@ -683,27 +698,6 @@ function UpdateGameSettings()
 function int GetGameModeNum()
 {
 	return class'KFGameInfo'.static.GetGameModeNumFromClass( PathName(default.class) );
-}
-
-function int GetNumHumanTeamPlayers()
-{
-	local PlayerController P;
-	local int TotalPlayers, ZedTeamPlayers, HumanTeamPlayers;
-
-	// We call PreClientTravel directly on any local PlayerPawns (ie listen server)
-	foreach WorldInfo.AllControllers(class'PlayerController', P)
-	{
-        //`log(GetFuncName()@P$" team = "$P.PlayerReplicationInfo.Team$" team index = "$P.PlayerReplicationInfo.Team.TeamIndex$" P.GetTeamNum() = "$P.GetTeamNum()$" P.bIsPlayer = "$P.bIsPlayer);
-        if( P.bIsPlayer && P.GetTeamNum() == 255 )
-        {
-            ZedTeamPlayers++;
-        }
-	}
-
-    TotalPlayers = GetNumPlayers();
-    HumanTeamPlayers = TotalPlayers - ZedTeamPlayers;
-    //`log(GetFuncName()$" TotalPlayers: "$TotalPlayers$" ZedTeamPlayers: "$ZedTeamPlayers$" HumanTeamPlayers: "$HumanTeamPlayers);
-    return HumanTeamPlayers;
 }
 
 /**
@@ -994,7 +988,7 @@ exec function WinMatch()
 {
 	if( AllowWaveCheats() )
 	{
-		WaveNum = SpawnManager.Waves.Length;
+		WaveNum = SpawnManager.WaveSettings.Waves.Length;
 		WaveEnded(WEC_WaveWon);
 	}
 }
@@ -1068,7 +1062,7 @@ function ResetAllPickups()
  	if ( WaveNum == WaveMax )
  	{
  		// -1, so that we always have a different pickup to activate
- 		NumAmmoPickups = (AmmoPickups.Length - 1);
+ 		NumAmmoPickups = Max(AmmoPickups.Length - 1, 0);
  	}
 
  	Super.ResetAllPickups();
@@ -1134,7 +1128,7 @@ function WaveStarted()
 	local int i;
 	local KFPlayerController KFPC;
 
-	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("wave_start",
+	if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("wave_start",
 				   None,
 				   "#"$WaveNum,
 				   "#"$GetLivingPlayerCount());
@@ -1145,7 +1139,7 @@ function WaveStarted()
 	{
 		if( !KFPC.bDemoOwner )
 		{
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_wave_start",
+			if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_wave_start",
 						   KFPC.PlayerReplicationInfo,
 						   "#"$WaveNum,
 						   KFPC.GetPerk().Class.Name,
@@ -1213,7 +1207,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 	MyKFGRI.NotifyWaveEnded();
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime( !MyKFGRI.IsFinalWave() );
 
-    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("wave_end", None, "#"$WaveNum, GetEnum(enum'EWaveEndCondition',WinCondition), "#"$GameConductor.CurrentWaveZedVisibleAverageLifeSpan);
+    if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("wave_end", None, "#"$WaveNum, GetEnum(enum'EWaveEndCondition',WinCondition), "#"$GameConductor.CurrentWaveZedVisibleAverageLifeSpan);
 
 	// IsPlayInEditor check was added to fix a scaleform crash that would call an actionscript function
 	// as scaleform was being destroyed. This issue only occurs when playing in the editor
@@ -1263,7 +1257,7 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 		return;
 	}
 
-	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_wave_stats",
+	if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_wave_stats",
 				   KFPC.PlayerReplicationInfo,
 				   "#"$WaveNum,
 				   "#"$KFPC.MatchStats.GetHealGivenInWave(),
@@ -1275,20 +1269,20 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 				   "#"$KFPC.ShotsHit,
 				   "#"$KFPC.ShotsHitHeadshot );
 
-	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_wave_end",
+	if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_wave_end",
 				   KFPC.PlayerReplicationInfo,
 				   "#"$WaveNum,
 				   KFPC.GetPerk().Class.Name,
 				   "#"$KFPC.GetPerk().GetLevel(),
 				   "#"$KFPC.PlayerReplicationInfo.Score,
 				   "#"$KFPC.PlayerReplicationInfo.Kills,
-				   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory());
+				   (KFPC.Pawn != none && KFPC.Pawn.InvManager != none) ? KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory() : "");
 
 	KFPC.MatchStats.GetTopWeapons( 3, Weapons );
 
 	for ( i = 0; i < Weapons.Length; ++i )
 	{
-		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_weapon_stats",
+		if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_weapon_stats",
 					   KFPC.PlayerReplicationInfo,
 					   "#"$WaveNum,
 					   Weapons[i].WeaponDef.Name,
@@ -1310,6 +1304,7 @@ State TraderOpen
 	function BeginState( Name PreviousStateName )
 	{
 		local KFPlayerController KFPC;
+		local KFProj_BloatPukeMine PukeMine;
 
 		MyKFGRI.SetWaveActive(FALSE, GetGameIntensityForMusic());
 
@@ -1335,6 +1330,15 @@ State TraderOpen
 			LogPlayersDosh(GBE_TraderOpen);
 		}
 
+	    // Destroy all lingering explosions
+	    MyKFGRI.FadeOutLingeringExplosions();
+
+		// Destroy all puke mine projectiles
+	    foreach DynamicActors( class'KFProj_BloatPukeMine', PukeMine )
+	    {
+	        PukeMine.FadeOut();
+	    }
+
 		SetTimer(TimeBetweenWaves, false, nameof(CloseTraderTimer));
 	}
 
@@ -1359,12 +1363,12 @@ State TraderOpen
 		// missing the respawn and then dying from certain attacks that can do damage
 		// just after the last zed dies (e.g. explosives/husk suicide, damage over time)
 		if ( KilledPawn.Controller != None && KilledPawn.Controller.bIsPlayer
-			&& Killer != None && KilledPawn.GetTeamNum() != Killer.GetTeamNum()
+			&& (Killer == none || (KilledPawn.GetTeamNum() != Killer.GetTeamNum()))
 			// @hack: Somehow we can get a suicide where Killer!=Victim?
 			&& DamageType != class'DmgType_Suicided' )
 		{
 			// sanity check - The killer pawn should be dead or are detached by now
-			if ( Killer.Pawn == None || !Killer.Pawn.IsAliveAndWell() )
+			if ( Killer == none || Killer.Pawn == None || !Killer.Pawn.IsAliveAndWell() )
 			{
 				return true;
 			}
@@ -1410,12 +1414,27 @@ function NotifyTraderOpened()
  {
  	function BeginState( Name PreviousStateName )
 	{
+		local int i;
+
 		MyKFGRI.bMatchHasBegun = false;
 		MyKFGRI.bMatchIsOver = true;
+		MyKFGRI.bWaitingForAAR = true; //@HSL - JRO - 6/15/2016 - Make sure we're still at full speed before the end of game menu shows up
 
 		if ( AllowBalanceLogging() )
 		{
 			LogPlayersKillCount();
+		}
+
+		// Add the remaining gameplay time for the players
+		if( PlayfabInter != None && PlayfabInter.IsRegisteredWithPlayfab() )
+		{
+			for( i = 0; i < GameReplicationInfo.PRIArray.Length; i++ )
+			{
+				if( GameReplicationInfo.PRIArray[i].PlayfabPlayerId != "" )
+				{
+					AddGameplayTimeForPlayer( KFPlayerReplicationInfo(GameReplicationInfo.PRIArray[i]), int(KFGameReplicationInfo(GameReplicationInfo).GetHeartbeatAccumulatorAmount()), true );
+				}
+			}
 		}
 
 		SetTimer(1, false, nameof(ProcessAwards));
@@ -1436,7 +1455,7 @@ function EndOfMatch(bool bVictory)
 {
 	local KFPlayerController KFPC;
 
-	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("match_end", None, "#"$WaveNum, "#"$(bVictory ? "1" : "0"), "#"$GameConductor.ZedVisibleAverageLifespan);
+	if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("match_end", None, "#"$WaveNum, "#"$(bVictory ? "1" : "0"), "#"$GameConductor.ZedVisibleAverageLifespan);
 
 	if(bVictory)
 	{
@@ -1506,6 +1525,8 @@ function SetZedsToVictoryState()
 function ShowPostGameMenu()
 {
 	local KFGameReplicationInfo KFGRI;
+
+	MyKFGRI.bWaitingForAAR = false; //@HSL - JRO - 6/15/2016 - Make sure we're still at full speed before the end of game menu shows up
 
 	bEnableDeadToVOIP=true; //Being dead at this point is irrelevant.  Allow players to talk about AAR -ZG
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
@@ -1611,10 +1632,12 @@ defaultproperties
    MinAIAlivePercReqForObjStart=0.300000
    bCanPerkAlwaysChange=False
    bEnableGameAnalytics=True
+   DifficultyInfoClass=Class'kfgamecontent.KFGameDifficulty_Survival'
+   DifficultyInfoConsoleClass=Class'kfgamecontent.KFGameDifficulty_Survival_Console'
    MaxRespawnDosh(0)=1750.000000
    MaxRespawnDosh(1)=1550.000000
-   MaxRespawnDosh(2)=1550.000000
-   MaxRespawnDosh(3)=1000.000000
+   MaxRespawnDosh(2)=1700.000000
+   MaxRespawnDosh(3)=1550.000000
    MaxGameDifficulty=3
    SpawnManagerClasses(0)=Class'KFGame.KFAISpawnManager_Short'
    SpawnManagerClasses(1)=Class'KFGame.KFAISpawnManager_Normal'

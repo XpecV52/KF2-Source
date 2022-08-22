@@ -54,17 +54,6 @@ simulated function StartFire(byte FireModeNum)
 	Super(KFWeapon).StartFire(FireModeNum);
 }
 
-/** skip over the MeleeBase version of HasAmmo */
-simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
-{
-	if ( FireModeNum == BLOCK_FIREMODE )
-	{
-		return true;
-	}
-
-	return Super(KFWeapon).HasAmmo(FireModeNum, Amount);
-}
-
  /**
  * Returns which ammo pool a fire mode should pull from, primary or secondary.
  @ param    FiringMode  the fire mode we want to check against
@@ -72,7 +61,8 @@ simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
  */
 simulated function int GetAmmoType(byte FiringMode)
 {
-    if( FiringMode == HEAVY_ATK_FIREMODE )
+	//UI looking for altfire
+    if( FiringMode == HEAVY_ATK_FIREMODE || FiringMode == ALTFIRE_FIREMODE)
 	{
         return 1;
 	}
@@ -290,6 +280,11 @@ static simulated event EFilterTypeUI GetTraderFilter()
 	return FT_Projectile;
 }
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+	return FT_Melee;
+}
+
 defaultproperties
 {
    IdleMotorSound=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Idle_Loop'
@@ -318,7 +313,13 @@ defaultproperties
    QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
-   MaxSpareAmmo(0)=25
+   AmmoCost(0)=1
+   AmmoCost(1)=()
+   AmmoCost(2)=()
+   AmmoCost(3)=()
+   AmmoCost(4)=()
+   AmmoCost(5)=1
+   SpareAmmoCapacity(0)=25
    AmmoPickupScale(1)=0.500000
    bLoopingFireAnim(0)=False
    bLoopingFireAnim(1)=False

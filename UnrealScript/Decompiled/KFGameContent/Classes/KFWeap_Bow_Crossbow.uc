@@ -45,6 +45,7 @@ defaultproperties
     InventorySize=6
     MagazineCapacity=1
     bHasIronSights=true
+    bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bAllowClientAmmoTracking=false
@@ -56,9 +57,11 @@ defaultproperties
     DOF_BlendInSpeed=3
     DOF_FG_FocalRadius=0
     DOF_FG_MaxNearBlurSize=3.5
+    MaxAIWarningDistSQ=4000000
+    AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_Crossbow_TEX.UI_WeaponSelect_Crossbow'
-    MaxSpareAmmo=34
+    SpareAmmoCapacity=34
     InitialSpareMags=13
     AmmoPickupScale=3
     FireSightedAnims=/* Array type was not detected. */

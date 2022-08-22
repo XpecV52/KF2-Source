@@ -25,7 +25,7 @@ defaultproperties
 	KnockdownPower=100 // knockdown any non-boss zed in one hit
 	MeleeHitPower=100
 	StumblePower=300
-	StunPower=0 // stun any non-boss zed in one hit
+	StunPower=200 // stun any non-boss zed in one hit
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'

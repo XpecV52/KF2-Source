@@ -13,6 +13,7 @@ defaultproperties
     ArmDistSquared=150000
     ProjDudTemplate=ParticleSystem'WEP_3P_M79_EMIT.FX_M79_40mm_Projectile_Dud'
     GrenadeBounceEffectInfo=KFImpactEffectInfo'FX_Impacts_ARCH.DefaultGrenadeImpacts'
+    bWarnAIWhenFired=true
     TossZ=150
     GravityScale=0.25
     TerminalVelocity=5000

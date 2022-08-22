@@ -369,6 +369,7 @@ class KFDT_Bludgeon_Patriarch extends KFDT_Bludgeon
 
 
 
+
 	
 
 
@@ -505,6 +506,7 @@ static function int GetKillerDialogID()
 
 defaultproperties
 {
+   bAllowAIDoorDestruction=True
    bExtraMomentumZ=True
    KDamageImpulse=1000.000000
    KDeathVel=950.000000

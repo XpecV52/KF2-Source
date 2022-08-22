@@ -12,12 +12,13 @@ enum ESortOrder
 {
     SORTORDER_None,
     SORTORDER_ACENDING,
-    SORTODER_DECENDING,
-    ESortOrder_MAX
+    SORTORDER_DECENDING,
+    SORTORDER_MAX
 };
 
 enum ESortType
 {
+    SORTTYPE_None,
     SORTTYPE_Name,
     SORTTYPE_Mode,
     SORTTYPE_Difficulty,
@@ -30,14 +31,32 @@ enum ESortType
 
 var transient KFOnlineGameSearch.ESortOrder SortOrder;
 var transient KFOnlineGameSearch.ESortType SortType;
+var transient int LastResultsSize;
 
 // Export UKFOnlineGameSearch::execMakeFakeServerResults(FFrame&, void* const)
 native final function MakeFakeServerResults();
 
 // Export UKFOnlineGameSearch::execSortResults(FFrame&, void* const)
-native final function SortResults(KFOnlineGameSearch.ESortType NewSortType, KFOnlineGameSearch.ESortOrder NewSortOrder);
+native final function SortResults(optional KFOnlineGameSearch.ESortType NewSortType, optional KFOnlineGameSearch.ESortOrder NewSortOrder)
+{
+    NewSortType = 0;
+    NewSortOrder = 0;                
+}
+
+function bool SortIfChanged()
+{
+    if(Results.Length != LastResultsSize)
+    {
+        LastResultsSize = Results.Length;
+        SortResults();
+        return true;
+    }
+    return false;
+}
 
 defaultproperties
 {
+    SortOrder=ESortOrder.SORTORDER_ACENDING
+    SortType=ESortType.SORTTYPE_Ping
     GameSettingsClass=Class'KFOnlineGameSettings'
 }

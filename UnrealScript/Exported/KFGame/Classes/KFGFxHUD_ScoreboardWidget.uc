@@ -104,6 +104,14 @@ function TickHud(float DeltaTime)
     }
 }
 
+
+function ForceUpdateNextFrame()
+{
+	// Reset this time so the next TickHud, it'll force an update
+	LastScoreboardUpdateTime = 0;
+}
+
+
 function SetOpen(bool bOpen)
 {
     SetBool("showScore", bOpen);    
@@ -179,7 +187,7 @@ function UpdatePlayerData()
 	for(i = 0 ; i < CurrentPlayerList.length; i ++)
     {
         KFPRI = CurrentPlayerList[i];
-        if(KFPRI.GetTeamNum() != 255)
+        if(KFPRI.GetTeamNum() != 255 && KFPRI.bClientActiveSpawn)
         {
             TempData  = CreateObject("Object");
 

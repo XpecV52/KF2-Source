@@ -8,6 +8,7 @@ package tripwire.containers.postGame
     import flash.text.TextField;
     import scaleform.clik.controls.ScrollingList;
     import scaleform.clik.data.DataProvider;
+    import scaleform.gfx.Extensions;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripScrollArea;
     import tripwire.controls.postGameMenu.TeamAwardListItemRenderer;
@@ -63,6 +64,8 @@ package tripwire.containers.postGame
         
         public const MaxTeamAwardRenderers:int = 8;
         
+        public var pageSoundEffect:String = "AAR_PERSONALBEST_OPEN";
+        
         public function TeamAwardsContainer()
         {
             super();
@@ -115,6 +118,14 @@ package tripwire.containers.postGame
             this.playerStatsList.enabled = false;
         }
         
+        public function playSound(param1:String) : void
+        {
+            if(Extensions.gfxProcessSound != null)
+            {
+                Extensions.gfxProcessSound(this,"UI",param1);
+            }
+        }
+        
         public function playNextAnim(param1:Event = null) : void
         {
             if(this.currentTeamIndex < this.teamAwardList.dataProvider.length)
@@ -128,6 +139,8 @@ package tripwire.containers.postGame
                     "position":this.scrollAmount,
                     "ease":Cubic.easeInOut,
                     "useFrames":true,
+                    "onStart":this.playSound,
+                    "onStartParams":[this.pageSoundEffect],
                     "onComplete":this.scrollComplete
                 });
             }

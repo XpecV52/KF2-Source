@@ -11,6 +11,7 @@ package
             super();
             this.__setProp_vocalsCheckBox_AudioContainerMC_test_0();
             this.__setProp_minimalDialogueCheckBox_AudioContainerMC_test_0();
+            this.__setProp_controllerSoundCheckBox_AudioContainerMC_test_0();
             this.__setProp_closeButton_AudioContainerMC_header_0();
         }
         
@@ -60,6 +61,32 @@ package
             try
             {
                 minimalDialogueCheckBox["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_controllerSoundCheckBox_AudioContainerMC_test_0() : *
+        {
+            try
+            {
+                controllerSoundCheckBox["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            controllerSoundCheckBox.autoSize = "none";
+            controllerSoundCheckBox.data = "";
+            controllerSoundCheckBox.enabled = true;
+            controllerSoundCheckBox.enableInitCallback = false;
+            controllerSoundCheckBox.focusable = true;
+            controllerSoundCheckBox.label = "Music Vocals";
+            controllerSoundCheckBox.selected = false;
+            controllerSoundCheckBox.visible = true;
+            try
+            {
+                controllerSoundCheckBox["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

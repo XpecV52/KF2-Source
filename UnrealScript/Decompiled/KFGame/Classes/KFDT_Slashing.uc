@@ -92,18 +92,25 @@ static simulated function AddBloodSpread(KFPawn_Monster inPawn, Vector HitDirect
     local Quat Rotation;
     local Vector InstigatorFaceDir, SlashPlaneNormal;
 
-    InstigatorRotation = inPawn.HitFxInstigator.GetBaseAimRotation();
+    if(inPawn.HitFxInstigator != none)
+    {
+        InstigatorRotation = inPawn.HitFxInstigator.GetBaseAimRotation();        
+    }
+    else
+    {
+        InstigatorRotation.Yaw = NormalizeRotAxis(-inPawn.Rotation.Yaw);
+    }
     InstigatorFaceDir = GetRotatorAxis(InstigatorRotation, 0);
     SlashPlaneNormal = Normal(InstigatorFaceDir Cross HitDirection);
     Angle = -3.141593 / 2;
-    J0x94:
+    J0x115:
 
     if(Angle <= (3.141593 / 2))
     {
         Rotation = QuatFromAxisAndAngle(SlashPlaneNormal, Angle);
         HitSpread.AddItem(QuatRotateVector(Rotation, HitDirection);
         Angle += (3.141593 / 6);
-        goto J0x94;
+        goto J0x115;
     }
 }
 

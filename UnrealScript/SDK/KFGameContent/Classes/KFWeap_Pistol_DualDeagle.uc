@@ -47,7 +47,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=14 // twice as much as single
-	MaxSpareAmmo[0]=98
+	SpareAmmoCapacity[0]=98
 	InitialSpareMags[0]=2
 	AmmoPickupScale[0]=1.0
 	bCanBeReloaded=true
@@ -93,7 +93,7 @@ defaultproperties
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
 
 	// BASH_FIREMODE
-	InstantHitDamage(BASH_FIREMODE)=10.0
+	InstantHitDamage(BASH_FIREMODE)=24
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Deagle'
 
 	// Fire Effects

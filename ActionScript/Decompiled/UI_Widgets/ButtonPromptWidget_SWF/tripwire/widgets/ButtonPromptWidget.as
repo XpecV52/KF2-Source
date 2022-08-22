@@ -15,6 +15,8 @@ package tripwire.widgets
         
         public var XPrompt:MovieClip;
         
+        public var touchPrompt:MovieClip;
+        
         public var promptBG:MovieClip;
         
         private var _displayedPrompts:int = 2;
@@ -31,6 +33,7 @@ package tripwire.widgets
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            stage.addEventListener(MenuManager.PARTYFOCUS_CHANGED,this.onPartyFocusChanged,false,0,true);
             this.updateVisibilityBasedOnInputType();
         }
         
@@ -50,6 +53,7 @@ package tripwire.widgets
         public function set localizedText(param1:Object) : void
         {
             this.APrompt.confirmText.text = !!param1.confirm ? param1.confirm : "";
+            this.touchPrompt.cancelText.text = !!param1.party ? param1.party : "";
             this.BPrompt.cancelText.text = !!param1.cancel ? param1.cancel : "";
             this.XPrompt.cancelText.text = !!param1.reset ? param1.reset : "";
         }
@@ -58,7 +62,7 @@ package tripwire.widgets
         {
             if(param1)
             {
-                param1 = bManagerUsingGamepad;
+                param1 = bManagerUsingGamepad && !MenuManager.manager.bPartyWidgetFocused;
             }
             super.visible = param1;
         }
@@ -71,7 +75,7 @@ package tripwire.widgets
         
         protected function updateVisibilityBasedOnInputType() : *
         {
-            this.visible = bManagerUsingGamepad && this._displayedPrompts > 0;
+            this.visible = bManagerUsingGamepad && this._displayedPrompts > 0 && !MenuManager.manager.bPartyWidgetFocused;
             this.BPrompt.visible = this._displayedPrompts > 1;
             this.XPrompt.visible = this._displayedPrompts > 2;
             this.promptBG.width = !this.BPrompt.visible ? Number(this._defaultBGWidth - this.BPrompt.width * 2) : (!this.XPrompt.visible ? Number(this._defaultBGWidth - this.XPrompt.width) : Number(this._defaultBGWidth));
@@ -83,6 +87,14 @@ package tripwire.widgets
             {
                 this._displayedPrompts = MenuManager.manager.numPrompts;
                 this.updateVisibilityBasedOnInputType();
+            }
+        }
+        
+        protected function onPartyFocusChanged(param1:Event) : *
+        {
+            if(bManagerUsingGamepad && this._displayedPrompts > 0)
+            {
+                this.visible = !MenuManager.manager.bPartyWidgetFocused;
             }
         }
     }

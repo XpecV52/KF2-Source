@@ -119,14 +119,21 @@ function ShowLeaveGamePopUp()
 
 function OnLeaveGameConfirm()
 {
-	ConfirmLeaveParty();
+	if(!class'WorldInfo'.static.IsConsoleBuild())
+	{
+		ConfirmLeaveParty();
+	}
+	else if (!class'WorldInfo'.static.IsMenuLevel())
+	{
+		ConsoleCommand("Disconnect");
+	}
 }
 
 defaultproperties
 {
    HeaderString="EXIT GAME"
-   ExitToMainDescription="Leave current game and return to the title screen?"
-   ExitToMainMenu="Exit to Title Screen"
+   ExitToMainDescription="Leave current game and return to the Home Menu?"
+   ExitToMainMenu="Exit to Home Menu"
    ExitKF2="Exit to Desktop"
    Name="Default__KFGFxMenu_Exit"
    ObjectArchetype=KFGFxObject_Menu'KFGame.Default__KFGFxObject_Menu'

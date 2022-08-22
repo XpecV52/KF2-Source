@@ -115,7 +115,7 @@ simulated function UpdateScreenUI()
 	{
 		if ( ScreenUI != none )
 		{
-			ScreenUI.SetMaxCharges(MaxSpareAmmo[0]);
+			ScreenUI.SetMaxCharges(GetMaxAmmoAmount(0));
 			ScreenUI.SetActiveCharges(NumDeployedCharges);
 			TimeSinceLastUpdate=0.0f;
 		}
@@ -138,24 +138,6 @@ simulated function Projectile ProjectileFire()
 	}
 
 	return P;
-}
-
-/**
- * This function checks to see if the weapon has any ammo available for a given fire mode.
- *
- * @param	FireModeNum		- The Fire Mode to Test For
- * @param	Amount			- [Optional] Check to see if this amount is available.
- * @return	true if ammo is available for Firemode FireModeNum.
- */
-simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
-{
-	// always allow detonate firemode
-	if( FireModeNum == DETONATE_FIREMODE )
-	{
-		return true;
-	}
-
-	return super.HasAmmo( FireModeNum, Amount );
 }
 
 /** Detonates the oldest charge */
@@ -229,13 +211,8 @@ static simulated event bool UsesAmmo()
     return true;
 }
 
-/**
- * Toggle between DEFAULT and ALTFIRE
- */
-simulated function AltFireMode()
-{
-	// do nothing, as we have no alt fire mode
-}
+// do nothing, as we have no alt fire mode
+simulated function AltFireMode();
 
 
 /*********************************************************************************************
@@ -381,7 +358,11 @@ defaultproperties
    MagazineCapacity(0)=1
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
-   MaxSpareAmmo(0)=1
+   AmmoCost(2)=0
+   AmmoCost(3)=0
+   AmmoCost(4)=0
+   AmmoCost(5)=0
+   SpareAmmoCapacity(0)=1
    InitialSpareMags(0)=1
    FireAnim="C4_Throw"
    FireLastAnim="C4_Throw_Last"
@@ -402,6 +383,7 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
+   InstantHitDamage(3)=23.000000
    InstantHitDamageTypes(2)=None
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_C4'
    FireOffset=(X=25.000000,Y=15.000000,Z=0.000000)

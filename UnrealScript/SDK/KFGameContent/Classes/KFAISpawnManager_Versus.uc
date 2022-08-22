@@ -91,7 +91,7 @@ function SetupNextWave(byte NextWaveIndex)
 
     // Get the maximum squad size count
     LargestSquadSize = 0;
-    Waves[NextWaveIndex].GetNewSquadList( SquadList );
+    WaveSettings.Waves[NextWaveIndex].GetNewSquadList( SquadList );
     for( i = 0; i < AvailableSquads.Length; ++i )
     {
         SquadZedCount = 0;
@@ -1004,7 +1004,7 @@ function Timer_CheckForZedTakeovers()
 /** Spawns in our remaining reserved zeds */
 function SpawnRemainingReservedZeds( optional bool bSpawnAllReservedZeds )
 {
-    local int i, NumZedsSpawned;
+    local int i, NumZedsSpawned, NumWaitingZedPlayers;
     local array<class<KFPawn_Monster> > TempSquad;
 
     // Early out if this is not a normal wave or there are no reserved zeds remaining
@@ -1025,25 +1025,35 @@ function SpawnRemainingReservedZeds( optional bool bSpawnAllReservedZeds )
         return;
     }
 
+    // See how many are still waiting to spawn. If we don't have any, spawn the big zeds in as AI
+    NumWaitingZedPlayers = GetNumWaitingZedPlayers();
+
     // If we still have any reserved zeds (that aren't Scrake or Fleshpound), start clearing them and
     // spawn them as AI zeds
     if( ReservedPlayerZeds.Length > 0 )
     {
         for( i = 0; i < ReservedPlayerZeds.Length && (bSpawnAllReservedZeds || NumZedsSpawned < 2); ++i )
         {
+            // If we've run out of spawn slots for our reserved zeds, stop allocating as AI and clear them
             if( AIAliveCount + (NumZedsSpawned+1) > MyKFGRI.AIRemaining )
             {
                 ReservedPlayerZeds.Length = 0;
                 break;
             }
 
-            if( !ClassIsChildOf(PlayerZedClasses[AT_Scrake], ReservedPlayerZeds[i])
-                && !ClassIsChildOf(PlayerZedClasses[AT_Fleshpound], ReservedPlayerZeds[i]) )
+            // If we run out of players to assign the big zeds to, just spawn them as AI
+            if( NumWaitingZedPlayers == 0 
+                || (!ClassIsChildOf(PlayerZedClasses[AT_Scrake], ReservedPlayerZeds[i])
+                    && !ClassIsChildOf(PlayerZedClasses[AT_Fleshpound], ReservedPlayerZeds[i])) )
             {
                 TempSquad.AddItem( ReservedPlayerZeds[i] );
                 ReservedPlayerZeds.Remove( i, 1 );
                 ++NumZedsSpawned;
                 --i;
+            }
+            else if( NumWaitingZedPlayers > 0 )
+            {
+                --NumWaitingZedPlayers;
             }
         }
 
@@ -1345,6 +1355,25 @@ protected function bool HaveZedPlayers()
     return false;
 }
 
+/** Retrieves the number of zed players */
+protected function int GetNumWaitingZedPlayers()
+{
+    local KFPlayerControllerVersus KFPCV;
+    local int NumWaiting;
+
+    foreach WorldInfo.AllControllers( class'KFPlayerControllerVersus', KFPCV )
+    {
+        if( KFPCV.PlayerZedSpawnInfo.PendingZedPawnClass == none
+                && KFPCV.GetTeamNum() == 255 && KFPCV.CanRestartPlayer()
+                && (KFPCV.Pawn == none || !KFPCV.Pawn.IsAliveAndWell()) )
+            {
+                ++NumWaiting;
+            }
+    }
+
+    return NumWaiting;
+}
+
 /** Retrieves the number of active (alive and well) zeds of class ZedClass */
 protected function int GetNumActiveZedsOfClass( class<KFPawn_Monster> ZedClass )
 {
@@ -1370,7 +1399,7 @@ protected function int GetNumActiveZedsOfClass( class<KFPawn_Monster> ZedClass )
 /** Determines whether we have any zed players that can play as the boss */
 protected function bool CanSpawnPlayerBoss()
 {
-    local KFPlayerController KFPC;
+    local KFPlayerControllerVersus KFPCV;
 
     // If we've already spawned in the boss, we already know that a boss player can spawn
     if( bBossSpawned )
@@ -1378,10 +1407,10 @@ protected function bool CanSpawnPlayerBoss()
         return true;
     }
 
-    foreach WorldInfo.AllControllers( class'KFPlayerController', KFPC )
+    foreach WorldInfo.AllControllers( class'KFPlayerControllerVersus', KFPCV )
     {
-        if( KFPC.GetTeamNum() == 255 && KFPC.CanRestartPlayer()
-            && (KFPC.Pawn == none || !KFPC.Pawn.IsAliveAndWell()) )
+        if( KFPCV.GetTeamNum() == 255 && KFPCV.CanRestartPlayer()
+            && (KFPCV.Pawn == none || !KFPCV.Pawn.IsAliveAndWell()) )
         {
             return true;
         }
@@ -1421,11 +1450,13 @@ DefaultProperties
 	LateWavesSpawnTimeModByPlayers(4)=0.82      // 5 players
 	LateWavesSpawnTimeModByPlayers(5)=0.65      // 6 players
 	
-    Waves(0)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.ZED_Wave1'
-    Waves(1)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.ZED_Wave2'
-    Waves(2)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.ZED_Wave3'
-    Waves(3)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.ZED_Wave4'
-    Waves(4)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.ZED_Boss'
+    // ---------------------------------------------
+    // Wave settings    
+    DifficultyWaveSettings(0)={(Waves[0]=KFAIWaveInfo'GP_Spawning_ARCH.Versus.ZED_Wave1',
+                                Waves[1]=KFAIWaveInfo'GP_Spawning_ARCH.Versus.ZED_Wave2',
+                                Waves[2]=KFAIWaveInfo'GP_Spawning_ARCH.Versus.ZED_Wave3',
+                                Waves[3]=KFAIWaveInfo'GP_Spawning_ARCH.Versus.ZED_Wave4',
+                                Waves[4]=KFAIWaveInfo'GP_Spawning_ARCH.Versus.ZED_Boss')}
     PlayerZedWaves(0)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.PlayerZED_Wave1'
     PlayerZedWaves(1)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.PlayerZED_Wave2'
     PlayerZedWaves(2)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.PlayerZED_Wave3'

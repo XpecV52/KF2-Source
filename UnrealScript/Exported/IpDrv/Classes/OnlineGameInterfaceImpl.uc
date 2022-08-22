@@ -79,6 +79,9 @@ var const native transient pointer LanBeacon{FLanBeacon};
 /** The session information used to connect to a host */
 var native const transient private pointer SessionInfo{FSessionInfo};
 
+/** Pending members for Play Together session */
+var array<string> PendingMembersToInvite;
+
 /**
  * Delegate fired when the search for an online game has completed
  *
@@ -719,6 +722,25 @@ function ClearGameInviteAcceptedDelegate(byte LocalUserNum,delegate<OnGameInvite
 function bool AcceptGameInvite(byte LocalUserNum,name SessionName,const out OnlineGameSearchResult DesiredGame);
 //@HSL_END
 
+//@HSL_BEGIN - JRO - 6/10/2016 - Play Together
+delegate OnPlayTogetherStarted();
+function AddPlayTogetherStartedDelegate(byte LocalUserNum,delegate<OnPlayTogetherStarted> PlayTogetherStartedDelegate);
+function ClearPlayTogetherStartedDelegate(byte LocalUserNum,delegate<OnPlayTogetherStarted> PlayTogetherStartedDelegate);
+
+function array<string> GetPendingMembersToInvite()
+{
+	return PendingMembersToInvite;
+}
+function ResetPendingMembersToInvite()
+{
+	PendingMembersToInvite.length = 0;
+}
+function SetPendingMembersToInvite(array<string> Members)
+{
+	PendingMembersToInvite = Members;
+}
+//@HSL_END
+
 /**
  * Updates the current session's skill rating using the list of players' skills
  *
@@ -1005,17 +1027,7 @@ function AddGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> GetP
 
 function ClearGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> GetPlayerListCompleteDelegate);
 
-function ClearServerFilters(OnlineGameSearch Search);
-
 function bool RemoveSearchResultFromFavorites(int Index);
-
-function AddServerFilter(OnlineGameSearch Search, string Key, optional string Val = "", optional int location = -1);
-
-function TestAddBoolGametagFilter(out string GametagString, bool Test, name Property, byte BoolVal);
-
-function AddGametagFilter(out string GametagString, name Property, string Val);
-
-function TestAddServerFilter(OnlineGameSearch Search, bool Test, string Key, optional string Val = "");
 
 function ClearOnlineDelegates()
 {

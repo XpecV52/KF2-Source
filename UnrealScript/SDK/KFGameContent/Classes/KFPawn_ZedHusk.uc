@@ -10,13 +10,25 @@
 //	Atk_Suicide_V1
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedHusk extends KFPawn_Monster;
 
+/** Struct containing difficulty-based settings for the fireball */
+struct sHuskFireballSettings
+{
+	/** Whether the explosion should trigger a secondary ground fire explosion */
+	var bool bSpawnGroundFire;
+
+	/** How much momentum to apply to the fireball */
+	var float ExplosionMomentum;
+};
+
 /** Fireball projectile attack */
-var const class<KFProjectile>		FireballClass;
+var const class<KFProj_Husk_Fireball> FireballClass;
+
+/** Fireball settings, set per difficulty */
+var transient sHuskFireballSettings FireballSettings;
 
 /** Player-controlled offset for firing fireballs. */
 var vector PlayerFireOffset;
@@ -29,6 +41,24 @@ var KFGameExplosion	ExplosionTemplate;
 
 /** Set when husk blows up to make sure it only happens once */
 var transient bool bHasExploded;
+
+/** Called from Possessed event when this controller has taken control of a Pawn */
+function PossessedBy( Controller C, bool bVehicleTransition )
+{
+	local KFGameReplicationInfo KFGRI;
+
+	super.PossessedBy( C, bVehicleTransition );
+
+	// Set our difficulty-based settings
+	if( !bVersusZed )
+	{
+		KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
+		if( KFGRI != none )
+		{
+			FireballSettings = class<KFDifficulty_Husk>(DifficultySettings).static.GetFireballSettings( self, KFGRI );
+		}
+	}
+}
 
 /*********************************************************************************************
 * Flamethrower attack handling
@@ -115,7 +145,7 @@ function ANIMNOTIFY_WarnZedsOfFireball()
 				PointDistToLine(HitMonster.Location, AimDirection, Location, DangerPoint);
 
 				// Tell the zed to evade away from the DangerPoint
-				HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint);
+				HitMonster.MyKFAIC.ReceiveLocationalWarning( DangerPoint, Location );
 			}
 		}
 	}
@@ -125,6 +155,7 @@ function ANIMNOTIFY_WarnZedsOfFireball()
 function ANIMNOTIFY_HuskFireballAttack()
 {
 	local KFAIController_ZedHusk HuskAIC;
+	local KFSM_Husk_FireballAttack FireballSM;
 
 	if( MyKFAIC != none )
 	{
@@ -132,6 +163,12 @@ function ANIMNOTIFY_HuskFireballAttack()
 		if( HuskAIC != none )
 		{
 			HuskAIC.ShootFireball(FireballClass);
+		}
+
+		FireballSM = KFSM_Husk_FireBallAttack( SpecialMoves[SpecialMove] );
+		if( FireballSM != none )
+		{
+			FireballSM.NotifyFireballFired();
 		}
 	}
 }
@@ -343,8 +380,9 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch = KFCharacterInfo_Monster'zed_husk_arch.ZED_Husk_Archetype'
-	FireballClass		 = class'KFGameContent.KFProj_Husk_Fireball'
+	CharacterMonsterArch=KFCharacterInfo_Monster'zed_husk_arch.ZED_Husk_Archetype'
+	DifficultySettings=class'KFDifficulty_Husk'
+	FireballClass= class'KFGameContent.KFProj_Husk_Fireball'
 
 	// Explosion light
 	Begin Object Class=PointLightComponent Name=ExplosionPointLight
@@ -393,16 +431,17 @@ DefaultProperties
 	End Object
 
 	// for reference: Vulnerability=(      default, head, legs, arms, special)
-	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 2.0, 0.5, 0.5, 2.0), Cooldown=5.0, Duration=1.5)
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 2.0, 0.5, 0.5, 2.0), Cooldown=5.0,  Duration=1.5)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(0.4),                     Cooldown=3)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(0.4),                     Cooldown=1.0)
 	IncapSettings(AF_GunHit)=	(Vulnerability=(0.5, 0.5, 0.2, 0.2, 0.5), Cooldown=0.2)
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=0.75)
-	IncapSettings(AF_FirePanic)=(Vulnerability=(0.0),                     Cooldown=5.0, Duration=2.0)
-	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0, Duration=3.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.0),                     Cooldown=5.0,  Duration=2.0)
+	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=3.0)
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
-	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=8.5, Duration=4.0)
-	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5, Duration=1.2)
+	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=8.5,  Duration=4.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5,  Duration=1.2)
+	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0), Cooldown=5.5,  Duration=3.0)
 
 	Begin Object Name=Afflictions_0
 		FireFullyCharredDuration=5

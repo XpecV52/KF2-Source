@@ -14,6 +14,7 @@ class KFDT_Ballistic_HX25Impact extends KFDT_Ballistic_Shell
 
 defaultproperties
 {
+   WeaponDef=Class'KFGame.KFWeapDef_HX25'
    KnockdownPower=12.000000
    StumblePower=14.000000
    LegStumblePower=14.000000

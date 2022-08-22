@@ -14,6 +14,7 @@ defaultproperties
    InventorySize=5
    MagazineCapacity(0)=10
    bHasIronSights=True
+   bWarnAIWhenAiming=True
    bCanBeReloaded=True
    bHasFireLastAnims=True
    PenetrationPower(0)=1.500000
@@ -22,9 +23,10 @@ defaultproperties
    MeshIronSightFOV=45.000000
    PlayerIronSightFOV=65.000000
    DOF_FG_MaxNearBlurSize=3.500000
+   AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
-   MaxSpareAmmo(0)=60
+   SpareAmmoCapacity(0)=60
    InitialSpareMags(0)=3
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"

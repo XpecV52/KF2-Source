@@ -25,8 +25,11 @@ var float HeadDestructionDamageScale;
 /** Scale up ragdoll impulse force to the zed's body when the head is blown off by this amount. Used for weapons with multiple projectiles like shotguns so you get the effect of all pellets hitting the head */
 var float HeadDestructionImpulseForceScale;
 
-/** Whether this damagetype is used in consideration for indirect/AoE damage in the AAR */
+/** Whether this damagetype is used in consideration for indirect/AoE damage in the AAR (Player controlled Zed only) */
 var bool bConsideredIndirectOrAoE;
+
+/** If true, this damagetype will destroy a door if closed and unwelded */
+var bool bAllowAIDoorDestruction;
 
 /*********************************************************************************************
 Damage over time
@@ -297,12 +300,6 @@ static function int GetDamageeDialogID()
 static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamageType> KFDT,  optional Controller InstigatedBy )
 {
 	return default.DoT_Type != DOT_None;
-}
-
-/** If true, damage zeds when the acidic compund perk is active */
-static function bool IsToxicDartWithACMedicPerk()
-{
-	return false;
 }
 
 /** Play damage type specific impact effects when taking damage */

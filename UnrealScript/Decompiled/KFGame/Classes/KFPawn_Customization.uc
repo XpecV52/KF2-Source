@@ -13,12 +13,12 @@ class KFPawn_Customization extends KFPawn_Human
 struct native sReplicatedMovementData
 {
     var Vector NewLocation;
-    var byte NewRotationYaw;
+    var Rotator NewRotation;
 
     structdefaultproperties
     {
         NewLocation=(X=0,Y=0,Z=0)
-        NewRotationYaw=0
+        NewRotation=(Pitch=0,Yaw=0,Roll=0)
     }
 };
 
@@ -61,18 +61,15 @@ simulated event ReplicatedEvent(name VarName)
 function SetUpdatedMovementData(Vector NewLoc, Rotator NewRot)
 {
     ReplicatedMovementData.NewLocation = NewLoc;
-    ReplicatedMovementData.NewRotationYaw = byte((NewRot.Yaw & 65535) >> 8);
+    ReplicatedMovementData.NewRotation = NewRot;
     OnMovementDataUpdated();
     bForceNetUpdate = true;
 }
 
 simulated function OnMovementDataUpdated()
 {
-    local Rotator TempRotation;
-
     SetLocation(ReplicatedMovementData.NewLocation);
-    TempRotation.Yaw = NormalizeRotAxis(ReplicatedMovementData.NewRotationYaw << 8);
-    SetRotation(TempRotation);
+    SetRotation(ReplicatedMovementData.NewRotation);
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         UpdateCustomizationPawnVisibility();
@@ -89,6 +86,10 @@ function SetServerHidden(bool bNewHidden)
     }
     bForceNetUpdate = true;
 }
+
+function ClientSetRotation(Rotator NewRotation);
+
+simulated function FaceRotation(Rotator NewRotation, float DeltaTime);
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
@@ -118,7 +119,7 @@ simulated function SetCharacterAnimationInfo()
         Mesh.AnimSets.AddItem(MaleCustomizationAnimSet;
     }
     Mesh.UpdateAnimations();
-    PlayRandomIdleAnimation();
+    PlayRandomIdleAnimation(true);
 }
 
 function AttachWeaponByItemDefinition(int ItemDefinition)
@@ -145,16 +146,18 @@ function AttachWeaponByItemDefinition(int ItemDefinition)
     WeaponAttachment.SetWeaponSkin(ItemDefinition);
 }
 
-simulated function PlayRandomIdleAnimation()
+simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
 {
     local byte AnimIndex;
     local name AnimName;
     local AnimSet AnimSet;
+    local float BlendInTime;
 
     AnimSet = Mesh.AnimSets[Mesh.AnimSets.Length - 1];
     AnimIndex = byte(Rand(AnimSet.Sequences.Length));
     AnimName = AnimSet.Sequences[AnimIndex].SequenceName;
-    BodyStanceNodes[0].PlayCustomAnim(AnimName, 1, 0.4, 0.4, false, true);
+    BlendInTime = ((bNewCharacter) ? 0 : 0.4);
+    BodyStanceNodes[0].PlayCustomAnim(AnimName, 1, BlendInTime, 0.4, false, true);
     BodyStanceNodes[0].SetActorAnimEndNotification(true);
 }
 
@@ -292,6 +295,7 @@ defaultproperties
     Components(7)=AkComponent'Default__KFPawn_Customization.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_Customization.TraderDialogAkSoundComponent'
     Physics=EPhysics.PHYS_Walking
+    bReplicateMovement=false
     bSkipActorPropertyReplication=true
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

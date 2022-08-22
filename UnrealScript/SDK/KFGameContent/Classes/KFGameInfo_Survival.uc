@@ -82,7 +82,7 @@ function InitSpawnManager()
 {
 	SpawnManager = new(self) SpawnManagerClasses[GameLength];
 	SpawnManager.Initialize();
-	WaveMax = SpawnManager.Waves.Length;
+	WaveMax = SpawnManager.WaveSettings.Waves.Length;
 	MyKFGRI.WaveMax = WaveMax;
 }
 
@@ -317,7 +317,15 @@ function UpdateGameSettings()
 		if (GameInterface != None)
 		{
 			SessionName = PlayerReplicationInfoClass.default.SessionName;
-			KFGameSettings = KFOnlineGameSettings(GameInterface.GetGameSettings(SessionName));
+
+			if( PlayfabInter != none && PlayfabInter.GetGameSettings() != none )
+			{
+				KFGameSettings = KFOnlineGameSettings(PlayfabInter.GetGameSettings());
+			}
+			else
+			{
+				KFGameSettings = KFOnlineGameSettings(GameInterface.GetGameSettings(SessionName));
+			}
 			//Ensure bug-for-bug compatibility with KF1
 
 			if (KFGameSettings != None)
@@ -367,8 +375,15 @@ function UpdateGameSettings()
 					KFGameSettings.NumOpenPublicConnections = KFGameSettings.NumPublicConnections - NumHumanPlayers;
 				}
 
-				//Trigger re-broadcast of game settings
-				GameInterface.UpdateOnlineGame(SessionName, KFGameSettings, true);
+				if( PlayfabInter != none && PlayfabInter.IsRegisteredWithPlayfab() )
+				{
+					PlayfabInter.ServerUpdateOnlineGame();
+				}
+				else
+				{
+					//Trigger re-broadcast of game settings
+					GameInterface.UpdateOnlineGame(SessionName, KFGameSettings, true);
+				}
 			}
 		}
 	}
@@ -377,27 +392,6 @@ function UpdateGameSettings()
 function int GetGameModeNum()
 {
 	return class'KFGameInfo'.static.GetGameModeNumFromClass( PathName(default.class) );
-}
-
-function int GetNumHumanTeamPlayers()
-{
-	local PlayerController P;
-	local int TotalPlayers, ZedTeamPlayers, HumanTeamPlayers;
-
-	// We call PreClientTravel directly on any local PlayerPawns (ie listen server)
-	foreach WorldInfo.AllControllers(class'PlayerController', P)
-	{
-        //`log(GetFuncName()@P$" team = "$P.PlayerReplicationInfo.Team$" team index = "$P.PlayerReplicationInfo.Team.TeamIndex$" P.GetTeamNum() = "$P.GetTeamNum()$" P.bIsPlayer = "$P.bIsPlayer);
-        if( P.bIsPlayer && P.GetTeamNum() == 255 )
-        {
-            ZedTeamPlayers++;
-        }
-	}
-
-    TotalPlayers = GetNumPlayers();
-    HumanTeamPlayers = TotalPlayers - ZedTeamPlayers;
-    //`log(GetFuncName()$" TotalPlayers: "$TotalPlayers$" ZedTeamPlayers: "$ZedTeamPlayers$" HumanTeamPlayers: "$HumanTeamPlayers);
-    return HumanTeamPlayers;
 }
 
 /**
@@ -688,7 +682,7 @@ exec function WinMatch()
 {
 	if( AllowWaveCheats() )
 	{
-		WaveNum = SpawnManager.Waves.Length;
+		WaveNum = SpawnManager.WaveSettings.Waves.Length;
 		WaveEnded(WEC_WaveWon);
 	}
 }
@@ -762,7 +756,7 @@ function ResetAllPickups()
  	if ( WaveNum == WaveMax )
  	{
  		// -1, so that we always have a different pickup to activate
- 		NumAmmoPickups = (AmmoPickups.Length - 1);
+ 		NumAmmoPickups = Max(AmmoPickups.Length - 1, 0);
  	}
 
  	Super.ResetAllPickups();
@@ -976,7 +970,7 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 				   "#"$KFPC.GetPerk().GetLevel(),
 				   "#"$KFPC.PlayerReplicationInfo.Score,
 				   "#"$KFPC.PlayerReplicationInfo.Kills,
-				   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory()));
+				   (KFPC.Pawn != none && KFPC.Pawn.InvManager != none) ? KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory() : ""));
 
 	KFPC.MatchStats.GetTopWeapons( 3, Weapons );
 
@@ -1004,6 +998,7 @@ State TraderOpen
 	function BeginState( Name PreviousStateName )
 	{
 		local KFPlayerController KFPC;
+		local KFProj_BloatPukeMine PukeMine;
 
 		MyKFGRI.SetWaveActive(FALSE, GetGameIntensityForMusic());
 
@@ -1029,6 +1024,15 @@ State TraderOpen
 			LogPlayersDosh(GBE_TraderOpen);
 		}
 
+	    // Destroy all lingering explosions
+	    MyKFGRI.FadeOutLingeringExplosions();
+
+		// Destroy all puke mine projectiles
+	    foreach DynamicActors( class'KFProj_BloatPukeMine', PukeMine )
+	    {
+	        PukeMine.FadeOut();
+	    }
+
 		SetTimer(TimeBetweenWaves, false, nameof(CloseTraderTimer));
 	}
 
@@ -1053,12 +1057,12 @@ State TraderOpen
 		// missing the respawn and then dying from certain attacks that can do damage
 		// just after the last zed dies (e.g. explosives/husk suicide, damage over time)
 		if ( KilledPawn.Controller != None && KilledPawn.Controller.bIsPlayer
-			&& Killer != None && KilledPawn.GetTeamNum() != Killer.GetTeamNum()
+			&& (Killer == none || (KilledPawn.GetTeamNum() != Killer.GetTeamNum()))
 			// @hack: Somehow we can get a suicide where Killer!=Victim?
 			&& DamageType != class'DmgType_Suicided' )
 		{
 			// sanity check - The killer pawn should be dead or are detached by now
-			if ( Killer.Pawn == None || !Killer.Pawn.IsAliveAndWell() )
+			if ( Killer == none || Killer.Pawn == None || !Killer.Pawn.IsAliveAndWell() )
 			{
 				return true;
 			}
@@ -1104,12 +1108,27 @@ function NotifyTraderOpened()
  {
  	function BeginState( Name PreviousStateName )
 	{
+		local int i;
+
 		MyKFGRI.bMatchHasBegun = false;
 		MyKFGRI.bMatchIsOver = true;
+		MyKFGRI.bWaitingForAAR = true; //@HSL - JRO - 6/15/2016 - Make sure we're still at full speed before the end of game menu shows up
 
 		if ( AllowBalanceLogging() )
 		{
 			LogPlayersKillCount();
+		}
+
+		// Add the remaining gameplay time for the players
+		if( PlayfabInter != None && PlayfabInter.IsRegisteredWithPlayfab() )
+		{
+			for( i = 0; i < GameReplicationInfo.PRIArray.Length; i++ )
+			{
+				if( GameReplicationInfo.PRIArray[i].PlayfabPlayerId != "" )
+				{
+					AddGameplayTimeForPlayer( KFPlayerReplicationInfo(GameReplicationInfo.PRIArray[i]), int(KFGameReplicationInfo(GameReplicationInfo).GetHeartbeatAccumulatorAmount()), true );
+				}
+			}
 		}
 
 		SetTimer(1, false, nameof(ProcessAwards));
@@ -1200,6 +1219,8 @@ function SetZedsToVictoryState()
 function ShowPostGameMenu()
 {
 	local KFGameReplicationInfo KFGRI;
+
+	MyKFGRI.bWaitingForAAR = false; //@HSL - JRO - 6/15/2016 - Make sure we're still at full speed before the end of game menu shows up
 
 	bEnableDeadToVOIP=true; //Being dead at this point is irrelevant.  Allow players to talk about AAR -ZG
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
@@ -1310,10 +1331,13 @@ DefaultProperties
 
 	MaxRespawnDosh(0)=1750.f // Normal
 	MaxRespawnDosh(1)=1550.f // Hard
-	MaxRespawnDosh(2)=1550.f // Suicidal
-	MaxRespawnDosh(3)=1000.f // Hell On Earth
+	MaxRespawnDosh(2)=1700.f // Suicidal  //1550 
+	MaxRespawnDosh(3)=1550.f // Hell On Earth //1000.0
 
 	GameplayEventsWriterClass=class'KFGame.KFGameplayEventsWriter'
+	TraderVoiceGroupClass=class'KFGameContent.KFTraderVoiceGroup_Default'
+	DifficultyInfoClass=class'KFGameDifficulty_Survival'
+	DifficultyInfoConsoleClass=class'KFGameDifficulty_Survival_Console'
 
 	ObjectiveCheckIntervall=30
 	bLogCheckObjective=false
@@ -1334,7 +1358,5 @@ DefaultProperties
 	AIClassList(AT_Siren)=class'KFGameContent.KFPawn_ZedSiren'
 	AIClassList(AT_Husk)=class'KFGameContent.KFPawn_ZedHusk'
 	AIBossClassList.Add(class'KFGameContent.KFPawn_ZedHans')
-	AIBossClassList.Add(class'KFGameContent.KFPawn_ZedPatriarch')
-
-	TraderVoiceGroupClass=class'KFGameContent.KFTraderVoiceGroup_Default'
+	AIBossClassList.Add(class'KFGameContent.KFPawn_ZedPatriarch')  
 }

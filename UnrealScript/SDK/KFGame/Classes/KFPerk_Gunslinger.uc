@@ -14,23 +14,27 @@ class KFPerk_Gunslinger extends KFPerk
 `include(KFOnlineStats.uci)
 
 //Passives
-var			const				PerkSkill 				WeaponDamage;
-var 		const				PerkSkill				BulletResistance;
-var 		const				PerkSkill				MovementSpeed;
-var 		const				PerkSkill				Recoil;
+var	const				PerkSkill 				WeaponDamage;
+var const				PerkSkill				BulletResistance;
+var const				PerkSkill				MovementSpeed;
+var const				PerkSkill				Recoil;
+var	const 				PerkSkill				ZedTimeReload;
 
-var 		protected 	const	array<Name>				SpecialZedClassNames;
-var 		protected 	const	array<Name>				AdditionalOnPerkWeaponNames;
-var 		protected 	const	array<Name>				AdditionalOnPerkDTNames;
-
-var 		protected 	const	AkEvent					RhythmMethodSoundReset;
-var 		protected 	const	AkEvent					RhythmMethodSoundHit;
-var 		protected 	const	AkEvent					RhythmMethodSoundTop;
-
-var 		protected 	const 	name 					RhytmMethodRTPCName;
+var	protected 	const	array<Name>				SpecialZedClassNames;
+var	protected 	const	array<Name>				AdditionalOnPerkWeaponNames;
+var	protected 	const	array<Name>				AdditionalOnPerkDTNames;
+var	protected 	const	AkEvent					RhythmMethodSoundReset;
+var	protected 	const	AkEvent					RhythmMethodSoundHit;
+var	protected 	const	AkEvent					RhythmMethodSoundTop;
+var	protected 	const 	name 					RhytmMethodRTPCName;
+var	protected	const	float					QuickSwitchSpeedModifier;
 
 /* The bob damping amount when the Shoot and Move perk skill is active */
-var			private 	const	float					ShootnMooveBobDamp;
+var	private 	const	float					ShootnMooveBobDamp;
+
+var	private		const 	array<byte>				BoneBreakerBodyParts;
+var	private 	const   float					BoneBreakerDamage;
+var	private 	const   float					SnarePower;
 
 enum EGunslingerSkills
 {
@@ -38,24 +42,62 @@ enum EGunslingerSkills
 	EGunslingerQuickSwitch,
 	EGunslingerRhythmMethod,
 	EGunslingerBoneBreaker,
-	EGunslingerSpeedReload,
 	EGunslingerPenetration,
-	EGunslingerCenterMass,
-	EGunslingerLimbShots,
-	EGunslingerFanfare,
-	EGunslingerUberAmmo
+	EGunslingerSpeedReload,
+	EGunslingerSkullCracker,
+	EGunslingerKnockEmDown,
+	EGunslingerUberAmmo,
+	EGunslingerFanfare
 };
 
 //Selectable skills
-var 		private 		int							HeadShotComboCount;
-var 		private 		int							HeadShotComboCountDisplay;
+var private 			int						HeadShotComboCount;
+var private 			int						HeadShotComboCountDisplay;
 /** The maximum number of headshots that count toward the Rhythm Method perk skill damage multiplier */
-var 		private const	int 						MaxHeadShotComboCount;
-
+var private const		int 					MaxHeadShotComboCount;
+var private const		float 					HeadShotCountdownIntervall;
+	
 /*********************************************************************************************
 * @name	 Perk init and spawning
 ******************************************************************************************** */
+/**
+ * @brief Weapons and perk skills can affect the jog/sprint speed
+ *
+ * @param Speed jog/sprint speed
+  */
+simulated function ModifySpeed( out float Speed )
+{
+	local float TempSpeed;
 
+	TempSpeed = Speed;
+	TempSpeed += Speed * GetPassiveValue( MovementSpeed, GetLevel() );
+
+	if( IsQuickSwitchActive() )
+	{
+		TempSpeed += Speed * GetQuickSwitychSpeedModifier();
+	}
+
+	`QALog( "MovementSpeed" @ GetPercentage( Speed, Round( TempSpeed ) ), bLogPerk );
+	Speed = Round( TempSpeed );
+}
+
+/**
+ * @brief Modifies skill related attributes
+ */
+simulated protected event PostSkillUpdate()
+{
+	super.PostSkillUpdate();
+
+	SetTickIsDisabled( !IsRhythmMethodActive() );
+
+	if( Role == Role_Authority )
+	{
+		if( IsRhythmMethodActive() )
+		{
+			ServerClearHeadShotsCombo();
+		}
+	}
+}
 
 /*********************************************************************************************
 * @name	 Stats/XP
@@ -109,6 +151,13 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 			`QALog( "RhythmMethod, HeadShotComboCount=" $HeadShotComboCount, bLogPerk );
 			TempDamage += Indamage * GetSkillValue( PerkSkills[EGunslingerRhythmMethod] ) * HeadShotComboCount;
 		}
+
+		if( IsBoneBreakerActive() && MyKFPM != none &&
+			HitShouldGiveBodyPartDamage( MyKFPM.HitZones[HitZoneIdx].Limb ) )
+		{
+			`QALog( "Bone Breaker arms and leg damage =" @ Indamage * static.GetBoneBreakerDamage(), bLogPerk );
+			TempDamage += Indamage * static.GetBoneBreakerDamage();
+		}
 	}
 
 	`QALog( "Total Damage Given" @ DamageType @ KFW @ GetPercentage( InDamage, Round( TempDamage ) ), bLogPerk );
@@ -125,31 +174,20 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 {
 	local float TempDamage;
 
+	if( InDamage <= 0 )
+	{
+		return;
+	}
+
 	TempDamage = InDamage;
 
-	if( ClassIsChildOf(DamageType, class'KFDT_Ballistic') )
+	if( ClassIsChildOf(DamageType, class'KFDT_Ballistic') && TempDamage > 0 )
 	{
 		TempDamage -= InDamage * GetPassiveValue( BulletResistance, CurrentLevel );
 	}
 
 	`QALog( "Total DamageResistance" @ DamageType @ GetPercentage( InDamage, Round( TempDamage ) ) @ "Start/End" @ InDamage @ Round( TempDamage ), bLogPerk );
 	InDamage = Round( TempDamage );
-}
-
-/**
- * @brief Weapons and perk skills can affect the jog/sprint speed
- *
- * @param Speed jog/sprint speed
-  */
-simulated function ModifySpeed( out float Speed )
-{
-	local float TempSpeed;
-
-	TempSpeed = Speed;
-	TempSpeed += Speed * GetPassiveValue( MovementSpeed, GetLevel() );
-
-	`QALog( "MovementSpeed" @ GetPercentage( Speed, Round( TempSpeed ) ), bLogPerk );
-	Speed = Round( TempSpeed );
 }
 
 /**
@@ -163,7 +201,29 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 	{
 		`QALog( "Recoil" @ KFW @ GetPercentage( CurrentRecoilModifier, CurrentRecoilModifier - CurrentRecoilModifier * GetPassiveValue( Recoil,  GetLevel() ) ), bLogPerk );
 		CurrentRecoilModifier -= CurrentRecoilModifier * GetPassiveValue( Recoil, GetLevel() );
+
+		if( IsQuickSwitchActive() && !KFW.bUsingSights )
+		{
+			CurrentRecoilModifier = 0;
+			`QALog( "Hipped quick switch recoil =" @ CurrentRecoilModifier, bLogPerk );
+		}
 	}
+}
+
+/**
+ * @brief Modifies the reload speed for commando weapons
+ *
+ * @param ReloadDuration Length of the reload animation
+ * @param GiveAmmoTime Time after the weapon actually gets some ammo
+ */
+simulated function float GetReloadRateScale( KFWeapon KFW )
+{
+	if( IsWeaponOnPerk( KFW ) && WorldInfo.TimeDilation < 1.f && !IsFanFareActive() )
+	{
+		return 1.f -  GetPassiveValue( ZedTimeReload, GetLevel() );
+	}
+
+	return 1.f;
 }
 
 /*********************************************************************************************
@@ -186,10 +246,10 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  */
 function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting=false )
 {
-	if( IsLimbShotsActive() && HitShouldKnockdown( BodyPart ) && bIsSprinting )
+	if( IsKnockEmDownActive() && HitShouldKnockdown( BodyPart ) && bIsSprinting )
 	{
-		`QALog( "LimbShots knockdown, Hit" @ BodyPart @ GetSkillValue( PerkSkills[EGunslingerLimbShots] ), bLogPerk );
-		return GetSkillValue( PerkSkills[EGunslingerLimbShots] );
+		`QALog( "KnockEmDown knockdown, Hit" @ BodyPart @ GetSkillValue( PerkSkills[EGunslingerKnockEmDown] ), bLogPerk );
+		return GetSkillValue( PerkSkills[EGunslingerKnockEmDown] );
 	}
 
 	return 1.f;
@@ -201,10 +261,10 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
  */
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
-	if( IsCenterMassActive() && ( HitShouldStumble( BodyPart ) || CheckSpecialZedBodyPart( KFP.class, BodyPart )) )
+	if( IsKnockEmDownActive() && ( HitShouldStumble( BodyPart ) || CheckSpecialZedBodyPart( KFP.class, BodyPart )) )
 	{
-		`QALog( "CenterMass Stumble, Hit" @ BodyPart @ GetSkillValue( PerkSkills[EGunslingerCenterMass] ), bLogPerk );
-        return GetSkillValue( PerkSkills[EGunslingerCenterMass] );
+		`QALog( "CenterMass Stumble, Hit" @ BodyPart @ GetSkillValue( PerkSkills[EGunslingerSkullCracker] ), bLogPerk );
+        return GetSkillValue( PerkSkills[EGunslingerKnockEmDown] );
 	}
 
 	return 1.f;
@@ -246,6 +306,11 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 			`QALog( "Fanfare Mod:" @ W @ GetSkillValue( PerkSkills[EGunslingerFanfare] ) @ StateName, bLogPerk );
 			return GetSkillValue( PerkSkills[EGunslingerFanfare] );
 		}
+
+		if( StateName == 'Reloading' )
+		{
+			return 1.f;
+		}
 	}
 
 	return 0.f;
@@ -269,16 +334,13 @@ simulated function bool GetIsUberAmmoActive( KFWeapon KFW )
  */
 function AddToHeadShotCombo( class<KFDamageType> KFDT, KFPawn_Monster KFPM )
 {
-	if( IsRhythmMethodActive() )
+	if( IsDamageTypeOnPerk( KFDT ) )
 	{
-		if( IsDamageTypeOnPerk( KFDT ) )
-		{
-			++HeadShotComboCount;
-			HeadShotComboCountDisplay++;
-			HeadShotComboCount = Min( HeadShotComboCount, MaxHeadShotComboCount );
-
-			HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay,, KFPM );
-		}
+		++HeadShotComboCount;
+		HeadShotComboCountDisplay++;
+		HeadShotComboCount = Min( HeadShotComboCount, MaxHeadShotComboCount );
+		HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay,, KFPM );
+		SetTimer( HeadShotCountdownIntervall, true, nameOf( SubstractHeadShotCombo ) );
 	}
 }
 
@@ -287,25 +349,19 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
    	local int HitZoneIdx;
    	local KFPawn_Monster KFPM;
 
-   	KFPM = KFPawn_Monster(Impact.HitActor);
-   	if( KFPM == none )
-   	{
-   		if( Numhit < 1 )
-   		{
-   			SubstractHeadShotCombo();
-   		}
-
-   		return;
-   	}
-
-   	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
-   	if( HitZoneIdx == HZI_Head && KFPM.IsAliveAndWell() )
+   	if( !IsRhythmMethodActive() )
 	{
-		AddToHeadShotCombo( class<KFDamageType>(DamageType), KFPM  );
+		return;
 	}
-	else if( NumHit < 1 )
-	{
-		SubstractHeadShotCombo();
+
+   	KFPM = KFPawn_Monster(Impact.HitActor);
+   	if( KFPM != none )
+   	{
+	   	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
+	   	if( HitZoneIdx == HZI_Head && KFPM != none && KFPM.IsAliveAndWell() )
+		{
+			AddToHeadShotCombo( class<KFDamageType>(DamageType), KFPM  );
+		}
 	}
 }
 
@@ -334,15 +390,15 @@ reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, o
 		case 0:
 			TempAkEvent = RhythmMethodSoundReset;
 			break;
-		case 1:	case 2:	case 3:	case 4:	case 5:
-		case 6:
+		case 1:	case 2:	case 3:	
+		case 4:	
 			if( !bMissed )
 			{
 				OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShot');
 				TempAkEvent = RhythmMethodSoundHit;
 			}
 			break;
-		case 7:
+		case 5:
 			if( !bMissed )
 			{
 				OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShotPing');
@@ -371,21 +427,18 @@ function SubstractHeadShotCombo()
 		HeadShotComboCountDisplay = HeadShotComboCount;
 		HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay, true );
 	}
-}
-
-/**
- * @brief Ccccccombo breaker ( Rhytm method )
- */
-reliable private final server event ServerResetHeadShotCombo()
-{
-	SubstractHeadShotCombo();
+	else if( HeadShotComboCount <= 0 )
+	{
+		ClearTimer( nameOf( SubstractHeadShotCombo ) );
+	}
 }
 
 reliable private final server function ServerClearHeadShotsCombo()
 {
-	HeadShotComboCountDisplay =0;
-	HeadShotComboCount=0;
+	HeadShotComboCountDisplay = 0;
+	HeadShotComboCount = 0;
 	HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay );
+	ClearTimer( nameOf( SubstractHeadShotCombo ) );
 }
 
 simulated event bool GetIsHeadShotComboActive()
@@ -467,9 +520,32 @@ simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
 	}
 }
 
-simulated function bool ShouldInstantlySwitchWeapon( KFWeapon KFW )
+private function bool HitShouldGiveBodyPartDamage( byte BodyPart ) 
 {
-	return IsQuickSwitchActive();
+	return BoneBreakerBodyParts.Find( BodyPart ) != INDEX_NONE;
+}
+
+private static function float GetBoneBreakerDamage()
+{
+	return default.BoneBreakerDamage;
+}
+
+simulated function bool IgnoresPenetrationDmgReduction()
+{
+	return IsPenetrationActive();
+}
+
+simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+{
+	if( IsSkullCrackerActive() && 
+		DamageType != none && 
+		IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) &&
+		HitZoneIdx == HZI_Head )
+	{
+		return default.SnarePower;
+	}
+
+	return 0.f;
 }
 
 /*********************************************************************************************
@@ -536,23 +612,13 @@ simulated function bool IsPenetrationActive()
 }
 
 /**
- * @brief Checks if the Center Mass skill is active
+ * @brief Checks if the Knock'em Down skill is active
  *
  * @return true/false
  */
-simulated function bool IsCenterMassActive()
+simulated function bool IsKnockEmDownActive()
 {
-	return PerkSkills[EGunslingerCenterMass].bActive;
-}
-
-/**
- * @brief Checks if the Limb Shots skill is active
- *
- * @return true/false
- */
-simulated function bool IsLimbShotsActive()
-{
-	return PerkSkills[EGunslingerLimbShots].bActive;
+	return PerkSkills[EGunslingerKnockEmDown].bActive;
 }
 
 /**
@@ -583,6 +649,11 @@ simulated function bool GetFanfareActive()
 simulated function bool IsUberAmmoActive()
 {
 	return PerkSkills[EGunslingerUberAmmo].bActive;
+}
+
+simulated function bool IsSkullCrackerActive()
+{
+	return PerkSkills[EGunslingerSkullCracker].bActive;
 }
 
 /**
@@ -620,32 +691,26 @@ static function bool IsDamageTypeOnPerk( class<KFDamageType> KFDT )
 	return super.IsDamageTypeOnPerk( KFDT );
 }
 
-simulated protected event PostSkillUpdate()
-{
-	super.PostSkillUpdate();
 
-	if(Role == Role_Authority)
-	{
-		if(IsRhythmMethodActive())
-		{
-			ServerClearHeadShotsCombo();
-		}
-	}
+simulated static private function float GetQuickSwitychSpeedModifier()
+{
+	return default.QuickSwitchSpeedModifier;
 }
+
 
 event Destroyed()
 {
-	if(Role == Role_Authority)
+	if( Role == Role_Authority )
 	{
-			ServerClearHeadShotsCombo();
+		ServerClearHeadShotsCombo();
 	}
 }
 
 simulated function PlayerDied()
 {
-	if(Role == Role_Authority)
+	if( Role == Role_Authority )
 	{
-			ServerClearHeadShotsCombo();
+		ServerClearHeadShotsCombo();
 	}
 }
 
@@ -653,7 +718,7 @@ simulated function PlayerDied()
 * @name	 UI
 ********************************************************************************************* */
 
-static function int GetMaxHeadShotsValue ()
+static function int GetMaxHeadShotsValue()
 {
 	return default.MaxHeadShotComboCount;
 }
@@ -664,11 +729,13 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	PassiveValues[1] = Round( GetPassiveValue( default.BulletResistance, Level ) * 100 ) $ "%";
 	PassiveValues[2] = Round( GetPassiveValue( default.MovementSpeed, Level ) * 100 ) $ "%";
 	PassiveValues[3] = Round( GetPassiveValue( default.Recoil, Level ) * 100 ) $ "%";
+	PassiveValues[4] = Round( GetPassiveValue( default.ZedTimeReload, Level ) * 100 ) $ "%";
 
-	Increments[0] = "[" @ Int( default.WeaponDamage.Increment * 100 )  $ "% /" @ default.LevelString @ "]";
-	Increments[1] = "[" @ "5% +" @ int(default.BulletResistance.Increment * 100)  $ "% /" @ default.LevelString @ "]";
-	Increments[2] = "[" @ Int( default.MovementSpeed.Increment * 100 )  $ "% /" @ default.LevelString @ "]";
-	Increments[3] = "[" @ Int( default.Recoil.Increment * 100 )  $ "% /" @ default.LevelString @ "]";
+	Increments[0] = "[" @ Left( string( default.WeaponDamage.Increment * 100 ), InStr(string(default.WeaponDamage.Increment * 100), ".") + 2 )  $ "% /" @ default.LevelString @ "]";
+	Increments[1] = "[" @ "5% +" @ Left( string( default.BulletResistance.Increment * 100 ), InStr(string(default.BulletResistance.Increment * 100), ".") + 2 )  $ "% /" @ default.LevelString @ "]";
+	Increments[2] = "[" @ Left( string( default.MovementSpeed.Increment * 100 ), InStr(string(default.MovementSpeed.Increment * 100), ".") + 2 )  $ "% /" @ default.LevelString @ "]";
+	Increments[3] = "[" @ Left( string( default.Recoil.Increment * 100 ), InStr(string(default.Recoil.Increment * 100), ".") + 2 )  $ "% /" @ default.LevelString @ "]";
+	Increments[4] = "[" @ Left( string( default.ZedTimeReload.Increment * 100 ), InStr(string(default.ZedTimeReload.Increment * 100), ".") + 2 )  $ "% /" @ default.LevelString @ "]";
 }
 
 /*********************************************************************************************
@@ -694,8 +761,8 @@ simulated function LogPerkSkills()
 	    `log( "-BoneBreaker:" @ PerkSkills[EGunslingerBoneBreaker].bActive );
 	    `log( "-SpeedReload:" @ PerkSkills[EGunslingerSpeedReload].bActive );
 	    `log( "-Penetration:" @ PerkSkills[EGunslingerPenetration].bActive );
-	    `log( "-CenterMass:" @ PerkSkills[EGunslingerCenterMass].bActive );
-	    `log( "-LimbShots:" @ PerkSkills[EGunslingerLimbShots].bActive );
+	    //`log( "-CenterMass:" @ PerkSkills[EGunslingerCenterMass].bActive );
+	    //`log( "-LimbShots:" @ PerkSkills[EGunslingerLimbShots].bActive );
 	    `log( "-Fanfare:" @ PerkSkills[EGunslingerFanfare].bActive );
 	    `log( "-UberAmmo:" @ PerkSkills[EGunslingerUberAmmo].bActive );
 	}
@@ -714,16 +781,21 @@ DefaultProperties
 
    	ShootnMooveBobDamp=1.11f
 
-   	MaxHeadShotComboCount=7
+   	MaxHeadShotComboCount=5
    	RhytmMethodRTPCName="R_Method"
    	RhythmMethodSoundReset=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Reset'
 	RhythmMethodSoundHit=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Hit'
 	RhythmMethodSoundTop=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Top'
+	QuickSwitchSpeedModifier=0.05
+	HeadShotCountdownIntervall=2.f
+	BoneBreakerDamage=0.3f //this is for arms and legs
+	SnarePower=100 //this is for the head hit. need to test out if 100 is to powerful or not.
 
    	WeaponDamage=(Name="Weapon Damage",Increment=0.01f,Rank=0,StartingValue=0.0f,MaxValue=0.25f)
    	BulletResistance=(Name="Bullet Resistance",Increment=0.01f,Rank=0,StartingValue=0.05f,MaxValue=0.3f)
-   	MovementSpeed=(Name="Movement Speed",Increment=0.01f,Rank=0,StartingValue=0.0f,MaxValue=0.25f)
+   	MovementSpeed=(Name="Movement Speed",Increment=0.008f,Rank=0,StartingValue=0.0f,MaxValue=0.20f)
    	Recoil=(Name="Recoil",Increment=0.01f,Rank=0,StartingValue=0.0f,MaxValue=0.25f)
+   	ZedTimeReload=(Name="Zed Time Reload",Increment=0.03f,Rank=0,StartingValue=0.f,MaxValue=0.75f) //0.5
 
    	// xp per headshot (all headshots, not just lethal)
    	SecondaryXPModifier(0)=1
@@ -741,14 +813,14 @@ DefaultProperties
    	AdditionalOnPerkWeaponNames(1)="KFWeap_Pistol_Dual9mm"
    	AdditionalOnPerkDTNames(0)="KFDT_Ballistic_9mm"
 
-   	PerkSkills(EGunslingerShootnMove)=(Name="ShootnMove",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ShootNMove",Increment=0.f,Rank=0,StartingValue=2.f,MaxValue=2.f)
+   	PerkSkills(EGunslingerShootnMove)=(Name="ShootnMove",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Steady",Increment=0.f,Rank=0,StartingValue=2.f,MaxValue=2.f)
 	PerkSkills(EGunslingerQuickSwitch)=(Name="QuickSwitch",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_QuickSwitch",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
-	PerkSkills(EGunslingerRhythmMethod)=(Name="RhythmMethod",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_RhythmMethod",Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.1f)
+	PerkSkills(EGunslingerRhythmMethod)=(Name="RhythmMethod",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_RackEmUp",Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.1f)
 	PerkSkills(EGunslingerBoneBreaker)=(Name="BoneBreaker",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_BoneBreaker",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EGunslingerSpeedReload)=(Name="SpeedReload",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_SpeedReload",Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
-	PerkSkills(EGunslingerPenetration)=(Name="Penetration",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Penetration",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
-	PerkSkills(EGunslingerCenterMass)=(Name="CenterMass",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_CenterMass",Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
-	PerkSkills(EGunslingerLimbShots)=(Name="LimbShots",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots",Increment=0.f,Rank=0,StartingValue=10.1f,MaxValue=10.1f) //5.1
+	PerkSkills(EGunslingerPenetration)=(Name="Penetration",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LineEmUp",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
+	PerkSkills(EGunslingerSkullcracker)=(Name="Skullcracker",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Skullcracker",Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
+	PerkSkills(EGunslingerKnockEmDown)=(Name="KnockEmDown",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_KnockEmDown",Increment=0.f,Rank=0,StartingValue=5.1f,MaxValue=5.1f) //5.1 //10.1
 	PerkSkills(EGunslingerFanfare)=(Name="Fanfare",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(EGunslingerUberAmmo)=(Name="UberAmmo",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo",Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
 
@@ -763,6 +835,11 @@ DefaultProperties
 	BodyPartsCanKnockdown(0)=4
 	BodyPartsCanKnockdown(1)=5
 
+	BoneBreakerBodyParts(0)=2
+	BoneBreakerBodyParts(1)=3
+	BoneBreakerBodyParts(2)=4
+	BoneBreakerBodyParts(3)=5
+
 /**	BP_Torso                =0,
     BP_Head                 =1,
     BP_LeftArm              =2,
@@ -771,6 +848,7 @@ DefaultProperties
     BP_RightLeg             =5,
     BP_Special              =6,
     BP_MAX                  =7,*/
+    AutoBuyLoadOutPath=(class'KFWeapDef_Remington1858', class'KFWeapDef_Remington1858Dual', class'KFWeapDef_Colt1911', class'KFWeapDef_Colt1911Dual',class'KFWeapDef_Deagle', class'KFWeapDef_DeagleDual', class'KFWeapDef_SW500', class'KFWeapDef_SW500Dual')
 }
 
     

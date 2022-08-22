@@ -36,7 +36,10 @@ function SetXPList()
 
         if(I < StatCollector.PerkXPList.Length)
         {
-            ObjectArray.SetElementObject(ItemCount, MakePerkXPObject(StatCollector.PerkXPList[I]));
+            if(StatCollector.PerkXPList[I].XPDelta > 0)
+            {
+                ObjectArray.SetElementObject(ItemCount, MakePerkXPObject(StatCollector.PerkXPList[I]));
+            }
             ++ I;
             goto J0x148;
         }

@@ -1,5 +1,6 @@
 package tripwire.menus
 {
+    import com.greensock.events.TweenEvent;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.IndexEvent;
@@ -53,6 +54,7 @@ package tripwire.menus
             super.addedToStage(param1);
             this.gameOptionsContainer.visible = false;
             this.overviewContainer.visible = false;
+            this.overviewContainer.bBlockContainerFocus = true;
             this.serverBrowserOverviewContainer.visible = false;
             tabEnabled = false;
             this._currentContainer = this.findGameContainer;
@@ -83,7 +85,7 @@ package tripwire.menus
                     this.showMenus(false,false,true,false);
                     this.overviewContainer.permissionsButton.enabled = false;
                     this.overviewContainer.permissionsButton.focusable = false;
-                    this.overviewContainer.permissionsButton.visible = param2 || param3;
+                    this.overviewContainer.permissionsButton.visible = false;
                 }
             }
             else
@@ -137,6 +139,12 @@ package tripwire.menus
             ExternalInterface.call("Callback_StartMenuChange");
         }
         
+        public function proceedToMatchMaking() : void
+        {
+            this.gameOptionsContainer.bIsSoloGame = false;
+            this.showMenus(false,true,false,false);
+        }
+        
         protected function onBack(param1:IndexEvent) : void
         {
             if(this._currentContainer == this.overviewContainer)
@@ -153,8 +161,15 @@ package tripwire.menus
                     }
                     break;
                 case this.MatchMakingState:
-                    this.gameOptionsContainer.bIsSoloGame = false;
-                    this.showMenus(false,true,false,false);
+                    if(bManagerConsoleBuild)
+                    {
+                        ExternalInterface.call("Callback_OpenMatchMaking");
+                    }
+                    else
+                    {
+                        this.gameOptionsContainer.bIsSoloGame = false;
+                        this.showMenus(false,true,false,false);
+                    }
                     break;
                 case this.ServerBrowserState:
                     ExternalInterface.call("Callback_OpenServerBrowser");
@@ -175,6 +190,7 @@ package tripwire.menus
             else if(this._bOverview)
             {
                 this.openChildContainer(this.overviewContainer);
+                this.overviewContainer.bBlockContainerFocus = false;
             }
             else
             {
@@ -182,13 +198,18 @@ package tripwire.menus
             }
         }
         
+        override public function get bBlockContainerFocus() : Boolean
+        {
+            if(this._currentContainer != null)
+            {
+                return this._currentContainer.bBlockContainerFocus;
+            }
+            return super.bBlockContainerFocus;
+        }
+        
         override public function selectContainer() : void
         {
             super.selectContainer();
-            if(this.menuState == this.ServerBrowserOverviewState && bManagerUsingGamepad)
-            {
-                MenuManager.manager.setFocusToPartyWidget();
-            }
             if(this._currentContainer != null)
             {
                 this._currentContainer.selectContainer();
@@ -230,6 +251,11 @@ package tripwire.menus
                 param1.closeContainer();
                 param1.removeEventListener(IndexEvent.INDEX_CHANGE,this.onBack);
             }
+        }
+        
+        override protected function onOpened(param1:TweenEvent = null) : void
+        {
+            super.onOpened(param1);
         }
     }
 }

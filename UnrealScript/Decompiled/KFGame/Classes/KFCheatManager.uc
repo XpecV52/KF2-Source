@@ -9,6 +9,59 @@ class KFCheatManager extends GameCheatManager within GamePlayerController
     native
     config(Game);
 
+const KFID_QuickWeaponSelect = 100;
+const KFID_CurrentLayoutIndex = 101;
+const KFID_ForceFeedbackEnabled = 103;
+const KFID_SavedPerkIndex = 105;
+const KFID_AllowBloodSplatterDecals = 106;
+const KFID_GoreLevel = 107;
+const KFID_StoredCharIndex = 111;
+const KFID_MasterVolumeMultiplier = 112;
+const KFID_DialogVolumeMultiplier = 113;
+const KFID_MusicVolumeMultiplier = 114;
+const KFID_SFXVolumeMultiplier = 115;
+const KFID_GammaMultiplier = 117;
+const KFID_MusicVocalsEnabled = 118;
+const KFID_MinimalChatter = 119;
+const KFID_ShowCrossHair = 121;
+const KFID_FOVOptionsPercentageValue = 122;
+const KFID_ShowKillTicker = 123;
+const KFID_FriendlyHudScale = 125;
+const KFID_FavoriteWeapons = 127;
+const KFID_GearLoadouts = 128;
+const KFID_SetGamma = 129;
+const KFID_RequiresPushToTalk = 130;
+const KFID_InvertController = 131;
+const KFID_AutoTargetEnabled = 132;
+const KFID_GamepadSensitivityScale = 133;
+const KFID_ZoomedSensitivityScale = 134;
+const KFID_GamepadZoomedSensitivityScale = 135;
+const KFID_EnableMouseSmoothing = 136;
+const KFID_MouseSensitivity = 138;
+const KFID_TargetAdhesionEnabled = 139;
+const KFID_TargetFrictionEnabled = 140;
+const KFID_InvertMouse = 142;
+const KFID_VOIPVolumeMultiplier = 143;
+const KFID_SavedSoloModeIndex = 144;
+const KFID_SavedSoloMapString = 145;
+const KFID_SavedSoloDifficultyIndex = 146;
+const KFID_SavedSoloLengthIndex = 147;
+const KFID_SavedModeIndex = 148;
+const KFID_SavedMapString = 149;
+const KFID_SavedDifficultyIndex = 150;
+const KFID_SavedLengthIndex = 151;
+const KFID_SavedPrivacyIndex = 152;
+const KFID_SavedServerTypeIndex = 153;
+const KFID_SavedInProgressIndex = 154;
+const KFID_ControllerSoundEnabled = 155;
+const KFID_MatchmakingRegion = 156;
+const KFID_UseAltAimOnDuals = 157;
+const KFID_HideBossHealthBar = 158;
+const KFID_AntiMotionSickness = 159;
+const KFID_ShowWelderInInventory = 160;
+const KFID_AutoTurnOff = 161;
+const KFID_ReduceHightPitchSounds = 162;
+
 var bool bDebugSceneEnabled;
 var transient bool bUsingSplatterGun;
 var transient bool bRequestedGlobalStats;
@@ -26,6 +79,9 @@ native final exec function ResetPerkLevels();
 // Export UKFCheatManager::execAnalyzeCharacterAttachments(FFrame&, void* const)
 native final exec function AnalyzeCharacterAttachments();
 
+// Export UKFCheatManager::execFixupCharacterAttachmentLocalization(FFrame&, void* const)
+native final exec function FixupCharacterAttachmentLocalization();
+
 // Export UKFCheatManager::execReadGlobalStat(FFrame&, void* const)
 native exec function ReadGlobalStat(string StatId, optional int HistoryNumDays);
 
@@ -38,6 +94,11 @@ native final function MakeEmptyPackage();
 function Pawn GetMyPawn()
 {
     return ((Outer.Pawn != none) ? Outer.Pawn : DebugCameraController(Outer).OriginalControllerRef.Pawn);
+}
+
+exec function TestLocalMessage()
+{
+    Outer.ReceiveLocalizedMessage(Class'KFLocalMessage', 17);
 }
 
 exec function AutoFire(float interval)
@@ -129,7 +190,7 @@ exec function SetInflate(float InflateParam)
 
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
-        KFPM.AfflictionHandler.UpdateMaterialParameter(9, InflateParam);        
+        KFPM.AfflictionHandler.UpdateMaterialParameter(10, InflateParam);        
     }    
 }
 
@@ -232,35 +293,43 @@ exec function LogCurrentWave()
         J = 0;
         J0x46B:
 
-        if(J < SpawnManager.Waves[I].Squads.Length)
+        if(J < SpawnManager.WaveSettings.Waves[I].Squads.Length)
         {
             K = 0;
-            J0x4C2:
+            J0x4D5:
 
-            if(K < SpawnManager.Waves[I].Squads[J].MonsterList.Length)
+            if(K < SpawnManager.WaveSettings.Waves[I].Squads[J].MonsterList.Length)
             {
-                LogInternal((((((((("Wave " $ string(I)) $ " Squads ") $ string(J)) $ " MonsterList ") $ string(K)) $ " is ") $ string(GetEnum(Enum'EAIType', SpawnManager.Waves[I].Squads[J].MonsterList[K].Type))) $ " Num: ") $ string(SpawnManager.Waves[I].Squads[J].MonsterList[K].Num));
+                LogInternal((((((((("Wave " $ string(I)) $ " Squads ") $ string(J)) $ " MonsterList ") $ string(K)) $ " is ") $ string(GetEnum(Enum'EAIType', SpawnManager.WaveSettings.Waves[I].Squads[J].MonsterList[K].Type))) $ " Num: ") $ string(SpawnManager.WaveSettings.Waves[I].Squads[J].MonsterList[K].Num));
                 ++ K;
-                goto J0x4C2;
+                goto J0x4D5;
             }
             ++ J;
             goto J0x46B;
         }
-        if(SpawnManager.Waves[I].SpecialSquad != none)
-        {
-            K = 0;
-            J0x706:
+        J = 0;
+        J0x70F:
 
-            if(K < SpawnManager.Waves[I].SpecialSquad.MonsterList.Length)
-            {
-                LogInternal((((((("Wave " $ string(I)) $ " Special Squad MonsterList ") $ string(K)) $ " is ") $ string(GetEnum(Enum'EAIType', SpawnManager.Waves[I].SpecialSquad.MonsterList[K].Type))) $ " Num: ") $ string(SpawnManager.Waves[I].SpecialSquad.MonsterList[K].Num));
-                ++ K;
-                goto J0x706;
-            }            
-        }
-        else
+        if(J < SpawnManager.WaveSettings.Waves[I].SpecialSquads.Length)
         {
-            LogInternal(("Wave " $ string(I)) $ " No Special Squad ");
+            if(SpawnManager.WaveSettings.Waves[I].SpecialSquads[J] != none)
+            {
+                K = 0;
+                J0x7D9:
+
+                if(K < SpawnManager.WaveSettings.Waves[I].SpecialSquads[J].MonsterList.Length)
+                {
+                    LogInternal((((((("Wave " $ string(I)) $ " Special Squad MonsterList ") $ string(K)) $ " is ") $ string(GetEnum(Enum'EAIType', SpawnManager.WaveSettings.Waves[I].SpecialSquads[J].MonsterList[K].Type))) $ " Num: ") $ string(SpawnManager.WaveSettings.Waves[I].SpecialSquads[J].MonsterList[K].Num));
+                    ++ K;
+                    goto J0x7D9;
+                }                
+            }
+            else
+            {
+                LogInternal(("Wave " $ string(I)) $ " No Special Squad ");
+            }
+            ++ J;
+            goto J0x70F;
         }
     }
 }
@@ -295,40 +364,48 @@ exec function LogAllWaves()
         I = 0;
         J0x2E3:
 
-        if(I < SpawnManager.Waves.Length)
+        if(I < SpawnManager.WaveSettings.Waves.Length)
         {
             J = 0;
-            J0x31B:
+            J0x32E:
 
-            if(J < SpawnManager.Waves[I].Squads.Length)
+            if(J < SpawnManager.WaveSettings.Waves[I].Squads.Length)
             {
                 K = 0;
-                J0x372:
+                J0x398:
 
-                if(K < SpawnManager.Waves[I].Squads[J].MonsterList.Length)
+                if(K < SpawnManager.WaveSettings.Waves[I].Squads[J].MonsterList.Length)
                 {
-                    LogInternal((((((((("Wave " $ string(I)) $ " Squads ") $ string(J)) $ " MonsterList ") $ string(K)) $ " is ") $ string(GetEnum(Enum'EAIType', SpawnManager.Waves[I].Squads[J].MonsterList[K].Type))) $ " Num: ") $ string(SpawnManager.Waves[I].Squads[J].MonsterList[K].Num));
+                    LogInternal((((((((("Wave " $ string(I)) $ " Squads ") $ string(J)) $ " MonsterList ") $ string(K)) $ " is ") $ string(GetEnum(Enum'EAIType', SpawnManager.WaveSettings.Waves[I].Squads[J].MonsterList[K].Type))) $ " Num: ") $ string(SpawnManager.WaveSettings.Waves[I].Squads[J].MonsterList[K].Num));
                     ++ K;
-                    goto J0x372;
+                    goto J0x398;
                 }
                 ++ J;
-                goto J0x31B;
+                goto J0x32E;
             }
-            if(SpawnManager.Waves[I].SpecialSquad != none)
-            {
-                K = 0;
-                J0x5B6:
+            J = 0;
+            J0x5D2:
 
-                if(K < SpawnManager.Waves[I].SpecialSquad.MonsterList.Length)
-                {
-                    LogInternal((((((("Wave " $ string(I)) $ " Special Squad MonsterList ") $ string(K)) $ " is ") $ string(GetEnum(Enum'EAIType', SpawnManager.Waves[I].SpecialSquad.MonsterList[K].Type))) $ " Num: ") $ string(SpawnManager.Waves[I].SpecialSquad.MonsterList[K].Num));
-                    ++ K;
-                    goto J0x5B6;
-                }                
-            }
-            else
+            if(J < SpawnManager.WaveSettings.Waves[I].SpecialSquads.Length)
             {
-                LogInternal(("Wave " $ string(I)) $ " No Special Squad ");
+                if(SpawnManager.WaveSettings.Waves[I].SpecialSquads[J] != none)
+                {
+                    K = 0;
+                    J0x69C:
+
+                    if(K < SpawnManager.WaveSettings.Waves[I].SpecialSquads[J].MonsterList.Length)
+                    {
+                        LogInternal((((((("Wave " $ string(I)) $ " Special Squad MonsterList ") $ string(K)) $ " is ") $ string(GetEnum(Enum'EAIType', SpawnManager.WaveSettings.Waves[I].SpecialSquads[J].MonsterList[K].Type))) $ " Num: ") $ string(SpawnManager.WaveSettings.Waves[I].SpecialSquads[J].MonsterList[K].Num));
+                        ++ K;
+                        goto J0x69C;
+                    }                    
+                }
+                else
+                {
+                    LogInternal(("Wave " $ string(I)) $ " No Special Squad ");
+                }
+                ++ J;
+                goto J0x5D2;
             }
             ++ I;
             goto J0x2E3;
@@ -353,7 +430,7 @@ exec function HansGunsOut()
 
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
-        KFPM.DoSpecialMove(31, false, none, 1);        
+        KFPM.DoSpecialMove(33, false, none, 1);        
     }    
 }
 
@@ -363,7 +440,7 @@ exec function HansGunsAway()
 
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
-        KFPM.DoSpecialMove(31, false, none, 0);        
+        KFPM.DoSpecialMove(33, false, none, 0);        
     }    
 }
 
@@ -422,6 +499,17 @@ exec function HideMenus()
     else
     {
         LogInternal("MENU MANAGER NOT READY");
+    }
+}
+
+exec function DebugShowVoteKick()
+{
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPRI = KFPlayerReplicationInfo(Outer.PlayerReplicationInfo);
+    if((KFPlayerController(Outer).MyGFxHUD != none) && KFPRI != none)
+    {
+        KFPlayerController(Outer).MyGFxHUD.ShowKickVote(KFPRI, 1, true);
     }
 }
 
@@ -508,11 +596,19 @@ simulated exec function NextTrack()
 simulated exec function SetMusicVolume(float NewVolume)
 {
     local float MusicVolumeMultiplier;
+    local OnlinePlayerStorage Profile;
 
+    Profile = Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(LocalPlayer(Outer.Player).ControllerId));
     MusicVolumeMultiplier = NewVolume;
     Outer.GetALocalPlayerController().SetAudioGroupVolume('Music', MusicVolumeMultiplier);
-    Class'KFGameEngine'.default.MusicVolumeMultiplier = MusicVolumeMultiplier;
+    Profile.SetProfileSettingValueFloat(114, MusicVolumeMultiplier);
+    KFProfileSettings(Profile).Save(byte(LocalPlayer(Outer.Player).ControllerId));
     Class'KFGameEngine'.static.StaticSaveConfig();
+}
+
+simulated exec function SetPadVolume(float NewVolume)
+{
+    Class'KFGameEngine'.static.SetWWisePADVolume(NewVolume);
 }
 
 exec function Weapon GiveWeapon(string WeaponClassStr)
@@ -627,6 +723,7 @@ simulated exec function Demo()
     GiveWeapon("KFGameContent.KFWeap_Thrown_C4");
     GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_M79");
     GiveWeapon("KFGameContent.KFWeap_RocketLauncher_RPG7");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_M16M203");
 }
 
 simulated exec function Medic()
@@ -668,12 +765,15 @@ simulated exec function Sharpshooter()
 
 simulated exec function Swat()
 {
+    GiveWeapon("KFGameContent.KFWeap_SMG_P90");
     GiveWeapon("KFGameContent.KFWeap_SMG_MP7");
+    GiveWeapon("KFGameContent.KFWeap_SMG_MP5RAS");
+    GiveWeapon("KFGameContent.KFWeap_SMG_Kriss");
 }
 
 simulated exec function SMG()
 {
-    GiveWeapon("KFGameContent.KFWeap_SMG_MP7");
+    Swat();
     GiveWeapon("KFGameContent.KFWeap_SMG_Medic");
 }
 
@@ -731,8 +831,7 @@ exec function QuickDOF(bool bEnableDOF, optional float StaticDOFDistance, option
     KFPC = KFPlayerController(Outer);
     if(KFPC != none)
     {
-        KFPC.EnableDepthOfField(bEnableDOF, StaticDOFDistance, Aperture);
-        KFPC.DOFFocusBlendRate = FocusBlendRate;
+        KFPC.ClientEnableDepthOfField(bEnableDOF, StaticDOFDistance, Aperture, FocusBlendRate);
     }
 }
 
@@ -752,16 +851,7 @@ exec function CustomDOF(bool bEnableDOF, optional float FocalDistance, optional 
     KFPC = KFPlayerController(Outer);
     if(KFPC != none)
     {
-        KFPC.bGamePlayDOFActive = bEnableDOF;
-        KFPC.DOF_GP_FocalDistance = FocalDistance;
-        KFPC.DOF_GP_FocalRadius = FocalRadius;
-        KFPC.DOF_GP_SharpRadius = SharpRadius;
-        KFPC.DOF_GP_MinBlurSize = MinBlurSize;
-        KFPC.DOF_GP_MaxNearBlurSize = MaxNearBlurSize;
-        KFPC.DOF_GP_MaxFarBlurSize = MaxFarBlurSize;
-        KFPC.DOF_GP_ExpFalloff = ExpFalloff;
-        KFPC.DOF_GP_BlendInSpeed = BlendInSpeed;
-        KFPC.DOF_GP_BlendOutSpeed = BlendOutSpeed;
+        KFPC.ClientCustomDepthOfField(bEnableDOF, FocalDistance, FocalRadius, SharpRadius, MinBlurSize, MaxNearBlurSize, MaxFarBlurSize, ExpFalloff, BlendInSpeed, BlendOutSpeed);
     }
 }
 
@@ -1137,7 +1227,7 @@ exec function AllAmmo()
     foreach Outer.Pawn.InvManager.InventoryActors(Class'KFWeapon', KFW)
     {
         KFW.AmmoCount[0] = KFW.MagazineCapacity[0];
-        KFW.AddAmmo(KFW.MaxSpareAmmo[0]);
+        KFW.AddAmmo(KFW.GetMaxAmmoAmount(0));
         KFW.AddSecondaryAmmo(KFW.MagazineCapacity[1]);        
     }    
     if(KFInventoryManager(Outer.Pawn.InvManager) != none)
@@ -1156,7 +1246,7 @@ exec function UberAmmo()
     }
     foreach Outer.Pawn.InvManager.InventoryActors(Class'KFWeapon', KFW)
     {
-        KFW.SpareAmmoCount[0] = KFW.MaxSpareAmmo[0] * 3;
+        KFW.SpareAmmoCount[0] = KFW.GetMaxAmmoAmount(0) * 3;
         KFW.AmmoCount[0] = KFW.MagazineCapacity[0];
         KFW.AmmoCount[1] = KFW.MagazineCapacity[1];
         KFW.bInfiniteAmmo = true;        
@@ -1373,7 +1463,7 @@ exec function AIHuskFlamethrower()
     if((((KFAIC != none) && KFAIC.Pawn != none) && KFAIC.Pawn.Health > 0) && KFAIC.Pawn.IsA('KFPawn_ZedHusk'))
     {
         KFAIC.MovementPlugin.DisablePlugin();
-        KFPawn(KFAIC.Pawn).DoSpecialMove(19, true, Outer.Pawn, 255);        
+        KFPawn(KFAIC.Pawn).DoSpecialMove(21, true, Outer.Pawn, 255);        
     }
     else
     {
@@ -2388,7 +2478,7 @@ exec function AIScream()
         if((KFPM.IsA('KFPawn_ZedSiren') && KFPM.IsAliveAndWell()) && KFPM.MyKFAIC != none)
         {
             Siren = KFPM;
-            KFPM.DoSpecialMove(17, true);
+            KFPM.DoSpecialMove(19, true);
         }        
     }    
     foreach Outer.DynamicActors(Class'KFPawn_Monster', KFPM)
@@ -3149,7 +3239,7 @@ exec function AISummonZeds(int BattlePhase, int DifficultyIndex)
                 }
             }
         }
-        Class'AICommand_SummonZeds'.static.Summon(KFAIC, MinionWave, BossPawn.NumMinionsToSpawn);        
+        Class'AICommand_SummonZeds'.static.Summon(KFAIC, MinionWave, BossPawn.GetNumMinionsToSpawn());        
     }    
 }
 
@@ -4436,7 +4526,11 @@ simulated exec function KFPawn SpawnZed(string ZedName, optional float Distance,
     if(KFP != none)
     {
         KFP.SetPhysics(2);
-        KFGameInfo(Outer.WorldInfo.Game).SetMonsterDefaults(KFPawn_Monster(KFP));        
+        KFGameInfo(Outer.WorldInfo.Game).SetMonsterDefaults(KFPawn_Monster(KFP));
+        if((KFP.Controller != none) && KFAIController(KFP.Controller) != none)
+        {
+            KFGameInfo(Outer.WorldInfo.Game).GetAIDirector().AIList.AddItem(KFAIController(KFP.Controller);
+        }        
     }
     else
     {
@@ -4488,6 +4582,10 @@ simulated exec function SpawnZedGroup(string ZedName, int NumRows, int NumCols, 
             if(KFP != none)
             {
                 KFP.SetPhysics(2);
+                if((KFP.Controller != none) && KFAIController(KFP.Controller) != none)
+                {
+                    KFGameInfo(Outer.WorldInfo.Game).GetAIDirector().AIList.AddItem(KFAIController(KFP.Controller);
+                }
                 if(bUseGoreLOD)
                 {
                     KFPM = KFPawn_Monster(KFP);
@@ -4921,6 +5019,11 @@ exec function DestroyDoors(optional byte Reverse)
         }
         KFDA.PlayDestroyed();        
     }    
+}
+
+exec function ResetLevel()
+{
+    Outer.WorldInfo.Game.ResetLevel();
 }
 
 exec function ResetDoors()
@@ -5701,11 +5804,14 @@ function OnLoginComplete(bool bWasSuccessful, string SessionTicket, string Playf
     LogInternal((((("Login complete with success" @ string(bWasSuccessful)) @ "and playfab ID") @ PlayfabId) @ "and session ticket") @ SessionTicket);
 }
 
-exec function TestPlayfabGameSearch()
+exec function TestPlayfabGameSearch(string GameType)
 {
     local KFDataStore_OnlineGameSearch SearchDataStore;
 
     SearchDataStore = KFDataStore_OnlineGameSearch(Class'UIInteraction'.static.GetDataStoreClient().FindDataStore('KFGameSearch'));
+    SearchDataStore.ActiveSearchIndex = 0;
+    SearchDataStore.GetActiveGameSearch().GameModes.Length = 1;
+    SearchDataStore.GetActiveGameSearch().GameModes[0] = GameType;
     Class'GameEngine'.static.GetPlayfabInterface().AddFindOnlineGamesCompleteDelegate(OnFindOnlinePlayfabGamesComplete);
     Class'GameEngine'.static.GetPlayfabInterface().FindOnlineGames(SearchDataStore.GameSearchCfgList[0].Search);
 }
@@ -5882,6 +5988,57 @@ exec function DumpExchangeRules()
         ++ I;
         goto J0x34;
     }
+}
+
+exec function DebugUpdateInternalData(string InKey, string InValue)
+{
+    local array<string> Keys, Values;
+
+    Keys.AddItem(InKey;
+    Values.AddItem(InValue;
+    Class'GameEngine'.static.GetPlayfabInterface().ServerUpdateInternalUserData(Class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId, Keys, Values);
+}
+
+exec function DebugUpdateServerData()
+{
+    Class'GameEngine'.static.GetPlayfabInterface().CreateGameSettings(Class'KFOnlineGameSettings');
+    Class'GameEngine'.static.GetPlayfabInterface().ServerUpdateOnlineGame();
+}
+
+exec function DebugRetrieveInternalData(string InKey)
+{
+    local array<string> Keys;
+
+    Keys.AddItem(InKey;
+    Class'GameEngine'.static.GetPlayfabInterface().ServerRetrieveInternalUserData(Class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId, Keys);
+}
+
+exec function DebugAddCurrency(int Amount)
+{
+    Class'GameEngine'.static.GetPlayfabInterface().ServerAddVirtualCurrencyForUser(Class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId, Amount);
+}
+
+exec function DebugRemoveCurrency(int Amount)
+{
+    Class'GameEngine'.static.GetPlayfabInterface().ServerRemoveVirtualCurrencyForUser(Class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId, Amount);
+}
+
+exec function DebugGrantItem(string ItemId)
+{
+    local array<string> ItemIds;
+
+    ItemIds.AddItem(ItemId;
+    Class'GameEngine'.static.GetPlayfabInterface().ServerGrantItemsForUser(Class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId, ItemIds);
+}
+
+exec function DebugConsumeEntitlements()
+{
+    Class'GameEngine'.static.GetPlayfabInterface().ConsumeEntitlements();
+}
+
+exec function TestTutorialRewards()
+{
+    Class'GameEngine'.static.GetPlayfabInterface().ExecuteCloudScript("ClaimTutorialRewards", none);
 }
 
 defaultproperties

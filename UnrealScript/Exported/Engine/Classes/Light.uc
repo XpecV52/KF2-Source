@@ -126,7 +126,6 @@ var transient float CurveOutputValue;
 // (cpptext)
 // (cpptext)
 // (cpptext)
-// (cpptext)
 
 
 /** replicated copy of LightComponent's bEnabled property */

@@ -17,6 +17,7 @@ package tripwire.menus
     import scaleform.clik.events.ButtonBarEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.Extensions;
     import tripwire.Tools.TextfieldUtil;
     import tripwire.containers.PlayerNamePlateContainer;
     import tripwire.containers.TripContainer;
@@ -65,9 +66,9 @@ package tripwire.menus
         
         public const MENU_TEAM_AWARDS:int = 0;
         
-        public const MENU_PLAYER_XP:int = 2;
+        public const MENU_PLAYER_XP:int = 1;
         
-        public const MENU_PLAYER_STATS:int = 1;
+        public const MENU_PLAYER_STATS:int = 2;
         
         public const MENU_MAP_VOTE:int = 3;
         
@@ -109,9 +110,12 @@ package tripwire.menus
         
         private var playAnims:Boolean = true;
         
+        public var tabChangeSoundEffect:String = "AAR_TAB_CHANGE";
+        
         public function PostGameMenu()
         {
             super();
+            openSoundEffect = "AAR_MENU_OPEN";
         }
         
         public function set localizedText(param1:Object) : void
@@ -126,7 +130,7 @@ package tripwire.menus
                 this.serverNameText.text = !!param1.serverName ? param1.serverName : "";
                 this.serverIPText.text = !!param1.serverIP ? param1.serverIP : "";
                 this.itemDropContainer.dropTitleText.text = !!param1.dropTitle ? param1.dropTitle : "";
-                this.tabButtons = [this.teamAwardsString,this.playerStatsString,this.xpString,this.mapVoteString];
+                this.tabButtons = [this.teamAwardsString,this.xpString,this.playerStatsString,this.mapVoteString];
             }
         }
         
@@ -268,6 +272,10 @@ package tripwire.menus
             this.playAnims = false;
             bkillAnims = true;
             this.selectedMenu = param1.index;
+            if(Extensions.enabled)
+            {
+                Extensions.gfxProcessSound(this,"UI",this.tabChangeSoundEffect);
+            }
         }
         
         public function set tabButtons(param1:Array) : void

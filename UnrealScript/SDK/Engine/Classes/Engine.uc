@@ -1191,9 +1191,4 @@ defaultproperties
 	C_Volume=(R=255,G=196,B=255,A=255)
 	C_BrushShape=(R=128,G=255,B=128,A=255)
 	bUseSound=true
-
-`if(`__TW_)
-	// By default disable AILogging (see `define AILog).  Can be enabled using ToggleAILogging
-	bDisableAILogging=false
-`endif
 }

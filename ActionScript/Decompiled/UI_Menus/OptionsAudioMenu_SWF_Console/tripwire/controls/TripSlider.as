@@ -16,10 +16,21 @@ package tripwire.controls
         
         private var _defaultSnapInterval:Number;
         
+        public var overSoundEffect:String = "SHARED_BUTTON_MOUSEOVER";
+        
         public function TripSlider()
         {
             super();
             this._defaultSnapInterval = snapInterval;
+            thumb.addEventListener(MouseEvent.MOUSE_OVER,this.playSound,false,0,true);
+        }
+        
+        public function playSound(param1:MouseEvent) : void
+        {
+            if(Extensions.gfxProcessSound != null)
+            {
+                Extensions.gfxProcessSound(this,"UI",this.overSoundEffect);
+            }
         }
         
         override protected function endDrag(param1:MouseEvent) : void
@@ -40,6 +51,11 @@ package tripwire.controls
             }
         }
         
+        override protected function lockValue(param1:Number) : Number
+        {
+            return Math.max(_minimum,Math.min(_maximum,param1));
+        }
+        
         override public function handleInput(param1:InputEvent) : void
         {
             if(param1.isDefaultPrevented())
@@ -56,7 +72,7 @@ package tripwire.controls
                     {
                         if(_loc2_.value == InputValue.KEY_HOLD && snapInterval < this.snapMax)
                         {
-                            snapInterval += 1;
+                            _snapInterval += 1;
                         }
                         this.value = value + _snapInterval;
                         param1.handled = true;

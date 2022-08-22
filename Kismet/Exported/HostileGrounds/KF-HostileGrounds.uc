@@ -1058,3 +1058,488 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
    Name="SeqAct_Interp_0"
    ObjectArchetype=SeqAct_Interp'Engine.Default__SeqAct_Interp'
 End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
+   InputLinks(0)=(DrawY=-811,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-790,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-769,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-790,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_72',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_73',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_74',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_75',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_76',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_77',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_78',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_79'),DrawX=3638,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=3689,OverrideDelta=76)
+   EventLinks(0)=(DrawX=3738,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3600
+   ObjPosY=-848
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_11"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_72
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_34'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3606
+   ObjPosY=-719
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_72"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_73
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_37'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3706
+   ObjPosY=-719
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_73"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_74
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_36'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3806
+   ObjPosY=-719
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_74"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_75
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_33'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3544
+   ObjPosY=-640
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_75"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_76
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_32'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3648
+   ObjPosY=-640
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_76"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_77
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_30'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3744
+   ObjPosY=-640
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_77"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_78
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_35'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3848
+   ObjPosY=-640
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_78"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_1
+   MaxTriggerCount=0
+   MaxWidth=136
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),DrawY=-667,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-646,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12',InputLinkIdx=1)),DrawY=-625,OverrideDelta=56)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=2584
+   ObjPosY=-736
+   DrawWidth=137
+   Name="SeqEvent_LevelLoaded_1"
+   ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_1
+   LinkCount=4
+   IncrementAmount=0
+   InputLinks(0)=(DrawY=-624,OverrideDelta=25)
+   InputLinks(1)=(DrawY=-580,OverrideDelta=69)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),DrawY=-635,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),LinkDesc="Link 2",DrawY=-613,OverrideDelta=36)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),LinkDesc="Link 3",DrawY=-591,OverrideDelta=58)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_15')),LinkDesc="Link 4",DrawY=-569,OverrideDelta=80)
+   VariableLinks(0)=(DrawX=2956,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=2912
+   ObjPosY=-672
+   DrawWidth=89
+   DrawHeight=149
+   Name="SeqAct_RandomSwitch_1"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
+   InputLinks(0)=(DrawY=-939,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-918,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-897,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),ActivateDelay=1.000000,DrawY=-918,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_72',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_73',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_74',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_75',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_76',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_77',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_78',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_79',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_80',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_81',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_82',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_83',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_84',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_85',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_86',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_87',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_88',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_89',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_90',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_91',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_92',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_93',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_94',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_95',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_96',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_97',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_98',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_99',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_100',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_101'),DrawX=2966,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=3017,OverrideDelta=76)
+   EventLinks(0)=(DrawX=3066,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=2928
+   ObjPosY=-976
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_12"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_79
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_31'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3896
+   ObjPosY=-688
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_79"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
+   InputLinks(0)=(DrawY=-515,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-494,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-473,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-494,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_80',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_81',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_82',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_83',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_84',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_85',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_86'),DrawX=3630,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=3681,OverrideDelta=76)
+   EventLinks(0)=(DrawX=3730,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3592
+   ObjPosY=-552
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_13"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_80
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_38'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3504
+   ObjPosY=-392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_80"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_81
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_41'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3608
+   ObjPosY=-392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_81"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_82
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_42'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3704
+   ObjPosY=-392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_82"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_83
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_44'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3456
+   ObjPosY=-320
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_83"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_84
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_43'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3552
+   ObjPosY=-320
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_84"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_85
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_39'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3656
+   ObjPosY=-320
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_85"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_86
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_40'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3752
+   ObjPosY=-320
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_86"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
+   InputLinks(0)=(DrawY=-67,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-46,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-25,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-46,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_87',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_88',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_89',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_90',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_91',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_92'),DrawX=3622,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=3673,OverrideDelta=76)
+   EventLinks(0)=(DrawX=3722,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3584
+   ObjPosY=-104
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_14"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_87
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3590
+   ObjPosY=25
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_87"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_88
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3690
+   ObjPosY=25
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_88"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_89
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3790
+   ObjPosY=25
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_89"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_90
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3576
+   ObjPosY=96
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_90"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_91
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3672
+   ObjPosY=96
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_91"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_92
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3776
+   ObjPosY=96
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_92"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_15
+   InputLinks(0)=(DrawY=285,OverrideDelta=14)
+   InputLinks(1)=(DrawY=306,OverrideDelta=35)
+   InputLinks(2)=(DrawY=327,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=306,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_93',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_94',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_95',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_96',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_97',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_98',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_99',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_100',SeqVar_Object'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_101'),DrawX=3654,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=3705,OverrideDelta=76)
+   EventLinks(0)=(DrawX=3754,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3616
+   ObjPosY=248
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_15"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_93
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_46'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3496
+   ObjPosY=400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_93"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_94
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_47'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3592
+   ObjPosY=400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_94"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_95
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_45'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3696
+   ObjPosY=400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_95"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_96
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_50'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3792
+   ObjPosY=400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_96"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_97
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_53'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3456
+   ObjPosY=496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_97"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_98
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_52'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3552
+   ObjPosY=496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_98"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_99
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_49'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3656
+   ObjPosY=496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_99"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_100
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_48'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3752
+   ObjPosY=496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_100"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_101
+   ObjValue=KFPlayerStart'KF-HostileGrounds.TheWorld:PersistentLevel.KFPlayerStart_51'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3856
+   ObjPosY=496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_101"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object

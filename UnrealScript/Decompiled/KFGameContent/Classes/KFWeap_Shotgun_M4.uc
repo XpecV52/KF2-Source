@@ -24,7 +24,7 @@ defaultproperties
     DOF_FG_FocalRadius=25
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
-    MaxSpareAmmo=64
+    SpareAmmoCapacity=64
     InitialSpareMags=3
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

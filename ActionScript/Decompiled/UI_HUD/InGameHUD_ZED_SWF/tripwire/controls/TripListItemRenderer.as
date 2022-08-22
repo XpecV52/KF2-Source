@@ -3,12 +3,15 @@ package tripwire.controls
     import flash.events.MouseEvent;
     import scaleform.clik.controls.ListItemRenderer;
     import scaleform.gfx.Extensions;
+    import tripwire.managers.MenuManager;
     
     public class TripListItemRenderer extends ListItemRenderer
     {
          
         
-        public var clickSoundEffect:String = "Button_Selected";
+        public var clickSoundEffect:String = "SHARED_BUTTON_CLICK";
+        
+        public var overSoundEffect:String = "TITLE_BUTTON_ROLLOVER";
         
         public var highlightColor:uint = 16503487;
         
@@ -38,21 +41,30 @@ package tripwire.controls
             }
         }
         
+        public function get bManagerUsingGamepad() : Boolean
+        {
+            if(MenuManager.manager != null)
+            {
+                return MenuManager.manager.bUsingGamepad;
+            }
+            return false;
+        }
+        
         override protected function handlePress(param1:uint = 0) : void
         {
             super.handlePress(param1);
-            if(Extensions.gfxProcessSound != null)
+            if(Extensions.gfxProcessSound != null && enabled == true)
             {
-                Extensions.gfxProcessSound(this,"ButtonSoundTheme",this.clickSoundEffect);
+                Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
             }
         }
         
         override protected function handleMousePress(param1:MouseEvent) : void
         {
             super.handleMousePress(param1);
-            if(Extensions.gfxProcessSound != null)
+            if(Extensions.gfxProcessSound != null && enabled == true)
             {
-                Extensions.gfxProcessSound(this,"ButtonSoundTheme",this.clickSoundEffect);
+                Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
             }
         }
         
@@ -62,6 +74,10 @@ package tripwire.controls
             if(!selected)
             {
                 this.highlightButton();
+                if(Extensions.gfxProcessSound != null && enabled == true)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.overSoundEffect);
+                }
             }
         }
         
@@ -76,15 +92,19 @@ package tripwire.controls
         
         override public function set selected(param1:Boolean) : void
         {
-            super.selected = param1;
-            if(param1)
+            if(param1 && super.selected == false)
             {
                 this.highlightButton();
+                if(Extensions.gfxProcessSound != null && enabled == true && this.bManagerUsingGamepad)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.overSoundEffect);
+                }
             }
-            else
+            else if(!param1)
             {
                 this.unhighlightButton();
             }
+            super.selected = param1;
         }
         
         protected function highlightButton() : *

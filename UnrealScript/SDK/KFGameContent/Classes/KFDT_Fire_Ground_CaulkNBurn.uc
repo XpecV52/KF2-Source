@@ -14,4 +14,6 @@ class KFDT_Fire_Ground_CaulkNBurn extends KFDT_Fire_Ground
 defaultproperties
 {
 	WeaponDef=class'KFWeapDef_CaulkBurn'
+
+	BurnPower=10.5 //2.5
 }

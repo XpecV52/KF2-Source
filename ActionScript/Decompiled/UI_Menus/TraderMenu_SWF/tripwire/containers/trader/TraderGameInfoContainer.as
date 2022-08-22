@@ -1,6 +1,9 @@
 package tripwire.containers.trader
 {
+    import flash.display.MovieClip;
+    import flash.events.KeyboardEvent;
     import flash.text.TextField;
+    import flash.ui.Keyboard;
     import tripwire.Tools.TextfieldUtil;
     import tripwire.containers.TripContainer;
     
@@ -17,6 +20,12 @@ package tripwire.containers.trader
         public var doshTextField:TextField;
         
         public var weightTextField:TextField;
+        
+        public var Dosh_WeightMC:MovieClip;
+        
+        public var DoshIcon:MovieClip;
+        
+        public var WeightIcon:MovieClip;
         
         public function TraderGameInfoContainer()
         {
@@ -40,12 +49,26 @@ package tripwire.containers.trader
         
         public function set dosh(param1:int) : void
         {
-            this.doshTextField.text = String(param1);
+            this.Dosh_WeightMC.doshTextField.text = String(param1);
         }
         
         public function set currentWeight(param1:String) : void
         {
-            this.weightTextField.text = param1;
+            this.Dosh_WeightMC.weightTextField.text = param1;
+        }
+        
+        public function testDoshWeight(param1:KeyboardEvent) : void
+        {
+            if(param1.keyCode == Keyboard.A)
+            {
+                this.dosh = 400;
+                this.currentWeight = "5/15";
+            }
+            if(param1.keyCode == Keyboard.S)
+            {
+                this.dosh = 4000;
+                this.currentWeight = "15/15";
+            }
         }
     }
 }

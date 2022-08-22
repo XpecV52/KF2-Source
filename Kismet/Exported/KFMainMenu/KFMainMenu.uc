@@ -1387,8 +1387,8 @@ Begin Object Class=InterpData Name=InterpData_3
    BakeAndPruneStatus(1)=(AnimSetName="ECON_ANIM.TraderUSB_AnimTest")
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2520
-   ObjPosY=-1208
+   ObjPosX=2544
+   ObjPosY=-864
    DrawWidth=32
    DrawHeight=32
    Name="InterpData_3"
@@ -1398,20 +1398,20 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_3
    bRewindOnPlay=True
    bRewindIfAlreadyPlaying=True
-   InputLinks(0)=(DrawY=-1434,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-1412,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-1390,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-1368,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-1346,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_Delay'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_3')),DrawY=-1418,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-1362,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.InterpData_3'),DrawX=2575,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_8'),LinkDesc="opencam",MinVars=0,DrawX=2636,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),LinkDesc="Trader",MinVars=0,DrawX=2703,OverrideDelta=138)
+   InputLinks(0)=(DrawY=-1090,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-1068,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-1046,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-1024,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-1002,OverrideDelta=103)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_Delay'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_3')),DrawY=-1074,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-1018,OverrideDelta=87)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.InterpData_3'),DrawX=2599,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_8'),LinkDesc="opencam",MinVars=0,DrawX=2660,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),LinkDesc="Trader",MinVars=0,DrawX=2727,OverrideDelta=138)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2544
-   ObjPosY=-1472
+   ObjPosX=2568
+   ObjPosY=-1128
    ObjComment="recycle animation"
    DrawWidth=197
    DrawHeight=157
@@ -1423,8 +1423,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
    ObjValue=CameraActor'KFMainMenu.TheWorld:PersistentLevel.CameraActor_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2616
-   ObjPosY=-1160
+   ObjPosX=2640
+   ObjPosY=-816
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_8"
@@ -1434,12 +1434,12 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_26
    ConsoleEventName="Recycle_Start"
    MaxWidth=212
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3')),DrawY=-1454,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=2370,OverrideDelta=74)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3')),DrawY=-1110,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=2394,OverrideDelta=74)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2264
-   ObjPosY=-1520
+   ObjPosX=2288
+   ObjPosY=-1176
    DrawWidth=126
    DrawHeight=128
    Name="SeqEvent_Console_26"
@@ -1461,8 +1461,8 @@ End Object
 Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_6
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3296
-   ObjPosY=-1288
+   ObjPosX=3320
+   ObjPosY=-944
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Bool_6"
@@ -1470,15 +1470,15 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_6
 End Object
 
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_3
-   InputLinks(0)=(DrawY=-1362,OverrideDelta=23)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2')),DrawY=-1372,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_12')),DrawY=-1352,OverrideDelta=33)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_4'),DrawX=3221,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_6'),DrawX=3271,OverrideDelta=59)
+   InputLinks(0)=(DrawY=-1018,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2')),DrawY=-1028,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_12')),DrawY=-1008,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_4'),DrawX=3245,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_6'),DrawX=3295,OverrideDelta=59)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3192
-   ObjPosY=-1408
+   ObjPosX=3216
+   ObjPosY=-1064
    DrawWidth=115
    DrawHeight=85
    Name="SeqCond_CompareBool_3"
@@ -2016,8 +2016,8 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_9
 End Object
 
 Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_1
-   SizeX=2661
-   SizeY=1455
+   SizeX=2677
+   SizeY=2034
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-504
@@ -2028,8 +2028,8 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_1
 End Object
 
 Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_2
-   SizeX=3264
-   SizeY=1774
+   SizeX=3250
+   SizeY=2049
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2208
@@ -2152,8 +2152,8 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_4
    SizeY=761
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2200
-   ObjPosY=-1576
+   ObjPosX=2224
+   ObjPosY=-1208
    ObjComment="recycling sequence"
    Name="SequenceFrameWrapped_4"
    ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
@@ -2319,8 +2319,8 @@ Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_15
 End Object
 
 Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_7
-   SizeX=599
-   SizeY=1973
+   SizeX=595
+   SizeY=2257
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1880
@@ -2349,8 +2349,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
    ObjValue=SkeletalMeshActor'KFMainMenu.TheWorld:PersistentLevel.SkeletalMeshActor_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2704
-   ObjPosY=-1200
+   ObjPosX=2728
+   ObjPosY=-856
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_1"
@@ -2409,8 +2409,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
    ObjValue=SkeletalMeshActor'KFMainMenu.TheWorld:PersistentLevel.SkeletalMeshActor_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3072
-   ObjPosY=-1184
+   ObjPosX=3096
+   ObjPosY=-840
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_28"
@@ -2421,8 +2421,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
    ObjValue=CameraActor'KFMainMenu.TheWorld:PersistentLevel.CameraActor_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2968
-   ObjPosY=-1184
+   ObjPosX=2992
+   ObjPosY=-840
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_25"
@@ -2493,8 +2493,8 @@ Begin Object Class=InterpData Name=InterpData_1
    BakeAndPruneStatus(1)=(AnimSetName="ECON_ANIM.TraderUSB_AnimTest")
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2872
-   ObjPosY=-1184
+   ObjPosX=2896
+   ObjPosY=-840
    DrawWidth=32
    DrawHeight=32
    Name="InterpData_1"
@@ -2504,20 +2504,20 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
    bRewindOnPlay=True
    bRewindIfAlreadyPlaying=True
-   InputLinks(0)=(DrawY=-1378,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-1356,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-1334,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-1312,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-1290,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_3')),DrawY=-1362,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-1306,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=2935,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25'),LinkDesc="loopcam",MinVars=0,DrawX=2994,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28'),LinkDesc="Trader",MinVars=0,DrawX=3058,OverrideDelta=133)
+   InputLinks(0)=(DrawY=-1034,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-1012,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-990,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-968,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-946,OverrideDelta=103)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_3')),DrawY=-1018,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-962,OverrideDelta=87)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=2959,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25'),LinkDesc="loopcam",MinVars=0,DrawX=3018,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28'),LinkDesc="Trader",MinVars=0,DrawX=3082,OverrideDelta=133)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2904
-   ObjPosY=-1416
+   ObjPosX=2928
+   ObjPosY=-1072
    ObjComment="looping crafting animation"
    DrawWidth=192
    DrawHeight=157
@@ -2528,12 +2528,12 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_9
    ConsoleEventName="Abort"
    MaxWidth=155
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3',InputLinkIdx=2),(LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1',InputLinkIdx=2)),DrawY=-1310,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=2365,OverrideDelta=45)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3',InputLinkIdx=2),(LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1',InputLinkIdx=2)),DrawY=-966,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=2389,OverrideDelta=45)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2288
-   ObjPosY=-1376
+   ObjPosX=2312
+   ObjPosY=-1032
    DrawWidth=97
    DrawHeight=128
    Name="SeqEvent_Console_9"
@@ -2558,12 +2558,12 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_11
    ConsoleEventName="Abort"
    MaxWidth=155
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_11',InputLinkIdx=2),(LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_9',InputLinkIdx=2),(LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_10',InputLinkIdx=2)),DrawY=-2134,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=3389,OverrideDelta=45)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_11',InputLinkIdx=2),(LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_9',InputLinkIdx=2),(LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_10',InputLinkIdx=2)),DrawY=-2926,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=2909,OverrideDelta=45)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3312
-   ObjPosY=-2200
+   ObjPosX=2832
+   ObjPosY=-2992
    DrawWidth=97
    DrawHeight=128
    Name="SeqEvent_Console_11"
@@ -2589,8 +2589,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
    ObjValue=SkeletalMeshActor'KFMainMenu.TheWorld:PersistentLevel.SkeletalMeshActor_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4048
-   ObjPosY=-1200
+   ObjPosX=4072
+   ObjPosY=-856
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_29"
@@ -2601,8 +2601,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
    ObjValue=CameraActor'KFMainMenu.TheWorld:PersistentLevel.CameraActor_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3944
-   ObjPosY=-1200
+   ObjPosX=3968
+   ObjPosY=-856
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_26"
@@ -2684,8 +2684,8 @@ Begin Object Class=InterpData Name=InterpData_2
    BakeAndPruneStatus(1)=(AnimSetName="ECON_ANIM.TraderUSB_AnimTest")
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3816
-   ObjPosY=-1208
+   ObjPosX=3840
+   ObjPosY=-864
    DrawWidth=32
    DrawHeight=32
    Name="InterpData_2"
@@ -2695,21 +2695,21 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
    bRewindOnPlay=True
    bRewindIfAlreadyPlaying=True
-   InputLinks(0)=(DrawY=-1394,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-1372,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-1350,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-1328,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-1306,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=-1387,OverrideDelta=22)
-   OutputLinks(1)=(DrawY=-1350,OverrideDelta=59)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Switch'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Switch_1')),LinkDesc="stinger",DrawY=-1313,OverrideDelta=96)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.InterpData_2'),DrawX=3919,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26'),LinkDesc="finishcam",MinVars=0,DrawX=3981,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29'),LinkDesc="Trader",MinVars=0,DrawX=4049,OverrideDelta=140)
+   InputLinks(0)=(DrawY=-1050,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-1028,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-1006,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-984,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-962,OverrideDelta=103)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=-1043,OverrideDelta=22)
+   OutputLinks(1)=(DrawY=-1006,OverrideDelta=59)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Switch'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Switch_1')),LinkDesc="stinger",DrawY=-969,OverrideDelta=96)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.InterpData_2'),DrawX=3943,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26'),LinkDesc="finishcam",MinVars=0,DrawX=4005,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29'),LinkDesc="Trader",MinVars=0,DrawX=4073,OverrideDelta=140)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3888
-   ObjPosY=-1432
+   ObjPosX=3912
+   ObjPosY=-1088
    ObjComment="craft_finish_matinee"
    DrawWidth=199
    DrawHeight=157
@@ -3362,8 +3362,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
    ObjValue=AkAmbientSound'KFMainMenu.TheWorld:PersistentLevel.AkAmbientSound_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4320
-   ObjPosY=-1152
+   ObjPosX=4344
+   ObjPosY=-808
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_6"
@@ -3372,13 +3372,13 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_5
    Event=AkEvent'WW_UI_Menu.Play_Recycle_Complete'
-   InputLinks(0)=(DrawY=-1246,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-1246,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6'),DrawX=4336,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-902,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-902,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6'),DrawX=4360,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4288
-   ObjPosY=-1280
+   ObjPosX=4312
+   ObjPosY=-936
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_5"
@@ -3412,14 +3412,14 @@ End Object
 Begin Object Class=SeqAct_Switch Name=SeqAct_Switch_1
    LinkCount=2
    bLooping=True
-   InputLinks(0)=(DrawY=-1322,OverrideDelta=23)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_6')),DrawY=-1332,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_AkPostEvent'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_5')),LinkDesc="Link 2",DrawY=-1312,OverrideDelta=33)
-   VariableLinks(0)=(DrawX=4210,OverrideDelta=16)
+   InputLinks(0)=(DrawY=-978,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_6')),DrawY=-988,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_AkPostEvent'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_5')),LinkDesc="Link 2",DrawY=-968,OverrideDelta=33)
+   VariableLinks(0)=(DrawX=4234,OverrideDelta=16)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4176
-   ObjPosY=-1368
+   ObjPosX=4200
+   ObjPosY=-1024
    DrawWidth=68
    DrawHeight=85
    Name="SeqAct_Switch_1"
@@ -3428,13 +3428,13 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_6
    Event=AkEvent'WW_UI_Menu.Play_Recycle_Complete'
-   InputLinks(0)=(DrawY=-1478,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-1478,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_13'),DrawX=4344,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-1134,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-1134,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_13'),DrawX=4368,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4296
-   ObjPosY=-1512
+   ObjPosX=4320
+   ObjPosY=-1168
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_6"
@@ -3445,8 +3445,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
    ObjValue=AkAmbientSound'KFMainMenu.TheWorld:PersistentLevel.AkAmbientSound_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4328
-   ObjPosY=-1384
+   ObjPosX=4352
+   ObjPosY=-1040
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_13"
@@ -3713,49 +3713,49 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_25
    ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
 End Object
 
-Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_1
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_28
    NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Science_M'
-   InputLinks(0)=(DrawY=-2110,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_6')),DrawY=-2110,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=469,OverrideDelta=23)
+   InputLinks(0)=(DrawY=-1990,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_29')),DrawY=-1990,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=-83,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=424
-   ObjPosY=-2144
+   ObjPosX=-128
+   ObjPosY=-2024
    DrawWidth=90
    DrawHeight=61
-   Name="SeqAct_SetMaterial_1"
+   Name="SeqAct_SetMaterial_28"
    ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
 End Object
 
-Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_43
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_55
    ConsoleEventName="open_horzine7"
    MaxWidth=214
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_1')),DrawY=-2118,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=195,OverrideDelta=75)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_28')),DrawY=-1998,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-349,OverrideDelta=75)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=88
-   ObjPosY=-2184
+   ObjPosX=-456
+   ObjPosY=-2064
    DrawWidth=127
    DrawHeight=128
-   Name="SeqEvent_Console_43"
+   Name="SeqEvent_Console_55"
    ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
 End Object
 
-Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_6
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_29
    NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Key_Science_M'
    MaterialIndex=1
-   InputLinks(0)=(DrawY=-2190,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4')),DrawY=-2190,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=621,OverrideDelta=23)
+   InputLinks(0)=(DrawY=-1990,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4')),DrawY=-1990,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=61,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=576
-   ObjPosY=-2224
+   ObjPosX=16
+   ObjPosY=-2024
    DrawWidth=90
    DrawHeight=61
-   Name="SeqAct_SetMaterial_6"
+   Name="SeqAct_SetMaterial_29"
    ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
 End Object
 
@@ -3789,59 +3789,59 @@ End Object
 Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_27
    NewMaterial=MaterialInstanceConstant'ECON_MAT.OlExhibit_USB_M'
    MaterialIndex=2
-   InputLinks(0)=(DrawY=-1974,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_11')),DrawY=-1974,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37'),DrawX=3317,OverrideDelta=23)
+   InputLinks(0)=(DrawY=-1846,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_11')),DrawY=-1846,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37'),DrawX=3413,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3272
-   ObjPosY=-2008
+   ObjPosX=3368
+   ObjPosY=-1880
    DrawWidth=90
    DrawHeight=61
    Name="SeqAct_SetMaterial_27"
    ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
 End Object
 
-Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_21
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_30
    NewMaterial=MaterialInstanceConstant'ECON_MAT.SWAT_USB_M'
    MaterialIndex=2
-   InputLinks(0)=(DrawY=-1950,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_11')),DrawY=-1950,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33'),DrawX=3845,OverrideDelta=23)
+   InputLinks(0)=(DrawY=-2054,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_11')),DrawY=-2054,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_38'),DrawX=3437,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3800
-   ObjPosY=-1984
+   ObjPosX=3392
+   ObjPosY=-2088
    DrawWidth=90
    DrawHeight=61
-   Name="SeqAct_SetMaterial_21"
+   Name="SeqAct_SetMaterial_30"
    ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
 End Object
 
-Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_54
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_56
    ConsoleEventName="open_swat"
    MaxWidth=191
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_21')),DrawY=-1950,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=3615,OverrideDelta=63)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_30')),DrawY=-2054,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=3207,OverrideDelta=63)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3520
-   ObjPosY=-2016
+   ObjPosX=3112
+   ObjPosY=-2120
    DrawWidth=115
    DrawHeight=128
-   Name="SeqEvent_Console_54"
+   Name="SeqEvent_Console_56"
    ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
    ObjValue=SkeletalMeshActor'KFMainMenu.TheWorld:PersistentLevel.SkeletalMeshActor_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3792
-   ObjPosY=-1880
+   ObjPosX=3384
+   ObjPosY=-1984
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_33"
+   Name="SeqVar_Object_38"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -3877,7 +3877,7 @@ End Object
 
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_5
    bStartWillRestart=True
-   Duration=5.000000
+   Duration=8.000000
    InputLinks(0)=(DrawY=-2595,OverrideDelta=14)
    InputLinks(1)=(DrawY=-2574,OverrideDelta=35)
    InputLinks(2)=(DrawY=-2553,OverrideDelta=56)
@@ -3978,13 +3978,13 @@ End Object
 
 Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_3
    Commands(0)="ItemExchangeTimeOut"
-   InputLinks(0)=(DrawY=-3046,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_8')),DrawY=-3046,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_4'),DrawX=1336,OverrideDelta=42)
+   InputLinks(0)=(DrawY=-3078,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_8')),DrawY=-3078,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_4'),DrawX=1344,OverrideDelta=42)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1272
-   ObjPosY=-3080
+   ObjPosX=1280
+   ObjPosY=-3112
    DrawWidth=129
    DrawHeight=61
    Name="SeqAct_ConsoleCommand_3"
@@ -3994,8 +3994,8 @@ End Object
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_4
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1304
-   ObjPosY=-2776
+   ObjPosX=1320
+   ObjPosY=-2856
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Player_4"
@@ -4095,7 +4095,7 @@ End Object
 
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
    bStartWillRestart=True
-   Duration=5.000000
+   Duration=8.000000
    InputLinks(0)=(DrawY=-2363,OverrideDelta=14)
    InputLinks(1)=(DrawY=-2342,OverrideDelta=35)
    InputLinks(2)=(DrawY=-2321,OverrideDelta=56)
@@ -4195,8 +4195,8 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_16
    bValue=1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3224
-   ObjPosY=-920
+   ObjPosX=3248
+   ObjPosY=-576
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Bool_16"
@@ -4204,14 +4204,14 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_16
 End Object
 
 Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_5
-   InputLinks(0)=(DrawY=-990,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-990,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_16'),DrawX=3274,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_14'),DrawX=3330,OverrideDelta=68)
+   InputLinks(0)=(DrawY=-646,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-646,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_16'),DrawX=3298,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_14'),DrawX=3354,OverrideDelta=68)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3240
-   ObjPosY=-1024
+   ObjPosX=3264
+   ObjPosY=-680
    DrawWidth=128
    DrawHeight=61
    Name="SeqAct_SetBool_5"
@@ -4221,8 +4221,8 @@ End Object
 Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_15
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3104
-   ObjPosY=-920
+   ObjPosX=3128
+   ObjPosY=-576
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Bool_15"
@@ -4230,15 +4230,15 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_15
 End Object
 
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_7
-   InputLinks(0)=(DrawY=-994,OverrideDelta=23)
-   OutputLinks(0)=(DrawY=-1004,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_SetBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_5')),DrawY=-984,OverrideDelta=33)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_4'),DrawX=3053,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_15'),DrawX=3103,OverrideDelta=59)
+   InputLinks(0)=(DrawY=-650,OverrideDelta=23)
+   OutputLinks(0)=(DrawY=-660,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_SetBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_5')),DrawY=-640,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_4'),DrawX=3077,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_15'),DrawX=3127,OverrideDelta=59)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3024
-   ObjPosY=-1040
+   ObjPosX=3048
+   ObjPosY=-696
    DrawWidth=115
    DrawHeight=85
    Name="SeqCond_CompareBool_7"
@@ -4248,16 +4248,16 @@ End Object
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_3
    bStartWillRestart=True
    Duration=5.000000
-   InputLinks(0)=(DrawY=-995,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-974,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-953,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_7')),DrawY=-990,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-958,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=2900,OverrideDelta=25)
+   InputLinks(0)=(DrawY=-651,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-630,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-609,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_7')),DrawY=-646,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-614,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=2924,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2848
-   ObjPosY=-1032
+   ObjPosX=2872
+   ObjPosY=-688
    DrawWidth=106
    DrawHeight=109
    Name="SeqAct_Delay_3"
@@ -4267,8 +4267,8 @@ End Object
 Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_25
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3608
-   ObjPosY=-920
+   ObjPosX=3632
+   ObjPosY=-576
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Bool_25"
@@ -4278,8 +4278,8 @@ End Object
 Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_26
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3976
-   ObjPosY=-928
+   ObjPosX=4000
+   ObjPosY=-584
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Bool_26"
@@ -4287,14 +4287,14 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_26
 End Object
 
 Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_10
-   InputLinks(0)=(DrawY=-1030,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_8')),DrawY=-1030,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_26'),DrawX=4010,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_14'),DrawX=4066,OverrideDelta=68)
+   InputLinks(0)=(DrawY=-686,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_8')),DrawY=-686,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_26'),DrawX=4034,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_14'),DrawX=4090,OverrideDelta=68)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3976
-   ObjPosY=-1064
+   ObjPosX=4000
+   ObjPosY=-720
    DrawWidth=128
    DrawHeight=61
    Name="SeqAct_SetBool_10"
@@ -4304,8 +4304,8 @@ End Object
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_7
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3784
-   ObjPosY=-936
+   ObjPosX=3808
+   ObjPosY=-592
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Player_7"
@@ -4314,13 +4314,13 @@ End Object
 
 Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_7
    Commands(0)="ItemExchangeTimeOut"
-   InputLinks(0)=(DrawY=-1030,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_10')),DrawY=-1030,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_7'),DrawX=3840,OverrideDelta=42)
+   InputLinks(0)=(DrawY=-686,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_10')),DrawY=-686,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_7'),DrawX=3864,OverrideDelta=42)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3776
-   ObjPosY=-1064
+   ObjPosX=3800
+   ObjPosY=-720
    DrawWidth=129
    DrawHeight=61
    Name="SeqAct_ConsoleCommand_7"
@@ -4328,15 +4328,15 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_7
 End Object
 
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_12
-   InputLinks(0)=(DrawY=-1026,OverrideDelta=23)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1',InputLinkIdx=2),(LinkedOp=SeqAct_ConsoleCommand'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_7')),DrawY=-1036,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1')),DrawY=-1016,OverrideDelta=33)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_14'),DrawX=3581,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_25'),DrawX=3631,OverrideDelta=59)
+   InputLinks(0)=(DrawY=-682,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1',InputLinkIdx=2),(LinkedOp=SeqAct_ConsoleCommand'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_7')),DrawY=-692,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1')),DrawY=-672,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_14'),DrawX=3605,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_25'),DrawX=3655,OverrideDelta=59)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3552
-   ObjPosY=-1072
+   ObjPosX=3576
+   ObjPosY=-728
    DrawWidth=115
    DrawHeight=85
    Name="SeqCond_CompareBool_12"
@@ -4397,13 +4397,13 @@ End Object
 
 Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_8
    Commands(0)="ce Idle"
-   InputLinks(0)=(DrawY=-1014,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-1014,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_8'),DrawX=4240,OverrideDelta=42)
+   InputLinks(0)=(DrawY=-670,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-670,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_8'),DrawX=4264,OverrideDelta=42)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4176
-   ObjPosY=-1048
+   ObjPosX=4200
+   ObjPosY=-704
    DrawWidth=129
    DrawHeight=61
    Name="SeqAct_ConsoleCommand_8"
@@ -4413,8 +4413,8 @@ End Object
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_8
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4216
-   ObjPosY=-928
+   ObjPosX=4240
+   ObjPosY=-584
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Player_8"
@@ -4597,6 +4597,453 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_18
    DrawHeight=32
    Name="SeqVar_Bool_18"
    ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_32
+   NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Key_Psycho_M'
+   MaterialIndex=1
+   InputLinks(0)=(DrawY=-1806,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4')),DrawY=-1806,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=53,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=8
+   ObjPosY=-1840
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_32"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_62
+   ConsoleEventName="open_horzine9"
+   EventDesc="Psycho Crate"
+   MaxWidth=214
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_33')),DrawY=-1798,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-341,OverrideDelta=75)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-448
+   ObjPosY=-1864
+   DrawWidth=127
+   DrawHeight=128
+   Name="SeqEvent_Console_62"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_33
+   NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Psycho_M'
+   InputLinks(0)=(DrawY=-1806,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_32')),DrawY=-1806,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=-83,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-128
+   ObjPosY=-1840
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_33"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_59
+   ConsoleEventName="open_elitemedic"
+   MaxWidth=225
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_31')),DrawY=-2054,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=3664,OverrideDelta=80)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3552
+   ObjPosY=-2120
+   DrawWidth=132
+   DrawHeight=128
+   Name="SeqEvent_Console_59"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_31
+   NewMaterial=MaterialInstanceConstant'ECON_MAT.EliteUnit-Medic_USB_M'
+   MaterialIndex=2
+   InputLinks(0)=(DrawY=-2054,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_11')),DrawY=-2054,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44'),DrawX=3877,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3832
+   ObjPosY=-2088
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_31"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
+   ObjValue=SkeletalMeshActor'KFMainMenu.TheWorld:PersistentLevel.SkeletalMeshActor_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3832
+   ObjPosY=-2000
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_44"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_61
+   ConsoleEventName="open_horzine9"
+   EventDesc="Psycho Crate"
+   MaxWidth=214
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=2)),DrawY=138,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-1693,OverrideDelta=75)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1800
+   ObjPosY=72
+   DrawWidth=127
+   DrawHeight=128
+   Name="SeqEvent_Console_61"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_54
+   ConsoleEventName="open_elitemedic"
+   MaxWidth=225
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=2)),DrawY=58,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-1440,OverrideDelta=80)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1552
+   ObjPosY=-8
+   DrawWidth=132
+   DrawHeight=128
+   Name="SeqEvent_Console_54"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
+   ObjValue=SkeletalMeshActor'KFMainMenu.TheWorld:PersistentLevel.SkeletalMeshActor_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3824
+   ObjPosY=-1760
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_33"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_21
+   NewMaterial=MaterialInstanceConstant'ECON_MAT.Victorian_USB_M'
+   MaterialIndex=2
+   InputLinks(0)=(DrawY=-1814,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_11')),DrawY=-1814,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33'),DrawX=3869,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3824
+   ObjPosY=-1848
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_21"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_60
+   ConsoleEventName="open_victorian"
+   MaxWidth=216
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_21')),DrawY=-1814,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=3652,OverrideDelta=76)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=3544
+   ObjPosY=-1880
+   DrawWidth=128
+   DrawHeight=128
+   Name="SeqEvent_Console_60"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_58
+   ConsoleEventName="open_victorian"
+   MaxWidth=216
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=2)),DrawY=290,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-1700,OverrideDelta=76)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1808
+   ObjPosY=224
+   DrawWidth=128
+   DrawHeight=128
+   Name="SeqEvent_Console_58"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_43
+   ConsoleEventName="open_horzine8"
+   EventDesc=
+   MaxWidth=214
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=2)),DrawY=266,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-1469,OverrideDelta=75)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1576
+   ObjPosY=200
+   DrawWidth=127
+   DrawHeight=128
+   Name="SeqEvent_Console_43"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_34
+   NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Crate_PSN_M'
+   InputLinks(0)=(DrawY=-2062,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_35')),DrawY=-2062,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=581,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=536
+   ObjPosY=-2096
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_34"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_70
+   ConsoleEventName="open_psncrate_cs1"
+   EventDesc="psncrate_cs1"
+   MaxWidth=248
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_34')),DrawY=-2054,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=340,OverrideDelta=92)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=216
+   ObjPosY=-2120
+   DrawWidth=144
+   DrawHeight=128
+   Name="SeqEvent_Console_70"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_35
+   NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
+   MaterialIndex=1
+   InputLinks(0)=(DrawY=-2062,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4')),DrawY=-2062,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=709,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=664
+   ObjPosY=-2096
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_35"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_36
+   NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
+   MaterialIndex=1
+   InputLinks(0)=(DrawY=-1870,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4')),DrawY=-1870,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=693,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=648
+   ObjPosY=-1904
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_36"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_71
+   ConsoleEventName="open_psncrate_cs2"
+   EventDesc="psncrate_cs2"
+   MaxWidth=248
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_37')),DrawY=-1862,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=324,OverrideDelta=92)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=200
+   ObjPosY=-1928
+   DrawWidth=144
+   DrawHeight=128
+   Name="SeqEvent_Console_71"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_37
+   NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply2_Crate_PSN_M'
+   InputLinks(0)=(DrawY=-1870,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_36')),DrawY=-1870,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=565,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=520
+   ObjPosY=-1904
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_37"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_38
+   NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply3_Crate_PSN_M'
+   InputLinks(0)=(DrawY=-1694,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_39')),DrawY=-1694,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=557,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=512
+   ObjPosY=-1728
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_38"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_72
+   ConsoleEventName="open_psncrate_ws1"
+   EventDesc="psncrate_ws1"
+   MaxWidth=251
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_38')),DrawY=-1686,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=317,OverrideDelta=93)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=192
+   ObjPosY=-1752
+   DrawWidth=145
+   DrawHeight=128
+   Name="SeqEvent_Console_72"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_39
+   NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
+   MaterialIndex=1
+   InputLinks(0)=(DrawY=-1694,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4')),DrawY=-1694,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=685,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=640
+   ObjPosY=-1728
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_39"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_6
+   NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
+   MaterialIndex=1
+   InputLinks(0)=(DrawY=-1518,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4')),DrawY=-1518,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=693,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=648
+   ObjPosY=-1552
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_6"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_73
+   ConsoleEventName="open_psncrate_ws2"
+   EventDesc="psncrate_ws2"
+   MaxWidth=251
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_1')),DrawY=-1510,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=325,OverrideDelta=93)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=200
+   ObjPosY=-1576
+   DrawWidth=145
+   DrawHeight=128
+   Name="SeqEvent_Console_73"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_1
+   NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply4_Crate_PSN_M'
+   InputLinks(0)=(DrawY=-1518,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_6')),DrawY=-1518,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=565,OverrideDelta=23)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=520
+   ObjPosY=-1552
+   DrawWidth=90
+   DrawHeight=61
+   Name="SeqAct_SetMaterial_1"
+   ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_69
+   ConsoleEventName="open_psncrate_ws2"
+   EventDesc="psncrate_ws2"
+   MaxWidth=251
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=2)),DrawY=-630,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-723,OverrideDelta=93)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-848
+   ObjPosY=-696
+   DrawWidth=145
+   DrawHeight=128
+   Name="SeqEvent_Console_69"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_68
+   ConsoleEventName="open_psncrate_ws1"
+   EventDesc="psncrate_ws1"
+   MaxWidth=251
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=2)),DrawY=-806,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-731,OverrideDelta=93)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-856
+   ObjPosY=-872
+   DrawWidth=145
+   DrawHeight=128
+   Name="SeqEvent_Console_68"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_67
+   ConsoleEventName="open_psncrate_cs2"
+   EventDesc="psncrate_cs2"
+   MaxWidth=248
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=2)),DrawY=-982,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-724,OverrideDelta=92)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-848
+   ObjPosY=-1048
+   DrawWidth=144
+   DrawHeight=128
+   Name="SeqEvent_Console_67"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_66
+   ConsoleEventName="open_psncrate_cs1"
+   EventDesc="psncrate_cs1"
+   MaxWidth=248
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=2)),DrawY=-1174,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-708,OverrideDelta=92)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-832
+   ObjPosY=-1240
+   DrawWidth=144
+   DrawHeight=128
+   Name="SeqEvent_Console_66"
+   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
 End Object
 
 Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'

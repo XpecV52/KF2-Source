@@ -321,6 +321,15 @@ function bool QuitLobby()
 	return success;
 }
 
+//@HSL_BEGIN - JRO - 7/16/2016 - Just use the PRI UniqueNetId on PC
+function UniqueNetId GetMyId()
+{
+	local UniqueNetId LoggedInPlayer;
+	GetUniquePlayerId(0, LoggedInPlayer);
+	return LoggedInPlayer;
+}
+//@HSL_END
+
 /*********************************************************************************************
 * @name Game Invites
 ********************************************************************************************* */
@@ -330,7 +339,7 @@ native function bool SetLobbyServer(UniqueNetId LobbyId, UniqueNetId ServerUID, 
 native function bool GetServerConnected();
 native function string GetLobbyServerIP(const out UniqueNetId LobbyId);
 native function string GetConnectedServerIP();
-native function string AppendPasswordToURL(string Password);
+native function string AppendPasswordToURL(string URL, string Password);
 
 /** Called on lobby owner when new listen server game is started */
 function bool LobbyJoinGame(optional string ServerIP)

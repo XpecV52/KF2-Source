@@ -27,6 +27,8 @@ var transient int CachedDifficulty, CachedLength;
 
 var transient array<string> MapList;
 
+var int NumDifficultyStrings;
+
 enum EFilter_Key
 {
 	NO_PASSWORD,
@@ -51,6 +53,7 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	super.Initialize( NewParentMenu );
 	ServerMenu = KFGFxMenu_ServerBrowser(NewParentMenu);
 	SavedGameModeIndexPending = SavedGameModeIndex;
+	NumDifficultyStrings = class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length;
 	AdjustSavedFiltersToMode();
 	ServerMenu.Manager.StartMenu.GetMapList(MapList);
 	InitFiltersArray();
@@ -84,41 +87,11 @@ function AdjustSavedFiltersToMode()
 	SavedLengthIndexPending = SavedLengthIndex;
 }
 
-exec function string GetSelectedMap()
-{
-	//`log("GetSelectedMap:"@string(SavedMapIndex));
-	if (SavedMapIndex < 0 || SavedMapIndex >= MapList.length)
-	{
-		return "";
-	}
-	return MapList[SavedMapIndex];
-}
+exec native function string GetSelectedMap() const;
 
-exec function int GetSelectedDifficulty()
-{
-	//`log("GetSelectedDifficulty:"@string(SavedDifficultyIndex));
-	if (SavedDifficultyIndex < 0 || SavedDifficultyIndex >= class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().length)
-	{
-		return -1;
-	}
-	return SavedDifficultyIndex;
-}
+exec native function int GetSelectedDifficulty() const;
 
-exec function int GetSelectedGameLength()
-{
-	//`log("GetSelectedGameLength:"@string(SavedLengthIndex));
-	switch (SavedLengthIndex)
-	{
-	case 0:
-		return 4;
-	case 1:
-		return 7;
-	case 2:
-		return 10;
-	default:
-		return -1;
-	}	
-}
+exec native function int GetSelectedGameLength() const;
 
 function InitFiltersArray()
 {
@@ -199,7 +172,10 @@ function SetModeMenus(string DifficultyListString, string LengthListString, int 
 	for (i = 0; i < 5; ++i)
 	{
 		DifficultyDataProvider.SetElementObject(i, None);
-		LengthDataProvider.SetElementObject(i, None);
+		if (i < 4)	// prevents a blank option from being added to the Length list
+		{
+			LengthDataProvider.SetElementObject(i, None);
+		}
 	}	
 	if (SavedDifficultyIndexPending >= class'KFGameInfo'.default.GameModes[UseModeIndex].DifficultyLevels)
 	{

@@ -7,12 +7,25 @@
  *******************************************************************************/
 class KFSM_PlayerSlasher_Roll extends KFSM_Evade;
 
+var float RollSpeed;
+
 static function byte PackFlagsBase(KFPawn P)
 {
     return Class'KFSM_PlayerMeleeBase'.static.GetFourWayMoveDirection(P);
 }
 
+function Tick(float DeltaTime)
+{
+    super(KFSpecialMove).Tick(DeltaTime);
+    if((KFPOwner != none) && KFPOwner.Role != ROLE_SimulatedProxy)
+    {
+        KFPOwner.Velocity = vector(KFPOwner.Rotation) * RollSpeed;
+        KFPOwner.Acceleration = KFPOwner.Velocity;
+    }
+}
+
 defaultproperties
 {
+    RollSpeed=1000
     EvadeAnims=/* Array type was not detected. */
 }

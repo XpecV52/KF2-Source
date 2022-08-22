@@ -2,6 +2,7 @@ package tripwire.managers
 {
     import flash.display.Loader;
     import flash.display.MovieClip;
+    import flash.display.Sprite;
     import flash.display.StageScaleMode;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
@@ -86,6 +87,8 @@ package tripwire.managers
         private var _currentPopUp:BasePopup;
         
         private var _numPrompts:int = 2;
+        
+        private var CachedModalClip:Sprite;
         
         private var menuList:Array;
         
@@ -370,15 +373,22 @@ package tripwire.managers
                 switch(param1.details.navEquivalent)
                 {
                     case NavigationCode.GAMEPAD_L2:
-                        if(!this.menuList[this._currentMenuIndex].menuObject.bSelected)
+                        if(!this.menuList[this._currentMenuIndex].menuObject.bSelected && !this.menuList[this._currentMenuIndex].menuObject.bBlockContainerFocus)
                         {
+                            if(this.CachedModalClip != null)
+                            {
+                                FocusManager.setModalClip(this.CachedModalClip,0);
+                            }
                             this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
                             this.controllerEnableWidgets(false);
                         }
                         break;
                     case NavigationCode.GAMEPAD_R2:
+                        this.CachedModalClip = FocusManager.getModalClip(0);
+                        FocusManager.setModalClip(null,0);
                         this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
                         this.controllerEnableWidgets(true);
+                        this.CachedModalClip = null;
                 }
             }
         }

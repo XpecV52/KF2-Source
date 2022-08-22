@@ -13,9 +13,9 @@ class KFPawnVoiceGroupEventData_Patriarch extends KFPawnVoiceGroupEventData;
 
 defaultproperties
 {
-	Events[`BOSS_TauntBase]=        (EventID=`BOSS_TauntBase,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=12.00,							bCanBeMinimized=0,					bCanInterruptEqualPriority=true)
-	Events[`BOSS_Taunt_LT50]=       (EventID=`BOSS_Taunt_LT50,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=12.00, 						bCanBeMinimized=0)
-	Events[`BOSS_Taunt_LT25]=       (EventID=`BOSS_Taunt_LT25,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=12.00, 						bCanBeMinimized=0)
+	Events[`BOSS_TauntBase]=        (EventID=`BOSS_TauntBase,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=20.00,							bCanBeMinimized=0,					bCanInterruptEqualPriority=true)
+	Events[`BOSS_Taunt_LT50]=       (EventID=`BOSS_Taunt_LT50,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=20.00, 						bCanBeMinimized=0)
+	Events[`BOSS_Taunt_LT25]=       (EventID=`BOSS_Taunt_LT25,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=20.00, 						bCanBeMinimized=0)
 	Events[`BOSS_Challenge]=        (EventID=`BOSS_Challenge,	    Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=12.00,							bCanBeMinimized=0)
 	Events[`BOSS_LoseTarget]=       (EventID=`BOSS_LoseTarget,	    Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=8.00,							bCanBeMinimized=0)
 
@@ -30,16 +30,16 @@ defaultproperties
 	Events[`BOSS_Land]=             (EventID=`BOSS_Land,	        Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,							bCanBeMinimized=0)
 
 	// Minigun
-	Events[`PATTY_MinigunWarn]=		(EventID=`PATTY_MinigunWarn, 	Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
+	Events[`PATTY_MinigunWarn]=		(EventID=`PATTY_MinigunWarn, 	Priority=1, Weight=1, 	Chance=0.50,	CoolDownTime=0.00,							bCanBeMinimized=0)
 	Events[`PATTY_MinigunAttack]=	(EventID=`PATTY_MinigunAttack,	Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
 	Events[`PATTY_MinigunKill]=		(EventID=`PATTY_MinigunKill,	Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,							bCanBeMinimized=0)
 	
 	// Missile
-	Events[`PATTY_MissileWarn]=		(EventID=`PATTY_MissileWarn,	Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
+	Events[`PATTY_MissileWarn]=		(EventID=`PATTY_MissileWarn,	Priority=1, Weight=1, 	Chance=0.50,	CoolDownTime=0.00,							bCanBeMinimized=0)
 	Events[`PATTY_MissileKill]=		(EventID=`PATTY_MissileKill,	Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,							bCanBeMinimized=0)
 	
 	// Mortar
-	Events[`PATTY_MortarWarn]=		(EventID=`PATTY_MortarWarn,		Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=6.00,							bCanBeMinimized=0)
+	Events[`PATTY_MortarWarn]=		(EventID=`PATTY_MortarWarn,		Priority=1, Weight=1, 	Chance=0.50,	CoolDownTime=6.00,							bCanBeMinimized=0)
 	Events[`PATTY_MortarKill]=		(EventID=`PATTY_MortarKill,		Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,							bCanBeMinimized=0)
 
 	// Tentacle

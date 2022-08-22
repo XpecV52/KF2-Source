@@ -11,11 +11,14 @@ const DAMAGE_COUNT_PER_SCREAM = 4;
 
 var float ScreamDamageFrequency;
 var byte ScreamCount;
+var float LastScreamTime;
 var GameExplosion ExplosionTemplate;
 var const class<GameExplosionActor> ExplosionActorClass;
-var GameExplosionActor ExplosionActor;
+var bool bEndedNormally;
 var bool bDrawWaveRadius;
 var bool bDrawProjectileShield;
+var AkEvent ScreamInterruptSound;
+var GameExplosionActor ExplosionActor;
 var KFTrigger_SirenProjectileShield ProjectileShield;
 var const float ProjectileShieldLifetime;
 
@@ -31,6 +34,8 @@ function bool CanOverrideMoveWith(name NewMove)
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     super.SpecialMoveStarted(bForced, PrevMove);
+    bEndedNormally = false;
+    LastScreamTime = 0;
     KFPOwner.SetTimer(ProjectileShieldLifetime, false, 'Timer_DestroyProjectileShield', self);
     if(AIOwner != none)
     {
@@ -103,23 +108,34 @@ function InitializeSirenExplosion()
 
 function ScreamExplosion()
 {
-    if(!KFPOwner.IsAliveAndWell() || KFPawn_Monster(KFPOwner).IsImpaired())
+    if(!KFPOwner.IsCombatCapable())
     {
         KFPOwner.EndSpecialMove();
         return;
     }
+    LastScreamTime = KFPOwner.WorldInfo.TimeSeconds;
     ExplosionTemplate.Damage = float(KFPawn_Monster(KFPOwner).GetRallyBoostDamage(int(default.ExplosionTemplate.Damage)));
     ExplosionActor.Explode(ExplosionTemplate);
     ++ ScreamCount;
     if(ScreamCount >= 4)
     {
+        bEndedNormally = true;
         KFPOwner.EndSpecialMove();
+    }
+}
+
+function CheckIfScreamWasInterrupted()
+{
+    if((!bEndedNormally && LastScreamTime > 0) && (KFPOwner.WorldInfo.TimeSeconds - LastScreamTime) < 0.5)
+    {
+        KFPOwner.PlayAkEvent(ScreamInterruptSound, false, true);
     }
 }
 
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     super.SpecialMoveEnded(PrevMove, NextMove);
+    CheckIfScreamWasInterrupted();
     KFPOwner.ClearTimer('ScreamExplosion', self);
     ScreamCount = 0;
     DestroyProjectileShield();
@@ -147,6 +163,7 @@ defaultproperties
     // Reference: KFGameExplosion'Default__KFSM_Siren_Scream.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
     ExplosionActorClass=Class'KFExplosion_SirenScream'
+    ScreamInterruptSound=AkEvent'WW_ZED_Siren.Stop_Siren_Scream'
     ProjectileShieldLifetime=1
     AnimName=Atk_Combo1_V1
     AnimStance=EAnimSlotStance.EAS_UpperBody

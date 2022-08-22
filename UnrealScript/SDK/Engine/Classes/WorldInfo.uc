@@ -1009,6 +1009,12 @@ var transient Actor MyImpactEffectManager;
 var string GoreEffectManagerClassPath;
 var transient Actor MyGoreEffectManager;
 
+/** DeferredWorkManager **/
+`if(`__TW_)
+var string TWDeferredWorkManagerClassPath;
+var transient Actor DeferredWorkManager;
+`endif
+
 /** Turbulence effect pool **/
 var string TurbEffectPoolClassPath;
 var transient Actor MyTurbEffectPool;
@@ -1307,9 +1313,6 @@ native simulated static final function bool IsDemoBuild() const;  // True if thi
 //@HSL_BEGIN - BWJ - 3-16-16 - Support for console dedicated servers
 native static final function bool IsConsoleDedicatedServer() const;
 
-// returns TRUE if this server was spun up by playfab services
-native static final function bool IsPlayfabServer() const;
-
 // return TRUE if this is for an E3 demo
 native simulated static final function bool IsE3Build() const;
 //@HSL_END
@@ -1321,6 +1324,9 @@ native simulated static final function bool IsE3Build() const;
  * @return TRUE if we're on a console, FALSE if we're running on a PC
  */
 native simulated static final function bool IsConsoleBuild(optional EConsoleType ConsoleType=CONSOLE_Any) const;
+
+/** Scale to apply to HUD (currently only used for 4K handling) */
+native static final function FLOAT GetResolutionBasedHUDScale() const;
 
 /** Returns whether Scaleform is compiled in. */
 native simulated static final function bool IsWithGFx() const;
@@ -1522,6 +1528,13 @@ simulated function PreBeginPlay()
 	}
 
 `if(`__TW_)
+
+	// Manager that defers work from during async to post asycn runs on both client and server.
+	if(IsInPersistentLevel())
+	{
+		DeferredWorkManager = Spawn(class'TWDeferredWorkManager', self,, vect(0,0,0), rot(0,0,0));
+	}
+
 	// Instance gameplay pool manager
 	if( WorldInfo.NetMode != NM_Client && IsInPersistentLevel() )
 	{
@@ -1989,6 +2002,7 @@ defaultproperties
 	FractureManagerClassPath="Engine.FractureManager"
 	ImpactEffectManagerClassPath="KFGame.KFImpactEffectManager"
 	GoreEffectManagerClassPath="KFGame.KFGoreManager"
+	TWDeferredWorkManagerClassPath="Engine.TWDeferredWorkManager"
 	//TurbEffectPoolClassPath="KFGame.TurbEffectPool"
 
     bUsePxVisibilityCollision=true

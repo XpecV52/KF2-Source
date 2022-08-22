@@ -13,7 +13,7 @@ class UIDataProvider_OnlineProfileSettings extends UIDataProvider_OnlinePlayerSt
 
 function bool ReadData(OnlinePlayerInterface PlayerInterface, byte LocalUserNum, int DeviceID, OnlinePlayerStorage PlayerStorage)
 {
-    return PlayerInterface.ReadProfileSettings(LocalUserNum, OnlineProfileSettings(PlayerStorage));
+    return true;
 }
 
 function bool WriteData(OnlinePlayerInterface PlayerInterface, byte LocalUserNum, int DeviceID, OnlinePlayerStorage PlayerStorage)

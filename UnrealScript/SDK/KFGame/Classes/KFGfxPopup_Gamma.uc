@@ -10,16 +10,32 @@
 
 class KFGFxPopup_Gamma extends KFGFxObject_Popup;
 
+//@HSL_MOD_BEGIN - amiller 5/25/2016 - Adding support to save extra data into profile settings
+`include(KFProfileSettings.uci);
+//@HSL_MOD_END
 var GFxObject GammaSlider;
 var string GammaImagePath;
 
 function InitializePopup( KFGFxMoviePlayer_Manager InManager )
 {
+	local float GammaMult;
+
     Super.InitializePopup(InManager);
 
 	GammaSlider = GetObject("mainSlider");
+	if(Manager.CachedProfile != none)
+	{
+		Manager.CachedProfile.GetProfileSettingValueFloat(KFID_GammaMultiplier, GammaMult);  
+	}
+`if (`notdefined(FINAL_RELEASE))
+	else if(class'WorldInfo'.static.IsPlayInEditor())
+	{
+		GammaMult = class'KFGameEngine'.default.DefaultGammaMult;
+	}
+`endif
+
 	// Multiplying by 100 so we can go 0-100 with a snapInterval of 1 for consistency. HSL_BB
-	GammaSlider.SetFloat("value", class'KFGameEngine'.default.GammaMultiplier*100);
+	GammaSlider.SetFloat("value", GammaMult*100);
 	SetString("imagePath", "img://"$GammaImagePath);
 
  	Manager.bEnableGammaCorrection = true;
@@ -31,8 +47,7 @@ event OnClosed()
     Super.OnClosed();
     Manager.bEnableGammaCorrection = false;
     Manager.RefreshViewportFlags();
-    Manager.bSetGamma = true;
-    Manager.SaveConfig();
+	Manager.SaveConfig();
 }
 
 function SetGamma( float GammaValue )
@@ -44,16 +59,18 @@ function SetGamma( float GammaValue )
 	KFGE.SaveConfig();
 
 	class'KFGameEngine'.static.SetGamma( GammaValue );
-	class'KFGameEngine'.default.GammaMultiplier = GammaValue;
+	//class'KFGameEngine'.default.GammaMultiplier = GammaValue;
+	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GammaMultiplier, GammaValue);
+	Manager.CachedProfile.SetProfileSettingValueInt(KFID_SetGamma, 1);
+
 	class'KFGameEngine'.static.StaticSaveConfig();
-	
 }
 
 function ResetGamma()
 {
 	local float DefaultGamma;
 	local KFGameEngine KFGE;
-
+	//@HSL_MOD_BEGIN - amiller 5/25/2016 - Adding support to save extra data into profile settings
 	DefaultGamma = class'KFGameEngine'.default.DefaultGammaMult;
 
 	// Multiplying by 100 so we can go 0-100 with a snapInterval of 1 for consistency. HSL_BB
@@ -63,14 +80,17 @@ function ResetGamma()
 	KFGE.GammaMultiplier = DefaultGamma;
 	KFGE.SaveConfig();
 
+	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GammaMultiplier, DefaultGamma);
     class'KFGameEngine'.static.SetGamma( DefaultGamma );
-	class'KFGameEngine'.default.GammaMultiplier = DefaultGamma;
+	//class'KFGameEngine'.default.GammaMultiplier = DefaultGamma;
+//@HSL_MOD_END
 	class'KFGameEngine'.static.StaticSaveConfig();
 }
 
 
 function Callback_ClosedPopup()
 {
+	Manager.CachedProfile.Save( GetLP().ControllerId );
     Super.Callback_Closedpopup();
 }
 

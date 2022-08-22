@@ -16,15 +16,17 @@ var KFPawn_MonsterBoss BossPawn;
 var float UpdateTickTime;
 var float LastUpdateTime;
 var array <int>BattlePhaseColors;
+var KFPlayerController KFPC;
 
 function InitializeHUD()
 {
+    KFPC = KFPlayerController(GetPC());
     bossNameTextField = GetObject("bossnameText");
 }
 
 function TickHud(float DeltaTime)
 {
-    if(class'KFGameEngine'.default.bHideBossHealthBar)
+    if(KFPC.bHideBossHealthBar)
     {
         return;
     }
@@ -41,7 +43,7 @@ function TickHud(float DeltaTime)
 function SetBossPawn(KFPawn_MonsterBoss NewBossPawn)
 {
     local string BossNameText;
-    if(class'KFGameEngine'.default.bHideBossHealthBar)
+    if(KFPC.bHideBossHealthBar)
     {
         return;
     }
@@ -62,7 +64,7 @@ function SetBossPawn(KFPawn_MonsterBoss NewBossPawn)
 
 function OnNamePlateHidden()
 {
-    if(class'KFGameEngine'.default.bHideBossHealthBar)
+    if(KFPC.bHideBossHealthBar)
     {
         return;
     }

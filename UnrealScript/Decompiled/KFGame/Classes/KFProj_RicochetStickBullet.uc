@@ -66,11 +66,6 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 
     SetRotation(rotator(Normal(Velocity)));
     SetPhysics(2);
-    if(bCheckRackEmUp && PenetrationPower == InitialPenetrationPower)
-    {
-        CheckForComboBreaker();
-        bCheckRackEmUp = false;
-    }
     if(!Bounce(HitNormal, Wall))
     {
         if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
@@ -159,9 +154,9 @@ simulated function Stick(StickInfo MyStickInfo, bool bReplicated)
             LifeSpan = LifeSpanAfterStick;
         }
     }
-    if((bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none) && AmbientComponent != none)
+    if(bStopAmbientSoundOnExplode)
     {
-        AmbientComponent.StopEvents();
+        StopAmbientSound();
     }
     if((Role == ROLE_Authority) && !Instigator.IsLocallyControlled())
     {
@@ -190,7 +185,7 @@ simulated function DelayedStick()
 
 simulated function Tick(float DeltaTime)
 {
-    super(KFProj_Bullet).Tick(DeltaTime);
+    super(Actor).Tick(DeltaTime);
     LastLocation = Location;
     if((Physics == 6) && VSizeSq(Velocity) < ((Speed * Speed) * 0.1))
     {

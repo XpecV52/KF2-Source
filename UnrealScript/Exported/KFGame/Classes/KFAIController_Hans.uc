@@ -104,7 +104,10 @@ var float LastRecentSeenEnemyListUpdateTime;
 var float LastRetargetTime;
 
 /** How long to wait before attempting to find a new target */
-var float RetargetWaitTime;
+var vector2d RetargetWaitTimeRange;
+
+/** The actual retarget wait time after last retarget time has been set */
+var transient float ActualRetargetWaitTime;
 
 /*********************************************************************************************
 * Vars for handing the timing of firing, when to shoot, the shooting cadence, etc
@@ -214,6 +217,7 @@ event Possess( Pawn inPawn, bool bVehicleTransition )
 
     // Initialize retarget time
     LastRetargetTime = WorldInfo.TimeSeconds;
+    ActualRetargetWaitTime = RandRange( RetargetWaitTimeRange.X, RetargetWaitTimeRange.Y );
 
 	super.Possess( inPawn, bVehicleTransition );
 }
@@ -317,7 +321,7 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
         HealthPct = GetHealthPercentage();
 
         // Summon minions if we haven't yet
-        if( !bSummonedThisPhase && HealthPct < HealThreshold + 0.11f )
+        if( !bSummonedThisPhase && HealthPct < HealThreshold + 0.18f ) //0.16
         {
             MyHansPawn.SummonMinions();
             bSummonedThisPhase = true;
@@ -327,7 +331,7 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
         }
 
         // Enter hunt and heal mode if we've dropped below the health threshold
-        if( GetHealthPercentage() < HealThreshold )
+        if( HealthPct < HealThreshold )
         {
             MyHansPawn.SetHuntAndHealMode( true );
         }
@@ -338,8 +342,6 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
 function NotifySpecialMoveEnded(KFSpecialMove SM)
 {
     super.NotifySpecialMoveEnded(SM);
-
-    bFleeInterrupted = false;
 
     // Our guns are put away, toss some grenades
     if( !bWantsToFlee && !bFleeing && Enemy != None && MyHansPawn != none && MyHansPawn.bPendingSmokeGrenadeBarrage )
@@ -361,7 +363,7 @@ function NotifySpecialMoveEnded(KFSpecialMove SM)
     if( !bWantsToFlee )
     {
         // Retarget if it's been enough time since we changed targets
-        if( SM.Handle == 'KFSM_MeleeAttack' && (WorldInfo.TimeSeconds - LastRetargetTime) > RetargetWaitTime )
+        if( SM.Handle == 'KFSM_MeleeAttack' && (WorldInfo.TimeSeconds - LastRetargetTime) > ActualRetargetWaitTime )
         {
             CheckForEnemiesInFOV( 3000.f, -1.f, 1.f, true );
         }
@@ -373,7 +375,16 @@ function NotifySpecialMoveEnded(KFSpecialMove SM)
     else if( PendingDoor == none && !bFleeing )
     {
         Flee();
+
+        // Play dialog indicating the next phase has started
+        if( !bFleeInterrupted )
+        {
+            if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHansSmokeDialog( MyHansPawn, true );
+        }
     }
+
+    // Reset flee interrupted flag in case this was an attack special move
+    bFleeInterrupted = false;
 
     // Evaluate sprinting whenever we finish a special move so sprinting will be snappy!
     EvaluateSprinting();
@@ -515,7 +526,7 @@ function bool ShouldSprint()
             RangeToEnemy = VSize( Enemy.Location - Pawn.Location );
 
             // Sprint if we're too close to shoot
-            if( RangeToEnemy > StartShootingRange || rangeToEnemy < MinShootingRange )
+            if( RangeToEnemy > StartShootingRange*MyHansPawn.GetAttackRangeScale() || rangeToEnemy < MinShootingRange )
             {
                 //`log(self@GetFuncName()$" guns out but enemy not in gun range. Should sprint = true!");
                 return true;
@@ -734,6 +745,7 @@ event ChangeEnemy( Pawn NewEnemy, optional bool bCanTaunt = true )
     if( OldEnemy != Enemy )
     {
         LastRetargetTime = WorldInfo.TimeSeconds;
+        ActualRetargetWaitTime = RandRange( RetargetWaitTimeRange.X, RetargetWaitTimeRange.Y );
     }
 }
 
@@ -928,7 +940,7 @@ function bool CanPerformShotAttack(optional bool bStart)
 
 		rangeToEnemy = VSize(Enemy.Location - MyKFPawn.Location);
 
-		if( rangeToEnemy < StartShootingRange && rangeToEnemy > MinShootingRange && !MyKFPawn.IsDoingMeleeAttack() )
+		if( rangeToEnemy < StartShootingRange*MyHansPawn.GetAttackRangeScale() && rangeToEnemy > MinShootingRange && !MyKFPawn.IsDoingMeleeAttack() )
 		{
 			if( CanSee(Enemy) )
 			{
@@ -1113,7 +1125,7 @@ function TickGunSystem()
             bGrenadeAttackInterrupt = GrenadeAttackInterruptGuns();
 
             // Put the guns away if the enemy is out of range
-            if( HansPawn.bGunsEquipped && ((rangeToEnemy > StartShootingRange )
+            if( HansPawn.bGunsEquipped && ((rangeToEnemy > StartShootingRange*MyHansPawn.GetAttackRangeScale() )
                 || HansPawn.bInHuntAndHealMode || !HansPawn.CanUseGunsInThisPhase() || HansPawn.bPendingSmokeGrenadeBarrage
                 || bGrenadeAttackInterrupt )
                 && CanStanceChange() )
@@ -1124,7 +1136,7 @@ function TickGunSystem()
             }
             // Draw the guns if the enemy is in range, and we're not waiting for a cooldown
             else if( !HansPawn.bGunsEquipped && (LastShotTime == 0 || ((WorldInfo.TimeSeconds - LastShotTime) > ShootingCooldown))
-                && rangeToEnemy < StartShootingRange && !HansPawn.bInHuntAndHealMode
+                && rangeToEnemy < StartShootingRange*MyHansPawn.GetAttackRangeScale() && !HansPawn.bInHuntAndHealMode
                 && HansPawn.CanUseGunsInThisPhase() && CanStanceChange() && !bGrenadeAttackInterrupt )
             {
                 class'AICommand_Hans_GunStance'.static.SetGunStance( self, 1 );
@@ -1712,7 +1724,7 @@ function NotifyFleeFinished( optional bool bAcquireNewEnemy=true )
 
     // Stop summoning minions
     SpawnManager = KFGameInfo(WorldInfo.Game).SpawnManager; 
-    if ( SpawnManager != none )
+    if( SpawnManager != none )
     {
         SpawnManager.StopSummoningBossMinions();
     }
@@ -1805,7 +1817,7 @@ event bool CanGrabAttack()
 	}
 
 	// If I'm crippled, falling, busy doing an attack, or incapacitated, refuse.
-	if( MyKFPawn.bIsHeadless || (MyKFPawn.Physics == PHYS_Falling) || IsDoingAttackSpecialMove() || IsInStumble() || MyKFPawn.IsIncapacitated() )
+	if( MyKFPawn.bIsHeadless || (MyKFPawn.Physics == PHYS_Falling) || IsDoingAttackSpecialMove() || MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated() )
 	{
 		return false;
 	}
@@ -2079,8 +2091,6 @@ event EdgeAndPolySubRegionRejectedDueToProximityToTarget( vector EdgeCenterRejec
 
 
 
-
-
 /*********************************************************************************************
 * Pathfinding
 ********************************************************************************************* */
@@ -2120,7 +2130,7 @@ defaultproperties
    StanceChangeCooldown=0.300000
    PostAttackMoveGunCooldown=0.300000
    LastRecentSeenEnemyListUpdateTime=0.100000
-   RetargetWaitTime=5.000000
+   RetargetWaitTimeRange=(X=4.400000,Y=5.000000)
    MinBurstAmount=3
    MaxBurstAmount=8
    BurstWaitTime=0.500000
@@ -2132,12 +2142,12 @@ defaultproperties
    DrawGunFireDelay=1.000000
    TargetAquisitionDelay=0.250000
    GrenadeGunInterruptDelay=5.000000
-   StartShootingRange=500000.000000
+   StartShootingRange=4000.000000
    MinShootingRange=300.000000
    GrenadeAttackEvalInterval=0.100000
-   MinFleeDuration=10.000000
-   MaxFleeDuration=15.000000
-   MaxFleeDistance=10000.000000
+   MinFleeDuration=5.000000
+   MaxFleeDuration=6.000000
+   MaxFleeDistance=3000.000000
    bRepathOnInvalidStrike=True
    MinDistanceToPerformGrabAttack=350.000000
    MinTimeBetweenGrabAttacks=2.500000
@@ -2146,6 +2156,31 @@ defaultproperties
    MeleeCommandClass=Class'KFGame.AICommand_Base_Hans'
    TeleportCooldown=15.000000
    HiddenRelocateTeleportThreshold=12.000000
+   DangerEvadeSettings(0)=(ClassName="KFProj_Bullet_Pellet",Cooldowns=(4.000000,3.000000,2.000000,1.000000),EvadeChances=(0.100000,0.300000,0.850000,0.950000),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.000000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(1)=(ClassName="KFProj_Nail_Nailgun",Cooldowns=(4.000000,3.000000,2.000000,1.000000),EvadeChances=(0.100000,0.300000,0.850000,0.950000),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.000000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(2)=(ClassName="KFProj_Bullet_DragonsBreath",Cooldowns=(4.000000,3.000000,2.000000,1.000000),EvadeChances=(0.100000,0.300000,0.850000,0.950000),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.000000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(3)=(ClassName="KFProj_HighExplosive_M79",Cooldowns=(4.000000,3.000000,2.000000,1.000000),EvadeChances=(0.100000,0.300000,0.500000,0.600000),ForcedEvadeChances=(,(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.050000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(4)=(ClassName="KFProj_Rocket_RPG7",Cooldowns=(4.000000,3.000000,2.000000,1.000000),EvadeChances=(0.100000,0.300000,0.500000,0.600000),ForcedEvadeChances=(,(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.050000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(5)=(ClassName="KFDT_Explosive_M16M203",Cooldowns=(4.000000,3.000000,2.000000,1.000000),EvadeChances=(0.100000,0.300000,0.500000,0.600000),ForcedEvadeChances=(,(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.050000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(6)=(ClassName="KFProj_CaulkNBurn_GroundFire",Cooldowns=(3.000000,3.000000,2.500000,1.500000),EvadeChances=(0.000000,0.300000,0.500000,0.800000),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.000000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(7)=(ClassName="KFProj_FlameThrower_GroundFire",Cooldowns=(3.000000,3.000000,2.500000,1.500000),EvadeChances=(0.000000,0.300000,0.500000,0.800000),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.000000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(8)=(ClassName="KFWeap_Flame_CaulkBurn",Cooldowns=(3.000000,3.000000,2.500000,1.500000),EvadeChances=(0.000000,0.300000,0.500000,0.800000),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.000000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(9)=(ClassName="KFWeap_Flame_Flamethrower",Cooldowns=(3.000000,3.000000,2.500000,1.500000),EvadeChances=(0.100000,0.300000,0.500000,0.800000),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.000000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(10)=(ClassName="KFWeap_Beam_Microwave",Cooldowns=(3.000000,3.000000,2.500000,1.500000),EvadeChances=(0.100000,0.300000,0.500000,0.800000),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.000000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(11)=(ClassName="KFWeap_Bow_Crossbow",Cooldowns=(2.300000,2.300000,2.300000,1.300000),EvadeChances=(0.080000,0.100000,0.200000,0.350000),ForcedEvadeChances=((FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(12)=(ClassName="KFWeap_Rifle_M14EBR",Cooldowns=(2.300000,2.300000,2.300000,1.300000),EvadeChances=(0.080000,0.100000,0.200000,0.350000),ForcedEvadeChances=((FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(13)=(ClassName="KFWeap_Rifle_Winchester1894",Cooldowns=(2.300000,2.300000,2.300000,1.300000),EvadeChances=(0.080000,0.100000,0.200000,0.350000),ForcedEvadeChances=((FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(14)=(ClassName="KFWeap_Rifle_RailGun",Cooldowns=(2.300000,2.300000,2.300000,1.300000),EvadeChances=(0.080000,0.100000,0.200000,0.350000),ForcedEvadeChances=((FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.150000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(15)=(ClassName="KFProj_FragGrenade",Cooldowns=(6.000000,5.000000,3.000000,2.500000),EvadeChances=(0.100000,0.300000,0.500000,0.600000),ForcedEvadeChances=(,(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.050000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(16)=(ClassName="KFProj_MolotovGrenade",Cooldowns=(6.000000,5.000000,3.000000,2.500000),EvadeChances=(0.100000,0.300000,0.500000,0.600000),ForcedEvadeChances=(,(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.050000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(17)=(ClassName="KFProj_DynamiteGrenade",Cooldowns=(6.000000,5.000000,3.000000,2.500000),EvadeChances=(0.100000,0.300000,0.500000,0.600000),ForcedEvadeChances=(,(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.050000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(18)=(ClassName="KFProj_NailBombGrenade",Cooldowns=(6.000000,5.000000,3.000000,2.500000),EvadeChances=(0.100000,0.300000,0.500000,0.600000),ForcedEvadeChances=(,(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.050000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(19)=(ClassName="KFProj_HEGrenade",Cooldowns=(6.000000,5.000000,3.000000,2.500000),EvadeChances=(0.100000,0.300000,0.500000,0.600000),ForcedEvadeChances=(,(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000),(FL=0.500000,FR=0.500000)),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.050000)),SoloChanceMultiplier=1.000000)
+   DangerEvadeSettings(20)=(ClassName="KFWeap_Rifle_Winchester1894",Cooldowns=(0.500000,0.400000,0.300000,0.200000),BlockChances=(0.100000,0.200000,0.700000,0.850000))
+   DangerEvadeSettings(21)=(ClassName="KFWeap_Bow_Crossbow",Cooldowns=(0.500000,0.400000,0.300000,0.200000),BlockChances=(0.100000,0.200000,0.700000,0.850000))
+   DangerEvadeSettings(22)=(ClassName="KFWeap_Rifle_M14EBR",Cooldowns=(0.500000,0.400000,0.300000,0.200000),BlockChances=(0.100000,0.200000,0.700000,0.850000))
+   DangerEvadeSettings(23)=(ClassName="KFWeap_Rifle_RailGun",Cooldowns=(0.500000,0.400000,0.300000,0.200000),BlockChances=(0.100000,0.200000,0.700000,0.850000))
+   AggroEnemySwitchWaitTime=7.000000
    Name="Default__KFAIController_Hans"
    ObjectArchetype=KFAIController_ZedBoss'KFGame.Default__KFAIController_ZedBoss'
 }

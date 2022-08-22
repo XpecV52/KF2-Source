@@ -617,7 +617,6 @@ simulated function UnregisterPlayerFromSession()
 	}
 
 //@HSL_BEGIN - BWJ - 3-18-16 - Register remote talker for console
-	//@HSL_BEGIN - BWJ - 3-18-16 - Register remote talker for console
 	if( WorldInfo.IsConsoleBuild() &&
 		UniqueId != ZeroId )
 	{

@@ -40,29 +40,65 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     super.InitializeMenu(InManager);
     LocalizeText();
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
-    OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        Class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(OnReadPlayfabInventoryComplete);        
+    }
+    else
+    {
+        if(OnlineSub != none)
+        {
+            OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+        }
+    }
 }
 
 function OnOpen()
 {
-    if(OnlineSub != none)
+    if(Class'WorldInfo'.static.IsConsoleBuild(8))
     {
-        OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+        CheckForEmptyStore();
+    }
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        Class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(OnReadPlayfabInventoryComplete);        
+    }
+    else
+    {
+        if(OnlineSub != none)
+        {
+            OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+        }
     }
     RefreshItemList();
 }
 
 function OnClose()
 {
-    if(OnlineSub != none)
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        OnlineSub.ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+        Class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnReadPlayfabInventoryComplete);        
+    }
+    else
+    {
+        if(OnlineSub != none)
+        {
+            OnlineSub.ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+        }
     }
 }
 
 function OnInventoryReadComplete()
 {
     RefreshItemList();
+}
+
+function OnReadPlayfabInventoryComplete(bool bSuccess)
+{
+    if(bSuccess)
+    {
+        RefreshItemList();
+    }
 }
 
 function RefreshItemList()
@@ -127,13 +163,23 @@ function Callback_AddToCartClicked(int ItemSKU)
     if(OnlineSub != none)
     {
         StoreItemDetails = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', ItemSKU];
-        if(StoreItemDetails.Price == "")
+        if(Class'WorldInfo'.static.IsConsoleBuild())
         {
-            OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);            
+            if(StoreItemDetails.SignedOfferId != "")
+            {
+                OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);
+            }            
         }
         else
         {
-            OnlineSub.OpenItemPurchaseOverlay(ItemSKU);
+            if(StoreItemDetails.Price == "")
+            {
+                OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);                
+            }
+            else
+            {
+                OnlineSub.OpenItemPurchaseOverlay(ItemSKU);
+            }
         }
     }
 }
@@ -166,6 +212,28 @@ function GFxObject CreateStoreItem(ItemProperties DesiredStoreItem)
     DataObject.SetString("imageURLLarge", "img://" $ DesiredStoreItem.IconURLLarge);
     DataObject.SetInt("SKU", DesiredStoreItem.Definition);
     return DataObject;
+}
+
+function CheckForEmptyStore()
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < OnlineSub.ItemPropertiesList.Length)
+    {
+        if(OnlineSub.ItemPropertiesList[I].SignedOfferId != "")
+        {
+            return;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    if(OnlineSub.PlayerInterface.GetLoginStatus(0) == 2)
+    {
+        OnlineSub.PlayerInterfaceEx.ShowCustomErrorUI(0);
+    }
 }
 
 defaultproperties

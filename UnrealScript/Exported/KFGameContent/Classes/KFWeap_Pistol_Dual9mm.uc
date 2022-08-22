@@ -33,7 +33,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=20.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
-   MaxSpareAmmo(0)=210
+   SpareAmmoCapacity(0)=210
    InitialSpareMags(0)=3
    AmmoPickupScale(0)=0.500000
    BonesToLockOnEmpty(1)="RW_Bullets1"
@@ -80,7 +80,7 @@ defaultproperties
    InstantHitDamage(0)=15.000000
    InstantHitDamage(1)=15.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=10.000000
+   InstantHitDamage(3)=22.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_9mm'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_9mm'
    InstantHitDamageTypes(2)=None

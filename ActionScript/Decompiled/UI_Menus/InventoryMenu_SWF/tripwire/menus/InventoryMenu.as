@@ -188,6 +188,7 @@ package tripwire.menus
                 this.inventoryListContainer.deselectContainer();
                 this.inventoryListContainer.itemDetails = param1.itemData;
                 this.itemDetailsContainer.details = param1.itemData;
+                FocusManager.setModalClip(null);
                 ExternalInterface.call("CallBack_ItemDetailsClicked",param1.itemData.definition);
             }
         }
@@ -214,7 +215,10 @@ package tripwire.menus
         {
             if(this.itemDetailsContainer != null)
             {
+                this.coverBGTween.play();
+                this.inventoryListContainer.deselectContainer();
                 this.itemDetailsContainer.details = param1;
+                FocusManager.setModalClip(null);
             }
         }
         

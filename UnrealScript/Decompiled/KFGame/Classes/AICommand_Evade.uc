@@ -12,9 +12,12 @@ var byte SMFlags;
 var float EvadeDelay;
 var bool bFrightened;
 var bool bTurnToThreat;
+var bool bLookAtDangerInstigator;
+var bool bOldHeadTrackingActive;
 var float RepeatDistSq;
+var Vector LookAtLocation;
 
-static function bool Evade(KFAIController AI, byte Direction, optional float InEvadeDelay, optional bool InFrightened, optional bool InTurnToThreat)
+static function bool Evade(KFAIController AI, byte Direction, optional float InEvadeDelay, optional bool InFrightened, optional bool InTurnToThreat, optional Vector InLookAtLocation)
 {
     local AICommand_Evade Cmd;
 
@@ -28,6 +31,11 @@ static function bool Evade(KFAIController AI, byte Direction, optional float InE
             Cmd.SMFlags = Direction;
             Cmd.bFrightened = InFrightened;
             Cmd.bTurnToThreat = InTurnToThreat;
+            if(InLookAtLocation != vect(0, 0, 0))
+            {
+                Cmd.bLookAtDangerInstigator = true;
+                Cmd.LookAtLocation = InLookAtLocation;
+            }
             AI.PushCommand(Cmd);
             return true;
         }
@@ -67,6 +75,11 @@ function Popped()
         Outer.MyKFPawn.StopLookingAtPawn();
     }
     Outer.Focus = none;
+    if((bLookAtDangerInstigator && Outer.MyKFPawn != none) && Outer.MyKFPawn.bCanHeadTrack)
+    {
+        Outer.MyKFPawn.bIsHeadTrackingActive = bOldHeadTrackingActive;
+        Outer.MyKFPawn.MyLookAtInfo.ForcedLookAtLocation = vect(0, 0, 0);
+    }
     super.Popped();
 }
 
@@ -76,7 +89,24 @@ function bool CanEvade()
 }
 
 state Wait
-{Begin:
+{
+    function BeginState(name PreviousStateName)
+    {
+        if(bLookAtDangerInstigator && Outer.MyKFPawn.bCanHeadTrack)
+        {
+            if(Outer.MyKFPawn.IK_Look_Head == none)
+            {
+                Outer.MyKFPawn.IK_Look_Head = SkelControlLookAt(Outer.MyKFPawn.Mesh.FindSkelControl('HeadLook'));
+            }
+            bOldHeadTrackingActive = Outer.MyKFPawn.bIsHeadTrackingActive;
+            Outer.MyKFPawn.bIsHeadTrackingActive = true;
+            Outer.MyKFPawn.MyLookAtInfo.LookAtPct = 1;
+            Outer.MyKFPawn.MyLookAtInfo.BlendOut = 0.33;
+            Outer.MyKFPawn.MyLookAtInfo.BlendIn = FMax(EvadeDelay * 0.95, 0.2);
+            Outer.MyKFPawn.MyLookAtInfo.ForcedLookAtLocation = LookAtLocation;
+        }
+    }
+Begin:
 
     Outer.Sleep(EvadeDelay);
     GotoState('Command_SpecialMove');

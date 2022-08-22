@@ -48,6 +48,8 @@ var private	int 	GunslingerXP, GunslingerLVL, GunslingerPSG;
 var private	int 	GunslingerBuild;
 var private	int 	SharpshooterXP, SharpshooterLVL, SharpshooterPSG;
 var private	int 	SharpshooterBuild;
+var private	int 	SwatXP, SwatLVL, SwatPSG;
+var private	int 	SwatBuild;
 
 var private int 	PersonalBest_KnifeKills;
 var private int 	PersonalBest_PistolKills;
@@ -228,6 +230,23 @@ const KFACHID_HoldOut							=	147;
 const KFACHID_IGotYourBack						=	148;
 const KFACHID_Benefactor						=	149;
 
+const KFACHID_InfernalRealmNormal				=	150;
+const KFACHID_InfernalRealmHard					=	151;
+const KFACHID_InfernalRealmSuicidal				=	152;
+const KFACHID_InfernalRealmHellOnEarth			=	153;
+const KFACHID_InfernalRealmCollectibles			= 	154;
+
+const KFACHID_SWAT_Lvl5							= 	155;
+const KFACHID_SWAT_Lvl10						= 	156;
+const KFACHID_SWAT_Lvl15						= 	157;
+const KFACHID_SWAT_Lvl20						= 	158;
+const KFACHID_SWAT_Lvl25						= 	159;
+
+const KFACHID_SWATNormal						=	160;
+const KFACHID_SWATHard							=	161;
+const KFACHID_SWATSuicidal						=	162;
+const KFACHID_SWATHellOnEarth					=	163;
+
 
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
@@ -380,7 +399,18 @@ event CacheStatsValue(int StatID, float Value)
 			break;
 		case `STATID_Shrp_Build:
 			SharpshooterBuild = Value;
-			`log(GetFuncName() @ "GunslingerBuild:" @ SharpshooterBuild, bLogStatsWrite);
+			`log(GetFuncName() @ "SharpshooterBuild:" @ SharpshooterBuild, bLogStatsWrite);
+			break;
+		case `STATID_Swat_Progress:
+			SwatXP = GetXPFromProgress( Value );
+			SwatLVL = GetLVLFromProgress( Value );
+			SwatPSG = GetPSGFromProgress( Value );
+			CheckPerkLvlAchievement( class'KFPerk_Swat', SwatLVL );
+			`log(GetFuncName() @ "SwatXP:" @ SwatXP @ SwatLVL @ "VALUE:" @ Round( value ), bLogStatsWrite);
+			break;
+		case `STATID_Swat_Build:
+			SwatBuild = Value;
+			`log(GetFuncName() @ "SwatBuild:" @ SwatBuild, bLogStatsWrite);
 			break;
 		// end of perk progress stats
 		case `STATID_Kills:
@@ -471,6 +501,9 @@ private event GetPerkBuildFromStats( class<KFPerk> PerkClass, out int Build )
 		case class'KFPerk_Sharpshooter':
 			Build = SharpshooterBuild;
 			break;
+		case class'KFPerk_Swat':
+			Build = SwatBuild;
+			break;
 	}
 }
 
@@ -547,6 +580,7 @@ private event int GetPerkXP( int StatID )
 		case `STATID_Demo_Progress:			return DemoXP;
 		case `STATID_Guns_Progress:			return GunslingerXP;
 		case `STATID_Shrp_Progress:			return SharpshooterXP;
+		case `STATID_Swat_Progress:			return SwatXP;
 	}
 
 	return 0;
@@ -565,6 +599,8 @@ private event int GetPerkLVLInternal( int StatID )
 		case `STATID_Demo_Progress:			return DemoLVL;
 		case `STATID_Guns_Progress:			return GunslingerLVL;
 		case `STATID_Shrp_Progress:			return SharpshooterLVL;
+		case `STATID_Swat_Progress:			return SwatLVL;		
+
 	}
 
 	return 0;
@@ -583,6 +619,7 @@ private event int GetPerkPSG( int StatID )
 		case `STATID_Demo_Progress:			return DemoPSG;
 		case `STATID_Guns_Progress:			return GunslingerPSG;
 		case `STATID_Shrp_Progress:			return SharpshooterPSG;
+		case `STATID_Swat_Progress:			return SwatPSG;
 	}
 
 	return 0;
@@ -664,6 +701,10 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
 	{
 		AddFleshpoundKill( Difficulty );
 	}
+	else if( IsClotKill( MonsterClass, DT ) )
+	{
+		AddClotKill( Difficulty );
+	}
 	else if( IsBloatKill( MonsterClass, DT ) )
 	{
 		AddBloatKill( Difficulty );
@@ -743,6 +784,21 @@ private function AddFleshpoundKill( byte Difficulty )
 }
 
 /**
+ * @brief Adds EXP for a qualified clot kill
+ * @details The SWAT perk only receives extra EXP when a Fleshpound is killed
+ * 			with a demo weapon. The currently selected skill does not matter
+ * @param Difficulty current game difficulty
+ */
+private function AddClotKill( byte Difficulty )
+{
+	AddXP( class'KFPerk_SWAT', class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
+
+	//AAR
+	`RecordSecondaryXPGain( MyKFPC, class'KFPerk_SWAT', class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
+	KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty );
+}
+
+/**
  * @brief Adds EXP for a qualified bloat kill
  * @details The Firebug perk only receives extra EXP when a bloat is killed
  * 			with a Firebug weapon. The currently selected skill does not matter
@@ -758,7 +814,7 @@ private function AddBloatKill( byte Difficulty )
 }
 
 /**
- * @brief Checks if a stalker kill qualifies for Firebug EXP
+ * @brief Checks if a crawler kill qualifies for Firebug EXP
  *
  * @param DT Used damage type
  * @param MonsterClass the killed zed's class
@@ -794,6 +850,19 @@ private final function bool IsFleshPoundKill( class<KFPawn_Monster> MonsterClass
 {
 	return  MonsterClass.static.IsFleshpoundClass() &&
 			class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Demolitionist'.static.GetPerkClass() );
+}
+
+/**
+ * @brief Checks if a clot kill qualifies for swat EXP
+ *
+ * @param DT Used damage type
+ * @param MonsterClass the killed zed's class
+ * @return true if the zed was a stalker and the damage type is on perk
+ */
+private final function bool IsClotKill( class<KFPawn_Monster> MonsterClass, class<DamageType> DT )
+{
+	return  MonsterClass.static.IsClotClass() &&
+			class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_SWAT'.static.GetPerkClass() );
 }
 
 /**
@@ -1066,7 +1135,6 @@ defaultproperties
 	PerRoundHealXP = 0
 
 	// These are the stats we are collecting
-	Properties.Add((PropertyId=`STATID_None,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Cmdo_Progress,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Cmdo_Build,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Bsrk_Progress,Data=(Type=SDT_Int32,Value1=0))
@@ -1081,8 +1149,6 @@ defaultproperties
 	Properties.Add((PropertyId=`STATID_Shrp_Build,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Demo_Progress,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Demo_Build,Data=(Type=SDT_Int32,Value1=0))
-	Properties.Add((PropertyId=`STATID_Ninja_Progress,Data=(Type=SDT_Int32,Value1=0))
-	Properties.Add((PropertyId=`STATID_Ninja_Build,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Guns_Progress,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Guns_Build,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_SWAT_Progress,Data=(Type=SDT_Int32,Value1=0))

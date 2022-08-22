@@ -53,7 +53,8 @@ var const localized string InfoTitle;
 var const localized string InProgressString;
 var const localized string LeaveMenuString;
 var const localized string CouldNotFindGameTitleString;
-var const localized string CouldNotFindGameDescriptionString;
+var private const localized string CouldNotFindGameDescriptionStringPC;
+var private const localized string CouldNotFindGameDescriptionStringOrbis;
 var const localized array<localized string> WhiteListedStrings;
 var protected const transient name SearchDSName;
 var transient KFDataStore_OnlineGameSearch SearchDataStore;
@@ -66,6 +67,9 @@ var config float InitialSearchPause;
 var config int MaxResultsToTry;
 var config int ServerConnectTimeout;
 var config array<config string> StockMaps;
+var transient string LobbyOwnerPassword;
+var config string TestLobbyOwnerPassword;
+var transient string CurrentConnectMap;
 
 // Export UKFGFxMenu_StartGame::execGetMapList(FFrame&, void* const)
 native function GetMapList(out array<string> MapList);
@@ -91,11 +95,6 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
             Manager.OpenPopup(2, Localize("Notifications", "PlayGoBusyTitle", "KFGameConsole"), Localize("Notifications", "PlayGoBusyMessage", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
         }
     }
-    if(PC.WorldInfo.IsConsoleBuild(8))
-    {
-        Class'KFGameEngine'.static.InitAudioOptions();
-    }
-    LogInternal("***************************Stock maps num:" @ string(StockMaps.Length));
 }
 
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
@@ -151,6 +150,18 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     return true;
 }
 
+function string GetCouldNotFindGameDescription()
+{
+    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        return CouldNotFindGameDescriptionStringOrbis;        
+    }
+    else
+    {
+        return CouldNotFindGameDescriptionStringPC;
+    }
+}
+
 function CheckGameFullyInstalled()
 {
     if(Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled())
@@ -180,9 +191,9 @@ function SetOverview(optional bool bInitialize)
     {
         OverviewContainer.UpdateOverviewInGame();
     }
-    MyUID = Outer.GetPC().PlayerReplicationInfo.UniqueId;
     if(OnlineLobby != none)
     {
+        MyUID = OnlineLobby.GetMyId();
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
         bCurrentlyLeader = MyUID == AdminId;
         bCurrentlyInParty = OnlineLobby.IsInLobby();
@@ -194,15 +205,24 @@ function SetOverview(optional bool bInitialize)
         bLeaderWasInServerBrowser = bLeaderInServerBrowser;
         if(Class'WorldInfo'.static.IsMenuLevel())
         {
-            if(bIsInParty && !bIsLeader)
+            if(bIsInParty)
             {
-                if(bLeaderInServerBrowser)
+                if(bIsLeader)
                 {
-                    ShowOverview(!bIsLeader, bIsLeader, true, true);                    
+                    if(Manager.CurrentMenuIndex == 15)
+                    {
+                        ShowOverview(false, bIsLeader, Class'WorldInfo'.static.IsMenuLevel(), false);
+                        Manager.OpenMenu(15);                        
+                    }
+                    else
+                    {
+                        ShowOverview(false, bIsLeader, Class'WorldInfo'.static.IsMenuLevel(), false);
+                        OpenMultiplayerMenu();
+                    }                    
                 }
                 else
                 {
-                    ShowOverview(!bIsLeader, bIsLeader, true, false);
+                    ShowOverview(!bIsLeader, bIsLeader, Class'WorldInfo'.static.IsMenuLevel(), bLeaderInServerBrowser);
                 }
             }            
         }
@@ -264,21 +284,6 @@ function string GetMapSource(string MapName)
     }
 }
 
-function string GetFriendlyMapName(string MapName)
-{
-    local KFMapSummary MapData;
-
-    MapData = Class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
-    if((MapData != none) && MapData.DisplayName != "")
-    {
-        return MapData.DisplayName;        
-    }
-    else
-    {
-        return MapName;
-    }
-}
-
 function HandleSteamLobbyLeaderTakeOver(UniqueNetId AdminId)
 {
     local bool bClientIsLeader;
@@ -321,7 +326,7 @@ function UpdateMenu()
     if((Class'WorldInfo'.static.IsMenuLevel() && OnlineLobby != none) && OnlineLobby.IsInLobby())
     {
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
-        OnlineLobby.Outer.GetUniquePlayerId(0, LoggedInPlayer);
+        LoggedInPlayer = OnlineLobby.GetMyId();
         if(LoggedInPlayer == AdminId)
         {
             SendLeaderOptions();            
@@ -342,12 +347,12 @@ function SendLeaderOptions()
 {
     if(OptionsComponent != none)
     {
-        SetLobbyData(GameLengthKey, string(OptionsComponent.SavedLengthIndex));
-        SetLobbyData(DifficultyKey, string(OptionsComponent.SavedDifficultyIndex));
-        SetLobbyData(MapKey, OptionsComponent.SavedMapString);
-        SetLobbyData(ServerTypeKey, string(OptionsComponent.SavedServerTypeIndex));
-        SetLobbyData(ModeKey, string(OptionsComponent.SavedModeIndex));
-        SetLobbyData(PermissionsKey, string(OptionsComponent.SavedPrivacyIndex));
+        SetLobbyData(GameLengthKey, string(OptionsComponent.GetLengthIndex()));
+        SetLobbyData(DifficultyKey, string(OptionsComponent.GetDifficultyIndex()));
+        SetLobbyData(MapKey, OptionsComponent.GetMapName());
+        SetLobbyData(ServerTypeKey, string(OptionsComponent.GetServerTypeIndex()));
+        SetLobbyData(ModeKey, string(OptionsComponent.GetModeIndex()));
+        SetLobbyData(PermissionsKey, string(OptionsComponent.GetPrivacyIndex()));
     }
 }
 
@@ -365,7 +370,7 @@ function ReceiveLeaderOptions()
     OptionIndex = int(OnlineLobby.GetLobbyData(0, DifficultyKey));
     OverviewContainer.UpdateDifficulty(Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(float(OptionIndex)));
     OptionString = OnlineLobby.GetLobbyData(0, MapKey);
-    DisplayMapName = GetFriendlyMapName(OptionString);
+    DisplayMapName = Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(OptionString);
     MapSource = GetMapSource(OptionString);
     OverviewContainer.UpdateMap(DisplayMapName, MapSource);
     OptionIndex = int(OnlineLobby.GetLobbyData(0, PermissionsKey));
@@ -376,7 +381,7 @@ function ApproveMatchMakingLeave()
 {
     if(OptionsComponent != none)
     {
-        if(OnlineLobby.IsInLobby())
+        if(((OnlineLobby != none) && OnlineLobby.IsInLobby()) && !Class'WorldInfo'.static.IsConsoleBuild())
         {
             OnlineLobby.QuitLobby();
         }
@@ -403,6 +408,56 @@ function UpdateStartMenuState()
     if(Manager != none)
     {
         Manager.SetStartMenuState(GetStartMenuState());
+    }
+}
+
+function Callback_OnWhatsNewClicked(int Index)
+{
+    local OnlineSubsystem OnlineSub;
+    local int I;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    if(OnlineSub != none)
+    {
+        if(Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            if(Class'KFGFxStartGameContainer_FindGame'.default.PS4WhatsNewItems[Index].PSNProductId != "")
+            {
+                I = 0;
+                J0xA8:
+
+                if(I < OnlineSub.ItemPropertiesList.Length)
+                {
+                    if(OnlineSub.ItemPropertiesList[I].ProductId == Class'KFGFxStartGameContainer_FindGame'.default.PS4WhatsNewItems[Index].PSNProductId)
+                    {
+                        if(OnlineSub.ItemPropertiesList[I].SignedOfferId != "")
+                        {
+                            OnlineSub.OpenMarketPlaceSearch(OnlineSub.ItemPropertiesList[I]);                            
+                        }
+                        else
+                        {
+                            WarnInternal("No PSN signed offer ID for item with product ID" @ Class'KFGFxStartGameContainer_FindGame'.default.PS4WhatsNewItems[Index].PSNProductId);
+                        }
+                        goto J0x25D;
+                    }
+                    ++ I;
+                    goto J0xA8;
+                }
+                J0x25D:
+                
+            }
+            else
+            {
+                if(Class'KFGFxStartGameContainer_FindGame'.default.PS4WhatsNewItems[Index].RedirectURL != "")
+                {
+                    OnlineSub.OpenURL(Class'KFGFxStartGameContainer_FindGame'.default.PS4WhatsNewItems[Index].RedirectURL);
+                }
+            }            
+        }
+        else
+        {
+            OnlineSub.OpenURL(Class'KFGFxStartGameContainer_FindGame'.default.WhatsNewItems[Index].RedirectURL);
+        }
     }
 }
 
@@ -434,7 +489,7 @@ function Callback_RequestLeaveMatchmaking()
 {
     if(OptionsComponent != none)
     {
-        if(OnlineLobby.IsInLobby())
+        if(OnlineLobby.IsInLobby() && !Class'WorldInfo'.static.IsConsoleBuild())
         {
             Manager.OpenPopup(0, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, LeaveMenuString, Manager.BrowseServersString, Class'KFCommon_LocalizedStrings'.default.CancelString, GoToServerBrowser, CancelLeaveMenu, Class'KFCommon_LocalizedStrings'.default.DisbandPartyString, ApproveMatchMakingLeave);            
         }
@@ -449,6 +504,10 @@ function Callback_OptionListOpened(string ListName, int OptionIndex)
 {
     local string MessageString;
 
+    if((ListName == "mapList") || Outer.GetPC().WorldInfo.IsConsoleBuild(8) && ListName == "serverTypeList")
+    {
+        return;
+    }
     if(OptionIndex == -1)
     {
         return;
@@ -471,9 +530,49 @@ function Callback_InGamePermissionChange(int Index)
     }
 }
 
+function Callback_OpenMatchMaking()
+{
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        KFPlayerController(Outer.GetPC()).StartLogin(ProceedToMatchMaking, true);        
+    }
+    else
+    {
+        ProceedToMatchMaking();
+    }
+}
+
+function ProceedToMatchMaking()
+{
+    ActionScriptVoid("proceedToMatchMaking");
+}
+
 function Callback_OpenServerBrowser()
 {
-    Manager.OpenMenu(15);
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {        
+    }
+    else
+    {
+        Manager.OpenMenu(15);
+    }
+}
+
+function OnCanPlayOnlineCheckComplete(byte LocalUserNum, Engine.OnlineSubsystem.EFeaturePrivilege Privilege, Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel)
+{
+    if(Privilege == 0)
+    {
+        Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.ClearPrivilegeLevelCheckedDelegate(OnCanPlayOnlineCheckComplete);
+        Manager.UnloadCurrentPopup();
+        if(PrivilegeLevel == 2)
+        {
+            Manager.OpenMenu(15);            
+        }
+        else
+        {
+            Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.UpsellPremiumOnlineService();
+        }
+    }
 }
 
 function Callback_StartMenuRequestReinit()
@@ -554,7 +653,23 @@ function SetLobbyData(string KeyName, string ValueData)
 
 function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 {
-    return (((((InOptionsComponent.GetMapName() $ "?Game=") $ Class'KFGameInfo'.static.GetGameModeClassFromNum(InOptionsComponent.GetModeIndex())) $ "?Difficulty=") $ string(Class'KFDifficultyInfo'.static.GetDifficultyValue(byte(InOptionsComponent.GetDifficultyIndex())))) $ "?GameLength=") $ string(InOptionsComponent.GetLengthIndex());
+    local string MapName;
+    local int LengthIndex;
+
+    MapName = InOptionsComponent.GetMapName();
+    if(MapName == "")
+    {
+        if(CurrentConnectMap != "")
+        {
+            MapName = CurrentConnectMap;            
+        }
+        else
+        {
+            MapName = "kf-bioticslab";
+        }
+    }
+    LengthIndex = InOptionsComponent.GetLengthIndex(1);
+    return (((((MapName $ "?Game=") $ Class'KFGameInfo'.static.GetGameModeClassFromNum(InOptionsComponent.GetModeIndex())) $ "?Difficulty=") $ string(Class'KFGameDifficultyInfo'.static.GetDifficultyValue(byte(InOptionsComponent.GetDifficultyIndex())))) $ "?GameLength=") $ string(LengthIndex);
 }
 
 // Export UKFGFxMenu_StartGame::execGetSearchComplete(FFrame&, void* const)
@@ -572,7 +687,7 @@ event OpenNotFoundPopup()
 
     KFPC = KFPlayerController(Outer.GetPC());
     LogInternal("KFGFxMenu_StartGame.OpenNotFoundPopup: No servers found, giving up.");
-    KFPC.MyGFxManager.OpenPopup(2, CouldNotFindGameTitleString, CouldNotFindGameDescriptionString, Class'KFCommon_LocalizedStrings'.default.OKString);
+    KFPC.MyGFxManager.OpenPopup(2, CouldNotFindGameTitleString, GetCouldNotFindGameDescription(), Class'KFCommon_LocalizedStrings'.default.OKString);
 }
 
 event int GetLobbySize()
@@ -602,13 +717,25 @@ function OnFindGameServerComplete(bool bWasSuccessful)
 native function bool SpaceAvailable(const OnlineGameSettings Settings);
 
 // Export UKFGFxMenu_StartGame::execMapGood(FFrame&, void* const)
-native function bool MapGood(const OnlineGameSettings Settings);
+native function bool MapGood(const OnlineGameSettings Settings, optional out string CurrentMap);
 
 // Export UKFGFxMenu_StartGame::execSortLastEntry(FFrame&, void* const)
 native function SortLastEntry(OnlineGameSearch Search);
 
 // Export UKFGFxMenu_StartGame::execSortServers(FFrame&, void* const)
 native function SortServers(OnlineGameSearch Search);
+
+function string BuildTakeoverURL(out string Password)
+{
+    local string TakeoverURL;
+
+    TakeoverURL = MakeMapURL(OptionsComponent);
+    if(Len(Password) > 0)
+    {        
+        TakeoverURL $= ("?gamepassword=" $ Password);
+    }
+    return TakeoverURL $ OnlineLobby.GetLobbyURLString();
+}
 
 function OnJoinGameComplete(name SessionName, bool bSuccessful)
 {
@@ -621,7 +748,7 @@ function OnJoinGameComplete(name SessionName, bool bSuccessful)
         AttemptingJoin = false;
         if(bLogSearchInfo)
         {
-            LogInternal("KFGFxMenu_StartGame.OnJoinGameComplete: join online game failed completion for server index" @ string(CurrentSearchIndex - 1));
+            LogInternal("KFGFxMenu_StartGame.OnJoinGameComplete: join online game failed completion for server index" @ string(CurrentSearchIndex));
         }
         TryNextServer();
         return;
@@ -630,11 +757,20 @@ function OnJoinGameComplete(name SessionName, bool bSuccessful)
     {
         if(bLogSearchInfo)
         {
-            LogInternal("KFGFxMenu_StartGame.OnJoinGameComplete: OnJoinGameComplete called for server index" @ string(CurrentSearchIndex - 1));
+            LogInternal("KFGFxMenu_StartGame.OnJoinGameComplete: OnJoinGameComplete called for server index" @ string(CurrentSearchIndex));
         }
         KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
-        SetServerConnectGiveUpTimer();        
-        Outer.GetPC().ConsoleCommand(("open" @ PendingResolvedAddress) $ OnlineLobby.GetLobbyURLString());        
+        SetServerConnectGiveUpTimer();
+        if(OptionsComponent.GetMakeNewServer())
+        {
+            LogInternal("**************SERVER TAKEOVER TESTING");
+            LogInternal(("servertakeover" @ PendingResolvedAddress) @ (BuildTakeoverURL(LobbyOwnerPassword)));            
+            Outer.GetPC().ConsoleCommand(("servertakeover" @ PendingResolvedAddress) @ (BuildTakeoverURL(LobbyOwnerPassword)));            
+        }
+        else
+        {            
+            Outer.GetPC().ConsoleCommand(("open" @ PendingResolvedAddress) $ OnlineLobby.GetLobbyURLString());
+        }        
     }
     else
     {
@@ -657,7 +793,7 @@ function OnQueryAdditionalServerInfoComplete(bool bWasSuccessful, string LobbyId
     {
         if(bLogSearchInfo)
         {
-            LogInternal("KFGFxMenu_StartGame.OnQueryAdditionalServerInfoComplete: called for server index" @ string(CurrentSearchIndex - 1));
+            LogInternal("KFGFxMenu_StartGame.OnQueryAdditionalServerInfoComplete: called for server index" @ string(CurrentSearchIndex));
         }
         ConnectToPlayfabServer(LobbyId, ServerIP, ServerPort, ServerTicket, false);
     }
@@ -665,9 +801,32 @@ function OnQueryAdditionalServerInfoComplete(bool bWasSuccessful, string LobbyId
 
 event CreateNewServer()
 {
+    local string CustomCommandline, MapName;
+    local int GameLength;
+
     bAttemptingServerCreate = true;
+    if(OptionsComponent.GetMapName() != "")
+    {
+        MapName = OptionsComponent.GetMapName();        
+    }
+    else
+    {
+        MapName = MapStringList[Rand(MapStringList.Length)];
+    }
+    if((OptionsComponent.bLengthFilterSet && OptionsComponent.LengthFilter >= 0) && OptionsComponent.LengthFilter <= 2)
+    {
+        GameLength = OptionsComponent.LengthFilter;        
+    }
+    else
+    {
+        GameLength = 1;
+    }
+    CustomCommandline = MapName;    
+    CustomCommandline $= ("?Difficulty=" $ string(OptionsComponent.GetDifficultyIndex()));    
+    CustomCommandline $= ("?GameLength=" $ string(GameLength));
+    LogInternal("Starting new server with URL" @ CustomCommandline);
     Class'GameEngine'.static.GetPlayfabInterface().AddOnServerStartedDelegate(OnServerStarted);
-    Class'GameEngine'.static.GetPlayfabInterface().StartNewServerInstance(SearchDataStore.GetActiveGameSearch().GameMode);
+    Class'GameEngine'.static.GetPlayfabInterface().StartNewServerInstance(SearchDataStore.GetActiveGameSearch().GameModes[0], CustomCommandline);
 }
 
 function OnServerStarted(bool bWasSuccessful, string ServerLobbyId, string ServerIP, int ServerPort, string ServerTicket)
@@ -750,10 +909,15 @@ function bool OnHandshakeComplete(bool bSuccess, string Description, out int Sup
         {
             LogInternal("KFGFxMenu_StartGame.OnHandShakeComplete: LobbyJoinServer");
         }
-        if(!Class'WorldInfo'.static.IsConsoleBuild())
+        if(Len(LobbyOwnerPassword) > 0)
         {
-            OnlineLobby.LobbyJoinServer(PendingResolvedAddress);
+            OnlineLobby.SetServerPassword(LobbyOwnerPassword);
+            if(OptionsComponent.GetPrivacyIndex() == 1)
+            {
+                Class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword(LobbyOwnerPassword);
+            }
         }
+        OnlineLobby.LobbyJoinServer(PendingResolvedAddress);
         PendingResolvedAddress = "";
         bAttemptingServerCreate = false;        
     }
@@ -782,6 +946,7 @@ event OnClose()
         GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
         GameInterface.ClearJoinOnlineGameCompleteDelegate(OnJoinGameComplete);
     }
+    Manager.CachedProfile.Save(byte(Outer.GetLP().ControllerId));
     if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
     {
         Class'GameEngine'.static.GetPlayfabInterface().ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
@@ -811,65 +976,82 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
     local string GameTagFilters;
     local ActiveLobbyInfo LobbyInfo;
 
-    GameInterfaceSteam.ClearServerFilters(Search);
-    GameInterfaceSteam.AddServerFilter(Search, "version_match", string(Class'KFGameEngine'.static.GetKFGameVersion()));
-    MapName = OptionsComponent.GetMapName();
-    if(MapName != "")
+    Search.ClearServerFilters();
+    if(!Class'WorldInfo'.static.IsConsoleBuild())
     {
-        GameInterfaceSteam.AddServerFilter(Search, "map", MapName);
+        Search.AddServerFilter("version_match", string(Class'KFGameEngine'.static.GetKFGameVersion()));
     }
-    if(OnlineLobby.GetCurrentLobby(LobbyInfo) && LobbyInfo.Members.Length >= 6)
+    if(OptionsComponent.GetMakeNewServer())
     {
-        GameInterfaceSteam.AddServerFilter(Search, "noplayers", "");        
+        Search.AddGametagFilter(GameTagFilters, 'bUsedForTakeover', "1");
+        Search.AddGametagFilter(GameTagFilters, 'bAvailableForTakeover', "1");        
     }
     else
     {
-        GameInterfaceSteam.AddServerFilter(Search, "notfull", "");
-    }
-    GameMode = OptionsComponent.SavedModeIndex;
-    if(GameMode >= 0)
-    {
-        GameInterfaceSteam.AddGametagFilter(GameTagFilters, 'Mode', string(GameMode));
-    }
-    GameDifficulty = OptionsComponent.GetDifficulty();
-    if(GameDifficulty >= 0)
-    {
-        GameInterfaceSteam.AddGametagFilter(GameTagFilters, 'Difficulty', string(GameDifficulty));
-    }
-    GameLength = OptionsComponent.GetGameLength();
-    if(GameLength >= 0)
-    {
-        GameInterfaceSteam.AddGametagFilter(GameTagFilters, 'NumWaves', string(GameLength));
-    }
-    GameInterfaceSteam.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
-    AllowInProgress = OptionsComponent.GetAllowInProgress();
-    GameInterfaceSteam.TestAddBoolGametagFilter(GameTagFilters, !AllowInProgress, 'bInProgress', 0);
-    switch(OptionsComponent.SavedServerTypeIndex)
-    {
-        case 0:
-            GameInterfaceSteam.TestAddBoolGametagFilter(GameTagFilters, true, 'bCustom', 0);
-            GameInterfaceSteam.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 1);
-            break;
-        case 2:
-            GameInterfaceSteam.TestAddBoolGametagFilter(GameTagFilters, true, 'bCustom', 1);
-            GameInterfaceSteam.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 1);
-            break;
-        case 3:
-            GameInterfaceSteam.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 0);
-            break;
-        default:
-            GameInterfaceSteam.TestAddBoolGametagFilter(GameTagFilters, true, 'bCustom', 0);
-            GameInterfaceSteam.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 1);
-            break;
-            break;
+        MapName = OptionsComponent.GetMapName();
+        if(MapName != "")
+        {
+            Search.AddServerFilter("map", MapName);
+        }
+        if(((OnlineLobby != none) && OnlineLobby.GetCurrentLobby(LobbyInfo)) && LobbyInfo.Members.Length >= 6)
+        {
+            Search.AddServerFilter("noplayers", "");            
+        }
+        else
+        {
+            Search.AddServerFilter("notfull", "");
+        }
+        GameMode = OptionsComponent.GetModeIndex();
+        if((GameMode >= 0) && !Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            Search.AddGametagFilter(GameTagFilters, 'Mode', string(GameMode));
+        }
+        GameDifficulty = OptionsComponent.GetDifficulty();
+        if(GameDifficulty >= 0)
+        {
+            Search.AddGametagFilter(GameTagFilters, 'Difficulty', string(GameDifficulty));
+        }
+        GameLength = OptionsComponent.GetGameLength();
+        if(GameLength >= 0)
+        {
+            Search.AddGametagFilter(GameTagFilters, 'NumWaves', string(GameLength));
+        }
+        if(!Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
+        }
+        AllowInProgress = OptionsComponent.GetAllowInProgress();
+        Search.TestAddBoolGametagFilter(GameTagFilters, !AllowInProgress, 'bInProgress', 0);
+        if(!Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            switch(OptionsComponent.GetServerTypeIndex())
+            {
+                case 0:
+                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bCustom', 0);
+                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 1);
+                    break;
+                case 2:
+                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bCustom', 1);
+                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 1);
+                    break;
+                case 3:
+                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 0);
+                    break;
+                default:
+                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bCustom', 0);
+                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 1);
+                    break;
+                    break;
+            }
+        }
     }
     if(Len(GameTagFilters) > 0)
     {
-        GameInterfaceSteam.AddServerFilter(Search, "gametagsand", GameTagFilters);
+        Search.AddServerFilter("gametagsand", GameTagFilters);
     }
     if(Search.MasterServerSearchKeys.Length > 1)
     {
-        GameInterfaceSteam.AddServerFilter(Search, "and", string(Search.MasterServerSearchKeys.Length), 0);
+        Search.AddServerFilter("and", string(Search.MasterServerSearchKeys.Length), 0);
     }
 }
 
@@ -883,15 +1065,9 @@ function Callback_StartOfflineGame()
     Outer.ConsoleCommand("open" @ (MakeMapURL(OptionsComponent)));
 }
 
-function Callback_StartOnlineGame()
+function StartOnlineGame()
 {
     OptionsComponent.UpdateFilters();
-    if(OptionsComponent.GetServerTypeListen())
-    {
-        Outer.ConsoleCommand(("open" @ (MakeMapURL(OptionsComponent))) $ "?listen?steamsockets");
-        OnlineLobby.LobbyJoinGame();
-        return;
-    }
     GameInterface.SetMatchmakingTypeMode(2);
     CurrentSearchIndex = 0;
     BuildServerFilters(GameInterface, OptionsComponent, SearchDataStore.GetCurrentGameSearch());
@@ -905,7 +1081,9 @@ function Callback_StartOnlineGame()
     {
         GameInterface.AddFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
     }
-    SearchDataStore.GetActiveGameSearch().GameMode = Class'KFGameInfo'.default.GameModes[OptionsComponent.GetModeIndex()].FriendlyName;
+    SearchDataStore.ActiveSearchIndex = 0;
+    SearchDataStore.GetActiveGameSearch().GameModes.Length = 1;
+    SearchDataStore.GetActiveGameSearch().GameModes[0] = Class'KFGameInfo'.default.GameModes[OptionsComponent.GetModeIndex()].FriendlyName;
     if(!SearchDataStore.SubmitGameSearch(byte(Class'UIInteraction'.static.GetPlayerControllerId(0)), false))
     {
         GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
@@ -921,6 +1099,44 @@ function Callback_StartOnlineGame()
         bSearchingForGame = true;
         OptionsComponent.SetSearching(bSearchingForGame);
     }
+}
+
+function ShowServerTakeoverPasswordPrompt()
+{
+    Manager.OpenPopup(4, Class'KFCommon_LocalizedStrings'.default.SetTakeoverServerPasswordTitle, "", Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnSetTakoverServerPassword);
+}
+
+function OnSetTakoverServerPassword()
+{
+    local string Password;
+
+    Password = KFGFxPopup_InputPrompt(Manager.CurrentPopup).PlayerInputString;
+    LobbyOwnerPassword = Password;
+    StartOnlineGame();
+}
+
+// Export UKFGFxMenu_StartGame::execGenerateRandomPassword(FFrame&, void* const)
+native function string GenerateRandomPassword();
+
+function Callback_StartOnlineGame()
+{
+    LobbyOwnerPassword = "";
+    if(OptionsComponent.GetMakeNewServer())
+    {
+        if(OptionsComponent.GetPrivacyIndex() == 2)
+        {
+            ShowServerTakeoverPasswordPrompt();
+            return;            
+        }
+        else
+        {
+            if(OptionsComponent.GetPrivacyIndex() == 1)
+            {
+                LobbyOwnerPassword = GenerateRandomPassword();
+            }
+        }
+    }
+    StartOnlineGame();
 }
 
 function UnpauseTryingServers()
@@ -992,7 +1208,8 @@ defaultproperties
     InProgressString="IN PROGRESS"
     LeaveMenuString="Leaving matchmaking will disband your party. Go to server browser instead?"
     CouldNotFindGameTitleString="Unable To Find Match"
-    CouldNotFindGameDescriptionString="No servers matching the search settings were found. Try different filters or use the server browser."
+    CouldNotFindGameDescriptionStringPC="No servers matching the search settings were found. Try different filters or use the server browser."
+    CouldNotFindGameDescriptionStringOrbis="No servers matching the search settings were found. Try different filters."
     WhiteListedStrings(0)="YES"
     WhiteListedStrings(1)="NO"
     SearchDSName=KFGameSearch

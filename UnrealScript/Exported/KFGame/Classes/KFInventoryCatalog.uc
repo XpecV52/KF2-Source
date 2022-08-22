@@ -16,6 +16,8 @@ enum ECrateSeries
 	Ecrate_EmergencyIssue,
 	Ecrate_Swat,
 	Ecrate_Exhibit,
+	Ecrate_EliteMedic,
+	Ecrate_Victorian,
 	ECrate_HorzineSupply_S1,
 	ECrate_HorzineSupply_S2,
 	ECrate_HorzineSupply_S3,
@@ -24,6 +26,11 @@ enum ECrateSeries
 	ECrate_HorzineSupply_S6,
 	ECrate_HorzineSupply_S7,
 	ECrate_HorzineSupply_S8,
+	ECrate_HorzineSupply_S9,
+	ECrate_PSNHorzineSupply_CS1,
+	ECrate_PSNHorzineSupply_CS2,
+	ECrate_PSNHorzineSupply_WS1,
+	ECrate_PSNHorzineSupply_WS2,
 };
 
 enum EItemDisplayContainerType
@@ -87,14 +94,21 @@ defaultproperties
    ItemKeyArray(9)=(ContainerId=3594,KeyId=3595,ItemSeriesName="emergencyissue",ContainerType=IDT_USB)
    ItemKeyArray(10)=(ContainerId=4134,KeyId=4135,ItemSeriesName="Swat",ContainerType=IDT_USB)
    ItemKeyArray(11)=(ContainerId=4115,KeyId=4114,ItemSeriesName="exhibit",ContainerType=IDT_USB)
-   ItemKeyArray(12)=(ContainerId=3284,KeyId=3282,ItemSeriesName="horzine1",ContainerType=IDT_Crate)
-   ItemKeyArray(13)=(ContainerId=3285,KeyId=3283,ItemSeriesName="horzine2",ContainerType=IDT_Crate)
-   ItemKeyArray(14)=(ContainerId=3598,KeyId=3599,ItemSeriesName="horzine3",ContainerType=IDT_Crate)
-   ItemKeyArray(15)=(ContainerId=3600,KeyId=3601,ItemSeriesName="horzine4",ContainerType=IDT_Crate)
-   ItemKeyArray(16)=(ContainerId=3882,KeyId=3880,ItemSeriesName="horzine5",ContainerType=IDT_Crate)
-   ItemKeyArray(17)=(ContainerId=3883,KeyId=3881,ItemSeriesName="horzine6",ContainerType=IDT_Crate)
-   ItemKeyArray(18)=(ContainerId=4107,KeyId=4105,ItemSeriesName="horzine7",ContainerType=IDT_Crate)
-   ItemKeyArray(19)=(ContainerId=4108,KeyId=4106,ItemSeriesName="horzine8",ContainerType=IDT_Crate)
+   ItemKeyArray(12)=(ContainerId=4145,KeyId=4144,ItemSeriesName="elitemedic",ContainerType=IDT_USB)
+   ItemKeyArray(13)=(ContainerId=4214,KeyId=4215,ItemSeriesName="victorian",ContainerType=IDT_USB)
+   ItemKeyArray(14)=(ContainerId=3284,KeyId=3282,ItemSeriesName="horzine1",ContainerType=IDT_Crate)
+   ItemKeyArray(15)=(ContainerId=3285,KeyId=3283,ItemSeriesName="horzine2",ContainerType=IDT_Crate)
+   ItemKeyArray(16)=(ContainerId=3598,KeyId=3599,ItemSeriesName="horzine3",ContainerType=IDT_Crate)
+   ItemKeyArray(17)=(ContainerId=3600,KeyId=3601,ItemSeriesName="horzine4",ContainerType=IDT_Crate)
+   ItemKeyArray(18)=(ContainerId=3882,KeyId=3880,ItemSeriesName="horzine5",ContainerType=IDT_Crate)
+   ItemKeyArray(19)=(ContainerId=3883,KeyId=3881,ItemSeriesName="horzine6",ContainerType=IDT_Crate)
+   ItemKeyArray(20)=(ContainerId=4107,KeyId=4105,ItemSeriesName="horzine7",ContainerType=IDT_Crate)
+   ItemKeyArray(21)=(ContainerId=4108,KeyId=4106,ItemSeriesName="horzine8",ContainerType=IDT_Crate)
+   ItemKeyArray(22)=(ContainerId=4207,KeyId=4208,ItemSeriesName="horzine9",ContainerType=IDT_Crate)
+   ItemKeyArray(23)=(ContainerId=4304,KeyId=4303,ItemSeriesName="psncrate_cs1",ContainerType=IDT_Crate)
+   ItemKeyArray(24)=(ContainerId=4305,KeyId=4303,ItemSeriesName="psncrate_cs2",ContainerType=IDT_Crate)
+   ItemKeyArray(25)=(ContainerId=4307,KeyId=4303,ItemSeriesName="psncrate_ws1",ContainerType=IDT_Crate)
+   ItemKeyArray(26)=(ContainerId=4306,KeyId=4303,ItemSeriesName="psncrate_ws2",ContainerType=IDT_Crate)
    Name="Default__KFInventoryCatalog"
    ObjectArchetype=Object'Core.Default__Object'
 }

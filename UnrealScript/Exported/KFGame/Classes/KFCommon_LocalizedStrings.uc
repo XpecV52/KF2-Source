@@ -15,8 +15,10 @@ var localized array<string> DifficultyStrings;
 var localized array<string> LengthStrings;
 var localized array<string> ServerTypeStrings;
 var localized array<string> PermissionStrings;
+var localized array<string> ConsolePermissionStrings;
 var localized array<string> ModeStrings;
 
+var localized string TeamSwappedString;
 var localized string NoPreferenceString;
 var localized string OKString;
 var localized string ConfirmString;
@@ -41,6 +43,15 @@ var localized string NoSwitchReasonString;
 
 var localized string TeamString;
 var localized string AllString;
+var localized string LoadingString;
+
+var localized string AutoTradeCompleteString;
+var localized string AutoFillCompleteString;
+var localized string WeaponUpgradeComepleteString;
+var localized string SecondaryWeaponPurchasedString;
+var localized string NoItemsPurchasedString;
+
+var localized string SetTakeoverServerPasswordTitle;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -51,7 +62,7 @@ static function string GetDifficultyString( float GameDifficulty )
 {
 	local byte DifficultyIndex;
 
-	DifficultyIndex = class'KFDifficultyInfo'.static.GetDifficultyIndex(GameDifficulty);
+	DifficultyIndex = class'KFGameDifficultyInfo'.static.GetDifficultyIndex(GameDifficulty);
 	if( 0 < default.DifficultyStrings.length && DifficultyIndex < default.DifficultyStrings.length )
 	{
 		return default.DifficultyStrings[DifficultyIndex];
@@ -92,9 +103,17 @@ static function string GetPermissionString( float PermissionIndex )
  	return default.NoPreferenceString;
 }
 
-static function array<string> GetPermissionStringsArray()
+static function array<string> GetPermissionStringsArray(bool bConsoleBuild)
 {
-	return default.PermissionStrings;
+	if(bConsoleBuild)
+	{
+		return default.ConsolePermissionStrings;
+	}
+	else
+	{
+		return default.PermissionStrings;
+	}
+	
 }
 
 static function array<string> GetGameModeStringsArray()
@@ -116,6 +135,24 @@ static function string GetGameModeString( int GameModeIndex )
  	return default.NoPreferenceString;
 }
 
+
+
+static function string GetFriendlyMapName(string MapName)
+{
+	local KFMapSummary MapData;
+
+	MapData = class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
+
+	if ( MapData != none && MapData.DisplayName != "")
+	{
+		return MapData.DisplayName;
+	}
+	else
+	{
+     	return MapName;
+	}
+}
+
 defaultproperties
 {
    DifficultyStrings(0)="Normal"
@@ -130,9 +167,12 @@ defaultproperties
    ServerTypeStrings(2)="Unranked"
    PermissionStrings(0)="Public"
    PermissionStrings(1)="Friends only"
-   PermissionStrings(2)="Private"
+   PermissionStrings(2)="Private-Password"
+   ConsolePermissionStrings(0)="Public"
+   ConsolePermissionStrings(1)="Invite Only"
    ModeStrings(0)="Survival"
    ModeStrings(1)="VS Survival"
+   TeamSwappedString="You have been team swapped"
    NoPreferenceString="ANY"
    OKString="OK"
    ConfirmString="CONFIRM"
@@ -142,8 +182,8 @@ defaultproperties
    NoticeString="NOTICE!"
    AcceptString="Accept"
    DeclineString="Decline"
-   YesString="Yes"
-   NoString="No"
+   YesString="YES"
+   NoString="NO"
    DisbandPartyString="DISBAND PARTY"
    LeaveCurrentMenuString="Leave current menu?"
    ZedString="ZED"
@@ -153,6 +193,13 @@ defaultproperties
    NoSwitchReasonString="Switching teams would upset team balance"
    TeamString="TEAM"
    AllString="ALL"
+   LoadingString="Loading..."
+   AutoTradeCompleteString="Auto Trade Complete: "
+   AutoFillCompleteString="Autofilled Supplies"
+   WeaponUpgradeComepleteString="Weapon Upgraded"
+   SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
+   NoItemsPurchasedString="No Items Purchased"
+   SetTakeoverServerPasswordTitle="Enter a new password to protect your game:"
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

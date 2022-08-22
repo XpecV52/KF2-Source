@@ -288,9 +288,9 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum,int TitleId);
 function bool ShowCustomMessageUI(byte LocalUserNum,const out array<UniqueNetId> Recipients,string MessageTitle,string NonEditableMessage,optional string EditableMessage);	
 
 //@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
-function PostActivityFeedBossKill(string BossName, string MapName);
-function PostActivityFeedTeamAward(string AwardName);
-function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
+function PostActivityFeedBossKill(string BossName, string BossLoc, string MapLoc);
+function PostActivityFeedTeamAward(string AwardName, string AwardLoc);
+function PostActivityFeedPerkLevelUp(string PerkClassName, string PerkClassLoc, int Level);
 //@HSL_END
 
 
@@ -299,4 +299,27 @@ function ReadStoreData();
 delegate OnStoreDataRead( bool bSuccessful );
 function AddStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate );
 function ClearStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate ); 
+
+function ReadEntitlements();
+delegate OnEntitlementsRead( bool bSuccess );
+function AddOnEntitlementsReadDelegate( delegate<OnEntitlementsRead> InDelegate );
+function ClearOnEntitlementsReadDelegate( delegate<OnEntitlementsRead> InDelegate );
+//@HSL_END
+
+//@HSL_BEGIN - JRO - 6/1/2016 - Upsell
+function UpsellPremiumOnlineService();
+//@HSL_END
+
+//@HSL_BEGIN - BWJ - 6-21-16 - Error dialog support
+/**
+ * Shows a customized system dialog with the given error code, context, title and content
+ *
+ * @param ErrorCode the error code to display
+ * @param ErrorContext the error context to display
+ * @param DialogTitle the title of the dialog
+ * @param DialogContent the content of the dialog
+ *
+ * @return true of successful, false otherwise
+ */
+function bool ShowCustomErrorUI(int ErrorCode, optional string ErrorContext, optional string DialogTitle, optional string DialogContent);
 //@HSL_END

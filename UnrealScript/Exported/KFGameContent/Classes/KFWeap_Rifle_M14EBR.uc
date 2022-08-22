@@ -32,6 +32,7 @@ defaultproperties
    InventorySize=7
    MagazineCapacity(0)=20
    bHasIronSights=True
+   bWarnAIWhenAiming=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasLaserSight=True
@@ -42,9 +43,10 @@ defaultproperties
    PlayerIronSightFOV=70.000000
    DOF_FG_FocalRadius=0.000000
    DOF_FG_MaxNearBlurSize=3.500000
+   AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M14EBR_TEX.UI_WeaponSelect_SM14-EBR'
-   MaxSpareAmmo(0)=160
+   SpareAmmoCapacity(0)=160
    InitialSpareMags(0)=2
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
@@ -94,7 +96,7 @@ defaultproperties
    InstantHitDamage(0)=75.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=27.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_M14EBR'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None

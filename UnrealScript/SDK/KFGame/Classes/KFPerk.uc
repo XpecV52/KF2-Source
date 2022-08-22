@@ -82,6 +82,8 @@ struct native PerkSkill
 	var()						bool 			bActive;
 };
 
+var private const float 	AssistDoshModifier;
+
 var array<PerkSkill> 		PerkSkills;
 
 var 	protected	byte 	SelectedSkills[`MAX_PERK_SKILLS];
@@ -129,7 +131,7 @@ var				bool 		bHasTempSkill_TacticalReload;
 * Shared Skills
 ********************************************************************************************* */
 var()	const			PerkSkill			TacticalReload;				// Reload speed modifier Only set the StartValue
-var 	protected const	class<KFDamageType>	BleedDmgTypeClass;
+var 	protected const	class<KFDamageType>	ToxicDmgTypeClass;
 
 /*********************************************************************************************
 * Loading
@@ -166,6 +168,8 @@ var int							MaxGrenadeCount;
 
 /** The backup weapon damage types */
 var array<name>	BackupWeaponDamageTypeNames;
+
+var array<class<KFWeaponDefinition> > AutoBuyLoadOutPath;
 
 /*********************************************************************************************
 * Player Skill Trakcing
@@ -406,7 +410,12 @@ static function bool IsBackupDamageTypeOnPerk( class<DamageType> DT )
  */
 static function bool IsDamageTypeOnThisPerk( class<KFDamageType> KFDT, class<KFPerk> PerkClass )
 {
-	return KFDT.default.ModifierPerkList.Find( PerkClass ) > INDEX_NONE ;
+	if( KFDT != none )
+	{
+		return KFDT.default.ModifierPerkList.Find( PerkClass ) > INDEX_NONE ;
+	}
+
+	return false;
 }
 
 /**
@@ -817,10 +826,10 @@ function AddDefaultInventory( KFPawn P )
 			KFIM.GiveInitialGrenadeCount();
 		}
 
-		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(PrimaryWeaponDef.default.WeaponClassPath, class'Class')));
-		// Secondary weapon is spawned through the pawn unless we want an additional one
-		// P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(SecondaryWeaponClassName, class'Class')));
-		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(KnifeWeaponDef.default.WeaponClassPath, class'Class')));
+		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
+		// Secondary weapon is spawned through the pawn unless we want an additional one  not anymore
+		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), class'Class')));
+		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetKnifeWeaponClassPath(), class'Class')));
 	}
 }
 
@@ -828,6 +837,24 @@ function AddDefaultInventory( KFPawn P )
 simulated function class< KFProj_Grenade > GetGrenadeClass()
 {
     return GrenadeClass;
+}
+
+/* Returns the primary weapon's class path for this perk */
+simulated function string GetPrimaryWeaponClassPath()
+{
+    return PrimaryWeaponDef.default.WeaponClassPath;
+}
+
+/* Returns the secondary weapon's class path for this perk */
+simulated function string GetSecondaryWeaponClassPath()
+{
+    return SecondaryWeaponDef.default.WeaponClassPath;
+}
+
+/* Returns the knife's class path for this perk */
+simulated function string GetKnifeWeaponClassPath()
+{
+    return KnifeWeaponDef.default.WeaponClassPath;
 }
 
 simulated function bool PerkNeedsTick(){ return false; }
@@ -937,13 +964,13 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx );
 function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy );
 /** Ammunition capacity and mag count increased */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass );
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false );
 /** Update our weapons spare ammo count, *Use WeaponPerkClass for the trader when no weapon actually exists */
-simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem);
+simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false );
 /** Set our weapon's spare ammo to maximum (needed another function besides ModifySpareAmmoAmount because we need to be able to specify maximum somehow) */
 simulated function MaximizeSpareAmmoAmount( class<KFPerk> WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo );
 /** Update our weapons Max spare ammo count, *Use WeaponPerkClass for the trader when no weapon actually exists */
-simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem);
+simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false );
 /** Determines if a modified magazine size affects the spare ammo capacity of a weapon */
 simulated function bool ShouldMagSizeModifySpareAmmo( KFWeapon KFW, optional Class<KFPerk> WeaponPerkClass ) { return false; }
 /** Fortitude - max health goes up*/
@@ -953,6 +980,8 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart ){ return 1.f; }
 function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 1.f; }
 function float GetReactionModifier( optional class<KFDamageType> DamageType ){ return 1.f; }
+function GameExplosion GetExplosionTemplate(){ return none; }
+function bool ShouldGetAllTheXP(){ return false; }
 
 /** Support functions */
 /** Welding Proficiency - faster welding/unwelding */
@@ -961,6 +990,7 @@ simulated function bool CanInteract( KFPawn_Human KFPH ){ return false; }
 simulated function Interact( KFPawn_Human KFPH );
 simulated function float GetPenetrationModifier( byte Level, class<KFDamageType> DamageType, optional bool bForce );
 static function float GetBarrageDamageModifier(){ return default.BarrageDamageModifier; }
+simulated function float GetTightChokeModifier(){ return 1.f; }
 
 /** Commando functions */
 simulated function bool IsCallOutActive(){ return false; }
@@ -982,35 +1012,33 @@ simulated function SetSuccessfullParry();
 function AddVampireHealth( KFPlayerController KFPC, class<DamageType> DT );
 function bool ShouldKnockdown();
 function bool IsUnAffectedByZedTime(){ return false; }
+
 /** Medic functions */
-function bool IsAcidicCompoundActive(){ return false; };
 function ModifyHealerRechargeTime( out float RechargeRate );
 function bool ModifyHealAmount( out float HealAmount ){ return false; };
 function ModifyArmor( out byte MaxArmor );
 simulated function float GetArmorDiscountMod(){ return 1; }
+native function bool CanRepairDoors();
 function bool RepairArmor( Pawn HealTarget );
-function bool IsBleedDmgActive() { return false; }
-static function class<KFDamageType> GetBleedDmgTypeClass(){ return default.BleedDmgTypeClass; }
-static function ModifyBleedDmg( out int BleedDamage );
-static final function float GetVaccinationDuration(){ return default.VaccinationDuration; }
-static function ModifyVaccinationDamage( out float InDamage, class<DamageType> DmgType, optional int MedicLevel = -1 );
-function CheckForAirborneAgent( KFPawn HealTarget, class<DamageType> DamType, int HealAmount );
-function bool ShouldSedate(){ return false; }
-function ModifyACDamage( out int InDamage );
-simulated function bool CanRepairArmor(){ return false; }
+function bool IsToxicDmgActive() { return false; }
+static function class<KFDamageType> GetToxicDmgTypeClass(){ return default.ToxicDmgTypeClass; }
+static function ModifyToxicDmg( out int ToxicDamage );
 simulated function float GetSirenScreamStrength(){ return 1.f; }
-simulated function bool ShouldPlayAAEffect(){ return false; }
+simulated function bool IsHealingSurgeActive(){ return false; }
+simulated function float GetSelfHealingSurgePct(){ return 0.f; }
+simulated function bool GetHealingSpeedBoostActive(){ return false; }
+simulated function bool GetHealingDamageBoostActive(){ return false; }
+simulated function bool GetHealingShieldActive(){ return false; }
 
 /** Firebug functions */
 simulated function bool IsFlarotovActive(){ return false; }
-function ModifyDoTScaler( out float DoTScaler, optional class<KFDamageType> KFDT );
+function ModifyDoTScaler( out float DoTScaler, optional class<KFDamageType> KFDT, optional bool bNapalmInfected );
 function bool GetFireStumble( optional KFPawn KFP, optional class<DamageType> DamageType ){ return false; }
 function bool CanSpreadNapalm(){ return false; }
 function bool CouldBeZedShrapnel( class<KFDamageType> KFDT ){ return false; }
 simulated function bool ShouldShrapnel(){ return  false; }
 simulated function float GetSplashDamageModifier(){ return 1.f; }
 simulated function bool IsRangeActive(){ return false; }
-static function ModifyAssistDosh( out int EarnedDosh );
 
 /** Demo functions */
 simulated function bool IsOnContactActive(){ return false; }
@@ -1021,6 +1049,9 @@ simulated function bool CanExplosiveWeld(){ return false; }
 simulated function float GetAeORadiusModifier(){ return 1.f; }
 simulated function float GetAeODamageModifier(){ return 1.f; }
 simulated function bool DoorShouldNuke(){ return false; }
+simulated function bool ShouldGetDaZeD( class<KFDamageType> DamageType ){ return false; }
+simulated function float GetDaZedEMPPower(){ return 0; }
+simulated function bool ShouldNeverDud(){ return false; }
 	
 /** "Rack 'em Up" perk skill functions (Gunslinger, Sharpshooter) */
 simulated function bool GetIsUberAmmoActive( KFWeapon KFW ){ return false; }
@@ -1035,19 +1066,35 @@ simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime );
 simulated function bool ShouldInstantlySwitchWeapon( KFWeapon KFW ){ return false; }
 simulated function ModifyWeaponBopDamping( out float BobDamping, KFWeapon PawnWeapon );
 simulated event float GetCameraViewShakeModifier( KFWeapon OwnerWeapon ){ return 1.f; }
+simulated function bool IgnoresPenetrationDmgReduction(){ return false; }
+
+/** SWAT functions */
+simulated event float GetCrouchSpeedModifier( KFWeapon KFW ) { return 1.f; }
+simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 0.f; }
+simulated function bool HasHeavyArmor(){ return false; }
+simulated function bool ShouldKnockDownOnBump(){ return false; }
+
+
+static function ModifyAssistDosh( out int EarnedDosh )
+{
+	local float TempDosh;
+
+	TempDosh = EarnedDosh;
+	TempDosh *= GetAssistDoshModifer();
+	EarnedDosh = Round( TempDosh );
+}
+
+protected static function float GetAssistDoshModifer()
+{
+	return default.AssistDoshModifier;
+}
 
 function string GetModifierString( byte ModifierIndex )
 {
 	return "";
 }
 
-function ModifyBloatBileDoT( out float DoTScaler )
-{
-	if( OwnerPawn.bHasMedicVaccinationBuff )
-	{
-		DoTScaler -= class'KFPerk_FieldMedic'.static.GetBloatBileResistance();
-	}
-}
+function ModifyBloatBileDoT( out float DoTScaler );
 
 /** other shared getters */
 function KFWeapon GetOwnerWeapon()
@@ -1081,12 +1128,15 @@ function OnWaveEnded()
  */
 reliable protected client function ClientOnWaveEnded()
 {
-	if( MyPRI == none )
+	if( MyPRI == none && OwnerPawn != none )
 	{
 		MyPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
 	}
 
-	MyPRI.ResetSupplierUsed();
+	if( MyPRI != none )
+	{
+		MyPRI.ResetSupplierUsed();
+	}
 }
 
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
@@ -1253,7 +1303,7 @@ DefaultProperties
 	BarrageDamageModifier=1.15
 	FormidableDamageModifier=0.75f
 
-	BleedDmgTypeClass=class'KFDT_Bleeding'
+	ToxicDmgTypeClass=class'KFDT_Toxic'
 
 	RegenerationInterval=1.f
 	RegenerationAmount=0
@@ -1278,4 +1328,5 @@ DefaultProperties
 	SignatureDamageScale=1.f
 
 	SecondaryXPModifier=1
+	AssistDoshModifier=1.f
 }

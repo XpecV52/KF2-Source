@@ -48,32 +48,32 @@ package tripwire.containers
             _loc1_.push({
                 "image":"doge.png",
                 "progressPercent":1,
-                "buttonString":"XboxTypeS_A"
-            });
-            _loc1_.push({
-                "image":"doge.png",
-                "progressPercent":0.75,
-                "buttonString":"XboxTypeS_B"
-            });
-            _loc1_.push({
-                "image":"doge.png",
-                "progressPercent":0.5,
-                "buttonString":"XboxTypeS_X"
-            });
-            _loc1_.push({
-                "image":"doge.png",
-                "progressPercent":0,
-                "buttonString":"XboxTypeS_Y"
-            });
-            _loc1_.push({
-                "image":"doge.png",
-                "progressPercent":0.1,
                 "buttonString":"LMB"
             });
             _loc1_.push({
                 "image":"doge.png",
-                "progressPercent":1,
+                "progressPercent":0.75,
                 "buttonString":"RMB"
+            });
+            _loc1_.push({
+                "image":"doge.png",
+                "progressPercent":0.5,
+                "buttonString":"Space"
+            });
+            _loc1_.push({
+                "image":"doge.png",
+                "progressPercent":0,
+                "buttonString":"L Ctrl"
+            });
+            _loc1_.push({
+                "image":"doge.png",
+                "progressPercent":0.1,
+                "buttonString":"XboxTypeS_LeftShoulder"
+            });
+            _loc1_.push({
+                "image":"doge.png",
+                "progressPercent":1,
+                "buttonString":"XboxTypeS_RightShoulder"
             });
             this.Data = _loc1_;
         }

@@ -32,17 +32,18 @@ var float KFFontScale;
  ***********************************************************************************/
 
 // @todo Find a way to reset a options section
-var const float DefaultGammaMult;
+var float DefaultGammaMult;
+//@HSL_MOD_BEGIN - amiller 5/11/2016 - Adding support to save extra data into profile settings - Removing config flag
+var float MusicVolumeMultiplier, SFxVolumeMultiplier, DialogVolumeMultiplier, MasterVolumeMultiplier, PadVolumeMultiplier;
+var float GammaMultiplier;	// a value between 0-1 that scales the gamma to a value between .5 and 3
 
-var config float MusicVolumeMultiplier, SFxVolumeMultiplier, DialogVolumeMultiplier, MasterVolumeMultiplier;
-var config float GammaMultiplier;	// a value between 0-1 that scales the gamma to a value between .5 and 3
-
-var config bool  bMusicVocalsEnabled;
-var config bool  bMinimalChatter;
+var bool  bMusicVocalsEnabled;
+var bool  bMinimalChatter;
 var config float FOVOptionsPercentageValue;
-var config bool  bShowKillTicker;
-var config bool  bHideBossHealthBar;
+//@HSL_MOD_END
 var config bool  bShowWelderInInv;
+var config bool  bUseAltAimOnDual;
+var config bool  bAntiMotionSickness;
 
 var private config bool bShowCrossHair;
 /** Crossair for console builds (default on).  No config since it won't save */
@@ -144,6 +145,7 @@ native static function SetWWiseSFXVolume( float Volume );
 native static function SetWWiseMusicVolume( float Volume );
 native static function SetWWiseVoiceVolume( float Volume );
 native static function SetWWiseMasterVolume( float Volume );
+native static function SetWWisePADVolume( float Volume );
 native static function SetVoIPRecieveVolume( float Volume );
 native static function GetVoIPVolumeRange(out float MinVol, out float MaxVol, out float CurrentVol);
 native static function PlayFullScreenMovie(string MovieName);
@@ -197,27 +199,16 @@ static function float GetKFFontScale()
 /** Get value of crosshair option */
 static function bool IsCrosshairEnabled()
 {
-	if ( Class'WorldInfo'.Static.IsConsoleBuild() )
-	{
-		return default.bShowCrossHairConsole;
-	}
-	else
-	{
-		return default.bShowCrossHair;
-	}
+	return default.bShowCrossHair;
 }
 
 /** Set value of crosshair option */
 static function SetCrosshairEnabled(bool bEnable)
 {
-	if ( Class'WorldInfo'.Static.IsConsoleBuild() )
+	default.bShowCrossHair = bEnable;
+		
+	if ( !Class'WorldInfo'.Static.IsConsoleBuild() )
 	{
-		default.bShowCrossHair = bEnable;
-		//Class'KFGameEngine'.static.StaticSaveConfig();
-	}
-	else
-	{
-		default.bShowCrossHair = bEnable;
 		StaticSaveConfig();
 	}
 }
@@ -275,6 +266,7 @@ event bool CheckHandshakeComplete(EProgressMessageType MessageType, string Title
 			if (Title == "HandshakeDone") //This string is set in UnPenLev.cpp UNetPendingLevel::NotifyControlMessage
 			{
 				SuppressPopup = OnHandshakeComplete(true, Title, SuppressPasswordRetry);
+				ClearOnlineDelegates();
 			}
 			break;
 		}
@@ -297,19 +289,104 @@ function UnlockServer()
 
 native function KillPendingServerConnection();
 
+
+function ReadPFStoreData()
+{
+	// Read Playfab store data
+	GetPlayfabInterface().AddStoreDataReadCompleteDelegate( OnPlayfabStoreReadComplete );
+	GetPlayfabInterface().ReadStoreData();
+}
+
+
+function OnPlayfabStoreReadComplete( bool bSuccessful )
+{
+	GetPlayfabInterface().ClearStoreDataReadCompleteDelegate( OnPlayfabStoreReadComplete );
+
+	if( bSuccessful )
+	{
+		// Read PSN store data
+		GetOnlineSubsystem().PlayerInterfaceEx.AddStoreDataReadCompleteDelegate( OnStoreDataRead );
+		GetOnlineSubsystem().PlayerInterfaceEx.ReadStoreData();
+	}
+}
+
+
+function OnStoreDataRead( bool bSuccessful )
+{
+	GetOnlineSubsystem().PlayerInterfaceEx.ClearStoreDataReadCompleteDelegate( OnStoreDataRead );
+	// Read playfab inventory
+	GetPlayfabInterface().AddInventoryReadCompleteDelegate( OnPlayfabInventoryReadComplete );
+	GetPlayfabInterface().ReadInventory();
+}
+
+
+function OnPlayfabInventoryReadComplete( bool bSuccessful )
+{
+	GetPlayfabInterface().ClearInventoryReadCompleteDelegate( OnPlayfabInventoryReadComplete );
+}
+
+function OnConnectionStatusChanged(EOnlineServerConnectionStatus ConnectionStatus)
+{
+	local KFGameViewportClient GVC;
+
+	// Let player controller handle state change
+	if( GamePlayers[0].Actor != none && KFPlayerController(GamePlayers[0].Actor) != none )
+	{
+		KFPlayerController(GamePlayers[0].Actor).HandleConnectionStatusChange( ConnectionStatus );
+	}
+	// Must be in a transition, kick back to main menu
+	else
+	{
+		GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
+		GVC = KFGameViewportClient(class'GameEngine'.static.GetEngine().GameViewport);
+		GVC.bNeedDisconnectMessage = true;
+		GVC.ConsoleCommand("open KFMainMenu");
+	}
+}
+
+
+function OnLoginStatusChanged(ELoginStatus NewStatus, UniqueNetId NewId)
+{
+	local KFGameViewportClient GVC;
+
+	// Let player controller handle state change
+	if( GamePlayers[0].Actor != none && KFPlayerController(GamePlayers[0].Actor) != none )
+	{
+		KFPlayerController(GamePlayers[0].Actor).HandleLoginStatusChange( NewStatus == LS_LoggedIn );
+	}
+	// Logged out
+	else if( NewStatus == LS_NotLoggedIn )
+	{
+		GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
+		GVC = KFGameViewportClient(class'GameEngine'.static.GetEngine().GameViewport);
+		GVC.bNeedSignoutMessage = true;
+		GVC.ConsoleCommand("open KFMainMenu");
+	}
+}
+
+
+
+function RegisterOnlineDelegates()
+{
+	GetOnlineSubsystem().SystemInterface.AddConnectionStatusChangeDelegate(OnConnectionStatusChanged);
+	// TODO: Need to handle this for consoles that have non-zero controller IDs
+	GetOnlineSubsystem().PlayerInterface.AddLoginStatusChangeDelegate( OnLoginStatusChanged, 0 );
+}
+
+function ClearOnlineDelegates()
+{
+	GetOnlineSubsystem().SystemInterface.ClearConnectionStatusChangeDelegate(OnConnectionStatusChanged);
+	GetOnlineSubsystem().PlayerInterface.ClearLoginStatusChangeDelegate( OnLoginStatusChanged, 0 );
+}
+
 defaultproperties
 {
    KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
-   KFFontScale=0.560000
+   KFFontScale=0.600000
    DefaultGammaMult=0.680000
-   MusicVolumeMultiplier=50.000000
-   SFxVolumeMultiplier=100.000000
-   DialogVolumeMultiplier=100.000000
-   MasterVolumeMultiplier=100.000000
-   GammaMultiplier=0.680000
-   bShowCrossHairConsole=True
    bMuteOnLossOfFocus=True
    FOVOptionsPercentageValue=1.000000
+   bDisableAILogging=True
    Name="Default__KFGameEngine"
    ObjectArchetype=GameEngine'Engine.Default__GameEngine'
 }

@@ -5,6 +5,7 @@ package tripwire.controls
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.events.SliderEvent;
+    import scaleform.gfx.Extensions;
     
     public class SliderOption extends UIComponent
     {
@@ -17,6 +18,8 @@ package tripwire.controls
         public var slider:TripSlider;
         
         public var backgroundButton:Button;
+        
+        public var overSoundEffect:String = "SHARED_BUTTON_MOUSEOVER";
         
         public function SliderOption()
         {
@@ -53,6 +56,13 @@ package tripwire.controls
         override protected function changeFocus() : void
         {
             this.backgroundButton.selected = focused == 1 ? true : false;
+            if(focused == 1)
+            {
+                if(Extensions.gfxProcessSound != null)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.overSoundEffect);
+                }
+            }
         }
     }
 }

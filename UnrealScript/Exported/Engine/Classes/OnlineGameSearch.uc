@@ -25,8 +25,8 @@ var databinding bool bUsesArbitration;
 var const bool bIsSearchInProgress;
 
 //@HSL_BEGIN - BWJ - 5-13-16 - Playfab game mode support
-/** The name of the gamemode to search for */
-var string GameMode;
+/** The name of the gamemodes to search for */
+var array<string> GameModes;
 //@HSL_END
 
 /** Struct used to return matching servers */
@@ -211,6 +211,80 @@ native event SortSearchResults();
 event native bool SetNamedProperty(name PropertyName, String value);
 event native bool GetNamedProperty(name PropertyName, out String value);
 //@ZOMBIE_PS4_END
+
+
+//@HSL_BEGIN - BWJ - 7-5-16 - Removing this functionality from steam
+function ClearServerFilters()
+{
+	MasterServerSearchKeys.Length = 0;
+	MasterServerSearchValues.Length = 0;
+}
+
+
+function AddServerFilter(string Key, optional string Val = "", optional int location = -1)
+{
+	//`log("AddServerFilter:"@Key@Val@string(location));
+	if (location < 0)
+	{
+		//`log("Adding filter"@Key$"="$Val);
+		MasterServerSearchKeys.AddItem(Key);
+		MasterServerSearchValues.AddItem(Val);
+	}
+	else
+	{
+		//`log("Adding filter"@Key$"="$Val@"at position"@location);
+		MasterServerSearchKeys.InsertItem(location, Key);
+		MasterServerSearchValues.InsertItem(location, Val);
+	}
+}
+
+
+function TestAddServerFilter(bool Test, string Key, optional string Val = "")
+{
+	if (Test)
+	{
+		AddServerFilter(Key, Val);
+	}
+}
+
+
+function TestAddBoolGametagFilter(out string GametagString, bool Test, name Property, byte BoolVal)
+{
+	//`log("TestAddBoolGametagFilter:"@string(Property)@string(BoolVal));
+	if (Test)
+	{
+		if (Len(GametagString) > 0)
+		{
+			GametagString $= ",";
+		}
+		GametagString $= GetGametagStringBool(Property, BoolVal);
+	}
+	//`log("TestAddBoolGametagFilter:"@GametagString);
+}
+
+
+function AddGametagFilter(out string GametagString, name Property, string Val)
+{
+	//`log("AddGametagFilter:"@string(Property)@Val);
+	if (Len(GametagString) > 0)
+	{
+		GametagString $= ",";
+	}
+	GametagString $= GetGametagString(Property, Val);
+	//`log("AddGametagFilter:"@GametagString);
+}
+
+native function string GetGametagString(name PropertyName, string StringVal);
+native function string GetGametagStringBool(name PropertyName, byte BoolVal);
+
+
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+//@HSL_END
 
 defaultproperties
 {

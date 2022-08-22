@@ -1,8 +1,8 @@
 package
 {
-    import tripwire.controls.TripUILoader;
+    import tripwire.controls.TripUILoaderQueue;
     
-    public dynamic class MapImageLoader extends TripUILoader
+    public dynamic class MapImageLoader extends TripUILoaderQueue
     {
          
         

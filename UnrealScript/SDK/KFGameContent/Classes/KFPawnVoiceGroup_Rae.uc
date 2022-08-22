@@ -50,6 +50,7 @@ DefaultProperties
 	DialogEvents[`ACT_AmmoLowResp]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Rae.Play_Rae_ACT_LowAmmo_Advice',TraderTimeAudioCue=none)
 	DialogEvents[`ACT_AttackHeavy]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Rae.Play_Rae_ACT_HardAttack_Base',TraderTimeAudioCue=none)
 	DialogEvents[`ACT_AttackLight]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Rae.Play_Rae_ACT_LightAttack_Base',TraderTimeAudioCue=none)
+	DialogEvents[`ACT_BerserkerRage]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Rae.Play_Rae_KZED_SprintTowardsZ_Base',TraderTimeAudioCue=none)
 
 	DialogEvents[`ACT_SelectFaveWeap1]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Rae.Play_Rae_ACT_SelectFave1_Base',TraderTimeAudioCue=none)
 	DialogEvents[`ACT_SelectFaveWeap2]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Rae.Play_Rae_ACT_SelectFave2_Base',TraderTimeAudioCue=none)

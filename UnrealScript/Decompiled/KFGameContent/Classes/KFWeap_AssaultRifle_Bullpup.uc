@@ -12,7 +12,7 @@ class KFWeap_AssaultRifle_Bullpup extends KFWeap_RifleBase
 defaultproperties
 {
     FireModeIconPaths=/* Array type was not detected. */
-    SingleFireMode=1
+    SingleFireSoundIndex=1
     InventorySize=6
     MagazineCapacity=30
     bHasIronSights=true
@@ -24,7 +24,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
-    MaxSpareAmmo=300
+    SpareAmmoCapacity=270
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

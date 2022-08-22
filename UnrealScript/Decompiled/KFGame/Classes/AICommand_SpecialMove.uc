@@ -96,10 +96,7 @@ function LockdownAI()
 {
     Outer.AILog_Internal(string(GetFuncName()), 'Command_SpecialMove');
     Outer.bPreparingMove = true;
-    if(Outer.MyKFPawn != none)
-    {
-        Outer.MyKFPawn.ZeroMovementVariables();
-    }
+    Outer.AIZeroMovementVariables();
 }
 
 function UnlockAI()

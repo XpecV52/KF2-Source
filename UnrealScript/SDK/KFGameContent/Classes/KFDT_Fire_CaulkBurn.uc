@@ -30,12 +30,12 @@ defaultproperties
 	WeaponDef=class'KFWeapDef_CaulkBurn'
 
 	DoT_Type=DOT_Fire
-	DoT_Duration=5.0
-	DoT_Interval=1.0
-	DoT_DamageScale=1.5
+	DoT_Duration=1.7 //5.0
+	DoT_Interval=0.4 //1.0
+	DoT_DamageScale=0.8 //1.5
 	bIgnoreSelfInflictedScale=true
 
-	BurnPower=20
+	BurnPower=10.5 //2.5
 	StumblePower=20
 }
 

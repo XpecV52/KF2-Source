@@ -103,8 +103,7 @@ function name PlayEmerge()
     Variant = byte(KFPOwner.SpecialMoveFlags >> 4);
     EmergeAnim = GetEmergeAnim(Type, Variant);
     PlaySpecialMoveAnim(EmergeAnim, 0, 0, BlendOutTime, 1, false);
-    KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(2, 2, 2);
-    KFPOwner.Mesh.RootMotionMode = 0;
+    EnableRootMotion();
     KFPOwner.BodyStanceNodes[0].SetRootBoneRotationOption(2, 2, 2);
     KFPOwner.Mesh.RootMotionRotationMode = 1;
     KFPOwner.SetCollision(KFPOwner.bCollideActors, false);
@@ -118,8 +117,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     super.SpecialMoveEnded(PrevMove, NextMove);
     KFPOwner.BodyStanceNodes[0].SetRootBoneRotationOption(1, 1, 1);
     KFPOwner.Mesh.RootMotionRotationMode = 0;
-    KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
-    KFPOwner.Mesh.RootMotionMode = KFPOwner.default.Mesh.RootMotionMode;
+    DisableRootMotion();
     KFPOwner.bAlwaysRelevant = PawnOwner.default.bAlwaysRelevant;
     RestoreCollision();
     if((PawnOwner.Role == ROLE_Authority) && !PawnOwner.IsHumanControlled())
@@ -208,9 +206,11 @@ defaultproperties
     CeilingEmerge(2)=Enter_Ceiling_V3
     CeilingEmerge(3)=Enter_Ceiling_V4
     BlendOutTime=0.2
+    SMRootMotionMode=ERootMotionMode.RMM_Translate
     bCanOnlyWanderAtEnd=true
     bPawnRotationLocked=true
     bDisablePhysics=true
+    bShouldDeferToPostTick=true
     DefaultAICommandClass=Class'AICommand_PushedBySM'
     Handle=SM_Emerge
 }

@@ -66,7 +66,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=60
-	MaxSpareAmmo[0]=270
+	SpareAmmoCapacity[0]=270
 	InitialSpareMags[0]=3
 	bCanBeReloaded=false//true
 	bReloadFromMagazine=false//true
@@ -97,7 +97,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	FireInterval(DEFAULT_FIREMODE)=+0.05 // 1200 RPM
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_HansAK12'
-	Spread(DEFAULT_FIREMODE)=0.1
+	Spread(DEFAULT_FIREMODE)=0.145 //0.1
 	InstantHitDamage(DEFAULT_FIREMODE)=10.0
 	FireOffset=(X=32,Y=4.0,Z=-5)
 
@@ -118,7 +118,7 @@ defaultproperties
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true
 	bLoopingFireSnd(DEFAULT_FIREMODE)=true
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_MkB42.Play_WEP_SA_MkB42_Fire_3P_EndLoop', FirstPersonCue=AkEvent'WW_WEP_SA_MkB42.Play_WEP_SA_MkB42_Fire_3P_EndLoop')
-	SingleFireMode=ALTFIRE_FIREMODE
+	SingleFireSoundIndex=ALTFIRE_FIREMODE
 
 	// Attachments
 	bHasIronSights=true

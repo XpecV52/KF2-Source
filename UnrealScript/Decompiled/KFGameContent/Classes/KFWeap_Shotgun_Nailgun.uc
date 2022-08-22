@@ -90,7 +90,7 @@ defaultproperties
     IronSightPosition=(X=12,Y=0,Z=0)
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
-    MaxSpareAmmo=336
+    SpareAmmoCapacity=336
     InitialSpareMags=4
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

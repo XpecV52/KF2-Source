@@ -71,6 +71,12 @@ package tripwire.containers
         
         public var leftSidePanels:Array;
         
+        private var _bBlockContainerFocus:Boolean = false;
+        
+        public var openSoundEffect:String = "";
+        
+        public var closeSoundEffect:String = "";
+        
         public function TripContainer()
         {
             this.rightSidePanels = new Array();
@@ -134,6 +140,20 @@ package tripwire.containers
             return this._bOpen;
         }
         
+        public function get bBlockContainerFocus() : Boolean
+        {
+            return this._bBlockContainerFocus;
+        }
+        
+        public function set bBlockContainerFocus(param1:Boolean) : void
+        {
+            if(param1 == this._bBlockContainerFocus)
+            {
+                return;
+            }
+            this._bBlockContainerFocus = param1;
+        }
+        
         public function openContainer(param1:Boolean = true) : void
         {
             if(!this._bOpen)
@@ -160,6 +180,10 @@ package tripwire.containers
                 {
                     this.alpha = 0;
                     this.openAnimation(param1);
+                }
+                if(Extensions.gfxProcessSound != null)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.openSoundEffect);
                 }
                 this._bOpen = true;
             }
@@ -201,6 +225,10 @@ package tripwire.containers
                 if(this.currentElement)
                 {
                     this.currentElement = null;
+                }
+                if(Extensions.gfxProcessSound != null)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.closeSoundEffect);
                 }
             }
         }

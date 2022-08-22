@@ -13,7 +13,7 @@ defaultproperties
 {
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
-   SingleFireMode=1
+   SingleFireSoundIndex=1
    InventorySize=6
    MagazineCapacity(0)=20
    bHasIronSights=True
@@ -26,7 +26,7 @@ defaultproperties
    DOF_FG_FocalRadius=150.000000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
-   MaxSpareAmmo(0)=340
+   SpareAmmoCapacity(0)=340
    InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
@@ -77,7 +77,7 @@ defaultproperties
    InstantHitDamage(0)=50.000000
    InstantHitDamage(1)=50.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_SCAR'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_SCAR'
    InstantHitDamageTypes(2)=None

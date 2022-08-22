@@ -120,15 +120,15 @@ event PostBeginPlay()
 	}
 
 	// Determine the interval of allowing fireballs to be fired
-    if( Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
+    if( Skill == class'KFGameDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
     {
         BaseTimeBetweenFireBalls = FireballFireIntervalNormal;
     }
-    else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
+    else if( Skill <= class'KFGameDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
     {
         BaseTimeBetweenFireBalls = FireballFireIntervalHard;
     }
-    else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
+    else if( Skill <= class'KFGameDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
     {
         BaseTimeBetweenFireBalls = FireballFireIntervalSuicidal;
     }
@@ -285,10 +285,10 @@ function DoStrike()
 	super.DoStrike();
 }
 
-function ShootFireball(class<KFProjectile> FireballClass)
+function ShootFireball(class<KFProj_Husk_Fireball> FireballClass)
 {
 	local vector		SocketLocation, DirToEnemy, HitLocation, HitNormal;
-	local KFProjectile	MyFireball;
+	local KFProj_Husk_Fireball MyFireball;
 	local actor			HitActor;
 	local Vector AimLocation, GroundAimLocation;
 	local float SplashAimChance;
@@ -296,6 +296,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
 	local float randDraw;
 	local vector displacementToHitLoc;
 	local float distanceToHitLoc;
+	local KFPawn_ZedHusk MyHuskPawn;
 
 	if( MyKFPawn == none )
 	{
@@ -315,15 +316,15 @@ function ShootFireball(class<KFProjectile> FireballClass)
         AimLocation = Enemy.Location;
 
         // Determine the random chance of aiming at the ground for splash damage
-        if( Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
+        if( Skill == class'KFGameDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
         {
             SplashAimChance = SplashAimChanceNormal;
         }
-        else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
+        else if( Skill <= class'KFGameDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
         {
             SplashAimChance = SplashAimChanceHard;
         }
-        else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
+        else if( Skill <= class'KFGameDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
         {
             SplashAimChance = SplashAimChanceSuicidal;
         }
@@ -402,6 +403,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
 		}
 
 		//DrawDebugLine( SocketLocation, SocketLocation + DirToEnemy * 5000.0, 255, 0, 0, true );
+		MyHuskPawn = KFPawn_ZedHusk( MyKFPawn );
 
 		// Shoot the fireball
 		MyFireball = Spawn( FireballClass, MyKFPawn,, SocketLocation, Rotator(DirToEnemy) );
@@ -409,6 +411,12 @@ function ShootFireball(class<KFProjectile> FireballClass)
 		MyFireball.InstigatorController	= self;
 		MyFireball.Speed				= FireballSpeed;
 		MyFireball.MaxSpeed				= FireballSpeed;
+
+		// Set our difficulty setings
+		MyFireball.ExplosionTemplate.MomentumTransferScale = MyHuskPawn.FireballSettings.ExplosionMomentum;
+		MyFireball.bSpawnGroundFire = MyHuskPawn.FireballSettings.bSpawnGroundFire;
+
+		// Fire
 		MyFireball.Init( DirToEnemy );
 
 		LastFireBallTime = WorldInfo.TimeSeconds;

@@ -10,6 +10,15 @@
 
 class KFMapSummary extends UIMapSummary;
 
+enum EAssociationIdentifier
+{
+	EAI_Custom,
+	EAI_OfficialCustom,
+	EAI_TripwireOfficial,
+};
+
+var	config EAssociationIdentifier MapAssociation;
+
 defaultproperties
 {
 

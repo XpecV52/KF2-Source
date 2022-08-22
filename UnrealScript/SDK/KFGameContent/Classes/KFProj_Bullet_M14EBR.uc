@@ -7,7 +7,7 @@
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
 
-class KFProj_Bullet_M14EBR extends KFProj_Bullet_RackEmUp
+class KFProj_Bullet_M14EBR extends KFProj_Bullet
 	hidedropdown;
 
 defaultproperties
