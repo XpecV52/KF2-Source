@@ -378,6 +378,24 @@ function RestartPlayer(Controller NewPlayer)
     }
 }
 
+/* @see GameInfo::SetPlayerDefaults */
+function SetPlayerDefaults(Pawn PlayerPawn)
+{
+    local KFPawn_Human P;
+
+    Super.SetPlayerDefaults(PlayerPawn);
+
+    // humans get full armor for the first wave
+    if ( MyKFGRIV.WaveNum == 0 )
+    {
+        P = KFPawn_Human(PlayerPawn);
+        if ( P != none )
+        {
+            P.GiveMaxArmor();
+        }
+    }
+}
+
 function int GetAIControlledMonsterAliveCount()
 {
 	local AIController AIP;
@@ -728,15 +746,18 @@ protected function CheckPawnsForGriefing( optional bool bInitial=false )
     }
 }
 
-/** Reset ALL pickups each wave (ignoring NumPickups) */
-function ResetPickups( array<KFPickupFactory> PickupList, int NumPickups )
+/** Called to reset all the types of pickups */
+function ResetAllPickups()
 {
-    local byte i;
-
-    for ( i = 0; i < PickupList.Length; i++ )
+    if ( !bDisablePickups )
     {
-        PickupList[i].Reset();
+        // Reset ALL pickups each wave (ignoring NumPickups) 
+ 		// -1, so that we always have a different pickup to activate
+        NumWeaponPickups = ItemPickups.Length - 1;
+        NumAmmoPickups = AmmoPickups.Length - 1;
     }
+
+    Super.ResetAllPickups();
 }
 
 function OpenPostRoundMenu()

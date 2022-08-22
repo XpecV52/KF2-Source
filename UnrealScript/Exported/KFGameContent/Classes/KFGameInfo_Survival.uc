@@ -1067,7 +1067,8 @@ function ResetAllPickups()
  	// for the boss wave request all ammo pickups
  	if ( WaveNum == WaveMax )
  	{
- 		NumAmmoPickups = AmmoPickups.Length;
+ 		// -1, so that we always have a different pickup to activate
+ 		NumAmmoPickups = (AmmoPickups.Length - 1);
  	}
 
  	Super.ResetAllPickups();

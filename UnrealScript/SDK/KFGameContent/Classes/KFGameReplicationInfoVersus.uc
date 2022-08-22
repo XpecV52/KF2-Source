@@ -264,6 +264,14 @@ function ServerStartVoteKick( PlayerReplicationInfo PRI_Kickee, PlayerReplicatio
 	}
 }
 
+/** Resets the GRI */
+function Reset()
+{
+	WaveNum = 0;
+
+	super.Reset();
+}
+
 /** Performs client-specific resets */
 simulated function OnRoundIncremented();
 

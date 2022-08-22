@@ -670,7 +670,7 @@ function ResetAllPickups()
 {
     if(WaveNum == WaveMax)
     {
-        NumAmmoPickups = byte(AmmoPickups.Length);
+        NumAmmoPickups = byte(AmmoPickups.Length - 1);
     }
     super.ResetAllPickups();
 }

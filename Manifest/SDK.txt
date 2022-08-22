@@ -1,21 +1,21 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 6567772005096203757 / 7/20/2016 8:26:35 PM
+Manifest ID / date     : 9136327098878077490 / 7/25/2016 11:30:38 PM
 Total number of files  : 3938
 Total number of chunks : 4002
-Total bytes on disk    : 88860091
-Total bytes compressed : 25803104
+Total bytes on disk    : 88856152
+Total bytes compressed : 25777776
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
              0      0 0000000000000000000000000000000000000000    64 Binaries\GFx
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
-       1592832      2 8CBE9F4EFB1FEB3E307446A68E609ACD73B84807     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 942919845F0750BDEA9C493AC5E1D11D62FE15EB     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      63858688     61 280634EBBA6C72C272C0D9E034F72B0433CC4833     0 Binaries\Win64\KFEditor.exe
+      63854080     61 935E8A3F8F01BF836C6F3D18B93EE2B6625B49AA     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -1852,10 +1852,10 @@ Total bytes compressed : 25803104
           3861      1 2C63926611A024A0C5CA11848CB5404C24C4C7E1     0 Development\Src\KFGameContent\Classes\KFGFxTutorialContainer.uc
           3769      1 A5F44B09CE7BC44A73A1CE7EC5B782D32526AF6A     0 Development\Src\KFGameContent\Classes\KFGameConductorVersus.uc
            702      1 28ACDBB883EF881B2F2DAF1F530C435DFDF7788B     0 Development\Src\KFGameContent\Classes\KFGameContentRoot.uc
-         36402      1 0A8FE78C9859914131E694B4D105DB3125119030     0 Development\Src\KFGameContent\Classes\KFGameInfo_Survival.uc
+         36473      1 9B956BAD340893FCB1BD8704544E60598084ADDF     0 Development\Src\KFGameContent\Classes\KFGameInfo_Survival.uc
          12933      1 06E3F2AF9B2567343F69050DAF9971B640F954B3     0 Development\Src\KFGameContent\Classes\KFGameInfo_Tutorial.uc
-         32645      1 A3149EF3B1868B9BE45C8A7933558EE6DBEB7B2B     0 Development\Src\KFGameContent\Classes\KFGameInfo_VersusSurvival.uc
-          6234      1 B1238BDEF7E72859F5CB4B00DDEA3FC1561EC255     0 Development\Src\KFGameContent\Classes\KFGameReplicationInfoVersus.uc
+         33160      1 AD61395DD277C4B2638B1999D2A28D3FD91FCE8B     0 Development\Src\KFGameContent\Classes\KFGameInfo_VersusSurvival.uc
+          6317      1 6904160E72D47E0928E2CDD76449A33EF584A01B     0 Development\Src\KFGameContent\Classes\KFGameReplicationInfoVersus.uc
            940      1 267DEE465961742B13A39CAE6FF335A9B908EFF6     0 Development\Src\KFGameContent\Classes\KFGoreJoint_Arm.uc
           1307      1 300483C677D0678197E2050FD4F59CA03F1448AC     0 Development\Src\KFGameContent\Classes\KFGoreJoint_Chest.uc
            944      1 6AB1073CDACB4E706DC4A7277401CC02BD5332AD     0 Development\Src\KFGameContent\Classes\KFGoreJoint_Foot.uc

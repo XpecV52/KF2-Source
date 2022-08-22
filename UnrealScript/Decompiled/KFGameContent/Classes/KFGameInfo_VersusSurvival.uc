@@ -311,6 +311,21 @@ function RestartPlayer(Controller NewPlayer)
     }
 }
 
+function SetPlayerDefaults(Pawn PlayerPawn)
+{
+    local KFPawn_Human P;
+
+    super(KFGameInfo).SetPlayerDefaults(PlayerPawn);
+    if(MyKFGRIV.WaveNum == 0)
+    {
+        P = KFPawn_Human(PlayerPawn);
+        if(P != none)
+        {
+            P.GiveMaxArmor();
+        }
+    }
+}
+
 function int GetAIControlledMonsterAliveCount()
 {
     local AIController AIP;
@@ -610,19 +625,14 @@ protected function CheckPawnsForGriefing(optional bool bInitial)
     }
 }
 
-function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
+function ResetAllPickups()
 {
-    local byte I;
-
-    I = 0;
-    J0x0C:
-
-    if(I < PickupList.Length)
+    if(!bDisablePickups)
     {
-        PickupList[I].Reset();
-        ++ I;
-        goto J0x0C;
+        NumWeaponPickups = byte(ItemPickups.Length - 1);
+        NumAmmoPickups = byte(AmmoPickups.Length - 1);
     }
+    super.ResetAllPickups();
 }
 
 function OpenPostRoundMenu()

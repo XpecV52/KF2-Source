@@ -256,6 +256,12 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
     }
 }
 
+function Reset()
+{
+    WaveNum = 0;
+    super(GameReplicationInfo).Reset();
+}
+
 simulated function OnRoundIncremented();
 
 defaultproperties
