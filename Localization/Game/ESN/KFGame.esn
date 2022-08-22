@@ -101,7 +101,7 @@ modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI con
 modeList2=""
 difficultyList0="Normal – For beginning players of perk rank 0-5."
 difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
-difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There are even fewer pickups, and you get less dosh."
 difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
 lengthList0=""
 lengthList1=""
@@ -111,6 +111,7 @@ serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (i
 serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
 serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
 serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+serverTypeList4="No preference - Will look for any of the previous selections"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -531,6 +532,7 @@ TotalString="Total"
 CheckOutString="Pagar"
 
 [KFGFxStoreContainer_Main]
+WeaponSkinsRotationString="Weapon Skins"
 WeaponSkinsString="Apariencias de arma"
 MarketConsumablesString="Market Crates/USBs"
 MarketCosmeticsString="Market Cosmetics"
@@ -1117,29 +1119,29 @@ WeaponDroppedMessage="¡Has soltado%%%% debido a tu nueva capacidad de carga!"
 [KFPerk_Berserker]
 PerkName="Berserker"
 
-SkillCatagories[0]="Survival"
-SkillCatagories[1]="Combat"
-SkillCatagories[2]="Close Combat"
-SkillCatagories[3]="Power"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="Resistencia"
+SkillCatagories[1]="Supervivencia"
+SkillCatagories[2]="Combate cuerpo a cuerpo"
+SkillCatagories[3]="Fuerza"
+SkillCatagories[4]="Entrenamiento avanzado"
 
 
-Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
-Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
-Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
-Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
+Passives[0]=(Title="Daño por armas de clase",Description="25% de daño adicional con armas de Berseker, aumentando un x%x por cada nivel");
+Passives[1]=(Title="Vel. ataque cuerpo a c.",Description="0% de velocidad de ataque cuerpo a cuerpo adicional, aumentando un x%x por nivel");
+Passives[2]=(Title="Vel. con arma cuerpo a c.",Description="10% de velocidad de movimiento adicional al llevar armas cuerpo a cuerpo, aumentando un x%x por cada nivel");
+Passives[3]=(Title="Resistencia a daño",Description="Daño recibido reducido un %x%");
 
-EXPAction1="Dealing Berserker weapon damage"
-EXPAction2="Kill Zeds near a player with a Berserker weapon"
+EXPAction1="Causar daño con armas de Berserker"
+EXPAction2="Matar Zeds cercanos con armas de clase"
 
-Fortitude="Dreadnaught"
-FortitudeDescription="Increase total Health by 50%."
+Fortitude="Fortaleza"
+FortitudeDescription="Date una mejor oportunidad: Aumenta un 100% la salud máxima e inicial"
 
 Ninja="Skirmisher"
 NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
-Vampire="Vampire"
-VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
+Vampire="Vampiro"
+VampireDescription="Pequeños chupones: Nanotecnología de Horzine absorbe 3 puntos de vida de todos los Zeds que matas con un ataque con arma de Berserker y te los aplica a ti."
 
 Speed="Butcher"
 SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
@@ -1147,51 +1149,51 @@ SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapon
 Resistance="Resistance"
 ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
-Parry="Parry"
-ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
+Parry="Detener"
+ParryDescription="Combina habilidad y poder: Detener un ataque aumentará la velocidad de ataque cuerpo a cuerpo un 15% y el daño de ataque ligero un 30% durante 4 segundos."
 
-Smash="Smash"
-SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
+Smash="Machacar"
+SmashDescription="Lo brutal lo refuerza: Los golpes fuertes causan un 100% más de daño y los golpes fuertes a la cabeza aumentan la posibilidad de derribar a los Zeds grandes."
  
 Fury="Massacre"
 FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ZED TIME - Spartan" 
-SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
+Spartan="Tiempo ZED - Espartano"
+SpartanDescription="Has visto 300: Muévete en tiempo real. Aumenta la velocidad de ataque con armas cuerpo a cuerpo del Berserker en un 50% y cualquier ataque detenido causará derribo."
 
 Flash="ZED TIME - Berserker Rage"
 FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
 
 [KFPerk_Commando]
-PerkName="Commando"
+PerkName="Comando"
 
-SkillCatagories[0]="Tactics"
-SkillCatagories[1]="Advanced Tactics"
-SkillCatagories[2]="Survival"
-SkillCatagories[3]="Weapon Specialist"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="Suministros"
+SkillCatagories[1]="Manejo de armas"
+SkillCatagories[2]="Conciencia"
+SkillCatagories[3]="Especialista en armas"
+SkillCatagories[4]="Entrenamiento avanzado"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
-Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
-Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
-Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
-Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
-Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
+Passives[0]=(Title="Daño por arma de clase",Description="%x% de daño adicional con armas de Comando");
+Passives[1]=(Title="Detección de ocultos",Description="Detección de enemigos ocultos aumentada un %x%");
+Passives[2]=(Title="Detección barra de salud",Description="Detección de barra de salud aumentada un %x%");
+Passives[3]=(Title="Ampliación tiempo Zed",Description="El tiempo Zed dura %x%");
+Passives[4]=(Title="Aumento de salud",Description="Salud aumentada un %x%");
+Passives[5]=(Title="+Visión nocturna",Description="Linternas y gafas de visión nocturna");
 
-EXPAction1="Dealing Commando weapon damage"
-EXPAction2="Killing Stalkers with Commando weapons"
+EXPAction1="Causar daño con armas de Comando"
+EXPAction2="Matar Stalkers con armas de Comando"
 
-TacticalReload="Tactical Reload"
-TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
+TacticalReload="Recarga táctica"
+TacticalReloadDescription="Sé el mejor. Sé veloz. Recarga más rápido con las armas de clase y ten un aspecto más de élite mientras lo haces."
 
-LargeMags="Large Mags"
-LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
+LargeMags="Grandes cargadores"
+LargeMagsDescription="Ponte un poco más serio: Mejora la capacidad de los cargadores de las armas del Comando un 50%."
 
-Backup="Backup"
-BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it! You also increase your weapon switching speed."
+Backup="Reserva"
+BackupDescription="¡Proporciona a tu pistola y cuchillo de reserva un 60% de daño adicional para aquellos momentos en los que realmente lo necesitas!"
 
-Impact="Impact"
-ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
+Impact="Impacto"
+ImpactDescription="Dales más golpes y ​​derríbalos. Aumenta un 30% tus probabilidades de hacer tropezar a un Zed con todas las armas del Comando."
 
 HealthIncrease="Health Increase"
 HealthIncreaseDescription="Increase total Health and Armor by 25%."
@@ -1205,26 +1207,26 @@ HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more dam
 EatLead="Eat Lead"
 EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
-RapidFire="ZED TIME - Rapid Fire"
-RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
+RapidFire="Tiempo ZED - Disparo rápido"
+RapidFireDescription="Cuando el mundo se ralentiza, haz más daño: Causa un 3% más de daño con las armas del Comando y dispara 3 veces más rápido con todas las armas."
 
-Professional="ZED TIME - Professional"
-ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
+Professional="Tiempo ZED - Profesional"
+ProfessionalDescription="Cuando el mundo se ralentiza, tú no lo haces: ¡Recarga las armas a toda velocidad y cambia de armas el doble de rápido!"
 
 [KFPerk_Demolitionist]
-PerkName="Demolitionist"
-EXPAction1="Dealing Demolitionist weapon damage"
-EXPAction2="Killing Fleshpounds with Demolitionist weapons"
+PerkName="Demoledor"
+EXPAction1="Causar daño con armas de Demoledor"
+EXPAction2="Matar Fleshpounds con armas de Demoledor"
 
-SkillCatagories[0]="Technique"
-SkillCatagories[1]="Explosives"
-SkillCatagories[2]="Advanced Techniques"
-SkillCatagories[3]="Weapon Techniques"
-SkillCatagories[4]="Advanced Explosives"
+SkillCatagories[0]="Técnica"
+SkillCatagories[1]="Resistencia"
+SkillCatagories[2]="Técnicas avanzadas"
+SkillCatagories[3]="Técnicas con armas"
+SkillCatagories[4]="Explosivos avanzados"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
-Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
-Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[0]=(Title="Daño por armas de clase",Description="Daño por armas de clase aumentado un %x%");
+Passives[1]=(Title="Resistencia a explosivos",Description="%x% de resistencia al daño por explosivos");
+Passives[2]=(Title="Munición explosiva extra",Description="%x% más de munición explosiva inicial");
 Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
 Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
 
@@ -1240,8 +1242,8 @@ DirectHitDescription="Do 25% more damage on a direct hit with your explosive Dem
 Ammo="Extra Rounds"
 AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-SirenResistance="Sonic Resistant Rounds"
-SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
+SirenResistance="Resistencia a las Sirens"
+SirenResistanceDescription="Cierra la boca, Zed: Tus granadas tienen un 100% de probabilidad de traspasar el daño sónico y de estallar."
 
 AreaOfEffect="Fragmentation Rounds"
 AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
@@ -1249,18 +1251,18 @@ AreaOfEffectDescription="The area of effect for your explosive Demolitionist wea
 CriticalHit="Armor Piercing Rounds"
 CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-ConcussiveForce="Concussive Rounds"
-ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
+ConcussiveForce="Tiempo ZED - Fuerza de conmoción"
+ConcussiveForceDescription="Derríbalos: Tus explosiones tienen fuerza de derribo masivo contra los Zeds en tiempo Zed."
 
-Nuke="ZED TIME - Destroyer of Worlds"
-NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+Nuke="Tiempo ZED - Arma nuclear"
+NukeDescription="Atomízalos: Tus explosivos reparten daño por radiación masiva en tiempo Zed, envenenando a los Zeds."
 
 Professional="ZED TIME - Mad Bomber"
 ProfessionalDescription="Shoot and reload in near real time."
 
 
 [KFPerk_FieldMedic]
-PerkName="Médico "
+PerkName="Médico de campo "
 
 SkillCatagories[0]="Acondicionamiento"
 SkillCatagories[1]="Técnico médico"
@@ -1554,12 +1556,12 @@ ObjectiveStatusTitle="OBTENER LA DEVOLUCIÓN DE UN 30%"
 ObjectiveTimeString="s RESTANTES"
 
 [KFGameViewportClient]
-RandomLoadingStrings[0]="The fleshpound is vulnerable to explosives but resistant to bullets."
-RandomLoadingStrings[1]="The scrake is resistant to explosives but vulnerable to bullets."
-RandomLoadingStrings[2]="You can only carry a limited amount of weight. Sell weaker weapons to make room for better ones."
-RandomLoadingStrings[3]="Watch the vents and sewers; Zeds can come from anywhere."
-RandomLoadingStrings[4]="Keep an eye out for gear and ammo boxes scattered throughout the map. They may save you if you get in a pinch."
-RandomLoadingStrings[5]="The bloat's body can take a lot of hits. Aim for its head."
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
 RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
 RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
 RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
@@ -1674,7 +1676,7 @@ LeftCtrl="Ctrl izquierdo"
 RightCtrl="Ctrl derecho"
 LeftAlt="Alt izquierdo"
 RightAlt="Alt derecho"
-BackSlash="\"
+BackSlash="\\ "
 Slash="/"
 RightBracket="]"
 LeftBracket="["

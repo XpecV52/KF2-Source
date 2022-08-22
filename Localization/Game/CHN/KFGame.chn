@@ -9,9 +9,9 @@ LengthStrings[1]="适中（7 波敌潮）"
 LengthStrings[2]="漫长（10 波敌潮）"
 
 ServerTypeStrings[0]="排名"
-ServerTypeStrings[1]="排名 - 自定义"
-ServerTypeStrings[1]="排名 - 自定义"
-ServerTypeStrings[2]="Unranked"
+ServerTypeStrings[1]="排名 - 默认"
+ServerTypeStrings[1]="排名 - 默认"
+ServerTypeStrings[2]="非排名"
 
 PermissionStrings[0]="公开"
 PermissionStrings[1]="仅限好友"
@@ -37,8 +37,8 @@ LeaveCurrentMenuString="是否确定要离开当前菜单？"
 ZedString="变异体"
 HumanString="生还者"
 SpectatorString="观察者"
-TeamString="TEAM"
-AllString="ALL"
+TeamString="团队"
+AllString="全部"
 
 UnableToSwitchTeamString="Unable to Switch Teams"
 NoSwitchReasonString="Switching teams would upset team balance"
@@ -93,7 +93,7 @@ CouldNotFindGameDescriptionString="没有找到匹配搜索设置的服务器。
 [KFGFxStartGameContainer_FindGame]
 MultiplayerString="在线匹配"
 SoloString="开始单人离线游戏"
-TutorialString="Basic Training"
+TutorialString="基本训练"
 
 [StartMenuHelperText]
 modeList0="Survival – PVE battle waves of AI controlled Zeds"
@@ -101,7 +101,7 @@ modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI con
 modeList2=""
 difficultyList0="Normal – For beginning players of perk rank 0-5."
 difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
-difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There are even fewer pickups, and you get less dosh."
 difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
 lengthList0=""
 lengthList1=""
@@ -111,6 +111,7 @@ serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (i
 serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
 serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
 serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+serverTypeList4="No preference - Will look for any of the previous selections"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -127,13 +128,13 @@ InProgressString="游戏进度"
 SoloGameString="单人游戏"
 LeaveMatchMakingString="离开匹配"
 MultiplayerLaunchString="立即开始在线游戏"
-SearchingString="取消搜索"
-CancelSearchingString="CANCEL SEARCH"
+SearchingString="正在搜索线上的游戏…请等待"
+CancelSearchingString="取消搜索"
 ServerTypeString="服务器类型"
-AnyMapServerString="Ranked"
+AnyMapServerString="排名"
 UnrankedServerString="未排名"
-CustomServerString="自定义"
-StandardServerString="标准"
+CustomServerString="排名 - 自定义"
+StandardServerString="排名 - 基本"
 AllowInProgressString="允许进行中的游戏"
 NotStartedString="仅限新游戏"
 
@@ -170,7 +171,7 @@ SelectPerkString="选择职业"
 [KFGFxMenu_ServerBrowser]
 FavoriteString="收藏"
 MultiplayerMenuString="匹配"
-LeaveMenuString="离开该菜单将解散你的队伍。你确定要前往服务器浏览器吗？"
+LeaveMenuString="离开该菜单将解散你的队伍。你确定要前往匹配界面吗？"
 NameString="名称"
 RefreshString="刷新"
 GamesFoundString="已找到的游戏："
@@ -295,25 +296,25 @@ WeaponTypeStrings[9]="冲锋枪"
 OffPerkString="非本职业"
 
 [KFGFxHUD_PostRoundMenu]
-RoundResultsString="Round Results"
+RoundResultsString="回合结果"
 MatchResultsString="Overall Winner"
 SurvivorVictory="Survivor Victory!"
-ZEDVictory="Zed Victory!"
-TieString="Tie!"
+ZEDVictory="变异体获得胜利！"
+TieString="平手！"
 YourTeamString="Your Team Wins!"
 OpposingTeamString="Opposing Team Wins!"
 MatchOnGoingString="Switching Teams..."
 
 [KFGFxPostRoundContainer_Team]
-TitleString="Round "
-ScoreString="Score"
+TitleString="回合"
+ScoreString="分数"
 WavesCompleteString="Waves Completed Bonus"
-BossDeadString="Boss Defeated"
+BossDeadString="头目击败数"
 DeathsString="Player Deaths Penalty"
 DamageString="Damage From Boss Penalty"
-TotalString="TOTAL"
-YourTeamString=" (Your Team)"
-OpponentsString=" (Opponents)"
+TotalString="总计"
+YourTeamString="（你的团队）"
+OpponentsString="（对手）"
 
 [KFGFxMenu_PostGameReport]
 MapVoteString="地图投票"
@@ -337,7 +338,7 @@ EnforcerValue="助攻数"
 Destroyer="毁灭者"
 DestroyerValue="伤害值"
 GiantSlayer="巨人杀手"
-GiantSlayerValue="巨型变异体"
+GiantSlayerValue="巨型变异体击杀数"
 MoneyBags="大富翁"
 MoneyBagsValue="金钱"
 HeadPopper="爆头专家"
@@ -345,18 +346,18 @@ HeadPopperValue="爆头数"
 Dominator="主宰"
 DominatorValue="头目"
 
-Carnage="Carnage"
+Carnage="屠杀"
 Closer="Closer"
 ComboMaker="Combo Maker"
-Grabby="Grabby Pants"
-ZedSupport="Zed Support"
+Grabby="咸猪手"
+ZedSupport="变异体支援"
 Zednnihilation="Zednnihilation"
 CarnageValue="Zed Damage Dealt"
-CloserValue="Survivor Kills"
-ComboMakerValue="Zed Assist"
+CloserValue="生还者击杀数"
+ComboMakerValue="变异体助攻"
 GrabbyValue="Players Grabbed"
 ZedSupportValue="Indirect Damage"
-ZednnihilationValue="Kills in Wave"
+ZednnihilationValue="敌潮内杀敌数"
 
 
 
@@ -378,7 +379,7 @@ EPB_DoshValue="金钱"
 EPB_HeadShotsValue="爆头数"
 EPB_KnifeKillsValue="击杀数"
 EPB_PistolKillsValue="击杀数"
-EPB_DoorWeldingValue="焊接点"
+EPB_DoorWeldingValue="焊接分数"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="团队奖励"
@@ -393,7 +394,7 @@ TopVotesString="最多票数"
 AchievementsString="成就"
 KnifeString="匕首"
 TopWeaponsString="最佳武器"
-ZedKillsString="变异体击杀数"
+ZedKillsString="变异体击杀数："
 TotalDamageDealtString="总计造成伤害值："
 HeadShotsString="爆头数："
 LargeZedKillsString="巨型变异体击杀数："
@@ -469,16 +470,16 @@ MoreItemsString="需要对应的补给箱和钥匙。钥匙可以在游戏商店
 FailedToExchangeString="无法打开补给箱"
 RecycleString="回收"
 CraftString="合成"
-CraftCosmeticString="饰品合成"
-CraftWeaponString="武器皮肤合成"
-CraftWeaponStrings[0]="罕见武器皮肤"
-CraftWeaponStrings[1]="稀有武器皮肤"
-CraftWeaponStrings[2]="非凡武器皮肤"
-CraftWeaponStrings[3]="巨匠特制武器皮肤"
-CraftCosmeticStrings[0]="罕见饰品"
-CraftCosmeticStrings[1]="稀有饰品"
-CraftCosmeticStrings[2]="非凡饰品"
-CraftCosmeticStrings[3]="巨匠特制饰品"
+CraftCosmeticString="合成饰品"
+CraftWeaponString="合成武器皮肤"
+CraftWeaponStrings[0]="罕见\n武器皮肤"
+CraftWeaponStrings[1]="稀有\n武器皮肤"
+CraftWeaponStrings[2]="非凡\n武器皮肤"
+CraftWeaponStrings[3]="巨匠特制\n武器皮肤"
+CraftCosmeticStrings[0]="罕见\n饰品"
+CraftCosmeticStrings[1]="稀有\n饰品"
+CraftCosmeticStrings[2]="非凡\n饰品"
+CraftCosmeticStrings[3]="巨匠特制\n饰品"
 RecycleWarningString="警告：此操作无法撤销。选定的物品将被摧毁，分解为合成材料物品"
 RecycleItemString="回收物品？"
 ConfirmCraftItemString="合成此物品会消耗资源，且无法撤销"
@@ -488,7 +489,7 @@ CraftRequirementString="所需的合成材料数量不足"
 CraftCosmeticDescriptionString="你可以从这个菜单中选择饰品材料来合成新的饰品。饰品材料可以通过回收现有的饰品来获得。若要回收，选择一件物品后点击回收"
 CraftWeaponDescriptionString="你可以从这个菜单中选择武器皮肤材料来合成新的武器皮肤物品。武器皮肤材料可以通过回收现有的武器皮肤物品来获得。若要回收，选择一件物品后点击回收"
 RequiresString="需要："
-PurchaseKeyString="BUY KEY: "
+PurchaseKeyString="购买钥匙："
 LookUpOnMarketString="Lookup on Market"
 
 [KFGFxPerksContainer]
@@ -499,7 +500,7 @@ ExperienceString="经验"
 PrestigeLevelString="声望"
 
 [KFGFxPerksContainer_SkillsSummary]
-ConfigureString="配置"
+ConfigureString="设置"
 SkillsString="技能"
 
 [KFGFxMenu_Perks]
@@ -531,12 +532,13 @@ TotalString="合计"
 CheckOutString="结算"
 
 [KFGFxStoreContainer_Main]
-WeaponSkinsString="武器皮肤"
+WeaponSkinsRotationString="Weapon Skins"
+WeaponSkinsString="市场武器皮肤"
 MarketConsumablesString="Market Crates/USBs"
 MarketCosmeticsString="Market Cosmetics"
 
 [KFGFxStoreContainer_Details]
-LookUpOnMarketString="FIND IN MARKET"
+LookUpOnMarketString="在市场内寻找"
 AddToCartString="购买物品"
 PreviewString="预览"
 
@@ -595,7 +597,7 @@ AssistsString="助攻"
 PingString="延迟"
 
 [KFGFxHUD_ScoreboardVersusWidget]
-ScoreString=SCORE
+ScoreString="分数"
 
 [KFGFxHUD_PlayerStatus]
 EXPString="经验值"
@@ -701,7 +703,7 @@ PhysicsLevelSuggestionStrings[0]=""
 PhysicsLevelSuggestionStrings[1]="*推荐使用 GeForce® GTX™ 770 或以上型号的显卡"
 PhysicsLevelSuggestionStrings[2]="*推荐使用 GeForce® GTX™ 980 或以上型号的显卡"
 
-FlexPopUpString="NVIDIA® FleX 会启用模拟血腥效果和液体。该设置可能会影响性能，并且需要重启游戏。"
+FlexPopUpString="NVIDIA® FleX 会启用血腥效果和液体模拟。该设置可能会影响性能，并且需要重启游戏。"
 
 EnvironmentDetailsString="环境细节"
 FoliageString="植物细节"
@@ -843,8 +845,8 @@ ControllerLayoutJumper="Jumper"
 ControllerLayoutQuickDraw="快速出枪"
 ControllerLayoutSouthPaw="South Paw"
 
-GBA_TurnLeft="Turn Left"
-GBA_TurnRight="Turn Right"
+GBA_TurnLeft="向左转"
+GBA_TurnRight="向右转"
 GBA_Backward="向后移动"
 GBA_MoveForward="前进"
 GBA_WeaponSelect_Gamepad="武器选择（按住）"
@@ -906,13 +908,13 @@ GBA_VoteYes="投赞成票（按住）"
 GBA_VoteNo="投否决票（按住）"
 
 GBA_VoiceCommReqHealing="REQUEST HEALING"
-GBA_VoiceCommReqDosh="REQUEST DOSH"
-GBA_VoiceCommReqHelp="REQUEST HELP"
-GBA_VoiceCommTauntZeds="TAUNT ZEDS"
-GBA_VoiceCommFollowMe="FOLLOW ME"
+GBA_VoiceCommReqDosh="需要金钱"
+GBA_VoiceCommReqHelp="需要帮助"
+GBA_VoiceCommTauntZeds="嘲讽变异体"
+GBA_VoiceCommFollowMe="跟我来"
 GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
-GBA_VoiceCommAffirmative="AFFIRMATIVE"
-GBA_VoiceCommNegative="NEGATIVE"
+GBA_VoiceCommAffirmative="没问题"
+GBA_VoiceCommNegative="拒绝"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="灵敏度"
@@ -933,7 +935,7 @@ SectionHeaders[0]="移动"
 SectionHeaders[1]="交互"
 SectionHeaders[2]="战斗"
 SectionHeaders[3]="武器选择"
-SectionHeaders[4]="VOICE COMMS"
+SectionHeaders[4]="语音命令"
 
 ResetString="重设所有"
 ApplyString="应用"
@@ -953,10 +955,10 @@ WeaponSelectMenuString="武器选择菜单（按住）"
 ShowScoardBoardString="显示计分板"
 ShowIngameMenuString="切换游戏中菜单"
 CurrentControllerPresetString="当前控制器预设"
-PresetStrings[0]="Preset 1"
-PresetStrings[1]="Preset 2"
-PresetStrings[2]="Preset 3"
-PresetStrings[3]="Preset 4"
+PresetStrings[0]="预设 1"
+PresetStrings[1]="预设 2"
+PresetStrings[2]="预设 3"
+PresetStrings[3]="预设 4"
 
 BashString="近战重击"
 BlockString="格挡（按住）"
@@ -970,30 +972,30 @@ SystemString="系统："
 AdminString ="（管理员）"
 LoggedInAsAdminString=" 以服务器管理员身份登入"
 LoggedOutAsAdminString=" 以服务器管理员身份登出"
-MustLoginToCheatString="你必须先登入才能启用作弊。"
-CheatsEnabledString=" 已启用作弊。该会话的统计已被禁用。"
+MustLoginToCheatString="你必须先登入才能启用作弊"
+CheatsEnabledString=" 已启用作弊。该会话的统计已被禁用"
 ServerMaintenanceString="服务器会在游戏结束时关闭以进行维护"
 KickVoteStartedString="已发起投票踢出："
 KickVoteSucceededString="投票通过，即将踢出："
 KickVoteFailedString="投票未通过，无法踢出："
 KickVoteRejectedString="上次投票失败后的冷却时间尚未结束。请稍后再试。"
-KickVoteInProgressString="无法发起踢出投票，一项投票已经在进行了。"
+KickVoteInProgressString="无法发起踢出投票，一项投票已经在进行了"
 KickVoteDisabledString="踢出投票已在该服务器上禁用"
 KickVoteYesReceivedString="你已投票踢出："
 KickVoteNoReceivedString="你已投票否决踢出："
-KickVoteKickAdminString="你无法踢出服务器管理员。"
-KickVoteActiveTimeString="游戏开始的时间太短，无法发起踢出投票。"
-KickVoteMatchNotStartedString="无法在游戏开始前使用踢出投票。"
-KickVoteMaxKicksReachedString="本次游戏中你无法再次发起踢出投票。"
-KickVoteNotEnoughPlayersString="发起踢出投票所需的玩家人数不够。"
-KickVoteNoSpectatorsString="观察者无法发起踢出投票。"
-KickedFromServerString="你已被服务器开除。"
-BannedFromServerString="你已被服务器开除。你目前无法重新加入服务器。"
+KickVoteKickAdminString="你无法踢出服务器管理员"
+KickVoteActiveTimeString="游戏开始的时间太短，无法发起踢出投票"
+KickVoteMatchNotStartedString="无法在游戏开始前使用踢出投票"
+KickVoteMaxKicksReachedString="本次游戏中你无法再次发起踢出投票"
+KickVoteNotEnoughPlayersString="发起踢出投票所需的玩家人数不够"
+KickVoteNoSpectatorsString="观察者无法发起踢出投票"
+KickedFromServerString="你已被服务器开除"
+BannedFromServerString="你已被服务器开除。你目前无法重新加入服务器"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="弹药提供者："
 GaveAmmoToMessage="弹药接受者："
-PendingPerkChangesSet="职业更改将在敌潮结束后生效。"
+PendingPerkChangesSet="职业更改将在敌潮结束后生效"
 PendingPerkChangesApplied="职业更改已生效！"
 HealedByMessage="治疗者："
 HealedMessage="你治疗了："
@@ -1005,11 +1007,11 @@ AmmoFullMessage="你的弹药已满"
 PickupWeaponAmmoMessage="你捡起了 %x% 弹药"
 AlreadyCarryingWeaponMessage="你已经拥有这把武器了"
 PickupMessage="你捡起了"
-TooMuchWeightMessage="这把武器太重了。你可以尝试扔掉或卖掉一把武器。"
+TooMuchWeightMessage="这把武器太重了。你可以尝试扔掉或卖掉一把武器"
 FailedDropInventoryMessage="你不能把武器丢在这里"
 ReceivedGrenadesFromMessage="手雷提供者："
 GaveGrenadesToMessage="手雷接受者："
-SharingContentString="正在共享内容。"
+SharingContentString="正在共享内容"
 HeadShotAddedString="%x 次命中头部 - %y% 额外伤害！"
 HeadShotMaxString="命中头部！%x% 额外伤害！"
 HeadShotResetString="未命中头部。普通伤害！"
@@ -1040,8 +1042,8 @@ WaveEndMessage="敌 潮 歼 灭"
 GetToTraderMessage="快去商人的店铺"
 YouLostMessage="失 败"
 YouWonMessage="胜 利"
-SquadWipedOutMessage="你的小队被全歼了"
-SquadSurvivedMessage="你的小队幸存了下来"
+SquadWipedOutMessage="你的小队被全歼了！"
+SquadSurvivedMessage="你的小队幸存了下来！"
 ObjectiveStartMessage="目标开始！"
 ObjectiveWonMessage="目标胜利！"
 ObjectiveEndedMessage="目标结束！"
@@ -1051,24 +1053,24 @@ ObjTimeRanOutMessage="已达到时间限制！"
 HumansLoseMessage="人类小队已被全歼！"
 HumansWinMessage="人类小队幸存了下来！"
 AttackHumanPlayersString="向人类玩家进攻！"
-ZedGroupRegroupingString="Zed Horde regrouping!"
+ZedGroupRegroupingString="变异体大军正在集结！"
 NextRoundBeginString="N E X T  R O U N D"
 PlayerCanChangePerksString="Perk changes are allowed"
 ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="<%x%> 与商人交易"
-UseDoorMessage="<%x%> 打开/关闭（按住）<%x%> 键装备电焊枪"
-UseDoorWeldedMessage="（按住）<%x%> 键装备电焊枪"
-ZedUseDoorMessage="<%x%> 开/关"
+UseTraderMessage="<%x%>与商人交易"
+UseDoorMessage="打开/关闭\n（按住）键装备电焊枪"
+UseDoorWeldedMessage="[按住]<%x%> 键装备电焊枪"
+ZedUseDoorMessage="<%x%>开/关"
 ZedUseDoorWeldedMessage="门被焊上了，把它砸烂！"
-AcceptObjectiveMessage="<%x%> 键接受目标"
-ReceiveAmmoMessage="<%x%> 键接受弹药"
-ReceiveGrenadesMessage="<%x%> 键接受手雷"
-HealSelfWarning="<%x%> 键自我治疗。"
-HealSelfGamepadWarning="（按住）<%x%> 键自我治疗"
-PressToBashWarning="<%x%> 键近战重击。"
-GamepadWeaponSelectHint="（按住）<%x%> 键武器选择"
+AcceptObjectiveMessage="<%x%>键接受目标"
+ReceiveAmmoMessage="<%x%>键接受弹药"
+ReceiveGrenadesMessage="<%x%>键接受手雷"
+HealSelfWarning="<%x%>键自我治疗。"
+HealSelfGamepadWarning="[按住]<%x%> 键自我治疗"
+PressToBashWarning="<%x%>键近战重击。"
+GamepadWeaponSelectHint="[按住]  选择武器"
 PlayerClotGrabWarningMessage="杀死变异体才能脱身！"
 
 [KFLocalMessage_ServerNotification]
@@ -1115,133 +1117,133 @@ SkillSlots4[1]=(Title="",Description="")
 WeaponDroppedMessage="由于你的负重能力更新，你丢下了%%%%！"
 
 [KFPerk_Berserker]
-PerkName="Berserker"
+PerkName="狂暴战士"
 
-SkillCatagories[0]="Survival"
-SkillCatagories[1]="Combat"
-SkillCatagories[2]="Close Combat"
-SkillCatagories[3]="Power"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="生存"
+SkillCatagories[1]="战斗"
+SkillCatagories[2]="近距离作战"
+SkillCatagories[3]="力量"
+SkillCatagories[4]="高级训练"
 
 
-Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
-Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
-Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
-Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
+Passives[0]=(Title="狂暴战士伤害",Description="伤害每级增加 x%x")
+Passives[1]=(Title="伤害抗性",Description="每 5 级，对所有伤害的抗性提高 x%x")
+Passives[2]=(Title="+夜视能力",Description="手电筒 - 和夜视仪");
+Passives[3]=(Title="擒拿者无法抓住你",Description="真正的狂战不会被小小的擒拿者缠住");
 
-EXPAction1="Dealing Berserker weapon damage"
-EXPAction2="Kill Zeds near a player with a Berserker weapon"
+EXPAction1="使用狂暴战士武器造成伤害"
+EXPAction2="使用狂暴战士武器击杀靠近玩家的变异体"
 
-Fortitude="Dreadnaught"
-FortitudeDescription="Increase total Health by 50%."
+Fortitude="无畏"
+FortitudeDescription="生命值上限提高 50%。"
 
-Ninja="Skirmisher"
+Ninja="忍者"
 NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
-Vampire="Vampire"
-VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
+Vampire="吸血"
+VampireDescription="用狂暴战士武器每击杀一个变异体时，治疗 4 点生命值。同时狂暴战士武器攻击速度提高 15%。"
 
-Speed="Butcher"
+Speed="屠夫"
 SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
 
-Resistance="Resistance"
+Resistance="抗性"
 ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
-Parry="Parry"
-ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
+Parry="招架"
+ParryDescription="以狂暴战士武器招架一次攻击后，在 10 秒内近战攻击速度提高 5%，近战伤害提高 35%。"
 
-Smash="Smash"
-SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
+Smash="击碎"
+SmashDescription="狂暴战士武器重击伤害提高 50%，集中头部还会额外造成 25% 的伤害，并具有 300% 的击退能力。"
  
-Fury="Massacre"
+Fury="疾斩"
 FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ZED TIME - Spartan" 
-SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
+Spartan="变异体时间 - 斯巴达"
+SpartanDescription="见证斯巴达 300 勇士：攻击速度接近正常，并能回复 25% 生命值。"
 
 Flash="ZED TIME - Berserker Rage"
 FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
 
 [KFPerk_Commando]
-PerkName="Commando"
+PerkName="突击兵"
 
-SkillCatagories[0]="Tactics"
-SkillCatagories[1]="Advanced Tactics"
-SkillCatagories[2]="Survival"
-SkillCatagories[3]="Weapon Specialist"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="战术"
+SkillCatagories[1]="高级战术"
+SkillCatagories[2]="生存"
+SkillCatagories[3]="武器专家"
+SkillCatagories[4]="高级训练"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
-Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
-Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
-Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
-Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
-Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
+Passives[0]=(Title="职业武器伤害",Description="突击兵武器伤害提高 %x%。");
+Passives[1]=(Title="隐形敌人侦测和血条显示能力",Description="基础距离为 10 米，每一级增加 %x% 米");
+Passives[2]=(Title="变异体时间延长",Description="变异体时间每一级延长 %x% 秒");
+Passives[3]=(Title="装弹速度",Description="每 5 级提高 %x%");
+Passives[4]=(Title="+夜视能力",Description="手电筒 - 和夜视仪");
+Passives[5]=(Title="+探测隐形变异体",Description="让队友看到隐形的敌方单位");
 
-EXPAction1="Dealing Commando weapon damage"
-EXPAction2="Killing Stalkers with Commando weapons"
+EXPAction1="使用突击兵武器造成伤害"
+EXPAction2="使用突击兵武器击杀潜行者"
 
-TacticalReload="Tactical Reload"
-TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
+TacticalReload="战术装弹"
+TacticalReloadDescription="牛逼闪闪，迅捷如风。突击兵武器装弹速度加快，而且动作看上去特别酷炫。"
 
-LargeMags="Large Mags"
-LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
+LargeMags="大容量弹匣"
+LargeMagsDescription="认真起来 - 突击兵武器弹匣容量提升 50%。"
 
-Backup="Backup"
-BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it! You also increase your weapon switching speed."
+Backup="后备武器"
+BackupDescription="你的后备手枪和匕首伤害额外提高 60%，方便你在急需时使用！同时武器切换加快。"
 
-Impact="Impact"
-ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
+Impact="冲击"
+ImpactDescription="使劲全力击倒他们。使用所有突击兵武器击退变异体的概率提高 30%。"
 
 HealthIncrease="Health Increase"
 HealthIncreaseDescription="Increase total Health and Armor by 25%."
 
-AmmoVest="Ammo Vest"
+AmmoVest="弹药背心"
 AmmoVestDescription="Carry two extra magazines for each Commando weapon."
 
 HollowPoints="Hollow Point Rounds"
 HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more damage and reducing their recoil 50%."
 
-EatLead="Eat Lead"
-EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
+EatLead="突突突"
+EatLeadDescription="弹药不够？突击兵武器弹匣容量提高 50%。"
 
-RapidFire="ZED TIME - Rapid Fire"
-RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
+RapidFire="变异体时间 - 速射"
+RapidFireDescription="世界变慢，杀戮不息：突击兵武器伤害增加 3%，所有枪械射速增快 3 倍。"
 
-Professional="ZED TIME - Professional"
-ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
+Professional="变异体时间 - 职业杀手"
+ProfessionalDescription="走自己的路，让世界变慢去吧。全速装弹 - 突击兵武器切换速度加倍！"
 
 [KFPerk_Demolitionist]
-PerkName="Demolitionist"
-EXPAction1="Dealing Demolitionist weapon damage"
-EXPAction2="Killing Fleshpounds with Demolitionist weapons"
+PerkName="爆破手"
+EXPAction1="使用爆破手武器造成伤害"
+EXPAction2="用爆破手武器击杀肉锤"
 
-SkillCatagories[0]="Technique"
-SkillCatagories[1]="Explosives"
-SkillCatagories[2]="Advanced Techniques"
-SkillCatagories[3]="Weapon Techniques"
-SkillCatagories[4]="Advanced Explosives"
+SkillCatagories[0]="技术"
+SkillCatagories[1]="爆炸物"
+SkillCatagories[2]="进阶技术"
+SkillCatagories[3]="武器技术"
+SkillCatagories[4]="高级爆炸物"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
-Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
-Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[0]=(Title="职业武器伤害",Description="职业武器伤害提高 %x%");
+Passives[1]=(Title="爆炸物抗性",Description="%x% 爆炸物伤害抗性");
+Passives[2]=(Title="额外爆炸物弹药",Description="初始爆炸物弹药增加 %x%");
 Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
 Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
 
-Damage="Bombardier"
+Damage="狂轰"
 DamageDescription="Your explosive Demolitionist weapons do 25% more damage."
 
-Speed="Grenadier"
+Speed="滥炸"
 SpeedDescription="You reload your Demolitionist weapons 10% faster."
 
 DirectHit="High Impact Rounds"
 DirectHitDescription="Do 25% more damage on a direct hit with your explosive Demolitionist weapons, but decrease maximum ammo for each weapon by 3."
 
-Ammo="Extra Rounds"
+Ammo="额外弹药"
 AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-SirenResistance="Sonic Resistant Rounds"
-SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
+SirenResistance="抗尖叫弹药"
+SirenResistanceDescription="爆破手专用的爆炸物能 100% 穿过女妖的音波伤害并爆炸。"
 
 AreaOfEffect="Fragmentation Rounds"
 AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
@@ -1249,11 +1251,11 @@ AreaOfEffectDescription="The area of effect for your explosive Demolitionist wea
 CriticalHit="Armor Piercing Rounds"
 CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-ConcussiveForce="Concussive Rounds"
-ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
+ConcussiveForce="震荡弹"
+ConcussiveForceDescription="爆破手武器的反应、击晕、击退、击倒作用提高 50%。"
 
-Nuke="ZED TIME - Destroyer of Worlds"
-NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+Nuke="变异体时间 - 世界毁灭者"
+NukeDescription="核污染：你的爆炸物在变异体时间内漫出大量辐射伤害，毒杀变异体。"
 
 Professional="ZED TIME - Mad Bomber"
 ProfessionalDescription="Shoot and reload in near real time."
@@ -1269,31 +1271,31 @@ SkillCatagories[3]="战斗技术员"
 SkillCatagories[4]="进阶训练"
 
 Passives[0]=(Title="注射器回灌率",Description="武器伤害提高 %x%");
-Passives[1]=(Title="注射器效果",Description="隐形侦测提高 %x%");
-Passives[2]=(Title="浮肿魔胆汁抗性",Description="生命值栏侦测提高 %x%");
-Passives[3]=(Title="移动速度",Description="变异体时间持续 %x%");
-Passives[4]=(Title="护甲增益",Description="生命值提高 %x%");
+Passives[1]=(Title="注射器疗效",Description="注射器回复的生命值提高 %x%");
+Passives[2]=(Title="浮肿魔胆汁抗性",Description="收到的浮肿魔胆汁伤害降低 %x%");
+Passives[3]=(Title="移动速度",Description="移动速度提高 %x%");
+Passives[4]=(Title="护甲增益",Description="护甲提高 %x%");
 
 HealingSurge="治疗之潮"
 HealingSurgeDescription="当医生不是白干的：生命值提高 20%。"
 
 Enforcer="执行者"
-EnforcerDescription="不用再继续关注于治疗了：使你的职业武器和后备武器的初始弹药容量提高 20%。"
+EnforcerDescription="不用再继续关注于治疗了：医生的职业武器和后备武器的弹药容量提高 20%。"
 
 Combatant="战士"
 CombatantDescription="别只做一名医生 - 成为一名你梦寐以求的战斗型医生，想当就当，初始自带护甲，所有护甲价格打 4 折！"
 
 Armament="防护器官"
-ArmamentDescription="你修复的不止是人：给予队友的治疗效率减少 25%，取而代之的是，每次治疗能修复装甲值上限的 1%！"
+ArmamentDescription="你修复的不止是人：给予队友的治疗效率减少 25%，取而代之的是，每次治疗能修复 1% 的装甲值！"
 
 Regeneration="恢复"
-RegenerationDescription="给自己加量：你的生命值持续缓慢恢复，这得多谢赫睿尊集团的纳米机器人。"
+RegenerationDescription="给自己加量：你的生命值持每秒回复 1 点，这得多谢赫睿尊集团的纳米机器人。"
 
 Lacerate="撕裂"
-LacerateDescription="别乱用手术刀：所有职业武器都能让变异体在受到伤害后流更多的血。"
+LacerateDescription="别乱用手术刀：医生的所有武器都能让变异体在受到伤害后流更多的血。"
 
 VaccinationArmor="疫苗"
-VaccinationArmorDescription="帮助制止死亡的蔓延：你的治疗能给予队友 2% 的最大护甲值修复，此外能暂时获得对浮肿魔胆汁的抗性。"
+VaccinationArmorDescription="帮助制止死亡的蔓延：你的治疗能给予队友 2% 的护甲值修复，和对浮肿魔胆汁的暂时抗性。"
 
 VaccinationDamageMod="酸性化合物"
 VaccinationDamageModDescription="仁慈医师… 也是绝命毒师！你的医疗飞镖能毒杀变异体；造成足够的伤害后你的手雷和飞镖还能恐吓变异体。"
@@ -1326,34 +1328,34 @@ Passives[3]=(Title="免疫你自己的火焰",Description="%x% 自身火焰伤�
 Passives[4]=(Title="初始弹药",Description="初始弹药增加 %x%");
 
 FullyStocked="全副武装"
-FullyStockedDescription="看看罐子上写了什么：从商人处购买纵火犯武器时弹药容量全满。"
+FullyStockedDescription="看看罐子上写了什么：从商人处购买纵火犯武器时弹药容量为 60%。"
 
 FlarotovCoctail="信号弹燃烧瓶"
-FlarotovCoctailDescription="名字说明一切：在燃烧瓶中塞进一发信号弹 - 能有效照亮周围环境 30 秒，火焰燃烧时间翻倍。"
+FlarotovCoctailDescription="名字说明一切：在燃烧瓶中塞进一发信号弹 - 能有效照亮周围环境 30 秒。"
 
-Fuse="导火索"
-FuseDescription="细火慢炖：纵火犯的武器烧伤效果延长 70% 并造成额外持续伤害。"
+Fuse="烧烤"
+FuseDescription="细火慢烤：纵火犯的武器烧伤效果延长 20% 并造成额外持续伤害。"
 
 HeatWave="热浪"
-HeatWaveDescription="和乔治亚的夏天一样热：被火焰近距离烧到的敌人会被击退。"
+HeatWaveDescription="和乔治亚的夏天一样热：被火焰近距离烧到的变异体会被击退。"
 
-ZedShrapnel="变异体榴霰弹"
-ZedShrapnelDescription="变异体炸飞了：任何被火焰武器击杀的变异体都有 30% 的概率爆炸，对其周围的变异体造成伤害。"
+ZedShrapnel="焚焰"
+ZedShrapnelDescription="变异体炸飞了：任何被火焰武器击杀的变异体都有 20% 的概率爆炸，对其周围的变异体造成伤害。"
 
-Napalm="变异体汽油弹"
+Napalm="汽油弹"
 NapalmDescription="变异体在燃烧：已经着火的变异体会在在接触同类时将其引燃。"
 
-Range="范围"
+Range="火焰风暴"
 RangeDescription="提高所有火焰武器的范围。快选吧 - 你最需要这个。"
 
-SplashDamage="溅射伤害"
+SplashDamage="野火"
 SplashDamageDescription="或者提高所有火焰武器的溅射伤害。你得做出取舍！"
 
-Combustion="变异体时间 - 内燃"
-CombustionDescription="榴霰弹 + 汽油弹 = 燃烧。算是吧。任何在变异体时间内被你的火焰武器杀死的变异体都会爆炸成一个大火球，并将任何在爆炸中的东西点燃。"
+Combustion="变异体时间 - 纵火高手"
+CombustionDescription="任何在变异体时间内被你的火焰武器杀死的变异体都会爆炸成一个大火球，并点燃爆炸范围内的任何东西。"
 
-Scorch="变异体时间 - 焦化"
-ScorchDescription="你火急火燎的！呃，不是说你在燃烧。你在变异体时间内使用的职业武器射速接近正常速度。"
+Scorch="变异体时间 - 恋火癖"
+ScorchDescription="你火急火燎的！呃，不是说你在燃烧。变异体时间内纵火犯武器射速接近正常速度。"
 
 [KFPerk_Gunslinger]
 PerkName="快枪手"
@@ -1372,13 +1374,13 @@ Passives[2]=(Title="移动速度",Description="移动速度提高 %x%");
 Passives[3]=(Title="后坐力",Description="后坐力降低 %x%");
 
 ShootnMove="打了就跑"
-ShootnMoveDescription="不要到处瞎逛，免得被吃掉：机械瞄准时移动速度加快 200%，武器摆动减缓。"
+ShootnMoveDescription="不要到处瞎逛，免得被吃掉：机械瞄准时移动速度加快 200%，快枪手武器晃动减弱。"
 
 QuickSwitch="快速出枪"
-QuickSwitchDescription="你懂的：切换武器速度加快 50% - 此外，在用尽弹药时继续开火会让你快速切换到闲置的手枪。"
+QuickSwitchDescription="你懂的：快枪手武器切换速度加快 50% - 此外，在用尽弹药时继续开火会让你快速切换到闲置的手枪。"
 
 RhythmMethod="爆头连击"
-RhythmMethodDescription="连续爆头：使用快枪手武器连续命中头部，每一次都能提升 10% 伤害，最高提升 70%。"
+RhythmMethodDescription="连续爆头：使用快枪手武器连续命中头部，每一次都能提升 17% 伤害，最高提升 68%。"
 
 BoneBreaker="碎骨者"
 BoneBreakerDescription="别老是收集物品，要学着毁掉它们：快枪手武器伤害增加 20%。"
@@ -1387,7 +1389,7 @@ SpeedReload="快速装弹器"
 SpeedReloadDescription="更酷，更快，更狠：使用快枪手武器时，你的装弹速度加快 20%，并且会让你在换弹时看上去更加牛逼闪闪。"
 
 Penetration="穿透"
-PenetrationDescription="排队枪毙：每一发子弹都能穿透一只额外的变异体。"
+PenetrationDescription="排队枪毙：快枪手武器每一发子弹都能穿透一只额外的变异体。"
 
 CenterMass="瞄准重心"
 CenterMassDescription="如果你向质心瞄准… 射击胸部将使击退能力提升 40%。"
@@ -1405,7 +1407,7 @@ UberAmmoDescription="无懈可击：你不会在变异体时间内用光快枪�
 PerkName="武术家"
 
 [KFPerk_Sharpshooter]
-PerkName="神枪手"
+PerkName="神射手"
 
 EXPAction1="Dealing Sharpshooter weapon damage"
 EXPAction2="Head shots with Sharpshooter weapons"
@@ -1420,13 +1422,13 @@ Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %
 Passives[1]=(Title="Recoil",Description="%x% less recoil");
 Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
 
-StationaryAim="Sniper"
+StationaryAim="静止射击"
 StationaryAimDescription="Inflict 25% more damage while stationary and using a Sharpshooter weapon."
 
-Trigger="Marksman"
+Trigger="移动射击"
 TriggerDescription="Shoot 25% faster and move 10% faster when using a Sharpshooter weapon."
 
-CrouchAim="Stability"
+CrouchAim="蹲姿射击"
 CrouchAimDescription="Inflict 30% more damage while crouching and using a Sharpshooter weapon."
 
 Stun="Ballistic Shock"
@@ -1435,13 +1437,13 @@ StunDescription="Stun power with Sharpshooter weapons increases by 100%."
 RhythmMethod="Rack 'em Up"
 RhythmMethodDescription="Rack up the headshots: each consecutive headshot with a Sharpshooter weapon increases your damage by 5% up to 75%."
 
-TacticalReload="Combat Ready"
+TacticalReload="战斗准备"
 TacticalReloadDescription="Be cool. Be quick. Reload faster with Sharpshooter weapons AND look more elite while you're at it."
 
-Scoped="Dead Eye"
+Scoped="死亡之眼"
 ScopedDescription="Reduce recoil 10% and increase head shot damage 10% when using a scope or ironsights with a Sharpshooter weapon."
 
-AmmoPouch="Always Prepared"
+AmmoPouch="有备而来"
 AmmoPouchDescription="Get 25% more ammo for Sharpshooter weapons and grenades."
 
 ZTKnockdown="ZED TIME - Assassin"
@@ -1489,10 +1491,10 @@ Regeneration="恢复"
 RegenerationDescription="让医生下岗去吧：你的生命值持续缓慢恢复，这得多谢赫睿尊集团的纳米机器人。"
 
 Bombard="轰击"
-BombardDescription="给点力：使用远程支援兵武器时，击退实验样本的概率增加 60%。"
+BombardDescription="给点力：使用远程支援兵武器时，击退变异体的概率增加 60%。"
 
 TacticalReload="战术装弹"
-TacticalReloadDescription="牛逼闪闪，迅捷如风。职业武器装弹速度加快，而且动作看上去特别酷炫。"
+TacticalReloadDescription="牛逼闪闪，迅捷如风。支援兵武器装弹速度加快，而且动作看上去特别酷炫。"
 
 Strength="力量"
 StrengthDescription="强身健体。充满肌肉，使你的负重能力提高 5 点。"
@@ -1507,7 +1509,7 @@ Barrage="变异体时间 - 弹幕"
 BarrageDescription="充分利用时间，使你和你附近队友的全部伤害提高 15%！"
 
 [KFPerk_Sharpshooter]
-PerkName="神枪手"
+PerkName="神射手"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -1554,12 +1556,12 @@ ObjectiveStatusTitle="拿回 30% 的现金"
 ObjectiveTimeString="秒剩余"
 
 [KFGameViewportClient]
-RandomLoadingStrings[0]="The fleshpound is vulnerable to explosives but resistant to bullets."
-RandomLoadingStrings[1]="The scrake is resistant to explosives but vulnerable to bullets."
-RandomLoadingStrings[2]="You can only carry a limited amount of weight. Sell weaker weapons to make room for better ones."
-RandomLoadingStrings[3]="Watch the vents and sewers; Zeds can come from anywhere."
-RandomLoadingStrings[4]="Keep an eye out for gear and ammo boxes scattered throughout the map. They may save you if you get in a pinch."
-RandomLoadingStrings[5]="The bloat's body can take a lot of hits. Aim for its head."
+RandomLoadingStrings[0]="肉锤对爆炸物非常敏感，而对子弹有抗性。"
+RandomLoadingStrings[1]="切割者对爆炸物有抗性，但对子弹敏感。"
+RandomLoadingStrings[2]="你能背负的重量有限。卖掉较弱的武器，为高级武器腾出空间。"
+RandomLoadingStrings[3]="注意通风管和下水道，变异体无孔不入。"
+RandomLoadingStrings[4]="注意分散在地图各处的弹药箱和装备。它们在关键时刻可能救你一命。"
+RandomLoadingStrings[5]="浮肿魔的身体能吸收大量伤害。瞄准它的头部。"
 RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
 RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
 RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
@@ -1651,7 +1653,7 @@ Minigun="机枪"
 Rocket="火箭"
 Mortar="轰炸"
 Heal="治疗"
-Block="Block"
+Block="格挡"
 
 [Keybinds]
 CtrlCombo="Ctrl 键-"
@@ -1674,7 +1676,7 @@ LeftCtrl="左 Ctrl 键"
 RightCtrl="右 Ctrl 键"
 LeftAlt="左 Alt 键"
 RightAlt="右 Alt 键"
-BackSlash="\"
+BackSlash="\\"
 Slash="/"
 RightBracket="]"
 LeftBracket="["

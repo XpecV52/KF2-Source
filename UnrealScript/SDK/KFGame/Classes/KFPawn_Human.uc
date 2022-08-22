@@ -1554,11 +1554,11 @@ defaultproperties
 
 	bCanPickupInventory=true
 
-	// Flashlight Battery
+// Flashlight Battery
 	BatteryCharge=100
-	BatteryDrainRate=2.f
-	BatteryRechargeRate=4.f
-	NVGBatteryDrainRate=4.f
+	BatteryDrainRate=0.8f //2.
+	BatteryRechargeRate=6.f
+	NVGBatteryDrainRate=0.8f
 
 	IncapSettings(AF_FirePanic)=(Vulnerability=(50.f), Cooldown=0.0, Duration=1.0)
 

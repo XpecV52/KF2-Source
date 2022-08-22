@@ -333,6 +333,7 @@ var bool bLogTakeDamage;
 var bool bLogPhysicsBodyImpact;
 var bool bLogSpecialMove;
 var bool bLogCustomAnim;
+var transient float LastHeadShotReceivedTime;
 var() array<HitZoneInfo> HitZones;
 var transient float TimeOfDeath;
 /**  
@@ -1674,6 +1675,8 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
 {
     local int OldHealth, actualDamage;
     local class<KFDamageType> KFDT;
+    local KFGameInfo KFGI;
+    local KFPlayerController KFPC;
 
     OldHealth = Health;
     super(Pawn).TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
@@ -1690,9 +1693,23 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
             ApplyDamageOverTime(Damage, InstigatedBy, KFDT);
         }
     }
-    if(((bPlayedDeath && OldHealth > 0) && HitFxInfo.HitBoneIndex == 0) && WorldInfo.Game != none)
+    if(((HitFxInfo.HitBoneIndex == 0) && OldHealth > 0) && WorldInfo.Game != none)
     {
-        KFGameInfo(WorldInfo.Game).NotifyHeadshotKill(InstigatedBy, self);
+        KFPC = KFPlayerController(InstigatedBy);
+        KFGI = KFGameInfo(WorldInfo.Game);
+        if((((KFPC != none) && KFGI != none) && (PlayerReplicationInfo == none) || PlayerReplicationInfo.GetTeamNum() == 255) && LastHeadShotReceivedTime != WorldInfo.TimeSeconds)
+        {
+            LastHeadShotReceivedTime = WorldInfo.TimeSeconds;
+            KFPC.AddZedHeadshot(byte(KFGI.GameDifficulty), HitFxInfo.DamageType);
+            if((KFPC != none) && HitFxInfo.DamageType != none)
+            {
+                Class'EphemeralMatchStats'.static.RecordWeaponHeadShot(KFPC, HitFxInfo.DamageType);
+            }
+        }
+        if(bPlayedDeath)
+        {
+            KFGameInfo(WorldInfo.Game).NotifyHeadshotKill(InstigatedBy, self);
+        }
     }
 }
 

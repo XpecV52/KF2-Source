@@ -50,9 +50,14 @@ function UpdateSpectateeInfo(optional bool bForceUpdate)
 {
     local byte CurrentPerkLevel;
 
-    if((SpectatedKFPRI == none) || SpectatedKFPRI.CurrentPerkClass == none)
+    if((((SpectatedKFPRI == none) || SpectatedKFPRI == Outer.GetPC().PlayerReplicationInfo) || Outer.GetPC().PlayerCamera.CameraStyle == 'Boss') || SpectatedKFPRI.CurrentPerkClass == none)
     {
-        return;
+        SetVisible(false);
+        return;        
+    }
+    else
+    {
+        SetVisible(true);
     }
     CurrentPerkLevel = SpectatedKFPRI.GetActivePerkLevel();
     if(((LastPerkClass != SpectatedKFPRI.CurrentPerkClass) || LastPerkLevel != CurrentPerkLevel) || bForceUpdate)

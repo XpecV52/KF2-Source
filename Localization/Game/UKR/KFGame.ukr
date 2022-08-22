@@ -9,9 +9,9 @@ LengthStrings[1]="Середня (7 хвиль)"
 LengthStrings[2]="Довга (10 хвиль)"
 
 ServerTypeStrings[0]="Рейтинговий"
-ServerTypeStrings[1]="Рейтинговий — Нестандартний"
-ServerTypeStrings[1]="Рейтинговий — Нестандартний"
-ServerTypeStrings[2]="Unranked"
+ServerTypeStrings[1]="Рейтинговий — Стандартний"
+ServerTypeStrings[1]="Рейтинговий — Стандартний"
+ServerTypeStrings[2]="Без рейтингу"
 
 PermissionStrings[0]="Для всіх"
 PermissionStrings[1]="Лише друзі"
@@ -37,11 +37,11 @@ LeaveCurrentMenuString="Покинути це меню?"
 ZedString="ЗЕД"
 HumanString="УЦІЛІЛИЙ"
 SpectatorString="ГЛЯДАЧ"
-TeamString="TEAM"
-AllString="ALL"
+TeamString="КОМАНДА"
+AllString="УСІ"
 
-UnableToSwitchTeamString="Unable to Switch Teams"
-NoSwitchReasonString="Switching teams would upset team balance"
+UnableToSwitchTeamString="Не можна змінити команду"
+NoSwitchReasonString="Зміна команди порушить ігровий баланс"
 
 
 
@@ -49,12 +49,12 @@ NoSwitchReasonString="Switching teams would upset team balance"
 FailedSearchTitleString="НЕ ВДАЛОСЯ ЗНАЙТИ МАТЧ"
 FailedSearchString="Пошук матчів зазнав невдачі з обраними параметрами. Будь ласка, змініть параметри пошуку, або використайте пошук серверів для знаходження матчів."
 BrowseServersString="ПОШУК СЕРВЕРІВ"
-HasInvitedToGameString=" запросив вас до гри."
+HasInvitedToGameString=" запрошує вас до гри"
 JoinGameString="Приєднатися до гри?"
 
 
 [KFGFxObject_Menu]
-LeavePartyTitleString="ПОКИНУТИ ГРУПУ"
+LeavePartyTitleString="ЛИШИТИ ГРУПУ"
 LeavePartyDescriptionString="Ви впевнені, що хочете покинути цю мережеву групу?"
 LeaveString="ПОКИНУТИ"
 
@@ -92,25 +92,26 @@ CouldNotFindGameDescriptionString="Не знайдено жодного серв
 
 [KFGFxStartGameContainer_FindGame]
 MultiplayerString="Пошук матчів у мережі"
-SoloString="Самітня гра"
-TutorialString="Basic Training"
+SoloString="Самітна гра"
+TutorialString="Базове тренування"
 
 [StartMenuHelperText]
-modeList0="Survival – PVE battle waves of AI controlled Zeds"
-modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
+modeList0="Виживання — бій проти хвиль зедів, котрольованих ШІ"
+modeList1="Винищення — бій найманців Горизонту проти хвиль зедів, контрольованих гравцями і ШІ"
 modeList2=""
-difficultyList0="Normal – For beginning players of perk rank 0-5."
-difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
-difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
-difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
+difficultyList0="Звичайна — для початківців із рангом перку 0-5."
+difficultyList1="Важка — для досвідчених гравців із рангом перку 5-12. Більше зедів у хвилях, вони рухаються швидше і мають більше здоров’я. Менше знахідок і лавандосу."
+difficultyList2="Суїцидальна — для загартованих гравців із рангом перку 13-25. Ще більше зедів у хвилях, вони використовують нові типи атаки, і рухаються швидше. Ще менше знахідок і лавандосу."
+difficultyList3="Пекельна — найскладніше випробування для гравців із рангом перку 25. Найбільше зедів у хвилях і вони використовують нові атаки. Зовсім мало знахідок і лавандосу."
 lengthList0=""
 lengthList1=""
 lengthList2=""
 lengthList3=""
-serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (if VS Survival this is 12 players max)"
-serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
-serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
-serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+serverTypeList0="Рейтинговий — усі мапи, без модифікацій, без дружнього вогню, максимально 6 гравців (12 у режимі «Винищення»)"
+serverTypeList1="Рейтинговий основний — офіційні мапи, без модифікацій, без дружнього вогню, максимально 6 гравців"
+serverTypeList2="Рейтинговий користувацький — будь-які мапи, схвалені модифікації, будь-які серверні налаштування"
+serverTypeList3="Користувацький без рейтингу — несхвалені модифікації (тільки)"
+serverTypeList4="No preference - Will look for any of the previous selections"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -124,16 +125,16 @@ BackString="НАЗАД"
 StartGameString="ПОЧАТИ ГРУ"
 LaunchGameString="ЗАПУСТИТИ ГРУ"
 InProgressString="ПЕРЕБІГ ГРИ"
-SoloGameString="САМІТНЯ ГРА"
+SoloGameString="САМІТНА ГРА"
 LeaveMatchMakingString="ПОКИНУТИ"
 MultiplayerLaunchString="РОЗПОЧАТИ ГРУ"
-SearchingString="СКАСУВАТИ ПОШУК"
-CancelSearchingString="CANCEL SEARCH"
+SearchingString="ПОШУК ГРИ У МЕРЕЖІ… БУДЬ ЛАСКА, ЗАЧЕКАЙТЕ"
+CancelSearchingString="СКАСУВАТИ ПОШУК"
 ServerTypeString="ТИП СЕРВЕРУ"
-AnyMapServerString="Ranked"
+AnyMapServerString="Рейтинговий"
 UnrankedServerString="Без рейтингу"
-CustomServerString="Власний"
-StandardServerString="Звичайний"
+CustomServerString="Рейтинговий — Нестандартний"
+StandardServerString="Рейтинговий — Стандартний"
 AllowInProgressString="Дозволити розпочаті ігри"
 NotStartedString="Лише нові ігри"
 
@@ -295,25 +296,25 @@ WeaponTypeStrings[9]="Пістолети-кулемети"
 OffPerkString="Вимк. перк"
 
 [KFGFxHUD_PostRoundMenu]
-RoundResultsString="Round Results"
-MatchResultsString="Overall Winner"
-SurvivorVictory="Survivor Victory!"
-ZEDVictory="Zed Victory!"
-TieString="Tie!"
-YourTeamString="Your Team Wins!"
-OpposingTeamString="Opposing Team Wins!"
-MatchOnGoingString="Switching Teams..."
+RoundResultsString="Підсумок раунду"
+MatchResultsString="Переможець"
+SurvivorVictory="Перемога вцілілих!"
+ZEDVictory="Перемога зедів!"
+TieString="Нічия!"
+YourTeamString="Ваша команда перемогла!"
+OpposingTeamString="Ворожа команда перемогла!"
+MatchOnGoingString="Зміна команди…"
 
 [KFGFxPostRoundContainer_Team]
-TitleString="Round "
-ScoreString="Score"
-WavesCompleteString="Waves Completed Bonus"
-BossDeadString="Boss Defeated"
-DeathsString="Player Deaths Penalty"
-DamageString="Damage From Boss Penalty"
-TotalString="TOTAL"
-YourTeamString=" (Your Team)"
-OpponentsString=" (Opponents)"
+TitleString="Раунд"
+ScoreString="Рахунок"
+WavesCompleteString="Бонус за завершені хвилі"
+BossDeadString="Знищено босів"
+DeathsString="Штраф за гравцеві смерті"
+DamageString="Штраф за шкоду від боса"
+TotalString="УСЬОГО"
+YourTeamString=" (ваша команда)"
+OpponentsString=" (вороги)"
 
 [KFGFxMenu_PostGameReport]
 MapVoteString="ГОЛОСУВАННЯ"
@@ -345,18 +346,18 @@ HeadPopperValue="Пострілів у голову"
 Dominator="Домінатор"
 DominatorValue="Бос"
 
-Carnage="Carnage"
-Closer="Closer"
-ComboMaker="Combo Maker"
-Grabby="Grabby Pants"
-ZedSupport="Zed Support"
-Zednnihilation="Zednnihilation"
-CarnageValue="Zed Damage Dealt"
-CloserValue="Survivor Kills"
-ComboMakerValue="Zed Assist"
-GrabbyValue="Players Grabbed"
-ZedSupportValue="Indirect Damage"
-ZednnihilationValue="Kills in Wave"
+Carnage="Різанина"
+Closer="Ліквідатор"
+ComboMaker="Комбінатор"
+Grabby="Жадібні штанці"
+ZedSupport="Зедова підтримка"
+Zednnihilation="Зеднігіляція"
+CarnageValue="Завдано шкоди зедам"
+CloserValue="Убито вцілілих"
+ComboMakerValue="Підмог зедам"
+GrabbyValue="Схоплено гравців"
+ZedSupportValue="Непрямої шкоди"
+ZednnihilationValue="Убивств у хвилі"
 
 
 
@@ -393,7 +394,7 @@ TopVotesString="НАЙКРАЩІ ГОЛОСИ"
 AchievementsString="Досягнення"
 KnifeString="Ніж"
 TopWeaponsString="НАЙКРАЩА ЗБРОЯ"
-ZedKillsString="УБИВСТВА ЗЕДІВ"
+ZedKillsString="УБИТО зедів:"
 TotalDamageDealtString="Всього нанесено шкоди:"
 HeadShotsString="У голову:"
 LargeZedKillsString="Убито великих зедів:"
@@ -410,13 +411,13 @@ WaitingString="ОЧІКУЄМО НА ГРАВЦІВ"
 DeployingString="РОЗГОРТАННЯ ЧЕРЕЗ"
 CreatePartyString="ЗАПРОСИТИ"
 ReadyString="ПРИГОТУВАТИСЯ"
-LeaveString="ПОКИНУТИ ГРУПУ"
+LeaveString="ЛИШИТИ ГРУПУ"
 SquadString="ЗАГІН"
 SoloString="СОЛО"
 DefaultPlayerName="Гравець"
 
 PartyLeaderSearchingForMatchString="пошук гри…"
-PartyLeaderIsUpdatingMatchOptionsString="налаштувує опції матчу…"
+PartyLeaderIsUpdatingMatchOptionsString="налаштовує опції матчу…"
 PartyLeaderInServerBrowserString="шукає список серверів…"
 PartyLeaderInOtherMenuString="в іншому меню…"
 SearchingForGameString="Пошук мережевої гри..."
@@ -453,8 +454,8 @@ WeaponsString="Зброя"
 WeaponsInfoString="Налаштувати"
 
 [KFGFxMenu_Inventory]
-RecycleOneString="Recycle One"
-RecycleDuplicatesString="Recycle Duplicates"
+RecycleOneString="Переробити один"
+RecycleDuplicatesString="Переробити дублікати"
 InventoryString="ІНВЕНТАР"
 UseString="ВИКОР."
 EquipString="СПОРЯДИТИ"
@@ -469,16 +470,16 @@ MoreItemsString="Необхідно відповідний ключ та кей�
 FailedToExchangeString="НЕМОЖЛИВО ВІДКРИТИ КЕЙС"
 RecycleString="ПЕРЕРОБКА"
 CraftString="ВИГОТОВЛЕННЯ"
-CraftCosmeticString="Виготовлення принад"
-CraftWeaponString="Розфарбування зброї"
-CraftWeaponStrings[0]="Непоширені розфарбування зброї"
-CraftWeaponStrings[1]="Рідкісні розфарбування зброї"
-CraftWeaponStrings[2]="Виняткові розфарбування зброї"
-CraftWeaponStrings[3]="Авторські розфарбування зброї"
-CraftCosmeticStrings[0]="Непоширені принади"
-CraftCosmeticStrings[1]="Рідкісні принади"
-CraftCosmeticStrings[2]="Виняткові принади"
-CraftCosmeticStrings[3]="Авторські принади"
+CraftCosmeticString="ВИГОТОВЛЕННЯ ПРИНАД"
+CraftWeaponString="РОЗФАРБУВАННЯ ЗБРОЇ"
+CraftWeaponStrings[0]="Непоширені\nстилі зброї"
+CraftWeaponStrings[1]="Рідкісні\nстилі зброї"
+CraftWeaponStrings[2]="Виняткові\nстилі зброї"
+CraftWeaponStrings[3]="Авторські\nстилі зброї"
+CraftCosmeticStrings[0]="Непоширені\nпринади"
+CraftCosmeticStrings[1]="Рідкісні\nпринади"
+CraftCosmeticStrings[2]="Виняткові\nпринади"
+CraftCosmeticStrings[3]="Авторські\nпринади"
 RecycleWarningString="Увага, цю дію неможливо скасувати. Ви знищите обраний предмет та заміните його матеріалом для виготовлення принад"
 RecycleItemString="Переробити предмет?"
 ConfirmCraftItemString="Створення цього предмету використає ресурси і не може бути скасовано"
@@ -488,8 +489,8 @@ CraftRequirementString="Недостатньо необхідних матері
 CraftCosmeticDescriptionString="У цьому меню ви можете виготовляти нові принади з різних матеріалів. Матеріали для виготовлення можна отримати, переробивши вже існуючі принади. Для цього оберіть предмет та натисніть «Переробка»."
 CraftWeaponDescriptionString="У цьому меню ви можете розфарбовувати зброю з допомогою різних матеріалів. Матеріали для розфарбування можна отримати, переробивши вже існуючі предмети. Для цього оберіть предмет та натисніть «Переробка»."
 RequiresString="Необхідно: "
-PurchaseKeyString="BUY KEY: "
-LookUpOnMarketString="Lookup on Market"
+PurchaseKeyString="ПРИДБАТИ КЛЮЧ: "
+LookUpOnMarketString="Дивитися на ринку"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -519,7 +520,7 @@ BackButtonString="<< НАЗАД"
 [KFGFxPerksContainer_Selection]
 HeaderTitle="ВИБІР ПЕРКА"
 EndOfWaveString="Усі зміни у перках будуть застосовані наприкінці хвилі!"
-ChangesAppliedOnCloseString="Усі зміни у перках будуть застосовані після закриття цього меню"
+ChangesAppliedOnCloseString="Усі зміни у перках будуть застосовані після закриття цього меню."
 OncePerWaveString="Змінювати перки можна лише один раз за хвилю!"
 
 [KFGFxMenu_Store]
@@ -531,12 +532,13 @@ TotalString="Усього"
 CheckOutString="Обрахувати"
 
 [KFGFxStoreContainer_Main]
-WeaponSkinsString="Розфарбування зброї"
-MarketConsumablesString="Market Crates/USBs"
-MarketCosmeticsString="Market Cosmetics"
+WeaponSkinsRotationString="Weapon Skins"
+WeaponSkinsString="Ринкові стилі зброї"
+MarketConsumablesString="Ринкові ящики і флешки"
+MarketCosmeticsString="Ринкові принади"
 
 [KFGFxStoreContainer_Details]
-LookUpOnMarketString="FIND IN MARKET"
+LookUpOnMarketString="ЗНАЙТИ НА РИНКУ"
 AddToCartString="Купити предмет"
 PreviewString="Попередній перегляд"
 
@@ -556,7 +558,7 @@ MenuStrings[6]="ВИХІД"
 
 ServerBrowserString="СПИСОК СЕРВЕРІВ"
 MatchmakingString="ПОШУК МАТЧУ"
-SoloString="САМІТНЯ ГРА"
+SoloString="САМІТНА ГРА"
 OverviewString="ОГЛЯД МАТЧУ"
 
 TitleStrings[0]="Що, вже стомилися боротися?"
@@ -595,7 +597,7 @@ AssistsString="ПІДМОГИ"
 PingString="ПІНҐ"
 
 [KFGFxHUD_ScoreboardVersusWidget]
-ScoreString=SCORE
+ScoreString="РАХУНОК"
 
 [KFGFxHUD_PlayerStatus]
 EXPString="ОД"
@@ -701,7 +703,7 @@ PhysicsLevelSuggestionStrings[0]=""
 PhysicsLevelSuggestionStrings[1]="*Рекомендовано GeForce® GTX™ 770, або новішу модель"
 PhysicsLevelSuggestionStrings[2]="*Рекомендовано GeForce® GTX™ 980, або кращу"
 
-FlexPopUpString="Технологія NVIDIA® FleX дозволяє симулювати кров і рідини. Цей параметр може змінити продуктивність і потребує перевантаження."
+FlexPopUpString="Технологія NVIDIA® FleX дозволяє симулювати кров і рідини. Цей параметр може змінити продуктивність і потребує перезавантаження."
 
 EnvironmentDetailsString="Деталізація оточення"
 FoliageString="Деталізація листя"
@@ -843,8 +845,8 @@ ControllerLayoutJumper="Стрибун"
 ControllerLayoutQuickDraw="Швидке витягання"
 ControllerLayoutSouthPaw="Шульга"
 
-GBA_TurnLeft="Turn Left"
-GBA_TurnRight="Turn Right"
+GBA_TurnLeft="Поворот ліворуч"
+GBA_TurnRight="Поворот праворуч"
 GBA_Backward="Рух назад"
 GBA_MoveForward="Рух уперед"
 GBA_WeaponSelect_Gamepad="Вибір зброї (утримуйте)"
@@ -905,14 +907,14 @@ GBA_SwitchWeapon4="Спорядження"
 GBA_VoteYes="Голосувати за (утримуючи)"
 GBA_VoteNo="Голосувати проти (утримуючи)"
 
-GBA_VoiceCommReqHealing="REQUEST HEALING"
-GBA_VoiceCommReqDosh="REQUEST DOSH"
-GBA_VoiceCommReqHelp="REQUEST HELP"
-GBA_VoiceCommTauntZeds="TAUNT ZEDS"
-GBA_VoiceCommFollowMe="FOLLOW ME"
-GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
-GBA_VoiceCommAffirmative="AFFIRMATIVE"
-GBA_VoiceCommNegative="NEGATIVE"
+GBA_VoiceCommReqHealing="ПОЛІКУЙТЕ МЕНЕ"
+GBA_VoiceCommReqDosh="ПОЗИЧТЕ ЛАВАНДОСІВ"
+GBA_VoiceCommReqHelp="ДОПОМОЖІТЬ"
+GBA_VoiceCommTauntZeds="КЕПКУВАННЯ"
+GBA_VoiceCommFollowMe="ЗА МНОЮ"
+GBA_VoiceCommGetToTheTrader="ДО ТОРГОВЦЯ"
+GBA_VoiceCommAffirmative="ЗГОДЕН"
+GBA_VoiceCommNegative="НЕ ЗГОДЕН"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Чутливість"
@@ -933,7 +935,7 @@ SectionHeaders[0]="Переміщення"
 SectionHeaders[1]="Взаємодія"
 SectionHeaders[2]="Бій"
 SectionHeaders[3]="Вибір зброї"
-SectionHeaders[4]="VOICE COMMS"
+SectionHeaders[4]="ГОЛОСОВІ КОМАНДИ"
 
 ResetString="СКИНУТИ ВСЕ"
 ApplyString="ЗАСТОСУВАТИ"
@@ -953,10 +955,10 @@ WeaponSelectMenuString="Меню вибору зброї (утримуючи)"
 ShowScoardBoardString="Показати таблицю результатів"
 ShowIngameMenuString="Перемикання в ігровому меню"
 CurrentControllerPresetString="Поточні параметри контролера"
-PresetStrings[0]="Preset 1"
-PresetStrings[1]="Preset 2"
-PresetStrings[2]="Preset 3"
-PresetStrings[3]="Preset 4"
+PresetStrings[0]="Заготовка 1"
+PresetStrings[1]="Заготовка 2"
+PresetStrings[2]="Заготовка 3"
+PresetStrings[3]="Заготовка 4"
 
 BashString="Ударити"
 BlockString="Блокувати (утримуючи)"
@@ -970,30 +972,30 @@ SystemString="Система:"
 AdminString ="(Адміністратор)"
 LoggedInAsAdminString=" увійшов як адміністратор серверу"
 LoggedOutAsAdminString=" вийшов як адміністратор серверу"
-MustLoginToCheatString="Щоб увімкнути чіти, вам необхідно увійти."
-CheatsEnabledString=" увімкнув чіти. Статистику вимкнено до кінця цієї сесії."
+MustLoginToCheatString="Щоб увімкнути чіти, вам необхідно увійти"
+CheatsEnabledString=" вмикає чіти. Статистику вимкнено до кінця цієї сесії"
 ServerMaintenanceString="Сервер буде вимкнено з технічних причин після завершення гри"
 KickVoteStartedString="Почалося голосування за вигнання:"
 KickVoteSucceededString="Результат голосування — вигнати гравця:"
 KickVoteFailedString="Голосуванням не вдалося вигнати:"
-KickVoteRejectedString="Минуло недостатньо часу від останнього невдалого голосування. Будь ласка, зачекайте, а тоді спробуйте знову."
-KickVoteInProgressString="Не можна розпочинати нове голосування, поки є активне."
+KickVoteRejectedString="Минуло недостатньо часу від останнього невдалого голосування. Будь ласка, зачекайте, а тоді спробуйте знову"
+KickVoteInProgressString="Не можна розпочинати нове голосування, поки є активне"
 KickVoteDisabledString="Голосування за вигнання не доступне на цьому сервері"
 KickVoteYesReceivedString="Ви проголосували за вигнання:"
 KickVoteNoReceivedString="Ви проголосували, щоб не виганяти:"
-KickVoteKickAdminString="Ви не можете вигнати адміністратора сервера."
-KickVoteActiveTimeString="З початку гри пройшло занадто мало часу для запуску голосування."
-KickVoteMatchNotStartedString="Голосування не можна запустити до початку гри."
-KickVoteMaxKicksReachedString="Ви більше не можете запускати голосування в цій грі."
-KickVoteNotEnoughPlayersString="Недостатньо гравців для запуску голосування."
-KickVoteNoSpectatorsString="Глядачі не можуть запускати голосування."
-KickedFromServerString="Вас вигнали з сервара."
-BannedFromServerString="Вас вигнали з серверу. Ви не можете перезайти у цей момент."
+KickVoteKickAdminString="Ви не можете вигнати адміністратора сервера"
+KickVoteActiveTimeString="З початку гри пройшло занадто мало часу для запуску голосування"
+KickVoteMatchNotStartedString="Голосування не можна запустити до початку гри"
+KickVoteMaxKicksReachedString="Ви більше не можете запускати голосування в цій грі"
+KickVoteNotEnoughPlayersString="Недостатньо гравців для запуску голосування"
+KickVoteNoSpectatorsString="Глядачі не можуть запускати голосування"
+KickedFromServerString="Вас вигнали з сервара"
+BannedFromServerString="Вас вигнали з серверу. Зараз ви не можете перезайти"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Ви отримали набої від"
 GaveAmmoToMessage="Ви передали набої до"
-PendingPerkChangesSet="Зміна перку відбудеться після завершення хвилі."
+PendingPerkChangesSet="Зміна перку відбудеться після закінчення хвилі"
 PendingPerkChangesApplied="Перк змінено!"
 HealedByMessage="Вас вилікував"
 HealedMessage="Ви вилікували"
@@ -1005,11 +1007,11 @@ AmmoFullMessage="У вас повний запас набоїв"
 PickupWeaponAmmoMessage="Ви підібрали набої для %x%"
 AlreadyCarryingWeaponMessage="У вас вже є ця зброя"
 PickupMessage="Ви підібрали"
-TooMuchWeightMessage="Ця зброя занадто важка. Спробуйте скинути, або продати свою зброю."
+TooMuchWeightMessage="Ця зброя занадто важка. Спробуйте викинути, або продати свою зброю"
 FailedDropInventoryMessage="Ви не можете викинути це тут"
 ReceivedGrenadesFromMessage="Ви отримали гранати від"
 GaveGrenadesToMessage="Ви передали гранати"
-SharingContentString="ділиться вмістом."
+SharingContentString="ділиться вмістом"
 HeadShotAddedString="%x влучань у голову — %y% дод. шкоди!"
 HeadShotMaxString="У голову! %x% додаткової шкоди!"
 HeadShotResetString="Промах у голову. Звичайна шкода!"
@@ -1040,8 +1042,8 @@ WaveEndMessage="Х В И Л Я  З А В Е Р Ш Е Н А"
 GetToTraderMessage="Ідіть до крамниці торговця"
 YouLostMessage="П О Р А З К А"
 YouWonMessage="П Е Р Е М О Г А"
-SquadWipedOutMessage="Ваш загін був знищений"
-SquadSurvivedMessage="Ваш загін вижив"
+SquadWipedOutMessage="Ваш загін було знищено!"
+SquadSurvivedMessage="Ваш загін вижив!"
 ObjectiveStartMessage="Місія розпочалася!"
 ObjectiveWonMessage="Ви виконали місію!"
 ObjectiveEndedMessage="Місія закінчилася!"
@@ -1052,23 +1054,23 @@ HumansLoseMessage="Загін людей знищено!"
 HumansWinMessage="Загін людей вижив!"
 AttackHumanPlayersString="Порвіть людей на шмаття!"
 ZedGroupRegroupingString="Навала зедів перегруповується!"
-NextRoundBeginString="N E X T  R O U N D"
-PlayerCanChangePerksString="Perk changes are allowed"
-ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
+NextRoundBeginString="НАСТУПНИЙ РАУНД"
+PlayerCanChangePerksString="Дозволено зміну перків"
+ZedWaitingForNextRoundString="Вторгнення навали зедів неминуче!"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="<%x%> ДЛЯ ТОРГІВЛІ"
-UseDoorMessage="НАТИСНІТЬ <%x%>, щоб використовувати, УТРИМУЙТЕ <%x%>, щоб взяти зварювач"
-UseDoorWeldedMessage="УТРИМ. <%x%> для зварювача"
-ZedUseDoorMessage="<%x%> Відкрити/Закрити"
+UseTraderMessage="<%x%>ДЛЯ ТОРГІВЛІ"
+UseDoorMessage="ВІДКРИТИ/ЗАКРИТИ\n[УТРИМУЙТЕ], ЩОБ ВЗЯТИ ЗВАРНИК"
+UseDoorWeldedMessage="[УТРИМ.] <%x%> ДЛЯ ЗВАРЮВАЧА"
+ZedUseDoorMessage="<%x%>ВІДКРИТИ/ЗАКРИТИ"
 ZedUseDoorWeldedMessage="Двері заварені — вибийте їх!"
-AcceptObjectiveMessage="Натисніть <%x%>, щоб прийняти завдання"
-ReceiveAmmoMessage="Натисніть <%x%>, щоб отримати боєприпаси від постачальника"
-ReceiveGrenadesMessage="Натисніть <%x%>, щоб отримати гранати від постачальника"
-HealSelfWarning="<%x%> лікувати себе."
-HealSelfGamepadWarning="УТРИМУЙТЕ <%x%>, для самозцілення"
-PressToBashWarning="<%x%> відштовхнути"
-GamepadWeaponSelectHint="УТРИМУЙТЕ <%x%>, щоби обрати зброю"
+AcceptObjectiveMessage="<%x%>ПРИЙНЯТИ ЗАВДАННЯ"
+ReceiveAmmoMessage="<%x%>ОТРИМАТИ НАБОЇ"
+ReceiveGrenadesMessage="<%x%>ОТРИМАТИ ГРАНАТИ"
+HealSelfWarning="<%x%>ЛІКУВАТИ СЕБЕ"
+HealSelfGamepadWarning="[УТРИМУЙТЕ]<%x%>, ЩОБ ВИЛІКУВАТИСЯ"
+PressToBashWarning="<%x%>ВІДШТОВХНУТИ"
+GamepadWeaponSelectHint="[УТРИМУЙТЕ], ЩОБ ОБРАТИ ЗБРОЮ"
 PlayerClotGrabWarningMessage="Замочіть зеда, аби звільнитися!"
 
 [KFLocalMessage_ServerNotification]
@@ -1115,148 +1117,148 @@ SkillSlots4[1]=(Title="",Description="")
 WeaponDroppedMessage="Ви викинули%%%% через зміну максимальної ваги!"
 
 [KFPerk_Berserker]
-PerkName="Berserker"
+PerkName="Берсерк"
 
-SkillCatagories[0]="Survival"
-SkillCatagories[1]="Combat"
-SkillCatagories[2]="Close Combat"
-SkillCatagories[3]="Power"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="Виживання"
+SkillCatagories[1]="Бій"
+SkillCatagories[2]="Ближній бій"
+SkillCatagories[3]="Міць"
+SkillCatagories[4]="Посилене тренування"
 
 
-Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
-Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
-Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
-Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
+Passives[0]=(Title="Шкода берсерка",Description="Шкода підвищується на x%x з кожним рівнем");
+Passives[1]=(Title="Опір шкоді",Description="Опір усій шкоді підвищується на x%x кожні 5 рівнів");
+Passives[2]=(Title="+Нічне бачення",Description="Ліхтарики і прилад нічного бачення")
+Passives[3]=(Title="Опір захопленню зомбі",Description="Зомбі не можуть втримати берсерка.")
 
-EXPAction1="Dealing Berserker weapon damage"
-EXPAction2="Kill Zeds near a player with a Berserker weapon"
+EXPAction1="Завдання шкоди зброєю берсеркера"
+EXPAction2="Вбивство зедів поруч з гравцем зброєю перків"
 
-Fortitude="Dreadnaught"
-FortitudeDescription="Increase total Health by 50%."
+Fortitude="Безстрашність"
+FortitudeDescription="Збільшує загальне здоров’я на 50%."
 
-Ninja="Skirmisher"
-NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
+Ninja="Розбійник"
+NinjaDescription="Рухайтеся на 20% швидше. Біжіть на 25% швидше. Регенеруйте 2 очки здоров’я щосекунди. "
 
-Vampire="Vampire"
-VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
+Vampire="Вампір"
+VampireDescription="Зцілює вас на 4 очки здоров’я з кожного зеда, якого ви вбили зброєю берсерка. Також ви атакуєте зброєю берсерка на 15% швидше."
 
-Speed="Butcher"
-SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
+Speed="Різник"
+SpeedDescription="Атакуйте на 20% швидше і завдавайте на 25% більше шкоди зброєю берсерка."
 
-Resistance="Resistance"
-ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
+Resistance="Спротив"
+ResistanceDescription="Отримує 20% опору до всієї шкоди. Ви отримуєте додаткові 20% опору до шкоди від отрути і звуку."
 
-Parry="Parry"
-ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
+Parry="Парирування"
+ParryDescription="Парирування атаки зброєю ближнього бою берсерка збільшує швидкість ближньої атаки на 5% і ближню шкоду на 35% протягом 10 секунд."
 
-Smash="Smash"
-SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
+Smash="Нищівний удар"
+SmashDescription="Силові ближні атаки завдають на 50% більше шкоди, а при сильному ударі у голову ще 25% додаткової шкоди та 200% до сили приголомшення."
  
-Fury="Massacre"
-FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
+Fury="Розправа"
+FuryDescription="Легкі атаки зброєю ближнього бою берсерка завдають на 20% більше шкоди і на 5% швидші."
 
-Spartan="ZED TIME - Spartan" 
-SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
+Spartan="ЧАС ЗЕДІВ — Спартанець"
+SpartanDescription="Сила трьохсот спартанців: ви рухатиметеся майже як у звичайний час й отримувати 25% від вашого звичайного здоров’я."
 
-Flash="ZED TIME - Berserker Rage"
-FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
+Flash="ЧАС ЗЕДІВ — Лють берсерка"
+FlashDescription="Зедам не сподобається, коли ви розлючені: рухайтеся й атакуйте у реальному часі."
 
 [KFPerk_Commando]
-PerkName="Commando"
+PerkName="Коммандо"
 
-SkillCatagories[0]="Tactics"
-SkillCatagories[1]="Advanced Tactics"
-SkillCatagories[2]="Survival"
-SkillCatagories[3]="Weapon Specialist"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="Тактика"
+SkillCatagories[1]="Розширена тактика"
+SkillCatagories[2]="Виживання"
+SkillCatagories[3]="Спеціаліст зі зброї"
+SkillCatagories[4]="Посилене тренування"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
-Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
-Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
-Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
-Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
-Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
+Passives[0]=(Title="Шкода від зброї перків",Description="Шкоду від зброї коммандо підвищено на %x%.");
+Passives[1]=(Title="Розпізнавання замаскування і рівня здоров’я ворогів",Description="10 м і додатково на %x% м з кожним рівнем");
+Passives[2]=(Title="Збільшення Часу зедів",Description="Час зедів триває на %x% довше");
+Passives[3]=(Title="Швидкість перезаряджання",Description="Зростає кожні 5 рівнів на %x%%");
+Passives[4]=(Title="+Нічне бачення",Description="Ліхтарики і прилад нічного бачення");
+Passives[5]=(Title="+Виявлення невидимих зедів",Description="Дозволяє побратимам бачити невидимих істот");
 
-EXPAction1="Dealing Commando weapon damage"
-EXPAction2="Killing Stalkers with Commando weapons"
+EXPAction1="Завдання шкоди зброєю коммандо"
+EXPAction2="Вбивство сталкерів за допомогою зброї коммандо"
 
-TacticalReload="Tactical Reload"
-TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
+TacticalReload="Тактичне перезаряджання"
+TacticalReloadDescription="Спокійно. Швидко. Перезаряджайте зброю командо на 20% швидше, та ще й виглядайте при цьому більш стильно."
 
-LargeMags="Large Mags"
-LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
+LargeMags="Великі магазини"
+LargeMagsDescription="Треба серйозніше: збільшує місткість магазину зброї коммандо на 50%."
 
-Backup="Backup"
-BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it! You also increase your weapon switching speed."
+Backup="Про запас"
+BackupDescription="Підвищіть шкоду пістолета і ножа на 60% — коли-небудь обов’язково знадобиться! Також збільшується швидкість перезаряджання зброї."
 
-Impact="Impact"
-ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
+Impact="Вплив"
+ImpactDescription="Товчи сильніше, довбашкою об землю! Збільшіть силу спотикання від зброї командо на 150%."
 
-HealthIncrease="Health Increase"
-HealthIncreaseDescription="Increase total Health and Armor by 25%."
+HealthIncrease="Приріст здоров’я"
+HealthIncreaseDescription="Підвищує загальний рівень здоров’я і броні на 25%."
 
-AmmoVest="Ammo Vest"
-AmmoVestDescription="Carry two extra magazines for each Commando weapon."
+AmmoVest="Жилет для набоїв"
+AmmoVestDescription="Містить два додаткових магазина для будь-якої зброї коммандо."
 
-HollowPoints="Hollow Point Rounds"
-HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more damage and reducing their recoil 50%."
+HollowPoints="Розкривні набої"
+HollowPointsDescription="Модернізація ваших боєприпасів збільшує ураження на 25% і зменшує віддачу на 50% для зброї коммандо."
 
-EatLead="Eat Lead"
-EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
+EatLead="Ловіть свинець"
+EatLeadDescription="Треба більше куль? Отримайте на 50% більше набоїв у ваших магазинах зі зброєю коммандо."
 
-RapidFire="ZED TIME - Rapid Fire"
-RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
+RapidFire="ЧАС ЗЕДІВ — Швидкий вогонь"
+RapidFireDescription="Коли час уповільниться, ви станете швидшим. Шкода зброї коммандо збільшиться на 3%, а швидкострільність збільшиться у 3 рази."
 
-Professional="ZED TIME - Professional"
-ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
+Professional="ЧАС ЗЕДІВ — Професіонал"
+ProfessionalDescription="Світ уповільниться — ви ні. Перезаряджайте зброю командо на повній швидкості, змінюйте зброю командо у два рази швидше!"
 
 [KFPerk_Demolitionist]
-PerkName="Demolitionist"
-EXPAction1="Dealing Demolitionist weapon damage"
-EXPAction2="Killing Fleshpounds with Demolitionist weapons"
+PerkName="Підривник"
+EXPAction1="Завдання шкоди зброєю підривника"
+EXPAction2="Убивство м’ясорубів зброєю підривника"
 
-SkillCatagories[0]="Technique"
-SkillCatagories[1]="Explosives"
-SkillCatagories[2]="Advanced Techniques"
-SkillCatagories[3]="Weapon Techniques"
-SkillCatagories[4]="Advanced Explosives"
+SkillCatagories[0]="Прийом"
+SkillCatagories[1]="Вибухівки"
+SkillCatagories[2]="Розширені прийоми"
+SkillCatagories[3]="Прийоми зі зброєю"
+SkillCatagories[4]="Покращене володіння вибухівкою"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
-Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
-Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
-Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
-Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
+Passives[0]=(Title="Шкода від зброї перків",Description="Шкоду від зброї перків підвищено на %x%");
+Passives[1]=(Title="Опір вибухам",Description="Опір шкоді від вибухів %x%");
+Passives[2]=(Title="Додаткові вибухові боєприпаси",Description="Збільшення кількості вибухових боєприпасів: %x% ");
+Passives[3]=(Title="+Гренадер",Description="Дає одну додаткову гранату за хвилю для вашої команди");
+Passives[4]=(Title="+Дверні пастки",Description="Зварені вами двері вибухають після знищення");
 
-Damage="Bombardier"
-DamageDescription="Your explosive Demolitionist weapons do 25% more damage."
+Damage="Бомбардир"
+DamageDescription="Ваша вибухова зброя підривника завдає на 25% більше шкоди."
 
-Speed="Grenadier"
-SpeedDescription="You reload your Demolitionist weapons 10% faster."
+Speed="Гренадер"
+SpeedDescription="Ви перезаряджаєте зброю підривника на 10% швидше."
 
-DirectHit="High Impact Rounds"
-DirectHitDescription="Do 25% more damage on a direct hit with your explosive Demolitionist weapons, but decrease maximum ammo for each weapon by 3."
+DirectHit="Ефективні набої"
+DirectHitDescription="Завдає на 25% більше шкоди від прямого влучання вибуховою зброєю підривника, але зменшує максимальний боєзапас для кожної одиниці зброї на 3."
 
-Ammo="Extra Rounds"
-AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
+Ammo="Додаткові набої"
+AmmoDescription="Підвищує максимальний боєзапас на 5 одиниць для всіх вибухових видів зброї підривника."
 
-SirenResistance="Sonic Resistant Rounds"
-SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
+SirenResistance="Звукостійкі набої"
+SirenResistanceDescription="Ваша вибухова зброя підривника має стовідсотковий шанс прорвати крик сирени та вибухнути."
 
-AreaOfEffect="Fragmentation Rounds"
-AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
+AreaOfEffect="Фрагментальні набої"
+AreaOfEffectDescription="Зона ураження вашої зброї підривника збільшена на 50%, але її шкода зменшена на 30%."
 
-CriticalHit="Armor Piercing Rounds"
-CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
+CriticalHit="Бронепробивні набої"
+CriticalHitDescription="Пряме влучання у критичну зону будь-якою зброєю підривника завдає 50% додаткової шкоди."
 
-ConcussiveForce="Concussive Rounds"
-ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
+ConcussiveForce="Приголомшливі набої"
+ConcussiveForceDescription="Відштовхування, приголомшення, спотикання і збивання з ніг від вашої зброї підривника збільшено на 50%."
 
-Nuke="ZED TIME - Destroyer of Worlds"
-NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+Nuke="ЧАС ЗЕДІВ — Руйнівник світів"
+NukeDescription="Ядерні технології: здійснені вами вибухи завдають радіоактивне ушкодження покручам у Час зедів."
 
-Professional="ZED TIME - Mad Bomber"
-ProfessionalDescription="Shoot and reload in near real time."
+Professional="ЧАС ЗЕДІВ — Скажений бомбер"
+ProfessionalDescription="Стрільба і перезаряджання у майже реальному часі."
 
 
 [KFPerk_FieldMedic]
@@ -1268,40 +1270,40 @@ SkillCatagories[2]="Поводження зі зброєю"
 SkillCatagories[3]="Бойовий технік"
 SkillCatagories[4]="Посилене тренування"
 
-Passives[0]=(Title="Перезаряджання шприца",Description="Збільшення шкоди зброєю на %x%");
-Passives[1]=(Title="Ефективність шприца",Description="Визначення замаскованого ворога збільшено на %x%");
-Passives[2]=(Title="Опір жовчі",Description="Визначення смуги здоров’я збільшено на %x%");
-Passives[3]=(Title="Швидкість руху",Description="Час зеда триває  %x%");
-Passives[4]=(Title="Бонус броні",Description="Здоров’я збільшено на %x%");
+Passives[0]=(Title="Перезаряджання шприца",Description="Зменшення швидкості поповнення шприца на %x%");
+Passives[1]=(Title="Ефективність шприца",Description="Відновлюване шприцем здоров’я збільшено на %x%");
+Passives[2]=(Title="Опір жовчі",Description="Шкода від жовчі зменшена на %x%");
+Passives[3]=(Title="Швидкість руху",Description="Швидкість руху зростає на %x%");
+Passives[4]=(Title="Бонус броні",Description="Броню збільшено на %x%");
 
 HealingSurge="Хвиля зцілення"
 HealingSurgeDescription="Настав час застосувати свої медичні навички. Здоров’я підвищується на 20%."
 
 Enforcer="Убивця"
-EnforcerDescription="Досить думати про лікування: Збільшіть вашу початкову кількість набоїв на 20% для зброї перків та запасної зброї."
+EnforcerDescription="Досить думати про лікування: Збільшіть вашу кількість набоїв на 20% для зброї медика та запасної зброї."
 
 Combatant="Боєць"
 CombatantDescription="Будьте не просто медиком, а бойовим медиком. Ви ж цього хотіли? Безкоштовна натільна броня та знижка 60% на всю іншу броню!"
 
 Armament="Озброєння"
-ArmamentDescription="Досить просто латати народ: втратьте 25% вашої лікувальної ефективності у лікуванні союзників, але натомість відновлюйте 1% їхньої максимальної натільної броні!"
+ArmamentDescription="Досить просто латати народ: втратьте 25% вашої лікувальної ефективності у лікуванні союзників, але натомість щоразу відновлюйте 1% їхньої броні!"
 
 Regeneration="Регенерація"
-RegenerationDescription="Накачайтеся як слід: ваше здоров’я повільно регенерується з часом завдяки нано-роботам Горизонта."
+RegenerationDescription="Накачайтеся як слід: ваше здоров’я регенерує 1 очко щосекунди завдяки нано-роботам Горизонта."
 
 Lacerate="Різак"
-LacerateDescription="Гей, обережніше зі скальпелем: завдавайте шкоди покручам із будь-якої зброї перків, аби вони стікали кров’ю."
+LacerateDescription="Гей, обережніше зі скальпелем: завдавайте шкоди покручам із будь-якої зброї медика, аби вони стікали кров’ю."
 
 VaccinationArmor="Вакцинація"
-VaccinationArmorDescription="Попередьте поширення смерті: ваші лікування дають 2% до максимальної броні союзникам, а також забезпечують тимчасовий опір до жовчі Товстуна."
+VaccinationArmorDescription="Допоможіть запобігти поширенню смерті: ваші лікування відновлюють 2% броні союзників, а також забезпечують тимчасовий опір до жовчі Товстуна."
 
 VaccinationDamageMod="Кислотні сполуки"
 VaccinationDamageModDescription="Цілитель для одних… убивця для інших! Ваші лікувальні дротики отруюють зедів. Завдайте достатньо шкоди і ваші гранати та дротики налякають зедів."
 
-AirborneAgent="ЧАС ЗЕДА — Повітряний агент"
+AirborneAgent="ЧАС ЗЕДІВ — Повітряний агент"
 AirborneAgentDescription="Кажуть, що час загоює рани: ваші медичні дротики створюватимуть лікувальну хмару довкола цілі, а побратими, які знаходяться поруч, отримають на 20% більше здоров’я."
 
-Sedative="ЧАС ЗЕДА — Заспокійливе"
+Sedative="ЧАС ЗЕДІВ — Заспокійливе"
 SedativeDescription="І час зупинився: Медичні дротики та гранати містять зед-заспокійливе, яке тимчасово призупиняє рух зедів."
 
 
@@ -1325,35 +1327,35 @@ Passives[2]=(Title="Опір ушкодженню вогнем від зедів
 Passives[3]=(Title="Імунітет до свого вогню",Description="Імунітет до ушкодження від власного вогню %x%");
 Passives[4]=(Title="Початкові набої",Description="Початковий комплект збільшено до %x%");
 
-FullyStocked="Повний комплект"
-FullyStockedDescription="Все сказано назвою: з самого початку зброя палія має максимальний боєзапас."
+FullyStocked="Добра комплектація"
+FullyStockedDescription="Усе сказано назвою: з самого початку зброя палія має 60% боєприпасів."
 
 FlarotovCoctail="Коктель Фларотова"
-FlarotovCoctailDescription="Все сказано у його імені: полум’я від коктейля Молотова горить у два рази довше та підсвічує усе довкола на 30 секунд."
+FlarotovCoctailDescription="Усе сказано назвою: полум’я від коктейлю Молотова підсвічує усе довкола на 30 секунд."
 
-Fuse="Запал"
-FuseDescription="Горить повільно, але помітно: ефект горіння зброї палія триває на 70% довше і довше завдає шкоди."
+Fuse="Барбекю"
+FuseDescription="Горить повільно, але помітно: горіння від зброї палія триває на 20% довше і завдає періодичної шкоди."
 
 HeatWave="Гаряча хвиля"
 HeatWaveDescription="Як у Джорджії, але трішки спекотніше. Підпалені впритул покручі будуть відкинуті назад."
 
-ZedShrapnel="Зед-шрапнель"
-ZedShrapnelDescription="Зеди ВИБУХАЮТЬ: Зеди, вбиті вогнем, мають 30% шансу вибухнути і завдати шкоди зедам поблизу."
+ZedShrapnel="Похоронне багаття"
+ZedShrapnelDescription="Зеди ВИБУХАЮТЬ: зеди, вбиті вогнем, мають 20% шансу вибухнути і завдати шкоди зедам поблизу."
 
-Napalm="Зед-напалм"
-NapalmDescription="Зеди ПАЛАЮТЬ: Зади у вогні підпалюють інших зедів, коли торкаються їх."
+Napalm="Напалм"
+NapalmDescription="Зеди ПАЛАЮТЬ: зади у вогні підпалюють інших зедів, коли торкаються їх."
 
-Range="Дальність"
+Range="Вогняний шторм"
 RangeDescription="Збільшує дальність стрільби із запалювальної зброї. Те, що було потрібно, чи не так?"
 
-SplashDamage="Шкода від розриву"
+SplashDamage="Дике полум’я"
 SplashDamageDescription="Чи просто збільшити розривну шкоду від боєприпасів запалювальної зброї!"
 
-Combustion="ЧАС ЗЕДА — Палання"
-CombustionDescription="Шрапнель + напалм = вибухова суміш. Ось так. Усі покручі, вбиті вогнем у Час зедів, вибухають і запалюють усе довкола."
+Combustion="ЧАС ЗЕДІВ — Підпалювач"
+CombustionDescription="Усі Зеди, вбиті вогнем у Час зедів, вибухають і запалюють усе довкола."
 
-Scorch="ЧАС ЗЕДА — Спопеління"
-ScorchDescription="Ви палаєте! Ну, не у прямому сенсі. Зброя перків протягом Часу зедів матиме швидкострільність як у звичайний час."
+Scorch="ЧАС ЗЕДІВ — Піроманіяк"
+ScorchDescription="Ви палаєте! Ну, не у прямому сенсі. Зброя палія протягом Часу зедів матиме швидкострільність як у реальному часі."
 
 [KFPerk_Gunslinger]
 PerkName="Стрілець"
@@ -1372,13 +1374,13 @@ Passives[2]=(Title="Швидкість руху",Description="Швидкість
 Passives[3]=(Title="Віддача",Description="%x% менше віддачі");
 
 ShootnMove="Біжи і стріляй"
-ShootnMoveDescription="Не дайте з’їсти себе заживо: рухайтеся на 200% швидше під час прицілювання зі зменшеним коливанням зброї."
+ShootnMoveDescription="Не дайте з’їсти себе заживо: рухайтеся на 200% швидше під час прицілювання зі зменшеним коливанням зброї, коли використовуєте зброю стрільця."
 
 QuickSwitch="Швидкий стрілець"
-QuickSwitchDescription="Умілі рученята: змінюйте зброю на 50% швидше, а після закінчення набоїв швидко витягайте пістолети."
+QuickSwitchDescription="Умілі рученята: збільшуйте швидкість перемикання зброї на 50% як стрілець і швидко діставайте пістолети, коли у вас закінчилися набої."
 
-RhythmMethod="Складальник"
-RhythmMethodDescription="Куля до кулі: кожне наступне влучання в голову зі зброї стрільця збільшує шкоду на 10% до максимальних 70%."
+RhythmMethod="Ритмічний метод"
+RhythmMethodDescription="Куля до кулі: кожне наступне влучання в голову зі зброї стрільця збільшує шкоду на 17% до максимальних 68%."
 
 BoneBreaker="Костолом"
 BoneBreakerDescription="Не рахуйте їхні кістки, а ламайте їх: завдавайте на 20% більше шкоди зі зброї стрільця."
@@ -1387,28 +1389,28 @@ SpeedReload="Швидка перезарядка"
 SpeedReloadDescription="Крутіше, швидше, смертельніше: перезаряжайтеся на 20% швидше зброєю стрілка та виглядайте крутіше."
 
 Penetration="Проникнення"
-PenetrationDescription="Одним пострілом двох зедів: пробивайте додаткового зеда кожним пострілом."
+PenetrationDescription="Одним пострілом двох зедів: пробивайте додаткового зеда кожним пострілом зі зброї стрільця."
 
 CenterMass="Центр маси"
-CenterMassDescription="Якщо ви цілитеся в центр маси… Постріли в корпус мають на 40% більше зупиняючого ефекту."
+CenterMassDescription="Якщо ви цілитеся в центр маси… Постріли в корпус зі зброї стрільця мають на 40% більше зупиняючого ефекту."
 
 LimbShots="Стрілянина по ногах"
-LimbShotsDescription="Стріляйте по ногам… Постріли у ноги збивають зедів у 3 рази краще, якщо ті біжать."
+LimbShotsDescription="Стріляйте по ногам… Постріли у ноги зі зброї стрільця збивають зедів у 3 рази краще, якщо вони біжать."
 
-Fanfare="ЧАС ЗЕДА — Загороджувальний вогонь"
+Fanfare="ЧАС ЗЕДІВ — Загороджувальний вогонь"
 FanfareDescription="Весела стрільба: стріляйте у 3 рази швидше зі зброї стрільця у Час зедів."
 
-UberAmmo="ЧАС ЗЕДА — Супер-набої"
+UberAmmo="ЧАС ЗЕДІВ — Супер-набої"
 UberAmmoDescription="Ӱбер-класно: Набої для зброї стрільця нескінченні протягом часу зедів."
 
 [KFPerk_MartialArtist]
 PerkName="Майстер бойових мистецтв"
 
 [KFPerk_Sharpshooter]
-PerkName="Влучний стрілець"
+PerkName="Снайпер"
 
-EXPAction1="Dealing Sharpshooter weapon damage"
-EXPAction2="Head shots with Sharpshooter weapons"
+EXPAction1="Завдання шкоди зброєю снайпера"
+EXPAction2="Влучання у голову зброєю снайпера"
 
 SkillCatagories[0]="Movement"
 SkillCatagories[1]="Basic Technique"
@@ -1420,35 +1422,35 @@ Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %
 Passives[1]=(Title="Recoil",Description="%x% less recoil");
 Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
 
-StationaryAim="Sniper"
-StationaryAimDescription="Inflict 25% more damage while stationary and using a Sharpshooter weapon."
+StationaryAim="Влучний стрілець"
+StationaryAimDescription="Завдавайте на 25% більше шкоди зі зброї снайпера, коли не рухаєтеся."
 
-Trigger="Marksman"
-TriggerDescription="Shoot 25% faster and move 10% faster when using a Sharpshooter weapon."
+Trigger="Вправний стрілець"
+TriggerDescription="Стріляйте на 25% швидше та рухайтеся на 10% швидше, використовуючи зброю снайпера."
 
-CrouchAim="Stability"
-CrouchAimDescription="Inflict 30% more damage while crouching and using a Sharpshooter weapon."
+CrouchAim="Стабільність"
+CrouchAimDescription="Завдавайте на 30% більше шкоди зброєю снайпера під час скрадання."
 
-Stun="Ballistic Shock"
-StunDescription="Stun power with Sharpshooter weapons increases by 100%."
+Stun="Балістичний шок"
+StunDescription="Сила приголомшення зброєю снайпера збільшена на 100%."
 
 RhythmMethod="Rack 'em Up"
-RhythmMethodDescription="Rack up the headshots: each consecutive headshot with a Sharpshooter weapon increases your damage by 5% up to 75%."
+RhythmMethodDescription="Куля до кулі: кожне наступне влучання в голову зі зброї снайпера збільшує шкоду на 5% до максимальних 75%."
 
-TacticalReload="Combat Ready"
-TacticalReloadDescription="Be cool. Be quick. Reload faster with Sharpshooter weapons AND look more elite while you're at it."
+TacticalReload="Бойова готовність"
+TacticalReloadDescription="Спокійно. Швидко. Перезаряджайте зброю снайпера швидше, та ще й виглядайте при цьому більш стильно."
 
-Scoped="Dead Eye"
-ScopedDescription="Reduce recoil 10% and increase head shot damage 10% when using a scope or ironsights with a Sharpshooter weapon."
+Scoped="Вбивче око"
+ScopedDescription="На 10% менше віддачі і на 10% більше шкоди від влучання у голову, якщо використовувати зброю снайпера з прицілом."
 
-AmmoPouch="Always Prepared"
-AmmoPouchDescription="Get 25% more ammo for Sharpshooter weapons and grenades."
+AmmoPouch="Завжди готовий"
+AmmoPouchDescription="Отримуйте на 25% більше набоїв для зброї та гранат снайпера."
 
-ZTKnockdown="ZED TIME - Assassin"
-ZTKnockdownDescription="Headshots with Sharpshooter weapons will dramatically increase knockdown power."
+ZTKnockdown="ЧАС ЗЕДІВ — Асасин"
+ZTKnockdownDescription="Влучання у голову зброєю снайпера значно збільшують силу збивання з ніг."
 
-ZTStun="ZED TIME - Ranger"
-ZTStunDescription="Headshots with Sharpshooter weapons will dramatically increase stun power."
+ZTStun="ЧАС ЗЕДІВ — Рейнджер"
+ZTStunDescription="Влучання у голову зброєю снайпера значно збільшують силу приголомшення."
 
 
 
@@ -1477,13 +1479,13 @@ EXPAction1="Завдання шкоди зброєю підтримки"
 EXPAction2="Зварювання дверей"
 
 Ammo="Набої"
-AmmoDescription="Пора братися до справи серйозно: збільшіть початкову кількість набоїв на 20%."
+AmmoDescription="Пора братися до справи серйозно: збільшіть початкову кількість набоїв для зброї бійця підмоги на 20%."
 
 Supplier="Постачальник"
 SupplierDescription="Будьте улюбленцем усіх: Носіть з собою рюкзак, з якого гравці можуть отримати боєприпаси раз за хвилю."
 
 Fortitude="Стійкість"
-FortitudeDescription="Збільшіть свої шанси: Збільшіть своє здоров’я на 50%."
+FortitudeDescription="Збільшіть свої шанси: Збільшіть своє загальне здоров’я на 50%."
 
 Regeneration="Регенерація"
 RegenerationDescription="Залиште медиків без роботи: ваше здоров’я регенерується повільно протягом певного часу, дякуючи нано-ботам Горизонта."
@@ -1492,7 +1494,7 @@ Bombard="Бомбардування"
 BombardDescription="Треба додати більше потужності: ймовірність спотикання зедів збільшиться на 60% від влучання зі зброї бійця підтримки для дальніх дистанцій."
 
 TacticalReload="Тактична перезарядка"
-TacticalReloadDescription="Спокійно. Швидко. Перезаряджайте зброю перків швидше, та ще й виглядайте при цьому більш стильно."
+TacticalReloadDescription="Спокійно. Швидко. Перезаряджайте зброю бійця підмоги швидше, та ще й виглядайте при цьому більш стильно."
 
 Strength="Сила"
 StrengthDescription="Швидше на тренажери: накачайтеся і збільште свою здібність носити на 5."
@@ -1500,14 +1502,14 @@ StrengthDescription="Швидше на тренажери: накачайтес�
 Tenacity="Завзятість"
 TenacityDescription="Повправляйся зі зброєю бійця підтримки та завдавайте шкоди на 10% більше."
 
-Safeguard="ЧАС ЗЕДА — Охорона"
+Safeguard="ЧАС ЗЕДІВ — Охорона"
 SafeguardDescription="Сміливо в бій! Міцність вашого бронежелета та побратимів, які знаходяться поруч, збільшена на 5%."
 
-Barrage="ЧАС ЗЕДА — Завіса"
+Barrage="ЧАС ЗЕДІВ — Завіса"
 BarrageDescription="Час це сила. Шкода завдана вами та побратимами, які знаходяться поруч, збільшиться на 15%!"
 
 [KFPerk_Sharpshooter]
-PerkName="Влучний стрілець"
+PerkName="Снайпер"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -1554,47 +1556,47 @@ ObjectiveStatusTitle="ПОВЕРНУТИ 30% ГОТІВКИ"
 ObjectiveTimeString="с ЛИШИЛОСЯ"
 
 [KFGameViewportClient]
-RandomLoadingStrings[0]="The fleshpound is vulnerable to explosives but resistant to bullets."
-RandomLoadingStrings[1]="The scrake is resistant to explosives but vulnerable to bullets."
-RandomLoadingStrings[2]="You can only carry a limited amount of weight. Sell weaker weapons to make room for better ones."
-RandomLoadingStrings[3]="Watch the vents and sewers; Zeds can come from anywhere."
-RandomLoadingStrings[4]="Keep an eye out for gear and ammo boxes scattered throughout the map. They may save you if you get in a pinch."
-RandomLoadingStrings[5]="The bloat's body can take a lot of hits. Aim for its head."
-RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
-RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
-RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
-RandomLoadingStrings[9]="Stick together. Getting singled out decreases your chances of survival if things get hairy."
-RandomLoadingStrings[10]="Players can use the syringe to heal themselves as well as their teammates."
-RandomLoadingStrings[11]="Welding doors can hold Zeds back. Doors do not come back once destroyed."
-RandomLoadingStrings[12]="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
-RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may return the favor."
-RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."
-RandomLoadingStrings[15]="Prioritize your targets. A fleshpound is a lot more deserving of your attention than a clot."
-RandomLoadingStrings[16]="All Zeds have weak points. If it's not the head, look for glowing elements on their bodies."
-RandomLoadingStrings[17]="Looking to buy or sell a cosmetic item or weapon skin?  Check the marketplace."
-RandomLoadingStrings[18]="The siren's scream neutralizes grenades and other explosives."
-RandomLoadingStrings[19]="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
-RandomLoadingStrings[20]="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
-RandomLoadingStrings[21]="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
-RandomLoadingStrings[22]="Melee attacks are directional based on your movement. Forward = overhead, side = swipe, and back = uppercut."
-RandomLoadingStrings[23]="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
-RandomLoadingStrings[24]="Don't get close to even the weakest Zeds; they can grab you and hold on until their bigger friends arrive."
-RandomLoadingStrings[25]="Want Medic XP and some dosh? Heal your team -- both parties benefit!"
-RandomLoadingStrings[26]="Use controlled bursts with your weapons. Running out of ammo mid-wave makes for a difficult time."
-RandomLoadingStrings[27]="New perk skills are unlocked every 5 levels. Check them out at the Perks Menu."
-RandomLoadingStrings[28]="The M79 and RPG must travel a certain distance to arm the explosive charge."
-RandomLoadingStrings[29]="If you're having trouble seeing the Zeds, try your flashlight."
-RandomLoadingStrings[30]="Having a tough time surviving? Try a different perk! You may find one that fits your playstyle better."
-RandomLoadingStrings[31]="Always make sure you have a way out. Getting boxed in is a sure way to take a dirt nap."
-RandomLoadingStrings[32]="Armor is your friend. You can never go wrong getting more armor."
-RandomLoadingStrings[33]="Fire is a great way to keep Zeds away from you. Fire alone takes awhile to kill Zeds, but it keeps them occupied."
-RandomLoadingStrings[34]="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective.  Run!"
-RandomLoadingStrings[35]="Lighting Zeds on fire can cause them to panic. Time to play everyone's favorite game: Oh my god, I'm on fire!"
-RandomLoadingStrings[36]="Submachine guns have a high chance to cause targets to stumble, allowing you to keep them at a distance."
-RandomLoadingStrings[37]="The rail gun can fire through multiple Zeds if you line them up right."
-RandomLoadingStrings[38]="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."
-RandomLoadingStrings[39]="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
-RandomLoadingStrings[40]="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
+RandomLoadingStrings[0]="М’ясоруб вразливий до вибухівки, але стійкий до куль."
+RandomLoadingStrings[1]="М’ясник стійкий до вибухівки, але вразливий до куль."
+RandomLoadingStrings[2]="Ви можете нести лише певну кількість ваги. Продайте слабшу зброю, аби звільнити місце для кращої."
+RandomLoadingStrings[3]="Пильнуйте вентиляцію та каналізацію, адже зеди можуть з’явитися з будь-якого боку."
+RandomLoadingStrings[4]="Запам’ятовуйте, де на мапі знаходяться ящики з припасами і набоями. Вони можуть врятувати вам життя, якщо ви втрапите у скрутне становище."
+RandomLoadingStrings[5]="Тіло товстуна може витримати багато ударів. Цільтеся у його голову."
+RandomLoadingStrings[6]="Парирування змушує зеда спіткнутися, що дає вам можливість завдати кілька додаткових ударів."
+RandomLoadingStrings[7]="Остерігайтеся лущака. Коли він отримує достатньо шкоди, то може спробувати підірвати себе серед вашої команди."
+RandomLoadingStrings[8]="Ви отримуєте ОД за ушкодження зедів для того перку, зброєю якого завдаєте шкоду."
+RandomLoadingStrings[9]="Тримайтеся разом. Наодинці у вас значно менше шансів вижити, якщо ситуація загостриться."
+RandomLoadingStrings[10]="Гравці можуть використовувати шприц для лікування себе та своїх побратимів."
+RandomLoadingStrings[11]="Зварювання дверей затримає зедів. Однак двері не повернуться після знищення."
+RandomLoadingStrings[12]="Якщо союзник помирає, то варто підібрати його зброю і лишити її для нього у торговця."
+RandomLoadingStrings[13]="Маєте зайві лавандоси? Поділіться з командою, вони вам можуть віддячити."
+RandomLoadingStrings[14]="Обирайте свої цілі. Різна зброя по-різному ефективна проти різних типів зедів."
+RandomLoadingStrings[15]="Правильно визначайте пріоритет атаки. М’ясоруб заслуговує значно більшої уваги, ніж звичайний зомбі."
+RandomLoadingStrings[16]="Усі зеди мають слабкі місця. Якщо це не голова, то шукайте сяючі місця на їхніх тілах."
+RandomLoadingStrings[17]="Хочете купити чи продати принаду або стиль зброї? Перевірте ринок."
+RandomLoadingStrings[18]="Крик сирени нейтралізує гранати та іншу вибухівку."
+RandomLoadingStrings[19]="М’ясники і м’ясоруби впадають у лють, коли отримують достатньо шкоди. Не стійте у них на шляху."
+RandomLoadingStrings[20]="Маєте стилі зброї та принади, які вам не потрібні? Виготовте з них нові у вашому інвентарі."
+RandomLoadingStrings[21]="Ретельно обдумуйте ваше спорядження та вбрання. Треба виглядати стильно, вбиваючи зедів."
+RandomLoadingStrings[22]="Ближні атаки базуються на ваших рухах. Вперед — згори, убік — силовий удар, назад — удар знизу."
+RandomLoadingStrings[23]="Зварювання дверей зменшить шляхи, з яких можуть напасти зеди, але також обмежить ваші способи втечі."
+RandomLoadingStrings[24]="Не підходьте близько навіть до слабких зедів, адже вони можуть схопити вас і тримати, доки не з’являться їхні сильніші друзі."
+RandomLoadingStrings[25]="Хочете ОД медика та трохи лавандосів? Лікуйте свою команду — усі будуть задоволені!"
+RandomLoadingStrings[26]="Контролюйте використання вашої зброї. Якщо у вас закінчаться набої посеред хвилі, то буде скрутно."
+RandomLoadingStrings[27]="Нова здібність перка відкривається кожні 5 рівнів. Перевіряйте їх у меню перків."
+RandomLoadingStrings[28]="Снаряди з M79 та РПГ мають пролетіти певну відстань, аби вибухнути."
+RandomLoadingStrings[29]="Якщо ви погано бачите зедів, використовуйте ліхтарик."
+RandomLoadingStrings[30]="Не вдається виживати? Спробуйте інший перк! Ви можете знайти той, який краще відповідає вашому стилю гри."
+RandomLoadingStrings[31]="Завжди майте шлях для відступу. Безвихідна позиція — прямий шлях на той світ."
+RandomLoadingStrings[32]="Броня — ваш ліпший друг. Її ніколи не буває забагато."
+RandomLoadingStrings[33]="Вогонь — чудовий спосіб тримати зедів подалі від вас. Вогонь вбиває зедів не одразу, але повністю відволікає їх."
+RandomLoadingStrings[34]="Якщо зед або його зброя сяє червоним, то парирування ближніх атак буде менш ефективним. Утікайте!"
+RandomLoadingStrings[35]="Підпалювання зедів може змусити їх панікувати. Час зіграти в улюблену гру: о, Боже, я палаю!"
+RandomLoadingStrings[36]="Пістолети-кулемети мають великий шанс викликати спіткання у цілі, що дозволить вам тримати ворогів на відстані."
+RandomLoadingStrings[37]="Рейкотрон може поцілити одразу у кількох зедів, якщо ви стрілятимете під правильним кутом."
+RandomLoadingStrings[38]="Мікрохвильова гармата завдає більше шкоди зедам, які носять метал, наприклад, м’ясорубам і сиренам."
+RandomLoadingStrings[39]="Пробуйте альтернативний режим вогню вашої зброї. Не вся зброя його має, але він може допомогти вам у скрутний час."
+RandomLoadingStrings[40]="Ви отримуєте досвід та лавандоси не тільки за вбивства, а й за підмоги, тож допомагайте побратимам."
 
  
 
@@ -1651,7 +1653,7 @@ Minigun="Мініган"
 Rocket="Ракета"
 Mortar="Міномет"
 Heal="Зцілення"
-Block="Block"
+Block="Блокування"
 
 [Keybinds]
 CtrlCombo="Ctrl -"
@@ -1674,7 +1676,7 @@ LeftCtrl="Лівий Ctrl"
 RightCtrl="Правий Ctrl"
 LeftAlt="Лівий Alt"
 RightAlt="Правий Alt"
-BackSlash="\"
+BackSlash="\\"
 Slash="/"
 RightBracket="]"
 LeftBracket="["
@@ -1763,10 +1765,10 @@ DisplayName="Чорний ліс"
 DisplayName="В’язниця"
 
 [KF-ContainmentStation KFMapSummary]
-DisplayName="Containment Station"
+DisplayName="Станція утримування"
 
 [KF-HostileGrounds KFMapSummary]
-DisplayName="Hostile Grounds"
+DisplayName="Недружні землі"
 
 
 [KFMapInfo]

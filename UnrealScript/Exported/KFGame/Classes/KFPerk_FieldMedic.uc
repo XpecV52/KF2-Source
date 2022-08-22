@@ -708,7 +708,7 @@ defaultproperties
    SkillCatagories(3)="Combat Technician"
    SkillCatagories(4)="Advanced Training"
    EXPAction1="Dealing Medic weapon damage"
-   EXPAction2="Healing team-mates"
+   EXPAction2="Healing teammates"
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Medic'
    PerkSkills(0)=(Name="HealingSurge",StartingValue=1.200000,MaxValue=1.200000,IconPath="UI_PerkTalent_TEX.Medic.UI_Talents_Medic_HealingSurge")
    PerkSkills(1)=(Name="Enforcer",StartingValue=0.200000,MaxValue=0.200000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Enforcer")

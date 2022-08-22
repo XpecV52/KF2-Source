@@ -1025,7 +1025,7 @@ defaultproperties
     LockRange=200000
 	LockAim=0.995
 	LockAcquireTime=0.35
-	LockAcquireTime_Large=1.1;
+	LockAcquireTime_Large=0.6
 	LockAcquireTime_Boss=1.1
 	LockAcquireTime_Versus=1.1
 	LockTolerance=0.2

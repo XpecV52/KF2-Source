@@ -112,6 +112,8 @@ function OnOpen()
     {
         MyKFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
         MyKFIM = KFInventoryManager(Outer.GetPC().Pawn.InvManager);
+        CurrentTab = 0;
+        CurrentFilterIndex = GetPerkIndex();
         if((MyKFPRI != none) && MyKFIM != none)
         {
             InitializeOwnedItemList();
@@ -167,6 +169,8 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             {
                 ShopContainer = KFGFxTraderContainer_Store(Widget);
                 ShopContainer.Initialize(self);
+                CurrentTab = 0;
+                CurrentFilterIndex = GetPerkIndex();
                 RefreshShopItemList(0, byte(CurrentFilterIndex));
             }
             break;
@@ -196,6 +200,11 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             break;
     }
     return true;
+}
+
+function int GetPerkIndex()
+{
+    return MyKFPC.PerkList.Find('PerkClass', MyKFPC.CurrentPerk.Class;
 }
 
 event OnClose()
@@ -270,7 +279,11 @@ function UpdatePlayerInfo()
     {
         PlayerInfoContainer.SetPerkInfo();
         PlayerInfoContainer.SetPerkList();
-        LastPerkClass = MyKFPC.CurrentPerk;
+        if(LastPerkClass != MyKFPC.CurrentPerk)
+        {
+            LastPerkClass = MyKFPC.CurrentPerk;
+            OnPerkChanged(GetPerkIndex());
+        }
         RefreshItemComponents();
     }
 }
@@ -737,6 +750,15 @@ function BoughtAmmo(int AmountPurchased, int Price, KFGFxMenu_Trader.EItemType I
     MyKFIM.BuyAmmo(AmountPurchased, ItemType, ItemIndex, bIsSecondaryAmmo);
 }
 
+function OnPerkChanged(int PerkIndex)
+{
+    if(CurrentTab == 0)
+    {
+        CurrentFilterIndex = PerkIndex;
+        RefreshShopItemList(CurrentTab, byte(CurrentFilterIndex));
+    }
+}
+
 function RefreshItemComponents()
 {
     if((PlayerInventoryContainer != none) && PlayerInfoContainer != none)
@@ -976,7 +998,7 @@ function Callback_TabChanged(int TabIndex)
     CurrentTab = byte(TabIndex);
     if((CurrentTab == 0) && MyKFPRI != none)
     {
-        CurrentFilterIndex = MyKFPRI.NetPerkIndex;        
+        CurrentFilterIndex = GetPerkIndex();        
     }
     else
     {

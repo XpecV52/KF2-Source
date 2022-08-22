@@ -43,7 +43,7 @@ var float WaveStartTime;
 var float TotalWavesActiveTime;
 var float TimeUntilNextSpawn;
 var int WaveTotalAI;
-var const byte MaxMonsters;
+var byte MaxMonsters;
 /** Maximum number of AI that can be active at one time in solo, by difficulty */
 var() byte MaxMonstersSolo[4];
 var KFSpawnVolume.ESquadType DesiredSquadType;

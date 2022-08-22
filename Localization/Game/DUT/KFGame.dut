@@ -9,8 +9,8 @@ LengthStrings[1]="Gemiddeld (7 golven)"
 LengthStrings[2]="Lang (10 golven)"
 
 ServerTypeStrings[0]="Ranked"
-ServerTypeStrings[1]="Ranked - aangepast"
-ServerTypeStrings[1]="Ranked - aangepast"
+ServerTypeStrings[1]="Ranked - Standaard"
+ServerTypeStrings[1]="Ranked - Standaard"
 ServerTypeStrings[2]="Unranked"
 
 PermissionStrings[0]="Openbaar"
@@ -38,7 +38,7 @@ ZedString="ZED"
 HumanString="OVERLEVENDE"
 SpectatorString="TOESCHOUWER"
 TeamString="TEAM"
-AllString="ALL"
+AllString="ALLE"
 
 UnableToSwitchTeamString="Unable to Switch Teams"
 NoSwitchReasonString="Switching teams would upset team balance"
@@ -49,7 +49,7 @@ NoSwitchReasonString="Switching teams would upset team balance"
 FailedSearchTitleString="GEEN SPEL GEVONDEN"
 FailedSearchString="Matchmaking kon geen spel vinden met de opgegeven opties. Verbreed je zoekopdracht of gebruik de serverbrowser om een spel te vinden."
 BrowseServersString="SERVERS DOORZOEKEN"
-HasInvitedToGameString=" heeft je voor een spel uitgenodigd."
+HasInvitedToGameString=" heeft je voor een spel uitgenodigd"
 JoinGameString="Aan spel deelnemen?"
 
 
@@ -101,7 +101,7 @@ modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI con
 modeList2=""
 difficultyList0="Normal – For beginning players of perk rank 0-5."
 difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
-difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There are even fewer pickups, and you get less dosh."
 difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
 lengthList0=""
 lengthList1=""
@@ -111,6 +111,7 @@ serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (i
 serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
 serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
 serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+serverTypeList4="No preference - Will look for any of the previous selections"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -128,12 +129,12 @@ SoloGameString="SOLO-SPEL"
 LeaveMatchMakingString="VERLATEN"
 MultiplayerLaunchString="NU ONLINE SPELEN"
 SearchingString="ZOEKEN ANNULEREN"
-CancelSearchingString="CANCEL SEARCH"
+CancelSearchingString="ZOEKEN ANNULEREN"
 ServerTypeString="SERVERTYPE"
 AnyMapServerString="Ranked"
 UnrankedServerString="Unranked"
-CustomServerString="Aangepast"
-StandardServerString="Standaard"
+CustomServerString="Ranked - Aangepast"
+StandardServerString="Ranked - Standaard"
 AllowInProgressString="Lopende spellen toestaan"
 NotStartedString="Alleen nieuwe spellen"
 
@@ -264,8 +265,8 @@ BuyString="KOOP"
 SellString="VERKOPEN"
 CannotSellString="KAN NIET VERKOPEN"
 CannotBuyString="KAN NIET KOPEN"
-FavoriteString=" +FAVORIET"
-UnfavoriteString=" -FAVORIET"
+FavoriteString="+FAVORIET"
+UnfavoriteString="-FAVORIET"
 
 [KFGFxTraderContainer_PlayerInventory]
 FillString="VULLEN"
@@ -299,21 +300,21 @@ RoundResultsString="Round Results"
 MatchResultsString="Overall Winner"
 SurvivorVictory="Survivor Victory!"
 ZEDVictory="Zed Victory!"
-TieString="Tie!"
-YourTeamString="Your Team Wins!"
+TieString="Gelijkspel!"
+YourTeamString="Jouw team wint!"
 OpposingTeamString="Opposing Team Wins!"
 MatchOnGoingString="Switching Teams..."
 
 [KFGFxPostRoundContainer_Team]
-TitleString="Round "
+TitleString="Ronde"
 ScoreString="Score"
 WavesCompleteString="Waves Completed Bonus"
 BossDeadString="Boss Defeated"
 DeathsString="Player Deaths Penalty"
 DamageString="Damage From Boss Penalty"
-TotalString="TOTAL"
-YourTeamString=" (Your Team)"
-OpponentsString=" (Opponents)"
+TotalString="TOTAAL"
+YourTeamString=" (Jouw team)"
+OpponentsString=" (Tegenstanders)"
 
 [KFGFxMenu_PostGameReport]
 MapVoteString="MAPSTEMMING"
@@ -393,7 +394,7 @@ TopVotesString="MEESTE STEMMEN"
 AchievementsString="Prestaties"
 KnifeString="Mes"
 TopWeaponsString="MEESTGEBRUIKTE WAPENS"
-ZedKillsString="ZEDS GEDOOD"
+ZedKillsString="Zeds GEDOOD:"
 TotalDamageDealtString="Totale hoeveelheid schade aangericht:"
 HeadShotsString="Hoofdschoten:"
 LargeZedKillsString="Grote Zeds gedood:"
@@ -453,7 +454,7 @@ WeaponsString="Wapens"
 WeaponsInfoString="Aanpassen"
 
 [KFGFxMenu_Inventory]
-RecycleOneString="Recycle One"
+RecycleOneString="Eén recyclen"
 RecycleDuplicatesString="Recycle Duplicates"
 InventoryString="INVENTARIS"
 UseString="GEBRUIKEN"
@@ -465,7 +466,7 @@ CosmeticString="Uiterlijk"
 CraftingMatsString="Ontwerpen"
 ItemString="Voorwerpen"
 FiltersString="Filters"
-MoreItemsString="Een ander voorwerp is benodigd om dit voorwerp te kunnen gebruiken."
+MoreItemsString="Je hebt een sleutel nodig die overeenkomt met dit krat. Je kunt een sleutel kopen in de winkel van het spel."
 FailedToExchangeString="KAN KRAT NIET OPENEN"
 RecycleString="RECYCLEN"
 CraftString="ONTWERPEN"
@@ -488,7 +489,7 @@ CraftRequirementString="Insufficient quantity of required crafting materials"
 CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
 CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
 RequiresString="Vereist: "
-PurchaseKeyString="BUY KEY: "
+PurchaseKeyString="SLEUTEL KOPEN: "
 LookUpOnMarketString="Lookup on Market"
 
 [KFGFxPerksContainer]
@@ -531,6 +532,7 @@ TotalString="Totaal"
 CheckOutString="Afrekenen"
 
 [KFGFxStoreContainer_Main]
+WeaponSkinsRotationString="Weapon Skins"
 WeaponSkinsString="Wapenskins"
 MarketConsumablesString="Market Crates/USBs"
 MarketCosmeticsString="Market Cosmetics"
@@ -595,7 +597,7 @@ AssistsString="ASSISTS"
 PingString="PING"
 
 [KFGFxHUD_ScoreboardVersusWidget]
-ScoreString=SCORE
+ScoreString="SCORE"
 
 [KFGFxHUD_PlayerStatus]
 EXPString="XP"
@@ -620,7 +622,7 @@ KilledString="gedood"
 ZedString="ZEDs"
 
 [KFLocalMessage_VoiceComms]
-VoiceCommsOptionStrings[0]="OM GENEZING VRAGEN"
+VoiceCommsOptionStrings[0]="GENEZING VRAGEN"
 VoiceCommsOptionStrings[1]="DOSH VRAGEN"
 VoiceCommsOptionStrings[2]="HULP VRAGEN"
 VoiceCommsOptionStrings[3]="ZEDS BESPOTTEN"
@@ -655,7 +657,7 @@ VOIPVolumeString="Voicechat-ontvangstvolume"
 ConfigureMicString="MICROFOON CONFIGUREREN"
 VocalsString="Zang"
 BattleChatterString="Minder commentaar in gev."
-PushToVoIPString="Drukken voor VoIP"
+PushToVoIPString="VoIP-toets gebruiken"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="Deze video-instellingen gebruiken?"
@@ -850,7 +852,7 @@ GBA_MoveForward="Vooruit bewegen"
 GBA_WeaponSelect_Gamepad="Wapenselectie (vasthouden)"
 GBA_Reload_Gamepad="Herladen"
 GBA_StrafeLeft_Gamepad="Bewegingsbesturing"
-GBA_MoveForward_Gamepad="Move Forward"
+GBA_MoveForward_Gamepad="Vooruit bewegen"
 GBA_Look_Gamepad="Camerabesturing"
 GBA_Grenade_Gamepad="Granaat gooien"
 GBA_TurnLeft_Gamepad="Camerabesturing"
@@ -889,10 +891,10 @@ GBA_IronsightsHold="Richten (vasthouden)"
 GBA_Reload="Herladen"
 GBA_Grenade="Granaat gooien"
 GBA_QuickHeal="Snel genezen"
-GBA_SwitchFireMode="Alt. Fire / Block"
+GBA_SwitchFireMode="Alt-vuren/blokkeren"
 GBA_TertiaryFire="Slaan"
 GBA_ToggleFlashlight="Zaklamp in-/uitschakelen"
-GBA_AltFire="Alt. Fire / Block"
+GBA_AltFire="Alt-vuren/blokkeren"
 
 GBA_WeaponSelect_Gamepad="Wapenselectie (vasthouden)"
 GBA_NextWeapon="Volgende wapen"
@@ -905,14 +907,14 @@ GBA_SwitchWeapon4="Uitrusting"
 GBA_VoteYes="Ja stemmen (vasthouden)"
 GBA_VoteNo="Nee stemmen (vasthouden)"
 
-GBA_VoiceCommReqHealing="REQUEST HEALING"
-GBA_VoiceCommReqDosh="REQUEST DOSH"
-GBA_VoiceCommReqHelp="REQUEST HELP"
+GBA_VoiceCommReqHealing="GENEZING VRAGEN"
+GBA_VoiceCommReqDosh="DOSH VRAGEN"
+GBA_VoiceCommReqHelp="HULP VRAGEN"
 GBA_VoiceCommTauntZeds="TAUNT ZEDS"
-GBA_VoiceCommFollowMe="FOLLOW ME"
+GBA_VoiceCommFollowMe="VOLG MIJ"
 GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
 GBA_VoiceCommAffirmative="AFFIRMATIVE"
-GBA_VoiceCommNegative="NEGATIVE"
+GBA_VoiceCommNegative="NEE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Gevoeligheid"
@@ -953,10 +955,10 @@ WeaponSelectMenuString="Wapenselectiemenu (vasthouden)"
 ShowScoardBoardString="Scorebord tonen"
 ShowIngameMenuString="Spelmenu weergeven/verbergen"
 CurrentControllerPresetString="Current Controller Preset"
-PresetStrings[0]="Preset 1"
-PresetStrings[1]="Preset 2"
-PresetStrings[2]="Preset 3"
-PresetStrings[3]="Preset 4"
+PresetStrings[0]="Voorinstelling 1"
+PresetStrings[1]="Voorinstelling 2"
+PresetStrings[2]="Voorinstelling 3"
+PresetStrings[3]="Voorinstelling 4"
 
 BashString="Slaan"
 BlockString="Blokkeren (vasthouden)"
@@ -1009,7 +1011,7 @@ TooMuchWeightMessage="Dit wapen is te zwaar. Laat een wapen vallen of verkoop er
 FailedDropInventoryMessage="Je kunt dat hier niet laten vallen"
 ReceivedGrenadesFromMessage="Je hebt granaten ontvangen van"
 GaveGrenadesToMessage="Je hebt granaten gegeven aan"
-SharingContentString="deelt inhoud."
+SharingContentString="deelt inhoud"
 HeadShotAddedString="%x hoofdschot(en) - %y% extra schade!"
 HeadShotMaxString="Hoofdschot! %x% extra schade!"
 HeadShotResetString="Missed Headshot. Normal Damage!"
@@ -1040,8 +1042,8 @@ WaveEndMessage="G O L F  V O L T O O I D"
 GetToTraderMessage="Ga naar de handelaarsmodule"
 YouLostMessage="N E D E R L A A G"
 YouWonMessage="O V E R W I N N I N G"
-SquadWipedOutMessage="Je team is weggevaagd"
-SquadSurvivedMessage="Je team heeft het overleefd"
+SquadWipedOutMessage="Je team is weggevaagd!"
+SquadSurvivedMessage="Je team heeft het overleefd!"
 ObjectiveStartMessage="Doel gestart!"
 ObjectiveWonMessage="Doel gehaald!"
 ObjectiveEndedMessage="Doel geëindigd!"
@@ -1052,22 +1054,22 @@ HumansLoseMessage="Human squad wiped out!"
 HumansWinMessage="Human squad survived!"
 AttackHumanPlayersString="Val de menselijke spelers aan!"
 ZedGroupRegroupingString="Zed Horde regrouping!"
-NextRoundBeginString="N E X T  R O U N D"
+NextRoundBeginString="V O L G E N D E   R O N D E"
 PlayerCanChangePerksString="Perk changes are allowed"
 ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="<%x%> HANDELAAR GEBRUIKEN"
+UseTraderMessage="<%x%>HANDELAAR GEBRUIKEN"
 UseDoorMessage="<%x%> Openen/Sluiten <%x%> (VASTHOUDEN) lasapparaat uitrusten"
 UseDoorWeldedMessage="(VASTHOUDEN) <%x%> lasapparaat uitrusten"
 ZedUseDoorMessage="<%x%> Openen/Sluiten"
 ZedUseDoorWeldedMessage="Deur gelast, trap 'm in!"
-AcceptObjectiveMessage="<%x%> Doel accepteren"
-ReceiveAmmoMessage="<%x%> Munitie ontvangen"
-ReceiveGrenadesMessage="<%x%> Granaten ontvangen"
-HealSelfWarning="<%x%> Jezelf genezen"
+AcceptObjectiveMessage="<%x%>DOEL ACCEPTEREN"
+ReceiveAmmoMessage="<%x%>MUNITIE ONTVANGEN"
+ReceiveGrenadesMessage="<%x%>GRANATEN ONTVANGEN"
+HealSelfWarning="<%x%>JEZELF GENEZEN"
 HealSelfGamepadWarning="[HOLD]<%x%> HEAL SELF"
-PressToBashWarning="<%x%> Slaan"
+PressToBashWarning="<%x%>SLAAN"
 GamepadWeaponSelectHint="[HOLD] WEAPON SELECT"
 PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
 
@@ -1117,46 +1119,46 @@ WeaponDroppedMessage="Vanwege je nieuwe draagcapaciteit heb je %%%% laten vallen
 [KFPerk_Berserker]
 PerkName="Berserker"
 
-SkillCatagories[0]="Survival"
-SkillCatagories[1]="Combat"
-SkillCatagories[2]="Close Combat"
-SkillCatagories[3]="Power"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="Overleving"
+SkillCatagories[1]="Gevecht"
+SkillCatagories[2]="Vechten op korte afstand"
+SkillCatagories[3]="Kracht"
+SkillCatagories[4]="Geavanceerde training"
 
 
-Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
-Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
-Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
-Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
+Passives[0]=(Title="Wapenschade-perk",Description="Schade van Berserkerwapens neemt met 25% toe, plus x%x per level");
+Passives[1]=(Title="Aanvalssnelheid slagwapens",Description="Aanvalssnelheid met slagwapens neemt met 0% toe, plus x%x per level");
+Passives[2]=(Title="Bewegingssnelheid met slagwapen",Description="10% hogere bewegingssnelheid bij gebruik van een slagwapen, plus x%x per level");
+Passives[3]=(Title="Weerstand tegen schade",Description="Inkomende schade verlaagd met %x%");
 
-EXPAction1="Dealing Berserker weapon damage"
-EXPAction2="Kill Zeds near a player with a Berserker weapon"
+EXPAction1="Schade toebrengen met Berserker-wapen"
+EXPAction2="Dood Zeds in de buurt van een speler met een Perk-wapen"
 
-Fortitude="Dreadnaught"
-FortitudeDescription="Increase total Health by 50%."
+Fortitude="Standvastigheid"
+FortitudeDescription="Geef jezelf een betere kans: verhoogt je maximale en startgezondheid met 75%."
 
 Ninja="Skirmisher"
 NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
-Vampire="Vampire"
-VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
+Vampire="Vampier"
+VampireDescription="Kleine bloedzuigers: Horzine nano-tech zuigt 4 levenspunten uit elke Zed die je met een Berserker-wapen doodt en geeft het aan jou."
 
-Speed="Butcher"
+Speed="Slager"
 SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
 
-Resistance="Resistance"
+Resistance="Weerstand"
 ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
-Parry="Parry"
+Parry="Pareren"
 ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
 
-Smash="Smash"
+Smash="Verpletteren"
 SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
  
 Fury="Massacre"
 FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ZED TIME - Spartan" 
+Spartan="ZEDTIJD - Spartaan"
 SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
 
 Flash="ZED TIME - Berserker Rage"
@@ -1165,29 +1167,29 @@ FlashDescription="Zeds won't like you when you're angry: Move and attack in real
 [KFPerk_Commando]
 PerkName="Commando"
 
-SkillCatagories[0]="Tactics"
-SkillCatagories[1]="Advanced Tactics"
-SkillCatagories[2]="Survival"
-SkillCatagories[3]="Weapon Specialist"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="Voorraad"
+SkillCatagories[1]="Wapenomgang"
+SkillCatagories[2]="Overleving"
+SkillCatagories[3]="Wapenspecialist"
+SkillCatagories[4]="Geavanceerde training"
 
 Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
 Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
 Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
-Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
+Passives[3]=(Title="Zedtijdverlenging",Description="Zedtijd duurt %x%");
 Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
 Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
 
 EXPAction1="Dealing Commando weapon damage"
 EXPAction2="Killing Stalkers with Commando weapons"
 
-TacticalReload="Tactical Reload"
+TacticalReload="Tactisch herladen"
 TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
 
-LargeMags="Large Mags"
+LargeMags="Grote magazijnen"
 LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
 
-Backup="Backup"
+Backup="Back-up"
 BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it! You also increase your weapon switching speed."
 
 Impact="Impact"
@@ -1205,10 +1207,10 @@ HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more dam
 EatLead="Eat Lead"
 EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
-RapidFire="ZED TIME - Rapid Fire"
-RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
+RapidFire="ZEDTIJD - Snel vuren"
+RapidFireDescription="Doe meer pijn als de wereld vertraagt: doe 3% meer schade met wapens van Commando en schiet 3 keer sneller met alle geweren."
 
-Professional="ZED TIME - Professional"
+Professional="ZEDTIJD - Vakman"
 ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
 
 [KFPerk_Demolitionist]
@@ -1216,11 +1218,11 @@ PerkName="Demolitionist"
 EXPAction1="Dealing Demolitionist weapon damage"
 EXPAction2="Killing Fleshpounds with Demolitionist weapons"
 
-SkillCatagories[0]="Technique"
-SkillCatagories[1]="Explosives"
-SkillCatagories[2]="Advanced Techniques"
-SkillCatagories[3]="Weapon Techniques"
-SkillCatagories[4]="Advanced Explosives"
+SkillCatagories[0]="Techniek"
+SkillCatagories[1]="Explosieven"
+SkillCatagories[2]="Geavanceerde technieken"
+SkillCatagories[3]="Wapentechnieken"
+SkillCatagories[4]="Geavanceerde explosieven"
 
 Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
 Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
@@ -1240,8 +1242,8 @@ DirectHitDescription="Do 25% more damage on a direct hit with your explosive Dem
 Ammo="Extra Rounds"
 AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-SirenResistance="Sonic Resistant Rounds"
-SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
+SirenResistance="Weerstand tegen Siren"
+SirenResistanceDescription="Hou je mond, Zed: je granaten hebben 100% kans om schade door geluid te weerstaan en daadwerkelijk te exploderen."
 
 AreaOfEffect="Fragmentation Rounds"
 AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
@@ -1249,11 +1251,11 @@ AreaOfEffectDescription="The area of effect for your explosive Demolitionist wea
 CriticalHit="Armor Piercing Rounds"
 CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-ConcussiveForce="Concussive Rounds"
+ConcussiveForce="ZEDTIJD - Terugslag"
 ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
 
-Nuke="ZED TIME - Destroyer of Worlds"
-NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+Nuke="ZEDTIJD - Kernwapen"
+NukeDescription="Gooi er een atoombom op: je explosieven veroorzaken enorme stralingsschade in Zedtijd en vergiftigen Zeds."
 
 Professional="ZED TIME - Mad Bomber"
 ProfessionalDescription="Shoot and reload in near real time."
@@ -1326,12 +1328,12 @@ Passives[3]=(Title="Immunity to your own Fire",Description="%x% resistance to pe
 Passives[4]=(Title="Beginammunitie",Description="%x% meer beginammunitie");
 
 FullyStocked="Well Stocked"
-FullyStockedDescription="What it says on the can: Firebug weapons start at 60% ammo capacity at the Trader."
+FullyStockedDescription="What it says on the can: Firebug weapons start at 100% ammo capacity at the Trader."
 
 FlarotovCoctail="Flarotov Cocktail"
 FlarotovCoctailDescription="It's in the name: Shove a flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds."
 
-Fuse="Lont"
+Fuse="Barbecue"
 FuseDescription="A nice slow-burner: Firebug weapons' Fire effect lingers 20% longer, adding to damage over time."
 
 HeatWave="Hittegolf"
@@ -1340,7 +1342,7 @@ HeatWaveDescription="Like a Georgia summer: Zeds struck with Fire at point blank
 ZedShrapnel="Zed granaatscherven"
 ZedShrapnelDescription="Zed goes BOOM: Any Zed killed by Fire weapons has a 20% chance to explode, causing damage to and knocking down nearby Zeds."
 
-Napalm="Zed-napalm"
+Napalm="Napalm"
 NapalmDescription="Zed in BRAND: Zeds die in brand staan zullen andere zeds in brand steken wanneer ze met elkaar in contact komen."
 
 Range="Bereik"
@@ -1420,13 +1422,13 @@ Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %
 Passives[1]=(Title="Recoil",Description="%x% less recoil");
 Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
 
-StationaryAim="Sniper"
+StationaryAim="Sluipschutter"
 StationaryAimDescription="Inflict 25% more damage while stationary and using a Sharpshooter weapon."
 
 Trigger="Marksman"
 TriggerDescription="Shoot 25% faster and move 10% faster when using a Sharpshooter weapon."
 
-CrouchAim="Stability"
+CrouchAim="Stabiliteit"
 CrouchAimDescription="Inflict 30% more damage while crouching and using a Sharpshooter weapon."
 
 Stun="Ballistic Shock"
@@ -1554,12 +1556,12 @@ ObjectiveStatusTitle="KRIJG 30% GELD TERUG"
 ObjectiveTimeString="s RESTEREND"
 
 [KFGameViewportClient]
-RandomLoadingStrings[0]="The fleshpound is vulnerable to explosives but resistant to bullets."
-RandomLoadingStrings[1]="The scrake is resistant to explosives but vulnerable to bullets."
-RandomLoadingStrings[2]="You can only carry a limited amount of weight. Sell weaker weapons to make room for better ones."
-RandomLoadingStrings[3]="Watch the vents and sewers; Zeds can come from anywhere."
-RandomLoadingStrings[4]="Keep an eye out for gear and ammo boxes scattered throughout the map. They may save you if you get in a pinch."
-RandomLoadingStrings[5]="The bloat's body can take a lot of hits. Aim for its head."
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
 RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
 RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
 RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
@@ -1651,7 +1653,7 @@ Minigun="Minigun"
 Rocket="Raket"
 Mortar="Mortier"
 Heal="Genezen"
-Block="Block"
+Block="Blokkeren"
 
 [Keybinds]
 CtrlCombo="Ctrl-"
@@ -1671,10 +1673,10 @@ SpaceBar="Spatie"
 LeftShift="Shift (links)"
 RightSift="Shift (rechts)"
 LeftCtrl="Ctrl (links)"
-RightCtrl="Alt (rechts)"
+RightCtrl="Ctrl (rechts)"
 LeftAlt="Alt (links)"
 RightAlt="Alt (rechts)"
-BackSlash="\"
+BackSlash="\\ "
 Slash="/"
 RightBracket="]"
 LeftBracket="["

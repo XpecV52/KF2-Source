@@ -295,14 +295,11 @@ function TickHud(float DeltaTime)
     {
         bossHealthBar.TickHud(DeltaTime);
     }
-    if(bIsSpectating)
+    if(SpectatorInfoWidget != none)
     {
-        if(SpectatorInfoWidget != none)
-        {
-            SpectatorInfoWidget.TickHud(DeltaTime);
-        }        
+        SpectatorInfoWidget.TickHud(DeltaTime);
     }
-    else
+    if(!bIsSpectating)
     {
         if(PlayerStatusContainer != none)
         {

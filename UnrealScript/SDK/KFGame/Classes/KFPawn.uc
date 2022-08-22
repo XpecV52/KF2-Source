@@ -72,6 +72,8 @@ enum EHitZoneIndex
 	HZI_HEAD,
 };
 
+var transient float LastHeadShotReceivedTime;
+
 struct native HitZoneInfo
 {
 	var() name         		ZoneName;           // The name of this hitzone
@@ -2334,6 +2336,8 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 {
 	local int OldHealth, ActualDamage;
 	local class<KFDamageType> KFDT;
+	local KFGameInfo KFGI;
+	local KFPlayerController KFPC;
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 `if(`notdefined(ShippingPC))
@@ -2364,10 +2368,23 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 		}
 	}
 
-	// Notify game info of a headshot kill.  Done here instead of Died() so we have an accurate HitInfo/HitZone
-	if ( bPlayedDeath && OldHealth > 0 && HitFxInfo.HitBoneIndex == HZI_HEAD && WorldInfo.Game != None )
+	if(HitFxInfo.HitBoneIndex == HZI_HEAD && OldHealth > 0 &&  WorldInfo.Game != None )
 	{
-		KFGameInfo(WorldInfo.Game).NotifyHeadshotKill(InstigatedBy, self);
+		KFPC = KFPlayerController(InstigatedBy);
+		KFGI = KFGameInfo(WorldInfo.Game);
+		if( KFPC != none && KFGI != none && (PlayerReplicationInfo == none || PlayerReplicationInfo.GetTeamNum() == 255) && LastHeadShotReceivedTime != WorldInfo.TimeSeconds)
+		{
+			LastHeadShotReceivedTime = WorldInfo.TimeSeconds;
+			// potentially gives player extra XP
+			KFPC.AddZedHeadshot( KFGI.GameDifficulty, HitFxInfo.DamageType );
+			`RecordWeaponHeadShot(KFPC, HitFxInfo.DamageType)
+		}
+		
+		// Notify game info of a headshot kill.  Done here instead of Died() so we have an accurate HitInfo/HitZone
+		if ( bPlayedDeath )
+		{	
+			KFGameInfo(WorldInfo.Game).NotifyHeadshotKill(InstigatedBy, self);
+		}
 	}
 }
 

@@ -125,7 +125,9 @@ function OnOpen()
 	{
 		MyKFPRI = KFPlayerReplicationInfo( GetPC().PlayerReplicationInfo );
 		MyKFIM = KFInventoryManager( GetPC().Pawn.InvManager );
-
+         CurrentTab = TI_Perks;
+         CurrentFilterIndex = GetPerkIndex();
+        
 		if( MyKFPRI != none && MyKFIM != none )
 		{
 			// Grab the weapons in our inventory and add them to a stored array called OwnedItemList
@@ -189,7 +191,9 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			{
 			    ShopContainer = KFGFxTraderContainer_Store( Widget );
 			    ShopContainer.Initialize( self );
-				RefreshShopItemList( TI_Perks, CurrentFilterIndex );
+			    CurrentTab = TI_Perks;
+			    CurrentFilterIndex = GetPerkIndex();
+				RefreshShopItemList( TI_Perks,  CurrentFilterIndex );
 		    }
 		break;
 		case ('playerInventoryContainer'):
@@ -217,6 +221,11 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 	}
 
 	return true;
+}
+
+function int GetPerkIndex()
+{
+	return MyKFPC.PerkList.Find('PerkClass', MyKFPC.CurrentPerk.Class);
 }
 
 //==============================================================
@@ -308,11 +317,16 @@ function UpdatePlayerInfo()
 	{
 		PlayerInfoContainer.SetPerkInfo();
 		PlayerInfoContainer.SetPerkList();
-		LastPerkClass = MyKFPC.CurrentPerk;
+		if(LastPerkClass != MyKFPC.CurrentPerk)
+		{
+			LastPerkClass = MyKFPC.CurrentPerk;
+			OnPerkChanged(GetPerkIndex());
+		}
 
 		RefreshItemComponents();
 	}
 }
+
 
 //==============================================================
 // Inventory Initilization
@@ -773,6 +787,16 @@ function BoughtAmmo(int AmountPurchased, int Price, EItemType ItemType, optional
 //==============================================================
 // Inventory Update Functions - Buying Weapons and Ammo
 //==============================================================
+function OnPerkChanged(int PerkIndex)
+{
+	if(CurrentTab == TI_Perks)
+	{
+		CurrentFilterIndex = PerkIndex;
+		RefreshShopItemList(CurrentTab, CurrentFilterIndex);
+	}
+}
+
+
 function RefreshItemComponents()
 {
     if( PlayerInventoryContainer != none && PlayerInfoContainer != none )
@@ -996,7 +1020,7 @@ function Callback_TabChanged(int TabIndex)
 	CurrentTab = TabIndices(TabIndex);
 	if(CurrentTab == TI_Perks && MyKFPRI != none)
 	{
-		CurrentFilterIndex = MyKFPRI.NetPerkIndex;
+		CurrentFilterIndex = GetPerkIndex();
 	}
 	else
 	{

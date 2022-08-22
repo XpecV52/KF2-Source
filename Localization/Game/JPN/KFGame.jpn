@@ -101,7 +101,7 @@ modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI con
 modeList2=""
 difficultyList0="Normal – For beginning players of perk rank 0-5."
 difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
-difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There are even fewer pickups, and you get less dosh."
 difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
 lengthList0=""
 lengthList1=""
@@ -111,6 +111,7 @@ serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (i
 serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
 serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
 serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+serverTypeList4="No preference - Will look for any of the previous selections"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -467,10 +468,10 @@ ItemString="アイテム"
 FiltersString="フィルター"
 MoreItemsString="You require a matching key and crate. You can purchase a key from the in game store."
 FailedToExchangeString="CANNOT OPEN CRATE"
-RecycleString="RECYCLE"
-CraftString="CRAFT"
+RecycleString="リサイクル"
+CraftString="クラフト"
 CraftCosmeticString="CRAFT COSMETIC"
-CraftWeaponString="CRAFT WEAPON SKIN"
+CraftWeaponString="武器スキンのクラフト"
 CraftWeaponStrings[0]="Uncommon\nWeapon Skin"
 CraftWeaponStrings[1]="Rare\nWeapon Skin"
 CraftWeaponStrings[2]="Exceptional\nWeapon Skin"
@@ -479,15 +480,15 @@ CraftCosmeticStrings[0]="Uncommon\nCosmetic"
 CraftCosmeticStrings[1]="Rare\nCosmetic"
 CraftCosmeticStrings[2]="Exceptional\nCosmetic"
 CraftCosmeticStrings[3]="Master Crafted\nCosmetic"
-RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
-RecycleItemString="Recycle Item?"
-ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
-CraftItemString="Confirm Craft Item?"
-FailedToCraftItemString="Failed to Craft Item"
-CraftRequirementString="Insufficient quantity of required crafting materials"
+RecycleWarningString="警告：この操作はやり直しできません。これにより選択したアイテムは失われ、クラフト素材アイテムへ置き換わります。"
+RecycleItemString="アイテムをリサイクルしますか？"
+ConfirmCraftItemString="このアイテムのクラフトには素材を消費し、やり直しできません"
+CraftItemString="本当にアイテムをクラフトしますか？"
+FailedToCraftItemString="アイテムのクラフトに失敗"
+CraftRequirementString="必要なクラフト素材が不足"
 CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
 CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
-RequiresString="Requires: "
+RequiresString="必要："
 PurchaseKeyString="BUY KEY: "
 LookUpOnMarketString="Lookup on Market"
 
@@ -531,6 +532,7 @@ TotalString="合計"
 CheckOutString="チェックアウト"
 
 [KFGFxStoreContainer_Main]
+WeaponSkinsRotationString="Weapon Skins"
 WeaponSkinsString="武器スキン"
 MarketConsumablesString="Market Crates/USBs"
 MarketCosmeticsString="Market Cosmetics"
@@ -1115,30 +1117,30 @@ SkillSlots4[1]=(Title="",Description="")
 WeaponDroppedMessage="所持容量が変化したため %%%% を落とした！"
 
 [KFPerk_Berserker]
-PerkName="Berserker"
+PerkName="バーサーカー"
 
-SkillCatagories[0]="Survival"
-SkillCatagories[1]="Combat"
-SkillCatagories[2]="Close Combat"
-SkillCatagories[3]="Power"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="耐性"
+SkillCatagories[1]="サバイバル"
+SkillCatagories[2]="近接術"
+SkillCatagories[3]="力"
+SkillCatagories[4]="さらなる鍛錬"
 
 
-Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
-Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
-Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
-Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
+Passives[0]=(Title="パーク武器ダメージ",Description="バーサーカーの武器ダメージが 25% 、更にレベル毎に  x%x 増加");
+Passives[1]=(Title="近接攻撃速度",Description="0% 近接攻撃スピードが上昇、レベル毎に x%x 増加");
+Passives[2]=(Title="近接移動速度",Description="近接武器を持っている時 10% 移動が速くなり、更にレベル毎に x%x 増加");
+Passives[3]=(Title="ダメージ耐性",Description="被ダメージを %x% 軽減");
 
-EXPAction1="Dealing Berserker weapon damage"
-EXPAction2="Kill Zeds near a player with a Berserker weapon"
+EXPAction1="バーサーカーの武器でダメージを与える"
+EXPAction2="プレイヤーの近くにいるZEDをパーク武器で殺す"
 
-Fortitude="Dreadnaught"
-FortitudeDescription="Increase total Health by 50%."
+Fortitude="不屈の精神"
+FortitudeDescription="さらなるチャンスを: ヘルスの最大値とスタート時の値が 100% 増加"
 
 Ninja="Skirmisher"
 NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
-Vampire="Vampire"
+Vampire="ヴァンパイア"
 VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
 
 Speed="Butcher"
@@ -1147,51 +1149,51 @@ SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapon
 Resistance="Resistance"
 ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
-Parry="Parry"
-ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
+Parry="パリィ"
+ParryDescription="技と力の融合: 攻撃をパリィすると4秒間、近接攻撃スピードが 15% 、弱攻撃のダメージが 30% 向上する。"
 
-Smash="Smash"
+Smash="スマッシュ"
 SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
  
 Fury="Massacre"
 FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
 Spartan="ZED TIME - Spartan" 
-SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
+SpartanDescription="300を観ただろ: 瞬時に移動し、バーサーカーの近接攻撃スピードが 50% 向上かつパリィで相手をノックダウンさせる。"
 
 Flash="ZED TIME - Berserker Rage"
 FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
 
 [KFPerk_Commando]
-PerkName="Commando"
+PerkName="コマンドー"
 
-SkillCatagories[0]="Tactics"
-SkillCatagories[1]="Advanced Tactics"
-SkillCatagories[2]="Survival"
-SkillCatagories[3]="Weapon Specialist"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="補給"
+SkillCatagories[1]="武器の取り扱い"
+SkillCatagories[2]="認識"
+SkillCatagories[3]="武器の専門家"
+SkillCatagories[4]="さらなる鍛錬"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
-Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
-Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
-Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
-Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
-Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
+Passives[0]=(Title="パーク武器ダメージ",Description="コマンドーの武器ダメージが %x% 増加。");
+Passives[1]=(Title="透明な敵検知",Description="透明な敵検知が %x% 増加");
+Passives[2]=(Title="ヘルスバー検知",Description="ヘルスバー検知が %x% 増加");
+Passives[3]=(Title="ZED TIME 延長",Description="ZED TIME が %x% 持続");
+Passives[4]=(Title="ヘルス増加",Description="ヘルスが %x% 増加");
+Passives[5]=(Title="+ナイトビジョン携帯",Description="フラッシュライトとナイトビジョンゴーグル");
 
-EXPAction1="Dealing Commando weapon damage"
-EXPAction2="Killing Stalkers with Commando weapons"
+EXPAction1="コマンドーの武器でダメージを与える"
+EXPAction2="コマンドーの武器でストーカーを殺す"
 
-TacticalReload="Tactical Reload"
-TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
+TacticalReload="タクティカルリロード"
+TacticalReloadDescription="素早く、クールに。パーク武器のリロード速度がより高速化し、精鋭部隊の隊員のようだ。"
 
-LargeMags="Large Mags"
-LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
+LargeMags="大容量マガジン"
+LargeMagsDescription="もうちょっと頑張れ - コマンドー武器のマガジンサイズが 50% アップグレードされる。"
 
-Backup="Backup"
-BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it! You also increase your weapon switching speed."
+Backup="バックアップ"
+BackupDescription="必要になったら、バックアップのピストルとナイフのダメージが 60% 増加する！"
 
-Impact="Impact"
-ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
+Impact="インパクト"
+ImpactDescription="打つべし！ すべてのコマンドーの武器でZEDをよろめかせる確率が 30% 増加する。"
 
 HealthIncrease="Health Increase"
 HealthIncreaseDescription="Increase total Health and Armor by 25%."
@@ -1205,26 +1207,26 @@ HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more dam
 EatLead="Eat Lead"
 EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
-RapidFire="ZED TIME - Rapid Fire"
-RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
+RapidFire="ZED TIME - 連射"
+RapidFireDescription="スローモーション中、コマンドーの武器のダメージが 3% 増加し、すべての銃の射撃レートが 3 倍になる。"
 
-Professional="ZED TIME - Professional"
-ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
+Professional="ZED TIME - プロフェッショナル"
+ProfessionalDescription="スローモーション中、リロード速度が通常時と同じ速度になり、武器の切り替えが倍速になる！"
 
 [KFPerk_Demolitionist]
-PerkName="Demolitionist"
-EXPAction1="Dealing Demolitionist weapon damage"
-EXPAction2="Killing Fleshpounds with Demolitionist weapons"
+PerkName="デモリッショニスト"
+EXPAction1="デモリッショニストの武器でダメージを与える"
+EXPAction2="デモリッショニストの武器でフレッシュパウンドを殺す"
 
-SkillCatagories[0]="Technique"
-SkillCatagories[1]="Explosives"
-SkillCatagories[2]="Advanced Techniques"
-SkillCatagories[3]="Weapon Techniques"
-SkillCatagories[4]="Advanced Explosives"
+SkillCatagories[0]="技術"
+SkillCatagories[1]="耐性"
+SkillCatagories[2]="高等技術"
+SkillCatagories[3]="武器技術"
+SkillCatagories[4]="高性能爆弾"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
-Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
-Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[0]=(Title="パーク武器ダメージ",Description="パーク武器のダメージが %x% 増加");
+Passives[1]=(Title="爆発ダメージ軽減",Description="爆発ダメージが %x% 軽減");
+Passives[2]=(Title="追加の爆発物",Description="スタート時の所有爆発物が %x% 増加");
 Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
 Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
 
@@ -1240,7 +1242,7 @@ DirectHitDescription="Do 25% more damage on a direct hit with your explosive Dem
 Ammo="Extra Rounds"
 AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-SirenResistance="Sonic Resistant Rounds"
+SirenResistance="サイレン耐性"
 SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
 
 AreaOfEffect="Fragmentation Rounds"
@@ -1249,11 +1251,11 @@ AreaOfEffectDescription="The area of effect for your explosive Demolitionist wea
 CriticalHit="Armor Piercing Rounds"
 CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-ConcussiveForce="Concussive Rounds"
-ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
+ConcussiveForce="ZED TIME - 脳震盪"
+ConcussiveForceDescription="あっと言わせてやるぞ: ZED TIME 中の爆発にZEDをノックダウンさせる力を与える。"
 
-Nuke="ZED TIME - Destroyer of Worlds"
-NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+Nuke="ZED TIME - 核"
+NukeDescription="核爆弾: ZED TIME 中に爆発を起こすと広範囲に放射線ダメージを放出し、ZED共に放射線障害をもたらす。"
 
 Professional="ZED TIME - Mad Bomber"
 ProfessionalDescription="Shoot and reload in near real time."
@@ -1369,7 +1371,7 @@ SkillCatagories[4]="Master Techniques"
 Passives[0]=(Title="パーク武器ダメージ",Description="パーク武器のダメージが %x% 増加");
 Passives[1]=(Title="銃弾耐性",Description="銃弾ダメージを %x% 軽減");
 Passives[2]=(Title="移動スピード",Description="移動スピードが %x% 増加");
-Passives[3]=(Title="Recoil",Description="%x% less recoil");
+Passives[3]=(Title="リコイル",Description="リコイルを %x% 軽減");
 
 ShootnMove="Shoot'n'Scoot"
 ShootnMoveDescription="Don't hang around to be eaten: Move 200% faster in iron sights with reduced weapon bob when using Gunslinger weapons."
@@ -1554,12 +1556,12 @@ ObjectiveStatusTitle="30%のキャッシュバックを獲得"
 ObjectiveTimeString="秒の残り時間"
 
 [KFGameViewportClient]
-RandomLoadingStrings[0]="The fleshpound is vulnerable to explosives but resistant to bullets."
-RandomLoadingStrings[1]="The scrake is resistant to explosives but vulnerable to bullets."
-RandomLoadingStrings[2]="You can only carry a limited amount of weight. Sell weaker weapons to make room for better ones."
-RandomLoadingStrings[3]="Watch the vents and sewers; Zeds can come from anywhere."
-RandomLoadingStrings[4]="Keep an eye out for gear and ammo boxes scattered throughout the map. They may save you if you get in a pinch."
-RandomLoadingStrings[5]="The bloat's body can take a lot of hits. Aim for its head."
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
 RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
 RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
 RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
@@ -1674,7 +1676,7 @@ LeftCtrl="左 Ctrl"
 RightCtrl="右 Ctrl"
 LeftAlt="左 Alt"
 RightAlt="右 Alt"
-BackSlash="\"
+BackSlash="\\ "
 Slash="/"
 RightBracket="]"
 LeftBracket="["

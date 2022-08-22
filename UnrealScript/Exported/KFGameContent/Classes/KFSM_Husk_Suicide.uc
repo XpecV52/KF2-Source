@@ -6,17 +6,10 @@
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
-
 class KFSM_Husk_Suicide extends KFSM_PlaySingleAnim;
 
-/** If something goes wrong, this timer will eventually force the suicide regardless of proximity to goal */
-// function SuicideTimeout()
-// {
-// 	if( AIOwner != none && !AIOwner.GetActiveCommand().IsA('AICommand_Husk_Suicide') )
-// 	{
-// 		class'AICommand_Husk_Suicide'.static.Suicide( KFAIController_ZedHusk(AIOwner) );
-// 	}
-// }
+/** If TRUE, play the explosion (Husk was not killed before animation ended) */
+var protected bool bSuicideAnimFinished;
 
 protected function bool InternalCanDoSpecialMove()
 {
@@ -38,11 +31,26 @@ protected function bool InternalCanDoSpecialMove()
 	return super.InternalCanDoSpecialMove();
 }
 
+function SpecialMoveStarted(bool bForced, Name PrevMove)
+{
+	bSuicideAnimFinished = false;
+
+	Super.SpecialMoveStarted(bForced, PrevMove);
+}
+
+/**  When the animation finishes playing end this move */
+function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
+{
+	bSuicideAnimFinished = true;
+	
+	super.AnimEndNotify( SeqNode, PlayedTime, ExcessTime );
+}
+
 simulated function SpecialMoveEnded( name PrevMove, name NextMove )
 {
 	if (KFPOwner.bLogSpecialMove) LogInternal(self$" SpecialMoveEnded");
 
-	if ( !bPendingStopFire )
+	if ( bSuicideAnimFinished && !bPendingStopFire )
 	{
 		KFPawn_ZedHusk(PawnOwner).TriggerExplosion();
 	}

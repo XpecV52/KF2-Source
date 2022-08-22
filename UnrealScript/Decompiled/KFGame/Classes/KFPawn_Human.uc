@@ -1192,10 +1192,10 @@ defaultproperties
     object end
     // Reference: KFFlashlightAttachment'Default__KFPawn_Human.FlashLight'
     FlashLightTemplate=FlashLight
-    BatteryDrainRate=2
-    BatteryRechargeRate=4
+    BatteryDrainRate=0.8
+    BatteryRechargeRate=6
     BatteryCharge=100
-    NVGBatteryDrainRate=4
+    NVGBatteryDrainRate=0.8
     HealthRegenRate=0.1
     HealerRewardScaler=60
     ArmorAbsorbModifier_High=0.75

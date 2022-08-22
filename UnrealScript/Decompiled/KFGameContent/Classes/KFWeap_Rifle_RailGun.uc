@@ -609,7 +609,7 @@ defaultproperties
     BlueIconColor=(R=0.25,G=0.6,B=1,A=1)
     LockRange=200000
     LockAcquireTime=0.35
-    LockAcquireTime_Large=1.1
+    LockAcquireTime_Large=0.6
     LockAcquireTime_Boss=1.1
     LockAcquireTime_Versus=1.1
     LockTolerance=0.2

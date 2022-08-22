@@ -287,7 +287,7 @@ var float								TimeUntilNextSpawn;
 /** Total num AI spawned in this wave */
 var	int									WaveTotalAI;
 /** Maximum number of AI that can be active at one time */
-var const byte							MaxMonsters;
+var byte							MaxMonsters;
 /** Maximum number of AI that can be active at one time in solo, by difficulty */
 var() byte							    MaxMonstersSolo[4];
 

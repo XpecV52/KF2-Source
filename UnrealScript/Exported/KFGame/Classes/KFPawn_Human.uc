@@ -1784,10 +1784,10 @@ defaultproperties
    PainSoundChanceOnHit=1.000000
    PainSoundCoolDown=1.000000
    FlashLightTemplate=KFFlashlightAttachment'KFGame.Default__KFPawn_Human:FlashLight_0'
-   BatteryDrainRate=2.000000
-   BatteryRechargeRate=4.000000
+   BatteryDrainRate=0.800000
+   BatteryRechargeRate=6.000000
    BatteryCharge=100.000000
-   NVGBatteryDrainRate=4.000000
+   NVGBatteryDrainRate=0.800000
    HealthRegenRate=0.100000
    HealerRewardScaler=60.000000
    ArmorAbsorbModifier_High=0.750000

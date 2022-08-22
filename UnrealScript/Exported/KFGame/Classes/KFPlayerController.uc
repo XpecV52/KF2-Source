@@ -457,7 +457,7 @@ var array<PlayerAvatarPS4> AvatarListPS4;
 
 var array<PerkInfo>		PerkList;
 /* Currently selected (active) perk */
-var KFPerk    			CurrentPerk;
+var repnotify KFPerk   	CurrentPerk;
 /** These are updated by the client and exist only on the server. They are used for updating our perk between waves */
 var class<KFPerk>		ServPendingPerkClass;
 var int					ServPendingPerkBuild;
@@ -1079,6 +1079,11 @@ simulated event ReplicatedEvent( name VarName )
 	{
 		SubmitPostWaveStats();
 	}
+	if ( VarName == 'CurrentPerk' )
+	{
+		//force trader to update if it is open
+		RecievedNewPerkClass();
+	}
 }
 
 simulated event ReceivedPlayer()
@@ -1171,6 +1176,10 @@ reliable client function ClientRestart(Pawn NewPawn)
 
 	// Upon spawning close all menus
 	MyGFxManager.CloseMenus();
+	if(MyGFxHUD != none && MyGFxHUD.SpectatorInfoWidget != none)
+	{
+		MyGFxHUD.SpectatorInfoWidget.SetVisible(!PlayerReplicationInfo.bOnlySpectator);
+	}
 
 	// Clear out persistant dead bodies when players respawn
 	if( WorldInfo.MyGoreEffectManager != none )
@@ -2013,6 +2022,15 @@ function PlayRMEffect( AkEvent RhythmMethodSound, name RhytmMethodRTPCName, int 
 {
 	SetRTPCValue( RhytmMethodRTPCName, Level, true );
 	PlayAKEvent( RhythmMethodSound );
+}
+
+function RecievedNewPerkClass()
+{
+	//refresh the needed UI for online.
+	if(MyGfxManager != none && MyGfxManager.TraderMenu != none)
+	{
+		MyGfxManager.TraderMenu.UpdatePlayerInfo();
+	}
 }
 
 /*********************************************************************************************

@@ -755,6 +755,18 @@ function StartWave()
 	SetTimer( 5.f, false, nameof(PlayWaveStartDialog) );
 }
 
+/** Called to reset all the types of pickups */
+function ResetAllPickups()
+{
+ 	// for the boss wave request all ammo pickups
+ 	if ( WaveNum == WaveMax )
+ 	{
+ 		NumAmmoPickups = AmmoPickups.Length;
+ 	}
+
+ 	Super.ResetAllPickups();
+}
+
 /** Overridden to scale the number of active pickups by wave */
 function ResetPickups( array<KFPickupFactory> PickupList, int NumPickups )
 {

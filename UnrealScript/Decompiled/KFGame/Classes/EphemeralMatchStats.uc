@@ -441,6 +441,11 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
     bLargeZedKill = bKilled && TargetPawn.IsLargeZed();
     WeaponIndex = WeaponDamageList.Find('WeaponDef', WeaponDef;
     Damage = ((TargetPawn.Health > 0) ? Damage : TargetPawn.Health + Damage);
+    if(Damage < 0)
+    {
+        Damage = 0;
+        return;
+    }
     if(Outer.PlayerReplicationInfo.GetTeamNum() == 255)
     {
         RecordIntStat(2, Damage);

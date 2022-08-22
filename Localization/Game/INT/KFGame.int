@@ -1308,7 +1308,7 @@ SedativeDescription="And time stands still: Medic darts and grenades release a Z
 
 
 EXPAction1="Dealing Medic weapon damage"
-EXPAction2="Healing team-mates"
+EXPAction2="Healing teammates"
 
 [KFPerk_Firebug]
 PerkName="Firebug"
@@ -1328,7 +1328,7 @@ Passives[3]=(Title="Immunity to your own Fire",Description="%x% resistance to pe
 Passives[4]=(Title="Starting Ammo",Description="%x% more starting ammo");
 
 FullyStocked="Well Stocked"
-FullyStockedDescription="What it says on the can: Firebug weapons start at 60% ammo capacity at the Trader."
+FullyStockedDescription="What it says on the can: Firebug weapons start at 100% ammo capacity at the Trader."
 
 FlarotovCoctail="Flarotov Cocktail"
 FlarotovCoctailDescription="It's in the name: Shove a flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds."

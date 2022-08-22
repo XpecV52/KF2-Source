@@ -22,7 +22,6 @@ var class<KFPerk> LastPerkClass;
 function InitializeHUD()
 {
     LocalizeText();
-    
 }
 
 function LocalizeText()
@@ -56,9 +55,14 @@ function SetSpectatedKFPRI( KFPlayerReplicationInfo TempKFPRI )
 function UpdateSpectateeInfo(optional bool bForceUpdate)
 {
     local byte CurrentPerkLevel;
-    if( SpectatedKFPRI == none || SpectatedKFPRI.CurrentPerkClass == none )
-    {  
+    if( SpectatedKFPRI == none || SpectatedKFPRI == GetPC().PlayerReplicationInfo || GetPC().PlayerCamera.CameraStyle == 'Boss' || SpectatedKFPRI.CurrentPerkClass == none)
+    {
+        SetVisible(false);  
         return;
+    }
+    else
+    {
+        SetVisible(true);
     }
 
     CurrentPerkLevel = SpectatedKFPRI.GetActivePerkLevel();

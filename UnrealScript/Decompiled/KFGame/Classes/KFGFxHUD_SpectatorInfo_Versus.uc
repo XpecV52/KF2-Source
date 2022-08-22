@@ -11,8 +11,9 @@ function UpdateSpectateeInfo(optional bool bForceUpdate)
 {
     local byte CurrentPerkLevel;
 
-    if(SpectatedKFPRI == none)
+    if(((SpectatedKFPRI == none) || SpectatedKFPRI == Outer.GetPC().PlayerReplicationInfo) || Outer.GetPC().PlayerCamera.CameraStyle == 'Boss')
     {
+        SetVisible(false);
         return;
     }
     if(SpectatedKFPRI.GetTeamNum() != 255)

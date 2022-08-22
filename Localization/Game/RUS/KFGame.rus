@@ -36,7 +36,7 @@ DisbandPartyString="РАСПУСТИТЬ ГРУППУ"
 LeaveCurrentMenuString="Выйти из текущего меню?"
 ZedString="ZED"
 HumanString="SURVIVOR"
-SpectatorString="SPECTATOR"
+SpectatorString="ЗРИТЕЛЬ"
 TeamString="TEAM"
 AllString="ALL"
 
@@ -101,7 +101,7 @@ modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI con
 modeList2=""
 difficultyList0="Normal – For beginning players of perk rank 0-5."
 difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
-difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There are even fewer pickups, and you get less dosh."
 difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
 lengthList0=""
 lengthList1=""
@@ -111,6 +111,7 @@ serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (i
 serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
 serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
 serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+serverTypeList4="No preference - Will look for any of the previous selections"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -531,6 +532,7 @@ TotalString="Всего"
 CheckOutString="Рассчитать стоимость"
 
 [KFGFxStoreContainer_Main]
+WeaponSkinsRotationString="Weapon Skins"
 WeaponSkinsString="Раскраски оружия"
 MarketConsumablesString="Market Crates/USBs"
 MarketCosmeticsString="Market Cosmetics"
@@ -1115,31 +1117,31 @@ SkillSlots4[1]=(Title="",Description="")
 WeaponDroppedMessage="Вы сбросили%%%% из-за изменения максимального веса!"
 
 [KFPerk_Berserker]
-PerkName="Berserker"
+PerkName="Берсерк"
 
-SkillCatagories[0]="Survival"
-SkillCatagories[1]="Combat"
-SkillCatagories[2]="Close Combat"
-SkillCatagories[3]="Power"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="Сопротивление"
+SkillCatagories[1]="Выживание"
+SkillCatagories[2]="Ближний бой"
+SkillCatagories[3]="Мощь"
+SkillCatagories[4]="Повышение квалификации"
 
 
-Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
-Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
-Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
-Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
+Passives[0]=(Title="Урон от оружия Перков",Description="Урон от оружия Берсеркера повышается на 25% и на %x% с каждым уровнем");
+Passives[1]=(Title="Скорость рукопашной атаки",Description="Скорость атаки ближнего боя повышается на %x% с каждым уровнем");
+Passives[2]=(Title="Движение",Description="Скорость движения с оружием ближнего боя повышается на 10% и на %x% с каждым уровнем");
+Passives[3]=(Title="Сопротивление урону",Description="Входящий урон понижен на %x%");
 
-EXPAction1="Dealing Berserker weapon damage"
-EXPAction2="Kill Zeds near a player with a Berserker weapon"
+EXPAction1="Нанесение урона оружием Берсеркера"
+EXPAction2="Убийство Зедов рядом с игроком оружием Перков"
 
-Fortitude="Dreadnaught"
-FortitudeDescription="Increase total Health by 50%."
+Fortitude="Стойкость"
+FortitudeDescription="Повысьте свои шансы."
 
 Ninja="Skirmisher"
 NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
-Vampire="Vampire"
-VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
+Vampire="Вампир"
+VampireDescription="Сосунки."
 
 Speed="Butcher"
 SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
@@ -1147,51 +1149,51 @@ SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapon
 Resistance="Resistance"
 ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
-Parry="Parry"
-ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
+Parry="Отражение"
+ParryDescription="Навык и сила в одном флаконе."
 
-Smash="Smash"
-SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
+Smash="Сокрушительный удар"
+SmashDescription="Грубая сила - лучшее решение."
  
 Fury="Massacre"
 FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ZED TIME - Spartan" 
-SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
+Spartan="ЗЕД ТАЙМ по-спартански"
+SpartanDescription="300 спартанцев? Уже проходили."
 
 Flash="ZED TIME - Berserker Rage"
 FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
 
 [KFPerk_Commando]
-PerkName="Commando"
+PerkName="Штурмовик"
 
-SkillCatagories[0]="Tactics"
-SkillCatagories[1]="Advanced Tactics"
-SkillCatagories[2]="Survival"
-SkillCatagories[3]="Weapon Specialist"
-SkillCatagories[4]="Advanced Training"
+SkillCatagories[0]="Осознание"
+SkillCatagories[1]="Поставка"
+SkillCatagories[2]="Обращение с оружием"
+SkillCatagories[3]="Специалист по оружию"
+SkillCatagories[4]="Повышение квалификации"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
-Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
-Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
-Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
-Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
-Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
+Passives[0]=(Title="Урон от оружия Перков",Description="Урон от оружия Командос увеличивается на %x%.");
+Passives[1]=(Title="Нахождение замаскированного врага",Description="Нахождение замаскированного врага увеличено на %x%");
+Passives[2]=(Title="Нахождение шкалы здоровья",Description="Нахождение шкалы здоровья увеличено на %x%");
+Passives[3]=(Title="Продление Зед Тайм",Description="Зед Тайм длится %x%");
+Passives[4]=(Title="Увеличение здоровья",Description="Здоровье увеличено на %x%");
+Passives[5]=(Title="Ночное видение",Description="Фонарики и прибор ночного видения");
 
-EXPAction1="Dealing Commando weapon damage"
-EXPAction2="Killing Stalkers with Commando weapons"
+EXPAction1="Нанесение урона оружием Командос"
+EXPAction2="Убийство Сталкеров при помощи оружия Командос"
 
-TacticalReload="Tactical Reload"
-TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
+TacticalReload="Тактическая перезарядка"
+TacticalReloadDescription="Не дергайся. Не медли. Перезаряжай оружие перков быстрее - и при этом не теряй стиля."
 
-LargeMags="Large Mags"
-LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
+LargeMags="Большие магазины"
+LargeMagsDescription="Посерьезней надо. Повышение емкости магазина оружия Командос на 50%."
 
-Backup="Backup"
-BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it! You also increase your weapon switching speed."
+Backup="Про запас"
+BackupDescription="Повысьте урон пистолета и ножа на 60% - когда-нибудь обязательно понадобится! "
 
-Impact="Impact"
-ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
+Impact="Влияние"
+ImpactDescription="Бей сильнее, пусть кувыркаются! Вероятность спотыкания Зедов после нанесения урона орудием оружия Командос увеличивается на 30%."
 
 HealthIncrease="Health Increase"
 HealthIncreaseDescription="Increase total Health and Armor by 25%."
@@ -1205,26 +1207,26 @@ HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more dam
 EatLead="Eat Lead"
 EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
-RapidFire="ZED TIME - Rapid Fire"
-RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
+RapidFire="ЗЕД ТАЙМ - Беглый огонь"
+RapidFireDescription="Когда время замедляется, врагам перед вами не устоять. Наносите на 3% больше урона оружием Командос и стреляйте в 3 раза быстрее из всего оружия."
 
-Professional="ZED TIME - Professional"
-ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
+Professional="ЗЕД ТАЙМ - Профессионал"
+ProfessionalDescription="Мир замедляется, а вы - нет. Перезаряжайте оружие на полной скорости - переключайте оружие в два раза быстрее!"
 
 [KFPerk_Demolitionist]
-PerkName="Demolitionist"
-EXPAction1="Dealing Demolitionist weapon damage"
-EXPAction2="Killing Fleshpounds with Demolitionist weapons"
+PerkName="Подрывник"
+EXPAction1="Нанесение урона оружием Подрывника"
+EXPAction2="Убийство Отбивальщиков оружием Подрывника"
 
-SkillCatagories[0]="Technique"
-SkillCatagories[1]="Explosives"
-SkillCatagories[2]="Advanced Techniques"
-SkillCatagories[3]="Weapon Techniques"
-SkillCatagories[4]="Advanced Explosives"
+SkillCatagories[0]="Прием"
+SkillCatagories[1]="Сопротивление"
+SkillCatagories[2]="Расширенные приемы"
+SkillCatagories[3]="Приемы с оружием"
+SkillCatagories[4]="Улучшенное владение взрывчаткой"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
-Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
-Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[0]=(Title="Урон от оружия Перков",Description="Урон от оружия Перков повышается на %x%");
+Passives[1]=(Title="Сопротивление взрывам",Description="Сопротивление урону от взрывов %x%");
+Passives[2]=(Title="Расширенный комплект взрывных боеприпасов",Description="Увеличение начального количества взрывных боеприпасов %x%");
 Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
 Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
 
@@ -1240,8 +1242,8 @@ DirectHitDescription="Do 25% more damage on a direct hit with your explosive Dem
 Ammo="Extra Rounds"
 AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-SirenResistance="Sonic Resistant Rounds"
-SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
+SirenResistance="Сопротивление Сиренам"
+SirenResistanceDescription="Заткни помойку, Зед!"
 
 AreaOfEffect="Fragmentation Rounds"
 AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
@@ -1249,11 +1251,11 @@ AreaOfEffectDescription="The area of effect for your explosive Demolitionist wea
 CriticalHit="Armor Piercing Rounds"
 CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-ConcussiveForce="Concussive Rounds"
-ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
+ConcussiveForce="ЗЕД ТАЙМ - оглушительная мощь"
+ConcussiveForceDescription="Пускай полетают!"
 
-Nuke="ZED TIME - Destroyer of Worlds"
-NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+Nuke="ЗЕД ТАЙМ - ядерная мощь"
+NukeDescription="Дюк Нюкем во плоти."
 
 Professional="ZED TIME - Mad Bomber"
 ProfessionalDescription="Shoot and reload in near real time."
@@ -1554,12 +1556,12 @@ ObjectiveStatusTitle="ПОЛУЧИ 30% НАЛИЧНЫХ ОБРАТНО"
 ObjectiveTimeString="с ОСТАЛОСЬ"
 
 [KFGameViewportClient]
-RandomLoadingStrings[0]="The fleshpound is vulnerable to explosives but resistant to bullets."
-RandomLoadingStrings[1]="The scrake is resistant to explosives but vulnerable to bullets."
-RandomLoadingStrings[2]="You can only carry a limited amount of weight. Sell weaker weapons to make room for better ones."
-RandomLoadingStrings[3]="Watch the vents and sewers; Zeds can come from anywhere."
-RandomLoadingStrings[4]="Keep an eye out for gear and ammo boxes scattered throughout the map. They may save you if you get in a pinch."
-RandomLoadingStrings[5]="The bloat's body can take a lot of hits. Aim for its head."
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
 RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
 RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
 RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
@@ -1674,7 +1676,7 @@ LeftCtrl="Левый Ctrl"
 RightCtrl="Правый Ctrl"
 LeftAlt="Левый Alt"
 RightAlt="Правый Alt"
-BackSlash="\"
+BackSlash="\\ "
 Slash="/"
 RightBracket="]"
 LeftBracket="["

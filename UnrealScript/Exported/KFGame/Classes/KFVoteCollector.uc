@@ -104,7 +104,7 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
 	}
 
 	// Too early in the match to initiate a vote
-	if(WorldInfo.GRI.ElapsedTime < ActiveTimeUntilVoteEnabled)
+	/*if(WorldInfo.GRI.ElapsedTime < ActiveTimeUntilVoteEnabled)  //YAY!  We get to remove this!
 	{
 		if(WorldInfo.GRI.bMatchHasBegun)
 		{
@@ -116,7 +116,7 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
 		}
 		
 		return;
-	}
+	}*/
 
 	// Can't kick admins
 	if(KFGI.AccessControl != none)

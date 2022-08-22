@@ -439,6 +439,12 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
 	// Set actual damage
 	Damage = TargetPawn.Health > 0 ? Damage : TargetPawn.Health + Damage;
 
+	if(Damage < 0)
+	{
+		Damage = 0;
+		return;
+	}
+
 	// Player zed
 	if( PlayerReplicationInfo.GetTeamNum() == 255 )
 	{

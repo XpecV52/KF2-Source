@@ -340,15 +340,13 @@ function TickHud(float DeltaTime)
     {
         BossHealthBar.TickHud( DeltaTime );
     }
-        
-    if( bIsSpectating )
+
+    if( SpectatorInfoWidget != none )
     {
-        if( SpectatorInfoWidget != none )
-        {
-            SpectatorInfoWidget.TickHud( DeltaTime );
-        }
+        SpectatorInfoWidget.TickHud( DeltaTime );
     }
-    else
+        
+    if( !bIsSpectating )
     {
         // Update Health / Armor
         if ( PlayerStatusContainer != none )

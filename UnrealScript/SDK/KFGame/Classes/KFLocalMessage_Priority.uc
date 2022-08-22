@@ -76,7 +76,7 @@ static function ClientReceive(
 	switch( Switch )
 	{
 		case GMT_WaveStart:
-			if(!P.PlayerReplicationInfo.bOnlySpectator)
+			if(!P.PlayerReplicationInfo.bOnlySpectator && P.PlayerReplicationInfo.bReadyToPlay)
 			{
 				CloseMenus();
 			}	

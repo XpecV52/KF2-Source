@@ -99,18 +99,6 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
         KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 16);
         return;
     }
-    if(Outer.WorldInfo.GRI.ElapsedTime < ActiveTimeUntilVoteEnabled)
-    {
-        if(Outer.WorldInfo.GRI.bMatchHasBegun)
-        {
-            KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 14);            
-        }
-        else
-        {
-            KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 15);
-        }
-        return;
-    }
     if(KFGI.AccessControl != none)
     {
         if(KFGI.AccessControl.IsAdmin(KickeePC))
@@ -133,13 +121,13 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
         bIsVoteInProgress = true;
         Outer.GetKFPRIArray(PRIs);
         I = 0;
-        J0x4A9:
+        J0x3A8:
 
         if(I < PRIs.Length)
         {
             PRIs[I].ShowKickVote(PRI_Kickee, VoteTime, !(PRIs[I] == PRI_Kicker) || PRIs[I] == PRI_Kickee);
             ++ I;
-            goto J0x4A9;
+            goto J0x3A8;
         }
         KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 5, CurrentVote.PlayerPRI);
         Outer.SetTimer(float(VoteTime), false, 'ConcludeVoteKick', self);

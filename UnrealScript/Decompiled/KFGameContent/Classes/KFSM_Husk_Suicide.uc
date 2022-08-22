@@ -7,6 +7,8 @@
  *******************************************************************************/
 class KFSM_Husk_Suicide extends KFSM_PlaySingleAnim;
 
+var protected bool bSuicideAnimFinished;
+
 protected function bool InternalCanDoSpecialMove()
 {
     if(KFPOwner.IsHumanControlled())
@@ -24,13 +26,25 @@ protected function bool InternalCanDoSpecialMove()
     return super(KFSpecialMove).InternalCanDoSpecialMove();
 }
 
+function SpecialMoveStarted(bool bForced, name PrevMove)
+{
+    bSuicideAnimFinished = false;
+    super.SpecialMoveStarted(bForced, PrevMove);
+}
+
+function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
+{
+    bSuicideAnimFinished = true;
+    super.AnimEndNotify(SeqNode, PlayedTime, ExcessTime);
+}
+
 simulated function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     if(KFPOwner.bLogSpecialMove)
     {
         LogInternal(string(self) $ " SpecialMoveEnded");
     }
-    if(!bPendingStopFire)
+    if(bSuicideAnimFinished && !bPendingStopFire)
     {
         KFPawn_ZedHusk(PawnOwner).TriggerExplosion();
     }

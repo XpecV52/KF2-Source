@@ -3,8 +3,9 @@ class KFGFxHUD_SpectatorInfo_Versus extends KFGFxHUD_SpectatorInfo;
 function UpdateSpectateeInfo(optional bool bForceUpdate)
 {
     local byte CurrentPerkLevel;
-    if( SpectatedKFPRI == none )
-    {  
+    if( SpectatedKFPRI == none || SpectatedKFPRI == GetPC().PlayerReplicationInfo || GetPC().PlayerCamera.CameraStyle == 'Boss')
+    {
+        SetVisible(false);  
         return;
     }
 

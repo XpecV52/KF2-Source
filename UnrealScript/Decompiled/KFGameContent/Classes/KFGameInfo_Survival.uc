@@ -666,6 +666,15 @@ function StartWave()
     SetTimer(5, false, 'PlayWaveStartDialog');
 }
 
+function ResetAllPickups()
+{
+    if(WaveNum == WaveMax)
+    {
+        NumAmmoPickups = byte(AmmoPickups.Length);
+    }
+    super.ResetAllPickups();
+}
+
 function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
 {
     NumPickups *= (float(WaveNum) / float(WaveMax));

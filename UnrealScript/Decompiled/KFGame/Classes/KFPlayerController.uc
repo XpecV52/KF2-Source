@@ -209,7 +209,7 @@ var transient KFPlayerController.EGameConductorDebugMode CurrentGameConductorDeb
 var array<PlayerSteamAvatar> AvatarList;
 var array<PlayerAvatarPS4> AvatarListPS4;
 var array<PerkInfo> PerkList;
-var KFPerk CurrentPerk;
+var repnotify KFPerk CurrentPerk;
 var class<KFPerk> ServPendingPerkClass;
 var int ServPendingPerkBuild;
 var int ServPendingPerkLevel;
@@ -452,6 +452,10 @@ simulated event ReplicatedEvent(name VarName)
     {
         SubmitPostWaveStats();
     }
+    if(VarName == 'CurrentPerk')
+    {
+        RecievedNewPerkClass();
+    }
 }
 
 simulated event ReceivedPlayer()
@@ -512,6 +516,10 @@ reliable client simulated function ClientRestart(Pawn NewPawn)
     FixFOV();
     SetRTPCValue('GRENADEFX', 0, true);
     MyGFxManager.CloseMenus();
+    if((MyGFxHUD != none) && MyGFxHUD.SpectatorInfoWidget != none)
+    {
+        MyGFxHUD.SpectatorInfoWidget.SetVisible(!PlayerReplicationInfo.bOnlySpectator);
+    }
     if(WorldInfo.MyGoreEffectManager != none)
     {
         KFGoreManager(WorldInfo.MyGoreEffectManager).ResetPersistantGore(true);
@@ -1206,6 +1214,14 @@ function PlayRMEffect(AkEvent RhythmMethodSound, name RhytmMethodRTPCName, int L
 {
     SetRTPCValue(RhytmMethodRTPCName, float(Level), true);
     PlayAkEvent(RhythmMethodSound);
+}
+
+function RecievedNewPerkClass()
+{
+    if((MyGFxManager != none) && MyGFxManager.TraderMenu != none)
+    {
+        MyGFxManager.TraderMenu.UpdatePlayerInfo();
+    }
 }
 
 // Export UKFPlayerController::execSetViewTarget(FFrame&, void* const)

@@ -67,7 +67,7 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
     switch(Switch)
     {
         case 0:
-            if(!P.PlayerReplicationInfo.bOnlySpectator)
+            if(!P.PlayerReplicationInfo.bOnlySpectator && P.PlayerReplicationInfo.bReadyToPlay)
             {
                 CloseMenus();
             }
