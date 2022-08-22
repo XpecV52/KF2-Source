@@ -10,6 +10,7 @@
 *.upkg       text eol=lf working-tree-encoding=utf-8
 
 *.chn        text eol=lf working-tree-encoding=utf-16le-bom
+*.cht        text eol=lf working-tree-encoding=utf-16le-bom
 *.cze        text eol=lf working-tree-encoding=utf-16le-bom
 *.dan        text eol=lf working-tree-encoding=utf-16le-bom
 *.deu        text eol=lf working-tree-encoding=utf-16le-bom
