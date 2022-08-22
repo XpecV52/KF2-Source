@@ -153,7 +153,7 @@ event NotifyReachedBy( Pawn P )
 {
 	if( P.Controller != none && KFAIController(P.Controller) != none )
 	{
-		if( KFAIController(P.Controller)!= None ) { KFAIController(P.Controller).AILog_Internal(GetFuncName()$" by "$P,'PathWarning'); };
+		if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFAIController(P.Controller)!= None ) { KFAIController(P.Controller).AILog_Internal(GetFuncName()$" by "$P,'PathWarning'); };
 	}
 }
 

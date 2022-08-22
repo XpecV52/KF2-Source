@@ -69,7 +69,7 @@ var vector	OldFloor;
 	best nearby navigation point */
 event FailedToFindAnchor()
 {
-	AILog_Internal("Failed to Find Anchor! Phys: "$MyKFPawn.GetPhysicsName(),'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Failed to Find Anchor! Phys: "$MyKFPawn.GetPhysicsName(),'PathWarning',);};
 	FailedToFindAnchorCount++;
 	if( !IsTimerActive(nameof(Timer_ResetFailedToFindAnchorCount)) )
 	{

@@ -423,7 +423,7 @@ var KFWeaponAttachment WeaponAttachment;
 var export editinline KFSkeletalMeshComponent ArmsMesh;
 var name WeaponAttachmentSocket;
 var KFWeapon MyKFWeapon;
-var float LastWeaponFireTime;
+var transient float LastWeaponFireTime;
 var transient array<AnimNodeAimOffset> AimOffsetNodes;
 var() transient array<AnimNodeSlot> BodyStanceNodes;
 /** List of RB bone names which should be UnFixed when playing a Physics Body Impact. */
@@ -712,22 +712,18 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
         if(Mesh.MatchRefBone(HeadBoneName) == -1)
         {
             WarnInternal("CharacterInfo HeadBone is invalid for" @ string(self));
-            ClientMessage("CharacterInfo HeadBone is invalid for" @ string(self));
         }
         if(Mesh.MatchRefBone(LeftFootBoneName) == -1)
         {
             WarnInternal("CharacterInfo LeftFootBone is invalid for" @ string(self));
-            ClientMessage("CharacterInfo LeftFootBone is invalid for" @ string(self));
         }
         if(Mesh.MatchRefBone(RightFootBoneName) == -1)
         {
             WarnInternal("CharacterInfo RightFootBone is invalid for" @ string(self));
-            ClientMessage("CharacterInfo RightFootBone is invalid for" @ string(self));
         }
         if(Mesh.MatchRefBone(TorsoBoneName) == -1)
         {
             WarnInternal("CharacterInfo TorsoBone is invalid for" @ string(self));
-            ClientMessage("CharacterInfo TorsoBone is invalid for" @ string(self));
         }
     }
     if(CharacterArch != none)
@@ -900,9 +896,8 @@ private final function SmoothEyeHeight(float DeltaTime)
 
 private final function UpdateWalkBob(float DeltaTime)
 {
-    local float Speed2D, OldBobTime;
+    local float Speed2D;
     local Vector X, Y, Z;
-    local int M, N;
 
     if(bJustLanded || !bUpdateEyeheight)
     {
@@ -911,20 +906,19 @@ private final function UpdateWalkBob(float DeltaTime)
     }
     else
     {
-        if(Velocity.Z > float(0))
+        if(Velocity.Z > 0)
         {
             JumpBob = FMax(-1.5, JumpBob - ((0.03 * DeltaTime) * FMin(Velocity.Z, 300)));            
         }
         else
         {
-            JumpBob *= (float(1) - FMin(1, 8 * DeltaTime));
+            JumpBob *= (1 - FMin(1, 8 * DeltaTime));
         }
-        OldBobTime = BobTime;
         if(Physics == 1)
         {
             GetAxes(Rotation, X, Y, Z);
-            Speed2D = VSize(Velocity);
-            if(Speed2D < float(10))
+            Speed2D = VSize2D(Velocity);
+            if(Speed2D < 10)
             {
                 BobTime += (0.2 * DeltaTime);                
             }
@@ -933,9 +927,9 @@ private final function UpdateWalkBob(float DeltaTime)
                 BobTime += (DeltaTime * (0.3 + ((0.7 * Speed2D) / GroundSpeed)));
             }
             WalkBob = ((Y * Bob) * Speed2D) * Sin(8 * BobTime);
-            AppliedBob = AppliedBob * (float(1) - FMin(1, 16 * DeltaTime));
+            AppliedBob = AppliedBob * (1 - FMin(1, 16 * DeltaTime));
             WalkBob.Z = AppliedBob;
-            if(Speed2D > float(10))
+            if(Speed2D > 10)
             {
                 WalkBob.Z = WalkBob.Z + (((0.75 * Bob) * Speed2D) * Sin(16 * BobTime));
             }            
@@ -946,22 +940,14 @@ private final function UpdateWalkBob(float DeltaTime)
             {
                 GetAxes(Rotation, X, Y, Z);
                 BobTime += DeltaTime;
-                Speed2D = Sqrt((Velocity.X * Velocity.X) + (Velocity.Y * Velocity.Y));
+                Speed2D = VSize2D(Velocity);
                 WalkBob = (((Y * Bob) * 0.5) * Speed2D) * Sin(4 * BobTime);
                 WalkBob.Z = ((Bob * 1.5) * Speed2D) * Sin(8 * BobTime);                
             }
             else
             {
                 BobTime = 0;
-                WalkBob = WalkBob * (float(1) - FMin(1, 8 * DeltaTime));
-            }
-        }
-        if(((Physics == 1) && VSizeSq(Velocity) > float(100)) && IsFirstPerson())
-        {
-            M = int((0.5 * 3.141593) + ((9 * OldBobTime) / 3.141593));
-            N = int((0.5 * 3.141593) + ((9 * BobTime) / 3.141593));
-            if(((M != N) && !bIsWalking) && !bIsCrouched)
-            {
+                WalkBob = WalkBob * (1 - FMin(1, 8 * DeltaTime));
             }
         }
     }
@@ -969,25 +955,40 @@ private final function UpdateWalkBob(float DeltaTime)
 
 simulated function Vector GetPawnViewLocation()
 {
-    if(bUpdateEyeheight)
+    local PlayerController MyPC;
+
+    if(Controller != none)
     {
-        return (Location + (EyeHeight * vect(0, 0, 1))) + WalkBob;        
+        if(bUpdateEyeheight)
+        {
+            return (Location + (EyeHeight * vect(0, 0, 1))) + WalkBob;
+        }
+        return Location + (BaseEyeHeight * vect(0, 0, 1));        
     }
     else
     {
+        if((((Role < ROLE_Authority) && Mesh != none) && Mesh.SkeletalMesh != none) && Mesh.bAnimTreeInitialised)
+        {
+            MyPC = WorldInfo.GetALocalPlayerController();
+            if(MyPC != none)
+            {
+                return Mesh.GetPosition() + ((CylinderComponent.CollisionHeight + MyPC.TargetEyeHeight) * vect(0, 0, 1));
+            }
+            return Mesh.GetPosition() + ((CylinderComponent.CollisionHeight + BaseEyeHeight) * vect(0, 0, 1));
+        }
         return Location + (BaseEyeHeight * vect(0, 0, 1));
     }
 }
 
 simulated function float GetEyeHeight()
 {
-    if(!IsLocallyControlled())
+    if(bUpdateEyeheight)
     {
-        return BaseEyeHeight;        
+        return EyeHeight;        
     }
     else
     {
-        return EyeHeight;
+        return BaseEyeHeight;
     }
 }
 
@@ -2032,6 +2033,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
     {
         TimeOfDeath = WorldInfo.TimeSeconds;
     }
+    bTearOff = true;
     super(Pawn).PlayDying(DamageType, HitLoc);
     Velocity -= TearOffMomentum;
 }
@@ -2081,7 +2083,12 @@ simulated event HideMeshOnDeath()
     if(!Mesh.HiddenGame)
     {
         Mesh.SetHidden(true);
-        ThirdPersonHeadMeshComponent.SetHidden(true);
+        Mesh.SetTraceBlocking(false, false);
+        if(ThirdPersonHeadMeshComponent.bAttached)
+        {
+            ThirdPersonHeadMeshComponent.SetHidden(true);
+            ThirdPersonHeadMeshComponent.SetTraceBlocking(false, false);
+        }
         StopAllAnimations();
         Mesh.SetOnlyOwnerSee(true);
         LifeSpan = 2;
@@ -2712,7 +2719,7 @@ simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float Exce
 {
     if(SpecialMove != 0)
     {
-        if(SpecialMoves[SpecialMove].bShouldDeferToPostTick)
+        if((Mesh.TickGroup == 1) && SpecialMoves[SpecialMove].bShouldDeferToPostTick)
         {
             SpecialMoves[SpecialMove].DeferredSeqName = SeqNode.AnimSeqName;
             TWDeferredWorkManager(WorldInfo.DeferredWorkManager).DeferSpecialMoveAnimEnd(SpecialMoves[SpecialMove]);            
@@ -2850,7 +2857,7 @@ simulated event PlayFootStepSound(int FootDown)
     local AkBaseSoundObject Sound;
     local Vector FootSoundLoc;
 
-    if(((((Physics != 1) || Base == none) || !bAllowFootstepSounds && Controller != GetALocalPlayerController()) || WorldInfo.bDropDetail) || !ActorEffectIsRelevant(self, false, 1500, 1500))
+    if((((((WorldInfo.NetMode == NM_DedicatedServer) || Physics != 1) || Base == none) || WorldInfo.bDropDetail) || !bAllowFootstepSounds && Controller != GetALocalPlayerController()) || !ActorEffectIsRelevant(self, false, SoundGroupArch.MaxFootstepSoundRanges.X, SoundGroupArch.MaxFootstepSoundRanges.Y))
     {
         return;
     }

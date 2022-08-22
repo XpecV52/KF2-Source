@@ -77,10 +77,23 @@ function ShootFireball()
 	    TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
 	    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + ( vector(PC.PlayerCamera.CameraCache.POV.Rotation)*100000 );
 
+		// Shoot the fireball
+		MyFireball = Spawn( FireballClass, self,, SocketLocation, Rotation );
+		if( MyFireball == none )
+		{
+			return;
+		}
+		MyFireball.Instigator						= Self;
+		MyFireball.InstigatorController				= Controller;
+		MyFireball.Speed							= FireballSpeed;
+		MyFireball.MaxSpeed							= FireballSpeed;
+		MyFireball.ExplosionTemplate.Damage 		= GetRallyBoostDamage( MyFireball.default.ExplosionTemplate.Damage ) * FireballStrength;
+		MyFireball.ExplosionTemplate.DamageRadius   = MyFireball.default.ExplosionTemplate.DamageRadius * (FireballStrength * FireballStrengthRadiusMultiplier);
+
 	    // Make sure our own pawn can never get in the way, and make sure we're targeting things in front of us
 		foreach TraceActors( class'Actor', HitActor, HitLocation, HitNormal, TraceEnd, TraceStart,,, TRACEFLAG_Bullet )
 		{
-			if( HitActor == self )
+			if( HitActor == self || !HitActor.StopsProjectile(MyFireball) )
 			{
 				HitActor = none;
 				continue;
@@ -106,15 +119,7 @@ function ShootFireball()
 	    	// Otherwise use the end of the trace
 	    	ShootRotation = Rotator( TraceEnd - SocketLocation );
 		}
-
-		// Shoot the fireball
-		MyFireball = Spawn( FireballClass, self,, SocketLocation, ShootRotation );
-		MyFireball.Instigator						= Self;
-		MyFireball.InstigatorController				= Controller;
-		MyFireball.Speed							= FireballSpeed;
-		MyFireball.MaxSpeed							= FireballSpeed;
-		MyFireball.ExplosionTemplate.Damage 		= GetRallyBoostDamage( MyFireball.default.ExplosionTemplate.Damage ) * FireballStrength;
-		MyFireball.ExplosionTemplate.DamageRadius   = MyFireball.default.ExplosionTemplate.DamageRadius * (FireballStrength * FireballStrengthRadiusMultiplier);
+		MyFireball.SetRotation( ShootRotation );
 
 		// Apply fireball size if our projectile is a husk fireball
 		HuskFireball = KFProj_Husk_Fireball_Versus( MyFireball );
@@ -164,7 +169,7 @@ simulated function float GetFireballStrengthPerSecond()
 
 defaultproperties
 {
-   FireballSpeed=3600.000000
+   FireballSpeed=4200.000000
    FireballStrengthRange=(X=0.500000,Y=1.300000)
    FireballStrengthPerSecond=0.400000
    FireballStrengthRadiusMultiplier=0.700000
@@ -187,13 +192,13 @@ defaultproperties
    DoshValue=20
    XPValues(0)=30.000000
    DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.800000))
-   DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.500000))
+   DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.700000))
    DamageTypeModifiers(16)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.500000))
    DamageTypeModifiers(17)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.600000))
    DamageTypeModifiers(18)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.650000))
-   DamageTypeModifiers(19)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.500000))
-   DamageTypeModifiers(20)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.500000))
-   DamageTypeModifiers(21)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.100000))
+   DamageTypeModifiers(19)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.800000))
+   DamageTypeModifiers(20)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.800000))
+   DamageTypeModifiers(21)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.500000))
    DamageTypeModifiers(22)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
    DamageTypeModifiers(23)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.500000))
    DamageTypeModifiers(24)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.400000))
@@ -205,11 +210,12 @@ defaultproperties
    DamageTypeModifiers(30)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm',DamageScale=(1.600000))
    DamageTypeModifiers(31)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Pistol_Medic',DamageScale=(1.500000))
    DamageTypeModifiers(32)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Winchester',DamageScale=(0.750000))
-   DamageTypeModifiers(33)=(DamageType=Class'kfgamecontent.KFDT_Fire_CaulkBurn',DamageScale=(0.200000))
-   DamageTypeModifiers(34)=(DamageType=Class'kfgamecontent.KFDT_ExplosiveSubmunition_HX25',DamageScale=(0.600000))
+   DamageTypeModifiers(33)=(DamageType=Class'kfgamecontent.KFDT_Fire_CaulkBurn',DamageScale=(0.700000))
+   DamageTypeModifiers(34)=(DamageType=Class'KFGame.KFDT_ExplosiveSubmunition_HX25',DamageScale=(0.600000))
    DamageTypeModifiers(35)=(DamageType=Class'kfgamecontent.KFDT_Slashing_EvisceratorProj',DamageScale=(0.400000))
    DamageTypeModifiers(36)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Eviscerator',DamageScale=(0.300000))
    DamageTypeModifiers(37)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_DragonsBreath',DamageScale=(1.100000))
+   DamageTypeModifiers(38)=(DamageType=Class'kfgamecontent.KFDT_Bludgeon_Crovel',DamageScale=(1.200000))
    MoveListGamepadScheme(0)=SM_PlayerZedMove_LMB
    MoveListGamepadScheme(1)=SM_None
    MoveListGamepadScheme(2)=SM_PlayerZedMove_V
@@ -224,7 +230,6 @@ defaultproperties
    SpecialMoveCooldowns(5)=()
    SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Explode',NameLocalizationKey="Suicide")
    SpecialMoveCooldowns(7)=(CoolDownTime=1.000000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Jump',bShowOnHud=False)
-   LocalizationKey="KFPawn_ZedHusk"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHusk:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -233,6 +238,21 @@ defaultproperties
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
    bNeedsCrosshair=True
+   HitZones(3)=(DmgScale=1.100000)
+   HitZones(4)=()
+   HitZones(5)=()
+   HitZones(6)=()
+   HitZones(7)=()
+   HitZones(8)=()
+   HitZones(9)=()
+   HitZones(10)=()
+   HitZones(11)=()
+   HitZones(12)=()
+   HitZones(13)=()
+   HitZones(14)=()
+   HitZones(15)=()
+   HitZones(16)=()
+   HitZones(17)=()
    Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHusk:Afflictions_0'
       AfflictionClasses(0)=Class'KFGame.KFAffliction_EMPDisrupt'
       AfflictionClasses(1)=()
@@ -251,19 +271,19 @@ defaultproperties
       ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHusk:Afflictions_0'
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHusk_Versus:Afflictions_0'
-   IncapSettings(0)=(Vulnerability=(1.000000))
+   IncapSettings(0)=(Vulnerability=(0.800000))
    IncapSettings(1)=(Duration=3.000000,Cooldown=8.000000,Vulnerability=(0.100000))
    IncapSettings(2)=(Cooldown=0.500000)
    IncapSettings(3)=(Cooldown=0.750000,Vulnerability=(1.000000))
-   IncapSettings(4)=(Cooldown=3.000000,Vulnerability=(0.500000))
+   IncapSettings(4)=(Cooldown=3.000000,Vulnerability=(0.200000))
    IncapSettings(5)=(Duration=2.000000,Cooldown=3.000000,Vulnerability=(0.500000,0.500000,0.100000,0.100000,0.100000))
    IncapSettings(6)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(1.000000))
-   IncapSettings(7)=()
-   IncapSettings(8)=(Vulnerability=(0.500000))
-   IncapSettings(9)=(Duration=2.000000)
+   IncapSettings(7)=(Duration=1.500000,Cooldown=8.500000,Vulnerability=(0.700000,0.700000,1.000000,0.700000))
+   IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.300000))
+   IncapSettings(9)=(Duration=2.000000,Vulnerability=(0.600000))
    IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(1.000000))
-   SprintSpeed=500.000000
-   SprintStrafeSpeed=250.000000
+   SprintSpeed=550.000000
+   SprintStrafeSpeed=425.000000
    TeammateCollisionRadiusPercent=0.300000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHusk:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
@@ -348,7 +368,8 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedHusk:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
-   Health=450
+   GroundSpeed=250.000000
+   Health=600
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHusk:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
       MinDistFactorForKinematicUpdate=0.200000
@@ -363,7 +384,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

@@ -46,7 +46,7 @@ Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_2
    Bank=AkBank'WW_ENV_BurningParis.WwiseDefaultBank_WW_ENV_BurningParis'
    InputLinks(0)=(DrawY=172,OverrideDelta=13)
    InputLinks(1)=(DrawY=192,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND_InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_2')),DrawY=182,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND_InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_2')),ActivateDelay=3.000000,DrawY=182,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'SND_InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-624

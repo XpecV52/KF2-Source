@@ -55,7 +55,7 @@ package tripwire.menus
             enableInitCallback = true;
             defaultFirstElement = this.tabButtonBar;
             this.closeButton.addEventListener(ButtonEvent.PRESS,this.closeMenu,false,0,true);
-            if(!bManagerConsoleBuild)
+            if(!bManagerConsoleBuild && this.keybindingsContainer != null)
             {
                 this.keybindingsContainer.visible = false;
             }
@@ -112,6 +112,8 @@ package tripwire.menus
                 {
                     this.tabButtonBar.getButtonAt(1).enabled = !bManagerUsingGamepad;
                 }
+                this.inputContainer.defaultButton.visible = !bManagerUsingGamepad;
+                this.controllerPresetsContainer.defaultButton.visible = !bManagerUsingGamepad;
             }
             this.tabButtonBar.addEventListener(IndexEvent.INDEX_CHANGE,this.handleTabChanged,false,0,true);
             this.closeButton.visible = !bManagerUsingGamepad;

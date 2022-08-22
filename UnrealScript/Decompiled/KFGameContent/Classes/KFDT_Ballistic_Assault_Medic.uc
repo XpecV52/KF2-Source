@@ -35,7 +35,7 @@ static function bool CheckMedicToxic(out int InDamage, out class<KFDamageType> K
     local KFPerk InstigatorPerk;
 
     InstigatorPerk = KFPlayerController(InstigatedBy).GetPerk();
-    if((InstigatorPerk == none) || !InstigatorPerk.IsToxicDmgActive())
+    if((InstigatorPerk == none) || !InstigatorPerk.IsToxicDmgActive() && !InstigatorPerk.IsSlugActive())
     {
         return false;
     }

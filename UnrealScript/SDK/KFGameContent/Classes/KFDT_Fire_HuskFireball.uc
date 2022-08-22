@@ -33,5 +33,6 @@ defaultproperties
 
 	DeathMaterialEffectDuration=2.f
 	DeathMaterialEffectParamName=scalar_burnt
-	
+
+	bAllowAIDoorDestruction=true
 }

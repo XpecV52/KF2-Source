@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALU
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="Refill Your Ammo and Armor"
-TraderRefillGamepadDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> at the trader. To do so, select the weapon you wish to buy ammo for on the left side of the trader menu using the left stick. You can purchase one magazine or grenade for the selected weapon by pressing <font color="#caab05">%x%</font>, or buy as much ammo or as many grenades as you can afford, up to your limit, by pressing <font color="#caab05">%x%</font>. If you are short on time (or long on dosh), pressing <font color="#caab05">%x%</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
+TraderRefillGamepadDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> at the trader. To do so, select the weapon you wish to buy ammo for on the left side of the trader menu using the left stick. You can purchase one magazine or grenade for the selected weapon by pressing <font color="#caab05">XboxTypeS_A</font>, or buy as much ammo or as many grenades as you can afford, up to your limit, by pressing <font color="#caab05">XboxTypeS_X</font>. If you are short on time (or long on dosh), pressing <font color="#caab05">LeftThumbStick</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
 TraderSellGamepadTitleKey="Selling Weapons"
-TraderSellGamepadDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon you wish to sell on the left side of the trader menu using the left stick and press <font color="#caab05">%x%</font>. You can see the amount of dosh you will get for selling the item. You cannot sell your backup 9mm pistol, body armor, or grenades."
+TraderSellGamepadDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon you wish to sell on the left side of the trader menu using the left stick and press <font color="#caab05">XboxTypeS_Y</font>. You can see the amount of dosh you will get for selling the item. You cannot sell your backup 9mm pistol, body armor, or grenades."
 TraderBuyGamepadTitleKey="Buying Weapons"
-TraderBuyGamepadDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select the weapon you wish to buy on the right side of the trader menu using the left stick and press <font color="#caab05">%x%</font>. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
+TraderBuyGamepadDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select the weapon you wish to buy on the right side of the trader menu using the left stick and press <font color="#caab05">XboxTypeS_A</font>. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
 TraderWeightGamepadTitleKey="Weapon Weight and Capacity"
 TraderWeightGamepadDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown below your current dosh in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
 
@@ -79,7 +79,7 @@ TeamAdviceDescriptionKey="<font color="#caab05">STAY WITH YOUR TEAM!</font> Your
 CongratulationsTitleKey="Victory!"
 CongratulationsDescriptionKey="Congratulations! You have completed the Training Floor!"
 NextStepsTitleKey="What to Do Next"
-NextStepsDescriptionKey="From the main menu, you can practice more offline or jump into an online game with other survivors. Now go kill some Zeds!"
+NextStepsDescriptionKey="From the Home Menu, you can practice more offline or jump into an online game with other survivors. Now go kill some Zeds!"
 
 ;Healing Section
 QuickHealTitleKey="Heal Yourself When Hurt"
@@ -127,7 +127,7 @@ ItemDescription="•Releases a gas that will poison Zeds, but will also heal peo
 [KFProj_MolotovGrenade]
 ItemName="Molotov Cocktail"
 ItemCategory="Explosives"
-ItemDescription="•Very simply, a flame grenade that will burn Zeds.\n•Be aware that it can also hurt you!\n\nNamed, insultingly, by the Finns during the 1939-40 Winter War, after Vyacheslav Mikhailovich Molotov, the Soviet Foreign Minister under Stalin... Sorry, did you not want a history lesson?" 
+ItemDescription="•Very simply, a flame grenade that will burn Zeds.\n\nNamed, insultingly, by the Finns during the 1939-40 Winter War, after Vyacheslav Mikhailovich Molotov, the Soviet Foreign Minister under Stalin... Sorry, did you not want a history lesson?" 
 
 [KFProj_EMPGrenade]
 ItemName="EMP Grenade"
@@ -448,6 +448,20 @@ ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire t
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
+BossName_CHN="汉斯-沃尔特博士"
+BossName_CHT="漢斯華特博士"
+BossName_DEU="Dr. Hans Volter"
+BossName_ESL="Dr. Hans Volter"
+BossName_ESN="Dr. Hans Volter"
+BossName_FRA="Dr. Hans Volter"
+BossName_FRC="Dr. Hans Volter"
+BossName_INT="Dr. Hans Volter"
+BossName_ITA="Dr. Hans Volter"
+BossName_JPN="ドクター ハンス・ヴォルター"
+Bossname_KOR="Dr. Hans Volter"
+BossName_POL="Dr Hans Volter"
+BossName_PTB="Dr. Hans Volter"
+BossName_RUS="Д-р Ганс Вольтер"
 BossCaptionStrings[0]="When seriously injured Hans puts a shield up while he seeks a victim to drain health from. If you destroy this shield he cannot heal!"
 BossCaptionStrings[1]="Watch his power core: Hans is more aggressive as it changes color."
 BossCaptionStrings[2]="Aim for his emissive power core. It is a vulnerable zone."
@@ -458,6 +472,20 @@ BossCaptionStrings[6]="When Hans pulls out his guns, stay out of the line of sig
 
 [KFPawn_ZedPatriarch]
 BossName="The Patriarch"
+BossName_CHN="长老丧尸"
+BossName_CHT="長老"
+BossName_DEU="Der Patriarch"
+BossName_ESL="El patriarca"
+BossName_ESN="El patriarca"
+BossName_FRA="Le Patriarche"
+BossName_FRC="Le Patriarche"
+BossName_INT="The Patriarch"
+BossName_ITA="Il Patriarca"
+BossName_JPN="ペイトリアーク"
+BossName_KOR="Patriarch"
+BossName_POL="Patriarcha"
+BossName_PTB="O Patriarca"
+BossName_RUS="Патриарх"
 BossCaptionStrings[0]="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
 BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
 BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"

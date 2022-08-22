@@ -50,6 +50,10 @@ function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemLi
     local GFxObject ItemDataArray;
     local array<STraderItem> FullItemList;
 
+    if((FilterIndex == 255) || FilterIndex == -1)
+    {
+        return;
+    }
     if(KFPC != none)
     {
         SlotIndex = 0;
@@ -57,19 +61,19 @@ function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemLi
         ItemDataArray = Outer.CreateArray();
         FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
         I = 0;
-        J0xAE:
+        J0xDB:
 
         if(I < FullItemList.Length)
         {
             if(IsItemFiltered(FullItemList[I]))
             {
-                goto J0x213;                
+                goto J0x28D;                
             }
             else
             {
-                if((FullItemList[I].AssociatedPerkClass != none) && (FilterIndex >= KFPC.PerkList.Length) || FullItemList[I].AssociatedPerkClass != KFPC.PerkList[FilterIndex].PerkClass)
+                if(((FullItemList[I].AssociatedPerkClass != none) && KFPC.PerkList[FilterIndex].PerkClass != Class'KFPerk_Survivalist') && (FilterIndex >= KFPC.PerkList.Length) || FullItemList[I].AssociatedPerkClass != KFPC.PerkList[FilterIndex].PerkClass)
                 {
-                    goto J0x213;                    
+                    goto J0x28D;                    
                 }
                 else
                 {
@@ -78,10 +82,10 @@ function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemLi
                     ++ SlotIndex;
                 }
             }
-            J0x213:
+            J0x28D:
 
             ++ I;
-            goto J0xAE;
+            goto J0xDB;
         }
         SetObject("shopData", ItemDataArray);
     }

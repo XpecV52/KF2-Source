@@ -10,7 +10,7 @@ class KFTeamInfo_Zeds extends KFTeamInfo_Human
 
 simulated function string GetHumanReadableName()
 {
-    return "Zed" @ TeamName;
+    return Class'KFCommon_LocalizedStrings'.default.HumanString @ TeamName;
 }
 
 defaultproperties

@@ -64,6 +64,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -101,6 +102,7 @@ var byte PlayerHealth;
 var byte PlayerHealthPercent;
 var byte SharedUnlocks;
 var bool bClientActiveSpawn;
+var bool bHasSpawnedIn;
 var bool bExtraFireRange;
 var bool bSplashActive;
 var bool bNukeActive;
@@ -131,8 +133,9 @@ replication
         PlayerHealth, PlayerHealthPercent, 
         RepCustomizationInfo, bClientActiveSpawn, 
         bConcussiveActive, bExtraFireRange, 
-        bNukeActive, bObjectivePlayer, 
-        bPerkCanSupply, bSplashActive;
+        bHasSpawnedIn, bNukeActive, 
+        bObjectivePlayer, bPerkCanSupply, 
+        bSplashActive;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -371,7 +374,7 @@ function ServerStartSpectatorVoiceChat()
 
     if(I < WorldInfo.GRI.PRIArray.Length)
     {
-        if(!WorldInfo.GRI.PRIArray[I].bBot && (!KFGameInfo(WorldInfo.Game).bPartitionSpectators || WorldInfo.GRI.PRIArray[I].GetTeamNum() >= 2) || WorldInfo.GRI.PRIArray[I].bOnlySpectator)
+        if(!WorldInfo.GRI.PRIArray[I].bBot && !KFGameInfo(WorldInfo.Game).bPartitionSpectators || WorldInfo.GRI.PRIArray[I].bOnlySpectator)
         {
             KFPC.VoiceReceivers.AddItem(WorldInfo.GRI.PRIArray[I].UniqueId;
             if(PlayerController(WorldInfo.GRI.PRIArray[I].Owner) != none)
@@ -416,9 +419,15 @@ simulated function VOIPStatusChanged(PlayerReplicationInfo Talker, bool bIsTalki
     local KFPlayerController KFPC;
     local KFPlayerReplicationInfo TalkerKFPRI;
     local KFGFxHudWrapper MyGFxHUD;
+    local OnlineSubsystem OSS;
 
+    OSS = Class'GameEngine'.static.GetOnlineSubsystem();
     foreach WorldInfo.LocalPlayerControllers(Class'KFPlayerController', KFPC)
     {
+        if((OSS != none) && OSS.HasChatRestriction(byte(LocalPlayer(KFPC.Player).ControllerId)))
+        {            
+            return;
+        }
         MyGFxHUD = KFGFxHudWrapper(KFPC.myHUD);
         TalkerKFPRI = KFPlayerReplicationInfo(Talker);
         if(TalkerKFPRI != none)
@@ -722,7 +731,7 @@ function UpdateReplicatedVariables()
 
 function UpdatePawnLocation()
 {
-    PawnLocationCompressed = KFPlayerOwner.Pawn.Mesh.GetPosition();
+    PawnLocationCompressed = KFPlayerOwner.Pawn.Location;
     PawnLocationCompressed *= 0.01;
 }
 
@@ -741,12 +750,17 @@ function UpdateReplicatedPlayerHealth()
     }
 }
 
-simulated function Vector GetReplicatedPawnIconLocation(float BlendSpeed)
+simulated function SetSmoothedPawnIconLocation(Vector NewLocation)
+{
+    LastReplicatedSmoothedLocation = NewLocation;
+}
+
+simulated function Vector GetSmoothedPawnIconLocation(float BlendSpeed)
 {
     local Vector UncompressedLocation;
 
     UncompressedLocation = PawnLocationCompressed * 100;
-    if(((BlendSpeed > float(0)) && !IsZero(UncompressedLocation)) && VSizeSq(UncompressedLocation - LastReplicatedSmoothedLocation) < Square(500))
+    if(((BlendSpeed > float(0)) && !IsZero(UncompressedLocation)) && VSizeSq(UncompressedLocation - LastReplicatedSmoothedLocation) < Square(768))
     {
         LastReplicatedSmoothedLocation = VInterpTo(LastReplicatedSmoothedLocation, UncompressedLocation, WorldInfo.DeltaSeconds, VSize(UncompressedLocation - LastReplicatedSmoothedLocation) * BlendSpeed);        
     }
@@ -863,6 +877,9 @@ simulated function ResetSupplierUsed()
         goto J0x52;
     }
 }
+
+// Export UKFPlayerReplicationInfo::execHasHadInitialSpawn(FFrame&, void* const)
+native simulated function bool HasHadInitialSpawn();
 
 defaultproperties
 {

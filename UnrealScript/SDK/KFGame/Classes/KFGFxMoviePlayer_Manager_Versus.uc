@@ -12,6 +12,7 @@ function ClientRecieveNewTeam()
 	}
 }
 
+
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
 	switch (WidgetName)

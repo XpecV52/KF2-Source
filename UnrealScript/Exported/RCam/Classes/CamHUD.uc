@@ -1,12 +1,12 @@
 //--------------------------------------------
 //   RypeL Cam for Red Orchestra 2, C, 2012
 //--------------------------------------------
-class CamHUD extends Interaction
-		config(RypelCam);
+class CamHUD extends Interaction;
+		//config(RypelCam);
 
 
-var config float PauseCamMouseSensitivity, speccamspeed, TimedPathStartTime;
-var config int dumpframes_fps;
+var /*config*/ float PauseCamMouseSensitivity, speccamspeed, TimedPathStartTime;
+var /*config*/ int dumpframes_fps;
 
 var Actor 	ap, HackLockedSavedActor, target_actor, target, targeta, ta;
 
@@ -53,6 +53,7 @@ exec function toggleMovieMode() {
 
 function LoadRCamConfig()
 {
+	LogInternal("***LOADING RYPELCAM CONFIG");
 	if(cc != none)
 		cc.destroy();
 	foreach pc.dynamicactors(class'Knoten', other3)
@@ -205,31 +206,31 @@ function timedilation(float percentage)
 
 function viewpreviousplayer(int n)
 {
-	local int i, CurrentIndex, IndexLength;
+	local int ii, CurrentIndex, IndexLength;
 	if(pc.RealViewTarget != None)
 	{
-		i = 0;
+		ii = 0;
 		foreach pc.dynamicactors(class'Pawn', pawn)
 		{
 			if(pawn.PlayerReplicationInfo != none)
 			{
-				++i;
+				++ii;
 				if(pc.RealViewTarget == pawn.PlayerReplicationInfo)
-					CurrentIndex = i;
+					CurrentIndex = ii;
 			}
 		}
-		IndexLength = i;
+		IndexLength = ii;
 		// leftmouseb. executes drs.DemoViewNextPlayer() and changes from the
 		// first entry in the player list to the last one (= IndexLength)
 		// View the prior player n=2 + CurrentIndex=0 instead of IndexLength
 		if(n == 2 && CurrentIndex == IndexLength)
 			CurrentIndex = 0;
-		i = 0;
+		ii = 0;
 		foreach pc.dynamicactors(class'Pawn', pawn)
 		{
 			if(pawn.PlayerReplicationInfo != none)
 			{
-				++i;
+				++ii;
 				// wrap list, select 1st player
 				if(IndexLength < CurrentIndex + n)
 				{
@@ -237,7 +238,7 @@ function viewpreviousplayer(int n)
 					break;
 				}
 				// select previous player
-				else if(i == CurrentIndex + n)
+				else if(ii == CurrentIndex + n)
 				{
 					pc.SetViewTarget(pawn);
 					break;
@@ -251,18 +252,18 @@ function viewpreviousplayer(int n)
 //delegate bool OnReceivedNativeInputKey( int ControllerId, name Key, EInputEvent Event, float AmountDepressed=1.f, bool bGamepad = FALSE )
 function bool InputAxis(int ControllerId, name Key, float Delta, float DeltaTime, bool bGamepad = FALSE)
 {
-	local rotator tr;
+	local rotator tr1;
 	switch(key)
 	{
 	case 'mousex':
-		tr = drs.rotation;
-		tr.yaw = tr.yaw + delta * PauseCamMouseSensitivity;
-		drs.setrotation(tr);
+		tr1 = drs.rotation;
+		tr1.yaw = tr1.yaw + delta * PauseCamMouseSensitivity;
+		drs.setrotation(tr1);
 		break;
 	case 'mousey':
-		tr = drs.rotation;
-		tr.pitch = tr.pitch + delta * PauseCamMouseSensitivity;
-		drs.setrotation(tr);
+		tr1 = drs.rotation;
+		tr1.pitch = tr1.pitch + delta * PauseCamMouseSensitivity;
+		drs.setrotation(tr1);
 		break;
 	}
 	return false;
@@ -280,6 +281,7 @@ function bool InputKey(int ControllerId, name Key, EInputEvent Event, float Amou
 		return false;
 	}
 	bact = true;
+
 	if(event == ie_pressed)
 	{
 		if(cc == none)
@@ -355,9 +357,9 @@ function bool InputKey(int ControllerId, name Key, EInputEvent Event, float Amou
 			bdumpframes = !bdumpframes;
 			break;
 		case 'F4':
-			cc.conf = true;
-			SaveConfig();
-			cc.SaveConfig();
+			//cc.conf = true;
+			//SaveConfig();
+			//cc.SaveConfig();
 			break;
 		case 'F5':
 			LoadRCamConfig();
@@ -1062,7 +1064,7 @@ event Tick(float deltatime)
 
 event PostRender(Canvas canvas)
 {
-	local Vector2D TextSize;
+	//local Vector2D TextSize;
 	local string timeleft;
 	local string viewing_mode_name;
 	local float textscale;

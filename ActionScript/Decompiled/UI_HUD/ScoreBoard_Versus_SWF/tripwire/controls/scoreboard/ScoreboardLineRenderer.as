@@ -134,7 +134,7 @@ package tripwire.controls.scoreboard
             {
                 _loc3_ = 0;
             }
-            if(param2 > 0)
+            if(_loc3_ > 0)
             {
                 if(currentFrameLabel != "Alive")
                 {

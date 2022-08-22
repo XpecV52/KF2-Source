@@ -32,6 +32,13 @@ function InitRallySettings()
 	    RallyChance = MyDifficultySettings.default.RallyTriggerSettings[WorldInfo.Game.GameDifficulty].RallyChance;
 	    RallyCooldown = MyDifficultySettings.default.RallyTriggerSettings[WorldInfo.Game.GameDifficulty].Cooldown;
 	}
+`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))
+	if( RallyChance == 0.f && MyDifficultySettings.default.bForceSpecialSpawn )
+	{
+		RallyChance = 0.5f;
+		RallyCooldown = 15.f;
+	}
+`endif
 }
 
 /** Used by the pawn class to determine if this alpha needs a special material */

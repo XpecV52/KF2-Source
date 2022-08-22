@@ -186,11 +186,12 @@ defaultproperties
    SpareAmmoCapacity(0)=46
    InitialSpareMags(0)=11
    AmmoPickupScale(0)=3.000000
+   WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    FireAnim="Shoot_Single"
    FireSightedAnims(0)="Shoot_Iron_Single"
    FireSightedAnims(1)="Shoot_Iron_Double"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Shotgun.Play_SA_WEP_DoubleBarrel_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Shotgun.Play_SA_WEP_DoubleBarrel_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Shotgun.Play_SA_WEP_DoubleBarrel_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Shotgun.Play_SA_WEP_DoubleBarrel_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Shotgun.Play_SA_WEP_DoubleBarrel_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Shotgun.Play_SA_WEP_DoubleBarrel_Alt_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_Shotgun.Play_SA_WEP_DoubleBarrel_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_Shotgun.Play_SA_WEP_DoubleBarrel_Handling_DryFire'
    PlayerViewOffset=(X=4.000000,Y=7.000000,Z=-5.000000)

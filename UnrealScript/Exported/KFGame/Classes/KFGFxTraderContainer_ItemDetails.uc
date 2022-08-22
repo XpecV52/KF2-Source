@@ -267,14 +267,11 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
 		FinalMaxSpareAmmoCount = TraderItem.MaxSpareAmmo;
 		FinalMagazineCapacity = TraderItem.MagazineCapacity;
 
-		CurrentPerk.ModifyMagSizeAndNumber(none, FinalMagazineCapacity, TraderItem.AssociatedPerkClass);
+		CurrentPerk.ModifyMagSizeAndNumber(none, FinalMagazineCapacity, TraderItem.AssociatedPerkClass,, TraderItem.ClassName);
 
 		// When a perk calculates total available weapon ammo, it expects MaxSpareAmmo+MagazineCapacity
+		CurrentPerk.ModifyMaxSpareAmmoAmount(none, FinalMaxSpareAmmoCount, TraderItem,);
 		FinalMaxSpareAmmoCount += FinalMagazineCapacity;
-		CurrentPerk.ModifyMaxSpareAmmoAmount(none, FinalMaxSpareAmmoCount, TraderItem);
-		
-		// Subtract a magazine from the final calculated amount
-		FinalMaxSpareAmmoCount -= FinalMagazineCapacity;
 	}
 	else
 	{

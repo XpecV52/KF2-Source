@@ -7,13 +7,13 @@
  *******************************************************************************/
 class CamHUD extends Interaction
     transient
-    config(RypelCam)
+    config(Engine)
     hidecategories(Object,UIRoot);
 
-var config float PauseCamMouseSensitivity;
-var config float speccamspeed;
-var config float TimedPathStartTime;
-var config int dumpframes_fps;
+var float PauseCamMouseSensitivity;
+var float speccamspeed;
+var float TimedPathStartTime;
+var int dumpframes_fps;
 var Actor ap;
 var Actor HackLockedSavedActor;
 var Actor target_actor;
@@ -25,7 +25,7 @@ var bool ba;
 var bool bs;
 var bool bd;
 var bool bdown;
-var bool bUp;
+var bool bup;
 var bool bact;
 var bool balternativekey;
 var bool bdemo04;
@@ -140,6 +140,7 @@ exec function toggleMovieMode();
 
 function LoadRCamConfig()
 {
+    LogInternal("***LOADING RYPELCAM CONFIG");
     if(CC != none)
     {
         CC.Destroy();
@@ -326,40 +327,40 @@ function TimeDilation(float Percentage)
 
 function viewpreviousplayer(int N)
 {
-    local int I, CurrentIndex, IndexLength;
+    local int ii, CurrentIndex, IndexLength;
 
     if(PC.RealViewTarget != none)
     {
-        I = 0;
+        ii = 0;
         foreach PC.DynamicActors(Class'Pawn', Pawn)
         {
             if(Pawn.PlayerReplicationInfo != none)
             {
-                ++ I;
+                ++ ii;
                 if(PC.RealViewTarget == Pawn.PlayerReplicationInfo)
                 {
-                    CurrentIndex = I;
+                    CurrentIndex = ii;
                 }
             }            
         }        
-        IndexLength = I;
+        IndexLength = ii;
         if((N == 2) && CurrentIndex == IndexLength)
         {
             CurrentIndex = 0;
         }
-        I = 0;
+        ii = 0;
         foreach PC.DynamicActors(Class'Pawn', Pawn)
         {
             if(Pawn.PlayerReplicationInfo != none)
             {
-                ++ I;
+                ++ ii;
                 if(IndexLength < (CurrentIndex + N))
                 {
                     PC.SetViewTarget(Pawn);
                     break;
                     continue;
                 }
-                if(I == (CurrentIndex + N))
+                if(ii == (CurrentIndex + N))
                 {
                     PC.SetViewTarget(Pawn);
                     break;
@@ -375,20 +376,20 @@ function viewpreviousplayer(int N)
 
 function bool InputAxis(int ControllerId, name Key, float Delta, float DeltaTime, optional bool bGamepad)
 {
-    local Rotator TR;
+    local Rotator tr1;
 
     bGamepad = false;
     switch(Key)
     {
         case 'MouseX':
-            TR = drs.Rotation;
-            TR.Yaw = int(float(TR.Yaw) + (Delta * PauseCamMouseSensitivity));
-            drs.SetRotation(TR);
+            tr1 = drs.Rotation;
+            tr1.Yaw = int(float(tr1.Yaw) + (Delta * PauseCamMouseSensitivity));
+            drs.SetRotation(tr1);
             break;
         case 'MouseY':
-            TR = drs.Rotation;
-            TR.Pitch = int(float(TR.Pitch) + (Delta * PauseCamMouseSensitivity));
-            drs.SetRotation(TR);
+            tr1 = drs.Rotation;
+            tr1.Pitch = int(float(tr1.Pitch) + (Delta * PauseCamMouseSensitivity));
+            drs.SetRotation(tr1);
             break;
         default:
             break;
@@ -503,9 +504,6 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
                 bdumpframes = !bdumpframes;
                 break;
             case 'F4':
-                CC.conf = true;
-                SaveConfig();
-                CC.SaveConfig();
                 break;
             case 'F5':
                 LoadRCamConfig();
@@ -526,7 +524,7 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
                 bdown = true;
                 break;
             case 'LeftAlt':
-                bUp = true;
+                bup = true;
                 break;
             case 'SpaceBar':
                 if(bIsPaused && PC.WorldInfo.Pauser != none)
@@ -541,7 +539,7 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
                     {
                         CC.StartTimedPath_Later_seconds = 0;
                         CC.dif_tpstart_add = true;
-                        goto J0x36C5;
+                        goto J0x3689;
                     }
                     CC.FOV = drs.DefaultFOV;
                     drs.SetFOV(drs.DefaultFOV);
@@ -562,7 +560,7 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
                     {
                         CC.StartTimedPath_Later_seconds = 0;
                         CC.dif_tpstart_subtract = true;
-                        goto J0x36C5;
+                        goto J0x3689;
                     }
                     CC.FOV = drs.DefaultFOV;
                     drs.SetFOV(drs.DefaultFOV);
@@ -1190,7 +1188,7 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
             default:
                 break;
         }
-        J0x36C5:
+        J0x3689:
         
     }
     else
@@ -1215,7 +1213,7 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
                     bdown = false;
                     break;
                 case 'LeftAlt':
-                    bUp = false;
+                    bup = false;
                     break;
                 case 'X':
                     balternativekey = false;
@@ -1377,7 +1375,6 @@ event Tick(float DeltaTime)
 
 event PostRender(Canvas Canvas)
 {
-    local Vector2D TextSize;
     local string TimeLeft, viewing_mode_name;
     local float textscale, indent1, indent2, YLine, YPos;
 
@@ -1666,11 +1663,6 @@ event PostRender(Canvas Canvas)
         Canvas.SetPos(indent2, YPos);
         TimeLeft = FormatTime_likeUT(((PC.WorldInfo.GRI.TimeLimit != 0) ? PC.WorldInfo.GRI.RemainingTime : PC.WorldInfo.GRI.ElapsedTime));
         Canvas.DrawText(TimeLeft,, textscale, textscale);
-        /* Statement decompilation error: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-            
-        */
-
     }
 }
 

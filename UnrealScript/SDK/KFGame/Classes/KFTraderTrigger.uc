@@ -46,7 +46,7 @@ simulated function bool GetIsUsable( Pawn User )
 }
 
 /** KFInterface_Usable */
-function int GetInteractionIndex()
+function int GetInteractionIndex( Pawn User )
 {
 	return IMT_UseTrader;
 }

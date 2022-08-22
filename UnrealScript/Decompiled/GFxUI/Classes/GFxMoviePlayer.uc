@@ -250,7 +250,7 @@ function SetExternalInterface(Object H)
 }
 
 // Export UGFxMoviePlayer::execSetExternalTexture(FFrame&, void* const)
-native function bool SetExternalTexture(string Resource, Texture Texture);
+native function bool SetExternalTexture(string Resource, Texture Texture, optional bool bForceFullScreen);
 
 // Export UGFxMoviePlayer::execSetPriority(FFrame&, void* const)
 native function SetPriority(byte NewPriority);

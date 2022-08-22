@@ -6,11 +6,11 @@
 
 [KFTutorial]
 ;Lobby start
-RewardsTitleKey="Bem-vindo(a) ao Tutorial"
-RewardsDescriptionKey="Com o Tutorial vais aprender as bases de sobrevivência, sem o medo de morrer. Se completares o Tutorial ganharás um chapéu e XP suficiente para aumentar em 1 o nível da classe que selecionares."
-WelcomeTitleKey="Seleciona uma classe"
+RewardsTitleKey="Welcome to the Training Floor"
+RewardsDescriptionKey="The Training Floor will teach you some survival basics, but without the fear of death. Complete the Training Floor and you will receive a cosmetic item and enough XP to bring your selected perk up to Level 1."
+WelcomeTitleKey="Select a Perk"
 WelcomeDescriptionKey="Before you begin the match, select the <font color="#caab05">PERKS</font> tab at the top of the screen and select a perk. Perks are classes with different passive <font color="#caab05">PERK BONUSES</font>, configurable <font color="#caab05">SKILLS</font>, and <font color="#caab05">WEAPON LOADOUTS</font>."
-PerksTitleKey="Detalhes das classes"
+PerksTitleKey="Perks Details"
 PerksDescriptionKey="Perform <font color="#caab05">XP OBJECTIVES</font> in game to gain XP and level up your perks. Each time you level up, your <font color="#caab05">PERK BONUSES</font> increase for that perk. Every 5 levels you will unlock new <font color="#caab05">SKILLS</font> that you can <font color="#caab05">CONFIGURE</font> once unlocked. Select a perk and press <font color="#caab05">READY UP</font> to begin the match."
 
 ;Gear Menu
@@ -25,47 +25,35 @@ WeaponSkinsDescriptionKey="Selecting any item will let you view the item details
 
 ;Store Menu
 StoreTitleKey="Store Menu"
-StoreDescriptionsKey="The Store Menu allows you to purchase keys that are used to open crates and decrypt weapon skin USBs you find. There are also several character specific cosmetic item bundles you can purchase. Items that you purchase or receive as rewards will appear in the Inventory Menu."
+StoreDescriptionsKey="The Store Menu allows you to purchase keys that are used to open crates and decrypt weapon skin USBs you find. There are also several character cosmetic item bundles you can purchase. Items that you purchase or receive as rewards will appear in the Inventory Menu."
 
 ;Match Start
 InventoryTitleKey="Know Your Inventory"
 InventoryDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife, and grenades. Press <font color="#caab05">%x%</font> to cycle through your weapons. You can also quick select weapon categories by pressing the following: <font color="#caab05">%x%</font> to equip your primary ranged weapon, <font color="#caab05">%x%</font> to equip your pistol, <font color="#caab05">%x%</font> to equip your melee weapon, and <font color="#caab05">%x%</font> to equip your syringe."
 InventoryContTitleKey="Know Your Inventory"
-InventoryContDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife and grenade. Hold <font color="#caab05">%x%</font> and use the directional buttons to select a weapon."
+InventoryContDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife and grenade. Hold <font color="#caab05">%x%</font> and use the Dpad to select a weapon."
 AlternateFireKey="Alternate Fire"
 AlternateFireDescription="Most primary weapon have an alternate fire mode. Press <font color="#caab05">%x%</font> to toggle your current fire mode. An icon in your view will show the currently selected firemode."
 FlashLightBatteryTitleKey="Using a Flashlight"
-FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When it is out of power it will turn off and automatically start recharging again."
+FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When this happens it will turn off and automatically start recharging again."
 GrenadeTitleKey="Using Grenades"
 GrenadeDescriptionKey="Grenades allow you to deal with closely packed groups of Zeds. Perks have different grenades in their <font color="#caab05">WEAPON LOADOUTS</font>, all of which damage Zeds, but may have additional effects. Press <font color="#caab05">%x%</font> to throw a grenade." 
 
 ;Wave 1 end
 TraderTimeTitleKey="Trader Time"
-TraderTimeDescriptionKey="In between waves you can buy and sell weapons, buy armor, and fill your ammo at the Trader. Follow the blue arrows to find the Trader."
+TraderTimeDescriptionKey="In between waves you can buy/sell weapons and fill your ammo at the Trader. Follow the blue arrows to find the Trader."
 InventoryWeightTitleKey="Carrying Weight"
 InventoryWeightDescriptionKey="You are limited in the weight you can carry. If you can't carry what you want, sell some gear first to make room."
 
 ;Trader Menu Open
 TraderRefillTitleKey="Refill Your Ammo and Armor"
-TraderRefillDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> by pressing the <font color="#caab05">MAG</font>, <font color="#caab05">1X</font>, or <font color="#caab05">FILL</font> buttons to the left of the appropriate item. If you are short of time (or long on dosh), pressing <font color="#caab05">AUTOFILL</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
+TraderRefillDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> by pressing the <font color="#caab05">MAG</font>, <font color="#caab05">x1</font>, or <font color="#caab05">FILL</font> buttons next to the appropriate item. If you are short of time (or long on dosh), pressing <font color="#caab05">AUTOFILL</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
 TraderSellTitleKey="Selling Weapons"
-TraderSellDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, press the <font color="#caab05">SELL BUTTON</font> to the right of the item you wish to sell. You can see the amount of dosh you will get for selling the item on the <font color="#caab05">SELL BUTTON</font>. You cannot sell your backup 9mm pistol, body armor, or grenades."
+TraderSellDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon on the right side of the menu and press the large <font color="#caab05">SELL BUTTON</font> in the center of the menu. You cannot sell your backup 9mm pistol, body armor, or grenades."
 TraderBuyTitleKey="Buying Weapons"
-TraderBuyDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, press the <font color="#caab05">BUY BUTTON</font> to the left of the item you wish to buy. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
+TraderBuyDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select a weapon on the left side of the menu and press the large <font color="#caab05">BUY BUTTON</font> in the center of the menu. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
 TraderWeightTitleKey="Weapon Weight and Capacity"
-TraderWeightDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown below your current dosh in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
-
-;Trader Open Gamepad
-TraderRefillGamepadTitleKey="Refill Your Ammo and Armor"
-TraderRefillGamepadDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> at the trader. To do so, select the weapon you wish to buy ammo for on the left side of the trader menu using the left stick. You can purchase one magazine or grenade for the selected weapon by pressing <font color="#caab05">%x%</font>, or buy as much ammo or as many grenades as you can afford, up to your limit, by pressing <font color="#caab05">%x%</font>. If you are short on time (or long on dosh), pressing <font color="#caab05">%x%</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
-TraderSellGamepadTitleKey="Selling Weapons"
-TraderSellGamepadDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon you wish to sell on the left side of the trader menu using the left stick and press <font color="#caab05">%x%</font>. You can see the amount of dosh you will get for selling the item. You cannot sell your backup 9mm pistol, body armor, or grenades."
-TraderBuyGamepadTitleKey="Buying Weapons"
-TraderBuyGamepadDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select the weapon you wish to buy on the right side of the trader menu using the left stick and press <font color="#caab05">%x%</font>. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
-TraderWeightGamepadTitleKey="Weapon Weight and Capacity"
-TraderWeightGamepadDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown below your current dosh in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
-
-
+TraderWeightDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown above the buy/sell button in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
 
 ;Trader Menu Close
 DoorWeldTitleKey="Weld Doors"
@@ -79,7 +67,7 @@ TeamAdviceDescriptionKey="<font color="#caab05">STAY WITH YOUR TEAM!</font> Your
 CongratulationsTitleKey="Victory!"
 CongratulationsDescriptionKey="Congratulations! You have completed the Training Floor!"
 NextStepsTitleKey="What to Do Next"
-NextStepsDescriptionKey="From the main menu, you can practice more offline or jump into an online game with other survivors. Now go kill some Zeds!"
+NextStepsDescriptionKey="From the main menu, <font color="#caab05">PLAY SOLO OFFLINE</font> to practice more offline or jump into <font color="#caab05">ONLINE MATCHMAKING</font> or <font color="#caab05">BROWSE SERVERS</font> to find an online game. Now go kill some Zeds!"
 
 ;Healing Section
 QuickHealTitleKey="Heal Yourself When Hurt"
@@ -104,10 +92,10 @@ UnblockableTitleKey="Unblockable Zed Attacks"
 UnblockableDescriptionKey="Larger Zeds have some unblockable attacks. You can tell if an attack is unblockable by glowing effects on the Zed during an attack."
 
 [KFGFxTutorialContainer]
-BackString="ATRÁS"
-NextString="SEGUINTE"
-DoneString="OK"
-SkipString="IGNORAR"
+BackString="BACK"
+NextString="NEXT"
+DoneString="DONE"
+SkipString="SKIP"
 
 [Armor]
 ItemName="Armadura"
@@ -150,14 +138,9 @@ ItemCategory =" Explosivo"
 ItemDescription="• É simplesmente um recipiente cheio de pregos velhos, com uma pequena carga explosiva lá para dentro.\n\nNão é a maneira mais agradável ou subtil de lidar com Zeds, mas não há nada de agradável ou subtil no que toca a Zeds, ou há?"
 
 [KFProj_FreezeGrenade]
-ItemName="Granada Criogénica"
-ItemCategory =" Explosivos"
-ItemDescription="• Um recipiente de nitrogénio líquido pressurizado.\n\nZeds que entrarem em contacto com esta granada ficarão congelados durante um curto período de tempo e poderão ser estilhaçados facilmente."
-
-[KFProj_FlashBangGrenade]
-ItemName="FlashBang"
+ItemName="Freeze Grenade"
 ItemCategory = "Explosives"
-ItemDescription="•Both bright and loud, do not look directly at it. Try not to hear it either.\n•While technically less than lethal, flash bangs can still hurt you, so be careful!" 
+ItemDescription="• An advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
 
 [KFWeap_Healer_Syringe]
 ItemName="Seringa Medicinal"
@@ -220,12 +203,7 @@ ItemDescription="• Principal - ataque cortante, mantém o botão premido para 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Arma corpo a corpo"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The traditional knife of the Ghurka, it's more a chopping knife than a slicing knife. "
-
-[KFWeap_Knife_SWAT]
-ItemName="Tactical Knife"
-ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a knife. It cuts things. Tactical things."
+ItemDescription=""
 
 [KFWeap_Pistol_Medic]
 ItemName="Pistola HMTech-101"
@@ -392,7 +370,7 @@ ItemDescription="• Modo de disparo único apenas.\n• Disparo alternativo: mu
 [KFWeap_Revolver_SW500]
 ItemName="Revólver Magnum .500"
 ItemCategory="Pistola"
-ItemDescription="• Modo de disparo único apenas.\n• Uma verdadeira peça de artilharia portátil na forma de um revólver de calibre .50. Para os Pistoleiros mais sérios."
+ItemDescription="• Modo de disparo único apenas.\n• Uma verdadeira peça de artilharia portátil, na forma de um revólver de calibre .50. Para os Pistoleiros mais sérios."
 
 [KFWeap_Revolver_DualSW500]
 ItemName="Par de Magnums .500"
@@ -411,44 +389,24 @@ ItemDescription="• Modo de disparo único apenas.\n• As flechas podem ser po
 
 [KFWeap_Rifle_M14EBR]
 ItemName="M14 EBR"
-ItemCategory="Espingarda de longo alcance"
-ItemDescription="• O modo de disparo é só semiautomático.\n• Equipada com uma mira a laser.\n• A espingarda de longo alcance preferida dos Navy Seals, Força Delta e outros vários valentões."
+ItemCategory="Sniper Rifle"
+ItemDescription=""
 
 [KFWeap_Rifle_RailGun]
 ItemName="Rail Gun"
-ItemCategory="Espingarda de longo alcance"
-ItemDescription="• Modo de disparo único apenas.\n• Ao usares a mira, a arma fixa-se nos pontos fracos do teu alvo. \n• Esta arma usa ímanes para disparar um projétil metálico de alta velocidade que perfura Zeds como se fossem feitos de papel."
-
-[KFWeap_SMG_MP7]
-ItemName="MP7 SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Used by alphabet soup agencies and special forces units the world over."
+ItemCategory="Sniper Rifle"
+ItemDescription=""
 
 [KFWeap_AssaultRifle_M16M203]
 ItemName="M16 M203 Assault Rifle"
 ItemCategory="Assault Rifle"
-ItemDescription="•Firemode is full-auto only.\n•Alt-fire to fire grenades.\n•For those who can't decide between bullets and explosives."
+ItemDescription=""
 SecondaryAmmo="M203 Grenade"
-
-[KFWeap_SMG_MP5RAS]
-ItemName="MP5RAS SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest version of one of the most widely used submachine guns in the world."
-
-[KFWeap_SMG_P90]
-ItemName="P90 SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Sure it looks weird, but it shreds Zeds really well and you can make laser noises if you want."
-
-[KFWeap_SMG_Kriss]
-ItemName="Kriss SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest in compact bullet redistrbution, it is a firehose of destruction."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
-BossCaptionStrings[0]="O Hans ativa um escudo quando fica com pouca vida. Se destruíres o escudo ele não se pode curar!"
+BossCaptionStrings[0]="O Hans é quase invulnerável quando se cura na fase de granadas de fumo. Não desperdices munições!"
 BossCaptionStrings[1]="Presta atenção ao núcleo de energia dele.\nEle fica mais agressivo de acordo com a cor."
 BossCaptionStrings[2]="Dispara para o núcleo de energia dele. É uma zona vulnerável."
 BossCaptionStrings[3]="O gás das granadas do Hans adere a ti, tal como acontece com o vómito dos Bloats. Tenta evitá-lo!"
@@ -465,9 +423,6 @@ BossCaptionStrings[3]="Não fujas sozinho do Patriarch, pois isso aumentará as 
 BossCaptionStrings[4]="Sim, o Patriarch ainda se consegue tornar invisível, fugir e curar-se. Há coisas que não mudam."
 BossCaptionStrings[5]="Não é possível evitá-lo, mas matar as criações do Patriarch só o deixa mais furioso."
 
-[KFGameInfo_Tutorial]
-GameName="Basic Training"
-
 [KFGameInfo_Survival]
 GameName="Sobrevivência"
 
@@ -483,11 +438,5 @@ NoMortarTargetsMsg="Nenhum alvo válido para morteiro"
 VortexGrabTeamWarningMsg="Uma Siren está a imobilizar %x%!"
 
 [KFGFXHudWrapper_Versus]
-WaitingToSpawnString="REENTRAS EM: %x% segundo(s)"
-ZedTakeOverActiveString="À PROCURA DE ZEDS PARA CONTROLAR..."
-PerkSwitchAllowedString="TEMPO RESTANTE PARA SELECIONAR CLASSE: %x% segundo(s)"
-
-[KFWeap_Random]
-ItemName="Random Weapon"
-ItemCategory="Random"
-ItemDescription="• Random Weapon.\n•"
+WaitingToSpawnString="TIME UNTIL SPAWN: %x% second(s)"
+ZedTakeOverActiveString="SEARCHING FOR ZEDS TO TAKE OVER..."

@@ -216,7 +216,7 @@ event SeePlayer( Pawn Seen )
 	if( !bSawEnemy && Seen == Enemy )
 	{
 		bSawEnemy = true;
-		AILog_Internal(GetFuncName()$" Just saw my enemy for first time, starting RageFrustrationTimer",'SeePlayer',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Just saw my enemy for first time, starting RageFrustrationTimer",'SeePlayer',);};
 		RagePlugin.StartRageTimer(true);
 	}
 
@@ -233,7 +233,7 @@ event bool SetEnemy( Pawn NewEnemy )
 	// If enemy changed, reset frustration related properties
 	if( bNewEnemySet )
 	{
-		AILog_Internal(GetFuncName()$" Just started targeting a new enemy ("$NewEnemy$"), clearing RageFrustrationTimer",'SeePlayer',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Just started targeting a new enemy ("$NewEnemy$"), clearing RageFrustrationTimer",'SeePlayer',);};
 		bSawEnemy = false;
 		EnableSeePlayer();
 		RagePlugin.StartRageTimer();
@@ -258,7 +258,7 @@ function DoRageTauntAt( optional KFPawn Target )
 		if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlaySpotEnragedDialog( MyKFPawn );
 	}
 
-	AILog_Internal(GetFuncName()$"() at "$Target,'Command_Rage',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() at "$Target,'Command_Rage',);};
 	class'AICommand_TauntEnemy'.static.Taunt( self, Enemy, TAUNT_Enraged );
 }
 

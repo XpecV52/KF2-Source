@@ -386,7 +386,7 @@ event PostBeginPlay()
 				// First we update game settings
 				UpdateGameSettings();
 				// Now register the game
-				PlayfabInter.ServerRegisterGame( GetFriendlyNameForCurrentGameMode() );
+				PlayfabInter.ServerRegisterGame();
 			}
 		}
 	}
@@ -2683,8 +2683,13 @@ function NavigationPoint FindPlayerStart( Controller Player, optional byte InTea
 	}
 
 	// always pick StartSpot at start of match
+`if(`__TW_)
+	// Allow ShouldSpawnAtStartSpot() to handle rating - see KFGameInfo
+	if ( ShouldSpawnAtStartSpot(Player) )
+`else
 	if ( ShouldSpawnAtStartSpot(Player) &&
 		(PlayerStart(Player.StartSpot) == None || RatePlayerStart(PlayerStart(Player.StartSpot), InTeam, Player) >= 0.0) )
+`endif
 	{
 		return Player.StartSpot;
 	}
@@ -3940,7 +3945,7 @@ event OnRetreivedPFInternalUserData( const string ForPlayerId, array<string> Key
 /** returns TRUE if this server was launched by playfab */
 native function bool WasLaunchedByPlayfab();
 
-function string GetFriendlyNameForCurrentGameMode();
+event string GetFriendlyNameForCurrentGameMode();
 //@HSL_END
 
 

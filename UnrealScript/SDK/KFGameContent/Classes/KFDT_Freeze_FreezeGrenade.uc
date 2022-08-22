@@ -34,7 +34,7 @@ static function PlayImpactHitEffects( KFPawn P, vector HitLocation, vector HitDi
 
 defaultproperties
 {
-	FreezePower=100
+	FreezePower=150 //100
 	MeleeHitPower=100
 	KDeathVel=300
 	

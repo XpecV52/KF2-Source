@@ -40,6 +40,8 @@ var private const float CameraViewShakeScale;
 var private const float TriggerMovementSpeedModifier;
 var private const float CrouchAimMovementSpeedModifier;
 var private const float CrouchAimReloadSpeedModifier;
+var private const array<name> AdditionalOnPerkWeaponNames;
+var private const array<name> AdditionalOnPerkDTNames;
 var float SkillZedTimeChance;
 
 static simulated function GetPassiveStrings(out array<string> PassiveValues, out array<string> Increments, byte Level)
@@ -67,7 +69,7 @@ simulated function ModifySpeed(out float Speed)
     {
         Speed += (Speed * GetTriggerMovementSpeedModifier());
     }
-    if(IsCrouchAimActive())
+    if(IsCrouchAimActive(GetOwnerWeapon()))
     {
         Speed += (Speed * GetCrouchAimMovementSpeedModifier());
     }
@@ -113,7 +115,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[0])));
         }
-        if(IsCrouchAimActive())
+        if(IsCrouchAimActive(GetOwnerWeapon()))
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[2])));
         }
@@ -135,7 +137,7 @@ simulated function ModifyRateOfFire(out float InRate, KFWeapon KFW)
 
 simulated function float GetReloadRateScale(KFWeapon KFW)
 {
-    if((IsCrouchAimActive()) && IsWeaponOnPerk(KFW))
+    if(IsCrouchAimActive(KFW))
     {
         return 1 - GetCrouchAimReloadSpeedModifier();
     }
@@ -241,9 +243,9 @@ simulated function bool IsTriggerActive()
     return PerkSkills[1].bActive;
 }
 
-function bool IsCrouchAimActive()
+simulated function bool IsCrouchAimActive(KFWeapon W)
 {
-    return (PerkSkills[2].bActive && OwnerPawn.bIsCrouched) && IsWeaponOnPerk(GetOwnerWeapon());
+    return ((PerkSkills[2].bActive && CheckOwnerPawn()) && OwnerPawn.bIsCrouched) && IsWeaponOnPerk(W);
 }
 
 simulated function bool IsStunActive()
@@ -422,6 +424,24 @@ private static final simulated function float GetCrouchAimReloadSpeedModifier()
     return default.CrouchAimReloadSpeedModifier;
 }
 
+static function bool IsDamageTypeOnPerk(class<KFDamageType> KFDT)
+{
+    if((KFDT != none) && default.AdditionalOnPerkDTNames.Find(KFDT.Name != -1)
+    {
+        return true;
+    }
+    return super.IsDamageTypeOnPerk(KFDT);
+}
+
+static simulated function bool IsWeaponOnPerk(KFWeapon W, optional class<KFPerk> WeaponPerkClass)
+{
+    if((W != none) && default.AdditionalOnPerkWeaponNames.Find(W.Class.Name != -1)
+    {
+        return true;
+    }
+    return super.IsWeaponOnPerk(W, WeaponPerkClass);
+}
+
 defaultproperties
 {
     HeadshotDamage=(Name="Headshot Damage",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
@@ -437,6 +457,9 @@ defaultproperties
     TriggerMovementSpeedModifier=0.1
     CrouchAimMovementSpeedModifier=0.5
     CrouchAimReloadSpeedModifier=0.2
+    AdditionalOnPerkWeaponNames(0)=KFWeap_Pistol_9mm
+    AdditionalOnPerkWeaponNames(1)=KFWeap_Pistol_Dual9mm
+    AdditionalOnPerkDTNames(0)=KFDT_Ballistic_9mm
     SkillZedTimeChance=0.05
     ProgressStatID=50
     PerkBuildStatID=51

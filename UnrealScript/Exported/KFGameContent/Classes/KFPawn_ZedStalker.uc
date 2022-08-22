@@ -464,6 +464,7 @@ defaultproperties
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Stalker'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
+   LocalizationKey="KFPawn_ZedStalker"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -490,7 +491,7 @@ defaultproperties
    IncapSettings(6)=(Duration=5.500000,Cooldown=7.500000,Vulnerability=(10.000000))
    IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000,10.000000,10.000000,10.000000))
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.500000))
-   IncapSettings(9)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
+   IncapSettings(9)=(Duration=4.000000,Cooldown=1.500000,Vulnerability=(2.500000))
    IncapSettings(10)=(Cooldown=20.500000,Vulnerability=(0.500000))
    PhysRagdollImpulseScale=0.900000
    KnockdownImpulseScale=0.900000
@@ -596,7 +597,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

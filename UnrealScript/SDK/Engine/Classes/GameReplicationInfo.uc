@@ -22,6 +22,11 @@ var repnotify bool bMatchHasBegun;
 /** Match is over (replicated) */
 var repnotify bool bMatchIsOver;
 
+//@HSL_BEGIN - JRO - 6/26/2016 - Moving this from KFGameReplicationInfoVersus so it can be used in OnlineSubsystem
+/** Indicates that we are in the post-round waiting period */
+var repnotify bool bRoundIsOver;
+//@HSL_END
+
 //@HSL_BEGIN - JRO - 6/15/2016 - Make sure we're still at full speed before the end of game menu shows up
 /** Match is almost over, but not quite */
 var bool bWaitingForAAR;
@@ -73,7 +78,7 @@ cpptext
 	 */
 	AGameInfo *GetDefaultGameInfo();
 
-#if __TW_SDK_
+#if __TW_
 	virtual UBOOL IsUnrankedGame() { return true; }
 	virtual FString GetGameBalanceCol1() { return TEXT(",,"); }
 	virtual int GetWaveNum() { return -1; }
@@ -85,7 +90,7 @@ cpptext
 replication
 {
 	if ( bNetDirty )
-		bStopCountDown, Winner, bMatchHasBegun, bMatchIsOver;
+		bStopCountDown, Winner, bMatchHasBegun, bMatchIsOver, bRoundIsOver;
 
 	if ( !bNetInitial && bNetDirty )
 		RemainingMinute;

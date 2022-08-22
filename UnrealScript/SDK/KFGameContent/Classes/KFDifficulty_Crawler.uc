@@ -23,7 +23,12 @@ static function float GetSpecialCrawlerChance( KFPawn_ZedCrawler CrawlerPawn , K
 
 		return 0.f;
 	}
-
+	
+`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))
+	if( default.bForceSpecialSpawn )
+		return 1.f;
+	else
+`endif
 	return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
 }
 
@@ -67,5 +72,5 @@ defaultproperties
 	ChanceToSpawnAsSpecial(`DIFFICULTY_Normal)		=0.0
 	ChanceToSpawnAsSpecial(`DIFFICULTY_Hard)		=0.01
 	ChanceToSpawnAsSpecial(`DIFFICULTY_Suicidal)	=0.15
-	ChanceToSpawnAsSpecial(`DIFFICULTY_HellOnEarth)	=0.3
+	ChanceToSpawnAsSpecial(`DIFFICULTY_HellOnEarth)	=0.2 //0.3
 }

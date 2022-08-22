@@ -820,6 +820,9 @@ native static final function bool IsConsoleDedicatedServer();
 // Export UWorldInfo::execIsE3Build(FFrame&, void* const)
 native static final simulated function bool IsE3Build();
 
+// Export UWorldInfo::execIsNeoCheckerboardRendering(FFrame&, void* const)
+native static final function bool IsNeoCheckerboardRendering();
+
 // Export UWorldInfo::execIsConsoleBuild(FFrame&, void* const)
 native static final simulated function bool IsConsoleBuild(optional WorldInfo.EConsoleType ConsoleType)
 {

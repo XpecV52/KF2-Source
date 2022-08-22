@@ -453,7 +453,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 
 	if( P.MyKFAIC != none && !P.MyKFAIC.CheckOverallCooldownTimer())
 	{
-		if( P.MyKFAIC!= None ) { P.MyKFAIC.AILog_Internal(GetFuncName()$"() PREVENTING attack "$Attack.Tag$" because Overall Cooldown is active",'Command_Attack_Melee'); };
+		if( !class'Engine'.static.GetEngine().bDIsableAILogging && P.MyKFAIC!= None ) { P.MyKFAIC.AILog_Internal(GetFuncName()$"() PREVENTING attack "$Attack.Tag$" because Overall Cooldown is active",'Command_Attack_Melee'); };
 		return false;
 	}
 
@@ -521,7 +521,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 	{
 		if( P.MyKFAIC != none )
 		{
-			if( P.MyKFAIC!= None ) { P.MyKFAIC.AILog_Internal(GetFuncName()$"() PREVENTING attack "$Attack.Tag$" because it has a DifficultyRating of "$Attack.DifficultyRating,'Command_Attack_Melee'); };
+			if( !class'Engine'.static.GetEngine().bDIsableAILogging && P.MyKFAIC!= None ) { P.MyKFAIC.AILog_Internal(GetFuncName()$"() PREVENTING attack "$Attack.Tag$" because it has a DifficultyRating of "$Attack.DifficultyRating,'Command_Attack_Melee'); };
 		}
 		return false; // do this last so perf is consistant
 	}
@@ -752,12 +752,16 @@ function bool PlayHitReactionAnim(KFPawn P, EHitReactionAnimType Type, EPawnOcta
 		AnimName = MediumHitAnims[Dir].Anims[Rand(MediumHitAnims[Dir].Anims.Length)];
 		Duration = P.PlayBodyAnim(AnimName, EAS_UpperBody);
 		P.NextHitReactionAnim_ActorTime = P.GetActorTimeSeconds() + 0.33f;//RandRange(0.0f, 0.1f);
+
+		P.SoundGroupArch.PlayPainSound(P);
 	}
 	else if ( Type == HIT_Heavy && HeavyHitAnims[Dir].Anims.Length > 0 )
 	{
 		AnimName = HeavyHitAnims[Dir].Anims[Rand(HeavyHitAnims[Dir].Anims.Length)];
 		Duration = P.PlayBodyAnim(AnimName, EAS_UpperBody);
 		P.NextHitReactionAnim_ActorTime = P.GetActorTimeSeconds() + 0.33f;//RandRange(0.5f, 1.5f);
+
+		P.SoundGroupArch.PlayPainSound(P);
 	}
 
 	return ( Duration > 0 );

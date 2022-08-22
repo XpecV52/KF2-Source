@@ -12,9 +12,9 @@ TanakasBikerBundleName=Tanaka's Biker Bundle
 CardboardKnightBundleName=Cardboard Knight Bundle
 
 ;Bundle Descriptions
-BriarsBobbyBundleDescription=Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles) Not tradeable or marketable.
+BriarsBobbyBundleDescription=Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles). Not tradeable or marketable.
 FosterClassicBundleDescription=Comes with Foster's Classic Suit Uniform (includes 9 skin styles), Classic Tie Accessory (includes 8 skin styles) and Bow Tie Accessory. Not tradeable or marketable.
-TanakasBikerBundleDescription=Comes with Tanaka's Motorcycle Uniform (includes 7 skin styles) and Helmet Cosmetic Accessory (includes 7 skin styles) Not tradeable or marketable.
+TanakasBikerBundleDescription=Comes with Tanaka's Motorcycle Uniform (includes 7 skin styles) and Helmet Cosmetic Accessory (includes 7 skin styles). Not tradeable or marketable.
 CardboardKnightBundleDescription=Comes with a Cardboard Knight Armor for the body(includes 6 skin styles) and Cardboard Knight Helmet Cosmetic Accessory (includes 6 skin styles).
 
 ;PSN Bundle Descriptions
@@ -31,7 +31,7 @@ CosmeticUniformType=Player Uniform Variant
 CosmeticAccessoryType=Player Accessory
 
 ;bundle items
-Briars"London"UniformName=Briar's "London" Uniform
+BriarsLondonUniformName=Briar's "London" Uniform
 BriarsCustodianHelmetName=Briar's Custodian Helmet
 FostersClassicSuitName=Foster's Classic Suit
 FostersClassicTieName=Foster's Classic Tie
@@ -44,8 +44,8 @@ CardboardKnightName=Cardboard Knight
 CardboardKnightHelmetName=Cardboard Knight Helmet
 
 ;bundle item descriptions
-Briars"London"UniformDescription=Walking the beat alone. Compatible with Briar and Classic Briar. Not tradeable or marketable.
-BriarsCustodianHelmetDescription=Keep the noggin safe. Compatible with Oisten Jägerhorn, DJ Scully, Mr. Foster, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner Not tradeable or marketable.
+BriarsLondonUniformDescription=Walking the beat alone. Compatible with Briar and Classic Briar. Not tradeable or marketable.
+BriarsCustodianHelmetDescription=Keep the noggin safe. Compatible with Oisten Jägerhorn, DJ Scully, Mr. Foster, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner. Not tradeable or marketable.
 FostersClassicSuitDescription=Kill zeds and look classy doing it! Compatible with Mr. Foster. Not tradeable or marketable.
 FostersClassicTieDescription=Nice straight tie. Only compatible with Classic Foster Suit. Not tradeable or marketable.
 FostersBowTieDescription=Nice bow tie. Only compatible with Classic Foster Suit. Not tradeable or marketable.
@@ -88,8 +88,7 @@ HorzineSupplyCrateSeries5Description=Requires a Series #5 Horzine Supply Crate K
 
 HorzineSupplyCrateSeries6Description=Requires a Series #6 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">US Gas Mask</font><br><font color="#4b69cd">Russian Gas Mask PMK-2</font><br><font color="#4b69cd">Enforcer Goggles</font><br><font color="#4b69cd">Enforcer Helmet</font><br><font color="#6600a1">RPG-7 Backbag</font><br><font color="#6600a1">Tactical Backbag</font><br><font color="#8847ff">Enforcer Mask</font><br><font color="#8847ff">M2 Flamethrower Tank</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
 
-HorzineSupplyCrateSeries7Description=Requires a Series #7 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Venom Mask</font><br><font color="#4b69cd">Venom Goggles</font><br><font color="#4b69cd">Venom Goggles Down</font><br><font color="#4b69cd">Venom 
-Headphones</font><br><font color="#6600a1">Venom Mask Filtered</font><br><font color="#6600a1">Venom Goggles Up</font><br><font color="#6600a1">Tormentor Mask</font><br><font color="#8847ff">Tormentor Headgear</font><br><font color="#8847ff">Tormentor Tubes Mask</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+HorzineSupplyCrateSeries7Description=Requires a Series #7 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Venom Mask</font><br><font color="#4b69cd">Venom Goggles</font><br><font color="#4b69cd">Venom Goggles Down</font><br><font color="#4b69cd">Venom Headphones</font><br><font color="#6600a1">Venom Mask Filtered</font><br><font color="#6600a1">Venom Goggles Up</font><br><font color="#6600a1">Tormentor Mask</font><br><font color="#8847ff">Tormentor Headgear</font><br><font color="#8847ff">Tormentor Tubes Mask</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
 
 HorzineSupplyCrateSeries8Description=Requires a Series #8 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Tactical Hat</font><br><font color="#4b69cd">Tactical Mask</font><br><font color="#4b69cd">Tactical Headset MK1/MK2</font><br><font color="#6600a1">GS9 Helmet</font><br><font color="#6600a1">GS9 Mask</font><br><font color="#8847ff">Russian Military Helmet</font><br><font color="#8847ff">Russian Military Mask</font><br><font color="#8847ff">Russian Military Glasses</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
 
@@ -134,33 +133,33 @@ VictorianEncryptedUSBName=Victorian Encrypted USB
 ZedKillerEncryptedUSBName=Zed Killer Encrypted USB
 
 ;Usb descriptions
-CyberboneEncryptedUSBDescription=Requires a Cyberbone Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">AR15 | Cyberbone</font><br><font color="#4b69cd">AK12 | Cyberbone</font><br><font color="#4b69cd">AA12 | Cyberbone</font><br><font color="#4b69cd">Katana | Cyberbone</font><br><font color="#8847ff">M79 | Putrid Bile</font><br><font color="#8847ff">AR15 | Containment</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+CyberboneEncryptedUSBDescription=Requires a Cyberbone Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">AR15 | Cyberbone</font><br><font color="#4b69cd">AA-12 | Cyberbone</font><br><font color="#4b69cd">AA-12 | Cyberbone</font><br><font color="#4b69cd">Katana | Cyberbone</font><br><font color="#8847ff">M79 | Putrid Bile</font><br><font color="#8847ff">AR15 | Containment</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
 
 DragonfireEncryptedUSBDescription=Requires a Dragonfire Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Caulk n Burn | Dragonfire</font><br><font color="#4b69cd">Flamethrower | Dragonfire</font><br><font color="#4b69cd">Dragonsbreath | Dragonfire</font><br><font color="#4b69cd">Firebug Knife | Dragonfire</font><br><font color="#8847ff">Dragonsbreath | Heat</font><br><font color="#8847ff">Boomstick | Heat</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
 
 EmergencyIssueEncryptedUSBDescription=Requires a Emergency Issue Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">9MM | Emergency Issue</font><br><font color="#4b69cd">Caulk n Burn | Emergency Issue</font><br><font color="#4b69cd">Desert Eagle | Emergency Issue</font><br><font color="#4b69cd">SG500 | Emergency Issue</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Emergency Issue</font><br><font color="#6600a1">Flamethrower | Emergency Issue</font><br><font color="#8847ff">Microwave Gun | Emergency Issue</font><br><font color="#8847ff">Eviscerator | Emergency Issue</font><br><font color="#caab05">or an Exceedingly Rare Precious Commando Skin!</font>
 
-HorzineFirstEncounterEncryptedUSBDescription=Requires a Horzine First Encounter Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">SG500 | Horzine First Encounter</font><br><font color="#4b69cd">AA12 | Horzine First Encounter</font><br><font color="#4b69cd">Healer | Horzine First Encounter</font><br><font color="#4b69cd">Welder | Horzine First Encounter</font><br><font color="#6600a1">AK12 | Elite AK12 Green</font><br><font color="#6600a1">AK12 | Elite AK12 White</font><br><font color="#8847ff">AK12 | Elite AK12 Red</font><br><font color="#8847ff">AK12 | Elite AK12 Blue</font><br><font color="#caab05">or an Exceedingly Rare Precious Demolition Skin!</font>
+HorzineFirstEncounterEncryptedUSBDescription=Requires a Horzine First Encounter Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">SG500 | Horzine First Encounter</font><br><font color="#4b69cd">AA-12 | Horzine First Encounter</font><br><font color="#4b69cd">Healer | Horzine First Encounter</font><br><font color="#4b69cd">Welder | Horzine First Encounter</font><br><font color="#6600a1">AA-12 | Elite AA-12 Green</font><br><font color="#6600a1">AA-12 | Elite AA-12 White</font><br><font color="#8847ff">AA-12 | Elite AA-12 Red</font><br><font color="#8847ff">AA-12 | Elite AA-12 Blue</font><br><font color="#caab05">or an Exceedingly Rare Precious Demolition Skin!</font>
 
 HorzineIssueEncryptedUSBDescription=Requires a Horzine Issue Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">M4 | Monster Killer</font><br><font color="#4b69cd">9mm | Airlock</font><br><font color="#4b69cd">L85A2 | Aeronaut</font><br><font color="#4b69cd">Boomstick | Sharkteeth</font><br><font color="#8847ff">Scar | Horzine Elite Red</font><br><font color="#8847ff">Scar | Horzine Elite Blue</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
 
 MedicEncryptedUSBDescription=Requires a Medic Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">HMTech-101 Pistol | Elite Unit</font><br><font color="#4b69cd">HMTech-201 SMG | Elite Unit</font><br><font color="#4b69cd">HMTech-301 Shotgun | Elite Unit</font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Elite Unit</font><br><font color="#6600a1">HMTech-001 Scapel | Elite Unit</font><br><font color="#6600a1">HMTech Healer | Elite Unit</font><br><font color="#6600a1">HMTech-101 Pistol | Elite Unit Green</font><br><font color="#6600a1">HMTech-201 SMG | Elite Unit Green</font><br><font color="#8847ff">HMTech-301 Shotgun | Elite Unit Red</font><br><font color="#8847ff">HMTech-401 Assault Rifle | Elite Unit Red</font><br><font color="#caab05">or an Exceedingly Rare Precious Medic Skin!</font>
 
-OlExhibitEncryptedUSBDescription=Requires an Ol' Exhibit Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">L85A2 | Junkyard Racer</font><br><font color="#4b69cd">1858 Revolver | Junkyard Racer</font><br><font color="#4b69cd">Winchester 1984 | Junkyard Racer</font><br><font color="#4b69cd">9MM | Gunner Classic</font><br><font color="#6600a1">9MM | Tripwire Gunner</font><br><font color="#6600a1">Healer | Outmoded</font><br><font color="#8847ff">AA12 | Clot Cola</font><br><font color="#8847ff">Microwave Gun | Human Popcorn</font><br><font color="#caab05">or an Exceedingly Rare Precious 9mm Skin!</font>
+OlExhibitEncryptedUSBDescription=Requires an Ol' Exhibit Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">L85A2 | Junkyard Racer</font><br><font color="#4b69cd">1858 Revolver | Junkyard Racer</font><br><font color="#4b69cd">Winchester 1984 | Junkyard Racer</font><br><font color="#4b69cd">9MM | Gunner Classic</font><br><font color="#6600a1">9MM | Tripwire Gunner</font><br><font color="#6600a1">Healer | Outmoded</font><br><font color="#8847ff">AA-12 | Clot Cola</font><br><font color="#8847ff">Microwave Gun | Human Popcorn</font><br><font color="#caab05">or an Exceedingly Rare Precious 9mm Skin!</font>
 
-PredatorEncryptedUSBDescription=Requires a Predator Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">AK12 | Predator</font><br><font color="#4b69cd">HX25 | Predator</font><br><font color="#4b69cd">L85A2 | Predator</font><br><font color="#4b69cd">SG500 | Predator</font><br><font color="#6600a1">Pulverizer | Flesh</font><br><font color="#8847ff">AA12 | Carcass</font><br><font color="#8847ff">HX25 | Vertebrae</font><br><font color="#caab05">or an Exceedingly Rare Precious Support Skin!</font>
+PredatorEncryptedUSBDescription=Requires a Predator Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">AA-12 | Predator</font><br><font color="#4b69cd">HX25 | Predator</font><br><font color="#4b69cd">L85A2 | Predator</font><br><font color="#4b69cd">SG500 | Predator</font><br><font color="#6600a1">Pulverizer | Flesh</font><br><font color="#8847ff">AA-12 | Carcass</font><br><font color="#8847ff">HX25 | Vertebrae</font><br><font color="#caab05">or an Exceedingly Rare Precious Support Skin!</font>
 
-StoriesofWarEncryptedUSBDescription=Requires a Stories of War Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">M4 | Stories of War</font><br><font color="#4b69cd">Scar | Stories of War</font><br><font color="#4b69cd">Dragonsbreath | Stories of War</font><br><font color="#4b69cd">M79 | Stories of War</font><br><font color="#6600a1">M79 | Peace Maker</font><br><font color="#8847ff">AA12 | Stories of War</font><br><font color="#8847ff">RPG-7 | Stories of War</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+StoriesofWarEncryptedUSBDescription=Requires a Stories of War Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">M4 | Stories of War</font><br><font color="#4b69cd">Scar | Stories of War</font><br><font color="#4b69cd">Dragonsbreath | Stories of War</font><br><font color="#4b69cd">M79 | Stories of War</font><br><font color="#6600a1">M79 | Peace Maker</font><br><font color="#8847ff">AA-12 | Stories of War</font><br><font color="#8847ff">RPG-7 | Stories of War</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
 
-StreetPunksEncryptedUSBDescription=Requires a Street Punks Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">9MM | Street Punks</font><br><font color="#4b69cd">AK12 | Street Punks</font><br><font color="#4b69cd">AR15 | Street Punks</font><br><font color="#4b69cd">Caulk n Burn | Street Punks</font><br><font color="#4b69cd">Desert Eagle | Street Punks</font><br><font color="#4b69cd">KF-BAR | Street Punks</font><br><font color="#4b69cd">SG500 | Street Punks</font><br><font color="#6600a1">Scar | Spray Can</font><br><font color="#8847ff">AK12 | Leviathan</font><br><font color="#caab05">or an Exceedingly Rare Precious Firebug Skin!</font>
+StreetPunksEncryptedUSBDescription=Requires a Street Punks Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">9MM | Street Punks</font><br><font color="#4b69cd">AA-12 | Street Punks</font><br><font color="#4b69cd">AR15 | Street Punks</font><br><font color="#4b69cd">Caulk n Burn | Street Punks</font><br><font color="#4b69cd">Desert Eagle | Street Punks</font><br><font color="#4b69cd">KF-BAR | Street Punks</font><br><font color="#4b69cd">SG500 | Street Punks</font><br><font color="#6600a1">Scar | Spray Can</font><br><font color="#8847ff">AA-12 | Leviathan</font><br><font color="#caab05">or an Exceedingly Rare Precious Firebug Skin!</font>
 
-SWATEncryptedUSBDescription=Requires a SWAT Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">9MM | SWAT</font><br><font color="#4b69cd">MB500 | SWAT</font><br><font color="#4b69cd">Pulverizer | SWAT</font><br><font color="#4b69cd">AK12 | SWAT</font><br><font color="#6600a1">AA12 | SWAT</font><br><font color="#8847ff">SCAR | SWAT</font><br><font color="#caab05">or an Exceedingly Rare Precious Commando Skin!</font>
+SWATEncryptedUSBDescription=Requires a SWAT Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">9MM | SWAT</font><br><font color="#4b69cd">MB500 | SWAT</font><br><font color="#4b69cd">Pulverizer | SWAT</font><br><font color="#4b69cd">AA-12 | SWAT</font><br><font color="#6600a1">AA-12 | SWAT</font><br><font color="#8847ff">SCAR | SWAT</font><br><font color="#caab05">or an Exceedingly Rare Precious Commando Skin!</font>
 
 TacticalHorzineEncryptedUSBDescription=Requires a Tactical Horzine Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">500 Magnum Revolver | Tactical</font><br><font color="#4b69cd">9MM | Tactical</font><br><font color="#4b69cd">AR15 | Tactical</font><br><font color="#4b69cd">Desert Eagle | Tactical</font><br><font color="#4b69cd">M1911 | Tactical</font><br><font color="#6600a1">L85A2 | Elite L85A2 Green</font><br><font color="#6600a1">L85A2 | Elite L85A2 White</font><br><font color="#8847ff">L85A2 | Elite L85A2 Red</font><br><font color="#8847ff">L85A2 | Elite L85A2 Blue</font><br><font color="#caab05">or an Exceedingly Rare Precious Gunslinger Skin!</font>
 
-VictorianEncryptedUSBDescription=Requires a Victorian Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Support Knife | Victorian</font><br><font color="#4b69cd">SG 500 | Victorian</font><br><font color="#4b69cd">Double Barrel | Victorian</font><br><font color="#4b69cd">M4 | Victorian</font><br><font color="#6600a1">AA12 | Victorian</font><br><font color="#8847ff">SCAR | Opulence</font><br><font color="#caab05">or an Exceedingly Rare Precious Support Skin!</font>
+VictorianEncryptedUSBDescription=Requires a Victorian Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Support Knife | Victorian</font><br><font color="#4b69cd">SG 500 | Victorian</font><br><font color="#4b69cd">Double Barrel | Victorian</font><br><font color="#4b69cd">M4 | Victorian</font><br><font color="#6600a1">AA-12 | Victorian</font><br><font color="#8847ff">SCAR | Opulence</font><br><font color="#caab05">or an Exceedingly Rare Precious Support Skin!</font>
 
-ZedKillerEncryptedUSBDescription=Requires a Zed Killer Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Scar | Clot Commando</font><br><font color="#4b69cd">9MM | Bloated</font><br><font color="#4b69cd">AA12 | Fleshpounder</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Arachnid</font><br><font color="#6600a1">Crovel | Grave Digger</font><br><font color="#8847ff">SG 500 | Rusted Death</font><br><font color="#8847ff">Pulverizer | Skullcracker</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+ZedKillerEncryptedUSBDescription=Requires a Zed Killer Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Scar | Clot Commando</font><br><font color="#4b69cd">9MM | Bloated</font><br><font color="#4b69cd">AA-12 | Fleshpounder</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Arachnid</font><br><font color="#6600a1">Crovel | Grave Digger</font><br><font color="#8847ff">SG 500 | Rusted Death</font><br><font color="#8847ff">Pulverizer | Skullcracker</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
 
 ;usb key names
 CyberboneUSBKeyName=Cyberbone USB Key
@@ -205,9 +204,9 @@ HorzineSupplyCosmeticCrateSeries1Description=Requires a Horzine Supply Crate Key
 
 HorzineSupplyCosmeticCrateSeries2Description=Requires a Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Tactical Hat</font><br><font color="#4b69cd">Tactical Mask</font><br><font color="#4b69cd">Tactical Headset MK1/MK2</font><br><font color="#4b69cd">Headband</font><br><font color="#6600a1">GS9 Helmet</font><br><font color="#6600a1">GS9 Mask</font><br><font color="#8847ff">Russian Military Glasses</font><br><font color="#8847ff">Russian Military Helmet</font><br><font color="#8847ff">Russian Military Mask</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
 
-HorzineSupplyWeaponSkinCrateSeries1Description=Requires a Horzine Supply Crate Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Scar | Clot Commando</font><br><font color="#4b69cd">9MM | Bloated</font><br><font color="#4b69cd">AA12 | Fleshpounder</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Arachnid</font><br><font color="#6600a1">Crovel | Grave Digger</font><br><font color="#8847ff">SG 500 | Rusted Death</font><br><font color="#8847ff">Pulverizer | Skullcracker</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+HorzineSupplyWeaponSkinCrateSeries1Description=Requires a Horzine Supply Crate Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Scar | Clot Commando</font><br><font color="#4b69cd">9MM | Bloated</font><br><font color="#4b69cd">AA-12 | Fleshpounder</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Arachnid</font><br><font color="#6600a1">Crovel | Grave Digger</font><br><font color="#8847ff">SG 500 | Rusted Death</font><br><font color="#8847ff">Pulverizer | Skullcracker</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
 
-HorzineSupplyWeaponSkinCrateSeries2Description=Requires a Horzine Supply Crate Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">L85A2 | Junkyard Racer</font><br><font color="#4b69cd">1858 Revolver | Junkyard Racer</font><br><font color="#4b69cd">Winchester 1984 | Junkyard Racer</font><br><font color="#4b69cd">9MM | Gunner Classic</font><br><font color="#6600a1">9MM | Tripwire Gunner</font><br><font color="#6600a1">Healer | Outmoded</font><br><font color="#8847ff">AA12 | Clot Cola</font><br><font color="#8847ff">Microwave Gun | Human Popcorn</font><br><font color="#caab05">or an Exceedingly Rare Precious 9mm Skin!</font>
+HorzineSupplyWeaponSkinCrateSeries2Description=Requires a Horzine Supply Crate Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">L85A2 | Junkyard Racer</font><br><font color="#4b69cd">1858 Revolver | Junkyard Racer</font><br><font color="#4b69cd">Winchester 1984 | Junkyard Racer</font><br><font color="#4b69cd">9MM | Gunner Classic</font><br><font color="#6600a1">9MM | Tripwire Gunner</font><br><font color="#6600a1">Healer | Outmoded</font><br><font color="#8847ff">AA-12 | Clot Cola</font><br><font color="#8847ff">Microwave Gun | Human Popcorn</font><br><font color="#caab05">or an Exceedingly Rare Precious 9mm Skin!</font>
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName=Horzine Supply Crate Key
@@ -233,14 +232,30 @@ CosmeticMasterCraftedType=Master Crafted Player Accessory
 CosmeticPreciousType=Exceedingly Rare Player Accessory
 
 ;Crafting Type Section
-CosmeticCommonCraftingType=Common Cosmetic Crafting Material
-CosmeticUnCommonCraftingType=Uncommon Cosmetic Crafting Material
-CosmeticRareCraftingType=Rare Cosmetic Crafting Material
-CosmeticExceptionalCraftingType=Exceptional Cosmetic Crafting Material
-WeaponSkinCommonCraftingType=Common Weapon Skin Crafting Material
-WeaponSkinUnCommonCraftingType=Uncommon Weapon Skin Crafting Material
-WeaponSkinRareCraftingType=Rare Weapon Skin Crafting Material
-WeaponSkinExceptionalCraftingType=Exceptional Weapon Skin Crafting Material
+CraftingType=Crafting Material
+
+[Crafting]
+
+;material names
+CommonCosmeticMaterialName=Common Cosmetic Material
+UncommonCosmeticMaterialName=Uncommon Cosmetic Material
+RareCosmeticMaterialName=Rare Cosmetic Material
+ExceptionalCosmeticMaterialName=Exceptional Cosmetic Material
+CommonWeaponSkinMaterialName=Common Weapon Skin Material
+UncommonWeaponSkinMaterialName=Uncommon Weapon Skin Material
+RareWeaponSkinMaterialName=Rare Weapon Skin Material
+ExceptionalWeaponSkinMaterialName=Exceptional Weapon Skin Material
+
+;materialdescriptions
+CommonCosmeticMaterialDescription=Common crafting material that when combined, can be used to make uncommon cosmetic items.
+UncommonCosmeticMaterialDescription=Uncommon crafting material that when combined, can be used to make rare cosmetic items.
+RareCosmeticMaterialDescription=Rare crafting material that when combined, can be used to make exceptional cosmetic items.
+ExceptionalCosmeticMaterialDescription=Exceptional crafting material that when combined, can be used to make master-crafted cosmetic items.
+CommonWeaponSkinMaterialDescription=Common crafting material that when combined, can be used to make uncommon weapon skins.
+UncommonWeaponSkinMaterialDescription=Uncommon crafting material that when combined, can be used to make rare weapon skins.
+RareWeaponSkinMaterialDescription=Rare crafting material that when combined, can be used to make exceptional weapon skins.
+ExceptionalWeaponSkinMaterialDescription=Exceptional crafting material that when combined, can be used to make master-crafted weapon skins.
+
 
 [WeaponSkins]
 
@@ -288,14 +303,14 @@ HMTechHealerPreciousName=HMTech Healer | Precious
 500MagnumRevolverPreciousDescription=Exterior: Precious | True hand artillery in the form of a long-barrelled .50-caliber 'Bone Collector' revolver, firing full-load magnum rounds. For the serious Gunslinger.
 
 ;500 Magnum Revolver Names
-500MagnumRevolverPreciousName=500 Magnum Revolver | Precious
-500MagnumRevolverSnakeSkinMintName=500 Magnum Revolver | Snakeskin | Mint
-500MagnumRevolverSnakeSkinFieldTestedName=500 Magnum Revolver | Snakeskin | Field-Tested
-500MagnumRevolverSnakeSkinBattleScarredName=500 Magnum Revolver | Snakeskin | Battle-Scarred
-500MagnumRevolverPreciousName=500 Magnum Revolver | Precious
-500MagnumRevolverTacticalMintName=500 Magnum Revolver | Tactical | Mint
-500MagnumRevolverTacticalFieldTestedName=500 Magnum Revolver | Tactical | Field-Tested
-500MagnumRevolverTacticalBattleScarredName=500 Magnum Revolver | Tactical | Battle-Scarred
+500MagnumRevolverPreciousName=.500 Magnum Revolver | Precious
+500MagnumRevolverSnakeSkinMintName=.500 Magnum Revolver | Snakeskin | Mint
+500MagnumRevolverSnakeSkinFieldTestedName=.500 Magnum Revolver | Snakeskin | Field-Tested
+500MagnumRevolverSnakeSkinBattleScarredName=.500 Magnum Revolver | Snakeskin | Battle-Scarred
+500MagnumRevolverPreciousName=.500 Magnum Revolver | Precious
+500MagnumRevolverTacticalMintName=.500 Magnum Revolver | Tactical | Mint
+500MagnumRevolverTacticalFieldTestedName=.500 Magnum Revolver | Tactical | Field-Tested
+500MagnumRevolverTacticalBattleScarredName=.500 Magnum Revolver | Tactical | Battle-Scarred
 
 ;9mm Descriptions
 9MMMintDescription=Exterior: Mint | Simple and cheap (very cheap, frankly, to you), it is the basic sidearm for all Horzine operatives.
@@ -316,6 +331,21 @@ HMTechHealerPreciousName=HMTech Healer | Precious
 9MMGunnerClassicMintName=9MM | Gunner Classic | Mint
 9MMGunnerClassicFieldTestedName=9MM | Gunner Classic | Field-Tested
 9MMGunnerClassicBattleScarredName=9MM | Gunner Classic | Battle-Scarred
+9mmHorzineEliteBlueMintName=9mm | Horzine Elite Blue | Mint
+9mmHorzineEliteBlueFieldTestedName=9mm | Horzine Elite Blue | Field-Tested
+9mmHorzineEliteBlueBattleScarredName=9mm | Horzine Elite Blue | Battle-Scarred
+9mmHorzineEliteGreenMintName=9mm | Horzine Elite Green | Mint
+9mmHorzineEliteGreenFieldTestedName=9mm | Horzine Elite Green | Field-Tested
+9mmHorzineEliteGreenBattleScarredName=9mm | Horzine Elite Green | Battle-Scarred
+9mmHorzineEliteRedMintName=9mm | Horzine Elite Red | Mint
+9mmHorzineEliteRedFieldTestedName=9mm | Horzine Elite Red | Field-Tested
+9mmHorzineEliteRedBattleScarredName=9mm | Horzine Elite Red | Battle-Scarred
+9mmHorzineEliteWhiteMintName=9mm | Horzine Elite White | Mint
+9mmHorzineEliteWhiteFieldTestedName=9mm | Horzine Elite White | Field-Tested
+9mmHorzineEliteWhiteBattleScarredName=9mm | Horzine Elite White | Battle-Scarred
+9MMReaperMintName=9MM | Reaper | Mint
+9MMReaperFieldTestedName=9MM | Reaper | Field-Tested
+9MMReaperBattleScarredName=9MM | Reaper | Battle-Scarred
 9MMStreetPunksMintName=9MM | Street Punks | Mint
 9MMStreetPunksFieldTestedName=9MM | Street Punks | Field-Tested
 9MMStreetPunksBattleScarredName=9MM | Street Punks | Battle-Scarred
@@ -328,10 +358,16 @@ HMTechHealerPreciousName=HMTech Healer | Precious
 9MMTripwireGunnerMintName=9MM | Tripwire Gunner | Mint
 9MMTripwireGunnerFieldTestedName=9MM | Tripwire Gunner | Field-Tested
 9MMTripwireGunnerBattleScarredName=9MM | Tripwire Gunner | Battle-Scarred
+9MMYinYangMintName=9MM | Yin Yang | Mint
+9MMYinYangFieldTestedName=9MM | Yin Yang | Field-Tested
+9MMYinYangBattleScarredName=9MM | Yin Yang | Battle-Scarred
 9MMHorzineEliteMintName=9MM | Horzine Elite | Mint
 9MMHorzineEliteFieldTestedName=9MM | Horzine Elite | Field-Tested
 9MMHorzineEliteBattleScarredName=9MM | Horzine Elite | Battle-Scarred
 9MMPreciousName=9MM | Precious
+9MMDeepstrikeMintName=9MM | Deepstrike | Mint
+9MMDeepstrikeFieldTestedName=9MM | Deepstrike | Field-Tested
+9MMDeepstrikeBattleScarredName=9MM | Deepstrike | Battle-Scarred
 
 ;AA12 Descriptions
 AA12MintDescription=Exterior: Mint | The AA-12 is an automatic shotgun. It has devastating firepower at close to medium range, but eats ammunition on full auto!
@@ -340,37 +376,40 @@ AA12BattleScarredDescription=Exterior: Battle-Scarred | The AA-12 is an automati
 AA12PreciousDescription=Exterior: Precious | The AA-12 is an automatic shotgun. It has devastating firepower at close to medium range, but eats ammunition on full auto!
 
 ;AA12 Names
-AA12CarcassMintName=AA12 | Carcass | Mint
-AA12CarcassFieldTestedName=AA12 | Carcass | Field-Tested
-AA12CarcassBattleScarredName=AA12 | Carcass | Battle-Scarred
-AA12ClotColaMintName=AA12 | Clot Cola | Mint
-AA12ClotColaTestedName=AA12 | Clot Cola | Field-Tested
-AA12ClotColaBattleScarredName=AA12 | Clot Cola | Battle-Scarred
-AA12CyberboneMintName=AA12 | Cyberbone | Mint
-AA12CyberboneTestedName=AA12 | Cyberbone | Field-Tested
-AA12CyberboneBattleScarredName=AA12 | Cyberbone | Battle-Scarred
-AA12FleshpounderMintName=AA12 | Fleshpounder | Mint
-AA12FleshpounderTestedName=AA12 | Fleshpounder | Field-Tested
-AA12FleshpounderBattleScarredName=AA12 | Fleshpounder | Battle-Scarred
-AA12HorzineFirstEncounterMintName=AA12 | Horzine First Encounter | Mint
-AA12HorzineFirstEncounterTestedName=AA12 | Horzine First Encounter | Field-Tested
-AA12HorzineFirstEncounterBattleScarredName=AA12 | Horzine First Encounter | Battle-Scarred
-AA12SnakeskinMintName=AA12 | Snakeskin | Mint
-AA12SnakeskinTestedName=AA12 | Snakeskin | Field-Tested
-AA12SnakeskinBattleScarredName=AA12 | Snakeskin | Battle-Scarred
-AA12StoriesofWarMintName=AA12 | Stories of War | Mint
-AA12StoriesofWarTestedName=AA12 | Stories of War | Field-Tested
-AA12StoriesofWarBattleScarredName=AA12 | Stories of War | Battle-Scarred
-AA12SWATMintName=AA12 | SWAT | Mint
-AA12SWATTestedName=AA12 | SWAT | Field-Tested
-AA12SWATBattleScarredName=AA12 | SWAT | Battle-Scarred
-AA12VictorianMintName=AA12 | Victorian | Mint
-AA12VictorianTestedName=AA12 | Victorian | Field-Tested
-AA12VictorianBattleScarredName=AA12 | Victorian | Battle-Scarred
-AA12WoodlandMintName=AA12 | Woodland | Mint
-AA12WoodlandTestedName=AA12 | Woodland | Field-Tested
-AA12WoodlandBattleScarredName=AA12 | Woodland | Battle-Scarred
-AA12PreciousName=AA12 | Precious
+AA12CarcassMintName=AA-12 | Carcass | Mint
+AA12CarcassFieldTestedName=AA-12 | Carcass | Field-Tested
+AA12CarcassBattleScarredName=AA-12 | Carcass | Battle-Scarred
+AA12ClotColaMintName=AA-12 | Clot Cola | Mint
+AA12ClotColaTestedName=AA-12 | Clot Cola | Field-Tested
+AA12ClotColaBattleScarredName=AA-12 | Clot Cola | Battle-Scarred
+AA12CyberboneMintName=AA-12 | Cyberbone | Mint
+AA12CyberboneTestedName=AA-12 | Cyberbone | Field-Tested
+AA12CyberboneBattleScarredName=AA-12 | Cyberbone | Battle-Scarred
+AA12FleshpounderMintName=AA-12 | Fleshpounder | Mint
+AA12FleshpounderTestedName=AA-12 | Fleshpounder | Field-Tested
+AA12FleshpounderBattleScarredName=AA-12 | Fleshpounder | Battle-Scarred
+AA12HorzineFirstEncounterMintName=AA-12 | Horzine First Encounter | Mint
+AA12HorzineFirstEncounterTestedName=AA-12 | Horzine First Encounter | Field-Tested
+AA12HorzineFirstEncounterBattleScarredName=AA-12 | Horzine First Encounter | Battle-Scarred
+AA12SnakeskinMintName=AA-12 | Snakeskin | Mint
+AA12SnakeskinTestedName=AA-12 | Snakeskin | Field-Tested
+AA12SnakeskinBattleScarredName=AA-12 | Snakeskin | Battle-Scarred
+AA12StoriesofWarMintName=AA-12 | Stories of War | Mint
+AA12StoriesofWarTestedName=AA-12 | Stories of War | Field-Tested
+AA12StoriesofWarBattleScarredName=AA-12 | Stories of War | Battle-Scarred
+AA12SWATMintName=AA-12 | SWAT | Mint
+AA12SWATTestedName=AA-12 | SWAT | Field-Tested
+AA12SWATBattleScarredName=AA-12 | SWAT | Battle-Scarred
+AA12VictorianMintName=AA-12 | Victorian | Mint
+AA12VictorianTestedName=AA-12 | Victorian | Field-Tested
+AA12VictorianBattleScarredName=AA-12 | Victorian | Battle-Scarred
+AA12WoodlandMintName=AA-12 | Woodland | Mint
+AA12WoodlandTestedName=AA-12 | Woodland | Field-Tested
+AA12WoodlandBattleScarredName=AA-12 | Woodland | Battle-Scarred
+AA12PreciousName=AA-12 | Precious
+AA12TacticalMintName=AA12 | Tactical | Mint
+AA12TacticalFieldTestedName=AA12 | Tactical | Field-Tested
+AA12TacticalBattleScarredName=AA12 | Tactical | Battle-Scarred
 
 ;AK12 Descriptions
 AK12MintDescription=Exterior: Mint | This AK-12 was taken from a dead Russian Spetsnaz operative for scanning.
@@ -379,40 +418,46 @@ AK12BattleScarredDescription=Exterior: Battle-Scarred | This AK-12 was taken fro
 AK12PreciousDescription=Exterior: Precious | This AK-12 was taken from a dead Russian Spetsnaz operative for scanning.
 
 ;AK12 Names
-AK12CyberboneMintName=AK12 | Cyberbone | Mint
-AK12CyberboneTestedName=AK12 | Cyberbone | Field-Tested
-AK12CyberboneBattleScarredName=AK12 | Cyberbone | Battle-Scarred
-AK12HorzineEliteBlueMintName=AK12 | Horzine Elite Blue | Mint
-AK12HorzineEliteBlueTestedName=AK12 | Horzine Elite Blue | Field-Tested
-AK12HorzineEliteBlueBattleScarredName=AK12 | Horzine Elite Blue | Battle-Scarred
-AK12HorzineEliteGreenMintName=AK12 | Horzine Elite Green | Mint
-AK12HorzineEliteGreenTestedName=AK12 | Horzine Elite Green | Field-Tested
-AK12HorzineEliteGreenBattleScarredName=AK12 | Horzine Elite Green | Battle-Scarred
-AK12HorzineEliteRedMintName=AK12 | Horzine Elite Red | Mint
-AK12HorzineEliteRedTestedName=AK12 | Horzine Elite Red | Field-Tested
-AK12HorzineEliteRedBattleScarredName=AK12 | Horzine Elite Red | Battle-Scarred
-AK12HorzineEliteWhiteMintName=AK12 | Horzine Elite White | Mint
-AK12HorzineEliteWhiteTestedName=AK12 | Horzine Elite White | Field-Tested
-AK12HorzineEliteWhiteBattleScarredName=AK12 | Horzine Elite White | Battle-Scarred
-AK12LeviathanMintName=AK12 | Leviathan | Mint
-AK12LeviathanTestedName=AK12 | Leviathan | Field-Tested
-AK12LeviathanBattleScarredName=AK12 | Leviathan | Battle-Scarred
-AK12PredatorMintName=AK12 | Predator | Mint
-AK12PredatorTestedName=AK12 | Predator | Field-Tested
-AK12PredatorBattleScarredName=AK12 | Predator | Battle-Scarred
-AK12StoriesofWarMintName=AK12 | Stories of War | Mint
-AK12StoriesofWarTestedName=AK12 | Stories of War | Field-Tested
-AK12StoriesofWarBattleScarredName=AK12 | Stories of War | Battle-Scarred
-AK12StreetPunksMintName=AK12 | Street Punks | Mint
-AK12StreetPunksTestedName=AK12 | Street Punks | Field-Tested
-AK12StreetPunksBattleScarredName=AK12 | Street Punks | Battle-Scarred
-AK12SWATMintName=AK12 | SWAT | Mint
-AK12SWATTestedName=AK12 | SWAT | Field-Tested
-AK12SWATBattleScarredName=AK12 | SWAT | Battle-Scarred
-AK12TigerMintName=AK12 | Tiger | Mint
-AK12TigerTestedName=AK12 | Tiger | Field-Tested
-AK12TigerBattleScarredName=AK12 | Tiger | Battle-Scarred
-AK12PreciousName=AK12 | Precious
+AK12CyberboneMintName=AK-12 | Cyberbone | Mint
+AK12CyberboneTestedName=AK-12 | Cyberbone | Field-Tested
+AK12CyberboneBattleScarredName=AK-12 | Cyberbone | Battle-Scarred
+AK12HorzineEliteBlueMintName=AK-12 | Horzine Elite Blue | Mint
+AK12HorzineEliteBlueTestedName=AK-12 | Horzine Elite Blue | Field-Tested
+AK12HorzineEliteBlueBattleScarredName=AK-12 | Horzine Elite Blue | Battle-Scarred
+AK12HorzineEliteGreenMintName=AK-12 | Horzine Elite Green | Mint
+AK12HorzineEliteGreenTestedName=AK-12 | Horzine Elite Green | Field-Tested
+AK12HorzineEliteGreenBattleScarredName=AK-12 | Horzine Elite Green | Battle-Scarred
+AK12HorzineEliteRedMintName=AK-12 | Horzine Elite Red | Mint
+AK12HorzineEliteRedTestedName=AK-12 | Horzine Elite Red | Field-Tested
+AK12HorzineEliteRedBattleScarredName=AK-12 | Horzine Elite Red | Battle-Scarred
+AK12HorzineEliteWhiteMintName=AK-12 | Horzine Elite White | Mint
+AK12HorzineEliteWhiteTestedName=AK-12 | Horzine Elite White | Field-Tested
+AK12HorzineEliteWhiteBattleScarredName=AK-12 | Horzine Elite White | Battle-Scarred
+AK12LeviathanMintName=AK-12 | Leviathan | Mint
+AK12LeviathanTestedName=AK-12 | Leviathan | Field-Tested
+AK12LeviathanBattleScarredName=AK-12 | Leviathan | Battle-Scarred
+AK12PredatorMintName=AK-12 | Predator | Mint
+AK12PredatorTestedName=AK-12 | Predator | Field-Tested
+AK12PredatorBattleScarredName=AK-12 | Predator | Battle-Scarred
+AK12ReaperMintName=AK-12 | Reaper | Mint
+AK12ReaperTestedName=AK-12 | Reaper | Field-Tested
+AK12ReaperBattleScarredName=AK-12 | Reaper | Battle-Scarred
+AK12StoriesofWarMintName=AK-12 | Stories of War | Mint
+AK12StoriesofWarTestedName=AK-12 | Stories of War | Field-Tested
+AK12StoriesofWarBattleScarredName=AK-12 | Stories of War | Battle-Scarred
+AK12StreetPunksMintName=AK-12 | Street Punks | Mint
+AK12StreetPunksTestedName=AK-12 | Street Punks | Field-Tested
+AK12StreetPunksBattleScarredName=AK-12 | Street Punks | Battle-Scarred
+AK12SWATMintName=AK-12 | SWAT | Mint
+AK12SWATTestedName=AK-12 | SWAT | Field-Tested
+AK12SWATBattleScarredName=AK-12 | SWAT | Battle-Scarred
+AK12TigerMintName=AK-12 | Tiger | Mint
+AK12TigerTestedName=AK-12 | Tiger | Field-Tested
+AK12TigerBattleScarredName=AK-12 | Tiger | Battle-Scarred
+AK12PreciousName=AK-12 | Precious
+AK12TacticalMintName=AK12 | Tactical | Mint
+AK12TacticalFieldTestedName=AK12 | Tactical | Field-Tested
+AK12TacticalBattleScarredName=AK12 | Tactical | Battle-Scarred
 
 ;AR15 Descriptions
 AR15MintDescription=Exterior: Mint | This is for Zeds, not 'varmints.'
@@ -430,6 +475,9 @@ AR15ContainmentBattleScarredName=AR15 | Containment | Battle-Scarred
 AR15CyberboneMintName=AR15 | Cyberbone | Mint
 AR15CyberboneTestedName=AR15 | Cyberbone | Field-Tested
 AR15CyberboneBattleScarredName=AR15 | Cyberbone | Battle-Scarred
+AR15ReaperMintName=AR15 | Reaper | Mint
+AR15ReaperTestedName=AR15 | Reaper | Field-Tested
+AR15ReaperBattleScarredName=AR15 | Reaper | Battle-Scarred
 AR15StoriesofWarMintName=AR15 | Stories of War | Mint
 AR15StoriesofWarTestedName=AR15 | Stories of War | Field-Tested
 AR15StoriesofWarBattleScarredName=AR15 | Stories of War | Battle-Scarred
@@ -466,6 +514,9 @@ BoomstickSharkteethBattleScarredName=Boomstick | Sharkteeth | Battle-Scarred
 BoomstickWoodlandMintName=Boomstick | Woodland | Mint
 BoomstickWoodlandFieldTestedName=Boomstick | Woodland | Field-Tested
 BoomstickWoodlandBattleScarredName=Boomstick | Woodland | Battle-Scarred
+BoomstickYinYangMintName=Boomstick | Yin Yang | Mint
+BoomstickYinYangFieldTestedName=Boomstick | Yin Yang | Field-Tested
+BoomstickYinYangBattleScarredName=Boomstick | Yin Yang | Battle-Scarred
 BoomstickVictorianMintName=Boomstick | Victorian | Mint
 BoomstickVictorianFieldTestedName=Boomstick | Victorian | Field-Tested
 BoomstickVictorianBattleScarredName=Boomstick | Victorian | Battle-Scarred
@@ -496,7 +547,13 @@ CrossbowBattleScarredDescription=Exterior: Battle-Scarred | A high-powered hunti
 CrossbowPreciousDescription=Exterior: Precious | A high-powered hunting crossbow, giving good penetration and good stopping power!
 
 ;Crossbow Names
+CrossbowReaperMintName=Crossbow | Reaper | Mint
+CrossbowReaperFieldTestedName=Crossbow | Reaper | Field-Tested
+CrossbowReaperBattleScarredName=Crossbow | Reaper | Battle-Scarred
 CrossbowPreciousName=Crossbow | Precious
+CrossbowDeepstrikeMintName=Crossbow | Deepstrike | Mint
+CrossbowDeepstrikeFieldTestedName=Crossbow | Deepstrike | Field-Tested
+CrossbowDeepstrikeBattleScarredName=Crossbow | Deepstrike | Battle-Scarred
 
 ;Crovel Descriptions
 CrovelMintDescription=Exterior: Mint | Part crowbar, part shovel, all quite deadly.
@@ -508,6 +565,9 @@ CrovelPreciousDescription=Exterior: Precious | Part crowbar, part shovel, all qu
 CrovelGraveDiggerMintName=Crovel | Grave Digger | Mint
 CrovelGraveDiggerFieldTestedName=Crovel | Grave Digger | Field-Tested
 CrovelGraveDiggerBattleScarredName=Crovel | Grave Digger | Battle-Scarred
+CrovelReaperMintName=Crovel | Reaper | Mint
+CrovelReaperFieldTestedName=Crovel | Reaper | Field-Tested
+CrovelReaperBattleScarredName=Crovel | Reaper | Battle-Scarred
 CrovelPreciousName=Crovel | Precious
 
 ;Desert Eagle Descriptions
@@ -527,6 +587,21 @@ DesertEagleTacticalMintName=Desert Eagle | Tactical | Mint
 DesertEagleTacticalFieldTestedName=Desert Eagle | Tactical | Field-Tested
 DesertEagleTacticalBattleScarredName=Desert Eagle | Tactical | Battle-Scarred
 DesertEaglePreciousName=Desert Eagle | Precious
+DesertEagleDeepstrikeMintName=Desert Eagle | Deepstrike | Mint
+DesertEagleDeepstrikeFieldTestedName=Desert Eagle | Deepstrike | Field-Tested
+DesertEagleDeepstrikeBattleScarredName=Desert Eagle | Deepstrike | Battle-Scarred
+DesertEagleHorzineEliteBlueMintName=Desert Eagle | Horzine Elite Blue | Mint
+DesertEagleHorzineEliteBlueFieldTestedName=Desert Eagle | Horzine Elite Blue | Field-Tested
+DesertEagleHorzineEliteBlueBattleScarredName=Desert Eagle | Horzine Elite Blue | Battle-Scarred
+DesertEagleHorzineEliteGreenMintName=Desert Eagle | Horzine Elite Green | Mint
+DesertEagleHorzineEliteGreenFieldTestedName=Desert Eagle | Horzine Elite Green | Field-Tested
+DesertEagleHorzineEliteGreenBattleScarredName=Desert Eagle | Horzine Elite Green | Battle-Scarred
+DesertEagleHorzineEliteRedMintName=Desert Eagle | Horzine Elite Red | Mint
+DesertEagleHorzineEliteRedFieldTestedName=Desert Eagle | Horzine Elite Red | Field-Tested
+DesertEagleHorzineEliteRedBattleScarredName=Desert Eagle | Horzine Elite Red | Battle-Scarred
+DesertEagleHorzineEliteWhiteMintName=Desert Eagle | Horzine Elite White | Mint
+DesertEagleHorzineEliteWhiteFieldTestedName=Desert Eagle | Horzine Elite White | Field-Tested
+DesertEagleHorzineEliteWhiteBattleScarredName=Desert Eagle | Horzine Elite White | Battle-Scarred
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription=Exterior: Mint | A shotgun using Dragon's Breath Incendiary Rounds. Not only deadly, but looks wonderful too.
@@ -544,6 +619,9 @@ DragonsbreathHeatBattleScarredName=Dragonsbreath | Heat | Battle-Scarred
 DragonsbreathStoriesofWarMintName=Dragonsbreath | Stories of War | Mint
 DragonsbreathStoriesofWarFieldTestedName=Dragonsbreath | Stories of War | Field-Tested
 DragonsbreathStoriesofWarBattleScarredName=Dragonsbreath | Stories of War | Battle-Scarred
+DragonsbreathYinYangMintName=Dragonsbreath | Yin Yang | Mint
+DragonsbreathYinYangFieldTestedName=Dragonsbreath | Yin Yang | Field-Tested
+DragonsbreathYinYangBattleScarredName=Dragonsbreath | Yin Yang | Battle-Scarred
 DragonsbreathPreciousName=Dragonsbreath | Precious
 
 ;Eviscerator Descriptions
@@ -592,9 +670,9 @@ HMTech001ScalpelBattleScarredDescription=Exterior: Battle-Scarred | It's a scalp
 HMTech001ScalpelPreciousDescription=Exterior: Precious | It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it.
 
 ;HMTech-001 Scalpel Names
-HMTech001ScalpelElite UnitMintName=HMTech-001 Scalpel | Elite Unit | Mint
-HMTech001ScalpelElite UnitFieldTestedName=HMTech-001 Scalpel | Elite Unit | Field-Tested
-HMTech001ScalpelElite UnitBattleScarredName=HMTech-001 Scalpel | Elite Unit | Battle-Scarred
+HMTech001ScalpelEliteUnitMintName=HMTech-001 Scalpel | Elite Unit | Mint
+HMTech001ScalpelEliteUnitFieldTestedName=HMTech-001 Scalpel | Elite Unit | Field-Tested
+HMTech001ScalpelEliteUnitBattleScarredName=HMTech-001 Scalpel | Elite Unit | Battle-Scarred
 HMTech001ScalpelPreciousName=HMTech-001 Scalpel | Precious
 
 ;HMTech-101 Pistol Descriptions
@@ -662,6 +740,9 @@ HMTech401AssaultRifleEliteUnitRedMintName=HMTech-401 Assault Rifle | Elite Unit 
 HMTech401AssaultRifleEliteUnitRedFieldTestedName=HMTech-401 Assault Rifle | Elite Unit Red | Field-Tested
 HMTech401AssaultRifleEliteUnitRedBattleScarredName=HMTech-401 Assault Rifle | Elite Unit Red | Battle-Scarred
 HMTech401AssaultRiflePreciousName=HMTech-401 Assault Rifle | Precious
+HMTech401AssaultRifleTacticalMintName=HMTech-401 Assault Rifle | Tactical | Mint
+HMTech401AssaultRifleTacticalFieldTestedName=HMTech-401 Assault Rifle | Tactical | Field-Tested
+HMTech401AssaultRifleTacticalBattleScarredName=HMTech-401 Assault Rifle | Tactical | Battle-Scarred
 
 ;HX25 Descriptions
 HX25MintDescription=Exterior: Mint | Fire mode shoots multiple submunitions that explode on contact.
@@ -700,6 +781,12 @@ KatanaCyberboneBattleScarredName=Katana | Cyberbone | Battle-Scarred
 KatanaGlowTextMintName=Katana | Glow Text | Mint
 KatanaGlowTextFieldTestedName=Katana | Glow Text | Field-Tested
 KatanaGlowTextBattleScarredName=Katana | Glow Text | Battle-Scarred
+KatanaReaperMintName=Katana | Reaper | Mint
+KatanaReaperFieldTestedName=Katana | Reaper | Field-Tested
+KatanaReaperBattleScarredName=Katana | Reaper | Battle-Scarred
+KatanaYinYangMintName=Katana | Yin Yang | Mint
+KatanaYinYangFieldTestedName=Katana | Yin Yang | Field-Tested
+KatanaYinYangBattleScarredName=Katana | Yin Yang | Battle-Scarred
 KatanaPreciousName=Katana | Precious
 
 ;KF-BAR Descriptions
@@ -736,6 +823,9 @@ L85A2HorzineEliteGreenBattleScarredName=L85A2 | Horzine Elite Green | Battle-Sca
 L85A2HorzineEliteRedMintName=L85A2 | Horzine Elite Red | Mint
 L85A2HorzineEliteRedFieldTestedName=L85A2 | Horzine Elite Red | Field-Tested
 L85A2HorzineEliteRedBattleScarredName=L85A2 | Horzine Elite Red | Battle-Scarred
+L85A2HorzineEliteWhiteMintName=L85A2 | Horzine Elite White | Mint
+L85A2HorzineEliteWhiteTestedName=L85A2 | Horzine Elite White | Field-Tested
+L85A2HorzineEliteWhiteBattleScarredName=L85A2 | Horzine Elite White | Battle-Scarred
 L85A2JunkyardRacerMintName=L85A2 | Junkyard Racer | Mint
 L85A2JunkyardRacerFieldTestedName=L85A2 | Junkyard Racer | Field-Tested
 L85A2JunkyardRacerBattleScarredName=L85A2 | Junkyard Racer | Battle-Scarred
@@ -746,6 +836,9 @@ L85A2WoodlandMintName=L85A2 | Woodland | Mint
 L85A2WoodlandFieldTestedName=L85A2 | Woodland | Field-Tested
 L85A2WoodlandBattleScarredName=L85A2 | Woodland | Battle-Scarred
 L85A2PreciousName=L85A2 | Precious
+L85A2TacticalMintName=L85A2 | Tactical | Mint
+L85A2TacticalFieldTestedName=L85A2 | Tactical | Field-Tested
+L85A2TacticalBattleScarredName=L85A2 | Tactical | Battle-Scarred
 
 ;M1911 Descriptions
 M1911MintDescription=Exterior: Mint | The classic Colt 1911 semi-automatic pistol.
@@ -796,7 +889,13 @@ M79StoriesofWarBattleScarredName=M79 | Stories of War | Battle-Scarred
 M79TigerMintName=M79 | Tiger | Mint
 M79TigerFieldTestedName=M79 | Tiger | Field-Tested
 M79TigerBattleScarredName=M79 | Tiger | Battle-Scarred
+M79YinYangMintName=M79 | Yin Yang | Mint
+M79YinYangFieldTestedName=M79 | Yin Yang | Field-Tested
+M79YinYangBattleScarredName=M79 | Yin Yang | Battle-Scarred
 M79PreciousName=M79 | Precious
+M79DeepstrikeMintName=M79 | Deepstrike | Mint
+M79DeepstrikeFieldTestedName=M79 | Deepstrike | Field-Tested
+M79DeepstrikeBattleScarredName=M79 | Deepstrike | Battle-Scarred
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription=Exterior: Mint | The wonders of modern technology: a handheld Zed-cooker.
@@ -841,6 +940,9 @@ RPG7BattleScarredDescription=Exterior: Battle-Scarred | Only arms itself a few m
 RPG7PreciousDescription=Exterior: Precious | Only arms itself a few meters down-range, so you don't blow your own face off. Watch the back-blast!
 
 ;RPG-7 Names
+RPG7ReaperMintName=RPG-7 | Reaper | Mint
+RPG7ReaperFieldTestedName=RPG-7 | Reaper | Field-Tested
+RPG7ReaperBattleScarredName=RPG-7 | Reaper | Battle-Scarred
 RPG7StoriesofWarMintName=RPG-7 | Stories of War | Mint
 RPG7StoriesofWarFieldTestedName=RPG-7 | Stories of War | Field-Tested
 RPG7StoriesofWarBattleScarredName=RPG-7 | Stories of War | Battle-Scarred
@@ -848,6 +950,9 @@ RPG7TigerMintName=RPG-7 | Tiger | Mint
 RPG7TigerFieldTestedName=RPG-7 | Tiger | Field-Tested
 RPG7TigerBattleScarredName=RPG-7 | Tiger | Battle-Scarred
 RPG7PreciousName=RPG-7 | Precious
+RPG7DeepstrikeMintName=RPG-7 | Deepstrike | Mint
+RPG7DeepstrikeFieldTestedName=RPG-7 | Deepstrike | Field-Tested
+RPG7DeepstrikeBattleScarredName=RPG-7 | Deepstrike | Battle-Scarred
 
 ;Scar Descriptions
 ScarMintDescription=Exterior: Mint | Designed originally for the US Special Operations Command, it is, indeed, special!
@@ -874,6 +979,9 @@ ScarHorzineEliteWhiteBattleScarredName=Scar | Horzine Elite White | Battle-Scarr
 ScarOpulenceMintName=Scar | Opulence | Mint
 ScarOpulenceFieldTestedName=Scar | Opulence | Field-Tested
 ScarOpulenceBattleScarredName=Scar | Opulence | Battle-Scarred
+ScarReaperMintName=Scar | Reaper | Mint
+ScarReaperFieldTestedName=Scar | Reaper | Field-Tested
+ScarReaperBattleScarredName=Scar | Reaper | Battle-Scarred
 ScarSprayCanMintName=Scar | Spray Can | Mint
 ScarSprayCanFieldTestedName=Scar | Spray Can | Field-Tested
 ScarSprayCanBattleScarredName=Scar | Spray Can | Battle-Scarred
@@ -887,6 +995,12 @@ ScarWoodlandMintName=Scar | Woodland | Mint
 ScarWoodlandFieldTestedName=Scar | Woodland | Field-Tested
 ScarWoodlandBattleScarredName=Scar | Woodland | Battle-Scarred
 ScarPreciousName=Scar | Precious
+ScarDeepstrikeMintName=Scar | Deepstrike | Mint
+ScarDeepstrikeFieldTestedName=Scar | Deepstrike | Field-Tested
+ScarDeepstrikeBattleScarredName=Scar | Deepstrike | Battle-Scarred
+ScarTacticalMintName=Scar | Tactical | Mint
+ScarTacticalFieldTestedName=Scar | Tactical | Field-Tested
+ScarTacticalBattleScarredName=Scar | Tactical | Battle-Scarred
 
 ;SG500 Descriptions
 SG500MintDescription=Exterior: Mint | The pump-action Mossberg SG 500, with the pistol grip, is a wonderful close-quarters Zed-killer. Simple and effective.
@@ -898,6 +1012,9 @@ SG500PreciousDescription=Exterior: Precious | The pump-action Mossberg SG 500, w
 SG500DoshMintName=SG 500 | Dosh | Mint
 SG500DoshFieldTestedName=SG 500 | Dosh | Field-Tested
 SG500DoshBattleScarredName=SG 500 | Dosh | Battle-Scarred
+SG500ReaperMintName=SG 500 | Reaper | Mint
+SG500ReaperFieldTestedName=SG 500 | Reaper | Field-Tested
+SG500ReaperBattleScarredName=SG 500 | Reaper | Battle-Scarred
 SG500RustedDeathMintName=SG 500 | Rusted Death | Mint
 SG500RustedDeathFieldTestedName=SG 500 | Rusted Death | Field-Tested
 SG500RustedDeathBattleScarredName=SG 500 | Rusted Death | Battle-Scarred
@@ -920,6 +1037,9 @@ SG500StreetPunksMintName=SG 500 | Street Punks | Mint
 SG500StreetPunksFieldTestedName=SG 500 | Street Punks | Field-Tested
 SG500StreetPunksBattleScarredName=SG 500 | Street Punks | Battle-Scarred
 SG500PreciousName=SG 500 | Precious
+SG500TacticalMintName=SG500 | Tactical | Mint
+SG500TacticalFieldTestedName=SG500 | Tactical | Field-Tested
+SG500TacticalBattleScarredName=SG500 | Tactical | Battle-Scarred
 
 ;Support Knife Descriptions
 SupportKnifeMintDescription=Exterior: Mint | Don't go feeling all special just because we gave you the biggest knife.
@@ -973,7 +1093,16 @@ Winchester1894PreciousDescription=Exterior: Precious | The classic Model 1894 Wi
 Winchester1894JunkyardRacerMintName=Winchester 1894 | Junkyard Racer | Mint
 Winchester1894JunkyardRacerFieldTestedName=Winchester 1894 | Junkyard Racer | Field-Tested
 Winchester1894JunkyardRacerBattleScarredName=Winchester 1894 | Junkyard Racer | Battle-Scarred
+Winchester1894ReaperMintName=Winchester 1894 | Reaper | Mint
+Winchester1894ReaperFieldTestedName=Winchester 1894 | Reaper | Field-Tested
+Winchester1894ReaperBattleScarredName=Winchester 1894 | Reaper | Battle-Scarred
+Winchester1894YinYangMintName=Winchester 1894 | Yin Yang | Mint
+Winchester1894YinYangFieldTestedName=Winchester 1894 | Yin Yang | Field-Tested
+Winchester1894YinYangBattleScarredName=Winchester 1894 | Yin Yang | Battle-Scarred
 Winchester1894PreciousName=Winchester 1894 | Precious
+Winchester1894DeepstrikeMintName=Winchester 1894 | Deepstrike | Mint
+Winchester1894DeepstrikeFieldTestedName=Winchester 1894 | Deepstrike | Field-Tested
+Winchester1894DeepstrikeBattleScarredName=Winchester 1894 | Deepstrike | Battle-Scarred
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription=Exterior: Mint | The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now.
@@ -1515,102 +1644,221 @@ WearableAirFilteringDeviceGreenName=Wearable Air Filtering Device | Green
 WearableAirFilteringDeviceSkullName=Wearable Air Filtering Device | Skull
 WeldingMaskDarkMetalName=Welding Mask | Dark Metal
 ZEDDundeeHatBrownName=ZED Dundee Hat | Brown
+ReaperEyesBloodyName=Reaper Eyes | Bloody
+ReaperHatBlackName=Reaper Hat | Black
+ReaperJawBloodyName=Reaper Jaw | Bloody
+ReaperRavenEyesRedBandName=Reaper Raven Eyes | Red Band
+ReaperRavenEyesWhiteBandName=Reaper Raven Eyes | White Band
+ReaperRavenHatWhiteName=Reaper Raven Hat | White
+ReaperRavenJawRedBandName=Reaper Raven Jaw | Red Band
+ReaperRavenJawWhiteBandName=Reaper Raven Jaw | White Band
+ReaperDeadEyesBloodyName=Reaper Dead Eyes | Bloody
+ReaperDeadEyesRedName=Reaper Dead Eyes | Red
+ReaperDeadHoodBloodyName=Reaper Dead Hood | Bloody
+ReaperDeadMaskBloodyName=Reaper Dead Mask | Bloody
+ReaperFaceArmorSkullName=Reaper Face Armor | Skull
+SteampunkGasMaskBasicBrownName=Steampunk Gas Mask Basic | Brown
+SteampunkGasMaskBasicBlackName=Steampunk Gas Mask Basic | Black
+SteampunkGasMaskOpenBrownName=Steampunk Gas Mask Open | Brown
+SteampunkGasMaskOpenBlackName=Steampunk Gas Mask Open | Black
+SteampunkGasMaskClosedBrownName=Steampunk Gas Mask Closed | Brown
+SteampunkGasMaskClosedBlackName=Steampunk Gas Mask Closed | Black
+SteampunkGasMaskFilteredBrownName=Steampunk Gas Mask Filtered | Brown
+SteampunkGasMaskFilteredBlackName=Steampunk Gas Mask Filtered | Black
+SteampunkGasMaskOpenFilteredBrownName=Steampunk Gas Mask Open Filtered | Brown
+SteampunkGasMaskOpenFilteredBlackName=Steampunk Gas Mask Open Filtered | Black
+SteampunkGasMaskClosedFilteredBrownName=Steampunk Gas Mask Closed Filtered | Brown
+SteampunkGasMaskClosedFilteredBlackName=Steampunk Gas Mask Closed Filtered | Black
+MinotaurHelmetAgathaName=Minotaur Helmet | Agatha
+MinotaurHelmetCleeseName=Minotaur Helmet | Cleese
+MinotaurHelmetJaimeName=Minotaur Helmet | Jaime
+MinotaurHelmetPercevalName=Minotaur Helmet | Perceval
+RebelHelmetBlackName=Rebel Helmet | Black
+RebelHelmetDarkBlueName=Rebel Helmet | Dark Blue
+RebelHelmetDarkGreenName=Rebel Helmet | Dark Green
+RebelHelmetDarkRedName=Rebel Helmet | Dark Red
+RebelHelmetLightBlueName=Rebel Helmet | Light Blue
+RebelHelmetLightGreenName=Rebel Helmet | Light Green
+RebelHelmetLightRedName=Rebel Helmet | Light Red
+RebelHelmetTanName=Rebel Helmet | Tan
+RebelHelmetWhiteName=Rebel Helmet | White
+RebelHelmetGogglesDownBlackName=Rebel Helmet Goggles Down | Black
+RebelHelmetGogglesDownDarkBlueName=Rebel Helmet Goggles Down | Dark Blue
+RebelHelmetGogglesDownDarkGreenName=Rebel Helmet Goggles Down | Dark Green
+RebelHelmetGogglesDownDarkRedName=Rebel Helmet Goggles Down | Dark Red
+RebelHelmetGogglesDownLightBlueName=Rebel Helmet Goggles Down | Light Blue
+RebelHelmetGogglesDownLightGreenName=Rebel Helmet Goggles Down | Light Green
+RebelHelmetGogglesDownLightRedName=Rebel Helmet Goggles Down | Light Red
+RebelHelmetGogglesDownTanName=Rebel Helmet Goggles Down | Tan
+RebelHelmetGogglesDownWhiteName=Rebel Helmet Goggles Down | White
+RebelHelmetGogglesUpBlackName=Rebel Helmet Goggles Up | Black
+RebelHelmetGogglesUpDarkBlueName=Rebel Helmet Goggles Up | Dark Blue
+RebelHelmetGogglesUpDarkGreenName=Rebel Helmet Goggles Up | Dark Green
+RebelHelmetGogglesUpDarkRedName=Rebel Helmet Goggles Up | Dark Red
+RebelHelmetGogglesUpLightBlueName=Rebel Helmet Goggles Up | Light Blue
+RebelHelmetGogglesUpLightGreenName=Rebel Helmet Goggles Up | Light Green
+RebelHelmetGogglesUpLightRedName=Rebel Helmet Goggles Up | Light Red
+RebelHelmetGogglesUpTanName=Rebel Helmet Goggles Up | Tan
+RebelHelmetGogglesUpWhiteName=Rebel Helmet Goggles Up | White
+RebelMaskBlackName=Rebel Mask | Black
+RebelMaskBlueName=Rebel Mask | Blue
+RebelMaskGreenName=Rebel Mask | Green
+RebelMaskRedName=Rebel Mask | Red
+RebelMaskTanName=Rebel Mask | Tan
+RebelNeckWarmerBlackName=Rebel Neck Warmer | Black
+RebelNeckWarmerBlueName=Rebel Neck Warmer | Blue
+RebelNeckWarmerGreenName=Rebel Neck Warmer | Green
+RebelNeckWarmerRedName=Rebel Neck Warmer | Red
+RebelNeckWarmerTanName=Rebel Neck Warmer | Tan
+JacksCowboyHatBlackName=Jack's Cowboy Hat | Black
+JacksCowboyHatBrownName=Jack's Cowboy Hat | Brown
+JacksCowboyHatCowBrownName=Jack's Cowboy Hat | Cow Brown
+JacksCowboyHatCowWhiteName=Jack's Cowboy Hat | Cow White
+JacksCowboyHatWhiteName=Jack's Cowboy Hat | White
+DeepstrikeHelmetBlackName=Deepstrike Helmet | Black
+DeepstrikeHelmetBlueName=Deepstrike Helmet | Blue
+DeepstrikeHelmetGreenName=Deepstrike Helmet | Green
+DeepstrikeHelmetOliveName=Deepstrike Helmet | Olive
+DeepstrikeHelmetRedName=Deepstrike Helmet | Red
+DeepstrikeHelmetWhiteName=Deepstrike Helmet | White
+DeepstrikeGogglesBlackName=Deepstrike Goggles | Black
+DeepstrikeGogglesBlueName=Deepstrike Goggles | Blue
+DeepstrikeGogglesGreenName=Deepstrike Goggles | Green
+DeepstrikeGogglesRedName=Deepstrike Goggles | Red
+DeepstrikeGogglesWhiteName=Deepstrike Goggles | White
+DeepstrikeMaskBlackName=Deepstrike Mask | Black
+DeepstrikeMaskBlueName=Deepstrike Mask | Blue
+DeepstrikeMaskGreenName=Deepstrike Mask | Green
+DeepstrikeMaskRedName=Deepstrike Mask | Red
+DeepstrikeMaskWhiteName=Deepstrike Mask | White
+DeepstrikeHelmetMaskBlackName=Deepstrike Helmet Mask | Black
+DeepstrikeHelmetMaskBlueName=Deepstrike Helmet Mask | Blue
+DeepstrikeHelmetMaskGreenName=Deepstrike Helmet Mask | Green
+DeepstrikeHelmetMaskOliveName=Deepstrike Helmet Mask | Olive
+DeepstrikeHelmetMaskRedName=Deepstrike Helmet Mask | Red
+DeepstrikeHelmetMaskWhiteName=Deepstrike Helmet Mask | White
 
 ;Cosmetic Descriptions
 
-AviatorGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-AviatorsDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-BaseballHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-BaseballHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-BloodyGamesHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-BoonieCapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-BoxingHeadgearDescription=Equipable from the gear menu; Compatible with Donovan Neal, Rae Higgins
-BrokenMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Anton Strasser, Tom Banner
-ChefHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-ChemicalGasMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive, Classic Briar, Classic Masterson, Rae Higgins
-CowboyHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-CriminallyInsaneMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-CustodianHelmetPreciousDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, Mr. Foster, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-CyberneticGasMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-DevtacBallisticMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-DiscountT-REXMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-Doctor'sMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
-EMSArmBandDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-EMSBackpackDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-EnforcerGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson
-EnforcerHelmetDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson, Rae Higgins
-EnforcerMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson
-EyePatchDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-FlatcapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-FlightHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-FlightMaskDescription=Equipable from the gear menu; Compatible with Lt. Bill Masterson
-FrontRowProtectionDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-FrontRowProtectionDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-GermanGasMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-GermanOfficer'sHatDescription=Equipable from the gear menu; Compatible with Anton Strasser, Rae Higgins
-GraduationCapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-GS9HelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-GS9MaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-HeadbandDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-HolyGlassesDescription=Equipable from the gear menu; Compatible with Reverend Alberts
-InfiltratorHelmDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-JFrontBaseballCapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-JusticeGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson
-JusticeHelmetDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson, Rae Higgins
-JusticeMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson
-KevlarHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-M2FlamethrowerTankDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-MaskoftheAbyssDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-MempoDescription=Equipable from the gear menu; Compatible with Hayato Tanaka
-MilitarySurplusBeanieDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-MotorcycleHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-NightvisionHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-PorkPieHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-ProtectiveGlassesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-PsychoGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
-PsychoMaskClosedDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
-PsychoPainGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
-PsychoPainMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
-RAFGogglesBlackDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-ReinforcedHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, Rae Higgins
-RetroSunglassesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-RoboScullyDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-RPG7BackbagSierraDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-RussianGasMaskPMK-2Description=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-RussianMilitaryGlassesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-RussianMilitaryHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-RussianMilitaryMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Lt. Bill Masterson, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-S10NBCMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson
-SamuraiHelmDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-SamuraiMaskDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-SawbladeBattleHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-SawtoothMaskJawsomeDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-ScullyphonesPreciousDescription=Equipable from the gear menu; Compatible with DJ Scully, Mr. Foster, Donovan Neal, Hayato Tanaka
-SkiMaskAsianDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-SkullBreakerHelmetDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson
-SkullBreakerMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson
-StreetPunksBandanaDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-StreetPunksGlassesXSDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-TacticalBackbagDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-TacticalHatDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins
-TacticalHeadsetMK1Description=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins
-TacticalHeadsetMK2Description=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins
-TacticalMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser
-TheInquisitorLeatherDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-TheLonghornDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-TormentorHeadgearDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-TormentorMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser
-TormentorTubesMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser
-USGasMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-VanAlbertsCloakDescription=Equipable from the gear menu; Compatible with Reverend Alberts
-VanAlbertsHatDescription=Equipable from the gear menu; Compatible with Reverend Alberts
-VenomGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-VenomHeadphonesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-VenomMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-VenomMaskFilteredDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-VisagedePoupeeDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-WastelandGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner
-WearableAirFilteringDeviceDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-WeldingMaskDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-ZEDDundeeHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins
-
+AviatorGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+AviatorsDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+BaseballHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+BaseballHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+BloodyGamesHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+BoonieCapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+BoxingHeadgearDescription=Equipable from the gear menu; Compatible with Donovan Neal, Rae Higgins.
+BrokenMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Anton Strasser, Tom Banner.
+ChefHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ChemicalGasMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive, Classic Briar, Classic Masterson, Rae Higgins.
+CowboyHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+CriminallyInsaneMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+CustodianHelmetPreciousDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, Mr. Foster, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+CyberneticGasMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+DevtacBallisticMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+DiscountTREXMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+DoctorsMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser.
+EMSArmBandDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+EMSBackpackDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+EnforcerGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson.
+EnforcerHelmetDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson, Rae Higgins.
+EnforcerMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson.
+EyePatchDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+FlatcapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+FlightHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+FlightMaskDescription=Equipable from the gear menu; Compatible with Lt. Bill Masterson.
+FrontRowProtectionUpDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+FrontRowProtectionDownDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+GermanGasMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+GermanOfficersHatDescription=Equipable from the gear menu; Compatible with Anton Strasser, Rae Higgins.
+GraduationCapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+GS9HelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+GS9MaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+HeadbandDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+HolyGlassesDescription=Equipable from the gear menu; Compatible with Reverend Alberts.
+InfiltratorHelmDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+JFrontBaseballCapDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+JusticeGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson.
+JusticeHelmetDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson, Rae Higgins.
+JusticeMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson.
+KevlarHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+M2FlamethrowerTankDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+MaskoftheAbyssDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+MempoDescription=Equipable from the gear menu; Compatible with Hayato Tanaka.
+MilitarySurplusBeanieDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+MotorcycleHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+NightvisionHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+PorkPieHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ProtectiveGlassesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+PsychoGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser.
+PsychoMaskClosedDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser.
+PsychoPainGogglesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser.
+PsychoPainMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser.
+RAFGogglesBlackDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+ReinforcedHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, Rae Higgins.
+RetroSunglassesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RoboScullyDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RPG7BackbagSierraDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RussianGasMaskPMK2Description=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RussianMilitaryGlassesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RussianMilitaryHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RussianMilitaryMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Lt. Bill Masterson, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+S10NBCMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson.
+SamuraiHelmDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+SamuraiMaskDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+SawbladeBattleHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+SawtoothMaskJawsomeDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ScullyphonesPreciousDescription=Equipable from the gear menu; Compatible with DJ Scully, Mr. Foster, Donovan Neal, Hayato Tanaka.
+SkiMaskAsianDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+SkullBreakerHelmetDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
+SkullBreakerMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
+StreetPunksBandanaDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+StreetPunksGlassesXSDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+TacticalBackbagDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+TacticalHatDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins.
+TacticalHeadsetMK1Description=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins.
+TacticalHeadsetMK2Description=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins.
+TacticalMaskDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser.
+TheInquisitorLeatherDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+TheLonghornDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+TormentorHeadgearDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+TormentorMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser.
+TormentorTubesMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser.
+USGasMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+VanAlbertsCloakDescription=Equipable from the gear menu; Compatible with Reverend Alberts.
+VanAlbertsHatDescription=Equipable from the gear menu; Compatible with Reverend Alberts.
+VenomGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+VenomHeadphonesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+VenomMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+VenomMaskFilteredDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+VisagedePoupeeDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+WastelandGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner.
+WearableAirFilteringDeviceDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+WeldingMaskDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ZEDDundeeHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ReaperEyesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive.
+ReaperHatDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
+ReaperJawDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive.
+ReaperRavenEyesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
+ReaperRavenHatDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
+ReaperRavenJawDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
+ReaperDeadEyesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive.
+ReaperDeadHoodBloodyDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
+ReaperDeadMaskBloodyDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive.
+ReaperFaceArmorSkullDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
+SteampunkGasMaskBasicDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+SteampunkGasMaskOpenDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+SteampunkGasMaskClosedDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+SteampunkGasMaskFilteredDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins.
+SteampunkGasMaskOpenFilteredDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins.
+SteampunkGasMaskClosedFilteredDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins.
+MinotaurHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RebelHelmetDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RebelHelmetGogglesDownDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RebelHelmetGogglesUpDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RebelMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+RebelNeckWarmerDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+JacksCowboyHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+DeepstrikeHelmetDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+DeepstrikeGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+DeepstrikeMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+DeepstrikeHelmetMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.

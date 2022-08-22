@@ -134,6 +134,5 @@ reliable server function ServerToggleShield()
 DefaultProperties
 {
 	bVersusZed=true
-	TeammateCollisionRadiusPercent=0.30
-	LocalizationKey=KFPawn_ZedHans
+	TeammateCollisionRadiusPercent=0.30	
 }

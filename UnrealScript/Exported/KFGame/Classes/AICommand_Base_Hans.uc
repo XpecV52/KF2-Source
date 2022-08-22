@@ -27,7 +27,7 @@ Begin:
 		Goto( 'Begin' );
 	}
 
-	AILog_Internal(self$" "$GetStateName()$" [Begin Label]",'Command_Base',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" "$GetStateName()$" [Begin Label]",'Command_Base',);};
 	if( Pawn.Physics == PHYS_Falling )
 	{
 		DisableMeleeRangeEventProbing();
@@ -46,7 +46,7 @@ Begin:
 	// If enemy is still invalid or melee range events are disabled, pause and loop back
 	if( (Enemy == none && DoorEnemy == none) || !bIsProbingMeleeRangeEvents )
 	{
-		AILog_Internal(self$" Enemy: "$Enemy$" bIsProbingMeleeRangeEvents: "$bIsProbingMeleeRangeEvents,'Command_Base',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Enemy: "$Enemy$" bIsProbingMeleeRangeEvents: "$bIsProbingMeleeRangeEvents,'Command_Base',);};
 		Sleep( 0.1f + FRand() * 0.3f );
 		Goto( 'Begin' );
 	}
@@ -54,7 +54,7 @@ Begin:
 	// Just chill if Hans is already throwing a grenade
 	if( MyHansPawn != none && MyHansPawn.IsThrowingGrenade() )
 	{
-		AILog_Internal(self$" Enemy: "$Enemy$" IsThrowingGrenade(): "$MyHansPawn.IsThrowingGrenade(),'Command_Base',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Enemy: "$Enemy$" IsThrowingGrenade(): "$MyHansPawn.IsThrowingGrenade(),'Command_Base',);};
 		Sleep( 0.1f );
 		Goto( 'Begin' );
 	}
@@ -62,7 +62,7 @@ Begin:
 	// Handle special case if I'm supposed to be attacking a door
 	if( DoorEnemy != none && DoorEnemy.Health > 0 && VSizeSq( DoorEnemy.Location - Pawn.Location ) < (DoorMeleeDistance * DoorMeleeDistance) ) //200UU
 	{
-		AILog_Internal(self$" DoorEnemy: "$DoorEnemy$" starting melee attack",'Command_Base',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" DoorEnemy: "$DoorEnemy$" starting melee attack",'Command_Base',);};
 		UpdateHistoryString( "[Attacking : "$DoorEnemy$" at "$WorldInfo.TimeSeconds$"]" );
 		class'AICommand_Attack_Melee'.static.Melee( Outer, DoorEnemy );
 	}
@@ -71,7 +71,7 @@ Begin:
 	{
 		if( !IsWithinAttackRange() )
 		{
-            AILog_Internal("Calling SetEnemyMoveGoal [Dist:"$VSize(Enemy.Location - Pawn.Location)$"] using offset of "$AttackRange$", because IsWithinBasicMeleeRange() returned false ",'Command_Base',);
+            if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Calling SetEnemyMoveGoal [Dist:"$VSize(Enemy.Location - Pawn.Location)$"] using offset of "$AttackRange$", because IsWithinBasicMeleeRange() returned false ",'Command_Base',);};
     		bWaitingOnMovementPlugIn = true;
     		SetEnemyMoveGoal(self, true,,, ShouldAttackWhileMoving() );
 
@@ -79,7 +79,7 @@ Begin:
     		{
     			Sleep(0.03);
     		}
-    		AILog_Internal("Back from waiting for the movement plug in!!!",,);
+    		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Back from waiting for the movement plug in!!!",,);};
 		}
 
 		if( Enemy == none )
@@ -90,7 +90,7 @@ Begin:
 	}
 	else
 	{
-		AILog_Internal("Enemy is invalid melee target" @ Enemy,'Command_Base',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Enemy is invalid melee target" @ Enemy,'Command_Base',);};
 		bFailedToMoveToEnemy = true;
 	}
 

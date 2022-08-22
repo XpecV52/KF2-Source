@@ -61,6 +61,15 @@ function AttachFlashlight(SkeletalMeshComponent Mesh, optional name SocketNameOv
     SetLightingChannels(Mesh.LightingChannels);
 }
 
+function Reattach()
+{
+    if((AttachmentMeshComp != none) && !AttachmentMeshComp.bAttached)
+    {
+        OwnerMesh.DetachComponent(AttachmentMeshComp);
+        AttachFlashlightComponent(OwnerMesh, AttachmentMeshComp);
+    }
+}
+
 function DetachFlashlight()
 {
     if(Light != none)

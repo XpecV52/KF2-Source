@@ -1317,6 +1317,8 @@ native static final function bool IsConsoleDedicatedServer() const;
 native simulated static final function bool IsE3Build() const;
 //@HSL_END
 
+native static final function bool IsNeoCheckerboardRendering() const;
+
 /**
  * Returns whether we are running on a console platform or on the PC.
  * @param ConsoleType - if specified, only returns true if we're running on the specified platform

@@ -401,6 +401,7 @@ package tripwire.managers
             this.voipWidget.visible = true;
             this.VoiceCommsWidget.visible = true;
             this.bSpectating = this._bSpectating;
+            this.BossNamePlate.bossTimeline.stop();
             this.BossNamePlate.visible = false;
         }
         
@@ -408,18 +409,18 @@ package tripwire.managers
         {
             this.WaveCompassWidget.layoutData = new LayoutData(LayoutMode.ALIGN_LEFT,LayoutMode.ALIGN_TOP,16,16,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.BossNamePlate.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_BOTTOM,-8,-8,"","",this.PrimaryLayoutIndex,this.layoutID);
-            this.LevelUpNotificationWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-40,"","",this.PrimaryLayoutIndex,this.layoutID);
+            this.LevelUpNotificationWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-8,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.PlayerBackpackWidget.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_BOTTOM,-16,-16,"","",this.PrimaryLayoutIndex,this.layoutID);
-            this.KickVoteWidget.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_BOTTOM,-20,-256,"","",this.PrimaryLayoutIndex,this.layoutID);
+            this.KickVoteWidget.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_CENTER,-20,0,"","",this.SecondaryLayoutIndex,this.layoutID);
             this.PlayerStatWidgetMC.layoutData = new LayoutData(LayoutMode.ALIGN_LEFT,LayoutMode.ALIGN_BOTTOM,16,-16,"","",this.PrimaryLayoutIndex,this.layoutID);
-            this.ChatBoxWidget.layoutData = new LayoutData(LayoutMode.ALIGN_LEFT,LayoutMode.ALIGN_BOTTOM,24,-216,"","",this.PrimaryLayoutIndex,this.layoutID);
-            this.voipWidget.layoutData = new LayoutData(LayoutMode.ALIGN_LEFT,LayoutMode.ALIGN_TOP,16,16,"",this.ChatBoxWidget.name,this.SecondaryLayoutIndex,this.layoutID);
+            this.ChatBoxWidget.layoutData = new LayoutData(LayoutMode.ALIGN_LEFT,LayoutMode.ALIGN_BOTTOM,24,-240,"","",this.PrimaryLayoutIndex,this.layoutID);
+            this.voipWidget.layoutData = new LayoutData(LayoutMode.ALIGN_LEFT,LayoutMode.ALIGN_BOTTOM,24,0,"",this.WaveCompassWidget.name,this.SecondaryLayoutIndex,this.layoutID);
             this.PriorityMsgWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_CENTER,0,0,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.VoiceCommsWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_CENTER,0,0,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.MusicNotification.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_TOP,-32,32,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.barkNode.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_BOTTOM,-32,0,"",this.MusicNotification.name,this.SecondaryLayoutIndex,this.layoutID);
             this.NonCriticalMessageWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-32,"","",this.PrimaryLayoutIndex,this.layoutID);
-            this.interactionMsgWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-128,"","",this.SecondaryLayoutIndex,this.layoutID);
+            this.interactionMsgWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-176,"","",this.SecondaryLayoutIndex,this.layoutID);
             this.SpectatorInfoWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-60,"","",this.ThirdLayoutIndex,this.layoutID);
             if(this.bossHealthBar)
             {

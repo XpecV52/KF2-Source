@@ -42,8 +42,6 @@ var array<class<DamageType> > BlockDamageType;
 /** Damage while blocking will be mitigated by this percentage */
 var() float BlockDamageMitigation;
 
-/** Some melee weapons have a chance of ignoring incoming damage while attacking */
-var() float ParryDuration;
 /** Parry damage will be mitigated by this percentage */
 var() float ParryDamageMitigationPercent;
 /** Hit reaction strength to bypass pawn's ParryStumbleResist */
@@ -296,6 +294,10 @@ simulated function int GetMeleeDamage(byte FireModeNum, optional vector RayDir)
 		{
 			InstigatorPerk.ModifyHardAttackDamage( Damage );
 		}
+		else if( IsLightAttack(FireModeNum) )
+		{
+			InstigatorPerk.ModifyLightAttackDamage( Damage );
+		}
 	}
 
 	return Damage;
@@ -445,6 +447,8 @@ simulated state WeaponUpkeep
  * A melee firemode that chains together a sequence of attacks
  *********************************************************************************************/
 
+simulated function bool IsLightAttack( byte FireMode );
+
 simulated state MeleeChainAttacking extends MeleeAttackBasic
 {
 	simulated function BeginState(Name PrevStateName)
@@ -542,6 +546,11 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
 		case DIR_Left:			return MeleeAttackAnim_L;
 		case DIR_Right:			return MeleeAttackAnim_R;
 		}
+	}
+
+	simulated function bool IsLightAttack( byte FireMode )
+	{
+		return true;
 	}
 }
 
@@ -782,8 +791,9 @@ simulated state MeleeBlocking
 
 	simulated function BeginState(name PreviousStateName)
     {
-   		PlayBlockStart();
-		//SetSlowMovement(true);
+    	local float ParryDuration;
+
+   		ParryDuration = PlayBlockStart();
 
 		// Set the duration of the window to parry incoming attacks
 		if ( ParryDuration > 0.f )
@@ -953,7 +963,7 @@ simulated state MeleeBlocking
 	}
 }
 
-simulated function PlayBlockStart()
+simulated function float PlayBlockStart()
 {
 	local float AnimDuration;
 
@@ -974,7 +984,7 @@ simulated function PlayBlockStart()
 	}
 
 	// set the parry duration to the same as the block start anim
-	ParryDuration = AnimDuration;
+	return AnimDuration;
 }
 
 /** Called on the client when successfully block/parry an attack */
@@ -1161,7 +1171,6 @@ defaultproperties
    BlockDamageType(0)=Class'KFGame.KFDT_Bludgeon'
    BlockDamageType(1)=Class'KFGame.KFDT_Slashing'
    BlockDamageMitigation=0.500000
-   ParryDuration=1.000000
    ParryDamageMitigationPercent=0.200000
    MeleeAttackSettleAnims(0)="Settle_V1"
    MeleeBlockHitAnims(0)="Block_Hit_V1"

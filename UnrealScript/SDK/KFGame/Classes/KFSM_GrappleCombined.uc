@@ -76,6 +76,12 @@ function bool CanOverrideMoveWith( Name NewMove )
 	return FALSE;
 }
 
+/** Called when owning pawn has damage parried during this move */
+function bool CanInterruptWithParry()
+{
+	return (KFPOwner.SpecialMoveFlags == EGS_GrabAttempt);
+}
+
 /** Set our grab flag to EGS_GrabAttempt (we don't start the grapple until we've grabbed a pawn) */
 static function byte PackFlagsBase( KFPawn P )
 {

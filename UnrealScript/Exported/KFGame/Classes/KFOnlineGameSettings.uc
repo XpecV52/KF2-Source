@@ -52,7 +52,7 @@ var databinding bool bMutators;
 */
 var databinding bool bCustom;
 
-var databinding bool bUsedForTakeover;
+//var databinding bool bUsedForTakeover;
 var databinding bool bAvailableForTakeover;
 
 /** A playercount that doesn't include spectators */

@@ -15,8 +15,8 @@ DefaultProperties
 	// Explosion template
 	Begin Object Name=ExploTemplate0
 		Damage=23
-		DamageRadius=450
-		DamageFalloffExponent=1.f
+		DamageRadius=650 //450 //550
+		DamageFalloffExponent=1.f //1.0
 		DamageDelay=0.f
 
 		// Damage Effects

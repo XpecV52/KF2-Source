@@ -130,3 +130,7 @@ HelpParamDescriptions[1]="지정된 커맨드릿에 대한 도움말 정보를 �
 HelpParamNames[2]="webhelp"
 HelpParamDescriptions[2]="커맨드릿에 대한 문서가 있는 웹 페이지 URL을 브라우저로 엽니다."
 
+[SaveData]
+TitleLabel=Killing Floor 2
+SubTitleLabel=Killing Floor 2
+DescriptionLabel=Killing Floor 2의 설정 및 진행 데이터

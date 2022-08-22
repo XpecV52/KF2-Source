@@ -83,18 +83,15 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     InDamage = Round(TempDamage);
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
-    bSecondary = false;
+    bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
     if((!Is9mm(KFW) && IsWeaponOnPerk(KFW, WeaponPerkClass)) && (KFW == none) || !KFW.bNoMagazine)
     {
-        if(KFW != none)
-        {
-            TempCapacity += (float(MagazineCapacity) * (GetPassiveValue(MagSize, CurrentLevel)));
-        }
+        TempCapacity += (float(MagazineCapacity) * (GetPassiveValue(MagSize, CurrentLevel)));
     }
     MagazineCapacity = byte(Round(TempCapacity));
 }

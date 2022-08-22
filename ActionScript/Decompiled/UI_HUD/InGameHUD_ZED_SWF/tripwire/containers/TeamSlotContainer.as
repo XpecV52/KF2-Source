@@ -39,7 +39,7 @@ package tripwire.containers
         public function set data(param1:Object) : void
         {
             this._data = param1;
-            if(this._data)
+            if(param1)
             {
                 this.playerIcon = !!param1.playerIcon ? param1.playerIcon : "";
                 this.zedIcon = !!param1.zedIcon ? param1.zedIcon : "";
@@ -47,6 +47,11 @@ package tripwire.containers
                 {
                     this.health = param1.health;
                 }
+                visible = true;
+            }
+            else
+            {
+                visible = false;
             }
         }
         

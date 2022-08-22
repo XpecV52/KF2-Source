@@ -151,6 +151,8 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
 
 		    	// Spawn some puke mines
 		    	SpawnPukeMinesOnDeath();
+
+		    	SoundGroupArch.PlayObliterationSound(self, false);
 		    }
 		}
 	}
@@ -240,6 +242,7 @@ static function int GetTraderAdviceID()
 
 DefaultProperties
 {
+	LocalizationKey=KFPawn_ZedBloat
 	Begin Object Name=KFPawnSkeletalMeshComponent
 		// Enabling kinematic for physics interaction while alive.  (see also MinDistFactorForKinematicUpdate)
 		bUpdateKinematicBonesFromAnimation=true
@@ -303,9 +306,8 @@ DefaultProperties
 	HeadlessBleedOutTime=6.f
 	// Override Head GoreHealth (aka HeadHealth)
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=75, DmgScale=1.0001, SkinID=1)
-    HitZones[6]       =(ZoneName=lhand,     BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.2, SkinID=2)
-    HitZones[9]       =(ZoneName=rhand,     BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.2, SkinID=2)
-    //HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=40, DmgScale=1.1, SkinID=1) orginal setting
+	HitZones.Add((ZoneName=rknife, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20, DmgScale=0.2, SkinID=2))
+	HitZones.Add((ZoneName=lknife, BoneName=LeftForearm, Limb=BP_LeftArm, GoreHealth=20, DmgScale=0.2, SkinID=2))
 	DoshValue=17
 	Mass=130.f
 

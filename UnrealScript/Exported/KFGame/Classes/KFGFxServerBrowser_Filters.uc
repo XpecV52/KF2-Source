@@ -52,6 +52,10 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	super.Initialize( NewParentMenu );
 	ServerMenu = KFGFxMenu_ServerBrowser(NewParentMenu);
+	if (SavedGameModeIndex < 0 || SavedGameModeIndex >= class'KFGameInfo'.default.GameModes.length)
+	{
+		SavedGameModeIndex = 255;
+	}
 	SavedGameModeIndexPending = SavedGameModeIndex;
 	NumDifficultyStrings = class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length;
 	AdjustSavedFiltersToMode();
@@ -63,7 +67,7 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 
 function int GetUsableGameMode(int ModeIndex)
 {
-	if (ModeIndex >= class'KFGameInfo'.default.GameModes.length)
+	if (ModeIndex >= class'KFGameInfo'.default.GameModes.length || ModeIndex < 0)
 	{
 		return 0;
 	}
@@ -130,7 +134,7 @@ function LocalizeText()
 
 	SetObject("localizedText", LocalizedObject);
 
-	CreateList("gameModeScrollingList", class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray(), SavedGameModeIndex);
+	CreateList("gameModeScrollingList", class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray(), (SavedGameModeIndex == 255) ? class'KFGameInfo'.default.GameModes.length : int(SavedGameModeIndex));
 	CreateList("mapScrollingList", MapList, savedMapIndex);
 	SetModeMenus("difficultyScrollingList", "lengthScrollingList", SavedGameModeIndexPending);
 	//CreateList("difficultyScrollingList", class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex);
@@ -187,7 +191,7 @@ function SetModeMenus(string DifficultyListString, string LengthListString, int 
 	}
 	if (SavedLengthIndexPending >= class'KFGameInfo'.default.GameModes[UseModeIndex].Lengths)
 	{
-		NewDifficultyIndex = 255;
+		NewLengthIndex = 255;
 	}
 	else
 	{
@@ -255,7 +259,14 @@ function CreateList( string ListString, array<string> TextArray, int SelectedInd
 
 function ModeChanged(int index)
 {
-	SavedGameModeIndexPending = index;
+	if (index >= 0 && index < class'KFGameInfo'.default.GameModes.length)
+	{
+		SavedGameModeIndexPending = index;
+	}
+	else
+	{
+		SavedGameModeIndexPending = 255;
+	}
 	//`log("Adjusting difficulty");
 	AdjustSavedFiltersToMode();
 	//`log("Localizing text");

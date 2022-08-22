@@ -14,7 +14,7 @@ defaultproperties
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=50,Z=25),OffsetMid=(X=-140,Y=50,Z=-10),OffsetLow=(X=-220,Y=50,Z=50))
     begin object name=MeleeHelper class=KFMeleeHelperAI
-        BaseDamage=20
+        BaseDamage=14
         PlayerDoorDamageMultiplier=5
         MeleeImpactCamScale=0.2
     object end
@@ -26,7 +26,6 @@ defaultproperties
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     MinBlockFOV=1
-    LocalizationKey=KFPawn_ZedGorefast
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -36,7 +35,7 @@ defaultproperties
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedGorefast_Versus.Afflictions'
     IncapSettings=/* Array type was not detected. */
     SprintSpeed=550
-    SprintStrafeSpeed=300
+    SprintStrafeSpeed=350
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
@@ -53,7 +52,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedGorefast_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedGorefast_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedGorefast_Versus.DialogAkSoundComponent'
-    GroundSpeed=250
+    GroundSpeed=350
     Health=500
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

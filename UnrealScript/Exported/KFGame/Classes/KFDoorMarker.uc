@@ -46,7 +46,7 @@ event bool SuggestMovePreparation( Pawn Other )
 	local KFPawn_Monster KFPM;
 	local int count;
 
-	if( KFPawn(Other).MyKFAIC!= None ) { KFPawn(Other).MyKFAIC.AILog_Internal(GetFuncName()$"() "$self$" called for "$Other$" Dist: "$VSize(Location - Other.Location),'Doors'); };
+	if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFPawn(Other).MyKFAIC!= None ) { KFPawn(Other).MyKFAIC.AILog_Internal(GetFuncName()$"() "$self$" called for "$Other$" Dist: "$VSize(Location - Other.Location),'Doors'); };
 
 	if( MyKFDoor != none && !MyKFDoor.IsCompletelyOpen() && MyKFDoor.WeldIntegrity > 0 )
 	{
@@ -64,7 +64,7 @@ event bool SuggestMovePreparation( Pawn Other )
 		// Only allow up to 5 attackers
 		if( Count > 5 )
 		{
-			if( KFPawn(Other).MyKFAIC!= None ) { KFPawn(Other).MyKFAIC.AILog_Internal(GetFuncName()$"() "$self$" - telling "$Other$" to wait for "$MyKFDoor$" to open",'Doors'); };
+			if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFPawn(Other).MyKFAIC!= None ) { KFPawn(Other).MyKFAIC.AILog_Internal(GetFuncName()$"() "$self$" - telling "$Other$" to wait for "$MyKFDoor$" to open",'Doors'); };
 			Other.ZeroMovementVariables();
 			//DrawDebugSphere( Other.Location, 32, 8, 255, 0, 0, true );
 			KFPawn_Monster(Other).MyKFAIC.WaitForDoor( MyKFDoor );
@@ -133,7 +133,7 @@ function bool ProceedWithMove(Pawn Other)
 
 		if( KFPawn(Other) != none && !KFPawn(Other).IsHumanControlled() )
 		{
-			if( KFPawn(Other).MyKFAIC!= None ) { KFPawn(Other).MyKFAIC.AILog_Internal(GetFuncName()$" "$self$" for "$Other,'Doors'); };
+			if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFPawn(Other).MyKFAIC!= None ) { KFPawn(Other).MyKFAIC.AILog_Internal(GetFuncName()$" "$self$" for "$Other,'Doors'); };
 		}
 
 
@@ -162,7 +162,7 @@ function bool ProceedWithMove(Pawn Other)
 
 event Actor SpecialHandling( Pawn Other )
 {
-	if( KFPawn(Other).MyKFAIC!= None ) { KFPawn(Other).MyKFAIC.AILog_Internal(GetFuncName()$"() "$self$" SpecialHandling event called for "$Other,'Doors'); };
+	if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFPawn(Other).MyKFAIC!= None ) { KFPawn(Other).MyKFAIC.AILog_Internal(GetFuncName()$"() "$self$" SpecialHandling event called for "$Other,'Doors'); };
 	if ( MyKFDoor == None || MyKFDoor.IsCompletelyOpen() /*|| VSize( Location - Other.Location ) > 200.f*/ )
 	{
 		return self;
@@ -170,7 +170,7 @@ event Actor SpecialHandling( Pawn Other )
 
 	if( KFPawn(Other) != none && !KFPawn(Other).IsHumanControlled() )
 	{
-		if( KFPawn(Other).MyKFAIC!= None ) { KFPawn(Other).MyKFAIC.AILog_Internal(GetFuncName()$" "$self$" calling for "$Other,'Doors'); };
+		if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFPawn(Other).MyKFAIC!= None ) { KFPawn(Other).MyKFAIC.AILog_Internal(GetFuncName()$" "$self$" calling for "$Other,'Doors'); };
 	}
 
 	return self; // Added 1.24.14

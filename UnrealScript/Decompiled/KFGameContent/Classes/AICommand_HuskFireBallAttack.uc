@@ -35,7 +35,10 @@ function Pushed()
     {
         Outer.Focus = Outer.Enemy;
     }
-    Outer.AILog_Internal("Beginning fireball " $ string(Outer.Enemy), 'Command_FireBall');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Beginning fireball " $ string(Outer.Enemy), 'Command_FireBall');
+    }
     Outer.AIActionStatus = "Starting fireball AICommand";
     if(Outer.Focus != none)
     {
@@ -79,7 +82,10 @@ state Command_SpecialMove
     function bool ExecuteSpecialMove()
     {
         SpecialMove = GetSpecialMove();
-        Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'Command_FireBall');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'Command_FireBall');
+        }
         if((SpecialMove != 0) && Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
             Outer.MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), 255);

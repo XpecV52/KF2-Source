@@ -125,7 +125,7 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.06 // 1250 RPM
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_PatMinigun'
 	Spread(DEFAULT_FIREMODE)=0.07
-	InstantHitDamage(DEFAULT_FIREMODE)=6.0
+	InstantHitDamage(DEFAULT_FIREMODE)=8.0
 	FireOffset=(X=32,Y=4.0,Z=-5)
 
 	// ALT_FIREMODE

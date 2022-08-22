@@ -27,6 +27,9 @@ var Font KFCanvasFont;
 /** The universal scale for KFCanvasFont */
 var float KFFontScale;
 
+/** TRUE if we are actively logging into playfab */
+var bool bReadingPlayfabStoreData;
+
 /************************************************************************************
  * @name		User Options
  ***********************************************************************************/
@@ -117,9 +120,12 @@ native static function bool CheckSkipLobby(); // If -skiplobby is added to the c
 native static function bool CheckSkipGammaCheck(); // If -NoGammaStartup is added to the command line, return true
 native static function bool CheckNoAutoStart(); // If -NoAutoStart is added to the command line, return true
 native static function bool CheckNoMusic(); // If -NoMusic is added to the command line or PIE, return true
+native static function bool CheckNoRandomStart(); // If -NoRandomStart is added to the command line or PIE, return true
 
 //Gets the game version for use on Steam
 native static function int GetGameVersion();
+
+native static function bool IsPlaygoModePS4();
 
 /** Returns the debug lines object, will create one if none exists */
 native static function KFDebugLines GetDebugLines(); // Accessor for KFDebugLines, if enabled
@@ -266,13 +272,14 @@ event bool CheckHandshakeComplete(EProgressMessageType MessageType, string Title
 			if (Title == "HandshakeDone") //This string is set in UnPenLev.cpp UNetPendingLevel::NotifyControlMessage
 			{
 				SuppressPopup = OnHandshakeComplete(true, Title, SuppressPasswordRetry);
-				ClearOnlineDelegates();
 			}
 			break;
 		}
 	}
 	return SuppressPopup;
 }
+
+native static function CancelPendingLevel();
 
 function bool IsLockedServer()
 {
@@ -281,9 +288,19 @@ function bool IsLockedServer()
 
 function UnlockServer()
 {
+	local UniqueNetId NullId;
+
 	if (bUsedForTakeover)
 	{
+		ConsoleGameSessionGuid = "";
+		KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI).ConsoleGameSessionHost = NullId;
 		bAvailableForTakeover = true;
+		bPrivateServer = false;
+
+		if( GetPlayfabInterface() != none )
+		{
+			GetPlayfabInterface().serverDeallocate();
+		}
 	}
 }
 
@@ -292,6 +309,7 @@ native function KillPendingServerConnection();
 
 function ReadPFStoreData()
 {
+	bReadingPlayfabStoreData = true;
 	// Read Playfab store data
 	GetPlayfabInterface().AddStoreDataReadCompleteDelegate( OnPlayfabStoreReadComplete );
 	GetPlayfabInterface().ReadStoreData();
@@ -322,13 +340,20 @@ function OnStoreDataRead( bool bSuccessful )
 
 function OnPlayfabInventoryReadComplete( bool bSuccessful )
 {
+	bReadingPlayfabStoreData = false;
 	GetPlayfabInterface().ClearInventoryReadCompleteDelegate( OnPlayfabInventoryReadComplete );
+	GetOnlineSubsystem().ClearNewlyAdded();
 }
 
+function OnLinkStatusChange(bool bIsConnected)
+{
+	OnConnectionStatusChanged( bIsConnected ? OSCS_Connected : OSCS_ConnectionDropped );
+}
+	
 function OnConnectionStatusChanged(EOnlineServerConnectionStatus ConnectionStatus)
 {
 	local KFGameViewportClient GVC;
-
+	
 	// Let player controller handle state change
 	if( GamePlayers[0].Actor != none && KFPlayerController(GamePlayers[0].Actor) != none )
 	{

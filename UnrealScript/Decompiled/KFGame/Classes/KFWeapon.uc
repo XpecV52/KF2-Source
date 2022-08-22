@@ -550,10 +550,12 @@ simulated function InitializeEquipTime()
 
 simulated function InitFOV(float SizeX, float SizeY, float DefaultPlayerFOV)
 {
-    MeshFOV = Class'KFPlayerController'.static.CalcFOVForAspectRatio(default.MeshFOV, SizeX, SizeY);
-    MeshIronSightFOV = Class'KFPlayerController'.static.CalcFOVForAspectRatio(default.MeshIronSightFOV, SizeX, SizeY);
-    PlayerIronSightFOV = Class'KFPlayerController'.static.CalcFOVForAspectRatio(default.PlayerIronSightFOV, SizeX, SizeY);
-    PlayerSprintFOV = Class'KFPlayerController'.static.CalcFOVForAspectRatio(default.PlayerSprintFOV, SizeX, SizeY);
+    local float DummyParam;
+
+    MeshFOV = Class'KFPlayerController'.static.CalcFOVForAspectRatio(default.MeshFOV, SizeX, SizeY, DummyParam);
+    MeshIronSightFOV = Class'KFPlayerController'.static.CalcFOVForAspectRatio(default.MeshIronSightFOV, SizeX, SizeY, DummyParam);
+    PlayerIronSightFOV = Class'KFPlayerController'.static.CalcFOVForAspectRatio(default.PlayerIronSightFOV, SizeX, SizeY, DummyParam);
+    PlayerSprintFOV = Class'KFPlayerController'.static.CalcFOVForAspectRatio(default.PlayerSprintFOV, SizeX, SizeY, DummyParam);
     if(DefaultPlayerFOV > PlayerSprintFOV)
     {
         PlayerSprintFOV = DefaultPlayerFOV;
@@ -845,7 +847,7 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 
     if(ItemClass == Class)
     {
-        if(CanRefillSecondaryAmmo())
+        if((CanRefillSecondaryAmmo()) && !Pickup.IsA('Projectile'))
         {
             bDenyPickUp = ((SpareAmmoCount[0] + MagazineCapacity[0]) >= (GetMaxAmmoAmount(0))) && AmmoCount[1] >= MagazineCapacity[1];            
         }
@@ -858,7 +860,7 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
             KFPC = KFPlayerController(Instigator.Controller);
             if(KFPC != none)
             {
-                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', ((IsMeleeWeapon()) ? 16 : 14));
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', ((MagazineCapacity[0] == 0) ? 16 : 14));
             }
         }
     }
@@ -2449,15 +2451,15 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
     }
 }
 
-simulated function HandleProjectileImpact(ImpactInfo Impact, optional float PenetrationValue)
+simulated function HandleProjectileImpact(byte ProjectileFireMode, ImpactInfo Impact, optional float PenetrationValue)
 {
     if((Instigator != none) && Instigator.IsLocallyControlled())
     {
         if(Instigator.Role < ROLE_Authority)
         {
-            SendClientProjectileImpact(CurrentFireMode, Impact, PenetrationValue);
+            SendClientProjectileImpact(ProjectileFireMode, Impact, PenetrationValue);
         }
-        ProcessInstantHitEx(CurrentFireMode, Impact,, PenetrationValue, 0);
+        ProcessInstantHitEx(ProjectileFireMode, Impact,, PenetrationValue, 0);
     }
 }
 
@@ -3796,6 +3798,8 @@ simulated function float GetForceReloadDelay();
 
 private reliable server final function ServerSyncWeaponFiring(byte FireModeNum)
 {
+    local float MeleeTimeRemaining;
+
     if(IsInState('Reloading'))
     {
         if((ReloadStatus == 2) && IsTimerActive('ReloadAmmoTimer'))
@@ -3828,6 +3832,24 @@ private reliable server final function ServerSyncWeaponFiring(byte FireModeNum)
             else
             {
                 WarnInternal("KFWeapon::ServerSyncWeaponFiring().WeaponEquipping - Failed to sync weapon ammo.");
+            }            
+        }
+        else
+        {
+            if(IsInState('MeleeAttackBasic'))
+            {
+                if(HasAmmo(FireModeNum))
+                {
+                    MeleeTimeRemaining = GetRemainingTimeForTimer('MeleeCheckTimer', MeleeAttackHelper);
+                    if(MeleeTimeRemaining < ((float(Instigator.PlayerReplicationInfo.Ping) * 4) * 0.0011))
+                    {
+                        SendToFiringState(FireModeNum);
+                    }                    
+                }
+                else
+                {
+                    WarnInternal("KFWeapon::ServerSyncWeaponFiring().MeleeAttackBasic - Failed to sync weapon ammo.");
+                }
             }
         }
     }

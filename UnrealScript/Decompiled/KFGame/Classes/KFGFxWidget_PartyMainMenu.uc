@@ -12,20 +12,12 @@ var int prevMemberCount;
 
 function OneSecondLoop()
 {
-    local ActiveLobbyInfo LobbyInfo;
-
     RefreshParty();
     if((OnlineLobby != none) && OnlineLobby.IsInLobby())
     {
         SendMyOptions();
         SendSearching();
-        UpdateInLobby(true);
-        OnlineLobby.GetCurrentLobby(LobbyInfo);
-        if((prevMemberCount != LobbyInfo.Members.Length) && LobbyInfo.Members.Length > 6)
-        {
-            Manager.OpenPopup(2, Localize("Notifications", "PartySizeTitle", "KFGameConsole"), Localize("Notifications", "PartySizeMessage", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
-        }
-        prevMemberCount = LobbyInfo.Members.Length;        
+        UpdateInLobby(true);        
     }
     else
     {
@@ -120,15 +112,12 @@ function RefreshParty()
     local int SlotIndex;
     local bool bInParty;
     local PlayerController PC;
-    local string PlayerName, ReadablePlayerName;
+    local GFxObject DataProvider;
 
+    DataProvider = Outer.CreateArray();
     super.RefreshParty();
     if((OnlineLobby != none) && OnlineLobby.GetCurrentLobby(LobbyInfo))
     {
-        if(Class'WorldInfo'.static.IsConsoleBuild())
-        {
-            InitializePerk();
-        }
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
         if(PartyChatWidget != none)
         {
@@ -142,62 +131,31 @@ function RefreshParty()
         bInParty = (OccupiedSlots > 1) || bInLobby;
         if(bIsInParty != bInParty)
         {
-            EmptySlot(0);
             bIsInParty = bInParty;
         }
         SlotIndex = 0;
-        J0x1CA:
+        J0x1BB:
 
-        if(SlotIndex < PlayerSlots)
+        if(SlotIndex < LobbyInfo.Members.Length)
         {
-            if(SlotIndex < LobbyInfo.Members.Length)
-            {
-                RefreshSlot(SlotIndex, LobbyInfo.Members[SlotIndex].PlayerUID);                
-            }
-            else
-            {
-                if(MemberSlots[SlotIndex].bIsSlotTaken)
-                {
-                    EmptySlot(SlotIndex);
-                }
-            }
+            DataProvider.SetElementObject(SlotIndex, RefreshSlot(SlotIndex, LobbyInfo.Members[SlotIndex].PlayerUID));
             ++ SlotIndex;
-            goto J0x1CA;
+            goto J0x1BB;
         }        
     }
     else
     {
         PC = Outer.GetPC();
-        InitializePerk();
-        RefreshSlot(0, PC.PlayerReplicationInfo.UniqueId);
+        DataProvider.SetElementObject(0, RefreshSlot(0, PC.PlayerReplicationInfo.UniqueId));
         bInParty = false || bInLobby;
         bIsInParty = bInParty;
         SetSearchingText("");
-        ReadablePlayerName = Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetPlayerNickname(0);
-        if(OnlineLobby != none)
-        {
-            PlayerName = OnlineLobby.GetFriendNickname(PC.PlayerReplicationInfo.UniqueId);
-        }
-        UpdatePlayerName(0, ((PlayerName != "") ? PlayerName : ((ReadablePlayerName == DefaultPlayerName) ? DefaultPlayerName $ "0" : ReadablePlayerName)));
-        MemberSlots[0].PRI = PC.PlayerReplicationInfo;
-        MemberSlots[0].PlayerUID = PC.PlayerReplicationInfo.UniqueId;
         if(PartyChatWidget != none)
         {
             PartyChatWidget.SetLobbyChatVisible(false);
         }
-        SlotIndex = 1;
-        J0x538:
-
-        if(SlotIndex < PlayerSlots)
-        {
-            if(MemberSlots[SlotIndex].bIsSlotTaken)
-            {
-                EmptySlot(SlotIndex);
-            }
-            ++ SlotIndex;
-            goto J0x538;
-        }
     }
+    SetObject("squadInfo", DataProvider);
     UpdateSoloSquadText();
 }
 
@@ -213,39 +171,48 @@ function HandleLeaderChange(UniqueNetId AdminId)
     Manager.HandleSteamLobbyLeaderTakeOver(AdminId);
     if(LastLeaderID != ZeroUniqueId)
     {
-        Manager.OpenPopup(2, PartHostLeftString, HostName @ PartyLeaderChangedString, Class'KFCommon_LocalizedStrings'.default.OKString);
+        Manager.DelayedOpenPopup(2, 0, PartHostLeftString, HostName @ PartyLeaderChangedString, Class'KFCommon_LocalizedStrings'.default.OKString);
     }
     LastLeaderID = AdminId;
 }
 
-function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
+function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 {
     local string PlayerName, ReadablePlayerName;
     local UniqueNetId AdminId;
-    local bool bIsLeader, bIsMyPlayer, bUpdateSlot;
+    local bool bIsLeader, bIsMyPlayer;
     local PlayerController PC;
+    local GFxObject PlayerInfoObject;
+    local KFPerk CurrentPerk;
 
+    PlayerInfoObject = Outer.CreateObject("Object");
     PC = Outer.GetPC();
     if(OnlineLobby != none)
     {
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
     }
     bIsLeader = PlayerUID == AdminId;
-    if(!MemberSlots[SlotIndex].bIsSlotTaken)
+    PlayerInfoObject.SetBool("bLeader", bIsLeader);
+    bIsMyPlayer = OnlineLobby.GetMyId() == PlayerUID;
+    PlayerInfoObject.SetBool("myPlayer", bIsMyPlayer);
+    if(bIsMyPlayer)
     {
-        MemberSlots[SlotIndex].bIsSlotTaken = true;
-        bUpdateSlot = true;
+        CurrentPerk = KFPC.GetPerk();
+        if(CurrentPerk != none)
+        {
+            MemberSlots[SlotIndex].PerkClass = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo).CurrentPerkClass;
+            PlayerInfoObject.SetString("perkLevel", string(CurrentPerk.GetLevel()) @ CurrentPerk.PerkName);
+            PlayerInfoObject.SetString("perkIconPath", "img://" $ CurrentPerk.GetPerkIconPath());
+        }        
     }
-    if(MemberSlots[SlotIndex].bIsLeader != bIsLeader)
+    else
     {
-        MemberSlots[SlotIndex].bIsLeader = bIsLeader;
-        bUpdateSlot = true;
-    }
-    if(MemberSlots[SlotIndex].PlayerUID != PlayerUID)
-    {
-        MemberSlots[SlotIndex].PlayerUID = PlayerUID;
-        bIsMyPlayer = PC.PlayerReplicationInfo.UniqueId == PlayerUID;
-        bUpdateSlot = true;
+        PlayerInfoObject.SetBool("muted", PC.IsPlayerMuted(PlayerUID));
+        if(MemberSlots[SlotIndex].PerkClass != none)
+        {
+            PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @ MemberSlots[SlotIndex].PerkClass.default.PerkName);
+            PlayerInfoObject.SetString("perkIconPath", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+        }
     }
     if(OnlineLobby != none)
     {
@@ -256,57 +223,30 @@ function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
         ReadablePlayerName = PC.PlayerReplicationInfo.GetHumanReadableName();
         PlayerName = ((ReadablePlayerName == DefaultPlayerName) ? DefaultPlayerName $ string(SlotIndex) : ReadablePlayerName);
     }
-    UpdatePlayerName(SlotIndex, PlayerName);
-    if(bUpdateSlot)
-    {
-        SlotChanged(SlotIndex, true, bIsMyPlayer, bIsLeader);
-        CreatePlayerOptions(PlayerUID, SlotIndex);
-    }
+    PlayerInfoObject.SetString("playerName", PlayerName);
     if(Class'WorldInfo'.static.IsConsoleBuild(8))
     {
-        MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));        
+        PlayerInfoObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));        
     }
     else
     {
-        MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(PlayerUID));
+        PlayerInfoObject.SetString("profileImageSource", KFPC.GetSteamAvatar(PlayerUID));
     }
-}
-
-function InitializePerk()
-{
-    local KFPerk CurrentPerk;
-    local string PerkIconPath;
-    local class<KFPerk> PerkClass;
-    local byte PerkLevel;
-
-    CurrentPerk = KFPC.GetPerk();
-    if(CurrentPerk != none)
-    {
-        PerkClass = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo).CurrentPerkClass;
-        PerkLevel = CurrentPerk.GetLevel();
-        if((PerkClass != MemberSlots[0].PerkClass) || PerkLevel != MemberSlots[0].PerkLevel)
-        {
-            MemberSlots[0].PerkClass = PerkClass;
-            PerkIconPath = "img://" $ CurrentPerk.GetPerkIconPath();
-            UpdatePerk(0, CurrentPerk.PerkName, string(PerkLevel), PerkIconPath);
-        }
-    }
+    MemberSlots[SlotIndex].PlayerUID = PlayerUID;
+    return PlayerInfoObject;
 }
 
 function UpdatePerks(string Message)
 {
     local array<string> PlayerInfoStrings;
     local UniqueNetId PlayerID;
-    local string PerkName, IconPath, PerkLevel;
+    local string PerkLevel;
     local ActiveLobbyInfo LobbyInfo;
-    local byte I;
-    local int PerkIndex;
+    local int I, PerkIndex;
 
     ParseStringIntoArray(Message, PlayerInfoStrings, "/", true);
     Class'OnlineSubsystem'.static.StringToUniqueNetId(PlayerInfoStrings[0], PlayerID);
     PerkIndex = int(PlayerInfoStrings[1]);
-    PerkName = KFPC.PerkList[PerkIndex].PerkClass.default.PerkName;
-    IconPath = "img://" $ KFPC.PerkList[PerkIndex].PerkClass.static.GetPerkIconPath();
     PerkLevel = PlayerInfoStrings[2];
     if(OnlineLobby == none)
     {
@@ -315,18 +255,34 @@ function UpdatePerks(string Message)
     if(OnlineLobby.GetCurrentLobby(LobbyInfo))
     {
         I = 0;
-        J0x187:
+        J0xC7:
 
         if(I < LobbyInfo.Members.Length)
         {
-            if(LobbyInfo.Members[I].PlayerUID == PlayerID)
-            {
-                UpdatePlayerName(I, OnlineLobby.GetFriendNickname(PlayerID));
-                UpdatePerk(I, PerkName, PerkLevel, IconPath);
-            }
+            UpdatePerkInfoForPlayerID(PlayerID, KFPC.PerkList[PerkIndex].PerkClass, PerkLevel);
             ++ I;
-            goto J0x187;
+            goto J0xC7;
         }
+    }
+}
+
+function UpdatePerkInfoForPlayerID(UniqueNetId PlayerID, class<KFPerk> PerkClass, string PerkLevel)
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < PlayerSlots)
+    {
+        if(MemberSlots[I].PlayerUID == PlayerID)
+        {
+            MemberSlots[I].PerkLevel = PerkLevel;
+            MemberSlots[I].PerkClass = PerkClass;
+            return;
+        }
+        ++ I;
+        goto J0x0B;
     }
 }
 
@@ -335,6 +291,11 @@ function UpdateSearching(string Message)
     local string SearchingText, PartyLeaderName;
     local UniqueNetId AdminId;
 
+    if(Message == "")
+    {
+        SetSearchingText("");
+        return;
+    }
     if(OnlineLobby != none)
     {
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
@@ -392,16 +353,20 @@ function ViewProfile(int SlotIndex)
             LogInternal("View PLAYER profile: " @ OnlineLobby.GetFriendNickname(LobbyInfo.Members[SlotIndex].PlayerUID));
         }
     }
-    if(MemberSlots[SlotIndex].bIsSlotTaken)
+    if(Outer.GetPC().WorldInfo.IsConsoleBuild(8))
     {
-        if(Outer.GetPC().WorldInfo.IsConsoleBuild(8))
+        if(LobbyInfo.Members.Length > SlotIndex)
         {
             OnlineSub.PlayerInterfaceEx.ShowGamerCardUIByUsername(byte(Outer.GetLP().ControllerId), OnlineLobby.GetFriendNickname(LobbyInfo.Members[SlotIndex].PlayerUID));            
         }
         else
         {
-            OnlineSub.PlayerInterfaceEx.ShowGamerCardUI(byte(Outer.GetLP().ControllerId), MemberSlots[SlotIndex].PRI.UniqueId);
-        }
+            OnlineSub.PlayerInterfaceEx.ShowGamerCardUIByUsername(byte(Outer.GetLP().ControllerId), OnlineSub.PlayerInterface.GetPlayerNickname(byte(Outer.GetLP().ControllerId)));
+        }        
+    }
+    else
+    {
+        OnlineSub.PlayerInterfaceEx.ShowGamerCardUI(byte(Outer.GetLP().ControllerId), MemberSlots[SlotIndex].PlayerUID);
     }
 }
 

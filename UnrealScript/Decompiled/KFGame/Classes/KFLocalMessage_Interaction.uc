@@ -128,10 +128,16 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
 static function string GetString(optional int Switch, optional bool bPRI1HUD, optional PlayerReplicationInfo RelatedPRI_1, optional PlayerReplicationInfo RelatedPRI_2, optional Object OptionalObject)
 {
     local PlayerInput Input;
+    local KFGameReplicationInfo KFGRI;
 
     switch(Switch)
     {
         case 4:
+            KFGRI = KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI);
+            if((KFGRI != none) && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')
+            {
+                return Left(default.UseTraderMessage, InStr(default.UseTraderMessage, "<%HOLD%>"));
+            }
             return default.UseTraderMessage;
         case 5:
             if(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)

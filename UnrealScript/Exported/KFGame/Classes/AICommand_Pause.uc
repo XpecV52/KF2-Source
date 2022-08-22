@@ -48,7 +48,7 @@ function Pushed()
 {
 	super.Pushed();
 	
-	AILog_Internal("Pausing for "$PauseTime$" second(s)",'Command_Pause',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Pausing for "$PauseTime$" second(s)",'Command_Pause',);};
 	AIActionStatus = "Pausing for "$PauseTime$" seconds";
 
 	DisableMeleeRangeEventProbing();

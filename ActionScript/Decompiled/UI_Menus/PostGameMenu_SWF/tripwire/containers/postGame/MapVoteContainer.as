@@ -13,8 +13,8 @@ package tripwire.containers.postGame
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.events.ListEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
-    import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripUILoaderQueue;
     import tripwire.menus.PostGameMenu;
@@ -135,7 +135,7 @@ package tripwire.containers.postGame
             }
             if(!bManagerPopUpOpen)
             {
-                FocusManager.setFocus(this.mapVoteList);
+                FocusHandler.getInstance().setFocus(this.mapVoteList);
             }
         }
         
@@ -301,6 +301,17 @@ package tripwire.containers.postGame
             };
             _loc4_ = [_loc6_,_loc7_];
             this.currentVotes = _loc4_;
+        }
+        
+        override public function selectContainer() : void
+        {
+            super.selectContainer();
+            if(bManagerUsingGamepad)
+            {
+                this.mapVoteList.selectedIndex = 0;
+                this.mapVoteList.invalidateSelectedIndex();
+                FocusHandler.getInstance().setFocus(this.mapVoteList);
+            }
         }
     }
 }

@@ -51,7 +51,7 @@ function Pushed()
 {
 	Super.Pushed();
 
-	AILog_Internal("Waiting for SM"@SpecialMove@"to finish.",'Command_PushedBySM',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Waiting for SM"@SpecialMove@"to finish.",'Command_PushedBySM',);};
 	GotoState('WaitForMove');
 }
 
@@ -66,7 +66,7 @@ function SpecialMoveTimeout()
 	// Temporarily disabled
 	return;
 
-	AILog_Internal(self$" Special move timed out",'Command_PushedBySM',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Special move timed out",'Command_PushedBySM',);};
 
 	if (MyKFPawn.SpecialMove == SpecialMove)
 	{
@@ -95,7 +95,7 @@ Begin:
 		Sleep(0.1f);
 	} until( IsSpecialMoveComplete() );
 	
-	AILog_Internal("bPreparingMove:" @ bPreparingMove @ "MyKFPawn:" @ MyKFPawn @ "SpecialMove:" @ MyKFPawn.SpecialMove @ SpecialMove,'Command_PushedBySM',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("bPreparingMove:" @ bPreparingMove @ "MyKFPawn:" @ MyKFPawn @ "SpecialMove:" @ MyKFPawn.SpecialMove @ SpecialMove,'Command_PushedBySM',);};
 	Status = 'Success';
 	PopCommand( self );
 }

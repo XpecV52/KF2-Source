@@ -20,7 +20,7 @@ protected function bool InternalCanDoSpecialMove()
 
 defaultproperties
 {
-   Attacks(0)=(Anims=("Player_Special_Atk"))
+   Attacks(0)=(Anims=("Player_Special_Atk"),Stance=EAS_UpperBody)
    Name="Default__KFSM_PlayerBloat_PukeMineAttack"
    ObjectArchetype=KFSM_PlayerMeleeBase'KFGame.Default__KFSM_PlayerMeleeBase'
 }

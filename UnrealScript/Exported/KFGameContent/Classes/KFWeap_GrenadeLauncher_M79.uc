@@ -28,6 +28,7 @@ defaultproperties
    SpareAmmoCapacity(0)=26
    InitialSpareMags(0)=9
    AmmoPickupScale(0)=2.000000
+   WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_S')
    WeaponDryFireSnd(0)=None
    PlayerViewOffset=(X=13.000000,Y=13.000000,Z=-4.000000)

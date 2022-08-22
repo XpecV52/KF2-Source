@@ -28,7 +28,7 @@ var const qword ServerNonce;
 /** The session guid */
 var string SessionGuid;
 /** UE3 Join string for PS4 invites */
-var string JoinString;
+var databinding string JoinString;
 //@HSL_END
 
 /** Whether this match is publicly advertised on the online service */
@@ -102,6 +102,14 @@ var int GfxID;
 var int ElementIdx;
 
 var databinding bool bRequiresPassword;
+
+//@HSL_BEGIN - BWJ - 9-14-16 - TRUE if this is a cloud server that needs to be deallocated at some point. Used for multiplay support
+var databinding bool bCloudServer;
+// Number of seconds this server has been de-allocated for
+var databinding int SecondsDeallocated;
+// Region for the server
+var databinding string Region;
+//@HSL_END
 
 /** Represents a player in the game */
 struct native PlayerResult

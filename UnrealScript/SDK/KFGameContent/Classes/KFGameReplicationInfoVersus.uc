@@ -28,16 +28,13 @@ var byte CurrentRound;
 var repnotify sPlayerZedSpawnWaitTimeData PlayerZedSpawnWaitTimeData;
 var byte TimeUntilNextSpawn;
 
-/** Indicates that we are in the post-round waiting period */
-var repnotify bool bRoundIsOver;
-
 replication
 {
 	if ( bNetInitial )
 		bTeamBalanceEnabled;
 
 	if( bNetDirty )
-		CurrentRound, bRoundIsOver, PlayerZedSpawnWaitTimeData;
+		CurrentRound, PlayerZedSpawnWaitTimeData;
 }
 
 simulated event ReplicatedEvent( name VarName )

@@ -17,6 +17,7 @@ static function int GetTraderAdviceID()
 
 DefaultProperties
 {
+	LocalizationKey=KFPawn_ZedGorefast
 	// ---------------------------------------------
 	// Stats
 	XPValues(0)=11
@@ -52,7 +53,7 @@ DefaultProperties
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 	HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=50, DmgScale=1.1, SkinID=1)
-	HitZones[8]=(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20, DmgScale=0.1, SkinID=2)
+	HitZones.Add((ZoneName=rblade, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20, DmgScale=0.1, SkinID=2))
 
 	// ---------------------------------------------
 	// Movement Physics
@@ -91,9 +92,9 @@ DefaultProperties
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),                     Cooldown=0.3)
 	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                    Cooldown=10,   Duration=3.5)
 	IncapSettings(AF_Microwave)=(Vulnerability=(2.0),                     Cooldown=6.0,  Duration=3.5)
-	IncapSettings(AF_FirePanic)=(Vulnerability=(0.75),                     Cooldown=6.0,  Duration=3.5)  //0.2
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.75),                    Cooldown=6.0,  Duration=3.5)  //0.2
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.0),                     Cooldown=5.0,  Duration=5.0)
-	IncapSettings(AF_Freeze)=   (Vulnerability=(2.0),                     Cooldown=1.5,  Duration=2.0)
+	IncapSettings(AF_Freeze)=   (Vulnerability=(2.0),                     Cooldown=1.5,  Duration=4.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
 
 	ParryResistance=2

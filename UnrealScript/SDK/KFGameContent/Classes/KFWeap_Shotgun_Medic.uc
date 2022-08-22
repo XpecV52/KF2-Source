@@ -183,4 +183,6 @@ defaultproperties
 	HippedRecoilModifier=1.5
 
 	AssociatedPerkClass=class'KFPerk_FieldMedic'
+
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 }

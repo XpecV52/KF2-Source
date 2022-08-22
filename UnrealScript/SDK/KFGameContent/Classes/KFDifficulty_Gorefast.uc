@@ -52,7 +52,7 @@ defaultproperties
 
 	// Versus Block settings
 	BlockSettings_Versus={()}
-	BlockSettings_Player_Versus=(DamageModifier=0.05, MeleeDamageModifier=0.25)
+	BlockSettings_Player_Versus=(DamageModifier=0.01, MeleeDamageModifier=0.25) //(DamageModifier=0.05, MeleeDamageModifier=0.25)
 
 	// Versus Rally settings
 	RallySettings_Versus={(bCauseSprint=true)}

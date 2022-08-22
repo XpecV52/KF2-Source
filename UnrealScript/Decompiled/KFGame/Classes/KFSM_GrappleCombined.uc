@@ -53,6 +53,11 @@ function bool CanOverrideMoveWith(name NewMove)
     return false;
 }
 
+function bool CanInterruptWithParry()
+{
+    return KFPOwner.SpecialMoveFlags == 0;
+}
+
 static function byte PackFlagsBase(KFPawn P)
 {
     return 0;

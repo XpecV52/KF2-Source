@@ -50,7 +50,7 @@ static function bool Debug( KFAIController AI )
 
 function Pushed()
 {
-	AILog_Internal("Entering debug mode",'Command_Debug',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Entering debug mode",'Command_Debug',);};
 	bHasDebugCommand = true;
 	
 	//Focus = none;
@@ -76,11 +76,11 @@ function Resumed( Name OldCommandName )
 // 	}
 	if( OldCommandName == 'AICommand_MoveToGoal' )
 	{
-		AILog_Internal("Resuming "$self$" after "$OldCommandName$" ChildStatus: "$ChildStatus$" LastDebugGoal: "$LastDebugGoal,,);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Resuming "$self$" after "$OldCommandName$" ChildStatus: "$ChildStatus$" LastDebugGoal: "$LastDebugGoal,,);};
 	}
 	if( OldCommandName == 'AICommand_MoveToGoal' && (ChildStatus == 'Aborted' || ChildStatus == 'Failure') && Pawn != none && Pawn.IsAliveAndWell() )
 	{
-		AILog_Internal("Resuming from failed MoveToGoal command",'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Resuming from failed MoveToGoal command",'PathWarning',);};
 		if( LastDebugGoal != none )
 		{
 			Pawn.ZeroMovementVariables();
@@ -109,17 +109,17 @@ function Popped()
 	SetPostRendering( bDebug_PostRenderInfo );
 	super.Popped();
 	bHasDebugCommand = false;
-	AILog_Internal("Exiting Debug Mode",'Command_Debug',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Exiting Debug Mode",'Command_Debug',);};
 }
 
 function bool NotifyPlayerBecameVisible( Pawn VisiblePlayer )
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() Seen: "$VisiblePlayer$" notifying "$CachedChildCommand$" and letting it handle the event.",'Command_Debug',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Seen: "$VisiblePlayer$" notifying "$CachedChildCommand$" and letting it handle the event.",'Command_Debug',);};
 		return CachedChildCommand.NotifyPlayerBecameVisible( VisiblePlayer );
 	}
-	AILog_Internal(GetFuncName()$" "$VisiblePlayer$" ignoring this event",'Command_Debug',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" "$VisiblePlayer$" ignoring this event",'Command_Debug',);};
 	return true;
 }
 
@@ -146,12 +146,12 @@ state Debugging
 {
 	event BeginState( name PreviousStateName )
 	{
-		AILog_Internal(GetFuncName()$"() in "$GetStateName()$" Previous: "$PreviousStateName,'Command_Debug',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() in "$GetStateName()$" Previous: "$PreviousStateName,'Command_Debug',);};
 	}
 
 	function InitState()
 	{
-		AILog_Internal(GetFuncName()$"() in "$GetStateName(),'Command_Debug',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() in "$GetStateName(),'Command_Debug',);};
 // 		Focus = none;
 // 		SetFocalPoint( vector(Pawn.Rotation) * 300 );
 // 		DisableSeePlayer();
@@ -160,27 +160,27 @@ state Debugging
 
 	event EndState( name NextStateName )
 	{
-		AILog_Internal(GetFuncName()$"() in "$GetStateName()$" Next: "$NextStateName,'Command_Debug',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() in "$GetStateName()$" Next: "$NextStateName,'Command_Debug',);};
 	}
 
 	function PushedState()
 	{
-		AILog_Internal(GetFuncName()$"() in "$GetStateName(),'Command_Debug',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() in "$GetStateName(),'Command_Debug',);};
 	}
 
 	function PausedState()
 	{
-		AILog_Internal(GetFuncName()$"() in "$GetStateName(),'Command_Debug',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() in "$GetStateName(),'Command_Debug',);};
 	}
 
 	function ContinuedState()
 	{
-		AILog_Internal(GetFuncName()$"() in "$GetStateName(),'Command_Debug',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() in "$GetStateName(),'Command_Debug',);};
 	}
 
 	function PoppedState()
 	{
-		AILog_Internal(GetFuncName()$"() in "$GetStateName(),'Command_Debug',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() in "$GetStateName(),'Command_Debug',);};
 	}
 
 	function Debug_CrawlerAttack()
@@ -517,10 +517,10 @@ state DebugStepAside extends Debugging
 		local bool bPrevIgnoreStepAside;
 		local bool bResult;
 
-		AILog_Internal(GetFuncName()$" bumped into "$Other,'Command_Debug',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" bumped into "$Other,'Command_Debug',);};
 		if( Pawn(Other) != none )
 		{
-			AILog_Internal(GetFuncName()$" bumped into "$Other$", starting StepAside command",'Command_Debug',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" bumped into "$Other$", starting StepAside command",'Command_Debug',);};
 			bPrevIgnoreStepAside = Outer.bIgnoreStepAside;
 			Outer.bIgnoreStepAside = false;
 			StepAsideFor( Pawn(Other),HitNormal );
@@ -750,7 +750,7 @@ function bool NotifyHitWall( vector HitNormal, actor Wall )
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'HitWall',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'HitWall',);};
 		return CachedChildCommand.NotifyHitWall( HitNormal, Wall );
 	}
 	return false;
@@ -926,7 +926,7 @@ Begin:
 	// if we can't see our enemy from here, roam again!
 	if( !IsPawnVisibleViaTrace(Enemy) )
 	{
-		AILog_Internal("Enemy wasn't visible, reacquiring",'Command_Debug',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Enemy wasn't visible, reacquiring",'Command_Debug',);};
 		Sleep( 0.f );
 		Goto( 'Begin' );
 	}

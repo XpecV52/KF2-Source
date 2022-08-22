@@ -152,6 +152,9 @@ var() DestroyedEffectParams DamageEmitter;
 /** played when the melee attack hits world geometry and the door has no health */
 var() array<DestroyedEffectParams> DestroyedEmitters;
 var export editinline transient array<export editinline ParticleSystemComponent> BrokenDoorParticleEffects;
+var protected Texture2D WelderIcon;
+var transient Vector WeldUILocation;
+var transient Vector VisualDoorLocation;
 var const localized string WeldIntegrityString;
 var const localized string RepairProgressString;
 var const localized string ExplosiveString;
@@ -247,6 +250,8 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 simulated event PostBeginPlay()
 {
     local int I, NumActualDoors;
+    local float MyRadius, MyHeight;
+    local Vector X, Y, Z;
 
     super.PostBeginPlay();
     Health = MaxHealth;
@@ -281,6 +286,17 @@ simulated event PostBeginPlay()
     else
     {
         SoundOrigin = Location;
+    }
+    WeldUILocation = Location + (vect(0, 0, 1) * 164);
+    if(NumActualDoors > 1)
+    {
+        VisualDoorLocation = WeldUILocation;        
+    }
+    else
+    {
+        GetAxes(Rotation, X, Y, Z);
+        GetBoundingCylinder(MyRadius, MyHeight);
+        VisualDoorLocation = WeldUILocation - ((MyRadius * 0.25) * Y);
     }
 }
 
@@ -434,7 +450,7 @@ event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
     }
     if((KFPawn(Other) != none) && !KFPawn(Other).IsHumanControlled())
     {
-        if(KFPawn(Other).MyKFAIC != none)
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFPawn(Other).MyKFAIC != none)
         {
             KFPawn(Other).MyKFAIC.AILog_Internal((((string(GetFuncName()) $ " ") $ string(self)) $ " by ") $ string(KFPawn(Other).MyKFAIC), 'Doors');
         }
@@ -668,7 +684,7 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
     }
     else
     {
-        if(((!bIsDoorOpen && EventInstigator != none) && !EventInstigator.bIsPlayer) && EventInstigator.Pawn != none)
+        if(((!bIsDoorOpen && EventInstigator != none) && EventInstigator.Pawn != none) && EventInstigator.GetTeamNum() == 255)
         {
             KFDT = class<KFDamageType>(DamageType);
             if((KFDT != none) && KFDT.default.bAllowAIDoorDestruction)
@@ -971,7 +987,7 @@ simulated function PlayExplosion()
     if((ExplosionInstigator != none) && InstigatorPerk != none)
     {
         KFEAR = ((InstigatorPerk.DoorShouldNuke()) ? Class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass() : Class'KFExplosionActorReplicated');
-        ExploActor = Spawn(KFEAR, self,, Location + vect(0, 0, 100),,, true);
+        ExploActor = Spawn(KFEAR, self,, DoorTrigger.Location,,, true);
         if(ExploActor != none)
         {
             ExploActor.InstigatorController = ExplosionInstigatorController;
@@ -1104,8 +1120,8 @@ simulated function ResetDoor(optional bool bRepaired)
     BrokenDoorPhysicsActors.Length = 0;
     if(bRepaired && WorldInfo.MyEmitterPool != none)
     {
-        WorldInfo.MyEmitterPool.SpawnEmitter(RepairFXTemplate, SoundOrigin, rotator(vect(0, 0, 1)), self);
-        PlaySoundBase(RepairSound,,,, SoundOrigin);
+        WorldInfo.MyEmitterPool.SpawnEmitter(RepairFXTemplate, VisualDoorLocation, rotator(vect(0, 0, 1)), self);
+        PlaySoundBase(RepairSound,,,, VisualDoorLocation);
     }
     DoorTrigger.OnDestroyOrReset();
 }
@@ -1408,7 +1424,6 @@ simulated event DrawDoorHUD(HUD HUD, Canvas C)
     local Vector CameraLoc, ScreenLoc;
     local Rotator CameraRot;
     local float X, Y, Dot;
-    local Texture2D Icon;
 
     PC = HUD.PlayerOwner;
     C.SetDrawColor(255, 255, 255);
@@ -1419,16 +1434,15 @@ simulated event DrawDoorHUD(HUD HUD, Canvas C)
     {
         return;
     }
-    ScreenLoc = C.Project(Location + (vect(0, 0, 1) * 164));
-    if(((ScreenLoc.X < float(0)) || ScreenLoc.X >= C.ClipX) || (ScreenLoc.Y < float(0)) && ScreenLoc.Y >= C.ClipY)
+    ScreenLoc = C.Project(WeldUILocation);
+    if(((ScreenLoc.X < float(0)) || (ScreenLoc.X + float(WelderIcon.SizeX * 3)) >= C.ClipX) || (ScreenLoc.Y < float(0)) && ScreenLoc.Y >= C.ClipY)
     {
         return;
     }
-    Icon = Texture2D'welder_door_icon';
-    C.SetPos(ScreenLoc.X - float(Icon.SizeX / 2), ScreenLoc.Y - float(Icon.SizeY / 2), ScreenLoc.Z);
-    C.DrawTexture(Icon, 1);
-    X = (ScreenLoc.X + float(Icon.SizeX / 2)) + float(5);
-    Y = ScreenLoc.Y - float(Icon.SizeY / 2);
+    C.SetPos(ScreenLoc.X - float(WelderIcon.SizeX / 2), ScreenLoc.Y - float(WelderIcon.SizeY / 2), ScreenLoc.Z);
+    C.DrawTexture(WelderIcon, 1);
+    X = (ScreenLoc.X + float(WelderIcon.SizeX / 2)) + float(5);
+    Y = ScreenLoc.Y - float(WelderIcon.SizeY / 2);
     C.SetPos(X, Y);
     if(bIsDestroyed)
     {
@@ -1448,6 +1462,7 @@ simulated function DrawWeldHUD(Canvas C, HUD HUD, float PosX, float PosY)
     local FontRenderInfo FRI;
     local string Str;
 
+    FRI.bClipText = true;
     FontScale = Class'KFGameEngine'.static.GetKFFontScale();
     WeldPercentageFloat = (float(WeldIntegrity) / float(MaxWeldIntegrity)) * 100;
     if((WeldPercentageFloat < 1) && WeldPercentageFloat > 0)
@@ -1481,8 +1496,9 @@ simulated function DrawRepairHUD(Canvas C, HUD HUD)
     local FontRenderInfo FRI;
     local string Str;
 
+    FRI.bClipText = true;
     FontScale = Class'KFGameEngine'.static.GetKFFontScale();
-    RepairPercentageFloat = (float(RepairProgress) / float(255)) * 100;
+    RepairPercentageFloat = (float(RepairProgress) / 255) * 100;
     if((RepairPercentageFloat > 99) && RepairPercentageFloat < 100)
     {
         RepairPercentageFloat = 99;
@@ -1571,6 +1587,7 @@ defaultproperties
     BrokenDoorImpulse=750
     MaxAngularVelocity=2
     DamageEmitter=(ParticleEffect=none,RelativeOffset=(X=0,Y=0,Z=0),RelativeRotation=(Pitch=0,Yaw=0,Roll=0),MaxSpawnDist=4000,PSC=none)
+    WelderIcon=Texture2D'UI_World_TEX.welder_door_icon'
     WeldIntegrityString="Weld Integrity:"
     RepairProgressString="Repair Progress:"
     ExplosiveString="Door Trap:"

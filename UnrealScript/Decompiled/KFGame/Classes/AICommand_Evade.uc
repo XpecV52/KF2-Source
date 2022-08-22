@@ -140,7 +140,10 @@ state Command_SpecialMove
     function bool ExecuteSpecialMove()
     {
         SpecialMove = GetSpecialMove();
-        Outer.AILog_Internal((string(GetFuncName()) $ "()") @ string(SpecialMove), 'Command_SpecialMove');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ "()") @ string(SpecialMove), 'Command_SpecialMove');
+        }
         if((SpecialMove != 0) && !bShouldCheckSpecialMove || Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
             Outer.MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), GetSpecialMoveFlags(GetSpecialMove()));

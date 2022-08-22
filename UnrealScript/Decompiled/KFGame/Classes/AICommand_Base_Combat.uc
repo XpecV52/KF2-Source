@@ -45,7 +45,10 @@ function bool CheckTransition(out class<AICommand> out_NewCommand, out string ou
 
 final function CombatSelectTarget()
 {
-    Outer.AILog_Internal(string(GetFuncName()) $ "() calling SelectTarget()", 'SetEnemy');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(GetFuncName()) $ "() calling SelectTarget()", 'SetEnemy');
+    }
     Outer.SetTimer(2.5 + (FRand() * 0.75), false, 'CombatSelectTarget', self);
     Outer.SelectTarget();
 }

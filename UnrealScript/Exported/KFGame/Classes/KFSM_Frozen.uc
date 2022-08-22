@@ -23,10 +23,14 @@ var float FreezeMatParamValue;
 var protected ParticleSystem FrozenSteamTemplate;
 var protected ParticleSystemComponent FrozenSteamEffect;
 
+var protected bool bIsThawing;
+
 /** Notification called when Special Move starts */
 function SpecialMoveStarted(bool bForced, Name PrevMove )
 {
 	super.SpecialMoveStarted( bForced, PrevMove );
+
+	bIsThawing = false;
 	DoFreeze();
 }
 
@@ -82,6 +86,8 @@ function PlayThawAnimation()
 
 	ThawIndex = KFPOwner.SpecialMoveFlags - 1;
 	PlaySpecialMoveAnim(ThawAnims[ThawIndex], EAS_FullBody, FreezeOutTime, 0.3f, 0.5f, false);
+
+	bIsThawing = true;
 	
 	if ( PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
 	{
@@ -129,15 +135,23 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
 	super.SpecialMoveEnded( PrevMove, NextMove );
 	
-	if ( PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
+	if ( KFPOwner.WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		KFPOwner.DetachEmitter( FrozenSteamEffect );
 
 		// if we're dead, shatter
-		if( !PawnOwner.IsAliveAndWell() )
+		if( !KFPOwner.IsAliveAndWell() )
 		{
 			PlayDeathEffects();
 			KFPOwner.ClearTimer( nameof(UpdateFreezeOutParam), self );
+		}
+
+		// Just in case the special move was ended prematurely, we still need to stop the freeze effect
+		if( !bIsThawing )
+		{
+			BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
+			FreezeOutTime = 0.5f;
+			KFPOwner.SetTimer( 0.1f, true, nameof(UpdateFreezeOutParam), self );
 		}
 	}
 

@@ -199,7 +199,7 @@ package tripwire.containers
             {
                 stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             }
-            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen && this.currentElement.visible)
+            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen && !MenuManager.manager.bPartyWidgetFocused && this.currentElement.visible)
             {
                 this.currentElement.tabEnabled = true;
                 this.currentElement.tabChildren = true;

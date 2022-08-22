@@ -93,7 +93,7 @@ function Popped()
 
 function bool AllowTransitionTo( class<GameAICommand> AttemptCommand )
 {
-	AILog_Internal(self$" AllowTransitionTo: "$AttemptCommand$" called",'Command_Attack',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" AllowTransitionTo: "$AttemptCommand$" called",'Command_Attack',);};
 
 	// Let the child command, if any, make the decision
 	if( ChildCommand != none )
@@ -111,13 +111,13 @@ function bool AllowTransitionTo( class<GameAICommand> AttemptCommand )
 
 function bool ShouldSelectTarget()
 {
-	AILog_Internal(self$" "$GetFuncName()$"() returning false",'Command_Attack',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" "$GetFuncName()$"() returning false",'Command_Attack',);};
 	return false;
 }
 
 function bool ShouldIgnoreTimeTransitions()
 {
-	AILog_Internal(GetFuncName()$" returning TRUE - ignoring time transitions",'Command_Attack',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" returning TRUE - ignoring time transitions",'Command_Attack',);};
 	return true;
 }
 

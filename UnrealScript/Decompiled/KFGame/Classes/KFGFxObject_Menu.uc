@@ -31,6 +31,17 @@ function InitOnlineLobby()
     }
 }
 
+function OnR3Pressed()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Outer.GetPC());
+    if(KFPC != none)
+    {
+        KFPC.RequestSwitchTeam();
+    }
+}
+
 function OnInputTypeChanged(bool bGamepad);
 
 function OneSecondLoop();
@@ -47,16 +58,9 @@ function OnLobbyStatusChanged(bool bIsInParty);
 
 function ShowLeavePartyPopUp()
 {
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Manager != none)
     {
-        OnlineLobby.QuitLobby();        
-    }
-    else
-    {
-        if(Manager != none)
-        {
-            Manager.OpenPopup(0, LeavePartyTitleString, LeavePartyDescriptionString, LeaveString, Class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmLeaveParty, CancelLeaveParty);
-        }
+        Manager.DelayedOpenPopup(0, 0, LeavePartyTitleString, LeavePartyDescriptionString, LeaveString, Class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmLeaveParty, CancelLeaveParty);
     }
 }
 
@@ -67,13 +71,17 @@ function ConfirmLeaveParty()
     KFPC = KFPlayerController(Outer.GetPC());
     if(OnlineLobby != none)
     {
+        OnlineLobby.QuitLobby();
         if((KFPC != none) && KFPC.MyGFxManager != none)
         {
+            if(KFPC.MyGFxManager.MenuBarWidget != none)
+            {
+                KFPC.MyGFxManager.MenuBarWidget.UpdateMenu(KFPC.MyGFxManager.CurrentMenuIndex);
+            }
             if((KFPC.MyGFxManager.StartMenu != none) && !OnlineLobby.IsLobbyOwner())
             {
                 KFPC.MyGFxManager.StartMenu.ShowOverview(false, false, true, false);
             }
-            OnlineLobby.QuitLobby();
         }
     }
     if(!Class'WorldInfo'.static.IsMenuLevel())
@@ -94,6 +102,7 @@ function Callback_ControllerCloseMenu()
     local KFPlayerReplicationInfo KFPRI;
 
     KFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
+    LogInternal((((((((((("(" $ string(Name)) $ ") KFGFxObject_Menu::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "KFPRI:'") $ string(KFPRI)) $ "'") @ "Manager:'") $ string(Manager)) $ "'");
     if((Manager != none) && KFPRI != none)
     {
         if(!Class'WorldInfo'.static.IsMenuLevel() && Manager.bUsingGamepad)
@@ -126,6 +135,7 @@ function Callback_Quit()
 
 function Callback_MenusFinishedClosing()
 {
+    LogInternal(((((((("(" $ string(Name)) $ ") KFGFxObject_Menu::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "Manager.bMenusOpen:'") $ string(Manager.bMenusOpen)) $ "'");
     if((Manager != none) && Manager.bMenusOpen)
     {
         Manager.MenusFinishedClosing();
@@ -195,7 +205,10 @@ function Callback_PerkChanged(int PerkIndex)
     if(KFPC != none)
     {
         KFPC.RequestPerkChange(byte(PerkIndex));
-        KFPC.SetHaveUpdatePerk(true);
+        if(KFPC.CanUpdatePerkInfo())
+        {
+            KFPC.SetHaveUpdatePerk(true);
+        }
         if(KFPC.MyGFxManager != none)
         {
             if(KFPC.MyGFxManager.CurrentMenu == KFPC.MyGFxManager.PerksMenu)
@@ -206,12 +219,12 @@ function Callback_PerkChanged(int PerkIndex)
     }
 }
 
-function Callback_ProfileOption(int OptionIndex, int SlotIndex)
+function Callback_ProfileOption(string OptionKey, int SlotIndex)
 {
-    LogInternal("Callback_ProfileOption: " @ string(OptionIndex));
     if((Manager != none) && Manager.PartyWidget != none)
     {
-        Manager.PartyWidget.ProfileOptionClicked(OptionIndex, SlotIndex);
+        LogInternal("OptionKey- " @ OptionKey, 'DevGFxUI');
+        Manager.PartyWidget.ProfileOptionClicked(OptionKey, SlotIndex);
     }
 }
 
@@ -220,7 +233,7 @@ function Callback_CreateParty()
     if((OnlineLobby != none) && Manager.GetMultiplayerMenuActive() || Class'WorldInfo'.static.IsConsoleBuild())
     {
         OnlineLobby.MakeLobby(6, 2);
-        OnlineLobby.ShowLobbyInviteInterface();
+        OnlineLobby.ShowLobbyInviteInterface(((Class'WorldInfo'.static.IsConsoleBuild()) ? Localize("Notifications", "InviteMessage", "KFGameConsole") : ""));
     }
 }
 
@@ -229,13 +242,24 @@ function Callback_LeaveParty()
     ShowLeavePartyPopUp();
 }
 
+function Callback_OpenPlayerList(int SlotIndex)
+{
+    if(Manager != none)
+    {
+        if(Manager.PartyWidget != none)
+        {
+            Manager.PartyWidget.OpenPlayerList(SlotIndex);
+        }
+    }
+}
+
 function Callback_InviteFriend()
 {
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {
         if(Class'WorldInfo'.static.IsMenuLevel())
         {
-            OnlineLobby.ShowLobbyInviteInterface();            
+            OnlineLobby.ShowLobbyInviteInterface(Localize("Notifications", "InviteMessage", "KFGameConsole"));            
         }
         else
         {
@@ -246,7 +270,7 @@ function Callback_InviteFriend()
     {
         if(OnlineLobby != none)
         {
-            OnlineLobby.ShowLobbyInviteInterface();
+            OnlineLobby.ShowLobbyInviteInterface("");
         }
     }
 }

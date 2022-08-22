@@ -26,7 +26,8 @@ struct SWhatsNew
 
 var KFGFxMenu_StartGame StartMenu;
 var array<SWhatsNew> WhatsNewItems;
-var const config array<config SWhatsNew> PS4WhatsNewItems;
+var private const config array<config SWhatsNew> PS4WhatsNewItems;
+var array<SWhatsNew> PS4ActiveWhatsNewItems;
 var const localized string MultiplayerString;
 var const localized string SoloString;
 var const localized string TutorialString;
@@ -41,30 +42,41 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
 
 function SetWhatsNewItems()
 {
-    local GFxObject DataObject, DataArray;
+    local GFxObject DataObject, DataArray, WhatsNewButton;
     local int I;
+    local OnlineSubsystem OSS;
+    local bool bLoggedIn;
 
+    WhatsNewButton = GetObject("whatsNewButton");
     DataArray = Outer.CreateArray();
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {
+        OSS = Class'GameEngine'.static.GetOnlineSubsystem();
+        bLoggedIn = OSS.PlayerInterface.GetLoginStatus(byte(Outer.GetLP().ControllerId)) == 2;
+        PS4ActiveWhatsNewItems.Length = 0;
+        WhatsNewButton.SetVisible(bLoggedIn);
         I = 0;
-        J0x57:
+        J0x158:
 
         if(I < PS4WhatsNewItems.Length)
         {
-            DataObject = Outer.CreateObject("Object");
-            DataObject.SetString("label", Localize("WhatsNewMessages", PS4WhatsNewItems[I].TextField, "KFGame"));
-            DataObject.SetString("imageURL", PS4WhatsNewItems[I].ImageURL);
-            DataObject.SetString("redirectURL", PS4WhatsNewItems[I].RedirectURL);
-            DataArray.SetElementObject(I, DataObject);
+            if(bLoggedIn || PS4WhatsNewItems[I].PSNProductId == "")
+            {
+                DataObject = Outer.CreateObject("Object");
+                DataObject.SetString("label", Localize("WhatsNewMessages", PS4WhatsNewItems[I].TextField, "KFGame"));
+                DataObject.SetString("imageURL", PS4WhatsNewItems[I].ImageURL);
+                DataObject.SetString("redirectURL", PS4WhatsNewItems[I].RedirectURL);
+                DataArray.SetElementObject(PS4ActiveWhatsNewItems.Length, DataObject);
+                PS4ActiveWhatsNewItems.AddItem(PS4WhatsNewItems[I];
+            }
             ++ I;
-            goto J0x57;
+            goto J0x158;
         }        
     }
     else
     {
         I = 0;
-        J0x203:
+        J0x361:
 
         if(I < WhatsNewItems.Length)
         {
@@ -74,7 +86,7 @@ function SetWhatsNewItems()
             DataObject.SetString("redirectURL", WhatsNewItems[I].RedirectURL);
             DataArray.SetElementObject(I, DataObject);
             ++ I;
-            goto J0x203;
+            goto J0x361;
         }
     }
     SetObject("whatsNew", DataArray);
@@ -95,7 +107,7 @@ function LocalizeMenu()
 
 defaultproperties
 {
-    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_BullsEyeUpdate",TextField="LatestUpdate",RedirectURL="http://www.killingfloor2.com/bullseye",PSNProductId="")
+    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_PS4Beta",TextField="LatestUpdate",RedirectURL="http://www.killingfloor2.com/redirect/KF2LatestUpdate/",PSNProductId="")
     WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
     WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Tormentor_07",TextField="HorzineSupplyCrateKey7",RedirectURL="https://store.steampowered.com/buyitem/232090/4105",PSNProductId="")
     WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_CombatStar_08",TextField="HorzineSupplyCrateKey8",RedirectURL="https://store.steampowered.com/buyitem/232090/4106",PSNProductId="")

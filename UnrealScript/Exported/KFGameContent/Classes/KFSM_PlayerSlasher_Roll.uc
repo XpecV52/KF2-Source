@@ -8,8 +8,15 @@
 //=============================================================================
 class KFSM_PlayerSlasher_Roll extends KFSM_Evade;
 
-/** How fast to roll in any direction */
-var float RollSpeed;
+var rotator InitialRotation;
+
+/** Notification called when Special Move starts */
+function SpecialMoveStarted( bool bForced, Name PrevMove )
+{
+	super.SpecialMoveStarted( bForced, PrevMove );
+
+	InitialRotation = KFPOwner.Rotation;
+}
 
 /**
  * Checks to see if this Special Move can be done.
@@ -31,23 +38,18 @@ function Tick( float DeltaTime )
 
 	if( KFPOwner != none && KFPOwner.Role != ROLE_SimulatedProxy )
 	{
-		KFPOwner.Velocity = vector(KFPOwner.Rotation) * RollSpeed;
-		KFPOwner.Acceleration = KFPOwner.Velocity;
+		KFPOwner.SetRotation( InitialRotation );
 	}
 }
 
 defaultproperties
 {
-   RollSpeed=1000.000000
    EvadeAnims(0)=(Anims=("Player_Roll_F"))
    EvadeAnims(1)=(Anims=("Player_Roll_B"))
    EvadeAnims(2)=(Anims=("Player_Roll_L"))
    EvadeAnims(3)=(Anims=("Player_Roll_R"))
-   EvadeAnims(4)=()
-   EvadeAnims(5)=()
-   EvadeAnims(6)=()
-   EvadeAnims(7)=()
    bUseCustomThirdPersonViewOffset=True
+   bLockPawnRotation=True
    CustomThirdPersonViewOffset=(OffsetHigh=(X=-175.000000,Y=50.000000,Z=-80.000000),OffsetMid=(X=-145.000000,Y=50.000000,Z=-90.000000),OffsetLow=(X=-220.000000,Y=50.000000,Z=-80.000000))
    ViewOffsetInterpTime=0.300000
    CustomCameraFOV=80.000000

@@ -61,6 +61,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 
 var const localized string SectionNameString;
 var const localized string OptionsString;
@@ -174,7 +175,7 @@ function Callback_ConfigureMicPress()
     if(Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
         Manager.SetVariableBool("bStartUpGamma", false);
-        Manager.OpenPopup(1, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);        
+        Manager.DelayedOpenPopup(1, 4, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);        
     }
     else
     {
@@ -216,9 +217,6 @@ function Callback_ConfigureVocals(bool bEnabled)
 
 function Callback_ConfigureControllerSound(bool bEnabled)
 {
-    local bool bWasEnabled;
-
-    bWasEnabled = Manager.CachedProfile.GetProfileBool(155);
     Manager.CachedProfile.SetProfileSettingValueInt(155, ((bEnabled) ? 1 : 0));
     KFGameEngine(Class'Engine'.static.GetEngine()).PadVolumeMultiplier = ((bEnabled) ? 100 : 0);
     Class'KFGameEngine'.static.SetWWisePADVolume(((bEnabled) ? 100 : 0));
@@ -281,7 +279,7 @@ function Callback_VOIPVolumeChanged(float SliderValue)
 
 function CallBack_ResetAudioOptions()
 {
-    Manager.OpenPopup(0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), ResetAudioOptions);
+    Manager.DelayedOpenPopup(0, 0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), ResetAudioOptions);
 }
 
 function ResetAudioOptions()

@@ -109,10 +109,9 @@ defaultproperties
    SpecialMoveCooldowns(1)=(CoolDownTime=1.500000,SMHandle=SM_PlayerZedMove_RMB,SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-HeavyLunge',NameLocalizationKey="Heavy")
    SpecialMoveCooldowns(2)=(CoolDownTime=1.000000,SMHandle=SM_Taunt,bShowOnHud=False)
    SpecialMoveCooldowns(3)=(CoolDownTime=2.500000,SMHandle=SM_PlayerZedMove_V,SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-SpinAttack',NameLocalizationKey="Spin")
-   SpecialMoveCooldowns(4)=(CoolDownTime=0.500000,SMHandle=SM_PlayerZedMove_MMB,SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block',NameLocalizationKey="Block")
+   SpecialMoveCooldowns(4)=(CoolDownTime=0.200000,SMHandle=SM_PlayerZedMove_MMB,SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block',NameLocalizationKey="Block")
    SpecialMoveCooldowns(5)=(CoolDownTime=1.250000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-Jump',bShowOnHud=False)
    MinBlockFOV=0.000000
-   LocalizationKey="KFPawn_ZedScrake"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedScrake:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -138,15 +137,16 @@ defaultproperties
       ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedScrake_Versus:Afflictions_0'
+   IncapSettings(0)=(Vulnerability=(0.700000))
    IncapSettings(1)=(Duration=3.000000,Cooldown=5.000000,Vulnerability=(0.900000))
    IncapSettings(2)=(Vulnerability=(0.500000))
    IncapSettings(3)=()
-   IncapSettings(4)=(Cooldown=5.000000,Vulnerability=(0.200000))
-   IncapSettings(5)=(Duration=1.500000)
+   IncapSettings(4)=(Cooldown=5.000000,Vulnerability=(0.100000))
+   IncapSettings(5)=(Duration=1.500000,Vulnerability=(0.200000,0.700000,0.200000,0.200000,0.200000))
    IncapSettings(6)=(Duration=1.500000,Cooldown=20.000000,Vulnerability=(0.600000))
-   IncapSettings(7)=()
+   IncapSettings(7)=(Duration=1.500000,Cooldown=8.500000,Vulnerability=(0.700000,0.700000,1.000000,0.700000))
    IncapSettings(8)=(Vulnerability=(0.200000))
-   IncapSettings(9)=(Duration=0.500000)
+   IncapSettings(9)=(Duration=0.500000,Cooldown=1.500000,Vulnerability=(0.500000))
    IncapSettings(10)=()
    SprintSpeed=530.000000
    SprintStrafeSpeed=350.000000
@@ -249,7 +249,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

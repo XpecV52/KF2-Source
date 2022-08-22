@@ -86,7 +86,6 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
                 this.invertYCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
                 this.mouseSmoothingCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
-                this.forceFeedbackCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
                 this.defaultButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
             }
             this.controllerSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
@@ -95,6 +94,7 @@ package tripwire.containers.optionsControls
             this.aimAssistZoomLockOnCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
             this.aimAssistRotationCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
             this.aimAssistSlowDownCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
+            this.forceFeedbackCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
             defaultFirstElement = !!bManagerConsoleBuild ? this.controllerSensitivitySliderOption : this.sensitivitySliderOption;
             var _loc1_:int = 1;
             if(!bManagerConsoleBuild)
@@ -110,9 +110,9 @@ package tripwire.containers.optionsControls
             this.aimAssistZoomLockOnCheckBox.tabIndex = _loc1_++;
             this.aimAssistRotationCheckBox.tabIndex = _loc1_++;
             this.aimAssistSlowDownCheckBox.tabIndex = _loc1_++;
-            if(!bManagerConsoleBuild)
+            this.forceFeedbackCheckBox.tabIndex = _loc1_++;
+            if(!bManagerConsoleBuild && this.defaultButton != null)
             {
-                this.forceFeedbackCheckBox.tabIndex = _loc1_++;
                 this.defaultButton.tabIndex = _loc1_++;
             }
         }
@@ -130,10 +130,13 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivitySliderOption.label = !!param1.zoomSensitivityLabel ? param1.zoomSensitivityLabel : "";
                 this.invertYCheckBox.label = !!param1.invertedLabel ? param1.invertedLabel : "";
                 this.mouseSmoothingCheckBox.label = !!param1.mouseSmoothingLabel ? param1.mouseSmoothingLabel : "";
-                this.forceFeedbackCheckBox.label = !!param1.forceFeedbackLabel ? param1.forceFeedbackLabel : "";
                 this.controllerTextField.text = !!param1.controllerString ? param1.controllerString : "";
-                this.defaultButton.label = !!param1.resetDefault ? param1.resetDefault : "";
+                if(this.defaultButton != null)
+                {
+                    this.defaultButton.label = !!param1.resetDefault ? param1.resetDefault : "";
+                }
             }
+            this.forceFeedbackCheckBox.label = !!param1.forceFeedbackLabel ? param1.forceFeedbackLabel : "";
             this.controllerSensitivitySliderOption.label = !!param1.controllerSensitivityLabel ? param1.controllerSensitivityLabel : "";
             this.controllerZoomSensitivitySliderOption.label = !!param1.controllerZoomSensitivityLabel ? param1.controllerZoomSensitivityLabel : "";
             this.controllerInvertYCheckBox.label = !!param1.controllerInvertedLabel ? param1.controllerInvertedLabel : "";
@@ -160,8 +163,8 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivityMaximumText.text = this.zoomSensitivitySliderOption.slider.maximum.toFixed(0).toString();
                 this.mouseSmoothingCheckBox.selected = !!param1.mouseSmoothingValue ? Boolean(param1.mouseSmoothingValue) : false;
                 this.invertYCheckBox.selected = !!param1.invertedValue ? Boolean(param1.invertedValue) : false;
-                this.forceFeedbackCheckBox.selected = !!param1.forceFeedbackValue ? Boolean(param1.forceFeedbackValue) : false;
             }
+            this.forceFeedbackCheckBox.selected = !!param1.forceFeedbackValue ? Boolean(param1.forceFeedbackValue) : false;
             this.controllerSensitivitySliderOption.slider.minimum = param1.controllerSensitivityValueMin != undefined ? Number(param1.controllerSensitivityValueMin) : Number(0);
             this.controllerSensitivitySliderOption.slider.maximum = param1.controllerSensitivityValueMax != undefined ? Number(param1.controllerSensitivityValueMax) : Number(1);
             this.controllerSensitivitySliderOption.sliderValue = param1.controllerSensitivityValue != undefined ? int(param1.controllerSensitivityValue) : 0;

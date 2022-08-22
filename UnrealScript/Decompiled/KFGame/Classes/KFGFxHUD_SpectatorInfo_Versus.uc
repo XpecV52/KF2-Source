@@ -7,13 +7,13 @@
  *******************************************************************************/
 class KFGFxHUD_SpectatorInfo_Versus extends KFGFxHUD_SpectatorInfo within GFxMoviePlayer;
 
-function UpdateSpectateeInfo(optional bool bForceUpdate)
+function UpdatePlayerInfo(optional bool bForceUpdate)
 {
+    local GFxObject TempObject;
     local byte CurrentPerkLevel;
 
-    if(((SpectatedKFPRI == none) || SpectatedKFPRI == Outer.GetPC().PlayerReplicationInfo) || Outer.GetPC().PlayerCamera.CameraStyle == 'Boss')
+    if(SpectatedKFPRI == none)
     {
-        SetVisible(false);
         return;
     }
     if(SpectatedKFPRI.GetTeamNum() != 255)
@@ -30,13 +30,6 @@ function UpdateSpectateeInfo(optional bool bForceUpdate)
         LastPerkLevel = 255;
         LastPerkClass = none;
     }
-    UpdatePlayerInfo();
-}
-
-function UpdatePlayerInfo()
-{
-    local GFxObject TempObject;
-
     TempObject = Outer.CreateObject("Object");
     TempObject.SetString("playerName", SpectatedKFPRI.PlayerName);
     if(SpectatedKFPRI.GetTeamNum() == 255)

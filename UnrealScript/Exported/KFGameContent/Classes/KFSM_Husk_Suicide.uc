@@ -23,7 +23,7 @@ protected function bool InternalCanDoSpecialMove()
 		return false;
 	}
 
-	if( KFPOwner.IsCombatCapable() )
+	if( !KFPOwner.IsCombatCapable() )
 	{
 		return false;
 	}

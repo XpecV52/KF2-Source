@@ -19,7 +19,7 @@ event bool SuggestMovePreparation(Pawn Other)
     local KFPawn_Monster KFPM;
     local int Count;
 
-    if(KFPawn(Other).MyKFAIC != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFPawn(Other).MyKFAIC != none)
     {
         KFPawn(Other).MyKFAIC.AILog_Internal((((((string(GetFuncName()) $ "() ") $ string(self)) $ " called for ") $ string(Other)) $ " Dist: ") $ string(VSize(Location - Other.Location)), 'Doors');
     }
@@ -34,7 +34,7 @@ event bool SuggestMovePreparation(Pawn Other)
         }        
         if(Count > 5)
         {
-            if(KFPawn(Other).MyKFAIC != none)
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFPawn(Other).MyKFAIC != none)
             {
                 KFPawn(Other).MyKFAIC.AILog_Internal(((((((string(GetFuncName()) $ "() ") $ string(self)) $ " - telling ") $ string(Other)) $ " to wait for ") $ string(MyKFDoor)) $ " to open", 'Doors');
             }
@@ -89,7 +89,7 @@ function bool ProceedWithMove(Pawn Other)
 
     if((KFPawn(Other) != none) && !KFPawn(Other).IsHumanControlled())
     {
-        if(KFPawn(Other).MyKFAIC != none)
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFPawn(Other).MyKFAIC != none)
         {
             KFPawn(Other).MyKFAIC.AILog_Internal((((string(GetFuncName()) $ " ") $ string(self)) $ " for ") $ string(Other), 'Doors');
         }
@@ -112,7 +112,7 @@ function bool ProceedWithMove(Pawn Other)
 
 event Actor SpecialHandling(Pawn Other)
 {
-    if(KFPawn(Other).MyKFAIC != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFPawn(Other).MyKFAIC != none)
     {
         KFPawn(Other).MyKFAIC.AILog_Internal((((string(GetFuncName()) $ "() ") $ string(self)) $ " SpecialHandling event called for ") $ string(Other), 'Doors');
     }
@@ -122,7 +122,7 @@ event Actor SpecialHandling(Pawn Other)
     }
     if((KFPawn(Other) != none) && !KFPawn(Other).IsHumanControlled())
     {
-        if(KFPawn(Other).MyKFAIC != none)
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFPawn(Other).MyKFAIC != none)
         {
             KFPawn(Other).MyKFAIC.AILog_Internal((((string(GetFuncName()) $ " ") $ string(self)) $ " calling for ") $ string(Other), 'Doors');
         }

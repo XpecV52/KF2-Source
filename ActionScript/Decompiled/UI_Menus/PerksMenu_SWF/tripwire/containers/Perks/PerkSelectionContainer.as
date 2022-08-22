@@ -16,6 +16,8 @@ package tripwire.containers.Perks
     {
          
         
+        public var owner;
+        
         public var perkScrollingList:ScrollingList;
         
         public var perkSelectBlocker;
@@ -64,21 +66,20 @@ package tripwire.containers.Perks
         
         public function set perkListEnabled(param1:Boolean) : void
         {
-            var _loc2_:int = 0;
-            if(!param1)
-            {
-                _loc2_ = 0;
-                while(_loc2_ < this.perkScrollingList.dataProvider.length)
-                {
-                    PerkSelectLineRenderer(this.perkScrollingList.getRendererAt(_loc2_)).selected = false;
-                    _loc2_++;
-                }
-            }
-            else
-            {
-                PerkSelectLineRenderer(this.perkScrollingList.getRendererAt(this.perkScrollingList.selectedIndex)).selected = true;
-            }
             this.perkScrollingList.enabled = param1;
+            var _loc2_:int = 0;
+            while(_loc2_ < this.perkScrollingList.dataProvider.length)
+            {
+                if(_loc2_ == this.perkScrollingList.selectedIndex)
+                {
+                    PerkSelectLineRenderer(this.perkScrollingList.getRendererAt(this.perkScrollingList.selectedIndex)).selected = true;
+                }
+                else
+                {
+                    PerkSelectLineRenderer(this.perkScrollingList.getRendererAt(_loc2_)).stateOverride = "up";
+                }
+                _loc2_++;
+            }
         }
         
         public function setPendingPerkChanges(param1:String, param2:String, param3:String) : void
@@ -123,7 +124,7 @@ package tripwire.containers.Perks
         
         public function onPerkChanged(param1:ListEvent) : *
         {
-            if(bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bLostFocus && !this._bFirstChange)
+            if(bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bFirstChange)
             {
                 TweenMax.killTweensOf(this);
                 TweenMax.to(this,ANIM_TIME,{
@@ -173,6 +174,7 @@ package tripwire.containers.Perks
                 _loc2_ = this.perkScrollingList.getRendererAt(_loc3_) as PerkSelectLineRenderer;
                 if(_loc3_ == param1)
                 {
+                    this.currentPerk = _loc3_;
                     _loc2_.active = true;
                 }
                 else
@@ -180,6 +182,10 @@ package tripwire.containers.Perks
                     _loc2_.active = false;
                 }
                 _loc3_++;
+            }
+            if(this.owner)
+            {
+                this.owner.updatePrompts();
             }
         }
         

@@ -70,7 +70,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_MP5RAS'
 	FireInterval(DEFAULT_FIREMODE)=+.067 // 900 RPM
 	Spread(DEFAULT_FIREMODE)=0.01
-	InstantHitDamage(ALTFIRE_FIREMODE)=25  //22
+	InstantHitDamage(DEFAULT_FIREMODE)=25 //22
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -80,7 +80,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_MP5RAS'
 	FireInterval(ALTFIRE_FIREMODE)=+.067 // 900 RPM
-	InstantHitDamage(DEFAULT_FIREMODE)=25 //22
+	InstantHitDamage(ALTFIRE_FIREMODE)=25  //22
 	Spread(ALTFIRE_FIREMODE)=0.01
 	BurstAmount=3
 

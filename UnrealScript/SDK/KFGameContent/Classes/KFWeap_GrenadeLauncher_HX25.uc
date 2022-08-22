@@ -25,7 +25,6 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 {
 	local int i;
 	local rotator AimRot;
-	local KFPlayerReplicationInfo InstigatorPRI;
 
     if( CurrentFireMode == GRENADE_FIREMODE )
     {
@@ -33,19 +32,9 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
     }
 
 	AimRot = rotator(AimDir);
-	InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
-
 	for (i = 0; i < GetNumProjectilesToFire(CurrentFireMode); i++)
 	{
-		// Use a different projectile for the first one if demo's nuke skill is active and Zed time is active
-		if( InstigatorPRI != none && InstigatorPRI.bNukeActive && WorldInfo.TimeDilation < 1.f && i < 1 )
-		{
-			Super.SpawnProjectile( class'KFPerk_Demolitionist'.static.GetNukeProjectileClass(), RealStartLoc, AimDir );
-		}
-		else
-		{
-			Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, i)));
-		}
+		Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, i)));
 	}
 
 	return None;
@@ -238,5 +227,6 @@ defaultproperties
 	bHasFlashlight=false
 
    	AssociatedPerkClass=class'KFPerk_Demolitionist'
-}
 
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
+}

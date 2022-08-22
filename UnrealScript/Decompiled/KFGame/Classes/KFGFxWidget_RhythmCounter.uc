@@ -9,7 +9,7 @@ class KFGFxWidget_RhythmCounter extends GFxObject within GFxMoviePlayer;
 
 function SetCount(int Count, int Max)
 {
-    SetInt("count", Count);
+    SetInt("count", Min(Count, Max));
     SetBonusPercentage(float(Min(Max, Count)) / float(Max));
 }
 

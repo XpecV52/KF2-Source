@@ -456,7 +456,7 @@ defaultproperties
     MyDamageType=Class'KFDT_Slashing'
     bTrackSwipeHits=true
     PlayerDoorDamageMultiplier=10
-    PlayerControlledFOV=0.15
+    PlayerControlledFOV=0.05
     MeleeImpactCamScale=1
     MaxPingCompensation=200
     PingCompensationScale=0.5

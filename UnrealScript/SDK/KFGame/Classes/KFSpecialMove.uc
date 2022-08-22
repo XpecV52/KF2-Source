@@ -424,6 +424,15 @@ final function SetMovementLock(bool bEnable)
 	}
 }
 
+/**
+ * Can be overridden to modify sprint speed when the move is running. Must be implemented in subclasses (see KFSM_Block)!
+ * Network: SERVER
+ */
+function float GetSprintSpeedModifier() 
+{
+	return 1.0f;
+};
+
 function EnableRootMotion()
 {
 	// Turn on root motion on animation node

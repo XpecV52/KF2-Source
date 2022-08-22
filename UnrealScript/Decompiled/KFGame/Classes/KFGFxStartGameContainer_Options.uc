@@ -63,6 +63,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 
 enum EServerType
 {
@@ -146,7 +147,6 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
     GetButtons();
-    ClampSavedFiltersToMode();
     StartMenu = KFGFxMenu_StartGame(NewParentMenu);
     InitializeGameOptions();
     LocalizeArrays();
@@ -170,7 +170,22 @@ function ClampSavedFiltersToMode()
     SavedDifficultyIndex = byte(Clamp(SavedDifficultyIndex, 0, Class'KFGameInfo'.default.GameModes[SavedModeIndex].DifficultyLevels));
     if(SavedLengthIndex >= (Class'KFGameInfo'.default.GameModes[SavedModeIndex].Lengths + LengthIndexOffset))
     {
-        SavedLengthIndex = 0;
+        SavedLengthIndex = 1;
+    }
+    UpdateButtonsEnabled();
+}
+
+function UpdateButtonsEnabled()
+{
+    if(bIsSoloGame)
+    {
+        LengthButton.SetBool("enabled", true);
+        DifficultyButton.SetBool("enabled", true);        
+    }
+    else
+    {
+        LengthButton.SetBool("enabled", SavedModeIndex != 1);
+        DifficultyButton.SetBool("enabled", SavedModeIndex != 1);
     }
 }
 
@@ -210,6 +225,18 @@ function InitializeGameOptions()
     {
         SavedSoloMapString = "";
     }
+    if(Class'KFGameEngine'.static.IsPlaygoModePS4())
+    {
+        SavedMapString = "KF-EvacuationPoint";
+        SavedSoloMapString = "KF-EvacuationPoint";        
+    }
+    else
+    {
+        if(SavedSoloMapString == "")
+        {
+            SavedSoloMapString = "KF-BioticsLab";
+        }
+    }
     SavedSoloDifficultyIndex = byte(Profile.GetProfileInt(146));
     SavedSoloLengthIndex = byte(Profile.GetProfileInt(147));
     SavedLengthIndex = byte(Profile.GetProfileInt(151));
@@ -220,6 +247,11 @@ function InitializeGameOptions()
     SavedDifficultyIndex = byte(Profile.GetProfileInt(150));
     bIsSoloGame = GetBool("bIsSoloGame");
     InitialMapIndex = StartMenu.MapStringList.Find(((bIsSoloGame) ? SavedSoloMapString : SavedMapString);
+    ClampSavedFiltersToMode();
+    if(bIsSoloGame && InitialMapIndex == -1)
+    {
+        InitialMapIndex = 0;
+    }
     TextObject = Outer.CreateObject("Object");
     TextObject.SetString("soloGameString", SoloGameString);
     TextObject.SetString("matchMakingString", StartMenu.MatchmakingString);
@@ -229,15 +261,15 @@ function InitializeGameOptions()
     TextObject.SetString("multiplayerLaunchString", MultiplayerLaunchString);
     TextObject.SetString("searchingString", CancelSearchingString);
     TextObject.SetString("mode", StartMenu.GameModeTitle);
-    TextObject.SetString("map", StartMenu.MapTitle);
+    TextObject.SetString("map", ((Class'WorldInfo'.static.IsConsoleBuild()) ? ConsoleLocalize("MapPreference") : StartMenu.MapTitle));
     TextObject.SetString("difficulty", StartMenu.DifficultyTitle);
     TextObject.SetString("length", StartMenu.LengthTitle);
     TextObject.SetString("privacy", StartMenu.PermissionsTitle);
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {
         TextObject.SetString("serverType", ConsoleLocalize("MatchmakingRegionString"));
-        RegionIndex = byte(Class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion());
-        TextObject.SetObject("serverTypeList", CreateList(Class'GameEngine'.static.GetPlayfabInterface().RegionNames, RegionIndex, false));        
+        RegionIndex = ((Class'WorldInfo'.static.IsE3Build()) ? 0 : byte(Class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion()));
+        TextObject.SetObject("serverTypeList", CreateList(Class'PlayfabInterface'.static.GetLocalizedRegionList(), RegionIndex, false));        
     }
     else
     {
@@ -249,7 +281,7 @@ function InitializeGameOptions()
     if(bIsSoloGame)
     {
         I = 0;
-        J0x8B5:
+        J0x9C6:
 
         if(I < SupportedGameModeStrings.Length)
         {
@@ -259,7 +291,7 @@ function InitializeGameOptions()
                 -- I;
             }
             ++ I;
-            goto J0x8B5;
+            goto J0x9C6;
         }
     }
     TextObject.SetObject("modeList", CreateList(SupportedGameModeStrings, byte(Min(((bIsSoloGame) ? SavedSoloModeIndex : SavedModeIndex), SupportedGameModeStrings.Length)), false));
@@ -320,6 +352,7 @@ function GFxObject CreateList(array<string> TextArray, byte SelectedIndex, bool 
         if(bIsMapList)
         {
             TempString = Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(TextArray[I]);
+            ItemSlot.SetString("mapItemKey", TextArray[I]);
             ItemSlot.SetString("imagePath", StartMenu.GetMapSource(TextArray[I]));            
         }
         else
@@ -348,6 +381,15 @@ function SetSearching(bool bSearching)
     SetBool("bSearchingForGame", bSearching);
     InProgressChanged(SavedInProgressIndex);
     PrivacyChanged(SavedPrivacyIndex);
+    if(!bSearching)
+    {
+        CheckAndUpdateBasedOnPrivacy();
+        UpdateButtonsEnabled();        
+    }
+    else
+    {
+        ServerTypeButton.SetBool("enabled", false);
+    }
     if(bSearching)
     {
         SetHelpText(SearchingString);        
@@ -448,18 +490,22 @@ function CheckAndUpdateBasedOnPrivacy()
     }
     else
     {
-        InProgressChanged(2, true);
+        if(!Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            InProgressChanged(2, true);
+        }
         InProgressButton.SetBool("enabled", false);
     }
 }
 
 function ServerTypeChanged(int Index, optional bool bSetText)
 {
+    LogInternal("Server Type changed to" @ string(Index));
+    ScriptTrace();
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {
         RegionIndex = byte(Index);
-        Class'GameEngine'.static.GetPlayfabInterface().SetIndexForCurrentRegion(RegionIndex);
-        StartMenu.Manager.CachedProfile.SetProfileSettingValue(156, Class'GameEngine'.static.GetPlayfabInterface().CurrRegionName);        
+        Class'GameEngine'.static.GetPlayfabInterface().SetIndexForCurrentRegion(RegionIndex);        
     }
     else
     {
@@ -639,7 +685,7 @@ function string GetMapName()
     }
 }
 
-function Engine.TWOnlineLobby.ELobbyVisibility GetPartyPrivacy()
+event Engine.TWOnlineLobby.ELobbyVisibility GetPartyPrivacy()
 {
     switch(SavedPrivacyIndex)
     {
@@ -666,7 +712,7 @@ defaultproperties
 {
     bShowLengthNoPref=true
     BackString="BACK"
-    StartGameString="START GAME"
+    StartGameString="LAUNCH GAME"
     LaunchGameString="LAUNCH GAME"
     ServerTypeString="SERVER TYPE"
     InProgressString="GAME PROGRESS"

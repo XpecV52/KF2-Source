@@ -7,10 +7,8 @@
  *******************************************************************************/
 class AICommand_Siren_Scream extends AICommand_SpecialMove within KFAIController_ZedSiren;
 
-var int MinScreamRange;
-var int MaxScreamRange;
-var float ScreamCooldown;
-var float LastScreamTime;
+var int MinScreamRangeSQ;
+var int MaxScreamRangeSQ;
 
 static function bool Scream(KFAIController_ZedSiren AI)
 {
@@ -27,6 +25,8 @@ static function bool Scream(KFAIController_ZedSiren AI)
     }
     return false;
 }
+
+function LockdownAI();
 
 function Pushed()
 {
@@ -58,28 +58,22 @@ state Command_SpecialMove
 
     function bool CanScream()
     {
-        local Vector HitL, HitN, EnemyLocation, MyEyeLocation;
-        local float RangeToEnemy;
+        local Vector EnemyLocation, MyEyeLocation;
+        local float RangeToEnemySQ;
+        local KFGameInfo KFGI;
 
-        if(((Outer.Enemy != none) && SpecialMove != 0) && !bShouldCheckSpecialMove || Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
+        if((((((((Outer.Enemy != none) && Outer.WorldInfo.TimeSeconds > Outer.ScreamDelayTime) && (Outer.DoorEnemy == none) || Outer.DoorEnemy.IsCompletelyOpen()) && !bShouldCheckSpecialMove || Outer.MyKFPawn.CanDoSpecialMove(SpecialMove)) && (Outer.LastScreamTime == 0) || (Outer.WorldInfo.TimeSeconds - Outer.LastScreamTime) > Outer.ScreamCooldown) && Outer.CheckOverallCooldownTimer()) && Outer.MyKFPawn.IsCombatCapable()) && !Outer.GetIsInZedVictoryState())
         {
-            if(((Outer.WorldInfo.TimeSeconds - LastScreamTime) < ScreamCooldown) || !Outer.CheckOverallCooldownTimer())
-            {
-                return false;
-            }
-            if(!Outer.MyKFPawn.IsCombatCapable())
-            {
-                return false;
-            }
             EnemyLocation = Outer.Enemy.Location + (vect(0, 0, 1) * Outer.Enemy.BaseEyeHeight);
             MyEyeLocation = Outer.MyKFPawn.Location + (vect(0, 0, 1) * Outer.MyKFPawn.BaseEyeHeight);
-            RangeToEnemy = VSize(EnemyLocation - MyEyeLocation);
-            if(((RangeToEnemy < float(MaxScreamRange)) && RangeToEnemy > float(MinScreamRange)) && Outer.Trace(HitL, HitN, EnemyLocation, MyEyeLocation, false,,, Outer.1) == none)
+            RangeToEnemySQ = VSizeSq(EnemyLocation - MyEyeLocation);
+            if(((RangeToEnemySQ < float(MaxScreamRangeSQ)) && RangeToEnemySQ > float(MinScreamRangeSQ)) && Outer.FastTrace(EnemyLocation, MyEyeLocation))
             {
-                LastScreamTime = Outer.WorldInfo.TimeSeconds;
-                if((KFGameInfo(Outer.WorldInfo.Game) != none) && KFGameInfo(Outer.WorldInfo.Game).GameConductor != none)
+                Outer.LastScreamTime = Outer.WorldInfo.TimeSeconds;
+                KFGI = KFGameInfo(Outer.WorldInfo.Game);
+                if((KFGI != none) && KFGI.GameConductor != none)
                 {
-                    KFGameInfo(Outer.WorldInfo.Game).GameConductor.UpdateOverallAttackCoolDowns(Outer);
+                    KFGI.GameConductor.UpdateOverallAttackCoolDowns(Outer);
                 }
                 return true;
             }
@@ -91,9 +85,8 @@ state Command_SpecialMove
 
 defaultproperties
 {
-    MinScreamRange=130
-    MaxScreamRange=900
-    ScreamCooldown=4
+    MinScreamRangeSQ=17000
+    MaxScreamRangeSQ=810000
     SpecialMove=ESpecialMove.SM_SonicAttack
     bIgnoreNotifies=true
 }

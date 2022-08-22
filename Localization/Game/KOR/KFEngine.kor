@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="중복 UID"
+InvalidUID="유효하지 않은 UID"
+FailedKickOff="킥오프 인증 실패"
+RequiresAuthentication="서버에서 인증이 필요합니다"
+CouldNotConnect_Title="연결 실패"

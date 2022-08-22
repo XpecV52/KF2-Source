@@ -474,6 +474,9 @@ simulated function bool IsPrimaryPlayer()
     return true;
 }
 
+// Export UPlayerReplicationInfo::execHasHadInitialSpawn(FFrame&, void* const)
+native simulated function bool HasHadInitialSpawn();
+
 defaultproperties
 {
     StringSpectating="Spectating"

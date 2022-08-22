@@ -12,7 +12,7 @@ NetClose=Error closing file
 NetSize=File size mismatch
 NetMove=Error moving file
 NetInvalid=Received invalid file request
-NoDownload=You cannot join the match because the host has downloadable content you do not.
+NoDownload=O servidor ao qual você está tentando conectar-se precisa ser atualizado para a versão mais recente do jogo. Tente outro servidor.
 DownloadFailed=Downloading package '`~' failed: `~
 RequestDenied=Server requested file from pending level: Denied
 ConnectionFailed_Title=Connection Lost
@@ -45,6 +45,7 @@ SteamAuthFailed=Steam decided that you are not authorized to connect to this ser
 ServerHostingDifferentGame=Server is hosting a different game. You cannot connect to this server.
 PeerListen=Peer listen socket failed: `~
 PeerConnection=Peer connection failed: `~
+CouldNotConnect_Title=Falha de Conexão
 
 [Progress]
 CancelledConnect=Cancelled Connect Attempt

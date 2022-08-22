@@ -170,10 +170,10 @@ Begin:
 		Goto( 'Begin' );
 	}
 
-	AILog_Internal("Wandering toward enemy...",,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Wandering toward enemy...",,);};
 	if(  !Wander() )
 	{
-		AILog_Internal("Failed to find Wander location for "$Enemy,,);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Failed to find Wander location for "$Enemy,,);};
 		Sleep( 1.5f );
 		Goto( 'Begin' );
 	}
@@ -187,7 +187,7 @@ Begin:
 	Goto( 'Begin' );
 
 FinishedMove:
-	AILog_Internal("Done Wandering",,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Done Wandering",,);};
 
 	// if we can't see our enemy from here, Wander again!
 // 	if( !bWanderAwayFromGoal && !IsPawnVisibleViaTrace(Enemy) )
@@ -196,9 +196,9 @@ FinishedMove:
 // 		GotoState('Reacquire');
 // 	}
 
-	AILog_Internal("Enemy was visible, rotating toward him",,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Enemy was visible, rotating toward him",,);};
 
-	AILog_Internal("Finished rotating, waiting a bit to let our driver pwn his arse",,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Finished rotating, waiting a bit to let our driver pwn his arse",,);};
 	Sleep( RandRange(WanderWaitMin, WanderWaitMax) );
 	Goto( 'Begin' );
 }

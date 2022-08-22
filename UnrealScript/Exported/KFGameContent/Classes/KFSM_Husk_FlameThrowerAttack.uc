@@ -59,7 +59,7 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 
 	if( AIOwner != none )
 	{
-		if( AIOwner!= None ) { AIOwner.AILog_Internal(self@"started for"@AIOwner,'Husk'); };
+		if( !class'Engine'.static.GetEngine().bDIsableAILogging && AIOwner!= None ) { AIOwner.AILog_Internal(self@"started for"@AIOwner,'Husk'); };
 		AIOwner.AIZeroMovementVariables();
 	}
 }
@@ -128,7 +128,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 
 	if( AIOwner != none )
 	{
-		if( AIOwner!= None ) { AIOwner.AILog_Internal(self@"ended for"@AIOwner,'Husk'); };
+		if( !class'Engine'.static.GetEngine().bDIsableAILogging && AIOwner!= None ) { AIOwner.AILog_Internal(self@"ended for"@AIOwner,'Husk'); };
 	}
 }
 

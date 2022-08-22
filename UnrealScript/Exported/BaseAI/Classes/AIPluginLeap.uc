@@ -153,7 +153,7 @@ event ScriptCleanUp()
 	//Super.Popped();
 	Outer.MyBaseAIPawn.bLeaping = false;
 	//bReevaluatePath = TRUE;
-	AILog_Internal(GetFuncName() @ " Turning me on because ScriptCleanUp: ",,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " Turning me on because ScriptCleanUp: ",,);};
 	TurnMeOn();
 }
 
@@ -165,14 +165,14 @@ native function bool AbortMove(bool bNewRequest);
 state Succeeding extends DEBUGSTATE
 {
 Begin:
-	AILog_Internal("Leaping - END:"@GetStateName(),'Leap',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Leaping - END:"@GetStateName(),'Leap',);};
 	Success();
 }
 
 state Failing extends DEBUGSTATE
 {
 Begin:
-	AILog_Internal("Leaping - END:"@GetStateName(),'Leap',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Leaping - END:"@GetStateName(),'Leap',);};
 	Failure();
 }
 
@@ -181,7 +181,7 @@ Begin:
 state Aborting extends DEBUGSTATE
 {
 Begin:
-	AILog_Internal("Leaping - Aborted",'Leap',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Leaping - Aborted",'Leap',);};
 	//AbortMove(false);   
 	StopMovement();
 }
@@ -191,7 +191,7 @@ Begin:
 state Idling extends DEBUGSTATE
 {
 Begin:
-	AILog_Internal("Leaping - Idling so doing nothing",'Leap',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Leaping - Idling so doing nothing",'Leap',);};
 	//StopMovement();
 }
 
@@ -204,7 +204,7 @@ function TestForTimeToTurnCollisionBackOn()
 	{
 		if( HasPercentOfZDiffBeenCovered() )
 		{
-			AILog_Internal(GetFuncName() @ " Turning me on because HasPercentOfZDiffBeenCovered: ",,);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " Turning me on because HasPercentOfZDiffBeenCovered: ",,);};
 			TurnMeOn();
 		}
 		else
@@ -213,7 +213,7 @@ function TestForTimeToTurnCollisionBackOn()
 
 			if( timeDelta > Outer.MyBaseAIPawn.TimeImmuneWhileLeaping )
 			{
-				AILog_Internal(GetFuncName() @ " Turning me on because of time in leap of: " @ timeDelta,,);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " Turning me on because of time in leap of: " @ timeDelta,,);};
 
 				TurnMeOn();
 			}
@@ -388,7 +388,7 @@ Begin:
 
 		} until( Pawn.Physics != PHYS_Falling );
 
-		AILog_Internal(GetFuncName() @ " Pawn.Physics != PHYS_Falling, so landed",,);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " Pawn.Physics != PHYS_Falling, so landed",,);};
 
 		// CGH this is where i am an trying to get the pawn told about the leap.
 		Outer.MyBaseAIPawn.bLeaping = false;

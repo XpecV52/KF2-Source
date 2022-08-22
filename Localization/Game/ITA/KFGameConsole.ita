@@ -14,7 +14,71 @@ KF-ContainmentStation="In gioco - Stazione di contenimento"
 KF-InfernalRealm="In gioco - Regno infernale"
 KF-HostileGrounds="In gioco - Terreno ostile"
 
-[ActivityFeed]
+[ActivityFeed_CHN]
+BossKillCondensedCaption="玩打败的首领！"
+BossKillCaption="$USER_NAME_OR_ID 已在 %y% 打败 %x%"
+TeamAwardCondensedCaption="队伍奖励！"
+TeamAwardCaption="$USER_NAME_OR_ID 已赢取 %x% 队伍奖励"
+PerkLevelUpCondensedCaption="升级！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 已解锁第 %x% 级的 %y% 技能"
+
+[ActivityFeed_CHT]
+BossKillCondensedCaption="已擊敗頭目！"
+BossKillCaption="$USER_NAME_OR_ID 在 %y% 難度中擊敗了 %x%"
+TeamAwardCondensedCaption="隊伍獎勵！"
+TeamAwardCaption="$USER_NAME_OR_ID 獲得了 %x% 隊伍獎勵"
+PerkLevelUpCondensedCaption="升級！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 解鎖了 %x% %y% 升級技能"
+
+[ActivityFeed_DEU]
+BossKillCondensedCaption="Boss besiegt!"
+BossKillCaption="$USER_NAME_OR_ID hat %x% auf %y% besiegt"
+TeamAwardCondensedCaption="Team-Auszeichnung!"
+TeamAwardCaption="$USER_NAME_OR_ID hat %x% Team-Auszeichnung verdient"
+PerkLevelUpCondensedCaption="Levelaufstieg!"
+PerkLevelUpCaption="$USER_NAME_OR_ID hat die Level %x% %y% Fähigkeit freigeschaltet"
+
+[ActivityFeed_ESL]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_ESN]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_FRA]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_FRC]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_INT]
+BossKillCondensedCaption="Boss defeated!"
+BossKillCaption="$USER_NAME_OR_ID has defeated %x% on %y%"
+TeamAwardCondensedCaption="Team Award!"
+TeamAwardCaption="$USER_NAME_OR_ID has earned %x% team award"
+PerkLevelUpCondensedCaption="Level up!"
+PerkLevelUpCaption="$USER_NAME_OR_ID has unlocked the level %x% %y% skill"
+
+[ActivityFeed_ITA]
 BossKillCondensedCaption="Boss sconfitto!"
 BossKillCaption="$USER_NAME_OR_ID ha sconfitto %x% su %y%"
 TeamAwardCondensedCaption="Premio di squadra!"
@@ -22,13 +86,53 @@ TeamAwardCaption="$USER_NAME_OR_ID vince il premio %x%"
 PerkLevelUpCondensedCaption="Aumento di livello!"
 PerkLevelUpCaption="$USER_NAME_OR_ID sblocca %y% liv %x%"
 
+[ActivityFeed_JPN]
+BossKillCondensedCaption="ボス敗北！"
+BossKillCaption="$USER_NAME_OR_IDが%x%を%y%で倒しました"
+TeamAwardCondensedCaption="チームアワード！"
+TeamAwardCaption="$USER_NAME_OR_IDが%x%チームアワードを獲得しました"
+PerkLevelUpCondensedCaption="レベルアップ！"
+PerkLevelUpCaption="$USER_NAME_OR_IDがレベル%x% %y%スキルをロック解除"
+
+[ActivityFeed_KOR]
+BossKillCondensedCaption="보스 제거!"
+BossKillCaption="$USER_NAME_OR_ID님이 %y%에서 %x%을(를) 처치하였습니다."
+TeamAwardCondensedCaption="팀 보상!"
+TeamAwardCaption="$USER_NAME_OR_ID님이 %x% 팀 보상을 획득했습니다."
+PerkLevelUpCondensedCaption="레벨 업!"
+PerkLevelUpCaption="$USER_NAME_OR_ID님이 레벨 %x% %y% 기술을 잠금해제하였습니다."
+
+[ActivityFeed_POL]
+BossKillCondensedCaption="Boss został pokonany!"
+BossKillCaption="$USER_NAME_OR_ID pokonuje %x% na %y%"
+TeamAwardCondensedCaption="Nagroda zespołowa!"
+TeamAwardCaption="$USER_NAME_OR_ID zdobywa nagrodę zespołową %x%"
+PerkLevelUpCondensedCaption="Nowy poziom!"
+PerkLevelUpCaption="$USER_NAME_OR_ID odblokowuje poziom %x% umiejętności %y%"
+
+[ActivityFeed_PTB]
+BossKillCondensedCaption="Chefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID derrotou %x% em %y%"
+TeamAwardCondensedCaption="Prêmio de Equipe!"
+TeamAwardCaption="$USER_NAME_OR_ID ganhou o prêmio eq. %x%"
+PerkLevelUpCondensedCaption="Subiu de nível!"
+PerkLevelUpCaption="$USER_NAME_OR_ID desbloqueou o nível %x% da hab. %y%"
+
+[ActivityFeed_RUS]
+BossKillCondensedCaption="Босс побежден!"
+BossKillCaption="$USER_NAME_OR_ID: убит босс %x%, зона %y%"
+TeamAwardCondensedCaption="Командная награда!"
+TeamAwardCaption="$USER_NAME_OR_ID: командная награда %x%"
+PerkLevelUpCondensedCaption="Новый уровень!"
+PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
+
 [KFGFxMenu_IIS]
 PressButtonToStart="Premi XboxTypeS_A per iniziare"
 LoginButtonPrompt="Effettuare il login"
 LoggingIn="Accesso..."
 LoginFailed="Login fallito"
 NoOnlinePlay="Impossibile giocare online"
-TooYoung="L'accesso ai servizi online è disabilitato per il tuo account su Sony Entertainment Network a causa di restrizioni impostate dal Controllo genitori."
+TooYoung="L'accesso ai servizi online è disabilitato per il tuo account Sony Entertainment Network a causa di restrizioni impostate dal Controllo genitori."
 PatchAvailable="Patch disponibile. Devi aggiornare l'applicazione per utilizzare le funzionalità di rete."
 NotLoggedInOnlinePSN="Devi essere collegato al PlayStation™ Network per utilizzare le funzionalità online."
 NetworkError="Si è verificato un errore di rete, controlla la connessione."
@@ -55,8 +159,6 @@ InviteMessage="Eliminiamo qualche Zed insieme!"
 NotConnectedTitle="Errore di rete"
 NotConnectedMessage="Nessuna connessione a internet. Controlla la connessione e riprova."
 NotConnectedForOnlinePlay="Nessuna connessione a internet. Controlla la tua connessione e riprova a usare le funzionalità online"
-PartySizeTitle="Party Warning"
-PartySizeMessage="Too many members in your party. Not all members will show up in your squad and not all will get into a survival game."
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Vedi profilo giocatore"
@@ -72,9 +174,11 @@ ControllerSound="Suoni controller"
 
 [KFGFxMenu_StartGame]
 MatchmakingRegionString="REGIONE"
+LeaveMenuString="Leaving matchmaking will also leave your party"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGIONE"
+MapPreference="MAPPA PREFERITA"
 
 [Entitlements]
 BriarBobbyBundleProductName="London Bobby Briar Uniform Bundle"
@@ -110,3 +214,12 @@ HorzineSupplyCrate4ShortDesription="Questa cassa dei rifornimenti Horzine contie
 StoreGameLegalText="Software soggetto a licenza (us.playstation.com/softwarelicense). Attività online soggetta ai Termini di Servizio e all'Accordo con l'Utente (www.playstationnetwork.com/terms-of-service). Quota di licenza una tantum per giocare sul sistema primario PS4™ indicato nell'account e altri sistemi PS4™ quando connessi con tale account. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® è un marchio registrato di Tripwire Interactive negli USA e in altri paesi. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Tutti i diritti riservati. Unreal® è un marchio o un marchio registrato di Epic Games, Inc. negli Stati Uniti d'America e altrove. Tutti gli altri marchi, loghi e copyright sono proprietà dei rispettivi proprietari. Tutti i diritti riservati."
 
 StoreItemLegalText="Per usare questo oggetto è richiesta la versione completa di Killing Floor 2. L'uso di questo elemento è soggetto allo stesso contratto di licenza con l'utente finale del gioco originale."
+
+[Regions]
+USCentral="USA Centrali"
+USEast="USA Orientali"
+USWest="USA Occidentali"
+EU="Europa"
+Asia="Asia"
+Brazil="America del Sud"
+Australia="Australia"

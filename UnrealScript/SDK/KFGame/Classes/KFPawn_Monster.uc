@@ -244,6 +244,9 @@ var protected const float MinBlockFOV;
 /** Whether this zed is blocking attacks */
 var transient bool bIsBlocking;
 
+/** Multiplier applied to sprint speed when blocking */
+var protected const float BlockSprintSpeedModifier;
+
 /** The last time a successful block ended */
 var transient float LastBlockTime;
 
@@ -340,9 +343,9 @@ var class<KFDamageType> BumpDamageType;
 var class<KFDamageType> JumpBumpDamageType;
 
 /** Footstep shakes activated in footstep sound animnotify */
-var protected const float FootstepCameraShakeInnerRadius;
-var protected const float FootstepCameraShakeOuterRadius;
-var CameraShake	FootstepCameraShake;
+var protected float FootstepCameraShakeInnerRadius;
+var protected float FootstepCameraShakeOuterRadius;
+var CameraShake FootstepCameraShake;
 
 /** A ground speed this pawn has been set to blend to */
 var float DesiredAdjustedGroundSpeed;
@@ -376,9 +379,6 @@ var transient array<Name> BrokenHeadBones;
 
 /** How often to check for napalm infections */
 //var protected const float NapalmCheckInterval;
-
-/** Multiplier on CylinderComponent.CollisionRadius to check for infecting other zeds */
-var protected const float NapalmCheckCollisionScale;
 
 /** We got burned by another Zed, we shouldn't spread it further */
 var bool bNapalmInfected;
@@ -717,6 +717,24 @@ function ApplySpecialZoneHealthMod(float HealthMod)
 	HitZones[HZI_HEAD].GoreHealth = default.HitZones[HZI_HEAD].GoreHealth * HealthMod;
 }
 
+/** Used by the Versus takeover code to determine if this zed can be taken over */
+function bool CanTakeOver()
+{
+	local KFVersusNoTakeoverVolume KFNTV;
+
+	if( bVersusZed || IsDoingSpecialMove() || IsHeadless() || !IsAliveAndWell() )
+	{
+		return false;
+	}
+
+	foreach TouchingActors( class'KFVersusNoTakeoverVolume', KFNTV )
+	{
+		return false;
+	}
+
+	return true;
+}
+
 /*********************************************************************************************
  * @name	Character Info Methods
 ********************************************************************************************* */
@@ -733,11 +751,24 @@ simulated event bool UsePlayerControlledZedSkin()
  * @name	Movement Methods
 ********************************************************************************************* */
 
+function float GetBlockingSprintSpeedModifier()
+{
+	return BlockSprintSpeedModifier;
+}
+
 /** Set a desired movement speed adjustment that will blend in over time */
-function AdjustMovementSpeed(float SpeedAdjust)
+function AdjustMovementSpeed( float SpeedAdjust )
 {
     DesiredAdjustedGroundSpeed = default.GroundSpeed * SpeedAdjust * InitialGroundSpeedModifier;
-    DesiredAdjustedSprintSpeed = default.SprintSpeed * SpeedAdjust * InitialGroundSpeedModifier;
+
+    if( IsDoingSpecialMove() )
+    {
+	    DesiredAdjustedSprintSpeed = fMax( default.SprintSpeed * SpeedAdjust * InitialGroundSpeedModifier * SpecialMoves[SpecialMove].GetSprintSpeedModifier(), DesiredAdjustedGroundSpeed );
+	}
+	else
+	{
+	    DesiredAdjustedSprintSpeed = fMax( default.SprintSpeed * SpeedAdjust * InitialGroundSpeedModifier, DesiredAdjustedGroundSpeed );   		
+	}
 
     NormalGroundSpeed = DesiredAdjustedGroundSpeed;
 	NormalSprintSpeed = DesiredAdjustedSprintSpeed;
@@ -746,11 +777,20 @@ function AdjustMovementSpeed(float SpeedAdjust)
 /** Overridden to cause slight camera shakes when walking. */
 simulated event PlayFootStepSound(int FootDown)
 {
+	if( WorldInfo.NetMode == NM_DedicatedServer )
+	{
+		return;
+	}
+
 	Super.PlayFootStepSound(FootDown);
 
-	/** The Zed has footstep notifies in one or more of his Idle anim sequences, where it kind of shuffles his foot as he shifts his weight.
-		The IsDoingLatentMove() check below makes the only happening while the FP is actively moving (latent) to avoid the shake while idle for now. */
-	if( MyKFAIC != none && FootstepCameraShake != none && MyKFAIC.IsDoingLatentMove() )
+	// The Zed has footstep notifies in one or more of his Idle anim sequences, where it kind of shuffles his foot as he shifts his weight.
+	// Changed the IsDoingLatentMoveCheck() to a velocity check, so player-controlled zeds trigger camera shake as well.
+	if( Physics == PHYS_Walking
+		&& Base != none
+		&& Mesh.RootMotionMode == RMM_Ignore
+		&& FootstepCameraShake != none
+		&& VSizeSQ(Velocity) >= 10000.f )
 	{
 		class'Camera'.static.PlayWorldCameraShake(FootstepCameraShake, self, Location, FootstepCameraShakeInnerRadius, FootstepCameraShakeOuterRadius, 1.3f, true);
 	}
@@ -828,7 +868,7 @@ function SetSprinting( bool bNewSprintStatus )
 	}
 
 	// Disallow sprinting if blocking
-	if( bIsBlocking )
+	if( bIsBlocking && IsHumanControlled() )
 	{
 		if( bIsSprinting )
 		{
@@ -1410,6 +1450,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 		}
 	}
 
+	if( Damage > 0 && InstigatorPerk != none && KFDT != none )
+	{
+		bCouldTurnIntoShrapnel = InstigatorPerk.CouldBeZedShrapnel( KFDT );
+	}
+	
 	super.TakeDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser );
 
 	if( InstigatedBy != none && InstigatedBy.Pawn != none )
@@ -1423,17 +1468,12 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
 	if( Damage > 0 )
 	{
-		if( InstigatorPerk != none && KFDT != none )
-		{
-			bCouldTurnIntoShrapnel = InstigatorPerk.CouldBeZedShrapnel( KFDT );
-		}
-
 		if( !bNapalmInfected && InstigatedBy != none && DamageCauser != none && DamageOverTimeArray.Length > 0 )
 		{
 			DoTIndex = DamageOverTimeArray.Find( 'DoT_Type', class'KFDT_Fire'.default.DoT_Type );
 			if( DotIndex != INDEX_NONE )
 			{
-				if( ClassIsChildOf(KFDT, class'KFDT_Fire') )
+				if( class'KFPerk'.static.IsDamageTypeOnThisPerk(KFDT, class'KFPerk_Firebug') )
 				{
 					// Start a timer to check for infections around us
 					//if( !IsTimerActive( nameOf(Timer_CheckForNapalmInfect)) )
@@ -1441,7 +1481,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 					//	SetTimer( (NapalmCheckInterval-0.1f) + (fRand() * 0.2f), true, nameOf(Timer_CheckForNapalmInfect) );
 					//}
 
-					NapalmCheckDist = Square( CylinderComponent.CollisionRadius * NapalmCheckCollisionScale );
+					NapalmCheckDist = Square( CylinderComponent.CollisionRadius * class'KFPerk_Firebug'.static.GetNapalmCheckCollisionScale() );
 					foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM, Location )
 					{
 						if( KFPM != self && KFPM.IsAliveAndWell() )
@@ -1563,6 +1603,12 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	if ( HitZoneIdx == HZI_HEAD && bIsHeadless )
 	{
 		InDamage = 1;
+	}
+
+	// Never allow damage to reach zero if coming from opposing team
+	if( InstigatedBy == none || InstigatedBy.GetTeamNum() != GetTeamNum() )
+	{
+		InDamage = Max( InDamage, 1 );
 	}
 
 	`log(self@"Adjusted Monster Damage="$InDamage, bLogTakeDamage);
@@ -3804,7 +3850,7 @@ DefaultProperties
 
 	Begin Object Name=KFPawnSkeletalMeshComponent
 		WireframeColor=(R=255,G=255,B=0,A=255)
-		bUseAsOccluder=False
+		bUseAsOccluder=TRUE
 	End Object
 
 	// ---------------------------------------------
@@ -3840,7 +3886,7 @@ DefaultProperties
 	BumpDamageType=class'KFDT_NPCBump'
 	BumpFrequency=0.5f
 	bLimitFallAccel=TRUE
-	SpeedAdjustTransitionRate=100.f
+	SpeedAdjustTransitionRate=200.f
 	InitialGroundSpeedModifier=1.0
 
 	// ---------------------------------------------
@@ -3868,12 +3914,11 @@ DefaultProperties
 	DifficultyDamageMod=1.0
 	GameResistancePct=1.f
 
-	// Napalm
-	NapalmCheckCollisionScale=6.0f
 	//NapalmCheckInterval=0.5f
 
 	// Blocking
 	MinBlockFOV=0.1f
+	BlockSprintSpeedModifier=0.75f
 
 	bIsStalkerClass=false
 	bIsCrawlerClass=false

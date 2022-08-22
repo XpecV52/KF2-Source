@@ -284,7 +284,6 @@ var bool			LastPathFailTime;
 struct native sBlockedPathInfo
 {
 	var	ReachSpec		BlockedReachSpec;
-	var NavigationPoint	BlockedNav;
 	var int				BlockedCost;	// 0 = Completely blocked
 	var float			BlockedTime;
 };
@@ -373,6 +372,9 @@ var                     float       NavigationBumpTeamCollisionThreshholdSquared
 
 /** How long we've been falling with no z velocity */
 var                     float       FallingStuckNoZVelocityTime;
+/** Number of times a walk move has failed to apply velocity while Pawn->Acceleration is nonzero */
+var 					int 		NumFailedLatentWalkMoves;
+
 
 /*********************************************************************************************
 * StepAside
@@ -741,7 +743,8 @@ cpptext
 	virtual UBOOL	ShouldIgnoreNavigationBlockingFor( const AActor* Other );
 	virtual FRotator SetRotationRate( FLOAT deltaTime );
 	virtual INT		ControllerModifyCostForReachSpec( UReachSpec* Spec, INT Cost );
-
+	virtual void 	PostPhysWalking(FLOAT DeltaTime);
+	virtual void 	MoveToward(AActor* goal, AActor* viewfocus, FLOAT DesiredOffset, UBOOL bStrafe, UBOOL bShouldWalk);
 
 	// Debugging
 #if __TW_AIDEBUGGING_
@@ -774,7 +777,7 @@ native function bool IgnoreNotifies() const;
 /** Returns true if CheckPawn is currently moving away from my pawn, optionally at MinSpeed */
 native function bool IsPawnMovingAwayFromMe( Pawn CheckPawn, optional float MinSpeed );
 /** Returns a KFPawn if there is one blocking the path to EnemyPawn */
-native function Pawn GetPawnBlockingPathTo( Pawn EnemyPawn, optional bool bTestTeam );
+native function Pawn GetPawnBlockingPathTo( Pawn EnemyPawn, optional bool bTestTeam, optional bool bCheckVisible );
 /** Lock the AI pawn rotation to a specific rotation, to unlock the pawn pass in zero */
 native function LockPawnRotationTo( Rotator NewRotation );
 /** Unlock the AI pawn's rotation */
@@ -962,24 +965,25 @@ function UpdateStrikeRange()
  * it's not globally blocked for all NPCs. */
 event bool CreateTemporaryBlockedPath( NavigationPoint Nav )
 {
-	local int i, x;
+	local int i, x, PointIdx;
 
 	`AILog( GetFuncName()$"() for "$Nav, 'PathWarning' );
 
-	for( i = 0; i < RouteCache.Length; i++ )
+	for( i = 0; i < RouteCache.Length; ++i )
 	{
 		if( RouteCache[i] == Nav )
 		{
-			for( x = 0; x < Nav.PathList.Length; x++ )
+			for( x = 0; x < Nav.PathList.Length; ++x )
 			{
 				//`AILog( GetFuncName()$" Nav to block: "$Nav$", Anchor: "$Pawn.Anchor$"... checking current end actor "$Nav.PathList[x].End.Actor, 'PathWarning' );
 				DebugLogRoute();
-				if( RouteCache.Length > (i+1) && Nav.PathList[x].End.Actor == RouteCache[i+1] )
+				PointIdx = i + 1;
+				if( RouteCache.Length > PointIdx && Nav.PathList[x].End.Actor == RouteCache[PointIdx] )
 				{
-					`AILog( GetFuncName()$"() Found a match, calling AddBlockedReachSpec for spec "$Nav.PathList[x]$" on nav point "$RouteCache[i+1]  );
+					`AILog( GetFuncName()$"() Found a match, calling AddBlockedReachSpec for spec "$Nav.PathList[x]$" on nav point "$RouteCache[PointIdx]  );
 					//`Log( GetFuncName()$"() Found a match, calling AddBlockedReachSpec for spec "$Nav.PathList[x]$" on nav point "$RouteCache[i+1] );
-					`RecordAIBlockedPath( self, Nav, NavigationPoint(Nav.PathList[x].End.Actor), "TestBlockedPath from "$Nav$" to "$Nav.PathList[x].End.Actor );
-					`RecordAIRedirectedPath( self, IntermediateMoveGoal, "[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[1] );
+					`RecordAIBlockedPath( self, Nav, RouteCache[PointIdx], "TestBlockedPath from "$Nav$" to "$RouteCache[PointIdx] );
+					`RecordAIRedirectedPath( self, IntermediateMoveGoal, "[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[PointIdx] );
 					AddBlockedReachSpec( Nav.PathList[x], 10000000 );
 					return true;
 				}
@@ -3255,7 +3259,20 @@ function bool IsFrustrated()
 /** Notification from AICommand::Popped that it has completed */
 function NotifyCommandFinished( AICommand FinishedCommand );
 
+/** Notification from the flee command that the flee completed successfully (was not interrupted) */
 function NotifyFleeFinished( optional bool bAcquireNewEnemy=true );
+
+/** Notification from the move command that we've arrived at an intermediate destination */
+function NotifyReachedLatentMoveGoal();
+
+event NotifyLatentPostPhysWalking()
+{
+	if( CachedAICommandList != none )
+	{
+		/** Let the current AICommand, if any, handle this. */
+		CachedAICommandList.NotifyLatentPostPhysWalking();
+	}
+}
 
 `if(`__TW_PATHFINDING_)
 event NotifyFailMove( string Reason )
@@ -6262,6 +6279,11 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
 
 	super.NotifyTakeHit( InstigatedBy, HitLocation, Damage, damageType, Momentum );
 
+	if( MyKFPawn == none )
+	{
+		return;
+	}
+
 	// See if we should trigger our block
 	if( !MyKFPawn.bIsBlocking )
 	{
@@ -7592,7 +7614,7 @@ DefaultProperties
 	//  Movement/Path Paramaters
 	//============================================
 	bAlwaysAcceptPartialPaths=true
-	bShouldUsePathLanes=false
+	bShouldUsePathLanes=true
 	bShouldOffsetCorners=false
 	//bDebugDisableSprinting=false
 	DistanceToCheckForClearPathOnNavMeshLocWhenOffNavMesh=512

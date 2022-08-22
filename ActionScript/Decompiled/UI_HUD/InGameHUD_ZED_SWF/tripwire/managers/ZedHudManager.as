@@ -9,6 +9,7 @@ package tripwire.managers
     import flash.events.KeyboardEvent;
     import flash.filters.*;
     import flash.geom.*;
+    import scaleform.clik.constants.LayoutMode;
     import scaleform.clik.layout.LayoutData;
     import tripwire.Tools.TripLayout;
     import tripwire.containers.MoveContainer;
@@ -162,6 +163,7 @@ package tripwire.managers
         
         public function test(param1:KeyboardEvent) : void
         {
+            NonCriticalMessageWidget.message = "!!!!!!!!!!!!!!!!! SNAKE !!!!!!!!!!!!!!!";
             var _loc2_:String = "TW_TURNWAYS KILLED TW_ZANE";
             var _loc3_:Object = {"text":_loc2_};
             newBark = _loc3_;
@@ -192,10 +194,10 @@ package tripwire.managers
             ChatBoxWidget.layoutData.offsetH = 24;
             ChatBoxWidget.layoutData.offsetV = -216;
             KickVoteWidget.layoutData = new LayoutData();
-            KickVoteWidget.layoutData.alignV = "bottom";
-            KickVoteWidget.layoutData.alignH = "right";
+            KickVoteWidget.layoutData.alignV = LayoutMode.ALIGN_CENTER;
+            KickVoteWidget.layoutData.alignH = LayoutMode.ALIGN_RIGHT;
             KickVoteWidget.layoutData.offsetH = -20;
-            KickVoteWidget.layoutData.offsetV = -256;
+            KickVoteWidget.layoutData.offsetV = 0;
             this.moveListContainer.layoutData = new LayoutData();
             this.moveListContainer.layoutData.alignV = "bottom";
             this.moveListContainer.layoutData.alignH = "right";
@@ -225,10 +227,12 @@ package tripwire.managers
                 this.teamRoster.layoutData.offsetV = 32;
             }
             NonCriticalMessageWidget.layoutData = new LayoutData();
-            NonCriticalMessageWidget.layoutData.alignV = "top";
+            NonCriticalMessageWidget.layoutData.alignV = "bottom";
             NonCriticalMessageWidget.layoutData.alignH = "center";
             NonCriticalMessageWidget.layoutData.offsetH = 0;
-            NonCriticalMessageWidget.layoutData.offsetV = 144;
+            NonCriticalMessageWidget.layoutData.offsetV = !!this.teamRoster ? 8 : 224;
+            NonCriticalMessageWidget.layoutData.relativeToV = !!this.teamRoster ? this.teamRoster.name : "";
+            NonCriticalMessageWidget.layoutData.layoutIndex = 1;
             interactionMsgWidget.layoutData = new LayoutData();
             interactionMsgWidget.layoutData.alignV = "bottom";
             interactionMsgWidget.layoutData.alignH = "center";

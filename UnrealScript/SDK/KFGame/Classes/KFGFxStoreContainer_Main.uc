@@ -140,7 +140,7 @@ function GFxObject CreateStoreItem(ItemProperties StoreItem)
 				
 	DataObject.SetString("label", StoreItem.Name);
 	DataObject.SetString("description", StoreItem.Description);
-	DataObject.SetString("price", StoreItem.Price);
+	DataObject.SetString("price", class'WorldInfo'.static.IsConsoleBuild() ? "" : StoreItem.Price);
 	DataObject.SetString("imageURL", "img://"$StoreItem.IconURL);
 	DataObject.SetString("imageURLLarge", "img://"$StoreItem.IconURLLarge);
 	DataObject.SetInt("SKU", StoreItem.Definition);

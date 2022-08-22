@@ -7,6 +7,8 @@ package tripwire.menus
     import flash.events.KeyboardEvent;
     import flash.external.ExternalInterface;
     import flash.ui.Keyboard;
+    import scaleform.clik.constants.InputValue;
+    import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.controls.Button;
     import scaleform.clik.controls.ButtonBar;
     import scaleform.clik.data.DataProvider;
@@ -145,28 +147,41 @@ package tripwire.menus
         {
             this.tabButtonBar.addEventListener(ButtonEvent.CLICK,this.onButtonSelected,false,0,true);
             this.tabButtonBar.addEventListener(IndexEvent.INDEX_CHANGE,this.onListSelected,false,0,true);
+            this.tabButtonBar.addEventListener(InputEvent.INPUT,this.handleButtonBarInput,false,0,true);
             this.tabButtonBar.tabEnabled = true;
             this.tabButtonBar.tabChildren = true;
+        }
+        
+        public function handleButtonBarInput(param1:InputEvent) : void
+        {
+            if(param1.handled)
+            {
+                return;
+            }
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN)
+            {
+                switch(_loc2_.navEquivalent)
+                {
+                    case NavigationCode.GAMEPAD_A:
+                        this.onButtonSelected(null);
+                }
+            }
         }
         
         override public function focusGroupOut() : void
         {
             super.focusGroupOut();
-            this.menuState = MENU_STATE_LIST;
         }
         
         override public function focusGroupIn() : void
         {
             super.focusGroupIn();
-            this.menuState = MENU_STATE_TAB;
+            this.menuState = this.menuState;
         }
         
         public function set menuState(param1:int) : void
         {
-            if(this._menuState == param1)
-            {
-                return;
-            }
             this._previousMenuState = this._menuState;
             this._menuState = param1;
             switch(this._menuState)

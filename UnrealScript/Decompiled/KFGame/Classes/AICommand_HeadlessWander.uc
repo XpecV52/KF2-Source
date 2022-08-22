@@ -92,7 +92,10 @@ function Vector CalcTurnDirection(Rotator Direction, float Spread)
 
 function bool NotifyHearNoise(float Loudness, Actor NoiseMaker, optional name NoiseType)
 {
-    Outer.AILog_Internal((((("HearNoise: " $ string(Loudness)) $ " NoiseMaker: ") $ string(NoiseMaker)) $ " Type: ") $ string(NoiseType), 'HeadlessWander');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((((("HearNoise: " $ string(Loudness)) $ " NoiseMaker: ") $ string(NoiseMaker)) $ " Type: ") $ string(NoiseType), 'HeadlessWander');
+    }
     return false;
 }
 

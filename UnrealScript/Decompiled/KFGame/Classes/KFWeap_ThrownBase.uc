@@ -146,6 +146,15 @@ static simulated function float CalculateTraderWeaponStatDamage()
 
 simulated state Active
 {
+    simulated event BeginState(name PreviousStateName)
+    {
+        super.BeginState(PreviousStateName);
+        if(((PreviousStateName == 'WeaponSprinting') && !HasAmmo(0)) && HasSpareAmmo())
+        {
+            PerformArtificialReload();
+        }
+    }
+
     simulated function PlayIdleAnim()
     {
         local int IdleIndex;

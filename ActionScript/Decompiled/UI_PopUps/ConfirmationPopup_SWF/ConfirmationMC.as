@@ -24,6 +24,7 @@ package
             catch(e:Error)
             {
             }
+            promptsContainer.bCenterAligned = true;
             promptsContainer.bUseWidthForBoundry = true;
             promptsContainer.enabled = true;
             promptsContainer.enableInitCallback = false;
@@ -52,7 +53,7 @@ package
             middleButton.data = "";
             middleButton.enabled = true;
             middleButton.enableInitCallback = false;
-            middleButton.focusable = false;
+            middleButton.focusable = true;
             middleButton.label = "Middle Text";
             middleButton.selected = false;
             middleButton.toggle = false;
@@ -80,7 +81,7 @@ package
             leftButton.data = "";
             leftButton.enabled = true;
             leftButton.enableInitCallback = false;
-            leftButton.focusable = false;
+            leftButton.focusable = true;
             leftButton.label = "LeftText";
             leftButton.selected = false;
             leftButton.toggle = false;
@@ -108,7 +109,7 @@ package
             rightButton.data = "";
             rightButton.enabled = true;
             rightButton.enableInitCallback = false;
-            rightButton.focusable = false;
+            rightButton.focusable = true;
             rightButton.label = "Right Text";
             rightButton.selected = false;
             rightButton.toggle = false;

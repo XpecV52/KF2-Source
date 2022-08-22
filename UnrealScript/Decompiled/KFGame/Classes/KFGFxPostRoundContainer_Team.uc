@@ -36,7 +36,7 @@ function CreateResultsForTeam()
     if(TeamScoreDataPacket.WaveBonus != -1)
     {
         DataObject.SetInt("waveNum", TeamScoreDataPacket.WaveBonus);
-        DataObject.SetInt("bossDeadNum", ((KFGRI.bMatchVictory) ? Class'KFGameInfo'.static.GetBossKillScore() : 0));
+        DataObject.SetInt("bossDeadNum", ((TeamScoreDataPacket.BossDamageDone == Class'KFGameInfo'.static.GetBossKillScore()) ? Class'KFGameInfo'.static.GetBossKillScore() : 0));
         DataObject.SetInt("deathNum", TeamScoreDataPacket.Deaths * Class'KFGameInfo'.default.POINTS_PENALTY_FOR_DEATH);
         DataObject.SetInt("damagNum", ((KFGRI.bMatchVictory) ? TeamScoreDataPacket.BossDamageTaken : 0));
         DataObject.SetInt("totalNum", TeamScoreDataPacket.RoundScore);

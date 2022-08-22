@@ -3,6 +3,7 @@ package tripwire.controls.trader
     import flash.display.MovieClip;
     import flash.text.TextField;
     import scaleform.gfx.Extensions;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.controls.TripButton;
     
     public class TraderAutofillButton extends TripButton
@@ -26,6 +27,7 @@ package tripwire.controls.trader
             super();
             clickSoundEffect = "TRADER_MAGFILL_BUTTON_CLICK";
             overSoundEffect = "TRADER_MAGFILL_BUTTON_ROLLOVER";
+            TextFieldEx.setTextAutoSize(textField,"shrink");
         }
         
         public function get buttonValue() : String
@@ -47,6 +49,7 @@ package tripwire.controls.trader
         override protected function updateText() : void
         {
             super.updateText();
+            TextFieldEx.setTextAutoSize(textField,"shrink");
             if(this.valueTextField != null && this.buttonValue != null)
             {
                 this.valueTextField.text = this.buttonValue;

@@ -20,7 +20,7 @@ defaultproperties
     GroundFireExplosionTemplate=ExploTemplate1
     begin object name=ExploTemplate0 class=KFGameExplosion
         Damage=23
-        DamageRadius=450
+        DamageRadius=650
         ExplosionEmitterScale=2
         ExploLight=PointLightComponent'Default__KFProj_Husk_Fireball_Versus.ExplosionPointLight'
     object end

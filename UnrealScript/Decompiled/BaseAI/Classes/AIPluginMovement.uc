@@ -157,7 +157,10 @@ function bool MoveUnreachable(Vector AttemptedDest, Actor AttemptedTarget)
 {
     if(AttemptedTarget != none)
     {
-        Outer.AILog_Internal((string(GetFuncName()) $ " AttemptedTarget: ") $ string(AttemptedTarget), 'PathWarning');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ " AttemptedTarget: ") $ string(AttemptedTarget), 'PathWarning');
+        }
     }
     return false;
 }
@@ -165,33 +168,45 @@ function bool MoveUnreachable(Vector AttemptedDest, Actor AttemptedTarget)
 state Succeeding extends DebugState
 {Begin:
 
-    Outer.AILog_Internal("Moving - END:" @ string(GetStateName()), 'Move');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Moving - END:" @ string(GetStateName()), 'Move');
+    }
     Success();
-    stop;                    
+    stop;            
 }
 
 state Failing extends DebugState
 {Begin:
 
-    Outer.AILog_Internal("Moving - END:" @ string(GetStateName()), 'Move');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Moving - END:" @ string(GetStateName()), 'Move');
+    }
     Failure();
-    stop;                    
+    stop;            
 }
 
 state Aborting extends DebugState
 {Begin:
 
-    Outer.AILog_Internal("Moving - Aborted", 'Move');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Moving - Aborted", 'Move');
+    }
     StopMovement();
-    stop;                    
+    stop;            
 }
 
 state Idling extends DebugState
 {Begin:
 
-    Outer.AILog_Internal("Idling", 'Move');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Idling", 'Move');
+    }
     StopMovement();
-    stop;            
+    stop;                    
 }
 
 defaultproperties

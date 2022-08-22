@@ -225,11 +225,23 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
         if((FlashLight == none) && FlashLightTemplate != none)
         {
             FlashLight = new (self) Class'KFFlashlightAttachment' (FlashLightTemplate);
+            FlashLight.AttachFlashlight(Mesh);            
         }
-        if(FlashLight != none)
+        else
         {
-            FlashLight.AttachFlashlight(Mesh);
+            if(FlashLight != none)
+            {
+                FlashLight.Reattach();
+            }
         }
+    }
+}
+
+simulated function OnCharacterMeshChanged()
+{
+    if(FlashLight != none)
+    {
+        FlashLight.Reattach();
     }
 }
 
@@ -1244,9 +1256,15 @@ simulated function DrawHUD(HUD H)
 {
     local Canvas Canvas;
     local KFGameReplicationInfo KFGRI;
+    local KFPlayerController KFPC;
 
     super(Pawn).DrawHUD(H);
+    KFPC = KFPlayerController(Controller);
     if(!H.bShowHUD)
+    {
+        return;
+    }
+    if((KFPC != none) && KFPC.IsBossCameraMode())
     {
         return;
     }

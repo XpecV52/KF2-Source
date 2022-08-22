@@ -113,6 +113,10 @@ var ParticleSystem BattleDamageFX_Smoke_HighDmg;
 /** Interval between dialog play attempts */
 var float TickDialogInterval;
 
+/** Footstep camera shake */
+var protected const float FootstepCameraShakePitchAmplitude;
+var protected const float FootstepCameraShakeRollAmplitude;
+
 /*********************************************************************************************
 * General Gameplay
 **********************************************************************************************/
@@ -324,8 +328,6 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
     // Set our secondary material, attach our healing syringes
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant( 1 );
-
 		// Attach healing syringes
 		for( i = 0; i < 3; ++i )
 		{
@@ -667,10 +669,26 @@ function bool CanDoMortarBarrage()
 	return BattlePhases[CurrentBattlePhase-1].bCanDoMortarBarrage;
 }
 
-/** Only allow blocking when uncloaked */
+/** Only allow blocking when uncloaked/not fleeing */
 function bool CanBlock()
 {
-	return !bIsCloaking && super.CanBlock();
+	local KFAIController_ZedPatriarch MyPatController;
+
+	if( bIsCloaking || bInFleeAndHealMode || !super.CanBlock() )
+	{
+		return false;
+	}
+
+	if( !IsHumanControlled() )
+	{
+		MyPatController = KFAIController_ZedPatriarch( Controller );
+		if( MyPatController.bFleeing || MyPatController.bWantsToFlee )
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
 
 /** Only allow movement with the minigun if any conditions are met */
@@ -1218,7 +1236,7 @@ simulated function ClientCloakingStateUpdated()
 /** Interrupt cloaking when bEmpDisrupted is set */
 function OnStackingAfflictionChanged(byte Id)
 {
-	local KFAIController_ZedPatriarch KFAICZP;
+	local KFAIController_ZedPatriarch MyPatController;
 
 	Super.OnStackingAfflictionChanged(Id);
 
@@ -1226,15 +1244,18 @@ function OnStackingAfflictionChanged(byte Id)
 	{
 		if ( Id == AF_EMP )
 		{
-			if( !IsHumanControlled() )
+			if( !bInFleeAndHealMode && !IsHumanControlled() )
 			{
 				// Interrupt charge and set it on full cooldown
-				KFAICZP = KFAIController_ZedPatriarch( Controller );
-				KFAICZP.bWantsToCharge = false;
-				KFAICZP.bSprintUntilAttack = false;
-				KFAICZP.LastChargeAttackTime = WorldInfo.TimeSeconds;
-				KFAICZP.CachedChargeTarget = none;
-				KFAICZP.LastSprintTime = WorldInfo.TimeSeconds;
+				MyPatController = KFAIController_ZedPatriarch( Controller );
+				if( !MyPatController.bWantsToFlee && !MyPatController.bFleeing )
+				{
+					MyPatController.bSprintUntilAttack = false;
+					MyPatController.LastSprintTime = WorldInfo.TimeSeconds;
+				}
+				MyPatController.CachedChargeTarget = none;
+				MyPatController.bWantsToCharge = false;
+				MyPatController.LastChargeAttackTime = WorldInfo.TimeSeconds;
 			}
 
 			// Decloak if we're cloaking
@@ -1244,6 +1265,29 @@ function OnStackingAfflictionChanged(byte Id)
 			}
 		}
 	}
+}
+
+/** Called on server when pawn should do EMP Wandering */
+function CausePanicWander()
+{
+	local KFAIController_ZedPatriarch MyPatController;
+
+	if( bInFleeAndHealMode )
+	{
+		return;
+	}
+
+	// Don't allow panic wander when attempting to flee
+	if( !IsHumanControlled() )
+	{
+		MyPatController = KFAIController_ZedPatriarch( Controller );
+		if( MyPatController.bWantsToFlee || MyPatController.bFleeing )
+		{
+			return;
+		}
+	}
+
+	super.CausePanicWander();
 }
 
 /**
@@ -1620,7 +1664,7 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects( int HitZoneIdx )
 {
 	if( bIsCloaking )
 	{
-		return CharacterArch.ImpactSkins[5]; // 5 = Patriarch_Cloaked
+		return CharacterArch.ImpactSkins[4]; // 4 = Patriarch_Cloaked
 	}
 
 	return super.GetHitZoneSkinTypeEffects( HitZoneIdx );
@@ -1734,6 +1778,33 @@ function CauseHeadTrauma( float BleedOutTime=5.f )
 /*********************************************************************************************
 * Audio
 **********************************************************************************************/
+
+/** Overridden to cause slight camera shakes when walking. */
+simulated event PlayFootStepSound(int FootDown)
+{
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( IsHumanControlled() && IsLocallyControlled() )
+		{
+			FootstepCameraShake.RotOscillation.Pitch.Amplitude = 0;
+			FootstepCameraShake.RotOscillation.Roll.Amplitude = 0;
+		}
+		else
+		{
+			FootstepCameraShake.RotOscillation.Pitch.Amplitude = FootstepCameraShakePitchAmplitude;
+			FootstepCameraShake.RotOscillation.Roll.Amplitude = FootstepCameraShakeRollAmplitude;
+			FootstepCameraShakeInnerRadius = default.FootstepCameraShakeInnerRadius;
+			FootstepCameraShakeOuterRadius = default.FootstepCameraShakeOuterRadius;
+			if( !bIsSprinting || VSizeSQ(Velocity) < 10000.f )
+			{
+				FootstepCameraShake.RotOscillation.Pitch.Amplitude *= 0.75f;
+				FootstepCameraShake.RotOscillation.Roll.Amplitude *= 0.75f;
+			}			
+		}
+	}
+
+	super.PlayFootStepSound( FootDown );
+}
 
 /** Overloaded to take care of victory state */
 simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEvent FirstPersonAmbientSound)
@@ -1926,6 +1997,8 @@ defaultproperties
    BattleDamageFX_Tentacle_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_HighD_01'
    BattleDamageFX_Smoke_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Pat_smoke_HighD_01'
    TickDialogInterval=0.500000
+   FootstepCameraShakePitchAmplitude=120.000000
+   FootstepCameraShakeRollAmplitude=60.000000
    LastFXBattlePhase=1
    BattlePhases(0)=(bAllowedToSprint=True,SprintCooldownTime=3.000000,bCanUseMissiles=True,MissileAttackCooldownTime=10.000000,bCanChargeAttack=True,ChargeAttackCooldownTime=14.000000,MinigunAttackCooldownTime=2.250000,bCanSummonMinions=True,bCanMoveWhenMinigunning=(False,False,False,False),HealAmounts=(0.750000,0.850000,0.950000,0.990000))
    BattlePhases(1)=(bAllowedToSprint=True,SprintCooldownTime=2.500000,bCanTentacleGrab=True,TentacleGrabCooldownTime=10.000000,bCanUseMissiles=True,MissileAttackCooldownTime=8.000000,bCanUseMortar=True,MortarAttackCooldownTime=10.000000,bCanChargeAttack=True,ChargeAttackCooldownTime=10.000000,MaxRageAttacks=4,TentacleDamage=10,MinigunAttackCooldownTime=2.000000,bCanSummonMinions=True,bCanMoveWhenMinigunning=(False,False,False,True),HealAmounts=(0.650000,0.750000,0.850000,0.950000))
@@ -1991,10 +2064,11 @@ defaultproperties
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Patriarch'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    FootstepCameraShakeInnerRadius=200.000000
-   FootstepCameraShakeOuterRadius=900.000000
+   FootstepCameraShakeOuterRadius=1000.000000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedPatriarch:FootstepCameraShake0'
    OnDeathAchievementID=130
    PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
+   LocalizationKey="KFPawn_ZedPatriarch"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_MonsterBoss:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -2007,25 +2081,27 @@ defaultproperties
    HitZones(0)=(GoreHealth=2147483647,DmgScale=1.000000)
    HitZones(1)=(ZoneName="Jaw",BoneName="Jaw",GoreHealth=2147483647,DmgScale=0.100000,SkinID=1)
    HitZones(2)=(BoneName="Spine1",DmgScale=0.800000,SkinID=1)
-   HitZones(3)=(BoneName="FrontTentacle7",GoreHealth=2147483647,DmgScale=1.500000,SkinID=1)
-   HitZones(4)=(DmgScale=0.100000,SkinID=3)
-   HitZones(5)=(GoreHealth=20,DmgScale=0.100000,SkinID=3)
+   HitZones(3)=(ZoneName="stomach",BoneName="Spine",GoreHealth=2147483647,DmgScale=0.800000,Limb=BP_Torso,SkinID=1)
+   HitZones(4)=(DmgScale=0.100000,SkinID=2)
+   HitZones(5)=(GoreHealth=20,DmgScale=0.100000,SkinID=2)
    HitZones(6)=()
-   HitZones(7)=(DmgScale=1.300000,SkinID=4)
-   HitZones(8)=(GoreHealth=20,SkinID=4)
+   HitZones(7)=(DmgScale=1.300000,SkinID=3)
+   HitZones(8)=(GoreHealth=20,SkinID=3)
    HitZones(9)=(BoneName="RightHand",GoreHealth=10,DmgScale=0.500000,SkinID=1)
    HitZones(10)=(BoneName="Spine",GoreHealth=2147483647,DmgScale=0.800000,SkinID=1)
    HitZones(11)=()
-   HitZones(12)=(GoreHealth=100,DmgScale=0.100000,SkinID=3)
-   HitZones(13)=(GoreHealth=2147483647,DmgScale=0.100000,SkinID=3)
-   HitZones(14)=(BoneName="LeftFoot",GoreHealth=10,DmgScale=0.100000,SkinID=3)
+   HitZones(12)=(GoreHealth=100,DmgScale=0.100000,SkinID=2)
+   HitZones(13)=(GoreHealth=2147483647,DmgScale=0.100000,SkinID=2)
+   HitZones(14)=(BoneName="LeftFoot",GoreHealth=10,DmgScale=0.100000,SkinID=2)
    HitZones(15)=(DmgScale=0.800000,SkinID=1)
    HitZones(16)=(DmgScale=0.800000,SkinID=1)
    HitZones(17)=()
-   HitZones(18)=(ZoneName="tentacle",BoneName="FrontTentacle1",DmgScale=1.300000,SkinID=1)
-   HitZones(19)=(ZoneName="ltoeindex",BoneName="LeftFootIndex1",GoreHealth=2147483647,DmgScale=0.100000,Limb=BP_LeftLeg,SkinID=3)
-   HitZones(20)=(ZoneName="ltoemiddle",BoneName="LeftFootMiddle1",GoreHealth=2147483647,DmgScale=0.100000,Limb=BP_LeftLeg,SkinID=3)
-   HitZones(21)=(ZoneName="ltoering",BoneName="LeftFootRing1",GoreHealth=2147483647,DmgScale=0.100000,Limb=BP_LeftLeg,SkinID=3)
+   HitZones(18)=(ZoneName="heart",BoneName="FrontTentacle2",DmgScale=1.300000,Limb=BP_Special,SkinID=3)
+   HitZones(19)=(ZoneName="heart",BoneName="FrontTentacle3",DmgScale=1.300000,Limb=BP_Special,SkinID=3)
+   HitZones(20)=(ZoneName="heart",BoneName="FrontTentacle4",DmgScale=1.300000,Limb=BP_Special,SkinID=3)
+   HitZones(21)=(ZoneName="heart",BoneName="FrontTentacle5",DmgScale=1.300000,Limb=BP_Special,SkinID=3)
+   HitZones(22)=(ZoneName="heart",BoneName="FrontTentacle6",DmgScale=1.300000,Limb=BP_Special,SkinID=3)
+   HitZones(23)=(ZoneName="heart",BoneName="FrontTentacle7",DmgScale=1.500000,Limb=BP_Special,SkinID=3)
    PenetrationResistance=4.000000
    Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn_MonsterBoss:Afflictions_0'
       AfflictionClasses(0)=Class'KFGame.KFAffliction_EMPDisrupt'
@@ -2054,7 +2130,7 @@ defaultproperties
    IncapSettings(6)=(Vulnerability=(0.000000))
    IncapSettings(7)=(Duration=3.000000,Cooldown=10.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000,1.000000))
    IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
-   IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.950000))
+   IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.500000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=650.000000
@@ -2163,7 +2239,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

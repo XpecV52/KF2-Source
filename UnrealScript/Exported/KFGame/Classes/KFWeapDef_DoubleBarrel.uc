@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_Shotgun_DoubleBarrel"
    ImagePath="ui_weaponselect_tex.UI_WeaponSelect_DBShotgun"
    BuyPrice=650
-   AmmoPricePerMag=10
+   AmmoPricePerMag=11
    EffectiveRange=15
    Name="Default__KFWeapDef_DoubleBarrel"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

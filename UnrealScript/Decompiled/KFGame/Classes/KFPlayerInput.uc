@@ -39,7 +39,7 @@ var bool bVersusInput;
 var bool bUsingVersusGamepadScheme;
 var transient float PressedJumpTime;
 var config float GamepadButtonHoldTime;
-var const float SprintAnalogThreshold;
+var config float SprintAnalogThreshold;
 var transient float GamepadSprintAnalogStart;
 var int CurrentLayoutIndex;
 var transient float RawJoyMagnitude;
@@ -602,6 +602,10 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 {
     local KFWeapon KFW;
 
+    if(Outer.bCinematicMode)
+    {
+        return;
+    }
     if(bVersusInput && CustomStartFireVersus(5))
     {
         return;
@@ -752,6 +756,10 @@ exec function SwitchFire()
 
     if(Outer.Pawn != none)
     {
+        if(Outer.bCinematicMode)
+        {
+            return;
+        }
         if(bVersusInput && CustomStartFireVersus(1))
         {
             return;
@@ -916,6 +924,17 @@ exec function ReleaseGamepadWeaponSelect()
     }
 }
 
+function bool CheckForWeaponMenuTimerInterrupt()
+{
+    if(Outer.IsTimerActive('GamepadWeaponMenuTimer', self))
+    {
+        Outer.ClearTimer('GamepadWeaponMenuTimer', self);
+        GamepadWeaponMenuTimer();
+        return true;
+    }
+    return false;
+}
+
 function GamepadWeaponMenuTimer()
 {
     local KFWeapon KFW;
@@ -1023,7 +1042,7 @@ exec function GamepadDpadLeft()
     }
     else
     {
-        if(bGamePadWeaponSelectOpen)
+        if(bGamePadWeaponSelectOpen || CheckForWeaponMenuTimerInterrupt())
         {
             SwitchWeaponGroup(0);            
         }
@@ -1046,7 +1065,7 @@ exec function GamepadDpadDown()
     }
     else
     {
-        if(bGamePadWeaponSelectOpen)
+        if(bGamePadWeaponSelectOpen || CheckForWeaponMenuTimerInterrupt())
         {
             SwitchWeaponGroup(2);            
         }
@@ -1069,7 +1088,7 @@ exec function GamepadDpadRight()
     }
     else
     {
-        if(bGamePadWeaponSelectOpen)
+        if(bGamePadWeaponSelectOpen || CheckForWeaponMenuTimerInterrupt())
         {
             SwitchWeaponGroup(1);            
         }
@@ -1086,7 +1105,7 @@ exec function GamepadDpadRight()
 
 exec function GamepadDpadUp()
 {
-    if(bGamePadWeaponSelectOpen)
+    if(bGamePadWeaponSelectOpen || CheckForWeaponMenuTimerInterrupt())
     {
         SwitchWeaponGroup(3);        
     }
@@ -1257,6 +1276,7 @@ function PreProcessInput(float DeltaTime)
 function PreProcessGamepadInput(float DeltaTime)
 {
     local KFWeapon KFW;
+    local KFPawn KFP;
     local float FOVScale, ScaledJoyMagnitude;
 
     if(bExtendedSprinting)
@@ -1292,10 +1312,14 @@ function PreProcessGamepadInput(float DeltaTime)
     CurrLookUp *= FOVScale;
     CurrTurn *= GamepadSensitivityScale;
     CurrLookUp *= GamepadSensitivityScale;
-    if((KFPawn(Outer.Pawn) != none) && KFPawn(Outer.Pawn).bIsSprinting)
+    if(Outer.Pawn != none)
     {
-        CurrTurn *= SprintingSensitivityScale;
-        CurrLookUp *= SprintingSensitivityScale;
+        KFP = KFPawn(Outer.Pawn);
+        if((KFP != none) && KFP.bIsSprinting)
+        {
+            CurrTurn *= SprintingSensitivityScale;
+            CurrLookUp *= SprintingSensitivityScale;
+        }
     }
     if(bViewSmoothingEnabled)
     {
@@ -2150,11 +2174,12 @@ defaultproperties
     bViewSmoothingEnabled=true
     bViewAccelerationEnabled=true
     GamepadButtonHoldTime=0.25
+    SprintAnalogThreshold=0.6
     LookSensitivityScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0.5,LeaveTangent=0.5,InterpMode=EInterpCurveMode.CIM_CurveAuto)
     MoveSensitivityScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.3,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Constant)
     SprintingSensitivityScale=0.675
     ZoomedSensitivityScale=0.35
-    GamepadZoomedSensitivityScale=0.65
+    GamepadZoomedSensitivityScale=0.6
     ViewSmoothing_MaxAccel=25
     ViewSmoothing_MaxDecel=50
     ViewAccel_JoyMagThreshold=0.97
@@ -2167,7 +2192,7 @@ defaultproperties
     AdhesionAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.95,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     AdhesionFactor=16
     AutoTargetTimeLeft=0.1
-    AutoTargetAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.9397,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    AutoTargetAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.707,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     AutoTargetWeakspotCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.9962,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     AutoTargetCooldown=0.75
     ForceLookAtPawnMinAngle=0.9

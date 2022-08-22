@@ -31,19 +31,19 @@ function Pushed()
 {
 	Super.Pushed();
 	EnableSeePlayer();
-	AILog_Internal(self$" "$GetFuncName()$"() using AttackRange of "$AttackRange,'Command_Base',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" "$GetFuncName()$"() using AttackRange of "$AttackRange,'Command_Base',);};
 	GotoState( DefaultStateName );
 }
 
 function Paused( GameAICommand NewCommand )
 {
-	AILog_Internal(self$" "$GetFuncName()$"() Paused for "$NewCommand,'Command_Base',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" "$GetFuncName()$"() Paused for "$NewCommand,'Command_Base',);};
 	Super.Paused( NewCommand );
 }
 
 function Resumed( name OldCommandName )
 {
-	AILog_Internal(self$" "$GetFuncName()$"() (OldCommandName: "$OldCommandName$")",'Command_Base',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" "$GetFuncName()$"() (OldCommandName: "$OldCommandName$")",'Command_Base',);};
 	Super.Resumed( OldCommandName );
 	EnableProbingMeleeRangeEvents( true );
 }
@@ -59,7 +59,7 @@ function bool NotifyBump( Actor Other, Vector HitNormal )
 // To be enabled
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() Other: "$Other$" HitNormal: "$HitNormal$" notifying "$CachedChildCommand$" and letting it handle the event.",'SeePlayer',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Other: "$Other$" HitNormal: "$HitNormal$" notifying "$CachedChildCommand$" and letting it handle the event.",'SeePlayer',);};
 		return CachedChildCommand.NotifyBump( Other, HitNormal );
 	}
 	return false;
@@ -79,17 +79,17 @@ function bool NotifyPlayerBecameVisible( Pawn VisiblePlayer )
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() Seen: "$VisiblePlayer$" notifying "$CachedChildCommand$" and letting it handle the event.",'SeePlayer',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Seen: "$VisiblePlayer$" notifying "$CachedChildCommand$" and letting it handle the event.",'SeePlayer',);};
 		return CachedChildCommand.NotifyPlayerBecameVisible( VisiblePlayer );
 	}
-	AILog_Internal(GetFuncName()$"() : "$VisiblePlayer$" ignoring this event",'SeePlayer',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() : "$VisiblePlayer$" ignoring this event",'SeePlayer',);};
 	//DisableSeePlayer();
 	return false;
 }
 
 function bool ShouldAttackWhileMoving()
 {
-	AILog_Internal(self$" ShouldAttackWhileMoving() returning true",'Command_Base',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" ShouldAttackWhileMoving() returning true",'Command_Base',);};
 	return true;
 }
 
@@ -97,7 +97,7 @@ function bool ShouldSelectTarget()
 {
 	if( Enemy == none || !Enemy.IsAliveAndWell() )
 	{
-		AILog_Internal(self$" "$GetFuncName()$"() returning TRUE",'Command_Base',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" "$GetFuncName()$"() returning TRUE",'Command_Base',);};
 		return true;
 	}
 
@@ -120,7 +120,7 @@ state ZedBaseCommand extends DEBUGSTATE
 
 
 Begin:
-	AILog_Internal(self$" "$GetStateName()$" [Begin Label]",'Command_Base',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" "$GetStateName()$" [Begin Label]",'Command_Base',);};
 	if( Pawn.Physics == PHYS_Falling )
 	{
 		DisableMeleeRangeEventProbing();
@@ -148,7 +148,7 @@ Begin:
 	// If enemy is still invalid or melee range events are disabled, pause and loop back
 	if( (Enemy == none && DoorEnemy == none) || !bIsProbingMeleeRangeEvents )
 	{
-		AILog_Internal(self$" Enemy: "$Enemy$" bIsProbingMeleeRangeEvents: "$bIsProbingMeleeRangeEvents,'Command_Base',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Enemy: "$Enemy$" bIsProbingMeleeRangeEvents: "$bIsProbingMeleeRangeEvents,'Command_Base',);};
 		Sleep( 0.1f + FRand() * 0.3f );
 		Goto( 'Begin' );
 	}
@@ -156,14 +156,14 @@ Begin:
 	// Handle special case if I'm supposed to be attacking a door
 	if( DoorEnemy != none && DoorEnemy.Health > 0 && VSizeSq( DoorEnemy.Location - Pawn.Location ) < (DoorMeleeDistance * DoorMeleeDistance) ) //200UU
 	{
-		AILog_Internal(self$" DoorEnemy: "$DoorEnemy$" starting melee attack",'Command_Base',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" DoorEnemy: "$DoorEnemy$" starting melee attack",'Command_Base',);};
 		UpdateHistoryString( "[Attacking : "$DoorEnemy$" at "$WorldInfo.TimeSeconds$"]" );
 		class'AICommand_Attack_Melee'.static.Melee( Outer, DoorEnemy );
 	}
 
 	if( IsValidAttackTarget(KFPawn(Enemy)) )
 	{
-		AILog_Internal("Calling SetEnemyMoveGoal [Dist:"$VSize(Enemy.Location - Pawn.Location)$"] using offset of "$AttackRange$", because IsWithinBasicMeleeRange() returned false ",'Command_Base',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Calling SetEnemyMoveGoal [Dist:"$VSize(Enemy.Location - Pawn.Location)$"] using offset of "$AttackRange$", because IsWithinBasicMeleeRange() returned false ",'Command_Base',);};
 		bWaitingOnMovementPlugIn = true;
 		SetEnemyMoveGoal(self, true,,, ShouldAttackWhileMoving() );
 
@@ -171,7 +171,7 @@ Begin:
 		{
 			Sleep(0.03);
 		}
-		AILog_Internal("Back from waiting for the movement plug in!!!",,);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Back from waiting for the movement plug in!!!",,);};
 
 		if( Enemy == none )
 		{
@@ -181,7 +181,7 @@ Begin:
 	}
 	else
 	{
-		AILog_Internal("Enemy is invalid melee target" @ Enemy,'Command_Base',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Enemy is invalid melee target" @ Enemy,'Command_Base',);};
 		bFailedToMoveToEnemy = true;
 	}
 

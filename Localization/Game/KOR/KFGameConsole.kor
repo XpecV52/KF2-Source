@@ -1,0 +1,225 @@
+
+[Presence]
+KFMainMenu="메인 메뉴"
+KF-Bioticslab="바이오틱스 연구소 플레이"
+KF-BlackForest="검은 숲 플레이"
+KF-BurningParis="불타는 파리 플레이"
+KF-Catacombs="카타콤 플레이"
+KF-EvacuationPoint="철수지점 플레이"
+KF-Farmhouse="농장가옥 플레이"
+KF-VolterManor="볼터의 영지 플레이"
+KF-Outpost="전초기지 플레이"
+KF-Prison="감옥 플레이"
+KF-ContainmentStation="폐쇄 스테이션"
+KF-InfernalRealm="지옥의 왕국 플레이"
+KF-HostileGrounds="적진 플레이"
+
+[ActivityFeed_CHN]
+BossKillCondensedCaption="玩打败的首领！"
+BossKillCaption="$USER_NAME_OR_ID 已在 %y% 打败 %x%"
+TeamAwardCondensedCaption="队伍奖励！"
+TeamAwardCaption="$USER_NAME_OR_ID 已赢取 %x% 队伍奖励"
+PerkLevelUpCondensedCaption="升级！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 已解锁第 %x% 级的 %y% 技能"
+
+[ActivityFeed_CHT]
+BossKillCondensedCaption="已擊敗頭目！"
+BossKillCaption="$USER_NAME_OR_ID 在 %y% 難度中擊敗了 %x%"
+TeamAwardCondensedCaption="隊伍獎勵！"
+TeamAwardCaption="$USER_NAME_OR_ID 獲得了 %x% 隊伍獎勵"
+PerkLevelUpCondensedCaption="升級！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 解鎖了 %x% %y% 升級技能"
+
+[ActivityFeed_DEU]
+BossKillCondensedCaption="Boss besiegt!"
+BossKillCaption="$USER_NAME_OR_ID hat %x% auf %y% besiegt"
+TeamAwardCondensedCaption="Team-Auszeichnung!"
+TeamAwardCaption="$USER_NAME_OR_ID hat %x% Team-Auszeichnung verdient"
+PerkLevelUpCondensedCaption="Levelaufstieg!"
+PerkLevelUpCaption="$USER_NAME_OR_ID hat die Level %x% %y% Fähigkeit freigeschaltet"
+
+[ActivityFeed_ESL]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_ESN]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_FRA]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_FRC]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_INT]
+BossKillCondensedCaption="Boss defeated!"
+BossKillCaption="$USER_NAME_OR_ID has defeated %x% on %y%"
+TeamAwardCondensedCaption="Team Award!"
+TeamAwardCaption="$USER_NAME_OR_ID has earned %x% team award"
+PerkLevelUpCondensedCaption="Level up!"
+PerkLevelUpCaption="$USER_NAME_OR_ID has unlocked the level %x% %y% skill"
+
+[ActivityFeed_ITA]
+BossKillCondensedCaption="Boss sconfitto!"
+BossKillCaption="$USER_NAME_OR_ID ha sconfitto %x% su %y%"
+TeamAwardCondensedCaption="Premio di squadra!"
+TeamAwardCaption="$USER_NAME_OR_ID vince il premio %x%"
+PerkLevelUpCondensedCaption="Aumento di livello!"
+PerkLevelUpCaption="$USER_NAME_OR_ID sblocca %y% liv %x%"
+
+[ActivityFeed_JPN]
+BossKillCondensedCaption="ボス敗北！"
+BossKillCaption="$USER_NAME_OR_IDが%x%を%y%で倒しました"
+TeamAwardCondensedCaption="チームアワード！"
+TeamAwardCaption="$USER_NAME_OR_IDが%x%チームアワードを獲得しました"
+PerkLevelUpCondensedCaption="レベルアップ！"
+PerkLevelUpCaption="$USER_NAME_OR_IDがレベル%x% %y%スキルをロック解除"
+
+[ActivityFeed_KOR]
+BossKillCondensedCaption="보스 제거!"
+BossKillCaption="$USER_NAME_OR_ID님이 %y%에서 %x%을(를) 처치하였습니다."
+TeamAwardCondensedCaption="팀 보상!"
+TeamAwardCaption="$USER_NAME_OR_ID님이 %x% 팀 보상을 획득했습니다."
+PerkLevelUpCondensedCaption="레벨 업!"
+PerkLevelUpCaption="$USER_NAME_OR_ID님이 레벨 %x% %y% 기술을 잠금해제하였습니다."
+
+[ActivityFeed_POL]
+BossKillCondensedCaption="Boss został pokonany!"
+BossKillCaption="$USER_NAME_OR_ID pokonuje %x% na %y%"
+TeamAwardCondensedCaption="Nagroda zespołowa!"
+TeamAwardCaption="$USER_NAME_OR_ID zdobywa nagrodę zespołową %x%"
+PerkLevelUpCondensedCaption="Nowy poziom!"
+PerkLevelUpCaption="$USER_NAME_OR_ID odblokowuje poziom %x% umiejętności %y%"
+
+[ActivityFeed_PTB]
+BossKillCondensedCaption="Chefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID derrotou %x% em %y%"
+TeamAwardCondensedCaption="Prêmio de Equipe!"
+TeamAwardCaption="$USER_NAME_OR_ID ganhou o prêmio eq. %x%"
+PerkLevelUpCondensedCaption="Subiu de nível!"
+PerkLevelUpCaption="$USER_NAME_OR_ID desbloqueou o nível %x% da hab. %y%"
+
+[ActivityFeed_RUS]
+BossKillCondensedCaption="Босс побежден!"
+BossKillCaption="$USER_NAME_OR_ID: убит босс %x%, зона %y%"
+TeamAwardCondensedCaption="Командная награда!"
+TeamAwardCaption="$USER_NAME_OR_ID: командная награда %x%"
+PerkLevelUpCondensedCaption="Новый уровень!"
+PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="XboxTypeS_A을(를) 눌러 시작"
+LoginButtonPrompt="로그인"
+LoggingIn="로그인 중..."
+LoginFailed="로그인 실패"
+NoOnlinePlay="온라인 플레이 불가"
+TooYoung="플레이어의 자녀보호 제한 설정으로 인해 Sony Entertainment Network 계정의 온라인 서비스가 비활성화되었습니다."
+PatchAvailable="패치 이용 가능 네트워크 기능을 이용하시려면 애플리케이션을 업데이트해야 합니다."
+NotLoggedInOnlinePSN="온라인 기능을 이용하려면 PlayStation™Network에 로그인해야 합니다."
+NetworkError="네트워크 오류가 발생하였습니다. 네트워크 연결상태를 확인해주십시오."
+ErrorNoPlayfabDescription="게임 마스터 서버에 연결할 수 없습니다. 몇 분 뒤에 다시 시도해주십시오."
+ErrorTSSFailedDescription="게임 밸런스 서버에 연결할 수 없습니다. 인터넷에 연결되었는지 확인하시고 다시 시도해주십시오."
+
+[Notifications]
+ControllerDisconnectedTitle="컨트롤러 분리"
+ControllerDisconnectedPS4Message="무선 컨트롤러 연결이 분리되었습니다 게임을 부팅한 사용자의 무선 컨트롤러를 다시 연결해주십시오"
+PlayGoBusyTitle="설치 중"
+PlayGoBusyMessage="게임 설치를 진행하는 동안 콘텐츠와 기능을 제한적으로 이용할 수 있습니다."
+UnableToJoinInviteTitle="참여 불가"
+UnableToJoinInviteMessage="세션이 가득 찼거나 더 이상 이용할 수 없습니다. 나중에 다시 시도하십시오."
+InitiatingPlayTogetherTitle="잠시만요!"
+InitiatingPlayTogetherMessage="저희는 플레이어의 Play Together 경험을 위한 게임을 만드는 중입니다."
+UnableToPlayTogetherTitle="Play Together 실패"
+UnableToPlayTogetherMessage="Play Together 게임 생성 실패. 나중에 다시 시도하시거나 수동으로 만들어주십시오"
+CheckPlusTitle="PlayStation®Plus 상태 점검 중"
+CheckPlusMessage="PlayStation®Plus 상태를 점검하는 동안 기다려주십시오."
+ConnectionLostTitle="연결 상실"
+ConnectionLostMessage="온라인 연결이 상실되었습니다 홈 메뉴로 돌아왔습니다."
+PSNSignoutMessage="PlayStation™Network에서 로그아웃하였습니다. 홈 메뉴로 돌아왔습니다."
+InviteMessage="저와 함께 제드를 처치해주세요!"
+NotConnectedTitle="네트워크 오류"
+NotConnectedMessage="인터넷에 연결되지 않았습니다. 연결 상태를 확인하시고 다시 시도해주십시오."
+NotConnectedForOnlinePlay="인터넷에 연결되지 않았습니다. 온라인 기능을 이용하시려면 연결 상태를 확인하시고 다시 시도해주십시오."
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="플레이어 프로필 보기"
+
+[KFGFxObject_Menu]
+ResetDefaults="기본값으로 설정을 리셋하시겠습니까?"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="병과"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="컨트롤러 사운드"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="지역"
+LeaveMenuString="대전상대 찾기에서 나가시면 부대에서도 나가게 됩니다."
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="지역"
+MapPreference="선호 맵"
+
+[Entitlements]
+BriarBobbyBundleProductName="런던 보비 브라이어 유니폼 번들"
+BriarBobbyBundleShortDescription="플레이가 가능한 캐릭터 PC 롭 브라이어의 새로운 고전적인 런던 보비 유니폼을 받아보세요. 브라이어의 런던 유니폼 (5 스킨 스타일 포함), 관리인 헬멧 꾸미기 액세서리(3 스킨 스타일 포함)가 제공됩니다."
+
+BikerTanakaBundleProductName="타나카 바이커 유니폼 번들"
+BikerTanakaBundlehortDescription="플레이가 가능한 캐릭터 하야토 타나카의 새로운 바이커 유니폼을 받아보세요. 타나카의 모터사이클 유니폼 (7 스킨 스타일 포함), 헬멧 꾸미기 액세서리(7 스킨 스타일 포함)가 제공됩니다."
+
+ClassicFosterBundleProductName="미스터 포스터 클래식 유니폼 번들"
+ClassicFosterBundlehortDescription="플레이가 가능한 캐릭터 미스터 포스터의 새로운 고전적인 수트 유니폼을 받아보세요. 포스터의 클래식 수트 유니폼 (9 스킨 스타일 포함), 보우 타이 꾸미기 액세서리 및 클래식 타이 꾸미기 액세서리(각각 7 스킨 스타일 포함)가 제공됩니다."
+
+CardboardKnightBundleProductName="카드보드 기사 유니폼 번들"
+CardboardKnightBundleShortDescription="플레이가 가능한 캐릭터 대부분에 이용할 수 있는 웃기는 카드보드 갑옷 유니폼을 받아보세요. 카드보드 기사 갑옷(6 스킨 스타일 포함), 카드보드 기사 헬멧 꾸미기 액세서리 (6 스킨 스타일 포함)가 제공됩니다."
+
+HorzineSecurityForceBundleProductName="Horzine 경비대 유니폼 번들"
+HorzineSecurityForceBundleShortDescription="플레이가 가능한 캐릭터 대부분에 이용할 수 있는 멋진 새 Horzine 경비대 유니폼을 받아보세요. 하이테크 Horzine 경비대 수트와 Horzine 경비대 헬멧 꾸미기 액세서리가 제공됩니다."
+
+HorzineSupplyCrateKeyProductName="Horzine 보급상자 열쇠"
+HorzineSupplyCrateKeyShortDesription="게임 내 소모품 열쇠로 Horzine 보급상자를 여는 Horzine 보급상자 열쇠를 구입하십시오. 이용하시려면 이 열쇠와 Horzine 보급상자가 필요합니다."
+
+HorzineSupplyCrate1ProductName="Horzine 보급상자 시리즈 1"
+HorzineSupplyCrate1ShortDesription="Horzine 보급상자는 꾸미기 액세서리가 들어 있습니다. 상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. 전술 모자, 전술 마스크, 전술 헤드셋 MK1/MK2, 헤드밴드, GS9 헬멧, GH9 마스크, 러시아군 안경, 러시아군 헬멧, 러시아군 마스크 또는 희귀한 고급 액세서리와 같은 희귀한 꾸미기 아이템이나 더 좋은 꾸미기 아이템이 들어 있습니다!"
+
+HorzineSupplyCrate2ProductName="Horzine 보급상자 시리즈 2"
+HorzineSupplyCrate2ShortDesription="Horzine 보급상자는 꾸미기 액세서리가 들어 있습니다. 상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. Devtac 탄도 마스크, 미군 가스 마스크, 스키 마스크, 야구 모자, 전술 백백, 독일군 가스 마스크, 화학 가스 마스크, RPG7 백백, M2 화염방사기 탱크, 또는 희귀한 고급 액세서리 희귀한 꾸미기 아이템이나 더 좋은 꾸미기 아이템이 들어 있습니다!"
+
+HorzineSupplyCrate3ProductName="Horzine 보급상자 시리즈 3"
+HorzineSupplyCrate3ShortDesription="이 Horzine 보급상자에는 무기 스킨이 들어 있습니다. 상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. Horzine 보급상자 시리즈 4와 같은"
+
+HorzineSupplyCrate4ProductName="희귀 무기 스킨이나 더 좋은 무기 스킨이 포함되어 있습니다."
+HorzineSupplyCrate4ShortDesription="이 Horzine 보급상자에는 무기 스킨이 들어 있습니다. 상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. 라이선스 대상 소프트웨어 (us.playstation.com/softwarelicense)와 같은"
+
+StoreGameLegalText="희귀 무기 스킨이나 더 좋은 무기 스킨이 포함되어 있습니다. 서비스 조건 및 사용자 동의에 따른 온라인 활동 (www.playstationnetwork.com/terms-of-service). 해당 계정 로그인 시 계정에 지정된 기본 PS4™ 시스템 및 기타 PS4™ 시스템에서 플레이하기 위한 일회용 라이선스 Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor®는 미국 및 기타 국가에 적용되는 Tripwire Interactive의 등록 상표입니다. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. 모든 권리 보유 Unreal®은 미국 및 기타 국가에 적용되는 Epic Games, Inc.의 상표 또는 등록 상표입니다. 모든 상표와 로고, 저작권은 각 소유자의 자산입니다. 모든 권리 보유."
+
+StoreItemLegalText="이 아이템을 이용하시려면 Killing Floor 2 게임 완전판이 필요합니다. 이 아이템의 이용은 원본 게임과 같은 최종 사용자 라이선스 동의서가 적용됩니다."
+
+[Regions]
+USCentral="미국 중부"
+USEast="미국 동부"
+USWest="미국 서부"
+EU="유럽"
+Asia="아시아"
+Brazil="남미"
+Australia="오스트레일리아"

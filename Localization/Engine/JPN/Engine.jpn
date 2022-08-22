@@ -46,6 +46,7 @@ ServerHostingDifferentGame=Server is hosting a different game. You cannot connec
 PeerListen=Peer listen socket failed: `~
 PeerConnection=Peer connection failed: `~
 IPhoneLaunchURLError=This link is unavailable right now. Please check your internet connection.
+CouldNotConnect_Title=接続に失敗しました
 
 [Progress]
 CancelledConnect= 接続を中止しました。

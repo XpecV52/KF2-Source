@@ -110,6 +110,10 @@ simulated function float RateMeleeVictim(Pawn Victim, Vector StartTrace, Vector 
     {
         return -1;
     }
+    if(Outer.Instigator.IsHumanControlled() && Victim.GetTeamNum() == Outer.Instigator.GetTeamNum())
+    {
+        return -1;
+    }
     if(bLogMelee)
     {
         LogInternal("Melee considering:" @ string(Victim));

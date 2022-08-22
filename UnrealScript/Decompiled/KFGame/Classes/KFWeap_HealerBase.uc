@@ -35,7 +35,7 @@ var AkEvent RechargeCompleteSound;
  */
 var(Weapon) float HealAttemptWeakZedGrabCooldown;
 /** Maximum range to find teammate */
-var() float HealingRange;
+var() float HealingRangeSQ;
 var Pawn HealTarget;
 var Pawn LastValidHealTarget;
 var float LastReadyHealTime;
@@ -356,9 +356,10 @@ simulated function UpdateScreenUI()
 
 simulated function UpdateHealTarget(optional bool bSkipOnAnimEnd)
 {
-    local KFPawn_Human P;
-    local Vector HitNorm, HitLoc, StartTrace, EndTrace;
     local bool bHasHealTarget;
+    local Vector AimDir, StartTrace, Projection;
+    local Pawn P;
+    local float DistSq, FOV, HealTargetRating, BestHealTargetRating;
 
     if((WorldInfo.TimeSeconds - LastReadyHealTime) < 0.2)
     {
@@ -367,13 +368,30 @@ simulated function UpdateHealTarget(optional bool bSkipOnAnimEnd)
     bHasHealTarget = HealTarget != none;
     HealTarget = none;
     StartTrace = Instigator.GetWeaponStartTraceLocation();
-    EndTrace = StartTrace + (vector(GetAdjustedAim(StartTrace)) * HealingRange);
-    foreach GetTraceOwner().TraceActors(Class'KFPawn_Human', P, HitLoc, HitNorm, StartTrace, EndTrace)
+    AimDir = vector(GetAdjustedAim(StartTrace));
+    foreach WorldInfo.AllPawns(Class'Pawn', P)
     {
-        HealTarget = P;
-        LastValidHealTarget = P;
-        LastReadyHealTime = WorldInfo.TimeSeconds;
-        break;        
+        if(((P != Instigator) && P.GetTeamNum() == Instigator.GetTeamNum()) && P.IsAliveAndWell())
+        {
+            Projection = P.Location - StartTrace;
+            DistSq = VSizeSq(Projection);
+            if(DistSq > HealingRangeSQ)
+            {
+                continue;                
+            }
+            FOV = AimDir Dot Normal(Projection);
+            if(FOV > 0.4)
+            {
+                HealTargetRating = FOV + (0.4 * (1 - (DistSq / HealingRangeSQ)));
+                if((HealTargetRating > BestHealTargetRating) && FastTrace(P.Location, StartTrace))
+                {
+                    BestHealTargetRating = HealTargetRating;
+                    HealTarget = P;
+                    LastValidHealTarget = P;
+                    LastReadyHealTime = WorldInfo.TimeSeconds;
+                }
+            }
+        }        
     }    
     if(!bSkipOnAnimEnd && bHasHealTarget != (HealTarget != none))
     {
@@ -556,7 +574,7 @@ defaultproperties
     HealOtherRechargeSeconds=7.5
     RechargeCompleteSound=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_Charged'
     HealAttemptWeakZedGrabCooldown=1
-    HealingRange=135
+    HealingRangeSQ=23000
     StandAloneHealAmount=50
     ScreenUIClass=Class'KFGFxWorld_HealerScreen'
     UIUpdateInterval=1

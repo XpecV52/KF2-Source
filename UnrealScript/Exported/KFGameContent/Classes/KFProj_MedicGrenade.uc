@@ -51,7 +51,7 @@ defaultproperties
       Damage=50.000000
       DamageRadius=350.000000
       DamageFalloffExponent=0.000000
-      MyDamageType=Class'kfgamecontent.KFDT_Toxic_MedicGrenade'
+      MyDamageType=Class'KFGame.KFDT_Toxic_MedicGrenade'
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000
       ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Medic.Play_WEP_EXP_Grenade_Medic_Explosion'

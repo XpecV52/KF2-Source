@@ -29,7 +29,7 @@ struct PaintedVertex
         Position=(X=0,Y=0,Z=0)
         Normal=
 /* Exception thrown while deserializing Normal
-System.ArgumentException: Requested value '0_19503' was not found.
+System.ArgumentException: Requested value '0_19546' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

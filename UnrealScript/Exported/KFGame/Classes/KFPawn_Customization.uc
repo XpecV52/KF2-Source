@@ -201,6 +201,9 @@ simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
 	AnimName = AnimSet.Sequences[AnimIndex].SequenceName;
 	BlendInTime = (bNewCharacter) ? 0.f : 0.4;
 
+	// Briefly turn off notify so that PlayCustomAnim won't call OnAnimEnd (e.g. character swap)
+	BodyStanceNodes[EAS_FullBody].SetActorAnimEndNotification( FALSE );
+
 	BodyStanceNodes[EAS_FullBody].PlayCustomAnim(AnimName, 1.f, BlendInTime, 0.4, false, true);
 	BodyStanceNodes[EAS_FullBody].SetActorAnimEndNotification( TRUE );
 }

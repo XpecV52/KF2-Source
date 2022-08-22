@@ -45,13 +45,13 @@ function Pushed()
 	MoveTimer = -1.f;
 	StopAllLatentMovement();
 	LockdownAI();
-	AILog_Internal(self@"Pushed",'Husk_Suicide',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self@"Pushed",'Husk_Suicide',);};
 	AIActionStatus = "Executing suicide AICommand";
 }
 
 function Resumed( Name OldCommandName )
 {
-	AILog_Internal(self@"Resumed, previous command: "$OldCommandName,'Husk_Suicide',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self@"Resumed, previous command: "$OldCommandName,'Husk_Suicide',);};
 	Super.Resumed( OldCommandName );
 
 	LockdownAI();
@@ -59,7 +59,7 @@ function Resumed( Name OldCommandName )
 
 function Paused( GameAICommand NewCommand )
 {
-	AILog_Internal(self@"Paused by command"@NewCommand$", WTF!",'Husk_Suicide',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self@"Paused by command"@NewCommand$", WTF!",'Husk_Suicide',);};
 	Super.Paused( NewCommand );
 
 	UnlockAI();
@@ -69,7 +69,7 @@ function Popped()
 {
 	Super.Popped();
 
-	AILog_Internal(self@"Popped()",'Husk_Suicide',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self@"Popped()",'Husk_Suicide',);};
 	if( Pawn != none )
 	{
 		AIActionStatus = "Finished suicide AICommand, health:"$Pawn.Health;

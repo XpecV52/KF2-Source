@@ -87,6 +87,10 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
     ServerMenu = KFGFxMenu_ServerBrowser(NewParentMenu);
+    if((SavedGameModeIndex < 0) || SavedGameModeIndex >= Class'KFGameInfo'.default.GameModes.Length)
+    {
+        SavedGameModeIndex = 255;
+    }
     SavedGameModeIndexPending = SavedGameModeIndex;
     NumDifficultyStrings = Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length;
     AdjustSavedFiltersToMode();
@@ -98,7 +102,7 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
 
 function int GetUsableGameMode(int ModeIndex)
 {
-    if(ModeIndex >= Class'KFGameInfo'.default.GameModes.Length)
+    if((ModeIndex >= Class'KFGameInfo'.default.GameModes.Length) || ModeIndex < 0)
     {
         return 0;        
     }
@@ -159,7 +163,7 @@ function LocalizeText()
     LocalizedObject.SetString("length", ServerMenu.LengthString);
     LocalizedObject.SetString("ping", ServerMenu.PingString);
     SetObject("localizedText", LocalizedObject);
-    CreateList("gameModeScrollingList", Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray(), SavedGameModeIndex);
+    CreateList("gameModeScrollingList", Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray(), ((SavedGameModeIndex == 255) ? Class'KFGameInfo'.default.GameModes.Length : SavedGameModeIndex));
     CreateList("mapScrollingList", MapList, SavedMapIndex);
     SetModeMenus("difficultyScrollingList", "lengthScrollingList", SavedGameModeIndexPending);
     CreateList("pingScrollingList", ServerMenu.PingOptionStrings, SavedPingIndex);
@@ -219,7 +223,7 @@ function SetModeMenus(string DifficultyListString, string LengthListString, int 
     }
     if(SavedLengthIndexPending >= Class'KFGameInfo'.default.GameModes[UseModeIndex].Lengths)
     {
-        NewDifficultyIndex = 255;        
+        NewLengthIndex = 255;        
     }
     else
     {
@@ -285,7 +289,14 @@ function CreateList(string ListString, array<string> TextArray, int SelectedInde
 
 function ModeChanged(int Index)
 {
-    SavedGameModeIndexPending = byte(Index);
+    if((Index >= 0) && Index < Class'KFGameInfo'.default.GameModes.Length)
+    {
+        SavedGameModeIndexPending = byte(Index);        
+    }
+    else
+    {
+        SavedGameModeIndexPending = 255;
+    }
     AdjustSavedFiltersToMode();
     LocalizeText();
 }

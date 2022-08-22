@@ -220,8 +220,7 @@ function Popped()
 		Pawn.ZeroMovementVariables(); //[Just Added 7/15/14]
 		Pawn.DestinationOffset = 0.f;
 	}
-	ClearTimer( 'MoveToGoalTimedOut', self );
-	ClearTimer( 'TimedAbortMove' );
+	ClearTimer( nameOf(MoveToGoalTimedOut), self );
 	// Make sure that if we are bailing we notify the Controller we're done trying to move
 	ReachedMoveGoal();
 }
@@ -234,8 +233,7 @@ function Paused( GameAICommand NewCommand )
 	Super.Paused( NewCommand );
 	Retries = 0;
 	// Pause move timeout timer
-	PauseTimer( true, 'MoveToGoalTimedOut', self );
-	PauseTimer( false, 'TimedAbortMove' );
+	PauseTimer( true, nameOf(MoveToGoalTimedOut), self );
 	if( Steering != none )
 	{
 	//	Steering.DisableDefaultAcceleration();
@@ -271,8 +269,7 @@ function Resumed( Name OldCommandName )
 	if( ChildStatus == 'Success' || ( Enemy != none && MyKFPawn.IsPawnMovingAwayFromMe( Enemy ) && MyKFPawn.bIsSprinting ) )
 	{
 		// Unpause move timeout timer
-		PauseTimer( false, 'MoveToGoalTimedOut', self );
-		PauseTimer( false, 'TimedAbortMove' );
+		PauseTimer( false, nameOf(MoveToGoalTimedOut), self );
 
 		bMovingToGoal = true;
 		bReachedMoveGoal = false;
@@ -682,15 +679,39 @@ function ReachedIntermediateMoveGoal()
     			// Stop, open the door, and wait for notification from it once it's open.
     			WaitForDoor( DM.MyKFDoor );
     			DM.MyKFDoor.UseDoor( Pawn );
+    			return;
     		}
     		else
     		{
     			`AILog( GetFuncName()$" calling NotifyAttackDoor for "$DM.MyKFDoor$" with weld integrity "$DM.MyKFDoor.WeldIntegrity, 'Doors' );
     			AIActionStatus = "Wants to attack door "$DM.MyKFDoor;
     			NotifyAttackDoor( DM.MyKFDoor );
+    			return;
     		}
     	}
 	}
+
+	// See if there's a better enemy blocking the path to our current one
+	CheckForIntermediateEnemies();
+
+	// Tell the AI controller we've arrived
+	NotifyReachedLatentMoveGoal();
+}
+
+/** Attempts to find a better enemy than our current one */
+function CheckForIntermediateEnemies()
+{
+	local Pawn EnemyBlocker;
+
+	// See if we can find a better enemy
+	if( MyKFPawn != none && Enemy != none && !MyKFPawn.IsDoingSpecialMove() && VSizeSQ(Enemy.Location - MyKFPawn.Location) > 490000.f )
+	{
+		EnemyBlocker = GetPawnBlockingPathTo( Enemy, true, true );
+		if( EnemyBlocker != none )
+		{
+			ChangeEnemy( EnemyBlocker );
+		}
+	}	
 }
 
 /** Called when blocked by bBlocksNavigation actors (see ShouldIgnoreNavigationBlockingFor) */
@@ -729,15 +750,14 @@ function bool HandlePathObstruction( Actor BlockedBy )
 		`AILog( GetFuncName()$"() calling ZeroMovementVariables", 'HandlePathObstruction' );
 		Pawn.ZeroMovementVariables();
 
-		if( KFPathnode(IntermediateMoveGoal) != none )
+		if( NavigationPoint(IntermediateMoveGoal) != none )
 		{
 			// Path is failing - if I just ran into a non-pawn obstruction, temporarily block IntermediateMoveGoal to let me
 			// generate another path that doesn't require it.
-			if( CreateTemporaryBlockedPath(KFPathnode(IntermediateMoveGoal)) )
+			if( CreateTemporaryBlockedPath(NavigationPoint(IntermediateMoveGoal)) )
 			{
 				//`RecordAIRedirectedPath( Outer, IntermediateMoveGoal, "[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[1] );
 			}
-			//CreateTemporaryBlockedPath( KFPathnode(IntermediateMoveGoal) );
 		}
 		Obstruction_Repath( BlockedBy );
 
@@ -849,6 +869,45 @@ function NotifyNeedRepath()
 	bReEvaluatePath = true;
 	StopLatentExecution();
 	ReEvaluatePath();
+}
+
+function CheckForStuckPath()
+{
+	local NavigationPoint NavPoint;
+
+	// Failed to find a valid next move target
+	if( IntermediateMoveGoal == none || (NumTimesGetNextMoveGoalReturnedSameNode > 20 && VSizeSQ(MyKFPawn.Velocity) < 600.f) )
+	{
+		`AILog("Failed to get valid movetarget, Got Same result "$NumTimesGetNextMoveGoalReturnedSameNode$" time(s). has reached move goal? "@HasReachedMoveGoal(), 'PathWarning');
+		//`RecordAIGetNextMoveGoalFailure( Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GNML Fail, Int. = "$IntermediateMoveGoal );
+
+		bValidRouteCache = false;
+		bReevaluatePath = true;
+		NumTimesGetNextMoveGoalReturnedSameNode = 0;
+
+		// Path is failing - if I just ran into a non-pawn obstruction, temporarily block IntermediateMoveGoal to let me
+		// generate another path that doesn't require it.
+		if( Pawn.Anchor != none && (LastHitWall != none && !LastHitWall.IsA('Pawn')) )
+		{
+			NavPoint = NavigationPoint( IntermediateMoveGoal );
+			if( CurrentPath != none && CreateTemporaryBlockedReach(NavPoint, CurrentPath) )
+			{
+				//`RecordAIRedirectedPath( Outer, IntermediateMoveGoal, "[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[1] );
+			}
+			else if( NavPoint != none && CreateTemporaryBlockedPath(NavPoint) )
+			{
+				//`RecordAIGetNextMoveGoalFailure( Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GNML Fail, Int. = "$IntermediateMoveGoal );
+			}
+		}
+
+		UpdateHistoryString( "[F] [GNM] "$IntermediateMoveGoal$" "$Pawn.Location );
+		GotoState( 'MovingToGoal', 'FailedMove' );
+		IntermediateMoveGoal = none;
+	}
+	else
+	{
+		`AILog( "NextMoveTarget"@IntermediateMoveGoal@"MoveGoal:"@MoveGoal, 'Move_Path' );
+	}
 }
 
 /*********************************************************************************************
@@ -1402,6 +1461,7 @@ PathingTowardActor:
 			AIActionStatus = "Moving toward "$IntermediateMoveGoal;
 			/** Begin latent movement and stop executing state code until move completes */
 			MoveToward( IntermediateMoveGoal, MoveFocus, (IntermediateMoveGoal == MoveGoal) ? MoveOffset : 0.f, false, false );
+			AIActionStatus = "Finished moving toward "$IntermediateMoveGoal;
 			CurrentMovementPhase = MOVEMENT_PHASE_TYPE_NONE;
 			if( (bReachedLatentMoveGoal && LastNavGoalReached == IntermediateMoveGoal) || Pawn.ReachedDestination(IntermediateMoveGoal) )
 			{
@@ -1454,64 +1514,8 @@ PathingTowardActor:
 					SetBestAnchor();
 					Sleep( 0.1f );
 				}
-				// Failed to find a valid next move target
-				if( IntermediateMoveGoal == none || (NumTimesGetNextMoveGoalReturnedSameNode > 20 && VSize(Velocity) < 8.f) )
-				{
-					`AILog("Failed to get valid movetarget, Got Same result "$NumTimesGetNextMoveGoalReturnedSameNode$" time(s). has reached move goal? "@HasReachedMoveGoal(), 'PathWarning');
 
-// @TODO: CHECK WHEN BELOW WAS DISABLED
-// 					if(NumTimesGetNextMoveGoalReturnedSameNode > 5)
-// 					{
-// 						`RecordAIGetNextMoveGoalFailure(Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GNML Fail, Int. = "$IntermediateMoveGoal );
-// 					}
-// 					else if( IntermediateMoveGoal == none )
-// 					{
-// 						`RecordAIMoveFailure(Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GetNextMoveLocation Fail, no intermediate movegoal" );
-// 					}
-					//	bValidRouteCache = false;
-				//	bReevaluatePath = true;
-				//	RouteCache_Empty();
-				//	StopLatentExecution();
-				//	if( IntermediateMoveGoal != none )
-				//	{
-				//		SetDestinationPosition( IntermediateMoveGoal.Location );
-				//	}
-				//	ReEvaluatePath();
-//					DebugLogRoute();
-				//	NumTimesGetNextMoveGoalReturnedSameNode = 0;
-					// issue with movetarget not changing
-
-					if( NumTimesGetNextMoveGoalReturnedSameNode > 20 && VSize(Velocity) < 8.f ) //25!
-					{
-						`AILog( "Got same result too many times.. bailing! Anchor: "$Pawn.Anchor, 'PathWarning' );
-						//`RecordAIGetNextMoveGoalFailure( Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GNML Fail, Int. = "$IntermediateMoveGoal );
-						bValidRouteCache = false;
-						bReevaluatePath = true;
-						NumTimesGetNextMoveGoalReturnedSameNode = 0;
-
-						// Path is failing - if I just ran into a non-pawn obstruction, temporarily block IntermediateMoveGoal to let me
-						// generate another path that doesn't require it.
-						if( Pawn.Anchor != none && (LastHitWall != none && !LastHitWall.IsA('Pawn')) )
-						{
-							if( CreateTemporaryBlockedReach(KFPathnode(IntermediateMoveGoal),CurrentPath) )
-							{
-								//`RecordAIRedirectedPath( Outer, IntermediateMoveGoal, "[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[1] );
-							}
-							else
-							{
-								//`RecordAIGetNextMoveGoalFailure( Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GNML Fail, Int. = "$IntermediateMoveGoal );
-							}
-						}
-						UpdateHistoryString( "[F] [GNM] "$IntermediateMoveGoal$" "$Pawn.Location );
-						/** Giving up, go to the FailedMove label */
-						Goto( 'FailedMove' );
-					}
-					IntermediateMoveGoal = none;
-				}
-				else
-				{
-					`AILog( "NextMoveTarget"@IntermediateMoveGoal@"MoveGoal:"@MoveGoal, 'Move_Path' );
-				}
+				CheckForStuckPath();
 			}
 		}
 
@@ -1624,11 +1628,11 @@ FailedMove:
 		}
 		bReevaluatePath = true;
 		Sleep( 0.f );
-		if( IntermediateMoveGoal != none && IntermediateMoveGoal.IsA('NavigationPoint') )
+		if( IntermediateMoveGoal != none && NavigationPoint(IntermediateMoveGoal) != none )
 		{
 			// Path is failing - if I just ran into a non-pawn obstruction, temporarily block IntermediateMoveGoal to let me
 			// generate another path that doesn't require it.
-			if( CreateTemporaryBlockedReach(KFPathnode(IntermediateMoveGoal),CurrentPath) )
+			if( CreateTemporaryBlockedReach(NavigationPoint(IntermediateMoveGoal), CurrentPath) )
 			{
 				IntermediateMoveGoal = none;
 				Retries++;
@@ -1709,63 +1713,7 @@ function Timer_DelayMoveTimeOut()
 	}
 }
 
-function bool AdjustAround( actor Other, vector HitNormal )
-{
-	local vector VelDir, OtherDir, SideDir, HitLocation, Adj;
-	local float CollisionRad, CollisionHeight;
-
-	if( !IsDoingLatentMove() || MoveTarget == None )
-	{
-		return false;
-	}
-
-	VelDir	   = Normal(MoveTarget.Location - Pawn.Location);
-	OtherDir   = Other.Location - Pawn.Location;
-	VelDir.Z   = 0;
-	OtherDir.Z = 0;
-	OtherDir   = Normal(OtherDir);
-
-	if( Pawn(Other) != none && Other.Physics == PHYS_Spider && Pawn(Other).Floor.Z < -0.7f )
-	{
-		Other.SetPhysics( PHYS_Falling );
-	}
-	if( ((VelDir Dot OtherDir) > 0.7f) )
-	{
-// 		if( Pawn.bCrawler )
-// 		{
-// 			SideDir.Z = VelDir.Z;
-// 		}
-
-		SideDir.X = VelDir.Y;
-		SideDir.Y = -1 * VelDir.X;
-
-		if( (SideDir Dot OtherDir) > 0.f )
-		{
-			SideDir *= -1;
-		}
-		if( Pawn(Other) == none )
-		{
-			Other.GetBoundingCylinder( CollisionRad, CollisionHeight );
-			Adj = Pawn.Location + 3.5f * CollisionRad * (0.5f * VelDir + SideDir);
-		}
-		else
-		{
-			Adj = Pawn.Location + 3.5f * Pawn(Other).GetCollisionRadius() * (0.5f * VelDir + SideDir);
-		}
-		// make sure adjust location isn't through a wall
-		if( Trace(HitLocation, HitNormal, Adj, Pawn.Location, false) != none )
-		{
-			Adj = HitLocation;
-		}
-		`AILog( GetFuncName()$"() in MoveToGoal, SettingAdjustLocation to "$Adj, 'HitWall' );
-		SetAdjustLocation( Adj, true, true );
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
+native function bool AdjustAround( Actor Other, vector HitNormal );
 
 function bool NotifyBump( Actor Other, Vector HitNormal )
 {
@@ -1802,6 +1750,26 @@ function bool NotifyBump( Actor Other, Vector HitNormal )
 		AdjustAround( Other, HitNormal );
 		return true;
 	}
+	return false;
+}
+
+function bool NotifyLatentPostPhysWalking()
+{
+	if( !bPreparingMove && MoveTimer > 1.f && Pawn.Velocity == vect(0,0,0) && Pawn.Acceleration != vect(0,0,0) )
+	{
+		++NumFailedLatentWalkMoves;
+		if( NumFailedLatentWalkMoves > 3 )
+		{
+			MoveTimer = -1;
+			NumFailedLatentWalkMoves = 0;
+			return true;
+		}
+	}
+	else
+	{
+		NumFailedLatentWalkMoves = 0;
+	}
+
 	return false;
 }
 

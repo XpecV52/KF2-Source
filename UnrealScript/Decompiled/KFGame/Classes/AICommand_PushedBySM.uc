@@ -40,7 +40,10 @@ function bool AllowTransitionTo(class<GameAICommand> AttemptCommand)
 function Pushed()
 {
     super.Pushed();
-    Outer.AILog_Internal(("Waiting for SM" @ string(SpecialMove)) @ "to finish.", 'Command_PushedBySM');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(("Waiting for SM" @ string(SpecialMove)) @ "to finish.", 'Command_PushedBySM');
+    }
     GotoState('WaitForMove');
 }
 
@@ -53,7 +56,10 @@ function Popped()
 function SpecialMoveTimeout()
 {
     return;
-    Outer.AILog_Internal(string(self) $ " Special move timed out", 'Command_PushedBySM');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(self) $ " Special move timed out", 'Command_PushedBySM');
+    }
     if(Outer.MyKFPawn.SpecialMove == SpecialMove)
     {
         Outer.MyKFPawn.EndSpecialMove();
@@ -80,8 +86,11 @@ Begin:
     Outer.Sleep(0.1);
     if(!(IsSpecialMoveComplete()))
         goto J0x2C;
-    Outer.AILog_Internal(((((("bPreparingMove:" @ string(Outer.bPreparingMove)) @ "MyKFPawn:") @ string(Outer.MyKFPawn)) @ "SpecialMove:") @ string(Outer.MyKFPawn.SpecialMove)) @ string(SpecialMove), 'Command_PushedBySM');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((((("bPreparingMove:" @ string(Outer.bPreparingMove)) @ "MyKFPawn:") @ string(Outer.MyKFPawn)) @ "SpecialMove:") @ string(Outer.MyKFPawn.SpecialMove)) @ string(SpecialMove), 'Command_PushedBySM');
+    }
     Status = 'Success';
     Outer.PopCommand(self);
-    stop;                    
+    stop;            
 }

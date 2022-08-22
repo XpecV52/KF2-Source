@@ -33,7 +33,10 @@ function Pushed()
     super.Pushed();
     Outer.StopAllLatentMovement();
     Outer.AIZeroMovementVariables();
-    Outer.AILog_Internal("Beginning boss theatrics" $ string(Outer.Enemy), 'Command_BossTheatrics');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Beginning boss theatrics" $ string(Outer.Enemy), 'Command_BossTheatrics');
+    }
     Outer.AIActionStatus = "Starting BossTheatrics AICommand";
     if(Outer.Focus != none)
     {
@@ -69,7 +72,10 @@ state Command_SpecialMove
         local byte SpecialMoveFlags;
 
         SpecialMove = GetSpecialMove();
-        Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'Command_BossTheatrics');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'Command_BossTheatrics');
+        }
         if((SpecialMove != 0) && Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
             SpecialMoveFlags = Class'KFSM_Zed_Boss_Theatrics'.static.PackSMFlags(Outer.MyKFPawn, TheatricType);

@@ -239,6 +239,22 @@ struct native OnlineFriend
     }
 };
 
+struct native PartyMember
+{
+    var UniqueNetId PartyMemberId;
+    var UniqueNetId OnlineId;
+    var string NickName;
+    var UniqueNetId AccountId;
+
+    structdefaultproperties
+    {
+        PartyMemberId=(Uid=none)
+        OnlineId=(Uid=none)
+        NickName=""
+        AccountId=(Uid=none)
+    }
+};
+
 struct native OnlineContent
 {
     var OnlineSubsystem.EOnlineContentType ContentType;
@@ -724,6 +740,7 @@ var OnlineAuthInterface AuthInterface;
 var array< delegate<OnInventoryReadComplete> > ReadInventoryCompleteDelegates;
 var const bool bInventoryReady;
 var config bool bUseBuildIdOverride;
+var array< delegate<OnPingRegionsComplete> > PingRegionsCompleteDelegates;
 var private array<NamedInterface> NamedInterfaces;
 var config array<config NamedInterfaceDef> NamedInterfaceDefs;
 var protected const array<NamedSession> Sessions;
@@ -736,6 +753,7 @@ var const array<string> OwnedEntitlementIds;
 var array<ItemProperties> ItemPropertiesList;
 var array<ExchangeRuleSets> ExchangeRuleSetList;
 var delegate<OnInventoryReadComplete> __OnInventoryReadComplete__Delegate;
+var delegate<OnPingRegionsComplete> __OnPingRegionsComplete__Delegate;
 var delegate<OnReadOnlineAvatarComplete> __OnReadOnlineAvatarComplete__Delegate;
 var delegate<OnReadOnlineAvatarByNameComplete> __OnReadOnlineAvatarByNameComplete__Delegate;
 
@@ -771,6 +789,8 @@ native function int ExchangeDuplicates(const out ExchangeRuleSets Rule, const in
 
 delegate OnInventoryReadComplete();
 
+delegate OnPingRegionsComplete(int RegionIndex);
+
 function AddOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> ReadCompleteDelegate)
 {
     if(ReadInventoryCompleteDelegates.Find(ReadCompleteDelegate == -1)
@@ -792,17 +812,7 @@ function ClearOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> 
 
 function ClearAllInventoryReadCompleteDelegates()
 {
-    local int I;
-
-    I = 0;
-    J0x0B:
-
-    if(I < ReadInventoryCompleteDelegates.Length)
-    {
-        ReadInventoryCompleteDelegates.Remove(I, 1;
-        ++ I;
-        goto J0x0B;
-    }
+    ReadInventoryCompleteDelegates.Remove(0, ReadInventoryCompleteDelegates.Length;
 }
 
 // Export UOnlineSubsystem::execInit(FFrame&, void* const)
@@ -1140,6 +1150,13 @@ native function GetPlayerGroups(out array<UniqueNetId> UserGroups);
 native function bool CheckPlayerGroup(UniqueNetId Group);
 
 function SetSharedPassword(string ServerPassword);
+
+function StartRegionPingAndSelectDefaultRegion(delegate<OnPingRegionsComplete> Callback);
+
+function CancelRegionPing();
+
+// Export UOnlineSubsystem::execHasChatRestriction(FFrame&, void* const)
+native function bool HasChatRestriction(byte LocalUserNum);
 
 defaultproperties
 {

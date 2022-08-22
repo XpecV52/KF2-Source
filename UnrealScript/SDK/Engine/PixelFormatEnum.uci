@@ -37,5 +37,6 @@ enum EPixelFormat
 	PF_FloatR11G11B10,	// A low precision floating point format.
 	PF_A4R4G4B4,
 	PF_R5G6B5,
-	PF_R8G8
+	PF_R8G8,
+	PF_R32_UINT
 };

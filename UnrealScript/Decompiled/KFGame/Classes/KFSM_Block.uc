@@ -8,10 +8,12 @@
 class KFSM_Block extends KFSM_PlaySingleAnim;
 
 var const array<AnimVariants> BlockAnims;
+var protected KFGameInfo MyKFGI;
 var protected KFPawn_Monster MyMonsterPawn;
 var protected int NumBlocks;
 var protected KFPawn.EPawnOctant ReactionDir;
 var protected bool bPlayedBlockBreak;
+var protected bool bUseBlockSprintSpeed;
 
 static function byte PackBlockSMFLags(byte BlockDir)
 {
@@ -49,16 +51,41 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     bPlayedBlockBreak = false;
     ReactionDir = 8;
     NumBlocks = 1;
-    if(MyMonsterPawn.bIsSprinting)
-    {
-        MyMonsterPawn.SetSprinting(false);
-    }
     if(MyMonsterPawn.Role == ROLE_Authority)
     {
+        bUseBlockSprintSpeed = true;
+        AdjustSprintSpeed();
         MyMonsterPawn.SetTimer(MyMonsterPawn.GetBlockSettings().Duration, false, 'Timer_BlockDurationExpired', self);
         MyMonsterPawn.SetTimer(BlendInTime, false, 'Timer_EnableBlocking', self);
     }
     super.SpecialMoveStarted(bForced, PrevMove);
+}
+
+function AdjustSprintSpeed()
+{
+    local float GCMoveSpeedMod;
+
+    if(MyMonsterPawn.Role == ROLE_Authority)
+    {
+        GCMoveSpeedMod = 1;
+        if(MyMonsterPawn.WorldInfo.Game != none)
+        {
+            if(MyKFGI == none)
+            {
+                MyKFGI = KFGameInfo(MyMonsterPawn.WorldInfo.Game);
+            }
+            if((MyKFGI != none) && MyKFGI.GameConductor != none)
+            {
+                GCMoveSpeedMod = MyKFGI.GameConductor.CurrentAIMovementSpeedMod;
+            }
+        }
+        MyMonsterPawn.AdjustMovementSpeed(GCMoveSpeedMod);
+    }
+}
+
+function float GetSprintSpeedModifier()
+{
+    return ((bUseBlockSprintSpeed) ? MyMonsterPawn.GetBlockingSprintSpeedModifier() : 1);
 }
 
 function PlayAnimation()
@@ -151,6 +178,8 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         }
         if(MyMonsterPawn.Role == ROLE_Authority)
         {
+            bUseBlockSprintSpeed = false;
+            AdjustSprintSpeed();
             MyMonsterPawn.ClearTimer('Timer_ResetSpecialMoveFlags', self);
             MyMonsterPawn.ClearTimer('Timer_EnableBlocking', self);
             MyMonsterPawn.ClearTimer('Timer_BlockDurationExpired', self);

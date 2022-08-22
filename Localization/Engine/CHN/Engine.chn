@@ -66,6 +66,7 @@ ConnectingURL=虚幻://`~/`~
 Success=成功
 PeerConnecting=正连接对等点
 PeerDisconnecting=正断开对等点
+CouldNotConnect_Title=连接失败
 
 [Console]
 ClassCaption=标准虚幻平台

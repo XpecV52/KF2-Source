@@ -61,7 +61,10 @@ state Command_SpecialMove
     function bool ExecuteSpecialMove()
     {
         SpecialMove = GetSpecialMove();
-        Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'AICommand_Hans_GunStance');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'AICommand_Hans_GunStance');
+        }
         if((SpecialMove != 0) && !bShouldCheckSpecialMove || Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
             Outer.MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), StanceType);

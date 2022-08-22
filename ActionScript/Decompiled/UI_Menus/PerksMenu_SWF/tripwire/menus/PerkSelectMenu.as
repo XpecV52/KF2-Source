@@ -16,6 +16,7 @@ package tripwire.menus
     import tripwire.containers.Perks.PerksNextRankContainer;
     import tripwire.containers.Perks.PerksSkillsSummaryContainer;
     import tripwire.containers.TripContainer;
+    import tripwire.controls.perks.PerkSelectLineRenderer;
     import tripwire.managers.MenuManager;
     
     public class PerkSelectMenu extends TripContainer
@@ -56,10 +57,11 @@ package tripwire.menus
         {
             super.addedToStage(param1);
             this.SelectedPerkSummaryContainer.owner = this;
+            this.SelectionContainer.owner = this;
             this.SelectedPerkSummaryContainer.configureButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
             this.SelectedPerkSummaryContainer.configureButton.clickSoundEffect = "SHARED_BUTTON_CLICK";
             this.SkillsContainer.confirmButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
-            this.addEventListener("changePerk",this.swapPerk);
+            this.addEventListener("changePerk",this.swapPerk,false,0,true);
             sectionHeader = this.SelectionContainer.header;
             this.SelectionContainer.selectContainer();
             this.openPerkDetails();
@@ -70,22 +72,19 @@ package tripwire.menus
             this.SelectedPerkSummaryContainer.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.SelectionContainer.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             leftSidePanels.push(this.SelectionContainer);
+            this.SkillsContainer.addEventListener("SkillsConfiguredSeen",this.clearGlowOnPerk,false,0,true);
         }
         
         override public function focusGroupIn() : void
         {
             super.focusGroupIn();
-            if(this._tempSelected > -1)
-            {
-                this.SelectionContainer.perkScrollingList.selectedIndex = this._tempSelected;
-            }
+            this.SelectionContainer.perkScrollingList.selectedIndex = this.SelectionContainer.currentPerk;
             this.SelectionContainer.header.controllerIconVisible = !bSelected;
         }
         
         override public function focusGroupOut() : void
         {
             super.focusGroupOut();
-            this._tempSelected = this.SelectionContainer.perkScrollingList.selectedIndex;
             this.SelectionContainer.perkScrollingList.selectedIndex = -1;
             this.SelectionContainer.header.controllerIconVisible = !bSelected;
         }
@@ -145,6 +144,10 @@ package tripwire.menus
         
         private function openSkillConfigure() : void
         {
+            if(this.SelectionContainer.currentPerk != this.SelectionContainer.SelectedIndex && bManagerUsingGamepad)
+            {
+                return;
+            }
             if(Extensions.gfxProcessSound != null)
             {
             }
@@ -160,6 +163,18 @@ package tripwire.menus
             });
             showDimLeftSide(true);
             FocusManager.setModalClip(this.SkillsContainer);
+            containerDisplayPrompts = 2;
+            this.clearGlowOnPerk(null);
+        }
+        
+        public function clearGlowOnPerk(param1:Event) : void
+        {
+            var _loc2_:PerkSelectLineRenderer = null;
+            _loc2_ = PerkSelectLineRenderer(this.SelectionContainer.perkScrollingList.getRendererAt(this.SelectionContainer.perkScrollingList.selectedIndex));
+            if(_loc2_)
+            {
+                _loc2_.glowActive = false;
+            }
         }
         
         private function closeSkillConfigure() : void
@@ -173,6 +188,7 @@ package tripwire.menus
                 "onComplete":this.openPerkDetails
             });
             showDimLeftSide(false);
+            this.updatePrompts();
         }
         
         private function openPerkDetails() : void
@@ -180,7 +196,6 @@ package tripwire.menus
             this.DetailsContainer.openContainer();
             this.HeaderContainer.openContainer();
             this.SelectedPerkSummaryContainer.openContainer();
-            FocusManager.setModalClip(this.SelectionContainer.perkScrollingList);
         }
         
         private function closePerkDetails() : void
@@ -214,11 +229,11 @@ package tripwire.menus
                 if(!bManagerUsingGamepad)
                 {
                     this.cachedSelectionIndex = this.SelectionContainer.SelectedIndex;
+                    TweenMax.to(this,ANIM_TIME,{
+                        "useFrames":true,
+                        "onComplete":this.SkillsContainer.openContainer
+                    });
                 }
-                TweenMax.to(this,ANIM_TIME,{
-                    "useFrames":true,
-                    "onComplete":this.SkillsContainer.openContainer
-                });
                 if(Extensions.gfxProcessSound != null)
                 {
                 }
@@ -234,6 +249,15 @@ package tripwire.menus
                 {
                     Extensions.gfxProcessSound(this,"UI",this.openPerkDetailsSoundEffect);
                 }
+            }
+            this.updatePrompts();
+        }
+        
+        public function updatePrompts() : *
+        {
+            if(bManagerUsingGamepad)
+            {
+                containerDisplayPrompts = this.SelectionContainer.currentPerk == this.SelectionContainer.SelectedIndex ? int(defaultNumPrompts) : 1;
             }
         }
         

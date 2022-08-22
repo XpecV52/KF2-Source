@@ -45,7 +45,7 @@ function SpecialMoveTimeout()
 {
 	// Temporarily disabled
 
-	AILog_Internal(self$" Special move timed out",'Command_PushedBySM',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Special move timed out",'Command_PushedBySM',);};
 
 	if( MyKFPawn.SpecialMove == SpecialMove )
 	{
@@ -83,7 +83,7 @@ Begin:
 	// 		SetFocalPoint(Vect(0,0,0));
 	// 		MyKFPawn.ResetDesiredRotation();
 	// 	}
-	AILog_Internal("bPreparingMove:" @ bPreparingMove @ "MyKFPawn:" @ MyKFPawn @ "SpecialMove:" @ MyKFPawn.SpecialMove @ SpecialMove,'Command_PushedBySM',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("bPreparingMove:" @ bPreparingMove @ "MyKFPawn:" @ MyKFPawn @ "SpecialMove:" @ MyKFPawn.SpecialMove @ SpecialMove,'Command_PushedBySM',);};
  	Status = 'Success';
  	PopCommand( self );
 }

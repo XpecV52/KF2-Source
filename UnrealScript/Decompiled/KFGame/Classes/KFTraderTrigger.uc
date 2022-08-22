@@ -29,7 +29,7 @@ simulated function bool GetIsUsable(Pawn User)
     return bOpened;
 }
 
-function int GetInteractionIndex()
+function int GetInteractionIndex(Pawn User)
 {
     return 4;
 }

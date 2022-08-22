@@ -10,6 +10,7 @@ class KFGFxHUD_SpectatorInfo extends GFxObject within GFxMoviePlayer;
 var const localized string PrevPlayerString;
 var const localized string NextPlayerString;
 var const localized string ChangeCameraString;
+var GFxObject SpectatorInfoMC;
 var KFPlayerReplicationInfo SpectatedKFPRI;
 var byte LastPerkLevel;
 var class<KFPerk> LastPerkClass;
@@ -17,6 +18,7 @@ var class<KFPerk> LastPerkClass;
 function InitializeHUD()
 {
     LocalizeText();
+    SpectatorInfoMC = GetObject("spectatorInfoMC");
 }
 
 function LocalizeText()
@@ -28,6 +30,14 @@ function LocalizeText()
     TempObject.SetString("nextPlayer", NextPlayerString);
     TempObject.SetString("changeCamera", ChangeCameraString);
     SetObject("localizedText", TempObject);
+}
+
+function SetPlayerInfoVisible(bool bValue)
+{
+    if(SpectatorInfoMC != none)
+    {
+        SpectatorInfoMC.SetVisible(bValue);
+    }
 }
 
 function TickHud(float DeltaTime)
@@ -48,44 +58,49 @@ function SetSpectatedKFPRI(KFPlayerReplicationInfo TempKFPRI)
 
 function UpdateSpectateeInfo(optional bool bForceUpdate)
 {
-    local byte CurrentPerkLevel;
-
-    if((((SpectatedKFPRI == none) || Outer.GetPC().PlayerCamera.CameraStyle == 'Boss') || SpectatedKFPRI.CurrentPerkClass == none) || Outer.GetPC().WorldInfo.NetMode == NM_Standalone)
+    if(((Outer.GetPC().PlayerCamera.CameraStyle == 'Boss') || Outer.GetPC().WorldInfo.NetMode == NM_Standalone) || !Outer.GetPC().IsSpectating())
     {
         SetVisible(false);
         return;        
     }
     else
     {
-        if((((SpectatedKFPRI == Outer.GetPC().PlayerReplicationInfo) && Outer.GetPC().Pawn != none) && Outer.GetPC().Pawn.IsAliveAndWell()) || SpectatedKFPRI == none)
+        SetVisible(true);
+        if((SpectatedKFPRI == Outer.GetPC().PlayerReplicationInfo) || SpectatedKFPRI == none)
         {
-            SetVisible(false);            
+            SetPlayerInfoVisible(false);
+            return;            
         }
         else
         {
-            SetVisible(true);
+            SetPlayerInfoVisible(true);
+            UpdatePlayerInfo(bForceUpdate);
         }
+    }
+}
+
+function UpdatePlayerInfo(optional bool bForceUpdate)
+{
+    local GFxObject TempObject;
+    local byte CurrentPerkLevel;
+
+    if(SpectatedKFPRI == none)
+    {
+        return;
     }
     CurrentPerkLevel = SpectatedKFPRI.GetActivePerkLevel();
     if(((LastPerkClass != SpectatedKFPRI.CurrentPerkClass) || LastPerkLevel != CurrentPerkLevel) || bForceUpdate)
     {
         LastPerkLevel = CurrentPerkLevel;
         LastPerkClass = SpectatedKFPRI.CurrentPerkClass;
-        UpdatePlayerInfo();
-    }
-}
-
-function UpdatePlayerInfo()
-{
-    local GFxObject TempObject;
-
-    TempObject = Outer.CreateObject("Object");
-    if(TempObject != none)
-    {
-        TempObject.SetString("playerName", SpectatedKFPRI.PlayerName);
-        TempObject.SetString("playerPerk", (SpectatedKFPRI.CurrentPerkClass.default.LevelString @ string(SpectatedKFPRI.GetActivePerkLevel())) @ SpectatedKFPRI.CurrentPerkClass.default.PerkName);
-        TempObject.SetString("iconPath", "img://" $ SpectatedKFPRI.CurrentPerkClass.static.GetPerkIconPath());
-        SetObject("playerData", TempObject);
+        TempObject = Outer.CreateObject("Object");
+        if(TempObject != none)
+        {
+            TempObject.SetString("playerName", SpectatedKFPRI.PlayerName);
+            TempObject.SetString("playerPerk", (SpectatedKFPRI.CurrentPerkClass.default.LevelString @ string(SpectatedKFPRI.GetActivePerkLevel())) @ SpectatedKFPRI.CurrentPerkClass.default.PerkName);
+            TempObject.SetString("iconPath", "img://" $ SpectatedKFPRI.CurrentPerkClass.static.GetPerkIconPath());
+            SetObject("playerData", TempObject);
+        }
     }
 }
 

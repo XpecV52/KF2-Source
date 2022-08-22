@@ -73,11 +73,12 @@ package tripwire.widgets
         public function enableComm() : void
         {
             dispatchEvent(new Event("PopoutItems",true));
+            visible = true;
             TweenMax.fromTo(this,4,{
-                "autoAlpha":0,
+                "alpha":0,
                 "z":this.initialZ + 256
             },{
-                "autoAlpha":0.88,
+                "alpha":0.88,
                 "z":this.initialZ,
                 "useFrames":true,
                 "overwrite":1,
@@ -122,7 +123,6 @@ package tripwire.widgets
                     "alpha":0,
                     "z":this.initialZ + 256,
                     "visible":false,
-                    "delay":2,
                     "useFrames":true,
                     "ease":Cubic.easeIn
                 });

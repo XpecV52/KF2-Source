@@ -116,6 +116,7 @@ package tripwire.containers
                 this.helperTextContainer.text = param1;
                 if(this.helperTextContainer.alpha != 1)
                 {
+                    this.helperTextContainer.visible = true;
                     this.fadeTimeline.play();
                 }
             }
@@ -130,6 +131,12 @@ package tripwire.containers
             if(this.helperTextContainer.alpha > 0)
             {
                 this.fadeTimeline.reverse(0);
+                this.helperTextContainer.visible = false;
+            }
+            else
+            {
+                this.fadeTimeline.stop();
+                this.helperTextContainer.visible = false;
             }
         }
         
@@ -187,16 +194,12 @@ package tripwire.containers
             this.inProgressButton.visible = !param1;
             if(param1)
             {
-                this.startGameButton.y = this.lengthButton.y + this.lengthButton.height + 24;
-                this.backButton.y = this.startGameButton.y + this.startGameButton.height;
                 this.optionsHeader.text = this.soloGameString;
                 this.backButton.label = this.backString;
                 this.startGameButton.label = this.lauchGameString;
             }
             else
             {
-                this.startGameButton.y = this.serverTypeButton.y + this.serverTypeButton.height + 24;
-                this.backButton.y = this.startGameButton.y + this.startGameButton.height;
                 this.optionsHeader.text = this.matchMakingString;
                 this.backButton.label = this.leaveMatchmakingString;
                 this.startGameButton.label = this.multiplayerLaunchString;
@@ -330,7 +333,11 @@ package tripwire.containers
         
         override public function deselectContainer() : void
         {
-            currentElement = !!this._currentList ? this._currentList.associatedButton : FocusManager.getFocus() as UIComponent;
+            if(!MenuManager.manager.bPartyWidgetFocused)
+            {
+                currentElement = !!this._currentList ? this._currentList.associatedButton : FocusManager.getFocus() as UIComponent;
+            }
+            this.closeHelpText();
             super.deselectContainer();
             this.backButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.startGameButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
@@ -370,6 +377,7 @@ package tripwire.containers
             this.serverTypeList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.privacyList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.inProgressList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            stage.addEventListener(MenuManager.PARTYFOCUS_CHANGED,this.onPartyFocusChanged,false,0,true);
             leftSidePanels.push(this.backButton);
             leftSidePanels.push(this.startGameButton);
             leftSidePanels.push(this.modeButton);
@@ -614,7 +622,7 @@ package tripwire.containers
                             break;
                         case this.mapList:
                             this._currentSelectedMapIndex = param1.index;
-                            ExternalInterface.call("Callback_MapSelection",param1.index);
+                            ExternalInterface.call("Callback_MapSelection",this._currentList.dataProvider[param1.index].mapItemKey);
                             break;
                         case this.privacyList:
                             ExternalInterface.call("Callback_Privacy",param1.index);
@@ -647,6 +655,16 @@ package tripwire.containers
         
         private function resetMapOption() : *
         {
+        }
+        
+        protected function onPartyFocusChanged(param1:Event) : *
+        {
+            this.helperTextContainer.visible = false;
+            if(bManagerUsingGamepad && MenuManager.manager.bPartyWidgetFocused)
+            {
+                this.closeHelpText();
+                this.helperTextContainer.visible = false;
+            }
         }
     }
 }

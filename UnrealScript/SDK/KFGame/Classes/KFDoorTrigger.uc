@@ -75,7 +75,7 @@ simulated function bool GetIsUsable( Pawn User )
 	return false;
 }
 
-function int GetInteractionIndex()
+function int GetInteractionIndex( Pawn User )
 {
 	if ( DoorActor.bIsDestroyed )
 	{
@@ -83,7 +83,13 @@ function int GetInteractionIndex()
 	}
 	else if( DoorActor.WeldIntegrity > 0 )
 	{
+		if( User.Weapon != none && User.Weapon.Class.Name == 'KFWeap_Welder' )
+		{
+			return INDEX_NONE;
+		}
+
 		return IMT_UseDoorWelded;
+	
 	}
 	else
 	{

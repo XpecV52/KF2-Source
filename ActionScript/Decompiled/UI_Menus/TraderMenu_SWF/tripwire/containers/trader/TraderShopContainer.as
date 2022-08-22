@@ -163,11 +163,22 @@ package tripwire.containers.trader
             }
         }
         
+        protected function resetSelectedIndex() : void
+        {
+            this.shopList.selectedIndex = 0;
+            this.currentSelectedIndex = 0;
+            ExternalInterface.call("Callback_ShopItemSelected",0);
+        }
+        
         protected function buySelectedController(param1:ListEvent) : void
         {
             if(bManagerUsingGamepad)
             {
                 ExternalInterface.call("Callback_BuyOrSellItem");
+                if(this.shopList.selectedIndex == 0)
+                {
+                    this.resetSelectedIndex();
+                }
             }
         }
         
@@ -176,6 +187,10 @@ package tripwire.containers.trader
             if(!bManagerUsingGamepad)
             {
                 ExternalInterface.call("Callback_BuyOrSellItem");
+                if(this.shopList.selectedIndex == 0)
+                {
+                    this.resetSelectedIndex();
+                }
             }
         }
         
@@ -184,6 +199,10 @@ package tripwire.containers.trader
             if(!bManagerUsingGamepad)
             {
                 ExternalInterface.call("Callback_BuyOrSellItem");
+                if(this.shopList.selectedIndex == 0)
+                {
+                    this.resetSelectedIndex();
+                }
             }
         }
         
@@ -262,6 +281,10 @@ package tripwire.containers.trader
         
         override protected function onBPressed(param1:InputDetails) : void
         {
+            if(bManagerPopUpOpen)
+            {
+                return;
+            }
             if(this.shopList.focused)
             {
                 this.leaveList();

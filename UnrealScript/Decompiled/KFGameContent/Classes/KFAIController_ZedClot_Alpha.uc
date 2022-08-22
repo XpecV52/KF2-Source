@@ -23,6 +23,11 @@ function InitRallySettings()
         RallyChance = MyDifficultySettings.default.RallyTriggerSettings[int(WorldInfo.Game.GameDifficulty)].RallyChance;
         RallyCooldown = MyDifficultySettings.default.RallyTriggerSettings[int(WorldInfo.Game.GameDifficulty)].Cooldown;
     }
+    if((RallyChance == 0) && MyDifficultySettings.default.bForceSpecialSpawn)
+    {
+        RallyChance = 0.5;
+        RallyCooldown = 15;
+    }
 }
 
 function bool IsSpecialAlpha()

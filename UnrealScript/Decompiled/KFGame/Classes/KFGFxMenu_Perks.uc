@@ -61,6 +61,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 
 var KFGFxPerksContainer_Selection SelectionContainer;
 var KFGFxPerksContainer_Header HeaderContainer;
@@ -75,6 +76,7 @@ var byte SelectedSkillsHolder[5];
 var class<KFPerk> PreviousPerk;
 var const localized string TierUnlockedText;
 var const localized string TierUnlockedSecondaryText;
+var KFPlayerReplicationInfo MyKFPRI;
 var bool bModifiedSkills;
 var bool bModifiedPerk;
 var bool bChangesMadeDuringLobby;
@@ -140,6 +142,7 @@ function OnOpen()
         KFPC = KFPlayerController(Outer.GetPC());
     }
     LastPerkIndex = KFPC.SavedPerkIndex;
+    MyKFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
     UpdateSkillsHolder(KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass);
     UpdateContainers(KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass);
     UpdateLock();
@@ -191,7 +194,7 @@ function CheckTiersForPopup()
             ++ I;
             goto J0x16E;
         }
-        KFPC.MyGFxManager.OpenPopup(2, TierUnlockedText, SecondaryPopupText, Class'KFCommon_LocalizedStrings'.default.OKString,, Outer.,, Outer.,,, Outer.,, PerkLevelupSound);
+        KFPC.MyGFxManager.DelayedOpenPopup(2, 0, TierUnlockedText, SecondaryPopupText, Class'KFCommon_LocalizedStrings'.default.OKString,, Outer.,, Outer.,,, Outer.,, PerkLevelupSound);
     }
 }
 
@@ -208,10 +211,6 @@ event OnClose()
                 {
                     KFPC.NotifyPerkUpdated();
                 }
-            }
-            if(IsMatchStarted())
-            {
-                KFPC.SetHaveUpdatePerk(true);
             }
             bModifiedPerk = false;
             bModifiedSkills = false;
@@ -243,17 +242,15 @@ function PerkChanged(byte NewPerkIndex, bool bClickedIndex)
 {
     if(KFPC != none)
     {
-        if(bClickedIndex)
-        {
-            SavePerkData();
-        }
         UpdateSkillsHolder(KFPC.PerkList[NewPerkIndex].PerkClass);
-        LastPerkIndex = NewPerkIndex;
         bChangesMadeDuringLobby = !IsMatchStarted();
-        bModifiedPerk = true;
         if(bClickedIndex)
         {
+            LastPerkIndex = NewPerkIndex;
+            bModifiedPerk = true;
+            SavePerkData();
             SelectionContainer.SavePerk(NewPerkIndex);
+            Manager.CachedProfile.SetProfileSettingValueInt(105, NewPerkIndex);
         }
         UpdateContainers(KFPC.PerkList[NewPerkIndex].PerkClass, bClickedIndex);
     }
@@ -284,7 +281,7 @@ function UpdateLock()
         KFGRI = KFGameReplicationInfo(TempWorldInfo.GRI);
         if((KFGRI != none) && KFPC != none)
         {
-            SetBool("locked", KFGRI.CanChangePerks() && KFPC.bPlayerUsedUpdatePerk);
+            SetBool("locked", KFGRI.CanChangePerks() && KFPC.WasPerkUpdatedThisRound());
         }
     }
 }
@@ -360,10 +357,9 @@ function Callback_ReadyClicked(bool bReady)
 
 function Callback_PerkSelected(byte NewPerkIndex, bool bClickedIndex)
 {
-    if((LastPerkIndex != NewPerkIndex) || bClickedIndex)
+    PerkChanged(NewPerkIndex, bClickedIndex);
+    if(bClickedIndex)
     {
-        PerkChanged(NewPerkIndex, bClickedIndex);
-        Manager.CachedProfile.SetProfileSettingValueInt(105, NewPerkIndex);
     }
 }
 

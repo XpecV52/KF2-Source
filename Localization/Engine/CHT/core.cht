@@ -1,0 +1,136 @@
+[Language]
+Language=English (International)
+LangId=9
+SubLangId=1
+
+[Public]
+Object=(Name=Core.HelloWorldCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+Unknown=未知错误
+Aborted=中止
+ExportOpen=导出 `~发生错误：无法打开文件 '`~'
+ExportWrite=导出 `~发生错误：无法写入文件 '`~'
+FileNotFound=无法找到文件 '`~'
+ObjectNotFound=无法找到对象 '`~ `~.`~'
+PackageNotFound=无法找到软件包 '`~'的文件，在加载 `~ 的过程中
+PackageResolveFailed=无法解析软件包名称
+FilenameToPackage=无法将文件名 '`~'转换为软件包名称
+Sandbox=在该沙箱中，软件包 '`~'无法进行访问
+PackageVersion=软件包 '`~'版本不匹配
+SavedWithNewerVersion=软件包 '`~' 已经使用比当前更新的引擎版本进行保存，因此将不可以进行保存。 CurrEngineVersion: `~  VersionSavedWith: `~
+PackagesSavedWithNewerVersion=下面的软件包已经使用一个比当前更新的引擎版本进行保存，所以将不能进行保存：\n`~
+CannotSaveWithOlderVersion=无法保存软件包 '`~'，因为当前引擎版本比最初保存这个软件包的时候使用的版本老。
+CannotSavePartiallyLoaded=无法保存软件包 '`~'，因为它没有完全加载
+CannotSaveStartupPackage=无法保存软件包 '`~' ，因为用户选择不保存该启动软件包
+CannotSaveConformIncompatibility=无法保存符合条件的软件包 '`~'，因为它与初始版本不兼容
+Error_FilenameIsTooLongForCooking=文件名 '`~' 太长；这样可能会干扰到对控制台进行烘焙。虚幻文件名应该不多于 `~ 个字母。
+FailedLoad=无法加载 '`~': `~
+ConfigNotFound=无法找到 '`~'（在配置文件 section=`~ key=`~ 中）
+LoadClassMismatch=`~ 不是 `~ 的子类
+NotDll='`~' 不是一个DLL软件包；无法找到导出 '`~'
+NotInDll=无法找到 '`~'（在 '`~.lib'中）
+FailedLoadPackage=无法加载软件包： `~
+FailedLoadObject=无法加载 '`~ `~.`~': `~
+TransientImport=导入的临时对象： `~
+LinkedToObjectsInOtherMap_FindCulpritQ=无法保存 `~ ：图表被链接到外部地图软件包中的对象。要尝试找到这个对象的引用链（可能要花一些时间）吗？
+LinkedToPrivateObjects_FindCulpritQ=无法保存 `~ ：图表被链接到外部私有对象。要尝试找到这个对象的引用链（可能要花一些时间）吗？
+FailedSaveOtherMapPackage=无法保存 `~ ：图表被链接到外部地图软件包中的对象 `~
+FailedSavePrivate=无法保存 `~ ：图表被链接到外部私有对象 `~
+FailedImportPrivate=无法导入私有对象 `~ `~
+FailedCreate=没有找到供创建的 `~ `~
+FailedImport=无法找到 `~ （在文件 '`~'中）
+FailedSaveFile=保存文件 '`~'发生错误： `~
+SaveWarning=保存 '`~'发生错误
+NotPackaged=对象没有打包： `~ `~
+NotWithin=对象 `~ `~ 创建在 `~ 中而不是 `~
+Abstract=无法创建对象 `~ ：`~ 是抽象类
+NoReplace=无法将 `~ 替换为 `~
+ReplaceNotFullyLoaded_f="尝试替换一个还没有完全加载的对象： `~"
+ReplaceNoPostLoad_f="无法在还是反序列化对象的情况下替换需要进行后加载的对象： `~"
+NoFindImport=无法找到文件 '`~' 进行导入
+ReadFileFailed=读取文件 '`~' 进行导入失败
+SeekFailed=搜索文件发生错误
+OpenFailed=打开文件 '`~' (`~)发生错误。
+WriteFailed=写入文件发生错误
+ReadEof=读取超出字符串末尾
+IniReadOnly=文件 `~ 为写保护文件；设置无法进行保存
+UrlFailed=启动URL失败
+Warning=警告
+Question=问题
+OutOfMemory=虚拟内存不足。要防止这种情况出现，您必须在释放主要硬盘上更多的空间。
+History=历史记录
+Assert=断言失败： `~ [文件：`~] [行： `~]
+Debug=调试断言失败： `~ [文件：`~] [行： `~]
+LinkerExists='`~' 的连接器已经存在
+BinaryFormat=文件 '`~' 包含无法识别的数据，检查它是预期类型。
+SerialSize=`~: 系列大小不匹配：Got `~, Expected `~
+ExportIndex=坏导出索引 `~/`~
+ImportIndex=坏导入索引 `~/`~
+Password=密码无法识别
+Exec=无法识别的命令
+BadProperty='`~': 坏或丢失的属性 '`~'
+MisingIni=丢失的 .ini文件： `~
+Error_ActorComponentDestroyedWithoutRemoval=Actor组件 (`~) 已损坏，但是没有从场景中移除
+FileVersionDump=无法加载软件包 (`~) PackageVersion `4~， MaxExpected `4~ :  LicenseePackageVersion `4~, MaxExpected `4~.
+CookedPackagedVersionOlderThanEnginePackageFileCookedContentVersion=在使用之前较老的引擎版本进行烘焙的软件包时无法运行。请重新烘焙：(`~) CurrEngineVersion: `~  VersionSavedWith: `~
+NativeRebuildRequired=无法创建 '`~'类型对象：native类格局与脚本格局不同。请在继续避免数据破损之前编译C++。
+PackageNamedNone=尝试创建一个名为 'None'的软件包
+EmptyPackageName=尝试创建软件包名为空的软件包。
+OldVersionFile=文件 `~ 由不能向后与当前版本兼容的之前的某个版本进行保存。要求的最低版本：`~  软件包版本：`~
+LoadingTransientInstance=尝试从磁盘中加载临时类的实例 - Package:'`~'  Object:'`~'  Class:'`~'
+LoadedDeprecatedClassInstance=`~ ：类 `~ 已经被废弃。
+OperationDisallowedOnCookedContent=请求的操作无法在烘焙的软件包上执行。
+PackageBiggerThanSoftLimit=软件包 `~ 已经成功进行保存，大小为 `~ 兆比特。它超出了推荐的软件包大小。请将它拆分开，使它小于 `~ 兆比特。
+PS3SupportNotLoaded=没有安装PS3工具；对象可能在未经烘焙的情况下进行保存！请安装最新的PS3 SDK！
+Xbox360SupportNotLoaded=没有安装Xbox360工具；对象可能在未经烘焙的情况下进行保存！请安装最新的XDK！
+MissingExeConfigFileError=使用托管代码加载编辑器需要有没有找到的'`~'文件存在。必需使用这个文件，托管运行时才可以定位依赖程序集文件。现在，应用程序将会退出。
+
+[Query]
+OldVersion=文件 `~ 由不能向后与当前版本兼容的一个之前的版本进行保存。读取它很可能会失败，并可能导致崩溃。无论如何您还想尝试吗？
+Name=用户名：
+Password=密码：
+PassPrompt=输入您的用户名和密码：
+PassDlg=身份验证
+Overwrite=文件 '`~' 需要进行更新。您想要覆盖现有的版本吗？
+OverwriteMultiple=这些文件需要进行更新： `~\n你想要覆盖现有的版本吗？
+OverwriteReadOnly='`~' 标记为只读。你想要尝试强行覆盖它吗？
+CheckoutPerforce='`~' 标记为只读。我应该尝试将它迁出Perforce吗？
+PackageFailedToOpen=软件包 '`~' 无法打开。该命令行开关应该继续操作（忽略前面产生的加载错误）吗？继续可能会有负面影响（可能会丢失对象引用）。
+RemoveNativeClass=Native类没有检测到脚本：'`~'。这个类应该从静态初始化中删除吗？（如果您最近还没有删除一个native脚本类，那么请确保这个类声明包括CLASS_Intrinsic。）
+Warning_ForceDelete=删除 `~。\n\n在一个引用对象上进行强行删除具有潜在危险性，而且会导致数据破损。如果您处理:\n `~，下面的对象可能会存在无效引用。\n\n您希望删除这个引用的对象吗？
+
+[Progress]
+AutoSaving=保存文件： `~... （按下Escape键停止AutoSave（自动保存））
+Saving=保存文件： `~...
+Loading=加载文件： `~...
+Finalizing=完成： `~...
+EditorPackages=加载的软件包
+LoadingRefObjects=加载被 `~`~ 引用的对象
+ProcessingRefObjects=处理被 `~`~ 引用的对象
+
+[General]
+Product=虚幻
+Engine=虚幻引擎
+Copyright=Copyright 1998-2013 Epic Games, Inc. All Rights Reserved.
+True=真
+False=假
+None=无
+Yes=是
+No=否
+
+[HelpCommandlet]
+HelpDescription="该命令行开关会显示与其他命令行开关相关的帮助信息"
+HelpUsage="gamename.exe help <list | commandletname | webhelp commandletname>"
+HelpWebLink="https://udn.epicgames.com/bin/view/Three/HelpCommandlet"
+HelpParamNames[0]="list"
+HelpParamDescriptions[0]="会列出所有可以使用的命令行开关"
+HelpParamNames[1]="commandletname"
+HelpParamDescriptions[1]="会显示指定的命令行开关的帮助信息"
+HelpParamNames[2]="webhelp"
+HelpParamDescriptions[2]="会启动浏览器打开记录命令行开关的网页URL"
+
+[SaveData]
+TitleLabel=Killing Floor 2
+SubTitleLabel=Killing Floor 2
+DescriptionLabel=《殺戮空間 2》設定和進程資料

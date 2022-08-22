@@ -50,21 +50,24 @@ var private const float ResupplyMaxSpareAmmoModifier;
 var private const AkEvent ReceivedAmmoSound;
 var private const AkEvent ReceivedArmorSound;
 var private const AkEvent ReceivedAmmoAndArmorSound;
+var private const name BoomstickClassName;
 
 function ApplySkillsToPawn()
 {
+    super.ApplySkillsToPawn();
+    ResetSupplier();
+}
+
+function ApplyWeightLimits()
+{
     local KFInventoryManager KFIM;
 
-    super.ApplySkillsToPawn();
-    if(OwnerPawn != none)
+    KFIM = KFInventoryManager(OwnerPawn.InvManager);
+    if(KFIM != none)
     {
-        KFIM = KFInventoryManager(OwnerPawn.InvManager);
-        if(KFIM != none)
-        {
-            KFIM.MaxCarryBlocks = byte(float(KFIM.default.MaxCarryBlocks) + GetExtraStrength(CurrentLevel));
-        }
+        KFIM.MaxCarryBlocks = byte(float(KFIM.default.MaxCarryBlocks) + GetExtraStrength(CurrentLevel));
+        CheckForOverWeight(KFIM);
     }
-    ResetSupplier();
 }
 
 private static final simulated function float GetExtraStrength(int Level)
@@ -152,20 +155,17 @@ simulated function bool IgnoresPenetrationDmgReduction()
     return IsPerforateActive();
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
-    bSecondary = false;
+    bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if((IsWeaponOnPerk(KFW, WeaponPerkClass)) && (KFW == none) || !KFW.bNoMagazine)
+    if(((IsWeaponOnPerk(KFW, WeaponPerkClass)) && (KFW == none) || !KFW.bNoMagazine) && WeaponClassName != BoomstickClassName)
     {
-        if(KFW != none)
+        if(IsHighCapMagsMagActive())
         {
-            if(IsHighCapMagsMagActive())
-            {
-                TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[0])));
-            }
+            TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[0])));
         }
     }
     MagazineCapacity = byte(Round(TempCapacity));
@@ -281,7 +281,7 @@ simulated function Interact(KFPawn_Human KFPH)
             bReceivedAmmo = ((KFW.AddAmmo(MagCount * KFW.MagazineCapacity[0]) > 0) ? true : bReceivedAmmo);
             if(KFW.CanRefillSecondaryAmmo())
             {
-                bReceivedAmmo = ((KFW.AddSecondaryAmmo(Max(KFW.InitialSpareMags[1] / 3, 1)) > 0) ? true : bReceivedAmmo);
+                bReceivedAmmo = ((KFW.AddSecondaryAmmo(Max(int(KFW.AmmoPickupScale[1] * float(KFW.MagazineCapacity[1])), 1)) > 0) ? true : bReceivedAmmo);
             }            
         }        
     }
@@ -297,6 +297,7 @@ simulated function Interact(KFPawn_Human KFPH)
             SuppliedPawnInfo.SuppliedPawn = KFPH;
             SuppliedPawnInfo.bSuppliedAmmo = bReceivedAmmo;
             SuppliedPawnInfo.bSuppliedArmor = bReceivedArmor;
+            Idx = SuppliedPawnList.Length;
             SuppliedPawnList.AddItem(SuppliedPawnInfo;            
         }
         else
@@ -324,7 +325,7 @@ simulated function Interact(KFPawn_Human KFPH)
             OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
             if((UserPRI != none) && OwnerPRI != none)
             {
-                UserPRI.MarkSupplierOwnerUsed(OwnerPRI, bReceivedAmmo, bReceivedArmor);
+                UserPRI.MarkSupplierOwnerUsed(OwnerPRI, SuppliedPawnList[Idx].bSuppliedAmmo, SuppliedPawnList[Idx].bSuppliedArmor);
             }
         }        
     }
@@ -448,7 +449,7 @@ private final simulated function bool IsAPShotActive()
     return PerkSkills[4].bActive;
 }
 
-private final function bool IsTightChokeActive()
+private final simulated function bool IsTightChokeActive()
 {
     return PerkSkills[5].bActive;
 }
@@ -517,6 +518,7 @@ defaultproperties
     ReceivedAmmoSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Ammo'
     ReceivedArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
     ReceivedAmmoAndArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
+    BoomstickClassName=KFWeap_Shotgun_DoubleBarrel
     ProgressStatID=20
     PerkBuildStatID=21
     SecondaryXPModifier[0]=6

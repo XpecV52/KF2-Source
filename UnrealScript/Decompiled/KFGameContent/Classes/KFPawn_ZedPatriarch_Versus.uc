@@ -159,22 +159,8 @@ protected simulated function float GetMinCloakPct()
 
 private final function UpdateHealAvailable()
 {
-    if(IsHealAllowed())
+    if(!IsHealAllowed())
     {
-        if((MyKFPC != none) && !bIsQuickHealMessageShowing)
-        {
-            bIsQuickHealMessageShowing = true;
-            MyKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 9);
-            SpecialMoveCooldowns[5].LastUsedTime = 0;
-        }        
-    }
-    else
-    {
-        if(bIsQuickHealMessageShowing)
-        {
-            bIsQuickHealMessageShowing = false;
-            MyKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);
-        }
         SpecialMoveCooldowns[5].LastUsedTime = WorldInfo.TimeSeconds;
     }
 }
@@ -415,7 +401,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_235' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_237' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -439,7 +425,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(3)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_853' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_861' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -450,7 +436,7 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_853' was not fou
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-200,Y=90,Z=45),OffsetMid=(X=-185,Y=110,Z=45),OffsetLow=(X=-220,Y=130,Z=55))
     begin object name=MeleeHelper class=KFMeleeHelperAI
-        BaseDamage=40
+        BaseDamage=25
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedPatriarch_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
@@ -458,7 +444,6 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_853' was not fou
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedPatriarch_Versus.FootstepCameraShake0'
-    LocalizationKey=KFPawn_ZedPatriarch
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -466,6 +451,7 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_853' was not fou
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bNeedsCrosshair=true
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedPatriarch_Versus.Afflictions'
+    IncapSettings=/* Array type was not detected. */
     SprintSpeed=700
     SprintStrafeSpeed=400
     TeammateCollisionRadiusPercent=0.3
@@ -485,7 +471,7 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_853' was not fou
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedPatriarch_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.DialogAkSoundComponent'
-    Health=2240
+    Health=1680
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

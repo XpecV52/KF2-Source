@@ -22,6 +22,7 @@ var bool                            bUsesAmmo;
 var int                             LastFlashlightBattery;
 //
 var int                             LastGrenades;
+var int                             LastSavedBuild;
 
 var int                             LastMaxWeight;
 var int                             LastWeight;
@@ -104,12 +105,14 @@ function UpdateGrenades()
     }
     
     //Update the icon the for grenade type.
-    if(MyKFPC.GetPerk() != none)
+    if(MyKFPC.CurrentPerk != none)
     {
-        if( LastPerkClass != MyKFPC.GetPerk().Class )
+        if( LastPerkClass != MyKFPC.CurrentPerk.Class || 
+            LastSavedBuild != MyKFPC.CurrentPerk.GetSavedBuild() )
         {
-            SetString("backpackGrenadeType", "img://"$MyKFPC.CurrentPerk.GrenadeWeaponDef.Static.GetImagePath());
+            SetString("backpackGrenadeType", "img://" $ MyKFPC.CurrentPerk.GetGrenadeImagePath());
             LastPerkClass = MyKFPC.CurrentPerk.Class;
+            LastSavedBuild = MyKFPC.CurrentPerk.GetSavedBuild();
         }  
     }
     // Update the grenades count value

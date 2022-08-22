@@ -28,13 +28,11 @@ function InitializeHUD()
 
 function LocalizeText()
 {
-	local string CurrentMapName;
     local GFxObject LocalizedObject;
     local string MatchInfoString;
     local string GameDifficultyString;
     local KFGameReplicationInfo KFGRI;
 
-	CurrentMapName = class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(GetPC().WorldInfo.GetMapName());
 	GameTypeString = class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
 	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
 
@@ -50,7 +48,7 @@ function LocalizeText()
 	LocalizedObject = CreateObject( "Object" );
 
 	LocalizedObject.SetString("waveText", WaveString);
-	LocalizedObject.SetString("mapText", class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(CurrentMapName));
+	LocalizedObject.SetString("mapText", class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(GetPC().WorldInfo.GetMapName(true)));
 	LocalizedObject.SetString("matchInfo", MatchInfoString);
 	
 	SetObject("localizeText", LocalizedObject);

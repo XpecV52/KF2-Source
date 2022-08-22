@@ -34,20 +34,29 @@ function Pushed()
     Outer.MoveTimer = -1;
     Outer.StopAllLatentMovement();
     LockdownAI();
-    Outer.AILog_Internal(string(self) @ "Pushed", 'Husk_Suicide');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(self) @ "Pushed", 'Husk_Suicide');
+    }
     Outer.AIActionStatus = "Executing suicide AICommand";
 }
 
 function Resumed(name OldCommandName)
 {
-    Outer.AILog_Internal((string(self) @ "Resumed, previous command: ") $ string(OldCommandName), 'Husk_Suicide');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((string(self) @ "Resumed, previous command: ") $ string(OldCommandName), 'Husk_Suicide');
+    }
     super.Resumed(OldCommandName);
     LockdownAI();
 }
 
 function Paused(GameAICommand NewCommand)
 {
-    Outer.AILog_Internal(((string(self) @ "Paused by command") @ string(NewCommand)) $ ", WTF!", 'Husk_Suicide');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((string(self) @ "Paused by command") @ string(NewCommand)) $ ", WTF!", 'Husk_Suicide');
+    }
     super.Paused(NewCommand);
     UnlockAI();
 }
@@ -55,7 +64,10 @@ function Paused(GameAICommand NewCommand)
 function Popped()
 {
     super.Popped();
-    Outer.AILog_Internal(string(self) @ "Popped()", 'Husk_Suicide');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(self) @ "Popped()", 'Husk_Suicide');
+    }
     if(Outer.Pawn != none)
     {
         Outer.AIActionStatus = "Finished suicide AICommand, health:" $ string(Outer.Pawn.Health);

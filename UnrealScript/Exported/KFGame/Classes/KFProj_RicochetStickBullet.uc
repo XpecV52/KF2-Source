@@ -34,8 +34,10 @@ var() float PickupRadius;
 /** The height of the pickup collision when the projectile stops moving  */
 var() float PickupHeight;
 
-/** Class of the weapon that shot this projectile */
-var class<KFWeapon> WeaponClass;
+/** Class name of the weapon that shot this projectile (Network: Client) */
+var const name WeaponClassName;
+/** Class of weapon fired from for pickup logic (Network: Server only) */
+var class<Weapon> WeaponClass;
 
 /** Sound to play when picking up ammo */
 var() AkEvent AmmoPickupSound;
@@ -75,6 +77,23 @@ simulated event ReplicatedEvent(name VarName)
 	else
 	{
 		Super.ReplicatedEvent(VarName);
+	}
+}
+
+event PreBeginPlay()
+{
+    super.PreBeginPlay();
+
+	// store weapon class for later on the server
+	if ( Role == ROLE_Authority && PickupRadius > 0 )
+	{
+		WeaponClass = Instigator.Weapon.Class;
+
+		// These better be the same or someone messed up
+		if ( WeaponClass.Name != WeaponClassName )
+		{
+			WarnInternal("Projectile pickup mismatch class:"$WeaponClass@"name:"$WeaponClassName);
+		}
 	}
 }
 
@@ -149,11 +168,31 @@ simulated function vector DecodeSmallVector(vector V)	{return V / 256.f;}
  */
 simulated function SpawnFlightEffects()
 {
+	local KFWeapon W;
+	local PlayerController PC;
+	local bool bOwnsWeapon;
+
 	super.SpawnFlightEffects();
 
 	if (WorldInfo.NetMode != NM_DedicatedServer && ProjEffects!=None )
 	{
 		ProjEffects.SetVectorParameter('Rotation', vect(0,0,1));
+
+		PC = GetALocalPlayerController();
+		if ( PC.Pawn != None )
+		{
+			// If we own this weapon show the pickup icon
+			foreach PC.Pawn.InvManager.InventoryActors( class'KFWeapon', W )
+			{
+				if( W.Class.Name == WeaponClassName )
+				{
+					bOwnsWeapon = true;
+					break;
+				}
+			}
+		}
+
+		ProjEffects.SetFloatParameter('Icon', (bOwnsWeapon) ? 1.f : 0.f);
 	}
 }
 
@@ -363,15 +402,15 @@ simulated function Tick( float DeltaTime )
 	LastLocation = Location;
 
 	// Make it start falling faster if it's moving really slow
-	if( Physics == PHYS_Projectile && VSizeSq(Velocity) < ((Speed * Speed) * 0.1) )
+	if( Physics == PHYS_Projectile && VSizeSq(Velocity) < (Square(Speed) * 0.1f) )
 	{
-		SetPhysics(PHYS_Falling);
-		GravityScale=1.0;
+		SetPhysics( PHYS_Falling );
+		GravityScale = 1.0f;
 	}
 
 	if ( WorldInfo.NetMode != NM_DedicatedServer && Physics != PHYS_None )
 	{
-		SetRotation(Rotator(Normal(Velocity)));
+		SetRotation( rotator(Velocity) );
 	}
 }
 
@@ -385,9 +424,10 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
 	if ( Other != Instigator && !Other.bWorldGeometry && Other.bCanBeDamaged )
 	{
-		if ( Pawn(other) != None )
+		if( ShouldProcessBulletTouch() )
 		{
-			if( Physics != Phys_Falling )
+			KFP = KFPawn( Other );
+			if ( KFP != None )
 			{
 				// check/ignore repeat touch events
 				if( CheckRepeatingTouch(Other) )
@@ -401,11 +441,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 				if( PenetrationPower > 0 || PassThroughDamage(Other) )
 				{
 					// Reduce penetration power for every KFPawn penetrated
-					KFP = KFPawn(Other);
-					if ( KFP != none )
-					{
-						PenetrationPower -= KFP.PenetrationResistance;
-					}
+					PenetrationPower -= KFP.PenetrationResistance;
 					bPassThrough = TRUE;
 				}
 
@@ -423,17 +459,22 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 					BouncesLeft=0;
 					SetPhysics(PHYS_Falling);
 				}
+				return;
+			}
+			else
+			{
+				ProcessDestructibleTouchOnBounce( Other, HitLocation, HitNormal );
+				return;
 			}
 		}
-		else
-		{
-			ProcessDestructibleTouchOnBounce( Other, HitLocation, HitNormal );
-		}
 	}
-	else
-	{
-		Super.ProcessTouch(Other, HitLocation, HitNormal);;
-	}
+
+	Super.ProcessTouch(Other, HitLocation, HitNormal);;
+}
+
+simulated function bool ShouldProcessBulletTouch()
+{
+	return Physics == PHYS_Projectile && BouncesLeft > 0;
 }
 
 defaultproperties

@@ -132,7 +132,10 @@ Begin:
     if((Outer.MyKFPawn == none) || !Outer.MyKFPawn.IsAliveAndWell())
     {
         Status = 'Failure';
-        Outer.AILog_Internal("No pawn, aborting", 'Command_Flee');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("No pawn, aborting", 'Command_Flee');
+        }
         Outer.NotifyFleeFinished();
         Outer.PopCommand(self);        
     }
@@ -146,7 +149,10 @@ Begin:
         if((Outer.MyKFPawn == none) || !Outer.MyKFPawn.IsAliveAndWell())
         {
             Status = 'Failure';
-            Outer.AILog_Internal("No pawn, or pawn died from falling", 'Command_Flee');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal("No pawn, or pawn died from falling", 'Command_Flee');
+            }
             Outer.NotifyFleeFinished();
             Outer.PopCommand(self);            
         }
@@ -184,7 +190,10 @@ Begin:
                 if(PathAttempts > 30)
                 {
                     Status = 'Failure';
-                    Outer.AILog_Internal(("Failed to find flee path from [" $ string(FleeTarget)) $ "] after 30 attempts, aborting...", 'Command_Flee');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal(("Failed to find flee path from [" $ string(FleeTarget)) $ "] after 30 attempts, aborting...", 'Command_Flee');
+                    }
                     Outer.NotifyFleeFinished();
                     Outer.PopCommand(self);                    
                 }
@@ -196,12 +205,12 @@ Begin:
             }
         }
     }
-    J0x66C:
+    J0x71A:
 
     Status = 'Success';
     Outer.NotifyFleeFinished();
     Outer.PopCommand(self);
-    stop;                    
+    stop;            
 }
 
 state RotateToFocus extends DebugState

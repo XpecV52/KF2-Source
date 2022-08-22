@@ -145,7 +145,6 @@ package tripwire.controls
         
         public function indexChanged(param1:IndexEvent) : void
         {
-            trace("INDEX CHANGED: ",param1.index);
         }
         
         protected function close(param1:FocusEvent = null) : void

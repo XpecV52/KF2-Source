@@ -18,6 +18,12 @@ package tripwire.widgets
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            var _loc2_:int = 0;
+            while(_loc2_ < this.MaxTeamSlots)
+            {
+                this["teamSlot_" + _loc2_].data = null;
+                _loc2_++;
+            }
         }
         
         public function set data(param1:Array) : void
@@ -26,11 +32,15 @@ package tripwire.widgets
             if(param1)
             {
                 _loc2_ = 0;
-                while(_loc2_ < param1.length)
+                while(_loc2_ < this.MaxTeamSlots)
                 {
-                    if(_loc2_ < this.MaxTeamSlots)
+                    if(_loc2_ < param1.length)
                     {
                         this["teamSlot_" + _loc2_].data = param1[_loc2_];
+                    }
+                    else
+                    {
+                        this["teamSlot_" + _loc2_].data = null;
                     }
                     _loc2_++;
                 }

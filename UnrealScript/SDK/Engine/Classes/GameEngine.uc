@@ -88,12 +88,12 @@ var config	array<string>	ServerActors;
 var			string			TravelURL;
 var			byte			TravelType;
 
+`if(`__TW_NETWORKING_)
 //@HSL_BEGIN - BWJ - 8-10-16 - Saved client URL for takeover (contains client options)
 var			string			ClientOptionsForTakeoverURL;
 
-`if(`__TW_NETWORKING_)
 var 		string 			TakeoverURL;
-var globalconfig  bool            bUsedForTakeover;
+var globalconfig  bool      bUsedForTakeover;
 var         bool            bAvailableForTakeover;
 /** TRUE if this is a private server. Used for console */
 var			bool			bPrivateServer;
@@ -567,5 +567,6 @@ cpptext
 	#if __TW_
 		void UpdateBenchmarkStats();
 		void SaveBenchmarkStats();
+		void SecureConnect(const TCHAR* URL);
 	#endif
 }

@@ -8,6 +8,7 @@ package tripwire.menus
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.ListEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     
@@ -25,6 +26,8 @@ package tripwire.menus
         
         public var coverBG:MovieClip;
         
+        public var coverBGTween:TweenMax;
+        
         public function StoreMenu()
         {
             super();
@@ -35,19 +38,18 @@ package tripwire.menus
         override protected function onBPressed(param1:InputDetails) : void
         {
             super.onBPressed(param1);
-            if(this.itemDetails.bOpen)
+            if(this.coverBGTween.progress() == 1)
             {
-                this.itemDetails.closeContainer();
-                TweenMax.to(this.coverBG,8,{
-                    "autoAlpha":0,
-                    "useFrames":true,
-                    "ease":Cubic.easeOut
-                });
-                this.storeMainContainer.selectContainer();
-            }
-            else if(!this.storeMainContainer.leftSideFocused)
-            {
-                this.storeMainContainer.selectContainer();
+                this.coverBGTween.reverse();
+                if(this.itemDetails.bOpen)
+                {
+                    this.itemDetails.closeContainer();
+                    this.storeMainContainer.selectContainer();
+                }
+                else if(!this.storeMainContainer.leftSideFocused)
+                {
+                    this.storeMainContainer.selectContainer();
+                }
             }
         }
         
@@ -57,11 +59,10 @@ package tripwire.menus
             if(this.itemDetails.bOpen)
             {
                 this.itemDetails.selectContainer();
-                TweenMax.to(this.coverBG,8,{
-                    "autoAlpha":1,
-                    "useFrames":true,
-                    "ease":Cubic.easeOut
-                });
+                if(this.coverBGTween != null && this.coverBGTween.progress() < 1)
+                {
+                    this.coverBGTween.play();
+                }
             }
             else
             {
@@ -78,19 +79,24 @@ package tripwire.menus
         {
             super.addedToStage(param1);
             this.storeMainContainer.Owner = this;
-            this.storeMainContainer.storeItemScrollingList.addEventListener(ListEvent.ITEM_CLICK,this.storeItemClicked,false,0,true);
+            this.storeMainContainer.storeItemScrollingList.addEventListener(ListEvent.ITEM_PRESS,this.storeItemClicked,false,0,true);
             this.itemDetails.cancelButton.addEventListener(ButtonEvent.CLICK,this.onCancelClick,false,0,true);
+            this.coverBGTween = new TweenMax(this.coverBG,8,{
+                "autoAlpha":1,
+                "ease":Cubic.easeOut,
+                "useFrames":true,
+                "paused":true
+            });
         }
         
         public function onCancelClick(param1:ButtonEvent) : void
         {
             this.itemDetails.closeContainer();
             this.storeMainContainer.selectContainer();
-            TweenMax.to(this.coverBG,8,{
-                "autoAlpha":0,
-                "useFrames":true,
-                "ease":Cubic.easeOut
-            });
+            if(this.coverBGTween != null)
+            {
+                this.coverBGTween.reverse();
+            }
         }
         
         public function onDetailsClosed(param1:Event) : void
@@ -104,15 +110,19 @@ package tripwire.menus
         public function showCart(param1:ButtonEvent) : void
         {
             this.storeCart.openContainer();
-            TweenMax.to(this.coverBG,8,{
-                "autoAlpha":1,
-                "useFrames":true,
-                "ease":Cubic.easeOut
-            });
+            if(this.coverBGTween != null && this.coverBGTween.progress() < 1)
+            {
+                this.coverBGTween.play();
+            }
         }
         
         public function storeItemClicked(param1:ListEvent) : void
         {
+            trace("BRIAN:: [" + this + "] storeItemClicked");
+            this.coverBGTween.play();
+            trace("BRIAN:: [" + this + "] play");
+            FocusManager.setFocus(null);
+            FocusManager.setModalClip(this.itemDetails);
             this.storeMainContainer.deselectContainer();
             ExternalInterface.call("CallBack_ItemDetailsClicked",param1.itemData.SKU);
             this.storeMainContainer.pushToBackground();
@@ -122,11 +132,6 @@ package tripwire.menus
         {
             this.itemDetails.openContainer();
             this.itemDetails.details = param1;
-            TweenMax.to(this.coverBG,8,{
-                "autoAlpha":1,
-                "useFrames":true,
-                "ease":Cubic.easeOut
-            });
         }
         
         override public function closeContainer() : void
@@ -135,11 +140,10 @@ package tripwire.menus
             {
                 this.itemDetails.closeContainer();
                 this.storeMainContainer.selectContainer();
-                TweenMax.to(this.coverBG,8,{
-                    "autoAlpha":0,
-                    "useFrames":true,
-                    "ease":Cubic.easeOut
-                });
+                if(this.coverBGTween != null)
+                {
+                    this.coverBGTween.reverse();
+                }
             }
             this.storeMainContainer.leftSideFocused = true;
             super.closeContainer();

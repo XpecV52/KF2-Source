@@ -710,7 +710,7 @@ function SetPlayerDefaults(Pawn PlayerPawn)
 	Super.SetPlayerDefaults(PlayerPawn);
 
 	// humans get full armor for the first wave
-	if ( MyKFGRIV.WaveNum == 0 )
+	if ( WaveNum == 0 )
 	{
 		P = KFPawn_Human(PlayerPawn);
 		if ( P != none )
@@ -897,7 +897,7 @@ function ScoreKill(Controller Killer, Controller Other)
             }
         }
     }
-    else if( MyKFGRIV.WaveNum == MyKFGRIV.WaveMax && KFPawn_MonsterBoss(Other.Pawn) != none )
+    else if( WaveNum == WaveMax && KFPawn_MonsterBoss(Other.Pawn) != none )
     {
         // Add our boss kill points
         BossDamageDone = POINTS_FOR_BOSS_KILL;
@@ -944,7 +944,7 @@ function EndOfMatch(bool bVictory)
     WorldInfo.TWPushLogs();
 
     // Calculate final score
-    WaveBonus = Max( (MyKFGRI.WaveNum - 1), 0) * POINTS_FOR_WAVE_COMPLETION;
+    WaveBonus = Max( (WaveNum - 1), 0) * POINTS_FOR_WAVE_COMPLETION;
 
     if( bVictory )
     {
@@ -956,7 +956,7 @@ function EndOfMatch(bool bVictory)
     {
         CheckRoundEndAchievements( 255 );
 
-        if( MyKFGRI.WaveNum != MyKFGRI.WaveMax )
+        if( WaveNum != WaveMax )
         {
             WaveBonus += Max( int(float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe), 0 );
         }
@@ -999,9 +999,9 @@ function WaveEnded( EWaveEndCondition WinCondition )
     ClearTimer( nameOf(CheckPawnsForGriefing) );
 
     // If game ended on a wipe, record how many zeds were killed as well as wave reached
-    if( WinCondition == WEC_TeamWipedOut && SpawnManager != none && MyKFGRI.WaveNum != MyKFGRI.WaveMax )
+    if( WinCondition == WEC_TeamWipedOut && SpawnManager != none && WaveNum != WaveMax )
     {
-        PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
+        PercentOfZedsKilledBeforeWipe = fClamp( 1.f - (float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI)), 0.f, 1.f );
     }
 
     // Tabulate the number of kills this wave
@@ -1022,7 +1022,7 @@ function WaveEnded( EWaveEndCondition WinCondition )
                 WaveKills -= KFPRIV.WaveKills[j];
             }
 
-            KFPRIV.WaveKills[MyKFGRI.WaveNum] = WaveKills;
+            KFPRIV.WaveKills[WaveNum] = WaveKills;
         }
     }
 
@@ -1112,7 +1112,7 @@ function UpdateFirstRoundTeamScore()
     Teams[1].TeamScoreDataPacket.Deaths = HumanDeaths;
 
     // Cache boss values if relevant
-    if( MyKFGRI.WaveNum == MyKFGRI.WaveMax )
+    if( WaveNum == WaveMax )
     {
         // Boss damage done
         Teams[1].TeamScoreDataPacket.BossDamageDone = BossDamageDone;
@@ -1152,7 +1152,7 @@ function UpdateSecondRoundTeamScore()
     Teams[0].TeamScoreDataPacket.Deaths = HumanDeaths;
 
     // Cache boss values if relevant
-    if( MyKFGRI.WaveNum == MyKFGRI.WaveMax )
+    if( WaveNum == WaveMax )
     {
         // Boss damage done
         Teams[0].TeamScoreDataPacket.BossDamageDone = BossDamageDone;
@@ -1237,7 +1237,16 @@ protected function ClosePostRoundMenu( optional bool bMatchOver=false )
 /** Announces the next round to players */
 protected function Timer_AnnounceNextRound()
 {
-    BroadcastLocalizedMessage( class'KFLocalMessage_Priority', GMT_NextRoundBegin );
+	local KFPlayerController KFPC;
+
+	foreach WorldInfo.AllControllers( class'KFPlayerController', KFPC )
+	{
+		// Only process players that are ready to play
+		if( KFPC.CanRestartPlayer() )
+		{
+			KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Priority', GMT_NextRoundBegin,,, KFPC.PlayerReplicationInfo.Team );
+		}
+	}
 }
 
 /** Checks to ensure a game is actually playable and balances accordingly */
@@ -1290,7 +1299,40 @@ protected function BeginNextRound()
     // Init next round
     MyKFGRIV.bStopCountDown = true;
     MyKFGRIV.SetPlayerZedSpawnTime( PostRoundWaitTime, false );
+
     ClosePostRoundMenu();
+}
+
+function bool IsInitialSpawnPointSelection()
+{
+	return MyKFGRI.bRoundIsOver || super.IsInitialSpawnPointSelection();
+}
+
+/** Attempts to pre-select player starts and begin texture streaming */
+protected function PreSelectPlayerStarts()
+{
+	local KFPlayerController KFPC;
+	local byte TeamNum;
+	
+	foreach WorldInfo.AllControllers( class'KFPlayerController', KFPC )
+	{
+		KFPC.StartSpot = none;
+		TeamNum = KFPC.GetTeamNum();
+		if( KFPC.GetTeamNum() == 0 )
+		{
+			KFPC.StartSpot = FindPlayerStart( KFPC, TeamNum );
+		}
+		else
+		{
+			KFPC.StartSpot = none;
+			continue;
+		}
+
+		if( KFPC.StartSpot != none )
+		{
+			KFPC.ClientAddTextureStreamingLoc( KFPC.StartSpot.Location, 0.f, false );
+		}
+	}
 }
 
 /** Starts spawning */
@@ -1326,11 +1368,19 @@ state RoundEnded
 {
     event BeginState( name PrevStateName )
     {
+		local int i;
+
         // Set round over flag (allows perk changes etc)
         MyKFGRIV.bRoundIsOver = true;
 
         // Increment round
         MyKFGRIV.CurrentRound += 1;
+
+		// BWJ - 10-3-16 - Clear the spawned in flag when round end begins
+		for( i = 0; i < GameReplicationInfo.PRIArray.Length; i++ )
+		{
+			KFPlayerReplicationInfo(GameReplicationInfo.PRIArray[i]).bHasSpawnedIn = false;
+		}
 
         // Turn off respawn timer
         MyKFGRIV.SetPlayerZedSpawnTime( 255, false );
@@ -1353,7 +1403,7 @@ Begin:
 
     // Wait for the results screen duration and start the next round
     Sleep( GetEndOfMatchTime() );
-    if(  MyKFGRIV.CurrentRound > 1 )
+    if( MyKFGRIV.CurrentRound > 1 )
     {
         GotoState( 'MatchEnded' );
         Sleep(0.f);
@@ -1362,7 +1412,9 @@ Begin:
     BeginNextRound();
 
     // Wait a short time after closing the results screen (for perk changes) before spawning
-    Sleep( PostRoundWaitTime );
+    Sleep( fMax(PostRoundWaitTime - 3.f, 0.f) );
+    PreSelectPlayerStarts();
+    Sleep( 3.f );
 
 End:
     StartSpawning();
@@ -1435,6 +1487,14 @@ defaultproperties
    MinNetPlayers=2
    DifficultyInfoClass=Class'kfgamecontent.KFGameDifficulty_Versus'
    DifficultyInfoConsoleClass=Class'kfgamecontent.KFGameDifficulty_Versus_Console'
+   DeathPenaltyModifiers(0)=0.030000
+   DeathPenaltyModifiers(1)=()
+   DeathPenaltyModifiers(2)=()
+   DeathPenaltyModifiers(3)=()
+   MaxRespawnDosh(0)=1950.000000
+   MaxRespawnDosh(1)=()
+   MaxRespawnDosh(2)=()
+   MaxRespawnDosh(3)=()
    MaxGameDifficulty=0
    GameLengthDoshScale(0)=1.000000
    GameLengthDoshScale(1)=()

@@ -292,6 +292,19 @@ function bool NotifyBump( actor Other, vector HitNormal )
 	return false;
 }
 
+function bool NotifyLatentPostPhysWalking()
+{
+	if( CachedChildCommand != None )
+	{
+		`AILog( GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.", 'PostPhysWalking' );
+		if( CachedChildCommand.NotifyLatentPostPhysWalking() )
+		{
+			return true;
+		}
+	}
+	return false;	
+}
+
 function bool NotifyTouch(Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal)
 {
 	if( CachedChildCommand != None )

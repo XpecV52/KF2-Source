@@ -95,7 +95,7 @@ function PlayAnimation()
         WarnInternal(((((string(KFPOwner) $ " ") $ string(GetFuncName())) $ " ") $ string(self)) $ " attempting special move attack but the AttackAnims array is empty!");
         return;
     }
-    if(AIOwner != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && AIOwner != none)
     {
         AIOwner.AILog_Internal((((string(GetFuncName()) $ " ") $ string(self)) $ " chose attack animation ") $ string(AnimName), 'Command_SpecialMove');
     }

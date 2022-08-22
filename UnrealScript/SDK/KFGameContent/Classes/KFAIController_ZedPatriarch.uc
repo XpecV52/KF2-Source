@@ -221,17 +221,9 @@ event Possess( Pawn inPawn, bool bVehicleTransition )
 
 	// Initialize sprint time
 	LastSprintTime = WorldInfo.TimeSeconds;
-
-	// Initialize last successful attack time
 	LastSuccessfulAttackTime = WorldInfo.TimeSeconds;
-
-	// Initialize last grab attack time
 	LastGrabAttackTime = WorldInfo.TimeSeconds;
-
-	// Initialize last missile attack time
 	LastMissileAttackTime = WorldInfo.TimeSeconds;
-
-	// Initialize last mortar attack time
 	LastMortarAttackTime = WorldInfo.TimeSeconds;
 	
 	// Wait a bit before evaluating special attacks
@@ -685,7 +677,7 @@ function EvaluateAttacks( float DeltaTime )
 		&& `TimeSince(LastGrabAttackTime) > MyPatPawn.TentacleGrabCooldownTime
 		&& (!MyPatPawn.bIsCloaking || fRand() < 0.25f) )
 	{
-		if( SetBestTarget(LastGrabbedPlayers, MinTentacleRangeSQ, Square(class'KFSM_Patriarch_Grapple'.default.MaxRange*0.85f*MyPatPawn.GetAttackRangeScale()), 0.6f, true, true) )
+		if( SetBestTarget(LastGrabbedPlayers, MinTentacleRangeSQ, Square(class'KFSM_Patriarch_Grapple'.default.MaxRange*0.8f*MyPatPawn.GetAttackRangeScale()), 0.4f, true, true) )
 		{
 			MyPatPawn.SetCloaked( false );
 			class'AICommand_Patriarch_Grab'.static.TentacleGrab( self );
@@ -860,19 +852,12 @@ function EvaluateSprinting()
 /** Timer function called during latent moves that determines whether NPC should sprint or stop sprinting */
 function bool ShouldSprint()
 {
-	if( Enemy != none && MyPatPawn != none && !MyPatPawn.bIsHeadless && !MyPatPawn.bEmpPanicked )
+	if( Enemy != none && MyPatPawn != none && !MyPatPawn.bIsHeadless )
 	{
 		// Don't allow sprinting in minigun attack
 		if( MyPatPawn.IsDoingSpecialMove(SM_HoseWeaponAttack) )
 		{
 			return false;
-		}
-
-		// Always sprint if cloaked
-		if( MyPatPawn.bIsCloaking )
-		{
-			//`log(self@GetFuncName()$" bIsCloaking should sprint!");
-			return true;
 		}
 
 		// Always sprint if fleeing
@@ -882,11 +867,24 @@ function bool ShouldSprint()
             return true;
 		}
 
+		// Always sprint if cloaked
+		if( MyPatPawn.bIsCloaking )
+		{
+			//`log(self@GetFuncName()$" bIsCloaking should sprint!");
+			return true;
+		}
+
 		// Always sprint if raging
         if( bRaging )
 		{
 			//`log(self@GetFuncName()$" In Paternal Instinct mode, should sprint!");
             return true;
+		}
+
+		// EMP check always comes after any forced sprint state
+		if( MyPatPawn.bEmpPanicked )
+		{
+			return false;
 		}
 
 		// Sprint until we attack
@@ -1319,6 +1317,7 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
 	   		TotalFleeTime = 0.f;
 	   		bCanEvaluateAttacks = false;
 	   		bWantsToFlee = true;
+		    EndPanicWander();
 			NextBattlePhase();
    			class'AICommand_TauntEnemy'.static.Taunt( self, Enemy, TAUNT_Enraged, class'KFSM_Patriarch_Taunt' );
 	       	MyPatPawn.SetFleeAndHealMode( true );
@@ -1731,15 +1730,17 @@ function Flee()
 	}
 
     // Abort all commands
+    EndPanicWander();
     AbortCommand( CommandList );
 
 	// Perform flee
 	bFleeing = true;
 	bCanEvaluateAttacks = false;
 	MyPatPawn.SetCloaked( true );
+	SetSprintingDisabled( false );
 	MyPatPawn.SetSprinting( true );
 	DisableMeleeRangeEventProbing();
-
+	
 	FleeDuration = fMax( MaxFleeDuration - TotalFleeTime, 6.f );
 	//`log("[FLEE] FleeDuration:"@FleeDuration);
 	//`log("[FLEE] FleeStartTime:"@WorldInfo.TimeSeconds);
@@ -1933,7 +1934,7 @@ DefaultProperties
 	// Special attacks
 	MinMinigunRangeSQ=160000.f
 	MaxMinigunRangeSQ=16000000.f
-	MaxFanFireRangeSQ=640000.f
+	MaxFanFireRangeSQ=490000.f
 	MinChargeRangeSQ=810000.f
 	MinTentacleRangeSQ=90000.f
 	MinMissileRangeSQ=360000.f

@@ -23,7 +23,7 @@ class KFAIController_ZedClot extends KFAIController_Monster
 /** Timer function called during latent moves that determines whether NPC should sprint or stop sprinting */
 function bool ShouldSprint()
 {
-	if( MyKFPawn == none || MyKFPawn.bIsBlocking || (Enemy == none && DoorEnemy == none) || !MyKFPawn.IsAliveAndWell() || !Enemy.IsAliveAndWell() )
+	if( MyKFPawn == none || (Enemy == none && DoorEnemy == none) || !MyKFPawn.IsAliveAndWell() || !Enemy.IsAliveAndWell() )
 	{
 		return false;
 	}
@@ -68,12 +68,12 @@ event DoGrabAttack( optional Pawn NewEnemy, optional float InPostSpecialMoveSlee
 			SetEnemy( NewEnemy );
 		}
 		ClearMovementInfo( true, "Aborted For GrabAttack" );
-		AILog_Internal(GetFuncName()$"() Init AICommand_Attack_Grab",'InitAICommand',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Init AICommand_Attack_Grab",'InitAICommand',);};
 		class'AICommand_Attack_Grab'.static.Grab( self, InPostSpecialMoveSleepTime );
 	}
 	else if( CommandList != none && !AICommand(CommandList).bAllowedToAttack )
 	{
-		AILog_Internal(GetFuncName()$"() not doing grab attack because current command ("$CommandList$") will not allow it",'GrabAttack',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() not doing grab attack because current command ("$CommandList$") will not allow it",'GrabAttack',);};
 	}
 }
 

@@ -257,7 +257,7 @@ event bool SetEnemy( Pawn NewEnemy )
 	{
 		if( MyKFPawn.NeedToTurn(NewEnemy.Location) )
 		{
-			AILog_Internal(GetFuncName()$"() rejecting "$NewEnemy$" because current enemy ("$Enemy$") we would need to turn to see it",'SetEnemy',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() rejecting "$NewEnemy$" because current enemy ("$Enemy$") we would need to turn to see it",'SetEnemy',);};
 			return false;
 		}
 	}
@@ -335,7 +335,7 @@ function ShootFireball(class<KFProj_Husk_Fireball> FireballClass)
 
 		randDraw = FRand();
 
-		if( self!= None ) { self.AILog_Internal(GetFuncName() @ " SplashAimChance: " @ SplashAimChance @ " randDraw: " @ randDraw,'FireBall'); };
+		if( !class'Engine'.static.GetEngine().bDIsableAILogging && self!= None ) { self.AILog_Internal(GetFuncName() @ " SplashAimChance: " @ SplashAimChance @ " randDraw: " @ randDraw,'FireBall'); };
 
         if( randDraw < SplashAimChance )
 		{
@@ -363,13 +363,13 @@ function ShootFireball(class<KFProj_Husk_Fireball> FireballClass)
 			{
  				DirToEnemy = normal( AimLocation - SocketLocation ) + randVectorDraw * FireballAimError;
 
-				if( self!= None ) { self.AILog_Internal(GetFuncName() @ " HitActor: " @ HitActor @ " Is My Enemy: " @ Enemy @ " randVectorDraw: " @ randVectorDraw @ " - not leading with an error of: " @ randVectorDraw * FireballAimError,'FireBall'); };
+				if( !class'Engine'.static.GetEngine().bDIsableAILogging && self!= None ) { self.AILog_Internal(GetFuncName() @ " HitActor: " @ HitActor @ " Is My Enemy: " @ Enemy @ " randVectorDraw: " @ randVectorDraw @ " - not leading with an error of: " @ randVectorDraw * FireballAimError,'FireBall'); };
 			}
  			else
  			{
  				DirToEnemy = normal( CalcAimLocToHit(AimLocation, SocketLocation, FireballSpeed, FireballSpeed, Enemy.Velocity) - SocketLocation ) + randVectorDraw * FireballLeadTargetAimError;
 
-				if( self!= None ) { self.AILog_Internal(GetFuncName() @ " HitActor: " @ HitActor @ " Is My Enemy: " @ Enemy @ " randVectorDraw: " @ randVectorDraw @ " - leading with an error of: " @ randVectorDraw * FireballLeadTargetAimError,'FireBall'); };
+				if( !class'Engine'.static.GetEngine().bDIsableAILogging && self!= None ) { self.AILog_Internal(GetFuncName() @ " HitActor: " @ HitActor @ " Is My Enemy: " @ Enemy @ " randVectorDraw: " @ randVectorDraw @ " - leading with an error of: " @ randVectorDraw * FireballLeadTargetAimError,'FireBall'); };
  			}
 		}
 		else
@@ -386,7 +386,7 @@ function ShootFireball(class<KFProj_Husk_Fireball> FireballClass)
 			{
 				//DrawDebugStar( HitLocation, 50, 255, 0, 0, true );
 
-				if( self!= None ) { self.AILog_Internal(GetFuncName() @ " HitActor: " @ HitActor @ " Is NOT My Enemy: " @ Enemy @ " and distanceToHitLoc: " @ distanceToHitLoc @ " is too close so not firing!!!",'FireBall'); };
+				if( !class'Engine'.static.GetEngine().bDIsableAILogging && self!= None ) { self.AILog_Internal(GetFuncName() @ " HitActor: " @ HitActor @ " Is NOT My Enemy: " @ Enemy @ " and distanceToHitLoc: " @ distanceToHitLoc @ " is too close so not firing!!!",'FireBall'); };
 				MyKFPawn.SpecialMoves[ SM_StandAndShootAttack ].AbortedByAICommand();
 				LastFireBallTime = WorldInfo.TimeSeconds;
 				return;
@@ -398,7 +398,7 @@ function ShootFireball(class<KFProj_Husk_Fireball> FireballClass)
 				randVectorDraw = VRand();
 				DirToEnemy = normal( (AimLocation - SocketLocation) + randVectorDraw * FireballAimError );
 
-				if( self!= None ) { self.AILog_Internal(GetFuncName() @" Fire at enemy last known position: " @ Enemy @ AimLocation @ " randVectorDraw: " @ randVectorDraw @ " - leading with an error of: " @ randVectorDraw * FireballLeadTargetAimError,'FireBall'); };
+				if( !class'Engine'.static.GetEngine().bDIsableAILogging && self!= None ) { self.AILog_Internal(GetFuncName() @" Fire at enemy last known position: " @ Enemy @ AimLocation @ " randVectorDraw: " @ randVectorDraw @ " - leading with an error of: " @ randVectorDraw * FireballLeadTargetAimError,'FireBall'); };
 			}
 		}
 

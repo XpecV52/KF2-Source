@@ -171,7 +171,7 @@ final function Texture2D GetDebugIsWalkingIcon()
 /** Notification that the calling KFAIController has just possessed a new pawn */
 function NotifyNewPossess( KFAIController KFAIC )
 {
-	if( KFAIC!= None ) { KFAIC.AILog_Internal(GetFuncName()$" registering new Possession by "$KFAIC,'AIDirector'); };
+	if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFAIC!= None ) { KFAIC.AILog_Internal(GetFuncName()$" registering new Possession by "$KFAIC,'AIDirector'); };
 	RegisterAIMember( KFAIC );
 	KFAIC.bForceDebugCommand = bDebugAllAI;
 
@@ -199,7 +199,7 @@ final function RegisterAIMember( Controller NewMember )
 			// if it's an AI
 			if( KFAIC != None )
 			{
-				if( KFAIC!= None ) { KFAIC.AILog_Internal(GetFuncName()$" Adding "$KFAIC$" to AIList",'AIDirector'); };
+				if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFAIC!= None ) { KFAIC.AILog_Internal(GetFuncName()$" Adding "$KFAIC$" to AIList",'AIDirector'); };
 				AIList.AddItem(KFAIC);
 			}
 		}
@@ -225,7 +225,7 @@ final function UnRegisterAIMember( Controller OldMember )
 			// if it's an AI
 			if (KFAIC != None)
 			{
-				if( KFAIC!= None ) { KFAIC.AILog_Internal(GetFuncName()$" Removing "$KFAIC$" from AIList",'AIDirector'); };
+				if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFAIC!= None ) { KFAIC.AILog_Internal(GetFuncName()$" Removing "$KFAIC$" from AIList",'AIDirector'); };
 				AIList.RemoveItem(KFAIC);
 			}
 		}
@@ -284,7 +284,7 @@ function NotifyPawnGrabbed( KFPawn Victim, KFPawn Attacker )
 {
 	local KFPawn KFP;
 
-	if( Attacker.MyKFAIC!= None ) { Attacker.MyKFAIC.AILog_Internal(GetFuncName()$" NotifyPawnGrabbed - victim, "$Victim$" attacker "$Attacker,'AIDirector'); };
+	if( !class'Engine'.static.GetEngine().bDIsableAILogging && Attacker.MyKFAIC!= None ) { Attacker.MyKFAIC.AILog_Internal(GetFuncName()$" NotifyPawnGrabbed - victim, "$Victim$" attacker "$Attacker,'AIDirector'); };
 	foreach WorldInfo.AllPawns( class'KFPawn', KFP )
 	{
 		if( (Attacker != none && KFP == Attacker) || KFP.IsSameTeam(Victim) || KFP.MyKFAIC == none || !KFP.IsAliveAndWell()

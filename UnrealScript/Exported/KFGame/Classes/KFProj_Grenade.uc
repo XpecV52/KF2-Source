@@ -33,10 +33,48 @@ var(Grab) bool bAllowTossDuringZedGrabRotation;
 ///** The UI image for this grenade.  Needed so the images have a reference and are cooked into packages. */
 var() Texture2D WeaponSelectTexture;
 
+/** Set on the server and replicated to clients. Ensures that even if Instigator isn't relevant, we still have a valid team */
+var repnotify byte TeamNum;
+
+replication
+{
+	if( bNetInitial && !bNetOwner )
+		TeamNum;
+}
+
+/* epic ===============================================
+* ::ReplicatedEvent
+*
+* Called when a variable with the property flag "RepNotify" is replicated
+*
+* =====================================================
+*/
+simulated event ReplicatedEvent( name VarName )
+{
+	if( VarName == nameOf(TeamNum) )
+	{
+		EnableGrenadeWarning();
+	}
+	else
+	{
+		super.ReplicatedEvent( VarName );
+	}
+}
+
+event PreBeginPlay()
+{
+	super.PreBeginPlay();
+
+	if( Instigator != none )
+	{
+		TeamNum = Instigator.GetTeamNum();
+	}
+}
+
 /**
  * Set the initial velocity and cook time
  */
-simulated function PostBeginPlay()
+simulated event PostBeginPlay()
 {
 	Super.PostBeginPlay();
 
@@ -47,7 +85,41 @@ simulated function PostBeginPlay()
 	   SetTimer(FuseTime, false, 'ExplodeTimer');
 	}
 
+	// Enable the warning on listen servers who don't process ReplicatedEvent()
+	if( WorldInfo.NetMode == NM_ListenServer )
+	{
+		EnableGrenadeWarning();
+	}
+
 	AdjustCanDisintigrate();
+}
+
+/** Toggles an emitter in the projectile effects particle system to display a warning sprite */
+simulated function EnableGrenadeWarning()
+{
+	local PlayerController LocalPC;	
+
+	if( bNetOwner || GetTeamNum() != 0 )
+	{
+		return;
+	}
+
+	LocalPC = GetALocalPlayerController();
+	if( LocalPC != none && !LocalPC.IsSpectating() && LocalPC.GetTeamNum() != GetTeamNum() )
+	{
+		ProjEffects.SetFloatParameter( 'Warning' , 0.75f );
+	}
+}
+
+/** Override so we can grab our replicated TeamNum */
+simulated function byte GetTeamNum()
+{
+	if( !bNetOwner )
+	{
+		return TeamNum;
+	}
+
+	return super.GetTeamNum();
 }
 
 /**
@@ -114,11 +186,12 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 	{
 		return;
 	}
-	
+
     Bounce( HitNormal, Wall );
 
 	// if we are moving too slowly stop moving and lay down flat
-	if ( Speed < 40 )
+	// also, don't allow rest on -Z surfaces.
+	if ( Speed < 40 && HitNormal.Z > 0 )
 	{
 		ImpactedActor = Wall;
 		GrenadeIsAtRest();
@@ -202,12 +275,13 @@ defaultproperties
    DampenFactor=0.250000
    DampenFactorParallel=0.400000
    LandedTranslationOffset=(X=2.000000,Y=0.000000,Z=0.000000)
+   TeamNum=128
    bAlwaysReplicateDisintegration=True
    bAlwaysReplicateExplosion=True
    bCanDisintegrate=True
    AlwaysRelevantDistanceSquared=6250000.000000
-   TouchTimeThreshhold=0.150000
    GlassShatterType=FMGS_ShatterAll
+   TouchTimeThreshhold=0.150000
    TossZ=250.000000
    Speed=2500.000000
    MaxSpeed=2500.000000

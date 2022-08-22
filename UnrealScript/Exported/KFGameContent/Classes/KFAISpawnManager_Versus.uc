@@ -20,7 +20,8 @@ var const array<KFAIWaveInfo> PlayerZedWaves;
 var array<float> PlayerZedSpawnInterval;
 
 /** How long to wait at the start of a wave before spawning player zeds */
-var float WaveStartSpawnWaitTime;
+var float FirstWaveStartSpawnWaitTime;
+var float LaterWaveStartSpawnWaitTime;
 
 /** When TRUE, special squad for this wave has been spawned */
 var bool bSpawnedSpecialSquad;
@@ -86,6 +87,7 @@ function SetupNextWave(byte NextWaveIndex)
     local int i, j, SquadZedCount;
     local array<KFAISpawnSquad> SquadList;
     local KFPlayerControllerVersus KFPCV;
+    local float SpawnWaitTime;
 
     super.SetupNextWave( NextWaveIndex );
 
@@ -112,8 +114,9 @@ function SetupNextWave(byte NextWaveIndex)
         PlayerZedWaves[NextWaveIndex].GetNewSquadList( PlayerZedSquads );
 
         // Set initial spawn timer
-        SetTimer( WaveStartSpawnWaitTime, false, nameOf(Timer_SpawnPlayerZeds), self );
-        MyKFGRIV.SetPlayerZedSpawnTime( WaveStartSpawnWaitTime, false );
+        SpawnWaitTime = NextWaveIndex == 0 ? FirstWaveStartSpawnWaitTime : LaterWaveStartSpawnWaitTime;
+        SetTimer( SpawnWaitTime, false, nameOf(Timer_SpawnPlayerZeds), self );
+        MyKFGRIV.SetPlayerZedSpawnTime( SpawnWaitTime, false );
     }
     else
     {
@@ -152,7 +155,7 @@ function Timer_SpawnPlayerZeds()
     local float SpawnTimer;
 
     // Early out if takeover timer is active or spawning isn't allowed
-    if( IsTimerActive(nameOf(Timer_CheckForZedTakeovers)) || !IsPlayerZedSpawnAllowed() || CheckForTakeoverTimer() )
+    if( IsTimerActive(nameOf(Timer_CheckForZedTakeovers), self) || !IsPlayerZedSpawnAllowed() || CheckForTakeoverTimer() )
     {
         // Spawn our boss pawn
         if( MyKFGRI.WaveNum == MyKFGRI.WaveMax )
@@ -553,10 +556,10 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
     local vector SpawnLocation;
     local ESquadType SquadType;
     local array<KFPlayerController> CrawlerPlayers, MediumPlayers, LargePlayers, BossPlayers;
-    local vector NearestPlayerLocation;
     local int NumSpawned, NumSquadMembers;
     local array<class<KFPawn_Monster> > TempPawnClasses, CrawlerPawnClasses, MediumPawnClasses, LargePawnClasses, BossPawnClasses;
     local int i;
+    local bool bStopSpawning;
 
     // If match is over or trader is open, do nothing
     if( !IsWaveActive() )
@@ -694,6 +697,7 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
             // Make sure we have enough slots
             if( MyKFGRI.WaveNum < MyKFGRI.WaveMax && AIAliveCount + NumSpawned + 1 > MyKFGRI.AIRemaining )
             {
+                bStopSpawning = true;
                 break;
             }
 
@@ -705,7 +709,7 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
             }
 
             // Spawn player
-            if( RestartPlayerZed(CrawlerPlayers[i], SpawnVolume, NearestPlayerLocation) )
+            if( RestartPlayerZed(CrawlerPlayers[i], SpawnVolume) )
             {
                 // Count the number of spawns, if we have more than 2 then choose a new spawn volume
                 ++NumSpawned;
@@ -720,7 +724,7 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
     }
 
     // Small-medium zeds
-    if( MediumPlayers.Length > 0 )
+    if( !bStopSpawning && MediumPlayers.Length > 0 )
     {
         NumSquadMembers = 0;
         SetDesiredSquadTypeForZedList( MediumPawnClasses );
@@ -735,6 +739,7 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
             // Make sure we have enough slots
             if( MyKFGRI.WaveNum < MyKFGRI.WaveMax && AIAliveCount + NumSpawned + 1 > MyKFGRI.AIRemaining )
             {
+                bStopSpawning = true;
                 break;
             }
 
@@ -746,7 +751,7 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
             }
 
             // Spawn player
-            if( RestartPlayerZed(MediumPlayers[i], SpawnVolume, NearestPlayerLocation) )
+            if( RestartPlayerZed(MediumPlayers[i], SpawnVolume) )
             {
                 // Count the number of spawns, if we have more than 2 then choose a new spawn volume
                 ++NumSpawned;
@@ -761,7 +766,7 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
     }
 
     // Large zeds
-    if( LargePlayers.Length > 0 )
+    if( !bStopSpawning && LargePlayers.Length > 0 )
     {
         NumSquadMembers = 0;
         SetDesiredSquadTypeForZedList( LargePawnClasses );
@@ -776,6 +781,7 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
             // Make sure we have enough slots
             if( MyKFGRI.WaveNum < MyKFGRI.WaveMax && AIAliveCount + NumSpawned + 1 > MyKFGRI.AIRemaining )
             {
+                bStopSpawning = true;
                 break;
             }
 
@@ -787,7 +793,7 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
             }
 
             // Spawn player
-            if( RestartPlayerZed(LargePlayers[i], SpawnVolume, NearestPlayerLocation) )
+            if( RestartPlayerZed(LargePlayers[i], SpawnVolume) )
             {
                 // Count the number of spawns, if we have more than 2 then choose a new spawn volume
                 ++NumSpawned;
@@ -803,6 +809,15 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
 
     // Add spawned to monster alive count
     AIAliveCount += NumSpawned;
+
+    // If we need to stop spawning, clear all pending zed spawns
+    if( bStopSpawning )
+    {
+        foreach WorldInfo.AllControllers( class'KFPlayerController', KFPC )
+        {
+            KFPC.PlayerZedSpawnInfo.PendingZedPawnClass = none;
+        }
+    }
 
     // Check if our takeover timer should be started
     CheckForTakeoverTimer();
@@ -1000,14 +1015,19 @@ function Timer_CheckForZedTakeovers()
     }
 }
 
+function bool NeedPlayerSpawnVolume()
+{
+    return IsTimerActive( nameOf(Timer_CheckForZedTakeovers), self );
+}
+
 /** Spawns in our remaining reserved zeds */
 function SpawnRemainingReservedZeds( optional bool bSpawnAllReservedZeds )
 {
-    local int i, NumZedsSpawned, NumWaitingZedPlayers;
+    local int NumWaitingZedPlayers;
     local array<class<KFPawn_Monster> > TempSquad;
 
     // Early out if this is not a normal wave or there are no reserved zeds remaining
-    if( !IsPlayerZedSpawnAllowed() || ReservedPlayerZeds.Length == 0 )
+    if( ReservedPlayerZeds.Length == 0 || !IsPlayerZedSpawnAllowed() )
     {
         // Make sure this stays clear
         ReservedPlayerZeds.Length = 0;
@@ -1023,45 +1043,51 @@ function SpawnRemainingReservedZeds( optional bool bSpawnAllReservedZeds )
         ReservedPlayerZeds.Length = 0;
         return;
     }
-
-    // See how many are still waiting to spawn. If we don't have any, spawn the big zeds in as AI
-    NumWaitingZedPlayers = GetNumWaitingZedPlayers();
-
-    // If we still have any reserved zeds (that aren't Scrake or Fleshpound), start clearing them and
-    // spawn them as AI zeds
-    if( ReservedPlayerZeds.Length > 0 )
+    else
     {
-        for( i = 0; i < ReservedPlayerZeds.Length && (bSpawnAllReservedZeds || NumZedsSpawned < 2); ++i )
+        // Prune to spawn limits
+        while( ReservedPlayerZeds.Length > 0 && AIAliveCount + ReservedPlayerZeds.Length > MyKFGRI.AIRemaining )
         {
-            // If we've run out of spawn slots for our reserved zeds, stop allocating as AI and clear them
-            if( AIAliveCount + (NumZedsSpawned+1) > MyKFGRI.AIRemaining )
-            {
-                ReservedPlayerZeds.Length = 0;
-                break;
-            }
-
-            // If we run out of players to assign the big zeds to, just spawn them as AI
-            if( NumWaitingZedPlayers == 0 
-                || (!ClassIsChildOf(PlayerZedClasses[AT_Scrake], ReservedPlayerZeds[i])
-                    && !ClassIsChildOf(PlayerZedClasses[AT_Fleshpound], ReservedPlayerZeds[i])) )
-            {
-                TempSquad.AddItem( ReservedPlayerZeds[i] );
-                ReservedPlayerZeds.Remove( i, 1 );
-                ++NumZedsSpawned;
-                --i;
-            }
-            else if( NumWaitingZedPlayers > 0 )
-            {
-                --NumWaitingZedPlayers;
-            }
+            ReservedPlayerZeds.Remove( 0, 1 );
         }
 
-        // No need to modify NumAISpawnsQueued as these zeds were already queued
+        // No reserved zeds left!
+        if( ReservedPlayerZeds.Length == 0 )
+        {
+            return;
+        }
+    }
+
+    // See how many are still waiting to spawn. If we don't have any, spawn them in as AI
+    NumWaitingZedPlayers = GetNumWaitingZedPlayers();
+    if( NumWaitingZedPlayers == 0 )
+    {
+        TempSquad = ReservedPlayerZeds;
+        ReservedPlayerZeds.Length = 0;
+    }
+    else
+    {
+        while( ReservedPlayerZeds.Length > NumWaitingZedPlayers )
+        {
+            TempSquad.AddItem( ReservedPlayerZeds[0] );
+            ReservedPlayerZeds.Remove( 0, 1 );
+        }
+    }
+
+    // No need to modify NumAISpawnsQueued as these zeds were already queued
+    if( TempSquad.Length > 0 )
+    {
+        // Make sure squad doesn't exceed remaining AI
+        while( TempSquad.Length > 0 && AIAliveCount + ReservedPlayerZeds.Length + TempSquad.Length > MyKFGRI.AIRemaining )
+        {
+            TempSquad.Remove( 0, 1 );
+        }
+
         if( TempSquad.Length > 0 )
         {
             SpawnSquad( TempSquad, true );
         }
-    }    
+    }
 }
 
 /** Finds an AI zed to take over */
@@ -1082,7 +1108,7 @@ function FindTakeoverZed( KFPlayerControllerVersus KFPCV )
     foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM )
     {
         // Only try to take over zeds that are still valid for play
-        if( KFPM.bVersusZed || KFPM.IsHeadless() || !KFPM.IsAliveAndWell() || KFPM.IsDoingSpecialMove() )
+        if( !KFPM.CanTakeOver() )
         {
             continue;
         }
@@ -1276,7 +1302,7 @@ function RecyclePendingZedPawnClass( KFPlayerController KFPC )
 }
 
 /** Spawns a player zed */
-function bool RestartPlayerZed( KFPlayerController KFPC, KFSpawnVolume SpawnVolume, vector LookAtLocation )
+function bool RestartPlayerZed( KFPlayerController KFPC, KFSpawnVolume SpawnVolume )
 {
     local vector SpawnLocation;
     local rotator SpawnRotation;
@@ -1298,9 +1324,7 @@ function bool RestartPlayerZed( KFPlayerController KFPC, KFSpawnVolume SpawnVolu
         KFPC.Pawn.SetLocation( SpawnLocation );
 
         // Set spawn rotation
-        SpawnRotation = ( !IsZero(LookAtLocation) )
-            ? rotator( LookAtLocation - SpawnLocation )
-            : RotRand( false );
+        SpawnRotation = RotRand( false );
         SpawnRotation.Roll = 0;
         KFPC.SetRotation( SpawnRotation );
         SpawnRotation.Pitch = 0;
@@ -1430,11 +1454,12 @@ defaultproperties
    PlayerZedWaves(1)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.PlayerZED_Wave2'
    PlayerZedWaves(2)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.PlayerZED_Wave3'
    PlayerZedWaves(3)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.PlayerZED_Wave4'
-   PlayerZedSpawnInterval(0)=40.000000
-   PlayerZedSpawnInterval(1)=40.000000
-   PlayerZedSpawnInterval(2)=40.000000
-   PlayerZedSpawnInterval(3)=40.000000
-   WaveStartSpawnWaitTime=20.000000
+   PlayerZedSpawnInterval(0)=20.000000
+   PlayerZedSpawnInterval(1)=27.000000
+   PlayerZedSpawnInterval(2)=30.000000
+   PlayerZedSpawnInterval(3)=35.000000
+   FirstWaveStartSpawnWaitTime=15.000000
+   LaterWaveStartSpawnWaitTime=10.000000
    MaxPlayerSpecialSquadSpawns(0)=0
    MaxPlayerSpecialSquadSpawns(1)=0
    MaxPlayerSpecialSquadSpawns(2)=2
@@ -1451,12 +1476,12 @@ defaultproperties
    SoloWaveSpawnRateModifier(2)=(RateModifier=(1.500000,1.500000,1.500000,1.500000))
    EarlyWaveSpawnRateModifier(0)=2.100000
    EarlyWaveIndex=2
-   LateWavesSpawnTimeModByPlayers(0)=1.200000
-   LateWavesSpawnTimeModByPlayers(1)=1.200000
-   LateWavesSpawnTimeModByPlayers(2)=1.200000
-   LateWavesSpawnTimeModByPlayers(3)=1.090000
-   LateWavesSpawnTimeModByPlayers(4)=0.820000
-   LateWavesSpawnTimeModByPlayers(5)=0.650000
+   LateWavesSpawnTimeModByPlayers(0)=1.800000
+   LateWavesSpawnTimeModByPlayers(1)=1.700000
+   LateWavesSpawnTimeModByPlayers(2)=1.600000
+   LateWavesSpawnTimeModByPlayers(3)=1.500000
+   LateWavesSpawnTimeModByPlayers(4)=1.170000
+   LateWavesSpawnTimeModByPlayers(5)=1.000000
    bRecycleSpecialSquad=True
    RecycleSpecialSquad(0)=True
    MaxSpecialSquadRecycles=1

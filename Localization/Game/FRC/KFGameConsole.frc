@@ -1,0 +1,225 @@
+
+[Presence]
+KFMainMenu="Menu principal"
+KF-Bioticslab="Joue sur Labo biotique"
+KF-BlackForest="Joue sur Forêt-Noire"
+KF-BurningParis="Joue sur Paris en cendres"
+KF-Catacombs="Joue sur Catacombes"
+KF-EvacuationPoint="Joue sur Point d'évacuation"
+KF-Farmhouse="Joue sur Ferme"
+KF-VolterManor="Joue sur Manoir Volter"
+KF-Outpost="Joue sur Avant-poste"
+KF-Prison="Joue sur Prison"
+KF-ContainmentStation="Joue sur Poste de confinement"
+KF-InfernalRealm="Joue sur Royaume des enfers"
+KF-HostileGrounds="Joue sur Terrain hostile"
+
+[ActivityFeed_CHN]
+BossKillCondensedCaption="玩打败的首领！"
+BossKillCaption="$USER_NAME_OR_ID 已在 %y% 打败 %x%"
+TeamAwardCondensedCaption="队伍奖励！"
+TeamAwardCaption="$USER_NAME_OR_ID 已赢取 %x% 队伍奖励"
+PerkLevelUpCondensedCaption="升级！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 已解锁第 %x% 级的 %y% 技能"
+
+[ActivityFeed_CHT]
+BossKillCondensedCaption="已擊敗頭目！"
+BossKillCaption="$USER_NAME_OR_ID 在 %y% 難度中擊敗了 %x%"
+TeamAwardCondensedCaption="隊伍獎勵！"
+TeamAwardCaption="$USER_NAME_OR_ID 獲得了 %x% 隊伍獎勵"
+PerkLevelUpCondensedCaption="升級！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 解鎖了 %x% %y% 升級技能"
+
+[ActivityFeed_DEU]
+BossKillCondensedCaption="Boss besiegt!"
+BossKillCaption="$USER_NAME_OR_ID hat %x% auf %y% besiegt"
+TeamAwardCondensedCaption="Team-Auszeichnung!"
+TeamAwardCaption="$USER_NAME_OR_ID hat %x% Team-Auszeichnung verdient"
+PerkLevelUpCondensedCaption="Levelaufstieg!"
+PerkLevelUpCaption="$USER_NAME_OR_ID hat die Level %x% %y% Fähigkeit freigeschaltet"
+
+[ActivityFeed_ESL]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_ESN]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_FRA]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_FRC]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_INT]
+BossKillCondensedCaption="Boss defeated!"
+BossKillCaption="$USER_NAME_OR_ID has defeated %x% on %y%"
+TeamAwardCondensedCaption="Team Award!"
+TeamAwardCaption="$USER_NAME_OR_ID has earned %x% team award"
+PerkLevelUpCondensedCaption="Level up!"
+PerkLevelUpCaption="$USER_NAME_OR_ID has unlocked the level %x% %y% skill"
+
+[ActivityFeed_ITA]
+BossKillCondensedCaption="Boss sconfitto!"
+BossKillCaption="$USER_NAME_OR_ID ha sconfitto %x% su %y%"
+TeamAwardCondensedCaption="Premio di squadra!"
+TeamAwardCaption="$USER_NAME_OR_ID vince il premio %x%"
+PerkLevelUpCondensedCaption="Aumento di livello!"
+PerkLevelUpCaption="$USER_NAME_OR_ID sblocca %y% liv %x%"
+
+[ActivityFeed_JPN]
+BossKillCondensedCaption="ボス敗北！"
+BossKillCaption="$USER_NAME_OR_IDが%x%を%y%で倒しました"
+TeamAwardCondensedCaption="チームアワード！"
+TeamAwardCaption="$USER_NAME_OR_IDが%x%チームアワードを獲得しました"
+PerkLevelUpCondensedCaption="レベルアップ！"
+PerkLevelUpCaption="$USER_NAME_OR_IDがレベル%x% %y%スキルをロック解除"
+
+[ActivityFeed_KOR]
+BossKillCondensedCaption="보스 제거!"
+BossKillCaption="$USER_NAME_OR_ID님이 %y%에서 %x%을(를) 처치하였습니다."
+TeamAwardCondensedCaption="팀 보상!"
+TeamAwardCaption="$USER_NAME_OR_ID님이 %x% 팀 보상을 획득했습니다."
+PerkLevelUpCondensedCaption="레벨 업!"
+PerkLevelUpCaption="$USER_NAME_OR_ID님이 레벨 %x% %y% 기술을 잠금해제하였습니다."
+
+[ActivityFeed_POL]
+BossKillCondensedCaption="Boss został pokonany!"
+BossKillCaption="$USER_NAME_OR_ID pokonuje %x% na %y%"
+TeamAwardCondensedCaption="Nagroda zespołowa!"
+TeamAwardCaption="$USER_NAME_OR_ID zdobywa nagrodę zespołową %x%"
+PerkLevelUpCondensedCaption="Nowy poziom!"
+PerkLevelUpCaption="$USER_NAME_OR_ID odblokowuje poziom %x% umiejętności %y%"
+
+[ActivityFeed_PTB]
+BossKillCondensedCaption="Chefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID derrotou %x% em %y%"
+TeamAwardCondensedCaption="Prêmio de Equipe!"
+TeamAwardCaption="$USER_NAME_OR_ID ganhou o prêmio eq. %x%"
+PerkLevelUpCondensedCaption="Subiu de nível!"
+PerkLevelUpCaption="$USER_NAME_OR_ID desbloqueou o nível %x% da hab. %y%"
+
+[ActivityFeed_RUS]
+BossKillCondensedCaption="Босс побежден!"
+BossKillCaption="$USER_NAME_OR_ID: убит босс %x%, зона %y%"
+TeamAwardCondensedCaption="Командная награда!"
+TeamAwardCaption="$USER_NAME_OR_ID: командная награда %x%"
+PerkLevelUpCondensedCaption="Новый уровень!"
+PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="Commencer : XboxTypeS_A"
+LoginButtonPrompt="Se connecter"
+LoggingIn="Connexion..."
+LoginFailed="Échec de la connexion"
+NoOnlinePlay="Jeu en ligne impossible"
+TooYoung="Les services en ligne sont désactivés sur votre compte Sony Entertainment Network en raison de restrictions du contrôle parental."
+PatchAvailable="Patch disponible. Veuillez mettre l'application à jour pour utiliser les fonctionnalités en ligne."
+NotLoggedInOnlinePSN="Vous devez être connecté au PlayStation™Network pour utiliser les fonctionnalités en ligne."
+NetworkError="Erreur réseau, veuillez vérifier votre connexion."
+ErrorNoPlayfabDescription="Échec de la connexion aux serveurs principaux du jeu. Veuillez réessayer dans quelques minutes."
+ErrorTSSFailedDescription="Échec de la connexion au serveur d'équilibre du jeu. Assurez-vous que vous êtes bien connecté à internet puis réessayez."
+
+[Notifications]
+ControllerDisconnectedTitle="Manette de jeu déconnectée"
+ControllerDisconnectedPS4Message="La manette de jeu sans fil a été déconnectée. Veuillez reconnecter la manette de jeu sans fil de l'utilisateur qui a lancé le jeu."
+PlayGoBusyTitle="Installation en cours"
+PlayGoBusyMessage="Le contenu et les fonctionnalités disponibles sont limitées pendant l'installation du jeu."
+UnableToJoinInviteTitle="Connexion impossible"
+UnableToJoinInviteMessage="La session est pleine ou n'existe plus. Veuillez réessayer plus tard."
+InitiatingPlayTogetherTitle="Un peu de patience !"
+InitiatingPlayTogetherMessage="Votre session de Jeu collectif est en cours de création."
+UnableToPlayTogetherTitle="Échec du Jeu collectif"
+UnableToPlayTogetherMessage="Impossible de créer une session de Jeu collectif. Veuillez réessayer ou en créer une manuellement."
+CheckPlusTitle="Vérification PlayStation®Plus"
+CheckPlusMessage="Veuillez patienter pendant que nous vérifions votre statut PlayStation®Plus."
+ConnectionLostTitle="Connexion perdue"
+ConnectionLostMessage="Votre connexion en ligne a été perdue. Vous avez été renvoyé au Menu principal."
+PSNSignoutMessage="Vous avez été déconnecté du PlayStation™Network. Vous avez été renvoyé au Menu principal."
+InviteMessage="Viens exploser des Zeds avec moi !"
+NotConnectedTitle="Erreur réseau"
+NotConnectedMessage="Vous n'êtes pas connecté à internet. Vérifiez votre connexion et réessayez."
+NotConnectedForOnlinePlay="Vous n'êtes pas connecté à internet. Vérifiez votre connexion et réessayez"
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="Afficher le profil"
+
+[KFGFxObject_Menu]
+ResetDefaults="Voulez-vous vraiment rétablir les paramètres par défaut ?"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="CLASSE"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="Sons de la manette de jeu"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="RÉGION"
+LeaveMenuString="En quittant le matchmaking, vous quittez aussi votre groupe."
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="RÉGION"
+MapPreference="CARTE PRÉFÉRÉE"
+
+[Entitlements]
+BriarBobbyBundleProductName="Pack Bobby de Briar"
+BriarBobbyBundleShortDescription="Obtenez le nouvel uniforme typique Policier londonien pour PC Rob Briar. Contient l'uniforme Policier londonien de Briar (5 modèles différents), et le casque de gardien (3 modèles différents)."
+
+BikerTanakaBundleProductName="Pack Motard de Tanaka"
+BikerTanakaBundlehortDescription="Obtenez une nouvelle tenue de motard pour le personnage jouable Hayato Tanaka. Contient la tenue de motard de Tanaka (7 modèles différents) et le casque de motard (7 modèles différents)."
+
+ClassicFosterBundleProductName="Pack Classique de Mr. Foster"
+ClassicFosterBundlehortDescription="Obtenez le nouveau costume classique pour Mr. Foster. Contient le costume classique de Mr. Foster (9 modèles différents), son nœud papillon et sa fameuse cravate (7 modèles différents pour chacun)."
+
+CardboardKnightBundleProductName="Pack Chevalier en carton"
+CardboardKnightBundleShortDescription="Obtenez une armure délirante de chevalier en carton utilisable pour la plupart des personnages. Contient l'armure en carton (6 modèles différents) et le heaume en carton (6 modèles différents)."
+
+HorzineSecurityForceBundleProductName="Pack Force de sécurité Horzine"
+HorzineSecurityForceBundleShortDescription="Obtenez le magnifique uniforme de sécurité de Horzine utilisable pour la plupart des personnages. Contient l'uniforme de sécurité haute technologie de Horzine et le casque de sécurité Horzine."
+
+HorzineSupplyCrateKeyProductName="Clé pour Caisse Horzine"
+HorzineSupplyCrateKeyShortDesription="Achetez une clé qui vous permettra d'ouvrir une caisse d'approvisionnement Horzine en jeu. Utilisez-la sur n'importe quelle caisse d'approvisionnement Horzine."
+
+HorzineSupplyCrate1ProductName="Caisse Horzine Série 1"
+HorzineSupplyCrate1ShortDesription="Cette caisse d'approvisionnement Horzine contient un accessoire décoratif. Utilisez une clé de caisse d'approvisionnement Horzine pour l'ouvrir. Contient l'un des accessoires décoratifs rares ou supérieurs suivants : bonnet tactique, masque tactique, casque tactique MK1/MK2, bandeau, casque GS9, masque GS9, lunettes militaires russes, casque militaire russe, masque militaire russe, ou un accessoire doré extrêmement rare !"
+
+HorzineSupplyCrate2ProductName="Caisse Horzine Série 2"
+HorzineSupplyCrate2ShortDesription="Cette caisse d'approvisionnement Horzine contient un accessoire décoratif. Utilisez une clé de caisse d'approvisionnement Horzine pour l'ouvrir. Contient l'un des accessoires décoratifs rares ou supérieurs suivants : masque balistique Devtac, masque à gaz U.S., cagoule et masque, casquette de base-ball, sac militaire, masque à gaz allemand, masque à gaz chimique, sac pour RPG7, réservoir pour lance-flammes M2, ou un accessoire doré extrêmement rare !"
+
+HorzineSupplyCrate3ProductName="Caisse Horzine Série 3"
+HorzineSupplyCrate3ShortDesription="Cette caisse d'approvisionnement Horzine contient un modèle d'arme. Utilisez une clé de caisse d'approvisionnement Horzine pour l'ouvrir. Contient l'un des modèles d'arme rares ou supérieurs suivants :"
+
+HorzineSupplyCrate4ProductName="Caisse Horzine Série 4"
+HorzineSupplyCrate4ShortDesription="Cette caisse d'approvisionnement Horzine contient un modèle d'arme. Utilisez une clé de caisse d'approvisionnement Horzine pour l'ouvrir. Contient l'un des modèles d'arme rares ou supérieurs suivants :"
+
+StoreGameLegalText="Logiciel soumis à un contrat de licence (http://doc.dl.playstation.net/doc/ps4-eula/ps4_eula_fr.html). Utilisation en ligne soumise aux Conditions d'utilisation (http://legaldoc.dl.playstation.net/ps3-eula/psn/e/e_tosua_fr.html). Permet de jouer sur le système PS4™ principal du compte et d'autres systèmes PS4™ lorsque ce compte y est connecté. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® est une marque déposée de Tripwire Interactive aux États-Unis d'Amérique et dans d'autres pays. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Tous droits réservés. Unreal® est une marque commerciale ou une marque déposée de Epic Games, Inc. Aux États-Unis d'Amérique et ailleurs. Toutes les autres marques commerciales, logos et droits d'auteur appartiennent à leurs propriétaires respectifs. Tous droits réservés."
+
+StoreItemLegalText="La version intégrale de Killing Floor 2 est nécessaire pour utiliser cet objet. L'utilisation de cet objet est soumise au même Contrat de licence d'utilisateur final que le jeu original."
+
+[Regions]
+USCentral="Centre des États-Unis"
+USEast="Est des États-Unis"
+USWest="Ouest des États-Unis"
+EU="Europe"
+Asia="Asie"
+Brazil="Amérique du Sud"
+Australia="Australie"

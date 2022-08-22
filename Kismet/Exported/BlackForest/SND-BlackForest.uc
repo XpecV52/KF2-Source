@@ -18,7 +18,7 @@ End Object
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    bClientSideOnly=True
    MaxWidth=207
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'SND-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_0')),DrawY=293,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),ActivateDelay=2.000000,DrawY=293,OverrideDelta=14)
    OutputLinks(1)=(DrawY=314,OverrideDelta=35)
    OutputLinks(2)=(DrawY=335,OverrideDelta=56)
    ObjInstanceVersion=3
@@ -28,19 +28,4 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    DrawWidth=172
    Name="SeqEvent_LevelLoaded_0"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
-End Object
-
-Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_0
-   Bank=AkBank'WW_ENV_BlackForest.WwiseDefaultBank_WW_ENV_BlackForest'
-   InputLinks(0)=(DrawY=308,OverrideDelta=13)
-   InputLinks(1)=(DrawY=328,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),DrawY=318,OverrideDelta=23)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'SND-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=512
-   ObjPosY=272
-   DrawWidth=111
-   DrawHeight=69
-   Name="SeqAct_AkLoadBank_0"
-   ObjectArchetype=SeqAct_AkLoadBank'AkAudio.Default__SeqAct_AkLoadBank'
 End Object

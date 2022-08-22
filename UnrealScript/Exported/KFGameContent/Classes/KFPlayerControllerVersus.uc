@@ -148,7 +148,7 @@ function RecieveChatMessage(PlayerReplicationInfo PRI, string ChatMessage, name 
 
 unreliable client function NotifyOfAutoBalance()
 {
-	MyGFxManager.OpenPopup(ENotification, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.TeamSwappedString, Class'KFCommon_LocalizedStrings'.default.OKString);
+	MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.TeamSwappedString, Class'KFCommon_LocalizedStrings'.default.OKString);
 	MyGFxHUD.ShowNonCriticalMessage(Class'KFCommon_LocalizedStrings'.default.TeamSwappedString);
 }
 

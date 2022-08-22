@@ -72,7 +72,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 13
 
 var KFGFxControlsContainer_Keybinding KeybindingsContainer;
@@ -346,7 +346,7 @@ function CallBack_ResetPresetOptions()
 {
 	if(ControllerPresetsContainer != None)
 	{
-		Manager.OpenPopup( EConfirmation, 
+		Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc,
 			Localize("KFGFxOptionsMenu_Graphics","WarningPromptString","KFGame"), 
 			Localize("KFGFxObject_Menu","ResetDefaults","KFGameConsole"),
 			Localize("KFGFxOptionsMenu_Graphics","OKString","KFGame"),
@@ -359,7 +359,7 @@ function CallBack_ResetInputOptions()
 {
 	if(InputContainer != None)
 	{
-		Manager.OpenPopup( EConfirmation, 
+		Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc,
 			Localize("KFGFxOptionsMenu_Graphics","WarningPromptString","KFGame"), 
 			Localize("KFGFxObject_Menu","ResetDefaults","KFGameConsole"),
 			Localize("KFGFxOptionsMenu_Graphics","OKString","KFGame"),
@@ -371,8 +371,8 @@ function CallBack_ResetInputOptions()
 defaultproperties
 {
    MinControllerLookSensitivity=0.400000
-   MaxControllerLookSensitivity=1.200000
-   MinControllerZoomLookSensitivity=0.300000
+   MaxControllerLookSensitivity=3.500000
+   MinControllerZoomLookSensitivity=0.100000
    MaxControllerZoomLookSensitivity=1.000000
    MinMouseLookSensitivity=0.010000
    MaxMouseLookSensitivity=0.700000

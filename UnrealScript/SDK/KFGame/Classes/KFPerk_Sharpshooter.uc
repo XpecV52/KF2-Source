@@ -44,7 +44,8 @@ var private const float 		CameraViewShakeScale;
 var private const float 		TriggerMovementSpeedModifier;
 var private const float 		CrouchAimMovementSpeedModifier;
 var private const float 		CrouchAimReloadSpeedModifier;
-
+var	private const array<Name>	AdditionalOnPerkWeaponNames;
+var	private const array<Name>	AdditionalOnPerkDTNames;
 
 /** The % chance that zed time will be activated when damage is done when the Zed Time perk skills are active */
 var float SkillZedTimeChance;
@@ -92,7 +93,7 @@ simulated function ModifySpeed( out float Speed )
 		Speed += Speed * static.GetTriggerMovementSpeedModifier();
 	}
 
-	if( IsCrouchAimActive() )
+	if( IsCrouchAimActive(GetOwnerWeapon()) )
 	{
 		`QALog( "(Crouch Aim / Stability) speed" @ Speed @ GetPercentage(Speed, (Speed += Speed * static.GetCrouchAimMovementSpeedModifier())), bLogPerk );
 		Speed += Speed * static.GetCrouchAimMovementSpeedModifier();	
@@ -166,7 +167,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ESharpshooterStationaryAim] );
 		}
 
-		if( IsCrouchAimActive() )
+		if( IsCrouchAimActive(GetOwnerWeapon()) )
 		{
 			`QALog( "(Crouched), damage mod=" $ GetSkillValue( PerkSkills[ESharpshooterCrouchAim] ), bLogPerk );
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ESharpshooterCrouchAim] );
@@ -207,7 +208,7 @@ simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
  */
 simulated function float GetReloadRateScale( KFWeapon KFW )
 {
-	if( IsCrouchAimActive() && IsWeaponOnPerk( KFW ) )
+	if( IsCrouchAimActive(KFW) )
 	{
 		`QALog( "Crouch Aim/Stabilty reload rate =" @ 1.f - GetCrouchAimReloadSpeedModifier(), bLogPerk  );
 		return 1.f - GetCrouchAimReloadSpeedModifier();
@@ -361,9 +362,9 @@ simulated function bool IsTriggerActive()
  *
  * @return true/false
  */
-function bool IsCrouchAimActive()
+simulated function bool IsCrouchAimActive( KFWeapon W )
 {
-	return PerkSkills[ESharpshooterCrouchAim].bActive && OwnerPawn.bIsCrouched && IsWeaponOnPerk( GetOwnerWeapon() );
+	return PerkSkills[ESharpshooterCrouchAim].bActive && CheckOwnerPawn() && OwnerPawn.bIsCrouched && IsWeaponOnPerk(W);
 }
 
 /**
@@ -601,6 +602,40 @@ simulated private static function float GetCrouchAimReloadSpeedModifier()
 	return default.CrouchAimReloadSpeedModifier;
 }
 
+/**
+ * @brief DamageType on perk?
+ *
+ * @param KFDT The damage type
+ * @return true/false
+ */
+static function bool IsDamageTypeOnPerk( class<KFDamageType> KFDT )
+{
+	if( KFDT != none && default.AdditionalOnPerkDTNames.Find( KFDT.name ) != INDEX_NONE )
+	{
+		return true;
+	}
+
+	return super.IsDamageTypeOnPerk( KFDT );
+}
+
+/**
+ * @brief Returns true if the weapon is associated with this perk
+ * @details Uses WeaponPerkClass if we do not have a spawned weapon (such as in the trader menu)
+ *
+ * @param W the weapon
+ * @param WeaponPerkClass weapon's perk class (optional)
+ *
+ * @return true/false
+ */
+static simulated function bool IsWeaponOnPerk( KFWeapon W, optional class<KFPerk> WeaponPerkClass )
+{
+	if( W != none && default.AdditionalOnPerkWeaponNames.Find( W.class.name ) != INDEX_NONE )
+	{
+		return true;
+	}
+
+	return super.IsWeaponOnPerk( W, WeaponPerkClass );
+}
 
 DefaultProperties
 {
@@ -622,6 +657,10 @@ DefaultProperties
 	TriggerMovementSpeedModifier=0.1 //0.15
 	CrouchAimMovementSpeedModifier=0.5f //0.1 //0.5
 	CrouchAimReloadSpeedModifier=0.2 //0.15 //0.2
+
+	AdditionalOnPerkWeaponNames(0)="KFWeap_Pistol_9mm"
+   	AdditionalOnPerkWeaponNames(1)="KFWeap_Pistol_Dual9mm"
+	AdditionalOnPerkDTNames(0)="KFDT_Ballistic_9mm"
 
    	HeadshotDamage=(Name="Headshot Damage",Increment=0.01f,Rank=0,StartingValue=0.0f,MaxValue=0.25f)
    	Recoil=(Name="Recoil",Increment=0.01f,Rank=0,StartingValue=0.0f,MaxValue=0.25f)

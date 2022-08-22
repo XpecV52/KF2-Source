@@ -151,6 +151,8 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
 
 		    	// Spawn some puke mines
 		    	SpawnPukeMinesOnDeath();
+
+		    	SoundGroupArch.PlayObliterationSound(self, false);
 		    }
 		}
 	}
@@ -283,6 +285,7 @@ defaultproperties
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Bloat'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
+   LocalizationKey="KFPawn_ZedBloat"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -296,10 +299,10 @@ defaultproperties
    HitZones(3)=()
    HitZones(4)=()
    HitZones(5)=()
-   HitZones(6)=(DmgScale=0.200000,SkinID=2)
+   HitZones(6)=()
    HitZones(7)=()
    HitZones(8)=()
-   HitZones(9)=(BoneName="LeftForearm",DmgScale=0.200000,Limb=BP_LeftArm,SkinID=2)
+   HitZones(9)=()
    HitZones(10)=()
    HitZones(11)=()
    HitZones(12)=()
@@ -308,6 +311,8 @@ defaultproperties
    HitZones(15)=()
    HitZones(16)=()
    HitZones(17)=()
+   HitZones(18)=(ZoneName="rknife",BoneName="RightForearm",GoreHealth=20,DmgScale=0.200000,Limb=BP_RightArm,SkinID=2)
+   HitZones(19)=(ZoneName="lknife",BoneName="LeftForearm",GoreHealth=20,DmgScale=0.200000,Limb=BP_LeftArm,SkinID=2)
    PenetrationResistance=3.000000
    Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn_Monster:Afflictions_0'
       FireFullyCharredDuration=3.500000
@@ -430,7 +435,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

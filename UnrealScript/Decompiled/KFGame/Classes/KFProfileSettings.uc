@@ -62,9 +62,23 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
+
+struct native WeaponSkinPairs
+{
+    var init string ClassPath;
+    var int SkinID;
+
+    structdefaultproperties
+    {
+        ClassPath=""
+        SkinID=0
+    }
+};
 
 var transient array<CustomizationInfo> Characters;
 var transient array<string> FavoriteWeapons;
+var transient array<WeaponSkinPairs> ActiveSkins;
 var transient bool Dirty;
 
 event FavoriteWeapon(name WeaponName)
@@ -95,6 +109,29 @@ event Save(byte ControllerId)
         FlattenExtraToProfileSettings();
         Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.WriteProfileSettings(ControllerId, self);
         Dirty = false;
+    }
+}
+
+// Export UKFProfileSettings::execSaveWeaponSkin(FFrame&, void* const)
+native function SaveWeaponSkin(string ClassPath, int Id);
+
+// Export UKFProfileSettings::execClearWeaponSkin(FFrame&, void* const)
+native function ClearWeaponSkin(string ClassPath);
+
+event ApplyWeaponSkin(int ItemDefinition)
+{
+    local class<KFWeaponDefinition> WeaponDef;
+    local int ItemIndex;
+
+    ItemIndex = Class'KFWeaponSkinList'.default.Skins.Find('Id', ItemDefinition;
+    if(ItemIndex == -1)
+    {
+        return;
+    }
+    WeaponDef = Class'KFWeaponSkinList'.default.Skins[ItemIndex].WeaponDef;
+    if(WeaponDef != none)
+    {
+        Class'KFWeaponSkinList'.static.SaveWeaponSkin(WeaponDef, ItemDefinition);
     }
 }
 

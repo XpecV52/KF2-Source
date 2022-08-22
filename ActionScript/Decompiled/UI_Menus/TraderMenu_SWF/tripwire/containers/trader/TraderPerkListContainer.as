@@ -30,6 +30,11 @@ package tripwire.containers.trader
             this.PlayerInventoryContainerRef.selectContainer();
         }
         
+        override public function get bOpen() : Boolean
+        {
+            return super.bOpen || visible && alpha == 1;
+        }
+        
         override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.killTweensOf(this);

@@ -421,7 +421,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
     }
     if((P.MyKFAIC != none) && !P.MyKFAIC.CheckOverallCooldownTimer())
     {
-        if(P.MyKFAIC != none)
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging && P.MyKFAIC != none)
         {
             P.MyKFAIC.AILog_Internal(((string(GetFuncName()) $ "() PREVENTING attack ") $ string(Attack.Tag)) $ " because Overall Cooldown is active", 'Command_Attack_Melee');
         }
@@ -513,7 +513,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
     {
         if(P.MyKFAIC != none)
         {
-            if(P.MyKFAIC != none)
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging && P.MyKFAIC != none)
             {
                 P.MyKFAIC.AILog_Internal((((string(GetFuncName()) $ "() PREVENTING attack ") $ string(Attack.Tag)) $ " because it has a DifficultyRating of ") $ string(Attack.DifficultyRating), 'Command_Attack_Melee');
             }
@@ -745,7 +745,8 @@ function bool PlayHitReactionAnim(KFPawn P, KFPawnAnimInfo.EHitReactionAnimType 
             {
                 AnimName = MediumHitAnims[Dir].Anims[Rand(MediumHitAnims[Dir].Anims.Length)];
                 Duration = P.PlayBodyAnim(AnimName, 1);
-                P.NextHitReactionAnim_ActorTime = P.GetActorTimeSeconds() + 0.33;                
+                P.NextHitReactionAnim_ActorTime = P.GetActorTimeSeconds() + 0.33;
+                P.SoundGroupArch.PlayPainSound(P);                
             }
             else
             {
@@ -754,6 +755,7 @@ function bool PlayHitReactionAnim(KFPawn P, KFPawnAnimInfo.EHitReactionAnimType 
                     AnimName = HeavyHitAnims[Dir].Anims[Rand(HeavyHitAnims[Dir].Anims.Length)];
                     Duration = P.PlayBodyAnim(AnimName, 1);
                     P.NextHitReactionAnim_ActorTime = P.GetActorTimeSeconds() + 0.33;
+                    P.SoundGroupArch.PlayPainSound(P);
                 }
             }
         }

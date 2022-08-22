@@ -1851,7 +1851,7 @@ event bool CanGrabAttack()
 			return true;
 		}
 	}
-	AILog_Internal(GetFuncName()$"() returning FALSE",'GrabAttack',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() returning FALSE",'GrabAttack',);};
 	return false;
 
 }
@@ -1903,12 +1903,12 @@ event DoGrabAttack( optional Pawn NewEnemy, optional float InPostSpecialMoveSlee
 		}
 		/** Abort qany movement commands */
 		ClearMovementInfo();
-		AILog_Internal(GetFuncName()$"() Init AICommand_Attack_Grab",'InitAICommand',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Init AICommand_Attack_Grab",'InitAICommand',);};
 		class'AICommand_Attack_Grab'.static.Grab( self, InPostSpecialMoveSleepTime );
 	}
 	else if( CommandList != none && !AICommand(CommandList).bAllowedToAttack )
 	{
-		AILog_Internal(GetFuncName()$"() not doing grab attack because current command ("$CommandList$") will not allow it",'GrabAttack',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() not doing grab attack because current command ("$CommandList$") will not allow it",'GrabAttack',);};
 	}
 }
 

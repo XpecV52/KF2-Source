@@ -57,7 +57,9 @@ function PlayAnimation();
 function PlayLoadAnimation()
 {
     bUseRootMotion = false;
-    PlaySpecialMoveAnim(LoadAnim, 0, BlendInTime, 0, 1);
+    AnimStance = 0;
+    AnimName = LoadAnim;
+    PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, 0, 1);
 }
 
 function StartGunTracking()
@@ -77,18 +79,28 @@ function PlayFireAnimation()
     bUseRootMotion = false;
     DisableRootMotion();
     MyPatPawn.RotationRate = MissileFireRotationRate;
-    PlaySpecialMoveAnim(AnimName, 1, 0, BlendOutTime, 1);
+    AnimStance = 1;
+    AnimName = default.AnimName;
+    PlaySpecialMoveAnim(AnimName, AnimStance, 0, BlendOutTime, 1);
     if(MyPatPawn.Role == ROLE_Authority)
     {
         FireMissiles();
     }
     MyPatPawn.PostAkEventOnBone(FireSound, 'BarrelSpinner', true, true);
-    MyPatPawn.ZeroMovementVariables();
 }
 
 function GetAimDirAndTargetLoc(int MissileNum, Vector MissileLoc, Rotator MissileRot, out Vector AimDir, out Vector TargetLoc)
 {
     MyPatPawn.GetMissileAimDirAndTargetLoc(MissileNum, MissileLoc, MissileRot, AimDir, TargetLoc);
+}
+
+function Tick(float DeltaTime)
+{
+    super(KFSpecialMove).Tick(DeltaTime);
+    if((((MyPatPawn != none) && MyPatPawn.Role == ROLE_Authority) && !MyPatPawn.bPlayedDeath) && MyPatPawn.Physics == 1)
+    {
+        MyPatPawn.ZeroMovementVariables();
+    }
 }
 
 function FireMissiles()
@@ -156,11 +168,12 @@ function FireMissiles()
 
 function PlayWindDownAnimation()
 {
-    MyPatPawn.ZeroMovementVariables();
-    MyPatPawn.StopBodyAnim(0, 0.33);
+    MyPatPawn.StopBodyAnim(AnimStance, 0.33);
     bUseRootMotion = true;
     EnableRootMotion();
-    PlaySpecialMoveAnim(WindDownAnimName, 0, 0.33, BlendOutTime, 1);
+    AnimStance = 0;
+    AnimName = WindDownAnimName;
+    PlaySpecialMoveAnim(AnimName, AnimStance, 0.33, BlendOutTime, 1);
 }
 
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
@@ -173,7 +186,7 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
         case LoadAnim:
             PlayFireAnimation();
             break;
-        case AnimName:
+        case default.AnimName:
             MyPatPawn.EndSpecialMove();
             break;
         case WindDownAnimName:
@@ -195,6 +208,10 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
             MyPatPawn.SetGunTracking(false);
         }
         MyPatPawn.RotationRate = MyPatPawn.default.RotationRate;
+    }
+    if((KFPOwner.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim && KFPOwner.BodyStanceNodes[AnimStance].GetCustomAnimNodeSeq() != none) && KFPOwner.BodyStanceNodes[AnimStance].GetCustomAnimNodeSeq().AnimSeqName == AnimName)
+    {
+        MyPatPawn.StopBodyAnim(AnimStance, 0.1);
     }
     MyPatPawn = none;
     MyPatController = none;

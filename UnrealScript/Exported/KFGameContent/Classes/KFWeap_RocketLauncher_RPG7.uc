@@ -123,6 +123,7 @@ defaultproperties
    SpareAmmoCapacity(0)=15
    InitialSpareMags(0)=4
    AmmoPickupScale(0)=2.000000
+   WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    BonesToLockOnEmpty(0)="RW_Grenade1"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_DryFire'

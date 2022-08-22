@@ -64,7 +64,6 @@ defaultproperties
    bWarnAIWhenAiming=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
-   bAllowClientAmmoTracking=False
    PenetrationPower(0)=4.000000
    PenetrationPower(1)=()
    MeshFOV=70.000000

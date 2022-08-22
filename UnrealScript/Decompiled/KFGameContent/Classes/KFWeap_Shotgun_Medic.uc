@@ -89,6 +89,7 @@ defaultproperties
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=80
     InitialSpareMags=3
+    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=14,Y=6.5,Z=-3.5)

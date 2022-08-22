@@ -1,0 +1,296 @@
+[Public]
+Object[0]=(Name=Engine.ServerCommandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[1]=(Name=Engine.MasterMD5Commandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[2]=(Name=Engine.SmokeTestCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+NetHDSpace=在您的HDD上没有足够的空间下载该软件包。您将需要释放一些空间才能进行下载。
+NetOpen=打开文件发生错误
+NetWrite=写入文件发生错误
+NetRefused=服务器拒绝发送 '`~'
+NetClose=关闭文件发生错误
+NetSize=文件大小不匹配
+NetMove=移动文件发生错误
+NetInvalid=接收了无效文件请求
+NoDownload=你想加入的伺服器必須更新至最新遊戲版本。請嘗試其他伺服器。
+DownloadFailed=下载软件包 '`~' 失败： `~
+RequestDenied=服务器通过待处理等级请求文件：拒绝
+ConnectionFailed_Title=连接中断
+ConnectionFailed=你与主机的连接中断。
+ChAllocate=无法分配通道
+NetAlready=已经进行联网
+NetListen=监听失败：没有可供使用的链接器
+LoadEntry=无法加载进入权： `~
+InvalidUrl=您无法加入本场比赛，因为您没有主机拥有的下载内容。
+InvalidLink=无效链接： `~
+FailedBrowse=无法输入 `~: `~ 。请检查错误日志。
+Listen=监听失败： `~
+AbortToEntry=失败；返回进入权
+ServerOpen=服务器无法打开网络URL
+ServerListen=专用服务器无法监听： `~
+Pending=待处理连接到 '`~' 失败； `~
+LoadPlayerClass=加载玩家类失败
+ClientOutdated=您尝试加入的比赛正在运行游戏的一个不兼容版本。请尝试升级您的游戏版本。
+ServerOutdated=服务器的版本已经过期
+FailedMapload_NotFound=无法找到命令行开关 '`~' 上指定的地图。您想要改成加载这个默认地图吗？
+DebuggerPresentError=游戏检测到您当前运行的是一个用户模式或kernel模式调试器，无法继续。请退出所有调试实用程序并重新启动游戏。
+NetworkInit=初始化网络层发生错误。
+CreateMatchError=创建比赛发生错误
+UsedCheatCommands=使用了在网站中不允许使用的控制台命令。您必须重启游戏创建一场比赛。
+FailedFindPackage=无法找到必需的软件包 '`~'
+ConnectionTimeout=链接到主机超时
+NegativeDeltaTime=发现CPU时间不准的问题！请查看版本注释来解决此问题。 
+SteamClientRequired=主机正在运行Steam，所以您也应该运行。请通过Steam启动游戏。
+SteamAuthFailed=Steam无法为您授权连接到此服务器。
+ServerHostingDifferentGame=服务器正在进行一个不同的游戏。您不能与此服务器连接。
+PeerListen=对等点侦听插槽失败: `~
+PeerConnection=对等点连接失败: `~
+IPhoneLaunchURLError=此链接目前不可用。请检查您的互联网连接。
+[Progress]
+CancelledConnect=已取消的连接企图
+RunningNet=`~: `~ (`~ 玩家, `~ connections) [v`~]
+NetReceiving=接受 '`~': `~/`~
+NetReceiveOk=成功接收 '`~'
+NetSend=发送 '`~'
+NetSending=发送中 '`~': `~/`~
+Connecting=连接中...
+Listening=侦听客户端...
+Loading=载入
+Saving=保存
+Paused=由 `~暂停
+ReceiveFile=接受 '`~'
+ReceiveOptionalFile=接受可选文件 '`~'
+ReceiveSize=大小为 `~K, 完成 `3.1~`~
+ConnectingText=连接中:
+ConnectingURL=虚幻://`~/`~
+Success=成功
+PeerConnecting=正连接对等点
+PeerDisconnecting=正断开对等点
+CouldNotConnect_Title=連接失敗
+
+[Console]
+ClassCaption=标准虚幻平台
+
+[GameViewportClient]
+LoadingMessage=载入中
+SavingMessage=保存中
+ConnectingMessage=连接中
+PausedMessage=已暂停
+PrecachingMessage=预缓存中
+
+[MasterMD5Commandlet]
+HelpCmd=mastermd5
+HelpOneLiner=操作主MD5数据库
+HelpUsage=mastermd5 [-option..] <params>
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParm[0]=-c
+HelpDesc[0]=创建一个新的MD5数据库
+HelpParm[1]=-a
+HelpDesc[1]=添加新的包到数据库
+HelpParm[2]=-s
+HelpDesc[2]=显示目前的数据库。
+HelpParm[3]=-r
+HelpDesc[3]=强制所有条目的修订版 <param>
+
+[General]
+Upgrade=要进入该服务器，您需要进行最新免费虚幻更新，Epic网站：
+UpgradeURL=http://www.unreal.com/upgrade中提供相关更新
+UpgradeQuestion=您想要启动您的网页浏览器，马上进入升级页面吗？
+Version=版本 `~
+SplashScreen_CopyrightInfo=Copyright ? 1998-2013   Epic Games, Inc.   All rights reserved.
+SplashScreen_ThirdPartyCopyrightInfo=使用Bink Video, Copyright ? 1997-2011 by RAD Game Tools, 
+Inc.
+
+[Menu]
+HelpMessage=
+MenuList=
+LeftString=左
+RightString=右
+CenterString=中心
+EnabledString=启用的
+DisabledString=禁用的
+HelpMessage[1]=此菜单尚未被采用。
+YesString=是
+NoString=否
+
+[CheatManager]
+ViewingFrom=现在查看
+OwnCamera=现在从自有摄像机中查看
+
+[GameInfo]
+DefaultPlayerName=玩家
+GameName=游戏
+
+[HUD]
+LoadingMessage=加载
+SavingMessage=保存
+ConnectingMessage=继续
+PausedMessage=暂停
+
+[Inventory]
+PickupMessage=夺取一件物品。
+
+[LevelInfo]
+Title=未命名
+
+[PlayerReplicationInfo]
+StringSpectating=观察
+StringUnknown=未知
+
+[TeamInfo]
+TeamName=队伍
+
+[Weapon]
+ItemName=武器
+
+[GameMessage]
+SwitchLevelMessage=切换关卡
+LeftMessage=" 离开游戏。"
+FailedTeamMessage=无法为玩家找到队伍
+FailedPlaceMessage=无法找到出发点
+FailedSpawnMessage=无法生成玩家
+EnteredMessage=" 进入游戏。"
+MaxedOutMessage=服务器已达最大容量。
+ArbitrationMessage=该会话已经开始。
+OvertimeMessage=游戏时间内平局。进入突然死亡加时赛!!!
+GlobalNameChange=将名称改为
+NewTeamMessage=目前在
+NoNameChange=名字已被使用。
+VoteStarted=开始投票。
+VotePassed=投票通过。
+MustHaveStats=加入此服务器必须开启统计数据。
+CantBeSpectator=抱歉，您此次不能成为观察员。
+CantBePlayer=抱歉，您目前不能作为玩家加入游戏。
+BecameSpectator=成为观察员。
+NewPlayerMessage=一名新玩家加入了游戏。
+KickWarning=您即将因在游戏不进行动作而被踢出！
+NewSpecMessage=一位观察员加入了游戏/
+SpecEnteredMessage="作为观察员加入游戏"
+
+[FailedConnect]
+FailMessage[0]=无法加入游戏。需要密码。
+FailMessage[1]=无法加入游戏。密码错误。
+FailMessage[2]=无法加入游戏。游戏已经开始。
+FailMessage[3]=无法加入游戏。
+
+[AccessControl]
+IPBanned=您的IP地址在此服务器上已被屏蔽。
+WrongPassword=您输入的密码不正确。
+NeedPassword=您需要输入密码来加入此游戏。
+SessionBanned=您的IP地址已在当前游戏中被封禁。
+KickedMsg=您被强制从游戏中退出。
+DefaultKickReason=无指定
+IdleKickReason=因在游戏中无动作而被提出。
+ACDisplayText[0]=游戏密码
+ACDisplayText[1]=访问协议
+ACDisplayText[2]=管理员密码
+ACDescText[0]=如果设定了此密码，玩家必须输入它来进入此服务器。
+ACDescText[1]=定义被封禁的IP地址或IP地址段。
+ACDescText[2]=在此服务器上必须输入密码以获得管理员权限。
+
+[ServerCommandlet]
+HelpDescription=网络游戏服务器
+HelpUsage=server map.unr[?game=gametype] [-option...] [parm=value]...
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParamNames[0]=日志
+HelpParamDescriptions[0]=定义须生成的日志文件
+HelpParamNames[1]=AllAdmin
+HelpParamDescriptions[1]=给予所有玩家管理员权限
+
+[SmokeTestCommandlet]
+HelpDescription=此命令行开关运行一系列测试来验证版本
+HelpUsage=gamename.exe smoketest <-SERVER | -CHECK_NATIVE_CLASS_SIZES>
+HelpWebLink=
+HelpParamNames[0]=服务器
+HelpParamDescriptions[0]=将游戏作为服务器来让一次更新验证启动和首帧代码
+HelpParamNames[1]=CHECK_NATIVE_CLASS_SIZES
+HelpParamDescriptions[1]=验证所有native类符合成员布局中的脚本类
+
+[ExampleGameMenu]
+CancelButtonText=返回游戏
+RespawnButtonText=重新生成玩家
+ReloadButtonText=重新加载地图
+InlineFontSampleText=这些字看起来很小... <Font:EngineFonts.LargeFont>这些字看起来很大,<Font:/> 并且这些字将恢复到正常大小.
+InlineStyleSampleText=这些字为正常大小... <Styles:ConsoleStyle>这些字为绿色<Styles:/> 并且这些字也为正常大小。
+SplitscreenButtonText=分屏测试场景
+
+[TestMenuStrings]
+ButtonTestText=此按钮已被点击 <SceneData:ButtonClickCount> 次.
+PlayerIndexText=被传递的PlayerIndex为: <SceneData:PlayerIndex>.
+WrapStringTest=这只是随便写的一段话，主要用来测试不同字符串的自动调整尺寸功能。这串非常长的字符串可以用来很好地测试UIString的封装功能。实际上，因为此字符串中有如此多的字符，可以将之用来测试UIString的许多不同特性。
+
+[OnlineProfileSettings]
+OwnerMappings[0]=(Name="None")
+OwnerMappings[1]=(Name="Online Service Setting")
+OwnerMappings[2]=(Name="Game Setting")
+ProfileMappings[0]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[1]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[2]=(ValueMappings=((Name="No"),(Name="Yes")))
+ProfileMappings[3]=(ValueMappings=((Name="Off"),(Name="On"),(Name="Both")))
+ProfileMappings[5]=(ValueMappings=((Name="Normal"),(Name="Easy"),(Name="Hard")))
+ProfileMappings[6]=(ValueMappings=((Name="Medium"),(Name="Low"),(Name="High")))
+ProfileMappings[7]=(ValueMappings=((Name="None"),(Name="Black"),(Name="White"),(Name="Yellow"),
+(Name="Orange"),(Name="Pink"),(Name="Red"),(Name="Purple"),(Name="Blue"),(Name="Green"),
+(Name="Brown"),(Name="Silver")))
+ProfileMappings[8]=(ValueMappings=((Name="None"),(Name="Black"),(Name="White"),(Name="Yellow"),
+(Name="Orange"),(Name="Pink"),(Name="Red"),(Name="Purple"),(Name="Blue"),(Name="Green"),
+(Name="Brown"),(Name="Silver")))
+ProfileMappings[9]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[10]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[11]=(ValueMappings=((Name="Left Thumbstick"),(Name="Right Thumbstick")))
+ProfileMappings[12]=(ValueMappings=((Name="Auto"),(Name="Manual")))
+ProfileMappings[13]=(ValueMappings=((Name="Behind"),(Name="Front"),(Name="Inside")))
+ProfileMappings[14]=(ValueMappings=((Name="Trigger"),(Name="Button")))
+ProfileMappings[15]=(ValueMappings=((Name="Trigger"),(Name="Button")))
+
+[ViewportStatus]
+RenderingFrozenE=渲染冻结...
+OcclusionChild=（Occlusion Child）子遮挡模式
+
+[UIDataProvider_OnlineFriendMessages]
+SendingPlayerNameCol=发送者的名字
+bIsFriendInviteCol=好友邀请
+bWasAcceptedCol=接受好友邀请
+bWasDeniedCol=拒绝好友邀请
+MessageCol=消息
+
+[UIDataProvider_OnlineFriends]
+NickNameCol=昵称
+PresenceInfoCol=在线状态
+bIsOnlineCol=在线
+bIsPlayingCol=游戏中
+bIsPlayingThisGameCol=玩该款游戏中
+bIsJoinableCol=准备参加
+bHasVoiceSupportCol=支持语音
+OfflineText=离线
+OnlineText=在线
+AwayText=离开
+BusyText=忙碌
+
+[OnlineGameSettings]
+NumPublicConnections.FriendlyName="最大公共游戏空位数"
+NumPrivateConnections.FriendlyName="最大私人游戏空位数"
+NumOpenPublicConnections.FriendlyName="开启公共游戏空位"
+NumOpenPrivateConnections.FriendlyName="开启私人游戏空位"
+bShouldAdvertise.FriendlyName="广告"
+bIsLanMatch.FriendlyName="局域网游戏"
+bUsesStats.FriendlyName="使用统计数据"
+bAllowJoinInProgress.FriendlyName="允许加入进程"
+bAllowInvites.FriendlyName="允许邀请"
+bUsesPresence.FriendlyName="启用Presence"
+bAllowJoinViaPresence.FriendlyName="通过允许Presence加入"
+bUsesArbitration.FriendlyName="仲裁"
+bAntiCheatProtected.FriendlyName="防作弊已启动"
+OwningPlayerName.FriendlyName="服务器"
+PingInMs.FriendlyName="延迟"
+bIsDedicated.FriendlyName="专用"
+bIsListPlay.FriendlyName="游戏列表"
+AverageSkillRating.FriendlyName="技术等级"
+
+[UIDataStore_OnlineStats]
+PlayerNickData.PlayerNickColumnName="玩家昵称"
+RankNameMetaData.RankColumnName="排行"
+
+[UIDataProvider_OnlinePartyChatList]
+NatTypes=未知
+

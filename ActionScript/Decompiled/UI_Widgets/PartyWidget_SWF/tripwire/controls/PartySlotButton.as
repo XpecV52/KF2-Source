@@ -7,8 +7,10 @@ package tripwire.controls
     import flash.text.TextFormat;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.events.IndexEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.gfx.TextFieldEx;
     import tripwire.containers.TripContainer;
+    import tripwire.managers.MenuManager;
     
     public class PartySlotButton extends TripButton
     {
@@ -52,7 +54,7 @@ package tripwire.controls
         
         public var playerNameText:TextField;
         
-        public var activeList:MovieClip;
+        protected var _activeList:MovieClip;
         
         private var _type:String;
         
@@ -86,14 +88,6 @@ package tripwire.controls
         
         private var _bIsMuted:Boolean;
         
-        var perkLevelOriginalLocation:Number;
-        
-        var playerNameOriginalLocation:Number;
-        
-        var profileImageOriginalLocation:Number;
-        
-        var perkIconOriginalLocation:Number;
-        
         var previousTeamID:int;
         
         public function PartySlotButton()
@@ -105,14 +99,37 @@ package tripwire.controls
             this.ready = false;
             this.profileLoader = UILoader(this.profileImageContainer.profileLoader);
             this.perkIconLoader = UILoader(this.perkIconLoaderContainer.perkIconLoader);
-            this.perkIconOriginalLocation = this.perkIconLoaderContainer.x;
-            this.perkLevelOriginalLocation = this.perkLevelText.x;
-            this.playerNameOriginalLocation = this.playerNameText.x;
-            this.profileImageOriginalLocation = this.profileImageContainer.x;
             this.isMuted = false;
             this.playerNameFormat = this.playerNameText.defaultTextFormat;
             this.playerNameOriginalSize = int(this.playerNameFormat.size);
             TextFieldEx.setVerticalAlign(this.playerNameText,TextFieldEx.VALIGN_CENTER);
+        }
+        
+        override public function set data(param1:Object) : void
+        {
+            super.data = param1;
+            if(param1)
+            {
+                this.bIsOccupied = true;
+                this.perkLevelText.text = !!param1.perkLevel ? param1.perkLevel : "";
+                this.perkImageSource = !!param1.perkIconPath ? param1.perkIconPath : "";
+                this.playerNameString = !!param1.playerName ? param1.playerName : "";
+                this.profileImageSource = !!param1.profileImageSource ? param1.profileImageSource : "";
+                this.isMuted = !!param1.muted ? Boolean(param1.muted) : false;
+                this.ready = !!param1.ready ? Boolean(param1.ready) : false;
+                this.bIsLeader = !!param1.bLeader ? Boolean(param1.bLeader) : false;
+            }
+            else
+            {
+                this.perkLevelText.text = "";
+                this.perkImageSource = "";
+                this.profileImageSource = "";
+                this.playerNameText.text = "";
+                this.isMuted = false;
+                this.ready = false;
+                this.bIsLeader = false;
+                this.bIsOccupied = false;
+            }
         }
         
         override public function set selected(param1:Boolean) : void
@@ -126,6 +143,18 @@ package tripwire.controls
             {
                 this.HighlightBG.alpha = 0;
             }
+        }
+        
+        public function set activeList(param1:MovieClip) : void
+        {
+            this._activeList = param1;
+            this.optionsList = TripScrollingList(param1);
+            this.optionsList.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack);
+        }
+        
+        public function get activeList() : MovieClip
+        {
+            return this._activeList;
         }
         
         public function set team(param1:int) : void
@@ -160,20 +189,12 @@ package tripwire.controls
         {
             super.highlightButton();
             this.HighlightBG.alpha = 1;
-            if(doAnimations)
-            {
-                this.HitboxMC.z = 32;
-            }
         }
         
         override protected function unhighlightButton() : *
         {
             super.unhighlightButton();
             this.HighlightBG.alpha = 0;
-            if(doAnimations)
-            {
-                this.HitboxMC.z = 0;
-            }
         }
         
         public function set bIsOccupied(param1:Boolean) : void
@@ -182,6 +203,11 @@ package tripwire.controls
             if(this.BG)
             {
                 this.BG.visible = param1;
+            }
+            if(param1 == false)
+            {
+                this.isMuted = false;
+                this.isTalking = false;
             }
             this.profileImageContainer.visible = param1;
             this.orangeBG.visible = param1;
@@ -213,12 +239,12 @@ package tripwire.controls
             {
                 return;
             }
-            this.optionsList.visible = false;
+            if(this.optionsList != null)
+            {
+                this._activeList = this.optionsList;
+            }
             this.isTalking = false;
             this._bIsMyPlayer = param1;
-            this.activeList = this.optionsList;
-            this.activeList.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack);
-            this.activeList.associatedButton = this;
         }
         
         public function get bIsLeader() : Boolean
@@ -260,7 +286,7 @@ package tripwire.controls
         
         public function handleGamePadB() : Boolean
         {
-            if(this.activeList != null && this.activeList.visible)
+            if(this._activeList != null && this._activeList.visible && this._activeList.associatedButton == this)
             {
                 this.closeList();
                 return true;
@@ -301,16 +327,12 @@ package tripwire.controls
             if(param1 && param1 != "")
             {
                 this.perkIconLoader.visible = true;
-                this.perkIconLoader.source = param1;
+                this.perkIconLoaderContainer.perkIconLoader.source = param1;
             }
             else
             {
                 this.perkIconLoader.visible = false;
             }
-        }
-        
-        public function set readyText(param1:String) : void
-        {
         }
         
         public function set ready(param1:Boolean) : *
@@ -331,7 +353,7 @@ package tripwire.controls
         {
             if(!this._bIsMuted)
             {
-                this.voipIcon.visible = param1;
+                this.voipIcon.visible = param1 && this._bIsOccupied;
             }
         }
         
@@ -352,29 +374,39 @@ package tripwire.controls
         
         public function openList() : *
         {
-            if((this.activeList as TripScrollingList).dataProvider.length > 0)
+            if((this._activeList as TripScrollingList).dataProvider.length > 0)
             {
                 mouseEnabled = false;
                 mouseChildren = true;
-                this.activeList.bOpen = true;
+                this._activeList.bOpen = true;
+                this._activeList.associatedButton = this;
             }
         }
         
         public function closeList() : *
         {
-            if(this.activeList.bOpen)
+            if(this._activeList.bOpen && this._activeList.associatedButton == this)
             {
+                this.optionsList.removeEventListener(IndexEvent.INDEX_CHANGE,this.onBack);
+                this._activeList.associatedButton = null;
                 mouseEnabled = true;
                 mouseChildren = false;
-                this.activeList.bOpen = false;
+                this._activeList.bOpen = false;
+                if(!MenuManager.manager.bPopUpOpen)
+                {
+                    FocusHandler.getInstance().setFocus(this);
+                }
             }
         }
         
-        protected function onBack(param1:IndexEvent) : *
+        public function onBack(param1:IndexEvent) : *
         {
             if(param1.index != TripContainer.CANCELLED_INDEX)
             {
-                ExternalInterface.call("Callback_ProfileOption",param1.index,this.slotIndex);
+                if(this.optionsList)
+                {
+                    ExternalInterface.call("Callback_ProfileOption",this.optionsList.dataProvider.requestItemAt(param1.index).optionKey,this.slotIndex);
+                }
             }
             this.closeList();
         }
@@ -383,10 +415,6 @@ package tripwire.controls
         {
             this.iconTint.setTint(param1,1);
             this.perkIconLoaderContainer.transform.colorTransform = this.iconTint;
-            if(this.leaderIcon != null)
-            {
-                this.leaderIcon.transform.colorTransform = this.iconTint;
-            }
             this.perkLevelText.textColor = param1;
         }
         
@@ -397,7 +425,6 @@ package tripwire.controls
         
         public function set leaderText(param1:String) : *
         {
-            this.leaderIcon.leaderText.text = param1;
         }
     }
 }

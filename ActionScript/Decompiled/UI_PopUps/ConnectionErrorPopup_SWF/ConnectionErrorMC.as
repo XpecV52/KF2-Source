@@ -22,6 +22,7 @@ package
             catch(e:Error)
             {
             }
+            promptsContainer.bCenterAligned = true;
             promptsContainer.bUseWidthForBoundry = true;
             promptsContainer.enabled = true;
             promptsContainer.enableInitCallback = false;
@@ -50,7 +51,7 @@ package
             AcceptButton.data = "";
             AcceptButton.enabled = true;
             AcceptButton.enableInitCallback = false;
-            AcceptButton.focusable = false;
+            AcceptButton.focusable = true;
             AcceptButton.label = "<<BACK NOW";
             AcceptButton.selected = false;
             AcceptButton.toggle = false;

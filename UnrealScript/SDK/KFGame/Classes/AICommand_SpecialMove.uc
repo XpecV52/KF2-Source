@@ -246,8 +246,6 @@ state Command_SpecialMove `DEBUGSTATE
 	{
 		`AILog( GetFuncName()$" Special move timed out - failing and aborting", 'Command_SpecialMove' );
 
-		`log("special move timed out"@self);
-
 		if( MyKFPawn.SpecialMove == SpecialMove )
 		{
 			MyKFPawn.EndSpecialMove();

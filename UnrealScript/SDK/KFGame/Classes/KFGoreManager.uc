@@ -406,11 +406,25 @@ simulated final function AttachMutilationBloodEffects(
 	local bool bOppositeFacing;
 	local KFCharacterInfo_Monster MonsterInfo;
 
-	if( WorldInfo.NetMode == NM_DedicatedServer || WorldInfo.bDropDetail )
+	if( WorldInfo.NetMode == NM_DedicatedServer )
 		return;
 
 	if( InPawn != none && InPawn.mesh != none )
 	{
+		//
+		// Activate the blood splat on the body MIC
+		// NOTE: 0.f activates the blood 1.f deactivates it
+		//
+		for( BloodParamIndex = 0; BloodParamIndex < BloodMICParams.length; BloodParamIndex++ )
+		{
+			InPawn.CharacterMICs[0].SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0.f);
+		}
+
+		if ( WorldInfo.bDropDetail )
+		{
+			return; // MIC params only
+		}
+
 		SkelMesh = InPawn.mesh;
 		ParentBone = SkelMesh.GetParentBone(DismemberedBone);
 		DismemberedBoneIndex  = SkelMesh.MatchRefBone(DismemberedBone);
@@ -473,15 +487,6 @@ simulated final function AttachMutilationBloodEffects(
 						SkelMesh, DismemberedBone, false,,
 						bOppositeFacing ? rot(0,0,0) : rot(0,32768,0));
 				}
-			}
-
-			//
-			// Activate the blood splat on the body MIC
-			// NOTE: 0.f activates the blood 1.f deactivates it
-			//
-			for( BloodParamIndex = 0; BloodParamIndex < BloodMICParams.length; BloodParamIndex++ )
-			{
-				InPawn.CharacterMICs[0].SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0.f);
 			}
 		}
 	}

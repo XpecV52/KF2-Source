@@ -65,6 +65,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 
 struct native PersistentSplatInfo
 {
@@ -317,12 +318,25 @@ final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, nam
     local bool bOppositeFacing;
     local KFCharacterInfo_Monster MonsterInfo;
 
-    if((WorldInfo.NetMode == NM_DedicatedServer) || WorldInfo.bDropDetail)
+    if(WorldInfo.NetMode == NM_DedicatedServer)
     {
         return;
     }
     if((inPawn != none) && inPawn.Mesh != none)
     {
+        BloodParamIndex = 0;
+        J0x6E:
+
+        if(BloodParamIndex < BloodMICParams.Length)
+        {
+            inPawn.CharacterMICs[0].SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0);
+            ++ BloodParamIndex;
+            goto J0x6E;
+        }
+        if(WorldInfo.bDropDetail)
+        {
+            return;
+        }
         SkelMesh = inPawn.Mesh;
         ParentBone = SkelMesh.GetParentBone(DismemberedBone);
         DismemberedBoneIndex = SkelMesh.MatchRefBone(DismemberedBone);
@@ -335,7 +349,7 @@ final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, nam
             ParentBoneFaceDir = SkelMesh.GetBoneAxis(ParentBone, 1);
             bOppositeFacing = (((Normal(TranslationFromParentBone) Dot ParentBoneFaceDir) < 0) ? true : false);
             BloodJetIndex = 0;
-            J0x2DC:
+            J0x35B:
 
             if(BloodJetIndex < BloodJets.Length)
             {
@@ -348,10 +362,10 @@ final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, nam
                     BloodFXEmitterPool.SpawnEmitterMeshAttachment(BloodJets[BloodJetIndex].ParticleSystemTemplate, SkelMesh, ParentBone, false, OffsetFromParentBone, ((bOppositeFacing) ? rot(0, 32768, 0) : rot(0, 0, 0)));
                 }
                 ++ BloodJetIndex;
-                goto J0x2DC;
+                goto J0x35B;
             }
             BloodTrailIndex = 0;
-            J0x43B:
+            J0x4BA:
 
             if(BloodTrailIndex < BloodTrails.Length)
             {
@@ -364,16 +378,7 @@ final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, nam
                     BloodFXEmitterPool.SpawnEmitterMeshAttachment(BloodTrails[BloodTrailIndex].ParticleSystemTemplate, SkelMesh, DismemberedBone, false,, ((bOppositeFacing) ? rot(0, 0, 0) : rot(0, 32768, 0)));
                 }
                 ++ BloodTrailIndex;
-                goto J0x43B;
-            }
-            BloodParamIndex = 0;
-            J0x592:
-
-            if(BloodParamIndex < BloodMICParams.Length)
-            {
-                inPawn.CharacterMICs[0].SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0);
-                ++ BloodParamIndex;
-                goto J0x592;
+                goto J0x4BA;
             }
         }
     }
@@ -767,7 +772,7 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
     {
         SpawnObliterationBloodEffect(inPawn);
         GibletIndex = 0;
-        J0x135:
+        J0x136:
 
         if(GibletIndex < MonsterInfo.GibletSettings.Length)
         {
@@ -775,7 +780,7 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
             if(MonsterInfo.GibletSettings[GibletIndex].GibletBones.Length > 0)
             {
                 BoneIndex = 0;
-                J0x1BD:
+                J0x1BE:
 
                 if(BoneIndex < MonsterInfo.GibletSettings[GibletIndex].GibletBones.Length)
                 {
@@ -783,7 +788,7 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
                     {
                         if(FRand() < 0.35)
                         {
-                            goto J0x491;
+                            goto J0x492;
                         }
                     }
                     Loc = inPawn.Mesh.GetBoneLocation(MonsterInfo.GibletSettings[GibletIndex].GibletBones[BoneIndex]);
@@ -795,10 +800,10 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
                     {
                         Gib.SoundGroup = PawnSoundGroup;
                     }
-                    J0x491:
+                    J0x492:
 
                     ++ BoneIndex;
-                    goto J0x1BD;
+                    goto J0x1BE;
                 }                
             }
             else
@@ -812,7 +817,7 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
                 }
             }
             ++ GibletIndex;
-            goto J0x135;
+            goto J0x136;
         }
     }
 }

@@ -84,20 +84,20 @@ function Popped()
 
 event bool NotifyBump( Actor Other, vector HitNormal )
 {
-	AILog_Internal(GetFuncName()$" IN MELEE ATTACK",'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" IN MELEE ATTACK",'PathWarning',);};
 	DisableBump( 0.25f );
 	return true;
 }
 
 function Paused( GameAICommand NewCommand )
 {
-	AILog_Internal(self$" PAUSED BY "$NewCommand,'Warning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" PAUSED BY "$NewCommand,'Warning',);};
 	super.Paused( NewCommand );
 }
 
 function Resumed( name OldCommandName )
 {
-	AILog_Internal(self$" Resumed, OldCommand: "$OldCommandName,,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Resumed, OldCommand: "$OldCommandName,,);};
 	// Added 11/19 due to hit reactions pausing Melee command
 	super.Resumed( OldCommandName );
 	if( OldCommandName == 'AICommand_Pause' )
@@ -217,11 +217,11 @@ state Command_SpecialMove
 		if( MyKFPawn == None || !MyKFPawn.IsAliveAndWell() || AttackTarget == none || (Pawn(AttackTarget) != none &&
 			!Pawn(AttackTarget).IsAliveAndWell()) || (AttackTarget.IsA('KFDoorActor') && KFDoorActor(AttackTarget).IsCompletelyOpen()) )
 		{
-			AILog_Internal(self$" ExecuteSpecialMove() returning early "$AttackTarget,'Command_Attack_Melee',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" ExecuteSpecialMove() returning early "$AttackTarget,'Command_Attack_Melee',);};
 			return false;
 		}
 
-		AILog_Internal(self$" ExecuteSpecialMove() AttackTarget: "$AttackTarget,'Command_Attack_Melee',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" ExecuteSpecialMove() AttackTarget: "$AttackTarget,'Command_Attack_Melee',);};
 
 		// Keep rotating toward melee target
  		if( AttackTarget != None && Pawn != none && !Pawn.bCrawler )
@@ -233,11 +233,11 @@ state Command_SpecialMove
 		// Start the special move after rotating
 		if( (Pawn.bCrawler || Pawn.ReachedDesiredRotation()) && AttackTarget != none )
 		{
-			AILog_Internal(self$" Target in melee range (Dist: "$VSize(AttackTarget.Location - Pawn.Location)$"... do attack",'Command_Attack_Melee',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Target in melee range (Dist: "$VSize(AttackTarget.Location - Pawn.Location)$"... do attack",'Command_Attack_Melee',);};
 			MyKFPawn.DoSpecialMove( GetSpecialMove(),,, SMFlags );
 			return MyKFPawn.SpecialMove == AttackSpecialMove;
 		}
-		AILog_Internal(self$" ExecuteSpecialMove returning false because ReachedDesiredRotation isn't done?  AttackTarget: "$AttackTarget,'Command_Attack_Melee',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" ExecuteSpecialMove returning false because ReachedDesiredRotation isn't done?  AttackTarget: "$AttackTarget,'Command_Attack_Melee',);};
 		return false;
 	}
 
@@ -302,7 +302,7 @@ state Command_SpecialMove
 			// (jc) Changed distance check to use AttackTarget instead of enemy 7/15/14
 			if( bCanBeAborted && !bAttackAborted && (VSizeSq(Pawn.Location - AttackTarget.Location) > GetAbortAttackDistanceSq()) && !AttackTarget.IsA('KFDoorActor') )
 			{
-				AILog_Internal(self$" 1 Aborting attack.. AttackTarget: "$AttackTarget$" Dist: "$VSize( AttackTarget.Location - Pawn.Location )$" Speed: "$VSize( Pawn.Velocity ),'Command_Attack_Melee',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" 1 Aborting attack.. AttackTarget: "$AttackTarget$" Dist: "$VSize( AttackTarget.Location - Pawn.Location )$" Speed: "$VSize( Pawn.Velocity ),'Command_Attack_Melee',);};
 				if( MyKFPawn.IsDoingSpecialMove( GetSpecialMove() ) )
 				{
 					if( bDebugShowAbortSequence )
@@ -318,7 +318,7 @@ state Command_SpecialMove
 			{
 				if( KFDoorActor( AttackTarget ).WeldIntegrity <= 0 || KFDoorActor( AttackTarget ).IsCompletelyOpen() )
 				{
-					AILog_Internal(self$" 2 Aborting attack.. AttackTarget: "$AttackTarget$" Dist: "$VSize( AttackTarget.Location - Pawn.Location )$" Speed: "$VSize( Pawn.Velocity ),'Command_Attack_Melee',);
+					if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" 2 Aborting attack.. AttackTarget: "$AttackTarget$" Dist: "$VSize( AttackTarget.Location - Pawn.Location )$" Speed: "$VSize( Pawn.Velocity ),'Command_Attack_Melee',);};
 					if( MyKFPawn.IsDoingSpecialMove( GetSpecialMove() ) )
 					{
 						bAttackAborted = true;
@@ -344,7 +344,7 @@ state Command_SpecialMove
 
 	function FinishedSpecialMove()
 	{
-		AILog_Internal(GetFuncName(),'Command_Attack_Melee',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName(),'Command_Attack_Melee',);};
 		UpdateLastMeleeTime( EAS_FullBody );
 		Status = 'Success';
 
@@ -429,14 +429,14 @@ state Circle
 
 		bResult = PointReachable ( CirclePoint );
 
-		AILog_Internal(GetFuncName()@CirclePoint @Dist@ bResult,'Command_Attack_Melee',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@CirclePoint @Dist@ bResult,'Command_Attack_Melee',);};
 
 		return bResult ;
 	}
 
 Begin:
 	//debug
-	AILog_Internal(self$" BEGIN TAG" @GetStateName(),'Command_Attack_Melee',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" BEGIN TAG" @GetStateName(),'Command_Attack_Melee',);};
 
 	SetTimer( 1.25f + (FRand () * 1.25f), false, nameof( self.CircleTimer ), self );
 	while( IsTimerActive( 'CircleTimer', self ) )

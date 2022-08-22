@@ -40,7 +40,10 @@ function Pushed()
     {
         Outer.Focus = TauntTarget;
     }
-    Outer.AILog_Internal("Beginning to taunt enemy " $ string(Outer.Enemy), 'Command_Taunt');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Beginning to taunt enemy " $ string(Outer.Enemy), 'Command_Taunt');
+    }
     Outer.AIActionStatus = "Starting taunt AICommand";
     if(Outer.Focus != none)
     {
@@ -81,7 +84,10 @@ state Command_SpecialMove
         local byte SpecialMoveFlags;
 
         SpecialMove = GetSpecialMove();
-        Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'Command_Taunt');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'Command_Taunt');
+        }
         if((SpecialMove != 0) && Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
             SpecialMoveFlags = TauntClass.static.PackSMFlags(Outer.MyKFPawn, TauntType);

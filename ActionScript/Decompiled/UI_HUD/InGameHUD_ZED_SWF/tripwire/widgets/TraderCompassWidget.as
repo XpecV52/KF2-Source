@@ -1,5 +1,6 @@
 package tripwire.widgets
 {
+    import com.greensock.TweenMax;
     import flash.display.MovieClip;
     import scaleform.clik.core.UIComponent;
     
@@ -23,8 +24,6 @@ package tripwire.widgets
         
         public var CompassPingAnimContainer:MovieClip;
         
-        public var CompassArrowAnimContainer:MovieClip;
-        
         public var CompassInfoContainer:MovieClip;
         
         public function TraderCompassWidget()
@@ -41,10 +40,6 @@ package tripwire.widgets
         
         private function cachePingSymbols() : void
         {
-            this.CompassArrowAnimContainer.CompassLeftArrow.visible = false;
-            this.CompassArrowAnimContainer.CompassRightArrow.visible = false;
-            this.CompassArrowAnimContainer.CompassTopArrow.visible = false;
-            this.CompassArrowAnimContainer.CompassBottomArrow.visible = false;
             this._centralPing = this.CompassPingAnimContainer.CompassPingContainer.CentralPing;
             this._downArrow = this.CompassPingAnimContainer.CompassPingContainer.DownArrow;
             this._upArrow = this.CompassPingAnimContainer.CompassPingContainer.UpArrow;
@@ -84,7 +79,10 @@ package tripwire.widgets
         public function set traderAngle(param1:Number) : void
         {
             param1 = param1 * this.Compass_Limit_From_Center + this.Compass_CenterPoint;
-            this.CompassPingAnimContainer.CompassPingContainer.x = param1;
+            TweenMax.to(this.CompassPingAnimContainer.CompassPingContainer,2,{
+                "x":param1,
+                "useFrames":true
+            });
         }
         
         public function set arrowDirection(param1:int) : void

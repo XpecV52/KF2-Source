@@ -1,8 +1,8 @@
 //--------------------------------------------
 //   RypeL Cam for Red Orchestra 2, C, 2012
 //--------------------------------------------
-class CamControl extends actor
-		config(RypelCam);
+class CamControl extends actor;
+	//config(RypelCam);
 
 
 struct TMultiArray {
@@ -10,11 +10,11 @@ struct TMultiArray {
 };
 var TMultiArray M[121];
 
-var config bool bxedited, conf, do_not_update_Spline;
-var config float basic_speed2, Flag_Fovs[121], Flag_Times[121], kabstand, mabstand, x[121];
-var config int drawdetail, z;
-var config rotator Rotation_At_Flags[121];
-var config vector Flag_Locations[121];
+var /*config*/ bool bxedited, conf, do_not_update_Spline;
+var /*config*/ float basic_speed2, Flag_Fovs[121], Flag_Times[121], kabstand, mabstand, X[121];
+var /*config*/ int drawdetail, Z;
+var /*config*/ rotator Rotation_At_Flags[121];
+var /*config*/ vector Flag_Locations[121];
 
 var bool	startCam, bbadaccel, bisdrawing, bpcam, bredox, bSpline_update_required, btimedpath,
 			C4D_Export_Target, C4D_Export, combineLoc, dif_tpstart_add, dif_tpstart_subtract,
@@ -157,22 +157,22 @@ function get_Flag_Rotations(int i, out rotator fr)
 function set_Flag_Rotations(rotator fr, int i)
 {
 	local knoten other, knoten2;
-	local int j;
+	local int jj;
 	Rotation_At_Flags[i] = fr;
-	j = 0;
+	jj = 0;
 	foreach DynamicActors(class'Knoten', Other)
 	{
-		if((i == 0) && (j == 1))
+		if((i == 0) && (jj == 1))
 		{
 			knoten2 = Other;
 			break;
 		}
-		if(j == i - 1)
+		if(jj == i - 1)
 		{
 			knoten2 = Other;
 			break;
 		}
-		j++;
+		jj++;
 	}
 	if(knoten2 != none)
 	{
@@ -630,38 +630,38 @@ function Timer()
 		SetTimer(0.05, true);
 }
 
-function norm(out float f2, vector v3) {
-	f2 = sqrt((v3.X) * (v3.X) + (v3.Y) * (v3.Y) + (v3.Z) * (v3.Z));
+function norm(out float f2, vector vv3) {
+	f2 = sqrt((vv3.X) * (vv3.X) + (vv3.Y) * (vv3.Y) + (vv3.Z) * (vv3.Z));
 }
 
 
-function KubSplineWertX(float t, int j)
+function KubSplineWertX(float tt, int jj)
 {
-	v2.X = a_a[j] + a_b[j] * (t - x[j]) + a_c[j] * (t - x[j]) * (t - x[j]) + a_d[j] * (t - x[j]) * (t - x[j]) * (t - x[j]);
+	v2.X = a_a[jj] + a_b[jj] * (tt - x[jj]) + a_c[jj] * (tt - x[jj]) * (tt - x[jj]) + a_d[jj] * (tt - x[jj]) * (tt - x[jj]) * (tt - x[jj]);
 }
-function KubSplineWertY(float t, int j)
+function KubSplineWertY(float tt, int jj)
 {
-	v2.Y = b_a[j] + b_b[j] * (t - x[j]) + b_c[j] * (t - x[j]) * (t - x[j]) + b_d[j] * (t - x[j]) * (t - x[j]) * (t - x[j]);
+	v2.Y = b_a[jj] + b_b[jj] * (tt - x[jj]) + b_c[jj] * (tt - x[jj]) * (tt - x[jj]) + b_d[jj] * (tt - x[jj]) * (tt - x[jj]) * (tt - x[jj]);
 }
-function KubSplineWertZ(float t, int j)
+function KubSplineWertZ(float tt, int jj)
 {
-	v2.Z = c_a[j] + c_b[j] * (t - x[j]) + c_c[j] * (t - x[j]) * (t - x[j]) + c_d[j] * (t - x[j]) * (t - x[j]) * (t - x[j]);
+	v2.Z = c_a[jj] + c_b[jj] * (tt - x[jj]) + c_c[jj] * (tt - x[jj]) * (tt - x[jj]) + c_d[jj] * (tt - x[jj]) * (tt - x[jj]) * (tt - x[jj]);
 }
-function KubSplineWertYaw(float t, int j)
+function KubSplineWertYaw(float tt, int jj)
 {
-	rotat.yaw = yaw_a[j] + yaw_b[j] * (t - x[j]) + yaw_c[j] * (t - x[j]) * (t - x[j]) + yaw_d[j] * (t - x[j]) * (t - x[j]) * (t - x[j]);
+	rotat.yaw = yaw_a[jj] + yaw_b[jj] * (tt - x[jj]) + yaw_c[jj] * (tt - x[jj]) * (tt - x[jj]) + yaw_d[jj] * (tt - x[jj]) * (tt - x[jj]) * (tt - x[jj]);
 }
-function KubSplineWertPitch(float t, int j)
+function KubSplineWertPitch(float tt, int jj)
 {
-	rotat.pitch = pitch_a[j] + pitch_b[j] * (t - x[j]) + pitch_c[j] * (t - x[j]) * (t - x[j]) + pitch_d[j] * (t - x[j]) * (t - x[j]) * (t - x[j]);
+	rotat.pitch = pitch_a[jj] + pitch_b[jj] * (tt - x[jj]) + pitch_c[jj] * (tt - x[jj]) * (tt - x[jj]) + pitch_d[jj] * (tt - x[jj]) * (tt - x[jj]) * (tt - x[jj]);
 }
-function KubSplineWertRoll(float t, int j)
+function KubSplineWertRoll(float tt, int jj)
 {
-	rotat.roll = roll_a[j] + roll_b[j] * (t - x[j]) + roll_c[j] * (t - x[j]) * (t - x[j]) + roll_d[j] * (t - x[j]) * (t - x[j]) * (t - x[j]);
+	rotat.roll = roll_a[jj] + roll_b[jj] * (tt - x[jj]) + roll_c[jj] * (tt - x[jj]) * (tt - x[jj]) + roll_d[jj] * (tt - x[jj]) * (tt - x[jj]) * (tt - x[jj]);
 }
-function KubSplineWertFov(float t, int j)
+function KubSplineWertFov(float tt, int jj)
 {
-	tfov = fov_a[j] + fov_b[j] * (t - x[j]) + fov_c[j] * (t - x[j]) * (t - x[j]) + fov_d[j] * (t - x[j]) * (t - x[j]) * (t - x[j]);
+	tfov = fov_a[jj] + fov_b[jj] * (tt - x[jj]) + fov_c[jj] * (tt - x[jj]) * (tt - x[jj]) + fov_d[jj] * (tt - x[jj]) * (tt - x[jj]) * (tt - x[jj]);
 }
 
 function equalArray(float a1[121], out float b1[121])
@@ -672,14 +672,14 @@ function equalArray(float a1[121], out float b1[121])
 }
 
 function Cholesky(float k[121], out float erg[121]) {
-	local int n;
+	local int nn;
 	local int i;
 	local float d[121];
 	local float g[121];
 	local float z1[121];
 	local float e[121];
-	n = z - 3;
-	for(i = 0; i <= n; i++) {
+	nn = z - 3;
+	for(i = 0; i <= nn; i++) {
 		d[i] = 0;
 		g[i] = 0;
 		e[i] = 0;
@@ -691,27 +691,27 @@ function Cholesky(float k[121], out float erg[121]) {
 		g[i - 1] = M[i].Y[i - 1] / d[i - 1];
 		d[i] = M[i].Y[i] - g[i - 1] * M[i].Y[i - 1];
 	}
-	d[n] = M[n].Y[n] - M[n].Y[n - 1] * g[n - 1];
+	d[nn] = M[nn].Y[nn] - M[nn].Y[nn - 1] * g[nn - 1];
 	z1[0] = k[0];
-	for(i = 1; i <= n; i++)
+	for(i = 1; i <= nn; i++)
 		z1[i] = k[i] - g[i - 1] * z1[i - 1];
-	for(i = 0; i <= n; i++)
+	for(i = 0; i <= nn; i++)
 		e[i] = z1[i] / d[i];
-	erg[n] = e[n];
-	for(i = n - 1; i >= 0; i--)
+	erg[nn] = e[nn];
+	for(i = nn - 1; i >= 0; i--)
 		erg[i] = e[i] - g[i] * erg[i + 1];
 }
 
 function KubSplineKoeffNat() {
-	local int n;
+	local int nn;
 	local float k[121], y[121], h1[121];
 	local float ska[121], skb[121], skc[121], skd[121];
-	local int i, h, o, j;
-	n = z - 1;
+	local int i, h, o, jj;
+	nn = z - 1;
 	for(i = 0; i < 121; i++)
-		for(j = 0; j < 121; j++)
-			M[i].Y[j] = 0;
-	for(i = 0; i <= n; i++) {
+		for(jj = 0; jj < 121; jj++)
+			M[i].Y[jj] = 0;
+	for(i = 0; i <= nn; i++) {
 		ska[i] = 0;
 		skb[i] = 0;
 		skc[i] = 0;
@@ -742,32 +742,32 @@ function KubSplineKoeffNat() {
 			for(i = 0; i < 121; i++)
 				y[i] = Flag_Fovs[i];
 		skc[0] = 0;
-		skc[n] = 0;
+		skc[nn] = 0;
 		skb[0] = 0;
-		skb[n] = 0;
-		for(j = 1; j <= n - 1; j++)
-			skb[j] = 3 * ((y[j + 1] - y[j]) / (x[j + 1] - x[j]) - (y[j] - y[j - 1]) / (x[j] - x[j - 1]));
+		skb[nn] = 0;
+		for(jj = 1; jj <= nn - 1; jj++)
+			skb[jj] = 3 * ((y[jj + 1] - y[jj]) / (x[jj + 1] - x[jj]) - (y[jj] - y[jj - 1]) / (x[jj] - x[jj - 1]));
 		M[0].Y[0] = 2 * (x[2] - x[0]);
 		M[0].Y[1] = x[2] - x[1];
-		for(i = 0; i <= n - 4; i++) {
+		for(i = 0; i <= nn - 4; i++) {
 			M[i + 1].Y[i] = 1 * (x[i + 2] - x[i + 1]);
 			M[i + 1].Y[i + 1] = 2 * (x[i + 3] - x[i + 1]);
 			M[i + 1].Y[i + 2] = 1 * (x[i + 3] - x[i + 2]);
 		}
-		M[n - 2].Y[n - 3] = 1 * (x[n - 1] - x[n - 2]);
-		M[n - 2].Y[n - 2] = 2 * (x[n] - x[n - 2]);
-		for(i = 1; i <= n - 1; i++)
+		M[nn - 2].Y[nn - 3] = 1 * (x[nn - 1] - x[nn - 2]);
+		M[nn - 2].Y[nn - 2] = 2 * (x[nn] - x[nn - 2]);
+		for(i = 1; i <= nn - 1; i++)
 			k[i - 1] = skb[i];
 		Cholesky(k, h1);
-		for(i = 1; i <= n - 1; i++)
+		for(i = 1; i <= nn - 1; i++)
 			skc[i] = h1[i - 1];
 // calculate di´s and bi´s from ci´s, xi´s and yi´s
-		for(i = 0; i <= n - 1; i++) {
+		for(i = 0; i <= nn - 1; i++) {
 			skd[i] = (skc[i + 1] - skc[i]) / (3 * (x[i + 1] - x[i]));
 			skb[i] = (y[i + 1] - y[i]) / (x[i + 1] - x[i]) - ((x[i + 1] - x[i]) * (skc[i + 1] + 2 * skc[i])) / 3;
 		}
 		equalArray(y, ska);
-		for(i = 0; i < n; i++)
+		for(i = 0; i < nn; i++)
 			k[i] = 0;
 		if(o == 0) {
 			equalArray(ska, a_a);
@@ -817,7 +817,7 @@ function KubSplineKoeffNat() {
 function edit_x(int i, bool bminus)
 {
 	local rotknoten other2;
-	local int j;
+	local int jj;
 	local float tempdiff;
 	bxedited = true;
 	if(i == 0)
@@ -826,13 +826,13 @@ function edit_x(int i, bool bminus)
 	if(bminus)
 	{
 		if((x[i] - tempdiff) > x[i - 1])
-			for(j = i; j < z; j++)
-				x[j] = x[j] - tempdiff;
+			for(jj = i; jj < z; jj++)
+				x[jj] = x[jj] - tempdiff;
 	}
 	else
 	{
-		for(j = i; j < z; j++)
-			x[j] = x[j] + tempdiff;
+		for(jj = i; jj < z; jj++)
+			x[jj] = x[jj] + tempdiff;
 	}
 	KubSplineKoeffNat();
 	foreach DynamicActors(class'rotknoten', Other2)
@@ -869,65 +869,65 @@ function set_x()
 
 function drawpath()
 {
-	local int n;
-	local int j;
-	local float d1, tempdist;
-	local vector v3;
+	local int nn;
+	local int jj;
+	local float dd1, tempdist1;
+	local vector vv3;
 	flag_dist[0] = 0;
 	t = 0;
 	v = vect(0, 0, 0);
 	v2 = vect(0, 0, 0);
 	v = Flag_Locations[0];
-	n = z;
+	nn = z;
 	t = 0;
 	dist = 0;
 	while(t < x[z - 1])
 	{
 		bisdrawing = true;
-		for(j = 0; j < n - 1; j++)
+		for(jj = 0; jj < nn - 1; jj++)
 		{
-			if(t >= x[j])
-				if(t < x[j + 1])
+			if(t >= x[jj])
+				if(t < x[jj + 1])
 				{
-					KubSplineWertX(t, j);
-					KubSplineWertY(t, j);
-					KubSplineWertZ(t, j);
-					v3 = v2 - v;
-					norm(d1, v3);
-					tempdist = 0;
+					KubSplineWertX(t, jj);
+					KubSplineWertY(t, jj);
+					KubSplineWertZ(t, jj);
+					vv3 = v2 - v;
+					norm(dd1, vv3);
+					tempdist1 = 0;
 					if(carry != 0)
-						tempdist = carry;
-					while((tempdist < drawDetail) && (t < x[j + 1]))
+						tempdist1 = carry;
+					while((tempdist1 < drawDetail) && (t < x[jj + 1]))
 					{
-						KubSplineWertX(t, j);
-						KubSplineWertY(t, j);
-						KubSplineWertZ(t, j);
-						v3 = v2 - v;
-						norm(d1, v3);
+						KubSplineWertX(t, jj);
+						KubSplineWertY(t, jj);
+						KubSplineWertZ(t, jj);
+						vv3 = v2 - v;
+						norm(dd1, vv3);
 						t = t + 0.005;
-						tempdist = tempdist + d1;
-						dist = dist + d1;
+						tempdist1 = tempdist1 + dd1;
+						dist = dist + dd1;
 						v = v2;
 						flag_dist[j + 1] = dist;
 					}
-					if((tempdist >= drawDetail) && (t < x[j + 1])) {
+					if((tempdist1 >= drawDetail) && (t < x[jj + 1])) {
 						v = v2;
 						Spawn(class'rotknoten', , , v);
 						flag_dist[j + 1] = dist;
 						carry = 0;
 					}
 					else
-						carry = tempdist;
+						carry = tempdist1;
 				}
-			if(j == n - 2)
-				if(t == x[j + 1]) {
-					KubSplineWertX(t, j);
-					KubSplineWertY(t, j);
-					KubSplineWertZ(t, j);
-					v3 = v2 - v;
-					norm(d1, v3);
-					dist = dist + d1;
-					flag_dist[j + 1] = dist;
+			if(jj == nn - 2)
+				if(t == x[jj + 1]) {
+					KubSplineWertX(t, jj);
+					KubSplineWertY(t, jj);
+					KubSplineWertZ(t, jj);
+					vv3 = v2 - v;
+					norm(dd1, vv3);
+					dist = dist + dd1;
+					flag_dist[jj + 1] = dist;
 					t = t + 0.005;
 					v = v2;
 					Spawn(class'rotknoten', , , v);
@@ -940,7 +940,7 @@ function drawpath()
 
 //------------------------------ timespline functions --------------------------//////////
 // function [ fe, next, ierr ] = chfev ( x1, x2, f1, f2, d1, d2, ne, xe )
-function chfev(float x1, float x2, float f1, float f2, float d1, float d2, int ne, float xe,
+function chfev(float x1, float x2, float f1, float f2, float dd1, float d2, int ne, float xe,
                out float fe, int next[2])
 {
 	local float h, xmi, xma, delta, del1, del2, c2, c3, lx;
@@ -958,12 +958,12 @@ function chfev(float x1, float x2, float f1, float f2, float d1, float d2, int n
 		xma = 0.0;
 	//xma = max ( 0.0, h );
 	delta = (f2 - f1) / h;
-	del1 = (d1 - delta) / h;
+	del1 = (dd1 - delta) / h;
 	del2 = (d2 - delta) / h;
 	c2 = -(del1 + del1 + del2);
 	c3 = (del1 + del2) / h;
 	lx = xe - x1;
-	fe = f1 + lx * (d1 + lx * (c2 + lx * c3));
+	fe = f1 + lx * (dd1 + lx * (c2 + lx * c3));
 	if(lx < xmi)
 		next[0] = next[0] + 1;
 	if(xma < lx)
@@ -994,20 +994,20 @@ function pchst(float arg1, float arg2, out float value)
 	}
 }
 // function d = spline_pchip_set ( n, x, f )
-function spline_pchip_set(int n, float x[121], float f[121], out float d[121])
+function spline_pchip_set(int nn, float xx[121], float f[121], out float d[121])
 {
 	local int nless1, i;
-	local float h1, h2, hsum, hsumt3, dmax, dmin, drat1, drat2, w1, w2, del1, del2, dsave, value1, value2, temp;
-	nless1 = n - 1;
-	h1 = x[1] - x[0];
+	local float h1, h2, hsum, hsumt3, dmax, dmin, drat1, drat2, w1, w2, del1, del2, /*dsave,*/ value1, value2, temp;
+	nless1 = nn - 1;
+	h1 = xx[1] - xx[0];
 	del1 = (f[1] - f[0]) / h1;
-	if(n == 2)
+	if(nn == 2)
 	{
 		d[0] = del1;
-		d[n - 1] = del1;
+		d[nn - 1] = del1;
 		return;
 	}
-	h2 = x[2] - x[1];
+	h2 = xx[2] - xx[1];
 	del2 = (f[2] - f[1]) / h2;
 	hsum = h1 + h2;
 	w1 = (h1 + hsum) / hsum;
@@ -1028,7 +1028,7 @@ function spline_pchip_set(int n, float x[121], float f[121], out float d[121])
 		if(2 < i)
 		{
 			h1 = h2;
-			h2 = x[i] - x[i - 1];
+			h2 = xx[i] - xx[i - 1];
 			hsum = h1 + h2;
 			del1 = del2;
 			del2 = (f[i] - f[i - 1]) / h2;
@@ -1037,11 +1037,13 @@ function spline_pchip_set(int n, float x[121], float f[121], out float d[121])
 		pchst(del1, del2, temp);
 		if(temp < 0.0)
 		{
-			dsave = del2;
+			//dsave = del2;
 		}
 		else if(temp == 0.0)
 			if(del2 != 0)
-				dsave = del2;
+			{
+				//dsave = del2;
+			}
 		if(temp > 0.0)
 		{
 			hsumt3 = 3.0 * hsum;
@@ -1056,68 +1058,70 @@ function spline_pchip_set(int n, float x[121], float f[121], out float d[121])
 	}
 	w1 = -h2 / hsum;
 	w2 = (h2 + hsum) / hsum;
-	d[n - 1] = w1 * del1 + w2 * del2;
-	pchst(d[n - 1], del2, value1);
+	d[nn - 1] = w1 * del1 + w2 * del2;
+	pchst(d[nn - 1], del2, value1);
 	pchst(del1, del2, value2);
 	if(value1 <= 0.0)
-		d[n - 1] = 0.0;
+		d[nn - 1] = 0.0;
 	else if(value2 < 0.0)
 	{
 		dmax = 3.0 * del2;
-		if(abs(dmax) < abs(d[n - 1]))
-			d[n - 1] = dmax;
+		if(abs(dmax) < abs(d[nn - 1]))
+			d[nn - 1] = dmax;
 	}
 }
 
 // function fe = spline_pchip_val ( n, x, f, d, ne, xe )
-function spline_pchip_val(int n, float x[121], float f[121], float d[121], int ne, float xe, out float fe)
+function spline_pchip_val(int nn, float xx[121], float f[121], float d[121], int ne, float xe, out float fe)
 {
-	local int j_first, j_save, ir, j, i, j_new;
+	local int j_first, j_save, ir, jj, i, j_new;
 	local int next[2];
 	local float nj;
 	j_first = 1;
 	ir = 2;
+	next[0] = 0;
+	next[1] = 0;
 	while(true)
 	{
 		if(ne < j_first)
 			break;
 		j_save = ne + 1;
 		// for j = j_first : ne
-		for(j = j_first; j <= ne; j++)
-			if(x[ir - 1] <= xe)
+		for(jj = j_first; jj <= ne; jj++)
+			if(xx[ir - 1] <= xe)
 			{
-				j_save = j;
-				if(ir == n)
+				j_save = jj;
+				if(ir == nn)
 					j_save = ne + 1;
 				break;
 			}
-		j = j_save;
-		nj = j - j_first;
+		jj = j_save;
+		nj = jj - j_first;
 		if(nj != 0)
 		{
-			chfev(x[ir - 2], x[ir - 1], f[ir - 2], f[ir - 1], d[ir - 2], d[ir - 1],  nj, xe, fe, next);
+			chfev(xx[ir - 2], x[ir - 1], f[ir - 2], f[ir - 1], d[ir - 2], d[ir - 1],  nj, xe, fe, next);
 			if(next[0] != 0)
 			{
 				if(ir > 2)
 				{
 					j_new = -1;
-					if(xe < x[ir - 2])
+					if(xe < xx[ir - 2])
 					{
 						j_new = 1;
 						break;
 					}
-					j = j_new;
+					jj = j_new;
 					// for i = 1 : ir-1
 					for(i = 1; i <= ir - 1; i++)
-						if(xe < x[i - 1])
+						if(xe < xx[i - 1])
 							break;
 					ir = 1;
 				}
 			}
-			j_first = j;
+			j_first = jj;
 		}
 		ir = ir + 1;
-		if(n < ir)
+		if(nn < ir)
 			break;
 	}
 }

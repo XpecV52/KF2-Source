@@ -31,6 +31,7 @@ function LocalizeWidget()
 	LocalizedObject.SetString("party", Localize("KFGFxWidget_BaseParty", "SquadString", "KFGame"));
 	LocalizedObject.SetString("config", Localize("KFGFxPerksContainer_SkillsSummary", "ConfigureString", "KFGame"));
 
+
 	SetObject("localizedText", LocalizedObject);
 }
 

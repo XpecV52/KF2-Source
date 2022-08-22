@@ -20,7 +20,14 @@ static function float GetSpecialCrawlerChance(KFPawn_ZedCrawler CrawlerPawn, KFG
         }
         return 0;
     }
-    return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
+    if(default.bForceSpecialSpawn)
+    {
+        return 1;        
+    }
+    else
+    {
+        return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
+    }
 }
 
 defaultproperties
@@ -28,7 +35,7 @@ defaultproperties
     ChanceToSpawnAsSpecial(0)=0
     ChanceToSpawnAsSpecial(1)=0.01
     ChanceToSpawnAsSpecial(2)=0.15
-    ChanceToSpawnAsSpecial(3)=0.3
+    ChanceToSpawnAsSpecial(3)=0.2
     Normal=(HealthMod=0.75,HeadHealthMod=0.75,EvadeOnDamageSettings=(Chance=0.1,DamagedHealthPctToTrigger=0.01),RallySettings=(bCanRally=false))
     Hard=(DamagedSprintChance=0.01,DamageMod=0.75,EvadeOnDamageSettings=(Chance=0.4,DamagedHealthPctToTrigger=0.01),RallySettings=(bCanRally=false))
     Suicidal=(SprintChance=0.85,DamagedSprintChance=1,MovementSpeedMod=1.3,EvadeOnDamageSettings=(Chance=1,DamagedHealthPctToTrigger=0.01),RallySettings=(TakenDamageModifier=0.9,DealtDamageModifier=1.2))

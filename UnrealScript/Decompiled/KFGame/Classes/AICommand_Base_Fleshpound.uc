@@ -69,7 +69,10 @@ function bool NotifyCombatBehaviorChange(name BehaviorName, bool bEnabled)
         Outer.MyKFPawn.SetEnraged(true);
         if((Outer.LastTauntTime == float(0)) || (Outer.WorldInfo.TimeSeconds - Outer.LastTauntTime) > 260)
         {
-            Outer.AILog_Internal("Doing rage taunt at " $ string(Outer.Enemy), 'Charging');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal("Doing rage taunt at " $ string(Outer.Enemy), 'Charging');
+            }
             Outer.AbortMovementCommands();
             Outer.AbortMovementPlugIns();
             Outer.DoRageTauntAt(KFPawn(Outer.Enemy));

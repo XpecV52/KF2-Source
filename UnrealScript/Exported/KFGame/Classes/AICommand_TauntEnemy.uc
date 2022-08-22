@@ -49,7 +49,7 @@ function Pushed()
 		Focus = TauntTarget;
 	}
 
-	AILog_Internal("Beginning to taunt enemy "$Enemy,'Command_Taunt',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Beginning to taunt enemy "$Enemy,'Command_Taunt',);};
 	AIActionStatus = "Starting taunt AICommand";
 	if( Focus != None )
 	{
@@ -95,7 +95,7 @@ state Command_SpecialMove
 
 		SpecialMove = GetSpecialMove();
 
-		AILog_Internal(GetFuncName()@SpecialMove,'Command_Taunt',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@SpecialMove,'Command_Taunt',);};
 
 		if( SpecialMove != SM_None && MyKFPawn.CanDoSpecialMove(SpecialMove) )
 		{

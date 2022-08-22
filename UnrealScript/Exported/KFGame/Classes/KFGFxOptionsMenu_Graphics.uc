@@ -74,7 +74,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 15;
 //@HSL_MOD_END
 
@@ -767,20 +767,17 @@ struct native FXQualitySetting
 struct native RealtimeReflectionsSetting
 {
 	var bool bAllowScreenSpaceReflections;
-	var bool bUseHighQualityReflections;
 
 	structcpptext
 	{
 		void CopyToNativeSettings(FSystemSettings& OutSettings, UEngine* OutEngine)
 		{
 			OutSettings.bAllowScreenSpaceReflections = bAllowScreenSpaceReflections;
-			OutSettings.bUseHighQualityReflections = bUseHighQualityReflections;
 		}
 
 		void CopyFromNativeSettings(FSystemSettings& InSettings, UEngine* InEngine)
 		{
 			bAllowScreenSpaceReflections = InSettings.bAllowScreenSpaceReflections;
-			bUseHighQualityReflections = InSettings.bUseHighQualityReflections;
 		}
 	}
 };
@@ -908,6 +905,7 @@ struct native TextureResolutionSetting
 		void CopyToNativeSettings(FSystemSettings& OutSettings, UEngine* OutEngine)
 		{
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UI).LODBias = UIBias;
+			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UIWithMips).LODBias = UIBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Shadowmap).LODBias = ShadowmapBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Character).LODBias = CharacterBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CharacterNormalMap).LODBias = CharacterBias;
@@ -915,6 +913,9 @@ struct native TextureResolutionSetting
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Creature).LODBias = CharacterBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CreatureNormalMap).LODBias = CharacterBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CreatureSpecular).LODBias = CharacterBias;
+			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Cosmetic).LODBias = CharacterBias;
+			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CosmeticNormalMap).LODBias = CharacterBias;
+			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CosmeticSpecular).LODBias = CharacterBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Weapon).LODBias = Weapon1stBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_WeaponNormalMap).LODBias = Weapon1stBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_WeaponSpecular).LODBias = Weapon1stBias;
@@ -941,7 +942,10 @@ struct native TextureResolutionSetting
 				CharacterBias != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CharacterSpecular).LODBias ||
 				CharacterBias != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Creature).LODBias ||
 				CharacterBias != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CreatureNormalMap).LODBias ||
-				CharacterBias != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CreatureSpecular).LODBias )
+				CharacterBias != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CreatureSpecular).LODBias || 
+				CharacterBias != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Cosmetic).LODBias ||
+				CharacterBias != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CosmeticNormalMap).LODBias ||
+				CharacterBias != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CosmeticSpecular).LODBias)
 			{
 				warnf(TEXT("Settings mismatch for Character Texture Resolution"));
 				CharacterBias = -1;
@@ -1027,6 +1031,9 @@ struct native TextureFilterSetting
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Creature).Filter = Filter;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CreatureNormalMap).Filter = Filter;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CreatureSpecular).Filter = Filter;
+			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Cosmetic).Filter = Filter;
+			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CosmeticNormalMap).Filter = Filter;
+			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CosmeticSpecular).Filter = Filter;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Weapon).Filter = Filter;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_WeaponNormalMap).Filter = Filter;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_WeaponSpecular).Filter = Filter;
@@ -1037,6 +1044,7 @@ struct native TextureFilterSetting
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_WorldNormalMap).Filter = Filter;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_WorldSpecular).Filter = Filter;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Effects).Filter = Filter;
+			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UIWithMips).Filter = Filter;
 
 			// Special texture groups /wo mip filtering
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UI).Filter = NoMipFilter;
@@ -1057,6 +1065,9 @@ struct native TextureFilterSetting
 				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Creature).Filter ||
 				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CreatureNormalMap).Filter ||
 				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CreatureSpecular).Filter ||
+				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Cosmetic).Filter ||
+				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CosmeticNormalMap).Filter ||
+				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CosmeticSpecular).Filter ||
 				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Weapon).Filter ||
 				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_WeaponNormalMap).Filter ||
 				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_WeaponSpecular).Filter ||
@@ -1065,7 +1076,8 @@ struct native TextureFilterSetting
 				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Weapon3rdSpecular).Filter ||
 				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_WorldNormalMap).Filter ||
 				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_WorldSpecular).Filter ||
-				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Effects).Filter )
+				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Effects).Filter ||
+				Filter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UIWithMips).Filter )
 			{
 				warnf(TEXT("Settings mismatch for Texture Filter"));
 			}
@@ -2962,11 +2974,11 @@ function ShowRevertPopUp(byte PerfWarningLevel, bool bNeedsRestart, bool bNeedsR
 		{
 			RevertPopupDescriptionString $= "\n\n" $ WillExpireString;
 			TempString = Repl(RevertPopupDescriptionString, "%x%", ExpireTime, true);
-			Manager.OpenPopup( EConfirmation, PromptString, TempString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);
+			Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc,PromptString, TempString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);
 		}
 		else
 		{
-			Manager.OpenPopup( EConfirmation, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);
+			Manager.DelayedOpenPopup( EConfirmation,EDPPID_Misc, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);
 		}
 	}
 	else if( PerfWarningLevel > PerfWarning_None )
@@ -2980,11 +2992,11 @@ function ShowRevertPopUp(byte PerfWarningLevel, bool bNeedsRestart, bool bNeedsR
 		{
 			RevertPopupDescriptionString $= "\n\n" $ WillExpireString;
 			TempString = Repl(RevertPopupDescriptionString, "%x%", ExpireTime, true);
-			Manager.OpenPopup( EConfirmation, PromptString, TempString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
+			Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc, PromptString, TempString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
 		}
 		else
 		{
-			Manager.OpenPopup( EConfirmation, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
+			Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
 		}
 	}
 	else if( bNeedsRestart )
@@ -2998,11 +3010,11 @@ function ShowRevertPopUp(byte PerfWarningLevel, bool bNeedsRestart, bool bNeedsR
 		{
 			RevertPopupDescriptionString $= "\n\n" $ WillExpireString;
 			TempString = Repl(RevertPopupDescriptionString, "%x%", ExpireTime, true);
-			Manager.OpenPopup( EConfirmation, PromptString, TempString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);
+			Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc, PromptString, TempString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);
 		}
 		else
 		{
-			Manager.OpenPopup( EConfirmation, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);	
+			Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);	
 		}
 	}
 	else
@@ -3014,11 +3026,11 @@ function ShowRevertPopUp(byte PerfWarningLevel, bool bNeedsRestart, bool bNeedsR
 		{
 			RevertPopupDescriptionString $= "\n\n" $ WillExpireString;
 			TempString = Repl(RevertPopupDescriptionString, "%x%", ExpireTime, true);
-			Manager.OpenPopup( EConfirmation, PromptString, TempString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
+			Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc, PromptString, TempString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
 		}
 		else
 		{
-			Manager.OpenPopup( EConfirmation, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
+			Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
 		}
 	}
 }
@@ -3161,12 +3173,6 @@ function OnReflectionSettingChanged(RealtimeReflectionsSetting OldSetting, Realt
 		NewSetting.bAllowScreenSpaceReflections )
 	{
 		PerformanceWarningLevel = Max(PerformanceWarningLevel, PerfWarning_Normal);
-	}
-
-	if( !OldSetting.bUseHighQualityReflections &&
-		NewSetting.bUseHighQualityReflections )
-	{
-		PerformanceWarningLevel = Max(PerformanceWarningLevel, PerfWarning_Severe);
 	}
 }
 
@@ -3348,7 +3354,7 @@ function Callback_CloseMenu()
 			DescriptionString $= "\n\n" $ SaveChangesString;
 		}
 
-		Manager.OpenPopup( EConfirmation, PromptString, DescriptionString, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, OnSaveConfirm, OnSaveCancel);
+		Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc, PromptString, DescriptionString, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, OnSaveConfirm, OnSaveCancel);
 	}
 	else
 	{
@@ -3361,7 +3367,7 @@ function Callback_FleXOptionChange(bool bShowPopUp)
 {
 	if(bShowPopUp)
 	{
-		Manager.OpenPopup(ENotification, WarningPromptString, FlexPopUpString, class'KFCommon_LocalizedStrings'.default.OKString);
+		Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, WarningPromptString, FlexPopUpString, class'KFCommon_LocalizedStrings'.default.OKString);
 	}	
 }
 
@@ -3412,7 +3418,7 @@ function Callback_ResetDefaultVideo()
 function Callback_OpenGamma()
 {
 	Manager.SetVariableBool("bStartUpGamma", false);  // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
-	Manager.OpenPopup(EGamma, "", AdjustGammaDescription, ResetGammaString, SetGammaString);
+	Manager.DelayedOpenPopup(EGamma, EDPPID_Gamma, "", AdjustGammaDescription, ResetGammaString, SetGammaString);
 }
 
 defaultproperties

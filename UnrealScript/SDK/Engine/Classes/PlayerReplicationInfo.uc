@@ -636,6 +636,12 @@ simulated function bool IsPrimaryPlayer()
 	return true;
 }
 
+
+//@HSL_BEGIN - BWJ - 10-5-16 - Check to see if player has had initial spawn. used for PS4 realtime multiplay
+native simulated function bool HasHadInitialSpawn();
+//@HSL_END
+
+
 defaultproperties
 {
 	TickGroup=TG_DuringAsyncWork

@@ -125,7 +125,7 @@ final function Texture2D GetDebugIsWalkingIcon()
 
 function NotifyNewPossess(KFAIController KFAIC)
 {
-    if(KFAIC != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFAIC != none)
     {
         KFAIC.AILog_Internal((string(GetFuncName()) $ " registering new Possession by ") $ string(KFAIC), 'AIDirector');
     }
@@ -152,7 +152,7 @@ final function RegisterAIMember(Controller NewMember)
             KFAIC = KFAIController(NewMember);
             if(KFAIC != none)
             {
-                if(KFAIC != none)
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFAIC != none)
                 {
                     KFAIC.AILog_Internal(((string(GetFuncName()) $ " Adding ") $ string(KFAIC)) $ " to AIList", 'AIDirector');
                 }
@@ -176,7 +176,7 @@ final function UnRegisterAIMember(Controller OldMember)
             ActiveZeds.Remove(Idx, 1;
             if(KFAIC != none)
             {
-                if(KFAIC != none)
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFAIC != none)
                 {
                     KFAIC.AILog_Internal(((string(GetFuncName()) $ " Removing ") $ string(KFAIC)) $ " from AIList", 'AIDirector');
                 }
@@ -238,7 +238,7 @@ function NotifyPawnGrabbed(KFPawn Victim, KFPawn Attacker)
 {
     local KFPawn KFP;
 
-    if(Attacker.MyKFAIC != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && Attacker.MyKFAIC != none)
     {
         Attacker.MyKFAIC.AILog_Internal((((string(GetFuncName()) $ " NotifyPawnGrabbed - victim, ") $ string(Victim)) $ " attacker ") $ string(Attacker), 'AIDirector');
     }

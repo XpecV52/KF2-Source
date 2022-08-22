@@ -34,6 +34,9 @@ var(Footsteps) array<FootstepSoundInfo> HandstepSounds;
 /** default hand-step sound used when a given material type is not found in the list */
 var(Footsteps) AkBaseSoundObject DefaultHandstepSound;
 
+/** Maximum range to allow footstep sounds. X=Maximum range when pawn visible, Y=Maximum range when pawn hidden */
+var(Footsteps) vector2D MaxFootstepSoundRanges;
+
 /*********************************************************************************************
 * Jumping sounds
  ********************************************************************************************* */
@@ -109,9 +112,9 @@ function PlayFallingDamageLandSound(Pawn P)
 	}
 }
 
-function PlayPainSound( Pawn P )
+function PlayPainSound( KFPawn P )
 {
-    if( PainSound != none )
+    if( PainSound != none && !P.IsHeadless() )
     {
         P.PlaySoundBase( PainSound, true );
     }
@@ -294,11 +297,11 @@ function bool ShouldPlayCleaveSound( name DismemberBoneName )
             || DismemberBoneName == 'RightShoulder';
 }
 
-function PlayObliterationSound( Pawn P )
+function PlayObliterationSound( Pawn P, optional bool bNotReplicated=TRUE )
 {
     if( ObliterationSound != none )
     {
-        P.PlaySoundBase( ObliterationSound, true,,, P.Location );
+        P.PlaySoundBase( ObliterationSound, bNotReplicated,,, P.Location );
     }
 }
 
@@ -325,6 +328,7 @@ defaultproperties
     FootstepSounds(10)=(MaterialType=EMT_Gravel, Sound=AkEvent'WW_MVT_Footstep.Play_Boot_Walk_Stone')
     FootstepSounds(11)=(MaterialType=EMT_Rubber, Sound=AkEvent'WW_MVT_Footstep.Play_Boot_Walk_Flesh')
     FootstepSounds(12)=(MaterialType=EMT_Asphalt, Sound=AkEvent'WW_MVT_Footstep.Play_Boot_Walk_Brick')
+    MaxFootstepSoundRanges=(X=1500.f,Y=1500.f)
 
     DefaultFootstepSound=AkEvent'WW_MVT_Footstep.Play_Boot_Walk_Dirt'
     DefaultSprintingFootstepSound=AkEvent'WW_MVT_Footstep.Play_Boot_Walk_Dirt'
@@ -380,4 +384,3 @@ defaultproperties
     CleaveSound=AkEvent'WW_ZED_Gore.Gore_Blood_Guts_Heavy'
     ObliterationSound=None
 }
-

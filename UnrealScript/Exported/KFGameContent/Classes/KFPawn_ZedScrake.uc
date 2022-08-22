@@ -311,6 +311,7 @@ defaultproperties
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    OnDeathAchievementID=132
    PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
+   LocalizationKey="KFPawn_ZedScrake"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -336,6 +337,8 @@ defaultproperties
    HitZones(15)=()
    HitZones(16)=()
    HitZones(17)=()
+   HitZones(18)=(ZoneName="rchainsaw",BoneName="RightForearm",GoreHealth=20,DmgScale=0.200000,Limb=BP_RightArm,SkinID=2)
+   HitZones(19)=(ZoneName="rchainsawblade",BoneName="RightForearm",GoreHealth=20,DmgScale=0.200000,Limb=BP_RightArm,SkinID=2)
    PenetrationResistance=4.000000
    Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn_Monster:Afflictions_0'
       AfflictionClasses(0)=Class'KFGame.KFAffliction_EMPDisrupt'
@@ -364,7 +367,7 @@ defaultproperties
    IncapSettings(6)=(Cooldown=20.500000,Vulnerability=(0.150000))
    IncapSettings(7)=(Duration=3.000000,Cooldown=5.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000))
    IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.400000,0.400000,0.500000,0.400000))
-   IncapSettings(9)=(Duration=1.000000,Cooldown=1.500000,Vulnerability=(0.980000))
+   IncapSettings(9)=(Duration=1.000000,Cooldown=6.000000,Vulnerability=(0.980000))
    IncapSettings(10)=(Duration=2.500000,Cooldown=10.000000,Vulnerability=(1.000000))
    KnockdownImpulseScale=2.000000
    SprintSpeed=600.000000
@@ -470,7 +473,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

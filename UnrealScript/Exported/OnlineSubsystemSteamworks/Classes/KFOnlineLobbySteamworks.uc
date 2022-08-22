@@ -145,7 +145,7 @@ function OnCreateLobbyComplete(bool bWasSuccessful, UniqueNetId LobbyId, string 
 
 native function bool ShowLobbyInviteInterfaceInternal();
 
-function ShowLobbyInviteInterface()
+function ShowLobbyInviteInterface(string InviteMessage)
 {
 	if (bDebug) LogInternal(GetFuncName()@"bCreatingLobby="$bCreatingLobby,'DevLobby');
 

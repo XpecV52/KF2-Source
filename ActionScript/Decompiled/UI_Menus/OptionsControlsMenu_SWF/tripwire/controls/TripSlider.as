@@ -16,6 +16,8 @@ package tripwire.controls
         
         private var _defaultSnapInterval:Number;
         
+        public var lowSnapping:Boolean = false;
+        
         public var overSoundEffect:String = "SHARED_BUTTON_MOUSEOVER";
         
         public function TripSlider()
@@ -53,7 +55,11 @@ package tripwire.controls
         
         override protected function lockValue(param1:Number) : Number
         {
-            return Math.max(_minimum,Math.min(_maximum,param1));
+            if(!this.lowSnapping)
+            {
+                return Math.max(_minimum,Math.min(_maximum,param1));
+            }
+            return super.lockValue(param1);
         }
         
         override public function handleInput(param1:InputEvent) : void
@@ -70,11 +76,14 @@ package tripwire.controls
                 case NavigationCode.RIGHT:
                     if(_loc4_)
                     {
-                        if(_loc2_.value == InputValue.KEY_HOLD && snapInterval < this.snapMax)
+                        if(_loc2_.value == InputValue.KEY_HOLD && snapInterval < this.snapMax && !this.lowSnapping)
                         {
                             _snapInterval += 1;
                         }
-                        this.value = value + _snapInterval;
+                        if(value < maximum)
+                        {
+                            this.value = value + _snapInterval > maximum ? Number(maximum) : Number(value + _snapInterval);
+                        }
                         param1.handled = true;
                     }
                     else
@@ -85,11 +94,14 @@ package tripwire.controls
                 case NavigationCode.LEFT:
                     if(_loc4_)
                     {
-                        if(_loc2_.value == InputValue.KEY_HOLD && snapInterval < this.snapMax)
+                        if(_loc2_.value == InputValue.KEY_HOLD && snapInterval < this.snapMax && !this.lowSnapping)
                         {
                             snapInterval += 1;
                         }
-                        this.value = value - _snapInterval;
+                        if(value > minimum)
+                        {
+                            this.value = value - _snapInterval < minimum ? Number(minimum) : Number(value - _snapInterval);
+                        }
                         param1.handled = true;
                     }
                     else

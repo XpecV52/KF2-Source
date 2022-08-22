@@ -5,7 +5,16 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFGFxMenu_Store extends KFGFxObject_Menu within GFxMoviePlayer;
+class KFGFxMenu_Store extends KFGFxObject_Menu within GFxMoviePlayer
+    native(UI);
+
+enum ETitleStoreIconLocation
+{
+    ETSIL_BottomLeft,
+    ETSIL_BottomCenter,
+    ETSIL_BottomRight,
+    ETSIL_MAX
+};
 
 struct StoreItem
 {
@@ -34,6 +43,12 @@ var KFGFxStoreContainer_Details DetailsContainer;
 var KFGFxStoreContainer_Cart CartContainer;
 var GFxObject AddCartButton;
 var const localized string StoreString;
+
+// Export UKFGFxMenu_Store::execShowSystemStoreIcon(FFrame&, void* const)
+native function bool ShowSystemStoreIcon(KFGFxMenu_Store.ETitleStoreIconLocation Location);
+
+// Export UKFGFxMenu_Store::execHideSystemStoreIcon(FFrame&, void* const)
+native function bool HideSystemStoreIcon();
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
@@ -198,6 +213,11 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
         AddCartButton.SetString("label", (Class'KFGFxStoreContainer_Details'.default.AddToCartString $ ":") $ StoreItemDetails.Price);
     }
     SetObject("storeItemDetails", CreateStoreItem(StoreItemDetails));
+    if(Class'WorldInfo'.static.IsConsoleBuild() && StoreItemDetails.Price != "")
+    {
+        AddCartButton.SetString("label", Class'KFGFxStoreContainer_Details'.default.AddToCartString);
+        AddCartButton.SetVisible(true);
+    }
 }
 
 function GFxObject CreateStoreItem(ItemProperties DesiredStoreItem)
@@ -207,7 +227,7 @@ function GFxObject CreateStoreItem(ItemProperties DesiredStoreItem)
     DataObject = Outer.CreateObject("Object");
     DataObject.SetString("label", DesiredStoreItem.Name);
     DataObject.SetString("description", DesiredStoreItem.Description);
-    DataObject.SetString("price", DesiredStoreItem.Price);
+    DataObject.SetString("price", ((Class'WorldInfo'.static.IsConsoleBuild()) ? "" : DesiredStoreItem.Price));
     DataObject.SetString("imageURL", "img://" $ DesiredStoreItem.IconURL);
     DataObject.SetString("imageURLLarge", "img://" $ DesiredStoreItem.IconURLLarge);
     DataObject.SetInt("SKU", DesiredStoreItem.Definition);

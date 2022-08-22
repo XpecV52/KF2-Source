@@ -194,12 +194,16 @@ package tripwire.menus
             }
             if(this.currentMenu != null)
             {
-                this.currentMenu.selectContainer();
+                this.currentMenu.openContainer();
             }
         }
         
         override public function closeContainer() : void
         {
+            if(this.currentMenu)
+            {
+                this.currentMenu.closeContainer();
+            }
             super.closeContainer();
             stage.removeEventListener(InputEvent.INPUT,this.handleUserInput);
         }

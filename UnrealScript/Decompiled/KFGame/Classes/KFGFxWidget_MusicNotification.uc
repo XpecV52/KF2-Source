@@ -11,7 +11,10 @@ function InitializeHUD();
 
 function ShowSongInfo(string SongInfoString)
 {
-    if(Class'KFGameEngine'.default.MusicVolumeMultiplier > float(0))
+    local KFGameEngine KFEngine;
+
+    KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
+    if((KFEngine != none) && KFEngine.MusicVolumeMultiplier > float(0))
     {
         SetString("text", SongInfoString);
     }

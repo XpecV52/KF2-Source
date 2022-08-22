@@ -6,6 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFAISpawnManager extends Object within KFGameInfo
+    native(AI)
     config(Game);
 
 enum EAIType
@@ -25,7 +26,7 @@ enum EAIType
     AT_MAX
 };
 
-struct sDifficultyWaveInfo
+struct native DifficultyWaveInfo
 {
     var array<KFAIWaveInfo> Waves;
 
@@ -35,7 +36,7 @@ struct sDifficultyWaveInfo
     }
 };
 
-struct SpawnRateModifier
+struct native SpawnRateModifier
 {
     /** Used for arrays to modify spawn rate */
     var() array<float> RateModifier;
@@ -46,8 +47,8 @@ struct SpawnRateModifier
     }
 };
 
-var array<sDifficultyWaveInfo> DifficultyWaveSettings;
-var sDifficultyWaveInfo WaveSettings;
+var array<DifficultyWaveInfo> DifficultyWaveSettings;
+var DifficultyWaveInfo WaveSettings;
 var array<KFAISpawnSquad> AvailableSquads;
 var float SineWaveFreq;
 var float WaveStartTime;
@@ -88,6 +89,10 @@ var int MaxBossMinions;
 /** How much to scale the number of boss minions based on the number of players playing */
 var() float MaxBossMinionScaleByPlayers[6];
 var array<Controller> RecentSpawnSelectedHumanControllerList;
+var const int ForcedBossNum;
+
+// Export UKFAISpawnManager::execSortSpawnVolumes(FFrame&, void* const)
+native function bool SortSpawnVolumes(Controller C, bool bTeleporting, float MinDistSquared);
 
 static function string ZedTypeToString(KFAISpawnManager.EAIType AiTypeToConvert)
 {
@@ -173,7 +178,7 @@ function SetupNextWave(byte NextWaveIndex)
     }
 }
 
-function GetWaveSettings(out sDifficultyWaveInfo WaveInfo)
+function GetWaveSettings(out DifficultyWaveInfo WaveInfo)
 {
     WaveInfo = DifficultyWaveSettings[Min(int(Outer.GameDifficulty), DifficultyWaveSettings.Length - 1)];
 }
@@ -331,53 +336,61 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     local bool bNeedsNewDesiredSquadType;
     local int EntryIdx;
 
-    if(!IsAISquadAvailable())
+    if((DesiredSquadType == 0) && LeftoverSpawnSquad.Length > 0)
     {
-        if(!bSummoningBossMinions)
+        LeftoverSpawnSquad.Length = 0;
+    }
+    AINeeded = GetNumAINeeded();
+    if(LeftoverSpawnSquad.Length < AINeeded)
+    {
+        if(!IsAISquadAvailable())
         {
-            if((bRecycleSpecialSquad && (NumSpawnListCycles % 2) == 1) && (MaxSpecialSquadRecycles == -1) || NumSpecialSquadRecycles < MaxSpecialSquadRecycles)
+            if(!bSummoningBossMinions)
             {
-                GetAvailableSquads(byte(Outer.MyKFGRI.WaveNum - 1), true);
-                ++ NumSpecialSquadRecycles;                
+                if((bRecycleSpecialSquad && (NumSpawnListCycles % 2) == 1) && (MaxSpecialSquadRecycles == -1) || NumSpecialSquadRecycles < MaxSpecialSquadRecycles)
+                {
+                    GetAvailableSquads(byte(Outer.MyKFGRI.WaveNum - 1), true);
+                    ++ NumSpecialSquadRecycles;                    
+                }
+                else
+                {
+                    GetAvailableSquads(byte(Outer.MyKFGRI.WaveNum - 1));
+                }                
             }
             else
             {
-                GetAvailableSquads(byte(Outer.MyKFGRI.WaveNum - 1));
-            }            
+                AvailableSquads = BossMinionsSpawnSquads;
+            }
         }
-        else
+        RandNum = Rand(AvailableSquads.Length);
+        if(bForceRequiredSquad && RandNum == (AvailableSquads.Length - 1))
         {
-            AvailableSquads = BossMinionsSpawnSquads;
-        }
-    }
-    RandNum = Rand(AvailableSquads.Length);
-    if(bForceRequiredSquad && RandNum == (AvailableSquads.Length - 1))
-    {
-        bForceRequiredSquad = false;
-    }
-    if(bLogAISpawning)
-    {
-        LogAvailableSquads();
-    }
-    if(bLogAISpawning)
-    {
-        LogInternal((((("KFAISpawnManager.GetNextAIGroup() Wave:" @ string(Outer.MyKFGRI.WaveNum)) @ "Squad:") @ string(AvailableSquads[RandNum])) @ "Index:") @ string(RandNum));
-    }
-    GetSpawnListFromSquad(byte(RandNum), AvailableSquads, NewSquad);
-    if(bForceRequiredSquad)
-    {
-        GetSpawnListFromSquad(byte(AvailableSquads.Length - 1), AvailableSquads, RequiredSquad);
-        if(((Outer.NumAISpawnsQueued + NewSquad.Length) + RequiredSquad.Length) > WaveTotalAI)
-        {
-            NewSquad = RequiredSquad;
-            RandNum = AvailableSquads.Length - 1;
             bForceRequiredSquad = false;
         }
-    }
-    AvailableSquads.Remove(RandNum, 1;
-    if(bLogAISpawning)
-    {
-        LogAvailableSquads();
+        if(bLogAISpawning)
+        {
+            LogAvailableSquads();
+        }
+        if(bLogAISpawning)
+        {
+            LogInternal((((("KFAISpawnManager.GetNextAIGroup() Wave:" @ string(Outer.MyKFGRI.WaveNum)) @ "Squad:") @ string(AvailableSquads[RandNum])) @ "Index:") @ string(RandNum));
+        }
+        GetSpawnListFromSquad(byte(RandNum), AvailableSquads, NewSquad);
+        if(bForceRequiredSquad)
+        {
+            GetSpawnListFromSquad(byte(AvailableSquads.Length - 1), AvailableSquads, RequiredSquad);
+            if(((Outer.NumAISpawnsQueued + NewSquad.Length) + RequiredSquad.Length) > WaveTotalAI)
+            {
+                NewSquad = RequiredSquad;
+                RandNum = AvailableSquads.Length - 1;
+                bForceRequiredSquad = false;
+            }
+        }
+        AvailableSquads.Remove(RandNum, 1;
+        if(bLogAISpawning)
+        {
+            LogAvailableSquads();
+        }
     }
     if(LeftoverSpawnSquad.Length > 0)
     {
@@ -385,19 +398,18 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
         {
             LogMonsterList(LeftoverSpawnSquad, "Leftover LeftoverSpawnSquad");
         }
-        J0x37F:
+        J0x3DD:
 
         if(LeftoverSpawnSquad.Length > 0)
         {
             EntryIdx = LeftoverSpawnSquad.Length - 1;
             NewSquad.Insert(0, 1;
             NewSquad[0] = LeftoverSpawnSquad[EntryIdx];
-            LeftoverSpawnSquad.Length = EntryIdx;
-            goto J0x37F;
+            LeftoverSpawnSquad.Remove(EntryIdx, 1;
+            goto J0x3DD;
         }
         bNeedsNewDesiredSquadType = true;
     }
-    AINeeded = GetNumAINeeded();
     if(AINeeded < NewSquad.Length)
     {
         LeftoverSpawnSquad = NewSquad;
@@ -960,8 +972,7 @@ function InitControllerList()
 
 function KFSpawnVolume GetBestSpawnVolume(optional array< class<KFPawn_Monster> > AIToSpawn, optional Controller OverrideController, optional Controller OtherController, optional bool bTeleporting, optional float MinDistSquared)
 {
-    local int VolumeIndex, BestIndex, ControllerIndex;
-    local float BestRating, CurrentRating;
+    local int VolumeIndex, ControllerIndex;
     local Controller RateController;
 
     if(OverrideController != none)
@@ -990,37 +1001,37 @@ function KFSpawnVolume GetBestSpawnVolume(optional array< class<KFPawn_Monster> 
         }
         return none;
     }
-    BestRating = 0;
-    BestIndex = -1;
+    if(((OtherController == none) || !OtherController.bIsPlayer) && NeedPlayerSpawnVolume())
+    {
+        foreach Outer.WorldInfo.AllControllers(Class'Controller', OtherController)
+        {
+            if(OtherController.bIsPlayer)
+            {
+                break;
+            }            
+        }        
+    }
+    SortSpawnVolumes(RateController, bTeleporting, MinDistSquared);
     VolumeIndex = 0;
-    J0x1C5:
+    J0x281:
 
     if(VolumeIndex < SpawnVolumes.Length)
     {
-        CurrentRating = SpawnVolumes[VolumeIndex].RateVolume(DesiredSquadType, RateController, OtherController, BestRating, bTeleporting, MinDistSquared);
-        if(CurrentRating > BestRating)
+        if(SpawnVolumes[VolumeIndex].IsValidForSpawn(DesiredSquadType, OtherController) && SpawnVolumes[VolumeIndex].CurrentRating > float(0))
         {
-            BestRating = CurrentRating;
-            BestIndex = VolumeIndex;
+            if(bLogAISpawning)
+            {
+                LogInternal((((string(GetFuncName()) @ "returning chosen spawn volume") @ string(SpawnVolumes[VolumeIndex])) @ "with a rating of") @ string(SpawnVolumes[VolumeIndex].CurrentRating));
+            }
+            return SpawnVolumes[VolumeIndex];
         }
         ++ VolumeIndex;
-        goto J0x1C5;
+        goto J0x281;
     }
-    if(BestIndex < 0)
-    {
-        return none;
-    }
-    if(bLogAISpawning)
-    {
-        LogInternal(((((string(self) @ string(GetFuncName())) @ "returning chosen spawn volume") @ string(SpawnVolumes[BestIndex])) @ "with a rating of") @ string(BestRating));
-    }
-    if((SpawnVolumes[BestIndex] != none) && SpawnVolumes[BestIndex].bDebugRatingChecks)
-    {
-        LogInternal(((((string(self) @ string(GetFuncName())) @ "returning chosen spawn volume") @ string(SpawnVolumes[BestIndex])) @ "with a rating of") @ string(BestRating));
-        Outer.DrawDebugLine(SpawnVolumes[BestIndex].Location, Outer.GetALocalPlayerController().ViewTarget.Location, 0, 255, 0, true);
-    }
-    return SpawnVolumes[BestIndex];
+    return none;
 }
+
+function bool NeedPlayerSpawnVolume();
 
 function UpdateSpawnCurveIntensity(float NewSineFreq)
 {
@@ -1096,4 +1107,5 @@ System.InvalidOperationException: Nullable object must have a value.
     MaxBossMinionScaleByPlayers[3]=1.875
     MaxBossMinionScaleByPlayers[4]=1.875
     MaxBossMinionScaleByPlayers[5]=2
+    ForcedBossNum=-1
 }

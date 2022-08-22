@@ -149,6 +149,7 @@ defaultproperties
     SpareAmmoCapacity=46
     InitialSpareMags=11
     AmmoPickupScale=3
+    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
     FireAnim=Shoot_Single
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

@@ -119,7 +119,7 @@ event NotifyReachedBy(Pawn P)
 {
     if((P.Controller != none) && KFAIController(P.Controller) != none)
     {
-        if(KFAIController(P.Controller) != none)
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFAIController(P.Controller) != none)
         {
             KFAIController(P.Controller).AILog_Internal((string(GetFuncName()) $ " by ") $ string(P), 'PathWarning');
         }

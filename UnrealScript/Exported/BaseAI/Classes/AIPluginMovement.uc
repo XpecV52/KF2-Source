@@ -320,7 +320,7 @@ function bool MoveUnreachable( Vector AttemptedDest, Actor AttemptedTarget )
 {
 	if( AttemptedTarget != none )
 	{
-		AILog_Internal(GetFuncName()$" AttemptedTarget: "$AttemptedTarget,'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" AttemptedTarget: "$AttemptedTarget,'PathWarning',);};
 	}
 		
 	return false;
@@ -329,14 +329,14 @@ function bool MoveUnreachable( Vector AttemptedDest, Actor AttemptedTarget )
 state Succeeding extends DEBUGSTATE
 {
 Begin:
-	AILog_Internal("Moving - END:"@GetStateName(),'Move',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Moving - END:"@GetStateName(),'Move',);};
 	Success();
 }
 
 state Failing extends DEBUGSTATE
 {
 Begin:
-	AILog_Internal("Moving - END:"@GetStateName(),'Move',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Moving - END:"@GetStateName(),'Move',);};
 	Failure();
 }
 
@@ -345,7 +345,7 @@ Begin:
 state Aborting extends DEBUGSTATE
 {
 Begin:
-	AILog_Internal("Moving - Aborted",'Move',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Moving - Aborted",'Move',);};
 	//AbortMove(false);   
 	StopMovement();
 }
@@ -355,7 +355,7 @@ Begin:
 state Idling extends DEBUGSTATE
 {
 Begin:
-	AILog_Internal("Idling",'Move',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Idling",'Move',);};
 	StopMovement();
 }
 

@@ -16,10 +16,6 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     super.SpecialMoveStarted(bForced, PrevMove);
     bIsBarrage = MyPatPawn.SpecialMoveFlags == 2;
-    if(bIsBarrage)
-    {
-        AnimName = BarrageFireAnimName;
-    }
     NumBarrages = 0;
     MyPatPawn.PreMortarAttack();
 }
@@ -45,12 +41,18 @@ function PlayFireAnimation()
     if(bIsBarrage)
     {
         BlendOutTime = 0;
+        AnimName = BarrageFireAnimName;        
+    }
+    else
+    {
+        AnimName = default.AnimName;
     }
     bUseRootMotion = false;
     DisableRootMotion();
     MyPatPawn.RotationRate = MissileFireRotationRate;
-    PlaySpecialMoveAnim(AnimName, 1, 0, BlendOutTime, 1);
-    AnimNodeSeq = MyPatPawn.BodyStanceNodes[1].GetCustomAnimNodeSeq();
+    AnimStance = 1;
+    PlaySpecialMoveAnim(AnimName, AnimStance, 0, BlendOutTime, 1);
+    AnimNodeSeq = MyPatPawn.BodyStanceNodes[AnimStance].GetCustomAnimNodeSeq();
     if(AnimNodeSeq != none)
     {
         AnimNodeSeq.SetPosition(0, false);

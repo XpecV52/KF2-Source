@@ -445,7 +445,7 @@ event ReadyToMelee()
 		{
 			if( MyKFPawn.CanDoSpecialMove(SM_Taunt) && (WorldInfo.TimeSeconds - LastTauntTime) > 2.f )
 			{
-				AILog_Internal(GetFuncName()$" starting taunt command",'CantMelee',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" starting taunt command",'CantMelee',);};
 				class'AICommand_TauntEnemy'.static.Taunt( self, KFPawn(Enemy), TAUNT_Standard );
 			}
 		}
@@ -487,7 +487,7 @@ event Actor GeneratePathTo( Actor Goal, optional float Distance, optional bool b
 
 	if( PathResult == None )
 	{
-		AILog_Internal(GetFuncName()$"() failed to build a path to "$Goal$", offset distance was "$Distance$", bAllowPartialPath was "$bAllowPartialPath,'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() failed to build a path to "$Goal$", offset distance was "$Distance$", bAllowPartialPath was "$bAllowPartialPath,'PathWarning',);};
 	}
 
 	if( bShowMovePointsDebugInfo )
@@ -585,7 +585,7 @@ event bool CanGrabAttack()
 			return true;
 		}
 	}
-	AILog_Internal(GetFuncName()$"() returning FALSE",'GrabAttack',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() returning FALSE",'GrabAttack',);};
 	return false;
 }
 
@@ -630,7 +630,7 @@ function DoStrike()
 		StrikeFlags = MyKFPawn.PawnAnimInfo.GetStrikeFlags(PendingAnimStrikeIndex);
 		if( StrikeFlags != 255 )
 		{
-			AILog_Internal(GetFuncName()$"() "$VSize(MyKFPawn.Location - Enemy.Location)$" units from enemy and I DO HAVE AN available attack!",'Command_Attack_Melee',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() "$VSize(MyKFPawn.Location - Enemy.Location)$" units from enemy and I DO HAVE AN available attack!",'Command_Attack_Melee',);};
 			class'AICommand_Attack_Melee'.static.Melee( self, Enemy, StrikeFlags );
 
 			MyKFPawn.PawnAnimInfo.UpdateAttackCooldown(self, PendingAnimStrikeIndex);
@@ -639,7 +639,7 @@ function DoStrike()
 		}
 		else
 		{
-			AILog_Internal(GetFuncName()$"() "$VSize(MyKFPawn.Location - Enemy.Location)$" units from enemy and I have no available attack!",'Command_Attack_Melee',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() "$VSize(MyKFPawn.Location - Enemy.Location)$" units from enemy and I have no available attack!",'Command_Attack_Melee',);};
 		}
 	}
 }
@@ -717,7 +717,7 @@ function bool HandleZedBlockedPath()
 			return true;
 		}
 
-		AILog_Internal(GetFuncName()$" ENEMY IS BLOCKED",'ReachedEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" ENEMY IS BLOCKED",'ReachedEnemy',);};
 		DisableMeleeRangeEventProbing();
 		SetTimer( 1.5f + (2.f*FRand()), false, nameof(Timer_EnableMeleeRangeEventProbing), self );
 		if( FindNewEnemy() )
@@ -730,12 +730,12 @@ function bool HandleZedBlockedPath()
 		{
 			if( MyKFPawn.CanDoSpecialMove(SM_Taunt) && FRand() < 0.32 && (WorldInfo.TimeSeconds - LastTauntTime) > 2.f )
 			{
-				AILog_Internal(GetFuncName()$" starting taunt command",'ReachedEnemy',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" starting taunt command",'ReachedEnemy',);};
 				class'AICommand_TauntEnemy'.static.Taunt( self, KFPawn(Enemy), TAUNT_Standard );
 			}
  			else
  			{
-				AILog_Internal(GetFuncName()$" starting pauseAI command",'ReachedEnemy',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" starting pauseAI command",'ReachedEnemy',);};
 				DoPauseAI( 1.f + (3.f * FRand()), true );
 			}
 			return true;

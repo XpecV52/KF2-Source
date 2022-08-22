@@ -661,6 +661,11 @@ var transient int MatineeCaptureType;
 /** TRUE if the the user cannot modify levels that are read only. */
 var transient bool bLockReadOnlyLevels;
 
+//@HSL_BEGIN - BWJ - 8-19-16 - Server query support
+/** Net driver for server query support */
+var NetDriver QueryNetDriver;
+//@HSL_END
+
 cpptext
 {
 	// Constructors.

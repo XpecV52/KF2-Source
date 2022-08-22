@@ -737,7 +737,7 @@ var name WeaponAttachmentSocket;
 var KFWeapon MyKFWeapon;
 
 /** Last time WeaponFired() was called, used by animation */
-var float LastWeaponFireTime;
+var transient float LastWeaponFireTime;
 
 /** Whether this pawn needs a crosshair regardless of whether it has a weapon */
 var bool bNeedsCrosshair;
@@ -1429,22 +1429,22 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
         if(Mesh.MatchRefBone(HeadBoneName) == INDEX_NONE)
         {
             WarnInternal("CharacterInfo HeadBone is invalid for" @ Self);
-            ClientMessage("CharacterInfo HeadBone is invalid for" @ Self);
+            //ClientMessage("CharacterInfo HeadBone is invalid for" @ Self);
         }
         if(Mesh.MatchRefBone(LeftFootBoneName) == INDEX_NONE)
         {
             WarnInternal("CharacterInfo LeftFootBone is invalid for" @ Self);
-            ClientMessage("CharacterInfo LeftFootBone is invalid for" @ Self);
+            //ClientMessage("CharacterInfo LeftFootBone is invalid for" @ Self);
         }
         if(Mesh.MatchRefBone(RightFootBoneName) == INDEX_NONE)
         {
             WarnInternal("CharacterInfo RightFootBone is invalid for" @ Self);
-            ClientMessage("CharacterInfo RightFootBone is invalid for" @ Self);
+            //ClientMessage("CharacterInfo RightFootBone is invalid for" @ Self);
         }
         if(Mesh.MatchRefBone(TorsoBoneName) == INDEX_NONE)
         {
             WarnInternal("CharacterInfo TorsoBone is invalid for" @ Self);
-            ClientMessage("CharacterInfo TorsoBone is invalid for" @ Self);
+            //ClientMessage("CharacterInfo TorsoBone is invalid for" @ Self);
         }
 	}
 
@@ -1679,9 +1679,9 @@ private function SmoothEyeHeight( float DeltaTime )
 /* @see UpdateEyeHeight() */
 private function UpdateWalkBob( float DeltaTime )
 {
-	local float Speed2D, OldBobTime;
+	local float Speed2D;//, OldBobTime;
 	local vector X, Y, Z;
-	local int m,n;
+	//local int m,n;
 
 	// don't bob if disabled, or just landed
 	if( bJustLanded || !bUpdateEyeheight )
@@ -1692,59 +1692,58 @@ private function UpdateWalkBob( float DeltaTime )
 	else
 	{
 		// add some weapon bob based on jumping
-		if ( Velocity.Z > 0 )
+		if ( Velocity.Z > 0.f )
 		{
-			JumpBob = FMax(-1.5, JumpBob - 0.03 * DeltaTime * FMin(Velocity.Z,300));
+			JumpBob = FMax(-1.5f, JumpBob - 0.03f * DeltaTime * FMin(Velocity.Z,300.f));
 		}
 		else
 		{
-			JumpBob *= (1 -  FMin(1.0, 8.0 * DeltaTime));
+			JumpBob *= 1.f - FMin(1.f, 8.f * DeltaTime);
 		}
 
 		// Add walk bob to movement
-		OldBobTime = BobTime;
+		//OldBobTime = BobTime;
 
 		if (Physics == PHYS_Walking )
 		{
 			GetAxes(Rotation,X,Y,Z);
-			Speed2D = VSize(Velocity);
-			if ( Speed2D < 10 )
-				BobTime += 0.2 * DeltaTime;
+			Speed2D = VSize2D( Velocity );
+			if ( Speed2D < 10.f )
+				BobTime += 0.2f * DeltaTime;
 			else
-				BobTime += DeltaTime * (0.3 + 0.7 * Speed2D/GroundSpeed);
+				BobTime += DeltaTime * (0.3f + 0.7f * Speed2D/GroundSpeed);
 
-			WalkBob = Y * Bob * Speed2D * sin(8 * BobTime);
-			AppliedBob = AppliedBob * (1 - FMin(1, 16 * deltatime));
+			WalkBob = Y * Bob * Speed2D * sin(8.f * BobTime);
+			AppliedBob = AppliedBob * (1.f - FMin(1.f, 16.f * DeltaTime));
 			WalkBob.Z = AppliedBob;
-			if ( Speed2D > 10 )
-				WalkBob.Z = WalkBob.Z + 0.75 * Bob * Speed2D * sin(16 * BobTime);
+			if ( Speed2D > 10.f )
+				WalkBob.Z = WalkBob.Z + 0.75f * Bob * Speed2D * sin(16.f * BobTime);
 		}
 		else if ( Physics == PHYS_Swimming )
 		{
 			GetAxes(Rotation,X,Y,Z);
 			BobTime += DeltaTime;
-			Speed2D = Sqrt(Velocity.X * Velocity.X + Velocity.Y * Velocity.Y);
-			WalkBob = Y * Bob *  0.5 * Speed2D * sin(4.0 * BobTime);
-			WalkBob.Z = Bob * 1.5 * Speed2D * sin(8.0 * BobTime);
+			Speed2D = VSize2D( Velocity );
+			WalkBob = Y * Bob *  0.5f * Speed2D * sin(4.0f * BobTime);
+			WalkBob.Z = Bob * 1.5f * Speed2D * sin(8.0f * BobTime);
 		}
 		else
 		{
-			BobTime = 0;
-			WalkBob = WalkBob * (1 - FMin(1, 8 * deltatime));
+			BobTime = 0.f;
+			WalkBob = WalkBob * (1.f - FMin(1.f, 8.f * DeltaTime));
 		}
 
 		// Match footsteps sounds with walkbob
-		if ( (Physics == PHYS_Walking) && (VSizeSq(Velocity) > 100) && IsFirstPerson() )
+		/*if ( (Physics == PHYS_Walking) && (VSizeSq(Velocity) > 100) && IsFirstPerson() )
 		{
 			m = int(0.5 * Pi + 9.0 * OldBobTime/Pi);
 			n = int(0.5 * Pi + 9.0 * BobTime/Pi);
 
 			if ( (m != n) && !bIsWalking && !bIsCrouched )
 			{
-				// @TODO: turn back on footstep sounds
 				//ActuallyPlayFootStepSound(0);
 			}
-		}
+		}*/
 	}
 }
 
@@ -1754,18 +1753,41 @@ the location at which to place the camera
 */
 simulated function Vector GetPawnViewLocation()
 {
-	if ( bUpdateEyeHeight )
-		return Location + EyeHeight * vect(0,0,1) + WalkBob;
-	else
+	local PlayerController MyPC;
+
+	if( Controller != none )
+	{
+		if( bUpdateEyeHeight )
+		{
+			return Location + EyeHeight * vect(0,0,1) + WalkBob;
+		}
 		return Location + BaseEyeHeight * vect(0,0,1);
+	}
+	else
+	{
+		if( Role < ROLE_Authority && Mesh != none && Mesh.SkeletalMesh != none && Mesh.bAnimTreeInitialised )
+		{
+			MyPC = WorldInfo.GetALocalPlayerController();
+			if( MyPC != none )
+			{
+				return Mesh.GetPosition() + ((CylinderComponent.CollisionHeight + MyPC.TargetEyeHeight) * vect(0,0,1));
+			}
+			return Mesh.GetPosition() + ((CylinderComponent.CollisionHeight + BaseEyeHeight) * vect(0,0,1));
+		}
+		return Location + BaseEyeHeight * vect(0,0,1);
+	}
 }
 
 simulated function float GetEyeHeight()
 {
-	if ( !IsLocallyControlled() )
-		return BaseEyeHeight;
-	else
+	if( bUpdateEyeHeight )
+	{
 		return EyeHeight;
+	}
+	else
+	{
+		return BaseEyeHeight;
+	}
 }
 
 /* BecomeViewTarget - Called by Camera when this actor becomes its ViewTarget */
@@ -3084,6 +3106,10 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 		TimeOfDeath	= WorldInfo.TimeSeconds;
 	}
 
+	// @NOTE: Epic has code in the dying state that checks to see if bTearOff=true before setting the lifespan.
+	// The problem is that bTearOff is set in super.PlayDying(), _after_ entering the dying state. Fix it here. -MattF
+	bTearOff = true;
+
 	Super.PlayDying(DamageType, HitLoc);
 
 	// Undo the addtional velocity from super().  This causes problems for ApplyRagdollImpulse
@@ -3155,7 +3181,12 @@ simulated event HideMeshOnDeath()
 	{
 		// Hide Meshes.  Can't use Actor.SetHidden because it will replicate
 		Mesh.SetHidden(true);
-		ThirdPersonHeadMeshComponent.SetHidden(true);
+		Mesh.SetTraceBlocking( false, false );
+		if( ThirdPersonHeadMeshComponent.bAttached )
+		{
+			ThirdPersonHeadMeshComponent.SetHidden(true);
+			ThirdPersonHeadMeshComponent.SetTraceBlocking( false, false );
+		}
 
 		// turn off skeletal anims
 		StopAllAnimations();
@@ -3982,7 +4013,7 @@ simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float Exce
 	if( SpecialMove != SM_None )
 	{
 		//`Log"SpecialMove ==" @ SpecialMove @ "calling AnimEndNotify()");
-		if(SpecialMoves[SpecialMove].bShouldDeferToPostTick)
+		if( Mesh.TickGroup == TG_DuringAsyncWork && SpecialMoves[SpecialMove].bShouldDeferToPostTick )
 		{
             SpecialMoves[SpecialMove].DeferredSeqName = SeqNode.AnimSeqName;
 			TWDeferredWorkManager(WorldInfo.DeferredWorkManager).DeferSpecialMoveAnimEnd(SpecialMoves[SpecialMove]);
@@ -3990,8 +4021,7 @@ simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float Exce
 		else
 		{
 			SpecialMoves[SpecialMove].AnimEndNotify(SeqNode, PlayedTime, ExcessTime);
-		}
-		
+		}		
 	}
 }
 
@@ -4136,14 +4166,15 @@ simulated event PlayFootStepSound(int FootDown)
 	local AkBaseSoundObject Sound;
 	local vector FootSoundLoc;
 
-	if (/* Validate footsetps */
-		Physics != PHYS_Walking || Base == None ||
-		/* Check if foostep sounds are enabled. Always allow footstep sounds from local player */
-		(!bAllowFootstepSounds && Controller != GetALocalPlayerController()) ||
+	if ( WorldInfo.NetMode == NM_DedicatedServer
+		/* Validate footsetps */
+		|| Physics != PHYS_Walking || Base == None
 		/* Skip if we're encountering low frame rates */
-		WorldInfo.bDropDetail ||
+		|| WorldInfo.bDropDetail
+		/* Check if foostep sounds are enabled. Always allow footstep sounds from local player */
+		|| (!bAllowFootstepSounds && Controller != GetALocalPlayerController())
 		/* Is within audible range */
-		!ActorEffectIsRelevant(self, false, 1500, 1500) )
+		|| !ActorEffectIsRelevant(self, false, SoundGroupArch.MaxFootstepSoundRanges.X, SoundGroupArch.MaxFootstepSoundRanges.Y) )
 	{
 		return;
 	}

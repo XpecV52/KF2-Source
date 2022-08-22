@@ -19,6 +19,11 @@ simulated event PostBeginPlay()
     LastLocation = Location;
 }
 
+simulated function bool ShouldProcessBulletTouch()
+{
+	return BouncesLeft > 0 && GravityScale == default.GravityScale;
+}
+
 defaultproperties
 {
 	MaxSpeed=2500.0
@@ -62,7 +67,7 @@ defaultproperties
     AmbientSoundStopEvent=AkEvent'WW_WEP_SA_SawBlade.Stop_WEP_SA_Sawblade_Projectile_Loop'
 
     PickupRadius=250   //200
-	WeaponClass=class'KFWeap_Eviscerator'
+	WeaponClassName=KFWeap_Eviscerator
 	ProjPickupTemplate=ParticleSystem'WEP_SawBlade_EMIT.FX_Sawblade_pickup_01'
     AmmoPickupSound=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Projectile_Pickup'
 

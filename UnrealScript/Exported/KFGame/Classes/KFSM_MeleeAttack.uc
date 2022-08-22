@@ -122,7 +122,7 @@ function PlayAnimation()
 		return;
 	}
 
-	if( AIOwner!= None ) { AIOwner.AILog_Internal(GetFuncName()$" "$self$" chose attack animation "$AnimName,'Command_SpecialMove'); };
+	if( !class'Engine'.static.GetEngine().bDIsableAILogging && AIOwner!= None ) { AIOwner.AILog_Internal(GetFuncName()$" "$self$" chose attack animation "$AnimName,'Command_SpecialMove'); };
 	if( bCanBeInterrupted )
 	{
 		InterruptTime = KFSkeletalMeshComponent(PawnOwner.Mesh).GetAnimInterruptTime(AnimName);

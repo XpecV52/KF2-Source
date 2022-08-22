@@ -17,29 +17,20 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
 {
     local int I;
     local Rotator AimRot;
-    local KFPlayerReplicationInfo InstigatorPRI;
 
     if(CurrentFireMode == 4)
     {
         return super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
     }
     AimRot = rotator(AimDir);
-    InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
     I = 0;
-    J0x89:
+    J0x58:
 
     if(I < GetNumProjectilesToFire(CurrentFireMode))
     {
-        if((((InstigatorPRI != none) && InstigatorPRI.bNukeActive) && WorldInfo.TimeDilation < 1) && I < 1)
-        {
-            super(KFWeapon).SpawnProjectile(Class'KFPerk_Demolitionist'.static.GetNukeProjectileClass(), RealStartLoc, AimDir);            
-        }
-        else
-        {
-            super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, byte(I))));
-        }
+        super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, byte(I))));
         ++ I;
-        goto J0x89;
+        goto J0x58;
     }
     return none;
 }
@@ -178,6 +169,7 @@ Parameter name: index
     SpareAmmoCapacity=29
     InitialSpareMags=17
     AmmoPickupScale=3
+    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

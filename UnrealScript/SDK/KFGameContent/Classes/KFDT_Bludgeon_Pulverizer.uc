@@ -11,7 +11,7 @@ class KFDT_Bludgeon_Pulverizer extends KFDT_Bludgeon
 
 defaultproperties
 {
-KDamageImpulse=3000 //1500
+	KDamageImpulse=3000 //1500
 	KDeathUpKick=0 //0
 	KDeathVel=375
 	

@@ -54,7 +54,7 @@ function UpdateLock()
 {
     if(KFPC != none)
     {
-        SetBool("perkChangeLocked", KFPC.bPlayerUsedUpdatePerk);
+        SetBool("perkChangeLocked", !KFPC.CanUpdatePerkInfo());
     }
 }
 
@@ -176,7 +176,10 @@ function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef
     InfoSlot.SetString("itemName", WeaponDef.static.GetItemLocalization(ItemKeyString));
     InfoSlot.SetString("itemAmmo", (string(AmmoCount) $ "/") $ string(MaxAmmoCount));
     InfoSlot.SetInt("itemWeight", BlocksRequired);
-    InfoSlot.SetBool("lowAmmo", (float(AmmoCount) / float(MaxAmmoCount)) <= LowAmmoPercentThreshold);
+    if(MaxAmmoCount > 0)
+    {
+        InfoSlot.SetBool("lowAmmo", (float(AmmoCount) / float(MaxAmmoCount)) <= LowAmmoPercentThreshold);
+    }
     InfoSlot.SetBool("isSubAmmo", bSecondaryAmmo);
     ItemTexPath = "img://" $ TextureLocation;
     InfoSlot.SetString("itemSource", ItemTexPath);

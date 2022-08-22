@@ -31,14 +31,27 @@ var int SaveCurrentMenuIndex;
 var bool bCachedGameFullyInstalled;
 //@HSL_END
 
+var bool bAllowBumper;
+
 function InitializeCurrentMenu(byte CurrentMenuIndex)
 {
 	UpdateMenu(CurrentMenuIndex);
 }
 
+
 function CalloutButtonBumperPress(int Delta)
 {
-	SetInt("calloutButtonBumperPress", Delta);
+	if(bAllowBumper)
+	{
+		SetInt("calloutButtonBumperPress", Delta);
+		bAllowBumper= false;
+		Manager.TimerHelper.SetTimer(0.1, false, 'UnblockBumper', self);
+	}
+}
+
+function UnblockBumper()
+{
+	bAllowBumper = true;
 }
 
 function  UpdateMenu(byte CurrentMenuIndex)
@@ -99,11 +112,11 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 			break;
 		//@HSL_BEGIN - JRO - 4/28/2016 - Disable these buttons for certain scenarios. Including PlayGo
 		case UI_Inventory:
-			GfxButton.SetBool( "enabled", CanUseInventory() && !class'WorldInfo'.static.IsE3Build()); // Disabled for E3 build
+			GfxButton.SetBool( "enabled", CanUseInventory() ); // Disabled for E3 build
 			InventoryButton = GfxButton;
 			break;
 		case UI_Store:
-			GfxButton.SetBool("enabled", !class'WorldInfo'.static.IsE3Build()); // Disabled for E3 build
+			GfxButton.SetBool("enabled", CanUseStore() ); // Disabled for E3 build
 			StoreButton = GfxButton;
 			break;
 		//@HSL_END
@@ -141,7 +154,7 @@ function OpenQuitPopUp()
     DescriptionString   = DescriptionStrings[Rand(DescriptionStrings.length)];
     if(Manager != none)
     {
-        Manager.OpenPopup(EConfirmation, TitleString, DescriptionString, ExitString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnQuitConfirm );
+        Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, TitleString, DescriptionString, ExitString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnQuitConfirm );
     }
 }
 
@@ -213,11 +226,32 @@ function bool CanUseGearButton()
 //Duplicate function because Gear menu override in VS class
 function bool CanUseInventory()
 {
+	if( class'WorldInfo'.static.IsE3Build() )
+	{
+		return false;
+	}
+
 	if( GetPC().Pawn != none && !Manager.bAfterLobby ||class'WorldInfo'.static.IsMenuLevel() )
 	{
 		return true;
 	}
 	return false;
+}
+
+
+function bool CanUseStore()
+{
+	if( class'WorldInfo'.static.IsE3Build() )
+	{
+		return false;
+	}
+
+	if( class'WorldInfo'.static.IsConsoleBuild() && class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetLoginStatus( GetLP().ControllerId ) != LS_LoggedIn )
+	{
+		return false;
+	}
+
+	return true;
 }
 
 defaultproperties
@@ -241,6 +275,7 @@ defaultproperties
    DescriptionStrings(0)="Fine, go on and run for your pathetic life. You wouldn't last five minutes on the Killing Floor."
    DescriptionStrings(1)="Each second you are away, another horde of freaks is born to feast on your friends. Are you just going to abandon them?"
    DescriptionStrings(2)="They're going to find you either way. They'll find you and they'll eat your heart, like a fleshy little snack."
+   bAllowBumper=True
    Name="Default__KFGFxWidget_MenuBar"
    ObjectArchetype=KFGFxObject_Menu'KFGame.Default__KFGFxObject_Menu'
 }

@@ -51,7 +51,7 @@ var(Weapon) float   HealAttemptWeakZedGrabCooldown;
 ********************************************************************************************* */
 
 /** Maximum range to find teammate */
-var() float HealingRange;
+var() float HealingRangeSQ;
 
 /** Reference to a healable friendly set in TickSpecial */
 var Pawn HealTarget;
@@ -421,15 +421,15 @@ simulated event Tick(float DeltaTime)
 	Super.Tick(DeltaTime);
 
 	// @todo: this could should not be called if ammo is charged
-	if( Role == ROLE_Authority && AmmoCount[0] < MagazineCapacity[0] )
+	if (Role == ROLE_Authority && AmmoCount[0] < MagazineCapacity[0])
 	{
-        HealAmmoRegeneration(DeltaTime);
+		HealAmmoRegeneration(DeltaTime);
 	}
 
-	if( Instigator != none && Instigator.WorldInfo.TimeSeconds - LastUIUpdateTime > UIUpdateInterval )
-    {
-        LastUIUpdateTime = Instigator.WorldInfo.TimeSeconds;   // throttle the updates so we're not spamming Actionscript with data.
-	UpdateInteractionMessage();	
+	if (Instigator != none && Instigator.WorldInfo.TimeSeconds - LastUIUpdateTime > UIUpdateInterval)
+	{
+		LastUIUpdateTime = Instigator.WorldInfo.TimeSeconds;   // throttle the updates so we're not spamming Actionscript with data.
+		UpdateInteractionMessage();
 	}
 
 	UpdateScreenUI();
@@ -441,32 +441,32 @@ simulated function UpdateInteractionMessage()
 	local KFPlayerController InstigatorKFPC;
 
 	//Update Interaction message	
-	if( Instigator != none && Instigator.IsLocallyControlled() && Instigator.Health > 0 )
+	if (Instigator != none && Instigator.IsLocallyControlled() && Instigator.Health > 0)
 	{
-	InstigatorKFPC = KFPlayerController( Instigator.Controller );
+		InstigatorKFPC = KFPlayerController(Instigator.Controller);
 
-		if(InstigatorKFPC == none)
-	{
+		if (InstigatorKFPC == none)
+		{
 			return;
 		}
 
-		if(bIsQuickHealMessageShowing)
-	 	{
-	 		//We use AmmoCount[0] since the healer weapon only uses this ammo.  AmmoCost[ALTFIRE_FIREMODE] is the cost to heal yourself
-	 		if( Instigator.Health > InstigatorKFPC.LowHealthThreshold || AmmoCount[0] < AmmoCost[ALTFIRE_FIREMODE] )
-	 		{
-	 			bIsQuickHealMessageShowing = false;
-	 			InstigatorKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_None);
-	 		}
-	 	}
-	 	
-	 		//We use AmmoCount[0] since the healer weapon only uses this ammo.  AmmoCost[ALTFIRE_FIREMODE] is the cost to heal yourself
-		   	if( Instigator.Health <= InstigatorKFPC.LowHealthThreshold && AmmoCount[0] >= AmmoCost[ALTFIRE_FIREMODE] )
-		   	{
-		   		bIsQuickHealMessageShowing = true;
-	 			InstigatorKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_HealSelfWarning);
-		   	}
-	 	}
+		if (bIsQuickHealMessageShowing)
+		{
+			//We use AmmoCount[0] since the healer weapon only uses this ammo.  AmmoCost[ALTFIRE_FIREMODE] is the cost to heal yourself
+			if (Instigator.Health > InstigatorKFPC.LowHealthThreshold || AmmoCount[0] < AmmoCost[ALTFIRE_FIREMODE])
+			{
+				bIsQuickHealMessageShowing = false;
+				InstigatorKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_None);
+			}
+		}
+
+		//We use AmmoCount[0] since the healer weapon only uses this ammo.  AmmoCost[ALTFIRE_FIREMODE] is the cost to heal yourself
+		if (Instigator.Health <= InstigatorKFPC.LowHealthThreshold && AmmoCount[0] >= AmmoCost[ALTFIRE_FIREMODE])
+		{
+			bIsQuickHealMessageShowing = true;
+			InstigatorKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_HealSelfWarning);
+		}
+	}
 }
 
 /** Only update the screen screen if we have the healer equipped and it's value is different than our AmmoCount */
@@ -528,10 +528,10 @@ simulated state Active
  */
 simulated function UpdateHealTarget(optional bool bSkipOnAnimEnd)
 {
-	local KFPawn_Human P;
-	local vector HitNorm, HitLoc;
-	local vector StartTrace, EndTrace;
 	local bool bHasHealTarget;
+	local vector AimDir, StartTrace, Projection;
+	local Pawn P;
+	local float DistSQ, FOV, HealTargetRating, BestHealTargetRating;
 
 	// prevent state from changing too often (also a optimization)
 	if ( (WorldInfo.TimeSeconds - LastReadyHealTime) < 0.2f )
@@ -544,15 +544,34 @@ simulated function UpdateHealTarget(optional bool bSkipOnAnimEnd)
 
 	// define range to use for CalcWeaponFire()
 	StartTrace = Instigator.GetWeaponStartTraceLocation();
-	EndTrace = StartTrace + vector(GetAdjustedAim(StartTrace)) * HealingRange;
+	AimDir = vector( GetAdjustedAim(StartTrace) );
 
 	// consider adding this to KFMeleeHelperWeapon so it can be used by other weapons
-	foreach GetTraceOwner().TraceActors(class'KFPawn_Human', P, HitLoc, HitNorm, StartTrace, EndTrace)
+	foreach WorldInfo.AllPawns( class'Pawn', P )
 	{
-		HealTarget = P;
-		LastValidHealTarget = P;
-		LastReadyHealTime = WorldInfo.TimeSeconds;
-		break;
+		if( P != Instigator && P.GetTeamNum() == Instigator.GetTeamNum() && P.IsAliveAndWell() )
+		{
+			Projection = P.Location - StartTrace;
+
+			DistSQ = VSizeSQ( Projection );
+			if( DistSQ > HealingRangeSQ )
+			{
+				continue;
+			}
+
+			FOV = AimDir dot Normal( Projection );
+			if( FOV > 0.4f )
+			{
+				HealTargetRating = FOV + ( 0.4f * (1.f - (DistSQ / HealingRangeSQ)) );
+				if( HealTargetRating > BestHealTargetRating && FastTrace(P.Location, StartTrace) )
+				{
+					BestHealTargetRating = HealTargetRating;
+					HealTarget = P;
+					LastValidHealTarget = P;
+					LastReadyHealTime = WorldInfo.TimeSeconds;
+				}
+			}
+		}
 	}
 
 	// refresh idle anim if ready state has changed
@@ -738,7 +757,7 @@ defaultproperties
    HealOtherRechargeSeconds=7.500000
    RechargeCompleteSound=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_Charged'
    HealAttemptWeakZedGrabCooldown=1.000000
-   HealingRange=135.000000
+   HealingRangeSQ=23000.000000
    StandAloneHealAmount=50.000000
    ScreenUIClass=Class'KFGame.KFGFxWorld_HealerScreen'
    UIUpdateInterval=1.000000

@@ -6725,6 +6725,9 @@ exec function ListConsoleEvents()
 	local SeqEvent_Console ConsoleEvt;
 	local Sequence GameSeq;
 	local int Idx;
+
+
+
 	GameSeq = WorldInfo.GetGameSequence();
 	if (GameSeq != None)
 	{
@@ -6742,6 +6745,26 @@ exec function ListConsoleEvents()
 			}
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 exec function ListCE()
@@ -6788,7 +6811,9 @@ unreliable server function ServerRemoteEvent(name EventName)
 			}
 		}
 	}
-	if (!bFoundEvt)
+
+
+	if( !bFoundEvt && !class'WorldInfo'.Static.IsConsoleBuild() && !class'WorldInfo'.Static.IsConsoleDedicatedServer() )
 	{
 		LogInternal("Remote events:");
 		ClientMessage("Remote events:",, 15.0);
@@ -6802,6 +6827,23 @@ unreliable server function ServerRemoteEvent(name EventName)
 			}
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 exec function ShowPlayerState()
@@ -7714,6 +7756,9 @@ function OnConnectionStatusChange(EOnlineServerConnectionStatus ConnectionStatus
 {
 }
 function OnPlayTogetherStarted()
+{
+}
+function JoinPlayfabServer(bool bWasSuccessful, string ServerIP)
 {
 }
 //@HSL_END
@@ -9023,7 +9068,14 @@ exec event BugIt( optional string ScreenShotDescription )
 	local String GoString;
 	local String LocString;
 
-	ConsoleCommand( "bugscreenshot " $ ScreenShotDescription );
+	if( !class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+	{
+		ConsoleCommand( "bugscreenshot " $ ScreenShotDescription );
+	}
+	else
+	{
+		LogInternal("BUGIT: USE THE PS4'S SCRRENSHOT FUNCITONALITY!");
+	}
 
 	GetPlayerViewPoint( ViewLocation, ViewRotation );
 

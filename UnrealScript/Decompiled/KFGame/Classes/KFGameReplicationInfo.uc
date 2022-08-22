@@ -360,6 +360,9 @@ simulated function UpdateHUDWaveCount()
 
 simulated function NotifyWaveEnded()
 {
+    local PlayerReplicationInfo PRI;
+    local KFPlayerReplicationInfo KFPRI;
+
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         if(WorldInfo.MyGoreEffectManager != none)
@@ -371,6 +374,18 @@ simulated function NotifyWaveEnded()
     {
         CurrentObjective.FailObjective(3);
     }
+    foreach PRIArray(PRI,)
+    {
+        if(!PRI.bBot)
+        {
+            KFPRI = KFPlayerReplicationInfo(PRI);
+            if(KFPRI != none)
+            {
+                KFPRI.bPerkPrimarySupplyUsed = false;
+                KFPRI.bPerkSecondarySupplyUsed = false;
+            }
+        }        
+    }    
 }
 
 reliable client simulated exec function ShowPreGameServerWelcomeScreen()
@@ -628,6 +643,21 @@ simulated event Timer()
         if((MusicComp != none) && !MusicComp.IsPlaying())
         {
             PlayNewMusicTrack();
+        }
+    }
+}
+
+simulated function RemovePRI(PlayerReplicationInfo PRI)
+{
+    local UniqueNetId NullId;
+
+    super.RemovePRI(PRI);
+    if(WorldInfo.IsConsoleDedicatedServer())
+    {
+        if(PRIArray.Length == 0)
+        {
+            ConsoleGameSessionGuid = "";
+            ConsoleGameSessionHost = NullId;
         }
     }
 }

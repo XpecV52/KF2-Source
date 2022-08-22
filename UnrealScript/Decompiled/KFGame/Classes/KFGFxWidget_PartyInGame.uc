@@ -7,10 +7,10 @@
  *******************************************************************************/
 class KFGFxWidget_PartyInGame extends KFGFxWidget_BaseParty within GFxMoviePlayer;
 
+var KFGameReplicationInfo KFGRI;
+
 function InitializeWidget()
 {
-    local KFGameReplicationInfo KFGRI;
-
     super.InitializeWidget();
     SetReadyButtonVisibility(true);
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
@@ -26,39 +26,30 @@ function InitializeWidget()
         }
         StartCountdown(KFGRI.RemainingTime, false);
     }
-}
-
-function LocalizeText()
-{
-    local int SlotIndex;
-
-    super.LocalizeText();
-    SlotIndex = 0;
-    J0x15:
-
-    if(SlotIndex < PlayerSlots)
-    {
-        MemberSlots[SlotIndex].MemberSlotObject.SetString("readyText", PlayerReadyString);
-        ++ SlotIndex;
-        goto J0x15;
-    }
+    RefreshParty();
 }
 
 function UpdateReadyButtonVisibility()
 {
-    local KFGameReplicationInfo KFGRI;
-
+    if(KFGRI == none)
+    {
+        return;
+    }
     if(bReadyButtonVisible)
     {
         KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
         if(KFGRI != none)
         {
+            if((KFGRI.bMatchHasBegun && !KFGRI.bMatchIsOver) && !Outer.GetPC().PlayerReplicationInfo.bReadyToPlay)
+            {
+                SetReadyButtonVisibility(true);
+            }
             if(KFGRI.bMatchHasBegun || KFGRI.bMatchIsOver)
             {
                 GetObject("matchStartContainer").SetVisible(false);
                 if(Outer.GetPC().PlayerReplicationInfo.bReadyToPlay || KFGRI.bMatchIsOver)
                 {
-                    GetObject("readyButton").SetVisible(false);
+                    SetReadyButtonVisibility(false);
                 }
             }
         }
@@ -67,6 +58,10 @@ function UpdateReadyButtonVisibility()
 
 function OneSecondLoop()
 {
+    if(KFGRI == none)
+    {
+        KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
+    }
     RefreshParty();
     UpdateReadyButtonVisibility();
 }
@@ -94,14 +89,12 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking)
 function GetKFPRIArray(out array<KFPlayerReplicationInfo> KFPRIArray)
 {
     local PlayerController PC;
-    local KFGameReplicationInfo KFGRI;
 
     PC = Outer.GetPC();
     if(((PC == none) || PC.WorldInfo == none) || PC.WorldInfo.GRI == none)
     {
         return;
     }
-    KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI != none)
     {
         KFGRI.GetKFPRIArray(KFPRIArray);
@@ -112,7 +105,9 @@ function RefreshParty()
 {
     local array<KFPlayerReplicationInfo> KFPRIArray;
     local int SlotIndex;
+    local GFxObject DataProvider;
 
+    DataProvider = Outer.CreateArray();
     super.RefreshParty();
     GetKFPRIArray(KFPRIArray);
     if(KFPRIArray.Length <= 0)
@@ -126,96 +121,75 @@ function RefreshParty()
     UpdateInLobby(KFPRIArray.Length > 1);
     OccupiedSlots = KFPRIArray.Length;
     SlotIndex = 0;
-    J0xA0:
+    J0xC9:
 
     if(SlotIndex < PlayerSlots)
     {
         if(SlotIndex < KFPRIArray.Length)
         {
-            RefreshSlot(SlotIndex, KFPRIArray[SlotIndex]);            
-        }
-        else
-        {
-            if(MemberSlots[SlotIndex].bIsSlotTaken)
-            {
-                EmptySlot(SlotIndex);
-            }
+            DataProvider.SetElementObject(SlotIndex, RefreshSlot(SlotIndex, KFPRIArray[SlotIndex]));
         }
         ++ SlotIndex;
-        goto J0xA0;
+        goto J0xC9;
     }
     SetBool("bInParty", bInLobby || Outer.GetPC().WorldInfo.NetMode != NM_Standalone);
+    SetObject("squadInfo", DataProvider);
     UpdateSoloSquadText();
 }
 
-function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
+function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
 {
     local string PlayerName;
-    local UniqueNetId AdminId, PlayerID;
+    local UniqueNetId AdminId;
     local bool bIsLeader, bIsMyPlayer;
-    local string PerkIconPath;
-    local class<KFPerk> CurrentPerkClass;
-    local byte CurrentPerkLevel;
-    local KFGameReplicationInfo KFGRI;
     local PlayerController PC;
+    local GFxObject PlayerInfoObject;
 
+    PlayerInfoObject = Outer.CreateObject("Object");
     PC = Outer.GetPC();
-    KFGRI = KFGameReplicationInfo(PC.WorldInfo.GRI);
-    if((KFPC.CurrentPerk == none) || KFPRI.CurrentPerkClass == none)
+    if(OnlineLobby != none)
     {
-        LogInternal("FAILED TO UPDATE SLOT: " @ string(SlotIndex), 'DevGFxUI');
-        return;
+        OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
     }
-    UpdatePlayerReady(SlotIndex, KFPRI.bReadyToPlay && !KFGRI.bMatchHasBegun);
-    CurrentPerkClass = KFPRI.CurrentPerkClass;
-    CurrentPerkLevel = KFPRI.GetActivePerkLevel();
-    if((MemberSlots[SlotIndex].PerkClass != CurrentPerkClass) || MemberSlots[SlotIndex].PerkLevel != CurrentPerkLevel)
+    bIsLeader = KFPRI.UniqueId == AdminId;
+    PlayerInfoObject.SetBool("bLeader", bIsLeader);
+    bIsMyPlayer = PC.PlayerReplicationInfo.UniqueId == KFPRI.UniqueId;
+    MemberSlots[SlotIndex].PlayerUID = KFPRI.UniqueId;
+    MemberSlots[SlotIndex].PRI = KFPRI;
+    MemberSlots[SlotIndex].PerkClass = KFPRI.CurrentPerkClass;
+    MemberSlots[SlotIndex].PerkLevel = string(KFPRI.GetActivePerkLevel());
+    PlayerInfoObject.SetBool("myPlayer", bIsMyPlayer);
+    if(MemberSlots[SlotIndex].PerkClass != none)
     {
-        MemberSlots[SlotIndex].PerkClass = CurrentPerkClass;
-        PerkIconPath = "img://" $ CurrentPerkClass.static.GetPerkIconPath();
-        UpdatePerk(SlotIndex, CurrentPerkClass.default.PerkName, string(CurrentPerkLevel), PerkIconPath);
+        PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @ MemberSlots[SlotIndex].PerkClass.default.PerkName);
+        PlayerInfoObject.SetString("perkIconPath", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
     }
-    if(MemberSlots[SlotIndex].PlayerUID != KFPRI.UniqueId)
+    if(!bIsMyPlayer)
     {
-        MemberSlots[SlotIndex].bIsSlotTaken = true;
-        PlayerID = KFPRI.UniqueId;
-        MemberSlots[SlotIndex].PlayerUID = PlayerID;
-        MemberSlots[SlotIndex].PRI = KFPRI;
-        if(OnlineLobby != none)
-        {
-            OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
-        }
-        if(Class'WorldInfo'.static.IsConsoleBuild(8))
-        {
-            bIsLeader = PlayerID == AdminId && Outer.GetPC().WorldInfo.NetMode != NM_Standalone;            
-        }
-        else
-        {
-            bIsLeader = PlayerID == AdminId;
-        }
-        bIsMyPlayer = Outer.GetPC().PlayerReplicationInfo.UniqueId == PlayerID;
-        PlayerName = KFPRI.PlayerName;
-        UpdatePlayerName(SlotIndex, PlayerName);
-        SlotChanged(SlotIndex, true, bIsMyPlayer, bIsLeader);
-        MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted", PC.IsPlayerMuted(PlayerID));        
+        PlayerInfoObject.SetBool("muted", PC.IsPlayerMuted(KFPRI.UniqueId));
+    }
+    if(Class'WorldInfo'.static.IsE3Build())
+    {
+        PlayerName = KFPRI.PlayerName;        
     }
     else
     {
-        if(Class'WorldInfo'.static.IsE3Build())
-        {
-            PlayerName = KFPRI.PlayerName;
-            UpdatePlayerName(SlotIndex, PlayerName);
-        }
+        PlayerName = KFPRI.PlayerName;
     }
-    CreatePlayerOptions(KFPRI.UniqueId, SlotIndex);
+    PlayerInfoObject.SetString("playerName", PlayerName);
     if(Class'WorldInfo'.static.IsConsoleBuild(8))
     {
-        MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetPS4Avatar(KFPRI.PlayerName));        
+        PlayerInfoObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));        
     }
     else
     {
-        MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+        PlayerInfoObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
     }
+    if(KFGRI != none)
+    {
+        PlayerInfoObject.SetBool("ready", KFPRI.bReadyToPlay && !KFGRI.bMatchHasBegun);
+    }
+    return PlayerInfoObject;
 }
 
 function ToggelMuteOnPlayer(int SlotIndex)
@@ -249,7 +223,6 @@ function ToggelMuteOnPlayer(int SlotIndex)
                 MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted", true);
             }
         }
-        CreatePlayerOptions(PlayerNetId, SlotIndex);
     }
     super.ToggelMuteOnPlayer(SlotIndex);
 }
@@ -324,10 +297,4 @@ function KickPlayer(int SlotIndex)
     {
         KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo).ServerStartKickVote(KFPRIArray[SlotIndex], Outer.GetPC().PlayerReplicationInfo);
     }
-}
-
-function UpdatePlayerReady(int SlotIndex, bool bReady)
-{
-    MemberSlots[SlotIndex].MemberSlotObject.SetBool("ready", bReady);
-    MemberSlots[SlotIndex].bIsReady = bReady;
 }

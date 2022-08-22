@@ -60,7 +60,7 @@ package tripwire.managers
         
         public var bPopUpOpen:Boolean;
         
-        private var _bLoading:Boolean;
+        public var _bLoading:Boolean;
         
         private var _bUsingGamepad:Boolean;
         
@@ -464,6 +464,10 @@ package tripwire.managers
             }
             this._bMenuOpen = param1;
             this.setMenuEvents(param1);
+            if(!this._bMenuOpen && this.bPartyWidgetFocused)
+            {
+                this.setFocusBackToMenu();
+            }
             if(this._bWidgetsVisible)
             {
                 _loc2_ = 0;

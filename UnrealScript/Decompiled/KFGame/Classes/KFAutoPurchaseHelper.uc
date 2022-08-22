@@ -365,7 +365,7 @@ function int GetFillArmorCost()
 {
     local float ArmorPercentage, FillCost, ArmorPricePerPercent;
 
-    ArmorPercentage = float(ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount);
+    ArmorPercentage = (float(ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount) / float(ArmorItem.MaxSpareAmmo)) * float(100);
     ArmorPricePerPercent = float(ArmorItem.AmmoPricePerMagazine);
     FillCost = float(FCeil(ArmorPercentage * ArmorPricePerPercent));
     return int(FillCost);
@@ -373,19 +373,20 @@ function int GetFillArmorCost()
 
 function int FillArmor()
 {
-    local float ArmorPricePerPercent, FillCost;
-    local int PercentArmorBought;
+    local float ArmorPricePerPercent, FillCost, PercentArmorBought;
+    local int ActualArmorPointsAvailable;
 
     FillCost = float(GetFillArmorCost());
-    PercentArmorBought = ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount;
+    ActualArmorPointsAvailable = ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount;
+    PercentArmorBought = (float(ActualArmorPointsAvailable) / float(ArmorItem.MaxSpareAmmo)) * float(100);
     if(FillCost > float(TotalDosh))
     {
         ArmorPricePerPercent = float(ArmorItem.AmmoPricePerMagazine);
-        PercentArmorBought = int(float(TotalDosh) / ArmorPricePerPercent);
-        FillCost = ArmorPricePerPercent * float(PercentArmorBought);
+        PercentArmorBought = float(TotalDosh) / ArmorPricePerPercent;
+        FillCost = ArmorPricePerPercent * PercentArmorBought;
     }
-    ArmorItem.SpareAmmoCount = int(FMin(float(ArmorItem.SpareAmmoCount + PercentArmorBought), float(ArmorItem.MaxSpareAmmo)));
-    BoughtAmmo(PercentArmorBought, int(FillCost), 1);
+    ArmorItem.SpareAmmoCount = int(FMin(float(ArmorItem.SpareAmmoCount) + PercentArmorBought, float(ArmorItem.MaxSpareAmmo)));
+    BoughtAmmo(int(PercentArmorBought), int(FillCost), 1);
     return int(FillCost);
 }
 
@@ -770,10 +771,10 @@ function InitializeOwnedItemList()
         GrenadeItem.SpareAmmoCount = MyKFIM.GrenadeCount;
         GrenadeItem.MaxSpareAmmo = KFP.GetPerk().MaxGrenadeCount;
         GrenadeItem.AmmoPricePerMagazine = TraderItems.GrenadePrice;
-        GrenadeItem.DefaultItem.WeaponDef = Outer.CurrentPerk.GrenadeWeaponDef;
+        GrenadeItem.DefaultItem.WeaponDef = Outer.CurrentPerk.GetGrenadeWeaponDef();
         GrenadeItem.DefaultItem.AssociatedPerkClass = Outer.CurrentPerk.Class;
         Inv = MyKFIM.InventoryChain;
-        J0x39A:
+        J0x39B:
 
         if(Inv != none)
         {
@@ -783,7 +784,7 @@ function InitializeOwnedItemList()
                 SetWeaponInformation(KFW);
             }
             Inv = Inv.Inventory;
-            goto J0x39A;
+            goto J0x39B;
         }
         if((Outer.MyGFxManager != none) && Outer.MyGFxManager.TraderMenu != none)
         {
@@ -920,24 +921,23 @@ function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
 function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDoNotBuy)
 {
     local SItemInformation WeaponInfo;
-    local byte ItemIndex, DefaultMagazineCapacity;
+    local byte ItemIndex;
     local int AddedWeaponIndex, OwnedSingleIdx, SingleDualAmmoDiff;
-    local bool bShouldMagSizeModifySpareAmmo, bAddingDual;
+    local bool bAddingDual;
 
     WeaponInfo.MagazineCapacity = DefaultItem.MagazineCapacity;
-    DefaultMagazineCapacity = WeaponInfo.MagazineCapacity;
-    Outer.CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass);
-    bShouldMagSizeModifySpareAmmo = Outer.CurrentPerk.ShouldMagSizeModifySpareAmmo(none, DefaultItem.AssociatedPerkClass);
-    WeaponInfo.MaxSpareAmmo = DefaultItem.MaxSpareAmmo + ((bShouldMagSizeModifySpareAmmo) ? WeaponInfo.MagazineCapacity : DefaultMagazineCapacity);
+    Outer.CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass,, DefaultItem.ClassName);
+    WeaponInfo.MaxSpareAmmo = DefaultItem.MaxSpareAmmo;
     Outer.CurrentPerk.ModifyMaxSpareAmmoAmount(none, WeaponInfo.MaxSpareAmmo, DefaultItem);
+    WeaponInfo.MaxSpareAmmo += WeaponInfo.MagazineCapacity;
     WeaponInfo.SpareAmmoCount = DefaultItem.InitialSpareMags * DefaultItem.MagazineCapacity;
     Outer.CurrentPerk.ModifySpareAmmoAmount(none, WeaponInfo.SpareAmmoCount, DefaultItem);
-    WeaponInfo.SpareAmmoCount += ((bShouldMagSizeModifySpareAmmo) ? WeaponInfo.MagazineCapacity : DefaultMagazineCapacity);
+    WeaponInfo.SpareAmmoCount += WeaponInfo.MagazineCapacity;
     bAddingDual = DefaultItem.SingleClassName != 'None';
     if(bAddingDual)
     {
         OwnedSingleIdx = 0;
-        J0x34A:
+        J0x2D0:
 
         if(OwnedSingleIdx < OwnedItemList.Length)
         {
@@ -945,17 +945,17 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
             {
                 SingleDualAmmoDiff = OwnedItemList[OwnedSingleIdx].SpareAmmoCount - WeaponInfo.SpareAmmoCount;
                 WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount;
-                goto J0x45E;
+                goto J0x3E4;
             }
             ++ OwnedSingleIdx;
-            goto J0x34A;
+            goto J0x2D0;
         }
     }
-    J0x45E:
+    J0x3E4:
 
     Outer.CurrentPerk.MaximizeSpareAmmoAmount(DefaultItem.AssociatedPerkClass, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity);
     WeaponInfo.SecondaryAmmoCount = DefaultItem.InitialSecondaryAmmo;
-    Outer.CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass, true);
+    Outer.CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass, true, DefaultItem.ClassName);
     Outer.CurrentPerk.ModifySpareAmmoAmount(none, WeaponInfo.SecondaryAmmoCount, DefaultItem, true);
     WeaponInfo.MaxSecondaryAmmo = DefaultItem.MaxSecondaryAmmo;
     Outer.CurrentPerk.ModifyMaxSpareAmmoAmount(none, WeaponInfo.MaxSecondaryAmmo, DefaultItem, true);

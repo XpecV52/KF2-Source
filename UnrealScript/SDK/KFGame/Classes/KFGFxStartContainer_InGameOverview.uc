@@ -32,6 +32,9 @@ var KFHTTPImageDownloader ImageDownLoader;
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	local PlayerController PC;
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
 
 	PC = GetPC();
 	StartMenu = KFGfxMenu_StartGame(NewParentMenu);
@@ -53,6 +56,30 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 		ShowWelcomeScreen();
 	}
 
+	if(KFGRI != none && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')
+	{
+		HideLengthInfo();
+	}
+
+}
+
+function HideLengthInfo()
+{
+	local GFxObject InfoContainer;
+	local GFxObject LengthText;
+	local GFxObject LengthValueText;
+	
+
+	InfoContainer =  GetObject("infoContainer");
+
+	if(InfoContainer != none)
+	{
+		LengthText = InfoContainer.GetObject("lengthTitle");
+		LengthValueText = InfoContainer.GetObject("lengthLabel");
+		
+		LengthText.SetVisible(false);
+		LengthValueText.SetVisible(false);
+	}
 }
 
 function LocalizeContainer()
@@ -71,7 +98,7 @@ function LocalizeContainer()
 	
 
 	WI = class'WorldInfo'.static.GetWorldInfo();
-	if( WI != none && WI.NetMode != NM_Standalone )
+	if( WI != none && WI.NetMode != NM_Standalone && !GetPC().WorldInfo.IsConsoleBuild() )
 	{
 		LocalizedObject.SetString("serverTitle", StartMenu.ServerTypeString);
 	}
@@ -161,7 +188,7 @@ function ShowWelcomeScreen()
 	{
 		ImageDownloader = new(Outer) class'KFHTTPImageDownloader';
 		ImageDownloader.DownloadImageFromURL(KFGRI.ServerAdInfo.BannerLink, ImageDownloadComplete);
-		ServerWelcomeScreen.SetString("messageOfTheDay", KFGRI.ServerAdInfo.ServerMOTD);
+		ServerWelcomeScreen.SetString("messageOfTheDay", Repl(KFGRI.ServerAdInfo.ServerMOTD, "@nl@", Chr(10)));
 		ServerWelcomeScreen.SetString("serverName", WI.GRI.ServerName);    
         ServerWelcomeScreen.SetString("serverIP", KFGRI.ServerAdInfo.WebsiteLink);
 	}
@@ -292,7 +319,7 @@ function UpdateServerType(string ServerType)
 
 	WI = class'WorldInfo'.static.GetWorldInfo();
 
-	if( WI != none && WI.NetMode != NM_Standalone )
+	if( WI != none && WI.NetMode != NM_Standalone && !GetPC().WorldInfo.IsConsoleBuild() )
 	{
 		SetString("serverType", ServerType);
 	}

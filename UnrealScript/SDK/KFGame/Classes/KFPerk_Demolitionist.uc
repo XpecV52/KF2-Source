@@ -30,10 +30,7 @@ var 					KFGameExplosion				SacrificeExplosionTemplate;
 var 					KFGameExplosion				NukeExplosionTemplate;
 /** Template for explosion when a door is opened by zeds that has been welded when you have the Door Trap perk skill*/
 var 					KFGameExplosion				DoorTrapExplosionTemplate;
-var 					String 						NukeExplosionActorClassName;
-var						String						NukeExplosionDamageTypeName;
-var						String 						NukeProjectileClassName;
-var 					array<name>					NukeIgnoredProjectileNames;
+var 					class<KFExplosionActor>		NukeExplosionActorClass;
 /** How much to modify a projectile's damage when the nuke skill is active */
 var 	private const 	float 						NukeDamageModifier;
 /** How much to modify a projectile's damage radius when the nuke skill is active */
@@ -49,6 +46,9 @@ var 	private	const	float 						DaZedEMPPower;
 var 	private const   float 						ProfessionalAoEModifier;
 var 	private			bool 						bUsedSacrifice;
 var 	private const 	class<KFDamagetype>			LingeringNukeDamageType;
+
+/** The last time an HX25 projectile spawned by our owner caused a nuke */
+var 	private transient float LastHX25NukeTime;
 
 enum EDemoSkills
 {
@@ -377,6 +377,15 @@ static function PrepareExplosive( Pawn ProjOwner, KFProjectile Proj )
 	}
 }
 
+simulated function SetLastHX25NukeTime( float NewTime )
+{
+	LastHX25NukeTime = NewTime;
+}
+simulated function float GetLastHX25NukeTime()
+{
+	return LastHX25NukeTime;
+}
+
 simulated function float GetAoERadiusModifier()
 { 
 	local float RadiusModifier;
@@ -413,14 +422,6 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  */
 simulated final private function ResetSupplier()
 {
-	if( MyPRI != none )
-	{
-		if( SuppliedPawnList.Length > 0 )
-		{
-			SuppliedPawnList.Remove( 0, SuppliedPawnList.Length );
-		}
-	}
-
 	if( MyPRI != none )
 	{
 		if( SuppliedPawnList.Length > 0 )
@@ -643,7 +644,7 @@ function float GetReactionModifier( optional class<KFDamageType> DamageType )
 
 simulated static function bool ProjectileShouldNuke( KFProjectile Proj )
 {
-	return default.NukeIgnoredProjectileNames.Find( Proj.class.name ) == INDEX_NONE;
+	return Proj.AllowNuke();
 }
 
 simulated function bool DoorShouldNuke()
@@ -855,22 +856,7 @@ static simulated function KFGameExplosion GetNukeExplosionTemplate()
 
 static simulated function class<KFExplosionActor> GetNukeExplosionActorClass()
 {
-	local class<KFExplosionActor> TempExplosionActorClass;
-
-	TempExplosionActorClass = class<KFExplosionActor>(DynamicLoadObject(default.NukeExplosionActorClassName, class'Class'));
-	return TempExplosionActorClass;
-}
-
-/**
- * @brief Some weapons have to swap the projectile when nuke is active to work online
- * @return Projectile with nuke effects enabled
- */
-static simulated function class<KFProjectile> GetNukeProjectileClass()
-{
-	local class<KFProjectile> ProjectileClass;
-
-	ProjectileClass = class<KFProjectile>(DynamicLoadObject(default.NukeProjectileClassName, class'Class'));
-	return ProjectileClass;
+	return default.NukeExplosionActorClass;
 }
 
 /**
@@ -1100,10 +1086,7 @@ DefaultProperties
 	End Object
 	DoorTrapExplosionTemplate=ExploTemplate2
 
-	NukeExplosionActorClassName="KFGameContent.KFExplosion_Nuke"
-	NukeProjectileClassName="KFGameContent.KFProj_ExplosiveSubmunition_HX25_Nuke"
-	NukeIgnoredProjectileNames(0)="KFProj_ExplosiveSubmunition_HX25"
-	NukeIgnoredProjectileNames(1)="KFProj_ExplosiveSubmunition_HX25_Nuke"
+	NukeExplosionActorClass=class'KFExplosion_Nuke'
 	NukeDamageModifier=1.5   //1.25
 	NukeRadiusModifier=1.35  //1.25
 	LingeringNukePoisonDamage=20

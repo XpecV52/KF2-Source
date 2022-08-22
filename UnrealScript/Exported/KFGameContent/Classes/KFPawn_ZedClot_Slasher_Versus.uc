@@ -56,9 +56,9 @@ defaultproperties
    DamageTypeModifiers(16)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.400000))
    DamageTypeModifiers(17)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.400000))
    DamageTypeModifiers(18)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.500000))
-   DamageTypeModifiers(19)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.500000))
-   DamageTypeModifiers(20)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.500000))
-   DamageTypeModifiers(21)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.500000))
+   DamageTypeModifiers(19)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.800000))
+   DamageTypeModifiers(20)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.800000))
+   DamageTypeModifiers(21)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.800000))
    DamageTypeModifiers(22)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(0.350000))
    DamageTypeModifiers(23)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.350000))
    DamageTypeModifiers(24)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.400000))
@@ -70,10 +70,11 @@ defaultproperties
    DamageTypeModifiers(30)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm',DamageScale=(1.600000))
    DamageTypeModifiers(31)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Pistol_Medic',DamageScale=(1.500000))
    DamageTypeModifiers(32)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Winchester',DamageScale=(0.700000))
-   DamageTypeModifiers(33)=(DamageType=Class'kfgamecontent.KFDT_Fire_CaulkBurn',DamageScale=(0.900000))
-   DamageTypeModifiers(34)=(DamageType=Class'kfgamecontent.KFDT_ExplosiveSubmunition_HX25',DamageScale=(0.600000))
+   DamageTypeModifiers(33)=(DamageType=Class'kfgamecontent.KFDT_Fire_CaulkBurn',DamageScale=(1.700000))
+   DamageTypeModifiers(34)=(DamageType=Class'KFGame.KFDT_ExplosiveSubmunition_HX25',DamageScale=(0.600000))
    DamageTypeModifiers(35)=(DamageType=Class'kfgamecontent.KFDT_Slashing_EvisceratorProj',DamageScale=(0.300000))
    DamageTypeModifiers(36)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Eviscerator',DamageScale=(0.300000))
+   DamageTypeModifiers(37)=(DamageType=Class'kfgamecontent.KFDT_Bludgeon_Crovel',DamageScale=(1.200000))
    MoveListGamepadScheme(0)=SM_None
    MoveListGamepadScheme(1)=SM_None
    MoveListGamepadScheme(2)=SM_PlayerZedMove_LMB
@@ -87,7 +88,6 @@ defaultproperties
    SpecialMoveCooldowns(3)=(CoolDownTime=0.200000,SMHandle=SM_PlayerZedMove_V,SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Evade',NameLocalizationKey="Evade")
    SpecialMoveCooldowns(4)=(CoolDownTime=1.000000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Jump',bShowOnHud=False)
    JumpBumpDamageType=Class'kfgamecontent.KFDT_Bludgeon_ZedJump'
-   LocalizationKey="KFPawn_ZedClot_Slasher"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot_Slasher:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -124,12 +124,12 @@ defaultproperties
    IncapSettings(1)=(Duration=3.000000,Vulnerability=(0.500000))
    IncapSettings(2)=(Cooldown=0.500000,Vulnerability=(1.000000))
    IncapSettings(3)=(Cooldown=0.750000,Vulnerability=(1.000000))
-   IncapSettings(4)=(Cooldown=3.000000,Vulnerability=(0.500000))
+   IncapSettings(4)=(Cooldown=3.000000,Vulnerability=(0.100000))
    IncapSettings(5)=(Duration=2.000000,Vulnerability=(0.500000,0.500000,0.100000,0.100000,0.100000))
    IncapSettings(6)=(Duration=2.000000)
-   IncapSettings(7)=()
+   IncapSettings(7)=(Duration=1.500000,Cooldown=8.500000,Vulnerability=(0.700000,0.700000,1.000000,0.700000))
    IncapSettings(8)=(Cooldown=3.000000,Vulnerability=(0.500000))
-   IncapSettings(9)=(Vulnerability=(1.000000))
+   IncapSettings(9)=(Duration=2.000000,Vulnerability=(1.000000))
    IncapSettings(10)=(Vulnerability=(0.000000))
    SprintSpeed=650.000000
    SprintStrafeSpeed=450.000000
@@ -232,7 +232,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

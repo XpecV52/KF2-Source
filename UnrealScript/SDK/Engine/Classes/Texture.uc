@@ -85,6 +85,10 @@ enum TextureGroup
 	TEXTUREGROUP_Weapon3rdNormalMap<DisplayName=Weapon3rdNormalMap>,
 	TEXTUREGROUP_Weapon3rdSpecular<DisplayName=Weapon3rdSpecular>,
 	TEXTUREGROUP_Splattermap<DisplayName=Splattermap>,
+	TEXTUREGROUP_Cosmetic<DisplayName=Cosmetic>,
+	TEXTUREGROUP_CosmeticNormalMap<DisplayName=CosmeticNormalMap>,
+	TEXTUREGROUP_CosmeticSpecular<DisplayName=CosmeticSpecular>,
+	TEXTUREGROUP_UIWithMips<DisplayName=UI With Mips>,
 `endif
 };
 
@@ -132,6 +136,10 @@ struct native TextureGroupContainer
 	var()	const bool	TEXTUREGROUP_Weapon3rdNormalMap;
 	var()	const bool	TEXTUREGROUP_Weapon3rdSpecular;
 	var()	const bool	TEXTUREGROUP_Splattermap;
+	var()	const bool	TEXTUREGROUP_Cosmetic;
+	var()	const bool	TEXTUREGROUP_CosmeticNormalMap;
+	var()	const bool	TEXTUREGROUP_CosmeticSpecular;
+	var()   const bool  TEXTUREGROUP_UIWithMips;
 `endif
 };
 

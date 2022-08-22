@@ -14,7 +14,6 @@ class PlayfabInterface extends Object
 
 
 
-
 /** The current pending game search */
 var OnlineGameSearch PendingGameSearch;
 
@@ -32,14 +31,30 @@ var const private INT LastAuthRefreshTime;
 /** The time in seconds for when auth should be refreshed */
 var const private INT SecondsForAuthRefreshTime;
 
-/** Current game mode search index. Used for batching multiple searches */
-var const private INT CurrentGameModeSearchIndex;
 
 /** The name of the catalog to use */
 var const private{private} config string CatalogName;
 
+struct native RegionDefinition
+{
+	var float		Ping;
+	var bool		RegionUp;
+	var init string Name;
+	var init string Address;
+	
+	structdefaultproperties
+	{
+		Ping=-1.0
+		RegionUp=false
+		Name=""
+		Address=""
+	}
+};
+
+var const config array<RegionDefinition> KnownRegions;
+
 /** The list of available region names */
-var const config array<string> RegionNames;
+// var const config array<string> RegionNames;
 
 /** The current region index for the player */
 var string CurrRegionName;
@@ -47,15 +62,20 @@ var string CurrRegionName;
 /** Service label used to consume PSN entitlements */
 var const int PlayfabNPServiceLabel;
 
-
 // SERVER ONLY
 /////////////////////////////////////////////////////////////////
 
 /** TRUE if this server was launched by playfab */
 var const private{private} bool bLaunchedByPlayfab;
 
+/** TRUE if this is a cloud server */
+var const private{private} bool bCloudServer;
+
 /** The lobby ID of the server */
 var const private{private} string CachedLobbyId;
+
+/** Server ID used for registration with multiplay */
+var const private{private} string CachedServerId;
 
 /** The elapsed time since the last heartbeat for the server */
 var const private{private} float ElapsedTimeSinceLastHeartBeat;
@@ -65,6 +85,27 @@ var const private{private} float HeartbeatInterval;
 
 /** The cached game settings */
 var private{private} OnlineGameSettings CachedGameSettings;
+
+/** Countdown timer for attempting a re-register of the server */
+var const private{private} float CountdownToReregister;
+
+/** The interval for server re-register attempts. Only ever set if heartbeat or original registration fails */
+var const private{private} float ReregisterInterval;
+
+/** Endpoint APIs specified by multiplay via commandline */
+var const private{private} string AllocateAPIEndpoint;
+var const private{private} string DeallocateAPIEndpoint;
+
+/** TRUE if server is actively allocated with backend */
+var private{private} bool bServerAllocated;
+/** TRUE if server is de-allocated. Can ONLY be true if bServerAllocated has ever been true */
+var private{private} bool bServerDeallocated;
+/** The timestamp at which the server was deallocated */
+var const private{private} qword DeallocatedTimeStamp;
+/** Elapsed time since last update for deallocated server */
+var const private{private} float TimeSinceLastDeallocationUpdate;
+/** The interval between updates for deallocated servers */
+var const private{private} float DeallocateTimeUpdateInterval;
 
 // SERVER END
 /////////////////////////////////////////////////////////////////
@@ -87,6 +128,10 @@ native function bool Login( string UserName );
 delegate OnLoginComplete(bool bWasSuccessful, string SessionTicket, string PlayfabId);
 function AddOnLoginCompleteDelegate( delegate<OnLoginComplete> InDelegate) { if (LoginCompleteDelegates.Find(InDelegate) == INDEX_NONE){LoginCompleteDelegates[LoginCompleteDelegates.Length] = InDelegate;}; }
 function ClearOnLoginCompleteDelegate( delegate<OnLoginComplete> InDelegate) { local int RemoveIndex;RemoveIndex = LoginCompleteDelegates.Find(InDelegate);if (RemoveIndex != INDEX_NONE){LoginCompleteDelegates.Remove(RemoveIndex,1);}; }
+
+function native int GetRegionIndex(const out string RegionName);
+function native SetDefaultRegion(const out string RegionName);
+
 
 // Logout of playfab services when we get disconnected
 native function bool Logout();
@@ -130,7 +175,7 @@ function AddRegionQueryCompleteDelegate( delegate<OnRegionQueryComplete> InDeleg
 function ClearRegionQueryCompleteDelegate( delegate<OnRegionQueryComplete> InDelegate) { local int RemoveIndex;RemoveIndex = RegionQueryCompleteDelegates.Find(InDelegate);if (RemoveIndex != INDEX_NONE){RegionQueryCompleteDelegates.Remove(RemoveIndex,1);}; }
 
 // Starts a new server instance
-native function StartNewServerInstance( string GameMode, optional string ServerCommandline );
+native function StartNewServerInstance( optional string ServerCommandline );
 delegate OnServerStarted( bool bWasSuccessful, string ServerLobbyId, string ServerIp, int ServerPort, string ServerTicket );
 function AddOnServerStartedDelegate( delegate<OnServerStarted> InDelegate) { if (ServerStartedDelegates.Find(InDelegate) == INDEX_NONE){ServerStartedDelegates[ServerStartedDelegates.Length] = InDelegate;}; }
 function ClearOnServerStartedDelegate( delegate<OnServerStarted> InDelegate) { local int RemoveIndex;RemoveIndex = ServerStartedDelegates.Find(InDelegate);if (RemoveIndex != INDEX_NONE){ServerStartedDelegates.Remove(RemoveIndex,1);}; }
@@ -154,13 +199,25 @@ function string GetCachedLobbyId()
 }
 
 
+event bool IsCloudServer()
+{
+	return bCloudServer;
+}
+
+
+event string GetServerId()
+{
+	return CachedServerId;
+}
+
+
 function int GetIndexForCurrentRegion()
 {
 	local int i;
 
-	for( i = 0; i < RegionNames.Length; i++ )
+	for( i = 0; i < KnownRegions.Length; i++ )
 	{
-		if( RegionNames[i] == CurrRegionName )
+		if( KnownRegions[i].Name == CurrRegionName )
 		{
 			return i;
 		}
@@ -173,14 +230,33 @@ function int GetIndexForCurrentRegion()
 
 function SetIndexForCurrentRegion( int InRegionIndex )
 {
-	if( InRegionIndex >= 0 && InRegionIndex < RegionNames.Length )
+	if( InRegionIndex >= 0 && InRegionIndex < KnownRegions.Length )
 	{
-		CurrRegionName = RegionNames[InRegionIndex];
+		SetDefaultRegion(KnownRegions[InRegionIndex].Name);
 	}
 	else
 	{
 		WarnInternal("Failed to set region index"@InRegionIndex);
 	}
+}
+
+
+static function array<string> GetLocalizedRegionList()
+{
+	local int i;
+	local array<string> LocalizedRegions;
+
+	for( i = 0; i < default.KnownRegions.Length; i++ )
+	{
+		LocalizedRegions.AddItem( Localize( "Regions", default.KnownRegions[i].Name, "KFGameConsole" ) );
+	}
+
+	return LocalizedRegions;
+}
+
+static function string GetLocalizedRegionName(int RegionIndex)
+{
+	return Localize( "Regions", default.KnownRegions[RegionIndex].Name, "KFGameConsole" );
 }
 
 
@@ -190,13 +266,17 @@ function SetIndexForCurrentRegion( int InRegionIndex )
 native function ServerValidatePlayer( const string ClientAuthTicket );
 native function ServerNotifyPlayerLeft( const string PlayfabId );
 native function ServerUpdateOnlineGame();
-native function ServerRegisterGame( const string GameMode );
+native function ServerRegisterGame();
+native function ServerSetOpenStatus( const bool bOpen );
 
 native function ServerUpdateInternalUserData( const string ForPlayerId, array<string> InKeys, array<string> InValues );
 native function ServerRetrieveInternalUserData( const string ForPlayerId, array<string> InKeys );
 native function ServerAddVirtualCurrencyForUser( const string ForPlayerId, const int AmountToAdd, optional string CurrencyName = "GM" );
 native function ServerRemoveVirtualCurrencyForUser( const string ForPlayerId, const int AmountToRemove, optional string CurrencyName = "GM" );
 native function ServerGrantItemsForUser( const string ForPlayerId, array<string> ItemIds );
+
+native function ServerAllocate();
+native function serverDeallocate();
 
 function CreateGameSettings( class<OnlineGameSettings> GameSettingsClass )
 {
@@ -206,7 +286,7 @@ function CreateGameSettings( class<OnlineGameSettings> GameSettingsClass )
 	}
 }
 
-function OnlineGameSettings GetGameSettings()
+event OnlineGameSettings GetGameSettings()
 {
 	return CachedGameSettings;
 }
@@ -270,13 +350,17 @@ private native function OnlineServiceAuthComplete();
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
 defaultproperties
 {
    SecondsForAuthRefreshTime=3600
-   CurrRegionName="USCentral"
    PlayfabNPServiceLabel=1
    HeartbeatInterval=60.000000
+   ReregisterInterval=10.000000
+   DeallocateTimeUpdateInterval=30.000000
    Name="Default__PlayfabInterface"
    ObjectArchetype=Object'Core.Default__Object'
 }

@@ -44,6 +44,8 @@ package tripwire.managers
         
         public var MenuScanlines:MovieClip;
         
+        public var bTabNavigated:Boolean = true;
+        
         private const MenuLayer = 2;
         
         private const WidgetLayer = 3;
@@ -58,7 +60,7 @@ package tripwire.managers
         
         public var bPopUpOpen:Boolean;
         
-        private var _bLoading:Boolean;
+        public var _bLoading:Boolean;
         
         private var _bUsingGamepad:Boolean;
         
@@ -232,7 +234,11 @@ package tripwire.managers
                     CLIK.queueInitCallback(this.menuList[_loc3_].menuObject);
                     this._currentMenuIndex = _loc3_;
                     this.setMenuVisibility(true);
-                    this.setFocusBackToMenu();
+                    if(!this.bPopUpOpen && (!MenuManager.manager.bPartyWidgetFocused || this.bTabNavigated))
+                    {
+                        this.setFocusBackToMenu();
+                        this.bTabNavigated = false;
+                    }
                     return;
                 }
                 _loc3_++;
@@ -259,6 +265,7 @@ package tripwire.managers
             stage.addChildAt(_loc2_,stage.numChildren - 1);
             _loc2_.openContainer();
             _loc2_.deselectContainer();
+            this.bPartyWidgetFocused = true;
         }
         
         public function loadCurrentPopup(param1:String, param2:String, param3:String, param4:String, param5:String, param6:String) : void
@@ -291,13 +298,12 @@ package tripwire.managers
             _loc2_.menuObject = param1.target.content.getChildAt(0) as TripContainer;
             this.menuList.push(_loc2_);
             this._currentMenuIndex = this.menuList.length - 1;
-            this.bPartyWidgetFocused = true;
             this.setMenuVisibility(true);
-            if(!this.bPopUpOpen)
+            if(!this.bPopUpOpen && (!MenuManager.manager.bPartyWidgetFocused || this.bTabNavigated))
             {
                 this.setFocusBackToMenu();
+                this.bTabNavigated = false;
             }
-            this.controllerEnableWidgets(false);
             stage.addChildAt(_loc2_.menuObject,this.MenuLayer);
             this._bLoading = false;
         }
@@ -318,6 +324,8 @@ package tripwire.managers
         
         public function unloadCurrentPopup() : void
         {
+            var _loc1_:Boolean = false;
+            _loc1_ = this._currentPopUp.bPartyWasFocused;
             this._currentPopUp = null;
             if(this._popupLoader != null)
             {
@@ -334,9 +342,13 @@ package tripwire.managers
             }
             this.bPopUpOpen = false;
             stage.dispatchEvent(new Event(POPUP_CHANGED));
-            if(this.menuList != null && this.menuList[this._currentMenuIndex] != null && this.menuList[this._currentMenuIndex].menuObject != null)
+            if(this.menuList != null && this.menuList[this._currentMenuIndex] != null && this.menuList[this._currentMenuIndex].menuObject != null && !_loc1_)
             {
                 this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
+            }
+            else
+            {
+                this.setFocusToPartyWidget();
             }
         }
         
@@ -417,14 +429,12 @@ package tripwire.managers
             {
                 FocusManager.setModalClip(this.CachedModalClip,0);
             }
-            this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
             this.controllerEnableWidgets(false);
+            this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
         }
         
         public function setWidgetsVisiblity(param1:Boolean) : void
         {
-            trace("BRIAN:: [" + this + "] value: " + param1);
-            trace("BRIAN:: [" + this + "] _widgets.length: " + this._widgets.length);
             var _loc2_:int = 0;
             while(_loc2_ < this._widgets.length)
             {
@@ -454,6 +464,10 @@ package tripwire.managers
             }
             this._bMenuOpen = param1;
             this.setMenuEvents(param1);
+            if(!this._bMenuOpen && this.bPartyWidgetFocused)
+            {
+                this.setFocusBackToMenu();
+            }
             if(this._bWidgetsVisible)
             {
                 _loc2_ = 0;

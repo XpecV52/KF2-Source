@@ -14,7 +14,15 @@ KF-ContainmentStation="正在進行：控制站"
 KF-InfernalRealm="正在進行：地獄"
 KF-HostileGrounds="正在進行：敵營"
 
-[ActivityFeed]
+[ActivityFeed_CHN]
+BossKillCondensedCaption="玩打败的首领！"
+BossKillCaption="$USER_NAME_OR_ID 已在 %y% 打败 %x%"
+TeamAwardCondensedCaption="队伍奖励！"
+TeamAwardCaption="$USER_NAME_OR_ID 已赢取 %x% 队伍奖励"
+PerkLevelUpCondensedCaption="升级！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 已解锁第 %x% 级的 %y% 技能"
+
+[ActivityFeed_CHT]
 BossKillCondensedCaption="已擊敗頭目！"
 BossKillCaption="$USER_NAME_OR_ID 在 %y% 難度中擊敗了 %x%"
 TeamAwardCondensedCaption="隊伍獎勵！"
@@ -22,13 +30,109 @@ TeamAwardCaption="$USER_NAME_OR_ID 獲得了 %x% 隊伍獎勵"
 PerkLevelUpCondensedCaption="升級！"
 PerkLevelUpCaption="$USER_NAME_OR_ID 解鎖了 %x% %y% 升級技能"
 
+[ActivityFeed_DEU]
+BossKillCondensedCaption="Boss besiegt!"
+BossKillCaption="$USER_NAME_OR_ID hat %x% auf %y% besiegt"
+TeamAwardCondensedCaption="Team-Auszeichnung!"
+TeamAwardCaption="$USER_NAME_OR_ID hat %x% Team-Auszeichnung verdient"
+PerkLevelUpCondensedCaption="Levelaufstieg!"
+PerkLevelUpCaption="$USER_NAME_OR_ID hat die Level %x% %y% Fähigkeit freigeschaltet"
+
+[ActivityFeed_ESL]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_ESN]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_FRA]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_FRC]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_INT]
+BossKillCondensedCaption="Boss defeated!"
+BossKillCaption="$USER_NAME_OR_ID has defeated %x% on %y%"
+TeamAwardCondensedCaption="Team Award!"
+TeamAwardCaption="$USER_NAME_OR_ID has earned %x% team award"
+PerkLevelUpCondensedCaption="Level up!"
+PerkLevelUpCaption="$USER_NAME_OR_ID has unlocked the level %x% %y% skill"
+
+[ActivityFeed_ITA]
+BossKillCondensedCaption="Boss sconfitto!"
+BossKillCaption="$USER_NAME_OR_ID ha sconfitto %x% su %y%"
+TeamAwardCondensedCaption="Premio di squadra!"
+TeamAwardCaption="$USER_NAME_OR_ID vince il premio %x%"
+PerkLevelUpCondensedCaption="Aumento di livello!"
+PerkLevelUpCaption="$USER_NAME_OR_ID sblocca %y% liv %x%"
+
+[ActivityFeed_JPN]
+BossKillCondensedCaption="ボス敗北！"
+BossKillCaption="$USER_NAME_OR_IDが%x%を%y%で倒しました"
+TeamAwardCondensedCaption="チームアワード！"
+TeamAwardCaption="$USER_NAME_OR_IDが%x%チームアワードを獲得しました"
+PerkLevelUpCondensedCaption="レベルアップ！"
+PerkLevelUpCaption="$USER_NAME_OR_IDがレベル%x% %y%スキルをロック解除"
+
+[ActivityFeed_KOR]
+BossKillCondensedCaption="보스 제거!"
+BossKillCaption="$USER_NAME_OR_ID님이 %y%에서 %x%을(를) 처치하였습니다."
+TeamAwardCondensedCaption="팀 보상!"
+TeamAwardCaption="$USER_NAME_OR_ID님이 %x% 팀 보상을 획득했습니다."
+PerkLevelUpCondensedCaption="레벨 업!"
+PerkLevelUpCaption="$USER_NAME_OR_ID님이 레벨 %x% %y% 기술을 잠금해제하였습니다."
+
+[ActivityFeed_POL]
+BossKillCondensedCaption="Boss został pokonany!"
+BossKillCaption="$USER_NAME_OR_ID pokonuje %x% na %y%"
+TeamAwardCondensedCaption="Nagroda zespołowa!"
+TeamAwardCaption="$USER_NAME_OR_ID zdobywa nagrodę zespołową %x%"
+PerkLevelUpCondensedCaption="Nowy poziom!"
+PerkLevelUpCaption="$USER_NAME_OR_ID odblokowuje poziom %x% umiejętności %y%"
+
+[ActivityFeed_PTB]
+BossKillCondensedCaption="Chefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID derrotou %x% em %y%"
+TeamAwardCondensedCaption="Prêmio de Equipe!"
+TeamAwardCaption="$USER_NAME_OR_ID ganhou o prêmio eq. %x%"
+PerkLevelUpCondensedCaption="Subiu de nível!"
+PerkLevelUpCaption="$USER_NAME_OR_ID desbloqueou o nível %x% da hab. %y%"
+
+[ActivityFeed_RUS]
+BossKillCondensedCaption="Босс побежден!"
+BossKillCaption="$USER_NAME_OR_ID: убит босс %x%, зона %y%"
+TeamAwardCondensedCaption="Командная награда!"
+TeamAwardCaption="$USER_NAME_OR_ID: командная награда %x%"
+PerkLevelUpCondensedCaption="Новый уровень!"
+PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
+
 [KFGFxMenu_IIS]
 PressButtonToStart="請按 XboxTypeS_A 開始"
 LoginButtonPrompt="登入"
 LoggingIn="正在登入…"
 LoginFailed="登入失敗"
 NoOnlinePlay="無法連線遊玩"
-TooYoung="由於家長控制設定，你的 Sony Entertainment Network 帳號連線功能已被關閉。"
+TooYoung="你的 Sony Entertainment Network 賬戶連線功能由於家長控制設定，已被關閉。"
 PatchAvailable="有新的更新。你必須更新應用程式以使用線上的內容。"
 NotLoggedInOnlinePSN="你必須登入 PlayStation™Network 以使用連線功能。"
 NetworkError="連線發生錯誤，請檢查你的網路連線。"
@@ -36,8 +140,8 @@ ErrorNoPlayfabDescription="無法連線至遊戲主伺服器。請稍後再試�
 ErrorTSSFailedDescription="無法連線至遊戲平衡伺服器。請確定你有連線至網際網路，然後再試一次。"
 
 [Notifications]
-ControllerDisconnectedTitle="已中斷連接搖桿"
-ControllerDisconnectedPS4Message="已中斷連接無線搖桿。請重新連接開啟遊戲的使用者的無線搖桿。"
+ControllerDisconnectedTitle="已中斷連接控制器"
+ControllerDisconnectedPS4Message="已中斷連接無線控制器。請重新連接開啟遊戲的使用者的無線控制器。"
 PlayGoBusyTitle="仍在安裝中"
 PlayGoBusyMessage="遊戲安裝完成前僅可使用部分內容。"
 UnableToJoinInviteTitle="無法加入"
@@ -55,8 +159,6 @@ InviteMessage="來跟我一起獵殺 Zed 吧！"
 NotConnectedTitle="網路錯誤"
 NotConnectedMessage="未連線至網路。請檢查連線後再試。"
 NotConnectedForOnlinePlay="未連線至網路。檢查你的連線狀態，再嘗試使用連線功能"
-PartySizeTitle="隊伍警告"
-PartySizeMessage="您的隊伍成員數量過多。無法在您的小隊中顯示所有成員，而且無法讓所有成員加入生存模式。"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="檢視玩家個人檔案"
@@ -68,13 +170,15 @@ ResetDefaults="你確定要重設至預設值嗎？"
 PerkPrompt="職業"
 
 [KFGFxOptionsMenu_Audio]
-ControllerSound="搖桿音效"
+ControllerSound="控制器音效"
 
 [KFGFxMenu_StartGame]
 MatchmakingRegionString="地區"
+LeaveMenuString="離開配對也會解散你的隊伍"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="地區"
+MapPreference="偏好地圖"
 
 [Entitlements]
 BriarBobbyBundleProductName="倫敦鮑比布萊爾警察同捆包"
@@ -110,3 +214,12 @@ HorzineSupplyCrate4ShortDesription="Horzine 補給箱子含有一項武器飾品
 StoreGameLegalText="軟體以憑證為準 (us.playstation.com/softwarelicense)。線上活動以服務條款及使用同意書為準 (www.playstationnetwork.com/terms-of-service)。一次性驗證收費，發生於帳號所指定的主要 PS4™ 系統以及該帳號所登入的其他 PS4™ 系統。Killing Floor© 2009-2016 Tripwire Interactive.Killing Floor® 為Tripwire Interactive 於美國及其他國家的註冊商標。Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. 版權所有。Unreal® 為Epic Games, Inc. 於美國及其他國家的註冊商標。所有註冊商標、標誌與版權皆僅屬於其所有者。版權所有。"
 
 StoreItemLegalText="此項物品需要完整的《殺戮空間 2》遊戲才能使用。此物品的使用以原本遊戲的使用者驗證同意書為準。"
+
+[Regions]
+USCentral="美國中部"
+USEast="美東"
+USWest="美西"
+EU="歐洲"
+Asia="亞洲"
+Brazil="南美"
+Australia="澳洲"

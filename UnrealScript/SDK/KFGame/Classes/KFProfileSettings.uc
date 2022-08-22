@@ -11,8 +11,15 @@ class KFProfileSettings extends OnlineProfileSettings
 
 `include(KFProfileSettings.uci)
 
+struct native WeaponSkinPairs
+{
+	var init string	ClassPath;
+	var int		SkinId;
+};
+
 var transient array<CustomizationInfo> Characters;
 var transient array<string> FavoriteWeapons;
+var transient array<WeaponSkinPairs> ActiveSkins;
 var transient bool Dirty;
 
 event FavoriteWeapon(name WeaponName)
@@ -43,6 +50,29 @@ event Save( byte ControllerId )
 		FlattenExtraToProfileSettings();
 		class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.WriteProfileSettings(ControllerId, self);
 		Dirty = false;
+	}
+}
+
+native function SaveWeaponSkin(string ClassPath, int Id);
+native function ClearWeaponSkin(string ClassPath);
+
+event ApplyWeaponSkin(int ItemDefinition)
+{
+	local class<KFWeaponDefinition> WeaponDef;
+	local int ItemIndex;
+
+	ItemIndex = class'KFWeaponSkinList'.default.Skins.Find('Id', ItemDefinition);
+
+	if(ItemIndex == INDEX_NONE)
+	{
+		return;
+	}
+
+	WeaponDef = class'KFWeaponSkinList'.default.Skins[ItemIndex].WeaponDef;
+
+	if(WeaponDef != none)
+	{
+		class'KFWeaponSkinList'.Static.SaveWeaponSkin(WeaponDef, ItemDefinition);
 	}
 }
 
@@ -215,6 +245,8 @@ defaultproperties
 	ProfileMappings.Add((Id=KFID_AutoTurnOff, Name="Auto Turn off", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_ReduceHightPitchSounds, Name="Reduce High Pitch Sounds", MappingType=PVMT_RawValue))
 
+	//Added 9/6/2016- Support for WeaponSkins
+	ProfileMappings.Add((Id=KFID_WeaponSkinAssociations, Name="Weapon Skin KeyValue Pairs", MappingType=PVMT_RawValue))
 	//PS4 specific
 	ProfileMappings.Add((Id=KFID_ShowConsoleCrossHair, Name="Show Console Crosshair", MappingType=PVMT_RawValue))
 	
@@ -233,7 +265,7 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SFXVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x42c80000)))) //100.0f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_GammaMultiplier,Data=(Type=SDT_Float,Value1=0x3f666666)))) // 0.9f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_MusicVocalsEnabled,Data=(Type=SDT_Int32,Value1=0))))
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_MinimalChatter,Data=(Type=SDT_Int32,Value1=1))))
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_MinimalChatter,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ShowCrossHair,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_FOVOptionsPercentageValue,Data=(Type=SDT_Float,Value1=0x3f800000)))) // 1.0f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ShowKillTicker,Data=(Type=SDT_Int32,Value1=0))))
@@ -245,7 +277,7 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_InvertController,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_GamepadSensitivityScale,Data=(Type=SDT_Float,Value1=0x3f800000)))) // 1.0f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ZoomedSensitivityScale,Data=(Type=SDT_Float,Value1=0x3eb33333)))) // 0.35f
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_GamepadZoomedSensitivityScale,Data=(Type=SDT_Float,Value1=0x3f266666)))) // 0.65f
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_GamepadZoomedSensitivityScale,Data=(Type=SDT_Float,Value1=0x3f19999a)))) // 0.60f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_MouseSensitivity,Data=(Type=SDT_Float,Value1=0x41f00000)))) // 30.0f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_TargetAdhesionEnabled,Data=(Type=SDT_Int32,Value1=1))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_TargetFrictionEnabled,Data=(Type=SDT_Int32,Value1=1))))
@@ -260,7 +292,7 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedModeIndex,Data=(Type=SDT_Int32,Value1=0))))	
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedMapString,Data=(Type=SDT_String,Value1=0))))	
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedDifficultyIndex,Data=(Type=SDT_Int32,Value1=0))))	
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedLengthIndex,Data=(Type=SDT_Int32,Value1=3))))	//default to any
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedLengthIndex,Data=(Type=SDT_Int32,Value1=0))))	//default to any
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedPrivacyIndex,Data=(Type=SDT_Int32,Value1=0))))	
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedServerTypeIndex,Data=(Type=SDT_Int32,Value1=0))))	
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedInProgressIndex,Data=(Type=SDT_Int32,Value1=0))))
@@ -273,6 +305,9 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ShowWelderInInventory,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_AutoTurnOff,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ReduceHightPitchSounds,Data=(Type=SDT_Int32,Value1=0))))
+	
+	//Added 9/6/2016- Support for WeaponSkins
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_WeaponSkinAssociations,Data=(Type=SDT_String, Value1=0))))
 
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ShowConsoleCrossHair,Data=(Type=SDT_Int32,Value1=1))))
 	

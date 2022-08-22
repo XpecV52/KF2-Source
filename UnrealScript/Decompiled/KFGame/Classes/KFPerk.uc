@@ -531,6 +531,11 @@ static simulated event string GetPerkIconPath()
     return PerkIconPath;
 }
 
+final simulated function int GetSavedBuild()
+{
+    return SavedBuild;
+}
+
 simulated event PreBeginPlay()
 {
     GrenadeClass = class<KFProj_Grenade>(DynamicLoadObject(GrenadeWeaponDef.default.WeaponClassPath, Class'Class'));
@@ -594,8 +599,6 @@ private final simulated function PerkSetOwnerHealthAndArmor(optional bool bModif
 
 function ApplySkillsToPawn()
 {
-    local KFInventoryManager KFIM;
-
     if(CheckOwnerPawn())
     {
         OwnerPawn.UpdateGroundSpeed();
@@ -609,12 +612,19 @@ function ApplySkillsToPawn()
         MyPRI.bNukeActive = false;
         MyPRI.bConcussiveActive = false;
         MyPRI.bPerkCanSupply = false;
-        KFIM = KFInventoryManager(OwnerPawn.InvManager);
-        if(KFIM != none)
-        {
-            KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks;
-            CheckForOverWeight(KFIM);
-        }
+        ApplyWeightLimits();
+    }
+}
+
+function ApplyWeightLimits()
+{
+    local KFInventoryManager KFIM;
+
+    KFIM = KFInventoryManager(OwnerPawn.InvManager);
+    if(KFIM != none)
+    {
+        KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks;
+        CheckForOverWeight(KFIM);
     }
 }
 
@@ -800,9 +810,9 @@ function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, option
 
 function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy);
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
-    bSecondary = false;
+    bSecondary = false;    
 }
 
 simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo, const optional out STraderItem TraderItem, optional bool bSecondary)
@@ -1000,6 +1010,11 @@ simulated function bool GetHealingShieldActive()
     return false;
 }
 
+simulated function bool IsSlugActive()
+{
+    return false;
+}
+
 simulated function bool IsFlarotovActive()
 {
     return false;
@@ -1092,6 +1107,13 @@ simulated function bool ShouldNeverDud()
     return false;
 }
 
+simulated function SetLastHX25NukeTime(float NewTime);
+
+simulated function float GetLastHX25NukeTime()
+{
+    return 0;
+}
+
 simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
 {
     return false;
@@ -1177,7 +1199,7 @@ function string GetModifierString(byte ModifierIndex)
 
 function ModifyBloatBileDoT(out float DoTScaler);
 
-function KFWeapon GetOwnerWeapon()
+simulated function KFWeapon GetOwnerWeapon()
 {
     if(CheckOwnerPawn())
     {
@@ -1282,6 +1304,16 @@ simulated function class<EmitterCameraLensEffectBase> GetPerkLensEffect(class<KF
 static simulated function Texture2D GetInteractIcon()
 {
     return default.InteractIcon;
+}
+
+simulated function string GetGrenadeImagePath()
+{
+    return default.GrenadeWeaponDef.static.GetImagePath();
+}
+
+simulated function class<KFWeaponDefinition> GetGrenadeWeaponDef()
+{
+    return default.GrenadeWeaponDef;
 }
 
 simulated function float GetPercentage(float OriginalValue, float NewValue)

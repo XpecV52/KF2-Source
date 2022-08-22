@@ -103,6 +103,11 @@ package tripwire.controls
                 TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
                 this.infoTextField.textColor = this.disabledColor;
             }
+            else
+            {
+                TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
+                this.infoTextField.textColor = this.defaultColor;
+            }
         }
     }
 }

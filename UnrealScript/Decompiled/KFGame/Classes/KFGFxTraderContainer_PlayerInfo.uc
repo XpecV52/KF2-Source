@@ -25,6 +25,7 @@ function LocalizeText()
     LocalizedObject.SetString("PlayerHeader", PlayerHeaderString);
     LocalizedObject.SetString("Cancel", Class'KFCommon_LocalizedStrings'.default.CancelString);
     LocalizedObject.SetString("SelectPerk", SelectPerkString);
+    LocalizedObject.SetString("oncePerWave", Class'KFGFxPerksContainer_Selection'.default.OncePerWaveString);
     SetObject("LocalizedText", LocalizedObject);
 }
 

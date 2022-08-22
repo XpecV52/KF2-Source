@@ -148,7 +148,7 @@ event Tick(float DeltaTime)
                     tv.Z = tv.Z - overlay.speccamspeed;
                     drs.SetLocation(tv);
                 }
-                if(overlay.bUp)
+                if(overlay.bup)
                 {
                     tv = drs.Location;
                     TR = drs.Rotation;

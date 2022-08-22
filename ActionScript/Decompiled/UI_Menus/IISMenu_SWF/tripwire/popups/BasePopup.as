@@ -6,14 +6,18 @@ package tripwire.popups
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
+    import tripwire.managers.MenuManager;
     
     public class BasePopup extends TripContainer
     {
          
         
         protected var _prevModalClip:Sprite;
+        
+        public var bPartyWasFocused:Boolean;
         
         public function BasePopup()
         {
@@ -24,6 +28,7 @@ package tripwire.popups
         
         override protected function addedToStage(param1:Event) : void
         {
+            bSelected = true;
             super.addedToStage(param1);
             this.setTabIndex();
         }
@@ -44,6 +49,8 @@ package tripwire.popups
         {
             if(!_bOpen)
             {
+                this.bPartyWasFocused = MenuManager.manager.bPartyWidgetFocused;
+                MenuManager.manager.bPartyWidgetFocused = false;
                 this.openAnimation();
                 _bOpen = true;
                 this._prevModalClip = FocusManager.getModalClip();
@@ -51,7 +58,13 @@ package tripwire.popups
             }
         }
         
-        override protected function openAnimation() : *
+        override protected function onBPressed(param1:InputDetails) : void
+        {
+            super.onBPressed(param1);
+            this.closePopup();
+        }
+        
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.fromTo(this,6,{
                 "z":-128,
@@ -59,7 +72,7 @@ package tripwire.popups
             },{
                 "visible":true,
                 "z":0,
-                "autoAlpha":1,
+                "autoAlpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onOpened

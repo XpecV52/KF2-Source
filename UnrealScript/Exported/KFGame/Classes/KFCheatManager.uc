@@ -75,7 +75,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 16
 //@HSL_MOD_END
 /** Debug scene related properties */
@@ -134,6 +134,64 @@ function Pawn GetMyPawn()
 	 * the player's unpossessed PlayerController's Pawn.
 	 */
 	return (Pawn!=none)?Pawn:DebugCameraController(Outer).OriginalControllerRef.Pawn;
+}
+
+exec function TestSongInfoWidget(String S)
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+
+    if(P == none || KFPC == None)
+    {
+        return;
+    }
+
+    if(KFPC.MyGFxHUD != none )
+    {
+        KFPC.MyGFxHUD.MusicNotification.ShowSongInfo(S);
+    }
+    
+}
+
+exec function TestNumbPrompts(int NumberOfPrompts)
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+
+    if(P == none || KFPC == None)
+    {
+        return;
+    }
+
+    if(KFPC.MyGFxManager != none )
+    {
+        KFPC.MyGFxManager.ManagerObject.SetInt("numPrompts", NumberOfPrompts);
+    }   
+}
+
+exec function MakeFakePopUp()
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+
+    if(P == none || KFPC == None)
+    {
+        return;
+    }
+
+    if(KFPC.MyGFxManager != none )
+    {
+        KFPC.MyGFxManager.DelayedShowDisconnectMessage();
+    }
 }
 
 exec function SetCharacterAttachment(byte MeshIndex, byte SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots = false)
@@ -943,12 +1001,13 @@ simulated exec function KillRecoil()
 simulated exec function WeapFOV(float NewFov, optional bool bScaleByAspectRatio = true)
 {
 	local float AdjustedFOV;
+    local float DummyParam;
 
     if( KFWeapon(Pawn.Weapon) != none )
     {
         if( bScaleByAspectRatio )
         {
-            AdjustedFOV = KFPlayerController(Outer).CalcFOVForAspectRatio(NewFOV, myHUD.SizeX, myHUD.SizeY);
+            AdjustedFOV = KFPlayerController(Outer).CalcFOVForAspectRatio(NewFOV, myHUD.SizeX, myHUD.SizeY, DummyParam);
         }
         else
         {
@@ -5620,6 +5679,17 @@ exec function DisableAtkAnimDifficultyScaling()
 	ConsoleCommand("SETNOPEC KFPawnAnimInfo bEnableDifficultyScaling false");
 }
 
+
+exec function EnableForceSpecialZeds()
+{
+    ConsoleCommand("SETNOPEC KFMonsterDifficultyInfo bForceSpecialSpawn true");
+}
+exec function DisableForceSpecialZeds()
+{
+    ConsoleCommand("SETNOPEC KFMonsterDifficultyInfo bForceSpecialSpawn false");
+}
+
+
 /** Prints out a pawns modifier and final default values when spawned */
 exec function ToggleAIDefaultsLog()
 {
@@ -6320,15 +6390,12 @@ function OnLoginComplete(bool bWasSuccessful, string SessionTicket, string Playf
 }
 
 
-exec function TestPlayfabGameSearch( string GameType )
+exec function TestPlayfabGameSearch()
 {
 	local KFDataStore_OnlineGameSearch SearchDataStore;
 
 	SearchDataStore = KFDataStore_OnlineGameSearch(class'UIInteraction'.static.GetDataStoreClient().FindDataStore('KFGameSearch'));
-
 	SearchDataStore.ActiveSearchIndex = 0;
-	SearchDataStore.GetActiveGameSearch().GameModes.Length = 1;
-	SearchDataStore.GetActiveGameSearch().GameModes[0] = GameType;
 
 	class'GameEngine'.static.GetPlayfabInterface().AddFindOnlineGamesCompleteDelegate( OnFindOnlinePlayfabGamesComplete );
 	class'GameEngine'.static.GetPlayfabInterface().FindOnlineGames( SearchDataStore.GameSearchCfgList[0].Search );
@@ -6365,31 +6432,10 @@ function OnQueryServerInfoComplete(bool bWasSuccessful, string LobbyId, string S
 }
 
 
-exec function QueryRegions()
-{
-	class'GameEngine'.static.GetPlayfabInterface().AddRegionQueryCompleteDelegate( OnRegionQueryComplete );
-	class'GameEngine'.static.GetPlayfabInterface().QueryAvailableRegions();
-}
-
-
-function OnRegionQueryComplete( bool bSuccess, array<string> RegionNames )
-{
-	local int i;
-
-	LogInternal("Region query with success"@bSuccess@"and results"@RegionNames.Length);
-	for( i = 0; i < RegionNames.Length; i++ )
-	{
-		LogInternal("	Listing"@RegionNames[i]);
-	}
-
-	class'GameEngine'.static.GetPlayfabInterface().ClearRegionQueryCompleteDelegate( OnRegionQueryComplete );
-}
-
-
-exec function StartupServer( string GameMode, optional string ServerCommandline )
+exec function StartupServer( optional string ServerCommandline )
 {
 	class'GameEngine'.static.GetPlayfabInterface().AddOnServerStartedDelegate( OnServerStarted );
-	class'GameEngine'.static.GetPlayfabInterface().StartNewServerInstance( GameMode, ServerCommandline );
+	class'GameEngine'.static.GetPlayfabInterface().StartNewServerInstance( ServerCommandline );
 }
 
 

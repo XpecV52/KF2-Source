@@ -62,6 +62,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 
 enum PerfWarning
 {
@@ -298,12 +299,10 @@ struct native FXQualitySetting
 struct native RealtimeReflectionsSetting
 {
     var bool bAllowScreenSpaceReflections;
-    var bool bUseHighQualityReflections;
 
     structdefaultproperties
     {
         bAllowScreenSpaceReflections=false
-        bUseHighQualityReflections=false
     }
 };
 
@@ -495,7 +494,7 @@ struct native GFXSettings
         TextureResolution=(UIBias=0,ShadowmapBias=0,CharacterBias=0,Weapon1stBias=0,Weapon3rdBias=0,EnvironmentBias=0,FXBias=0)
         TextureFiltering=(MinMagFilter=None,MipFilter=None,MaxAnisotropy=0)
         Shadows=(bAllowWholeSceneDominantShadows=false,bOverrideMapWholeSceneDominantShadowSetting=false,bAllowDynamicShadows=false,bAllowPerObjectShadows=false,MaxWholeSceneDominantShadowResolution=0,MaxShadowResolution=0,ShadowFadeResolution=0,MinShadowResolution=0,ShadowTexelsPerPixel=0,GlobalShadowDistanceScale=0,AllowForegroundPreshadows=false)
-        RealtimeReflections=(bAllowScreenSpaceReflections=false,bUseHighQualityReflections=false)
+        RealtimeReflections=(bAllowScreenSpaceReflections=false)
         AntiAliasing=(PostProcessAA=false)
         Bloom=(Bloom=false,BloomQuality=0)
         MotionBlur=(MotionBlur=false,MotionBlurQuality=0)
@@ -2096,11 +2095,11 @@ function ShowRevertPopUp(byte PerfWarningLevel, bool bNeedsRestart, bool bNeedsR
 
 " $ WillExpireString);
             TempString = Repl(RevertPopupDescriptionString, "%x%", string(ExpireTime), true);
-            Manager.OpenPopup(0, PromptString, TempString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);            
+            Manager.DelayedOpenPopup(0, 0, PromptString, TempString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);            
         }
         else
         {
-            Manager.OpenPopup(0, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);
+            Manager.DelayedOpenPopup(0, 0, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);
         }        
     }
     else
@@ -2116,11 +2115,11 @@ function ShowRevertPopUp(byte PerfWarningLevel, bool bNeedsRestart, bool bNeedsR
 
 " $ WillExpireString);
                 TempString = Repl(RevertPopupDescriptionString, "%x%", string(ExpireTime), true);
-                Manager.OpenPopup(0, PromptString, TempString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);                
+                Manager.DelayedOpenPopup(0, 0, PromptString, TempString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);                
             }
             else
             {
-                Manager.OpenPopup(0, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
+                Manager.DelayedOpenPopup(0, 0, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
             }            
         }
         else
@@ -2136,11 +2135,11 @@ function ShowRevertPopUp(byte PerfWarningLevel, bool bNeedsRestart, bool bNeedsR
 
 " $ WillExpireString);
                     TempString = Repl(RevertPopupDescriptionString, "%x%", string(ExpireTime), true);
-                    Manager.OpenPopup(0, PromptString, TempString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);                    
+                    Manager.DelayedOpenPopup(0, 0, PromptString, TempString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);                    
                 }
                 else
                 {
-                    Manager.OpenPopup(0, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);
+                    Manager.DelayedOpenPopup(0, 0, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnRestartConfirm, OnSettingsRevert);
                 }                
             }
             else
@@ -2152,11 +2151,11 @@ function ShowRevertPopUp(byte PerfWarningLevel, bool bNeedsRestart, bool bNeedsR
 
 " $ WillExpireString);
                     TempString = Repl(RevertPopupDescriptionString, "%x%", string(ExpireTime), true);
-                    Manager.OpenPopup(0, PromptString, TempString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);                    
+                    Manager.DelayedOpenPopup(0, 0, PromptString, TempString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);                    
                 }
                 else
                 {
-                    Manager.OpenPopup(0, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
+                    Manager.DelayedOpenPopup(0, 0, PromptString, RevertPopupDescriptionString, OKString, CancelString, OnSettingsConfirm, OnSettingsRevert);
                 }
             }
         }
@@ -2273,10 +2272,6 @@ function OnReflectionSettingChanged(RealtimeReflectionsSetting OldSetting, Realt
     if(!OldSetting.bAllowScreenSpaceReflections && NewSetting.bAllowScreenSpaceReflections)
     {
         PerformanceWarningLevel = byte(Max(PerformanceWarningLevel, 1));
-    }
-    if(!OldSetting.bUseHighQualityReflections && NewSetting.bUseHighQualityReflections)
-    {
-        PerformanceWarningLevel = byte(Max(PerformanceWarningLevel, 2));
     }
 }
 
@@ -2431,7 +2426,7 @@ function Callback_CloseMenu()
                 }
             }
         }
-        Manager.OpenPopup(0, PromptString, DescriptionString, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, OnSaveConfirm, OnSaveCancel);        
+        Manager.DelayedOpenPopup(0, 0, PromptString, DescriptionString, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, OnSaveConfirm, OnSaveCancel);        
     }
     else
     {
@@ -2444,7 +2439,7 @@ function Callback_FleXOptionChange(bool bShowPopUp)
 {
     if(bShowPopUp)
     {
-        Manager.OpenPopup(2, WarningPromptString, FlexPopUpString, Class'KFCommon_LocalizedStrings'.default.OKString);
+        Manager.DelayedOpenPopup(2, 0, WarningPromptString, FlexPopUpString, Class'KFCommon_LocalizedStrings'.default.OKString);
     }
 }
 
@@ -2481,7 +2476,7 @@ function Callback_ResetDefaultVideo()
 function Callback_OpenGamma()
 {
     Manager.SetVariableBool("bStartUpGamma", false);
-    Manager.OpenPopup(1, "", AdjustGammaDescription, ResetGammaString, SetGammaString);
+    Manager.DelayedOpenPopup(1, 4, "", AdjustGammaDescription, ResetGammaString, SetGammaString);
 }
 
 defaultproperties
@@ -2631,8 +2626,8 @@ defaultproperties
     FXQualityPresets(1)=(ParticleLODBias=0,DistanceFogQuality=0,Distortion=false,FilteredDistortion=false,DropParticleDistortion=true,AllowSecondaryBloodEffects=false,EmitterPoolScale=0.5,ShellEjectLifetime=5,AllowExplosionLights=true,AllowSprayActorLights=false,AllowFootstepSounds=true,AllowBloodSplatterDecals=false,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=15,MaxExplosionDecals=12,GoreFXLifetimeMultiplier=0.75,MaxBloodEffects=15,MaxGoreEffects=8,MaxPersistentSplatsPerFrame=50)
     FXQualityPresets(2)=(ParticleLODBias=0,DistanceFogQuality=1,Distortion=true,FilteredDistortion=true,DropParticleDistortion=false,AllowSecondaryBloodEffects=true,EmitterPoolScale=1,ShellEjectLifetime=10,AllowExplosionLights=true,AllowSprayActorLights=true,AllowFootstepSounds=true,AllowBloodSplatterDecals=true,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=20,MaxExplosionDecals=15,GoreFXLifetimeMultiplier=1,MaxBloodEffects=25,MaxGoreEffects=10,MaxPersistentSplatsPerFrame=75)
     FXQualityPresets(3)=(ParticleLODBias=0,DistanceFogQuality=1,Distortion=true,FilteredDistortion=true,DropParticleDistortion=false,AllowSecondaryBloodEffects=true,EmitterPoolScale=2,ShellEjectLifetime=20,AllowExplosionLights=true,AllowSprayActorLights=true,AllowFootstepSounds=true,AllowBloodSplatterDecals=true,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=40,MaxExplosionDecals=20,GoreFXLifetimeMultiplier=1.2,MaxBloodEffects=40,MaxGoreEffects=15,MaxPersistentSplatsPerFrame=100)
-    RealtimeReflectionsPresets(0)=(bAllowScreenSpaceReflections=false,bUseHighQualityReflections=false)
-    RealtimeReflectionsPresets(1)=(bAllowScreenSpaceReflections=true,bUseHighQualityReflections=false)
+    RealtimeReflectionsPresets(0)=(bAllowScreenSpaceReflections=false)
+    RealtimeReflectionsPresets(1)=(bAllowScreenSpaceReflections=true)
     CharacterDetailPresets(0)=(SkeletalMeshLODBias=1,AllowSubsurfaceScattering=false,KinematicUpdateDistFactorScale=3,ShouldCorpseCollideWithDead=false,ShouldCorpseCollideWithLiving=false,ShouldCorpseCollideWithDeadAfterSleep=false,MaxBodyWoundDecals=2,MaxDeadBodies=8,bAllowPhysics=false)
     CharacterDetailPresets(1)=(SkeletalMeshLODBias=0,AllowSubsurfaceScattering=false,KinematicUpdateDistFactorScale=1.3,ShouldCorpseCollideWithDead=true,ShouldCorpseCollideWithLiving=true,ShouldCorpseCollideWithDeadAfterSleep=false,MaxBodyWoundDecals=5,MaxDeadBodies=12,bAllowPhysics=true)
     CharacterDetailPresets(2)=(SkeletalMeshLODBias=0,AllowSubsurfaceScattering=true,KinematicUpdateDistFactorScale=1,ShouldCorpseCollideWithDead=true,ShouldCorpseCollideWithLiving=true,ShouldCorpseCollideWithDeadAfterSleep=true,MaxBodyWoundDecals=5,MaxDeadBodies=15,bAllowPhysics=true)

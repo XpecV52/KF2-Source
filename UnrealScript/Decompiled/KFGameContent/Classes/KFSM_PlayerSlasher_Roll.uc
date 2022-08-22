@@ -7,7 +7,13 @@
  *******************************************************************************/
 class KFSM_PlayerSlasher_Roll extends KFSM_Evade;
 
-var float RollSpeed;
+var Rotator InitialRotation;
+
+function SpecialMoveStarted(bool bForced, name PrevMove)
+{
+    super(KFSM_PlaySingleAnim).SpecialMoveStarted(bForced, PrevMove);
+    InitialRotation = KFPOwner.Rotation;
+}
 
 protected function bool InternalCanDoSpecialMove()
 {
@@ -24,16 +30,15 @@ function Tick(float DeltaTime)
     super(KFSpecialMove).Tick(DeltaTime);
     if((KFPOwner != none) && KFPOwner.Role != ROLE_SimulatedProxy)
     {
-        KFPOwner.Velocity = vector(KFPOwner.Rotation) * RollSpeed;
-        KFPOwner.Acceleration = KFPOwner.Velocity;
+        KFPOwner.SetRotation(InitialRotation);
     }
 }
 
 defaultproperties
 {
-    RollSpeed=1000
     EvadeAnims=/* Array type was not detected. */
     bUseCustomThirdPersonViewOffset=true
+    bLockPawnRotation=true
     CustomThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=50,Z=-80),OffsetMid=(X=-145,Y=50,Z=-90),OffsetLow=(X=-220,Y=50,Z=-80))
     ViewOffsetInterpTime=0.3
     CustomCameraFOV=80

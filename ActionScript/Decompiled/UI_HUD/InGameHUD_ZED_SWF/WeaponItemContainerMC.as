@@ -157,7 +157,7 @@ package
                 this.__motion_EmptyContaineraf1.addPropertyArray("cacheAsBitmap",[false]);
                 this.__motion_EmptyContaineraf1.addPropertyArray("opaqueBackground",[null]);
                 this.__motion_EmptyContaineraf1.addPropertyArray("visible",[true]);
-                this.__motion_EmptyContaineraf1.motion_internal::transformationPoint = new Point(0,-0.45);
+                this.__motion_EmptyContaineraf1.motion_internal::transformationPoint = new Point(0,-0.25);
                 this.__motion_EmptyContaineraf1.motion_internal::initialPosition = [0,-0.55,0];
                 this.__motion_EmptyContaineraf1.is3D = true;
                 this.__motion_EmptyContaineraf1.motion_internal::spanStart = 0;

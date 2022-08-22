@@ -25,7 +25,6 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 {
 	local int i;
 	local rotator AimRot;
-	local KFPlayerReplicationInfo InstigatorPRI;
 
     if( CurrentFireMode == GRENADE_FIREMODE )
     {
@@ -33,19 +32,9 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
     }
 
 	AimRot = rotator(AimDir);
-	InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
-
 	for (i = 0; i < GetNumProjectilesToFire(CurrentFireMode); i++)
 	{
-		// Use a different projectile for the first one if demo's nuke skill is active and Zed time is active
-		if( InstigatorPRI != none && InstigatorPRI.bNukeActive && WorldInfo.TimeDilation < 1.f && i < 1 )
-		{
-			Super.SpawnProjectile( class'KFPerk_Demolitionist'.static.GetNukeProjectileClass(), RealStartLoc, AimDir );
-		}
-		else
-		{
-			Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, i)));
-		}
+		Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, i)));
 	}
 
 	return None;
@@ -153,6 +142,7 @@ defaultproperties
    SpareAmmoCapacity(0)=29
    InitialSpareMags(0)=17
    AmmoPickupScale(0)=3.000000
+   WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Fire_1P')
@@ -192,7 +182,7 @@ defaultproperties
    WeaponFireTypes(2)=()
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_ExplosiveSubmunition_HX25'
+   WeaponProjectiles(0)=Class'KFGame.KFProj_ExplosiveSubmunition_HX25'
    FireInterval(0)=0.250000
    FireInterval(1)=()
    FireInterval(2)=()

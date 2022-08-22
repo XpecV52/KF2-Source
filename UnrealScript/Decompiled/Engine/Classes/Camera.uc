@@ -103,6 +103,7 @@ var bool bUseClientSideCameraUpdates;
 var bool bDebugClientSideCamera;
 var bool bShouldSendClientSideCameraUpdate;
 var float LockedFOV;
+var float UnmodifiedFOV;
 var float ConstrainedAspectRatio;
 var float DefaultAspectRatio;
 var float OffAxisYawAngle;
@@ -207,6 +208,11 @@ function SetFOV(float NewFOV)
     }
     bLockedFOV = true;
     LockedFOV = NewFOV;
+}
+
+function SetUnmodifiedFOV(float NewFOV)
+{
+    UnmodifiedFOV = NewFOV;
 }
 
 final function GetCameraViewPoint(out Vector OutCamLoc, out Rotator OutCamRot)
@@ -532,7 +538,7 @@ function AddCameraLensEffect(class<EmitterCameraLensEffectBase> LensEffectEmitte
             if(LensEffect != none)
             {
                 GetCameraViewPoint(CamLoc, CamRot);
-                LensEffect.UpdateLocation(CamLoc, CamRot, GetFOVAngle());
+                LensEffect.UpdateLocation(CamLoc, CamRot, UnmodifiedFOV);
                 LensEffect.RegisterCamera(self);
                 CameraLensEffects.AddItem(LensEffect;
             }

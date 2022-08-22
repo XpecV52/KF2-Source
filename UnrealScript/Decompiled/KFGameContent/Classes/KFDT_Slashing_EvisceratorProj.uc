@@ -93,22 +93,21 @@ static simulated function KFGame.KFPawn.EPawnOctant GetLastSlashDirection(KFPawn
 static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDirection, name InHitZoneName, out name OutBoneName)
 {
     local KFGame.KFPawn.EPawnOctant SlashDir;
-    local MeleeSpecialDismembermentInfo SpecialDismembermentInfo;
     local KFCharacterInfo_Monster MonsterInfo;
 
     MonsterInfo = inPawn.GetCharacterMonsterInfo();
-    if(MonsterInfo != none)
+    if(MonsterInfo == none)
     {
-        SpecialDismembermentInfo = MonsterInfo.SpecialMeleeDismemberment;
+        return;
     }
     SlashDir = GetLastSlashDirection(inPawn, HitDirection);
     if((SlashDir == 0) || SlashDir == 1)
     {
         if((InHitZoneName == 'chest') || InHitZoneName == 'head')
         {
-            if(SpecialDismembermentInfo.bAllowVerticalSplit)
+            if(MonsterInfo.SpecialMeleeDismemberment.bAllowVerticalSplit)
             {
-                OutBoneName = ((Rand(2) == 0) ? SpecialDismembermentInfo.LeftShoulderBoneName : SpecialDismembermentInfo.RightShoulderBoneName);
+                OutBoneName = ((Rand(2) == 0) ? MonsterInfo.SpecialMeleeDismemberment.LeftShoulderBoneName : MonsterInfo.SpecialMeleeDismemberment.RightShoulderBoneName);
             }
         }        
     }
@@ -118,9 +117,9 @@ static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDi
         {
             if(((InHitZoneName == 'chest') || InHitZoneName == 'abdomen') || InHitZoneName == 'stomach')
             {
-                if(SpecialDismembermentInfo.bAllowHorizontalSplit)
+                if(MonsterInfo.SpecialMeleeDismemberment.bAllowHorizontalSplit)
                 {
-                    OutBoneName = SpecialDismembermentInfo.SpineBoneName;
+                    OutBoneName = MonsterInfo.SpecialMeleeDismemberment.SpineBoneName;
                 }
             }            
         }
@@ -130,20 +129,20 @@ static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDi
             {
                 if(InHitZoneName == 'chest')
                 {
-                    if(SpecialDismembermentInfo.bAllowVerticalSplit)
+                    if(MonsterInfo.SpecialMeleeDismemberment.bAllowVerticalSplit)
                     {
-                        OutBoneName = SpecialDismembermentInfo.RightShoulderBoneName;
+                        OutBoneName = MonsterInfo.SpecialMeleeDismemberment.RightShoulderBoneName;
                     }                    
                 }
                 else
                 {
                     if(InHitZoneName == 'head')
                     {
-                        if(SpecialDismembermentInfo.bAllowVerticalSplit)
+                        if(MonsterInfo.SpecialMeleeDismemberment.bAllowVerticalSplit)
                         {
                             if(Rand(2) == 0)
                             {
-                                OutBoneName = SpecialDismembermentInfo.RightShoulderBoneName;
+                                OutBoneName = MonsterInfo.SpecialMeleeDismemberment.RightShoulderBoneName;
                             }
                         }
                     }
@@ -155,20 +154,20 @@ static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDi
                 {
                     if(InHitZoneName == 'chest')
                     {
-                        if(SpecialDismembermentInfo.bAllowVerticalSplit)
+                        if(MonsterInfo.SpecialMeleeDismemberment.bAllowVerticalSplit)
                         {
-                            OutBoneName = SpecialDismembermentInfo.LeftShoulderBoneName;
+                            OutBoneName = MonsterInfo.SpecialMeleeDismemberment.LeftShoulderBoneName;
                         }                        
                     }
                     else
                     {
                         if(InHitZoneName == 'head')
                         {
-                            if(SpecialDismembermentInfo.bAllowVerticalSplit)
+                            if(MonsterInfo.SpecialMeleeDismemberment.bAllowVerticalSplit)
                             {
                                 if(Rand(2) == 0)
                                 {
-                                    OutBoneName = SpecialDismembermentInfo.LeftShoulderBoneName;
+                                    OutBoneName = MonsterInfo.SpecialMeleeDismemberment.LeftShoulderBoneName;
                                 }
                             }
                         }
@@ -183,6 +182,7 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Eviscerator'
     bNoInstigatorDamage=true
+    EffectGroup=EEffectDamageGroup.FXG_Sawblade
     StumblePower=100
     MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */

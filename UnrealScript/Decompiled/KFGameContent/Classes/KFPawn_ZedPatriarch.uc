@@ -125,6 +125,8 @@ var ParticleSystem BattleDamageFX_Tentacle_MidDmg;
 var ParticleSystem BattleDamageFX_Tentacle_HighDmg;
 var ParticleSystem BattleDamageFX_Smoke_HighDmg;
 var float TickDialogInterval;
+var protected const float FootstepCameraShakePitchAmplitude;
+var protected const float FootstepCameraShakeRollAmplitude;
 var int LastFXBattlePhase;
 var array<PatriarchBattlePhaseInfo> BattlePhases;
 var float SprintCooldownTime;
@@ -204,9 +206,8 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
     super(KFPawn).SetCharacterArch(Info);
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
-        CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant(1);
         I = 0;
-        J0x86:
+        J0x5A:
 
         if(I < 3)
         {
@@ -214,7 +215,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
             HealingSyringeMeshes[I].SetShadowParent(Mesh);
             Mesh.AttachComponent(HealingSyringeMeshes[I], name("SyringeAttach0" $ string(I + 1)));
             ++ I;
-            goto J0x86;
+            goto J0x5A;
         }
         Mesh.AttachComponentToSocket(BoilLightComponent, BoilLightSocketName);
         UpdateBattlePhaseLights();
@@ -497,7 +498,21 @@ function bool CanDoMortarBarrage()
 
 function bool CanBlock()
 {
-    return !bIsCloaking && super(KFPawn_Monster).CanBlock();
+    local KFAIController_ZedPatriarch MyPatController;
+
+    if((bIsCloaking || bInFleeAndHealMode) || !super(KFPawn_Monster).CanBlock())
+    {
+        return false;
+    }
+    if(!IsHumanControlled())
+    {
+        MyPatController = KFAIController_ZedPatriarch(Controller);
+        if(MyPatController.bFleeing || MyPatController.bWantsToFlee)
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 simulated function bool CanMoveWhenMinigunning()
@@ -973,21 +988,24 @@ simulated function ClientCloakingStateUpdated()
 
 function OnStackingAfflictionChanged(byte Id)
 {
-    local KFAIController_ZedPatriarch KFAICZP;
+    local KFAIController_ZedPatriarch MyPatController;
 
     super(KFPawn_Monster).OnStackingAfflictionChanged(Id);
     if((Role == ROLE_Authority) && IsAliveAndWell())
     {
         if(Id == 0)
         {
-            if(!IsHumanControlled())
+            if(!bInFleeAndHealMode && !IsHumanControlled())
             {
-                KFAICZP = KFAIController_ZedPatriarch(Controller);
-                KFAICZP.bWantsToCharge = false;
-                KFAICZP.bSprintUntilAttack = false;
-                KFAICZP.LastChargeAttackTime = WorldInfo.TimeSeconds;
-                KFAICZP.CachedChargeTarget = none;
-                KFAICZP.LastSprintTime = WorldInfo.TimeSeconds;
+                MyPatController = KFAIController_ZedPatriarch(Controller);
+                if(!MyPatController.bWantsToFlee && !MyPatController.bFleeing)
+                {
+                    MyPatController.bSprintUntilAttack = false;
+                    MyPatController.LastSprintTime = WorldInfo.TimeSeconds;
+                }
+                MyPatController.CachedChargeTarget = none;
+                MyPatController.bWantsToCharge = false;
+                MyPatController.LastChargeAttackTime = WorldInfo.TimeSeconds;
             }
             if(bIsCloaking)
             {
@@ -995,6 +1013,25 @@ function OnStackingAfflictionChanged(byte Id)
             }
         }
     }
+}
+
+function CausePanicWander()
+{
+    local KFAIController_ZedPatriarch MyPatController;
+
+    if(bInFleeAndHealMode)
+    {
+        return;
+    }
+    if(!IsHumanControlled())
+    {
+        MyPatController = KFAIController_ZedPatriarch(Controller);
+        if(MyPatController.bWantsToFlee || MyPatController.bFleeing)
+        {
+            return;
+        }
+    }
+    super(KFPawn_Monster).CausePanicWander();
 }
 
 simulated event UpdateSpottedStatus()
@@ -1349,7 +1386,7 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 {
     if(bIsCloaking)
     {
-        return CharacterArch.ImpactSkins[5];
+        return CharacterArch.ImpactSkins[4];
     }
     return super(KFPawn).GetHitZoneSkinTypeEffects(HitZoneIdx);
 }
@@ -1439,6 +1476,31 @@ function CauseHeadTrauma(optional float BleedOutTime)
     {
         SetCloaked(false);
     }
+}
+
+simulated event PlayFootStepSound(int FootDown)
+{
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        if(IsHumanControlled() && IsLocallyControlled())
+        {
+            FootstepCameraShake.RotOscillation.Pitch.Amplitude = 0;
+            FootstepCameraShake.RotOscillation.Roll.Amplitude = 0;            
+        }
+        else
+        {
+            FootstepCameraShake.RotOscillation.Pitch.Amplitude = FootstepCameraShakePitchAmplitude;
+            FootstepCameraShake.RotOscillation.Roll.Amplitude = FootstepCameraShakeRollAmplitude;
+            FootstepCameraShakeInnerRadius = default.FootstepCameraShakeInnerRadius;
+            FootstepCameraShakeOuterRadius = default.FootstepCameraShakeOuterRadius;
+            if(!bIsSprinting || VSizeSq(Velocity) < 10000)
+            {
+                FootstepCameraShake.RotOscillation.Pitch.Amplitude *= 0.75;
+                FootstepCameraShake.RotOscillation.Roll.Amplitude *= 0.75;
+            }
+        }
+    }
+    super(KFPawn_Monster).PlayFootStepSound(FootDown);
 }
 
 simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEvent FirstPersonAmbientSound)
@@ -1646,6 +1708,8 @@ defaultproperties
     BattleDamageFX_Tentacle_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_HighD_01'
     BattleDamageFX_Smoke_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Pat_smoke_HighD_01'
     TickDialogInterval=0.5
+    FootstepCameraShakePitchAmplitude=120
+    FootstepCameraShakeRollAmplitude=60
     LastFXBattlePhase=1
     BattlePhases(0)=bAllowedToSprint=true,SprintCooldownTime=3,bCanTentacleGrab=false,TentacleGrabCooldownTime=0,bCanUseMissiles=true,MissileAttackCooldownTime=10,bCanUseMortar=false,MortarAttackCooldownTime=0,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=14,MaxRageAttacks=0,TentacleDamage=0,MinigunAttackCooldownTime=2.25,bCanSummonMinions=true,bCanMoveWhenMinigunning=(
 /* Exception thrown while deserializing bCanMoveWhenMinigunning
@@ -1665,7 +1729,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_235' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_237' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1737,16 +1801,17 @@ Parameter name: index
     DifficultySettings=Class'KFDifficulty_Patriarch'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     FootstepCameraShakeInnerRadius=200
-    FootstepCameraShakeOuterRadius=900
+    FootstepCameraShakeOuterRadius=1000
     begin object name=FootstepCameraShake0 class=CameraShake
         bSingleInstance=true
-        OscillationDuration=0.3
-        RotOscillation=(Pitch=(Amplitude=140,Frequency=60),Roll=(Amplitude=60,Frequency=40))
+        OscillationDuration=0.25
+        RotOscillation=(Pitch=(Amplitude=120,Frequency=60),Roll=(Amplitude=60,Frequency=40))
     object end
     // Reference: CameraShake'Default__KFPawn_ZedPatriarch.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
     OnDeathAchievementID=130
     PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
+    LocalizationKey=KFPawn_ZedPatriarch
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

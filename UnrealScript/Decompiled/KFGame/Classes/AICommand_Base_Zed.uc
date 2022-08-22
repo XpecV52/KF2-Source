@@ -19,19 +19,28 @@ function Pushed()
 {
     super.Pushed();
     Outer.EnableSeePlayer();
-    Outer.AILog_Internal((((string(self) $ " ") $ string(GetFuncName())) $ "() using AttackRange of ") $ string(Outer.AttackRange), 'Command_Base');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((((string(self) $ " ") $ string(GetFuncName())) $ "() using AttackRange of ") $ string(Outer.AttackRange), 'Command_Base');
+    }
     GotoState(DefaultStateName);
 }
 
 function Paused(GameAICommand NewCommand)
 {
-    Outer.AILog_Internal((((string(self) $ " ") $ string(GetFuncName())) $ "() Paused for ") $ string(NewCommand), 'Command_Base');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((((string(self) $ " ") $ string(GetFuncName())) $ "() Paused for ") $ string(NewCommand), 'Command_Base');
+    }
     super.Paused(NewCommand);
 }
 
 function Resumed(name OldCommandName)
 {
-    Outer.AILog_Internal(((((string(self) $ " ") $ string(GetFuncName())) $ "() (OldCommandName: ") $ string(OldCommandName)) $ ")", 'Command_Base');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((((string(self) $ " ") $ string(GetFuncName())) $ "() (OldCommandName: ") $ string(OldCommandName)) $ ")", 'Command_Base');
+    }
     super(AICommand).Resumed(OldCommandName);
     Outer.EnableProbingMeleeRangeEvents(true);
 }
@@ -43,7 +52,10 @@ function bool NotifyBump(Actor Other, Vector HitNormal)
 {
     if(CachedChildCommand != none)
     {
-        Outer.AILog_Internal(((((((string(GetFuncName()) $ "() Other: ") $ string(Other)) $ " HitNormal: ") $ string(HitNormal)) $ " notifying ") $ string(CachedChildCommand)) $ " and letting it handle the event.", 'SeePlayer');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((((((string(GetFuncName()) $ "() Other: ") $ string(Other)) $ " HitNormal: ") $ string(HitNormal)) $ " notifying ") $ string(CachedChildCommand)) $ " and letting it handle the event.", 'SeePlayer');
+        }
         return CachedChildCommand.NotifyBump(Other, HitNormal);
     }
     return false;
@@ -59,16 +71,25 @@ function bool NotifyPlayerBecameVisible(Pawn VisiblePlayer)
 {
     if(CachedChildCommand != none)
     {
-        Outer.AILog_Internal(((((string(GetFuncName()) $ "() Seen: ") $ string(VisiblePlayer)) $ " notifying ") $ string(CachedChildCommand)) $ " and letting it handle the event.", 'SeePlayer');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((((string(GetFuncName()) $ "() Seen: ") $ string(VisiblePlayer)) $ " notifying ") $ string(CachedChildCommand)) $ " and letting it handle the event.", 'SeePlayer');
+        }
         return CachedChildCommand.NotifyPlayerBecameVisible(VisiblePlayer);
     }
-    Outer.AILog_Internal(((string(GetFuncName()) $ "() : ") $ string(VisiblePlayer)) $ " ignoring this event", 'SeePlayer');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((string(GetFuncName()) $ "() : ") $ string(VisiblePlayer)) $ " ignoring this event", 'SeePlayer');
+    }
     return false;
 }
 
 function bool ShouldAttackWhileMoving()
 {
-    Outer.AILog_Internal(string(self) $ " ShouldAttackWhileMoving() returning true", 'Command_Base');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(self) $ " ShouldAttackWhileMoving() returning true", 'Command_Base');
+    }
     return true;
 }
 
@@ -76,7 +97,10 @@ function bool ShouldSelectTarget()
 {
     if((Outer.Enemy == none) || !Outer.Enemy.IsAliveAndWell())
     {
-        Outer.AILog_Internal(((string(self) $ " ") $ string(GetFuncName())) $ "() returning TRUE", 'Command_Base');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((string(self) $ " ") $ string(GetFuncName())) $ "() returning TRUE", 'Command_Base');
+        }
         return true;
     }
     return false;
@@ -87,7 +111,10 @@ state ZedBaseCommand extends DebugState
     ignores BeginState, EndState;
 Begin:
 
-    Outer.AILog_Internal(((string(self) $ " ") $ string(GetStateName())) $ " [Begin Label]", 'Command_Base');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((string(self) $ " ") $ string(GetStateName())) $ " [Begin Label]", 'Command_Base');
+    }
     if(Outer.Pawn.Physics == 2)
     {
         Outer.DisableMeleeRangeEventProbing();
@@ -107,29 +134,41 @@ Begin:
     }
     if(((Outer.Enemy == none) && Outer.DoorEnemy == none) || !Outer.bIsProbingMeleeRangeEvents)
     {
-        Outer.AILog_Internal((((string(self) $ " Enemy: ") $ string(Outer.Enemy)) $ " bIsProbingMeleeRangeEvents: ") $ string(Outer.bIsProbingMeleeRangeEvents), 'Command_Base');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((string(self) $ " Enemy: ") $ string(Outer.Enemy)) $ " bIsProbingMeleeRangeEvents: ") $ string(Outer.bIsProbingMeleeRangeEvents), 'Command_Base');
+        }
         Outer.Sleep(0.1 + (FRand() * 0.3));
         goto 'Begin';
     }
     if(((Outer.DoorEnemy != none) && Outer.DoorEnemy.Health > 0) && VSizeSq(Outer.DoorEnemy.Location - Outer.Pawn.Location) < (Outer.DoorMeleeDistance * Outer.DoorMeleeDistance))
     {
-        Outer.AILog_Internal(((string(self) $ " DoorEnemy: ") $ string(Outer.DoorEnemy)) $ " starting melee attack", 'Command_Base');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((string(self) $ " DoorEnemy: ") $ string(Outer.DoorEnemy)) $ " starting melee attack", 'Command_Base');
+        }
         UpdateHistoryString(((("[Attacking : " $ string(Outer.DoorEnemy)) $ " at ") $ string(Outer.WorldInfo.TimeSeconds)) $ "]");
         Class'AICommand_Attack_Melee'.static.Melee(Outer, Outer.DoorEnemy);
     }
     if(Outer.IsValidAttackTarget(KFPawn(Outer.Enemy)))
     {
-        Outer.AILog_Internal(((("Calling SetEnemyMoveGoal [Dist:" $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "] using offset of ") $ string(Outer.AttackRange)) $ ", because IsWithinBasicMeleeRange() returned false ", 'Command_Base');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((("Calling SetEnemyMoveGoal [Dist:" $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "] using offset of ") $ string(Outer.AttackRange)) $ ", because IsWithinBasicMeleeRange() returned false ", 'Command_Base');
+        }
         bWaitingOnMovementPlugIn = true;
         Outer.SetEnemyMoveGoal(self, true,,, ShouldAttackWhileMoving());
-        J0x783:
+        J0x86B:
 
         if(bWaitingOnMovementPlugIn && Outer.bUsePluginsForMovement)
         {
             Outer.Sleep(0.03);
-            goto J0x783;
+            goto J0x86B;
         }
-        Outer.AILog_Internal("Back from waiting for the movement plug in!!!");
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Back from waiting for the movement plug in!!!");
+        }
         if(Outer.Enemy == none)
         {
             Outer.Sleep(FRand() + 0.1);
@@ -138,7 +177,10 @@ Begin:
     }
     else
     {
-        Outer.AILog_Internal("Enemy is invalid melee target" @ string(Outer.Enemy), 'Command_Base');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Enemy is invalid melee target" @ string(Outer.Enemy), 'Command_Base');
+        }
         Outer.bFailedToMoveToEnemy = true;
     }
     Outer.CheckCombatTransition();

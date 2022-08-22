@@ -22,7 +22,21 @@ var AnimNodeBlendPerBone OutOfBladesBlendNode;
 /** Sound to play while weapon has fuel */
 var AKEvent IdleMotorSound;
 
+/** Short time from end of FireInterval when blocking can cancel the firing state */
+var float BlockInterruptFiringTime;
+
 //------------------------------------------------------------------------------
+
+/**
+ * Called immediately before gameplay begins.
+ */
+simulated event PreBeginPlay()
+{
+	Super.PreBeginPlay();
+
+	// to prevent exploits the fire interrupt cannot be longer than the block intro
+	BlockInterruptFiringTime = FMin(BlockInterruptFiringTime, MySkelMesh.GetAnimLength(MeleeBlockStartAnim));
+}
 
 /** The SkeletalMeshComponents Animations are being instanced from AnimTreeTemplate
 * 	before PostInitAnimTree. Be sure to never set the Mesh's animations directly through
@@ -285,6 +299,59 @@ static simulated event EFilterTypeUI GetAltTraderFilter()
 	return FT_Melee;
 }
 
+/*********************************************************************************************
+ * State WeaponSingleFiring
+  * Handle special BlockInterruptTimer for this weapon's unusually long FireInterval
+ *********************************************************************************************/
+
+simulated function BlockInterruptTimer();
+
+simulated state WeaponSingleFiring
+{
+	/** Set cooldown duration */
+	simulated function BeginState( Name PreviousStateName )
+	{
+		local float CheckBlockInterruptTime;
+
+		CheckBlockInterruptTime = FireInterval[CurrentFireMode] - BlockInterruptFiringTime;
+		if ( BlockInterruptFiringTime > 0 && CheckBlockInterruptTime > 0 )
+		{
+			SetTimer(CheckBlockInterruptTime, false, nameof(BlockInterruptTimer));
+		}
+
+		Super.BeginState(PreviousStateName);
+	}
+
+	simulated function EndState(Name NextStateName)
+	{
+		ClearTimer( nameof(BlockInterruptTimer) );
+		Super.EndState(NextStateName);
+	}
+
+	/** Check for pending fire */
+	simulated function BlockInterruptTimer()
+	{		
+		if ( PendingFire(BLOCK_FIREMODE) && HasAmmo(BLOCK_FIREMODE) )
+		{
+			SendToFiringState(BLOCK_FIREMODE);
+		}
+	}
+
+	/** Check for interrupt near end of state */
+	simulated function BeginFire(byte FireModeNum)
+	{
+		Global.BeginFire(FireModeNum);
+
+		if ( FireModeNum == BLOCK_FIREMODE && BlockInterruptFiringTime > 0 )
+		{
+			if( HasAmmo(FireModeNum) && !IsTimerActive(nameof(BlockInterruptTimer)) )
+			{
+				SendToFiringState(FireModeNum);
+			}
+		}
+	}
+}
+
 defaultproperties
 {
 	// Inventory
@@ -325,6 +392,7 @@ defaultproperties
 	FireOffset=(X=25,Y=5.0,Z=-10)
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Sawblade'
 	AmmoCost(DEFAULT_FIREMODE) = 1
+	BlockInterruptFiringTime=0.5
 
 	// Saw attack (uses fuel)
 	FiringStatesArray(HEAVY_ATK_FIREMODE)=MeleeSustained
@@ -386,5 +454,6 @@ defaultproperties
 
 	// Eviscerator uses its own anim tree with its own specified bones to lock, so leave it alone
 	BonesToLockOnEmpty.Empty()
-}
 
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
+}

@@ -85,32 +85,18 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 
 	Super.SpecialMoveStarted( bForced,PrevMove );
 
-	// Uncloak
 	MyPatPawn.SetCloaked( false );
-
-	// Stop sprinting
 	MyPatPawn.SetSprinting( false );
-
-	// Clear the special move flags now so that SpecialMoveFlagsUpdated never fails
-	MyPatPawn.SpecialMoveFlags = 255;
-
-	// Zero movement
 	MyPatPawn.ZeroMovementVariables();
-
-	// Play dialog
 	MyPatPawn.PlayMinigunWarnDialog();
 
-	// Cache controller
 	MyPatController	= KFAIController_ZedPatriarch( MyPatPawn.Controller );
 
-	// Play wind up
 	PlayWindUpAnimation();
 
-	// set aim offset nodes profile
 	MyPatPawn.SetAimOffsetNodesProfile( AimOffsetProfileName );
 	MyPatPawn.bEnableAimOffset = true;
 
-	// Check to make sure our enemy is still visible
 	if( MyPatPawn.Role == ROLE_Authority && !MyPatPawn.IsHumanControlled() )
 	{
 		MyPatPawn.SetTimer( VisibilityCheckTime, false, nameOf(Timer_CheckEnemyLOS), self );
@@ -160,10 +146,7 @@ function Timer_CheckEnemyLOS()
 		EndTrace = StartTrace + (Normal(MyPatPawn.Controller.Enemy.Location - StartTrace) * 300.f);
 		if( !MyPatPawn.FastTrace(EndTrace, StartTrace,, true) )
 		{
-	        MyPatPawn.SpecialMoveFlags = 128;
-	        MyPatPawn.ReplicatedSpecialMove.Flags = KFPOwner.SpecialMoveFlags;
-	        bObstructed = true;
-			PlayWindDownAnim();
+			MyPatPawn.DoSpecialMove( SM_HoseWeaponAttack, true,, 128 );
 		}
 	}
 }
@@ -183,6 +166,7 @@ function SpecialMoveFlagsUpdated()
 	    // Obstructed
 	    case 128:
 	    	bObstructed = true;
+	    	MyPatPawn.StopBodyAnim( AnimStance, 0.1f );
 	        PlayWindDownAnim();
 	        break;
 	}
@@ -231,13 +215,10 @@ function PlayFireAnim()
 	}
 
 	// Set a timer
-	if( MyPatPawn.Role == ROLE_Authority )
+	if( MyPatPawn.Role == ROLE_Authority && !bIsFanFire && !MyPatPawn.IsHumanControlled() )
 	{
-		if( !bIsFanFire && !MyPatPawn.IsHumanControlled() )
-		{
-			MyPatPawn.SetTimer( 0.06f, true, nameOf(Timer_CheckIfFireAllowed), self );
-			MyPatPawn.SetTimer( 2.0f, true, nameOf(Timer_SearchForMinigunTargets), self );
-		}
+		MyPatPawn.SetTimer( 0.1f, true, nameOf(Timer_CheckIfFireAllowed), self );
+		MyPatPawn.SetTimer( 2.0f, true, nameOf(Timer_SearchForMinigunTargets), self );
 	}
 }
 
@@ -245,10 +226,12 @@ function PlayFireAnim()
 function Timer_CheckIfFireAllowed()
 {
 	local KFPawn KFP;
-	local vector Projection, OtherProjection, PawnRot2D;
+	local vector PawnDir, Projection, OtherProjection, PawnRot2D;
 	local float DistSQ;
 
-	if( MyPatController.Enemy == none || !MyPatController.Enemy.IsAliveAndWell() )
+	if( MyPatController.Enemy == none
+		|| !MyPatController.Enemy.IsAliveAndWell()
+		|| !MyPatPawn.FastTrace(MyPatController.Enemy.Location, MyPatPawn.Location,, true) )
 	{
 		Timer_SearchForMinigunTargets();
 	}
@@ -256,11 +239,11 @@ function Timer_CheckIfFireAllowed()
 	// If for whatever reason we have no enemy, or enemy is dead, stop firing
 	if( MyPatController.Enemy == none || !MyPatController.Enemy.IsAliveAndWell() )
 	{
-		MyPatPawn.SpecialMoveFlags = 64;
-		SpecialMoveFlagsUpdated();
+		MyPatPawn.DoSpecialMove( SM_HoseWeaponAttack, true,, 64 );
 		return;
 	}
 
+	PawnDir = vector( MyPatPawn.Rotation );
 	Projection = MyPatController.Enemy.Location - MyPatPawn.Location;
 	DistSQ = VSizeSQ( Projection );
 
@@ -269,10 +252,11 @@ function Timer_CheckIfFireAllowed()
 	{
 		OtherProjection = KFP.Location - MyPatPawn.Location;
 
-		if( KFP.IsAliveAndWell() 
+		if( KFP != MyPatController.Enemy
+			&& KFP.IsAliveAndWell() 
 			&& KFP.GetTeamNum() != MyPatPawn.GetTeamNum()
 			&& VSizeSQ(OtherProjection) < DistSQ
-			&& vector(MyPatPawn.Rotation) dot Normal(OtherProjection) >= 0.9f
+			&& PawnDir dot Normal(OtherProjection) >= 0.8f
 			&& MyPatPawn.FastTrace(KFP.Location, MyPatPawn.Location,, true) )
 		{
 			MyPatController.ChangeEnemy( KFP, false );
@@ -288,9 +272,9 @@ function Timer_CheckIfFireAllowed()
 
 	if( MyPatPawn.Controller != none && MyPatController.Enemy != none )
 	{
-		PawnRot2D = vector( MyPatPawn.Rotation );
+		PawnRot2D = PawnDir;
 		PawnRot2D.Z = 0.f;
-		if( PawnRot2D dot Normal2D(Projection) >= 0.68f )
+		if( PawnRot2D dot Normal2D(Projection) >= 0.5f )
 		{
 			if( !MyPatPawn.IsFiring() )
 			{
@@ -315,7 +299,7 @@ function Timer_SearchForMinigunTargets()
 	}
 
 	// Try to find a new enemy
-	if( MyPatController.CheckForEnemiesInFOV(4000.f, 0.3f, 1.f, true, false) != none )
+	if( MyPatController.CheckForEnemiesInFOV(4000.f, 0.25f, 1.f, true, false) != none )
 	{
 		MyPatPawn.SetGunTracking( true );
 		return;
@@ -324,8 +308,7 @@ function Timer_SearchForMinigunTargets()
 	// If we have no valid enemy, or no valid LOS to enemy, end barrage
 	if ( MyPatController.Enemy == none || !MyPatPawn.FastTrace(MyPatController.Enemy.Location, MyPatPawn.Location,, true) )
 	{
-		MyPatPawn.SpecialMoveFlags = 64;
-		SpecialMoveFlagsUpdated();
+		MyPatPawn.DoSpecialMove( SM_HoseWeaponAttack, true,, 64 );
 	}
 }
 
@@ -419,10 +402,8 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 			MyPatPawn.PostAkEventOnBone( MinigunLoopEnd, 'BarrelSpinner', true, true );
 		}
 
-		// Restore aim profile defaults
 		MyPatPawn.bEnableAimOffset = false;
 		MyPatPawn.SetDefaultAimOffsetNodesProfile();
-
 		MyPatPawn.ClearTimer( nameOf(Timer_SearchForMinigunTargets), self );
 		MyPatPawn.ClearTimer( nameOf(Timer_CheckIfFireAllowed), self );
 		MyPatPawn.ClearTimer( nameOf(Timer_CheckEnemyLOS), self );
@@ -443,8 +424,7 @@ defaultproperties
    WindUpAnimName="Gun_TO_Load"
    WindDownAnimName="Gun_TO_Idle"
    FanAnimNames(0)="Gun_Shoot_Fan_V1"
-   FanAnimNames(1)="Gun_Shoot_Fan_V2"
-   FanAnimNames(2)="Gun_Shoot_Fan_V3"
+   FanAnimNames(1)="Gun_Shoot_Fan_V3"
    FocusFireRotationRate=(Pitch=30000,Yaw=30000,Roll=30000)
    MinigunLoop=AkEvent'WW_ZED_Patriarch.Play_Mini_Gun_Start'
    MinigunLoopEnd=AkEvent'WW_ZED_Patriarch.Play_Mini_Gun_Stop'

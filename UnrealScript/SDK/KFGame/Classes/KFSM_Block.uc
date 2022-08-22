@@ -4,12 +4,15 @@
 // Handles playing directional blocks
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
 class KFSM_Block extends KFSM_PlaySingleAnim;
 
 /** Animation to play */
 var const array<AnimVariants> BlockAnims;
+
+/** Cached gameinfo reference */
+var protected KFGameInfo MyKFGI;
 
 /** Cached reference to monster pawn */
 var protected KFPawn_Monster MyMonsterPawn;
@@ -22,6 +25,9 @@ var protected EPawnOctant ReactionDir;
 
 /** Used to determine if the animation needs to be blended out when the special move ends */
 var protected bool bPlayedBlockBreak;
+
+/** When TRUE, will use the Monster pawn's BlockSprintSpeedModifier */
+var protected bool bUseBlockSprintSpeed;
 
 static function byte PackBlockSMFLags( byte BlockDir )
 {
@@ -71,19 +77,51 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 	ReactionDir = DIR_None;
 	NumBlocks = 1;
 
-	// Disallow sprinting
-	if( MyMonsterPawn.bIsSprinting )
-	{
-		MyMonsterPawn.SetSprinting( false );
-	}
-
 	if( MyMonsterPawn.Role == ROLE_Authority )
 	{
+		bUseBlockSprintSpeed = true;
+		AdjustSprintSpeed();
+
 		MyMonsterPawn.SetTimer( MyMonsterPawn.GetBlockSettings().Duration, false, nameOf(Timer_BlockDurationExpired), self );
 		MyMonsterPawn.SetTimer( BlendInTime, false, nameOf(Timer_EnableBlocking), self );
 	}
 
 	super.SpecialMoveStarted( bForced, PrevMove );
+}
+
+function AdjustSprintSpeed()
+{
+	local float GCMoveSpeedMod;
+
+	// Only allow for server and local player
+	if( MyMonsterPawn.Role == ROLE_Authority )
+	{
+		GCMoveSpeedMod = 1.0f;
+
+		// Set movement speed modifier
+		if( MyMonsterPawn.WorldInfo.Game != none )
+		{
+			if( MyKFGI == none )
+			{
+				MyKFGI = KFGameInfo( MyMonsterPawn.WorldInfo.Game );
+			}
+
+			if( MyKFGI != none && MyKFGI.GameConductor != none )
+			{
+				GCMoveSpeedMod = MyKFGI.GameConductor.CurrentAIMovementSpeedMod;
+			}
+		}
+
+		MyMonsterPawn.AdjustMovementSpeed( GCMoveSpeedMod );
+	}
+}
+
+/**
+ * Network: SERVER
+ */
+function float GetSprintSpeedModifier() 
+{
+	return bUseBlockSprintSpeed ? MyMonsterPawn.GetBlockingSprintSpeedModifier() : 1.0f;
 }
 
 function PlayAnimation()
@@ -192,6 +230,9 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 
 		if( MyMonsterPawn.Role == ROLE_Authority )
 		{
+			bUseBlockSprintSpeed = false;
+			AdjustSprintSpeed();
+
 			MyMonsterPawn.ClearTimer( nameOf(Timer_ResetSpecialMoveFlags), self );
 			MyMonsterPawn.ClearTimer( nameOf(Timer_EnableBlocking), self );
 			MyMonsterPawn.ClearTimer( nameOf(Timer_BlockDurationExpired), self );

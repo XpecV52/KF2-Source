@@ -1460,7 +1460,7 @@ End Object
 
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_6
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0'),(LinkedOp=SeqAct_AkLoadBank'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_0')),DrawY=1269,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),ActivateDelay=2.000000,DrawY=1269,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1290,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1311,OverrideDelta=56)
    ObjInstanceVersion=3
@@ -1587,20 +1587,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
    DrawHeight=32
    Name="SeqVar_Object_14"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_0
-   InputLinks(0)=(DrawY=1076,OverrideDelta=13)
-   InputLinks(1)=(DrawY=1096,OverrideDelta=33)
-   OutputLinks(0)=(DrawY=1086,OverrideDelta=23)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3360
-   ObjPosY=1040
-   DrawWidth=111
-   DrawHeight=69
-   Name="SeqAct_AkLoadBank_0"
-   ObjectArchetype=SeqAct_AkLoadBank'AkAudio.Default__SeqAct_AkLoadBank'
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_4

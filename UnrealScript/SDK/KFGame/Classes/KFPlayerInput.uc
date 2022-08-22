@@ -40,7 +40,7 @@ var bool bInvertController;
 var config float GamepadButtonHoldTime;
 
 /** Amount thumbstick should be pressed to activate sprint */
-var const float SprintAnalogThreshold;
+var config float SprintAnalogThreshold;
 
 /** On tap weapon switch: TRUE for last weapon, FALSE for cycle next */
 var config bool bUseGamepadLastWeapon;
@@ -857,6 +857,12 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 {
 	local KFWeapon KFW;
 
+	// No sighting in cinematics
+	if( bCinematicMode )
+	{
+		return;
+	}
+
 	if( bVersusInput && CustomStartFireVersus(5) )
 	{ 
 		return;
@@ -1046,6 +1052,12 @@ exec function SwitchFire()
 
 	if( Pawn != none )
 	{
+		// No firemode switching in cinematics
+		if( bCinematicMode )
+		{
+			return;
+		}
+
 		if( bVersusInput && CustomStartFireVersus(1) )
 		{
 			return;
@@ -1254,6 +1266,19 @@ exec function ReleaseGamepadWeaponSelect()
 	}
 }
 
+/** Checks if we can interrupt the weapon menu timer and open it immediately */
+function bool CheckForWeaponMenuTimerInterrupt()
+{
+	if( IsTimerActive(nameOf(GamepadWeaponMenuTimer), self) )
+	{
+		ClearTimer( nameOf(GamepadWeaponMenuTimer), self );
+		GamepadWeaponMenuTimer();
+		return true;
+	}
+	
+	return false;
+}
+
 /** Called when 'GamepadWeaponSelect' is held down */
 function GamepadWeaponMenuTimer()
 {
@@ -1391,7 +1416,7 @@ exec function GamepadDpadLeft()
 	{
 		Outer.ServerViewPrevPlayer();
 	}
-	else if( bGamepadWeaponSelectOpen )
+	else if( bGamepadWeaponSelectOpen || CheckForWeaponMenuTimerInterrupt() )
 	{
 		SwitchWeaponGroup( 0 );
 	}
@@ -1417,7 +1442,7 @@ exec function GamepadDpadDown()
 	{
 		Outer.ServerNextSpectateMode();
 	}
-	else if( bGamepadWeaponSelectOpen )
+	else if( bGamepadWeaponSelectOpen || CheckForWeaponMenuTimerInterrupt() )
 	{
 		SwitchWeaponGroup( 2 );
 	}
@@ -1443,7 +1468,7 @@ exec function GamepadDpadRight()
 	{
 		Outer.ServerViewNextPlayer();
 	}
-	else if( bGamepadWeaponSelectOpen )
+	else if( bGamepadWeaponSelectOpen || CheckForWeaponMenuTimerInterrupt() )
 	{
 		SwitchWeaponGroup( 1 );
 	}
@@ -1465,7 +1490,7 @@ exec function GamepadDpadRight()
   */
 exec function GamepadDpadUp()
 {
-	if( bGamepadWeaponSelectOpen )
+	if( bGamepadWeaponSelectOpen || CheckForWeaponMenuTimerInterrupt() )
 	{
 		SwitchWeaponGroup( 3 );
 	}
@@ -1663,6 +1688,7 @@ function PreProcessInput( float DeltaTime )
 function PreProcessGamepadInput( float DeltaTime )
 {
 	local KFWeapon KFW;
+	local KFPawn KFP;
 	local float FOVScale;
 	local float ScaledJoyMagnitude;
 
@@ -1717,10 +1743,14 @@ function PreProcessGamepadInput( float DeltaTime )
 	CurrLookUp *= GamepadSensitivityScale;
 
 	// be less sensitive while sprinting
-	if( KFPawn(Pawn) != none && KFPawn(Pawn).bIsSprinting )
+	if( Pawn != none )
 	{
-		CurrTurn *= SprintingSensitivityScale;
-		CurrLookUp *= SprintingSensitivityScale;
+		KFP = KFPawn( Pawn );
+		if( KFP != none && KFP.bIsSprinting )
+		{
+			CurrTurn *= SprintingSensitivityScale;
+			CurrLookUp *= SprintingSensitivityScale;
+		}
 	}
 
 	//`log( "aTurn: " $ aTurn $ " aLookUp: " $ aLookUp $ " DeltaTime: " $ DeltaTime );
@@ -2800,9 +2830,9 @@ defaultproperties
 	AutoTargetTimeLeft=0.1
 	AutoTargetCooldown=0.75
 
-	// 0m:20d, 15m:10d
-	AutoTargetAngleCurve=(Points=((InVal=0.f,OutVal=0.9397f),(InVal=1500.0f, OutVal=0.9848f),(InVal=6000.0f, OutVal=1.f)))
-	// 0m:5d, 10m:2d
+	// [0m:45d] [3m:20d] [15m:10d] [40m:5d]
+	AutoTargetAngleCurve=(Points=((InVal=0.f,OutVal=0.707), (InVal=300.f,OutVal=0.9397f),(InVal=1500.0f, OutVal=0.9848f),(InVal=4000.0f, OutVal=0.9962f),(InVal=6000.0f, OutVal=1.f)))
+	// [0m:5d], [10m:2d]
 	AutoTargetWeakspotCurve=(Points=((InVal=0.f,OutVal=0.9962f),(InVal=1000.0f, OutVal=0.9998f),(InVal=2000.0f, OutVal=1.f)))
 
 	// Adhesion / auto rotate

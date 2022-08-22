@@ -205,23 +205,8 @@ simulated protected function float GetMinCloakPct()
 /** Updates the HUD interaction message and heal icon to show current heal capability */
 private function UpdateHealAvailable()
 {
-	if( IsHealAllowed() )
+	if( !IsHealAllowed() )
 	{
-		if(MyKFPC != none && !bIsQuickHealMessageShowing)
-		{
-			bIsQuickHealMessageShowing = true;
-			MyKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_HealSelfWarning);
-			SpecialMoveCooldowns[5].LastUsedTime = 0;
-		}
-	}
-	else
-	{
-		if( bIsQuickHealMessageShowing )
-		{
-			bIsQuickHealMessageShowing = false;
- 			MyKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_None);
-		}
-
 		//extend the cooldown of heal here
 		SpecialMoveCooldowns[5].LastUsedTime = WorldInfo.TimeSeconds;
 	}
@@ -481,22 +466,20 @@ DefaultProperties
 
 	XPValues(0)=2500 // 2x default because you have to play two rounds
 
-	LocalizationKey=KFPawn_ZedPatriarch
-
 	bUseServerSideGunTracking=true
 	bNeedsCrosshair=true
 	SummonChildrenDuration=10.f
 	HealThreshold=0.5f
 	AutoHealThreshold=0.25f
 	LowHealthThreshold=0.3f
-	Health=2240 //2540
+	Health=1680 //2540 //2240
 
 	SprintSpeed=700.f
 	SprintStrafeSpeed=400.f
 	GroundSpeed=260.f
 
 	Begin Object Name=MeleeHelper_0
-		BaseDamage=40.f //45.f
+		BaseDamage=25.f //45.f //40.0
 		MaxHitRange=375.f
 		MomentumTransfer=40000.f
 		MyDamageType=class'KFDT_Bludgeon_Patriarch'
@@ -529,8 +512,8 @@ DefaultProperties
 	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	bShowOnHud=false))
 	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=5.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-TentacleAttack', NameLocalizationKey="Grab")
 	SpecialMoveCooldowns(4)=(SMHandle=SM_PlayerZedMove_MMB,		CooldownTime=5.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Rocket', NameLocalizationKey="Rocket")
-	SpecialMoveCooldowns(5)=(SMHandle=SM_PlayerZedMove_Q,	CooldownTime=6.f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Heal', Charges=3,NameLocalizationKey="Heal")
-	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,	CooldownTime=2.35f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-MortarStrike', NameLocalizationKey="Mortar")
+	SpecialMoveCooldowns(5)=(SMHandle=SM_PlayerZedMove_Q,		CooldownTime=6.f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-Heal', Charges=3,NameLocalizationKey="Heal")
+	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,		CooldownTime=2.35f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Patriarch-MortarStrike', NameLocalizationKey="Mortar")
 	SpecialMoveCooldowns(7)=(SMHandle=SM_None,					CooldownTime=999.f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Cloak', Charges=60)
 	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Jump', bShowOnHud=false)) // Jump always at end of array
 
@@ -553,6 +536,11 @@ DefaultProperties
 	MaxMortarRangeSQ=6250000.f
 
 	CloakCharges=60
+
+
+
+	IncapSettings(AF_Snare)=	(Vulnerability=(0.7, 0.7, 1.0, 0.7),      Cooldown=8.5,  Duration=1.5)
+
 
 	//defaults
 	ThirdPersonViewOffset={(

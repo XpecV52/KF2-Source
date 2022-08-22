@@ -62,6 +62,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 
 enum EUIIndex
 {
@@ -83,6 +84,19 @@ enum EUIIndex
     UI_ServerBrowserMenu,
     UI_IIS,
     UI_MAX
+};
+
+enum EDelayedPopupPriorityId
+{
+    EDPPID_Misc,
+    EDPPID_SwitchTeams,
+    EDPPID_RegionWait,
+    EDPPID_RegionBest,
+    EDPPID_Gamma,
+    EDPPID_ExitToMainMenu,
+    EDPPID_JoinFailure,
+    EDPPID_ControllerDisconnect,
+    EDPPID_MAX
 };
 
 enum EStartMenuState
@@ -119,17 +133,33 @@ struct SMenuPaths
 
 struct DelayedPopup
 {
-    var KFGFxMoviePlayer_Manager.EPopUpType PopupType;
-    var string Title;
-    var string Description;
-    var string LeftButton;
+    var bool bShown;
+    var int Priority;
+    var KFGFxMoviePlayer_Manager.EPopUpType PopUpType;
+    var string TitleString;
+    var string DescriptionString;
+    var string LeftButtonString;
+    var string RightButtonString;
+    var delegate<PendingLeftButtonDelegate> LeftButtonDelegate;
+    var delegate<PendingRightButtonDelegate> RightButtonDelegate;
+    var string MiddleButtonString;
+    var delegate<PendingMiddleButtonDelegate> MiddleButtonDelegate;
+    var name OverridingSoundEffect;
 
     structdefaultproperties
     {
-        PopupType=EPopUpType.EConfirmation
-        Title=""
-        Description=""
-        LeftButton=""
+        bShown=false
+        Priority=0
+        PopUpType=EPopUpType.EConfirmation
+        TitleString=""
+        DescriptionString=""
+        LeftButtonString=""
+        RightButtonString=""
+        ftButt=None
+        ghtButt=None
+        MiddleButtonString=""
+        ddleButt=None
+        OverridingSoundEffect=None
     }
 };
 
@@ -186,6 +216,7 @@ var bool bPlayerInLobby;
 var bool bSetGamma;
 var class<KFGFxWidget_PartyInGame> InGamePartyWidgetClass;
 var array<DelayedPopup> DelayedPopups;
+var transient int ActivePopup;
 var KFGFxObject_Popup CurrentPopup;
 var protected array<SPopupData> PopupData;
 var const localized string FailedSearchTitleString;
@@ -254,7 +285,7 @@ function Init(optional LocalPlayer LocPlay)
         ScaleStage = Class'Engine'.static.GetTitleSafeArea();
         SetViewport(int((ViewportSize.X - (ViewportSize.X * ScaleStage)) / float(2)), int((ViewportSize.Y - (ViewportSize.Y * ScaleStage)) / float(2)), int(ViewportSize.X * ScaleStage), int(ViewportSize.Y * ScaleStage));
     }
-    bUsingGamepad = Class'WorldInfo'.static.IsConsoleBuild(8);
+    bUsingGamepad = Class'WorldInfo'.static.IsConsoleBuild();
     UpdateDynamicIgnoreKeys();
 }
 
@@ -266,8 +297,9 @@ function OnProfileSettingsRead()
         bSetGamma = CachedProfile.GetProfileBool(129);
         if(!bSetGamma && !Class'KFGameEngine'.static.CheckSkipGammaCheck())
         {
+            LogInternal(((((((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "33") @ "bSetGamma:'") $ string(bSetGamma)) $ "'") @ "CurrentMenu:'") $ string(CurrentMenu)) $ "'");
             ManagerObject.SetBool("bStartUpGamma", true);
-            OpenPopup(1, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
+            DelayedOpenPopup(1, 4, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
         }
     }
 }
@@ -277,6 +309,7 @@ function LaunchMenus(optional bool bForceSkipLobby)
     local GFxWidgetBinding WidgetBinding;
     local bool bSkippedLobby, bShowIIS;
     local KFGameViewportClient GVC;
+    local KFPlayerController KFPC;
     local bool bShowMenuBg;
     local TextureMovie BGTexture;
 
@@ -287,8 +320,8 @@ function LaunchMenus(optional bool bForceSkipLobby)
         WidgetBinding.WidgetClass = Class'KFGFxWidget_PartyMainMenu';
         bShowIIS = (GVC != none) && !GVC.bSeenIIS;
         BGTexture = ((GetPC().WorldInfo.IsConsoleBuild() && bShowIIS) ? IISMovie : BackgroundMovie);
-        SetExternalTexture("background", BackgroundMovie);
-        SetExternalTexture("IIS_BG", IISMovie);
+        SetExternalTexture("background", BackgroundMovie, true);
+        SetExternalTexture("IIS_BG", IISMovie, true);
         bShowMenuBg = GVC.bSeenIIS || !GetPC().WorldInfo.IsConsoleBuild();
         ManagerObject.SetBool("backgroundVisible", bShowMenuBg);
         ManagerObject.SetBool("IISMovieVisible", !bShowMenuBg);
@@ -322,6 +355,7 @@ function LaunchMenus(optional bool bForceSkipLobby)
     if(!bSkippedLobby)
     {
         LoadWidgets(WidgetPaths);
+        LogInternal((((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "11") @ "bShowIIS:'") $ string(bShowIIS)) $ "'");
         if(Class'WorldInfo'.static.IsConsoleBuild() && bShowIIS)
         {
             OpenMenu(16, false);            
@@ -336,6 +370,12 @@ function LaunchMenus(optional bool bForceSkipLobby)
             TimerHelper.SetTimer(0.1, false, 'DelayedShowDisconnectMessage', self);
             GVC.bNeedDisconnectMessage = false;
         }
+        if(GVC.bHandlePlayTogether)
+        {
+            KFPC = KFPlayerController(GetPC());
+            KFPC.OnGameDestroyedForPlayTogetherComplete('Party', true);
+            GVC.bHandlePlayTogether = false;
+        }
     }
     if(bForceSkipLobby)
     {
@@ -344,8 +384,9 @@ function LaunchMenus(optional bool bForceSkipLobby)
     }
     if(((!bSetGamma && !Class'KFGameEngine'.static.CheckSkipGammaCheck()) && CachedProfile != none) && CachedProfile.AsyncState != 1)
     {
+        LogInternal(((((((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "22") @ "bSetGamma:'") $ string(bSetGamma)) $ "'") @ "bShowIIS:'") $ string(bShowIIS)) $ "'");
         ManagerObject.SetBool("bStartUpGamma", true);
-        OpenPopup(1, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
+        DelayedOpenPopup(1, 4, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
     }
 }
 
@@ -357,42 +398,73 @@ function DelayedShowDisconnectMessage()
     }
     else
     {
-        OpenPopup(2, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), Localize("Notifications", "ConnectionLostMessage", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+        DelayedOpenPopup(2, 6, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), Localize("Notifications", "ConnectionLostMessage", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
     }
 }
 
-function SetDelayedShowPopup(KFGFxMoviePlayer_Manager.EPopUpType PopupType, string TitleString, string DescriptionString, optional string LeftButtonString)
+function DelayedOpenPopup(KFGFxMoviePlayer_Manager.EPopUpType PopUpType, int PopupPriority, string TitleString, string DescriptionString, optional string LeftButtonString, optional string RightButtonString, optional delegate<PendingLeftButtonDelegate> LeftButtonDelegate, optional delegate<PendingRightButtonDelegate> RightButtonDelegate, optional string MiddleButtonString, optional delegate<PendingMiddleButtonDelegate> MiddleButtonDelegate, optional name OverridingSoundEffect)
 {
     local DelayedPopup PopUp;
+    local int I;
 
-    if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentPopup != none)
+    PopUp.PopUpType = PopUpType;
+    PopUp.TitleString = TitleString;
+    PopUp.DescriptionString = DescriptionString;
+    PopUp.LeftButtonString = LeftButtonString;
+    PopUp.RightButtonString = RightButtonString;
+    PopUp.LeftButtonDelegate = LeftButtonDelegate;
+    PopUp.RightButtonDelegate = RightButtonDelegate;
+    PopUp.MiddleButtonString = MiddleButtonString;
+    PopUp.MiddleButtonDelegate = MiddleButtonDelegate;
+    PopUp.OverridingSoundEffect = OverridingSoundEffect;
+    PopUp.Priority = PopupPriority;
+    if((PopupPriority == 3) && DelayedPopups[DelayedPopups.Length - 1].Priority == 2)
     {
-        PopUp.PopupType = PopupType;
-        PopUp.Title = TitleString;
-        PopUp.Description = DescriptionString;
-        PopUp.LeftButton = LeftButtonString;
-        DelayedPopups.AddItem(PopUp;
-        TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);        
+        UnloadCurrentPopup();        
     }
     else
     {
-        OpenPopup(PopupType, TitleString, DescriptionString, LeftButtonString);
+        if((CurrentPopup != none) && DelayedPopups.Length > 0)
+        {
+            if(DelayedPopups[DelayedPopups.Length - 1].Priority < PopupPriority)
+            {
+                DelayedPopups[DelayedPopups.Length - 1].bShown = false;
+            }
+        }
     }
+    I = DelayedPopups.Length;
+    J0x293:
+
+    if(I > 0)
+    {
+        if((PopupPriority > 0) && PopupPriority == DelayedPopups[I - 1].Priority)
+        {
+            return;
+        }
+        if(DelayedPopups[I - 1].Priority <= PopupPriority)
+        {
+            DelayedPopups.InsertItem(I, PopUp;
+            TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
+            return;
+        }
+        -- I;
+        goto J0x293;
+    }
+    DelayedPopups.InsertItem(0, PopUp;
+    TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
 }
 
 function ShowDelayedPopupMessage()
 {
-    local DelayedPopup PopUp;
-
-    if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentPopup != none)
+    if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentMenu == IISMenu)
     {
         TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
+        return;
     }
-    if(DelayedPopups.Length > 0)
+    if((DelayedPopups.Length > 0) && !DelayedPopups[DelayedPopups.Length - 1].bShown)
     {
-        PopUp = DelayedPopups[0];
-        DelayedPopups.Remove(0, 1;
-        OpenPopup(PopUp.PopupType, PopUp.Title, PopUp.Description, PopUp.LeftButton);
+        OpenPopup(DelayedPopups[DelayedPopups.Length - 1].PopUpType, DelayedPopups[DelayedPopups.Length - 1].TitleString, DelayedPopups[DelayedPopups.Length - 1].DescriptionString, DelayedPopups[DelayedPopups.Length - 1].LeftButtonString, DelayedPopups[DelayedPopups.Length - 1].RightButtonString, DelayedPopups[DelayedPopups.Length - 1].LeftButtonDelegate, DelayedPopups[DelayedPopups.Length - 1].RightButtonDelegate, DelayedPopups[DelayedPopups.Length - 1].MiddleButtonString, DelayedPopups[DelayedPopups.Length - 1].MiddleButtonDelegate, DelayedPopups[DelayedPopups.Length - 1].OverridingSoundEffect);
+        DelayedPopups[DelayedPopups.Length - 1].bShown = true;
     }
 }
 
@@ -610,13 +682,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     return bHandled;
 }
 
-function StatsInitialized()
-{
-    if(PartyWidget != none)
-    {
-        PartyWidget.StatsInit();
-    }
-}
+function StatsInitialized();
 
 function AllowCloseMenu()
 {
@@ -666,6 +732,10 @@ function SetMenusOpen(bool bIsOpen)
     bMenusOpen = bIsOpen;
     bMenusActive = bIsOpen;
     SetMovieCanReceiveInput(bIsOpen);
+    if(bUsingGamepad)
+    {
+        FlushPlayerInput(false);
+    }
     HudWrapper = KFGFxHudWrapper(HUD);
     if((HudWrapper != none) && HudWrapper.HudMovie != none)
     {
@@ -775,7 +845,6 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
         MenuPath = MenuSWFPaths[NewMenuIndex].BaseSWFPath;
     }
     LoadMenu(MenuPath, bShowWidgets);
-    SetMovieCanReceiveInput(true);
 }
 
 function LoadMenu(string Path, bool bShowWidgets)
@@ -812,15 +881,13 @@ function ClosePostGameMenu()
 function CloseMenus(optional bool bForceClose)
 {
     bForceClose = false;
-    if(bForceClose)
-    {
-        LastForceCloseTime = GetPC().WorldInfo.TimeSeconds;
-    }
+    LogInternal(((((((((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "PartyWidget:'") $ string(PartyWidget)) $ "'") @ "bAfterLobby:'") $ string(bAfterLobby)) $ "'") @ "bForceClose:'") $ string(bForceClose)) $ "'");
     if((bMenusOpen && bCanCloseMenu) || bForceClose)
     {
         UnloadCurrentPopup();
         if((((!bAfterLobby && PartyWidget != none) || (GetPC()) == none) || GetPC().WorldInfo.GRI == none) || GetPC().WorldInfo.GRI.bMatchIsOver)
         {
+            LogInternal("Setting PartyWidget Visibility false, bAfterLobby = true");
             PartyWidget.SetReadyButtonVisibility(false);
             bAfterLobby = true;
         }
@@ -830,13 +897,13 @@ function CloseMenus(optional bool bForceClose)
             {
                 PlaySoundFromTheme('TRADER_EXIT_BUTTON_CLICK', 'UI');
             }
+            LogInternal(((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "CurrentMenu:'") $ string(CurrentMenu)) $ "'");
             CurrentMenu.OnClose();
             CurrentMenu = none;
         }
         bMenusActive = false;
         ConditionalPauseGame(false);
         SetMenuVisibility(false);
-        SetMovieCanReceiveInput(false);
         SetHUDVisiblity(true);
     }
 }
@@ -867,6 +934,7 @@ event OnCleanup()
 
 function bool ToggleMenus()
 {
+    LogInternal(((((((((((((((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "bMenusOpen:'") $ string(bMenusOpen)) $ "'") @ "HUD.bShowHUD:'") $ string(HUD.bShowHUD)) $ "'") @ "bCanCloseMenu:'") $ string(bCanCloseMenu)) $ "'") @ "bPostGameState:'") $ string(bPostGameState)) $ "'") @ "CurrentMenuIndex:'") $ string(CurrentMenuIndex)) $ "'");
     if(!bMenusOpen || HUD.bShowHUD)
     {
         ManagerObject.SetBool("bOpenedInGame", true);
@@ -876,6 +944,7 @@ function bool ToggleMenus()
         }
         else
         {
+            LogInternal((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName()));
             OpenMenu(1);
             UpdateMenuBar();
         }
@@ -935,7 +1004,7 @@ event MenusFinishedClosing()
 
 function SetWidgetsVisible(bool bVisible)
 {
-    LogInternal("BRIAN:: SetWidgetsVisible" @ string(bVisible));
+    LogInternal(((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "bVisible:'") $ string(bVisible)) $ "'");
     ManagerObject.ActionScriptVoid("setWidgetsVisiblity");
 }
 
@@ -998,7 +1067,7 @@ function NotifyUnsuccessfulSearch()
             StartMenu.OptionsComponent.SetSearching(false);
         }
         SetSearchingForMatch(false);
-        OpenPopup(0, FailedSearchTitleString, FailedSearchString, BrowseServersString, Class'KFCommon_LocalizedStrings'.default.OKString, StartMenu.Callback_OpenServerBrowser);
+        DelayedOpenPopup(0, 0, FailedSearchTitleString, FailedSearchString, BrowseServersString, Class'KFCommon_LocalizedStrings'.default.OKString, StartMenu.Callback_OpenServerBrowser);
     }
 }
 
@@ -1034,32 +1103,25 @@ function InitializePopup(name WidgetPath, KFGFxObject_Popup Widget)
     }
 }
 
-function OpenPopup(KFGFxMoviePlayer_Manager.EPopUpType PopupType, string TitleString, string DescriptionString, optional string LeftButtonString, optional string RightButtonString, optional delegate<PendingLeftButtonDelegate> LeftButtonDelegate, optional delegate<PendingRightButtonDelegate> RightButtonDelegate, optional string MiddleButtonString, optional delegate<PendingMiddleButtonDelegate> MiddleButtonDelegate, optional name OverridingSoundEffect)
+private final function OpenPopup(KFGFxMoviePlayer_Manager.EPopUpType PopUpType, string TitleString, string DescriptionString, optional string LeftButtonString, optional string RightButtonString, optional delegate<PendingLeftButtonDelegate> LeftButtonDelegate, optional delegate<PendingRightButtonDelegate> RightButtonDelegate, optional string MiddleButtonString, optional delegate<PendingMiddleButtonDelegate> MiddleButtonDelegate, optional name OverridingSoundEffect)
 {
-    if((CurrentPopup != none) && PopupType == CurrentPopUpType)
+    if(PopupData[PopUpType].SWFPath != "")
     {
-        CurrentPopup.UpdateDescritionText(DescriptionString);        
-    }
-    else
-    {
-        if(PopupData[PopupType].SWFPath != "")
+        UnloadCurrentPopup();
+        CurrentPopUpType = PopUpType;
+        LoadPopup(PopupData[PopUpType].SWFPath, TitleString, DescriptionString, LeftButtonString, RightButtonString, MiddleButtonString);
+        bCaptureInput = true;
+        bBlurLesserMovies = true;
+        AssignPendingLeftButtonDelegate(LeftButtonDelegate);
+        AssignPendingMiddleButtonDelegate(MiddleButtonDelegate);
+        AssignPendingRightButtonDelegate(RightButtonDelegate);
+        if(OverridingSoundEffect == 'None')
         {
-            UnloadCurrentPopup();
-            CurrentPopUpType = PopupType;
-            LoadPopup(PopupData[PopupType].SWFPath, TitleString, DescriptionString, LeftButtonString, RightButtonString, MiddleButtonString);
-            bCaptureInput = true;
-            bBlurLesserMovies = true;
-            AssignPendingLeftButtonDelegate(LeftButtonDelegate);
-            AssignPendingMiddleButtonDelegate(MiddleButtonDelegate);
-            AssignPendingRightButtonDelegate(RightButtonDelegate);
-            if(OverridingSoundEffect == 'None')
-            {
-                PlaySoundFromTheme('Alert_Popup', SoundThemeName);                
-            }
-            else
-            {
-                PlaySoundFromTheme(OverridingSoundEffect, SoundThemeName);
-            }
+            PlaySoundFromTheme('Alert_Popup', SoundThemeName);            
+        }
+        else
+        {
+            PlaySoundFromTheme(OverridingSoundEffect, SoundThemeName);
         }
     }
 }
@@ -1067,11 +1129,13 @@ function OpenPopup(KFGFxMoviePlayer_Manager.EPopUpType PopupType, string TitleSt
 function LoadPopup(string Path, optional string TitleString, optional string DescriptionString, optional string LeftButtonString, optional string RightButtonString, optional string MiddleButtonString)
 {
     ManagerObject.ActionScriptVoid("loadCurrentPopup");
+    currentFocus();
 }
 
 function UnloadCurrentPopup()
 {
     ManagerObject.ActionScriptVoid("unloadCurrentPopup");
+    LogInternal(((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "CurrentPopup:'") $ string(CurrentPopup)) $ "'");
     if(CurrentPopup != none)
     {
         CurrentPopup.OnClosed();
@@ -1083,6 +1147,14 @@ function UnloadCurrentPopup()
             bCaptureInput = false;
         }
     }
+    if(DelayedPopups.Length > 0)
+    {
+        if(DelayedPopups[DelayedPopups.Length - 1].bShown)
+        {
+            DelayedPopups.Remove(DelayedPopups.Length - 1, 1;
+        }
+    }
+    TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
 }
 
 function LoadPopups(array<string> Paths)
@@ -1114,7 +1186,14 @@ function ConditionalPauseGame(bool bPause)
         {
             if((GetPC()) != none)
             {
-                GetPC().SetPause(false);
+                if(!bCanCloseMenu)
+                {
+                    LogInternal(((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "We were going to unpause here... but maybe that's not correct");                    
+                }
+                else
+                {
+                    GetPC().SetPause(false);
+                }
             }
         }
     }
@@ -1215,6 +1294,7 @@ function ChangeOverviewState(bool bLeaderIsOnServerBrowser)
 event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInputEvent InputEvent)
 {
     local KFPlayerReplicationInfo KFPRI;
+    local bool bLoading;
 
     KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
     if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying())
@@ -1227,9 +1307,9 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
     }
     else
     {
-        if(InputEvent == 0)
+        if((InputEvent == 0) && bMenusOpen)
         {
-            if(ButtonName == 'XboxTypeS_RightThumbStick')
+            if(ButtonName == 'XboxTypeS_Y')
             {
                 if(((!GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby) && !Class'WorldInfo'.static.IsMenuLevel()) && CurrentPopup == none)
                 {
@@ -1240,17 +1320,28 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
             }
             else
             {
-                if(MenuBarWidget != none)
+                if(ButtonName == 'XboxTypeS_RightThumbStick')
                 {
-                    if(ButtonName == 'XboxTypeS_RightShoulder')
+                    if(CurrentMenu != none)
                     {
-                        MenuBarWidget.CalloutButtonBumperPress(1);                        
-                    }
-                    else
+                        CurrentMenu.OnR3Pressed();
+                    }                    
+                }
+                else
+                {
+                    bLoading = ManagerObject.GetBool("_bLoading");
+                    if((MenuBarWidget != none) && !bLoading)
                     {
-                        if(ButtonName == 'XboxTypeS_LeftShoulder')
+                        if(ButtonName == 'XboxTypeS_RightShoulder')
                         {
-                            MenuBarWidget.CalloutButtonBumperPress(-1);
+                            MenuBarWidget.CalloutButtonBumperPress(1);                            
+                        }
+                        else
+                        {
+                            if(ButtonName == 'XboxTypeS_LeftShoulder')
+                            {
+                                MenuBarWidget.CalloutButtonBumperPress(-1);
+                            }
                         }
                     }
                 }
@@ -1259,11 +1350,11 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
     }
     if(CurrentMenu != none)
     {
-        CurrentMenu.FilterButtonInput(ControllerId, ButtonName, InputEvent);
         if(!Class'WorldInfo'.static.IsConsoleBuild(8))
         {
             CheckIfUsingGamepad();
         }
+        return CurrentMenu.FilterButtonInput(ControllerId, ButtonName, InputEvent);
     }
     return false;
 }
@@ -1293,6 +1384,10 @@ function bool GetUsingGamepad()
     local PlayerController PC;
 
     PC = GetPC();
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        return true;
+    }
     if((PC == none) || PC.PlayerInput == none)
     {
         return false;
@@ -1361,7 +1456,7 @@ function ShowKickVote(PlayerReplicationInfo PRI)
     if(bMenusOpen)
     {
         bKickVotePopupActive = true;
-        OpenPopup(0, Class'KFGFxWidget_KickVote'.default.VoteKickString, VotePRI.PlayerName, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVote, CastNoVote);
+        DelayedOpenPopup(0, 0, Class'KFGFxWidget_KickVote'.default.VoteKickString, VotePRI.PlayerName, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVote, CastNoVote);
     }
 }
 
@@ -1414,7 +1509,6 @@ function currentFocus()
 
 defaultproperties
 {
-    AllowMenusOpenAfterForceCloseTime=0.5
     MenuSWFPaths(0)=(BaseSWFPath="../UI_Menus/StartMenu_SWF.swf",ConsoleSWFPath="")
     MenuSWFPaths(1)=(BaseSWFPath="../UI_Menus/PerksMenu_SWF.swf",ConsoleSWFPath="")
     MenuSWFPaths(2)=(BaseSWFPath="../UI_Menus/GearMenu_SWF.swf",ConsoleSWFPath="")

@@ -200,7 +200,7 @@ event PostBeginPlay()
             if(!WasLaunchedByPlayfab())
             {
                 UpdateGameSettings();
-                PlayfabInter.ServerRegisterGame(GetFriendlyNameForCurrentGameMode());
+                PlayfabInter.ServerRegisterGame();
             }
         }        
     }
@@ -1952,7 +1952,7 @@ function NavigationPoint FindPlayerStart(Controller Player, optional byte InTeam
             }            
         }        
     }
-    if((ShouldSpawnAtStartSpot(Player)) && (PlayerStart(Player.StartSpot) == none) || (RatePlayerStart(PlayerStart(Player.StartSpot), InTeam, Player)) >= 0)
+    if(ShouldSpawnAtStartSpot(Player))
     {
         return Player.StartSpot;
     }
@@ -2722,7 +2722,7 @@ event OnRetreivedPFInternalUserData(const string ForPlayerId, array<string> Keys
 // Export UGameInfo::execWasLaunchedByPlayfab(FFrame&, void* const)
 native function bool WasLaunchedByPlayfab();
 
-function string GetFriendlyNameForCurrentGameMode();
+event string GetFriendlyNameForCurrentGameMode();
 
 event bool GetRequiresPassword()
 {

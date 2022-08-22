@@ -383,8 +383,8 @@ defaultproperties
    bAutoStartAmbientSound=True
    bStopAmbientSoundOnExplode=True
    AlwaysRelevantDistanceSquared=6250000.000000
-   TouchTimeThreshhold=0.150000
    GlassShatterType=FMGS_ShatterAll
+   TouchTimeThreshhold=0.150000
    ExplosionActorClass=Class'KFGame.KFExplosionActor'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent
       bStopWhenOwnerDestroyed=True

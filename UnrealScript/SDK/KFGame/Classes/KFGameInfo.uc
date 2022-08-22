@@ -513,6 +513,18 @@ function string GetFriendlyNameForCurrentGameMode()
 }
 
 
+function int GetGameModeNum()
+{
+	return GetGameModeNumFromClass( PathName(default.class) );
+}
+
+
+function string GetFullGameModePath()
+{
+	return GetGameModeClassFromNum( GetGameModeNum() );
+}
+
+
 /**
  * @brief Marks the game as running an out-of-date version of the engine or workshop content. Designed to be callable on default object
  */
@@ -558,7 +570,7 @@ event InitGame( string Options, out string ErrorMessage )
 		}
 	}
 
-	if( WorldInfo.IsConsoleDedicatedServer() && ParseOption( Options, "Private" ) ~= "1" )
+	if( ParseOption( Options, "Private" ) ~= "1" )
 	{
 		GameEngine(class'Engine'.static.GetEngine()).bPrivateServer = true;
 		UpdateGameSettings();
@@ -708,6 +720,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 {
 	local bool bSpectator;
 	local bool bPerfTesting;
+	local string DesiredDifficulty, DesiredWaveLength, DesiredGameMode;
 
 	// Check for an arbitrated match in progress and kick if needed
 	if (WorldInfo.NetMode != NM_Standalone && bUsingArbitration && bHasArbitratedHandshakeBegun)
@@ -722,6 +735,34 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 		`log(Address@"is banned, rejecting...");
 		ErrorMessage = "<Strings:KFGame.KFLocalMessage.BannedFromServerString>";
 		return;
+	}
+
+	// Check against what is expected from the client in the case of quick join/server browser. The server settings can change from the time the server gets the properties from the backend
+	if( WorldInfo.NetMode == NM_DedicatedServer && !HasOption( Options, "bJoinViaInvite" ) )
+	{
+		DesiredDifficulty = ParseOption( Options, "Difficulty" );
+		if( DesiredDifficulty != "" && int(DesiredDifficulty) != GameDifficulty )
+		{
+			`log("Got bad difficulty"@DesiredDifficulty@"expected"@GameDifficulty);
+			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+			return;
+		}
+
+		DesiredWaveLength = ParseOption( Options, "GameLength" );
+		if( DesiredWaveLength != "" && int(DesiredWaveLength) != GameLength )
+		{
+			`log("Got bad wave length"@DesiredWaveLength@"expected"@GameLength);
+			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+			return;
+		}
+
+		DesiredGameMode = ParseOption( Options, "Game" );
+		if( DesiredGameMode != "" && !(DesiredGameMode ~= GetFullGameModePath()) )
+		{
+			`log("Got bad wave length"@DesiredGameMode@"expected"@GetFullGameModePath());
+			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+			return;
+		}
 	}
 
 
@@ -773,9 +814,9 @@ event PostLogin( PlayerController NewPlayer )
 			if( KFPC.Pawn != none && KFPawn_Customization(KFPC.Pawn) != none )
 			{
 				KFPawn_Customization(KFPC.Pawn).SetServerHidden( true );
+				KFPC.SetCameraMode( 'PlayerZedWaiting' );
 			}
 			KFPC.ClientSetFrontEnd( KFGFxManagerClass, false );
-			KFPC.SetCameraMode( 'PlayerZedWaiting' );
 		}
 		else
 		{
@@ -1131,22 +1172,35 @@ function RestartPlayer(Controller NewPlayer)
 {
 	local KFPlayerController KFPC;
 	local KFPerk MyPerk;
+`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))
+	local bool bIsBenchmark;
+`endif
 
 	KFPC = KFPlayerController( NewPlayer );
 
-	// Make sure the perk is initialized before spawning in, if not, wait for it -- networked games only
-	if( WorldInfo.NetMode != NM_StandAlone )
+	// Make sure the perk is initialized before spawning in, if not, wait for it
+	// @NOTE: We still do this in standalone games because we may need to wait for Steam -MattF
+`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))	
+	// Benchmark silliness. If we allow this code to run, it takes control away from the benchmark
+	// matinee director and the command fails. -MattF
+	if( !class'WorldInfo'.Static.IsConsoleBuild()
+		&& !class'WorldInfo'.Static.IsConsoleDedicatedServer()
+		&& InStr(WorldInfo.GetLocalURL(), "?CAUSEEVENT=BENCHMARK",, true) > -1 )
 	{
-	    if( KFPC != none && KFPC.GetTeamNum() != 255 )
-	    {
-	    	MyPerk = KFPC.GetPerk();
-	    	if( MyPerk == none || !MyPerk.bInitialized )
-	    	{
-	    		KFPC.WaitForPerkAndRespawn();
-	    		return;
-	    	}
-	    }
+		bIsBenchmark = true;
 	}
+    if( KFPC != none && KFPC.GetTeamNum() != 255 && !bIsBenchmark )
+`else
+	if( KFPC != none && KFPC.GetTeamNum() != 255 )
+`endif
+    {
+    	MyPerk = KFPC.GetPerk();
+    	if( MyPerk == none || !MyPerk.bInitialized )
+    	{
+    		KFPC.WaitForPerkAndRespawn();
+    		return;
+    	}
+    }
 
 	// If we have a customization pawn, destroy it before spawning a new pawn with super.RestartPlayer
     if( NewPlayer.Pawn != none && KFPawn_Customization(NewPlayer.Pawn) != none )
@@ -1174,11 +1228,24 @@ function float RatePlayerStart(PlayerStart P, byte Team, Controller Player)
 {
 	local float Rating;
 
-	Rating = Super.RatePlayerStart(P, Team, Player);
-	// rate based on distance from friendlies
-	if ( !CheckPointCollision( P, Player ) )
+`if(`notdefined(ShippingPC))
+	// Random starts are done by disabling starts in kismet.  It's not ideal,
+	// but we can assume all disabled starts are disabled this way.
+	if ( !P.bEnabled && class'KFGameEngine'.static.CheckNoRandomStart() )
 	{
-	 	return 0.01;
+		P.bEnabled = TRUE;
+	}
+`endif
+
+	Rating = Super.RatePlayerStart(P, Team, Player);
+
+	// If bEnabled (Rating == 5.f), check proximity
+	if ( P.bEnabled )
+	{
+		if ( !CheckSpawnProximity( P, Player, Team ) )
+		{
+		 	return 5.1f; // Higher than disabled, but lower than default
+		}
 	}
 
 	return Rating;
@@ -1189,18 +1256,19 @@ function bool ShouldSpawnAtStartSpot(Controller Player)
 {
 	local PlayerStart StartSpot;
 
-	// If spawn as been disabled (e.g. kismet) choose again
-	if ( Super.ShouldSpawnAtStartSpot(Player) )
+	// Without NM_Standalone (see super) for online predicted spawn location / texture streaming
+	if ( Player != None && Player.StartSpot != None &&
+	     (IsInitialSpawnPointSelection() || (Player.PlayerReplicationInfo != None && Player.PlayerReplicationInfo.bWaitingPlayer)) )
 	{
 		StartSpot = PlayerStart(Player.StartSpot);
 		if ( StartSpot == None )
 		{
-			return true; // Not a PlayerStart class (e.g. Teleporter / Play From Here)
+			// Not a PlayerStart class (e.g. Teleporter / Play From Here)
+			return true; 
 		}
-		else if ( StartSpot.bEnabled )
-		{
-			return true; // valid (enabled) PlayerStart
-		}
+
+		// 5 == disabled, 5.1 == collision, 6 == okay
+		return RatePlayerStart(StartSpot, Player.GetTeamNum(), Player) >= 6.0;
 	}
 
 	return false;
@@ -1213,7 +1281,7 @@ function KFCustomizationPoint FindCustomizationStart( Controller Player )
 
 	ForEach AllActors( class 'KFCustomizationPoint', CP )
 	{
-		if( CheckPointCollision( CP, Player ) )
+		if( CheckSpawnProximity(CP, Player, Player.GetTeamNum(), true) )
 		{
 			return CP;
 		}
@@ -1222,23 +1290,50 @@ function KFCustomizationPoint FindCustomizationStart( Controller Player )
 	return CP;
 }
 
-function bool CheckPointCollision( NavigationPoint P, Controller Player )
+/** Returns false if this is near another player or in-use spawn point */
+function bool CheckSpawnProximity( NavigationPoint P, Controller Player, byte TeamNum, optional bool bCustomizationPoint )
 {
-	local KFPlayerController KFPC;
+	local PlayerController PC;
 	local KFPawn_Customization CPawn;
-	foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+
+	foreach WorldInfo.AllControllers(class'PlayerController', PC)
 	{
-		if ( KFPC != Player && KFPC.Pawn != None && !KFPC.Pawn.bHidden )
+		if ( PC == Player )
+			continue;
+
+		// During initial StartSpot selection, before 1st spawn, choose a unique spawn for each player
+		if ( IsInitialSpawnPointSelection() && !bCustomizationPoint )
 		{
-			CPawn = KFPawn_Customization(KFPC.Pawn);
-			if( (CPawn == none || !CPawn.bServerHidden)
-				&& VSizeSq(KFPC.Pawn.Location - P.Location) < Square(2.1 * KFPC.Pawn.GetCollisionRadius()) )
+			if ( PC.StartSpot == P && PC.GetTeamNum() == TeamNum )
 			{
 				return false;
 			}
 		}
+		// During gameplay, or using customization starts, ignore StartSpot and use distance
+		else if ( PC.Pawn != None && !PC.Pawn.bHidden )
+		{
+			if ( bCustomizationPoint )
+			{
+				// invisible customization pawns are okay
+				CPawn = KFPawn_Customization(PC.Pawn);
+				if ( CPawn != None && CPawn.bServerHidden )
+				{
+					continue;
+				}
+			}
+
+			if( VSizeSq(PC.Pawn.Location - P.Location) < Square(2.1 * PC.Pawn.GetCollisionRadius()) )
+			{
+				return false;
+			}				
+		}
 	}
 	return true;
+}
+
+function bool IsInitialSpawnPointSelection()
+{
+	return bWaitingToStartMatch;
 }
 
 /* @see GameInfo::SetPlayerDefaults */
@@ -2410,7 +2505,8 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 
 		if( ClientAuthTicket != "" )
 		{
-			PlayfabInter.ServerValidatePlayer( ClientAuthTicket );
+			// BWJ - 8-12-16 - Disabling this API. I don't see a reason for it.
+	//		PlayfabInter.ServerValidatePlayer( ClientAuthTicket );
 		}
 
 		SpawnedPC.PlayerReplicationInfo.PlayfabPlayerId = PlayerfabPlayerId;
@@ -2552,7 +2648,7 @@ function bool AddPlayerReservations(out array<UniqueNetId> PlayerIDs)
 	}
 	if (OldCount == 0 && PlayerReservations.length > 0)
 	{
-		SetTimer(1.f, true, nameOf(TimeReservations) );
+		SetTimer( 1.f, true, nameOf(TimeReservations) );
 	}
 	return true;
 }
@@ -2798,8 +2894,8 @@ auto State PendingMatch
 			}
 			else if( IsTimerActive( nameof(LobbyCountdownComplete) ) )
 			{
-					ClearTimer( nameof(LobbyCountdownComplete) );
-					MyKFGRI.bStopCountDown = true;
+				ClearTimer( nameof(LobbyCountdownComplete) );
+				MyKFGRI.bStopCountDown = true;
 			}
             // If this is a dedicated server locked for use by players,
 			// check if anyone is connected after ready-up time expires,
@@ -2814,13 +2910,32 @@ auto State PendingMatch
 
 function SetCountdown(bool bFinalCountdown, byte CountdownTime)
 {
-	local KFPlayerController KFPC;
+	local KFPlayerController PC;
+	local byte TeamNum;
 
 	bStartFinalCount = bFinalCountdown;
 	SetTimer(CountdownTime, false, nameof(LobbyCountdownComplete));
-	foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+
+	foreach WorldInfo.AllControllers(class'KFPlayerController', PC)
 	{
-		KFPC.ClientSetCountdown(bFinalCountdown, CountdownTime);
+		if ( bFinalCountdown )
+		{
+			// If spawn as been invalidated (e.g. kismet, team swap) choose again now,
+			// so that the client can stream textures at the correct location
+			TeamNum = PC.GetTeamNum();
+			if ( TeamNum == 0 && !ShouldSpawnAtStartSpot(PC) )
+			{
+				// clear old StartSpot so it's not re-evaluated by FindPlayerStart()
+				PC.StartSpot = None;
+				PC.StartSpot = FindPlayerStart(PC, TeamNum);
+			}
+			
+			PC.ClientSetCountdown(bFinalCountdown, CountdownTime, PC.StartSpot);
+		}
+		else
+		{
+			PC.ClientSetCountdown(bFinalCountdown, CountdownTime);
+		}
 	}
 }
 
@@ -2858,7 +2973,7 @@ private function CheckServerUnlock()
 	if ( GetNumPlayers() == 0 )
 	{
 		bWasAvailableForTakeover = KFEngine.bAvailableForTakeover;
-		
+
 		// Won't unlock a server that's not lockable
 		KFEngine.UnlockServer();
 		if (!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
@@ -2878,6 +2993,9 @@ private native final function StripPasswordFromLastURL(KFGameEngine Engine);
 
 function StartMatch()
 {
+	// Clear bWaitingToStartMatch before super -- see CheckSpawnProximity
+	bWaitingToStartMatch = false;
+
 	super.StartMatch();
 	bDelayedStart = false;
 	MyKFGRI.RemainingTime = 0;

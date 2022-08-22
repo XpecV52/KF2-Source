@@ -76,7 +76,10 @@ event bool ScriptCommonMovePreparation(BaseAITypes.EActionPriority Priority)
 event ScriptCleanUp()
 {
     Outer.MyBaseAIPawn.bLeaping = false;
-    Outer.AILog_Internal(string(GetFuncName()) @ " Turning me on because ScriptCleanUp: ");
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(GetFuncName()) @ " Turning me on because ScriptCleanUp: ");
+    }
     TurnMeOn();
 }
 
@@ -97,7 +100,10 @@ function TestForTimeToTurnCollisionBackOn()
     {
         if(HasPercentOfZDiffBeenCovered())
         {
-            Outer.AILog_Internal(string(GetFuncName()) @ " Turning me on because HasPercentOfZDiffBeenCovered: ");
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(string(GetFuncName()) @ " Turning me on because HasPercentOfZDiffBeenCovered: ");
+            }
             TurnMeOn();            
         }
         else
@@ -105,7 +111,10 @@ function TestForTimeToTurnCollisionBackOn()
             TimeDelta = Outer.WorldInfo.TimeSeconds - Outer.MyBaseAIPawn.TimeStartedLeap;
             if(TimeDelta > Outer.MyBaseAIPawn.TimeImmuneWhileLeaping)
             {
-                Outer.AILog_Internal((string(GetFuncName()) @ " Turning me on because of time in leap of: ") @ string(TimeDelta));
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((string(GetFuncName()) @ " Turning me on because of time in leap of: ") @ string(TimeDelta));
+                }
                 TurnMeOn();
             }
         }
@@ -131,32 +140,44 @@ function NotifyLanded();
 state Succeeding extends DebugState
 {Begin:
 
-    Outer.AILog_Internal("Leaping - END:" @ string(GetStateName()), 'Leap');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Leaping - END:" @ string(GetStateName()), 'Leap');
+    }
     Success();
-    stop;                
+    stop;        
 }
 
 state Failing extends DebugState
 {Begin:
 
-    Outer.AILog_Internal("Leaping - END:" @ string(GetStateName()), 'Leap');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Leaping - END:" @ string(GetStateName()), 'Leap');
+    }
     Failure();
-    stop;                
+    stop;        
 }
 
 state Aborting extends DebugState
 {Begin:
 
-    Outer.AILog_Internal("Leaping - Aborted", 'Leap');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Leaping - Aborted", 'Leap');
+    }
     Outer.StopMovement();
-    stop;        
+    stop;                
 }
 
 state Idling extends DebugState
 {Begin:
 
-    Outer.AILog_Internal("Leaping - Idling so doing nothing", 'Leap');
-    stop;        
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Leaping - Idling so doing nothing", 'Leap');
+    }
+    stop;                
 }
 
 state Command_SpecialMove
@@ -245,7 +266,10 @@ state Command_SpecialMove
         TestForTimeToTurnCollisionBackOn();
         if(!(Outer.Pawn.Physics != 2))
             goto J0x58;
-        Outer.AILog_Internal(string(GetFuncName()) @ " Pawn.Physics != PHYS_Falling, so landed");
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(GetFuncName()) @ " Pawn.Physics != PHYS_Falling, so landed");
+        }
         Outer.MyBaseAIPawn.bLeaping = false;
         Outer.MyBaseAIPawn.SetCollision(true, true, true);
         Outer.Focus = Outer.Enemy;
@@ -253,7 +277,7 @@ state Command_SpecialMove
     }
     bWantTotalMovementControl = false;
     GotoState('Succeeding');
-    stop;                    
+    stop;            
 }
 
 defaultproperties

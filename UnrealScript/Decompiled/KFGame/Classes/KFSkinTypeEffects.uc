@@ -92,6 +92,7 @@ function PlayImpactParticleEffect(KFPawn P, Vector HitLocation, Vector HitDirect
                 case 1:
                 case 2:
                 case 3:
+                case 7:
                     MeleeSpawnEffect(P, ParticleTemplate, HitLocation, HitDirection);
                     break;
                 default:

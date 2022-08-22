@@ -61,6 +61,10 @@ class KFPerk_Firebug extends KFPerk
 
 
 
+ 
+
+
+
 
 
  
@@ -99,6 +103,9 @@ var 			GameExplosion		ExplosionTemplate;
 var	private	const float				SnarePower;
 var private const class<DamageType> SnareCausingDmgTypeClass;
 var private const int 				NapalmDamage;
+/** Multiplier on CylinderComponent.CollisionRadius to check for infecting other zeds */
+var private const float 			NapalmCheckCollisionScale;
+
 
 enum EFirebugSkills
 {
@@ -126,7 +133,7 @@ function ApplySkillsToPawn()
 	if( MyPRI != none )
 	{
 		MyPRI.bExtraFireRange = IsRangeActive();
-		MyPRI.bSplashActive = IsSplashDamageActive();
+		MyPRI.bSplashActive = IsGroundFireActive();
 	}
 }
 
@@ -329,18 +336,15 @@ function bool InHeatRange( KFPawn KFP )
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
 	TempCapacity = MagazineCapacity;
 
-	if( IsWeaponOnPerk( KFW ) && IsHighCapFuelTankActive() )
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && IsHighCapFuelTankActive() )
 	{
-		if( KFW != none )
-		{
-			TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[EFirebugHighCapFuelTank] );
-		}
+		TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[EFirebugHighCapFuelTank] );
 	}
 
 	MagazineCapacity = Round(TempCapacity);
@@ -354,6 +358,11 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
 function bool CanSpreadNapalm()
 {
 	return IsNapalmActive();
+}
+
+static final function float GetNapalmCheckCollisionScale()
+{
+	return default.NapalmCheckCollisionScale;
 }
 
 /**
@@ -508,6 +517,11 @@ simulated final private function bool IsGroundFireActive()
 	return PerkSkills[EFirebugGroundFire].bActive;
 }
 
+simulated function bool IsFlarotovActive()
+{ 
+	return IsGroundFireActive(); 
+}
+
 /**
  * @brief Checks if the Heat wave skill is active
  *
@@ -631,7 +645,7 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	Increments[2] = "[" @ Left( string( default.FireResistance.StartingValue * 100 ), InStr(string(default.FireResistance.StartingValue * 100), ".") + 2 ) $ "%" @ "+" 
 						@Left( string( default.FireResistance.Increment * 100 ), InStr(string(default.FireResistance.Increment * 100), ".") + 2 ) $ "% /" @ default.LevelString @ "]";
 	Increments[3] = "[" @ Left( string( default.OwnFireResistance.StartingValue * 100 ), InStr(string(default.OwnFireResistance.StartingValue * 100), ".") + 2 ) $ "%" @ "+" 
-						@Left( string( default.OwnFireResistance.Increment * 100 ), InStr(string(default.OwnFireResistance.Increment * 100), ".") + 2 )  @ "% /" @ default.LevelString @ "]";
+						@Left( string( default.OwnFireResistance.Increment * 100 ), InStr(string(default.OwnFireResistance.Increment * 100), ".") + 2 )  $ "% /" @ default.LevelString @ "]";
 	Increments[4] = "[" @ Left( string( default.StartingAmmo.Increment * 100 ), InStr(string(default.StartingAmmo.Increment * 100), ".") + 2 )$ "% / 5" @ default.LevelString @ "]";
 }
 
@@ -678,7 +692,8 @@ defaultproperties
    ExplosionTemplate=KFGameExplosion'KFGame.Default__KFPerk_Firebug:ExploTemplate0'
    SnarePower=100.000000
    SnareCausingDmgTypeClass=Class'KFGame.KFDT_Fire_Ground'
-   NapalmDamage=50
+   NapalmDamage=7
+   NapalmCheckCollisionScale=1.000000
    ProgressStatID=30
    PerkBuildStatID=31
    SecondaryXPModifier(0)=2
@@ -688,7 +703,7 @@ defaultproperties
    PerkName="Firebug"
    Passives(0)=(Title="Perk Weapon Damage",Description="Increase perk weapon damage %x% per level")
    Passives(1)=(Title="Perk Weapon Reload",Description="Increase perk weapon reload speed %x% per level")
-   Passives(2)=(Title="Resist Zed Fire Damage",Description="Increase resistance to Zed fire gains 30%, which increases %x% per level")
+   Passives(2)=(Title="Resist Zed Fire Damage",Description="Resistance to Zed fire starts at 30% and increases %x% per level")
    Passives(3)=(Title="Immunity to your own Fire",Description="Increase resistance to your own fire gains 25%, which increases %x% per level")
    Passives(4)=(Title="Starting Ammo",Description="Increase starting ammo %x% every five levels")
    SkillCatagories(0)="Supplies"
@@ -702,10 +717,10 @@ defaultproperties
    PerkSkills(0)=(Name="BringTheHeat",StartingValue=0.350000,MaxValue=0.350000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_BringtheHeat")
    PerkSkills(1)=(Name="HighCapFuelTank",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HighCapacityFuel")
    PerkSkills(2)=(Name="Fuse",StartingValue=2.500000,MaxValue=2.500000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Fuse")
-   PerkSkills(3)=(Name="GroundFire",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_GroundFire")
+   PerkSkills(3)=(Name="GroundFire",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HeatWave")
    PerkSkills(4)=(Name="Napalm",StartingValue=2.500000,MaxValue=2.500000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Napalm")
    PerkSkills(5)=(Name="ZedShrapnel",StartingValue=1.200000,MaxValue=1.200000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_ZedShrapnel")
-   PerkSkills(6)=(Name="SplashDamage",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_SplashDamage")
+   PerkSkills(6)=(Name="SplashDamage",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_GroundFire")
    PerkSkills(7)=(Name="Range",StartingValue=0.300000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Range")
    PerkSkills(8)=(Name="Scorch",StartingValue=0.900000,MaxValue=0.900000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Scorch")
    PerkSkills(9)=(Name="Inferno",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Inferno")

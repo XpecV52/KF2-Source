@@ -46,7 +46,7 @@ function Pushed()
 		Focus = Enemy;
 	}
 
-	AILog_Internal("Beginning fireball "$Enemy,'Command_FireBall',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Beginning fireball "$Enemy,'Command_FireBall',);};
 	AIActionStatus = "Starting fireball AICommand";
 	if( Focus != None )
 	{
@@ -75,7 +75,7 @@ state Command_SpecialMove
 	{
 		SpecialMove = GetSpecialMove();
 
-		AILog_Internal(GetFuncName()@SpecialMove,'Command_FireBall',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@SpecialMove,'Command_FireBall',);};
 
 		if( SpecialMove != SM_None && MyKFPawn.CanDoSpecialMove(SpecialMove) )
 		{

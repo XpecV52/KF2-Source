@@ -119,7 +119,7 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
@@ -127,10 +127,7 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
 
 	if( !Is9mm(KFW) && IsWeaponOnPerk(KFW, WeaponPerkClass) && (KFW == none || !KFW.bNoMagazine) )
 	{
-		if( KFW != none )
-		{
-			TempCapacity += MagazineCapacity * GetPassiveValue( MagSize, CurrentLevel );
-		}
+		TempCapacity += MagazineCapacity * GetPassiveValue( MagSize, CurrentLevel );
 	}
 
 	MagazineCapacity = Round(TempCapacity);

@@ -88,12 +88,12 @@ var config	array<string>	ServerActors;
 var			string			TravelURL;
 var			byte			TravelType;
 
+
 //@HSL_BEGIN - BWJ - 8-10-16 - Saved client URL for takeover (contains client options)
 var			string			ClientOptionsForTakeoverURL;
 
-
 var 		string 			TakeoverURL;
-var globalconfig  bool            bUsedForTakeover;
+var globalconfig  bool      bUsedForTakeover;
 var         bool            bAvailableForTakeover;
 /** TRUE if this is a private server. Used for console */
 var			bool			bPrivateServer;
@@ -332,6 +332,7 @@ native static function int GetWebAdminPort();
 native final function DisableServerTakeover();
 
 
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)

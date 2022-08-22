@@ -22,8 +22,36 @@ var() Vector LandedTranslationOffset;
 var(Grab) bool bAllowTossDuringZedGrabRotation;
 /** The UI image for this grenade.  Needed so the images have a reference and are cooked into packages. */
 var() Texture2D WeaponSelectTexture;
+var repnotify byte TeamNum;
 
-simulated function PostBeginPlay()
+replication
+{
+     if(bNetInitial && !bNetOwner)
+        TeamNum;
+}
+
+simulated event ReplicatedEvent(name VarName)
+{
+    if(VarName == 'TeamNum')
+    {
+        EnableGrenadeWarning();        
+    }
+    else
+    {
+        super.ReplicatedEvent(VarName);
+    }
+}
+
+event PreBeginPlay()
+{
+    super.PreBeginPlay();
+    if(Instigator != none)
+    {
+        TeamNum = Instigator.GetTeamNum();
+    }
+}
+
+simulated event PostBeginPlay()
 {
     super.PostBeginPlay();
     RandSpin(100000);
@@ -31,7 +59,35 @@ simulated function PostBeginPlay()
     {
         SetTimer(FuseTime, false, 'ExplodeTimer');
     }
+    if(WorldInfo.NetMode == NM_ListenServer)
+    {
+        EnableGrenadeWarning();
+    }
     AdjustCanDisintigrate();
+}
+
+simulated function EnableGrenadeWarning()
+{
+    local PlayerController LocalPC;
+
+    if(bNetOwner || GetTeamNum() != 0)
+    {
+        return;
+    }
+    LocalPC = GetALocalPlayerController();
+    if(((LocalPC != none) && !LocalPC.IsSpectating()) && LocalPC.GetTeamNum() != GetTeamNum())
+    {
+        ProjEffects.SetFloatParameter('Warning', 0.75);
+    }
+}
+
+simulated function byte GetTeamNum()
+{
+    if(!bNetOwner)
+    {
+        return TeamNum;
+    }
+    return super(Projectile).GetTeamNum();
 }
 
 function ExplodeTimer()
@@ -81,7 +137,7 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
         return;
     }
     Bounce(HitNormal, Wall);
-    if(Speed < float(40))
+    if((Speed < float(40)) && HitNormal.Z > float(0))
     {
         ImpactedActor = Wall;
         GrenadeIsAtRest();
@@ -146,12 +202,13 @@ defaultproperties
     DampenFactor=0.25
     DampenFactorParallel=0.4
     LandedTranslationOffset=(X=2,Y=0,Z=0)
+    TeamNum=128
     bAlwaysReplicateDisintegration=true
     bAlwaysReplicateExplosion=true
     bCanDisintegrate=true
     AlwaysRelevantDistanceSquared=6250000
-    TouchTimeThreshhold=0.15
     GlassShatterType=FracturedMeshGlassShatterType.FMGS_ShatterAll
+    TouchTimeThreshhold=0.15
     TossZ=250
     Speed=2500
     MaxSpeed=2500

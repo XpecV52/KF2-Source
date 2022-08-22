@@ -16,7 +16,6 @@ var localized string PartyLeaderSearchingForMatchString, PartyLeaderIsUpdatingMa
 var localized string PartHostLeftString, PartyLeaderChangedString;
 var localized string DownLoadingString, RemainingString;
 
-var array<string> ProfileOptions;
 var OnlineSubsystem OnlineSub;
 var TWOnlineLobby OnlineLobby;
 var bool bInLobby;
@@ -24,6 +23,7 @@ var KFPlayerController KFPC;
 var KFGFxHUD_ChatBoxWidget PartyChatWidget;
 var const string PerkPrefix;
 var const string SearchingPrefix, ServerBrowserOpen, SearchingForGame, UpdatingOptions, InOtherMenu;
+var const string ViewProfileKey, AddFriendKey, KickKey, MuteKey;
 var int OccupiedSlots;
 var UniqueNetId LastLeaderID;
 var KFGfxMoviePlayer_Manager Manager;
@@ -38,30 +38,21 @@ var int PlayerSlots;
 
 var const UniqueNetId ZeroUniqueId;
 
-enum EProfileOption
-{
-	EAdd_Friend,
-	EToggle_Mute,
-	EKick_Player,
-	EView_Profile,
-};
+var bool bReadyButtonVisible;
+var bool bCreatePartyVisible;
+
 
 struct SMemberSlot
 {
-	var bool	bIsSlotTaken;
 	var bool	bIsReady;
 	var bool	bIsLeader;
-	var byte	PerkLevel;
-	var Texture2D Avatar;
+	var string	PerkLevel;
 	var class<KFPerk>	PerkClass;
+	var Texture2D Avatar;
 	var UniqueNetId	PlayerUID;
 	var transient GFxObject MemberSlotObject;
-	var transient GFxObject PlayerNameTextField;
 	var PlayerReplicationInfo PRI;
 };
-
-var bool bReadyButtonVisible;
-var bool bCreatePartyVisible;
 
 var SMemberSlot MemberSlots[`KF_MAX_PLAYERS_VERSUS];
 
@@ -143,11 +134,6 @@ function SetSearchingText(string Message){}
 function InitializeMemberSlot( int SlotIndex )
 {
 	MemberSlots[SlotIndex].MemberSlotObject = GetObject("squadMember" $ SlotIndex);
-	MemberSlots[SlotIndex].PlayerNameTextField = MemberSlots[SlotIndex].MemberSlotObject.GetObject("playerNameText");	
-
-	MemberSlots[SlotIndex].MemberSlotObject.SetString("leaderText",PartyLeaderString);
-	
-	EmptySlot( SlotIndex );
 }
 
 function bool isUserYourFriend(UniqueNetId PlayerID) 
@@ -159,68 +145,58 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 {
 	local PlayerController PC;
 	local bool bConsoleBuild;
+	local GFxObject DataProvider;
+	local int OptionIndex;
 
+	DataProvider = CreateArray();
+	OptionIndex=0;
+	DataProvider.SetInt("index", SlotIndex);
 	PC = GetPC();
 	//Clear the profile options
-	ProfileOptions.length = 0;
 	bConsoleBuild = PC.WorldInfo.IsConsoleBuild();
 
-	if(PlayerID == PC.PlayerReplicationInfo.UniqueId)
-	{
-		ProfileOptions.RemoveItem(AddFriendString);
-		ProfileOptions.RemoveItem(RemoveFriendString);
-		ProfileOptions.RemoveItem(UnmuteString);
-		ProfileOptions.RemoveItem(MuteString);
-		ProfileOptions.RemoveItem(VoteKickString);
-	}
-	else
+	if(PlayerID != PC.PlayerReplicationInfo.UniqueId)
 	{
 		if ( !bConsoleBuild )
 		{
 			//Are they your friend?
 			if(!IsPlayerAFriend(PlayerID))
 			{
-				ProfileOptions.AddItem(AddFriendString);  //Not supported yet
+				AddStringOptionToList(AddFriendKey, OptionIndex, AddFriendString, DataProvider); 
 			}
 			else
 			{
-				ProfileOptions.AddItem(RemoveFriendString);  //Not supported yet	
+				AddStringOptionToList(AddFriendKey, OptionIndex, RemoveFriendString, DataProvider); 
 			}
+			OptionIndex++;
 		}
 		
 		if( !PC.WorldInfo.IsMenuLevel() ) //temp for now since voip and such does not work in the main menu
 		{
-			//Are they muted?
-			// TODO:  This needs to check more than muted because if player 1 mutes player 2 then player 2 gets the unmute option that does nothing.
-			if(PC.IsPlayerMuted(PlayerID))
-			{
-				ProfileOptions.AddItem(UnmuteString);
-			}
-			else
-			{
-				ProfileOptions.AddItem(MuteString);
-			}
+			AddStringOptionToList(MuteKey, OptionIndex, PC.IsPlayerMuted(PlayerID) ? UnmuteString : MuteString, DataProvider); 
+			OptionIndex++;
 
-			ProfileOptions.AddItem(VoteKickString);
+			AddStringOptionToList(KickKey, OptionIndex, VoteKickString, DataProvider); 
+			OptionIndex++;
 		}
 	}
 
 	//View profile option Added at the end if we are on PC but first on console.
-	if ( bConsoleBuild )
-	{
-		ProfileOptions.InsertItem(0, Localize("KFGFxWidget_BaseParty","ViewProfileString","KFGameConsole"));
-	}
-	else
-	{
-		ProfileOptions.AddItem(ViewProfileString);
-	}
+	AddStringOptionToList(ViewProfileKey, OptionIndex, bConsoleBuild ? Localize("KFGFxWidget_BaseParty","ViewProfileString","KFGameConsole") : ViewProfileString, DataProvider); 
+	OptionIndex++;
 
+	SetObject("listOptions", DataProvider);
+}
 
-	// Setting everyone's list the same way for now.  Once we get perk switch working we won't do this for the Player.
-	//if(PlayerID != GetPC().PlayerReplicationInfo.UniqueId)
-	//{
-		CreateList(MemberSlots[SlotIndex].MemberSlotObject.GetObject("optionsList"), ProfileOptions, 0);
-	//}
+function AddStringOptionToList(string OptionKey, int ItemIndex, string Option, out GFxObject DataProvider)
+{
+	local GFxObject StringOption;
+
+	StringOption = CreateObject("Object");
+	StringOption.SetString("optionKey", OptionKey);
+	StringOption.SetString("label", Option);
+
+	DataProvider.SetElementObject(ItemIndex, StringOption);
 }
 
 function UpdateInLobby(bool bIsInLobby)
@@ -285,71 +261,21 @@ function  UpdateSoloSquadText()
 	}
 }
 
-function CreatePerkList(GFxObject ListObject)
+function ProfileOptionClicked(string OptionKey, int SlotIndex)
 {
-	local byte i;
-	local GFxObject DataProvider;
-	local GFxObject TempObject;
-
-	DataProvider = ListObject.GetObject("dataProvider");
-	for (i = 0; i < KFPC.PerkList.length; i++)
-	{
-		TempObject = CreateObject( "Object" );
-		TempObject.SetString("Title", KFPC.PerkList[i].PerkClass.default.PerkName );
-		TempObject.SetString("PerkLevel", string(KFPC.PerkList[i].PerkLevel) );
-		TempObject.SetString("iconSource", "img://"$KFPC.PerkList[i].PerkClass.static.GetPerkIconPath() );
-		
-		DataProvider.SetElementObject(i, TempObject);
-	}
-}
-
-function CreateList( GFxObject OptionList, array<string> TextArray, byte SelectedIndex )
-{
-	local byte i;
-	local GFxObject DataProvider;
-	local GFxObject ItemSlot;
-
-	// @todo SetElementObject is sending out the information with each iteration
-	// set it up so it only sends once on SetObject
-	DataProvider = OptionList.GetObject("dataProvider");
-	for (i = 0; i < TextArray.length; i++)
-	{
-		ItemSlot = CreateObject( "Object" );
-		ItemSlot.SetString("label", TextArray[i] );
-		DataProvider.SetElementObject(i, ItemSlot);		
-    }
-	DataProvider.ActionScriptVoid("invalidateData");
-	OptionList.ActionScriptVoid("invalidateData");
-}
-
-function ProfileOptionClicked(int OptionIndex, int SlotIndex)
-{
-	local PlayerController PC;
-	PC = GetPC();
-    switch (OptionIndex)
+    switch (OptionKey)
     {
-	    case EAdd_Friend:
-	        if ( PC.WorldInfo.IsConsoleBuild() || PC.WorldInfo.IsMenuLevel()) // Console's first index is view profile.  HSL_BB
-	        {
-	            ViewProfile(SlotIndex);
-	        }
-	        else
-	        {
-	            AddFriend(SlotIndex);
-	        }
+	    case AddFriendKey:
+	        AddFriend(SlotIndex);
+	       	break;
+	    case MuteKey:
+	        ToggelMuteOnPlayer(SlotIndex);
 	        break;
-	    case EToggle_Mute:
-	        if ( PC.WorldInfo.IsMenuLevel() ) // Can't mute in the menulevel so view profile. HSL_BB
-	        {
-	            ViewProfile(SlotIndex);
-	        }
-	        else
-	        {
-	            ToggelMuteOnPlayer(SlotIndex);
-	        }
-	        break;
-	    case EKick_Player:
+	    case KickKey:
 	        KickPlayer(SlotIndex);
+	        break;
+	    case ViewProfileKey:
+	        ViewProfile(SlotIndex);
 	        break;
 	    default:
 	        ViewProfile(SlotIndex);
@@ -411,48 +337,14 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking);
 // Refresh a slot if any of it's values have changed or a player was removed
 function RefreshParty()
 {
-	OccupiedSlots = 0;
+	OccupiedSlots = 0; //reset each time to make sure bIsInParty is correct
 	UpdateLock();
 }
 
-function StatsInit()
+//maybe pass player id here?
+function OpenPlayerList(int SlotIndex)
 {
-	if(MemberSlots[0].MemberSlotObject != none)
-	{
-//		CreatePerkList(MemberSlots[0].MemberSlotObject.GetObject("perksList"));
-	}
-}
-
-
-// Empties the slot
-function EmptySlot( int SlotIndex )
-{
-	MemberSlots[SlotIndex].PlayerUID = ZeroUniqueId;
-   	MemberSlots[SlotIndex].bIsSlotTaken = false;
-	MemberSlots[SlotIndex].bIsReady = false;
-	MemberSlots[SlotIndex].bIsLeader = false;
-	MemberSlots[SlotIndex].PerkClass = none;
-	MemberSlots[SlotIndex].PRI = none;
-	MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", "");
-	MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted",false);
-
-	UpdatePlayerName( SlotIndex, DefaultPlayerName$SlotIndex );
-    SlotChanged( SlotIndex, false, false, false );
-}
-
-function UpdatePlayerName( int SlotIndex, string PlayerName )
-{
-	MemberSlots[SlotIndex].MemberSlotObject.SetString( "playerNameString", PlayerName );
-}
-
-function UpdatePerk( int SlotIndex, string PerkString, string Level, string IconPath )
-{
-	ActionScriptVoid("updatePerk");
-}
-
-function SlotChanged( int SlotIndex, bool bOccupied, bool bIsMyPlayer, bool bIsLeader )
-{
-	ActionScriptVoid("slotChanged");
+	CreatePlayerOptions(MemberSlots[SlotIndex].PlayerUID, SlotIndex);
 }
 
 function SetReadyButtonVisibility( bool bVisible )
@@ -504,7 +396,7 @@ function UpdateLock()
 
 		if ( KFGRI != none && KFPC != none )
 		{
-			bLocked = ( KFGRI.CanChangePerks() && KFPC.bPlayerUsedUpdatePerk );
+			bLocked = ( KFGRI.CanChangePerks() && !KFPC.CanUpdatePerkInfo() );
 			SetBool( "locked", bLocked);
 		}
 	}
@@ -542,4 +434,9 @@ DefaultProperties
 	SearchingForGame="SearchingForGame"
 	UpdatingOptions="UpdatingOptions"
 	InOtherMenu="InOtherMenu"
+
+	ViewProfileKey="ViewProfile"
+	AddFriendKey="AddFriend"
+	KickKey="Kick"
+	MuteKey="Mute"
 }

@@ -10,7 +10,6 @@ package tripwire.containers.Perks
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.ui.InputDetails;
-    import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
     import tripwire.managers.MenuManager;
     
@@ -24,7 +23,7 @@ package tripwire.containers.Perks
         
         public var skillList:ScrollingList;
         
-        public var owner:TripContainer;
+        public var owner:MovieClip;
         
         public function PerksSkillsSummaryContainer()
         {
@@ -39,6 +38,7 @@ package tripwire.containers.Perks
         
         override protected function addedToStage(param1:Event) : void
         {
+            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
             super.addedToStage(param1);
             this.setTabIndex();
         }
@@ -50,7 +50,6 @@ package tripwire.containers.Perks
         
         override public function selectContainer() : void
         {
-            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
             super.selectContainer();
             this.updateControllerIconVisibility();
         }

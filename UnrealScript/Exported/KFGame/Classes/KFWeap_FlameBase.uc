@@ -344,7 +344,7 @@ simulated function StartPilotSound()
 {
 	if( Instigator != none && Instigator.IsLocallyControlled() && Instigator.IsFirstPerson() )
 	{
-        PostAkEventOnBone(PilotLightPlayEvent, PilotLightSocketName, false, true);
+        PostAkEventOnBone(PilotLightPlayEvent, PilotLightSocketName, false, false);
     }
 }
 
@@ -353,7 +353,7 @@ simulated function StartPilotSound()
  */
 simulated function StopPilotSound()
 {
-    PostAkEventOnBone(PilotLightStopEvent, PilotLightSocketName, false, true);
+    PostAkEventOnBone(PilotLightStopEvent, PilotLightSocketName, false, false);
 }
 
 /**

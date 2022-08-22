@@ -147,7 +147,6 @@ function Popped()
         Outer.Pawn.DestinationOffset = 0;
     }
     Outer.ClearTimer('MoveToGoalTimedOut', self);
-    Outer.ClearTimer('TimedAbortMove');
     ReachedMoveGoal();
 }
 
@@ -159,7 +158,6 @@ function Paused(GameAICommand NewCommand)
     super.Paused(NewCommand);
     Retries = 0;
     Outer.PauseTimer(true, 'MoveToGoalTimedOut', self);
-    Outer.PauseTimer(false, 'TimedAbortMove');
     if(Outer.Steering != none)
     {
     }
@@ -177,7 +175,10 @@ function Paused(GameAICommand NewCommand)
 
 function Resumed(name OldCommandName)
 {
-    Outer.AILog_Internal(((string(self) $ " Resumed (oldCommand: ") $ string(OldCommandName)) $ ")", 'Command_MoveToGoal');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((string(self) $ " Resumed (oldCommand: ") $ string(OldCommandName)) $ ")", 'Command_MoveToGoal');
+    }
     Retries = 0;
     super.Resumed(OldCommandName);
     if(Outer.Steering != none)
@@ -188,7 +189,6 @@ function Resumed(name OldCommandName)
     if((ChildStatus == 'Success') || ((Outer.Enemy != none) && Outer.MyKFPawn.IsPawnMovingAwayFromMe(Outer.Enemy)) && Outer.MyKFPawn.bIsSprinting)
     {
         Outer.PauseTimer(false, 'MoveToGoalTimedOut', self);
-        Outer.PauseTimer(false, 'TimedAbortMove');
         Outer.bMovingToGoal = true;
         Outer.bReachedMoveGoal = false;
         if(OldCommandName != 'AICommand_Crawler_LeapToWall')
@@ -219,21 +219,33 @@ function ReEvaluatePath()
     local NavigationPoint BestAnchor;
     local float Dist;
 
-    Outer.AILog_Internal((string(GetFuncName()) $ "() bReEvaluatePath: ") $ string(Outer.bReevaluatePath), 'Command_MoveToGoal');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((string(GetFuncName()) $ "() bReEvaluatePath: ") $ string(Outer.bReevaluatePath), 'Command_MoveToGoal');
+    }
     WallHitCount = 0;
     Outer.LastHitWall = none;
     if((Outer.bReevaluatePath && Outer.Pawn != none) && (MoveGoalIsValid()) || MovePointIsValid())
     {
-        Outer.AILog_Internal((((((string(self) $ " ") $ string(GetFuncName())) $ "() ... Goal") @ string(Outer.MoveGoal)) @ "Anchor") @ string(Outer.Pawn.Anchor), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((((string(self) $ " ") $ string(GetFuncName())) $ "() ... Goal") @ string(Outer.MoveGoal)) @ "Anchor") @ string(Outer.Pawn.Anchor), 'Command_MoveToGoal');
+        }
         Outer.RouteCache_Empty();
         if(!Outer.Pawn.ValidAnchor() && !Outer.bDirectMoveToGoal)
         {
             BestAnchor = Outer.Pawn.GetBestAnchor(Outer.Pawn, Outer.Pawn.Location, true, false, Dist);
-            Outer.AILog_Internal((string(GetFuncName()) $ "- ValidAnchor() returned false, new anchor:") @ string(BestAnchor), 'Command_MoveToGoal');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal((string(GetFuncName()) $ "- ValidAnchor() returned false, new anchor:") @ string(BestAnchor), 'Command_MoveToGoal');
+            }
             if(BestAnchor == none)
             {
                 BestAnchor = Class'NavigationPoint'.static.GetNearestNavToActor(Outer.MyKFPawn);
-                Outer.AILog_Internal("-dd teleport anchor:" @ string(BestAnchor), 'Command_MoveToGoal');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal("-dd teleport anchor:" @ string(BestAnchor), 'Command_MoveToGoal');
+                }
                 if((BestAnchor != none) && BestAnchor.IsUsableAnchorFor(Outer.MyKFPawn))
                 {
                     Outer.Pawn.SetLocation(BestAnchor.Location);
@@ -245,7 +257,10 @@ function ReEvaluatePath()
             }
         }
         Outer.RouteCache_Empty();
-        Outer.AILog_Internal(string(GetFuncName()) @ "disabling bReevaluatePath and restarting the move", 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(GetFuncName()) @ "disabling bReevaluatePath and restarting the move", 'Command_MoveToGoal');
+        }
         Outer.bReevaluatePath = false;
         bValidRouteCache = false;
         GotoState('MovingToGoal', 'Begin');        
@@ -268,9 +283,12 @@ function Actor FindPathToward(Actor anActor)
 
     OldSearchType = Outer.Pawn.PathSearchType;
     Outer.Pawn.PathSearchType = 3;
-    Outer.AILog_Internal((("Generating path toward " $ string(anActor)) $ " Partial allowed? ") $ string(bAllowPartialPath), 'Command_MoveToGoal');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((("Generating path toward " $ string(anActor)) $ " Partial allowed? ") $ string(bAllowPartialPath), 'Command_MoveToGoal');
+    }
     I = 0;
-    J0xF3:
+    J0x12D:
 
     if(I < Outer.BlockedPathList.Length)
     {
@@ -283,24 +301,27 @@ function Actor FindPathToward(Actor anActor)
             NavigationPoint(Outer.BlockedPathList[I].BlockedReachSpec.End.Actor).bBlocked = true;
         }
         ++ I;
-        goto J0xF3;
+        goto J0x12D;
     }
     Result = Outer.GeneratePathTo(anActor,, bAllowPartialPath);
     I = 0;
-    J0x321:
+    J0x35B:
 
     if(I < Outer.BlockedPathList.Length)
     {
         NavigationPoint(Outer.BlockedPathList[I].BlockedReachSpec.End.Actor).bBlocked = false;
         ++ I;
-        goto J0x321;
+        goto J0x35B;
     }
     Outer.Pawn.PathSearchType = OldSearchType;
     if(Result == none)
     {
         Outer.AIActionStatus = "Failed Path toward " $ string(anActor);
         Outer.CurrentMovementPhase = 6;
-        Outer.AILog_Internal("** FAILED TO BUILD PATH TO " $ string(anActor), 'PathWarning');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("** FAILED TO BUILD PATH TO " $ string(anActor), 'PathWarning');
+        }
         if(Outer.Pawn.Anchor != none)
         {
             if(((Outer.WorldInfo.Game != none) && KFGameInfo(Outer.WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(Outer.WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
@@ -333,7 +354,10 @@ function Actor FindPathTo(Vector aPoint)
 
     if(!bCanPathfind)
     {
-        Outer.AILog_Internal("Not allowed to pathfind - aborting move", 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Not allowed to pathfind - aborting move", 'Command_MoveToGoal');
+        }
         Status = 'Failure';
         UpdateHistoryString("Failure- !bCanPathfind");
         Outer.AbortCommand(self);        
@@ -344,7 +368,10 @@ function Actor FindPathTo(Vector aPoint)
         Outer.Pawn.PathSearchType = 2;
         Result = Outer.FindPathTo(aPoint);
         Outer.Pawn.PathSearchType = OldSearchType;
-        Outer.AILog_Internal((("Finding path to location " $ string(aPoint)) $ " Partial allowed? ") $ string(bAllowPartialPath), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((("Finding path to location " $ string(aPoint)) $ " Partial allowed? ") $ string(bAllowPartialPath), 'Command_MoveToGoal');
+        }
     }
     if(Result == none)
     {
@@ -361,7 +388,10 @@ function RouteCache_RemoveIndex(int Idx)
 
 function MoveToGoalTimedOut()
 {
-    Outer.AILog_Internal(string(GetFuncName()), 'Command_MoveToGoal');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(GetFuncName()), 'Command_MoveToGoal');
+    }
     Outer.AIActionStatus = "MoveToGoal TimedOut";
     if((Outer.Enemy != none) && Outer.Enemy.IsAliveAndWell())
     {
@@ -371,12 +401,18 @@ function MoveToGoalTimedOut()
             Outer.PopCommand(self);
             return;
         }
-        Outer.AILog_Internal(((((string(GetFuncName()) @ string(self)) $ " Timing out, but since my enemy is still alive I'm assuming I should keep trying? Anchor: ") $ string(Outer.Pawn.Anchor)) $ " MoveGoal: ") $ string(Outer.MoveGoal), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((((string(GetFuncName()) @ string(self)) $ " Timing out, but since my enemy is still alive I'm assuming I should keep trying? Anchor: ") $ string(Outer.Pawn.Anchor)) $ " MoveGoal: ") $ string(Outer.MoveGoal), 'Command_MoveToGoal');
+        }
         return;        
     }
     else
     {
-        Outer.AILog_Internal((((string(GetFuncName()) $ "() Anchor: ") $ string(Outer.Pawn.Anchor)) $ " MoveGoal: ") $ string(Outer.MoveGoal), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((string(GetFuncName()) $ "() Anchor: ") $ string(Outer.Pawn.Anchor)) $ " MoveGoal: ") $ string(Outer.MoveGoal), 'Command_MoveToGoal');
+        }
         Outer.Pawn.SetAnchor(Outer.GetFallbackAnchor());
         Outer.AbortCommand(self);
     }
@@ -412,7 +448,10 @@ function bool HasReachedMoveGoal(optional Actor Goal)
     }
     if((KFPawn(Goal) != none) && KFPawn(Goal) == Outer.Enemy)
     {
-        Outer.AILog_Internal((((string(GetFuncName()) $ "() for ENEMY goal, current distance: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ " MoveOffset: ") $ string(Outer.MoveOffset), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((string(GetFuncName()) $ "() for ENEMY goal, current distance: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ " MoveOffset: ") $ string(Outer.MoveOffset), 'Command_MoveToGoal');
+        }
         bEnemyCheck = true;
     }
     if(Goal == none)
@@ -431,11 +470,17 @@ function bool HasReachedMoveGoal(optional Actor Goal)
             return false;
         }
         bReached = (Outer.bReachedLatentMoveGoal && (NavigationPoint(Goal) != none) && Outer.LastNavGoalReached == NavigationPoint(Goal)) || Outer.Pawn.ReachedDestination(Goal);
-        Outer.AILog_Internal((((((((string(self) $ " HasReachedMoveGoal for goal: ") $ string(Goal)) $ " Dist: ") $ string(VSize(Goal.Location - Outer.Pawn.Location))) $ " bReachedLatentMoveGoal: ") $ string(Outer.bReachedLatentMoveGoal)) $ " LastNavGoalReached: ") $ string(Outer.LastNavGoalReached), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((((((string(self) $ " HasReachedMoveGoal for goal: ") $ string(Goal)) $ " Dist: ") $ string(VSize(Goal.Location - Outer.Pawn.Location))) $ " bReachedLatentMoveGoal: ") $ string(Outer.bReachedLatentMoveGoal)) $ " LastNavGoalReached: ") $ string(Outer.LastNavGoalReached), 'Command_MoveToGoal');
+        }
         TempDist = VSize(Goal.Location - Outer.Pawn.Location);
         if(!bReached)
         {
-            Outer.AILog_Internal(((("NOT REACHED " $ string(Goal)) $ " (Dist: ") $ string(TempDist)) $ ")", 'Command_MoveToGoal');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(((("NOT REACHED " $ string(Goal)) $ " (Dist: ") $ string(TempDist)) $ ")", 'Command_MoveToGoal');
+            }
         }
         return bReached;        
     }
@@ -445,20 +490,29 @@ function bool HasReachedMoveGoal(optional Actor Goal)
         {
             if(bEnemyCheck)
             {
-                Outer.AILog_Internal((((string(GetFuncName()) $ "() ") $ string(VSize(Outer.GetBasedPosition(Outer.MovePosition) - Outer.Pawn.Location))) $ " versus MoveOffset ") $ string(Outer.MoveOffset), 'Command_MoveToGoal');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((((string(GetFuncName()) $ "() ") $ string(VSize(Outer.GetBasedPosition(Outer.MovePosition) - Outer.Pawn.Location))) $ " versus MoveOffset ") $ string(Outer.MoveOffset), 'Command_MoveToGoal');
+                }
             }
             if(VSize(Outer.GetBasedPosition(Outer.MovePosition) - Outer.Pawn.Location) < Outer.MoveOffset)
             {
                 if(bEnemyCheck)
                 {
-                    Outer.AILog_Internal(string(GetFuncName()) $ "() Returning TRUE, position < MoveOffset", 'Command_MoveToGoal');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal(string(GetFuncName()) $ "() Returning TRUE, position < MoveOffset", 'Command_MoveToGoal');
+                    }
                 }
                 return true;
             }
             bReached = Outer.Pawn.ReachedPoint(Outer.GetBasedPosition(Outer.MovePosition), none);
             if(bEnemyCheck)
             {
-                Outer.AILog_Internal((string(GetFuncName()) $ "() ReachedPoint reaturned ") $ string(bReached), 'Command_MoveToGoal');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((string(GetFuncName()) $ "() ReachedPoint reaturned ") $ string(bReached), 'Command_MoveToGoal');
+                }
             }
             if(bReached)
             {
@@ -469,7 +523,10 @@ function bool HasReachedMoveGoal(optional Actor Goal)
     }
     if(bEnemyCheck)
     {
-        Outer.AILog_Internal(string(GetFuncName()) $ "() Returning false", 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(GetFuncName()) $ "() Returning false", 'Command_MoveToGoal');
+        }
     }
     return false;
 }
@@ -482,7 +539,10 @@ function bool MoveUnreachable(Vector AttemptedDest, Actor AttemptedTarget)
         {
             KFGameInfo(Outer.WorldInfo.Game).GameplayEventsWriter.LogAIMoveFailure(Outer, Outer.Pawn.Location, Outer.Pawn.Rotation, AttemptedTarget, "2 MoveUnreachable to " $ string(AttemptedTarget));
         }
-        Outer.AILog_Internal((((string(self) $ " MoveUnreachable() while moving to goal! Target: ") $ string(AttemptedTarget)) $ " Dest: ") $ string(AttemptedDest), 'Command_MoveToGoal');        
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((string(self) $ " MoveUnreachable() while moving to goal! Target: ") $ string(AttemptedTarget)) $ " Dest: ") $ string(AttemptedDest), 'Command_MoveToGoal');
+        }        
     }
     else
     {
@@ -490,7 +550,10 @@ function bool MoveUnreachable(Vector AttemptedDest, Actor AttemptedTarget)
         {
             KFGameInfo(Outer.WorldInfo.Game).GameplayEventsWriter.LogAIMoveFailure(Outer, Outer.Pawn.Location, Outer.Pawn.Rotation, Outer.MoveTarget, "3 MoveUnreachable to " $ string(Outer.MoveTarget));
         }
-        Outer.AILog_Internal((string(self) $ " MoveUnreachable() while moving to goal! Dest: ") $ string(AttemptedDest), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(self) $ " MoveUnreachable() while moving to goal! Dest: ") $ string(AttemptedDest), 'Command_MoveToGoal');
+        }
     }
     UpdateHistoryString("[F] MoveUnreachable " $ string(Outer.Pawn.Location));
     Status = 'Failure';
@@ -513,7 +576,10 @@ function ReachedMoveGoal()
     if((Outer.MoveGoal != none) && Outer.Pawn != none)
     {
         Outer.AIActionStatus = (("Reached MoveGoal Dist: " $ string(VSize(Outer.MoveGoal.Location - Outer.Pawn.Location))) $ " MoveGoal: ") $ string(Outer.MoveGoal);
-        Outer.AILog_Internal((((string(self) $ " Reached MoveGoal: ") $ string(Outer.MoveGoal)) $ " Dist: ") $ string(VSize(Outer.MoveGoal.Location - Outer.Pawn.Location)), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((string(self) $ " Reached MoveGoal: ") $ string(Outer.MoveGoal)) $ " Dist: ") $ string(VSize(Outer.MoveGoal.Location - Outer.Pawn.Location)), 'Command_MoveToGoal');
+        }
     }
 }
 
@@ -524,7 +590,10 @@ function ReachedIntermediateMoveGoal()
     if(!Outer.bUseNavMesh)
     {
         Outer.AIActionStatus = "Reached Intermediate Goal " $ string(IntermediateMoveGoal);
-        Outer.AILog_Internal((string(self) $ " ReachedIntermediateMoveGoal: ") $ string(IntermediateMoveGoal), 'PathWarning');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(self) $ " ReachedIntermediateMoveGoal: ") $ string(IntermediateMoveGoal), 'PathWarning');
+        }
         DM = KFDoorMarker(IntermediateMoveGoal);
         if(((DM != none) && DM.MyKFDoor != none) && !DM.MyKFDoor.IsCompletelyOpen())
         {
@@ -532,20 +601,47 @@ function ReachedIntermediateMoveGoal()
             {
                 return;
             }
-            Outer.AILog_Internal((((string(GetFuncName()) $ " Reached IntermediateMoveGoal DoorMarker ") $ string(DM)) $ " for closed door Dist: ") $ string(VSize(DM.Location - Outer.Pawn.Location)), 'Doors');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal((((string(GetFuncName()) $ " Reached IntermediateMoveGoal DoorMarker ") $ string(DM)) $ " for closed door Dist: ") $ string(VSize(DM.Location - Outer.Pawn.Location)), 'Doors');
+            }
             if(DM.MyKFDoor.WeldIntegrity <= 0)
             {
                 Outer.AIActionStatus = ("Waiting for " $ string(DM.MyKFDoor)) $ " to open";
-                Outer.AILog_Internal(string(GetFuncName()) $ " Calling WaitForDoor and UseDoor", 'Doors');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(string(GetFuncName()) $ " Calling WaitForDoor and UseDoor", 'Doors');
+                }
                 Outer.WaitForDoor(DM.MyKFDoor);
-                DM.MyKFDoor.UseDoor(Outer.Pawn);                
+                DM.MyKFDoor.UseDoor(Outer.Pawn);
+                return;                
             }
             else
             {
-                Outer.AILog_Internal((((string(GetFuncName()) $ " calling NotifyAttackDoor for ") $ string(DM.MyKFDoor)) $ " with weld integrity ") $ string(DM.MyKFDoor.WeldIntegrity), 'Doors');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((((string(GetFuncName()) $ " calling NotifyAttackDoor for ") $ string(DM.MyKFDoor)) $ " with weld integrity ") $ string(DM.MyKFDoor.WeldIntegrity), 'Doors');
+                }
                 Outer.AIActionStatus = "Wants to attack door " $ string(DM.MyKFDoor);
                 Outer.NotifyAttackDoor(DM.MyKFDoor);
+                return;
             }
+        }
+    }
+    CheckForIntermediateEnemies();
+    Outer.NotifyReachedLatentMoveGoal();
+}
+
+function CheckForIntermediateEnemies()
+{
+    local Pawn EnemyBlocker;
+
+    if((((Outer.MyKFPawn != none) && Outer.Enemy != none) && !Outer.MyKFPawn.IsDoingSpecialMove()) && VSizeSq(Outer.Enemy.Location - Outer.MyKFPawn.Location) > 490000)
+    {
+        EnemyBlocker = Outer.GetPawnBlockingPathTo(Outer.Enemy, true, true);
+        if(EnemyBlocker != none)
+        {
+            Outer.ChangeEnemy(EnemyBlocker);
         }
     }
 }
@@ -555,15 +651,24 @@ function bool HandlePathObstruction(Actor BlockedBy)
     local Pawn BlockPawn;
 
     Outer.AIActionStatus = "Path obstructed by " $ string(BlockedBy);
-    Outer.AILog_Internal((((string(GetFuncName()) $ " - Blocked by : ") $ string(BlockedBy)) $ " Time since previous obstruction: ") $ string(Outer.WorldInfo.TimeSeconds - Outer.LastObstructionTime), 'HandlePathObstruction');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((((string(GetFuncName()) $ " - Blocked by : ") $ string(BlockedBy)) $ " Time since previous obstruction: ") $ string(Outer.WorldInfo.TimeSeconds - Outer.LastObstructionTime), 'HandlePathObstruction');
+    }
     Outer.LastObstructionTime = Outer.WorldInfo.TimeSeconds;
     BlockPawn = Pawn(BlockedBy);
     if(BlockPawn != none)
     {
-        Outer.AILog_Internal(("- blocked anchor:" @ string(BlockPawn.Anchor)) @ string(BlockPawn.ReachedDestination(Outer.MoveGoal)));
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(("- blocked anchor:" @ string(BlockPawn.Anchor)) @ string(BlockPawn.ReachedDestination(Outer.MoveGoal)));
+        }
         if(BlockPawn.ReachedDestination(Outer.MoveGoal))
         {
-            Outer.AILog_Internal("- they're touching my goal, finishing the move", 'HandlePathObstruction');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal("- they're touching my goal, finishing the move", 'HandlePathObstruction');
+            }
             Outer.bReachedMoveGoal = true;
             Status = 'Success';
             Outer.PopCommand(self);
@@ -577,11 +682,14 @@ function bool HandlePathObstruction(Actor BlockedBy)
             bValidRouteCache = false;
             Outer.bReevaluatePath = true;
             Outer.StopAllLatentMovement();
-            Outer.AILog_Internal(string(GetFuncName()) $ "() calling ZeroMovementVariables", 'HandlePathObstruction');
-            Outer.Pawn.ZeroMovementVariables();
-            if(KFPathnode(IntermediateMoveGoal) != none)
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
             {
-                if(Outer.CreateTemporaryBlockedPath(KFPathnode(IntermediateMoveGoal)))
+                Outer.AILog_Internal(string(GetFuncName()) $ "() calling ZeroMovementVariables", 'HandlePathObstruction');
+            }
+            Outer.Pawn.ZeroMovementVariables();
+            if(NavigationPoint(IntermediateMoveGoal) != none)
+            {
+                if(Outer.CreateTemporaryBlockedPath(NavigationPoint(IntermediateMoveGoal)))
                 {
                 }
             }
@@ -629,27 +737,39 @@ function StartingMove(bool bDirectMove, float Distance, int PathLength, Actor De
     }
     if(bDirectMove)
     {
-        Outer.AILog_Internal((((((string(self) $ " Starting *DIRECT* move, Distance: ") $ string(Distance)) $ " PathLength: ") $ string(PathLength)) $ " Dest: ") $ string(Dest), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((((string(self) $ " Starting *DIRECT* move, Distance: ") $ string(Distance)) $ " PathLength: ") $ string(PathLength)) $ " Dest: ") $ string(Dest), 'Command_MoveToGoal');
+        }
         Outer.bDirectMoveToGoal = true;
         Outer.RouteCache_Empty();        
     }
     else
     {
-        Outer.AILog_Internal((((((string(self) $ " Starting *PATHFINDING* move, Distance: ") $ string(Distance)) $ " PathLength: ") $ string(PathLength)) $ " Dest: ") $ string(Dest), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((((string(self) $ " Starting *PATHFINDING* move, Distance: ") $ string(Distance)) $ " PathLength: ") $ string(PathLength)) $ " Dest: ") $ string(Dest), 'Command_MoveToGoal');
+        }
         Outer.bDirectMoveToGoal = false;
     }
 }
 
 function bool NotifyPlayerBecameVisible(Pawn VisiblePlayer)
 {
-    Outer.AILog_Internal((string(GetFuncName()) $ " ") $ string(VisiblePlayer), 'SeePlayer');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((string(GetFuncName()) $ " ") $ string(VisiblePlayer), 'SeePlayer');
+    }
     if((((Outer.Enemy != none) && Outer.bMovingToGoal) && !Outer.bDirectMoveToGoal) && Outer.InLatentExecution(Outer.503))
     {
         if((VisiblePlayer == Outer.MoveGoal) || VisiblePlayer == IntermediateMoveGoal)
         {
             if(Outer.ActorReachable(VisiblePlayer))
             {
-                Outer.AILog_Internal(((string(GetFuncName()) $ " My MoveGoal (") $ string(Outer.MoveGoal)) $ ") is visible and reachable - calling stop latent execution and re-evaluate path", 'Move_DirectPath');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(((string(GetFuncName()) $ " My MoveGoal (") $ string(Outer.MoveGoal)) $ ") is visible and reachable - calling stop latent execution and re-evaluate path", 'Move_DirectPath');
+                }
                 Outer.bReevaluatePath = true;
                 Outer.bDirectMoveToGoal = true;
                 Outer.SetDestinationPosition(Outer.Enemy.Location);
@@ -676,69 +796,67 @@ event string GetDumpString()
 
 function NotifyNeedRepath()
 {
-    Outer.AILog_Internal((((string(GetFuncName()) $ "() MoveTarget: ") $ ((Outer.MoveTarget != none) ? string(Outer.MoveTarget) : "none")) $ " Dist: ") $ string(((Outer.MoveTarget != none) ? VSize(Outer.MoveTarget.Location - Outer.Pawn.Location) : 0)), 'PathWarning');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((((string(GetFuncName()) $ "() MoveTarget: ") $ ((Outer.MoveTarget != none) ? string(Outer.MoveTarget) : "none")) $ " Dist: ") $ string(((Outer.MoveTarget != none) ? VSize(Outer.MoveTarget.Location - Outer.Pawn.Location) : 0)), 'PathWarning');
+    }
     Outer.bReevaluatePath = true;
     Outer.StopLatentExecution();
     ReEvaluatePath();
+}
+
+function CheckForStuckPath()
+{
+    local NavigationPoint NavPoint;
+
+    if((IntermediateMoveGoal == none) || (NumTimesGetNextMoveGoalReturnedSameNode > 20) && VSizeSq(Outer.MyKFPawn.Velocity) < 600)
+    {
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((("Failed to get valid movetarget, Got Same result " $ string(NumTimesGetNextMoveGoalReturnedSameNode)) $ " time(s). has reached move goal? ") @ string(HasReachedMoveGoal()), 'PathWarning');
+        }
+        bValidRouteCache = false;
+        Outer.bReevaluatePath = true;
+        NumTimesGetNextMoveGoalReturnedSameNode = 0;
+        if((Outer.Pawn.Anchor != none) && (Outer.LastHitWall != none) && !Outer.LastHitWall.IsA('Pawn'))
+        {
+            NavPoint = NavigationPoint(IntermediateMoveGoal);
+            if((Outer.CurrentPath != none) && Outer.CreateTemporaryBlockedReach(NavPoint, Outer.CurrentPath))
+            {                
+            }
+            else
+            {
+                if((NavPoint != none) && Outer.CreateTemporaryBlockedPath(NavPoint))
+                {
+                }
+            }
+        }
+        UpdateHistoryString((("[F] [GNM] " $ string(IntermediateMoveGoal)) $ " ") $ string(Outer.Pawn.Location));
+        GotoState('MovingToGoal', 'FailedMove');
+        IntermediateMoveGoal = none;        
+    }
+    else
+    {
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((("NextMoveTarget" @ string(IntermediateMoveGoal)) @ "MoveGoal:") @ string(Outer.MoveGoal), 'Move_Path');
+        }
+    }
 }
 
 function Timer_DelayMoveTimeOut()
 {
     if((Outer.MyKFPawn != none) && Outer.MyKFPawn.IsAliveAndWell())
     {
-        Outer.AILog_Internal(("************* " $ string(Outer.MyKFPawn)) $ " DELAYING MOVE FOR OVER 20 SECONDS");
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(("************* " $ string(Outer.MyKFPawn)) $ " DELAYING MOVE FOR OVER 20 SECONDS");
+        }
     }
 }
 
-function bool AdjustAround(Actor Other, Vector HitNormal)
-{
-    local Vector VelDir, OtherDir, SideDir, HitLocation, Adj;
-
-    local float CollisionRad, CollisionHeight;
-
-    if(!Outer.IsDoingLatentMove() || Outer.MoveTarget == none)
-    {
-        return false;
-    }
-    VelDir = Normal(Outer.MoveTarget.Location - Outer.Pawn.Location);
-    OtherDir = Other.Location - Outer.Pawn.Location;
-    VelDir.Z = 0;
-    OtherDir.Z = 0;
-    OtherDir = Normal(OtherDir);
-    if(((Pawn(Other) != none) && Other.Physics == 8) && Pawn(Other).Floor.Z < -0.7)
-    {
-        Other.SetPhysics(2);
-    }
-    if((VelDir Dot OtherDir) > 0.7)
-    {
-        SideDir.X = VelDir.Y;
-        SideDir.Y = -1 * VelDir.X;
-        if((SideDir Dot OtherDir) > 0)
-        {
-            SideDir *= float(-1);
-        }
-        if(Pawn(Other) == none)
-        {
-            Other.GetBoundingCylinder(CollisionRad, CollisionHeight);
-            Adj = Outer.Pawn.Location + ((3.5 * CollisionRad) * ((0.5 * VelDir) + SideDir));            
-        }
-        else
-        {
-            Adj = Outer.Pawn.Location + ((3.5 * Pawn(Other).GetCollisionRadius()) * ((0.5 * VelDir) + SideDir));
-        }
-        if(Outer.Trace(HitLocation, HitNormal, Adj, Outer.Pawn.Location, false) != none)
-        {
-            Adj = HitLocation;
-        }
-        Outer.AILog_Internal((string(GetFuncName()) $ "() in MoveToGoal, SettingAdjustLocation to ") $ string(Adj), 'HitWall');
-        Outer.SetAdjustLocation(Adj, true, true);
-        return true;        
-    }
-    else
-    {
-        return false;
-    }
-}
+// Export UAICommand_MoveToGoal::execAdjustAround(FFrame&, void* const)
+native function bool AdjustAround(Actor Other, Vector HitNormal);
 
 function bool NotifyBump(Actor Other, Vector HitNormal)
 {
@@ -749,7 +867,10 @@ function bool NotifyBump(Actor Other, Vector HitNormal)
         KFP = KFPawn(Other);
         if(KFP != none)
         {
-            Outer.AILog_Internal((("NotifyBump in MoveToGoal, Other: " $ string(Other)) $ " HitNormal: ") $ string(HitNormal), 'BumpEvent');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal((("NotifyBump in MoveToGoal, Other: " $ string(Other)) $ " HitNormal: ") $ string(HitNormal), 'BumpEvent');
+            }
             Outer.DisableBump(0.12);
             if(!KFP.IsAliveAndWell() || !Outer.Pawn.IsSameTeam(KFP))
             {
@@ -774,6 +895,25 @@ function bool NotifyBump(Actor Other, Vector HitNormal)
     return false;
 }
 
+function bool NotifyLatentPostPhysWalking()
+{
+    if(((!Outer.bPreparingMove && Outer.MoveTimer > 1) && Outer.Pawn.Velocity == vect(0, 0, 0)) && Outer.Pawn.Acceleration != vect(0, 0, 0))
+    {
+        ++ Outer.NumFailedLatentWalkMoves;
+        if(Outer.NumFailedLatentWalkMoves > 3)
+        {
+            Outer.MoveTimer = -1;
+            Outer.NumFailedLatentWalkMoves = 0;
+            return true;
+        }        
+    }
+    else
+    {
+        Outer.NumFailedLatentWalkMoves = 0;
+    }
+    return false;
+}
+
 state MovingToGoal
 {
     ignores SetBestAnchor;
@@ -783,14 +923,20 @@ state MovingToGoal
         local KFDoorActor door;
 
         Outer.DisableNotifyHitWall(0.2);
-        Outer.AILog_Internal((((((((("NotifyHitWall() while in MoveToGoal, HitNormal: " $ string(HitNormal)) $ " Wall: ") $ string(Wall)) $ " LastHitWall: ") $ string(Outer.LastHitWall)) $ " WallHitCount: ") $ string(WallHitCount)) $ " MoveTarget: ") $ string(Outer.MoveTarget), 'PathWarning');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((((((("NotifyHitWall() while in MoveToGoal, HitNormal: " $ string(HitNormal)) $ " Wall: ") $ string(Wall)) $ " LastHitWall: ") $ string(Outer.LastHitWall)) $ " WallHitCount: ") $ string(WallHitCount)) $ " MoveTarget: ") $ string(Outer.MoveTarget), 'PathWarning');
+        }
         Outer.AIActionStatus = "Received NotifyHitWall event";
         if(!Wall.bStatic)
         {
             door = KFDoorActor(Wall);
             if(door == none)
             {
-                Outer.AILog_Internal((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'HitWall');                
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'HitWall');
+                }                
             }
             else
             {
@@ -802,15 +948,24 @@ state MovingToGoal
                 {
                     Outer.DisableNotifyHitWall(0.25);
                     Outer.WaitForDoor(door);
-                    Outer.AILog_Internal(("NotifyHitWall() while in MoveToGoal, Wall: " $ string(Wall)) $ " Using door and waiting for it to open", 'Doors');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal(("NotifyHitWall() while in MoveToGoal, Wall: " $ string(Wall)) $ " Using door and waiting for it to open", 'Doors');
+                    }
                     door.UseDoor(Outer.Pawn);
                     return true;
                 }
-                Outer.AILog_Internal(((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal)) $ " ran into a door!", 'Doors');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal)) $ " ran into a door!", 'Doors');
+                }
                 if((!door.IsCompletelyOpen() && door.WeldIntegrity > 0) && (Outer.Pawn.Anchor == door.MyMarker) || (Outer.DoorEnemy != none) && (Outer.DoorEnemy == door) || Outer.PendingDoor == door)
                 {
                     Outer.DisableNotifyHitWall(0.25);
-                    Outer.AILog_Internal((string(GetFuncName()) $ "() calling NotifyAttackDoor for ") $ string(Wall), 'Doors');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal((string(GetFuncName()) $ "() calling NotifyAttackDoor for ") $ string(Wall), 'Doors');
+                    }
                     Outer.NotifyAttackDoor(door);
                     return true;
                 }
@@ -830,7 +985,10 @@ state MovingToGoal
         {
             if(IntermediateMoveGoal.IsA('KFPathnode'))
             {
-                Outer.AILog_Internal(((((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " WallHitCount: ") $ string(WallHitCount)) $ " Hit Wall > 3 times, setting ") $ string(IntermediateMoveGoal)) $ " to be a blocked path and forcing a repath!", 'PathWarning');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(((((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " WallHitCount: ") $ string(WallHitCount)) $ " Hit Wall > 3 times, setting ") $ string(IntermediateMoveGoal)) $ " to be a blocked path and forcing a repath!", 'PathWarning');
+                }
                 ++ WallHitCount;
                 Outer.LastHitWall = Wall;
                 if(((Outer.WorldInfo.Game != none) && KFGameInfo(Outer.WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(Outer.WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
@@ -851,7 +1009,10 @@ state MovingToGoal
         if(Outer.bPreparingMove || Outer.MyKFPawn.IsDoingMeleeAttack())
         {
             bGoalSurrounded = false;
-            Outer.AILog_Internal("ShouldDelayMove returning TRUE because bPreparingMove", 'Command_MoveToGoal');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal("ShouldDelayMove returning TRUE because bPreparingMove", 'Command_MoveToGoal');
+            }
             Outer.AIActionStatus = "Delaying Move";
             return true;
         }
@@ -866,7 +1027,10 @@ state MovingToGoal
         }
         if(((Outer.MoveGoal != none) && OldEnemy == Outer.MoveGoal) || (IntermediateMoveGoal == none) && IntermediateMoveGoal == OldEnemy)
         {
-            Outer.AILog_Internal(string(GetFuncName()) $ "() Stopping latent execution, resetting destination position to new enemy location, and calling ReEvaluatePath()", 'SetEnemy');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(string(GetFuncName()) $ "() Stopping latent execution, resetting destination position to new enemy location, and calling ReEvaluatePath()", 'SetEnemy');
+            }
             Outer.MoveGoal = Outer.Enemy;
             Outer.StopLatentExecution();
             Outer.SetDestinationPosition(Outer.Enemy.Location);
@@ -890,10 +1054,16 @@ state MovingToGoal
     {
         if(((Outer.Enemy != none) && !Outer.bDirectMoveToGoal) && Outer.Pawn.Physics != 8)
         {
-            Outer.AILog_Internal((string(GetFuncName()) $ " event received, checking for direct reachability to enemy ") $ string(Outer.Enemy), 'Move_DirectPath');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal((string(GetFuncName()) $ " event received, checking for direct reachability to enemy ") $ string(Outer.Enemy), 'Move_DirectPath');
+            }
             if((Outer.InLatentExecution(Outer.503) && Outer.MyKFPawn.Physics != 2) && Outer.ActorReachable(Outer.Enemy))
             {
-                Outer.AILog_Internal(string(GetFuncName()) $ " can directly reach enemy, stopping and resetting MoveTimer and resetting my move", 'Move_DirectPath');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(string(GetFuncName()) $ " can directly reach enemy, stopping and resetting MoveTimer and resetting my move", 'Move_DirectPath');
+                }
                 Outer.bDirectMoveToGoal = true;
                 Outer.bReevaluatePath = true;
                 Outer.StopLatentExecution();
@@ -908,36 +1078,51 @@ state MovingToGoal
         local bool bDone, bReachedDynamicAnchor;
         local Actor OldMoveTarget;
 
-        Outer.AILog_Internal((((((string(GetFuncName()) @ "current movetarget:") @ string(CurrentMoveTarget)) @ "routecache length:") @ string(Outer.RouteCache.Length)) @ "anchor") @ string(Outer.Pawn.Anchor), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((((string(GetFuncName()) @ "current movetarget:") @ string(CurrentMoveTarget)) @ "routecache length:") @ string(Outer.RouteCache.Length)) @ "anchor") @ string(Outer.Pawn.Anchor), 'Command_MoveToGoal');
+        }
         bGoalChangedDueToSkipAhead = false;
         OldMoveTarget = CurrentMoveTarget;
-        J0xF4:
+        J0x12E:
 
         if((!bDone && Outer.RouteCache.Length > 0) && Outer.RouteCache[0] != none)
         {
             if((Outer.bReachedLatentMoveGoal && Outer.LastNavGoalReached == Outer.RouteCache[0]) || Outer.Pawn.ReachedDestination(Outer.RouteCache[0]))
             {
                 Outer.bReachedLatentMoveGoal = false;
-                Outer.AILog_Internal((("Pawn has Reached route cache 0:" @ string(Outer.RouteCache[0])) $ " DIST: ") $ string(VSize(Outer.RouteCache[0].Location - Outer.Pawn.Location)), 'Command_MoveToGoal');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((("Pawn has Reached route cache 0:" @ string(Outer.RouteCache[0])) $ " DIST: ") $ string(VSize(Outer.RouteCache[0].Location - Outer.Pawn.Location)), 'Command_MoveToGoal');
+                }
                 if(Outer.RouteCache[0] == Outer.MoveGoal)
                 {
                     bDone = true;
                     CurrentMoveTarget = none;
                 }
-                Outer.AILog_Internal(("Setting anchor to RouteCache 0 (" $ string(Outer.RouteCache[0])) $ ")", 'Command_MoveToGoal');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(("Setting anchor to RouteCache 0 (" $ string(Outer.RouteCache[0])) $ ")", 'Command_MoveToGoal');
+                }
                 Outer.Pawn.SetAnchor(Outer.RouteCache[0]);
                 bReachedDynamicAnchor = DynamicAnchor(Outer.RouteCache[0]) != none;
-                Outer.AILog_Internal(("Remove from route:" @ string(Outer.RouteCache[0])) @ string(bReachedDynamicAnchor), 'Command_MoveToGoal');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(("Remove from route:" @ string(Outer.RouteCache[0])) @ string(bReachedDynamicAnchor), 'Command_MoveToGoal');
+                }
                 RouteCache_RemoveIndex(0);                
             }
             else
             {
-                Outer.AILog_Internal((("I Did NOT reach route cache 0:" @ string(Outer.RouteCache[0])) $ " Dist: ") $ string(VSize(Outer.RouteCache[0].Location - Outer.Pawn.Location)), 'Command_MoveToGoal');
-                goto J0x5E8;
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((("I Did NOT reach route cache 0:" @ string(Outer.RouteCache[0])) $ " Dist: ") $ string(VSize(Outer.RouteCache[0].Location - Outer.Pawn.Location)), 'Command_MoveToGoal');
+                }
+                goto J0x70A;
             }
-            goto J0xF4;
+            goto J0x12E;
         }
-        J0x5E8:
+        J0x70A:
 
         if(!bDone)
         {
@@ -946,18 +1131,27 @@ state MovingToGoal
             if(Outer.RouteCache.Length > 0)
             {
                 CurrentMoveTarget = Outer.RouteCache[0];
-                Outer.AILog_Internal((((string(GetFuncName()) $ " setting CurrentMoveTarget to ") $ string(CurrentMoveTarget)) $ " (RouteCache[0] ) OldMoveTarget was ") $ string(OldMoveTarget), 'Command_MoveToGoal');                
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((((string(GetFuncName()) $ " setting CurrentMoveTarget to ") $ string(CurrentMoveTarget)) $ " (RouteCache[0] ) OldMoveTarget was ") $ string(OldMoveTarget), 'Command_MoveToGoal');
+                }                
             }
             else
             {
                 if((((Outer.MoveGoal != none) && CurrentMoveTarget != Outer.MoveGoal) && NavigationPoint(Outer.MoveGoal) == none) && Outer.ActorReachable(Outer.MoveGoal))
                 {
                     CurrentMoveTarget = Outer.MoveGoal;
-                    Outer.AILog_Internal((((string(GetFuncName()) $ " Set CurrentMoveTarget to MoveGoal ") $ string(Outer.MoveGoal)) $ " because move goal is now directly reachable. OldMoveTarget was ") $ string(OldMoveTarget), 'Command_MoveToGoal');                    
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal((((string(GetFuncName()) $ " Set CurrentMoveTarget to MoveGoal ") $ string(Outer.MoveGoal)) $ " because move goal is now directly reachable. OldMoveTarget was ") $ string(OldMoveTarget), 'Command_MoveToGoal');
+                    }                    
                 }
                 else
                 {
-                    Outer.AILog_Internal(string(GetFuncName()) $ " setting CurrentMoveTarget to none!", 'Command_MoveToGoal');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal(string(GetFuncName()) $ " setting CurrentMoveTarget to none!", 'Command_MoveToGoal');
+                    }
                     CurrentMoveTarget = none;
                 }
             }
@@ -983,7 +1177,10 @@ CheckMove:
     Outer.ClearTimer('MoveToGoalTimedOut', self);
     if(HasReachedMoveGoal())
     {
-        Outer.AILog_Internal("CheckMove label, I've reached my goal ", 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("CheckMove label, I've reached my goal ", 'Command_MoveToGoal');
+        }
         goto 'ReachedGoal';
     }
 Begin:
@@ -1007,7 +1204,10 @@ Begin:
         Outer.AbortMovementPlugIns(true, "Dead");
         stop;
     }
-    Outer.AILog_Internal((((((((((("Attempting move to goal " $ string(Outer.MoveGoal)) $ " Valid? ") $ string(MoveGoalIsValid())) $ " MovePosition: ") $ string(Outer.MovePosition.Position)) $ " BasedPosition: ") $ string(Outer.GetBasedPosition(Outer.MovePosition))) $ " MovePointIsValid? ") $ string(MovePointIsValid())) $ " bValidRouteCache? ") $ string(bValidRouteCache), 'Command_MoveToGoal');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((((((((((("Attempting move to goal " $ string(Outer.MoveGoal)) $ " Valid? ") $ string(MoveGoalIsValid())) $ " MovePosition: ") $ string(Outer.MovePosition.Position)) $ " BasedPosition: ") $ string(Outer.GetBasedPosition(Outer.MovePosition))) $ " MovePointIsValid? ") $ string(MovePointIsValid())) $ " bValidRouteCache? ") $ string(bValidRouteCache), 'Command_MoveToGoal');
+    }
     if(MoveGoalIsValid())
     {
         if((!bValidRouteCache && CanDirectlyReach(Outer.MoveGoal)) && !Outer.Pawn.bCrawler || Abs(Outer.Pawn.Location.Z - Outer.MoveGoal.Location.Z) < 700)
@@ -1021,9 +1221,12 @@ DirectMoveToActor:
             TimeOutTime = Outer.GetMoveTimeOutDuration(Outer.MoveGoal.GetDestination(Outer), false);
             Outer.SetTimer(TimeOutTime, false, 'MoveToGoalTimedOut', self);
             LoopFailSafeCounter = 0;
-            J0x696:
+            J0x70A:
 
-            Outer.AILog_Internal(((((((("Moving directly to move goal:" @ string(Outer.MoveGoal)) @ "from") @ string(Outer.Pawn.Anchor)) @ "Focus") @ string(Outer.MoveFocus)) @ "Offset") @ string(Outer.MoveOffset)) @ string(Outer.CurrentPath), 'Move_DirectPath');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(((((((("Moving directly to move goal:" @ string(Outer.MoveGoal)) @ "from") @ string(Outer.Pawn.Anchor)) @ "Focus") @ string(Outer.MoveFocus)) @ "Offset") @ string(Outer.MoveOffset)) @ string(Outer.CurrentPath), 'Move_DirectPath');
+            }
             IntermediateMoveGoal = Outer.MoveGoal;
             if((((Outer.Pawn.Physics != 2) && !Outer.bMovingToGoal) && !Outer.IsDoingLatentMove()) && Outer.MoveGoal != none)
             {
@@ -1044,7 +1247,7 @@ DirectMoveToActor:
                 Outer.WaitForLanding();
             }
             if(!(((HasReachedMoveGoal()) || !Outer.ActorReachable(Outer.MoveGoal)) || ++ LoopFailSafeCounter > 50))
-                goto J0x696;
+                goto J0x70A;
             Outer.CurrentMovementPhase = 0;
             goto 'CheckMove';            
         }
@@ -1079,9 +1282,12 @@ DirectMoveToPosition:
                 StartingMove(true, VSize(Outer.Pawn.Location - Outer.GetBasedPosition(Outer.MovePosition)), 0, none);
                 TimeOutTime = Outer.GetMoveTimeOutDuration(Outer.GetBasedPosition(Outer.MovePosition), false);
                 Outer.SetTimer(TimeOutTime, false, 'MoveToGoalTimedOut', self);
-                J0xE39:
+                J0xEE7:
 
-                Outer.AILog_Internal(((((("Moving directly to move point:" @ string(Outer.GetBasedPosition(Outer.MovePosition))) @ "from") @ string(Outer.Pawn.Anchor)) @ "Focus") @ string(Outer.MoveFocus)) @ string(Outer.Pawn.Location), 'Move_Path');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(((((("Moving directly to move point:" @ string(Outer.GetBasedPosition(Outer.MovePosition))) @ "from") @ string(Outer.Pawn.Anchor)) @ "Focus") @ string(Outer.MoveFocus)) @ string(Outer.Pawn.Location), 'Move_Path');
+                }
                 Outer.EnableSeePlayer();
                 if(((Outer.WorldInfo.TimeSeconds - Outer.LastMoveFinishTime) > 5) && ShouldTurnToGoal(Outer.GetBasedPosition(Outer.MovePosition)))
                 {
@@ -1094,7 +1300,7 @@ DirectMoveToPosition:
                     Outer.WaitForLanding();
                 }
                 if(!((HasReachedMoveGoal()) || !Outer.PointReachable(Outer.GetBasedPosition(Outer.MovePosition))))
-                    goto J0xE39;
+                    goto J0xEE7;
                 Outer.CurrentMovementPhase = 0;
                 goto 'CheckMove';                
             }
@@ -1110,48 +1316,69 @@ DirectMoveToPosition:
                     IntermediateMoveGoal = FindPathTo(Outer.GetBasedPosition(Outer.MovePosition));
                     if(IntermediateMoveGoal == none)
                     {
-                        Outer.AILog_Internal((string(self) $ " IntermediateMoveGoal is null, so calling InvalidateAnchor for nav ") $ string(Outer.Pawn.Anchor), 'PathWarning');
+                        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                        {
+                            Outer.AILog_Internal((string(self) $ " IntermediateMoveGoal is null, so calling InvalidateAnchor for nav ") $ string(Outer.Pawn.Anchor), 'PathWarning');
+                        }
                         Outer.InvalidateAnchor(Outer.Pawn.Anchor);
                     }
                 }
             }
         }
     }
-    J0x13B9:
+    J0x14DB:
 
     if(IntermediateMoveGoal != none)
     {
         if(Outer.MoveGoal != none)
         {
-            Outer.AILog_Internal((("Following path to move goal:" @ string(Outer.MoveGoal)) @ "from") @ string(Outer.Pawn.Anchor), 'Move_Path');            
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal((("Following path to move goal:" @ string(Outer.MoveGoal)) @ "from") @ string(Outer.Pawn.Anchor), 'Move_Path');
+            }            
         }
         else
         {
-            Outer.AILog_Internal((("Following path to move point:" @ string(Outer.GetBasedPosition(Outer.MovePosition))) @ "from") @ string(Outer.Pawn.Anchor), 'Move_Path');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal((("Following path to move point:" @ string(Outer.GetBasedPosition(Outer.MovePosition))) @ "from") @ string(Outer.Pawn.Anchor), 'Move_Path');
+            }
         }
         GetNextMoveTarget(IntermediateMoveGoal);
         if(((IntermediateMoveGoal == Outer.Pawn.Anchor) && Outer.RouteCache.Length > 1) && Outer.ActorReachable(Outer.RouteCache[1]))
         {
-            Outer.AILog_Internal(("Already at anchor, move to next..." @ string(Outer.Pawn.Anchor)) @ string(Outer.RouteCache[1]), 'Move_Path');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(("Already at anchor, move to next..." @ string(Outer.Pawn.Anchor)) @ string(Outer.RouteCache[1]), 'Move_Path');
+            }
             RouteCache_RemoveIndex(0);
             GetNextMoveTarget(IntermediateMoveGoal);
         }
         if(IntermediateMoveGoal == none)
         {
-            Outer.AILog_Internal("Failed to acquire move target, sleeping for 0.5 seconds and going to CheckMove label", 'Move_Path');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal("Failed to acquire move target, sleeping for 0.5 seconds and going to CheckMove label", 'Move_Path');
+            }
             Outer.Sleep(0.5);
             goto 'CheckMove';
         }
         Outer.ClearTimer('MoveToGoalTimedOut', self);
-        J0x17C3:
+        J0x19CD:
 
         if(IntermediateMoveGoal != none)
         {
-            Outer.AILog_Internal(((("Still moving to" @ string(IntermediateMoveGoal)) $ " which is ") $ string(VSize(Outer.Pawn.Location - IntermediateMoveGoal.Location))) $ " units away", 'Move_Path');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(((("Still moving to" @ string(IntermediateMoveGoal)) $ " which is ") $ string(VSize(Outer.Pawn.Location - IntermediateMoveGoal.Location))) $ " units away", 'Move_Path');
+            }
             Outer.CheckInterruptCombatTransitions();
             if(!Outer.Pawn.bCanStrafe)
             {
-                Outer.AILog_Internal("Pushing RotateToFocus state", 'Move_Path');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal("Pushing RotateToFocus state", 'Move_Path');
+                }
                 PushState('RotateToFocus');
             }
             Outer.LastDetourCheckTime = Outer.WorldInfo.TimeSeconds;
@@ -1159,18 +1386,24 @@ DirectMoveToPosition:
             {
                 Outer.SetTimer(20, false, 'Timer_DelayMoveTimeOut', self);
             }
-            J0x19CC:
+            J0x1C4A:
 
             if(ShouldDelayMove())
             {
                 Outer.CurrentMovementPhase = 4;
                 Outer.AIActionStatus = "Delaying move";
                 Outer.bDirectMoveToGoal = false;
-                Outer.AILog_Internal("Delaying move, LastDetourCheckTime: " $ string(Outer.WorldInfo.TimeSeconds - Outer.LastDetourCheckTime), 'Move_Path');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal("Delaying move, LastDetourCheckTime: " $ string(Outer.WorldInfo.TimeSeconds - Outer.LastDetourCheckTime), 'Move_Path');
+                }
                 Outer.AIZeroMovementVariables();
                 if((Outer.WorldInfo.TimeSeconds - Outer.LastDetourCheckTime) > 5)
                 {
-                    Outer.AILog_Internal("Attempting to restart move after delaying", 'Move_Path');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal("Attempting to restart move after delaying", 'Move_Path');
+                    }
                     Outer.LastDetourCheckTime = Outer.WorldInfo.TimeSeconds;
                     bValidRouteCache = false;
                     goto 'CheckMove';
@@ -1188,7 +1421,7 @@ DirectMoveToPosition:
                     }
                 }
                 Outer.Sleep(0.1);
-                goto J0x19CC;
+                goto J0x1C4A;
             }
             Outer.CurrentMovementPhase = 0;
 PathingTowardActor:
@@ -1199,12 +1432,18 @@ PathingTowardActor:
             StartingMove(false, Outer.GetRouteCacheDistance(), Outer.RouteCache.Length, IntermediateMoveGoal);
             if(bGoalChangedDueToSkipAhead)
             {
-                Outer.AILog_Internal("RouteCache changed out from under us.. calling GetNextMoveTarget again!", 'Move_Path');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal("RouteCache changed out from under us.. calling GetNextMoveTarget again!", 'Move_Path');
+                }
                 if(!GetNextMoveTarget(IntermediateMoveGoal))
                 {
-                    Outer.AILog_Internal("GetNextMoveTarget FAILED after skipahead changed the route cache.. Aborting move", 'PathWarning');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal("GetNextMoveTarget FAILED after skipahead changed the route cache.. Aborting move", 'PathWarning');
+                    }
                     IntermediateMoveGoal = none;
-                    goto J0x2BFD;
+                    goto J0x2C8D;
                 }
             }
             Outer.SetDirectPathCheckTime();
@@ -1219,10 +1458,14 @@ PathingTowardActor:
             }
             Outer.AIActionStatus = "Moving toward " $ string(IntermediateMoveGoal);
             Outer.MoveToward(IntermediateMoveGoal, Outer.MoveFocus, ((IntermediateMoveGoal == Outer.MoveGoal) ? Outer.MoveOffset : 0), false, false);
+            Outer.AIActionStatus = "Finished moving toward " $ string(IntermediateMoveGoal);
             Outer.CurrentMovementPhase = 0;
             if((Outer.bReachedLatentMoveGoal && Outer.LastNavGoalReached == IntermediateMoveGoal) || Outer.Pawn.ReachedDestination(IntermediateMoveGoal))
             {
-                Outer.AILog_Internal(((("MoveToward finished and I reached my intermediate goal (" $ string(IntermediateMoveGoal)) $ ") which is ") $ string(VSize(IntermediateMoveGoal.Location - Outer.Pawn.Location))) $ " units away", 'Move_Path');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(((("MoveToward finished and I reached my intermediate goal (" $ string(IntermediateMoveGoal)) $ ") which is ") $ string(VSize(IntermediateMoveGoal.Location - Outer.Pawn.Location))) $ " units away", 'Move_Path');
+                }
                 ReachedIntermediateMoveGoal();
             }
             if(Outer.MyKFPawn.Physics == 2)
@@ -1238,7 +1481,10 @@ PathingTowardActor:
             {
                 if(bGoalChangedDueToSkipAhead)
                 {
-                    Outer.AILog_Internal("path was changed during movetoward", 'Move_Path');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal("path was changed during movetoward", 'Move_Path');
+                    }
                     IntermediateMoveGoal = none;
                 }
             }
@@ -1246,7 +1492,10 @@ PathingTowardActor:
             {
                 ReachedIntermediateMoveGoal();
                 Outer.SetBasedPosition(LastPawnTargetPathLocation, Outer.MoveGoal.Location);
-                Outer.AILog_Internal("Repathing because MoveGoal is a Pawn:" @ string(Outer.MoveGoal), 'Command_MoveToGoal');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal("Repathing because MoveGoal is a Pawn:" @ string(Outer.MoveGoal), 'Command_MoveToGoal');
+                }
                 goto 'CheckMove';                
             }
             else
@@ -1267,39 +1516,16 @@ PathingTowardActor:
                         SetBestAnchor();
                         Outer.Sleep(0.1);
                     }
-                    if((IntermediateMoveGoal == none) || (NumTimesGetNextMoveGoalReturnedSameNode > 20) && VSize(Outer.Velocity) < 8)
-                    {
-                        Outer.AILog_Internal((("Failed to get valid movetarget, Got Same result " $ string(NumTimesGetNextMoveGoalReturnedSameNode)) $ " time(s). has reached move goal? ") @ string(HasReachedMoveGoal()), 'PathWarning');
-                        if((NumTimesGetNextMoveGoalReturnedSameNode > 20) && VSize(Outer.Velocity) < 8)
-                        {
-                            Outer.AILog_Internal("Got same result too many times.. bailing! Anchor: " $ string(Outer.Pawn.Anchor), 'PathWarning');
-                            bValidRouteCache = false;
-                            Outer.bReevaluatePath = true;
-                            NumTimesGetNextMoveGoalReturnedSameNode = 0;
-                            if((Outer.Pawn.Anchor != none) && (Outer.LastHitWall != none) && !Outer.LastHitWall.IsA('Pawn'))
-                            {
-                                if(Outer.CreateTemporaryBlockedReach(KFPathnode(IntermediateMoveGoal), Outer.CurrentPath))
-                                {                                    
-                                }
-                            }
-                            UpdateHistoryString((("[F] [GNM] " $ string(IntermediateMoveGoal)) $ " ") $ string(Outer.Pawn.Location));
-                            goto 'FailedMove';
-                        }
-                        IntermediateMoveGoal = none;                        
-                    }
-                    else
-                    {
-                        Outer.AILog_Internal((("NextMoveTarget" @ string(IntermediateMoveGoal)) @ "MoveGoal:") @ string(Outer.MoveGoal), 'Move_Path');
-                    }
+                    CheckForStuckPath();
                 }
             }
-            goto J0x17C3;
+            goto J0x19CD;
         }
-        J0x2BFD:
+        J0x2C8D:
 
         if(Outer.GetBasedPosition(Outer.MovePosition) != vect(0, 0, 0))
         {
-            J0x2C4C:
+            J0x2CDC:
 
             if(!HasReachedMoveGoal())
             {
@@ -1310,7 +1536,10 @@ PathingTowardActor:
                     Outer.Sleep(0.25);
                     goto 'FailedMove';
                 }
-                Outer.AILog_Internal("Finishing direct move, calling MoveTo " $ string(Outer.GetBasedPosition(Outer.MovePosition)), 'Move_DirectPath');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal("Finishing direct move, calling MoveTo " $ string(Outer.GetBasedPosition(Outer.MovePosition)), 'Move_DirectPath');
+                }
                 if(((Outer.WorldInfo.TimeSeconds - Outer.LastMoveFinishTime) > 5) && ShouldTurnToGoal(Outer.GetBasedPosition(Outer.MovePosition)))
                 {
                     TurnFocalPoint = Outer.GetBasedPosition(Outer.MovePosition);
@@ -1322,7 +1551,7 @@ PathingTowardActor:
                 {
                     Outer.WaitForLanding();
                 }
-                goto J0x2C4C;
+                goto J0x2CDC;
             }
         }        
     }
@@ -1333,11 +1562,17 @@ PathingTowardActor:
             UpdateHistoryString((("[F] [NO PATH TO " $ string(Outer.MoveGoal)) $ "] ") $ string(Outer.Pawn.Location));
             if(Outer.MoveGoal != none)
             {
-                Outer.AILog_Internal("Failed to find path to:" @ string(Outer.MoveGoal), 'Command_MoveToGoal');                
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal("Failed to find path to:" @ string(Outer.MoveGoal), 'Command_MoveToGoal');
+                }                
             }
             else
             {
-                Outer.AILog_Internal("Failed to find path to:" @ string(Outer.GetBasedPosition(Outer.MovePosition)), 'PathWarning');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal("Failed to find path to:" @ string(Outer.GetBasedPosition(Outer.MovePosition)), 'PathWarning');
+                }
             }
             Outer.Sleep(0.25);
             goto 'FailedMove';
@@ -1347,7 +1582,10 @@ PathingTowardActor:
 FailedMove:
 
 
-    Outer.AILog_Internal("FailedMove Label", 'PathWarning');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("FailedMove Label", 'PathWarning');
+    }
     UpdateHistoryString("Failure - FailedMove Label");
     if((Outer.Pawn.bCrawler && Outer.Pawn.Floor != vect(0, 0, 1)) && Outer.Pawn.Physics == 8)
     {
@@ -1394,9 +1632,9 @@ FailedMove:
                 }
                 Outer.bReevaluatePath = true;
                 Outer.Sleep(0);
-                if((IntermediateMoveGoal != none) && IntermediateMoveGoal.IsA('NavigationPoint'))
+                if((IntermediateMoveGoal != none) && NavigationPoint(IntermediateMoveGoal) != none)
                 {
-                    if(Outer.CreateTemporaryBlockedReach(KFPathnode(IntermediateMoveGoal), Outer.CurrentPath))
+                    if(Outer.CreateTemporaryBlockedReach(NavigationPoint(IntermediateMoveGoal), Outer.CurrentPath))
                     {
                         IntermediateMoveGoal = none;
                         ++ Retries;
@@ -1421,19 +1659,25 @@ FailedMove:
             }
         }
     }
-    J0x3940:
+    J0x3AAD:
 
     if(Outer.MoveGoal != none)
     {
-        Outer.AILog_Internal(("Reached move goal:" @ string(Outer.MoveGoal)) @ string(VSize(Outer.Pawn.Location - Outer.MoveGoal.Location)), 'Command_MoveToGoal');        
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(("Reached move goal:" @ string(Outer.MoveGoal)) @ string(VSize(Outer.Pawn.Location - Outer.MoveGoal.Location)), 'Command_MoveToGoal');
+        }        
     }
     else
     {
-        Outer.AILog_Internal(("Reached move point:" @ string(Outer.GetBasedPosition(Outer.MovePosition))) @ string(VSize(Outer.Pawn.Location - Outer.GetBasedPosition(Outer.MovePosition))), 'Command_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(("Reached move point:" @ string(Outer.GetBasedPosition(Outer.MovePosition))) @ string(VSize(Outer.Pawn.Location - Outer.GetBasedPosition(Outer.MovePosition))), 'Command_MoveToGoal');
+        }
     }
     Status = 'Success';
     Outer.PopCommand(self);
-    stop;        
+    stop;                    
 }
 
 state DelayFailure

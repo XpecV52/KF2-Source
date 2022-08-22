@@ -660,7 +660,7 @@ function LogAIRedirectedPath( KFAIController KFAIC, actor MoveGoal, string ToolT
 
 	if ( !bRecordAIDebugInfo ) return;
 
-	if( KFAIC!= None ) { KFAIC.AILog_Internal(KFAIC.Pawn$" GAMEEVENT_AI_REDIRECTEDPATH at "$KFAIC.Pawn.Location$" MoveGoal: "$MoveGoal$" ToolTipText: "$ToolTipText,'Critical'); };
+	if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFAIC!= None ) { KFAIC.AILog_Internal(KFAIC.Pawn$" GAMEEVENT_AI_REDIRECTEDPATH at "$KFAIC.Pawn.Location$" MoveGoal: "$MoveGoal$" ToolTipText: "$ToolTipText,'Critical'); };
 
 	PLE = GetGenericParamListEntry();
 	PLE.AddInt( 'EventID', GAMEEVENT_AI_REDIRECTEDPATH );
@@ -736,7 +736,7 @@ function LogAIGetNextMoveGoalFailure( KFAIController KFAIC, vector NPCLocation, 
 
 	if ( !bRecordAIDebugInfo ) return;
 
-	if( KFAIC!= None ) { KFAIC.AILog_Internal(KFAIC.Pawn$" LogAIGetNextMoveGoalFailure at "$NPCLocation$" MoveGoal: "$MoveGoal$" ToolTipText: "$ToolTipText,'PathWarning'); };
+	if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFAIC!= None ) { KFAIC.AILog_Internal(KFAIC.Pawn$" LogAIGetNextMoveGoalFailure at "$NPCLocation$" MoveGoal: "$MoveGoal$" ToolTipText: "$ToolTipText,'PathWarning'); };
 // 	KFAIC.AIBugItStringCreator( KFAIC.Pawn.Location, KFAIC.Pawn.Rotation, GoString, LocString );
 // 	`Log( GoString );
 // 	`Log( LocString );

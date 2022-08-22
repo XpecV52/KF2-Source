@@ -36,6 +36,17 @@ function InitOnlineLobby()
 	OnlineLobby = GetPC().OnlineSub.GetLobbyInterface();
 	}
 }
+function OnR3Pressed()
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(GetPC());
+
+	if(KFPC != none)
+	{
+		KFPC.RequestSwitchTeam();
+	}
+}
 
 function OnInputTypeChanged(bool bGamePad);
 
@@ -53,15 +64,9 @@ function OnLobbyStatusChanged(bool bIsInParty){}
 
 function ShowLeavePartyPopUp()
 {
-	//@HSL_BEGIN - JRO - PS4 has it's own confirmation window, don't need our own
-	if(class'WorldInfo'.static.IsConsoleBuild())
+	if(Manager != none)
 	{
-		OnlineLobby.QuitLobby();
-	}
-	//@HSL_END
-	else if(Manager != none)
-	{
-		Manager.OpenPopup(EConfirmation, LeavePartyTitleString, LeavePartyDescriptionString, LeaveString, class'KFCommon_LocalizedStrings'.Default.CancelString, ConfirmLeaveParty, CancelLeaveParty);
+		Manager.DelayedOpenPopup(EConfirmation,EDPPID_Misc, LeavePartyTitleString, LeavePartyDescriptionString, LeaveString, class'KFCommon_LocalizedStrings'.Default.CancelString, ConfirmLeaveParty, CancelLeaveParty);
 	}
 }
 
@@ -73,13 +78,18 @@ function ConfirmLeaveParty()
 	
 	if(OnlineLobby != none)
 	{       
+		OnlineLobby.QuitLobby();
+		
         if ( KFPC != none && KFPC.MyGFxManager != none )
         {
+        	if(KFPC.MyGFxManager.MenuBarWidget != none)
+        	{
+        		KFPC.MyGFxManager.MenuBarWidget.UpdateMenu(KFPC.MyGFxManager.CurrentMenuIndex);
+        	}
         	if(KFPC.MyGFxManager.StartMenu != none && !OnlineLobby.IsLobbyOwner() )
         	{
         		KFPC.MyGFxManager.StartMenu.ShowOverview(false, false, true, false);
         	}
-        	OnlineLobby.QuitLobby();
         }
 	}
 
@@ -109,6 +119,8 @@ function Callback_ControllerCloseMenu()
 {
 	local KFPlayerReplicationInfo KFPRI;
 	KFPRI = KFPlayerReplicationInfo( GetPC().PlayerReplicationInfo );
+
+	`log(`location@`showvar(KFPRI)@`showvar(Manager));
 	if( Manager != none && KFPRI != none )
 	{
 		if( !class'WorldInfo'.static.IsMenuLevel() && Manager.bUsingGamepad )
@@ -140,6 +152,7 @@ function Callback_Quit()
 
 function Callback_MenusFinishedClosing()
 {
+	`log(`location@`showvar(Manager.bMenusOpen));
 	if( Manager != none && Manager.bMenusOpen)
 	{
 		Manager.MenusFinishedClosing();
@@ -235,24 +248,28 @@ function Callback_PerkChanged(int PerkIndex)
 	if ( KFPC != none )
 	{
 		KFPC.RequestPerkChange( PerkIndex );
-		KFPC.SetHaveUpdatePerk(true);
+
+		if( KFPC.CanUpdatePerkInfo() )
+		{
+			KFPC.SetHaveUpdatePerk( true );
+		}
+
 		if( KFPC.MyGFxManager != none )
 		{
-			if(KFPC.MyGFxManager.CurrentMenu == KFPC.MyGFxManager.PerksMenu )
+			if( KFPC.MyGFxManager.CurrentMenu == KFPC.MyGFxManager.PerksMenu )
 			{
 				KFPC.MyGFxManager.PerksMenu.UpdateLock();
 			}
 		}
-		
 	}
 }
 
-function Callback_ProfileOption(int OptionIndex, int SlotIndex)
+function Callback_ProfileOption(string OptionKey, int SlotIndex)
 {
-	`log("Callback_ProfileOption: " @OptionIndex);
 	if( Manager != none && Manager.PartyWidget != none)
 	{
-		Manager.PartyWidget.ProfileOptionClicked(OptionIndex, SlotIndex);
+		`log("OptionKey- " @OptionKey,,'DevGFxUI');
+		Manager.PartyWidget.ProfileOptionClicked(OptionKey, SlotIndex);
 	}
 }
 
@@ -261,13 +278,24 @@ function Callback_CreateParty()
 	if( OnlineLobby != none && (Manager.GetMultiplayerMenuActive() || Class'WorldInfo'.Static.IsConsoleBuild()) )
 	{
 		OnlineLobby.MakeLobby( `KF_MAX_PLAYERS, LV_Private);	// returns false if we're already in a lobby
-		OnlineLobby.ShowLobbyInviteInterface();
+		OnlineLobby.ShowLobbyInviteInterface(Class'WorldInfo'.Static.IsConsoleBuild() ? Localize("Notifications", "InviteMessage", "KFGameConsole") : "");
 	}
 }
 
 function Callback_LeaveParty()
 {
 	ShowLeavePartyPopUp();
+}
+
+function Callback_OpenPlayerList(int SlotIndex)
+{
+	if (Manager != none )
+    {
+    	if(Manager.PartyWidget !=none)
+    	{
+			Manager.PartyWidget.OpenPlayerList(SlotIndex);
+		}
+	}
 }
 
 function Callback_InviteFriend()
@@ -277,7 +305,7 @@ function Callback_InviteFriend()
 		// We have main menu parties and in game sessions, be sure to show the right interface when we want to invite someone
 		if(class'WorldInfo'.static.IsMenuLevel())
 		{
-			OnlineLobby.ShowLobbyInviteInterface();
+			OnlineLobby.ShowLobbyInviteInterface(Localize("Notifications", "InviteMessage", "KFGameConsole"));
 		}
 		else
 		{
@@ -286,7 +314,7 @@ function Callback_InviteFriend()
 	}
 	else if ( OnlineLobby != none )
 	{
-		OnlineLobby.ShowLobbyInviteInterface();
+		OnlineLobby.ShowLobbyInviteInterface("");
 	}	
 }
 

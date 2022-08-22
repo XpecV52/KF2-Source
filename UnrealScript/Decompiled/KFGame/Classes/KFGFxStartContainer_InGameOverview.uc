@@ -24,7 +24,9 @@ var KFHTTPImageDownloader ImageDownLoader;
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     local PlayerController PC;
+    local KFGameReplicationInfo KFGRI;
 
+    KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     PC = Outer.GetPC();
     StartMenu = KFGFxMenu_StartGame(NewParentMenu);
     ServerWelcomeScreen = GetObject("serverWelcomeScreen");
@@ -43,6 +45,24 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     {
         ShowWelcomeScreen();
     }
+    if((KFGRI != none) && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')
+    {
+        HideLengthInfo();
+    }
+}
+
+function HideLengthInfo()
+{
+    local GFxObject InfoContainer, LengthText, LengthValueText;
+
+    InfoContainer = GetObject("infoContainer");
+    if(InfoContainer != none)
+    {
+        LengthText = InfoContainer.GetObject("lengthTitle");
+        LengthValueText = InfoContainer.GetObject("lengthLabel");
+        LengthText.SetVisible(false);
+        LengthValueText.SetVisible(false);
+    }
 }
 
 function LocalizeContainer()
@@ -58,7 +78,7 @@ function LocalizeContainer()
     LocalizedObject.SetString("infoTitle", StartMenu.InfoTitle);
     LocalizedObject.SetString("permissionsTitle", StartMenu.PermissionsTitle);
     WI = Class'WorldInfo'.static.GetWorldInfo();
-    if((WI != none) && WI.NetMode != NM_Standalone)
+    if(((WI != none) && WI.NetMode != NM_Standalone) && !Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
         LocalizedObject.SetString("serverTitle", StartMenu.ServerTypeString);
     }
@@ -69,7 +89,7 @@ function LocalizeContainer()
     LocalizedObject.SetString("sharedContent", SharedContentString);
     DataProvider = Outer.CreateArray();
     I = 0;
-    J0x3C5:
+    J0x417:
 
     if(I < Class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(Outer.GetPC().WorldInfo.IsConsoleBuild()).Length)
     {
@@ -77,7 +97,7 @@ function LocalizeContainer()
         TempObj.SetString("label", Class'KFCommon_LocalizedStrings'.static.GetPermissionString(float(I)));
         DataProvider.SetElementObject(I, TempObj);
         ++ I;
-        goto J0x3C5;
+        goto J0x417;
     }
     LocalizedObject.SetObject("permissionOptions", DataProvider);
     if(!Class'WorldInfo'.static.IsMenuLevel())
@@ -135,7 +155,7 @@ function ShowWelcomeScreen()
     {
         ImageDownLoader = new (Outer) Class'KFHTTPImageDownloader';
         ImageDownLoader.DownloadImageFromURL(KFGRI.ServerAdInfo.BannerLink, ImageDownloadComplete);
-        ServerWelcomeScreen.SetString("messageOfTheDay", KFGRI.ServerAdInfo.ServerMOTD);
+        ServerWelcomeScreen.SetString("messageOfTheDay", Repl(KFGRI.ServerAdInfo.ServerMOTD, "@nl@", Chr(10)));
         ServerWelcomeScreen.SetString("serverName", WI.GRI.ServerName);
         ServerWelcomeScreen.SetString("serverIP", KFGRI.ServerAdInfo.WebsiteLink);
     }
@@ -252,7 +272,7 @@ function UpdateServerType(string ServerType)
     local WorldInfo WI;
 
     WI = Class'WorldInfo'.static.GetWorldInfo();
-    if((WI != none) && WI.NetMode != NM_Standalone)
+    if(((WI != none) && WI.NetMode != NM_Standalone) && !Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
         SetString("serverType", ServerType);
     }

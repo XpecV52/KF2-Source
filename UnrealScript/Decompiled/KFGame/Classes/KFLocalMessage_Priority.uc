@@ -54,8 +54,19 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
     local string MessageString, SecondaryMessageString;
     local KFGFxMoviePlayer_HUD MyGFxHUD;
     local KFGameReplicationInfo KFGRI;
+    local TeamInfo TeamInfo;
+    local byte TeamIndex;
 
-    MessageString = GetMessageString(Switch, SecondaryMessageString, P.PlayerReplicationInfo.GetTeamNum());
+    TeamIndex = P.PlayerReplicationInfo.GetTeamNum();
+    if(OptionalObject != none)
+    {
+        TeamInfo = TeamInfo(OptionalObject);
+        if(TeamInfo != none)
+        {
+            TeamIndex = byte(TeamInfo.TeamIndex);
+        }
+    }
+    MessageString = GetMessageString(Switch, SecondaryMessageString, TeamIndex);
     if((MessageString != "") && KFGFxHudWrapper(P.myHUD) != none)
     {
         MyGFxHUD = KFGFxHudWrapper(P.myHUD).HudMovie;

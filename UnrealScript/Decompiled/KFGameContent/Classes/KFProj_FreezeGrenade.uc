@@ -25,7 +25,7 @@ simulated event GrenadeIsAtRest()
 
 defaultproperties
 {
-    FuseTime=0.5
+    FuseTime=0.15
     WeaponSelectTexture=Texture2D'WEP_UI_LN2_Grenade_TEX.UI_WeaponSelect_SharpshooterGrenade'
     ExplosionActorClass=Class'KFGame.KFExplosionActor'
     begin object name=ExploTemplate0 class=KFGameExplosion

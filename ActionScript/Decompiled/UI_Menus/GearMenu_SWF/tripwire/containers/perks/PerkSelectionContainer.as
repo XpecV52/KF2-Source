@@ -194,5 +194,11 @@ package tripwire.containers.Perks
         {
             ExternalInterface.call("Callback_PerkSelected",param1,param2);
         }
+        
+        override public function selectContainer() : void
+        {
+            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            super.selectContainer();
+        }
     }
 }

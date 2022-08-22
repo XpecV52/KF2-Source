@@ -9,8 +9,25 @@ class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+var float ForegroundShellDuration;
+
+simulated function ANIMNOTIFY_ShellEject()
+{
+    super(KFWeapon).ANIMNOTIFY_ShellEject();
+    MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup(2);
+    MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = true;
+    SetTimer(ForegroundShellDuration, false, 'Timer_RestoreShellEjectDepth');
+}
+
+simulated function Timer_RestoreShellEjectDepth()
+{
+    MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup(1);
+    MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = false;
+}
+
 defaultproperties
 {
+    ForegroundShellDuration=1.5
     InventorySize=5
     MagazineCapacity=12
     bHasIronSights=true
@@ -27,6 +44,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
     SpareAmmoCapacity=84
     InitialSpareMags=3
+    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
     FireSightedAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

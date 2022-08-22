@@ -104,11 +104,15 @@ function string GetLobbyData(int LobbyIndex, string Key);
 
 function bool SetVisibility(int VisibilityIndex);
 
-function ShowLobbyInviteInterface();
+function ShowLobbyInviteInterface(string InviteMessage);
+
+function bool SendInviteToUsers(array<string> MembersToInvite, string InviteMessage);
 
 function bool LobbyMessage(string Message);
 
 function bool GetCurrentLobby(out ActiveLobbyInfo LobbyInfo);
+
+function int GetCurrentPartySize();
 
 function bool MakeLobby(int MaxPlayers, TWOnlineLobby.ELobbyVisibility Type);
 

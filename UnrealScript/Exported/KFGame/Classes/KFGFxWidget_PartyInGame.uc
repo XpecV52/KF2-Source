@@ -10,10 +10,10 @@
 
 class KFGFxWidget_PartyInGame extends KFGFxWidget_BaseParty;
 
+var KFGameReplicationInfo KFGRI;
+
 function InitializeWidget()
 {
-	local KFGameReplicationInfo KFGRI;
-
 	super.InitializeWidget();
 	SetReadyButtonVisibility(true);
 
@@ -30,34 +30,33 @@ function InitializeWidget()
 		}
 		StartCountdown(KFGRI.RemainingTime, false);		
 	}	
-}
-
-function LocalizeText()
-{
-	local int SlotIndex;
-
-	super.LocalizeText();
-
-	for ( SlotIndex = 0; SlotIndex < PlayerSlots; SlotIndex++ )
-	{
-		 MemberSlots[SlotIndex].MemberSlotObject.SetString("readyText", PlayerReadyString);
-	}
+	RefreshParty();
 }
 
 function UpdateReadyButtonVisibility()
 {
-	local KFGameReplicationInfo KFGRI;
+	if(KFGRI == none)
+	{
+		return;
+	}
 	if(bReadyButtonVisible)
 	{
 		KFGRI = KFGameReplicationInfo( GetPC().WorldInfo.GRI );
 		if ( KFGRI != none )
 		{
+			//@HSL_BEGIN - JRO - 9/9/2016 - Blind fix for ready button sometimes disappearing when the wave ends
+			if (KFGRI.bMatchHasBegun && !KFGRI.bMatchIsOver && !GetPC().PlayerReplicationInfo.bReadyToPlay)
+			{
+				SetReadyButtonVisibility(true);
+			}
+			//@HSL_END
+
 			if (KFGRI.bMatchHasBegun || KFGRI.bMatchIsOver)
 			{
 				GetObject("matchStartContainer").SetVisible(false);
 				if (GetPC().PlayerReplicationInfo.bReadyToPlay || KFGRI.bMatchIsOver)
 				{
-					GetObject("readyButton").SetVisible(false);
+					SetReadyButtonVisibility(false);
 				}
 			}
 		}
@@ -69,6 +68,10 @@ function UpdateReadyButtonVisibility()
 ****************************************************************************/
 function OneSecondLoop()
 {
+	if(KFGRI == none)
+	{
+		KFGRI = KFGameReplicationInfo( GetPC().WorldInfo.GRI );
+	}
 	RefreshParty();
 	UpdateReadyButtonVisibility();
 }
@@ -102,7 +105,6 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking)
 function GetKFPRIArray( out array<KFPlayerReplicationInfo> KFPRIArray )
 {
 	local PlayerController PC;
-	local KFGameReplicationInfo KFGRI;
 
 	PC = GetPC();
 
@@ -111,7 +113,6 @@ function GetKFPRIArray( out array<KFPlayerReplicationInfo> KFPRIArray )
 	 	return;
 	}
 
-	KFGRI = KFGameReplicationInfo( GetPC().WorldInfo.GRI );
 	if ( KFGRI != none )
 	{
 	 	KFGRI.GetKFPRIArray( KFPRIArray );
@@ -123,6 +124,8 @@ function RefreshParty()
 {
 	local array<KFPlayerReplicationInfo> KFPRIArray;
 	local int SlotIndex;
+	local GFxObject DataProvider;
+	DataProvider = CreateArray();
 
 	super.RefreshParty();
 
@@ -144,112 +147,84 @@ function RefreshParty()
 	{
 		if ( SlotIndex < KFPRIArray.Length )
 		{
-            RefreshSlot( SlotIndex, KFPRIArray[SlotIndex] );
-		}
-		else if ( MemberSlots[SlotIndex].bIsSlotTaken )
-		{
-         	EmptySlot(SlotIndex);
+			DataProvider.SetElementObject(SlotIndex, RefreshSlot(SlotIndex, KFPRIArray[SlotIndex]) );
 		}
 	}
 	SetBool("bInParty", bInLobby || ( GetPC().WorldInfo.NetMode != NM_Standalone ));
+	SetObject("squadInfo", DataProvider);
 	UpdateSoloSquadText();
 }
 
 // Check which aspect of the slot has changed and update it
-function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
+function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
 {
-	local string PlayerName;
+	local string PlayerName;	
 	local UniqueNetId AdminId;
-	local UniqueNetId PlayerID;
 	local bool bIsLeader;
 	local bool bIsMyPlayer;
-	local string PerkIconPath;
-	local class<KFPerk> CurrentPerkClass;
-	local byte CurrentPerkLevel;
-	local KFGameReplicationInfo KFGRI;
 	local PlayerController PC;
+	local GFxObject PlayerInfoObject;
+
+
+	PlayerInfoObject = CreateObject("Object");
 
 	PC = GetPC();
-	KFGRI = KFGameReplicationInfo( PC.WorldInfo.GRI );
 
-	if(KFPC.CurrentPerk == none || KFPRI.CurrentPerkClass == none)
+	if(OnlineLobby != none)
 	{
-		LogInternal("FAILED TO UPDATE SLOT: "@SlotIndex,'DevGFxUI');
-		return;
+		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
 	}
 	
-   	UpdatePlayerReady( SlotIndex, KFPRI.bReadyToPlay && !KFGRI.bMatchHasBegun );
+	//leader
+	bIsLeader = (KFPRI.UniqueId == AdminId);
+	PlayerInfoObject.SetBool("bLeader", bIsLeader);
+	//my player
+	bIsMyPlayer = PC.PlayerReplicationInfo.UniqueId == KFPRI.UniqueId;
+	MemberSlots[SlotIndex].PlayerUID = KFPRI.UniqueId;
+	MemberSlots[SlotIndex].PRI = KFPRI;
+	MemberSlots[SlotIndex].PerkClass = KFPRI.CurrentPerkClass;
+	MemberSlots[SlotIndex].PerkLevel = String(KFPRI.GetActivePerkLevel());
+	PlayerInfoObject.SetBool("myPlayer", bIsMyPlayer);
 
-	// Update this players perk information
-	CurrentPerkClass = KFPRI.CurrentPerkClass;
-	CurrentPerkLevel = KFPRI.GetActivePerkLevel();
-
-	if ( MemberSlots[SlotIndex].PerkClass != CurrentPerkClass || MemberSlots[SlotIndex].PerkLevel != CurrentPerkLevel )
+	//perk info
+	if(MemberSlots[SlotIndex].PerkClass != none)
 	{
-		MemberSlots[SlotIndex].PerkClass = CurrentPerkClass;
-
-		PerkIconPath = "img://"$CurrentPerkClass.static.GetPerkIconPath();
-		UpdatePerk(SlotIndex, CurrentPerkClass.default.PerkName, string(CurrentPerkLevel), PerkIconPath);		
+		PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @MemberSlots[SlotIndex].PerkClass.default.PerkName);
+		PlayerInfoObject.SetString("perkIconPath", "img://"$MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
 	}
-
-	if ( MemberSlots[SlotIndex].PlayerUID != KFPRI.UniqueId )
- 	{
-		// Mark this slot as being filled
- 		MemberSlots[SlotIndex].bIsSlotTaken = true;
-
- 		// Get if we are the leader
-		PlayerID = KFPRI.UniqueId;
-		MemberSlots[SlotIndex].PlayerUID = PlayerID;
-		MemberSlots[SlotIndex].PRI = KFPRI;
-
-		if( OnlineLobby != none )
-		{
-			OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
-		}
-
-		if ( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
-		{
-			// Console check to make sure we aren't in a solo game
-			bIsLeader = (PlayerID == AdminId) && ( GetPC().WorldInfo.NetMode != NM_Standalone );
-		}
-		else
-		{
-			bIsLeader = (PlayerID == AdminId);
-		}
-
-		// Check if this is our player we are updating
-		bIsMyPlayer = (GetPC().PlayerReplicationInfo.UniqueId == PlayerID);
-
-		// Request this players avatar image
- 		
-
-		// Update this slots player name
-	 	PlayerName = KFPRI.PlayerName;
-		UpdatePlayerName( SlotIndex, PlayerName );
-
-		// Update the players slot
-		SlotChanged( SlotIndex, true, bIsMyPlayer, bIsLeader );
-		// Update the muted state of this slotobject.
-		MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted", PC.IsPlayerMuted(PlayerID) );
- 	}
+	//perk info
+	if(!bIsMyPlayer)
+	{
+		PlayerInfoObject.SetBool("muted", PC.IsPlayerMuted(KFPRI.UniqueId));	
+	}
+	
+	
 	// E3 build force update of player name
-	else if( class'WorldInfo'.static.IsE3Build() )
+	if( class'WorldInfo'.static.IsE3Build() )
 	{
 		// Update this slots player name
 		PlayerName = KFPRI.PlayerName;
-		UpdatePlayerName( SlotIndex, PlayerName );
-	}
-
-	CreatePlayerOptions(KFPRI.UniqueId, SlotIndex);
-
-	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
-	{
- 		MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetPS4Avatar(KFPRI.PlayerName));
 	}
 	else
 	{
-		MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+		PlayerName = KFPRI.PlayerName;
 	}
+	PlayerInfoObject.SetString("playerName", PlayerName);
+	//player icon
+	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+	{
+		PlayerInfoObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));
+	}
+	else
+	{
+		PlayerInfoObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+	}	
+	if(KFGRI != none)
+	{
+		PlayerInfoObject.SetBool("ready", KFPRI.bReadyToPlay && !KFGRI.bMatchHasBegun);
+	}
+
+	return PlayerInfoObject;	
 }
 
 
@@ -286,7 +261,6 @@ function ToggelMuteOnPlayer(int SlotIndex)
 				MemberSlots[SlotIndex].MemberSlotObject.SetBool("isMuted",true);
 			}	
 		}
-		CreatePlayerOptions(PlayerNetID,SlotIndex);		
 	}
 	super.ToggelMuteOnPlayer(SlotIndex);
 }
@@ -374,12 +348,6 @@ function KickPlayer(int SlotIndex)
 	{
 		KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo).ServerStartKickVote(KFPRIArray[SlotIndex], GetPC().PlayerReplicationInfo);	
 	}	
-}
-
-function UpdatePlayerReady( int SlotIndex, bool bReady )
-{
-    MemberSlots[SlotIndex].MemberSlotObject.SetBool("ready", bReady);
-   	MemberSlots[SlotIndex].bIsReady = bReady;
 }
 
 defaultproperties

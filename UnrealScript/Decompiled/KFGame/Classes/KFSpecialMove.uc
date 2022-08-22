@@ -295,6 +295,11 @@ final function SetMovementLock(bool bEnable)
     }
 }
 
+function float GetSprintSpeedModifier()
+{
+    return 1;
+}
+
 function EnableRootMotion()
 {
     KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(2, 2, 2);

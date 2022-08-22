@@ -218,7 +218,7 @@ function SetKeyBind(KeyBind NewKeyBind)
     }
     if(((NewKeyBind.Name == 'XboxTypeS_A') || NewKeyBind.Name == 'LeftMouseButton') && Manager.IsFocusIgnoreKey(bindCommand))
     {
-        Manager.OpenPopup(2, default.WarningString, string(NewKeyBind.Name) @ default.IgnoredKeyString, Class'KFCommon_LocalizedStrings'.default.OKString);
+        Manager.DelayedOpenPopup(2, 0, default.WarningString, string(NewKeyBind.Name) @ default.IgnoredKeyString, Class'KFCommon_LocalizedStrings'.default.OKString);
         UpdateAllBindings();
         return;
     }

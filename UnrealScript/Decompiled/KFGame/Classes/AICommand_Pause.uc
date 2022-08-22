@@ -38,7 +38,10 @@ static function bool Pause(KFAIController AI, float InDuration, optional bool In
 function Pushed()
 {
     super.Pushed();
-    Outer.AILog_Internal(("Pausing for " $ string(PauseTime)) $ " second(s)", 'Command_Pause');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(("Pausing for " $ string(PauseTime)) $ " second(s)", 'Command_Pause');
+    }
     Outer.AIActionStatus = ("Pausing for " $ string(PauseTime)) $ " seconds";
     Outer.DisableMeleeRangeEventProbing();
     GotoState('Wait');

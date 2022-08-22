@@ -73,7 +73,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 14;
 //@HSL_MOD_END
 var GFxObject GammaSlider;
@@ -134,7 +134,7 @@ function ResetGamma()
 	local float DefaultGamma;
 	local KFGameEngine KFGE;
 	//@HSL_MOD_BEGIN - amiller 5/25/2016 - Adding support to save extra data into profile settings
-	DefaultGamma = class'KFGameEngine'.default.DefaultGammaMult;
+	DefaultGamma = Manager.CachedProfile.GetDefaultFloat(KFID_GammaMultiplier);
 
 	// Multiplying by 100 so we can go 0-100 with a snapInterval of 1 for consistency. HSL_BB
 	GammaSlider.SetFloat("value", DefaultGamma*100);

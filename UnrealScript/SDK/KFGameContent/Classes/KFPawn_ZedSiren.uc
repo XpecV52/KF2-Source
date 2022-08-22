@@ -6,10 +6,30 @@
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedSiren extends KFPawn_Monster;
 
-function ANIMNOTIFY_SirenScream()
+/** Neck light */
+var protected PointLightComponent NeckLightComponent;
+var protected const name NeckLightSocketName;
+var protected const float ScreamLightFlickerRate;
+var protected const float ScreamLightRadius;
+var protected const float ScreamLightFalloffExponent;
+var protected const float MinFlickerBrightness;
+var protected const float MaxFlickerBrightness;
+
+/** Initialize our light */
+simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bForce )
+{
+	super.SetCharacterArch( Info, bForce );
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		Mesh.AttachComponentToSocket( NeckLightComponent, NeckLightSocketName );
+		NeckLightComponent.SetEnabled( true );
+	}
+}
+
+simulated function ANIMNOTIFY_SirenScream()
 {
 	local KFSM_Siren_Scream ScreamSM;
 
@@ -17,9 +37,66 @@ function ANIMNOTIFY_SirenScream()
     if( ScreamSM != none )
     {
     	ScreamSM.ScreamBegan();
-    	DisablebOnDeathAchivement();
+    	if( WorldInfo.NetMode != NM_Client )
+    	{
+	    	DisablebOnDeathAchivement();
+	    }
     }
 }
+
+simulated function EnableScreamFlicker( bool bEnabled )
+{
+	if( WorldInfo.NetMode == NM_DedicatedServer || bPlayedDeath || NeckLightComponent == none  )
+	{
+		return;
+	}
+
+	if( bEnabled )
+	{
+		NeckLightComponent.AnimationType = LightAnim_Strobe;
+		NeckLightComponent.AnimationFrequency = ScreamLightFlickerRate;
+		NeckLightComponent.Radius = ScreamLightRadius;
+		NeckLightComponent.FalloffExponent = ScreamLightFalloffExponent;
+		NeckLightComponent.MinBrightness = MinFlickerBrightness;
+		NeckLightComponent.MaxBrightness = MaxFlickerBrightness;
+	}
+	else
+	{
+		NeckLightComponent.AnimationType = default.NeckLightComponent.AnimationType;
+		NeckLightComponent.AnimationFrequency = default.NeckLightComponent.AnimationFrequency;
+		NeckLightComponent.Radius = default.NeckLightComponent.Radius;
+		NeckLightComponent.FalloffExponent = default.NeckLightComponent.FalloffExponent;
+		NeckLightComponent.MinBrightness = default.NeckLightComponent.MinBrightness;
+		NeckLightComponent.MaxBrightness = default.NeckLightComponent.MaxBrightness;
+	}
+
+	NeckLightComponent.DetachFromAny();
+	Mesh.AttachComponentToSocket( NeckLightComponent, NeckLightSocketName );
+}
+
+/** Called when SwitchToGoreMesh is successful */
+simulated event NotifyGoreMeshActive()
+{
+	super.NotifyGoreMeshActive();
+
+ 	if( NeckLightComponent != none )
+ 	{
+		NeckLightComponent.DetachFromAny();
+		Mesh.AttachComponentToSocket( NeckLightComponent, NeckLightSocketName );
+	}
+}
+
+ /** Clean up function to terminate any effects on death */
+ simulated function TerminateEffectsOnDeath()
+ {
+ 	super.TerminateEffectsOnDeath();
+
+ 	if( NeckLightComponent != none )
+ 	{
+		NeckLightComponent.DetachFromAny();
+		NeckLightComponent = none;
+	}
+ }
 
 /** Returns (hardcoded) dialog event ID for when players kills this zed type */
 function int GetKillerDialogID()
@@ -41,6 +118,7 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
+	LocalizationKey=KFPawn_ZedSiren
 	// ---------------------------------------------
 	// Stats
 	XPValues(0)=11
@@ -76,7 +154,7 @@ defaultproperties
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
 	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=6.5,  Duration=4.0)
-	IncapSettings(AF_Freeze)=	(Vulnerability=(2.0),                     Cooldown=1.5,  Duration=2.2)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(2.0),                     Cooldown=1.5,  Duration=4.2)
 	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0), Cooldown=5.5,  Duration=3.0)
 
 	Begin Object Name=Afflictions_0
@@ -85,7 +163,7 @@ defaultproperties
 
 	ParryResistance=1
 
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(1.0))) //0.75
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(1.0))) //0.75
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(1.0)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(1.0)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(1.0)))  //0.7
@@ -96,7 +174,7 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.85))) //0.85
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 				    DamageScale=(0.85))) //0.6
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.5))) //0.5
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25))) //0.25		
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25))) //0.25	
 
 
 	//Special Case damage resistance
@@ -104,12 +182,36 @@ defaultproperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rem1858',          DamageScale=(1.0))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_DBShotgun',        DamageScale=(1.1))
 
-KFDT_Ballistic_DBShotgun
+	// ---------------------------------------------
+	// Visuals
+    Begin Object Class=PointLightComponent Name=NeckLightComponent0
+        FalloffExponent=2.f
+        Brightness=0.8f
+        Radius=35.f
+        LightColor=(R=250,G=50,B=50,A=255)
+        CastShadows=false
+        bEnabled=false
+        LightingChannels=(Indoor=true,Outdoor=true,bInitialized=true)
+
+        // light anim
+        AnimationType=1
+        AnimationFrequency=5.f
+        MinBrightness=0.75f
+        MaxBrightness=1.2f
+    End Object
+    NeckLightComponent=NeckLightComponent0
+    NeckLightSocketName=NeckLightSocket
+
+	ScreamLightFlickerRate=4.25f
+	ScreamLightFalloffExponent=2.f
+	ScreamLightRadius=200.f
+	MinFlickerBrightness=0.4f
+	MaxFlickerBrightness=2.0f
 
 	// ---------------------------------------------
 	// Gameplay
 	Begin Object Name=MeleeHelper_0
-		BaseDamage=13.f
+		BaseDamage=13.f //13
 		MaxHitRange=180.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
@@ -122,8 +224,8 @@ KFDT_Ballistic_DBShotgun
 	HeadlessBleedOutTime=5.f
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=155, DmgScale=1.1, SkinID=1) // KF1=200
 	HitZones[1]		  =(ZoneName=neck,	  BoneName=Neck,   Limb=BP_Head,  GoreHealth=20,  DmgScale=1.1, SkinID=2)
-	HitZones[2]		  =(ZoneName=chest,   BoneName=Spine2, Limb=BP_Torso, GoreHealth=150, DmgScale=0.5, SkinID=3)
-	HitZones[11]	  =(ZoneName=abdomen, BoneName=Hips,   Limb=BP_Torso, GoreHealth=150, DmgScale=0.5, SkinID=3)
+	HitZones[2]		  =(ZoneName=chest,   BoneName=Spine2, Limb=BP_Torso, GoreHealth=150, DmgScale=0.5, SkinID=3) //0.5
+	HitZones[11]	  =(ZoneName=abdomen, BoneName=Hips,   Limb=BP_Torso, GoreHealth=150, DmgScale=0.5, SkinID=3)  //0.5
 
 	WeakSpotSocketNames.Empty;	// Ignore the head
 	WeakSpotSocketNames.Add(Head_Attach); // Neck

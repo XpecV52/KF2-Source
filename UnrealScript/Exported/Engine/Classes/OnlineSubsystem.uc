@@ -73,6 +73,7 @@ var OnlineAuthInterface AuthInterface;
 /** The array of delegates that notify that the stats read operation has completed */
 var array<delegate<OnInventoryReadComplete> > ReadInventoryCompleteDelegates;
 var const bool bInventoryReady;
+var array<delegate<OnPingRegionsComplete> > PingRegionsCompleteDelegates;
 
 /** Struct that holds a transient, unique identifier for a player */
 struct native UniqueNetId
@@ -434,6 +435,16 @@ struct native OnlineFriend
 		}
 	}
 };
+
+//@HSL_BEGIN - JRO - 8/11/2016 - Useful data for each party member
+struct native PartyMember
+{
+	var UniqueNetId PartyMemberId;
+	var UniqueNetId OnlineId;
+	var string NickName;
+	var UniqueNetId AccountId;
+};
+//@HSL_END
 
 /** The type of player owned content */
 enum EOnlineContentType
@@ -1042,6 +1053,7 @@ native function bool Exchange( const out ExchangeRuleSets Rule );
 native function int ExchangeDuplicates( const out ExchangeRuleSets Rule, const int maxToExchange );
 
 delegate OnInventoryReadComplete();
+delegate OnPingRegionsComplete(int RegionIndex);
 
 function AddOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> ReadCompleteDelegate)
 {
@@ -1065,12 +1077,7 @@ function ClearOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> 
 
 function ClearAllInventoryReadCompleteDelegates()
 {
-	local int i;
-
-	for (i = 0; i < ReadInventoryCompleteDelegates.length; i++)
-	{
-		ReadInventoryCompleteDelegates.Remove(i,1);
-	}
+	ReadInventoryCompleteDelegates.Remove(0,ReadInventoryCompleteDelegates.Length);
 }
 
 
@@ -1838,6 +1845,13 @@ native function bool CheckPlayerGroup(UniqueNetId Group);
   * Set it to empty string to disable.
   */
 function SetSharedPassword(string ServerPassword);
+
+function StartRegionPingAndSelectDefaultRegion(delegate<OnPingRegionsComplete> Callback) {};
+function CancelRegionPing() {};
+
+//@HSL_BEGIN - BWJ - 10-4-16 - Detecting if local player has a chat restriction
+native function bool HasChatRestriction( byte LocalUserNum );
+//@HSL_END
 
 //(`__TW_ONLINESUBSYSTEM_)
 

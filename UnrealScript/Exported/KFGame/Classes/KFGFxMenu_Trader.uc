@@ -80,7 +80,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 21
 
 enum EItemType
@@ -170,6 +170,11 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	LocalizeText();
 }
 
+function OnR3Pressed()
+{
+	//do nothing (handled via AS3)
+}
+
 function LocalizeText()
 {
 	local GFxObject TextObject;
@@ -217,6 +222,7 @@ function OnOpen()
 	{
 		MyKFPC.CloseTraderMenu();
 	}
+	
 	RefreshItemComponents(true);
 
 	if( PlayerInventoryContainer != none )
@@ -759,7 +765,12 @@ function Callback_PerkChanged(int PerkIndex)
 	if( MyKFPRI.NetPerkIndex != PerkIndex )
 	{
 		MyKFPC.RequestPerkChange(PerkIndex);
-		MyKFPC.SetHaveUpdatePerk(true);
+		
+		if( MyKFPC.CanUpdatePerkInfo() )
+		{
+			MyKFPC.SetHaveUpdatePerk(true);
+		}
+
 		Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPerkIndex, PerkIndex);
 	}
 		

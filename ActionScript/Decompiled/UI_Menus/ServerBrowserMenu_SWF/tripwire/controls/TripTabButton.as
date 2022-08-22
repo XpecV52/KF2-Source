@@ -8,9 +8,9 @@ package tripwire.controls
     {
          
         
-        public var tabClickSoundEffect = "";
+        public var tabClickSoundEffect = "SHARED_BUTTON_CLICK";
         
-        public var tabOverSoundEffect = "";
+        public var tabOverSoundEffect = "SHARED_BUTTON_MOUSEOVER";
         
         public function TripTabButton()
         {
@@ -19,28 +19,37 @@ package tripwire.controls
         
         override protected function handlePress(param1:uint = 0) : void
         {
-            super.handlePress(param1);
-            if(Extensions.gfxProcessSound != null && enabled == true)
+            if(!selected)
             {
-                Extensions.gfxProcessSound(this,"UI",this.tabClickSoundEffect);
+                super.handlePress(param1);
+                if(Extensions.gfxProcessSound != null && enabled == true)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.tabClickSoundEffect);
+                }
             }
         }
         
         override protected function handleMousePress(param1:MouseEvent) : void
         {
-            super.handleMousePress(param1);
-            if(Extensions.gfxProcessSound != null && enabled == true)
+            if(!selected)
             {
-                Extensions.gfxProcessSound(this,"UI",this.tabClickSoundEffect);
+                super.handleMousePress(param1);
+                if(Extensions.gfxProcessSound != null && enabled == true)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.tabClickSoundEffect);
+                }
             }
         }
         
         override protected function handleMouseRollOver(param1:MouseEvent) : void
         {
-            super.handleMouseRollOver(param1);
-            if(Extensions.gfxProcessSound != null && enabled == true && selected == false)
+            if(!selected)
             {
-                Extensions.gfxProcessSound(this,"UI",this.tabOverSoundEffect);
+                super.handleMouseRollOver(param1);
+                if(Extensions.gfxProcessSound != null && enabled == true && selected == false)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.tabOverSoundEffect);
+                }
             }
         }
     }

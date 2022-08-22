@@ -81,6 +81,9 @@ var const sRallyInfo RallySettings_Player_Versus;
 var const float ZedTimeSpeedScale_Versus;
 var const float ZedTimeSpeedScale_Player_Versus;
 
+var bool bForceSpecialSpawn;
+
+
 static function sEvadeOnDamageInfo GetEvadeOnDamageSettings( KFPawn_Monster MonsterPawn, KFGameReplicationInfo KFGRI )
 {
 	local byte Difficulty;

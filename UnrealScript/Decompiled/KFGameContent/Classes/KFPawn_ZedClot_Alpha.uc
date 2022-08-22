@@ -139,6 +139,7 @@ defaultproperties
     XPValues[3]=11
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_ClotAlpha'
+    LocalizationKey=KFPawn_ZedClot_Alpha
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

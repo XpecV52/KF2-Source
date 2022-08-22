@@ -157,7 +157,7 @@ reliable client function ClientRefusedTeamSwitch()
 	{
 		if(KFPC.MyGFxManager != none && KFPC.MyGFxManager.bMenusOpen)
 		{
-			KFPC.MyGFxManager.OpenPopup(ENotification, class'KFCommon_LocalizedStrings'.default.UnableToSwitchTeamString, class'KFCommon_LocalizedStrings'.default.NoSwitchReasonString, class'KFCommon_LocalizedStrings'.default.OKString);
+			KFPC.MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_SwitchTeams, class'KFCommon_LocalizedStrings'.default.UnableToSwitchTeamString, class'KFCommon_LocalizedStrings'.default.NoSwitchReasonString, class'KFCommon_LocalizedStrings'.default.OKString);
 		}
 		else if(KFPC.MyGFxHUD != none )
 		{

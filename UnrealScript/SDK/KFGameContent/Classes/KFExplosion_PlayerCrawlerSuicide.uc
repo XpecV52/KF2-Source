@@ -11,7 +11,7 @@ class KFExplosion_PlayerCrawlerSuicide extends KFExplosionActorLingering;
 DefaultProperties
 {
 	Interval=1
-	MaxTime=15
+	MaxTime=10 //15
 	DamageScalePerStack=0.f
 
 	bExplodeMoreThanOnce=true

@@ -1,0 +1,521 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[KFTutorial]
+;Lobby start
+RewardsTitleKey="Bienvenue au camp d'entraînement."
+RewardsDescriptionKey="Le Camp d'entraînement vous apprendra quelques bases de survie mais sans risque de mourir. Finissez le Camp d'entraînement pour recevoir un élément cosmétique et assez d'XP pour monter la classe de votre choix au Niveau 1."
+WelcomeTitleKey="Choisissez une Classe"
+WelcomeDescriptionKey="Avant de commencer le match, sélectionnez l'onglet <font color="#caab05">CLASSES</font> en haut de l'écran et choisissez-en une. Les classes sont des spécialisations disposant de différents <font color="#caab05">BONUS DE CLASSES</font> passifs, <font color="#caab05">COMPÉTENCES</font> configurables et <font color="#caab05">ARMES DE DÉPART</font>."
+PerksTitleKey="Détails des classes"
+PerksDescriptionKey="Remplissez des <font color="#caab05">OBJECTIFS D'XP</font> en jeu pour gagner de l'XP et augmenter vos niveaux. À chaque niveau gagné, vos <font color="#caab05">BONUS DE CLASSES</font> augmentent pour cette classe. Tous les 5 niveaux, déverrouillez de nouvelles <font color="#caab05">COMPÉTENCES</font> que vous pourrez <font color="#caab05">CONFIGURER</font>. Sélectionnez une classe et appuyez sur <font color="#caab05">PRÊT</font> pour commencer le match."
+
+;Gear Menu
+GearTitleKey="Menu Équipement"
+GearDescriptionKey="Le Menu Équipement vous permet de choisir et de <font color="#caab05">PERSONNALISER</font> votre personnage. Chaque personnage a un aspect, une voix et une personnalité uniques. La tête et le corps de tous les personnages peuvent être personnalisés. Vous pouvez porter jusqu'à 3 éléments cosmétiques. Sélectionnez et personnalisez votre personnage au moyen des boutons sur la gauche de ce menu."
+
+;Inventory Menu
+InventoryMenuTitleKey="Menu Inventaire"
+InventoryMenuDescriptionKey="Le menu Inventaire vous permet d'afficher et de gérer votre inventaire. Vous pouvez obtenir des éléments en récompense à la fin de matchs, mais vous pouvez également en obtenir en ouvrant des caisses, en décryptant des clés USB de modèle d'arme ou en les achetant sur le Marché."
+WeaponSkinsTitleKey="Équiper des modèles d'armes"
+WeaponSkinsDescriptionKey="Sélectionner un élément vous permet d'en afficher les détails. Si vous avez choisi un modèle d'arme, vous pouvez l'équiper en appuyant sur le bouton <font color="#caab05">ÉQUIPER</font>. Si vous avez un modèle d'arme équipé, cette arme apparait avec le modèle actuellement équipé à chaque fois que vous l'utilisez."
+
+;Store Menu
+StoreTitleKey="Menu Boutique"
+StoreDescriptionsKey="Le Menu Boutique vous permet d'acheter des clés servant à ouvrir des caisses et à décrypter les clés USB de modèle d'arme que vous trouvez. Il y a également plusieurs lots cosmétiques spécifiques à des personnages à acheter. Les éléments que vous achetez ou recevez en récompense apparaissent dans le Menu Inventaire."
+
+;Match Start
+InventoryTitleKey="Connaissez votre inventaire"
+InventoryDescriptionKey="Chaque paquetage de classe commence avec une arme principale, un 9 mm de secours, un couteau et des grenades. Appuyez sur <font color="#caab05">%x%</font> pour passer d'une arme à l'autre. Vous pouvez également sélectionner rapidement des catégories en appuyant sur les touches suivantes : <font color="#caab05">%x%</font> pour équiper votre arme à distance principale, <font color="#caab05">%x%</font> pour votre pistolet, <font color="#caab05">%x%</font> pour votre arme de mêlée, et <font color="#caab05">%x%</font> pour votre seringue."
+InventoryContTitleKey="Connaissez votre inventaire"
+InventoryContDescriptionKey="Chaque paquetage de classe commence avec une seule arme principale, un pistolet 9 mm de secours, un couteau de spécialiste et des grenades. Maintenez <font color="#caab05">%x%</font> et utilisez les touches directionnelles pour sélectionner une arme."
+AlternateFireKey="Tir alternatif"
+AlternateFireDescription="La plupart des armes principales ont un mode de tir alternatif. Appuyez sur <font color="#caab05">%x%</font> pour changer de mode de tir. Une icône indique à l'écran le mode de tir sélectionné."
+FlashLightBatteryTitleKey="Utiliser une Lampe torche"
+FlashLightBatteryDescriptionKey="Il peut faire noir ici-bas. Appuyez sur <font color="#caab05">%x%</font> pour allumer ou éteindre votre <font color="#caab05">LAMPE TORCHE</font>. La batterie de votre lampe torche se décharge progressivement. Quand elle est vide, elle s'éteint et commence à se recharger automatiquement."
+GrenadeTitleKey="Utiliser des grenades"
+GrenadeDescriptionKey="Les grenades vous permettent d'infliger des dégâts aux groupes de Zeds compacts. Les Classes ont différentes grenades dans leurs <font color="#caab05">PAQUETAGES D'ARMES</font>. Elles blessent toutes les Zeds mais peuvent avoir d'autres effets. Appuyez sur <font color="#caab05">%x%</font> pour lancer une grenade. "
+
+;Wave 1 end
+TraderTimeTitleKey="Un tour chez la marchande."
+TraderTimeDescriptionKey="Entre les vagues, vous pouvez acheter et vendre des armes, acheter de l'armure et faire le plein de munitions auprès de la Marchande. Suivez les flèches bleues pour la trouver."
+InventoryWeightTitleKey="Capacité de charge"
+InventoryWeightDescriptionKey="Le poids que vous pouvez porter est limité. Si vous ne pouvez pas porter ce que vous voulez, faites de la place en vendant quelques pièces d'équipement."
+
+;Trader Menu Open
+TraderRefillTitleKey="Faire le plein en Munitions et Armure"
+TraderRefillDescriptionKey="Vous pouvez faire le plein en <font color="#caab05">MUNITIONS</font>, <font color="#caab05">GRENADES</font>, et <font color="#caab05">ARMURE</font> en appuyant sur les boutons <font color="#caab05">CHARGEUR</font>, <font color="#caab05">1X</font>, ou <font color="#caab05">REMPLIR</font> à gauche de l'article. Si vous êtes à court de temps (ou bourré de fric), appuyez sur <font color="#caab05">REMPLISSAGE AUTO</font> pour dépenser rapidement votre fric en munitions, armure et grenades."
+TraderSellTitleKey="Vendre des armes"
+TraderSellDescriptionKey="Pour <font color="#caab05">VENDRE UNE ARME</font>, appuyez sur le <font color="#caab05">BOUTON VENDRE</font> à droite de l'article à vendre. La quantité de fric obtenue si vous vendez l'article s'affiche sur le <font color="#caab05">BOUTON VENDRE</font>. Vous ne pouvez pas vendre votre 9 mm de secours, votre armure ni vos grenades."
+TraderBuyTitleKey="Acheter des armes"
+TraderBuyDescriptionKey="Pour <font color="#caab05">ACHETER UNE ARME</font>, appuyez sur le <font color="#caab05">BOUTON ACHETER</font> à gauche de l'article à acheter. Assurez-vous d'avoir assez de <font color="#caab05">FRIC</font> et de <font color="#caab05">CAPACITÉ DE CHARGE</font> pour acheter l'arme."
+TraderWeightTitleKey="Poids et capacité d'arme"
+TraderWeightDescriptionKey="Chaque arme a un <font color="#caab05">POIDS</font>. Le poids de vos armes actuelles peut vous empêcher d'acheter l'arme de votre choix. Le poids de l'arme est visible sur la liste d'armes et dans les détails de l'arme. Votre <font color="#caab05">CAPACITÉ DE CHARGE</font> s'affiche en dessous de votre fric actuel au centre de l'écran. Tout ce qui vous empêche d'acheter l'article sélectionné apparaît en rouge à l'écran."
+
+;Trader Open Gamepad
+TraderRefillGamepadTitleKey="Faire le plein en Munitions et Armure"
+TraderRefillGamepadDescriptionKey="Vous pouvez faire le plein en <font color="#caab05">MUNITIONS</font>, <font color="#caab05">GRENADES</font>, et <font color="#caab05">ARMURE</font> chez la marchande. Sélectionnez l'arme à remplir à gauche du menu de la marchande avec le manette gauche. Achetez un chargeur ou une grenade pour l'arme en appuyant sur <font color="#caab05">XboxTypeS_A</font>, ou achetez le maximum en appuyant sur <font color="#caab05">XboxTypeS_X</font>. Si vous êtes à court de temps (ou bourré de fric), appuyez sur <font color="#caab05">LeftThumbStick</font> pour tout dépenser."
+TraderSellGamepadTitleKey="Vendre des armes"
+TraderSellGamepadDescriptionKey="Pour <font color="#caab05">VENDRE UNE ARME</font>, sélectionnez l'arme que vous voulez vendre à gauche du menu de la marchande grâce au manette gauche et appuyez sur <font color="#caab05">XboxTypeS_Y</font>. La quantité de fric obtenue si vous vendez l'article s'affiche. Vous ne pouvez pas vendre votre 9 mm de secours, votre armure ni vos grenades."
+TraderBuyGamepadTitleKey="Acheter des armes"
+TraderBuyGamepadDescriptionKey="Pour <font color="#caab05">ACHETER UNE ARME</font>, sélectionnez l'arme que vous voulez acheter à droite du menu de la marchande grâce au manette gauche et appuyez sur <font color="#caab05">XboxTypeS_A</font>. Assurez-vous d'avoir assez de <font color="#caab05">FRIC</font> et de <font color="#caab05">CAPACITÉ DE CHARGE</font> pour acheter l'arme."
+TraderWeightGamepadTitleKey="Poids et capacité d'arme"
+TraderWeightGamepadDescriptionKey="Chaque arme a un <font color="#caab05">POIDS</font>. Le poids de vos armes actuelles peut vous empêcher d'acheter l'arme de votre choix. Le poids de l'arme est visible sur la liste d'armes et dans les détails de l'arme. Votre <font color="#caab05">CAPACITÉ DE CHARGE</font> s'affiche en dessous de votre fric actuel au centre de l'écran. Tout ce qui vous empêche d'acheter l'article sélectionné apparaît en rouge à l'écran."
+
+
+
+;Trader Menu Close
+DoorWeldTitleKey="Souder des portes"
+DoorWeldDescriptionKey="Vous pouvez <font color="#caab05">SOUDER DES PORTES</font> pour ralentir l'arrivée des ennemis dans une zone donnée. Pour souder une porte, approchez-vous-en et <font color="#caab05">MAINTENEZ %x%</font> pour équiper votre soudeur."
+HoldOutRunTitleKey="Fuir ou tenir bon"
+HoldOutRunDescriptionKey="Apprenez quand tenir bon et quand fuir. Trouvez un bon endroit défendable, mais si vous commencez à être submergé, trouvez une sortie."
+TeamAdviceTitleKey="Rester groupés"
+TeamAdviceDescriptionKey="<font color="#caab05">RESTEZ AVEC VOTRE ÉQUIPE !</font> Vos équipiers sont indispensables à votre survie. Ils peuvent vous soigner et vous aider à battre les Zeds les plus forts."
+
+;Victory
+CongratulationsTitleKey="Victoire !"
+CongratulationsDescriptionKey="Félicitations ! Vous avez terminé le Camp d'entraînement !"
+NextStepsTitleKey="Et après"
+NextStepsDescriptionKey="Depuis l'Accueil, vous pouvez vous entraîner hors ligne ou vous lancer dans une partie en ligne avec d'autres survivants. Et maintenant, allez buter du Zed !"
+
+;Healing Section
+QuickHealTitleKey="Soignez-vos blessures"
+QuickHealDescriptionKey="Si vous êtes blessé, soignez-vous en appuyant sur <font color="#caab05">%x%</font>. Après le soin, votre seringue prend un peu de temps pour se recharger avant que vous ne puissiez la réutiliser."
+HowToSyringeTitleKey="Soignez vos équipiers"
+HowToSyringeDescriptionKey="Vous pouvez également équiper la seringue pour soigner vos équipiers en appuyant sur <font color="#caab05">%x%</font> puis sur <font color="#caab05">%x%</font> à proximité d'un équipier."
+HealOthersTitleKey="Utiliser les armes du Médecin pour soigner"
+HealOthersDescriptionKey="Les armes de classe du Médecin peuvent soigner les équipiers à distance grâce à leur mode alternatif. Appuyez sur <font color="#caab05">%x%</font> avec une arme de Médecin pour tirer une fléchette soignante. De même, avec la classe Médecin, appuyez sur <font color="#caab05">%x%</font> pour lancer une grenade de gaz soignant."
+
+;Zed Time
+ZedTimeTitleKey="Temps Zed"
+ZedTimeDescriptionKey="<font color="#caab05">LE ZED TIME RALENTI</font> se déclenche quand de bonnes choses arrivent, comme des tirs à la tête ou des hordes d'ennemis mourant dans une explosion. vous pouvez profiter de cette période pour reprendre votre souffle et enchaîner quelques meurtres."
+
+;Melee Section
+MeleeTitleKey="Armes de mêlée"
+MeleeDescriptionKey="Les Armes de mêlée ont à la fois des attaques rapides et puissantes. Effectuez une attaque rapide en appuyant sur <font color="#caab05">%x%</font> et une attaque puissante en appuyant sur <font color="#caab05">%x%</font>."
+BlockingTitleKey="Bloquer avec des Armes de mêlée"
+BlockingDescriptionKey="Vous pouvez également bloquer avec des armes de mêlée en <font color="#caab05">MAINTENANT %x%</font>. Bloquer réduit les dégâts des Zeds."
+ParryTitleKey="Parer avec des Armes de mêlée"
+ParryDescriptionKey="Si vous bloquez une attaque de Zed au bon moment, vous la parez et renversez le Zed. Un flash vous indique que vous avez paré avec succès une attaque de Zed."
+UnblockableTitleKey="Attaques de Zed impossibles à bloquer"
+UnblockableDescriptionKey="Les plus grands Zeds ont des attaques impossibles à bloquer. Un effet lumineux sur le Zed au moment de l'attaque vous indique que celle-ci ne peut être bloquée."
+
+[KFGFxTutorialContainer]
+BackString="RETOUR"
+NextString="SUIVANT"
+DoneString="TERMINÉ"
+SkipString="PASSER"
+
+[Armor]
+ItemName="Armure de combat"
+ItemCategory="Équipement"
+ItemDescription="•L'armure de combat vous protège des différents dégâts, mais elle s'abîme.\n•Achetez une nouvelle armure ou réparez l'armure endommagée chez la Marchande.\n\nIl s'agit d'une veste renforcée de plaques de fibre high-tech et de tungstène."
+
+[KFProj_DynamiteGrenade]
+ItemName="1/2 bâton de Dynamite"
+ItemCategory =" « Explosifs"
+ItemDescription="•Un petit morceau de dynamite avec un fusible.\n•Il peut également vous blesser alors soyez prudent ! » "
+
+[KFProj_MedicGrenade]
+ItemName="Grenade de médecin"
+ItemCategory =" « Explosifs"
+ItemDescription="•Libère un gaz qui empoisonne les Zeds et soigne les humains.\n\n•Rester dans le gaz bleu pour vous soigner.\nPour citer un de nos scientifiques : "L'agent contenu dans ces grenades revigore l'Homo-sapiens tout en éradiquant l'Homo Zedicus." Faites en bon usage. » "
+
+[KFProj_MolotovGrenade]
+ItemName="Cocktail Molotov"
+ItemCategory="« Explosifs"
+ItemDescription="•Tout simplement une grenade incendiaire qui brûle les Zeds.\n•Elle peut aussi vous blesser !\n\nNommée par les Finlandais pour insulter Vyacheslav Mikhailovich Molotov, ministre sous Staline pendant la Guerre d'Hiver de 1939-1940... Oh pardon ! Pas envie d'un cours d'histoire ? » "
+
+[KFProj_EMPGrenade]
+ItemName="Grenade IEM"
+ItemCategory="« Explosifs"
+ItemDescription="•Génère une impulsion électrique qui inflige des dégâts aux Zeds et peut les assommer un court instant.\n\nLa détonation génère une impulsion électromagnétique d'une nanoseconde qui arrête tous les systèmes électriques proches. En particulier ceux des Zeds. Pratique. » "
+
+[KFProj_HEGrenade]
+ItemName="Grenade HE"
+ItemCategory="« Explosifs"
+ItemDescription="•Une grenade hautement explosive très simple. Blesse les Zeds et les humains.\n\nOn ne peut pas faire plus simple. HE - Hautement Explosive - Ça fait BOUM et ça fait tout péter. Il faut vraiment vous expliquer ? » "
+
+[KFProj_FragGrenade]
+ItemName="Grenade frag"
+ItemCategory="« Explosifs"
+ItemDescription="•La classique grenade à fragmentation : envoie de vilains bouts de métal tout autour, blessant tout le monde.\n\nVous avez joué à bien assez de jeux vidéo pour savoir ce qu'est une grenade à fragmentation. Et arrêtez de dire que c'est faux. Personne ne vous croira. » "
+
+[KFProj_NailBombGrenade]
+ItemName="Bombe à clous"
+ItemCategory =" « Explosifs"
+ItemDescription="•Une simple boîte remplie de vieux clous avec une petite charge explosive au milieu.\n\nPas le moyen le plus plaisant ni le plus subtil de s'occuper des Zeds, mais eux-mêmes ne sont ni subtils, ni plaisants, n'est-ce pas ? »"
+
+[KFProj_FreezeGrenade]
+ItemName="Grenade de glace"
+ItemCategory =" « Explosifs"
+ItemDescription="•Une bombe technologiquement avancée remplie d'azote liquide sous pression.\n\nAu contact du contenu, les Zeds gèlent sur place pour un moment. Les résultats peuvent être fracassants. »"
+
+[KFProj_FlashBangGrenade]
+ItemName="Grenade éblouissante"
+ItemCategory =" « Explosifs"
+ItemDescription="•Brillantes et bruyantes à la fois. Ne les regardez pas directement. Essayez de ne pas l'entendre non plus.\n•Bien qu'elles ne soient pas mortelles, les grenades éblouissantes peuvent quand-même vous blesser, alors soyez prudent ! » "
+
+[KFWeap_Healer_Syringe]
+ItemName="Seringue médicale"
+ItemCategory="Équipement"
+
+[KFWeap_Welder]
+ItemName="Soudeur"
+ItemCategory="Équipement"
+
+[KFWeap_Pistol_9mm]
+ItemName="Pistolet 9 mm"
+ItemCategory="Arme de poing"
+ItemDescription="•Tir semi-auto uniquement.\n•Pistolet 9 mm standard. Simple et de qualité plutôt (très) médiocre, c'est l'arme de base des agents de Horzine."
+
+[KFWeap_Pistol_Deagle]
+ItemName="Desert Eagle .50"
+ItemCategory="Hand Cannon"
+ItemDescription="•Mode de tir semi-automatique seulement.\n•Le Desert Eagle est le mastodonte des armes de poing, ce qui lui vaut le surnom de « Hand Cannon »."
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="Carabine Varmint AR-15"
+ItemCategory="Fusil d'assaut"
+ItemDescription="•Modes rafale de 3 coups ou tir simple.\n•Alt-Feu pour alterner entre les modes de tir.\n•Pour les Zeds, pas pour les vermines."
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="Fusil d'assaut SCAR-H"
+ItemCategory="Fusil d'assaut"
+ItemDescription="•Modes tir automatique et semi-automatique.\n•Alt-Feu pour alterner entre les modes de tir.\n•Conçu tout spécialement pour le commandement des opérations spéciales américaines, il est effectivement très spécial !"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="Kalashnikov AK-12"
+ItemCategory="Fusil d'assaut"
+ItemDescription="•Modes tir automatique et rafale de 3 coups.\n•Alt-Feu pour alterner entre les modes de tir.\n•Cet AK-12 a été récupéré sur un agent russe des Spetsnaz pour analyses."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="SA80 L85A2 Bullpup"
+ItemCategory="Fusil d'assaut"
+ItemDescription="•Modes tir automatique et semi-automatique.\n•Alt-Feu pour alterner entre les modes de tir.\n•Le SA80 était l'arme de base de l'armée britannique, avant que l'armée ne se fasse bouffer."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Couteau utilitaire"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Un cutter. Pour ouvrir toutes les boîtes que vous pourrez trouver sur le champ de bataille."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Scalpel"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Un scalpel. Comme vous êtes médecin, vous n'avez probablement pas besoin qu'on vous explique comment vous en servir."
+
+[KFWeap_Knife_Firebug]
+ItemName="Couteau de pompier"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Un couteau de pompier. Comme vous êtes pompier, vous n'avez probablement pas besoin qu'on vous explique comment vous en servir."
+
+[KFWeap_Knife_Gunslinger]
+ItemName="Couteau Bowie"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Le couteau surdimensionné du Far West. Parfait pour découper les Zeds en rondelle de nos jours."
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Le couteau traditionnel des Ghurkas. Un couteau pour couper plus que trancher. "
+
+[KFWeap_Knife_SWAT]
+ItemName="Couteau tactique"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•C'est un couteau. Il coupe des trucs. Des trucs tactiques."
+
+[KFWeap_Pistol_Medic]
+ItemName="Pistolet HMTech-101"
+ItemCategory="Pistolet"
+ItemDescription="•Tir semi-auto uniquement.\n•Alt-Feu tire des fléchettes qui soignent les équipiers.\n•Utilise des munitions sans douille et les compte pour vous."
+
+[KFWeap_SMG_Medic]
+ItemName="SMG HMTech-201"
+ItemCategory="Mitraillette"
+ItemDescription="•Tir auto uniquement.\n•Alt-Feu tire des fléchettes qui soignent les équipiers.\n•Votre pistolet HMTech, juste un peu plus étoffé !"
+
+[KFWeap_Shotgun_Medic]
+ItemName="Fusil à pompe HMTech-301"
+ItemCategory="Fusil à pompe"
+ItemDescription="•Tir semi-auto uniquement.\n•Alt-Feu tire des fléchettes qui soignent les équipiers.\n•La version fusil à pompe du pistolet HMTech."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="Fusil d'assaut HMTech-401"
+ItemCategory="Fusil d'assaut"
+ItemDescription="•Tir auto uniquement.\n•Alt-Feu tire des fléchettes qui soignent les équipiers.\n•La véritable version fusil d'assaut du pistolet HMTech."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Espingole double corps"
+ItemCategory="Fusil à pompe"
+ItemDescription="•Le tir principal utilise uniquement un canon.\n•Alt-Feu tire avec les deux canons à la fois.\n• Fusil de chasse à double canon de calibre 12. Parfait pour le combat rapproché. Il fera trembler même les plus gros Zeds !"
+
+[KFWeap_Shotgun_AA12]
+ItemName="Fusil à pompe Auto AA-12"
+ItemCategory="Fusil à pompe"
+ItemDescription="•Modes automatique et semi-automatique.\n•Alt-Feu pour alterner entre les modes de tir.\n•L'AA-12 est un fusil à pompe automatique. Sa puissance de feu est dévastatrice à courte et moyenne portée, mais il consomme les munitions très rapidement !"
+
+[KFWeap_Shotgun_MB500]
+ItemName="SG 500 Pump-Action"
+ItemCategory="Fusil à pompe"
+ItemDescription="•À pompe uniquement.\n•Le fusil à pompe Mossberg SG 500, avec sa poignée de pistolet, est parfait pour anéantir du Zed à bout portant. Simple et efficace."
+
+[KFWeap_Shotgun_M4]
+ItemName="Fusil à pompe M4 Combat"
+ItemCategory="Fusil à pompe"
+ItemDescription="•Tir semi-auto uniquement\n•Le fusil à pompe de combat M4, conçu par Benelli pour l'armée américaine. Son mode de tir semi-automatique permet une cadence de tir régulière."
+
+[KFWeap_Knife_Berserker]
+ItemName="Lame de tondeuse"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir Principal pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Oui, c'est bien une lame de tondeuse à gazon. Amusez-vous bien !"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Le couteau de commando classique version Horzine."
+
+[KFWeap_Knife_Support]
+ItemName="Machette"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Ce n'est pas parce qu'on vous a donné le plus gros couteau que vous êtes spécial."
+
+[KFWeap_Edged_Katana]
+ItemName="Katana"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Sa classe force le respect."
+
+[KFWeap_Blunt_Crovel]
+ItemName="Outils de survie Crovel"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Mi-pied-de-biche, mi-pelle, 100 % mortel."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="VLAD-1000 Cloueuse"
+ItemCategory="Fusil à pompe"
+ItemDescription="•Tirs de clous uniques ou multiples.\n•Alt-Feu pour alterner entre les modes de tir.\n•Il semblerait que l'un des chercheurs de Horzine ait emprunté la cloueuse originale à un employé (décédé) du service d'entretien."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Pulvériseur"
+ItemCategory="Mêlée"
+ItemDescription="•Principale - attaque contondante rapide, Maintenir pour enchaîner.\n•Secondaire - tire des balles explosives même au contact. À court de munitions, Secondaire devient une attaque contondante lourde, donc pensez à recharger !\n•Alt - bloquer/parer."
+
+[KFWeap_Eviscerator]
+ItemName="Éviscérateur"
+ItemCategory="Spécial"
+ItemDescription="•Principale lance des scies circulaires.\n•Alt-Feu est une attaque de mêlée gourmande en carburant.\n•Conçu lors d'un moment de folie du groupe SDS de Horzine, ce monstre ne fait pas dans la dentelle."
+SecondaryAmmo="Essence"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Zweihander"
+ItemCategory="Mêlée"
+ItemDescription="•Principale - dégâts moyens/lourds, avec un peu de contrôle des foules.\n•Secondaire - plus lente, mais plus de dégâts.\n•Alt - bloquer/parer\n•Vous faites encore plus de dégâts quand vous avancez."
+SharedUnlockSource="Chivalry Medieval Warfare" "
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Brûleur"
+ItemCategory="Incendiaire"
+ItemDescription="•Lance des flammes.\n•Lance-flammes artisanal portatif. N'essayez PAS d'en fabriquer un chez vous."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Trench Gun incendiaire"
+ItemCategory="Fusil à pompe"
+ItemDescription="•Tir principal de type fusil à pompe.\n•Un fusil de chasse qui utilise des cartouches incendiaires Souffle du Dragon. Non seulement mortel, mais aussi très joli."
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Lance-flammes"
+ItemCategory="Incendiaire"
+ItemDescription="•Lance des flammes. Tout simplement.\n•Un classique pour toutes les générations. Au moindre doute, brûlez tout ce qui bouge."
+
+[KFWeap_Beam_Microwave]
+ItemName="Pistolet à micro-ondes"
+ItemCategory="Incendiaire"
+ItemDescription="•Le tir principal brûle et fait bouillir les Zeds à portée grâce aux micro-ondes.\n•Le tir alternatif libère une déflagration de micro-ondes à courte portée.\n•Les merveilles de la technologie moderne : un cuiseur de Zed portatif."
+
+[KFWeap_Thrown_C4]
+ItemName="C4"
+ItemCategory="Explosifs"
+ItemDescription="•Tir principal pour poser les charges de C4.\n•Tir alternatif pour faire exploser les charges, dans l'ordre dans lequel vous les avez placées.\n•Un pain de C4, connecté à un détonateur à distance."
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="Pistolet à grenade HX25"
+ItemCategory="Explosifs"
+ItemDescription="•Tire de multiples sous-munitions qui explosent au contact."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="Lance-grenade M79"
+ItemCategory="Explosifs"
+ItemDescription="•Lance une grenade.\n•La grenade explose à l'impact.\n•Ne s'arme qu'à quelques mètres pour que tu ne te fasses pas exploser la cervelle."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Explosifs"
+ItemDescription="•Lance une roquette.\n• La roquette explose à l'impact.\n•Ne s'arme qu'à quelques mètres pour que tu ne te fasses pas exploser la cervelle.\n•Attention au retour de flamme !"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Double pistolet 9 mm"
+ItemCategory="Arme de poing"
+ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif pour utiliser la mire.\n•Une belle paire de pistolets 9 mm standards. Tu peux en vendre un (seulement) en cas de besoin."
+
+[KFWeap_Pistol_Colt1911]
+ItemName="Pistolet M1911"
+ItemCategory="Arme de poing"
+ItemDescription="•Mode de tir semi-automatique seulement.\n•Le fameux Colt 1911 semi-automatique."
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Double pistolet M1911"
+ItemCategory="Arme de poing"
+ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif pour utiliser la mire.\n•Une belle paire de Colt 1911 semi-automatiques. Peut être vendu ou jeté individuellement."
+
+[KFWeap_Pistol_Deagle]
+ItemName="Desert Eagle .50"
+ItemCategory="Hand Cannon"
+ItemDescription="•Mode de tir semi-automatique seulement.\n•Le Desert Eagle est le mastodonte des armes de poing, ce qui lui vaut le surnom de « Hand Cannon »."
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Double Desert Eagle .50"
+ItemCategory="Arme de poing"
+ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif pour utiliser la mire.\n•Une grosse paire de Desert Eagle. Peut être vendu ou jeté individuellement."
+
+[KFWeap_Revolver_Rem1858]
+ItemName="Revolver 1858"
+ItemCategory="Arme de poing"
+ItemDescription="•Mode de tir manuel seulement.\n•Un magnifique modèle de revolver Remington Model 1858 calibre .44 six coups à simple action de l'armée. Ancien, mais toujours aussi puissant."
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Double revolver 1858"
+ItemCategory="Arme de poing"
+ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif pour utiliser la mire.\n•Une belle paire de revolvers 1858. Peut être vendu ou jeté individuellement."
+
+[KFWeap_Revolver_SW500]
+ItemName="Revolver .500 Magnum"
+ItemCategory="Arme de poing"
+ItemDescription="•Mode de tir manuel seulement.\n•Véritable pièce d'artillerie sous la forme d'un revolver long canon à calibre .50, qui crache de bons gros pruneaux. Pour les vrais Flingueurs."
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Double .500 Magnum"
+ItemCategory="Arme de poing"
+ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif pour utiliser la mire.\n•Une sacrée paire de revolvers .500 Magnum Bone Collector. Peut être vendu ou jeté individuellement. Ils font des bons gros « pan »."
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Fusil"
+ItemDescription="•Mode de tir manuel seulement.\n•Le légendaire fusil à levier Winchester modèle 1894."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Arbalète"
+ItemCategory="Bow"
+ItemDescription="•Mode de tir manuel seulement.\n•Les carreaux sont souvent récupérables !\n•Une arbalète de chasse puissante, dotée d'une bonne pénétration et d'un bon pouvoir d'arrêt !"
+
+[KFWeap_Rifle_M14EBR]
+ItemName="M14 EBR"
+ItemCategory="Fusil de précision"
+ItemDescription="•Mode de tir manuel seulement.\n•Équipé d'une visée laser.\n•Le fusil de précision favori des Navy SEAL, Delta Force, et autres durs à cuire."
+
+[KFWeap_Rifle_RailGun]
+ItemName="Canon électrique"
+ItemCategory="Fusil de précision"
+ItemDescription="•Mode de tir manuel seulement.\n•La lunette de visée vous permet de verrouiller les points faibles de votre cible. \n•Cette arme tire des cartouches d'acier à haute vitesse grâce à des aimants, qui passent à travers les Zeds comme dans du beurre."
+
+[KFWeap_SMG_MP7]
+ItemName="MP7 SMG"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="•Mode de tir au choix entre automatique et semi-automatique.\n•Tir alternatif pour changer de mode de tir.\n•Utilisé par les agences secrètes et forces spéciales aux innombrables acronymes à travers le monde."
+
+[KFWeap_AssaultRifle_M16M203]
+ItemName="Fusil d'assaut M16 M203"
+ItemCategory="Fusil d'assaut"
+ItemDescription="•Mode de tir automatique seulement.\n•Tir alternatif pour lancer des grenades.\n•Pour ceux qui n'arrivent pas à choisir entre balles ou explosifs."
+SecondaryAmmo="Lance-grenade M203"
+
+[KFWeap_SMG_MP5RAS]
+ItemName="MP5RAS SMG"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="•Mode de tir au choix entre automatique et semi-automatique.\n•Tir alternatif pour changer de mode de tir.\n•La dernière version du pistolet mitrailleur le plus utilisé au monde."
+
+[KFWeap_SMG_P90]
+ItemName="P90 SMG"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="•Mode de tir au choix entre automatique et semi-automatique.\n•Tir alternatif pour changer de mode de tir.\n•C'est vrai qu'il a l'air bizarre, mais il est très bien pour déchiqueter du Zed et vous pouvez même faire des bruits de lasers en tirant avec."
+
+[KFWeap_SMG_Kriss]
+ItemName="Kriss SMG"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="•Mode de tir au choix entre automatique et semi-automatique.\n•Tir alternatif pour changer de mode de tir.\n•Le dernier cri en matière de redistribution de bastos, un bel outil de destruction."
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr. Hans Volter"
+BossName_CHN="汉斯-沃尔特博士"
+BossName_CHT="漢斯華特博士"
+BossName_DEU="Dr. Hans Volter"
+BossName_ESL="Dr. Hans Volter"
+BossName_ESN="Dr. Hans Volter"
+BossName_FRA="Dr. Hans Volter"
+BossName_FRC="Dr. Hans Volter"
+BossName_INT="Dr. Hans Volter"
+BossName_ITA="Dr. Hans Volter"
+BossName_JPN="ドクター ハンス・ヴォルター"
+Bossname_KOR="Dr. Hans Volter"
+BossName_POL="Dr Hans Volter"
+BossName_PTB="Dr. Hans Volter"
+BossName_RUS="Д-р Ганс Вольтер"
+BossCaptionStrings[0]="Quand il est blessé, Hans déploie son bouclier et aspire la santé de sa victime. Détruisez le bouclier !"
+BossCaptionStrings[1]="Gardez un œil sur son noyau d'énergie : Hans est plus agressif au fur et à mesure qu'il change de couleur."
+BossCaptionStrings[2]="Visez son noyau d'énergie. C'est son point faible."
+BossCaptionStrings[3]="Les gaz émis par les grenades de Hans collent à la peau, comme la bile de Bouffi. Essayez de les éviter !"
+BossCaptionStrings[4]="Ses attaques tranchantes sont trop puissantes pour être parées. Vous subirez tous les dégâts."
+BossCaptionStrings[5]="Surveillez les indicateurs de danger des grenades, ils vous aideront à voir où elles atterriront."
+BossCaptionStrings[6]="Quand Hans sort ses flingues, ne restez pas devant. Logique, mais ça fait pas de mal de le rappeler."
+
+[KFPawn_ZedPatriarch]
+BossName="Le Patriarche"
+BossName_CHN="长老丧尸"
+BossName_CHT="長老"
+BossName_DEU="Der Patriarch"
+BossName_ESL="El patriarca"
+BossName_ESN="El patriarca"
+BossName_FRA="Le Patriarche"
+BossName_FRC="Le Patriarche"
+BossName_INT="The Patriarch"
+BossName_ITA="Il Patriarca"
+BossName_JPN="ペイトリアーク"
+BossName_KOR="Patriarch"
+BossName_POL="Patriarcha"
+BossName_PTB="O Patriarca"
+BossName_RUS="Патриарх"
+BossCaptionStrings[0]="Kevin Clamely était autrefois un scientifique brillant, jusqu'à ce qu'il devienne sa plus grande création."
+BossCaptionStrings[1]="Le Patriarche est terriblement arrogant, il vous annoncera probablement sa prochaine attaque."
+BossCaptionStrings[2]="Se cacher, même derrière de gros objets, ne sera pas particulièrement utile. Le Patriarche a tout prévu !"
+BossCaptionStrings[3]="Fuir seul n'est pas non plus une solution, cela fait de vous une proie facile qu'il visera en premier."
+BossCaptionStrings[4]="Oui, le Patriarche peut toujours se dissimuler, devenir invisible, s'enfuir, et se soigner. C'est comme ça."
+BossCaptionStrings[5]="Vous n'aurez pas le choix, mais tuer ses « enfants » ne fera que le rendre (encore plus) fou."
+
+[KFGameInfo_Tutorial]
+GameName="Entraînement de base"
+
+[KFGameInfo_Survival]
+GameName="Survie"
+
+[KFGameInfo_VersusSurvival]
+GameName="Survie VS"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="Plus de soins disponibles"
+LowHealthMsg="Santé critique ! Soignez-vous !"
+NoMortarTargetsMsg="Aucune cible valable pour le mortier"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="Une Sirène a piégé %x% !"
+
+[KFGFXHudWrapper_Versus]
+WaitingToSpawnString="TEMPS AVANT RÉAPPARITION : %x% seconde(s)"
+ZedTakeOverActiveString="RECHERCHE DE ZEDS POUR PRENDRE LA SUITE..."
+PerkSwitchAllowedString="TEMPS RESTANT POUR CHOISIR VOTRE CLASSE : %x% seconde(s)"
+
+[KFWeap_Random]
+ItemName="Arme aléatoire"
+ItemCategory="Aléatoire"
+ItemDescription="• Arme aléatoire.\n•"

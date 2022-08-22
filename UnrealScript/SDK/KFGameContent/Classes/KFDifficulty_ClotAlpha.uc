@@ -54,11 +54,11 @@ defaultproperties
 
 	// Versus Rally settings
 	RallySettings_Versus={(bCauseSprint=true)}
-	RallySettings_Player_Versus={(DealtDamageModifier=1.2)}
+	RallySettings_Player_Versus={(DealtDamageModifier=1.5)} //1.2
 
 	// Settings for triggering a rally
-	RallyTriggerSettings(`DIFFICULTY_Normal)		={(SpawnChance=0.0)}
-	RallyTriggerSettings(`DIFFICULTY_Hard)			={(SpawnChance=0.00, RallyChance=0.00)}
+	RallyTriggerSettings(`DIFFICULTY_Normal)		={(SpawnChance=0.00, RallyChance=0.00, Cooldown=15.0, SelfTakenDamageModifier=0.1, SelfDealtDamageModifier=2.50)}
+	RallyTriggerSettings(`DIFFICULTY_Hard)			={(SpawnChance=0.00, RallyChance=0.00, Cooldown=15.0, SelfTakenDamageModifier=0.1, SelfDealtDamageModifier=2.50)}
 	RallyTriggerSettings(`DIFFICULTY_Suicidal)		={(SpawnChance=0.25, RallyChance=0.70, Cooldown=15.0, SelfTakenDamageModifier=0.1, SelfDealtDamageModifier=2.50)}
 	RallyTriggerSettings(`DIFFICULTY_HellOnEarth)	={(SpawnChance=0.35, RallyChance=0.80, Cooldown=15.0, SelfTakenDamageModifier=0.1, SelfDealtDamageModifier=2.50)}
 }

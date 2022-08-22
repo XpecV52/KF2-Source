@@ -54,7 +54,10 @@ function bool IsThereClearDirectFireAttackLaneFromGivenLoc(Vector PointToStrikeF
         else
         {
             StrikeLocValidationInfoList[TotalNumOfAttemptsToFindFireStrikeLaneThisEngagement].LogAlgosSegmentValiditys.AddItem(false;
-            Outer.AILog_Internal("IsThereClearDirectFireAttackLaneFromGivenLoc - Not a clear Fire lane- Direct Fire point to target loc: " $ string(VSize(pointToCalcLaunchFrom - targetsOffsetForCals)));
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal("IsThereClearDirectFireAttackLaneFromGivenLoc - Not a clear Fire lane- Direct Fire point to target loc: " $ string(VSize(pointToCalcLaunchFrom - targetsOffsetForCals)));
+            }
             return false;
         }
     }

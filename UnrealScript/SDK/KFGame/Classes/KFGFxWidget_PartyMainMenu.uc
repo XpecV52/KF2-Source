@@ -15,26 +15,12 @@ var int prevMemberCount;
 
 function OneSecondLoop()
 {
-	local ActiveLobbyInfo LobbyInfo;
-
 	RefreshParty(); //@HSL - JRO - Moving this here so the +people icons properly go away when leaving parties
 	if ( OnlineLobby != none && OnlineLobby.IsInLobby())
 	{
 	    SendMyOptions();
 	    SendSearching();
 	    UpdateInLobby(true);
-
-		//@HSL_BEGIN - JRO - 8/2/2016 - Making sure users are aware of party discrepancies.
-		OnlineLobby.GetCurrentLobby(LobbyInfo);
-		if(prevMemberCount != LobbyInfo.Members.length && LobbyInfo.Members.length > 6)
-		{
-			Manager.OpenPopup(ENotification,
-				Localize("Notifications", "PartySizeTitle",   "KFGameConsole"),
-				Localize("Notifications", "PartySizeMessage", "KFGameConsole"),
-				class'KFCommon_LocalizedStrings'.default.OKString);
-		}
-		prevMemberCount = LobbyInfo.Members.length;
-		//@HSL_END
 	}	
 	else
 	{
@@ -129,17 +115,14 @@ function RefreshParty()
 	local int SlotIndex;
 	local bool bInParty;
 	local PlayerController PC;
-	local string PlayerName, ReadablePlayerName;
+	local GFxObject DataProvider;
+	DataProvider = CreateArray();
+
 	super.RefreshParty();
 	
 	if ( OnlineLobby != none && OnlineLobby.GetCurrentLobby(LobbyInfo) )
 	{
-		//@HSL - JRO - Your own party slot wasn't updating in parties, this fixes it
-		if(class'WorldInfo'.static.IsConsoleBuild())
-		{
-			InitializePerk();
-		}
-
+		
 		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
 
 		if(PartyChatWidget != none)
@@ -153,60 +136,35 @@ function RefreshParty()
 		}		
 
 		OccupiedSlots = LobbyInfo.Members.Length;
+
 		bInParty = (OccupiedSlots > 1) || bInLobby;
+
 		if(bIsInParty != bInParty)
 		{
-			//clear out the first slot since that is where you are
-			EmptySlot(0);
 			bIsInParty = bInParty;
 		}
 
-		for ( SlotIndex = 0; SlotIndex < PlayerSlots; SlotIndex++ )
+		for (SlotIndex = 0; SlotIndex < LobbyInfo.Members.Length; SlotIndex++)
 		{
-			if ( SlotIndex < LobbyInfo.Members.Length )
-			{
-	            RefreshSlot(SlotIndex, LobbyInfo.Members[SlotIndex].PlayerUID);
-			}
-			else if ( MemberSlots[SlotIndex].bIsSlotTaken )
-			{
-	         	EmptySlot(SlotIndex);
-			}
-		}
+           DataProvider.SetElementObject(SlotIndex, RefreshSlot(SlotIndex, LobbyInfo.Members[SlotIndex].PlayerUID) );
+       	}		
 	}
 	// If we are not in a party, only add our name to the party list
 	else
 	{
 		PC = GetPC();
-	    InitializePerk();
-		RefreshSlot(0, PC.PlayerReplicationInfo.UniqueId);
-
+		DataProvider.SetElementObject(0, RefreshSlot(0, PC.PlayerReplicationInfo.UniqueId));
+	
 	    bInParty = false || bInLobby;
 		bIsInParty = bInParty;
 	    SetSearchingText("");
-		ReadablePlayerName = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetPlayerNickname(0);
-	    if(OnlineLobby != none)
-	    {
-			PlayerName = OnlineLobby.GetFriendNickname(PC.PlayerReplicationInfo.UniqueId);
-	    }
-
-	    UpdatePlayerName(0, PlayerName != "" ? PlayerName : ReadablePlayerName == DefaultPlayerName ? DefaultPlayerName$"0" : ReadablePlayerName );
-
-		MemberSlots[0].PRI = PC.PlayerReplicationInfo;
-		MemberSlots[0].PlayerUID = PC.PlayerReplicationInfo.UniqueId;
 	    
 	    if(PartyChatWidget != none)
 		{
 	    	PartyChatWidget.SetLobbyChatVisible(false);
 		}
-	    // Clear out the rest of the list if we are not in a lobby
-	    for ( SlotIndex = 1; SlotIndex < PlayerSlots; SlotIndex++ )
-		{
-			if ( MemberSlots[SlotIndex].bIsSlotTaken )
-			{
-	         	EmptySlot(SlotIndex);
-			}
-		}
 	}
+	SetObject("squadInfo", DataProvider);
 	UpdateSoloSquadText();
 }
 
@@ -222,20 +180,24 @@ function HandleLeaderChange(UniqueNetId AdminId)
 	Manager.HandleSteamLobbyLeaderTakeOver(AdminId);
 	if(LastLeaderID != ZeroUniqueId )
 	{
-		Manager.OpenPopup(ENotification, PartHostLeftString, HostName@PartyLeaderChangedString, class'KFCommon_LocalizedStrings'.default.OKString);
+		Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, PartHostLeftString, HostName@PartyLeaderChangedString, class'KFCommon_LocalizedStrings'.default.OKString);
 	}
 	LastLeaderID = AdminId;
 }
 
 // Check which aspect of the slot has changed and update it
-function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
+function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 {
 	local string PlayerName,ReadablePlayerName;	
 	local UniqueNetId AdminId;
 	local bool bIsLeader;
 	local bool bIsMyPlayer;
-	local bool bUpdateSlot;
 	local PlayerController PC;
+	local GFxObject PlayerInfoObject;
+	local KFPerk CurrentPerk;
+
+
+	PlayerInfoObject = CreateObject("Object");
 
 	PC = GetPC();
 
@@ -244,27 +206,37 @@ function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
 	}
 	
+	//leader
 	bIsLeader = (PlayerUID == AdminId);
-
-	if ( !MemberSlots[SlotIndex].bIsSlotTaken )
+	PlayerInfoObject.SetBool("bLeader", bIsLeader);
+	//my player
+	bIsMyPlayer = OnlineLobby.GetMyId() == PlayerUID;
+	PlayerInfoObject.SetBool("myPlayer", bIsMyPlayer);
+	//perk info
+	if(bIsMyPlayer)
 	{
-		MemberSlots[SlotIndex].bIsSlotTaken = true;
-		bUpdateSlot = true;
-	}
+		CurrentPerk = KFPC.GetPerk();
+		if (CurrentPerk != none)
+		{			
+			MemberSlots[SlotIndex].PerkClass = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo).CurrentPerkClass;
 
-	if ( MemberSlots[SlotIndex].bIsLeader != bIsLeader )
+			PlayerInfoObject.SetString("perkLevel", CurrentPerk.GetLevel() @CurrentPerk.PerkName );
+			PlayerInfoObject.SetString("perkIconPath", "img://"$CurrentPerk.GetPerkIconPath());
+		}
+	}
+	else
 	{
-		MemberSlots[SlotIndex].bIsLeader = bIsLeader;
-		bUpdateSlot = true;
+		//muted
+		PlayerInfoObject.SetBool("muted", PC.IsPlayerMuted(PlayerUID));
+		//perk info
+		if(MemberSlots[SlotIndex].PerkClass != none)
+		{
+			PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @MemberSlots[SlotIndex].PerkClass.default.PerkName);
+			PlayerInfoObject.SetString("perkIconPath", "img://"$MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+		}
+		
 	}
-
-	if ( MemberSlots[SlotIndex].PlayerUID != PlayerUID )
-	{
-		MemberSlots[SlotIndex].PlayerUID = PlayerUID;
-		bIsMyPlayer = (PC.PlayerReplicationInfo.UniqueId == PlayerUID);
-		bUpdateSlot = true;
-	}
-
+	//player name 
 	if(OnlineLobby != none)
 	{
 		PlayerName = OnlineLobby.GetFriendNickname(PlayerUID);
@@ -275,45 +247,20 @@ function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 		ReadablePlayerName = PC.PlayerReplicationInfo.GetHumanReadableName();
 		PlayerName = ReadablePlayerName == DefaultPlayerName ? DefaultPlayerName$SlotIndex : ReadablePlayerName;
 	}
-	// Make sure to use the name you just looked up.  -HSL_BB
-	UpdatePlayerName(SlotIndex,PlayerName);
-	
-	if ( bUpdateSlot )
-	{
-		SlotChanged( SlotIndex, true, bIsMyPlayer, bIsLeader );
-		CreatePlayerOptions(PlayerUID, SlotIndex);
-	}
-
+	PlayerInfoObject.SetString("playerName", PlayerName);
+	//player icon
 	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
 	{
-		MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));
+		PlayerInfoObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));
 	}
 	else
 	{
-		MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(PlayerUID));
-	}
-}
+		PlayerInfoObject.SetString("profileImageSource", KFPC.GetSteamAvatar(PlayerUID));
+	}	
 
+	MemberSlots[SlotIndex].PlayerUID = PlayerUID;	
 
-function InitializePerk()
-{
-	local KFPerk CurrentPerk;
-	local string PerkIconPath;
-	local class<KFPerk> PerkClass;
-	local byte PerkLevel;
-
-	CurrentPerk = KFPC.GetPerk();
-	if (CurrentPerk != none)
-	{
-		PerkClass = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo).CurrentPerkClass;
-		PerkLevel = CurrentPerk.GetLevel();
-		if (PerkClass != MemberSlots[0].PerkClass || PerkLevel != MemberSlots[0].PerkLevel)
-		{
-			MemberSlots[0].PerkClass = PerkClass;
-			PerkIconPath = "img://"$CurrentPerk.GetPerkIconPath();
-			UpdatePerk(0, CurrentPerk.PerkName, string(PerkLevel), PerkIconPath);
-		}		
-	}
+	return PlayerInfoObject;
 }
 
 /****************************************************************************
@@ -325,16 +272,14 @@ function UpdatePerks(string Message)
 {
 	local array<string> PlayerInfoStrings;
 	local UniqueNetId PlayerID;
-	local string PerkName, IconPath, PerkLevel;
+	local string PerkLevel;
 	local ActiveLobbyInfo LobbyInfo;
-	local byte i;
+	local int i;
 	local int PerkIndex;
 
 	ParseStringIntoArray(Message, PlayerInfoStrings, "/", true);
 	class'OnlineSubsystem'.static.StringToUniqueNetId(PlayerInfoStrings[0], PlayerID);
 	PerkIndex = int(PlayerInfoStrings[1]);
-	PerkName = KFPC.PerkList[PerkIndex].PerkClass.default.PerkName;
-	IconPath = "img://"$KFPC.PerkList[PerkIndex].PerkClass.static.GetPerkIconPath();
 	PerkLevel = PlayerInfoStrings[2];
 
     if(OnlineLobby == none)
@@ -346,13 +291,23 @@ function UpdatePerks(string Message)
 	{
 		for (i = 0; i < LobbyInfo.Members.Length; i++)
 		{
-			if (LobbyInfo.Members[i].PlayerUID == PlayerID)
-			{
-				UpdatePlayerName( i, OnlineLobby.GetFriendNickname(PlayerID) );
-				UpdatePerk(i, PerkName, PerkLevel, IconPath);
-			}
+			UpdatePerkInfoForPlayerID(PlayerID, KFPC.PerkList[PerkIndex].PerkClass, PerkLevel);
 		}
 	}
+}
+
+function UpdatePerkInfoForPlayerID(UniqueNetId PlayerID, class<KFPerk> PerkClass, string PerkLevel)
+{
+	local int i;
+	for (i = 0; i < PlayerSlots; i++)
+	{
+		if(MemberSlots[i].PlayerUID == PlayerID)
+		{
+			MemberSlots[i].PerkLevel = PerkLevel;
+			MemberSlots[i].PerkClass = PerkClass;	
+			return;
+		}
+	}	
 }
 
 function UpdateSearching(string Message)
@@ -360,6 +315,12 @@ function UpdateSearching(string Message)
 	local string SearchingText;
 	local string PartyLeaderName;
 	local UniqueNetId AdminId;
+
+	if(Message == "")
+	{
+		SetSearchingText("");
+		return;
+	}
 		
 	if(OnlineLobby != none)
 	{
@@ -421,17 +382,21 @@ function ViewProfile(int SlotIndex)
 		}
 	}
 
-	if ( MemberSlots[SlotIndex].bIsSlotTaken )
+	if ( GetPC().WorldInfo.IsConsoleBuild(CONSOLE_Orbis) )
 	{
-		if ( GetPC().WorldInfo.IsConsoleBuild(CONSOLE_Orbis) )
+		if( LobbyInfo.Members.Length > SlotIndex )
 		{
 			OnlineSub.PlayerInterfaceEx.ShowGamerCardUIByUsername(GetLP().ControllerId,OnlineLobby.GetFriendNickname(LobbyInfo.Members[SlotIndex].PlayerUID));
 		}
 		else
 		{
-			OnlineSub.PlayerInterfaceEx.ShowGamerCardUI(GetLP().ControllerId,MemberSlots[SlotIndex].PRI.UniqueId);
+			OnlineSub.PlayerInterfaceEx.ShowGamerCardUIByUsername(GetLP().ControllerId,OnlineSub.PlayerInterface.GetPlayerNickname(GetLP().ControllerId));
 		}
 	}
+	else
+	{
+		OnlineSub.PlayerInterfaceEx.ShowGamerCardUI(GetLP().ControllerId,MemberSlots[SlotIndex].PlayerUID);
+	}	
 }
 
 //Since the PRI Array doe not exist int he main menu, we are using the lobby to access PlayerUI's  

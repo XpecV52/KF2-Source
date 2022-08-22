@@ -47,7 +47,7 @@ function Pushed()
 		DisableMeleeRangeEventProbing();
 	}
 	
-	AILog_Internal(GetFuncName()$"() Beginning stumble AICommand",'Command_Stumble',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Beginning stumble AICommand",'Command_Stumble',);};
 	AIActionStatus = "Staggering";
 }
 
@@ -57,7 +57,7 @@ function Popped()
 	
 	EnableMeleeRangeEventProbing();
 	AIActionStatus = "Done Staggering";
-	AILog_Internal(GetFuncName()$"() Finished stumble AICommand",'Command_Stumble',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Finished stumble AICommand",'Command_Stumble',);};
 }
 
 /*********************************************************************************************

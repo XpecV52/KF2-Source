@@ -20,5 +20,5 @@ protected function bool InternalCanDoSpecialMove()
 
 defaultproperties
 {
-	Attacks.Add((Type=PZA_Default, Stance=EAS_FullBody, Anims=(Player_Special_Atk)))
+	Attacks.Add((Type=PZA_Default, Stance=EAS_UpperBody, Anims=(Player_Special_Atk)))
 }

@@ -32,14 +32,27 @@ function cleanupSettings()
 function initSettings()
 {
 	local OnlineGameSettings GameSettings;
+	local GameEngine GEngine;
+
+	GEngine = GameEngine(class'Engine'.static.GetEngine());
 
 	// Server Information
 	if (gameinfo != none && gameinfo.GameReplicationInfo != none)
 	{
 		SetStringPropertyByName('ServerName', gameinfo.GameReplicationInfo.ServerName);
 	}
-	else {
+	else
+	{
 		SetStringPropertyByName('ServerName', class'GameReplicationInfo'.default.ServerName);
+	}
+
+	if (GEngine != none)
+	{
+		`SetBoolPropertyByName('bUsedForTakeover', GEngine.bUsedForTakeover);
+	}
+	else
+	{
+		`SetBoolPropertyByName('bUsedForTakeover', class'GameEngine'.default.bUsedForTakeover);
 	}
 
 	// Connection settings
@@ -55,7 +68,8 @@ function initSettings()
 	{
 		SetIntPropertyByName('bAntiCheatProtected', int(GameSettings.bAntiCheatProtected));
 	}
-	else {
+	else
+	{
 		SetIntPropertyByName('bAntiCheatProtected', int(false));
 	}
 
@@ -71,7 +85,8 @@ function initSettings()
 	{
 		`SetBoolPropertyByName('bSilentAdminLogin', KFAccessControl(gameinfo.AccessControl).bSilentAdminLogin);
 	}
-	else {
+	else
+	{
 		`SetBoolPropertyByName('bSilentAdminLogin', class'KFAccessControl'.default.bSilentAdminLogin);
 	}
 
@@ -94,6 +109,10 @@ function saveSettings()
 {
 	local int val;
 	local OnlineGameSettings GameSettings;
+	local GameEngine GEngine;
+	local bool bWasUsedForTakeover;
+
+	GEngine = GameEngine(class'Engine'.static.GetEngine());
 
 	// Cheat Detection
 	if (gameinfo != none)
@@ -117,6 +136,23 @@ function saveSettings()
 	{
 		GetStringPropertyByName('ServerName', gameinfo.GameReplicationInfo.ServerName);
 		gameinfo.GameReplicationInfo.SaveConfig();
+	}
+
+	`GetBoolPropertyByName('bUsedForTakeover', class'GameEngine'.default.bUsedForTakeover);
+	class'GameEngine'.static.StaticSaveConfig();
+	if (GEngine != none)
+	{
+		bWasUsedForTakeover = GEngine.bUsedForTakeover;
+		`GetBoolPropertyByName('bUsedForTakeover', GEngine.bUsedForTakeover);
+		GEngine.SaveConfig();
+		if (!GEngine.bUsedForTakeover)
+		{
+			GEngine.bAvailableForTakeover = false;
+		}
+		else if (!bWasUsedForTakeover)
+		{
+			GEngine.bAvailableForTakeover = true;
+		}
 	}
 
 	// AccessControl
@@ -177,9 +213,14 @@ defaultproperties
 	SettingsGroups.Add((groupId="Chat",pMin=700,pMax=800))
 
 
+	//The labels for all of these properties are in WebAdmin.int
+	//They MUST mirror the order of these entries, or the labels and choices will be on the wrong property
+
 	// Server Information
 	Properties.Add((PropertyId=0,Data=(Type=SDT_String)))
  	PropertyMappings.Add((Id=0,name="ServerName",MappingType=PVMT_RawValue,MinVal=0,MaxVal=256))
+	Properties.Add((PropertyId=1,Data=(Type=SDT_Int32)))
+ 	PropertyMappings.Add((Id=1,name="bUsedForTakeover",MappingType=PVMT_IdMapped,ValueMappings=((Id=1),(Id=0))))
 
 	// Connection settings
 	Properties.Add((PropertyId=101,Data=(Type=SDT_Int32)))

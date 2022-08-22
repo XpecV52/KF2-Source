@@ -19,7 +19,7 @@ function SetInteractionIndex( int Index )
 	InteractionIndex = Index;
 }
 
-function int GetInteractionIndex()
+function int GetInteractionIndex( Pawn User )
 {
 	return InteractionIndex;
 }

@@ -368,7 +368,7 @@ state Enraged
 		bIsEnraged = true;
 		MyKFPawn.SetEnraged( true );
 
-		AILog_Internal(GetStateName()$" "$GetFuncName()$"() Prev: "$PreviousStateName,'Charging',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetStateName()$" "$GetFuncName()$"() Prev: "$PreviousStateName,'Charging',);};
 		SetFocalPoint(vect(0,0,0));
 		Focus = none;
 		//bAdjustFromWalls = false;   // Experimenting **NOTE this prevented FP from jumping when raging - Matt

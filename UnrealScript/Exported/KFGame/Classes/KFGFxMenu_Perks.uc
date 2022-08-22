@@ -72,7 +72,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 13
 
 var KFGFxPerksContainer_Selection 		SelectionContainer;
@@ -89,6 +89,8 @@ VAR byte LastPerkLevel;
 var class<KFPerk> PreviousPerk;
 var localized string TierUnlockedText;
 var localized string TierUnlockedSecondaryText;
+
+var KFPlayerReplicationInfo MyKFPRI;
 
 /** Set to true if we change one of our skills */
 var bool bModifiedSkills;
@@ -162,13 +164,15 @@ function OnOpen()
 	}
 
 	LastPerkIndex = KFPC.SavedPerkIndex;
+
+	MyKFPRI = KFPlayerReplicationInfo( GetPC().PlayerReplicationInfo );
     
 	UpdateSkillsHolder(KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass);
     UpdateContainers(KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass); 
 
     UpdateLock();
-
     CheckTiersForPopup();
+
     if(SelectionContainer != none)
     {
     	SelectionContainer.SetPerkListEnabled(!KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo).bReadyToPlay);
@@ -208,7 +212,7 @@ function CheckTiersForPopup()
 			}
 		}
 
-		KFPC.MyGFxManager.OpenPopup(ENotification, TierUnlockedText, SecondaryPopupText, class'KFCommon_LocalizedStrings'.default.OKString,,,,,,PerkLevelupSound);
+		KFPC.MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_Misc, TierUnlockedText, SecondaryPopupText, class'KFCommon_LocalizedStrings'.default.OKString,,,,,,PerkLevelupSound);
 	}
 }
 
@@ -228,11 +232,6 @@ event OnClose()
   				}
   			}
 
-  			if( IsMatchStarted() )
-  			{
-  				KFPC.SetHaveUpdatePerk(true);
-  			}
-			
   			bModifiedPerk = false;
   			bModifiedSkills = false;
   		}
@@ -266,20 +265,19 @@ function PerkChanged( byte NewPerkIndex, bool bClickedIndex)
   	if( KFPC != none )
   	{
 		// We aren't actually changing our selected perk so don't save stuff.
-		if( bClickedIndex )
-		{
-			SavePerkData();
-		}
-
 		UpdateSkillsHolder( KFPC.PerkList[NewPerkIndex].PerkClass );
-  		LastPerkIndex = NewPerkIndex;
+  		
   		bChangesMadeDuringLobby = !IsMatchStarted();
-  		bModifiedPerk = true;
 		
 		// Again don't save stuff if we are only looking at another perk.
 		if( bClickedIndex )
 		{
+			LastPerkIndex = NewPerkIndex;
+	  		bModifiedPerk = true;
+			SavePerkData();
+
   			SelectionContainer.SavePerk( NewPerkIndex );
+			Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPerkIndex, NewPerkIndex);
 		}
 
   		UpdateContainers( KFPC.PerkList[NewPerkIndex].PerkClass, bClickedIndex );
@@ -310,31 +308,32 @@ function UpdateLock()
 	if ( TempWorldInfo != none && TempWorldInfo.GRI != none )
 	{
 		KFGRI = KFGameReplicationInfo(TempWorldInfo.GRI);
-
 		if ( KFGRI != none && KFPC != none )
 		{
-			SetBool( "locked", ( KFGRI.CanChangePerks() && KFPC.bPlayerUsedUpdatePerk ));
+			SetBool( "locked", (KFGRI.CanChangePerks() && KFPC.WasPerkUpdatedThisRound()) );
 		}
 	}
 }
 
 function UpdateContainers( class<KFPerk> PerkClass, optional bool bClickedIndex=true )
 {
-	if ( KFPC != none )
+	if( KFPC != none )
 	{
-		if ( HeaderContainer != none )
+		if( HeaderContainer != none )
 		{
 			HeaderContainer.UpdatePerkHeader( PerkClass );
 		}
-		if ( DetailsContainer != none )
+		
+		if( DetailsContainer != none )
 		{
 			DetailsContainer.UpdateDetails( PerkClass );
 			DetailsContainer.UpdatePassives( PerkClass );
 		}
+		
 		// Don't change the perk selection since we just selected another index to look at.
-		if ( SelectionContainer != none && bClickedIndex )
+		if( SelectionContainer != none && bClickedIndex )
 		{
-			SelectionContainer.UpdatePerkSelection(KFPC.SavedPerkIndex);
+			SelectionContainer.UpdatePerkSelection( KFPC.SavedPerkIndex );
 		}
 
 		UpdateSkillsUI( PerkClass );
@@ -345,7 +344,7 @@ function UpdateContainers( class<KFPerk> PerkClass, optional bool bClickedIndex=
 *   or skills have changed */
 function UpdateSkillsUI( Class<KFPerk> PerkClass )
 {
-	if ( SkillsContainer != none )
+	if( SkillsContainer != none )
 	{
 		SkillsContainer.UpdateSkills( PerkClass, SelectedSkillsHolder );
 	}
@@ -404,10 +403,9 @@ function Callback_ReadyClicked( bool bReady )
 function Callback_PerkSelected(byte NewPerkIndex, bool bClickedIndex)
 {
 	// bClickedIndex let's us know if the index was clicked and needs to be changed or if it was just selected and we should look at other perk info.
-	if(LastPerkIndex != NewPerkIndex || bClickedIndex)
+	PerkChanged(NewPerkIndex,bClickedIndex);
+	if(bClickedIndex)
 	{
-		PerkChanged(NewPerkIndex,bClickedIndex);
-		Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPerkIndex, NewPerkIndex);
 	}
 }
 

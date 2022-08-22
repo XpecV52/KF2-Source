@@ -371,6 +371,7 @@ static function int GetTraderAdviceID()
 
 DefaultProperties
 {
+	LocalizationKey=KFPawn_ZedHusk
 	// ---------------------------------------------
 	// Stats
 	XPValues(0)=15
@@ -440,7 +441,7 @@ DefaultProperties
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=3.0)
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
 	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=8.5,  Duration=4.0)
-	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5,  Duration=1.2)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5,  Duration=1.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0), Cooldown=5.5,  Duration=3.0)
 
 	Begin Object Name=Afflictions_0

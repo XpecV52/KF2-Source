@@ -339,7 +339,14 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
                 if((PendingWeapon != none) && PendingWeapon != ItemToRemove)
                 {
                     LogInternal((((((((string(WorldInfo.TimeSeconds) @ "Self:") @ string(self)) @ "Instigator:") @ string(Instigator)) @ string(GetStateName())) $ "::") $ string(GetFuncName())) @ "Removed current weapon while changing weapons, call ChangedWeapon", 'Inventory');
-                    ChangedWeapon();                    
+                    if(Role < ROLE_Authority)
+                    {
+                        SetCurrentWeapon(PendingWeapon);                        
+                    }
+                    else
+                    {
+                        ChangedWeapon();
+                    }                    
                 }
                 else
                 {
@@ -481,7 +488,7 @@ simulated function KFWeapon GetNextGroupedWeapon(byte GroupID, optional bool bGe
     {
         EquippedWeapon = KFWeapon(Instigator.Weapon);
     }
-    if((EquippedWeapon.InventoryGroup == GroupID) && !bGetFirstWeapon)
+    if(((EquippedWeapon != none) && EquippedWeapon.InventoryGroup == GroupID) && !bGetFirstWeapon)
     {
         SelectedGroupIndicies[GroupID] += 1;
     }
@@ -1247,8 +1254,9 @@ reliable server function ServerCloseTraderMenu()
     local class<KFWeapon> KFWClass;
 
     bServerTraderMenuOpen = false;
+    bSuppressPickupMessages = true;
     I = TransactionItems.Length - 1;
-    J0x23:
+    J0x2F:
 
     if(I >= 0)
     {
@@ -1272,8 +1280,9 @@ reliable server function ServerCloseTraderMenu()
         }
         TransactionItems.Remove(I, 1;
         -- I;
-        goto J0x23;
+        goto J0x2F;
     }
+    bSuppressPickupMessages = false;
 }
 
 final simulated function BuyAmmo(int AmountPurchased, KFGFxMenu_Trader.EItemType ItemType, optional byte ItemIndex, optional bool bSecondaryAmmo)
@@ -1904,6 +1913,7 @@ simulated function bool GetIsOwned(name ClassName)
 simulated event DiscardInventory()
 {
     local Inventory Inv;
+    local KFPawn KFP;
 
     foreach InventoryActors(Class'Inventory', Inv)
     {
@@ -1913,6 +1923,11 @@ simulated event DiscardInventory()
         }        
     }    
     super.DiscardInventory();
+    KFP = KFPawn(Instigator);
+    if(KFP != none)
+    {
+        KFP.MyKFWeapon = none;
+    }
 }
 
 defaultproperties

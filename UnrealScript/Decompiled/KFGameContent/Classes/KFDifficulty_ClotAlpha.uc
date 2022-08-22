@@ -30,8 +30,8 @@ var const array<sRallyTriggerInfo> RallyTriggerSettings;
 
 defaultproperties
 {
-    RallyTriggerSettings(0)=(SpawnChance=0,RallyChance=0,Cooldown=0,SelfDealtDamageModifier=0,SelfTakenDamageModifier=0)
-    RallyTriggerSettings(1)=(SpawnChance=0,RallyChance=0,Cooldown=0,SelfDealtDamageModifier=0,SelfTakenDamageModifier=0)
+    RallyTriggerSettings(0)=(SpawnChance=0,RallyChance=0,Cooldown=15,SelfDealtDamageModifier=2.5,SelfTakenDamageModifier=0.1)
+    RallyTriggerSettings(1)=(SpawnChance=0,RallyChance=0,Cooldown=15,SelfDealtDamageModifier=2.5,SelfTakenDamageModifier=0.1)
     RallyTriggerSettings(2)=(SpawnChance=0.25,RallyChance=0.7,Cooldown=15,SelfDealtDamageModifier=2.5,SelfTakenDamageModifier=0.1)
     RallyTriggerSettings(3)=(SpawnChance=0.35,RallyChance=0.8,Cooldown=15,SelfDealtDamageModifier=2.5,SelfTakenDamageModifier=0.1)
     Normal=(HealthMod=0.75,HeadHealthMod=0.75,RallySettings=(bCanRally=false))
@@ -39,5 +39,5 @@ defaultproperties
     Suicidal=(SprintChance=0.05,DamagedSprintChance=1,RallySettings=(bCauseSprint=true,TakenDamageModifier=0.5,DealtDamageModifier=2))
     HellOnEarth=(SprintChance=0.75,DamagedSprintChance=1,RallySettings=(bCauseSprint=true,TakenDamageModifier=0.5,DealtDamageModifier=2))
     RallySettings_Versus=(bCauseSprint=true)
-    RallySettings_Player_Versus=(DealtDamageModifier=1.2)
+    RallySettings_Player_Versus=(DealtDamageModifier=1.5)
 }

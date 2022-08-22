@@ -267,11 +267,11 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 						continue;
 					}
 
+					OtherKFPC.ServerCamera( 'FirstPerson' );
 					if( OtherKFPC.Pawn != none )
 					{
 						OtherKFPC.SetViewTarget( OtherKFPC.Pawn );
 					}
-					OtherKFPC.ServerCamera( 'FirstPerson' );
 	       			OtherKFPC.SetCinematicMode( false, false, true, true, true, false );
 				}
 			}
@@ -288,11 +288,6 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 						continue;
 					}
 
-					if( OtherKFPC.Pawn != none )
-					{
-						OtherKFPC.SetViewTarget( OtherKFPC.Pawn );
-					}
-
 					if( OtherKFPC != PCOwner && OtherKFPC.Pawn != none && OtherKFPC.GetTeamNum() == 0  )
 					{
 						OtherKFPC.ServerCamera( 'FirstPerson' );
@@ -304,6 +299,11 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 					else
 					{
 						OtherKFPC.ServerCamera( 'FreeCam' );
+					}
+
+					if( OtherKFPC.Pawn != none )
+					{
+						OtherKFPC.SetViewTarget( OtherKFPC.Pawn );
 					}
 
 	       			OtherKFPC.SetCinematicMode( false, false, true, true, true, false );

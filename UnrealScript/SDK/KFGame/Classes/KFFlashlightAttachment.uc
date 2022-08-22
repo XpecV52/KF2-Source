@@ -96,6 +96,19 @@ function AttachFlashlight(SkeletalMeshComponent Mesh, optional name SocketNameOv
 	SetLightingChannels(Mesh.LightingChannels);
 }
 
+/** Need to reattach when owner mesh changes (e.g. Customization) */
+function Reattach()
+{
+	if ( AttachmentMeshComp != None && !AttachmentMeshComp.bAttached )
+	{
+		// Cleanup previous attachment.  For example, during customization mesh swap the
+		// link to parent is lost, but the child link is retained for some reason.
+		OwnerMesh.DetachComponent(AttachmentMeshComp);
+
+		AttachFlashlightComponent(OwnerMesh, AttachmentMeshComp);
+	}
+}
+
 /** Remove/Detach flashlight components */
 function DetachFlashlight()
 {

@@ -35,10 +35,7 @@ var private const float ExplosiveResistanceRadius;
 var KFGameExplosion SacrificeExplosionTemplate;
 var KFGameExplosion NukeExplosionTemplate;
 var KFGameExplosion DoorTrapExplosionTemplate;
-var string NukeExplosionActorClassName;
-var string NukeExplosionDamageTypeName;
-var string NukeProjectileClassName;
-var array<name> NukeIgnoredProjectileNames;
+var class<KFExplosionActor> NukeExplosionActorClass;
 var private const float NukeDamageModifier;
 var private const float NukeRadiusModifier;
 var AkEvent ConcussiveExplosionSound;
@@ -52,6 +49,7 @@ var private const float DaZedEMPPower;
 var private const float ProfessionalAoEModifier;
 var private bool bUsedSacrifice;
 var private const class<KFDamageType> LingeringNukeDamageType;
+var private transient float LastHX25NukeTime;
 
 function ApplySkillsToPawn()
 {
@@ -280,6 +278,16 @@ static function PrepareExplosive(Pawn ProjOwner, KFProjectile Proj)
     }
 }
 
+simulated function SetLastHX25NukeTime(float NewTime)
+{
+    LastHX25NukeTime = NewTime;
+}
+
+simulated function float GetLastHX25NukeTime()
+{
+    return LastHX25NukeTime;
+}
+
 simulated function float GetAoERadiusModifier()
 {
     local float RadiusModifier;
@@ -306,13 +314,6 @@ simulated function bool GetUsingTactialReload(KFWeapon KFW)
 
 private final simulated function ResetSupplier()
 {
-    if(MyPRI != none)
-    {
-        if(SuppliedPawnList.Length > 0)
-        {
-            SuppliedPawnList.Remove(0, SuppliedPawnList.Length;
-        }
-    }
     if(MyPRI != none)
     {
         if(SuppliedPawnList.Length > 0)
@@ -478,7 +479,7 @@ function float GetReactionModifier(optional class<KFDamageType> DamageType)
 
 static simulated function bool ProjectileShouldNuke(KFProjectile Proj)
 {
-    return default.NukeIgnoredProjectileNames.Find(Proj.Class.Name == -1;
+    return Proj.AllowNuke();
 }
 
 simulated function bool DoorShouldNuke()
@@ -593,18 +594,7 @@ static simulated function KFGameExplosion GetNukeExplosionTemplate()
 
 static simulated function class<KFExplosionActor> GetNukeExplosionActorClass()
 {
-    local class<KFExplosionActor> TempExplosionActorClass;
-
-    TempExplosionActorClass = class<KFExplosionActor>(DynamicLoadObject(default.NukeExplosionActorClassName, Class'Class'));
-    return TempExplosionActorClass;
-}
-
-static simulated function class<KFProjectile> GetNukeProjectileClass()
-{
-    local class<KFProjectile> ProjectileClass;
-
-    ProjectileClass = class<KFProjectile>(DynamicLoadObject(default.NukeProjectileClassName, Class'Class'));
-    return ProjectileClass;
+    return default.NukeExplosionActorClass;
 }
 
 static function float GetNukeDamageModifier()
@@ -717,10 +707,7 @@ defaultproperties
     object end
     // Reference: KFGameExplosion'Default__KFPerk_Demolitionist.ExploTemplate2'
     DoorTrapExplosionTemplate=ExploTemplate2
-    NukeExplosionActorClassName="KFGameContent.KFExplosion_Nuke"
-    NukeProjectileClassName="KFGameContent.KFProj_ExplosiveSubmunition_HX25_Nuke"
-    NukeIgnoredProjectileNames(0)=KFProj_ExplosiveSubmunition_HX25
-    NukeIgnoredProjectileNames(1)=KFProj_ExplosiveSubmunition_HX25_Nuke
+    NukeExplosionActorClass=Class'KFExplosion_Nuke'
     NukeDamageModifier=1.5
     NukeRadiusModifier=1.35
     ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'

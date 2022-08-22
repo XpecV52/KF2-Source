@@ -35,7 +35,10 @@ function Pushed()
     {
         Outer.DisableMeleeRangeEventProbing();
     }
-    Outer.AILog_Internal(string(GetFuncName()) $ "() Beginning stumble AICommand", 'Command_Stumble');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(GetFuncName()) $ "() Beginning stumble AICommand", 'Command_Stumble');
+    }
     Outer.AIActionStatus = "Staggering";
 }
 
@@ -44,7 +47,10 @@ function Popped()
     super.Popped();
     Outer.EnableMeleeRangeEventProbing();
     Outer.AIActionStatus = "Done Staggering";
-    Outer.AILog_Internal(string(GetFuncName()) $ "() Finished stumble AICommand", 'Command_Stumble');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(GetFuncName()) $ "() Finished stumble AICommand", 'Command_Stumble');
+    }
 }
 
 function bool ShouldIgnoreTimeTransitions()

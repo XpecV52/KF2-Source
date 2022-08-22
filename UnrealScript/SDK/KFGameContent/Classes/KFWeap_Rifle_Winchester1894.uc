@@ -9,6 +9,30 @@
 
 class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase;
 
+/** How long the shell should stay in the foreground until it changes to world depth */
+var float ForegroundShellDuration;
+
+/**
+ * Causes the muzzle flash to turn on and setup a time to
+ * turn it back off again.
+ */
+/** notify to spawn a shell eject from the muzzle flash component */
+simulated function ANIMNOTIFY_ShellEject()
+{
+	super.ANIMNOTIFY_ShellEject();
+
+	MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup( SDPG_Foreground );
+	MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = true;
+
+	SetTimer( ForegroundShellDuration, false, nameOf(Timer_RestoreShellEjectDepth) );
+}
+
+simulated function Timer_RestoreShellEjectDepth()
+{
+	MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup( SDPG_World );
+	MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = false;
+}
+
 defaultproperties
 {
 	// Inventory / Grouping
@@ -99,10 +123,11 @@ defaultproperties
 	MuzzleFlashTemplate=KFMuzzleFlash'wep_winchester_arch.Wep_Winchester_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Winchester.Play_WEP_SA_Winchester_Fire_Single_M', FirstPersonCue=AkEvent'WW_WEP_SA_Winchester.Play_WEP_SA_Winchester_Fire_Single_S')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_Winchester.Play_WEP_SA_Winchester_Handling_DryFire'
+	ForegroundShellDuration=1.5f
 
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
+
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
 }
-
-

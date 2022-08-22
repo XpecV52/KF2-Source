@@ -538,7 +538,6 @@ var bool			LastPathFailTime;
 struct native sBlockedPathInfo
 {
 	var	ReachSpec		BlockedReachSpec;
-	var NavigationPoint	BlockedNav;
 	var int				BlockedCost;	// 0 = Completely blocked
 	var float			BlockedTime;
 };
@@ -627,6 +626,9 @@ var                     float       NavigationBumpTeamCollisionThreshholdSquared
 
 /** How long we've been falling with no z velocity */
 var                     float       FallingStuckNoZVelocityTime;
+/** Number of times a walk move has failed to apply velocity while Pawn->Acceleration is nonzero */
+var 					int 		NumFailedLatentWalkMoves;
+
 
 /*********************************************************************************************
 * StepAside
@@ -1002,6 +1004,7 @@ var array<KFAICmdHistoryItem>	KFAICommandHistory;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
 
 /*********************************************************************************************
 * General native function declarations
@@ -1028,7 +1031,7 @@ native function bool IgnoreNotifies() const;
 /** Returns true if CheckPawn is currently moving away from my pawn, optionally at MinSpeed */
 native function bool IsPawnMovingAwayFromMe( Pawn CheckPawn, optional float MinSpeed );
 /** Returns a KFPawn if there is one blocking the path to EnemyPawn */
-native function Pawn GetPawnBlockingPathTo( Pawn EnemyPawn, optional bool bTestTeam );
+native function Pawn GetPawnBlockingPathTo( Pawn EnemyPawn, optional bool bTestTeam, optional bool bCheckVisible );
 /** Lock the AI pawn rotation to a specific rotation, to unlock the pawn pass in zero */
 native function LockPawnRotationTo( Rotator NewRotation );
 /** Unlock the AI pawn's rotation */
@@ -1098,7 +1101,7 @@ event Possess( Pawn inPawn, bool bVehicleTransition )
 {
 	local KFAIDirector Director;
 
-	AILog_Internal(GetFuncName()$"() possessing pawn "$inPawn,'AIController',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() possessing pawn "$inPawn,'AIController',);};
 
 	super.Possess( inPawn, bVehicleTransition );
 
@@ -1194,7 +1197,7 @@ function UpdatePendingStrike()
     // Update the range we want to get to perform our strike
 	UpdateStrikeRange();
 
-	AILog_Internal(GetFuncName()$"() using AttackRange of "$AttackRange$" for attack polling.",'Command_Attack_Melee',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() using AttackRange of "$AttackRange$" for attack polling.",'Command_Attack_Melee',);};
 	return;
 }
 
@@ -1208,7 +1211,7 @@ function UpdateStrikeRange()
 	{
 		CollisionRadius = MyKFPawn.CylinderComponent.CollisionRadius;
 		StrikeRange = MyKFPawn.PawnAnimInfo.GetMedianStrikeRange(PendingAnimStrikeIndex, StrikeRangePercentage, CollisionRadius);
-		AILog_Internal(GetFuncName()$"() using StrikeRange of "$StrikeRange$" for attack polling.",'Command_Attack_Melee',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() using StrikeRange of "$StrikeRange$" for attack polling.",'Command_Attack_Melee',);};
 	}
 }
 
@@ -1216,24 +1219,25 @@ function UpdateStrikeRange()
  * it's not globally blocked for all NPCs. */
 event bool CreateTemporaryBlockedPath( NavigationPoint Nav )
 {
-	local int i, x;
+	local int i, x, PointIdx;
 
-	AILog_Internal(GetFuncName()$"() for "$Nav,'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() for "$Nav,'PathWarning',);};
 
-	for( i = 0; i < RouteCache.Length; i++ )
+	for( i = 0; i < RouteCache.Length; ++i )
 	{
 		if( RouteCache[i] == Nav )
 		{
-			for( x = 0; x < Nav.PathList.Length; x++ )
+			for( x = 0; x < Nav.PathList.Length; ++x )
 			{
 				//`AILog( GetFuncName()$" Nav to block: "$Nav$", Anchor: "$Pawn.Anchor$"... checking current end actor "$Nav.PathList[x].End.Actor, 'PathWarning' );
 				DebugLogRoute();
-				if( RouteCache.Length > (i+1) && Nav.PathList[x].End.Actor == RouteCache[i+1] )
+				PointIdx = i + 1;
+				if( RouteCache.Length > PointIdx && Nav.PathList[x].End.Actor == RouteCache[PointIdx] )
 				{
-					AILog_Internal(GetFuncName()$"() Found a match, calling AddBlockedReachSpec for spec "$Nav.PathList[x]$" on nav point "$RouteCache[i+1],,);
+					if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Found a match, calling AddBlockedReachSpec for spec "$Nav.PathList[x]$" on nav point "$RouteCache[PointIdx],,);};
 					//`Log( GetFuncName()$"() Found a match, calling AddBlockedReachSpec for spec "$Nav.PathList[x]$" on nav point "$RouteCache[i+1] );
-					if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIBlockedPath(self,Nav,NavigationPoint(Nav.PathList[x].End.Actor),"TestBlockedPath from "$Nav$" to "$Nav.PathList[x].End.Actor);};
-					if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIRedirectedPath(self,IntermediateMoveGoal,"[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[1]);};
+					if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIBlockedPath(self,Nav,RouteCache[PointIdx],"TestBlockedPath from "$Nav$" to "$RouteCache[PointIdx]);};
+					if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIRedirectedPath(self,IntermediateMoveGoal,"[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[PointIdx]);};
 					AddBlockedReachSpec( Nav.PathList[x], 10000000 );
 					return true;
 				}
@@ -1247,13 +1251,13 @@ event bool CreateTemporaryBlockedPath( NavigationPoint Nav )
  * it's not globally blocked for all NPCs. */
 function bool CreateTemporaryBlockedReach( NavigationPoint Nav, ReachSpec Reach )
 {
-	AILog_Internal(GetFuncName()$"() for "$Nav@Reach,'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() for "$Nav@Reach,'PathWarning',);};
 
     if( Reach != none && Reach.End.Actor == Nav )
     {
 		//`AILog( GetFuncName()$" Nav to block: "$Nav$", Anchor: "$Pawn.Anchor$"... checking current end actor "$Nav.PathList[x].End.Actor, 'PathWarning' );
 		DebugLogRoute();
-		AILog_Internal(GetFuncName()$"() Found a match, calling AddBlockedReachSpec for spec "$Reach$" to nav point "$Nav,,);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Found a match, calling AddBlockedReachSpec for spec "$Reach$" to nav point "$Nav,,);};
 		//`Log( GetFuncName()$"() Found a match, calling AddBlockedReachSpec for spec "$Reach$" to nav point "$Nav );
 		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIBlockedPath(self,Nav,NavigationPoint(Reach.End.Actor),"TestBlockedPath from "$Nav$" to "$Reach.End.Actor);};
 		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIRedirectedPath(self,IntermediateMoveGoal,"[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[1]);};
@@ -1349,11 +1353,11 @@ function PawnDied( Pawn InPawn )
 {
 	if( MyKFPawn != none )
 	{
-		AILog_Internal(GetFuncName()$"() InPawn: "$InPawn$" - Lifetime was "$(WorldInfo.TimeSeconds - MyKFPawn.CreationTime),'Damage',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() InPawn: "$InPawn$" - Lifetime was "$(WorldInfo.TimeSeconds - MyKFPawn.CreationTime),'Damage',);};
 	}
 	else
 	{
-		AILog_Internal(GetFuncName()$"() InPawn: "$InPawn,'Damage',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() InPawn: "$InPawn,'Damage',);};
 	}
 
 	if( bDumpCommandHistoryOnExit )
@@ -1390,7 +1394,7 @@ function bool AttemptToTeleport( optional float CheckRadius=512 )
 {
 	local NavigationPoint ResNav;
 
-	AILog_Internal(GetFuncName(),,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName(),,);};
 	ResNav = class'KFPathnode'.static.GetNearestValidFloorNavWithinRadiusToPawn(Pawn, CheckRadius);
 	if( ResNav != none && TeleportToLocation(Resnav.Location, Pawn.Rotation) )
 	{
@@ -1404,7 +1408,7 @@ event bool TeleportToLocation(vector NewLoc, rotator NewRot, optional bool bGive
     local vector OldLocation;
 
 	//debug
-	AILog_Internal(GetFuncName()@bCancelCombat@bCancelMovement@NewLoc,'PathError',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@bCancelCombat@bCancelMovement@NewLoc,'PathError',);};
 	//DrawDebugLine(Pawn.Location,NewLoc,255,0,0,TRUE);
 	//DrawDebugCoordinateSystem(NewLoc,rot(0,0,0),100.f,TRUE);
 
@@ -1446,7 +1450,7 @@ event bool TeleportToLocation(vector NewLoc, rotator NewRot, optional bool bGive
 	}
 
 	//debug
-	AILog_Internal("TELEPORT FAILED?!",'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("TELEPORT FAILED?!",'PathWarning',);};
 
 	return false;
 }
@@ -1610,14 +1614,14 @@ function bool GetHasAcceptableEnemyCount( Pawn NewEnemy )
         // New enemy already has a full dance card, stick with current enemy
         if( NumZedsTargetingNewEnemy >= 3 )
         {
-            AILog_Internal(GetFuncName()$" New enemy already has a full dance card, stick with current enemy",'SetEnemy',);
+            if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" New enemy already has a full dance card, stick with current enemy",'SetEnemy',);};
             return false;
         }
 
         // Nobody nearby targeting the new enemy, go for it
         if( NumZedsTargetingNewEnemy < 1 )
         {
-        	AILog_Internal(GetFuncName()$" accepting "$NewEnemy$" because it's closer than our current, and nobody nearby targeting the new enemy",'SetEnemy',);
+        	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" accepting "$NewEnemy$" because it's closer than our current, and nobody nearby targeting the new enemy",'SetEnemy',);};
         	return true;
         }
         else
@@ -1627,7 +1631,7 @@ function bool GetHasAcceptableEnemyCount( Pawn NewEnemy )
             // Don't switch to the new enemy if there are too few zeds targeting the current one
             if( RatioOfZedsOldEnemyToNewEnemy <= 0.5 )
             {
-                AILog_Internal(GetFuncName()$" not accepting "$NewEnemy$" because there are too few zeds targeting the current one",'SetEnemy',);
+                if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" not accepting "$NewEnemy$" because there are too few zeds targeting the current one",'SetEnemy',);};
                 return false;
             }
         }
@@ -1640,7 +1644,7 @@ event bool SetEnemyToZed( Pawn NewEnemy )
 {
 	local float NewEnemyDist, TimeSinceLastEnemyChange;
 
-	AILog_Internal(GetFuncName()$"(), desired new enemy: "$NewEnemy,'SetEnemy',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"(), desired new enemy: "$NewEnemy,'SetEnemy',);};
 
 	// Reject potential enemy if it's invalid or not on our team, or if it's already my current enemy, or if my pawn is dead or invalid
 	if( NewEnemy == none || !NewEnemy.IsAliveAndWell() ||
@@ -1654,7 +1658,7 @@ event bool SetEnemyToZed( Pawn NewEnemy )
 	TimeSinceLastEnemyChange = (WorldInfo.TimeSeconds - LastSetEnemyTime);
 	if( TimeSinceLastEnemyChange < MinTimeBetweenEnemyChanges )
 	{
-		AILog_Internal(GetFuncName()$"() not evaluating because not enough time has passed ("$TimeSinceLastEnemyChange$") since last SetEnemy() call.",'SetEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() not evaluating because not enough time has passed ("$TimeSinceLastEnemyChange$") since last SetEnemy() call.",'SetEnemy',);};
 		return false;
 	}
 
@@ -1667,7 +1671,7 @@ event bool SetEnemyToZed( Pawn NewEnemy )
 			return false;
 		}
 
-		AILog_Internal(GetFuncName()$"() accepting "$NewEnemy$" because Enemy ("$Enemy$") dist is > 1.2 * NewEnemy dist",'SetEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() accepting "$NewEnemy$" because Enemy ("$Enemy$") dist is > 1.2 * NewEnemy dist",'SetEnemy',);};
 		ChangeEnemy( NewEnemy );
 		return true;
 	}
@@ -1680,7 +1684,7 @@ event bool SetEnemy( Pawn NewEnemy )
 {
 	local float EnemyDistSq, NewEnemyDistSq, TimeSinceLastEnemyChange;
 
-	AILog_Internal(GetFuncName()$"(), desired new enemy: "$NewEnemy,'SetEnemy',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"(), desired new enemy: "$NewEnemy,'SetEnemy',);};
 
 	// Reject potential enemy if it's invalid or not on our team, or if it's already my current enemy, or if my pawn is dead or invalid
 	if( NewEnemy == none || !NewEnemy.IsAliveAndWell() || Pawn.IsSameTeam( NewEnemy ) ||
@@ -1703,7 +1707,7 @@ event bool SetEnemy( Pawn NewEnemy )
 	// Ignore cooldown time and accept the new enemy if I absolutely need one
 	if( Enemy == none || !Enemy.IsAliveAndWell() )
 	{
-		AILog_Internal(GetFuncName()$"(), accepting new enemy "$NewEnemy$" because current enemy is none or dead",'SetEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"(), accepting new enemy "$NewEnemy$" because current enemy is none or dead",'SetEnemy',);};
 		ChangeEnemy( NewEnemy );
 		return true;
 	}
@@ -1712,35 +1716,35 @@ event bool SetEnemy( Pawn NewEnemy )
 	TimeSinceLastEnemyChange = (WorldInfo.TimeSeconds - LastSetEnemyTime);
 	if( TimeSinceLastEnemyChange < MinTimeBetweenEnemyChanges )
 	{
-		AILog_Internal(GetFuncName()$"() not evaluating because not enough time has passed ("$TimeSinceLastEnemyChange$") since last SetEnemy() call.",'SetEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() not evaluating because not enough time has passed ("$TimeSinceLastEnemyChange$") since last SetEnemy() call.",'SetEnemy',);};
 		return false;
 	}
 
 	// Give any AICommands on the stack an opportunity to reject changing my enemy.
 	if( CachedAICommandList != none && !CachedAICommandList.CanChangeEnemy(NewEnemy) )
 	{
-		AILog_Internal(GetFuncName()$"() rejecting "$NewEnemy$" because an AICommand rejected it",'SetEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() rejecting "$NewEnemy$" because an AICommand rejected it",'SetEnemy',);};
 		return false;
 	}
 
 	// From KF1 - if I already have an enemy, and I have LOS to my enemy and my enemy is closer than NewEnemy, then keep my current enemy.
 	if( LineOfSightTo(Enemy) && VSize(Enemy.Location-Pawn.Location) < VSize(NewEnemy.Location-Pawn.Location) )
 	{
-		AILog_Internal(GetFuncName()$"() rejecting "$NewEnemy$" because I have LOS to current enemy ("$Enemy$") and current enemy is also closer to me",'SetEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() rejecting "$NewEnemy$" because I have LOS to current enemy ("$Enemy$") and current enemy is also closer to me",'SetEnemy',);};
 		return false;
 	}
 
 	// Accept new enemy if I can't see my current enemy (CanSee takes PeripheralVision into account)
 	if( !CanSee(Enemy) )
 	{
-		AILog_Internal(GetFuncName()$"() accepting "$NewEnemy$" because I cannot see my current enemy "$Enemy,'SetEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() accepting "$NewEnemy$" because I cannot see my current enemy "$Enemy,'SetEnemy',);};
 		ChangeEnemy( NewEnemy );
 		return true;
 	}
 	// Reject new enemy if I can't see it (CanSee takes PeripheralVision into account)
 	if( !CanSee(NewEnemy) )
 	{
-		AILog_Internal(GetFuncName()$"() rejecting "$NewEnemy$" because I cannot see it, but I can see my current enemy "$Enemy,'SetEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() rejecting "$NewEnemy$" because I cannot see it, but I can see my current enemy "$Enemy,'SetEnemy',);};
 		return false;
 	}
 
@@ -1748,7 +1752,7 @@ event bool SetEnemy( Pawn NewEnemy )
 	EnemyDistSq = VSizeSq( Enemy.Location - Pawn.Location );
 	if( MyKFPawn != none && EnemyDistSq < Square(StrikeRange) )
 	{
-		AILog_Internal(GetFuncName()$"() rejecting "$NewEnemy$" because current enemy ("$Enemy$") is within my desired melee range",'SetEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() rejecting "$NewEnemy$" because current enemy ("$Enemy$") is within my desired melee range",'SetEnemy',);};
 		return false;
 	}
 
@@ -1761,7 +1765,7 @@ event bool SetEnemy( Pawn NewEnemy )
 			return false;
 		}
 
-		AILog_Internal(GetFuncName()$"() accepting "$NewEnemy$" because Enemy ("$Enemy$") dist is > 1.2 * NewEnemy dist",'SetEnemy',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() accepting "$NewEnemy$" because Enemy ("$Enemy$") dist is > 1.2 * NewEnemy dist",'SetEnemy',);};
 		ChangeEnemy( NewEnemy );
 		return true;
 	}
@@ -1804,7 +1808,7 @@ function ChangeEnemy( Pawn NewEnemy, optional bool bCanTaunt = true )
 		// Set our last enemy switch time for the aggro system
 		LastEnemySwitchTime = WorldInfo.TimeSeconds;
 	}
-	AILog_Internal(GetFuncName()$"() set Enemy to "$NewEnemy,'SetEnemy',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() set Enemy to "$NewEnemy,'SetEnemy',);};
 	Enemy = NewEnemy;
 
 	BroadcastEnemyKnowledge(NewEnemy, WSPM_Belief);
@@ -1904,13 +1908,13 @@ function EnableProbingMeleeRangeEvents( optional bool bForce )
 {
 	if( bForce || !MyKFPawn.IsDoingSpecialMove()  )
 	{
-		AILog_Internal(GetFuncName()$"() setting bIsProbingMeleeRangeEvents to true, restoring ability to melee attack",'AIController',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() setting bIsProbingMeleeRangeEvents to true, restoring ability to melee attack",'AIController',);};
 		EnableMeleeRangeEventProbing();
 		ClearTimer( nameof(EnableProbingMeleeRangeEvents) );
 	}
 	else
 	{
-		AILog_Internal(GetFuncName()$"() waiting to restore ability to melee attack, will check again in 0.1 seconds",'AIController',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() waiting to restore ability to melee attack, will check again in 0.1 seconds",'AIController',);};
 		SetTimer( 0.25f, true, nameof(EnableProbingMeleeRangeEvents) );
 	}
 }
@@ -1922,7 +1926,7 @@ function ResetProbingMeleeRangeEvents( optional float DelayOverride )
 
 	//DelayOverride = 0.5;
 	Delay = (DelayOverride>0.f?DelayOverride:0.07f);
-	AILog_Internal(GetFuncName()$"() will be resetting bIsProbingMeleeRangeEvents to true in "$Delay$" seconds",'Command_Attack_Melee',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() will be resetting bIsProbingMeleeRangeEvents to true in "$Delay$" seconds",'Command_Attack_Melee',);};
 	SetTimer( Delay, false, nameof(EnableProbingMeleeRangeEvents), self );
 	//EnableProbingMeleeRangeEvents();
 }
@@ -1985,7 +1989,7 @@ function BeginCombatCommand( class<AICommand> CmdClass, optional coerce string R
 	local class<AICommand_Base_Combat> CurClass;
 	local AICommand_Base_Combat	CurCommand;
 
-	AILog_Internal(GetFuncName()@CmdClass@"(CommandList:"$CommandList$") Reason: "$Reason$" bForced: "$bForced,'InitAICommand',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@CmdClass@"(CommandList:"$CommandList$") Reason: "$Reason$" bForced: "$bForced,'InitAICommand',);};
 
 	if( CommandList != None )
 	{
@@ -2000,13 +2004,13 @@ function BeginCombatCommand( class<AICommand> CmdClass, optional coerce string R
 	{
 		if( CmdClass != None && !bAllowCombatTransitions )
 		{
-			AILog_Internal(self$" Not allowing combat transition due to scripting",'InitAICommand',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Not allowing combat transition due to scripting",'InitAICommand',);};
 			return;
 		}
 
 		if( CommandList != None && !CommandList.AllowTransitionTo( CmdClass ) )
 		{
-			AILog_Internal(self$" Current command stack rejected transiton",'InitAICommand',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Current command stack rejected transiton",'InitAICommand',);};
 			return;
 		}
 	}
@@ -2065,7 +2069,7 @@ final function Pawn GetClosestEnemy( optional Pawn ExcludePawn )
 			}
 		}
 	}
-	AILog_Internal(GetFuncName()$"() returning closest enemy "$Best,'SetEnemy',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() returning closest enemy "$Best,'SetEnemy',);};
 	if( Best == none && ExcludePawn != none )
 	{
 		Best = ExcludePawn;
@@ -2099,25 +2103,25 @@ function CheckCombatTransition()
 	local bool bTransition;
 	local AICommand_Base_Combat CurCommand;
 
-	AILog_Internal(GetFuncName()$"() bAllowCombatTransitions: "$bAllowCombatTransitions,'CombatTransitions',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() bAllowCombatTransitions: "$bAllowCombatTransitions,'CombatTransitions',);};
 	if (Pawn == None || !Pawn.IsAliveAndWell() || !bAllowCombatTransitions || IsDead() )
 	{
 		return;
 	}
 
-	AILog_Internal(GetFuncName()@CommandList$" calling CheckInterruptCombatTransitions now",'CombatTransitions',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@CommandList$" calling CheckInterruptCombatTransitions now",'CombatTransitions',);};
 
 	// First check for interrupt transitions
 	bTransition = !CheckInterruptCombatTransitions();
 	// If no interrupt occurred
 	if( bTransition )
 	{
-		AILog_Internal("bTransition was true from CheckInterruptCombatTransitions()",'CombatTransitions',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("bTransition was true from CheckInterruptCombatTransitions()",'CombatTransitions',);};
 		CurCommand = AICommand_Base_Combat(CommandList);
 		if( CurCommand != None &&
 			CurCommand.CheckTransition( NewCommand, Reason ) )
 		{
-			AILog_Internal(GetFuncName()$"() Calling BeginCombatCommand for "$NewCommand,'CombatTransitions',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Calling BeginCombatCommand for "$NewCommand,'CombatTransitions',);};
 			BeginCombatCommand( NewCommand, Reason );
 		}
 		else
@@ -2126,10 +2130,10 @@ function CheckCombatTransition()
 			NewCommand = GetDefaultCommand();
 			if(NewCommand == none)
 			{
-				AILog_Internal("WARNING! "$self$" has no default command specified!",'CombatTransitions',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("WARNING! "$self$" has no default command specified!",'CombatTransitions',);};
 				return;
 			}
-			AILog_Internal(GetFuncName()$"() Calling BeginCombatCommand for 2 "$NewCommand,'CombatTransitions',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Calling BeginCombatCommand for 2 "$NewCommand,'CombatTransitions',);};
 			BeginCombatCommand(NewCommand, "No Command Specified" );
 		}
 	}
@@ -2254,7 +2258,7 @@ function NotifyMeleeAttackFinished();
 /** Starts base melee AI command */
 function BeginMeleeCommand( Pawn TargetPawn, optional coerce String Reason )
 {
-	AILog_Internal(GetFuncName()$"() TargetPawn: "$TargetPawn,'Command_Attack_Melee',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() TargetPawn: "$TargetPawn,'Command_Attack_Melee',);};
 
 	if( AICommand_Base_Zed(CommandList) == none )
 	{
@@ -2266,7 +2270,7 @@ function BeginMeleeCommand( Pawn TargetPawn, optional coerce String Reason )
 
 		if( MeleeCommandClass != GetDefaultCommand() )
 		{
-			AILog_Internal(GetFuncName()$"() calling BeginCombatCommand for "$MeleeCommandClass,'Command_Attack_Melee',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() calling BeginCombatCommand for "$MeleeCommandClass,'Command_Attack_Melee',);};
 			BeginCombatCommand( MeleeCommandClass, Reason, true );
 		}
 	}
@@ -2310,7 +2314,7 @@ function bool IsWithinAttackRange()
 			// ... Try to find a new enemy and return false if I decided to change targets
 			if( FindNewEnemy() )
 			{
-				AILog_Internal(GetFuncName()$" found that enemy is surrounded so changed enemy to "$Enemy,'ReachedEnemy',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" found that enemy is surrounded so changed enemy to "$Enemy,'ReachedEnemy',);};
 				return false;
 			}
 		}
@@ -2353,7 +2357,7 @@ function EndOfMeleeAttackNotification();
 function NotifyCommandMeleeAttackAborted()
 {
 	local AICommand_Attack_Melee MeleeCommand;
-	AILog_Internal(GetFuncName()$"()",'Command_Attack_Melee',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"()",'Command_Attack_Melee',);};
 
 	// Push AICommand if it is defined. (jessnew)
 	if( CommandList != None && GetActiveCommand().IsA('AICommand_Attack_Melee') )
@@ -2362,7 +2366,7 @@ function NotifyCommandMeleeAttackAborted()
 
 		if( MeleeCommand != none )
 		{
-			AILog_Internal(GetFuncName()$"() calling AbortCommand for "$MeleeCommand,'Command_Attack_Melee',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() calling AbortCommand for "$MeleeCommand,'Command_Attack_Melee',);};
 			AbortCommand( MeleeCommand );
 		}
 	}
@@ -2603,18 +2607,18 @@ function bool CheckInterruptCombatTransitions()
 {
 	local AICommand_Base_Combat	CurCommand;
 
-	AILog_Internal("---- "$GetFuncName()$"() IgnoreNotifies? : "$IgnoreNotifies(),'CombatTransitions',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("---- "$GetFuncName()$"() IgnoreNotifies? : "$IgnoreNotifies(),'CombatTransitions',);};
 	// If dead, gone, or ignoring notifies don't bother
 	if( Pawn == None || !Pawn.IsAliveAndWell() || IsDead() || IgnoreNotifies() )
 	{
-		AILog_Internal("---- "$GetFuncName()$"() aborting early",'CombatTransitions',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("---- "$GetFuncName()$"() aborting early",'CombatTransitions',);};
 		return false;
 	}
 
 	// check that our enemy is still valid
 	if( Enemy != None && ( !Enemy.IsAliveAndWell() || Enemy.Controller == none ) )
 	{
-		AILog_Internal(GetFuncName()$"() setting enemy to NONE because they have no controller or they are dead!",'CombatTransitions',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() setting enemy to NONE because they have no controller or they are dead!",'CombatTransitions',);};
 		SetEnemy( None );
 	}
 
@@ -2622,19 +2626,19 @@ function bool CheckInterruptCombatTransitions()
 	CurCommand = AICommand_Base_Combat( CommandList );
 	if( CurCommand == None )
 	{
-		AILog_Internal("---- "$GetFuncName()$"() setting enemy aborting because current command ("$CurCommand$") isn't a combat based command",'CombatTransitions',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("---- "$GetFuncName()$"() setting enemy aborting because current command ("$CurCommand$") isn't a combat based command",'CombatTransitions',);};
 		return false;
 	}
 
 	if( AICommand_Base_Combat(CommandList) != None && ShouldReturnToIdle() )
 	{
 		//`AILog( "---- "$GetFuncName()$"() setting enemy aborting because current command ("$CurCommand$") isn't a combat based command", 'CombatTransitions' );
-		AILog_Internal(GetFuncName()$"() returning true because I have a combat command and ShouldReturnToIdle returned true",'CombatTransitions',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() returning true because I have a combat command and ShouldReturnToIdle returned true",'CombatTransitions',);};
 		//BeginCombatCommand( None, "No Enemies" );
 
 		return true;
 	}
-	AILog_Internal(GetFuncName()$"() returning false",'CombatTransitions',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() returning false",'CombatTransitions',);};
 	return false;
 }
 
@@ -2680,7 +2684,7 @@ event StopAllLatentMovement( optional bool bForced )
 /** Abort any movement commands and reset MoveTarget */
 function ClearMovementInfo( optional bool bSafeAbort, optional string DebugMsg )
 {
-	AILog_Internal(GetFuncName()$"() Aborting movement commands and setting MoveTarget to none",'Command_MoveToGoal',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Aborting movement commands and setting MoveTarget to none",'Command_MoveToGoal',);};
 	AbortMovementCommands();
 	AbortMovementPlugIns();
 	MoveTarget  = None;
@@ -2689,7 +2693,7 @@ function ClearMovementInfo( optional bool bSafeAbort, optional string DebugMsg )
 /** Abort the main movement commands, might change to abort others like StepAside */
 event AbortMovementCommands( optional bool bSafeAbort, optional string DebugMsg )
 {
-	AILog_Internal(GetFuncName()$"() called, aborting MoveToEnemy and MoveToGoal commands if they are active",'Command_MoveToGoal',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() called, aborting MoveToEnemy and MoveToGoal commands if they are active",'Command_MoveToGoal',);};
 	if( DebugMsg != "" )
 	{
 		FindCommandOfClass(class'AICommand_MoveToEnemy').UpdateHistoryString(DebugMsg);
@@ -2702,7 +2706,7 @@ event AbortMovementCommands( optional bool bSafeAbort, optional string DebugMsg 
 /** Abort the main movement commands, might change to abort others like StepAside */
 event AbortMovementPlugIns( optional bool bSafeAbort, optional string DebugMsg )
 {
-	AILog_Internal(GetFuncName()$"() called, aborting MovementPlugin and LeapPlugin Plug Ins if they are active",'Movement_Plugins',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() called, aborting MovementPlugin and LeapPlugin Plug Ins if they are active",'Movement_Plugins',);};
 	if( DebugMsg != "" )
 	{
 		if( KfMovementPlugin != none )
@@ -2736,7 +2740,7 @@ event AbortMovementPlugIns( optional bool bSafeAbort, optional string DebugMsg )
 /** Stops latent move, and zeroes pawn Acceleration and Velocity if the pawn's not falling (or if bForce is true) */
 function AIZeroMovementVariables( optional bool bForce )
 {
-	AILog_Internal(WorldInfo.TimeSeconds$" "$GetFuncName()$" setting movetimer to -1",'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(WorldInfo.TimeSeconds$" "$GetFuncName()$" setting movetimer to -1",'PathWarning',);};
 	MoveTimer = -1.f;  // Keep an eye on this
 
 	if( Pawn != none )
@@ -2763,13 +2767,13 @@ function StopMovement(optional EActionPriority ActionPriority = AP_Logic)
 /** Called by AICommands to notify that a move is about to start */
 event StartingMovement()
 {
-	AILog_Internal(self$" StartingMovement",'AIController',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" StartingMovement",'AIController',);};
 }
 
 /** Called by AICommands to notify that a move has ended */
 event StoppingMovement()
 {
-	AILog_Internal(self$" StoppingMovement",'AIController',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" StoppingMovement",'AIController',);};
 }
 
 /** Called by AICommands to determine if NPC is allowed to move */
@@ -2782,13 +2786,13 @@ event bool AllowedToMove()
 /** Called by movetogoal when we arrive at our destination */
 event ReachedMoveGoal()
 {
-	AILog_Internal(self$" Reached MoveGoal!",'AIController',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Reached MoveGoal!",'AIController',);};
 }
 
 /** Called by movetogoal when we arrive at an intermediate point in our path (pathnode location, etc.) */
 function ReachedIntermediateMoveGoal()
 {
-	AILog_Internal(self$" ReachedIntermediateMoveGoal!",'AIController',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" ReachedIntermediateMoveGoal!",'AIController',);};
 }
 
 /** TODO: Needs to be deprecated or revised */
@@ -2827,7 +2831,7 @@ event Actor GeneratePathTo( Actor Goal, optional float Distance, optional bool b
 	local actor PathResult;
 
 	AddBasePathConstraints();
-	AILog_Internal(GetFuncName()$"() Goal: "$Goal$" optional distance: "$Distance$" bAllowPartialPath: "$bAllowPartialPath,'AIController',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Goal: "$Goal$" optional distance: "$Distance$" bAllowPartialPath: "$bAllowPartialPath,'AIController',);};
 	class'Path_TowardGoal'.static.TowardGoal( Pawn, Goal );
 	if( bDisablePartialPaths )
 	{
@@ -2894,7 +2898,7 @@ event Actor GenerateDoorlessPathTo( Actor Goal, optional float Distance, optiona
 
 	if( PathResult == None )
 	{
-		AILog_Internal(GetFuncName()$"() failed to build a path to "$Goal$", offset distance was "$Distance$", bAllowPartialPath was "$bAllowPartialPath,'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() failed to build a path to "$Goal$", offset distance was "$Distance$", bAllowPartialPath was "$bAllowPartialPath,'PathWarning',);};
 	}
 	return PathResult;
 }
@@ -2964,7 +2968,7 @@ function DoPauseAI( float InDuration, optional bool bStopMovement, optional bool
             Pawn.Velocity = OldVelocity;
         }
 	}
-	AILog_Internal(GetFuncName()$"() Init AICommand_Pause Duration: "$InDuration$" Active command: "$GetActiveCommand(),'Command_Pause',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Init AICommand_Pause Duration: "$InDuration$" Active command: "$GetActiveCommand(),'Command_Pause',);};
 	class'AICommand_Pause'.static.Pause( self, InDuration, bStopMovement );
 }
 
@@ -3020,7 +3024,7 @@ event SetMoveGoal( Actor NewMoveGoal, optional Actor NewMoveFocus,
 	SetBasedPosition( MovePosition, vect(0,0,0) );
 	MoveFocus	= NewMoveFocus;
 	MoveOffset	= OffsetDist;
-	AILog_Internal(GetFuncName()$"() initializing AICommand_MoveToGoal"@NewMoveGoal@NewMoveFocus@bInterruptable@bAllowedToAttack,'InitAICommand',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() initializing AICommand_MoveToGoal"@NewMoveGoal@NewMoveFocus@bInterruptable@bAllowedToAttack,'InitAICommand',);};
 
 	if( NewMoveGoal != None && (MoveIsInterruptable(bForce) || !bInterruptable) )
 	{
@@ -3028,7 +3032,7 @@ event SetMoveGoal( Actor NewMoveGoal, optional Actor NewMoveFocus,
 	}
 	else if( NewMoveGoal != none )
 	{
-		AILog_Internal(GetFuncName() @"!! -- ignoring movegoal because I already have a moveaction, which is non-interruptable, and the new movegoal IS interruptable.. trumped",'InitAICommand',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @"!! -- ignoring movegoal because I already have a moveaction, which is non-interruptable, and the new movegoal IS interruptable.. trumped",'InitAICommand',);};
 	}
 }
 
@@ -3047,7 +3051,7 @@ final event SetMovePoint( Vector NewMovePoint, optional Actor NewMoveFocus,
 						 optional bool bIsValidCache, optional bool bAllowedToAttack=true,
 						 optional bool bAllowPartialPath, optional bool bCanPathfind=true )
 {
-	AILog_Internal(GetFuncName()$"() initializing AICommand_MoveToGoal"$NewMovePoint@NewMoveFocus@bInterruptable@bAllowedToAttack,'InitAICommand',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() initializing AICommand_MoveToGoal"$NewMovePoint@NewMoveFocus@bInterruptable@bAllowedToAttack,'InitAICommand',);};
 
 	bReachedMoveGoal = false;
 	bMoveGoalInterruptable = bInterruptable;
@@ -3075,7 +3079,7 @@ final event SetEnemyMoveGoal(   Object Observer,
 								optional float AbandonDistance=0.f,
 								optional bool bAllowedToAttack=true)
 {
-	AILog_Internal(GetFuncName()$"() initializing AICommand_MoveToEnemy - setting enemy goal Dist:"@GoalDistance@"bCompleteMove?"@bCompleteMove@"bAllowedToAttack?"@bAllowedToAttack,'InitAICommand',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() initializing AICommand_MoveToEnemy - setting enemy goal Dist:"@GoalDistance@"bCompleteMove?"@bCompleteMove@"bAllowedToAttack?"@bAllowedToAttack,'InitAICommand',);};
 
 	PreMoveToEnemy();
 
@@ -3126,7 +3130,7 @@ function PreMoveToEnemy();
 
 function DoEvade( byte EvadeDir, optional actor EvadeActor, optional vector DangerInstigatorLocation=vect(0,0,0), optional float Delay, optional bool bFrightened, optional bool bTurnToThreat )
 {
-	AILog_Internal(GetFuncName()@EvadeDir@Pawn.Physics@Pawn.Anchor,'Command_Evade',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@EvadeDir@Pawn.Physics@Pawn.Anchor,'Command_Evade',);};
 	class'AICommand_Evade'.static.Evade( self, EvadeDir, Delay, bFrightened,, DangerInstigatorLocation );
 }
 
@@ -3146,17 +3150,17 @@ function DoStumble( vector Momentum, EHitZoneBodyPart HitZoneLimb )
 
 		if( MeleeCommand != none )
 		{
-			AILog_Internal(GetFuncName()$"() Aborting Melee Command",'InitAICommand',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Aborting Melee Command",'InitAICommand',);};
 			AbortCommand( MeleeCommand );
 		}
 	}
-	AILog_Internal(GetFuncName()$"() Aborting movement commands",'Command_MoveToGoal',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Aborting movement commands",'Command_MoveToGoal',);};
 	AbortMovementCommands();
 	AbortMovementPlugIns();
 
 	if( CommandList == None || !GetActiveCommand().IsA( 'AICommand_Stumble' ) )
 	{
-		AILog_Internal(GetFuncName()$"() Init AICommand_Stumble",'InitAICommand',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Init AICommand_Stumble",'InitAICommand',);};
 		class'AICommand_Stumble'.static.Stumble( self, Momentum, HitZoneLimb );
 	}
 }
@@ -3208,7 +3212,7 @@ event bool StepAsideFor( Pawn ChkPawn, Vector HitNormal )
 	local KFAIController AI;
 	local bool bNoFocus;
 
-	AILog_Internal(GetFuncName()@ChkPawn,,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@ChkPawn,,);};
 	if( !bIgnoreStepAside && /*(MyKFPawn.Physics != PHYS_Spider &&*/ !MyKFPawn.IsDoingSpecialMove() )
 	{
 		// step aside for players
@@ -3219,7 +3223,7 @@ event bool StepAsideFor( Pawn ChkPawn, Vector HitNormal )
 		AI = KFAIController(ChkPawn.Controller);
 		if( AI != None && (AI.StepAsideGoal == Pawn) )
 		{
-			AILog_Internal("- other AI is stepping aside for us already",,);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("- other AI is stepping aside for us already",,);};
 
 			bResult = true;
 			bStepAside = false;
@@ -3231,7 +3235,7 @@ event bool StepAsideFor( Pawn ChkPawn, Vector HitNormal )
 			bDelayStep = ShouldDelayStepAside(ChkPawn);
 			if( !bDelayStep )
 			{
-				AILog_Internal(self$" - moving in the same direction as pawn we bumped",,);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" - moving in the same direction as pawn we bumped",,);};
 
 				bResult = true;
 				bStepAside = false;
@@ -3284,7 +3288,7 @@ function bool ShouldDelayStepAside( Pawn GoalPawn )
 /** Alerts NPC that current move has failed */
 event FailedMove( optional string Reason )
 {
-	AILog_Internal("FailedMove! Reason: "$Reason,'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("FailedMove! Reason: "$Reason,'PathWarning',);};
 	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIMoveFailure(self,Pawn.Location,Pawn.Rotation,MoveGoal,"4 "$Reason);};
 }
 
@@ -3340,7 +3344,7 @@ function float GetMoveTimeOutDuration(vector dest, bool bDoingLeadInOutWalk)
 		GroundSpeed *= Pawn.WalkingPct;
 	}
 	Duration = FMax(0.5f,2.0f * (Dist / GroundSpeed));
-	AILog_Internal(GetFuncName()$"() returning "$Duration$" for dist of "$Dist,'Command_MoveToGoal',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() returning "$Duration$" for dist of "$Dist,'Command_MoveToGoal',);};
 	return Duration;
 }
 
@@ -3509,7 +3513,20 @@ function bool IsFrustrated()
 /** Notification from AICommand::Popped that it has completed */
 function NotifyCommandFinished( AICommand FinishedCommand );
 
+/** Notification from the flee command that the flee completed successfully (was not interrupted) */
 function NotifyFleeFinished( optional bool bAcquireNewEnemy=true );
+
+/** Notification from the move command that we've arrived at an intermediate destination */
+function NotifyReachedLatentMoveGoal();
+
+event NotifyLatentPostPhysWalking()
+{
+	if( CachedAICommandList != none )
+	{
+		/** Let the current AICommand, if any, handle this. */
+		CachedAICommandList.NotifyLatentPostPhysWalking();
+	}
+}
 
 
 event NotifyFailMove( string Reason )
@@ -3519,14 +3536,14 @@ event NotifyFailMove( string Reason )
 	//      {
 	//           //GetActiveKFCommand().UpdateHistoryString( "[NotifyFailMove: "$Reason$"]" );
 	//      }
-	AILog_Internal("NotifyFailMove, Reason: "$Reason,'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("NotifyFailMove, Reason: "$Reason,'PathWarning',);};
 }
 //__TW_PATHFINDING_
 
 /** Notification from gameinfo that paths have changed */
 event NotifyPathChanged()
 {
-	AILog_Internal(GetFuncName()$"() Command: "$GetActiveCommand(),'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Command: "$GetActiveCommand(),'PathWarning',);};
 }
 
 
@@ -3547,7 +3564,7 @@ function bool IsValidDirectMoveGoal( Actor A )
 final function SetFailedPathToEnemy( Pawn TestEnemy, optional float Offset )
 {
 	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIMoveFailure(self,Pawn.Location,Pawn.Rotation,MoveGoal,"7 SetFailedpathToEnemy");};
-	AILog_Internal(GetFuncName()$"() TestEnemy: "$TestEnemy$" Offset: "$Offset,'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() TestEnemy: "$TestEnemy$" Offset: "$Offset,'PathWarning',);};
 
 	// Below might come in handy, but haven't tested it enough.
 // 	if( Pawn.Anchor != none )
@@ -3587,7 +3604,7 @@ event bool HandlePathObstruction( Actor BlockedBy )
 	if( LastObstructionTime == 0.f || (WorldInfo.TimeSeconds - LastObstructionTime) > 0.7f )
 	{
 		LastObstructionTime = WorldInfo.TimeSeconds;
-		AILog_Internal(GetFuncName()@BlockedBy@(WorldInfo.TimeSeconds - LastObstructionTime),'HandlePathObstruction',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@BlockedBy@(WorldInfo.TimeSeconds - LastObstructionTime),'HandlePathObstruction',);};
 		// Let the current AICommand deal with the obstruction.
 		if( CachedAICommandList != None )
 		{
@@ -3602,13 +3619,13 @@ function bool HandleZedBlockedPath();
 event FailMove( string Reason )
 {
 	//`RecordAIMoveFailure(self,Pawn.Location,Pawn.Rotation,MoveGoal,Reason);
-	AILog_Internal(GetFuncName()$"() REASON: "$Reason,'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() REASON: "$Reason,'PathWarning',);};
 }
 
 /** Event from latent movement code notifying that current move goal is not reachable */
 event MoveUnreachable( Vector AttemptedDest, Actor AttemptedTarget )
 {
-	AILog_Internal(GetFuncName()$"()"$AttemptedDest@AttemptedTarget,'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"()"$AttemptedDest@AttemptedTarget,'PathWarning',);};
 
 	if( CachedAICommandList != None )
 	{
@@ -3633,7 +3650,7 @@ event ForcePauseAndRepath( optional Actor InInstigator )
 /** Notification that any existing pathing should be checked and rebuilt */
 function NotifyNeedRepath()
 {
-	AILog_Internal(GetFuncName()$"()",'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"()",'PathWarning',);};
 	if( CachedAICommandList != None )
 	{
 		CachedAICommandList.NotifyNeedRepath();
@@ -3652,14 +3669,14 @@ final function InvalidateAnchor( NavigationPoint Nav )
 	local int Idx;
 
 	Idx = InvalidAnchorList.Find( 'InvalidNav', Nav );
-	AILog_Internal(GetFuncName()@Nav@Idx,'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@Nav@Idx,'PathWarning',);};
 	if( Idx < 0 )
 	{
 		Idx								   = InvalidAnchorList.Length;
 		InvalidAnchorList.Length		   = Idx + 1;
 		InvalidAnchorList[Idx].InvalidNav  = Nav;
 		InvalidAnchorList[Idx].InvalidTime = WorldInfo.TimeSeconds;
-		AILog_Internal(GetFuncName()$" Invalidating anchor ("$Nav$") - setting anchor to NONE",'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Invalidating anchor ("$Nav$") - setting anchor to NONE",'PathWarning',);};
 		// Clear the old anchor so we need to get a new one
 		Pawn.SetAnchor( none );
 	}
@@ -3670,11 +3687,11 @@ final function NavigationPoint GetFallbackAnchor()
 	local NavigationPoint LastAnchor, ResultAnchor;
 	local float AnchorDist;
 
-	AILog_Internal(GetFuncName()$"() trying to get fallback anchor",'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() trying to get fallback anchor",'PathWarning',);};
 	// block the current anchor if possible to prevent it from being reacquired as an anchor
 	if (Pawn.Anchor != None && !Pawn.Anchor.bBlocked)
 	{
-		AILog_Internal(GetFuncName()$"() setting Pawn anchor ("$Pawn.Anchor$") to bBlocked to true!",'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() setting Pawn anchor ("$Pawn.Anchor$") to bBlocked to true!",'PathWarning',);};
 		LastAnchor = Pawn.Anchor;
 		LastAnchor.bBlocked = true;
 	}
@@ -3686,7 +3703,7 @@ final function NavigationPoint GetFallbackAnchor()
 		LastAnchor.bBlocked = false;
 		if (LastAnchor == ResultAnchor)
 		{
-			AILog_Internal("ERROR! LastAnchor == ResultAnchor",'PathWarning',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("ERROR! LastAnchor == ResultAnchor",'PathWarning',);};
 		}
 	}
 	if (ResultAnchor == None)
@@ -3698,7 +3715,7 @@ final function NavigationPoint GetFallbackAnchor()
 
 final function FailedToFindFallbackAnchor()
 {
-	AILog_Internal(self$" FailedToFindFallbackAnchor!",'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" FailedToFindFallbackAnchor!",'PathWarning',);};
 	// Haven't actually gotten a pawn yet
 	if( Pawn == None )
 		return;
@@ -3734,7 +3751,7 @@ event NotifyOnAddToRouteCache( NavigationPoint Nav ) {}
 // Called when NPC reaches a ledge, setting bCanJump to true here will allow NPC to continue move despite pending fall
 event MayFall( bool bFloor, vector FloorNormal )
 {
-	AILog_Internal("MayFall Event! bFloor: "$bFloor$" Phys: "$Pawn.Physics$" MoveTarget: "$MoveTarget$" Reachable: "$ActorReachable(Enemy),'Falling',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("MayFall Event! bFloor: "$bFloor$" Phys: "$Pawn.Physics$" MoveTarget: "$MoveTarget$" Reachable: "$ActorReachable(Enemy),'Falling',);};
 
 	if( !bPlannedJump )
 	{
@@ -3751,7 +3768,7 @@ event MayFall( bool bFloor, vector FloorNormal )
 /** NPC has attempted to jump over an obstruction after bumping into it */
 event JumpedOverWall( vector WallHitNormal, optional actor Wall )
 {
-	AILog_Internal(GetFuncName() @ " WallHitNormal: " @ WallHitNormal @ " Wall: " @Wall,,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " WallHitNormal: " @ WallHitNormal @ " Wall: " @Wall,,);};
     /* Below untested - enable to lower jump over wall frequency */
 	//MyKFPawn.bCanJumpOverWalls = false;
 	//SetTimer( 2.f * FRand() + 0.25f, false, nameof(Timer_EnableJumpOverWalls), self );
@@ -3800,7 +3817,7 @@ function bool NotifyBaseChange( actor NewBase, vector NewFloor )
 event bool NotifyLanded( vector HitNormal, Actor FloorActor )
 {
 
-	AILog_Internal(GetFuncName() $  " - HitNormal: " $ HitNormal $ " - FloorActor: " $ FloorActor,'LandedEvent',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() $  " - HitNormal: " $ HitNormal $ " - FloorActor: " $ FloorActor,'LandedEvent',);};
 
 	if( MyKFPawn != none )
 	{
@@ -3832,7 +3849,7 @@ event bool NotifyLanded( vector HitNormal, Actor FloorActor )
 /** Notification that my current enemy is surrounded by other Zeds */
 event bool EnemyIsSurrounded()
 {
-	AILog_Internal("EnemyIsSurrounded! ("$Enemy$")",'EnemyStatus',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("EnemyIsSurrounded! ("$Enemy$")",'EnemyStatus',);};
 
 	if( CachedAICommandList != none )// && Enemy == Seen )
 	{
@@ -3872,7 +3889,7 @@ function bool NotifyHuskSuicide( KFPawn_Monster Husk )
 /** Timer which re-enables SeePlayer event polling */
 final function EnableNotifyHitWall()
 {
-	AILog_Internal(GetFuncName()$"() Enabling NotifyHitWall event",'HitWall',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Enabling NotifyHitWall event",'HitWall',);};
 	Enable( 'NotifyHitWall' );
 }
 
@@ -3895,7 +3912,7 @@ event bool NotifyHitWall( vector HitNormal, actor Wall )
 	LastHitWall             = Wall;
 	LastNotifyHitWallTime   = WorldInfo.TimeSeconds;
 
-	AILog_Internal(GetFuncName() @ " Wall: " @ Wall @ " HitNormal: " @ HitNormal,,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " Wall: " @ Wall @ " HitNormal: " @ HitNormal,,);};
 
 	/** I shouldn't be colliding if I'm emerging, so ignore notification but return true to prevent move adjusting in native code */
 	if( MyKFPawn != none && MyKFPawn.IsDoingSpecialMove(SM_Emerge) )
@@ -3921,7 +3938,7 @@ event NotifyFallingHitWall( vector HitNormal, actor Wall )
 {
 	if( CachedAICommandList != none )
 	{
-		AILog_Internal("NotifyFallingHitWall: "$Wall$" - while I'm moving to goal, notifying "$CommandList$" and letting it handle this event",'HitWall',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("NotifyFallingHitWall: "$Wall$" - while I'm moving to goal, notifying "$CommandList$" and letting it handle this event",'HitWall',);};
 		CachedAICommandList.NotifyFallingHitWall( HitNormal, Wall );
 	}
 }
@@ -3939,7 +3956,7 @@ event NotifyFallingHitWall( vector HitNormal, actor Wall )
 /** Timer which re-enables SeePlayer event polling */
 final event EnableSeePlayer()
 {
-	AILog_Internal(GetFuncName()$"() Enabling SeePlayer event",'SeePlayer',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Enabling SeePlayer event",'SeePlayer',);};
 	if( !bHasDebugCommand )
 	{
 		Enable( 'SeePlayer' );
@@ -3949,7 +3966,7 @@ final event EnableSeePlayer()
 /** Disable this NPC's SeePlayer polling for DisabledTime seconds */
 final event DisableSeePlayer( optional float DisabledTime )
 {
-	AILog_Internal(GetFuncName()$"() disabling SeePlayer polling for "$DisabledTime$" seconds",'SeePlayer',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() disabling SeePlayer polling for "$DisabledTime$" seconds",'SeePlayer',);};
 	Disable( 'SeePlayer' );
 	if( DisabledTime > 0.f )
 	{
@@ -3960,14 +3977,14 @@ final event DisableSeePlayer( optional float DisabledTime )
 /** Timer which re-enables SeePlayer event polling */
 final event EnableEnemyNotVisible()
 {
-	AILog_Internal(GetFuncName()$"() Enabling EnemyNotVisible event",'EnemyNotVisible',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Enabling EnemyNotVisible event",'EnemyNotVisible',);};
 	Enable( 'EnemyNotVisible' );
 }
 
 /** Disable this NPC's SeePlayer polling for DisabledTime seconds */
 final event DisableEnemyNotVisible( optional float DisabledTime=2.f )
 {
-	AILog_Internal(GetFuncName()$"() disabling EnemyNotVisible polling for "$DisabledTime$" seconds",'EnemyNotVisible',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() disabling EnemyNotVisible polling for "$DisabledTime$" seconds",'EnemyNotVisible',);};
 	Disable( 'EnemyNotVisible' );
 	if( DisabledTime > 0.f )
 	{
@@ -4000,7 +4017,7 @@ function bool IsPawnVisibleViaTrace( Pawn PawnToCheck, optional bool bUsePawnRot
 final event EnableHearNoise()
 {
 	Enable( 'HearNoise' );
-	AILog_Internal(GetFuncName()$"() Enabled HearNoise event",'HearNoise',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Enabled HearNoise event",'HearNoise',);};
 }
 
 /** Disable this NPC's hearing for DisabledTime seconds */
@@ -4011,7 +4028,7 @@ final event DisableHearNoise( optional float DisabledTime=1.f )
 		DisabledTime = 1.f + FRand();
 	}
 
-	AILog_Internal(GetFuncName()$"() disabling noise hearing for "$DisabledTime$" seconds",'HearNoise',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() disabling noise hearing for "$DisabledTime$" seconds",'HearNoise',);};
 	Disable( 'HearNoise' );
 	SetTimer( DisabledTime, false, nameof(EnableHearNoise) );
 }
@@ -4029,7 +4046,7 @@ function RecordBump( actor Other )
 /** Timer which re-enables Bump event polling */
 final event EnableBump()
 {
-	AILog_Internal(GetFuncName()$" Enabling Bump Events",'BumpEvent',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Enabling Bump Events",'BumpEvent',);};
 	Enable( 'NotifyBump' );
 }
 
@@ -4038,7 +4055,7 @@ final event DisableBump( optional float DisabledTime=0.5f )
 {
 	DisabledTime = FMax(0.1f,DisabledTime);
 
-	AILog_Internal(GetFuncName()$"() disabling Bump polling for "$DisabledTime$" seconds",'BumpEvent',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() disabling Bump polling for "$DisabledTime$" seconds",'BumpEvent',);};
 	Disable( 'NotifyBump' );
 	if( DisabledTime > 0.f )
 	{
@@ -4048,7 +4065,7 @@ final event DisableBump( optional float DisabledTime=0.5f )
 
 simulated event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal)
 {
-	AILog_Internal(GetFuncName()$" - Other: "$Other$" OtherComp"$OtherComp$" - HitLocation: " $ HitLocation $ " - HitNormal: " $ HitNormal,'TouchEvent',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" - Other: "$Other$" OtherComp"$OtherComp$" - HitLocation: " $ HitLocation $ " - HitNormal: " $ HitNormal,'TouchEvent',);};
 
 	if( CachedAICommandList != none )
 	{
@@ -4473,7 +4490,7 @@ function bool StuckTeleportToPathNode(optional float CheckRadius=512)
 {
 	local NavigationPoint ResNav;
 
-	AILog_Internal(GetFuncName(),,);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName(),,);};
 
 	ResNav = class'KFPathnode'.static.GetNearestValidFloorNavWithinRadiusToPawn(Pawn, CheckRadius);
 	if( ResNav != none && TeleportToLocation(Resnav.Location, Pawn.Rotation) )
@@ -4574,7 +4591,7 @@ simulated function SpecialBumpHandling( float DeltaTime )
 	{
 		if( MyKFPawn.bReducedZedOnZedPinchPointCollisionStateActive )
 		{
-			AILog_Internal(GetFuncName() @ " does not have a CurrentChokePointTrigger so turning turn collision on",'SpecialBumpHandling',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " does not have a CurrentChokePointTrigger so turning turn collision on",'SpecialBumpHandling',);};
 			RestoreCollisionCylinderReducedPercentForSameTeamIgnoreBlockingBy();
 		}
 	}
@@ -4588,7 +4605,7 @@ simulated function SpecialBumpHandling( float DeltaTime )
 			if(CurBumpVal > 0.3f)
 			{
 				//MessagePlayer(GetFuncname()@"HIT THRESHOLD! TURNING OFF COLLISION ZOMG");
-				AILog_Internal(GetFuncName() @ " CurBumpVal: " @ CurBumpVal @ " Has Gotten High enough to turn collision off - lastbumper: " @ lastbumper,'SpecialBumpHandling',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " CurBumpVal: " @ CurBumpVal @ " Has Gotten High enough to turn collision off - lastbumper: " @ lastbumper,'SpecialBumpHandling',);};
 
 				if( MyKFPawn.CurrentChokePointTrigger != none && MyKFPawn.CurrentChokePointTrigger.PartialReduceTeammateCollision() )
                 {
@@ -4609,7 +4626,7 @@ simulated function SpecialBumpHandling( float DeltaTime )
 			}
 			else if( MyKFPawn.bReducedZedOnZedPinchPointCollisionStateActive )
 			{
-				AILog_Internal(GetFuncName() @ " CurBumpVal: " @ CurBumpVal @ " Has Gotten low enough to turn collision on - LastBumper: " @ LastBumper,'SpecialBumpHandling',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " CurBumpVal: " @ CurBumpVal @ " Has Gotten low enough to turn collision on - LastBumper: " @ LastBumper,'SpecialBumpHandling',);};
 				RestoreCollisionCylinderReducedPercentForSameTeamIgnoreBlockingBy();
 			}
 		}
@@ -4666,7 +4683,7 @@ function ReduceCollisionCylinderReducedPercentForSameTeamIgnoreBlockingBy(option
                 MyKFPawn.TeammateCollisionRadiusPercent =  MyKFPawn.TeammateCollisionRadiusPercent / MyKFPawn.CylinderComponent.CollisionRadius;
             }
 
-			AILog_Internal(GetFuncName() @ " - CollisionRadiusBeforeReducedZedOnZedPinchPointCollisionState: " @ MyKFPawn.default.TeammateCollisionRadiusPercent @ " - CollisionCylinderReducedPercentForSameTeamCollision: " @ MyKFPawn.TeammateCollisionRadiusPercent,'CollisionToggle',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " - CollisionRadiusBeforeReducedZedOnZedPinchPointCollisionState: " @ MyKFPawn.default.TeammateCollisionRadiusPercent @ " - CollisionCylinderReducedPercentForSameTeamCollision: " @ MyKFPawn.TeammateCollisionRadiusPercent,'CollisionToggle',);};
 
 			MyKFPawn.bReducedZedOnZedPinchPointCollisionStateActive = true;
 		}
@@ -4682,11 +4699,11 @@ function RestoreCollisionCylinderReducedPercentForSameTeamIgnoreBlockingBy()
 		MyKFPawn.TeammateCollisionRadiusPercent = MyKFPawn.default.TeammateCollisionRadiusPercent;
 		MyKFPawn.bReducedZedOnZedPinchPointCollisionStateActive = false;
 
-		AILog_Internal(GetFuncName() @ " - CollisionRadiusBeforeReducedZedOnZedPinchPointCollisionState: " @ MyKFPawn.default.TeammateCollisionRadiusPercent @ " - CollisionCylinderReducedPercentForSameTeamIgnoreBlockingBy: " @ MyKFPawn.TeammateCollisionRadiusPercent,'CollisionToggle',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " - CollisionRadiusBeforeReducedZedOnZedPinchPointCollisionState: " @ MyKFPawn.default.TeammateCollisionRadiusPercent @ " - CollisionCylinderReducedPercentForSameTeamIgnoreBlockingBy: " @ MyKFPawn.TeammateCollisionRadiusPercent,'CollisionToggle',);};
 	}
 	else
 	{
-		AILog_Internal(GetFuncName() @ " MyKFPawn == None || MyKFPawn.Health <= 0 ",'CollisionToggle',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " MyKFPawn == None || MyKFPawn.Health <= 0 ",'CollisionToggle',);};
 	}
 }
 
@@ -4786,7 +4803,7 @@ event SeePlayer( Pawn Seen )
 	// Notify the AI command that we saw an enemy
 	if( CachedAICommandList != none )
 	{
-		AILog_Internal("SeePlayer: "$Seen$" - while I'm moving to goal, notifying "$CommandList$" and letting it handle this event",'SeePlayer',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("SeePlayer: "$Seen$" - while I'm moving to goal, notifying "$CommandList$" and letting it handle this event",'SeePlayer',);};
 		CachedAICommandList.NotifyPlayerBecameVisible( Seen );
 	}
 }
@@ -4803,7 +4820,7 @@ event EnemyNotVisible()
 	// Let the command, if any, handle this
 	if( CommandList != none )
 	{
-		AILog_Internal(GetFuncName()$"() - notifying "$CommandList$" and letting it handle this event",'EnemyNotVisible',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() - notifying "$CommandList$" and letting it handle this event",'EnemyNotVisible',);};
 		AICommand(CommandList).NotifyEnemyNotVisible();
 	}
 	if( Enemy != none && MyKFPawn != none )
@@ -4852,7 +4869,7 @@ event HearNoise( float Loudness, Actor NoiseMaker, optional Name NoiseType )
 // 	{
 // 		super.HearNoise( Loudness, NoiseMaker, NoiseType );
 // 	}
-	AILog_Internal(self$" HearNoise event, Loudness: "$Loudness$" NoiseMaker: "$NoiseMaker$" Type: "$NoiseType$" Dist: "$VSize( NoiseMaker.Location - Pawn.Location )$"... Disabling HearNoise",'HearNoise',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" HearNoise event, Loudness: "$Loudness$" NoiseMaker: "$NoiseMaker$" Type: "$NoiseType$" Dist: "$VSize( NoiseMaker.Location - Pawn.Location )$"... Disabling HearNoise",'HearNoise',);};
 
 	// Disable noise hearing, it will be re-enabled later.
 	DisableHearNoise();
@@ -4905,12 +4922,12 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 					}
 					else
 					{
-						AILog_Internal(GetFuncName() @ " Bumped: " @ KFPM @ " but IsWithinAttackRange so not going to care about SpecialBumpHandling right now!!!",'SpecialBumpHandling',);
+						if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " Bumped: " @ KFPM @ " but IsWithinAttackRange so not going to care about SpecialBumpHandling right now!!!",'SpecialBumpHandling',);};
 					}
 				}
 				else
 				{
-					AILog_Internal(GetFuncName() @ " Bumped: " @ KFPM @ " but not in a door trigger so not going to care about SpecialBumpHandling right now!!!",'SpecialBumpHandling',);
+					if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName() @ " Bumped: " @ KFPM @ " but not in a door trigger so not going to care about SpecialBumpHandling right now!!!",'SpecialBumpHandling',);};
 				}
 			}
 		}
@@ -4922,7 +4939,7 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 	}
 
 	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIBump(class'KFGameplayEventsWriter'.const.GAMEEVENT_AI_BUMP,self,Pawn.Location,Pawn.Rotation,Other,"SSpeed: "$MyKFPawn != none ? MyKFPawn.IsUsingSuperSpeed() : False);};
-	AILog_Internal("NotifyBump() into "$Other$" HitNormal: "$HitNormal$" MoveTarget: "$MoveTarget!=none?string(MoveTarget):"none",'BumpEvent',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("NotifyBump() into "$Other$" HitNormal: "$HitNormal$" MoveTarget: "$MoveTarget!=none?string(MoveTarget):"none",'BumpEvent',);};
 	DisableBump( 0.25f );
 	LastBumpedPawn = Pawn(Other);
 
@@ -4945,7 +4962,7 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 	// Let any interested AICommands deal with this
 	if( CachedAICommandList != none )// && Enemy == Seen )
 	{
-		AILog_Internal("Bump: "$Other$" - notifying "$CommandList$" and letting it handle this event",'BumpEvent',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Bump: "$Other$" - notifying "$CommandList$" and letting it handle this event",'BumpEvent',);};
 		if( CachedAICommandList.NotifyBump(Other, HitNormal) )
 		{
 			return true;
@@ -5001,7 +5018,7 @@ function NotifySpecialMoveEnded(KFSpecialMove SM)
 {
 	local LatentActionObserver ObserverInterface;
 
-	AILog_Internal(SM@"finished",'SpecialMove',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(SM@"finished",'SpecialMove',);};
 
 	// notify observers
 	ObserverInterface = LatentActionObserver(SM.AISpecialOwner);
@@ -5024,7 +5041,7 @@ simulated function StartSteering()
 {
 	if( Steering != none )
 	{
-		AILog_Internal(GetFuncName()$"() turning on separation steering, separating from class KFPawn_Monster",'AISteering',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() turning on separation steering, separating from class KFPawn_Monster",'AISteering',);};
 		Steering.SeparationOn( class'KFPawn_Monster' );
 	}
 }
@@ -5129,7 +5146,7 @@ event Msg( string MsgTxt, optional bool bOutputToLog=true, optional name Message
 		MyKFPawn.KFMessagePlayer( MsgTxt, MessageType, MessageDuration );
 		if( bOutputToLog )
 		{
-			AILog_Internal(MsgTxt,'Msg',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(MsgTxt,'Msg',);};
 		}
 	}
 }
@@ -6516,6 +6533,11 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
 
 	super.NotifyTakeHit( InstigatedBy, HitLocation, Damage, damageType, Momentum );
 
+	if( MyKFPawn == none )
+	{
+		return;
+	}
+
 	// See if we should trigger our block
 	if( !MyKFPawn.bIsBlocking )
 	{
@@ -6801,7 +6823,7 @@ function bool CanReachEvadeLocation( vector EvadeLocation, float CheckHeight, ve
 event WaitForDoor( KFDoorActor Door )
 {
 	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIDoor(class'KFGameplayEventsWriter'.const.GAMEEVENT_AI_WAITFORDOOR,self,Pawn.Location,Door,"Waiting at "$WorldInfo.TimeSeconds);};
-	AILog_Internal(GetFuncName()$"() Waiting for door "$Door$" to open or be destroyed",'Doors',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Waiting for door "$Door$" to open or be destroyed",'Doors',);};
 	SetTimer( 5.f, true, nameof(Timer_WaitingForDoor) );
 	DoorEnemy = none;
 	PendingDoor = Door;
@@ -6821,7 +6843,7 @@ event WaitForDoor( KFDoorActor Door )
 	which hasn't been an issue lately. */
 function Timer_WaitingForDoor()
 {
-	AILog_Internal("** WARNING ** ["$GetFuncName()$"] I've been waiting for at least 10 seconds for door "$PendingDoor$" bPreparingMove: "$bPreparingMove$" (Command: "$CachedAICommandList$")",'Doors',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("** WARNING ** ["$GetFuncName()$"] I've been waiting for at least 10 seconds for door "$PendingDoor$" bPreparingMove: "$bPreparingMove$" (Command: "$CachedAICommandList$")",'Doors',);};
     DoorFinished();
 }
 
@@ -6829,11 +6851,11 @@ function Timer_WaitingForDoor()
 	bMonitorDoor flag is true. */
 function bool DoorFinished()
 {
-	AILog_Internal(GetFuncName()$"() door has finished opening or is destroyed!",'Doors',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() door has finished opening or is destroyed!",'Doors',);};
 	if( Pawn == None || PendingDoor.MyMarker == None || PendingDoor.MyMarker.ProceedWithMove(Pawn) )
 	{
 		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIDoor(class'KFGameplayEventsWriter'.const.GAMEEVENT_AI_FINISHEDWAITFORDOOR,self,Pawn.Location,PendingDoor,"Waiting at "$WorldInfo.TimeSeconds);};
-		AILog_Internal(GetFuncName()$"() setting pending door to none, bPreparingMove to false. Proceeding with move.",'Doors',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() setting pending door to none, bPreparingMove to false. Proceeding with move.",'Doors',);};
 		PendingDoor = None;
 
 		// Notify command list that door is open
@@ -6845,7 +6867,7 @@ function bool DoorFinished()
 		ClearTimer( nameof(Timer_WaitingForDoor) );
 		return true;
 	}
-	AILog_Internal(GetFuncName()$"() *** WARNING *** I received DoorFinished event but returned false! "$CachedAICommandList,'Doors',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() *** WARNING *** I received DoorFinished event but returned false! "$CachedAICommandList,'Doors',);};
 	return false;
 }
 
@@ -6899,7 +6921,7 @@ function NotifyAttackDoor( KFDoorActor Door )
 		}
 	}
 
-	AILog_Internal(GetFuncName()$"() initializing AICommand_Attack_Melee, MoveTarget: "$MoveTarget$" Dist: "$VSize( Door.MyMarker.Location - Pawn.Location ),'Doors',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() initializing AICommand_Attack_Melee, MoveTarget: "$MoveTarget$" Dist: "$VSize( Door.MyMarker.Location - Pawn.Location ),'Doors',);};
 
 	/** Sets the pending door for reference */
 	PendingDoor		  = Door;
@@ -6954,7 +6976,7 @@ State Dead
 
 	function BeginState( name PreviousStateName )
 	{
-		AILog_Internal("DEAD",'Damage',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("DEAD",'Damage',);};
 		super.BeginState( PreviousStateName );
 	}
 }
@@ -6970,32 +6992,32 @@ state DebugState
 {
 	function BeginState( Name PreviousStateName )
 	{
-		AILog_Internal("BEGINSTATE"@PreviousStateName,'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("BEGINSTATE"@PreviousStateName,'State',);};
 	}
 
 	function EndState( Name NextStateName )
 	{
-		AILog_Internal("ENDSTATE"@NextStateName,'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("ENDSTATE"@NextStateName,'State',);};
 	}
 
 	function PushedState()
 	{
-		AILog_Internal("PUSHED",'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("PUSHED",'State',);};
 	}
 
 	function PoppedState()
 	{
-		AILog_Internal("POPPED",'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("POPPED",'State',);};
 	}
 
 	function ContinuedState()
 	{
-		AILog_Internal("CONTINUED",'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("CONTINUED",'State',);};
 	}
 
 	function PausedState()
 	{
-		AILog_Internal("PAUSED",'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("PAUSED",'State',);};
 	}
 }
 
@@ -7041,11 +7063,11 @@ state Action_Idle extends DEBUGSTATE
 		Super.BeginState( PreviousStateName );
 
 		Enable( 'SeePlayer' );
-		AILog_Internal("Entering Action_Idle() state, previous state was "$PreviousStateName,'Action_Idle',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Entering Action_Idle() state, previous state was "$PreviousStateName,'Action_Idle',);};
 
 		if( Pawn != none )
 		{
-			AILog_Internal("Action_Idle BeginState() calling Pawn.ZeroMovementVariables()",'Action_Idle',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Action_Idle BeginState() calling Pawn.ZeroMovementVariables()",'Action_Idle',);};
 			AIZeroMovementVariables();
 		}
 	}
@@ -7056,7 +7078,7 @@ state Action_Idle extends DEBUGSTATE
 
 		if( Pawn != none )
 		{
-			AILog_Internal("Action_Idle ContinuedState() calling Pawn.ZeroMovementVariables()",'Action_Idle',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Action_Idle ContinuedState() calling Pawn.ZeroMovementVariables()",'Action_Idle',);};
 			AIZeroMovementVariables();
 		}
 	}
@@ -7065,7 +7087,7 @@ state Action_Idle extends DEBUGSTATE
 	{
 		Super.EndState( NextStateName );
 
-		AILog_Internal("Ending Action_Idle state and going to "$NextStateName,'Action_Idle',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Ending Action_Idle state and going to "$NextStateName,'Action_Idle',);};
 	}
 
 Begin:
@@ -7079,7 +7101,7 @@ Begin:
 		Sleep( 0.1f );
 		Goto( 'Begin' );
 	}
-	AILog_Internal(self$" -- Begin Label",'Action_Idle',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" -- Begin Label",'Action_Idle',);};
 	if( Pawn != none && Pawn.Physics == PHYS_Falling )
 	{
 		AIActionStatus = "Falling";
@@ -7119,14 +7141,14 @@ IdleMoveToNearestEnemy:
 
 		if( Enemy != none )
 		{
-			AILog_Internal(self$" -- GetClosestEnemy() returned "$Enemy,'Action_Idle',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" -- GetClosestEnemy() returned "$Enemy,'Action_Idle',);};
 			AIActionStatus = "Starting to hunt";
 			BeginCombatCommand( GetDefaultCommand(), "Initial aggressive move" );
 			Stop;
 		}
 		else
 		{
-			AILog_Internal(self$" Pausing and going back to begin label - haven't found an enemy yet.",'Action_Idle',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Pausing and going back to begin label - haven't found an enemy yet.",'Action_Idle',);};
 			AIActionStatus = "Can't find an enemy!";
 // 			if( bSpawnedByEmergeSpecialMove || MySpawnVolume != none )
 // 			{
@@ -7141,7 +7163,7 @@ IdleMoveToNearestEnemy:
 	}
 	else
 	{
-		AILog_Internal(self$" Not moving yet because bIdleMoveToNearestEnemy is false",'Action_Idle',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Not moving yet because bIdleMoveToNearestEnemy is false",'Action_Idle',);};
 		Sleep( 0.25f + FRand() * 0.5f );
 	}
 	Goto('Begin');
@@ -7777,6 +7799,7 @@ function GetCommandStack( HUD Hud, out array<string> OverheadTexts, out array<Co
 defaultproperties
 {
    bIdleMoveToNearestEnemy=True
+   bShouldUsePathLanes=True
    bAlwaysAcceptPartialPaths=True
    bSpecialBumpHandling=True
    bCanTeleportCloser=True

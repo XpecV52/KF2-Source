@@ -155,7 +155,7 @@ function HandleCloseRequest()
 {
     if(OnlineLobby.IsInLobby() && !Class'WorldInfo'.static.IsConsoleBuild())
     {
-        Manager.OpenPopup(0, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, LeaveMenuString, MultiplayerMenuString, Class'KFCommon_LocalizedStrings'.default.CancelString, GoToMultiplayerMenu, CancelLeaveMenu, Class'KFCommon_LocalizedStrings'.default.DisbandPartyString, ApproveServerBroswerLeave);        
+        Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, LeaveMenuString, MultiplayerMenuString, Class'KFCommon_LocalizedStrings'.default.CancelString, GoToMultiplayerMenu, CancelLeaveMenu, Class'KFCommon_LocalizedStrings'.default.DisbandPartyString, ApproveServerBroswerLeave);        
     }
     else
     {
@@ -349,7 +349,7 @@ function CallBack_ServerJoinGame()
 
 function ShowPasswordPopUp()
 {
-    Manager.OpenPopup(4, PasswordPromptString, "", JoinString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnAttemptPassword, OnCancelPassword);
+    Manager.DelayedOpenPopup(4, 0, PasswordPromptString, "", JoinString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnAttemptPassword, OnCancelPassword);
 }
 
 function OnAttemptPassword()
@@ -382,7 +382,6 @@ function OnOpen()
     {
         ServerListContainer.OnRefeshClick();
     }
-    Class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword("");
 }
 
 event OnClose()

@@ -9,6 +9,35 @@ package
         public function InputContainer()
         {
             super();
+            this.__setProp_defaultButton_InputContainerMC_Layer1_0();
+        }
+        
+        function __setProp_defaultButton_InputContainerMC_Layer1_0() : *
+        {
+            try
+            {
+                defaultButton["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            defaultButton.autoRepeat = false;
+            defaultButton.autoSize = "none";
+            defaultButton.data = "";
+            defaultButton.enabled = true;
+            defaultButton.enableInitCallback = false;
+            defaultButton.focusable = true;
+            defaultButton.label = "";
+            defaultButton.selected = false;
+            defaultButton.toggle = false;
+            defaultButton.visible = false;
+            try
+            {
+                defaultButton["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
         }
     }
 }

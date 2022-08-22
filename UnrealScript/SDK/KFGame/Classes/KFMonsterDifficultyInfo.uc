@@ -80,6 +80,9 @@ var const sRallyInfo RallySettings_Player_Versus;
 /** Versus-specific zed time speed scales */
 var const float ZedTimeSpeedScale_Versus;
 var const float ZedTimeSpeedScale_Player_Versus;
+`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))
+var bool bForceSpecialSpawn;
+`endif
 
 static function sEvadeOnDamageInfo GetEvadeOnDamageSettings( KFPawn_Monster MonsterPawn, KFGameReplicationInfo KFGRI )
 {

@@ -52,7 +52,7 @@ function bool CheckTransition( out class<AICommand> out_NewCommand, out string o
 /** Calls SelectTarget() on a random timer, then resets that timer */
 final function CombatSelectTarget()
 {
-	AILog_Internal(GetFuncName()$"() calling SelectTarget()",'SetEnemy',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() calling SelectTarget()",'SetEnemy',);};
 	SetTimer( 2.5 + FRand() * 0.75, false, nameof(CombatSelectTarget), self );
 	SelectTarget();
 }

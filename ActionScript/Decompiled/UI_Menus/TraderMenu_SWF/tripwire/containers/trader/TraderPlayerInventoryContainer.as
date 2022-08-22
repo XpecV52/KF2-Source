@@ -105,6 +105,8 @@ package tripwire.containers.trader
         
         public var itemSoldSoundEffect:String = "TRADER_SELL_WEAPON";
         
+        public var magFillSoundEffect:String = "TRADER_MAGFILL_BUTTON_CLICK";
+        
         public const MAG_LIST_GAMEPAD_LOCATION:int = 422;
         
         public const MAG_LIST_KBM_LOCATION:int = 30;
@@ -423,6 +425,10 @@ package tripwire.containers.trader
                         {
                             if(currentElement == this.grenadeItem && this.grenadeItem.magButton.enabled)
                             {
+                                if(Extensions.gfxProcessSound != null)
+                                {
+                                    Extensions.gfxProcessSound(this,"UI",this.magFillSoundEffect);
+                                }
                                 ExternalInterface.call("Callback_BuyGrenade");
                                 param1.handled = true;
                             }
@@ -433,8 +439,13 @@ package tripwire.containers.trader
         
         override protected function onBPressed(param1:InputDetails) : void
         {
+            if(bManagerPopUpOpen)
+            {
+                return;
+            }
             if(!this.playerInfoContainer.perkListContainer.bOpen)
             {
+                trace("CALLING CLOSE!!!!!!!!!!!!!!!!!!!!!!!");
                 ExternalInterface.call("Callback_Close");
             }
             else
@@ -468,6 +479,7 @@ package tripwire.containers.trader
             this.updateFocusableOnFillButtons(false);
             this.updateFocusableOnInfoList(false);
             this.playerInfoContainer.focusable = true;
+            this.playerInfoContainer.oncePerWaveTextField.visible = true;
             this.playerInfoContainer.perkListContainer.perkList.focusable = true;
             this.playerInfoContainer.perkListContainer.perkList.focused = 1;
             if(bManagerUsingGamepad)
@@ -483,6 +495,7 @@ package tripwire.containers.trader
             this.fadeinAssets();
             this.updateFocusableOnFillButtons(true);
             this.playerInfoContainer.focusable = false;
+            this.playerInfoContainer.oncePerWaveTextField.visible = false;
             this.updateFocusableOnInfoList(true);
             this.playerInfoContainer.perkListContainer.perkList.focusable = false;
             this.armorItem.focused = 1;
@@ -627,10 +640,18 @@ package tripwire.containers.trader
                 {
                     if(currentElement == this.grenadeItem && this.grenadeItem.magButton.enabled)
                     {
+                        if(Extensions.gfxProcessSound != null)
+                        {
+                            Extensions.gfxProcessSound(this,"UI",this.magFillSoundEffect);
+                        }
                         ExternalInterface.call("Callback_BuyGrenade");
                     }
                     else if(this.infoList.selectedIndex >= 0 && this.magList.getRendererAt(this.infoList.selectedIndex).selectable)
                     {
+                        if(Extensions.gfxProcessSound != null)
+                        {
+                            Extensions.gfxProcessSound(this,"UI",this.magFillSoundEffect);
+                        }
                         ExternalInterface.call("Callback_BuyMagazine",this.infoList.selectedIndex);
                     }
                 }
@@ -662,14 +683,26 @@ package tripwire.containers.trader
             {
                 if(currentElement == this.grenadeItem && this.grenadeItem.fillButton.enabled)
                 {
+                    if(Extensions.gfxProcessSound != null)
+                    {
+                        Extensions.gfxProcessSound(this,"UI",this.magFillSoundEffect);
+                    }
                     ExternalInterface.call("Callback_FillGrenades");
                 }
                 else if(currentElement == this.armorItem && this.armorItem.fillButton.enabled)
                 {
+                    if(Extensions.gfxProcessSound != null)
+                    {
+                        Extensions.gfxProcessSound(this,"UI",this.magFillSoundEffect);
+                    }
                     ExternalInterface.call("Callback_FillArmor");
                 }
                 else if(this.infoList.selectedIndex >= 0 && this.fillButtonList.getRendererAt(this.infoList.selectedIndex).selectable)
                 {
+                    if(Extensions.gfxProcessSound != null)
+                    {
+                        Extensions.gfxProcessSound(this,"UI",this.magFillSoundEffect);
+                    }
                     ExternalInterface.call("Callback_FillAmmo",this.infoList.selectedIndex);
                 }
             }

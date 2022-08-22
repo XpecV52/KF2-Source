@@ -246,14 +246,27 @@ function cleanupSettings()
 function initSettings()
 {
 	local OnlineGameSettings GameSettings;
+	local GameEngine GEngine;
+
+	GEngine = GameEngine(class'Engine'.static.GetEngine());
 
 	// Server Information
 	if (gameinfo != none && gameinfo.GameReplicationInfo != none)
 	{
 		SetStringPropertyByName('ServerName', gameinfo.GameReplicationInfo.ServerName);
 	}
-	else {
+	else
+	{
 		SetStringPropertyByName('ServerName', class'GameReplicationInfo'.default.ServerName);
+	}
+
+	if (GEngine != none)
+	{
+		SetIntPropertyByName('bUsedForTakeover', int(GEngine.bUsedForTakeover));
+	}
+	else
+	{
+		SetIntPropertyByName('bUsedForTakeover', int(class'GameEngine'.default.bUsedForTakeover));
 	}
 
 	// Connection settings
@@ -269,7 +282,8 @@ function initSettings()
 	{
 		SetIntPropertyByName('bAntiCheatProtected', int(GameSettings.bAntiCheatProtected));
 	}
-	else {
+	else
+	{
 		SetIntPropertyByName('bAntiCheatProtected', int(false));
 	}
 
@@ -285,7 +299,8 @@ function initSettings()
 	{
 		SetIntPropertyByName('bSilentAdminLogin', int(KFAccessControl(gameinfo.AccessControl).bSilentAdminLogin));
 	}
-	else {
+	else
+	{
 		SetIntPropertyByName('bSilentAdminLogin', int(class'KFAccessControl'.default.bSilentAdminLogin));
 	}
 
@@ -308,6 +323,10 @@ function saveSettings()
 {
 	local int val;
 	local OnlineGameSettings GameSettings;
+	local GameEngine GEngine;
+	local bool bWasUsedForTakeover;
+
+	GEngine = GameEngine(class'Engine'.static.GetEngine());
 
 	// Cheat Detection
 	if (gameinfo != none)
@@ -331,6 +350,23 @@ function saveSettings()
 	{
 		GetStringPropertyByName('ServerName', gameinfo.GameReplicationInfo.ServerName);
 		gameinfo.GameReplicationInfo.SaveConfig();
+	}
+
+	if (GetIntPropertyByName('bUsedForTakeover', val)) {	class'GameEngine'.default.bUsedForTakeover= val != 0; };
+	class'GameEngine'.static.StaticSaveConfig();
+	if (GEngine != none)
+	{
+		bWasUsedForTakeover = GEngine.bUsedForTakeover;
+		if (GetIntPropertyByName('bUsedForTakeover', val)) {	GEngine.bUsedForTakeover= val != 0; };
+		GEngine.SaveConfig();
+		if (!GEngine.bUsedForTakeover)
+		{
+			GEngine.bAvailableForTakeover = false;
+		}
+		else if (!bWasUsedForTakeover)
+		{
+			GEngine.bAvailableForTakeover = true;
+		}
 	}
 
 	// AccessControl
@@ -391,39 +427,41 @@ defaultproperties
    SettingsGroups(7)=(GroupID="Chat",DisplayName="Chat",pMin=700,pMax=800)
    FloatPredefinedValues(0)=(PropertyId=303,Values=(0.000000,1.000000,2.000000,3.000000))
    Properties(0)=(Data=(Type=SDT_String))
-   Properties(1)=(PropertyId=101,Data=(Type=SDT_Int32))
-   Properties(2)=(PropertyId=102,Data=(Type=SDT_Float))
-   Properties(3)=(PropertyId=200,Data=(Type=SDT_Int32))
-   Properties(4)=(PropertyId=302,Data=(Type=SDT_Int32))
-   Properties(5)=(PropertyId=303,Data=(Type=SDT_Float))
-   Properties(6)=(PropertyId=304,Data=(Type=SDT_Int32))
-   Properties(7)=(PropertyId=500,Data=(Type=SDT_Int32))
-   Properties(8)=(PropertyId=501,Data=(Type=SDT_Int32))
-   Properties(9)=(PropertyId=701,Data=(Type=SDT_Int32))
-   Properties(10)=(PropertyId=702,Data=(Type=SDT_Int32))
-   Properties(11)=(PropertyId=703,Data=(Type=SDT_Int32))
-   Properties(12)=(PropertyId=650,Data=(Type=SDT_Int32))
-   Properties(13)=(PropertyId=654,Data=(Type=SDT_Float))
-   Properties(14)=(PropertyId=600,Data=(Type=SDT_Int32))
-   Properties(15)=(PropertyId=601,Data=(Type=SDT_Float))
-   Properties(16)=(PropertyId=602,Data=(Type=SDT_Float))
+   Properties(1)=(PropertyId=1,Data=(Type=SDT_Int32))
+   Properties(2)=(PropertyId=101,Data=(Type=SDT_Int32))
+   Properties(3)=(PropertyId=102,Data=(Type=SDT_Float))
+   Properties(4)=(PropertyId=200,Data=(Type=SDT_Int32))
+   Properties(5)=(PropertyId=302,Data=(Type=SDT_Int32))
+   Properties(6)=(PropertyId=303,Data=(Type=SDT_Float))
+   Properties(7)=(PropertyId=304,Data=(Type=SDT_Int32))
+   Properties(8)=(PropertyId=500,Data=(Type=SDT_Int32))
+   Properties(9)=(PropertyId=501,Data=(Type=SDT_Int32))
+   Properties(10)=(PropertyId=701,Data=(Type=SDT_Int32))
+   Properties(11)=(PropertyId=702,Data=(Type=SDT_Int32))
+   Properties(12)=(PropertyId=703,Data=(Type=SDT_Int32))
+   Properties(13)=(PropertyId=650,Data=(Type=SDT_Int32))
+   Properties(14)=(PropertyId=654,Data=(Type=SDT_Float))
+   Properties(15)=(PropertyId=600,Data=(Type=SDT_Int32))
+   Properties(16)=(PropertyId=601,Data=(Type=SDT_Float))
+   Properties(17)=(PropertyId=602,Data=(Type=SDT_Float))
    PropertyMappings(0)=(Name="ServerName",ColumnHeaderText="Server Name",MaxVal=256.000000)
-   PropertyMappings(1)=(Id=101,Name="MaxPlayers",ColumnHeaderText="Maximum Players",MappingType=PVMT_Ranged,MaxVal=12.000000,RangeIncrement=1.000000)
-   PropertyMappings(2)=(Id=102,Name="MaxIdleTime",ColumnHeaderText="Maximum Idle Time",MappingType=PVMT_Ranged,MaxVal=300.000000,RangeIncrement=5.000000)
-   PropertyMappings(3)=(Id=200,Name="bAntiCheatProtected",ColumnHeaderText="Cheat Protection (VAC)",MappingType=PVMT_IdMapped,ValueMappings=((Name="Disabled"),(Id=1,Name="Enabled")))
-   PropertyMappings(4)=(Id=302,Name="bDisableTeamCollision",ColumnHeaderText="Team Collision",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
-   PropertyMappings(5)=(Id=303,Name="GameDifficulty",ColumnHeaderText="Game Difficulty",MappingType=PVMT_PredefinedValues,ValueMappings=((Name="Normal"),(Id=1,Name="Hard"),(Id=2,Name="Suicidal"),(Id=3,Name="Hell on Earth")),PredefinedValues=((Type=SDT_Float),(Type=SDT_Float),(Type=SDT_Float),(Type=SDT_Float)),MaxVal=3.000000,RangeIncrement=1.000000)
-   PropertyMappings(6)=(Id=304,Name="GameLength",ColumnHeaderText="Game Length",MappingType=PVMT_IdMapped,ValueMappings=((Name="Short"),(Id=1,Name="Normal"),(Id=2,Name="Long"),(Id=3,Name="Custom")),PredefinedValues=((Type=SDT_Int32),(Type=SDT_Int32),(Type=SDT_Int32),(Type=SDT_Int32)),MaxVal=3.000000,RangeIncrement=1.000000)
-   PropertyMappings(7)=(Id=500,Name="bAdminCanPause",ColumnHeaderText="Admin Can Pause",MappingType=PVMT_IdMapped,ValueMappings=((Name="No"),(Id=1,Name="Yes")))
-   PropertyMappings(8)=(Id=501,Name="bSilentAdminLogin",ColumnHeaderText="Admin Login",MappingType=PVMT_IdMapped,ValueMappings=((Name="Announce"),(Id=1,Name="Keep Silent")))
-   PropertyMappings(9)=(Id=701,Name="bDisableVOIP",ColumnHeaderText="VoIP",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
-   PropertyMappings(10)=(Id=702,Name="bDisablePublicTextChat",ColumnHeaderText="Public Text Chat",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
-   PropertyMappings(11)=(Id=703,Name="bPartitionSpectators",ColumnHeaderText="Spectators",MappingType=PVMT_IdMapped,ValueMappings=((Name="Talk to Everybody"),(Id=1,Name="Only Talk to Spectators")))
-   PropertyMappings(12)=(Id=650,Name="bDisableKickVote",ColumnHeaderText="Kick Voting",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
-   PropertyMappings(13)=(Id=654,Name="KickVotePercentage",ColumnHeaderText="Vote Kick Percentage",MappingType=PVMT_Ranged,MaxVal=1.000000,RangeIncrement=0.050000)
-   PropertyMappings(14)=(Id=600,Name="bDisableMapVote",ColumnHeaderText="Map Voting",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
-   PropertyMappings(15)=(Id=601,Name="MapVoteDuration",ColumnHeaderText="Map Voting Time",MappingType=PVMT_Ranged,MinVal=10.000000,MaxVal=300.000000,RangeIncrement=5.000000)
-   PropertyMappings(16)=(Id=602,Name="MapVotePercentage",ColumnHeaderText="Mid Game Voting Percentage",MappingType=PVMT_Ranged,MaxVal=100.000000,RangeIncrement=5.000000)
+   PropertyMappings(1)=(Id=1,Name="bUsedForTakeover",ColumnHeaderText="Allow takeover",MappingType=PVMT_IdMapped,ValueMappings=((Id=1,Name="Enabled"),(Name="Disabled")))
+   PropertyMappings(2)=(Id=101,Name="MaxPlayers",ColumnHeaderText="Maximum Players",MappingType=PVMT_Ranged,MaxVal=12.000000,RangeIncrement=1.000000)
+   PropertyMappings(3)=(Id=102,Name="MaxIdleTime",ColumnHeaderText="Maximum Idle Time",MappingType=PVMT_Ranged,MaxVal=300.000000,RangeIncrement=5.000000)
+   PropertyMappings(4)=(Id=200,Name="bAntiCheatProtected",ColumnHeaderText="Cheat Protection (VAC)",MappingType=PVMT_IdMapped,ValueMappings=((Name="Disabled"),(Id=1,Name="Enabled")))
+   PropertyMappings(5)=(Id=302,Name="bDisableTeamCollision",ColumnHeaderText="Team Collision",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
+   PropertyMappings(6)=(Id=303,Name="GameDifficulty",ColumnHeaderText="Game Difficulty",MappingType=PVMT_PredefinedValues,ValueMappings=((Name="Normal"),(Id=1,Name="Hard"),(Id=2,Name="Suicidal"),(Id=3,Name="Hell on Earth")),PredefinedValues=((Type=SDT_Float),(Type=SDT_Float),(Type=SDT_Float),(Type=SDT_Float)),MaxVal=3.000000,RangeIncrement=1.000000)
+   PropertyMappings(7)=(Id=304,Name="GameLength",ColumnHeaderText="Game Length",MappingType=PVMT_IdMapped,ValueMappings=((Name="Short"),(Id=1,Name="Normal"),(Id=2,Name="Long"),(Id=3,Name="Custom")),PredefinedValues=((Type=SDT_Int32),(Type=SDT_Int32),(Type=SDT_Int32),(Type=SDT_Int32)),MaxVal=3.000000,RangeIncrement=1.000000)
+   PropertyMappings(8)=(Id=500,Name="bAdminCanPause",ColumnHeaderText="Admin Can Pause",MappingType=PVMT_IdMapped,ValueMappings=((Name="No"),(Id=1,Name="Yes")))
+   PropertyMappings(9)=(Id=501,Name="bSilentAdminLogin",ColumnHeaderText="Admin Login",MappingType=PVMT_IdMapped,ValueMappings=((Name="Announce"),(Id=1,Name="Keep Silent")))
+   PropertyMappings(10)=(Id=701,Name="bDisableVOIP",ColumnHeaderText="VoIP",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
+   PropertyMappings(11)=(Id=702,Name="bDisablePublicTextChat",ColumnHeaderText="Public Text Chat",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
+   PropertyMappings(12)=(Id=703,Name="bPartitionSpectators",ColumnHeaderText="Spectators",MappingType=PVMT_IdMapped,ValueMappings=((Name="Talk to Everybody"),(Id=1,Name="Only Talk to Spectators")))
+   PropertyMappings(13)=(Id=650,Name="bDisableKickVote",ColumnHeaderText="Kick Voting",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
+   PropertyMappings(14)=(Id=654,Name="KickVotePercentage",ColumnHeaderText="Vote Kick Percentage",MappingType=PVMT_Ranged,MaxVal=1.000000,RangeIncrement=0.050000)
+   PropertyMappings(15)=(Id=600,Name="bDisableMapVote",ColumnHeaderText="Map Voting",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
+   PropertyMappings(16)=(Id=601,Name="MapVoteDuration",ColumnHeaderText="Map Voting Time",MappingType=PVMT_Ranged,MinVal=10.000000,MaxVal=300.000000,RangeIncrement=5.000000)
+   PropertyMappings(17)=(Id=602,Name="MapVotePercentage",ColumnHeaderText="Mid Game Voting Percentage",MappingType=PVMT_Ranged,MaxVal=100.000000,RangeIncrement=5.000000)
    Name="Default__GeneralSettings"
    ObjectArchetype=WebAdminSettings'webadmin.Default__WebAdminSettings'
 }

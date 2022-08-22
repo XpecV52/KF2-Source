@@ -74,7 +74,7 @@ function bool NotifyLanded( vector HitNormal, Actor FloorActor )
 	}
 	
 	//bJumpingToWall = false;
-	AILog_Internal(GetFuncName()$" setting physics to PHYS_Spider, FloorActor: "$FloorActor,'Crawler',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" setting physics to PHYS_Spider, FloorActor: "$FloorActor,'Crawler',);};
 	Pawn.SetPhysics(PHYS_Spider);
 	return true;
 }
@@ -124,13 +124,13 @@ state MovingToGoal
 
 			if( KFP.bIsDropDownDest )
 			{
-				AILog_Internal(GetFuncName()$" returning false for goal "$Goal$" because it's a dropdown dest",'Command_Crawler_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" returning false for goal "$Goal$" because it's a dropdown dest",'Command_Crawler_MoveToGoal',);};
 				return false;
 			}
 			
 			if( KFWallPathNode(Goal) != none )
 			{
-				AILog_Internal(GetFuncName()$" returning false for goal "$Goal,'Command_Crawler_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" returning false for goal "$Goal,'Command_Crawler_MoveToGoal',);};
 				return false;
 			}
 		}
@@ -140,18 +140,18 @@ state MovingToGoal
 
 	function bool NotifyBaseChange( actor NewBase, vector NewFloor )
 	{
-		AILog_Internal(GetFuncName()$" OldBase: "$Pawn.Base$" NewBase: "$NewBase$" NewFloor: "$NewFloor$" OldFloor: "$OldFloor,'Command_Crawler_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" OldBase: "$Pawn.Base$" NewBase: "$NewBase$" NewFloor: "$NewFloor$" OldFloor: "$OldFloor,'Command_Crawler_MoveToGoal',);};
 
 		if( NewFloor != OldFloor && NewFloor == vect(0,0,1) && Pawn.Physics == PHYS_Spider )
 		{
-			AILog_Internal(GetFuncName()$" setting pawn physics back to walking",'Command_Crawler_MoveToGoal',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" setting pawn physics back to walking",'Command_Crawler_MoveToGoal',);};
 			Pawn.SetPhysics( PHYS_Walking );
 		}
 		else
 		if( NewFloor != OldFloor && IsDoingLatentMove() && Pawn != none && Pawn.Physics == PHYS_Spider && NewBase != none && !NewBase.IsA('Pawn') && NewBase.bWorldGeometry )
 		{
 			AIActionStatus = "NotifyBaseChange, to "$NewBase$": But not stopping my movement Dist From Goal: "$VSize(MoveTarget.Location - Pawn.Location);
-			AILog_Internal("NotifyBaseChange, to "$NewBase$": But not stopping my movement Dist From Goal: "$VSize(MoveTarget.Location - Pawn.Location),,);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("NotifyBaseChange, to "$NewBase$": But not stopping my movement Dist From Goal: "$VSize(MoveTarget.Location - Pawn.Location),,);};
 		}
 		return false;
 	}
@@ -165,7 +165,7 @@ state MovingToGoal
 	{
 		if( KFDoorActor( Wall ) == none )
 		{
-			AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal,'HitWall',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal,'HitWall',);};
 		}
 		else
 		{
@@ -173,21 +173,21 @@ state MovingToGoal
 			{
 				DisableNotifyHitWall(0.25f);
 				WaitForDoor( KFDoorActor(Wall) );
-				AILog_Internal("NotifyHitWall() while in MoveToGoal, Wall: "$Wall$" Using door and waiting for it to open",'Doors',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("NotifyHitWall() while in MoveToGoal, Wall: "$Wall$" Using door and waiting for it to open",'Doors',);};
 				KFDoorActor(Wall).UseDoor(Pawn);
 				return true;
 			}
 			// NOTE: Unless returning true, if the Wall is a closed door, SuggestMovePreparation event will be called on the associated KFDoorMarker
-			AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal$" ran into a door!",'Doors',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal$" ran into a door!",'Doors',);};
 			if( !KFDoorActor(Wall).IsCompletelyOpen() && KFDoorActor(Wall).WeldIntegrity > 0 && (Pawn.Anchor == KFDoorActor(Wall).MyMarker || (DoorEnemy != none && (DoorEnemy == KFDoorActor(Wall) || PendingDoor == KFDoorActor(Wall)))) )
 			{
-				AILog_Internal(GetFuncName()$"() calling NotifyAttackDoor for "$Wall,'Doors',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() calling NotifyAttackDoor for "$Wall,'Doors',);};
 				NotifyAttackDoor( KFDoorActor(Wall) );
 				return true;
 				//`AILog( GetFuncName()$"() has door enemy "$DoorEnemy, 'Doors' );
 			}
 		}
-		AILog_Internal(GetFuncName()$" Wall: "$Wall$" HitNormal: "$HitNormal,'Command_Crawler_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Wall: "$Wall$" HitNormal: "$HitNormal,'Command_Crawler_MoveToGoal',);};
 		if( !Wall.bCanStepUpon )
 		{
 			WarnInternal(GetFuncName()$"() Wall "$Wall$" bCanStepUpOn is FALSE");
@@ -196,7 +196,7 @@ state MovingToGoal
 
 		if( Pawn.Physics == PHYS_Falling )
 		{
-			AILog_Internal(GetFuncName()$" Wall: "$Wall$" setting physics to PHYS_Spider",'Crawler',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Wall: "$Wall$" setting physics to PHYS_Spider",'Crawler',);};
 			Pawn.SetPhysics( PHYS_Spider );
 			Pawn.SetBase( Wall, HitNormal );
 			DisableNotifyHitWall(1.f);
@@ -206,9 +206,9 @@ state MovingToGoal
 	}
 
 HandleNewFloor:
-	AILog_Internal(self$" HandleNewFloor label at "$Pawn.Location$" - trying to move ahead (base: "$Pawn.Base$")",'Command_Crawler_MoveToGoal',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" HandleNewFloor label at "$Pawn.Location$" - trying to move ahead (base: "$Pawn.Base$")",'Command_Crawler_MoveToGoal',);};
 	MoveTo( Pawn.Location + vector(Pawn.Rotation) * 512.f );
-	AILog_Internal(self$" HandleNewFloor done extra move, location is now "$Pawn.Location$" base is now "$Pawn.Base,'Command_Crawler_MoveToGoal',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" HandleNewFloor done extra move, location is now "$Pawn.Location$" base is now "$Pawn.Base,'Command_Crawler_MoveToGoal',);};
 	if( !HasReachedMoveGoal() )
 	{
 		bReevaluatePath=true;

@@ -27,6 +27,10 @@ var transient PointLightComponent BattlePhaseLightTemplateYellow;
 var transient PointLightComponent BattlePhaseLightTemplateRed;
 var transient PointLightComponent BattlePhaseLightFront;
 
+/** Footstep camera shake */
+var protected const float FootstepCameraShakePitchAmplitude;
+var protected const float FootstepCameraShakeRollAmplitude;
+
 /*********************************************************************************************
 * Initialization
 ********************************************************************************************* */
@@ -100,6 +104,33 @@ function SetSprinting( bool bNewSprintStatus )
 	}
 
 	Super.SetSprinting( bNewSprintStatus );
+}
+
+/** Overridden to cause slight camera shakes when walking. */
+simulated event PlayFootStepSound(int FootDown)
+{
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( IsHumanControlled() && IsLocallyControlled() )
+		{
+			FootstepCameraShake.RotOscillation.Pitch.Amplitude = 0;
+			FootstepCameraShake.RotOscillation.Roll.Amplitude = 0;
+		}
+		else
+		{
+			FootstepCameraShake.RotOscillation.Pitch.Amplitude = FootstepCameraShakePitchAmplitude;
+			FootstepCameraShake.RotOscillation.Roll.Amplitude = FootstepCameraShakeRollAmplitude;
+			FootstepCameraShakeInnerRadius = default.FootstepCameraShakeInnerRadius;
+			FootstepCameraShakeOuterRadius = default.FootstepCameraShakeOuterRadius;
+			if( !bIsSprinting || VSizeSQ(Velocity) < 10000.f )
+			{
+				FootstepCameraShake.RotOscillation.Pitch.Amplitude *= 0.75f;
+				FootstepCameraShake.RotOscillation.Roll.Amplitude *= 0.75f;
+			}			
+		}
+	}
+
+	super.PlayFootStepSound( FootDown );
 }
 
 /*********************************************************************************************
@@ -280,6 +311,27 @@ simulated function AdjustAffliction(out float AfflictionPower)
 	}
 }
 
+/** Track the fleshpound's speed and play the appropriate cues */
+simulated event Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( WorldInfo.NetMode != NM_DedicatedServer && IsAliveAndWell() )
+	{
+		if( bIsSprinting && IsEnraged() && Physics == PHYS_Walking && Mesh.RootMotionMode == RMM_Ignore && VSizeSQ(Velocity) > 40000.f )
+		{
+			if( !RageAkComponent.IsPlaying(RageLoopSound) )
+			{
+				RageAkComponent.PlayEvent( RageLoopSound, true, true );
+			}
+		}
+		else
+		{
+			StopRageSound();
+		}
+	}
+}
+
 /*********************************************************************************************
 * Debugging
 **********************************************************************************************/
@@ -328,27 +380,6 @@ simulated function GetOverheadDebugText( KFHUDBase HUD, out array<string> Overhe
 	OverheadColors[OverheadTexts.Length - 1] = ModifyTextColor;
 }
 
-/** Track the fleshpound's speed and play the appropriate cues */
-simulated event Tick( float DeltaTime )
-{
-	super.Tick( DeltaTime );
-
-	if( WorldInfo.NetMode != NM_DedicatedServer && IsAliveAndWell() )
-	{
-		if( IsEnraged() && Physics == PHYS_Walking && VSizeSQ(Velocity) >= Square(SprintSpeed) * 0.8f )
-		{
-			if( !RageAkComponent.IsPlaying(RageLoopSound) )
-			{
-				RageAkComponent.PlayEvent( RageLoopSound, true, true );
-			}
-		}
-		else
-		{
-			StopRageSound();
-		}
-	}
-}
-
 /*********************************************************************************************
 * Dialog
 **********************************************************************************************/
@@ -383,6 +414,8 @@ defaultproperties
    DeadGlowColor=(R=0.000000,G=0.000000,B=0.000000,A=1.000000)
    RageBumpDamageType=Class'kfgamecontent.KFDT_HeavyZedBump'
    BattlePhaseLightFrontSocketName="Light"
+   FootstepCameraShakePitchAmplitude=120.000000
+   FootstepCameraShakeRollAmplitude=60.000000
    bLargeZed=True
    bCanRage=True
    bIsFleshpoundClass=True
@@ -422,10 +455,11 @@ defaultproperties
    BumpFrequency=0.100000
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    FootstepCameraShakeInnerRadius=200.000000
-   FootstepCameraShakeOuterRadius=800.000000
+   FootstepCameraShakeOuterRadius=900.000000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshpound:FootstepCameraShake0'
    OnDeathAchievementID=131
    PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
+   LocalizationKey="KFPawn_ZedFleshpound"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -479,7 +513,7 @@ defaultproperties
    IncapSettings(6)=(Cooldown=20.500000,Vulnerability=(0.150000))
    IncapSettings(7)=(Cooldown=8.500000,Vulnerability=(1.000000,1.000000,3.000000,1.000000,1.000000))
    IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.250000,0.250000,0.500000,0.250000,0.400000))
-   IncapSettings(9)=(Duration=1.000000,Cooldown=1.500000,Vulnerability=(0.950000))
+   IncapSettings(9)=(Duration=1.000000,Cooldown=10.500000,Vulnerability=(0.950000))
    IncapSettings(10)=(Duration=2.500000,Cooldown=17.000000,Vulnerability=(0.800000))
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=2.000000
@@ -586,7 +620,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

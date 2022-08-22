@@ -46,7 +46,10 @@ function bool NotifyLanded(Vector HitNormal, Actor FloorActor)
         Outer.Pawn.SetPhysics(1);
         return true;
     }
-    Outer.AILog_Internal((string(GetFuncName()) $ " setting physics to PHYS_Spider, FloorActor: ") $ string(FloorActor), 'Crawler');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((string(GetFuncName()) $ " setting physics to PHYS_Spider, FloorActor: ") $ string(FloorActor), 'Crawler');
+    }
     Outer.Pawn.SetPhysics(8);
     return true;
 }
@@ -80,12 +83,18 @@ state MovingToGoal
             return false;
             if(KFP.bIsDropDownDest)
             {
-                Outer.AILog_Internal(((string(GetFuncName()) $ " returning false for goal ") $ string(Goal)) $ " because it's a dropdown dest", 'Command_Crawler_MoveToGoal');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(((string(GetFuncName()) $ " returning false for goal ") $ string(Goal)) $ " because it's a dropdown dest", 'Command_Crawler_MoveToGoal');
+                }
                 return false;
             }
             if(KFWallPathNode(Goal) != none)
             {
-                Outer.AILog_Internal((string(GetFuncName()) $ " returning false for goal ") $ string(Goal), 'Command_Crawler_MoveToGoal');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((string(GetFuncName()) $ " returning false for goal ") $ string(Goal), 'Command_Crawler_MoveToGoal');
+                }
                 return false;
             }
         }
@@ -94,10 +103,16 @@ state MovingToGoal
 
     function bool NotifyBaseChange(Actor NewBase, Vector NewFloor)
     {
-        Outer.AILog_Internal((((((((string(GetFuncName()) $ " OldBase: ") $ string(Outer.Pawn.Base)) $ " NewBase: ") $ string(NewBase)) $ " NewFloor: ") $ string(NewFloor)) $ " OldFloor: ") $ string(Outer.OldFloor), 'Command_Crawler_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((((((string(GetFuncName()) $ " OldBase: ") $ string(Outer.Pawn.Base)) $ " NewBase: ") $ string(NewBase)) $ " NewFloor: ") $ string(NewFloor)) $ " OldFloor: ") $ string(Outer.OldFloor), 'Command_Crawler_MoveToGoal');
+        }
         if(((NewFloor != Outer.OldFloor) && NewFloor == vect(0, 0, 1)) && Outer.Pawn.Physics == 8)
         {
-            Outer.AILog_Internal(string(GetFuncName()) $ " setting pawn physics back to walking", 'Command_Crawler_MoveToGoal');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(string(GetFuncName()) $ " setting pawn physics back to walking", 'Command_Crawler_MoveToGoal');
+            }
             Outer.Pawn.SetPhysics(1);            
         }
         else
@@ -105,7 +120,10 @@ state MovingToGoal
             if(((((((NewFloor != Outer.OldFloor) && Outer.IsDoingLatentMove()) && Outer.Pawn != none) && Outer.Pawn.Physics == 8) && NewBase != none) && !NewBase.IsA('Pawn')) && NewBase.bWorldGeometry)
             {
                 Outer.AIActionStatus = (("NotifyBaseChange, to " $ string(NewBase)) $ ": But not stopping my movement Dist From Goal: ") $ string(VSize(Outer.MoveTarget.Location - Outer.Pawn.Location));
-                Outer.AILog_Internal((("NotifyBaseChange, to " $ string(NewBase)) $ ": But not stopping my movement Dist From Goal: ") $ string(VSize(Outer.MoveTarget.Location - Outer.Pawn.Location)));
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((("NotifyBaseChange, to " $ string(NewBase)) $ ": But not stopping my movement Dist From Goal: ") $ string(VSize(Outer.MoveTarget.Location - Outer.Pawn.Location)));
+                }
             }
         }
         return false;
@@ -120,7 +138,10 @@ state MovingToGoal
     {
         if(KFDoorActor(Wall) == none)
         {
-            Outer.AILog_Internal((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'HitWall');            
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'HitWall');
+            }            
         }
         else
         {
@@ -128,19 +149,31 @@ state MovingToGoal
             {
                 Outer.DisableNotifyHitWall(0.25);
                 Outer.WaitForDoor(KFDoorActor(Wall));
-                Outer.AILog_Internal(("NotifyHitWall() while in MoveToGoal, Wall: " $ string(Wall)) $ " Using door and waiting for it to open", 'Doors');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(("NotifyHitWall() while in MoveToGoal, Wall: " $ string(Wall)) $ " Using door and waiting for it to open", 'Doors');
+                }
                 KFDoorActor(Wall).UseDoor(Outer.Pawn);
                 return true;
             }
-            Outer.AILog_Internal(((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal)) $ " ran into a door!", 'Doors');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(((((string(GetFuncName()) $ "() Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal)) $ " ran into a door!", 'Doors');
+            }
             if((!KFDoorActor(Wall).IsCompletelyOpen() && KFDoorActor(Wall).WeldIntegrity > 0) && (Outer.Pawn.Anchor == KFDoorActor(Wall).MyMarker) || (Outer.DoorEnemy != none) && (Outer.DoorEnemy == KFDoorActor(Wall)) || Outer.PendingDoor == KFDoorActor(Wall))
             {
-                Outer.AILog_Internal((string(GetFuncName()) $ "() calling NotifyAttackDoor for ") $ string(Wall), 'Doors');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal((string(GetFuncName()) $ "() calling NotifyAttackDoor for ") $ string(Wall), 'Doors');
+                }
                 Outer.NotifyAttackDoor(KFDoorActor(Wall));
                 return true;
             }
         }
-        Outer.AILog_Internal((((string(GetFuncName()) $ " Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'Command_Crawler_MoveToGoal');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((string(GetFuncName()) $ " Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'Command_Crawler_MoveToGoal');
+        }
         if(!Wall.bCanStepUpOn)
         {
             WarnInternal(((string(GetFuncName()) $ "() Wall ") $ string(Wall)) $ " bCanStepUpOn is FALSE");
@@ -148,7 +181,10 @@ state MovingToGoal
         }
         if(Outer.Pawn.Physics == 2)
         {
-            Outer.AILog_Internal(((string(GetFuncName()) $ " Wall: ") $ string(Wall)) $ " setting physics to PHYS_Spider", 'Crawler');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(((string(GetFuncName()) $ " Wall: ") $ string(Wall)) $ " setting physics to PHYS_Spider", 'Crawler');
+            }
             Outer.Pawn.SetPhysics(8);
             Outer.Pawn.SetBase(Wall, HitNormal);
             Outer.DisableNotifyHitWall(1);
@@ -158,9 +194,15 @@ state MovingToGoal
     }
 HandleNewFloor:
 
-    Outer.AILog_Internal(((((string(self) $ " HandleNewFloor label at ") $ string(Outer.Pawn.Location)) $ " - trying to move ahead (base: ") $ string(Outer.Pawn.Base)) $ ")", 'Command_Crawler_MoveToGoal');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((((string(self) $ " HandleNewFloor label at ") $ string(Outer.Pawn.Location)) $ " - trying to move ahead (base: ") $ string(Outer.Pawn.Base)) $ ")", 'Command_Crawler_MoveToGoal');
+    }
     Outer.MoveTo(Outer.Pawn.Location + (vector(Outer.Pawn.Rotation) * 512));
-    Outer.AILog_Internal((((string(self) $ " HandleNewFloor done extra move, location is now ") $ string(Outer.Pawn.Location)) $ " base is now ") $ string(Outer.Pawn.Base), 'Command_Crawler_MoveToGoal');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((((string(self) $ " HandleNewFloor done extra move, location is now ") $ string(Outer.Pawn.Location)) $ " base is now ") $ string(Outer.Pawn.Base), 'Command_Crawler_MoveToGoal');
+    }
     if(!HasReachedMoveGoal())
     {
         Outer.bReevaluatePath = true;

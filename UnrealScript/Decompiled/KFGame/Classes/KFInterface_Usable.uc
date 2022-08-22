@@ -10,4 +10,4 @@ interface KFInterface_Usable extends Interface
 
 simulated function bool GetIsUsable(Pawn User);
 
-function int GetInteractionIndex();
+function int GetInteractionIndex(Pawn User);

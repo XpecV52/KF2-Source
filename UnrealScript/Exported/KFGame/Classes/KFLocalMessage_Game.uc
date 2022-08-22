@@ -264,7 +264,7 @@ defaultproperties
    TooMuchWeightMessage="This weapon is too heavy. Try dropping or selling a weapon"
    ReceivedGrenadesFromMessage="You received grenades from"
    GaveGrenadesToMessage="You gave grenades to"
-   YourselfString="yourself."
+   YourselfString="yourself"
    FailedDropInventoryMessage="You can't drop that here"
    PendingPerkChangesSet="Perk changes will be applied at the end of the wave"
    PendingPerkChangesApplied="Perk changes applied!"

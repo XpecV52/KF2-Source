@@ -157,6 +157,7 @@ simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
     AnimIndex = byte(Rand(AnimSet.Sequences.Length));
     AnimName = AnimSet.Sequences[AnimIndex].SequenceName;
     BlendInTime = ((bNewCharacter) ? 0 : 0.4);
+    BodyStanceNodes[0].SetActorAnimEndNotification(false);
     BodyStanceNodes[0].PlayCustomAnim(AnimName, 1, BlendInTime, 0.4, false, true);
     BodyStanceNodes[0].SetActorAnimEndNotification(true);
 }

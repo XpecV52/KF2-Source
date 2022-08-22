@@ -47,6 +47,8 @@ var(Footsteps) AkBaseSoundObject DefaultSprintingFootstepSound;
 var(Footsteps) array<FootstepSoundInfo> HandstepSounds;
 /** default hand-step sound used when a given material type is not found in the list */
 var(Footsteps) AkBaseSoundObject DefaultHandstepSound;
+/** Maximum range to allow footstep sounds. X=Maximum range when pawn visible, Y=Maximum range when pawn hidden */
+var(Footsteps) Vector2D MaxFootstepSoundRanges;
 /** Jumping sounds */
 var(Jumping) array<FootstepSoundInfo> JumpingSounds;
 var(Jumping) AkBaseSoundObject DefaultJumpingSound;
@@ -97,9 +99,9 @@ function PlayFallingDamageLandSound(Pawn P)
     }
 }
 
-function PlayPainSound(Pawn P)
+function PlayPainSound(KFPawn P)
 {
-    if(PainSound != none)
+    if((PainSound != none) && !P.IsHeadless())
     {
         P.PlaySoundBase(PainSound, true);
     }
@@ -281,11 +283,12 @@ function bool ShouldPlayCleaveSound(name DismemberBoneName)
     return ((DismemberBoneName == 'Spine1') || DismemberBoneName == 'LeftShoulder') || DismemberBoneName == 'RightShoulder';
 }
 
-function PlayObliterationSound(Pawn P)
+function PlayObliterationSound(Pawn P, optional bool bNotReplicated)
 {
+    bNotReplicated = true;
     if(ObliterationSound != none)
     {
-        P.PlaySoundBase(ObliterationSound, true,,, P.Location);
+        P.PlaySoundBase(ObliterationSound, bNotReplicated,,, P.Location);
     }
 }
 
@@ -315,6 +318,7 @@ defaultproperties
     DefaultFootstepSound=AkEvent'WW_MVT_Footstep.Play_Boot_Walk_Dirt'
     DefaultSprintingFootstepSound=AkEvent'WW_MVT_Footstep.Play_Boot_Walk_Dirt'
     DefaultHandstepSound=AkEvent'WW_ZED_Crawler.Play_ZED_Crawler_Sfx_Footstep'
+    MaxFootstepSoundRanges=(X=1500,Y=1500)
     JumpingSounds(0)=(MaterialType=EMaterialTypes.EMT_None,Sound=AkEvent'WW_MVT_Footstep.Play_Boot_Walk_Dirt')
     JumpingSounds(1)=(MaterialType=EMaterialTypes.EMT_Rock,Sound=AkEvent'WW_MVT_Footstep.Play_Boot_Walk_Brick')
     JumpingSounds(2)=(MaterialType=EMaterialTypes.EMT_Dust,Sound=AkEvent'WW_MVT_Footstep.Play_Boot_Walk_Dirt')

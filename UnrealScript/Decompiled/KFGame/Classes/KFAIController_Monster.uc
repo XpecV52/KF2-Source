@@ -127,7 +127,10 @@ event ReadyToMelee()
             {
                 if(MyKFPawn.CanDoSpecialMove(12) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
                 {
-                    AILog_Internal(string(GetFuncName()) $ " starting taunt command", 'CantMelee');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        AILog_Internal(string(GetFuncName()) $ " starting taunt command", 'CantMelee');
+                    }
                     Class'AICommand_TauntEnemy'.static.Taunt(self, KFPawn(Enemy), 0);
                 }
             }
@@ -159,12 +162,15 @@ event Actor GeneratePathTo(Actor Goal, optional float Distance, optional bool bA
     Pawn.ClearConstraints();
     if(PathResult == none)
     {
-        AILog_Internal((((((string(GetFuncName()) $ "() failed to build a path to ") $ string(Goal)) $ ", offset distance was ") $ string(Distance)) $ ", bAllowPartialPath was ") $ string(bAllowPartialPath), 'PathWarning');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            AILog_Internal((((((string(GetFuncName()) $ "() failed to build a path to ") $ string(Goal)) $ ", offset distance was ") $ string(Distance)) $ ", bAllowPartialPath was ") $ string(bAllowPartialPath), 'PathWarning');
+        }
     }
     if(bShowMovePointsDebugInfo)
     {
         I = 0;
-        J0x203:
+        J0x23D:
 
         if(I < RouteCache.Length)
         {
@@ -175,7 +181,7 @@ event Actor GeneratePathTo(Actor Goal, optional float Distance, optional bool bA
                 DrawDebugLine(RouteCache[I].Location, RouteCache[I - 1].Location, PathNodeShowRouteCacheColor.R, PathNodeShowRouteCacheColor.G, PathNodeShowRouteCacheColor.B, true);
             }
             ++ I;
-            goto J0x203;
+            goto J0x23D;
         }
     }
     return PathResult;
@@ -240,7 +246,10 @@ event bool CanGrabAttack()
             return true;
         }
     }
-    AILog_Internal(string(GetFuncName()) $ "() returning FALSE", 'GrabAttack');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        AILog_Internal(string(GetFuncName()) $ "() returning FALSE", 'GrabAttack');
+    }
     return false;
 }
 
@@ -276,14 +285,20 @@ function DoStrike()
         StrikeFlags = MyKFPawn.PawnAnimInfo.GetStrikeFlags(PendingAnimStrikeIndex);
         if(StrikeFlags != 255)
         {
-            AILog_Internal(((string(GetFuncName()) $ "() ") $ string(VSize(MyKFPawn.Location - Enemy.Location))) $ " units from enemy and I DO HAVE AN available attack!", 'Command_Attack_Melee');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                AILog_Internal(((string(GetFuncName()) $ "() ") $ string(VSize(MyKFPawn.Location - Enemy.Location))) $ " units from enemy and I DO HAVE AN available attack!", 'Command_Attack_Melee');
+            }
             Class'AICommand_Attack_Melee'.static.Melee(self, Enemy, StrikeFlags);
             MyKFPawn.PawnAnimInfo.UpdateAttackCooldown(self, PendingAnimStrikeIndex);
             UpdatePendingStrike();            
         }
         else
         {
-            AILog_Internal(((string(GetFuncName()) $ "() ") $ string(VSize(MyKFPawn.Location - Enemy.Location))) $ " units from enemy and I have no available attack!", 'Command_Attack_Melee');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                AILog_Internal(((string(GetFuncName()) $ "() ") $ string(VSize(MyKFPawn.Location - Enemy.Location))) $ " units from enemy and I have no available attack!", 'Command_Attack_Melee');
+            }
         }
     }
 }
@@ -308,7 +323,10 @@ function bool HandleZedBlockedPath()
         {
             return true;
         }
-        AILog_Internal(string(GetFuncName()) $ " ENEMY IS BLOCKED", 'ReachedEnemy');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            AILog_Internal(string(GetFuncName()) $ " ENEMY IS BLOCKED", 'ReachedEnemy');
+        }
         DisableMeleeRangeEventProbing();
         SetTimer(1.5 + (2 * FRand()), false, 'Timer_EnableMeleeRangeEventProbing', self);
         if(FindNewEnemy())
@@ -320,12 +338,18 @@ function bool HandleZedBlockedPath()
         {
             if((MyKFPawn.CanDoSpecialMove(12) && FRand() < 0.32) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
             {
-                AILog_Internal(string(GetFuncName()) $ " starting taunt command", 'ReachedEnemy');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    AILog_Internal(string(GetFuncName()) $ " starting taunt command", 'ReachedEnemy');
+                }
                 Class'AICommand_TauntEnemy'.static.Taunt(self, KFPawn(Enemy), 0);                
             }
             else
             {
-                AILog_Internal(string(GetFuncName()) $ " starting pauseAI command", 'ReachedEnemy');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    AILog_Internal(string(GetFuncName()) $ " starting pauseAI command", 'ReachedEnemy');
+                }
                 DoPauseAI(1 + (3 * FRand()), true);
             }
             return true;

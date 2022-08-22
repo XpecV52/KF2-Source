@@ -5,22 +5,21 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFCameraLensEmit_RackemHeadShotPing extends EmitterCameraLensEffectBase
+class KFCameraLensEmit_RackemHeadShotPing extends KFCameraLensEmit_RackemHeadShot
     hidecategories(Navigation);
 
 defaultproperties
 {
     PS_CameraEffect=ParticleSystem'FX_Camera_EMIT.FX_Rackem_Headshot_Ping_01'
-    begin object name=ParticleSystemComponent0 class=ParticleSystemComponent
+    bAllowMultipleInstances=false
+    begin object name=ParticleSystemComponent1 class=KFParticleSystemComponent
         ReplacementPrimitive=none
     object end
-    // Reference: ParticleSystemComponent'Default__KFCameraLensEmit_RackemHeadShotPing.ParticleSystemComponent0'
-    ParticleSystemComponent=ParticleSystemComponent0
-    bDepthTestEnabled=false
-    begin object name=ParticleSystemComponent0 class=ParticleSystemComponent
+    // Reference: KFParticleSystemComponent'Default__KFCameraLensEmit_RackemHeadShotPing.ParticleSystemComponent1'
+    ParticleSystemComponent=ParticleSystemComponent1
+    begin object name=ParticleSystemComponent1 class=KFParticleSystemComponent
         ReplacementPrimitive=none
     object end
-    // Reference: ParticleSystemComponent'Default__KFCameraLensEmit_RackemHeadShotPing.ParticleSystemComponent0'
-    Components(0)=ParticleSystemComponent0
-    LifeSpan=0.5
+    // Reference: KFParticleSystemComponent'Default__KFCameraLensEmit_RackemHeadShotPing.ParticleSystemComponent1'
+    Components(0)=ParticleSystemComponent1
 }

@@ -55,6 +55,7 @@ var const localized string KickVoteNotEnoughPlayersString;
 var const localized string KickVoteNoSpectatorsString;
 var const localized string KickedFromServerString;
 var const localized string BannedFromServerString;
+var const localized string ServerNoLongerAvailableString;
 var int MessageArea;
 var int AnnouncementPriority;
 var bool bShowPortrait;
@@ -240,6 +241,7 @@ defaultproperties
     KickVoteNoSpectatorsString="Spectators may not initiate a kick vote"
     KickedFromServerString="You have been removed from the server"
     BannedFromServerString="You have been removed from this server. You cannot rejoin at this time"
+    ServerNoLongerAvailableString="The server is no longer available to join"
     MessageArea=1
     AnnouncementVolume=2
     SayColor="FFFFFF"

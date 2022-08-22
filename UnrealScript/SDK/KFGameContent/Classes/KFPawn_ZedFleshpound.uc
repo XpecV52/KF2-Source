@@ -27,6 +27,10 @@ var transient PointLightComponent BattlePhaseLightTemplateYellow;
 var transient PointLightComponent BattlePhaseLightTemplateRed;
 var transient PointLightComponent BattlePhaseLightFront;
 
+/** Footstep camera shake */
+var protected const float FootstepCameraShakePitchAmplitude;
+var protected const float FootstepCameraShakeRollAmplitude;
+
 /*********************************************************************************************
 * Initialization
 ********************************************************************************************* */
@@ -100,6 +104,33 @@ function SetSprinting( bool bNewSprintStatus )
 	}
 
 	Super.SetSprinting( bNewSprintStatus );
+}
+
+/** Overridden to cause slight camera shakes when walking. */
+simulated event PlayFootStepSound(int FootDown)
+{
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( IsHumanControlled() && IsLocallyControlled() )
+		{
+			FootstepCameraShake.RotOscillation.Pitch.Amplitude = 0;
+			FootstepCameraShake.RotOscillation.Roll.Amplitude = 0;
+		}
+		else
+		{
+			FootstepCameraShake.RotOscillation.Pitch.Amplitude = FootstepCameraShakePitchAmplitude;
+			FootstepCameraShake.RotOscillation.Roll.Amplitude = FootstepCameraShakeRollAmplitude;
+			FootstepCameraShakeInnerRadius = default.FootstepCameraShakeInnerRadius;
+			FootstepCameraShakeOuterRadius = default.FootstepCameraShakeOuterRadius;
+			if( !bIsSprinting || VSizeSQ(Velocity) < 10000.f )
+			{
+				FootstepCameraShake.RotOscillation.Pitch.Amplitude *= 0.75f;
+				FootstepCameraShake.RotOscillation.Roll.Amplitude *= 0.75f;
+			}			
+		}
+	}
+
+	super.PlayFootStepSound( FootDown );
 }
 
 /*********************************************************************************************
@@ -280,6 +311,27 @@ simulated function AdjustAffliction(out float AfflictionPower)
 	}
 }
 
+/** Track the fleshpound's speed and play the appropriate cues */
+simulated event Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( WorldInfo.NetMode != NM_DedicatedServer && IsAliveAndWell() )
+	{
+		if( bIsSprinting && IsEnraged() && Physics == PHYS_Walking && Mesh.RootMotionMode == RMM_Ignore && VSizeSQ(Velocity) > 40000.f )
+		{
+			if( !RageAkComponent.IsPlaying(RageLoopSound) )
+			{
+				RageAkComponent.PlayEvent( RageLoopSound, true, true );
+			}
+		}
+		else
+		{
+			StopRageSound();
+		}
+	}
+}
+
 /*********************************************************************************************
 * Debugging
 **********************************************************************************************/
@@ -328,27 +380,6 @@ simulated function GetOverheadDebugText( KFHUDBase HUD, out array<string> Overhe
 	OverheadColors[OverheadTexts.Length - 1] = ModifyTextColor;
 }
 
-/** Track the fleshpound's speed and play the appropriate cues */
-simulated event Tick( float DeltaTime )
-{
-	super.Tick( DeltaTime );
-
-	if( WorldInfo.NetMode != NM_DedicatedServer && IsAliveAndWell() )
-	{
-		if( IsEnraged() && Physics == PHYS_Walking && VSizeSQ(Velocity) >= Square(SprintSpeed) * 0.8f )
-		{
-			if( !RageAkComponent.IsPlaying(RageLoopSound) )
-			{
-				RageAkComponent.PlayEvent( RageLoopSound, true, true );
-			}
-		}
-		else
-		{
-			StopRageSound();
-		}
-	}
-}
-
 /*********************************************************************************************
 * Dialog
 **********************************************************************************************/
@@ -367,6 +398,7 @@ static function int GetTraderAdviceID()
 
 DefaultProperties
 {
+	LocalizationKey=KFPawn_ZedFleshpound
 	bLargeZed=true
 
 	Begin Object Name=KFPawnSkeletalMeshComponent
@@ -485,7 +517,7 @@ DefaultProperties
 	IncapSettings(AF_Microwave)=(Vulnerability=(0.8),                         Cooldown=17.0, Duration=2.5)
 	IncapSettings(AF_FirePanic)=(Vulnerability=(0.7),                         Cooldown=10.0, Duration=3.5)
 	IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                        Cooldown=10.0, Duration=2.2)
-	IncapSettings(AF_Freeze)=	(Vulnerability=(0.95),                        Cooldown=1.5,  Duration=1.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(0.95),                        Cooldown=10.5,  Duration=1.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 3.0, 1.0, 1.0),     Cooldown=8.5,  Duration=5.0)
 
 	Begin Object Name=Afflictions_0
@@ -512,13 +544,14 @@ DefaultProperties
     // effects
 	Begin Object Class=CameraShake Name=FootstepCameraShake0
 		bSingleInstance=true
-		OscillationDuration=0.3f
-		RotOscillation={(Pitch=(Amplitude=120.f,Frequency=60.f),
-		Roll=(Amplitude=60.f,Frequency=40.f))}
+		OscillationDuration=0.25f
+		RotOscillation={(Pitch=(Amplitude=120.f,Frequency=60.f),Roll=(Amplitude=60.f,Frequency=40.f))}
 	End Object
 	FootstepCameraShake=FootstepCameraShake0
+	FootstepCameraShakePitchAmplitude=120.f
+	FootstepCameraShakeRollAmplitude=60.f
 	FootstepCameraShakeInnerRadius=200
-	FootstepCameraShakeOuterRadius=800
+	FootstepCameraShakeOuterRadius=900
 //	bMarkExtraEndpoints=true
 
     // ---------------------------------------------

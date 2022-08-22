@@ -34,6 +34,8 @@ var private const AkEvent						ReceivedAmmoSound;
 var private const AkEvent 						ReceivedArmorSound;
 var private const AkEvent						ReceivedAmmoAndArmorSound;
 
+var private const name 							BoomstickClassName;
+
 enum ESupportPerkSkills
 {
 	ESupportHighCapMags,
@@ -56,21 +58,26 @@ enum ESupportPerkSkills
  */
 function ApplySkillsToPawn()
 {
-	local KFInventoryManager KFIM;
-
 	Super.ApplySkillsToPawn();
 
-	if( OwnerPawn != none )
-	{
-		KFIM = KFInventoryManager(OwnerPawn.InvManager);
-		if( KFIM != none )
-		{
-			`QALog( "Strength Mod" @ GetPercentage(KFIM.MaxCarryBlocks, KFIM.default.MaxCarryBlocks + GetExtraStrength( CurrentLevel )), bLogPerk );
-			KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks + GetExtraStrength( CurrentLevel );
-		}
-	}
-
 	ResetSupplier();
+}
+
+/**
+ * We need to separate this from ApplySkillsToPawn() to avoid resetting weight limits (and losing weapons)
+ * every time a skill or level is changed 
+ */
+function ApplyWeightLimits()
+{
+	local KFInventoryManager KFIM;
+
+	KFIM = KFInventoryManager(OwnerPawn.InvManager);
+	if( KFIM != none )
+	{
+		`QALog( "Strength Mod" @ GetPercentage(KFIM.MaxCarryBlocks, KFIM.default.MaxCarryBlocks + GetExtraStrength( CurrentLevel )), bLogPerk );
+		KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks + GetExtraStrength( CurrentLevel );
+		CheckForOverWeight( KFIM );
+	}
 }
 
 /**
@@ -221,20 +228,18 @@ simulated function bool IgnoresPenetrationDmgReduction()
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassName)
 {
 	local float TempCapacity;
 
 	TempCapacity = MagazineCapacity;
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && (KFW == none || !KFW.bNoMagazine) )
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && (KFW == none || !KFW.bNoMagazine) &&
+		WeaponClassName != BoomstickClassName )
 	{
-		if( KFW != none )
+		if( IsHighCapMagsMagActive() )
 		{
-			if( IsHighCapMagsMagActive() )
-			{
-				TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ESupportHighCapMags] );
-			}
+			TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ESupportHighCapMags] );
 		}
 	}
 
@@ -280,7 +285,6 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
 		TempMaxSpareAmmoAmount += MaxSpareAmmo * GetPassiveValue( Ammo, CurrentLevel );
 		 `QALog( "Ammo Passive, MaxSpareAmmo = +" @ (MaxSpareAmmo + MaxSpareAmmo * GetPassiveValue( Ammo, CurrentLevel )) / MaxSpareAmmo $ "%", bLogPerk );
-
 
 		if( IsResupplyActive() )
 		{
@@ -399,9 +403,9 @@ simulated function Interact( KFPawn_Human KFPH )
 
 	        if( KFW.CanRefillSecondaryAmmo() )
 	        {
-	        	// resupply 1 mag for every 5 initial mags
+	        	// Use ammo pickup logic when resupplying secondary ammo
 	        	`QALog( "Supply Ammo Secondary Weapon" @ KFW @ Max( KFW.InitialSpareMags[1] / 3, 1 ), bLogPerk );
-	        	bReceivedAmmo = (KFW.AddSecondaryAmmo( Max( KFW.InitialSpareMags[1] / 3, 1 ) ) > 0) ? true : bReceivedAmmo;
+	        	bReceivedAmmo = (KFW.AddSecondaryAmmo( Max(KFW.AmmoPickupScale[1] * KFW.MagazineCapacity[1], 1) ) > 0) ? true : bReceivedAmmo;
 	        }
 		}
 	}
@@ -420,6 +424,7 @@ simulated function Interact( KFPawn_Human KFPH )
 			SuppliedPawnInfo.SuppliedPawn = KFPH;
 			SuppliedPawnInfo.bSuppliedAmmo = bReceivedAmmo;
 			SuppliedPawnInfo.bSuppliedArmor = bReceivedArmor;
+			Idx = SuppliedPawnList.Length;
 			SuppliedPawnList.AddItem( SuppliedPawnInfo );
 		}
 		else
@@ -446,7 +451,7 @@ simulated function Interact( KFPawn_Human KFPH )
 			OwnerPRI = KFPlayerReplicationInfo( OwnerPC.PlayerReplicationInfo );
 			if( UserPRI != none && OwnerPRI != none )
 			{
-				UserPRI.MarkSupplierOwnerUsed( OwnerPRI, bReceivedAmmo, bReceivedArmor );
+				UserPRI.MarkSupplierOwnerUsed( OwnerPRI, SuppliedPawnList[Idx].bSuppliedAmmo, SuppliedPawnList[Idx].bSuppliedArmor );
 			}
 		}
 	}
@@ -630,7 +635,7 @@ simulated private function bool IsAPShotActive()
  *
  * @return true if we have the skill enabled
  */
-private function bool IsTightChokeActive()
+simulated private function bool IsTightChokeActive()
 {
 	return PerkSkills[ESupportTightChoke].bActive;
 }
@@ -785,4 +790,6 @@ DefaultProperties
 	ZedTimeModifyingStates(0)="WeaponFiring"
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"
    	ZedTimeModifyingStates(2)="WeaponSingleFiring"
+
+   	BoomstickClassName="KFWeap_Shotgun_DoubleBarrel"
 }

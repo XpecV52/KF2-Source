@@ -16,6 +16,7 @@ var repnotify class<GameInfo> GameClass;
 var bool bStopCountDown;
 var repnotify bool bMatchHasBegun;
 var repnotify bool bMatchIsOver;
+var repnotify bool bRoundIsOver;
 var bool bWaitingForAAR;
 var bool bPendingMusicTrackChange;
 var int RemainingTime;
@@ -34,7 +35,8 @@ replication
 {
      if(bNetDirty)
         Winner, bMatchHasBegun, 
-        bMatchIsOver, bStopCountDown;
+        bMatchIsOver, bRoundIsOver, 
+        bStopCountDown;
 
      if(!bNetInitial && bNetDirty)
         RemainingMinute;

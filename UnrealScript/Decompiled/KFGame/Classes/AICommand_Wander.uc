@@ -166,10 +166,16 @@ Begin:
         Outer.Sleep(1 + (float(2) * FRand()));
         goto 'Begin';
     }
-    Outer.AILog_Internal("Wandering toward enemy...");
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Wandering toward enemy...");
+    }
     if(!Wander())
     {
-        Outer.AILog_Internal("Failed to find Wander location for " $ string(Outer.Enemy));
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Failed to find Wander location for " $ string(Outer.Enemy));
+        }
         Outer.Sleep(1.5);
         goto 'Begin';        
     }
@@ -187,12 +193,21 @@ Begin:
 FinishedMove:
 
 
-    Outer.AILog_Internal("Done Wandering");
-    Outer.AILog_Internal("Enemy was visible, rotating toward him");
-    Outer.AILog_Internal("Finished rotating, waiting a bit to let our driver pwn his arse");
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Done Wandering");
+    }
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Enemy was visible, rotating toward him");
+    }
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Finished rotating, waiting a bit to let our driver pwn his arse");
+    }
     Outer.Sleep(RandRange(WanderWaitMin, WanderWaitMax));
     goto 'Begin';
-    stop;            
+    stop;                    
 }
 
 defaultproperties

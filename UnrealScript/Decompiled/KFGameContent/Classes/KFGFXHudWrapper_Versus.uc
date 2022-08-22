@@ -115,16 +115,6 @@ function DrawHUD()
                                 HiddenHumanPlayers.Insert(0, 1;
                                 HiddenHumanPlayers[0].HumanPawn = HumanPawn;
                                 HiddenHumanPlayers[0].HumanPRI = HumanPawn.PlayerReplicationInfo;
-                            }                            
-                        }
-                        else
-                        {
-                            if((MyTeamNum == 255) && TestPawn.GetTeamNum() == 255)
-                            {
-                                if(VSizeSq(KFPlayerOwner.ViewTarget.Location - TestPawnLocation) <= float(562000))
-                                {
-                                    DrawFriendlyZedPawnIcon(TestPawn);
-                                }
                             }
                         }
                     }
@@ -268,7 +258,7 @@ function DrawRemainingTimeUntilSpawn(byte RemainingTime, bool bTakeOverIsActive)
             ActualString = Repl(WaitingToSpawnString, "%x%", string(RemainingTime), true);
         }
     }
-    textscale = Class'KFGameEngine'.static.GetKFFontScale() * (Canvas.ClipY / 512);
+    textscale = Class'KFGameEngine'.static.GetKFFontScale() * (Canvas.ClipY / 768);
     Canvas.Font = Class'KFGameEngine'.static.GetKFCanvasFont();
     Canvas.TextSize(Repl(WaitingToSpawnString, "%x%", "00", true), XL, YL, textscale, textscale);
     ScreenPos.X = (Canvas.ClipX * 0.5) - (XL * 0.5);
@@ -295,5 +285,4 @@ defaultproperties
     ZedTakeOverActiveString="SEARCHING FOR ZEDS TO TAKE OVER..."
     PerkSwitchAllowedString="TIME REMAINING TO SELECT YOUR PERK: %x% second(s)"
     LastTeamIndex=-1
-    HumanPlayerIconInterpMult=0.007
 }

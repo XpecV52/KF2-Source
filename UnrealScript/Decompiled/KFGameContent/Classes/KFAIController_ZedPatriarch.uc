@@ -449,7 +449,7 @@ function EvaluateAttacks(float DeltaTime)
     }
     if(((MyPatPawn.CanTentacleGrab() && RecentlySeenEnemyList.Length > 0) && (WorldInfo.TimeSeconds - LastGrabAttackTime) > MyPatPawn.TentacleGrabCooldownTime) && !MyPatPawn.bIsCloaking || FRand() < 0.25)
     {
-        if(SetBestTarget(LastGrabbedPlayers, MinTentacleRangeSQ, Square((Class'KFSM_Patriarch_Grapple'.default.MaxRange * 0.85) * MyPatPawn.GetAttackRangeScale()), 0.6, true, true))
+        if(SetBestTarget(LastGrabbedPlayers, MinTentacleRangeSQ, Square((Class'KFSM_Patriarch_Grapple'.default.MaxRange * 0.8) * MyPatPawn.GetAttackRangeScale()), 0.4, true, true))
         {
             MyPatPawn.SetCloaked(false);
             Class'AICommand_Patriarch_Grab'.static.TentacleGrab(self);
@@ -582,23 +582,27 @@ function EvaluateSprinting()
 
 function bool ShouldSprint()
 {
-    if((((Enemy != none) && MyPatPawn != none) && !MyPatPawn.bIsHeadless) && !MyPatPawn.bEmpPanicked)
+    if(((Enemy != none) && MyPatPawn != none) && !MyPatPawn.bIsHeadless)
     {
         if(MyPatPawn.IsDoingSpecialMove(21))
         {
             return false;
         }
-        if(MyPatPawn.bIsCloaking)
+        if(bFleeing)
         {
             return true;
         }
-        if(bFleeing)
+        if(MyPatPawn.bIsCloaking)
         {
             return true;
         }
         if(bRaging)
         {
             return true;
+        }
+        if(MyPatPawn.bEmpPanicked)
+        {
+            return false;
         }
         if(bSprintUntilAttack)
         {
@@ -952,6 +956,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
             TotalFleeTime = 0;
             bCanEvaluateAttacks = false;
             bWantsToFlee = true;
+            EndPanicWander();
             NextBattlePhase();
             Class'AICommand_TauntEnemy'.static.Taunt(self, Enemy, 2, Class'KFSM_Patriarch_Taunt');
             MyPatPawn.SetFleeAndHealMode(true);
@@ -1231,10 +1236,12 @@ function Flee()
     {
         AICSM.ClearTimeout();
     }
+    EndPanicWander();
     AbortCommand(CommandList);
     bFleeing = true;
     bCanEvaluateAttacks = false;
     MyPatPawn.SetCloaked(true);
+    SetSprintingDisabled(false);
     MyPatPawn.SetSprinting(true);
     DisableMeleeRangeEventProbing();
     FleeDuration = FMax(MaxFleeDuration - TotalFleeTime, 6);
@@ -1348,7 +1355,7 @@ defaultproperties
     HiddenAggroDmgThreshold=200
     MinMinigunRangeSQ=160000
     MaxMinigunRangeSQ=1.6E+07
-    MaxFanFireRangeSQ=640000
+    MaxFanFireRangeSQ=490000
     MinChargeRangeSQ=810000
     MinTentacleRangeSQ=90000
     MinMissileRangeSQ=360000

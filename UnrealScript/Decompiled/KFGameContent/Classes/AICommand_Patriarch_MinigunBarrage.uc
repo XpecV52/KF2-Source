@@ -75,10 +75,10 @@ state Command_SpecialMove
         local Vector Projection;
 
         bIsFanFire = false;
-        if(Outer.RecentlySeenEnemyList.Length > 1)
+        if(Outer.RecentlySeenEnemyList.Length > 2)
         {
             I = 0;
-            J0x3C:
+            J0x3D:
 
             if(I < Outer.RecentlySeenEnemyList.Length)
             {
@@ -95,18 +95,18 @@ state Command_SpecialMove
                     else
                     {
                         ++ NumNearbyEnemies;
-                        if(NumNearbyEnemies >= 2)
+                        if(NumNearbyEnemies >= 3)
                         {
                             bIsFanFire = true;
-                            goto J0x2B0;
+                            goto J0x2B1;
                         }
                     }
                 }
                 ++ I;
-                goto J0x3C;
+                goto J0x3D;
             }
         }
-        J0x2B0:
+        J0x2B1:
 
         if((Outer.MyPatPawn != none) && Outer.MyPatPawn.CanDoSpecialMove(InSpecialMove))
         {

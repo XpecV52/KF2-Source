@@ -194,7 +194,7 @@ Begin:
 
 function bool NotifyHearNoise( float Loudness, Actor NoiseMaker, optional Name NoiseType )
 {
-	AILog_Internal("HearNoise: "$Loudness$" NoiseMaker: "$NoiseMaker$" Type: "$NoiseType,'HeadlessWander',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("HearNoise: "$Loudness$" NoiseMaker: "$NoiseMaker$" Type: "$NoiseType,'HeadlessWander',);};
 	return false;
 }
 

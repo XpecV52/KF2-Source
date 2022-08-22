@@ -89,6 +89,12 @@ function RemoveFromTeam(Controller Other)
 	super.RemoveFromTeam( Other );
 }
 
+simulated function string GetHumanReadableName()
+{
+    // Temp team name hax - Ramm
+    return class'KFCommon_LocalizedStrings'.default.HumanString @TeamName;
+}
+
 function AddScore( int ScoreToAdd, optional bool bSetScore )
 {
 	if( bSetScore )

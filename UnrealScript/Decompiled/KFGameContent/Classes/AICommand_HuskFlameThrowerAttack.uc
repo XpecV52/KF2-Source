@@ -32,7 +32,10 @@ function Pushed()
     {
         Outer.Focus = Outer.Enemy;
     }
-    Outer.AILog_Internal("Beginning to flamethrower " $ string(Outer.Enemy), 'Command_FlameThrower');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Beginning to flamethrower " $ string(Outer.Enemy), 'Command_FlameThrower');
+    }
     Outer.AIActionStatus = "Starting flamethrower AICommand";
     if(Outer.Focus != none)
     {
@@ -59,7 +62,10 @@ state Command_SpecialMove
     function bool ExecuteSpecialMove()
     {
         SpecialMove = GetSpecialMove();
-        Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'Command_FlameThrower');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'Command_FlameThrower');
+        }
         if((SpecialMove != 0) && Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
             Outer.MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), 255);

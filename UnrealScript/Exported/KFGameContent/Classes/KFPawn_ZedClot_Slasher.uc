@@ -48,6 +48,7 @@ defaultproperties
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Knife')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_ClotSlasher'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.SlasherClot_AnimGroup'
+   LocalizationKey="KFPawn_ZedClot_Slasher"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -71,7 +72,7 @@ defaultproperties
    IncapSettings(6)=(Duration=4.500000,Vulnerability=(1.000000))
    IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000,10.000000,10.000000,10.000000))
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
-   IncapSettings(9)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
+   IncapSettings(9)=(Duration=4.000000,Cooldown=1.500000,Vulnerability=(2.500000))
    IncapSettings(10)=(Duration=2.000000,Vulnerability=(0.500000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=500.000000
@@ -174,7 +175,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

@@ -62,6 +62,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 
 enum EItemType
 {
@@ -147,6 +148,8 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
     LocalizeText();
 }
+
+function OnR3Pressed();
 
 function LocalizeText()
 {
@@ -705,7 +708,10 @@ function Callback_PerkChanged(int PerkIndex)
     if(MyKFPRI.NetPerkIndex != PerkIndex)
     {
         MyKFPC.RequestPerkChange(byte(PerkIndex));
-        MyKFPC.SetHaveUpdatePerk(true);
+        if(MyKFPC.CanUpdatePerkInfo())
+        {
+            MyKFPC.SetHaveUpdatePerk(true);
+        }
         Manager.CachedProfile.SetProfileSettingValueInt(105, PerkIndex);
     }
     if(PlayerInventoryContainer != none)

@@ -24,7 +24,6 @@ struct sPlayerZedSpawnWaitTimeData
 };
 
 var bool bTeamBalanceEnabled;
-var repnotify bool bRoundIsOver;
 var byte TeamBalanceDelta;
 var byte CurrentRound;
 var byte TimeUntilNextSpawn;
@@ -37,8 +36,7 @@ replication
         bTeamBalanceEnabled;
 
      if(bNetDirty)
-        CurrentRound, PlayerZedSpawnWaitTimeData, 
-        bRoundIsOver;
+        CurrentRound, PlayerZedSpawnWaitTimeData;
 }
 
 simulated event ReplicatedEvent(name VarName)

@@ -1,5 +1,4 @@
 [KFCommon_LocalizedStrings]
-LoadingString="Loading..."
 DifficultyStrings[0]="Normal"
 DifficultyStrings[1]="Svær"
 DifficultyStrings[2]="Selvmorderisk"
@@ -10,16 +9,13 @@ LengthStrings[1]="Medium (7 bølger)"
 LengthStrings[2]="Lang (10 bølger)"
 
 ServerTypeStrings[0]="Rangeret"
-ServerTypeStrings[1]="Rangeret - Standard"
-ServerTypeStrings[1]="Rangeret - Standard"
-ServerTypeStrings[2]="Ikke rangeret"
+ServerTypeStrings[1]="Rangeret - tilpasset"
+ServerTypeStrings[1]="Rangeret - tilpasset"
+ServerTypeStrings[2]="Unranked"
 
 PermissionStrings[0]="Offentlig"
 PermissionStrings[1]="Kun venner"
 PermissionStrings[2]="Privat"
-
-ConsolePermissionStrings[0]="Public"
-ConsolePermissionStrings[1]="Invite Only"
 
 ModeStrings[0]="Overlevelse"
 ModeStrings[1]="VS Overlevelse"
@@ -27,7 +23,7 @@ ModeStrings[1]="VS Overlevelse"
 NoPreferenceString="ENHVER"
 OKString="OK"
 ConfirmString="BEKRÆFT"
-CancelString="TILBAGE"
+CancelString="ANNULLER"
 BackString="TILBAGE"
 AcceptString="Acceptér"
 DeclineString="Afvis"
@@ -35,47 +31,38 @@ NoticeString="BEMÆRK!"
 PerkUpdateNoticeString="Perk kan ændres én gang per bølge!"
 YesString="Ja"
 NoString="Nej"
-TeamSwappedString="You have been team swapped"
 
 DisbandPartyString="OPLØS GRUPPE"
 LeaveCurrentMenuString="Forlad nuværende menu?"
 ZedString="ZED"
 HumanString="OVERLEVENDE"
 SpectatorString="TILSKUER"
-TeamString="HOLD"
-AllString="ALLE"
+TeamString="TEAM"
+AllString="ALL"
 
-UnableToSwitchTeamString="Kan ikke skifte hold"
-NoSwitchReasonString="Holdskift ville gøre holdene ubalancerede"
+UnableToSwitchTeamString="Unable to Switch Teams"
+NoSwitchReasonString="Switching teams would upset team balance"
 
-AutoTradeCompleteString="Auto Trade Complete: "
-AutoFillCompleteString="Autofilled Supplies"
-WeaponUpgradeComepleteString="Weapon Upgraded"
-SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
-NoItemsPurchasedString="No Items Purchased"
 
-SetTakeoverServerPasswordTitle=Enter a new password to protect your game:
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="KUNNE IKKE FINDE KAMP"
 FailedSearchString="Matchmaking kunne ikke finde en kamp med de valgte indstillinger. Udvid venligst din søgning eller overvej at bruge serverbrowseren til at finde en kamp."
 BrowseServersString="GENNEMSE SERVERE"
-HasInvitedToGameString=" har inviteret dig til et spil"
+HasInvitedToGameString=" har inviteret dig til et spil."
 JoinGameString="Tilslut spil?"
 
+
 [KFGFxObject_Menu]
-LeavePartyTitleString="FORLAD GRUPPE"
+LeavePartyTitleString="FORLADER GRUPPE"
 LeavePartyDescriptionString="Er du sikker på, at du vil forlade denne online-gruppe?"
 LeaveString="FORLAD"
 
-ErrorNoPlaystationNetworkTitle="Login Failed - PlayStation™Network"
-ErrorNoPlaystationNetworkDescription="Could not connect to PlayStation™Network, which is required to play."
-ErrorNoPlaystationPlusTitle="Login Failed - PlayStation®Plus"
-ErrorNoPlaystationPlusDescription="A PlayStation®Plus account is required to play."
+
+
 
 [KFDoorActor]
 WeldIntegrityString="Svejsningshelhed:"
-RepairProgressString="Repair Progress:"
 ExplosiveString="Dørfælde:"
 
 [KFGFxMenu_StartGame]
@@ -101,31 +88,29 @@ FindGameString="STARTSIDE"
 LeaveMenuString="At forlade matchmaking vil opløse din gruppe. Vil du fortsætte til serverbrowseren i stedet?"
 
 CouldNotFindGameTitleString="Kan ikke finde kamp"
-CouldNotFindGameDescriptionStringPC="No servers matching the search settings were found. Try different filters or use the server browser."
-CouldNotFindGameDescriptionStringOrbis="No servers matching the search settings were found. Try different filters."
+CouldNotFindGameDescriptionString="Der blev ikke fundet nogen servere med de valgte søgeindstillinger. Prøv nogle andre filtre eller brug serverbrowseren."
 
 [KFGFxStartGameContainer_FindGame]
 MultiplayerString="Online matchmaking"
-SoloString="Spil offline alene"
-TutorialString="Grundtræning"
+SoloString="Spil solo offline"
+TutorialString="Basic Training"
 
 [StartMenuHelperText]
-modeList0="Overlevelse (PVE) – Kæmp mod bølger af computerstyrede Zeds"
-modeList1="VS Overlevelse (PVP) – Horzine-lejesoldater mod bølger af spiller- og computerstyrede Zeds"
+modeList0="Survival – PVE battle waves of AI controlled Zeds"
+modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
 modeList2=""
-difficultyList0="Normal - Beregnet til nye spillere med Perks i level 0-5."
-difficultyList1="Svær - Beregnet til erfarne spillere med Perks i level 5-12. Der er flere Zeds per bølge, de bevæger sig hurtigere og har mere helbred. Du finder færre genstande, og du får færre dosh."
-difficultyList2="Selvmorderisk – Beregnet til øvede spillere med Perks i level 13-25. Der er mange flere Zeds per bølge, de bruger nye angreb og bevæger sig fortsat hurtigere. Du finder mange færre genstande, og du får færre dosh."
-difficultyList3="Helvede på jord - Den mest intense udfordring beregnet til spillere med Perks i level 25. Der er endnu flere Zeds per bølge og de bruger nye angreb. Du finder endnu færre genstande end før, og du får endnu færre dosh."
+difficultyList0="Normal – For beginning players of perk rank 0-5."
+difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
 lengthList0=""
 lengthList1=""
 lengthList2=""
 lengthList3=""
-serverTypeList0="Rangeret - Enhver bane, ingen mods, ingen venlig beskydning, maks. 6 spillere (eller maks. 12 spillere i VS Overlevelse)"
-serverTypeList1="Rangeret standard - Officielle baner, ingen mods, ingen venlig beskydning og maks. 6 spillere"
-serverTypeList2="Rangeret tilpasset - Enver bane, tillade mods, enhver serverindstilling"
-serverTypeList3="Ikke rangeret, tilpasset - Ikke-godkendte mods (udelukkende)"
-serverTypeList4="No preference - Any of the other server types"
+serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (if VS Survival this is 12 players max)"
+serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
+serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
+serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -140,18 +125,17 @@ StartGameString="START SPIL"
 LaunchGameString="START SPIL"
 InProgressString="SPILFREMSKRIDT"
 SoloGameString="SOLO-SPIL"
-LeaveMatchMakingString="Forlad matchmaking"
+LeaveMatchMakingString="FORLAD MATCHMAKING"
 MultiplayerLaunchString="SPIL ONLINE NU"
-SearchingString="SØGER EFTER ONLINE SPIL... VENT VENLIGST"
-CancelSearchingString="ANNULLER SØGNING"
+SearchingString="ANNULLER SØGNING"
+CancelSearchingString="CANCEL SEARCH"
 ServerTypeString="SERVERTYPE"
-AnyMapServerString="Rangeret"
+AnyMapServerString="Ranked"
 UnrankedServerString="Ikke rangeret"
-CustomServerString="Rangeret - Tilpasset"
-StandardServerString="Rangeret - Standard"
+CustomServerString="Tilpasset"
+StandardServerString="Standard"
 AllowInProgressString="Tillad igangværende spil"
 NotStartedString="Kun nye spil"
-CreateNewGameString="Create New Game"
 
 
 [KFGFxStartContainer_MatchMaking]
@@ -164,7 +148,6 @@ OverviewString="KAMPOVERSIGT"
 ChangeString="SKIFT"
 SharedByString="Delt af:"
 SharedContentString="DELT INDHOLD"
-AuthorString="By "
 
 [KFGFxStartContainer_ServerBrowserOverview]
 OverviewString="KAMPOVERSIGT"
@@ -185,9 +168,9 @@ PlayerHeaderString="INVENTAR"
 SelectPerkString="VÆLG PERK"
 
 [KFGFxMenu_ServerBrowser]
-FavoriteString="FAVORIT"
+FavoriteString="FØJ TIL FAVORITTER"
 MultiplayerMenuString="MATCHMAKING"
-LeaveMenuString="At forlade denne menu vil opløse din gruppe. Vil du fortsætte til matchmaking i stedet?"
+LeaveMenuString="At forlade denne menu vil opløse din gruppe. Vil du fortsætte til serverbrowseren i stedet?"
 NameString="NAVN"
 RefreshString="OPDATER"
 GamesFoundString="SPIL FUNDET:"
@@ -210,7 +193,7 @@ ResetString="NULSTIL"
 
 PingString="PING"
 LengthString="LÆNGDE"
-DifficultyString="SVÆRHEDSGR."
+DifficultyString="SVÆRHEDSGRAD"
 MapString="BANE"
 GameModeString="TILSTAND"
 WaveString="BØLGE"
@@ -255,7 +238,7 @@ ServerInfoString="SERVERINFO"
 UnfavoriteString="FJERN SOM FAVORIT"
 
 [KFGFxMenu_Trader]
-ExitMenuString="LUK MENU"
+ExitMenuString="FORLAD MENU"
 
 [KFGFxTraderContainer_Store]
 TraderString="KØB UDSTYR"
@@ -268,20 +251,20 @@ SpectateString="KIG PÅ"
 [KFGFxTraderContainer_ItemDetails]
 DamageTitle="SKADE"
 FireRateTitle="SKUDHASTIGHED"
-PenetrationTitle="PENETRERING"
+PenetrationTitle="GENNEMTRÆNGNING"
 RangeTitle="SKUDVIDDE"
 BlockTitle="BLOKER"
 ParryTitle="PARER"
 AccuracyTitle="PRÆCISION"
-CapacityTitle="KAPACITET"
+CapacityTitle="AMMUNITIONSKAPACITET"
 MagTitle="MAGASINSTØRRELSE"
 HealAmountTitle="HELINGSMÆNGDE"
 HealRechargeTitle="GENOPLADNINGSTID"
 BuyString="KØB"
 SellString="SÆLG"
-CannotSellString="IKKE SALGBAR"
+CannotSellString="KAN IKKE SÆLGE"
 CannotBuyString="KAN IKKE KØBE"
-FavoriteString="FAVORIT"
+FavoriteString="FØJ TIL FORETRUKNE"
 UnfavoriteString="FJERN FRA FORETRUKNE"
 
 [KFGFxTraderContainer_PlayerInventory]
@@ -312,85 +295,84 @@ WeaponTypeStrings[9]="Maskinpistoler"
 OffPerkString="Uden Perk"
 
 [KFGFxHUD_PostRoundMenu]
-RoundResultsString="Rundens resultater"
-MatchResultsString="Overordnet vinder"
-SurvivorVictory="De overlevende sejrede!"
-ZEDVictory="Zeds'ne sejrede!"
-TieString="Uafgjort!"
-YourTeamString="Dit hold vinder!"
-OpposingTeamString="Modstanderens hold vinder!"
-MatchOnGoingString="Skifter hold..."
+RoundResultsString="Round Results"
+MatchResultsString="Overall Winner"
+SurvivorVictory="Survivor Victory!"
+ZEDVictory="Zed Victory!"
+TieString="Tie!"
+YourTeamString="Your Team Wins!"
+OpposingTeamString="Opposing Team Wins!"
+MatchOnGoingString="Switching Teams..."
 
 [KFGFxPostRoundContainer_Team]
-TitleString="Runde "
-ScoreString="Point"
-WavesCompleteString="Bonus for gennemførte bølger"
-BossDeadString="Boss besejret"
-DeathsString="Straf fra spillerdødsfald"
-DamageString="Straf fra boss-skade"
-TotalString="I ALT"
-YourTeamString=" (Dit hold)"
-OpponentsString=" (Modstandere)"
+TitleString="Round "
+ScoreString="Score"
+WavesCompleteString="Waves Completed Bonus"
+BossDeadString="Boss Defeated"
+DeathsString="Player Deaths Penalty"
+DamageString="Damage From Boss Penalty"
+TotalString="TOTAL"
+YourTeamString=" (Your Team)"
 
 [KFGFxMenu_PostGameReport]
 MapVoteString="BANEAFSTEMNING"
 PlayerStatsString="SPILLERSTATISTIKKER"
 TeamAwardsString="PRÆMIER"
 PostGameReportString="EFTERSPILSRAPPORT"
-NextMapString="Ny bane om:"
+NextMapString="Næste bane om:"
 WaveString="BØLGE"
 XPString="XP"
 VictoryString="Sejr"
 DefeatString="Nederlag"
-ItemDropTitleString="Ny genstand anskaffet!"
+ItemDropTitleString="NY GENSTAND ANSKAFFET!"
 
 [EphemeralMatchStats]
 MedicineMaster="Medicinmester"
-MedicineMasterValue="heling"
+MedicineMasterValue="Helbred"
 ZedSlayer="Zed-slagter"
-ZedSlayerValue="drab"
+ZedSlayerValue="Drab"
 Enforcer="Håndhæver"
 EnforcerValue="assisterede drab"
 Destroyer="Ødelægger"
-DestroyerValue="skade"
+DestroyerValue="Skade"
 GiantSlayer="Gigant-slagter"
-GiantSlayerValue="store Zeds"
+GiantSlayerValue="Store zeds"
 MoneyBags="Pengeposer"
 MoneyBagsValue="Dosh"
-HeadPopper="Hovedsprænger"
-HeadPopperValue="hovedskud"
+HeadPopper="Hovedpopper"
+HeadPopperValue="Hovedskud"
 Dominator="Hersker"
-DominatorValue="boss"
+DominatorValue="Boss"
 
-Carnage="Blodbad"
-Closer="Afslutter"
-ComboMaker="Medhjælper"
-Grabby="Gribeklo"
-ZedSupport="Zed-støtte"
+Carnage="Carnage"
+Closer="Closer"
+ComboMaker="Combo Maker"
+Grabby="Grabby Pants"
+ZedSupport="Zed Support"
 Zednnihilation="Zednnihilation"
-CarnageValue="skade gjort som Zed"
-CloserValue="overlevende dræbt"
-ComboMakerValue="assisterede drab som Zed"
-GrabbyValue="spillere grebet fat i"
-ZedSupportValue="indirekte skade"
-ZednnihilationValue="drab i løbet af bølge"
+CarnageValue="Zed Damage Dealt"
+CloserValue="Survivor Kills"
+ComboMakerValue="Zed Assist"
+GrabbyValue="Players Grabbed"
+ZedSupportValue="Indirect Damage"
+ZednnihilationValue="Kills in Wave"
 
 
 
 EPB_Healing="Heling"
 EPB_Kills="Drab"
 EPB_Assists="Assisterede drab"
-EPB_LargeZedKill="Store Zed-drab"
+EPB_LargeZedKill="Store zed-drab"
 EPB_Dosh="Dosh tjent"
 EPB_HeadShots="Hovedskud"
 EPB_KnifeKills="Knivdrab"
 EPB_PistolKills="Pistoldrab"
 EPB_DoorWelding="Dørsvejsning"
 
-EPB_HealingValue="heling"
+EPB_HealingValue="helbred"
 EPB_KillsValue="drab"
 EPB_AssistsValue="assisterede drab"
-EPB_LargeZedKillValue="store Zeds"
+EPB_LargeZedKillValue="store zeds"
 EPB_DoshValue="dosh"
 EPB_HeadShotsValue="hovedskud"
 EPB_KnifeKillsValue="drab"
@@ -410,11 +392,11 @@ TopVotesString="FLEST STEMMER"
 AchievementsString="Præstationer"
 KnifeString="Kniv"
 TopWeaponsString="BEDSTE VÅBEN"
-ZedKillsString="Zed-drab:"
+ZedKillsString="ZED-DRAB"
 TotalDamageDealtString="Skade gjort i alt:"
 HeadShotsString="Hovedskud:"
-LargeZedKillsString="Store Zeds dræbt:"
-TotalDoshEarnedString="Dosh tjent i alt:"
+LargeZedKillsString="Store zeds dræbt:"
+TotalDoshEarnedString="Dosh tjent i alt"
 TotalKillsString="Drab i alt:"
 AssistsString="Assisterede drab:"
 DamageDealtString="Skade gjort:"
@@ -427,7 +409,7 @@ WaitingString="VENTER PÅ SPILLERE"
 DeployingString="STARTER OM"
 CreatePartyString="INVITER VENNER"
 ReadyString="KLAR"
-LeaveString="Forlad gruppe"
+LeaveString="FORLAD GRUPPE"
 SquadString="HOLD"
 SoloString="SOLO"
 DefaultPlayerName="Spiller"
@@ -454,7 +436,7 @@ PartyLeaderString="Leder"
 
 [KFGFxWidget_PartyInGame_Versus]
 SwitchTeamsString="Skift hold"
-balanceWarningString="ADVARSEL: Holdene vil blive auto-balancerede"
+balanceWarningString="ADVARSEL: Holdene vil automatisk blive afbalancerede"
 
 [KFGFxMenu_Gear]
 GearHeaderString="TILPAS UDSTYR"
@@ -470,14 +452,11 @@ WeaponsString="Våben"
 WeaponsInfoString="Tilpas"
 
 [KFGFxMenu_Inventory]
-NoItemsString="You have no Inventory items within the currently selected filter."
-ItemExchangeTimeOutString="Failed to Reach Item Server"
-TryAgainString="Client failed to exhange item. Please try again later. If this issue persists, contact support."
-RecycleOneString="Genbrug én"
-RecycleDuplicatesString="Genbrug duplikater"
+RecycleOneString="Recycle One"
+RecycleDuplicatesString="Recycle Duplicates"
 InventoryString="INVENTAR"
 UseString="BRUG"
-EquipString="TAG PÅ"
+EquipString="UDSTYR"
 UnequipString="TAG AF"
 AllString="Alle"
 WeaponSkinString="Våbenlakeringer"
@@ -489,27 +468,27 @@ MoreItemsString="Du skal bruge en matchende nøgle og kasse. Du kan købe en nø
 FailedToExchangeString="KAN IKKE ÅBNE KASSE"
 RecycleString="GENBRUG"
 CraftString="SMED"
-CraftCosmeticString="SMED KOSMETIK"
-CraftWeaponString="SMED VÅBENLAKERING"
-CraftWeaponStrings[0]="Ualmindelig\nvåbenlakering"
-CraftWeaponStrings[1]="Sjælden\nvåbenlakering"
-CraftWeaponStrings[2]="Enestående\nvåbenlakering"
-CraftWeaponStrings[3]="Mestersmedet\nvåbenlakering"
-CraftCosmeticStrings[0]="Ualmindelig\nkosmetik"
-CraftCosmeticStrings[1]="Sjælden\nkosmetik"
-CraftCosmeticStrings[2]="Enestående\nkosmetik"
-CraftCosmeticStrings[3]="Mestersmedet\nkosmetik"
+CraftCosmeticString="Kosmetiksmedning"
+CraftWeaponString="Våbenlakeringssmedning"
+CraftWeaponStrings[0]="Ualmindelig våbenlakering"
+CraftWeaponStrings[1]="Sjælden våbenlakering"
+CraftWeaponStrings[2]="Enestående våbenlakering"
+CraftWeaponStrings[3]="Mestersmedet våbenlakering"
+CraftCosmeticStrings[0]="Ualmindelig kosmetik"
+CraftCosmeticStrings[1]="Sjælden kosmetik"
+CraftCosmeticStrings[2]="Enestående kosmetik"
+CraftCosmeticStrings[3]="Mestersmedet kosmetik"
 RecycleWarningString="Advarsel: Dette kan ikke fortrydes. Dette vil destruere den valgte genstand og erstatte den med en materialegenstand til smedning"
 RecycleItemString="Genbrug genstand?"
 ConfirmCraftItemString="At smede denne genstand vil opbruge ressourcer og kan ikke fortrydes"
 CraftItemString="Bekræft genstandssmedning?"
 FailedToCraftItemString="Kunne ikke smede genstand"
 CraftRequirementString="Ikke nok påkrævede smedematerialer"
-CraftCosmeticDescriptionString="Du kan smede nye kosmetiske genstande, fra kosmetisk materiale, i denne menu. Du kan anskaffe kosmetisk materiale ved at genbruge dine nuværende kosmetiske genstande. For at genbruge skal du vælge en genstand og trykke 'Genbrug'."
-CraftWeaponDescriptionString="Du kan smede nye våbenlakeringsgenstande, fra våbenlakeringsmateriale, i denne menu. Du kan anskaffe våbenlakeringsmateriale ved at genbruge dine nuværende våbenlakeringsgenstande. For at genbruge skal du vælge en genstand og trykke 'Genbrug'."
+CraftCosmeticDescriptionString="Du kan smede nye kosmetiske genstande, fra kosmetisk materiale, i denne menu. Du kan anskaffe kosmetisk materiale ved at genbruge dine nuværende kosmetiske genstande. For at genbruge skal du vælge en genstand og trykke \Genbrug\".""
+CraftWeaponDescriptionString="Du kan smede nye våbenlakeringsgenstande, fra våbenlakeringsmateriale, i denne menu. Du kan anskaffe våbenlakeringsmateriale ved at genbruge dine nuværende våbenlakeringsgenstande. For at genbruge skal du vælge en genstand og trykke \Genbrug\".""
 RequiresString="Kræver: "
-PurchaseKeyString="KØB NØGLE: "
-LookUpOnMarketString="Find på markedet"
+PurchaseKeyString="BUY KEY"
+LookUpOnMarketString="Lookup on Market"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -524,7 +503,7 @@ SkillsString="FÆRDIGHEDER"
 
 [KFGFxMenu_Perks]
 TierUnlockedText="Nyt niveau oplåst!"
-TierUnlockedSecondaryText="Du har låst op for et nyt niveau for følgende Perks:"
+TierUnlockedSecondaryText="Du har låst op for et nyt niveau for følgende perks:"
 
 
 [KFGFxPerksContainer_Details]
@@ -539,7 +518,7 @@ BackButtonString="<< TILBAGE"
 [KFGFxPerksContainer_Selection]
 HeaderTitle="VÆLG PERK"
 EndOfWaveString="Perk-ændringer træder i kraft i slutningen af bølgen!"
-ChangesAppliedOnCloseString="Perk-ændringer træder i kraft når denne menu lukkes."
+ChangesAppliedOnCloseString="Perk-ændringer træder i kraft når denne menu lukkes"
 OncePerWaveString="Perk-ændringer kan kun foretages én gang per bølge!"
 
 [KFGFxMenu_Store]
@@ -551,13 +530,12 @@ TotalString="I alt"
 CheckOutString="Betal"
 
 [KFGFxStoreContainer_Main]
-WeaponSkinsRotationString="Weapon Skins"
-WeaponSkinsString="Markedsvåbenlakeringer"
-MarketConsumablesString="Markedskasser/USB'er"
-MarketCosmeticsString="Markedskosmetik"
+WeaponSkinsString="Våbenlakeringer"
+MarketConsumablesString="Market Crates/USBs"
+MarketCosmeticsString="Market Cosmetics"
 
 [KFGFxStoreContainer_Details]
-LookUpOnMarketString="FIND PÅ MARKEDET"
+LookUpOnMarketString="FIND IN MARKET"
 AddToCartString="Køb genstand"
 PreviewString="Forhåndsvis"
 
@@ -584,7 +562,7 @@ TitleStrings[0]="Forlader du allerede kampen?"
 TitleStrings[1]="Smutter du allerede?"
 TitleStrings[2]="Træt af at blive tygget på?"
 
-DescriptionStrings[0]="Fint, bare løb for dit ynkelige liv. Du ville alligevel dø efter fem minutter i Killing Floor."
+DescriptionStrings[0]="Fint, bare løb for dit ynkelige liv. Du ville alligevel ikke overleve i fem minutter i Killing Floor."
 DescriptionStrings[1]="Hvert sekund, du er væk, bliver endnu en horde af vanskabninger født, som har tænkt sig at guffe dine venner i sig. Har du bare tænkt dig at forlade dem?"
 DescriptionStrings[2]="De finder dig uanset hvad. De finder dig og spiser dit hjerte, som var det en lille kødsnack."
 
@@ -612,11 +590,11 @@ ChangeCameraString="SKIFT KAMERA"
 PlayerString="SPILLER"
 DoshString="DOSH"
 KillsString="DRAB"
-AssistsString="ASSIST."
+AssistsString="ASSISTEREDE DRAB"
 PingString="PING"
 
 [KFGFxHUD_ScoreboardVersusWidget]
-ScoreString="POINT"
+ScoreString=SCORE
 
 [KFGFxHUD_PlayerStatus]
 EXPString="XP"
@@ -641,9 +619,9 @@ KilledString="dræbte"
 ZedString="ZEDs"
 
 [KFLocalMessage_VoiceComms]
-VoiceCommsOptionStrings[0]="BRUG FOR HELING"
-VoiceCommsOptionStrings[1]="BRUG FOR DOSH"
-VoiceCommsOptionStrings[2]="BRUG FOR HJÆLP"
+VoiceCommsOptionStrings[0]="ANMOD OM HELING"
+VoiceCommsOptionStrings[1]="ANMOD OM DOSH"
+VoiceCommsOptionStrings[2]="ANMOD OM HJÆLP"
 VoiceCommsOptionStrings[3]="HÅN ZEDS"
 VoiceCommsOptionStrings[4]="FØLG MIG"
 VoiceCommsOptionStrings[5]="GÅ MOD HANDLEREN"
@@ -699,7 +677,7 @@ SetGammaString="ANVEND"
 
 
 GraphicsString="GRAFIK"
-BasicString="Grundlæggende"
+BasicString="Basal"
 AdvancedString="Avanceret"
 EffectsString="Effekter"
 
@@ -856,22 +834,16 @@ GoreOptionStrings[2]="Splatfyldt"
 NormalString="Normal"
 WiderString="Bredere"
 FriendlyHudScaleString="Venlig HUD-skalering"
-KillTickerString="Drabsnotifikationer"
-HideBossHealthBarString="Hide Boss Healthbar"
-ShowWelderInInvString="Show Welder In Inventory"
-UseAltAimOnDualString="Use Alt Dual Pistol Aim"
-AntiMotionSicknessString="Anti Motion Sickness"
-AutoTurnOffString="No Auto Turn On Clot Grab"
-ReduceHighPitchNoiseString="Reduce High Pitch Noise"
+KillTickerString="Kill Ticker"
 
 [LocalizedControls]
 ControllerLayoutDefault="Standard"
-ControllerLayoutJumper="Hopper"
+ControllerLayoutJumper="Jumper"
 ControllerLayoutQuickDraw="Quick Draw"
-ControllerLayoutSouthPaw="Venstrehåndet"
+ControllerLayoutSouthPaw="South Paw"
 
-GBA_TurnLeft="Drej til venstre"
-GBA_TurnRight="Drej til højre"
+GBA_TurnLeft="Turn Left"
+GBA_TurnRight="Turn Right"
 GBA_Backward="Bevægelse bagud"
 GBA_MoveForward="Bevægelse fremad"
 GBA_WeaponSelect_Gamepad="Våbenvalg (hold nede)"
@@ -901,8 +873,8 @@ GBA_SprintAndMelee="Nærkamp / Sprint"
 GBA_ShowMenu="Åbn/luk menu i spil"
 
 GBA_Use="Brug / hurtigsvejs (hold nede)"
-GBA_Talk="Chat"
-GBA_TeamTalk="Holdchat"
+GBA_Talk="Tal"
+GBA_TeamTalk="Team Talk"
 GBA_VoiceChat="Hold-stemmechat"
 GBA_PublicVoiceChat="Offentlig stemmechat"
 GBA_ShowVoiceComms="Talekommandoer"
@@ -920,7 +892,6 @@ GBA_SwitchFireMode="Alternativ affyr / bloker"
 GBA_TertiaryFire="Nærkampsslag"
 GBA_ToggleFlashlight="Tænd/sluk lommelygte"
 GBA_AltFire="Alternativ affyr / bloker"
-GBA_AltFire_Gamepad="Alt. Fire / Block"
 
 GBA_WeaponSelect_Gamepad="Våbenvalg (hold nede)"
 GBA_NextWeapon="Næste våben"
@@ -933,14 +904,14 @@ GBA_SwitchWeapon4="Udstyr"
 GBA_VoteYes="Stem ja (hold nede)"
 GBA_VoteNo="Stem nej (hold nede)"
 
-GBA_VoiceCommReqHealing="BRUG FOR HELING"
-GBA_VoiceCommReqDosh="BRUG FOR DOSH"
-GBA_VoiceCommReqHelp="BRUG FOR HJÆLP"
-GBA_VoiceCommTauntZeds="HÅN ZEDS"
-GBA_VoiceCommFollowMe="FØLG MIG"
-GBA_VoiceCommGetToTheTrader="GÅ MOD HANDLEREN"
-GBA_VoiceCommAffirmative="BEKRÆFTET"
-GBA_VoiceCommNegative="AFVIST"
+GBA_VoiceCommReqHealing="REQUEST HEALING"
+GBA_VoiceCommReqDosh="REQUEST DOSH"
+GBA_VoiceCommReqHelp="REQUEST HELP"
+GBA_VoiceCommTauntZeds="TAUNT ZEDS"
+GBA_VoiceCommFollowMe="FOLLOW ME"
+GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
+GBA_VoiceCommAffirmative="AFFIRMATIVE"
+GBA_VoiceCommNegative="NEGATIVE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Følsomhed"
@@ -951,7 +922,7 @@ MouseString="Mus"
 MouseSmoothingString="Museudglatning"
 ZoomSensitivityString="Zoom-følsomhed"
 ControllerZoomSensitivityString="Zoom-følsomhed"
-AimAssistLockOnString="Sigtehjælp: Zoom-låsning"
+AimAssistLockOnString="Sigtehjælp: Zoom-fastlåsning"
 AimAssistRotationString="Sigtehjælp: Rotation"
 AimAssistSlowDownString="Sigtehjælp: Nedsat tempo"
 ForceFeedbackString="Controller-vibration"
@@ -961,7 +932,7 @@ SectionHeaders[0]="Bevægelse"
 SectionHeaders[1]="Interaktion"
 SectionHeaders[2]="Kamp"
 SectionHeaders[3]="Våbenvalg"
-SectionHeaders[4]="TALEKOMMANDOER"
+SectionHeaders[4]="VOICE COMMS"
 
 ResetString="NULSTIL ALLE"
 ApplyString="ANVEND"
@@ -980,16 +951,15 @@ LookString="Udsynsstyring"
 WeaponSelectMenuString="Våbenvalgmenu (hold nede)"
 ShowScoardBoardString="Vis pointtavle"
 ShowIngameMenuString="Åbn/luk menu i spil"
-CurrentControllerPresetString="Nuværende forudindstilling"
-PresetStrings[0]="Forudindstilling 1"
-PresetStrings[1]="Forudindstilling 2"
-PresetStrings[2]="Forudindstilling 3"
-PresetStrings[3]="Forudindstilling 4"
+CurrentControllerPresetString="Current Controller Preset"
+PresetStrings[0]="Preset 1"
+PresetStrings[1]="Preset 2"
+PresetStrings[2]="Preset 3"
+PresetStrings[3]="Preset 4"
 
 BashString="Nærkampsslag"
 BlockString="Bloker (hold nede)"
 HoldString="(Hold nede)"
-TapString="TAP"
 
 [KFInventoryManager]
 FullHealthMsg="Fuldt helbred"
@@ -1007,7 +977,7 @@ KickVoteSucceededString="Afstemning vedtaget om at fjerne:"
 KickVoteFailedString="Afstemning mislykket om at fjerne:"
 KickVoteRejectedString="Der er ikke gået nok tid siden sidste afstemning. Vent venligst og prøv så igen."
 KickVoteInProgressString="Kan ikke starte en afstemning, da der allerede er en i gang."
-KickVoteDisabledString="Afstemning om at fjerne spillere er slået fra på denne server."
+KickVoteDisabledString="Afstemning om at fjerne spillere er slået fra på denne server"
 KickVoteYesReceivedString="Du har stemt for at fjerne:"
 KickVoteNoReceivedString="Du har stemt imod at fjerne:"
 KickVoteKickAdminString="Du kan ikke fjerne serveradministratoren."
@@ -1022,7 +992,7 @@ BannedFromServerString="Du er blevet fjernet fra denne server. Du kan ikke delta
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Du modtog ammunition fra"
 GaveAmmoToMessage="Du gav ammunition til"
-PendingPerkChangesSet="Perk-ændringer træder i kraft i slutningen af bølgen"
+PendingPerkChangesSet="Perk-ændringer træder i kraft i slutningen af bølgen."
 PendingPerkChangesApplied="Perk-ændringer anvendt!"
 HealedByMessage="Du blev helet af"
 HealedMessage="Du helede"
@@ -1064,13 +1034,13 @@ FoundAllMapCollectiblesMessage="Alle %x% er blevet fundet!"
 MapCollectibleName="stykke dosh-bling"
 
 [KFLocalMessage_Priority]
-WaveStartMessage="INDKOMMENDE BØLGE"
-WaveEndMessage="BØLGE GENNEMFØRT"
+WaveStartMessage="I N D K O M M E N D E  B Ø L G E"
+WaveEndMessage="B Ø L G E  G E N N E M F Ø R T"
 GetToTraderMessage="Gå mod handlerkapslen"
-YouLostMessage="NEDERLAG"
-YouWonMessage="SEJR"
-SquadWipedOutMessage="Dit hold blev udryddet!"
-SquadSurvivedMessage="Dit hold overlevede!"
+YouLostMessage="N E D E R L A G"
+YouWonMessage="S E J R"
+SquadWipedOutMessage="Dit hold blev udryddet"
+SquadSurvivedMessage="Dit hold overlevede"
 ObjectiveStartMessage="Mål startet!"
 ObjectiveWonMessage="Mål vundet!"
 ObjectiveEndedMessage="Mål afsluttet!"
@@ -1079,30 +1049,29 @@ ObjNotEnoughPlayersMessage="Ikke nok spillere!"
 ObjTimeRanOutMessage="Tidsbegrænsning nået!"
 HumansLoseMessage="Menneskeholdet blev udryddet!"
 HumansWinMessage="Menneskeholdet overlevede!"
-AttackHumanPlayersString="Angrib menneskespillerne!"
-ZedGroupRegroupingString="Zed-horden omgrupperer!"
-NextRoundBeginString="NÆSTE RUNDE"
-PlayerCanChangePerksString="Perk-ændringer er tilladt"
-ZedWaitingForNextRoundString="Zed-hordeinvasion på vej!"
+AttackHumanPlayersString="Angrib de menneskelige spillere!"
+ZedGroupRegroupingString="Zed Horde regrouping!"
+NextRoundBeginString="N E X T  R O U N D"
+PlayerCanChangePerksString="Perk changes are allowed"
+ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="<%x%>FOR AT HANDLE"
-UseDoorMessage="ÅBN/LUK\n[HOLD NEDE] TAG SVEJSER FREM"
-EquipWelderMessage="<%HOLD%>EQUIP WELDER"
-ZedUseDoorMessage="<%x%>ÅBN/LUK"
-ZedUseDoorWeldedMessage="Dør tilsvejset, slå den ned!"
-RepairDoorMessage="<%HOLD%>EQUIP WELDER TO FIX DOOR"
-AcceptObjectiveMessage="<%x%>ACCEPTER MÅL"
-ReceiveAmmoMessage="<%x%>MODTAG AMMUNITION"
-ReceiveGrenadesMessage="<%x%>MODTAG GRANATER"
-HealSelfWarning="<%x%>HEL DIG SELV"
-HealSelfGamepadWarning="[HOLD NEDE]<%x%> HEL DIG SELV"
-PressToBashWarning="<%x%>SLÅ"
-GamepadWeaponSelectHint="[HOLD NEDE] VÅBENVALG"
-PlayerClotGrabWarningMessage="Dræb Zed for at slippe fri!"
+UseTraderMessage="<%x%> FOR AT HANDLE"
+UseDoorMessage="<%x%> Åbn/luk   (HOLD NEDE) <%x%> Tag svejser frem"
+UseDoorWeldedMessage="(HOLD NEDE) <%x%> Tag svejser frem"
+ZedUseDoorMessage="<%x%> Åbn/luk"
+ZedUseDoorWeldedMessage="DOOR WELDED, BREAK IT DOWN!"
+AcceptObjectiveMessage="<%x%> accepter mål"
+ReceiveAmmoMessage="<%x%> for at modtage ammunition"
+ReceiveGrenadesMessage="<%x%> for at modtage granater"
+HealSelfWarning="<%x%> for at hele dig selv."
+HealSelfGamepadWarning="(HOLD NEDE) <%x%> hel dig selv"
+PressToBashWarning="<%x%> for at slå"
+GamepadWeaponSelectHint="(HOLD NEDE) <%x%> våbenvalg"
+PlayerClotGrabWarningMessage="Dræb zed for at komme fri!"
 
 [KFLocalMessage_ServerNotification]
-TeamPendingBalanceMessage="Holdene er ubalancerede og vil blive justeret"
+TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
 
 [KFGfxPerkComp_Abilities]
 RankNames[0]="Rang I"
@@ -1147,148 +1116,146 @@ WeaponDroppedMessage="Du smed%%%% på grund af din nye bærekapacitet!"
 [KFPerk_Berserker]
 PerkName="Berserker"
 
-SkillCatagories[0]="Overlevelse"
-SkillCatagories[1]="Kamp"
-SkillCatagories[2]="Nærkamp"
-SkillCatagories[3]="Styrke"
-SkillCatagories[4]="Avanceret træning"
+SkillCatagories[0]="Survival"
+SkillCatagories[1]="Combat"
+SkillCatagories[2]="Close Combat"
+SkillCatagories[3]="Power"
+SkillCatagories[4]="Advanced Training"
 
 
-Passives[0]=(Title="Berserker-skade",Description="x%x øget skade hvert level");
-Passives[1]=(Title="Skaderesistens",Description="x%x resistent mod al skade per 5. level");
-Passives[2]=(Title="+Nattesynsevne",Description="Lygter OG nattesynsbriller");
-Passives[3]=(Title="+Clots kan ikke gribe fat i dig",Description="Clots kan ikke holde fast i en Berserker.");
+Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
+Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
+Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
+Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
 
-EXPAction1="Gør skade med Berserker-våben"
-EXPAction2="Dræb Zeds nær en spiller med et Berserker-våben"
+EXPAction1="Dealing Berserker weapon damage"
+EXPAction2="Kill Zeds near a player with a Berserker weapon"
 
-Fortitude="Hårdhudet"
-FortitudeDescription="Øger helbred med 50%."
+Fortitude="Dreadnaught"
+FortitudeDescription="Increase total Health by 50%."
 
-Ninja="Skytte"
-NinjaDescription="Bevæg dig 20% hurtigere. Sprint 25% hurtigere. Regenerer 2 point helbred hvert sekund."
+Ninja="Skirmisher"
+NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
-Vampire="Vampyr"
-VampireDescription="Hel dig selv for 4 point helbred for hver Zed, du dræber med et Berserker-våben. Du angriber også 15% hurtigere med Berserker-våben."
+Vampire="Vampire"
+VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
 
-Speed="Bøddel"
-SpeedDescription="Angrib 20% hurtigere og gør 25% mere skade med Berserker-våben."
+Speed="Butcher"
+SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
 
-Resistance="Resistens"
-ResistanceDescription="20% resistens mod al skade. Du får 20% ekstra resistens mod gift- og sonisk skade."
+Resistance="Resistance"
+ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
-Parry="Parer"
-ParryDescription="At parere et angreb med et Berserker-nærkampsvåben øger nærkampsangrebshastighed med 5% og nærkampsskade med 35% i 10 sekunder."
+Parry="Parry"
+ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
 
-Smash="Smadr"
-SmashDescription="Hårde angreb med Berserker-nærkampsvåben gør 50% mere skade samt 25% ekstra skade ved hovedskud og har 200% mere vaklekraft."
+Smash="Smash"
+SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
  
-Fury="Massakre"
-FuryDescription="Milde angreb med Berserker-nærkampsvåben gør 20% mere skade og er 5% hurtigere."
+Fury="Massacre"
+FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ZED TIME - Spartaner "
-SpartanDescription="Du har set 300: Angrib tæt på realtid og dit samlede helbred øges med 25%."
+Spartan="ZED TIME - Spartan" 
+SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
 
-Rage="ZED TIME - Berserker Rage"
-RageDescription="Heal 25% Health and Zeds close to you try to flee when you enter Zed time."
+Flash="ZED TIME - Berserker Rage"
+FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
 
 [KFPerk_Commando]
 PerkName="Commando"
 
-SkillCatagories[0]="Taktikker"
-SkillCatagories[1]="Avancerede taktikker"
-SkillCatagories[2]="Overlevelse"
-SkillCatagories[3]="Våbenspecialist"
-SkillCatagories[4]="Avanceret træning"
+SkillCatagories[0]="Tactics"
+SkillCatagories[1]="Advanced Tactics"
+SkillCatagories[2]="Survival"
+SkillCatagories[3]="Weapon Specialist"
+SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Skade med Perk-våben",Description="%x% forøgelse i skade med Commando-våben.");
-Passives[1]=(Title="Spot usynlige fjender og deres helbred",Description="10m plus %x%m for hvert level");
-Passives[2]=(Title="Forlænget Zed Time",Description="Zed Time varer %x% længere");
-Passives[3]=(Title="Genladningshastighed",Description="%x%% forøgelse hvert 5. level");
-Passives[4]=(Title="Nattesynsevne",Description="Lygter OG nattesynsbriller");
-Passives[5]=(Title="+Afslør usynlige Zeds",Description="Tillader holdkammerater se usynlige fjender");
+Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
+Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
+Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
+Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
+Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
+Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
 
-EXPAction1="Gør skade med Commando-våben"
-EXPAction2="Dræb Stalkers med Commando-våben"
+EXPAction1="Dealing Commando weapon damage"
+EXPAction2="Killing Stalkers with Commando weapons"
 
-TacticalReload="Taktisk genladning"
-TacticalReloadDescription="Vær sej. Vær hurtig. Genlad 20% hurtigere med Commando-våben OG se mere overklassisk ud, mens du gør det."
+TacticalReload="Tactical Reload"
+TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
 
-LargeMags="Store magasiner"
-LargeMagsDescription="Bliv lidt mere seriøs: Øger magasinstørrelser på Commando-våben med 50%."
+LargeMags="Large Mags"
+LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
 
 Backup="Backup"
-BackupDescription="Giver din reservepistol og kniv 60% ekstra skade til de øjeblikke, hvor du virkelig har brug for det! Du skifter også våben hurtigere."
+BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it!"
 
-Impact="Gennemslagskraft"
-ImpactDescription="Slå hårdere og slå dem ned. Øger alle Commando-våbens vaklekraft med 150%."
+Impact="Impact"
+ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
 
-HealthIncrease="Helbredsforøgelse"
-HealthIncreaseDescription="Øger samlet helbred og rustning med 25%."
+HealthIncrease="Health Increase"
+HealthIncreaseDescription="Increase total Health and Armor by 25%."
 
-AmmoVest="Ammunitionsvest"
-AmmoVestDescription="Du kan bære to ekstra magasiner til hvert Commando-våben."
+AmmoVest="Ammo Vest"
+AmmoVestDescription="Carry two extra magazines for each Commando weapon."
 
-HollowPoints="Hulspidsprojektiler"
-HollowPointsDescription="Opgraderer din ammunition hvilket giver Commando-våben 25% mere skade og 50% reduceret rekyl."
+HollowPoints="Hollow Point Rounds"
+HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more damage and reducing their recoil 50%."
 
-EatLead="Æd bly"
-EatLeadDescription="Brug for flere skud? Dine Commando-våben har 50% flere patroner i deres magasiner."
+EatLead="Eat Lead"
+EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
-RapidFire="ZED TIME - Hurtigskydning"
-RapidFireDescription="Når verden sætter farten ned, så gør du mere skade: Gør 3% mere skade med Commando-våben og skyd 3x hurtigere med alle våben."
+RapidFire="ZED TIME - Rapid Fire"
+RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
 
-Professional="ZED TIME - Professionel"
-ProfessionalDescription="Når verden sætter farten ned, så gør du ikke: Genlad våben med fuld hastighed og skift våben dobbelt så hurtigt!"
+Professional="ZED TIME - Professional"
+ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
 
 [KFPerk_Demolitionist]
 PerkName="Demolitionist"
-EXPAction1="Gør skade med Demolitionist-våben"
-EXPAction2="Dræb Fleshpounds med Demolitionist-våben"
+EXPAction1="Dealing Demolitionist weapon damage"
+EXPAction2="Killing Fleshpounds with Demolitionist weapons"
 
-SkillCatagories[0]="Teknik"
-SkillCatagories[1]="Sprængstoffer"
-SkillCatagories[2]="Avanceret teknik"
-SkillCatagories[3]="Våbenteknik"
-SkillCatagories[4]="Avancerede spængstoffer"
+SkillCatagories[0]="Technique"
+SkillCatagories[1]="Explosives"
+SkillCatagories[2]="Advanced Techniques"
+SkillCatagories[3]="Weapon Techniques"
+SkillCatagories[4]="Advanced Explosives"
 
-Passives[0]=(Title="Skade med Perk-våben",Description="%x% forøgelse i skade med Perk-våben");
-Passives[1]=(Title="Sprængstofresistens",Description="%x% resistens over for eksplosiv skade");
-Passives[2]=(Title="Ekstra sprængstofammunition",Description="Start med %x% mere sprængstofammunition");
-Passives[3]=(Title="+Granatforsyner",Description="Giv én ekstra granat per bølge til dit hold");
-Passives[4]=(Title="+Dørfælder",Description="Døre, du svejser, eksploderer når de slås ned.");
-Passives[5]=(Title="Reactive Armor",Description="When first reduced to 0 Health your armor will explode and leave you with 1 Health");
+Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
+Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
+Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
+Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
 
+Damage="Bombardier"
+DamageDescription="Your explosive Demolitionist weapons do 25% more damage."
 
-Damage="Bombekaster"
-DamageDescription="Dine eksplosive Demolitionist-våben gør 25% mere skade."
+Speed="Grenadier"
+SpeedDescription="You reload your Demolitionist weapons 10% faster."
 
-Speed="Grenader"
-SpeedDescription="Du genlader dine Demolitionist-våben 10% hurtigere."
+DirectHit="High Impact Rounds"
+DirectHitDescription="Do 25% more damage on a direct hit with your explosive Demolitionist weapons, but decrease maximum ammo for each weapon by 3."
 
-DirectHit="Slagkraftige patroner"
-DirectHitDescription="Gør 25% mere skade ved en direkte træffer med dine eksplosive Demolitionist-våben, men hvert våbens maksimale ammunition sænkes med 3."
+Ammo="Extra Rounds"
+AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-Ammo="Ekstra patroner"
-AmmoDescription="Øger alle eksplosive Demolitionist-våbens maksimale ammunition med 5."
+SirenResistance="Sonic Resistant Rounds"
+SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
 
-SirenResistance="Lydresistente patroner"
-SirenResistanceDescription="Dine eksplosive Demolitionist-våben har 100% chance for at nå forbi en Sirens skrig, og så eksploderer de faktisk."
+AreaOfEffect="Fragmentation Rounds"
+AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
 
-AreaOfEffect="Fragmentationspatroner"
-AreaOfEffectDescription="Dine eksplosive Demolitionist-våbens sprængradius øges med 50%, men våbnene gør 30% reduceret skade."
+CriticalHit="Armor Piercing Rounds"
+CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-CriticalHit="Panserbrydende patroner"
-CriticalHitDescription="Alle Demolitionist-våben gør 50% ekstra skade ved direkte træffer på et kritisk område."
+ConcussiveForce="Concussive Rounds"
+ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
 
-ConcussiveForce="Smadrende patroner"
-ConcussiveForceDescription="Dine Demolitionist-våbens reaktions-, lammelses-, vakle- og knockdown-kraft øges med 50%."
+Nuke="ZED TIME - Destroyer of Worlds"
+NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
 
-Nuke="ZED TIME - Verdens ødelægger"
-NukeDescription="Smid atombomben: Dine sprængstoffer leverer enorme mængder stråleskade i Zed Time, hvilket forgifter Zeds."
-
-Professional="ZED TIME - Den gale bombekaster"
-ProfessionalDescription="Skyd og genlad i næsten realtid."
+Professional="ZED TIME - Mad Bomber"
+ProfessionalDescription="Shoot and reload in near real time."
 
 
 [KFPerk_FieldMedic]
@@ -1300,50 +1267,50 @@ SkillCatagories[2]="Våbenhåndtering"
 SkillCatagories[3]="Kamptekniker"
 SkillCatagories[4]="Avanceret træning"
 
-Passives[0]=(Title="Opfyldningshastighed for sprøjte",Description="%x% forøgelse i sprøjtens opfyldningshastighed");
-Passives[1]=(Title="Sprøjtestyrke",Description="Helbred gendannet fra sprøjte øget med %x%");
-Passives[2]=(Title="Bloat-opkastresistens",Description="Skade fra Bloat-opkast reduceret med %x%");
-Passives[3]=(Title="Bevægelseshastighed",Description="%x% hurtigere bevægelse");
-Passives[4]=(Title="Rustningsbonus",Description="Rustning øget med %x%");
+Passives[0]=(Title="Sprøjtegenopfyldningsrate",Description="%x% forøgelse i våbenskade");
+Passives[1]=(Title="Sprøjtestyrke",Description="Spot af usynlighed øget med %x%");
+Passives[2]=(Title="Bloat-opkastresistens",Description="Spot af helbredsbjælke øget med %x%");
+Passives[3]=(Title="Bevægelseshastighed",Description="Zed Time varer i %x%");
+Passives[4]=(Title="Rustningsbonus",Description="Helbred øget med %x%");
 
 HealingSurge="Helingsbølge"
 HealingSurgeDescription="Brug din lægeviden fornuftigt: Øger helbred med 20%."
 
-Survivalist="Resilience"
-SurvivalistDescription="Increase damage resistance 1% per Health point lost, up to 50%."
-
-HealingSpeedBoost="Adrenaline Shot"
-HealingSpeedBoostDescription="Shooting teammates with healing darts increases their movement speed 10% for 5 seconds. This can stack up to a 30% bonus."
+Enforcer="Håndhæver"
+EnforcerDescription="Det må være nok fokus på omsorg: Øger dine Perk- og backup-våbens ammunitionskapacitet med 20%."
 
 Combatant="Kombattant"
 CombatantDescription="Vær ikke blot en læge; vær feltlægen, du altid har drømt om at være, med gratis startrustning og 60% rabat på alle rustningskøb!"
 
-HealingDamageBoost="Focus Injection"
-HealingDamageBoostDescription="Shooting teammates with healing darts increases the damage they inflict 5% for 5 seconds. This can stack up to a 20% bonus. "
+Armament="Beskytning"
+ArmamentDescription="Lad dig ikke kun reparere folk: Du mister 25% af din helingsvirkning på holdkammerater men reparerer i stedet 1% af deres maksimale rustning hver gang, du heler dem!"
 
-AcidicCompound="Acidic Rounds"
-AcidicCompoundDescription="Perk weapons can poison Zeds, inflicting poison damage over time."
+Regeneration="Regenerering"
+RegenerationDescription="Giv dig selv en dosis: Dit helbred regenererer langsomt over tid takket være Horzine-nanorobotter."
 
-HealingShield="Coagulant Booster"
-HealingShieldDescription="Shooting teammates with healing darts increases their damage resistance 10% for 5 seconds. This can stack up to a 30% bonus. "
+Lacerate="Opsprætter"
+LacerateDescription="Vær forsigtig med den skalpel: Du får zeds til at bløde mere, efter du skader dem med ethvert Perk-våben."
 
-Enforcer="Håndhæver"
-EnforcerDescription="Det må være nok fokus på omsorg: Øger dine Field Medic- og reservevåbens ammunitionskapacitet med 20%."
+VaccinationArmor="Vaccination"
+VaccinationArmorDescription="Hjælp med at forhindre spredning af dødsfald: Din heling reparerer 2% af maks. rustning på holdkammerater og giver midlertidig resistens over for Bloat-opkast."
+
+VaccinationDamageMod="Syreforbindelse"
+VaccinationDamageModDescription="For nogle en heler, for andre... døden! Dine helingspile kan forgifte zeds. Hvis du forårsager nok skade, får dine granater og pile også zeds til at gå i panik."
 
 AirborneAgent="ZED TIME - Luftbåren agent"
 AirborneAgentDescription="Man siger, at tiden heler alle sår: Dine lægepile danner en helingssky som giver 20% ekstra heling til dit mål og holdkammerater i nærheden."
 
 Sedative="ZED TIME - Beroliggende middel"
-SedativeDescription="Og tiden står stille: Lægepile og -granater frigør et Zed-beroligende middel som midlertidigt stopper Zed-bevægelse."
+SedativeDescription="Og tiden står stille: Lægepile og -granater frigør et zed-beroligende middel som midlertidigt stopper zed-bevægelse."
 
 
-EXPAction1="Gør skade med Medic-våben"
-EXPAction2="Hel holdkammerater"
+EXPAction1="At gøre skade med Medic-våben"
+EXPAction2="At hele holdkammerater"
 
 [KFPerk_Firebug]
 PerkName="Firebug"
-EXPAction1="Gør skade med Firebug-våben"
-EXPAction2="Dræb Crawlers med Firebug-våben"
+EXPAction1="At gøre skade med Firebug-våben"
+EXPAction2="At dræbe Crawlers med Firebug-våben"
 
 SkillCatagories[0]="Forsyninger"
 SkillCatagories[1]="Krydret"
@@ -1353,44 +1320,44 @@ SkillCatagories[4]="Avanceret træning"
 
 Passives[0]=(Title="Skade med Perk-våben",Description="%x% forøgelse i skade med Perk-våben");
 Passives[1]=(Title="Genladning med Perk-våben",Description="%x% forøgelse i genladningshastighed med Perk-våben");
-Passives[2]=(Title="Resistens over for Zed-ildskade",Description="%x% resistens over for ildskade");
+Passives[2]=(Title="Resistens over for zed-ildskade",Description="%x% resistens over for ildskade");
 Passives[3]=(Title="Immunitet over for egen ild",Description="%x% resistans over for skade fra egen ild");
 Passives[4]=(Title="Startammunition",Description="%x% mere startammunition");
 
-BringTheHeat="Bring the Heat"
-BringTheHeatDescription="Increase damage with fire weapons 35%."
+FullyStocked="Fuldt forsynet"
+FullyStockedDescription="Præcis som der står: Firebug-våben starter med maksimum ammunitionskapacitet, når du køber dem fra handleren."
 
-HighCapFuelTank="High Capacity Fuel Tank"
-HighCapFuelTankDescription="Increase fuel tank capacity and magazines for all perk weapons 100%."
+FlarotovCoctail="Cocktailblus"
+FlarotovCoctailDescription="Det ligger i navnet: Smid et nødblus i din molotovcocktail; det resulterer i et nødblus, som lyser området op i 30 sekunder, OG dine flammer brænder i dobbelt så lang tid."
 
-Fuse="Barbecue"
-FuseDescription="En langsomtbrændende lækkersag: Firebug-våbens brandeffekt varer 20% længere, hvilket øger skade over tid."
+Fuse="Lunte"
+FuseDescription="En langsomtbrændende lækkersag: Firebug-våbens brændeffekt varer 70% længere, hvilket øger skade over tid."
 
-GroundFire="Ground Fire"
-GroundFireDescription="Ground fires do massively increased damage and reduce Zed movement speed 20%."
+HeatWave="Hedebølge"
+HeatWaveDescription="Ligesom en sommer i Georgien: At ramme fjender med ild, inden for sigterækkevidde, får dem til at vakle tilbage."
 
-ZedShrapnel="Ligbål"
-ZedShrapnelDescription="Zed siger BOOM: Enhver Zed, som dør af ildvåben, har 20% chance for at eksplodere, hvilket skader Zeds i nærheden og slår dem omkuld."
+ZedShrapnel="Zed-splinter"
+ZedShrapnelDescription="Zed siger BOOM: Enhver zed, som dør af ildvåben, har 30% chance for at eksplodere, hvilket skader zeds i nærheden."
 
-Napalm="Napalm"
-NapalmDescription="Zed med ILD i sig: Zeds, som brænder, sætter ild til andre Zeds, når de berør hinanden."
+Napalm="Zed-napalm"
+NapalmDescription="Zed med ILD i sig: Zeds, som brænder, sætter ild til andre zeds, når de berør hinanden."
 
-Range="Ildstorm"
+Range="Rækkevidde"
 RangeDescription="Øger rækkevidden på alle ildvåben. Kom nu, du vil jo gerne."
 
-SplashDamage="Skovbrand"
+SplashDamage="Spredningsskade"
 SplashDamageDescription="Eller øg spredningsskaden med ildvåben ved træffer. Beslutninger, beslutninger!"
 
-Inferno="ZED TIME - Inferno"
-InfernoDescription="During Zed time, any Zeds hit with fire are slowed 30% and take 50% more burning damage."
+Combustion="ZED TIME - Forbrænding"
+CombustionDescription="Splinter + Napalm = Forbrænding. Sådan nogenlunde. Enhver zed, der dør af dine ildvåben i Zed Time, eksploderer og danner en ildkugle, som sætter ild til alt inden for eksplosionens flammer."
 
-Scorch="ZED TIME - Pyroman"
-ScorchDescription="Der er ild i dig! Altså, ikke bogstavelig talt. Firebug-våben, som bruges i Zed Time, affyrer næsten lige så hurtigt, som de normalt ville i realtid."
+Scorch="ZED TIME - Svidning"
+ScorchDescription="Der er ild i dig! Altså, ikke bogstavelig talt. Perk-våben, som bruges i Zed Time, affyrer næsten lige så hurtigt som de normalt ville i realtid."
 
 [KFPerk_Gunslinger]
 PerkName="Gunslinger"
-EXPAction1="Gør skade med Gunslinger-våben"
-EXPAction2="Få hovedskud med Gunslinger-våben"
+EXPAction1="At gøre skade med Gunslinger-våben"
+EXPAction2="At få hovedskud med Gunslinger-våben"
 
 SkillCatagories[0]="Teknik"
 SkillCatagories[1]="Færdighed"
@@ -1402,16 +1369,15 @@ Passives[0]=(Title="Skade med Perk-våben",Description="%x% forøgelse i skade m
 Passives[1]=(Title="Skudresistens",Description="Resistens over for projektilskade øget med %x%");
 Passives[2]=(Title="Bevægelseshastighed",Description="Bevægelseshastighed øget med %x%");
 Passives[3]=(Title="Rekyl",Description="%x% mindre rekyl");
-Passives[4]=(Title="Zedtime Reload", Description="Increase reload speed in Zed time %x% per level");
 
 ShootnMove="Skyd og stik af"
-ShootnMoveDescription="Kom videre eller bliv spist: Når du sigter med Gunslinger-våben, bevæger du dig 200% hurtigere og med mindre ryk i våbnet."
+ShootnMoveDescription="Kom videre eller bliv spist: Når du sigter, bevæger du dig 200% hurtigere og med mindre ryk i våbnet."
 
 QuickSwitch="Hurtig på aftrækkeren"
-QuickSwitchDescription="Det kan du bande på: 50% hurtigere våbenskifte med Gunslinger-våben og skift hurtigt til reservepistoler, hvis du bliver ved med at affyre, når din ammunition løber tør."
+QuickSwitchDescription="Det kan du bande på: 50% hurtigere våbenskifte, og hvis du bliver ved med at affyre, når du er løbet tør for ammunition, så skifter du hurtigt til reservepistoler."
 
-RhythmMethod="Rytmemetode"
-RhythmMethodDescription="Scor hovedskud efter hovedskud: Hvert hovedskud i træk med et Gunslinger-våben øger din skade med 17% op til maks. 68%."
+RhythmMethod="Én efter én"
+RhythmMethodDescription="Scor hovedskud efter hovedskud: Hvert hovedskud i træk øger skade fra Gunslinger-våben med 10% op til 70%."
 
 BoneBreaker="Knoglebrækker"
 BoneBreakerDescription="I stedet for blot at indsamle dem så bræk dem: Gør 20% mere skade med Gunslinger-våben."
@@ -1419,14 +1385,14 @@ BoneBreakerDescription="I stedet for blot at indsamle dem så bræk dem: Gør 20
 SpeedReload="Hurtiglader"
 SpeedReloadDescription="Sejere, hurtigere, dødeligere: Genlad 20% hurtigere med Gunslinger-våben OG se mere overklassisk ud, mens du gør det."
 
-Penetration="Penetrering"
-PenetrationDescription="Op på række og ned igen: Hvert skud fra Gunslinger-våben gennemtrænger én ekstra Zed."
+Penetration="Gennemtrængning"
+PenetrationDescription="Op på række og ned igen: Gennemtræng en ekstra zed med hvert skud."
 
-Skullcracker="Skullcracker"
-SkullcrackerDescription="Headshots with perk weapons slow Zeds 30%.
+CenterMass="Massemidtpunkt"
+CenterMassDescription="Du kan sigte efter massemidtpunktet: Skud mod brystkassen har 40% mere vaklekraft."
 
-KnockEmDown="Knock 'em Down"
-KnockEmDownDescription="Shooting sprinting Zeds in the legs massively increases knockdown power. Shooting Zeds in the chest with perk weapons massively increases stumble power."
+LimbShots="Benskud"
+LimbShotsDescription="Eller skyde dem i benene: Skud mod benene har 3x mere knockdown-kraft, når zeds sprinter."
 
 Fanfare="ZED TIME - Hurtigskydning"
 FanfareDescription="Lige hurtig nok: Skyd 3x hurtigere med Gunslinger-våben i Zed Time."
@@ -1437,8 +1403,8 @@ UberAmmoDescription="Grænseløs: Det er umuligt for dig at løbe tør for ammun
 [KFPerk_Sharpshooter]
 PerkName="Sharpshooter"
 
-EXPAction1="Gør skade med Sharpshooter-våben"
-EXPAction2="Få hovedskud med Sharpshooter-våben"
+EXPAction1="Dealing Sharpshooter weapon damage"
+EXPAction2="Head shots with Sharpshooter weapons"
 
 SkillCatagories[0]="Movement"
 SkillCatagories[1]="Basic Technique"
@@ -1446,39 +1412,41 @@ SkillCatagories[2]="Skill"
 SkillCatagories[3]="Equipment"
 SkillCatagories[4]="Master Techniques"
 
-Passives[0]=(Title="Headshot Damage",Description="Increase headshot damage %x% per level");
-Passives[1]=(Title="Recoil",Description="Decrease recoil %x% per level");
-Passives[2]=(Title="Weapon Switch",Description="Increase weapon switch speed %x% per level");
+Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %x%");
+Passives[1]=(Title="Recoil",Description="%x% less recoil");
+Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
 
-StationaryAim="Snigskytte"
-StationaryAimDescription="Gør 25% mere skade mens du står stille og bruger et Sharpshooter-våben."
+StationaryAim="Sniper"
+StationaryAimDescription="Inflict 25% more damage while stationary and using a Sharpshooter weapon."
 
-Trigger="Skarpskytte"
-TriggerDescription="Skyd 25% hurtigere og bevæg dig 10% hurtigere, mens du bruger et Sharpshooter-våben."
+Trigger="Marksman"
+TriggerDescription="Shoot 25% faster and move 10% faster when using a Sharpshooter weapon."
 
-CrouchAim="Stabilitet"
-CrouchAimDescription="Gør 30% mere skade mens du dukker dig og bruger et Sharpshooter-våben."
+CrouchAim="Stability"
+CrouchAimDescription="Inflict 30% more damage while crouching and using a Sharpshooter weapon."
 
-Stun="Hydrostatisk chok"
-StunDescription="Sharpshooter-våbens lammelseskraft øges med 100%."
+Stun="Ballistic Shock"
+StunDescription="Stun power with Sharpshooter weapons increases by 100%."
 
 RhythmMethod="Rack 'em Up"
-RhythmMethodDescription="Scor hovedskud efter hovedskud: Hvert hovedskud i træk med et Sharpshooter-våben øger din skade med 5% op til maks. 75%."
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot with a Sharpshooter weapon increases your damage by 5% up to 75%."
 
-TacticalReload="Kampklar"
-TacticalReloadDescription="Vær sej. Vær hurtig. Genlad hurtigere med Sharpshooter-våben OG se mere overklassisk ud, mens du gør det."
+TacticalReload="Combat Ready"
+TacticalReloadDescription="Be cool. Be quick. Reload faster with Sharpshooter weapons AND look more elite while you're at it."
 
-Scoped="Mesterskytte"
-ScopedDescription="Reducerer rekyl med 10% og øger hovedskudskade med 10% når du bruger sigtekornet eller kikkertsigtet på et Sharpshooter-våben."
+Scoped="Dead Eye"
+ScopedDescription="Reduce recoil 10% and increase head shot damage 10% when using a scope or ironsights with a Sharpshooter weapon."
 
-AmmoPouch="Altid forberedt"
-AmmoPouchDescription="Få 25% mere ammunition til Sharpshooter-våben og -granater."
+AmmoPouch="Always Prepared"
+AmmoPouchDescription="Get 25% more ammo for Sharpshooter weapons and grenades."
 
-ZTKnockdown="ZED TIME - Snigmorder"
-ZTKnockdownDescription="Hovedskud med Sharpshooter-våben øger dramatisk våbenes knockdown-kraft."
+ZTKnockdown="ZED TIME - Assassin"
+ZTKnockdownDescription="Headshots with Sharpshooter weapons will knock down any Zed."
 
-ZTStun="ZED TIME - Jægersoldat"
-ZTStunDescription="Hovedskud med Sharpshooter-våben øger dramatisk våbenes lammelseskraft."
+ZTStun="ZED TIME - Ranger"
+ZTStunDescription="Headshots with Sharpshooter weapons will stun any Zed."
+
+
 
 [KFPerk_Support]
 PerkName="Support"
@@ -1491,93 +1459,51 @@ SkillCatagories[4]="Avanceret træning"
 
 Passives[0]=(Title="Svejsefærdighed",Description="Svejsehastighed øget med %x%");
 Passives[1]=(Title="Skade med Perk-våben",Description="%x% forøgelse i skade med Perk-våben");
-Passives[2]=(Title="Penetrering med Perk-våben",Description="For hvert level øges Perk-våbens penetreringskraft med %x%");
+Passives[2]=(Title="Gennemtrængning med Perk-våben",Description="For hvert level øges Perk-våbens gennemtrængningskraft med %x%");
 Passives[3]=(Title="Granatskade",Description="Granatskade øget med %x%");
 Passives[4]=(Title="",Description="");
-Passives[5]=(Title="Ammo Backpack + Door repair",Description="Once per round players can get ammo from backpack - repair destroyed doors");
 
-EXPAction1="Gør skade med Support-våben"
-EXPAction2="Svejs døre"
+;Passives[0]=(Title="Svejsefærdighed",Description="2% forøgelse i svejsehastighed (maks. 50%")");
+;Passives[1]=(Title="Haglgeværskade",Description="2% forøgelse i haglgeværskade (maks. 50%")");
+;Passives[2]=(Title="Gennemtrængning med haglgevær",Description="For hvert level øges haglgeværers gennemtrængningskraft med 25%;
+;Passives[3]=(Title="Granatskade",Description="2% forøgelse i granatskade (maks. 50%")");
+;Passives[4]=(Title="",Description="");
 
-HighCapMags="High Capacity Magazines"
-HighCapMagsDescription="Increase magazine capacity of perk weapons 50%."
+EXPAction1="At gøre skade med Support-våben"
+EXPAction2="At svejse døre"
 
-TacticalReload="Taktisk genladning"
-TacticalReloadDescription="Vær sej. Vær hurtig. Genlad hurtigere med Support-våben OG se mere overklassisk ud, mens du gør det."
+Ammo="Ammunition"
+AmmoDescription="Bliv seriøs: Øger din ammunitionskapacitet og startammunition med 20%."
+
+Supplier="Forsyner"
+SupplierDescription="Vær den som alle elsker: Bær en rygsæk som alle spillere kan få ammunition fra én gang per bølge."
 
 Fortitude="Tapperhed"
 FortitudeDescription="Giv dig selv en bedre chance: Øger dit helbred med 50%"
 
-Salvo="Salvo"
-SalvoDescription="Increase damage of perk weapons 30%."
+Regeneration="Regenerering"
+RegenerationDescription="Gør lægen arbejdsløs: Dit helbred regenererer langsomt over tid takket være Horzine-nanorobotter."
 
-APShot="Armor Piercing Shot"
-APShotDescription="Greatly increase penetration with perk weapons."
+Bombard="Bombarder"
+BombardDescription="Læg kræfter i det: Øger din chance, for at få en zed til at vakle, med 60% med Support-afstandsvåben."
 
-TightChoke="Tight Choke"
-TightChokeDescription="Decrease shot spread of perk weapons by 50%."
+TacticalReload="Taktisk genladning"
+TacticalReloadDescription="Vær sej. Vær hurtig. Genlad hurtigere med Perk-våben OG se mere overklassisk ud, mens du gør det."
 
-Resupply="Resupply Pack"
-ResupplyDescription="Your teammates can get 30% ammo and 20% armor restored by interacting with you once per wave.  You can carry up to 20% more ammo for perk weapons."
+Strength="Styrke"
+StrengthDescription="Tag ned i træningscenteret. Øger din bærekapacitet med 5."
 
-ConcussionRounds="Concussion Rounds"
-ConcussionRoundsDescription="Increase stumble power for perk weapons 150%."
+Tenacity="Vedholdenhed"
+TenacityDescription="Brug noget tid på at blive bedre og gør 10% mere skade med Support-våben."
 
-Perforate="ZED TIME - Penetrator"
-PerforateDescription="During Zed time, your perk weapons penetrate through any targets they hit."
+Safeguard="ZED TIME - Værn"
+SafeguardDescription="Gå direkte ind i kampen med 5% øget rustning til dig OG holdkammerater i nærheden!"
 
 Barrage="ZED TIME - Spærreild"
 BarrageDescription="Få mest ud af tiden med 15% forøgelse til al udgående skade fra både dig OG dine holdkammerater i nærheden!"
 
 [KFPerk_Sharpshooter]
 PerkName="Sharpshooter"
-
-[KFPerk_SWAT]
-PerkName="SWAT"
-EXPAction1="Dealing SWAT weapon damage"
-EXPAction2="Killing Clots with SWAT weapons"
-
-SkillCatagories[0]="Specialization"
-SkillCatagories[1]="Assault Techniques"
-SkillCatagories[2]="Equipment"
-SkillCatagories[3]="Defensive Techniques"
-SkillCatagories[4]="Specialist Training"
-
-Passives[0]=(Title="Perk Weapon Damage",Description="Increase perk weapon damage %x% per level");
-Passives[1]=(Title="Bullet Resistance",Description="Increase resistance to projectile damage 5%, increases %x% each level");
-Passives[2]=(Title="Increased Mag Size",Description="Increase magazine size %x% per level");
-Passives[3]=(Title="Weapon Switch Speed",Description="Increase weapon switch speed %x% per level");
-
-HeavyArmor="Heavy Armor Training"
-HeavyArmorDescription="While you have body armor, you only take Health damage from sonic attacks and clots can’t grab you. You begin each game with 50% Armor."
-
-TacticalMovement="Tactical Movement"
-TacticalMovementDescription="No movement penalty for using iron sights or crouch movement."
-
-Backup="Close Combat Training"
-BackupDescription="Increase damage with your 9mm pistol and knife 100%. You begin each game with dual 9mm pistols."
-
-TacticalReload="Tactical Reload"
-TacticalReloadDescription="Increase reload speed with perk weapons."
-
-SpecialAmmunition="Suppression Rounds"
-SpecialAmmunitionDescription="Increase stumble power 100% with all perk weapons."
-
-AmmoVest="Ammo Vest"
-AmmoVestDescription="Carry up to 30% more ammo for each perk weapon."
-
-BodyArmor="Assault Armor"
-BodyArmorDescription="Maximum Armor increases by 50%. You begin each game with 50% Armor, which stacks with Armor gained from Heavy Armor Training."
-
-Cripple="Cripple"
-CrippleDescription="Multiple hits with perk weapons will slow Zeds down up to 30%. Hitting the legs is most effective."
-
-SWATEnforcer="ZED TIME - Battering Ram"
-SWATEnforcerDescription="During Zed time, you move in real-time and have massive knockdown power when you run into a Zed."
-
-RapidAssault="ZED TIME - Rapid Assault"
-RapidAssaultDescription="During Zed time, when using perk weapons you have unlimited ammo, shoot in near real-time, and increase stumble power by 100%."
-
 
 [Fonts]
 Bicubik="Bicubik"
@@ -1624,96 +1550,49 @@ ObjectiveStatusTitle="FÅ 30% KONTANTER RETUR"
 ObjectiveTimeString="s TILBAGE"
 
 [KFGameViewportClient]
-TripWireOfficialString="Tripwire Official Map"
-OfficialCommunityString="Official Community Map"
-CommunityCustomString="Community Custom Map"
-RandomLoadingStrings[0]="Fleshpound er sårbar over for sprængstoffer men modstandsdygtig over for skud."
-RandomLoadingStrings[1]="Scrake er sårbar over for skud men modstandsdygtig over for sprængstoffer."
-RandomLoadingStrings[2]="Du kan kun bære en begrænset mængde vægt. Sælg svage våben for at gøre plads til bedre våben."
-RandomLoadingStrings[3]="Hold øje med ventilationskanaler og kloakker. Zeds kan komme alle vegne fra."
-RandomLoadingStrings[4]="Vær på udkig efter udstyr og ammunitionskasser i banen. De kan redde dig, når det kniber."
-RandomLoadingStrings[5]="Bloatens krop kan absorbere mange skud. Sigt efter dens hoved i stedet."
-RandomLoadingStrings[6]="En succesfuld parering får en Zed til at vakle, hvilket giver dig tid til at angribe den flere gange."
-RandomLoadingStrings[7]="Pas på den såkaldte 'Husk'. Når han tager nok skade, forsøger han muligvis at detonere sig selv nær dit hold."
-RandomLoadingStrings[8]="Når du skader Zeds med våben, får du XP til det Perk, som våbnet tilhører."
-RandomLoadingStrings[9]="Hold jer sammen. Hvis du bliver adskilt fra holdet, har du mindre chance for at overleve, hvis situationen bliver for voldsom."
-RandomLoadingStrings[10]="Du kan bruge sprøjten til at hele dig selv såvel som dine holdkammerater."
-RandomLoadingStrings[11]="Zeds kan holdes tilbage ved at svejse døre. Døre kan ikke svejses, når de er blevet ødelagt."
-RandomLoadingStrings[12]="Hvis en holdkammerat dør, kan det være hjælpsomt at samle deres våben op og smide det til vedkommende ved handleren."
-RandomLoadingStrings[13]="Har du overskydende dosh? Giv lidt til holdet — måske gør de det samme en anden gang."
-RandomLoadingStrings[14]="Vælg dine mål. Nogle våben er mere effektive, og andre mindre effektive, mod de forskellige slags Zeds."
-RandomLoadingStrings[15]="Prioriter dine mål. En Fleshpound er vigtigere at fokusere end en Clot."
-RandomLoadingStrings[16]="Alle Zeds har svage punkter. Hvis det ikke er hovedet så sigt i stedet efter kropsdele, der gløder."
-RandomLoadingStrings[17]="Har du lyst til at købe eller sælge kosmetiske genstande eller våbenlakeringer? Så smut en tur forbi markedet."
-RandomLoadingStrings[18]="Sirens skrig uskadeliggør granater og andre sprængstoffer."
-RandomLoadingStrings[19]="Scrakes og Fleshpounds går amok, når de tager nok skade. Hold dig på en sikker afstand."
-RandomLoadingStrings[20]="Har du en række våbenlakeringer eller kosmetiske genstande, du ikke bruger? Du kan smede nye fra inventarmenuen."
-RandomLoadingStrings[21]="Overvej din påklædning og dit udstyr omhyggeligt. Man er nødt til at se stilfuld ud, mens man slår Zeds ihjel."
-RandomLoadingStrings[22]="Retningen på nærkampsangreb afhænger af din bevægelsesretning. Fremad bevægelse = angreb fra over hovedet. Sidelæns bevægelse = angreb fra siden. Baglæns bevægelse = angreb nede fra og op."
-RandomLoadingStrings[23]="At svejse døre kan begrænse tilstrømningen af Zeds men begrænser samtidig jeres flugtruter."
-RandomLoadingStrings[24]="Undlad at nærme dig selv de svageste Zeds — de kan gribe fat i dig og holde fast, indtil deres store venner ankommer."
-RandomLoadingStrings[25]="Ved at hele dine holdkammerater får du både XP til dit Field Medic-perk og en smule dosh. En win-win-situation!"
-RandomLoadingStrings[26]="Affyr kontrollerede salver med dine våben. At løbe tør for ammunition på det forkerte tidspunkt gør kun situationen værre."
-RandomLoadingStrings[27]="Der låses op for nye Perk-evner hvert 5. level. Du kan se dem i Perk-menuen."
-RandomLoadingStrings[28]="Projektilerne fra M79 og RPG skal rejse en vis afstand, før deres sprængladninger armerer sig."
-RandomLoadingStrings[29]="Hvis du har svært ved at se Zeds'ne så tænd for din lygte."
-RandomLoadingStrings[30]="Har du svært ved at overleve? Prøv et andet Perk! Måske passer dets spilstil dig bedre."
-RandomLoadingStrings[31]="Sørg for altid at have en flugtrute. At blive omringet har som regel døden til følge."
-RandomLoadingStrings[32]="Rustning er din bedste ven. Det skader aldrig at købe mere rustning."
-RandomLoadingStrings[33]="Ild er en god måde at holde Zeds på afstand. Ild er længere tid om at slå Zeds ihjel, men det holder dem også beskæftiget."
-RandomLoadingStrings[34]="Hvis en Zed eller dets våben lyser rødt, så er det ikke effektivt at parere dets nærkampsangreb. Løb!"
-RandomLoadingStrings[35]="At sætte ild til Zeds kan få dem til at gå i panik. Tid til at lege alles yndlingsleg: Du godeste, der er ild i mig!"
-RandomLoadingStrings[36]="Maskinpistoler har højere chance for at få fjender til at vakle, hvilket gør det lettere at holde dem på afstand."
-RandomLoadingStrings[37]="Railgun kan skyde igennem adskillige Zeds, hvis de står bag hinanden."
-RandomLoadingStrings[38]="Mikrobølgevåbnet gør mere skade mod metalbærende Zeds såsom Fleshpounds og Sirens."
-RandomLoadingStrings[39]="Prøv dit våbens alternative affyringstilstand. Det er ikke alle våben, der har en alternativ affyringstilstand, men den kan være praktisk, når det ser sort ud."
-RandomLoadingStrings[40]="Du får XP og dosh af både at dræbe og hjælpe med at dræbe Zeds, så hjælp gerne dine holdkammerater med at slå dem ihjel."
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
+RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
+RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
+RandomLoadingStrings[9]="Stick together. Getting singled out decreases your chances of survival if things get hairy."
+RandomLoadingStrings[10]="Players can use the syringe to heal themselves as well as their teammates."
+RandomLoadingStrings[11]="Welding doors can hold Zeds back. Doors do not come back once destroyed."
+RandomLoadingStrings[12]="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
+RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may return the favor."
+RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."
+RandomLoadingStrings[15]="Prioritize your targets. A fleshpound is a lot more deserving of your attention than a clot."
+RandomLoadingStrings[16]="All Zeds have weak points. If it's not the head, look for glowing elements on their bodies."
+RandomLoadingStrings[17]="Looking to buy or sell a cosmetic item or weapon skin?  Check the marketplace."
+RandomLoadingStrings[18]="The siren's scream neutralizes grenades and other explosives."
+RandomLoadingStrings[19]="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
+RandomLoadingStrings[20]="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
+RandomLoadingStrings[21]="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
+RandomLoadingStrings[22]="Melee attacks are directional based on your movement. Forward = overhead, side = swipe, and back = uppercut."
+RandomLoadingStrings[23]="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
+RandomLoadingStrings[24]="Don't get close to even the weakest Zeds; they can grab you and hold on until their bigger friends arrive."
+RandomLoadingStrings[25]="Want Medic XP and some dosh? Heal your team -- both parties benefit!"
+RandomLoadingStrings[26]="Use controlled bursts with your weapons. Running out of ammo mid-wave makes for a difficult time."
+RandomLoadingStrings[27]="New perk skills are unlocked every 5 levels. Check them out at the Perks Menu."
+RandomLoadingStrings[28]="The M79 and RPG must travel a certain distance to arm the explosive charge."
+RandomLoadingStrings[29]="If you're having trouble seeing the Zeds, try your flashlight."
+RandomLoadingStrings[30]="Having a tough time surviving? Try a different perk! You may find one that fits your playstyle better."
+RandomLoadingStrings[31]="Always make sure you have a way out. Getting boxed in is a sure way to take a dirt nap."
+RandomLoadingStrings[32]="Armor is your friend. You can never go wrong getting more armor."
+RandomLoadingStrings[33]="Fire is a great way to keep Zeds away from you. Fire alone takes awhile to kill Zeds, but it keeps them occupied."
+RandomLoadingStrings[34]="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective.  Run!"
+RandomLoadingStrings[35]="Lighting Zeds on fire can cause them to panic. Time to play everyone's favorite game: Oh my god, I'm on fire!"
+RandomLoadingStrings[36]="Submachine guns have a high chance to cause targets to stumble, allowing you to keep them at a distance."
+RandomLoadingStrings[37]="The rail gun can fire through multiple Zeds if you line them up right."
+RandomLoadingStrings[38]="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."
+RandomLoadingStrings[39]="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
+RandomLoadingStrings[40]="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
 
-[WhatsNewMessages]
-Jaegorhorn="Follow Community To Unlock Jaegorhorn"
-HorzineSupplyCrateKey1="Horzine Supply Crate Key | Series #1 - $2.49"
-HorzineSupplyCrateKey2="Horzine Supply Crate Key | Series #2 - $2.49"
-HorzineSupplyCrateKey3="Horzine Supply Crate Key | Series #3 - $2.49"
-HorzineSupplyCrateKey4="Horzine Supply Crate Key | Series #4 - $2.49"
-HorzineSupplyCrateKey5="Horzine Supply Crate Key | Series #5 - $2.49"
-HorzineSupplyCrateKey6="Horzine Supply Crate Key | Series #6 - $2.49"
-HorzineSupplyCrateKey7="Horzine Supply Crate Key | Series #7 - $2.49"
-HorzineSupplyCrateKey8="Horzine Supply Crate Key | Series #8 - $2.49"
-HorzineSupplyCrateKey9="Horzine Supply Crate Key | Series #9 - $2.49"
-USBCyberboneKey="Cyberbone USB Key - $2.49"
-USBDragonfireKey="Dragonfire USB Key - $2.49"
-USBEmergencyIssueKey="Emergency Issue USB Key - $2.49"
-USBHorzineFirstEncounterKey="Horzine First Encounter USB Key - $2.49"
-USBHorzineIssueKey="Horzine Issue USB Key - $2.49"
-USBMedicKey="Medic USB Key - $2.49"
-USBOlExhibitKey="Ol' Exhibit USB Key - $2.49"
-USBPredatorKey="Predator USB Key - $2.49"
-USBStoriesofWarKey="Stories of War USB Key - $2.49"
-USBStreetPunksKey="Street Punks USB Key - $2.49"
-USBSWATKey="SWAT USB Key - $2.49"
-USBTacticalHorzineKey="Tactical Horzine USB Key - $2.49"
-USBVictorianKey="Victorian USB Key - $2.49"
-USBZedKillerKey="Zed Killer USB Key - $2.49"
-BullseyeUpdate="Latest New Content - Bullseye Update"
-LatestUpdate="Latest Content Update"
-Forums="Visit Our Community Forums"
-Survey="Take the Gameplay Survey"
-CommunityTracker="Track Community Issue Requests"
-FeaturedCrateKey="Featured Horzine Supply Crate Key - $2.49"
-FeaturedUsbKey="Featured Weapon Skin USB Key - $2.49"
-FeaturedRareItem="Featured Rare Item - $3.99"
-FeaturedExceptionalItem="Featured Exceptional Item - $7.49"
-FeaturedMasterCraftedItem="Featured Master Crafted Item - $9.99"
-FeaturedItemBundle="Featured Item Bundle"
-Merch="Get Official Tripwire Merch!"
-PS4AnnounceMent="Insert PS4 Specific News Here"
-PS4Key="Horzine Crate Key - Open Any Crate! $2.49"
-PS4CosmeticCrate1="Horzine Supply Cosmetic Crate | Series #1"
-PS4CosmeticCrate2="Horzine Supply Cosmetic Crate | Series #2"
-PS4WeaponSkinCrate1="Horzine Supply Weapon Skin Crate | Series #1"
-PS4WeaponSkinCrate2="Horzine Supply Weapon Skin Crate | Series #2"
-Artbook="Killing Floor 2 Digital Art Book"
-Uncovered="Watch Killing Floor: Uncovered Live Action Film"
+ 
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
@@ -1748,11 +1627,11 @@ KFPawn_ZedPatriarch_Versus="Patriarch - Spiller"
 
 [ZedMoves]
 Melee="Nærkamp"
-Rally="Hidkald"
+Rally="Rally"
 Grab="Grib fat"
-Light="Mild"
-Heavy="Stærk"
-Spin="Snur rundt"
+Light="Light"
+Heavy="Heavy"
+Spin="Spin"
 Evade="Undvig"
 Jump="Hop"
 Puke="Opkast"
@@ -1768,7 +1647,7 @@ Minigun="Rullekanon"
 Rocket="Raket"
 Mortar="Morter"
 Heal="Hel"
-Block="Bloker"
+Block="Block"
 
 [Keybinds]
 CtrlCombo="Ctrl-"
@@ -1791,7 +1670,7 @@ LeftCtrl="V. Ctrl"
 RightCtrl="H. Ctrl"
 LeftAlt="V. Alt"
 RightAlt="H. Alt"
-BackSlash=" \\ "
+BackSlash="\"[Keybinds]Slash"
 Slash="/"
 RightBracket="]"
 LeftBracket="["
@@ -1884,9 +1763,6 @@ DisplayName="Containment Station"
 
 [KF-HostileGrounds KFMapSummary]
 DisplayName="Hostile Grounds"
-
-[KF-InfernalRealm KFMapSummary]
-DisplayName="Infernal Realm"
 
 
 [KFMapInfo]

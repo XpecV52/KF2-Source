@@ -139,11 +139,13 @@ package tripwire.containers.inventory
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            this.craftWeaponsButton.bHasVerticalAlign = true;
+            this.craftCosmeticsButton.bHasVerticalAlign = true;
             this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.consumablesButton,this.craftingMatsButton);
             var _loc2_:int = 0;
             while(_loc2_ < this.buttonList.length)
             {
-                this.buttonList[_loc2_].addEventListener(ButtonEvent.PRESS,this.onFilterButtonClicked,false,0,true);
+                this.buttonList[_loc2_].addEventListener(ButtonEvent.CLICK,this.onFilterButtonClicked,false,0,true);
                 this.buttonList[_loc2_].addEventListener(FocusEvent.FOCUS_IN,this.onFilterFocusIn,false,0,true);
                 _loc2_++;
             }

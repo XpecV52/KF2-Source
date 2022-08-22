@@ -40,7 +40,10 @@ static function bool Debug(KFAIController AI)
 
 function Pushed()
 {
-    Outer.AILog_Internal("Entering debug mode", 'Command_Debug');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Entering debug mode", 'Command_Debug');
+    }
     Outer.bHasDebugCommand = true;
     Outer.ClearTimer('Debug_CheckRecentMoveTime', Outer);
     bOldDebugPostRenderInfo = Outer.bDebug_PostRenderInfo;
@@ -52,11 +55,17 @@ function Resumed(name OldCommandName)
     Outer.DisableMeleeRangeEventProbing();
     if(OldCommandName == 'AICommand_MoveToGoal')
     {
-        Outer.AILog_Internal((((((("Resuming " $ string(self)) $ " after ") $ string(OldCommandName)) $ " ChildStatus: ") $ string(ChildStatus)) $ " LastDebugGoal: ") $ string(LastDebugGoal));
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((((("Resuming " $ string(self)) $ " after ") $ string(OldCommandName)) $ " ChildStatus: ") $ string(ChildStatus)) $ " LastDebugGoal: ") $ string(LastDebugGoal));
+        }
     }
     if((((OldCommandName == 'AICommand_MoveToGoal') && (ChildStatus == 'Aborted') || ChildStatus == 'Failure') && Outer.Pawn != none) && Outer.Pawn.IsAliveAndWell())
     {
-        Outer.AILog_Internal("Resuming from failed MoveToGoal command", 'PathWarning');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Resuming from failed MoveToGoal command", 'PathWarning');
+        }
         if(LastDebugGoal != none)
         {
             Outer.Pawn.ZeroMovementVariables();
@@ -83,17 +92,26 @@ function Popped()
     Outer.SetPostRendering(Outer.bDebug_PostRenderInfo);
     super.Popped();
     Outer.bHasDebugCommand = false;
-    Outer.AILog_Internal("Exiting Debug Mode", 'Command_Debug');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Exiting Debug Mode", 'Command_Debug');
+    }
 }
 
 function bool NotifyPlayerBecameVisible(Pawn VisiblePlayer)
 {
     if(CachedChildCommand != none)
     {
-        Outer.AILog_Internal(((((string(GetFuncName()) $ "() Seen: ") $ string(VisiblePlayer)) $ " notifying ") $ string(CachedChildCommand)) $ " and letting it handle the event.", 'Command_Debug');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((((string(GetFuncName()) $ "() Seen: ") $ string(VisiblePlayer)) $ " notifying ") $ string(CachedChildCommand)) $ " and letting it handle the event.", 'Command_Debug');
+        }
         return CachedChildCommand.NotifyPlayerBecameVisible(VisiblePlayer);
     }
-    Outer.AILog_Internal(((string(GetFuncName()) $ " ") $ string(VisiblePlayer)) $ " ignoring this event", 'Command_Debug');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((string(GetFuncName()) $ " ") $ string(VisiblePlayer)) $ " ignoring this event", 'Command_Debug');
+    }
     return true;
 }
 
@@ -139,7 +157,10 @@ function bool NotifyHitWall(Vector HitNormal, Actor Wall)
 {
     if(CachedChildCommand != none)
     {
-        Outer.AILog_Internal(((string(GetFuncName()) $ "() notifying ") $ string(CachedChildCommand)) $ " and letting it handle the event.", 'HitWall');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((string(GetFuncName()) $ "() notifying ") $ string(CachedChildCommand)) $ " and letting it handle the event.", 'HitWall');
+        }
         return CachedChildCommand.NotifyHitWall(HitNormal, Wall);
     }
     return false;
@@ -166,38 +187,59 @@ state Debugging
 {
     event BeginState(name PreviousStateName)
     {
-        Outer.AILog_Internal((((string(GetFuncName()) $ "() in ") $ string(GetStateName())) $ " Previous: ") $ string(PreviousStateName), 'Command_Debug');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((string(GetFuncName()) $ "() in ") $ string(GetStateName())) $ " Previous: ") $ string(PreviousStateName), 'Command_Debug');
+        }
     }
 
     function InitState()
     {
-        Outer.AILog_Internal((string(GetFuncName()) $ "() in ") $ string(GetStateName()), 'Command_Debug');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ "() in ") $ string(GetStateName()), 'Command_Debug');
+        }
         Outer.AIActionStatus = "Awaiting debug command";
     }
 
     event EndState(name NextStateName)
     {
-        Outer.AILog_Internal((((string(GetFuncName()) $ "() in ") $ string(GetStateName())) $ " Next: ") $ string(NextStateName), 'Command_Debug');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((string(GetFuncName()) $ "() in ") $ string(GetStateName())) $ " Next: ") $ string(NextStateName), 'Command_Debug');
+        }
     }
 
     function PushedState()
     {
-        Outer.AILog_Internal((string(GetFuncName()) $ "() in ") $ string(GetStateName()), 'Command_Debug');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ "() in ") $ string(GetStateName()), 'Command_Debug');
+        }
     }
 
     function PausedState()
     {
-        Outer.AILog_Internal((string(GetFuncName()) $ "() in ") $ string(GetStateName()), 'Command_Debug');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ "() in ") $ string(GetStateName()), 'Command_Debug');
+        }
     }
 
     function ContinuedState()
     {
-        Outer.AILog_Internal((string(GetFuncName()) $ "() in ") $ string(GetStateName()), 'Command_Debug');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ "() in ") $ string(GetStateName()), 'Command_Debug');
+        }
     }
 
     function PoppedState()
     {
-        Outer.AILog_Internal((string(GetFuncName()) $ "() in ") $ string(GetStateName()), 'Command_Debug');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ "() in ") $ string(GetStateName()), 'Command_Debug');
+        }
     }
 
     function Debug_CrawlerAttack()
@@ -486,10 +528,16 @@ state DebugStepAside extends Debugging
     {
         local bool bPrevIgnoreStepAside, bResult;
 
-        Outer.AILog_Internal((string(GetFuncName()) $ " bumped into ") $ string(Other), 'Command_Debug');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ " bumped into ") $ string(Other), 'Command_Debug');
+        }
         if(Pawn(Other) != none)
         {
-            Outer.AILog_Internal(((string(GetFuncName()) $ " bumped into ") $ string(Other)) $ ", starting StepAside command", 'Command_Debug');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(((string(GetFuncName()) $ " bumped into ") $ string(Other)) $ ", starting StepAside command", 'Command_Debug');
+            }
             bPrevIgnoreStepAside = Outer.bIgnoreStepAside;
             Outer.bIgnoreStepAside = false;
             Outer.StepAsideFor(Pawn(Other), HitNormal);
@@ -736,7 +784,10 @@ Begin:
     }
     if(!Outer.IsPawnVisibleViaTrace(Outer.Enemy))
     {
-        Outer.AILog_Internal("Enemy wasn't visible, reacquiring", 'Command_Debug');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Enemy wasn't visible, reacquiring", 'Command_Debug');
+        }
         Outer.Sleep(0);
         goto 'Begin';
     }
@@ -747,7 +798,7 @@ Begin:
     Outer.FinishRotation();
     Outer.Sleep(RandRange(RoamWaitMin, RoamWaitMax));
     goto 'Begin';
-    stop;            
+    stop;                    
 }
 
 defaultproperties

@@ -210,16 +210,12 @@ package tripwire.menus
                     "buttonDisplay":"xboxtypes_back"
                 });
                 _loc2_.push({
-                    "promptText":this._changePerkString,
-                    "buttonDisplay":"xboxtypes_rightthumbstick"
-                });
-                _loc2_.push({
                     "promptText":this._exitPromptString,
                     "buttonDisplay":"xboxtypes_b"
                 });
                 this.centralPrompts.promptData = _loc2_;
                 this.centralPrompts.buttonPromptContainer.setPromptAlpha("xboxtypes_back",!!this.itemDetailsContainer.bCanFavorite ? Number(1) : Number(this.disabledPromptAlpha));
-                this.centralPrompts.buttonPromptContainer.setPromptAlpha("xboxtypes_rightthumbstick",!!this.playerInventoryContainer.changePerkButton.enabled ? Number(1) : Number(this.disabledPromptAlpha));
+                this.centralPrompts.buttonPromptContainer.setPromptAlpha("xboxtypes_b",1);
             }
         }
         
@@ -320,18 +316,6 @@ package tripwire.menus
                         if(this.itemDetailsContainer.visible && this.itemDetailsContainer.bCanFavorite == true && !this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen)
                         {
                             this.itemDetailsContainer.favoriteItem();
-                            this.updateCentralPrompts();
-                            param1.handled = true;
-                        }
-                        break;
-                    case NavigationCode.GAMEPAD_R3:
-                        if(!this.playerInventoryContainer.bPerkMenuOpen && this.playerInventoryContainer.changePerkButton.enabled)
-                        {
-                            if(this._selectedMenuIndex > this.PlayerInventory)
-                            {
-                                this.selectedMenuIndex = this.selectedMenuIndex - 1;
-                            }
-                            this.playerInventoryContainer.playerInfoContainer.doTogglePerkList();
                             this.updateCentralPrompts();
                             param1.handled = true;
                         }

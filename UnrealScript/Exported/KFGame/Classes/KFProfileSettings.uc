@@ -71,11 +71,18 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 12
+
+struct native WeaponSkinPairs
+{
+	var init string	ClassPath;
+	var int		SkinId;
+};
 
 var transient array<CustomizationInfo> Characters;
 var transient array<string> FavoriteWeapons;
+var transient array<WeaponSkinPairs> ActiveSkins;
 var transient bool Dirty;
 
 event FavoriteWeapon(name WeaponName)
@@ -106,6 +113,29 @@ event Save( byte ControllerId )
 		FlattenExtraToProfileSettings();
 		class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.WriteProfileSettings(ControllerId, self);
 		Dirty = false;
+	}
+}
+
+native function SaveWeaponSkin(string ClassPath, int Id);
+native function ClearWeaponSkin(string ClassPath);
+
+event ApplyWeaponSkin(int ItemDefinition)
+{
+	local class<KFWeaponDefinition> WeaponDef;
+	local int ItemIndex;
+
+	ItemIndex = class'KFWeaponSkinList'.default.Skins.Find('Id', ItemDefinition);
+
+	if(ItemIndex == INDEX_NONE)
+	{
+		return;
+	}
+
+	WeaponDef = class'KFWeaponSkinList'.default.Skins[ItemIndex].WeaponDef;
+
+	if(WeaponDef != none)
+	{
+		class'KFWeaponSkinList'.Static.SaveWeaponSkin(WeaponDef, ItemDefinition);
 	}
 }
 
@@ -227,7 +257,7 @@ defaultproperties
    DefaultSettings(10)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=115,Data=(Type=SDT_Float,Value1=1120403456)))
    DefaultSettings(11)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=117,Data=(Type=SDT_Float,Value1=1063675494)))
    DefaultSettings(12)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=118,Data=(Type=SDT_Int32)))
-   DefaultSettings(13)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=119,Data=(Type=SDT_Int32,Value1=1)))
+   DefaultSettings(13)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=119,Data=(Type=SDT_Int32)))
    DefaultSettings(14)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=121,Data=(Type=SDT_Int32)))
    DefaultSettings(15)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=122,Data=(Type=SDT_Float,Value1=1065353216)))
    DefaultSettings(16)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=123,Data=(Type=SDT_Int32)))
@@ -239,7 +269,7 @@ defaultproperties
    DefaultSettings(22)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=131,Data=(Type=SDT_Int32)))
    DefaultSettings(23)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=133,Data=(Type=SDT_Float,Value1=1065353216)))
    DefaultSettings(24)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=134,Data=(Type=SDT_Float,Value1=1051931443)))
-   DefaultSettings(25)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=135,Data=(Type=SDT_Float,Value1=1059481190)))
+   DefaultSettings(25)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=135,Data=(Type=SDT_Float,Value1=1058642330)))
    DefaultSettings(26)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=138,Data=(Type=SDT_Float,Value1=1106247680)))
    DefaultSettings(27)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=139,Data=(Type=SDT_Int32,Value1=1)))
    DefaultSettings(28)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=140,Data=(Type=SDT_Int32,Value1=1)))
@@ -254,7 +284,7 @@ defaultproperties
    DefaultSettings(37)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=148,Data=(Type=SDT_Int32)))
    DefaultSettings(38)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=149,Data=(Type=SDT_String)))
    DefaultSettings(39)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=150,Data=(Type=SDT_Int32)))
-   DefaultSettings(40)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=151,Data=(Type=SDT_Int32,Value1=3)))
+   DefaultSettings(40)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=151,Data=(Type=SDT_Int32)))
    DefaultSettings(41)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=152,Data=(Type=SDT_Int32)))
    DefaultSettings(42)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=153,Data=(Type=SDT_Int32)))
    DefaultSettings(43)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=154,Data=(Type=SDT_Int32)))
@@ -266,7 +296,8 @@ defaultproperties
    DefaultSettings(49)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=160,Data=(Type=SDT_Int32)))
    DefaultSettings(50)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=161,Data=(Type=SDT_Int32)))
    DefaultSettings(51)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=162,Data=(Type=SDT_Int32)))
-   DefaultSettings(52)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=163,Data=(Type=SDT_Int32,Value1=1)))
+   DefaultSettings(52)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=165,Data=(Type=SDT_String)))
+   DefaultSettings(53)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=163,Data=(Type=SDT_Int32,Value1=1)))
    VersionNumber=4
    ProfileMappings(0)=(Id=100,Name="Quick Weapon Select",MappingType=PVMT_RawValue,ValueMappings=((Id=0),))
    ProfileMappings(1)=(Id=101,Name="Current Layout Index",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))
@@ -320,7 +351,8 @@ defaultproperties
    ProfileMappings(49)=(Id=160,Name="Show Welder in Inventory")
    ProfileMappings(50)=(Id=161,Name="Auto Turn off")
    ProfileMappings(51)=(Id=162,Name="Reduce High Pitch Sounds")
-   ProfileMappings(52)=(Id=163,Name="Show Console Crosshair")
+   ProfileMappings(52)=(Id=165,Name="Weapon Skin KeyValue Pairs")
+   ProfileMappings(53)=(Id=163,Name="Show Console Crosshair")
    Name="Default__KFProfileSettings"
    ObjectArchetype=OnlineProfileSettings'Engine.Default__OnlineProfileSettings'
 }

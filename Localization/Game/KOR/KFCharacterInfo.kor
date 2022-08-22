@@ -1,0 +1,2250 @@
+[CHR_Jagerhorn_Archetype]
+CharacterName="오이스텐 예거호른"
+Description="스웨덴에서 온 덩치 큰 사나이로 맥주를 즐기고 바에서 시끄럽게 떠들기를 좋아합니다. 아웃브레이크 전에 예거호른은 사람들이 상상하는 현대의 바이킹 모습과 딱 맞았습니다. 하지만 1990년대 스칸디나비아 폭주족 전쟁의 광란에 살짝 참여한 후, 사람들을 향한 정신나간 폭력이 맥주를 마시며 자신이 만든 메탈리카 트리뷰트 밴드인 ‘메탈바이카’에서 그저 그런 리드기타를 연주하는 것보다 훨씬 재미없는 일이라는 결정을 내렸습니다. \n\n하지만 스칸디나비아 지역에서 아웃브레이크가 발생하자 정신나간 폭력이 시대의 원칙이 되어버렸습니다. 제드 대 사람들 - 예거호른의 기준에 따르면 좋은 업보는 아닙니다. 거구의 스웨덴 바이킹 예거호른 대 제드? 다 들어와!"
+BodyMesh0="바이커 타임"
+BodyMesh1="카드보드 기사"
+BodyMesh2="Horzine 경비대"
+HeadMesh0="수염의 힘!"
+
+[CHR_Jagerhorn_Archetype.BodyMesh0]
+BodySkin0="길로틴"
+BodySkin1="Horzine"
+BodySkin2="DJ 스컬리"
+BodySkin3="진정한 반항아"
+BodySkin4="악마 사냥꾼"
+
+[CHR_Jagerhorn_Archetype.BodyMesh1]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_Jagerhorn_Archetype.BodyMesh2]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[CHR_Jagerhorn_Archetype.HeadMesh0]
+HeadSkin0="스웨덴 금발"
+HeadSkin1="블랙 앨범"
+HeadSkin2="블러드 레드"
+
+[Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
+Attachment="스파이키 카우보이 모자"
+AttachmentSkin0="다크 라이더"
+AttachmentSkin1="닳은 가죽"
+AttachmentSkin2="클린 슬레이트"
+AttachmentSkin3="블러드 레드"
+
+[Cosmetic_Coleman_yuri_1_ARCH]
+Attachment="잠입자"
+AttachmentSkin0="레드"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_RussianGasmask_Alberts_1_ARCH]
+Attachment="러시아군 가스 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_USGasMask_Alberts_1_ARCH]
+Attachment="미군 가스 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Discount-Rex_Alberts_D_Rex_Alberts_1_ARCH]
+Attachment="디스카운트 T-Rex 마스크"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_RoboScully_1_ARCH]
+Attachment="로보 스컬리"
+AttachmentSkin0="클린 슬레이트"
+AttachmentSkin1="올드스쿨 패티"
+AttachmentSkin2="품절"
+AttachmentSkin3="스틸 스컬리"
+AttachmentSkin4="트루 뉴트럴"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_RussianMilitaryHelmet_Alberts_1_ARCH]
+Attachment="러시아 군용 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="올리브"
+AttachmentSkin4="레드"
+AttachmentSkin5="화이트"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Tormentor_Headgear_ClassicMasterson_ARCH]
+Attachment="고문자 헤드기어"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_GSG9Helmet_ClassicMasterson_ARCH]
+Attachment="GS9 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="브라운"
+AttachmentSkin3="카모1"
+AttachmentSkin4="카모2"
+AttachmentSkin5="네이비"
+AttachmentSkin6="올리브"
+AttachmentSkin7="레드"
+
+[Cosmetic_Ana_Scarf01_OptMesh_ARCH]
+Attachment="스카프"
+AttachmentSkin0="죽음의 비"
+AttachmentSkin1="타이그레스"
+AttachmentSkin2="번베리"
+AttachmentSkin3="프리티 블루"
+
+[chr_DJSkully_archetype]
+CharacterName="DJ 스컬리"
+Description="자신의 세대에서 가장 쿨한 네덜란드 언더그라운드 DJ였던 스컬리는 모두가 사랑할 수 밖에 없습니다. 여자들은 상식의 정도를 벗어나 그를 사랑하는 것처럼 보입니다. 이쯤 되면 남자들은 그를 싫어해야 당연하겠지만, 함께 있으면 너무 재미있는 친구입니다. \n\n아웃브레이크가 발생했을 때 그는 북런던의 버려진 정신병원에서 엄청난 공연을 끝마쳤습니다. 제드들이 모든 사람을 먹어 치우려 할 때 그는 빠르게 움직여 살아남을 수 있었습니다. 스컬리는 항상 삶을 진지하게 생각하지 못하는 문제가 있었고 세계가 멸망해도 바뀌지 않았습니다. 괴물들을 처치하는 솜씨가 뛰어납니다. 그래서 전직 특수부대원이었다는 말도 안 되는 루머가 생겨났지만 그건 스컬리 본인이 만든 농담입니다."
+BodyMesh0="후디"
+BodyMesh1="카드보드 기사"
+BodyMesh2="Horzine 경비대"
+HeadMesh0="스컬리 마스크"
+
+[chr_DJSkully_archetype.BodyMesh0]
+BodySkin0="가장 어두운 블랙"
+BodySkin1="엑스트라 레드"
+BodySkin2="GearXT 옐로우"
+BodySkin3="그린 해저드"
+BodySkin4="레트로 스컬리"
+
+[chr_DJSkully_archetype.BodyMesh1]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[chr_DJSkully_archetype.BodyMesh2]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[chr_DJSkully_archetype.HeadMesh0]
+HeadSkin0="가장 어두운 블랙"
+HeadSkin1="엑스트라 레드"
+HeadSkin2="GearXT 옐로우"
+HeadSkin3="그린 해저드"
+HeadSkin4="레트로 스컬리"
+
+[Cosmetic_DJHeadphones_1_ARCH]
+Attachment="스컬리폰"
+AttachmentSkin0="길로틴 레드"
+AttachmentSkin1="GearXT 옐로우"
+AttachmentSkin2="딥 블루"
+AttachmentSkin3="가디언 오렌지"
+AttachmentSkin4="레트로 스컬리"
+AttachmentSkin5="Horzine 화이트"
+AttachmentSkin6="프레셔스 골드"
+
+[Cosmetic_ReinforcedHelmet_DJSKully_ARCH]
+Attachment="강화 헬멧"
+AttachmentSkin0="강화 헬멧"
+
+[Cosmetic_Strasser_01_ARCH]
+Attachment="독일 사이드캡"
+AttachmentSkin0="퍼레이드 캡"
+AttachmentSkin1="블러디 캡"
+
+[chr_briar_archetype]
+CharacterName="PC 롭 브라이어"
+Description="롭 브라이어는 17살에 경찰관이 되었습니다. 아웃브레이크가 일어난 날에는 상관으로부터 정신나간 무정부주의 폭동으로 보이는 일을 알아보라는 명령을 받았습니다. 물론 단순한 폭동이 아니었죠. 브라이어는 사건이 심각하다는 것을 알게 됩니다. 운이 좋게도 그는 구식 “런던 보비”가 아니었습니다. 대테러 작전에 많이 참여했기 때문에 다양한 무기에 대해 잘 알고 있는 사람이었습니다. 브라이어의 낙천적인 겉모습 속에는 못처럼 단단함이 숨겨져 있습니다. 롭의 터프함에 폭동진압용 케블라 장비의 터프함이 더해져 처음 며칠 동안 살아남을 수 있었습니다. 지금 그는 자신의 직무를 계속 이어가 손에 들어오는 모든 무기를 이용하여 이 위협을 이겨내고 사람들에게 봉사하고 있습니다."
+BodyMesh0="폭동진압용 장비"
+BodyMesh1="런던"
+BodyMesh2="카드보드 기사"
+BodyMesh3="Horzine 경비대"
+HeadMesh0="헤어"
+
+[chr_briar_archetype.BodyMesh0]
+BodySkin0="폴리스 블루"
+BodySkin1="나이트 블랙"
+BodySkin2="아미 그린"
+BodySkin3="SAS 카모"
+
+[chr_briar_archetype.BodyMesh1]
+BodySkin0="메트로"
+BodySkin1="나이트 블랙"
+BodySkin2="블루"
+BodySkin3="리플렉티브"
+BodySkin4="리플렉티브 블랙"
+
+[chr_briar_archetype.BodyMesh2]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[chr_briar_archetype.BodyMesh3]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[chr_briar_archetype.HeadMesh0]
+HeadSkin0="오리지널"
+HeadSkin1="하이라이트"
+HeadSkin2="블랙"
+
+[Cosmetic_BRIAR_Doctor_ARCH]
+Attachment="닥터 마스크"
+AttachmentSkin0="화이트"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+
+[Cosmetic_BrokenMask_Briar_ARCH]
+Attachment="부서진 마스크"
+AttachmentSkin0="화이트옐로우"
+AttachmentSkin1="게이샤"
+AttachmentSkin2="메탈"
+AttachmentSkin3="슈가 퍼플"
+AttachmentSkin4="슈가 레드"
+AttachmentSkin5="스킨"
+
+[CHR_MrFoster_archetype]
+CharacterName="미스터 포스터"
+Description="포스터는 그저 그런 사립학교 영어 선생님이었다가 주식거래로 직업을 바꾸었습니다. 학교 직업상담관의 “자넨 아무것도 제대로 할 수 없을 거야, 포스터”라는 말이 귓가에 맴도는 상태로 말이죠. 포스터는 별로 신경 쓰지 않았습니다. 하지만 말도 안되게 주식거래는 그의 적성에 맞았습니다. 그는 많은 돈을 벌고 성공을 제대로 즐겼죠. 하지만 분명히 자기 일을 즐기는 사람은 아니었습니다. 그는 또한 높은 자리에 있는 사람들을 비꼬는 버릇이 있었습니다. 이로 인해 포스터는 냉소적인 유머 감각과 옷과 차에 대한 멋진 취향을 가진 똑똑하고 스마트한 남자로 보이게 되었습니다. 아니면 벼락 출세한 책벌레로 보였죠. 당신이 결정하세요."
+BodyMesh0="가죽 자켓"
+BodyMesh1="클래식 수트"
+BodyMesh2="카드보드 기사"
+BodyMesh3="Horzine 경비대"
+HeadMesh0="가스 마스크"
+
+[CHR_MrFoster_archetype.BodyMesh0]
+BodySkin0="KF 블루"
+BodySkin1="PCG Dosh"
+BodySkin2="바이오하자드"
+BodySkin3="저스트 클래스"
+BodySkin4="마그마 레드"
+
+[CHR_MrFoster_archetype.BodyMesh1]
+BodySkin0="클래식"
+BodySkin1="블랙"
+BodySkin2="고메즈"
+BodySkin3="핀 스트라이프"
+BodySkin4="록스"
+BodySkin5="바이스 블루"
+BodySkin6="바이스"
+BodySkin7="카지노"
+BodySkin8="스모킹"
+
+[CHR_MrFoster_archetype.BodyMesh2]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_MrFoster_archetype.BodyMesh3]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[CHR_MrFoster_archetype.HeadMesh0]
+HeadSkin0="오리지널 화이트"
+HeadSkin1="PCG 레드"
+HeadSkin2="내 친구 스컬리"
+HeadSkin3="마그마 레드"
+HeadSkin4="브리티쉬 클래스"
+
+[Cosmetic_DJHeadphones_ARCH]
+Attachment="스컬리폰"
+AttachmentSkin0="딥 블루"
+AttachmentSkin1="길로틴 레드"
+AttachmentSkin2="가디언 오렌지"
+AttachmentSkin3="레트로 스컬"
+AttachmentSkin4="Horzine 화이트"
+AttachmentSkin5="GearXT 옐로우"
+AttachmentSkin6="프레셔스 골드"
+
+[Cosmetic_MrFoster_Suit_NeckTie_ARCH]
+Attachment="포스터의 클래식 타이"
+AttachmentSkin0="클래식 블루"
+AttachmentSkin1="레드 스트라이프 "
+AttachmentSkin2="블랙"
+AttachmentSkin3="흑백"
+AttachmentSkin4="카지노"
+AttachmentSkin5="스터프"
+AttachmentSkin6="마그마"
+AttachmentSkin7="다크 레드 스트라이프"
+
+[Cosmetic_MrFoster_Suit_LooseTie_ARCH]
+Attachment="느슨한 타이"
+AttachmentSkin0="클래식 블루"
+AttachmentSkin1="레드 스트라이프"
+AttachmentSkin2="블랙"
+AttachmentSkin3="스모킹"
+AttachmentSkin4="카지노"
+AttachmentSkin5="스터프"
+AttachmentSkin6="마그마"
+AttachmentSkin7="다크 레드 스트라이프"
+
+[Cosmetic_MrFoster_Suit_BowTie_ARCH]
+Attachment="보우타이"
+AttachmentSkin0="클래식 블루"
+AttachmentSkin1="레드 스트라이프"
+AttachmentSkin2="블랙"
+AttachmentSkin3="흑백"
+AttachmentSkin4="카지노"
+AttachmentSkin5="스터프"
+AttachmentSkin6="마그마"
+AttachmentSkin7="다크 레드 스트라이프"
+
+[Cosmetic_MrFoster_01_LooseTie_ARCH]
+Attachment="느슨한 타이"
+AttachmentSkin0="클래식 블루"
+AttachmentSkin1="레드 스트라이프"
+AttachmentSkin2="블랙"
+AttachmentSkin3="흑백"
+AttachmentSkin4="카지노"
+AttachmentSkin5="스터프"
+
+[Cosmetic_Ana_CyberneticGasmask_ARCH]
+Attachment="사이버네틱 가스 마스크"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="핑크"
+
+[Cosmetic_rubbergasmask_alberts_1_ARCH]
+Attachment="고무 에어필터"
+AttachmentSkin0="베이지"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그린"
+AttachmentSkin3="스컬"
+
+[Cosmetic_TheInquisitor_1_ARCH]
+Attachment="심문관"
+AttachmentSkin0="가죽"
+AttachmentSkin1="화이트"
+
+[Cosmetic_BgHelmet_1_ARCH]
+Attachment="블러디 게임"
+AttachmentSkin0="블루"
+AttachmentSkin1="블랙"
+AttachmentSkin2="레드"
+AttachmentSkin3="옐로우"
+
+[Cosmetic_BrokenMask_ARCH]
+Attachment="부서진 마스크"
+AttachmentSkin0="화이트옐로우"
+
+[Cosmetic_WastelandGoggles_Tanaka_ARCH]
+Attachment="웨이스트랜드 고글"
+AttachmentSkin0="본"
+AttachmentSkin1="콜"
+AttachmentSkin2="프로스트"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_VenomMask_ClassicMasterson_ARCH]
+Attachment="베놈 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+
+[Cosmetic_VenomGoggles_ClassicMasterson_ARCH]
+Attachment="베놈 고글"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+
+[Cosmetic_RussianMilitaryGlasses_Briar_ARCH]
+Attachment="러시아 군용 안경"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블랙 블루"
+AttachmentSkin2="블랙 그린"
+AttachmentSkin3="블랙 오렌지"
+AttachmentSkin4="화이트"
+AttachmentSkin5="화이트 블루"
+AttachmentSkin6="화이트 그린"
+AttachmentSkin7="화이트 오렌지"
+AttachmentSkin8="프레셔스"
+
+[Cosmetic_GSG9Mask_ClassicMasterson_ARCH]
+Attachment="GS9 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="브라운"
+AttachmentSkin3="카모"
+AttachmentSkin4="올리브"
+AttachmentSkin5="레드"
+AttachmentSkin6="화이트"
+
+[CHR_Coleman_archetype]
+CharacterName="도노반 닐"
+Description="도노반은 크고 터프하며 어떤 상황이든 해쳐나갈 수 있습니다. 그는 무심하게 보이는 겉모습으로는 알 수 없는 훨씬 대단한 사람이죠. 그는 단순히 레슬러 무리를 지키는 경호원 중 한 명이 아니었습니다. 경호업체를 설립하고 운영하는 남자였죠. 애틀랜타에서 태어난 그는 스마트하고 좋은 교육을 받았으며 자신의 회사를 설립하기 전에 수사기관에서 일했습니다. 그는 근육뿐만 아니라 머리도 작전에 동원합니다. 하지만 지금은 잘못된 시기와 장소를 만나 갇혀버린 생존자일뿐이죠. 이 남자가 가는 길에 겁 없이 어슬렁거리고 있는 모든 제드들을 위해 짧은 기도를 해주세요. 아니면 그를 도와 함께 제드들을 물리쳐주세요!"
+BodyMesh0="RQ 후디"
+BodyMesh1="카드보드 기사"
+BodyMesh2="Horzine 경비대"
+HeadMesh0="페이스"
+
+[CHR_Coleman_archetype.BodyMesh0]
+BodySkin0="레이싱 그린"
+BodySkin1="러스틱 레드"
+BodySkin2="쿨 그레이"
+BodySkin3="페일 어스"
+
+[CHR_Coleman_archetype.BodyMesh1]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_Coleman_archetype.BodyMesh2]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[CHR_Coleman_archetype.HeadMesh0]
+HeadSkin0="도노반"
+HeadSkin1="탯"
+HeadSkin2="글레어"
+
+[Cosmetic_BoxingHeadGear_Coleman_ARCH]
+Attachment="복싱 헤드기어"
+AttachmentSkin0="레드"
+AttachmentSkin1="블루"
+AttachmentSkin2="브라운"
+AttachmentSkin3="옐로우"
+
+[Cosmetic_DJSkully01_ARCH]
+Attachment="스컬리 캡"
+AttachmentSkin0="가장 어두운 블랙"
+AttachmentSkin1="엑스트라 레드"
+AttachmentSkin2="GearXT 옐로우"
+AttachmentSkin3="그린 해저드"
+AttachmentSkin4="레트로 스컬리"
+
+[CHR_Alberts_archetype]
+CharacterName="알버츠 신부"
+Description="잉글랜드와 스코틀랜드 혼혈인 알버츠 신부는 언제나 강인하고 남을 돕고자 합니다. 그러한 강인함과 올곧음은 군사제로 활동하기에 완벽한 자질이었습니다. 그리고 20년 동안 런던 남부의 불만이 가득한 청소년들을 위해 일했죠. 사람들을 “나쁜” 쪽에서 “선한” 쪽으로 인도하고자 한평생 노력해온 알버츠 신부는 차를 즐기던 어느 오후 성난 괴물들 무리가 자신의 노력을 파괴하자 기분이 언짢아졌습니다. 그날 오후 죽은 이들과 죽어가는 이들을 위해 신속히 예배를 드린 다음 알버츠 신부는 혐오스러운 악마를 향해 분노를 퍼부었습니다. 그리고 자신의 손에 닿는 신체 조각들에게도 말이죠."
+BodyMesh0="도그 칼라"
+BodyMesh1="카드보드 기사"
+BodyMesh2="Horzine 경비대"
+HeadMesh0="헤어"
+
+[CHR_Alberts_archetype.BodyMesh0]
+BodySkin0="베이직 블랙"
+BodySkin1="루비 레드"
+BodySkin2="샤프 블루"
+BodySkin3="트로피컬 화이트"
+
+[CHR_Alberts_archetype.BodyMesh1]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_Alberts_archetype.BodyMesh2]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[CHR_Alberts_archetype.HeadMesh0]
+HeadSkin0="그레이"
+HeadSkin1="브라운"
+HeadSkin2="블랙"
+HeadSkin3="화이트"
+
+[Cosmetic_Alberts02_ARCH]
+Attachment="안경"
+AttachmentSkin0="셰이드"
+AttachmentSkin1="보통 안경"
+
+[Cosmetic_Alberts03_ARCH]
+Attachment="S10 NBC 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="카모"
+AttachmentSkin2="바이오하자드"
+AttachmentSkin3="제드 타임"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Bowler_ARCH]
+Attachment="보울러 햇"
+AttachmentSkin0="비지니스 블랙"
+AttachmentSkin1="영국 최고"
+AttachmentSkin2="초콜렛 브라운"
+AttachmentSkin3="플레이밍 레드"
+AttachmentSkin4="시리어슬리 퍼플"
+AttachmentSkin5="퍼포먼스 화이트"
+
+[Cosmetic_Alienware_Promo_ARCH]
+Attachment="에일리언웨어"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블랙 글로우"
+AttachmentSkin2="화이트"
+AttachmentSkin3="화이트 글로우"
+AttachmentSkin4="블루"
+AttachmentSkin5="블루 글로우"
+AttachmentSkin6="골드"
+AttachmentSkin7="골드 글로우"
+AttachmentSkin8="그린"
+AttachmentSkin9="그린 글로우"
+
+[Cosmetic_SunglassesAviator_Alberts_ARCH]
+Attachment="비행사"
+AttachmentSkin0="화이트 림"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+
+[Cosmetic_BallisticMask_Alberts_ARCH]
+Attachment="데브택 볼리스틱 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+
+[Cosmetic_BaseballCap_Alberts_ARCH]
+Attachment="야구모자"
+AttachmentSkin0="영국"
+AttachmentSkin1="미국"
+AttachmentSkin2="캐나다"
+AttachmentSkin3="독일"
+AttachmentSkin4="러시아"
+AttachmentSkin5="골드"
+AttachmentSkin6="블루"
+
+[Cosmetic_Flatcap_ARCH]
+Attachment="플랫 캡"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+AttachmentSkin2="블루"
+AttachmentSkin3="옐로우"
+AttachmentSkin4="화이트"
+
+[Cosmetic_ChefHat_Alberts_LOD0_LOD0_ARCH]
+Attachment="치프 햇"
+AttachmentSkin0="엑셀런트 햇"
+AttachmentSkin1="베이커스 더즌"
+AttachmentSkin2="조금 사용"
+
+[Cosmetic_ChemicalGasMask_Alberts_ARCH]
+Attachment="화학가스 마스크"
+AttachmentSkin0="표준"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그린"
+AttachmentSkin3="옐로우"
+
+[Cosmetic_CowboyHat_Alberts_ARCH]
+Attachment="카우보이 모자"
+AttachmentSkin0="카우보이 모자"
+
+[Cosmetic_UKHelmet_Alberts_ARCH]
+Attachment="케블라 헬멧"
+AttachmentSkin0="카모"
+
+[Cosmetic_UKHelmetNV_Alberts_ARCH]
+Attachment="야간투시경 헬멧"
+AttachmentSkin0="블루 글로우"
+
+[Cosmetic_EyePatch_Alberts_ARCH]
+Attachment="아이 패치"
+AttachmentSkin0="표준"
+AttachmentSkin1="아시안"
+AttachmentSkin2="생체"
+AttachmentSkin3="블루"
+AttachmentSkin4="카모"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="아이"
+AttachmentSkin7="팬시"
+AttachmentSkin8="화염"
+AttachmentSkin9="플레이드"
+AttachmentSkin10="퍼플"
+AttachmentSkin11="스컬"
+AttachmentSkin12="스플래터"
+AttachmentSkin13="타이 다이"
+
+[Cosmetic_WeldingMask_ARCH]
+Attachment="용접 마스크"
+AttachmentSkin0="다크 메탈"
+
+[Cosmetic_GermanGasMask_Alberts_ARCH]
+Attachment="독일 가스 마스크"
+AttachmentSkin0="독일 가스 마스크"
+
+[Cosmetic_SkiMask_AlbertsSkin_ARCH]
+Attachment="스키 마스크"
+AttachmentSkin0="표준"
+AttachmentSkin1="아시안"
+AttachmentSkin2="블랙 레드"
+AttachmentSkin3="블루 그린"
+AttachmentSkin4="블루 화이트"
+AttachmentSkin5="블루 옐로우"
+AttachmentSkin6="카모"
+AttachmentSkin7="다크 퍼플"
+AttachmentSkin8="화염"
+AttachmentSkin9="그린 블루"
+AttachmentSkin10="그린 옐로우"
+AttachmentSkin11="파스텔"
+AttachmentSkin12="퍼플"
+AttachmentSkin13="퍼플 블랙"
+AttachmentSkin14="레인보우"
+AttachmentSkin15="레드 화이트"
+AttachmentSkin16="화이트 블랙"
+AttachmentSkin17="옐로우 블랙"
+
+[Cosmetic_SunglassesRetro_Alberts_ARCH]
+Attachment="레트로 선글라스"
+AttachmentSkin0="블랙"
+AttachmentSkin1="카모"
+AttachmentSkin2="타이거"
+AttachmentSkin3="미국"
+
+[Cosmetic_holyglassesv2_ARCH]
+Attachment="홀리 글래스"
+AttachmentSkin0="홀리 글래스"
+
+[Cosmetic_VanAlbertsHat_Alberts_ARCH]
+Attachment="밴 알버츠 모자"
+AttachmentSkin0="클래식 케이퍼"
+AttachmentSkin1="헬 싱어"
+AttachmentSkin2="사제"
+
+[Cosmetic_VanAlbertsCloak_Alberts_ARCH]
+Attachment="밴 알버츠 클록"
+AttachmentSkin0="클래식 케이퍼"
+AttachmentSkin1="헬 싱어"
+AttachmentSkin2="사제"
+
+[Cosmetic_FrontRowProtectionUp_Briar_ARCH]
+Attachment="안면 보호구 올림"
+AttachmentSkin0="표준"
+AttachmentSkin1="바이오하자드"
+AttachmentSkin2="블러드배스"
+AttachmentSkin3="브리티쉬 본 돔"
+AttachmentSkin4="카모"
+AttachmentSkin5="독일 스프레이"
+AttachmentSkin6="스컬라큘라"
+AttachmentSkin7="스테인"
+
+[Cosmetic_FrontRowProtectionDown_Briar_ARCH]
+Attachment="안면 보호구 내림"
+AttachmentSkin0="표준"
+AttachmentSkin1="바이오하자드"
+AttachmentSkin2="블러드배스"
+AttachmentSkin3="브리티쉬 본 돔"
+AttachmentSkin4="카모"
+AttachmentSkin5="독일 스프레이"
+AttachmentSkin6="스컬라큘라"
+AttachmentSkin7="스테인"
+
+[Cosmetic_CriminalMask_Alberts_ARCH]
+Attachment="심신미약 마스크"
+AttachmentSkin0="심신미약 마스크"
+
+[Cosmetic_FlightHelmet_ARCH]
+Attachment="비행용 헬멧"
+AttachmentSkin0="비행용 헬멧"
+AttachmentSkin1="블러디 헬멧"
+AttachmentSkin2="버블 염"
+AttachmentSkin3="크림슨 스카이"
+AttachmentSkin4="화염"
+AttachmentSkin5="닌자"
+
+[Cosmetic_SkullBreakerHelm_Alberts_ARCH]
+Attachment="스컬 브레이커 헬멧"
+AttachmentSkin0="스컬 브레이커 헬멧"
+
+[Cosmetic_SkullBreakerMask_Alberts_ARCH]
+Attachment="스컬 브레이커 마스크"
+AttachmentSkin0="스컬 브레이커 마스크"
+
+[Cosmetic_CustodianHelmet_ARCH]
+Attachment="감시인 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="골드"
+AttachmentSkin2="블루"
+AttachmentSkin3="프레셔스 골드"
+
+[Cosmetic_FlightMask_Alberts_mask1_ARCH]
+Attachment="비행용 마스크"
+AttachmentSkin0="비행용 마스크"
+AttachmentSkin1="블러디 마스크"
+AttachmentSkin2="버블 염"
+AttachmentSkin3="크림슨 스카이"
+AttachmentSkin4="화염"
+AttachmentSkin5="닌자"
+
+[Cosmetic_DonovanGoggles_ARCH]
+Attachment="참 고글"
+AttachmentSkin0="블루"
+AttachmentSkin1="데저트"
+AttachmentSkin2="그린"
+AttachmentSkin3="화이트"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_DonovanGogglesNoCharm_ARCH]
+Attachment="비행사 고글"
+AttachmentSkin0="블루"
+AttachmentSkin1="데저트"
+AttachmentSkin2="그린"
+AttachmentSkin3="화이트"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_BattleHelmet_ARCH]
+Attachment="톱날 투구"
+AttachmentSkin0="초기 설정"
+
+[Cosmetic_Boonie_Cap_Alberts_ARCH]
+Attachment="부니 캡"
+AttachmentSkin0="초기 설정"
+AttachmentSkin1="레드 디지"
+AttachmentSkin2="레드 타이거"
+AttachmentSkin3="그린"
+AttachmentSkin4="그린 디지"
+AttachmentSkin5="블루 디지"
+AttachmentSkin6="블루 타이거"
+
+[Cosmetic_Coleman_yuri_ARCH]
+Attachment="잠입자"
+AttachmentSkin0="레드"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_cthulhumask_Alberts_ARCH]
+Attachment="심연의 마스크"
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Alberts_CyberneticGasmask_ARCH]
+Attachment="사이버네틱 가스 마스크"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="핑크"
+
+[Cosmetic_MrFoster_JFront_ARCH]
+Attachment="JFront 캡"
+AttachmentSkin0="레드"
+AttachmentSkin1="그린"
+AttachmentSkin2="블루"
+AttachmentSkin3="블랙"
+
+[Cosmetic_LonghornHat_ARCH]
+Attachment="롱혼"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="레드"
+AttachmentSkin3="화이트"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_mkitbag_Alberts_ARCH]
+Attachment="EMS 백팩"
+AttachmentSkin0="블루"
+AttachmentSkin1="레드"
+
+[Cosmetic_MotoHelm_ARCH]
+Attachment="모터사이클 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="오렌지 페이드"
+AttachmentSkin4="퍼플 페이드"
+AttachmentSkin5="레드"
+AttachmentSkin6="레드 화이트"
+AttachmentSkin7="실버"
+AttachmentSkin8="틸 화이트"
+AttachmentSkin9="프레셔스"
+
+[Cosmetic_MotoHelmDamaged_ARCH]
+Attachment="스매시 모터사이클 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="오렌지 페이드"
+AttachmentSkin4="퍼플 페이드"
+AttachmentSkin5="레드"
+AttachmentSkin6="레드 화이트"
+AttachmentSkin7="실버"
+AttachmentSkin8="틸 화이트"
+
+[Cosmetic_rubbergasmask_alberts_ARCH]
+Attachment="고무 에어필터"
+AttachmentSkin0="베이지"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그린"
+AttachmentSkin3="스컬"
+
+[Cosmetic_RussianGasmask_Alberts_ARCH]
+Attachment="러시아군 가스 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_SawtoothMask_Alberts_ARCH]
+Attachment="톱니 마스크"
+AttachmentSkin0="죠섬"
+AttachmentSkin1="레드투스"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_TheInquisitor_ARCH]
+Attachment="심문관"
+AttachmentSkin0="가죽"
+AttachmentSkin1="화이트"
+
+[Cosmetic_USGasMask_Alberts_ARCH]
+Attachment="미군 가스 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_BgHelmet_ARCH]
+Attachment="블러디 게임"
+AttachmentSkin0="블루"
+AttachmentSkin1="블랙"
+AttachmentSkin2="레드"
+AttachmentSkin3="옐로우"
+
+[Cosmetic_BrokenMask_Alberts_ARCH]
+Attachment="부서진 마스크"
+AttachmentSkin0="화이트옐로우"
+AttachmentSkin1="게이샤"
+AttachmentSkin2="메탈"
+AttachmentSkin3="슈가 퍼플"
+AttachmentSkin4="슈가 레드"
+AttachmentSkin5="스킨"
+
+[Cosmetic_militarybeanie_albert_ARCH]
+Attachment="방출 군용품 비니"
+AttachmentSkin0="베이지"
+AttachmentSkin1="블랙"
+AttachmentSkin2="블루"
+AttachmentSkin3="레드"
+AttachmentSkin4="그린"
+
+[Cosmetic_pilotgoggles_alberts_ARCH]
+Attachment="RAF 고글"
+AttachmentSkin0="글로우 블루"
+AttachmentSkin1="글로우 오렌지"
+AttachmentSkin2="블랙"
+AttachmentSkin3="오렌지"
+AttachmentSkin4="그린 블루"
+AttachmentSkin5="브라운"
+
+[Cosmetic_PorkPieHat_Alberts_ARCH]
+Attachment="포크 파이"
+AttachmentSkin0="미스터 화이트"
+
+[Cosmetic_AlbertsMask_base_ARCH]
+Attachment="비사지 드 푸피"
+AttachmentSkin0="돌 페이스"
+AttachmentSkin1="스퀘어"
+AttachmentSkin2="할리퀸"
+AttachmentSkin3="블러디"
+AttachmentSkin4="무에르토"
+AttachmentSkin5="스켈링톤"
+AttachmentSkin6="제드"
+
+[Cosmetic_ProtGlasses_masterson_ARCH]
+Attachment="보호 안경"
+AttachmentSkin0="오렌지"
+AttachmentSkin1="레드"
+AttachmentSkin2="퍼플"
+AttachmentSkin3="그린"
+AttachmentSkin4="블루"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_SamuraiMask_ARCH]
+Attachment="사무라이 마스크"
+AttachmentSkin0="부시"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_SamuraiHatOnly_ARCH]
+Attachment="사무라이 투구"
+AttachmentSkin0="부시"
+
+[Cosmetic_Masterson_SPBandana_ARCH]
+Attachment="스트릿 펑크 반다나"
+AttachmentSkin0="레드"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="블랙"
+AttachmentSkin3="화이트"
+AttachmentSkin4="그린"
+AttachmentSkin5="블루"
+AttachmentSkin6="엘 나이포"
+
+[Cosmetic_Donovan_SPGlasses_ARCH]
+Attachment="스트릿 펑크 안경"
+AttachmentSkin0="레드X"
+AttachmentSkin1="퍼플X"
+AttachmentSkin2="화이트X"
+AttachmentSkin3="그린X"
+AttachmentSkin4="블루X"
+AttachmentSkin5="레드"
+AttachmentSkin6="퍼플"
+AttachmentSkin7="블랙"
+AttachmentSkin8="그린"
+AttachmentSkin9="블루"
+AttachmentSkin10="프레셔스"
+AttachmentSkin11="프레셔스X"
+
+[Cosmetic_Discount-Rex_Alberts_D_Rex_Alberts_ARCH]
+Attachment="디스카운트 T-Rex 마스크"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_WastelandAlberts_ARCH]
+Attachment="웨이스트랜드 고글"
+AttachmentSkin0="본"
+AttachmentSkin1="콜"
+AttachmentSkin2="프로스트"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_mkitband_Alberts_ARCH]
+Attachment="EMS 암밴드"
+AttachmentSkin0="블루"
+AttachmentSkin1="레드"
+
+[Cosmetic_M2Tank_Alberts_ARCH]
+Attachment="M2 화염방사기 탱크"
+AttachmentSkin0="올리브 그레이"
+
+[Cosmetic_RPG7Bag_Alberts_ARCH]
+Attachment="RPG7 등가방"
+AttachmentSkin0="시에라 카모"
+AttachmentSkin1="포레스트 카모"
+AttachmentSkin2="데저트 카모"
+AttachmentSkin3="백우드 카모"
+AttachmentSkin4="지브라 스트라이프 카모"
+AttachmentSkin5="그린 카모"
+AttachmentSkin6="블랙 카모"
+
+[Cosmetic_EnforcerGoggles_Alberts_ARCH]
+Attachment="행동대장 고글"
+AttachmentSkin0="블랙 코트"
+AttachmentSkin1="블랙 코트 블루"
+AttachmentSkin2="블랙 코트 레드"
+AttachmentSkin3="블랙 코트 그린"
+AttachmentSkin4="그린 코트"
+AttachmentSkin5="블루 코트"
+AttachmentSkin6="레드 코트"
+
+[Cosmetic_EnforcerHelmet_Alberts_ARCH]
+Attachment="행동대장 헬멧"
+AttachmentSkin0="블랙 코트"
+AttachmentSkin1="그린 코트"
+AttachmentSkin2="블루 코트"
+AttachmentSkin3="레드 코트"
+
+[Cosmetic_EnforcerMask_Alberts_ARCH]
+Attachment="행동대장 마스크"
+AttachmentSkin0="블랙 아이즈"
+AttachmentSkin1="레드 아이즈"
+AttachmentSkin2="블루 아이즈"
+AttachmentSkin3="그린 아이즈"
+AttachmentSkin4="그린 필터"
+AttachmentSkin5="블루 필터"
+AttachmentSkin6="레드 필터"
+
+[Cosmetic_JusticeGoggles_Alberts_ARCH]
+Attachment="저스티스 고글"
+AttachmentSkin0="스텔스 블랙"
+
+[Cosmetic_JusticeHelmet_Alberts_ARCH]
+Attachment="저스티스 헬멧"
+AttachmentSkin0="스텔스 블랙"
+AttachmentSkin1="전술용 그린"
+AttachmentSkin2="새비지 레드"
+AttachmentSkin3="마이애미 블루"
+
+[Cosmetic_JusticeMask_Alberts_ARCH]
+Attachment="저스티스 마스크"
+AttachmentSkin0="스텔스 블랙"
+AttachmentSkin1="전술용 그린"
+AttachmentSkin2="새비지 레드"
+AttachmentSkin3="마이애미 블루"
+AttachmentSkin4="블루 강철"
+AttachmentSkin5="블루 매그넘"
+AttachmentSkin6="그린 랠리"
+AttachmentSkin7="그린 시너지"
+AttachmentSkin8="레드 페이스"
+AttachmentSkin9="레드 칙스"
+AttachmentSkin10="리퍼 블랙"
+
+[Cosmetic_TacticalBackbag_Alberts_Backpack_ARCH]
+Attachment="전술용 등가방"
+AttachmentSkin0="블랙"
+AttachmentSkin1="포레스트 카모"
+AttachmentSkin2="백우드 카모"
+AttachmentSkin3="데저트 카모"
+AttachmentSkin4="시에라 카모"
+AttachmentSkin5="올리브 카모"
+
+[Cosmetic_TacticalHat_Alberts_ARCH]
+Attachment="전술용 모자"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="카모"
+AttachmentSkin3="그레이"
+AttachmentSkin4="네이비"
+AttachmentSkin5="올리브"
+AttachmentSkin6="레드"
+
+[Cosmetic_TacticalMask_Alberts_ARCH]
+Attachment="전술 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="카모"
+AttachmentSkin3="그레이"
+AttachmentSkin4="네이비"
+AttachmentSkin5="올리브"
+AttachmentSkin6="레드"
+
+[Cosmetic_TacticalHeadsetMK1_Alberts_ARCH]
+Attachment="전술용 헤드셋 MK1"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="그린"
+AttachmentSkin3="그레이"
+AttachmentSkin4="네이비"
+AttachmentSkin5="올리브"
+AttachmentSkin6="레드"
+
+[Cosmetic_TacticalHeadsetMK2_Alberts_ARCH]
+Attachment="전술용 헤드셋 MK2"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="그린"
+AttachmentSkin3="그레이"
+AttachmentSkin4="네이비"
+AttachmentSkin5="올리브"
+AttachmentSkin6="레드"
+
+[Cosmetic_VenomMask_Alberts_ARCH]
+Attachment="베놈 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+
+[Cosmetic_VenomMaskFiltered_Alberts_ARCH]
+Attachment="베놈 마스크 필터"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+AttachmentSkin7="프레셔스"
+
+[Cosmetic_VenomGoggles_Alberts_ARCH]
+Attachment="베놈 고글"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+
+[Cosmetic_VenomGogglesCoverUp_Alberts_ARCH]
+Attachment="베놈 고글 업"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+
+[Cosmetic_VenomGogglesCoverDown_Alberts_ARCH]
+Attachment="베놈 고글 다운"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+AttachmentSkin7="프레셔스"
+
+[Cosmetic_VenomHeadphones_Alberts_ARCH]
+Attachment="베놈 헤드폰"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+
+[Cosmetic_RoboScully_ARCH]
+Attachment="로보 스컬리"
+AttachmentSkin0="클린 슬레이트"
+AttachmentSkin1="올드스쿨 패티"
+AttachmentSkin2="품절"
+AttachmentSkin3="스틸 스컬리"
+AttachmentSkin4="트루 뉴트럴"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_ZedDundee_ARCH]
+Attachment="제드 던디"
+AttachmentSkin0="브라운"
+
+[Cosmetic_RussianMilitaryHelmet_Alberts_ARCH]
+Attachment="러시아 군용 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="올리브"
+AttachmentSkin4="레드"
+AttachmentSkin5="화이트"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_RussianMilitaryMask_Briar_ARCH]
+Attachment="러시아 군용 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="올리브"
+AttachmentSkin4="레드"
+AttachmentSkin5="화이트"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_RussianMilitaryGlasses_Masterson_ARCH]
+Attachment="러시아 군용 안경"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블랙 블루"
+AttachmentSkin2="블랙 그린"
+AttachmentSkin3="블랙 오렌지"
+AttachmentSkin4="화이트"
+AttachmentSkin5="화이트 블루"
+AttachmentSkin6="화이트 그린"
+AttachmentSkin7="화이트 오렌지"
+AttachmentSkin8="프레셔스"
+
+[Cosmetic_Tormentor_Headgear_Alberts_ARCH]
+Attachment="고문자 헤드기어"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Tormentor_Mask_Alberts_ARCH]
+Attachment="고문자 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+
+[Cosmetic_Tormentor_Mask_Tubes_Alberts_ARCH]
+Attachment="고문자 튜브 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_GSG9Helmet_Alberts_ARCH]
+Attachment="GS9 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="브라운"
+AttachmentSkin3="카모1"
+AttachmentSkin4="카모2"
+AttachmentSkin5="네이비"
+AttachmentSkin6="올리브"
+AttachmentSkin7="레드"
+
+[Cosmetic_GSG9Mask_Alberts_ARCH]
+Attachment="GS9 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="브라운"
+AttachmentSkin3="카모"
+AttachmentSkin4="올리브"
+AttachmentSkin5="레드"
+AttachmentSkin6="화이트"
+
+[Cosmetic_GraduationCap_ARCH]
+Attachment="학사모"
+AttachmentSkin0="블랙"
+
+[Cosmetic_PsychoGoggles_ARCH]
+Attachment="사이코 고글"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블러디"
+AttachmentSkin2="레드"
+AttachmentSkin3="화이트"
+
+[Cosmetic_PsychoMaskClosed_ARCH]
+Attachment="사이코 마스크 닫힘"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블러디"
+AttachmentSkin2="레드"
+AttachmentSkin3="화이트"
+
+[Cosmetic_PsychoMaskOpen_ARCH]
+Attachment="사이코 마스크 열림"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블러디"
+AttachmentSkin2="레드"
+AttachmentSkin3="화이트"
+
+[Cosmetic_PsychoMaskSmile_ARCH]
+Attachment="스마일 사이코 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블러디"
+AttachmentSkin2="레드"
+AttachmentSkin3="화이트"
+
+[Cosmetic_PsychoPainGogglesClosed_ARCH]
+Attachment="사이코 페인 고글 닫힘"
+AttachmentSkin0="라텍스"
+AttachmentSkin1="가죽"
+AttachmentSkin2="녹슨 못"
+AttachmentSkin3="강철"
+
+[Cosmetic_PsychoPainGogglesOpen_ARCH]
+Attachment="사이코 페인 고글 열림"
+AttachmentSkin0="라텍스"
+AttachmentSkin1="가죽"
+AttachmentSkin2="녹슨 못"
+AttachmentSkin3="강철"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_PsychoPainMaskClosed_ARCH]
+Attachment="사이코 페인 마스크 닫힘"
+AttachmentSkin0="라텍스"
+AttachmentSkin1="가죽"
+AttachmentSkin2="녹슨 못"
+AttachmentSkin3="강철"
+
+[Cosmetic_PsychoPainMaskOpen_ARCH]
+Attachment="사이코 페인 마스크 열림"
+AttachmentSkin0="라텍스"
+AttachmentSkin1="가죽"
+AttachmentSkin2="녹슨 못"
+AttachmentSkin3="강철"
+
+[Cosmetic_PsychoPainMaskSmile_ARCH]
+Attachment="사이코 페인 마스크 스마일"
+AttachmentSkin0="라텍스"
+AttachmentSkin1="가죽"
+AttachmentSkin2="녹슨 못"
+AttachmentSkin3="강철"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_BoxKnightHelmet_ARCH]
+Attachment="카드보드 나이트 헬멧"
+AttachmentSkin0="클래식"
+AttachmentSkin1="BareSo"
+AttachmentSkin2="바이오 콜라"
+AttachmentSkin3="Horzine 창고"
+AttachmentSkin4="Tripwire"
+AttachmentSkin5="ZedEx"
+
+[Cosmetic_ReaperEyes_ARCH]
+Attachment="리퍼 아이즈"
+AttachmentSkin0="블러디"
+
+[Cosmetic_ReaperHat_ARCH]
+Attachment="리퍼 모자"
+AttachmentSkin0="블랙"
+
+[Cosmetic_ReaperJaw_ARCH]
+Attachment="리퍼 턱"
+AttachmentSkin0="블러디"
+
+[Cosmetic_ReaperRavenEyes_ARCH]
+Attachment="리퍼 레이븐 아이즈"
+AttachmentSkin0="레드 밴드"
+AttachmentSkin1="화이트 밴드"
+
+[Cosmetic_ReaperRavenHat_ARCH]
+Attachment="리퍼 레이븐 모자"
+AttachmentSkin0="화이트"
+
+[Cosmetic_ReaperRavenJaw_ARCH]
+Attachment="리퍼 레이븐 턱"
+AttachmentSkin0="레드 밴드"
+AttachmentSkin1="화이트 밴드"
+
+[Cosmetic_ReaperDeadEyes_ARCH]
+Attachment="리퍼 데드 아이즈"
+AttachmentSkin0="블러디"
+AttachmentSkin1="레드"
+
+[Cosmetic_ReaperDeadHood_ARCH]
+Attachment="리퍼 데드 후드"
+AttachmentSkin0="블러디"
+
+[Cosmetic_ReaperDeadMask_ARCH]
+Attachment="리퍼 데드 마스크"
+AttachmentSkin0="블러디"
+
+[Cosmetic_ReaperFaceArmor_ARCH]
+Attachment="리퍼 안면 보호구"
+AttachmentSkin0="스컬"
+
+[Cosmetic_HorzineSecurityHelmet_ARCH]
+Attachment="Horzine 경비대 헬멧"
+AttachmentSkin0="엘리트 블루"
+AttachmentSkin1="엘리트 그린"
+AttachmentSkin2="엘리트 레드"
+AttachmentSkin3="엘리트 화이트"
+AttachmentSkin4="마크 7"
+AttachmentSkin5="스노우 디지캠"
+AttachmentSkin6="데저트"
+AttachmentSkin7="멀티캠"
+AttachmentSkin8="해저드"
+AttachmentSkin9="애더먼트"
+AttachmentSkin10="현상금 사냥꾼"
+
+[Cosmetic_Chivalry_Knight_Helm01_ARCH]
+Attachment="기사 투구"
+AttachmentSkin0="아가사"
+AttachmentSkin1="클리스"
+AttachmentSkin2="퍼시벌"
+AttachmentSkin3="제이미"
+
+[CHR_Masterson_archetype]
+CharacterName="빌 마스터슨 중위"
+Description="빌 마스터슨은 군에서 우여곡절이 많았습니다. 그는 여왕과 국가에 맞서는 대담한 적을 해치우는 영웅이 되고 싶었지만 그의 상대는 더러운 테러리스트들이었습니다. 그는 총격전을 원했지만 세계의 형편없는 지역에 부하들을 이끌고 가서 멍청한 “경찰 업무”만 해야 했습니다. 그래서 그는 그만두었습니다. 쓸모 없는 직업을 전전하던 그는 어느 날 아침 런던 거리에서 일어나는 세상의 종말을 보게 됩니다. 마스터슨은 이제 그가 바랬던 영웅적인 전사로서 지역 예비군 막사를 찾아가 장비를 갖추고 총격전을 시작합니다. 이런 전쟁을 예상했던 것은 아니고 그에 대한 훈련도 받지 않았지만 어쨌든 잘 합니다. 그는 정말 소질이 있습니다!"
+BodyMesh0="전투복"
+BodyMesh1="카드보드 기사"
+BodyMesh2="Horzine 경비대"
+HeadMesh0="페이스"
+
+[CHR_Masterson_archetype.HeadMesh0]
+HeadSkin0="클린"
+HeadSkin1="카모"
+
+[CHR_Masterson_archetype.BodyMesh0]
+BodySkin0="그린"
+BodySkin1="블랙"
+BodySkin2="스노우"
+BodySkin3="DPM"
+
+[CHR_Masterson_archetype.BodyMesh1]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_Masterson_archetype.BodyMesh2]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[CHR_Tanaka_Archetype]
+CharacterName="하야토 타나카"
+Description="타나카는 죽음에 대한 동경으로 어려움을 겪고 있습니다. 오키나와에서 태어난 그는 미군 가정에서 자랍니다. 가족과 함께 일본으로 이주한 타나카는 미국 문화에 젖어 연기 수업을 받지 못합니다. 대학을 졸업한 후 LA로 이주하여 형편없는 영화에 단역으로 출연하던 그는 보다 ‘진지한’ 작업을 위해 유럽으로 옮깁니다. 그가 맡게 된 역할은 고작 프랑스 갱스터 영화의 악역이었습니다. 이제 세계가 멸망하자 그는 현실과 영화 속에서 자신이 맡았던 역할을 혼동하게 되었습니다. 여기에는 야쿠자와 악마, 할리우드판 무사도의 환상이 섞여 있는 것처럼 보입니다."
+BodyMesh0="쿨하게 죽기"
+BodyMesh1="모터사이클"
+BodyMesh2="카드보드 기사"
+BodyMesh3="Horzine 경비대"
+HeadMesh0="헤어"
+
+[CHR_Tanaka_Archetype.HeadMesh0]
+HeadSkin0="블랙"
+HeadSkin1="금발"
+
+[CHR_Tanaka_Archetype.BodyMesh0]
+BodySkin0="기품있게"
+BodySkin1="카키하라 상"
+BodySkin2="블랙"
+BodySkin3="블루 드래곤"
+
+[CHR_Tanaka_Archetype.BodyMesh1]
+BodySkin0="레드와 블랙"
+BodySkin1="마스터돈"
+BodySkin2="스티그"
+BodySkin3="블루 블러"
+BodySkin4="드래곤"
+BodySkin5="죽음의 게임"
+BodySkin6="학"
+
+[CHR_Tanaka_Archetype.BodyMesh2]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_Tanaka_Archetype.BodyMesh3]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[Cosmetic_Tanaka_BikerHelmet_ARCH]
+Attachment="헬멧"
+AttachmentSkin0="라이징 선"
+AttachmentSkin1="아메리카"
+AttachmentSkin2="블랙"
+AttachmentSkin3="블루 블러"
+AttachmentSkin4="치프 그린"
+AttachmentSkin5="둠 그레이"
+AttachmentSkin6="죽음의 게임"
+AttachmentSkin7="화이트"
+
+[Cosmetic_Mempo_Tanaka_ARCH]
+Attachment="멤포"
+AttachmentSkin0="표준"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="레드"
+AttachmentSkin3="옐로우"
+
+[Cosmetic_Rockabilly_Wig_ARCH]
+Attachment="로커빌리 가발"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="골드"
+AttachmentSkin3="레드"
+AttachmentSkin4="틸"
+AttachmentSkin5="핑크"
+
+[CHR_Ana_Archetype]
+CharacterName="아나 라리브"
+Description="그녀는 아마도 “비행청소년”이라는 부류로 분류될 것입니다. 하지만 아나는 버려진 곳들을 찾아 사진을 찍는 일과 데스메탈 밴드에 빠져 유럽을 여행하는 것 말고는 그렇게 나쁜 짓을 한 적이 없습니다. 이제 “질서”가 많이 사라지면서 아나는 더욱 제멋대로가 되었습니다. 이제 투어를 도는 밴드는 없지만 버려진 곳들은 더욱 많아졌으니까요. 그녀가 하는 일의 핵심은 버려진 곳을 찾아가서 더 나쁘게 보이도록 만드는 것입니다. 이제 그녀의 새로운 열정을 볼 수 있을 것입니다 - 바로 다 날려버리는 것이죠!"
+BodyMesh0="메탈코어"
+BodyMesh1="Horzine 경비대"
+BodyMesh2="카드보드 기사"
+HeadMesh0="모호크"
+
+[CHR_Ana_Archetype.HeadMesh0]
+HeadSkin0="죽음의 비"
+HeadSkin1="브라이트 블러드"
+HeadSkin2="바이오 콜라 그린"
+HeadSkin3="프리티 블루"
+
+[CHR_Ana_Archetype.BodyMesh0]
+BodySkin0="죽음의 비"
+BodySkin1="브라이트 블러드"
+BodySkin2="바이오 콜라 그린"
+BodySkin3="프리티 블루"
+BodySkin4="치키네이터 오마주"
+
+[CHR_Ana_Archetype.BodyMesh1]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[CHR_Ana_Archetype.BodyMesh2]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[Cosmetic_3dGlasses_ARCH]
+Attachment="3D 안경"
+AttachmentSkin0="애너그리프 3D"
+AttachmentSkin1="패시브 셔터"
+AttachmentSkin2="트리오스코픽 3D"
+AttachmentSkin3="X-레이 안경"
+
+[Cosmetic_mkitbag_Masterson_ARCH]
+Attachment="EMS 백팩"
+AttachmentSkin0="블루"
+AttachmentSkin1="레드"
+
+[chr_mark_archetype]
+CharacterName="클래식 브라이어"
+Description="오래 전 브라이어는 런던의 폭동을 단속하도록 호출을 받았습니다. 하지만 이번에 그의 경찰봉이 향하는 대상은 히피와 환경주의자, 털복숭이 무정부주의자들이 아닙니다. 예상치 못한 폭력을 좋아하는 그의 기질 덕분에 그는 몇 달간 악전고투 끝에 영국을 버리고 외국으로 떠나게 되었습니다.\n\n이제 그는 경찰에서 배운 기술을 비행청소년들을 단속하는 수준을 넘어 사람을 먹는 돌연변이 괴물을 쏘고 태우고 산산조각 내는 일에 쓸 수 있게 되었습니다. 그리고 그의 낙천적인 영국 경찰 성격은 팀의 사기를 높이는데 도움이 됩니다. 또는 사람을 짜증나게 만들죠."
+BodyMesh0="폭동진압용 장비"
+BodyMesh1="런던"
+BodyMesh2="카드보드 기사"
+BodyMesh3="Horzine 경비대"
+HeadMesh0="헤어"
+
+[chr_mark_archetype.BodyMesh0]
+BodySkin0="폴리스 블루"
+BodySkin1="나이트 블랙"
+BodySkin2="아미 그린"
+BodySkin3="SAS 카모"
+
+[chr_mark_archetype.BodyMesh1]
+BodySkin0="메트로"
+BodySkin1="나이트 블랙"
+BodySkin2="블루"
+BodySkin3="리플렉티브"
+BodySkin4="리플렉티브 블랙"
+
+[chr_mark_archetype.BodyMesh2]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[chr_mark_archetype.BodyMesh3]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[chr_mark_archetype.HeadMesh0]
+HeadSkin0="진짜배기"
+HeadSkin1="피바다 5시"
+HeadSkin2="좋은 갈색이죠 선생님?"
+HeadSkin3="스웨덴 금발"
+
+[chr_alan_archetype]
+CharacterName="클래식 마스터슨"
+Description="아무도 마스터슨이 어떻게 진급했는지 모릅니다. 어떤 이들은 잘생기고 돈도 많은 그의 사촌 리처드 위긴스 대위가 영향력을 행사했을 거라 말합니다. 아니면 똑똑한 그의 형이 도와줬을 수도 있겠죠. 하지만 언제나 말했듯이 그는 다듬어지지 않은 다이아몬드이며 말이 많지 않고 전투에서는 이상할 정도로 침착합니다. 많은 사람들은 그가 상상력과 공감 능력, 지능이 부족하기 때문에 그렇다고 생각합니다. 운이 좋게도 그는 부하들을 단호하게 이끌고 일을 처리해냅니다. 그 일이 고상한 사람들에게는 불쾌하게 느껴지는 일일지라도 말이죠."
+BodyMesh0="폭동진압용 장비"
+BodyMesh1="카드보드 기사"
+BodyMesh2="Horzine 경비대"
+HeadMesh0="페이스"
+
+[CHR_alan_archetype.BodyMesh0]
+BodySkin0="그린"
+BodySkin1="블랙"
+BodySkin2="스노우"
+BodySkin3="DPM"
+
+[CHR_alan_archetype.BodyMesh1]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_alan_archetype.BodyMesh2]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[chr_alan_archetype.HeadMesh0]
+HeadSkin0="진짜배기"
+HeadSkin1="진저! 정말?"
+HeadSkin2="힘든 날이지, 친구?"
+HeadSkin3="장비를 갖춰!"
+
+[Cosmetic_Coleman01_ARCH]
+Attachment="RQ 캡"
+AttachmentSkin0="멜로우 옐로우"
+AttachmentSkin1="러스틱 레드"
+AttachmentSkin2="트루 블루"
+AttachmentSkin3="린 그린"
+
+[chr_strasser_archetype]
+CharacterName="안톤 스트라서"
+Description="스트라서는 1939년 폴란드를 침공한 독일 군인으로서 처음 전쟁에 참여하였습니다. 이어서 1940년 프랑스와 1941년 러시아 전투에 참여했습니다. 하지만 여기서 거의 얼어 죽을 위기에 처하면서 혹독한 겨울과 붉은 군대 모두와 맞서 싸웠죠. 1942년 스탈린그라드가 모습을 드러내고 승리는 막을 내리자 환상은 깨졌습니다. 굼락 비행장에서 그는 심한 충격을 받았지만 운이 좋았습니다. 혼수상태에서 한스 볼터의 실험 대상 대기자로 옮겨진 그는 극저온 실험의 좋은 실험 대상으로 볼터의 연구실에 은밀히 옮겨졌습니다. 여기서 냉동된 채 잊혀졌던 그는 아웃브레이크로 인해 깨어나게 됩니다. 당황한 그는 볼터를 죽일 기회가 있었지만 놓치고, 나중에 상황을 알게 되자 이 일을 두고두고 후회하게 됩니다."
+BodyMesh0="RO2: 스탈린그라드의 영웅"
+BodyMesh1="카드보드 기사"
+BodyMesh2="Horzine 경비대"
+HeadMesh0="헤어"
+
+[CHR_strasser_archetype.BodyMesh0]
+BodySkin0="신병"
+BodySkin1="전투에서 단련된"
+
+[CHR_strasser_archetype.BodyMesh1]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_strasser_archetype.BodyMesh2]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[chr_strasser_archetype.HeadMesh0]
+HeadSkin0="다크 스틸"
+HeadSkin1="블론드 스틸"
+
+[Cosmetic_Strasser_02_ARCH]
+Attachment="독일 강철 헬멧"
+AttachmentSkin0="클래식 스틸"
+AttachmentSkin1="에이지드 스틸"
+
+[Cosmetic_GermanOfficerHat_Strasser_ARCH]
+Attachment="독일 장교 모자"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+
+[Cosmetic_Tanaka_Mask01_ARCH]
+Attachment="안면 마스크"
+AttachmentSkin0="골드 드래곤"
+AttachmentSkin1="카키하라 상"
+AttachmentSkin2="하냐"
+AttachmentSkin3="트루 블루"
+
+[chr_knight_archetype]
+CharacterName="톰 배너"
+Description="톰 배너는 어렸을 때부터 중세 영웅담에 푹 빠졌습니다. 경영 컨설턴트로서 쌓은 빛나는 경력은 캐나다에서 태어나 보스턴을 거쳐 영국에 이르는 동안 이러한 꿈을 더 키워주었습니다. 그는 이미 자신의 갑옷을 만들고 옛날옛적 잉글랜드의 재현자라는 새로운 인격을 탄생시켰습니다. 이러한 그의 행동은 환상 속에서 재현자로서는 결코 안전하지 않은 일을 하게 만드는 ‘기사도’를 깨웠습니다. 아웃브레이크가 발생하자 톰은 자신의 갑옷을 입고 괴물로부터 아름다운 아가씨들을 구하기 위해 뛰쳐 나갔습니다. 진심으로요. 갑옷 벗기를 거부하자 그가 중세에 대해 너무 심각하게 생각한다는 우려가 생겼습니다. 하지만 누가 신경이나 쓰겠습니까?"
+BodyMesh0="갑옷"
+HeadMesh0="머리"
+
+[CHR_knight_archetype.BodyMesh0]
+BodySkin0="아가사"
+BodySkin1="클리스"
+BodySkin2="퍼시벌"
+BodySkin3="제이미"
+
+[CHR_knight_archetype.BodyMesh1]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[chr_knight_archetype.HeadMesh0]
+HeadSkin0="전투다!"
+HeadSkin1="프리덤!"
+HeadSkin2="전쟁이다!"
+HeadSkin3="발할라!"
+
+[Cosmetic_Chivalry_Knight_Helm02HP_ARCH]
+Attachment="기수의 투구"
+AttachmentSkin0="아가사"
+AttachmentSkin1="클리스"
+AttachmentSkin2="퍼시벌"
+AttachmentSkin3="제이미"
+
+[Cosmetic_Chivalry_Knight_Helm03Veteran_ARCH]
+Attachment="백전노장의 투구"
+AttachmentSkin0="아가사"
+AttachmentSkin1="클리스"
+AttachmentSkin2="퍼시벌"
+AttachmentSkin3="제이미"
+
+[Cosmetic_Briar_01_ARCH]
+Attachment="올드 라이엇 투구"
+AttachmentSkin0="킹 레드"
+AttachmentSkin1="나이트 블루"
+AttachmentSkin2="로드 그린"
+AttachmentSkin3="블랙 나이트"
+
+[Cosmetic_Tanaka03'_ARCH]
+Attachment="예 안경"
+AttachmentSkin0="햇빛 가리개"
+AttachmentSkin1="더 잘 보기 위해"
+
+[Cosmetic_TacticalHat_ClassicMasterson_ARCH]
+Attachment="전술용 모자"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="카모"
+AttachmentSkin3="그레이"
+AttachmentSkin4="네이비"
+AttachmentSkin5="올리브"
+AttachmentSkin6="레드"
+
+[Cosmetic_TacticalMask_ClassicMasterson_ARCH]
+Attachment="전술 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="카모"
+AttachmentSkin3="그레이"
+AttachmentSkin4="네이비"
+AttachmentSkin5="올리브"
+AttachmentSkin6="레드"
+
+[Cosmetic_TacticalHeadsetMK1_ClassicMasterson_ARCH]
+Attachment="전술용 헤드셋 MK1"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="그린"
+AttachmentSkin3="그레이"
+AttachmentSkin4="네이비"
+AttachmentSkin5="올리브"
+AttachmentSkin6="레드"
+
+[Cosmetic_TacticalHeadsetMK2_ClassicMasterson_ARCH]
+Attachment="전술용 헤드셋 MK2"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="그린"
+AttachmentSkin3="그레이"
+AttachmentSkin4="네이비"
+AttachmentSkin5="올리브"
+AttachmentSkin6="레드"
+
+[Cosmetic_RussianMilitaryMask_Knight_ARCH]
+Attachment="러시아 군용 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="올리브"
+AttachmentSkin4="레드"
+AttachmentSkin5="화이트"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Tormentor_Mask_ClassicMasterson_ARCH]
+Attachment="고문자 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+
+[Cosmetic_Tormentor_Mask_Tubes_ClassicMasterson_ARCH]
+Attachment="고문자 튜브 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Briar_01_1_ARCH]
+Attachment="라이엇 헬멧"
+AttachmentSkin0="비저블 레드"
+AttachmentSkin1="폴리스 블루"
+AttachmentSkin2="아미 그린"
+AttachmentSkin3="나이트 블랙"
+
+[chr_rockabilly_archetype]
+CharacterName="래 히긴스"
+Description="래 히긴스는 오스트레일리아에서 유럽으로 건너왔습니다. 멜버른에서 태어난 그녀는 다윈섬에서 자라 세계를 탐험한 후에 런던에 정착하였습니다. 조용하고 온화한 데이터 분석가인 래는 밤에는 로커빌리 스타일로 변신합니다. 튀지 않는 긴 소매 옷으로 보수적이고 지루한 부장님의 눈에 문신이 보이지 않게 가려주고 메이크업과 헤어스타일은 미친 듯이 돌아가는 사무실에 맞게 유지합니다. 주말이 오기 전까지는요. 주말이 되면 회색은 금지입니다. 래의 세상은 음악과 즐거움, 요란한 원색으로 폭발합니다. \n\n래는 운이 좋게도 처음 아웃브레이크가 일어났을 때 스페인 칼라펠리에서 하이 로커빌리 페스티발을 즐기고 있었습니다. 산산조각으로 찢겨진 따분한 동료들과 달리 살아남게 되었죠. 이제 그녀는 자신의 본성을 숨길 필요가 없습니다. 놀아보자, 제드들아!"
+BodyMesh0="기본 드레스"
+BodyMesh1="Horzine 경비대"
+BodyMesh2="카드보드 기사"
+HeadMesh0="기본 머리"
+
+[chr_rockabilly_archetype.BodyMesh0]
+BodySkin0="로즈 레드"
+BodySkin1="체크메이트"
+BodySkin2="카리스마"
+BodySkin3="천재지변"
+BodySkin4="레드 스트라이프"
+BodySkin5="세일러"
+
+[chr_rockabilly_archetype.BodyMesh1]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+
+[chr_rockabilly_archetype.BodyMesh2]
+BodySkin0="클래식"
+BodySkin1="BareSo"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[chr_rockabilly_archetype.HeadMesh0]
+HeadSkin0="블랙"
+HeadSkin1="브루넷"
+HeadSkin2="진저"
+HeadSkin3="골드"
+HeadSkin4="틸"
+HeadSkin5="핑크"
+
+[Cosmetic_EyePatch_Ana_ARCH]
+Attachment="아이 패치"
+AttachmentSkin0="표준"
+AttachmentSkin1="아시안"
+AttachmentSkin2="생체"
+AttachmentSkin3="블루"
+AttachmentSkin4="카모"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="아이"
+AttachmentSkin7="팬시"
+AttachmentSkin8="화염"
+AttachmentSkin9="플레이드"
+AttachmentSkin10="퍼플"
+AttachmentSkin11="스컬"
+AttachmentSkin12="스플래터"
+AttachmentSkin13="타이 다이"
+
+[Cosmetic_SkiMask_BriarSkin_ARCH]
+Attachment="스키 마스크"
+AttachmentSkin0="표준"
+AttachmentSkin1="아시안"
+AttachmentSkin2="블랙 레드"
+AttachmentSkin3="블루 그린"
+AttachmentSkin4="블루 화이트"
+AttachmentSkin5="블루 옐로우"
+AttachmentSkin6="카모"
+AttachmentSkin7="다크 퍼플"
+AttachmentSkin8="화염"
+AttachmentSkin9="그린 블루"
+AttachmentSkin10="그린 옐로우"
+AttachmentSkin11="파스텔"
+AttachmentSkin12="퍼플"
+AttachmentSkin13="퍼플 블랙"
+AttachmentSkin14="레인보우"
+AttachmentSkin15="레드 화이트"
+AttachmentSkin16="화이트 블랙"
+AttachmentSkin17="옐로우 블랙"
+
+[Cosmetic_BRIAR_Doctor_1_ARCH]
+Attachment="닥터 마스크"
+AttachmentSkin0="화이트"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+
+[Cosmetic_CriminalMask_Briar_ARCH]
+Attachment="심신미약 마스크"
+AttachmentSkin0="심신미약 마스크"
+
+[Cosmetic_SkullBreakerHelm_Alberts_1_ARCH]
+Attachment="스컬 브레이커 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_SkullBreakerMask_Briar_ARCH]
+Attachment="스컬 브레이커 마스크"
+AttachmentSkin0="블루"
+AttachmentSkin1="블랙"
+AttachmentSkin2="레드"
+AttachmentSkin3="옐로우"
+
+[Cosmetic_FlightMask_Brair_mask1_ARCH]
+Attachment="비행용 마스크"
+AttachmentSkin0="비행용 마스크"
+AttachmentSkin1="블러디 마스크"
+AttachmentSkin2="버블 염"
+AttachmentSkin3="크림슨 스카이"
+AttachmentSkin4="화염"
+AttachmentSkin5="닌자"
+
+[Cosmetic_cthulhumask_Briar_ARCH]
+Attachment="심연의 마스크"
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_TheInquisitor_Briar_ARCH]
+Attachment="심문관"
+AttachmentSkin0="가죽"
+AttachmentSkin1="화이트"
+
+[Cosmetic_BrokenMask_Briar_1_ARCH]
+Attachment="부서진 마스크"
+AttachmentSkin0="화이트옐로우"
+AttachmentSkin1="게이샤"
+AttachmentSkin2="메탈"
+AttachmentSkin3="슈가 퍼플"
+AttachmentSkin4="슈가 레드"
+AttachmentSkin5="스킨"
+
+[Cosmetic_pilotgoggles_donovan_ARCH]
+Attachment="RAF 고글"
+AttachmentSkin0="글로우 블루"
+AttachmentSkin1="글로우 오렌지"
+AttachmentSkin2="블랙"
+AttachmentSkin3="오렌지"
+AttachmentSkin4="그린 블루"
+AttachmentSkin5="브라운"
+
+[Cosmetic_EnforcerGoggles_Briar_ARCH]
+Attachment="행동대장 고글"
+AttachmentSkin0="블랙 코트"
+AttachmentSkin1="블랙 코트 블루"
+AttachmentSkin2="블랙 코트 레드"
+AttachmentSkin3="블랙 코트 그린"
+AttachmentSkin4="그린 코트"
+AttachmentSkin5="블루 코트"
+AttachmentSkin6="레드 코트"
+
+[Cosmetic_EnforcerMask_Briar_ARCH]
+Attachment="행동대장 마스크"
+AttachmentSkin0="블랙 아이즈"
+AttachmentSkin1="레드 아이즈"
+AttachmentSkin2="블루 아이즈"
+AttachmentSkin3="그린 아이즈"
+AttachmentSkin4="그린 필터"
+AttachmentSkin5="블루 필터"
+AttachmentSkin6="레드 필터"
+
+[Cosmetic_JusticeGoggles_Briar_ARCH]
+Attachment="저스티스 고글"
+AttachmentSkin0="스텔스 블랙"
+
+[Cosmetic_JusticeMask_Briar_ARCH]
+Attachment="저스티스 마스크"
+AttachmentSkin0="스텔스 블랙"
+AttachmentSkin1="전술용 그린"
+AttachmentSkin2="새비지 레드"
+AttachmentSkin3="마이애미 블루"
+AttachmentSkin4="블루 강철"
+AttachmentSkin5="블루 매그넘"
+AttachmentSkin6="그린 랠리"
+AttachmentSkin7="그린 시너지"
+AttachmentSkin8="레드 페이스"
+AttachmentSkin9="레드 칙스"
+AttachmentSkin10="리퍼 블랙"
+
+[Cosmetic_TacticalMask_Alberts_1_ARCH]
+Attachment="전술 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="카모"
+AttachmentSkin3="그레이"
+AttachmentSkin4="네이비"
+AttachmentSkin5="올리브"
+AttachmentSkin6="레드"
+
+[Cosmetic_VenomMask_Alberts_1_ARCH]
+Attachment="베놈 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+
+[Cosmetic_VenomMaskFiltered_Alberts_1_ARCH]
+Attachment="베놈 마스크 필터"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+AttachmentSkin7="프레셔스"
+
+[Cosmetic_VenomGoggles_Alberts_1_ARCH]
+Attachment="베놈 고글"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+
+[Cosmetic_VenomGogglesCoverDown_Alberts_1_ARCH]
+Attachment="베놈 고글 다운"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+AttachmentSkin7="프레셔스"
+
+[Cosmetic_VenomHeadphones_Alberts_1_ARCH]
+Attachment="베놈 헤드폰"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="그린"
+AttachmentSkin4="레드"
+AttachmentSkin5="바이올렛"
+AttachmentSkin6="화이트"
+
+[Cosmetic_Headband_Alberts_ARCH]
+Attachment="헤드밴드"
+AttachmentSkin0="표준"
+AttachmentSkin1="아시안 화이트"
+AttachmentSkin2="블랙 레드"
+AttachmentSkin3="블루"
+AttachmentSkin4="카모"
+AttachmentSkin5="다크 퍼플"
+AttachmentSkin6="화염"
+AttachmentSkin7="그린"
+AttachmentSkin8="일본"
+AttachmentSkin9="라이트 블루"
+AttachmentSkin10="퍼플"
+AttachmentSkin11="레드"
+AttachmentSkin12="레드 블랙"
+AttachmentSkin13="레드 패턴"
+AttachmentSkin14="스타"
+AttachmentSkin15="스트라이프"
+AttachmentSkin16="타이 다이"
+AttachmentSkin17="화이트"
+AttachmentSkin18="옐로우"
+
+[Cosmetic_Alberts01_ARCH]
+Attachment="페도라"
+AttachmentSkin0="베이직 블랙"
+AttachmentSkin1="루비 레드"
+AttachmentSkin2="엘레강트 그레이"
+AttachmentSkin3="다크 블루"
+
+[Cosmetic_MinotaurHelmet_ARCH]
+Attachment="미노타우로스 헬멧"
+AttachmentSkin0="아가사"
+AttachmentSkin1="클리스"
+AttachmentSkin2="제이미"
+AttachmentSkin3="퍼시벌"
+
+[Cosmetic_SteampunkGasMaskBasic_ARCH]
+Attachment="스팀펑크 가스 마스크 베이직"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+
+[Cosmetic_SteampunkGasMaskOpen_ARCH]
+Attachment="스팀펑크 가스 마스크 열림"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+
+[Cosmetic_SteampunkGasMaskClosed_ARCH]
+Attachment="스팀펑크 가스 마스크 닫힘"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+
+[Cosmetic_SteampunkGasMaskFiltered_ARCH]
+Attachment="스팀펑크 가스 마스크 필터"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+
+[Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
+Attachment="스팀펑크 가스 마스크 열림 필터"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+
+[Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
+Attachment="스팀펑크 가스 마스크 닫힘 필터"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+
+[Cosmetic_RebelHelmet_ARCH]
+Attachment="반란군 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="다크 블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="다크 레드"
+AttachmentSkin4="라이트 블루"
+AttachmentSkin5="라이트 그린"
+AttachmentSkin6="라이트 레드"
+AttachmentSkin7="탠"
+AttachmentSkin8="화이트"
+
+[Cosmetic_RebelHelmetGogglesDown_ARCH]
+Attachment="반란군 헬멧 고글 다운"
+AttachmentSkin0="블랙"
+AttachmentSkin1="다크 블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="다크 레드"
+AttachmentSkin4="라이트 블루"
+AttachmentSkin5="라이트 그린"
+AttachmentSkin6="라이트 레드"
+AttachmentSkin7="탠"
+AttachmentSkin8="화이트"
+
+[Cosmetic_RebelHelmetGogglesUp_ARCH]
+Attachment="반란군 헬멧 고글 업"
+AttachmentSkin0="블랙"
+AttachmentSkin1="다크 블루"
+AttachmentSkin2="다크 그린"
+AttachmentSkin3="다크 레드"
+AttachmentSkin4="라이트 블루"
+AttachmentSkin5="라이트 그린"
+AttachmentSkin6="라이트 레드"
+AttachmentSkin7="탠"
+AttachmentSkin8="화이트"
+
+[Cosmetic_JacksCowboyHat_ARCH]
+Attachment="잭의 카우보이 모자"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="카우 브라운"
+AttachmentSkin3="카우 화이트"
+AttachmentSkin4="화이트"
+
+[Cosmetic_DeepstrikeHelmet_ARCH]
+Attachment="딥스트라이크 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="올리브"
+AttachmentSkin4="레드"
+AttachmentSkin5="화이트"
+
+[Cosmetic_DeepstrikeGoggles_ARCH]
+Attachment="딥스트라이크 고글"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="화이트"
+
+[Cosmetic_DeepstrikeMask_ARCH]
+Attachment="딥스트라이크 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="화이트"
+
+[Cosmetic_DeepstrikeHelmetMask_ARCH]
+Attachment="딥스트라이크 헬멧 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="올리브"
+AttachmentSkin4="레드"
+AttachmentSkin5="화이트"
+
+[Cosmetic_RebelMask_ARCH]
+Attachment="반란군 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="탠"
+
+[Cosmetic_RebelNeckWarmer_ARCH]
+Attachment="반란군 넥 워머"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="탠"

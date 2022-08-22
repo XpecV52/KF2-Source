@@ -118,9 +118,22 @@ package tripwire.controls.inventory
         override protected function updateText() : void
         {
             super.updateText();
+            this.truncateText();
             if(data)
             {
                 this.itemCount = this._itemCount;
+            }
+        }
+        
+        public function truncateText() : void
+        {
+            var _loc1_:int = 0;
+            var _loc2_:String = null;
+            if(textField.textHeight > textField.height)
+            {
+                _loc2_ = textField.getLineText(0) + "\n" + textField.getLineText(1);
+                _loc1_ = textField.getCharIndexAtPoint(textField.width - 20,textField.height * 0.75);
+                textField.text = _loc1_ > 0 ? _loc2_.slice(0,_loc1_) + "..." : _loc2_ + "...";
             }
         }
     }

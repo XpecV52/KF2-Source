@@ -25,11 +25,6 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 
 	bIsBarrage = ( MyPatPawn.SpecialMoveFlags == 2 );
 
-	if( bIsBarrage )
-	{
-		AnimName = BarrageFireAnimName;
-	}
-
 	NumBarrages = 0;
 
 	// Do pre-mortar prep if needed
@@ -61,15 +56,21 @@ function PlayFireAnimation()
 	if( bIsBarrage )
 	{
 		BlendOutTime = 0.f;
+		AnimName = BarrageFireAnimName;
+	}
+	else
+	{
+		AnimName = default.AnimName;
 	}
 
 	bUseRootMotion = false;
 	DisableRootMotion();
 	MyPatPawn.RotationRate = MissileFireRotationRate;
-	PlaySpecialMoveAnim( AnimName, EAS_UpperBody, 0.f, BlendOutTime, 1.f );
+	AnimStance = EAS_UpperBody;
+	PlaySpecialMoveAnim( AnimName, AnimStance, 0.f, BlendOutTime, 1.f );
 
 	// Force animation to first frame so we have an accurate fire start point
-	AnimNodeSeq = MyPatPawn.BodyStanceNodes[EAS_UpperBody].GetCustomAnimNodeSeq();
+	AnimNodeSeq = MyPatPawn.BodyStanceNodes[AnimStance].GetCustomAnimNodeSeq();
 	if( AnimNodeSeq != none )
 	{
 		AnimNodeSeq.SetPosition( 0.f, false );

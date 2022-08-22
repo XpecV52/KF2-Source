@@ -148,7 +148,7 @@ function SetGamePassword(string P)
 
 function bool RequiresPassword()
 {
-	return GamePassword != "";
+	return GamePassword != "" || GameEngine(class'Engine'.static.GetEngine()).bPrivateServer;
 }
 
 /**
@@ -551,14 +551,27 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 {
 	local string InPassword;
 	local int i, CurIP, CurPort, ClientIP, LingeringPort;
-	local bool bFound, bSuccess;
+	local bool bFound, bSuccess, bHasPrivateServerOption;
 	local UniqueNetId NullId, HostUID;
 	local Player ClientConn, CurConn;
 	local AuthSession CurClientSession;
 	local OnlineGameSettings GameSettings;
+	local GameEngine Engine;
 
 	OutError="";
 	InPassword = WorldInfo.Game.ParseOption(Options, "Password");
+
+	Engine = GameEngine(class'Engine'.static.GetEngine());
+`if (`__TW_)
+	if (WorldInfo.IsConsoleBuild())
+	{
+		bHasPrivateServerOption = WorldInfo.Game.HasOption( Options, "bJoinViaInvite" );
+	}
+	else
+	{
+		bHasPrivateServerOption = WorldInfo.Game.HasOption( Options, "friend" );
+	}
+`endif
 
 	// Check server capacity and passwords
 `if (`__TW_NETWORKING_)
@@ -567,15 +580,17 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	if (WorldInfo.NetMode != NM_Standalone && WorldInfo.Game.AtCapacity(bSpectator))
 `endif
 	{
-`if(`__TW_)	
+`if(`__TW_NETWORKING_)	
 		OutError = "<Strings:"$PathName(WorldInfo.Game.GameMessageClass)$".MaxedOutMessage>";
 `else
 		OutError = PathName(WorldInfo.Game.GameMessageClass)$".MaxedOutMessage";
 `endif
 	}
-	else if (GamePassword != "" && !(InPassword == GamePassword) && (AdminPassword == "" || !(InPassword == AdminPassword)))
+	// BWJ - 8-11-16 - Require bJoinViaInvite in join URL for private servers
+	else if ( (GamePassword != "" && !(InPassword == GamePassword) && (AdminPassword == "" || !(InPassword == AdminPassword))) ||
+		( Engine.bPrivateServer && !bHasPrivateServerOption ) )
 	{
-`if(`__TW_)	
+`if(`__TW_NETWORKING_)	
 		OutError = "<Strings:"$(InPassword == "") ? "Engine.AccessControl.NeedPassword>" : "Engine.AccessControl.WrongPassword>";
 `else		
 		OutError = (InPassword == "") ? "Engine.AccessControl.NeedPassword" : "Engine.AccessControl.WrongPassword";

@@ -148,7 +148,7 @@ function SetGamePassword(string P)
 
 function bool RequiresPassword()
 {
-	return GamePassword != "";
+	return GamePassword != "" || GameEngine(class'Engine'.static.GetEngine()).bPrivateServer;
 }
 
 /**
@@ -551,14 +551,27 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 {
 	local string InPassword;
 	local int i, CurIP, CurPort, ClientIP, LingeringPort;
-	local bool bFound, bSuccess;
+	local bool bFound, bSuccess, bHasPrivateServerOption;
 	local UniqueNetId NullId, HostUID;
 	local Player ClientConn, CurConn;
 	local AuthSession CurClientSession;
 	local OnlineGameSettings GameSettings;
+	local GameEngine Engine;
 
 	OutError="";
 	InPassword = WorldInfo.Game.ParseOption(Options, "Password");
+
+	Engine = GameEngine(class'Engine'.static.GetEngine());
+
+	if (WorldInfo.IsConsoleBuild())
+	{
+		bHasPrivateServerOption = WorldInfo.Game.HasOption( Options, "bJoinViaInvite" );
+	}
+	else
+	{
+		bHasPrivateServerOption = WorldInfo.Game.HasOption( Options, "friend" );
+	}
+
 
 	// Check server capacity and passwords
 
@@ -573,7 +586,9 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 
 
 	}
-	else if (GamePassword != "" && !(InPassword == GamePassword) && (AdminPassword == "" || !(InPassword == AdminPassword)))
+	// BWJ - 8-11-16 - Require bJoinViaInvite in join URL for private servers
+	else if ( (GamePassword != "" && !(InPassword == GamePassword) && (AdminPassword == "" || !(InPassword == AdminPassword))) ||
+		( Engine.bPrivateServer && !bHasPrivateServerOption ) )
 	{
 	
 		OutError = "<Strings:"$(InPassword == "") ? "Engine.AccessControl.NeedPassword>" : "Engine.AccessControl.WrongPassword>";

@@ -474,8 +474,7 @@ function Popped()
 		Pawn.ZeroMovementVariables(); //[Just Added 7/15/14]
 		Pawn.DestinationOffset = 0.f;
 	}
-	ClearTimer( 'MoveToGoalTimedOut', self );
-	ClearTimer( 'TimedAbortMove' );
+	ClearTimer( nameOf(MoveToGoalTimedOut), self );
 	// Make sure that if we are bailing we notify the Controller we're done trying to move
 	ReachedMoveGoal();
 }
@@ -488,8 +487,7 @@ function Paused( GameAICommand NewCommand )
 	Super.Paused( NewCommand );
 	Retries = 0;
 	// Pause move timeout timer
-	PauseTimer( true, 'MoveToGoalTimedOut', self );
-	PauseTimer( false, 'TimedAbortMove' );
+	PauseTimer( true, nameOf(MoveToGoalTimedOut), self );
 	if( Steering != none )
 	{
 	//	Steering.DisableDefaultAcceleration();
@@ -512,7 +510,7 @@ function Paused( GameAICommand NewCommand )
 
 function Resumed( Name OldCommandName )
 {
-	AILog_Internal(self$" Resumed (oldCommand: "$OldCommandName$")",'Command_MoveToGoal',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Resumed (oldCommand: "$OldCommandName$")",'Command_MoveToGoal',);};
 	Retries = 0;
 	Super.Resumed( OldCommandName );
 	if( Steering != none )
@@ -525,8 +523,7 @@ function Resumed( Name OldCommandName )
 	if( ChildStatus == 'Success' || ( Enemy != none && MyKFPawn.IsPawnMovingAwayFromMe( Enemy ) && MyKFPawn.bIsSprinting ) )
 	{
 		// Unpause move timeout timer
-		PauseTimer( false, 'MoveToGoalTimedOut', self );
-		PauseTimer( false, 'TimedAbortMove' );
+		PauseTimer( false, nameOf(MoveToGoalTimedOut), self );
 
 		bMovingToGoal = true;
 		bReachedMoveGoal = false;
@@ -586,23 +583,23 @@ function ReEvaluatePath()
 	local NavigationPoint	BestAnchor;
 	local float				Dist;
 
-	AILog_Internal(GetFuncName()$"() bReEvaluatePath: "$bReevaluatePath,'Command_MoveToGoal',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() bReEvaluatePath: "$bReevaluatePath,'Command_MoveToGoal',);};
 	WallHitCount = 0;
 	LastHitWall = none;
 	// TODO: Skip below if goal is directly reachable?
 	if( bReevaluatePath && Pawn != none && (MoveGoalIsValid() || MovePointIsValid()) )
 	{
-		AILog_Internal(self$" "$GetFuncName()$"() ... Goal"@MoveGoal@"Anchor"@Pawn.Anchor,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" "$GetFuncName()$"() ... Goal"@MoveGoal@"Anchor"@Pawn.Anchor,'Command_MoveToGoal',);};
 		RouteCache_Empty(); //[NEW]
 		if( !Pawn.ValidAnchor() && !bDirectMoveToGoal )
 		{
 			BestAnchor = Pawn.GetBestAnchor( Pawn, Pawn.Location, true, false, Dist );
-			AILog_Internal(GetFuncName()$"- ValidAnchor() returned false, new anchor:"@BestAnchor,'Command_MoveToGoal',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"- ValidAnchor() returned false, new anchor:"@BestAnchor,'Command_MoveToGoal',);};
 			if( BestAnchor == none )
 			{
 				// this is baaad, teleport to the nearest node
 				BestAnchor = class'NavigationPoint'.static.GetNearestNavToActor( MyKFPawn );
-				AILog_Internal("-dd teleport anchor:"@BestAnchor,'Command_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("-dd teleport anchor:"@BestAnchor,'Command_MoveToGoal',);};
 				if( BestAnchor != none && BestAnchor.IsUsableAnchorFor(MyKFPawn) )
 				{
 					// Only teleport if the anchor is really usable
@@ -616,7 +613,7 @@ function ReEvaluatePath()
 		}
 
 		RouteCache_Empty();
-		AILog_Internal(GetFuncName()@"disabling bReevaluatePath and restarting the move",'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@"disabling bReevaluatePath and restarting the move",'Command_MoveToGoal',);};
 		bReevaluatePath = false;
 		bValidRouteCache = false;
 
@@ -658,7 +655,7 @@ function Actor FindPathToward( Actor anActor )
 // 	{
 		OldSearchType = Pawn.PathSearchType;
 		Pawn.PathSearchType = PST_Constraint;
-		AILog_Internal("Generating path toward "$anActor$" Partial allowed? "$bAllowPartialPath,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Generating path toward "$anActor$" Partial allowed? "$bAllowPartialPath,'Command_MoveToGoal',);};
 		for( i = 0; i < BlockedPathList.Length; i++ )
 		{
 			if( (BlockedPathList[i].BlockedTime > 0.f) && (WorldInfo.TimeSeconds - BlockedPathList[i].BlockedTime) > MaxBlockedPathDuration )
@@ -682,7 +679,7 @@ function Actor FindPathToward( Actor anActor )
 	{
 		AIActionStatus = "Failed Path toward "$anActor;
 		CurrentMovementPhase = MOVEMENT_PHASE_TYPE_PATHNODE_FAILED_MOVE;
-		AILog_Internal("** FAILED TO BUILD PATH TO "$AnActor,'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("** FAILED TO BUILD PATH TO "$AnActor,'PathWarning',);};
 		if( Pawn.Anchor != none )
 		{
 			if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIPathFailure(Outer,Pawn.Anchor,MoveGoal,"MoveToGoal");};
@@ -712,7 +709,7 @@ function Actor FindPathTo(vector aPoint)
 
 	if( !bCanPathfind )
 	{
-		AILog_Internal("Not allowed to pathfind - aborting move",'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Not allowed to pathfind - aborting move",'Command_MoveToGoal',);};
 		Status = 'Failure';
 		UpdateHistoryString( "Failure- !bCanPathfind" );
 		AbortCommand( self );
@@ -724,7 +721,7 @@ function Actor FindPathTo(vector aPoint)
 		Result				= Outer.FindPathTo(aPoint);
 		Pawn.PathSearchType	= OldSearchType;
 
-		AILog_Internal("Finding path to location "$aPoint$" Partial allowed? "$bAllowPartialPath,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Finding path to location "$aPoint$" Partial allowed? "$bAllowPartialPath,'Command_MoveToGoal',);};
 	}
 	if( Result == none )
 	{
@@ -747,7 +744,7 @@ function RouteCache_RemoveIndex( int Idx )
 
 function MoveToGoalTimedOut()
 {
-	AILog_Internal(GetFuncName(),'Command_MoveToGoal',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName(),'Command_MoveToGoal',);};
 	AIActionStatus = "MoveToGoal TimedOut";
 	if( Enemy != none && Enemy.IsAliveAndWell() )
 	{
@@ -758,12 +755,12 @@ function MoveToGoalTimedOut()
 			return;
 		}
 
-		AILog_Internal(GetFuncName()@self$" Timing out, but since my enemy is still alive I'm assuming I should keep trying? Anchor: "$Pawn.Anchor$" MoveGoal: "$MoveGoal,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@self$" Timing out, but since my enemy is still alive I'm assuming I should keep trying? Anchor: "$Pawn.Anchor$" MoveGoal: "$MoveGoal,'Command_MoveToGoal',);};
 		return;
 	}
 	else
 	{
-        AILog_Internal(GetFuncName()$"() Anchor: "$Pawn.Anchor$" MoveGoal: "$MoveGoal,'Command_MoveToGoal',);
+        if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Anchor: "$Pawn.Anchor$" MoveGoal: "$MoveGoal,'Command_MoveToGoal',);};
 		Pawn.SetAnchor( GetFallbackAnchor() );
 		AbortCommand( self );
 	}
@@ -804,7 +801,7 @@ function bool HasReachedMoveGoal( optional Actor Goal )
 
 	if( KFPawn(Goal) != none && KFPawn(Goal) == Enemy )
 	{
-		AILog_Internal(GetFuncName()$"() for ENEMY goal, current distance: "$VSize(Enemy.Location - Pawn.Location)$" MoveOffset: "$MoveOffset,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() for ENEMY goal, current distance: "$VSize(Enemy.Location - Pawn.Location)$" MoveOffset: "$MoveOffset,'Command_MoveToGoal',);};
 		bEnemyCheck = true;
 	}
 
@@ -828,12 +825,12 @@ function bool HasReachedMoveGoal( optional Actor Goal )
 
 
 		bReached = (bReachedLatentMoveGoal &&  (NavigationPoint(Goal) != none && LastNavGoalReached == NavigationPoint(Goal))) || Pawn.ReachedDestination( Goal );
-		AILog_Internal(self$" HasReachedMoveGoal for goal: "$Goal$" Dist: "$VSize(Goal.Location - pawn.Location)$" bReachedLatentMoveGoal: "$bReachedLatentMoveGoal$" LastNavGoalReached: "$LastNavGoalReached,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" HasReachedMoveGoal for goal: "$Goal$" Dist: "$VSize(Goal.Location - pawn.Location)$" bReachedLatentMoveGoal: "$bReachedLatentMoveGoal$" LastNavGoalReached: "$LastNavGoalReached,'Command_MoveToGoal',);};
 
 		TempDist = VSize( Goal.Location - Pawn.Location );
 		if( !bReached )
 		{
-			AILog_Internal("NOT REACHED "$Goal$" (Dist: "$TempDist$")",'Command_MoveToGoal',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("NOT REACHED "$Goal$" (Dist: "$TempDist$")",'Command_MoveToGoal',);};
 		}
 		return bReached;
 	}
@@ -841,20 +838,20 @@ function bool HasReachedMoveGoal( optional Actor Goal )
 	{
 		if( bEnemyCheck )
 		{
-			AILog_Internal(GetFuncName()$"() "$VSize(GetBasedPosition(MovePosition)-Pawn.Location)$" versus MoveOffset "$MoveOffset,'Command_MoveToGoal',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() "$VSize(GetBasedPosition(MovePosition)-Pawn.Location)$" versus MoveOffset "$MoveOffset,'Command_MoveToGoal',);};
 		}
 		if( VSize(GetBasedPosition(MovePosition)-Pawn.Location) < MoveOffset )
 		{
 			if( bEnemyCheck )
 			{
-				AILog_Internal(GetFuncName()$"() Returning TRUE, position < MoveOffset",'Command_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Returning TRUE, position < MoveOffset",'Command_MoveToGoal',);};
 			}
 			return true;
 		}
 		bReached = Pawn.ReachedPoint( GetBasedPosition(MovePosition), none );
 		if( bEnemyCheck )
 		{
-			AILog_Internal(GetFuncName()$"() ReachedPoint reaturned "$bReached,'Command_MoveToGoal',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() ReachedPoint reaturned "$bReached,'Command_MoveToGoal',);};
 		}
 		if( bReached )
 		{
@@ -865,7 +862,7 @@ function bool HasReachedMoveGoal( optional Actor Goal )
 	}
 	if( bEnemyCheck )
 	{
-		AILog_Internal(GetFuncName()$"() Returning false",'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Returning false",'Command_MoveToGoal',);};
 	}
     return false;
 }
@@ -875,12 +872,12 @@ function bool MoveUnreachable( Vector AttemptedDest, Actor AttemptedTarget )
 	if( AttemptedTarget != none )
 	{
 		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIMoveFailure(Outer,Pawn.Location,Pawn.Rotation,AttemptedTarget,"2 MoveUnreachable to "$AttemptedTarget);};
-		AILog_Internal(self$" MoveUnreachable() while moving to goal! Target: "$AttemptedTarget$" Dest: "$AttemptedDest,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" MoveUnreachable() while moving to goal! Target: "$AttemptedTarget$" Dest: "$AttemptedDest,'Command_MoveToGoal',);};
 	}
 	else
 	{
 		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIMoveFailure(Outer,Pawn.Location,Pawn.Rotation,MoveTarget,"3 MoveUnreachable to "$MoveTarget);};
-		AILog_Internal(self$" MoveUnreachable() while moving to goal! Dest: "$AttemptedDest,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" MoveUnreachable() while moving to goal! Dest: "$AttemptedDest,'Command_MoveToGoal',);};
 	}
 	UpdateHistoryString( "[F] MoveUnreachable "$Pawn.Location );
 	Status = 'Failure';
@@ -904,7 +901,7 @@ function ReachedMoveGoal()
 	if( MoveGoal != none && Pawn != none )
 	{
 		AIActionStatus = "Reached MoveGoal Dist: "$VSize( MoveGoal.Location - Pawn.Location )$" MoveGoal: "$MoveGoal;
-		AILog_Internal(self$" Reached MoveGoal: "$MoveGoal$" Dist: "$VSize( MoveGoal.Location - Pawn.Location ),'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Reached MoveGoal: "$MoveGoal$" Dist: "$VSize( MoveGoal.Location - Pawn.Location ),'Command_MoveToGoal',);};
 	}
 }
 
@@ -916,7 +913,7 @@ function ReachedIntermediateMoveGoal()
     {
     	//Retries = 0;
     	AIActionStatus = "Reached Intermediate Goal "$IntermediateMoveGoal;
-    	AILog_Internal(self$" ReachedIntermediateMoveGoal: "$IntermediateMoveGoal,'PathWarning',);
+    	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" ReachedIntermediateMoveGoal: "$IntermediateMoveGoal,'PathWarning',);};
 
     	DM = KFDoorMarker(IntermediateMoveGoal);
 
@@ -928,23 +925,47 @@ function ReachedIntermediateMoveGoal()
     			return;
     		}
 
-    		AILog_Internal(GetFuncName()$" Reached IntermediateMoveGoal DoorMarker "$DM$" for closed door Dist: "$VSize(DM.Location - Pawn.Location),'Doors',);
+    		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Reached IntermediateMoveGoal DoorMarker "$DM$" for closed door Dist: "$VSize(DM.Location - Pawn.Location),'Doors',);};
     		if( DM.MyKFDoor.WeldIntegrity <= 0 )
     		{
     			AIActionStatus = "Waiting for "$DM.MyKFDoor$" to open";
-    			AILog_Internal(GetFuncName()$" Calling WaitForDoor and UseDoor",'Doors',);
+    			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Calling WaitForDoor and UseDoor",'Doors',);};
     			// Stop, open the door, and wait for notification from it once it's open.
     			WaitForDoor( DM.MyKFDoor );
     			DM.MyKFDoor.UseDoor( Pawn );
+    			return;
     		}
     		else
     		{
-    			AILog_Internal(GetFuncName()$" calling NotifyAttackDoor for "$DM.MyKFDoor$" with weld integrity "$DM.MyKFDoor.WeldIntegrity,'Doors',);
+    			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" calling NotifyAttackDoor for "$DM.MyKFDoor$" with weld integrity "$DM.MyKFDoor.WeldIntegrity,'Doors',);};
     			AIActionStatus = "Wants to attack door "$DM.MyKFDoor;
     			NotifyAttackDoor( DM.MyKFDoor );
+    			return;
     		}
     	}
 	}
+
+	// See if there's a better enemy blocking the path to our current one
+	CheckForIntermediateEnemies();
+
+	// Tell the AI controller we've arrived
+	NotifyReachedLatentMoveGoal();
+}
+
+/** Attempts to find a better enemy than our current one */
+function CheckForIntermediateEnemies()
+{
+	local Pawn EnemyBlocker;
+
+	// See if we can find a better enemy
+	if( MyKFPawn != none && Enemy != none && !MyKFPawn.IsDoingSpecialMove() && VSizeSQ(Enemy.Location - MyKFPawn.Location) > 490000.f )
+	{
+		EnemyBlocker = GetPawnBlockingPathTo( Enemy, true, true );
+		if( EnemyBlocker != none )
+		{
+			ChangeEnemy( EnemyBlocker );
+		}
+	}	
 }
 
 /** Called when blocked by bBlocksNavigation actors (see ShouldIgnoreNavigationBlockingFor) */
@@ -953,18 +974,18 @@ function bool HandlePathObstruction( Actor BlockedBy )
 	local Pawn BlockPawn;
 
 	AIActionStatus = "Path obstructed by "$BlockedBy;
-	AILog_Internal(GetFuncName()$" - Blocked by : "$BlockedBy$" Time since previous obstruction: "$(WorldInfo.TimeSeconds - LastObstructionTime),'HandlePathObstruction',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" - Blocked by : "$BlockedBy$" Time since previous obstruction: "$(WorldInfo.TimeSeconds - LastObstructionTime),'HandlePathObstruction',);};
 
 	LastObstructionTime = WorldInfo.TimeSeconds;
 	BlockPawn = Pawn(BlockedBy);
 	if( BlockPawn != none )
 	{
-		AILog_Internal("- blocked anchor:"@BlockPawn.Anchor@BlockPawn.ReachedDestination(MoveGoal),,);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("- blocked anchor:"@BlockPawn.Anchor@BlockPawn.ReachedDestination(MoveGoal),,);};
 
 		// if they're touching our goal
 		if( BlockPawn.ReachedDestination( MoveGoal ) )
 		{
-			AILog_Internal("- they're touching my goal, finishing the move",'HandlePathObstruction',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("- they're touching my goal, finishing the move",'HandlePathObstruction',);};
 
 			// then just pretend we made it
 			bReachedMoveGoal = true;
@@ -980,18 +1001,17 @@ function bool HandlePathObstruction( Actor BlockedBy )
 		bValidRouteCache = false;
 		bReevaluatePath = true;
 		StopAllLatentMovement();
-		AILog_Internal(GetFuncName()$"() calling ZeroMovementVariables",'HandlePathObstruction',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() calling ZeroMovementVariables",'HandlePathObstruction',);};
 		Pawn.ZeroMovementVariables();
 
-		if( KFPathnode(IntermediateMoveGoal) != none )
+		if( NavigationPoint(IntermediateMoveGoal) != none )
 		{
 			// Path is failing - if I just ran into a non-pawn obstruction, temporarily block IntermediateMoveGoal to let me
 			// generate another path that doesn't require it.
-			if( CreateTemporaryBlockedPath(KFPathnode(IntermediateMoveGoal)) )
+			if( CreateTemporaryBlockedPath(NavigationPoint(IntermediateMoveGoal)) )
 			{
 				//`RecordAIRedirectedPath( Outer, IntermediateMoveGoal, "[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[1] );
 			}
-			//CreateTemporaryBlockedPath( KFPathnode(IntermediateMoveGoal) );
 		}
 		Obstruction_Repath( BlockedBy );
 
@@ -1032,13 +1052,13 @@ function StartingMove( bool bDirectMove, float Distance, int PathLength, Actor D
 	}
 	if( bDirectMove )
 	{
-		AILog_Internal(self$" Starting *DIRECT* move, Distance: "$Distance$" PathLength: "$PathLength$" Dest: "$Dest,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Starting *DIRECT* move, Distance: "$Distance$" PathLength: "$PathLength$" Dest: "$Dest,'Command_MoveToGoal',);};
 		bDirectMoveToGoal = true;
 		RouteCache_Empty();
 	}
 	else
 	{
-		AILog_Internal(self$" Starting *PATHFINDING* move, Distance: "$Distance$" PathLength: "$PathLength$" Dest: "$Dest,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Starting *PATHFINDING* move, Distance: "$Distance$" PathLength: "$PathLength$" Dest: "$Dest,'Command_MoveToGoal',);};
 		bDirectMoveToGoal = false;
 	}
 }
@@ -1049,7 +1069,7 @@ function StartingMove( bool bDirectMove, float Distance, int PathLength, Actor D
 
 function bool NotifyPlayerBecameVisible( Pawn VisiblePlayer )
 {
-	AILog_Internal(GetFuncName()$" "$VisiblePlayer,'SeePlayer',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" "$VisiblePlayer,'SeePlayer',);};
 
 	if( Enemy != none && bMovingToGoal && !bDirectMoveToGoal && InLatentExecution( LATENT_MOVETOWARD )) //&& (VisiblePlayer == MoveGoal || VisiblePlayer == IntermediateMoveGoal) )
 	{
@@ -1058,7 +1078,7 @@ function bool NotifyPlayerBecameVisible( Pawn VisiblePlayer )
 		{
 			if( ActorReachable( VisiblePlayer) )
 			{
-				AILog_Internal(GetFuncName()$" My MoveGoal ("$MoveGoal$") is visible and reachable - calling stop latent execution and re-evaluate path",'Move_DirectPath',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" My MoveGoal ("$MoveGoal$") is visible and reachable - calling stop latent execution and re-evaluate path",'Move_DirectPath',);};
 				bReEvaluatePath = true;
 				bDirectMoveToGoal = true;
 				SetDestinationPosition( Enemy.Location );
@@ -1099,10 +1119,49 @@ event String GetDumpString()
 /** Notification that I should stop moving and build a new path to my goal */
 function NotifyNeedRepath()
 {
-	AILog_Internal(GetFuncName()$"() MoveTarget: "$(MoveTarget!=none?string(MoveTarget):"none")$" Dist: "$(MoveTarget!=none?VSize(MoveTarget.Location-Pawn.Location):0.f),'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() MoveTarget: "$(MoveTarget!=none?string(MoveTarget):"none")$" Dist: "$(MoveTarget!=none?VSize(MoveTarget.Location-Pawn.Location):0.f),'PathWarning',);};
 	bReEvaluatePath = true;
 	StopLatentExecution();
 	ReEvaluatePath();
+}
+
+function CheckForStuckPath()
+{
+	local NavigationPoint NavPoint;
+
+	// Failed to find a valid next move target
+	if( IntermediateMoveGoal == none || (NumTimesGetNextMoveGoalReturnedSameNode > 20 && VSizeSQ(MyKFPawn.Velocity) < 600.f) )
+	{
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Failed to get valid movetarget, Got Same result "$NumTimesGetNextMoveGoalReturnedSameNode$" time(s). has reached move goal? "@HasReachedMoveGoal(),'PathWarning',);};
+		//`RecordAIGetNextMoveGoalFailure( Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GNML Fail, Int. = "$IntermediateMoveGoal );
+
+		bValidRouteCache = false;
+		bReevaluatePath = true;
+		NumTimesGetNextMoveGoalReturnedSameNode = 0;
+
+		// Path is failing - if I just ran into a non-pawn obstruction, temporarily block IntermediateMoveGoal to let me
+		// generate another path that doesn't require it.
+		if( Pawn.Anchor != none && (LastHitWall != none && !LastHitWall.IsA('Pawn')) )
+		{
+			NavPoint = NavigationPoint( IntermediateMoveGoal );
+			if( CurrentPath != none && CreateTemporaryBlockedReach(NavPoint, CurrentPath) )
+			{
+				//`RecordAIRedirectedPath( Outer, IntermediateMoveGoal, "[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[1] );
+			}
+			else if( NavPoint != none && CreateTemporaryBlockedPath(NavPoint) )
+			{
+				//`RecordAIGetNextMoveGoalFailure( Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GNML Fail, Int. = "$IntermediateMoveGoal );
+			}
+		}
+
+		UpdateHistoryString( "[F] [GNM] "$IntermediateMoveGoal$" "$Pawn.Location );
+		GotoState( 'MovingToGoal', 'FailedMove' );
+		IntermediateMoveGoal = none;
+	}
+	else
+	{
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("NextMoveTarget"@IntermediateMoveGoal@"MoveGoal:"@MoveGoal,'Move_Path',);};
+	}
 }
 
 /*********************************************************************************************
@@ -1115,7 +1174,7 @@ state MovingToGoal
 		local KFDoorActor Door;
 
 		DisableNotifyHitWall( 0.2f );
-		AILog_Internal("NotifyHitWall() while in MoveToGoal, HitNormal: "$HitNormal$" Wall: "$Wall$" LastHitWall: "$LastHitWall$" WallHitCount: "$WallHitCount$" MoveTarget: "$MoveTarget,'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("NotifyHitWall() while in MoveToGoal, HitNormal: "$HitNormal$" Wall: "$Wall$" LastHitWall: "$LastHitWall$" WallHitCount: "$WallHitCount$" MoveTarget: "$MoveTarget,'PathWarning',);};
 		AIActionStatus = "Received NotifyHitWall event";
 
 		if( !Wall.bStatic )
@@ -1123,7 +1182,7 @@ state MovingToGoal
 			Door = KFDoorActor( Wall );
 			if( Door == none )
 			{
-				AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal,'HitWall',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal,'HitWall',);};
 			}
 			else
 			{
@@ -1137,17 +1196,17 @@ state MovingToGoal
 				{
 					DisableNotifyHitWall(0.25f);
 					WaitForDoor( Door );
-					AILog_Internal("NotifyHitWall() while in MoveToGoal, Wall: "$Wall$" Using door and waiting for it to open",'Doors',);
+					if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("NotifyHitWall() while in MoveToGoal, Wall: "$Wall$" Using door and waiting for it to open",'Doors',);};
 					Door.UseDoor( Pawn );
 
 					return true;
 				}
 				// NOTE: Unless returning true, if the Wall is a closed door, SuggestMovePreparation event will be called on the associated KFDoorMarker
-				AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal$" ran into a door!",'Doors',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Wall: "$Wall$" HitNormal: "$HitNormal$" ran into a door!",'Doors',);};
 				if( !Door.IsCompletelyOpen() && Door.WeldIntegrity > 0 && (Pawn.Anchor == Door.MyMarker || (DoorEnemy != none && (DoorEnemy == Door || PendingDoor == Door))) )
 				{
 					DisableNotifyHitWall(0.25f);
-					AILog_Internal(GetFuncName()$"() calling NotifyAttackDoor for "$Wall,'Doors',);
+					if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() calling NotifyAttackDoor for "$Wall,'Doors',);};
 					NotifyAttackDoor( Door );
 
 					return true;
@@ -1171,7 +1230,7 @@ state MovingToGoal
 			if( IntermediateMoveGoal.IsA( 'KFPathnode' ) )
 			{
 				//UNCOMMENT	//NumTimesGetNextMoveGoalReturnedSameNode = 0; // new
-				AILog_Internal(GetFuncName()$"() Wall: "$Wall$" WallHitCount: "$WallHitCount$" Hit Wall > 3 times, setting "$IntermediateMoveGoal$" to be a blocked path and forcing a repath!",'PathWarning',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Wall: "$Wall$" WallHitCount: "$WallHitCount$" Hit Wall > 3 times, setting "$IntermediateMoveGoal$" to be a blocked path and forcing a repath!",'PathWarning',);};
 				WallHitCount++;
 				LastHitWall = Wall;
 				if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIWall(class'KFGameplayEventsWriter'.const.GAMEEVENT_AI_FAILEDADJUSTFROMWALL,outer,Pawn.Location,Pawn.Rotation,Wall,"SuperSpeed: "$MyKFPawn.IsUsingSuperSpeed());};
@@ -1193,7 +1252,7 @@ state MovingToGoal
 		if( bPreparingMove || MyKFPawn.IsDoingMeleeAttack() )
 		{
 			bGoalSurrounded = false;
-			AILog_Internal("ShouldDelayMove returning TRUE because bPreparingMove",'Command_MoveToGoal',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("ShouldDelayMove returning TRUE because bPreparingMove",'Command_MoveToGoal',);};
 			AIActionStatus = "Delaying Move";
 			return true;
 		}
@@ -1229,7 +1288,7 @@ state MovingToGoal
 		// If I'm pathfinding to my previous enemy, change my movegoal to the new enemy and build a new path
 		if( MoveGoal != none && OldEnemy == MoveGoal || (IntermediateMoveGoal == none && IntermediateMoveGoal == OldEnemy) )
 		{
-			AILog_Internal(GetFuncName()$"() Stopping latent execution, resetting destination position to new enemy location, and calling ReEvaluatePath()",'SetEnemy',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Stopping latent execution, resetting destination position to new enemy location, and calling ReEvaluatePath()",'SetEnemy',);};
 			MoveGoal = Enemy;
 			StopLatentExecution();
 			SetDestinationPosition( Enemy.Location );
@@ -1257,11 +1316,11 @@ state MovingToGoal
 	{
 		if( Enemy != none && !bDirectMoveToGoal && Pawn.Physics != PHYS_Spider )
 		{
-			AILog_Internal(GetFuncName()$" event received, checking for direct reachability to enemy "$Enemy,'Move_DirectPath',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" event received, checking for direct reachability to enemy "$Enemy,'Move_DirectPath',);};
 			// TODO: Look into not requiring enemy in this check, changing to MoveGoal should be safe
 			if( InLatentExecution( LATENT_MOVETOWARD ) && MyKFPawn.Physics != PHYS_Falling /*&& MoveGoal == Enemy && Outer.MoveTarget != none*/ && ActorReachable( Enemy ) )
 			{
-				AILog_Internal(GetFuncName()$" can directly reach enemy, stopping and resetting MoveTimer and resetting my move",'Move_DirectPath',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" can directly reach enemy, stopping and resetting MoveTimer and resetting my move",'Move_DirectPath',);};
 				// Stop pathfinding and move directly to my goal
 				bDirectMoveToGoal = true;
 				bReEvaluatePath = true;
@@ -1278,7 +1337,7 @@ state MovingToGoal
 		local bool bDone, bReachedDynamicAnchor;
 		local Actor OldMoveTarget;
 
-		AILog_Internal(GetFuncName()@"current movetarget:"@CurrentMoveTarget@"routecache length:"@RouteCache.Length@"anchor"@Pawn.Anchor,'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@"current movetarget:"@CurrentMoveTarget@"routecache length:"@RouteCache.Length@"anchor"@Pawn.Anchor,'Command_MoveToGoal',);};
 		bGoalChangedDueToSkipAhead = false;
 		OldMoveTarget = CurrentMoveTarget;
 		while( !bDone && RouteCache.Length > 0 && RouteCache[0] != none )
@@ -1312,7 +1371,7 @@ state MovingToGoal
 			if( (bReachedLatentMoveGoal && LastNavGoalReached == RouteCache[0]) || Pawn.ReachedDestination( RouteCache[0] ) )
 			{
 				bReachedLatentMoveGoal = false;
-				AILog_Internal("Pawn has Reached route cache 0:"@RouteCache[0]$" DIST: "$VSize(RouteCache[0].Location - Pawn.Location),'Command_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Pawn has Reached route cache 0:"@RouteCache[0]$" DIST: "$VSize(RouteCache[0].Location - Pawn.Location),'Command_MoveToGoal',);};
 				// If our move goal has been reached
 				if( RouteCache[0] == MoveGoal )
 				{
@@ -1322,16 +1381,16 @@ state MovingToGoal
 				}
 
 				// MAKE SURE ANCHOR IS UPDATED -- this is cause of NO CURRENT PATH bug
-				AILog_Internal("Setting anchor to RouteCache 0 ("$RouteCache[0]$")",'Command_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Setting anchor to RouteCache 0 ("$RouteCache[0]$")",'Command_MoveToGoal',);};
 				Pawn.SetAnchor( RouteCache[0] );
 				// If we reached a dynamic anchor, return true so we don't abort the move
 				bReachedDynamicAnchor = ( DynamicAnchor(RouteCache[0]) != none );
-				AILog_Internal("Remove from route:"@RouteCache[0]@bReachedDynamicAnchor,'Command_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Remove from route:"@RouteCache[0]@bReachedDynamicAnchor,'Command_MoveToGoal',);};
 				RouteCache_RemoveIndex( 0 );
 			}
 			else
 			{
-				AILog_Internal("I Did NOT reach route cache 0:"@RouteCache[0]$" Dist: "$VSize(RouteCache[0].Location - Pawn.Location),'Command_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("I Did NOT reach route cache 0:"@RouteCache[0]$" Dist: "$VSize(RouteCache[0].Location - Pawn.Location),'Command_MoveToGoal',);};
 				break;
 			}
 		}
@@ -1344,17 +1403,17 @@ state MovingToGoal
 			if( RouteCache.Length > 0 )
 			{
 				CurrentMoveTarget = RouteCache[0];
-				AILog_Internal(GetFuncName()$" setting CurrentMoveTarget to "$CurrentMoveTarget$" (RouteCache[0] ) OldMoveTarget was "$OldMoveTarget,'Command_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" setting CurrentMoveTarget to "$CurrentMoveTarget$" (RouteCache[0] ) OldMoveTarget was "$OldMoveTarget,'Command_MoveToGoal',);};
 			}
 			// Otherwise, if not moving directly to movegoal and movegoal is not a nav point, try moving directly to it
 			else if( MoveGoal != none && CurrentMoveTarget != MoveGoal && NavigationPoint(MoveGoal) == none && ActorReachable(MoveGoal) )
 			{
 				CurrentMoveTarget = MoveGoal;
-				AILog_Internal(GetFuncName()$" Set CurrentMoveTarget to MoveGoal "$MoveGoal$" because move goal is now directly reachable. OldMoveTarget was "$OldMoveTarget,'Command_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Set CurrentMoveTarget to MoveGoal "$MoveGoal$" because move goal is now directly reachable. OldMoveTarget was "$OldMoveTarget,'Command_MoveToGoal',);};
 			}
 			else
 			{
-				AILog_Internal(GetFuncName()$" setting CurrentMoveTarget to none!",'Command_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" setting CurrentMoveTarget to none!",'Command_MoveToGoal',);};
 				CurrentMoveTarget = none;
 			}
 		}
@@ -1394,7 +1453,7 @@ CheckMove:
 	ClearTimer( 'MoveToGoalTimedOut', self );
 	if( HasReachedMoveGoal() )
 	{
-		AILog_Internal("CheckMove label, I've reached my goal ",'Command_MoveToGoal',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("CheckMove label, I've reached my goal ",'Command_MoveToGoal',);};
 		Goto( 'ReachedGoal' );
 	}
 
@@ -1425,7 +1484,7 @@ Begin:
 		Stop;
 	}
 
-	AILog_Internal("Attempting move to goal "$MoveGoal$" Valid? "$MoveGoalIsValid()$" MovePosition: "$MovePosition.Position$" BasedPosition: "$GetBasedPosition( MovePosition )$" MovePointIsValid? "$MovePointIsvalid()$" bValidRouteCache? "$bValidRouteCache,'Command_MoveToGoal',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Attempting move to goal "$MoveGoal$" Valid? "$MoveGoalIsValid()$" MovePosition: "$MovePosition.Position$" BasedPosition: "$GetBasedPosition( MovePosition )$" MovePointIsValid? "$MovePointIsvalid()$" bValidRouteCache? "$bValidRouteCache,'Command_MoveToGoal',);};
 	if( MoveGoalIsValid() )
 	{
 		/*********************************************************************************************
@@ -1446,7 +1505,7 @@ DirectMoveToActor:
 			LoopFailSafeCounter = 0;
 			do
 			{
-				AILog_Internal("Moving directly to move goal:"@MoveGoal@"from"@Pawn.Anchor@"Focus"@MoveFocus@"Offset"@MoveOffset@CurrentPath,'Move_DirectPath',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Moving directly to move goal:"@MoveGoal@"from"@Pawn.Anchor@"Focus"@MoveFocus@"Offset"@MoveOffset@CurrentPath,'Move_DirectPath',);};
 				IntermediateMoveGoal = MoveGoal;
 				/** Optionally make Pawn rotate to my IntermediateMoveGoal prior to moving */
 				if( Pawn.Physics != PHYS_Falling && !bMovingToGoal && !IsDoingLatentMove() && MoveGoal != none )
@@ -1513,7 +1572,7 @@ DirectMoveToPosition:
 			SetTimer( TimeOutTime, false, nameof(self.MoveToGoalTimedOut), self );
 			do
 			{
-				AILog_Internal("Moving directly to move point:"@GetBasedPosition( MovePosition )@"from"@Pawn.Anchor@"Focus"@MoveFocus@Pawn.Location,'Move_Path',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Moving directly to move point:"@GetBasedPosition( MovePosition )@"from"@Pawn.Anchor@"Focus"@MoveFocus@Pawn.Location,'Move_Path',);};
 				EnableSeePlayer();
 				if( (WorldInfo.TimeSeconds - LastMoveFinishTime) > 5.f && ShouldTurnToGoal(GetBasedPosition( MovePosition )) )
 				{
@@ -1544,7 +1603,7 @@ DirectMoveToPosition:
 			IntermediateMoveGoal = FindPathTo( GetBasedPosition( MovePosition ) );
 			if( IntermediateMoveGoal == none )
 			{
-				AILog_Internal(self$" IntermediateMoveGoal is null, so calling InvalidateAnchor for nav "$Pawn.Anchor,'PathWarning',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" IntermediateMoveGoal is null, so calling InvalidateAnchor for nav "$Pawn.Anchor,'PathWarning',);};
 				InvalidateAnchor( Pawn.Anchor );
 			}
 		}
@@ -1552,21 +1611,21 @@ DirectMoveToPosition:
 FollowingPath:
 	if( IntermediateMoveGoal != none )
 	{
-        if( MoveGoal != none ) { AILog_Internal("Following path to move goal:"@MoveGoal@"from"@Pawn.Anchor,'Move_Path',);	}
-		else				   { AILog_Internal("Following path to move point:"@GetBasedPosition(MovePosition)@"from"@Pawn.Anchor,'Move_Path',);	}
+        if( MoveGoal != none ) { if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Following path to move goal:"@MoveGoal@"from"@Pawn.Anchor,'Move_Path',);};	}
+		else				   { if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Following path to move point:"@GetBasedPosition(MovePosition)@"from"@Pawn.Anchor,'Move_Path',);};	}
 
 		GetNextMoveTarget( IntermediateMoveGoal );
 		// If first navigation point is my pawn's anchor, and the next navigation point is directly reachable...
 		if( IntermediateMoveGoal == Pawn.Anchor && RouteCache.Length > 1 && ActorReachable(RouteCache[1]) )
 		{
-			AILog_Internal("Already at anchor, move to next..."@Pawn.Anchor@RouteCache[1],'Move_Path',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Already at anchor, move to next..."@Pawn.Anchor@RouteCache[1],'Move_Path',);};
 			// Remove the anchor from my route and try to use the next navigation point
 			RouteCache_RemoveIndex( 0 );
 			GetNextMoveTarget( IntermediateMoveGoal );
 		}
 		if( IntermediateMoveGoal == none )
 		{
-			AILog_Internal("Failed to acquire move target, sleeping for 0.5 seconds and going to CheckMove label",'Move_Path',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Failed to acquire move target, sleeping for 0.5 seconds and going to CheckMove label",'Move_Path',);};
 			Sleep( 0.5f );
 			// Go to the CheckMove label which will decide what to do next.
 			Goto( 'CheckMove' );
@@ -1575,13 +1634,13 @@ FollowingPath:
 		ClearTimer( 'MoveToGoalTimedOut', self );
 		while( IntermediateMoveGoal != none )
 		{
-			AILog_Internal("Still moving to"@IntermediateMoveGoal$" which is "$VSize( Pawn.Location - IntermediateMoveGoal.Location )$" units away",'Move_Path',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Still moving to"@IntermediateMoveGoal$" which is "$VSize( Pawn.Location - IntermediateMoveGoal.Location )$" units away",'Move_Path',);};
 			// Check for any global interrupts (enemy with melee range)
 			CheckInterruptCombatTransitions();
 			// If Pawn cannot strafe, then face destination before moving
 			if( !Pawn.bCanStrafe )
 			{
-				AILog_Internal("Pushing RotateToFocus state",'Move_Path',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Pushing RotateToFocus state",'Move_Path',);};
 				PushState( 'RotateToFocus' );
 			}
 
@@ -1597,12 +1656,12 @@ DelayMove:
 				CurrentMovementPhase = MOVEMENT_PHASE_TYPE_PATHNODE_DELAY_MOVE;
                 AIActionStatus = "Delaying move";
 				bDirectMoveToGoal = false;
-				AILog_Internal("Delaying move, LastDetourCheckTime: "$(WorldInfo.TimeSeconds - LastDetourCheckTime),'Move_Path',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Delaying move, LastDetourCheckTime: "$(WorldInfo.TimeSeconds - LastDetourCheckTime),'Move_Path',);};
 				AIZeroMovementVariables();
 				// If it's been a while since our last detour check
 				if( (WorldInfo.TimeSeconds - LastDetourCheckTime) > 5.0f )
 				{
-					AILog_Internal("Attempting to restart move after delaying",'Move_Path',);
+					if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Attempting to restart move after delaying",'Move_Path',);};
 					// Restart the move
 					LastDetourCheckTime = WorldInfo.TimeSeconds;
 					bValidRouteCache = false;
@@ -1632,10 +1691,10 @@ PathingTowardActor:
 			// if the goal has been changed in between that last time we called getnextmovegoal and now, we need to go to the new goal!
 			if( bGoalChangedDueToSkipAhead )
 			{
-				AILog_Internal("RouteCache changed out from under us.. calling GetNextMoveTarget again!",'Move_Path',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("RouteCache changed out from under us.. calling GetNextMoveTarget again!",'Move_Path',);};
 				if( !GetNextMoveTarget(IntermediateMoveGoal) )
 				{
-					AILog_Internal("GetNextMoveTarget FAILED after skipahead changed the route cache.. Aborting move",'PathWarning',);
+					if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("GetNextMoveTarget FAILED after skipahead changed the route cache.. Aborting move",'PathWarning',);};
 					// issue with movetarget not changing
 					IntermediateMoveGoal = none;
 					break;
@@ -1656,10 +1715,11 @@ PathingTowardActor:
 			AIActionStatus = "Moving toward "$IntermediateMoveGoal;
 			/** Begin latent movement and stop executing state code until move completes */
 			MoveToward( IntermediateMoveGoal, MoveFocus, (IntermediateMoveGoal == MoveGoal) ? MoveOffset : 0.f, false, false );
+			AIActionStatus = "Finished moving toward "$IntermediateMoveGoal;
 			CurrentMovementPhase = MOVEMENT_PHASE_TYPE_NONE;
 			if( (bReachedLatentMoveGoal && LastNavGoalReached == IntermediateMoveGoal) || Pawn.ReachedDestination(IntermediateMoveGoal) )
 			{
-				AILog_Internal("MoveToward finished and I reached my intermediate goal ("$IntermediateMoveGoal$") which is "$VSize(IntermediateMoveGoal.Location - Pawn.Location)$" units away",'Move_Path',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("MoveToward finished and I reached my intermediate goal ("$IntermediateMoveGoal$") which is "$VSize(IntermediateMoveGoal.Location - Pawn.Location)$" units away",'Move_Path',);};
 				ReachedIntermediateMoveGoal();
 			}
 			/** Move finished, wait until my pawn has landed if the move managed to make it fall */
@@ -1674,7 +1734,7 @@ PathingTowardActor:
 			}
 			else if( bGoalChangedDueToSkipAhead )
 			{
-				AILog_Internal("path was changed during movetoward",'Move_Path',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("path was changed during movetoward",'Move_Path',);};
 				IntermediateMoveGoal = none;
 			}
 
@@ -1685,7 +1745,7 @@ PathingTowardActor:
 			{
 				ReachedIntermediateMoveGoal();
 				SetBasedPosition( LastPawnTargetPathLocation, MoveGoal.Location );
-				AILog_Internal("Repathing because MoveGoal is a Pawn:"@MoveGoal,'Command_MoveToGoal',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Repathing because MoveGoal is a Pawn:"@MoveGoal,'Command_MoveToGoal',);};
 				// Go to the CheckMove label which will decide what to do next.
 				Goto( 'CheckMove' );
 			}
@@ -1708,64 +1768,8 @@ PathingTowardActor:
 					SetBestAnchor();
 					Sleep( 0.1f );
 				}
-				// Failed to find a valid next move target
-				if( IntermediateMoveGoal == none || (NumTimesGetNextMoveGoalReturnedSameNode > 20 && VSize(Velocity) < 8.f) )
-				{
-					AILog_Internal("Failed to get valid movetarget, Got Same result "$NumTimesGetNextMoveGoalReturnedSameNode$" time(s). has reached move goal? "@HasReachedMoveGoal(),'PathWarning',);
 
-// @TODO: CHECK WHEN BELOW WAS DISABLED
-// 					if(NumTimesGetNextMoveGoalReturnedSameNode > 5)
-// 					{
-// 						`RecordAIGetNextMoveGoalFailure(Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GNML Fail, Int. = "$IntermediateMoveGoal );
-// 					}
-// 					else if( IntermediateMoveGoal == none )
-// 					{
-// 						`RecordAIMoveFailure(Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GetNextMoveLocation Fail, no intermediate movegoal" );
-// 					}
-					//	bValidRouteCache = false;
-				//	bReevaluatePath = true;
-				//	RouteCache_Empty();
-				//	StopLatentExecution();
-				//	if( IntermediateMoveGoal != none )
-				//	{
-				//		SetDestinationPosition( IntermediateMoveGoal.Location );
-				//	}
-				//	ReEvaluatePath();
-//					DebugLogRoute();
-				//	NumTimesGetNextMoveGoalReturnedSameNode = 0;
-					// issue with movetarget not changing
-
-					if( NumTimesGetNextMoveGoalReturnedSameNode > 20 && VSize(Velocity) < 8.f ) //25!
-					{
-						AILog_Internal("Got same result too many times.. bailing! Anchor: "$Pawn.Anchor,'PathWarning',);
-						//`RecordAIGetNextMoveGoalFailure( Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GNML Fail, Int. = "$IntermediateMoveGoal );
-						bValidRouteCache = false;
-						bReevaluatePath = true;
-						NumTimesGetNextMoveGoalReturnedSameNode = 0;
-
-						// Path is failing - if I just ran into a non-pawn obstruction, temporarily block IntermediateMoveGoal to let me
-						// generate another path that doesn't require it.
-						if( Pawn.Anchor != none && (LastHitWall != none && !LastHitWall.IsA('Pawn')) )
-						{
-							if( CreateTemporaryBlockedReach(KFPathnode(IntermediateMoveGoal),CurrentPath) )
-							{
-								//`RecordAIRedirectedPath( Outer, IntermediateMoveGoal, "[HPO]Path:"$IntermediateMoveGoal$" and "$RouteCache[1] );
-							}
-							else
-							{
-								//`RecordAIGetNextMoveGoalFailure( Outer,Pawn.Location,Pawn.Rotation,MoveGoal,"GNML Fail, Int. = "$IntermediateMoveGoal );
-							}
-						}
-						UpdateHistoryString( "[F] [GNM] "$IntermediateMoveGoal$" "$Pawn.Location );
-						/** Giving up, go to the FailedMove label */
-						Goto( 'FailedMove' );
-					}
-					IntermediateMoveGoal = none;
-				}
-				else
-				{
-					AILog_Internal("NextMoveTarget"@IntermediateMoveGoal@"MoveGoal:"@MoveGoal,'Move_Path',);
-				}
+				CheckForStuckPath();
 			}
 		}
 
@@ -1787,7 +1791,7 @@ DirectMoveToPositionTwo:
 				 }
 
 				// Finish up direct move
-				AILog_Internal("Finishing direct move, calling MoveTo "$GetBasedPosition(MovePosition),'Move_DirectPath',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Finishing direct move, calling MoveTo "$GetBasedPosition(MovePosition),'Move_DirectPath',);};
 				if( (WorldInfo.TimeSeconds - LastMoveFinishTime) > 5.f && ShouldTurnToGoal(GetBasedPosition(MovePosition)) )
 				{
 					TurnFocalPoint = GetBasedPosition( MovePosition );
@@ -1807,8 +1811,8 @@ DirectMoveToPositionTwo:
 	else if( !HasReachedMoveGoal() ) 	// Otherwise, if haven't reached move goal
 	{
 		UpdateHistoryString( "[F] [NO PATH TO "$MOVEGOAL$"] "$Pawn.Location );
-		if( MoveGoal != none ) { AILog_Internal("Failed to find path to:"@MoveGoal,'Command_MoveToGoal',); }
-		else				   { AILog_Internal("Failed to find path to:"@GetBasedPosition(MovePosition),'PathWarning',); }
+		if( MoveGoal != none ) { if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Failed to find path to:"@MoveGoal,'Command_MoveToGoal',);}; }
+		else				   { if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Failed to find path to:"@GetBasedPosition(MovePosition),'PathWarning',);}; }
 
 		Sleep( 0.25f );
 		 /** Give up and go to the FailedMove label */
@@ -1818,7 +1822,7 @@ DirectMoveToPositionTwo:
 	Goto( 'CheckMove' );
 
 FailedMove:
-	AILog_Internal("FailedMove Label",'PathWarning',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("FailedMove Label",'PathWarning',);};
 	UpdateHistoryString( "Failure - FailedMove Label" );
 	if( Pawn.bCrawler && Pawn.Floor != vect(0,0,1) && Pawn.Physics == PHYS_Spider )
 	{
@@ -1878,11 +1882,11 @@ FailedMove:
 		}
 		bReevaluatePath = true;
 		Sleep( 0.f );
-		if( IntermediateMoveGoal != none && IntermediateMoveGoal.IsA('NavigationPoint') )
+		if( IntermediateMoveGoal != none && NavigationPoint(IntermediateMoveGoal) != none )
 		{
 			// Path is failing - if I just ran into a non-pawn obstruction, temporarily block IntermediateMoveGoal to let me
 			// generate another path that doesn't require it.
-			if( CreateTemporaryBlockedReach(KFPathnode(IntermediateMoveGoal),CurrentPath) )
+			if( CreateTemporaryBlockedReach(NavigationPoint(IntermediateMoveGoal), CurrentPath) )
 			{
 				IntermediateMoveGoal = none;
 				Retries++;
@@ -1908,8 +1912,8 @@ FailedMove:
 	}
 
 ReachedGoal:
-	if( MoveGoal != none ) { AILog_Internal("Reached move goal:"@MoveGoal@VSize(Pawn.Location-MoveGoal.Location),'Command_MoveToGoal',); }
-	else				   { AILog_Internal("Reached move point:"@GetBasedPosition(MovePosition)@VSize(Pawn.Location-GetBasedPosition(MovePosition)),'Command_MoveToGoal',); }
+	if( MoveGoal != none ) { if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Reached move goal:"@MoveGoal@VSize(Pawn.Location-MoveGoal.Location),'Command_MoveToGoal',);}; }
+	else				   { if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Reached move point:"@GetBasedPosition(MovePosition)@VSize(Pawn.Location-GetBasedPosition(MovePosition)),'Command_MoveToGoal',);}; }
 
 	Status = 'Success';
 	PopCommand( self );
@@ -1959,67 +1963,11 @@ function Timer_DelayMoveTimeOut()
 {
 	if( MyKFPawn != none && MyKFPawn.IsAliveAndWell() )
 	{
-		AILog_Internal("************* "$MyKFPawn$" DELAYING MOVE FOR OVER 20 SECONDS",,);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("************* "$MyKFPawn$" DELAYING MOVE FOR OVER 20 SECONDS",,);};
 	}
 }
 
-function bool AdjustAround( actor Other, vector HitNormal )
-{
-	local vector VelDir, OtherDir, SideDir, HitLocation, Adj;
-	local float CollisionRad, CollisionHeight;
-
-	if( !IsDoingLatentMove() || MoveTarget == None )
-	{
-		return false;
-	}
-
-	VelDir	   = Normal(MoveTarget.Location - Pawn.Location);
-	OtherDir   = Other.Location - Pawn.Location;
-	VelDir.Z   = 0;
-	OtherDir.Z = 0;
-	OtherDir   = Normal(OtherDir);
-
-	if( Pawn(Other) != none && Other.Physics == PHYS_Spider && Pawn(Other).Floor.Z < -0.7f )
-	{
-		Other.SetPhysics( PHYS_Falling );
-	}
-	if( ((VelDir Dot OtherDir) > 0.7f) )
-	{
-// 		if( Pawn.bCrawler )
-// 		{
-// 			SideDir.Z = VelDir.Z;
-// 		}
-
-		SideDir.X = VelDir.Y;
-		SideDir.Y = -1 * VelDir.X;
-
-		if( (SideDir Dot OtherDir) > 0.f )
-		{
-			SideDir *= -1;
-		}
-		if( Pawn(Other) == none )
-		{
-			Other.GetBoundingCylinder( CollisionRad, CollisionHeight );
-			Adj = Pawn.Location + 3.5f * CollisionRad * (0.5f * VelDir + SideDir);
-		}
-		else
-		{
-			Adj = Pawn.Location + 3.5f * Pawn(Other).GetCollisionRadius() * (0.5f * VelDir + SideDir);
-		}
-		// make sure adjust location isn't through a wall
-		if( Trace(HitLocation, HitNormal, Adj, Pawn.Location, false) != none )
-		{
-			Adj = HitLocation;
-		}
-		AILog_Internal(GetFuncName()$"() in MoveToGoal, SettingAdjustLocation to "$Adj,'HitWall',);
-		SetAdjustLocation( Adj, true, true );
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
+native function bool AdjustAround( Actor Other, vector HitNormal );
 
 function bool NotifyBump( Actor Other, Vector HitNormal )
 {
@@ -2032,7 +1980,7 @@ function bool NotifyBump( Actor Other, Vector HitNormal )
 
 		if( KFP != none )
 		{
-			AILog_Internal("NotifyBump in MoveToGoal, Other: "$Other$" HitNormal: "$HitNormal,'BumpEvent',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("NotifyBump in MoveToGoal, Other: "$Other$" HitNormal: "$HitNormal,'BumpEvent',);};
 			DisableBump( 0.12f );
 			if ( (!KFP.IsAliveAndWell() || !Pawn.IsSameTeam( KFP )) )  //|| (P.Controller == none)
 			{
@@ -2056,6 +2004,26 @@ function bool NotifyBump( Actor Other, Vector HitNormal )
 		AdjustAround( Other, HitNormal );
 		return true;
 	}
+	return false;
+}
+
+function bool NotifyLatentPostPhysWalking()
+{
+	if( !bPreparingMove && MoveTimer > 1.f && Pawn.Velocity == vect(0,0,0) && Pawn.Acceleration != vect(0,0,0) )
+	{
+		++NumFailedLatentWalkMoves;
+		if( NumFailedLatentWalkMoves > 3 )
+		{
+			MoveTimer = -1;
+			NumFailedLatentWalkMoves = 0;
+			return true;
+		}
+	}
+	else
+	{
+		NumFailedLatentWalkMoves = 0;
+	}
+
 	return false;
 }
 

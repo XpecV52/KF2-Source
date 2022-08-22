@@ -48,7 +48,6 @@ defaultproperties
     bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
-    bAllowClientAmmoTracking=false
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=70
     MeshIronSightFOV=52

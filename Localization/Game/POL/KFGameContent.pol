@@ -31,7 +31,7 @@ StoreDescriptionsKey="Sklep umożliwia kupowanie kluczy, które służą do otwi
 InventoryTitleKey="Poznaj swój ekwipunek"
 InventoryDescriptionKey="Każde zestaw specjalizacji obejmuje unikalną broń główną, boczny pistolet 9 mm, specjalistyczny nóż i granaty. Aby przełączać pomiędzy bronią, wciśnij <font color="#caab05">%x%</font>. Można także szybko wybrać kategorię broni, wciskając: <font color="#caab05">%x%</font>, aby używać dystansowej broni głównej; <font color="#caab05">%x%</font>, aby używać pistoletu; <font color="#caab05">%x%</font>, aby używać broni białej; <font color="#caab05">%x%</font>, aby używać strzykawki."
 InventoryContTitleKey="Poznaj swój ekwipunek"
-InventoryContDescriptionKey="Każde zestaw specjalizacji obejmuje unikalną broń główną, boczny pistolet 9 mm, specjalistyczny nóż i granaty. Przytrzymaj <font color="#caab05">%x%</font> i użyj przycisków kierunku, aby wybrać broń."
+InventoryContDescriptionKey="Każde zestaw specjalizacji obejmuje unikalną broń główną, boczny pistolet 9 mm, specjalistyczny nóż i granaty. Przytrzymaj <font color="#caab05">%x%</font> i użyj przyciski kierunku, aby wybrać broń."
 AlternateFireKey="Alternatywny tryb ognia"
 AlternateFireDescription="Większość broni głównych ma alternatywny tryb ognia. Wciśnij <font color="#caab05">%x%</font>, aby przełączyć bieżący tryb ognia. Ikona na ekranie wskazuje obecnie wybrany tryb."
 FlashLightBatteryTitleKey="Używanie latarki"
@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="Każda broń ma swoją <font color="#caab05">WAGĘ</
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="Uzupełnianie amunicji i pancerza"
-TraderRefillGamepadDescriptionKey="<font color="#caab05">AMUNICJĘ</font>, <font color="#caab05">GRANATY</font> i <font color="#caab05">PANCERZ</font> można uzupełnić u handlarki. Aby to zrobić, po lewej stronie menu handlarki za pomocą lewego drążka wybierz broń, do której chcesz zakupić amunicję. Wciskając <font color="#caab05">%x%</font>, możesz kupić jeden magazynek lub granat do określonej broni; wciskając <font color="#caab05">%x%</font>, możesz kupić tyle amunicji lub granatów, na ile cię stać, do obowiązującego cię limitu. Jeśli masz mało czasu (lub dużo forsy), wciśnij <font color="#caab05">%x%</font>, aby szybko wydać forsę na amunicję, pancerz i granaty."
+TraderRefillGamepadDescriptionKey="<font color="#caab05">AMUNICJĘ</font>, <font color="#caab05">GRANATY</font> i <font color="#caab05">PANCERZ</font> można uzupełnić u handlarki. Aby to zrobić, po lewej stronie menu handlarki za pomocą lewy drążek' wybierz broń, do której chcesz zakupić amunicję. Wciskając <font color="#caab05">XboxTypeS_A</font>, możesz kupić jeden magazynek lub granat do określonej broni; wciskając <font color="#caab05">XboxTypeS_X</font>, możesz kupić tyle amunicji lub granatów, na ile cię stać, do obowiązującego cię limitu. Jeśli masz mało czasu (lub dużo forsy), wciśnij <font color="#caab05">LeftThumbStick</font>, aby szybko wydać forsę na amunicję, pancerz i granaty."
 TraderSellGamepadTitleKey="Sprzedawanie broni"
-TraderSellGamepadDescriptionKey="Aby <font color="#caab05">SPRZEDAĆ BROŃ</font>, po lewej stronie menu handlarki za pomocą lewego drążka wybierz broń, którą chcesz sprzedać, i wciśnij <font color="#caab05">%x%</font>. Zobaczysz ilość forsy, jaką otrzymasz za sprzedanie przedmiotu. Nie możesz sprzedać bocznego pistoletu 9 mm, pancerza ani granatów."
+TraderSellGamepadDescriptionKey="Aby <font color="#caab05">SPRZEDAĆ BROŃ</font>, po lewej stronie menu handlarki za pomocą lewy drążek' wybierz broń, którą chcesz sprzedać, i wciśnij <font color="#caab05">XboxTypeS_Y</font>. Zobaczysz ilość forsy, jaką otrzymasz za sprzedanie przedmiotu. Nie możesz sprzedać bocznego pistoletu 9 mm, pancerza ani granatów."
 TraderBuyGamepadTitleKey="Kupowanie broni"
-TraderBuyGamepadDescriptionKey="Aby <font color="#caab05">KUPIĆ BROŃ</font>, po prawej stronie menu handlarki za pomocą lewego drążka wybierz broń, którą chcesz kupić, i wciśnij <font color="#caab05">%x%</font>. Upewnij się, że masz dość <font color="#caab05">FORSY</font> i wystarczający <font color="#caab05">UDŹWIG</font>, aby kupić broń."
+TraderBuyGamepadDescriptionKey="Aby <font color="#caab05">KUPIĆ BROŃ</font>, po prawej stronie menu handlarki za pomocą lewy drążek' wybierz broń, którą chcesz kupić, i wciśnij <font color="#caab05">XboxTypeS_A</font>. Upewnij się, że masz dość <font color="#caab05">FORSY</font> i wystarczający <font color="#caab05">UDŹWIG</font>, aby kupić broń."
 TraderWeightGamepadTitleKey="Waga broni i pojemność magazynka"
 TraderWeightGamepadDescriptionKey="Każda broń ma swoją <font color="#caab05">WAGĘ</font>. Waga obecnie posiadanej broni może uniemożliwić kupno nowej broni. Waga danej broni jest widoczna na liście broni oraz w szczegółach broni. Twój <font color="#caab05">UDŹWIG</font> jest wyświetlany poniżej bieżącej forsy w środkowej części ekranu. Wszystkie przedmioty, które uniemożliwiają kupno wybranego przedmiotu, są podświetlane na czerwono."
 
@@ -395,7 +395,7 @@ ItemCategory="Broń krótka"
 ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•„Kolekcjoner kości”, prawdziwa ręczna artyleria w postaci rewolweru kalibru .50 z długą lufą, strzelającego nabojami Magnum. Dla poważnego rewolwerowca."
 
 [KFWeap_Revolver_DualSW500]
-ItemName="Dwa rewolwery Magnum .500"
+ItemName="Dwa Magnum .500"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Para rewolwerów Magnum .500 – „Kolekcjoner kości”. Można je oddzielenie sprzedać lub wyrzucić. Z wielkim łupnięciem."
 
@@ -415,7 +415,7 @@ ItemCategory="Karabin wyborowy"
 ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•Wyposażony w celownik laserowy.\n•Ulubiony karabin wyborowy Navy SEALs, Delta Force i innych różnych twardzieli."
 
 [KFWeap_Rifle_RailGun]
-ItemName="Działo elektromagnetyczne"
+ItemName="Działo elektromag."
 ItemCategory="Karabin wyborowy"
 ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•Korzystanie z celownika umożliwia namierzenie wrażliwych miejsc przeciwnika. \n•Ta broń wystrzeliwuje lite stalowe pociski z dużą prędkością za pomocą magnesów, przebijając zety jak bibułę."
 
@@ -448,6 +448,20 @@ ItemDescription="•Tryb ataku: ogień ciągły lub pojedynczy.\n•Tryb alterna
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr Hans Volter"
+BossName_CHN="汉斯-沃尔特博士"
+BossName_CHT="漢斯華特博士"
+BossName_DEU="Dr. Hans Volter"
+BossName_ESL="Dr. Hans Volter"
+BossName_ESN="Dr. Hans Volter"
+BossName_FRA="Dr. Hans Volter"
+BossName_FRC="Dr. Hans Volter"
+BossName_INT="Dr. Hans Volter"
+BossName_ITA="Dr. Hans Volter"
+BossName_JPN="ドクター ハンス・ヴォルター"
+Bossname_KOR="Dr. Hans Volter"
+BossName_POL="Dr Hans Volter"
+BossName_PTB="Dr. Hans Volter"
+BossName_RUS="Д-р Ганс Вольтер"
 BossCaptionStrings[0]="Gdy Hans jest ciężko ranny, ustawia tarczę i zaczyna szukać ofiary do wyssania zdrowia. Zniszcz tarczę, a nie będzie mógł się leczyć!"
 BossCaptionStrings[1]="Obserwuj jego rdzeń zasilający: Hans jest bardziej agresywny, gdy rdzeń zmienia kolor."
 BossCaptionStrings[2]="Celuj w jego emisyjny rdzeń zasilający. To wrażliwa strefa."
@@ -458,6 +472,20 @@ BossCaptionStrings[6]="Kiedy Hans wyciąga broń, nie wchodź w zasięg jego wzr
 
 [KFPawn_ZedPatriarch]
 BossName="Patriarcha"
+BossName_CHN="长老丧尸"
+BossName_CHT="長老"
+BossName_DEU="Der Patriarch"
+BossName_ESL="El patriarca"
+BossName_ESN="El patriarca"
+BossName_FRA="Le Patriarche"
+BossName_FRC="Le Patriarche"
+BossName_INT="The Patriarch"
+BossName_ITA="Il Patriarca"
+BossName_JPN="ペイトリアーク"
+BossName_KOR="Patriarch"
+BossName_POL="Patriarcha"
+BossName_PTB="O Patriarca"
+BossName_RUS="Патриарх"
 BossCaptionStrings[0]="Kevin Clamely był niegdyś genialnym naukowcem, dopóki nie został swoim najwspanialszym dziełem."
 BossCaptionStrings[1]="Patriarcha jest zdumiewająco arogancki – jest skłonny powiedzieć ci, którego ataku za chwilę użyje."
 BossCaptionStrings[2]="Nawet chowanie się za dużymi obiektami nie na wiele się zda. Patriarcha ma na to odpowiedź!"

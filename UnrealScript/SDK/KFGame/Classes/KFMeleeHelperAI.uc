@@ -598,7 +598,7 @@ defaultproperties
 	MaxPingCompensation=200
 	PingCompensationScale=0.5f
 
-	PlayerControlledFOV=0.15f
+	PlayerControlledFOV=0.05f
 	PlayerDoorDamageMultiplier=10.0f
 	MeleeImpactCamScale=1.f
 }

@@ -85,7 +85,7 @@ state Command_SpecialMove
 		bIsFanFire = false;
 
 		// See if we have enough valid enemies in front of us to do a fan fire attack
-		if( RecentlySeenEnemyList.Length > 1 )
+		if( RecentlySeenEnemyList.Length > 2 )
 		{
 			for( i = 0; i < RecentlySeenEnemyList.Length; i++ )
 			{
@@ -106,7 +106,7 @@ state Command_SpecialMove
 				}
 
 				NumNearbyEnemies++;
-				if( NumNearbyEnemies >= 2 )
+				if( NumNearbyEnemies >= 3 )
 				{
 					bIsFanFire = true;
 					break;

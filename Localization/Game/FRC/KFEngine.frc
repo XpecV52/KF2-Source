@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="UID doublon"
+InvalidUID="UID invalide"
+FailedKickOff="Échec de l'initialisation de l'authentification"
+RequiresAuthentication="Authentification requise par le serveur"
+CouldNotConnect_Title="Échec de la connexion"

@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="Ogni arma ha un <font color="#caab05">VALORE DI CARI
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="Rifornimento munizioni e armatura"
-TraderRefillGamepadDescriptionKey="Rifornisciti di <font color="#caab05">MUNIZIONI</font>, <font color="#caab05">GRANATE</font>, e <font color="#caab05">ARMATURA</font> dal commerciante. Per rifornire, seleziona l'arma per cui vuoi comprare munizioni sul lato sinistro del menu commerciante usando la levetta sinistra. Puoi acquistare un caricatore o granata per l'arma selezionata premendo <font color="#caab05">%x%</font>, o comprare tutte le munizioni o granate che puoi permetterti, fino al tuo limite, premendo <font color="#caab05">%x%</font>. Se hai poco tempo (o molto denaro), premendo <font color="#caab05">%x%</font> il denaro verrà speso rapidamente distribuendolo in automatico tra munizioni, armatura e granate."
+TraderRefillGamepadDescriptionKey="Rifornisciti di <font color="#caab05">MUNIZIONI</font>, <font color="#caab05">GRANATE</font>, e <font color="#caab05">ARMATURA</font> dal commerciante. Per rifornire, seleziona l'arma per cui vuoi comprare munizioni sul lato sinistro del menu commerciante usando la levetta sinistra. Puoi acquistare un caricatore o granata per l'arma selezionata premendo <font color="#caab05">XboxTypeS_A</font>, o comprare tutte le munizioni o granate che puoi permetterti, fino al tuo limite, premendo <font color="#caab05">XboxTypeS_X</font>. Se hai poco tempo (o molto denaro), premendo <font color="#caab05">LeftThumbStick</font> il denaro verrà speso rapidamente distribuendolo in automatico tra munizioni, armatura e granate."
 TraderSellGamepadTitleKey="Vendere armi"
-TraderSellGamepadDescriptionKey="Per <font color="#caab05">VENDERE UN'ARMA</font>, seleziona l'arma che desideri vendere sul lato sinistro del menu commerciante usando la levetta sinistra e premi <font color="#caab05">%x%</font>. Potrai vedere il denaro che otterresti vendendo l'oggetto. Non puoi vendere la pistola 9mm di riserva, l'armatura e le granate."
+TraderSellGamepadDescriptionKey="Per <font color="#caab05">VENDERE UN'ARMA</font>, seleziona l'arma che desideri vendere sul lato sinistro del menu commerciante usando la levetta sinistra e premi <font color="#caab05">XboxTypeS_Y</font>. Potrai vedere il denaro che otterresti vendendo l'oggetto. Non puoi vendere la pistola 9mm di riserva, l'armatura e le granate."
 TraderBuyGamepadTitleKey="Comprare armi"
-TraderBuyGamepadDescriptionKey="Per <font color="#caab05">COMPRARE UN'ARMA</font>, seleziona l'arma che desideri comprare sul lato destro del menu commerciante usando la levetta sinistra e premi <font color="#caab05">%x%</font>. Assicurati di avere abbastanza <font color="#caab05">DENARO</font> e <font color="#caab05">CAPACITÀ DI CARICO</font> per comprare l'arma."
+TraderBuyGamepadDescriptionKey="Per <font color="#caab05">COMPRARE UN'ARMA</font>, seleziona l'arma che desideri comprare sul lato destro del menu commerciante usando la levetta sinistra e premi <font color="#caab05">XboxTypeS_A</font>. Assicurati di avere abbastanza <font color="#caab05">DENARO</font> e <font color="#caab05">CAPACITÀ DI CARICO</font> per comprare l'arma."
 TraderWeightGamepadTitleKey="Peso arma e capacità"
 TraderWeightGamepadDescriptionKey="Ogni arma ha un <font color="#caab05">VALORE DI CARICO</font>. Il valore di carico delle tue armi può impedirti di acquistare l'arma che desideri. Il valore di carico è visibile nella lista armi e nei dettagli dell'arma. La tua <font color="#caab05">CAPACITÀ DI CARICO</font> viene mostrata sotto il tuo denaro attuale al centro dello schermo. Ogni oggetto che ti impedisce di comprare l'arma selezionata è evidenziato in rosso."
 
@@ -79,7 +79,7 @@ TeamAdviceDescriptionKey="<font color="#caab05">STAI INSIEME ALLA TUA SQUADRA!</
 CongratulationsTitleKey="Vittoria!"
 CongratulationsDescriptionKey="Congratulazioni! Hai completato il Terreno di Addestramento!"
 NextStepsTitleKey="Cosa fare ora"
-NextStepsDescriptionKey="Dal menu principale puoi fare pratica offline o iniziare subito una partita online con altri sopravvissuti.  È ora di uccidere gli Zed!"
+NextStepsDescriptionKey="Dal menu principale puoi fare pratica offline o iniziare subito una partita online con altri sopravvissuti. È ora di uccidere gli Zed!"
 
 ;Healing Section
 QuickHealTitleKey="Curati quando sei ferito"
@@ -105,7 +105,7 @@ UnblockableDescriptionKey="Gli Zed più grossi possono eseguire attacchi non blo
 
 [KFGFxTutorialContainer]
 BackString="INDIETRO"
-NextString="SUCCESSIVO"
+NextString="PROX"
 DoneString="FATTO"
 SkipString="SALTA"
 
@@ -140,7 +140,7 @@ ItemCategory="Esplosivi"
 ItemDescription="•Una semplicissima granata dall'alto potenziale esplosivo. Ferisce Zed e umani allo stesso modo.\n\nPiù semplice di così. HE: High Explosive. Un BOOM e tutto salta in aria. C'è davvero bisogno di spiegartelo? "
 
 [KFProj_FragGrenade]
-ItemName="Granata a frammentazione"
+ItemName="Granata frammentazione"
 ItemCategory="Esplosivi"
 ItemDescription="•Classica bomba a mano: si frammenta in piccoli pezzi di metallo che colpiscono in giro.\n\nSono sicuro che hai giocato a un po' di videogiochi prima dell'epidemia, quindi dovresti sapere di cosa si tratta. E smetti di fingere che non lo sai. Nessuno ti crederà. "
 
@@ -448,6 +448,20 @@ ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico.\n
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
+BossName_CHN="汉斯-沃尔特博士"
+BossName_CHT="漢斯華特博士"
+BossName_DEU="Dr. Hans Volter"
+BossName_ESL="Dr. Hans Volter"
+BossName_ESN="Dr. Hans Volter"
+BossName_FRA="Dr. Hans Volter"
+BossName_FRC="Dr. Hans Volter"
+BossName_INT="Dr. Hans Volter"
+BossName_ITA="Dr. Hans Volter"
+BossName_JPN="ドクター ハンス・ヴォルター"
+Bossname_KOR="Dr. Hans Volter"
+BossName_POL="Dr Hans Volter"
+BossName_PTB="Dr. Hans Volter"
+BossName_RUS="Д-р Ганс Вольтер"
 BossCaptionStrings[0]="Quando è ferito, Hans alza uno scudo e cerca una vittima a cui rubare salute. Se distruggi lo scudo non si può curare!"
 BossCaptionStrings[1]="Guarda il suo nucleo energetico: Hans è più aggressivo quando cambia colore."
 BossCaptionStrings[2]="Mira al nucleo energetico emissivo. È un'area vulnerabile."
@@ -458,6 +472,20 @@ BossCaptionStrings[6]="Quando Hans estrae le armi, stai fuori dalla sua linea di
 
 [KFPawn_ZedPatriarch]
 BossName="Il Patriarca"
+BossName_CHN="长老丧尸"
+BossName_CHT="長老"
+BossName_DEU="Der Patriarch"
+BossName_ESL="El patriarca"
+BossName_ESN="El patriarca"
+BossName_FRA="Le Patriarche"
+BossName_FRC="Le Patriarche"
+BossName_INT="The Patriarch"
+BossName_ITA="Il Patriarca"
+BossName_JPN="ペイトリアーク"
+BossName_KOR="Patriarch"
+BossName_POL="Patriarcha"
+BossName_PTB="O Patriarca"
+BossName_RUS="Патриарх"
 BossCaptionStrings[0]="Una volta, Kevin Clamely era un ottimo scienziato, fino a quando è diventato la sua più grande creazione."
 BossCaptionStrings[1]="Il Patriarca è incredibilmente arrogante, probabilmente ti dirà che attacco intende usare."
 BossCaptionStrings[2]="Nascondersi dietro a oggetti, anche se grandi, non ti aiuterà granché. Il Patriarca sa esattamente cosa fare!"

@@ -11,7 +11,6 @@ package
             super();
             addFrameScript(9,this.frame10,19,this.frame20,29,this.frame30,39,this.frame40);
             this.__setProp_playerInputText_InputPrompt_passwordBox_0();
-            this.__setProp_promptsContainer_InputPrompt_Controller_0();
             this.__setProp_confirmButton_InputPrompt_AcceptButton_0();
             this.__setProp_cancelButton_InputPrompt_AcceptButton_0();
         }
@@ -44,29 +43,6 @@ package
             }
         }
         
-        function __setProp_promptsContainer_InputPrompt_Controller_0() : *
-        {
-            try
-            {
-                promptsContainer["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            promptsContainer.bUseWidthForBoundry = true;
-            promptsContainer.enabled = true;
-            promptsContainer.enableInitCallback = false;
-            promptsContainer.promptSpacing = 32;
-            promptsContainer.visible = true;
-            try
-            {
-                promptsContainer["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
         function __setProp_confirmButton_InputPrompt_AcceptButton_0() : *
         {
             try
@@ -81,7 +57,7 @@ package
             confirmButton.data = "";
             confirmButton.enabled = true;
             confirmButton.enableInitCallback = false;
-            confirmButton.focusable = false;
+            confirmButton.focusable = true;
             confirmButton.label = "confirmButton";
             confirmButton.selected = false;
             confirmButton.toggle = false;
@@ -109,7 +85,7 @@ package
             cancelButton.data = "";
             cancelButton.enabled = true;
             cancelButton.enableInitCallback = false;
-            cancelButton.focusable = false;
+            cancelButton.focusable = true;
             cancelButton.label = "cancelButton";
             cancelButton.selected = false;
             cancelButton.toggle = false;

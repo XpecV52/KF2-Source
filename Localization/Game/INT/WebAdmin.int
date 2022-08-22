@@ -189,38 +189,40 @@ SettingsGroups[6]=(DisplayName="Kick Voting")
 SettingsGroups[7]=(DisplayName="Chat")
 ; 0
 PropertyMappings[0]=(ColumnHeaderText="Server Name")
+; 1
+PropertyMappings[1]=(ColumnHeaderText="Allow takeover",ValueMappings=((name="Enabled"),(name="Disabled")))
 ; 101
-PropertyMappings[1]=(ColumnHeaderText="Maximum Players")
+PropertyMappings[2]=(ColumnHeaderText="Maximum Players")
 ; 105
-PropertyMappings[2]=(ColumnHeaderText="Maximum Idle Time")
+PropertyMappings[3]=(ColumnHeaderText="Maximum Idle Time")
 ; 200
-PropertyMappings[3]=(ColumnHeaderText="Cheat Protection (VAC)",ValueMappings=((name="Disabled"),(name="Enabled")))
+PropertyMappings[4]=(ColumnHeaderText="Cheat Protection (VAC)",ValueMappings=((name="Disabled"),(name="Enabled")))
 ; 302
-PropertyMappings[4]=(ColumnHeaderText="Team Collision",ValueMappings=((name="Enabled"),(name="Disabled")))
+PropertyMappings[5]=(ColumnHeaderText="Team Collision",ValueMappings=((name="Enabled"),(name="Disabled")))
 ; 306
-PropertyMappings[5]=(ColumnHeaderText="Game Difficulty",ValueMappings=((name="Normal"),(name="Hard"),(name="Suicidal"),(name="Hell on Earth")))
+PropertyMappings[6]=(ColumnHeaderText="Game Difficulty",ValueMappings=((name="Normal"),(name="Hard"),(name="Suicidal"),(name="Hell on Earth")))
 ; 303
-PropertyMappings[6]=(ColumnHeaderText="Game Length",ValueMappings=((name="Short"),(name="Normal"),(name="Long"),(name="Custom")))
+PropertyMappings[7]=(ColumnHeaderText="Game Length",ValueMappings=((name="Short"),(name="Normal"),(name="Long"),(name="Custom")))
 ; 500
-PropertyMappings[7]=(ColumnHeaderText="Admin Can Pause",ValueMappings=((name="No"),(name="Yes")))
+PropertyMappings[8]=(ColumnHeaderText="Admin Can Pause",ValueMappings=((name="No"),(name="Yes")))
 ; 501
-PropertyMappings[8]=(ColumnHeaderText="Admin Login",ValueMappings=((name="Announce"),(name="Keep Silent")))
+PropertyMappings[9]=(ColumnHeaderText="Admin Login",ValueMappings=((name="Announce"),(name="Keep Silent")))
 ; 701
-PropertyMappings[9]=(ColumnHeaderText="VoIP",ValueMappings=((name="Enabled"),(name="Disabled")))
+PropertyMappings[10]=(ColumnHeaderText="VoIP",ValueMappings=((name="Enabled"),(name="Disabled")))
 ; 703
-PropertyMappings[10]=(ColumnHeaderText="Public Text Chat",ValueMappings=((name="Enabled"),(name="Disabled")))
+PropertyMappings[11]=(ColumnHeaderText="Public Text Chat",ValueMappings=((name="Enabled"),(name="Disabled")))
 ; 703
-PropertyMappings[11]=(ColumnHeaderText="Spectators",ValueMappings=((name="Talk to Everybody"),(name="Only Talk to Spectators")))
+PropertyMappings[12]=(ColumnHeaderText="Spectators",ValueMappings=((name="Talk to Everybody"),(name="Only Talk to Spectators")))
 ; 650
-PropertyMappings[12]=(ColumnHeaderText="Kick Voting",ValueMappings=((name="Enabled"),(name="Disabled")))
+PropertyMappings[13]=(ColumnHeaderText="Kick Voting",ValueMappings=((name="Enabled"),(name="Disabled")))
 ; 654
-PropertyMappings[13]=(ColumnHeaderText="Vote Kick Percentage")
+PropertyMappings[14]=(ColumnHeaderText="Vote Kick Percentage")
 ; 600
-PropertyMappings[14]=(ColumnHeaderText="Map Voting",ValueMappings=((name="Enabled"),(name="Disabled")))
+PropertyMappings[15]=(ColumnHeaderText="Map Voting",ValueMappings=((name="Enabled"),(name="Disabled")))
 ; 601
-PropertyMappings[15]=(ColumnHeaderText="Map Voting Time")
+PropertyMappings[16]=(ColumnHeaderText="Map Voting Time")
 ; 602
-PropertyMappings[16]=(ColumnHeaderText="Mid Game Voting Percentage")
+PropertyMappings[17]=(ColumnHeaderText="Mid Game Voting Percentage")
 
 [GeneralSettings Tooltips]
 ServerName="The name for the server as shown in the server browser."

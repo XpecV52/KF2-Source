@@ -10,7 +10,7 @@ class KFGameDifficulty_Versus extends KFGameDifficultyInfo;
 
 defaultproperties
 {
-   Normal=(WaveCountMod=0.850000,DoshKillMod=1.100000,StartingDosh=300,RespawnDosh=300,AmmoPickupsMod=0.400000,ItemPickupsMod=0.450000,SelfInflictedDamageMod=0.100000)
+   Normal=(WaveCountMod=0.530000,DoshKillMod=1.200000,StartingDosh=500,RespawnDosh=500,AmmoPickupsMod=0.650000,ItemPickupsMod=0.450000,SelfInflictedDamageMod=0.100000)
    Name="Default__KFGameDifficulty_Versus"
    ObjectArchetype=KFGameDifficultyInfo'KFGame.Default__KFGameDifficultyInfo'
 }

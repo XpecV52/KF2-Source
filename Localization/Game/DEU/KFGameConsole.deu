@@ -14,13 +14,117 @@ KF-ContainmentStation="Eindämmungszentrum wird gespielt"
 KF-InfernalRealm="Höllenebene wird gespielt"
 KF-HostileGrounds="Feindeszone wird gespielt"
 
-[ActivityFeed]
+[ActivityFeed_CHN]
+BossKillCondensedCaption="玩打败的首领！"
+BossKillCaption="$USER_NAME_OR_ID 已在 %y% 打败 %x%"
+TeamAwardCondensedCaption="队伍奖励！"
+TeamAwardCaption="$USER_NAME_OR_ID 已赢取 %x% 队伍奖励"
+PerkLevelUpCondensedCaption="升级！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 已解锁第 %x% 级的 %y% 技能"
+
+[ActivityFeed_CHT]
+BossKillCondensedCaption="已擊敗頭目！"
+BossKillCaption="$USER_NAME_OR_ID 在 %y% 難度中擊敗了 %x%"
+TeamAwardCondensedCaption="隊伍獎勵！"
+TeamAwardCaption="$USER_NAME_OR_ID 獲得了 %x% 隊伍獎勵"
+PerkLevelUpCondensedCaption="升級！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 解鎖了 %x% %y% 升級技能"
+
+[ActivityFeed_DEU]
 BossKillCondensedCaption="Boss besiegt!"
 BossKillCaption="$USER_NAME_OR_ID hat %x% auf %y% besiegt"
 TeamAwardCondensedCaption="Team-Auszeichnung!"
 TeamAwardCaption="$USER_NAME_OR_ID hat %x% Team-Auszeichnung verdient"
 PerkLevelUpCondensedCaption="Levelaufstieg!"
 PerkLevelUpCaption="$USER_NAME_OR_ID hat die Level %x% %y% Fähigkeit freigeschaltet"
+
+[ActivityFeed_ESL]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_ESN]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_FRA]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_FRC]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_INT]
+BossKillCondensedCaption="Boss defeated!"
+BossKillCaption="$USER_NAME_OR_ID has defeated %x% on %y%"
+TeamAwardCondensedCaption="Team Award!"
+TeamAwardCaption="$USER_NAME_OR_ID has earned %x% team award"
+PerkLevelUpCondensedCaption="Level up!"
+PerkLevelUpCaption="$USER_NAME_OR_ID has unlocked the level %x% %y% skill"
+
+[ActivityFeed_ITA]
+BossKillCondensedCaption="Boss sconfitto!"
+BossKillCaption="$USER_NAME_OR_ID ha sconfitto %x% su %y%"
+TeamAwardCondensedCaption="Premio di squadra!"
+TeamAwardCaption="$USER_NAME_OR_ID vince il premio %x%"
+PerkLevelUpCondensedCaption="Aumento di livello!"
+PerkLevelUpCaption="$USER_NAME_OR_ID sblocca %y% liv %x%"
+
+[ActivityFeed_JPN]
+BossKillCondensedCaption="ボス敗北！"
+BossKillCaption="$USER_NAME_OR_IDが%x%を%y%で倒しました"
+TeamAwardCondensedCaption="チームアワード！"
+TeamAwardCaption="$USER_NAME_OR_IDが%x%チームアワードを獲得しました"
+PerkLevelUpCondensedCaption="レベルアップ！"
+PerkLevelUpCaption="$USER_NAME_OR_IDがレベル%x% %y%スキルをロック解除"
+
+[ActivityFeed_KOR]
+BossKillCondensedCaption="보스 제거!"
+BossKillCaption="$USER_NAME_OR_ID님이 %y%에서 %x%을(를) 처치하였습니다."
+TeamAwardCondensedCaption="팀 보상!"
+TeamAwardCaption="$USER_NAME_OR_ID님이 %x% 팀 보상을 획득했습니다."
+PerkLevelUpCondensedCaption="레벨 업!"
+PerkLevelUpCaption="$USER_NAME_OR_ID님이 레벨 %x% %y% 기술을 잠금해제하였습니다."
+
+[ActivityFeed_POL]
+BossKillCondensedCaption="Boss został pokonany!"
+BossKillCaption="$USER_NAME_OR_ID pokonuje %x% na %y%"
+TeamAwardCondensedCaption="Nagroda zespołowa!"
+TeamAwardCaption="$USER_NAME_OR_ID zdobywa nagrodę zespołową %x%"
+PerkLevelUpCondensedCaption="Nowy poziom!"
+PerkLevelUpCaption="$USER_NAME_OR_ID odblokowuje poziom %x% umiejętności %y%"
+
+[ActivityFeed_PTB]
+BossKillCondensedCaption="Chefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID derrotou %x% em %y%"
+TeamAwardCondensedCaption="Prêmio de Equipe!"
+TeamAwardCaption="$USER_NAME_OR_ID ganhou o prêmio eq. %x%"
+PerkLevelUpCondensedCaption="Subiu de nível!"
+PerkLevelUpCaption="$USER_NAME_OR_ID desbloqueou o nível %x% da hab. %y%"
+
+[ActivityFeed_RUS]
+BossKillCondensedCaption="Босс побежден!"
+BossKillCaption="$USER_NAME_OR_ID: убит босс %x%, зона %y%"
+TeamAwardCondensedCaption="Командная награда!"
+TeamAwardCaption="$USER_NAME_OR_ID: командная награда %x%"
+PerkLevelUpCondensedCaption="Новый уровень!"
+PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="Drücke XboxTypeS_A zum Starten"
@@ -37,7 +141,7 @@ ErrorTSSFailedDescription="Es konnte keine Verbindung zu den Balance-Servern des
 
 [Notifications]
 ControllerDisconnectedTitle="Controller getrennt"
-ControllerDisconnectedPS4Message="Die Verbindung vom Wireless-Controller wurde getrennt. Bitte verbinde den Wireless-Controller des Benutzers, der das Spiel gestartet hat."
+ControllerDisconnectedPS4Message="Die Verbindung zum Wireless-Controller wurde getrennt. Bitte verbinde den Wireless-Controller des Benutzers, der das Spiel gestartet hat."
 PlayGoBusyTitle="Installation erfolgt"
 PlayGoBusyMessage="Nur begrenzte Inhalte und Funktionen sind verfügbar, solange die Installation des Spiels noch nicht abgeschlossen wurde."
 UnableToJoinInviteTitle="Beitritt nicht möglich"
@@ -55,8 +159,6 @@ InviteMessage="Jage mit mir Zeds in die Luft!"
 NotConnectedTitle="Netzwerk-Fehler"
 NotConnectedMessage="Nicht mit dem Internet verbunden. Überprüfe deine Verbindung und versuch es nochmal."
 NotConnectedForOnlinePlay="Nicht mit dem Internet verbunden. Überprüfe deine Verbindung und versuch es nochmal, um Online-Funktionen verwenden zu können"
-PartySizeTitle="Party Warning"
-PartySizeMessage="Too many members in your party. Not all members will show up in your squad and not all will get into a survival game."
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Spieler-Profil ansehen"
@@ -72,24 +174,26 @@ ControllerSound="Controller-Sound"
 
 [KFGFxMenu_StartGame]
 MatchmakingRegionString="REGION"
+LeaveMenuString="Verlässt du die Spielsuche, verlässt du auch die Gruppe."
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGION"
+MapPreference="LIEBLINGSKARTE"
 
 [Entitlements]
-BriarBobbyBundleProductName="London Bobby Briar Uniform Bundle"
+BriarBobbyBundleProductName="Briars Bullen-Uniform-Paket"
 BriarBobbyBundleShortDescription="Erhalte eine neue klassische Uniform eines Londoner Polizisten für den spielbaren Charakter Wachtmeister Rob Briar. Beinhaltet Briars London-Uniform (inklusive 5 Skin-Stilen) und das kosmetische Accessoire Aufseher-Helm (inklusive 3 Skin-Stilen)."
 
-BikerTanakaBundleProductName="Tanaka Biker Uniform Bundle"
+BikerTanakaBundleProductName="Tanakas Biker-Uniform-Paket"
 BikerTanakaBundlehortDescription="Erhalte eine neue Biker-Uniform für den spielbaren Charakter Hayato Tanaka. Beinhaltet Tanakas Motorradfahrer-Uniform (inklusive 7 Skin-Stilen) und einen Helm als kosmetisches Accessoire (inklusive 7 Skin-Stilen)."
 
-ClassicFosterBundleProductName="Mr.Foster Classic Uniform Bundle"
+ClassicFosterBundleProductName="Mr. Fosters Klass.-Uniform-Paket"
 ClassicFosterBundlehortDescription="Erhalte einen neuen klassischen Anzug für den spielbaren Charakter Mr. Foster. Beinhaltet Fosters Klassischen Anzug (inklusive 9 Skin-Stilen), zusätzlich mit Fliege und Klassischer Krawatte als kosmetische Accessoires (inklusive 7 Skin-Stilen für jedes Accessoire)."
 
-CardboardKnightBundleProductName="Cardboard Knight Uniform Bundle"
+CardboardKnightBundleProductName="Papp-Ritter-Uniform-Paket"
 CardboardKnightBundleShortDescription="Erhalte eine zum Schreien komische Papp-Ritterrüstung für die meisten spielbaren Charaktere. Beinhaltet eine Papp-Ritterrüstung für den Körper (inklusive 6 Skin-Stilen) und das kosmetische Accessoire Papp-Ritterhelm (inklusive 6 Skin-Stilen)."
 
-HorzineSecurityForceBundleProductName="Horzine Security Force Uniform Bundle"
+HorzineSecurityForceBundleProductName="Horzine-Security-Uniform-Paket"
 HorzineSecurityForceBundleShortDescription="Erhalte eine tolle neue Horzine-Sicherheitsuniform für die meisten spielbaren Charaktere. Beinhaltet eine hochtechnologische Horzine-Sicherheitsuniform für den Körper und das kosmetische Accessoire Horzine-Sicherheitshelm."
 
 HorzineSupplyCrateKeyProductName="Horzine-Vorratskistenschlüssel"
@@ -110,3 +214,12 @@ HorzineSupplyCrate4ShortDesription="Diese Horzine-Vorratskiste beinhaltet einen 
 StoreGameLegalText="Software unterliegt der Lizenz (us.playstation.com/softwarelicense). Die Online-Aktivitäten unterliegen den Nutzungsbedingungen und der Nutzervereinbarung (www.playstationnetwork.com/terms-of-service). Eine einmalige Lizenzgebühr fällt für das Spielen auf dem Konto des primären PS4™-Systems und anderen PS4™-Systemen an, wenn man mit dem Konto angemeldet ist. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® ist ein eingetragenes Warenzeichen von Tripwire Interactive in den USA und anderen Ländern. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Alle Rechte vorbehalten. Unreal® ist ein Warenzeichen oder ein eingetragenes Warenzeichen von Epic Games, Inc. in den Vereinigten Staaten von Amerika und anderen Ländern. Alle anderen Markennamen, Warenzeichen und Copyrights sind Eigentum der jeweiligen Rechteinhaber. Alle Rechte vorbehalten."
 
 StoreItemLegalText="Dieser Gegenstand benötigt das komplette Spiel Killing Floor 2, um ihn benutzen zu können. Die Verwendung dieses Gegenstands unterliegt dem Endbenutzer-Lizenzvertrag des Original-Spiels."
+
+[Regions]
+USCentral="USA – Zentral"
+USEast="USA – Ost"
+USWest="USA – West"
+EU="Europa"
+Asia="Asien"
+Brazil="Südamerika"
+Australia="Australien"

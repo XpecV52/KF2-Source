@@ -15,6 +15,13 @@ const BlockLoopNoGasAnim = 'Brace_loop_NoGas';
 var AnimNodeAdditiveBlending AdditiveBlendNode;
 var AnimNodeBlendPerBone OutOfBladesBlendNode;
 var AkEvent IdleMotorSound;
+var float BlockInterruptFiringTime;
+
+simulated event PreBeginPlay()
+{
+    super(KFWeapon).PreBeginPlay();
+    BlockInterruptFiringTime = FMin(BlockInterruptFiringTime, MySkelMesh.GetAnimLength('Brace_in'));
+}
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
@@ -130,6 +137,8 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTrader
     return 8;
 }
 
+simulated function BlockInterruptTimer();
+
 simulated state Active
 {
     simulated function BeginState(name PreviousStateName)
@@ -197,9 +206,52 @@ simulated state MeleeSustained
     stop;    
 }
 
+simulated state WeaponSingleFiring
+{
+    simulated function BeginState(name PreviousStateName)
+    {
+        local float CheckBlockInterruptTime;
+
+        CheckBlockInterruptTime = FireInterval[CurrentFireMode] - BlockInterruptFiringTime;
+        if((BlockInterruptFiringTime > float(0)) && CheckBlockInterruptTime > float(0))
+        {
+            SetTimer(CheckBlockInterruptTime, false, 'BlockInterruptTimer');
+        }
+        super(WeaponFiring).BeginState(PreviousStateName);
+    }
+
+    simulated function EndState(name NextStateName)
+    {
+        ClearTimer('BlockInterruptTimer');
+        super(WeaponFiring).EndState(NextStateName);
+    }
+
+    simulated function BlockInterruptTimer()
+    {
+        if(PendingFire(1) && HasAmmo(1))
+        {
+            SendToFiringState(1);
+        }
+    }
+
+    simulated function BeginFire(byte FireModeNum)
+    {
+        global.BeginFire(FireModeNum);
+        if((FireModeNum == 1) && BlockInterruptFiringTime > float(0))
+        {
+            if((HasAmmo(FireModeNum)) && !IsTimerActive('BlockInterruptTimer'))
+            {
+                SendToFiringState(FireModeNum);
+            }
+        }
+    }
+    stop;    
+}
+
 defaultproperties
 {
     IdleMotorSound=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Idle_Loop'
+    BlockInterruptFiringTime=0.5
     ParryStrength=5
     MeleeSustainedWarmupTime=0.1
     BlockDamageMitigation=0.4
@@ -222,6 +274,7 @@ defaultproperties
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=25
     AmmoPickupScale[1]=0.5
+    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     MeleeAttackAnims=/* Array type was not detected. */

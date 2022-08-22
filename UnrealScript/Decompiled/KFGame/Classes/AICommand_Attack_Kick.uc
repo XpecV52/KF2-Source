@@ -61,7 +61,10 @@ state Command_SpecialMove
         {
             return false;
         }
-        Outer.AILog_Internal((string(self) $ " ExecuteSpecialMove() AttackTarget: ") $ string(AttackTarget), 'Command_Attack_Melee');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(self) $ " ExecuteSpecialMove() AttackTarget: ") $ string(AttackTarget), 'Command_Attack_Melee');
+        }
         if(AttackTarget != none)
         {
             KFAIController(KFPawn(AttackTarget).Controller).AIZeroMovementVariables();
@@ -73,7 +76,10 @@ state Command_SpecialMove
         }
         Outer.MyKFPawn.DoSpecialMove(GetSpecialMove(), true, none, SMFlags);
         return true;
-        Outer.AILog_Internal((string(self) $ " ExecuteSpecialMove returning false because ReachedDesiredRotation isn't done?  AttackTarget: ") $ string(AttackTarget), 'Command_Attack_Melee');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(self) $ " ExecuteSpecialMove returning false because ReachedDesiredRotation isn't done?  AttackTarget: ") $ string(AttackTarget), 'Command_Attack_Melee');
+        }
         return false;
     }
 

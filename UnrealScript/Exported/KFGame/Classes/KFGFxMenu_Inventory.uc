@@ -14,6 +14,7 @@ var localized string RecycleOneString;
 var localized string RecycleDuplicatesString;
 
 var localized string NoItemsString;
+var localized string InventoryPopulatingString;
 var localized string InventoryString;
 var localized string EquipString;
 var localized string UnequipString;
@@ -254,6 +255,7 @@ function InitInventory()
 				ItemObject.SetString("iconURLSmall", "img://"$TempItemDetailsHolder.IconURL);
 				ItemObject.SetString("iconURLLarge", "img://"$TempItemDetailsHolder.IconURLLarge);
 				ItemObject.SetInt("definition", TempItemDetailsHolder.Definition);
+				ItemObject.SetBool("newlyAdded", bool(OnlineSub.CurrentInventory[i].NewlyAdded) );
 				
 				ActiveItems[HelperIndex].GfxItemObject = ItemObject;
 
@@ -261,6 +263,7 @@ function InitInventory()
 				{
 					SetMatineeColor(TempItemDetailsHolder.Rarity);
 					KFPC.ConsoleCommand("CE gotitem");
+					
 					SetObject("details", ItemObject);
 				}
 			}
@@ -281,8 +284,11 @@ function InitInventory()
 
 function OnItemExhangeTimeOut()
 {
-	Manager.OpenPopup(ENotification, ItemExchangeTimeOutString, TryAgainString, class'KFCommon_LocalizedStrings'.default.OKString);	
-	SetVisible(true);
+	if( !class'WorldInfo'.static.IsConsoleBuild() )
+	{
+		Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, ItemExchangeTimeOutString, TryAgainString, class'KFCommon_LocalizedStrings'.default.OKString);	
+		SetVisible(true);
+	}
 }
 
 function FinishCraft()
@@ -328,6 +334,7 @@ function OnReadPlayfabInventoryComplete( bool bSuccess )
 {
 	if( bSuccess )
 	{
+		LocalizeText();
 		InitInventory();
 	}
 }
@@ -376,7 +383,7 @@ function LocalizeText()
 
 	LocalizedObject = CreateObject( "Object" );
 	
-	LocalizedObject.SetString("noItems", 					NoItemsString); 
+	LocalizedObject.SetString("noItems", 					KFGameEngine(class'Engine'.static.GetEngine()).bReadingPlayfabStoreData ? InventoryPopulatingString : NoItemsString); 
 	LocalizedObject.SetString("inventory", 					InventoryString); 
 	LocalizedObject.SetString("back", 						Class'KFCommon_LocalizedStrings'.default.BackString); 
 	LocalizedObject.SetString("ok", 						Class'KFCommon_LocalizedStrings'.default.OKString); 
@@ -523,9 +530,17 @@ function int GetCountOfItem(int ItemDefinition)
 function OnPlayfabExchangeComplete( bool bWasSuccessful, string FunctionName, JsonObject FunctionResult )
 {
 	// On successful execution of ExchangeItems, re-read inventory
-	if( bWasSuccessful && FunctionName == "ExchangeItems" )
+	if( FunctionName == "ExchangeItems" )
 	{
-		PlayfabInter.ReadInventory();
+		if( bWasSuccessful )
+		{
+			PlayfabInter.ReadInventory();
+		}
+		else
+		{
+			Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, ItemExchangeTimeOutString, TryAgainString, class'KFCommon_LocalizedStrings'.default.OKString);	
+			SetVisible(true);
+		}
 	}
 
 	PlayfabInter.ClearOnCloudScriptExecutionCompleteDelegate( OnPlayfabExchangeComplete );
@@ -759,10 +774,19 @@ function Callback_Equip( int ItemDefinition )
 		if(IsItemActive(ItemDefinition))
 		{
 			class'KFWeaponSkinList'.Static.SaveWeaponSkin(WeaponDef, 0);
+
+			if(class'WorldInfo'.static.IsConsoleBuild( ))
+			{
+				Manager.CachedProfile.ClearWeaponSkin(WeaponDef.default.WeaponClassPath);
+			}
 		}
 		else
 		{
 			class'KFWeaponSkinList'.Static.SaveWeaponSkin(WeaponDef, ItemDefinition);
+			if(class'WorldInfo'.static.IsConsoleBuild( ))
+			{
+				Manager.CachedProfile.SaveWeaponSkin(WeaponDef.default.WeaponClassPath, ItemDefinition);
+			}
 		}
 		
 	}
@@ -818,7 +842,7 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
 		}
 		else
 		{
-			EquipButton.SetString("label", PurchaseKeyString$NeededItem.Price);
+			EquipButton.SetString("label", PurchaseKeyString @ (class'WorldInfo'.static.IsConsoleBuild() ? "" : (":"@NeededItem.Price)));
 		}
 	}
 }
@@ -902,12 +926,12 @@ function Callback_RecycleItem( int ItemDefinition )
 	if(MatchingItemCount >= ValueToPromptDuplicateRecycle)
 	{
 		//give a third choice to recycle duplicates
-		Manager.OpenPopup(EConfirmation, RecycleItemString, RecycleWarningString, RecycleDuplicatesString, class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmDuplicatesRecycle, CancelRecycle, RecycleOneString, ConfirmRecycle );
+		Manager.DelayedOpenPopup(EConfirmation,EDPPID_Misc, RecycleItemString, RecycleWarningString, RecycleDuplicatesString, class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmDuplicatesRecycle, CancelRecycle, RecycleOneString, ConfirmRecycle );
 	}
 	else
 	{
 		//else give standard recycle pop up
-		Manager.OpenPopup(EConfirmation, RecycleItemString, RecycleWarningString, class'KFCommon_LocalizedStrings'.default.ConfirmString, class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmRecycle );	
+		Manager.DelayedOpenPopup(EConfirmation,EDPPID_Misc, RecycleItemString, RecycleWarningString, class'KFCommon_LocalizedStrings'.default.ConfirmString, class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmRecycle );	
 	}
 }
 
@@ -924,12 +948,12 @@ function Callback_CraftOption(int ItemDefinition)
 	{
 		if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]))
 		{
-			Manager.OpenPopup(EConfirmation, CraftItemString, ConfirmCraftItemString, class'KFCommon_LocalizedStrings'.default.ConfirmString, class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmCraft );	
+			Manager.DelayedOpenPopup(EConfirmation,EDPPID_Misc, CraftItemString, ConfirmCraftItemString, class'KFCommon_LocalizedStrings'.default.ConfirmString, class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmCraft );	
 			return;
 		}
 	}
 
-	Manager.OpenPopup(ENotification, FailedToCraftItemString, CraftRequirementString, class'KFCommon_LocalizedStrings'.default.OKString);	
+	Manager.DelayedOpenPopup(ENotification,EDPPID_Misc, FailedToCraftItemString, CraftRequirementString, class'KFCommon_LocalizedStrings'.default.OKString);	
 }
 
 function CallBack_RequestCosmeticCraftInfo()
@@ -955,6 +979,7 @@ defaultproperties
    RecycleOneString="RECYCLE ONE"
    RecycleDuplicatesString="RECYCLE DUPLICATES"
    NoItemsString="You have no Inventory items within the currently selected filter."
+   InventoryPopulatingString="Please wait. Inventory is populating."
    InventoryString="INVENTORY"
    EquipString="EQUIP"
    UnequipString="UNEQUIP"
@@ -984,13 +1009,13 @@ defaultproperties
    FailedToExchangeString="CANNOT OPEN CRATE"
    MoreItemsString="You require a matching key and crate. You can purchase a key from the in game store."
    ItemExchangeTimeOutString="Failed to Reach Item Server"
-   TryAgainString="Client failed to exhange item. Please try again later. If this issue persists, contact support."
+   TryAgainString="Client failed to exchange item. Please try again later. If this issue persists, contact support."
    FailedToCraftItemString="Failed to Craft Item"
    CraftRequirementString="Insufficient quantity of required crafting materials"
    CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle."
    CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle."
    RequiresString="Requires: "
-   PurchaseKeyString="BUY KEY: "
+   PurchaseKeyString="BUY KEY"
    LookUpOnMarketString="Lookup on Market"
    UncommonCosmeticID=3708
    RareCosmeticID=3709

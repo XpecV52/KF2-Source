@@ -24,6 +24,10 @@ package tripwire.widgets
         
         public var buttonPriority:Object;
         
+        private var _bCenterAligned:Boolean;
+        
+        public var runningWidth:Number = 0;
+        
         public function MultiPromptDisplay()
         {
             super();
@@ -51,6 +55,7 @@ package tripwire.widgets
                 this._basePrompt = ButtonPrompt(getChildByName("_basePrompt"));
             }
             this.m_bBoundarySet = false;
+            this._bCenterAligned = true;
         }
         
         override protected function configUI() : void
@@ -88,6 +93,24 @@ package tripwire.widgets
                 return;
             }
             this._promptSpacing = param1;
+            if(!componentInspectorSetting)
+            {
+                this.updateDisplayedPrompts(false);
+            }
+        }
+        
+        public function get bCenterAligned() : Boolean
+        {
+            return this._bCenterAligned;
+        }
+        
+        public function set bCenterAligned(param1:Boolean) : *
+        {
+            if(param1 == this._bCenterAligned)
+            {
+                return;
+            }
+            this._bCenterAligned = param1;
             if(!componentInspectorSetting)
             {
                 this.updateDisplayedPrompts(false);
@@ -132,82 +155,88 @@ package tripwire.widgets
         
         private function updateDisplayedPrompts(param1:Boolean) : *
         {
-            var _loc6_:Number = NaN;
-            var _loc7_:String = null;
+            var _loc5_:Number = NaN;
+            var _loc6_:String = null;
+            var _loc7_:ButtonPrompt = null;
             var _loc8_:ButtonPrompt = null;
             var _loc9_:ButtonPrompt = null;
-            var _loc10_:ButtonPrompt = null;
             if(param1)
             {
                 if(this._prompts.length < this._displayedPrompts.length)
                 {
                     while(this._prompts.length < this._displayedPrompts.length)
                     {
-                        _loc8_ = ButtonPrompt(this._displayedPrompts.pop());
-                        removeChild(_loc8_);
+                        _loc7_ = ButtonPrompt(this._displayedPrompts.pop());
+                        removeChild(_loc7_);
                     }
                 }
                 else if(this._prompts.length > this._displayedPrompts.length)
                 {
                     while(this._displayedPrompts.length < this._prompts.length)
                     {
-                        _loc9_ = new ButtonPrompt();
-                        addChild(_loc9_);
-                        this._displayedPrompts.push(_loc9_);
+                        _loc8_ = new ButtonPrompt();
+                        addChild(_loc8_);
+                        this._displayedPrompts.push(_loc8_);
                     }
                 }
-                _loc6_ = 0;
-                _loc6_ = 0;
-                while(_loc6_ < this._prompts.length)
+                _loc5_ = 0;
+                _loc5_ = 0;
+                while(_loc5_ < this._prompts.length)
                 {
-                    _loc7_ = this._prompts[_loc6_].buttonDisplay.toLowerCase();
-                    this._prompts[_loc6_].priority = this.buttonPriority[_loc7_];
-                    _loc6_++;
+                    _loc6_ = this._prompts[_loc5_].buttonDisplay.toLowerCase();
+                    this._prompts[_loc5_].priority = this.buttonPriority[_loc6_];
+                    _loc5_++;
                 }
                 this._prompts.sortOn("priority",Array.NUMERIC);
             }
+            this.runningWidth = 0;
             var _loc2_:Number = 0;
             var _loc3_:Number = 0;
             var _loc4_:Number = 0;
-            var _loc5_:Number = 0;
-            while(_loc5_ < this._displayedPrompts.length)
+            while(_loc4_ < this._displayedPrompts.length)
             {
-                _loc10_ = ButtonPrompt(this._displayedPrompts[_loc5_]);
-                if(this._prompts[_loc5_].promptData != null)
+                _loc9_ = ButtonPrompt(this._displayedPrompts[_loc4_]);
+                if(this._prompts[_loc4_].promptData != null)
                 {
-                    _loc10_.promptData = this._prompts[_loc5_].promptData;
+                    _loc9_.promptData = this._prompts[_loc4_].promptData;
                 }
                 else
                 {
-                    _loc10_.promptText = this._prompts[_loc5_].promptText;
-                    _loc10_.buttonDisplay = this._prompts[_loc5_].buttonDisplay;
+                    _loc9_.promptText = this._prompts[_loc4_].promptText;
+                    _loc9_.buttonDisplay = this._prompts[_loc4_].buttonDisplay;
                 }
-                _loc10_.visible = true;
-                if(_loc5_ > 0)
+                _loc9_.visible = true;
+                if(_loc4_ > 0)
                 {
-                    _loc10_.x = this._displayedPrompts[_loc5_ - 1].x + this._displayedPrompts[_loc5_ - 1].width + this._promptSpacing;
-                    _loc2_ += this._displayedPrompts[_loc5_ - 1].width + this._promptSpacing;
+                    _loc9_.x = this._displayedPrompts[_loc4_ - 1].x + this._displayedPrompts[_loc4_ - 1].width + this._promptSpacing;
+                    this.runningWidth += this._displayedPrompts[_loc4_ - 1].width + this._promptSpacing;
                     if(this.m_bBoundarySet)
                     {
-                        if(_loc2_ > this.m_xMax * 2)
+                        if(this.runningWidth > this.m_xMax * 2)
                         {
-                            this.centerPrompts(_loc4_,_loc5_,_loc2_ - (this._displayedPrompts[_loc5_ - 1].width + this._promptSpacing));
-                            _loc3_ += this._basePrompt.height;
-                            _loc10_.x = 0;
-                            _loc2_ = 0;
-                            _loc4_ = _loc5_;
+                            if(this.bCenterAligned)
+                            {
+                                this.centerPrompts(_loc3_,_loc4_,this.runningWidth - (this._displayedPrompts[_loc4_ - 1].width + this._promptSpacing));
+                            }
+                            _loc2_ += this._basePrompt.height;
+                            _loc9_.x = 0;
+                            this.runningWidth = 0;
+                            _loc3_ = _loc4_;
                         }
                     }
-                    _loc10_.y = _loc3_;
+                    _loc9_.y = _loc2_;
                 }
                 else
                 {
-                    _loc10_.x = 0;
+                    _loc9_.x = 0;
                 }
-                _loc5_++;
+                _loc4_++;
             }
-            _loc2_ += this._displayedPrompts[this._displayedPrompts.length - 1].width;
-            this.centerPrompts(_loc4_,this._displayedPrompts.length,_loc2_);
+            this.runningWidth += this._displayedPrompts[this._displayedPrompts.length - 1].width;
+            if(this.bCenterAligned)
+            {
+                this.centerPrompts(_loc3_,this._displayedPrompts.length,this.runningWidth);
+            }
         }
         
         private function centerPrompts(param1:Number, param2:Number, param3:Number) : *

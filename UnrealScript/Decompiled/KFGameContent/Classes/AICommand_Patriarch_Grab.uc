@@ -58,7 +58,10 @@ state Command_SpecialMove
         local KFSM_Patriarch_Grapple MyGrappleMove;
 
         SpecialMove = GetSpecialMove();
-        Outer.AILog_Internal((string(GetFuncName()) $ "()") @ string(SpecialMove), 'Command_SpecialMove');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ "()") @ string(SpecialMove), 'Command_SpecialMove');
+        }
         if((SpecialMove != 0) && !bShouldCheckSpecialMove || Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
             Outer.MyPatPawn.PlayGrabDialog();

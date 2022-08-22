@@ -32,6 +32,7 @@ simulated event GrenadeIsAtRest()
 defaultproperties
 {
     LandedTranslationOffset=(X=2)
+    FuseTime=0.25 //0.5
 
 	ProjFlightTemplate=ParticleSystem'WEP_M84_EMIT.FX_M84_Grenade_Mesh'
 	ExplosionActorClass=class'KFExplosionActor'
@@ -71,5 +72,5 @@ defaultproperties
 
 	AssociatedPerkClass=class'KFPerk_SWAT'
 
-	FuseTime=0.5
+
 }

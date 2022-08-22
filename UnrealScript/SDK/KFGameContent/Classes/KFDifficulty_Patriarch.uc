@@ -12,10 +12,11 @@ class KFDifficulty_Patriarch extends KFMonsterDifficultyInfo
 defaultproperties
 {
 	// Normal difficulty
-	Normal={(SprintChance=1.000000,
+	Normal={(HealthMod=.970000,
+		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
 		DamageMod=0.650000,
-		SoloDamageMod=0.200000,
+		SoloDamageMod=0.240000,
 
 		RallySettings={(bCanRally=false)}
 	)}
@@ -25,18 +26,18 @@ defaultproperties
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
 		DamageMod=0.800000,
-		SoloDamageMod=0.250000,
+		SoloDamageMod=0.300000,
 
 		RallySettings={(bCanRally=false)}
 	)}
 
 	// Suicidal difficulty
-	Suicidal={(HealthMod=1.400000,
-		HeadHealthMod=1.350000,
+	Suicidal={(HealthMod=1.460000,
+		HeadHealthMod=1.460000,
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
 		DamageMod=1.400000,
-		SoloDamageMod=0.350000,
+		SoloDamageMod=0.390000,
 
 		BlockSettings={(Chance=0.85, Duration=1.25, MaxBlocks=5, Cooldown=3.5, DamagedHealthPctToTrigger=0.1,
 							MeleeDamageModifier=0.9, DamageModifier=0.9, AfflictionModifier=0.2, SoloChanceMultiplier=1.0)},
@@ -45,11 +46,11 @@ defaultproperties
 	)}
 
 	// Hell On Earth difficulty
-	HellOnEarth={(HealthMod=1.550000,
-		HeadHealthMod=1.550000,
+	HellOnEarth={(HealthMod=1.70000,
+		HeadHealthMod=1.700000,
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
-		DamageMod=1.230000,
+		DamageMod=1.30000,
 		SoloDamageMod=0.500000,
 
 		BlockSettings={(Chance=0.85, Duration=1.25, MaxBlocks=6, Cooldown=3.5, DamagedHealthPctToTrigger=0.1,

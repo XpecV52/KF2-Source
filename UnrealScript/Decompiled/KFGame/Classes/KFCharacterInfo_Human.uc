@@ -311,7 +311,11 @@ private final function SetBodyMeshAndSkin(byte CurrentBodyMeshIndex, byte Curren
         CurrentBodyMeshIndex = ((CurrentBodyMeshIndex < BodyVariants.Length) ? CurrentBodyMeshIndex : 0);
         CharBodyMeshName = BodyVariants[CurrentBodyMeshIndex].MeshName;
         CharBodyMesh = SkeletalMesh(DynamicLoadObject(CharBodyMeshName, Class'SkeletalMesh'));
-        KFP.Mesh.SetSkeletalMesh(CharBodyMesh);
+        if(CharBodyMesh != KFP.Mesh.SkeletalMesh)
+        {
+            KFP.Mesh.SetSkeletalMesh(CharBodyMesh);
+            KFP.OnCharacterMeshChanged();
+        }
         if(KFP.WorldInfo.NetMode != NM_DedicatedServer)
         {
             SetBodySkinMaterial(BodyVariants[CurrentBodyMeshIndex], CurrentBodySkinIndex, KFP);
@@ -477,18 +481,18 @@ private final function SetAttachmentMeshAndSkin(byte CurrentAttachmentMeshIndex,
         AttachmentRotationRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeRotation;
         AttachmentScaleRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeScale;
         bIsSkeletalAttachment = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.bIsSkeletalAttachment;
+        if(KFP.IsLocallyControlled())
+        {
+            if((CharAttachmentSocketName != 'None') && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == none)
+            {
+                RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
+                return;
+            }
+        }
         if(bIsSkeletalAttachment)
         {
             if(SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]) != none)
             {
-                if(KFP.IsLocallyControlled())
-                {
-                    if((CharAttachmentSocketName != 'None') && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == none)
-                    {
-                        RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
-                        return;
-                    }
-                }
                 SkeletalAttachment = SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]);                
             }
             else

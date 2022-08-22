@@ -142,7 +142,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
     local KFGameReplicationInfo KFGRI;
 
     super.PlayDying(DamageType, HitLoc);
-    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(string(Class.Name), BossName, Class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(WorldInfo.GetMapName(true)).DisplayName);
+    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(string(Class.Name), WorldInfo.GetMapName(true));
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if((KFGRI != none) && !KFGRI.IsFinalWave())
     {

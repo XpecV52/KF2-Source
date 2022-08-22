@@ -526,8 +526,8 @@ defaultproperties
 	LifeSpan=0
 	FuseDuration=300
 	PostExplosionLifetime=1
-	Speed=500
-	MaxSpeed=500
+	Speed=1000 //500
+	MaxSpeed=1000 //500
 	Physics=PHYS_Falling
 	bBounce=true
 	bNetTemporary=false
@@ -598,7 +598,7 @@ defaultproperties
 
 	// Explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=30 //45
+		Damage=15 //45 //30
 		DamageRadius=450
 		DamageFalloffExponent=0.f
 		DamageDelay=0.f

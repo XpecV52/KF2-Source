@@ -77,6 +77,7 @@ var() bool bNoPlayers;
 var() bool bNoZAxisDistPenalty;
 /** If set, this volume never performs visibility checks */
 var() bool bOutOfSight;
+var const transient bool bCachedVisibility;
 var deprecated bool bExclusiveBossVolumes;
 /** Use for debugging to exclude this volume from being used */
 var(Debug) bool bDisabled;
@@ -93,6 +94,8 @@ var() float MaxHeightDiffToPlayers;
 var() float MinDistanceToPlayer;
 /** Volume rating is partially scaled by its distance from players. Any player beyond this distance (UU) will receive no distance bonus at all, resulting in a lower volume rating. */
 var() float MaxDistanceToPlayer;
+var const transient float CurrentRating;
+var const transient float CachedVisibilityTime;
 /** How long this spawn volume is derated (gets a lower desireability) after it is spawned in */
 var() float SpawnDerateTime;
 var float TeleportDerateTime;
@@ -119,11 +122,11 @@ native final function Vector FindTeleportLocation(class<KFPawn_Monster> Teleport
 // Export UKFSpawnVolume::execFindSpawnLocation(FFrame&, void* const)
 native final function Vector FindSpawnLocation(class<KFPawn> SpawnPawnClass);
 
-// Export UKFSpawnVolume::execScoreLocation(FFrame&, void* const)
-native function float ScoreLocation(Controller ControllerToScoreAgainst, float BestRating, float BestPossibleRating, KFSpawnVolume.ESquadType SquadType);
+// Export UKFSpawnVolume::execRateDistance(FFrame&, void* const)
+native function float RateDistance(Controller C);
 
-// Export UKFSpawnVolume::execScoreDistanceFrom(FFrame&, void* const)
-native function float ScoreDistanceFrom(Vector ViewLoc);
+// Export UKFSpawnVolume::execIsVisible(FFrame&, void* const)
+native function bool IsVisible(optional bool bAllowVelocityPrediction);
 
 // Export UKFSpawnVolume::execIsVisibleFrom(FFrame&, void* const)
 native function bool IsVisibleFrom(Vector ViewLoc);
@@ -146,22 +149,18 @@ event UnTouch(Actor Other)
     }
 }
 
-function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller RateController, Controller OtherController, float BestRating, optional bool bTeleporting, optional float MinDistSquared)
+function bool IsValidForSpawn(KFSpawnVolume.ESquadType DesiredSquadType, Controller OtherController)
 {
-    local float UsageRating, LocationRating, FinalRating;
     local string DebugText;
-    local Vector TextOffset;
-    local float BestPossibleRatingWithoutLocation;
     local int I;
-    local float DistSquared;
 
     if(SpawnMarkerInfoList.Length == 0)
     {
-        return -1;
+        return false;
     }
     if((bNoPlayers && OtherController != none) && OtherController.bIsPlayer)
     {
-        return -1;
+        return false;
     }
     if((LastUnTouchTime > 0) && (WorldInfo.TimeSeconds - LastUnTouchTime) < UnTouchCoolDownTime)
     {
@@ -169,7 +168,7 @@ function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller 
         {
             LogInternal(((((("[" $ string(self)) $ "] rejected from spawning because LastUnTouchTime difference (") $ string(WorldInfo.TimeSeconds - LastUnTouchTime)) $ ") < UnTouchCoolDownTime (") $ string(UnTouchCoolDownTime)) $ "), returning a -1 rating");
         }
-        return -1;
+        return false;
     }
     if(DesiredSquadType < LargestSquadType)
     {
@@ -177,7 +176,7 @@ function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller 
         {
             LogInternal(((((("[" $ string(self)) $ "] rejected from spawning because DesiredSquadType (") $ string(DesiredSquadType)) $ ") < LargestSquadType (") $ string(LargestSquadType)) $ "), returning a -1 rating");
         }
-        return -1;
+        return false;
     }
     if(IsTouchingAlivePawn())
     {
@@ -189,32 +188,33 @@ function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller 
                 GetALocalPlayerController().AddDebugText(DebugText, self, 20);
             }
         }
-        return -1;
-    }
-    if(((MinDistSquared > float(0)) && RateController != none) && RateController.Pawn != none)
-    {
-        DistSquared = VSizeSq(Location - RateController.Pawn.Location);
-        if(DistSquared > MinDistSquared)
-        {
-            if(bDebugRatingChecks)
-            {
-                LogInternal(((((("[" $ string(self)) $ "] rejected from spawning because DistSquared (") $ string(DistSquared)) $ ") > MinDistSquared (") $ string(MinDistSquared)) $ "), returning a -1 rating");
-            }
-            return -1;
-        }
+        return false;
     }
     I = 0;
-    J0x42E:
+    J0x2D1:
 
     if(I < DoorList.Length)
     {
         if((((DoorList[I].DoorActor != none) && !DoorList[I].DoorActor.bIsDoorOpen) && !DoorList[I].DoorActor.bIsDestroyed) && !DoorList[I].bOnlyWhenWelded || DoorList[I].DoorActor.WeldIntegrity > 0)
         {
-            return -1;
+            return false;
         }
         ++ I;
-        goto J0x42E;
+        goto J0x2D1;
     }
+    if(IsVisible(DesiredSquadType == 0))
+    {
+        return false;
+    }
+    return true;
+}
+
+event float RateVolume(Controller RateController, bool bTeleporting, float TeleportMinDistSq)
+{
+    local float UsageRating, LocationRating, FinalRating, DistSquared;
+    local string DebugText;
+    local Vector TextOffset;
+
     UsageRating = 1;
     if((NextSpawnTime > 0) && NextSpawnTime > WorldInfo.TimeSeconds)
     {
@@ -255,8 +255,19 @@ function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller 
             }
         }
     }
-    BestPossibleRatingWithoutLocation = ((DesirabilityMod * 0.3) + (UsageRating * 0.3)) + (DesirabilityMod * 0.1);
-    LocationRating = ScoreLocation(RateController, BestRating, BestPossibleRatingWithoutLocation, DesiredSquadType);
+    if(((bTeleporting && TeleportMinDistSq > float(0)) && RateController != none) && RateController.Pawn != none)
+    {
+        DistSquared = VSizeSq(Location - RateController.Pawn.Location);
+        if(DistSquared > TeleportMinDistSq)
+        {
+            if(bDebugRatingChecks)
+            {
+                LogInternal(((((("[" $ string(self)) $ "] rejected from spawning because DistSquared (") $ string(DistSquared)) $ ") > MinDistSquared (") $ string(TeleportMinDistSq)) $ "), returning a -1 rating");
+            }
+            return -1;
+        }
+    }
+    LocationRating = RateDistance(RateController);
     if(LocationRating < 0)
     {
         if(!bMinimalDebugRatingChecks)

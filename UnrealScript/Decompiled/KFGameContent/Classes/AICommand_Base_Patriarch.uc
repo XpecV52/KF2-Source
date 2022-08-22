@@ -17,7 +17,10 @@ Begin:
         Outer.Sleep(0);
         goto 'Begin';
     }
-    Outer.AILog_Internal(((string(self) $ " ") $ string(GetStateName())) $ " [Begin Label]", 'Command_Base');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((string(self) $ " ") $ string(GetStateName())) $ " [Begin Label]", 'Command_Base');
+    }
     if(Outer.Pawn.Physics == 2)
     {
         Outer.DisableMeleeRangeEventProbing();
@@ -31,13 +34,19 @@ Begin:
     }
     if(((Outer.Enemy == none) && Outer.DoorEnemy == none) || !Outer.bIsProbingMeleeRangeEvents)
     {
-        Outer.AILog_Internal((((string(self) $ " Enemy: ") $ string(Outer.Enemy)) $ " bIsProbingMeleeRangeEvents: ") $ string(Outer.bIsProbingMeleeRangeEvents), 'Command_Base');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((string(self) $ " Enemy: ") $ string(Outer.Enemy)) $ " bIsProbingMeleeRangeEvents: ") $ string(Outer.bIsProbingMeleeRangeEvents), 'Command_Base');
+        }
         Outer.Sleep(0.1 + (FRand() * 0.3));
         goto 'Begin';
     }
     if(((Outer.DoorEnemy != none) && Outer.DoorEnemy.Health > 0) && VSizeSq(Outer.DoorEnemy.Location - Outer.Pawn.Location) < (Outer.DoorMeleeDistance * Outer.DoorMeleeDistance))
     {
-        Outer.AILog_Internal(((string(self) $ " DoorEnemy: ") $ string(Outer.DoorEnemy)) $ " starting melee attack", 'Command_Base');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((string(self) $ " DoorEnemy: ") $ string(Outer.DoorEnemy)) $ " starting melee attack", 'Command_Base');
+        }
         UpdateHistoryString(((("[Attacking : " $ string(Outer.DoorEnemy)) $ " at ") $ string(Outer.WorldInfo.TimeSeconds)) $ "]");
         Class'AICommand_Attack_Melee'.static.Melee(Outer, Outer.DoorEnemy);
     }
@@ -45,17 +54,23 @@ Begin:
     {
         if(!Outer.IsWithinAttackRange())
         {
-            Outer.AILog_Internal(((("Calling SetEnemyMoveGoal [Dist:" $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "] using offset of ") $ string(Outer.AttackRange)) $ ", because IsWithinBasicMeleeRange() returned false ", 'Command_Base');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(((("Calling SetEnemyMoveGoal [Dist:" $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "] using offset of ") $ string(Outer.AttackRange)) $ ", because IsWithinBasicMeleeRange() returned false ", 'Command_Base');
+            }
             bWaitingOnMovementPlugIn = true;
             Outer.SetEnemyMoveGoal(self, true,,, ShouldAttackWhileMoving());
-            J0x773:
+            J0x85B:
 
             if(bWaitingOnMovementPlugIn && Outer.bUsePluginsForMovement)
             {
                 Outer.Sleep(0.03);
-                goto J0x773;
+                goto J0x85B;
             }
-            Outer.AILog_Internal("Back from waiting for the movement plug in!!!");
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal("Back from waiting for the movement plug in!!!");
+            }
         }
         if(Outer.Enemy == none)
         {
@@ -65,7 +80,10 @@ Begin:
     }
     else
     {
-        Outer.AILog_Internal("Enemy is invalid melee target" @ string(Outer.Enemy), 'Command_Base');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Enemy is invalid melee target" @ string(Outer.Enemy), 'Command_Base');
+        }
         Outer.bFailedToMoveToEnemy = true;
     }
     Outer.CheckCombatTransition();

@@ -42,8 +42,7 @@ var private const float HealingShieldDuration;
 var private const ParticleSystem AAParticleSystem;
 var private const float SnarePower;
 var private KFGameExplosion AAExplosionTemplate;
-var private const string AAExplosionActorClassPath;
-var private const string AAExplosionDamageTypePath;
+var private const class<KFDamageType> AAExplosionDamageType;
 
 simulated function ModifyHealerRechargeTime(out float RechargeRate)
 {
@@ -128,11 +127,11 @@ simulated function float GetSelfHealingSurgePct()
     return default.SelfHealingSurgePct;
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
-    bSecondary = false;
+    bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
     if(((IsWeaponOnPerk(KFW, WeaponPerkClass)) && (KFW == none) || !KFW.bNoMagazine) && !bSecondary)
     {
@@ -221,7 +220,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[7])));
         }
     }
-    if((IsSlugActive() && DamageType != none) && ClassIsChildOf(DamageType, Class'KFDT_Toxic'))
+    if(((IsSlugActive()) && DamageType != none) && ClassIsChildOf(DamageType, Class'KFDT_Toxic'))
     {
         TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[9])));
     }
@@ -251,10 +250,7 @@ static simulated function KFGameExplosion GetAAExplosionTemplate()
 
 static simulated function class<DamageType> GetAADamageTypeClass()
 {
-    local class<KFDamageType> DamageTypeClass;
-
-    DamageTypeClass = class<KFDamageType>(DynamicLoadObject(default.AAExplosionDamageTypePath, Class'Class'));
-    return DamageTypeClass;
+    return default.AAExplosionDamageType;
 }
 
 static simulated function class<KFExplosion_AirborneAgent> GetAAExplosionActorClass()
@@ -269,7 +265,7 @@ static simulated function ParticleSystem GetAAEffect()
 
 simulated function float GetSnarePower(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
-    if((IsSlugActive() && DamageType != none) && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
+    if(((IsSlugActive()) && DamageType != none) && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
     {
         return default.SnarePower;
     }
@@ -326,7 +322,7 @@ simulated function bool IsSurvivalistActive()
     return PerkSkills[1].bActive;
 }
 
-private final simulated function bool IsSlugActive()
+simulated function bool IsSlugActive()
 {
     return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
 }
@@ -397,10 +393,13 @@ defaultproperties
         ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Medic.Play_WEP_EXP_Grenade_Medic_Explosion'
         FractureMeshRadius=0
         FracturePartVel=0
+        CamShake=none
+        CamShakeInnerRadius=0
+        CamShakeOuterRadius=0
     object end
     // Reference: KFGameExplosion'Default__KFPerk_FieldMedic.ExploTemplate0'
     AAExplosionTemplate=ExploTemplate0
-    AAExplosionDamageTypePath="KFGameContent.KFDT_Toxic_MedicGrenade"
+    AAExplosionDamageType=Class'KFDT_Toxic_MedicGrenade'
     ProgressStatID=40
     PerkBuildStatID=41
     SecondaryXPModifier[0]=4
@@ -408,7 +407,7 @@ defaultproperties
     SecondaryXPModifier[2]=4
     SecondaryXPModifier[3]=4
     PerkName="Field Medic"
-    Passives(0)=(Title="Syringe Recharge Rate",Description="Decrease syringe recharge rate %x% per level",IconPath="")
+    Passives(0)=(Title="Syringe Recharge Rate",Description="Increase syringe recharge rate %x% per level",IconPath="")
     Passives(1)=(Title="Syringe Potency",Description="Increase Health restored by syringe %x% per level",IconPath="")
     Passives(2)=(Title="Bloat Bile Resistance",Description="Decrease damage from poison %x% per level",IconPath="")
     Passives(3)=(Title="Movement Speed",Description="Increase movement speed %x% every five levels",IconPath="")

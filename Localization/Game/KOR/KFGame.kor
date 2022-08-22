@@ -1,0 +1,2532 @@
+[KFCommon_LocalizedStrings]
+LoadingString="로딩 중..."
+DifficultyStrings[0]="보통"
+DifficultyStrings[1]="어려움"
+DifficultyStrings[2]="자살행위"
+DifficultyStrings[3]="생지옥"
+
+LengthStrings[0]="짧음 (4 웨이브)"
+LengthStrings[1]="중간 (7 웨이브)"
+LengthStrings[2]="김 (10 웨이브)"
+
+ServerTypeStrings[0]="랭크"
+ServerTypeStrings[1]="랭크 - 스톡"
+ServerTypeStrings[2]="랭크 - 커스텀"
+ServerTypeStrings[3]="언랭크"
+
+PermissionStrings[0]="공개"
+PermissionStrings[1]="친구만"
+PermissionStrings[2]="비공개-패스워드"
+
+ConsolePermissionStrings[0]="공개"
+ConsolePermissionStrings[1]="초대 전용"
+
+ModeStrings[0]="서바이벌"
+ModeStrings[1]="VS 서바이벌"
+
+NoPreferenceString="모두"
+OKString="OK"
+ConfirmString="확인"
+CancelString="취소"
+BackString="뒤로"
+AcceptString="승인"
+DeclineString="거부"
+NoticeString="알림!"
+PerkUpdateNoticeString="병과는 웨이브 당 한 번 업데이트할 수 있습니다!"
+YesString="예"
+NoString="아니오"
+TeamSwappedString="팀 교환을 하였습니다."
+
+DisbandPartyString="부대 해산"
+LeaveCurrentMenuString="현재 메뉴에서 나가시겠습니까?"
+ZedString="제드"
+HumanString="생존자"
+SpectatorString="참관자"
+TeamString="팀"
+AllString="전체"
+
+UnableToSwitchTeamString="팀을 전환할 수 없습니다."
+NoSwitchReasonString="팀을 전환하면 팀 균형이 깨질 수 있습니다."
+
+AutoTradeCompleteString="자동 트레이드 완료: "
+AutoFillCompleteString="자동 보충 보급품 "
+WeaponUpgradeComepleteString="무기 업그레이드"
+SecondaryWeaponPurchasedString="보조 무기 구입"
+NoItemsPurchasedString="구입한 아이템 없음"
+
+SetTakeoverServerPasswordTitle="게임을 보호하기 위해 새로운 패스워드를 입력하십시오."
+
+[KFGFxMoviePlayer_Manager]
+FailedSearchTitleString="대전상대를 찾지 못했습니다."
+FailedSearchString="대전상대 찾기에서 제공된 옵션으로 대전상대를 찾지 못했습니다. 검색 범위를 확대하거나 서버 브라우저를 이용하여 대전상대를 찾아보십시오."
+BrowseServersString="서버 검색"
+HasInvitedToGameString=" 님이 당신을 게임에 초대했습니다."
+JoinGameString="게임에 참여하시겠습니까?"
+
+[KFGFxObject_Menu]
+LeavePartyTitleString="부대에서 나가기"
+LeavePartyDescriptionString="이 온라인 부대에서 나가시겠습니까?"
+LeaveString="나가기"
+
+ErrorNoPlaystationNetworkTitle="로그인 실패 - PlayStation™Network"
+ErrorNoPlaystationNetworkDescription="게임 플레이에 필요한 PlayStation™Network 연결에 실패했습니다."
+ErrorNoPlaystationPlusTitle="로그인 실패 - PlayStation®Plus"
+ErrorNoPlaystationPlusDescription="게임을 플레이하기 위해 PlayStation®Plus 계정이 필요합니다."
+
+[KFDoorActor]
+WeldIntegrityString="용접 무결성:"
+RepairProgressString="수리 진행도:"
+ExplosiveString="도어 트랩:"
+
+[KFGFxMenu_StartGame]
+CreateMatchString="대전 생성"
+MatchmakingString="온라인 대전상대 찾기"
+ConsoleMatchmakingString="온라인 플레이"
+ServerBrowserString="서버 검색"
+
+DifficultyTitle="난이도"
+GameModeTitle="게임 모드"
+ServerTypeString="서버 유형"
+PermissionsTitle="허가"
+WhiteListedTitle="통계 활성화"
+LengthTitle="길이"
+MapTitle="시작 맵"
+MutatorTitle="뮤테이터"
+InfoTitle="정보"
+InProgressString="진행 중"
+
+WhiteListedStrings[0]="예"
+WhiteListedStrings[1]="아니오"
+
+FindGameString="홈"
+LeaveMenuString="대전상대 찾기에서 나가시면 부대는 해산됩니다. 대신 서버 브라우저로 이동하시겠습니까?"
+
+CouldNotFindGameTitleString="대전상대를 찾을 수 없습니다."
+CouldNotFindGameDescriptionStringPC="설정에 맞는 서버 검색불가. 다른 필터 또는 서버 브라우저를 이용하십시오."
+CouldNotFindGameDescriptionStringOrbis="설정에 맞는 서버 검색불가. 다른 필터를 이용하십시오."
+
+[KFGFxStartGameContainer_FindGame]
+MultiplayerString="온라인 대전상대 찾기"
+ConsoleMultiplayerString="온라인 플레이"
+SoloString="솔로 오프라인 플레이"
+TutorialString="기본 훈련"
+
+[StartMenuHelperText]
+modeList0="서바이벌 – 인공지능으로 제어되는 제드 웨이브와 PVE 전투"
+modeList1="VS 서바이벌 – PVP Horzine 용병 대 플레이어 웨이브 및 인공지능으로 제어되는 제드"
+modeList2=""
+difficultyList0="일반 - 병과 랭크 0-5의 초보 플레이어"
+difficultyList1="어려움 - 병과 랭크 6-12의 경험 많은 플레이어 웨이브 당 제드는 숫자가 더 많고 더 빠르며 체력이 더 강합니다. 습득할 수 있는 무기가 적고 Dosh도 적게 받습니다."
+difficultyList2="자살행위– 병과 랭크 13-25의 숙련된 플레이어. 웨이브 당 제드의 수는 더 많아지며 새로운 공격을 이용하고 더욱 빨라집니다. 습득할 수 있는 무기는 더 적고 Dosh도 더 적게 받습니다."
+difficultyList3="생지옥 - 병과 랭크 25인 플레이어를 위한 가장 강력한 도전. 웨이브 당 제드가 더 많아지고 새로운 공격을 이용합니다. 습득할 수 있는 무기는 더욱 더 적고 Dosh도 더욱 적게 받습니다."
+lengthList0=""
+lengthList1=""
+lengthList2=""
+lengthList3=""
+serverTypeList0="랭크 - 모든 맵, 모드 없음, 아군 공격 없음, 최대 6명의 플레이어 (VS 서버이벌의 경우 최대 12명의 플레이어)"
+serverTypeList1="랭크 스톡 - 공식 맵, 모드 없음, 아군 공격 없음, 최대 6명의 플레이어"
+serverTypeList2="랭크 커스텀 - 모든 맵, 화이트리스트 모드, 모든 서버 설정"
+serverTypeList3="언랭크 커스텀 - 화이트리스트가 아닌 모드 (전용)"
+serverTypeList4="설정 없음 - 다른 서버 유형 모두"
+privacyList0=""
+privacyList1=""
+privacyList2=""
+privacyList3=""
+inProgressList0=""
+inProgressList1=""
+inProgressList2=""
+
+[KFGFxStartGameContainer_Options]
+BackString="뒤로"
+StartGameString="게임 실행"
+LaunchGameString="게임 실행"
+InProgressString="게임 진행"
+SoloGameString="솔로 게임"
+LeaveMatchMakingString="대전상대 찾기에서 나가기"
+MultiplayerLaunchString="지금 온라인 플레이"
+SearchingString="온라인 게임 검색 중... 기다려주십시오"
+CancelSearchingString="검색 취소"
+ServerTypeString="서버 유형"
+AnyMapServerString="랭크"
+UnrankedServerString="언랭크"
+CustomServerString="랭크 - 커스텀"
+StandardServerString="랭크 - 스톡"
+AllowInProgressString="진행 중인 게임에서 허용"
+NotStartedString="시작되지 않음"
+CreateNewGameString="새로운 게임 생성"
+
+
+[KFGFxStartContainer_MatchMaking]
+OptionsHeaderString="대전상대 찾기"
+BackString="뒤로"
+FindGameString="게임 찾기"
+
+[KFGFxStartContainer_InGameOverview]
+OverviewString="대전 개요"
+ChangeString="변경"
+SharedByString="공유:"
+SharedContentString="공유 콘텐츠"
+AuthorString="By "
+
+[KFGFxStartContainer_ServerBrowserOverview]
+OverviewString="대전 개요"
+DescriptionString="서버 브라우저에서 게임을 검색 중입니다..."
+
+[KFGFxTraderContainer_GameInfo]
+TimeLeftString="남은 시간"
+WaveString="웨이브"
+BossWaveString="보스"
+
+[KFPawn_MonsterBoss]
+BossName="보스"
+BossCaptionStrings[0]="보스 자막 1"
+BossCaptionStrings[1]="보스 자막 2"
+
+[KFGFxTraderContainer_PlayerInfo]
+PlayerHeaderString="인벤토리"
+SelectPerkString="병과 선택"
+
+[KFGFxMenu_ServerBrowser]
+FavoriteString="즐겨찾기"
+MultiplayerMenuString="대전상대 찾기"
+LeaveMenuString="이 메뉴에서 나가시면 부대는 해산됩니다. 대신 대전상대 찾기로 이동하시겠습니까?"
+NameString="이름"
+RefreshString="새로 고침"
+GamesFoundString="검색된 게임:"
+
+ServerBrowserString="서버 브라우저"
+
+JoinString="들어가기"
+PasswordPromptString="패스워드 입력"
+
+RankedString="통계 활성화"
+UnrankedString="통계 비활성화"
+DedicatedString="전용"
+VACSecureString="VAC 보안"
+InLobbyString="로비"
+InProgressString="진행 중"
+
+BackString="뒤로"
+ApplyString="적용"
+ResetString="리셋"
+
+PingString="핑"
+LengthString="길이"
+DifficultyString="난이도"
+MapString="맵"
+GameModeString="모드"
+WaveString="웨이브"
+PlayersString="플레이어"
+ZedCountString="제드 수"
+FiltersString="필터"
+
+SearchString="검색"
+
+PingOptionStrings[0]="< 50 MS"
+PingOptionStrings[1]="< 100 MS"
+PingOptionStrings[2]="< 150 MS"
+PingOptionStrings[3]="< 200 MS"
+
+TabStrings[0]="탐색"
+TabStrings[1]="즐겨찾기"
+TabStrings[2]="친구"
+TabStrings[3]="내역"
+TabStrings[4]="LAN"
+
+[KFGFxServerBrowser_Filters]
+NoPasswordString="패스워드 없음"
+NoMutatorsString="뮤테이터 없음"
+NotFullString="가득 차지 않음"
+NotEmptyString="비어있지 않음"
+NoStatsEnabledString="랭크 (표준) 서버 제외"
+NoRankedCustomString="커스텀 서버 제외"
+NoUnrankedString="언랭크 서버 제외"
+DedicatedString="전용 서버"
+VACSecureString="VAC 보안"
+InLobbyString="로비"
+InProgressString="진행 중"
+OnlyStockMapsString="스톡 맵만"
+OnlyCustomMapsString="커스텀 맵만"
+LimitServerResultsString="결과 제한:"
+
+[KFGFxServerBrowser_ServerDetails]
+MutatorsString="뮤테이터"
+JoinGameString="게임 참여"
+SpectateGameString="참관"
+ServerInfoString="서버 정보"
+UnfavoriteString="즐겨찾기 제거"
+
+[KFGFxMenu_Trader]
+ExitMenuString="종료 메뉴"
+
+[KFGFxTraderContainer_Store]
+TraderString="장비 구입"
+
+[KFGFxServerBrowser_ServerList]
+LeaveServerBrowserString="서버 브라우저에서 나가기"
+DetailsString="서버 세부 정보"
+SpectateString="참관"
+
+[KFGFxTraderContainer_ItemDetails]
+DamageTitle="데미지"
+FireRateTitle="발사속도"
+PenetrationTitle="관통력"
+RangeTitle="사거리"
+BlockTitle="차단"
+ParryTitle="회피"
+AccuracyTitle="정확도"
+CapacityTitle="탄약 용량"
+MagTitle="탄창 크기"
+HealAmountTitle="치료량"
+HealRechargeTitle="충전 시간"
+BuyString="구입"
+SellString="판매"
+CannotSellString="판매할 수 없음"
+CannotBuyString="구입할 수 없음"
+FavoriteString="즐겨찾기"
+UnfavoriteString="즐겨찾기 제거"
+
+[KFGFxTraderContainer_PlayerInventory]
+FillString="보충"
+MagString="탄창"
+BuyGrenadeString="1X"
+AutoFillString="자동 보충"
+ArmorString="전투 장갑"
+ChangePerkString="병과 변경"
+
+[KFGFxTraderContainer_Filter]
+TabsArray[0]="병과"
+TabsArray[1]="유형"
+TabsArray[2]="즐겨찾기"
+TabsArray[3]="전체"
+
+WeaponTypeStrings[0]="권총"
+WeaponTypeStrings[1]="샷건"
+WeaponTypeStrings[2]="소총"
+WeaponTypeStrings[3]="발사체"
+WeaponTypeStrings[4]="화염무기"
+WeaponTypeStrings[5]="전기무기"
+WeaponTypeStrings[6]="폭발물"
+WeaponTypeStrings[7]="돌격소총"
+WeaponTypeStrings[8]="백병전 무기"
+WeaponTypeStrings[9]="SMG"
+
+OffPerkString="병과 외"
+
+[KFGFxHUD_PostRoundMenu]
+RoundResultsString="라운드 결과"
+MatchResultsString="전체 승리자"
+SurvivorVictory="생존자 승리!"
+ZEDVictory="제드 승리!"
+TieString="무승부"
+YourTeamString="플레이어 팀 승리!"
+OpposingTeamString="상대 팀 승리!"
+MatchOnGoingString="팀 전환..."
+
+[KFGFxPostRoundContainer_Team]
+TitleString="라운드 "
+ScoreString="점수"
+WavesCompleteString="웨이브 완료 보너스"
+BossDeadString="보스 제거"
+DeathsString="플레이어 사망 페널티"
+DamageString="보스 데미지 페널티"
+TotalString="총계"
+YourTeamString=" (플레이어 팀)"
+OpponentsString=" (상대 팀)"
+
+[KFGFxMenu_PostGameReport]
+MapVoteString="맵 투표"
+PlayerStatsString="플레이어 통계"
+TeamAwardsString="보상"
+PostGameReportString="게임 후 보고"
+NextMapString="다음 맵 시작:"
+WaveString="웨이브"
+XPString="XP"
+VictoryString="승리"
+DefeatString="패배"
+ItemDropTitleString="새로운 아이템 획득!"
+
+[EphemeralMatchStats_CHN]
+MedicineMaster="药物大师"
+ZedSlayer="丧尸杀戮者"
+Enforcer="实施者"
+Destroyer="毁灭者"
+GiantSlayer="巨型丧尸"
+MoneyBags="钱袋"
+HeadPopper="爆头"
+Dominator="统治者"
+
+Carnage="大屠杀"
+Closer="终结者"
+ComboMaker="组合制造者"
+Grabby="步兵长裤"
+ZedSupport="丧尸支援"
+Zednnihilation="灭绝丧尸"
+
+[EphemeralMatchStats_CHT]
+MedicineMaster="醫藥專家"
+ZedSlayer="Zed 殺手"
+Enforcer="執行者"
+Destroyer="毀滅者"
+GiantSlayer="巨人殺手"
+MoneyBags="錢袋"
+HeadPopper="爆頭專家"
+Dominator="強者"
+
+Carnage="屠戮"
+Closer="救援王"
+ComboMaker="連擊高手"
+Grabby="貪心鬼"
+ZedSupport="Zed 支援"
+Zednnihilation="Zed 化"
+
+[EphemeralMatchStats_DEU]
+MedicineMaster="Meister der Medizin"
+ZedSlayer="Zed-Schlächter"
+Enforcer="Vollstrecker"
+Destroyer="Zerstörer"
+GiantSlayer="Riesen-Schlächter"
+MoneyBags="Geldsäcke"
+HeadPopper="Köpfer"
+Dominator="Dominator"
+
+Carnage="Gemetzel"
+Closer="Schließer"
+ComboMaker="Combo-Macher"
+Grabby="Gierige Hosen"
+ZedSupport="Zed-Support"
+Zednnihilation="Zednnihilation"
+
+[EphemeralMatchStats_ESL]
+MedicineMaster="Curandero experto"
+ZedSlayer="Azote zed"
+Enforcer="Sicario"
+Destroyer="Destructor"
+GiantSlayer="Cazagigantes"
+MoneyBags="Tío Gilito"
+HeadPopper="Revientacabezas"
+Dominator="El amo"
+
+Carnage="Matanza"
+Closer="Más cercano"
+ComboMaker="Maestro del combo"
+Grabby="Culo veo..."
+ZedSupport="Apoyo zed"
+Zednnihilation="Aniquilación zed"
+
+[EphemeralMatchStats_ESN]
+MedicineMaster="Curandero experto"
+ZedSlayer="Azote zed"
+Enforcer="Sicario"
+Destroyer="Destructor"
+GiantSlayer="Cazagigantes"
+MoneyBags="Tío Gilito"
+HeadPopper="Revientacabezas"
+Dominator="El amo"
+
+Carnage="Matanza"
+Closer="Más cercano"
+ComboMaker="Maestro del combo"
+Grabby="Culo veo..."
+ZedSupport="Apoyo zed"
+Zednnihilation="Aniquilación zed"
+
+[EphemeralMatchStats_FRA]
+MedicineMaster="Maître médecin"
+ZedSlayer="Tueur de Zeds"
+Enforcer="Exécuteur"
+Destroyer="Destructeur"
+GiantSlayer="Tueur géant"
+MoneyBags="Sacs d'argent"
+HeadPopper="Exploseur de têtes"
+Dominator="Dominateur"
+
+Carnage="Carnage"
+Closer="Plus prêt"
+ComboMaker="Comboteur"
+Grabby="Avide"
+ZedSupport="Soutien des Zeds"
+Zednnihilation="Zednnihilation"
+
+[EphemeralMatchStats_FRC]
+MedicineMaster="Maître médecin"
+ZedSlayer="Tueur de Zeds"
+Enforcer="Exécuteur"
+Destroyer="Destructeur"
+GiantSlayer="Tueur géant"
+MoneyBags="Sacs d'argent"
+HeadPopper="Exploseur de têtes"
+Dominator="Dominateur"
+
+Carnage="Carnage"
+Closer="Plus prêt"
+ComboMaker="Comboteur"
+Grabby="Avide"
+ZedSupport="Soutien des Zeds"
+Zednnihilation="Zednnihilation"
+
+[EphemeralMatchStats_INT]
+MedicineMaster="Medicine Master"
+ZedSlayer="Zed Slayer"
+Enforcer="Enforcer"
+Destroyer="Destroyer"
+GiantSlayer="Giant Slayer"
+MoneyBags="Money Bags"
+HeadPopper="Head Popper"
+Dominator="Dominator"
+
+Carnage="Carnage"
+Closer="Closer"
+ComboMaker="Combo Maker"
+Grabby="Grabby Pants"
+ZedSupport="Zed Support"
+Zednnihilation="Zednnihilation"
+
+[EphemeralMatchStats_ITA]
+MedicineMaster="Medico Esperto"
+ZedSlayer="Sterminatore di Zed"
+Enforcer="Gendarme"
+Destroyer="Distruttore"
+GiantSlayer="Sterminatore di giganti"
+MoneyBags="Sacchi di soldi"
+HeadPopper="Scoppiateste"
+Dominator="Dominatore"
+
+Carnage="Carneficina"
+Closer="Avvicinamento"
+ComboMaker="Campione di combo"
+Grabby="Manolesta"
+ZedSupport="Supporto Zed"
+Zednnihilation="Massacro Zed"
+
+[EphemeralMatchStats_JPN]
+MedicineMaster="医療マスター"
+ZedSlayer="zedスレイヤー"
+Enforcer="執行人"
+Destroyer="デストロイヤー"
+GiantSlayer="巨人スレイヤー"
+MoneyBags="金持ち"
+HeadPopper="ヘッドポッパー"
+Dominator="ドミネーター"
+
+Carnage="大虐殺"
+Closer="クローザー"
+ComboMaker="コンボメーカー"
+Grabby="回収人"
+ZedSupport="zedサポート"
+Zednnihilation="zed全滅"
+
+[EphemeralMatchStats_KOR]
+MedicineMaster="약물 마스터"
+ZedSlayer="제드 학살자"
+Enforcer="행동대장"
+Destroyer="파괴자"
+GiantSlayer="자이언트 학살자"
+MoneyBags="돈가방"
+HeadPopper="머리 지뢰"
+Dominator="지배자"
+
+Carnage="대학살"
+Closer="종결자"
+ComboMaker="콤보 메이커"
+Grabby="그래비 바지"
+ZedSupport="제드 지원"
+Zednnihilation="제드 섬멸"
+
+[EphemeralMatchStats_POL]
+MedicineMaster="Mistrz medycyny"
+ZedSlayer="Pogromca zetów"
+Enforcer="Stróż"
+Destroyer="Niszczyciel"
+GiantSlayer="Pogromca olbrzymów"
+MoneyBags="Miliony monet"
+HeadPopper="Łowca głów"
+Dominator="Dominator"
+
+Carnage="Rzeź"
+Closer="Kat"
+ComboMaker="Mistrz combo"
+Grabby="Przylepa"
+ZedSupport="Pomocnik zetów"
+Zednnihilation="Tępiciel zetów"
+
+[EphemeralMatchStats_PTB]
+MedicineMaster="Mestre da medicina"
+ZedSlayer="Matador de Zeds"
+Enforcer="Executor"
+Destroyer="Destruidor"
+GiantSlayer="Matador de gigantes"
+MoneyBags="Sacos de dinheiro"
+HeadPopper="Estoura-cabeças"
+Dominator="Dominador"
+
+Carnage="Carnificina"
+Closer="Próximo"
+ComboMaker="Cheio de combinações"
+Grabby="Calças pegajosas"
+ZedSupport="Apoio de Zeds"
+Zednnihilation="Zedniquilação"
+
+[EphemeralMatchStats_RUS]
+MedicineMaster="Мастер медицины"
+ZedSlayer="Покоритель мутантов"
+Enforcer="Боевик"
+Destroyer="Разрушитель"
+GiantSlayer="Покоритель великанов"
+MoneyBags="Денежный мешок"
+HeadPopper="Крушитель голов"
+Dominator="Господствующий"
+
+Carnage="Резня"
+Closer="Ближе"
+ComboMaker="Комбинатор"
+Grabby="Хапуга"
+ZedSupport="Поддержка мутантов"
+Zednnihilation="Зачистка мутантов"
+
+[EphemeralMatchStats]
+MedicineMaster="약물 마스터"
+MedicineMasterValue="체력"
+ZedSlayer="제드 학살자"
+ZedSlayerValue="킬"
+Enforcer="행동대장"
+EnforcerValue="지원"
+Destroyer="파괴자"
+DestroyerValue="데미지"
+GiantSlayer="자이언트 학살자"
+GiantSlayerValue="대형 제드"
+MoneyBags="돈가방"
+MoneyBagsValue="Dosh"
+HeadPopper="머리 지뢰"
+HeadPopperValue="헤드샷"
+Dominator="지배자"
+DominatorValue="보스"
+
+Carnage="대학살"
+Closer="종결자"
+ComboMaker="콤보 메이커"
+Grabby="그래비 바지"
+ZedSupport="제드 지원"
+Zednnihilation="제드 섬멸"
+CarnageValue="제드에게 가한 데미지"
+CloserValue="생존자 킬"
+ComboMakerValue="제드 지원"
+GrabbyValue="플레이어 붙잡힘"
+ZedSupportValue="간접 데미지"
+ZednnihilationValue="웨이브 킬"
+
+
+
+EPB_Healing="치료"
+EPB_Kills="킬"
+EPB_Assists="지원"
+EPB_LargeZedKill="대형 제드 킬"
+EPB_Dosh="획득 Dosh"
+EPB_HeadShots="헤드샷"
+EPB_KnifeKills="나이프 킬"
+EPB_PistolKills="권총 킬"
+EPB_DoorWelding="도어 용접"
+
+EPB_HealingValue="체력"
+EPB_KillsValue="킬"
+EPB_AssistsValue="지원"
+EPB_LargeZedKillValue="대형 제드"
+EPB_DoshValue="Dosh"
+EPB_HeadShotsValue="헤드샷"
+EPB_KnifeKillsValue="킬"
+EPB_PistolKillsValue="킬"
+EPB_DoorWeldingValue="용접 포인트"
+
+[KFGFxPostGameContainer_TeamAwards]
+TeamAwardsString="팀 보상"
+PersonalBestsString="개인 최고기록"
+NoTeamAwardsGivenString="보상 없음"
+
+[KFGFxPostGameContainer_MapVote]
+YourVoteString="나의 투표"
+TopVotesString="최고 투표"
+
+[KFGFxPostGameContainer_PlayerStats]
+AchievementsString="업적"
+KnifeString="나이프"
+TopWeaponsString="최고 무기"
+ZedKillsString="제드 킬:"
+TotalDamageDealtString="가한 데미지 총계:"
+HeadShotsString="헤드샷:"
+LargeZedKillsString="대형 제드 킬:"
+TotalDoshEarnedString="총 획득 Dosh:"
+TotalKillsString="총 킬 수:"
+AssistsString="지원:"
+DamageDealtString="가한 데미지:"
+
+
+
+[KFGFxWidget_BaseParty]
+PlayerReadyString="[ 준비 ]"
+WaitingString="플레이어 기다리는 중"
+DeployingString="배치 "
+CreatePartyString="부대 생성"
+ReadyString="준비"
+LeaveString="부대에서 나가기"
+SquadString="스쿼드"
+SoloString="스쿼드"
+DefaultPlayerName="플레이어"
+
+PartyLeaderSearchingForMatchString="님이 대전을 검색하고 있습니다..."
+PartyLeaderIsUpdatingMatchOptionsString="님이 대전 옵션을 설정 중입니다..."
+PartyLeaderInServerBrowserString="님이 서버 브라우저를 검색 중입니다..."
+PartyLeaderInOtherMenuString="님이 다른 메뉴에 있습니다..."
+SearchingForGameString="온라인 게임 검색..."
+
+PartHostLeftString="부대 호스트가 나갔습니다"
+PartyLeaderChangedString="님이 새로운 부대 호스트입니다"
+
+MuteString="플레이어 뮤트"
+UnmuteString="플레이어 뮤트 해제"
+AddFriendString="친구 추가"
+RemoveFriendString="친구 제거"
+VoteKickString="플레이어 추방"
+ViewProfileString="프로필 보기"
+
+RemainingString="잔여:"
+DownLoadingString="다운로딩:"
+PartyLeaderString="리더"
+
+[KFGFxWidget_PartyInGame_Versus]
+SwitchTeamsString="팀 전환"
+balanceWarningString="경고: 팀은 자동으로 균형이 맞춰집니다"
+
+[KFGFxMenu_Gear]
+GearHeaderString="장비 커스터마이즈"
+BioString="생체"
+CharacterString="캐릭터"
+HeadString="머리"
+BodyString="몸"
+SkinsString="피부"
+AttachmentsString="액세서리"
+BackString="뒤로"
+NoneString="없음"
+WeaponsString="무기"
+WeaponsInfoString="커스터마이즈"
+
+[KFGFxMenu_Inventory]
+NoItemsString="현재 선택된 필터에 맞는 인벤토리 아이템이 없습니다."
+InventoryPopulatingString="기다려주십시오. 인벤토리를 생성 중입니다."
+ItemExchangeTimeOutString="아이템 서버에 접속하지 못했습니다."
+TryAgainString="클라이언트가 아이템을 교환하지 못했습니다. 나중에 다시 시도하십시오. 문제가 계속되면 지원을 문의해주십시오."
+RecycleOneString="재활용"
+RecycleDuplicatesString="복제품 재활용"
+InventoryString="인벤토리"
+UseString="사용"
+EquipString="장착"
+UnequipString="장착 해제"
+AllString="전체"
+WeaponSkinString="무기 스킨"
+CosmeticString="꾸미기"
+CraftingMatsString="작업"
+ItemString="아이템"
+FiltersString="필터"
+MoreItemsString="짝이 맞는 열쇠와 상자가 필요합니다. 게임 내 상점에서 열쇠를 구입하실 수 있습니다."
+FailedToExchangeString="상자를 열 수 없습니다"
+RecycleString="재활용"
+CraftString="작업"
+CraftCosmeticString="꾸미기 작업"
+CraftWeaponString="무기 스킨 작업"
+CraftWeaponStrings[0]="흔치 않은\n무기 스킨"
+CraftWeaponStrings[1]="희귀\n무기 스킨"
+CraftWeaponStrings[2]="특수\n무기 스킨"
+CraftWeaponStrings[3]="마스터\n무기 스킨"
+CraftCosmeticStrings[0]="흔치 않은\n꾸미기"
+CraftCosmeticStrings[1]="희귀\n꾸미기"
+CraftCosmeticStrings[2]="특수\n꾸미기"
+CraftCosmeticStrings[3]="마스터\n꾸미기"
+RecycleWarningString="경고, 이 작업은 취소할 수 없습니다. 이 작업은 선택된 아이템을 파괴하고 작업 재료 아이템으로 바꿉니다."
+RecycleItemString="아이템을 재활용하시겠습니까?"
+ConfirmCraftItemString="이 아이템을 작업하면 자원을 이용하게 되며 작업을 취소할 수 없습니다."
+CraftItemString="아이템 작업을 확인하시겠습니까?"
+FailedToCraftItemString="아이템 작업 실패"
+CraftRequirementString="필요한 작업 재료가 부족합니다."
+CraftCosmeticDescriptionString="이 메뉴에서 꾸미기 재료를 이용하여 새로운 꾸미기 아이템을 작업할 수 있습니다. 꾸미기 재료는 기존 꾸미기 아이템을 재활용하여 구할 수 있습니다. 재활용하시려면 아이템을 선택하고 재활용을 누르십시오."
+CraftWeaponDescriptionString="이 메뉴에서 무기 스킨 재료를 이용하여 새로운 무기 스킨 아이템을 작업할 수 있습니다. 무기 스킨 재료는 기존 무기 스킨 아이템을 재활용하여 구할 수 있습니다. 재활용하시려면 아이템을 선택하고 재활용을 누르십시오."
+RequiresString="필요: "
+PurchaseKeyString="키 구입"
+LookUpOnMarketString="시장 살펴보기"
+
+[KFGFxPerksContainer]
+LevelString=""
+
+[KFGFxPerksContainer_Header]
+ExperienceString="경험"
+PrestigeLevelString="유명"
+
+[KFGFxPerksContainer_SkillsSummary]
+ConfigureString="구성"
+SkillsString="기술"
+
+[KFGFxMenu_Perks]
+TierUnlockedText="새로운 등급 잠금해제!"
+TierUnlockedSecondaryText="다음 병과에서 새로운 등급을 잠금해제하였습니다."
+
+
+[KFGFxPerksContainer_Details]
+ObjectivesString="XP 목표"
+PerkBonusesString="병과 보너스"
+BasicLoadoutString="시작 장비"
+
+[KFGFxPerksContainer_Skills]
+ConfigureSkillsString="기술 구성"
+BackButtonString="<< 뒤로"
+
+[KFGFxPerksContainer_Selection]
+HeaderTitle="병과 선택"
+EndOfWaveString="병과 변경은 웨이브 종료 시에 적용됩니다!"
+ChangesAppliedOnCloseString="병과 변경은 이 메뉴가 닫힌 다음에 적용됩니다."
+OncePerWaveString="병과 변경은 웨이브 당 한 번만 적용됩니다!"
+
+[KFGFxMenu_Store]
+StoreString="상점"
+
+[KFGFxStoreContainer_Cart]
+CartString="카트"
+TotalString="총계"
+CheckOutString="결제"
+
+[KFGFxStoreContainer_Main]
+WeaponSkinsRotationString="무기 스킨"
+WeaponSkinsString="무기 스킨 거래"
+MarketConsumablesString="상자/USB 거래"
+MarketCosmeticsString="꾸미기 거래"
+
+[KFGFxStoreContainer_Details]
+LookUpOnMarketString="시장에서 찾기"
+AddToCartString="아이템 구입"
+PreviewString="미리보기"
+
+
+[KFGFxWidget_ButtonPrompt]
+CancelString="뒤로"
+ConfirmString="선택"
+
+[KFGFxWidget_MenuBar]
+MenuStrings[0]="홈"
+MenuStrings[1]="병과"
+MenuStrings[2]="장비"
+MenuStrings[3]="인벤토리"
+MenuStrings[4]="상점"
+MenuStrings[5]="옵션"
+MenuStrings[6]="나가기"
+
+ServerBrowserString="서버 브라우저"
+MatchmakingString="대전상대 찾기"
+SoloString="솔로"
+OverviewString="대전 개요"
+
+TitleStrings[0]="이미 전투를 포기했습니까?"
+TitleStrings[1]="이렇게 빨리 떠나고 싶습니까?"
+TitleStrings[2]="자근자근 씹히는데 질렸습니까?"
+
+DescriptionStrings[0]="좋습니다. 가서 비참한 삶을 이어가세요. 당신은 Killing Floor에서 5분도 버티지 못할 것입니다."
+DescriptionStrings[1]="당신이 떠나 있는 매 순간, 새로운 괴물들이 태어나 당신의 친구들을 먹어 치울 것입니다. 이들을 그냥 포기할 생각입니까?"
+DescriptionStrings[2]="어찌 되었건 괴물들은 당신을 찾을 것입니다. 괴물들은 당신을 찾아 심심풀이 간식처럼 당신의 심장을 먹어버릴 것입니다."
+
+ExitString="나가기"
+CancelString="취소"
+
+[KFGFxWidget_LevelUpNotification]
+LevelUpString="레벨 업"
+TierUnlockedString="새로운 스킨 잠금 해제"
+
+[KFGFxHUD_WaveInfo]
+WaveString="웨이브"
+BossWaveString="보스"
+FinalWaveString="최종"
+
+[KFGFxHUD_TraderCompass]
+TraderString="상점"
+
+[KFGFxHUD_SpectatorInfo]
+PrevPlayerString="다음 플레이어"
+NextPlayerString="이전 플레이어"
+ChangeCameraString="카메라 변경"
+
+[KFGFxHUD_ScoreboardWidget]
+PlayerString="플레이어"
+DoshString="Dosh"
+KillsString="킬"
+AssistsString="지원"
+PingString="핑"
+
+[KFGFxHUD_ScoreboardVersusWidget]
+ScoreString="점수"
+
+[KFGFxHUD_PlayerStatus]
+EXPString="XP"
+
+
+[KFGFxHUD_ScoreboardMapInfoContainer]
+WaveString="웨이브"
+FinalString="최종"
+
+[KFGFxHUD_WeaponSelectWidget]
+PrimaryString="기본"
+EquiptmentString="장비"
+MeleeString="백병전"
+SecondaryString="보조"
+ThrowString="무기 던지기"
+
+[KFGFxWidget_KickVote]
+VoteKickString="플레이어를 추방하시겠습니까?"
+
+[KFLocalMessage_PlayerKills]
+KilledString="킬"
+ZedString="제드"
+
+[KFLocalMessage_VoiceComms]
+VoiceCommsOptionStrings[0]="치료 요청"
+VoiceCommsOptionStrings[1]="Dosh 요청"
+VoiceCommsOptionStrings[2]="도움 요청"
+VoiceCommsOptionStrings[3]="제드 조롱하기"
+VoiceCommsOptionStrings[4]="나를 따라오시오"
+VoiceCommsOptionStrings[5]="상점에 가기"
+VoiceCommsOptionStrings[6]="확인"
+VoiceCommsOptionStrings[7]="거부"
+
+[KFGFxMenu_Exit]
+HeaderString="게임 종료"
+ExitToMainDescription="이 게임에서 나가 홈 메뉴로 돌아가시겠습니까?"
+ExitToMainMenu="홈 메뉴로 나가기"
+ExitKF2="데스크탑으로 나가기"
+
+[KFGFxOptionsMenu_Selection]
+HeaderString="옵션"
+OptionStrings[0]="비디오"
+OptionStrings[1]="오디오"
+OptionStrings[2]="컨트롤"
+OptionStrings[3]="게임플레이"
+OptionStrings[4]="크레딧"
+
+[KFGFxOptionsMenu_Audio]
+AudioString="오디오 옵션"
+SectionNameString="볼륨"
+OptionsString="옵션"
+MasterVolumeString="마스터 볼륨"
+DialogVolumeString="대화 볼륨"
+MusicString="게임 음악 볼륨"
+SFxString="SFX 볼륨"
+VOIPVolumeString="음성 채팅 수신 볼륨"
+ConfigureMicString="마이크 구성"
+VocalsString="음악 보컬"
+BattleChatterString="배틀 채팅 최소화"
+PushToVoIPString="VoIP로 푸쉬"
+
+[KFGFxOptionsMenu_Graphics]
+KeepSettingsPromptString="이 비디오 설정을 이용하시겠습니까?"
+WarningPromptString="경고"
+WillExpireString="설정은 %x% 초 뒤에 되돌아갑니다."
+SingleWarningString="선택된 일부 설정은 %x% "
+DoubleWarningString="선택된 일부 설정은 %x% 그리고 %y% "
+PerformanceDescString[0]="성능을 떨어뜨릴 수 있습니다"
+PerformanceDescString[1]="성능을 심각하게 해칠 수 있습니다"
+RestartDescString="재시작이 필요할 수 있습니다"
+OKString="OK"
+CancelString="취소"
+UnsavedChangesString="일부 변경사항을 저장하지 않았습니다"
+SaveChangesString="지금 저장하시겠습니까?"
+ContinueString="계속 진행하시겠습니까?"
+
+AdjustGammaDescription="왼쪽의 괴물이 살짝 보이고 오른쪽의 괴물이 뚜렷하게 보이도록 슬라이더를 조정하십시오."
+ResetGammaString="리셋"
+SetGammaString="적용"
+
+
+GraphicsString="그래픽"
+BasicString="기본"
+AdvancedString="고급"
+EffectsString="효과"
+
+AspectRatioString="가로 세로 비율"
+ResolutionString="해상도"
+GraphicsQualityString="그래픽 품질"
+VSyncString="수직동기화"
+FullscreenString="디스플레이"
+VariableFrameRateString="가변 프레임 레이트"
+FilmGrainString="필름 그레인"
+AdjustGammaString="감마 조정"
+
+PhysicsLevelString="NVIDIA® FleX"
+
+PhysicsLevelOptionStrings[0]="끄기"
+PhysicsLevelOptionStrings[1]="Gibs*"
+PhysicsLevelOptionStrings[2]="Gibs 및 Fluids*"
+
+PhysicsLevelSuggestionStrings[0]=""
+PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 이상 권장"
+PhysicsLevelSuggestionStrings[2]="*GeForce® GTX™ 980 이상 권장"
+
+FlexPopUpString="NVIDIA® FleX는 고어 및 플루이드 시뮬레이션을 활성화합니다. 이 설정은 성능을 떨어뜨릴 수 있으며 재시작이 필요할 수 있습니다."
+
+EnvironmentDetailsString="환경 상세"
+FoliageString="식물 상세"
+CharacterDetailString="캐릭터 상세"
+FXString="FX"
+TextureResolutionString="텍스쳐 해상도"
+TextureFilteringString="텍스쳐 필터링"
+ShadowsString="섀도우 품질"
+RealtimeReflectionsString="실시간 반사"
+AntiAliasingString="안티 앨리어싱"
+BloomString="블룸"
+MotionBlurString="모션 블러"
+AmbientOcclusionString="앰비언트 오클루전"
+DepthOfFieldString="피사계심도"
+
+
+VolumetricLightingString="입체 광원 FX"
+LensFlaresString="렌즈 플레어"
+LightShaftsString="빛 줄기"
+CustomString="커스텀"
+IniOverrideString="INI 우선적용"
+
+ApplyString="적용"
+CancelString="취소"
+DefaultString="초기 설정"
+
+AspectRatioString_All="전체"
+StandardAspectRatioString_4_3="4:3"
+StandardAspectRatioString_5_4="5:4"
+StandardAspectRatioString_3_2="3:2"
+WideAspectRatioString_16_9="16:9"
+WideAspectRatioString_16_10="16:10"
+ExtraWideAspectRatioString_2_1="2:1"
+ExtraWideAspectRatioString_21_9="21:9"
+MultiMonitorAspectRatioString="멀티모니터"
+
+FullScreenStringOptions[0]="윈도우"
+FullScreenStringOptions[1]="경계 없음"
+FullScreenStringOptions[2]="전체화면"
+
+OffOnStringOptions[0]="끄기"
+OffOnStringOptions[1]="켜기"
+
+GraphicsQualityStringOptions[0]="낮음"
+GraphicsQualityStringOptions[1]="중간"
+GraphicsQualityStringOptions[2]="높음"
+GraphicsQualityStringOptions[3]="울트라"
+
+VSyncStringOptions[0]="끄기"
+VSyncStringOptions[1]="켜기"
+;VSyncStringOptions[2]="Triple Buffered"
+
+EnvironmentDetailsStringOptions[0]="낮음"
+EnvironmentDetailsStringOptions[1]="중간"
+EnvironmentDetailsStringOptions[2]="높음"
+EnvironmentDetailsStringOptions[3]="울트라"
+
+FoliageStringOptions[0]="낮음"
+FoliageStringOptions[1]="중간"
+FoliageStringOptions[2]="높음"
+
+CharacterDetailStringOptions[0]="낮음"
+CharacterDetailStringOptions[1]="높음"
+CharacterDetailStringOptions[2]="울트라"
+
+FXStringOptions[0]="낮음"
+FXStringOptions[1]="중간"
+FXStringOptions[2]="높음"
+FXStringOptions[3]="울트라"
+
+TextureResolutionStringOptions[0]="낮음"
+TextureResolutionStringOptions[1]="중간"
+TextureResolutionStringOptions[2]="높음"
+TextureResolutionStringOptions[3]="울트라"
+
+TextureFilteringStringOptions[0]="이선"
+TextureFilteringStringOptions[1]="삼선"
+TextureFilteringStringOptions[2]="4x 이방성"
+TextureFilteringStringOptions[3]="16x 이방성"
+
+ShadowsStringOptions[0]="낮음"
+ShadowsStringOptions[1]="중간"
+ShadowsStringOptions[2]="높음"
+ShadowsStringOptions[3]="울트라"
+
+PhysicsStringOptions[0]="끄기"
+PhysicsStringOptions[1]="보통"
+PhysicsStringOptions[2]="높음"
+
+RealtimeReflectionsStringOptions[0]="끄기"
+RealtimeReflectionsStringOptions[1]="켜기"
+
+AntiAliasingStringOptions[0]="끄기"
+AntiAliasingStringOptions[1]="FXAA"
+
+BloomStringOptions[0]="끄기"
+BloomStringOptions[1]="낮음"
+BloomStringOptions[2]="높음"
+
+MotionBlurStringOptions[0]="끄기"
+MotionBlurStringOptions[1]="보통"
+MotionBlurStringOptions[2]="높음"
+
+AmbientOcclusionStringOptions[0]="끄기"
+AmbientOcclusionStringOptions[1]="SSAO"
+AmbientOcclusionStringOptions[2]="HBAO+"
+
+DepthOfFieldStringOptions[0]="끄기"
+DepthOfFieldStringOptions[1]="켜기"
+
+[KFGFxOptionsMenu_Graphics_DX10]
+AmbientOcclusionStringOptions_DX10[0]="끄기"
+AmbientOcclusionStringOptions_DX10[1]="SSAO"
+
+[KFGFxOptionsMenu_Controls]
+TabStrings[0]="입력"
+TabStrings[1]="키 결합"
+TabStrings[2]="버튼 레이아웃"
+HeaderText="컨트롤 옵션"
+
+[KFGFxOptionsMenu_GameSettings]
+SectionNameString="옵션"
+GameSettingsString="게임 설정"
+FOVString="FOV"
+GoreString="고어 강도"
+ShowCrosshairString="조준점 표시"
+ClassicWeaponSelectString="무기 빠른 선택"
+GoreOptionStrings[0]="고어 약함"
+GoreOptionStrings[1]="고어 보통"
+GoreOptionStrings[2]="고어 심함"
+NormalString="보통"
+WiderString="넓음"
+FriendlyHudScaleString="익숙한 HUD 스케일"
+KillTickerString="제드 킬 표시"
+HideBossHealthBarString="보스 체력 숨김"
+ShowWelderInInvString="인벤토리에 용접기 표시"
+UseAltAimOnDualString="대체 쌍권총 조준 이용"
+AntiMotionSicknessString="멀미 방지"
+AutoTurnOffString="클롯 잡기 자동 켜짐 방지"
+ReduceHighPitchNoiseString="고음역 소음 감소"
+
+[LocalizedControls]
+ControllerLayoutDefault="초기 설정"
+ControllerLayoutJumper="점퍼"
+ControllerLayoutQuickDraw="빨리 쏘기"
+ControllerLayoutSouthPaw="사우스 포"
+
+GBA_TurnLeft="좌회전"
+GBA_TurnRight="우회전"
+GBA_Backward="뒤로 이동"
+GBA_MoveForward="앞으로 이동"
+GBA_WeaponSelect_Gamepad="무기 선택 (오래 누르기)"
+GBA_Reload_Gamepad="재장전"
+GBA_StrafeLeft_Gamepad="이동 제어"
+GBA_MoveForward_Gamepad="앞으로 이동"
+GBA_Look_Gamepad="보기 제어"
+GBA_Grenade_Gamepad="수류탄 투척"
+GBA_TurnLeft_Gamepad="보기 제어"
+GBA_Look_Gamepad="보기 제어"
+GBA_DPad_Left_Gamepad="음성 통신"
+GBA_DPad_Up_Gamepad="힐러 장착"
+GBA_DPad_Right_Gamepad="Dosh 던지기"
+GBA_DPad_Down_Gamepad="플래시라이트 전환"
+
+
+GBA_MoveForward="앞으로 이동"
+GBA_StrafeLeft="왼쪽 폭격"
+GBA_Backward="뒤로 이동"
+GBA_StrafeRight="오른쪽 폭격"
+GBA_Jump="점프"
+GBA_Sprint="스프린트"
+GBA_CrouchToggle="웅크리기 (전환)"
+GBA_CrouchHold="웅크리기 (오래 누르기)"
+GBA_SprintAndCrouch="웅크리기 / 스프린트"
+GBA_SprintAndMelee="백병전 / 스프린트"
+GBA_ShowMenu="게임 메뉴 전환"
+
+GBA_Use="사용 / 빠른 용접 (오래 누르기)"
+GBA_Talk="대화"
+GBA_TeamTalk="팀 대화"
+GBA_VoiceChat="팀 음성"
+GBA_PublicVoiceChat="공개 음성"
+GBA_ShowVoiceComms="음성 명령"
+GBA_ShowScores="점수표 보기"
+GBA_TossMoney="Dosh 던지기"
+GBA_DropWeapon="무기 던지기"
+
+GBA_Fire="발사"
+GBA_IronSightsToggle="가늠좌 (전환)"
+GBA_IronsightsHold="가늠좌 (오래 누르기)"
+GBA_Reload="재장전"
+GBA_Grenade="수류탄 투척"
+GBA_QuickHeal="빠른 치료"
+GBA_SwitchFireMode="대체 발사 / 차단"
+GBA_TertiaryFire="백병전 충돌"
+GBA_ToggleFlashlight="플래시라이트 전환"
+GBA_AltFire="대체 발사 / 차단"
+GBA_AltFire_Gamepad="대체 발사 / 차단"
+
+GBA_WeaponSelect_Gamepad="무기 선택 (오래 누르기)"
+GBA_NextWeapon="다음 무기"
+GBA_PrevWeapon="이전 무기"
+GBA_LastWeapon="최근 사용 무기"
+GBA_SwitchWeapon1="기본 무기"
+GBA_SwitchWeapon2="보조 무기"
+GBA_SwitchWeapon3="백병전 무기"
+GBA_SwitchWeapon4="장비"
+GBA_VoteYes="찬성 투표 (오래 누르기)"
+GBA_VoteNo="반대 투표 (오래 누르기)"
+
+GBA_VoiceCommReqHealing="치료 요청"
+GBA_VoiceCommReqDosh="Dosh 요청"
+GBA_VoiceCommReqHelp="도움 요청"
+GBA_VoiceCommTauntZeds="제드 조롱하기"
+GBA_VoiceCommFollowMe="나를 따라오시오"
+GBA_VoiceCommGetToTheTrader="상점에 가기"
+GBA_VoiceCommAffirmative="확인"
+GBA_VoiceCommNegative="거부"
+
+[KFGFxControlsContainer_Input]
+SensitivityString="감도"
+InvertedString="Y 반전"
+ControllerString="컨트롤러"
+ControllerSensitivityString="보기 감도"
+MouseString="마우스"
+MouseSmoothingString="마우스 부드러운 작동"
+ZoomSensitivityString="줌 감도"
+ControllerZoomSensitivityString="줌 감도"
+AimAssistLockOnString="조준 보조 줌 고정"
+AimAssistRotationString="조준 보조 회전"
+AimAssistSlowDownString="조준 보조 천천히"
+ForceFeedbackString="컨트롤러 진동"
+
+[KFGFxControlsContainer_Keybinding]
+SectionHeaders[0]="이동"
+SectionHeaders[1]="상호작용"
+SectionHeaders[2]="전투"
+SectionHeaders[3]="무기 선택"
+SectionHeaders[4]="음성 통신"
+
+ResetString="모두 리셋"
+ApplyString="적용"
+PressKeyString="[키 누르기]"
+WarningString="경고"
+KeyAlreadyBoundString="키 <%x%>은(는) 이미 다음에 결합되었습니다."
+RebindString="다시 결합:"
+ClearedString="(이전 결합은 삭제됩니다)"
+CancelString="취소"
+AcceptString="승인"
+IgnoredKeyString="무시된 키에는 결합될 수 없습니다."
+
+[KFGFxControlsContainer_ControllerPresets]
+MovementString="이동 제어"
+LookString="보기 제어"
+WeaponSelectMenuString="무기 선택 메뉴 (오래 누르기)"
+ShowScoardBoardString="점수표 보기"
+ShowIngameMenuString="게임 메뉴 전환"
+CurrentControllerPresetString="현재 컨트롤러 프리셋"
+PresetStrings[0]="초기 설정"
+PresetStrings[1]="빨리 쏘기"
+PresetStrings[2]="점퍼"
+PresetStrings[3]="사우스포"
+
+BashString="백병전 충돌"
+BlockString="차단 (오래 누르기)"
+HoldString="오래 누르기"
+TapString="탭"
+
+[KFInventoryManager]
+FullHealthMsg="체력 가득 참"
+
+[KFLocalMessage]
+SystemString="시스템:"
+AdminString ="(관리자)"
+LoggedInAsAdminString=" 서버 관리자로 로그인"
+LoggedOutAsAdminString=" 서버 관리자 로그아웃"
+MustLoginToCheatString="치트를 활성화하려면 로그인해야 합니다."
+CheatsEnabledString=" 치트를 활성화하였습니다. 이 세션에서 통계가 비활성화되었습니다."
+ServerMaintenanceString="게임 종료 시 유지보수를 위해 서버가 차단됩니다."
+KickVoteStartedString="추방 투표가 시작되었습니다."
+KickVoteSucceededString="추방 투표 통과:"
+KickVoteFailedString="추방 투표 실패:"
+KickVoteRejectedString="최근 투표 실패 후 충분한 시간이 지나지 않았습니다. 기다렸다가 다시 시도해주십시오."
+KickVoteInProgressString="이미 진행 중인 투표가 있기 때문에 추방 투표를 시작할 수 없습니다."
+KickVoteDisabledString="이 서버에서는 추방 투표가 비활성화되어 있습니다."
+KickVoteYesReceivedString="추방에 투표하셨습니다."
+KickVoteNoReceivedString="추방 반대에 투표하셨습니다."
+KickVoteKickAdminString="서버 관리자는 추방할 수 없습니다."
+KickVoteActiveTimeString="추방 투표를 할 수 있을 만큼 대전이 오래 진행되지 않았습니다."
+KickVoteMatchNotStartedString="대전을 하기 전에 추방 투표를 시작할 수 없습니다."
+KickVoteMaxKicksReachedString="이 대전에서는 추방을 더 실시할 수 없습니다."
+KickVoteNotEnoughPlayersString="추방 투표를 시작하기에 플레이어가 충분하지 않습니다."
+KickVoteNoSpectatorsString="참관자는 추방 투표를 시작할 수 없습니다."
+KickedFromServerString="서버에서 추방되었습니다."
+BannedFromServerString="이 서버에서 추방되었습니다. 이번에 다시 들어갈 수 없습니다."
+ServerNoLongerAvailableString="더 이상 서버 입장을 할 수 없습니다."
+
+[KFLocalMessage_Game]
+ReceivedAmmoFromMessage="다음 플레이어에게 탄약을 받았습니다."
+GaveAmmoToMessage="다음 플레이어에게 탄약을 주었습니다."
+PendingPerkChangesSet="병과 변경은 웨이브 종료 시에 적용됩니다."
+PendingPerkChangesApplied="병과 변경이 적용되었습니다!"
+HealedByMessage="다음 플레이어에게 치료를 받았습니다."
+HealedMessage="다음 플레이어를 치료하였습니다"
+YourselfString="직접 하였습니다."
+PickedupArmorMessage="장갑을 획득했습니다."
+FullArmorMessage="장갑이 이미 가득 찼습니다."
+PickupAmmoMessage="탄약을 획득했습니다."
+AmmoFullMessage="탄약이 가득 찼습니다."
+PickupWeaponAmmoMessage="%x% 탄약을 획득했습니다."
+AlreadyCarryingWeaponMessage="이 무기를 이미 가지고 있습니다."
+PickupMessage="획득:"
+TooMuchWeightMessage="이 무기는 너무 무겁습니다. 무기를 버리거나 판매하십시오."
+FailedDropInventoryMessage="그곳에 버릴 수 없습니다."
+ReceivedGrenadesFromMessage="다음 플레이어에게 수류탄을 받았습니다."
+GaveGrenadesToMessage="다음 플레이어에게 수류탄을 주었습니다."
+SharingContentString="공유 콘텐츠입니다"
+HeadShotAddedString="%x 헤드샷 - %y% 추가 데미지!"
+HeadShotMaxString="헤드샷! %x% 추가 데미지!"
+HeadShotResetString="헤드샷 빗나감. 보통 데미지!"
+
+SuicideMessage=" 그냥 삶을 포기했습니다..."
+KilledMessage=" 산채로 잡아 먹혔습니다"
+KillzedBy_PatriarchString=" 케빈의 아이들에게 더 이상 상처를 줄 수 없습니다"
+KillzedBy_HansString="의 신체는 추가 실험을 위해 가져갔습니다"
+KillzedBy_ZedCrawlerString="의 발목이 뜯겨져 나갔습니다"
+KillzedBy_ZedBloatString=" 이(가) 체액에 빠졌습니다"
+KillzedBy_ZedFleshpoundString=" 이(가) 곤죽이 되었습니다."
+KillzedBy_ZedGorefastString=" 이(가) 산채로 가죽이 벗겨졌습니다"
+KillzedBy_ZedHuskString=" 이(가) 타 죽었습니다."
+KillzedBy_ZedScrakeString=" 이(가) 젊은 나이에 죽임을 당했습니다"
+KillzedBy_ZedSirenString="이(가) 완전히 귀가 먹었습니다."
+KillzedBy_ZedStalkerString=" 이(가) 그것이 오는 것을 보지 못했습니다."
+KillzedBy_ZedClot_CystString=" 이(가) 그다지 느낌 없는 죽음을 당했습니다."
+KillzedBy_ZedClot_AlphaString=" 이(가) 잘못 붙잡혔습니다."
+KillzedBy_ZedClot_SlasherString=" 은(는) 더 이상 Slasher 영화를 좋아하지 않습니다"
+
+FoundAMapCollectibleMessage="%x%이(가) %y%을(를) 찾았습니다. %z%이(가) 떠났습니다..."
+FoundAllMapCollectiblesMessage="모든 %x%을(를) 찾았습니다!"
+MapCollectibleName="Dosh 조각이 반짝입니다"
+
+[KFLocalMessage_Priority]
+WaveStartMessage="웨 이 브   준 비"
+WaveEndMessage="웨 이 브   종 료"
+GetToTraderMessage="상점에 가기"
+YouLostMessage="패 배"
+YouWonMessage="승 리"
+SquadWipedOutMessage="플레이어의 부대가 패배했습니다!"
+SquadSurvivedMessage="플레이어의 부대가 생존했습니다!"
+ObjectiveStartMessage="목표 개시!"
+ObjectiveWonMessage="목표 획득!"
+ObjectiveEndedMessage="목표 종료!"
+ObjectiveLostMessage="목표 상실!"
+ObjNotEnoughPlayersMessage="플레이어가 충분하지 않습니다!"
+ObjTimeRanOutMessage="종료 시간이 다가오고 있습니다!"
+HumansLoseMessage="인간 부대가 패배했습니다!"
+HumansWinMessage="인간 부대가 생존했습니다!"
+AttackHumanPlayersString="인간 플레이어를 공격하십시오!"
+ZedGroupRegroupingString="제드 무리가 다시 집결하고 있습니다!"
+NextRoundBeginString="다 음   라 운 드"
+PlayerCanChangePerksString="병과 변경이 허용되었습니다"
+ZedWaitingForNextRoundString="제드 무리가 곧 침입합니다!"
+
+[KFLocalMessage_Interaction]
+UseTraderMessage="상점<%HOLD%>자동 업그레이드 이용"
+UseDoorMessage="<%HOLD%>용접기 장착 열기/닫기"
+EquipWelderMessage="<%HOLD%>용접기 장착"
+ZedUseDoorMessage="열기/닫기"
+ZedUseDoorWeldedMessage="도어가 용접되었습니다, 파괴하십시오!"
+RepairDoorMessage="<%HOLD%>용접기를 장착하여 도어 수리"
+AcceptObjectiveMessage="목표 수락"
+ReceiveAmmoMessage="탄약 받기"
+ReceiveGrenadesMessage="수류탄 받기"
+HealSelfWarning="자체 치료"
+HealSelfGamepadWarning="<%HOLD%>자체 치료"
+PressToBashWarning="충돌"
+GamepadWeaponSelectHint="<%HOLD%>무기 선택"
+PlayerClotGrabWarningMessage="제드를 죽이고 빠져나가십시오!"
+
+[KFLocalMessage_ServerNotification]
+TeamPendingBalanceMessage="팀 균형이 맞지 않아 다시 조정됩니다"
+
+[KFGfxPerkComp_Abilities]
+RankNames[0]="랭크 I"
+RankNames[1]="랭크 II"
+RankNames[2]="랭크 III"
+
+[KFPerk]
+SkillCatagories[0]=""
+SkillCatagories[1]=""
+SkillCatagories[2]=""
+SkillCatagories[3]=""
+SkillCatagories[4]=""
+
+LevelString="레벨"
+
+SpecialAbilityName="고유 능력"
+SpecialAbilityDescription=""
+
+Passives[0]=(Title="",Description="");
+Passives[1]=(Title="",Description="");
+Passives[2]=(Title="",Description="");
+Passives[3]=(Title="",Description="");
+Passives[4]=(Title="",Description="");
+
+SkillSlots0[0]=(Title="",Description="");
+SkillSlots0[1]=(Title="",Description="");
+
+SkillSlots1[0]=(Title="",Description="");
+SkillSlots1[1]=(Title="",Description="");
+
+SkillSlots2[0]=(Title="",Description="");
+SkillSlots2[1]=(Title="",Description="");
+
+SkillSlots3[0]=(Title="",Description="");
+SkillSlots3[1]=(Title="",Description="");
+
+SkillSlots4[0]=(Title="",Description="");
+SkillSlots4[1]=(Title="",Description="");
+
+WeaponDroppedMessage="새로운 용량으로 인해 %%%%을(를) 버렸습니다!"
+
+[KFPerk_Berserker]
+PerkName_CHN="狂战士"
+PerkName_CHT="狂戰士"
+PerkName_DEU="Berserker"
+PerkName_ESL="Berserker"
+PerkName_ESN="Berserker"
+PerkName_FRA="Fou Furieux"
+PerkName_FRC="Fou Furieux"
+PerkName_INT="Berserker"
+PerkName_ITA="Berserker"
+PerkName_JPN="バーサーカー"
+PerkName_KOR="버서커"
+PerkName_POL="Berserker"
+PerkName_PTB="Berserker"
+PerkName_RUS="Берсеркер"
+
+[KFPerk_Commando]
+PerkName_CHN="突击兵"
+PerkName_CHT="突擊隊"
+PerkName_DEU="Kommando"
+PerkName_ESL="Comando"
+PerkName_ESN="Comando"
+PerkName_FRA="Commando"
+PerkName_FRC="Commando"
+PerkName_INT="Commando"
+PerkName_ITA="Commando"
+PerkName_JPN="コマンドー"
+PerkName_KOR="코만도"
+PerkName_POL="Komandos"
+PerkName_PTB="Comando"
+PerkName_RUS="Коммандос"
+
+[KFPerk_Demolitionist]
+PerkName_CHN="爆破手"
+PerkName_CHT="殲滅"
+PerkName_DEU="Demolierer"
+PerkName_ESL="Exp. en demolición"
+PerkName_ESN="Exp. en demolición"
+PerkName_FRA="Démolisseur"
+PerkName_FRC="Démolisseur"
+PerkName_INT="Demolitionist"
+PerkName_ITA="Demolitore"
+PerkName_JPN="デモリッショニスト"
+PerkName_KOR="데몰리셔니스트"
+PerkName_POL="Destruktor"
+PerkName_PTB="Demolidora"
+PerkName_RUS="Подрывник"
+
+[KFPerk_FieldMedic]
+PerkName_CHN="医疗兵"
+PerkName_CHT="戰地軍醫"
+PerkName_DEU="Feldsanitäter"
+PerkName_ESL="Médico de campo"
+PerkName_ESN="Médico de campo"
+PerkName_FRA="Médecin"
+PerkName_FRC="Médecin"
+PerkName_INT="Field Medic"
+PerkName_ITA="Medico da campo"
+PerkName_JPN="フィールドメディック"
+PerkName_KOR="필드 메딕"
+PerkName_POL="Sanitariusz"
+PerkName_PTB="Médico de campo"
+PerkName_RUS="Полевой медик"
+
+[KFPerk_Firebug]
+PerkName_CHN="纵火犯"
+PerkName_CHT="縱火狂"
+PerkName_DEU="Feuerteufel"
+PerkName_ESL="Pirómano"
+PerkName_ESN="Pirómano"
+PerkName_FRA="Pyromane"
+PerkName_FRC="Pyromane"
+PerkName_INT="Firebug"
+PerkName_ITA="Piromane"
+PerkName_JPN="ファイアバグ"
+PerkName_KOR="파이어버그"
+PerkName_POL="Podpalacz"
+PerkName_PTB="Incendiária"
+PerkName_RUS="Поджигатель"
+
+[KFPerk_Gunslinger]
+PerkName_CHN="枪手"
+PerkName_CHT="槍砲工"
+PerkName_DEU="Revolverheld"
+PerkName_ESL="Pistolero"
+PerkName_ESN="Pistolero"
+PerkName_FRA="Flingueur"
+PerkName_FRC="Flingueur"
+PerkName_INT="Gunslinger"
+PerkName_ITA="Pistolero"
+PerkName_JPN="ガンスリンガー"
+PerkName_KOR="건슬링거"
+PerkName_POL="Rewolwerowiec"
+PerkName_PTB="Pistoleiro"
+PerkName_RUS="Стрелок"
+
+[KFPerk_Sharpshooter]
+PerkName_CHN="神射手"
+PerkName_CHT="神射手"
+PerkName_DEU="Scharfschütze"
+PerkName_ESL="Tirador"
+PerkName_ESN="Tirador"
+PerkName_FRA="Tireur d'élite"
+PerkName_FRC="Tireur d'élite"
+PerkName_INT="Sharpshooter"
+PerkName_ITA="Cecchino"
+PerkName_JPN="シャープシューター"
+PerkName_KOR="샤프슈터"
+PerkName_POL="Strzelec wyborowy"
+PerkName_PTB="Atirador exímio"
+PerkName_RUS="Меткий стрелок"
+
+[KFPerk_Support]
+PerkName_CHN="支援兵"
+PerkName_CHT="支援"
+PerkName_DEU="Unterstützer"
+PerkName_ESL="Apoyo"
+PerkName_ESN="Apoyo"
+PerkName_FRA="Soutien"
+PerkName_FRC="Soutien"
+PerkName_INT="Support"
+PerkName_ITA="Supporto"
+PerkName_JPN="サポート"
+PerkName_KOR="서포트"
+PerkName_POL="Wsparcie"
+PerkName_PTB="Apoio"
+PerkName_RUS="Боец поддержки"
+
+[KFPerk_SWAT]
+PerkName_CHN="SWAT"
+PerkName_CHT="特種部隊"
+PerkName_DEU="SWAT"
+PerkName_ESL="SWAT"
+PerkName_ESN="SWAT"
+PerkName_FRA="SWAT"
+PerkName_FRC="SWAT"
+PerkName_INT="SWAT"
+PerkName_ITA="SWAT"
+PerkName_JPN="スワット"
+PerkName_KOR="SWAT"
+PerkName_POL="SWAT"
+PerkName_PTB="SWAT"
+PerkName_RUS="Спецназовец"
+
+[KFPerk_Survivalist]
+PerkName_CHN="生存主义者"
+PerkName_CHT="生存者"
+PerkName_DEU="Überlebenskünstler"
+PerkName_ESL="Superviviente"
+PerkName_ESN="Superviviente"
+PerkName_FRA="Survivant"
+PerkName_FRC="Survivant"
+PerkName_INT="Survivalist"
+PerkName_ITA="Survivalista"
+PerkName_JPN="サバイバリスト"
+PerkName_KOR="서바이벌리스트"
+PerkName_POL="Mistrz przetrwania"
+PerkName_PTB="Sobrevivente"
+PerkName_RUS="Выживальщик"
+
+[KFPerk_Berserker]
+PerkName="버서커"
+
+SkillCatagories[0]="서바이벌"
+SkillCatagories[1]="전투"
+SkillCatagories[2]="근접전"
+SkillCatagories[3]="파워"
+SkillCatagories[4]="고급 훈련"
+
+
+Passives[0]=(Title="버서커 데미지",Description="병과 무기 데미지가 레벨 당 x%x 증가합니다");
+Passives[1]=(Title="데미지 저항력",Description="5 레벨마다 데미지 저항력이 x%x 증가합니다");
+Passives[2]=(Title="+야간투시경 기능",Description="플래시라이트 - 및 야간투시경 고글");
+Passives[3]=(Title="+클롯이 플레이어를 잡지 못합니다",Description="클롯은 버서커를 계속 잡고 있을 수 없습니다.");
+
+EXPAction1="버서커 무기 데미지"
+EXPAction2="버서커 무기를 이용하여 플레이어 근처의 제드 죽이기"
+
+Fortitude="드레드노트"
+FortitudeDescription="총 체력 75% 증가"
+
+Ninja="척후병"
+NinjaDescription="20% 빠르게 이동, 스프린트 속도 25% 향상, 병과 백병전 무기 이용 시 매초 체력 1초 재생성"
+
+Vampire="뱀파이어"
+VampireDescription="병과 무기로 제드를 처치할 때마다 체력 4 포인트 치료 병과 백병전 무기를 이용할 때 공격속도 20% 향상 "
+
+Speed="도살자"
+SpeedDescription="병과 백병전 무기 이용 시 공격 속도 20% 향상 및 25% 데미지 증가"
+
+Resistance="저항력"
+ResistanceDescription="모든 데미지 저항력 20% 증가 독성 및 음파 데미지에 대한 저항력 20% 추가"
+
+Parry="회피"
+ParryDescription="병과 백병전 무기를 이용한 회피 시 10초간 유입 데미지 40% 감소, 백병전 공격 속도 5% 증가 및 백병전 데미지 35% 증가"
+
+Smash="스매시"
+SmashDescription="병과 백병전 무기로 강타 시 50% 데미지 증가, 헤드 히트 데미지 25% 증가, 스텀블 파워 200% 증가."
+
+Fury="대학살"
+FuryDescription="병과 백병전 무기를 이용한 가벼운 공격 시 데미지 30% 증가, 병과 백병전 무기를 이용한 모든 공격 시 속도 5% 향상."
+
+Spartan="제드 타임 - 스파르탄” "
+SpartanDescription="제드 타임 동안 병과 무기로 공격하며 실시간으로 이동."
+
+Rage="제드 타임 - 버서커의 분노"
+RageDescription="제드 타임에 진입할 때 체력 25% 치료 및 제드가 접근할 때 도피"
+
+[KFPerk_Commando]
+PerkName="코만도"
+
+SkillCatagories[0]="탄약 관리"
+SkillCatagories[1]="전략"
+SkillCatagories[2]="서바이벌"
+SkillCatagories[3]="무기 전문가"
+SkillCatagories[4]="고급 훈련"
+
+Passives[0]=(Title="병과 무기 데미지",Description="병과 무기 데미지가 레벨 당 %x% 증가합니다");
+Passives[1]=(Title="은폐한 적 및 체력 감지",Description="5m 범위에 레벨 당 %x%m 추가");
+Passives[2]=(Title="제드 타임 연장",Description="제드 타임이 5 레벨 마다 %x% 증가");
+Passives[3]=(Title="재장전 속도",Description="병과 무기 재장전 속도가 5 레벨 마다 %x% 증가");
+Passives[4]=(Title="+야간투시경 기능",Description="플래시라이트 - 및 야간투시경 고글");
+Passives[5]=(Title="+은폐한 적 부르기",Description="팀원들이 은폐한 유닛을 볼 수 있도록 함");
+
+EXPAction1="코만도 무기 데미지"
+EXPAction2="코만도 무기로 Stalker 처치"
+
+TacticalReload="전술 재장전"
+TacticalReloadDescription="병과 무기 이용 시 재장전 속도 향상"
+
+LargeMags="고용량 탄창"
+LargeMagsDescription="병과 무기 탄창 용량 50% 증가"
+
+Backup="유비무환"
+BackupDescription="9mm 권총과 나이프 데미지 110% 증가 및 무기 전환 속도 50% 향상"
+
+Impact="임팩트 탄환"
+ImpactDescription="병과 무기 스텀블 파워 150% 증가"
+
+HealthIncrease="집념"
+HealthIncreaseDescription="총 체력과 장갑 25% 증가"
+
+AmmoVest="준비"
+AmmoVestDescription="각 병과 무기 당 최고 20% 탄약 추가 운반 "
+
+HollowPoints="할로우 포인트 탄환"
+HollowPointsDescription="병과 무기 데미지 25% 증가 및 반동 50% 감소"
+
+EatLead="총알이나 먹어라"
+EatLeadDescription="병과 무기 탄창 용량 100% 증가"
+
+RapidFire="제드 타임 - 머신건 사수"
+RapidFireDescription="제드 타임 동안 병과 무기 이용 시 모든 무기의 데미지 3% 증가 및 발사 속도 3배 향상"
+
+Professional="제드 타임 - 전략가"
+ProfessionalDescription="제드 타임 동안 병과 무기를 최고 속도로 재장전하고 병과 무기를 두 배 빠르게 전환"
+
+[KFPerk_Demolitionist]
+PerkName="데몰리셔니스트"
+EXPAction1="데몰리셔니스트 무기 데미지"
+EXPAction2="데몰리셔니스트 무기로 Fleshpound 처치"
+
+SkillCatagories[0]="기술"
+SkillCatagories[1]="폭발물"
+SkillCatagories[2]="고급 기술"
+SkillCatagories[3]="무기 기술"
+SkillCatagories[4]="고급 폭발물"
+
+Passives[0]=(Title="병과 무기 데미지",Description="병과 무기 데미지가 레벨 당 %x% 증가");
+Passives[1]=(Title="폭발물 저항력",Description="폭발물 저항력 10% 증가 및 레벨 당 %x% 증가");
+Passives[2]=(Title="특별 폭발물 탄약",Description="폭발물 탄약이 5 레벨 마다 %x% 증가");
+Passives[3]=(Title="+수류탄 공급자",Description="팀원들에게 매 웨이브마다 수류탄을 하나씩 지급");
+Passives[4]=(Title="+도어 트랩",Description="용접한 도어가 파괴되면 폭발");
+Passives[5]=(Title="반응형 장갑",Description="처음 체력이 0으로 줄어들면 장갑이 폭발하고 체력 1이 남음");
+
+
+Damage="폭격"
+DamageDescription="폭발 병과 무기의 데미지 25% 증가"
+
+Speed="쇼크 트루퍼"
+SpeedDescription="병과 무기 재장전 속도 20% 향상, 무기의 킥다운 및 스텀블 파워 25% 증가"
+
+DirectHit="하이 임팩트 탄환"
+DirectHitDescription="폭발물 무기의 직접 히트 데미지 20% 증가"
+
+Ammo="특별 탄환"
+AmmoDescription="폭발물 병과 무기의 최대 탄약 5개 증가"
+
+SirenResistance="음파 저항 탄환"
+SirenResistanceDescription="폭발물이 Siren의 비명에 면역력을 갖고 항상 폭발"
+
+AreaOfEffect="산탄"
+AreaOfEffectDescription="폭발물 병과 무기의 효과 영역 50% 증가 및 데미지 30% 감소"
+
+CriticalHit="장갑 관통 탄환"
+CriticalHitDescription="병과 무기를 이용한 중요 부위 직접 히트 데미지 50% 증가 "
+
+ConcussiveForce="진동 탄환"
+ConcussiveForceDescription="병과 무기의 반응, 스턴, 스텀블, 녹다운 파워 50% 증가"
+
+Nuke="제드 타임 - 세계의 파괴자"
+NukeDescription="제드 타임 동안 폭발물이 대규모 방사 데미지를 가하고 제드를 중독시키며 폭발 탄환이 어떤 거리에서나 폭발함"
+
+Professional="제드 타임 - 광란의 폭파범"
+ProfessionalDescription="제드 타임 동안 거의 실시간으로 발사하고 재정전하며 병과 무기의 영향 범위가 25% 증가, 폭발 탄환이 어느 거리에서나 폭발"
+
+
+[KFPerk_FieldMedic]
+PerkName="필드 메딕"
+
+SkillCatagories[0]="조절"
+SkillCatagories[1]="이동"
+SkillCatagories[2]="데미지"
+SkillCatagories[3]="전투 기술자"
+SkillCatagories[4]="고급 기술"
+
+Passives[0]=(Title="주사기 재충전 속도",Description="레벨 당 주사기 재충전 속도 %x% 향상");
+Passives[1]=(Title="주사기 효력",Description="주사기로 복구되는 체력 레벨 당 %x% 증가");
+Passives[2]=(Title="Bloat 담즙 저항력",Description="독으로 인한 데미지 레벨 당 %x% 감소");
+Passives[3]=(Title="이동 속도",Description="5 레벨 당 이동 속도 %x% 향상");
+Passives[4]=(Title="장갑 보너스",Description="레벨 당 장갑 %x% 증가");
+
+HealingSurge="공생 체력"
+HealingSurgeDescription="총 체력 25% 증가 팀원 치료 시 자신의 총 체력 10% 증가"
+
+Survivalist="회복력"
+SurvivalistDescription="체력 포인트 상실 시 최고 50%까지 1%씩 데미지 저항력 증가"
+
+HealingSpeedBoost="아드레날린 샷"
+HealingSpeedBoostDescription="치료 다트로 팀원을 쏘면 이동 속도가 5초 동안 10% 향상 최대 30%의 보너스가 쌓입니다."
+
+Combatant="전투 의사"
+CombatantDescription="병과 무기의 탄창 용량 50% 증가 및 이동 속도 10% 향상"
+
+HealingDamageBoost="포커스 주사"
+HealingDamageBoostDescription="치료 다트로 팀원을 쏘면 팀원이 가하는 데미지가 5초 동안 5% 증가 최대 20%의 보너스가 쌓입니다. "
+
+AcidicCompound="애시드 탄환"
+AcidicCompoundDescription="병과 무기로 제드를 중독시키고 시간이 지나면서 독성 데미지를 가함"
+
+HealingShield="응고 촉진제"
+HealingShieldDescription="치료 다트로 팀원을 쏘면 데미지 저항력이 5초 동안 10% 향상 최대 30%의 보너스가 쌓입니다. "
+
+Enforcer="군의관"
+EnforcerDescription="병과 무기의 데미지 20% 증가"
+
+AirborneAgent="제드 타임 - 공중 약품 살포"
+AirborneAgentDescription="제드 타임 동안 치료 가스를 살포하여 가까이 있는 팀원을 치료."
+
+Sedative="제드 타임 - 제더티브"
+SedativeDescription="제드 타임 동안 병과 무기로 제드에게 데미지를 가하면 30% 속도를 늦추고 대규모 독성 데미지를 가함. "
+
+
+EXPAction1="필드 메딕 무기 데미지"
+EXPAction2="팀원 치료"
+
+[KFPerk_Firebug]
+PerkName="파이어버그"
+EXPAction1="파이어버그 무기 데미지"
+EXPAction2="파이어버그 무기로 Crawler 처치"
+
+SkillCatagories[0]="보급"
+SkillCatagories[1]="스파이시"
+SkillCatagories[2]="연소"
+SkillCatagories[3]="화염"
+SkillCatagories[4]="고급 훈련"
+
+Passives[0]=(Title="병과 무기 데미지",Description="병과 무기 데미지가 레벨 당 %x% 증가합니다.");
+Passives[1]=(Title="병과 무기 재장전",Description="병과 무기 재장전 속도가 레벨 당 %x% 향상됩니다.");
+Passives[2]=(Title="제드 화염 데미지 저항",Description="제드의 화염에 대한 저항력이 30%부터 시작하여 레벨 당 %x%씩 증가합니다.");
+Passives[3]=(Title="자기 화염 면역",Description="자기 화염에 대한 저항력이 25% 생기고 레벨 당 %x% 증가");
+Passives[4]=(Title="전투 개시 탄약",Description="전투를 시작할 때 탄약이 5 레벨마다 %x%씩 증가");
+
+BringTheHeat="브링 더 히트"
+BringTheHeatDescription="화염 무기의 데미지 35% 증가"
+
+HighCapFuelTank="고용량 연료 탱크"
+HighCapFuelTankDescription="모든 병과 무기의 연료 탱크 용량과 탄창 100% 증가"
+
+Fuse="바베큐"
+FuseDescription="병과 무기의 발화 효과가 150% 오래 지속되어 시간에 따른 데미지 증가"
+
+GroundFire="지상포"
+GroundFireDescription="지상포의 데미지 대규모 증가 및 제드 이동 속도 20% 감소"
+
+ZedShrapnel="제드 산탄"
+ZedShrapnelDescription="플레이어가 처치한 제드가 20%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 쓰러뜨림"
+
+Napalm="네이팜"
+NapalmDescription="불에 타고 있는 제드가 다른 제드와 접촉하여 불을 옮기고 발화 효과가 150% 오래 지속됨"
+
+Range="파이어스톰"
+RangeDescription="병과 무기 사거리 증가"
+
+SplashDamage="열파"
+SplashDamageDescription="직사거리에서 화염을 맞은 제드가  뒤로 비틀거림"
+
+Inferno="제드 타임 - 인페르노"
+InfernoDescription="제드 타임 동안 화염을 맞은 모든 제드의 속도가 30% 느려지고 화상 데미지는 50% 높아짐"
+
+Scorch="제드 타임 - 방화범"
+ScorchDescription="제드 타임 동안 병과 무기로 가까이에서 실시간으로 공격하고 탄약이 떨어지지 않음"
+
+[KFPerk_Gunslinger]
+PerkName="건슬링거"
+EXPAction1="건슬링거 무기 데미지"
+EXPAction2="건슬링거 무기 헤드샷"
+
+SkillCatagories[0]="테크닉"
+SkillCatagories[1]="기술"
+SkillCatagories[2]="고급 기술"
+SkillCatagories[3]="치명타"
+SkillCatagories[4]="마스터 기술"
+
+Passives[0]=(Title="병과 무기 데미지",Description="병과 무기 데미지가 레벨 당 %x% 증가");
+Passives[1]=(Title="탄환 저항",Description="탄환에 대한 저항력이 5%에 더하여 레벨 당 %x%씩 높아짐");
+Passives[2]=(Title="이동 속도",Description="5 레벨 당 이동 속도 %x% 향상");
+Passives[3]=(Title="반동",Description="병과 무기 반동이 레벨 당 %x%씩 감소");
+Passives[4]=(Title="제드 타임 재장전",Description="제드 타임 동안 레벨 당 재장전 속도가 %x%씩 향상");
+
+ShootnMove="고정"
+ShootnMoveDescription="병과 무기의 가늠좌 이동 속도 페널티를 무시 및 무기 흔들림을 크게 감소"
+
+QuickSwitch="빨리 쏘기"
+QuickSwitchDescription="힙 사격의 반동 페널티를 무시하고 이동 속도를 5% 향상 및 병과 무기 전환 속도 50% 향상"
+
+RhythmMethod="쓸어 버리기"
+RhythmMethodDescription="병과 무기로 연속 헤드샷에 성공하면 최대 50%까지 데미지가 10%씩 증가"
+
+BoneBreaker="본 브레이커"
+BoneBreakerDescription="병과 무기의 데미지가 20% 증가 및 팔과 다리 데미지 30% 증가"
+
+SpeedReload="스피드로더"
+SpeedReloadDescription="병과 무기 이용 시 재장전 속도 향상"
+
+Penetration="관통 사격"
+PenetrationDescription="병과 무기로 사격 시 제드를 관통하여 다른 제드에 맞은 경우에도 데미지가 약화되지 않음"
+
+Skullcracker="스컬크래커"
+SkullcrackerDescription="병과 무기로 헤드샷을 쏠 경우 제드의 속도 30% 감소"
+
+KnockEmDown="녹다운"
+KnockEmDownDescription="뛰어오는 제드의 다리를 맞출 경우 녹다운 파워가 크게 증가 병과 무기로 제드의 가슴을 쏠 경우 스텀블 파워가 크게 증가"
+
+Fanfare="제드 타임 - 팬 파이어"
+FanfareDescription="제드 타임 동안 병과 무기를 3배 빠르게 발사하고 실시간으로 재장전"
+
+UberAmmo="제드 타임 - 총알 회오리"
+UberAmmoDescription="제드 타임 동안 병과 무기의 탄약이 떨어지지 않음"
+
+[KFPerk_Sharpshooter]
+PerkName="샤프슈터"
+
+EXPAction1="샤프슈터 무기 데미지"
+EXPAction2="샤프슈터 무기 헤드샷"
+
+SkillCatagories[0]="이동"
+SkillCatagories[1]="기본 기술"
+SkillCatagories[2]="기술"
+SkillCatagories[3]="장비"
+SkillCatagories[4]="마스터 기술"
+
+Passives[0]=(Title="헤드샷 데미지",Description="헤드샷 데미지가 레벨 당 %x% 증가");
+Passives[1]=(Title="반동",Description="반동이 레벨 당 %x% 감소");
+Passives[2]=(Title="무기 전환",Description="무기 전환 속도가 레벨 당 %x% 향상");
+
+StationaryAim="스나이퍼"
+StationaryAimDescription="정지 상태에서 병과 무기를 사용할 경우 데미지 25% 증가"
+
+Trigger="마크맨"
+TriggerDescription="병과 무기 사용 시 사격 속도 25% 향상 및 이동 속도 10% 향상"
+
+CrouchAim="안정"
+CrouchAimDescription="몸을 웅크리고 병과 무기를 이용할 경우 데미지 30% 증가, 이동 속도 50% 증가, 재장전 속도 20% 향상"
+
+Stun="탄도 쇼크"
+StunDescription="병과 무기 스턴 파워 100% 증가"
+
+RhythmMethod="쓸어 버리기"
+RhythmMethodDescription="병과 무기로 연속 헤드샷에 성공하면 최대 50%까지 데미지가 10%씩 증가  "
+
+TacticalReload="전술 재장전"
+TacticalReloadDescription="병과 무기 이용 시 재장전 속도 향상"
+
+Scoped="데드 아이"
+ScopedDescription="병과 무기 가늠좌 이용 시 반동 10% 감소 및 헤드샷 데미지 10% 증가"
+
+AmmoPouch="유비무환"
+AmmoPouchDescription="병과 무기 및 수류탄 탄약 25% 추가 운반"
+
+ZTKnockdown="제드 타임 - 암살자"
+ZTKnockdownDescription="병과 무기를 이용한 헤드샷 시 5% 확률로 제드 타임 개시  제드 타임 동안 병과 무기의 헤드샷 데미지 35% 증가"
+
+ZTStun="제드 타임 - 레인저"
+ZTStunDescription="병과 무기를 이용한 헤드샷 시 5% 확률로 제드 타임 개시  제드 타임 동안 병과 무기 헤드샷이 모든 제드를 스턴 상태로 만듦"
+
+[KFPerk_Support]
+PerkName="서포트"
+
+SkillCatagories[0]="탄약 관리"
+SkillCatagories[1]="훈련"
+SkillCatagories[2]="화력"
+SkillCatagories[3]="병참"
+SkillCatagories[4]="고급 훈련"
+
+Passives[0]=(Title="용접 숙련도",Description="레벨 당 용접 속도 %x% 향상");
+Passives[1]=(Title="샷건 데미지",Description="병과 무기 데미지가 레벨 당 x%x 증가");
+Passives[2]=(Title="샷건 관통",Description="병과 무기 관통 파워가 레벨 당 %x% 증가");
+Passives[3]=(Title="탄약",Description="탄약 15% 증가 후 레벨 당 %x% 증가");
+Passives[4]=(Title="힘",Description="무게 용량이 5 레벨마다 1씩 증가");
+Passives[5]=(Title="탄약 백팩 + 도어 수리",Description="라운드 당 한 번씩 플레이어가 백팩에서 탄약을 꺼낼 수 있음 - 부서진 도어 수리");
+
+EXPAction1="서포트 무기 데미지"
+EXPAction2="도어 용접"
+
+HighCapMags="고용량 탄창"
+HighCapMagsDescription="병과 무기 탄창 용량 50% 증가"
+
+TacticalReload="전술 재장전"
+TacticalReloadDescription="병과 무기 이용 시 재장전 속도 향상"
+
+Fortitude="불굴의 정신"
+FortitudeDescription="총 체력 50% 증가"
+
+Salvo="일제사격"
+SalvoDescription="병과 무기의 데미지 30% 증가"
+
+APShot="장갑 관통 사격"
+APShotDescription="병과 무기의 관통력 크게 향상"
+
+TightChoke="타이트 초크"
+TightChokeDescription="병과 무기의 산탄을 50% 감소"
+
+Resupply="재보급 팩"
+ResupplyDescription="웨이브 당 한 번 팀 동료와 접촉하면 동료의 탄약 30%, 장갑 20% 증가  병과 무기의 탄약을 20% 더 운반할 수 있습니다."
+
+ConcussionRounds="진동 탄환"
+ConcussionRoundsDescription="병과 무기 스텀블 파워 150% 증가"
+
+Perforate="제드 타임 - 관통"
+PerforateDescription="제드 타임 동안 병과 무기가 모든 목표물을 관통함"
+
+Barrage="제드 타임 - 일제 엄호사격"
+BarrageDescription="제드 타임 동안 병과 무기가 가까운 곳을 실시간으로 사격"
+
+[KFPerk_SWAT]
+PerkName="SWAT"
+EXPAction1="SWAT 무기 데미지 딜링"
+EXPAction2="SWAT 무기를 이용한 클롯 처치"
+
+SkillCatagories[0]="특성"
+SkillCatagories[1]="돌격 기술"
+SkillCatagories[2]="장비"
+SkillCatagories[3]="방어 기술"
+SkillCatagories[4]="특수 훈련"
+
+Passives[0]=(Title="병과 무기 데미지",Description="병과 무기 데미지가 레벨 당 %x% 증가합니다.");
+Passives[1]=(Title="탄환 저항",Description="탄환에 대한 저항력이 5%에 더하여 레벨 당 %x%씩 높아짐");
+Passives[2]=(Title="탄창 크기 증가",Description="탄창 크기가 레벨 당 %x% 증가");
+Passives[3]=(Title="무기 전환 속도",Description="무기 전환 속도가 레벨 당 %x% 향상");
+
+HeavyArmor="중장갑 훈련"
+HeavyArmorDescription="장갑을 착용한 경우, 음파 공격에 체력 데미지만 받으며 클롯이 플레이어를 붙잡을 수 없음 각 게임을 50% 장갑으로 시작"
+
+TacticalMovement="전술 이동"
+TacticalMovementDescription="병과 무기 이용 시 가늠좌를 사용하거나 웅크린 상태에서도 이동 페널티가 없음"
+
+Backup="근접전 훈련"
+BackupDescription="9mm 권총과 나이프 데미지 110% 향상 각 게임을 9mm 권총 두 자루로 시작"
+
+TacticalReload="전술 재장전"
+TacticalReloadDescription="병과 무기 이용 시 재장전 속도 향상"
+
+SpecialAmmunition="진압탄"
+SpecialAmmunitionDescription="모든 병과 무기의 스텀블 파워를 100% 향상"
+
+AmmoVest="방탄조끼"
+AmmoVestDescription="각 병과 무기 당 최고 30% 탄약 추가 운반"
+
+BodyArmor="돌격 장갑"
+BodyArmorDescription="최대 장갑 50% 향상 각 게임을 50% 장갑으로 시작하고 중장갑 훈련에서 얻은 장갑이 추가됨"
+
+Cripple="크리플"
+CrippleDescription="병과 무기로 여러 발을 명중시키면 제드의 속도를 최고 30% 떨어뜨림 다리를 맞추는 것이 가장 효과적입니다."
+
+SWATEnforcer="제드 타임 - 성문 파괴"
+SWATEnforcerDescription="제드 타임 동안 실시간으로 움직이고 제드를 향해 돌진할 때 큰 녹다운 파워를 발휘"
+
+RapidAssault="제드 타임 - 빠른 돌격"
+RapidAssaultDescription="제드 타임 동안 병과 무기를 이용하면 탄약을 무제한으로 쓸 수 있고 가까운 거리를 실시간으로 사격하며 스텀블 파워는 100% 향상"
+
+[KFPerk_Survivalist]
+PerkName="서바이벌리스트"
+EXPAction1="모든 무기를 이용한 무기 데미지 딜링"
+EXPAction2="모든 무기를 이용한 클롯 처치"
+
+SkillCatagories[0]="무기 다루기"
+SkillCatagories[1]="생존 기술"
+SkillCatagories[2]="장비"
+SkillCatagories[3]="파괴"
+SkillCatagories[4]="특수 훈련"
+
+Passives[0]=(Title="무기 데미지",Description="무기 데미지가 레벨 당 %x% 증가합니다.");
+Passives[1]=(Title="전체 데미지 저항",Description="모든 데미지에 대한 저항력이 레벨 당 %x%씩 높아짐");
+Passives[2]=(Title="몸통 중장갑",Description="장갑을 착용한 경우, 매 레벨 %x% (최대 25%) 체력 데미지를 입지 않음");
+Passives[3]=(Title="제드 타임 재장전",Description="제드 타임 동안 레벨 당 재장전 속도가 %x%씩 향상");
+
+
+HeavyWeaponsReload="중화기 훈련"
+HeavyWeaponsReloadDescription="데몰리셔니스트, 샤프슈터, 서포트 무기의 재장전 속도 향상"
+
+TacticalReload="전술 재장전"
+TacticalReloadDescription="코만도, 건슬링거, SWAT 무기의 재장전 속도 향상"
+
+FieldMedic="메딕 훈련"
+FieldMedicDescription="치료 능력 20% 향상 및 주사기와 치료 다트의 쿨다운 25% 감소"
+
+MeleeExpert="백병전 전문가"
+MeleeExpertDescription="백병전 공격 속도 15% 향상, 데미지 10% 증가, 백병전 무기 이용 시 이동 속도 25% 향상"
+
+AmmoVest="방탄조끼"
+AmmoVestDescription="모든 무기 및 탄약 15% 추가 운반 및 수류탄은 치료 수류탄으로 변환"
+
+BigPockets="무기 하니스"
+BigPocketsDescription="운반 용량 5 증가 및 수류탄은 화염병으로 변환"
+
+ZedShrapnel="제드 자연 폭발"
+ZedShrapnelDescription="플레이어가 처치한 제드가 20%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 쓰러뜨림"
+
+MakeThingsGoBoom="온 세상에 폭발을"
+MakeThingsGoBoomDescription="모든 폭발물의 영향 영역 25% 증가"
+
+Madman="제드 타임 - 미치광이"
+MadmanDescription="제드 타임 동안 모든 무기가 3배 빠르게 발사"
+
+IncapMaster="제드 타임 - 감금"
+IncapMasterDescription="제드 타임 동안 모든 무기의 무력화 파워가 200% 증가” "
+
+[Fonts]
+Bicubik="Bicubik"
+
+[KFObjective]
+ObjectiveDifficulties[0]="쉬움"
+ObjectiveDifficulties[1]="중간"
+ObjectiveDifficulties[2]="어려움"
+ObjectiveStartTitle="경로를 따라 시작 장소로 이동하십시오"
+ObjectiveWaitingString="더 많은 플레이어를 기다리십시오!"
+ObjectiveWonString="완료!"
+ObjectiveFailedString="실패!"
+ObjectiveEndedString="종료!"
+ObjectiveFailReasons[0]="제한 시간 소진!"
+ObjectiveFailReasons[1]="팀 패배"
+ObjectiveFailReasons[2]="체력이 낮은 플레이어 사망"
+ObjectiveFailReasons[3]="웨이브 종료"
+ObjectiveFailReasons[4]="목표 종료"
+ObjectiveFailReasons[5]="Dosh가 적은 플레이어가 남지 않았습니다"
+ObjectiveFailReasons[6]="플레이어가 충분하지 않습니다!"
+ObjectiveXPString="XP:"
+ObjectiveTimeLimitString="제한 시간:"
+ObjectiveTimeUnit="초"
+ObjectiveStatusString="목표 상태"
+
+[KFObj_Wave]
+ObjectiveAvailableString="이용 가능한 목표"
+
+[KFObj_Wave_Defend]
+ObjectiveTypeString="방어"
+ObjectiveTargetTitle="바이러스 업로드를 방어하십시오!"
+ObjectiveStatusTitle="링크 다운로드 상태"
+
+[KFObj_Coop_Healer]
+ObjectiveTypeString="힐러"
+ObjectiveTargetTitle="체력이 낮은 플레이어 치료"
+ObjectiveStatusTitle="플레이어 치료됨"
+ObjectiveTimeString="초 남음"
+
+[KFObj_Coop_PayDay]
+ObjectiveTypeString="월급날"
+ObjectiveTargetTitle="리스폰된 플레이어에게 Dosh 지급"
+ObjectiveStatusTitle="30% 캐시백 받기"
+ObjectiveTimeString="초 남음"
+
+[KFGameViewportClient]
+TripWireOfficialString="Tripwire 공식 맵"
+OfficialCommunityString="공식 커뮤니티 맵"
+CommunityCustomString="커뮤니티 커스텀 맵"
+RandomLoadingStrings[0]="Fleshpound는 폭발물에 취약하지만 총알에는 저항력이 있습니다."
+RandomLoadingStrings[1]="Scrake는 폭발물에 저항력이 있지만 총알에 취약합니다."
+RandomLoadingStrings[2]="플레이어는 한정된 무게의 물품만 소지할 수 있습니다. 약한 무기를 판매하여 더 좋은 무기를 넣을 수 있는 자리를 마련하십시오."
+RandomLoadingStrings[3]="환기구와 하수구를 잘 살펴보십시오. 제드는 어느 곳에서나 나타날 수 있습니다."
+RandomLoadingStrings[4]="맵 위에 흩어져 있는 장비와 탄약 상자를 잘 찾아보십시오. 궁지에 몰렸을 때 도움을 받을 수 있습니다."
+RandomLoadingStrings[5]="Bloat의 몸은 많은 타격을 견딜 수 있습니다. 머리를 노리십시오."
+RandomLoadingStrings[6]="회피 능력은 제드를 비틀거리게 하여 몇 번의 추가 타격을 가할 수 있습니다."
+RandomLoadingStrings[7]="Husk를 조심하십시오. Husk는 충분한 데미지를 받으면 플레이어의 팀에 자폭 공격을 시도할 수 있습니다."
+RandomLoadingStrings[8]="플레이어는 무기에 맞는 병과로 제드에 데미지를 가하면 XP를 받습니다."
+RandomLoadingStrings[9]="함께 뭉치십시오. 혼자 움직이면 곤란한 상황에 생존 확률이 낮아집니다."
+RandomLoadingStrings[10]="플레이어는 주사기를 이용하여 자신과 팀원을 치료할 수 있습니다."
+RandomLoadingStrings[11]="도어를 용접하면 제드를 멈출 수 있으나 결국 제드는 도어를 부숴버릴 것입니다."
+RandomLoadingStrings[12]="팀원이 사망하였을 때 팀원의 무기를 주워 상점에 가져가면 도움이 됩니다."
+RandomLoadingStrings[13]="Dosh가 더 필요합니까? 팀에 Dosh를 주면 팀이 그 은혜에 보답할 것입니다."
+RandomLoadingStrings[14]="목표물을 선택하십시오. 여러 유형의 제드를 상대할 때 여러 무기를 이용하는 것이 더 효과적입니다."
+RandomLoadingStrings[15]="목표물의 우선순위를 정하십시오. Fleshpound는 클롯보다 더 주의해야 합니다."
+RandomLoadingStrings[16]="모든 제드는 약점이 있습니다. 머리가 아니라면 몸에서 빛이 나는 부분을 찾아보십시오."
+RandomLoadingStrings[17]="꾸미기 아이템이나 무기 스킨을 사거나 팔고 싶으십니까?  시장을 확인해보십시오."
+RandomLoadingStrings[18]="Siren의 비명은 수류탄을 비롯한 폭발물을 중화시킵니다."
+RandomLoadingStrings[19]="Scrake와 Fleshpound는 데미지가 일정 수준이 되면 분노합니다. 이들을 피하십시오."
+RandomLoadingStrings[20]="사용하지 않는 무기 스킨과 꾸미기 아이템이 많이 있습니까?  인벤토리에서 새로 제작하십시오."
+RandomLoadingStrings[21]="플레이어의 외모와 장비를 신중하게 생각하십시오. 제드를 처치하는 동안 멋지게 보여야 하니까요."
+RandomLoadingStrings[22]="백병전 공격은 플레이어의 이동을 기준으로 방향이 정해집니다."
+RandomLoadingStrings[23]="도어를 용접하면 제드의 공격 방향을 제한할 수 있지만 플레이어의 탈출 경로 역시 제한됩니다."
+RandomLoadingStrings[24]="아무리 약한 제드라도 가까이 가지 마십시오. 플레이어를 붙잡고 더 큰 동료가 올 때까지 기다릴 수 있습니다."
+RandomLoadingStrings[25]="메딕의 XP와 Dosh가 더 필요하십니까? 팀을 치료하십시오 - 양쪽 모두 이익입니다!"
+RandomLoadingStrings[26]="무기는 아껴서 발사하십시오. 웨이브 도중에 탄약이 떨어지면 곤란해질 수 있습니다."
+RandomLoadingStrings[27]="5 레벨마다 새로운 병과 기술이 잠금 해제됩니다. 병과 메뉴에서 기술을 확인하십시오."
+RandomLoadingStrings[28]="M79와 RPG는 정해진 거리만큼 이동한 후에 폭발물이 충전됩니다."
+RandomLoadingStrings[29]="제드를 찾기 어렵다면 플래시를 이용하십시오."
+RandomLoadingStrings[30]="살아남기가 어려우신가요? 다른 병과를 이용해보십시오! 자신의 플레이 스타일에 더 잘 맞는 병과를 찾을 수 있습니다."
+RandomLoadingStrings[31]="언제나 탈출구를 확보하십시오. 막다른 곳에 몰리면 영원히 잠들 수밖에 없습니다."
+RandomLoadingStrings[32]="장갑은 당신의 친구입니다. 장갑은 아무리 많아도 넘치지 않습니다."
+RandomLoadingStrings[33]="제드가 가까이 오지 못하도록 하려면 불을 이용하는 것이 아주 좋습니다. 불만으로는 제드를 처치하는데 오래 걸리지만 가둬둘 수 있습니다."
+RandomLoadingStrings[34]="제드나 제드의 무기가 빨갛게 빛나면 백병전 공격의 회피 효과가 떨어집니다. 도망가세요!"
+RandomLoadingStrings[35]="제드에 불을 붙이면 공포에 빠뜨릴 수 있습니다."
+RandomLoadingStrings[36]="서브머신건은 목표물의 스텀블을 일으킬 확률이 높아 플레이어에게 접근하지 못하도록 합니다."
+RandomLoadingStrings[37]="레일건은 일렬로 서있는 여러 제드를 관통하여 쏠 수 있습니다."
+RandomLoadingStrings[38]="마이크로웨이브 건은 Fleshpound와 Siren처럼 금속을 가지고 다니는 제드에 더 많은 데미지를 가합니다."
+RandomLoadingStrings[39]="무기의 대체 사격 모드를 이용해보십시오. 모든 무기가 이 기능을 갖고 있는 것은 아니지만 궁지에 처했을 때 도움이 될 것입니다."
+RandomLoadingStrings[40]="적을 처치하는데 도움을 주면 XP와 Dosh를 받습니다. 그러니 같은 편의 킬 수만 높여줬다고 기분 나빠하지 마십시오."
+
+[WhatsNewMessages]
+Jaegorhorn="커뮤니티를 따라 예거호른을 잠금해제하십시오."
+HorzineSupplyCrateKey1="Horzine 보급상자 열쇠 | 시리즈 1 - $2.49"
+HorzineSupplyCrateKey2="Horzine 보급상자 열쇠 | 시리즈 2 - $2.49"
+HorzineSupplyCrateKey3="Horzine 보급상자 열쇠 | 시리즈 3 - $2.49"
+HorzineSupplyCrateKey4="Horzine 보급상자 열쇠 | 시리즈 4 - $2.49"
+HorzineSupplyCrateKey5="Horzine 보급상자 열쇠 | 시리즈 5 - $2.49"
+HorzineSupplyCrateKey6="Horzine 보급상자 열쇠 | 시리즈 6 - $2.49"
+HorzineSupplyCrateKey7="Horzine 보급상자 열쇠 | 시리즈 7 - $2.49"
+HorzineSupplyCrateKey8="Horzine 보급상자 열쇠 | 시리즈 8 - $2.49"
+HorzineSupplyCrateKey9="Horzine 보급상자 열쇠 | 시리즈 9 - $2.49"
+USBCyberboneKey="사이버본 USB 키 - $2.49"
+USBDragonfireKey="드래곤파이어 USB 키 - $2.49"
+USBEmergencyIssueKey="이머전시 이슈 USB 키 - $2.49"
+USBHorzineFirstEncounterKey="Horzine 퍼스트 엔카운터 USB 키 - $2.49"
+USBHorzineIssueKey="Horzine 이슈 USB 키 - $2.49"
+USBMedicKey="메딕 USB 키 - $2.49"
+USBOlExhibitKey="올 엑지빗 USB 키 - $2.49"
+USBPredatorKey="프레데터 USB 키 - $2.49"
+USBStoriesofWarKey="스토리즈 오브 워 USB 키 - $2.49"
+USBStreetPunksKey="스트릿 펑크 USB 키 - $2.49"
+USBSWATKey="SWAT USB 키 - $2.49"
+USBTacticalHorzineKey="전술 Horzine USB Key - $2.49"
+USBVictorianKey="빅토리아 USB 키 - $2.49"
+USBZedKillerKey="제드 킬러 USB 키 - $2.49"
+BullseyeUpdate="최신 소식 콘텐츠 - 불스아이 업데이트"
+LatestUpdate="최신 콘텐츠 업데이트"
+Forums="저희 커뮤니티 포럼을 방문해주세요."
+Survey="게임플레이 조사에 참여해주세요."
+CommunityTracker="커뮤니티 이슈 요청 추적"
+FeaturedCrateKey="특별 Horzine 보급상자 열쇠 - $2.49"
+FeaturedUsbKey="특별 무기 스킨 USB 키 - $2.49"
+FeaturedRareItem="특별 희귀 아이템 - $3.99"
+FeaturedExceptionalItem="특별 특수 아이템 - $7.49"
+FeaturedMasterCraftedItem="특별 마스터 크래프트 아이템 - $9.99"
+FeaturedItemBundle="특별 아이템 번들"
+Merch="공식 Tripwire 상품을 받아보십시오!"
+PS4AnnounceMent="PS4 뉴스를 여기 삽입하십시오"
+PS4Key="Horzine 상자 열쇠 - 어떤 상자나 열어보세요!"
+PS4CosmeticCrate1="Horzine 꾸미기 보급상자 | 시리즈 1"
+PS4CosmeticCrate2="Horzine 꾸미기 보급상자 | 시리즈 2"
+PS4WeaponSkinCrate1="Horzine 보급 무기 스킨 상자 | 시리즈 1"
+PS4WeaponSkinCrate2="Horzine 보급 무기 스킨 상자 | 시리즈 2"
+Artbook="Killing Floor 2 디지털 아트북"
+Uncovered="Killing Floor 보기: 라이브 액션 영상 공개"
+
+[Zeds]
+KFPawn_ZedBloat="Bloat"
+KFPawn_ZedClot="클롯"
+KFPawn_ZedCrawler="Crawler"
+KFPawn_ZedFleshPound="Fleshpound"
+KFPawn_ZedGorefast="Gorefast"
+KFPawn_ZedHans="Dr. Hans Volter"
+KFPawn_ZedHusk="Husk"
+KFPawn_ZedStalker="Stalker"
+KFPawn_ZedClot_Cyst="Cyst"
+KFPawn_ZedClot_Slasher="Slasher"
+KFPawn_ZedClot_Alpha="Alpha Clot"
+KFPawn_ZedScrake="Scrake"
+KFPawn_ZedSiren="Siren"
+KFPawn_ZedPatriarch="Patriarch"
+;Human zeds
+KFPawn_ZedBloat_Versus="Bloat - 플레이어"
+KFPawn_ZedClot_Versus="클롯 - 플레이어"
+KFPawn_ZedCrawler_Versus="Crawler - 플레이어"
+KFPawn_ZedFleshPound_Versus="Fleshpound - 플레이어"
+KFPawn_ZedGorefast_Versus="Gorefast - 플레이어"
+KFPawn_ZedHans_Versus="Dr. Hans Volter - 플레이어"
+KFPawn_ZedHusk_Versus="Husk - 플레이어"
+KFPawn_ZedStalker_Versus="Stalker - 플레이어"
+KFPawn_ZedClot_Cyst_Versus="Cyst - 플레이어"
+KFPawn_ZedClot_Slasher_Versus="Slasher - 플레이어"
+KFPawn_ZedClot_Alpha_Versus="Alpha Clot - 플레이어"
+KFPawn_ZedScrake_Versus="Scrake - 플레이어"
+KFPawn_ZedSiren_Versus="Siren - 플레이어"
+KFPawn_ZedPatriarch_Versus="Patriarch - 플레이어"
+
+[ZedMoves]
+Melee="백병전"
+Rally="랠리"
+Grab="잡기"
+Light="가벼움"
+Heavy="무거움"
+Spin="회전"
+Evade="회피"
+Jump="점프"
+Puke="구토"
+Mine="지뢰"
+Bite="물기"
+Scream="비명"
+Vortex="소용돌이"
+Shoot="사격"
+Flame="화염"
+Suicide="자살"
+Rage="분노"
+Minigun="미니건"
+Rocket="로켓"
+Mortar="박격포"
+Heal="치료"
+Block="차단"
+
+[Keybinds]
+CtrlCombo="Ctrl-"
+ShiftCombo="Shift-"
+AltCombo="Alt-"
+LeftMouseButton="LMB"
+MiddleMouseButton="MMB"
+RightMouseBUtton="RMB"
+ThumbMouseButton="마우스 4"
+ThumbMouseButton2="마우스 5"
+MouseScrollDown="마우스 휠 내림"
+MouseScrollUp="마우스 휠 올림"
+CapsLock="CapsLock"
+Tab="탭"
+BackSpace="백스페이스"
+SpaceBar="스페이스"
+LeftShift="L Shift"
+RightSift="R Shift"
+LeftCtrl="L Ctrl"
+RightCtrl="R Ctrl"
+LeftAlt="L Alt"
+RightAlt="R Alt"
+BackSlash="\"
+Slash="/"
+RightBracket="]"
+LeftBracket="["
+Quote="'"
+SemiColon=";"
+Period="."
+Comma=","
+Subtract="-"
+Add="+"
+Equals="="
+Multiply="*"
+Divide="숫자 패드 /"
+Underscore="-"
+NumPadZero="0"
+NumPadOne="1"
+NumPadTwo="2"
+NumPadThree="3"
+NumPadFour="4"
+NumPadFive="5"
+NumPadSix="6"
+NumPadSeven="7"
+NumPadEight="8"
+NumPadNine="9"
+Decimal="숫자 패드 ."
+NumLock="Num Lock"
+PageUp="Page Up"
+PageDown="Page Down"
+Home="Home"
+End="End"
+Insert="Insert"
+Delete="Delete"
+Up="위"
+Down="아래"
+Left="왼쪽"
+Right="오른쪽"
+ScrollLock="Scroll Lock"
+Pause="일시정지"
+Enter="엔터"
+one="1"
+two="2"
+three="3"
+four="4"
+five="5"
+six="6"
+seven="7"
+eight="8"
+nine="9"
+zero="0"
+
+[SharedUnlocks]
+KFWeap_Zweihander="기사 프로모션"
+
+
+Source0="기사 프로모션"
+;============================================
+; Map Localization
+;============================================
+[KF-BioticsLab KFMapSummary]
+DisplayName_CHN="生命学实验室"
+DisplayName_CHT="Biotics 實驗室"
+DisplayName_DEU="Biotika-Labor"
+DisplayName_ESL="Laboratorio biótico"
+DisplayName_ESN="Laboratorio biótico"
+DisplayName_FRA="Labo biotique"
+DisplayName_FRC="Labo biotique"
+DisplayName_INT="Biotics Lab"
+DisplayName_ITA="Laboratorio Biotics"
+DisplayName_JPN="Biotics Lab"
+DisplayName_KOR="바이오틱스 연구소"
+DisplayName_POL="Laboratorium biotyczne"
+DisplayName_PTB="Laboratório de Biótica"
+DisplayName_RUS="Биотич. лаборатория"
+
+[KF-Outpost KFMapSummary]
+DisplayName_CHN="前哨"
+DisplayName_CHT="前哨"
+DisplayName_DEU="Außenposten"
+DisplayName_ESL="Avanzada"
+DisplayName_ESN="Avanzada"
+DisplayName_FRA="Avant-poste"
+DisplayName_FRC="Avant-poste"
+DisplayName_INT="Outpost"
+DisplayName_ITA="Avamposto"
+DisplayName_JPN="Outpost"
+DisplayName_KOR="전초기지"
+DisplayName_POL="Stacja"
+DisplayName_PTB="Posto Avançado"
+DisplayName_RUS="Аванпост"
+
+[KF-BurningParis KFMapSummary]
+DisplayName_CHN="燃烧的巴黎"
+DisplayName_CHT="燃燒的巴黎"
+DisplayName_DEU="Loderndes Paris"
+DisplayName_ESL="París arde"
+DisplayName_ESN="París arde"
+DisplayName_FRA="Paris en cendres"
+DisplayName_FRC="Paris en cendres"
+DisplayName_INT="Burning Paris"
+DisplayName_ITA="Parigi in fiamme"
+DisplayName_JPN="Burning Paris"
+DisplayName_KOR="불타는 파리"
+DisplayName_POL="Płonący Paryż"
+DisplayName_PTB="Paris em Chamas"
+DisplayName_RUS="Париж в огне"
+
+[KF-VolterManor KFMapSummary]
+DisplayName_CHN="沃尔特庄园"
+DisplayName_CHT="華特大宅"
+DisplayName_DEU="Volter-Anwesen"
+DisplayName_ESL="Mansión Volter"
+DisplayName_ESN="Mansión Volter"
+DisplayName_FRA="Manoir Volter"
+DisplayName_FRC="Manoir Volter"
+DisplayName_INT="Volter Manor"
+DisplayName_ITA="Residenza Volter"
+DisplayName_JPN="Volter Manor"
+DisplayName_KOR="볼터의 영지"
+DisplayName_POL="Dwór Voltera"
+DisplayName_PTB="Mansão Volter"
+DisplayName_RUS="Поместье Вольтера"
+
+[KF-Catacombs KFMapSummary]
+DisplayName_CHN="地下墓穴"
+DisplayName_CHT="萬人塚"
+DisplayName_DEU="Katakomben"
+DisplayName_ESL="Catacumbas"
+DisplayName_ESN="Catacumbas"
+DisplayName_FRA="Catacombes"
+DisplayName_FRC="Catacombes"
+DisplayName_INT="Catacombs"
+DisplayName_ITA="Catacombe"
+DisplayName_JPN="Catacombs"
+DisplayName_KOR="카타콤"
+DisplayName_POL="Katakumby"
+DisplayName_PTB="Catacumbas"
+DisplayName_RUS="Катакомбы"
+
+[KF-EvacuationPoint KFMapSummary]
+DisplayName_CHN="撤退点"
+DisplayName_CHT="避難場所"
+DisplayName_DEU="Evakuierungsstelle"
+DisplayName_ESL="Punto de evacuación"
+DisplayName_ESN="Punto de evacuación"
+DisplayName_FRA="Point d'évacuation"
+DisplayName_FRC="Point d'évacuation"
+DisplayName_INT="Evacuation Point"
+DisplayName_ITA="Punto di evacuazione"
+DisplayName_JPN="Evacuation Point"
+DisplayName_KOR="철수지점"
+DisplayName_POL="Punkt ewakuacyjny"
+DisplayName_PTB="Zona de Evacuação"
+DisplayName_RUS="Точка эвакуации"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName_CHN="农舍"
+DisplayName_CHT="農莊"
+DisplayName_DEU="Bauernhof"
+DisplayName_ESL="Casa rural"
+DisplayName_ESN="Casa rural"
+DisplayName_FRA="Ferme"
+DisplayName_FRC="Ferme"
+DisplayName_INT="Farmhouse"
+DisplayName_ITA="Fattoria"
+DisplayName_JPN="Farmhouse"
+DisplayName_KOR="농장가옥"
+DisplayName_POL="Farma"
+DisplayName_PTB="Casa da Fazenda"
+DisplayName_RUS="Дом на ферме"
+
+[KF-BlackForest KFMapSummary]
+DisplayName_CHN="黑森林"
+DisplayName_CHT="黑森林"
+DisplayName_DEU="Schwarzwald"
+DisplayName_ESL="Selva negra"
+DisplayName_ESN="Selva negra"
+DisplayName_FRA="Forêt-Noire"
+DisplayName_FRC="Forêt-Noire"
+DisplayName_INT="Black Forest"
+DisplayName_ITA="Foresta nera"
+DisplayName_JPN="Black Forest"
+DisplayName_KOR="검은 숲"
+DisplayName_POL="Czarny las"
+DisplayName_PTB="Floresta Negra"
+DisplayName_RUS="Черный лес"
+
+[KF-Prison KFMapSummary]
+DisplayName_CHN="监狱"
+DisplayName_CHT="監獄"
+DisplayName_DEU="Gefängnis"
+DisplayName_ESL="Cárcel"
+DisplayName_ESN="Cárcel"
+DisplayName_FRA="Prison"
+DisplayName_FRC="Prison"
+DisplayName_INT="Prison"
+DisplayName_ITA="Prigione"
+DisplayName_JPN="Prison"
+DisplayName_KOR="감옥"
+DisplayName_POL="Więzienie"
+DisplayName_PTB="Prisão"
+DisplayName_RUS="Тюрьма"
+
+[KF-ContainmentStation KFMapSummary]
+DisplayName_CHN="隔离站"
+DisplayName_CHT="控制站"
+DisplayName_DEU="Eindämmungszentrum"
+DisplayName_ESL="Puesto de contención"
+DisplayName_ESN="Puesto de contención"
+DisplayName_FRA="Poste de confinement"
+DisplayName_FRC="Poste de confinement"
+DisplayName_INT="Containment Station"
+DisplayName_ITA="Stazione contenimento"
+DisplayName_JPN="Containment Station"
+DisplayName_KOR="폐쇄 스테이션"
+DisplayName_POL="Ośrodek izolacyjny"
+DisplayName_PTB="Zona de Contenção"
+DisplayName_RUS="Станция локализации"
+
+[KF-HostileGrounds KFMapSummary]
+DisplayName_CHN="敌对区域"
+DisplayName_CHT="敵營"
+DisplayName_DEU="Feindeszone"
+DisplayName_ESL="Tierra hostil"
+DisplayName_ESN="Tierra hostil"
+DisplayName_FRA="Terrains hostiles"
+DisplayName_FRC="Terrains hostiles"
+DisplayName_INT="Hostile Grounds"
+DisplayName_ITA="Terreno ostile"
+DisplayName_JPN="Hostile Grounds"
+DisplayName_KOR="적진"
+DisplayName_POL="Wrogie terytorium"
+DisplayName_PTB="Terrenos Hostis"
+DisplayName_RUS="Враждебные земли"
+
+[KF-InfernalRealm KFMapSummary]
+DisplayName_CHN="地狱领域"
+DisplayName_CHT="地獄"
+DisplayName_DEU="Höllenebene"
+DisplayName_ESL="Reino infernal"
+DisplayName_ESN="Reino infernal"
+DisplayName_FRA="Royaume des enfers"
+DisplayName_FRC="Royaume des enfers"
+DisplayName_INT="Infernal Realm"
+DisplayName_ITA="Regno infernale"
+DisplayName_JPN="Infernal Realm"
+DisplayName_KOR="지옥의 왕국"
+DisplayName_POL="Piekielna domena"
+DisplayName_PTB="Reino Infernal"
+DisplayName_RUS="Царство ада"
+
+[KF-BioticsLab KFMapSummary]
+DisplayName="바이오틱스 연구소"
+
+[KF-Outpost KFMapSummary]
+DisplayName="전초기지"
+
+[KF-BurningParis KFMapSummary]
+DisplayName="불타는 파리"
+
+[Survival KFGameInfoSummary]
+GameName="서바이벌"
+
+[KF-VolterManor KFMapSummary]
+DisplayName="볼터의 영지"
+
+[KF-Catacombs KFMapSummary]
+DisplayName="카타콤"
+
+[KF-EvacuationPoint KFMapSummary]
+DisplayName="철수지점"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName="농장가옥"
+
+[KF-BlackForest KFMapSummary]
+DisplayName="검은 숲"
+
+[KF-Prison KFMapSummary]
+DisplayName="감옥"
+
+[KF-ContainmentStation KFMapSummary]
+DisplayName="폐쇄 스테이션"
+
+[KF-HostileGrounds KFMapSummary]
+DisplayName="적진"
+
+[KF-InfernalRealm KFMapSummary]
+DisplayName="지옥의 왕국"
+
+
+[KFMapInfo]
+; defaults
+FoundCollectibleString="%x%이(가) 수집품을 찾았습니다. %y%이(가) 찾으러 떠났습니다..."
+FoundAllCollectiblesString="모든 수집품을 찾았습니다!"

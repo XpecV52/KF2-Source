@@ -5,6 +5,7 @@ package tripwire.containers
     import flash.external.ExternalInterface;
     import scaleform.clik.constants.InputValue;
     import scaleform.clik.constants.NavigationCode;
+    import scaleform.clik.controls.Button;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
@@ -101,6 +102,10 @@ package tripwire.containers
         
         public function setTabIndexes() : *
         {
+            if(currentElement == this)
+            {
+                currentElement = null;
+            }
             if(this.matchMakingButton.enabled)
             {
                 this.matchMakingButton.tabIndex = 1;
@@ -113,9 +118,18 @@ package tripwire.containers
             {
                 this.matchMakingButton.tabIndex = -1;
                 this.serverBrowserButton.tabIndex = -1;
-                this.soloOfflineButton.tabIndex = 1;
-                this.tutorialButton.tabIndex = 2;
-                this.whatsNewButton.tabIndex = 3;
+                if(this.soloOfflineButton.enabled)
+                {
+                    this.soloOfflineButton.tabIndex = 1;
+                    this.tutorialButton.tabIndex = 2;
+                    this.whatsNewButton.tabIndex = 3;
+                }
+                else
+                {
+                    this.soloOfflineButton.tabIndex = -1;
+                    this.tutorialButton.tabIndex = 1;
+                    this.whatsNewButton.tabIndex = 2;
+                }
             }
             if(currentElement == null)
             {
@@ -123,12 +137,25 @@ package tripwire.containers
             }
             if(!currentElement.enabled)
             {
-                defaultFirstElement = currentElement = !!this.matchMakingButton.enabled ? this.matchMakingButton : this.soloOfflineButton;
+                defaultFirstElement = currentElement = this.GetFirstEnabledButton();
             }
             if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen && bSelected)
             {
                 FocusHandler.getInstance().setFocus(currentElement);
             }
+        }
+        
+        public function GetFirstEnabledButton() : Button
+        {
+            if(this.matchMakingButton.enabled)
+            {
+                return this.matchMakingButton;
+            }
+            if(this.soloOfflineButton.enabled)
+            {
+                return this.soloOfflineButton;
+            }
+            return this.tutorialButton;
         }
         
         protected function handleButtonEvent(param1:ButtonEvent) : void

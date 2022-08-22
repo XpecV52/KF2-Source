@@ -80,8 +80,6 @@ function UpdatePlayerData()
                 {
                     AvatarIconPath = ZedPlayerInfoList[SearchIndex].AvatarPath;   
                 }
-
-                TempData.SetString("avatar", AvatarIconPath);
             }
             else
             {    
@@ -96,9 +94,9 @@ function UpdatePlayerData()
                 {
                     AvatarIconPath = ZedPlayerInfoList[SearchIndex].AvatarPath;      
                 }
+            }	
 
-                TempData.SetString("playerIcon",  AvatarIconPath);
-            }		
+            TempData.SetString("playerIcon",  AvatarIconPath);	
 
             if(KFPRI.CharPortrait != none)
             {
@@ -111,7 +109,7 @@ function UpdatePlayerData()
     	}
         
     }
-
+    
     SetObject("data", DataProvider);
 }
 

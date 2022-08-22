@@ -25,7 +25,6 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
-    LocalizationKey=KFPawn_ZedClot_Alpha
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -35,7 +34,7 @@ defaultproperties
     HitZones=/* Array type was not detected. */
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedClot_Alpha_Versus.Afflictions'
     IncapSettings=/* Array type was not detected. */
-    SprintSpeed=550
+    SprintSpeed=575
     SprintStrafeSpeed=325
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -53,8 +52,8 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedClot_Alpha_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.DialogAkSoundComponent'
-    GroundSpeed=300
-    Health=200
+    GroundSpeed=325
+    Health=350
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

@@ -16,6 +16,10 @@ package tripwire.containers.Perks
             super();
         }
         
+        override public function set containerDisplayPrompts(param1:int) : void
+        {
+        }
+        
         override public function openContainer(param1:Boolean = true) : void
         {
             if(!_bOpen)

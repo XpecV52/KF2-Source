@@ -117,6 +117,5 @@ defaultproperties
 	bHasFlashlight=false
 	bHasLaserSight=true
 
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
 }
-
-

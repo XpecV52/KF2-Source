@@ -2,6 +2,7 @@ package tripwire.containers
 {
     import flash.display.MovieClip;
     import flash.events.Event;
+    import flash.events.FocusEvent;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
     import scaleform.clik.data.DataProvider;
@@ -89,14 +90,14 @@ package tripwire.containers
                 }
                 else if(!MenuManager.manager.bPartyWidgetFocused && bManagerUsingGamepad)
                 {
-                    FocusHandler.getInstance().setFocus(null);
-                    this.deselectContainer();
+                    FocusHandler.getInstance().setFocus(this.gameModeContainer);
+                    this.softDeselectContainer();
                 }
             }
             else if(bManagerUsingGamepad)
             {
-                FocusHandler.getInstance().setFocus(null);
-                this.deselectContainer();
+                FocusHandler.getInstance().setFocus(this.gameModeContainer);
+                this.softDeselectContainer();
             }
         }
         
@@ -284,6 +285,26 @@ package tripwire.containers
         override public function deselectContainer() : void
         {
             super.deselectContainer();
+            if(sectionHeader != null && bOpen)
+            {
+                sectionHeader.controllerIconVisible = !bSelected && (!!bManagerConsoleBuild ? Boolean(this.serverWelcomeScreen.visible) : true);
+            }
+        }
+        
+        public function softDeselectContainer() : void
+        {
+            tabEnabled = false;
+            tabChildren = false;
+            bSelected = false;
+            removeEventListener(FocusEvent.FOCUS_IN,onFocusIn);
+            if(currentElement)
+            {
+                currentElement.focused = 0;
+            }
+            if(sectionHeader != null && bOpen)
+            {
+                sectionHeader.controllerIconVisible = !bSelected;
+            }
             if(sectionHeader != null && bOpen)
             {
                 sectionHeader.controllerIconVisible = !bSelected && (!!bManagerConsoleBuild ? Boolean(this.serverWelcomeScreen.visible) : true);

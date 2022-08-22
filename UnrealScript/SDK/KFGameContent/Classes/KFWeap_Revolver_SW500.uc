@@ -195,5 +195,6 @@ defaultproperties
 	End Object
 	Components.Add(BulletMeshComp4)
 	BulletMeshComponents.Add(BulletMeshComp4)
-}
 
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
+}

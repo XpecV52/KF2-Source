@@ -28,6 +28,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_ClotCyst'
     KnockedDownBySonicWaveOdds=0.35
     PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.UnDevClot_AnimGroup'
+    LocalizationKey=KFPawn_ZedClot_Cyst
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

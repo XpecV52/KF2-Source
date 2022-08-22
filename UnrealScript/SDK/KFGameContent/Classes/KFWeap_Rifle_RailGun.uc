@@ -1042,6 +1042,6 @@ defaultproperties
 	LockAcquireTime_Versus=1.1
 	LockTolerance=0.2
 	TargetLocationReplicationInterval=0.016
+
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 }
-
-

@@ -127,7 +127,7 @@ function SaveChanges()
 	KFPC = KFPlayerController(GetPC());
 	KFPC.SaveConfig();
 
-	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.WriteProfileSettings(GetLP().ControllerId, Manager.CachedProfile );
+	Manager.CachedProfile.Save(LocalPlayer(KFPC.Player).ControllerId);
 }
 //@HSL_MOD_END
 
@@ -272,8 +272,6 @@ function UpdateCharacterList()
 
 function UpdateGear()
 {
-	local KFProfileSettings KFPS;
-
 	CurrentCharInfo = MyKFPRI.CharacterArchetypes[MyKFPRI.RepCustomizationInfo.CharacterIndex];
 	CharInfoPath = String(CurrentCharInfo.Name);
 	// Set the list of usable bodies for this character
@@ -282,11 +280,6 @@ function UpdateGear()
 	UpdateMeshList(HeadMeshKey, HeadSkinKey, CurrentCharInfo.HeadVariants, "headsArray");
 	// Set the list of usable attachments for this character
 	UpdateAttachmentsList(CurrentCharInfo.CosmeticVariants);
-	KFPS = KFProfileSettings(class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId));
-	if(KFPS != none)
-	{
-		KFPS.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
-	}
 
 	SetCurrentCharacterButtons();
 }
@@ -464,7 +457,6 @@ function SkinVariant UpdateOutfitVariants(string OutfitKey, string KeyName, out 
 function SetCurrentCharacterButtons()
 {
 	local GFxObject DataObject;
-	local KFProfileSettings KFPS;
 
 	DataObject = CreateObject("Object");
 
@@ -480,14 +472,6 @@ function SetCurrentCharacterButtons()
 	SetGearButtons(MyKFPRI.RepCustomizationInfo.BodyMeshIndex, MyKFPRI.RepCustomizationInfo.BodySkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
 	//set attachments
 	SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
-//@HSL_MOD_BEGIN - amiller 5/11/2016 - Adding support to save extra data into profile settings
-	KFPS = KFProfileSettings(class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId));
-	if(KFPS != none)
-	{
-		//`log(`location@"Setting new gear customization now!!");
-		KFPS.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
-	}
-//@HSL_MOD_END
 }
 
 /** Update the labels for our gear buttons */
@@ -526,7 +510,6 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
 	local string FinishedString;
 	local GFxObject DataObject;
 	local byte i, AttachmentIndex;
-	local KFProfileSettings KFPS;
 	DataObject = CreateObject("Object");
 
 	for(i = 0; i < `MAX_COSMETIC_ATTACHMENTS; i++)
@@ -545,14 +528,6 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
 	DataObject.SetString( sectionFunctionName, FinishedString );
 
 	SetObject( sectionFunctionName, DataObject);
-//@HSL_MOD_BEGIN - amiller 5/11/2016 - Adding support to save extra data into profile settings
-
-	KFPS = KFProfileSettings(class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId));
-	if(KFPS != none)
-	{
-		KFPS.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
-	}
-	//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
 }
 
 event OnClose()
@@ -678,7 +653,6 @@ private function Callback_Head( byte MeshIndex, byte SkinIndex )
 	}
 	
 	SetGearButtons(MeshIndex, SkinIndex, HeadMeshKey, HeadSkinKey, HeadFunctionKey);
-	Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 
 private function Callback_Body( byte MeshIndex, byte SkinIndex )
@@ -702,7 +676,6 @@ private function Callback_Body( byte MeshIndex, byte SkinIndex )
 	}
 
 	SetGearButtons(MeshIndex, SkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
-	Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 
 private function Callback_Attachment( byte MeshIndex, byte SkinIndex )
@@ -725,7 +698,6 @@ private function Callback_Attachment( byte MeshIndex, byte SkinIndex )
 	}
 
 	SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
-	Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 
 function RelayFromCheatManager(Pawn P, ECustomizationOption CustomizationOption, byte MeshIndex, byte SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots = false)

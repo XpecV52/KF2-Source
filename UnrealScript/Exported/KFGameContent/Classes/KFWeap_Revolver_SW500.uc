@@ -86,6 +86,7 @@ defaultproperties
    SpareAmmoCapacity(0)=100
    InitialSpareMags(0)=5
    AmmoPickupScale(0)=2.000000
+   WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
    IdleFidgetAnims(3)="Guncheck_v4"
    IdleFidgetAnims(4)="Guncheck_v5"
    FireSightedAnims(1)="Shoot_Iron2"

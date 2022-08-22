@@ -27,6 +27,8 @@ package tripwire.containers.trader
         public static const OPEN_INDEX = 1;
          
         
+        public var oncePerWaveTextField:TextField;
+        
         public var doshTextField:TextField;
         
         public var perkNameTextField:TextField;
@@ -90,6 +92,7 @@ package tripwire.containers.trader
             this.perkListContainer.CancelButton.addEventListener(ButtonEvent.CLICK,this.togglePerkList,false,0,true);
             this.perkListContainer.perkList.addEventListener(ListEvent.ITEM_CLICK,this.perkChanged,false,0,true);
             this.perkListContainer.visible = false;
+            this.oncePerWaveTextField.visible = false;
             this.setTabIndex();
             defaultFirstElement = this.perkListContainer.perkList;
         }
@@ -108,6 +111,7 @@ package tripwire.containers.trader
                 this.playerHeader.text = !!param1.PlayerHeader ? param1.PlayerHeader : "";
                 this.perkListContainer.CancelButton.label = !!param1.Cancel ? param1.Cancel : "";
                 this.perkListContainer.selectPerkTextField.text = !!param1.SelectPerk ? param1.SelectPerk : "";
+                this.oncePerWaveTextField.text = !!param1.oncePerWave ? param1.oncePerWave : "";
             }
         }
         
@@ -223,7 +227,7 @@ package tripwire.containers.trader
                 switch(_loc2_.navEquivalent)
                 {
                     case NavigationCode.GAMEPAD_B:
-                        if(_loc2_.code == 97 && this.perkListContainer.bOpen)
+                        if(_loc2_.code == 97 && this.perkListContainer.bOpen && !bManagerPopUpOpen)
                         {
                             this.togglePerkList();
                         }

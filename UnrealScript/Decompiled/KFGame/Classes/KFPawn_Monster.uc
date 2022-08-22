@@ -196,6 +196,7 @@ var transient int OldHealth;
 var KFAnim_RandomScripted WalkBlendList;
 var protected transient sBlockInfo DifficultyBlockSettings;
 var protected const float MinBlockFOV;
+var protected const float BlockSprintSpeedModifier;
 var transient float LastBlockTime;
 var float KnockedDownBySonicWaveOdds;
 var float LastSpottedStatusUpdate;
@@ -218,8 +219,8 @@ var float LastBumpTime;
 var float BumpFrequency;
 var class<KFDamageType> BumpDamageType;
 var class<KFDamageType> JumpBumpDamageType;
-var protected const float FootstepCameraShakeInnerRadius;
-var protected const float FootstepCameraShakeOuterRadius;
+var protected float FootstepCameraShakeInnerRadius;
+var protected float FootstepCameraShakeOuterRadius;
 var CameraShake FootstepCameraShake;
 var float DesiredAdjustedGroundSpeed;
 var float DesiredAdjustedSprintSpeed;
@@ -227,7 +228,6 @@ var float SpeedAdjustTransitionRate;
 var transient array<AttachedGoreChunkInfo> AttachedGoreChunks;
 var transient int NumHeadChunksRemoved;
 var transient array<name> BrokenHeadBones;
-var protected const float NapalmCheckCollisionScale;
 var transient int DeadHorseHitStreakAmt;
 var transient float LastDeadHorseHitTime;
 var float DefaultCollisionRadius;
@@ -454,6 +454,21 @@ function ApplySpecialZoneHealthMod(float HealthMod)
     HitZones[0].GoreHealth = int(float(default.HitZones[0].GoreHealth) * HealthMod);
 }
 
+function bool CanTakeOver()
+{
+    local KFVersusNoTakeoverVolume KFNTV;
+
+    if(((bVersusZed || IsDoingSpecialMove()) || IsHeadless()) || !IsAliveAndWell())
+    {
+        return false;
+    }
+    foreach TouchingActors(Class'KFVersusNoTakeoverVolume', KFNTV)
+    {        
+        return false;        
+    }    
+    return true;
+}
+
 // Export UKFPawn_Monster::execGetCharacterMonsterInfo(FFrame&, void* const)
 native function KFCharacterInfo_Monster GetCharacterMonsterInfo();
 
@@ -462,18 +477,34 @@ simulated event bool UsePlayerControlledZedSkin()
     return bVersusZed;
 }
 
+function float GetBlockingSprintSpeedModifier()
+{
+    return BlockSprintSpeedModifier;
+}
+
 function AdjustMovementSpeed(float SpeedAdjust)
 {
     DesiredAdjustedGroundSpeed = (default.GroundSpeed * SpeedAdjust) * InitialGroundSpeedModifier;
-    DesiredAdjustedSprintSpeed = (default.SprintSpeed * SpeedAdjust) * InitialGroundSpeedModifier;
+    if(IsDoingSpecialMove())
+    {
+        DesiredAdjustedSprintSpeed = FMax(((default.SprintSpeed * SpeedAdjust) * InitialGroundSpeedModifier) * SpecialMoves[SpecialMove].GetSprintSpeedModifier(), DesiredAdjustedGroundSpeed);        
+    }
+    else
+    {
+        DesiredAdjustedSprintSpeed = FMax((default.SprintSpeed * SpeedAdjust) * InitialGroundSpeedModifier, DesiredAdjustedGroundSpeed);
+    }
     NormalGroundSpeed = DesiredAdjustedGroundSpeed;
     NormalSprintSpeed = DesiredAdjustedSprintSpeed;
 }
 
 simulated event PlayFootStepSound(int FootDown)
 {
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
     super.PlayFootStepSound(FootDown);
-    if(((MyKFAIC != none) && FootstepCameraShake != none) && MyKFAIC.IsDoingLatentMove())
+    if(((((Physics == 1) && Base != none) && Mesh.RootMotionMode == 2) && FootstepCameraShake != none) && VSizeSq(Velocity) >= 10000)
     {
         Class'Camera'.static.PlayWorldCameraShake(FootstepCameraShake, self, Location, FootstepCameraShakeInnerRadius, FootstepCameraShakeOuterRadius, 1.3, true);
     }
@@ -510,7 +541,7 @@ function HandleMonsterBump(KFPawn_Monster Other, Vector HitNormal)
 
 event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
-    if(MyKFAIC != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
     {
         MyKFAIC.AILog_Internal((string(GetFuncName()) $ "() Wall: ") $ string(Wall), 'BumpEvent');
     }
@@ -522,7 +553,7 @@ function bool HandleAIDoorBump(KFDoorActor door);
 
 function bool NotifyCollideWithActor(Vector HitNormal, Actor Other)
 {
-    if(MyKFAIC != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
     {
         MyKFAIC.AILog_Internal((string(GetFuncName()) $ "() Other: ") $ string(Other), 'BumpEvent');
     }
@@ -547,7 +578,7 @@ function SetSprinting(bool bNewSprintStatus)
             return;
         }
     }
-    if(bIsBlocking)
+    if(bIsBlocking && IsHumanControlled())
     {
         if(bIsSprinting)
         {
@@ -566,7 +597,7 @@ event StuckOnPawn(Pawn OtherPawn)
     JumpOffPawn();
     if(MyKFAIC != none)
     {
-        if(MyKFAIC != none)
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
         {
             MyKFAIC.AILog_Internal((((string(self) $ " StuckOnPawn event at ") $ string(Location)) $ " Base: ") $ string(Base));
         }
@@ -1007,6 +1038,10 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
             Damage *= float(2 - ((HealthMax - Health) / HealthMax));
         }
     }
+    if(((Damage > 0) && InstigatorPerk != none) && KFDT != none)
+    {
+        bCouldTurnIntoShrapnel = InstigatorPerk.CouldBeZedShrapnel(KFDT);
+    }
     super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
     if((InstigatedBy != none) && InstigatedBy.Pawn != none)
     {
@@ -1018,18 +1053,14 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     }
     if(Damage > 0)
     {
-        if((InstigatorPerk != none) && KFDT != none)
-        {
-            bCouldTurnIntoShrapnel = InstigatorPerk.CouldBeZedShrapnel(KFDT);
-        }
         if(((!bNapalmInfected && InstigatedBy != none) && DamageCauser != none) && DamageOverTimeArray.Length > 0)
         {
             DoTIndex = DamageOverTimeArray.Find('DoT_Type', Class'KFDT_Fire'.default.DoT_Type;
             if(DoTIndex != -1)
             {
-                if(ClassIsChildOf(KFDT, Class'KFDT_Fire'))
+                if(Class'KFPerk'.static.IsDamageTypeOnThisPerk(KFDT, Class'KFPerk_Firebug'))
                 {
-                    NapalmCheckDist = Square(CylinderComponent.CollisionRadius * NapalmCheckCollisionScale);
+                    NapalmCheckDist = Square(CylinderComponent.CollisionRadius * Class'KFPerk_Firebug'.static.GetNapalmCheckCollisionScale());
                     foreach WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM, Location)
                     {
                         if((KFPM != self) && KFPM.IsAliveAndWell())
@@ -1117,6 +1148,10 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     if((HitZoneIdx == 0) && bIsHeadless)
     {
         InDamage = 1;
+    }
+    if((InstigatedBy == none) || InstigatedBy.GetTeamNum() != GetTeamNum())
+    {
+        InDamage = Max(InDamage, 1);
     }
     if(bLogTakeDamage)
     {
@@ -1249,7 +1284,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
     {
         SpecialMoves[SpecialMove].NotifyOwnerTakeHit(class<KFDamageType>(DamageType), HitLocation, Normal(Momentum), InstigatedBy);
     }
-    if(MyKFAIC != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
     {
         MyKFAIC.AILog_Internal((((string(GetFuncName()) $ "() Instigator:") $ string(InstigatedBy)) $ " DT: ") $ string(DamageType), 'Damage');
     }
@@ -1704,7 +1739,7 @@ simulated function bool LookAtPawn(optional Pawn P, optional float Strength)
         if(P != none)
         {
             bIsHeadTrackingActive = true;
-            if(MyKFAIC != none)
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
             {
                 MyKFAIC.AILog_Internal(string(GetFuncName()) @ string(P), 'HeadTracking');
             }
@@ -1725,7 +1760,7 @@ simulated function StopLookingAtPawn(optional Pawn P)
         }
         if(P != none)
         {
-            if(MyKFAIC != none)
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
             {
                 MyKFAIC.AILog_Internal(string(GetFuncName()) @ string(P), 'HeadTracking');
             }
@@ -3028,6 +3063,7 @@ defaultproperties
     DifficultySettings=Class'KFMonsterDifficultyInfo'
     DifficultyBlockSettings=(Chance=0,Duration=0,MaxBlocks=0,Cooldown=0,DamagedHealthPctToTrigger=0,MeleeDamageModifier=1,DamageModifier=1,AfflictionModifier=1,SoloChanceMultiplier=0)
     MinBlockFOV=0.1
+    BlockSprintSpeedModifier=0.75
     DifficultyRallySettings=(bCanRally=true,bCauseSprint=false,RallyBuffTime=10,TakenDamageModifier=1,DealtDamageModifier=1)
     InitialGroundSpeedModifier=1
     MatchEnemySpeedAtDistance=200
@@ -3036,8 +3072,7 @@ defaultproperties
     ReachedEnemyThresholdScale=1
     BumpFrequency=0.5
     BumpDamageType=Class'KFDT_NPCBump'
-    SpeedAdjustTransitionRate=100
-    NapalmCheckCollisionScale=6
+    SpeedAdjustTransitionRate=200
     CollisionRadiusForReducedZedOnZedPinchPointCollisionState=1
     OnDeathAchievementID=-1
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -3142,7 +3177,6 @@ defaultproperties
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         WireframeColor=(B=0,G=255,R=255,A=255)
         ReplacementPrimitive=none
-        bUseAsOccluder=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_Monster.KFPawnSkeletalMeshComponent'
     Mesh=KFPawnSkeletalMeshComponent
@@ -3169,7 +3203,6 @@ defaultproperties
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         WireframeColor=(B=0,G=255,R=255,A=255)
         ReplacementPrimitive=none
-        bUseAsOccluder=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_Monster.KFPawnSkeletalMeshComponent'
     Components(3)=KFPawnSkeletalMeshComponent

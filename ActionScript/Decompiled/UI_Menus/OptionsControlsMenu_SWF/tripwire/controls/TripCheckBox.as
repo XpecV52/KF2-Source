@@ -32,18 +32,18 @@ package tripwire.controls
             return this._key;
         }
         
-        override protected function handleMousePress(param1:MouseEvent) : void
+        override protected function handleMouseRelease(param1:MouseEvent) : void
         {
-            super.handleMousePress(param1);
+            super.handleMouseRelease(param1);
             if(Extensions.gfxProcessSound != null && enabled)
             {
                 Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
             }
         }
         
-        override protected function handlePress(param1:uint = 0) : void
+        override protected function handleRelease(param1:uint = 0) : void
         {
-            super.handlePress(param1);
+            super.handleRelease(param1);
             if(Extensions.gfxProcessSound != null && enabled)
             {
                 Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);

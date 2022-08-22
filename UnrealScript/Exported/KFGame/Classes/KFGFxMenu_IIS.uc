@@ -75,11 +75,6 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 
 function LoginToGame()
 {
-	if(class'WorldInfo'.static.IsConsoleBuild() && class'WorldInfo'.static.IsE3Build())
-	{
-		OnlineSub.PlayerInterface.Login(0, "E3 Demo Player", "", TRUE);
-	}
-
 	if( bLoggingIn )
 	{
 		WarnInternal("Ignoring login while one is already occurring");
@@ -96,18 +91,7 @@ function LoginToGame()
 
 function OnLoginToGameComplete()
 {
-	local KFPlayerController PC;
-
-	PC = KFPlayerController(GetPC());
-
-	PC.ResetPerkStatsLoaded();
-	PC.ClientInitializePerks();
-	
-	Manager.PartyWidget.RefreshParty();
-	
-	// For now just opening the start menu.
-	Manager.OpenMenu( UI_Start );
-	bLoggingIn = false;
+	ProceedToMainMenu();
 
 	if( AutoLoginCompleteDelegate != none )
 	{
@@ -117,11 +101,28 @@ function OnLoginToGameComplete()
 }
 
 
+function ProceedToMainMenu()
+{
+	local KFPlayerController PC;
+
+	PC = KFPlayerController(GetPC());
+
+	PC.ResetPerkStatsLoaded();
+	PC.ClientInitializePerks();
+
+	Manager.PartyWidget.RefreshParty();
+
+	// For now just opening the start menu.
+	Manager.OpenMenu( UI_Start );
+	bLoggingIn = false;
+}
+
+
+
 function NotifyLoginFailed()
 {
-	// Reset login status when this occurs
-	bLoggingIn = false;
-	SetBool("showLoading", false);
+	// We still proceed to main menu
+	ProceedToMainMenu();
 }
 
 defaultproperties

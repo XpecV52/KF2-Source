@@ -258,25 +258,10 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_10
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
-Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_1
-   Bank=AkBank'WW_ENV_Manor.WwiseDefaultBank_WW_ENV_Manor'
-   InputLinks(0)=(DrawY=-396,OverrideDelta=13)
-   InputLinks(1)=(DrawY=-376,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND_Manor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_1')),DrawY=-386,OverrideDelta=23)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'SND_Manor.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-728
-   ObjPosY=-432
-   DrawWidth=111
-   DrawHeight=69
-   Name="SeqAct_AkLoadBank_1"
-   ObjectArchetype=SeqAct_AkLoadBank'AkAudio.Default__SeqAct_AkLoadBank'
-End Object
-
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_1
    bClientSideOnly=True
    MaxWidth=207
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'SND_Manor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_1')),DrawY=-395,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND_Manor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_1')),ActivateDelay=2.000000,DrawY=-395,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-374,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-353,OverrideDelta=56)
    ObjInstanceVersion=3

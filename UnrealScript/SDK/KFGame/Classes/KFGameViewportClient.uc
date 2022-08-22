@@ -30,6 +30,7 @@ var float FontScale;
 var bool bSeenIIS;
 var bool bNeedDisconnectMessage;
 var bool bNeedSignoutMessage;
+var bool bHandlePlayTogether;
 
 cpptext
 {

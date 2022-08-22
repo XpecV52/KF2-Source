@@ -18,14 +18,12 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 static simulated function GetBoneToDismember(KFPawn_Monster InPawn, vector HitDirection, name InHitZoneName, out name OutBoneName)
 {
 	local EPawnOctant SlashDir;
-	local MeleeSpecialDismembermentInfo SpecialDismembermentInfo;
 	local KFCharacterInfo_Monster MonsterInfo;
 
 	MonsterInfo = InPawn.GetCharacterMonsterInfo();
-    if ( MonsterInfo != none )
+    if ( MonsterInfo == none )
 	{
-        // @todo fix struct copy
-		SpecialDismembermentInfo = MonsterInfo.SpecialMeleeDismemberment;
+		return;
 	}
 
 	SlashDir = GetLastSlashDirection(InPawn, HitDirection);
@@ -34,10 +32,12 @@ static simulated function GetBoneToDismember(KFPawn_Monster InPawn, vector HitDi
 	{
 		if( InHitZoneName == 'chest' || InHitZoneName == 'head' )
 		{
-			if( SpecialDismembermentInfo.bAllowVerticalSplit )
+			if( MonsterInfo.SpecialMeleeDismemberment.bAllowVerticalSplit )
 			{
 				// Randomly pick the left or right shoulder bone and split the guy in half vertically
-				OutBoneName = Rand(2) == 0 ? SpecialDismembermentInfo.LeftShoulderBoneName : SpecialDismembermentInfo.RightShoulderBoneName;
+				OutBoneName = Rand(2) == 0
+							? MonsterInfo.SpecialMeleeDismemberment.LeftShoulderBoneName
+							: MonsterInfo.SpecialMeleeDismemberment.RightShoulderBoneName;
 			}
 		}
 	}
@@ -45,10 +45,10 @@ static simulated function GetBoneToDismember(KFPawn_Monster InPawn, vector HitDi
 	{
 	 	if( InHitZoneName == 'chest' || InHitZoneName == 'abdomen' || InHitZoneName == 'stomach' )
 	 	{
-	 		if( SpecialDismembermentInfo.bAllowHorizontalSplit )
+	 		if( MonsterInfo.SpecialMeleeDismemberment.bAllowHorizontalSplit )
 			{
 	 			// Split the guy in half horizontally
-				OutBoneName = SpecialDismembermentInfo.SpineBoneName;
+				OutBoneName = MonsterInfo.SpecialMeleeDismemberment.SpineBoneName;
 			}
 		}
 	}
@@ -56,20 +56,20 @@ static simulated function GetBoneToDismember(KFPawn_Monster InPawn, vector HitDi
 	{
 		if( InHitZoneName == 'chest' )
 		{
-			if( SpecialDismembermentInfo.bAllowVerticalSplit )
+			if( MonsterInfo.SpecialMeleeDismemberment.bAllowVerticalSplit )
 			{
-				OutBoneName = SpecialDismembermentInfo.RightShoulderBoneName;
+				OutBoneName = MonsterInfo.SpecialMeleeDismemberment.RightShoulderBoneName;
 			}
 		}
 		else if( InHitZoneName == 'head' )
 		{
-			if( SpecialDismembermentInfo.bAllowVerticalSplit )
+			if( MonsterInfo.SpecialMeleeDismemberment.bAllowVerticalSplit )
 			{
 				// Use a random chance to decide whether to dismember the head or the shoulder constraints
 				if( Rand(2) == 0 )
 				{
 					// ... and choose one of the shoulder constraints at random
-					OutBoneName = SpecialDismembermentInfo.RightShoulderBoneName;
+					OutBoneName = MonsterInfo.SpecialMeleeDismemberment.RightShoulderBoneName;
 				}
 			}
 		}
@@ -78,19 +78,19 @@ static simulated function GetBoneToDismember(KFPawn_Monster InPawn, vector HitDi
 	{
 		if( InHitZoneName == 'chest' )
 		{
-			if( SpecialDismembermentInfo.bAllowVerticalSplit )
+			if( MonsterInfo.SpecialMeleeDismemberment.bAllowVerticalSplit )
 			{
-				OutBoneName = SpecialDismembermentInfo.LeftShoulderBoneName;
+				OutBoneName = MonsterInfo.SpecialMeleeDismemberment.LeftShoulderBoneName;
 			}
 		}
 		else if( InHitZoneName == 'head' )
 		{
-			if( SpecialDismembermentInfo.bAllowVerticalSplit )
+			if( MonsterInfo.SpecialMeleeDismemberment.bAllowVerticalSplit )
 			{
 				// Use a random chance to decide whether to dismember the head or the shoulder constraints
 				if( Rand(2) == 0 )
 				{
-					OutBoneName = SpecialDismembermentInfo.LeftShoulderBoneName;
+					OutBoneName = MonsterInfo.SpecialMeleeDismemberment.LeftShoulderBoneName;
 				}
 			}
 		}
@@ -126,6 +126,7 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster InPawn, n
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Eviscerator'
+   EffectGroup=FXG_Sawblade
    StumblePower=100.000000
    MeleeHitPower=20.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'

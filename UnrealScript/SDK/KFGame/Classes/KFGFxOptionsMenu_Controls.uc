@@ -283,7 +283,7 @@ function CallBack_ResetPresetOptions()
 {
 	if(ControllerPresetsContainer != None)
 	{
-		Manager.OpenPopup( EConfirmation, 
+		Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc,
 			Localize("KFGFxOptionsMenu_Graphics","WarningPromptString","KFGame"), 
 			Localize("KFGFxObject_Menu","ResetDefaults","KFGameConsole"),
 			Localize("KFGFxOptionsMenu_Graphics","OKString","KFGame"),
@@ -296,7 +296,7 @@ function CallBack_ResetInputOptions()
 {
 	if(InputContainer != None)
 	{
-		Manager.OpenPopup( EConfirmation, 
+		Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc,
 			Localize("KFGFxOptionsMenu_Graphics","WarningPromptString","KFGame"), 
 			Localize("KFGFxObject_Menu","ResetDefaults","KFGameConsole"),
 			Localize("KFGFxOptionsMenu_Graphics","OKString","KFGame"),
@@ -308,8 +308,8 @@ function CallBack_ResetInputOptions()
 defaultproperties
 {
 	MinControllerLookSensitivity=.4 
-	MaxControllerLookSensitivity=1.2 
-	MinControllerZoomLookSensitivity=.3
+	MaxControllerLookSensitivity=3.5
+	MinControllerZoomLookSensitivity=.1
 	MaxControllerZoomLookSensitivity=1
 	MinMouseLookSensitivity=.01
 	MaxMouseLookSensitivity=.7

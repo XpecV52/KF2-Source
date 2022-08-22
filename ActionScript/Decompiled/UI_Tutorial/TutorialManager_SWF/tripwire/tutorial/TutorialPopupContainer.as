@@ -188,112 +188,112 @@ package tripwire.tutorial
                 "subString":this.l1SubString,
                 "image":this.l1Bitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.l1SubString
             });
             this.controllerIconObjects.push({
                 "subString":this.l2SubString,
                 "image":this.l2Bitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.l2SubString
             });
             this.controllerIconObjects.push({
                 "subString":this.l3SubString,
                 "image":this.l3Bitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.l3SubString
             });
             this.controllerIconObjects.push({
                 "subString":this.r1SubString,
                 "image":this.r1Bitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.r1SubString
             });
             this.controllerIconObjects.push({
                 "subString":this.r2SubString,
                 "image":this.r2Bitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.r2SubString
             });
             this.controllerIconObjects.push({
                 "subString":this.r3SubString,
                 "image":this.r3Bitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.r3SubString
             });
             this.controllerIconObjects.push({
                 "subString":this.dDownSubString,
                 "image":this.dPadDownBitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.dDownSubString
             });
             this.controllerIconObjects.push({
                 "subString":this.dLeftSubString,
                 "image":this.dPadLeftBitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.dLeftSubString
             });
             this.controllerIconObjects.push({
                 "subString":this.dRightSubString,
                 "image":this.dPadRightBitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.dRightSubString
             });
             this.controllerIconObjects.push({
                 "subString":this.dUpSubString,
                 "image":this.dPadUpBitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.dUpSubString
             });
             this.controllerIconObjects.push({
                 "subString":this.aButtonSubString,
                 "image":this.aButtonBitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.aButtonSubString
             });
             this.controllerIconObjects.push({
                 "subString":this.bButtonSubString,
                 "image":this.bButtonBitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.bButtonSubString
             });
             this.controllerIconObjects.push({
                 "subString":this.xButtonSubString,
                 "image":this.xButtonBitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.xButtonSubString
             });
             this.controllerIconObjects.push({
                 "subString":this.yButtonSubString,
                 "image":this.yButtonBitmapdata,
                 "baseLineY":this.buttonIconBaseLine,
-                "width":32,
-                "height":32,
+                "width":24,
+                "height":24,
                 "id":this.yButtonSubString
             });
         }

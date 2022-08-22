@@ -176,8 +176,8 @@ defaultproperties
    FiringStatesArray(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_RevolverSW500'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_RevolverSW500'
-   FireInterval(0)=0.140000
-   FireInterval(1)=0.140000
+   FireInterval(0)=0.190000
+   FireInterval(1)=0.190000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()

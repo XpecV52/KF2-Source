@@ -23,7 +23,7 @@ package
             }
             slider.enabled = true;
             slider.enableInitCallback = false;
-            slider.focusable = false;
+            slider.focusable = true;
             slider.liveDragging = true;
             slider.maximum = 100;
             slider.minimum = 0;

@@ -73,11 +73,11 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum, int TitleId);
 
 function bool ShowCustomMessageUI(byte LocalUserNum, const out array<UniqueNetId> Recipients, string MessageTitle, string NonEditableMessage, optional string EditableMessage);
 
-function PostActivityFeedBossKill(string BossName, string BossLoc, string MapLoc);
+function PostActivityFeedBossKill(string BossName, string MapName);
 
-function PostActivityFeedTeamAward(string AwardName, string AwardLoc);
+function PostActivityFeedTeamAward(string AwardName);
 
-function PostActivityFeedPerkLevelUp(string PerkClassName, string PerkClassLoc, int Level);
+function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
 
 function ReadStoreData();
 

@@ -355,6 +355,16 @@ function string GetFriendlyNameForCurrentGameMode()
     return GetGameModeFriendlyNameFromClass("KFGameContent." $ string(Class));
 }
 
+function int GetGameModeNum()
+{
+    return GetGameModeNumFromClass(PathName(default.Class));
+}
+
+function string GetFullGameModePath()
+{
+    return GetGameModeClassFromNum(GetGameModeNum());
+}
+
 // Export UKFGameInfo::execSetNeedsRestart(FFrame&, void* const)
 native function SetNeedsRestart();
 
@@ -383,7 +393,7 @@ event InitGame(string Options, out string ErrorMessage)
             DialogManager = Spawn(DialogManagerClass);
         }
     }
-    if(WorldInfo.IsConsoleDedicatedServer() && (ParseOption(Options, "Private")) ~= "1")
+    if((ParseOption(Options, "Private")) ~= "1")
     {
         GameEngine(Class'Engine'.static.GetEngine()).bPrivateServer = true;
         UpdateGameSettings();
@@ -487,6 +497,7 @@ function ReplicateWelcomeScreen()
 event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool bSupportsAuth, out string ErrorMessage)
 {
     local bool bSpectator, bPerfTesting;
+    local string DesiredDifficulty, DesiredWaveLength, DesiredGameMode;
 
     if(((WorldInfo.NetMode != NM_Standalone) && bUsingArbitration) && bHasArbitratedHandshakeBegun)
     {
@@ -498,6 +509,30 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
         LogInternal(Address @ "is banned, rejecting...");
         ErrorMessage = "<Strings:KFGame.KFLocalMessage.BannedFromServerString>";
         return;
+    }
+    if((WorldInfo.NetMode == NM_DedicatedServer) && !HasOption(Options, "bJoinViaInvite"))
+    {
+        DesiredDifficulty = ParseOption(Options, "Difficulty");
+        if((DesiredDifficulty != "") && float(int(DesiredDifficulty)) != GameDifficulty)
+        {
+            LogInternal((("Got bad difficulty" @ DesiredDifficulty) @ "expected") @ string(GameDifficulty));
+            ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+            return;
+        }
+        DesiredWaveLength = ParseOption(Options, "GameLength");
+        if((DesiredWaveLength != "") && int(DesiredWaveLength) != GameLength)
+        {
+            LogInternal((("Got bad wave length" @ DesiredWaveLength) @ "expected") @ string(GameLength));
+            ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+            return;
+        }
+        DesiredGameMode = ParseOption(Options, "Game");
+        if((DesiredGameMode != "") && !DesiredGameMode ~= (GetFullGameModePath()))
+        {
+            LogInternal((("Got bad wave length" @ DesiredGameMode) @ "expected") @ (GetFullGameModePath()));
+            ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+            return;
+        }
     }
     bPerfTesting = (ParseOption(Options, "AutomatedPerfTesting")) ~= "1";
     bSpectator = (bPerfTesting || (ParseOption(Options, "SpectatorOnly")) ~= "1") || (ParseOption(Options, "CauseEvent")) ~= "FlyThrough";
@@ -543,9 +578,9 @@ event PostLogin(PlayerController NewPlayer)
                 if((KFPC.Pawn != none) && KFPawn_Customization(KFPC.Pawn) != none)
                 {
                     KFPawn_Customization(KFPC.Pawn).SetServerHidden(true);
+                    KFPC.SetCameraMode('PlayerZedWaiting');
                 }
-                KFPC.ClientSetFrontEnd(KFGFxManagerClass, false);
-                KFPC.SetCameraMode('PlayerZedWaiting');                
+                KFPC.ClientSetFrontEnd(KFGFxManagerClass, false);                
             }
             else
             {
@@ -866,18 +901,20 @@ function RestartPlayer(Controller NewPlayer)
 {
     local KFPlayerController KFPC;
     local KFPerk MyPerk;
+    local bool bIsBenchmark;
 
     KFPC = KFPlayerController(NewPlayer);
-    if(WorldInfo.NetMode != NM_Standalone)
+    if((!Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsConsoleDedicatedServer()) && InStr(WorldInfo.GetLocalURL(), "?CAUSEEVENT=BENCHMARK",, true) > -1)
     {
-        if((KFPC != none) && KFPC.GetTeamNum() != 255)
+        bIsBenchmark = true;
+    }
+    if(((KFPC != none) && KFPC.GetTeamNum() != 255) && !bIsBenchmark)
+    {
+        MyPerk = KFPC.GetPerk();
+        if((MyPerk == none) || !MyPerk.bInitialized)
         {
-            MyPerk = KFPC.GetPerk();
-            if((MyPerk == none) || !MyPerk.bInitialized)
-            {
-                KFPC.WaitForPerkAndRespawn();
-                return;
-            }
+            KFPC.WaitForPerkAndRespawn();
+            return;
         }
     }
     if((NewPlayer.Pawn != none) && KFPawn_Customization(NewPlayer.Pawn) != none)
@@ -900,9 +937,12 @@ function float RatePlayerStart(PlayerStart P, byte Team, Controller Player)
     local float Rating;
 
     Rating = super(GameInfo).RatePlayerStart(P, Team, Player);
-    if(!CheckPointCollision(P, Player))
+    if(P.bEnabled)
     {
-        return 0.01;
+        if(!CheckSpawnProximity(P, Player, Team))
+        {
+            return 5.1;
+        }
     }
     return Rating;
 }
@@ -911,20 +951,14 @@ function bool ShouldSpawnAtStartSpot(Controller Player)
 {
     local PlayerStart StartSpot;
 
-    if(super(GameInfo).ShouldSpawnAtStartSpot(Player))
+    if(((Player != none) && Player.StartSpot != none) && (IsInitialSpawnPointSelection()) || (Player.PlayerReplicationInfo != none) && Player.PlayerReplicationInfo.bWaitingPlayer)
     {
         StartSpot = PlayerStart(Player.StartSpot);
         if(StartSpot == none)
         {
-            return true;            
+            return true;
         }
-        else
-        {
-            if(StartSpot.bEnabled)
-            {
-                return true;
-            }
-        }
+        return (RatePlayerStart(StartSpot, Player.GetTeamNum(), Player)) >= 6;
     }
     return false;
 }
@@ -935,7 +969,7 @@ function KFCustomizationPoint FindCustomizationStart(Controller Player)
 
     foreach AllActors(Class'KFCustomizationPoint', CP)
     {
-        if(CheckPointCollision(CP, Player))
+        if(CheckSpawnProximity(CP, Player, Player.GetTeamNum(), true))
         {            
             return CP;
         }        
@@ -943,23 +977,47 @@ function KFCustomizationPoint FindCustomizationStart(Controller Player)
     return CP;
 }
 
-function bool CheckPointCollision(NavigationPoint P, Controller Player)
+function bool CheckSpawnProximity(NavigationPoint P, Controller Player, byte TeamNum, optional bool bCustomizationPoint)
 {
-    local KFPlayerController KFPC;
+    local PlayerController PC;
     local KFPawn_Customization CPawn;
 
-    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    foreach WorldInfo.AllControllers(Class'PlayerController', PC)
     {
-        if(((KFPC != Player) && KFPC.Pawn != none) && !KFPC.Pawn.bHidden)
+        if(PC == Player)
         {
-            CPawn = KFPawn_Customization(KFPC.Pawn);
-            if(((CPawn == none) || !CPawn.bServerHidden) && VSizeSq(KFPC.Pawn.Location - P.Location) < Square(2.1 * KFPC.Pawn.GetCollisionRadius()))
+            continue;            
+        }
+        if((IsInitialSpawnPointSelection()) && !bCustomizationPoint)
+        {
+            if((PC.StartSpot == P) && PC.GetTeamNum() == TeamNum)
+            {                
+                return false;
+            }
+            continue;
+        }
+        if((PC.Pawn != none) && !PC.Pawn.bHidden)
+        {
+            if(bCustomizationPoint)
+            {
+                CPawn = KFPawn_Customization(PC.Pawn);
+                if((CPawn != none) && CPawn.bServerHidden)
+                {
+                    continue;                    
+                }
+            }
+            if(VSizeSq(PC.Pawn.Location - P.Location) < Square(2.1 * PC.Pawn.GetCollisionRadius()))
             {                
                 return false;
             }
         }        
     }    
     return true;
+}
+
+function bool IsInitialSpawnPointSelection()
+{
+    return bWaitingToStartMatch;
 }
 
 function SetPlayerDefaults(Pawn PlayerPawn)
@@ -1700,50 +1758,39 @@ function NotifyNavigationChanged(NavigationPoint N)
     local KFAIController AI;
     local int Idx;
 
-
-    /* Statement decompilation error: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-        
-    */
-    /*@Error*/
-    foreach WorldInfo.AllControllers(Class'KFAIController', AI)
+    if(N.bBlocked)
     {
-        PlayFiringSound.Insert(@NULL, @NULL[default.@NULL]string(GetFuncName()) $ "() Notifying ";
-        string(AI)        
-        " that navigation has changed for "        
-        string(N)        
-        'PathWarning'
-        ,
-        ,
-        ,        
-        if(!AI.bMovingToGoal)
+        foreach WorldInfo.AllControllers(Class'KFAIController', AI)
         {
-            if(AI != none)
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging && AI != none)
             {
-                AI.AILog_Internal((((string(GetFuncName()) $ "() ** Skipping notification for ") $ string(AI)) $ " because bMovingToGoal was false. bPreparingMove? : ") $ string(AI.bPreparingMove), 'PathWarning');
-                continue;
-                goto J0x441;
-                Idx = AI.RouteCache.Find(N;
+                AI.AILog_Internal((((string(GetFuncName()) $ "() Notifying ") $ string(AI)) $ " that navigation has changed for ") $ string(N), 'PathWarning');
             }
-        }
-        if(Idx >= 0)
-        {
-            if(AI != none)
+            if(!AI.bMovingToGoal)
             {
-                AI.AILog_Internal((((string(GetFuncName()) $ "() setting bReEvaluatePath to true for ") $ string(AI)) $ " thanks to ") $ string(N), 'PathWarning');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging && AI != none)
+                {
+                    AI.AILog_Internal((((string(GetFuncName()) $ "() ** Skipping notification for ") $ string(AI)) $ " because bMovingToGoal was false. bPreparingMove? : ") $ string(AI.bPreparingMove), 'PathWarning');
+                }
+                continue;                
+            }
+            Idx = AI.RouteCache.Find(N;
+            if(Idx >= 0)
+            {
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging && AI != none)
+                {
+                    AI.AILog_Internal((((string(GetFuncName()) $ "() setting bReEvaluatePath to true for ") $ string(AI)) $ " thanks to ") $ string(N), 'PathWarning');
+                }
                 AI.bReevaluatePath = true;
+                AI.MoveTimer = -1;
+                AI.ForcePauseAndRepath();
+                continue;
             }
-            AI.MoveTimer = -1;
-            AI.ForcePauseAndRepath();
-            goto J0x440;
-            /* Statement decompilation error: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-                
-            */
-
-            /*@Error*/
-        }
-        AI.AILog_Internal((((((((("** WARNING ** " $ string(GetFuncName())) $ " for ") $ string(N)) $ " not telling ") $ string(AI)) $ " to reevaluate path because I couldn't find ") $ string(N)) $ " in the routecache! bPreparingMove: ") $ string(AI.bPreparingMove), 'PathWarning');                
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging && AI != none)
+            {
+                AI.AILog_Internal((((((((("** WARNING ** " $ string(GetFuncName())) $ " for ") $ string(N)) $ " not telling ") $ string(AI)) $ " to reevaluate path because I couldn't find ") $ string(N)) $ " in the routecache! bPreparingMove: ") $ string(AI.bPreparingMove), 'PathWarning');
+            }            
+        }        
     }
 }
 
@@ -1954,7 +2001,6 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
         LogInternal((("Player controller log in with auth ticket" @ ClientAuthTicket) @ "and playfab player id") @ PlayerfabPlayerId);
         if(ClientAuthTicket != "")
         {
-            PlayfabInter.ServerValidatePlayer(ClientAuthTicket);
         }
         SpawnedPC.PlayerReplicationInfo.PlayfabPlayerId = PlayerfabPlayerId;
         ReadGameplayTimeForPlayer(PlayerfabPlayerId);
@@ -2376,13 +2422,25 @@ function LogPlayersKillCount()
 
 function SetCountdown(bool bFinalCountdown, byte CountdownTime)
 {
-    local KFPlayerController KFPC;
+    local KFPlayerController PC;
+    local byte TeamNum;
 
     bStartFinalCount = bFinalCountdown;
     SetTimer(float(CountdownTime), false, 'LobbyCountdownComplete');
-    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', PC)
     {
-        KFPC.ClientSetCountdown(bFinalCountdown, CountdownTime);        
+        if(bFinalCountdown)
+        {
+            TeamNum = PC.GetTeamNum();
+            if((TeamNum == 0) && !ShouldSpawnAtStartSpot(PC))
+            {
+                PC.StartSpot = none;
+                PC.StartSpot = FindPlayerStart(PC, TeamNum);
+            }
+            PC.ClientSetCountdown(bFinalCountdown, CountdownTime, PC.StartSpot);
+            continue;
+        }
+        PC.ClientSetCountdown(bFinalCountdown, CountdownTime);        
     }    
 }
 
@@ -2434,6 +2492,7 @@ private native final function StripPasswordFromLastURL(KFGameEngine Engine);
 
 function StartMatch()
 {
+    bWaitingToStartMatch = false;
     super(GameInfo).StartMatch();
     bDelayedStart = false;
     MyKFGRI.RemainingTime = 0;

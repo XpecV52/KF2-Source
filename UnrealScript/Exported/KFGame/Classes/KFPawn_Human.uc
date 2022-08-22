@@ -643,16 +643,26 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
 	Super.SetCharacterArch(Info);
 
 	if( WorldInfo.NetMode != NM_DedicatedServer )
-	{
+	{		
 		// Attach/Reattach flashlight components when mesh is set
 		if ( Flashlight == None && FlashLightTemplate != None )
 		{
 			Flashlight = new(self) Class'KFFlashlightAttachment' (FlashLightTemplate);
-		}
-		if ( FlashLight != None )
-		{
 			Flashlight.AttachFlashlight(Mesh);
 		}
+		else if ( FlashLight != None )
+		{
+			Flashlight.Reattach();
+		}
+	}
+}
+
+/** Notify pawn whenever mesh is swapped (e.g. new character or new outfit) */
+simulated function OnCharacterMeshChanged()
+{	
+	if ( FlashLight != None )
+	{
+		Flashlight.Reattach();
 	}
 }
 
@@ -1904,14 +1914,22 @@ simulated function DrawHUD( HUD H )
 {
 	local Canvas Canvas;
 	local KFGameReplicationInfo KFGRI;
+	local KFPlayerController KFPC;
 
 	Super.DrawHUD(H);
+
+	KFPC = KFPlayerController(Controller);
 
 	if( !H.bShowHUD )
 	{
 		return;
 	}
 
+	if( KFPC != none && KFPC.IsBossCameraMode())
+	{
+		return;
+	}
+	
 	// Slightly AWESOMEHUD(TM)
 	Canvas = H.Canvas;
 	if( Canvas != none )

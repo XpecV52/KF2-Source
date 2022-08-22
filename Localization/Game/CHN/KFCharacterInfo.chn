@@ -22,10 +22,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [CHR_Jagerhorn_Archetype.BodyMesh2]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="瑞典金发"
@@ -137,10 +144,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [chr_DJSkully_archetype.BodyMesh2]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="乌黑"
@@ -199,10 +213,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [chr_briar_archetype.BodyMesh3]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
@@ -260,10 +281,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [CHR_MrFoster_archetype.BodyMesh3]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
@@ -426,10 +454,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [CHR_Coleman_archetype.BodyMesh2]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="多诺万"
@@ -474,10 +509,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [CHR_Alberts_archetype.BodyMesh2]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰色"
@@ -1336,10 +1378,17 @@ AttachmentSkin0="骷髅头"
 
 [Cosmetic_HorzineSecurityHelmet_ARCH]
 Attachment="霍因保安头盔"
-AttachmentSkin0="标记 7"
-AttachmentSkin1="雪数码相机"
-AttachmentSkin2="蓝色精英"
-AttachmentSkin3="绿色精英"
+AttachmentSkin0="蓝色精英"
+AttachmentSkin1="绿色精英"
+AttachmentSkin2="红色精英"
+AttachmentSkin3="白色精英"
+AttachmentSkin4="标记 7"
+AttachmentSkin5="雪数码相机"
+AttachmentSkin6="Desert"
+AttachmentSkin7="Multicam"
+AttachmentSkin8="Hazard"
+AttachmentSkin9="Adamant"
+AttachmentSkin10="Bounty Hunter"
 
 [Cosmetic_Chivalry_Knight_Helm01_ARCH]
 Attachment="骑士头盔"
@@ -1375,10 +1424,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [CHR_Masterson_archetype.BodyMesh2]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [CHR_Tanaka_Archetype]
 CharacterName="田中勇人"
@@ -1417,10 +1473,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [CHR_Tanaka_Archetype.BodyMesh3]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="头盔"
@@ -1471,10 +1534,17 @@ BodySkin3="迷人蓝"
 BodySkin4="猎鸡大战主页"
 
 [CHR_Ana_Archetype.BodyMesh1]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [CHR_Ana_Archetype.BodyMesh2]
 BodySkin0="经典"
@@ -1527,10 +1597,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [chr_mark_archetype.BodyMesh3]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="如假包换"
@@ -1561,10 +1638,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [CHR_alan_archetype.BodyMesh2]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="如假包换"
@@ -1600,10 +1684,17 @@ BodySkin4="绊网"
 BodySkin5="ZedEx"
 
 [CHR_strasser_archetype.BodyMesh2]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑钢"
@@ -1767,10 +1858,17 @@ BodySkin4="红条纹"
 BodySkin5="水手"
 
 [chr_rockabilly_archetype.BodyMesh1]
-BodySkin0="标记 7"
-BodySkin1="雪数码相机"
-BodySkin2="蓝色精英"
-BodySkin3="绿色精英"
+BodySkin0="蓝色精英"
+BodySkin1="绿色精英"
+BodySkin2="红色精英"
+BodySkin3="白色精英"
+BodySkin4="标记 7"
+BodySkin5="雪数码相机"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
 
 [chr_rockabilly_archetype.BodyMesh2]
 BodySkin0="经典"
@@ -2019,3 +2117,134 @@ AttachmentSkin0="基础黑"
 AttachmentSkin1="宝石红"
 AttachmentSkin2="优雅灰"
 AttachmentSkin3="深蓝"
+
+[Cosmetic_MinotaurHelmet_ARCH]
+Attachment="Minotaur Helmet"
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Jamie"
+AttachmentSkin3="Perceval"
+
+[Cosmetic_SteampunkGasMaskBasic_ARCH]
+Attachment="Steampunk Gas Mask Basic"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
+[Cosmetic_SteampunkGasMaskOpen_ARCH]
+Attachment="Steampunk Gas Mask Open"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
+[Cosmetic_SteampunkGasMaskClosed_ARCH]
+Attachment="Steampunk Gas Mask Closed"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
+[Cosmetic_SteampunkGasMaskFiltered_ARCH]
+Attachment="Steampunk Gas Mask Filtered"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
+[Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
+Attachment="Steampunk Gas Mask Open Filtered"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
+[Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
+Attachment="Steampunk Gas Mask Closed Filtered"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
+[Cosmetic_RebelHelmet_ARCH]
+Attachment="Rebel Helmet"
+AttachmentSkin0="Black"
+AttachmentSkin1="Dark Blue"
+AttachmentSkin2="Dark Green"
+AttachmentSkin3="Dark Red"
+AttachmentSkin4="Light Blue"
+AttachmentSkin5="Light Green"
+AttachmentSkin6="Light Red"
+AttachmentSkin7="Tan"
+AttachmentSkin8="White"
+
+[Cosmetic_RebelHelmetGogglesDown_ARCH]
+Attachment="Rebel Helmet Goggles Down"
+AttachmentSkin0="Black"
+AttachmentSkin1="Dark Blue"
+AttachmentSkin2="Dark Green"
+AttachmentSkin3="Dark Red"
+AttachmentSkin4="Light Blue"
+AttachmentSkin5="Light Green"
+AttachmentSkin6="Light Red"
+AttachmentSkin7="Tan"
+AttachmentSkin8="White"
+
+[Cosmetic_RebelHelmetGogglesUp_ARCH]
+Attachment="Rebel Helmet Goggles Up"
+AttachmentSkin0="Black"
+AttachmentSkin1="Dark Blue"
+AttachmentSkin2="Dark Green"
+AttachmentSkin3="Dark Red"
+AttachmentSkin4="Light Blue"
+AttachmentSkin5="Light Green"
+AttachmentSkin6="Light Red"
+AttachmentSkin7="Tan"
+AttachmentSkin8="White"
+
+[Cosmetic_JacksCowboyHat_ARCH]
+Attachment="Jack's Cowboy Hat"
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Cow Brown"
+AttachmentSkin3="Cow White"
+AttachmentSkin4="White"
+
+[Cosmetic_DeepstrikeHelmet_ARCH]
+Attachment="Deepstrike Helmet"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Olive"
+AttachmentSkin4="Red"
+AttachmentSkin5="White"
+
+[Cosmetic_DeepstrikeGoggles_ARCH]
+Attachment="Deepstrike Goggles"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="White"
+
+[Cosmetic_DeepstrikeMask_ARCH]
+Attachment="Deepstrike Mask"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="White"
+
+[Cosmetic_DeepstrikeHelmetMask_ARCH]
+Attachment="Deepstrike Helmet Mask"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Olive"
+AttachmentSkin4="Red"
+AttachmentSkin5="White"
+
+[Cosmetic_RebelMask_ARCH]
+Attachment="Rebel Mask"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Tan"
+
+[Cosmetic_RebelNeckWarmer_ARCH]
+Attachment="Rebel Neck Warmer"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Tan"

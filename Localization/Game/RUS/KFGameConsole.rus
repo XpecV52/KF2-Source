@@ -14,7 +14,111 @@ KF-ContainmentStation="Игра на Станции локализации"
 KF-InfernalRealm="Игра в Царстве ада"
 KF-HostileGrounds="Игра во Враждебных землях"
 
-[ActivityFeed]
+[ActivityFeed_CHN]
+BossKillCondensedCaption="玩打败的首领！"
+BossKillCaption="$USER_NAME_OR_ID 已在 %y% 打败 %x%"
+TeamAwardCondensedCaption="队伍奖励！"
+TeamAwardCaption="$USER_NAME_OR_ID 已赢取 %x% 队伍奖励"
+PerkLevelUpCondensedCaption="升级！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 已解锁第 %x% 级的 %y% 技能"
+
+[ActivityFeed_CHT]
+BossKillCondensedCaption="已擊敗頭目！"
+BossKillCaption="$USER_NAME_OR_ID 在 %y% 難度中擊敗了 %x%"
+TeamAwardCondensedCaption="隊伍獎勵！"
+TeamAwardCaption="$USER_NAME_OR_ID 獲得了 %x% 隊伍獎勵"
+PerkLevelUpCondensedCaption="升級！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 解鎖了 %x% %y% 升級技能"
+
+[ActivityFeed_DEU]
+BossKillCondensedCaption="Boss besiegt!"
+BossKillCaption="$USER_NAME_OR_ID hat %x% auf %y% besiegt"
+TeamAwardCondensedCaption="Team-Auszeichnung!"
+TeamAwardCaption="$USER_NAME_OR_ID hat %x% Team-Auszeichnung verdient"
+PerkLevelUpCondensedCaption="Levelaufstieg!"
+PerkLevelUpCaption="$USER_NAME_OR_ID hat die Level %x% %y% Fähigkeit freigeschaltet"
+
+[ActivityFeed_ESL]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_ESN]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[ActivityFeed_FRA]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_FRC]
+BossKillCondensedCaption="Boss vaincu !"
+BossKillCaption="$USER_NAME_OR_ID a vaincu %x% sur %y%"
+TeamAwardCondensedCaption="Récompense d'équipe !"
+TeamAwardCaption="$USER_NAME_OR_ID a gagné %x% récomp. d'éq."
+PerkLevelUpCondensedCaption="Niveau supérieur !"
+PerkLevelUpCaption="$USER_NAME_OR_ID a débloqué %y% (Niv. %x%)"
+
+[ActivityFeed_INT]
+BossKillCondensedCaption="Boss defeated!"
+BossKillCaption="$USER_NAME_OR_ID has defeated %x% on %y%"
+TeamAwardCondensedCaption="Team Award!"
+TeamAwardCaption="$USER_NAME_OR_ID has earned %x% team award"
+PerkLevelUpCondensedCaption="Level up!"
+PerkLevelUpCaption="$USER_NAME_OR_ID has unlocked the level %x% %y% skill"
+
+[ActivityFeed_ITA]
+BossKillCondensedCaption="Boss sconfitto!"
+BossKillCaption="$USER_NAME_OR_ID ha sconfitto %x% su %y%"
+TeamAwardCondensedCaption="Premio di squadra!"
+TeamAwardCaption="$USER_NAME_OR_ID vince il premio %x%"
+PerkLevelUpCondensedCaption="Aumento di livello!"
+PerkLevelUpCaption="$USER_NAME_OR_ID sblocca %y% liv %x%"
+
+[ActivityFeed_JPN]
+BossKillCondensedCaption="ボス敗北！"
+BossKillCaption="$USER_NAME_OR_IDが%x%を%y%で倒しました"
+TeamAwardCondensedCaption="チームアワード！"
+TeamAwardCaption="$USER_NAME_OR_IDが%x%チームアワードを獲得しました"
+PerkLevelUpCondensedCaption="レベルアップ！"
+PerkLevelUpCaption="$USER_NAME_OR_IDがレベル%x% %y%スキルをロック解除"
+
+[ActivityFeed_KOR]
+BossKillCondensedCaption="보스 제거!"
+BossKillCaption="$USER_NAME_OR_ID님이 %y%에서 %x%을(를) 처치하였습니다."
+TeamAwardCondensedCaption="팀 보상!"
+TeamAwardCaption="$USER_NAME_OR_ID님이 %x% 팀 보상을 획득했습니다."
+PerkLevelUpCondensedCaption="레벨 업!"
+PerkLevelUpCaption="$USER_NAME_OR_ID님이 레벨 %x% %y% 기술을 잠금해제하였습니다."
+
+[ActivityFeed_POL]
+BossKillCondensedCaption="Boss został pokonany!"
+BossKillCaption="$USER_NAME_OR_ID pokonuje %x% na %y%"
+TeamAwardCondensedCaption="Nagroda zespołowa!"
+TeamAwardCaption="$USER_NAME_OR_ID zdobywa nagrodę zespołową %x%"
+PerkLevelUpCondensedCaption="Nowy poziom!"
+PerkLevelUpCaption="$USER_NAME_OR_ID odblokowuje poziom %x% umiejętności %y%"
+
+[ActivityFeed_PTB]
+BossKillCondensedCaption="Chefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID derrotou %x% em %y%"
+TeamAwardCondensedCaption="Prêmio de Equipe!"
+TeamAwardCaption="$USER_NAME_OR_ID ganhou o prêmio eq. %x%"
+PerkLevelUpCondensedCaption="Subiu de nível!"
+PerkLevelUpCaption="$USER_NAME_OR_ID desbloqueou o nível %x% da hab. %y%"
+
+[ActivityFeed_RUS]
 BossKillCondensedCaption="Босс побежден!"
 BossKillCaption="$USER_NAME_OR_ID: убит босс %x%, зона %y%"
 TeamAwardCondensedCaption="Командная награда!"
@@ -28,7 +132,7 @@ LoginButtonPrompt="Вход"
 LoggingIn="Вход..."
 LoginFailed="Войти не удалось."
 NoOnlinePlay="Онлайн-игра невозможна"
-TooYoung="Онлайновые сервисы для вашей учетной записи Sony Entertainment Network отключены ограничениями родительского контроля."
+TooYoung="Онлайновые сервисы для вашей учетная запись Sony Entertainment Network отключены ограничениями родительского контроля."
 PatchAvailable="Есть доступный патч. Чтобы использовать сетевые функции, необходимо обновить приложение."
 NotLoggedInOnlinePSN="Для использования этих функций войдите в сеть PlayStation™Network."
 NetworkError="Произошла сетевая ошибка. Пожалуйста, проверьте подключение к сети."
@@ -37,7 +141,7 @@ ErrorTSSFailedDescription="Не удалось связаться с серве�
 
 [Notifications]
 ControllerDisconnectedTitle="Контроллер отключен"
-ControllerDisconnectedPS4Message="Беспроводной контроллер отключен. Пожалуйста, восстановите подключение беспроводного контроллера у игрока, запустившего игру."
+ControllerDisconnectedPS4Message="Беспроводной контроллер отключен. Пожалуйста, восстановите подключение беспроводного контроллер у игрока, запустившего игру."
 PlayGoBusyTitle="Установка не завершена"
 PlayGoBusyMessage="Пока установка игры не завершится, контент и функции доступны в ограниченном режиме."
 UnableToJoinInviteTitle="Присоединиться не удалось"
@@ -55,8 +159,6 @@ InviteMessage="Пошли со мной мочить мутантов!"
 NotConnectedTitle="Сетевая ошибка"
 NotConnectedMessage="Нет подключения к Интернету. Проверьте подключение и повторите попытку."
 NotConnectedForOnlinePlay="Нет подключения к Интернету. Проверьте подключение и повторите обращение к онлайн-функциям."
-PartySizeTitle="Предупреждение"
-PartySizeMessage="В вашей команде слишком много бойцов. Часть членов команды войдет в состав отряда и не будет принимать участие в игре на выживание."
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Просмотреть профиль игрока"
@@ -72,9 +174,11 @@ ControllerSound="Звуковой контроллер"
 
 [KFGFxMenu_StartGame]
 MatchmakingRegionString="РЕГИОН"
+LeaveMenuString="Выходя из матча, вы также покидаете свою команду"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="РЕГИОН"
+MapPreference="ЛЮБИМАЯ КАРТА"
 
 [Entitlements]
 BriarBobbyBundleProductName="Набор лондонского бобби для Бриара"
@@ -110,3 +214,12 @@ HorzineSupplyCrate4ShortDesription="В этом ящике Horzine находи�
 StoreGameLegalText="ПО поставляется по лицензии (us.playstation.com/softwarelicense). Онлайн-деятельность — на условиях пользовательского соглашения (www.playstationnetwork.com/terms-of-service). Платеж позволяет играть на основной системе PS4™ для учетной записи и других системах PS4™ с этой учетной записью. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® — зарегистрированная в США и других странах торговая марка Tripwire Interactive. Unreal® Engine, Copyright 1998–2016, Epic Games, Inc. Все права защищены. Unreal® — торговый знак или зарегистрированный торговый знак Epic Games, Inc. в Соединенных Штатах Америки и повсеместно. Все другие торговые знаки, логотипы и права являются собственностью их владельцев. Все права защищены."
 
 StoreItemLegalText="Для использования этого предмета необходима полная версия игры Killing Floor 2. Использование этого предмета подлежит тому же лицензионному соглашению конечного пользователя, что и сама игра."
+
+[Regions]
+USCentral="Центр США"
+USEast="Восток США"
+USWest="Запад США"
+EU="Европа"
+Asia="Азия"
+Brazil="Южная Америка"
+Australia="Австралия"

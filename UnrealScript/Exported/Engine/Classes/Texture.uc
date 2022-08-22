@@ -62,7 +62,8 @@ enum EPixelFormat
 	PF_FloatR11G11B10,	
 	PF_A4R4G4B4,
 	PF_R5G6B5,
-	PF_R8G8
+	PF_R8G8,
+	PF_R32_UINT
 };
 #linenumber 26;
 
@@ -126,6 +127,10 @@ enum TextureGroup
 	TEXTUREGROUP_Weapon3rdNormalMap<DisplayName=Weapon3rdNormalMap>,
 	TEXTUREGROUP_Weapon3rdSpecular<DisplayName=Weapon3rdSpecular>,
 	TEXTUREGROUP_Splattermap<DisplayName=Splattermap>,
+	TEXTUREGROUP_Cosmetic<DisplayName=Cosmetic>,
+	TEXTUREGROUP_CosmeticNormalMap<DisplayName=CosmeticNormalMap>,
+	TEXTUREGROUP_CosmeticSpecular<DisplayName=CosmeticSpecular>,
+	TEXTUREGROUP_UIWithMips<DisplayName=UI With Mips>,
 
 };
 
@@ -173,6 +178,10 @@ struct native TextureGroupContainer
 	var()	const bool	TEXTUREGROUP_Weapon3rdNormalMap;
 	var()	const bool	TEXTUREGROUP_Weapon3rdSpecular;
 	var()	const bool	TEXTUREGROUP_Splattermap;
+	var()	const bool	TEXTUREGROUP_Cosmetic;
+	var()	const bool	TEXTUREGROUP_CosmeticNormalMap;
+	var()	const bool	TEXTUREGROUP_CosmeticSpecular;
+	var()   const bool  TEXTUREGROUP_UIWithMips;
 
 };
 

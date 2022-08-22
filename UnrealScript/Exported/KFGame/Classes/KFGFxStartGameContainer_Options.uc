@@ -74,7 +74,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 15
 
 enum EServerType
@@ -181,7 +181,6 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	super.Initialize( NewParentMenu );
 	GetButtons();
-	ClampSavedFiltersToMode();
 	StartMenu = KFGFxMenu_StartGame( NewParentMenu );
 	InitializeGameOptions();
 	LocalizeArrays();
@@ -206,8 +205,25 @@ function ClampSavedFiltersToMode()
 	SavedDifficultyIndex = Clamp(SavedDifficultyIndex, 0, class'KFGameInfo'.default.GameModes[SavedModeIndex].DifficultyLevels);
 	if (SavedLengthIndex >= class'KFGameInfo'.default.GameModes[SavedModeIndex].Lengths + LengthIndexOffset)
 	{
-		SavedLengthIndex = 0;
+		SavedLengthIndex = 1;
 	}
+	UpdateButtonsEnabled();
+}
+
+function UpdateButtonsEnabled()
+{
+	if(bIsSoloGame)
+	{
+		LengthButton.SetBool("enabled", true);
+		DifficultyButton.SetBool("enabled", true);
+		
+	}
+	else
+	{
+		LengthButton.SetBool("enabled", SavedModeIndex != 1);
+		DifficultyButton.SetBool("enabled", SavedModeIndex != 1);
+	}
+	
 }
 
 function SetHelpText(string TextValue)
@@ -249,6 +265,19 @@ function InitializeGameOptions()
 	{
 		SavedSoloMapString = "";
 	}
+    
+    // Override any map selection history preferences if in PS4 Playgo Mode. We only support KF-EvacuationPoint on early install.
+    if( class'KFGameEngine'.static.IsPlaygoModePS4() )
+    {
+        SavedMapString = "KF-EvacuationPoint";
+        SavedSoloMapString = "KF-EvacuationPoint";
+    }
+	// Defaulting to biotics lab if not set
+	else if( SavedSoloMapString == "" )
+	{
+		SavedSoloMapString = "KF-BioticsLab";
+	}
+    
 
 	SavedSoloDifficultyIndex = Profile.GetProfileInt(KFID_SavedSoloDifficultyIndex);
 	SavedSoloLengthIndex = Profile.GetProfileInt(KFID_SavedSoloLengthIndex);
@@ -263,6 +292,13 @@ function InitializeGameOptions()
 	
 	InitialMapIndex = StartMenu.MapStringList.Find( bIsSoloGame ? SavedSoloMapString : SavedMapString );
 
+	ClampSavedFiltersToMode();
+
+	if(bIsSoloGame && InitialMapIndex == INDEX_NONE)
+	{
+		InitialMapIndex = 0;
+	}
+
 	TextObject = CreateObject("Object");
 
 	// Localize static text
@@ -276,7 +312,7 @@ function InitializeGameOptions()
 	
 	
 	TextObject.SetString("mode", StartMenu.GameModeTitle);
-	TextObject.SetString("map",StartMenu.MapTitle);
+	TextObject.SetString("map", class'WorldInfo'.static.IsConsoleBuild() ? ConsoleLocalize("MapPreference") : StartMenu.MapTitle);
 	TextObject.SetString("difficulty",StartMenu.DifficultyTitle);
 	TextObject.SetString("length",StartMenu.LengthTitle);
 	TextObject.SetString("privacy",StartMenu.PermissionsTitle);
@@ -284,8 +320,8 @@ function InitializeGameOptions()
 	if( class'WorldInfo'.static.IsConsoleBuild() )
 	{
 		TextObject.SetString("serverType",ConsoleLocalize( "MatchmakingRegionString" ));
-		RegionIndex = class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion();
-		TextObject.SetObject("serverTypeList",	CreateList( class'GameEngine'.static.GetPlayfabInterface().RegionNames, RegionIndex, false));
+		RegionIndex = class'WorldInfo'.static.IsE3Build() ? 0 : byte(class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion());
+		TextObject.SetObject("serverTypeList",	CreateList( class'PlayfabInterface'.static.GetLocalizedRegionList(), RegionIndex, false));
 	}
 	else
 	{
@@ -380,6 +416,7 @@ function GFxObject CreateList( array<string> TextArray, byte SelectedIndex, bool
 		if(bIsMapList)
 		{
 			TempString = class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(TextArray[i]);
+			ItemSlot.SetString("mapItemKey",TextArray[i]);
 			ItemSlot.SetString("imagePath", StartMenu.GetMapSource(TextArray[i]));
 		}
 		else
@@ -411,6 +448,16 @@ function SetSearching(bool bSearching)
 	SetBool("bSearchingForGame", bSearching);
 	InProgressChanged(SavedInProgressIndex);
 	PrivacyChanged(SavedPrivacyIndex);
+	if(!bSearching)
+	{
+		CheckAndUpdateBasedOnPrivacy();
+		UpdateButtonsEnabled();
+	}
+	else
+	{
+		serverTypeButton.SetBool("enabled", false);
+	}
+	
 	if(bSearching)
 	{
 		SetHelpText(SearchingString);
@@ -521,19 +568,29 @@ function CheckAndUpdateBasedOnPrivacy()
 	}
 	else
 	{
-		//set progress to Create Game
-		InProgressChanged(EIP_Create_New, true);
+		// Create New option doesn't exist for console
+		if( !class'WorldInfo'.static.IsConsoleBuild() )
+		{
+			//set progress to Create Game
+			InProgressChanged(EIP_Create_New, true);
+		}
+
 		InProgressButton.SetBool("enabled", false);
 	}
 }
 
 function ServerTypeChanged( int Index, optional bool bSetText )
 {
+	LogInternal("Server Type changed to"@Index);
+	ScriptTrace();
+
 	if( class'WorldInfo'.static.IsConsoleBuild() )
 	{
 		RegionIndex = Index;
 		class'GameEngine'.static.GetPlayfabInterface().SetIndexForCurrentRegion( RegionIndex );
-		StartMenu.Manager.CachedProfile.SetProfileSettingValue(KFID_MatchmakingRegion, class'GameEngine'.static.GetPlayfabInterface().CurrRegionName);
+
+		/// This is now done in the selection above.
+		//StartMenu.Manager.CachedProfile.SetProfileSettingValue(KFID_MatchmakingRegion, class'GameEngine'.static.GetPlayfabInterface().CurrRegionName);
 	}
 	else
 	{
@@ -717,7 +774,7 @@ function string GetMapName()
 }
 
 //Convert from the offset in the list to the Steam privacy flag for a lobby
-function ELobbyVisibility GetPartyPrivacy()
+event ELobbyVisibility GetPartyPrivacy()
 {
 	switch (SavedPrivacyIndex)
 	{
@@ -744,7 +801,7 @@ defaultproperties
 {
    bShowLengthNoPref=True
    BackString="BACK"
-   StartGameString="START GAME"
+   StartGameString="LAUNCH GAME"
    LaunchGameString="LAUNCH GAME"
    ServerTypeString="SERVER TYPE"
    InProgressString="GAME PROGRESS"

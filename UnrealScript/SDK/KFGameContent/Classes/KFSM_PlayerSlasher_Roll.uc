@@ -8,8 +8,15 @@
 //=============================================================================
 class KFSM_PlayerSlasher_Roll extends KFSM_Evade;
 
-/** How fast to roll in any direction */
-var float RollSpeed;
+var rotator InitialRotation;
+
+/** Notification called when Special Move starts */
+function SpecialMoveStarted( bool bForced, Name PrevMove )
+{
+	super.SpecialMoveStarted( bForced, PrevMove );
+
+	InitialRotation = KFPOwner.Rotation;
+}
 
 /**
  * Checks to see if this Special Move can be done.
@@ -31,15 +38,16 @@ function Tick( float DeltaTime )
 
 	if( KFPOwner != none && KFPOwner.Role != ROLE_SimulatedProxy )
 	{
-		KFPOwner.Velocity = vector(KFPOwner.Rotation) * RollSpeed;
-		KFPOwner.Acceleration = KFPOwner.Velocity;
+		KFPOwner.SetRotation( InitialRotation );
 	}
 }
 
 defaultproperties
 {
-	RollSpeed=1000.f
 	bUseRootMotion=true
+	bDisableSteering=true
+	bLockPawnRotation=true
+	EvadeAnims.Empty
 	EvadeAnims(DIR_Forward)=(Anims=(Player_Roll_F))
 	EvadeAnims(DIR_Backward)=(Anims=(Player_Roll_B))
 	EvadeAnims(DIR_Left)=(Anims=(Player_Roll_L))

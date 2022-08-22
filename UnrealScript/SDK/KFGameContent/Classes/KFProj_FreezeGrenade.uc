@@ -32,7 +32,7 @@ simulated event GrenadeIsAtRest()
 defaultproperties
 {
     LandedTranslationOffset=(X=2)
-    FuseTime=0.5
+    FuseTime=0.15 //0.5
 
 	ProjFlightTemplate=ParticleSystem'WEP_Freeze_Grenade_EMIT.FX_Freeze_Grenade_Mesh'
 	ExplosionActorClass=class'KFExplosionActor'
@@ -42,7 +42,7 @@ defaultproperties
 	Begin Object Name=ExplosionPointLight
 	    LightColor=(R=128,G=200,B=255,A=255)
 		Brightness=4.f
-		Radius=1500.f
+		Radius=1500.f //1500
 		FalloffExponent=10.f
 		CastShadows=False
 		CastStaticShadows=FALSE

@@ -378,6 +378,13 @@ var() float MaxDistanceToPlayer;
 /** If set, this volume never performs visibility checks */
 var() bool bOutOfSight;
 
+/** Result of last time this volume was rated & sorted */
+var const transient float  CurrentRating;
+
+/** Cached visibility for performance */
+var const transient bool 	bCachedVisibility;
+var const transient float 	CachedVisibilityTime;
+
 /** If LargestSquadType == EST_Boss, no other squads can spawn here */
 var deprecated bool bExclusiveBossVolumes;
 
@@ -450,6 +457,10 @@ var int VolumeChosenCount;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
 /*********************************************************************************************
  Native SpawnVolume rating functions
@@ -461,10 +472,10 @@ native final function vector FindTeleportLocation( class<KFPawn_Monster> Telepor
 /** Attempts to find an open marker to spawn the pawn class within this spawn volume */
 native final function vector FindSpawnLocation( class<KFPawn> SpawnPawnClass );
 
-/** Get average visibility/distance rating by checking all human players */
-native function float ScoreLocation(Controller ControllerToScoreAgainst, Float BestRating, Float BestPossibleRating, ESquadType SquadType);
 /** Get distance based score from one human player */
-native function float ScoreDistanceFrom(vector ViewLoc);
+native function float RateDistance(Controller C);
+/** Perform line of sight traces against all human players */
+native function bool IsVisible(optional bool bAllowVelocityPrediction);
 /** Perform line of sight traces for visibility */
 native function bool IsVisibleFrom(vector ViewLoc);
 /** Checks touching actors for living pawns */
@@ -490,38 +501,36 @@ event UnTouch(Actor Other)
 /** Script implementation of RateVolume so mod authors can change things. Native implementation is commented out just
  *  in case we need it, or want to do something like handle KF2 spawning in native but calling this event to allow a
  *  complete override in script.
+ * 
+ * @param OtherController 		Optional Controller for additional tests
  *
  *  Returning -1 means this volume is not to be considered at all, otherwise the volume's overall rating is returned */
-function float RateVolume( ESquadType DesiredSquadType, Controller RateController, Controller OtherController, float BestRating, optional bool bTeleporting, optional float MinDistSquared )
+function bool IsValidForSpawn( ESquadType DesiredSquadType, Controller OtherController )
 {
-	local float UsageRating, LocationRating, FinalRating;
 	local String DebugText;
-	local vector TextOffset;
-	local float BestPossibleRatingWithoutLocation;
 	local int i;
-	local float DistSquared;
 
 	// This volume is disabled
 	if( SpawnMarkerInfoList.Length == 0 )
 	{
-		return -1.f;
+		return false;
 	}
 	// This volume can't be used by players
 	if( bNoPlayers && OtherController != none && OtherController.bIsPlayer )
 	{
-		return -1.f;
+		return false;
 	}
 	// Spawn volume can not be reactived until UnTouchCoolDownTime
 	if ( LastUnTouchTime > 0.f && (WorldInfo.TimeSeconds - LastUnTouchTime) < UnTouchCoolDownTime )
 	{
 		if (bDebugRatingChecks) LogInternal("["$self$"] rejected from spawning because LastUnTouchTime difference ("$(WorldInfo.TimeSeconds - LastUnTouchTime)$") < UnTouchCoolDownTime ("$UnTouchCoolDownTime$"), returning a -1 rating");
-        return -1.f;
+        return false;
 	}
 	// The desired squad type is not compatible with this volume
 	if( DesiredSquadType < LargestSquadType )
 	{
 		if (bDebugRatingChecks) LogInternal("["$self$"] rejected from spawning because DesiredSquadType ("$DesiredSquadType$") < LargestSquadType ("$LargestSquadType$"), returning a -1 rating");
-		return -1.f;
+		return false;
 	}
 	// If a pawn is in the volume automatic fail
 	if( IsTouchingAlivePawn() )
@@ -535,19 +544,7 @@ function float RateVolume( ESquadType DesiredSquadType, Controller RateControlle
             }
     	}
 
-        return -1.f;
-	}
-
-	// Can't teleport here if it's not closer than MinDistSquared
-    if( MinDistSquared > 0 && RateController != none && RateController.Pawn != none )
-	{
-        DistSquared = VSizeSq( Location - RateController.Pawn.Location );
-
-        if( DistSquared > MinDistSquared )
-        {
-            if (bDebugRatingChecks) LogInternal("["$self$"] rejected from spawning because DistSquared ("$DistSquared$") > MinDistSquared ("$MinDistSquared$"), returning a -1 rating");
-            return -1.f;
-        }
+        return false;
 	}
 
 	// Fail if any linked doors are shut, or if the setting is set, welded
@@ -557,9 +554,34 @@ function float RateVolume( ESquadType DesiredSquadType, Controller RateControlle
             && !DoorList[i].DoorActor.bIsDestroyed && (!DoorList[i].bOnlyWhenWelded ||
             DoorList[i].DoorActor.WeldIntegrity > 0) )
         {
-            return -1;
+            return false;
         }
 	}
+
+	if ( IsVisible(DesiredSquadType == EST_Boss) )
+	{
+		return false;
+	}
+
+	return true;
+}
+
+/** Script implementation of RateVolume so mod authors can change things. Native implementation is commented out just
+ *  in case we need it, or want to do something like handle KF2 spawning in native but calling this event to allow a
+ *  complete override in script.
+ *
+ * @param RateController  		Controller that was selected to rate distance against used by MinDistSquared
+ * @param bTeleporting			Used for AI teleport rather than initial spawning
+ * @param TeleportMinDistSq		If set, perform circumstational distance checking using RateController
+ *
+ *  Returning -1 means this volume is not to be considered at all, otherwise the volume's overall rating is returned 
+ */
+event float RateVolume( Controller RateController, bool bTeleporting, float TeleportMinDistSq)
+{
+	local float UsageRating, LocationRating, FinalRating;
+	local float DistSquared;
+	local String DebugText;
+	local vector TextOffset;
 
 	// Calculate UsageRating
 	UsageRating = 1.f;
@@ -594,11 +616,20 @@ function float RateVolume( ESquadType DesiredSquadType, Controller RateControlle
 		}
 	}
 
-	// Calculate the best rating this volume could have without distance included. Used by the scoring system in native.
-    BestPossibleRatingWithoutLocation = (DesirabilityMod * 0.3) + (UsageRating * 0.3) + (DesirabilityMod * 0.1);
+	// Can't teleport here if it's not closer than MinDistSquared. Typically we reject in IsValidForSpawn(),
+	// but we'll make an exception here because we have all the right inputs
+    if( bTeleporting && TeleportMinDistSq > 0 && RateController != none && RateController.Pawn != none )
+	{
+        DistSquared = VSizeSq( Location - RateController.Pawn.Location );
+        if( DistSquared > TeleportMinDistSq)
+        {
+            if (bDebugRatingChecks) LogInternal("["$self$"] rejected from spawning because DistSquared ("$DistSquared$") > MinDistSquared ("$TeleportMinDistSq$"), returning a -1 rating");
+            return -1.f;
+        }
+	}
 
 	// Calculate rating based on distance and visibility to players
-	LocationRating = ScoreLocation(RateController, BestRating, BestPossibleRatingWithoutLocation, DesiredSquadType);
+	LocationRating = RateDistance(RateController);
 	if ( LocationRating < 0.f )
 	{
         if( !bMinimalDebugRatingChecks )

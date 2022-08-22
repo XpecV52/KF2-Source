@@ -21,6 +21,7 @@ var GFxObject InventoryButton;
 var GFxObject StoreButton;
 var int SaveCurrentMenuIndex;
 var bool bCachedGameFullyInstalled;
+var bool bAllowBumper;
 
 function InitializeCurrentMenu(byte CurrentMenuIndex)
 {
@@ -29,7 +30,17 @@ function InitializeCurrentMenu(byte CurrentMenuIndex)
 
 function CalloutButtonBumperPress(int Delta)
 {
-    SetInt("calloutButtonBumperPress", Delta);
+    if(bAllowBumper)
+    {
+        SetInt("calloutButtonBumperPress", Delta);
+        bAllowBumper = false;
+        Manager.TimerHelper.SetTimer(0.1, false, 'UnblockBumper', self);
+    }
+}
+
+function UnblockBumper()
+{
+    bAllowBumper = true;
 }
 
 function UpdateMenu(byte CurrentMenuIndex)
@@ -80,11 +91,11 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
             GfxButton.SetBool("bPulsing", ShouldStartMenuPulse());
             break;
         case 3:
-            GfxButton.SetBool("enabled", (CanUseInventory()) && !Class'WorldInfo'.static.IsE3Build());
+            GfxButton.SetBool("enabled", CanUseInventory());
             InventoryButton = GfxButton;
             break;
         case 4:
-            GfxButton.SetBool("enabled", !Class'WorldInfo'.static.IsE3Build());
+            GfxButton.SetBool("enabled", CanUseStore());
             StoreButton = GfxButton;
             break;
         default:
@@ -120,7 +131,7 @@ function OpenQuitPopUp()
     DescriptionString = DescriptionStrings[Rand(DescriptionStrings.Length)];
     if(Manager != none)
     {
-        Manager.OpenPopup(0, TitleString, DescriptionString, ExitString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnQuitConfirm);
+        Manager.DelayedOpenPopup(0, 0, TitleString, DescriptionString, ExitString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnQuitConfirm);
     }
 }
 
@@ -187,11 +198,28 @@ function bool CanUseGearButton()
 
 function bool CanUseInventory()
 {
+    if(Class'WorldInfo'.static.IsE3Build())
+    {
+        return false;
+    }
     if(((Outer.GetPC().Pawn != none) && !Manager.bAfterLobby) || Class'WorldInfo'.static.IsMenuLevel())
     {
         return true;
     }
     return false;
+}
+
+function bool CanUseStore()
+{
+    if(Class'WorldInfo'.static.IsE3Build())
+    {
+        return false;
+    }
+    if(Class'WorldInfo'.static.IsConsoleBuild() && Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetLoginStatus(byte(Outer.GetLP().ControllerId)) != 2)
+    {
+        return false;
+    }
+    return true;
 }
 
 defaultproperties
@@ -215,4 +243,5 @@ defaultproperties
     DescriptionStrings(0)="Fine, go on and run for your pathetic life. You wouldn't last five minutes on the Killing Floor."
     DescriptionStrings(1)="Each second you are away, another horde of freaks is born to feast on your friends. Are you just going to abandon them?"
     DescriptionStrings(2)="They're going to find you either way. They'll find you and they'll eat your heart, like a fleshy little snack."
+    bAllowBumper=true
 }

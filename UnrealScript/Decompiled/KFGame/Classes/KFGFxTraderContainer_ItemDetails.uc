@@ -227,10 +227,9 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
     {
         FinalMaxSpareAmmoCount = TraderItem.MaxSpareAmmo;
         FinalMagazineCapacity = TraderItem.MagazineCapacity;
-        CurrentPerk.ModifyMagSizeAndNumber(none, FinalMagazineCapacity, TraderItem.AssociatedPerkClass);
-        FinalMaxSpareAmmoCount += FinalMagazineCapacity;
+        CurrentPerk.ModifyMagSizeAndNumber(none, FinalMagazineCapacity, TraderItem.AssociatedPerkClass,, TraderItem.ClassName);
         CurrentPerk.ModifyMaxSpareAmmoAmount(none, FinalMaxSpareAmmoCount, TraderItem);
-        FinalMaxSpareAmmoCount -= FinalMagazineCapacity;        
+        FinalMaxSpareAmmoCount += FinalMagazineCapacity;        
     }
     else
     {

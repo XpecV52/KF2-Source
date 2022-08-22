@@ -109,7 +109,9 @@ function PlayLoadAnimation()
 	bUseRootMotion = false;
 	//MyPatPawn.Mesh.RootMotionMode = RMM_Accel;
 	//MyPatPawn.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Translate, RBA_Translate, RBA_Translate);
-	PlaySpecialMoveAnim( LoadAnim, EAS_FullBody, BlendInTime, 0.f, 1.f );
+	AnimStance = EAS_FullBody;
+	AnimName = LoadAnim;
+	PlaySpecialMoveAnim( AnimName, AnimStance, BlendInTime, 0.f, 1.f );
 }
 
 /** Start gun tracking as the weapon is being brought level */
@@ -132,7 +134,9 @@ function PlayFireAnimation()
 	bUseRootMotion = false;
 	DisableRootMotion();
 	MyPatPawn.RotationRate = MissileFireRotationRate;
-	PlaySpecialMoveAnim( AnimName, EAS_UpperBody, 0.f, BlendOutTime, 1.f );
+	AnimStance = EAS_UpperBody;
+	AnimName = default.AnimName;
+	PlaySpecialMoveAnim( AnimName, AnimStance, 0.f, BlendOutTime, 1.f );
 
 	// Shoot some missiles on the server
 	if( MyPatPawn.Role == ROLE_Authority )
@@ -142,15 +146,22 @@ function PlayFireAnimation()
 
 	// Play our fire sound
 	MyPatPawn.PostAkEventOnBone( FireSound, 'BarrelSpinner', true, true );
-
-	// Zero movement
-	MyPatPawn.ZeroMovementVariables();
 }
 
 /** Retrieves the aim direction and target location for each missile */
 function GetAimDirAndTargetLoc( int MissileNum, vector MissileLoc, rotator MissileRot, out vector AimDir, out vector TargetLoc )
 {
 	MyPatPawn.GetMissileAimDirAndTargetLoc( MissileNum, MissileLoc, MissileRot, AimDir, TargetLoc );
+}
+
+function Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( MyPatPawn != none && MyPatPawn.Role == ROLE_Authority && !MyPatPawn.bPlayedDeath && MyPatPawn.Physics == PHYS_Walking )
+	{
+		MyPatPawn.ZeroMovementVariables();
+	}
 }
 
 /** Fire our three missiles */
@@ -214,13 +225,12 @@ function FireMissiles()
 /** If we had to interrupt the move because we lost LOS, play a wind down animation */
 function PlayWindDownAnimation()
 {
-	// Zero movement
-	MyPatPawn.ZeroMovementVariables();
-
-	MyPatPawn.StopBodyAnim( EAS_FullBody, 0.33f );
+	MyPatPawn.StopBodyAnim( AnimStance, 0.33f );
 	bUseRootMotion = true;
 	EnableRootMotion();
-	PlaySpecialMoveAnim( WindDownAnimName, EAS_FullBody, 0.33f, BlendOutTime, 1.f );
+	AnimStance = EAS_FullBody;
+	AnimName = WindDownAnimName;
+	PlaySpecialMoveAnim( AnimName, AnimStance, 0.33f, BlendOutTime, 1.f );
 }
 
 /** Plays subsequent animations in the barrage */
@@ -234,7 +244,7 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
 			PlayFireAnimation();
 			break;
 
-		case AnimName:
+		case default.AnimName:
 			MyPatPawn.EndSpecialMove();
 			break;
 
@@ -257,6 +267,14 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 			MyPatPawn.SetGunTracking( false );
 		}
 		MyPatPawn.RotationRate = MyPatPawn.default.RotationRate;
+	}
+
+	// Move was interrupted by something (incap, panic, etc), we need to stop the anim if we're still playing one
+	if( KFPOwner.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim
+		&& KFPOwner.BodyStanceNodes[AnimStance].GetCustomAnimNodeSeq() != none
+		&& KFPOwner.BodyStanceNodes[AnimStance].GetCustomAnimNodeSeq().AnimSeqName == AnimName )
+	{
+		MyPatPawn.StopBodyAnim( AnimStance, 0.1f );
 	}
 
 	MyPatPawn = none;

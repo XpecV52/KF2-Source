@@ -60,9 +60,20 @@ function ShootFireball()
         Dir = vector(Rotation);
         TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
         TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + (vector(PC.PlayerCamera.CameraCache.POV.Rotation) * float(100000));
+        MyFireball = Spawn(FireballClass, self,, SocketLocation, Rotation);
+        if(MyFireball == none)
+        {
+            return;
+        }
+        MyFireball.Instigator = self;
+        MyFireball.InstigatorController = Controller;
+        MyFireball.Speed = FireballSpeed;
+        MyFireball.MaxSpeed = FireballSpeed;
+        MyFireball.ExplosionTemplate.Damage = float(GetRallyBoostDamage(int(MyFireball.default.ExplosionTemplate.Damage))) * FireballStrength;
+        MyFireball.ExplosionTemplate.DamageRadius = MyFireball.default.ExplosionTemplate.DamageRadius * (FireballStrength * FireballStrengthRadiusMultiplier);
         foreach TraceActors(Class'Actor', HitActor, HitLocation, HitNormal, TraceEnd, TraceStart,,, 1)
         {
-            if(HitActor == self)
+            if((HitActor == self) || !HitActor.StopsProjectile(MyFireball))
             {
                 HitActor = none;
                 continue;                
@@ -82,13 +93,7 @@ function ShootFireball()
         {
             ShootRotation = rotator(TraceEnd - SocketLocation);
         }
-        MyFireball = Spawn(FireballClass, self,, SocketLocation, ShootRotation);
-        MyFireball.Instigator = self;
-        MyFireball.InstigatorController = Controller;
-        MyFireball.Speed = FireballSpeed;
-        MyFireball.MaxSpeed = FireballSpeed;
-        MyFireball.ExplosionTemplate.Damage = float(GetRallyBoostDamage(int(MyFireball.default.ExplosionTemplate.Damage))) * FireballStrength;
-        MyFireball.ExplosionTemplate.DamageRadius = MyFireball.default.ExplosionTemplate.DamageRadius * (FireballStrength * FireballStrengthRadiusMultiplier);
+        MyFireball.SetRotation(ShootRotation);
         HuskFireball = KFProj_Husk_Fireball_Versus(MyFireball);
         if(HuskFireball != none)
         {
@@ -130,7 +135,7 @@ simulated function float GetFireballStrengthPerSecond()
 
 defaultproperties
 {
-    FireballSpeed=3600
+    FireballSpeed=4200
     FireballStrengthRange=(X=0.5,Y=1.3)
     FireballStrengthPerSecond=0.4
     FireballStrengthRadiusMultiplier=0.7
@@ -163,17 +168,17 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
-    LocalizationKey=KFPawn_ZedHusk
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedHusk_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bNeedsCrosshair=true
+    HitZones=/* Array type was not detected. */
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedHusk_Versus.Afflictions'
     IncapSettings=/* Array type was not detected. */
-    SprintSpeed=500
-    SprintStrafeSpeed=250
+    SprintSpeed=550
+    SprintStrafeSpeed=425
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
@@ -190,7 +195,8 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedHusk_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedHusk_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedHusk_Versus.DialogAkSoundComponent'
-    Health=450
+    GroundSpeed=250
+    Health=600
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

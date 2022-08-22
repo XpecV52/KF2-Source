@@ -90,7 +90,14 @@ function LocalizeText()
         {
             TextObject.SetString("serverName", WI.GRI.ServerName);    
         }
-        TextObject.SetString("serverIP", WI.GetAddressURL());
+        if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+        {
+        	TextObject.SetString("serverIP", "");
+        }
+        else
+        {
+        	TextObject.SetString("serverIP", WI.GetAddressURL());
+        }
     }
 
 	SetObject("localizedText", TextObject);
@@ -161,7 +168,7 @@ function SetSumarryInfo()
 	TextObject = CreateObject("Object");
 
 	//Get match info
-	CurrentMapName = GetPC().WorldInfo.GetMapName();	
+	CurrentMapName = GetPC().WorldInfo.GetMapName(true);	
 
 	GameTypeString = class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
 
@@ -331,9 +338,12 @@ function OnOpen()
 {
 	if( class'WorldInfo'.static.IsConsoleBuild() )
 	{
-		class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( SearchPlayfabInventoryForNewItem );
-		// Now read inventory to see if anything changed
-		class'GameEngine'.static.GetPlayfabInterface().ReadInventory();
+		if( GetPC().WorldInfo.NetMode == NM_Client )
+		{
+			class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( SearchPlayfabInventoryForNewItem );
+			// Now read inventory to see if anything changed
+			class'GameEngine'.static.GetPlayfabInterface().ReadInventory();
+		}
 	}
 	else if( OnlineSub != none )
 	{

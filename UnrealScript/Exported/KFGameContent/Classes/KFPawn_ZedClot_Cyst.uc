@@ -50,6 +50,7 @@ defaultproperties
    DifficultySettings=Class'kfgamecontent.KFDifficulty_ClotCyst'
    KnockedDownBySonicWaveOdds=0.350000
    PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.UnDevClot_AnimGroup'
+   LocalizationKey="KFPawn_ZedClot_Cyst"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -73,7 +74,7 @@ defaultproperties
    IncapSettings(6)=(Duration=4.500000,Cooldown=6.000000,Vulnerability=(5.000000))
    IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000,10.000000,10.000000,10.000000))
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
-   IncapSettings(9)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
+   IncapSettings(9)=(Cooldown=1.500000,Vulnerability=(2.500000))
    IncapSettings(10)=(Duration=4.500000,Cooldown=8.000000,Vulnerability=(0.500000))
    KnockdownImpulseScale=1.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:FirstPersonArms'
@@ -175,7 +176,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

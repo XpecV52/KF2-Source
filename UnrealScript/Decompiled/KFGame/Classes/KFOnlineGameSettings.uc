@@ -13,7 +13,6 @@ var databinding int CurrentWave;
 var databinding bool bInProgress;
 var databinding bool bMutators;
 var databinding bool bCustom;
-var databinding bool bUsedForTakeover;
 var databinding bool bAvailableForTakeover;
 var databinding int ZedCount;
 var databinding int MaxZedCount;

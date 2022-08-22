@@ -27,7 +27,10 @@ var Object Observer;
 function Pushed()
 {
     super.Pushed();
-    Outer.AILog_Internal(string(self) $ " Pushed", 'Command_SpecialMove');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(self) $ " Pushed", 'Command_SpecialMove');
+    }
     LockdownAI();
     if(DefaultStartState != 'None')
     {
@@ -37,7 +40,10 @@ function Pushed()
 
 function Resumed(name OldCommandName)
 {
-    Outer.AILog_Internal((string(self) $ " Resumed, previous command: ") $ string(OldCommandName), 'Command_SpecialMove');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((string(self) $ " Resumed, previous command: ") $ string(OldCommandName), 'Command_SpecialMove');
+    }
     ExecuteSMCount = 0;
     super.Resumed(OldCommandName);
     LockdownAI();
@@ -45,7 +51,10 @@ function Resumed(name OldCommandName)
 
 function Paused(GameAICommand NewCommand)
 {
-    Outer.AILog_Internal((string(self) $ " Paused by command ") $ string(NewCommand), 'Command_SpecialMove');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((string(self) $ " Paused by command ") $ string(NewCommand), 'Command_SpecialMove');
+    }
     super.Paused(NewCommand);
     UnlockAI();
 }
@@ -56,7 +65,10 @@ function Popped()
     local NavigationPoint NewAnchor;
 
     super.Popped();
-    Outer.AILog_Internal("Popped()", 'Command_SpecialMove');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Popped()", 'Command_SpecialMove');
+    }
     UnlockAI();
     ClearTimeout();
     if(bUpdateAnchorOnSuccess)
@@ -94,14 +106,20 @@ function NavigationPoint GetUpdatedAnchor()
 
 function LockdownAI()
 {
-    Outer.AILog_Internal(string(GetFuncName()), 'Command_SpecialMove');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(GetFuncName()), 'Command_SpecialMove');
+    }
     Outer.bPreparingMove = true;
     Outer.AIZeroMovementVariables();
 }
 
 function UnlockAI()
 {
-    Outer.AILog_Internal(string(GetFuncName()), 'Command_SpecialMove');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(GetFuncName()), 'Command_SpecialMove');
+    }
     Outer.bPreparingMove = false;
     Outer.bPreciseDestination = false;
     if(Outer.Pawn != none)
@@ -119,7 +137,10 @@ function float GetFailSafeReadyTime()
 
 function Timer_FailSafeReadyTriggered()
 {
-    Outer.AILog_Internal(string(self) $ " Failsafe triggered for special move action", 'Command_SpecialMove');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(self) $ " Failsafe triggered for special move action", 'Command_SpecialMove');
+    }
     bForceReady = true;
 }
 
@@ -163,7 +184,10 @@ state Command_SpecialMove extends DebugState
     function bool ExecuteSpecialMove()
     {
         SpecialMove = GetSpecialMove();
-        Outer.AILog_Internal((string(GetFuncName()) $ "()") @ string(SpecialMove), 'Command_SpecialMove');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ "()") @ string(SpecialMove), 'Command_SpecialMove');
+        }
         if((SpecialMove != 0) && !bShouldCheckSpecialMove || Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
             Outer.MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), GetSpecialMoveFlags(SpecialMove));
@@ -187,8 +211,10 @@ state Command_SpecialMove extends DebugState
 
     function SpecialMoveTimeout()
     {
-        Outer.AILog_Internal(string(GetFuncName()) $ " Special move timed out - failing and aborting", 'Command_SpecialMove');
-        LogInternal("special move timed out" @ string(self));
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(GetFuncName()) $ " Special move timed out - failing and aborting", 'Command_SpecialMove');
+        }
         if(Outer.MyKFPawn.SpecialMove == SpecialMove)
         {
             Outer.MyKFPawn.EndSpecialMove();
@@ -200,19 +226,28 @@ state Command_SpecialMove extends DebugState
 
     function OnFailedToDoSpecialMove()
     {
-        Outer.AILog_Internal(string(self) $ " Failed to do special move", 'Command_SpecialMove');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(self) $ " Failed to do special move", 'Command_SpecialMove');
+        }
         UpdateHistoryString("[F] SM Aborted");
     }
 Begin:
 
-    Outer.AILog_Internal(((((string(self) $ " --") @ string(GetStateName())) $ ":") $ string(Class)) @ "-- BEGIN LABEL", 'Command_SpecialMove');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((((string(self) $ " --") @ string(GetStateName())) $ ":") $ string(Class)) @ "-- BEGIN LABEL", 'Command_SpecialMove');
+    }
     if(bWaitForLanding && Outer.MyKFPawn.Physics == 2)
     {
         Outer.WaitForLanding();
     }
     if(!SetupSpecialMove())
     {
-        Outer.AILog_Internal(string(self) $ " Setup Special Move failed", 'Command_SpecialMove');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(self) $ " Setup Special Move failed", 'Command_SpecialMove');
+        }
         goto 'Abort';
     }
     if((ShouldFinishRotation()) && !Outer.Pawn.ReachedDesiredRotation())
@@ -225,24 +260,30 @@ Begin:
     }
     bForceReady = false;
     Outer.SetTimer(GetFailSafeReadyTime(), false, 'Timer_FailSafeReadyTriggered', self);
-    J0x1F8:
+    J0x26C:
 
     if(!IsReady() && !bForceReady)
     {
-        Outer.AILog_Internal(string(self) $ " Waiting for ready", 'Command_SpecialMove');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(self) $ " Waiting for ready", 'Command_SpecialMove');
+        }
         Outer.Sleep(0.1);
-        goto J0x1F8;
+        goto J0x26C;
     }
     Outer.ClearTimer('Timer_FailSafeReadyTriggered', self);
     if(ExecuteSpecialMove())
     {
         Outer.SetTimer(TimeOutDelaySeconds, false, 'SpecialMoveTimeout', self);
-        J0x2DE:
+        J0x38C:
 
-        Outer.AILog_Internal((string(self) $ " Waiting for SM to end TimeOutDelaySeconds: ") $ string(TimeOutDelaySeconds), 'Command_SpecialMove');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(self) $ " Waiting for SM to end TimeOutDelaySeconds: ") $ string(TimeOutDelaySeconds), 'Command_SpecialMove');
+        }
         Outer.Sleep(0.1);
         if(!(IsSpecialMoveComplete()))
-            goto J0x2DE;
+            goto J0x38C;
         if(ShouldFinishPostRotation())
         {
             Outer.FinishRotation();
@@ -254,12 +295,12 @@ Begin:
         UpdateHistoryString("SM Ended at " $ string(Outer.WorldInfo.TimeSeconds));
         FinishedSpecialMove();
         TerminationTime = Outer.WorldInfo.TimeSeconds + (GetPostSpecialMoveSleepTime());
-        J0x46B:
+        J0x553:
 
         if(TerminationTime > Outer.WorldInfo.TimeSeconds)
         {
             Outer.Sleep(0.1);
-            goto J0x46B;
+            goto J0x553;
         }
         Status = 'Success';        
     }
@@ -277,13 +318,19 @@ Begin:
 Abort:
 
 
-            Outer.AILog_Internal("Abort label", 'Command_SpecialMove');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal("Abort label", 'Command_SpecialMove');
+            }
             OnFailedToDoSpecialMove();
             Status = 'Failure';
             Outer.Sleep(FailureSleepTimeSeconds);
         }
     }
-    Outer.AILog_Internal("Calling PopCommand() at bottom of state code", 'Command_SpecialMove');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("Calling PopCommand() at bottom of state code", 'Command_SpecialMove');
+    }
     Outer.PopCommand(self);
     stop;        
 }

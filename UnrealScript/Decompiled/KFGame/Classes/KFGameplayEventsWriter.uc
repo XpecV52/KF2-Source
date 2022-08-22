@@ -352,7 +352,7 @@ function LogAIRedirectedPath(KFAIController KFAIC, Actor MoveGoal, string ToolTi
     {
         return;
     }
-    if(KFAIC != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFAIC != none)
     {
         KFAIC.AILog_Internal((((((string(KFAIC.Pawn) $ " GAMEEVENT_AI_REDIRECTEDPATH at ") $ string(KFAIC.Pawn.Location)) $ " MoveGoal: ") $ string(MoveGoal)) $ " ToolTipText: ") $ ToolTipText, 'Critical');
     }
@@ -432,7 +432,7 @@ function LogAIGetNextMoveGoalFailure(KFAIController KFAIC, Vector NPCLocation, R
     {
         return;
     }
-    if(KFAIC != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && KFAIC != none)
     {
         KFAIC.AILog_Internal((((((string(KFAIC.Pawn) $ " LogAIGetNextMoveGoalFailure at ") $ string(NPCLocation)) $ " MoveGoal: ") $ string(MoveGoal)) $ " ToolTipText: ") $ ToolTipText, 'PathWarning');
     }

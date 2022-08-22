@@ -28,7 +28,7 @@ var databinding int NumOpenPublicConnections;
 var databinding int NumOpenPrivateConnections;
 var const QWord ServerNonce;
 var string SessionGuid;
-var string JoinString;
+var databinding string JoinString;
 var databinding bool bShouldAdvertise;
 var databinding bool bIsLanMatch;
 var databinding bool bUsesStats;
@@ -44,6 +44,7 @@ var databinding bool bIsDedicated;
 var const bool bHasSkillUpdateInProgress;
 var const bool bShouldShrinkArbitratedSessions;
 var databinding bool bRequiresPassword;
+var databinding bool bCloudServer;
 var databinding string OwningPlayerName;
 var UniqueNetId OwningPlayerId;
 var databinding int PingInMs;
@@ -53,6 +54,8 @@ var const int BuildUniqueId;
 var string LobbyId;
 var int GfxID;
 var int ElementIdx;
+var databinding int SecondsDeallocated;
+var databinding string Region;
 var array<PlayerResult> PlayersInGame;
 
 defaultproperties

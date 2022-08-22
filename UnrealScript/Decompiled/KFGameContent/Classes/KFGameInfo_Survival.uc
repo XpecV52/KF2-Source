@@ -313,15 +313,18 @@ function UpdateGameSettings()
     local name SessionName;
     local KFOnlineGameSettings KFGameSettings;
     local int NumHumanPlayers, I;
+    local KFGameEngine KFEngine;
 
     if((WorldInfo.NetMode == NM_DedicatedServer) || WorldInfo.NetMode == NM_ListenServer)
     {
         if(NotEqual_InterfaceInterface(GameInterface, (none)))
         {
+            KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
             SessionName = PlayerReplicationInfoClass.default.SessionName;
             if((PlayfabInter != none) && PlayfabInter.GetGameSettings() != none)
             {
-                KFGameSettings = KFOnlineGameSettings(PlayfabInter.GetGameSettings());                
+                KFGameSettings = KFOnlineGameSettings(PlayfabInter.GetGameSettings());
+                KFGameSettings.bAvailableForTakeover = KFEngine.bAvailableForTakeover;                
             }
             else
             {
@@ -358,7 +361,7 @@ function UpdateGameSettings()
                     if(GameReplicationInfo != none)
                     {
                         I = 0;
-                        J0x432:
+                        J0x4A3:
 
                         if(I < GameReplicationInfo.PRIArray.Length)
                         {
@@ -367,7 +370,7 @@ function UpdateGameSettings()
                                 ++ NumHumanPlayers;
                             }
                             ++ I;
-                            goto J0x432;
+                            goto J0x4A3;
                         }
                     }
                     KFGameSettings.NumOpenPublicConnections = KFGameSettings.NumPublicConnections - NumHumanPlayers;
@@ -383,11 +386,6 @@ function UpdateGameSettings()
             }
         }
     }
-}
-
-function int GetGameModeNum()
-{
-    return Class'KFGameInfo'.static.GetGameModeNumFromClass(PathName(default.Class));
 }
 
 function bool CanSpectate(PlayerController Viewer, PlayerReplicationInfo ViewTarget)

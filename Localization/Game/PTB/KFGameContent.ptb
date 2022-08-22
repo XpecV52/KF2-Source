@@ -31,7 +31,7 @@ StoreDescriptionsKey="No menu Loja, você pode comprar chaves para abrir caixote
 InventoryTitleKey="Conheça o inventário"
 InventoryDescriptionKey="Cada equipamento inicial da classe começa com uma arma principal exclusiva, uma pistola 9 mm reserva, uma faca de especialista e granadas. Aperte <font color="#caab05">%x%</font> para alternar as armas. Para selecionar rapidamente categorias de arma, aperte: <font color="#caab05">%x%</font> para equipar com a arma de longo alcance principal, <font color="#caab05">%x%</font> para equipar com a pistola, <font color="#caab05">%x%</font> para equipar com arma corpo a corpo e <font color="#caab05">%x%</font> para equipar a seringa."
 InventoryContTitleKey="Conheça o inventário"
-InventoryContDescriptionKey="Cada equipamento inicial da classe começa com uma arma principal exclusiva, uma pistola 9 mm reserva, uma faca de especialista e granada. Aperte <font color="#caab05">%x%</font> e use os botões direcionais para selecionar uma arma."
+InventoryContDescriptionKey="Cada equipamento inicial da classe começa com uma arma principal exclusiva, uma pistola 9 mm reserva, uma faca de especialista e granada. Aperte <font color="#caab05">%x%</font> e use os botões de direção para selecionar uma arma."
 AlternateFireKey="Tiro alternativo"
 AlternateFireDescription="A maioria das armas principais têm um modo de tiro alternativo. Aperte <font color="#caab05">%x%</font> para alternar o modo de tiro atual. Um ícone aparecerá mostrando o modo de tiro selecionado."
 FlashLightBatteryTitleKey="Uso da lanterna"
@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="Cada arma tem um <font color="#caab05">PESO</font>. 
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="Reabasteça a munição e a armadura"
-TraderRefillGamepadDescriptionKey="Recarregue <font color="#caab05">MUNIÇÃO</font>, <font color="#caab05">GRANADAS</font> e <font color="#caab05">ARMADURA</font> no comerciante. Para isso, use o controle esquerdo para selecionar a arma para a qual quer comprar munição, à esquerda do menu do comerciante. Para comprar um pente ou granada para a arma selecionada, aperte <font color="#caab05">%x%</font> ou, para comprar o máximo possível de munição ou granadas até o seu limite de compras, aperte <font color="#caab05">%x%</font>. Se você está sem tempo (ou com muita grana), aperte <font color="#caab05">%x%</font> para distribuí-la em munição, armadura e granadas de modo rápido e automático."
+TraderRefillGamepadDescriptionKey="Recarregue <font color="#caab05">MUNIÇÃO</font>, <font color="#caab05">GRANADAS</font> e <font color="#caab05">ARMADURA</font> no comerciante. Para isso, use o controle esquerdo para selecionar a arma para a qual quer comprar munição, à esquerda do menu do comerciante. Para comprar um pente ou granada para a arma selecionada, aperte <font color="#caab05">XboxTypeS_A</font> ou, para comprar o máximo possível de munição ou granadas até o seu limite de compras, aperte <font color="#caab05">XboxTypeS_X</font>. Se você está sem tempo (ou com muita grana), aperte <font color="#caab05">LeftThumbStick</font> para distribuí-la em munição, armadura e granadas de modo rápido e automático."
 TraderSellGamepadTitleKey="Venda de armas"
-TraderSellGamepadDescriptionKey="Para <font color="#caab05">VENDER UMA ARMA</font>, use o controle esquerdo para selecionar a arma que quiser vender à esquerda do menu do comerciante e aperte <font color="#caab05">%x%</font>. Veja a quantidade de grana que você ganhará se vender o item. Você não pode vender sua pistola 9 mm, armadura nem granadas."
+TraderSellGamepadDescriptionKey="Para <font color="#caab05">VENDER UMA ARMA</font>, use o controle esquerdo para selecionar a arma que quiser vender à esquerda do menu do comerciante e aperte <font color="#caab05">XboxTypeS_Y</font>. Veja a quantidade de grana que você ganhará se vender o item. Você não pode vender sua pistola 9 mm, armadura nem granadas."
 TraderBuyGamepadTitleKey="Compra de armas"
-TraderBuyGamepadDescriptionKey="Para <font color="#caab05">COMPRAR UMA ARMA</font>, use o controle esquerdo para selecionar a arma que quiser comprar à direita do menu do comerciante e aperte <font color="#caab05">%x%</font>. Tenha certeza de ter <font color="#caab05">GRANA</font> e <font color="#caab05">CAPACIDADE DE PESO</font> suficientes para comprar a arma."
+TraderBuyGamepadDescriptionKey="Para <font color="#caab05">COMPRAR UMA ARMA</font>, use o controle esquerdo para selecionar a arma que quiser comprar à direita do menu do comerciante e aperte <font color="#caab05">XboxTypeS_A</font>. Tenha certeza de ter <font color="#caab05">GRANA</font> e <font color="#caab05">CAPACIDADE DE PESO</font> suficientes para comprar a arma."
 TraderWeightGamepadTitleKey="Peso da arma e capacidade"
 TraderWeightGamepadDescriptionKey="Cada arma tem um <font color="#caab05">PESO</font>. O peso das armas no momento pode impedir a compra da arma desejada. O peso da arma fica na lista de armas e nos detalhes do objeto. Sua <font color="#caab05">CAPACIDADE DE PESO</font> fica abaixo da grana atual, no centro da tela. Tudo o que estiver impedindo a compra de um item fica destacado de vermelho."
 
@@ -263,7 +263,7 @@ ItemCategory="Espingarda"
 ItemDescription="•O modo de tiro é somente ação de bomba.\n•A ação de bomba Mossberg SG 500 com a pegada da pistola é uma matadora de Zeds excelente à curta distância. Simples e eficaz."
 
 [KFWeap_Shotgun_M4]
-ItemName="Espingarda de Combate M4"
+ItemName="Esping. de Combate M4"
 ItemCategory="Espingarda"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Benelli projetou a Espingarda de Combate M4 para o exército norte-americano. Como é semiautomática, tem uma cadência de tiro boa e estável."
 
@@ -340,7 +340,7 @@ ItemCategory="Explosivos"
 ItemDescription="•O modo de tiro coloca uma carga de C4.\n•Tiro alt. detona as cargas de C4, na mesma ordem em que você as colocou.\n•Um bloco de C4 armado para detonação remota."
 
 [KFWeap_GrenadeLauncher_HX25]
-ItemName="Pistola de Granadas HX25"
+ItemName="Pistola de Granadas"
 ItemCategory="Explosivos"
 ItemDescription="•O modo de tiro dispara várias submunições que explodem ao contato."
 
@@ -448,6 +448,20 @@ ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
+BossName_CHN="汉斯-沃尔特博士"
+BossName_CHT="漢斯華特博士"
+BossName_DEU="Dr. Hans Volter"
+BossName_ESL="Dr. Hans Volter"
+BossName_ESN="Dr. Hans Volter"
+BossName_FRA="Dr. Hans Volter"
+BossName_FRC="Dr. Hans Volter"
+BossName_INT="Dr. Hans Volter"
+BossName_ITA="Dr. Hans Volter"
+BossName_JPN="ドクター ハンス・ヴォルター"
+Bossname_KOR="Dr. Hans Volter"
+BossName_POL="Dr Hans Volter"
+BossName_PTB="Dr. Hans Volter"
+BossName_RUS="Д-р Ганс Вольтер"
 BossCaptionStrings[0]="Quando ferido, Hans levanta seu escudo enquanto procura uma vítima para lhe sugar a vida. Sem o escudo, ele não poderá se curar!"
 BossCaptionStrings[1]="Observe seu núcleo de energia: Hans fica mais agressivo à medida que muda de cor."
 BossCaptionStrings[2]="Mire no núcleo de energia radiativo. É uma zona vulnerável."
@@ -458,6 +472,20 @@ BossCaptionStrings[6]="Fique fora da mira de Hans quando ele sacar as armas. Par
 
 [KFPawn_ZedPatriarch]
 BossName="O Patriarca"
+BossName_CHN="长老丧尸"
+BossName_CHT="長老"
+BossName_DEU="Der Patriarch"
+BossName_ESL="El patriarca"
+BossName_ESN="El patriarca"
+BossName_FRA="Le Patriarche"
+BossName_FRC="Le Patriarche"
+BossName_INT="The Patriarch"
+BossName_ITA="Il Patriarca"
+BossName_JPN="ペイトリアーク"
+BossName_KOR="Patriarch"
+BossName_POL="Patriarcha"
+BossName_PTB="O Patriarca"
+BossName_RUS="Патриарх"
 BossCaptionStrings[0]="Kevin Clamely era um cientista brilhante até que ele mesmo virou sua própria criação — a maior delas."
 BossCaptionStrings[1]="O Patriarca é incrivelmente arrogante: ele até avisa qual ataque vai usar."
 BossCaptionStrings[2]="Não adiantará esconder-se atrás das coisas. O Patriarca tem uma resposta para isso!"

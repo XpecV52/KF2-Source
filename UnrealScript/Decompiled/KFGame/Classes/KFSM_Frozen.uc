@@ -16,10 +16,12 @@ var float BeginFreezePhaseTime;
 var float FreezeMatParamValue;
 var protected ParticleSystem FrozenSteamTemplate;
 var protected export editinline ParticleSystemComponent FrozenSteamEffect;
+var protected bool bIsThawing;
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     super.SpecialMoveStarted(bForced, PrevMove);
+    bIsThawing = false;
     DoFreeze();
 }
 
@@ -67,6 +69,7 @@ function PlayThawAnimation()
 
     ThawIndex = byte(KFPOwner.SpecialMoveFlags - 1);
     PlaySpecialMoveAnim(ThawAnims[ThawIndex], 0, FreezeOutTime, 0.3, 0.5, false);
+    bIsThawing = true;
     if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
         BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
@@ -107,13 +110,19 @@ function UpdateFreezeOutParam()
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     super.SpecialMoveEnded(PrevMove, NextMove);
-    if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
+    if(KFPOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
         KFPOwner.DetachEmitter(FrozenSteamEffect);
-        if(!PawnOwner.IsAliveAndWell())
+        if(!KFPOwner.IsAliveAndWell())
         {
             PlayDeathEffects();
             KFPOwner.ClearTimer('UpdateFreezeOutParam', self);
+        }
+        if(!bIsThawing)
+        {
+            BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
+            FreezeOutTime = 0.5;
+            KFPOwner.SetTimer(0.1, true, 'UpdateFreezeOutParam', self);
         }
     }
     KFPOwner.ClearTimer('UpdateFreezeInParam', self);

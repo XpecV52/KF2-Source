@@ -19,10 +19,15 @@ simulated event PostBeginPlay()
     LastLocation = Location;
 }
 
+simulated function bool ShouldProcessBulletTouch()
+{
+	return BouncesLeft > 0 && GravityScale == default.GravityScale;
+}
+
 defaultproperties
 {
    PickupRadius=250.000000
-   WeaponClass=Class'kfgamecontent.KFWeap_Eviscerator'
+   WeaponClassName="KFWeap_Eviscerator"
    AmmoPickupSound=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Projectile_Pickup'
    ProjPickupTemplate=ParticleSystem'WEP_SawBlade_EMIT.FX_Sawblade_pickup_01'
    LifeSpanAfterStick=180.000000

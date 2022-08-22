@@ -1,0 +1,521 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[KFTutorial]
+;Lobby start
+RewardsTitleKey="트레이닝 플로어에 오신 것을 환영합니다."
+RewardsDescriptionKey="트레이닝 플로어에서는 죽을 위험 없이 기본적인 생존 기술을 가르쳐드립니다. 트레이닝 플로어 훈련을 완료하시면 꾸미기 아이템과 선택하신 병과의 레벨 1을 시작하기에 충분한 XP를 드립니다."
+WelcomeTitleKey="병과를 선택하십시오"
+WelcomeDescriptionKey="대전을 시작하기 전에 화면 상단에서 <font color="#caab05">병과</font> 탭을 선택하고 병과를 골라주십시오. 병과는 각기 다른 패시브 <font color="#caab05">병과 보너스</font>, 구성이 가능한 <font color="#caab05">기술</font>, 그리고 <font color="#caab05">장착 무기</font>가 제공되는 플레이 유형입니다."
+PerksTitleKey="병과 세부 정보"
+PerksDescriptionKey="게임에서 <font color="#caab05">XP 목표</font>를 수행하여 XP를 받고 병과 레벨을 높입니다. 레벨을 높일 때마다 병과에 맞는 <font color="#caab05">병과 보너스</font>가 높아집니다. 5 레벨마다 플레이어는 새로운 <font color="#caab05">기술</font>을 잠금해제하여 <font color="#caab05">구성</font>할 수 있습니다. 병과를 선택하고 <font color="#caab05">준비</font>를 눌러 대전을 시작합니다."
+
+;Gear Menu
+GearTitleKey="장비 메뉴"
+GearDescriptionKey="장비 메뉴에서는 캐릭터를 선택하고 <font color="#caab05">커스터마이즈</font>할 수 있습니다. 각 캐릭터는 고유한 외모와 목소리, 개성을 가지고 있습니다. 각 캐릭터의 머리와 몸은 커스터마이즈할 수 있습니다. 최대 3 가지 꾸미기 액세서리를 착용할 수 있습니다. 이 메뉴 왼쪽에 있는 버튼을 이용하여 캐릭터를 선택하고 커스터마이즈하십시오."
+
+;Inventory Menu
+InventoryMenuTitleKey="인벤토리 메뉴"
+InventoryMenuDescriptionKey="인벤토리 메뉴를 통해 아이템 인벤토리를 보고 관리할 수 있습니다. 대전을 완료하면 가끔씩 아이템을 보상으로 받을 수 있고, 상자를 열거나 무기 스킨 USB 암호해독, 친구와의 거래, 시장에서 구입하기의 방법으로 아이템을 얻을 수도 있습니다."
+WeaponSkinsTitleKey="무기 스킨 장착"
+WeaponSkinsDescriptionKey="아이템을 선택하면 아이템 세부 정보를 볼 수 있습니다. 무기 스킨을 선택했다면 <font color="#caab05">장착</font> 버튼을 눌러 장착할 수 있습니다. 무기 스킨을 장착하면 대전에서 그 무기를 사용할 때마다 현재 장착한 스킨으로 표시됩니다."
+
+;Store Menu
+StoreTitleKey="상점 메뉴"
+StoreDescriptionsKey="상점 메뉴를 이용하여 상자를 여는데 쓰는 열쇠를 구입하고 발견한 무기 스킨 USB 암호를 해독할 수 있습니다. 또한 여러 가지 캐릭터별 꾸미기 아이템 번들을 구입할 수도 있습니다. 구입하거나 보상으로 받은 아이템은 인벤토리 메뉴에 표시됩니다."
+
+;Match Start
+InventoryTitleKey="인벤토리를 확인하세요."
+InventoryDescriptionKey="각각의 병과 장비는 고유 기본무기, 보조 9mm 권총, 전문 나이프, 수류탄으로 시작됩니다. <font color="#caab05">%x%</font>을(를) 누르면 무기를 순환하여 표시합니다. 또한 다음을 누르면 무기 카테고리를 빠르게 선택할 수 있습니다. <font color="#caab05">%x%</font> 기본 무기 장착, <font color="#caab05">%x%</font> 권총 장착, <font color="#caab05">%x%</font> 백병전 무기 장착, <font color="#caab05">%x%</font> 주사기 장착"
+InventoryContTitleKey="인벤토리를 확인하세요."
+InventoryContDescriptionKey="각각의 병과 장비는 고유 기본무기, 보조 9mm 권총, 전문 나이프, 수류탄으로 시작됩니다. <font color="#caab05">%x%</font>을(를) 누르고 방향 버튼을 이용하여 무기를 선택합니다."
+AlternateFireKey="대체 사격"
+AlternateFireDescription="대부분의 기본 무기는 대체 사격 모드를 갖추고 있습니다. <font color="#caab05">%x%</font>을(를) 누르면 현재 대체 사격 모드로 전환합니다. 보기의 아이콘이 현재 선택된 사격 모드를 표시합니다."
+FlashLightBatteryTitleKey="플래시 이용"
+FlashLightBatteryDescriptionKey="어두운 곳이 나타날 수 있습니다. <font color="#caab05">%x%</font>을(를) 누르면 <font color="#caab05">플래시</font>를 켜고 끕니다. 플래시 배터리는 천천히 소진됩니다. 전력이 소진되면 꺼지고 다시 충전을 시작합니다."
+GrenadeTitleKey="수류탄 사용"
+GrenadeDescriptionKey="수류탄을 이용하여 가까이 뭉쳐 있는 제드 집단에 데미지를 가할 수 있습니다. 병과에 따라 <font color="#caab05">장착 무기</font>에 있는 수류탄은 다르며 모두 제드를 공격하지만 부가적인 효과가 들어갑니다. <font color="#caab05">%x%</font>을(를) 누르면 수류탄을 투척합니다.” "
+
+;Wave 1 end
+TraderTimeTitleKey="상점 시간"
+TraderTimeDescriptionKey="웨이브 사이에 상점에서 무기를 사고 팔고 장갑을 구입할 수 있으며 탄약을 보충할 수 있습니다. 파란색 화살표를 따라가 상점을 찾으십시오."
+InventoryWeightTitleKey="운반 무게"
+InventoryWeightDescriptionKey="플레이어는 한정된 무게만 들고 다닐 수 있습니다. 원하는 아이템을 들 수 없다면 다른 장비 몇 가지를 팔아 공간을 만드십시오."
+
+;Trader Menu Open
+TraderRefillTitleKey="탄약 및 장갑 보충"
+TraderRefillDescriptionKey="플레이어는 <font color="#caab05">탄창</font>, <font color="#caab05">1X</font>, 또는 <font color="#caab05">주입</font> 버튼을 눌러 <font color="#caab05">탄약</font>, <font color="#caab05">수류탄</font>, 및 <font color="#caab05">장갑</font>을 보충할 수 있습니다. 시간이 없다면 (또는 Dosh가 많다면) <font color="#caab05">자동 주입</font>을 눌러 Dosh를 소비하고 탄약, 장갑, 수류탄을 빠르게 보충할 수 있습니다."
+TraderSellTitleKey="무기 판매"
+TraderSellDescriptionKey="<font color="#caab05">무기를 판매</font>하려면 판매하고자 하는 아이템 오른쪽에 있는 <font color="#caab05">판매 버튼</font>을 누르십시오. <font color="#caab05">판매 버튼</font> 상에서 아이템을 판매하여 받게 될 Dosh를 볼 수 있습니다. 보조 9mm 권총, 장갑, 수류탄은 판매할 수 없습니다."
+TraderBuyTitleKey="무기 구입"
+TraderBuyDescriptionKey="<font color="#caab05">무기를 구입</font>하려면 판매하고자 하는 아이템 왼쪽에 있는 <font color="#caab05">구입 버튼</font>을 누르십시오. 무기를 구입할 때 <font color="#caab05">Dosh</font>와 <font color="#caab05">무게 용량</font>이 충분한지 확인하십시오."
+TraderWeightTitleKey="무기 무게 및 용량"
+TraderWeightDescriptionKey="모든 무기는 <font color="#caab05">무게 값</font>이 있습니다. 현재 무기의 무게로 인해 원하는 무기를 구입하지 못할 수도 있습니다. 무기의 무게는 무기 목록과 무기 세부 정보에 표시됩니다. 플레이어의 <font color="#caab05">무게 용량</font>은 화면 가운데 현재 Dosh 아래에 표시됩니다. 현재 선택한 아이템을 구입하지 못하게 하는 것은 모두 빨간색으로 표시됩니다."
+
+;Trader Open Gamepad
+TraderRefillGamepadTitleKey="탄약 및 장갑 보충"
+TraderRefillGamepadDescriptionKey="상점에서 <font color="#caab05">탄약</font>, <font color="#caab05">수류탄</font>, <font color="#caab05">장갑</font>을 보충할 수 있습니다. 이를 위해 왼쪽 스틱을 이용하여 상점 메뉴 왼쪽에서 탄약을 구입하고자 하는 무기를 선택하십시오. <font color="#caab05">XboxTypeS_A</font>를 누르면 선택한 무기의 탄창이나 수류탄을 하나 구입할 수 있으며 <font color="#caab05">XboxTypeS_X</font>를 누르면 본인의 한도 범위 내에서 최대한 탄약이나 수류탄을 구입할 수 있습니다. 시간이 없다면 (또는 Dosh가 많다면) <font color="#caab05">LeftThumbStick</font>을 눌러 Dosh를 소비하고 탄약, 장갑, 수류탄을 빠르게 보충할 수 있습니다."
+TraderSellGamepadTitleKey="무기 판매"
+TraderSellGamepadDescriptionKey="<font color="#caab05">무기를 판매</font>하려면 왼쪽 스틱을 이용하여 상점 메뉴 왼쪽에서 판매하고자 하는 무기를 선택하고 <font color="#caab05">XboxTypeS_Y</font>를 누르십시오. 아이템을 판매하여 받게 되는 Dosh 금액을 확인할 수 있습니다. 보조 9mm 권총, 장갑, 수류탄은 판매할 수 없습니다."
+TraderBuyGamepadTitleKey="무기 구입"
+TraderBuyGamepadDescriptionKey="<font color="#caab05">무기를 구입</font>하려면 왼쪽 스틱을 이용하여 상점 메뉴 오른쪽에서 구입하고자 하는 무기를 선택하고 <font color="#caab05">XboxTypeS_A</font>를 누르십시오. 무기를 구입할 때 <font color="#caab05">Dosh</font>와 <font color="#caab05">무게 용량</font>이 충분한지 확인하십시오."
+TraderWeightGamepadTitleKey="무기 무게 및 용량"
+TraderWeightGamepadDescriptionKey="모든 무기는 <font color="#caab05">무게 값</font>이 있습니다. 현재 무기의 무게로 인해 원하는 무기를 구입하지 못할 수도 있습니다. 무기의 무게는 무기 목록과 무기 세부 정보에 표시됩니다. 플레이어의 <font color="#caab05">무게 용량</font>은 화면 가운데 현재 Dosh 아래에 표시됩니다. 현재 선택한 아이템을 구입하지 못하게 하는 것은 모두 빨간색으로 표시됩니다."
+
+
+
+;Trader Menu Close
+DoorWeldTitleKey="도어 용접"
+DoorWeldDescriptionKey="<font color="#caab05">도어를 용접</font>하여 해당 구역 내에 있는 적의 이동을 늦출 수 있습니다. 도어를 용접하려면 문으로 걸어가 <font color="#caab05">%x%을(를) 오래 눌러</font> 용접기를 장착하십시오."
+HoldOutRunTitleKey="달아나기 대 저항하기"
+HoldOutRunDescriptionKey="언제 저항해야 할지, 달아나야 할지를 잘 생각하십시오. 저항하기 좋은 지점을 찾아두되 밀리기 시작한다면 탈출로를 찾으십시오."
+TeamAdviceTitleKey="함께 뭉치십시오."
+TeamAdviceDescriptionKey="<font color="#caab05">팀과 함께 뭉치십시오.</font> 팀 동료는 생존을 위해 필수입니다. 동료들은 플레이어를 치료해줄 수 있고 큰 제드를 쓰러뜨리도록 도움을 줄 수 있습니다."
+
+;Victory
+CongratulationsTitleKey="승리!"
+CongratulationsDescriptionKey="축하합니다! 트레이닝 플로어를 완료하였습니다!"
+NextStepsTitleKey="다음 할 일"
+NextStepsDescriptionKey="홈 메뉴에서 오프라인으로 더 연습을 하거나 다른 생존자들과 함께 온라인 게임에 참여할 수 있습니다. 이제 가서 제드를 처치해봅시다!"
+
+;Healing Section
+QuickHealTitleKey="부상을 당했을 때 스스로 치료하기"
+QuickHealDescriptionKey="부상을 당했을 때 <font color="#caab05">%x%</font>을(를) 누르면 스스로 치료할 수 있습니다. 치료 후에는 주사기를 재충전하여 사용할 수 있을 때까지 시간이 걸립니다."
+HowToSyringeTitleKey="팀원 치료하기"
+HowToSyringeDescriptionKey="플레이어는 또한 <font color="#caab05">%x%</font>을(를) 누른 다음 팀원에게 가까이 가서 <font color="#caab05">%x%</font>을(를) 누르면 팀원을 치료할 주사기를 장착할 수 있습니다."
+HealOthersTitleKey="필드 메딕 무기를 이용하여 팀원 치료하기"
+HealOthersDescriptionKey="필드 메딕 병과 무기는 먼 거리에서 대체 사격 모드를 이용하여 팀원을 치료할 수 있습니다. 필드 메딕 무기를 이용한다면 <font color="#caab05">%x%</font>을(를) 눌러 치료 다트를 발사하십시오. 또한 필드 메딕 병과를 선택했다면 <font color="#caab05">%x%</font>을(를) 눌러 치료용 가스 수류탄을 던지십시오."
+
+;Zed Time
+ZedTimeTitleKey="제드 타임"
+ZedTimeDescriptionKey="<font color="#caab05">제드 타임 슬로우모션</font>은 헤드샷이나 적 무리의 폭발 처치와 같이 멋진 장면에서 시작됩니다. 플레이어는 제드 타임을 이용하여 약간의 숨돌릴 틈을 만들고 연속 킬을 이어갈 수 있습니다."
+
+;Melee Section
+MeleeTitleKey="백병전 무기"
+MeleeDescriptionKey="백병전 무기는 가벼운 타격과 강타가 모두 가능합니다. 가벼운 타격은 <font color="#caab05">%x%</font>을(를) 누르고 강타는 <font color="#caab05">%x%</font>을(를) 누릅니다."
+BlockingTitleKey="백병전 무기 막기"
+BlockingDescriptionKey="<font color="#caab05">%x% 오래 누르기</font>로 백병전 무기를 막을 수 있습니다. 막기를 이용하면 제드가 가하는 데미지를 줄일 수 있습니다."
+ParryTitleKey="백병전 무기 회피"
+ParryDescriptionKey="제드가 공격할 때 막기 타이밍을 정확히 맞춘다면 공격을 회피하고 제드를 비틀거리게 만듭니다. 제드를 성공적으로 회피하면 플래시 효과가 나타납니다."
+UnblockableTitleKey="막을 수 없는 제드 공격"
+UnblockableDescriptionKey="대형 제드는 막을 수 없는 공격을 가하기도 합니다. 제드가 공격 시 달아오르는 효과가 보이면 공격을 막을 수 없다는 것을 알 수 있습니다."
+
+[KFGFxTutorialContainer]
+BackString="뒤로"
+NextString="다음"
+DoneString="완료"
+SkipString="건너뛰기"
+
+[Armor]
+ItemName="전투 장갑"
+ItemCategory="장비"
+ItemDescription="•전투 장갑은 다양한 데미지로부터 플레이어를 보호하지만 그 과정에서 성능이 열화됩니다.\n•상점에서 새로운 장갑을 구입하거나 손상된 장갑을 수리하십시오.\n\n장갑은 하이테크 섬유와 텅스텐강을 조합하여 만든 판이 장착된 자켓입니다."
+
+[KFProj_DynamiteGrenade]
+ItemName="1/2 다이너마이트 부착"
+ItemCategory =" “폭발물"
+ItemDescription="•퓨즈를 장착한 작은 다이너마이트 조각\n•본인도 부상을 당할 수 있으므로 조심하십시오!” "
+
+[KFProj_MedicGrenade]
+ItemName="치료용 수류탄"
+ItemCategory =" “폭발물"
+ItemDescription="•가스를 방출하여 제드는 중독시키지만 사람은 치료합니다.\n\n•파란색 가스 안개 속에 서 있으면 치료됩니다.\n우리 과학자 한 명은 이렇게 설명하였습니다. '이 수류탄에서 방출된 약제는 호모 사피엔스에게는 새 생명을 주지만 호모 제디쿠스는 안락사를 시키죠.’ 도움이 되기를 바랍니다.” "
+
+[KFProj_MolotovGrenade]
+ItemName="화염병"
+ItemCategory="폭발물"
+ItemDescription="•제드를 불태우는 아주 간단한 화염 투척무기입니다.\n\n화염병은 몰로토프 칵테일이라는 이름으로도 불리는데 핀란드인들이 1939-40년 겨울전쟁에서 스탈린 치하 외교부 수상인 바체슬라프 비하일로비치 몰로토프가... 죄송합니다, 역사수업은 싫으시죠?” "
+
+[KFProj_EMPGrenade]
+ItemName="EMP 수류탄"
+ItemCategory="폭발물"
+ItemDescription="•전자파를 발생시켜 제드에게 데미지를 가하고 잠시 멈추게 만듭니다.\n\n좀 더 자세히 설명하자면, 폭발하였을 때 나노초 동안 전자기 파장을 발생시켜 짧은 시간 동안 전기 시스템을 교란시킵니다. 특별히 제드 안에 존재하는 전기 시스템을 교란시킵니다. 편리하죠.” "
+
+[KFProj_HEGrenade]
+ItemName="HE 수류탄"
+ItemCategory="폭발물"
+ItemDescription="•아주 단순한 고성능 수류탄. 제드와 인간 모두에게 피해를 줍니다.\n\n이보다 단순할 수는 없죠. HE - 폭발성이 뛰어나다는 말입니다. 폭발하면 모든걸 날려버리죠. 설명이 필요한가요?” "
+
+[KFProj_FragGrenade]
+ItemName="파쇄성 수류탄"
+ItemCategory="폭발물"
+ItemDescription="•전통적인 파쇄성 수류탄입니다. 이 작은 금속 조각을 던지면 모두가 다칩니다.\n\n여러분 모두 아웃브레이크가 발생하기 전에 비디오 게임을 많이 해봤으니 파쇄성 수류탄이 뭔지 잘 알고 있으리라 생각합니다. 게임 안해본 척 하지 마세요. 아무도 안 믿으니까요. "
+
+[KFProj_NailBombGrenade]
+ItemName="네일밤"
+ItemCategory =" “폭발물"
+ItemDescription="•가운데 약간의 폭발물과 함께 오래된 못이 가득 들어있는 단순한 깡통.\n\n제드를 우아하고 기분 좋게 처치하는 방법은 아니지만, 어찌 되었든 제드와 함께 우아하고 기분 좋은 시간을 보낼 방법 따위는 없잖아요?"
+
+[KFProj_FreezeGrenade]
+ItemName="프리즈 수류탄"
+ItemCategory =" “폭발물"
+ItemDescription="•기술적으로 진보된 압축 액화질소 통.\n\n내용물과 충분히 접촉하게 되면 제드를 얼마 동안 제자리에 멈춰 놓습니다. 그 결과로 큰 피해를 줄 수 있죠."
+
+[KFProj_FlashBangGrenade]
+ItemName="플래시뱅"
+ItemCategory =" “폭발물"
+ItemDescription="•밝고 소리도 크니 직접 바라보지 마세요. 소리도 듣지 마십시오.\n•치명적이지는 않지만 플래시뱅은 본인에게도 피해를 줄 수 있습니다. 조심하세요!” "
+
+[KFWeap_Healer_Syringe]
+ItemName="의료용 주사기"
+ItemCategory="장비"
+
+[KFWeap_Welder]
+ItemName="용접기"
+ItemCategory="장비"
+
+[KFWeap_Pistol_9mm]
+ItemName="9mm 권총"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드는 반자동 전용.\n•이것은 표준형 9mm 권총입니다. 단순하고 저렴하며 (정말 쌉니다) 모든 Horzine 요원을 위한 보조 무기입니다."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 데저트 이글"
+ItemCategory="핸드 캐논"
+ItemDescription="•사격 모드는 반자동 전용.\n•데저트 이글은 핸드건의 괴수입니다. 그렇기 때문에 ‘핸드 캐논’이라고 부르죠."
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="AR-15 사냥용 소총"
+ItemCategory="돌격소총"
+ItemDescription="•3점사나 단발 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•이 총은 제드용이지 ‘사냥용’이 아닙니다."
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="SCAR-H 돌격소총"
+ItemCategory="돌격소총"
+ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•미군 특수전 사령부를 위해 처음 설계된 진정 특별한 무기입니다!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="칼라시니코프 AK-12"
+ItemCategory="돌격소총"
+ItemDescription="•전자동 및 3 탄환 발사 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•이 AK-12는 사망한 러시아 스페츠나츠 요원에게서 조사를 위해 가져온 것입니다."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="SA80 L85A2 불펍"
+ItemCategory="돌격소총"
+ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•SA80은 영국군이 잡아 먹히기 전에 표준 무기로 사용하였던 무기입니다."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="유틸리티 나이프"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•커터칼입니다. 박스를 여는데 최고의 나이프이며 킬링 플로어에 널려 있습니다."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="메스"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격\n•대체 - 차단/회피\n•메스입니다. 당신은 메딕이니 사용법은 따로 설명드릴 필요가 없을 겁니다."
+
+[KFWeap_Knife_Firebug]
+ItemName="소방관 나이프"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•소방관용 나이프입니다. 당신은 소방관이니 사용법은 따로 설명드릴 필요가 없을 겁니다."
+
+[KFWeap_Knife_Gunslinger]
+ItemName="보위 나이프"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•옛날 서부에서 쓰던 큰 나이프입니다. 여기저기에서 제드를 썰고 다니는데 좋습니다."
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="쿠크리"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•구르카의 전통 나이프이며 베기보다는 난도질하는데 좋습니다. "
+
+[KFWeap_Knife_SWAT]
+ItemName="전술 나이프"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•나이프입니다. 목표물을 베죠. 전술적인 물건입니다."
+
+[KFWeap_Pistol_Medic]
+ItemName="HMTech-101 권총"
+ItemCategory="권총"
+ItemDescription="•사격 모드는 반자동 전용.\n•대체 사격으로 치료용 다트를 발사하여 팀원을 치료합니다.\n•껍데기가 없는 탄약을 이용하고 탄환 수를 세줍니다."
+
+[KFWeap_SMG_Medic]
+ItemName="HMTech-201 SMG"
+ItemCategory="서브머신건"
+ItemDescription="•전자동 발사 모드 전용.\n•대체 사격으로 치료용 다트를 발사하여 팀원을 치료합니다.\n•HMTech 권총과 같지만 성능이 향상되었습니다!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="HMTech-301 샷건"
+ItemCategory="샷건"
+ItemDescription="•사격 모드는 반자동 전용.\n•대체 사격으로 치료용 다트를 발사하여 팀원을 치료합니다.\n•HMTech 권총의 전투용 샷건 버전입니다."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="HMTech-401 돌격소총"
+ItemCategory="돌격소총"
+ItemDescription="•전자동 발사 모드 전용.\n•대체 사격으로 치료용 다트를 발사하여 팀원을 치료합니다.\n•HMTech 권총을 완전히 강화한 돌격소총 버전입니다."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="2연발 붐스틱"
+ItemCategory="샷건"
+ItemDescription="•기본 사격은 단발 전용입니다.\n•대체 사격 시 두 총구에서 한 번 총알을 발사합니다.\n•더블 배럴이 나란히 달린 12 게이지 샷건입니다. 근접전에 이상적입니다. 가장 큰 제드조차 비틀거릴 겁니다!"
+
+[KFWeap_Shotgun_AA12]
+ItemName="AA-12 자동 샷건"
+ItemCategory="샷건"
+ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n• AA-12는 자동 샷건입니다. 근거리에서 중거리까지 파괴적인 화력을 발휘하지만 완전 자동으로 탄약을 먹어 치웁니다!"
+
+[KFWeap_Shotgun_MB500]
+ItemName="SG 500 펌프 액션"
+ItemCategory="샷건"
+ItemDescription="•펌프 액션 발사 모드 전용\n•권총 그립이 장착된 펌프 액션 모스버그 SG 500은 가까운 거리에서 제드를 처치하는데 훌륭한 무기입니다. 단순하고 효과적이지요."
+
+[KFWeap_Shotgun_M4]
+ItemName="M4 전투 샷건"
+ItemCategory="샷건"
+ItemDescription="•사격 모드는 반자동 전용.\n•베넬리에서 미군을 위해 M4 전투 샷건을 설계하였습니다. 반자동 샷건으로 지속적인 발사속도를 유지합니다."
+
+[KFWeap_Knife_Berserker]
+ItemName="잔디깎기 날"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•네, 정말 잔디깎기 날입니다. 즐겨보세요!"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•Horzine 버전의 고전적인 코만도 나이프입니다."
+
+[KFWeap_Knife_Support]
+ItemName="마체테"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•큰 칼을 드렸다고 해서 특별 대우를 받는다고 생각하지는 마세요."
+
+[KFWeap_Edged_Katana]
+ItemName="카타나"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•이 무기의 품위를 조금만 존중해주세요."
+
+[KFWeap_Blunt_Crovel]
+ItemName="크로블 생존도구"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 둔기 공격.\n•대체 - 차단/회피.\n•한쪽은 빠루, 한쪽은 삽, 살벌하네요."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="VLAD-1000 네일건"
+ItemCategory="샷건"
+ItemDescription="•단발이나 연사 못 발사 모드 선택.\n•대체 사격으로 발사 모드를 전환할 수 있습니다.\n•Horzine 과학자 중 한 명이 (사망한) 수리 작업자에게 네일건을 빌렸던 걸로 알고 있습니다."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="분쇄기"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 둔기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•접촉 시 폭발탄을 보조 발사합니다. 탄약이 떨어지면 보조 공격으로 둔기 공격을 하므로 잊지 말고 재장전하십시오!\n•대체 - 차단/회피."
+
+[KFWeap_Eviscerator]
+ItemName="내장 제거기"
+ItemCategory="특수"
+ItemDescription="•기본 사격 시 톱날 발사.\n•대체 사격 시 백병전 공격을 하며 연료를 빠르게 사용합니다.\n•Horzine의 SDS 그룹이 험난했던 시기에 설계한 괴물로서 결코 얌전하지 않습니다."
+SecondaryAmmo="가솔린"
+
+[KFWeap_Edged_Zweihander]
+ItemName="츠바이한더"
+ItemCategory="백병전"
+ItemDescription="•기본 - 중/강 데미지, 약간의 군중 제어 기술.\n•보조 - 느리지만 더 강한 데미지.\n•대체 - 차단/회피\n•앞으로 이동하면 더 강한 데미지를 가할 수 있습니다."
+SharedUnlockSource="중세 기사전" "
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="코크 앤 번"
+ItemCategory="화염"
+ItemDescription="•사격 모드에서 화염 발사.\n•집에서 만든 휴대용 화염방사기. 집에서는 사용하지 마세요."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="화염 박격포"
+ItemCategory="샷건"
+ItemDescription="•펌프 액션 발사 모드 전용.\n•드래곤 브레스 발화탄을 이용한 샷건 치명적인 무기일뿐만 아니라 생긴 것도 멋있습니다."
+
+[KFWeap_Flame_Flamethrower]
+ItemName="화염방사기"
+ItemCategory="화염"
+ItemDescription="•사격 모드에서 화염 발사. 그게 다입니다.\n•세대가 지나도 변치 않는 고전. 의심스럽다면 불을 질러보세요."
+
+[KFWeap_Beam_Microwave]
+ItemName="마이크로웨이브 건"
+ItemCategory="화염"
+ItemDescription="•사격 모드 시 마이크로웨이브를 이용하여 범위 내에 있는 제드를 안팎으로 골고루 태워버립니다.\n•대체 사격 시 근거리 마이크로웨이브 폭발을 일으킵니다.\n•현대 기술의 경이로움: 휴대용 제드 요리기."
+
+[KFWeap_Thrown_C4]
+ItemName="C4 폭탄"
+ItemCategory="폭발물"
+ItemDescription="•사격 모드 시 C4 설치.\n•대체 사격 시 설치해둔 C4를 폭발시킵니다.\n•온디맨드 원격 폭발용 와이어를 장착한 C4 블록"
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="HX25 유탄 권총"
+ItemCategory="폭발물"
+ItemDescription="•발사 모드는 접촉 시 폭발하는 여러 개의 작은 탄환을 발사합니다."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="M79 유탄 발사기"
+ItemCategory="폭발물"
+ItemDescription="•사격 모드 시 유탄 발사.\n•유탄이 충격을 받으면 폭발합니다.\n•발사 거리가 몇 미터에 불과하므로 본인의 얼굴을 날려버리지 않도록 주의하십시오."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="폭발물"
+ItemDescription="•사격 모드 시 로켓 발사.\n•로켓이 충격을 받으면 폭발합니다.\n•발사 거리가 몇 미터에 불과하므로 본인의 얼굴을 날려버리지 않도록 주의하십시오.\n•후폭풍도 주의하세요!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="듀얼 9mm 권총"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 대체 사격으로 조준 스타일 변경.\n•표준형 9mm 권총 한 쌍입니다. 필요할 때 한 자루(만) 팔 수 있습니다."
+
+[KFWeap_Pistol_Colt1911]
+ItemName="M1911 권총"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드는 반자동 전용.\n•클래식 1911 반자동 권총"
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="듀얼 M1911 권총"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 대체 사격으로 조준 스타일 변경.\n•콜트 1911 반자동 권총 한 쌍입니다. 각 권총을 따로 팔거나 버릴 수 있습니다."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 데저트 이글"
+ItemCategory="핸드 캐논"
+ItemDescription="•사격 모드는 반자동 전용.\n•데저트 이글은 핸드건의 괴수입니다. 그렇기 때문에 ‘핸드 캐논’이라고 부르죠."
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="듀얼 .50 데저트 이글"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 대체 사격으로 조준 스타일 변경.\n•데저트 이글 핸드 캐논 한 쌍입니다. 각 권총을 따로 팔거나 버릴 수 있습니다."
+
+[KFWeap_Revolver_Rem1858]
+ItemName="1858 리볼버"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드는 단발 전용.\n•멋진 .44-구경 레밍턴 '모델 1858' 6-발 싱글액션 군용 리볼버입니다. 오래된 무기이지만 아직 쓸만합니다."
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="듀얼 1858 리볼버"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 대체 사격으로 조준 스타일 변경.\n•레밍턴 1858 리볼버 한 쌍입니다. 각 권총을 따로 팔거나 버릴 수 있습니다."
+
+[KFWeap_Revolver_SW500]
+ItemName=".500 매그넘 리볼버"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드는 단발 전용.\n•긴 배럴을 가진 50 구경 ‘본 콜렉터’ 리볼버로 매그넘 탄환을 발사하는 진정한 휴대용 대포입니다. 진지한 건슬링거를 위한 무기."
+
+[KFWeap_Revolver_DualSW500]
+ItemName="듀얼 .500 매그넘"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 대체 사격으로 조준 스타일 변경.\n•.500 매그넘 ‘본 콜렉터’ 리볼버 한 쌍입니다. 각 권총을 따로 팔거나 버릴 수 있습니다. 소리는 엄청나게 크죠."
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="윈체스터 1894"
+ItemCategory="소총"
+ItemDescription="•사격 모드는 단발 전용.\n•클래식 모델 1894 윈체스터 레버 액션 소총."
+
+[KFWeap_Bow_Crossbow]
+ItemName="크로스보우"
+ItemCategory="보우"
+ItemDescription="•사격 모드는 단발 전용.\n•크로스보우 화살은 다시 쓸 수 있는 경우가 많습니다! \n•하이 파워 사냥용 크로스보우로 관통력과 저지력이 뛰어납니다!"
+
+[KFWeap_Rifle_M14EBR]
+ItemName="M14 EBR"
+ItemCategory="스나이퍼 소총"
+ItemDescription="•사격 모드는 단발 전용.\n•레이저 조준경 장착\n•네이비실, 델타포스, 기타 등등의 터프가이들이 선호하는 스나이퍼 소총"
+
+[KFWeap_Rifle_RailGun]
+ItemName="레일건"
+ItemCategory="스나이퍼 소총"
+ItemDescription="•사격 모드는 단발 전용.\n•조준경을 이용하면 목표물의 약점에 고정할 수 있습니다. \n•이 무기는 자석을 이용하여 단단한 강철탄을 빠른 속도로 발사하고 제드를 휴지 조각처럼 찢어버립니다."
+
+[KFWeap_SMG_MP7]
+ItemName="MP7 SMG"
+ItemCategory="서브머신건"
+ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•갖가지 알파벳을 가져다 붙인 전세계 기관들과 특수 부대들이 이용했던 무기"
+
+[KFWeap_AssaultRifle_M16M203]
+ItemName="M16 M203 돌격소총"
+ItemCategory="돌격소총"
+ItemDescription="•사격 모드는 전자동 전용.\n•대체 사격 시 수류탄 발사.\n•총알과 폭탄 중에 선택을 못하신 분에게 권합니다."
+SecondaryAmmo="M203 수류탄"
+
+[KFWeap_SMG_MP5RAS]
+ItemName="MP5RAS SMG"
+ItemCategory="서브머신건"
+ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•세계에서 가장 많이 사용된 서브머신건의 최신 버전"
+
+[KFWeap_SMG_P90]
+ItemName="P90 SMG"
+ItemCategory="서브머신건"
+ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•생긴 건 괴상하지만 제드를 정말 잘 찢어버리며, 원한다면 레이저 소리도 낼 수 있습니다."
+
+[KFWeap_SMG_Kriss]
+ItemName="크리스 SMG"
+ItemCategory="서브머신건"
+ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•컴팩트탄을 사방으로 뿌리는 최신 무기, 파괴의 소방 호스라고 할 수 있습니다."
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr. Hans Volter"
+BossName_CHN="汉斯-沃尔特博士"
+BossName_CHT="漢斯華特博士"
+BossName_DEU="Dr. Hans Volter"
+BossName_ESL="Dr. Hans Volter"
+BossName_ESN="Dr. Hans Volter"
+BossName_FRA="Dr. Hans Volter"
+BossName_FRC="Dr. Hans Volter"
+BossName_INT="Dr. Hans Volter"
+BossName_ITA="Dr. Hans Volter"
+BossName_JPN="ドクター ハンス・ヴォルター"
+Bossname_KOR="Dr. Hans Volter"
+BossName_POL="Dr Hans Volter"
+BossName_PTB="Dr. Hans Volter"
+BossName_RUS="Д-р Ганс Вольтер"
+BossCaptionStrings[0]="Dr. Hans Volter는 심각한 부상을 당했을 때 체력을 빨아들일 희생자를 찾으면서 방어를 합니다. 이 방어를 파괴한다면 박사가 치료를 하지 못하게 됩니다!"
+BossCaptionStrings[1]="파워 코어에 주의하십시오: 파워 코어의 색이 변하면서 한스는 더 난폭해집니다."
+BossCaptionStrings[2]="빛을 내는 파워 코어를 노리세요. 이곳이 약점입니다."
+BossCaptionStrings[3]="한스의 수류탄에서 나오는 가스는 Bloat의 담즙처럼 몸에 들러붙습니다. 피하세요!"
+BossCaptionStrings[4]="한스의 베기 공격은 너무 강해서 회피할 수 없습니다. 플레이어는 큰 데미지를 입게 됩니다."
+BossCaptionStrings[5]="빨간색 수류탄 경고등을 잘 살펴보십시오, 수류탄이 어디 떨어질지 알 수 있습니다."
+BossCaptionStrings[6]="한스가 총을 뽑으면 총구 방향에서 피하세요. 당연한 말이지만 중요합니다!"
+
+[KFPawn_ZedPatriarch]
+BossName="Patriarch"
+BossName_CHN="长老丧尸"
+BossName_CHT="長老"
+BossName_DEU="Der Patriarch"
+BossName_ESL="El patriarca"
+BossName_ESN="El patriarca"
+BossName_FRA="Le Patriarche"
+BossName_FRC="Le Patriarche"
+BossName_INT="The Patriarch"
+BossName_ITA="Il Patriarca"
+BossName_JPN="ペイトリアーク"
+BossName_KOR="Patriarch"
+BossName_POL="Patriarcha"
+BossName_PTB="O Patriarca"
+BossName_RUS="Патриарх"
+BossCaptionStrings[0]="한때 명석한 과학자였던 케빈 클래믈리는 자기 자신을 본인의 가장 뛰어난 작품으로 만들어버렸습니다."
+BossCaptionStrings[1]="Patriarch는 엄청나게 오만합니다. 다음에 어떤 공격을 할 것인지 말을 해주죠."
+BossCaptionStrings[2]="큰 물체 뒤에 숨더라도 플레이어가 바라는 것만큼 공격을 피하는데 도움이 되지 않습니다. Patriarch는 그에 대한 대책이 있습니다!"
+BossCaptionStrings[3]="달아난다고 해서 빠져나갈 수는 없습니다. Patriarch가 가장 먼저 노리는 목표물이 되죠."
+BossCaptionStrings[4]="Patriarch는 은폐를 하고 몸을 숨기고 뛸 수 있으며 스스로 치료도 합니다. 변하지 않는 것들도 있습니다."
+BossCaptionStrings[5]="플레이어에게는 별다른 선택권이 없겠지만, Patriarch의 ‘아이들’을 처치하면 그는 더욱 미쳐 날뜁니다."
+
+[KFGameInfo_Tutorial]
+GameName="기본 훈련"
+
+[KFGameInfo_Survival]
+GameName="서바이벌"
+
+[KFGameInfo_VersusSurvival]
+GameName="VS 서바이벌"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="남은 치료제가 없습니다"
+LowHealthMsg="체력이 위험합니다! 지금 치료하세요!"
+NoMortarTargetsMsg="박격포 목표물이 없습니다"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x%이(가) Siren에게 붙잡혔습니다!"
+
+[KFGFXHudWrapper_Versus]
+WaitingToSpawnString="부활 대기 시간: %x% 초"
+ZedTakeOverActiveString="제드 검색 중..."
+PerkSwitchAllowedString="병과 선택 남은 시간: %x% 초"
+
+[KFWeap_Random]
+ItemName="랜덤 무기"
+ItemCategory="랜덤"
+ItemDescription="• 랜덤 무기.\n•"

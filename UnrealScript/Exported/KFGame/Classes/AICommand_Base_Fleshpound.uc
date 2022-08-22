@@ -90,7 +90,7 @@ function bool NotifyCombatBehaviorChange( name BehaviorName, bool bEnabled )
 		MyKFPawn.SetEnraged( true );
 	 	if( (LastTauntTime == 0 || (WorldInfo.TimeSeconds - LastTauntTime > 260.f)) )
 	 	{
-			AILog_Internal("Doing rage taunt at "$Enemy,'Charging',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Doing rage taunt at "$Enemy,'Charging',);};
 			AbortMovementCommands();
 			AbortMovementPlugIns();
 			DoRageTauntAt( KFPawn(Enemy) );

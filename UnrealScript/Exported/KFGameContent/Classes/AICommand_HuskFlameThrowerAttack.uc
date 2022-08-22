@@ -43,7 +43,7 @@ function Pushed()
 		Focus = Enemy;
 	}
 
-	AILog_Internal("Beginning to flamethrower "$Enemy,'Command_FlameThrower',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Beginning to flamethrower "$Enemy,'Command_FlameThrower',);};
 	AIActionStatus = "Starting flamethrower AICommand";
 	if( Focus != None )
 	{
@@ -73,7 +73,7 @@ state Command_SpecialMove
 	{
 		SpecialMove = GetSpecialMove();
 
-		AILog_Internal(GetFuncName()@SpecialMove,'Command_FlameThrower',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@SpecialMove,'Command_FlameThrower',);};
 
 		if( SpecialMove != SM_None && MyKFPawn.CanDoSpecialMove(SpecialMove) )
 		{

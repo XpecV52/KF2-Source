@@ -439,27 +439,30 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
     local bool bHumanDeath;
     local string KilledName, KillerName, KilledIconpath, KillerIconPath, KillerTextColor, KilledTextColor;
 
+    local class<KFPawn_Monster> KFPM;
+
     bDeathMessage = false;    
     if(KFPC == none)
     {
         return;
     }
+    KFPM = class<KFPawn_Monster>(OptionalObject);
     if(KFGXHUDManager != none)
     {
         if(bDeathMessage)
         {
-            if(OptionalObject != none)
+            if(KFPM != none)
             {
-                KillerName = Localize("Zeds", string(OptionalObject.Name), "KFGame");
+                KillerName = Localize("Zeds", string(KFPM.default.LocalizationKey), "KFGame");
                 KillerTextColor = ZEDTeamTextColor;
                 KillerIconPath = "img://" $ Class'KFPerk_Monster'.static.GetPerkIconPath();
             }            
         }
         else
         {
-            if(OptionalObject != none)
+            if(KFPM != none)
             {
-                KilledName = Localize("Zeds", string(OptionalObject.Name), "KFGame");
+                KilledName = Localize("Zeds", string(KFPM.default.LocalizationKey), "KFGame");
                 bHumanDeath = false;                
             }
             else

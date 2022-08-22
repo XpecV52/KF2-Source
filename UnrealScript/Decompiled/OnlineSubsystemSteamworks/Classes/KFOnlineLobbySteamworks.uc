@@ -110,7 +110,7 @@ function OnCreateLobbyComplete(bool bWasSuccessful, UniqueNetId LobbyId, string 
 // Export UKFOnlineLobbySteamworks::execShowLobbyInviteInterfaceInternal(FFrame&, void* const)
 native function bool ShowLobbyInviteInterfaceInternal();
 
-function ShowLobbyInviteInterface()
+function ShowLobbyInviteInterface(string InviteMessage)
 {
     if(bDebug)
     {

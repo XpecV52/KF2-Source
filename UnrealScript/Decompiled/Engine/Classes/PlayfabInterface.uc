@@ -9,23 +9,49 @@ class PlayfabInterface extends Object
     native
     config(Engine);
 
+struct native RegionDefinition
+{
+    var float Ping;
+    var bool RegionUp;
+    var init string Name;
+    var init string Address;
+
+    structdefaultproperties
+    {
+        Ping=-1
+        RegionUp=false
+        Name=""
+        Address=""
+    }
+};
+
 var private native const noexport Pointer VfTable_FTickableObject;
 var OnlineGameSearch PendingGameSearch;
 var const string CachedPlayfabId;
 var const string CachedSessionTicket;
 var private const bool bLoginProcessFinished;
 var private const bool bLaunchedByPlayfab;
+var private const bool bCloudServer;
+var private bool bServerAllocated;
+var private bool bServerDeallocated;
 var private const int LastAuthRefreshTime;
 var private const int SecondsForAuthRefreshTime;
-var private const int CurrentGameModeSearchIndex;
 var private const config string CatalogName;
-var const config array<config string> RegionNames;
+var const config array<config RegionDefinition> KnownRegions;
 var string CurrRegionName;
 var const int PlayfabNPServiceLabel;
 var private const string CachedLobbyId;
+var private const string CachedServerId;
 var private const float ElapsedTimeSinceLastHeartBeat;
 var private const float HeartbeatInterval;
 var private OnlineGameSettings CachedGameSettings;
+var private const float CountdownToReregister;
+var private const float ReregisterInterval;
+var private const string AllocateAPIEndpoint;
+var private const string DeallocateAPIEndpoint;
+var private const QWord DeallocatedTimeStamp;
+var private const float TimeSinceLastDeallocationUpdate;
+var private const float DeallocateTimeUpdateInterval;
 var array< delegate<OnFindOnlineGamesComplete> > FindOnlineGamesCompleteDelegates;
 var array< delegate<OnQueryServerInfoComplete> > OnQueryServerInfoCompleteDelegates;
 var array< delegate<OnLoginComplete> > LoginCompleteDelegates;
@@ -66,6 +92,12 @@ function ClearOnLoginCompleteDelegate(delegate<OnLoginComplete> InDelegate)
         LoginCompleteDelegates.Remove(RemoveIndex, 1;
     }
 }
+
+// Export UPlayfabInterface::execGetRegionIndex(FFrame&, void* const)
+native function int GetRegionIndex(const out string RegionName);
+
+// Export UPlayfabInterface::execSetDefaultRegion(FFrame&, void* const)
+native function SetDefaultRegion(const out string RegionName);
 
 // Export UPlayfabInterface::execLogout(FFrame&, void* const)
 native function bool Logout();
@@ -200,7 +232,7 @@ function ClearRegionQueryCompleteDelegate(delegate<OnRegionQueryComplete> InDele
 }
 
 // Export UPlayfabInterface::execStartNewServerInstance(FFrame&, void* const)
-native function StartNewServerInstance(string GameMode, optional string ServerCommandline);
+native function StartNewServerInstance(optional string ServerCommandline);
 
 delegate OnServerStarted(bool bWasSuccessful, string ServerLobbyId, string ServerIP, int ServerPort, string ServerTicket);
 
@@ -257,6 +289,16 @@ function string GetCachedLobbyId()
     return CachedLobbyId;
 }
 
+event bool IsCloudServer()
+{
+    return bCloudServer;
+}
+
+event string GetServerId()
+{
+    return CachedServerId;
+}
+
 function int GetIndexForCurrentRegion()
 {
     local int I;
@@ -264,9 +306,9 @@ function int GetIndexForCurrentRegion()
     I = 0;
     J0x0B:
 
-    if(I < RegionNames.Length)
+    if(I < KnownRegions.Length)
     {
-        if(RegionNames[I] == CurrRegionName)
+        if(KnownRegions[I].Name == CurrRegionName)
         {
             return I;
         }
@@ -279,14 +321,36 @@ function int GetIndexForCurrentRegion()
 
 function SetIndexForCurrentRegion(int InRegionIndex)
 {
-    if((InRegionIndex >= 0) && InRegionIndex < RegionNames.Length)
+    if((InRegionIndex >= 0) && InRegionIndex < KnownRegions.Length)
     {
-        CurrRegionName = RegionNames[InRegionIndex];        
+        SetDefaultRegion(KnownRegions[InRegionIndex].Name);        
     }
     else
     {
         WarnInternal("Failed to set region index" @ string(InRegionIndex));
     }
+}
+
+static function array<string> GetLocalizedRegionList()
+{
+    local int I;
+    local array<string> LocalizedRegions;
+
+    I = 0;
+    J0x0B:
+
+    if(I < default.KnownRegions.Length)
+    {
+        LocalizedRegions.AddItem(Localize("Regions", default.KnownRegions[I].Name, "KFGameConsole");
+        ++ I;
+        goto J0x0B;
+    }
+    return LocalizedRegions;
+}
+
+static function string GetLocalizedRegionName(int RegionIndex)
+{
+    return Localize("Regions", default.KnownRegions[RegionIndex].Name, "KFGameConsole");
 }
 
 // Export UPlayfabInterface::execServerValidatePlayer(FFrame&, void* const)
@@ -299,7 +363,10 @@ native function ServerNotifyPlayerLeft(const string PlayfabId);
 native function ServerUpdateOnlineGame();
 
 // Export UPlayfabInterface::execServerRegisterGame(FFrame&, void* const)
-native function ServerRegisterGame(const string GameMode);
+native function ServerRegisterGame();
+
+// Export UPlayfabInterface::execServerSetOpenStatus(FFrame&, void* const)
+native function ServerSetOpenStatus(const bool bOpen);
 
 // Export UPlayfabInterface::execServerUpdateInternalUserData(FFrame&, void* const)
 native function ServerUpdateInternalUserData(const string ForPlayerId, array<string> InKeys, array<string> InValues);
@@ -322,6 +389,12 @@ native function ServerRemoveVirtualCurrencyForUser(const string ForPlayerId, con
 // Export UPlayfabInterface::execServerGrantItemsForUser(FFrame&, void* const)
 native function ServerGrantItemsForUser(const string ForPlayerId, array<string> ItemIds);
 
+// Export UPlayfabInterface::execServerAllocate(FFrame&, void* const)
+native function ServerAllocate();
+
+// Export UPlayfabInterface::execserverDeallocate(FFrame&, void* const)
+native function serverDeallocate();
+
 function CreateGameSettings(class<OnlineGameSettings> GameSettingsClass)
 {
     if(CachedGameSettings == none)
@@ -330,7 +403,7 @@ function CreateGameSettings(class<OnlineGameSettings> GameSettingsClass)
     }
 }
 
-function OnlineGameSettings GetGameSettings()
+event OnlineGameSettings GetGameSettings()
 {
     return CachedGameSettings;
 }
@@ -359,7 +432,8 @@ private native final function OnlineServiceAuthComplete();
 defaultproperties
 {
     SecondsForAuthRefreshTime=3600
-    CurrRegionName="USCentral"
     PlayfabNPServiceLabel=1
     HeartbeatInterval=60
+    ReregisterInterval=10
+    DeallocateTimeUpdateInterval=30
 }

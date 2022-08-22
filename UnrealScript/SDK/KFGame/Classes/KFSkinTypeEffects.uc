@@ -106,6 +106,7 @@ function PlayImpactParticleEffect(KFPawn P, vector HitLocation, vector HitDirect
 			case FXG_Bludgeon:
 			case FXG_Piercing:
 			case FXG_Slashing:
+			case FXG_SawBlade:
 				MeleeSpawnEffect(P , ParticleTemplate, HitLocation, HitDirection );
 				break;
 			default:

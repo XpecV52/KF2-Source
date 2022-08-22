@@ -169,24 +169,21 @@ simulated function bool GetUsingTactialReload(KFWeapon KFW)
     return IsTacticalReloadActive() && (IsWeaponOnPerk(KFW)) || IsBackupWeapon(KFW);
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
-    bSecondary = false;
+    bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
     if((IsWeaponOnPerk(KFW, WeaponPerkClass)) && (KFW == none) || !KFW.bNoMagazine)
     {
-        if(KFW != none)
+        if(IsLargeMagActive())
         {
-            if(IsLargeMagActive())
-            {
-                TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[1])));
-            }
-            if(IsEatLeadActive())
-            {
-                TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[7])));
-            }
+            TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[1])));
+        }
+        if(IsEatLeadActive())
+        {
+            TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[7])));
         }
     }
     MagazineCapacity = byte(Round(TempCapacity));

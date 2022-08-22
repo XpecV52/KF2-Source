@@ -640,7 +640,16 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
 			if (PendingWeapon != None && PendingWeapon != ItemToRemove)
 			{
 				LogInternal(WorldInfo.TimeSeconds @ "Self:" @ Self @ "Instigator:" @ Instigator @ GetStateName() $ "::" $ GetFuncName() @ "Removed current weapon while changing weapons, call ChangedWeapon",'Inventory');
-				ChangedWeapon();
+				// @NOTE: ChangedWeapon() doesn't tell the server anything, so as a client
+				// we'll use SetCurrentWeapon(). -MattF
+				if( Role < ROLE_Authority )
+				{
+					SetCurrentWeapon( PendingWeapon );
+				}
+				else
+				{
+					ChangedWeapon();
+				}
 			}
 			else if(Instigator.Controller != None)
 			{
@@ -792,7 +801,7 @@ simulated function KFWeapon GetNextGroupedWeapon(byte GroupID, optional bool bGe
 	}
 
 	// If we are going through the same group increment our selected index for this group.
-	if (EquippedWeapon.InventoryGroup == GroupID && !bGetFirstWeapon)
+	if( EquippedWeapon != none && EquippedWeapon.InventoryGroup == GroupID && !bGetFirstWeapon)
 	{
 		SelectedGroupIndicies[GroupID] +=1;
 	}
@@ -1730,6 +1739,7 @@ reliable server function ServerCloseTraderMenu()
 	local class<KFWeapon> KFWClass;
 
 	bServerTraderMenuOpen = false;
+	bSuppressPickupMessages = true;
 	for(i = TransactionItems.Length - 1; i >= 0; i--)
 	{
 		KFWClass = class<KFWeapon>(DynamicLoadObject(TransactionItems[i].DLOString, class'Class'));
@@ -1750,6 +1760,7 @@ reliable server function ServerCloseTraderMenu()
 
 		TransactionItems.Remove(i, 1);
 	}
+	bSuppressPickupMessages = false;
 }
 
 /** Find out what type of ammo we are buying and ask the server for it */
@@ -2364,6 +2375,7 @@ simulated function bool GetIsOwned( name ClassName )
 simulated event DiscardInventory()
 {
 	local Inventory Inv;
+	local KFPawn KFP;
 
 	ForEach InventoryActors(class'Inventory', Inv)
 	{
@@ -2375,6 +2387,13 @@ simulated event DiscardInventory()
 	}
 
 	super.DiscardInventory();
+
+	// Clear reference to Weapon
+	KFP = KFPawn( Instigator );
+	if( KFP != none )
+	{
+		KFP.MyKFWeapon = none;
+	}
 }
 
 defaultproperties

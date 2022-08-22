@@ -44,7 +44,10 @@ static function bool MoveToEnemy(KFAIController AI, bool bInCompleteMove, float 
 
 function Pushed()
 {
-    Outer.AILog_Internal(((string(self) @ string(GetFuncName())) $ "() current dist to enemy: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location)), 'Command_MoveToEnemy');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((string(self) @ string(GetFuncName())) $ "() current dist to enemy: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location)), 'Command_MoveToEnemy');
+    }
     super.Pushed();
     Outer.bMovingToEnemy = true;
     SprintTimer();
@@ -56,10 +59,16 @@ function Popped()
 {
     if((Outer.Pawn != none) && Outer.Enemy != none)
     {
-        Outer.AILog_Internal(((string(self) @ string(GetFuncName())) $ "() current dist to enemy: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location)), 'Command_MoveToEnemy');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((string(self) @ string(GetFuncName())) $ "() current dist to enemy: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location)), 'Command_MoveToEnemy');
+        }
     }
     super.Popped();
-    Outer.AILog_Internal((string(self) @ string(GetFuncName())) $ "()", 'Command_MoveToEnemy');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((string(self) @ string(GetFuncName())) $ "()", 'Command_MoveToEnemy');
+    }
     Outer.ClearTimer('CheckReachedEnemy', self);
     Outer.ClearTimer('CheckEnemyMoved', self);
     Outer.ClearTimer('DirectMoveTimeout', self);
@@ -79,7 +88,10 @@ function Paused(GameAICommand NewCommand)
     super.Paused(NewCommand);
     if(Outer.Enemy != none)
     {
-        Outer.AILog_Internal(((((((string(GetFuncName()) $ " ") $ string(self)) $ " Paused, replaced by ") $ string(NewCommand)) $ " [and dist to enemy: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "]", 'Command_MoveToEnemy');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((((((string(GetFuncName()) $ " ") $ string(self)) $ " Paused, replaced by ") $ string(NewCommand)) $ " [and dist to enemy: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "]", 'Command_MoveToEnemy');
+        }
     }
     Outer.PauseTimer(true, 'CheckReachedEnemy', self);
     Outer.PauseTimer(true, 'CheckEnemyMoved', self);
@@ -91,14 +103,20 @@ function Resumed(name OldCommandName)
     super.Resumed(OldCommandName);
     if(Outer.Enemy != none)
     {
-        Outer.AILog_Internal(((((((string(GetFuncName()) $ " ") $ string(self)) $ " Resumed, OldCommand: ") $ string(OldCommandName)) $ " [and dist to enemy: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "]", 'Command_MoveToEnemy');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((((((string(GetFuncName()) $ " ") $ string(self)) $ " Resumed, OldCommand: ") $ string(OldCommandName)) $ " [and dist to enemy: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "]", 'Command_MoveToEnemy');
+        }
     }
     Outer.PauseTimer(false, 'CheckReachedEnemy', self);
     Outer.PauseTimer(false, 'CheckEnemyMoved', self);
     Outer.PauseTimer(false, 'DirectMoveTimeout', self);
     if(!bCompleteMove)
     {
-        Outer.AILog_Internal(string(GetFuncName()) $ "() popping command because !bCompleteMove on resume", 'Command_MoveToEnemy');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(GetFuncName()) $ "() popping command because !bCompleteMove on resume", 'Command_MoveToEnemy');
+        }
         Status = ChildStatus;
         Outer.PopCommand(self);
     }
@@ -108,10 +126,16 @@ function bool NotifyPlayerBecameVisible(Pawn VisiblePlayer)
 {
     if(CachedChildCommand != none)
     {
-        Outer.AILog_Internal(((((string(GetFuncName()) $ "() Seen: ") $ string(VisiblePlayer)) $ " notifying ") $ string(CachedChildCommand)) $ " and letting it handle the event.", 'SeePlayer');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(((((string(GetFuncName()) $ "() Seen: ") $ string(VisiblePlayer)) $ " notifying ") $ string(CachedChildCommand)) $ " and letting it handle the event.", 'SeePlayer');
+        }
         return CachedChildCommand.NotifyPlayerBecameVisible(VisiblePlayer);
     }
-    Outer.AILog_Internal(((string(GetFuncName()) $ " ") $ string(VisiblePlayer)) $ " ignoring this event", 'SeePlayer');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((string(GetFuncName()) $ " ") $ string(VisiblePlayer)) $ " ignoring this event", 'SeePlayer');
+    }
     return false;
 }
 
@@ -144,24 +168,36 @@ function CheckReachedEnemy()
         if((Outer.Enemy != none) || !Outer.Enemy.IsAliveAndWell())
         {
             DistToEnemySq = VSizeSq(Outer.Enemy.Location - Outer.Pawn.Location);
-            Outer.AILog_Internal(((((string(GetFuncName()) $ "() Dist: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ " GoalDistance: ") $ string(GoalDistance)) $ " checking IsWithinAttackRange()", 'ReachedEnemy');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(((((string(GetFuncName()) $ "() Dist: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ " GoalDistance: ") $ string(GoalDistance)) $ " checking IsWithinAttackRange()", 'ReachedEnemy');
+            }
             if(Outer.IsDoingAttackSpecialMove())
             {
-                Outer.AILog_Internal(((string(GetFuncName()) $ "() IsWithinAttackRange(): I've reached enemy (Dist:") $ string(Sqrt(DistToEnemySq))) $ ") calling AbortCommand", 'ReachedEnemy');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(((string(GetFuncName()) $ "() IsWithinAttackRange(): I've reached enemy (Dist:") $ string(Sqrt(DistToEnemySq))) $ ") calling AbortCommand", 'ReachedEnemy');
+                }
                 Outer.AbortCommand(self);                
             }
             else
             {
                 if((AbandonDistance > 0) && DistToEnemySq >= (AbandonDistance * AbandonDistance))
                 {
-                    Outer.AILog_Internal(string(self) $ " Move took us outside abandon dist...", 'ReachedEnemy');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal(string(self) $ " Move took us outside abandon dist...", 'ReachedEnemy');
+                    }
                     Outer.AbortCommand(self);
                 }
             }            
         }
         else
         {
-            Outer.AILog_Internal("Enemy is no longer valid, aborting command", 'ReachedEnemy');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal("Enemy is no longer valid, aborting command", 'ReachedEnemy');
+            }
             Outer.AbortCommand(self);
         }        
     }
@@ -169,13 +205,19 @@ function CheckReachedEnemy()
     {
         if(ChildCommand == none)
         {
-            Outer.AILog_Internal(string(GetFuncName()) $ "() skipping reached evaluation because ChildCommand is NONE", 'ReachedEnemy');            
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(string(GetFuncName()) $ "() skipping reached evaluation because ChildCommand is NONE", 'ReachedEnemy');
+            }            
         }
         else
         {
             if(ChildCommand.IsA('AICommand_MoveToGoal') && ChildCommand.ChildCommand == none)
             {
-                Outer.AILog_Internal(string(GetFuncName()) $ "() skipping reached evaluation because ChildCommand is a MoveToGoal command and has no child of its own", 'ReachedEnemy');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(string(GetFuncName()) $ "() skipping reached evaluation because ChildCommand is a MoveToGoal command and has no child of its own", 'ReachedEnemy');
+                }
             }
         }
     }
@@ -185,7 +227,10 @@ function CheckEnemyMoved()
 {
     local float DistSq;
 
-    Outer.AILog_Internal(string(GetFuncName()), 'Command_MoveToEnemy');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(GetFuncName()), 'Command_MoveToEnemy');
+    }
     if(Find != none)
     {
         DistSq = VSizeSq(Find.Location - Outer.BP2Vect(LastEnemyLocation));
@@ -200,7 +245,10 @@ function CheckEnemyMoved()
 
 function DirectMoveTimeout()
 {
-    Outer.AILog_Internal(string(GetFuncName()) $ "() - not doing anything, though.", 'Command_MoveToEnemy');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(GetFuncName()) $ "() - not doing anything, though.", 'Command_MoveToEnemy');
+    }
 }
 
 event string GetDumpString()
@@ -228,7 +276,10 @@ state Moving extends DebugState
     {
         Outer.WaitForLanding();
     }
-    Outer.AILog_Internal("[Begin Label]" @ string(GetStateName()), 'Command_MoveToEnemy');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal("[Begin Label]" @ string(GetStateName()), 'Command_MoveToEnemy');
+    }
     Outer.bFailedToMoveToEnemy = false;
     if(Outer.Enemy == none)
     {
@@ -236,7 +287,10 @@ state Moving extends DebugState
     }
     if(((Outer.Enemy != none) && !Outer.IsDoingAttackSpecialMove()) && Outer.MoveIsInterruptable())
     {
-        Outer.AILog_Internal("Found valid enemy: " $ string(Outer.Enemy), 'Command_MoveToEnemy');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Found valid enemy: " $ string(Outer.Enemy), 'Command_MoveToEnemy');
+        }
         Outer.bReachedMoveGoal = false;
         Radius = ((Outer.Pawn.GetCollisionRadius() + Outer.Enemy.GetCollisionRadius()) + Outer.Pawn.MeleeRange) + 1;
         Radius = FMax(0, GoalDistance - Radius);
@@ -244,11 +298,17 @@ state Moving extends DebugState
 Loop:
 
 
-        Outer.AILog_Internal("Loop Label " $ string(Find), 'Command_MoveToEnemy');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Loop Label " $ string(Find), 'Command_MoveToEnemy');
+        }
         Outer.SetBasedPosition(LastEnemyLocation, Find.Location);
         if(Outer.IsDoingAttackSpecialMove())
         {
-            Outer.AILog_Internal(((((string(self) $ " [Cleaning up and returning Success status] IsWithinAttackRange returned TRUE DIST: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ " <= MeleeAttackHelper range (") $ string(Outer.MyKFPawn.MeleeAttackHelper.GetMeleeRange())) $ ")", 'Command_MoveToEnemy');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal(((((string(self) $ " [Cleaning up and returning Success status] IsWithinAttackRange returned TRUE DIST: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ " <= MeleeAttackHelper range (") $ string(Outer.MyKFPawn.MeleeAttackHelper.GetMeleeRange())) $ ")", 'Command_MoveToEnemy');
+            }
             Outer.ClearTimer('CheckReachedEnemy', self);
             Outer.ClearTimer('DirectMoveTimeout', self);
             Outer.ClearTimer('CheckEnemyMoved', self);
@@ -260,27 +320,42 @@ Loop:
         {
             if(Outer.IsValidDirectMoveGoal(Find))
             {
-                Outer.AILog_Internal(("Enemy " $ string(Find)) $ " - IsValidDirectMoveGoal() returned true, trying direct move...", 'Command_MoveToEnemy');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(("Enemy " $ string(Find)) $ " - IsValidDirectMoveGoal() returned true, trying direct move...", 'Command_MoveToEnemy');
+                }
                 Outer.SetTimer(0.1, true, 'CheckEnemyMoved', self);
                 Outer.SetTimer(0.1, true, 'CheckReachedEnemy', self);
                 if(!Outer.bUseNavMesh || !Outer.bUsePluginsForMovement)
                 {
-                    Outer.AILog_Internal(((string(self) $ " Calling SetMoveGoal() for enemy, using offset ") $ string(Radius)) $ ", with bCanPathFind = false", 'Command_MoveToEnemy');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal(((string(self) $ " Calling SetMoveGoal() for enemy, using offset ") $ string(Radius)) $ ", with bCanPathFind = false", 'Command_MoveToEnemy');
+                    }
                     Outer.SetMoveGoal(Find,, true, Radius,, false,, bAllowedToAttackDuringMove);
                 }
                 if(Outer.Enemy != none)
                 {
-                    Outer.AILog_Internal((string(self) $ " Done moving to goal, distance is now ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location)), 'Command_MoveToEnemy');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal((string(self) $ " Done moving to goal, distance is now ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location)), 'Command_MoveToEnemy');
+                    }
                 }
                 if(ChildStatus != 'Success')
                 {
                     if(Outer.Enemy != none)
                     {
-                        Outer.AILog_Internal((("Child status was not successful, MoveTriesRemaining: " $ string(MoveTriesRemaining)) $ " Enemy Dist: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location)));
+                        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                        {
+                            Outer.AILog_Internal((("Child status was not successful, MoveTriesRemaining: " $ string(MoveTriesRemaining)) $ " Enemy Dist: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location)));
+                        }
                     }
                     if(-- MoveTriesRemaining <= 0)
                     {
-                        Outer.AILog_Internal("Child failed or aborted, and we're out of move tries.. failing", 'Command_MoveToEnemy');
+                        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                        {
+                            Outer.AILog_Internal("Child failed or aborted, and we're out of move tries.. failing", 'Command_MoveToEnemy');
+                        }
                         UpdateHistoryString(("Child failed or aborted, and we're out of move tries at " $ string(Outer.WorldInfo.TimeSeconds)) $ "]");
                         GotoState('DelayFailure');                        
                     }
@@ -292,7 +367,10 @@ Loop:
                 Outer.ClearTimer('CheckReachedEnemy', self);
                 Outer.ClearTimer('DirectMoveTimeout', self);
                 Outer.ClearTimer('CheckEnemyMoved', self);
-                Outer.AILog_Internal("Finished moving to enemy", 'Command_MoveToEnemy');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal("Finished moving to enemy", 'Command_MoveToEnemy');
+                }
                 Status = 'Success';
                 Outer.Sleep(0);
                 Outer.PopCommand(self);                
@@ -301,7 +379,10 @@ Loop:
             {
                 if(Outer.Enemy != none)
                 {
-                    Outer.AILog_Internal(("Trying to build path to enemy who is currently " $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ " units away", 'Command_MoveToEnemy');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal(("Trying to build path to enemy who is currently " $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ " units away", 'Command_MoveToEnemy');
+                    }
                 }
                 if(Outer.Pawn.Anchor == none)
                 {
@@ -310,7 +391,10 @@ Loop:
                 Path = Outer.GeneratePathTo(Find,, true);
                 if(Path == none)
                 {
-                    Outer.AILog_Internal("Attempt to build path failed, going to DelayFailure state and calling SetFailedPathToEnemy()", 'PathWarning');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal("Attempt to build path failed, going to DelayFailure state and calling SetFailedPathToEnemy()", 'PathWarning');
+                    }
                     if(Outer.MyKFPawn.bCrawler && Outer.MyKFPawn.Physics == 8)
                     {
                         Outer.MyKFPawn.SetPhysics(2);
@@ -329,10 +413,16 @@ Loop:
                     {
                         if(!bCompleteMove)
                         {
-                            Outer.AILog_Internal((((("Built path to enemy, bComplete move was false.. Pawn.Anchor: " $ string(Outer.Pawn.Anchor)) $ " Path: ") $ string(Path)) $ " AnchorDist: ") $ string(VSize(Outer.Pawn.Location - Outer.Pawn.Anchor.Location)), 'Command_MoveToEnemy');
+                            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                            {
+                                Outer.AILog_Internal((((("Built path to enemy, bComplete move was false.. Pawn.Anchor: " $ string(Outer.Pawn.Anchor)) $ " Path: ") $ string(Path)) $ " AnchorDist: ") $ string(VSize(Outer.Pawn.Location - Outer.Pawn.Anchor.Location)), 'Command_MoveToEnemy');
+                            }
                             if(Path == Outer.Pawn.Anchor)
                             {
-                                Outer.AILog_Internal(("Preventing myself from moving to my anchor (" $ string(Outer.Pawn.Anchor)) $ ") as my first path goal", 'Command_MoveToEnemy');
+                                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                                {
+                                    Outer.AILog_Internal(("Preventing myself from moving to my anchor (" $ string(Outer.Pawn.Anchor)) $ ") as my first path goal", 'Command_MoveToEnemy');
+                                }
                                 Path = Outer.RouteCache[1];
                                 if(Outer.RouteCache.Length > 2)
                                 {
@@ -356,21 +446,33 @@ Loop:
                     Outer.SetTimer(0.5, true, 'CheckReachedEnemy', self);
                     if(!Outer.bUseNavMesh || !Outer.bUsePluginsForMovement)
                     {
-                        Outer.AILog_Internal(((("Starting move to goal " $ string(Path)) $ " which is currently ") $ string(VSize(Path.Location - Outer.Pawn.Location))) $ " units away", 'Command_MoveToEnemy');
+                        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                        {
+                            Outer.AILog_Internal(((("Starting move to goal " $ string(Path)) $ " which is currently ") $ string(VSize(Path.Location - Outer.Pawn.Location))) $ " units away", 'Command_MoveToEnemy');
+                        }
                         Outer.SetMoveGoal(Path,, true,, true,,, bAllowedToAttackDuringMove);
                     }
-                    Outer.AILog_Internal(((("Finished move to goal " $ string(Path)) $ " which is now ") $ string(VSize(Path.Location - Outer.Pawn.Location))) $ " units away", 'Command_MoveToEnemy');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal(((("Finished move to goal " $ string(Path)) $ " which is now ") $ string(VSize(Path.Location - Outer.Pawn.Location))) $ " units away", 'Command_MoveToEnemy');
+                    }
                     Outer.ClearTimer('CheckReachedEnemy', self);
                     Outer.ClearTimer('CheckEnemyMoved', self);
                     if((ChildStatus != 'Success') && -- MoveTriesRemaining <= 0)
                     {
-                        Outer.AILog_Internal("Going to DelayedFailure state because ChildStatus is failed and MoveTriesRemaining: " $ string(MoveTriesRemaining), 'Command_MoveToEnemy');
+                        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                        {
+                            Outer.AILog_Internal("Going to DelayedFailure state because ChildStatus is failed and MoveTriesRemaining: " $ string(MoveTriesRemaining), 'Command_MoveToEnemy');
+                        }
                         GotoState('DelayFailure');
                     }
                     Outer.Sleep(0);
                     if(Outer.Enemy == none)
                     {
-                        Outer.AILog_Internal("Lost enemy or enemy became invalid, aborting", 'Command_MoveToEnemy');
+                        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                        {
+                            Outer.AILog_Internal("Lost enemy or enemy became invalid, aborting", 'Command_MoveToEnemy');
+                        }
                         Outer.AbortCommand(self);
                     }
                     goto 'Loop';
@@ -380,10 +482,13 @@ Loop:
     }
     else
     {
-        Outer.AILog_Internal((((("No valid enemy, or not allowed to move.. bailing ValidEnemy?:" @ string(Outer.Enemy)) @ "Allowed to move?") @ string(Outer.AllowedToMove())) @ "Move Interruptable?") @ string(Outer.MoveIsInterruptable()), 'Command_MoveToEnemy');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((("No valid enemy, or not allowed to move.. bailing ValidEnemy?:" @ string(Outer.Enemy)) @ "Allowed to move?") @ string(Outer.AllowedToMove())) @ "Move Interruptable?") @ string(Outer.MoveIsInterruptable()), 'Command_MoveToEnemy');
+        }
         GotoState('DelayFailure');
     }
-    stop;        
+    stop;                
 }
 
 defaultproperties

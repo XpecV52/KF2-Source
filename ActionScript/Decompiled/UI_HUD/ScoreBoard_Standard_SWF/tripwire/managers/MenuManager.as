@@ -44,6 +44,8 @@ package tripwire.managers
         
         public var MenuScanlines:MovieClip;
         
+        public var bTabNavigated:Boolean = true;
+        
         private const MenuLayer = 2;
         
         private const WidgetLayer = 3;
@@ -58,7 +60,7 @@ package tripwire.managers
         
         public var bPopUpOpen:Boolean;
         
-        private var _bLoading:Boolean;
+        public var _bLoading:Boolean;
         
         private var _bUsingGamepad:Boolean;
         
@@ -232,7 +234,11 @@ package tripwire.managers
                     CLIK.queueInitCallback(this.menuList[_loc3_].menuObject);
                     this._currentMenuIndex = _loc3_;
                     this.setMenuVisibility(true);
-                    this.setFocusBackToMenu();
+                    if(!this.bPopUpOpen && (!MenuManager.manager.bPartyWidgetFocused || this.bTabNavigated))
+                    {
+                        this.setFocusBackToMenu();
+                        this.bTabNavigated = false;
+                    }
                     return;
                 }
                 _loc3_++;
@@ -293,13 +299,10 @@ package tripwire.managers
             this.menuList.push(_loc2_);
             this._currentMenuIndex = this.menuList.length - 1;
             this.setMenuVisibility(true);
-            if(!this.bPopUpOpen)
+            if(!this.bPopUpOpen && (!MenuManager.manager.bPartyWidgetFocused || this.bTabNavigated))
             {
                 this.setFocusBackToMenu();
-            }
-            if(!MenuManager.manager.bPartyWidgetFocused)
-            {
-                this.controllerEnableWidgets(false);
+                this.bTabNavigated = false;
             }
             stage.addChildAt(_loc2_.menuObject,this.MenuLayer);
             this._bLoading = false;
@@ -461,6 +464,10 @@ package tripwire.managers
             }
             this._bMenuOpen = param1;
             this.setMenuEvents(param1);
+            if(!this._bMenuOpen && this.bPartyWidgetFocused)
+            {
+                this.setFocusBackToMenu();
+            }
             if(this._bWidgetsVisible)
             {
                 _loc2_ = 0;

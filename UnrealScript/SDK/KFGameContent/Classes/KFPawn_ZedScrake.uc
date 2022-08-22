@@ -256,6 +256,7 @@ function OnStackingAfflictionChanged(byte Id)
 
 defaultproperties
 {
+	LocalizationKey=KFPawn_ZedScrake
 	bLargeZed=true
 
 	Begin Object Name=KFPawnSkeletalMeshComponent
@@ -297,7 +298,7 @@ defaultproperties
     IncapSettings(AF_Microwave)=(Vulnerability=(1.0),                     Cooldown=10.0, Duration=2.5)
     IncapSettings(AF_FirePanic)=(Vulnerability=(0.8),                     Cooldown=7.0,  Duration=3.5)
     IncapSettings(AF_EMP)=		(Vulnerability=(0.98),                    Cooldown=10.0, Duration=2.2)
-    IncapSettings(AF_Freeze)=	(Vulnerability=(0.98),                    Cooldown=1.5,  Duration=1.0)
+    IncapSettings(AF_Freeze)=	(Vulnerability=(0.98),                    Cooldown=6.0,  Duration=1.0)
     IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0),      Cooldown=5.5,  Duration=3.0)
 
 	Begin Object Name=Afflictions_0
@@ -348,6 +349,8 @@ defaultproperties
 	HeadlessBleedOutTime=6.f
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=600, DmgScale=1.1, SkinID=1)
 	HitZones[8]		  =(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.2, SkinID=2)
+	HitZones.Add((ZoneName=rchainsaw, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20, DmgScale=0.2, SkinID=2))
+	HitZones.Add((ZoneName=rchainsawblade, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20, DmgScale=0.2, SkinID=2))
 
 	// ---------------------------------------------
 	// Movement / Physics

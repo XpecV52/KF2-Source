@@ -81,8 +81,14 @@ defaultproperties
 {
     TargetPerkRankRange(0)=(X=0,Y=25) // Normal, should result in a CurrentTargetPerkRank of 12.5, right in the middle
 
-    HumanRankZedHealthScaleCurve=(Points=((InVal=0.f,OutVal=0.75),(InVal=6.f,OutVal=0.90),(InVal=12.f, OutVal=1.0),(InVal=24.f, OutVal=1.45)))
-    HumanRankZedDamageScaleCurve=(Points=((InVal=0.f,OutVal=0.75),(InVal=6.f,OutVal=0.85),(InVal=12.f, OutVal=1.0),(InVal=24.f, OutVal=1.1)))
+    HumanRankZedHealthScaleCurve=(Points=((InVal=0.f,OutVal=0.85),(InVal=12.f, OutVal=1.425), (InVal=24.f, OutVal=2.0))) //1.48
+    HumanRankZedDamageScaleCurve=(Points=((InVal=0.f,OutVal=0.70),(InVal=12.f, OutVal=0.9155),(InVal=24.f, OutVal=1.131))) //0.8 //0.87
+
+    //HumanRankZedHealthScaleCurve=(Points=((InVal=0.f,OutVal=0.85),(InVal=6.f,OutVal=0.90),(InVal=12.f, OutVal=1.0),(InVal=24.f, OutVal=1.85))) //1.48
+    //HumanRankZedDamageScaleCurve=(Points=((InVal=0.f,OutVal=0.70),(InVal=6.f,OutVal=0.85),(InVal=12.f, OutVal=1.0),(InVal=24.f, OutVal=0.957))) //0.8 //0.87
+
+    //HumanRankZedHealthScaleCurve=(Points=((InVal=0.f,OutVal=0.75),(InVal=6.f,OutVal=0.90),(InVal=12.f, OutVal=1.0),(InVal=24.f, OutVal=1.45)))
+   //HumanRankZedDamageScaleCurve=(Points=((InVal=0.f,OutVal=0.75),(InVal=6.f,OutVal=0.85),(InVal=12.f, OutVal=1.0),(InVal=24.f, OutVal=1.1)))
 
     CurrentSpawnRateModification=1.3 // Slow down all spawning in versus globally
 }

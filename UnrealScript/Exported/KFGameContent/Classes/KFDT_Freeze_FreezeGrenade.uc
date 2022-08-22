@@ -36,7 +36,7 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Grenade_Sharpshooter'
    MeleeHitPower=100.000000
-   FreezePower=100.000000
+   FreezePower=150.000000
    KDeathVel=300.000000
    Name="Default__KFDT_Freeze_FreezeGrenade"
    ObjectArchetype=KFDT_Freeze'KFGame.Default__KFDT_Freeze'

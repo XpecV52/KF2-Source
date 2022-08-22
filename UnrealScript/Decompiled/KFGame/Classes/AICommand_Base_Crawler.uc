@@ -26,7 +26,10 @@ function Pushed()
 
 function Paused(GameAICommand NewCommand)
 {
-    Outer.AILog_Internal((((string(self) $ " ") $ string(GetFuncName())) $ "() Paused for ") $ string(NewCommand), 'Crawler');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((((string(self) $ " ") $ string(GetFuncName())) $ "() Paused for ") $ string(NewCommand), 'Crawler');
+    }
     super.Paused(NewCommand);
 }
 
@@ -36,7 +39,10 @@ function SightCheck();
 
 function Resumed(name OldCommandName)
 {
-    Outer.AILog_Internal(((((string(self) $ " ") $ string(GetFuncName())) $ "() (OldCommandName: ") $ string(OldCommandName)) $ ")", 'Crawler');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((((string(self) $ " ") $ string(GetFuncName())) $ "() (OldCommandName: ") $ string(OldCommandName)) $ ")", 'Crawler');
+    }
     super.Resumed(OldCommandName);
 }
 

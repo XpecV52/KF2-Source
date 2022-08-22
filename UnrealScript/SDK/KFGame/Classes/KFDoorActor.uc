@@ -242,6 +242,18 @@ var() array<DestroyedEffectParams> DestroyedEmitters;
 /** Physics actors spawned when a door is broken */
 var transient array<ParticleSystemComponent> BrokenDoorParticleEffects;
 
+/*********************************************************************************************
+ * @name	UI
+ ********************************************************************************************* */
+
+/** UI icon used for welder */
+var protected Texture2D WelderIcon;
+
+/** Offset from door location (bottom) to closer to eye level for UI, FX, sounds, etc */
+var transient vector WeldUILocation;
+var transient vector VisualDoorLocation;
+
+/** Localized strings */
 var localized string WeldIntegrityString;
 var localized string RepairProgressString;
 var localized string ExplosiveString;
@@ -354,6 +366,8 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 simulated event PostBeginPlay()
 {
 	local int i, NumActualDoors;
+	local float MyRadius, MyHeight;
+	local vector X,Y,Z;
 
 	Super.PostBeginPlay();
 
@@ -391,6 +405,23 @@ simulated event PostBeginPlay()
 	else
 	{
 		SoundOrigin = Location;
+	}
+
+	WeldUILocation = Location + (vect(0,0,1) * 164.f);
+	if( NumActualDoors > 1 )
+	{
+		// With double doors, the weld UI location is in the center, so this is good for visual testing
+		VisualDoorLocation = WeldUILocation;
+	}
+	else
+	{
+		// With single doors, the weld UI location is at the doorstop, which isn't ideal for visual testing
+		// and can often intersect with the doorframe geometry. Offset visual test location to center of door instead.
+		// Since there are always 2 door components whether or not there are 2 actual doors, we multiply the radius by
+		// 0.25 instead of 0.5 to get the center (Radius / 4). -MattF
+		GetAxes( Rotation, X,Y,Z );
+		GetBoundingCylinder( MyRadius, MyHeight );
+		VisualDoorLocation = WeldUILocation - (MyRadius * 0.25f * Y);
 	}
 }
 
@@ -837,7 +868,7 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 		bForceNetUpdate = true;
 	}
 	// failsafe for AI deciding to attack the door instead of opening it
-	else if( !bIsDoorOpen && EventInstigator != none && !EventInstigator.bIsPlayer && EventInstigator.Pawn != none )
+	else if( !bIsDoorOpen && EventInstigator != none && EventInstigator.Pawn != none && EventInstigator.GetTeamNum() == 255 )
 	{
 		KFDT = class<KFDamageType>( DamageType );
 		if( KFDT != none && KFDT.default.bAllowAIDoorDestruction )
@@ -1178,7 +1209,8 @@ simulated function PlayExplosion()
 	if( ExplosionInstigator != none && InstigatorPerk != none )
 	{
 		KFEAR = InstigatorPerk.DoorShouldNuke() ? class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass() : class'KFExplosionActorReplicated';
-		ExploActor = Spawn(KFEAR, self,, Location + vect(0,0,100),,, true);
+		ExploActor = Spawn(KFEAR, self,, DoorTrigger.Location,,, true);
+
 		if( ExploActor != None )
 		{
 			ExploActor.InstigatorController = ExplosionInstigatorController;
@@ -1333,8 +1365,8 @@ simulated function ResetDoor( optional bool bRepaired )
 	// When repaired, spawn an effect and play a sound
 	if( bRepaired && WorldInfo.MyEmitterPool != none )
 	{
-		WorldInfo.MyEmitterPool.SpawnEmitter( RepairFXTemplate, SoundOrigin, rotator(vect(0,0,1)), self );
-		PlaySoundBase( RepairSound,,,, SoundOrigin );
+		WorldInfo.MyEmitterPool.SpawnEmitter( RepairFXTemplate, VisualDoorLocation, rotator(vect(0,0,1)), self );
+		PlaySoundBase( RepairSound,,,, VisualDoorLocation );
 	}
 
 	// notify owning trigger
@@ -1682,7 +1714,6 @@ simulated event DrawDoorHUD( HUD HUD, Canvas C )
 	local Rotator	CameraRot;
 	local float		X, Y;
 	local float DOT;
-	local Texture2D Icon;
 
 	PC = HUD.PlayerOwner;
 	C.SetDrawColor(255,255,255);
@@ -1695,17 +1726,16 @@ simulated event DrawDoorHUD( HUD HUD, Canvas C )
 	{
 		return;
 	}
-	ScreenLoc = C.Project( Location + (vect(0,0,1) * 164.f) );
-	if( ScreenLoc.X < 0 || ScreenLoc.X >= C.ClipX || ScreenLoc.Y < 0 && ScreenLoc.Y >= C.ClipY)
+	ScreenLoc = C.Project( WeldUILocation );
+	if( ScreenLoc.X < 0 || ScreenLoc.X + WelderIcon.SizeX * 3 >= C.ClipX || ScreenLoc.Y < 0 && ScreenLoc.Y >= C.ClipY)
 	{
 		return;
 	}
-	Icon = Texture2D'UI_World_TEX.welder_door_icon';
-	C.SetPos(ScreenLoc.X - Icon.SizeX / 2, ScreenLoc.Y - Icon.SizeY / 2, ScreenLoc.Z);
-	C.DrawTexture( Icon, 1.f );
+	C.SetPos(ScreenLoc.X - WelderIcon.SizeX / 2, ScreenLoc.Y - WelderIcon.SizeY / 2, ScreenLoc.Z);
+	C.DrawTexture( WelderIcon, 1.f );
 
-	X = ScreenLoc.X + Icon.SizeX/2 + 5;
-	Y = ScreenLoc.Y - Icon.SizeY/2;
+	X = ScreenLoc.X + WelderIcon.SizeX/2 + 5;
+	Y = ScreenLoc.Y - WelderIcon.SizeY/2;
 	C.SetPos( X, Y );
 
 	if ( bIsDestroyed )
@@ -1726,7 +1756,8 @@ simulated function DrawWeldHUD( Canvas C, HUD HUD, float PosX, float PosY )
 	local FontRenderInfo FRI;
 	local String Str;
 
-	// Display weld integrity as a percentage
+	FRI.bClipText = true;
+		// Display weld integrity as a percentage
 	FontScale = class'KFGameEngine'.Static.GetKFFontScale();
 	WeldPercentageFloat = (float(WeldIntegrity) / float(MaxWeldIntegrity)) * 100.0;
 	if( WeldPercentageFloat < 1.f && WeldPercentageFloat > 0.f )
@@ -1737,16 +1768,16 @@ simulated function DrawWeldHUD( Canvas C, HUD HUD, float PosX, float PosY )
 	{
 		WeldPercentageFloat = 99.f;
 	}
-	WeldPercentage = int(WeldPercentageFloat);
+	WeldPercentage = WeldPercentageFloat;
 	Str = WeldIntegrityString@WeldPercentage$"%";
 	C.DrawText( Str, TRUE, FontScale, FontScale, FRI );
 
 	if( DemoWeld > 0 && !bShouldExplode )
 	{
-		C.SetPos( PosX, PosY + 20.f );	
+		C.SetPos( PosX, PosY + 20.f );
 		WeldPercentage = float(DemoWeld) / float(DemoWeldRequired) * 100.0;
-		Str = ExplosiveString @ WeldPercentage $ "%";
-		C.DrawText( Str, TRUE, FontScale, FontScale, FRI );		
+		Str = ExplosiveString@WeldPercentage$"%";
+		C.DrawText( Str, TRUE, FontScale, FontScale, FRI );
 	}	
 }
 
@@ -1758,9 +1789,11 @@ simulated function DrawRepairHUD( Canvas C, HUD HUD )
 	local FontRenderInfo FRI;
 	local String Str;
 
+	FRI.bClipText = true;
+
 	// Display weld integrity as a percentage
 	FontScale = class'KFGameEngine'.Static.GetKFFontScale();
-	RepairPercentageFloat = ( float(RepairProgress) / float(255) ) * 100.0;
+	RepairPercentageFloat = ( float(RepairProgress) / 255.f ) * 100.0;
 	if( RepairPercentageFloat > 99.f && RepairPercentageFloat < 100.f )
 	{
 		RepairPercentageFloat = 99.f;
@@ -1821,6 +1854,9 @@ defaultproperties
 		Translation=(X=40,Z=40)
 	End Object
 	Components.Add(Sprite)
+
+ 	// UI
+	WelderIcon=Texture2D'UI_World_TEX.welder_door_icon'
 
 	bDoorMoveCompleted=true
 	bIsDoorOpen=true

@@ -50,6 +50,8 @@ var private	int 	SharpshooterXP, SharpshooterLVL, SharpshooterPSG;
 var private	int 	SharpshooterBuild;
 var private	int 	SwatXP, SwatLVL, SwatPSG;
 var private	int 	SwatBuild;
+var private	int 	SurvXP, SurvLVL, SurvPSG;
+var private	int 	SurvBuild;
 
 var private int 	PersonalBest_KnifeKills;
 var private int 	PersonalBest_PistolKills;
@@ -247,6 +249,16 @@ const KFACHID_SWATHard							=	161;
 const KFACHID_SWATSuicidal						=	162;
 const KFACHID_SWATHellOnEarth					=	163;
 
+const KFACHID_Surv_Lvl5							= 	164;
+const KFACHID_Surv_Lvl10						= 	165;
+const KFACHID_Surv_Lvl15						= 	166;
+const KFACHID_Surv_Lvl20						= 	167;
+const KFACHID_Surv_Lvl25						= 	168;
+
+const KFACHID_SurvNormal						=	169;
+const KFACHID_SurvHard							=	170;
+const KFACHID_SurvSuicidal						=	171;
+const KFACHID_SurvHellOnEarth					=	172;
 
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
@@ -412,6 +424,17 @@ event CacheStatsValue(int StatID, float Value)
 			SwatBuild = Value;
 			`log(GetFuncName() @ "SwatBuild:" @ SwatBuild, bLogStatsWrite);
 			break;
+		case `STATID_Surv_Progress:
+			SurvXP = GetXPFromProgress( Value );
+			SurvLVL = GetLVLFromProgress( Value );
+			SurvPSG = GetPSGFromProgress( Value );
+			CheckPerkLvlAchievement( class'KFPerk_Survivalist', SurvLVL );
+			`log(GetFuncName() @ "SurvXP:" @ SurvXP @ SurvLVL @ "VALUE:" @ Round( value ), bLogStatsWrite);
+			break;
+		case `STATID_Surv_Build:
+			SurvBuild = Value;
+			`log(GetFuncName() @ "SurvBuild:" @ SurvBuild, bLogStatsWrite);
+			break;
 		// end of perk progress stats
 		case `STATID_Kills:
 			Kills = Value;
@@ -504,6 +527,9 @@ private event GetPerkBuildFromStats( class<KFPerk> PerkClass, out int Build )
 		case class'KFPerk_Swat':
 			Build = SwatBuild;
 			break;
+		case class'KFPerk_Survivalist':
+			Build = SurvBuild;
+			break;
 	}
 }
 
@@ -581,6 +607,7 @@ private event int GetPerkXP( int StatID )
 		case `STATID_Guns_Progress:			return GunslingerXP;
 		case `STATID_Shrp_Progress:			return SharpshooterXP;
 		case `STATID_Swat_Progress:			return SwatXP;
+		case `STATID_Surv_Progress:			return SurvXP;
 	}
 
 	return 0;
@@ -600,7 +627,7 @@ private event int GetPerkLVLInternal( int StatID )
 		case `STATID_Guns_Progress:			return GunslingerLVL;
 		case `STATID_Shrp_Progress:			return SharpshooterLVL;
 		case `STATID_Swat_Progress:			return SwatLVL;		
-
+		case `STATID_Surv_Progress:			return SurvLVL;		
 	}
 
 	return 0;
@@ -620,6 +647,7 @@ private event int GetPerkPSG( int StatID )
 		case `STATID_Guns_Progress:			return GunslingerPSG;
 		case `STATID_Shrp_Progress:			return SharpshooterPSG;
 		case `STATID_Swat_Progress:			return SwatPSG;
+		case `STATID_Surv_Progress:			return SurvPSG;
 	}
 
 	return 0;
@@ -791,10 +819,13 @@ private function AddFleshpoundKill( byte Difficulty )
  */
 private function AddClotKill( byte Difficulty )
 {
-	AddXP( class'KFPerk_SWAT', class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
+	local class<KFPerk> PerkXPClass;
+
+	PerkXPClass = (class'KFPerk_Survivalist'.static.GetPerkClass() == MyKFPC.GetPerk().static.GetPerkClass()) ? class'KFPerk_Survivalist'.static.GetPerkClass() : class'KFPerk_SWAT'.static.GetPerkClass();
+	AddXP( PerkXPClass, class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
 
 	//AAR
-	`RecordSecondaryXPGain( MyKFPC, class'KFPerk_SWAT', class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
+	`RecordSecondaryXPGain( MyKFPC, PerkXPClass, class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
 	KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty );
 }
 
@@ -862,7 +893,8 @@ private final function bool IsFleshPoundKill( class<KFPawn_Monster> MonsterClass
 private final function bool IsClotKill( class<KFPawn_Monster> MonsterClass, class<DamageType> DT )
 {
 	return  MonsterClass.static.IsClotClass() &&
-			class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_SWAT'.static.GetPerkClass() );
+			(class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_SWAT'.static.GetPerkClass() ) ||
+			 class'KFPerk_Survivalist'.static.GetPerkClass() == MyKFPC.GetPerk().static.GetPerkClass());
 }
 
 /**
@@ -1149,6 +1181,8 @@ defaultproperties
 	Properties.Add((PropertyId=`STATID_Shrp_Build,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Demo_Progress,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Demo_Build,Data=(Type=SDT_Int32,Value1=0))
+	Properties.Add((PropertyId=`STATID_Surv_Progress,Data=(Type=SDT_Int32,Value1=0))
+	Properties.Add((PropertyId=`STATID_Surv_Build,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Guns_Progress,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_Guns_Build,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=`STATID_SWAT_Progress,Data=(Type=SDT_Int32,Value1=0))
@@ -1172,29 +1206,29 @@ defaultproperties
 	// These are the views we are writing to
 	ViewIds(0)=`VIEWID_KFGameStats
 
-	XPTable(0)=2640
-	XPTable(1)=2917
-	XPTable(2)=3224
-	XPTable(3)=3562
-	XPTable(4)=3936
-	XPTable(5)=4349
-	XPTable(6)=4806
-	XPTable(7)=5311
-	XPTable(8)=5868
-	XPTable(9)=6484
-	XPTable(10)=7165
-	XPTable(11)=7918
-	XPTable(12)=8749
-	XPTable(13)=9667
-	XPTable(14)=10683
-	XPTable(15)=11804
-	XPTable(16)=13044
-	XPTable(17)=14413
-	XPTable(18)=15927
-	XPTable(19)=17599
-	XPTable(20)=19447
-	XPTable(21)=21489
-	XPTable(22)=23745
-	XPTable(23)=26238
-	XPTable(24)=28993
+	XPTable(0)=1590
+	XPTable(1)=1809
+	XPTable(2)=2059
+	XPTable(3)=2343
+	XPTable(4)=2666
+	XPTable(5)=3034
+	XPTable(6)=3453
+	XPTable(7)=3930
+	XPTable(8)=4472
+	XPTable(9)=5089
+	XPTable(10)=5791
+	XPTable(11)=6590
+	XPTable(12)=7499
+	XPTable(13)=8534
+	XPTable(14)=9712
+	XPTable(15)=11052
+	XPTable(16)=12577
+	XPTable(17)=14313
+	XPTable(18)=16288
+	XPTable(19)=18536
+	XPTable(20)=21094
+	XPTable(21)=24005
+	XPTable(22)=27318
+	XPTable(23)=31088
+	XPTable(24)=35378
 }

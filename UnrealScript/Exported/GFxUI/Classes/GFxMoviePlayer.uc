@@ -354,7 +354,9 @@ function SetExternalInterface(Object h)
 }
 
 /** Specifies a resource (linkage identifier in the movie) to be replaced by the specified texture */
-native function bool SetExternalTexture(string resource, Texture texture);
+//@HSL_BEGIN - BWJ - 8-23-16 - Adding option to force to full screen
+native function bool SetExternalTexture(string resource, Texture texture, optional bool bForceFullScreen);
+//@HSL_END
 
 native function SetPriority(byte NewPriority);
 

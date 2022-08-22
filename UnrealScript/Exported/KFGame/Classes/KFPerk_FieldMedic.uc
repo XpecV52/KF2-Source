@@ -61,6 +61,10 @@ class KFPerk_FieldMedic extends KFPerk
 
 
 
+ 
+
+
+
 
 
  
@@ -104,8 +108,7 @@ var const private float 			SnarePower;
 
 /** Defines the explosion. */
 var 	  private KFGameExplosion	AAExplosionTemplate;
-var const private string AAExplosionActorClassPath;
-var const private string AAExplosionDamageTypePath;
+var const private class<KFDamageType> AAExplosionDamageType;
 
 enum EMedicPerkSkills
 {
@@ -266,7 +269,7 @@ simulated function float GetSelfHealingSurgePct()
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
@@ -412,10 +415,7 @@ simulated static function KFGameExplosion GetAAExplosionTemplate()
 
 simulated static function class<DamageType> GetAADamageTypeClass()
 {
-	local class<KFDamageType> DamageTypeClass;
-
-	DamageTypeClass = class<KFDamageType>(DynamicLoadObject(default.AAExplosionDamageTypePath, class'Class'));
-	return DamageTypeClass;
+	return default.AAExplosionDamageType;
 }
 
 simulated static function class<KFExplosion_AirborneAgent> GetAAExplosionActorClass()
@@ -546,7 +546,7 @@ simulated function bool IsSurvivalistActive()
  *
  * @return true if we have the skill enabled
  */
-simulated private function bool IsSlugActive()
+simulated function bool IsSlugActive()
 {
 	return PerkSkills[EMedicSlug].bActive && WorldInfo.TimeDilation < 1.f;
 }
@@ -622,7 +622,7 @@ defaultproperties
    AAParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Medic_Airborne_Agent_01'
    SnarePower=100.000000
    AAExplosionTemplate=KFGameExplosion'KFGame.Default__KFPerk_FieldMedic:ExploTemplate0'
-   AAExplosionDamageTypePath="KFGameContent.KFDT_Toxic_MedicGrenade"
+   AAExplosionDamageType=Class'KFGame.KFDT_Toxic_MedicGrenade'
    ProgressStatID=40
    PerkBuildStatID=41
    SecondaryXPModifier(0)=4
@@ -630,7 +630,7 @@ defaultproperties
    SecondaryXPModifier(2)=4
    SecondaryXPModifier(3)=4
    PerkName="Field Medic"
-   Passives(0)=(Title="Syringe Recharge Rate",Description="Decrease syringe recharge rate %x% per level")
+   Passives(0)=(Title="Syringe Recharge Rate",Description="Increase syringe recharge rate %x% per level")
    Passives(1)=(Title="Syringe Potency",Description="Increase Health restored by syringe %x% per level")
    Passives(2)=(Title="Bloat Bile Resistance",Description="Decrease damage from poison %x% per level")
    Passives(3)=(Title="Movement Speed",Description="Increase movement speed %x% every five levels")

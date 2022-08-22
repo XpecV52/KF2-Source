@@ -133,11 +133,10 @@ defaultproperties
    SpecialMoveCooldowns(1)=(CoolDownTime=1.500000,SMHandle=SM_PlayerZedMove_RMB,SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-HeavyAttack',NameLocalizationKey="Heavy")
    SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,bShowOnHud=False)
    SpecialMoveCooldowns(3)=(CoolDownTime=10.500000,SMHandle=SM_PlayerZedMove_V,SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-Rage',NameLocalizationKey="Rage")
-   SpecialMoveCooldowns(4)=(CoolDownTime=0.500000,SMHandle=SM_PlayerZedMove_MMB,SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block',NameLocalizationKey="Block")
+   SpecialMoveCooldowns(4)=(CoolDownTime=0.200000,SMHandle=SM_PlayerZedMove_MMB,SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block',NameLocalizationKey="Block")
    SpecialMoveCooldowns(5)=(CoolDownTime=1.250000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-Jump',bShowOnHud=False)
    MinBlockFOV=0.000000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshPound_Versus:FootstepCameraShake0'
-   LocalizationKey="KFPawn_ZedFleshpound"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -163,15 +162,16 @@ defaultproperties
       ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedFleshpound:Afflictions_0'
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedFleshPound_Versus:Afflictions_0'
+   IncapSettings(0)=(Vulnerability=(0.500000))
    IncapSettings(1)=(Cooldown=12.000000)
    IncapSettings(2)=()
    IncapSettings(3)=()
    IncapSettings(4)=(Cooldown=7.000000)
-   IncapSettings(5)=(Duration=1.500000)
+   IncapSettings(5)=(Duration=1.500000,Vulnerability=(0.200000,0.250000,0.200000,0.000000,0.250000))
    IncapSettings(6)=(Duration=1.500000,Cooldown=20.000000,Vulnerability=(0.600000))
-   IncapSettings(7)=()
+   IncapSettings(7)=(Duration=1.500000,Vulnerability=(0.700000,0.700000,1.000000,0.700000))
    IncapSettings(8)=(Vulnerability=(0.250000,0.250000,0.250000,0.250000,0.400000))
-   IncapSettings(9)=(Duration=0.500000)
+   IncapSettings(9)=(Duration=0.500000,Cooldown=1.500000,Vulnerability=(0.500000))
    IncapSettings(10)=()
    SprintSpeed=550.000000
    SprintStrafeSpeed=450.000000
@@ -260,7 +260,7 @@ defaultproperties
    End Object
    DialogAkComponent=DialogAkSoundComponent
    GroundSpeed=275.000000
-   Health=1983
+   Health=2281
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
       MinDistFactorForKinematicUpdate=0.200000
@@ -274,7 +274,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

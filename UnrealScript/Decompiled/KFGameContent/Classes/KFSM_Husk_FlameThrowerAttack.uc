@@ -44,7 +44,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     super.SpecialMoveStarted(bForced, PrevMove);
     if(AIOwner != none)
     {
-        if(AIOwner != none)
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging && AIOwner != none)
         {
             AIOwner.AILog_Internal((string(self) @ "started for") @ string(AIOwner), 'Husk');
         }
@@ -99,7 +99,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     super.SpecialMoveEnded(PrevMove, NextMove);
     if(AIOwner != none)
     {
-        if(AIOwner != none)
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging && AIOwner != none)
         {
             AIOwner.AILog_Internal((string(self) @ "ended for") @ string(AIOwner), 'Husk');
         }

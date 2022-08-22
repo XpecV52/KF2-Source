@@ -9,6 +9,9 @@
 
 class KFSM_Siren_Scream extends KFSM_PlaySingleAnim;
 
+/** Cached pawn reference */
+var KFPawn_ZedSiren MySirenPawn;
+
 /** The frequency to do scream damage at */
 var float			ScreamDamageFrequency;
 
@@ -62,6 +65,11 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 	bEndedNormally = false;
 	LastScreamTime = 0.f;
 
+	if( MySirenPawn == none )
+	{
+		MySirenPawn = KFPawn_ZedSiren( KFPOwner );
+	}
+
 	//ShieldDestroyTime = KFSkeletalMeshComponent(KFPOwner.Mesh).GetAnimInterruptTime( AnimName );
 	KFPOwner.SetTimer( ProjectileShieldLifetime, false, nameof(Timer_DestroyProjectileShield), self );
 
@@ -101,6 +109,12 @@ function SpawnProjectileShield()
 			KFPOwner.DrawDebugCylinder( ProjectileShield.Location - vExtent, ProjectileShield.Location + vExtent, ProjectileShield.CylinderComponent.CollisionRadius, 10, 255, 0, 0, true );
 		}
 	}
+
+	// Flicker neck light as a visual cue
+	if( MySirenPawn != none )
+	{
+		MySirenPawn.EnableScreamFlicker( true );
+	}	
 }
 
 /** Destroys the projectile shield based on position in animation */
@@ -123,12 +137,18 @@ function DestroyProjectileShield()
 			KFPOwner.FlushPersistentDebugLines();
 		}
 	}
+
+	// Yurn off flicker when projectile shield goes down
+	if( MySirenPawn != none )
+	{
+		MySirenPawn.EnableScreamFlicker( false );
+	}	
 }
 
 /** Set up the sirens ExplosionActor when she screams */
 function InitializeSirenExplosion()
 {
-	if (ExplosionTemplate != None)
+	if( KFPOwner.Role == ROLE_Authority && ExplosionTemplate != None )
 	{
 		ExplosionActor = KFPOwner.Spawn(ExplosionActorClass, KFPOwner,, KFPOwner.Location, KFPOwner.Rotation);
 		if (ExplosionActor != None)
@@ -213,7 +233,7 @@ DefaultProperties
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		Damage=15	// Taking Radial Damage will round this down to 5 when you are as close as possible //18
-		DamageRadius=800
+		DamageRadius=800 //800
 		DamageFalloffExponent=1f
 		DamageDelay=0.f
 

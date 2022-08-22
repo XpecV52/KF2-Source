@@ -583,25 +583,10 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_5
-   bClientSideOnly=True
-   MaxWidth=207
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_2')),DrawY=-411,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=-390,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=-369,OverrideDelta=56)
-   ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=440
-   ObjPosY=-480
-   DrawWidth=172
-   Name="SeqEvent_LevelLoaded_5"
-   ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
-End Object
-
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_9
    bClientSideOnly=True
    MaxWidth=207
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_0')),DrawY=-211,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),ActivateDelay=2.000000,DrawY=-211,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-190,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-169,OverrideDelta=56)
    ObjInstanceVersion=3
@@ -611,147 +596,6 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_9
    DrawWidth=172
    Name="SeqEvent_LevelLoaded_9"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
-End Object
-
-Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_10
-   bClientSideOnly=True
-   MaxWidth=207
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_3')),DrawY=-587,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=-566,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=-545,OverrideDelta=56)
-   ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=448
-   ObjPosY=-656
-   DrawWidth=172
-   Name="SeqEvent_LevelLoaded_10"
-   ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
-End Object
-
-Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_3
-   Bank=AkBank'WW_ENV_BurningParis.WwiseDefaultBank_WW_ENV_BurningParis'
-   InputLinks(0)=(DrawY=-596,OverrideDelta=13)
-   InputLinks(1)=(DrawY=-576,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_2')),DrawY=-586,OverrideDelta=23)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=640
-   ObjPosY=-632
-   DrawWidth=111
-   DrawHeight=69
-   Name="SeqAct_AkLoadBank_3"
-   ObjectArchetype=SeqAct_AkLoadBank'AkAudio.Default__SeqAct_AkLoadBank'
-End Object
-
-Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_2
-   Bank=AkBank'WW_ENV_EvacuationPoint.WwiseDefaultBank_WW_ENV_EvacuationPoint'
-   InputLinks(0)=(DrawY=-412,OverrideDelta=13)
-   InputLinks(1)=(DrawY=-392,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_3')),DrawY=-402,OverrideDelta=23)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=632
-   ObjPosY=-448
-   DrawWidth=111
-   DrawHeight=69
-   Name="SeqAct_AkLoadBank_2"
-   ObjectArchetype=SeqAct_AkLoadBank'AkAudio.Default__SeqAct_AkLoadBank'
-End Object
-
-Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_0
-   Bank=AkBank'WW_ENV_Catacombs.WwiseDefaultBank_WW_ENV_Catacombs'
-   InputLinks(0)=(DrawY=-212,OverrideDelta=13)
-   InputLinks(1)=(DrawY=-192,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),DrawY=-202,OverrideDelta=23)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=632
-   ObjPosY=-248
-   DrawWidth=111
-   DrawHeight=69
-   Name="SeqAct_AkLoadBank_0"
-   ObjectArchetype=SeqAct_AkLoadBank'AkAudio.Default__SeqAct_AkLoadBank'
-End Object
-
-Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
-   bClientSideOnly=True
-   MaxWidth=207
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_1')),DrawY=-795,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=-774,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=-753,OverrideDelta=56)
-   ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=440
-   ObjPosY=-864
-   DrawWidth=172
-   Name="SeqEvent_LevelLoaded_0"
-   ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
-End Object
-
-Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_1
-   Bank=AkBank'WW_ENV_Manor.WwiseDefaultBank_WW_ENV_Manor'
-   InputLinks(0)=(DrawY=-812,OverrideDelta=13)
-   InputLinks(1)=(DrawY=-792,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_1')),DrawY=-802,OverrideDelta=23)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=632
-   ObjPosY=-848
-   DrawWidth=111
-   DrawHeight=69
-   Name="SeqAct_AkLoadBank_1"
-   ObjectArchetype=SeqAct_AkLoadBank'AkAudio.Default__SeqAct_AkLoadBank'
-End Object
-
-Begin Object Class=SeqAct_AkStartAmbientSound Name=SeqAct_AkStartAmbientSound_1
-   InputLinks(0)=(DrawY=-819,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-797,OverrideDelta=36)
-   InputLinks(2)=(DrawY=-775,OverrideDelta=58)
-   InputLinks(3)=(DrawY=-753,OverrideDelta=80)
-   OutputLinks(0)=(DrawY=-786,OverrideDelta=47)
-   VariableLinks(0)=(DrawX=885,OverrideDelta=55)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=808
-   ObjPosY=-856
-   DrawWidth=154
-   DrawHeight=133
-   Name="SeqAct_AkStartAmbientSound_1"
-   ObjectArchetype=SeqAct_AkStartAmbientSound'AkAudio.Default__SeqAct_AkStartAmbientSound'
-End Object
-
-Begin Object Class=SeqAct_AkStartAmbientSound Name=SeqAct_AkStartAmbientSound_2
-   InputLinks(0)=(DrawY=-619,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-597,OverrideDelta=36)
-   InputLinks(2)=(DrawY=-575,OverrideDelta=58)
-   InputLinks(3)=(DrawY=-553,OverrideDelta=80)
-   OutputLinks(0)=(DrawY=-586,OverrideDelta=47)
-   VariableLinks(0)=(DrawX=893,OverrideDelta=55)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=816
-   ObjPosY=-656
-   DrawWidth=154
-   DrawHeight=133
-   Name="SeqAct_AkStartAmbientSound_2"
-   ObjectArchetype=SeqAct_AkStartAmbientSound'AkAudio.Default__SeqAct_AkStartAmbientSound'
-End Object
-
-Begin Object Class=SeqAct_AkStartAmbientSound Name=SeqAct_AkStartAmbientSound_3
-   InputLinks(0)=(DrawY=-435,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-413,OverrideDelta=36)
-   InputLinks(2)=(DrawY=-391,OverrideDelta=58)
-   InputLinks(3)=(DrawY=-369,OverrideDelta=80)
-   OutputLinks(0)=(DrawY=-402,OverrideDelta=47)
-   VariableLinks(0)=(DrawX=885,OverrideDelta=55)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-HostileGrounds.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=808
-   ObjPosY=-472
-   DrawWidth=154
-   DrawHeight=133
-   Name="SeqAct_AkStartAmbientSound_3"
-   ObjectArchetype=SeqAct_AkStartAmbientSound'AkAudio.Default__SeqAct_AkStartAmbientSound'
 End Object
 
 Begin Object Class=SeqAct_AkStartAmbientSound Name=SeqAct_AkStartAmbientSound_0

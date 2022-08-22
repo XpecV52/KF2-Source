@@ -52,7 +52,7 @@ var databinding bool bMutators;
 */
 var databinding bool bCustom;
 
-var databinding bool bUsedForTakeover;
+//var databinding bool bUsedForTakeover;
 var databinding bool bAvailableForTakeover;
 
 /** A playercount that doesn't include spectators */
@@ -70,5 +70,5 @@ defaultproperties
     ZedCount=10
     MaxZedCount=100
     bIsLanMatch=false
-	bUsedForTakeover=false
+//	bUsedForTakeover=false
 }

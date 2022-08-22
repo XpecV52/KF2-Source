@@ -90,7 +90,7 @@ package tripwire.widgets
                 this.masterTimeline.time(0);
                 this.masterTimeline.play();
             }
-            this.counterNum.text = param1.toString();
+            this.counterNum.text = param1.toString() + "X";
         }
         
         public function set bonusPercentage(param1:Number) : *

@@ -25,6 +25,7 @@ var float FontScale;
 var bool bSeenIIS;
 var bool bNeedDisconnectMessage;
 var bool bNeedSignoutMessage;
+var bool bHandlePlayTogether;
 
 function NotifyConnectionError(Engine.PlayerController.EProgressMessageType MessageType, optional string Message, optional string Title)
 {
@@ -190,7 +191,7 @@ defaultproperties
     RandomLoadingStrings(32)="Armor is your friend. You can never go wrong getting more armor."
     RandomLoadingStrings(33)="Fire is a great way to keep Zeds away from you. Fire alone takes awhile to kill Zeds, but it keeps them occupied."
     RandomLoadingStrings(34)="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective. Run!"
-    RandomLoadingStrings(35)="Lighting Zeds on fire can cause them to panic. Time to play everyone's favorite game: Oh my god, I'm on fire!"
+    RandomLoadingStrings(35)="Lighting Zeds on fire can cause them to panic."
     RandomLoadingStrings(36)="Submachine guns have a high chance to cause targets to stumble, allowing you to keep them at a distance."
     RandomLoadingStrings(37)="The rail gun can fire through multiple Zeds if you line them up right."
     RandomLoadingStrings(38)="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."

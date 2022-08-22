@@ -113,6 +113,6 @@ defaultproperties
 	AssociatedPerkClass=class'KFPerk_Firebug'
 
 	BonesToLockOnEmpty=(RW_Hammer)
+
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 }
-
-

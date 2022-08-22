@@ -18,6 +18,7 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
+	LocalizationKey=KFPawn_ZedClot_Cyst
 	// ---------------------------------------------
 	// Stats
 	XPValues(0)=8
@@ -52,7 +53,7 @@ defaultproperties
 	IncapSettings(AF_Microwave)=  (Vulnerability=(0.5), 	                Cooldown=8.0,  Duration=4.5)
 	IncapSettings(AF_FirePanic)=  (Vulnerability=(1.5), 	                Cooldown=7.0,  Duration=5)
 	IncapSettings(AF_EMP)=		  (Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
-	IncapSettings(AF_Freeze)=	  (Vulnerability=(2.5),                     Cooldown=1.5,  Duration=2.0)
+	IncapSettings(AF_Freeze)=	  (Vulnerability=(2.5),                     Cooldown=1.5,  Duration=5.0)
 	IncapSettings(AF_Snare)=	  (Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
 
     ParryResistance=0	

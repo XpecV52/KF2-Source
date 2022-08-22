@@ -107,7 +107,6 @@ package tripwire.widgets
             if(param1)
             {
                 this.playerNameText.text = !!param1.playerName ? param1.playerName : "name not passed!";
-                trace("THIS IS THE VALUE PASSED TO KICK VOTE:",param1.playerName);
                 visible = true;
                 this._currentTime = !!param1.voteDuation ? int(param1.voteDuraction - 1) : 0;
                 this.voteTimeText.text = TextfieldUtil.instance.getFormattedTimeFromSeconds(this._currentTime);

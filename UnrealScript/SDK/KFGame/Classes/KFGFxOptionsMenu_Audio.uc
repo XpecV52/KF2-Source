@@ -140,7 +140,7 @@ function Callback_ConfigureMicPress()
 	if( GetPC().WorldInfo.IsConsoleBuild() )
 	{
 		Manager.SetVariableBool("bStartUpGamma", false);  // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
-		Manager.OpenPopup(EGamma, "", class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
+		Manager.DelayedOpenPopup(EGamma,EDPPID_Gamma, "", class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
 	}
 	else
 	{
@@ -184,11 +184,12 @@ function Callback_ConfigureVocals( bool bEnabled )
 
 function Callback_ConfigureControllerSound( bool bEnabled )
 {
+`if( `notdefined(ShippingPC) )
 	local bool bWasEnabled;
 	// TODO:  add functionality for turning on/off controller sound.
 	bWasEnabled = Manager.CachedProfile.GetProfileBool(KFID_ControllerSoundEnabled);
-	
 	`QAlog(`location@`showvar(bEnabled)@`showvar(bWasEnabled), true);
+`endif	
 
 	Manager.CachedProfile.SetProfileSettingValueInt(KFID_ControllerSoundEnabled, bEnabled ? 1 : 0);
 	KFGameEngine(Class'Engine'.static.GetEngine()).PadVolumeMultiplier = bEnabled ? 100.0f : 0.0f;
@@ -254,7 +255,7 @@ function Callback_VOIPVolumeChanged( float SliderValue )
 
 function CallBack_ResetAudioOptions()
 {
-	Manager.OpenPopup( EConfirmation, 
+	Manager.DelayedOpenPopup( EConfirmation, EDPPID_Misc,
 						Localize("KFGFxOptionsMenu_Graphics","WarningPromptString","KFGame"), 
 						Localize("KFGFxObject_Menu","ResetDefaults","KFGameConsole"),
 						Localize("KFGFxOptionsMenu_Graphics","OKString","KFGame"),

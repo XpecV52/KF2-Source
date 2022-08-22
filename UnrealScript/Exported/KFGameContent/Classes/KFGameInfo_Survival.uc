@@ -617,16 +617,20 @@ function UpdateGameSettings()
 	local name SessionName;
 	local KFOnlineGameSettings KFGameSettings;
 	local int NumHumanPlayers, i;
+	local KFGameEngine KFEngine;
 
 	if (WorldInfo.NetMode == NM_DedicatedServer || WorldInfo.NetMode == NM_ListenServer)
 	{
 		if (GameInterface != None)
 		{
+			KFEngine = KFGameEngine(class'Engine'.static.GetEngine());
+
 			SessionName = PlayerReplicationInfoClass.default.SessionName;
 
 			if( PlayfabInter != none && PlayfabInter.GetGameSettings() != none )
 			{
 				KFGameSettings = KFOnlineGameSettings(PlayfabInter.GetGameSettings());
+				KFGameSettings.bAvailableForTakeover = KFEngine.bAvailableForTakeover;
 			}
 			else
 			{
@@ -695,10 +699,6 @@ function UpdateGameSettings()
 	}
 }
 
-function int GetGameModeNum()
-{
-	return class'KFGameInfo'.static.GetGameModeNumFromClass( PathName(default.class) );
-}
 
 /**
  * Return whether Viewer is allowed to spectate from ViewTarget's PoV.

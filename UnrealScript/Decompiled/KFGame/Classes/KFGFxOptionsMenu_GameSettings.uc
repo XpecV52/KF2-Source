@@ -61,6 +61,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 
 var const localized string SectionNameString;
 var const localized string GameSettingsString;
@@ -407,28 +408,28 @@ function Callback_ReduceHighPitchNoiseChanged(bool bActive)
 
 function CallBack_ResetGameOptions()
 {
-    Manager.OpenPopup(0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), ResetGameOptions);
+    Manager.DelayedOpenPopup(0, 0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), ResetGameOptions);
 }
 
 function ResetGameOptions()
 {
-    Manager.CachedProfile.SetProfileSettingValueInt(107, Manager.CachedProfile.GetDefaultInt(107));
-    Manager.CachedProfile.SetProfileSettingValueFloat(125, Manager.CachedProfile.GetDefaultFloat(125));
-    Manager.CachedProfile.SetProfileSettingValueInt(((Class'WorldInfo'.static.IsConsoleBuild()) ? 163 : 121), ((Class'WorldInfo'.static.IsConsoleBuild()) ? Manager.CachedProfile.GetDefaultInt(163) : Manager.CachedProfile.GetDefaultInt(121)));
-    Manager.CachedProfile.SetProfileSettingValueInt(123, Manager.CachedProfile.GetDefaultInt(123));
-    Manager.CachedProfile.SetProfileSettingValueInt(157, Manager.CachedProfile.GetDefaultInt(157));
-    Manager.CachedProfile.SetProfileSettingValueInt(158, Manager.CachedProfile.GetDefaultInt(158));
-    Manager.CachedProfile.SetProfileSettingValueInt(159, Manager.CachedProfile.GetDefaultInt(159));
-    Manager.CachedProfile.SetProfileSettingValueInt(160, Manager.CachedProfile.GetDefaultInt(160));
-    Manager.CachedProfile.SetProfileSettingValueInt(161, Manager.CachedProfile.GetDefaultInt(161));
-    Manager.CachedProfile.SetProfileSettingValueInt(162, Manager.CachedProfile.GetDefaultInt(162));
+    Callback_GoreChanged(Manager.CachedProfile.GetDefaultInt(107));
+    Callback_FriendlyHudChanged(Manager.CachedProfile.GetDefaultFloat(125));
+    Callback_ToggleCrosshair(((Class'WorldInfo'.static.IsConsoleBuild()) ? Manager.CachedProfile.GetDefaultInt(163) : Manager.CachedProfile.GetDefaultInt(121)) != 0);
+    Callback_KillTickerChanged(Manager.CachedProfile.GetDefaultInt(123) != 0);
+    Callback_UseAltAimOnDualsChanged(Manager.CachedProfile.GetDefaultInt(157) != 0);
+    Callback_HideBossHealthBarChanged(Manager.CachedProfile.GetDefaultInt(158) != 0);
+    Callback_AntiMotionSicknessChanged(Manager.CachedProfile.GetDefaultInt(159) != 0);
+    Callback_bShowWelderInInvChanged(Manager.CachedProfile.GetDefaultInt(160) != 0);
+    Callback_AutoTurnOffChanged(Manager.CachedProfile.GetDefaultInt(161) != 0);
+    Callback_ReduceHighPitchNoiseChanged(Manager.CachedProfile.GetDefaultInt(162) != 0);
     if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
-        Manager.CachedProfile.SetProfileSettingValueInt(100, Manager.CachedProfile.GetDefaultInt(100));        
+        Callback_WeaponSelectChanged(Manager.CachedProfile.GetDefaultInt(100) != 0);        
     }
     else
     {
-        Manager.CachedProfile.SetProfileSettingValueFloat(122, Manager.CachedProfile.GetDefaultFloat(122));
+        Callback_FOVChanged(Manager.CachedProfile.GetDefaultFloat(122));
     }
     InitValues();
 }

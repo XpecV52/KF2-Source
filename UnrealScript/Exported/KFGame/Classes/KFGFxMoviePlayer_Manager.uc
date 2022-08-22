@@ -81,7 +81,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 22
 
 /** Connects a menu ID with its path */
@@ -106,6 +106,18 @@ enum EUIIndex
 	UI_IIS,
 };
 
+// Anything not with a Misc priority will be only displayed once, even if attempted to be queued multiple times.
+enum EDelayedPopupPriorityId
+{
+	EDPPID_Misc,
+	EDPPID_SwitchTeams,
+	EDPPID_RegionWait,
+	EDPPID_RegionBest,
+	EDPPID_Gamma,
+	EDPPID_ExitToMainMenu,
+	EDPPID_JoinFailure,
+	EDPPID_ControllerDisconnect,
+};
 struct SMenuPaths
 {
 	var string BaseSWFPath;
@@ -172,13 +184,29 @@ enum EPopUpType
 
 struct DelayedPopup
 {
-	var		EPopUpType	PopupType;
-	var		string		Title;
-	var		string		Description;
-	var		string		LeftButton;
+	var bool bShown;
+	var int Priority; 
+	var EPopUpType PopUpType; 
+	var string TitleString; 
+	var string DescriptionString;
+	var string LeftButtonString;
+	var string RightButtonString;
+	var delegate<PendingLeftButtonDelegate>LeftButtonDelegate;
+	var delegate<PendingRightButtonDelegate>RightButtonDelegate;
+	var string MiddleButtonString;
+	var delegate<PendingMiddleButtonDelegate>MiddleButtonDelegate;
+	var name OverridingSoundEffect;
+
+	structdefaultproperties
+	{
+		bShown=false
+		Priority=0
+		PopUpType=EConfirmation
+	}
 };
 
 var array<DelayedPopup> DelayedPopups;
+var transient int ActivePopup;
 
 /** Reference to the popup that is currently open */
 var KFGFxObject_Popup CurrentPopup;
@@ -312,7 +340,7 @@ function Init(optional LocalPlayer LocPlay)
 		ScaleStage = class'Engine'.static.GetTitleSafeArea();
 		SetViewport((ViewportSize.X-(ViewportSize.X*ScaleStage))/2,(ViewportSize.Y-(ViewportSize.Y*ScaleStage))/2,(ViewportSize.X*ScaleStage),(ViewportSize.Y*ScaleStage));
 	}
-	bUsingGamepad = class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis);
+	bUsingGamepad = class'WorldInfo'.static.IsConsoleBuild();
 	UpdateDynamicIgnoreKeys();
 }
 
@@ -328,8 +356,9 @@ function OnProfileSettingsRead()
 		// Now that profile settings have been read in, show the gamma popup if needed
 		if( !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() )
 		{
+			LogInternal("("$Name$") KFGfxMoviePlayer_Manager::"$GetStateName()$":"$GetFuncName()@"33"@"bSetGamma:'"$bSetGamma$"'"@"CurrentMenu:'"$CurrentMenu$"'");
 			ManagerObject.SetBool("bStartUpGamma", true);   // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
-			OpenPopup(EGamma, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
+			DelayedOpenPopup(EGamma,EDPPID_Gamma, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
 		}
 	}
 }
@@ -341,6 +370,7 @@ function LaunchMenus( optional bool bForceSkipLobby )
 	local GFxWidgetBinding WidgetBinding;
 	local bool bSkippedLobby, bShowIIS;
 	local KFGameViewportClient GVC;
+	local KFPlayerController KFPC;
 	local bool bShowMenuBg;
 	local TextureMovie BGTexture;
 
@@ -356,8 +386,8 @@ function LaunchMenus( optional bool bForceSkipLobby )
 
 		BGTexture = (GetPC().WorldInfo.IsConsoleBuild() && bShowIIS) ? IISMovie : BackgroundMovie;
 
-		SetExternalTexture("background", BackgroundMovie);
-		SetExternalTexture("IIS_BG", IISMovie);
+		SetExternalTexture("background", BackgroundMovie, true);
+		SetExternalTexture("IIS_BG", IISMovie, true);
 
 		bShowMenuBg = GVC.bSeenIIS || !GetPC().WorldInfo.IsConsoleBuild();
 		ManagerObject.SetBool("backgroundVisible", bShowMenuBg);
@@ -397,7 +427,7 @@ function LaunchMenus( optional bool bForceSkipLobby )
 	if (!bSkippedLobby)
 	{
 		LoadWidgets(WidgetPaths);
-
+		LogInternal("("$Name$") KFGfxMoviePlayer_Manager::"$GetStateName()$":"$GetFuncName()@"11"@"bShowIIS:'"$bShowIIS$"'");
 		// Console should check to see if we've seen the IIS and display it if this is the first time we've launched the menu.
 		if(class'WorldInfo'.static.IsConsoleBuild() && bShowIIS)
 		{
@@ -415,6 +445,12 @@ function LaunchMenus( optional bool bForceSkipLobby )
 			TimerHelper.SetTimer(0.1f, false, 'DelayedShowDisconnectMessage', self);
 			GVC.bNeedDisconnectMessage = false;
 		}
+		if(GVC.bHandlePlayTogether)
+		{
+			KFPC = KFPlayerController(GetPC());
+			KFPC.OnGameDestroyedForPlayTogetherComplete('Party', true);
+			GVC.bHandlePlayTogether = false;
+		}
 		//@HSL_END
 	}
 
@@ -428,8 +464,9 @@ function LaunchMenus( optional bool bForceSkipLobby )
 	// Only read if cached profile has finished reading in
 	if( !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() && CachedProfile != None && CachedProfile.AsyncState != OPAS_Read  )
 	{
+		LogInternal("("$Name$") KFGfxMoviePlayer_Manager::"$GetStateName()$":"$GetFuncName()@"22"@"bSetGamma:'"$bSetGamma$"'"@"bShowIIS:'"$bShowIIS$"'");
 		ManagerObject.SetBool("bStartUpGamma", true);   // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
-		OpenPopup(EGamma, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
+		DelayedOpenPopup(EGamma, EDPPID_Gamma,"", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
 	}
 }
 
@@ -442,54 +479,103 @@ function DelayedShowDisconnectMessage()
 	}
 	else
 	{
-		OpenPopup(ENotification,
+		DelayedOpenPopup(ENotification, EDPPID_JoinFailure,
 			Localize("Notifications", "ConnectionLostTitle",   "KFGameConsole"),
 			Localize("Notifications", "ConnectionLostMessage", "KFGameConsole"),
 			class'KFCommon_LocalizedStrings'.default.OKString);
 	}
 }
 
-function SetDelayedShowPopup( EPopUpType PopUpType, string TitleString, string DescriptionString,
-	optional string LeftButtonString)
+//function DelayedOpenPopup( EPopUpType PopUpType, string TitleString, string DescriptionString,
+//	string LeftButtonString, optional int Priority = 0)
+function DelayedOpenPopup( EPopUpType PopUpType, int PopupPriority, string TitleString, string DescriptionString,
+	optional string LeftButtonString,
+	optional string RightButtonString,
+	optional delegate<PendingLeftButtonDelegate>LeftButtonDelegate,
+	optional delegate<PendingRightButtonDelegate>RightButtonDelegate,
+	optional string MiddleButtonString,
+	optional delegate<PendingMiddleButtonDelegate>MiddleButtonDelegate,
+	optional name OverridingSoundEffect
+	)
 {
 	local DelayedPopup Popup;
-	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentPopup != None)
-	{
-		Popup.PopupType = PopUpType;
-		Popup.Title = TitleString;
-		Popup.Description = DescriptionString;
-		Popup.LeftButton = LeftButtonString;
-		DelayedPopups.AddItem(Popup);
+	local int i;
 
-		TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
-	}
-	else
+	Popup.PopupType = PopUpType;
+	Popup.TitleString = TitleString;
+	Popup.DescriptionString = DescriptionString;
+	Popup.LeftButtonString = LeftButtonString;
+	Popup.RightButtonString = RightButtonString;
+	Popup.LeftButtonDelegate = LeftButtonDelegate;
+	Popup.RightButtonDelegate = RightButtonDelegate;
+	Popup.MiddleButtonString = MiddleButtonString;
+	Popup.MiddleButtonDelegate = MiddleButtonDelegate;
+	Popup.OverridingSoundEffect = OverridingSoundEffect;
+	Popup.Priority = PopupPriority;
+
+
+	// Special Case - RegionBest Popup replaces RegionWait popup
+	if(PopupPriority == EDPPID_RegionBest 
+		&& DelayedPopups[DelayedPopups.Length - 1].Priority == EDPPID_RegionWait)
 	{
-		OpenPopup(PopUpType,
-			TitleString,
-			DescriptionString,
-			LeftButtonString);
+		UnloadCurrentPopup();
 	}
+	// Check to see if the new one is more important, usurper case.
+	else if(CurrentPopup != none && DelayedPopups.Length > 0)	
+	{
+		if(DelayedPopups[DelayedPopups.Length - 1].Priority < PopupPriority)
+		{
+			DelayedPopups[DelayedPopups.Length - 1].bShown = false;
+		}
+	}
+
+	// Start at Delayed Popups and look at previous elements, back element was already checked in usurper case
+	for(i = DelayedPopups.Length; i > 0; --i)
+	{
+		// A message of this specific priority was already set, so we just display that to prevent the same popup from being queued multiple times.
+		if(PopupPriority > 0 && PopupPriority == DelayedPopups[i - 1].Priority)
+		{
+			;
+			return;
+		}
+
+		if(DelayedPopups[i - 1].Priority <= PopupPriority)
+		{
+			DelayedPopups.InsertItem(i, Popup);
+			TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
+			return;
+		}
+	}
+	
+	// Empty case, simply insert and show
+	DelayedPopups.InsertItem(0, Popup);
+	TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
 }
 
 function ShowDelayedPopupMessage()
 {
-	local DelayedPopup Popup;
-	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentPopup != None)
+	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentMenu == IISMenu)
 	{
 		TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
+		return;
 	}
 
-	if(DelayedPopups.Length > 0)
+	if(DelayedPopups.Length > 0 && !DelayedPopups[DelayedPopups.Length - 1].bShown)
 	{
-		Popup = DelayedPopups[0];
-		DelayedPopups.Remove(0, 1);
-
-		OpenPopup(Popup.PopupType,
-			Popup.Title,
-			Popup.Description,
-			Popup.LeftButton);
-	}	
+		OpenPopup(	DelayedPopups[DelayedPopups.Length - 1].PopUpType,
+					DelayedPopups[DelayedPopups.Length - 1].TitleString,
+					DelayedPopups[DelayedPopups.Length - 1].DescriptionString,
+					DelayedPopups[DelayedPopups.Length - 1].LeftButtonString,
+					DelayedPopups[DelayedPopups.Length - 1].RightButtonString,
+					DelayedPopups[DelayedPopups.Length - 1].LeftButtonDelegate,
+					DelayedPopups[DelayedPopups.Length - 1].RightButtonDelegate,
+					DelayedPopups[DelayedPopups.Length - 1].MiddleButtonString,
+					DelayedPopups[DelayedPopups.Length - 1].MiddleButtonDelegate,
+					DelayedPopups[DelayedPopups.Length - 1].OverridingSoundEffect);
+		
+		// Setting shown after OpenPopup, in case OpenPopup closes a usurped popup
+		DelayedPopups[DelayedPopups.Length - 1].bShown = true;
+	}
 }
 //@HSL_END
 
@@ -713,16 +799,14 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 
 function StatsInitialized()
 {
-	if( PartyWidget != none )
-	{
-		PartyWidget.StatsInit();
-	}
+	//not used anymore
 }
 
 function AllowCloseMenu()
 {
 	bCanCloseMenu = true;
 }
+
 
 function ForceUpdateNextFrame()
 {
@@ -777,6 +861,10 @@ function SetMenusOpen(bool bIsOpen)
 	bMenusOpen = bIsOpen;
 	bMenusActive = bIsOpen; //@HSL - JRO - 6/21/2016 - Mostly just useful for when bIsOpen is true. Set to false elsewhere, as this gets called too late to be useful in that case
 	SetMovieCanReceiveInput(bIsOpen);
+	if(bUsingGamepad)
+	{
+		FlushPlayerInput(false);
+	}
 	HudWrapper = KFGFxHudWrapper(HUD);
 	if( HudWrapper != none && HudWrapper.HudMovie != none )
 	{
@@ -903,7 +991,6 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		MenuPath = MenuSWFPaths[NewMenuIndex].BaseSWFPath;
 	}
 	LoadMenu( MenuPath, bShowWidgets );
-	SetMovieCanReceiveInput(true);
 }
 
 /** Tells actionscript which .swf to open up */
@@ -945,16 +1032,15 @@ function ClosePostGameMenu()
 }
 function CloseMenus(optional bool bForceClose=false)
 {
-	if(bForceClose)
-	{
-		LastForceCloseTime=GetPC().WorldInfo.TimeSeconds;
-	}
+	LogInternal("("$Name$") KFGfxMoviePlayer_Manager::"$GetStateName()$":"$GetFuncName()@"PartyWidget:'"$PartyWidget$"'"@"bAfterLobby:'"$bAfterLobby$"'"@"bForceClose:'"$bForceClose$"'");
 
 	if ( (bMenusOpen && bCanCloseMenu) || bForceClose)
 	{
 		UnloadCurrentPopup();
+
 		if ( !bAfterLobby && PartyWidget != none || GetPC() == none || GetPC().WorldInfo.GRI == none || GetPC().WorldInfo.GRI.bMatchIsOver )
 		{
+			LogInternal("Setting PartyWidget Visibility false, bAfterLobby = true");
 			PartyWidget.SetReadyButtonVisibility(false);
 		 	bAfterLobby = true;
 		}
@@ -966,6 +1052,7 @@ function CloseMenus(optional bool bForceClose=false)
 				PlaySoundFromTheme('TRADER_EXIT_BUTTON_CLICK', 'UI');
 			}
 
+			LogInternal("("$Name$") KFGfxMoviePlayer_Manager::"$GetStateName()$":"$GetFuncName()@"CurrentMenu:'"$CurrentMenu$"'");
 			CurrentMenu.OnClose();
 			CurrentMenu = none;
 		}
@@ -973,7 +1060,6 @@ function CloseMenus(optional bool bForceClose=false)
 		bMenusActive = false; //@HSL - JRO - 6/21/2016 - Make sure this is set before the pause conditions are checked
 		ConditionalPauseGame(false);
 		SetMenuVisibility( false );
-		SetMovieCanReceiveInput(false);
 		SetHUDVisiblity( true) ;
 	}
 }
@@ -1009,6 +1095,7 @@ event OnCleanup()
 /** Opens / Closes the menus on input */
 function bool ToggleMenus()
 {
+	LogInternal("("$Name$") KFGfxMoviePlayer_Manager::"$GetStateName()$":"$GetFuncName()@"bMenusOpen:'"$bMenusOpen$"'"@"HUD.bShowHUD:'"$HUD.bShowHUD$"'"@"bCanCloseMenu:'"$bCanCloseMenu$"'"@"bPostGameState:'"$bPostGameState$"'"@"CurrentMenuIndex:'"$CurrentMenuIndex$"'");
 	if (!bMenusOpen || HUD.bShowHUD)
 	{
 		ManagerObject.SetBool("bOpenedInGame",true);
@@ -1018,6 +1105,7 @@ function bool ToggleMenus()
 		}
 		else
 		{
+			LogInternal("("$Name$") KFGfxMoviePlayer_Manager::"$GetStateName()$":"$GetFuncName());
 			OpenMenu(UI_Perks);
 			UpdateMenuBar();
 		}
@@ -1078,14 +1166,17 @@ event MenusFinishedClosing()
 //This is to force the widgets visible.  AKA a special case for the AAR
 function SetWidgetsVisible( bool bVisible )
 {
-	LogInternal("BRIAN:: SetWidgetsVisible"@bVisible);
+	LogInternal("("$Name$") KFGfxMoviePlayer_Manager::"$GetStateName()$":"$GetFuncName()@"bVisible:'"$bVisible$"'");
 	ManagerObject.ActionScriptVoid("setWidgetsVisiblity");
 }
 
 /** Set the visibility of the current menus */
 function SetMenuVisibility( bool bVisible )
 {
+	//`log(`location@`showvar(bVisible));
+	//ScriptTrace();
 	ManagerObject.ActionScriptVoid("setMenuVisibility");
+	//SetMovieCanReceiveInput(bVisible);
 }
 
 /** Set the visibility of the HUD and change whether input can be taken */
@@ -1157,7 +1248,7 @@ function NotifyUnsuccessfulSearch()
 			StartMenu.OptionsComponent.SetSearching(false);
 		}
 		SetSearchingForMatch(false);
-		OpenPopup(EConfirmation, FailedSearchTitleString, FailedSearchString, BrowseServersString, class'KFCommon_LocalizedStrings'.default.OKString, StartMenu.Callback_OpenServerBrowser );
+		DelayedOpenPopup(EConfirmation, EDPPID_Misc,FailedSearchTitleString, FailedSearchString, BrowseServersString, class'KFCommon_LocalizedStrings'.default.OKString, StartMenu.Callback_OpenServerBrowser );
 	}
 }
 
@@ -1196,7 +1287,7 @@ function InitializePopup(name WidgetPath, KFGFxObject_Popup Widget )
 }
 
 /** Open the popup based on it's pop up type and set the response delegates to its buttons */
-function OpenPopup( EPopUpType PopUpType, string TitleString, string DescriptionString,
+private function OpenPopup( EPopUpType PopUpType, string TitleString, string DescriptionString,
 	optional string LeftButtonString,
 	optional string RightButtonString,
 	optional delegate<PendingLeftButtonDelegate>LeftButtonDelegate,
@@ -1206,12 +1297,15 @@ function OpenPopup( EPopUpType PopUpType, string TitleString, string Description
 	optional name OverridingSoundEffect
 	)
 {
-
-	if(CurrentPopup != none && PopUpType == CurrentPopUpType )
-	{
-		CurrentPopUp.UpdateDescritionText(DescriptionString);
-	}
-	else if(PopupData[PopUpType].SWFPath != "")
+	//@HSL_BEGIN - AGM
+	// Don't do this, in case we are actually changing the title, or callbacks associated with the popup.
+	//if(CurrentPopup != none && PopUpType == CurrentPopUpType )
+	//{
+	//	CurrentPopUp.UpdateDescritionText(DescriptionString);
+	//}
+	//else
+	//@HSL_END
+	if(PopupData[PopUpType].SWFPath != "")
 	{
 		UnloadCurrentPopup();
 		CurrentPopUpType = PopUpType;
@@ -1245,12 +1339,16 @@ function LoadPopup( string Path, optional string TitleString, optional string De
     						optional string LeftButtonString, optional string RightButtonString, optional string MiddleButtonString)
 {
 	ManagerObject.ActionScriptVoid("loadCurrentPopup");
+	currentFocus();
 }
 
 /** Tell actionscript to remove this popup */
 function UnloadCurrentPopup()
 {
 	ManagerObject.ActionScriptVoid("unloadCurrentPopup");
+	
+	LogInternal("("$Name$") KFGfxMoviePlayer_Manager::"$GetStateName()$":"$GetFuncName()@"CurrentPopup:'"$CurrentPopup$"'");
+
 	if ( CurrentPopup != none )
 	{
 		CurrentPopup.OnClosed();
@@ -1264,6 +1362,16 @@ function UnloadCurrentPopup()
         	bCaptureInput = false;
     	}
 	}
+	
+	if( DelayedPopups.Length > 0 )
+	{
+		if(DelayedPopups[DelayedPopups.Length - 1].bShown)
+		{
+			DelayedPopups.Remove(DelayedPopups.Length - 1, 1);
+		}
+	}
+	
+	TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
 }
 
 function LoadPopups( array<string> Paths)
@@ -1280,7 +1388,7 @@ function UnloadPopups()
 function ConditionalPauseGame(bool bPause)
 {
 	local WorldInfo WI;
-
+	
 	WI = class'WorldInfo'.static.GetWorldInfo();
 	if( WI.NetMode == NM_Standalone )
 	{
@@ -1296,7 +1404,14 @@ function ConditionalPauseGame(bool bPause)
 		}
 		else if( GetPC() != none )
 		{
-			GetPC().SetPause(false);
+			if(!bCanCloseMenu)
+			{
+				LogInternal("("$Name$") KFGfxMoviePlayer_Manager::"$GetStateName()$":"$GetFuncName()@"We were going to unpause here... but maybe that's not correct");
+			}
+			else
+			{
+				GetPC().SetPause(false);
+			}
 		}
 	}
 }
@@ -1352,6 +1467,11 @@ function bool GetMultiplayerMenuActive()
 	{
 		return true;
 	}
+
+	/*if( CurrentMenuIndex == UI_Store ) //This is not a multiplayer menu. -ZG 
+	{
+		return true;
+	}*/
 
 	if(StartMenu != none && CurrentMenuIndex == UI_Start && StartMenu.GetStartMenuState() == EMatchmaking)
 	{
@@ -1419,6 +1539,7 @@ function ChangeOverviewState(bool bLeaderIsOnServerBrowser)
 event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent InputEvent)
 {
 	local KFPlayerReplicationInfo KFPRI;
+	local bool bLoading;
 
 	KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
 	
@@ -1426,7 +1547,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 	{
 		return true;
 	}
-    
+
 	// Handle closing out of currently active menu
 	if ( (bAfterLobby || GetPC().WorldInfo.GRI.bMatchIsOver) && InputEvent == EInputEvent.IE_Pressed
 		&& (ButtonName == 'Escape' || ButtonName == 'XboxTypeS_Start') 
@@ -1434,9 +1555,9 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 	{
 		return ToggleMenus();
 	}
-	else if (InputEvent == EInputEvent.IE_Pressed )
+	else if (InputEvent == EInputEvent.IE_Pressed && bMenusOpen)
 	{
-		if(ButtonName == 'XboxTypeS_RightThumbstick')
+		if(ButtonName == 'XboxTypeS_Y')
 		{
 			if(!GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby && !class'WorldInfo'.static.IsMenuLevel() && CurrentPopup == none )
 			{
@@ -1445,9 +1566,17 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 				PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);
 			}
 		}
+		else if(ButtonName == 'XboxTypeS_RightThumbstick')
+		{
+			if(CurrentMenu != none)
+			{
+				CurrentMenu.OnR3Pressed();
+			}
+		}
 		else
 		{
-			if(MenuBarWidget != none)
+			bLoading = ManagerObject.GetBool("_bLoading"); // Make sure we only allow menu tabbing if we aren't in the process of loading a menu - HSL Fixes (K2P4-1664) and mroe
+			if(MenuBarWidget != none && !bLoading)
 			{
 				if(ButtonName == 'XboxTypeS_RightShoulder')
 				{
@@ -1459,17 +1588,19 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 				}
 			}
 		}
-		
+
 	}
 	
-	if ( CurrentMenu != none )
-	{
-		CurrentMenu.FilterButtonInput( ControllerId, ButtonName, InputEvent );
-		if ( !class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
-    	{
-			CheckIfUsingGamepad();
-		}
-	}
+		if ( CurrentMenu != none )
+		{
+		
+			if ( !class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+    		{
+				CheckIfUsingGamepad();
+			}
+
+			return CurrentMenu.FilterButtonInput( ControllerId, ButtonName, InputEvent );
+		}		
 
  	return false;
 }
@@ -1499,6 +1630,11 @@ function bool GetUsingGamepad()
 {
 	local PlayerController PC;
 	PC = GetPC();
+
+	if( class'WorldInfo'.static.IsConsoleBuild() )
+	{
+		return true;
+	}
 
     if ( PC == none || PC.PlayerInput == none )
 	{
@@ -1582,7 +1718,7 @@ function ShowKickVote(PlayerReplicationInfo PRI)
 	if(bMenusOpen)
 	{
 		bKickVotePopupActive = true;
-		OpenPopup(EConfirmation, Class'KFGFxWidget_KickVote'.default.VoteKickString, VotePRI.PLayerName,
+		DelayedOpenPopup(EConfirmation, EDPPID_Misc, Class'KFGFxWidget_KickVote'.default.VoteKickString, VotePRI.PLayerName,
 		 Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVote, CastNoVote);
 	}
 }
@@ -1639,7 +1775,6 @@ function currentFocus()
 
 defaultproperties
 {
-   AllowMenusOpenAfterForceCloseTime=0.500000
    MenuSWFPaths(0)=(BaseSWFPath="../UI_Menus/StartMenu_SWF.swf")
    MenuSWFPaths(1)=(BaseSWFPath="../UI_Menus/PerksMenu_SWF.swf")
    MenuSWFPaths(2)=(BaseSWFPath="../UI_Menus/GearMenu_SWF.swf")

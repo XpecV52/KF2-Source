@@ -387,7 +387,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 22;
 
 /** The time at which this PRI left the game */
@@ -396,6 +396,10 @@ var float LastQuitTime;
 var byte NumTimesReconnected;
 
 var bool bClientActiveSpawn;
+
+/** TRUE if this player has spawned in for the active round. This is used for realtime multipay on PS4 */
+var bool bHasSpawnedIn;
+
 /** UTC timestamp representing the last time a crate was gifted to this player. Tracked by server only */
 var string LastCrateGiftTimestamp;
 /** Seconds of gameplay for this player for crate gifting. Tracked by server only */
@@ -432,7 +436,7 @@ struct native CustomizationInfo
 			HeadSkinIndex = rhs.HeadSkinIndex;
 			BodyMeshIndex = rhs.BodyMeshIndex;
 			BodySkinIndex = rhs.BodySkinIndex;
-			for(INT i = 0; i < 3 /*MAX_COSMETIC_ATTACHMENTS*/; ++i)
+			for(INT i = 0; i < UCONST_NUM_COSMETIC_ATTACHMENTS /*MAX_COSMETIC_ATTACHMENTS*/; ++i)
 			{
 				AttachmentMeshIndices[i] = rhs.AttachmentMeshIndices[i];
 				AttachmentSkinIndices[i] = rhs.AttachmentSkinIndices[i];
@@ -528,7 +532,7 @@ var KFPlayerController KFPlayerOwner;
 replication
 {
 	if ( bNetDirty )
-		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, bClientActiveSpawn,
+		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, bClientActiveSpawn, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, bPerkCanSupply,
 		CharPortrait, DamageDealtOnTeam;
@@ -673,8 +677,8 @@ reliable server function ServerNotifyStartVoip()
 				KFPC.VoiceReceivers.AddItem(UniqueId);
 			}
 		}
-			else
-			{
+		else
+		{
 			ServerStartSpectatorVoiceChat();
 		}
 	}
@@ -777,10 +781,10 @@ function ServerStartSpectatorVoiceChat()
 
 	VOIPStatus =KFGameInfo(WorldInfo.Game).bPartitionSpectators ?  6 : 5;
 
-	for ( i = 0; i < WorldInfo.GRI.PRIArray.Length; i++ )
+	for ( i = 0; i < WorldInfo.GRI.PRIArray.Length; ++i )
 	{
-		if ( !WorldInfo.GRI.PRIArray[i].bBot && (!KFGameInfo(WorldInfo.Game).bPartitionSpectators ||
-			 WorldInfo.GRI.PRIArray[i].GetTeamNum() >= 2 || WorldInfo.GRI.PRIArray[i].bOnlySpectator) )
+		if ( !WorldInfo.GRI.PRIArray[i].bBot &&
+			(!KFGameInfo(WorldInfo.Game).bPartitionSpectators || WorldInfo.GRI.PRIArray[i].bOnlySpectator) )
 		{
 			KFPC.VoiceReceivers.AddItem(WorldInfo.GRI.PRIArray[i].UniqueId);
 
@@ -826,9 +830,18 @@ simulated function VOIPStatusChanged( PlayerReplicationInfo Talker, bool bIsTalk
 	local KFPlayerController KFPC;
 	local KFPlayerReplicationInfo TalkerKFPRI;
 	local KFGFxHudWrapper MyGFxHUD;
+	local OnlineSubsystem OSS;
 
+	OSS = class'GameEngine'.static.GetOnlineSubsystem();
+	
     foreach WorldInfo.LocalPlayerControllers(class'KFPlayerController', KFPC)
 	{
+		// BWJ - 10-4-16 - Exit out immediately if local player has a chat restriction
+		if( OSS != None && OSS.HasChatRestriction( LocalPlayer(KFPC.Player).ControllerId ) )
+		{
+			return;
+		}
+
 		MyGFxHUD = KFGFxHudWrapper(KFPC.myHUD);
 
 		TalkerKFPRI = KFPlayerReplicationInfo(Talker);
@@ -1177,10 +1190,10 @@ function UpdateReplicatedVariables()
 /** Called once per second while on the human team to refresh replicated position */
 function UpdatePawnLocation()
 {
-		PawnLocationCompressed = KFPlayerOwner.Pawn.Mesh.GetPosition();
+	PawnLocationCompressed = KFPlayerOwner.Pawn.Location;
 
-		// Compress
-		PawnLocationCompressed *= 0.01f;
+	// Compress
+	PawnLocationCompressed *= 0.01f;
 }
 
 function UpdateReplicatedPlayerHealth()
@@ -1198,8 +1211,13 @@ function UpdateReplicatedPlayerHealth()
 	}
 }
 
+simulated function SetSmoothedPawnIconLocation( vector NewLocation )
+{
+	LastReplicatedSmoothedLocation = NewLocation;
+}
+
 /** Return location used for overhead icon */
-simulated function vector GetReplicatedPawnIconLocation(float BlendSpeed)
+simulated function vector GetSmoothedPawnIconLocation(float BlendSpeed)
 {
 	local vector UncompressedLocation;
 
@@ -1207,7 +1225,7 @@ simulated function vector GetReplicatedPawnIconLocation(float BlendSpeed)
 
 	// if new location is nearby add some quick and dirty blending
 	// @note: We're faking timestep and making a few assumptions about the HUD
-	if ( BlendSpeed > 0 && !IsZero(UncompressedLocation) && VSizeSq(UncompressedLocation - LastReplicatedSmoothedLocation) < Square(500) )
+	if ( BlendSpeed > 0 && !IsZero(UncompressedLocation) && VSizeSq(UncompressedLocation - LastReplicatedSmoothedLocation) < Square(768) )
 	{
 		LastReplicatedSmoothedLocation = VInterpTo( LastReplicatedSmoothedLocation,
                                 UncompressedLocation, WorldInfo.DeltaSeconds,
@@ -1334,6 +1352,10 @@ simulated function ResetSupplierUsed()
 		KFPRIArray[i].bPerkSecondarySupplyUsed = false;	
 	}
 }
+
+
+// BWJ - 10-5-16 - Check to see if player has had initial spawn. used for PS4 realtime multiplay
+native simulated function bool HasHadInitialSpawn();
 
 defaultproperties
 {

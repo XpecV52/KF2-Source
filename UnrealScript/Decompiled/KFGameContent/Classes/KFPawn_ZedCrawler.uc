@@ -9,9 +9,10 @@ class KFPawn_ZedCrawler extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
-var Actor LastBumpLevelActor;
-var float LastBumpLevelTime;
+var protected Actor LastBumpLevelActor;
+var protected float LastBumpLevelTime;
 var protected const KFGameExplosion DeathExplosionTemplate;
+var protected const float LowGoreExplosionImpulse;
 var protected repnotify bool bIsSpecialCrawler;
 var bool bShouldExplode;
 
@@ -89,7 +90,7 @@ event SpiderBumpLevel(Vector HitLocation, Vector HitNormal, optional Actor Wall)
             {
                 if((Wall != none) && LastBumpLevelActor != Wall)
                 {
-                    if(MyKFAIC != none)
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
                     {
                         MyKFAIC.AILog_Internal((((("(Pawn) " $ string(GetFuncName())) $ " Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'Crawler');
                     }
@@ -99,7 +100,7 @@ event SpiderBumpLevel(Vector HitLocation, Vector HitNormal, optional Actor Wall)
             }
             else
             {
-                if(MyKFAIC != none)
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
                 {
                     MyKFAIC.AILog_Internal((((("(Pawn) [PHYS_FALLING] " $ string(GetFuncName())) $ " Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'Crawler');
                 }
@@ -156,6 +157,7 @@ simulated function Timer_CheckForExplode()
     local KFGoreManager GoreManager;
     local array<name> OutGibBoneList;
     local int NumGibs;
+    local Vector Impulse;
 
     if(bShouldExplode)
     {
@@ -163,12 +165,25 @@ simulated function Timer_CheckForExplode()
         if(WorldInfo.NetMode != NM_DedicatedServer)
         {
             GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-            if(GoreManager != none)
+            if((GoreManager != none) && GoreManager.AllowMutilation())
             {
-                NumGibs = 10 + Rand(4);
-                NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
-                GetClosestHitBones(NumGibs, Location, OutGibBoneList);
-                GoreManager.CauseGibsAndApplyImpulse(self, Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType, Location, OutGibBoneList, none, Mesh.GetBoneLocation(Mesh.GetBoneName(0)));
+                if(!bIsGoreMesh)
+                {
+                    SwitchToGoreMesh();
+                }
+                if(bIsGoreMesh)
+                {
+                    NumGibs = 10 + Rand(4);
+                    NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
+                    GetClosestHitBones(NumGibs, Location, OutGibBoneList);
+                    GoreManager.CauseGibsAndApplyImpulse(self, Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType, Location, OutGibBoneList, none, Mesh.GetBoneLocation(Mesh.GetBoneName(0)));
+                    return;
+                }
+            }
+            if((NumGibs == 0) && Physics == 10)
+            {
+                Impulse = (vect(0, 0, 1) * LowGoreExplosionImpulse) * PhysRagdollImpulseScale;
+                Mesh.AddImpulse(Impulse, Location);
             }
         }
     }
@@ -274,6 +289,7 @@ defaultproperties
     object end
     // Reference: KFGameExplosion'Default__KFPawn_ZedCrawler.ExploTemplate0'
     DeathExplosionTemplate=ExploTemplate0
+    LowGoreExplosionImpulse=5000
     bKnockdownWhenJumpedOn=true
     bIsCrawlerClass=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_Crawler_Archetype'
@@ -293,6 +309,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Crawler'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
+    LocalizationKey=KFPawn_ZedCrawler
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -329,7 +346,7 @@ defaultproperties
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         bPerBoneMotionBlur=false
         ReplacementPrimitive=none
-        Translation=(X=0,Y=0,Z=-48)
+        Translation=(X=0,Y=0,Z=-40)
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_ZedCrawler.KFPawnSkeletalMeshComponent'
     Mesh=KFPawnSkeletalMeshComponent
@@ -360,7 +377,7 @@ defaultproperties
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         bPerBoneMotionBlur=false
         ReplacementPrimitive=none
-        Translation=(X=0,Y=0,Z=-48)
+        Translation=(X=0,Y=0,Z=-40)
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_ZedCrawler.KFPawnSkeletalMeshComponent'
     Components(3)=KFPawnSkeletalMeshComponent

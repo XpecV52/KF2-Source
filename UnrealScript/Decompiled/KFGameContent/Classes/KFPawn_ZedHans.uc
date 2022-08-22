@@ -1074,6 +1074,7 @@ defaultproperties
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     OnDeathAchievementID=133
     PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
+    LocalizationKey=KFPawn_ZedHans
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

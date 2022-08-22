@@ -173,6 +173,7 @@ function SendWeaponIndex( int GroupIndex, int SelectedIndex )
 
 function ShowOnlyHUDGroup( byte GroupIndex )
 {
+	UpdateWeaponGroupOnHUD(GroupIndex);
 	ActionScriptVoid("showOnlyHUDGroup");
 }
 

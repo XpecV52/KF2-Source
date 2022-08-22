@@ -566,10 +566,10 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
     }
     else
     {
-        if(ValidateHitComponent(HitInfo, HitLocation, Momentum))
+        if(ValidateHitComponent(EventInstigator, HitInfo, HitLocation, Momentum))
         {
             Idx = 0;
-            J0x108:
+            J0x111:
 
             if(Idx < SubObjects.Length)
             {
@@ -582,14 +582,14 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
                     {
                         DamageSubObject(Idx, Damage, EventInstigator, DamageType);
                     }
-                    goto J0x1DB;
+                    goto J0x1E4;
                 }
                 ++ Idx;
-                goto J0x108;
+                goto J0x111;
             }
         }
     }
-    J0x1DB:
+    J0x1E4:
 
     if((Role == ROLE_Authority) && !HasAnyHealth())
     {
@@ -680,8 +680,9 @@ event bool InstaKillFromStandardNPCBumpDamage()
     return InstaKillDamageType.Find(Class'KFDT_NPCBump' != -1;
 }
 
-function bool ValidateHitComponent(out TraceHitInfo HitInfo, Vector HitLocation, Vector Momentum)
+function bool ValidateHitComponent(Controller EventInstigator, out TraceHitInfo HitInfo, Vector HitLocation, Vector Momentum)
 {
+    local Actor TraceInstigator;
     local Vector NewHitLocation, HitNormal, Offset;
 
     if(HitInfo.HitComponent == none)
@@ -691,7 +692,15 @@ function bool ValidateHitComponent(out TraceHitInfo HitInfo, Vector HitLocation,
             Momentum = Location - HitLocation;
         }
         Offset = 8 * Normal(Momentum);
-        WorldInfo.Trace(NewHitLocation, HitNormal, HitLocation + Offset, HitLocation - Offset, true,, HitInfo, 1);
+        if(EventInstigator != none)
+        {
+            TraceInstigator = (((EventInstigator.Pawn != none) && EventInstigator.Pawn.Weapon != none) ? EventInstigator.Pawn.Weapon : EventInstigator.Pawn);
+        }
+        if(TraceInstigator == none)
+        {
+            TraceInstigator = WorldInfo;
+        }
+        TraceInstigator.Trace(NewHitLocation, HitNormal, HitLocation + Offset, HitLocation - Offset, true,, HitInfo, 1);
     }
     return HitInfo.HitComponent != none;
 }

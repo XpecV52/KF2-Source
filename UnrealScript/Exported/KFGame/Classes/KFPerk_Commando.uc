@@ -61,6 +61,10 @@ class KFPerk_Commando extends KFPerk
 
 
 
+ 
+
+
+
 
 
  
@@ -311,7 +315,7 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
@@ -319,17 +323,14 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
 
 	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && (KFW == none || !KFW.bNoMagazine) )
 	{
-		if( KFW != none )
+		if( IsLargeMagActive() )
 		{
-			if( IsLargeMagActive() )
-			{
-				TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ECommandoLargeMags] );
-			}
+			TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ECommandoLargeMags] );
+		}
 
-			if( IsEatLeadActive() )
-			{				
-	       		TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ECommandoEatLead] );
-			}
+		if( IsEatLeadActive() )
+		{				
+       		TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ECommandoEatLead] );
 		}
 	}
 

@@ -54,6 +54,11 @@ package tripwire.popups
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            if(bManagerConsoleBuild)
+            {
+                this.mainSlider.focusable = true;
+                FocusHandler.getInstance().setFocus(this.mainSlider);
+            }
             this.updateControllerVisibility(bManagerUsingGamepad);
         }
         
@@ -114,6 +119,11 @@ package tripwire.popups
         override public function openPopup() : void
         {
             super.openPopup();
+            if(bManagerConsoleBuild)
+            {
+                this.mainSlider.focusable = true;
+                FocusHandler.getInstance().setFocus(this.mainSlider);
+            }
             this.updateControllerVisibility(bManagerUsingGamepad);
         }
         

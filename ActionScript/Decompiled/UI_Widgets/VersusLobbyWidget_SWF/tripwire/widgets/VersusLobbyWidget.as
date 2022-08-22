@@ -10,9 +10,9 @@ package tripwire.widgets
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.controls.PartySlotButton;
     import tripwire.controls.TripButton;
-    import tripwire.controls.TripScrollingList;
     
     public class VersusLobbyWidget extends PartyWidget
     {
@@ -30,18 +30,6 @@ package tripwire.widgets
         
         public var squadMember11:PartySlotButton;
         
-        public var optionsList6:TripScrollingList;
-        
-        public var optionsList7:TripScrollingList;
-        
-        public var optionsList8:TripScrollingList;
-        
-        public var optionsList9:TripScrollingList;
-        
-        public var optionsList10:TripScrollingList;
-        
-        public var optionsList11:TripScrollingList;
-        
         public var switchTeamsButton:TripButton;
         
         public var teamImage:MovieClip;
@@ -50,30 +38,40 @@ package tripwire.widgets
         
         public var warningText:TextField;
         
+        public var switchTeamsText:TextField;
+        
+        public var teamsIcon:MovieClip;
+        
+        public var switchTeamsBG:MovieClip;
+        
+        private const MATCH_CONTAINER_CONSOLE_Y:int = 632;
+        
+        private const CONSOLE_Y_OFFSET:int = 8;
+        
+        private const WIDGET_WIDTH:int = 416;
+        
         public function VersusLobbyWidget()
         {
             MAX_SLOTS = 12;
             super();
             enableInitCallback = true;
+            TextFieldEx.setTextAutoSize(this.switchTeamsText,"shrink");
         }
         
         override protected function setTabIndex() : *
         {
-            readyButton.tabIndex = 17;
-            this.switchTeamsButton.tabIndex = 16;
-            leaveButton.tabIndex = 15;
-            this.squadMember11.tabIndex = 13;
-            this.squadMember10.tabIndex = 12;
-            this.squadMember9.tabIndex = 11;
-            this.squadMember8.tabIndex = 10;
-            this.squadMember7.tabIndex = 9;
-            this.squadMember6.tabIndex = 8;
-            squadMember5.tabIndex = 7;
-            squadMember4.tabIndex = 6;
-            squadMember3.tabIndex = 5;
-            squadMember2.tabIndex = 4;
-            squadMember1.tabIndex = 3;
-            createPartyButton.tabIndex = 2;
+            readyButton.tabIndex = 13;
+            this.squadMember11.tabIndex = 12;
+            this.squadMember10.tabIndex = 11;
+            this.squadMember9.tabIndex = 10;
+            this.squadMember8.tabIndex = 9;
+            this.squadMember7.tabIndex = 8;
+            this.squadMember6.tabIndex = 7;
+            squadMember5.tabIndex = 6;
+            squadMember4.tabIndex = 5;
+            squadMember3.tabIndex = 4;
+            squadMember2.tabIndex = 3;
+            squadMember1.tabIndex = 2;
             squadMember0.tabIndex = 1;
         }
         
@@ -89,6 +87,12 @@ package tripwire.widgets
             ExternalInterface.call("Callback_RequestTeamSwitch");
         }
         
+        public function set switchTeamsString(param1:String) : void
+        {
+            this.switchTeamsButton.label = param1;
+            this.switchTeamsText.text = param1;
+        }
+        
         override public function handleInput(param1:InputEvent) : void
         {
             var _loc3_:PartySlotButton = null;
@@ -99,16 +103,16 @@ package tripwire.widgets
                 {
                     case NavigationCode.DOWN:
                         _loc3_ = this.lastVisibleMemberSlot;
-                        if(_loc3_.focused == 1)
+                        if(_loc3_.focused == 1 && readyButton.visible)
                         {
-                            FocusManager.setFocus(this.switchTeamsButton);
+                            FocusManager.setFocus(readyButton);
                             param1.handled = true;
                         }
                         break;
                     case NavigationCode.UP:
                         if(readyButton.focused == 1)
                         {
-                            FocusManager.setFocus(this.switchTeamsButton);
+                            FocusManager.setFocus(this.lastVisibleMemberSlot);
                             param1.handled = true;
                         }
                         else if(this.switchTeamsButton.focused == 1)
@@ -154,7 +158,16 @@ package tripwire.widgets
             {
                 this.switchTeamsButton.focused = 0;
             }
-            this.switchTeamsButton.focusable = bManagerUsingGamepad;
+            this.switchTeamsButton.focusable = false;
+            this.switchTeamsButton.visible = !bManagerUsingGamepad;
+            this.switchTeamsText.visible = bManagerUsingGamepad;
+            this.teamsIcon.visible = bManagerUsingGamepad;
+            this.switchTeamsBG.visible = bManagerUsingGamepad;
+            matchStartContainer.BlackBG.alpha = !!bManagerUsingGamepad ? 0 : 1;
+            if(this.switchTeamsText.text != this.switchTeamsButton.label)
+            {
+                this.switchTeamsText.text = this.switchTeamsButton.label;
+            }
         }
     }
 }

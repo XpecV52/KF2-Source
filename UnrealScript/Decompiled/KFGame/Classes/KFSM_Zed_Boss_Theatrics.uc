@@ -134,7 +134,7 @@ function PlayAnimation()
             break;
             break;
     }
-    if(AIOwner != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && AIOwner != none)
     {
         AIOwner.AILog_Internal((((string(GetFuncName()) $ " ") $ string(self)) $ " chose theatric animation ") $ string(AnimName), 'AIController');
     }
@@ -228,11 +228,11 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
                     {
                         continue;                        
                     }
+                    OtherKFPC.ServerCamera('FirstPerson');
                     if(OtherKFPC.Pawn != none)
                     {
                         OtherKFPC.SetViewTarget(OtherKFPC.Pawn);
                     }
-                    OtherKFPC.ServerCamera('FirstPerson');
                     OtherKFPC.SetCinematicMode(false, false, true, true, true, false);                    
                 }                
             }            
@@ -249,10 +249,6 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
                         {
                             continue;                            
                         }
-                        if(OtherKFPC.Pawn != none)
-                        {
-                            OtherKFPC.SetViewTarget(OtherKFPC.Pawn);
-                        }
                         if(((OtherKFPC != PCOwner) && OtherKFPC.Pawn != none) && OtherKFPC.GetTeamNum() == 0)
                         {
                             OtherKFPC.ServerCamera('FirstPerson');                            
@@ -267,6 +263,10 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
                             {
                                 OtherKFPC.ServerCamera('FreeCam');
                             }
+                        }
+                        if(OtherKFPC.Pawn != none)
+                        {
+                            OtherKFPC.SetViewTarget(OtherKFPC.Pawn);
                         }
                         OtherKFPC.SetCinematicMode(false, false, true, true, true, false);                        
                     }                    

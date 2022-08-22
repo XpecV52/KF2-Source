@@ -113,6 +113,11 @@ package tripwire.containers.Perks
         {
             super.onOpened(param1);
             ExternalInterface.call("Callback_SkillSelectionOpened");
+            dispatchEvent(new Event("SkillsConfiguredSeen"));
+        }
+        
+        override public function set containerDisplayPrompts(param1:int) : void
+        {
         }
     }
 }

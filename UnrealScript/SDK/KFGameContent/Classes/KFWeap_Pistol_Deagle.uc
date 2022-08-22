@@ -107,5 +107,6 @@ defaultproperties
 	bHasFireLastAnims=true
 
 	BonesToLockOnEmpty=(RW_Slide, RW_Bullets1)
-}
 
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
+}

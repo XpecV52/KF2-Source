@@ -344,7 +344,6 @@ var LocalTalkerSteam CurrentLocalTalker;
 var const float LastLocalTalkerElapsedTime;
 var float LastLocalPlayerTalkTime;
 var float TalkTimeOutValue;
-var const string SharedServerPassword;
 var array<RemoteTalker> RemoteTalkers;
 var const int AppID;
 var const OnlineStatsRead CurrentStatsRead;
@@ -1573,9 +1572,6 @@ delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Ava
 // Export UOnlineSubsystemSteamworks::execReadOnlineAvatar(FFrame&, void* const)
 native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate);
 
-// Export UOnlineSubsystemSteamworks::execSetSharedPassword(FFrame&, void* const)
-native function SetSharedPassword(string ServerPassword);
-
 // Export UOnlineSubsystemSteamworks::execGetNumberOfCurrentPlayers(FFrame&, void* const)
 native function bool GetNumberOfCurrentPlayers();
 
@@ -1619,11 +1615,11 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum, int TitleId);
 
 function bool ShowCustomMessageUI(byte LocalUserNum, const out array<UniqueNetId> Recipients, string MessageTitle, string NonEditableMessage, optional string EditableMessage);
 
-function PostActivityFeedBossKill(string BossName, string BossLoc, string MapLoc);
+function PostActivityFeedBossKill(string BossName, string MapName);
 
-function PostActivityFeedTeamAward(string AwardName, string AwardLoc);
+function PostActivityFeedTeamAward(string AwardName);
 
-function PostActivityFeedPerkLevelUp(string PerkClassName, string PerkClassLoc, int Level);
+function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
 
 function ReadStoreData();
 

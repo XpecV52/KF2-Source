@@ -10,6 +10,8 @@ package tripwire.widgets
     import flash.utils.Timer;
     import scaleform.clik.constants.InputValue;
     import scaleform.clik.constants.NavigationCode;
+    import scaleform.clik.controls.Button;
+    import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.managers.FocusHandler;
@@ -48,16 +50,6 @@ package tripwire.widgets
         
         public var optionsList0:TripScrollingList;
         
-        public var optionsList1:TripScrollingList;
-        
-        public var optionsList2:TripScrollingList;
-        
-        public var optionsList3:TripScrollingList;
-        
-        public var optionsList4:TripScrollingList;
-        
-        public var optionsList5:TripScrollingList;
-        
         public var headerIcon:MovieClip;
         
         public var controllerIcon:MovieClip;
@@ -71,6 +63,8 @@ package tripwire.widgets
         public var leaveButton:TripButton;
         
         public var readyButton:TripButton;
+        
+        public var waitSpinner:MovieClip;
         
         public var ChatBoxWidget:PlayerChatWidget;
         
@@ -89,8 +83,6 @@ package tripwire.widgets
         public var _deployingString:String = "";
         
         protected var _bInParty:Boolean = false;
-        
-        protected var bListsInit:Boolean = false;
         
         protected var MAX_SLOTS:int = 6;
         
@@ -123,14 +115,7 @@ package tripwire.widgets
             this._deployTimer = new Timer(1000);
             this._deployTimer.addEventListener(TimerEvent.TIMER,this.countdownTimer,false,0,true);
             this._deployTimer.addEventListener(TimerEvent.TIMER_COMPLETE,this.stopCountdown,false,0,true);
-            if(this._bInParty)
-            {
-                defaultFirstElement = currentElement = this.squadMember0;
-            }
-            else
-            {
-                defaultFirstElement = currentElement = this.createPartyButton;
-            }
+            defaultFirstElement = currentElement = this.squadMember0;
             this.setTabIndex();
             ANIM_OFFSET_X = 24;
         }
@@ -166,6 +151,7 @@ package tripwire.widgets
             this.waitingString = !!param1.waitingString ? param1.waitingString : "";
             this.selectPromptString = !!param1.selectPromptString ? param1.selectPromptString : "";
             this.backPromptString = !!param1.backPromptString ? param1.backPromptString : "";
+            this.leaveButton.label = !!param1.leaveString ? param1.leaveString : "";
         }
         
         public function get backPromptString() : String
@@ -212,6 +198,10 @@ package tripwire.widgets
                 this.updatePerk(_loc2_,"","","");
                 _loc2_++;
             }
+            this.optionsList0.mouseEnabled = false;
+            this.optionsList0.mouseChildren = false;
+            this.optionsList0.visible = false;
+            this.optionsList0.bOpen = false;
             this.controllerIcon.visible = false;
             TextFieldEx.setVerticalAlign(this.searchingTextField,TextFieldEx.VALIGN_CENTER);
             TextFieldEx.setVerticalAlign(this.matchStartContainer.messageTextField,TextFieldEx.VALIGN_CENTER);
@@ -221,15 +211,45 @@ package tripwire.widgets
             this.readyButton.focused = 0;
             this.ChatBoxWidget.InitializeAsPartyChat();
             this.updateControllerIconVisibility();
-            this.bListsInit = true;
             super.addedToStage(param1);
             this.bInParty = false;
+            if(this.waitSpinner)
+            {
+                this.waitSpinner.visible = false;
+                this.waitSpinner.stop();
+            }
             this.readyArrows.mouseEnabled = false;
             this.readyArrows.mouseChildren = false;
             this.deselectContainer();
             if(MenuManager.manager)
             {
                 MenuManager.manager.setFocusBackToMenu(true);
+            }
+        }
+        
+        public function set squadInfo(param1:Array) : void
+        {
+            var _loc2_:PartySlotButton = null;
+            var _loc3_:int = 0;
+            if(param1)
+            {
+                _loc3_ = 0;
+                while(_loc3_ < this.MAX_SLOTS)
+                {
+                    _loc2_ = this["squadMember" + _loc3_];
+                    if(_loc2_ != null)
+                    {
+                        if(_loc3_ < param1.length)
+                        {
+                            _loc2_.data = param1[_loc3_];
+                        }
+                        else
+                        {
+                            _loc2_.data = null;
+                        }
+                    }
+                    _loc3_++;
+                }
             }
         }
         
@@ -301,9 +321,18 @@ package tripwire.widgets
         
         public function updateControllerIconVisibility() : *
         {
-            this.headerIcon.visible = true;
-            this.startIcon.visible = bManagerUsingGamepad && this.readyButton.visible;
-            this.readyArrows.visible = !bManagerUsingGamepad && this.readyButton.visible;
+            if(this.headerIcon)
+            {
+                this.headerIcon.visible = true;
+            }
+            if(this.startIcon)
+            {
+                this.startIcon.visible = bManagerUsingGamepad && this.readyButton.visible;
+            }
+            if(this.readyArrows)
+            {
+                this.readyArrows.visible = !bManagerUsingGamepad && this.readyButton.visible;
+            }
             if(!bManagerUsingGamepad)
             {
                 this.readyButton.focused = 0;
@@ -331,6 +360,7 @@ package tripwire.widgets
             if(param1)
             {
                 this.createPartyButton.visible = !param1;
+                this.bShowWaitingSpinner = false;
             }
             _loc2_ = this["squadMember" + _loc3_];
             _loc3_ = 1;
@@ -342,21 +372,31 @@ package tripwire.widgets
             }
         }
         
+        public function set bShowWaitingSpinner(param1:Boolean) : void
+        {
+            if(this.waitSpinner)
+            {
+                if(param1)
+                {
+                    this.waitSpinner.gotoAndPlay(1);
+                }
+                else
+                {
+                    this.waitSpinner.stop();
+                }
+                this.waitSpinner.visible = param1;
+            }
+        }
+        
         public function set locked(param1:Boolean) : void
         {
-            this.squadMember0.enabled = !param1;
+            this.squadMember0.enabled = true;
         }
         
         public function slotChanged(param1:int, param2:Boolean, param3:Boolean, param4:Boolean) : void
         {
-            var _loc5_:PartySlotButton = this["squadMember" + param1];
-            var _loc6_:TripScrollingList = this["optionsList" + param1];
-            if(!this.bListsInit)
-            {
-                _loc5_.slotIndex = param1;
-                _loc5_.optionsList = _loc6_;
-                _loc6_.visible = false;
-            }
+            var _loc5_:PartySlotButton = null;
+            (_loc5_ = this["squadMember" + param1]).slotIndex = param1;
             _loc5_.bIsMyPlayer = param3;
             _loc5_.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             _loc5_.bIsOccupied = param2;
@@ -384,34 +424,34 @@ package tripwire.widgets
         {
             if(this.createPartyButton.visible == param1)
             {
+                this.selectContainer();
                 return;
             }
-            if(!param1 && this.createPartyButton.hasFocus && bSelected)
+            if(!param1 && MenuManager.manager.bPartyWidgetFocused)
             {
-                FocusHandler.getInstance().setFocus(this.squadMember0);
                 if(currentElement == this.createPartyButton)
                 {
                     defaultFirstElement = currentElement = this.squadMember0;
                 }
+                FocusHandler.getInstance().setFocus(currentElement);
             }
             this.createPartyButton.visible = param1;
+            if(param1)
+            {
+                this.bShowWaitingSpinner = false;
+            }
         }
         
         override public function selectContainer() : void
         {
-            if(this.readyButton.visible)
-            {
-                currentElement = this.readyButton;
-            }
-            else if(this.createPartyButton && this.createPartyButton.visible)
-            {
-                currentElement = this.createPartyButton;
-            }
-            else
-            {
-                currentElement = this.squadMember0;
-            }
+            currentElement = this.squadMember0;
             super.selectContainer();
+            if(bManagerUsingGamepad && currentElement && !MenuManager.manager.bPopUpOpen && currentElement.visible && MenuManager.manager.bPartyWidgetFocused)
+            {
+                currentElement.tabEnabled = true;
+                currentElement.tabChildren = true;
+                FocusHandler.getInstance().setFocus(currentElement);
+            }
             this.updateControllerIconVisibility();
             if(this.Overlay_mc)
             {
@@ -434,22 +474,25 @@ package tripwire.widgets
             {
                 stage.dispatchEvent(new Event(MenuManager.PARTYFOCUS_CHANGED));
             }
+            stage.addEventListener(MenuManager.POPUP_CHANGED,this.onPopupChanged,false,0,true);
         }
         
         override public function deselectContainer() : void
         {
-            var _loc2_:TripScrollingList = null;
+            var _loc1_:Button = null;
+            if(currentElement)
+            {
+                _loc1_ = currentElement as TripButton;
+                if(_loc1_)
+                {
+                    _loc1_.selected = false;
+                }
+            }
             super.deselectContainer();
             this.updateControllerIconVisibility();
-            var _loc1_:Number = 0;
-            while(_loc1_ < 6)
+            if(this.optionsList0)
             {
-                _loc2_ = this["optionsList" + _loc1_];
-                if(_loc2_.bOpen)
-                {
-                    _loc2_.bOpen = false;
-                }
-                _loc1_++;
+                this.optionsList0.bOpen = false;
             }
             if(this.Overlay_mc)
             {
@@ -467,6 +510,7 @@ package tripwire.widgets
             {
                 stage.dispatchEvent(new Event(MenuManager.PARTYFOCUS_CHANGED));
             }
+            stage.removeEventListener(MenuManager.POPUP_CHANGED,this.onPopupChanged);
         }
         
         public function startCountdown(param1:int, param2:Boolean) : void
@@ -552,8 +596,6 @@ package tripwire.widgets
         protected function handleButtonEvent(param1:ButtonEvent) : void
         {
             var _loc2_:PartySlotButton = null;
-            var _loc3_:PartySlotButton = null;
-            var _loc4_:int = 0;
             if(bOpen)
             {
                 if(param1.currentTarget is PartySlotButton)
@@ -562,19 +604,9 @@ package tripwire.widgets
                     currentElement = param1.currentTarget as PartySlotButton;
                     if(_loc2_.bIsOccupied)
                     {
-                        if(!_loc2_.activeList.visible)
+                        if(_loc2_.activeList == null || _loc2_.activeList != null && !_loc2_.activeList.visible)
                         {
-                            _loc2_.openList();
-                            _loc4_ = 1;
-                            while(_loc4_ < this.MAX_SLOTS)
-                            {
-                                _loc3_ = this["squadMember" + _loc4_];
-                                if(_loc3_ != _loc2_ && _loc3_.activeList.bOpen)
-                                {
-                                    _loc3_.closeList();
-                                }
-                                _loc4_++;
-                            }
+                            ExternalInterface.call("Callback_OpenPlayerList",_loc2_.slotIndex);
                         }
                     }
                     else
@@ -589,8 +621,27 @@ package tripwire.widgets
             }
         }
         
+        public function set listOptions(param1:Array) : void
+        {
+            var _loc2_:PartySlotButton = null;
+            _loc2_ = this["squadMember" + param1.index];
+            if(_loc2_ == null)
+            {
+                trace("TEMP SLOT BUTTON WAS NULL!");
+                return;
+            }
+            this.optionsList0.dataProvider = new DataProvider(param1);
+            _loc2_.activeList = this.optionsList0;
+            this.optionsList0.y = _loc2_.y + _loc2_.height;
+            this.optionsList0.mouseEnabled = true;
+            this.optionsList0.mouseChildren = true;
+            _loc2_.openList();
+        }
+        
         private function createParty() : *
         {
+            this.bShowWaitingSpinner = true;
+            this.createPartyButton.visible = false;
             ExternalInterface.call("Callback_CreateParty");
         }
         
@@ -607,13 +658,17 @@ package tripwire.widgets
             if(bOpen)
             {
                 this.bReady = !this.bReady;
-                this.readyButton.focused = 0;
                 ExternalInterface.call("Callback_ReadyClicked",this.bReady);
                 if(Extensions.gfxProcessSound != null && enabled == true && this.bReady == true)
                 {
                     Extensions.gfxProcessSound(this,"UI",this.readySoundEffect);
                 }
             }
+        }
+        
+        protected function onPopupChanged(param1:Event) : *
+        {
+            this.promptsDisplay.visible = bManagerUsingGamepad && bSelected && !MenuManager.manager.bPopUpOpen;
         }
     }
 }

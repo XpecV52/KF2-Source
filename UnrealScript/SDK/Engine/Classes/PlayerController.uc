@@ -6726,6 +6726,9 @@ exec function ListConsoleEvents()
 	local SeqEvent_Console ConsoleEvt;
 	local Sequence GameSeq;
 	local int Idx;
+
+`if(`__TW_)
+`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))
 	GameSeq = WorldInfo.GetGameSequence();
 	if (GameSeq != None)
 	{
@@ -6743,6 +6746,26 @@ exec function ListConsoleEvents()
 			}
 		}
 	}
+`endif
+`else
+	GameSeq = WorldInfo.GetGameSequence();
+	if (GameSeq != None)
+	{
+		`log("Console events:");
+		ClientMessage("Console events:",,15.f);
+		GameSeq.FindSeqObjectsByClass(class'SeqEvent_Console',TRUE,ConsoleEvents);
+		for (Idx = 0; Idx < ConsoleEvents.Length; Idx++)
+		{
+			ConsoleEvt = SeqEvent_Console(ConsoleEvents[Idx]);
+			if (ConsoleEvt != None &&
+				ConsoleEvt.bEnabled)
+			{
+				`log("-"@ConsoleEvt.ConsoleEventName@ConsoleEvt.EventDesc);
+				ClientMessage("-"@ConsoleEvt.ConsoleEventName@ConsoleEvt.EventDesc,,15.f);
+			}
+		}
+	}
+`endif
 }
 
 exec function ListCE()
@@ -6789,7 +6812,9 @@ unreliable server function ServerRemoteEvent(name EventName)
 			}
 		}
 	}
-	if (!bFoundEvt)
+`if(`__TW_)
+`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))
+	if( !bFoundEvt && !class'WorldInfo'.Static.IsConsoleBuild() && !class'WorldInfo'.Static.IsConsoleDedicatedServer() )
 	{
 		`log("Remote events:");
 		ClientMessage("Remote events:",, 15.0);
@@ -6803,6 +6828,23 @@ unreliable server function ServerRemoteEvent(name EventName)
 			}
 		}
 	}
+`endif
+`else
+	if( !bFoundEvt)
+	{
+		`log("Remote events:");
+		ClientMessage("Remote events:",, 15.0);
+		for (Idx = 0; Idx < AllRemoteEvents.Length; Idx++)
+		{
+			RemoteEvt = SeqEvent_RemoteEvent(AllRemoteEvents[Idx]);
+			if (RemoteEvt != None && RemoteEvt.bEnabled)
+			{
+				`log("-" @ RemoteEvt.EventName);
+				ClientMessage("-" @ RemoteEvt.EventName,, 15.0);
+			}
+		}
+	}
+`endif
 }
 
 exec function ShowPlayerState()
@@ -7715,6 +7757,9 @@ function OnConnectionStatusChange(EOnlineServerConnectionStatus ConnectionStatus
 {
 }
 function OnPlayTogetherStarted()
+{
+}
+function JoinPlayfabServer(bool bWasSuccessful, string ServerIP)
 {
 }
 //@HSL_END
@@ -9024,7 +9069,14 @@ exec event BugIt( optional string ScreenShotDescription )
 	local String GoString;
 	local String LocString;
 
-	ConsoleCommand( "bugscreenshot " $ ScreenShotDescription );
+	if( !class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+	{
+		ConsoleCommand( "bugscreenshot " $ ScreenShotDescription );
+	}
+	else
+	{
+		`log("BUGIT: USE THE PS4'S SCRRENSHOT FUNCITONALITY!");
+	}
 
 	GetPlayerViewPoint( ViewLocation, ViewRotation );
 

@@ -61,6 +61,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 
 var KFGFxControlsContainer_Keybinding KeybindingsContainer;
 var KFGFxControlsContainer_Input InputContainer;
@@ -314,7 +315,7 @@ function CallBack_ResetPresetOptions()
 {
     if(ControllerPresetsContainer != none)
     {
-        Manager.OpenPopup(0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), ControllerPresetsContainer.ResetPresetOptions);
+        Manager.DelayedOpenPopup(0, 0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), ControllerPresetsContainer.ResetPresetOptions);
     }
 }
 
@@ -322,15 +323,15 @@ function CallBack_ResetInputOptions()
 {
     if(InputContainer != none)
     {
-        Manager.OpenPopup(0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), InputContainer.ResetInputOptions);
+        Manager.DelayedOpenPopup(0, 0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), InputContainer.ResetInputOptions);
     }
 }
 
 defaultproperties
 {
     MinControllerLookSensitivity=0.4
-    MaxControllerLookSensitivity=1.2
-    MinControllerZoomLookSensitivity=0.3
+    MaxControllerLookSensitivity=3.5
+    MinControllerZoomLookSensitivity=0.1
     MaxControllerZoomLookSensitivity=1
     MinMouseLookSensitivity=0.01
     MaxMouseLookSensitivity=0.7

@@ -114,7 +114,7 @@ function ShowLeaveGamePopUp()
 {
     if(Manager != none)
     {
-        Manager.OpenPopup(0, ExitToMainMenu, ExitToMainDescription, Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnLeaveGameConfirm);
+        Manager.DelayedOpenPopup(0, 0, ExitToMainMenu, ExitToMainDescription, Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnLeaveGameConfirm);
     }
 }
 

@@ -271,7 +271,7 @@ function BuildServerFilters(KFGFxServerBrowser_Filters Filters, OnlineGameSearch
 {
 	local string GametagSearch;
 	local string MapName;
-	local int Mode, Difficulty, Length, i;
+	local int Mode, Difficulty, Length;
 
 	Search.ClearServerFilters();
 
@@ -306,7 +306,7 @@ function BuildServerFilters(KFGFxServerBrowser_Filters Filters, OnlineGameSearch
 	}
 
 	Mode = Filters.SavedGameModeIndex;
-	if( Mode >= 0 && Mode < 255 && !class'WorldInfo'.static.IsConsoleBuild() )
+	if( Mode >= 0 && Mode < 255 )
 	{
 		Search.AddGametagFilter( GametagSearch, 'Mode', string(Mode) );
 	}
@@ -336,26 +336,6 @@ function BuildServerFilters(KFGFxServerBrowser_Filters Filters, OnlineGameSearch
 	if (Search.MasterServerSearchKeys.length > 1)
 	{
 		Search.AddServerFilter( "and", string(Search.MasterServerSearchKeys.length), 0);
-	}
-
-	if( class'WorldInfo'.static.IsConsoleBuild() )
-	{
-		// If a particular game mode was selected, set which mode
-		if( Mode < class'KFGameInfo'.default.GameModes.Length )
-		{
-			KFOnlineGameSearch(Search).GameModes.Length = 1;
-			KFOnlineGameSearch(Search).GameModes[0] = class'KFGameInfo'.default.GameModes[Mode].FriendlyName;
-		}
-		// All or not set
-		else
-		{
-			// Set the list to all known game modes
-			KFOnlineGameSearch(Search).GameModes.Length = class'KFGameInfo'.default.GameModes.Length;
-			for( i = 0; i < class'KFGameInfo'.default.GameModes.Length; i++ )
-			{
-				KFOnlineGameSearch(Search).GameModes[i] = class'KFGameInfo'.default.GameModes[i].FriendlyName;
-			}
-		}
 	}
 }
 
@@ -749,6 +729,8 @@ function bool OnHandshakeComplete(bool bSuccess, string Error, out int SuppressP
 	return false;
 }
 
+private native function ServerConnect(string URL);
+
 function JoinGameURL()
 {
 	local string URL;
@@ -759,7 +741,7 @@ function JoinGameURL()
 	KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
 	//`log("join url:" @ URL);
 	// Get the resolved URL and build the part to start it
-	GetPC().ConsoleCommand(URL);
+	ServerConnect(URL);
 	ServerPassword = "";
 }
 
@@ -767,7 +749,7 @@ function string BuildJoinURL()
 {
 	local string ConnectURL;
 
-	ConnectURL = "open " $ KFGameViewportClient(LocalPlayer(GetPC().Player).ViewPortClient).LastConnectionAttemptAddress;
+	ConnectURL = KFGameViewportClient(LocalPlayer(GetPC().Player).ViewPortClient).LastConnectionAttemptAddress;
 
 	if ( ServerPassword != "" )
 	{
@@ -784,9 +766,37 @@ function string BuildJoinURL()
 		ConnectURL $= "?SpectatorOnly=1";
 	}
 	ConnectURL $= OnlineSub.GetLobbyInterface().GetLobbyURLString();
+	//ConnectURL $= BuildJoinFiltersRequestURL();
 
 	return ConnectURL;
 }
+
+
+function string BuildJoinFiltersRequestURL()
+{
+	local string FiltersURL;
+	local int GameDifficulty;
+
+	GameDifficulty = ServerMenu.FiltersContainer.GetSelectedDifficulty();
+
+	if( ServerMenu.FiltersContainer.SavedGameModeIndex >= 0 )
+	{
+		FiltersURL $= "?Game="$class'KFGameInfo'.static.GetGameModeClassFromNum(ServerMenu.FiltersContainer.SavedGameModeIndex);
+	}
+
+	if( GameDifficulty >= 0)
+	{
+		FiltersURL $= "?Difficulty="$GameDifficulty;
+	}
+
+	if( ServerMenu.FiltersContainer.SavedLengthIndex >= 0 )
+	{
+		FiltersURL $= "?GameLength="$ServerMenu.FiltersContainer.SavedLengthIndex;
+	}
+
+	return FiltersURL;
+}
+
 
 function OnRefreshServerDetails()
 {

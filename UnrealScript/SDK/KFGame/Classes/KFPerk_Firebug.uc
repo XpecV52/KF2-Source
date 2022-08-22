@@ -29,6 +29,9 @@ var 			GameExplosion		ExplosionTemplate;
 var	private	const float				SnarePower;
 var private const class<DamageType> SnareCausingDmgTypeClass;
 var private const int 				NapalmDamage;
+/** Multiplier on CylinderComponent.CollisionRadius to check for infecting other zeds */
+var private const float 			NapalmCheckCollisionScale;
+
 
 enum EFirebugSkills
 {
@@ -56,7 +59,7 @@ function ApplySkillsToPawn()
 	if( MyPRI != none )
 	{
 		MyPRI.bExtraFireRange = IsRangeActive();
-		MyPRI.bSplashActive = IsSplashDamageActive();
+		MyPRI.bSplashActive = IsGroundFireActive();
 	}
 }
 
@@ -259,18 +262,15 @@ function bool InHeatRange( KFPawn KFP )
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
 	TempCapacity = MagazineCapacity;
 
-	if( IsWeaponOnPerk( KFW ) && IsHighCapFuelTankActive() )
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && IsHighCapFuelTankActive() )
 	{
-		if( KFW != none )
-		{
-			TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[EFirebugHighCapFuelTank] );
-		}
+		TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[EFirebugHighCapFuelTank] );
 	}
 
 	MagazineCapacity = Round(TempCapacity);
@@ -284,6 +284,11 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
 function bool CanSpreadNapalm()
 {
 	return IsNapalmActive();
+}
+
+static final function float GetNapalmCheckCollisionScale()
+{
+	return default.NapalmCheckCollisionScale;
 }
 
 /**
@@ -438,6 +443,11 @@ simulated final private function bool IsGroundFireActive()
 	return PerkSkills[EFirebugGroundFire].bActive;
 }
 
+simulated function bool IsFlarotovActive()
+{ 
+	return IsGroundFireActive(); 
+}
+
 /**
  * @brief Checks if the Heat wave skill is active
  *
@@ -561,7 +571,7 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	Increments[2] = "[" @ Left( string( default.FireResistance.StartingValue * 100 ), InStr(string(default.FireResistance.StartingValue * 100), ".") + 2 ) $ "%" @ "+" 
 						@Left( string( default.FireResistance.Increment * 100 ), InStr(string(default.FireResistance.Increment * 100), ".") + 2 ) $ "% /" @ default.LevelString @ "]";
 	Increments[3] = "[" @ Left( string( default.OwnFireResistance.StartingValue * 100 ), InStr(string(default.OwnFireResistance.StartingValue * 100), ".") + 2 ) $ "%" @ "+" 
-						@Left( string( default.OwnFireResistance.Increment * 100 ), InStr(string(default.OwnFireResistance.Increment * 100), ".") + 2 )  @ "% /" @ default.LevelString @ "]";
+						@Left( string( default.OwnFireResistance.Increment * 100 ), InStr(string(default.OwnFireResistance.Increment * 100), ".") + 2 )  $ "% /" @ default.LevelString @ "]";
 	Increments[4] = "[" @ Left( string( default.StartingAmmo.Increment * 100 ), InStr(string(default.StartingAmmo.Increment * 100), ".") + 2 )$ "% / 5" @ default.LevelString @ "]";
 }
 
@@ -609,7 +619,8 @@ DefaultProperties
 
    	HeatWaveRadiusSQ=90000
 
-   	NapalmDamage=50
+    NapalmDamage=7 //50
+	NapalmCheckCollisionScale=1.0f //6.0
 
    	ShrapnelChance=0.20   //0.2
 
@@ -625,11 +636,11 @@ DefaultProperties
 	PerkSkills(EFirebugBringTheHeat)=(Name="BringTheHeat",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_BringtheHeat",Increment=0.f,Rank=0,StartingValue=0.35f,MaxValue=0.35f) //0.1 //0.25
 	PerkSkills(EFirebugHighCapFuelTank)=(Name="HighCapFuelTank",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HighCapacityFuel",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
 	PerkSkills(EFirebugFuse)=(Name="Fuse",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Fuse",Increment=0.f,Rank=0,StartingValue=2.5f,MaxValue=2.5f) //1.7
-	PerkSkills(EFirebugGroundFire)=(Name="GroundFire",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_GroundFire",Increment=0.f,Rank=0,StartingValue=2.0f,MaxValue=2.0f) //0.1 //1.0
+	PerkSkills(EFirebugGroundFire)=(Name="GroundFire",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HeatWave",Increment=0.f,Rank=0,StartingValue=2.0f,MaxValue=2.0f) //0.1 //1.0
 	PerkSkills(EFirebugZedShrapnel)=(Name="ZedShrapnel",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_ZedShrapnel",Increment=0.f,Rank=0,StartingValue=1.2f,MaxValue=1.2f)
 	PerkSkills(EFirebugNapalm)=(Name="Napalm",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Napalm",Increment=0.f,Rank=0,StartingValue=2.5f,MaxValue=2.5f) //2.5
 	PerkSkills(EFirebugRange)=(Name="Range",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Range",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.f)
-	PerkSkills(EFirebugSplashDamage)=(Name="SplashDamage",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_SplashDamage",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
+	PerkSkills(EFirebugSplashDamage)=(Name="SplashDamage",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_GroundFire",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
 	PerkSkills(EFirebugScorch)=(Name="Scorch",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Scorch",Increment=0.f,Rank=0,StartingValue=0.9f,MaxValue=0.9f)
 	PerkSkills(EFirebugInferno)=(Name="Inferno",IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Inferno",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 

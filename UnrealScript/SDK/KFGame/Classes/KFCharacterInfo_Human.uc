@@ -365,7 +365,11 @@ private function SetBodyMeshAndSkin(
 		CharBodyMesh = SkeletalMesh(DynamicLoadObject(CharBodyMeshName, class'SkeletalMesh'));
 
 		// Assign the body mesh to the pawn
-		KFP.Mesh.SetSkeletalMesh(CharBodyMesh);
+		if ( CharBodyMesh != KFP.Mesh.SkeletalMesh )
+		{			
+			KFP.Mesh.SetSkeletalMesh(CharBodyMesh);
+			KFP.OnCharacterMeshChanged();
+		}
 
 		if (KFP.WorldInfo.NetMode != NM_DedicatedServer)
 		{
@@ -462,13 +466,13 @@ private function SetHeadMeshAndSkin(
 function bool IsAttachmentAvailable(const out AttachmentVariants Attachment, Pawn PreviewPawn)
 {
 	if ( !class'KFUnlockManager'.static.GetAvailableAttachment(Attachment) )
-		{
+	{
 		//`log("Attachment" @ Attachment.MeshName @ "is not purchased.");
 		return FALSE;
-		}
+	}
 	else if ( Attachment.AttachmentItem.SocketName != '' 
 		&& PreviewPawn.Mesh.GetSocketByName(Attachment.AttachmentItem.SocketName) == None )
-		{
+	{
 		`log("Attachment" @ Attachment.MeshName @ "is missing a required socket.");
 		return FALSE;
 	}
@@ -554,23 +558,24 @@ private function SetAttachmentMeshAndSkin(
 		AttachmentRotationRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeRotation;
 		AttachmentScaleRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeScale;
 		bIsSkeletalAttachment = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.bIsSkeletalAttachment;
+
+		// If previously attached and we could have changed outfits (e.g. local player UI) then re-validate
+		// required skeletal mesh socket.  Must be after body mesh DLO, but before AttachComponent.
+		if ( KFP.IsLocallyControlled() )
+		{
+			if ( CharAttachmentSocketName != '' && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == None )
+			{
+				RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
+				return;
+			}
+		}
+
 		//`log("AttachmentLocationRelativeToSocket: x="$AttachmentLocationRelativeToSocket.x@"y="$AttachmentLocationRelativeToSocket.y@"z="$AttachmentLocationRelativeToSocket.z);
 		// If it is a skeletal attachment, parent anim it to the body mesh
 		if( bIsSkeletalAttachment )
 		{
 			if( SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]) != none )
 			{
-				// If previously attached and we could have changed outfits (e.g. local player UI) then re-validate
-				// required skeletal mesh socket.  Must be after body mesh DLO, but before AttachComponent.
-				if ( KFP.IsLocallyControlled() )
-				{
-					if ( CharAttachmentSocketName != '' && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == None )
-			{
-						RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
-						return;
-					}
-				}
-
 				SkeletalAttachment = SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]);
 			}
 			else
@@ -633,7 +638,7 @@ private function SetAttachmentMeshAndSkin(
 		KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask | (1 << AttachmentSlotIndex);
 		KFP.ThirdPersonAttachmentSocketNames[AttachmentSlotIndex] = CharAttachmentSocketName;
 
-			SetAttachmentSkinMaterial(
+		SetAttachmentSkinMaterial(
 			AttachmentSlotIndex,
 				CosmeticVariants[CurrentAttachmentMeshIndex],
 				CurrentAttachmentSkinIndex,

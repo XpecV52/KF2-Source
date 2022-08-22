@@ -57,7 +57,10 @@ function Popped()
 
 function bool AllowTransitionTo(class<GameAICommand> AttemptCommand)
 {
-    Outer.AILog_Internal(((string(self) $ " AllowTransitionTo: ") $ string(AttemptCommand)) $ " called", 'Command_Attack');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((string(self) $ " AllowTransitionTo: ") $ string(AttemptCommand)) $ " called", 'Command_Attack');
+    }
     if(ChildCommand != none)
     {
         return ChildCommand.AllowTransitionTo(AttemptCommand);
@@ -67,13 +70,19 @@ function bool AllowTransitionTo(class<GameAICommand> AttemptCommand)
 
 function bool ShouldSelectTarget()
 {
-    Outer.AILog_Internal(((string(self) $ " ") $ string(GetFuncName())) $ "() returning false", 'Command_Attack');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(((string(self) $ " ") $ string(GetFuncName())) $ "() returning false", 'Command_Attack');
+    }
     return false;
 }
 
 function bool ShouldIgnoreTimeTransitions()
 {
-    Outer.AILog_Internal(string(GetFuncName()) $ " returning TRUE - ignoring time transitions", 'Command_Attack');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(GetFuncName()) $ " returning TRUE - ignoring time transitions", 'Command_Attack');
+    }
     return true;
 }
 

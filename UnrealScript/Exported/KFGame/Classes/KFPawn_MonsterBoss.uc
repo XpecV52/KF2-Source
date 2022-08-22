@@ -670,7 +670,7 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
     super.PlayDying( DamageType, HitLoc );
 
 	//@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
-	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(string(Class.Name), BossName, class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(WorldInfo.GetMapName(true)).DisplayName);
+	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(string(Class.Name), WorldInfo.GetMapName(true));
 	//@HSL_END
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
@@ -998,7 +998,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

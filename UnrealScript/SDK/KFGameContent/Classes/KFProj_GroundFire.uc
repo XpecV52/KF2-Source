@@ -121,7 +121,7 @@ defaultproperties
 	// pointlight at far end of spray
 	Begin Object Class=PointLightComponent Name=FlamePointLight
 	    LightColor=(R=245,G=190,B=140,A=255)
-		Brightness=4.f
+		Brightness=0.25f
 		Radius=500.f
 		FalloffExponent=10.f
 		CastShadows=False

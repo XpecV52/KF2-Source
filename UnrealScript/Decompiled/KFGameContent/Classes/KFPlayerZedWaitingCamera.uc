@@ -46,11 +46,20 @@ function PopulateFocalPoints()
     local KFPlayerStart KFPS;
     local KFTraderTrigger KFTT;
     local KFPathnode KFPN;
+    local bool bHostileGroundsHackFix;
 
+    bHostileGroundsHackFix = InStr(Class'WorldInfo'.static.GetWorldInfo().GetMapName(), "hostilegrounds",, true) != -1;
     foreach PlayerCamera.WorldInfo.AllNavigationPoints(Class'KFPlayerStart', KFPS)
     {
-        AvailableFocalPoints[AvailableFocalPoints.Length] = KFPS;        
+        if(bHostileGroundsHackFix && (KFPS.Name == 'KFPlayerStart_44') || KFPS.Name == 'KFPlayerStart_37')
+        {
+            AvailableFocalPoints[AvailableFocalPoints.Length] = KFPS;
+        }        
     }    
+    if(bHostileGroundsHackFix)
+    {
+        return;
+    }
     foreach PlayerCamera.WorldInfo.AllNavigationPoints(Class'KFPathnode', KFPN)
     {
         foreach PlayerCamera.DynamicActors(Class'KFTraderTrigger', KFTT)

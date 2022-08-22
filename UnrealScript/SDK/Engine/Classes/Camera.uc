@@ -19,6 +19,8 @@ var		float	DefaultFOV;
 var		bool	bLockedFOV;
 /** value FOV is locked at */
 var		float	LockedFOV;
+/** FOV that is not effected by checkerboard resolution */
+var 	float 	UnmodifiedFOV;
 
 /** If we should insert black areas when rendering the scene to ensure an aspect ratio of ConstrainedAspectRatio */
 var		bool	bConstrainAspectRatio;
@@ -345,6 +347,12 @@ function SetFOV(float NewFOV)
 
 	bLockedFOV	= TRUE;
 	LockedFOV	= NewFOV;
+}
+
+/** Checkerborad-free FOV */
+function SetUnmodifiedFOV(float NewFOV)
+{
+	UnmodifiedFOV = NewFOV;
 }
 
 
@@ -826,7 +834,7 @@ function AddCameraLensEffect(class<EmitterCameraLensEffectBase> LensEffectEmitte
 			if (LensEffect != None)
 			{
 				GetCameraViewPoint(CamLoc, CamRot);
-				LensEffect.UpdateLocation(CamLoc, CamRot, GetFOVAngle());
+				LensEffect.UpdateLocation(CamLoc, CamRot, UnmodifiedFOV);
 				LensEffect.RegisterCamera(self);
 
 				CameraLensEffects.AddItem(LensEffect);

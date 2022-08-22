@@ -118,7 +118,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Piercing_Crossbow'
 	PenetrationPower(DEFAULT_FIREMODE)=4.0
 	FireInterval(DEFAULT_FIREMODE)=0.3 // For this weapon, this is not the fire rate, but the time when the auto reload anim kicks in
-	Spread(DEFAULT_FIREMODE)=0.007
+	Spread(DEFAULT_FIREMODE)=0.007 //0.007
 	FireOffset=(X=25,Y=3.0,Z=-4.0)
 
 	// ALT_FIREMODE
@@ -145,7 +145,5 @@ defaultproperties
 
 	// Just like the launchers, this weapon has mag size of 1 and force reload which
 	// causes significant ammo sync issues.  This fix is far from perfect, but it helps.
-	bAllowClientAmmoTracking=false
+	bAllowClientAmmoTracking=true
 }
-
-

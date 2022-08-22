@@ -140,6 +140,17 @@ simulated function bool ShouldAutoReload( byte FireModeNum )
 
 simulated state Active
 {
+	simulated event BeginState( name PreviousStateName )
+	{
+		super.BeginState( PreviousStateName );
+
+		// Reload immediately after coming back to active state if we managed to pick up ammo while sprinting
+		if( PreviousStateName == 'WeaponSprinting' && !HasAmmo(THROW_FIREMODE) && HasSpareAmmo() )
+		{
+			PerformArtificialReload();
+		}
+	}
+	
 	/** overridden to add "idle last" anims if out of ammo */
 	simulated function PlayIdleAnim()
 	{

@@ -84,7 +84,7 @@ function PlayAnimation()
 		break;
 	}
 
-	if( AIOwner!= None ) { AIOwner.AILog_Internal(GetFuncName()$" "$self$" chose taunt animation "$AnimName,'AIController'); };
+	if( !class'Engine'.static.GetEngine().bDIsableAILogging && AIOwner!= None ) { AIOwner.AILog_Internal(GetFuncName()$" "$self$" chose taunt animation "$AnimName,'AIController'); };
 	//KFAIController(PawnOwner.Controller).msg( GetFuncName()$": "$AnimName$" BlendIn: "$BlendInTime$" BlendOut: "$BlendOutTime );
 	PlaySpecialMoveAnim( AnimName, AnimStance, BlendInTime, BlendOutTime, 1.f );
 }

@@ -8,11 +8,14 @@
 //=============================================================================
 class KFPawn_ZedCrawler extends KFPawn_Monster;
 
-var actor LastBumpLevelActor;
-var float LastBumpLevelTime;
+var protected Actor LastBumpLevelActor;
+var protected float LastBumpLevelTime;
 
 /** Template used by special crawlers when exploding during death */
 var protected const KFGameExplosion DeathExplosionTemplate;
+
+/** How much of an impulse to apply to crawler if gore settings prevent dismemberment */
+var protected const float LowGoreExplosionImpulse;
 
 /** TRUE when difficulty has dictated that this is a special crawler type */
 var repnotify protected bool bIsSpecialCrawler;
@@ -297,6 +300,7 @@ simulated function Timer_CheckForExplode()
 	local KFGoreManager GoreManager;
 	local array<name> OutGibBoneList;
 	local int NumGibs;
+	local vector Impulse;
 
 	if( bShouldExplode )
 	{
@@ -305,18 +309,36 @@ simulated function Timer_CheckForExplode()
 		if( WorldInfo.NetMode != NM_DedicatedServer )
 		{
 			GoreManager = KFGoreManager( WorldInfo.MyGoreEffectManager );
-			if( GoreManager != none )
+			if( GoreManager != none && GoreManager.AllowMutilation() )
 			{
-				NumGibs = 10 + Rand(4);
-				NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
-				GetClosestHitBones( NumGibs, Location, OutGibBoneList );
+				// Enable alternate bone weighting and gore skeleton
+				if( !bIsGoreMesh )
+				{
+					SwitchToGoreMesh();
+				}
 
-				GoreManager.CauseGibsAndApplyImpulse( self,
-													Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType,
-													Location,
-													OutGibBoneList,
-													none,
-													Mesh.GetBoneLocation(Mesh.GetBoneName(0)) );
+				// Apply gore only if we were able to successfully switch to the gore mesh
+				if( bIsGoreMesh )
+				{
+					NumGibs = 10 + Rand(4);
+					NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
+					GetClosestHitBones( NumGibs, Location, OutGibBoneList );
+
+					GoreManager.CauseGibsAndApplyImpulse( self,
+														Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType,
+														Location,
+														OutGibBoneList,
+														none,
+														Mesh.GetBoneLocation(Mesh.GetBoneName(0)) );
+					return;
+				}
+			}
+
+			// If we didn't gib, add a ragdoll impulse
+			if( NumGibs == 0 && Physics == PHYS_RigidBody )
+			{
+				Impulse = vect(0,0,1) * LowGoreExplosionImpulse * PhysRagdollImpulseScale;
+				Mesh.AddImpulse( Impulse, Location );
 			}
 		}
 	}
@@ -445,9 +467,10 @@ function int GetSpotterDialogID()
 
 defaultproperties
 {
+	LocalizationKey=KFPawn_ZedCrawler
 	// Third person body component
 	Begin Object Name=KFPawnSkeletalMeshComponent
-		Translation=(Z=-48)	// based on CollisionHeight
+		Translation=(Z=-40)	// based on CollisionHeight
 		bPerBoneMotionBlur=false
 	End Object
 
@@ -547,7 +570,7 @@ defaultproperties
 	IncapSettings(AF_Microwave)=(Vulnerability=(0.5),                     Cooldown=7.5,  Duration=3.0)
 	IncapSettings(AF_FirePanic)=(Vulnerability=(3),                       Cooldown=7.0,  Duration=5)
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
-	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=2.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=4.5)
 	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
 
 	ParryResistance=1
@@ -580,6 +603,8 @@ defaultproperties
         bOrientCameraShakeTowardsEpicenter=true
     End Object
     DeathExplosionTemplate=ExploTemplate0
+
+	LowGoreExplosionImpulse=5000.f
 
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'UI_ZEDRadar_TEX.MapIcon_Crawler';

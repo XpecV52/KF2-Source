@@ -6,7 +6,6 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class CamControl extends Actor
-    config(RypelCam)
     notplaceable
     hidecategories(Navigation);
 
@@ -141,9 +140,9 @@ struct TMultiArray
 };
 
 var TMultiArray M[121];
-var config bool bxedited;
-var config bool conf;
-var config bool do_not_update_Spline;
+var bool bxedited;
+var bool conf;
+var bool do_not_update_Spline;
 var bool startCam;
 var bool bbadaccel;
 var bool bisdrawing;
@@ -169,16 +168,16 @@ var bool rollplus;
 var bool rollminus;
 var bool ssw;
 var bool Start;
-var config float basic_speed2;
-var config float Flag_Fovs[121];
-var config float Flag_Times[121];
-var config float kabstand;
-var config float mabstand;
-var config float X[121];
-var config int drawdetail;
-var config int Z;
-var config Rotator Rotation_At_Flags[121];
-var config Vector Flag_Locations[121];
+var float basic_speed2;
+var float Flag_Fovs[121];
+var float Flag_Times[121];
+var float kabstand;
+var float mabstand;
+var float X[121];
+var int drawdetail;
+var int Z;
+var Rotator Rotation_At_Flags[121];
+var Vector Flag_Locations[121];
 var float Accel;
 var float carry;
 var float Counter;
@@ -364,23 +363,23 @@ function get_Flag_Rotations(int I, out Rotator FR)
 function set_Flag_Rotations(Rotator FR, int I)
 {
     local Knoten Other, knoten2;
-    local int J;
+    local int jj;
 
     Rotation_At_Flags[I] = FR;
-    J = 0;
+    jj = 0;
     foreach DynamicActors(Class'Knoten', Other)
     {
-        if((I == 0) && J == 1)
+        if((I == 0) && jj == 1)
         {
             knoten2 = Other;
             break;
         }
-        if(J == (I - 1))
+        if(jj == (I - 1))
         {
             knoten2 = Other;
             break;
         }
-        ++ J;        
+        ++ jj;        
     }    
     if(knoten2 != none)
     {
@@ -986,44 +985,44 @@ function Timer()
     }
 }
 
-function Norm(out float F2, Vector v3)
+function Norm(out float F2, Vector vv3)
 {
-    F2 = Sqrt(((v3.X * v3.X) + (v3.Y * v3.Y)) + (v3.Z * v3.Z));
+    F2 = Sqrt(((vv3.X * vv3.X) + (vv3.Y * vv3.Y)) + (vv3.Z * vv3.Z));
 }
 
-function KubSplineWertX(float T, int J)
+function KubSplineWertX(float tt, int jj)
 {
-    v2.X = ((a_a[J] + (a_b[J] * (T - X[J]))) + ((a_c[J] * (T - X[J])) * (T - X[J]))) + (((a_d[J] * (T - X[J])) * (T - X[J])) * (T - X[J]));
+    v2.X = ((a_a[jj] + (a_b[jj] * (tt - X[jj]))) + ((a_c[jj] * (tt - X[jj])) * (tt - X[jj]))) + (((a_d[jj] * (tt - X[jj])) * (tt - X[jj])) * (tt - X[jj]));
 }
 
-function KubSplineWertY(float T, int J)
+function KubSplineWertY(float tt, int jj)
 {
-    v2.Y = ((b_a[J] + (b_b[J] * (T - X[J]))) + ((b_c[J] * (T - X[J])) * (T - X[J]))) + (((b_d[J] * (T - X[J])) * (T - X[J])) * (T - X[J]));
+    v2.Y = ((b_a[jj] + (b_b[jj] * (tt - X[jj]))) + ((b_c[jj] * (tt - X[jj])) * (tt - X[jj]))) + (((b_d[jj] * (tt - X[jj])) * (tt - X[jj])) * (tt - X[jj]));
 }
 
-function KubSplineWertZ(float T, int J)
+function KubSplineWertZ(float tt, int jj)
 {
-    v2.Z = ((c_a[J] + (c_b[J] * (T - X[J]))) + ((c_c[J] * (T - X[J])) * (T - X[J]))) + (((c_d[J] * (T - X[J])) * (T - X[J])) * (T - X[J]));
+    v2.Z = ((c_a[jj] + (c_b[jj] * (tt - X[jj]))) + ((c_c[jj] * (tt - X[jj])) * (tt - X[jj]))) + (((c_d[jj] * (tt - X[jj])) * (tt - X[jj])) * (tt - X[jj]));
 }
 
-function KubSplineWertYaw(float T, int J)
+function KubSplineWertYaw(float tt, int jj)
 {
-    rotat.Yaw = int(((yaw_a[J] + (yaw_b[J] * (T - X[J]))) + ((yaw_c[J] * (T - X[J])) * (T - X[J]))) + (((yaw_d[J] * (T - X[J])) * (T - X[J])) * (T - X[J])));
+    rotat.Yaw = int(((yaw_a[jj] + (yaw_b[jj] * (tt - X[jj]))) + ((yaw_c[jj] * (tt - X[jj])) * (tt - X[jj]))) + (((yaw_d[jj] * (tt - X[jj])) * (tt - X[jj])) * (tt - X[jj])));
 }
 
-function KubSplineWertPitch(float T, int J)
+function KubSplineWertPitch(float tt, int jj)
 {
-    rotat.Pitch = int(((pitch_a[J] + (pitch_b[J] * (T - X[J]))) + ((pitch_c[J] * (T - X[J])) * (T - X[J]))) + (((pitch_d[J] * (T - X[J])) * (T - X[J])) * (T - X[J])));
+    rotat.Pitch = int(((pitch_a[jj] + (pitch_b[jj] * (tt - X[jj]))) + ((pitch_c[jj] * (tt - X[jj])) * (tt - X[jj]))) + (((pitch_d[jj] * (tt - X[jj])) * (tt - X[jj])) * (tt - X[jj])));
 }
 
-function KubSplineWertRoll(float T, int J)
+function KubSplineWertRoll(float tt, int jj)
 {
-    rotat.Roll = int(((roll_a[J] + (roll_b[J] * (T - X[J]))) + ((roll_c[J] * (T - X[J])) * (T - X[J]))) + (((roll_d[J] * (T - X[J])) * (T - X[J])) * (T - X[J])));
+    rotat.Roll = int(((roll_a[jj] + (roll_b[jj] * (tt - X[jj]))) + ((roll_c[jj] * (tt - X[jj])) * (tt - X[jj]))) + (((roll_d[jj] * (tt - X[jj])) * (tt - X[jj])) * (tt - X[jj])));
 }
 
-function KubSplineWertFov(float T, int J)
+function KubSplineWertFov(float tt, int jj)
 {
-    tfov = ((fov_a[J] + (fov_b[J] * (T - X[J]))) + ((fov_c[J] * (T - X[J])) * (T - X[J]))) + (((fov_d[J] * (T - X[J])) * (T - X[J])) * (T - X[J]));
+    tfov = ((fov_a[jj] + (fov_b[jj] * (tt - X[jj]))) + ((fov_c[jj] * (tt - X[jj])) * (tt - X[jj]))) + (((fov_d[jj] * (tt - X[jj])) * (tt - X[jj])) * (tt - X[jj]));
 }
 
 function equalArray(float A1[121], out float b1[121])
@@ -1043,14 +1042,14 @@ function equalArray(float A1[121], out float b1[121])
 
 function Cholesky(float K[121], out float erg[121])
 {
-    local int N, I;
+    local int nn, I;
     local float D[121], G, z1, E;
 
-    N = Z - 3;
+    nn = Z - 3;
     I = 0;
     J0x22:
 
-    if(I <= N)
+    if(I <= nn)
     {
         D[I] = 0;
         G[I] = 0;
@@ -1071,12 +1070,12 @@ function Cholesky(float K[121], out float erg[121])
         ++ I;
         goto J0xFD;
     }
-    D[N] = float(M[N].Y[N]) - (float(M[N].Y[N - 1]) * G[N - 1]);
+    D[nn] = float(M[nn].Y[nn]) - (float(M[nn].Y[nn - 1]) * G[nn - 1]);
     z1[0] = K[0];
     I = 1;
     J0x2D2:
 
-    if(I <= N)
+    if(I <= nn)
     {
         z1[I] = K[I] - (G[I - 1] * z1[I - 1]);
         ++ I;
@@ -1085,14 +1084,14 @@ function Cholesky(float K[121], out float erg[121])
     I = 0;
     J0x359:
 
-    if(I <= N)
+    if(I <= nn)
     {
         E[I] = z1[I] / D[I];
         ++ I;
         goto J0x359;
     }
-    erg[N] = E[N];
-    I = N - 1;
+    erg[nn] = E[nn];
+    I = nn - 1;
     J0x3F7:
 
     if(I >= 0)
@@ -1105,25 +1104,25 @@ function Cholesky(float K[121], out float erg[121])
 
 function KubSplineKoeffNat()
 {
-    local int N;
+    local int nn;
     local float K[121], Y, H1, ska, skb, skc,
 	    skd;
 
-    local int I, H, O, J;
+    local int I, H, O, jj;
 
-    N = Z - 1;
+    nn = Z - 1;
     I = 0;
     J0x21:
 
     if(I < 121)
     {
-        J = 0;
+        jj = 0;
         J0x3C:
 
-        if(J < 121)
+        if(jj < 121)
         {
-            M[I].Y[J] = 0;
-            ++ J;
+            M[I].Y[jj] = 0;
+            ++ jj;
             goto J0x3C;
         }
         ++ I;
@@ -1132,7 +1131,7 @@ function KubSplineKoeffNat()
     I = 0;
     J0xA5:
 
-    if(I <= N)
+    if(I <= nn)
     {
         ska[I] = 0;
         skb[I] = 0;
@@ -1233,16 +1232,16 @@ function KubSplineKoeffNat()
             }
         }
         skc[0] = 0;
-        skc[N] = 0;
+        skc[nn] = 0;
         skb[0] = 0;
-        skb[N] = 0;
-        J = 1;
+        skb[nn] = 0;
+        jj = 1;
         J0x4DC:
 
-        if(J <= (N - 1))
+        if(jj <= (nn - 1))
         {
-            skb[J] = 3 * (((Y[J + 1] - Y[J]) / (X[J + 1] - X[J])) - ((Y[J] - Y[J - 1]) / (X[J] - X[J - 1])));
-            ++ J;
+            skb[jj] = 3 * (((Y[jj + 1] - Y[jj]) / (X[jj + 1] - X[jj])) - ((Y[jj] - Y[jj - 1]) / (X[jj] - X[jj - 1])));
+            ++ jj;
             goto J0x4DC;
         }
         M[0].Y[0] = int(float(2) * (X[2] - X[0]));
@@ -1250,7 +1249,7 @@ function KubSplineKoeffNat()
         I = 0;
         J0x65A:
 
-        if(I <= (N - 4))
+        if(I <= (nn - 4))
         {
             M[I + 1].Y[I] = int(float(1) * (X[I + 2] - X[I + 1]));
             M[I + 1].Y[I + 1] = int(float(2) * (X[I + 3] - X[I + 1]));
@@ -1258,12 +1257,12 @@ function KubSplineKoeffNat()
             ++ I;
             goto J0x65A;
         }
-        M[N - 2].Y[N - 3] = int(float(1) * (X[N - 1] - X[N - 2]));
-        M[N - 2].Y[N - 2] = int(float(2) * (X[N] - X[N - 2]));
+        M[nn - 2].Y[nn - 3] = int(float(1) * (X[nn - 1] - X[nn - 2]));
+        M[nn - 2].Y[nn - 2] = int(float(2) * (X[nn] - X[nn - 2]));
         I = 1;
         J0x8B1:
 
-        if(I <= (N - 1))
+        if(I <= (nn - 1))
         {
             K[I - 1] = skb[I];
             ++ I;
@@ -1273,7 +1272,7 @@ function KubSplineKoeffNat()
         I = 1;
         J0x92A:
 
-        if(I <= (N - 1))
+        if(I <= (nn - 1))
         {
             skc[I] = H1[I - 1];
             ++ I;
@@ -1282,7 +1281,7 @@ function KubSplineKoeffNat()
         I = 0;
         J0x987:
 
-        if(I <= (N - 1))
+        if(I <= (nn - 1))
         {
             skd[I] = (skc[I + 1] - skc[I]) / (float(3) * (X[I + 1] - X[I]));
             skb[I] = ((Y[I + 1] - Y[I]) / (X[I + 1] - X[I])) - (((X[I + 1] - X[I]) * (skc[I + 1] + (float(2) * skc[I]))) / float(3));
@@ -1293,7 +1292,7 @@ function KubSplineKoeffNat()
         I = 0;
         J0xB1A:
 
-        if(I < N)
+        if(I < nn)
         {
             K[I] = 0;
             ++ I;
@@ -1356,7 +1355,7 @@ function KubSplineKoeffNat()
 function edit_x(int I, bool bminus)
 {
     local RotKnoten Other2;
-    local int J;
+    local int jj;
     local float tempdiff;
 
     bxedited = true;
@@ -1369,26 +1368,26 @@ function edit_x(int I, bool bminus)
     {
         if((X[I] - tempdiff) > X[I - 1])
         {
-            J = I;
+            jj = I;
             J0xB1:
 
-            if(J < Z)
+            if(jj < Z)
             {
-                X[J] = X[J] - tempdiff;
-                ++ J;
+                X[jj] = X[jj] - tempdiff;
+                ++ jj;
                 goto J0xB1;
             }
         }        
     }
     else
     {
-        J = I;
+        jj = I;
         J0x11E:
 
-        if(J < Z)
+        if(jj < Z)
         {
-            X[J] = X[J] + tempdiff;
-            ++ J;
+            X[jj] = X[jj] + tempdiff;
+            ++ jj;
             goto J0x11E;
         }
     }
@@ -1449,16 +1448,16 @@ function set_x()
 
 function DrawPath()
 {
-    local int N, J;
-    local float d1, TempDist;
-    local Vector v3;
+    local int nn, jj;
+    local float dd1, tempdist1;
+    local Vector vv3;
 
     Flag_Dist[0] = 0;
     T = 0;
     V = vect(0, 0, 0);
     v2 = vect(0, 0, 0);
     V = Flag_Locations[0];
-    N = Z;
+    nn = Z;
     T = 0;
     Dist = 0;
     J0x94:
@@ -1466,42 +1465,42 @@ function DrawPath()
     if(T < X[Z - 1])
     {
         bisdrawing = true;
-        J = 0;
+        jj = 0;
         J0xCF:
 
-        if(J < (N - 1))
+        if(jj < (nn - 1))
         {
-            if(T >= X[J])
+            if(T >= X[jj])
             {
-                if(T < X[J + 1])
+                if(T < X[jj + 1])
                 {
-                    KubSplineWertX(T, J);
-                    KubSplineWertY(T, J);
-                    KubSplineWertZ(T, J);
-                    v3 = v2 - V;
-                    Norm(d1, v3);
-                    TempDist = 0;
+                    KubSplineWertX(T, jj);
+                    KubSplineWertY(T, jj);
+                    KubSplineWertZ(T, jj);
+                    vv3 = v2 - V;
+                    Norm(dd1, vv3);
+                    tempdist1 = 0;
                     if(carry != float(0))
                     {
-                        TempDist = carry;
+                        tempdist1 = carry;
                     }
                     J0x1EF:
 
-                    if((TempDist < float(drawdetail)) && T < X[J + 1])
+                    if((tempdist1 < float(drawdetail)) && T < X[jj + 1])
                     {
-                        KubSplineWertX(T, J);
-                        KubSplineWertY(T, J);
-                        KubSplineWertZ(T, J);
-                        v3 = v2 - V;
-                        Norm(d1, v3);
+                        KubSplineWertX(T, jj);
+                        KubSplineWertY(T, jj);
+                        KubSplineWertZ(T, jj);
+                        vv3 = v2 - V;
+                        Norm(dd1, vv3);
                         T = T + 0.005;
-                        TempDist = TempDist + d1;
-                        Dist = Dist + d1;
+                        tempdist1 = tempdist1 + dd1;
+                        Dist = Dist + dd1;
                         V = v2;
                         Flag_Dist[J + 1] = Dist;
                         goto J0x1EF;
                     }
-                    if((TempDist >= float(drawdetail)) && T < X[J + 1])
+                    if((tempdist1 >= float(drawdetail)) && T < X[jj + 1])
                     {
                         V = v2;
                         Spawn(Class'RotKnoten',,, V);
@@ -1510,27 +1509,27 @@ function DrawPath()
                     }
                     else
                     {
-                        carry = TempDist;
+                        carry = tempdist1;
                     }
                 }
             }
-            if(J == (N - 2))
+            if(jj == (nn - 2))
             {
-                if(T == X[J + 1])
+                if(T == X[jj + 1])
                 {
-                    KubSplineWertX(T, J);
-                    KubSplineWertY(T, J);
-                    KubSplineWertZ(T, J);
-                    v3 = v2 - V;
-                    Norm(d1, v3);
-                    Dist = Dist + d1;
-                    Flag_Dist[J + 1] = Dist;
+                    KubSplineWertX(T, jj);
+                    KubSplineWertY(T, jj);
+                    KubSplineWertZ(T, jj);
+                    vv3 = v2 - V;
+                    Norm(dd1, vv3);
+                    Dist = Dist + dd1;
+                    Flag_Dist[jj + 1] = Dist;
                     T = T + 0.005;
                     V = v2;
                     Spawn(Class'RotKnoten',,, V);
                 }
             }
-            ++ J;
+            ++ jj;
             goto J0xCF;
         }
         goto J0x94;
@@ -1541,7 +1540,7 @@ function DrawPath()
     }
 }
 
-function chfev(float X1, float X2, float F1, float F2, float d1, float d2, int ne, float xe, out float fe, int Next[2])
+function chfev(float X1, float X2, float F1, float F2, float dd1, float d2, int ne, float xe, out float fe, int Next[2])
 {
     local float H, xmi, XMA, Delta, del1, del2,
 	    c2, C3, lx;
@@ -1566,12 +1565,12 @@ function chfev(float X1, float X2, float F1, float F2, float d1, float d2, int n
         XMA = 0;
     }
     Delta = (F2 - F1) / H;
-    del1 = (d1 - Delta) / H;
+    del1 = (dd1 - Delta) / H;
     del2 = (d2 - Delta) / H;
     c2 = -(del1 + del1) + del2;
     C3 = (del1 + del2) / H;
     lx = xe - X1;
-    fe = F1 + (lx * (d1 + (lx * (c2 + (lx * C3)))));
+    fe = F1 + (lx * (dd1 + (lx * (c2 + (lx * C3)))));
     if(lx < xmi)
     {
         Next[0] = Next[0] + 1;
@@ -1638,23 +1637,23 @@ function pchst(float arg1, float arg2, out float Value)
     }
 }
 
-function spline_pchip_set(int N, float X[121], float F[121], out float D[121])
+function spline_pchip_set(int nn, float xx[121], float F[121], out float D[121])
 {
     local int nless1, I;
     local float H1, H2, hsum, hsumt3, dmax, dmin,
 	    drat1, drat2, w1, w2, del1,
-	    del2, dsave, Value1, Value2, Temp;
+	    del2, Value1, Value2, Temp;
 
-    nless1 = N - 1;
-    H1 = X[1] - X[0];
+    nless1 = nn - 1;
+    H1 = xx[1] - xx[0];
     del1 = (F[1] - F[0]) / H1;
-    if(N == 2)
+    if(nn == 2)
     {
         D[0] = del1;
-        D[N - 1] = del1;
+        D[nn - 1] = del1;
         return;
     }
-    H2 = X[2] - X[1];
+    H2 = xx[2] - xx[1];
     del2 = (F[2] - F[1]) / H2;
     hsum = H1 + H2;
     w1 = (H1 + hsum) / hsum;
@@ -1685,7 +1684,7 @@ function spline_pchip_set(int N, float X[121], float F[121], out float D[121])
         if(2 < I)
         {
             H1 = H2;
-            H2 = X[I] - X[I - 1];
+            H2 = xx[I] - xx[I - 1];
             hsum = H1 + H2;
             del1 = del2;
             del2 = (F[I] - F[I - 1]) / H2;
@@ -1693,8 +1692,7 @@ function spline_pchip_set(int N, float X[121], float F[121], out float D[121])
         D[I - 1] = 0;
         pchst(del1, del2, Temp);
         if(Temp < 0)
-        {
-            dsave = del2;            
+        {            
         }
         else
         {
@@ -1702,7 +1700,6 @@ function spline_pchip_set(int N, float X[121], float F[121], out float D[121])
             {
                 if(del2 != float(0))
                 {
-                    dsave = del2;
                 }
             }
         }
@@ -1722,106 +1719,108 @@ function spline_pchip_set(int N, float X[121], float F[121], out float D[121])
     }
     w1 = -H2 / hsum;
     w2 = (H2 + hsum) / hsum;
-    D[N - 1] = (w1 * del1) + (w2 * del2);
-    pchst(D[N - 1], del2, Value1);
+    D[nn - 1] = (w1 * del1) + (w2 * del2);
+    pchst(D[nn - 1], del2, Value1);
     pchst(del1, del2, Value2);
     if(Value1 <= 0)
     {
-        D[N - 1] = 0;        
+        D[nn - 1] = 0;        
     }
     else
     {
         if(Value2 < 0)
         {
             dmax = 3 * del2;
-            if(Abs(dmax) < Abs(D[N - 1]))
+            if(Abs(dmax) < Abs(D[nn - 1]))
             {
-                D[N - 1] = dmax;
+                D[nn - 1] = dmax;
             }
         }
     }
 }
 
-function spline_pchip_val(int N, float X[121], float F[121], float D[121], int ne, float xe, out float fe)
+function spline_pchip_val(int nn, float xx[121], float F[121], float D[121], int ne, float xe, out float fe)
 {
-    local int j_first, j_save, ir, J, I, j_new,
+    local int j_first, j_save, ir, jj, I, j_new,
 	    Next;
 
     local float nj;
 
     j_first = 1;
     ir = 2;
-    J0x17:
+    Next[0] = 0;
+    Next[1] = 0;
+    J0x31:
 
     if(true)
     {
         if(ne < j_first)
         {
-            goto J0x306;
+            goto J0x320;
         }
         j_save = ne + 1;
-        J = j_first;
-        J0x5E:
+        jj = j_first;
+        J0x78:
 
-        if(J <= ne)
+        if(jj <= ne)
         {
-            if(X[ir - 1] <= xe)
+            if(xx[ir - 1] <= xe)
             {
-                j_save = J;
-                if(ir == N)
+                j_save = jj;
+                if(ir == nn)
                 {
                     j_save = ne + 1;
                 }
-                goto J0xEA;
+                goto J0x104;
             }
-            ++ J;
-            goto J0x5E;
+            ++ jj;
+            goto J0x78;
         }
-        J0xEA:
+        J0x104:
 
-        J = j_save;
-        nj = float(J - j_first);
+        jj = j_save;
+        nj = float(jj - j_first);
         if(nj != float(0))
         {
-            chfev(X[ir - 2], X[ir - 1], F[ir - 2], F[ir - 1], D[ir - 2], D[ir - 1], int(nj), xe, fe, Next);
+            chfev(xx[ir - 2], X[ir - 1], F[ir - 2], F[ir - 1], D[ir - 2], D[ir - 1], int(nj), xe, fe, Next);
             if(Next[0] != 0)
             {
                 if(ir > 2)
                 {
                     j_new = -1;
-                    if(xe < X[ir - 2])
+                    if(xe < xx[ir - 2])
                     {
                         j_new = 1;
-                        goto J0x306;
+                        goto J0x320;
                     }
-                    J = j_new;
+                    jj = j_new;
                     I = 1;
-                    J0x266:
+                    J0x280:
 
                     if(I <= (ir - 1))
                     {
-                        if(xe < X[I - 1])
+                        if(xe < xx[I - 1])
                         {
-                            goto J0x2B5;
+                            goto J0x2CF;
                         }
                         ++ I;
-                        goto J0x266;
+                        goto J0x280;
                     }
-                    J0x2B5:
+                    J0x2CF:
 
                     ir = 1;
                 }
             }
-            j_first = J;
+            j_first = jj;
         }
         ir = ir + 1;
-        if(N < ir)
+        if(nn < ir)
         {
-            goto J0x306;
+            goto J0x320;
         }
-        goto J0x17;
+        goto J0x31;
     }
-    J0x306:
+    J0x320:
 
 }
 

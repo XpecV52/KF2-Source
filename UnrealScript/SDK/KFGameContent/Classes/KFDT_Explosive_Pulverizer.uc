@@ -10,7 +10,7 @@ class KFDT_Explosive_Pulverizer extends KFDT_Explosive
 
 DefaultProperties
 {
-	
+
 	// physics impact
 	RadialDamageImpulse=3000
 	KDeathUpKick=1000

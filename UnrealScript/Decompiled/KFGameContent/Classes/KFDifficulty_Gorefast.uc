@@ -14,7 +14,7 @@ defaultproperties
     Hard=(SprintChance=1,DamagedSprintChance=1,DamageMod=0.75,SoloDamageMod=0.8,BlockSettings=(Chance=0.5,Duration=1,MaxBlocks=4,Cooldown=1,DamagedHealthPctToTrigger=0.01,MeleeDamageModifier=0.8,DamageModifier=0.8,AfflictionModifier=0.2,SoloChanceMultiplier=0.3),RallySettings=(bCanRally=false))
     Suicidal=(SprintChance=1,DamagedSprintChance=1,SoloDamageMod=0.65,BlockSettings=(Chance=0.75,Duration=1,MaxBlocks=4,Cooldown=1,DamagedHealthPctToTrigger=0.01,MeleeDamageModifier=0.8,DamageModifier=0.8,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(TakenDamageModifier=0.9,DealtDamageModifier=1.2))
     HellOnEarth=(SprintChance=1,DamagedSprintChance=1,SoloDamageMod=0.65,BlockSettings=(Chance=0.85,Duration=1,MaxBlocks=5,Cooldown=1,DamagedHealthPctToTrigger=0.01,MeleeDamageModifier=0.8,DamageModifier=0.8,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(bCauseSprint=true,TakenDamageModifier=0.9,DealtDamageModifier=1.2))
-    BlockSettings_Player_Versus=(MeleeDamageModifier=0.25,DamageModifier=0.05)
+    BlockSettings_Player_Versus=(MeleeDamageModifier=0.25,DamageModifier=0.01)
     RallySettings_Versus=(bCauseSprint=true)
     RallySettings_Player_Versus=(DealtDamageModifier=1.2)
 }

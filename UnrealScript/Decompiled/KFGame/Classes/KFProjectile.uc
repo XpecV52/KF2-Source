@@ -62,12 +62,13 @@ var bool bAmbientSoundZedTimeOnly;
 var protected bool bIsAIProjectile;
 var protected const bool bWarnAIWhenFired;
 var float AlwaysRelevantDistanceSquared;
+var byte WeaponFireMode;
+var KFProjectile.FracturedMeshGlassShatterType GlassShatterType;
 var repnotify float InitialPenetrationPower;
 var float PenetrationPower;
 var TouchInfo LastTouched;
 var TouchInfo LastBounced;
 var float TouchTimeThreshhold;
-var KFProjectile.FracturedMeshGlassShatterType GlassShatterType;
 /** Additional Z Axis velocity to apply when launching this projectile */
 var(Projectile) float TossZ;
 /** How much to scale gravity for this projectile. Used to get different kinds of projectile arcs */
@@ -116,6 +117,9 @@ replication
 
      if(bNetInitial)
         InitialPenetrationPower, bAltExploEffects;
+
+     if(bNetInitial && bNetOwner)
+        WeaponFireMode;
 }
 
 // Export UKFProjectile::execGetTerminalVelocity(FFrame&, void* const)
@@ -142,12 +146,16 @@ simulated function PostBeginPlay()
 
 function Init(Vector Direction)
 {
+    local KFWeapon KFW;
+
     SetRotation(rotator(Direction));
     Velocity = Speed * Direction;
     Velocity.Z += TossZ;
-    if(KFWeapon(Owner) != none)
+    KFW = KFWeapon(Owner);
+    if(KFW != none)
     {
-        bFiredFromLeftHandWeapon = KFWeapon(Owner).GetCurrentMuzzleID() == 1;
+        bFiredFromLeftHandWeapon = KFW.GetCurrentMuzzleID() == 1;
+        WeaponFireMode = KFW.CurrentFireMode;
     }
     if(bSyncToOriginalLocation)
     {
@@ -414,12 +422,14 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
     local array<ImpactInfo> HitZoneImpactList;
     local Vector StartTrace, EndTrace, Direction;
     local TraceHitInfo HitInfo;
+    local KFWeapon KFW;
 
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Instigator,, ImpactEffects);
     }
-    if(!Other.IsA('Pawn'))
+    Victim = Pawn(Other);
+    if(Victim == none)
     {
         if(bDamageDestructiblesOnTouch && Other.bCanBeDamaged)
         {
@@ -431,10 +441,9 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
         {
             PenetrationPower = 0;
             return;
-        }
+        }        
     }
-    Victim = Pawn(Other);
-    if(Victim != none)
+    else
     {
         StartTrace = HitLocation;
         Direction = Normal(Velocity);
@@ -445,16 +454,24 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
             HitZoneImpactList[0].RayDir = Direction;
             if(bReplicateClientHitsAsFragments)
             {
-                if((Instigator != none) && KFWeapon(Instigator.Weapon) != none)
+                if(Instigator != none)
                 {
-                    KFWeapon(Instigator.Weapon).HandleGrenadeProjectileImpact(HitZoneImpactList[0], Class);
+                    KFW = KFWeapon(Instigator.Weapon);
+                    if(KFW != none)
+                    {
+                        KFW.HandleGrenadeProjectileImpact(HitZoneImpactList[0], Class);
+                    }
                 }                
             }
             else
             {
-                if((Owner != none) && KFWeapon(Owner) != none)
+                if(Owner != none)
                 {
-                    KFWeapon(Owner).HandleProjectileImpact(HitZoneImpactList[0], PenetrationPower);
+                    KFW = KFWeapon(Owner);
+                    if(KFW != none)
+                    {
+                        KFW.HandleProjectileImpact(WeaponFireMode, HitZoneImpactList[0], PenetrationPower);
+                    }
                 }
             }
         }
@@ -552,6 +569,7 @@ simulated function Disintegrate(Rotator InDisintegrateEffectRotation)
 simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
 {
     local Vector NudgedHitLocation, ExplosionDirection;
+    local Pawn P;
 
     if(bHasDisintegrated)
     {
@@ -572,6 +590,14 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
             StopSimulating();
             NudgedHitLocation = HitLocation + (HitNormal * 32);
             SetExplosionActorClass();
+            if(ExplosionActorClass == Class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass())
+            {
+                P = Pawn(HitActor);
+                if(P != none)
+                {
+                    NudgedHitLocation = P.Location - (vect(0, 0, 1) * P.GetCollisionHeight());
+                }
+            }
             ExplosionActor = Spawn(ExplosionActorClass, self,, NudgedHitLocation, rotator(HitNormal));
             if(ExplosionActor != none)
             {
@@ -608,6 +634,11 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
         }
         bHasExploded = true;
     }
+}
+
+simulated function bool AllowNuke()
+{
+    return true;
 }
 
 protected simulated function PrepareExplosionTemplate()

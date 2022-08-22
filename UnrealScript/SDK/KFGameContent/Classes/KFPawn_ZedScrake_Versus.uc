@@ -69,8 +69,6 @@ DefaultProperties
 	bVersusZed=true
 	TeammateCollisionRadiusPercent=0.30
 
-	LocalizationKey=KFPawn_ZedScrake
-
 	Begin Object Name=SpecialMoveHandler_0
 		SpecialMoveClasses(SM_PlayerZedMove_LMB)= class'KFSM_PlayerScrake_Melee'
 		SpecialMoveClasses(SM_PlayerZedMove_RMB)= class'KFSM_PlayerScrake_Melee2'
@@ -87,22 +85,23 @@ DefaultProperties
 	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB,		CooldownTime=1.5f,  SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-HeavyLunge', NameLocalizationKey="Heavy")
 	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=1.0f,  bShowOnHud=false)
 	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=2.5f,  SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-SpinAttack', NameLocalizationKey="Spin")
-	SpecialMoveCooldowns(4)=(SMHandle=SM_PlayerZedMove_MMB,		CooldownTime=0.5,	SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block', NameLocalizationKey="Block")
+	SpecialMoveCooldowns(4)=(SMHandle=SM_PlayerZedMove_MMB,		CooldownTime=0.2,	SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block', NameLocalizationKey="Block") //0.5
 	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.25f, SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-Jump', bShowOnHud=false)) // Jump always at end of array
 
     DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.6)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.5)))
 
-	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 1.0, 0.5, 0.5, 0.5), Cooldown=10.0, Duration=1.5)
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.2, 0.7, 0.2, 0.2, 0.2), Cooldown=10.0, Duration=1.5) //0.5, 1.0, 0.5, 0.5, 0.5
     IncapSettings(AF_Knockdown)=(Vulnerability=(0.2),                     Cooldown=10)
-    IncapSettings(AF_Stumble)=	(Vulnerability=(0.2),                     Cooldown=5)
+    IncapSettings(AF_Stumble)=	(Vulnerability=(0.1),                     Cooldown=5)
     IncapSettings(AF_GunHit)=	(Vulnerability=(0.2),                     Cooldown=1.7)
     IncapSettings(AF_MeleeHit)=	(Vulnerability=(0.5),                     Cooldown=1.35)
     IncapSettings(AF_Poison)=	(Vulnerability=(0.6),                     Cooldown=20.0, Duration=1.5)
-    IncapSettings(AF_Microwave)=(Vulnerability=(1.0),                     Cooldown=10.0,  Duration=2.5)
+    IncapSettings(AF_Microwave)=(Vulnerability=(1.0),                     Cooldown=10.0, Duration=2.5)
     IncapSettings(AF_FirePanic)=(Vulnerability=(0.9),                     Cooldown=5.0,  Duration=3.0)
-    IncapSettings(AF_EMP)=		(Vulnerability=(0.98),                    Cooldown=10.0, Duration=2.2)
-    IncapSettings(AF_Freeze)=	(Vulnerability=(0.98),                    Cooldown=1.5,  Duration=0.5)
+    IncapSettings(AF_EMP)=		(Vulnerability=(0.7),                     Cooldown=10.0, Duration=2.2) //0.98
+    IncapSettings(AF_Freeze)=	(Vulnerability=(0.5),                     Cooldown=1.5,  Duration=0.5) //0.98
+    IncapSettings(AF_Snare)=	(Vulnerability=(0.7, 0.7, 1.0, 0.7),      Cooldown=8.5,  Duration=1.5)
 
 
    // IncapSettings(AF_Stun)=		(Vulnerability=(2.f), Cooldown=6.0)

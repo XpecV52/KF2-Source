@@ -166,7 +166,7 @@ simulated function UpdateCameraLensEffects(const out TViewTarget OutVT)
     {
         if(CameraLensEffects[Idx] != none)
         {
-            CameraLensEffects[Idx].UpdateLocation(OutVT.POV.Location, OutVT.POV.Rotation, GetFOVAngle());
+            CameraLensEffects[Idx].UpdateLocation(OutVT.POV.Location, OutVT.POV.Rotation, UnmodifiedFOV);
         }
         ++ Idx;
         goto J0x0B;

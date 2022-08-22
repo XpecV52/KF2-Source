@@ -298,7 +298,7 @@ simulated function UpdateCameraLensEffects( const out TViewTarget OutVT )
 
 			// The FOV in OutVT is not correct since AdjustFOVForViewport() handles the FOV differently.
 			// So, use GetFOVAngle() instead to get the correct FOV
-			CameraLensEffects[Idx].UpdateLocation(OutVT.POV.Location, OutVT.POV.Rotation, GetFOVAngle());
+			CameraLensEffects[Idx].UpdateLocation(OutVT.POV.Location, OutVT.POV.Rotation, UnmodifiedFOV);
 
 
 

@@ -68,11 +68,14 @@ package tripwire.containers.optionsControls
         
         override protected function addedToStage(param1:Event) : void
         {
+            this.formatTextfields();
             super.addedToStage(param1);
             this.presetStepper.tabIndex = 1;
             this.presetStepper.addEventListener(IndexEvent.INDEX_CHANGE,this.onPrefixChanged,false,0,true);
-            this.defaultButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
-            this.formatTextfields();
+            if(this.defaultButton != null)
+            {
+                this.defaultButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
+            }
         }
         
         public function set currentPreset(param1:int) : void

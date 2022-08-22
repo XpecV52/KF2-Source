@@ -11,7 +11,8 @@ class KFAISpawnManager_Versus extends KFAISpawnManager within KFGameInfo_VersusS
 var protected array<KFAISpawnSquad> PlayerZedSquads;
 var const array<KFAIWaveInfo> PlayerZedWaves;
 var array<float> PlayerZedSpawnInterval;
-var float WaveStartSpawnWaitTime;
+var float FirstWaveStartSpawnWaitTime;
+var float LaterWaveStartSpawnWaitTime;
 var bool bSpawnedSpecialSquad;
 var protected bool bBossSpawned;
 var float SpecialSquadRandomChance;
@@ -38,6 +39,7 @@ function SetupNextWave(byte NextWaveIndex)
     local int I, J, SquadZedCount;
     local array<KFAISpawnSquad> SquadList;
     local KFPlayerControllerVersus KFPCV;
+    local float SpawnWaitTime;
 
     super.SetupNextWave(NextWaveIndex);
     LargestSquadSize = 0;
@@ -67,8 +69,9 @@ function SetupNextWave(byte NextWaveIndex)
     if(NextWaveIndex < PlayerZedWaves.Length)
     {
         PlayerZedWaves[NextWaveIndex].GetNewSquadList(PlayerZedSquads);
-        Outer.SetTimer(WaveStartSpawnWaitTime, false, 'Timer_SpawnPlayerZeds', self);
-        Outer.MyKFGRIV.SetPlayerZedSpawnTime(byte(WaveStartSpawnWaitTime), false);        
+        SpawnWaitTime = ((NextWaveIndex == 0) ? FirstWaveStartSpawnWaitTime : LaterWaveStartSpawnWaitTime);
+        Outer.SetTimer(SpawnWaitTime, false, 'Timer_SpawnPlayerZeds', self);
+        Outer.MyKFGRIV.SetPlayerZedSpawnTime(byte(SpawnWaitTime), false);        
     }
     else
     {
@@ -91,7 +94,7 @@ function Timer_SpawnPlayerZeds()
     local array< class<KFPawn_Monster> > NewSquad;
     local float SpawnTimer;
 
-    if((Outer.IsTimerActive('Timer_CheckForZedTakeovers') || !IsPlayerZedSpawnAllowed()) || CheckForTakeoverTimer())
+    if((Outer.IsTimerActive('Timer_CheckForZedTakeovers', self) || !IsPlayerZedSpawnAllowed()) || CheckForTakeoverTimer())
     {
         if(Outer.MyKFGRI.WaveNum == Outer.MyKFGRI.WaveMax)
         {
@@ -343,11 +346,11 @@ protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume, optional bo
     local Vector SpawnLocation;
     local KFGame.KFSpawnVolume.ESquadType SquadType;
     local array<KFPlayerController> CrawlerPlayers, MediumPlayers, LargePlayers, BossPlayers;
-    local Vector NearestPlayerLocation;
     local int NumSpawned, NumSquadMembers;
     local array< class<KFPawn_Monster> > TempPawnClasses, CrawlerPawnClasses, MediumPawnClasses, LargePawnClasses, BossPawnClasses;
 
     local int I;
+    local bool bStopSpawning;
 
     if(!Outer.IsWaveActive())
     {
@@ -452,14 +455,15 @@ protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume, optional bo
             }
             if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) && ((Outer.AIAliveCount + NumSpawned) + 1) > Outer.MyKFGRI.AIRemaining)
             {
-                goto J0xB5D;
+                bStopSpawning = true;
+                goto J0xB60;
             }
             if((NumSquadMembers % 3) == 0)
             {
                 SetDesiredSquadTypeForZedList(CrawlerPawnClasses);
                 SpawnVolume = GetBestSpawnVolume(CrawlerPawnClasses,, CrawlerPlayers[I]);
             }
-            if(RestartPlayerZed(CrawlerPlayers[I], SpawnVolume, NearestPlayerLocation))
+            if(RestartPlayerZed(CrawlerPlayers[I], SpawnVolume))
             {
                 ++ NumSpawned;
                 ++ NumSquadMembers;
@@ -471,15 +475,15 @@ protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume, optional bo
             goto J0x963;
         }
     }
-    J0xB5D:
+    J0xB60:
 
-    if(MediumPlayers.Length > 0)
+    if(!bStopSpawning && MediumPlayers.Length > 0)
     {
         NumSquadMembers = 0;
         SetDesiredSquadTypeForZedList(MediumPawnClasses);
         SpawnVolume = GetBestSpawnVolume(MediumPawnClasses,, MediumPlayers[0]);
         I = 0;
-        J0xBC1:
+        J0xBD5:
 
         if(I < MediumPlayers.Length)
         {
@@ -489,14 +493,15 @@ protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume, optional bo
             }
             if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) && ((Outer.AIAliveCount + NumSpawned) + 1) > Outer.MyKFGRI.AIRemaining)
             {
-                goto J0xDBB;
+                bStopSpawning = true;
+                goto J0xDD2;
             }
             if((NumSquadMembers % 3) == 0)
             {
                 SetDesiredSquadTypeForZedList(MediumPawnClasses);
                 SpawnVolume = GetBestSpawnVolume(MediumPawnClasses,, MediumPlayers[I]);
             }
-            if(RestartPlayerZed(MediumPlayers[I], SpawnVolume, NearestPlayerLocation))
+            if(RestartPlayerZed(MediumPlayers[I], SpawnVolume))
             {
                 ++ NumSpawned;
                 ++ NumSquadMembers;
@@ -505,18 +510,18 @@ protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume, optional bo
             MediumPawnClasses.Remove(I, 1;
             -- I;
             ++ I;
-            goto J0xBC1;
+            goto J0xBD5;
         }
     }
-    J0xDBB:
+    J0xDD2:
 
-    if(LargePlayers.Length > 0)
+    if(!bStopSpawning && LargePlayers.Length > 0)
     {
         NumSquadMembers = 0;
         SetDesiredSquadTypeForZedList(LargePawnClasses);
         SpawnVolume = GetBestSpawnVolume(LargePawnClasses,, LargePlayers[0]);
         I = 0;
-        J0xE1F:
+        J0xE47:
 
         if(I < LargePlayers.Length)
         {
@@ -526,14 +531,15 @@ protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume, optional bo
             }
             if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) && ((Outer.AIAliveCount + NumSpawned) + 1) > Outer.MyKFGRI.AIRemaining)
             {
-                goto J0x1019;
+                bStopSpawning = true;
+                goto J0x1044;
             }
             if((NumSquadMembers % 3) == 0)
             {
                 SetDesiredSquadTypeForZedList(LargePawnClasses);
                 SpawnVolume = GetBestSpawnVolume(LargePawnClasses,, LargePlayers[I]);
             }
-            if(RestartPlayerZed(LargePlayers[I], SpawnVolume, NearestPlayerLocation))
+            if(RestartPlayerZed(LargePlayers[I], SpawnVolume))
             {
                 ++ NumSpawned;
                 ++ NumSquadMembers;
@@ -542,12 +548,19 @@ protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume, optional bo
             LargePawnClasses.Remove(I, 1;
             -- I;
             ++ I;
-            goto J0xE1F;
+            goto J0xE47;
         }
     }
-    J0x1019:
+    J0x1044:
 
     Outer.AIAliveCount += NumSpawned;
+    if(bStopSpawning)
+    {
+        foreach Outer.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+        {
+            KFPC.PlayerZedSpawnInfo.PendingZedPawnClass = none;            
+        }        
+    }
     CheckForTakeoverTimer();
 }
 
@@ -706,12 +719,17 @@ function Timer_CheckForZedTakeovers()
     }
 }
 
+function bool NeedPlayerSpawnVolume()
+{
+    return Outer.IsTimerActive('Timer_CheckForZedTakeovers', self);
+}
+
 function SpawnRemainingReservedZeds(optional bool bSpawnAllReservedZeds)
 {
-    local int I, NumZedsSpawned, NumWaitingZedPlayers;
+    local int NumWaitingZedPlayers;
     local array< class<KFPawn_Monster> > TempSquad;
 
-    if(!IsPlayerZedSpawnAllowed() || ReservedPlayerZeds.Length == 0)
+    if((ReservedPlayerZeds.Length == 0) || !IsPlayerZedSpawnAllowed())
     {
         ReservedPlayerZeds.Length = 0;
         return;
@@ -720,40 +738,48 @@ function SpawnRemainingReservedZeds(optional bool bSpawnAllReservedZeds)
     if((Outer.AIAliveCount + 1) > Outer.MyKFGRI.AIRemaining)
     {
         ReservedPlayerZeds.Length = 0;
-        return;
+        return;        
+    }
+    else
+    {
+        J0xB9:
+
+        if((ReservedPlayerZeds.Length > 0) && (Outer.AIAliveCount + ReservedPlayerZeds.Length) > Outer.MyKFGRI.AIRemaining)
+        {
+            ReservedPlayerZeds.Remove(0, 1;
+            goto J0xB9;
+        }
+        if(ReservedPlayerZeds.Length == 0)
+        {
+            return;
+        }
     }
     NumWaitingZedPlayers = GetNumWaitingZedPlayers();
-    if(ReservedPlayerZeds.Length > 0)
+    if(NumWaitingZedPlayers == 0)
     {
-        I = 0;
-        J0xE5:
+        TempSquad = ReservedPlayerZeds;
+        ReservedPlayerZeds.Length = 0;        
+    }
+    else
+    {
+        J0x194:
 
-        if((I < ReservedPlayerZeds.Length) && bSpawnAllReservedZeds || NumZedsSpawned < 2)
+        if(ReservedPlayerZeds.Length > NumWaitingZedPlayers)
         {
-            if((Outer.AIAliveCount + (NumZedsSpawned + 1)) > Outer.MyKFGRI.AIRemaining)
-            {
-                ReservedPlayerZeds.Length = 0;
-                goto J0x292;
-            }
-            if((NumWaitingZedPlayers == 0) || !ClassIsChildOf(Outer.PlayerZedClasses[6], ReservedPlayerZeds[I]) && !ClassIsChildOf(Outer.PlayerZedClasses[7], ReservedPlayerZeds[I]))
-            {
-                TempSquad.AddItem(ReservedPlayerZeds[I];
-                ReservedPlayerZeds.Remove(I, 1;
-                ++ NumZedsSpawned;
-                -- I;                
-            }
-            else
-            {
-                if(NumWaitingZedPlayers > 0)
-                {
-                    -- NumWaitingZedPlayers;
-                }
-            }
-            ++ I;
-            goto J0xE5;
+            TempSquad.AddItem(ReservedPlayerZeds[0];
+            ReservedPlayerZeds.Remove(0, 1;
+            goto J0x194;
         }
-        J0x292:
+    }
+    if(TempSquad.Length > 0)
+    {
+        J0x1E4:
 
+        if((TempSquad.Length > 0) && ((Outer.AIAliveCount + ReservedPlayerZeds.Length) + TempSquad.Length) > Outer.MyKFGRI.AIRemaining)
+        {
+            TempSquad.Remove(0, 1;
+            goto J0x1E4;
+        }
         if(TempSquad.Length > 0)
         {
             SpawnSquad(TempSquad, true);
@@ -775,7 +801,7 @@ function FindTakeoverZed(KFPlayerControllerVersus KFPCV)
     }
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
-        if(((KFPM.bVersusZed || KFPM.IsHeadless()) || !KFPM.IsAliveAndWell()) || KFPM.IsDoingSpecialMove())
+        if(!KFPM.CanTakeOver())
         {
             continue;            
         }
@@ -798,7 +824,7 @@ function FindTakeoverZed(KFPlayerControllerVersus KFPCV)
         }
         AliveClass = KFPM.Class;
         I = 0;
-        J0x2AF:
+        J0x242:
 
         if(I < Outer.PlayerZedClasses.Length)
         {
@@ -815,7 +841,7 @@ function FindTakeoverZed(KFPlayerControllerVersus KFPCV)
                 return;
             }
             ++ I;
-            goto J0x2AF;
+            goto J0x242;
         }        
     }    
 }
@@ -940,7 +966,7 @@ function RecyclePendingZedPawnClass(KFPlayerController KFPC)
 
 }
 
-function bool RestartPlayerZed(KFPlayerController KFPC, KFSpawnVolume SpawnVolume, Vector LookAtLocation)
+function bool RestartPlayerZed(KFPlayerController KFPC, KFSpawnVolume SpawnVolume)
 {
     local Vector SpawnLocation;
     local Rotator SpawnRotation;
@@ -955,7 +981,7 @@ function bool RestartPlayerZed(KFPlayerController KFPC, KFSpawnVolume SpawnVolum
         SpawnLocation = ((!IsZero(KFPC.PlayerZedSpawnInfo.PendingZedSpawnLocation)) ? KFPC.PlayerZedSpawnInfo.PendingZedSpawnLocation : GetSpawnLocation(class<KFPawn_Monster>(KFPC.Pawn.Class), SpawnVolume));
         KFPC.SetLocation(SpawnLocation);
         KFPC.Pawn.SetLocation(SpawnLocation);
-        SpawnRotation = ((!IsZero(LookAtLocation)) ? rotator(LookAtLocation - SpawnLocation) : RotRand(false));
+        SpawnRotation = RotRand(false);
         SpawnRotation.Roll = 0;
         KFPC.SetRotation(SpawnRotation);
         SpawnRotation.Pitch = 0;
@@ -1059,11 +1085,12 @@ defaultproperties
     PlayerZedWaves(1)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.PlayerZED_Wave2'
     PlayerZedWaves(2)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.PlayerZED_Wave3'
     PlayerZedWaves(3)=KFAIWaveInfo'GP_Spawning_ARCH.Versus.PlayerZED_Wave4'
-    PlayerZedSpawnInterval(0)=40
-    PlayerZedSpawnInterval(1)=40
-    PlayerZedSpawnInterval(2)=40
-    PlayerZedSpawnInterval(3)=40
-    WaveStartSpawnWaitTime=20
+    PlayerZedSpawnInterval(0)=20
+    PlayerZedSpawnInterval(1)=27
+    PlayerZedSpawnInterval(2)=30
+    PlayerZedSpawnInterval(3)=35
+    FirstWaveStartSpawnWaitTime=15
+    LaterWaveStartSpawnWaitTime=10
     MaxPlayerSpecialSquadSpawns(0)=0
     MaxPlayerSpecialSquadSpawns(1)=0
     MaxPlayerSpecialSquadSpawns(2)=2
@@ -1101,12 +1128,12 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     EarlyWaveSpawnRateModifier=2.1
     EarlyWaveIndex=2
-    LateWavesSpawnTimeModByPlayers[0]=1.2
-    LateWavesSpawnTimeModByPlayers[1]=1.2
-    LateWavesSpawnTimeModByPlayers[2]=1.2
-    LateWavesSpawnTimeModByPlayers[3]=1.09
-    LateWavesSpawnTimeModByPlayers[4]=0.82
-    LateWavesSpawnTimeModByPlayers[5]=0.65
+    LateWavesSpawnTimeModByPlayers[0]=1.8
+    LateWavesSpawnTimeModByPlayers[1]=1.7
+    LateWavesSpawnTimeModByPlayers[2]=1.6
+    LateWavesSpawnTimeModByPlayers[3]=1.5
+    LateWavesSpawnTimeModByPlayers[4]=1.17
+    LateWavesSpawnTimeModByPlayers[5]=1
     bRecycleSpecialSquad=true
     RecycleSpecialSquad=/* Array type was not detected. */
     MaxSpecialSquadRecycles=1

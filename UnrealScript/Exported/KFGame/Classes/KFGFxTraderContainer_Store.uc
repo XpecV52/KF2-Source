@@ -75,7 +75,10 @@ function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemLi
  	local int i, SlotIndex;
 	local GFxObject ItemDataArray; // This array of information is sent to ActionScript to update the Item data
 	local array<STraderItem> FullItemList;
-	
+	if(FilterIndex == 255 || FilterIndex == INDEX_NONE)
+	{
+		return;
+	}
 	if (KFPC != none)
 	{
 		SlotIndex = 0;
@@ -90,7 +93,7 @@ function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemLi
 			{
 				continue; // Skip this item if it's in our inventory
 			}
-			else if ( FullItemList[i].AssociatedPerkClass != None 
+			else if ( FullItemList[i].AssociatedPerkClass != None && KFPC.PerkList[FilterIndex].PerkClass != class'KFPerk_Survivalist'
 				&& (FilterIndex >= KFPC.PerkList.Length || FullItemList[i].AssociatedPerkClass != KFPC.PerkList[FilterIndex].PerkClass) )
 			{
 				continue; // filtered by perk

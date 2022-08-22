@@ -40,10 +40,11 @@
 `define BTLog(msg)					AILog_Internal(`msg, 'BehaviorTree')
 `define BTLog_Ext(msg, object)		if (`object != none) { `object.AILog_Internal(`msg, 'BehaviorTree' ); }
 
-`define AILog(text)             AILog_Internal(`text)
-`define AILog(text, category)   AILog_Internal(`text,`category)
-`define AILog(text, category, bForce)   AILog_Internal(`text,`category,`bForce)
-`define AILog_Ext(text, category, object)  if( `object != None ) { `object.AILog_Internal(`text,`category); }
+`define StaticEngineContext class'Engine'.static.GetEngine()
+`define AILog(text)							if( ! `StaticEngineContext.bDisableAILogging) {AILog_Internal(`text);}
+`define AILog(text, category)				if( ! `StaticEngineContext.bDisableAILogging) {AILog_Internal(`text,`category);}
+`define AILog(text, category, bForce)		if( ! `StaticEngineContext.bDisableAILogging) {AILog_Internal(`text,`category,`bForce);}
+`define AILog_Ext(text, category, object)  if( !`StaticEngineContext.bDIsableAILogging && `object != None ) { `object.AILog_Internal(`text,`category); }
 
 `define AILogNativeCallStack() class'BaseAISubsystem'.static.GetAIDebugTool().DumpNativeCallStack(self)
 `define AILogScriptCallStack() AILog_Internal(GetScriptTrace(),'CallStack')

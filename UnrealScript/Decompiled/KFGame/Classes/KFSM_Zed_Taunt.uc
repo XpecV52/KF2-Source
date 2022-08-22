@@ -81,7 +81,7 @@ function PlayAnimation()
             break;
             break;
     }
-    if(AIOwner != none)
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging && AIOwner != none)
     {
         AIOwner.AILog_Internal((((string(GetFuncName()) $ " ") $ string(self)) $ " chose taunt animation ") $ string(AnimName), 'AIController');
     }

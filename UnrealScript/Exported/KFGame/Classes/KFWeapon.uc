@@ -1176,10 +1176,12 @@ simulated function InitializeEquipTime()
  */
 simulated function InitFOV(float SizeX, float SizeY, float DefaultPlayerFOV)
 {
-	MeshFOV = class'KFPlayerController'.static.CalcFOVForAspectRatio(default.MeshFOV, SizeX, SizeY);
-	MeshIronSightFOV = class'KFPlayerController'.static.CalcFOVForAspectRatio(default.MeshIronSightFOV, SizeX, SizeY);
-	PlayerIronSightFOV = class'KFPlayerController'.static.CalcFOVForAspectRatio(default.PlayerIronSightFOV, SizeX, SizeY);
-	PlayerSprintFOV = class'KFPlayerController'.static.CalcFOVForAspectRatio(default.PlayerSprintFOV, SizeX, SizeY);
+	local float DummyParam;
+
+	MeshFOV = class'KFPlayerController'.static.CalcFOVForAspectRatio(default.MeshFOV, SizeX, SizeY, DummyParam);
+	MeshIronSightFOV = class'KFPlayerController'.static.CalcFOVForAspectRatio(default.MeshIronSightFOV, SizeX, SizeY, DummyParam);
+	PlayerIronSightFOV = class'KFPlayerController'.static.CalcFOVForAspectRatio(default.PlayerIronSightFOV, SizeX, SizeY, DummyParam);
+	PlayerSprintFOV = class'KFPlayerController'.static.CalcFOVForAspectRatio(default.PlayerSprintFOV, SizeX, SizeY, DummyParam);
 
 	if( DefaultPlayerFOV > PlayerSprintFOV )
 	{
@@ -1547,7 +1549,8 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 	if( ItemClass == class )
 	{
 		// Unless ammo is full, allow the pickup to handle giving ammo
-		if( CanRefillSecondaryAmmo() )
+		// @note: projectile pickups can only refill primary ammo
+		if( CanRefillSecondaryAmmo() && !Pickup.IsA('Projectile') )
 		{
 			bDenyPickUp =((SpareAmmoCount[0] + MagazineCapacity[0]) >= GetMaxAmmoAmount(0) && AmmoCount[1] >= MagazineCapacity[1]);
 		}
@@ -1562,7 +1565,7 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 			//show non critical message for deny pickup
 			if ( KFPC != None )
  			{
- 				KFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Game', IsMeleeWeapon() ? GMT_AlreadyCarryingWeapon : GMT_AmmoIsFull);
+ 				KFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Game', (MagazineCapacity[0] == 0) ? GMT_AlreadyCarryingWeapon : GMT_AmmoIsFull);
  			}
 		}
 	}
@@ -3672,17 +3675,17 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
  * Handle a bullet this weapon has fired for client side hit detection impacting a Pawn
  * see 'InstantFireClient'
  */
-simulated function HandleProjectileImpact(ImpactInfo Impact, optional float PenetrationValue)
+simulated function HandleProjectileImpact(byte ProjectileFireMode, ImpactInfo Impact, optional float PenetrationValue)
 {
 	// local player only for clientside hit detection
 	if ( Instigator != None && Instigator.IsLocallyControlled() )
 	{
 		if ( Instigator.Role < ROLE_Authority )
 		{
-			SendClientProjectileImpact(CurrentFireMode, Impact, PenetrationValue);
+			SendClientProjectileImpact(ProjectileFireMode, Impact, PenetrationValue);
 		}
 
-		ProcessInstantHitEx(CurrentFireMode, Impact,, PenetrationValue, 0);
+		ProcessInstantHitEx(ProjectileFireMode, Impact,, PenetrationValue, 0);
 	}
 }
 
@@ -6559,6 +6562,8 @@ simulated function float GetForceReloadDelay();
 /** Detect/fix single fire projectile weapon network synchronization errors */
 reliable private server function ServerSyncWeaponFiring( byte FireModeNum )
 {
+	local float MeleeTimeRemaining;
+
 	if( IsInState('Reloading') )
 	{
 		// Perform our reload if we haven't yet
@@ -6597,6 +6602,24 @@ reliable private server function ServerSyncWeaponFiring( byte FireModeNum )
 		else
 		{
 			WarnInternal("KFWeapon::ServerSyncWeaponFiring().WeaponEquipping - Failed to sync weapon ammo.");
+		}
+	}
+	else if( IsInState('MeleeAttackBasic') )
+	{
+		if( HasAmmo(FireModeNum) )
+		{
+			// @NOTE: During testing with various simulated lag settings, I've found that this almost directly correlates
+			// with lag. The time remaining averages +/-5% that of ping. Since ping is only updated every few seconds, we
+			// give it a little extra padding to cover any small fluctuations. -MattF
+			MeleeTimeRemaining = GetRemainingTimeForTimer( nameOf(MeleeAttackHelper.MeleeCheckTimer), MeleeAttackHelper );
+			if( MeleeTimeRemaining < (Instigator.PlayerReplicationInfo.Ping * 4.f) * 0.0011f )
+			{
+				SendToFiringState( FireModeNum );
+			}
+		}
+		else
+		{
+			WarnInternal("KFWeapon::ServerSyncWeaponFiring().MeleeAttackBasic - Failed to sync weapon ammo.");
 		}
 	}
 }

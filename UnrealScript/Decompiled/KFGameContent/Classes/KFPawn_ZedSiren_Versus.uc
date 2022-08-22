@@ -20,6 +20,7 @@ function SetSprinting(bool bNewSprintStatus)
 
 defaultproperties
 {
+    NeckLightComponent=PointLightComponent'Default__KFPawn_ZedSiren_Versus.NeckLightComponent0'
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=50,Z=25),OffsetMid=(X=-140,Y=50,Z=-10),OffsetLow=(X=-220,Y=50,Z=50))
     begin object name=MeleeHelper class=KFMeleeHelperAI
@@ -33,7 +34,6 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
-    LocalizationKey=KFPawn_ZedSiren
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

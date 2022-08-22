@@ -545,7 +545,7 @@ defaultproperties
    ExplosionActorClass=Class'kfgamecontent.KFExplosion_PlayerBloatPukeMine'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'ZED_Bloat_ARCH.Bloat_Mine_Explosion'
-      Damage=30.000000
+      Damage=15.000000
       DamageRadius=450.000000
       DamageFalloffExponent=0.000000
       MyDamageType=Class'kfgamecontent.KFDT_Toxic_BloatPukeMine'
@@ -572,8 +572,8 @@ defaultproperties
       ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
    End Object
    AmbientComponent=AmbientAkSoundComponent
-   Speed=500.000000
-   MaxSpeed=500.000000
+   Speed=1000.000000
+   MaxSpeed=1000.000000
    bBlockedByInstigator=False
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProjectile:CollisionCylinder'
       CollisionHeight=10.000000

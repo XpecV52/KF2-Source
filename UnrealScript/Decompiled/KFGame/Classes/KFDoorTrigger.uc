@@ -45,7 +45,11 @@ function OnDestroyOrReset()
 
     foreach TouchingActors(Class'KFPawn_Human', P)
     {
-        UnknownLocal_0 < @NULL;
+         != @NULL;
+        @NULL                
+        @NULL
+        default.@NULL
+        @NULL
     }
 }
 
@@ -63,7 +67,7 @@ simulated function bool GetIsUsable(Pawn User)
     return false;
 }
 
-function int GetInteractionIndex()
+function int GetInteractionIndex(Pawn User)
 {
     if(DoorActor.bIsDestroyed)
     {
@@ -73,6 +77,10 @@ function int GetInteractionIndex()
     {
         if(DoorActor.WeldIntegrity > 0)
         {
+            if((User.Weapon != none) && User.Weapon.Class.Name == 'KFWeap_Welder')
+            {
+                return -1;
+            }
             return 6;            
         }
         else

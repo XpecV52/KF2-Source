@@ -65,7 +65,8 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-const MAX_AIM_CORRECTION_SIZE = 40.f;
+const KFID_WeaponSkinAssociations = 165;
+const MAX_AIM_CORRECTION_SIZE = 35.f;
 
 enum ETextChatChannel
 {
@@ -274,7 +275,7 @@ var bool bUsePhysicsRotation;
 var bool bIsAchievementPlayer;
 var config bool bHideTraderPaths;
 var transient bool bClientTraderMenuOpen;
-var bool bPlayerUsedUpdatePerk;
+var protected bool bPlayerUsedUpdatePerk;
 var bool bNoEarRingingSound;
 var bool bNightVisionActive;
 var bool bPerkEffectIsActive;
@@ -291,6 +292,7 @@ var bool bReflectionsEnabled;
 var bool bBlurEnabled;
 var bool bProcessingGameInvite;
 var bool bLoggingInForOnlinePlay;
+var bool bOnlinePrivilegeCheckPending;
 var protected config bool bDebugTargetAdhesion;
 var(AimAssist) protected bool bDebugAutoTarget;
 /** Don't use the countdown time, just keep looking at the ForceLookAtPawn */
@@ -306,6 +308,7 @@ var class<KFPerk> MonsterPerkClass;
 var const name MusicMessageType;
 var transient sPlayerZedSpawnInfo PlayerZedSpawnInfo;
 var KFPawn_Human UsablePawn;
+var protected float UnmodifiedFOV;
 var protected transient int BenefactorDosh;
 var private const int BenefactorDoshReq;
 var KFEmit_CameraEffect CameraEffect;
@@ -443,6 +446,8 @@ var EphemeralMatchStats MatchStats;
 var class<EphemeralMatchStats> MatchStatsClass;
 var transient float LastUpdateSpectatorActiveTime;
 var transient float UpdateSpectatorActiveInterval;
+var transient int TargetViewRotationPitch;
+var transient int TargetViewRotationYaw;
 /** Interp curve to scale autotarget scoring for different ranges */
 var(AimAssist) InterpCurveFloat ScoreTargetDistanceCurve;
 /** Aim correction */
@@ -470,6 +475,9 @@ replication
 {
      if(bNetDirty)
         CurrentPerk, PWRI;
+
+     if(Role == ROLE_Authority)
+        TargetViewRotationPitch, TargetViewRotationYaw;
 }
 
 // Export UKFPlayerController::execSetHardwarePhysicsEnabled(FFrame&, void* const)
@@ -508,7 +516,6 @@ simulated event ReplicatedEvent(name VarName)
     super(Controller).ReplicatedEvent(VarName);
     if(VarName == 'Pawn')
     {
-        SetAmplificationLightEnabled(Pawn != none);
         ToggleHealthEffects(Pawn != none);
     }
     if(VarName == 'PWRI')
@@ -586,6 +593,7 @@ event Possess(Pawn aPawn, bool bVehicleTransition)
     KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
     if((KFPRI != none) && KFPawn_Customization(aPawn) == none)
     {
+        KFPRI.bHasSpawnedIn = true;
         KFPRI.bClientActiveSpawn = true;
         KFPRI.bNetDirty = true;
     }
@@ -646,6 +654,14 @@ function PawnDied(Pawn inPawn)
         return;
     }
     super(PlayerController).PawnDied(inPawn);
+}
+
+exec function ListConsoleEvents()
+{
+    if(!Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsConsoleDedicatedServer())
+    {
+        super(PlayerController).ListConsoleEvents();
+    }
 }
 
 function SpawnReconnectedPlayer()
@@ -747,6 +763,18 @@ function RegisterOnlineDelegates()
     KFGameEngine(Class'GameEngine'.static.GetEngine()).RegisterOnlineDelegates();
 }
 
+function ShowBestRegionSelectedPopup(int RegionIndex)
+{
+    local string LocRegionName;
+
+    LocRegionName = PlayfabInter.GetLocalizedRegionName(RegionIndex);
+}
+
+exec function TestRegionQuery()
+{
+    OnlineSub.StartRegionPingAndSelectDefaultRegion(ShowBestRegionSelectedPopup);
+}
+
 function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
 {
     local KFProfileSettings Profile;
@@ -821,6 +849,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
                 MatchmakingRegion = Profile.GetProfileString(156);
                 if(MatchmakingRegion == "")
                 {
+                    OnlineSub.StartRegionPingAndSelectDefaultRegion(None);
                     MatchmakingRegion = Class'PlayfabInterface'.default.CurrRegionName;
                 }
                 PlayfabInter.CurrRegionName = MatchmakingRegion;
@@ -846,23 +875,37 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
     }
 }
 
-function HandleConnectionStatusChange(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus)
+simulated function HandleConnectionStatusChange(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus)
 {
-    if(WorldInfo.IsConsoleBuild() && ConnectionStatus != 1)
+    if(WorldInfo.IsConsoleBuild())
     {
-        HandleNetworkError(true);
+        if(ConnectionStatus != 1)
+        {
+            HandleNetworkError(true);            
+        }
+        else
+        {
+            HandleReconnected();
+        }
     }
 }
 
-function HandleLoginStatusChange(bool bLoggedIn)
+simulated function HandleLoginStatusChange(bool bLoggedIn)
 {
-    if(WorldInfo.IsConsoleBuild() && !bLoggedIn)
+    if(WorldInfo.IsConsoleBuild())
     {
-        HandleNetworkError(false);
+        if(!bLoggedIn)
+        {
+            HandleNetworkError(false);            
+        }
+        else
+        {
+            HandleReconnected();
+        }
     }
 }
 
-function HandleNetworkError(bool bConnectionLost)
+simulated function HandleNetworkError(bool bConnectionLost)
 {
     local KFGameViewportClient GVC;
 
@@ -892,8 +935,28 @@ function HandleNetworkError(bool bConnectionLost)
                 MyGFxManager.SetStartMenuState(MyGFxManager.GetStartMenuState());
                 MyGFxManager.StartMenu.ApproveMatchMakingLeave();
                 MyGFxManager.OpenMenu(0);
-                MyGFxManager.OpenPopup(2, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), Localize("Notifications", ((bConnectionLost) ? "ConnectionLostMessage" : "PSNSignoutMessage"), "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+                MyGFxManager.DelayedOpenPopup(2, 7, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), Localize("Notifications", ((bConnectionLost) ? "ConnectionLostMessage" : "PSNSignoutMessage"), "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
             }
+            if(((MyGFxManager != none) && MyGFxManager.StartMenu != none) && MyGFxManager.StartMenu.FindGameContainer != none)
+            {
+                MyGFxManager.StartMenu.FindGameContainer.SetWhatsNewItems();
+            }
+        }
+        if(MyGFxManager != none)
+        {
+            MyGFxManager.UpdateMenuBar();
+        }
+    }
+}
+
+simulated function HandleReconnected()
+{
+    if(MyGFxManager != none)
+    {
+        MyGFxManager.UpdateMenuBar();
+        if((MyGFxManager.StartMenu != none) && MyGFxManager.StartMenu.FindGameContainer != none)
+        {
+            MyGFxManager.StartMenu.FindGameContainer.SetWhatsNewItems();
         }
     }
 }
@@ -914,7 +977,7 @@ function HandleConsoleSessions()
             {
                 LogInternal("SESSIONS - Make one!");
                 GRI.ConsoleGameSessionHost = PlayerReplicationInfo.UniqueId;
-                ClientCreateGameSession(PlayfabInter.GetCachedLobbyId());                
+                ClientCreateGameSession(PlayfabInter.GetCachedLobbyId(), GameEngine(Class'Engine'.static.GetEngine()).bPrivateServer);                
             }
             else
             {
@@ -925,7 +988,7 @@ function HandleConsoleSessions()
     }
 }
 
-reliable client simulated function ClientCreateGameSession(string LobbyId)
+reliable client simulated function ClientCreateGameSession(string LobbyId, bool bPrivate)
 {
     local OnlineGameSettings GameSettings;
     local byte LocalPlayerNum;
@@ -939,7 +1002,7 @@ reliable client simulated function ClientCreateGameSession(string LobbyId)
         OnlineSub.GameInterface.GetGameServerRemoteAddress(RemoteAddressString);
         GameSettings.JoinString = RemoteAddressString;
         GameSettings.LobbyId = LobbyId;
-        GameSettings.bAllowJoinInProgress = true;
+        GameSettings.bRequiresPassword = bPrivate;
         LocalPlayerNum = byte(LocalPlayer(Player).ControllerId);
         OnlineSub.GameInterface.AddCreateOnlineGameCompleteDelegate(OnGameSessionCreateComplete);
         if(!OnlineSub.GameInterface.CreateOnlineGame(LocalPlayerNum, 'Game', GameSettings))
@@ -994,7 +1057,7 @@ reliable server function ServerGameSessionFailed()
         {
             if(Controller.PlayerReplicationInfo.UniqueId == GRI.ConsoleGameSessionHost)
             {
-                Controller.ClientCreateGameSession(PlayfabInter.GetCachedLobbyId());
+                Controller.ClientCreateGameSession(PlayfabInter.GetCachedLobbyId(), GameEngine(Class'Engine'.static.GetEngine()).bPrivateServer);
                 break;
             }            
         }                
@@ -1156,44 +1219,41 @@ function OnSessionJoinComplete(name SessionName, bool bWasSuccessful)
 {
     local OnlineGameSettings GameSettings;
 
-    GameSettings = OnlineSub.GameInterface.GetGameSettings(SessionName);
-    LogInternal(("SESSIONS - OnSessionJoinComplete" @ GameSettings.LobbyId) @ GameSettings.JoinString);
-    PlayfabInter.AddQueryServerInfoCompleteDelegate(OnQueryAdditionalServerInfoForInviteComplete);
-    PlayfabInter.QueryServerInfo(GameSettings.LobbyId);
+    if(SessionName == 'Game')
+    {
+        GameSettings = OnlineSub.GameInterface.GetGameSettings(SessionName);
+        LogInternal(("SESSIONS - OnSessionJoinComplete" @ GameSettings.LobbyId) @ GameSettings.JoinString);
+        JoinPlayfabServer(bWasSuccessful, GameSettings.JoinString);        
+    }
+    else
+    {
+        if(SessionName == 'Party')
+        {
+            if(!WorldInfo.bIsMenuLevel)
+            {                
+                ConsoleCommand("open KFMainMenu");
+            }
+        }
+    }
 }
 
-function OnQueryAdditionalServerInfoForInviteComplete(bool bWasSuccessful, string LobbyId, string ServerIP, int ServerPort, string ServerTicket)
+function JoinPlayfabServer(bool bWasSuccessful, string ServerIP)
 {
     local string OpenCommand;
 
-    LogInternal((((((((("SESSIONS - OnQueryAdditionalServerInfoForInviteComplete with success" @ string(bWasSuccessful)) @ "and lobbyID") @ LobbyId) @ "and server IP") @ ServerIP) @ "and port") @ string(ServerPort)) @ "and ticket") @ ServerTicket);
-    PlayfabInter.ClearQueryServerInfoCompleteDelegate(OnQueryAdditionalServerInfoForInviteComplete);
+    LogInternal((("SESSIONS - OnQueryAdditionalServerInfoForInviteComplete with success" @ string(bWasSuccessful)) @ "and server IP") @ ServerIP);
     if(!bWasSuccessful || ServerIP == "")
     {
         NotifyInviteFailed();        
     }
     else
     {
-        OpenCommand = (("open" @ ServerIP) $ ":") $ string(ServerPort);        
-        OpenCommand $= ("?AuthTicket=" $ ServerTicket);        
-        OpenCommand $= ("?PlayfabPlayerId=" $ PlayfabInter.CachedPlayfabId);
-        KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeForInviteComplete;
-        SetTimer(float(Class'KFGFxMenu_StartGame'.default.ServerConnectTimeout), false, 'ConnectGiveUpForInvite', self);
+        OpenCommand = "open" @ ServerIP;        
+        OpenCommand $= ("?PlayfabPlayerId=" $ PlayfabInter.CachedPlayfabId);        
+        OpenCommand $= "?bJoinViaInvite";
         LogInternal("Going to connect with URL:" @ OpenCommand);        
         ConsoleCommand(OpenCommand);
     }
-}
-
-function bool OnHandshakeForInviteComplete(bool bSuccess, string Description, out int SuppressPasswordRetry)
-{
-    ClearTimer('ConnectGiveUpForInvite', self);
-    return true;
-}
-
-function ConnectGiveUpForInvite()
-{
-    KFGameEngine(Class'KFGameEngine'.static.GetEngine()).KillPendingServerConnection();
-    NotifyInviteFailed();
 }
 
 function NotifyInviteFailed(optional string LocKey)
@@ -1202,7 +1262,7 @@ function NotifyInviteFailed(optional string LocKey)
     bProcessingGameInvite = false;
     super(PlayerController).NotifyInviteFailed();
     LogInternal(((("NotifyInviteFailed:" @ LocKey) $ "Title") @ LocKey) $ "Message");
-    MyGFxManager.SetDelayedShowPopup(2, Localize("Notifications", LocKey $ "Title", "KFGameConsole"), Localize("Notifications", LocKey $ "Message", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+    MyGFxManager.DelayedOpenPopup(2, 0, Localize("Notifications", LocKey $ "Title", "KFGameConsole"), Localize("Notifications", LocKey $ "Message", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
 }
 
 function OnPlayTogetherStarted()
@@ -1239,7 +1299,11 @@ function TryAutoLoginForPlayTogether()
 function OnLoginForPlayTogetherComplete()
 {
     LogInternal("PLAY - OnLoginForPlayTogetherComplete");
-    MyGFxManager.OpenPopup(2, Localize("Notifications", "InitiatingPlayTogetherTitle", "KFGameConsole"), Localize("Notifications", "InitiatingPlayTogetherMessage", "KFGameConsole"));
+    if(!Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled() && WorldInfo.IsConsoleBuild())
+    {
+        NotifyPlayTogetherFailed();
+        return;
+    }
     if(((OnlineSub != none) && NotEqual_InterfaceInterface(OnlineSub.GameInterface, (none))) && NotEqual_InterfaceInterface(OnlineSub.SystemInterface, (none)))
     {
         if(OnlineSub.PlayerInterface.GetLoginStatus(byte(LocalPlayer(Player).ControllerId)) == 2)
@@ -1264,50 +1328,43 @@ function OnLoginForPlayTogetherComplete()
 
 function OnGameDestroyedForPlayTogetherComplete(name SessionName, bool bWasSuccessful)
 {
+    local KFGameViewportClient GVC;
+
+    GVC = KFGameViewportClient(MyGFxManager.GetGameViewportClient());
     LogInternal("PLAY - OnGameDestroyedForPlayTogetherComplete");
     OnlineSub.GameInterface.ClearDestroyOnlineGameCompleteDelegate(OnGameDestroyedForPlayTogetherComplete);
     if(!bWasSuccessful)
     {
         LogInternal("PLAY - DestroyOnlineGame for PlayTogether failed");
     }
-}
-
-function OnServerStartedForPlayTogether(bool bWasSuccessful, string ServerLobbyId, string ServerIP, int ServerPort, string ServerTicket)
-{
-    local string OpenCommand;
-
-    LogInternal((((((((("PLAY - OnServerStartedForPlayTogether" @ string(bWasSuccessful)) @ "and with lobby id") @ ServerLobbyId) @ "and server IP") @ ServerIP) @ "and port") @ string(ServerPort)) @ "and ticket") @ ServerTicket);
-    PlayfabInter.ClearOnServerStartedDelegate(OnServerStartedForPlayTogether);
-    if(bWasSuccessful)
+    if(WorldInfo.IsMenuLevel())
     {
-        OpenCommand = (("open" @ ServerIP) $ ":") $ string(ServerPort);        
-        OpenCommand $= ("?AuthTicket=" $ ServerTicket);        
-        OpenCommand $= ("?PlayfabPlayerId=" $ PlayfabInter.CachedPlayfabId);
-        KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeForPlayTogetherComplete;
-        SetTimer(20, false, 'ConnectGiveUpForPlayTogether', self);
-        LogInternal("Going to connect with URL:" @ OpenCommand);        
-        ConsoleCommand(OpenCommand);        
+        LogInternal("PLAY - Session created, sending invites!" @ string(bWasSuccessful));
+        TryMainMenuPlayTogether();        
     }
     else
     {
-        NotifyPlayTogetherFailed();
+        GVC.bHandlePlayTogether = true;        
+        ConsoleCommand("open KFMainMenu");
     }
 }
 
-function ConnectGiveUpForPlayTogether()
+function TryMainMenuPlayTogether()
 {
-    KFGameEngine(Class'KFGameEngine'.static.GetEngine()).KillPendingServerConnection();
-    NotifyPlayTogetherFailed();
-}
+    local string InviteMessage;
 
-function bool OnHandshakeForPlayTogetherComplete(bool bSuccess, string Description, out int SuppressPasswordRetry)
-{
-    if(!bSuccess)
+    if((MyGFxManager != none) && MyGFxManager.StartMenu != none)
     {
-        ClearTimer('ConnectGiveUpForPlayTogether');
-        NotifyPlayTogetherFailed();
+        MyGFxManager.StartMenu.OpenMultiplayerMenu();
+        MyGFxManager.OnlineLobby.MakeLobby(6, 2);
+        InviteMessage = Localize("Notifications", "InviteMessage", "KFGameConsole");
+        MyGFxManager.OnlineLobby.SendInviteToUsers(OnlineSub.GameInterface.GetPendingMembersToInvite(), InviteMessage);
+        OnlineSub.GameInterface.ResetPendingMembersToInvite();        
     }
-    return true;
+    else
+    {
+        SetTimer(0.5, false, 'TryMainMenuPlayTogether', self);
+    }
 }
 
 function OnCreateGameSessionForPlayTogetherComplete(string SessionGuid, bool bWasSuccessful)
@@ -1332,7 +1389,7 @@ function NotifyPlayTogetherFailed(optional string LocKey)
     bProcessingGameInvite = false;
     LogInternal(((("NotifyPlayTogetherFailed:" @ LocKey) $ "Title") @ LocKey) $ "Message");
     MyGFxManager.UnloadCurrentPopup();
-    MyGFxManager.OpenPopup(2, Localize("Notifications", LocKey $ "Title", "KFGameConsole"), Localize("Notifications", LocKey $ "Message", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+    MyGFxManager.DelayedOpenPopup(2, 0, Localize("Notifications", LocKey $ "Title", "KFGameConsole"), Localize("Notifications", LocKey $ "Message", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
 }
 
 function AddShotsFired(int AddedShots)
@@ -1370,6 +1427,10 @@ function OnPlayerTalking(UniqueNetId TalkingPlayer, bool bIsTalking)
             KFPRI.VOIPStatusChanged(KFPRI, bIsTalking);
             if(bIsTalking)
             {
+                if((CurrentVoiceChannel == 0) && WorldInfo.IsConsoleBuild() || !Class'KFPlayerInput'.default.bRequiresPushToTalk)
+                {
+                    CurrentVoiceChannel = 1;
+                }
                 if(CurrentVoiceChannel == 0)
                 {
                     KFPRI.ServerNotifyStartVoip();                    
@@ -1394,6 +1455,10 @@ reliable client simulated function ClientStartNetworkedVoice()
     KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
     if(KFPRI != none)
     {
+        if((CurrentVoiceChannel == 0) && WorldInfo.IsConsoleBuild() || !Class'KFPlayerInput'.default.bRequiresPushToTalk)
+        {
+            CurrentVoiceChannel = 1;
+        }
         if(!WorldInfo.IsConsoleBuild())
         {
             KFPRI.VOIPStatusChanged(PlayerReplicationInfo, true);
@@ -1487,7 +1552,10 @@ private reliable server native final event ClientSetLevelCheat(byte NewLevel);
 native final event RequestPerkChange(byte NewPerkIndex);
 
 // Export UKFPlayerController::execServerSetPendingPerkUpdate(FFrame&, void* const)
-private reliable server native final event ServerSetPendingPerkUpdate(byte NewPerkIndex, int NewPerkBuild, byte NewLevel);
+private reliable server native final event ServerSetPendingPerkUpdate(byte NewPerkIndex, int NewPerkBuild, byte NewLevel, optional bool bClientUpdate)
+{
+    bClientUpdate = false;                        
+}
 
 // Export UKFPlayerController::execServerSetSavedPerkIndex(FFrame&, void* const)
 private reliable server native final event ServerSetSavedPerkIndex(byte NewSavedPerkIndex);
@@ -1500,6 +1568,9 @@ protected reliable server native final event ServerSelectPerk(byte NewPerkIndex,
 
 // Export UKFPlayerController::execCanUpdatePerkInfo(FFrame&, void* const)
 native final function bool CanUpdatePerkInfo();
+
+// Export UKFPlayerController::execWasPerkUpdatedThisRound(FFrame&, void* const)
+native final event bool WasPerkUpdatedThisRound();
 
 // Export UKFPlayerController::execApplyPendingPerks(FFrame&, void* const)
 native final function ApplyPendingPerks();
@@ -1533,7 +1604,7 @@ simulated event UpdatePerkLevelMenu(class<KFPerk> PerkClass)
 
 function WaitForPerkAndRespawn()
 {
-    SetTimer(WorldInfo.DeltaSeconds, true, 'Timer_CheckForValidPerk', self);
+    SetTimer(0.01, false, 'Timer_CheckForValidPerk');
     bWaitingForClientPerkData = true;
 }
 
@@ -1548,24 +1619,40 @@ function Timer_CheckForValidPerk()
         {
             WorldInfo.Game.RestartPlayer(self);
         }
-        ClearTimer('Timer_CheckForValidPerk');
         bWaitingForClientPerkData = false;
+        return;
     }
+    SetTimer(0.01, false, 'Timer_CheckForValidPerk');
 }
 
 event SetHaveUpdatePerk(bool bUsedUpdate)
 {
-    bPlayerUsedUpdatePerk = bUsedUpdate;
+    if(KFGameReplicationInfo(WorldInfo.GRI).bMatchHasBegun)
+    {
+        bPlayerUsedUpdatePerk = bUsedUpdate;
+    }
 }
 
 event NotifyPendingPerkChanges()
 {
-    ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 19, PlayerReplicationInfo);
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.OpenedTrader != none)
+    {
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 19, PlayerReplicationInfo);
+    }
 }
 
 event NotifyPerkUpdated()
 {
-    ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 20, PlayerReplicationInfo);
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.OpenedTrader != none)
+    {
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 20, PlayerReplicationInfo);
+    }
 }
 
 function NotifyXPGain(class<KFPerk> PerkClass, int Amount)
@@ -1592,7 +1679,7 @@ function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel)
             bTierUnlocked = true;
             Class'KFPerk'.static.SaveTierUnlockToConfig(PerkClass, 1, PerkLevel);
             Class'KFLocalMessage_Priority'.static.ClientReceive(self, 10);
-            OnlineSub.PlayerInterfaceEx.PostActivityFeedPerkLevelUp(string(PerkClass.Name), PerkClass.default.PerkName, PerkLevel);            
+            OnlineSub.PlayerInterfaceEx.PostActivityFeedPerkLevelUp(string(PerkClass.Name), PerkLevel);            
         }
         else
         {
@@ -1718,7 +1805,7 @@ unreliable client simulated function ClientSpawnCameraEffect(class<KFEmit_Camera
         {
             GetPlayerViewPoint(CamLoc, CamRot);
             CameraEffect.RegisterCamera(self);
-            CameraEffect.UpdateLocation(CamLoc, CamRot, FOVAngle);
+            CameraEffect.UpdateLocation(CamLoc, CamRot, UnmodifiedFOV);
         }
     }
 }
@@ -1738,8 +1825,9 @@ simulated function HandleTransitionFOVAspectAdjusted(float NewFOV, float Transit
 
     if((PlayerCamera != none) && KFPlayerCamera(PlayerCamera) != none)
     {
-        AdjustedFOV = CalcFOVForAspectRatio(NewFOV, myHUD.SizeX, myHUD.SizeY);
+        AdjustedFOV = CalcFOVForAspectRatio(NewFOV, myHUD.SizeX, myHUD.SizeY, UnmodifiedFOV);
         KFPlayerCamera(PlayerCamera).TransitionFOV(AdjustedFOV, TransitionTime);
+        KFPlayerCamera(PlayerCamera).SetUnmodifiedFOV(UnmodifiedFOV);
     }
 }
 
@@ -1757,7 +1845,7 @@ simulated function NotifyResolutionChanged(float NewSizeX, float NewSizeY)
     local KFWeapon KFWeap;
 
     AspectRatio = NewSizeX / NewSizeY;
-    NewFOV = CalcFOVForAspectRatio(PlayerCamera.default.DefaultFOV, NewSizeX, NewSizeY);
+    NewFOV = CalcFOVForAspectRatio(PlayerCamera.default.DefaultFOV, NewSizeX, NewSizeY, UnmodifiedFOV);
     if(AspectRatio >= 1.77)
     {        
     }
@@ -1788,18 +1876,31 @@ simulated function NotifyResolutionChanged(float NewSizeX, float NewSizeY)
         {
             KFPlayerCamera(PlayerCamera).TransitionFOV(DefaultFOV, 0);
         }
+        KFPlayerCamera(PlayerCamera).SetUnmodifiedFOV(UnmodifiedFOV);
     }
 }
 
-static function float CalcFOVForAspectRatio(float OriginalFOV, float SizeX, float SizeY)
+static function float CalcFOVForAspectRatio(float OriginalFOV, float SizeX, float SizeY, out float OutUnmodifiedFOV)
 {
     local float AspectRatio, OriginalAspectRatio, NewFOV;
 
     if(SizeY > float(0))
     {
-        AspectRatio = SizeX / SizeY;
-        OriginalAspectRatio = 16 / float(9);
-        NewFOV = (Atan2(Tan((OriginalFOV * 3.141593) / 360) * (AspectRatio / OriginalAspectRatio), 1) * 360) / 3.141593;
+        if(Class'WorldInfo'.static.IsNeoCheckerboardRendering())
+        {
+            AspectRatio = (0.5 * SizeX) / SizeY;
+            OriginalAspectRatio = 16 / float(9);
+            NewFOV = (Atan2(Tan((OriginalFOV * 3.141593) / 360) * (AspectRatio / OriginalAspectRatio), 1) * 360) / 3.141593;
+            AspectRatio = SizeX / SizeY;
+            OutUnmodifiedFOV = (Atan2(Tan((OriginalFOV * 3.141593) / 360) * (AspectRatio / OriginalAspectRatio), 1) * 360) / 3.141593;            
+        }
+        else
+        {
+            AspectRatio = SizeX / SizeY;
+            OriginalAspectRatio = 16 / float(9);
+            NewFOV = (Atan2(Tan((OriginalFOV * 3.141593) / 360) * (AspectRatio / OriginalAspectRatio), 1) * 360) / 3.141593;
+            OutUnmodifiedFOV = NewFOV;
+        }
     }
     if(NewFOV == float(0))
     {
@@ -1814,15 +1915,15 @@ function FixFOV()
     {
         if(PlayerCamera != none)
         {
-            FOVAngle = CalcFOVForAspectRatio(PlayerCamera.default.DefaultFOV, myHUD.SizeX, myHUD.SizeY);
-            DesiredFOV = CalcFOVForAspectRatio(PlayerCamera.default.DefaultFOV, myHUD.SizeX, myHUD.SizeY);
-            DefaultFOV = CalcFOVForAspectRatio(PlayerCamera.default.DefaultFOV, myHUD.SizeX, myHUD.SizeY);            
+            FOVAngle = CalcFOVForAspectRatio(PlayerCamera.default.DefaultFOV, myHUD.SizeX, myHUD.SizeY, UnmodifiedFOV);
+            DesiredFOV = FOVAngle;
+            DefaultFOV = FOVAngle;            
         }
         else
         {
-            FOVAngle = CalcFOVForAspectRatio(default.DefaultFOV, myHUD.SizeX, myHUD.SizeY);
-            DesiredFOV = CalcFOVForAspectRatio(default.DefaultFOV, myHUD.SizeX, myHUD.SizeY);
-            DefaultFOV = CalcFOVForAspectRatio(default.DefaultFOV, myHUD.SizeX, myHUD.SizeY);
+            FOVAngle = CalcFOVForAspectRatio(default.DefaultFOV, myHUD.SizeX, myHUD.SizeY, UnmodifiedFOV);
+            DesiredFOV = FOVAngle;
+            DefaultFOV = FOVAngle;
         }        
     }
     else
@@ -1834,6 +1935,7 @@ function FixFOV()
     if((myHUD != none) && KFPlayerCamera(PlayerCamera) != none)
     {
         KFPlayerCamera(PlayerCamera).TransitionFOV(DefaultFOV, 0);
+        KFPlayerCamera(PlayerCamera).SetUnmodifiedFOV(UnmodifiedFOV);
     }
 }
 
@@ -1903,6 +2005,13 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
         if(((IsSpectating()) && ViewTarget != none) && (ViewTarget != Pawn) || (KFPawn_Customization(Pawn) == none) && !Pawn.IsAliveAndWell())
         {
             NotifyChangeSpectateViewTarget();
+        }
+    }
+    if((MyGFxHUD != none) && MyGFxHUD.SpectatorInfoWidget != none)
+    {
+        if((NewCamMode == 'FirstPerson') && ViewTarget == self)
+        {
+            MyGFxHUD.SpectatorInfoWidget.SetSpectatedKFPRI(none);
         }
     }
     if(PlayerCamera != none)
@@ -2087,7 +2196,7 @@ protected simulated function DoForceFeedbackForScreenShake(CameraShake ShakeData
     if((ShakeData.bSingleInstance && PlayerCamera != none) && PlayerCamera.CameraShakeCamMod != none)
     {
         ShakeIdx = PlayerCamera.CameraShakeCamMod.ActiveShakes.Find('SourceShakeName', ShakeData.Name;
-        if(ShakeIdx != -1)
+        if(((ShakeIdx != -1) && !PlayerCamera.CameraShakeCamMod.ActiveShakes[ShakeIdx].bBlendingOut) && PlayerCamera.CameraShakeCamMod.ActiveShakes[ShakeIdx].OscillatorTimeRemaining > 0)
         {
             return;
         }
@@ -2141,26 +2250,40 @@ protected simulated function DoForceFeedbackForScreenShake(CameraShake ShakeData
             }
             if(ShakeLevel == 2)
             {
-                if(ShakeData.OscillationDuration <= float(1))
+                if(ShakeData.OscillationDuration <= 0.5)
                 {
-                    ClientPlayForceFeedbackWaveform(Class'KFGameWaveforms'.default.CameraShakeBigShort);                    
+                    ClientPlayForceFeedbackWaveform(Class'KFGameWaveforms'.default.CameraShakeBigVeryShort);                    
                 }
                 else
                 {
-                    ClientPlayForceFeedbackWaveform(Class'KFGameWaveforms'.default.CameraShakeBigLong);
+                    if(ShakeData.OscillationDuration <= float(1))
+                    {
+                        ClientPlayForceFeedbackWaveform(Class'KFGameWaveforms'.default.CameraShakeBigShort);                        
+                    }
+                    else
+                    {
+                        ClientPlayForceFeedbackWaveform(Class'KFGameWaveforms'.default.CameraShakeBigLong);
+                    }
                 }                
             }
             else
             {
                 if(ShakeLevel == 1)
                 {
-                    if(ShakeData.OscillationDuration <= float(1))
+                    if(ShakeData.OscillationDuration <= 0.5)
                     {
-                        ClientPlayForceFeedbackWaveform(Class'KFGameWaveforms'.default.CameraShakeMediumShort);                        
+                        ClientPlayForceFeedbackWaveform(Class'KFGameWaveforms'.default.CameraShakeMediumVeryShort);                        
                     }
                     else
                     {
-                        ClientPlayForceFeedbackWaveform(Class'KFGameWaveforms'.default.CameraShakeMediumLong);
+                        if(ShakeData.OscillationDuration <= float(1))
+                        {
+                            ClientPlayForceFeedbackWaveform(Class'KFGameWaveforms'.default.CameraShakeMediumShort);                            
+                        }
+                        else
+                        {
+                            ClientPlayForceFeedbackWaveform(Class'KFGameWaveforms'.default.CameraShakeMediumLong);
+                        }
                     }
                 }
             }
@@ -2362,7 +2485,7 @@ function ProcessAimCorrection(Pawn Target, KFWeapon W, Vector StartLoc, out Rota
     TargetLoc.X = AimLoc.X;
     TargetLoc.Y = AimLoc.Y;
     Offset.Y = PointDistToLine(AimLoc, TargetLoc - StartLoc, StartLoc);
-    AimCorrection = FMin(W.AimCorrectionSize, 40);
+    AimCorrection = FMin(W.AimCorrectionSize, 35);
     if(self.WorldInfo.TimeDilation < 1)
     {
         AimCorrection *= 0.5;
@@ -2599,7 +2722,7 @@ static simulated function KFInterface_Usable GetCurrentUsableActor(Pawn P, optio
             UsableActor = KFInterface_Usable(A);
             if(NotEqual_InterfaceInterface(UsableActor, (none)) && UsableActor.GetIsUsable(P))
             {
-                InteractionIndex = UsableActor.GetInteractionIndex();
+                InteractionIndex = UsableActor.GetInteractionIndex(P);
                 if(InteractionIndex > BestInteractionIndex)
                 {
                     BestInteractionIndex = InteractionIndex;
@@ -2826,7 +2949,7 @@ static function UpdateInteractionMessages(Actor InteractingActor)
             if(NotEqual_InterfaceInterface(UsableActor, (none)))
             {
                 PC.SetTimer(1, true, 'CheckCurrentUsableActor', PC);
-                PC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex());                
+                PC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex(P));                
             }
             else
             {
@@ -2844,7 +2967,7 @@ function CheckCurrentUsableActor()
     UsableActor = GetCurrentUsableActor(Pawn);
     if(NotEqual_InterfaceInterface(UsableActor, (none)))
     {
-        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex());        
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex(Pawn));        
     }
     else
     {
@@ -3305,14 +3428,12 @@ simulated function SetNightVision(bool bEnabled)
         if(bEnabled)
         {
             Pawn.AttachComponent(NVGLight);
-            NVGLight.SetEnabled(bEnabled);
-            AmplificationLight.SetEnabled(!bEnabled);            
+            NVGLight.SetEnabled(bEnabled);            
         }
         else
         {
             Pawn.DetachComponent(NVGLight);
             NVGLight.SetEnabled(bEnabled);
-            AmplificationLight.SetEnabled(!bEnabled);
         }
     }
 }
@@ -3469,6 +3590,11 @@ reliable client simulated function ClientSetFrontEnd(class<KFGFxMoviePlayer_Mana
         {
             MyGFxManager.Init(LP);
             MyGFxManager.LaunchMenus(bSkipMenus);
+            if((OnlineSub.PlayerInterface.GetLoginStatus(byte(LP.ControllerId)) > 0) && !OnlineSub.SystemInterface.IsControllerConnected(LP.ControllerId))
+            {
+                LogInternal("Controller Disconnected");
+                OnControllerChanged(LP.ControllerId, false);
+            }
         }
         MyGFxManager.OnProfileSettingsRead();
     }
@@ -3613,10 +3739,6 @@ function OnAvatarURLPS4Received(const string ForPlayerName, const string AvatarU
                 AvatarListPS4[I].ImageDownLoader = new Class'KFHTTPImageDownloader';
                 AvatarListPS4[I].ImageDownLoader.DownloadImageFromURL(AvatarURL, OnPS4AvatarDownloadComplete);                
             }
-            else
-            {
-                AvatarListPS4.RemoveItem(AvatarListPS4[I];
-            }
             return;
         }
         ++ I;
@@ -3649,7 +3771,8 @@ function OnPS4AvatarDownloadComplete(bool bWasSuccessful)
             else
             {
                 LogInternal("avatar download fail");
-                AvatarListPS4.RemoveItem(AvatarListPS4[I];
+                AvatarListPS4[I].ImageDownLoader = new Class'KFHTTPImageDownloader';
+                AvatarListPS4[I].ImageDownLoader.DownloadImageFromURL(AvatarListPS4[I].AvatarURL, OnPS4AvatarDownloadComplete);
             }
         }
         -- I;
@@ -3725,7 +3848,7 @@ reliable client simulated event TeamMessage(PlayerReplicationInfo PRI, coerce st
             }
             else
             {
-                if(MyGFxHUD.HudChatBox != none)
+                if((MyGFxHUD.HudChatBox != none) && Len(S) > 0)
                 {
                     MyGFxHUD.HudChatBox.AddChatMessage(Class'KFLocalMessage'.default.SystemString @ S, Class'KFLocalMessage'.default.EventColor);
                 }
@@ -3796,8 +3919,12 @@ exec function TeamTalk()
     OpenChatBox();
 }
 
-reliable client simulated function ClientSetCountdown(bool bFinalCountdown, byte CountdownTime)
+reliable client simulated function ClientSetCountdown(bool bFinalCountdown, byte CountdownTime, optional NavigationPoint PredictedSpawn)
 {
+    if(bFinalCountdown && PredictedSpawn != none)
+    {
+        ClientAddTextureStreamingLoc(PredictedSpawn.Location, 0, false);
+    }
     if((MyGFxManager != none) && MyGFxManager.PartyWidget != none)
     {
         MyGFxManager.PartyWidget.StartCountdown(CountdownTime, bFinalCountdown);        
@@ -3828,6 +3955,10 @@ exec function StartFire(optional byte FireModeNum)
 {
     local KFInventoryManager KFIM;
 
+    if(bCinematicMode)
+    {
+        return;
+    }
     if(!KFPlayerInput(PlayerInput).bQuickWeaponSelect)
     {
         if(((MyGFxHUD != none) && MyGFxHUD.WeaponSelectWidget != none) && MyGFxHUD.WeaponSelectWidget.bChangingWeapons)
@@ -3879,6 +4010,14 @@ function KFAutoPurchaseHelper GetPurchaseHelper(optional bool bInitialize)
 
 function DoAutoPurchase()
 {
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')
+    {
+        OpenTraderMenu();
+        return;
+    }
     ServerSetEnablePurchases(true);
     GetPurchaseHelper().DoAutoPurchase();
     ServerSetEnablePurchases(false);
@@ -4273,6 +4412,31 @@ reliable server function ServerPause()
             SetPause(false);
         }
     }
+}
+
+function bool PerformedUseAction()
+{
+    if(WorldInfo.NetMode != NM_Standalone)
+    {
+        return super(PlayerController).PerformedUseAction();
+    }
+    if(Pawn == none)
+    {
+        return true;
+    }
+    if(Role < ROLE_Authority)
+    {
+        return false;
+    }
+    if(Vehicle(Pawn) != none)
+    {
+        return Vehicle(Pawn).DriverLeave(false);
+    }
+    if(FindVehicleToDrive())
+    {
+        return true;
+    }
+    return TriggerInteracted();
 }
 
 exec function changeSafeFrame(float frameScale)
@@ -5128,13 +5292,10 @@ function int GetPersonalBest(EphemeralMatchStats.EPersonalBests PersonalBestID)
 
 reliable client simulated function ClientReceiveAwardInfo(byte AwardID, PlayerReplicationInfo PRI, int Value)
 {
-    local string AwardName;
-
     MatchStats.ReceiveAwardInfo(AwardID, PRI, Value);
     if((PRI != none) && PRI == PlayerReplicationInfo)
     {
-        AwardName = Localize("EphemeralMatchStats", MatchStats.TeamAwardList[AwardID].TitleIdentifier, "KFGame");
-        OnlineSub.PlayerInterfaceEx.PostActivityFeedTeamAward(MatchStats.TeamAwardList[AwardID].TitleIdentifier, AwardName);
+        OnlineSub.PlayerInterfaceEx.PostActivityFeedTeamAward(MatchStats.TeamAwardList[AwardID].TitleIdentifier);
     }
 }
 
@@ -5146,8 +5307,10 @@ reliable client simulated function ReceiveTopWeapons(TopWeaponReplicationInfo To
 unreliable client simulated event ClientHearDialog(Actor DialogSpeaker, AkEvent DialogEvent, byte bCanBeMinimized)
 {
     local KFPawn KFP;
+    local KFGameEngine KFEngine;
 
-    if((bCanBeMinimized == 1) && Class'KFGameEngine'.default.bMinimalChatter)
+    KFEngine = KFGameEngine(Class'KFGameEngine'.static.GetEngine());
+    if((bCanBeMinimized == 1) && KFEngine.bMinimalChatter)
     {
         return;
     }
@@ -5293,17 +5456,17 @@ reliable client simulated event bool ShowConnectionProgressPopup(Engine.PlayerCo
                     case 3:
                         if(SuppressPasswordRetry)
                         {
-                            MyGFxManager.OpenPopup(2, CachedTitle, CachedMessage, Class'KFCommon_LocalizedStrings'.default.OKString);
+                            MyGFxManager.DelayedOpenPopup(2, 0, CachedTitle, CachedMessage, Class'KFCommon_LocalizedStrings'.default.OKString);
                             KFGEngine.LastConnectionError = 0;                            
                         }
                         else
                         {
-                            MyGFxManager.OpenPopup(4, CachedMessage, "", Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnAttemptPassword);
+                            MyGFxManager.DelayedOpenPopup(4, 0, CachedMessage, "", Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnAttemptPassword);
                             KFGEngine.LastConnectionError = 0;
                         }
                         return true;
                     default:
-                        MyGFxManager.OpenPopup(2, CachedTitle, CachedMessage, Class'KFCommon_LocalizedStrings'.default.OKString);
+                        MyGFxManager.DelayedOpenPopup(2, 0, CachedTitle, CachedMessage, Class'KFCommon_LocalizedStrings'.default.OKString);
                         KFGEngine.LastConnectionError = 0;
                         return true;
                         break;
@@ -5312,7 +5475,7 @@ reliable client simulated event bool ShowConnectionProgressPopup(Engine.PlayerCo
             break;
         case 2:
         case 3:
-            MyGFxManager.OpenPopup(0, CachedTitle, CachedMessage, "", "", None, None, Class'KFCommon_LocalizedStrings'.default.CancelString, CancelDownload);
+            MyGFxManager.DelayedOpenPopup(0, 0, CachedTitle, CachedMessage, "", "", None, None, Class'KFCommon_LocalizedStrings'.default.CancelString, CancelDownload);
             return true;
             break;
         default:
@@ -5412,7 +5575,7 @@ function OnControllerChanged(int ControllerId, bool bIsConnected)
         {
             MyGFxManager.ToggleMenus();
         }
-        MyGFxManager.OpenPopup(2, Localize("Notifications", "ControllerDisconnectedTitle", "KFGameConsole"), Localize("Notifications", "ControllerDisconnectedPS4Message", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+        MyGFxManager.DelayedOpenPopup(2, 7, Localize("Notifications", "ControllerDisconnectedTitle", "KFGameConsole"), Localize("Notifications", "ControllerDisconnectedPS4Message", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
     }
     super(PlayerController).OnControllerChanged(ControllerId, bIsConnected);
 }
@@ -5430,6 +5593,10 @@ function OnLoginCompleted(bool bSuccess)
             KFGFxMenu_IIS(MyGFxManager.CurrentMenu).NotifyLoginFailed();
         }
     }
+    if(bSuccess)
+    {
+        ClientSetOnlineStatus();
+    }
     __LoginCompleteCallback__Delegate = None;
     bLoggingInForOnlinePlay = false;
 }
@@ -5438,14 +5605,13 @@ delegate LoginCompleteCallback();
 
 function StartLogin(delegate<LoginCompleteCallback> InDel, optional bool bInLoggingInForOnlinePlay)
 {
-    __LoginCompleteCallback__Delegate = InDel;
-    bLoggingInForOnlinePlay = bInLoggingInForOnlinePlay;
-    if(NotEqual_InterfaceInterface(OnlineSub.SystemInterface, (none)) && !OnlineSub.SystemInterface.HasLinkConnection())
+    if(__LoginCompleteCallback__Delegate != none)
     {
-        OnLoginCompleted(!bLoggingInForOnlinePlay);
-        MyGFxManager.OpenPopup(2, Localize("Notifications", "NotConnectedTitle", "KFGameConsole"), Localize("Notifications", ((bLoggingInForOnlinePlay) ? "NotConnectedMessage" : "NotConnectedForOnlinePlay"), "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+        LogInternal("Skipping login procsss since there's already a delegate set. This means it should already be in progress");
         return;
     }
+    __LoginCompleteCallback__Delegate = InDel;
+    bLoggingInForOnlinePlay = bInLoggingInForOnlinePlay;
     if(OnlineSub.PlayerInterface.GetLoginStatus(byte(LocalPlayer(Player).ControllerId)) == 0)
     {
         OnlineSub.PlayerInterface.AddLoginCompleteDelegate(byte(LocalPlayer(Player).ControllerId), OnOSSLoginComplete);
@@ -5463,10 +5629,10 @@ function StartLogin(delegate<LoginCompleteCallback> InDel, optional bool bInLogg
 function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.OnlineSubsystem.EOnlineServerConnectionStatus ErrorCode)
 {
     OnlineSub.PlayerInterface.ClearLoginCompleteDelegate(LocalUserNum, OnOSSLoginComplete);
+    PlayerReplicationInfo.PlayerName = LocalPlayer(Player).GetNickname();
+    PlayerReplicationInfo.UniqueId = LocalPlayer(Player).GetUniqueNetId();
     if(ErrorCode == 1)
-    {
-        PlayerReplicationInfo.PlayerName = LocalPlayer(Player).GetNickname();
-        PlayerReplicationInfo.UniqueId = LocalPlayer(Player).GetUniqueNetId();        
+    {        
         GetPS4Avatar(PlayerReplicationInfo.PlayerName);
         if((PlayfabInter != none) && PlayfabInter.CachedPlayfabId == "")
         {
@@ -5487,6 +5653,10 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
             {
                 OnLoginCompleted(true);
             }
+        }
+        if(((MyGFxManager != none) && MyGFxManager.StartMenu != none) && MyGFxManager.StartMenu.FindGameContainer != none)
+        {
+            MyGFxManager.StartMenu.FindGameContainer.SetWhatsNewItems();
         }        
     }
     else
@@ -5501,37 +5671,45 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
             else
             {
                 OnLoginCompleted(true);
-                MyGFxManager.OpenPopup(0, Localize("KFGFxMenu_IIS", "NoOnlinePlay", "KFGameConsole"), Localize("KFGFxMenu_IIS", "NotLoggedInOnlinePSN", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+                MyGFxManager.DelayedOpenPopup(0, 0, Localize("KFGFxMenu_IIS", "NoOnlinePlay", "KFGameConsole"), Localize("KFGFxMenu_IIS", "NotLoggedInOnlinePSN", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
             }            
         }
         else
         {
-            if(ErrorCode == 10)
+            if(ErrorCode == 3)
             {
                 OnLoginCompleted(!bLoggingInForOnlinePlay);
-                if(!MyGFxManager.bMenusOpen)
-                {
-                    MyGFxManager.ToggleMenus();
-                }
-                MyGFxManager.OpenPopup(0, Localize("KFGFxMenu_IIS", "NoOnlinePlay", "KFGameConsole"), Localize("KFGFxMenu_IIS", "TooYoung", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);                
+                MyGFxManager.DelayedOpenPopup(2, 0, Localize("Notifications", "NotConnectedTitle", "KFGameConsole"), Localize("Notifications", ((bLoggingInForOnlinePlay) ? "NotConnectedMessage" : "NotConnectedForOnlinePlay"), "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);                
             }
             else
             {
-                if(ErrorCode == 5)
+                if(ErrorCode == 10)
                 {
                     OnLoginCompleted(!bLoggingInForOnlinePlay);
                     if(!MyGFxManager.bMenusOpen)
                     {
                         MyGFxManager.ToggleMenus();
                     }
-                    MyGFxManager.OpenPopup(0, Localize("KFGFxMenu_IIS", "NoOnlinePlay", "KFGameConsole"), Localize("KFGFxMenu_IIS", "PatchAvailable", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);                    
+                    MyGFxManager.DelayedOpenPopup(0, 0, Localize("KFGFxMenu_IIS", "NoOnlinePlay", "KFGameConsole"), Localize("KFGFxMenu_IIS", "TooYoung", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);                    
                 }
                 else
                 {
-                    if(ErrorCode != 1)
+                    if(ErrorCode == 5)
                     {
-                        OnLoginCompleted(false);
-                        WarnInternal("UNHANDLED LOGIN ERROR" @ string(ErrorCode));
+                        OnLoginCompleted(!bLoggingInForOnlinePlay);
+                        if(!MyGFxManager.bMenusOpen)
+                        {
+                            MyGFxManager.ToggleMenus();
+                        }
+                        MyGFxManager.DelayedOpenPopup(0, 0, Localize("KFGFxMenu_IIS", "NoOnlinePlay", "KFGameConsole"), Localize("KFGFxMenu_IIS", "PatchAvailable", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);                        
+                    }
+                    else
+                    {
+                        if(ErrorCode != 1)
+                        {
+                            OnLoginCompleted(false);
+                            WarnInternal("UNHANDLED LOGIN ERROR" @ string(ErrorCode));
+                        }
                     }
                 }
             }
@@ -5541,10 +5719,7 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
 
 function CheckPrivilegesForMultiplayer()
 {
-    if(bLoggingInForOnlinePlay)
-    {
-        MyGFxManager.OpenPopup(2, Localize("Notifications", "CheckPlusTitle", "KFGameConsole"), Localize("Notifications", "CheckPlusMessage", "KFGameConsole"));
-    }
+    bOnlinePrivilegeCheckPending = true;
     OnlineSub.PlayerInterface.AddPrivilegeLevelCheckedDelegate(OnCanPlayOnlineCheckForMatchmakingComplete);
     OnlineSub.PlayerInterface.CanPlayOnline(byte(LocalPlayer(Player).ControllerId));
 }
@@ -5553,11 +5728,8 @@ function OnCanPlayOnlineCheckForMatchmakingComplete(byte LocalUserNum, Engine.On
 {
     if(Privilege == 0)
     {
+        bOnlinePrivilegeCheckPending = false;
         OnlineSub.PlayerInterface.ClearPrivilegeLevelCheckedDelegate(OnCanPlayOnlineCheckForMatchmakingComplete);
-        if(bLoggingInForOnlinePlay)
-        {
-            MyGFxManager.UnloadCurrentPopup();
-        }
         if(PrivilegeLevel == 2)
         {
             OnLoginCompleted(true);            
@@ -5834,7 +6006,8 @@ defaultproperties
     PerkList(5)=(PerkClass=Class'KFPerk_Firebug',PerkLevel=0,PerkArchetype=none)
     PerkList(6)=(PerkClass=Class'KFPerk_Gunslinger',PerkLevel=0,PerkArchetype=none)
     PerkList(7)=(PerkClass=Class'KFPerk_Sharpshooter',PerkLevel=0,PerkArchetype=none)
-    PerkList(8)=(PerkClass=Class'KFPerk_SWAT',PerkLevel=0,PerkArchetype=none)
+    PerkList(8)=(PerkClass=Class'KFPerk_Survivalist',PerkLevel=0,PerkArchetype=none)
+    PerkList(9)=(PerkClass=Class'KFPerk_SWAT',PerkLevel=0,PerkArchetype=none)
     ServPendingPerkBuild=-1
     ServPendingPerkLevel=-1
     bReflectionsEnabled=true

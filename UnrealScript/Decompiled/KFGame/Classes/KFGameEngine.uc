@@ -29,14 +29,7 @@ enum EConnectionError
 var int LastFocusedGameStateID;
 var Font KFCanvasFont;
 var float KFFontScale;
-var float DefaultGammaMult;
-var float MusicVolumeMultiplier;
-var float SFxVolumeMultiplier;
-var float DialogVolumeMultiplier;
-var float MasterVolumeMultiplier;
-var float PadVolumeMultiplier;
-var float VOIPVolumeMultiplier;
-var float GammaMultiplier;
+var bool bReadingPlayfabStoreData;
 var bool bMusicVocalsEnabled;
 var bool bMinimalChatter;
 var config bool bShowWelderInInv;
@@ -46,6 +39,14 @@ var private config bool bShowCrossHair;
 var private bool bShowCrossHairConsole;
 var config bool bMuteOnLossOfFocus;
 var config bool bEnableAdvDebugLines;
+var float DefaultGammaMult;
+var float MusicVolumeMultiplier;
+var float SFxVolumeMultiplier;
+var float DialogVolumeMultiplier;
+var float MasterVolumeMultiplier;
+var float PadVolumeMultiplier;
+var float VOIPVolumeMultiplier;
+var float GammaMultiplier;
 var config float FOVOptionsPercentageValue;
 var transient delegate<HandshakeCompleteCallback> OnHandshakeComplete;
 var KFGameEngine.EConnectionError LastConnectionError;
@@ -67,8 +68,14 @@ native static function bool CheckNoAutoStart();
 // Export UKFGameEngine::execCheckNoMusic(FFrame&, void* const)
 native static function bool CheckNoMusic();
 
+// Export UKFGameEngine::execCheckNoRandomStart(FFrame&, void* const)
+native static function bool CheckNoRandomStart();
+
 // Export UKFGameEngine::execGetGameVersion(FFrame&, void* const)
 native static function int GetGameVersion();
+
+// Export UKFGameEngine::execIsPlaygoModePS4(FFrame&, void* const)
+native static function bool IsPlaygoModePS4();
 
 // Export UKFGameEngine::execGetDebugLines(FFrame&, void* const)
 native static function KFDebugLines GetDebugLines();
@@ -189,7 +196,6 @@ event bool CheckHandshakeComplete(Engine.PlayerController.EProgressMessageType M
                 if(Title == "HandshakeDone")
                 {
                     SuppressPopup = HandshakeCompleteCallback(true, Title, SuppressPasswordRetry);
-                    ClearOnlineDelegates();
                 }
                 break;
             default:
@@ -202,6 +208,9 @@ event bool CheckHandshakeComplete(Engine.PlayerController.EProgressMessageType M
     }
 }
 
+// Export UKFGameEngine::execCancelPendingLevel(FFrame&, void* const)
+native static function CancelPendingLevel();
+
 function bool IsLockedServer()
 {
     return bUsedForTakeover && !bAvailableForTakeover;
@@ -209,9 +218,18 @@ function bool IsLockedServer()
 
 function UnlockServer()
 {
+    local UniqueNetId NullId;
+
     if(bUsedForTakeover)
     {
+        ConsoleGameSessionGuid = "";
+        KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI).ConsoleGameSessionHost = NullId;
         bAvailableForTakeover = true;
+        bPrivateServer = false;
+        if(GetPlayfabInterface() != none)
+        {
+            GetPlayfabInterface().serverDeallocate();
+        }
     }
 }
 
@@ -220,6 +238,7 @@ native function KillPendingServerConnection();
 
 function ReadPFStoreData()
 {
+    bReadingPlayfabStoreData = true;
     GetPlayfabInterface().AddStoreDataReadCompleteDelegate(OnPlayfabStoreReadComplete);
     GetPlayfabInterface().ReadStoreData();
 }
@@ -243,7 +262,14 @@ function OnStoreDataRead(bool bSuccessful)
 
 function OnPlayfabInventoryReadComplete(bool bSuccessful)
 {
+    bReadingPlayfabStoreData = false;
     GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnPlayfabInventoryReadComplete);
+    GetOnlineSubsystem().ClearNewlyAdded();
+}
+
+function OnLinkStatusChange(bool bIsConnected)
+{
+    OnConnectionStatusChanged(((bIsConnected) ? 1 : 2));
 }
 
 function OnConnectionStatusChanged(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus)
@@ -299,8 +325,8 @@ defaultproperties
 {
     KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
     KFFontScale=0.6
-    DefaultGammaMult=0.68
     bMuteOnLossOfFocus=true
+    DefaultGammaMult=0.68
     FOVOptionsPercentageValue=1
     bDisableAILogging=true
 }

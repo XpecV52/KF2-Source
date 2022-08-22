@@ -44,13 +44,19 @@ function Pushed()
     Outer.Vect2BP(PreStepAsideLocation, Outer.Pawn.Location);
     if(bDelayStep)
     {
-        Outer.AILog_Internal("Going to Command_DelayStep state", 'Command_StepAside');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Going to Command_DelayStep state", 'Command_StepAside');
+        }
         Outer.AIActionStatus = "Delaying StepAside";
         GotoState('Command_DelayStep');        
     }
     else
     {
-        Outer.AILog_Internal("Going to Command_StepAside state", 'Command_StepAside');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("Going to Command_StepAside state", 'Command_StepAside');
+        }
         GotoState('Command_StepAside');
     }
 }
@@ -74,7 +80,10 @@ function Popped()
     }
     if(Outer.bReevaluatePath)
     {
-        Outer.AILog_Internal((string(GetFuncName()) $ "() Calling NotifyNeedRepath on ") $ string(Outer), 'Command_StepAside');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(GetFuncName()) $ "() Calling NotifyNeedRepath on ") $ string(Outer), 'Command_StepAside');
+        }
         Outer.NotifyNeedRepath();
     }
 }
@@ -125,7 +134,10 @@ state Command_StepAside
             {
                 if(Outer.bMovingToGoal)
                 {
-                    Outer.AILog_Internal((("- IS MOVING" @ string(Outer.MoveTarget)) @ string(Outer.MoveGoal)) @ string(Outer.BP2Vect(Outer.MovePosition)), 'Command_StepAside');
+                    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                    {
+                        Outer.AILog_Internal((("- IS MOVING" @ string(Outer.MoveTarget)) @ string(Outer.MoveGoal)) @ string(Outer.BP2Vect(Outer.MovePosition)), 'Command_StepAside');
+                    }
                     if(Outer.MoveTarget != none)
                     {
                         X = Outer.MoveTarget.Location - Outer.Pawn.Location;                        
@@ -144,7 +156,10 @@ state Command_StepAside
                             }
                             else
                             {
-                                Outer.AILog_Internal(string(self) $ " Moving but to where??", 'Command_StepAside');
+                                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                                {
+                                    Outer.AILog_Internal(string(self) $ " Moving but to where??", 'Command_StepAside');
+                                }
                             }
                         }
                     }                    
@@ -174,7 +189,7 @@ state Command_StepAside
         ChkLocs[7] = (Outer.Pawn.Location + (Y * StepDist)) - ((X * StepDist) * 0.25);
         ChkLocs[8] = (Outer.Pawn.Location - (Y * StepDist)) - ((X * StepDist) * 0.25);
         Idx = 0;
-        J0x965:
+        J0x9D9:
 
         if(Idx < ChkLocs.Length)
         {
@@ -186,9 +201,12 @@ state Command_StepAside
                 return true;
             }
             ++ Idx;
-            goto J0x965;
+            goto J0x9D9;
         }
-        Outer.AILog_Internal(string(self) $ " FAILED TO FIND STEP ASIDE LOCATION... RESORT TO STANDING STILL", 'Command_StepAside');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(self) $ " FAILED TO FIND STEP ASIDE LOCATION... RESORT TO STANDING STILL", 'Command_StepAside');
+        }
         Outer.LastFailedToFindStepAsideLocation = Outer.WorldInfo.TimeSeconds;
         return false;
     }
@@ -206,17 +224,26 @@ state Command_StepAside
         }
         if(Outer.bMovingToGoal)
         {
-            Outer.AILog_Internal((string(self) $ " bMovingToGoal || bMovingToCover, Focus is MoveTarget:") @ string(Outer.MoveTarget), 'Command_StepAside');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                Outer.AILog_Internal((string(self) $ " bMovingToGoal || bMovingToCover, Focus is MoveTarget:") @ string(Outer.MoveTarget), 'Command_StepAside');
+            }
             return Outer.MoveTarget;
         }
-        Outer.AILog_Internal((string(self) $ " !HasAnyEnemies(), Focus is StepAsideGoal:") @ string(Outer.StepAsideGoal), 'Command_StepAside');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((string(self) $ " !HasAnyEnemies(), Focus is StepAsideGoal:") @ string(Outer.StepAsideGoal), 'Command_StepAside');
+        }
         return Outer.StepAsideGoal;
     }
 Begin:
 
     if(((Outer.StepAsideGoal != none) && !bIgnoreStepAside) && (Outer.WorldInfo.TimeSeconds - Outer.LastFailedToFindStepAsideLocation) > 1)
     {
-        Outer.AILog_Internal(string(self) $ " Starting to step aside...", 'Command_StepAside');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(self) $ " Starting to step aside...", 'Command_StepAside');
+        }
         Outer.bReevaluatePath = true;
         if(GetStepAsideLocation())
         {
@@ -224,7 +251,10 @@ Begin:
             Outer.MoveTo(Outer.BP2Vect(StepAsideLocation), StepAside_GetMoveFocus(),, Outer.Pawn.bIsWalking);
             if(((Outer.StepAsideGoal != none) && Outer.StepAsideGoal != Outer.Pawn) && (Outer.Pawn.Touching.Find(Outer.StepAsideGoal != -1) || Outer.StepAsideGoal.ReachedPoint(Outer.BP2Vect(PreStepAsideLocation), none))
             {
-                Outer.AILog_Internal(((string(self) $ " Still touching, moving again") @ string(Outer.Pawn.Touching.Find(Outer.StepAsideGoal)) @ string(Outer.StepAsideGoal.ReachedPoint(Outer.BP2Vect(PreStepAsideLocation), none)), 'Command_StepAside');
+                if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+                {
+                    Outer.AILog_Internal(((string(self) $ " Still touching, moving again") @ string(Outer.Pawn.Touching.Find(Outer.StepAsideGoal)) @ string(Outer.StepAsideGoal.ReachedPoint(Outer.BP2Vect(PreStepAsideLocation), none)), 'Command_StepAside');
+                }
                 Outer.Sleep(0.5 + (FRand() * 1));
                 Outer.Vect2BP(PreStepAsideLocation, Outer.Pawn.Location);
                 goto 'Begin';
@@ -234,10 +264,16 @@ Begin:
     }
     else
     {
-        Outer.AILog_Internal(string(self) $ " No step aside goal?", 'Command_StepAside');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(self) $ " No step aside goal?", 'Command_StepAside');
+        }
         Outer.Sleep(0.5);
     }
-    Outer.AILog_Internal(string(self) $ " Finished stepping aside", 'Command_StepAside');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal(string(self) $ " Finished stepping aside", 'Command_StepAside');
+    }
     Status = 'Success';
     Outer.PopCommand(self);
     stop;            

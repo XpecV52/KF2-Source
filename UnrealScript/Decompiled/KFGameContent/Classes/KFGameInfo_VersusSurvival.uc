@@ -666,7 +666,7 @@ function SetPlayerDefaults(Pawn PlayerPawn)
     local KFPawn_Human P;
 
     super(KFGameInfo).SetPlayerDefaults(PlayerPawn);
-    if(MyKFGRIV.WaveNum == 0)
+    if(WaveNum == 0)
     {
         P = KFPawn_Human(PlayerPawn);
         if(P != none)
@@ -816,7 +816,7 @@ function ScoreKill(Controller Killer, Controller Other)
     }
     else
     {
-        if((MyKFGRIV.WaveNum == MyKFGRIV.WaveMax) && KFPawn_MonsterBoss(Other.Pawn) != none)
+        if((WaveNum == WaveMax) && KFPawn_MonsterBoss(Other.Pawn) != none)
         {
             BossDamageDone = POINTS_FOR_BOSS_KILL;
         }
@@ -858,7 +858,7 @@ function EndOfMatch(bool bVictory)
     }    
     WorldInfo.TWRefreshTweakParams();
     WorldInfo.TWPushLogs();
-    WaveBonus = Max(MyKFGRI.WaveNum - 1, 0) * POINTS_FOR_WAVE_COMPLETION;
+    WaveBonus = Max(WaveNum - 1, 0) * POINTS_FOR_WAVE_COMPLETION;
     if(bVictory)
     {
         CheckRoundEndAchievements(0);
@@ -868,7 +868,7 @@ function EndOfMatch(bool bVictory)
     else
     {
         CheckRoundEndAchievements(255);
-        if(MyKFGRI.WaveNum != MyKFGRI.WaveMax)
+        if(WaveNum != WaveMax)
         {
             WaveBonus += Max(int(float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe), 0);
         }
@@ -903,12 +903,12 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 
     MyKFGRIV.SetPlayerZedSpawnTime(255, false);
     ClearTimer('CheckPawnsForGriefing');
-    if(((WinCondition == 1) && SpawnManager != none) && MyKFGRI.WaveNum != MyKFGRI.WaveMax)
+    if(((WinCondition == 1) && SpawnManager != none) && WaveNum != WaveMax)
     {
-        PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
+        PercentOfZedsKilledBeforeWipe = FClamp(1 - (float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI)), 0, 1);
     }
     I = 0;
-    J0xF9:
+    J0xE0:
 
     if(I < WorldInfo.GRI.PRIArray.Length)
     {
@@ -922,19 +922,19 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             {
                 WaveKills = KFPRIV.Kills;
                 J = 0;
-                J0x27A:
+                J0x261:
 
                 if(J < KFPRIV.WaveKills.Length)
                 {
                     WaveKills -= KFPRIV.WaveKills[J];
                     ++ J;
-                    goto J0x27A;
+                    goto J0x261;
                 }
-                KFPRIV.WaveKills[MyKFGRI.WaveNum] = WaveKills;
+                KFPRIV.WaveKills[WaveNum] = WaveKills;
             }
         }
         ++ I;
-        goto J0xF9;
+        goto J0xE0;
     }
     super.WaveEnded(WinCondition);
 }
@@ -1004,7 +1004,7 @@ function UpdateFirstRoundTeamScore()
     Teams[1].TeamScoreDataPacket.RoundScore = Teams[0].TeamScoreDataPacket.RoundScore;
     Teams[1].TeamScoreDataPacket.WaveBonus = WaveBonus;
     Teams[1].TeamScoreDataPacket.Deaths = HumanDeaths;
-    if(MyKFGRI.WaveNum == MyKFGRI.WaveMax)
+    if(WaveNum == WaveMax)
     {
         Teams[1].TeamScoreDataPacket.BossDamageDone = BossDamageDone;
         Teams[1].TeamScoreDataPacket.BossDamageTaken = BossSurvivorDamageTaken;        
@@ -1029,7 +1029,7 @@ function UpdateSecondRoundTeamScore()
 {
     Teams[0].TeamScoreDataPacket.WaveBonus = WaveBonus;
     Teams[0].TeamScoreDataPacket.Deaths = HumanDeaths;
-    if(MyKFGRI.WaveNum == MyKFGRI.WaveMax)
+    if(WaveNum == WaveMax)
     {
         Teams[0].TeamScoreDataPacket.BossDamageDone = BossDamageDone;
         Teams[0].TeamScoreDataPacket.BossDamageTaken = BossSurvivorDamageTaken;        
@@ -1091,7 +1091,15 @@ protected function ClosePostRoundMenu(optional bool bMatchOver)
 
 protected function Timer_AnnounceNextRound()
 {
-    BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 15);
+    local KFPlayerController KFPC;
+
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        if(KFPC.CanRestartPlayer())
+        {
+            KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Priority', 15,,, KFPC.PlayerReplicationInfo.Team);
+        }        
+    }    
 }
 
 protected function CheckTeamNumbers()
@@ -1136,6 +1144,36 @@ protected function BeginNextRound()
     MyKFGRIV.bStopCountDown = true;
     MyKFGRIV.SetPlayerZedSpawnTime(byte(PostRoundWaitTime), false);
     ClosePostRoundMenu();
+}
+
+function bool IsInitialSpawnPointSelection()
+{
+    return MyKFGRI.bRoundIsOver || super(KFGameInfo).IsInitialSpawnPointSelection();
+}
+
+protected function PreSelectPlayerStarts()
+{
+    local KFPlayerController KFPC;
+    local byte TeamNum;
+
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        KFPC.StartSpot = none;
+        TeamNum = KFPC.GetTeamNum();
+        if(KFPC.GetTeamNum() == 0)
+        {
+            KFPC.StartSpot = FindPlayerStart(KFPC, TeamNum);            
+        }
+        else
+        {
+            KFPC.StartSpot = none;
+            continue;            
+        }
+        if(KFPC.StartSpot != none)
+        {
+            KFPC.ClientAddTextureStreamingLoc(KFPC.StartSpot.Location, 0, false);
+        }        
+    }    
 }
 
 function StartSpawning()
@@ -1202,8 +1240,19 @@ state RoundEnded
 {
     event BeginState(name PrevStateName)
     {
+        local int I;
+
         MyKFGRIV.bRoundIsOver = true;
         MyKFGRIV.CurrentRound += 1;
+        I = 0;
+        J0x4E:
+
+        if(I < GameReplicationInfo.PRIArray.Length)
+        {
+            KFPlayerReplicationInfo(GameReplicationInfo.PRIArray[I]).bHasSpawnedIn = false;
+            ++ I;
+            goto J0x4E;
+        }
         MyKFGRIV.SetPlayerZedSpawnTime(255, false);
     }
 
@@ -1229,7 +1278,9 @@ Begin:
     }
     CheckTeamNumbers();
     BeginNextRound();
-    Sleep(PostRoundWaitTime);
+    Sleep(FMax(PostRoundWaitTime - 3, 0));
+    PreSelectPlayerStarts();
+    Sleep(3);
 End:
 
 
@@ -1265,6 +1316,8 @@ defaultproperties
     MinNetPlayers=2
     DifficultyInfoClass=Class'KFGameDifficulty_Versus'
     DifficultyInfoConsoleClass=Class'KFGameDifficulty_Versus_Console'
+    DeathPenaltyModifiers=/* Array type was not detected. */
+    MaxRespawnDosh=/* Array type was not detected. */
     MaxGameDifficulty=0
     GameLengthDoshScale=/* Array type was not detected. */
     SpawnManagerClasses=/* Array type was not detected. */

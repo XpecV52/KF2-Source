@@ -34,8 +34,7 @@ var const private float 			SnarePower;
 
 /** Defines the explosion. */
 var 	  private KFGameExplosion	AAExplosionTemplate;
-var const private string AAExplosionActorClassPath;
-var const private string AAExplosionDamageTypePath;
+var const private class<KFDamageType> AAExplosionDamageType;
 
 enum EMedicPerkSkills
 {
@@ -196,7 +195,7 @@ simulated function float GetSelfHealingSurgePct()
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
@@ -342,10 +341,7 @@ simulated static function KFGameExplosion GetAAExplosionTemplate()
 
 simulated static function class<DamageType> GetAADamageTypeClass()
 {
-	local class<KFDamageType> DamageTypeClass;
-
-	DamageTypeClass = class<KFDamageType>(DynamicLoadObject(default.AAExplosionDamageTypePath, class'Class'));
-	return DamageTypeClass;
+	return default.AAExplosionDamageType;
 }
 
 simulated static function class<KFExplosion_AirborneAgent> GetAAExplosionActorClass()
@@ -476,7 +472,7 @@ simulated function bool IsSurvivalistActive()
  *
  * @return true if we have the skill enabled
  */
-simulated private function bool IsSlugActive()
+simulated function bool IsSlugActive()
 {
 	return PerkSkills[EMedicSlug].bActive && WorldInfo.TimeDilation < 1.f;
 }
@@ -560,8 +556,7 @@ DefaultProperties
 	SnarePower=100
 
 	AAParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Medic_Airborne_Agent_01'
-
-	AAExplosionDamageTypePath="KFGameContent.KFDT_Toxic_MedicGrenade"
+	AAExplosionDamageType=class'KFDT_Toxic_MedicGrenade'
 
 	ToxicDmgTypeClass=class'KFDT_Toxic_AcidicRounds'
 
@@ -571,6 +566,11 @@ DefaultProperties
 		DamageRadius=350
 		DamageFalloffExponent=0.f
 		DamageDelay=0.f
+
+		// Camera Shake
+		CamShake=none
+		CamShakeInnerRadius=0
+		CamShakeOuterRadius=0
 		
 		// Damage Effects
 		KnockDownStrength=0

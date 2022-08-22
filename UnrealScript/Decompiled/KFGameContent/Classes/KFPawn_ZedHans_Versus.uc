@@ -110,7 +110,6 @@ defaultproperties
     ShieldShatterExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedHans_Versus.ShatterExploTemplate0'
     bVersusZed=true
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHans_Versus.MeleeHelper'
-    LocalizationKey=KFPawn_ZedHans
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

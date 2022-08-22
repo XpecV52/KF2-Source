@@ -81,6 +81,7 @@ ExplosiveString="Trappole sulle porte:"
 [KFGFxMenu_StartGame]
 CreateMatchString="CREA INCONTRO"
 MatchmakingString="MATCHMAKING ONLINE"
+ConsoleMatchmakingString="GIOCA ONLINE"
 ServerBrowserString="Cerca server"
 
 DifficultyTitle="DIFFICOLTÀ"
@@ -106,6 +107,7 @@ CouldNotFindGameDescriptionStringOrbis="Nessun server dalla ricerca. Prova filtr
 
 [KFGFxStartGameContainer_FindGame]
 MultiplayerString="Matchmaking online"
+ConsoleMultiplayerString="Gioca online"
 SoloString="Giocatore singolo offline"
 TutorialString="Addestramento di base"
 
@@ -138,7 +140,7 @@ inProgressList2=""
 BackString="INDIETRO"
 StartGameString="INIZIA IL GIOCO"
 LaunchGameString="LANCIA IL GIOCO"
-InProgressString="PROGRESSI DI GIOCO"
+InProgressString="PROGRESSI GIOCO"
 SoloGameString="GIOCATORE SINGOLO"
 LeaveMatchMakingString="CHIUDI MATCHMAKING"
 MultiplayerLaunchString="GIOCA ONLINE ORA"
@@ -167,7 +169,7 @@ SharedContentString="CONDIVISIONI"
 AuthorString="da "
 
 [KFGFxStartContainer_ServerBrowserOverview]
-OverviewString="PANORAMICA INCONTRO"
+OverviewString="PANORAM. INCONTRO"
 DescriptionString="ricerca nel server browser..."
 
 [KFGFxTraderContainer_GameInfo]
@@ -252,17 +254,17 @@ MutatorsString="MUTATORI"
 JoinGameString="ENTRA PARTITA"
 SpectateGameString="SPETTATORE"
 ServerInfoString="INFO SERVER"
-UnfavoriteString="RIMUOVI PREFERITO"
+UnfavoriteString="NON PREFERITO"
 
 [KFGFxMenu_Trader]
-ExitMenuString="ESCI DAL MENU"
+ExitMenuString="ESCI"
 
 [KFGFxTraderContainer_Store]
 TraderString="ACQUISTA EQUIPAGGIAMENTO"
 
 [KFGFxServerBrowser_ServerList]
-LeaveServerBrowserString="ESCI DAL SERVER BROWSER"
-DetailsString="DETTAGLI SERVER"
+LeaveServerBrowserString="ESCI DA SERVER BROWSER"
+DetailsString="INFO SERVER"
 SpectateString="SPETTATORE"
 
 [KFGFxTraderContainer_ItemDetails]
@@ -273,7 +275,7 @@ RangeTitle="RAGGIO"
 BlockTitle="BLOCCA"
 ParryTitle="PARATA"
 AccuracyTitle="PRECISIONE"
-CapacityTitle="CAPACITÀ MUNIZIONI"
+CapacityTitle="CAPACITÀ MUN."
 MagTitle="DIM. CARICATORE"
 HealAmountTitle="LIVELLO CURA"
 HealRechargeTitle="TEMPO RICARICA"
@@ -282,11 +284,11 @@ SellString="VENDI"
 CannotSellString="NON CONSENTITO"
 CannotBuyString="NON CONSENTITO"
 FavoriteString="PREFERITO"
-UnfavoriteString="RIMUOVI PREFERITO"
+UnfavoriteString="NON PREFERITO"
 
 [KFGFxTraderContainer_PlayerInventory]
-FillString="CARICA"
-MagString="CARICATORE"
+FillString="RIFO."
+MagString="CARIC"
 BuyGrenadeString="1X"
 AutoFillString="AUTOCARICA"
 ArmorString="Armatura"
@@ -334,15 +336,253 @@ OpponentsString=" (avversari)"
 
 [KFGFxMenu_PostGameReport]
 MapVoteString="VOTO MAPPA"
-PlayerStatsString="STATISTICHE GIOCATORE"
+PlayerStatsString="STAT. GIOCATORE"
 TeamAwardsString="PREMI"
 PostGameReportString="REPORT POST PARTITA"
-NextMapString="Prossima mappa tra:"
+NextMapString="Prox mappa:"
 WaveString="ONDATA"
 XPString="XP"
 VictoryString="Vittoria"
 DefeatString="Sconfitta"
 ItemDropTitleString="NUOVO OGGETTO OTTENUTO!"
+
+[EphemeralMatchStats_CHN]
+MedicineMaster="药物大师"
+ZedSlayer="丧尸杀戮者"
+Enforcer="实施者"
+Destroyer="毁灭者"
+GiantSlayer="巨型丧尸"
+MoneyBags="钱袋"
+HeadPopper="爆头"
+Dominator="统治者"
+
+Carnage="大屠杀"
+Closer="终结者"
+ComboMaker="组合制造者"
+Grabby="步兵长裤"
+ZedSupport="丧尸支援"
+Zednnihilation="灭绝丧尸"
+
+[EphemeralMatchStats_CHT]
+MedicineMaster="醫藥專家"
+ZedSlayer="Zed 殺手"
+Enforcer="執行者"
+Destroyer="毀滅者"
+GiantSlayer="巨人殺手"
+MoneyBags="錢袋"
+HeadPopper="爆頭專家"
+Dominator="強者"
+
+Carnage="屠戮"
+Closer="救援王"
+ComboMaker="連擊高手"
+Grabby="貪心鬼"
+ZedSupport="Zed 支援"
+Zednnihilation="Zed 化"
+
+[EphemeralMatchStats_DEU]
+MedicineMaster="Meister der Medizin"
+ZedSlayer="Zed-Schlächter"
+Enforcer="Vollstrecker"
+Destroyer="Zerstörer"
+GiantSlayer="Riesen-Schlächter"
+MoneyBags="Geldsäcke"
+HeadPopper="Köpfer"
+Dominator="Dominator"
+
+Carnage="Gemetzel"
+Closer="Schließer"
+ComboMaker="Combo-Macher"
+Grabby="Gierige Hosen"
+ZedSupport="Zed-Support"
+Zednnihilation="Zednnihilation"
+
+[EphemeralMatchStats_ESL]
+MedicineMaster="Curandero experto"
+ZedSlayer="Azote zed"
+Enforcer="Sicario"
+Destroyer="Destructor"
+GiantSlayer="Cazagigantes"
+MoneyBags="Tío Gilito"
+HeadPopper="Revientacabezas"
+Dominator="El amo"
+
+Carnage="Matanza"
+Closer="Más cercano"
+ComboMaker="Maestro del combo"
+Grabby="Culo veo..."
+ZedSupport="Apoyo zed"
+Zednnihilation="Aniquilación zed"
+
+[EphemeralMatchStats_ESN]
+MedicineMaster="Curandero experto"
+ZedSlayer="Azote zed"
+Enforcer="Sicario"
+Destroyer="Destructor"
+GiantSlayer="Cazagigantes"
+MoneyBags="Tío Gilito"
+HeadPopper="Revientacabezas"
+Dominator="El amo"
+
+Carnage="Matanza"
+Closer="Más cercano"
+ComboMaker="Maestro del combo"
+Grabby="Culo veo..."
+ZedSupport="Apoyo zed"
+Zednnihilation="Aniquilación zed"
+
+[EphemeralMatchStats_FRA]
+MedicineMaster="Maître médecin"
+ZedSlayer="Tueur de Zeds"
+Enforcer="Exécuteur"
+Destroyer="Destructeur"
+GiantSlayer="Tueur géant"
+MoneyBags="Sacs d'argent"
+HeadPopper="Exploseur de têtes"
+Dominator="Dominateur"
+
+Carnage="Carnage"
+Closer="Plus prêt"
+ComboMaker="Comboteur"
+Grabby="Avide"
+ZedSupport="Soutien des Zeds"
+Zednnihilation="Zednnihilation"
+
+[EphemeralMatchStats_FRC]
+MedicineMaster="Maître médecin"
+ZedSlayer="Tueur de Zeds"
+Enforcer="Exécuteur"
+Destroyer="Destructeur"
+GiantSlayer="Tueur géant"
+MoneyBags="Sacs d'argent"
+HeadPopper="Exploseur de têtes"
+Dominator="Dominateur"
+
+Carnage="Carnage"
+Closer="Plus prêt"
+ComboMaker="Comboteur"
+Grabby="Avide"
+ZedSupport="Soutien des Zeds"
+Zednnihilation="Zednnihilation"
+
+[EphemeralMatchStats_INT]
+MedicineMaster="Medicine Master"
+ZedSlayer="Zed Slayer"
+Enforcer="Enforcer"
+Destroyer="Destroyer"
+GiantSlayer="Giant Slayer"
+MoneyBags="Money Bags"
+HeadPopper="Head Popper"
+Dominator="Dominator"
+
+Carnage="Carnage"
+Closer="Closer"
+ComboMaker="Combo Maker"
+Grabby="Grabby Pants"
+ZedSupport="Zed Support"
+Zednnihilation="Zednnihilation"
+
+[EphemeralMatchStats_ITA]
+MedicineMaster="Medico Esperto"
+ZedSlayer="Sterminatore di Zed"
+Enforcer="Gendarme"
+Destroyer="Distruttore"
+GiantSlayer="Sterminatore di giganti"
+MoneyBags="Sacchi di soldi"
+HeadPopper="Scoppiateste"
+Dominator="Dominatore"
+
+Carnage="Carneficina"
+Closer="Avvicinamento"
+ComboMaker="Campione di combo"
+Grabby="Manolesta"
+ZedSupport="Supporto Zed"
+Zednnihilation="Massacro Zed"
+
+[EphemeralMatchStats_JPN]
+MedicineMaster="医療マスター"
+ZedSlayer="zedスレイヤー"
+Enforcer="執行人"
+Destroyer="デストロイヤー"
+GiantSlayer="巨人スレイヤー"
+MoneyBags="金持ち"
+HeadPopper="ヘッドポッパー"
+Dominator="ドミネーター"
+
+Carnage="大虐殺"
+Closer="クローザー"
+ComboMaker="コンボメーカー"
+Grabby="回収人"
+ZedSupport="zedサポート"
+Zednnihilation="zed全滅"
+
+[EphemeralMatchStats_KOR]
+MedicineMaster="약물 마스터"
+ZedSlayer="제드 학살자"
+Enforcer="행동대장"
+Destroyer="파괴자"
+GiantSlayer="자이언트 학살자"
+MoneyBags="돈가방"
+HeadPopper="머리 지뢰"
+Dominator="지배자"
+
+Carnage="대학살"
+Closer="종결자"
+ComboMaker="콤보 메이커"
+Grabby="그래비 바지"
+ZedSupport="제드 지원"
+Zednnihilation="제드 섬멸"
+
+[EphemeralMatchStats_POL]
+MedicineMaster="Mistrz medycyny"
+ZedSlayer="Pogromca zetów"
+Enforcer="Stróż"
+Destroyer="Niszczyciel"
+GiantSlayer="Pogromca olbrzymów"
+MoneyBags="Miliony monet"
+HeadPopper="Łowca głów"
+Dominator="Dominator"
+
+Carnage="Rzeź"
+Closer="Kat"
+ComboMaker="Mistrz combo"
+Grabby="Przylepa"
+ZedSupport="Pomocnik zetów"
+Zednnihilation="Tępiciel zetów"
+
+[EphemeralMatchStats_PTB]
+MedicineMaster="Mestre da medicina"
+ZedSlayer="Matador de Zeds"
+Enforcer="Executor"
+Destroyer="Destruidor"
+GiantSlayer="Matador de gigantes"
+MoneyBags="Sacos de dinheiro"
+HeadPopper="Estoura-cabeças"
+Dominator="Dominador"
+
+Carnage="Carnificina"
+Closer="Próximo"
+ComboMaker="Cheio de combinações"
+Grabby="Calças pegajosas"
+ZedSupport="Apoio de Zeds"
+Zednnihilation="Zedniquilação"
+
+[EphemeralMatchStats_RUS]
+MedicineMaster="Мастер медицины"
+ZedSlayer="Покоритель мутантов"
+Enforcer="Боевик"
+Destroyer="Разрушитель"
+GiantSlayer="Покоритель великанов"
+MoneyBags="Денежный мешок"
+HeadPopper="Крушитель голов"
+Dominator="Господствующий"
+
+Carnage="Резня"
+Closer="Ближе"
+ComboMaker="Комбинатор"
+Grabby="Хапуга"
+ZedSupport="Поддержка мутантов"
+Zednnihilation="Зачистка мутантов"
 
 [EphemeralMatchStats]
 MedicineMaster="Medico Esperto"
@@ -423,13 +663,13 @@ DamageDealtString="Danni arrecati:"
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ PRONTI ]"
-WaitingString="IN ATTESA DEI GIOCATORI"
+WaitingString="IN ATTESA DEL/DEI GIOCATORE/I"
 DeployingString="SCHIERAMENTO TRA "
 CreatePartyString="CREA PARTY"
 ReadyString="PRONTI"
 LeaveString="ABBANDONA IL PARTY"
 SquadString="SQUAD"
-SoloString="GIOCATORE SINGOLO"
+SoloString="SQUAD"
 DefaultPlayerName="Giocatore"
 
 PartyLeaderSearchingForMatchString="sta cercando un incontro..."
@@ -453,7 +693,7 @@ DownLoadingString="In download:"
 PartyLeaderString="Leader"
 
 [KFGFxWidget_PartyInGame_Versus]
-SwitchTeamsString="CAMBIA SQUADRA"
+SwitchTeamsString="CAMBIA TEAM"
 balanceWarningString="AVVISO: Bilanciamento squadre automatico"
 
 [KFGFxMenu_Gear]
@@ -471,6 +711,7 @@ WeaponsInfoString="Personalizza"
 
 [KFGFxMenu_Inventory]
 NoItemsString="Nessun oggetto dell'Inventario trovato con il filtro selezionato."
+InventoryPopulatingString="Attendere, prego. L’inventario si sta popolando."
 ItemExchangeTimeOutString="Connessione Server Oggetti fallita"
 TryAgainString="Il Client non è riuscito a scambiare l'oggetto. Riprova più tardi. Se il problema persiste, contattare l’assistenza."
 RecycleOneString="RICICLA UNO"
@@ -508,7 +749,7 @@ CraftRequirementString="Quantità di materiali da costruzione insufficiente"
 CraftCosmeticDescriptionString="Puoi costruire elementi estetici in questo menu utilizzando materiale per elementi estetici. Puoi ottenere materiale per elementi estetici riciclando gli elementi estetici che possiedi. Per riciclare, seleziona un oggetto e premi ricicla."
 CraftWeaponDescriptionString="Puoi costruire nuove skin arma in questo menu utilizzando materiale per skin arma. Puoi ottenere materiale per skin arma riciclando le skin arma che possiedi. Per riciclare, seleziona un oggetto e premi ricicla."
 RequiresString="Necessita: "
-PurchaseKeyString="COMPRA CHIAVE: "
+PurchaseKeyString="COMPRA CHIAVE"
 LookUpOnMarketString="Cerca oggetto:"
 
 [KFGFxPerksContainer]
@@ -578,7 +819,7 @@ MenuStrings[6]="ESCI"
 ServerBrowserString="SERVER BROWSER"
 MatchmakingString="MATCHMAKING"
 SoloString="GIOCATORE SINGOLO"
-OverviewString="PANORAMICA INCONTRO"
+OverviewString="PANORAM. INCONTRO"
 
 TitleStrings[0]="Vuoi già uscire dallo scontro?"
 TitleStrings[1]="Vai via così presto?"
@@ -598,7 +839,7 @@ TierUnlockedString="NUOVE ABILITÀ SBLOCCATE"
 [KFGFxHUD_WaveInfo]
 WaveString="ONDATA"
 BossWaveString="BOSS"
-FinalWaveString="FINALE"
+FinalWaveString="FINE"
 
 [KFGFxHUD_TraderCompass]
 TraderString="COMMERCIANTE"
@@ -628,7 +869,7 @@ FinalString="Finale"
 
 [KFGFxHUD_WeaponSelectWidget]
 PrimaryString="PRIMARIO"
-EquiptmentString="EQUIPAGGIAMENTO"
+EquiptmentString="CORREDO"
 MeleeString="MISCHIA"
 SecondaryString="SECONDARIO"
 ThrowString="GETTA ARMA"
@@ -840,7 +1081,7 @@ AmbientOcclusionStringOptions_DX10[1]="SSAO"
 [KFGFxOptionsMenu_Controls]
 TabStrings[0]="INPUT"
 TabStrings[1]="COMBINAZIONI TASTI"
-TabStrings[2]="SCHEMA TASTI"
+TabStrings[2]="SCHEMA TASTO"
 HeaderText="OPZIONI CONTROLLI"
 
 [KFGFxOptionsMenu_GameSettings]
@@ -1018,6 +1259,7 @@ KickVoteNotEnoughPlayersString="Giocatori insufficienti per richiedere un kick"
 KickVoteNoSpectatorsString="Gli spettatori non possono richiedere un kick"
 KickedFromServerString="Sei stato rimosso dal server"
 BannedFromServerString="Sei stato rimosso da questo server Non puoi rientrare in questo momento"
+ServerNoLongerAvailableString="Impossibile raggiungere il server"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Hai ricevuto munizioni da"
@@ -1026,7 +1268,7 @@ PendingPerkChangesSet="Le classi saranno cambiate alla fine dell'ondata"
 PendingPerkChangesApplied="Cambi classe effettuati!"
 HealedByMessage="Sei stato curato da"
 HealedMessage="Hai curato"
-YourselfString="te stesso."
+YourselfString="te stesso"
 PickedupArmorMessage="Hai preso una parte di armatura"
 FullArmorMessage="La tua armatura è già al completo"
 PickupAmmoMessage="Hai preso munizioni"
@@ -1086,7 +1328,7 @@ PlayerCanChangePerksString="Cambi classe consentiti"
 ZedWaitingForNextRoundString="Invasione di Zed imminente!"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="USA AUTO-UPGRADE<%HOLD%>COMMERCIANTE"
+UseTraderMessage="COMMERCIANTE <%HOLD%> USA AUTOUPGRADE"
 UseDoorMessage="APRI/CHIUDI<%HOLD%>EQUIPAGGIA SALDATORE"
 EquipWelderMessage="<%HOLD%>EQUIPAGGIA SALDATORE"
 ZedUseDoorMessage="APRI/CHIUDI"
@@ -1127,22 +1369,182 @@ Passives[2]=(Title="",Description="");
 Passives[3]=(Title="",Description="");
 Passives[4]=(Title="",Description="");
 
-SkillSlots0[0]=(Title="", Description="")
-SkillSlots0[1]=(Title="", Description="")
+SkillSlots0[0]=(Title="",Description="");
+SkillSlots0[1]=(Title="",Description="");
 
-SkillSlots1[0]=(Title="", Description="")
-SkillSlots1[1]=(Title="", Description="")
+SkillSlots1[0]=(Title="",Description="");
+SkillSlots1[1]=(Title="",Description="");
 
-SkillSlots2[0]=(Title="", Description="")
-SkillSlots2[1]=(Title="", Description="")
+SkillSlots2[0]=(Title="",Description="");
+SkillSlots2[1]=(Title="",Description="");
 
-SkillSlots3[0]=(Title="", Description="")
-SkillSlots3[1]=(Title="", Description="")
+SkillSlots3[0]=(Title="",Description="");
+SkillSlots3[1]=(Title="",Description="");
 
-SkillSlots4[0]=(Title="", Description="")
-SkillSlots4[1]=(Title="", Description="")
+SkillSlots4[0]=(Title="",Description="");
+SkillSlots4[1]=(Title="",Description="");
 
 WeaponDroppedMessage="Hai gettato%%%% a causa della tua nuova capacità di trasporto!"
+
+[KFPerk_Berserker]
+PerkName_CHN="狂战士"
+PerkName_CHT="狂戰士"
+PerkName_DEU="Berserker"
+PerkName_ESL="Berserker"
+PerkName_ESN="Berserker"
+PerkName_FRA="Fou Furieux"
+PerkName_FRC="Fou Furieux"
+PerkName_INT="Berserker"
+PerkName_ITA="Berserker"
+PerkName_JPN="バーサーカー"
+PerkName_KOR="버서커"
+PerkName_POL="Berserker"
+PerkName_PTB="Berserker"
+PerkName_RUS="Берсеркер"
+
+[KFPerk_Commando]
+PerkName_CHN="突击兵"
+PerkName_CHT="突擊隊"
+PerkName_DEU="Kommando"
+PerkName_ESL="Comando"
+PerkName_ESN="Comando"
+PerkName_FRA="Commando"
+PerkName_FRC="Commando"
+PerkName_INT="Commando"
+PerkName_ITA="Commando"
+PerkName_JPN="コマンドー"
+PerkName_KOR="코만도"
+PerkName_POL="Komandos"
+PerkName_PTB="Comando"
+PerkName_RUS="Коммандос"
+
+[KFPerk_Demolitionist]
+PerkName_CHN="爆破手"
+PerkName_CHT="殲滅"
+PerkName_DEU="Demolierer"
+PerkName_ESL="Exp. en demolición"
+PerkName_ESN="Exp. en demolición"
+PerkName_FRA="Démolisseur"
+PerkName_FRC="Démolisseur"
+PerkName_INT="Demolitionist"
+PerkName_ITA="Demolitore"
+PerkName_JPN="デモリッショニスト"
+PerkName_KOR="데몰리셔니스트"
+PerkName_POL="Destruktor"
+PerkName_PTB="Demolidora"
+PerkName_RUS="Подрывник"
+
+[KFPerk_FieldMedic]
+PerkName_CHN="医疗兵"
+PerkName_CHT="戰地軍醫"
+PerkName_DEU="Feldsanitäter"
+PerkName_ESL="Médico de campo"
+PerkName_ESN="Médico de campo"
+PerkName_FRA="Médecin"
+PerkName_FRC="Médecin"
+PerkName_INT="Field Medic"
+PerkName_ITA="Medico da campo"
+PerkName_JPN="フィールドメディック"
+PerkName_KOR="필드 메딕"
+PerkName_POL="Sanitariusz"
+PerkName_PTB="Médico de campo"
+PerkName_RUS="Полевой медик"
+
+[KFPerk_Firebug]
+PerkName_CHN="纵火犯"
+PerkName_CHT="縱火狂"
+PerkName_DEU="Feuerteufel"
+PerkName_ESL="Pirómano"
+PerkName_ESN="Pirómano"
+PerkName_FRA="Pyromane"
+PerkName_FRC="Pyromane"
+PerkName_INT="Firebug"
+PerkName_ITA="Piromane"
+PerkName_JPN="ファイアバグ"
+PerkName_KOR="파이어버그"
+PerkName_POL="Podpalacz"
+PerkName_PTB="Incendiária"
+PerkName_RUS="Поджигатель"
+
+[KFPerk_Gunslinger]
+PerkName_CHN="枪手"
+PerkName_CHT="槍砲工"
+PerkName_DEU="Revolverheld"
+PerkName_ESL="Pistolero"
+PerkName_ESN="Pistolero"
+PerkName_FRA="Flingueur"
+PerkName_FRC="Flingueur"
+PerkName_INT="Gunslinger"
+PerkName_ITA="Pistolero"
+PerkName_JPN="ガンスリンガー"
+PerkName_KOR="건슬링거"
+PerkName_POL="Rewolwerowiec"
+PerkName_PTB="Pistoleiro"
+PerkName_RUS="Стрелок"
+
+[KFPerk_Sharpshooter]
+PerkName_CHN="神射手"
+PerkName_CHT="神射手"
+PerkName_DEU="Scharfschütze"
+PerkName_ESL="Tirador"
+PerkName_ESN="Tirador"
+PerkName_FRA="Tireur d'élite"
+PerkName_FRC="Tireur d'élite"
+PerkName_INT="Sharpshooter"
+PerkName_ITA="Cecchino"
+PerkName_JPN="シャープシューター"
+PerkName_KOR="샤프슈터"
+PerkName_POL="Strzelec wyborowy"
+PerkName_PTB="Atirador exímio"
+PerkName_RUS="Меткий стрелок"
+
+[KFPerk_Support]
+PerkName_CHN="支援兵"
+PerkName_CHT="支援"
+PerkName_DEU="Unterstützer"
+PerkName_ESL="Apoyo"
+PerkName_ESN="Apoyo"
+PerkName_FRA="Soutien"
+PerkName_FRC="Soutien"
+PerkName_INT="Support"
+PerkName_ITA="Supporto"
+PerkName_JPN="サポート"
+PerkName_KOR="서포트"
+PerkName_POL="Wsparcie"
+PerkName_PTB="Apoio"
+PerkName_RUS="Боец поддержки"
+
+[KFPerk_SWAT]
+PerkName_CHN="SWAT"
+PerkName_CHT="特種部隊"
+PerkName_DEU="SWAT"
+PerkName_ESL="SWAT"
+PerkName_ESN="SWAT"
+PerkName_FRA="SWAT"
+PerkName_FRC="SWAT"
+PerkName_INT="SWAT"
+PerkName_ITA="SWAT"
+PerkName_JPN="スワット"
+PerkName_KOR="SWAT"
+PerkName_POL="SWAT"
+PerkName_PTB="SWAT"
+PerkName_RUS="Спецназовец"
+
+[KFPerk_Survivalist]
+PerkName_CHN="生存主义者"
+PerkName_CHT="生存者"
+PerkName_DEU="Überlebenskünstler"
+PerkName_ESL="Superviviente"
+PerkName_ESN="Superviviente"
+PerkName_FRA="Survivant"
+PerkName_FRC="Survivant"
+PerkName_INT="Survivalist"
+PerkName_ITA="Survivalista"
+PerkName_JPN="サバイバリスト"
+PerkName_KOR="서바이벌리스트"
+PerkName_POL="Mistrz przetrwania"
+PerkName_PTB="Sobrevivente"
+PerkName_RUS="Выживальщик"
 
 [KFPerk_Berserker]
 PerkName="Berserker"
@@ -1529,9 +1931,6 @@ PerforateDescription="Durante gli Zed time, le tue armi di classe perforano ogni
 Barrage="ZED TIME - Raffica"
 BarrageDescription="Durante gli Zed time, le tue armi di classe sparano quasi in tempo reale."
 
-[KFPerk_Sharpshooter]
-PerkName="Cecchino"
-
 [KFPerk_SWAT]
 PerkName="SWAT"
 EXPAction1="Arrecare danni con arma SWAT"
@@ -1578,6 +1977,52 @@ SWATEnforcerDescription="Durante gli Zed time, puoi muoverti in tempo reale con 
 RapidAssault="ZED TIME - Assalto rapido"
 RapidAssaultDescription="Durante gli Zed time, usando armi di classe puoi avere munizioni infinite, sparare quasi in tempo reale e aumentare la forza d'urto del 100%"
 
+[KFPerk_Survivalist]
+PerkName="Survivalista"
+EXPAction1="Arrecare danni con qualsiasi arma"
+EXPAction2="Uccidere Clot con qualsiasi arma"
+
+SkillCatagories[0]="Maneggiare le armi"
+SkillCatagories[1]="Tecniche di sopravvivenza"
+SkillCatagories[2]="Equipaggiamento"
+SkillCatagories[3]="Distruzione"
+SkillCatagories[4]="Addestramento speciale"
+
+Passives[0]=(Title="Danni arma",Description="Aumento x%x danni arma per livello");
+Passives[1]=(Title="Resistenza danni totale",Description="Aumento %x% resistenza a tutti i danni per livello");
+Passives[2]=(Title="Armatura pesante",Description="%x% ogni livello (max 25%) non subisce danni con l'armatura.");
+Passives[3]=(Title="Ricarica Zedtime",Description="Aumento %x% velocità ricarica negli Zed time per livello");
+
+
+HeavyWeaponsReload="Addestramento armi pesanti"
+HeavyWeaponsReloadDescription="Aumenta la velocità di ricarica con armi Demolitore, Cecchino e Supporto."
+
+TacticalReload="Ricarica tattica"
+TacticalReloadDescription="Aumenta la velocità di ricarica con armi Commando, Pistolero e SWAT."
+
+FieldMedic="Addestramento medico"
+FieldMedicDescription="Aumenta l'efficacia di tutte le tue cure del 20% e diminuisce il tempo di raffreddamento della siringa e dei dardi curativi del 25%."
+
+MeleeExpert="Esperto mischia"
+MeleeExpertDescription="Aumenta la velocità degli attacchi da mischia del 15%, infligge il 10% di danni in più e aumenta la velocità del 25% con armi da mischia."
+
+AmmoVest="Giubbotto munizioni"
+AmmoVestDescription="Trasporta fino al 15% di munizioni in più per tutte le armi, la granata diventa una granata curativa."
+
+BigPockets="Imbragatura per armi"
+BigPocketsDescription="Aumenta di 5 la capacità di trasporto e la tua granata diventa una Molotov."
+
+ZedShrapnel="Esplosione spontanea Zed"
+ZedShrapnelDescription="Gli Zed che uccidi hanno il 20% di possibilità di esplodere, danneggiando e abbattendo gli Zed vicini."
+
+MakeThingsGoBoom="Che botto"
+MakeThingsGoBoomDescription="Aumenta del 25% l'area di effetto di tutti gli esplosivi."
+
+Madman="ZED TIME - Follia"
+MadmanDescription="Durante gli Zed time, tutte le tue armi sparano 3 volte più veloci."
+
+IncapMaster="ZED TIME - Debilitazione"
+IncapMasterDescription="Durante gli Zed time, la potenza di tutti i metodi di indebolimento aumenta del 200% per tutte le armi.” "
 
 [Fonts]
 Bicubik="Bicubik"
@@ -1707,7 +2152,7 @@ FeaturedMasterCraftedItem="Speciale Oggetto mastercrafted - $9.99"
 FeaturedItemBundle="Speciale Pacchetto oggetti"
 Merch="Ottieni il merch ufficiale Tripwire!"
 PS4AnnounceMent="Inserire news specifiche per PS4 qui"
-PS4Key="Chiave cassa Horzine - Apre ogni cassa! $ 2,49"
+PS4Key="Chiave cassa Horzine - Apre ogni cassa!"
 PS4CosmeticCrate1="Cassa rif. estetici Horzine | Serie #1"
 PS4CosmeticCrate2="Cassa rif. estetici Horzine | Serie #2"
 PS4WeaponSkinCrate1="Cassa skin armi Horzine | Serie #1"
@@ -1849,6 +2294,198 @@ Source0="Promo Chivalry"
 ;============================================
 ; Map Localization
 ;============================================
+[KF-BioticsLab KFMapSummary]
+DisplayName_CHN="生命学实验室"
+DisplayName_CHT="Biotics 實驗室"
+DisplayName_DEU="Biotika-Labor"
+DisplayName_ESL="Laboratorio biótico"
+DisplayName_ESN="Laboratorio biótico"
+DisplayName_FRA="Labo biotique"
+DisplayName_FRC="Labo biotique"
+DisplayName_INT="Biotics Lab"
+DisplayName_ITA="Laboratorio Biotics"
+DisplayName_JPN="Biotics Lab"
+DisplayName_KOR="바이오틱스 연구소"
+DisplayName_POL="Laboratorium biotyczne"
+DisplayName_PTB="Laboratório de Biótica"
+DisplayName_RUS="Биотич. лаборатория"
+
+[KF-Outpost KFMapSummary]
+DisplayName_CHN="前哨"
+DisplayName_CHT="前哨"
+DisplayName_DEU="Außenposten"
+DisplayName_ESL="Avanzada"
+DisplayName_ESN="Avanzada"
+DisplayName_FRA="Avant-poste"
+DisplayName_FRC="Avant-poste"
+DisplayName_INT="Outpost"
+DisplayName_ITA="Avamposto"
+DisplayName_JPN="Outpost"
+DisplayName_KOR="전초기지"
+DisplayName_POL="Stacja"
+DisplayName_PTB="Posto Avançado"
+DisplayName_RUS="Аванпост"
+
+[KF-BurningParis KFMapSummary]
+DisplayName_CHN="燃烧的巴黎"
+DisplayName_CHT="燃燒的巴黎"
+DisplayName_DEU="Loderndes Paris"
+DisplayName_ESL="París arde"
+DisplayName_ESN="París arde"
+DisplayName_FRA="Paris en cendres"
+DisplayName_FRC="Paris en cendres"
+DisplayName_INT="Burning Paris"
+DisplayName_ITA="Parigi in fiamme"
+DisplayName_JPN="Burning Paris"
+DisplayName_KOR="불타는 파리"
+DisplayName_POL="Płonący Paryż"
+DisplayName_PTB="Paris em Chamas"
+DisplayName_RUS="Париж в огне"
+
+[KF-VolterManor KFMapSummary]
+DisplayName_CHN="沃尔特庄园"
+DisplayName_CHT="華特大宅"
+DisplayName_DEU="Volter-Anwesen"
+DisplayName_ESL="Mansión Volter"
+DisplayName_ESN="Mansión Volter"
+DisplayName_FRA="Manoir Volter"
+DisplayName_FRC="Manoir Volter"
+DisplayName_INT="Volter Manor"
+DisplayName_ITA="Residenza Volter"
+DisplayName_JPN="Volter Manor"
+DisplayName_KOR="볼터의 영지"
+DisplayName_POL="Dwór Voltera"
+DisplayName_PTB="Mansão Volter"
+DisplayName_RUS="Поместье Вольтера"
+
+[KF-Catacombs KFMapSummary]
+DisplayName_CHN="地下墓穴"
+DisplayName_CHT="萬人塚"
+DisplayName_DEU="Katakomben"
+DisplayName_ESL="Catacumbas"
+DisplayName_ESN="Catacumbas"
+DisplayName_FRA="Catacombes"
+DisplayName_FRC="Catacombes"
+DisplayName_INT="Catacombs"
+DisplayName_ITA="Catacombe"
+DisplayName_JPN="Catacombs"
+DisplayName_KOR="카타콤"
+DisplayName_POL="Katakumby"
+DisplayName_PTB="Catacumbas"
+DisplayName_RUS="Катакомбы"
+
+[KF-EvacuationPoint KFMapSummary]
+DisplayName_CHN="撤退点"
+DisplayName_CHT="避難場所"
+DisplayName_DEU="Evakuierungsstelle"
+DisplayName_ESL="Punto de evacuación"
+DisplayName_ESN="Punto de evacuación"
+DisplayName_FRA="Point d'évacuation"
+DisplayName_FRC="Point d'évacuation"
+DisplayName_INT="Evacuation Point"
+DisplayName_ITA="Punto di evacuazione"
+DisplayName_JPN="Evacuation Point"
+DisplayName_KOR="철수지점"
+DisplayName_POL="Punkt ewakuacyjny"
+DisplayName_PTB="Zona de Evacuação"
+DisplayName_RUS="Точка эвакуации"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName_CHN="农舍"
+DisplayName_CHT="農莊"
+DisplayName_DEU="Bauernhof"
+DisplayName_ESL="Casa rural"
+DisplayName_ESN="Casa rural"
+DisplayName_FRA="Ferme"
+DisplayName_FRC="Ferme"
+DisplayName_INT="Farmhouse"
+DisplayName_ITA="Fattoria"
+DisplayName_JPN="Farmhouse"
+DisplayName_KOR="농장가옥"
+DisplayName_POL="Farma"
+DisplayName_PTB="Casa da Fazenda"
+DisplayName_RUS="Дом на ферме"
+
+[KF-BlackForest KFMapSummary]
+DisplayName_CHN="黑森林"
+DisplayName_CHT="黑森林"
+DisplayName_DEU="Schwarzwald"
+DisplayName_ESL="Selva negra"
+DisplayName_ESN="Selva negra"
+DisplayName_FRA="Forêt-Noire"
+DisplayName_FRC="Forêt-Noire"
+DisplayName_INT="Black Forest"
+DisplayName_ITA="Foresta nera"
+DisplayName_JPN="Black Forest"
+DisplayName_KOR="검은 숲"
+DisplayName_POL="Czarny las"
+DisplayName_PTB="Floresta Negra"
+DisplayName_RUS="Черный лес"
+
+[KF-Prison KFMapSummary]
+DisplayName_CHN="监狱"
+DisplayName_CHT="監獄"
+DisplayName_DEU="Gefängnis"
+DisplayName_ESL="Cárcel"
+DisplayName_ESN="Cárcel"
+DisplayName_FRA="Prison"
+DisplayName_FRC="Prison"
+DisplayName_INT="Prison"
+DisplayName_ITA="Prigione"
+DisplayName_JPN="Prison"
+DisplayName_KOR="감옥"
+DisplayName_POL="Więzienie"
+DisplayName_PTB="Prisão"
+DisplayName_RUS="Тюрьма"
+
+[KF-ContainmentStation KFMapSummary]
+DisplayName_CHN="隔离站"
+DisplayName_CHT="控制站"
+DisplayName_DEU="Eindämmungszentrum"
+DisplayName_ESL="Puesto de contención"
+DisplayName_ESN="Puesto de contención"
+DisplayName_FRA="Poste de confinement"
+DisplayName_FRC="Poste de confinement"
+DisplayName_INT="Containment Station"
+DisplayName_ITA="Stazione contenimento"
+DisplayName_JPN="Containment Station"
+DisplayName_KOR="폐쇄 스테이션"
+DisplayName_POL="Ośrodek izolacyjny"
+DisplayName_PTB="Zona de Contenção"
+DisplayName_RUS="Станция локализации"
+
+[KF-HostileGrounds KFMapSummary]
+DisplayName_CHN="敌对区域"
+DisplayName_CHT="敵營"
+DisplayName_DEU="Feindeszone"
+DisplayName_ESL="Tierra hostil"
+DisplayName_ESN="Tierra hostil"
+DisplayName_FRA="Terrains hostiles"
+DisplayName_FRC="Terrains hostiles"
+DisplayName_INT="Hostile Grounds"
+DisplayName_ITA="Terreno ostile"
+DisplayName_JPN="Hostile Grounds"
+DisplayName_KOR="적진"
+DisplayName_POL="Wrogie terytorium"
+DisplayName_PTB="Terrenos Hostis"
+DisplayName_RUS="Враждебные земли"
+
+[KF-InfernalRealm KFMapSummary]
+DisplayName_CHN="地狱领域"
+DisplayName_CHT="地獄"
+DisplayName_DEU="Höllenebene"
+DisplayName_ESL="Reino infernal"
+DisplayName_ESN="Reino infernal"
+DisplayName_FRA="Royaume des enfers"
+DisplayName_FRC="Royaume des enfers"
+DisplayName_INT="Infernal Realm"
+DisplayName_ITA="Regno infernale"
+DisplayName_JPN="Infernal Realm"
+DisplayName_KOR="지옥의 왕국"
+DisplayName_POL="Piekielna domena"
+DisplayName_PTB="Reino Infernal"
+DisplayName_RUS="Царство ада"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio Biotics"
 

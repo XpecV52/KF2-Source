@@ -127,6 +127,27 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
     }
 }
 
+simulated function CauseMuzzleFlash(byte FireModeNum)
+{
+    local bool AutoShellEject;
+
+    if(FireModeNum == 1)
+    {
+        if(MuzzleFlash == none)
+        {
+            AttachMuzzleFlash();
+        }
+        AutoShellEject = MuzzleFlash.bAutoActivateShellEject;
+        MuzzleFlash.bAutoActivateShellEject = false;
+        super(KFWeapon).CauseMuzzleFlash(FireModeNum);
+        MuzzleFlash.bAutoActivateShellEject = AutoShellEject;        
+    }
+    else
+    {
+        super(KFWeapon).CauseMuzzleFlash(FireModeNum);
+    }
+}
+
 simulated function bool ShouldAutoReload(byte FireModeNum)
 {
     if(FireModeNum == 1)
@@ -164,27 +185,6 @@ simulated function bool CanOverrideMagReload(byte FireModeNum)
         return true;
     }
     return super(KFWeapon).CanOverrideMagReload(FireModeNum);
-}
-
-simulated function CauseMuzzleFlash(byte FireModeNum)
-{
-    local bool AutoShellEject;
-
-    if(FireModeNum == 1)
-    {
-        if(MuzzleFlash == none)
-        {
-            AttachMuzzleFlash();
-        }
-        AutoShellEject = MuzzleFlash.bAutoActivateShellEject;
-        MuzzleFlash.bAutoActivateShellEject = false;
-        super(KFWeapon).CauseMuzzleFlash(FireModeNum);
-        MuzzleFlash.bAutoActivateShellEject = AutoShellEject;        
-    }
-    else
-    {
-        super(KFWeapon).CauseMuzzleFlash(FireModeNum);
-    }
 }
 
 simulated function bool CanAltAutoReload()
@@ -345,6 +345,7 @@ defaultproperties
     SpareAmmoCapacity[1]=11
     InitialSpareMags[0]=2
     InitialSpareMags[1]=3
+    AmmoPickupScale[1]=2
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */

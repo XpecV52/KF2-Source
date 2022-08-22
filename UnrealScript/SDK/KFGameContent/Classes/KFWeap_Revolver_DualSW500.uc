@@ -79,7 +79,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RevolverSW500'
-	FireInterval(DEFAULT_FIREMODE)=+0.14 // about twice as fast as single
+	FireInterval(DEFAULT_FIREMODE)=+0.19 // 0.14 about twice as fast as single
 	InstantHitDamage(DEFAULT_FIREMODE)=150.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SW500'
 	PenetrationPower(DEFAULT_FIREMODE)=3.0
@@ -91,7 +91,7 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_RevolverSW500'
-	FireInterval(ALTFIRE_FIREMODE)=+0.14 // about twice as fast as single
+	FireInterval(ALTFIRE_FIREMODE)=+0.19 // 0.14 about twice as fast as single
 	InstantHitDamage(ALTFIRE_FIREMODE)=150.0
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_SW500'
 	PenetrationPower(ALTFIRE_FIREMODE)=3.0

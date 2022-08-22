@@ -56,8 +56,6 @@ var() float MeleeSustainedWarmupTime;
 var array< class<DamageType> > BlockDamageType;
 /** Damage while blocking will be mitigated by this percentage */
 var() float BlockDamageMitigation;
-/** Some melee weapons have a chance of ignoring incoming damage while attacking */
-var() float ParryDuration;
 /** Parry damage will be mitigated by this percentage */
 var() float ParryDamageMitigationPercent;
 var array<name> MeleeAttackSettleAnims;
@@ -183,7 +181,14 @@ simulated function int GetMeleeDamage(byte FireModeNum, optional Vector RayDir)
     {
         if(IsHeavyAttack(FireModeNum))
         {
-            InstigatorPerk.ModifyHardAttackDamage(Damage);
+            InstigatorPerk.ModifyHardAttackDamage(Damage);            
+        }
+        else
+        {
+            if(IsLightAttack(FireModeNum))
+            {
+                InstigatorPerk.ModifyLightAttackDamage(Damage);
+            }
         }
     }
     return Damage;
@@ -241,6 +246,8 @@ simulated function bool CanReload(optional byte FireModeNum)
     return super.CanReload(FireModeNum);
 }
 
+simulated function bool IsLightAttack(byte FireMode);
+
 simulated function PlayMeleeSettleAnim()
 {
     local int AnimIdx;
@@ -286,7 +293,7 @@ reliable client simulated function ClientPlayParryEffects(bool bInterruptSuccess
     }
 }
 
-simulated function PlayBlockStart()
+simulated function float PlayBlockStart()
 {
     local float AnimDuration;
 
@@ -303,7 +310,7 @@ simulated function PlayBlockStart()
     {
         BlockLoopTimer();
     }
-    ParryDuration = AnimDuration;
+    return AnimDuration;
 }
 
 simulated function PlayLocalBlockEffects(AkBaseSoundObject Sound, ParticleSystem PSTemplate)
@@ -556,6 +563,11 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
             }
         }
     }
+
+    simulated function bool IsLightAttack(byte FireMode)
+    {
+        return true;
+    }
     stop;    
 }
 
@@ -734,7 +746,9 @@ simulated state MeleeBlocking
 
     simulated function BeginState(name PreviousStateName)
     {
-        PlayBlockStart();
+        local float ParryDuration;
+
+        ParryDuration = PlayBlockStart();
         if(ParryDuration > 0)
         {
             SetTimer(ParryDuration, false, 'ParryCheckTimer');
@@ -933,7 +947,6 @@ defaultproperties
     BlockDamageType(0)=class'KFDT_Bludgeon'
     BlockDamageType(1)=class'KFDT_Slashing'
     BlockDamageMitigation=0.5
-    ParryDuration=1
     ParryDamageMitigationPercent=0.2
     MeleeAttackSettleAnims(0)=Settle_V1
     MeleeBlockHitAnims(0)=Block_Hit_V1

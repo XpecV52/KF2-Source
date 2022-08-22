@@ -8,11 +8,14 @@
 //=============================================================================
 class KFPawn_ZedCrawler extends KFPawn_Monster;
 
-var actor LastBumpLevelActor;
-var float LastBumpLevelTime;
+var protected Actor LastBumpLevelActor;
+var protected float LastBumpLevelTime;
 
 /** Template used by special crawlers when exploding during death */
 var protected const KFGameExplosion DeathExplosionTemplate;
+
+/** How much of an impulse to apply to crawler if gore settings prevent dismemberment */
+var protected const float LowGoreExplosionImpulse;
 
 /** TRUE when difficulty has dictated that this is a special crawler type */
 var repnotify protected bool bIsSpecialCrawler;
@@ -228,14 +231,14 @@ event SpiderBumpLevel( vector HitLocation, vector HitNormal, optional actor Wall
 			{
 				if( Wall != none && LastBumpLevelActor != Wall )
 				{
-					if( MyKFAIC!= None ) { MyKFAIC.AILog_Internal("(Pawn) "$GetFuncName()$" Wall: "$Wall$" HitNormal: "$HitNormal,'Crawler'); };
+					if( !class'Engine'.static.GetEngine().bDIsableAILogging && MyKFAIC!= None ) { MyKFAIC.AILog_Internal("(Pawn) "$GetFuncName()$" Wall: "$Wall$" HitNormal: "$HitNormal,'Crawler'); };
 					LastBumpLevelActor = Wall;
 					MyKFAIC.NotifyHitWall( HitNormal, Wall );
 				}
 			}
 			else
 			{
-				if( MyKFAIC!= None ) { MyKFAIC.AILog_Internal("(Pawn) [PHYS_FALLING] "$GetFuncName()$" Wall: "$Wall$" HitNormal: "$HitNormal,'Crawler'); };
+				if( !class'Engine'.static.GetEngine().bDIsableAILogging && MyKFAIC!= None ) { MyKFAIC.AILog_Internal("(Pawn) [PHYS_FALLING] "$GetFuncName()$" Wall: "$Wall$" HitNormal: "$HitNormal,'Crawler'); };
 			}
 		}
 	}
@@ -297,6 +300,7 @@ simulated function Timer_CheckForExplode()
 	local KFGoreManager GoreManager;
 	local array<name> OutGibBoneList;
 	local int NumGibs;
+	local vector Impulse;
 
 	if( bShouldExplode )
 	{
@@ -305,18 +309,36 @@ simulated function Timer_CheckForExplode()
 		if( WorldInfo.NetMode != NM_DedicatedServer )
 		{
 			GoreManager = KFGoreManager( WorldInfo.MyGoreEffectManager );
-			if( GoreManager != none )
+			if( GoreManager != none && GoreManager.AllowMutilation() )
 			{
-				NumGibs = 10 + Rand(4);
-				NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
-				GetClosestHitBones( NumGibs, Location, OutGibBoneList );
+				// Enable alternate bone weighting and gore skeleton
+				if( !bIsGoreMesh )
+				{
+					SwitchToGoreMesh();
+				}
 
-				GoreManager.CauseGibsAndApplyImpulse( self,
-													Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType,
-													Location,
-													OutGibBoneList,
-													none,
-													Mesh.GetBoneLocation(Mesh.GetBoneName(0)) );
+				// Apply gore only if we were able to successfully switch to the gore mesh
+				if( bIsGoreMesh )
+				{
+					NumGibs = 10 + Rand(4);
+					NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
+					GetClosestHitBones( NumGibs, Location, OutGibBoneList );
+
+					GoreManager.CauseGibsAndApplyImpulse( self,
+														Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType,
+														Location,
+														OutGibBoneList,
+														none,
+														Mesh.GetBoneLocation(Mesh.GetBoneName(0)) );
+					return;
+				}
+			}
+
+			// If we didn't gib, add a ragdoll impulse
+			if( NumGibs == 0 && Physics == PHYS_RigidBody )
+			{
+				Impulse = vect(0,0,1) * LowGoreExplosionImpulse * PhysRagdollImpulseScale;
+				Mesh.AddImpulse( Impulse, Location );
 			}
 		}
 	}
@@ -445,6 +467,7 @@ function int GetSpotterDialogID()
 defaultproperties
 {
    DeathExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedCrawler:ExploTemplate0'
+   LowGoreExplosionImpulse=5000.000000
    bKnockdownWhenJumpedOn=True
    bIsCrawlerClass=True
    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_Crawler_Archetype'
@@ -477,6 +500,7 @@ defaultproperties
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Crawler'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
+   LocalizationKey="KFPawn_ZedCrawler"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -503,7 +527,7 @@ defaultproperties
    IncapSettings(6)=(Duration=5.500000,Cooldown=7.500000,Vulnerability=(10.000000))
    IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000,10.000000,10.000000,10.000000))
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(2.000000))
-   IncapSettings(9)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
+   IncapSettings(9)=(Duration=4.500000,Cooldown=1.500000,Vulnerability=(2.500000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=7.500000,Vulnerability=(0.500000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=500.000000
@@ -609,14 +633,13 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True
       BlockZeroExtent=True
       BlockRigidBody=True
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
-      Translation=(X=0.000000,Y=0.000000,Z=-48.000000)
+      Translation=(X=0.000000,Y=0.000000,Z=-40.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True

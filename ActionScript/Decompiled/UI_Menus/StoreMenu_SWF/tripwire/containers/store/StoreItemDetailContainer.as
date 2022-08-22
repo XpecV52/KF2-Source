@@ -2,6 +2,7 @@ package tripwire.containers.store
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import com.greensock.events.TweenEvent;
     import flash.display.InteractiveObject;
     import flash.events.Event;
     import flash.external.ExternalInterface;
@@ -94,10 +95,6 @@ package tripwire.containers.store
             {
                 this.addCartButton.visible = param1.price != undefined && param1.price != "";
             }
-            if(bManagerUsingGamepad)
-            {
-                FocusManager.setFocus(!!this.addCartButton.visible ? this.addCartButton : this.cancelButton);
-            }
         }
         
         override public function closeContainer() : void
@@ -116,7 +113,7 @@ package tripwire.containers.store
                 "autoAlpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Cubic.easeOut,
                 "useFrames":true,
-                "onComplete":onOpened
+                "onComplete":this.onOpened
             });
         }
         
@@ -133,6 +130,15 @@ package tripwire.containers.store
                 "useFrames":true,
                 "onComplete":onClosed
             });
+        }
+        
+        override protected function onOpened(param1:TweenEvent = null) : void
+        {
+            super.onOpened(param1);
+            if(bManagerUsingGamepad && _bReadyForInput)
+            {
+                FocusManager.setFocus(!!this.addCartButton.visible ? this.addCartButton : this.cancelButton);
+            }
         }
     }
 }

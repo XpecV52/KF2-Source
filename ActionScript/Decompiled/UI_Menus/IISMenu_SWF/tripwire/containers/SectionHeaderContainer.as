@@ -25,14 +25,17 @@ package tripwire.containers
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            this.updateIconVisibility();
+            this.headerIcon.visible = true;
+            if(this.leftTriggerIcon)
+            {
+                this.leftTriggerIcon.visible = false;
+            }
             stage.addEventListener(MenuManager.INPUT_CHANGED,this.onInputChange,false,0,true);
         }
         
         override protected function onInputChange(param1:Event) : *
         {
             super.onInputChange(param1);
-            this.updateIconVisibility();
         }
         
         public function set text(param1:String) : void
@@ -57,16 +60,6 @@ package tripwire.containers
                 return;
             }
             this._controllerIconVisible = param1;
-            this.updateIconVisibility();
-        }
-        
-        public function updateIconVisibility() : void
-        {
-            this.headerIcon.visible = !bManagerUsingGamepad || !this._controllerIconVisible;
-            if(this.leftTriggerIcon)
-            {
-                this.leftTriggerIcon.visible = bManagerUsingGamepad && this._controllerIconVisible;
-            }
         }
     }
 }

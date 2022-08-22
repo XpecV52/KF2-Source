@@ -7,6 +7,7 @@ package tripwire.controls.trader
     import flash.text.TextField;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.gfx.Extensions;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.controls.TripListItemRenderer;
     import tripwire.controls.TripUILoaderQueue;
     
@@ -64,6 +65,7 @@ package tripwire.controls.trader
             this.perkIconLoader = this.ShopWeaponIconLoader.perkIconLoader;
             clickSoundEffect = "";
             overSoundEffect = "TRADER_INVENTORY_ITEM_CLICK";
+            TextFieldEx.setTextAutoSize(this.buyTextField,"shrink");
         }
         
         override public function setData(param1:Object) : void

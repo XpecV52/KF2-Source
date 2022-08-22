@@ -108,7 +108,7 @@ function SetGamePassword(string P)
 
 function bool RequiresPassword()
 {
-    return GamePassword != "";
+    return (GamePassword != "") || GameEngine(Class'Engine'.static.GetEngine()).bPrivateServer;
 }
 
 function Controller GetControllerFromString(string Target)
@@ -470,21 +470,31 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
     local string InPassword;
     local int I, CurIP, CurPort, ClientIP, LingeringPort;
 
-    local bool bFound, bSuccess;
+    local bool bFound, bSuccess, bHasPrivateServerOption;
     local UniqueNetId NullId, HostUID;
     local Player ClientConn, CurConn;
     local AuthSession CurClientSession;
     local OnlineGameSettings GameSettings;
+    local GameEngine Engine;
 
     OutError = "";
     InPassword = WorldInfo.Game.ParseOption(Options, "Password");
+    Engine = GameEngine(Class'Engine'.static.GetEngine());
+    if(WorldInfo.IsConsoleBuild())
+    {
+        bHasPrivateServerOption = WorldInfo.Game.HasOption(Options, "bJoinViaInvite");        
+    }
+    else
+    {
+        bHasPrivateServerOption = WorldInfo.Game.HasOption(Options, "friend");
+    }
     if((WorldInfo.NetMode != NM_Standalone) && WorldInfo.Game.AtCapacity(bSpectator, UniqueId))
     {
         OutError = ("<Strings:" $ PathName(WorldInfo.Game.GameMessageClass)) $ ".MaxedOutMessage>";        
     }
     else
     {
-        if(((GamePassword != "") && !InPassword == GamePassword) && (AdminPassword == "") || !InPassword == AdminPassword)
+        if((((GamePassword != "") && !InPassword == GamePassword) && (AdminPassword == "") || !InPassword == AdminPassword) || Engine.bPrivateServer && !bHasPrivateServerOption)
         {
             OutError = "<Strings:" $ ((InPassword == "") ? "Engine.AccessControl.NeedPassword>" : "Engine.AccessControl.WrongPassword>");
         }
@@ -552,19 +562,19 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
                         }                        
                     }
                     I = 0;
-                    J0x832:
+                    J0x967:
 
                     if(I < ClientsPendingAuth.Length)
                     {
                         if(ClientsPendingAuth[I].ClientUID == UniqueId)
                         {
                             bFound = true;
-                            goto J0x8A2;
+                            goto J0x9D7;
                         }
                         ++ I;
-                        goto J0x832;
+                        goto J0x967;
                     }
-                    J0x8A2:
+                    J0x9D7:
 
                     if(!bFound)
                     {

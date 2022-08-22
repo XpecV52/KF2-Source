@@ -406,6 +406,7 @@ defaultproperties
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm')
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Husk'
+   LocalizationKey="KFPawn_ZedHusk"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -459,7 +460,7 @@ defaultproperties
    IncapSettings(6)=(Cooldown=20.500000,Vulnerability=(0.150000))
    IncapSettings(7)=(Duration=3.000000,Cooldown=5.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000,1.000000))
    IncapSettings(8)=(Cooldown=3.000000,Vulnerability=(0.400000))
-   IncapSettings(9)=(Duration=1.200000,Cooldown=1.500000,Vulnerability=(1.000000))
+   IncapSettings(9)=(Duration=1.000000,Cooldown=1.500000,Vulnerability=(1.000000))
    IncapSettings(10)=(Duration=4.000000,Cooldown=8.500000,Vulnerability=(3.000000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=450.000000
@@ -564,7 +565,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

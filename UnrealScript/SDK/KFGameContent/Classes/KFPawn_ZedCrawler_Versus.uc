@@ -33,46 +33,13 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 	}
 }
 
-/*simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
-{
-	local KFGoreManager GoreManager;
-	local array<name> OutGibBoneList;
-	local int NumGibs;
-
-	if( !bPlayedDeath && DamageType != class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType )
-	{
-		class'KFSM_PlayerCrawler_Suicide'.static.TriggerExplosion( self, true );
-		if( WorldInfo.NetMode != NM_DedicatedServer )
-		{
-			GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-			if( GoreManager != none )
-			{
-				NumGibs = Max( Rand(15), 8 );
-				NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
-				GetClosestHitBones(NumGibs, Location, OutGibBoneList);
-
-				GoreManager.CauseGibsAndApplyImpulse( self,
-													Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType,
-													Location,
-													OutGibBoneList,
-													none,
-													Mesh.GetBoneLocation(Mesh.GetBoneName(0)) );
-			}
-		}
-	}
-
-	super.PlayDying( DamageType, HitLoc );
-}*/
-
 DefaultProperties
 {
 	bVersusZed=true
 	TeammateCollisionRadiusPercent=0.30
-
-	LocalizationKey=KFPawn_ZedCrawler
 	//DrawScale3D=(X=1.5,Y=1.5,Z=1.25)
 
-    Health=150// almost 5x default // 250.f
+    Health=250// almost 5x default // 250.f //150
     DoshValue=25.0      // 2x default because they are harder to hit
     XPValues(0)=32.0    // 4x default because they are harder to hit
 
@@ -93,13 +60,13 @@ DefaultProperties
 	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=0.85f,	SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Jump', bShowOnHud=false)) // Jump always at end of array
 
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(1.3)))  //3.0
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.7)))  //1.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.8)))  //1.0 //0.7
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.3)))  //0.9
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.4)))  //1.01
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.5)))  //0.76
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.5)))  //0.5
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.5)))  //0.5
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.5)))  //0.8
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.8)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.8)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(1.0)))  //0.8 //0.5
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.35)))  //0.25
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.35)))  //0.85
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.4)))   //1.0
@@ -114,16 +81,17 @@ DefaultProperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm', 	             DamageScale=(1.6)))  //0.9
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Pistol_Medic', 	 DamageScale=(1.5)))  //0.9
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Winchester', 	     DamageScale=(0.7)))  //0.9
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_CaulkBurn', 	         DamageScale=(0.9)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_CaulkBurn', 	         DamageScale=(2.0)))  //0.9
 	DamageTypeModifiers.Add((DamageType=class'KFDT_ExplosiveSubmunition_HX25', 	 DamageScale=(0.6)))  //0.9
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_EvisceratorProj', 	 DamageScale=(0.3)))  //0.9
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_Eviscerator', 	     DamageScale=(0.3)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon_Crovel', 	    	 DamageScale=(1.2)))  //0.8
 
 
 
 	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.5, 0.1, 0.1, 0.1), Cooldown=3.0, Duration=2.0)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(0.5),                     Cooldown=3.0)
-	IncapSettings(AF_Stumble)=	(Vulnerability=(0.5),                     Cooldown=3.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(0.1),                     Cooldown=3.0)
 	IncapSettings(AF_GunHit)=	(Vulnerability=(1.0),                     Cooldown=0.75)
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=0.5)
 	IncapSettings(AF_Poison)=	(Vulnerability=(1),                       Cooldown=5.0, Duration=2.0)
@@ -131,6 +99,7 @@ DefaultProperties
 	IncapSettings(AF_FirePanic)=(Vulnerability=(0.5),                     Cooldown=7.0, Duration=3)
 	IncapSettings(AF_EMP)=		(Vulnerability=(1.0),                     Cooldown=5.0, Duration=3.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5, Duration=2.0)
+	IncapSettings(AF_Snare)=	(Vulnerability=(0.7, 0.7, 1.0, 0.7),      Cooldown=8.5,  Duration=1.5)
 
 	//defaults
 	Begin Object Name=MeleeHelper_0

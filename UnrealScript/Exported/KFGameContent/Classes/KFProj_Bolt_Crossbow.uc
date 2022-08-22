@@ -20,7 +20,7 @@ simulated function SyncOriginalLocation()
 
 defaultproperties
 {
-   WeaponClass=Class'kfgamecontent.KFWeap_Bow_Crossbow'
+   WeaponClassName="KFWeap_Bow_Crossbow"
    AmmoPickupSound=AkEvent'WW_WEP_SA_Crossbow.Play_Crossbow_Bolt_Pickup'
    ProjPickupTemplate=ParticleSystem'WEP_Crossbow_EMIT.FX_Crossbow_Projectile_Pickup'
    LifeSpanAfterStick=180.000000

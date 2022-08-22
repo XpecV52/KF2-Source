@@ -671,7 +671,7 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 			}
 		}
 	}
-	else if ( ValidateHitComponent(HitInfo, HitLocation, Momentum) )
+	else if ( ValidateHitComponent(EventInstigator, HitInfo, HitLocation, Momentum) )
 	{
 		// Search and find which subobject got hit
 		for (Idx=0; Idx<SubObjects.Length; ++Idx)
@@ -786,8 +786,9 @@ event bool InstaKillFromStandardNPCBumpDamage()
 }
 
 /** If we don't have a valid hit component (e.g. CSHD) trace to retrieve */
-function bool ValidateHitComponent(out TraceHitInfo HitInfo, vector HitLocation, vector Momentum)
+function bool ValidateHitComponent( Controller EventInstigator, out TraceHitInfo HitInfo, vector HitLocation, vector Momentum )
 {
+	local Actor TraceInstigator;
 	local vector NewHitLocation, HitNormal;
 	local vector Offset;
 
@@ -799,7 +800,17 @@ function bool ValidateHitComponent(out TraceHitInfo HitInfo, vector HitLocation,
 			Momentum = Location - HitLocation;
 		}
 		Offset = 8.f * Normal(Momentum);
-		WorldInfo.Trace(NewHitLocation, HitNormal, HitLocation + Offset, HitLocation - Offset, true,, HitInfo, TRACEFLAG_Bullet);
+
+		if( EventInstigator != none )
+		{
+			TraceInstigator = (EventInstigator.Pawn != none && EventInstigator.Pawn.Weapon != none) ? EventInstigator.Pawn.Weapon : EventInstigator.Pawn;
+		}
+		if( TraceInstigator == none )
+		{
+			TraceInstigator = WorldInfo;
+		}
+
+		TraceInstigator.Trace( NewHitLocation, HitNormal, HitLocation + Offset, HitLocation - Offset, true,, HitInfo, TRACEFLAG_Bullet );
 	}
 
 	return HitInfo.HitComponent != None;

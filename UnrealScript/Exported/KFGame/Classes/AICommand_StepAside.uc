@@ -71,14 +71,14 @@ function Pushed()
 	// If we just need to stand still for a second
 	if( bDelayStep )
 	{
-		AILog_Internal("Going to Command_DelayStep state",'Command_StepAside',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Going to Command_DelayStep state",'Command_StepAside',);};
 		AIActionStatus = "Delaying StepAside";
 		GotoState( 'Command_DelayStep' );
 	}
 	else
 	{
 		// Otherwise, do the step aside
-		AILog_Internal("Going to Command_StepAside state",'Command_StepAside',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Going to Command_StepAside state",'Command_StepAside',);};
 		GotoState( 'Command_StepAside' );
 	}
 }
@@ -112,7 +112,7 @@ function Popped()
 
 	if(bReevaluatePath)
 	{
-		AILog_Internal(GetFuncName()$"() Calling NotifyNeedRepath on "$outer,'Command_StepAside',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Calling NotifyNeedRepath on "$outer,'Command_StepAside',);};
 		outer.NotifyNeedRepath();
 	}
 }
@@ -148,7 +148,7 @@ state Command_StepAside
 		else
 		if( bMovingToGoal )
 		{
-			AILog_Internal("- IS MOVING"@MoveTarget@MoveGoal@BP2Vect(MovePosition),'Command_StepAside',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("- IS MOVING"@MoveTarget@MoveGoal@BP2Vect(MovePosition),'Command_StepAside',);};
 
 			if( MoveTarget != None )
 			{
@@ -166,7 +166,7 @@ state Command_StepAside
 			}
 			else
 			{
-				AILog_Internal(self$" Moving but to where??",'Command_StepAside',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Moving but to where??",'Command_StepAside',);};
 			}
 		}
 		else
@@ -221,7 +221,7 @@ state Command_StepAside
 			}
 		}
 
-		AILog_Internal(self$" FAILED TO FIND STEP ASIDE LOCATION... RESORT TO STANDING STILL",'Command_StepAside',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" FAILED TO FIND STEP ASIDE LOCATION... RESORT TO STANDING STILL",'Command_StepAside',);};
 
 		LastFailedToFindStepAsideLocation = WorldInfo.TimeSeconds;
 
@@ -245,18 +245,18 @@ state Command_StepAside
 
 		if( bMovingToGoal )
 		{
-			AILog_Internal(self$" bMovingToGoal || bMovingToCover, Focus is MoveTarget:" @ MoveTarget,'Command_StepAside',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" bMovingToGoal || bMovingToCover, Focus is MoveTarget:" @ MoveTarget,'Command_StepAside',);};
 			return MoveTarget;
 		}
 
-		AILog_Internal(self$" !HasAnyEnemies(), Focus is StepAsideGoal:" @ StepAsideGoal,'Command_StepAside',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" !HasAnyEnemies(), Focus is StepAsideGoal:" @ StepAsideGoal,'Command_StepAside',);};
 		return StepAsideGoal;
 	}
 
 Begin:
 	if( StepAsideGoal != None && !bIgnoreStepAside && (WorldInfo.TimeSeconds - LastFailedToFindStepAsideLocation) > 1.f )
 	{
-		AILog_Internal(self$" Starting to step aside...",'Command_StepAside',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Starting to step aside...",'Command_StepAside',);};
 		bReevaluatePath = true;
 		if( GetStepAsideLocation() )
 		{
@@ -269,7 +269,7 @@ Begin:
 			if( StepAsideGoal != None && StepAsideGoal != Pawn &&
 				(Pawn.Touching.Find(StepAsideGoal) != -1 || StepAsideGoal.ReachedPoint(BP2Vect( PreStepAsideLocation ), None )) )
 			{
-				AILog_Internal(self$" Still touching, moving again"@Pawn.Touching.Find(StepAsideGoal)@StepAsideGoal.ReachedPoint(BP2Vect( PreStepAsideLocation ), None ),'Command_StepAside',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Still touching, moving again"@Pawn.Touching.Find(StepAsideGoal)@StepAsideGoal.ReachedPoint(BP2Vect( PreStepAsideLocation ), None ),'Command_StepAside',);};
 
 				// (obstructing pawn may get out of my way)
 				Sleep( 0.5f + FRand() * 1.f );
@@ -284,11 +284,11 @@ Begin:
 	}
 	else
 	{
-		AILog_Internal(self$" No step aside goal?",'Command_StepAside',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" No step aside goal?",'Command_StepAside',);};
 		Sleep( 0.5f );
 	}
 
-	AILog_Internal(self$" Finished stepping aside",'Command_StepAside',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Finished stepping aside",'Command_StepAside',);};
 	//SetFocalPoint(Vect(0,0,0));
 	//MyKFPawn.ResetDesiredRotation();
 	Status = 'Success';

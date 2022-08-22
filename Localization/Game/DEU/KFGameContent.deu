@@ -31,7 +31,7 @@ StoreDescriptionsKey="Das Shop-Menü erlaubt dir Schlüssel zu kaufen, die dazu 
 InventoryTitleKey="Kenne dein Inventar"
 InventoryDescriptionKey="Jede Vorteil-Ladung beginnt mit einer einzigartigen Primärwaffe, einer 9mm Hilfspistole, einem Spezialistenmesser und Granaten. Drücke <font color="#caab05">%x%</font> um deine Waffen zu durchlaufen. Du kannst die Waffenkategorien schnell auswählen, indem du folgendes drückst: <font color="#caab05">%x%</font> um die Primär-Fernwaffe anzulegen, <font color="#caab05">%x%</font> um die Pistole anzulegen, <font color="#caab05">%x%</font> um die Nahkampfwaffe anzulegen, und <font color="#caab05">%x%</font> um die Spritze anzulegen."
 InventoryContTitleKey="Kenne dein Inventar"
-InventoryContDescriptionKey="Jede Vorteil-Ladung beginnt mit einer einzigartigen Primärwaffe, einer 9mm Hilfspistole, einem Spezialistenmesser und Granaten. Halte <font color="#caab05">%x%</font> und benutze die Richtungstasten um eine Waffe auszuwählen."
+InventoryContDescriptionKey="Jede Vorteil-Ladung beginnt mit einer einzigartigen Primärwaffe, einer 9-mm-Hilfspistole, einem Spezialistenmesser und Granaten. Halte <font color="#caab05">%x%</font> und benutze die Richtungstasten, um eine Waffe auszuwählen."
 AlternateFireKey="Alternatives Feuer"
 AlternateFireDescription="Die meisten Primärwaffen haben einen alternativen Feuer-Modus. Drücke <font color="#caab05">%x%</font> um deinen aktuellen Feuer-Modus umzuschalten. Ein Icon in deiner Ansicht wird den aktuell gewählten Feuer-Modus anzeigen."
 FlashLightBatteryTitleKey="Benutzen einer Taschenlampe"
@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="Jede Waffe hat einen <font color="#caab05">GEWICHTSW
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="Nachfüllen von Munition und Rüstung"
-TraderRefillGamepadDescriptionKey="Du kannst <font color="#caab05">MUNITION</font>, <font color="#caab05">GRANATEN</font> und <font color="#caab05">KÖRPERRÜSTUNG</font> bei der Händlerin nachfüllen. Wähle dazu mit dem LS auf der linken Seite des Händlerin-Menüs die Waffe aus, für die du Munition kaufen willst. Du kannst für die gewählte Waffe ein Magazin oder eine Granate kaufen (drücke <font color="#caab05">%x%</font>) oder soviel Munition oder Granaten kaufen, wie du dir leisten kannst, bis zu deinem Limit (drücke <font color="#caab05">%x%</font>). Bei wenig Zeit (oder viel Kohle) drücke <font color="#caab05">AUTOM. FÜLLEN</font> um deine Kohle schnell auf Munition, Rüstung, und Granaten aufzuteilen."
+TraderRefillGamepadDescriptionKey="Du kannst <font color="#caab05">MUNITION</font>, <font color="#caab05">GRANATEN</font> und <font color="#caab05">KÖRPERRÜSTUNG</font> bei der Händlerin nachfüllen. Wähle dazu mit dem linken Stick auf der linken Seite des Händlerin-Menüs die Waffe aus, für die du Munition kaufen willst. Du kannst für die gewählte Waffe ein Magazin oder eine Granate kaufen (drücke <font color="#caab05">XboxTypeS_A</font>) oder so viel Munition oder Granaten kaufen, wie du dir leisten kannst, bis zu deinem Limit (drücke <font color="#caab05">XboxTypeS_X</font>). Bei wenig Zeit (oder viel Kohle) drücke <font color="#caab05">LeftThumbStick</font>, um deine Kohle schnell auf Munition, Rüstung und Granaten aufzuteilen."
 TraderSellGamepadTitleKey="Waffen verkaufen"
-TraderSellGamepadDescriptionKey="Um eine <font color="#caab05">WAFFE ZU VERKAUFEN</font>, wähle mit dem linken Stick auf der linken Seite des Händlerin-Menüs die Waffe, die du verkaufen willst und drücke <font color="#caab05">%x%</font>. Du siehst den Betrag an Kohle, den du für den Verkauf des Gegenstands erhalten wirst. Deine 9mm-Pistole, deine Körperrüstung und deine Granaten kannst du nicht verkaufen."
+TraderSellGamepadDescriptionKey="Um eine <font color="#caab05">WAFFE ZU VERKAUFEN</font>, wähle mit dem linken Stick auf der linken Seite des Händlerin-Menüs die Waffe, die du verkaufen willst, und drücke <font color="#caab05">XboxTypeS_Y</font>. Du siehst den Betrag an Kohle, den du für den Verkauf des Gegenstands erhalten wirst. Deine 9mm-Pistole, deine Körperrüstung und deine Granaten kannst du nicht verkaufen."
 TraderBuyGamepadTitleKey="Waffen kaufen"
-TraderBuyGamepadDescriptionKey="Um eine <font color="#caab05">WAFFE ZU KAUFEN</font>, wähle mit dem linken Stick auf der rechten Seite des Händlerin-Menüs die Waffe, die du kaufen willst und drücke <font color="#caab05">%x%</font>. Vergewissere dich, dass du genug <font color="#caab05">KOHLE</font> und <font color="#caab05">TRAGKRAFT</font> hast, um die Waffe zu kaufen."
+TraderBuyGamepadDescriptionKey="Um eine <font color="#caab05">WAFFE ZU KAUFEN</font>, wähle mit dem linken Stick auf der rechten Seite des Händlerin-Menüs die Waffe, die du kaufen willst, und drücke <font color="#caab05">XboxTypeS_A</font>. Vergewissere dich, dass du genug <font color="#caab05">KOHLE</font> und <font color="#caab05">TRAGKRAFT</font> hast, um die Waffe zu kaufen."
 TraderWeightGamepadTitleKey="Waffengewicht und -kapazität"
 TraderWeightGamepadDescriptionKey="Jede Waffe hat einen <font color="#caab05">GEWICHTSWERT</font>. Das Gewicht deiner aktuellen Waffen könnte dich davon abhalten, die von dir gewünschte Waffe kaufen zu können. Das Gewicht der Waffe kannst du in der Waffenliste und in den Waffendetails sehen. Deine <font color="#caab05">TRAGKRAFT</font> wird unterhalb deiner aktuellen Kohle, in der Mitte des Bildschirms, angezeigt. Alles, was dich davon abhält, den aktuell ausgewählten Gegenstand zu kaufen, wird rot hervorgehoben."
 
@@ -79,7 +79,7 @@ TeamAdviceDescriptionKey="<font color="#caab05">BLEIB BEI DEINEM TEAM!</font> De
 CongratulationsTitleKey="Sieg!"
 CongratulationsDescriptionKey="Glückwunsch! Du hast die Trainingsebene abgeschlossen!"
 NextStepsTitleKey="Was mach ich als Nächstes"
-NextStepsDescriptionKey="Du kannst vom Hauptmenü aus entweder weiter im Offline-Modus üben oder direkt an einem Online-Spiel mit anderen Überlebenden teilnehmen. Knöpf dir jetzt die Zeds vor!"
+NextStepsDescriptionKey="Du kannst vom Start-Menü aus entweder weiter im Offline-Modus üben oder direkt an einem Online-Spiel mit anderen Überlebenden teilnehmen. Knöpf dir jetzt die Zeds vor!"
 
 ;Healing Section
 QuickHealTitleKey="Heile dich selbst, wenn du verletzt bist"
@@ -107,7 +107,7 @@ UnblockableDescriptionKey="Große Zeds haben einige unblockbare Angriffe. Du erk
 BackString="ZURÜCK"
 NextString="VORWÄRTS"
 DoneString="FERTIG"
-SkipString="ÜBERSPRINGEN"
+SkipString="ÜBERSPR."
 
 [Armor]
 ItemName="Kampfrüstung"
@@ -448,6 +448,20 @@ ItemDescription="•Hier besteht die Wahl zwischen vollautomatischem und halbaut
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
+BossName_CHN="汉斯-沃尔特博士"
+BossName_CHT="漢斯華特博士"
+BossName_DEU="Dr. Hans Volter"
+BossName_ESL="Dr. Hans Volter"
+BossName_ESN="Dr. Hans Volter"
+BossName_FRA="Dr. Hans Volter"
+BossName_FRC="Dr. Hans Volter"
+BossName_INT="Dr. Hans Volter"
+BossName_ITA="Dr. Hans Volter"
+BossName_JPN="ドクター ハンス・ヴォルター"
+Bossname_KOR="Dr. Hans Volter"
+BossName_POL="Dr Hans Volter"
+BossName_PTB="Dr. Hans Volter"
+BossName_RUS="Д-р Ганс Вольтер"
 BossCaptionStrings[0]="Bei schweren Verletzungen entsteht ein Schild und Hans stiehlt einem Opfer die Lebensenergie. Wird der Schild zerstört, heilt er sich nicht!"
 BossCaptionStrings[1]="Halt seinen Energiekern im Auge: Wenn die Farbe sich ändert, wird Hans aggressiver."
 BossCaptionStrings[2]="Ziele auf den Energiekern. Dort ist er nämlich am verletzlichsten."
@@ -458,6 +472,20 @@ BossCaptionStrings[6]="Wenn Hans seine Waffen zieht, gerate ihm bloß nicht ins 
 
 [KFPawn_ZedPatriarch]
 BossName="Der Patriarch"
+BossName_CHN="长老丧尸"
+BossName_CHT="長老"
+BossName_DEU="Der Patriarch"
+BossName_ESL="El patriarca"
+BossName_ESN="El patriarca"
+BossName_FRA="Le Patriarche"
+BossName_FRC="Le Patriarche"
+BossName_INT="The Patriarch"
+BossName_ITA="Il Patriarca"
+BossName_JPN="ペイトリアーク"
+BossName_KOR="Patriarch"
+BossName_POL="Patriarcha"
+BossName_PTB="O Patriarca"
+BossName_RUS="Патриарх"
 BossCaptionStrings[0]="Kevin Clamely war einst ein brillanter Wissenschaftler, bis er selbst zu seiner besten Kreation wurde."
 BossCaptionStrings[1]="Dem Patriarch fehlt es nicht an Arroganz – er kündigt dir nämlich voller Zuversicht seine Angriffe an."
 BossCaptionStrings[2]="Auch große Objekte dienen hier nicht als Schild. Der Patriarch weiß sich zu helfen!"

@@ -109,7 +109,7 @@ function SaveChanges()
 
     KFPC = KFPlayerController(Outer.GetPC());
     KFPC.SaveConfig();
-    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.WriteProfileSettings(byte(Outer.GetLP().ControllerId), Manager.CachedProfile);
+    Manager.CachedProfile.Save(byte(LocalPlayer(KFPC.Player).ControllerId));
 }
 
 function LocalizeText()
@@ -239,18 +239,11 @@ function UpdateCharacterList()
 
 function UpdateGear()
 {
-    local KFProfileSettings KFPS;
-
     CurrentCharInfo = MyKFPRI.CharacterArchetypes[MyKFPRI.RepCustomizationInfo.CharacterIndex];
     CharInfoPath = string(CurrentCharInfo.Name);
     UpdateMeshList(BodyMeshKey, BodySkinKey, CurrentCharInfo.BodyVariants, "bodyArray");
     UpdateMeshList(HeadMeshKey, HeadSkinKey, CurrentCharInfo.HeadVariants, "headsArray");
     UpdateAttachmentsList(CurrentCharInfo.CosmeticVariants);
-    KFPS = KFProfileSettings(Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(Outer.GetLP().ControllerId)));
-    if(KFPS != none)
-    {
-        KFPS.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
-    }
     SetCurrentCharacterButtons();
 }
 
@@ -416,7 +409,6 @@ function SkinVariant UpdateOutfitVariants(string OutfitKey, string KeyName, out 
 function SetCurrentCharacterButtons()
 {
     local GFxObject DataObject;
-    local KFProfileSettings KFPS;
 
     DataObject = Outer.CreateObject("Object");
     DataObject.SetString("selectedCharacter", Localize(CharInfoPath, "CharacterName", KFCharacterInfoString));
@@ -426,11 +418,6 @@ function SetCurrentCharacterButtons()
     SetGearButtons(MyKFPRI.RepCustomizationInfo.HeadMeshIndex, MyKFPRI.RepCustomizationInfo.HeadSkinIndex, HeadMeshKey, HeadSkinKey, HeadFunctionKey);
     SetGearButtons(MyKFPRI.RepCustomizationInfo.BodyMeshIndex, MyKFPRI.RepCustomizationInfo.BodySkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
     SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
-    KFPS = KFProfileSettings(Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(Outer.GetLP().ControllerId)));
-    if(KFPS != none)
-    {
-        KFPS.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
-    }
 }
 
 function SetGearButtons(byte MeshIndex, byte SkinIndex, string MeshKey, string SkinKey, string sectionFunctionName)
@@ -462,7 +449,6 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
     local string FinishedString;
     local GFxObject DataObject;
     local byte I, AttachmentIndex;
-    local KFProfileSettings KFPS;
 
     DataObject = Outer.CreateObject("Object");
     I = 0;
@@ -486,11 +472,6 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
     }
     DataObject.SetString(sectionFunctionName, FinishedString);
     SetObject(sectionFunctionName, DataObject);
-    KFPS = KFProfileSettings(Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(Outer.GetLP().ControllerId)));
-    if(KFPS != none)
-    {
-        KFPS.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
-    }
 }
 
 event OnClose()
@@ -601,7 +582,6 @@ private final function Callback_Head(byte MeshIndex, byte SkinIndex)
         }
     }
     SetGearButtons(MeshIndex, SkinIndex, HeadMeshKey, HeadSkinKey, HeadFunctionKey);
-    Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 
 private final function Callback_Body(byte MeshIndex, byte SkinIndex)
@@ -621,7 +601,6 @@ private final function Callback_Body(byte MeshIndex, byte SkinIndex)
         }
     }
     SetGearButtons(MeshIndex, SkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
-    Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 
 private final function Callback_Attachment(byte MeshIndex, byte SkinIndex)
@@ -642,7 +621,6 @@ private final function Callback_Attachment(byte MeshIndex, byte SkinIndex)
         }
     }
     SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
-    Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 
 function RelayFromCheatManager(Pawn P, KFGFxMenu_Gear.ECustomizationOption CustomizationOption, byte MeshIndex, byte SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots)

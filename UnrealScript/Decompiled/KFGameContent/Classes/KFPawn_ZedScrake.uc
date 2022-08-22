@@ -268,6 +268,7 @@ defaultproperties
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     OnDeathAchievementID=132
     PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
+    LocalizationKey=KFPawn_ZedScrake
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

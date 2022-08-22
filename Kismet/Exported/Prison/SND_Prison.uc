@@ -1,6 +1,6 @@
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'SND_Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_1')),DrawY=213,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND_Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),ActivateDelay=2.000000,DrawY=213,OverrideDelta=14)
    OutputLinks(1)=(DrawY=234,OverrideDelta=35)
    OutputLinks(2)=(DrawY=255,OverrideDelta=56)
    ObjInstanceVersion=3
@@ -27,19 +27,4 @@ Begin Object Class=SeqAct_AkStartAmbientSound Name=SeqAct_AkStartAmbientSound_0
    DrawHeight=133
    Name="SeqAct_AkStartAmbientSound_0"
    ObjectArchetype=SeqAct_AkStartAmbientSound'AkAudio.Default__SeqAct_AkStartAmbientSound'
-End Object
-
-Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_1
-   Bank=AkBank'WW_ENV_Prison.WwiseDefaultBank_WW_ENV_Prison'
-   InputLinks(0)=(DrawY=132,OverrideDelta=13)
-   InputLinks(1)=(DrawY=152,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND_Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),DrawY=142,OverrideDelta=23)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'SND_Prison.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=664
-   ObjPosY=96
-   DrawWidth=111
-   DrawHeight=69
-   Name="SeqAct_AkLoadBank_1"
-   ObjectArchetype=SeqAct_AkLoadBank'AkAudio.Default__SeqAct_AkLoadBank'
 End Object

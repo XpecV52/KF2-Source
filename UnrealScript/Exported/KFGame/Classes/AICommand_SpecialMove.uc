@@ -47,7 +47,7 @@ var object Observer;
 function Pushed()
 {
 	Super.Pushed();
-	AILog_Internal(self$" Pushed",'Command_SpecialMove',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Pushed",'Command_SpecialMove',);};
 	LockdownAI();
 	if( DefaultStartState != '' )
 	{
@@ -57,7 +57,7 @@ function Pushed()
 
 function Resumed( Name OldCommandName )
 {
-	AILog_Internal(self$" Resumed, previous command: "$OldCommandName,'Command_SpecialMove',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Resumed, previous command: "$OldCommandName,'Command_SpecialMove',);};
 	ExecuteSMCount = 0;
 	Super.Resumed( OldCommandName );
 
@@ -66,7 +66,7 @@ function Resumed( Name OldCommandName )
 
 function Paused( GameAICommand NewCommand )
 {
-	AILog_Internal(self$" Paused by command "$NewCommand,'Command_SpecialMove',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Paused by command "$NewCommand,'Command_SpecialMove',);};
 	Super.Paused( NewCommand );
 
 	UnlockAI();
@@ -79,7 +79,7 @@ function Popped()
 
 	Super.Popped();
 
-	AILog_Internal("Popped()",'Command_SpecialMove',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Popped()",'Command_SpecialMove',);};
 
 	UnlockAI();
 	ClearTimeout();
@@ -127,7 +127,7 @@ function NavigationPoint GetUpdatedAnchor()
 
 function LockdownAI()
 {
-	AILog_Internal(GetFuncName(),'Command_SpecialMove',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName(),'Command_SpecialMove',);};
 
 	bPreparingMove = true;	// Don't move until move done
 	AIZeroMovementVariables();
@@ -135,7 +135,7 @@ function LockdownAI()
 
 function UnlockAI()
 {
-	AILog_Internal(GetFuncName(),'Command_SpecialMove',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName(),'Command_SpecialMove',);};
 
 	// Turn off flags
 	bPreparingMove			= false;
@@ -163,7 +163,7 @@ function float GetFailSafeReadyTime()
 	to attempt to do the SpecialMove. */
 function Timer_FailSafeReadyTriggered()
 {
-	AILog_Internal(self$" Failsafe triggered for special move action",'Command_SpecialMove',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Failsafe triggered for special move action",'Command_SpecialMove',);};
 	bForceReady = true;
 }
 
@@ -215,7 +215,7 @@ state Command_SpecialMove extends DEBUGSTATE
 	{
 		SpecialMove = GetSpecialMove();
 
-		AILog_Internal(GetFuncName()$"()"@SpecialMove,'Command_SpecialMove',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"()"@SpecialMove,'Command_SpecialMove',);};
 
 		/** Warning! if bShouldCheckSpecialMove is false and InternalCanDoSpecialMove returns false, the special move will begin!
 			This is old code, so I'm not changing it for the moment. @TODO: FIX! */
@@ -244,9 +244,7 @@ state Command_SpecialMove extends DEBUGSTATE
 	/** Special move has timed out, fail the command and end it */
 	function SpecialMoveTimeout()
 	{
-		AILog_Internal(GetFuncName()$" Special move timed out - failing and aborting",'Command_SpecialMove',);
-
-		LogInternal("special move timed out"@self);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Special move timed out - failing and aborting",'Command_SpecialMove',);};
 
 		if( MyKFPawn.SpecialMove == SpecialMove )
 		{
@@ -260,12 +258,12 @@ state Command_SpecialMove extends DEBUGSTATE
 	/** Notification that special move execution failed */
 	function OnFailedToDoSpecialMove()
 	{
-		AILog_Internal(self$" Failed to do special move",'Command_SpecialMove',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Failed to do special move",'Command_SpecialMove',);};
 		UpdateHistoryString( "[F] SM Aborted" );
 	}
 
 Begin:
-	AILog_Internal(self$" --"@GetStateName()$":"$class@"-- BEGIN LABEL",'Command_SpecialMove',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" --"@GetStateName()$":"$class@"-- BEGIN LABEL",'Command_SpecialMove',);};
 	if( bWaitForLanding && MyKFPawn.Physics == PHYS_Falling )
 	{
 		/** Don't execute any more state code until I've landed */
@@ -273,7 +271,7 @@ Begin:
 	}
 	if( !SetupSpecialMove() )
 	{
-		AILog_Internal(self$" Setup Special Move failed",'Command_SpecialMove',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Setup Special Move failed",'Command_SpecialMove',);};
 		Goto( 'Abort' );
 	}
 
@@ -295,7 +293,7 @@ Begin:
 	SetTimer( GetFailSafeReadyTime(), false, nameof(Timer_FailSafeReadyTriggered), self );
 	while( !IsReady() && !bForceReady )
 	{
-		AILog_Internal(self$" Waiting for ready",'Command_SpecialMove',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Waiting for ready",'Command_SpecialMove',);};
 		Sleep(0.1f);
 	}
 	ClearTimer( nameof(Timer_FailSafeReadyTriggered), self );
@@ -308,7 +306,7 @@ Begin:
 		/** Check to see if special move is finished every 0.1 seconds */
 		do
 		{
-			AILog_Internal(self$" Waiting for SM to end TimeOutDelaySeconds: "$TimeoutDelaySeconds,'Command_SpecialMove',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(self$" Waiting for SM to end TimeOutDelaySeconds: "$TimeoutDelaySeconds,'Command_SpecialMove',);};
 			Sleep( 0.1f );
 		} until( IsSpecialMoveComplete() );
 
@@ -347,7 +345,7 @@ Begin:
 	else
 	{
 Abort:
-		AILog_Internal("Abort label",'Command_SpecialMove',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Abort label",'Command_SpecialMove',);};
 		OnFailedToDoSpecialMove();
 		Status = 'Failure';
 		/** Handle optional delay after failure, won't execute more state code until delay is finished */
@@ -355,7 +353,7 @@ Abort:
 	}
 
 	/** Exit the command */
-	AILog_Internal("Calling PopCommand() at bottom of state code",'Command_SpecialMove',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Calling PopCommand() at bottom of state code",'Command_SpecialMove',);};
 	PopCommand( self );
 }
 

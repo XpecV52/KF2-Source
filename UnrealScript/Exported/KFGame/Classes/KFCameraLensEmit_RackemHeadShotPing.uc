@@ -1,28 +1,26 @@
 //=============================================================================
-// KFCameraLensEmit_RackemHeadShot
+// KFCameraLensEmit_RackemHeadShotPing
 //=============================================================================
-// Class Description
+// Rack 'Em Up headshot effect
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
-//  - Author 3/13/2014
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
-class KFCameraLensEmit_RackemHeadShotPing extends EmitterCameraLensEffectBase;
+class KFCameraLensEmit_RackemHeadShotPing extends KFCameraLensEmit_RackemHeadShot;
 
 defaultproperties
 {
    PS_CameraEffect=ParticleSystem'FX_Camera_EMIT.FX_Rackem_Headshot_Ping_01'
-   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent0 Archetype=ParticleSystemComponent'Engine.Default__EmitterCameraLensEffectBase:ParticleSystemComponent0'
+   bAllowMultipleInstances=False
+   Begin Object Class=KFParticleSystemComponent Name=ParticleSystemComponent1 Archetype=KFParticleSystemComponent'KFGame.Default__KFCameraLensEmit_RackemHeadShot:ParticleSystemComponent1'
       SecondsBeforeInactive=0.000000
       ReplacementPrimitive=None
       bOnlyOwnerSee=True
-      Name="ParticleSystemComponent0"
-      ObjectArchetype=ParticleSystemComponent'Engine.Default__EmitterCameraLensEffectBase:ParticleSystemComponent0'
+      Name="ParticleSystemComponent1"
+      ObjectArchetype=KFParticleSystemComponent'KFGame.Default__KFCameraLensEmit_RackemHeadShot:ParticleSystemComponent1'
    End Object
-   ParticleSystemComponent=ParticleSystemComponent0
-   Components(0)=ParticleSystemComponent0
-   LifeSpan=0.500000
+   ParticleSystemComponent=ParticleSystemComponent1
+   Components(0)=ParticleSystemComponent1
    Name="Default__KFCameraLensEmit_RackemHeadShotPing"
-   ObjectArchetype=EmitterCameraLensEffectBase'Engine.Default__EmitterCameraLensEffectBase'
+   ObjectArchetype=KFCameraLensEmit_RackemHeadShot'KFGame.Default__KFCameraLensEmit_RackemHeadShot'
 }

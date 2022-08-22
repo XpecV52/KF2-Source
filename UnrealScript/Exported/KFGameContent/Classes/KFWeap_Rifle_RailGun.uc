@@ -955,6 +955,7 @@ defaultproperties
    SpareAmmoCapacity(0)=20
    InitialSpareMags(0)=6
    AmmoPickupScale(0)=3.000000
+   WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    BonesToLockOnEmpty(0)="RW_TopLeft_RadShield1"

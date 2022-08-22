@@ -16,7 +16,7 @@ defaultproperties
    Begin Object Class=KFGameExplosion Name=ExploTemplate0 Archetype=KFGameExplosion'kfgamecontent.Default__KFProj_Husk_Fireball:ExploTemplate0'
       ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.HuskProjectile_Explosion'
       Damage=23.000000
-      DamageRadius=450.000000
+      DamageRadius=650.000000
       MyDamageType=Class'kfgamecontent.KFDT_Fire_HuskFireball'
       MomentumTransferScale=60000.000000
       ExplosionEmitterScale=2.000000

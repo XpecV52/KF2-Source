@@ -61,6 +61,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
 
 var GFxObject GammaSlider;
 var string GammaImagePath;
@@ -114,7 +115,7 @@ function ResetGamma()
     local float DefaultGamma;
     local KFGameEngine KFGE;
 
-    DefaultGamma = Class'KFGameEngine'.default.DefaultGammaMult;
+    DefaultGamma = Manager.CachedProfile.GetDefaultFloat(117);
     GammaSlider.SetFloat("value", DefaultGamma * float(100));
     KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
     KFGE.GammaMultiplier = DefaultGamma;

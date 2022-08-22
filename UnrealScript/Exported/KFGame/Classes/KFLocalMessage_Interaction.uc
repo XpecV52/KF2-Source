@@ -148,10 +148,17 @@ static function string GetString(
 	)
 {
 	local PlayerInput Input;
+	local KFGameReplicationInfo KFGRI;
 	
 	switch ( Switch )
 	{
 		case IMT_UseTrader:
+		
+   			KFGRI = KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI);
+			if(KFGRI != none && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')	
+			{
+				return Left( default.UseTraderMessage, InStr(default.UseTraderMessage, "<%HOLD%>"));
+			}
 			return default.UseTraderMessage;
 		case IMT_UseDoor:
 			if(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)

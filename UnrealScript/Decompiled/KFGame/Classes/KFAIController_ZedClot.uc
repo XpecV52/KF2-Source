@@ -13,7 +13,7 @@ class KFAIController_ZedClot extends KFAIController_Monster
 
 function bool ShouldSprint()
 {
-    if(((((MyKFPawn == none) || MyKFPawn.bIsBlocking) || (Enemy == none) && DoorEnemy == none) || !MyKFPawn.IsAliveAndWell()) || !Enemy.IsAliveAndWell())
+    if((((MyKFPawn == none) || (Enemy == none) && DoorEnemy == none) || !MyKFPawn.IsAliveAndWell()) || !Enemy.IsAliveAndWell())
     {
         return false;
     }
@@ -47,14 +47,20 @@ event DoGrabAttack(optional Pawn NewEnemy, optional float InPostSpecialMoveSleep
             SetEnemy(NewEnemy);
         }
         ClearMovementInfo(true, "Aborted For GrabAttack");
-        AILog_Internal(string(GetFuncName()) $ "() Init AICommand_Attack_Grab", 'InitAICommand');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            AILog_Internal(string(GetFuncName()) $ "() Init AICommand_Attack_Grab", 'InitAICommand');
+        }
         Class'AICommand_Attack_Grab'.static.Grab(self, InPostSpecialMoveSleepTime);        
     }
     else
     {
         if((CommandList != none) && !AICommand(CommandList).bAllowedToAttack)
         {
-            AILog_Internal(((string(GetFuncName()) $ "() not doing grab attack because current command (") $ string(CommandList)) $ ") will not allow it", 'GrabAttack');
+            if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+            {
+                AILog_Internal(((string(GetFuncName()) $ "() not doing grab attack because current command (") $ string(CommandList)) $ ") will not allow it", 'GrabAttack');
+            }
         }
     }
 }

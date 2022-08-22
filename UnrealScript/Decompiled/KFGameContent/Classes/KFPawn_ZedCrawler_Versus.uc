@@ -50,7 +50,6 @@ defaultproperties
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     JumpBumpDamageType=Class'KFDT_Bludgeon_ZedJump'
-    LocalizationKey=KFPawn_ZedCrawler
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -79,7 +78,7 @@ defaultproperties
     DialogAkComponent=AkComponent'Default__KFPawn_ZedCrawler_Versus.DialogAkSoundComponent'
     GroundSpeed=600
     JumpZ=1000
-    Health=150
+    Health=250
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

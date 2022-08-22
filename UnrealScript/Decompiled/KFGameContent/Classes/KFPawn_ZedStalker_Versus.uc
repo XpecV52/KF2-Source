@@ -55,7 +55,6 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
-    LocalizationKey=KFPawn_ZedStalker
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -84,7 +83,7 @@ defaultproperties
     DialogAkComponent=AkComponent'Default__KFPawn_ZedStalker_Versus.DialogAkSoundComponent'
     GroundSpeed=500
     JumpZ=1100
-    Health=100
+    Health=130
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

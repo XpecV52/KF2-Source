@@ -9,6 +9,7 @@ class KFSM_Siren_Scream extends KFSM_PlaySingleAnim;
 
 const DAMAGE_COUNT_PER_SCREAM = 4;
 
+var KFPawn_ZedSiren MySirenPawn;
 var float ScreamDamageFrequency;
 var byte ScreamCount;
 var float LastScreamTime;
@@ -36,10 +37,14 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     super.SpecialMoveStarted(bForced, PrevMove);
     bEndedNormally = false;
     LastScreamTime = 0;
+    if(MySirenPawn == none)
+    {
+        MySirenPawn = KFPawn_ZedSiren(KFPOwner);
+    }
     KFPOwner.SetTimer(ProjectileShieldLifetime, false, 'Timer_DestroyProjectileShield', self);
     if(AIOwner != none)
     {
-        if(AIOwner != none)
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging && AIOwner != none)
         {
             AIOwner.AILog_Internal((string(KFPOwner) @ "started for") @ string(AIOwner), 'Siren');
         }
@@ -71,6 +76,10 @@ function SpawnProjectileShield()
             KFPOwner.DrawDebugCylinder(ProjectileShield.Location - vExtent, ProjectileShield.Location + vExtent, ProjectileShield.CylinderComponent.CollisionRadius, 10, 255, 0, 0, true);
         }
     }
+    if(MySirenPawn != none)
+    {
+        MySirenPawn.EnableScreamFlicker(true);
+    }
 }
 
 function Timer_DestroyProjectileShield()
@@ -89,11 +98,15 @@ function DestroyProjectileShield()
             KFPOwner.FlushPersistentDebugLines();
         }
     }
+    if(MySirenPawn != none)
+    {
+        MySirenPawn.EnableScreamFlicker(false);
+    }
 }
 
 function InitializeSirenExplosion()
 {
-    if(ExplosionTemplate != none)
+    if((KFPOwner.Role == ROLE_Authority) && ExplosionTemplate != none)
     {
         ExplosionActor = KFPOwner.Spawn(ExplosionActorClass, KFPOwner,, KFPOwner.Location, KFPOwner.Rotation);
         if(ExplosionActor != none)
@@ -141,7 +154,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     DestroyProjectileShield();
     if(AIOwner != none)
     {
-        if(AIOwner != none)
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging && AIOwner != none)
         {
             AIOwner.AILog_Internal((string(KFPOwner) @ "ended for") @ string(AIOwner), 'Siren');
         }

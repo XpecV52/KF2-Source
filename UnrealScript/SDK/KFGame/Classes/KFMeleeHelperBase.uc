@@ -216,6 +216,12 @@ simulated function float RateMeleeVictim(Pawn Victim, vector StartTrace, vector 
 	if ( Victim == Instigator || Victim.bDeleteMe || Victim.bTearOff )
 		return -1.f;
 
+	// If we're player-controlled, filter out teammates
+	if( Instigator.IsHumanControlled() && Victim.GetTeamNum() == Instigator.GetTeamNum() )
+	{
+		return -1.f;
+	}
+
 	`log("Melee considering:"@Victim, bLogMelee);
 
 	// Discard if the z-distance is too great

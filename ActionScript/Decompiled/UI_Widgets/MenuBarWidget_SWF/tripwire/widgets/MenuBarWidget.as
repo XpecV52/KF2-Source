@@ -63,7 +63,6 @@ package tripwire.widgets
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            stage.addEventListener(MenuManager.PARTYFOCUS_CHANGED,this.onPartyFocusChanged,false,0,true);
             if(MenuManager.manager != null)
             {
                 this.controllerIconContainer.visible = bManagerUsingGamepad && !MenuManager.manager.bPartyWidgetFocused;
@@ -131,6 +130,7 @@ package tripwire.widgets
                     this.calloutButtonBumperPress = param1;
                     return;
                 }
+                MenuManager.manager.bTabNavigated = true;
                 this.menuButtonBar.selectedIndex = this._currentIndex;
                 ExternalInterface.call("Callback_MenuBarTabChanged",this._currentIndex);
             }
@@ -144,14 +144,6 @@ package tripwire.widgets
         public function ShowNavBumpers(param1:Boolean) : *
         {
             this.controllerIconContainer.visible = param1;
-        }
-        
-        protected function onPartyFocusChanged(param1:Event) : *
-        {
-            if(MenuManager.manager.bUsingGamepad)
-            {
-                this.controllerIconContainer.visible = !MenuManager.manager.bPartyWidgetFocused;
-            }
         }
     }
 }

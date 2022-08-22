@@ -208,6 +208,5 @@ defaultproperties
 
 	AssociatedPerkClass=class'KFPerk_Demolitionist'
 
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 }
-
-

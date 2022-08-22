@@ -12,32 +12,32 @@ class KFDifficulty_Hans extends KFMonsterDifficultyInfo
 defaultproperties
 {
 	// Normal difficulty
-	Normal={(HealthMod=0.94, //0.8
+	Normal={(HealthMod=0.84, //0.8
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
-		DamageMod=0.550000,
-		SoloDamageMod=0.250000, //0.2
+		DamageMod=0.500000,
+		SoloDamageMod=0.320000, //0.2
 		EvadeOnDamageSettings={(Chance=0.05, DamagedHealthPctToTrigger=0.01, ForcedEvadeChance=(FL=0.6, FR=0.6))},
 		RallySettings={(bCanRally=false)}
 	)}
 
 	// Hard difficulty
-	Hard={(HealthMod=1.04,
+	Hard={(HealthMod=1.00,
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
 		DamageMod=0.700000,
-		SoloDamageMod=0.30000, //0.25
+		SoloDamageMod=0.37000, //0.25
 		EvadeOnDamageSettings={(Chance=0.10, DamagedHealthPctToTrigger=0.01, ForcedEvadeChance=(FL=0.6, FR=0.6))},
 		RallySettings={(bCanRally=false)}		
 	)}
 
 	// Suicidal difficulty
-	Suicidal={(HealthMod=1.1, //1.45 //1.2
+	Suicidal={(HealthMod=1.11, //1.45 //1.2
 		HeadHealthMod=1.080000, //1.35
 		SprintChance=1.000000,
 		DamagedSprintChance=1.1, //1.0
 		DamageMod=1.1, //0.9 //1.0
-		SoloDamageMod=0.350000,
+		SoloDamageMod=0.380000,
 		EvadeOnDamageSettings={(Chance=0.2, DamagedHealthPctToTrigger=0.01, ForcedEvadeChance=(FL=0.6, FR=0.6))},  //0.6 //0.1 try lowering evade   0.40
 		BlockSettings={(Chance=0.3, Duration=1.0, MaxBlocks=5, Cooldown=7.0, DamagedHealthPctToTrigger=0.1,  //Cooldown=3.5  
 							MeleeDamageModifier=0.7, DamageModifier=0.7, AfflictionModifier=0.2, SoloChanceMultiplier=1.0)},
@@ -45,12 +45,12 @@ defaultproperties
 	)}
 
 	// Hell On Earth difficulty
-	HellOnEarth={(HealthMod=1.350000,
+	HellOnEarth={(HealthMod=1.380000,
 		HeadHealthMod=1.250000,
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
 		DamageMod=1.150000,
-		SoloDamageMod=0.500000,
+		SoloDamageMod=0.540000,
 		EvadeOnDamageSettings={(Chance=0.2, DamagedHealthPctToTrigger=0.01, ForcedEvadeChance=(FL=0.6f, FR=0.6f))},
 		BlockSettings={(Chance=0.3, Duration=1.0, MaxBlocks=6, Cooldown=6.5, DamagedHealthPctToTrigger=0.1,
 							MeleeDamageModifier=0.7, DamageModifier=0.7, AfflictionModifier=0.2, SoloChanceMultiplier=1.0)},

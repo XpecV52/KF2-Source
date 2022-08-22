@@ -202,6 +202,6 @@ defaultproperties
 	FallingRecoilModifier=1.5
 
 	AssociatedPerkClass=class'KFPerk_Berserker'
+
+	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 }
-
-

@@ -9,8 +9,33 @@
 
 class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase;
 
+/** How long the shell should stay in the foreground until it changes to world depth */
+var float ForegroundShellDuration;
+
+/**
+ * Causes the muzzle flash to turn on and setup a time to
+ * turn it back off again.
+ */
+/** notify to spawn a shell eject from the muzzle flash component */
+simulated function ANIMNOTIFY_ShellEject()
+{
+	super.ANIMNOTIFY_ShellEject();
+
+	MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup( SDPG_Foreground );
+	MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = true;
+
+	SetTimer( ForegroundShellDuration, false, nameOf(Timer_RestoreShellEjectDepth) );
+}
+
+simulated function Timer_RestoreShellEjectDepth()
+{
+	MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup( SDPG_World );
+	MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = false;
+}
+
 defaultproperties
 {
+   ForegroundShellDuration=1.500000
    InventorySize=5
    MagazineCapacity(0)=12
    bHasIronSights=True
@@ -28,6 +53,7 @@ defaultproperties
    WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
    SpareAmmoCapacity(0)=84
    InitialSpareMags(0)=3
+   WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    BonesToLockOnEmpty(0)="RW_Hammer"

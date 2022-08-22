@@ -102,7 +102,6 @@ defaultproperties
     SpecialMoveCooldowns=/* Array type was not detected. */
     MinBlockFOV=0
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshPound_Versus.FootstepCameraShake0'
-    LocalizationKey=KFPawn_ZedFleshpound
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -129,7 +128,7 @@ defaultproperties
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.DialogAkSoundComponent'
     GroundSpeed=275
-    Health=1983
+    Health=2281
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

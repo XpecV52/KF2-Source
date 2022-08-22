@@ -40,7 +40,7 @@ function Pushed()
 	StopAllLatentMovement();
 	AIZeroMovementVariables();
 
-	AILog_Internal("Beginning boss theatrics"$Enemy,'Command_BossTheatrics',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Beginning boss theatrics"$Enemy,'Command_BossTheatrics',);};
 	AIActionStatus = "Starting BossTheatrics AICommand";
 	if( Focus != None )
 	{
@@ -80,7 +80,7 @@ state Command_SpecialMove
 
 		SpecialMove = GetSpecialMove();
 
-		AILog_Internal(GetFuncName()@SpecialMove,'Command_BossTheatrics',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()@SpecialMove,'Command_BossTheatrics',);};
 
 		if( SpecialMove != SM_None && MyKFPawn.CanDoSpecialMove(SpecialMove) )
 		{

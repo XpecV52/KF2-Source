@@ -35,6 +35,7 @@ var localized string KickVoteNoSpectatorsString;
 
 var localized string KickedFromServerString;
 var localized string BannedFromServerString;
+var localized string ServerNoLongerAvailableString;
 
 enum ELocalMessageType
 {
@@ -295,6 +296,7 @@ defaultproperties
    KickVoteNoSpectatorsString="Spectators may not initiate a kick vote"
    KickedFromServerString="You have been removed from the server"
    BannedFromServerString="You have been removed from this server. You cannot rejoin at this time"
+   ServerNoLongerAvailableString="The server is no longer available to join"
    MessageArea=1
    AnnouncementVolume=2.000000
    SayColor="FFFFFF"

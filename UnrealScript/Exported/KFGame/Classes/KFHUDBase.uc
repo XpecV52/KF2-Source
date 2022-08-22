@@ -76,7 +76,7 @@ const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162; 
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
-
+const KFID_WeaponSkinAssociations = 165;
 #linenumber 17
 
 /** Cached a typed Player controller.  Unlike PawnOwner we only set this once in PostBeginPlay */
@@ -93,7 +93,7 @@ var const color LightGoldColor, LightGreenColor;
 
 var const color ArmorColor, HealthColor;
 var const color PlayerBarBGColor, PlayerBarTextColor, PlayerBarIconColor;
-var const color SupplierActiveColor, SupplierUsableColor;
+var const color SupplierActiveColor, SupplierUsableColor, SupplierHalfUsableColor;
 
 var const color ZedIconColor;
 
@@ -740,7 +740,8 @@ simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 
 	if( KFPRI.bPerkCanSupply && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none )
 	{
-		TempColor = (KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed) ? SupplierActiveColor : SupplierUsableColor;
+		TempColor = (KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed) ? SupplierActiveColor
+					: (!KFPRI.bPerkPrimarySupplyUsed && !KFPRI.bPerkSecondarySupplyUsed) ? SupplierUsableColor : SupplierHalfUsableColor;
 		Canvas.SetDrawColorStruct( TempColor );
 		Canvas.SetPos( ScreenPos.X + BarLength * 0.5f, ScreenPos.Y - BarHeight * 2 );
 		Canvas.DrawTile( KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256); 
@@ -796,10 +797,12 @@ simulated function CheckAndDrawHiddenPlayerIcons( array<PlayerReplicationInfo> V
 
     for( i = 0; i < WorldInfo.GRI.PRIArray.Length; i++ )
     {
+        PawnLocation = vect(0,0,0);
+
         // Avoid casting until we've got some simple checks out of the way
         PRI = WorldInfo.GRI.PRIArray[i];
 
-        if( VisibleHumanPlayers.Find( PRI ) != INDEX_NONE || 
+       if( VisibleHumanPlayers.Find( PRI ) != INDEX_NONE || 
         	KFPlayerOwner.PlayerReplicationInfo == PRI ||
         	PRI.GetTeamNum() == 255 )
         {
@@ -814,17 +817,29 @@ simulated function CheckAndDrawHiddenPlayerIcons( array<PlayerReplicationInfo> V
         	&& HiddenHumanPlayers[HiddenHumanIndex].HumanPawn.Mesh.bAnimTreeInitialised )
         {
             PawnLocation = HiddenHumanPlayers[HiddenHumanIndex].HumanPawn.Mesh.GetPosition();
+            KFPRI = KFPlayerReplicationInfo( PRI );
+            if( KFPRI != none )
+            {
+            	KFPRI.SetSmoothedPawnIconLocation( PawnLocation );
+            }
         }
 
         // Otherwise we'll use our replicated location
-        if( IsZero( PawnLocation ) )
+        if( IsZero(PawnLocation) )
         {
-            KFPRI = KFPlayerReplicationInfo(PRI);
-            PawnLocation = KFPRI.GetReplicatedPawnIconLocation( HumanPlayerIconInterpMult );
-            if( IsZero(PawnLocation) || KFPRI.PlayerHealth <= 0 )
+            KFPRI = KFPlayerReplicationInfo( PRI );
+            if( KFPRI != none )
             {
-                continue;
-            }
+	            PawnLocation = KFPRI.GetSmoothedPawnIconLocation( HumanPlayerIconInterpMult );
+	            if( IsZero(PawnLocation) || KFPRI.PlayerHealth <= 0 )
+	            {
+	                continue;
+	            }
+	        }
+	        else
+	        {
+	        	continue;
+	        }
         }
 
         // FOV pre-check (further per-pixel filtering after screen projection is done)
@@ -833,8 +848,6 @@ simulated function CheckAndDrawHiddenPlayerIcons( array<PlayerReplicationInfo> V
         {
             DrawHiddenHumanPlayerIcon( PRI, PawnLocation );
         }
-
-        PawnLocation = vect(0,0,0);
     }      
 }
 
@@ -994,6 +1007,7 @@ defaultproperties
    PlayerBarIconColor=(B=192,G=192,R=192,A=192)
    SupplierActiveColor=(B=128,G=128,R=128,A=192)
    SupplierUsableColor=(B=0,G=0,R=255,A=192)
+   SupplierHalfUsableColor=(B=0,G=200,R=220,A=192)
    ZedIconColor=(B=255,G=255,R=255,A=192)
    FriendlyHudScale=1.000000
    TextRenderInfo=(GlowInfo=(GlowColor=(R=0.000000,G=0.000000,B=0.000000,A=1.000000)))
@@ -1006,6 +1020,7 @@ defaultproperties
    PlayerStatusBarBGTexture=Texture2D'EngineResources.WhiteSquareTexture'
    PlayerStatusBarLengthMax=150.000000
    PlayerStatusIconSize=32.000000
+   HumanPlayerIconInterpMult=0.007000
    GenericHumanIconTexture=Texture2D'UI_PerkIcons_TEX.UI_Horzine_H_Logo'
    GenericZedIconTexture=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_ZED'
    Name="Default__KFHUDBase"

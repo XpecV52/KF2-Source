@@ -8,8 +8,24 @@
 class KFProj_EMPGrenade extends KFProj_Grenade
     hidecategories(Navigation);
 
+simulated function PostBeginPlay()
+{
+    super.PostBeginPlay();
+    ClearTimer('ExplodeTimer');
+}
+
+simulated event GrenadeIsAtRest()
+{
+    super.GrenadeIsAtRest();
+    if(Role == ROLE_Authority)
+    {
+        SetTimer(FuseTime, false, 'ExplodeTimer');
+    }
+}
+
 defaultproperties
 {
+    FuseTime=0.25
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_EMPGrenade'
     ExplosionActorClass=Class'KFGame.KFExplosionActor'
     begin object name=ExploTemplate0 class=KFGameExplosion

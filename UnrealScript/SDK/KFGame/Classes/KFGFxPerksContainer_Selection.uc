@@ -116,7 +116,7 @@ function UpdatePendingPerkInfo(byte SelectedPerkIndex)
 	{
 		if(!class'WorldInfo'.static.IsMenuLevel())
 		{
-			if( (KFPC.bPlayerUsedUpdatePerk && !KFGRI.CanChangePerks()) || (KFGRI.CanChangePerks() && PerksMenu.bModifiedPerk)  && KFPC.PlayerReplicationInfo.bReadyToPlay && KFPC.WorldInfo.GRI.bMatchHasBegun)
+			if( (!KFPC.CanUpdatePerkInfo() && !KFGRI.CanChangePerks()) || (KFGRI.CanChangePerks() && PerksMenu.bModifiedPerk)  && KFPC.PlayerReplicationInfo.bReadyToPlay && KFPC.WorldInfo.GRI.bMatchHasBegun)
 			{
 				PerkName = KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass.default.PerkName;
 			}
@@ -150,5 +150,10 @@ function SavePerk(int PerkID)
 	if ( KFPC != none )
 	{
 		KFPC.RequestPerkChange( PerkID );
+
+		if( KFPC.CanUpdatePerkInfo() )
+		{
+			KFPC.SetHaveUpdatePerk(true);
+		}
 	}
 }

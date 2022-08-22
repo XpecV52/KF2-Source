@@ -45,6 +45,7 @@ SteamAuthFailed=Steam decided that you are not authorized to connect to this ser
 ServerHostingDifferentGame=Server is hosting a different game. You cannot connect to this server.
 PeerListen=Peer listen socket failed: `~
 PeerConnection=Peer connection failed: `~
+CouldNotConnect_Title=Ошибка подключения
 
 [Progress]
 CancelledConnect=Попытка соединения отменена

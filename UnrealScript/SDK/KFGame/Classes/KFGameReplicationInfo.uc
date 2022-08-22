@@ -478,6 +478,9 @@ simulated function UpdateHUDWaveCount()
 /** Process wave end event on client */
 simulated function NotifyWaveEnded()
 {
+	local PlayerReplicationInfo PRI;
+	local KFPlayerReplicationInfo KFPRI;
+
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		if( WorldInfo.MyGoreEffectManager != none )
@@ -489,6 +492,20 @@ simulated function NotifyWaveEnded()
 	if ( CurrentObjective != none && !CurrentObjective.bIsCoopObjective )
 	{
 		CurrentObjective.FailObjective(OF_WaveEnded);
+	}
+
+	// Reset all supplier perks
+	foreach PRIArray( PRI )
+	{
+		if( !PRI.bBot )
+		{
+			KFPRI = KFPlayerReplicationInfo( PRI );
+			if( KFPRI != none )
+			{
+				KFPRI.bPerkPrimarySupplyUsed = false;
+				KFPRI.bPerkSecondarySupplyUsed = false;
+			}
+		}
 	}
 }
 
@@ -777,6 +794,24 @@ simulated event Timer()
         PlayNewMusictrack();
     }
 }
+
+//@HSL_BEGIN - JRO - 8/24/2016 - Make sure the session guid gets reset when everyone has left.
+simulated function RemovePRI(PlayerReplicationInfo PRI)
+{
+	local UniqueNetId NullId;
+
+	Super.RemovePRI(PRI);
+
+	if(WorldInfo.IsConsoleDedicatedServer())
+	{
+		if(PRIArray.Length == 0)
+		{
+			ConsoleGameSessionGuid = "";
+			ConsoleGameSessionHost = NullId;
+		}
+	}
+}
+//@HSL_END
 
 /** Called by the menu system to determine if perk changes are allowed */
 simulated event bool CanChangePerks()

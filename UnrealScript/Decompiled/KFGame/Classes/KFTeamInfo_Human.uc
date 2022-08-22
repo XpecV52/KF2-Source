@@ -81,6 +81,11 @@ function RemoveFromTeam(Controller Other)
     super.RemoveFromTeam(Other);
 }
 
+simulated function string GetHumanReadableName()
+{
+    return Class'KFCommon_LocalizedStrings'.default.HumanString @ TeamName;
+}
+
 function AddScore(int ScoreToAdd, optional bool bSetScore)
 {
     if(bSetScore)

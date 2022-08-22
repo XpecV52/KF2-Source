@@ -113,6 +113,10 @@ var ParticleSystem BattleDamageFX_Smoke_HighDmg;
 /** Interval between dialog play attempts */
 var float TickDialogInterval;
 
+/** Footstep camera shake */
+var protected const float FootstepCameraShakePitchAmplitude;
+var protected const float FootstepCameraShakeRollAmplitude;
+
 /*********************************************************************************************
 * General Gameplay
 **********************************************************************************************/
@@ -324,8 +328,6 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
     // Set our secondary material, attach our healing syringes
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant( 1 );
-
 		// Attach healing syringes
 		for( i = 0; i < 3; ++i )
 		{
@@ -667,10 +669,26 @@ function bool CanDoMortarBarrage()
 	return BattlePhases[CurrentBattlePhase-1].bCanDoMortarBarrage;
 }
 
-/** Only allow blocking when uncloaked */
+/** Only allow blocking when uncloaked/not fleeing */
 function bool CanBlock()
 {
-	return !bIsCloaking && super.CanBlock();
+	local KFAIController_ZedPatriarch MyPatController;
+
+	if( bIsCloaking || bInFleeAndHealMode || !super.CanBlock() )
+	{
+		return false;
+	}
+
+	if( !IsHumanControlled() )
+	{
+		MyPatController = KFAIController_ZedPatriarch( Controller );
+		if( MyPatController.bFleeing || MyPatController.bWantsToFlee )
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
 
 /** Only allow movement with the minigun if any conditions are met */
@@ -1218,7 +1236,7 @@ simulated function ClientCloakingStateUpdated()
 /** Interrupt cloaking when bEmpDisrupted is set */
 function OnStackingAfflictionChanged(byte Id)
 {
-	local KFAIController_ZedPatriarch KFAICZP;
+	local KFAIController_ZedPatriarch MyPatController;
 
 	Super.OnStackingAfflictionChanged(Id);
 
@@ -1226,15 +1244,18 @@ function OnStackingAfflictionChanged(byte Id)
 	{
 		if ( Id == AF_EMP )
 		{
-			if( !IsHumanControlled() )
+			if( !bInFleeAndHealMode && !IsHumanControlled() )
 			{
 				// Interrupt charge and set it on full cooldown
-				KFAICZP = KFAIController_ZedPatriarch( Controller );
-				KFAICZP.bWantsToCharge = false;
-				KFAICZP.bSprintUntilAttack = false;
-				KFAICZP.LastChargeAttackTime = WorldInfo.TimeSeconds;
-				KFAICZP.CachedChargeTarget = none;
-				KFAICZP.LastSprintTime = WorldInfo.TimeSeconds;
+				MyPatController = KFAIController_ZedPatriarch( Controller );
+				if( !MyPatController.bWantsToFlee && !MyPatController.bFleeing )
+				{
+					MyPatController.bSprintUntilAttack = false;
+					MyPatController.LastSprintTime = WorldInfo.TimeSeconds;
+				}
+				MyPatController.CachedChargeTarget = none;
+				MyPatController.bWantsToCharge = false;
+				MyPatController.LastChargeAttackTime = WorldInfo.TimeSeconds;
 			}
 
 			// Decloak if we're cloaking
@@ -1244,6 +1265,29 @@ function OnStackingAfflictionChanged(byte Id)
 			}
 		}
 	}
+}
+
+/** Called on server when pawn should do EMP Wandering */
+function CausePanicWander()
+{
+	local KFAIController_ZedPatriarch MyPatController;
+
+	if( bInFleeAndHealMode )
+	{
+		return;
+	}
+
+	// Don't allow panic wander when attempting to flee
+	if( !IsHumanControlled() )
+	{
+		MyPatController = KFAIController_ZedPatriarch( Controller );
+		if( MyPatController.bWantsToFlee || MyPatController.bFleeing )
+		{
+			return;
+		}
+	}
+
+	super.CausePanicWander();
 }
 
 /**
@@ -1620,7 +1664,7 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects( int HitZoneIdx )
 {
 	if( bIsCloaking )
 	{
-		return CharacterArch.ImpactSkins[5]; // 5 = Patriarch_Cloaked
+		return CharacterArch.ImpactSkins[4]; // 4 = Patriarch_Cloaked
 	}
 
 	return super.GetHitZoneSkinTypeEffects( HitZoneIdx );
@@ -1735,6 +1779,33 @@ function CauseHeadTrauma( float BleedOutTime=5.f )
 * Audio
 **********************************************************************************************/
 
+/** Overridden to cause slight camera shakes when walking. */
+simulated event PlayFootStepSound(int FootDown)
+{
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( IsHumanControlled() && IsLocallyControlled() )
+		{
+			FootstepCameraShake.RotOscillation.Pitch.Amplitude = 0;
+			FootstepCameraShake.RotOscillation.Roll.Amplitude = 0;
+		}
+		else
+		{
+			FootstepCameraShake.RotOscillation.Pitch.Amplitude = FootstepCameraShakePitchAmplitude;
+			FootstepCameraShake.RotOscillation.Roll.Amplitude = FootstepCameraShakeRollAmplitude;
+			FootstepCameraShakeInnerRadius = default.FootstepCameraShakeInnerRadius;
+			FootstepCameraShakeOuterRadius = default.FootstepCameraShakeOuterRadius;
+			if( !bIsSprinting || VSizeSQ(Velocity) < 10000.f )
+			{
+				FootstepCameraShake.RotOscillation.Pitch.Amplitude *= 0.75f;
+				FootstepCameraShake.RotOscillation.Roll.Amplitude *= 0.75f;
+			}			
+		}
+	}
+
+	super.PlayFootStepSound( FootDown );
+}
+
 /** Overloaded to take care of victory state */
 simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEvent FirstPersonAmbientSound)
 {
@@ -1817,6 +1888,7 @@ function PlayBossMusic()
 
 defaultproperties
 {
+	LocalizationKey=KFPawn_ZedPatriarch
 	// ---------------------------------------------
 	// Stats
 	XPValues(0)=1291
@@ -1982,13 +2054,15 @@ defaultproperties
     // Effects
 	Begin Object Class=CameraShake Name=FootstepCameraShake0
 		bSingleInstance=true
-		OscillationDuration=0.3f
-		RotOscillation={(Pitch=(Amplitude=140.f,Frequency=60.f),
+		OscillationDuration=0.25f
+		RotOscillation={(Pitch=(Amplitude=120.f,Frequency=60.f),
 		Roll=(Amplitude=60.f,Frequency=40.f))}
 	End Object
 	FootstepCameraShake=FootstepCameraShake0
+	FootstepCameraShakePitchAmplitude=120.f
+	FootstepCameraShakeRollAmplitude=60.f
 	FootstepCameraShakeInnerRadius=200
-	FootstepCameraShakeOuterRadius=900
+	FootstepCameraShakeOuterRadius=1000
 
 	// ---------------------------------------------
 	// Special Moves
@@ -2012,7 +2086,7 @@ defaultproperties
     IncapSettings(AF_Microwave)=(Vulnerability=(0.08),                      Cooldown=10.0, Duration=3.0)
     IncapSettings(AF_FirePanic)=(Vulnerability=(0.65),                      Cooldown=15.0, Duration=1.2)
     IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                      Cooldown=10.0, Duration=2.2)
-    IncapSettings(AF_Freeze)=   (Vulnerability=(0.95),                      Cooldown=10.0, Duration=1.0)
+    IncapSettings(AF_Freeze)=   (Vulnerability=(0.5),                       Cooldown=10.0, Duration=1.0)
     IncapSettings(AF_Snare)=    (Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0),   Cooldown=10.5, Duration=3.0)
 
 	Begin Object Class=Name=Afflictions_0
@@ -2085,30 +2159,30 @@ defaultproperties
     HitZones[HZI_HEAD]=(ZoneName=head, 		BoneName=head, 			Limb=BP_Head, 		GoreHealth=MaxInt,	DmgScale=1.0,	SkinID=1)  //1
 	HitZones[1]       =(ZoneName=jaw,		BoneName=Jaw,			Limb=BP_Head,		GoreHealth=MaxInt,	DmgScale=0.1,	SkinID=1)  //1
 	HitZones[2]       =(ZoneName=chest, 	BoneName=Spine1,		Limb=BP_Torso,		GoreHealth=150, 	DmgScale=0.8,	SkinID=1)  //0.8
-	HitZones[3]       =(ZoneName=heart,	    BoneName=FrontTentacle7, Limb=BP_Special,	GoreHealth=MaxInt,	DmgScale=1.5,	SkinID=1)  //1.5
-	HitZones[4]		  =(ZoneName=lupperarm,	BoneName=LeftArm,		Limb=BP_LeftArm,	GoreHealth=50, 		DmgScale=0.1,	SkinID=3)  //0.33
-	HitZones[5]		  =(ZoneName=lforearm, 	BoneName=LeftForearm,	Limb=BP_LeftArm,	GoreHealth=20,		DmgScale=0.1,	SkinID=3)   //0.33
-	HitZones[7]		  =(ZoneName=rupperarm,	BoneName=RightArm,		Limb=BP_RightArm,	GoreHealth=50,		DmgScale=1.3,	SkinID=4)
-	HitZones[8]		  =(ZoneName=rforearm, 	BoneName=RightForearm, 	Limb=BP_RightArm,	GoreHealth=20,		DmgScale=1.0,	SkinID=4)
+	HitZones[3]		  =(ZoneName=stomach,	BoneName=Spine,			Limb=BP_Torso, 		GoreHealth=MaxInt, 	DmgScale=0.8, 	SkinID=1))
+	HitZones[4]		  =(ZoneName=lupperarm,	BoneName=LeftArm,		Limb=BP_LeftArm,	GoreHealth=50, 		DmgScale=0.1,	SkinID=2)  //0.33
+	HitZones[5]		  =(ZoneName=lforearm, 	BoneName=LeftForearm,	Limb=BP_LeftArm,	GoreHealth=20,		DmgScale=0.1,	SkinID=2)   //0.33
+	HitZones[7]		  =(ZoneName=rupperarm,	BoneName=RightArm,		Limb=BP_RightArm,	GoreHealth=50,		DmgScale=1.3,	SkinID=3)
+	HitZones[8]		  =(ZoneName=rforearm, 	BoneName=RightForearm, 	Limb=BP_RightArm,	GoreHealth=20,		DmgScale=1.0,	SkinID=3)
 	HitZones[9]		  =(ZoneName=rhand, 	BoneName=RightHand, 	Limb=BP_RightArm,	GoreHealth=10,		DmgScale=0.5,	SkinID=1)  //0.5
 	HitZones[10]	  =(ZoneName=stomach, 	BoneName=Spine, 		Limb=BP_Torso,		GoreHealth=MaxInt,	DmgScale=0.8,	SkinID=1)  //0.8
-	HitZones[12]	  =(ZoneName=lthigh,	BoneName=LeftUpLeg,		Limb=BP_LeftLeg,	GoreHealth=100,		DmgScale=0.1,	SkinID=3)  //0.33
-	HitZones[13]	  =(ZoneName=lcalf,	    BoneName=LeftLeg,		Limb=BP_LeftLeg,	GoreHealth=MaxInt,	DmgScale=0.1,	SkinID=3)  //0.33
-	HitZones[14]	  =(ZoneName=lfoot,	    BoneName=LeftFoot,		Limb=BP_LeftLeg,	GoreHealth=10,		DmgScale=0.1,	SkinID=3)  //0.33
+	HitZones[12]	  =(ZoneName=lthigh,	BoneName=LeftUpLeg,		Limb=BP_LeftLeg,	GoreHealth=100,		DmgScale=0.1,	SkinID=2)  //0.33
+	HitZones[13]	  =(ZoneName=lcalf,	    BoneName=LeftLeg,		Limb=BP_LeftLeg,	GoreHealth=MaxInt,	DmgScale=0.1,	SkinID=2)  //0.33
+	HitZones[14]	  =(ZoneName=lfoot,	    BoneName=LeftFoot,		Limb=BP_LeftLeg,	GoreHealth=10,		DmgScale=0.1,	SkinID=2)  //0.33
 	HitZones[15]	  =(ZoneName=rthigh,	BoneName=RightUpLeg,	Limb=BP_RightLeg,	GoreHealth=75,		DmgScale=0.8,	SkinID=1)
 	HitZones[16]	  =(ZoneName=rcalf,     BoneName=RightLeg,		Limb=BP_RightLeg,	GoreHealth=25,		DmgScale=0.8,	SkinID=1)
+
+	// Tentacle gore
+	HitZones.Add((ZoneName=heart, 	BoneName=FrontTentacle2, Limb=BP_Special,  GoreHealth=50,  DmgScale=1.3, SkinID=3))
+	HitZones.Add((ZoneName=heart,	BoneName=FrontTentacle3, Limb=BP_Special,  GoreHealth=50,  DmgScale=1.3, SkinID=3))
+	HitZones.Add((ZoneName=heart,	BoneName=FrontTentacle4, Limb=BP_Special,  GoreHealth=50,  DmgScale=1.3, SkinID=3))
+	HitZones.Add((ZoneName=heart,	BoneName=FrontTentacle5, Limb=BP_Special,  GoreHealth=50,  DmgScale=1.3, SkinID=3))
+	HitZones.Add((ZoneName=heart,	BoneName=FrontTentacle6, Limb=BP_Special,  GoreHealth=50,  DmgScale=1.3, SkinID=3))
+	HitZones.Add((ZoneName=heart,	BoneName=FrontTentacle7, Limb=BP_Special,  GoreHealth=50,  DmgScale=1.5, SkinID=3))
 
 	WeakSpotSocketNames.Empty() // Ignore head
 	WeakSpotSocketNames.Add(FX_Right_Arm_Spike) // Right arm
 	WeakSpotSocketNames.Add(FX_Front_Spike) // Tentacle
-
-	// Tentacle gore
-	HitZones.Add((ZoneName=tentacle,	    BoneName=FrontTentacle1, Limb=BP_Torso,  GoreHealth=50,  DmgScale=1.3, SkinID=1))  //0.8
-
-	// Mech toes
-	HitZones.Add((ZoneName=ltoeindex,	    BoneName=LeftFootIndex1, 	Limb=BP_LeftLeg,  GoreHealth=MaxInt,  DmgScale=0.1, SkinID=3))  //0.25
-	HitZones.Add((ZoneName=ltoemiddle, 		BoneName=LeftFootMiddle1, 	Limb=BP_LeftLeg,  GoreHealth=MaxInt,  DmgScale=0.1, SkinID=3))  //0.25
-	HitZones.Add((ZoneName=ltoering,	    BoneName=LeftFootRing1,	 	Limb=BP_LeftLeg,  GoreHealth=MaxInt,  DmgScale=0.1, SkinID=3))  //0.25
 
 	// ---------------------------------------------
 	// Movement / Physics

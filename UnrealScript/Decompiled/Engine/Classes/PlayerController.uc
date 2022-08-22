@@ -4411,12 +4411,12 @@ unreliable server function ServerRemoteEvent(name EventName)
             }
         }
     }
-    if(!bFoundEvt)
+    if((!bFoundEvt && !Class'WorldInfo'.static.IsConsoleBuild()) && !Class'WorldInfo'.static.IsConsoleDedicatedServer())
     {
         LogInternal("Remote events:");
         ClientMessage("Remote events:",, 15);
         Idx = 0;
-        J0x19A:
+        J0x1E7:
 
         if(Idx < AllRemoteEvents.Length)
         {
@@ -4427,7 +4427,7 @@ unreliable server function ServerRemoteEvent(name EventName)
                 ClientMessage("-" @ string(RemoteEvt.EventName),, 15);
             }
             ++ Idx;
-            goto J0x19A;
+            goto J0x1E7;
         }
     }
 }
@@ -5055,6 +5055,8 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, Onl
 function OnConnectionStatusChange(OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus);
 
 function OnPlayTogetherStarted();
+
+function JoinPlayfabServer(bool bWasSuccessful, string ServerIP);
 
 function bool InviteHasEnoughSpace(OnlineGameSettings InviteSettings)
 {
@@ -6003,7 +6005,14 @@ exec event BugIt(optional string ScreenShotDescription)
     local Rotator ViewRotation;
     local string GoString, LocString;
 
-    ConsoleCommand("bugscreenshot " $ ScreenShotDescription);
+    if(!Class'WorldInfo'.static.IsConsoleBuild(8))
+    {        
+        ConsoleCommand("bugscreenshot " $ ScreenShotDescription);        
+    }
+    else
+    {
+        LogInternal("BUGIT: USE THE PS4'S SCRRENSHOT FUNCITONALITY!");
+    }
     GetPlayerViewPoint(ViewLocation, ViewRotation);
     if(Pawn != none)
     {

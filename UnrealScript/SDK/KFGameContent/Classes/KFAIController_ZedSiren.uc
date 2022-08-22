@@ -8,15 +8,23 @@
 //=============================================================================
 class KFAIController_ZedSiren extends KFAIController_Monster;
 
+/** Delay before next scream */
+var float ScreamDelayTime;
+
+/** Cooldown between screams */
+var float ScreamCooldown;
+
+/** Last stored time of successful scream */
+var transient float LastScreamTime;
+
 /** Push the sirens scream onto the stack before starting a move */
 function PreMoveToEnemy()
 {
-	// Push the AICommand for sirens scream before SetMoveGoal
-	if( MyKFPawn.SpecialMove == SM_SonicAttack || (MyKFPawn.SpecialMove == SM_None && !IsTimerActive(nameOf(DoScream))) )
+	if( `TimeSince(CreationTime) > 1.f )
 	{
 		DoScream( true );
 	}
-	else if( !IsTimerActive(nameOf(DoScream)) )
+	else
 	{
 		SetTimer( 1.f, false, nameOf(DoScream) );
 	}
@@ -25,30 +33,38 @@ function PreMoveToEnemy()
 /** Executes a scream */
 function DoScream( optional bool bCalledFromPreMove=false )
 {
-	if( MyKFPawn == none || !MyKFPawn.IsCombatCapable() )
+	if( MyKFPawn == none || !MyKFPawn.IsCombatCapable() || GetIsInZedVictoryState() )
 	{
 		return;
 	}
 
-	if( MyKFPawn.SpecialMove == SM_None || MyKFPawn.SpecialMove == SM_SonicAttack )
+	if( `TimeSince(LastScreamTime) > ScreamCooldown )
 	{
-		class'AICommand_Siren_Scream'.static.Scream( self );
-	}
+		if( FindCommandOfClass(class'AICommand_Siren_Scream') == none )
+		{
+			class'AICommand_Siren_Scream'.static.Scream( self );
+		}
 
-	// Start moving to enemy
-	if( !bCalledFromPreMove )
+		// Start moving to enemy
+		if( !bCalledFromPreMove )
+		{
+			SetEnemyMoveGoal( self, true );
+		}
+	}
+	else
 	{
-		SetEnemyMoveGoal( self, true );
+		SetTimer( 1.f, false, nameOf(DoScream) );			
 	}
 }
 
 
 /** Gets the best target based on aggro or distance, moves towards them, and then (optionally) screams */
-function AcquireEnemyAndScream( optional bool bStartScreamTimer )
+function AcquireEnemyAndScream( optional bool bStartScreamTimer, optional float ScreamTimer=1.0f )
 {
 	local Pawn BestTarget;
+	local bool bScreamActive;
 
-	if( MyKFPawn == none || !MyKFPawn.IsCombatCapable() || IsTimerActive(nameOf(DoScream)) )
+	if( MyKFPawn == none || !MyKFPawn.IsCombatCapable() || IsTimerActive(nameOf(DoScream)) || GetIsInZedVictoryState() )
 	{
 		return;
 	}
@@ -67,9 +83,21 @@ function AcquireEnemyAndScream( optional bool bStartScreamTimer )
 		}
 	}
 
+	bScreamActive = FindCommandOfClass( class'AICommand_Siren_Scream' ) != none;
 	if( bStartScreamTimer )
 	{
-		SetTimer( 1.f, false, nameOf(DoScream) );
+		if( bScreamActive )
+		{
+			ScreamDelayTime = WorldInfo.TimeSeconds + ScreamTimer;
+		}
+		else
+		{
+			SetTimer( ScreamTimer, false, nameOf(DoScream) );
+		}
+	}
+	else if( !bScreamActive )
+	{
+		DoScream();
 	}
 }
 
@@ -103,8 +131,14 @@ function NotifySpecialMoveEnded( KFSpecialMove SM )
 	// Allow a bit of time to blend out of incaps
 	if( SM.Handle == 'KFSM_Stumble' || SM.Handle == 'KFSM_Stunned' || SM.Handle == 'KFSM_Frozen' || SM.Handle == 'KFSM_RecoverFromRagdoll' )
 	{
-		AcquireEnemyAndScream( true );
+		AcquireEnemyAndScream( true, 0.5f );
 	}
+}
+
+/** Notification from the move command that we've arrived at an intermediate destination */
+function NotifyReachedLatentMoveGoal()
+{
+	AcquireEnemyAndScream( false );
 }
 
 /** Notification from KFSM_MeleeAttack that it has completed */
@@ -124,7 +158,7 @@ function NotifyCommandFinished( AICommand FinishedCommand )
 	// Need to set our scream timer after a panic wander or else Siren will likely never scream again
 	if( AICommand_PanicWander(FinishedCommand) != none )
 	{
-		AcquireEnemyAndScream( true );
+		AcquireEnemyAndScream( true, 0.75f );
 	}
 
 	super.NotifyCommandFinished( FinishedCommand );
@@ -154,9 +188,17 @@ function DoPanicWander()
 /** Stop screaming in victory state */
 function EnterZedVictoryState()
 {
+	local AICommand_Siren_Scream ScreamCommand;
+
 	if( IsTimerActive(nameOf(DoScream)) )
 	{
 		ClearTimer( nameOf(DoScream) );
+	}
+
+	ScreamCommand = FindCommandOfClass( class'AICommand_Siren_Scream' );
+	if( ScreamCommand != none )
+	{
+		AbortCommand( ScreamCommand );
 	}
 
 	super.EnterZedVictoryState();
@@ -172,6 +214,6 @@ DefaultProperties
 	LowIntensityAttackCooldown=7.0
 	bCanTeleportCloser=false
 
-	//DefaultBehavior="SirenMain"
-	//UsedETQQueries[ENQ_EnemySelection]="BaseZedEnemySelection"
+	// Scream
+	ScreamCooldown=4.0
 }

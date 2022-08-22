@@ -130,3 +130,7 @@ HelpParamDescriptions[1]="Displays help information for the specified commandlet
 HelpParamNames[2]="webhelp"
 HelpParamDescriptions[2]="Launches a browser with the URL of the web page that documents the commandlet"
 
+[SaveData]
+TitleLabel=Killing Floor 2
+SubTitleLabel=Killing Floor 2
+DescriptionLabel=Настройки и данные прогресса для Killing Floor 2

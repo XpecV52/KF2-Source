@@ -30,7 +30,8 @@ var StickInfo DelayedStickInfo;
 var() float PickupRadius;
 /** The height of the pickup collision when the projectile stops moving */
 var() float PickupHeight;
-var class<KFWeapon> WeaponClass;
+var const name WeaponClassName;
+var class<Weapon> WeaponClass;
 /** Sound to play when picking up ammo */
 var() AkEvent AmmoPickupSound;
 var Vector LastLocation;
@@ -54,6 +55,19 @@ simulated event ReplicatedEvent(name VarName)
     else
     {
         super(KFProjectile).ReplicatedEvent(VarName);
+    }
+}
+
+event PreBeginPlay()
+{
+    super(KFProjectile).PreBeginPlay();
+    if((Role == ROLE_Authority) && PickupRadius > float(0))
+    {
+        WeaponClass = Instigator.Weapon.Class;
+        if(WeaponClass.Name != WeaponClassName)
+        {
+            WarnInternal((("Projectile pickup mismatch class:" $ string(WeaponClass)) @ "name:") $ string(WeaponClassName));
+        }
     }
 }
 
@@ -112,10 +126,27 @@ simulated function Vector DecodeSmallVector(Vector V)
 
 simulated function SpawnFlightEffects()
 {
+    local KFWeapon W;
+    local PlayerController PC;
+    local bool bOwnsWeapon;
+
     super(KFProjectile).SpawnFlightEffects();
     if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
     {
         ProjEffects.SetVectorParameter('Rotation', vect(0, 0, 1));
+        PC = GetALocalPlayerController();
+        if(PC.Pawn != none)
+        {
+            foreach PC.Pawn.InvManager.InventoryActors(Class'KFWeapon', W)
+            {
+                if(W.Class.Name == WeaponClassName)
+                {
+                    bOwnsWeapon = true;
+                    break;
+                }                
+            }            
+        }
+        ProjEffects.SetFloatParameter('Icon', ((bOwnsWeapon) ? 1 : 0));
     }
 }
 
@@ -187,14 +218,14 @@ simulated function Tick(float DeltaTime)
 {
     super(Actor).Tick(DeltaTime);
     LastLocation = Location;
-    if((Physics == 6) && VSizeSq(Velocity) < ((Speed * Speed) * 0.1))
+    if((Physics == 6) && VSizeSq(Velocity) < (Square(Speed) * 0.1))
     {
         SetPhysics(2);
         GravityScale = 1;
     }
     if((WorldInfo.NetMode != NM_DedicatedServer) && Physics != 0)
     {
-        SetRotation(rotator(Normal(Velocity)));
+        SetRotation(rotator(Velocity));
     }
 }
 
@@ -205,9 +236,10 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
     if(((Other != Instigator) && !Other.bWorldGeometry) && Other.bCanBeDamaged)
     {
-        if(Pawn(Other) != none)
+        if(ShouldProcessBulletTouch())
         {
-            if(Physics != 2)
+            KFP = KFPawn(Other);
+            if(KFP != none)
             {
                 if(CheckRepeatingTouch(Other))
                 {
@@ -216,11 +248,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
                 ProcessBulletTouch(Other, HitLocation, HitNormal);
                 if((PenetrationPower > float(0)) || PassThroughDamage(Other))
                 {
-                    KFP = KFPawn(Other);
-                    if(KFP != none)
-                    {
-                        PenetrationPower -= KFP.PenetrationResistance;
-                    }
+                    PenetrationPower -= KFP.PenetrationResistance;
                     bPassThrough = true;
                 }
                 if(!bPassThrough)
@@ -234,17 +262,21 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
                     BouncesLeft = 0;
                     SetPhysics(2);
                 }
-            }            
+                return;                
+            }
+            else
+            {
+                ProcessDestructibleTouchOnBounce(Other, HitLocation, HitNormal);
+                return;
+            }
         }
-        else
-        {
-            ProcessDestructibleTouchOnBounce(Other, HitLocation, HitNormal);
-        }        
     }
-    else
-    {
-        super(KFProj_Bullet).ProcessTouch(Other, HitLocation, HitNormal);
-    }
+    super(KFProj_Bullet).ProcessTouch(Other, HitLocation, HitNormal);
+}
+
+simulated function bool ShouldProcessBulletTouch()
+{
+    return (Physics == 6) && BouncesLeft > 0;
 }
 
 state Pickup

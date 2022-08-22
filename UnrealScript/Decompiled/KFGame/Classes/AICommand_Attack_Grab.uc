@@ -38,7 +38,10 @@ function Pushed()
 {
     super.Pushed();
     Outer.DisableMeleeRangeEventProbing();
-    Outer.AILog_Internal((string(self) $ " ... Enemy") @ string(Outer.Enemy), 'Command_Attack_Grab');
+    if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+    {
+        Outer.AILog_Internal((string(self) $ " ... Enemy") @ string(Outer.Enemy), 'Command_Attack_Grab');
+    }
 }
 
 function Resumed(name OldCommandName)
@@ -104,7 +107,10 @@ state Command_SpecialMove
 
     function SpecialMoveTimeout()
     {
-        Outer.AILog_Internal(string(self) $ " Special move timed out", 'Command_Attack_Grab');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal(string(self) $ " Special move timed out", 'Command_Attack_Grab');
+        }
         if((Outer.MyKFPawn.SpecialMove == SpecialMove) || Outer.MyKFPawn.SpecialMove == 3)
         {
             Outer.MyKFPawn.EndSpecialMove();

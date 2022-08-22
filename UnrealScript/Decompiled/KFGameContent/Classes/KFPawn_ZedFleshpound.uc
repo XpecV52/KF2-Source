@@ -20,6 +20,8 @@ var name BattlePhaseLightFrontSocketName;
 var export editinline transient PointLightComponent BattlePhaseLightTemplateYellow;
 var export editinline transient PointLightComponent BattlePhaseLightTemplateRed;
 var export editinline transient PointLightComponent BattlePhaseLightFront;
+var protected const float FootstepCameraShakePitchAmplitude;
+var protected const float FootstepCameraShakeRollAmplitude;
 
 simulated event PreBeginPlay()
 {
@@ -71,6 +73,31 @@ function SetSprinting(bool bNewSprintStatus)
         return;
     }
     super.SetSprinting(bNewSprintStatus);
+}
+
+simulated event PlayFootStepSound(int FootDown)
+{
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        if(IsHumanControlled() && IsLocallyControlled())
+        {
+            FootstepCameraShake.RotOscillation.Pitch.Amplitude = 0;
+            FootstepCameraShake.RotOscillation.Roll.Amplitude = 0;            
+        }
+        else
+        {
+            FootstepCameraShake.RotOscillation.Pitch.Amplitude = FootstepCameraShakePitchAmplitude;
+            FootstepCameraShake.RotOscillation.Roll.Amplitude = FootstepCameraShakeRollAmplitude;
+            FootstepCameraShakeInnerRadius = default.FootstepCameraShakeInnerRadius;
+            FootstepCameraShakeOuterRadius = default.FootstepCameraShakeOuterRadius;
+            if(!bIsSprinting || VSizeSq(Velocity) < 10000)
+            {
+                FootstepCameraShake.RotOscillation.Pitch.Amplitude *= 0.75;
+                FootstepCameraShake.RotOscillation.Roll.Amplitude *= 0.75;
+            }
+        }
+    }
+    super.PlayFootStepSound(FootDown);
 }
 
 function CauseHeadTrauma(optional float BleedOutTime)
@@ -214,6 +241,25 @@ simulated function AdjustAffliction(out float AfflictionPower)
     }
 }
 
+simulated event Tick(float DeltaTime)
+{
+    super(KFPawn).Tick(DeltaTime);
+    if((WorldInfo.NetMode != NM_DedicatedServer) && IsAliveAndWell())
+    {
+        if((((bIsSprinting && IsEnraged()) && Physics == 1) && Mesh.RootMotionMode == 2) && VSizeSq(Velocity) > 40000)
+        {
+            if(!RageAkComponent.IsPlaying(RageLoopSound))
+            {
+                RageAkComponent.PlayEvent(RageLoopSound, true, true);
+            }            
+        }
+        else
+        {
+            StopRageSound();
+        }
+    }
+}
+
 simulated function GetOverheadDebugText(KFHUDBase HUD, out array<string> OverheadTexts, out array<Color> OverheadColors)
 {
     local string DebugText;
@@ -253,25 +299,6 @@ STATE: ") $ string(MyKFAIC.GetActiveCommand().GetStateName());
     super.GetOverheadDebugText(HUD, OverheadTexts, OverheadColors);
     OverheadTexts[OverheadTexts.Length] = DebugText;
     OverheadColors[OverheadTexts.Length - 1] = ModifyTextColor;
-}
-
-simulated event Tick(float DeltaTime)
-{
-    super(KFPawn).Tick(DeltaTime);
-    if((WorldInfo.NetMode != NM_DedicatedServer) && IsAliveAndWell())
-    {
-        if(((IsEnraged()) && Physics == 1) && VSizeSq(Velocity) >= (Square(SprintSpeed) * 0.8))
-        {
-            if(!RageAkComponent.IsPlaying(RageLoopSound))
-            {
-                RageAkComponent.PlayEvent(RageLoopSound, true, true);
-            }            
-        }
-        else
-        {
-            StopRageSound();
-        }
-    }
 }
 
 function int GetSpotterDialogID()
@@ -319,6 +346,8 @@ defaultproperties
     object end
     // Reference: PointLightComponent'Default__KFPawn_ZedFleshpound.PointLightComponent2'
     BattlePhaseLightTemplateRed=PointLightComponent2
+    FootstepCameraShakePitchAmplitude=120
+    FootstepCameraShakeRollAmplitude=60
     bLargeZed=true
     bCanRage=true
     bIsFleshpoundClass=true
@@ -346,16 +375,17 @@ defaultproperties
     BumpFrequency=0.1
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     FootstepCameraShakeInnerRadius=200
-    FootstepCameraShakeOuterRadius=800
+    FootstepCameraShakeOuterRadius=900
     begin object name=FootstepCameraShake0 class=CameraShake
         bSingleInstance=true
-        OscillationDuration=0.3
+        OscillationDuration=0.25
         RotOscillation=(Pitch=(Amplitude=120,Frequency=60),Roll=(Amplitude=60,Frequency=40))
     object end
     // Reference: CameraShake'Default__KFPawn_ZedFleshpound.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
     OnDeathAchievementID=131
     PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
+    LocalizationKey=KFPawn_ZedFleshpound
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

@@ -418,6 +418,7 @@ static function int GetTraderAdviceID()
 
 DefaultProperties
 {
+	LocalizationKey=KFPawn_ZedStalker
 	Begin Object Name=KFPawnSkeletalMeshComponent
 		// Enabling for bAlwaysFullAnimWeight bones
 		bUpdateKinematicBonesFromAnimation=true
@@ -458,7 +459,7 @@ DefaultProperties
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
 	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                    Cooldown=7.5,  Duration=5.5)
 	IncapSettings(AF_Microwave)=(Vulnerability=(0.5),                     Cooldown=20.5, Duration=5.0)
-	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=2.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=4.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
 
 	ParryResistance=1

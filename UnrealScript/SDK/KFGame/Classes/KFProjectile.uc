@@ -38,6 +38,9 @@ var bool bReplicateClientHitsAsFragments;
 /** Like Pawn setting with the same name */
 var float AlwaysRelevantDistanceSquared;
 
+/** Need to store the firemode of the weapon when spawning in case it changes during flight */
+var byte WeaponFireMode;
+
 /*********************************************************************************************
 * @name Penetration
 ********************************************************************************************* */
@@ -250,6 +253,10 @@ replication
     // Need to replicate the penetration power so the clients can properly simulate the penetration
     if( bNetInitial )
         InitialPenetrationPower, bAltExploEffects;
+
+    // Only need to replicate this to owner
+    if( bNetInitial && bNetOwner )
+        WeaponFireMode;
 }
 
 /** returns terminal velocity (max speed while falling) for this actor.  Unless overridden, it returns the TerminalVelocity of the PhysicsVolume in which this actor is located.
@@ -289,15 +296,19 @@ simulated function PostBeginPlay()
  */
 function Init(vector Direction)
 {
+    local KFWeapon KFW;
+
 	SetRotation(rotator(Direction));
 
 	Velocity = Speed * Direction;
 	Velocity.Z += TossZ;
 
-    if( KFWeapon(Owner) != none )
+    KFW = KFWeapon( Owner );
+    if( KFW != none )
     {
 		// used in SyncOriginalLocation, called below
-        bFiredFromLeftHandWeapon = KFWeapon(Owner).GetCurrentMuzzleID() == 1;
+        bFiredFromLeftHandWeapon = KFW.GetCurrentMuzzleID() == 1;
+        WeaponFireMode = KFW.CurrentFireMode;
     }
 
 	if( bSyncToOriginalLocation )
@@ -664,6 +675,7 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
 	local array<ImpactInfo> HitZoneImpactList;
 	local vector StartTrace, EndTrace, Direction;
 	local TraceHitInfo HitInfo;
+    local KFWeapon KFW;
 
 	// Do the impact effects
     if ( WorldInfo.NetMode != NM_DedicatedServer )
@@ -672,7 +684,8 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
 		`ImpactEffectManager.PlayImpactEffects(HitLocation, Instigator,, ImpactEffects);
 	}
 
-	if ( !Other.IsA('Pawn') )
+    Victim = Pawn( Other );
+	if ( Victim == none )
 	{
 		if ( bDamageDestructiblesOnTouch && Other.bCanBeDamaged )
 		{
@@ -688,10 +701,8 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
     		return;
 		}
 	}
-
-	Victim = Pawn(Other);
-	if( Victim != none )
-	{
+    else
+    {
 		StartTrace = HitLocation;
 		Direction = Normal(Velocity);
 		EndTrace = StartTrace + Direction * (Victim.CylinderComponent.CollisionRadius * 6.0);
@@ -707,15 +718,23 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
 
 			if( bReplicateClientHitsAsFragments )
 			{
-				if( Instigator != none && KFWeapon(Instigator.Weapon) != none )
+				if( Instigator != none )
 				{
-				   KFWeapon(Instigator.Weapon).HandleGrenadeProjectileImpact(HitZoneImpactList[0], class);
+                    KFW = KFWeapon( Instigator.Weapon );
+                    if( KFW != none )
+                    {
+                        KFW.HandleGrenadeProjectileImpact(HitZoneImpactList[0], class);
+                    }
 				}
 			}
 			// Owner is none on a remote client, or the weapon on the server/local player
-			else if( Owner != none && KFWeapon( Owner ) != none )
+			else if( Owner != none )
 			{
-                KFWeapon(Owner).HandleProjectileImpact(HitZoneImpactList[0], PenetrationPower);
+                KFW = KFWeapon( Owner );
+                if( KFW != none )
+                {
+                    KFW.HandleProjectileImpact(WeaponFireMode, HitZoneImpactList[0], PenetrationPower);
+                }
 			}
 		}
 	}
@@ -834,6 +853,7 @@ simulated function Disintegrate( rotator InDisintegrateEffectRotation )
 simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
 {
 	local vector NudgedHitLocation, ExplosionDirection;
+    local Pawn P;
 
 	if( bHasDisintegrated )
 	{
@@ -857,10 +877,19 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
 		{
 			StopSimulating();
 
-			// using a hitlocation slightly away from the impact point is nice for certain things
+			// using a hit location slightly away from the impact point is nice for certain things
 			NudgedHitLocation = HitLocation + (HitNormal * 32.f);
 
-            SetExplosionActorClass();
+            SetExplosionActorClass();      
+            if( ExplosionActorClass == class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass() )
+            {
+                P = Pawn(HitActor);
+                if( P != none )
+                {
+                    NudgedHitLocation = P.Location - vect(0,0,1) * P.GetCollisionHeight();
+                }
+            }
+
             ExplosionActor = Spawn(ExplosionActorClass, self,, NudgedHitLocation, rotator(HitNormal));
 			if (ExplosionActor != None)
 			{
@@ -916,6 +945,12 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
 
 		bHasExploded = true;
 	}
+}
+
+/** Can be overridden in subclasses to exclude specific projectiles from nuking */
+simulated function bool AllowNuke()
+{
+    return true;
 }
 
 /**

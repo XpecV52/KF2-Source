@@ -103,6 +103,11 @@ function bool GetUsingGamepad()
 	local PlayerController PC;
 	PC = GetPC();
 
+	if( class'WorldInfo'.static.IsConsoleBuild() )
+	{
+		return true;
+	}
+
     if ( PC == none || PC.PlayerInput == none )
 	{
 		return false;

@@ -9,7 +9,25 @@ class KFPawn_ZedSiren extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
-function ANIMNOTIFY_SirenScream()
+var protected export editinline PointLightComponent NeckLightComponent;
+var protected const name NeckLightSocketName;
+var protected const float ScreamLightFlickerRate;
+var protected const float ScreamLightRadius;
+var protected const float ScreamLightFalloffExponent;
+var protected const float MinFlickerBrightness;
+var protected const float MaxFlickerBrightness;
+
+simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
+{
+    super(KFPawn).SetCharacterArch(Info, bForce);
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        Mesh.AttachComponentToSocket(NeckLightComponent, NeckLightSocketName);
+        NeckLightComponent.SetEnabled(true);
+    }
+}
+
+simulated function ANIMNOTIFY_SirenScream()
 {
     local KFSM_Siren_Scream ScreamSM;
 
@@ -17,7 +35,58 @@ function ANIMNOTIFY_SirenScream()
     if(ScreamSM != none)
     {
         ScreamSM.ScreamBegan();
-        DisablebOnDeathAchivement();
+        if(WorldInfo.NetMode != NM_Client)
+        {
+            DisablebOnDeathAchivement();
+        }
+    }
+}
+
+simulated function EnableScreamFlicker(bool bEnabled)
+{
+    if(((WorldInfo.NetMode == NM_DedicatedServer) || bPlayedDeath) || NeckLightComponent == none)
+    {
+        return;
+    }
+    if(bEnabled)
+    {
+        NeckLightComponent.AnimationType = 3;
+        NeckLightComponent.AnimationFrequency = ScreamLightFlickerRate;
+        NeckLightComponent.Radius = ScreamLightRadius;
+        NeckLightComponent.FalloffExponent = ScreamLightFalloffExponent;
+        NeckLightComponent.MinBrightness = MinFlickerBrightness;
+        NeckLightComponent.MaxBrightness = MaxFlickerBrightness;        
+    }
+    else
+    {
+        NeckLightComponent.AnimationType = default.NeckLightComponent.AnimationType;
+        NeckLightComponent.AnimationFrequency = default.NeckLightComponent.AnimationFrequency;
+        NeckLightComponent.Radius = default.NeckLightComponent.Radius;
+        NeckLightComponent.FalloffExponent = default.NeckLightComponent.FalloffExponent;
+        NeckLightComponent.MinBrightness = default.NeckLightComponent.MinBrightness;
+        NeckLightComponent.MaxBrightness = default.NeckLightComponent.MaxBrightness;
+    }
+    NeckLightComponent.DetachFromAny();
+    Mesh.AttachComponentToSocket(NeckLightComponent, NeckLightSocketName);
+}
+
+simulated event NotifyGoreMeshActive()
+{
+    super.NotifyGoreMeshActive();
+    if(NeckLightComponent != none)
+    {
+        NeckLightComponent.DetachFromAny();
+        Mesh.AttachComponentToSocket(NeckLightComponent, NeckLightSocketName);
+    }
+}
+
+simulated function TerminateEffectsOnDeath()
+{
+    super(KFPawn).TerminateEffectsOnDeath();
+    if(NeckLightComponent != none)
+    {
+        NeckLightComponent.DetachFromAny();
+        NeckLightComponent = none;
     }
 }
 
@@ -38,6 +107,26 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
+    begin object name=NeckLightComponent0 class=PointLightComponent
+        Radius=35
+        Brightness=0.8
+        LightColor=(B=50,G=50,R=250,A=255)
+        bEnabled=false
+        CastShadows=false
+        LightingChannels=(Outdoor=true)
+        MaxBrightness=1.2
+        MinBrightness=0.75
+        AnimationType=1
+        AnimationFrequency=5
+    object end
+    // Reference: PointLightComponent'Default__KFPawn_ZedSiren.NeckLightComponent0'
+    NeckLightComponent=NeckLightComponent0
+    NeckLightSocketName=NeckLightSocket
+    ScreamLightFlickerRate=4.25
+    ScreamLightRadius=200
+    ScreamLightFalloffExponent=2
+    MinFlickerBrightness=0.4
+    MaxFlickerBrightness=2
     CharacterMonsterArch=KFCharacterInfo_Monster'zed_siren_arch.ZED_Siren_Archetype'
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=13
@@ -54,6 +143,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     OnDeathAchievementID=129
     PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
+    LocalizationKey=KFPawn_ZedSiren
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

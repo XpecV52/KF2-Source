@@ -100,14 +100,14 @@ function IQueryHandler getHandlerFor(string Path, out string Title, out string D
     return none;
 }
 
-function SetVisibility(string Path, bool isVisible)
+function SetVisibility(string Path, bool IsVisible)
 {
     local int Idx;
 
     Idx = menu.Find('Path', Path;
     if(Idx > -1)
     {
-        menu[Idx].Hidden = !isVisible;
+        menu[Idx].Hidden = !IsVisible;
     }
 }
 

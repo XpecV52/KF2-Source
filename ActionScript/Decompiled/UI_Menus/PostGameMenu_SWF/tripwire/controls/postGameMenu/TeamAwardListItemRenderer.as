@@ -9,6 +9,7 @@ package tripwire.controls.postGameMenu
     import scaleform.clik.controls.ListItemRenderer;
     import scaleform.clik.controls.UILoader;
     import scaleform.gfx.Extensions;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.menus.PostGameMenu;
     
     public class TeamAwardListItemRenderer extends ListItemRenderer
@@ -61,6 +62,7 @@ package tripwire.controls.postGameMenu
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            TextFieldEx.setTextAutoSize(this.awardInfo.statNameTextField,"shrink");
         }
         
         public function setAnimations() : void

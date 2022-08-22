@@ -752,12 +752,16 @@ function bool PlayHitReactionAnim(KFPawn P, EHitReactionAnimType Type, EPawnOcta
 		AnimName = MediumHitAnims[Dir].Anims[Rand(MediumHitAnims[Dir].Anims.Length)];
 		Duration = P.PlayBodyAnim(AnimName, EAS_UpperBody);
 		P.NextHitReactionAnim_ActorTime = P.GetActorTimeSeconds() + 0.33f;//RandRange(0.0f, 0.1f);
+
+		P.SoundGroupArch.PlayPainSound(P);
 	}
 	else if ( Type == HIT_Heavy && HeavyHitAnims[Dir].Anims.Length > 0 )
 	{
 		AnimName = HeavyHitAnims[Dir].Anims[Rand(HeavyHitAnims[Dir].Anims.Length)];
 		Duration = P.PlayBodyAnim(AnimName, EAS_UpperBody);
 		P.NextHitReactionAnim_ActorTime = P.GetActorTimeSeconds() + 0.33f;//RandRange(0.5f, 1.5f);
+
+		P.SoundGroupArch.PlayPainSound(P);
 	}
 
 	return ( Duration > 0 );

@@ -144,14 +144,14 @@ function DrawHUD()
                                 HiddenHumanPlayers[0].HumanPawn = HumanPawn;
                                 HiddenHumanPlayers[0].HumanPRI = HumanPawn.PlayerReplicationInfo;
                             }
-                        }
+                        }/* //Not supposed to be drawing a bar above zed characters
                         else if( MyTeamNum == 255 && TestPawn.GetTeamNum() == 255 )
                         {
                             if( VSizeSq( KFPlayerOwner.ViewTarget.Location - TestPawnLocation ) <= FriendlyZedInfoShowDistanceSQ )
                             {
                                 DrawFriendlyZedPawnIcon( TestPawn );
                             }
-                        }
+                        }*/
                     }
                 }
                 else if( TestPawn.GetTeamNum() == 0 )
@@ -183,7 +183,7 @@ function DrawHUD()
         {
              DrawRemainingTimeUntilSpawn( MyKFGRIV.TimeUntilNextSpawn, MyKFGRIV.PlayerZedSpawnWaitTimeData.bTakeOverActive );
         }
-    }
+    }    
 }
 
 /**
@@ -355,7 +355,7 @@ function DrawRemainingTimeUntilSpawn( byte RemainingTime, bool bTakeOverIsActive
         }
     }
 
-    TextScale = class'KFGameEngine'.Static.GetKFFontScale() * (Canvas.ClipY / 512.f);
+    TextScale = class'KFGameEngine'.Static.GetKFFontScale() * (Canvas.ClipY / 768.f);
     Canvas.Font = class'KFGameEngine'.Static.GetKFCanvasFont();
     Canvas.TextSize( Repl( WaitingToSpawnString, "%x%", "00", true ), XL, YL, TextScale, TextScale );
     ScreenPos.X = (Canvas.ClipX * 0.5f) - (XL * 0.5f);
@@ -383,7 +383,6 @@ DefaultProperties
     ZedPlayerHudLocX=0.25
     ZedPlayerHudLocY=0.85
 
-    HumanPlayerIconInterpMult=0.007f
     HumanStatusBarLengthMax = 80.0f;
 
     BossIconTexture=Texture2D'ZED_Patriarch_UI.ZED-VS_Icon_Boss'

@@ -93,15 +93,24 @@ function string GetLobbyData( int LobbyIndex, string Key );
 
 function bool SetVisibility( int VisibilityIndex );
 
-function ShowLobbyInviteInterface();
+function ShowLobbyInviteInterface(string InviteMessage);
+
+//@HSL_BEGIN - JRO - 8/15/2016 - Play Together needs a way to programmatically invite people to the party
+function bool SendInviteToUsers(array<string> MembersToInvite, string InviteMessage);
+//@HSL_END
 
 function bool LobbyMessage(string Message);
 
 function bool GetCurrentLobby(out ActiveLobbyInfo LobbyInfo);
 
+//@HSL_BEGIN - JRO - 8/17/2016 - Number of party members
+function int GetCurrentPartySize();
+//@HSL_END
+
 function bool MakeLobby(int MaxPlayers, ELobbyVisibility Type);
 
 function UniqueNetId GetCurrentLobbyId();
+
 function bool GetLobbyFromCommandline(out UniqueNetId LobbyId, optional bool bMarkAsJoined=True);
 
 function LobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted);

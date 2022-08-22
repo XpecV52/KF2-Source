@@ -17,6 +17,7 @@ var bool bWasUsingAltFireMode;
 var bool bUsesSecondaryAmmo;
 var int LastFlashlightBattery;
 var int LastGrenades;
+var int LastSavedBuild;
 var int LastMaxWeight;
 var int LastWeight;
 var class<KFPerk> LastPerkClass;
@@ -83,12 +84,13 @@ function UpdateGrenades()
     {
         CurrentGrenades = MyKFInvManager.GrenadeCount;
     }
-    if(MyKFPC.GetPerk() != none)
+    if(MyKFPC.CurrentPerk != none)
     {
-        if(LastPerkClass != MyKFPC.GetPerk().Class)
+        if((LastPerkClass != MyKFPC.CurrentPerk.Class) || LastSavedBuild != MyKFPC.CurrentPerk.GetSavedBuild())
         {
-            SetString("backpackGrenadeType", "img://" $ MyKFPC.CurrentPerk.GrenadeWeaponDef.static.GetImagePath());
+            SetString("backpackGrenadeType", "img://" $ MyKFPC.CurrentPerk.GetGrenadeImagePath());
             LastPerkClass = MyKFPC.CurrentPerk.Class;
+            LastSavedBuild = MyKFPC.CurrentPerk.GetSavedBuild();
         }
     }
     if(CurrentGrenades != LastGrenades)

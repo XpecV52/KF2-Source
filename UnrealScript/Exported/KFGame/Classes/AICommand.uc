@@ -62,7 +62,7 @@ function PostPopped()
 /** Command has been paused by another command */
 function Paused(GameAICommand NewCommand)
 {
-	AILog_Internal(GetFuncName()$" ["$self$"] setting CachedChildCommand to "$NewCommand,'Command_Base',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" ["$self$"] setting CachedChildCommand to "$NewCommand,'Command_Base',);};
 	CachedChildCommand = AICommand( NewCommand );
 
 	Super.Paused(NewCommand);
@@ -71,7 +71,7 @@ function Paused(GameAICommand NewCommand)
 /** Command has resumed execution */
 function Resumed( Name OldCommandName )
 {
-	AILog_Internal(GetFuncName()$" Command resumed, setting CachedChildCommand to none",'Command_Base',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Command resumed, setting CachedChildCommand to none",'Command_Base',);};
 	CachedChildCommand = none;
 
 	Super.Resumed( OldCommandName );
@@ -88,7 +88,7 @@ function Popped()
 	if( MyKFPawn != none && MyKFPawn.IsAliveAndWell() )
 	{
 		UpdateCommandHistory();
-		AILog_Internal(GetFuncName()$" Command Popped, setting CachedChildCommand to none",'Command_Base',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" Command Popped, setting CachedChildCommand to none",'Command_Base',);};
 	}
 	CachedChildCommand = none;
 
@@ -138,7 +138,7 @@ function bool NotifyHearNoise( float Loudness, Actor NoiseMaker, optional Name N
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() Loudness: "$Loudness$" NoiseMaker: "$NoiseMaker$" Type: "$NoiseType,'HearNoise',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Loudness: "$Loudness$" NoiseMaker: "$NoiseMaker$" Type: "$NoiseType,'HearNoise',);};
 		return CachedChildCommand.NotifyHearNoise( Loudness, NoiseMaker, NoiseType );
 	}
 	return false;
@@ -148,7 +148,7 @@ function bool NotifyCombatBehaviorChange( name BehaviorName, bool bEnabled )
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() BehaviorName: "$BehaviorName$" bEnabled: "$bEnabled,,);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() BehaviorName: "$BehaviorName$" bEnabled: "$bEnabled,,);};
 		return CachedChildCommand.NotifyCombatBehaviorChange( BehaviorName, bEnabled );
 	}
 	return false;
@@ -178,7 +178,7 @@ function NotifyDoorOpened()
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'NotifyDoorOpened',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'NotifyDoorOpened',);};
 		CachedChildCommand.NotifyDoorOpened();
 	}
 }
@@ -188,7 +188,7 @@ function bool NotifyPlayerBecameVisible( Pawn VisiblePlayer )
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() Seen: "$VisiblePlayer$" notifying "$CachedChildCommand$" and letting it handle the event.",'SeePlayer',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() Seen: "$VisiblePlayer$" notifying "$CachedChildCommand$" and letting it handle the event.",'SeePlayer',);};
 		return CachedChildCommand.NotifyPlayerBecameVisible( VisiblePlayer );
 	}
 	return false;
@@ -199,7 +199,7 @@ function bool NotifyEnemyNotVisible()
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'EnemyNotVisible',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'EnemyNotVisible',);};
 		return CachedChildCommand.NotifyEnemyNotVisible();
 	}
 	return false;
@@ -224,7 +224,7 @@ function bool NotifyLanded( vector HitNormal, actor FloorActor )
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() HitNormal:"$HitNormal$" FloorActor:"$FloorActor$" notifying "$CachedChildCommand$" and letting it handle the event.",'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() HitNormal:"$HitNormal$" FloorActor:"$FloorActor$" notifying "$CachedChildCommand$" and letting it handle the event.",'PathWarning',);};
 		return CachedChildCommand.NotifyLanded( HitNormal, FloorActor );
 	}
 	return false;
@@ -235,7 +235,7 @@ function bool EnemyIsSurrounded()
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'PathWarning',);};
 		return CachedChildCommand.EnemyIsSurrounded();
 	}
 	return false;
@@ -246,7 +246,7 @@ function bool NotifyHitWall( vector HitNormal, actor Wall )
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'HitWall',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'HitWall',);};
 		return CachedChildCommand.NotifyHitWall( HitNormal, Wall );
 	}
 	return false;
@@ -257,7 +257,7 @@ function bool NotifyFallingHitWall( vector HitNormal, actor Wall )
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'HitWall',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'HitWall',);};
 		return CachedChildCommand.NotifyFallingHitWall( HitNormal, Wall );
 	}
 	return false;
@@ -283,7 +283,7 @@ function bool NotifyBump( actor Other, vector HitNormal )
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'BumpEvent',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'BumpEvent',);};
 		if( CachedChildCommand.NotifyBump( Other, HitNormal ) )
 		{
 			return true;
@@ -292,11 +292,24 @@ function bool NotifyBump( actor Other, vector HitNormal )
 	return false;
 }
 
+function bool NotifyLatentPostPhysWalking()
+{
+	if( CachedChildCommand != None )
+	{
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'PostPhysWalking',);};
+		if( CachedChildCommand.NotifyLatentPostPhysWalking() )
+		{
+			return true;
+		}
+	}
+	return false;	
+}
+
 function bool NotifyTouch(Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal)
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'TouchEvent',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'TouchEvent',);};
 		if( CachedChildCommand.NotifyTouch( Other, OtherComp, HitLocation, HitNormal ) )
 		{
 			return true;
@@ -309,7 +322,7 @@ function bool NotifyMovingOnToDestructibleEdge( KFDestructibleActor TheDestructi
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'NotifyZedStuck',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'NotifyZedStuck',);};
 		if( CachedChildCommand.NotifyMovingOnToDestructibleEdge( TheDestructiblePathObject, EdgeData, outMove2Point ) )
 		{
 			return true;
@@ -323,7 +336,7 @@ function bool NotifyNpcTerminallyStuck()
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'NotifyNpcTerminallyStuck',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'NotifyNpcTerminallyStuck',);};
 		if( CachedChildCommand.NotifyNpcTerminallyStuck() )
 		{
 			return true;
@@ -336,7 +349,7 @@ function bool NotifyNpcInGrannyMode()
 {
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'NotifyNpcInGrannyMode',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() notifying "$CachedChildCommand$" and letting it handle the event.",'NotifyNpcInGrannyMode',);};
 		if( CachedChildCommand.NotifyNpcInGrannyMode() )
 		{
 			return true;
@@ -357,7 +370,7 @@ function bool ShouldIgnoreTimeTransitions()
 
 	if( bShouldIgnore )
 	{
-		AILog_Internal(GetFuncName()$"() returning TRUE - ignoring time transitions",'CombatTransitions',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() returning TRUE - ignoring time transitions",'CombatTransitions',);};
 	}
 	return bShouldIgnore;
 }
@@ -371,7 +384,7 @@ function bool IsAllowedToAttack()
 
 	if( !bCanAttack )
 	{
-		AILog_Internal(GetFuncName()$"() returning false because !bAllowedToAttack",,);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() returning false because !bAllowedToAttack",,);};
 	}
 
 	return bCanAttack;
@@ -434,11 +447,11 @@ function AdjustEnemyRating(out float out_Rating, Pawn EnemyPawn)
 /** Called from native code during latent movement, gives NPC a chance to find direct path to goal */
 function FindDirectPath()
 {
-	AILog_Internal(GetFuncName(),'Move_DirectPath',);
+	if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName(),'Move_DirectPath',);};
 
 	if (CachedChildCommand != None)
 	{
-		AILog_Internal(GetFuncName()$"(), [I am "$self$"] letting "$CachedChildCommand$" decide what to do about it.",'Move_DirectPath',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"(), [I am "$self$"] letting "$CachedChildCommand$" decide what to do about it.",'Move_DirectPath',);};
 		CachedChildCommand.FindDirectPath();
 	}
 }
@@ -448,12 +461,12 @@ function bool MoveUnreachable( Vector AttemptedDest, Actor AttemptedTarget )
 {
 	if( AttemptedTarget != none )
 	{
-		AILog_Internal(GetFuncName()$" AttemptedTarget: "$AttemptedTarget,'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$" AttemptedTarget: "$AttemptedTarget,'PathWarning',);};
 	}
 
 	if( CachedChildCommand != None )
 	{
-		AILog_Internal(GetFuncName()$"() letting "$CachedChildCommand$" decide what to do about it.",'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() letting "$CachedChildCommand$" decide what to do about it.",'PathWarning',);};
 		return CachedChildCommand.MoveUnreachable( AttemptedDest, AttemptedTarget );
 	}
 	return false;
@@ -464,12 +477,12 @@ function NotifyNeedRepath()
 {
 	if(CachedChildCommand != none)
 	{
-		AILog_Internal(GetFuncName()$"() "$self$" called, letting "$CachedChildCommand$" decide what to do about it.",'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() "$self$" called, letting "$CachedChildCommand$" decide what to do about it.",'PathWarning',);};
 		CachedChildCommand.NotifyNeedRepath();
 	}
 	else
 	{
-		AILog_Internal(GetFuncName()$"() "$self$" called.",'PathWarning',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"() "$self$" called.",'PathWarning',);};
 	}
 }
 

@@ -8,7 +8,8 @@
 //  Zane Gholson -  09/17/2015
 //=============================================================================
 
-class KFGFxMenu_Store extends KFGFxObject_Menu;
+class KFGFxMenu_Store extends KFGFxObject_Menu
+	native(UI);
 
 var localized string ExitKF2;
 
@@ -21,6 +22,8 @@ var KFGFxStoreContainer_Cart	CartContainer;
 
 var GFxObject AddCartButton;
 
+
+
 struct StoreItem
 {
 	var int 	SKU;
@@ -32,6 +35,16 @@ struct StoreItem
 };
 
 var localized string StoreString;
+
+enum ETitleStoreIconLocation
+{
+	ETSIL_BottomLeft,
+	ETSIL_BottomCenter,
+	ETSIL_BottomRight
+};
+
+native function bool ShowSystemStoreIcon(ETitleStoreIconLocation location);
+native function bool HideSystemStoreIcon();
 
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
@@ -65,8 +78,10 @@ function OnOpen()
 	{
 		OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
 	}
-	
+
 	RefreshItemList();
+
+//	ShowSystemStoreIcon(ETSIL_BottomCenter);
 }
 
 function OnClose()
@@ -79,6 +94,8 @@ function OnClose()
 	{
 		OnlineSub.ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
 	}
+
+//	HideSystemStoreIcon();
 }
 
 function OnInventoryReadComplete()
@@ -189,9 +206,15 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
 	}
 	else
 	{
-		AddCartButton.SetString("label", class'KFGFxStoreContainer_Details'.default.AddToCartString$":"$StoreItemDetails.Price);
+		AddCartButton.SetString("label", class'KFGFxStoreContainer_Details'.default.AddToCartString$":"$StoreItemDetails.Price );
 	}
 	SetObject("storeItemDetails", CreateStoreItem(StoreItemDetails));
+
+	if( class'WorldInfo'.static.IsConsoleBuild() && StoreItemDetails.Price != "" )
+	{
+		AddCartButton.SetString("label", class'KFGFxStoreContainer_Details'.default.AddToCartString);
+		AddCartButton.SetVisible( true );
+	}
 }
 
 function GFxObject CreateStoreItem(ItemProperties DesiredStoreItem)
@@ -202,7 +225,7 @@ function GFxObject CreateStoreItem(ItemProperties DesiredStoreItem)
 				
 	DataObject.SetString("label", DesiredStoreItem.Name);
 	DataObject.SetString("description", DesiredStoreItem.Description);
-	DataObject.SetString("price", DesiredStoreItem.Price);
+	DataObject.SetString("price", class'WorldInfo'.static.IsConsoleBuild() ? "" : DesiredStoreItem.Price);
 	DataObject.SetString("imageURL", "img://"$DesiredStoreItem.IconURL);
 	DataObject.SetString("imageURLLarge", "img://"$DesiredStoreItem.IconURLLarge);
 	DataObject.SetInt("SKU", DesiredStoreItem.Definition);

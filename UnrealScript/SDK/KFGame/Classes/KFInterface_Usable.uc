@@ -8,4 +8,4 @@ interface KFInterface_Usable;
 /** Checks if this actor is presently usable */
 simulated function bool GetIsUsable( Pawn User );
 /** Return the index for our interaction message. */
-function int GetInteractionIndex();
+function int GetInteractionIndex( Pawn User );

@@ -17,6 +17,13 @@ var(KFFootPlacement) float InterpUpSpeed;
 var(KFFootPlacement) float InterpDownSpeed;
 /** Floor Normal, to do the traces for the feet. */
 var(KFFootPlacement) Vector FloorNormal;
+/** When LegAdjust is small ignore IK.  Ideally, this should always trigger on flat surfaces */
+var(Performance) float MinAdjustment;
+/** If leg adjust from last frame is small, apply skip rate for traces */
+var(Performance) float MaxLegAdjustForSkipRate;
+var const transient int SkipRateForLineTrace;
+var const transient int UpdateTransformsCount;
+var const transient Vector HitNormal;
 var const transient float LegAdjust;
 var const transient float LegAdjustInterp;
 var const transient KFPawn PawnOwner;
@@ -30,6 +37,9 @@ defaultproperties
     InterpUpSpeed=128
     InterpDownSpeed=128
     FloorNormal=(X=0,Y=0,Z=1)
+    MinAdjustment=1.8
+    MaxLegAdjustForSkipRate=100
+    SkipRateForLineTrace=2
     FootOffset=1.9
     MaxDownAdjustment=60
     JointTargetLocationSpace=EBoneControlSpace.BCS_ParentBoneSpace

@@ -28,7 +28,9 @@ function cleanupSettings()
 function initSettings()
 {
     local OnlineGameSettings GameSettings;
+    local GameEngine GEngine;
 
+    GEngine = GameEngine(Class'Engine'.static.GetEngine());
     if((GameInfo != none) && GameInfo.GameReplicationInfo != none)
     {
         SetStringPropertyByName('ServerName', GameInfo.GameReplicationInfo.ServerName);        
@@ -36,6 +38,14 @@ function initSettings()
     else
     {
         SetStringPropertyByName('ServerName', Class'GameReplicationInfo'.default.ServerName);
+    }
+    if(GEngine != none)
+    {
+        SetIntPropertyByName('bUsedForTakeover', int(GEngine.bUsedForTakeover));        
+    }
+    else
+    {
+        SetIntPropertyByName('bUsedForTakeover', int(Class'GameEngine'.default.bUsedForTakeover));
     }
     if(GameInfo != none)
     {
@@ -175,7 +185,10 @@ function saveSettings()
 {
     local int Val;
     local OnlineGameSettings GameSettings;
+    local GameEngine GEngine;
+    local bool bWasUsedForTakeover;
 
+    GEngine = GameEngine(Class'Engine'.static.GetEngine());
     if(GameInfo != none)
     {
         GameSettings = GameInfo.GameInterface.GetGameSettings(GameInfo.PlayerReplicationInfoClass.default.SessionName);
@@ -195,6 +208,31 @@ function saveSettings()
     {
         GetStringPropertyByName('ServerName', GameInfo.GameReplicationInfo.ServerName);
         GameInfo.GameReplicationInfo.SaveConfig();
+    }
+    if(GetIntPropertyByName('bUsedForTakeover', Val))
+    {
+        Class'GameEngine'.default.bUsedForTakeover = Val != 0;
+    }
+    Class'GameEngine'.static.StaticSaveConfig();
+    if(GEngine != none)
+    {
+        bWasUsedForTakeover = GEngine.bUsedForTakeover;
+        if(GetIntPropertyByName('bUsedForTakeover', Val))
+        {
+            GEngine.bUsedForTakeover = Val != 0;
+        }
+        GEngine.SaveConfig();
+        if(!GEngine.bUsedForTakeover)
+        {
+            GEngine.bAvailableForTakeover = false;            
+        }
+        else
+        {
+            if(!bWasUsedForTakeover)
+            {
+                GEngine.bAvailableForTakeover = true;
+            }
+        }
     }
     if(GetIntPropertyByName('bSilentAdminLogin', Val))
     {

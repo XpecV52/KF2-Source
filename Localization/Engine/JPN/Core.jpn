@@ -130,3 +130,7 @@ HelpParamDescriptions[1]="指定したコマンドレットのヘルプ情報を
 HelpParamNames[2]="webhelp"
 HelpParamDescriptions[2]="コマンドレットのドキュメントがあるウェブページの URL でブラウザを起動する"
 
+[SaveData]
+TitleLabel=Killing Floor 2
+SubTitleLabel=Killing Floor 2
+DescriptionLabel=Killing Floor 2の設定および進捗データ

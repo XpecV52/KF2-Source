@@ -185,7 +185,7 @@ Begin:
 	if( MyKFPawn == none || !MyKFPawn.IsAliveAndWell() )
 	{
 		Status = 'Failure';
-		AILog_Internal("No pawn, aborting",'Command_Flee',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("No pawn, aborting",'Command_Flee',);};
 		NotifyFleeFinished();
 		PopCommand( self );
 	}
@@ -202,7 +202,7 @@ Begin:
 		if( MyKFPawn == none || !MyKFPawn.IsAliveAndWell() )
 		{
 			Status = 'Failure';
-			AILog_Internal("No pawn, or pawn died from falling",'Command_Flee',);
+			if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("No pawn, or pawn died from falling",'Command_Flee',);};
 			NotifyFleeFinished();
 			PopCommand( self );
 		}
@@ -249,7 +249,7 @@ Begin:
 			{
 				// Don't get stuck, pop the command so the notify triggers
 				Status = 'Failure';
-				AILog_Internal("Failed to find flee path from ["$FleeTarget$"] after 30 attempts, aborting...",'Command_Flee',);
+				if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("Failed to find flee path from ["$FleeTarget$"] after 30 attempts, aborting...",'Command_Flee',);};
 				NotifyFleeFinished();
 				PopCommand( self );
 			}

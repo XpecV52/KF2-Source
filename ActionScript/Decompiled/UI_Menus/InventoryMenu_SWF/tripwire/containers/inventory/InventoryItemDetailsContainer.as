@@ -224,7 +224,7 @@ package tripwire.containers.inventory
         override protected function onOpened(param1:TweenEvent = null) : void
         {
             super.onOpened(param1);
-            if(this.bForceFocusToDetails && _bReadyForInput)
+            if(bManagerUsingGamepad && this.bForceFocusToDetails && _bReadyForInput)
             {
                 FocusManager.setFocus(!!this.equipButton.visible ? this.equipButton : this.cancelButton);
             }

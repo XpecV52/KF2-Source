@@ -22,7 +22,21 @@ var AnimNodeBlendPerBone OutOfBladesBlendNode;
 /** Sound to play while weapon has fuel */
 var AKEvent IdleMotorSound;
 
+/** Short time from end of FireInterval when blocking can cancel the firing state */
+var float BlockInterruptFiringTime;
+
 //------------------------------------------------------------------------------
+
+/**
+ * Called immediately before gameplay begins.
+ */
+simulated event PreBeginPlay()
+{
+	Super.PreBeginPlay();
+
+	// to prevent exploits the fire interrupt cannot be longer than the block intro
+	BlockInterruptFiringTime = FMin(BlockInterruptFiringTime, MySkelMesh.GetAnimLength(MeleeBlockStartAnim));
+}
 
 /** The SkeletalMeshComponents Animations are being instanced from AnimTreeTemplate
 * 	before PostInitAnimTree. Be sure to never set the Mesh's animations directly through
@@ -285,9 +299,63 @@ static simulated event EFilterTypeUI GetAltTraderFilter()
 	return FT_Melee;
 }
 
+/*********************************************************************************************
+ * State WeaponSingleFiring
+  * Handle special BlockInterruptTimer for this weapon's unusually long FireInterval
+ *********************************************************************************************/
+
+simulated function BlockInterruptTimer();
+
+simulated state WeaponSingleFiring
+{
+	/** Set cooldown duration */
+	simulated function BeginState( Name PreviousStateName )
+	{
+		local float CheckBlockInterruptTime;
+
+		CheckBlockInterruptTime = FireInterval[CurrentFireMode] - BlockInterruptFiringTime;
+		if ( BlockInterruptFiringTime > 0 && CheckBlockInterruptTime > 0 )
+		{
+			SetTimer(CheckBlockInterruptTime, false, nameof(BlockInterruptTimer));
+		}
+
+		Super.BeginState(PreviousStateName);
+	}
+
+	simulated function EndState(Name NextStateName)
+	{
+		ClearTimer( nameof(BlockInterruptTimer) );
+		Super.EndState(NextStateName);
+	}
+
+	/** Check for pending fire */
+	simulated function BlockInterruptTimer()
+	{		
+		if ( PendingFire(BLOCK_FIREMODE) && HasAmmo(BLOCK_FIREMODE) )
+		{
+			SendToFiringState(BLOCK_FIREMODE);
+		}
+	}
+
+	/** Check for interrupt near end of state */
+	simulated function BeginFire(byte FireModeNum)
+	{
+		Global.BeginFire(FireModeNum);
+
+		if ( FireModeNum == BLOCK_FIREMODE && BlockInterruptFiringTime > 0 )
+		{
+			if( HasAmmo(FireModeNum) && !IsTimerActive(nameof(BlockInterruptTimer)) )
+			{
+				SendToFiringState(FireModeNum);
+			}
+		}
+	}
+}
+
 defaultproperties
 {
    IdleMotorSound=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Idle_Loop'
+   BlockInterruptFiringTime=0.500000
    ParryStrength=5
    MeleeSustainedWarmupTime=0.100000
    BlockDamageMitigation=0.400000
@@ -321,6 +389,7 @@ defaultproperties
    AmmoCost(5)=1
    SpareAmmoCapacity(0)=25
    AmmoPickupScale(1)=0.500000
+   WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    bLoopingFireAnim(0)=False
    bLoopingFireAnim(1)=False
    bLoopingFireAnim(2)=False

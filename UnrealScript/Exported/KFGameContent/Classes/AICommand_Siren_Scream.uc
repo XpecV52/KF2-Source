@@ -12,14 +12,9 @@ class AICommand_Siren_Scream extends AICommand_SpecialMove
 
 
 /** The range the siren won't scream if she is closer than */
-var int MinScreamRange;
+var int MinScreamRangeSQ;
 /** The range the siren needs to be within to start screaming */
-var int MaxScreamRange;
-/** The range the siren needs to be within to start screaming */
-var float ScreamCooldown;
-
-
-var float LastScreamTime;
+var int MaxScreamRangeSQ;
 
 /*********************************************************************************************
 * Initialization
@@ -42,6 +37,8 @@ static function bool Scream( KFAIController_ZedSiren AI )
 	return false;
 }
 
+function LockdownAI();
+
 state Command_SpecialMove
 {
 	event HandleAICommandSpecialAction()
@@ -61,36 +58,33 @@ state Command_SpecialMove
 
 	function bool CanScream()
 	{
-		local vector	HitL, HitN;
 		local vector EnemyLocation, MyEyeLocation;
-		local float RangeToEnemy;
+		local float RangeToEnemySQ;
+		local KFGameInfo KFGI;
 
-		if( Enemy != none && SpecialMove != SM_None && (!bShouldCheckSpecialMove || MyKFPawn.CanDoSpecialMove( SpecialMove )) )
+		if( Enemy != none
+			&& WorldInfo.TimeSeconds > ScreamDelayTime
+			&& (DoorEnemy == none || DoorEnemy.IsCompletelyOpen())
+			&& (!bShouldCheckSpecialMove || MyKFPawn.CanDoSpecialMove(SpecialMove))
+			&& (LastScreamTime == 0.f || (WorldInfo.TimeSeconds - LastScreamTime) > ScreamCooldown)
+			&& CheckOverallCooldownTimer()
+			&& MyKFPawn.IsCombatCapable()
+			&& !GetIsInZedVictoryState() )
 		{
-			if( WorldInfo.TimeSeconds - LastScreamTime < ScreamCooldown
-                || !CheckOverallCooldownTimer() )
-			{
-				return false;
-			}
-
-			if( !MyKFPawn.IsCombatCapable() )
-			{
-				return false;
-			}
-
 			EnemyLocation = Enemy.Location + vect(0,0,1) * Enemy.BaseEyeHeight;
 			MyEyeLocation = MyKFPawn.Location + vect(0,0,1) * MyKFPawn.BaseEyeHeight;
 
-            RangeToEnemy = VSize(EnemyLocation - MyEyeLocation);
+	        RangeToEnemySQ = VSizeSQ( EnemyLocation - MyEyeLocation );
 
-			if( RangeToEnemy < MaxScreamRange && RangeToEnemy > MinScreamRange
-				&& Trace(HitL, HitN, EnemyLocation, MyEyeLocation, FALSE,,,TRACEFLAG_Bullet) == none )
+			if( RangeToEnemySQ < MaxScreamRangeSQ && RangeToEnemySQ > MinScreamRangeSQ
+				&& FastTrace(EnemyLocation, MyEyeLocation) )
 			{
 				LastScreamTime = WorldInfo.TimeSeconds;
-            	if( KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).GameConductor != none )
-            	{
-            	   KFGameInfo(WorldInfo.Game).GameConductor.UpdateOverallAttackCoolDowns(Outer);
-            	}
+				KFGI = KFGameInfo( WorldInfo.Game );
+	        	if( KFGI != none && KFGI.GameConductor != none )
+	        	{
+	        		KFGI.GameConductor.UpdateOverallAttackCoolDowns( Outer );
+	        	}
 				return true;
 			}
 		}
@@ -113,9 +107,8 @@ function Popped()
 
 defaultproperties
 {
-   MinScreamRange=130
-   MaxScreamRange=900
-   ScreamCooldown=4.000000
+   MinScreamRangeSQ=17000
+   MaxScreamRangeSQ=810000
    SpecialMove=SM_SonicAttack
    bIgnoreNotifies=True
    Name="Default__AICommand_Siren_Scream"

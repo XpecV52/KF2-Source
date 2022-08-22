@@ -18,32 +18,50 @@ state DebugState
 {
     function BeginState(name PreviousStateName)
     {
-        Outer.AILog_Internal("BEGINSTATE" @ string(PreviousStateName), 'State');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("BEGINSTATE" @ string(PreviousStateName), 'State');
+        }
     }
 
     function EndState(name NextStateName)
     {
-        Outer.AILog_Internal("ENDSTATE" @ string(NextStateName), 'State');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("ENDSTATE" @ string(NextStateName), 'State');
+        }
     }
 
     function PushedState()
     {
-        Outer.AILog_Internal("PUSHED", 'State');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("PUSHED", 'State');
+        }
     }
 
     function PoppedState()
     {
-        Outer.AILog_Internal("POPPED", 'State');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("POPPED", 'State');
+        }
     }
 
     function ContinuedState()
     {
-        Outer.AILog_Internal("CONTINUED", 'State');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("CONTINUED", 'State');
+        }
     }
 
     function PausedState()
     {
-        Outer.AILog_Internal("PAUSED", 'State');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal("PAUSED", 'State');
+        }
     }
     stop;    
 }

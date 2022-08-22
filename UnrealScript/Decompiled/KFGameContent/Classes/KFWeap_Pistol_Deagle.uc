@@ -29,6 +29,7 @@ defaultproperties
     SpareAmmoCapacity=105
     InitialSpareMags=5
     AmmoPickupScale=2
+    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
     IdleFidgetAnims=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */

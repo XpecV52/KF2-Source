@@ -146,10 +146,6 @@ var float LastLocalPlayerTalkTime;
 var float TalkTimeOutValue; //seconds
 
 
-
-var const string SharedServerPassword;
-
-
 /** This is the list of remote talkers */
 var array<RemoteTalker> RemoteTalkers;
 
@@ -3075,7 +3071,6 @@ delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Ava
  */
 native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate);
 
-native function SetSharedPassword(string ServerPassword);
 
 
 /**
@@ -3207,9 +3202,9 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum,int TitleId);
 function bool ShowCustomMessageUI(byte LocalUserNum,const out array<UniqueNetId> Recipients,string MessageTitle,string NonEditableMessage,optional string EditableMessage);
 
 //@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
-function PostActivityFeedBossKill(string BossName, string BossLoc, string MapLoc);
-function PostActivityFeedTeamAward(string AwardName, string AwardLoc);
-function PostActivityFeedPerkLevelUp(string PerkClassName, string PerkClassLoc, int Level);
+function PostActivityFeedBossKill(string BossName, string MapName);
+function PostActivityFeedTeamAward(string AwardName);
+function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
 //@HSL_END
 
 //@HSL_BEGIN - BWJ - 5-26-16 - Support for reading store data

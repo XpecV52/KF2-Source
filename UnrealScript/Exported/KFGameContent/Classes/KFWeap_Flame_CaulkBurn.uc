@@ -120,6 +120,7 @@ defaultproperties
    SpareAmmoCapacity(0)=500
    InitialSpareMags(0)=5
    AmmoPickupScale(0)=0.500000
+   WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    FireSightedAnims(0)="Shoot"

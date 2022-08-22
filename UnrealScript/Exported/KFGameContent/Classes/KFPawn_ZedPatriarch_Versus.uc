@@ -205,23 +205,8 @@ simulated protected function float GetMinCloakPct()
 /** Updates the HUD interaction message and heal icon to show current heal capability */
 private function UpdateHealAvailable()
 {
-	if( IsHealAllowed() )
+	if( !IsHealAllowed() )
 	{
-		if(MyKFPC != none && !bIsQuickHealMessageShowing)
-		{
-			bIsQuickHealMessageShowing = true;
-			MyKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_HealSelfWarning);
-			SpecialMoveCooldowns[5].LastUsedTime = 0;
-		}
-	}
-	else
-	{
-		if( bIsQuickHealMessageShowing )
-		{
-			bIsQuickHealMessageShowing = false;
- 			MyKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_None);
-		}
-
 		//extend the cooldown of heal here
 		SpecialMoveCooldowns[5].LastUsedTime = WorldInfo.TimeSeconds;
 	}
@@ -556,7 +541,7 @@ defaultproperties
    bVersusZed=True
    ThirdPersonViewOffset=(OffsetHigh=(X=-200.000000,Y=90.000000,Z=45.000000),OffsetMid=(X=-185.000000,Y=110.000000,Z=45.000000),OffsetLow=(X=-220.000000,Y=130.000000,Z=55.000000))
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedPatriarch:MeleeHelper_0'
-      BaseDamage=40.000000
+      BaseDamage=25.000000
       MyDamageType=Class'kfgamecontent.KFDT_Bludgeon_Patriarch'
       MomentumTransfer=40000.000000
       MaxHitRange=375.000000
@@ -582,7 +567,6 @@ defaultproperties
    SpecialMoveCooldowns(7)=(CoolDownTime=999.000000,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Cloak',Charges=60)
    SpecialMoveCooldowns(8)=(CoolDownTime=1.000000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Jump',bShowOnHud=False)
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedPatriarch_Versus:FootstepCameraShake0'
-   LocalizationKey="KFPawn_ZedPatriarch"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -609,6 +593,10 @@ defaultproperties
       ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedPatriarch:Afflictions_0'
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedPatriarch_Versus:Afflictions_0'
+   IncapSettings(7)=(Duration=1.500000,Cooldown=8.500000,Vulnerability=(0.700000,0.700000,1.000000,0.700000))
+   IncapSettings(8)=()
+   IncapSettings(9)=()
+   IncapSettings(10)=()
    SprintSpeed=700.000000
    SprintStrafeSpeed=400.000000
    TeammateCollisionRadiusPercent=0.300000
@@ -698,7 +686,7 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
-   Health=2240
+   Health=1680
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
       MinDistFactorForKinematicUpdate=0.200000
@@ -712,7 +700,6 @@ defaultproperties
       RBChannel=RBCC_Pawn
       RBDominanceGroup=20
       bOwnerNoSee=True
-      bUseAsOccluder=False
       bAcceptsDynamicDecals=True
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True

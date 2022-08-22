@@ -178,6 +178,15 @@ const KFACHID_SWATNormal = 160;
 const KFACHID_SWATHard = 161;
 const KFACHID_SWATSuicidal = 162;
 const KFACHID_SWATHellOnEarth = 163;
+const KFACHID_Surv_Lvl5 = 164;
+const KFACHID_Surv_Lvl10 = 165;
+const KFACHID_Surv_Lvl15 = 166;
+const KFACHID_Surv_Lvl20 = 167;
+const KFACHID_Surv_Lvl25 = 168;
+const KFACHID_SurvNormal = 169;
+const KFACHID_SurvHard = 170;
+const KFACHID_SurvSuicidal = 171;
+const KFACHID_SurvHellOnEarth = 172;
 
 var KFPlayerController MyKFPC;
 var private int Kills;
@@ -222,6 +231,10 @@ var private int SwatXP;
 var private int SwatLVL;
 var private int SwatPSG;
 var private int SwatBuild;
+var private int SurvXP;
+var private int SurvLVL;
+var private int SurvPSG;
+var private int SurvBuild;
 var private int PersonalBest_KnifeKills;
 var private int PersonalBest_PistolKills;
 var private int PersonalBest_HeadShots;
@@ -444,6 +457,23 @@ event CacheStatsValue(int StatId, float Value)
                 LogInternal((string(GetFuncName()) @ "SwatBuild:") @ string(SwatBuild));
             }
             break;
+        case 70:
+            SurvXP = GetXPFromProgress(int(Value));
+            SurvLVL = GetLVLFromProgress(int(Value));
+            SurvPSG = GetPSGFromProgress(int(Value));
+            CheckPerkLvlAchievement(Class'KFPerk_Survivalist', SurvLVL);
+            if(bLogStatsWrite)
+            {
+                LogInternal(((((string(GetFuncName()) @ "SurvXP:") @ string(SurvXP)) @ string(SurvLVL)) @ "VALUE:") @ string(Round(Value)));
+            }
+            break;
+        case 71:
+            SurvBuild = int(Value);
+            if(bLogStatsWrite)
+            {
+                LogInternal((string(GetFuncName()) @ "SurvBuild:") @ string(SurvBuild));
+            }
+            break;
         case 200:
             Kills = int(Value);
             if(bLogStatsWrite)
@@ -578,6 +608,9 @@ private final event GetPerkBuildFromStats(class<KFPerk> PerkClass, out int Build
         case Class'KFPerk_SWAT':
             Build = SwatBuild;
             break;
+        case Class'KFPerk_Survivalist':
+            Build = SurvBuild;
+            break;
         default:
             break;
     }
@@ -675,6 +708,8 @@ private final event int GetPerkXP(int StatId)
             return SharpshooterXP;
         case 90:
             return SwatXP;
+        case 70:
+            return SurvXP;
         default:
             return 0;
             break;
@@ -703,6 +738,8 @@ private final event int GetPerkLVLInternal(int StatId)
             return SharpshooterLVL;
         case 90:
             return SwatLVL;
+        case 70:
+            return SurvLVL;
         default:
             return 0;
             break;
@@ -731,6 +768,8 @@ private final event int GetPerkPSG(int StatId)
             return SharpshooterPSG;
         case 90:
             return SwatPSG;
+        case 70:
+            return SurvPSG;
         default:
             return 0;
             break;
@@ -910,10 +949,13 @@ private final function AddFleshpoundKill(byte Difficulty)
 
 private final function AddClotKill(byte Difficulty)
 {
-    AddXP(Class'KFPerk_SWAT', Class'KFPerk_SWAT'.static.GetClotKillXP(Difficulty));
-    if(((MyKFPC != none) && MyKFPC.MatchStats != none) && Class'KFPerk_SWAT' != none)
+    local class<KFPerk> PerkXPClass;
+
+    PerkXPClass = ((Class'KFPerk_Survivalist'.static.GetPerkClass() == MyKFPC.GetPerk().GetPerkClass()) ? Class'KFPerk_Survivalist'.static.GetPerkClass() : Class'KFPerk_SWAT'.static.GetPerkClass());
+    AddXP(PerkXPClass, Class'KFPerk_SWAT'.static.GetClotKillXP(Difficulty));
+    if(((MyKFPC != none) && MyKFPC.MatchStats != none) && PerkXPClass != none)
     {
-        MyKFPC.MatchStats.RecordSecondaryXPGain(Class'KFPerk_SWAT', Class'KFPerk_SWAT'.static.GetClotKillXP(Difficulty));
+        MyKFPC.MatchStats.RecordSecondaryXPGain(PerkXPClass, Class'KFPerk_SWAT'.static.GetClotKillXP(Difficulty));
     }
     KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += Class'KFPerk_SWAT'.static.GetClotKillXP(Difficulty);
 }
@@ -945,7 +987,7 @@ private final function bool IsFleshPoundKill(class<KFPawn_Monster> MonsterClass,
 
 private final function bool IsClotKill(class<KFPawn_Monster> MonsterClass, class<DamageType> DT)
 {
-    return MonsterClass.static.IsClotClass() && Class'KFPerk'.static.IsDamageTypeOnThisPerk(class<KFDamageType>(DT), Class'KFPerk_SWAT'.static.GetPerkClass());
+    return MonsterClass.static.IsClotClass() && Class'KFPerk'.static.IsDamageTypeOnThisPerk(class<KFDamageType>(DT), Class'KFPerk_SWAT'.static.GetPerkClass()) || Class'KFPerk_Survivalist'.static.GetPerkClass() == MyKFPC.GetPerk().GetPerkClass();
 }
 
 private final function bool IsBloatKill(class<KFPawn_Monster> MonsterClass, class<DamageType> DT)
@@ -1133,31 +1175,31 @@ native final function CheckForRoundTeamWinAchievements(byte WinningTeam);
 
 defaultproperties
 {
-    XPTable[0]=2640
-    XPTable[1]=2917
-    XPTable[2]=3224
-    XPTable[3]=3562
-    XPTable[4]=3936
-    XPTable[5]=4349
-    XPTable[6]=4806
-    XPTable[7]=5311
-    XPTable[8]=5868
-    XPTable[9]=6484
-    XPTable[10]=7165
-    XPTable[11]=7918
-    XPTable[12]=8749
-    XPTable[13]=9667
-    XPTable[14]=10683
-    XPTable[15]=11804
-    XPTable[16]=13044
-    XPTable[17]=14413
-    XPTable[18]=15927
-    XPTable[19]=17599
-    XPTable[20]=19447
-    XPTable[21]=21489
-    XPTable[22]=23745
-    XPTable[23]=26238
-    XPTable[24]=28993
+    XPTable[0]=1590
+    XPTable[1]=1809
+    XPTable[2]=2059
+    XPTable[3]=2343
+    XPTable[4]=2666
+    XPTable[5]=3034
+    XPTable[6]=3453
+    XPTable[7]=3930
+    XPTable[8]=4472
+    XPTable[9]=5089
+    XPTable[10]=5791
+    XPTable[11]=6590
+    XPTable[12]=7499
+    XPTable[13]=8534
+    XPTable[14]=9712
+    XPTable[15]=11052
+    XPTable[16]=12577
+    XPTable[17]=14313
+    XPTable[18]=16288
+    XPTable[19]=18536
+    XPTable[20]=21094
+    XPTable[21]=24005
+    XPTable[22]=27318
+    XPTable[23]=31088
+    XPTable[24]=35378
     Properties=/* Array type was not detected. */
     ViewIds=/* Array type was not detected. */
 }

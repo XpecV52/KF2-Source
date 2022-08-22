@@ -199,6 +199,34 @@ simulated state FiringSecondaryState extends WeaponSingleFiring
 	}
 }
 
+/**
+ * Don't allow secondary fire to make a primary fire shell particle come out of the gun.
+ */
+simulated function CauseMuzzleFlash(byte FireModeNum)
+{
+	local bool AutoShellEject;
+
+	if(FireModeNum == ALTFIRE_FIREMODE)
+	{
+		if (MuzzleFlash == None)
+		{
+			AttachMuzzleFlash();
+		}
+
+		AutoShellEject = MuzzleFlash.bAutoActivateShellEject;
+
+		MuzzleFlash.bAutoActivateShellEject = false;
+
+		Super.CauseMuzzleFlash(FireModeNum);
+
+		MuzzleFlash.bAutoActivateShellEject = AutoShellEject;
+	}
+	else
+	{
+		Super.CauseMuzzleFlash(FireModeNum);
+	}
+}
+
 /*********************************************************************************************
  * State Reloading
  * This is the default Reloading State.  It's performed on both the client and the server.
@@ -324,33 +352,6 @@ simulated function bool CanOverrideMagReload(byte FireModeNum)
 	return Super.CanOverrideMagReload(FireModeNum);
 }
 
-/**
- * Don't allow secondary fire to make a primary fire shell particle come out of the gun.
- */
-simulated function CauseMuzzleFlash(byte FireModeNum)
-{
-	local bool AutoShellEject;
-
-	if(FireModeNum == ALTFIRE_FIREMODE)
-	{
-		if (MuzzleFlash == None)
-		{
-			AttachMuzzleFlash();
-		}
-
-		AutoShellEject = MuzzleFlash.bAutoActivateShellEject;
-
-		MuzzleFlash.bAutoActivateShellEject = false;
-
-		Super.CauseMuzzleFlash(FireModeNum);
-
-		MuzzleFlash.bAutoActivateShellEject = AutoShellEject;
-	}
-	else
-	{
-		Super.CauseMuzzleFlash(FireModeNum);
-	}
-}
 
 /*********************************************************************************************
  * State Active
@@ -429,6 +430,7 @@ defaultproperties
    SpareAmmoCapacity(1)=11
    InitialSpareMags(0)=2
    InitialSpareMags(1)=3
+   AmmoPickupScale(1)=2.000000
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    FireSightedAnims(1)="Shoot_Iron2"

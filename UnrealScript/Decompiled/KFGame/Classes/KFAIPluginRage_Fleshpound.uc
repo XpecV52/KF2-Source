@@ -84,7 +84,10 @@ state Enraged
     {
         bIsEnraged = true;
         Outer.MyKFPawn.SetEnraged(true);
-        Outer.AILog_Internal((((string(GetStateName()) $ " ") $ string(GetFuncName())) $ "() Prev: ") $ string(PreviousStateName), 'Charging');
+        if(!Class'Engine'.static.GetEngine().bDisableAILogging)
+        {
+            Outer.AILog_Internal((((string(GetStateName()) $ " ") $ string(GetFuncName())) $ "() Prev: ") $ string(PreviousStateName), 'Charging');
+        }
         Outer.SetFocalPoint(vect(0, 0, 0));
         Outer.Focus = none;
         Outer.AIZeroMovementVariables();

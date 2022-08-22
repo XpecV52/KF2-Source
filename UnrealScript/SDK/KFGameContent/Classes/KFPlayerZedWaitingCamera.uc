@@ -86,11 +86,29 @@ function PopulateFocalPoints()
 	local KFPlayerStart KFPS;
 	local KFTraderTrigger KFTT;
 	local KFPathnode KFPN;
+	local bool bHostileGroundsHackFix;
+
+	// @TODO: HACK FIXME! REMOVE WHEN RENDERER CRASH HAS BEEN SOLVED
+	bHostileGroundsHackFix = InStr( class'WorldInfo'.static.GetWorldInfo().GetMapName(), "hostilegrounds",, true ) != INDEX_NONE;
+`if(`notdefined(ShippingPC) )
+	if( `TimeSinceEx(PlayerCamera, PlayerCamera.CreationTime) < 5.f )
+	{
+		`log( "[DEBUGVERSUS] KF-HostileGrounds hack fix applied in KFPlayerZedWaitingCamera! FIXME!" );
+	}
+`endif
 
 	// Fill out focal points array with player starts
 	foreach PlayerCamera.WorldInfo.AllNavigationPoints( class'KFPlayerStart', KFPS )
 	{
-		AvailableFocalPoints[AvailableFocalPoints.Length] = KFPS;
+		if( bHostileGroundsHackFix && (KFPS.Name == 'KFPlayerStart_44' || KFPS.Name == 'KFPlayerStart_37') )
+		{
+			AvailableFocalPoints[AvailableFocalPoints.Length] = KFPS;
+		}
+	}
+
+	if( bHostileGroundsHackFix )
+	{
+		return;
 	}
 
 	// Fill out focal points array with path nodes near trader triggers

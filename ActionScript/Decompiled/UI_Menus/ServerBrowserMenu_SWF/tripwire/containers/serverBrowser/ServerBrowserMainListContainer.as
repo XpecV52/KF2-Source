@@ -20,6 +20,7 @@ package tripwire.containers.serverBrowser
     import tripwire.containers.TripSubContainer;
     import tripwire.controls.TripButton;
     import tripwire.controls.serverBrowser.ServerListSortButton;
+    import tripwire.managers.MenuManager;
     
     public class ServerBrowserMainListContainer extends TripSubContainer
     {
@@ -177,6 +178,10 @@ package tripwire.containers.serverBrowser
         {
             super.handleInput(param1);
             if(param1.handled || !visible)
+            {
+                return;
+            }
+            if(bManagerPopUpOpen || MenuManager.manager.bPartyWidgetFocused)
             {
                 return;
             }

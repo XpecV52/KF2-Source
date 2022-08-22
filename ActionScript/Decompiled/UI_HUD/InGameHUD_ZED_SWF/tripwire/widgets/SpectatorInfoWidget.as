@@ -22,6 +22,8 @@ package tripwire.widgets
         
         private var _bUsingGamePad:Boolean;
         
+        public var spectatorInfoMC;
+        
         public function SpectatorInfoWidget()
         {
             super();
@@ -53,9 +55,9 @@ package tripwire.widgets
         
         public function set playerData(param1:Object) : void
         {
-            this.playerNameText.text = !!param1.playerName ? param1.playerName : "";
-            this.playerPerkText.text = !!param1.playerPerk ? param1.playerPerk : "";
-            this.iconLoader.source = !!param1.iconPath ? param1.iconPath : "";
+            this.spectatorInfoMC.playerNameText.text = !!param1.playerName ? param1.playerName : "";
+            this.spectatorInfoMC.playerPerkText.text = !!param1.playerPerk ? param1.playerPerk : "";
+            this.spectatorInfoMC.iconLoader.source = !!param1.iconPath ? param1.iconPath : "";
             visible = true;
         }
     }

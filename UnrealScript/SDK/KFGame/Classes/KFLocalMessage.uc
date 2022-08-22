@@ -35,6 +35,7 @@ var localized string KickVoteNoSpectatorsString;
 
 var localized string KickedFromServerString;
 var localized string BannedFromServerString;
+var localized string ServerNoLongerAvailableString;
 
 enum ELocalMessageType
 {

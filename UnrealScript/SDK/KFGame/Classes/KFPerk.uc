@@ -677,6 +677,10 @@ static simulated event string GetPerkIconPath()
 	return PerkIconPath;
 }
 
+simulated final function int GetSavedBuild()
+{
+	return SavedBuild;
+}
 /*********************************************************************************************
 * @name	 Spawning
 ********************************************************************************************* */
@@ -760,11 +764,9 @@ private simulated final function PerkSetOwnerHealthAndArmor( optional bool bModi
 /** (Server) Modify Instigator settings based on selected perk */
 function ApplySkillsToPawn()
 {
-	local KFInventoryManager KFIM;
-
 	if( CheckOwnerPawn() )
 	{
-	OwnerPawn.UpdateGroundSpeed();
+		OwnerPawn.UpdateGroundSpeed();
 		OwnerPawn.bMovesFastInZedTime = false;
 
 		if( MyPRI == none )
@@ -778,12 +780,24 @@ function ApplySkillsToPawn()
 		MyPRI.bConcussiveActive = false;
 		MyPRI.bPerkCanSupply = false;
 
-		KFIM = KFInventoryManager(OwnerPawn.InvManager);
-		if( KFIM != none )
-		{
-			KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks;
-			CheckForOverWeight( KFIM );
-		}
+		// Apply weight changes, if any, at the end of the function
+		ApplyWeightLimits();
+	}
+}
+
+/**
+ * We need to separate this from ApplySkillsToPawn() to avoid resetting weight limits (and losing weapons)
+ * every time a skill or level is changed 
+ */
+function ApplyWeightLimits()
+{
+	local KFInventoryManager KFIM;
+
+	KFIM = KFInventoryManager( OwnerPawn.InvManager );
+	if( KFIM != none )
+	{
+		KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks;
+		CheckForOverWeight( KFIM );
 	}
 }
 
@@ -964,7 +978,7 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx );
 function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy );
 /** Ammunition capacity and mag count increased */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false );
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname );
 /** Update our weapons spare ammo count, *Use WeaponPerkClass for the trader when no weapon actually exists */
 simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false );
 /** Set our weapon's spare ammo to maximum (needed another function besides ModifySpareAmmoAmount because we need to be able to specify maximum somehow) */
@@ -1029,6 +1043,7 @@ simulated function float GetSelfHealingSurgePct(){ return 0.f; }
 simulated function bool GetHealingSpeedBoostActive(){ return false; }
 simulated function bool GetHealingDamageBoostActive(){ return false; }
 simulated function bool GetHealingShieldActive(){ return false; }
+simulated function bool IsSlugActive(){ return false; }
 
 /** Firebug functions */
 simulated function bool IsFlarotovActive(){ return false; }
@@ -1052,7 +1067,9 @@ simulated function bool DoorShouldNuke(){ return false; }
 simulated function bool ShouldGetDaZeD( class<KFDamageType> DamageType ){ return false; }
 simulated function float GetDaZedEMPPower(){ return 0; }
 simulated function bool ShouldNeverDud(){ return false; }
-	
+simulated function SetLastHX25NukeTime( float NewTime );
+simulated function float GetLastHX25NukeTime() { return 0.f; }
+
 /** "Rack 'em Up" perk skill functions (Gunslinger, Sharpshooter) */
 simulated function bool GetIsUberAmmoActive( KFWeapon KFW ){ return false; }
 function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, int NumHit );
@@ -1097,7 +1114,7 @@ function string GetModifierString( byte ModifierIndex )
 function ModifyBloatBileDoT( out float DoTScaler );
 
 /** other shared getters */
-function KFWeapon GetOwnerWeapon()
+simulated function KFWeapon GetOwnerWeapon()
 {
 	if( CheckOwnerPawn() )
 	{
@@ -1224,6 +1241,17 @@ static simulated function Texture2d GetInteractIcon()
 {
 	return default.InteractIcon;
 }
+
+simulated function string GetGrenadeImagePath()
+{
+	return default.GrenadeWeaponDef.Static.GetImagePath();
+}
+
+simulated function class<KFWeaponDefinition> GetGrenadeWeaponDef()
+{
+	return default.GrenadeWeaponDef;
+}
+
 /*********************************************************************************************
 * @name	 Debug
 ********************************************************************************************* */

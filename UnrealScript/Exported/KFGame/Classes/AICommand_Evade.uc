@@ -192,7 +192,7 @@ state Command_SpecialMove
 	{
 		SpecialMove = GetSpecialMove();
 
-		AILog_Internal(GetFuncName()$"()"@SpecialMove,'Command_SpecialMove',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"()"@SpecialMove,'Command_SpecialMove',);};
 
 		if( SpecialMove != SM_None && (!bShouldCheckSpecialMove || MyKFPawn.CanDoSpecialMove( SpecialMove )) )
 		{

@@ -50,37 +50,37 @@ state DEBUGSTATE
 	function BeginState( Name PreviousStateName )
 	{
 		//debug
-		AILog_Internal("BEGINSTATE"@PreviousStateName,'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("BEGINSTATE"@PreviousStateName,'State',);};
 	}
 
 	function EndState( Name NextStateName )
 	{
 		//debug
-		AILog_Internal("ENDSTATE"@NextStateName,'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("ENDSTATE"@NextStateName,'State',);};
 	}
 
 	function PushedState()
 	{
 		//debug
-		AILog_Internal("PUSHED",'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("PUSHED",'State',);};
 	}
 
 	function PoppedState()
 	{
 		//debug
-		AILog_Internal("POPPED",'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("POPPED",'State',);};
 	}
 
 	function ContinuedState()
 	{
 		//debug
-		AILog_Internal("CONTINUED",'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("CONTINUED",'State',);};
 	}
 
 	function PausedState()
 	{
 		//debug
-		AILog_Internal("PAUSED",'State',);
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal("PAUSED",'State',);};
 	}
 }
 

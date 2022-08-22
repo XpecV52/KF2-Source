@@ -86,9 +86,8 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
                 this.invertYCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
                 this.mouseSmoothingCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
-                this.forceFeedbackCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
                 this.defaultButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
-                this.defaultButton.visible = !bManagerUsingGamepad;
+                this.forceFeedbackCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
             }
             this.controllerSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
             this.controllerZoomSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
@@ -104,6 +103,7 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivitySliderOption.tabIndex = _loc1_++;
                 this.invertYCheckBox.tabIndex = _loc1_++;
                 this.mouseSmoothingCheckBox.tabIndex = _loc1_++;
+                this.forceFeedbackCheckBox.tabIndex = _loc1_++;
             }
             this.controllerSensitivitySliderOption.tabIndex = _loc1_++;
             this.controllerZoomSensitivitySliderOption.tabIndex = _loc1_++;
@@ -111,9 +111,8 @@ package tripwire.containers.optionsControls
             this.aimAssistZoomLockOnCheckBox.tabIndex = _loc1_++;
             this.aimAssistRotationCheckBox.tabIndex = _loc1_++;
             this.aimAssistSlowDownCheckBox.tabIndex = _loc1_++;
-            if(!bManagerConsoleBuild)
+            if(!bManagerConsoleBuild && this.defaultButton != null)
             {
-                this.forceFeedbackCheckBox.tabIndex = _loc1_++;
                 this.defaultButton.tabIndex = _loc1_++;
             }
         }
@@ -131,9 +130,12 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivitySliderOption.label = !!param1.zoomSensitivityLabel ? param1.zoomSensitivityLabel : "";
                 this.invertYCheckBox.label = !!param1.invertedLabel ? param1.invertedLabel : "";
                 this.mouseSmoothingCheckBox.label = !!param1.mouseSmoothingLabel ? param1.mouseSmoothingLabel : "";
-                this.forceFeedbackCheckBox.label = !!param1.forceFeedbackLabel ? param1.forceFeedbackLabel : "";
                 this.controllerTextField.text = !!param1.controllerString ? param1.controllerString : "";
-                this.defaultButton.label = !!param1.resetDefault ? param1.resetDefault : "";
+                if(this.defaultButton != null)
+                {
+                    this.defaultButton.label = !!param1.resetDefault ? param1.resetDefault : "";
+                }
+                this.forceFeedbackCheckBox.label = !!param1.forceFeedbackLabel ? param1.forceFeedbackLabel : "";
             }
             this.controllerSensitivitySliderOption.label = !!param1.controllerSensitivityLabel ? param1.controllerSensitivityLabel : "";
             this.controllerZoomSensitivitySliderOption.label = !!param1.controllerZoomSensitivityLabel ? param1.controllerZoomSensitivityLabel : "";

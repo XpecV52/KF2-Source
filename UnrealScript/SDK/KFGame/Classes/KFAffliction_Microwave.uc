@@ -228,7 +228,10 @@ protected function SetMicrowaveSteamEffects(bool bEnabled)
             SteamingEffect.SetStopSpawning( -1, false );
 		}
 
-        PawnOwner.PlaySoundBase( OnSteamSound, true, true, true );
+        if ( OnSteamSound != None )
+        {
+           PawnOwner.PlaySoundBase( OnSteamSound, true, true, true );
+        }
 	}
 	else
 	{
@@ -237,7 +240,10 @@ protected function SetMicrowaveSteamEffects(bool bEnabled)
             SteamingEffect.SetStopSpawning( -1, true );
         }
 
-        PawnOwner.PlaySoundBase( OnSteamEndSound, true, true );
+        if ( OnSteamEndSound != None )
+        {
+            PawnOwner.PlaySoundBase( OnSteamEndSound, true, true );
+        }
 	}
 }
 

@@ -23,7 +23,7 @@ cpptext
 /** Timer function called during latent moves that determines whether NPC should sprint or stop sprinting */
 function bool ShouldSprint()
 {
-	if( MyKFPawn == none || MyKFPawn.bIsBlocking || (Enemy == none && DoorEnemy == none) || !MyKFPawn.IsAliveAndWell() || !Enemy.IsAliveAndWell() )
+	if( MyKFPawn == none || (Enemy == none && DoorEnemy == none) || !MyKFPawn.IsAliveAndWell() || !Enemy.IsAliveAndWell() )
 	{
 		return false;
 	}

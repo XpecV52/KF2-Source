@@ -1,14 +1,12 @@
 //=============================================================================
-// KFCameraLensEmit_RackemHeadShot
+// KFCameraLensEmit_RackemHeadShotPing
 //=============================================================================
-// Class Description
+// Rack 'Em Up headshot effect
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
-//  - Author 3/13/2014
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
-class KFCameraLensEmit_RackemHeadShotPing extends EmitterCameraLensEffectBase;
+class KFCameraLensEmit_RackemHeadShotPing extends KFCameraLensEmit_RackemHeadShot;
 
 defaultproperties
 {

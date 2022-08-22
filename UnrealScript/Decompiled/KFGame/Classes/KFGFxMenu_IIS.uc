@@ -58,10 +58,6 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
 
 function LoginToGame()
 {
-    if(Class'WorldInfo'.static.IsConsoleBuild() && Class'WorldInfo'.static.IsE3Build())
-    {
-        OnlineSub.PlayerInterface.Login(0, "E3 Demo Player", "", true);
-    }
     if(bLoggingIn)
     {
         WarnInternal("Ignoring login while one is already occurring");
@@ -75,6 +71,16 @@ function LoginToGame()
 
 function OnLoginToGameComplete()
 {
+    ProceedToMainMenu();
+    if(AutoLoginCompleteDelegate != none)
+    {
+        OnAutoLoginComplete();
+        AutoLoginCompleteDelegate = None;
+    }
+}
+
+function ProceedToMainMenu()
+{
     local KFPlayerController PC;
 
     PC = KFPlayerController(Outer.GetPC());
@@ -83,15 +89,9 @@ function OnLoginToGameComplete()
     Manager.PartyWidget.RefreshParty();
     Manager.OpenMenu(0);
     bLoggingIn = false;
-    if(AutoLoginCompleteDelegate != none)
-    {
-        OnAutoLoginComplete();
-        AutoLoginCompleteDelegate = None;
-    }
 }
 
 function NotifyLoginFailed()
 {
-    bLoggingIn = false;
-    SetBool("showLoading", false);
+    ProceedToMainMenu();
 }

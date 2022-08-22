@@ -30,7 +30,7 @@ var const color LightGoldColor, LightGreenColor;
 
 var const color ArmorColor, HealthColor;
 var const color PlayerBarBGColor, PlayerBarTextColor, PlayerBarIconColor;
-var const color SupplierActiveColor, SupplierUsableColor;
+var const color SupplierActiveColor, SupplierUsableColor, SupplierHalfUsableColor;
 
 var const color ZedIconColor;
 
@@ -677,7 +677,8 @@ simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 
 	if( KFPRI.bPerkCanSupply && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none )
 	{
-		TempColor = (KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed) ? SupplierActiveColor : SupplierUsableColor;
+		TempColor = (KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed) ? SupplierActiveColor
+					: (!KFPRI.bPerkPrimarySupplyUsed && !KFPRI.bPerkSecondarySupplyUsed) ? SupplierUsableColor : SupplierHalfUsableColor;
 		Canvas.SetDrawColorStruct( TempColor );
 		Canvas.SetPos( ScreenPos.X + BarLength * 0.5f, ScreenPos.Y - BarHeight * 2 );
 		Canvas.DrawTile( KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256); 
@@ -733,10 +734,12 @@ simulated function CheckAndDrawHiddenPlayerIcons( array<PlayerReplicationInfo> V
 
     for( i = 0; i < WorldInfo.GRI.PRIArray.Length; i++ )
     {
+        PawnLocation = vect(0,0,0);
+
         // Avoid casting until we've got some simple checks out of the way
         PRI = WorldInfo.GRI.PRIArray[i];
 
-        if( VisibleHumanPlayers.Find( PRI ) != INDEX_NONE || 
+       if( VisibleHumanPlayers.Find( PRI ) != INDEX_NONE || 
         	KFPlayerOwner.PlayerReplicationInfo == PRI ||
         	PRI.GetTeamNum() == 255 )
         {
@@ -751,17 +754,29 @@ simulated function CheckAndDrawHiddenPlayerIcons( array<PlayerReplicationInfo> V
         	&& HiddenHumanPlayers[HiddenHumanIndex].HumanPawn.Mesh.bAnimTreeInitialised )
         {
             PawnLocation = HiddenHumanPlayers[HiddenHumanIndex].HumanPawn.Mesh.GetPosition();
+            KFPRI = KFPlayerReplicationInfo( PRI );
+            if( KFPRI != none )
+            {
+            	KFPRI.SetSmoothedPawnIconLocation( PawnLocation );
+            }
         }
 
         // Otherwise we'll use our replicated location
-        if( IsZero( PawnLocation ) )
+        if( IsZero(PawnLocation) )
         {
-            KFPRI = KFPlayerReplicationInfo(PRI);
-            PawnLocation = KFPRI.GetReplicatedPawnIconLocation( HumanPlayerIconInterpMult );
-            if( IsZero(PawnLocation) || KFPRI.PlayerHealth <= 0 )
+            KFPRI = KFPlayerReplicationInfo( PRI );
+            if( KFPRI != none )
             {
-                continue;
-            }
+	            PawnLocation = KFPRI.GetSmoothedPawnIconLocation( HumanPlayerIconInterpMult );
+	            if( IsZero(PawnLocation) || KFPRI.PlayerHealth <= 0 )
+	            {
+	                continue;
+	            }
+	        }
+	        else
+	        {
+	        	continue;
+	        }
         }
 
         // FOV pre-check (further per-pixel filtering after screen projection is done)
@@ -770,8 +785,6 @@ simulated function CheckAndDrawHiddenPlayerIcons( array<PlayerReplicationInfo> V
         {
             DrawHiddenHumanPlayerIcon( PRI, PawnLocation );
         }
-
-        PawnLocation = vect(0,0,0);
     }      
 }
 
@@ -942,7 +955,9 @@ defaultproperties
 
 	SupplierActiveColor=(R=128, G=128, B=128, A=192)
 	SupplierUsableColor=(R=255, G=0, B=0, A=192)
+	SupplierHalfUsableColor=(R=220, G=200, B=0, A=192)
 
+    HumanPlayerIconInterpMult=0.007f
 	PlayerStatusBarBGTexture=Texture2D'EngineResources.WhiteSquareTexture'
 	PlayerStatusBarLengthMax = 150.0f;
 	PlayerStatusIconSize = 32.0f;

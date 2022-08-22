@@ -22,7 +22,8 @@ struct SWhatsNew
 };
 
 var array<SWhatsNew> WhatsNewItems;
-var const config array<SWhatsNew> PS4WhatsNewItems;
+var const private config array<SWhatsNew> PS4WhatsNewItems;
+var array<SWhatsNew> PS4ActiveWhatsNewItems;
 
 var localized string MultiplayerString;
 var localized string SoloString;
@@ -43,18 +44,34 @@ function SetWhatsNewItems()
 {
     local GFxObject DataObject;
     local GFxObject DataArray;
+	local GFxObject WhatsNewButton;
     local int i;
+	local OnlineSubsystem OSS;
+	local bool bLoggedIn;
+
+	WhatsNewButton = GetObject( "whatsNewButton" );
 
     DataArray = CreateArray();
     if(Class'WorldInfo'.Static.IsConsoleBuild())
     {
+		OSS = class'GameEngine'.static.GetOnlineSubsystem();
+		bLoggedIn = OSS.PlayerInterface.GetLoginStatus( GetLP().ControllerId ) == LS_LoggedIn;
+		PS4ActiveWhatsNewItems.Length = 0;
+
+		WhatsNewButton.SetVisible( bLoggedIn );
+
         for (i = 0; i < PS4WhatsNewItems.length; i++)
         {
-            DataObject = CreateObject("Object");
-            DataObject.SetString("label",Localize("WhatsNewMessages",PS4WhatsNewItems[i].TextField,"KFGame"));
-            DataObject.SetString("imageURL",PS4WhatsNewItems[i].ImageURL);
-            DataObject.SetString("redirectURL",PS4WhatsNewItems[i].RedirectURL);
-            DataArray.SetElementObject(i, DataObject);
+			// Only show store items if we are logged in
+			if( bLoggedIn || PS4WhatsNewItems[i].PSNProductId == "" )
+			{
+				DataObject = CreateObject("Object");
+				DataObject.SetString("label",Localize("WhatsNewMessages",PS4WhatsNewItems[i].TextField,"KFGame"));
+				DataObject.SetString("imageURL",PS4WhatsNewItems[i].ImageURL);
+				DataObject.SetString("redirectURL",PS4WhatsNewItems[i].RedirectURL);
+				DataArray.SetElementObject(PS4ActiveWhatsNewItems.Length, DataObject);
+				PS4ActiveWhatsNewItems.AddItem( PS4WhatsNewItems[i] );
+			}
         }
     }
     else
@@ -87,7 +104,7 @@ function LocalizeMenu()
 
 DefaultProperties
 {
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_BullsEyeUpdate", Textfield="LatestUpdate", RedirectURL="http://www.killingfloor2.com/bullseye")) 
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_PS4Beta", Textfield="LatestUpdate", RedirectURL="http://www.killingfloor2.com/redirect/KF2LatestUpdate/")) 
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub", Textfield="Jaegorhorn", RedirectURL="https://steamcommunity.com/app/232090"))    
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Tormentor_07", Textfield="HorzineSupplyCrateKey7", RedirectURL="https://store.steampowered.com/buyitem/232090/4105"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_CombatStar_08", Textfield="HorzineSupplyCrateKey8", RedirectURL="https://store.steampowered.com/buyitem/232090/4106"))

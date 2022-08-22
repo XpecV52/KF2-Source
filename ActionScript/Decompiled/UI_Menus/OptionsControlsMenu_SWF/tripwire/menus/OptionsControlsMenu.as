@@ -55,7 +55,7 @@ package tripwire.menus
             enableInitCallback = true;
             defaultFirstElement = this.tabButtonBar;
             this.closeButton.addEventListener(ButtonEvent.PRESS,this.closeMenu,false,0,true);
-            if(!bManagerConsoleBuild)
+            if(!bManagerConsoleBuild && this.keybindingsContainer != null)
             {
                 this.keybindingsContainer.visible = false;
             }
