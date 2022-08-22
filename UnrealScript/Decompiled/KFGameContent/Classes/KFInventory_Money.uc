@@ -34,7 +34,7 @@ function DropFrom(Vector StartLocation, Vector StartVelocity)
     KFDP = KFDroppedPickup_Cash(Spawn(DroppedPickupClass,,, StartLocation,,, true));
     if(KFDP == none)
     {
-        PlayerController(Instigator.Controller).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 16);
+        PlayerController(Instigator.Controller).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 21);
         return;
     }
     KFDP.SetPhysics(2);

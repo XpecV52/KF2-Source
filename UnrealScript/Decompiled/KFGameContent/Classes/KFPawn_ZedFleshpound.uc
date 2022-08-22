@@ -9,7 +9,8 @@ class KFPawn_ZedFleshpound extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
-var AkEvent RageStartSound;
+var export editinline AkComponent RageAkComponent;
+var AkEvent RageLoopSound;
 var AkEvent RageStopSound;
 var LinearColor DefaultGlowColor;
 var LinearColor EnragedGlowColor;
@@ -19,7 +20,6 @@ var name BattlePhaseLightFrontSocketName;
 var export editinline transient PointLightComponent BattlePhaseLightTemplateYellow;
 var export editinline transient PointLightComponent BattlePhaseLightTemplateRed;
 var export editinline transient PointLightComponent BattlePhaseLightFront;
-var transient bool bPlayingRageSound;
 
 simulated event PreBeginPlay()
 {
@@ -73,6 +73,13 @@ function SetSprinting(bool bNewSprintStatus)
     super.SetSprinting(bNewSprintStatus);
 }
 
+function CauseHeadTrauma(optional float BleedOutTime)
+{
+    BleedOutTime = 5;
+    super.CauseHeadTrauma(BleedOutTime);
+    SetEnraged(false);
+}
+
 function bool CanBlock()
 {
     return !IsEnraged() && super.CanBlock();
@@ -80,6 +87,7 @@ function bool CanBlock()
 
 simulated function TerminateEffectsOnDeath()
 {
+    StopRageSound();
     UpdateBattlePhaseLights();
     super(KFPawn).TerminateEffectsOnDeath();
 }
@@ -176,6 +184,14 @@ simulated function UpdateGameplayMICParams()
     }
 }
 
+simulated function StopRageSound()
+{
+    if(RageAkComponent.IsPlaying(RageLoopSound))
+    {
+        RageAkComponent.PlayEvent(RageStopSound, true, true);
+    }
+}
+
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     super.PlayDying(DamageType, HitLoc);
@@ -242,20 +258,18 @@ STATE: ") $ string(MyKFAIC.GetActiveCommand().GetStateName());
 simulated event Tick(float DeltaTime)
 {
     super(KFPawn).Tick(DeltaTime);
-    if(((IsEnraged()) && Physics == 1) && VSizeSq(Velocity) >= (Square(SprintSpeed) * 0.9))
+    if((WorldInfo.NetMode != NM_DedicatedServer) && IsAliveAndWell())
     {
-        if(!bPlayingRageSound)
+        if(((IsEnraged()) && Physics == 1) && VSizeSq(Velocity) >= (Square(SprintSpeed) * 0.8))
         {
-            bPlayingRageSound = true;
-            PostAkEvent(RageStartSound, true, true);
-        }        
-    }
-    else
-    {
-        if(bPlayingRageSound)
+            if(!RageAkComponent.IsPlaying(RageLoopSound))
+            {
+                RageAkComponent.PlayEvent(RageLoopSound, true, true);
+            }            
+        }
+        else
         {
-            bPlayingRageSound = false;
-            PostAkEvent(RageStopSound, true, true);
+            StopRageSound();
         }
     }
 }
@@ -272,7 +286,15 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
-    RageStartSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Start'
+    begin object name=RageAkComponent0 class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+        OcclusionUpdateInterval=0.2
+    object end
+    // Reference: AkComponent'Default__KFPawn_ZedFleshpound.RageAkComponent0'
+    RageAkComponent=RageAkComponent0
+    RageLoopSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Start'
     RageStopSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Stop'
     DefaultGlowColor=(R=1,G=0.35,B=0,A=1)
     EnragedGlowColor=(R=1,G=0,B=0,A=1)
@@ -410,6 +432,14 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedFleshpound.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpound.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpound.DialogAkSoundComponent'
+    begin object name=RageAkComponent0 class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+        OcclusionUpdateInterval=0.2
+    object end
+    // Reference: AkComponent'Default__KFPawn_ZedFleshpound.RageAkComponent0'
+    Components(8)=RageAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

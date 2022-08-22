@@ -12,6 +12,15 @@ class KFProj_Bullet extends KFProjectile
 
 var float ProjEffectsScale;
 
+function Init(Vector Direction)
+{
+    super.Init(Direction);
+    if((LifeSpan == default.LifeSpan) && WorldInfo.TimeDilation < 1)
+    {
+        LifeSpan *= WorldInfo.TimeDilation;
+    }
+}
+
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
     local KFPawn KFP;

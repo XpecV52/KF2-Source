@@ -580,7 +580,7 @@ auto simulated state Inactive
 
     simulated function EndState(name NextStateName)
     {
-        super.EndState(NextStateName);
+        super(Object).EndState(NextStateName);
         if(Role == ROLE_Authority)
         {
             bTargetLockingActive = true;

@@ -13,6 +13,7 @@ package
             this.__setProp_magList_PlayerInventoryContainer_MC_MagList_0();
             this.__setProp_fillButtonList_PlayerInventoryContainer_MC_FillList_0();
             this.__setProp_sellList_PlayerInventoryContainer_MC_SellList_0();
+            this.__setProp_changePerkButton_PlayerInventoryContainer_MC_PlayerInfo_0();
             this.__setProp_autoFillButton_PlayerInventoryContainer_MC_AutoFillButton_0();
             this.__setProp_promptsDisplay_PlayerInventoryContainer_MC_prompts_0();
         }
@@ -29,8 +30,8 @@ package
             infoList.enabled = true;
             infoList.enableInitCallback = false;
             infoList.focusable = true;
-            infoList.itemRendererName = "InventoryItemContainer";
-            infoList.itemRendererInstanceName = "";
+            infoList.itemRendererName = "";
+            infoList.itemRendererInstanceName = "inventoryItem_";
             infoList.margin = 0;
             infoList.inspectablePadding = {
                 "top":0,
@@ -147,6 +148,34 @@ package
             try
             {
                 sellList["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_changePerkButton_PlayerInventoryContainer_MC_PlayerInfo_0() : *
+        {
+            try
+            {
+                changePerkButton["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            changePerkButton.autoRepeat = false;
+            changePerkButton.autoSize = "none";
+            changePerkButton.data = "";
+            changePerkButton.enabled = true;
+            changePerkButton.enableInitCallback = false;
+            changePerkButton.focusable = false;
+            changePerkButton.label = "";
+            changePerkButton.selected = false;
+            changePerkButton.toggle = false;
+            changePerkButton.visible = true;
+            try
+            {
+                changePerkButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

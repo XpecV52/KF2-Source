@@ -134,10 +134,6 @@ package tripwire.widgets
                 this.menuButtonBar.selectedIndex = this._currentIndex;
                 ExternalInterface.call("Callback_MenuBarTabChanged",this._currentIndex);
             }
-            else
-            {
-                trace("!!!!!!!!!!dsadasds!!");
-            }
         }
         
         private function onQuit() : *

@@ -1,8 +1,8 @@
 package
 {
-    import tripwire.controls.TripListItemRenderer;
+    import tripwire.controls.VoipItemRenderer;
     
-    public dynamic class VOIPListItem extends TripListItemRenderer
+    public dynamic class VOIPListItem extends VoipItemRenderer
     {
          
         

@@ -30,6 +30,8 @@ package tripwire.managers
         public static var PROMPT_CHANGED:String = "PROMPT_CHANGED";
         
         public static var PARTYFOCUS_CHANGED:String = "PARTYFOCUS_CHANGED";
+        
+        public static var POPUP_CHANGED:String = "POPUP_CHANGED";
          
         
         public var mCursor:MovieClip;
@@ -208,7 +210,7 @@ package tripwire.managers
             {
                 return;
             }
-            this._numPrompts = !this.bOpenedInGame ? int(param1) : 2;
+            this._numPrompts = !this.bOpenedInGame || param1 > 2 ? int(param1) : 2;
             stage.dispatchEvent(new Event(PROMPT_CHANGED));
         }
         
@@ -257,6 +259,7 @@ package tripwire.managers
             stage.addChildAt(_loc2_,stage.numChildren - 1);
             _loc2_.openContainer();
             _loc2_.deselectContainer();
+            this.bPartyWidgetFocused = true;
         }
         
         public function loadCurrentPopup(param1:String, param2:String, param3:String, param4:String, param5:String, param6:String) : void
@@ -272,6 +275,7 @@ package tripwire.managers
                 this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
             }
             this.bPopUpOpen = true;
+            stage.dispatchEvent(new Event(POPUP_CHANGED));
         }
         
         protected function loaderComplete(param1:Event) : void
@@ -288,13 +292,15 @@ package tripwire.managers
             _loc2_.menuObject = param1.target.content.getChildAt(0) as TripContainer;
             this.menuList.push(_loc2_);
             this._currentMenuIndex = this.menuList.length - 1;
-            this.bPartyWidgetFocused = true;
             this.setMenuVisibility(true);
             if(!this.bPopUpOpen)
             {
                 this.setFocusBackToMenu();
             }
-            this.controllerEnableWidgets(false);
+            if(!MenuManager.manager.bPartyWidgetFocused)
+            {
+                this.controllerEnableWidgets(false);
+            }
             stage.addChildAt(_loc2_.menuObject,this.MenuLayer);
             this._bLoading = false;
         }
@@ -315,6 +321,8 @@ package tripwire.managers
         
         public function unloadCurrentPopup() : void
         {
+            var _loc1_:Boolean = false;
+            _loc1_ = this._currentPopUp.bPartyWasFocused;
             this._currentPopUp = null;
             if(this._popupLoader != null)
             {
@@ -330,9 +338,14 @@ package tripwire.managers
                 this.setMenuEvents(false);
             }
             this.bPopUpOpen = false;
-            if(this.menuList != null && this.menuList[this._currentMenuIndex] != null && this.menuList[this._currentMenuIndex].menuObject != null)
+            stage.dispatchEvent(new Event(POPUP_CHANGED));
+            if(this.menuList != null && this.menuList[this._currentMenuIndex] != null && this.menuList[this._currentMenuIndex].menuObject != null && !_loc1_)
             {
                 this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
+            }
+            else
+            {
+                this.setFocusToPartyWidget();
             }
         }
         
@@ -413,14 +426,12 @@ package tripwire.managers
             {
                 FocusManager.setModalClip(this.CachedModalClip,0);
             }
-            this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
             this.controllerEnableWidgets(false);
+            this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
         }
         
         public function setWidgetsVisiblity(param1:Boolean) : void
         {
-            trace("BRIAN:: [" + this + "] value: " + param1);
-            trace("BRIAN:: [" + this + "] _widgets.length: " + this._widgets.length);
             var _loc2_:int = 0;
             while(_loc2_ < this._widgets.length)
             {

@@ -86,13 +86,12 @@ function  InitValues()
 	{
 		KFPI = KFPlayerInput(GetPC().PlayerInput);
 
-		// TODO: This likely needs a PC profile setting - amiller 5/26/2016
+		// Retrieve current volume from online sub (indirectly from profile) along with min/max
 		class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
-
-		VoIPCurrent = Manager.CachedProfile.GetProfileFloat(KFID_VOIPVolumeMultiplier);
+		// convert to % for the slider
+		SetFloat("voipVolume", VoIPCurrent/VoIPMax * 100 );
 
 		SetBool("bPushToTalk", class'KFPlayerInput'.default.bRequiresPushToTalk);
-		SetFloat("voipVolume", VoIPCurrent/VoIPMax * 100 );
  		SetBool("bPushToTalk", KFPI.bRequiresPushToTalk);
 	}
 	else
@@ -239,11 +238,18 @@ function Callback_SFxVolumeChanged( float NewVolume )
 	KFGameEngine(Class'Engine'.static.GetEngine()).SFxVolumeMultiplier = SFXVolumeMultiplier;
 }
 
-//not implemented yet   This is a stub
-function Callback_VOIPVolumeChanged( float NewVolume )
+function Callback_VOIPVolumeChanged( float SliderValue )
 {
-	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_VOIPVolumeMultiplier, (NewVolume / 100));
-	class'KFGameEngine'.static.SetVoIPRecieveVolume( (NewVolume / 100) ); //Steam saves this 
+	local float NewVolume;
+
+	// VoIPMax should be initialized by now
+	if ( VoIPMax > 0 )
+	{
+		// convert from % back to multiplier (expected by OnlineSub)
+		NewVolume = (SliderValue / 100) * VoIPMax;
+		Manager.CachedProfile.SetProfileSettingValueFloat(KFID_VOIPVolumeMultiplier, NewVolume);
+		class'KFGameEngine'.static.SetVoIPRecieveVolume( NewVolume ); //Steam saves this 
+	}
 }
 
 function CallBack_ResetAudioOptions()
@@ -259,21 +265,21 @@ function CallBack_ResetAudioOptions()
 function ResetAudioOptions()
 {
 	local KFGameEngine KFGE;
+	local float FloatValue;
 
 	// Don't try to set values of objects that aren't there on Console.
 	if( !GetPC().WorldInfo.IsConsoleBuild() )
 	{
-		//class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
-		//SetFloat("voipVolume", /*Default value*/ );
-		//SetBool("bPushToTalk", /*Default value*/);
-		Manager.CachedProfile.SetProfileSettingValueFloat(KFID_VOIPVolumeMultiplier, Manager.CachedProfile.GetDefaultFloat(KFID_VOIPVolumeMultiplier));
 		Manager.CachedProfile.SetProfileSettingValueInt(KFID_RequiresPushToTalk, Manager.CachedProfile.GetDefaultInt(KFID_RequiresPushToTalk));
+	
+		FloatValue = Manager.CachedProfile.GetDefaultFloat(KFID_VOIPVolumeMultiplier);		
+		Manager.CachedProfile.SetProfileSettingValueFloat(KFID_VOIPVolumeMultiplier, FloatValue);
+		class'KFGameEngine'.static.SetVoIPRecieveVolume(FloatValue);
 	}
 	else
 	{
 		// Handle resetting the gamma setting since it is in this menu.
-		//DefaultGamma = class'KFGameEngine'.default.DefaultGammaMult;
-		
+		//DefaultGamma = class'KFGameEngine'.default.DefaultGammaMult;		
 
 		KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
 		KFGE.GammaMultiplier = Manager.CachedProfile.GetDefaultFloat(KFID_GammaMultiplier);

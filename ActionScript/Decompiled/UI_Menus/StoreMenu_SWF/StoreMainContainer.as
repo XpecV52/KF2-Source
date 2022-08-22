@@ -39,7 +39,7 @@ package
             storeItemScrollingList.rowHeight = 0;
             storeItemScrollingList.scrollBar = "scrollbar";
             storeItemScrollingList.visible = true;
-            storeItemScrollingList.wrapping = "normal";
+            storeItemScrollingList.wrapping = "stick";
             try
             {
                 storeItemScrollingList["componentInspectorSetting"] = false;

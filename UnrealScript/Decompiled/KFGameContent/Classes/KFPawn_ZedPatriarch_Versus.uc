@@ -380,6 +380,7 @@ defaultproperties
     LowHealthMsg="Health Is Critical! Heal Now!"
     NoHealsRemainingMsg="No Heals Remaining"
     NoMortarTargetsMsg="No Valid Mortar Targets"
+    CloakedAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.CloakedAkComponent0'
     begin object name=KFSyringeStaticMeshComponent1 class=StaticMeshComponent
         ReplacementPrimitive=none
     object end
@@ -519,6 +520,7 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_854' was not fou
     Components(5)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.CloakedAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

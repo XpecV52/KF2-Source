@@ -582,7 +582,6 @@ function bool CheckForTakeoverTimer()
             Outer.MyKFGRIV.SetPlayerZedSpawnTime(255, true);
             Outer.SetTimer(1, true, 'Timer_CheckForZedTakeovers', self);
         }
-        LogInternal((("started takeover timer" @ string(WaveTotalAI - Outer.NumAISpawnsQueued)) @ string(LargestSquadSize)) @ string(ZedPlayers));
         return true;
     }
     return false;

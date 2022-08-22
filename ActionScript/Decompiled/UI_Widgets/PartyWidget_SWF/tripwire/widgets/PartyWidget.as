@@ -84,9 +84,9 @@ package tripwire.widgets
         
         public const CountDownText:uint = 12234399;
         
-        public var _waitingString:String = "TEXT";
+        public var _waitingString:String = "";
         
-        public var _deployingString:String = "TEXT";
+        public var _deployingString:String = "";
         
         protected var _bInParty:Boolean = false;
         
@@ -155,6 +155,17 @@ package tripwire.widgets
             this._deployingString = param1;
             this.matchStartContainer.timeTextField.visible = true;
             this.matchStartContainer.BlackBG.visible = true;
+        }
+        
+        public function set localizedText(param1:Object) : void
+        {
+            this.backPromptString = !!param1.fov ? param1.fov : "";
+            this.readyButton.label = !!param1.readyString ? param1.readyString : "";
+            this.createPartyButton.label = !!param1.createPartyString ? param1.createPartyString : "";
+            this.deployingString = !!param1.deployingString ? param1.deployingString : "";
+            this.waitingString = !!param1.waitingString ? param1.waitingString : "";
+            this.selectPromptString = !!param1.selectPromptString ? param1.selectPromptString : "";
+            this.backPromptString = !!param1.backPromptString ? param1.backPromptString : "";
         }
         
         public function get backPromptString() : String
@@ -464,7 +475,7 @@ package tripwire.widgets
             if(param2)
             {
                 this.matchStartContainer.messageTextField.visible = true;
-                this.matchStartContainer.messageTextField.text = this._deployingString;
+                this.matchStartContainer.messageTextField.text = this.deployingString;
                 this.matchStartContainer.timeTextField.textColor = this.FinalCountdownColor;
             }
             else

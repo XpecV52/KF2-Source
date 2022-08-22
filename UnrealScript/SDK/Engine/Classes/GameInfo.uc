@@ -3944,6 +3944,13 @@ function string GetFriendlyNameForCurrentGameMode();
 //@HSL_END
 
 
+`if (`__TW_)
+event bool GetRequiresPassword()
+{
+	return RequiresPassword();
+}
+`endif
+
 defaultproperties
 {
 	// The game spawns bots/players which can't be done during physics ticking

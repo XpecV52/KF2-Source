@@ -630,7 +630,7 @@ function DisplayInteractionMessage( string MessageString, int MessageIndex, opti
 {
     if( InteractionMessageContainer != none )
     {
-        if( MessageIndex == IMT_None )
+        if( MessageIndex == IMT_None || KFPC.IsBossCameraMode() )
         {
             HideInteractionMessage();
         }   

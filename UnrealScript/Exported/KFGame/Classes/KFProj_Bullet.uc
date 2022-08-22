@@ -14,11 +14,24 @@ class KFProj_Bullet extends KFProjectile
 /** Store the current scale of the ProjEffects for procedurally ramping them up/down */
 var float ProjEffectsScale;
 
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
+/**
+ * Initialize the Projectile
+ */
+function Init(vector Direction)
+{
+    super.Init( Direction );
+
+    // Scale lifespan by time dilation
+    if( LifeSpan == default.LifeSpan && WorldInfo.TimeDilation < 1.f )
+    {
+        LifeSpan *= WorldInfo.TimeDilation;
+    }
+}
 
 /** Call ProcessBulletTouch */
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)

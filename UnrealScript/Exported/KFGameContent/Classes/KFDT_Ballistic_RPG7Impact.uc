@@ -23,5 +23,5 @@ defaultproperties
    KDeathVel=500.000000
    KDeathUpKick=1000.000000
    Name="Default__KFDT_Ballistic_RPG7Impact"
-   ObjectArchetype=KFDT_Ballistic_Shell'kfgamecontent.Default__KFDT_Ballistic_Shell'
+   ObjectArchetype=KFDT_Ballistic_Shell'KFGame.Default__KFDT_Ballistic_Shell'
 }

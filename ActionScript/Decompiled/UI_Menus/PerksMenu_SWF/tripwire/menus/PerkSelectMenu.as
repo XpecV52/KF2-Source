@@ -16,6 +16,7 @@ package tripwire.menus
     import tripwire.containers.Perks.PerksNextRankContainer;
     import tripwire.containers.Perks.PerksSkillsSummaryContainer;
     import tripwire.containers.TripContainer;
+    import tripwire.managers.MenuManager;
     
     public class PerkSelectMenu extends TripContainer
     {
@@ -79,10 +80,6 @@ package tripwire.menus
                 this.SelectionContainer.perkScrollingList.selectedIndex = this._tempSelected;
             }
             this.SelectionContainer.header.controllerIconVisible = !bSelected;
-            if(bManagerUsingGamepad)
-            {
-                this.SelectedPerkSummaryContainer.controllerIconContainer.visible = true;
-            }
         }
         
         override public function focusGroupOut() : void
@@ -91,10 +88,6 @@ package tripwire.menus
             this._tempSelected = this.SelectionContainer.perkScrollingList.selectedIndex;
             this.SelectionContainer.perkScrollingList.selectedIndex = -1;
             this.SelectionContainer.header.controllerIconVisible = !bSelected;
-            if(bManagerUsingGamepad)
-            {
-                this.SelectedPerkSummaryContainer.controllerIconContainer.visible = false;
-            }
         }
         
         override public function openContainer(param1:Boolean = true) : void
@@ -246,6 +239,7 @@ package tripwire.menus
         
         override public function selectContainer() : void
         {
+            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
             super.selectContainer();
             if(_bOpen)
             {

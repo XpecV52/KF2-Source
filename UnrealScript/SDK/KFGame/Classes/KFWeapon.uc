@@ -4472,9 +4472,10 @@ auto state Inactive
 		Super.BeginState(PreviousStateName);
 	}
 
-	simulated function EndState(Name NextStateName)
+	/** For weapons, this function starts the Equipping process. */
+	simulated function Activate()
 	{
-		Super.EndState(NextStateName);
+		Global.Activate();
 		UpdateOutOfAmmoEffects(0.0f);
 	}
 }

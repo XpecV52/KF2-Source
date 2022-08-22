@@ -808,7 +808,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             UpdateWaveEndDialogInfo();
             if(WaveNum < WaveMax)
             {
-                GotoState('TraderOpen');
+                GotoState('TraderOpen', 'Begin');
                 bOpeningTrader = true;                
             }
             else
@@ -858,6 +858,8 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 }
 
 function CloseTraderTimer();
+
+function DoTraderTimeCleanup();
 
 function NotifyTraderOpened()
 {
@@ -1034,7 +1036,6 @@ state TraderOpen
     function BeginState(name PreviousStateName)
     {
         local KFPlayerController KFPC;
-        local KFProj_BloatPukeMine PukeMine;
 
         MyKFGRI.SetWaveActive(false, GetGameIntensityForMusic());
         foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
@@ -1053,12 +1054,18 @@ state TraderOpen
         {
             LogPlayersDosh('TraderOpen');
         }
+        SetTimer(float(TimeBetweenWaves), false, 'CloseTraderTimer');
+    }
+
+    function DoTraderTimeCleanup()
+    {
+        local KFProj_BloatPukeMine PukeMine;
+
         MyKFGRI.FadeOutLingeringExplosions();
         foreach DynamicActors(Class'KFProj_BloatPukeMine', PukeMine)
         {
             PukeMine.FadeOut();            
         }        
-        SetTimer(float(TimeBetweenWaves), false, 'CloseTraderTimer');
     }
 
     function CloseTraderTimer()
@@ -1085,7 +1092,11 @@ state TraderOpen
         }
         return global.PreventDeath(KilledPawn, Killer, DamageType, HitLocation);
     }
-    stop;    
+Begin:
+
+    Sleep(0.1);
+    DoTraderTimeCleanup();
+    stop;        
 }
 
 state MatchEnded

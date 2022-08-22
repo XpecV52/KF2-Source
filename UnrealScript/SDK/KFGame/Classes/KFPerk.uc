@@ -1046,8 +1046,8 @@ simulated function bool IsSharedExplosiveResistaneActive(){ return false; }
 simulated function bool ShouldSacrifice(){ return false; }
 simulated function bool ShouldRandSirenResist(){ return false; }
 simulated function bool CanExplosiveWeld(){ return false; }
-simulated function float GetAeORadiusModifier(){ return 1.f; }
-simulated function float GetAeODamageModifier(){ return 1.f; }
+simulated function float GetAoERadiusModifier(){ return 1.f; }
+simulated function float GetAoEDamageModifier(){ return 1.f; }
 simulated function bool DoorShouldNuke(){ return false; }
 simulated function bool ShouldGetDaZeD( class<KFDamageType> DamageType ){ return false; }
 simulated function float GetDaZedEMPPower(){ return 0; }

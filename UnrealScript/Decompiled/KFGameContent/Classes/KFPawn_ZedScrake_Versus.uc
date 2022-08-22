@@ -53,7 +53,7 @@ protected simulated function Timer_RageBump()
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     ClearTimer('Timer_RageBump');
-    super.PlayDying(DamageType, HitLoc);
+    super(KFPawn_Monster).PlayDying(DamageType, HitLoc);
 }
 
 defaultproperties

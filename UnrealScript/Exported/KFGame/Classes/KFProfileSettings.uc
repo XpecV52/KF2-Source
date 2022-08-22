@@ -13,6 +13,10 @@ class KFProfileSettings extends OnlineProfileSettings
 
 
 
+
+
+
+
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -45,7 +49,7 @@ const KFID_MouseSensitivity = 138;
 const KFID_TargetAdhesionEnabled = 139;
 const KFID_TargetFrictionEnabled = 140;
 const KFID_InvertMouse = 142;
-const KFID_VOIPVolumeMultiplier = 143;
+const KFID_DEPRECATED_143 = 143;
 const KFID_SavedSoloModeIndex = 144;
 const KFID_SavedSoloMapString = 145;
 const KFID_SavedSoloDifficultyIndex = 146;
@@ -65,6 +69,8 @@ const KFID_AntiMotionSickness = 159;
 const KFID_ShowWelderInInventory = 160; 
 const KFID_AutoTurnOff = 161;			
 const KFID_ReduceHightPitchSounds = 162; 
+const KFID_ShowConsoleCrossHair = 163;
+const KFID_VOIPVolumeMultiplier = 164;
 
 #linenumber 12
 
@@ -240,7 +246,7 @@ defaultproperties
    DefaultSettings(29)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=132,Data=(Type=SDT_Int32,Value1=1)))
    DefaultSettings(30)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=142,Data=(Type=SDT_Int32)))
    DefaultSettings(31)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=136,Data=(Type=SDT_Int32,Value1=1)))
-   DefaultSettings(32)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=143,Data=(Type=SDT_Float,Value1=1056964608)))
+   DefaultSettings(32)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=164,Data=(Type=SDT_Float,Value1=1069547520)))
    DefaultSettings(33)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=144,Data=(Type=SDT_Int32)))
    DefaultSettings(34)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=145,Data=(Type=SDT_String)))
    DefaultSettings(35)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=146,Data=(Type=SDT_Int32)))
@@ -260,6 +266,7 @@ defaultproperties
    DefaultSettings(49)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=160,Data=(Type=SDT_Int32)))
    DefaultSettings(50)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=161,Data=(Type=SDT_Int32)))
    DefaultSettings(51)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=162,Data=(Type=SDT_Int32)))
+   DefaultSettings(52)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=163,Data=(Type=SDT_Int32,Value1=1)))
    VersionNumber=4
    ProfileMappings(0)=(Id=100,Name="Quick Weapon Select",MappingType=PVMT_RawValue,ValueMappings=((Id=0),))
    ProfileMappings(1)=(Id=101,Name="Current Layout Index",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))
@@ -293,7 +300,7 @@ defaultproperties
    ProfileMappings(29)=(Id=140,Name="aimAssistSlowDownValue")
    ProfileMappings(30)=(Id=142,Name="invertedValue")
    ProfileMappings(31)=(Id=136,Name="mouseSmoothingLabel")
-   ProfileMappings(32)=(Id=143,Name="VOIPVolumeMultiplier")
+   ProfileMappings(32)=(Id=164,Name="VOIPVolumeMultiplier")
    ProfileMappings(33)=(Id=144,Name="SavedSoloModeIndex")
    ProfileMappings(34)=(Id=145,Name="SavedSoloMapString")
    ProfileMappings(35)=(Id=146,Name="SavedSoloDifficultyIndex")
@@ -313,6 +320,7 @@ defaultproperties
    ProfileMappings(49)=(Id=160,Name="Show Welder in Inventory")
    ProfileMappings(50)=(Id=161,Name="Auto Turn off")
    ProfileMappings(51)=(Id=162,Name="Reduce High Pitch Sounds")
+   ProfileMappings(52)=(Id=163,Name="Show Console Crosshair")
    Name="Default__KFProfileSettings"
    ObjectArchetype=OnlineProfileSettings'Engine.Default__OnlineProfileSettings'
 }

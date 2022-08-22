@@ -270,6 +270,14 @@ package tripwire.containers
             {
                 param1.selectedIndex = 0;
             }
+            if(param1 == this.mapList)
+            {
+                if(param2.selectedIndex >= 0 && param2.selectedIndex < param1.dataProvider.length)
+                {
+                    this.mapSource = param1.dataProvider[param2.selectedIndex].imagePath;
+                    this._currentSelectedMapIndex = param2.selectedIndex;
+                }
+            }
             if(param1.associatedButton)
             {
                 if(param2.selectedIndex >= 0 && param2.selectedIndex < param1.dataProvider.length)
@@ -305,12 +313,19 @@ package tripwire.containers
             this.serverTypeButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.inProgressButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             stage.addEventListener(KeyboardEvent.KEY_UP,this.onUserKeyUp,false,0,true);
-            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
+            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen && !MenuManager.manager.bPartyWidgetFocused)
             {
-                FocusHandler.getInstance().setFocus(currentElement);
+                if(currentElement != null)
+                {
+                    FocusHandler.getInstance().setFocus(currentElement);
+                }
                 showDimLeftSide(false);
             }
             this.backButton.visible = !bManagerUsingGamepad;
+            if(MenuManager.manager.bPartyWidgetFocused)
+            {
+                this.deselectContainer();
+            }
         }
         
         override public function deselectContainer() : void
@@ -378,12 +393,12 @@ package tripwire.containers
             {
                 this.serverTypeButton.visible = false;
             }
-            this.mapList.addEventListener(MouseEvent.MOUSE_OUT,this.resetMap,false,0,true);
+            this.mapList.addEventListener(MouseEvent.ROLL_OUT,this.resetMap,false,0,true);
         }
         
         public function resetMap(param1:MouseEvent) : void
         {
-            ExternalInterface.call("Callback_MapSelection",this.currentSelectedMapIndex);
+            this.mapSource = !!this.mapList.dataProvider[this._currentSelectedMapIndex].imagePath ? this.mapList.dataProvider[this._currentSelectedMapIndex].imagePath : "";
         }
         
         public function makeAnims() : void
@@ -420,7 +435,6 @@ package tripwire.containers
         {
             var _loc3_:Array = new Array();
             param1.dataProvider = new DataProvider(_loc3_);
-            param1.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack,false,0,true);
             param1.visible = false;
             param1.associatedButton = param2;
         }
@@ -512,7 +526,6 @@ package tripwire.containers
             if(param1 > -1)
             {
                 this._currentSelectedMapIndex = param1;
-                this.onItemRollOver(null);
             }
         }
         
@@ -522,6 +535,7 @@ package tripwire.containers
             this._currentList = param1;
             this._currentList.addEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver,false,0,true);
             this._currentList.addEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver,false,0,true);
+            this._currentList.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack,false,0,true);
             if(bManagerUsingGamepad)
             {
                 showDimLeftSide(true);
@@ -553,9 +567,9 @@ package tripwire.containers
             if(_loc4_ != this._currentLoadedImageIndex)
             {
                 this._currentLoadedImageIndex = _loc4_;
-                if(this._currentList == this.mapList && this.mapList.alpha == 1)
+                if(this._currentList == this.mapList && this.mapList.alpha == 1 && this.mapList.bOpen)
                 {
-                    ExternalInterface.call("Callback_RecieveMap",_loc4_);
+                    this.mapSource = !!param1.itemData.imagePath ? param1.itemData.imagePath : "";
                 }
             }
         }
@@ -564,10 +578,7 @@ package tripwire.containers
         {
             var _loc2_:UILoader = this.createGameMapImageContainerMC.mapImageLoader;
             var _loc3_:String = param1;
-            if(_loc3_ != _loc2_.source)
-            {
-                _loc2_.source = param1;
-            }
+            _loc2_.source = param1;
         }
         
         override protected function onBPressed(param1:InputDetails) : void
@@ -615,16 +626,18 @@ package tripwire.containers
                             ExternalInterface.call("Callback_InProgress",param1.index);
                     }
                     this.closeHelpText();
-                    this._currentList.removeEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver);
-                    this._currentList.removeEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver);
                 }
                 else
                 {
                     if(this._currentList == this.mapList)
                     {
-                        this.resetMapOption();
+                        this.resetMap(null);
                     }
                     this.closeHelpText();
+                }
+                if(this._currentList != null)
+                {
+                    this._currentList.removeEventListener(IndexEvent.INDEX_CHANGE,this.onBack);
                     this._currentList.removeEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver);
                     this._currentList.removeEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver);
                 }
@@ -634,7 +647,6 @@ package tripwire.containers
         
         private function resetMapOption() : *
         {
-            ExternalInterface.call("Callback_RecieveMap",this._currentSelectedMapIndex);
         }
     }
 }

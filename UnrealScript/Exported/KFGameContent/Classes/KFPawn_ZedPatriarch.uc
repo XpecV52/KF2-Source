@@ -24,8 +24,9 @@ var AkEvent AmbientBreathingEvent;
 var AkEvent LowHealthAmbientBreathingEvent;
 
 /** Gameplay-driven Ak objects, instanced at runtime */
-var AkBaseSoundObject CloakedLoop;
-var AkBaseSoundObject CloakedLoopEnd;
+var AkComponent CloakedAkComponent;
+var AkEvent CloakedLoop;
+var AkEvent CloakedLoopEnd;
 
 /** Materials used for cloaking/visible states */
 var MaterialInstanceConstant BodyMaterial;
@@ -1714,6 +1715,8 @@ simulated function PlayDying( class<DamageType> DamageType, vector HitLoc )
 	BoilLightComponent.SetEnabled( false );
 	DetachComponent( BoilLightComponent );
 
+	PlayStealthSoundLoopEnd();
+
 	super.TerminateEffectsOnDeath();
 }
 
@@ -1757,12 +1760,18 @@ function int GetSpotterDialogID()
 
 simulated function PlayStealthSoundLoop()
 {
-	PlaySoundBase( CloakedLoop, true );
+	if( WorldInfo.NetMode != NM_DedicatedServer && !CloakedAkComponent.IsPlaying(CloakedLoop) )
+	{
+		CloakedAkComponent.PlayEvent( CloakedLoop, true, true );
+	}
 }
 
 simulated function PlayStealthSoundLoopEnd()
 {
-	PlaySoundBase( CloakedLoopEnd, true );
+	if( WorldInfo.NetMode != NM_DedicatedServer && CloakedAkComponent.IsPlaying(CloakedLoop) )
+	{
+		CloakedAkComponent.PlayEvent( CloakedLoopEnd, true, true );
+	}
 }
 
 function PlayMinigunWarnDialog()
@@ -1808,6 +1817,15 @@ function PlayBossMusic()
 
 defaultproperties
 {
+   Begin Object Class=AkComponent Name=CloakedAkComponent0
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="CloakedAkComponent0"
+      ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
+   End Object
+   CloakedAkComponent=CloakedAkComponent0
    CloakedLoop=AkEvent'WW_ZED_Patriarch.Play_Patriarch_Cloak'
    CloakedLoopEnd=AkEvent'WW_ZED_Patriarch.Stop_Patriarch_Cloak'
    BodyMaterial=MaterialInstanceConstant'ZED_Patriarch_MAT.ZED_Patriarch_Mech_M'
@@ -2032,7 +2050,7 @@ defaultproperties
    IncapSettings(2)=(Cooldown=2.000000,Vulnerability=(0.100000,0.950000,0.100000,0.100000,0.750000))
    IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.100000,0.100000,0.100000,0.100000,0.500000))
    IncapSettings(4)=(Cooldown=10.000000,Vulnerability=(0.100000,0.300000,0.100000,0.100000,0.400000))
-   IncapSettings(5)=(Duration=1.000000,Cooldown=17.000000,Vulnerability=(0.100000,0.550000,0.100000,0.100000,0.550000))
+   IncapSettings(5)=(Duration=1.250000,Cooldown=17.000000,Vulnerability=(0.100000,0.550000,0.100000,0.100000,0.550000))
    IncapSettings(6)=(Vulnerability=(0.000000))
    IncapSettings(7)=(Duration=3.000000,Cooldown=10.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000,1.000000))
    IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
@@ -2197,6 +2215,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=CloakedAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=50000,Roll=50000)
    Name="Default__KFPawn_ZedPatriarch"

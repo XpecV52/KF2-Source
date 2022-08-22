@@ -31,7 +31,6 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Zweihander'
    StumblePower=100.000000
-   ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=1600.000000
    KDeathVel=500.000000
    KDeathUpKick=200.000000

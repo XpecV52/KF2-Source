@@ -24,6 +24,8 @@ package AssetLib_fla
         
         public var __id3_:DefaultLabel;
         
+        public var __id4_:$Slider;
+        
         public var backButton:$BaseButton;
         
         public var buttonBar:ButtonBar;
@@ -68,6 +70,7 @@ package AssetLib_fla
             this.__setProp_voipList_Scene1_Layer1_0();
             this.__setProp___id3__Scene1_Layer1_0();
             this.__setProp_searchBar_Scene1_Layer1_0();
+            this.__setProp___id4__Scene1_Layer1_0();
             this.__setProp_dropdown2_Scene1_Layer1_0();
             this.__setProp_NewDropDownList_Scene1_Layer1_0();
             this.__setProp_dropdown_Scene1_Layer1_0();
@@ -294,6 +297,36 @@ package AssetLib_fla
             try
             {
                 this.searchBar["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp___id4__Scene1_Layer1_0() : *
+        {
+            try
+            {
+                this.__id4_["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            this.__id4_.enabled = true;
+            this.__id4_.enableInitCallback = false;
+            this.__id4_.focusable = false;
+            this.__id4_.liveDragging = true;
+            this.__id4_.maximum = 10;
+            this.__id4_.minimum = 0;
+            this.__id4_.offsetLeft = 0;
+            this.__id4_.offsetRight = 0;
+            this.__id4_.snapInterval = 1;
+            this.__id4_.snapping = false;
+            this.__id4_.value = 0;
+            this.__id4_.visible = true;
+            try
+            {
+                this.__id4_["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

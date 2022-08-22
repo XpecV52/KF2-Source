@@ -59,7 +59,7 @@ DefaultProperties
 	IncapSettings(AF_GunHit)=	(Vulnerability=(2.f),                     Cooldown=0.2)
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),                     Cooldown=0.0)
 	IncapSettings(AF_Poison)=	(Vulnerability=(1.0),                     Cooldown=5.0, Duration=4.5)
-	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.5),                     Cooldown=5.0, Duration=2.0)
 	IncapSettings(AF_FirePanic)=(Vulnerability=(0.7),                     Cooldown=7.0, Duration=5)
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0, Duration=5.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5, Duration=2.0)

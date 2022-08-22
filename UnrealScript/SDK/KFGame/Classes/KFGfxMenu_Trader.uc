@@ -165,6 +165,7 @@ function OnOpen()
 	}
 
 	MyKFPC.bClientTraderMenuOpen = true;
+	UpdatePlayerInfo();
 }
 
 /** Ties the GFxClikWidget variables to the .swf components and handles events */

@@ -15,7 +15,7 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_Shotgun_M4"
 
 	BuyPrice=1100
-	AmmoPricePerMag=40
+	AmmoPricePerMag=38 //40
 	ImagePath="ui_weaponselect_tex.UI_WeaponSelect_Benelli"
 
 	EffectiveRange=35

@@ -83,6 +83,7 @@ defaultproperties
     RageBumpDamage=2
     RageBumpRadius=240
     RageBumpMomentum=500
+    RageAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.RageAkComponent0'
     BattlePhaseLightTemplateYellow=PointLightComponent'Default__KFPawn_ZedFleshPound_Versus.PointLightComponent1'
     BattlePhaseLightTemplateRed=PointLightComponent'Default__KFPawn_ZedFleshPound_Versus.PointLightComponent2'
     bVersusZed=true
@@ -163,6 +164,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.RageAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

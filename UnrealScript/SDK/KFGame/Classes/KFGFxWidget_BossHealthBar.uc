@@ -17,6 +17,7 @@ var float UpdateTickTime;
 var float LastUpdateTime;
 var array <int>BattlePhaseColors;
 var KFPlayerController KFPC;
+var bool bLastHideValue;
 
 function InitializeHUD()
 {
@@ -26,6 +27,18 @@ function InitializeHUD()
 
 function TickHud(float DeltaTime)
 {
+    if(KFPC.bHideBossHealthBar != bLastHideValue)
+    {
+        bLastHideValue = KFPC.bHideBossHealthBar;
+        if(KFPC.bHideBossHealthBar)
+        {
+            SetVisible(false);
+        }
+        else if(BossPawn != none)
+        {
+            SetVisible(true);
+        }
+    }
     if(KFPC.bHideBossHealthBar)
     {
         return;

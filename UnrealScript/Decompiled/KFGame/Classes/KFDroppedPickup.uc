@@ -216,7 +216,7 @@ function GiveTo(Pawn P)
             {
                 if(KFW.DualClass == none)
                 {
-                    PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 11);                    
+                    PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 16);                    
                     return;
                 }
                 break;
@@ -224,7 +224,7 @@ function GiveTo(Pawn P)
             }
             if((KFWInvClass != none) && KFW.Class == KFWInvClass.default.DualClass)
             {
-                PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 11);                
+                PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 16);                
                 return;
             }            
         }        

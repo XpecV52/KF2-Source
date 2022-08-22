@@ -79,10 +79,13 @@ package tripwire.widgets
         
         public function set bUsingGamepad(param1:Boolean) : void
         {
-            this.aIcon.visible = param1;
-            this.bIcon.visible = param1;
-            this.yesKeyText.visible = !param1;
-            this.noKeyText.visible = !param1;
+            if(this._bChoicesVisible)
+            {
+                this.aIcon.visible = param1;
+                this.bIcon.visible = param1;
+                this.yesKeyText.visible = !param1;
+                this.noKeyText.visible = !param1;
+            }
         }
         
         public function set localizedText(param1:Object) : void
@@ -90,7 +93,6 @@ package tripwire.widgets
             if(param1)
             {
                 this.voteKickText.text = !!param1.voteKick ? param1.voteKick : "voteKick";
-                this.playerNameText.text = !!param1.playerName ? param1.playerName : "playerName";
                 this.yesKeyText.text = !!param1.yesKey ? param1.yesKey : "";
                 this.noKeyText.text = !!param1.noKey ? param1.noKey : "";
                 this.yesText.text = !!param1.yes ? param1.yes : "yes?";
@@ -100,18 +102,19 @@ package tripwire.widgets
             }
         }
         
-        public function voteKick(param1:String, param2:int, param3:Boolean) : void
+        public function set kickVoteData(param1:Object) : void
         {
-            if(param1 != null && param1 != "")
+            if(param1)
             {
-                this.playerNameText.text = param1;
+                this.playerNameText.text = !!param1.playerName ? param1.playerName : "name not passed!";
+                trace("THIS IS THE VALUE PASSED TO KICK VOTE:",param1.playerName);
                 visible = true;
-                this._currentTime = param2 - 1;
+                this._currentTime = !!param1.voteDuation ? int(param1.voteDuraction - 1) : 0;
                 this.voteTimeText.text = TextfieldUtil.instance.getFormattedTimeFromSeconds(this._currentTime);
-                this._voteTimer.repeatCount = param2;
+                this._voteTimer.repeatCount = param1.voteDuation;
                 this._voteTimer.reset();
                 this._voteTimer.start();
-                this.choicesVisibility = param3;
+                this.choicesVisibility = !!param1.bShowChoices ? Boolean(param1.bShowChoices) : false;
             }
             else
             {

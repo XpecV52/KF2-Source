@@ -250,7 +250,7 @@ simulated function Inventory CreateInventory(class<Inventory> NewInventoryItemCl
             UpdateHUD();
             if(!bSuppressPickupMessages && (WorldInfo.TimeSeconds - CreationTime) > float(1))
             {
-                PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 12,,, KFWeap);
+                PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 17,,, KFWeap);
                 if((WorldInfo.TimeSeconds - LastCreatedWeaponTime) > float(1))
                 {
                     PlayGiveInventorySound(ItemPickupSound);
@@ -263,7 +263,7 @@ simulated function Inventory CreateInventory(class<Inventory> NewInventoryItemCl
         {
             if(!bSuppressPickupMessages)
             {
-                PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 13);
+                PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 18);
             }
             return none;
         }
@@ -1090,7 +1090,7 @@ function bool AddAmmoFromPickup(KFWeapon KFW, optional Inventory Pickup)
 {
     if(GiveWeaponAmmo(KFW))
     {
-        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 9,,, KFW.Class);
+        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 13,,, KFW.Class);
         PlayGiveInventorySound(AmmoPickupSound);
         return true;
     }
@@ -1136,12 +1136,12 @@ function bool GiveWeaponsAmmo(bool bIncludeGrenades)
     }
     if(bAddedAmmo)
     {
-        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 8);
+        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 12);
         PlayGiveInventorySound(AmmoPickupSound);        
     }
     else
     {
-        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 10);
+        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 14);
     }
     return bAddedAmmo;
 }
@@ -1153,14 +1153,14 @@ function bool AddArmorFromPickup()
     KFPH = KFPawn_Human(Instigator);
     if(KFPH.Armor != KFPH.GetMaxArmor())
     {
-        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 6);
+        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 10);
         PlayGiveInventorySound(ArmorPickupSound);
         KFPH.GiveMaxArmor();
         return true;        
     }
     else
     {
-        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 7);
+        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 11);
         return false;
     }
 }

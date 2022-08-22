@@ -69,6 +69,13 @@ var(Gore) AkBaseSoundObject RagdollImpactSound;
 var(Gore) AkBaseSoundObject CleaveSound;
 var(Gore) AkBaseSoundObject ObliterationSound;
 
+/*********************************************************************************************
+* Misc
+ ********************************************************************************************* */
+
+/** Special stop event to let the audio system stop certain sounds */
+ var(Misc) AKEvent   OnDeathStopEvent;
+
 struct ImpactSoundCoolDownInfo
 {
     var EHitZoneBodyPart    Limb;

@@ -83,6 +83,13 @@ class KFPerk_Support extends KFPerk
 
 #linenumber 14
 
+struct native sSuppliedPawnInfo
+{
+	var KFPawn_Human SuppliedPawn;
+	var bool bSuppliedAmmo;
+	var bool bSuppliedArmor;
+};
+
 /** Passives */
 var private	const PerkSkill 					Ammo;       				// Increased ammo
 var private const PerkSkill 					WeldingProficiency;         // Welding speed modifier
@@ -90,10 +97,11 @@ var	private const PerkSkill 					ShotgunDamage;              // Shotgun dmg modi
 var	private const PerkSkill 					ShotgunPenetration;			// Shotgun extra penetration Use INTs only
 var	private const PerkSkill 					Strength;              
 
-var	private		  Array<KFPawn_Human> 			SuppliedPawnList;
+var	private		  Array<sSuppliedPawnInfo> 		SuppliedPawnList;
 var	private const float 						BarrageFiringRate;
 var	private const float 						ResupplyMaxSpareAmmoModifier;
 var private const AkEvent						ReceivedAmmoSound;
+var private const AkEvent 						ReceivedArmorSound;
 var private const AkEvent						ReceivedAmmoAndArmorSound;
 
 enum ESupportPerkSkills
@@ -122,11 +130,14 @@ function ApplySkillsToPawn()
 
 	Super.ApplySkillsToPawn();
 
-	KFIM = KFInventoryManager(OwnerPawn.InvManager);
-	if( KFIM != none )
+	if( OwnerPawn != none )
 	{
-		;
-		KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks + GetExtraStrength( CurrentLevel );
+		KFIM = KFInventoryManager(OwnerPawn.InvManager);
+		if( KFIM != none )
+		{
+			;
+			KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks + GetExtraStrength( CurrentLevel );
+		}
 	}
 
 	ResetSupplier();
@@ -416,58 +427,110 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 simulated function Interact( KFPawn_Human KFPH )
 {
 	local KFWeapon KFW;
-	local int MagCount;
+	local int Idx, MagCount;
 	local KFPlayerController KFPC;
 	local KFPlayerReplicationInfo UserPRI, OwnerPRI;
-	local bool bReceivedAmmo;
+	local bool bCanSupplyAmmo, bCanSupplyArmor;
+	local bool bReceivedAmmo, bReceivedArmor;
+	local sSuppliedPawnInfo SuppliedPawnInfo;
 	
-	if( SuppliedPawnList.Find( KFPH ) != INDEX_NONE || !IsSupplierActive() )
+	// Do nothing if supplier isn't active
+	if( !IsSupplierActive() )
 	{
 		return;
 	}
 
-	foreach KFPH.InvManager.InventoryActors( class'KFWeapon', KFW )
+	bCanSupplyAmmo = true;
+	bCanSupplyArmor = true;
+	Idx = SuppliedPawnList.Find( 'SuppliedPawn', KFPH );
+	if( Idx != INDEX_NONE )
 	{
-		if( KFW.static.DenyPerkResupply() )
+		bCanSupplyAmmo = !SuppliedPawnList[Idx].bSuppliedAmmo;
+		bCanSupplyArmor = !SuppliedPawnList[Idx].bSuppliedArmor;
+		if( !bCanSupplyAmmo && !bCanSupplyArmor )
 		{
-			continue;
+			return;
 		}
+	}
 
-		// resupply 1 mag for every 5 initial mags
-		MagCount = Max( KFW.InitialSpareMags[0] / 1.5, 1 ); // 3, 1
-		;
-		bReceivedAmmo = (KFW.AddAmmo( MagCount * KFW.MagazineCapacity[0] ) > 0 ) ? true : bReceivedAmmo;
+	if( bCanSupplyAmmo )
+	{
+		foreach KFPH.InvManager.InventoryActors( class'KFWeapon', KFW )
+		{
+			if( KFW.static.DenyPerkResupply() )
+			{
+				continue;
+			}
 
-        if( KFW.CanRefillSecondaryAmmo() )
-        {
-        	// resupply 1 mag for every 5 initial mags
-        	;
-        	bReceivedAmmo = (KFW.AddSecondaryAmmo( Max( KFW.InitialSpareMags[1] / 3, 1 ) ) > 0) ? true : bReceivedAmmo;
-        }
+			// resupply 1 mag for every 5 initial mags
+			MagCount = Max( KFW.InitialSpareMags[0] / 1.5, 1 ); // 3, 1
+			;
+			bReceivedAmmo = (KFW.AddAmmo( MagCount * KFW.MagazineCapacity[0] ) > 0 ) ? true : bReceivedAmmo;
+
+	        if( KFW.CanRefillSecondaryAmmo() )
+	        {
+	        	// resupply 1 mag for every 5 initial mags
+	        	;
+	        	bReceivedAmmo = (KFW.AddSecondaryAmmo( Max( KFW.InitialSpareMags[1] / 3, 1 ) ) > 0) ? true : bReceivedAmmo;
+	        }
+		}
 	}
 	
-	if( IsResupplyActive() )
+	if( bCanSupplyArmor && IsResupplyActive() && KFPH.Armor != KFPH.GetMaxArmor() )
 	{
 		KFPH.AddArmor( KFPH.MaxArmor * GetSkillValue( PerkSkills[ESupportResupply] ) );
+		bReceivedArmor = true;
 	}
 
-	if( bReceivedAmmo ) 
+	// Add to array (if necessary) and flag as supplied as needed
+	if( bReceivedArmor || bReceivedAmmo )
 	{
-		if( Role == ROLE_Authority )
+		if( Idx == INDEX_NONE )
 		{
-			KFPC = KFPlayerController(KFPH.Controller);
-			OwnerPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_GaveAmmoTo, KFPC.PlayerReplicationInfo );
-			KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', IsResupplyActive() ? GMT_ReceivedAmmoAndArmor : GMT_ReceivedAmmoFrom, OwnerPC.PlayerReplicationInfo );
-
-			UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
-			OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
-			if( UserPRI != none && OwnerPRI != none )
-			{
-				UserPRI.MarkSupplierOwnerUsed( OwnerPRI );
-			}
+			SuppliedPawnInfo.SuppliedPawn = KFPH;
+			SuppliedPawnInfo.bSuppliedAmmo = bReceivedAmmo;
+			SuppliedPawnInfo.bSuppliedArmor = bReceivedArmor;
+			SuppliedPawnList.AddItem( SuppliedPawnInfo );
+		}
+		else
+		{
+			SuppliedPawnList[Idx].bSuppliedAmmo = SuppliedPawnList[Idx].bSuppliedAmmo || bReceivedAmmo;
+			SuppliedPawnList[Idx].bSuppliedArmor = SuppliedPawnList[Idx].bSuppliedArmor || bReceivedArmor;
 		}
 
-		SuppliedPawnList.AddItem( KFPH );
+		if( Role == ROLE_Authority )
+		{
+			KFPC = KFPlayerController( KFPH.Controller );
+			if( bReceivedAmmo )
+			{
+				OwnerPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', bReceivedArmor ? GMT_GaveAmmoAndArmorTo : GMT_GaveAmmoTo, KFPC.PlayerReplicationInfo );
+				KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', bReceivedArmor ? GMT_ReceivedAmmoAndArmorFrom : GMT_ReceivedAmmoFrom, OwnerPC.PlayerReplicationInfo );
+			}
+			else if( bReceivedArmor )
+			{
+				OwnerPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_GaveArmorTo, KFPC.PlayerReplicationInfo );
+				KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_ReceivedArmorFrom, OwnerPC.PlayerReplicationInfo );
+			}
+
+			UserPRI = KFPlayerReplicationInfo( KFPC.PlayerReplicationInfo );
+			OwnerPRI = KFPlayerReplicationInfo( OwnerPC.PlayerReplicationInfo );
+			if( UserPRI != none && OwnerPRI != none )
+			{
+				UserPRI.MarkSupplierOwnerUsed( OwnerPRI, bReceivedAmmo, bReceivedArmor );
+			}
+		}
+	}
+	else if( Role == ROLE_Authority )
+	{
+		KFPC = KFPlayerController( KFPH.Controller );
+		if( IsResupplyActive() )
+		{
+			KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_AmmoAndArmorAreFull, OwnerPC.PlayerReplicationInfo );
+		}
+		else
+		{
+			KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_AmmoIsFull, OwnerPC.PlayerReplicationInfo );			
+		}
 	}
 }
 
@@ -479,12 +542,37 @@ simulated function Interact( KFPawn_Human KFPH )
  */
 simulated function bool CanInteract( KFPawn_HUman MyKFPH )
 {
-	return IsSupplierActive() && SuppliedPawnList.Find( MyKFPH ) == INDEX_NONE;
+	local int Idx;
+
+	if( IsSupplierActive() )
+	{
+		Idx = SuppliedPawnList.Find( 'SuppliedPawn', MyKFPH );
+
+		// Pawn hasn't gotten anything from us yet
+		if( Idx == INDEX_NONE )
+		{
+			return true;
+		}
+
+		// Resupply is active and pawn hasn't gotten armor yet
+		if( IsResupplyActive() && !SuppliedPawnList[Idx].bSuppliedArmor )
+		{
+			return true;
+		}
+
+		// Pawn hasn't gotten ammo
+		return !SuppliedPawnList[Idx].bSuppliedAmmo;
+	}
 }
 
 simulated static function AKEvent GetReceivedAmmoSound()
 {
 	return default.ReceivedAmmoSound;
+}
+
+simulated static function AKEvent GetReceivedArmorSound()
+{
+	return default.ReceivedArmorSound;
 }
 
 simulated static function AKEvent GetReceivedAmmoAndArmorSound()
@@ -728,6 +816,7 @@ defaultproperties
    BarrageFiringRate=0.900000
    ResupplyMaxSpareAmmoModifier=0.200000
    ReceivedAmmoSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Ammo'
+   ReceivedArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
    ReceivedAmmoAndArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
    ProgressStatID=20
    PerkBuildStatID=21

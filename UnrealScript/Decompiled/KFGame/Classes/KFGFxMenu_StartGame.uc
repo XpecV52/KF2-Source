@@ -66,6 +66,7 @@ var string CurrentPartyLeaderName;
 var config float InitialSearchPause;
 var config int MaxResultsToTry;
 var config int ServerConnectTimeout;
+var config int ServerTakeoverTimeout;
 var config array<config string> StockMaps;
 var transient string LobbyOwnerPassword;
 var config string TestLobbyOwnerPassword;
@@ -235,17 +236,23 @@ function SetOverview(optional bool bInitialize)
 
 function OnPlayerReadiedUp()
 {
+    local PlayerController PC;
+
+    PC = Outer.GetPC();
     if(bHarrassedPlayerAboutSharedContent)
     {
         return;
     }
-    if(((OverviewContainer != none) && OverviewContainer.bContentShared) && Outer.GetPC().WorldInfo.NetMode != NM_Standalone)
+    if(((OverviewContainer != none) && OverviewContainer.bContentShared) && PC.WorldInfo.NetMode != NM_Standalone)
     {
         if(Manager.CurrentMenuIndex != 0)
         {
             Manager.OpenMenu(0);
         }
-        OverviewContainer.ActionScriptVoid("showSharedContentList");
+        if(!PC.WorldInfo.IsConsoleBuild())
+        {
+            OverviewContainer.ActionScriptVoid("showSharedContentList");
+        }
     }
     bHarrassedPlayerAboutSharedContent = true;
 }
@@ -613,27 +620,15 @@ function Callback_MapSelection(byte MapIndex)
 {
     local string MapName;
 
-    if(MapIndex < MapStringList.Length)
+    if(((MapIndex > 0) || OptionsComponent.bIsSoloGame) && MapIndex <= MapStringList.Length)
     {
-        MapName = MapStringList[MapIndex];        
+        MapName = ((OptionsComponent.bIsSoloGame) ? MapStringList[MapIndex] : MapStringList[MapIndex - 1]);        
     }
     else
     {
         MapName = "";
     }
     OptionsComponent.MapChanged(MapName);
-}
-
-function Callback_RecieveMap(int Index)
-{
-    if((Index >= 0) && Index < MapStringList.Length)
-    {
-        OptionsComponent.UpdateMapSource(MapStringList[Index]);        
-    }
-    else
-    {
-        OptionsComponent.UpdateMapSource("Default");
-    }
 }
 
 function Callback_ServerType(int Index)
@@ -725,14 +720,19 @@ native function SortLastEntry(OnlineGameSearch Search);
 // Export UKFGFxMenu_StartGame::execSortServers(FFrame&, void* const)
 native function SortServers(OnlineGameSearch Search);
 
-function string BuildTakeoverURL(out string Password)
+function string BuildTakeoverURL(optional out string Password)
 {
     local string TakeoverURL;
 
     TakeoverURL = MakeMapURL(OptionsComponent);
     if(Len(Password) > 0)
     {        
-        TakeoverURL $= ("?gamepassword=" $ Password);
+        TakeoverURL $= ((("?gamepassword=" $ Password) $ "?password=") $ Password);
+    }    
+    TakeoverURL $= ("?Private=" $ string(OptionsComponent.GetPrivacyIndex()));
+    if(Class'WorldInfo'.static.IsConsoleBuild() && OptionsComponent.GetPrivacyIndex() == 1)
+    {        
+        TakeoverURL $= "?bJoinViaInvite";
     }
     return TakeoverURL $ OnlineLobby.GetLobbyURLString();
 }
@@ -760,11 +760,13 @@ function OnJoinGameComplete(name SessionName, bool bSuccessful)
             LogInternal("KFGFxMenu_StartGame.OnJoinGameComplete: OnJoinGameComplete called for server index" @ string(CurrentSearchIndex));
         }
         KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
-        SetServerConnectGiveUpTimer();
+        SetServerConnectGiveUpTimer(OptionsComponent.GetMakeNewServer());
         if(OptionsComponent.GetMakeNewServer())
         {
-            LogInternal("**************SERVER TAKEOVER TESTING");
-            LogInternal(("servertakeover" @ PendingResolvedAddress) @ (BuildTakeoverURL(LobbyOwnerPassword)));            
+            if(bLogSearchInfo)
+            {
+                LogInternal(("KFGFxMenu_StartGame.OnJoinGameComplete: servertakeover" @ PendingResolvedAddress) @ (BuildTakeoverURL(LobbyOwnerPassword)));
+            }            
             Outer.GetPC().ConsoleCommand(("servertakeover" @ PendingResolvedAddress) @ (BuildTakeoverURL(LobbyOwnerPassword)));            
         }
         else
@@ -799,68 +801,32 @@ function OnQueryAdditionalServerInfoComplete(bool bWasSuccessful, string LobbyId
     }
 }
 
-event CreateNewServer()
-{
-    local string CustomCommandline, MapName;
-    local int GameLength;
-
-    bAttemptingServerCreate = true;
-    if(OptionsComponent.GetMapName() != "")
-    {
-        MapName = OptionsComponent.GetMapName();        
-    }
-    else
-    {
-        MapName = MapStringList[Rand(MapStringList.Length)];
-    }
-    if((OptionsComponent.bLengthFilterSet && OptionsComponent.LengthFilter >= 0) && OptionsComponent.LengthFilter <= 2)
-    {
-        GameLength = OptionsComponent.LengthFilter;        
-    }
-    else
-    {
-        GameLength = 1;
-    }
-    CustomCommandline = MapName;    
-    CustomCommandline $= ("?Difficulty=" $ string(OptionsComponent.GetDifficultyIndex()));    
-    CustomCommandline $= ("?GameLength=" $ string(GameLength));
-    LogInternal("Starting new server with URL" @ CustomCommandline);
-    Class'GameEngine'.static.GetPlayfabInterface().AddOnServerStartedDelegate(OnServerStarted);
-    Class'GameEngine'.static.GetPlayfabInterface().StartNewServerInstance(SearchDataStore.GetActiveGameSearch().GameModes[0], CustomCommandline);
-}
-
-function OnServerStarted(bool bWasSuccessful, string ServerLobbyId, string ServerIP, int ServerPort, string ServerTicket)
-{
-    LogInternal((((((((("Server started with success flag" @ string(bWasSuccessful)) @ "and with lobby id") @ ServerLobbyId) @ "and server IP") @ ServerIP) @ "and port") @ string(ServerPort)) @ "and ticket") @ ServerTicket);
-    Class'GameEngine'.static.GetPlayfabInterface().ClearOnServerStartedDelegate(OnServerStarted);
-    if(bWasSuccessful)
-    {
-        ConnectToPlayfabServer(ServerLobbyId, ServerIP, ServerPort, ServerTicket, true);        
-    }
-    else
-    {
-        bAttemptingServerCreate = false;
-        OpenNotFoundPopup();
-        CancelGameSearch();
-    }
-}
-
 function ConnectToPlayfabServer(string LobbyId, string ServerIP, int ServerPort, string ServerTicket, bool bNewServer)
 {
     local string OpenCommand;
 
-    OpenCommand = (("open" @ ServerIP) $ ":") $ string(ServerPort);    
+    OpenCommand = ((bAttemptingServerCreate) ? "servertakeover" : "open");    
+    OpenCommand @= ((ServerIP $ ":") $ string(ServerPort));
+    if(bAttemptingServerCreate)
+    {        
+        OpenCommand @= (BuildTakeoverURL());
+    }
+    if(((OnlineLobby != none) && OnlineLobby.IsInLobby()) && OnlineLobby.IsLobbyOwner())
+    {
+        OnlineLobby.LobbyJoinServer(LobbyId);        
+        OpenCommand $= OnlineLobby.GetLobbyURLString();
+    }
+    KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
+    Manager.TimerHelper.SetTimer(float(((bNewServer) ? 20 : ServerConnectTimeout)), false, 'ServerConnectGiveUp', self);    
     OpenCommand $= ("?AuthTicket=" $ ServerTicket);    
     OpenCommand $= ("?PlayfabPlayerId=" $ Class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId);
-    KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
-    Manager.TimerHelper.SetTimer(float(((bNewServer) ? 20 : ServerConnectTimeout)), false, 'ServerConnectGiveUp', self);
     LogInternal("Going to connect with URL:" @ OpenCommand);
     Outer.ConsoleCommand(OpenCommand);
 }
 
-event SetServerConnectGiveUpTimer()
+event SetServerConnectGiveUpTimer(bool ServerTakover)
 {
-    Manager.TimerHelper.SetTimer(float(ServerConnectTimeout), false, 'ServerConnectGiveUp', self);
+    Manager.TimerHelper.SetTimer(float(((ServerTakover) ? ServerTakeoverTimeout : ServerConnectTimeout)), false, 'ServerConnectGiveUp', self);
 }
 
 event AddJoinGameCompleteDelegate(OnlineGameSearch LatestGameSearch)
@@ -907,19 +873,21 @@ function bool OnHandshakeComplete(bool bSuccess, string Description, out int Sup
     {
         if(bLogSearchInfo)
         {
-            LogInternal("KFGFxMenu_StartGame.OnHandShakeComplete: LobbyJoinServer");
+            LogInternal("KFGFxMenu_StartGame.OnHandShakeComplete: LobbyJoinServer" @ PendingResolvedAddress);
         }
-        if(Len(LobbyOwnerPassword) > 0)
+        if(!Class'WorldInfo'.static.IsConsoleBuild())
         {
-            OnlineLobby.SetServerPassword(LobbyOwnerPassword);
-            if(OptionsComponent.GetPrivacyIndex() == 1)
+            if(Len(LobbyOwnerPassword) > 0)
             {
-                Class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword(LobbyOwnerPassword);
+                OnlineLobby.SetServerPassword(LobbyOwnerPassword);
+                if(OptionsComponent.GetPrivacyIndex() == 1)
+                {
+                    Class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword(LobbyOwnerPassword);
+                }
             }
+            OnlineLobby.LobbyJoinServer(PendingResolvedAddress);
         }
-        OnlineLobby.LobbyJoinServer(PendingResolvedAddress);
-        PendingResolvedAddress = "";
-        bAttemptingServerCreate = false;        
+        PendingResolvedAddress = "";        
     }
     else
     {
@@ -981,14 +949,19 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
     {
         Search.AddServerFilter("version_match", string(Class'KFGameEngine'.static.GetKFGameVersion()));
     }
-    if(OptionsComponent.GetMakeNewServer())
+    if(OptionsComponent.GetMakeNewServer() || bAttemptingServerCreate)
     {
-        Search.AddGametagFilter(GameTagFilters, 'bUsedForTakeover', "1");
-        Search.AddGametagFilter(GameTagFilters, 'bAvailableForTakeover', "1");        
+        if(!Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            Search.AddGametagFilter(GameTagFilters, 'bUsedForTakeover', "1");
+        }
+        Search.AddGametagFilter(GameTagFilters, 'bAvailableForTakeover', "1");
+        Search.AddGametagFilter(GameTagFilters, 'bRequiresPassword', "0");        
     }
     else
     {
         MapName = OptionsComponent.GetMapName();
+        LogInternal("Map searched:" @ MapName);
         if(MapName != "")
         {
             Search.AddServerFilter("map", MapName);
@@ -1016,10 +989,7 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
         {
             Search.AddGametagFilter(GameTagFilters, 'NumWaves', string(GameLength));
         }
-        if(!Class'WorldInfo'.static.IsConsoleBuild())
-        {
-            Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
-        }
+        Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
         AllowInProgress = OptionsComponent.GetAllowInProgress();
         Search.TestAddBoolGametagFilter(GameTagFilters, !AllowInProgress, 'bInProgress', 0);
         if(!Class'WorldInfo'.static.IsConsoleBuild())
@@ -1062,14 +1032,25 @@ function Callback_StartGame()
 
 function Callback_StartOfflineGame()
 {
+    if(AttemptingJoin)
+    {
+        LogInternal("Attmepting to start local game while 'Playfab Game Join' is in progress");
+        return;
+    }
     Outer.ConsoleCommand("open" @ (MakeMapURL(OptionsComponent)));
 }
 
-function StartOnlineGame()
+event StartOnlineGame()
 {
+    local int I;
+
     OptionsComponent.UpdateFilters();
     GameInterface.SetMatchmakingTypeMode(2);
     CurrentSearchIndex = 0;
+    if(Class'WorldInfo'.static.IsConsoleBuild() && OptionsComponent.GetPrivacyIndex() == 1)
+    {
+        bAttemptingServerCreate = true;
+    }
     BuildServerFilters(GameInterface, OptionsComponent, SearchDataStore.GetCurrentGameSearch());
     SearchDataStore.GetCurrentGameSearch().MaxSearchResults = MaxResultsToTry;
     if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
@@ -1084,6 +1065,21 @@ function StartOnlineGame()
     SearchDataStore.ActiveSearchIndex = 0;
     SearchDataStore.GetActiveGameSearch().GameModes.Length = 1;
     SearchDataStore.GetActiveGameSearch().GameModes[0] = Class'KFGameInfo'.default.GameModes[OptionsComponent.GetModeIndex()].FriendlyName;
+    if(bAttemptingServerCreate)
+    {
+        I = 0;
+        J0x2E1:
+
+        if(I < Class'KFGameInfo'.default.GameModes.Length)
+        {
+            if(I != OptionsComponent.GetModeIndex())
+            {
+                SearchDataStore.GetActiveGameSearch().GameModes.AddItem(Class'KFGameInfo'.default.GameModes[I].FriendlyName;
+            }
+            ++ I;
+            goto J0x2E1;
+        }
+    }
     if(!SearchDataStore.SubmitGameSearch(byte(Class'UIInteraction'.static.GetPlayerControllerId(0)), false))
     {
         GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
@@ -1136,6 +1132,7 @@ function Callback_StartOnlineGame()
             }
         }
     }
+    bAttemptingServerCreate = false;
     StartOnlineGame();
 }
 
@@ -1215,7 +1212,8 @@ defaultproperties
     SearchDSName=KFGameSearch
     InitialSearchPause=2
     MaxResultsToTry=20000
-    ServerConnectTimeout=2
+    ServerConnectTimeout=4
+    ServerTakeoverTimeout=30
     StockMaps(0)="kf-bioticslab"
     StockMaps(1)="kf-outpost"
     StockMaps(2)="kf-burningparis"

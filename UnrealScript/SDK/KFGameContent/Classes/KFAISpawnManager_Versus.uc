@@ -847,7 +847,6 @@ function bool CheckForTakeoverTimer()
             SetTimer( 1.f, true, nameOf(Timer_CheckForZedTakeovers), self );
         }
 
-        `log("started takeover timer"@WaveTotalAI - NumAISpawnsQueued@largestsquadsize@zedplayers);
         return true;
     }
 

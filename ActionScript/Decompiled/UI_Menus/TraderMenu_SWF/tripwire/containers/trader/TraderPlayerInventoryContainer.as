@@ -67,6 +67,20 @@ package tripwire.containers.trader
         
         public var lastInfoItem:TraderPlayerInventoryInfoRenderer;
         
+        public var inventoryItem_1:TraderPlayerInventoryInfoRenderer;
+        
+        public var inventoryItem_2:TraderPlayerInventoryInfoRenderer;
+        
+        public var inventoryItem_3:TraderPlayerInventoryInfoRenderer;
+        
+        public var inventoryItem_4:TraderPlayerInventoryInfoRenderer;
+        
+        public var inventoryItem_5:TraderPlayerInventoryInfoRenderer;
+        
+        public var inventoryItem_6:TraderPlayerInventoryInfoRenderer;
+        
+        public var inventoryItem_7:TraderPlayerInventoryInfoRenderer;
+        
         public var changePerkButton:TripButton;
         
         private var _bCanUseMenu:Boolean = false;
@@ -106,6 +120,10 @@ package tripwire.containers.trader
         public const INFO_LIST_GAMEPAD_LOCATION:int = -202;
         
         public const INFO_LIST_KBM_LOCATION:int = 30;
+        
+        public const INVITEM_GAMEPAD_LOCATION:int = -192;
+        
+        public const INVITEM_KBM_LOCATION:int = 40;
         
         private var _bPerkMenuOpen:Boolean;
         
@@ -241,6 +259,7 @@ package tripwire.containers.trader
         
         public function swapLists() : void
         {
+            TweenMax.allTo([this.inventoryItem_1,this.inventoryItem_2,this.inventoryItem_3,this.inventoryItem_4,this.inventoryItem_5,this.inventoryItem_6,this.inventoryItem_7],0,{"x":(!!bManagerUsingGamepad ? this.INVITEM_GAMEPAD_LOCATION : this.INVITEM_KBM_LOCATION)});
             this.infoList.x = !!bManagerUsingGamepad ? Number(this.INFO_LIST_GAMEPAD_LOCATION) : Number(this.INFO_LIST_KBM_LOCATION);
             this.sellList.x = !!bManagerUsingGamepad ? Number(this.SELL_LIST_GAMEPAD_LOCATION) : Number(this.SELL_LIST_KBM_LOCATION);
             this.fillButtonList.x = !!bManagerUsingGamepad ? Number(this.FILL_LIST_GAMEPAD_LOCATION) : Number(this.FILL_LIST_KBM_LOCATION);
@@ -805,6 +824,11 @@ package tripwire.containers.trader
         protected function fadeoutAssets() : void
         {
             this.autoFillButton.mouseEnabled = false;
+            TweenMax.allTo([this.inventoryItem_1,this.inventoryItem_2,this.inventoryItem_3,this.inventoryItem_4,this.inventoryItem_5,this.inventoryItem_6,this.inventoryItem_7],4,{
+                "alpha":0,
+                "ease":Cubic.easeOut,
+                "useFrames":true
+            });
             TweenMax.to(this.armorItem,4,{
                 "alpha":0,
                 "ease":Cubic.easeOut,
@@ -855,6 +879,12 @@ package tripwire.containers.trader
         protected function fadeinAssets() : void
         {
             this.autoFillButton.mouseEnabled = true;
+            TweenMax.allTo([this.inventoryItem_1,this.inventoryItem_2,this.inventoryItem_3,this.inventoryItem_4,this.inventoryItem_5,this.inventoryItem_6,this.inventoryItem_7],4,{
+                "delay":2,
+                "alpha":1,
+                "ease":Cubic.easeOut,
+                "useFrames":true
+            });
             TweenMax.to(this.armorItem,4,{
                 "delay":2,
                 "alpha":1,

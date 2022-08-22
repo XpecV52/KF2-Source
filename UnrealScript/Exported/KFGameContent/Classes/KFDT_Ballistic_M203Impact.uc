@@ -23,5 +23,5 @@ defaultproperties
    KDeathVel=350.000000
    KDeathUpKick=750.000000
    Name="Default__KFDT_Ballistic_M203Impact"
-   ObjectArchetype=KFDT_Ballistic_Shell'kfgamecontent.Default__KFDT_Ballistic_Shell'
+   ObjectArchetype=KFDT_Ballistic_Shell'KFGame.Default__KFDT_Ballistic_Shell'
 }

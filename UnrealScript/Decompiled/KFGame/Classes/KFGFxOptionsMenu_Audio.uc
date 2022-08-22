@@ -39,7 +39,7 @@ const KFID_MouseSensitivity = 138;
 const KFID_TargetAdhesionEnabled = 139;
 const KFID_TargetFrictionEnabled = 140;
 const KFID_InvertMouse = 142;
-const KFID_VOIPVolumeMultiplier = 143;
+const KFID_DEPRECATED_143 = 143;
 const KFID_SavedSoloModeIndex = 144;
 const KFID_SavedSoloMapString = 145;
 const KFID_SavedSoloDifficultyIndex = 146;
@@ -59,6 +59,8 @@ const KFID_AntiMotionSickness = 159;
 const KFID_ShowWelderInInventory = 160;
 const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
+const KFID_ShowConsoleCrossHair = 163;
+const KFID_VOIPVolumeMultiplier = 164;
 
 var const localized string SectionNameString;
 var const localized string OptionsString;
@@ -125,9 +127,8 @@ function InitValues()
     {
         KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
         Class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
-        VoIPCurrent = Manager.CachedProfile.GetProfileFloat(143);
-        SetBool("bPushToTalk", Class'KFPlayerInput'.default.bRequiresPushToTalk);
         SetFloat("voipVolume", (VoIPCurrent / VoIPMax) * float(100));
+        SetBool("bPushToTalk", Class'KFPlayerInput'.default.bRequiresPushToTalk);
         SetBool("bPushToTalk", KFPI.bRequiresPushToTalk);        
     }
     else
@@ -266,10 +267,16 @@ function Callback_SFxVolumeChanged(float NewVolume)
     KFGameEngine(Class'Engine'.static.GetEngine()).SFxVolumeMultiplier = SFxVolumeMultiplier;
 }
 
-function Callback_VOIPVolumeChanged(float NewVolume)
+function Callback_VOIPVolumeChanged(float SliderValue)
 {
-    Manager.CachedProfile.SetProfileSettingValueFloat(143, NewVolume / float(100));
-    Class'KFGameEngine'.static.SetVoIPRecieveVolume(NewVolume / float(100));
+    local float NewVolume;
+
+    if(VoIPMax > float(0))
+    {
+        NewVolume = (SliderValue / float(100)) * VoIPMax;
+        Manager.CachedProfile.SetProfileSettingValueFloat(164, NewVolume);
+        Class'KFGameEngine'.static.SetVoIPRecieveVolume(NewVolume);
+    }
 }
 
 function CallBack_ResetAudioOptions()
@@ -280,11 +287,14 @@ function CallBack_ResetAudioOptions()
 function ResetAudioOptions()
 {
     local KFGameEngine KFGE;
+    local float FloatValue;
 
     if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
-        Manager.CachedProfile.SetProfileSettingValueFloat(143, Manager.CachedProfile.GetDefaultFloat(143));
-        Manager.CachedProfile.SetProfileSettingValueInt(130, Manager.CachedProfile.GetDefaultInt(130));        
+        Manager.CachedProfile.SetProfileSettingValueInt(130, Manager.CachedProfile.GetDefaultInt(130));
+        FloatValue = Manager.CachedProfile.GetDefaultFloat(164);
+        Manager.CachedProfile.SetProfileSettingValueFloat(164, FloatValue);
+        Class'KFGameEngine'.static.SetVoIPRecieveVolume(FloatValue);        
     }
     else
     {

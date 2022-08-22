@@ -1,4 +1,4 @@
-package ScoreBoard_Versus_SWF_fla
+package ScoreBoard_Standard_SWF_fla
 {
     import flash.display.MovieClip;
     

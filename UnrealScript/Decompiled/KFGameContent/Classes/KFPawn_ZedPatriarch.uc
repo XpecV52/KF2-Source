@@ -65,8 +65,9 @@ struct PatriarchBattlePhaseInfo
 
 var AkEvent AmbientBreathingEvent;
 var AkEvent LowHealthAmbientBreathingEvent;
-var AkBaseSoundObject CloakedLoop;
-var AkBaseSoundObject CloakedLoopEnd;
+var export editinline AkComponent CloakedAkComponent;
+var AkEvent CloakedLoop;
+var AkEvent CloakedLoopEnd;
 var MaterialInstanceConstant BodyMaterial;
 var MaterialInstanceConstant BodyAltMaterial;
 var MaterialInstanceConstant SpottedMaterial;
@@ -1426,6 +1427,7 @@ simulated function TerminateEffectsOnDeath()
     }
     BoilLightComponent.SetEnabled(false);
     DetachComponent(BoilLightComponent);
+    PlayStealthSoundLoopEnd();
     super.TerminateEffectsOnDeath();
 }
 
@@ -1460,12 +1462,18 @@ function int GetSpotterDialogID()
 
 simulated function PlayStealthSoundLoop()
 {
-    PlaySoundBase(CloakedLoop, true);
+    if((WorldInfo.NetMode != NM_DedicatedServer) && !CloakedAkComponent.IsPlaying(CloakedLoop))
+    {
+        CloakedAkComponent.PlayEvent(CloakedLoop, true, true);
+    }
 }
 
 simulated function PlayStealthSoundLoopEnd()
 {
-    PlaySoundBase(CloakedLoopEnd, true);
+    if((WorldInfo.NetMode != NM_DedicatedServer) && CloakedAkComponent.IsPlaying(CloakedLoop))
+    {
+        CloakedAkComponent.PlayEvent(CloakedLoopEnd, true, true);
+    }
 }
 
 function PlayMinigunWarnDialog()
@@ -1522,6 +1530,14 @@ function PlayBossMusic()
 
 defaultproperties
 {
+    begin object name=CloakedAkComponent0 class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+        OcclusionUpdateInterval=0.2
+    object end
+    // Reference: AkComponent'Default__KFPawn_ZedPatriarch.CloakedAkComponent0'
+    CloakedAkComponent=CloakedAkComponent0
     CloakedLoop=AkEvent'WW_ZED_Patriarch.Play_Patriarch_Cloak'
     CloakedLoopEnd=AkEvent'WW_ZED_Patriarch.Stop_Patriarch_Cloak'
     BodyMaterial=MaterialInstanceConstant'ZED_Patriarch_MAT.ZED_Patriarch_Mech_M'
@@ -1808,6 +1824,14 @@ Parameter name: index
     Components(5)=AkComponent'Default__KFPawn_ZedPatriarch.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedPatriarch.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedPatriarch.DialogAkSoundComponent'
+    begin object name=CloakedAkComponent0 class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+        OcclusionUpdateInterval=0.2
+    object end
+    // Reference: AkComponent'Default__KFPawn_ZedPatriarch.CloakedAkComponent0'
+    Components(8)=CloakedAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

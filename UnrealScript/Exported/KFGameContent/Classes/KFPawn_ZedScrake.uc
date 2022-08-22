@@ -34,8 +34,11 @@ simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
 
-	ChainsawIdleAkComponent.PlayEvent( PlayChainsawIdleAkEvent );
-	CreateExhaustFx();
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		ChainsawIdleAkComponent.PlayEvent( PlayChainsawIdleAkEvent, true, true );
+		CreateExhaustFx();
+	}
 }
 
 /** Overridden to support loading the alternate body mic */
@@ -107,17 +110,14 @@ simulated function CreateExhaustFx()
 	local vector Loc;
 	local rotator Rot;
 
-	if (WorldInfo.NetMode != NM_DedicatedServer)
+	if ( ExhaustPSC == none && ExhaustTemplate != None )
 	{
-		if ( ExhaustPSC == none && ExhaustTemplate != None )
+		if ( Mesh.GetSocketWorldLocationAndRotation(ExhaustSocketName, Loc, Rot) )
 		{
-			if ( Mesh.GetSocketWorldLocationAndRotation(ExhaustSocketName, Loc, Rot) )
-			{
-				ExhaustPSC = new(self) class'ParticleSystemComponent';
-				ExhaustPSC.SetTemplate( ExhaustTemplate );
+			ExhaustPSC = new(self) class'ParticleSystemComponent';
+			ExhaustPSC.SetTemplate( ExhaustTemplate );
 
-				Mesh.AttachComponentToSocket(ExhaustPSC, ExhaustSocketName);
-			}
+			Mesh.AttachComponentToSocket(ExhaustPSC, ExhaustSocketName);
 		}
 	}
 }
@@ -164,6 +164,15 @@ function bool CanBlock()
 	return !bIsEnraged && super.CanBlock();
 }
 
+/** Called on server when pawn should have been crippled (e.g. Headless) */
+function CauseHeadTrauma( float BleedOutTime=5.f )
+{
+	super.CauseHeadTrauma( BleedOutTime );
+
+	// End rage when decapped
+	SetEnraged( false );
+}
+
 /** Overridden to support secondary body material */
 simulated event NotifyGoreMeshActive()
 {
@@ -176,34 +185,31 @@ simulated event NotifyGoreMeshActive()
 	}
 }
 
-simulated function PlayDying( class<DamageType> DamageType, vector HitLoc )
+simulated function TerminateEffectsOnDeath()
 {
 	CleanupChainsaw();
-	super.PlayDying( DamageType, HitLoc );
-}
-
-simulated event Destroyed()
-{
-	CleanupChainsaw();
-	super.Destroyed();
+	super.TerminateEffectsOnDeath();
 }
 
 simulated function CleanupChainsaw()
 {
 	local MaterialInstanceConstant ChainsawBladeMIC;
 
-	ChainsawBladeMIC = Mesh.CreateAndSetMaterialInstanceConstant(1);
-	ChainsawBladeMIC.SetScalarParameterValue('Animation_Scalar', 0.f);
-
-	ChainsawIdleAkComponent.PlayEvent( StopChainsawIdleAkEvent );
-
-	// Murder chainsaw Fx
-	if( ExhaustPSC != none )
+	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		ExhaustPSC.DeactivateSystem();
-		DetachComponent(ExhaustPSC);
-		WorldInfo.MyEmitterPool.OnParticleSystemFinished(ExhaustPSC);
-		ExhaustPSC = None;
+		ChainsawBladeMIC = Mesh.CreateAndSetMaterialInstanceConstant(1);
+		ChainsawBladeMIC.SetScalarParameterValue('Animation_Scalar', 0.f);
+
+		ChainsawIdleAkComponent.PlayEvent( StopChainsawIdleAkEvent );
+
+		// Murder chainsaw Fx
+		if( ExhaustPSC != none )
+		{
+			ExhaustPSC.DeactivateSystem();
+			DetachComponent(ExhaustPSC);
+			WorldInfo.MyEmitterPool.OnParticleSystemFinished(ExhaustPSC);
+			ExhaustPSC = None;
+		}
 	}
 }
 
@@ -354,7 +360,7 @@ defaultproperties
    IncapSettings(2)=(Cooldown=1.350000,Vulnerability=(1.000000))
    IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.200000))
    IncapSettings(4)=(Cooldown=3.500000,Vulnerability=(0.300000))
-   IncapSettings(5)=(Duration=1.200000,Cooldown=10.000000,Vulnerability=(0.500000,1.000000,0.500000,0.500000,0.500000))
+   IncapSettings(5)=(Duration=1.550000,Cooldown=10.000000,Vulnerability=(0.500000,1.000000,0.500000,0.500000,0.500000))
    IncapSettings(6)=(Cooldown=20.500000,Vulnerability=(0.150000))
    IncapSettings(7)=(Duration=3.000000,Cooldown=5.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000))
    IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.400000,0.400000,0.500000,0.400000))

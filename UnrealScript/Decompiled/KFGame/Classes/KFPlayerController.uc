@@ -43,7 +43,7 @@ const KFID_MouseSensitivity = 138;
 const KFID_TargetAdhesionEnabled = 139;
 const KFID_TargetFrictionEnabled = 140;
 const KFID_InvertMouse = 142;
-const KFID_VOIPVolumeMultiplier = 143;
+const KFID_DEPRECATED_143 = 143;
 const KFID_SavedSoloModeIndex = 144;
 const KFID_SavedSoloMapString = 145;
 const KFID_SavedSoloDifficultyIndex = 146;
@@ -63,6 +63,8 @@ const KFID_AntiMotionSickness = 159;
 const KFID_ShowWelderInInventory = 160;
 const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
+const KFID_ShowConsoleCrossHair = 163;
+const KFID_VOIPVolumeMultiplier = 164;
 const MAX_AIM_CORRECTION_SIZE = 40.f;
 
 enum ETextChatChannel
@@ -761,6 +763,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
         bSkipNonCriticalForceLookAt = Profile.GetProfileBool(161);
         bShowKillTicker = Profile.GetProfileBool(123);
         bNoEarRingingSound = Profile.GetProfileBool(162);
+        bHideBossHealthBar = Profile.GetProfileBool(158);
         KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
         if(KFPRI != none)
         {
@@ -788,7 +791,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
         KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
         if(KFEngine != none)
         {
-            KFEngine.SetVoIPRecieveVolume(Profile.GetProfileFloat(143));
+            KFEngine.VOIPVolumeMultiplier = Profile.GetProfileFloat(164);
             KFEngine.MusicVolumeMultiplier = Profile.GetProfileFloat(114);
             KFEngine.SFxVolumeMultiplier = Profile.GetProfileFloat(115);
             KFEngine.DialogVolumeMultiplier = Profile.GetProfileFloat(113);
@@ -798,6 +801,10 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
             KFEngine.bUseAltAimOnDual = Profile.GetProfileBool(157);
             KFEngine.bAntiMotionSickness = Profile.GetProfileBool(159);
             if(Class'WorldInfo'.static.IsConsoleBuild())
+            {
+                Class'KFGameEngine'.static.SetCrosshairEnabled(Profile.GetProfileBool(163));                
+            }
+            else
             {
                 Class'KFGameEngine'.static.SetCrosshairEnabled(Profile.GetProfileBool(121));
             }
@@ -1546,12 +1553,12 @@ event SetHaveUpdatePerk(bool bUsedUpdate)
 
 event NotifyPendingPerkChanges()
 {
-    ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 14, PlayerReplicationInfo);
+    ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 19, PlayerReplicationInfo);
 }
 
 event NotifyPerkUpdated()
 {
-    ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 15, PlayerReplicationInfo);
+    ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 20, PlayerReplicationInfo);
 }
 
 function NotifyXPGain(class<KFPerk> PerkClass, int Amount)
@@ -1852,7 +1859,8 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
         if(!ViewTarget.IsA('KFPawn_MonsterBoss'))
         {
             SetViewTarget(KFBoss);
-        }        
+        }
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);        
     }
     else
     {
@@ -1890,6 +1898,15 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
     {
         PlayerCamera.CameraStyle = NewCamMode;
     }
+}
+
+function bool IsBossCameraMode()
+{
+    if((PlayerCamera != none) && PlayerCamera.CameraStyle == 'Boss')
+    {
+        return true;
+    }
+    return false;
 }
 
 function KFPawn_MonsterBoss GetBoss()
@@ -2672,9 +2689,9 @@ reliable client simulated event ReceiveLocalizedMessage(class<LocalMessage> Mess
         if(TempMessage != "")
         {
             MyGFxHUD.ShowNonCriticalMessage(TempMessage);
-            if((Switch == 23) || Switch == 24)
+            if((Switch == 27) || Switch == 28)
             {
-                if(Switch == 24)
+                if(Switch == 28)
                 {
                     if((RelatedPRI_2.GetTeamNum() == 255) && RelatedPRI_2.UniqueId == PlayerReplicationInfo.UniqueId)
                     {
@@ -2694,7 +2711,7 @@ reliable client simulated event ReceiveLocalizedMessage(class<LocalMessage> Mess
                 }
                 else
                 {
-                    if(Switch == 23)
+                    if(Switch == 27)
                     {
                         if((RelatedPRI_2.GetTeamNum() == Class'KFTeamInfo_Human'.default.TeamIndex) && RelatedPRI_2.GetTeamNum() == PlayerReplicationInfo.GetTeamNum())
                         {
@@ -2712,15 +2729,22 @@ reliable client simulated event ReceiveLocalizedMessage(class<LocalMessage> Mess
                 MyGFxHUD.ShowKillMessage(RelatedPRI_1, RelatedPRI_2, true, OptionalObject);
             }
         }
-        if((Switch == 0) || Switch == 17)
+        if((Switch == 3) || Switch == 22)
         {
             PlayAkEvent(Class'KFPerk_Support'.static.GetReceivedAmmoSound());            
         }
         else
         {
-            if(Switch == 19)
+            if(Switch == 4)
             {
-                PlayAkEvent(Class'KFPerk_Support'.static.GetReceivedAmmoAndArmorSound());
+                PlayAkEvent(Class'KFPerk_Support'.static.GetReceivedArmorSound());                
+            }
+            else
+            {
+                if(Switch == 5)
+                {
+                    PlayAkEvent(Class'KFPerk_Support'.static.GetReceivedAmmoAndArmorSound());
+                }
             }
         }        
     }
@@ -3141,7 +3165,7 @@ simulated function PlayEarRingEffect(float Intensity)
     {
         ExplosionEarRingTimeRemaining = ExplosionEarRingDuration * Intensity;
         ExplosionEarRingDelay = 0.5;
-        if(!bNoEarRingingSound)
+        if(!bNoEarRingingSound && EarsRingingPlayEvent != none)
         {
             PlaySoundBase(EarsRingingPlayEvent, true);
         }
@@ -3165,7 +3189,10 @@ simulated function UpdateEarRingEffect(float DeltaTime)
         {
             ExplosionEarRingTimeRemaining = 0;
             ExplosionEarRingEffectIntensity = 0;
-            PlaySoundBase(EarsRingingStopEvent, true);
+            if(EarsRingingStopEvent != none)
+            {
+                PlaySoundBase(EarsRingingStopEvent, true);
+            }
         }
         SetRTPCValue('GRENADEFX', ExplosionEarRingEffectIntensity, true);
     }
@@ -3878,14 +3905,15 @@ function OpenTraderMenu(optional bool bForce)
         if((KFIM != none) && !KFIM.bServerTraderMenuOpen)
         {
             KFIM.bServerTraderMenuOpen = true;
-            ClientOpenTraderMenu();
+            ClientOpenTraderMenu(bForce);
         }
     }
 }
 
-reliable client simulated function ClientOpenTraderMenu()
+reliable client simulated function ClientOpenTraderMenu(optional bool bForce)
 {
-    if((Role < ROLE_Authority) && !KFGameReplicationInfo(WorldInfo.GRI).bTraderIsOpen)
+    bForce = false;
+    if(((Role < ROLE_Authority) && !KFGameReplicationInfo(WorldInfo.GRI).bTraderIsOpen) && !bForce)
     {
         return;
     }
@@ -5326,7 +5354,6 @@ function ClearOnlineDelegates()
             OnlineSub.PlayerInterface.ClearReadProfileSettingsCompleteDelegate(byte(LocalPlayer(Player).ControllerId), OnReadProfileSettingsComplete);
         }
     }
-    PlayfabInter.ClearQueryServerInfoCompleteDelegate(OnQueryAdditionalServerInfoForInviteComplete);
     super(PlayerController).ClearOnlineDelegates();
 }
 

@@ -121,7 +121,8 @@ var 			bool 			bPerkCanSupply;
  *  Not replicated Perk Data,
  *  local client only
  ************************************/
-var 			bool 			bPerkSupplyUsed;
+var 			bool 			bPerkPrimarySupplyUsed;
+var 			bool 			bPerkSecondarySupplyUsed;
 
 /************************************
  *  Replicated Unlocks
@@ -150,6 +151,9 @@ cpptext
 {
 	INT* GetOptimizedRepList( BYTE* InDefault, FPropertyRetirement* Retire, INT* Ptr, UPackageMap* Map, UActorChannel* Channel );
 	UBOOL ShowNonRelevantPlayerInfo();
+
+	/** Inventory */
+	UBOOL DelayCharacterOwnership();
 }
 
 replication
@@ -637,6 +641,7 @@ native reliable server private event ServerSetCharacterCustomization(Customizati
 
 native private function bool SaveCharacterConfig();
 native private function bool LoadCharacterConfig(out int CharacterIndex);
+native private function RetryCharacterOwnership();
 native function ClearCharacterAttachment(int AttachmentIndex);
 
 simulated function ClientInitialize(Controller C)
@@ -658,12 +663,15 @@ simulated function ClientInitialize(Controller C)
 	}
 }
 
-/** Network: Local Player */
+/** 
+ * Network: Local Player 
+ * INDEX_NONE will load last character from config
+ */
 simulated event SelectCharacter( optional int CharIndex=INDEX_None )
 {
 	local OnlineProfileSettings Settings;
-	// INDEX_NONE will load last character from config
-	
+
+	// If settings are not loaded yet try again later via OnReadProfileSettingsComplete()
 	Settings = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings( LocalPlayer(GetALocalPlayerController().Player).ControllerId );
 	if( Settings == none )
 	{
@@ -673,14 +681,15 @@ simulated event SelectCharacter( optional int CharIndex=INDEX_None )
 
 	LoadCharacterConfig(CharIndex);
 
+	// Make sure we get a valid character
 	if(!class'KFUnlockManager'.static.GetAvailable(CharacterArchetypes[CharIndex]))
 	{
 		CharIndex = GetAnyAvailableCharacter(CharIndex);
 		LoadCharacterConfig(CharIndex);
 	}
 
+	// Resave, in case of invalid selection, and then replicate
 	Settings.SetProfileSettingValueInt(KFID_StoredCharIndex, CharIndex);
-
 	if ( Role < Role_Authority )
     {
 		ServerSetCharacterCustomization( RepCustomizationInfo );
@@ -929,17 +938,18 @@ function IncrementDeaths( optional int Amt = 1 )
 	PawnLocationCompressed = vect(0,0,0);
 }
 
-reliable client function MarkSupplierOwnerUsed( KFPlayerReplicationInfo SupplierPRI )
+reliable client function MarkSupplierOwnerUsed( KFPlayerReplicationInfo SupplierPRI, optional bool bReceivedPrimary=true, optional bool bReceivedSecondary=true )
 {
 	if( SupplierPRI != none )
 	{
-		SupplierPRI.MarkSupplierUsed();
+		SupplierPRI.MarkSupplierUsed( bReceivedPrimary, bReceivedSecondary );
 	}
 }
 
-simulated function MarkSupplierUsed()
+simulated function MarkSupplierUsed( bool bReceivedPrimary, bool bReceivedSecondary )
 {
-	bPerkSupplyUsed = true;
+	bPerkPrimarySupplyUsed = bPerkPrimarySupplyUsed || bReceivedPrimary;
+	bPerkSecondarySupplyUsed = bPerkSecondarySupplyUsed || bReceivedSecondary;
 }
 
 simulated function ResetSupplierUsed()
@@ -951,9 +961,9 @@ simulated function ResetSupplierUsed()
  
 	for( i = 0; i < KFPRIArray.Length; ++i )
 	{
-		KFPRIArray[i].bPerkSupplyUsed = false;	
+		KFPRIArray[i].bPerkPrimarySupplyUsed = false;	
+		KFPRIArray[i].bPerkSecondarySupplyUsed = false;	
 	}
-
 }
 
 defaultproperties

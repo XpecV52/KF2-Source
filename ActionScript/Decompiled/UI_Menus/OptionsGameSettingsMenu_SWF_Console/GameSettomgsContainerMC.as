@@ -14,9 +14,7 @@ package
             this.__setProp_hideBossHealthBarCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_autoTurnOffCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_showWelderInInvCheckBox_GameSettomgsContainerMC_test_0();
-            this.__setProp_reduceHighPitchNoiseCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_useAltAimOnDualCheckBox_GameSettomgsContainerMC_test_0();
-            this.__setProp_antiMotionSicknessCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_closeButton_GameSettomgsContainerMC_header_0();
         }
         
@@ -150,32 +148,6 @@ package
             }
         }
         
-        function __setProp_reduceHighPitchNoiseCheckBox_GameSettomgsContainerMC_test_0() : *
-        {
-            try
-            {
-                reduceHighPitchNoiseCheckBox["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            reduceHighPitchNoiseCheckBox.autoSize = "none";
-            reduceHighPitchNoiseCheckBox.data = "";
-            reduceHighPitchNoiseCheckBox.enabled = true;
-            reduceHighPitchNoiseCheckBox.enableInitCallback = false;
-            reduceHighPitchNoiseCheckBox.focusable = true;
-            reduceHighPitchNoiseCheckBox.label = "Music Vocals";
-            reduceHighPitchNoiseCheckBox.selected = false;
-            reduceHighPitchNoiseCheckBox.visible = true;
-            try
-            {
-                reduceHighPitchNoiseCheckBox["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
         function __setProp_useAltAimOnDualCheckBox_GameSettomgsContainerMC_test_0() : *
         {
             try
@@ -196,32 +168,6 @@ package
             try
             {
                 useAltAimOnDualCheckBox["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_antiMotionSicknessCheckBox_GameSettomgsContainerMC_test_0() : *
-        {
-            try
-            {
-                antiMotionSicknessCheckBox["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            antiMotionSicknessCheckBox.autoSize = "none";
-            antiMotionSicknessCheckBox.data = "";
-            antiMotionSicknessCheckBox.enabled = true;
-            antiMotionSicknessCheckBox.enableInitCallback = false;
-            antiMotionSicknessCheckBox.focusable = true;
-            antiMotionSicknessCheckBox.label = "Music Vocals";
-            antiMotionSicknessCheckBox.selected = false;
-            antiMotionSicknessCheckBox.visible = true;
-            try
-            {
-                antiMotionSicknessCheckBox["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

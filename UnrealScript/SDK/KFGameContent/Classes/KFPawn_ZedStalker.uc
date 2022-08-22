@@ -11,8 +11,9 @@ class KFPawn_ZedStalker extends KFPawn_Monster;
 
 var MaterialInstanceConstant SpottedMaterial;
 
-var AkBaseSoundObject CloakedLoop;
-var AkBaseSoundObject CloakedLoopEnd;
+var AkComponent CloakedAkComponent;
+var AkEvent CloakedLoop;
+var AkEvent CloakedLoopEnd;
 
 var float CloakPercent;
 
@@ -138,14 +139,27 @@ simulated event NotifyGoreMeshActive()
 	}
 }
 
+/** Turns off FX and sounds */
+simulated function TerminateEffectsOnDeath()
+{
+	PlayStealthSoundLoopEnd();
+    super.TerminateEffectsOnDeath();
+}
+
 simulated function PlayStealthSoundLoop()
 {
-	PlaySoundBase( CloakedLoop, true );
+	if( WorldInfo.NetMode != NM_DedicatedServer && !CloakedAkComponent.IsPlaying(CloakedLoop) )
+	{
+		CloakedAkComponent.PlayEvent( CloakedLoop, true, true );
+	}
 }
 
 simulated function PlayStealthSoundLoopEnd()
 {
-	PlaySoundBase( CloakedLoopEnd, true );
+	if( WorldInfo.NetMode != NM_DedicatedServer && CloakedAkComponent.IsPlaying(CloakedLoop) )
+	{
+		CloakedAkComponent.PlayEvent( CloakedLoopEnd, true, true );
+	}
 }
 
 /** Overridden to support transparency scalar */
@@ -443,7 +457,7 @@ DefaultProperties
 	IncapSettings(AF_FirePanic)=(Vulnerability=(3),                       Cooldown=3.0,  Duration=4.0)
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
 	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                    Cooldown=7.5,  Duration=5.5)
-	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=20.5, Duration=5.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.5),                     Cooldown=20.5, Duration=5.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=2.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
 
@@ -515,6 +529,14 @@ DefaultProperties
 	// Audio
 	CloakedLoop=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP'
 	CloakedLoopEnd=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP_Stop'
+	Begin Object Class=AkComponent name=CloakedAkComponent0
+		BoneName=dummy
+		bStopWhenOwnerDestroyed=true
+		bForceOcclusionUpdateInterval=true
+		OcclusionUpdateInterval=0.4f
+	End Object
+    CloakedAkComponent=CloakedAkComponent0
+    Components.Add( CloakedAkComponent0 )
 
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'UI_ZEDRadar_TEX.MapIcon_Stalker';

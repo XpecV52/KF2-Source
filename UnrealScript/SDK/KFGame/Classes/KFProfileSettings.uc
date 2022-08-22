@@ -214,6 +214,9 @@ defaultproperties
 	ProfileMappings.Add((Id=KFID_ShowWelderInInventory, Name="Show Welder in Inventory", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_AutoTurnOff, Name="Auto Turn off", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_ReduceHightPitchSounds, Name="Reduce High Pitch Sounds", MappingType=PVMT_RawValue))
+
+	//PS4 specific
+	ProfileMappings.Add((Id=KFID_ShowConsoleCrossHair, Name="Show Console Crosshair", MappingType=PVMT_RawValue))
 	
 	// Hex values for SDT_Float values, I use http://www.h-schmidt.net/FloatConverter/IEEE754.html for conversion
 
@@ -249,7 +252,7 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_AutoTargetEnabled,Data=(Type=SDT_Int32,Value1=1))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_InvertMouse,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_EnableMouseSmoothing,Data=(Type=SDT_Int32,Value1=1))))	
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_VOIPVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x3f000000)))) // 0.50f
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_VOIPVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x3fc00000)))) // 1.50f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedSoloModeIndex,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedSoloMapString,Data=(Type=SDT_String,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedSoloDifficultyIndex,Data=(Type=SDT_Int32,Value1=0))))
@@ -270,5 +273,7 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ShowWelderInInventory,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_AutoTurnOff,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ReduceHightPitchSounds,Data=(Type=SDT_Int32,Value1=0))))
+
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ShowConsoleCrossHair,Data=(Type=SDT_Int32,Value1=1))))
 	
 }

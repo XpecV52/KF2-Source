@@ -1,12 +1,12 @@
-package InGameHUD_ZED_SWF_fla
+package PartyWidget_SWF_fla
 {
     import flash.display.MovieClip;
     
-    public dynamic class FlashlightIconMC_121 extends MovieClip
+    public dynamic class SquadMemberBGOrange_MC_17 extends MovieClip
     {
          
         
-        public function FlashlightIconMC_121()
+        public function SquadMemberBGOrange_MC_17()
         {
             super();
             addFrameScript(0,this.frame1,1,this.frame2);

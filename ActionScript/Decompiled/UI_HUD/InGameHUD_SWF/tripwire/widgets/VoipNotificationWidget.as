@@ -3,7 +3,7 @@ package tripwire.widgets
     import scaleform.clik.controls.ScrollingList;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.data.DataProvider;
-    import tripwire.controls.TripListItemRenderer;
+    import tripwire.controls.VoipItemRenderer;
     
     public class VoipNotificationWidget extends UIComponent
     {
@@ -11,17 +11,17 @@ package tripwire.widgets
         
         public var voipList:ScrollingList;
         
-        public var voip1:TripListItemRenderer;
+        public var voip1:VoipItemRenderer;
         
-        public var voip2:TripListItemRenderer;
+        public var voip2:VoipItemRenderer;
         
-        public var voip3:TripListItemRenderer;
+        public var voip3:VoipItemRenderer;
         
-        public var voip4:TripListItemRenderer;
+        public var voip4:VoipItemRenderer;
         
-        public var voip5:TripListItemRenderer;
+        public var voip5:VoipItemRenderer;
         
-        public var voip6:TripListItemRenderer;
+        public var voip6:VoipItemRenderer;
         
         public function VoipNotificationWidget()
         {

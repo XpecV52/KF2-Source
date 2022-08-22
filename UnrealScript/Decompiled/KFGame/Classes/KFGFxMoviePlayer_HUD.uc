@@ -547,7 +547,7 @@ function DisplayInteractionMessage(string MessageString, int MessageIndex, optio
     ButtonName = "";    
     if(InteractionMessageContainer != none)
     {
-        if(MessageIndex == 0)
+        if((MessageIndex == 0) || KFPC.IsBossCameraMode())
         {
             HideInteractionMessage();            
         }

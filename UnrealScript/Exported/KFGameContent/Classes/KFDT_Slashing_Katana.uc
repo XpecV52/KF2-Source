@@ -129,6 +129,7 @@ defaultproperties
    WeaponDef=Class'KFGame.KFWeapDef_Katana'
    StumblePower=30.000000
    MeleeHitPower=100.000000
+   ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=200.000000
    KDeathUpKick=250.000000
    Name="Default__KFDT_Slashing_Katana"

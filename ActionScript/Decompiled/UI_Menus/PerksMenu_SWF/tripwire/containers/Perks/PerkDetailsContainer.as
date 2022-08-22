@@ -6,6 +6,7 @@ package tripwire.containers.Perks
     import scaleform.clik.data.DataProvider;
     import tripwire.controls.TripUILoaderQueue;
     import tripwire.controls.perks.PerksPassiveDataLineRenderer;
+    import tripwire.managers.MenuManager;
     
     public class PerkDetailsContainer extends PerkContainerBase
     {
@@ -83,6 +84,12 @@ package tripwire.containers.Perks
             {
                 param2.visible = false;
             }
+        }
+        
+        override public function selectContainer() : void
+        {
+            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            super.selectContainer();
         }
     }
 }

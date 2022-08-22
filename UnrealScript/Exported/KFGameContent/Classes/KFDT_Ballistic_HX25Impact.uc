@@ -24,5 +24,5 @@ defaultproperties
    KDeathVel=250.000000
    KDeathUpKick=500.000000
    Name="Default__KFDT_Ballistic_HX25Impact"
-   ObjectArchetype=KFDT_Ballistic_Shell'kfgamecontent.Default__KFDT_Ballistic_Shell'
+   ObjectArchetype=KFDT_Ballistic_Shell'KFGame.Default__KFDT_Ballistic_Shell'
 }

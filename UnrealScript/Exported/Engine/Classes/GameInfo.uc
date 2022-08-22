@@ -3943,6 +3943,13 @@ native function bool WasLaunchedByPlayfab();
 function string GetFriendlyNameForCurrentGameMode();
 //@HSL_END
 
+
+
+event bool GetRequiresPassword()
+{
+	return RequiresPassword();
+}
+
 defaultproperties
 {
    bRestartLevel=True

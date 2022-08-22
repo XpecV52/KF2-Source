@@ -34,7 +34,7 @@ var float KFFontScale;
 // @todo Find a way to reset a options section
 var float DefaultGammaMult;
 //@HSL_MOD_BEGIN - amiller 5/11/2016 - Adding support to save extra data into profile settings - Removing config flag
-var float MusicVolumeMultiplier, SFxVolumeMultiplier, DialogVolumeMultiplier, MasterVolumeMultiplier, PadVolumeMultiplier;
+var float MusicVolumeMultiplier, SFxVolumeMultiplier, DialogVolumeMultiplier, MasterVolumeMultiplier, PadVolumeMultiplier, VoipVolumeMultiplier;
 var float GammaMultiplier;	// a value between 0-1 that scales the gamma to a value between .5 and 3
 
 var bool  bMusicVocalsEnabled;

@@ -1141,7 +1141,7 @@ DefaultProperties
 
 
     // for reference: Vulnerability=(default, head, legs, arms, special)
-    IncapSettings(AF_Stun)=     (Vulnerability=(0.1, 0.55, 0.1, 0.1, 0.55), Cooldown=17.0, Duration=1.0)   //0.5, 0.55, 0.5, 0.4, 0.55
+    IncapSettings(AF_Stun)=     (Vulnerability=(0.1, 0.55, 0.1, 0.1, 0.55), Cooldown=17.0, Duration=1.25) //1.0   //0.5, 0.55, 0.5, 0.4, 0.55
     IncapSettings(AF_Knockdown)=(Vulnerability=(0.1, 0.4, 0.1, 0.1, 0.25),  Cooldown=20.0)                 //0.2, 0.2, 0.4, 0.2, 0.25
     IncapSettings(AF_Stumble)=  (Vulnerability=(0.1, 0.3, 0.1, 0.1, 0.4),   Cooldown=10.0)                  //0.2, 0.2, 0.2, 0.2, 0.4   Cooldown=5.0)
     IncapSettings(AF_GunHit)=   (Vulnerability=(0.1, 0.1, 0.1, 0.1, 0.5),   Cooldown=1.7)                  //0.1, 0.1, 0.1, 0.1, 0.5

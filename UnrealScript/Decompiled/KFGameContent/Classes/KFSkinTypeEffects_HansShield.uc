@@ -9,7 +9,7 @@ class KFSkinTypeEffects_HansShield extends KFSkinTypeEffects
     config(Engine)
     hidecategories(Object);
 
-simulated function AttachEffectToHitLocation(KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex, Vector HitLocation, Vector HitDirection)
+simulated function ParticleSystemComponent AttachEffectToHitLocation(KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex, Vector HitLocation, Vector HitDirection)
 {
     local name HitBoneName;
     local int HitBoneIdx;
@@ -27,6 +27,7 @@ simulated function AttachEffectToHitLocation(KFPawn P, ParticleSystem ParticleTe
             PSC.SetAbsolute(false, true, true);
         }
     }
+    return PSC;
 }
 
 defaultproperties

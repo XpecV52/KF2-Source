@@ -1,11 +1,10 @@
 class KFSkinTypeEffects_HansShield extends KFSkinTypeEffects;
 
 /** Overriden to orient the effect toward in the direction of the hit and not attach it to a specific bone */
-simulated function AttachEffectToHitLocation( KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex, vector HitLocation, vector HitDirection )
+simulated function ParticleSystemComponent AttachEffectToHitLocation( KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex, vector HitLocation, vector HitDirection )
 {
 	local name HitBoneName;
 	local int HitBoneIdx;
-
 	local ParticleSystemComponent PSC;
 	
 	// HitZone==255 is unsupported for this type
@@ -25,6 +24,8 @@ simulated function AttachEffectToHitLocation( KFPawn P, ParticleSystem ParticleT
 			PSC.SetAbsolute(false, true, true);
 		}
 	}
+
+	return PSC;
 }
 
 defaultproperties

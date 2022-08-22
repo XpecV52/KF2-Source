@@ -86,6 +86,10 @@ function PlayImpactParticleEffect(KFPawn P, vector HitLocation, vector HitDirect
 	local ParticleSystem ParticleTemplate;
 
 	ParticleTemplate = GetImpactParticleEffect(EffectGroup);
+	if ( ParticleTemplate == None )
+	{
+		return;
+	}
 
 	if ( ImpactFX[EffectGroup].bAttachParticle ) // Spawn effect and attach to bone
 	{
@@ -97,11 +101,21 @@ function PlayImpactParticleEffect(KFPawn P, vector HitLocation, vector HitDirect
 	}
 	else // Spawn effect, no attachment
 	{
-		DefaultSpawnEffect(P , ParticleTemplate, HitLocation, HitDirection );
+		switch(EffectGroup)
+		{
+			case FXG_Bludgeon:
+			case FXG_Piercing:
+			case FXG_Slashing:
+				MeleeSpawnEffect(P , ParticleTemplate, HitLocation, HitDirection );
+				break;
+			default:
+				DefaultSpawnEffect(P , ParticleTemplate, HitLocation, HitDirection );
+				break;
+		}		
 	}
 }
 
-function AttachEffectToBone( KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex )
+function ParticleSystemComponent AttachEffectToBone( KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex )
 {
 	local name HitBoneName;
 	local ParticleSystemComponent PSC;
@@ -109,7 +123,7 @@ function AttachEffectToBone( KFPawn P, ParticleSystem ParticleTemplate, int HitZ
 	// make sure enough time passes between spawning emitters
 	if( `TimeSinceEx(P, P.LastImpactParticleEffectTime) < ImpactParticleEffectInterval )
 	{
-		return;
+		return None;
 	}
 	P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
 
@@ -118,10 +132,11 @@ function AttachEffectToBone( KFPawn P, ParticleSystem ParticleTemplate, int HitZ
 
 	// Make the particle system ignore bone rotation
 	PSC.SetAbsolute(false, true, true);
+	return PSC;
 }
 
 /** Attaches effect to nearest bone. Doesn't not account for rotation. Can be overridden for different effects. */
-function AttachEffectToHitLocation( KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex, vector HitLocation, vector HitDirection )
+function ParticleSystemComponent AttachEffectToHitLocation( KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex, vector HitLocation, vector HitDirection )
 {
 	local name HitBoneName;
 	local int HitBoneIdx;
@@ -131,7 +146,7 @@ function AttachEffectToHitLocation( KFPawn P, ParticleSystem ParticleTemplate, i
 	// make sure enough time passes between spawning emitters
 	if( `TimeSinceEx(P, P.LastImpactParticleEffectTime) < ImpactParticleEffectInterval )
 	{
-		return;
+		return None;
 	}
 
 	// HitZone==255 is unsupported for this type
@@ -161,29 +176,53 @@ function AttachEffectToHitLocation( KFPawn P, ParticleSystem ParticleTemplate, i
 
 				// Make the particle system ignore bone rotation
 				PSC.SetAbsolute(false, true, true);
+				return PSC;
 			}
 		}
 	}
 }
 
-function DefaultSpawnEffect( KFPawn P, ParticleSystem ParticleTemplate, vector HitLocation, vector HitDirection )
+/** For melee weapons orient along the hit direction */
+function ParticleSystemComponent MeleeSpawnEffect( KFPawn P, ParticleSystem ParticleTemplate, vector HitLocation, vector HitDirection )
+{
+	local ParticleSystemComponent PSC;
+
+	// Don't spawn more than one effect per frame
+	if( `TimeSinceEx(P, P.LastImpactParticleEffectTime) == 0 )
+	{
+		return None;
+	}
+	P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
+
+	// START DEBUG
+	//P.DrawDebugLine(HitLocation - HitDirection*20, HitLocation + HitDirection*20, 255, 0, 255, true);
+	// END DEBUG		
+
+	PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitter(ParticleTemplate, HitLocation, rotator(-HitDirection));
+	if( PSC != none )
+	{
+		PSC.SetLightingChannels(P.PawnLightingChannel);
+	}
+	return PSC;
+}
+
+/** For normal bullet type weapons orient perpendicular to HitDirection */
+function ParticleSystemComponent DefaultSpawnEffect( KFPawn P, ParticleSystem ParticleTemplate, vector HitLocation, vector HitDirection )
 {
 	local vector EmitterDir, EmitterDirRight, EmitterDirLeft, RelativeHitLoc;
 	local ParticleSystemComponent PSC;
 
 	// Don't spawn more than one effect per frame if on low detail
-	if( ParticleTemplate == none || P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == DM_Low )
+	if( P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == DM_Low )
 	{
 		if( `TimeSinceEx(P, P.LastImpactParticleEffectTime) == 0 )
 		{
-			return;
+			return None;
 		}
 		P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
 	}
 
-	// START DEBUG
-	// DrawDebugLine(HitLocation - HitDirection*20, HitLocation + HitDirection*20, 255, 0, 0, true);
-	// END DEBUG		
+	//P.DrawDebugLine(HitLocation - HitDirection*20, HitLocation + HitDirection*20, 255, 0, 0, true);
 
 	// orient the effect perpendicular to HitDirection and away from the victim to make it more noticeable
 	HitDirection.Z = 0.f;
@@ -192,13 +231,12 @@ function DefaultSpawnEffect( KFPawn P, ParticleSystem ParticleTemplate, vector H
 	RelativeHitLoc = HitLocation - P.Location;
 	EmitterDir = EmitterDirRight dot RelativeHitLoc >= 0 ? EmitterDirRight : EmitterDirLeft;
 
-	// NVCHANGE_BEGIN: JCAO - Apply the lightingChannel for the particle from the pawn
 	PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitter(ParticleTemplate, HitLocation, rotator(EmitterDir));
 	if( PSC != none )
 	{
 		PSC.SetLightingChannels(P.PawnLightingChannel);
 	}
-	// NVCHANGE_END: JCAO - Apply the lightingChannel for the particle from the pawn
+	return PSC;
 }
 
 /** returns the impact particle that should be played */

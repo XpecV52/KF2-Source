@@ -1,12 +1,14 @@
-package InGameHUD_ZED_SWF_fla
+package ScoreBoard_Versus_SWF_fla
 {
     import flash.display.MovieClip;
     
-    public dynamic class WeaponSelectArrowContainerShort_MC_183 extends MovieClip
+    public dynamic class HealthGauge_MC_8 extends MovieClip
     {
          
         
-        public function WeaponSelectArrowContainerShort_MC_183()
+        public var HealthBG:MovieClip;
+        
+        public function HealthGauge_MC_8()
         {
             super();
             addFrameScript(0,this.frame1);

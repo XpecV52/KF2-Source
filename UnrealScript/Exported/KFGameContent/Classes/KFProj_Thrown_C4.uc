@@ -299,11 +299,9 @@ simulated function TryStick( vector HitNormal, optional vector HitLocation, opti
 
 	switch( GetImpactResult(HitActor, HitInfo.HitComponent) )
 	{
-	case EIR_Stick:
-		Stick( HitActor, HitLocation, HitNormal, HitInfo );
-		break;
-
-	//@todo: add bounce? do we ever need to bounce?
+		case EIR_Stick:
+			Stick( HitActor, HitLocation, HitNormal, HitInfo );
+			break;
 	};
 }
 
@@ -368,8 +366,11 @@ simulated function Stick( Actor HitActor, vector HitLocation, vector HitNormal, 
         ProjEffects.SetTranslation(LandedTranslationOffset);
     }
 
-    // turn off location/rotation replication, because we'll handle this on the other side (REMEMBER TO TURN IT BACK ON IF WE NEED IT)
+    // Turn off location/rotation replication, because we'll handle this on the other side (REMEMBER TO TURN IT BACK ON IF WE NEED IT)
     bReplicateMovement = false;
+    bOnlyDirtyReplication = true;
+    NetUpdateFrequency = 0.25f;
+    bForceNetUpdate = true;
 
     if( !IsZero(HitLocation) )
     {
@@ -485,6 +486,7 @@ reliable server function ServerStick( Actor StickTo, int BoneIdx, vector StickLo
 {
 	StuckToLocation = StickLoc;
 	StuckToRotation = StickRot;
+	bForceNetUpdate = true;
 
 	ReplicatedStick( StickTo, BoneIdx );
 }
@@ -566,6 +568,9 @@ simulated function RestartMovement()
 	SetPhysics( default.Physics );
 
 	bReplicateMovement = true;
+	NetUpdateFrequency = default.NetUpdateFrequency;
+	bOnlyDirtyReplication = false;
+	bForceNetUpdate = true;
 
 	// turning off collision on server can prevent projectile from hitting/sticking to anything on the client
 
@@ -645,8 +650,8 @@ simulated protected function PrepareExplosionTemplate()
     if( Instigator.Role == ROLE_Authority && KFPC != none )
     {
         InstigatorPerk = KFPC.GetPerk();
-        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
-        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+        ExplosionTemplate.Damage *= InstigatorPerk.GetAoEDamageModifier();
+        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
     }
 
     super.PrepareExplosionTemplate();

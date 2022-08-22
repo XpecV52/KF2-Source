@@ -240,7 +240,6 @@ package tripwire.menus
         public function openChildContainer(param1:TripContainer) : void
         {
             param1.openContainer();
-            param1.selectContainer();
             param1.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack,false,0,true);
         }
         

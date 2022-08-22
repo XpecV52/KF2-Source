@@ -11,8 +11,9 @@ class KFPawn_ZedStalker extends KFPawn_Monster;
 
 var MaterialInstanceConstant SpottedMaterial;
 
-var AkBaseSoundObject CloakedLoop;
-var AkBaseSoundObject CloakedLoopEnd;
+var AkComponent CloakedAkComponent;
+var AkEvent CloakedLoop;
+var AkEvent CloakedLoopEnd;
 
 var float CloakPercent;
 
@@ -138,14 +139,27 @@ simulated event NotifyGoreMeshActive()
 	}
 }
 
+/** Turns off FX and sounds */
+simulated function TerminateEffectsOnDeath()
+{
+	PlayStealthSoundLoopEnd();
+    super.TerminateEffectsOnDeath();
+}
+
 simulated function PlayStealthSoundLoop()
 {
-	PlaySoundBase( CloakedLoop, true );
+	if( WorldInfo.NetMode != NM_DedicatedServer && !CloakedAkComponent.IsPlaying(CloakedLoop) )
+	{
+		CloakedAkComponent.PlayEvent( CloakedLoop, true, true );
+	}
 }
 
 simulated function PlayStealthSoundLoopEnd()
 {
-	PlaySoundBase( CloakedLoopEnd, true );
+	if( WorldInfo.NetMode != NM_DedicatedServer && CloakedAkComponent.IsPlaying(CloakedLoop) )
+	{
+		CloakedAkComponent.PlayEvent( CloakedLoopEnd, true, true );
+	}
 }
 
 /** Overridden to support transparency scalar */
@@ -405,6 +419,15 @@ static function int GetTraderAdviceID()
 defaultproperties
 {
    SpottedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Visible_MAT'
+   Begin Object Class=AkComponent Name=CloakedAkComponent0
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.400000
+      Name="CloakedAkComponent0"
+      ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
+   End Object
+   CloakedAkComponent=CloakedAkComponent0
    CloakedLoop=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP'
    CloakedLoopEnd=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP_Stop'
    CloakPercent=1.000000
@@ -468,7 +491,7 @@ defaultproperties
    IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000,10.000000,10.000000,10.000000))
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.500000))
    IncapSettings(9)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
-   IncapSettings(10)=(Cooldown=20.500000,Vulnerability=(0.000000))
+   IncapSettings(10)=(Cooldown=20.500000,Vulnerability=(0.500000))
    PhysRagdollImpulseScale=0.900000
    KnockdownImpulseScale=0.900000
    SprintSpeed=500.000000
@@ -624,6 +647,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=CloakedAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=45000,Roll=50000)
    Name="Default__KFPawn_ZedStalker"

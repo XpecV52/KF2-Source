@@ -23,6 +23,10 @@ class KFGFxMoviePlayer_Manager extends GFxMoviePlayer
 
 
 
+
+
+
+
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -55,7 +59,7 @@ const KFID_MouseSensitivity = 138;
 const KFID_TargetAdhesionEnabled = 139;
 const KFID_TargetFrictionEnabled = 140;
 const KFID_InvertMouse = 142;
-const KFID_VOIPVolumeMultiplier = 143;
+const KFID_DEPRECATED_143 = 143;
 const KFID_SavedSoloModeIndex = 144;
 const KFID_SavedSoloMapString = 145;
 const KFID_SavedSoloDifficultyIndex = 146;
@@ -75,6 +79,8 @@ const KFID_AntiMotionSickness = 159;
 const KFID_ShowWelderInInventory = 160; 
 const KFID_AutoTurnOff = 161;			
 const KFID_ReduceHightPitchSounds = 162; 
+const KFID_ShowConsoleCrossHair = 163;
+const KFID_VOIPVolumeMultiplier = 164;
 
 #linenumber 22
 

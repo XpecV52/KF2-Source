@@ -484,6 +484,15 @@ defaultproperties
    LowHealthMsg="Health Is Critical! Heal Now!"
    NoHealsRemainingMsg="No Heals Remaining"
    NoMortarTargetsMsg="No Valid Mortar Targets"
+   Begin Object Class=AkComponent Name=CloakedAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:CloakedAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="CloakedAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:CloakedAkComponent0'
+   End Object
+   CloakedAkComponent=CloakedAkComponent0
    Begin Object Class=StaticMeshComponent Name=KFSyringeStaticMeshComponent1 Archetype=StaticMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:KFSyringeStaticMeshComponent1'
       StaticMesh=StaticMesh'ZED_Patriarch_MESH.CHR_Patriarch_Syringe'
       Materials(0)=MaterialInstanceConstant'ZED_Patriarch_MAT.ZED_Patriarch_M'
@@ -755,6 +764,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=CloakedAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedPatriarch_Versus"
    ObjectArchetype=KFPawn_ZedPatriarch'kfgamecontent.Default__KFPawn_ZedPatriarch'

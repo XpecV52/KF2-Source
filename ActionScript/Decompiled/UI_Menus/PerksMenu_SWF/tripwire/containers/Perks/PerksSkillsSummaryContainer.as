@@ -24,8 +24,6 @@ package tripwire.containers.Perks
         
         public var skillList:ScrollingList;
         
-        public var controllerIconContainer:MovieClip;
-        
         public var owner:TripContainer;
         
         public function PerksSkillsSummaryContainer()
@@ -48,12 +46,11 @@ package tripwire.containers.Perks
         private function setTabIndex() : void
         {
             this.configureButton.tabEnabled = false;
-            this.controllerIconContainer.mouseEnabled = false;
-            this.controllerIconContainer.mouseChildren = false;
         }
         
         override public function selectContainer() : void
         {
+            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
             super.selectContainer();
             this.updateControllerIconVisibility();
         }
@@ -66,7 +63,7 @@ package tripwire.containers.Perks
         
         private function updateControllerIconVisibility() : void
         {
-            this.controllerIconContainer.visible = bManagerUsingGamepad;
+            this.configureButton.visible = !bManagerUsingGamepad;
         }
         
         override public function handleInput(param1:InputEvent) : void

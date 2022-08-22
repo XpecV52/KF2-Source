@@ -35,6 +35,7 @@ var float SFxVolumeMultiplier;
 var float DialogVolumeMultiplier;
 var float MasterVolumeMultiplier;
 var float PadVolumeMultiplier;
+var float VOIPVolumeMultiplier;
 var float GammaMultiplier;
 var bool bMusicVocalsEnabled;
 var bool bMinimalChatter;

@@ -42,7 +42,7 @@ const KFID_MouseSensitivity = 138;
 const KFID_TargetAdhesionEnabled = 139;
 const KFID_TargetFrictionEnabled = 140;
 const KFID_InvertMouse = 142;
-const KFID_VOIPVolumeMultiplier = 143;
+const KFID_DEPRECATED_143 = 143;
 const KFID_SavedSoloModeIndex = 144;
 const KFID_SavedSoloMapString = 145;
 const KFID_SavedSoloDifficultyIndex = 146;
@@ -62,6 +62,8 @@ const KFID_AntiMotionSickness = 159;
 const KFID_ShowWelderInInventory = 160;
 const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
+const KFID_ShowConsoleCrossHair = 163;
+const KFID_VOIPVolumeMultiplier = 164;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -104,7 +106,8 @@ var bool bSplashActive;
 var bool bNukeActive;
 var bool bConcussiveActive;
 var bool bPerkCanSupply;
-var bool bPerkSupplyUsed;
+var bool bPerkPrimarySupplyUsed;
+var bool bPerkSecondarySupplyUsed;
 var bool bObjectivePlayer;
 var bool bShowNonRelevantPlayers;
 var string LastCrateGiftTimestamp;
@@ -572,6 +575,9 @@ private native final function bool SaveCharacterConfig();
 // Export UKFPlayerReplicationInfo::execLoadCharacterConfig(FFrame&, void* const)
 private native final function bool LoadCharacterConfig(out int CharacterIndex);
 
+// Export UKFPlayerReplicationInfo::execRetryCharacterOwnership(FFrame&, void* const)
+private native final function RetryCharacterOwnership();
+
 // Export UKFPlayerReplicationInfo::execClearCharacterAttachment(FFrame&, void* const)
 native function ClearCharacterAttachment(int AttachmentIndex);
 
@@ -673,7 +679,7 @@ private reliable server final event ServerAnnounceNewSharedContent()
 {
     if((WorldInfo.GRI != none) && WorldInfo.GRI.bMatchHasBegun)
     {
-        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 22, self);
+        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 26, self);
     }
 }
 
@@ -824,17 +830,20 @@ function IncrementDeaths(optional int Amt)
     PawnLocationCompressed = vect(0, 0, 0);
 }
 
-reliable client simulated function MarkSupplierOwnerUsed(KFPlayerReplicationInfo SupplierPRI)
+reliable client simulated function MarkSupplierOwnerUsed(KFPlayerReplicationInfo SupplierPRI, optional bool bReceivedPrimary, optional bool bReceivedSecondary)
 {
+    bReceivedPrimary = true;
+    bReceivedSecondary = true;
     if(SupplierPRI != none)
     {
-        SupplierPRI.MarkSupplierUsed();
+        SupplierPRI.MarkSupplierUsed(bReceivedPrimary, bReceivedSecondary);
     }
 }
 
-simulated function MarkSupplierUsed()
+simulated function MarkSupplierUsed(bool bReceivedPrimary, bool bReceivedSecondary)
 {
-    bPerkSupplyUsed = true;
+    bPerkPrimarySupplyUsed = bPerkPrimarySupplyUsed || bReceivedPrimary;
+    bPerkSecondarySupplyUsed = bPerkSecondarySupplyUsed || bReceivedSecondary;
 }
 
 simulated function ResetSupplierUsed()
@@ -848,7 +857,8 @@ simulated function ResetSupplierUsed()
 
     if(I < KFPRIArray.Length)
     {
-        KFPRIArray[I].bPerkSupplyUsed = false;
+        KFPRIArray[I].bPerkPrimarySupplyUsed = false;
+        KFPRIArray[I].bPerkSecondarySupplyUsed = false;
         ++ I;
         goto J0x52;
     }

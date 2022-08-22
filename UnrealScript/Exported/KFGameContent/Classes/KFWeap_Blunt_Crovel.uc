@@ -46,7 +46,7 @@ defaultproperties
       ChainSequence_R(3)=()
       ChainSequence_R(4)=()
       ChainSequence_R(5)=()
-      MeleeImpactCamShakeScale=0.400000
+      MeleeImpactCamShakeScale=0.035000
       HitboxChain(0)=(BoneOffset=(X=0.000000,Y=3.000000,Z=150.000000))
       HitboxChain(1)=(BoneOffset=(X=0.000000,Y=-3.000000,Z=130.000000))
       HitboxChain(2)=(BoneOffset=(X=0.000000,Y=3.000000,Z=110.000000))

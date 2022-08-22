@@ -95,15 +95,19 @@ function InitializeWidget()
 
 function  LocalizeText()
 {
-	ReadyButton.SetString("label", ReadyString);
-	LeaveButton.SetString("label", LeaveString);
-	CreatePartyButton.SetString("label", CreatePartyString);
+	local GFxObject TextObject;
 
-	SetString("deployingString", DeployingString);
-	SetString("waitingString", WaitingString);
+	TextObject = CreateObject("Object");
 
-	SetString("selectPromptString", Localize("KFGFxWidget_ButtonPrompt", "ConfirmString", "KFGame"));
-	SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
+	TextObject.SetString("readyString", ReadyString);
+	TextObject.SetString("leaveString", LeaveString);
+	TextObject.SetString("createPartyString", CreatePartyString);
+	TextObject.SetString("deployingString", DeployingString);
+	TextObject.SetString("waitingString", WaitingString);
+	TextObject.SetString("selectPromptString", Localize("KFGFxWidget_ButtonPrompt", "ConfirmString", "KFGame"));
+	TextObject.SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
+
+	SetObject("localizedText", TextObject);
 }
 
 function InitNotificationUI()
@@ -158,63 +162,49 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 
 	PC = GetPC();
 	//Clear the profile options
-	ProfileOptions.Length = 0;
+	ProfileOptions.length = 0;
 	bConsoleBuild = PC.WorldInfo.IsConsoleBuild();
-	if ( !bConsoleBuild && PlayerID != PC.PlayerReplicationInfo.UniqueId)
+
+	if(PlayerID == PC.PlayerReplicationInfo.UniqueId)
 	{
-		//Are they your friend?
-		if(!IsPlayerAFriend(PlayerID))
-		{
-			ProfileOptions.AddItem(AddFriendString);  //Not supported yet
-		}
-		else
-		{
-			ProfileOptions.AddItem(RemoveFriendString);  //Not supported yet	
-		}
+		ProfileOptions.RemoveItem(AddFriendString);
+		ProfileOptions.RemoveItem(RemoveFriendString);
+		ProfileOptions.RemoveItem(UnmuteString);
+		ProfileOptions.RemoveItem(MuteString);
+		ProfileOptions.RemoveItem(VoteKickString);
 	}
 	else
 	{
-		if(ProfileOptions.Find(AddFriendString) != INDEX_NONE)
+		if ( !bConsoleBuild )
 		{
-			ProfileOptions.RemoveItem(AddFriendString);
+			//Are they your friend?
+			if(!IsPlayerAFriend(PlayerID))
+			{
+				ProfileOptions.AddItem(AddFriendString);  //Not supported yet
+			}
+			else
+			{
+				ProfileOptions.AddItem(RemoveFriendString);  //Not supported yet	
+			}
 		}
-		else if(ProfileOptions.Find(RemoveFriendString) != INDEX_NONE)
+		
+		if( !PC.WorldInfo.IsMenuLevel() ) //temp for now since voip and such does not work in the main menu
 		{
-			ProfileOptions.RemoveItem(RemoveFriendString);
+			//Are they muted?
+			// TODO:  This needs to check more than muted because if player 1 mutes player 2 then player 2 gets the unmute option that does nothing.
+			if(PC.IsPlayerMuted(PlayerID))
+			{
+				ProfileOptions.AddItem(UnmuteString);
+			}
+			else
+			{
+				ProfileOptions.AddItem(MuteString);
+			}
+
+			ProfileOptions.AddItem(VoteKickString);
 		}
 	}
 
-	if( !PC.WorldInfo.IsMenuLevel() && PlayerID != PC.PlayerReplicationInfo.UniqueId ) //temp for now since voip and such does not work in the main menu
-	{
-		//Are they muted?
-		// TODO:  This needs to check more than muted because if player 1 mutes player 2 then player 2 gets the unmute option that does nothing.
-		if(PC.IsPlayerMuted(PlayerID))
-		{
-			ProfileOptions.AddItem(UnmuteString);
-		}
-		else
-		{
-			ProfileOptions.AddItem(MuteString);
-		}
-
-		ProfileOptions.AddItem(VoteKickString);
-	}
-	else
-	{
-		if(ProfileOptions.Find(UnmuteString) != INDEX_NONE)
-		{
-			ProfileOptions.RemoveItem(UnmuteString);
-		}
-		else if(ProfileOptions.Find(MuteString) != INDEX_NONE)
-		{
-			ProfileOptions.RemoveItem(MuteString);
-		}
-
-		if(ProfileOptions.Find(VoteKickString) != INDEX_NONE)
-		{
-			ProfileOptions.RemoveItem(VoteKickString);
-		}
-	}
 	//View profile option Added at the end if we are on PC but first on console.
 	if ( bConsoleBuild )
 	{
@@ -386,7 +376,7 @@ function bool IsPlayerAFriend(UniqueNetId PlayerID)
 //Override these in MaineMenu and InGame party widgets so that they can get the Unique id of the players in the slots view PRIarray or lobby 
 function ToggelMuteOnPlayer(int SlotIndex)
 {
-
+	RefreshParty();
 }
 
 function ViewProfile(int SlotIndex)

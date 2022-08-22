@@ -3878,16 +3878,16 @@ End Object
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_5
    bStartWillRestart=True
    Duration=8.000000
-   InputLinks(0)=(DrawY=-2595,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-2574,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-2553,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_11')),DrawY=-2590,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-2558,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=756,OverrideDelta=25)
+   InputLinks(0)=(DrawY=-2603,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-2582,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-2561,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_11')),DrawY=-2598,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-2566,OverrideDelta=51)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Float'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_0'),DrawX=716,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=704
-   ObjPosY=-2632
+   ObjPosX=664
+   ObjPosY=-2640
    DrawWidth=106
    DrawHeight=109
    Name="SeqAct_Delay_5"
@@ -3898,8 +3898,8 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_14
    VarName="ItemTimeout"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1488
-   ObjPosY=-2472
+   ObjPosX=1480
+   ObjPosY=-2552
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Bool_14"
@@ -4101,7 +4101,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
    InputLinks(2)=(DrawY=-2321,OverrideDelta=56)
    OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_4')),DrawY=-2358,OverrideDelta=19)
    OutputLinks(1)=(DrawY=-2326,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=3588,OverrideDelta=25)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Float'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_0'),DrawX=3588,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3536
@@ -4247,13 +4247,13 @@ End Object
 
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_3
    bStartWillRestart=True
-   Duration=5.000000
+   Duration=8.000000
    InputLinks(0)=(DrawY=-651,OverrideDelta=14)
    InputLinks(1)=(DrawY=-630,OverrideDelta=35)
    InputLinks(2)=(DrawY=-609,OverrideDelta=56)
    OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_7')),DrawY=-646,OverrideDelta=19)
    OutputLinks(1)=(DrawY=-614,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=2924,OverrideDelta=25)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Float'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_0'),DrawX=2924,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2872
@@ -4477,13 +4477,13 @@ End Object
 
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_4
    bStartWillRestart=True
-   Duration=5.000000
+   Duration=8.000000
    InputLinks(0)=(DrawY=-427,OverrideDelta=14)
    InputLinks(1)=(DrawY=-406,OverrideDelta=35)
    InputLinks(2)=(DrawY=-385,OverrideDelta=56)
    OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_9')),DrawY=-422,OverrideDelta=19)
    OutputLinks(1)=(DrawY=-390,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=260,OverrideDelta=25)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Float'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_0'),DrawX=260,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=208
@@ -5044,6 +5044,19 @@ Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_66
    DrawHeight=128
    Name="SeqEvent_Console_66"
    ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+End Object
+
+Begin Object Class=SeqVar_Float Name=SeqVar_Float_0
+   FloatValue=8.000000
+   VarName="timeoutdelay"
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1848
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Float_0"
+   ObjectArchetype=SeqVar_Float'Engine.Default__SeqVar_Float'
 End Object
 
 Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'

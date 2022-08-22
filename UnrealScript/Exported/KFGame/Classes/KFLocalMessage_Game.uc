@@ -12,8 +12,12 @@ class KFLocalMessage_Game extends KFLocalMessage;
 
 enum EGameMessageType
 {
-	GMT_ReceivedAmmoFrom,
 	GMT_GaveAmmoTo,
+	GMT_GaveArmorTo,
+	GMT_GaveAmmoAndArmorTo,
+	GMT_ReceivedAmmoFrom,
+	GMT_ReceivedArmorFrom,
+	GMT_ReceivedAmmoAndArmorFrom,
 	GMT_HealedBy,
 	GMT_HealedPlayer,
 	GMT_HealedSelf,
@@ -23,6 +27,7 @@ enum EGameMessageType
 	GMT_Ammo,
 	GMT_PickedupWeaponAmmo,
 	GMT_AmmoIsFull,
+	GMT_AmmoAndArmorAreFull,
 	GMT_AlreadyCarryingWeapon,
 	GMT_PickedupItem,
 	GMT_TooMuchWeight,
@@ -31,7 +36,6 @@ enum EGameMessageType
     GMT_FailedDropInventory,
     GMT_ReceivedGrenadesFrom,
 	GMT_GaveGrenadesTo,
-	GMT_ReceivedAmmoAndArmor,
 
     GMT_FoundCollectible,
     GMT_FoundAllCollectibles,
@@ -94,8 +98,11 @@ static function string GetHexColor(int Switch)
     switch ( Switch )
 	{
 		case GMT_GaveAmmoTo:
-		case GMT_ReceivedAmmoAndArmor:
+		case GMT_GaveArmorTo:
+		case GMT_GaveAmmoAndArmorTo:
+		case GMT_ReceivedAmmoAndArmorFrom:
 		case GMT_ReceivedAmmoFrom:
+		case GMT_ReceivedArmorFrom:
 		case GMT_HealedBy:
         case GMT_HealedPlayer:
         case GMT_HealedSelf:
@@ -103,6 +110,7 @@ static function string GetHexColor(int Switch)
         case GMT_FullArmor:
         case GMT_Ammo:
         case GMT_AmmoIsFull:
+        case GMT_AmmoAndArmorAreFull:
         case GMT_PickedupWeaponAmmo:
         case GMT_AlreadyCarryingWeapon:
         case GMT_PickedupItem:
@@ -129,9 +137,12 @@ static function string GetString(
 	switch ( Switch )
 	{
 		case GMT_GaveAmmoTo:
+		case GMT_GaveArmorTo:
+		case GMT_GaveAmmoAndArmorTo:
 			return default.GaveAmmoToMessage @RelatedPRI_1.PlayerName;
-		case GMT_ReceivedAmmoAndArmor:
 		case GMT_ReceivedAmmoFrom:
+		case GMT_ReceivedArmorFrom:
+		case GMT_ReceivedAmmoAndArmorFrom:
 			return default.ReceivedAmmoFromMessage @RelatedPRI_1.PlayerName;
 		case GMT_HealedBy:
 			return default.HealedByMessage @RelatedPRI_1.PlayerName;
@@ -150,6 +161,7 @@ static function string GetString(
 		case GMT_Ammo:
 			return default.PickupAmmoMessage;
 		case GMT_AmmoIsFull:
+		case GMT_AmmoAndArmorAreFull:
 			return default.AmmoFullMessage;
 		case GMT_PickedupWeaponAmmo:
 			TempString = Repl(default.PickupWeaponAmmoMessage, "%x%", class<Inventory>( OptionalObject ).default.ItemName, true);

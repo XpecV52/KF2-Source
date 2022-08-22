@@ -335,7 +335,7 @@ simulated singular event Touch( Actor Other, PrimitiveComponent OtherComp, vecto
 singular event TakeDamage( int inDamage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser )
 {
 	// Don't blow up when fading out and don't let mines blow each other up, no matter what team
-	if( bFadingOut || DamageCauser.class == class || DamageType == ExplosionTemplate.MyDamageType || `TimeSince(CreationTime) < 0.5f )
+	if( bFadingOut || DamageCauser.class == class || DamageType == ExplosionTemplate.MyDamageType || Physics != PHYS_None )
 	{
 		return;
 	}

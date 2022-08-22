@@ -15,32 +15,17 @@ enum eProjectilePoolType
 	PPT_PukeMine
 };
 
-struct native sProjectilePoolInfo
-{
-	// Player owning the projectiles
-	var KFPlayerController ProjController;
-
-	// Projectiles owned by this player
-	var array<KFProjectile> Projectiles;
-
-	// Set to TRUE if any of the projectiles are flagged bIsAIProjectile=TRUE
-	var bool bIsAIPlayer;
-};
-
 /** The maximum global number of C4 that can be active in play */
-var protected byte MAX_ACTIVE_C4;
-
-/** The maximum number of C4 each player can place */
-var protected byte MAX_C4_PER_PLAYER;
+var protected const byte MAX_ACTIVE_C4;
 
 /** The maximum global number of puke mines that can be active in play */
-var protected byte MAX_ACTIVE_PUKE_MINES;
+var protected const byte MAX_ACTIVE_PUKE_MINES;
 
 /** C4 spawned by players */
-var transient protected array<sProjectilePoolInfo> ActiveC4Infos;
+var transient protected array<KFProjectile> ActiveC4;
 
 /** Puke mines spawned by players */
-var transient protected array<sProjectilePoolInfo> ActivePukeMineInfos;
+var transient protected array<KFProjectile> ActivePukeMines;
 
 /** Returns instance to the pool manager */
 static function KFGameplayPoolManager GetPoolManager()
@@ -54,11 +39,11 @@ function AddProjectileToPool( KFProjectile Proj, eProjectilePoolType PoolType )
 	switch( PoolType )
 	{
 		case PPT_C4:
-			AddProjectileToPool_Internal( ActiveC4Infos, Proj, MAX_ACTIVE_C4, MAX_C4_PER_PLAYER );
+			AddProjectileToPool_Internal( ActiveC4, Proj, MAX_ACTIVE_C4 );
 			break;
 
 		case PPT_PukeMine:
-			AddProjectileToPool_Internal( ActivePukeMineInfos, Proj, MAX_ACTIVE_PUKE_MINES, GetMaxPlayerPukeMineNum() );
+			AddProjectileToPool_Internal( ActivePukeMines, Proj, MAX_ACTIVE_PUKE_MINES );
 			break;
 	}
 }
@@ -69,157 +54,41 @@ function RemoveProjectileFromPool( KFProjectile Proj, eProjectilePoolType PoolTy
 	switch( PoolType )
 	{
 		case PPT_C4:
-			RemoveProjectileFromPool_Internal( ActiveC4Infos, Proj );
+			RemoveProjectileFromPool_Internal( ActiveC4, Proj );
 			break;
 
 		case PPT_PukeMine:
-			RemoveProjectileFromPool_Internal( ActivePukeMineInfos, Proj );
+			RemoveProjectileFromPool_Internal( ActivePukeMines, Proj );
 			break;
 	}
 }
 
 /** Add a projectile to its respective pool, removing the oldest if we are at the pool limit */
-private function AddProjectileToPool_Internal( out array<sProjectilePoolInfo> PoolInfos, KFProjectile Proj,	byte MaxActiveProjectiles, byte MaxProjectilesPerPlayer )
+private function AddProjectileToPool_Internal( out array<KFProjectile> PoolProjectiles, KFProjectile Proj, byte MaxActiveProjectiles )
 {
-	local int TotalProjectiles, Idx, i, j;
-	local KFProjectile OldestProj;
-	local float OldestProjCreationTime;
-	local int OldestProjInfoIdx;
-
-	Idx = INDEX_NONE;
-	for( i = 0; i < PoolInfos.Length; ++i )
+	if( PoolProjectiles.Length == MaxActiveProjectiles )
 	{
-		// AI projectiles get their own projectile info
-		if( !Proj.IsAIProjectile() )
+		if( PoolProjectiles[0] != none )
 		{
-			// If a player has left, reabsorb projectile slots into pool
-			if( PoolInfos[i].ProjController == none || PoolInfos[i].ProjController.bDeleteMe )
-			{
-				for( j = 0; j < PoolInfos[i].Projectiles.Length; ++j )
-				{
-					PoolInfos[i].Projectiles[j].SetTimer( 1.f + Rand(5) + fRand(), false, nameOf(PoolInfos[i].Projectiles[j].Timer_Explode) );
-				}
-				PoolInfos.Remove( i, 1 );
-				--i;
-				continue;
-			}
-			else if( PoolInfos[i].ProjController == Proj.InstigatorController )
-			{
-				// Get our controller index in the array
-				Idx = i;
-			}
+			PoolProjectiles[0].Detonate();
 		}
-
-		// Count the total number of projectiles
-		TotalProjectiles += PoolInfos[i].Projectiles.Length;
-
-		// Get the index of the oldest projectile
-		if( OldestProjCreationTime == 0.f
-			|| (PoolInfos[i].Projectiles.Length > 0 && PoolInfos[i].Projectiles[0] != none && PoolInfos[i].Projectiles[0].CreationTime < OldestProjCreationTime) )
-		{
-			OldestProjCreationTime = PoolInfos[i].Projectiles[0].CreationTime;
-			OldestProj = PoolInfos[i].Projectiles[0];
-			OldestProjInfoIdx = i;
-		}
+		PoolProjectiles.Remove( 0, 1 );
 	}
 
-	// Pick the end of the pool info array if the player doesn't exist in it yet
-	if( Idx == INDEX_NONE )
-	{
-		Idx = PoolInfos.Length;
-		PoolInfos.Insert( Idx, 1 );
-		PoolInfos[Idx].bIsAIPlayer = Proj.IsAIProjectile();
-		PoolInfos[Idx].ProjController = KFPlayerController(Proj.InstigatorController);
-	}
-
-	// Make sure we exceed neither mine limit
-	if( TotalProjectiles >= MaxActiveProjectiles )
-	{
-		PoolInfos[OldestProjInfoIdx].Projectiles.Remove( 0, 1 );
-	}
-	else if( !PoolInfos[Idx].bIsAIPlayer && PoolInfos[Idx].Projectiles.Length >= MaxProjectilesPerPlayer )
-	{
-		OldestProj = PoolInfos[Idx].Projectiles[0];
-		PoolInfos[Idx].Projectiles.Remove( 0, 1 );
-	}
-	else
-	{
-		OldestProj = none;
-	}
-
-	// Detonate our oldest projectile
-	if( OldestProj != none )
-	{
-		OldestProj.Detonate();
-	}
-
-	// Add to pool array
-	PoolInfos[Idx].Projectiles.AddItem( Proj );
+	PoolProjectiles.AddItem( Proj );
 }
 
 /** Remove a projectile from the pool (it's been destroyed) */
-private function RemoveProjectileFromPool_Internal( out array<sProjectilePoolInfo> PoolInfos, KFProjectile Proj )
+private function RemoveProjectileFromPool_Internal( out array<KFProjectile> PoolProjectiles, KFProjectile Proj )
 {
-	local int Idx, ProjIdx;
-
-	// AI projectiles get their own pool infos, so we need to remove them via projectile lookup
-	if( Proj.IsAIProjectile() )
-	{
-		for( Idx = 0; Idx < PoolInfos.Length; ++Idx )
-		{
-			ProjIdx = PoolInfos[Idx].Projectiles.Find( Proj );
-			if( ProjIdx != INDEX_NONE )
-			{
-				PoolInfos[Idx].Projectiles.Remove( ProjIdx, 1 );
-				if( PoolInfos[Idx].Projectiles.Length == 0 )
-				{
-					PoolInfos.Remove( Idx, 1 );
-				}
-
-				return;
-			}
-		}
-	}
-	else
-	{
-		Idx = PoolInfos.Find( 'ProjController', KFPlayerController(Proj.InstigatorController) );
-		if( Idx != INDEX_NONE )
-		{
-			ProjIdx = PoolInfos[Idx].Projectiles.Find( Proj );
-			if( ProjIdx != INDEX_NONE )
-			{
-				PoolInfos[Idx].Projectiles.Remove( ProjIdx, 1 );
-				if( PoolInfos[Idx].Projectiles.Length == 0 )
-				{
-					PoolInfos.Remove( Idx, 1 );
-				}
-			}
-		}		
-	}
-}
-
-/** Returns the number of active puke mines each player is allowed to have */
-protected function int GetMaxPlayerPukeMineNum()
-{
-	local KFPawn BloatPawn;
-	local byte NumBloats;
-
-	foreach class'WorldInfo'.static.GetWorldInfo().AllPawns( class'KFPawn', BloatPawn )
-	{
-		if( BloatPawn.IsAliveAndWell() && BloatPawn.IsA('KFPawn_ZedBloat_Versus') )
-		{
-			++NumBloats;
-		}
-	}
-
-	return MAX_ACTIVE_PUKE_MINES / Max( NumBloats, 1 );
+	PoolProjectiles.RemoveItem( Proj );
 }
 
 /** Clears the pool arrays */
 event Reset()
 {
-	ActivePukeMineInfos.Length = 0;
-	ActiveC4Infos.Length = 0;
+	ActivePukeMines.Length = 0;
+	ActiveC4.Length = 0;
 }
 
 defaultproperties
@@ -228,7 +97,6 @@ defaultproperties
 	Physics=PHYS_None
 	RemoteRole=ROLE_None
 
-	MAX_ACTIVE_C4=40
-	MAX_C4_PER_PLAYER=10
-	MAX_ACTIVE_PUKE_MINES=30
+	MAX_ACTIVE_C4=24
+	MAX_ACTIVE_PUKE_MINES=24
 }

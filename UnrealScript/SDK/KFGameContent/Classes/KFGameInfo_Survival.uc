@@ -916,7 +916,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 
 		if( WaveNum < WaveMax )
 		{
-			GotoState('TraderOpen');
+			GotoState( 'TraderOpen', 'Begin' );
 			bOpeningTrader = true;
 		}
 		else
@@ -993,12 +993,14 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 /** Called when TimeBetweenWaves expires */
 function CloseTraderTimer();
 
+/** Cleans up anything from the previous wave that needs to be removed for trader time */
+function DoTraderTimeCleanup();
+
 State TraderOpen
 {
 	function BeginState( Name PreviousStateName )
 	{
 		local KFPlayerController KFPC;
-		local KFProj_BloatPukeMine PukeMine;
 
 		MyKFGRI.SetWaveActive(FALSE, GetGameIntensityForMusic());
 
@@ -1024,6 +1026,14 @@ State TraderOpen
 			LogPlayersDosh(GBE_TraderOpen);
 		}
 
+		SetTimer(TimeBetweenWaves, false, nameof(CloseTraderTimer));
+	}
+
+	/** Cleans up anything from the previous wave that needs to be removed for trader time */
+	function DoTraderTimeCleanup()
+	{
+		local KFProj_BloatPukeMine PukeMine;
+
 	    // Destroy all lingering explosions
 	    MyKFGRI.FadeOutLingeringExplosions();
 
@@ -1032,8 +1042,6 @@ State TraderOpen
 	    {
 	        PukeMine.FadeOut();
 	    }
-
-		SetTimer(TimeBetweenWaves, false, nameof(CloseTraderTimer));
 	}
 
 	/** Called when TimeBetweenWaves expires */
@@ -1070,6 +1078,10 @@ State TraderOpen
 
 		return Global.PreventDeath(KilledPawn, Killer, DamageType, HitLocation);
 	}
+
+Begin:
+	Sleep(0.1f);
+	DoTraderTimeCleanup();
 }
 
 /** Tell Kismet a trader opened */

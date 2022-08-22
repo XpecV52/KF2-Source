@@ -2,11 +2,15 @@ package InGameHUD_ZED_SWF_fla
 {
     import flash.display.MovieClip;
     
-    public dynamic class WeaponSelectInfoBGBlackMC_162 extends MovieClip
+    public dynamic class WeaponCategoryHeaderContainerMC_168 extends MovieClip
     {
          
         
-        public function WeaponSelectInfoBGBlackMC_162()
+        public var CategoryTextContainer:MovieClip;
+        
+        public var Scanlines:MovieClip;
+        
+        public function WeaponCategoryHeaderContainerMC_168()
         {
             super();
             addFrameScript(0,this.frame1);

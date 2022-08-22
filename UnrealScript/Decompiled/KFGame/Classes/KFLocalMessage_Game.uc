@@ -9,8 +9,12 @@ class KFLocalMessage_Game extends KFLocalMessage;
 
 enum EGameMessageType
 {
-    GMT_ReceivedAmmoFrom,
     GMT_GaveAmmoTo,
+    GMT_GaveArmorTo,
+    GMT_GaveAmmoAndArmorTo,
+    GMT_ReceivedAmmoFrom,
+    GMT_ReceivedArmorFrom,
+    GMT_ReceivedAmmoAndArmorFrom,
     GMT_HealedBy,
     GMT_HealedPlayer,
     GMT_HealedSelf,
@@ -20,6 +24,7 @@ enum EGameMessageType
     GMT_Ammo,
     GMT_PickedupWeaponAmmo,
     GMT_AmmoIsFull,
+    GMT_AmmoAndArmorAreFull,
     GMT_AlreadyCarryingWeapon,
     GMT_PickedupItem,
     GMT_TooMuchWeight,
@@ -28,7 +33,6 @@ enum EGameMessageType
     GMT_FailedDropInventory,
     GMT_ReceivedGrenadesFrom,
     GMT_GaveGrenadesTo,
-    GMT_ReceivedAmmoAndArmor,
     GMT_FoundCollectible,
     GMT_FoundAllCollectibles,
     GMT_UserSharingContent,
@@ -82,23 +86,27 @@ static function string GetHexColor(int Switch)
 {
     switch(Switch)
     {
-        case 1:
-        case 19:
         case 0:
+        case 1:
         case 2:
+        case 5:
         case 3:
         case 4:
         case 6:
         case 7:
         case 8:
         case 10:
-        case 9:
         case 11:
         case 12:
         case 14:
         case 15:
+        case 13:
+        case 16:
         case 17:
-        case 18:
+        case 19:
+        case 20:
+        case 22:
+        case 23:
             return default.GameColor;
         default:
             return "00FF00";
@@ -112,53 +120,57 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
 
     switch(Switch)
     {
-        case 1:
-            return default.GaveAmmoToMessage @ RelatedPRI_1.PlayerName;
-        case 19:
         case 0:
-            return default.ReceivedAmmoFromMessage @ RelatedPRI_1.PlayerName;
+        case 1:
         case 2:
-            return default.HealedByMessage @ RelatedPRI_1.PlayerName;
-        case 14:
-            return default.PendingPerkChangesSet;
-        case 15:
-            return default.PendingPerkChangesApplied;
+            return default.GaveAmmoToMessage @ RelatedPRI_1.PlayerName;
         case 3:
-            return default.HealedMessage @ RelatedPRI_1.PlayerName;
         case 4:
-            return default.HealedMessage @ default.YourselfString;
+        case 5:
+            return default.ReceivedAmmoFromMessage @ RelatedPRI_1.PlayerName;
         case 6:
-            return default.PickedupArmorMessage;
+            return default.HealedByMessage @ RelatedPRI_1.PlayerName;
+        case 19:
+            return default.PendingPerkChangesSet;
+        case 20:
+            return default.PendingPerkChangesApplied;
         case 7:
-            return default.FullArmorMessage;
+            return default.HealedMessage @ RelatedPRI_1.PlayerName;
         case 8:
-            return default.PickupAmmoMessage;
+            return default.HealedMessage @ default.YourselfString;
         case 10:
+            return default.PickedupArmorMessage;
+        case 11:
+            return default.FullArmorMessage;
+        case 12:
+            return default.PickupAmmoMessage;
+        case 14:
+        case 15:
             return default.AmmoFullMessage;
-        case 9:
+        case 13:
             TempString = Repl(default.PickupWeaponAmmoMessage, "%x%", class<Inventory>(OptionalObject).default.ItemName, true);
             return TempString;
-        case 11:
-            return default.AlreadyCarryingWeaponMessage;
-        case 12:
-            return default.PickupMessage @ Inventory(OptionalObject).ItemName;
-        case 13:
-            return default.TooMuchWeightMessage;
         case 16:
-            return default.FailedDropInventoryMessage;
-        case 18:
-            return default.GaveGrenadesToMessage @ RelatedPRI_1.PlayerName;
+            return default.AlreadyCarryingWeaponMessage;
         case 17:
-            return default.ReceivedGrenadesFromMessage @ RelatedPRI_1.PlayerName;
-        case 20:
-            return default.FoundAMapCollectibleMessage;
+            return default.PickupMessage @ Inventory(OptionalObject).ItemName;
+        case 18:
+            return default.TooMuchWeightMessage;
         case 21:
-            return default.FoundAllMapCollectiblesMessage;
-        case 22:
-            return RelatedPRI_1.PlayerName @ default.SharingContentString;
+            return default.FailedDropInventoryMessage;
         case 23:
-            return RelatedPRI_2.PlayerName $ (GetKilledByZedMessage(OptionalObject));
+            return default.GaveGrenadesToMessage @ RelatedPRI_1.PlayerName;
+        case 22:
+            return default.ReceivedGrenadesFromMessage @ RelatedPRI_1.PlayerName;
         case 24:
+            return default.FoundAMapCollectibleMessage;
+        case 25:
+            return default.FoundAllMapCollectiblesMessage;
+        case 26:
+            return RelatedPRI_1.PlayerName @ default.SharingContentString;
+        case 27:
+            return RelatedPRI_2.PlayerName $ (GetKilledByZedMessage(OptionalObject));
+        case 28:
             return RelatedPRI_2.PlayerName @ default.SuicideMessage;
         default:
             return "";
@@ -212,8 +224,8 @@ static function float GetPos(int Switch, HUD myHUD)
 {
     switch(Switch)
     {
-        case 23:
-        case 24:
+        case 27:
+        case 28:
             return 0.1;
         default:
             return 0.8;

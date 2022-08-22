@@ -677,7 +677,7 @@ simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 
 	if( KFPRI.bPerkCanSupply && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none )
 	{
-		TempColor = KFPRI.bPerkSupplyUsed ? SupplierActiveColor : SupplierUsableColor;
+		TempColor = (KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed) ? SupplierActiveColor : SupplierUsableColor;
 		Canvas.SetDrawColorStruct( TempColor );
 		Canvas.SetPos( ScreenPos.X + BarLength * 0.5f, ScreenPos.Y - BarHeight * 2 );
 		Canvas.DrawTile( KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256); 
@@ -935,7 +935,7 @@ defaultproperties
 	Text_NoClipShadowed=(bClipText=false,bEnableShadow=true)
 
 	ArmorColor=(R=0, G=0, B=255, A=192)
-	HealthColor=(R=0, G=148, B=118, A=192)
+	HealthColor=(R=95, G=210, B=255, A=192)
 	PlayerBarBGColor=(R=0, G=0, B=0, A=192)
 	PlayerBarTextColor=(R=192, G=192, B=192, A=192)
 	PlayerBarIconColor=(R=192, G=192, B=192, A=192)

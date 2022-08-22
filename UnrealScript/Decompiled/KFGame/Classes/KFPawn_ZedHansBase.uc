@@ -163,7 +163,7 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     UpdateShieldHealth(InDamage);
     if(bInHuntAndHealMode && ShieldHealth > float(0))
     {
-        InDamage *= HuntAndHealModeDamageReduction;
+        InDamage = Max(int(float(InDamage) * HuntAndHealModeDamageReduction), 1);
     }
 }
 

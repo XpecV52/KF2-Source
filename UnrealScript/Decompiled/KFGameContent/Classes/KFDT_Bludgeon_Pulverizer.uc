@@ -11,9 +11,10 @@ class KFDT_Bludgeon_Pulverizer extends KFDT_Bludgeon
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Pulverizer'
+    KnockdownPower=100
     StumblePower=50
     MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */
-    KDamageImpulse=1500
+    KDamageImpulse=3000
     KDeathVel=375
 }

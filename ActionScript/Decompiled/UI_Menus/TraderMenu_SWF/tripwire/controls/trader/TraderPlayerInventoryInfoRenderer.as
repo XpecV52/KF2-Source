@@ -31,22 +31,31 @@ package tripwire.controls.trader
         
         public var gamepadHighlight:MovieClip;
         
+        public var subAmmoIndicator:MovieClip;
+        
+        private const INDEX_ZERO_NAME:String = "inventoryItem_1";
+        
         public function TraderPlayerInventoryInfoRenderer()
         {
             preventAutosizing = true;
             super();
             clickSoundEffect = "";
             overSoundEffect = "TRADER_INVENTORY_ITEM_CLICK";
-            if(this.gamepadHighlight != null)
-            {
-                this.gamepadHighlight.visible = false;
-            }
         }
         
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
             this.weaponIcon.enabled = false;
+            if(this.gamepadHighlight != null)
+            {
+                this.gamepadHighlight.visible = false;
+            }
+            if(this.subAmmoIndicator != null)
+            {
+                this.subAmmoIndicator.visible = false;
+                this.subAmmoIndicator.mouseChildren = this.subAmmoIndicator.mouseEnabled = false;
+            }
         }
         
         override public function setData(param1:Object) : void
@@ -58,6 +67,10 @@ package tripwire.controls.trader
                 this.itemName.text = !!param1.itemName ? param1.itemName : "";
                 this.ammoNum.text = !!param1.itemAmmo ? param1.itemAmmo : "";
                 this.bHasLowAmmo = !!param1.lowAmmo ? Boolean(param1.lowAmmo) : Boolean("");
+                if(this.subAmmoIndicator != null)
+                {
+                    this.subAmmoIndicator.visible = param1.isSubAmmo && name != this.INDEX_ZERO_NAME ? Boolean(param1.isSubAmmo) : false;
+                }
                 if(this.weaponIcon != null && param1.itemSource && param1.itemSource != "")
                 {
                     this.weaponIcon.source = param1.itemSource;

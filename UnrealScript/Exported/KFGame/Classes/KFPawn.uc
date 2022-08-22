@@ -1011,9 +1011,6 @@ var protected AkComponent DialogAkComponent;
 /** Whether foostep sounds are allowed. Always allow sounds for local player */
 var globalconfig bool bAllowFootstepSounds;
 
-/** Special stop event to let the audio system stop certain sounds */
-var protected AKEvent 		OnDeathStopEvent;
-
 /*********************************************************************************************
  * @name	Network
  ********************************************************************************************* */
@@ -1395,6 +1392,9 @@ simulated function InitRBSettings()
 /*********************************************************************************************
  * @name	Character Info Methods
 ********************************************************************************************* */
+
+/** Notify pawn whenever mesh is swapped (e.g. new character or new outfit) */
+simulated function OnCharacterMeshChanged();
 
 /** Set various basic properties for this KFPawn based on the character class metadata */
 simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bForce )
@@ -3265,9 +3265,9 @@ simulated function TerminateEffectsOnDeath()
 	AfflictionHandler.Shutdown();
 
 	// send a special stop event to the audio system
-	if ( OnDeathStopEvent != None )
+	if ( SoundGroupArch.OnDeathStopEvent != None )
 	{
-		PostAkEvent( OnDeathStopEvent );
+		PostAkEvent( SoundGroupArch.OnDeathStopEvent );
 	}
 }
 

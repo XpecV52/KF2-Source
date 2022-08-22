@@ -1,12 +1,12 @@
-package VersusLobbyWidget_SWF_fla
+package InGameHUD_ZED_SWF_fla
 {
     import flash.display.MovieClip;
     
-    public dynamic class SquadMemberBGOrange_MC_15 extends MovieClip
+    public dynamic class FlashlightIconMC_118 extends MovieClip
     {
          
         
-        public function SquadMemberBGOrange_MC_15()
+        public function FlashlightIconMC_118()
         {
             super();
             addFrameScript(0,this.frame1,1,this.frame2);

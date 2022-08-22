@@ -466,7 +466,7 @@ function bool IsAttachmentAvailable(const out AttachmentVariants Attachment, Paw
 		//`log("Attachment" @ Attachment.MeshName @ "is not purchased.");
 		return FALSE;
 		}
-	else if ( Attachment.AttachmentItem.bIsSkeletalAttachment && Attachment.AttachmentItem.SocketName != '' 
+	else if ( Attachment.AttachmentItem.SocketName != '' 
 		&& PreviewPawn.Mesh.GetSocketByName(Attachment.AttachmentItem.SocketName) == None )
 		{
 		LogInternal("Attachment" @ Attachment.MeshName @ "is missing a required socket.");

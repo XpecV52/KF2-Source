@@ -39,7 +39,7 @@ const KFID_MouseSensitivity = 138;
 const KFID_TargetAdhesionEnabled = 139;
 const KFID_TargetFrictionEnabled = 140;
 const KFID_InvertMouse = 142;
-const KFID_VOIPVolumeMultiplier = 143;
+const KFID_DEPRECATED_143 = 143;
 const KFID_SavedSoloModeIndex = 144;
 const KFID_SavedSoloMapString = 145;
 const KFID_SavedSoloDifficultyIndex = 146;
@@ -59,6 +59,8 @@ const KFID_AntiMotionSickness = 159;
 const KFID_ShowWelderInInventory = 160;
 const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
+const KFID_ShowConsoleCrossHair = 163;
+const KFID_VOIPVolumeMultiplier = 164;
 
 var const localized string SectionNameString;
 var const localized string GameSettingsString;
@@ -148,7 +150,7 @@ function InitValues()
     }
     DataObject.SetFloat("gore", float(Manager.CachedProfile.GetProfileInt(107)));
     DataObject.SetFloat("friendlyHud", Manager.CachedProfile.GetProfileFloat(125));
-    DataObject.SetBool("crosshair", Manager.CachedProfile.GetProfileBool(121));
+    DataObject.SetBool("crosshair", ((Class'WorldInfo'.static.IsConsoleBuild()) ? Manager.CachedProfile.GetProfileBool(163) : Manager.CachedProfile.GetProfileBool(121)));
     DataObject.SetBool("killTicker", Manager.CachedProfile.GetProfileBool(123));
     DataObject.SetBool("hideBossHealthBar", Manager.CachedProfile.GetProfileBool(158));
     DataObject.SetBool("showWelderInInv", Manager.CachedProfile.GetProfileBool(160));
@@ -192,7 +194,7 @@ function Callback_ToggleCrosshair(bool bShow)
     }
     Class'KFGameEngine'.static.SetCrosshairEnabled(bShow);
     Settings = Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(Outer.GetLP().ControllerId));
-    Settings.SetProfileSettingValueInt(121, ((bShow) ? 1 : 0));
+    Settings.SetProfileSettingValueInt(((Class'WorldInfo'.static.IsConsoleBuild()) ? 163 : 121), ((bShow) ? 1 : 0));
 }
 
 function Callback_FOVChanged(float NewFOVPercentage)
@@ -410,7 +412,7 @@ function ResetGameOptions()
 {
     Manager.CachedProfile.SetProfileSettingValueInt(107, Manager.CachedProfile.GetDefaultInt(107));
     Manager.CachedProfile.SetProfileSettingValueFloat(125, Manager.CachedProfile.GetDefaultFloat(125));
-    Manager.CachedProfile.SetProfileSettingValueInt(121, Manager.CachedProfile.GetDefaultInt(121));
+    Manager.CachedProfile.SetProfileSettingValueInt(((Class'WorldInfo'.static.IsConsoleBuild()) ? 163 : 121), ((Class'WorldInfo'.static.IsConsoleBuild()) ? Manager.CachedProfile.GetDefaultInt(163) : Manager.CachedProfile.GetDefaultInt(121)));
     Manager.CachedProfile.SetProfileSettingValueInt(123, Manager.CachedProfile.GetDefaultInt(123));
     Manager.CachedProfile.SetProfileSettingValueInt(157, Manager.CachedProfile.GetDefaultInt(157));
     Manager.CachedProfile.SetProfileSettingValueInt(158, Manager.CachedProfile.GetDefaultInt(158));
@@ -447,9 +449,9 @@ defaultproperties
     AntiMotionSicknessString="Anti Motion Sickness"
     AutoTurnOffString="No Auto Turn On Clot Grab"
     ReduceHighPitchNoiseString="Reduce High Pitch Noise"
-    GoreOptionStrings(0)="No Gore"
-    GoreOptionStrings(1)="Low Gore"
-    GoreOptionStrings(2)="Gory"
+    GoreOptionStrings(0)="Low Gore"
+    GoreOptionStrings(1)="Medium Gore"
+    GoreOptionStrings(2)="High Gore"
     FOVMinValue=1
     FOVMaxValue=1.25
     FriendlyHudScaleMinValue=0.25

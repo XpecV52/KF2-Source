@@ -376,6 +376,12 @@ package tripwire.menus
             ExternalInterface.call("Callback_Close");
         }
         
+        override public function openContainer(param1:Boolean = true) : void
+        {
+            super.openContainer(param1);
+            this.updateControllerVisibility();
+        }
+        
         override public function closeContainer() : void
         {
             if(this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen)

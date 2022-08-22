@@ -72,6 +72,7 @@ var OnlineAuthInterface AuthInterface;
 
 /** The array of delegates that notify that the stats read operation has completed */
 var array<delegate<OnInventoryReadComplete> > ReadInventoryCompleteDelegates;
+var const bool bInventoryReady;
 
 /** Struct that holds a transient, unique identifier for a player */
 struct native UniqueNetId

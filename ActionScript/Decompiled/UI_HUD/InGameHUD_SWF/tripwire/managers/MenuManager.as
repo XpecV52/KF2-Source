@@ -378,7 +378,10 @@ package tripwire.managers
                 switch(param1.details.navEquivalent)
                 {
                     case NavigationCode.GAMEPAD_BACK:
-                        this.togglePartyWidgetFocus();
+                        if(this.bUsingGamepad && this._widgets[0].visible)
+                        {
+                            this.togglePartyWidgetFocus();
+                        }
                 }
             }
         }
@@ -482,6 +485,10 @@ package tripwire.managers
                 {
                     this.menuList[this._currentMenuIndex].menuObject.closeContainer();
                 }
+            }
+            if(this.bPopUpOpen && this._currentPopUp != null)
+            {
+                this._currentPopUp.closePopup();
             }
             this.mCursor.visible = param1 && !this.bUsingGamepad;
             this.MenuScanlines.visible = param1;

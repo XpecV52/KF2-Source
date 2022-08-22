@@ -106,6 +106,10 @@ function OnOpen()
     UpdateLock();
 
     CheckTiersForPopup();
+    if(SelectionContainer != none)
+    {
+    	SelectionContainer.SetPerkListEnabled(!KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo).bReadyToPlay);
+    }
 }
 
 function CheckTiersForPopup()

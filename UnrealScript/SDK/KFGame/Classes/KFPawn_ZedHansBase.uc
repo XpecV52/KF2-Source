@@ -241,7 +241,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
     // Reduce damage when in hunt and heal mode
     if( bInHuntAndHealMode && ShieldHealth > 0 )
     {
-        InDamage *= HuntAndHealModeDamageReduction;
+        InDamage = Max( InDamage * HuntAndHealModeDamageReduction, 1 );
     }
 }
 

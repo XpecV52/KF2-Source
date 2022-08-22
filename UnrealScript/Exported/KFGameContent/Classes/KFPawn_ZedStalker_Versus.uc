@@ -47,6 +47,15 @@ function CallOutCloaking( optional KFPlayerController CallOutController )
 
 defaultproperties
 {
+   Begin Object Class=AkComponent Name=CloakedAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedStalker:CloakedAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.400000
+      Name="CloakedAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedStalker:CloakedAkComponent0'
+   End Object
+   CloakedAkComponent=CloakedAkComponent0
    CloakSpeed=2.000000
    bVersusZed=True
    ThirdPersonViewOffset=(OffsetHigh=(X=-175.000000,Y=50.000000,Z=25.000000),OffsetMid=(X=-150.000000,Y=50.000000,Z=-30.000000),OffsetLow=(X=-220.000000,Y=50.000000,Z=50.000000))
@@ -141,7 +150,7 @@ defaultproperties
    IncapSettings(7)=()
    IncapSettings(8)=(Cooldown=3.000000,Vulnerability=(0.500000))
    IncapSettings(9)=(Vulnerability=(1.000000))
-   IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000)
+   IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(0.000000))
    SprintSpeed=700.000000
    SprintStrafeSpeed=425.000000
    TeammateCollisionRadiusPercent=0.300000
@@ -295,6 +304,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=CloakedAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedStalker_Versus"
    ObjectArchetype=KFPawn_ZedStalker'kfgamecontent.Default__KFPawn_ZedStalker'

@@ -1,14 +1,12 @@
-package ScoreBoard_Standard_SWF_fla
+package InGameHUD_ZED_SWF_fla
 {
     import flash.display.MovieClip;
     
-    public dynamic class HealthGauge_MC_6 extends MovieClip
+    public dynamic class WeaponSelectInfoScanlinesMC_163 extends MovieClip
     {
          
         
-        public var HealthBG:MovieClip;
-        
-        public function HealthGauge_MC_6()
+        public function WeaponSelectInfoScanlinesMC_163()
         {
             super();
             addFrameScript(0,this.frame1);

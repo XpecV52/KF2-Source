@@ -35,7 +35,7 @@ package tripwire.containers
         
         protected var _defaultAlpha:Number;
         
-        protected var _dimmedAlpha:Number = 0.7;
+        protected var _dimmedAlpha:Number = 0.6;
         
         protected const ANIM_TIME = 4;
         

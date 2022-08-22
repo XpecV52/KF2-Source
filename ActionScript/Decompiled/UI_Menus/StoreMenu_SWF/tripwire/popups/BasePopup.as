@@ -9,12 +9,15 @@ package tripwire.popups
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
+    import tripwire.managers.MenuManager;
     
     public class BasePopup extends TripContainer
     {
          
         
         protected var _prevModalClip:Sprite;
+        
+        public var bPartyWasFocused:Boolean;
         
         public function BasePopup()
         {
@@ -46,6 +49,8 @@ package tripwire.popups
         {
             if(!_bOpen)
             {
+                this.bPartyWasFocused = MenuManager.manager.bPartyWidgetFocused;
+                MenuManager.manager.bPartyWidgetFocused = false;
                 this.openAnimation();
                 _bOpen = true;
                 this._prevModalClip = FocusManager.getModalClip();

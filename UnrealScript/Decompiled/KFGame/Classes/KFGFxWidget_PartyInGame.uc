@@ -26,7 +26,6 @@ function InitializeWidget()
         }
         StartCountdown(KFGRI.RemainingTime, false);
     }
-    LocalizeText();
 }
 
 function LocalizeText()
@@ -252,6 +251,7 @@ function ToggelMuteOnPlayer(int SlotIndex)
         }
         CreatePlayerOptions(PlayerNetId, SlotIndex);
     }
+    super.ToggelMuteOnPlayer(SlotIndex);
 }
 
 function ViewProfile(int SlotIndex)

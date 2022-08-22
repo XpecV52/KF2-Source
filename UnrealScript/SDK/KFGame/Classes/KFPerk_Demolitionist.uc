@@ -139,7 +139,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 		if( IsDirectHitActive() && DamageType != none && IsDamageTypeOnPerk( DamageType ) )
 		{
-			if( DamageType.IsA('KFDT_Ballistic_Shell') )
+			if( class<KFDT_Ballistic_Shell>(DamageType) != none )
 			{
 				TempDamage += InDamage * GetSkillValue( PerkSkills[EDemoDirectHit] );
 				`QALog( "High Impact Damage Given" @ DamageType @ KFW @ InDamage * GetSkillValue( PerkSkills[EDemoDirectHit] ), bLogPerk );
@@ -155,7 +155,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 		if( IsAoEActive() )
 		{
-			TempDamage -= InDamage * GetAeODamageModifier();
+			TempDamage -= InDamage * GetAoEDamageModifier();
 		}
 	}
 	
@@ -335,7 +335,7 @@ simulated private final static function int GetExtraAmmo( int Level )
 /*********************************************************************************************
 * @name	 Selectable skills
 ********************************************************************************************* */
-simulated function float GetAeORadiusModifier()
+simulated function float GetAoERadiusModifier()
 { 
 	local float RadiusModifier;
 
@@ -345,7 +345,7 @@ simulated function float GetAeORadiusModifier()
 	return RadiusModifier;
 }
 
-simulated function float GetAeODamageModifier()
+simulated function float GetAoEDamageModifier()
 { 
 	return IsAoEActive() ? default.AoeDamageModifier : 1.f;
 }
@@ -451,6 +451,17 @@ simulated function Interact( KFPawn_Human KFPH )
 				}
 
 				`QALog( "Grenade Supplier" @ KFPC.PlayerReplicationInfo.PlayerName, bLogPerk );
+			}
+		}
+	}
+	else
+	{
+		if( Role == ROLE_Authority )
+		{
+			KFPC = KFPlayerController(KFPH.Controller);
+			if( KFPC != none )
+			{
+				KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_AmmoIsFull, OwnerPC.PlayerReplicationInfo );
 			}
 		}
 	}
@@ -950,7 +961,7 @@ DefaultProperties
 	ExplosiveResistableDamageTypeSuperClass=class'KFDT_Explosive'
 	ExplosiveResistanceRadius=500.f
 
-	AoeDamageModifier=0.3f
+	AoeDamageModifier=0.7f
 	DaZedEMPPower=0 //100
 
 	ProfessionalAoEModifier=0.25

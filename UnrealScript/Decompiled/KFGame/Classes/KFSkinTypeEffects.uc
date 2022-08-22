@@ -71,6 +71,10 @@ function PlayImpactParticleEffect(KFPawn P, Vector HitLocation, Vector HitDirect
     local ParticleSystem ParticleTemplate;
 
     ParticleTemplate = GetImpactParticleEffect(EffectGroup);
+    if(ParticleTemplate == none)
+    {
+        return;
+    }
     if(ImpactFX[EffectGroup].bAttachParticle)
     {
         AttachEffectToBone(P, ParticleTemplate, HitZoneIndex);        
@@ -83,27 +87,39 @@ function PlayImpactParticleEffect(KFPawn P, Vector HitLocation, Vector HitDirect
         }
         else
         {
-            DefaultSpawnEffect(P, ParticleTemplate, HitLocation, HitDirection);
+            switch(EffectGroup)
+            {
+                case 1:
+                case 2:
+                case 3:
+                    MeleeSpawnEffect(P, ParticleTemplate, HitLocation, HitDirection);
+                    break;
+                default:
+                    DefaultSpawnEffect(P, ParticleTemplate, HitLocation, HitDirection);
+                    break;
+                    break;
+            }
         }
     }
 }
 
-function AttachEffectToBone(KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex)
+function ParticleSystemComponent AttachEffectToBone(KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex)
 {
     local name HitBoneName;
     local editinline ParticleSystemComponent PSC;
 
     if((P.WorldInfo.TimeSeconds - P.LastImpactParticleEffectTime) < ImpactParticleEffectInterval)
     {
-        return;
+        return none;
     }
     P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
     HitBoneName = ((HitZoneIndex != 255) ? P.HitZones[HitZoneIndex].BoneName : P.TorsoBoneName);
     PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitterMeshAttachment(ParticleTemplate, P.Mesh, HitBoneName, false);
     PSC.SetAbsolute(false, true, true);
+    return PSC;
 }
 
-function AttachEffectToHitLocation(KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex, Vector HitLocation, Vector HitDirection)
+function ParticleSystemComponent AttachEffectToHitLocation(KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex, Vector HitLocation, Vector HitDirection)
 {
     local name HitBoneName;
     local int HitBoneIdx;
@@ -112,7 +128,7 @@ function AttachEffectToHitLocation(KFPawn P, ParticleSystem ParticleTemplate, in
 
     if((P.WorldInfo.TimeSeconds - P.LastImpactParticleEffectTime) < ImpactParticleEffectInterval)
     {
-        return;
+        return none;
     }
     if(HitZoneIndex != 255)
     {
@@ -127,21 +143,39 @@ function AttachEffectToHitLocation(KFPawn P, ParticleSystem ParticleTemplate, in
             {
                 P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
                 PSC.SetAbsolute(false, true, true);
+                return PSC;
             }
         }
     }
 }
 
-function DefaultSpawnEffect(KFPawn P, ParticleSystem ParticleTemplate, Vector HitLocation, Vector HitDirection)
+function ParticleSystemComponent MeleeSpawnEffect(KFPawn P, ParticleSystem ParticleTemplate, Vector HitLocation, Vector HitDirection)
+{
+    local editinline ParticleSystemComponent PSC;
+
+    if((P.WorldInfo.TimeSeconds - P.LastImpactParticleEffectTime) == float(0))
+    {
+        return none;
+    }
+    P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
+    PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitter(ParticleTemplate, HitLocation, rotator(-HitDirection));
+    if(PSC != none)
+    {
+        PSC.SetLightingChannels(P.PawnLightingChannel);
+    }
+    return PSC;
+}
+
+function ParticleSystemComponent DefaultSpawnEffect(KFPawn P, ParticleSystem ParticleTemplate, Vector HitLocation, Vector HitDirection)
 {
     local Vector EmitterDir, EmitterDirRight, EmitterDirLeft, RelativeHitLoc;
     local editinline ParticleSystemComponent PSC;
 
-    if(((ParticleTemplate == none) || P.WorldInfo.bDropDetail) || P.WorldInfo.GetDetailMode() == 0)
+    if(P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == 0)
     {
         if((P.WorldInfo.TimeSeconds - P.LastImpactParticleEffectTime) == float(0))
         {
-            return;
+            return none;
         }
         P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
     }
@@ -155,6 +189,7 @@ function DefaultSpawnEffect(KFPawn P, ParticleSystem ParticleTemplate, Vector Hi
     {
         PSC.SetLightingChannels(P.PawnLightingChannel);
     }
+    return PSC;
 }
 
 function ParticleSystem GetImpactParticleEffect(KFSkinTypeEffects.EEffectDamageGroup EffectGroup)

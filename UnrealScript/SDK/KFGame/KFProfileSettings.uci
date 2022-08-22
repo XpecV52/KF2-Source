@@ -2,6 +2,10 @@
  * Enum of profile setting IDs
  */
 
+// @TODO: The way this is written it's exported to .h in every class it's included.  Could use `define, as is used
+// elsewhere, but would need to do something about UCONST_KFID's used in c++.  Another option is to move these to
+// a UObject and use UC const syntax - class'KFProfileSettings'.const.KFID_blah.  Can use uci macro to shorten.
+
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -34,7 +38,7 @@ const KFID_MouseSensitivity = 138;
 const KFID_TargetAdhesionEnabled = 139;
 const KFID_TargetFrictionEnabled = 140;
 const KFID_InvertMouse = 142;
-const KFID_VOIPVolumeMultiplier = 143;
+const KFID_DEPRECATED_143 = 143;
 const KFID_SavedSoloModeIndex = 144;
 const KFID_SavedSoloMapString = 145;
 const KFID_SavedSoloDifficultyIndex = 146;
@@ -54,4 +58,6 @@ const KFID_AntiMotionSickness = 159; //game engine
 const KFID_ShowWelderInInventory = 160; // game engine
 const KFID_AutoTurnOff = 161;			// game engine
 const KFID_ReduceHightPitchSounds = 162; // game engine
+const KFID_ShowConsoleCrossHair = 163;
+const KFID_VOIPVolumeMultiplier = 164;
 

@@ -2724,6 +2724,11 @@ native function bool WasLaunchedByPlayfab();
 
 function string GetFriendlyNameForCurrentGameMode();
 
+event bool GetRequiresPassword()
+{
+    return RequiresPassword();
+}
+
 auto state PendingMatch
 {
     function bool MatchIsInProgress()

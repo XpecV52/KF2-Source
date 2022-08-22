@@ -10,7 +10,8 @@
 class KFPawn_ZedFleshpound extends KFPawn_Monster;
 
 /** Sounds */
-var AkEvent RageStartSound;
+var AkComponent RageAkComponent;
+var AkEvent RageLoopSound;
 var AkEvent RageStopSound;
 
 /** Material parameters for rage light glow */
@@ -25,9 +26,6 @@ var name BattlePhaseLightFrontSocketName;
 var transient PointLightComponent BattlePhaseLightTemplateYellow;
 var transient PointLightComponent BattlePhaseLightTemplateRed;
 var transient PointLightComponent BattlePhaseLightFront;
-
-/** TRUE if we are playing our rage sprint sound, false if we are not */
-var transient bool bPlayingRageSound;
 
 /*********************************************************************************************
 * Initialization
@@ -108,15 +106,25 @@ function SetSprinting( bool bNewSprintStatus )
 * Rage Related
 ********************************************************************************************* */
 
+/** Called on server when pawn should have been crippled (e.g. Headless) */
+function CauseHeadTrauma( float BleedOutTime=5.f )
+{
+	super.CauseHeadTrauma( BleedOutTime );
+
+	// End rage when decapped
+	SetEnraged( false );
+}
+
 /** Returns TRUE if this zed can block attacks */
 function bool CanBlock()
 {
 	return !IsEnraged() && super.CanBlock();
 }
 
-/** Turns hunt and heal backpack vent smoke off on termination */
+/** Turns off FX and sounds */
 simulated function TerminateEffectsOnDeath()
 {
+	StopRageSound();
     UpdateBattlePhaseLights();
     super.TerminateEffectsOnDeath();
 }
@@ -232,6 +240,15 @@ simulated function UpdateGameplayMICParams()
 	}
 }
 
+/** Stops the rage sound with an akevent */
+simulated function StopRageSound()
+{
+	if( RageAkComponent.IsPlaying(RageLoopSound) )
+	{
+		RageAkComponent.PlayEvent( RageStopSound, true, true );
+	}
+}
+
 /* PlayDying() is called on server/standalone game when killed
 and also on net client when pawn gets bTearOff set to true (and bPlayedDeath is false)
 */
@@ -316,19 +333,20 @@ simulated event Tick( float DeltaTime )
 {
 	super.Tick( DeltaTime );
 
-	if( IsEnraged() && Physics == PHYS_Walking && VSizeSQ(Velocity) >= Square(SprintSpeed) * 0.9f )
+	if( WorldInfo.NetMode != NM_DedicatedServer && IsAliveAndWell() )
 	{
-		if( !bPlayingRageSound )
+		if( IsEnraged() && Physics == PHYS_Walking && VSizeSQ(Velocity) >= Square(SprintSpeed) * 0.8f )
 		{
-			bPlayingRageSound = true;
-			PostAkEvent( RageStartSound, true, true );
+			if( !RageAkComponent.IsPlaying(RageLoopSound) )
+			{
+				RageAkComponent.PlayEvent( RageLoopSound, true, true );
+			}
+		}
+		else
+		{
+			StopRageSound();
 		}
 	}
-	else if( bPlayingRageSound )
-	{
-		bPlayingRageSound = false;
-		PostAkEvent( RageStopSound, true, true );
-	}		
 }
 
 /*********************************************************************************************
@@ -458,7 +476,7 @@ DefaultProperties
 	RotationRate=(Pitch=50000,Yaw=40000,Roll=50000)
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
-	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.55, 0.5, 0.0, 0.55),   Cooldown=10.0, Duration=1.2)
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.55, 0.5, 0.0, 0.55),   Cooldown=10.0, Duration=1.55) //1.2
 	IncapSettings(AF_Knockdown)=(Vulnerability=(0.25, 0.25, 0.5, 0.25, 0.4),  Cooldown=10.0)  //leg 0.25
 	IncapSettings(AF_Stumble)=	(Vulnerability=(0.2, 0.25, 0.25, 0.0, 0.4),   Cooldown=5.0)
 	IncapSettings(AF_GunHit)=	(Vulnerability=(0.0, 0.0, 0.0, 0.0, 0.5),     Cooldown=1.7)
@@ -476,9 +494,20 @@ DefaultProperties
 	End Object
 
 	ParryResistance=4
-	// sounds
-	RageStartSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Start'
+
+    // ---------------------------------------------
+    // sounds
+	RageLoopSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Start'
 	RageStopSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Stop'
+	Begin Object Class=AkComponent name=RageAkComponent0
+		BoneName=dummy
+		bStopWhenOwnerDestroyed=true
+		bForceOcclusionUpdateInterval=true
+		OcclusionUpdateInterval=0.2f
+	End Object
+    RageAkComponent=RageAkComponent0
+    Components.Add( RageAkComponent0 )
+
     // ---------------------------------------------
     // effects
 	Begin Object Class=CameraShake Name=FootstepCameraShake0

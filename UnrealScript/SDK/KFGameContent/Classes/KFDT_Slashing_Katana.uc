@@ -133,4 +133,6 @@ defaultproperties
 	MeleeHitPower=100
 
 	WeaponDef=class'KFWeapDef_Katana'
+
+	ModifierPerkList(0)=class'KFPerk_Berserker'
 }

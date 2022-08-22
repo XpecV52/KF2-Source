@@ -411,9 +411,9 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 if(Healer != Controller)
                 {
                     AddHealerToObjective(Healer);
-                    InstigatorPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 3, PlayerReplicationInfo);
+                    InstigatorPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 7, PlayerReplicationInfo);
                     KFPC = KFPlayerController(Controller);
-                    KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 2, Healer.PlayerReplicationInfo);
+                    KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 6, Healer.PlayerReplicationInfo);
                     if((KFPC != none) && KFPC.MatchStats != none)
                     {
                         KFPC.MatchStats.RecordIntStat(5, int(UsedHealAmount));
@@ -427,7 +427,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 {
                     if(bMessageHealer)
                     {
-                        InstigatorPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 4, PlayerReplicationInfo);
+                        InstigatorPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 8, PlayerReplicationInfo);
                     }
                 }
             }

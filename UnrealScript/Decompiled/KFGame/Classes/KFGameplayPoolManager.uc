@@ -16,25 +16,10 @@ enum eProjectilePoolType
     PPT_MAX
 };
 
-struct native sProjectilePoolInfo
-{
-    var KFPlayerController ProjController;
-    var array<KFProjectile> Projectiles;
-    var bool bIsAIPlayer;
-
-    structdefaultproperties
-    {
-        ProjController=none
-        Projectiles=none
-        bIsAIPlayer=false
-    }
-};
-
-var protected byte MAX_ACTIVE_C4;
-var protected byte MAX_C4_PER_PLAYER;
-var protected byte MAX_ACTIVE_PUKE_MINES;
-var protected transient array<sProjectilePoolInfo> ActiveC4Infos;
-var protected transient array<sProjectilePoolInfo> ActivePukeMineInfos;
+var protected const byte MAX_ACTIVE_C4;
+var protected const byte MAX_ACTIVE_PUKE_MINES;
+var protected transient array<KFProjectile> ActiveC4;
+var protected transient array<KFProjectile> ActivePukeMines;
 
 static function KFGameplayPoolManager GetPoolManager()
 {
@@ -46,10 +31,10 @@ function AddProjectileToPool(KFProjectile Proj, KFGameplayPoolManager.eProjectil
     switch(PoolType)
     {
         case 0:
-            AddProjectileToPool_Internal(ActiveC4Infos, Proj, MAX_ACTIVE_C4, MAX_C4_PER_PLAYER);
+            AddProjectileToPool_Internal(ActiveC4, Proj, MAX_ACTIVE_C4);
             break;
         case 1:
-            AddProjectileToPool_Internal(ActivePukeMineInfos, Proj, MAX_ACTIVE_PUKE_MINES, byte(GetMaxPlayerPukeMineNum()));
+            AddProjectileToPool_Internal(ActivePukeMines, Proj, MAX_ACTIVE_PUKE_MINES);
             break;
         default:
             break;
@@ -61,164 +46,43 @@ function RemoveProjectileFromPool(KFProjectile Proj, KFGameplayPoolManager.eProj
     switch(PoolType)
     {
         case 0:
-            RemoveProjectileFromPool_Internal(ActiveC4Infos, Proj);
+            RemoveProjectileFromPool_Internal(ActiveC4, Proj);
             break;
         case 1:
-            RemoveProjectileFromPool_Internal(ActivePukeMineInfos, Proj);
+            RemoveProjectileFromPool_Internal(ActivePukeMines, Proj);
             break;
         default:
             break;
     }
 }
 
-private final function AddProjectileToPool_Internal(out array<sProjectilePoolInfo> PoolInfos, KFProjectile Proj, byte MaxActiveProjectiles, byte MaxProjectilesPerPlayer)
+private final function AddProjectileToPool_Internal(out array<KFProjectile> PoolProjectiles, KFProjectile Proj, byte MaxActiveProjectiles)
 {
-    local int TotalProjectiles, Idx, I, J;
-    local KFProjectile OldestProj;
-    local float OldestProjCreationTime;
-    local int OldestProjInfoIdx;
-
-    Idx = -1;
-    I = 0;
-    J0x1A:
-
-    if(I < PoolInfos.Length)
+    if(PoolProjectiles.Length == MaxActiveProjectiles)
     {
-        if(!Proj.IsAIProjectile())
+        if(PoolProjectiles[0] != none)
         {
-            if((PoolInfos[I].ProjController == none) || PoolInfos[I].ProjController.bDeleteMe)
-            {
-                J = 0;
-                J0xCE:
-
-                if(J < PoolInfos[I].Projectiles.Length)
-                {
-                    PoolInfos[I].Projectiles[J].SetTimer((1 + float(Rand(5))) + FRand(), false, 'Timer_Explode');
-                    ++ J;
-                    goto J0xCE;
-                }
-                PoolInfos.Remove(I, 1;
-                -- I;
-                goto J0x36B;                
-            }
-            else
-            {
-                if(PoolInfos[I].ProjController == Proj.InstigatorController)
-                {
-                    Idx = I;
-                }
-            }
+            PoolProjectiles[0].Detonate();
         }
-        TotalProjectiles += PoolInfos[I].Projectiles.Length;
-        if((OldestProjCreationTime == 0) || ((PoolInfos[I].Projectiles.Length > 0) && PoolInfos[I].Projectiles[0] != none) && PoolInfos[I].Projectiles[0].CreationTime < OldestProjCreationTime)
-        {
-            OldestProjCreationTime = PoolInfos[I].Projectiles[0].CreationTime;
-            OldestProj = PoolInfos[I].Projectiles[0];
-            OldestProjInfoIdx = I;
-        }
-        J0x36B:
-
-        ++ I;
-        goto J0x1A;
+        PoolProjectiles.Remove(0, 1;
     }
-    if(Idx == -1)
-    {
-        Idx = PoolInfos.Length;
-        PoolInfos.Insert(Idx, 1;
-        PoolInfos[Idx].bIsAIPlayer = Proj.IsAIProjectile();
-        PoolInfos[Idx].ProjController = KFPlayerController(Proj.InstigatorController);
-    }
-    if(TotalProjectiles >= MaxActiveProjectiles)
-    {
-        PoolInfos[OldestProjInfoIdx].Projectiles.Remove(0, 1;        
-    }
-    else
-    {
-        if(!PoolInfos[Idx].bIsAIPlayer && PoolInfos[Idx].Projectiles.Length >= MaxProjectilesPerPlayer)
-        {
-            OldestProj = PoolInfos[Idx].Projectiles[0];
-            PoolInfos[Idx].Projectiles.Remove(0, 1;            
-        }
-        else
-        {
-            OldestProj = none;
-        }
-    }
-    if(OldestProj != none)
-    {
-        OldestProj.Detonate();
-    }
-    PoolInfos[Idx].Projectiles.AddItem(Proj;
+    PoolProjectiles.AddItem(Proj;
 }
 
-private final function RemoveProjectileFromPool_Internal(out array<sProjectilePoolInfo> PoolInfos, KFProjectile Proj)
+private final function RemoveProjectileFromPool_Internal(out array<KFProjectile> PoolProjectiles, KFProjectile Proj)
 {
-    local int Idx, ProjIdx;
-
-    if(Proj.IsAIProjectile())
-    {
-        Idx = 0;
-        J0x2D:
-
-        if(Idx < PoolInfos.Length)
-        {
-            ProjIdx = PoolInfos[Idx].Projectiles.Find(Proj;
-            if(ProjIdx != -1)
-            {
-                PoolInfos[Idx].Projectiles.Remove(ProjIdx, 1;
-                if(PoolInfos[Idx].Projectiles.Length == 0)
-                {
-                    PoolInfos.Remove(Idx, 1;
-                }
-                return;
-            }
-            ++ Idx;
-            goto J0x2D;
-        }        
-    }
-    else
-    {
-        Idx = PoolInfos.Find('ProjController', KFPlayerController(Proj.InstigatorController);
-        if(Idx != -1)
-        {
-            ProjIdx = PoolInfos[Idx].Projectiles.Find(Proj;
-            if(ProjIdx != -1)
-            {
-                PoolInfos[Idx].Projectiles.Remove(ProjIdx, 1;
-                if(PoolInfos[Idx].Projectiles.Length == 0)
-                {
-                    PoolInfos.Remove(Idx, 1;
-                }
-            }
-        }
-    }
-}
-
-protected function int GetMaxPlayerPukeMineNum()
-{
-    local KFPawn BloatPawn;
-    local byte NumBloats;
-
-    foreach Class'WorldInfo'.static.GetWorldInfo().AllPawns(Class'KFPawn', BloatPawn)
-    {
-        if(BloatPawn.IsAliveAndWell() && BloatPawn.IsA('KFPawn_ZedBloat_Versus'))
-        {
-            ++ NumBloats;
-        }        
-    }    
-    return MAX_ACTIVE_PUKE_MINES / Max(NumBloats, 1);
+    PoolProjectiles.RemoveItem(Proj;
 }
 
 event Reset()
 {
-    ActivePukeMineInfos.Length = 0;
-    ActiveC4Infos.Length = 0;
+    ActivePukeMines.Length = 0;
+    ActiveC4.Length = 0;
 }
 
 defaultproperties
 {
-    MAX_ACTIVE_C4=40
-    MAX_C4_PER_PLAYER=10
-    MAX_ACTIVE_PUKE_MINES=30
+    MAX_ACTIVE_C4=24
+    MAX_ACTIVE_PUKE_MINES=24
     bTickIsDisabled=true
 }

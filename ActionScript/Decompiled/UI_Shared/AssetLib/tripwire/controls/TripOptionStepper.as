@@ -5,10 +5,13 @@ package tripwire.controls
     import scaleform.clik.controls.OptionStepper;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.Extensions;
     
     public class TripOptionStepper extends OptionStepper
     {
          
+        
+        public var tabClickSoundEffect = "SHARED_BUTTON_CLICK";
         
         public function TripOptionStepper()
         {
@@ -17,6 +20,10 @@ package tripwire.controls
         
         override protected function onNext(param1:Object) : void
         {
+            if(Extensions.gfxProcessSound != null && enabled == true)
+            {
+                Extensions.gfxProcessSound(this,"UI",this.tabClickSoundEffect);
+            }
             if(_selectedIndex < _dataProvider.length - 1)
             {
                 selectedIndex += 1;
@@ -30,6 +37,10 @@ package tripwire.controls
         
         override protected function onPrev(param1:Object) : void
         {
+            if(Extensions.gfxProcessSound != null && enabled == true)
+            {
+                Extensions.gfxProcessSound(this,"UI",this.tabClickSoundEffect);
+            }
             if(_selectedIndex > 0)
             {
                 selectedIndex = selectedIndex - 1;

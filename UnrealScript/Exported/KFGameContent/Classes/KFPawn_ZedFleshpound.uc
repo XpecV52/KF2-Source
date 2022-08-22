@@ -10,7 +10,8 @@
 class KFPawn_ZedFleshpound extends KFPawn_Monster;
 
 /** Sounds */
-var AkEvent RageStartSound;
+var AkComponent RageAkComponent;
+var AkEvent RageLoopSound;
 var AkEvent RageStopSound;
 
 /** Material parameters for rage light glow */
@@ -25,9 +26,6 @@ var name BattlePhaseLightFrontSocketName;
 var transient PointLightComponent BattlePhaseLightTemplateYellow;
 var transient PointLightComponent BattlePhaseLightTemplateRed;
 var transient PointLightComponent BattlePhaseLightFront;
-
-/** TRUE if we are playing our rage sprint sound, false if we are not */
-var transient bool bPlayingRageSound;
 
 /*********************************************************************************************
 * Initialization
@@ -108,15 +106,25 @@ function SetSprinting( bool bNewSprintStatus )
 * Rage Related
 ********************************************************************************************* */
 
+/** Called on server when pawn should have been crippled (e.g. Headless) */
+function CauseHeadTrauma( float BleedOutTime=5.f )
+{
+	super.CauseHeadTrauma( BleedOutTime );
+
+	// End rage when decapped
+	SetEnraged( false );
+}
+
 /** Returns TRUE if this zed can block attacks */
 function bool CanBlock()
 {
 	return !IsEnraged() && super.CanBlock();
 }
 
-/** Turns hunt and heal backpack vent smoke off on termination */
+/** Turns off FX and sounds */
 simulated function TerminateEffectsOnDeath()
 {
+	StopRageSound();
     UpdateBattlePhaseLights();
     super.TerminateEffectsOnDeath();
 }
@@ -232,6 +240,15 @@ simulated function UpdateGameplayMICParams()
 	}
 }
 
+/** Stops the rage sound with an akevent */
+simulated function StopRageSound()
+{
+	if( RageAkComponent.IsPlaying(RageLoopSound) )
+	{
+		RageAkComponent.PlayEvent( RageStopSound, true, true );
+	}
+}
+
 /* PlayDying() is called on server/standalone game when killed
 and also on net client when pawn gets bTearOff set to true (and bPlayedDeath is false)
 */
@@ -316,19 +333,20 @@ simulated event Tick( float DeltaTime )
 {
 	super.Tick( DeltaTime );
 
-	if( IsEnraged() && Physics == PHYS_Walking && VSizeSQ(Velocity) >= Square(SprintSpeed) * 0.9f )
+	if( WorldInfo.NetMode != NM_DedicatedServer && IsAliveAndWell() )
 	{
-		if( !bPlayingRageSound )
+		if( IsEnraged() && Physics == PHYS_Walking && VSizeSQ(Velocity) >= Square(SprintSpeed) * 0.8f )
 		{
-			bPlayingRageSound = true;
-			PostAkEvent( RageStartSound, true, true );
+			if( !RageAkComponent.IsPlaying(RageLoopSound) )
+			{
+				RageAkComponent.PlayEvent( RageLoopSound, true, true );
+			}
+		}
+		else
+		{
+			StopRageSound();
 		}
 	}
-	else if( bPlayingRageSound )
-	{
-		bPlayingRageSound = false;
-		PostAkEvent( RageStopSound, true, true );
-	}		
 }
 
 /*********************************************************************************************
@@ -349,7 +367,16 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
-   RageStartSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Start'
+   Begin Object Class=AkComponent Name=RageAkComponent0
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="RageAkComponent0"
+      ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
+   End Object
+   RageAkComponent=RageAkComponent0
+   RageLoopSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Start'
    RageStopSound=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Rage_Stop'
    DefaultGlowColor=(R=1.000000,G=0.350000,B=0.000000,A=1.000000)
    EnragedGlowColor=(R=1.000000,G=0.000000,B=0.000000,A=1.000000)
@@ -448,7 +475,7 @@ defaultproperties
    IncapSettings(2)=(Cooldown=1.200000,Vulnerability=(1.000000))
    IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.000000,0.000000,0.000000,0.000000,0.500000))
    IncapSettings(4)=(Cooldown=5.000000,Vulnerability=(0.200000,0.250000,0.250000,0.000000,0.400000))
-   IncapSettings(5)=(Duration=1.200000,Cooldown=10.000000,Vulnerability=(0.500000,0.550000,0.500000,0.000000,0.550000))
+   IncapSettings(5)=(Duration=1.550000,Cooldown=10.000000,Vulnerability=(0.500000,0.550000,0.500000,0.000000,0.550000))
    IncapSettings(6)=(Cooldown=20.500000,Vulnerability=(0.150000))
    IncapSettings(7)=(Cooldown=8.500000,Vulnerability=(1.000000,1.000000,3.000000,1.000000,1.000000))
    IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.250000,0.250000,0.500000,0.250000,0.400000))
@@ -611,6 +638,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=RageAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=40000,Roll=50000)
    Name="Default__KFPawn_ZedFleshpound"

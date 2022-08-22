@@ -12,7 +12,7 @@ var protected KFWeapon OwnerWeapon;
 
 function Init(Vector Direction)
 {
-    super(KFProjectile).Init(Direction);
+    super.Init(Direction);
     OwnerWeapon = KFWeapon(Owner);
     if(OwnerWeapon != none)
     {

@@ -61,6 +61,7 @@ package tripwire.containers
         
         override public function selectContainer() : void
         {
+            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 7 : 6;
             super.selectContainer();
             if(this.sharedContentButton.visible)
             {
@@ -86,6 +87,16 @@ package tripwire.containers
                 {
                     FocusHandler.getInstance().setFocus(currentElement);
                 }
+                else if(!MenuManager.manager.bPartyWidgetFocused && bManagerUsingGamepad)
+                {
+                    FocusHandler.getInstance().setFocus(null);
+                    this.deselectContainer();
+                }
+            }
+            else if(bManagerUsingGamepad)
+            {
+                FocusHandler.getInstance().setFocus(null);
+                this.deselectContainer();
             }
         }
         

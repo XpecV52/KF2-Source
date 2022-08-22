@@ -2,7 +2,7 @@ package InGameHUD_ZED_SWF_fla
 {
     import flash.display.MovieClip;
     
-    public dynamic class CompassArrowAnimContainerMC_156 extends MovieClip
+    public dynamic class CompassArrowAnimContainerMC_153 extends MovieClip
     {
          
         
@@ -14,7 +14,7 @@ package InGameHUD_ZED_SWF_fla
         
         public var CompassTopArrow:MovieClip;
         
-        public function CompassArrowAnimContainerMC_156()
+        public function CompassArrowAnimContainerMC_153()
         {
             super();
             addFrameScript(0,this.frame1);

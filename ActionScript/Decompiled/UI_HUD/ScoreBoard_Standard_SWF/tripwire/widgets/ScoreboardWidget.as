@@ -2,6 +2,7 @@ package tripwire.widgets
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.display.MovieClip;
     import flash.text.TextField;
     import tripwire.containers.ScoreBoardMapInfoContainer;
     import tripwire.containers.TripContainer;
@@ -11,6 +12,10 @@ package tripwire.widgets
     public class ScoreboardWidget extends TripContainer
     {
          
+        
+        public var serverInfoScan:MovieClip;
+        
+        public var serverInfoBG:MovieClip;
         
         public var PlayerScrollingList:ScoreboardScrollingList;
         
@@ -132,6 +137,7 @@ package tripwire.widgets
         {
             this.serverNameText.text = !!param1.serverName ? param1.serverName : "";
             this.serverIPText.text = !!param1.serverIP ? param1.serverIP : "";
+            this.serverInfoScan.visible = this.serverInfoBG.visible = this.serverNameText.text == "" && this.serverIPText.text == "" || bManagerConsoleBuild ? false : true;
         }
     }
 }

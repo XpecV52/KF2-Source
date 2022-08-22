@@ -2,7 +2,7 @@ package InGameHUD_ZED_SWF_fla
 {
     import flash.display.MovieClip;
     
-    public dynamic class FlashlightBarContainerMC_118 extends MovieClip
+    public dynamic class FlashlightBarContainerMC_115 extends MovieClip
     {
          
         
@@ -20,7 +20,7 @@ package InGameHUD_ZED_SWF_fla
         
         public var FlashlightBarTopRight:MovieClip;
         
-        public function FlashlightBarContainerMC_118()
+        public function FlashlightBarContainerMC_115()
         {
             super();
             addFrameScript(0,this.frame1,100,this.frame101);

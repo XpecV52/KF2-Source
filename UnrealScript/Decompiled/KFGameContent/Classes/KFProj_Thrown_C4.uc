@@ -302,6 +302,9 @@ simulated function Stick(Actor HitActor, Vector HitLocation, Vector HitNormal, c
         ProjEffects.SetTranslation(LandedTranslationOffset);
     }
     bReplicateMovement = false;
+    bOnlyDirtyReplication = true;
+    NetUpdateFrequency = 0.25;
+    bForceNetUpdate = true;
     if(!IsZero(HitLocation))
     {
         SetLocation(HitLocation);
@@ -392,6 +395,7 @@ reliable server function ServerStick(Actor StickTo, int BoneIdx, Vector StickLoc
 {
     StuckToLocation = StickLoc;
     StuckToRotation = StickRot;
+    bForceNetUpdate = true;
     ReplicatedStick(StickTo, BoneIdx);
 }
 
@@ -455,6 +459,9 @@ simulated function RestartMovement()
     SetBase(none);
     SetPhysics(default.Physics);
     bReplicateMovement = true;
+    NetUpdateFrequency = default.NetUpdateFrequency;
+    bOnlyDirtyReplication = false;
+    bForceNetUpdate = true;
 }
 
 function Detonate()
@@ -525,8 +532,8 @@ protected simulated function PrepareExplosionTemplate()
     if((Instigator.Role == ROLE_Authority) && KFPC != none)
     {
         InstigatorPerk = KFPC.GetPerk();
-        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
-        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+        ExplosionTemplate.Damage *= InstigatorPerk.GetAoEDamageModifier();
+        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
     }
     super.PrepareExplosionTemplate();
 }

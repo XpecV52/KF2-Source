@@ -51,7 +51,13 @@ function ShowKickVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowCh
 
 function SendVoteKickToAS3(string PlayerName, byte VoteDuration, bool bShowChoices)
 {
-    ActionScriptVoid("voteKick");
+    local GFxObject KickVoteData;
+
+    KickVoteData = Outer.CreateObject("Object");
+    KickVoteData.SetString("playerName", PlayerName);
+    KickVoteData.SetInt("voteDuration", VoteDuration);
+    KickVoteData.SetBool("bShowChoices", bShowChoices);
+    SetObject("kickVoteData", KickVoteData);
     UpdateUsingGamepad(Outer.GetPC().PlayerInput.bUsingGamepad);
 }
 

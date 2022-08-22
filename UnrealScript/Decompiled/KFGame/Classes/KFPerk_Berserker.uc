@@ -484,12 +484,12 @@ simulated function bool HasNightVision()
     return true;
 }
 
-protected final event bool IsSmashActive()
+protected final simulated event bool IsSmashActive()
 {
     return PerkSkills[6].bActive;
 }
 
-private final function bool IsFuryActive()
+private final simulated function bool IsFuryActive()
 {
     return PerkSkills[7].bActive;
 }
@@ -514,7 +514,7 @@ private final simulated event bool CouldSpartanBeActive()
     return PerkSkills[9].bActive;
 }
 
-function bool IsFastInZedTime()
+simulated function bool IsFastInZedTime()
 {
     return PerkSkills[9].bActive;
 }

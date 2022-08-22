@@ -208,7 +208,7 @@ package tripwire.managers
             {
                 return;
             }
-            this._numPrompts = !this.bOpenedInGame ? int(param1) : 2;
+            this._numPrompts = !this.bOpenedInGame || param1 > 2 ? int(param1) : 2;
             stage.dispatchEvent(new Event(PROMPT_CHANGED));
         }
         

@@ -2,6 +2,7 @@ package tripwire.containers.inventory
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import com.greensock.events.TweenEvent;
     import flash.display.InteractiveObject;
     import flash.display.MovieClip;
     import flash.events.Event;
@@ -53,6 +54,8 @@ package tripwire.containers.inventory
         public const ITP_Item:int = 2;
         
         public var _itemCount:int;
+        
+        public var bForceFocusToDetails:Boolean;
         
         public function InventoryItemDetailsContainer()
         {
@@ -139,9 +142,13 @@ package tripwire.containers.inventory
             {
                 this.imageLoader.source = param1.iconURLLarge;
             }
-            if(bManagerUsingGamepad)
+            if(bManagerUsingGamepad && _bReadyForInput)
             {
                 FocusManager.setFocus(!!this.equipButton.visible ? this.equipButton : this.cancelButton);
+            }
+            else
+            {
+                this.bForceFocusToDetails = true;
             }
             this.itemTypeText.text = !!param1.typeRarity ? param1.typeRarity : "";
             var _loc2_:Boolean = !!param1.newlyAdded ? Boolean(param1.newlyAdded) : false;
@@ -179,7 +186,7 @@ package tripwire.containers.inventory
                 "autoAlpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Cubic.easeOut,
                 "useFrames":true,
-                "onComplete":onOpened
+                "onComplete":this.onOpened
             });
         }
         
@@ -211,6 +218,15 @@ package tripwire.containers.inventory
                     "typeRarity":"RARE TEST OBJECT"
                 };
                 this.details = _loc2_;
+            }
+        }
+        
+        override protected function onOpened(param1:TweenEvent = null) : void
+        {
+            super.onOpened(param1);
+            if(this.bForceFocusToDetails && _bReadyForInput)
+            {
+                FocusManager.setFocus(!!this.equipButton.visible ? this.equipButton : this.cancelButton);
             }
         }
     }

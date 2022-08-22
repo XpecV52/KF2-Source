@@ -247,7 +247,7 @@ singular simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector
 
 singular event TakeDamage(int InDamage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
-    if(((bFadingOut || DamageCauser.Class == Class) || DamageType == ExplosionTemplate.MyDamageType) || (WorldInfo.TimeSeconds - CreationTime) < 0.5)
+    if(((bFadingOut || DamageCauser.Class == Class) || DamageType == ExplosionTemplate.MyDamageType) || Physics != 0)
     {
         return;
     }

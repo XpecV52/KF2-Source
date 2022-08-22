@@ -29,8 +29,11 @@ var(RageCharge) float RageHealthThreshold;
 simulated event PostBeginPlay()
 {
     super.PostBeginPlay();
-    ChainsawIdleAkComponent.PlayEvent(PlayChainsawIdleAkEvent);
-    CreateExhaustFx();
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        ChainsawIdleAkComponent.PlayEvent(PlayChainsawIdleAkEvent, true, true);
+        CreateExhaustFx();
+    }
 }
 
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
@@ -108,16 +111,13 @@ simulated function CreateExhaustFx()
     local Vector Loc;
     local Rotator Rot;
 
-    if(WorldInfo.NetMode != NM_DedicatedServer)
+    if((ExhaustPSC == none) && ExhaustTemplate != none)
     {
-        if((ExhaustPSC == none) && ExhaustTemplate != none)
+        if(Mesh.GetSocketWorldLocationAndRotation(ExhaustSocketName, Loc, Rot))
         {
-            if(Mesh.GetSocketWorldLocationAndRotation(ExhaustSocketName, Loc, Rot))
-            {
-                ExhaustPSC = new (self) Class'ParticleSystemComponent';
-                ExhaustPSC.SetTemplate(ExhaustTemplate);
-                Mesh.AttachComponentToSocket(ExhaustPSC, ExhaustSocketName);
-            }
+            ExhaustPSC = new (self) Class'ParticleSystemComponent';
+            ExhaustPSC.SetTemplate(ExhaustTemplate);
+            Mesh.AttachComponentToSocket(ExhaustPSC, ExhaustSocketName);
         }
     }
 }
@@ -156,6 +156,13 @@ function bool CanBlock()
     return !bIsEnraged && super.CanBlock();
 }
 
+function CauseHeadTrauma(optional float BleedOutTime)
+{
+    BleedOutTime = 5;
+    super.CauseHeadTrauma(BleedOutTime);
+    SetEnraged(false);
+}
+
 simulated event NotifyGoreMeshActive()
 {
     super.NotifyGoreMeshActive();
@@ -165,31 +172,28 @@ simulated event NotifyGoreMeshActive()
     }
 }
 
-simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
+simulated function TerminateEffectsOnDeath()
 {
     CleanupChainsaw();
-    super.PlayDying(DamageType, HitLoc);
-}
-
-simulated event Destroyed()
-{
-    CleanupChainsaw();
-    super.Destroyed();
+    super(KFPawn).TerminateEffectsOnDeath();
 }
 
 simulated function CleanupChainsaw()
 {
     local MaterialInstanceConstant ChainsawBladeMIC;
 
-    ChainsawBladeMIC = Mesh.CreateAndSetMaterialInstanceConstant(1);
-    ChainsawBladeMIC.SetScalarParameterValue('Animation_Scalar', 0);
-    ChainsawIdleAkComponent.PlayEvent(StopChainsawIdleAkEvent);
-    if(ExhaustPSC != none)
+    if(WorldInfo.NetMode != NM_DedicatedServer)
     {
-        ExhaustPSC.DeactivateSystem();
-        DetachComponent(ExhaustPSC);
-        WorldInfo.MyEmitterPool.OnParticleSystemFinished(ExhaustPSC);
-        ExhaustPSC = none;
+        ChainsawBladeMIC = Mesh.CreateAndSetMaterialInstanceConstant(1);
+        ChainsawBladeMIC.SetScalarParameterValue('Animation_Scalar', 0);
+        ChainsawIdleAkComponent.PlayEvent(StopChainsawIdleAkEvent);
+        if(ExhaustPSC != none)
+        {
+            ExhaustPSC.DeactivateSystem();
+            DetachComponent(ExhaustPSC);
+            WorldInfo.MyEmitterPool.OnParticleSystemFinished(ExhaustPSC);
+            ExhaustPSC = none;
+        }
     }
 }
 

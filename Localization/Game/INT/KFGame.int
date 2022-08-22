@@ -11,8 +11,8 @@ LengthStrings[2]="Long (10 Waves)"
 
 ServerTypeStrings[0]="Ranked"
 ServerTypeStrings[1]="Ranked - Stock"
-ServerTypeStrings[1]="Ranked - Custom"
-ServerTypeStrings[2]="Unranked"
+ServerTypeStrings[2]="Ranked - Custom"
+ServerTypeStrings[3]="Unranked"
 
 PermissionStrings[0]="Public"
 PermissionStrings[1]="Friends only"
@@ -850,9 +850,9 @@ FOVString="FOV"
 GoreString="Gore Intensity"
 ShowCrosshairString="Show Crosshair"
 ClassicWeaponSelectString="Weapon Quick Select"
-GoreOptionStrings[0]="No Gore"
-GoreOptionStrings[1]="Low Gore"
-GoreOptionStrings[2]="Gory"
+GoreOptionStrings[0]="Low Gore"
+GoreOptionStrings[1]="Medium Gore"
+GoreOptionStrings[2]="High Gore"
 NormalString=Normal
 WiderString=Wider
 FriendlyHudScaleString="Friendly HUD Scale"

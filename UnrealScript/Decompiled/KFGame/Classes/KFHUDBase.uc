@@ -43,7 +43,7 @@ const KFID_MouseSensitivity = 138;
 const KFID_TargetAdhesionEnabled = 139;
 const KFID_TargetFrictionEnabled = 140;
 const KFID_InvertMouse = 142;
-const KFID_VOIPVolumeMultiplier = 143;
+const KFID_DEPRECATED_143 = 143;
 const KFID_SavedSoloModeIndex = 144;
 const KFID_SavedSoloMapString = 145;
 const KFID_SavedSoloDifficultyIndex = 146;
@@ -63,6 +63,8 @@ const KFID_AntiMotionSickness = 159;
 const KFID_ShowWelderInInventory = 160;
 const KFID_AutoTurnOff = 161;
 const KFID_ReduceHightPitchSounds = 162;
+const KFID_ShowConsoleCrossHair = 163;
+const KFID_VOIPVolumeMultiplier = 164;
 
 struct sHiddenHumanPawnInfo
 {
@@ -516,7 +518,7 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     Canvas.DrawText(string(KFPRI.GetActivePerkLevel()) @ KFPRI.CurrentPerkClass.default.PerkName,, FontScale * FriendlyHudScale, FontScale * FriendlyHudScale, MyFontRenderInfo);
     if(KFPRI.bPerkCanSupply && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none)
     {
-        TempColor = ((KFPRI.bPerkSupplyUsed) ? SupplierActiveColor : SupplierUsableColor);
+        TempColor = ((KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed) ? SupplierActiveColor : SupplierUsableColor);
         Canvas.SetDrawColorStruct(TempColor);
         Canvas.SetPos(ScreenPos.X + (BarLength * 0.5), ScreenPos.Y - (BarHeight * float(2)));
         Canvas.DrawTile(KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256);
@@ -689,7 +691,7 @@ function SetPostRenderingFor(bool bOn, Actor A)
 defaultproperties
 {
     ArmorColor=(B=255,G=0,R=0,A=192)
-    HealthColor=(B=118,G=148,R=0,A=192)
+    HealthColor=(B=255,G=210,R=95,A=192)
     PlayerBarBGColor=(B=0,G=0,R=0,A=192)
     PlayerBarTextColor=(B=192,G=192,R=192,A=192)
     PlayerBarIconColor=(B=192,G=192,R=192,A=192)

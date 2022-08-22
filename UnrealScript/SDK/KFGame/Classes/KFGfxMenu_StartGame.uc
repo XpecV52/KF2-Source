@@ -91,6 +91,7 @@ var config int MaxResultsToTry;
 
 /** How long to wait for a server to respond to "open" before giving up on it. */
 var config int ServerConnectTimeout;
+var config int ServerTakeoverTimeout;
 
 /** Whether to log information about searching for games */
 var config bool bLogSearchInfo;
@@ -289,18 +290,26 @@ function SetOverview(optional bool bInitialize)
 //Send the player back to the start menu and open the shared content object if there is content to share and we are not in standalone
 function OnPlayerReadiedUp()
 {
+	local PlayerController PC;
+
+	PC = GetPC();
 	if(bHarrassedPlayerAboutSharedContent)
 	{
 		return;
 	}
 
-	if(OverviewContainer != none && OverviewContainer.bContentShared && GetPC().WorldInfo.NetMode != NM_Standalone )
+	if(OverviewContainer != none && OverviewContainer.bContentShared && PC.WorldInfo.NetMode != NM_Standalone )
 	{
 		if(Manager.CurrentMenuIndex != UI_Start)
 		{
 			Manager.OpenMenu(UI_Start);
 		}
-		OverviewContainer.ActionScriptVoid("showSharedContentList");
+
+		// Consoles don't show this screen.  HSL_BB
+		if ( !PC.WorldInfo.IsConsoleBuild() )
+		{
+			OverviewContainer.ActionScriptVoid("showSharedContentList");
+		}
 	}
 	bHarrassedPlayerAboutSharedContent = true;
 }
@@ -710,28 +719,16 @@ function Callback_MapSelection( byte MapIndex )
 {
 	local string MapName;
 
-	if (MapIndex < MapStringList.length)
+	//0 entry is Any now
+	if( (MapIndex > 0 || OptionsComponent.bIsSoloGame) && MapIndex <= MapStringList.Length)
 	{
-		MapName = MapStringList[MapIndex];
+		MapName = OptionsComponent.bIsSoloGame ? MapStringList[MapIndex] : MapStringList[MapIndex-1];
 	}
 	else
 	{
 		MapName = "";
 	}
 	OptionsComponent.MapChanged( MapName );	
-}
-
-function Callback_RecieveMap( int Index )
-{
-	if(Index >= 0 && Index < MapStringList.Length)
-	{
-		OptionsComponent.UpdateMapSource(MapStringList[Index]);	
-	}
-	else
-	{
-		OptionsComponent.UpdateMapSource("Default");	
-	}
-	
 }
 
 function Callback_ServerType( int Index )
@@ -790,7 +787,7 @@ event int GetLobbySize()
 	local ActiveLobbyInfo LobbyInfo;
 
 	if ( !OnlineLobby.GetCurrentLobby(LobbyInfo) )
-		{
+	{
 		return 0;
 	}
 	else
@@ -813,15 +810,23 @@ native function bool MapGood(const OnlineGameSettings Settings, optional out str
 native function SortLastEntry(OnlineGameSearch Search);
 native function SortServers(OnlineGameSearch Search);
 
-function string BuildTakeoverURL(out string Password)
+function string BuildTakeoverURL(optional out string Password)
 {
 	local string TakeoverURL;
 
 	TakeoverURL = MakeMapURL(OptionsComponent);
 	if (len(Password) > 0)
 	{
-		TakeoverURL $= "?gamepassword=" $ Password;
+		TakeoverURL $= "?gamepassword=" $ Password $ "?password=" $ Password;
 	}
+
+	// For console builds, if we're creating a private server, ensure private=1 is part of the takeover.
+	TakeoverURL $= "?Private="$OptionsComponent.GetPrivacyIndex();
+	if( class'WorldInfo'.static.IsConsoleBuild() && OptionsComponent.GetPrivacyIndex() == 1 )
+	{
+		TakeoverURL $= "?bJoinViaInvite";
+	}
+
 	return TakeoverURL $ OnlineLobby.GetLobbyURLString();
 }
 
@@ -843,11 +848,10 @@ function OnJoinGameComplete(name SessionName, bool bSuccessful)
 	{
 		`log("KFGFxMenu_StartGame.OnJoinGameComplete: OnJoinGameComplete called for server index"@CurrentSearchIndex, bLogSearchInfo);
 		KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
-		SetServerConnectGiveUpTimer();
+		SetServerConnectGiveUpTimer(OptionsComponent.GetMakeNewServer());
 		if (OptionsComponent.GetMakeNewServer())
 		{
-			`log("**************SERVER TAKEOVER TESTING");
-			`log("servertakeover"@PendingResolvedAddress@BuildTakeoverURL(LobbyOwnerPassword));
+			`log("KFGFxMenu_StartGame.OnJoinGameComplete: servertakeover"@PendingResolvedAddress@BuildTakeoverURL(LobbyOwnerPassword), bLogSearchInfo);
 			GetPC().ConsoleCommand("servertakeover"@PendingResolvedAddress@BuildTakeoverURL(LobbyOwnerPassword));
 		}
 		else
@@ -881,76 +885,32 @@ function OnQueryAdditionalServerInfoComplete( bool bWasSuccessful, string LobbyI
 }
 
 
-// Done for consoles only!
-event CreateNewServer()
-{
-	local string CustomCommandline, MapName;
-	local int GameLength;
-
-	bAttemptingServerCreate = true;
-
-	// Wanting a specific map
-	if( OptionsComponent.GetMapName() != "" )
-	{
-		MapName = OptionsComponent.GetMapName();
-	}
-	// Random map
-	else
-	{
-		MapName = MapStringList[Rand(MapStringList.Length)];
-	}
-
-	// Use filter specified
-	if( OptionsComponent.bLengthFilterSet && OptionsComponent.LengthFilter >= 0 && OptionsComponent.LengthFilter <= 2 )
-	{
-		GameLength = OptionsComponent.LengthFilter;
-	}
-	// Fallback to normal 7 waves
-	else
-	{
-		GameLength = 1;
-	}
-
-	CustomCommandline = MapName;
-	CustomCommandline $= "?Difficulty="$OptionsComponent.GetDifficultyIndex();
-	CustomCommandline $= "?GameLength="$GameLength;
-
-	`log("Starting new server with URL"@CustomCommandline);
-
-	class'GameEngine'.static.GetPlayfabInterface().AddOnServerStartedDelegate( OnServerStarted );
-	class'GameEngine'.static.GetPlayfabInterface().StartNewServerInstance( SearchDataStore.GetActiveGameSearch().GameModes[0], CustomCommandline );
-}
-
-
-function OnServerStarted( bool bWasSuccessful, string ServerLobbyId, string ServerIp, int ServerPort, string ServerTicket )
-{
-	`log("Server started with success flag"@bWasSuccessful@"and with lobby id"@ServerLobbyId@"and server IP"@ServerIp@"and port"@ServerPort@"and ticket"@ServerTicket);
-	class'GameEngine'.static.GetPlayfabInterface().ClearOnServerStartedDelegate( OnServerStarted );
-
-	if( bWasSuccessful )
-	{
-		ConnectToPlayfabServer(ServerLobbyId, ServerIp, ServerPort, ServerTicket, true);
-	}
-	else
-	{
-		bAttemptingServerCreate = false;
-		OpenNotFoundPopup();
-		CancelGameSearch();
-	}
-}
-
-
 function ConnectToPlayfabServer(string LobbyId, string ServerIp, int ServerPort, string ServerTicket, bool bNewServer)
 {
 	local string OpenCommand;
 
-	OpenCommand = "open"@ServerIp$":"$ServerPort;
-	OpenCommand $= "?AuthTicket="$ServerTicket;
-	OpenCommand $= "?PlayfabPlayerId="$class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId;
+	// First we need to know if we're joining or taking over
+	OpenCommand = bAttemptingServerCreate ? "servertakeover" : "open";
+	OpenCommand @= ServerIp$":"$ServerPort;
+
+	if( bAttemptingServerCreate )
+	{
+		OpenCommand @= BuildTakeoverURL();
+	}
+
+	if(OnlineLobby != None && OnlineLobby.IsInLobby() && OnlineLobby.IsLobbyOwner())
+	{
+		OnlineLobby.LobbyJoinServer(LobbyId);
+		OpenCommand $= OnlineLobby.GetLobbyURLString();
+	}
 
 	KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
 	// Give a longer timeout for servers that need to spin up
 	Manager.TimerHelper.SetTimer(bNewServer ? 20 : ServerConnectTimeout, false, nameof(ServerConnectGiveUp), self);
+
+	// Attach auth ticket and playfab ID
+	OpenCommand $= "?AuthTicket="$ServerTicket;
+	OpenCommand $= "?PlayfabPlayerId="$class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId;
 
 	`log("Going to connect with URL:"@OpenCommand);
 	ConsoleCommand( OpenCommand );
@@ -958,9 +918,9 @@ function ConnectToPlayfabServer(string LobbyId, string ServerIp, int ServerPort,
 
 
 
-event SetServerConnectGiveUpTimer()
+event SetServerConnectGiveUpTimer(bool ServerTakover)
 {
-	Manager.TimerHelper.SetTimer(ServerConnectTimeout, false, nameof(ServerConnectGiveUp), self);
+	Manager.TimerHelper.SetTimer(ServerTakover ? ServerTakeoverTimeout : ServerConnectTimeout, false, nameof(ServerConnectGiveUp), self);
 }
 
 event AddJoinGameCompleteDelegate(OnlineGameSearch LatestGameSearch)
@@ -1001,18 +961,20 @@ function bool OnHandshakeComplete(bool bSuccess, string Description, out int Sup
 	Manager.TimerHelper.ClearTimer(nameof(ServerConnectGiveUp), self);
 	if (bSuccess)
 	{
-		`log("KFGFxMenu_StartGame.OnHandShakeComplete: LobbyJoinServer", bLogSearchInfo);
-		if (Len(LobbyOwnerPassword) > 0)
+		`log("KFGFxMenu_StartGame.OnHandShakeComplete: LobbyJoinServer" @ PendingResolvedAddress, bLogSearchInfo);
+		if( !class'WorldInfo'.static.IsConsoleBuild() )
 		{
-			OnlineLobby.SetServerPassword(LobbyOwnerPassword);
-			if (OptionsComponent.GetPrivacyIndex() == ESPr_FriendsOnly)
+			if (Len(LobbyOwnerPassword) > 0)
 			{
-				class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword(LobbyOwnerPassword);
+				OnlineLobby.SetServerPassword(LobbyOwnerPassword);
+				if (OptionsComponent.GetPrivacyIndex() == ESPr_FriendsOnly)
+				{
+					class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword(LobbyOwnerPassword);
+				}
 			}
+			OnlineLobby.LobbyJoinServer(PendingResolvedAddress);
 		}
-		OnlineLobby.LobbyJoinServer(PendingResolvedAddress);
 		PendingResolvedAddress = "";
-		bAttemptingServerCreate = false;
 	}
 	else
 	{
@@ -1083,14 +1045,20 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
 		Search.AddServerFilter( "version_match", string(class'KFGameEngine'.static.GetKFGameVersion()));
 	}
 
-	if (OptionsComponent.GetMakeNewServer())
+	if (OptionsComponent.GetMakeNewServer() || bAttemptingServerCreate )
 	{
-		Search.AddGametagFilter( GameTagFilters, 'bUsedForTakeover', "1");
+		// BWJ - Don't see a need for this var when searching. bAvailableForTakeover should give us what we want
+		if( !class'WorldInfo'.static.IsConsoleBuild() )
+		{
+			Search.AddGametagFilter( GameTagFilters, 'bUsedForTakeover', "1");
+		}
 		Search.AddGametagFilter( GameTagFilters, 'bAvailableForTakeover', "1");
+		Search.AddGametagFilter( GameTagFilters, 'bRequiresPassword', "0");
 	}
 	else
 	{
 		MapName = OptionsComponent.GetMapName();
+		`log("Map searched:" @ MapName);
 		if (MapName != "")
 		{
 			Search.AddServerFilter( "map", MapName);
@@ -1123,10 +1091,7 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
 			Search.AddGametagFilter(GameTagFilters, 'NumWaves', string(GameLength));
 		}
 	
-		if( !class'WorldInfo'.static.IsConsoleBuild() )
-		{
-			Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
-		}
+		Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
 
 		AllowInProgress = OptionsComponent.GetAllowInProgress();
 		Search.TestAddBoolGametagFilter(GameTagFilters, !AllowInProgress, 'bInProgress', 0);
@@ -1172,11 +1137,19 @@ function Callback_StartGame()
 
 function Callback_StartOfflineGame()
 {
+	if(AttemptingJoin)
+	{
+		`log("Attmepting to start local game while 'Playfab Game Join' is in progress");
+		return;
+	}
+
 	ConsoleCommand("open" @ MakeMapURL(OptionsComponent));
 }
 
-function StartOnlineGame()
+event StartOnlineGame()
 {
+	local int i;
+
 	OptionsComponent.UpdateFilters();
 /*
 	if (OptionsComponent.GetServerTypeListen())
@@ -1191,6 +1164,12 @@ function StartOnlineGame()
 	GameInterface.SetMatchmakingTypeMode(SMT_Internet);
 
 	CurrentSearchIndex = 0;
+
+	// If this is supposed to be a private game, it has to be a takeover
+	if( class'WorldInfo'.static.IsConsoleBuild() && OptionsComponent.GetPrivacyIndex() == 1 )
+	{
+		bAttemptingServerCreate = true;
+	}
 
 	BuildServerFilters(GameInterface, OptionsComponent, SearchDataStore.GetCurrentGameSearch());
 	SearchDataStore.GetCurrentGameSearch().MaxSearchResults = MaxResultsToTry;
@@ -1211,6 +1190,19 @@ function StartOnlineGame()
 	SearchDataStore.GetActiveGameSearch().GameModes.Length = 1;
 	// Quick match only has one option
 	SearchDataStore.GetActiveGameSearch().GameModes[0] = class'KFGameInfo'.default.GameModes[OptionsComponent.GetModeIndex()].FriendlyName;
+
+	// If we're attempting a server create, we should search all game modes
+	if( bAttemptingServerCreate )
+	{
+		for( i = 0; i < class'KFGameInfo'.default.GameModes.Length; i++ )
+		{
+			// Add other game apart from the main one
+			if( i != OptionsComponent.GetModeIndex() )
+			{
+				SearchDataStore.GetActiveGameSearch().GameModes.AddItem( class'KFGameInfo'.default.GameModes[i].FriendlyName );
+			}
+		}
+	}
 
 	// Start a search
 	if ( !SearchDataStore.SubmitGameSearch(class'UIInteraction'.static.GetPlayerControllerId(0), false) )
@@ -1264,6 +1256,8 @@ function Callback_StartOnlineGame()
 			LobbyOwnerPassword = GenerateRandomPassword();
 		}
 	}
+
+	bAttemptingServerCreate = false;
 	StartOnlineGame();
 }
 
@@ -1277,7 +1271,7 @@ function UnpauseTryingServers()
 event CancelGameSearch()
 {
 	local KFOnlineGameSearch ActiveGameSearch;
-
+	
 	ActiveGameSearch = KFOnlineGameSearch(SearchDataStore.GetActiveGameSearch());
 
 	if(ActiveGameSearch != none)

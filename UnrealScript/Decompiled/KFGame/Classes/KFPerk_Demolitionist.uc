@@ -94,7 +94,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
         }
         if(((IsDirectHitActive()) && DamageType != none) && IsDamageTypeOnPerk(DamageType))
         {
-            if(DamageType.IsA('KFDT_Ballistic_Shell'))
+            if(class<KFDT_Ballistic_Shell>(DamageType) != none)
             {
                 TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[2])));
             }
@@ -105,7 +105,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
         }
         if(IsAoEActive())
         {
-            TempDamage -= (float(InDamage) * (GetAeODamageModifier()));
+            TempDamage -= (float(InDamage) * (GetAoEDamageModifier()));
         }
     }
     InDamage = Round(TempDamage);
@@ -238,7 +238,7 @@ private static final simulated function int GetExtraAmmo(int Level)
     return int(default.ExplosiveAmmo.Increment * float(FFloor(float(Level) / 5)));
 }
 
-simulated function float GetAeORadiusModifier()
+simulated function float GetAoERadiusModifier()
 {
     local float RadiusModifier;
 
@@ -247,7 +247,7 @@ simulated function float GetAeORadiusModifier()
     return RadiusModifier;
 }
 
-simulated function float GetAeODamageModifier()
+simulated function float GetAoEDamageModifier()
 {
     return ((IsAoEActive()) ? default.AoeDamageModifier : 1);
 }
@@ -324,14 +324,25 @@ simulated function Interact(KFPawn_Human KFPH)
             KFPC = KFPlayerController(KFPH.Controller);
             if(KFPC != none)
             {
-                OwnerPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 18, KFPC.PlayerReplicationInfo);
-                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 17, OwnerPC.PlayerReplicationInfo);
+                OwnerPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 23, KFPC.PlayerReplicationInfo);
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 22, OwnerPC.PlayerReplicationInfo);
                 UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
                 OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
                 if((UserPRI != none) && OwnerPRI != none)
                 {
                     UserPRI.MarkSupplierOwnerUsed(OwnerPRI);
                 }
+            }
+        }        
+    }
+    else
+    {
+        if(Role == ROLE_Authority)
+        {
+            KFPC = KFPlayerController(KFPH.Controller);
+            if(KFPC != none)
+            {
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 14, OwnerPC.PlayerReplicationInfo);
             }
         }
     }
@@ -671,7 +682,7 @@ defaultproperties
     NukeDamageModifier=1.5
     NukeRadiusModifier=1.35
     ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'
-    AoeDamageModifier=0.3
+    AoeDamageModifier=0.7
     LingeringNukePoisonDamage=20
     PassiveExtraAmmoIgnoredClassNames(0)=KFProj_DynamiteGrenade
     ExtraAmmoIgnoredClassNames(0)=KFProj_DynamiteGrenade

@@ -3,7 +3,7 @@ package InGameHUD_ZED_SWF_fla
     import flash.display.MovieClip;
     import flash.text.TextField;
     
-    public dynamic class AmmoContainerMC_137 extends MovieClip
+    public dynamic class AmmoContainerMC_134 extends MovieClip
     {
          
         
@@ -15,7 +15,7 @@ package InGameHUD_ZED_SWF_fla
         
         public var StoredAmmoTextField:TextField;
         
-        public function AmmoContainerMC_137()
+        public function AmmoContainerMC_134()
         {
             super();
             addFrameScript(0,this.frame1);

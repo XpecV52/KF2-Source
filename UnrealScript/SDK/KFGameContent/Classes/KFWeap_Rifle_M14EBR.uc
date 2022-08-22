@@ -34,6 +34,7 @@ defaultproperties
     PlayerIronSightFOV=70
 
 	// Depth of field
+	DOF_BlendInSpeed=3.0	
 	DOF_FG_FocalRadius=0//70
 	DOF_FG_MaxNearBlurSize=3.5
 

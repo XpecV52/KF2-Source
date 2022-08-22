@@ -377,6 +377,7 @@ function ToggelMuteOnPlayer(int SlotIndex)
             LogInternal("CALL MUTE FOR PLAYER: " @ OnlineLobby.GetFriendNickname(LobbyInfo.Members[SlotIndex].PlayerUID));
         }
     }
+    super.ToggelMuteOnPlayer(SlotIndex);
 }
 
 function ViewProfile(int SlotIndex)

@@ -115,7 +115,7 @@ function RefreshPlayerInventory()
 			PricePerRound = ( MagSize > 0 ) ? float(PricePerMag) / float(MagSize) : 0.f;
 			BlocksRequired = -1; // This will hide the weight and 
 
-			SetItemInfo( InfoSlot, ItemInfo.DefaultItem.WeaponDef, "SecondaryAmmo", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired );
+			SetItemInfo( InfoSlot, ItemInfo.DefaultItem.WeaponDef, "SecondaryAmmo", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired, true );
 			SetMagInfo( MagSlot, AmmoCount, MaxAmmoCount, MagSize, PricePerMag, PricePerRound, FillAmmoCost );
 			SetFillInfo( FillSlot, AmmoCount, MaxAmmoCount, PricePerRound, FillAmmoCost, AutoFillCost );
 		}
@@ -200,7 +200,7 @@ function SetGrenadeInfo(out SItemInformation GrenadeInfo, out int AutoFillCost)
 	AutoFillCost += FillCost;
 }
 
-function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef, string ItemKeyString, string TextureLocation, int AmmoCount, int MaxAmmoCount, int BlocksRequired )
+function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef, string ItemKeyString, string TextureLocation, int AmmoCount, int MaxAmmoCount, int BlocksRequired, optional bool bSecondaryAmmo )
 {
 	local string ItemTexPath;
 
@@ -208,6 +208,7 @@ function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef
     InfoSlot.SetString( "itemAmmo", AmmoCount $"/" $MaxAmmoCount);
     InfoSlot.Setint( "itemWeight", BlocksRequired );
     InfoSlot.SetBool("lowAmmo", (float(AmmoCount) / float(MaxAmmoCount)) <= LowAmmoPercentThreshold );
+    InfoSlot.SetBool("isSubAmmo", bSecondaryAmmo );
 
     ItemTexPath = "img://"$TextureLocation;
     InfoSlot.SetString( "itemSource", ItemTexPath );

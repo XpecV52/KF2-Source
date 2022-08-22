@@ -470,7 +470,6 @@ var protected export editinline AkComponent WeaponAkComponent;
 var export editinline KFWeaponAmbientEchoHandler WeaponAmbientEchoHandler;
 var protected export editinline AkComponent FootstepAkComponent;
 var protected export editinline AkComponent DialogAkComponent;
-var protected AkEvent OnDeathStopEvent;
 var float LastReplicateTime;
 var KFAIController MyKFAIC;
 var const float ExtraCostForPath;
@@ -687,6 +686,8 @@ simulated function InitRBSettings()
     }
     UpdateMeshForFleXCollision();
 }
+
+simulated function OnCharacterMeshChanged();
 
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
@@ -2158,9 +2159,9 @@ simulated function TerminateEffectsOnDeath()
     WeaponAmbientEchoHandler.StopAllEchoes(bPendingDelete);
     DialogAkComponent.StopEvents();
     AfflictionHandler.ShutDown();
-    if(OnDeathStopEvent != none)
+    if(SoundGroupArch.OnDeathStopEvent != none)
     {
-        PostAkEvent(OnDeathStopEvent);
+        PostAkEvent(SoundGroupArch.OnDeathStopEvent);
     }
 }
 

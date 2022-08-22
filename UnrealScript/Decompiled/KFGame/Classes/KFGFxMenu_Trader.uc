@@ -146,6 +146,7 @@ function OnOpen()
         ShopContainer.OnTraderReopened();
     }
     MyKFPC.bClientTraderMenuOpen = true;
+    UpdatePlayerInfo();
 }
 
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)

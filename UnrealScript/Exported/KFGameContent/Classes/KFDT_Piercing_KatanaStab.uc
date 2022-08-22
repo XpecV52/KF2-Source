@@ -13,6 +13,7 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Katana'
    MeleeHitPower=100.000000
+   ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=200.000000
    KDeathUpKick=250.000000
    Name="Default__KFDT_Piercing_KatanaStab"

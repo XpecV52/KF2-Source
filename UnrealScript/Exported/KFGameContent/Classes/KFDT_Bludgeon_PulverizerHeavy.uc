@@ -11,6 +11,7 @@ class KFDT_Bludgeon_PulverizerHeavy extends KFDT_Bludgeon_Pulverizer
 
 defaultproperties
 {
+   KnockdownPower=0.000000
    StumblePower=100.000000
    KDamageImpulse=1600.000000
    KDeathVel=500.000000

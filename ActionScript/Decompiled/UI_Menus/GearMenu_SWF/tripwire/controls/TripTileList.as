@@ -86,7 +86,7 @@ package tripwire.controls
             tabEnabled = false;
             tabChildren = false;
             focused = 0;
-            if(this.bResetSelectedIndex)
+            if(this.bResetSelectedIndex && this.bManagerUsingGamepad)
             {
                 selectedIndex = 0;
             }

@@ -10,7 +10,6 @@ package
         {
             super();
             this.__setProp_inventoryItemScrollingList_InventoryItemListMC_ItemArea_0();
-            this.__setProp_allButton_InventoryItemListMC_FiltersLabels_0();
         }
         
         function __setProp_inventoryItemScrollingList_InventoryItemListMC_ItemArea_0() : *
@@ -40,39 +39,10 @@ package
             inventoryItemScrollingList.rowHeight = 0;
             inventoryItemScrollingList.scrollBar = "scrollbar";
             inventoryItemScrollingList.visible = true;
-            inventoryItemScrollingList.wrapping = "normal";
+            inventoryItemScrollingList.wrapping = "stick";
             try
             {
                 inventoryItemScrollingList["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_allButton_InventoryItemListMC_FiltersLabels_0() : *
-        {
-            try
-            {
-                allButton["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            allButton.autoRepeat = false;
-            allButton.autoSize = "none";
-            allButton.clickSoundEffect = "Button_Selected";
-            allButton.data = "";
-            allButton.enabled = true;
-            allButton.enableInitCallback = false;
-            allButton.focusable = true;
-            allButton.label = "";
-            allButton.selected = true;
-            allButton.toggle = false;
-            allButton.visible = true;
-            try
-            {
-                allButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

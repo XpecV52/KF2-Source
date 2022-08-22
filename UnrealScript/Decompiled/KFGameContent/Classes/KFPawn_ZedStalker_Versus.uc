@@ -39,6 +39,7 @@ function CallOutCloaking(optional KFPlayerController CallOutController)
 
 defaultproperties
 {
+    CloakedAkComponent=AkComponent'Default__KFPawn_ZedStalker_Versus.CloakedAkComponent0'
     CloakSpeed=2
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=50,Z=25),OffsetMid=(X=-150,Y=50,Z=-30),OffsetLow=(X=-220,Y=50,Z=50))
@@ -118,6 +119,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedStalker_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedStalker_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedStalker_Versus.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedStalker_Versus.CloakedAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

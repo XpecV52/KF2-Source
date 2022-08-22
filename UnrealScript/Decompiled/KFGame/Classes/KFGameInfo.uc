@@ -383,6 +383,11 @@ event InitGame(string Options, out string ErrorMessage)
             DialogManager = Spawn(DialogManagerClass);
         }
     }
+    if(WorldInfo.IsConsoleDedicatedServer() && (ParseOption(Options, "Private")) ~= "1")
+    {
+        GameEngine(Class'Engine'.static.GetEngine()).bPrivateServer = true;
+        UpdateGameSettings();
+    }
     if(MapCycleNeedsInit())
     {
         MapCycleIndex = -1;
@@ -1290,13 +1295,13 @@ function BroadcastDeathMessage(Controller Killer, Controller Other, class<Damage
 {
     if((Killer == Other) || Killer == none)
     {
-        BroadcastLocalized(self, Class'KFLocalMessage_Game', 24, none, Other.PlayerReplicationInfo);        
+        BroadcastLocalized(self, Class'KFLocalMessage_Game', 28, none, Other.PlayerReplicationInfo);        
     }
     else
     {
         if(Killer.IsA('KFAIController'))
         {
-            BroadcastLocalized(self, Class'KFLocalMessage_Game', 23, none, Other.PlayerReplicationInfo, Killer.Pawn.Class);            
+            BroadcastLocalized(self, Class'KFLocalMessage_Game', 27, none, Other.PlayerReplicationInfo, ((Killer.Pawn != none) ? Killer.Pawn.Class : Class'KFPawn_Human'));            
         }
         else
         {
@@ -2406,11 +2411,24 @@ function LobbyCountdownComplete()
     StartMatch();
 }
 
-function CheckServerUnlock()
+private final function CheckServerUnlock()
 {
+    local bool bWasAvailableForTakeover;
+    local KFGameEngine KFEngine;
+
+    KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
     if((GetNumPlayers()) == 0)
     {
-        KFGameEngine(Class'Engine'.static.GetEngine()).UnlockServer();
+        bWasAvailableForTakeover = KFEngine.bAvailableForTakeover;
+        KFEngine.UnlockServer();
+        if(!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
+        {
+            AccessControl.SetGamePassword("");
+        }
+        if(bWasAvailableForTakeover != KFEngine.bAvailableForTakeover)
+        {
+            UpdateGameSettings();
+        }
     }
 }
 

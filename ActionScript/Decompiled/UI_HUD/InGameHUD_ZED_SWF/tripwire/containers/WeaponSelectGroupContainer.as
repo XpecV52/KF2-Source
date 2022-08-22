@@ -180,6 +180,7 @@ package tripwire.containers
                 {
                     this.visible = false;
                     this.bForceHidden = true;
+                    this._weaponItemContainers[_loc2_].visible = false;
                 }
                 else if(_loc2_ < this.weaponList.length)
                 {

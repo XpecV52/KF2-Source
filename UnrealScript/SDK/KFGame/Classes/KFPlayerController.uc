@@ -1028,6 +1028,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		bSkipNonCriticalForceLookAt 	= Profile.GetProfileBool(KFID_AutoTurnOff);
 		bShowKillTicker					= Profile.GetProfileBool(KFID_ShowKillTicker);
 		bNoEarRingingSound				= Profile.GetProfileBool(KFID_ReduceHightPitchSounds);
+		bHideBossHealthBar 				= Profile.GetProfileBool(KFID_HideBossHealthBar);
 
 		KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
 		if(KFPRI != none)
@@ -1063,7 +1064,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
 		if(KFEngine != none)
 		{
-			KFEngine.SetVoIPRecieveVolume(Profile.GetProfileFloat(KFID_VOIPVolumeMultiplier));
+			KFEngine.VOIPVolumeMultiplier = Profile.GetProfileFloat(KFID_VOIPVolumeMultiplier);
 			KFEngine.MusicVolumeMultiplier = Profile.GetProfileFloat(KFID_MusicVolumeMultiplier);
 			KFEngine.SFxVolumeMultiplier = Profile.GetProfileFloat(KFID_SFXVolumeMultiplier);
 			KFEngine.DialogVolumeMultiplier = Profile.GetProfileFloat(KFID_DialogVolumeMultiplier);
@@ -1074,6 +1075,10 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 			KFEngine.bAntiMotionSickness 	= Profile.GetProfileBool(KFID_AntiMotionSickness);
 
 			if(class'WorldInfo'.static.IsConsoleBuild())
+			{
+				class'KFGameEngine'.static.SetCrosshairEnabled(Profile.GetProfileBool(KFID_ShowConsoleCrossHair));
+			}
+			else
 			{
 				class'KFGameEngine'.static.SetCrosshairEnabled(Profile.GetProfileBool(KFID_ShowCrossHair));
 			}
@@ -1505,8 +1510,8 @@ function OnGameDestroyedForInviteComplete(name SessionName,bool bWasSuccessful)
 function OnSessionJoinComplete(name SessionName,bool bWasSuccessful)
 {
 	local OnlineGameSettings GameSettings;
-	GameSettings = OnlineSub.GameInterface.GetGameSettings(SessionName);
-	`log("SESSIONS - OnSessionJoinComplete"@GameSettings.LobbyId@GameSettings.JoinString);
+		GameSettings = OnlineSub.GameInterface.GetGameSettings(SessionName);
+		`log("SESSIONS - OnSessionJoinComplete"@GameSettings.LobbyId@GameSettings.JoinString);
 
 	PlayfabInter.AddQueryServerInfoCompleteDelegate( OnQueryAdditionalServerInfoForInviteComplete );
 	PlayfabInter.QueryServerInfo( GameSettings.LobbyId );
@@ -2388,6 +2393,8 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 		{
 			SetViewTarget(KFBoss);
 		}
+		//hide interaction widget
+		ReceiveLocalizedMessage( class'KFLocalMessage_Interaction', IMT_None );
 	}
 	else
 	{
@@ -2430,6 +2437,15 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 	{
 		PlayerCamera.CameraStyle = NewCamMode;
 	}
+}
+
+function bool IsBossCameraMode()
+{
+	if ( PlayerCamera != None && PlayerCamera.CameraStyle == 'Boss' )
+	{
+		return true;
+	}
+	return false;
 }
 
 function KFPawn_MonsterBoss GetBoss()
@@ -3539,7 +3555,11 @@ reliable client event ReceiveLocalizedMessage( class<LocalMessage> Message, opti
 		{
 			PlayAKEvent( class'KFPerk_Support'.static.GetReceivedAmmoSound() );
 		}
-		else if( Switch == GMT_ReceivedAmmoAndArmor )
+		else if( Switch == GMT_ReceivedArmorFrom )
+		{
+			PlayAKEvent( class'KFPerk_Support'.static.GetReceivedArmorSound() );
+		}
+		else if( Switch == GMT_ReceivedAmmoAndArmorFrom )
 		{
 			PlayAKEvent( class'KFPerk_Support'.static.GetReceivedAmmoAndArmorSound() );
 		}
@@ -4042,7 +4062,7 @@ simulated function PlayEarRingEffect(float Intensity)
 	{
 		ExplosionEarRingTimeRemaining = ExplosionEarRingDuration * Intensity;
 		ExplosionEarRingDelay = 0.5;
-		if ( !bNoEarRingingSound )
+		if ( !bNoEarRingingSound && EarsRingingPlayEvent != none )
 		{
 			PlaySoundBase(EarsRingingPlayEvent, true);
 		}
@@ -4069,7 +4089,11 @@ simulated function UpdateEarRingEffect(float DeltaTime)
 		{
 			ExplosionEarRingTimeRemaining = 0.f;
 			ExplosionEarRingEffectIntensity = 0.f;
-			PlaySoundBase(EarsRingingStopEvent, true);
+
+			if( EarsRingingStopEvent != none )
+			{
+				PlaySoundBase(EarsRingingStopEvent, true);			
+			}
 		}
 
 		SetRTPCValue( 'GRENADEFX', ExplosionEarRingEffectIntensity, true );
@@ -4868,14 +4892,14 @@ function OpenTraderMenu( optional bool bForce=false )
    		if( KFIM != none && !KFIM.bServerTraderMenuOpen )
    		{
 	   		KFIM.bServerTraderMenuOpen = true;
-	 		ClientOpenTraderMenu();
+	 		ClientOpenTraderMenu(bForce);
 	 	}
 	}
 }
 
-reliable client function ClientOpenTraderMenu()
+reliable client function ClientOpenTraderMenu( optional bool bForce=false )
 {
-	if( Role < ROLE_Authority && !KFGameReplicationInfo(WorldInfo.GRI).bTraderIsOpen )
+	if( Role < ROLE_Authority && !KFGameReplicationInfo(WorldInfo.GRI).bTraderIsOpen && !bForce )
 	{
 		return; // too late
 	}
@@ -8087,8 +8111,6 @@ function ClearOnlineDelegates()
 			OnlineSub.PlayerInterface.ClearReadProfileSettingsCompleteDelegate(LocalPlayer(Player).ControllerId, OnReadProfileSettingsComplete);
 		}
 	}
-
-	PlayfabInter.ClearQueryServerInfoCompleteDelegate( OnQueryAdditionalServerInfoForInviteComplete );
 
 	super.ClearOnlineDelegates();
 }

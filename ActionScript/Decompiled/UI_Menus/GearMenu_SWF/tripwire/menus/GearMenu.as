@@ -452,6 +452,7 @@ package tripwire.menus
             if(bManagerUsingGamepad)
             {
                 dimLeftSide(true);
+                param1.selectContainer();
             }
             this._bSelectingSkin = param1 == this.skinList;
             if(this._bSelectingSkin)

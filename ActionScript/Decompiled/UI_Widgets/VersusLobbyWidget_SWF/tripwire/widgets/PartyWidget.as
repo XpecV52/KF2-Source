@@ -123,14 +123,7 @@ package tripwire.widgets
             this._deployTimer = new Timer(1000);
             this._deployTimer.addEventListener(TimerEvent.TIMER,this.countdownTimer,false,0,true);
             this._deployTimer.addEventListener(TimerEvent.TIMER_COMPLETE,this.stopCountdown,false,0,true);
-            if(this._bInParty)
-            {
-                defaultFirstElement = currentElement = this.squadMember0;
-            }
-            else
-            {
-                defaultFirstElement = currentElement = this.createPartyButton;
-            }
+            defaultFirstElement = currentElement = this.squadMember0;
             this.setTabIndex();
             ANIM_OFFSET_X = 24;
         }
@@ -155,6 +148,17 @@ package tripwire.widgets
             this._deployingString = param1;
             this.matchStartContainer.timeTextField.visible = true;
             this.matchStartContainer.BlackBG.visible = true;
+        }
+        
+        public function set localizedText(param1:Object) : void
+        {
+            this.backPromptString = !!param1.fov ? param1.fov : "";
+            this.readyButton.label = !!param1.readyString ? param1.readyString : "";
+            this.createPartyButton.label = !!param1.createPartyString ? param1.createPartyString : "";
+            this.deployingString = !!param1.deployingString ? param1.deployingString : "";
+            this.waitingString = !!param1.waitingString ? param1.waitingString : "";
+            this.selectPromptString = !!param1.selectPromptString ? param1.selectPromptString : "";
+            this.backPromptString = !!param1.backPromptString ? param1.backPromptString : "";
         }
         
         public function get backPromptString() : String
@@ -375,32 +379,27 @@ package tripwire.widgets
             {
                 return;
             }
-            if(!param1 && this.createPartyButton.hasFocus && bSelected)
+            if(!param1 && MenuManager.manager.bPartyWidgetFocused)
             {
-                FocusHandler.getInstance().setFocus(this.squadMember0);
                 if(currentElement == this.createPartyButton)
                 {
                     defaultFirstElement = currentElement = this.squadMember0;
                 }
+                FocusHandler.getInstance().setFocus(currentElement);
             }
             this.createPartyButton.visible = param1;
         }
         
         override public function selectContainer() : void
         {
-            if(this.readyButton.visible)
-            {
-                currentElement = this.readyButton;
-            }
-            else if(this.createPartyButton && this.createPartyButton.visible)
-            {
-                currentElement = this.createPartyButton;
-            }
-            else
-            {
-                currentElement = this.squadMember0;
-            }
+            currentElement = this.squadMember0;
             super.selectContainer();
+            if(bManagerUsingGamepad && currentElement && !MenuManager.manager.bPopUpOpen && currentElement.visible && MenuManager.manager.bPartyWidgetFocused)
+            {
+                currentElement.tabEnabled = true;
+                currentElement.tabChildren = true;
+                FocusHandler.getInstance().setFocus(currentElement);
+            }
             this.updateControllerIconVisibility();
             if(this.Overlay_mc)
             {
@@ -423,6 +422,7 @@ package tripwire.widgets
             {
                 stage.dispatchEvent(new Event(MenuManager.PARTYFOCUS_CHANGED));
             }
+            stage.addEventListener(MenuManager.POPUP_CHANGED,this.onPopupChanged,false,0,true);
         }
         
         override public function deselectContainer() : void
@@ -456,6 +456,7 @@ package tripwire.widgets
             {
                 stage.dispatchEvent(new Event(MenuManager.PARTYFOCUS_CHANGED));
             }
+            stage.removeEventListener(MenuManager.POPUP_CHANGED,this.onPopupChanged);
         }
         
         public function startCountdown(param1:int, param2:Boolean) : void
@@ -464,7 +465,7 @@ package tripwire.widgets
             if(param2)
             {
                 this.matchStartContainer.messageTextField.visible = true;
-                this.matchStartContainer.messageTextField.text = this._deployingString;
+                this.matchStartContainer.messageTextField.text = this.deployingString;
                 this.matchStartContainer.timeTextField.textColor = this.FinalCountdownColor;
             }
             else
@@ -603,6 +604,11 @@ package tripwire.widgets
                     Extensions.gfxProcessSound(this,"UI",this.readySoundEffect);
                 }
             }
+        }
+        
+        protected function onPopupChanged(param1:Event) : *
+        {
+            this.promptsDisplay.visible = bManagerUsingGamepad && bSelected && !MenuManager.manager.bPopUpOpen;
         }
     }
 }

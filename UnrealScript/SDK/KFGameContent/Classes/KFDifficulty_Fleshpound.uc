@@ -40,7 +40,7 @@ defaultproperties
 		DamagedSprintChance=0.0,
 		DamageMod=1.125000,
 		SoloDamageMod=0.500000,
-		BlockSettings={(Chance=0.2, Duration=1.25, MaxBlocks=4, Cooldown=4.5, DamagedHealthPctToTrigger=0.05,
+		BlockSettings={(Chance=0.2, Duration=1.25, MaxBlocks=4, Cooldown=6.5, DamagedHealthPctToTrigger=0.05,
 							MeleeDamageModifier=0.9, DamageModifier=0.9, AfflictionModifier=0.2, SoloChanceMultiplier=0.1)},
 		RallySettings={(DealtDamageModifier=1.2, TakenDamageModifier=0.9)}
 	)}
@@ -52,7 +52,7 @@ defaultproperties
 		DamagedSprintChance=0.0,
 		DamageMod=1.25, //1.487500
 		SoloDamageMod=0.650000,
-		BlockSettings={(Chance=0.3, Duration=1.25, MaxBlocks=5, Cooldown=4.5, DamagedHealthPctToTrigger=0.05,
+		BlockSettings={(Chance=0.3, Duration=1.25, MaxBlocks=5, Cooldown=6.5, DamagedHealthPctToTrigger=0.05,
 							MeleeDamageModifier=0.9, DamageModifier=0.9, AfflictionModifier=0.2, SoloChanceMultiplier=0.2)},
 		RallySettings={(DealtDamageModifier=1.2, TakenDamageModifier=0.9)}
 	)}

@@ -209,7 +209,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 		if( IsDirectHitActive() && DamageType != none && IsDamageTypeOnPerk( DamageType ) )
 		{
-			if( DamageType.IsA('KFDT_Ballistic_Shell') )
+			if( class<KFDT_Ballistic_Shell>(DamageType) != none )
 			{
 				TempDamage += InDamage * GetSkillValue( PerkSkills[EDemoDirectHit] );
 				;
@@ -225,7 +225,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 		if( IsAoEActive() )
 		{
-			TempDamage -= InDamage * GetAeODamageModifier();
+			TempDamage -= InDamage * GetAoEDamageModifier();
 		}
 	}
 	
@@ -405,7 +405,7 @@ simulated private final static function int GetExtraAmmo( int Level )
 /*********************************************************************************************
 * @name	 Selectable skills
 ********************************************************************************************* */
-simulated function float GetAeORadiusModifier()
+simulated function float GetAoERadiusModifier()
 { 
 	local float RadiusModifier;
 
@@ -415,7 +415,7 @@ simulated function float GetAeORadiusModifier()
 	return RadiusModifier;
 }
 
-simulated function float GetAeODamageModifier()
+simulated function float GetAoEDamageModifier()
 { 
 	return IsAoEActive() ? default.AoeDamageModifier : 1.f;
 }
@@ -521,6 +521,17 @@ simulated function Interact( KFPawn_Human KFPH )
 				}
 
 				;
+			}
+		}
+	}
+	else
+	{
+		if( Role == ROLE_Authority )
+		{
+			KFPC = KFPlayerController(KFPH.Controller);
+			if( KFPC != none )
+			{
+				KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_AmmoIsFull, OwnerPC.PlayerReplicationInfo );
 			}
 		}
 	}
@@ -1016,7 +1027,7 @@ defaultproperties
    NukeDamageModifier=1.500000
    NukeRadiusModifier=1.350000
    ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'
-   AoeDamageModifier=0.300000
+   AoeDamageModifier=0.700000
    LingeringNukePoisonDamage=20
    PassiveExtraAmmoIgnoredClassNames(0)="KFProj_DynamiteGrenade"
    ExtraAmmoIgnoredClassNames(0)="KFProj_DynamiteGrenade"

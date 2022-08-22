@@ -11,7 +11,7 @@ class KFDT_Piercing_Crossbow extends KFDT_Piercing
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Crossbow'
-    StunPower=90
+    StunPower=101
     KnockdownPower=20
     StumblePower=250
     GunHitPower=100

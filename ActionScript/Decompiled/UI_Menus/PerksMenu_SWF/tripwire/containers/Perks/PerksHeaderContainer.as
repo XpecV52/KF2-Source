@@ -4,6 +4,7 @@ package tripwire.containers.Perks
     import flash.text.TextField;
     import scaleform.gfx.TextFieldEx;
     import tripwire.controls.TripUILoaderQueue;
+    import tripwire.managers.MenuManager;
     
     public class PerksHeaderContainer extends PerkContainerBase
     {
@@ -65,6 +66,12 @@ package tripwire.containers.Perks
             }
             this.progressNum = 100 * param1 + 1;
             this.progressBar.gotoAndStop(this.progressNum);
+        }
+        
+        override public function selectContainer() : void
+        {
+            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            super.selectContainer();
         }
     }
 }

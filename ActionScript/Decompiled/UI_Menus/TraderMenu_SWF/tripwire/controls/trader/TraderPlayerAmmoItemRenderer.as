@@ -78,6 +78,12 @@ package tripwire.controls.trader
             }
         }
         
+        override public function set enabled(param1:Boolean) : void
+        {
+            super.enabled = param1;
+            this.bgVisibility = !!bManagerUsingGamepad ? false : true;
+        }
+        
         public function get buttonState() : int
         {
             return this._buttonState;
@@ -92,14 +98,14 @@ package tripwire.controls.trader
             }
             if(param1 == 0)
             {
-                enabled = true;
+                this.enabled = true;
                 mouseEnabled = true;
                 selectable = true;
                 alpha = 1;
             }
             else if(param1 == 1)
             {
-                enabled = false;
+                this.enabled = false;
                 alpha = 0.32;
                 setState("up");
                 mouseEnabled = true;
@@ -107,11 +113,12 @@ package tripwire.controls.trader
             }
             else
             {
-                enabled = false;
+                this.enabled = false;
                 mouseEnabled = true;
                 selectable = false;
                 alpha = 1;
             }
+            this.bgVisibility = !bManagerUsingGamepad;
         }
         
         public function set controllerIconVisibility(param1:Boolean) : void

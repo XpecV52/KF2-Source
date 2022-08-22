@@ -1062,12 +1062,12 @@ simulated function bool CanExplosiveWeld()
     return false;
 }
 
-simulated function float GetAeORadiusModifier()
+simulated function float GetAoERadiusModifier()
 {
     return 1;
 }
 
-simulated function float GetAeODamageModifier()
+simulated function float GetAoEDamageModifier()
 {
     return 1;
 }

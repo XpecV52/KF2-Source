@@ -2,11 +2,13 @@ package InGameHUD_ZED_SWF_fla
 {
     import flash.display.MovieClip;
     
-    public dynamic class WeaponSelectArrowContainer_167 extends MovieClip
+    public dynamic class DoshInfo_122 extends MovieClip
     {
          
         
-        public function WeaponSelectArrowContainer_167()
+        public var DoshGaugeMC:MovieClip;
+        
+        public function DoshInfo_122()
         {
             super();
             addFrameScript(0,this.frame1);

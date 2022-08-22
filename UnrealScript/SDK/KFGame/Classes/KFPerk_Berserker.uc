@@ -727,7 +727,7 @@ simulated function bool HasNightVision()
  *
  * @return true if we have the skill enabled
  */
-final protected event bool IsSmashActive()
+final simulated protected event bool IsSmashActive()
 {
 	return PerkSkills[EBerserkerSmash].bActive;
 }
@@ -737,7 +737,7 @@ final protected event bool IsSmashActive()
  *
  * @return true if we have the skill enabled
  */
-final private function bool IsFuryActive()
+final simulated private function bool IsFuryActive()
 {
 	return PerkSkills[EBerserkerFury].bActive;
 }
@@ -782,7 +782,7 @@ simulated private event bool CouldSpartanBeActive()
  *
  * @return true if Spartan are active
  */
-function bool IsFastInZedTime()
+simulated function bool IsFastInZedTime()
 {
 	return PerkSkills[EBerserkerSpartan].bActive;
 }

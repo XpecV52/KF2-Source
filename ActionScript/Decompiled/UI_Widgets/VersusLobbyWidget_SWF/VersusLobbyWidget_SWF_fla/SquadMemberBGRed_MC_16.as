@@ -1,12 +1,12 @@
-package PartyWidget_SWF_fla
+package VersusLobbyWidget_SWF_fla
 {
     import flash.display.MovieClip;
     
-    public dynamic class SquadMemberBGRed_MC_14 extends MovieClip
+    public dynamic class SquadMemberBGRed_MC_16 extends MovieClip
     {
          
         
-        public function SquadMemberBGRed_MC_14()
+        public function SquadMemberBGRed_MC_16()
         {
             super();
             addFrameScript(0,this.frame1,1,this.frame2);

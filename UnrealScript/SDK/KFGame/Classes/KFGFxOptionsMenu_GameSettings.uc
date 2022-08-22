@@ -111,7 +111,8 @@ function  InitValues()
 	}
  	DataObject.SetFloat("gore", 				Manager.CachedProfile.GetProfileInt(KFID_GoreLevel));
  	DataObject.SetFloat("friendlyHud", 			Manager.CachedProfile.GetProfileFloat(KFID_FriendlyHudScale));
- 	DataObject.SetBool("crosshair", 			Manager.CachedProfile.GetProfileBool(KFID_ShowCrossHair));
+ 	DataObject.SetBool("crosshair", 			class'WorldInfo'.static.IsConsoleBuild() ? Manager.CachedProfile.GetProfileBool(KFID_ShowConsoleCrossHair) : Manager.CachedProfile.GetProfileBool(KFID_ShowCrossHair));
+
  	DataObject.SetBool("killTicker",			Manager.CachedProfile.GetProfileBool(KFID_ShowKillTicker));
 
  	DataObject.SetBool("hideBossHealthBar", 	Manager.CachedProfile.GetProfileBool(KFID_HideBossHealthBar));
@@ -163,7 +164,7 @@ function Callback_ToggleCrosshair( bool bShow )
 	class'KFGameEngine'.static.SetCrosshairEnabled(bShow);
 
 	Settings = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId);
-	Settings.SetProfileSettingValueInt(KFID_ShowCrossHair, bShow ? 1 : 0);
+	Settings.SetProfileSettingValueInt(class'WorldInfo'.static.IsConsoleBuild() ? KFID_ShowConsoleCrossHair : KFID_ShowCrossHair, bShow ? 1 : 0);
 }
 
 function Callback_FOVChanged( float NewFOVPercentage )
@@ -413,7 +414,8 @@ function ResetGameOptions()
 {
 	Manager.CachedProfile.SetProfileSettingValueInt(KFID_GoreLevel, Manager.CachedProfile.GetDefaultInt(KFID_GoreLevel));
 	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_FriendlyHudScale, Manager.CachedProfile.GetDefaultFloat(KFID_FriendlyHudScale));	
-	Manager.CachedProfile.SetProfileSettingValueInt(KFID_ShowCrossHair, Manager.CachedProfile.GetDefaultInt(KFID_ShowCrossHair));
+	Manager.CachedProfile.SetProfileSettingValueInt(class'WorldInfo'.static.IsConsoleBuild() ? KFID_ShowConsoleCrossHair : KFID_ShowCrossHair, 
+													class'WorldInfo'.static.IsConsoleBuild() ? Manager.CachedProfile.GetDefaultInt(KFID_ShowConsoleCrossHair) : Manager.CachedProfile.GetDefaultInt(KFID_ShowCrossHair));
 	Manager.CachedProfile.SetProfileSettingValueInt(KFID_ShowKillTicker, Manager.CachedProfile.GetDefaultInt(KFID_ShowKillTicker));
 
 	//Added 7/11/2016

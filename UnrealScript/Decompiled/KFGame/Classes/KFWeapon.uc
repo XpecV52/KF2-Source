@@ -766,7 +766,7 @@ function DropFrom(Vector StartLocation, Vector StartVelocity)
     P = Spawn(DroppedPickupClass,,, StartLocation,,, true);
     if(P == none)
     {
-        PlayerController(Instigator.Controller).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 16);
+        PlayerController(Instigator.Controller).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 21);
         return;
     }
     if((Instigator != none) && Instigator.InvManager != none)
@@ -858,7 +858,7 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
             KFPC = KFPlayerController(Instigator.Controller);
             if(KFPC != none)
             {
-                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', ((IsMeleeWeapon()) ? 11 : 10));
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', ((IsMeleeWeapon()) ? 16 : 14));
             }
         }
     }
@@ -3901,9 +3901,9 @@ auto state Inactive
         super.BeginState(PreviousStateName);
     }
 
-    simulated function EndState(name NextStateName)
+    simulated function Activate()
     {
-        super(Object).EndState(NextStateName);
+        global.Activate();
         UpdateOutOfAmmoEffects(0);
     }
     stop;    

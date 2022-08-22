@@ -347,11 +347,11 @@ static simulated function GetPassiveStrings(out array<string> PassiveValues, out
     PassiveValues[2] = string(Round((default.BloatBileResistance.Increment * float(Level)) * float(100))) $ "%";
     PassiveValues[3] = string(Round((default.MovementSpeed.Increment * float(Level)) * float(100))) $ "%";
     PassiveValues[4] = string(Round((default.Armor.Increment * float(Level)) * float(100))) $ "%";
-    Increments[0] = ((("[" @ string(Round(default.HealerRecharge.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
-    Increments[1] = ((("[" @ string(Round(default.HealPotency.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
-    Increments[2] = ((("[" @ string(Round(default.BloatBileResistance.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
+    Increments[0] = ((("[" @ Left(string(default.HealerRecharge.Increment * float(100)), InStr(string(default.HealerRecharge.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
+    Increments[1] = ((("[" @ Left(string(default.HealPotency.Increment * float(100)), InStr(string(default.HealPotency.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
+    Increments[2] = ((("[" @ Left(string(default.BloatBileResistance.Increment * float(100)), InStr(string(default.BloatBileResistance.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
     Increments[3] = ((("[" @ Left(string(default.MovementSpeed.Increment * float(100)), 3)) $ "% /") @ default.LevelString) @ "]";
-    Increments[4] = ((("[" @ string(Round(default.Armor.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
+    Increments[4] = ((("[" @ Left(string(default.Armor.Increment * float(100)), InStr(string(default.Armor.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
 }
 
 simulated function LogPerkSkills()

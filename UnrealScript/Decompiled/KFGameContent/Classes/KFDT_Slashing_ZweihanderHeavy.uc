@@ -29,7 +29,6 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Zweihander'
     StumblePower=100
-    ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=1600
     KDeathVel=500
     KDeathUpKick=200

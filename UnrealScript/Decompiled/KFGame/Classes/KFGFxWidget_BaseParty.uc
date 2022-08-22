@@ -127,13 +127,17 @@ function InitializeWidget()
 
 function LocalizeText()
 {
-    ReadyButton.SetString("label", ReadyString);
-    LeaveButton.SetString("label", LeaveString);
-    CreatePartyButton.SetString("label", CreatePartyString);
-    SetString("deployingString", DeployingString);
-    SetString("waitingString", WaitingString);
-    SetString("selectPromptString", Localize("KFGFxWidget_ButtonPrompt", "ConfirmString", "KFGame"));
-    SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
+    local GFxObject TextObject;
+
+    TextObject = Outer.CreateObject("Object");
+    TextObject.SetString("readyString", ReadyString);
+    TextObject.SetString("leaveString", LeaveString);
+    TextObject.SetString("createPartyString", CreatePartyString);
+    TextObject.SetString("deployingString", DeployingString);
+    TextObject.SetString("waitingString", WaitingString);
+    TextObject.SetString("selectPromptString", Localize("KFGFxWidget_ButtonPrompt", "ConfirmString", "KFGame"));
+    TextObject.SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
+    SetObject("localizedText", TextObject);
 }
 
 function InitNotificationUI()
@@ -181,59 +185,38 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
     PC = Outer.GetPC();
     ProfileOptions.Length = 0;
     bConsoleBuild = PC.WorldInfo.IsConsoleBuild();
-    if(!bConsoleBuild && PlayerID != PC.PlayerReplicationInfo.UniqueId)
+    if(PlayerID == PC.PlayerReplicationInfo.UniqueId)
     {
-        if(!IsPlayerAFriend(PlayerID))
-        {
-            ProfileOptions.AddItem(AddFriendString;            
-        }
-        else
-        {
-            ProfileOptions.AddItem(RemoveFriendString;
-        }        
+        ProfileOptions.RemoveItem(AddFriendString;
+        ProfileOptions.RemoveItem(RemoveFriendString;
+        ProfileOptions.RemoveItem(UnmuteString;
+        ProfileOptions.RemoveItem(MuteString;
+        ProfileOptions.RemoveItem(VoteKickString;        
     }
     else
     {
-        if(ProfileOptions.Find(AddFriendString != -1)
+        if(!bConsoleBuild)
         {
-            ProfileOptions.RemoveItem(AddFriendString;            
-        }
-        else
-        {
-            if(ProfileOptions.Find(RemoveFriendString != -1)
+            if(!IsPlayerAFriend(PlayerID))
             {
-                ProfileOptions.RemoveItem(RemoveFriendString;
+                ProfileOptions.AddItem(AddFriendString;                
+            }
+            else
+            {
+                ProfileOptions.AddItem(RemoveFriendString;
             }
         }
-    }
-    if(!PC.WorldInfo.IsMenuLevel() && PlayerID != PC.PlayerReplicationInfo.UniqueId)
-    {
-        if(PC.IsPlayerMuted(PlayerID))
+        if(!PC.WorldInfo.IsMenuLevel())
         {
-            ProfileOptions.AddItem(UnmuteString;            
-        }
-        else
-        {
-            ProfileOptions.AddItem(MuteString;
-        }
-        ProfileOptions.AddItem(VoteKickString;        
-    }
-    else
-    {
-        if(ProfileOptions.Find(UnmuteString != -1)
-        {
-            ProfileOptions.RemoveItem(UnmuteString;            
-        }
-        else
-        {
-            if(ProfileOptions.Find(MuteString != -1)
+            if(PC.IsPlayerMuted(PlayerID))
             {
-                ProfileOptions.RemoveItem(MuteString;
+                ProfileOptions.AddItem(UnmuteString;                
             }
-        }
-        if(ProfileOptions.Find(VoteKickString != -1)
-        {
-            ProfileOptions.RemoveItem(VoteKickString;
+            else
+            {
+                ProfileOptions.AddItem(MuteString;
+            }
+            ProfileOptions.AddItem(VoteKickString;
         }
     }
     if(bConsoleBuild)
@@ -399,7 +382,10 @@ function bool IsPlayerAFriend(UniqueNetId PlayerID)
     return OnlineSub.IsFriend(byte(LocPlayer.ControllerId), PlayerID);
 }
 
-function ToggelMuteOnPlayer(int SlotIndex);
+function ToggelMuteOnPlayer(int SlotIndex)
+{
+    RefreshParty();
+}
 
 function ViewProfile(int SlotIndex);
 

@@ -62,6 +62,25 @@ package tripwire.containers.Perks
             this.perkScrollingList.addEventListener(ListEvent.INDEX_CHANGE,this.onPerkChanged,false,0,true);
         }
         
+        public function set perkListEnabled(param1:Boolean) : void
+        {
+            var _loc2_:int = 0;
+            if(!param1)
+            {
+                _loc2_ = 0;
+                while(_loc2_ < this.perkScrollingList.dataProvider.length)
+                {
+                    PerkSelectLineRenderer(this.perkScrollingList.getRendererAt(_loc2_)).selected = false;
+                    _loc2_++;
+                }
+            }
+            else
+            {
+                PerkSelectLineRenderer(this.perkScrollingList.getRendererAt(this.perkScrollingList.selectedIndex)).selected = true;
+            }
+            this.perkScrollingList.enabled = param1;
+        }
+        
         public function setPendingPerkChanges(param1:String, param2:String, param3:String) : void
         {
             if(param1 != null && param1 != "")
@@ -104,7 +123,7 @@ package tripwire.containers.Perks
         
         public function onPerkChanged(param1:ListEvent) : *
         {
-            if(!bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bLostFocus && !this._bFirstChange)
+            if(bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bLostFocus && !this._bFirstChange)
             {
                 TweenMax.killTweensOf(this);
                 TweenMax.to(this,ANIM_TIME,{

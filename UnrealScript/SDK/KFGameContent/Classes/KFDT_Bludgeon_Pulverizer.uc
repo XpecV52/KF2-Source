@@ -11,11 +11,11 @@ class KFDT_Bludgeon_Pulverizer extends KFDT_Bludgeon
 
 defaultproperties
 {
-	KDamageImpulse=1500
-	KDeathUpKick=0
+KDamageImpulse=3000 //1500
+	KDeathUpKick=0 //0
 	KDeathVel=375
 	
-	KnockdownPower=0
+	KnockdownPower=100
 	StunPower=0
 	StumblePower=50
 	MeleeHitPower=100

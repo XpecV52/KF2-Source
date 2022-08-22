@@ -95,9 +95,15 @@ package tripwire.menus
             this.hideBossHealthBarCheckBox.tabIndex = _loc1_++;
             this.showWelderInInvCheckBox.tabIndex = _loc1_++;
             this.useAltAimOnDualCheckBox.tabIndex = _loc1_++;
-            this.antiMotionSicknessCheckBox.tabIndex = _loc1_++;
             this.autoTurnOffCheckBox.tabIndex = _loc1_++;
-            this.reduceHighPitchNoiseCheckBox.tabIndex = _loc1_++;
+            if(this.reduceHighPitchNoiseCheckBox != null)
+            {
+                this.reduceHighPitchNoiseCheckBox.tabIndex = _loc1_++;
+            }
+            if(this.antiMotionSicknessCheckBox != null)
+            {
+                this.antiMotionSicknessCheckBox.tabIndex = _loc1_++;
+            }
             if(!_loc2_)
             {
                 this.classicWeaponSelectCheckBox.tabIndex = _loc1_++;
@@ -130,9 +136,15 @@ package tripwire.menus
             this.hideBossHealthBarCheckBox.label = !!param1.hideBossHealthBar ? param1.hideBossHealthBar : "";
             this.showWelderInInvCheckBox.label = !!param1.showWelderInInv ? param1.showWelderInInv : "";
             this.useAltAimOnDualCheckBox.label = !!param1.useAltAimOnDual ? param1.useAltAimOnDual : "";
-            this.antiMotionSicknessCheckBox.label = !!param1.antiMotionSickness ? param1.antiMotionSickness : "";
             this.autoTurnOffCheckBox.label = !!param1.autoTurnOff ? param1.autoTurnOff : "";
-            this.reduceHighPitchNoiseCheckBox.label = !!param1.reduceHighPitchNoise ? param1.reduceHighPitchNoise : "";
+            if(this.reduceHighPitchNoiseCheckBox != null)
+            {
+                this.reduceHighPitchNoiseCheckBox.label = !!param1.reduceHighPitchNoise ? param1.reduceHighPitchNoise : "";
+            }
+            if(this.antiMotionSicknessCheckBox != null)
+            {
+                this.antiMotionSicknessCheckBox.label = !!param1.antiMotionSickness ? param1.antiMotionSickness : "";
+            }
             this.fovMinimumText.text = !!param1.normal ? param1.normal : "";
             this.fovMaximumText.text = !!param1.wider ? param1.wider : "";
             this.killTickerCheckBox.label = !!param1.killTicker ? param1.killTicker : "";
@@ -152,9 +164,15 @@ package tripwire.menus
             this.hideBossHealthBarCheckBox.selected = !!param1.hideBossHealthBar ? Boolean(param1.hideBossHealthBar) : false;
             this.showWelderInInvCheckBox.selected = !!param1.showWelderInInv ? Boolean(param1.showWelderInInv) : false;
             this.useAltAimOnDualCheckBox.selected = !!param1.useAltAimOnDual ? Boolean(param1.useAltAimOnDual) : false;
-            this.antiMotionSicknessCheckBox.selected = !!param1.antiMotionSickness ? Boolean(param1.antiMotionSickness) : false;
             this.autoTurnOffCheckBox.selected = !!param1.autoTurnOff ? Boolean(param1.autoTurnOff) : false;
-            this.reduceHighPitchNoiseCheckBox.selected = !!param1.reduceHighPitchNoise ? Boolean(param1.reduceHighPitchNoise) : false;
+            if(this.reduceHighPitchNoiseCheckBox != null)
+            {
+                this.reduceHighPitchNoiseCheckBox.selected = !!param1.reduceHighPitchNoise ? Boolean(param1.reduceHighPitchNoise) : false;
+            }
+            if(this.antiMotionSicknessCheckBox != null)
+            {
+                this.antiMotionSicknessCheckBox.selected = !!param1.antiMotionSickness ? Boolean(param1.antiMotionSickness) : false;
+            }
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -164,8 +182,8 @@ package tripwire.menus
             this.fovSlider.slider.snapInterval = this.FOVStepValue;
             this.closeButton.visible = !bManagerUsingGamepad;
             this.defaultButton.visible = !bManagerUsingGamepad;
-            this.antiMotionSicknessCheckBox.visible = false;
-            this.reduceHighPitchNoiseCheckBox.visible = false;
+            this.goreSlider.slider.lowSnapping = true;
+            this.goreSlider.slider.snapInterval = 1;
         }
         
         override public function openContainer(param1:Boolean = true) : void
@@ -184,9 +202,15 @@ package tripwire.menus
             this.hideBossHealthBarCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.showWelderInInvCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.useAltAimOnDualCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
-            this.antiMotionSicknessCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.autoTurnOffCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
-            this.reduceHighPitchNoiseCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            if(this.reduceHighPitchNoiseCheckBox != null)
+            {
+                this.reduceHighPitchNoiseCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            }
+            if(this.antiMotionSicknessCheckBox != null)
+            {
+                this.antiMotionSicknessCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            }
             this.closeButton.addEventListener(ButtonEvent.PRESS,this.onButtonClick,false,0,true);
         }
         
@@ -244,9 +268,15 @@ package tripwire.menus
             this.hideBossHealthBarCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             this.showWelderInInvCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             this.useAltAimOnDualCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
-            this.antiMotionSicknessCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             this.autoTurnOffCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
-            this.reduceHighPitchNoiseCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            if(this.reduceHighPitchNoiseCheckBox != null)
+            {
+                this.reduceHighPitchNoiseCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            }
+            if(this.antiMotionSicknessCheckBox != null)
+            {
+                this.antiMotionSicknessCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            }
             this.closeButton.removeEventListener(ButtonEvent.PRESS,this.onButtonClick);
         }
         
@@ -255,6 +285,7 @@ package tripwire.menus
             super.onInputChange(param1);
             this.closeButton.visible = !bManagerUsingGamepad;
             this.defaultButton.visible = !bManagerUsingGamepad;
+            this.friendlyHudSlider.slider.focusable = this.fovSlider.slider.focusable = this.goreSlider.slider.focusable = bManagerUsingGamepad;
         }
         
         public function set goreOptions(param1:Array) : void

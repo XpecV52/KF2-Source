@@ -24,8 +24,9 @@ var AkEvent AmbientBreathingEvent;
 var AkEvent LowHealthAmbientBreathingEvent;
 
 /** Gameplay-driven Ak objects, instanced at runtime */
-var AkBaseSoundObject CloakedLoop;
-var AkBaseSoundObject CloakedLoopEnd;
+var AkComponent CloakedAkComponent;
+var AkEvent CloakedLoop;
+var AkEvent CloakedLoopEnd;
 
 /** Materials used for cloaking/visible states */
 var MaterialInstanceConstant BodyMaterial;
@@ -1714,6 +1715,8 @@ simulated function PlayDying( class<DamageType> DamageType, vector HitLoc )
 	BoilLightComponent.SetEnabled( false );
 	DetachComponent( BoilLightComponent );
 
+	PlayStealthSoundLoopEnd();
+
 	super.TerminateEffectsOnDeath();
 }
 
@@ -1757,12 +1760,18 @@ function int GetSpotterDialogID()
 
 simulated function PlayStealthSoundLoop()
 {
-	PlaySoundBase( CloakedLoop, true );
+	if( WorldInfo.NetMode != NM_DedicatedServer && !CloakedAkComponent.IsPlaying(CloakedLoop) )
+	{
+		CloakedAkComponent.PlayEvent( CloakedLoop, true, true );
+	}
 }
 
 simulated function PlayStealthSoundLoopEnd()
 {
-	PlaySoundBase( CloakedLoopEnd, true );
+	if( WorldInfo.NetMode != NM_DedicatedServer && CloakedAkComponent.IsPlaying(CloakedLoop) )
+	{
+		CloakedAkComponent.PlayEvent( CloakedLoopEnd, true, true );
+	}
 }
 
 function PlayMinigunWarnDialog()
@@ -1960,6 +1969,14 @@ defaultproperties
     // Audio
 	CloakedLoop=AkEvent'WW_ZED_Patriarch.Play_Patriarch_Cloak'
 	CloakedLoopEnd=AkEvent'WW_ZED_Patriarch.Stop_Patriarch_Cloak'
+	Begin Object Class=AkComponent name=CloakedAkComponent0
+		BoneName=dummy
+		bStopWhenOwnerDestroyed=true
+		bForceOcclusionUpdateInterval=true
+		OcclusionUpdateInterval=0.2f
+	End Object
+    CloakedAkComponent=CloakedAkComponent0
+    Components.Add( CloakedAkComponent0 )
 
     // ---------------------------------------------
     // Effects
@@ -1986,7 +2003,7 @@ defaultproperties
 	End Object
 
     // for reference: Vulnerability=(default, head, legs, arms, special)
-    IncapSettings(AF_Stun)=		(Vulnerability=(0.1, 0.55, 0.1, 0.1, 0.55), Cooldown=17.0, Duration=1.0)   // 0.5, 0.55, 0.5, 0.4, 0.55
+    IncapSettings(AF_Stun)=		(Vulnerability=(0.1, 0.55, 0.1, 0.1, 0.55), Cooldown=17.0, Duration=1.25) //1.0  // 0.5, 0.55, 0.5, 0.4, 0.55
     IncapSettings(AF_Knockdown)=(Vulnerability=(0.1, 0.4, 0.1, 0.1, 0.25),  Cooldown=20.0)                 // 0.2, 0.2, 0.4, 0.2, 0.25
     IncapSettings(AF_Stumble)=  (Vulnerability=(0.1, 0.3, 0.1, 0.1, 0.4),   Cooldown=10.0)                  // 0.2, 0.2, 0.2, 0.2, 0.4
     IncapSettings(AF_GunHit)=	(Vulnerability=(0.1, 0.1, 0.1, 0.1, 0.5),   Cooldown=1.7)                  // 0.1, 0.1, 0.1, 0.1, 0.5

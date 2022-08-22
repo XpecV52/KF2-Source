@@ -258,7 +258,7 @@ state Pickup
             if(W.Class == WeaponClass)
             {
                 W.AddAmmo(1);
-                PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 9,,, WeaponClass);
+                PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 13,,, WeaponClass);
                 P.PlaySoundBase(AmmoPickupSound);
                 ShutDown();
             }            

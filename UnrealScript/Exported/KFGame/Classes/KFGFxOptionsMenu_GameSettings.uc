@@ -15,6 +15,10 @@ class KFGFxOptionsMenu_GameSettings extends KFGFxObject_Menu;
 
 
 
+
+
+
+
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -47,7 +51,7 @@ const KFID_MouseSensitivity = 138;
 const KFID_TargetAdhesionEnabled = 139;
 const KFID_TargetFrictionEnabled = 140;
 const KFID_InvertMouse = 142;
-const KFID_VOIPVolumeMultiplier = 143;
+const KFID_DEPRECATED_143 = 143;
 const KFID_SavedSoloModeIndex = 144;
 const KFID_SavedSoloMapString = 145;
 const KFID_SavedSoloDifficultyIndex = 146;
@@ -67,6 +71,8 @@ const KFID_AntiMotionSickness = 159;
 const KFID_ShowWelderInInventory = 160; 
 const KFID_AutoTurnOff = 161;			
 const KFID_ReduceHightPitchSounds = 162; 
+const KFID_ShowConsoleCrossHair = 163;
+const KFID_VOIPVolumeMultiplier = 164;
 
 #linenumber 14;
 //@HSL_MOD_END
@@ -168,7 +174,8 @@ function  InitValues()
 	}
  	DataObject.SetFloat("gore", 				Manager.CachedProfile.GetProfileInt(KFID_GoreLevel));
  	DataObject.SetFloat("friendlyHud", 			Manager.CachedProfile.GetProfileFloat(KFID_FriendlyHudScale));
- 	DataObject.SetBool("crosshair", 			Manager.CachedProfile.GetProfileBool(KFID_ShowCrossHair));
+ 	DataObject.SetBool("crosshair", 			class'WorldInfo'.static.IsConsoleBuild() ? Manager.CachedProfile.GetProfileBool(KFID_ShowConsoleCrossHair) : Manager.CachedProfile.GetProfileBool(KFID_ShowCrossHair));
+
  	DataObject.SetBool("killTicker",			Manager.CachedProfile.GetProfileBool(KFID_ShowKillTicker));
 
  	DataObject.SetBool("hideBossHealthBar", 	Manager.CachedProfile.GetProfileBool(KFID_HideBossHealthBar));
@@ -220,7 +227,7 @@ function Callback_ToggleCrosshair( bool bShow )
 	class'KFGameEngine'.static.SetCrosshairEnabled(bShow);
 
 	Settings = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId);
-	Settings.SetProfileSettingValueInt(KFID_ShowCrossHair, bShow ? 1 : 0);
+	Settings.SetProfileSettingValueInt(class'WorldInfo'.static.IsConsoleBuild() ? KFID_ShowConsoleCrossHair : KFID_ShowCrossHair, bShow ? 1 : 0);
 }
 
 function Callback_FOVChanged( float NewFOVPercentage )
@@ -470,7 +477,8 @@ function ResetGameOptions()
 {
 	Manager.CachedProfile.SetProfileSettingValueInt(KFID_GoreLevel, Manager.CachedProfile.GetDefaultInt(KFID_GoreLevel));
 	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_FriendlyHudScale, Manager.CachedProfile.GetDefaultFloat(KFID_FriendlyHudScale));	
-	Manager.CachedProfile.SetProfileSettingValueInt(KFID_ShowCrossHair, Manager.CachedProfile.GetDefaultInt(KFID_ShowCrossHair));
+	Manager.CachedProfile.SetProfileSettingValueInt(class'WorldInfo'.static.IsConsoleBuild() ? KFID_ShowConsoleCrossHair : KFID_ShowCrossHair, 
+													class'WorldInfo'.static.IsConsoleBuild() ? Manager.CachedProfile.GetDefaultInt(KFID_ShowConsoleCrossHair) : Manager.CachedProfile.GetDefaultInt(KFID_ShowCrossHair));
 	Manager.CachedProfile.SetProfileSettingValueInt(KFID_ShowKillTicker, Manager.CachedProfile.GetDefaultInt(KFID_ShowKillTicker));
 
 	//Added 7/11/2016
@@ -511,9 +519,9 @@ defaultproperties
    AntiMotionSicknessString="Anti Motion Sickness"
    AutoTurnOffString="No Auto Turn On Clot Grab"
    ReduceHighPitchNoiseString="Reduce High Pitch Noise"
-   GoreOptionStrings(0)="No Gore"
-   GoreOptionStrings(1)="Low Gore"
-   GoreOptionStrings(2)="Gory"
+   GoreOptionStrings(0)="Low Gore"
+   GoreOptionStrings(1)="Medium Gore"
+   GoreOptionStrings(2)="High Gore"
    FOVMinValue=1.000000
    FOVMaxValue=1.250000
    FriendlyHudScaleMinValue=0.250000

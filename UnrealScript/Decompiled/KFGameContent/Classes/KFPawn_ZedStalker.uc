@@ -10,8 +10,9 @@ class KFPawn_ZedStalker extends KFPawn_Monster
     hidecategories(Navigation);
 
 var MaterialInstanceConstant SpottedMaterial;
-var AkBaseSoundObject CloakedLoop;
-var AkBaseSoundObject CloakedLoopEnd;
+var export editinline AkComponent CloakedAkComponent;
+var AkEvent CloakedLoop;
+var AkEvent CloakedLoopEnd;
 var float CloakPercent;
 var KFPlayerController ViewerPlayer;
 var float CloakSpeed;
@@ -116,14 +117,26 @@ simulated event NotifyGoreMeshActive()
     }
 }
 
+simulated function TerminateEffectsOnDeath()
+{
+    PlayStealthSoundLoopEnd();
+    super(KFPawn).TerminateEffectsOnDeath();
+}
+
 simulated function PlayStealthSoundLoop()
 {
-    PlaySoundBase(CloakedLoop, true);
+    if((WorldInfo.NetMode != NM_DedicatedServer) && !CloakedAkComponent.IsPlaying(CloakedLoop))
+    {
+        CloakedAkComponent.PlayEvent(CloakedLoop, true, true);
+    }
 }
 
 simulated function PlayStealthSoundLoopEnd()
 {
-    PlaySoundBase(CloakedLoopEnd, true);
+    if((WorldInfo.NetMode != NM_DedicatedServer) && CloakedAkComponent.IsPlaying(CloakedLoop))
+    {
+        CloakedAkComponent.PlayEvent(CloakedLoopEnd, true, true);
+    }
 }
 
 simulated event Tick(float DeltaTime)
@@ -325,6 +338,14 @@ static function int GetTraderAdviceID()
 defaultproperties
 {
     SpottedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Visible_MAT'
+    begin object name=CloakedAkComponent0 class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+        OcclusionUpdateInterval=0.4
+    object end
+    // Reference: AkComponent'Default__KFPawn_ZedStalker.CloakedAkComponent0'
+    CloakedAkComponent=CloakedAkComponent0
     CloakedLoop=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP'
     CloakedLoopEnd=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP_Stop'
     CloakPercent=1
@@ -419,6 +440,14 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedStalker.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedStalker.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedStalker.DialogAkSoundComponent'
+    begin object name=CloakedAkComponent0 class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+        OcclusionUpdateInterval=0.4
+    object end
+    // Reference: AkComponent'Default__KFPawn_ZedStalker.CloakedAkComponent0'
+    Components(8)=CloakedAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

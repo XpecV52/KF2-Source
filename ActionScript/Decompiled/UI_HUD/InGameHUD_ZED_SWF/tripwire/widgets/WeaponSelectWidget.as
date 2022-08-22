@@ -211,6 +211,7 @@ package tripwire.widgets
         public function showOnlyHUDGroup(param1:int) : void
         {
             var _loc2_:int = 0;
+            this.open();
             while(_loc2_ < this.weaponGroupContainers.length)
             {
                 if(param1 == _loc2_)
@@ -231,6 +232,7 @@ package tripwire.widgets
             var _loc1_:int = 0;
             while(_loc1_ < this.weaponGroupContainers.length)
             {
+                this.open();
                 if(!this.weaponGroupContainers[_loc1_].visible)
                 {
                     this.weaponGroupContainers[_loc1_].visible = true;

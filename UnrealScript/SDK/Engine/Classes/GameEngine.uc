@@ -88,10 +88,15 @@ var config	array<string>	ServerActors;
 var			string			TravelURL;
 var			byte			TravelType;
 
+//@HSL_BEGIN - BWJ - 8-10-16 - Saved client URL for takeover (contains client options)
+var			string			ClientOptionsForTakeoverURL;
+
 `if(`__TW_NETWORKING_)
 var 		string 			TakeoverURL;
-var config  bool            bUsedForTakeover;
+var globalconfig  bool            bUsedForTakeover;
 var         bool            bAvailableForTakeover;
+/** TRUE if this is a private server. Used for console */
+var			bool			bPrivateServer;
 `endif
 
 /** set for one tick after completely loading and initializing a new world

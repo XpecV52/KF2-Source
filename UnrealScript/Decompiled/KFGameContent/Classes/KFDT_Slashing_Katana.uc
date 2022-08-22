@@ -128,6 +128,7 @@ defaultproperties
     WeaponDef=Class'KFGame.KFWeapDef_Katana'
     StumblePower=30
     MeleeHitPower=100
+    ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=200
     KDeathUpKick=250
 }

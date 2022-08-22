@@ -2,7 +2,7 @@ package InGameHUD_ZED_SWF_fla
 {
     import flash.display.MovieClip;
     
-    public dynamic class WeaponCategoryHeaderContainerMC_171 extends MovieClip
+    public dynamic class WeaponCategoryHeaderContainerRight_MC_183 extends MovieClip
     {
          
         
@@ -10,7 +10,7 @@ package InGameHUD_ZED_SWF_fla
         
         public var Scanlines:MovieClip;
         
-        public function WeaponCategoryHeaderContainerMC_171()
+        public function WeaponCategoryHeaderContainerRight_MC_183()
         {
             super();
             addFrameScript(0,this.frame1);

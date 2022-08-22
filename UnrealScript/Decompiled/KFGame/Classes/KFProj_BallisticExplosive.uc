@@ -282,8 +282,8 @@ protected simulated function PrepareExplosionTemplate()
         if((Instigator.Role == ROLE_Authority) && KFPC != none)
         {
             InstigatorPerk = KFPC.GetPerk();
-            ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
-            ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+            ExplosionTemplate.Damage *= InstigatorPerk.GetAoEDamageModifier();
+            ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
         }
     }
     super.PrepareExplosionTemplate();
@@ -327,7 +327,7 @@ defaultproperties
     GlassShatterType=FracturedMeshGlassShatterType.FMGS_ShatterAll
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_7665' was not found.
+System.ArgumentException: Requested value '!=_7673' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

@@ -3,13 +3,13 @@ package InGameHUD_ZED_SWF_fla
     import flash.display.MovieClip;
     import flash.events.Event;
     
-    public dynamic class DoshBarkAnimContainerMC_129 extends MovieClip
+    public dynamic class DoshBarkAnimContainerMC_126 extends MovieClip
     {
          
         
         public var DoshBarkInfo:MovieClip;
         
-        public function DoshBarkAnimContainerMC_129()
+        public function DoshBarkAnimContainerMC_126()
         {
             super();
             addFrameScript(0,this.frame1,33,this.frame34);

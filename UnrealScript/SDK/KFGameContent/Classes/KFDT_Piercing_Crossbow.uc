@@ -20,7 +20,7 @@ defaultproperties
 
 
     KnockdownPower=20
-	StunPower=90
+	StunPower=101 //90
 	StumblePower=250
 	GunHitPower=100
 	MeleeHitPower=40

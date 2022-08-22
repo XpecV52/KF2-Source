@@ -36,7 +36,7 @@ defaultproperties
 		HitboxChain.Add((BoneOffset=(Z=-10)))
 		WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Blunted_melee_impact'
 		// modified combo sequences
-		MeleeImpactCamShakeScale=0.4f
+		MeleeImpactCamShakeScale=0.035f //0.4
 		ChainSequence_F=(DIR_Left, DIR_ForwardRight, DIR_ForwardLeft, DIR_ForwardRight, DIR_ForwardLeft)
 		ChainSequence_B=(DIR_BackwardLeft, DIR_Left, DIR_Right, DIR_ForwardRight, DIR_Left, DIR_Right, DIR_Left)
 		ChainSequence_L=(DIR_Right, DIR_BackwardRight, DIR_ForwardRight, DIR_ForwardLeft, DIR_Right, DIR_Left)

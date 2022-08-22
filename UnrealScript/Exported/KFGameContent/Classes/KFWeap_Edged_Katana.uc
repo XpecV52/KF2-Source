@@ -25,7 +25,7 @@ defaultproperties
       bUseDirectionalMelee=True
       bHasChainAttacks=True
       WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
-      MeleeImpactCamShakeScale=0.300000
+      MeleeImpactCamShakeScale=0.030000
       MaxHitRange=190.000000
       HitboxChain(0)=(BoneOffset=(X=3.000000,Y=0.000000,Z=190.000000))
       HitboxChain(1)=(BoneOffset=(X=-3.000000,Y=0.000000,Z=170.000000))
