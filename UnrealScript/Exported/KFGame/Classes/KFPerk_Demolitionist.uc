@@ -405,6 +405,48 @@ simulated private final static function int GetExtraAmmo( int Level )
 /*********************************************************************************************
 * @name	 Selectable skills
 ********************************************************************************************* */
+
+static function PrepareExplosive( Pawn ProjOwner, KFProjectile Proj )
+{
+    local KFPlayerReplicationInfo InstigatorPRI;
+    local KFPlayerController KFPC;
+    local KFPerk InstigatorPerk;
+
+    if( ProjOwner != none )
+    {
+	    if( Proj.bWasTimeDilated )
+	    {
+	        InstigatorPRI = KFPlayerReplicationInfo( ProjOwner.PlayerReplicationInfo );
+	        if( InstigatorPRI != none )
+	        {
+	            if( InstigatorPRI.bNukeActive && class'KFPerk_Demolitionist'.static.ProjectileShouldNuke(Proj) )
+	            {
+	                Proj.ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
+	                Proj.ExplosionTemplate.Damage = Proj.default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
+	                Proj.ExplosionTemplate.DamageRadius = Proj.default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
+	                Proj.ExplosionTemplate.DamageFalloffExponent = Proj.default.ExplosionTemplate.DamageFalloffExponent;        
+	            }
+	            else if( InstigatorPRI.bConcussiveActive && Proj.AltExploEffects != none )
+	            {
+	                Proj.ExplosionTemplate.ExplosionEffects = Proj.AltExploEffects;
+	                Proj.ExplosionTemplate.ExplosionSound = class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
+	            }
+	        }
+	    }
+
+	    // Change the radius and damage based on the perk
+	    if( ProjOwner.Role == ROLE_Authority )
+	    {
+	    	KFPC = KFPlayerController( ProjOwner.Controller );
+	    	if( KFPC != none )
+	    	{
+		        InstigatorPerk = KFPC.GetPerk();
+		        Proj.ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
+		    }
+	    }
+	}
+}
+
 simulated function float GetAoERadiusModifier()
 { 
 	local float RadiusModifier;
@@ -417,7 +459,7 @@ simulated function float GetAoERadiusModifier()
 
 simulated function float GetAoEDamageModifier()
 { 
-	return IsAoEActive() ? default.AoeDamageModifier : 1.f;
+	return default.AoeDamageModifier;
 }
 
 simulated protected function int GetAmmoExtraAmmo()
@@ -1027,7 +1069,7 @@ defaultproperties
    NukeDamageModifier=1.500000
    NukeRadiusModifier=1.350000
    ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'
-   AoeDamageModifier=0.700000
+   AoeDamageModifier=0.300000
    LingeringNukePoisonDamage=20
    PassiveExtraAmmoIgnoredClassNames(0)="KFProj_DynamiteGrenade"
    ExtraAmmoIgnoredClassNames(0)="KFProj_DynamiteGrenade"

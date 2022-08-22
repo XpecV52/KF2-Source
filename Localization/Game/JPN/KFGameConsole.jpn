@@ -1,0 +1,112 @@
+
+[Presence]
+KFMainMenu="メインメニュー"
+KF-Bioticslab="Biotics Labをプレイ中"
+KF-BlackForest="Black Forestをプレイ中"
+KF-BurningParis="Burning Parisをプレイ中"
+KF-Catacombs="Catacombsをプレイ中"
+KF-EvacuationPoint="Evacuation Pointをプレイ中"
+KF-Farmhouse="Farmhouseをプレイ中"
+KF-VolterManor="Volter Manorをプレイ中"
+KF-Outpost="Outpostをプレイ中"
+KF-Prison="Prisonをプレイ中"
+KF-ContainmentStation="Containment Stationをプレイ中"
+KF-InfernalRealm="Infernal Realmをプレイ中"
+KF-HostileGrounds="Hostile Groundsをプレイ中"
+
+[ActivityFeed]
+BossKillCondensedCaption="ボス敗北！"
+BossKillCaption="$USER_NAME_OR_IDが%x%を%y%で倒しました"
+TeamAwardCondensedCaption="チームアワード！"
+TeamAwardCaption="$USER_NAME_OR_IDが%x%チームアワードを獲得しました"
+PerkLevelUpCondensedCaption="レベルアップ！"
+PerkLevelUpCaption="$USER_NAME_OR_IDがレベル%x% %y%スキルをロック解除"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="XboxTypeS_Aを押してスタート"
+LoginButtonPrompt="ログイン"
+LoggingIn="ログインしています..."
+LoginFailed="ログイン失敗"
+NoOnlinePlay="オンラインプレイができません"
+TooYoung="ペアレンタル・コントロールの制限により、Sony Entertainment Networkアカウントのオンラインサービスが無効となっています。"
+PatchAvailable="パッチを入手可能です。ネットワーク機能を使用するには、アプリケーションをアップデートする必要があります。"
+NotLoggedInOnlinePSN="オンライン機能を使うにはPlayStation™Networkにサインインしなければなりません。"
+NetworkError="ネットワークエラーが発生しました。ネットワーク接続をご確認ください。"
+ErrorNoPlayfabDescription="ゲームのマスターサーバーへの接続を確立できませんでした。数分後に再試行してください。"
+ErrorTSSFailedDescription="ゲームのバランスサーバーへの接続を確立できませんでした。インターネットに接続されていることをご確認の上、再試行してください。"
+
+[Notifications]
+ControllerDisconnectedTitle="コントローラーの接続が切れました"
+ControllerDisconnectedPS4Message="ワイヤレスコントローラーの接続が切れました。ゲームをブートしたユーザーのワイヤレスコントローラーを再接続してください。"
+PlayGoBusyTitle="インストール中です"
+PlayGoBusyMessage="ゲームのインストールを完了するまで、利用可能なコンテンツおよび機能には制限があります。"
+UnableToJoinInviteTitle="参加できません"
+UnableToJoinInviteMessage="セッションがフルか、利用可能でなくなりました。のちほど再試行してください。"
+InitiatingPlayTogetherTitle="お待ちください！"
+InitiatingPlayTogetherMessage="あなたのPlay Togetherエクスペリエンスのため、ゲームを作成しています。"
+UnableToPlayTogetherTitle="Play Together失敗"
+UnableToPlayTogetherMessage="Play Togetherゲームを作成できませんでした。のちほど再試行して頂くか、手動で作成してください。"
+CheckPlusTitle="PlayStation®Plusステータスを確認中"
+CheckPlusMessage="PlayStation®Plusステータスを確認する間、お待ちください。"
+ConnectionLostTitle="接続が失われました"
+ConnectionLostMessage="オンライン接続が失われました。ホームメニューに戻されました。"
+PSNSignoutMessage="PlayStation™Networkからサインアウトしました。 ホームメニューに戻りました。"
+InviteMessage="一緒にzedを爆破しよう！"
+NotConnectedTitle="ネットワークエラー"
+NotConnectedMessage="インターネットに接続されていません。接続をご確認の上、再試行してください。"
+NotConnectedForOnlinePlay="インターネットに接続されていません。 接続を確認してからもう一度オンライン機能の使用を試みてください"
+PartySizeTitle="パーティー警告"
+PartySizeMessage="パーティー内のメンバーが多すぎます。メンバー全員が分隊に表示され、サバイバルゲームに入場することはできません。"
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="プレイヤープロフィールを確認"
+
+[KFGFxObject_Menu]
+ResetDefaults="本当に設定を初期値にリセットしますか？"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="Perk"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="コントローラー音"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="地域"
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="地域"
+
+[Entitlements]
+BriarBobbyBundleProductName="ロンドン・ボビー・ブライアー ユニフォームバンドル"
+BriarBobbyBundleShortDescription="プレイ可能キャラクター、ロブ・ブライアー巡査の新たな定番の「ロンドンボビー」ユニフォームをゲットしよう。ブライアーの「ロンドン」ユニフォーム(5スキンスタイルを含む)と、「守衛ヘルメット」服飾アクセサリー(3スキンスタイルを含む)が入っています。"
+
+BikerTanakaBundleProductName="タナカバイカー ユニフォームバンドル"
+BikerTanakaBundlehortDescription="プレイ可能キャラクター、ハヤト・タナカの新たな「バイカー」ユニフォームをゲットしよう。タナカの「バイク」ユニフォーム(7スキンスタイルを含む)と、「ヘルメット」服飾アクセサリー(7スキンスタイルを含む)が入っています。"
+
+ClassicFosterBundleProductName="フォスター氏クラシック ユニフォームバンドル"
+ClassicFosterBundlehortDescription="プレイ可能キャラクター、フォスター氏の新たな「クラシックスーツ」ユニフォームをゲットしよう。フォスターの「クラシックスーツ」ユニフォーム(9スキンスタイルを含む)と、「ボウタイ」服飾アクセサリーおよび「クラシックタイ」服飾アクセサリー(それぞれ7スキンスタイルを含む)が入っています。"
+
+CardboardKnightBundleProductName="ダンボールナイト ユニフォームバンドル"
+CardboardKnightBundleShortDescription="ほとんどのプレイ可能キャラクターが使用可能な、新たな「ダンボールの騎士」アーマーユニフォームをゲットしよう。胴体用の「ダンボールの騎士」アーマー(6スキンスタイルを含む)と、「ダンボールの騎士ヘルメット」服飾アクセサリー(6スキンスタイルを含む)が入っています。"
+
+HorzineSecurityForceBundleProductName="ホージン社警備兵 ユニフォームバンドル"
+HorzineSecurityForceBundleShortDescription="ほとんどのプレイ可能キャラクターが使用可能な、「ホージンセキュリティ」ユニフォームをゲットしよう。胴体用のハイテク「ホージンセキュリティ」スーツおよび「ホージンセキュリティヘルメット」服飾アクセサリーが入っています。"
+
+HorzineSupplyCrateKeyProductName="ホージン物資箱の鍵"
+HorzineSupplyCrateKeyShortDesription="すべてのホージン物資箱を開けられるゲーム内消費アイテム、「ホージン物資箱の鍵」を購入しよう。使用するには、この鍵とホージン物資箱が必要です。"
+
+HorzineSupplyCrate1ProductName="ホージン物資箱シリーズ1"
+HorzineSupplyCrate1ShortDesription="このホージン物資箱には、服飾アクセサリーが入っています。開けるには「ホージン物資箱の鍵」が必要です。次の服飾アイテムから、レアまたはそれ以上が1つ入っています。タクティカルハット、タクティカルマスク、タクティカルヘッドセットMK1/MK2、ヘッドバンド、GS9ヘルメット、GS9マスク、ロシア軍メガネ、ロシア軍ヘルメット、ロシア軍マスク、または激レアな貴重アクセサリー！"
+
+HorzineSupplyCrate2ProductName="ホージン物資箱シリーズ2"
+HorzineSupplyCrate2ShortDesription="このホージン物資箱には、服飾アクセサリーが入っています。開けるには「ホージン物資箱の鍵」が必要です。次の服飾アイテムから、レアまたはそれ以上が1つ入っています。Devtacバリスティックマスク、USガスマスク、スキーマスク、野球帽、タクティカルバックバッグ、ドイツ軍ガスマスク、化学ガスマスク、RPG7バックバッグ、M2火炎放射戦車、または激レアな貴重アクセサリー！"
+
+HorzineSupplyCrate3ProductName="ホージン物資箱シリーズ3"
+HorzineSupplyCrate3ShortDesription="このホージン物資箱には武器スキンが入っています。開けるには「ホージン物資箱の鍵」が必要です。次の武器スキンから、レアまたはそれ以上が1つ入っています。"
+
+HorzineSupplyCrate4ProductName="ホージン物資箱シリーズ4"
+HorzineSupplyCrate4ShortDesription="このホージン物資箱には武器スキンが入っています。開けるには「ホージン物資箱の鍵」が必要です。次の武器スキンから、レアまたはそれ以上が1つ入っています。"
+
+StoreGameLegalText="本ソフトウェアはライセンスの対象です(us.playstation.com/softwarelicense)。オンライン活動は、利用規約およびユーザー同意書の対象です(www.playstationnetwork.com/terms-of-service)。アカウントの指定主要PS4™本体およびその他PS4™本体でのプレイは、そのアカウントでサインインしている場合、ライセンス料は一回限り。Killing Floor© 2009-2016 Tripwire Interactive.Killing Floor®は、米国内および他の国におけるTripwire Interactiveの登録商標です。Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. 無断複写・転載を禁じます。Unreal®は、アメリカ合衆国および他の国におけるEpic Games, Inc.の商標または登録商標です。その他の商標、ロゴおよび著作権は、各所有者の所有物です。無断複写・転載を禁じます。"
+
+StoreItemLegalText="このアイテムを使用するには、Killing Floor 2ゲームすべてが必要です。このアイテムの使用は、原ゲームと同じエンドユーザーライセンス契約の対象です。"

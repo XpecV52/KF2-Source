@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="Powielony UID"
+InvalidUID="Nieprawidłowy UID"
+FailedKickOff="Nie udało się rozpocząć uwierzytelniania"
+RequiresAuthentication="Serwer wymaga uwierzytelnienia"
+CouldNotConnect_Title="Nie ustanowiono połączenia"

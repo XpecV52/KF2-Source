@@ -1,0 +1,1895 @@
+[KFCommon_LocalizedStrings]
+LoadingString="正在讀取…"
+DifficultyStrings[0]="普通"
+DifficultyStrings[1]="困難"
+DifficultyStrings[2]="自殺"
+DifficultyStrings[3]="地獄"
+
+LengthStrings[0]="短（4 波攻擊）"
+LengthStrings[1]="中（7 波攻擊）"
+LengthStrings[2]="長（10 波攻擊）"
+
+ServerTypeStrings[0]="排名"
+ServerTypeStrings[1]="排名 - 制式"
+ServerTypeStrings[2]="排名 - 自訂"
+ServerTypeStrings[3]="未排名"
+
+PermissionStrings[0]="公開"
+PermissionStrings[1]="僅限好友"
+PermissionStrings[2]="密碼私人遊戲"
+
+ConsolePermissionStrings[0]="公開"
+ConsolePermissionStrings[1]="僅限邀請"
+
+ModeStrings[0]="生存模式"
+ModeStrings[1]="對抗生存模式"
+
+NoPreferenceString="任何"
+OKString="OK"
+ConfirmString="確定"
+CancelString="取消"
+BackString="返回"
+AcceptString="接受"
+DeclineString="拒絕"
+NoticeString="注意！"
+PerkUpdateNoticeString="可以在每波進攻更新一次職業！"
+YesString="是"
+NoString="否"
+TeamSwappedString="你已經被換隊了"
+
+DisbandPartyString="解散隊伍"
+LeaveCurrentMenuString="是否離開目前選單？"
+ZedString="ZED"
+HumanString="生存者"
+SpectatorString="觀眾"
+TeamString="隊伍"
+AllString="全部"
+
+UnableToSwitchTeamString="無法交換隊伍"
+NoSwitchReasonString="交換隊伍會使人數不平均"
+
+AutoTradeCompleteString="自動交易已完成： "
+AutoFillCompleteString="自動補滿補給"
+WeaponUpgradeComepleteString="武器已升級"
+SecondaryWeaponPurchasedString="已購買次要武器"
+NoItemsPurchasedString="未購買任何物品"
+
+SetTakeoverServerPasswordTitle="請輸入保護遊戲用的新密碼："
+
+[KFGFxMoviePlayer_Manager]
+FailedSearchTitleString="無法找到遊戲"
+FailedSearchString="無法在提供的選項中為你找到對手。請放寬搜尋範圍或使用伺服器瀏覽器來尋找對手。"
+BrowseServersString="瀏覽伺服器"
+HasInvitedToGameString=" 邀請你參加遊戲。"
+JoinGameString="是否參加遊戲？"
+
+[KFGFxObject_Menu]
+LeavePartyTitleString="正在離開隊伍"
+LeavePartyDescriptionString="你是否確定要離開線上隊伍？"
+LeaveString="離開"
+
+ErrorNoPlaystationNetworkTitle="登入失敗 - PlayStation™Network"
+ErrorNoPlaystationNetworkDescription="無法連線至 PlayStation™Network，因此無法進行遊戲。"
+ErrorNoPlaystationPlusTitle="登入失敗 - PlayStation®Plus"
+ErrorNoPlaystationPlusDescription="需要登入 PlayStation®Plus 才能進行遊戲。"
+
+[KFDoorActor]
+WeldIntegrityString="焊接完整度："
+RepairProgressString="維修進度："
+ExplosiveString="門上陷阱："
+
+[KFGFxMenu_StartGame]
+CreateMatchString="開新遊戲"
+MatchmakingString="線上配對"
+ServerBrowserString="瀏覽伺服器"
+
+DifficultyTitle="難度"
+GameModeTitle="遊戲模式"
+ServerTypeString="伺服器類型"
+PermissionsTitle="許可"
+WhiteListedTitle="啟用統計資料"
+LengthTitle="長度"
+MapTitle="初始地圖"
+MutatorTitle="變異"
+InfoTitle="資訊"
+InProgressString="進行中"
+
+WhiteListedStrings[0]="是"
+WhiteListedStrings[1]="否"
+
+FindGameString="主頁"
+LeaveMenuString="離開配對會解散你的隊伍。是否前往伺服器瀏覽器？"
+
+CouldNotFindGameTitleString="無法找到對手"
+CouldNotFindGameDescriptionStringPC="無法找到符合搜尋設定的伺服器。請使用伺服器瀏覽器進行不同的搜尋。"
+CouldNotFindGameDescriptionStringOrbis="無法找到符合搜尋設定的伺服器。請嘗試其他搜尋。"
+
+[KFGFxStartGameContainer_FindGame]
+MultiplayerString="線上配對"
+SoloString="離線單人模式"
+TutorialString="基本訓練"
+
+[StartMenuHelperText]
+modeList0="生存模式 – PVE 戰鬥，玩家對抗 AI 操控的 Zed"
+modeList1="對抗生存模式 – PVP 戰鬥，Horzine 傭兵對抗 AI 以及玩家操控的 Zed"
+modeList2=""
+difficultyList0="普通：適合職業等級 0-5 的初階玩家。"
+difficultyList1="困難：適合職業等級 6-12 的進階玩家。每波進攻會有更多 Zed，它們移動速度更快，生命值也更高。可拾取的物品跟你的金錢都較少。"
+difficultyList2="自殺：適合職業等級 13 – 25 的高階玩家每波進攻會有更多 Zed，它們擁有新的攻擊模式，移動速度又更快。可拾取的物品跟你的金錢都變得更少。"
+difficultyList3="地獄：適合職業等級 25 的玩家，是最困難的挑戰。每波進攻會有更多 Zed，擁有新的攻擊模式。可拾取的物品跟你的金錢都大幅減少。"
+lengthList0=""
+lengthList1=""
+lengthList2=""
+lengthList3=""
+serverTypeList0="排名 – 任何地圖、無法修改、不會擊中同伴、最多 6 人（對抗生存模式為最多 12 人）"
+serverTypeList1="制式排名 – 任何地圖、無法修改、不會擊中同伴、最多 6 人"
+serverTypeList2="自訂排名 – 任何地圖、使用白名單上的 MOD、任何伺服器設定"
+serverTypeList3="自訂未排名 –（僅限）未在白名單上的 MOD"
+serverTypeList4="無偏好 - 任何其他伺服器類型"
+privacyList0=""
+privacyList1=""
+privacyList2=""
+privacyList3=""
+inProgressList0=""
+inProgressList1=""
+inProgressList2=""
+
+[KFGFxStartGameContainer_Options]
+BackString="返回"
+StartGameString="開始遊戲"
+LaunchGameString="啟動遊戲"
+InProgressString="遊戲進度"
+SoloGameString="單人模式"
+LeaveMatchMakingString="離開配對"
+MultiplayerLaunchString="線上模式"
+SearchingString="正在尋找連線遊戲…請稍候"
+CancelSearchingString="取消搜尋"
+ServerTypeString="伺服器類型"
+AnyMapServerString="排名"
+UnrankedServerString="未排名"
+CustomServerString="排名 - 自訂"
+StandardServerString="排名 - 制式"
+AllowInProgressString="顯示進行中的遊戲"
+NotStartedString="尚未開始"
+CreateNewGameString="開新遊戲"
+
+
+[KFGFxStartContainer_MatchMaking]
+OptionsHeaderString="配對"
+BackString="返回"
+FindGameString="尋找遊戲"
+
+[KFGFxStartContainer_InGameOverview]
+OverviewString="遊戲一覽 "
+ChangeString="變更"
+SharedByString="分享者："
+SharedContentString="分享的內容"
+AuthorString="由 "
+
+[KFGFxStartContainer_ServerBrowserOverview]
+OverviewString="遊戲一覽"
+DescriptionString="正在伺服器瀏覽器中尋找遊戲…"
+
+[KFGFxTraderContainer_GameInfo]
+TimeLeftString="剩餘時間"
+WaveString="攻擊波數"
+BossWaveString="頭目"
+
+[KFPawn_MonsterBoss]
+BossName="頭目"
+BossCaptionStrings[0]="頭目說明 1"
+BossCaptionStrings[1]="頭目說明 2"
+
+[KFGFxTraderContainer_PlayerInfo]
+PlayerHeaderString="庫存"
+SelectPerkString="選擇職業"
+
+[KFGFxMenu_ServerBrowser]
+FavoriteString="我的最愛"
+MultiplayerMenuString="配對"
+LeaveMenuString="離開此選單會解散你的隊伍是否改前往配對？"
+NameString="名稱"
+RefreshString="重新整理"
+GamesFoundString="找到的遊戲："
+
+ServerBrowserString="伺服器瀏覽器"
+
+JoinString="加入"
+PasswordPromptString="輸入密碼"
+
+RankedString="啟用統計資料"
+UnrankedString="停用統計資料"
+DedicatedString="專用"
+VACSecureString="VAC 保全"
+InLobbyString="在大廳"
+InProgressString="進行中"
+
+BackString="返回"
+ApplyString="申請"
+ResetString="重設"
+
+PingString="PING"
+LengthString="長度"
+DifficultyString="難度"
+MapString="地圖"
+GameModeString="模式"
+WaveString="攻擊波數"
+PlayersString="玩家"
+ZedCountString="ZED 數目"
+FiltersString="篩選器"
+
+SearchString="搜尋"
+
+PingOptionStrings[0]="< 50 MS"
+PingOptionStrings[1]="< 100 MS"
+PingOptionStrings[2]="< 150 MS"
+PingOptionStrings[3]="< 200 MS"
+
+TabStrings[0]="瀏覽"
+TabStrings[1]="我的最愛"
+TabStrings[2]="朋友"
+TabStrings[3]="瀏覽歷史"
+TabStrings[4]="LAN"
+
+[KFGFxServerBrowser_Filters]
+NoPasswordString="無密碼"
+NoMutatorsString="無變異"
+NotFullString="未滿"
+NotEmptyString="非空"
+NoStatsEnabledString="無排名（標準）伺服器"
+NoRankedCustomString="無自訂伺服器"
+NoUnrankedString="沒有未排名伺服器"
+DedicatedString="專用伺服器"
+VACSecureString="VAC 保全"
+InLobbyString="在大廳"
+InProgressString="進行中"
+OnlyStockMapsString="僅限制式地圖"
+OnlyCustomMapsString="僅限自訂地圖"
+LimitServerResultsString="限制搜尋結果："
+
+[KFGFxServerBrowser_ServerDetails]
+MutatorsString="變異"
+JoinGameString="參加遊戲"
+SpectateGameString="觀戰"
+ServerInfoString="伺服器資訊"
+UnfavoriteString="取消最愛"
+
+[KFGFxMenu_Trader]
+ExitMenuString="離開選單"
+
+[KFGFxTraderContainer_Store]
+TraderString="購買裝備"
+
+[KFGFxServerBrowser_ServerList]
+LeaveServerBrowserString="離開伺服器瀏覽器"
+DetailsString="伺服器詳細資訊"
+SpectateString="觀戰"
+
+[KFGFxTraderContainer_ItemDetails]
+DamageTitle="傷害"
+FireRateTitle="射速"
+PenetrationTitle="穿透"
+RangeTitle="範圍"
+BlockTitle="防禦"
+ParryTitle="格檔"
+AccuracyTitle="命中率"
+CapacityTitle="總攜彈量"
+MagTitle="彈匣容量"
+HealAmountTitle="治療量"
+HealRechargeTitle="裝填時間"
+BuyString="購買"
+SellString="賣出"
+CannotSellString="無法購買"
+CannotBuyString="無法賣出"
+FavoriteString="我的最愛"
+UnfavoriteString="取消最愛"
+
+[KFGFxTraderContainer_PlayerInventory]
+FillString="補滿"
+MagString="MAG"
+BuyGrenadeString="1X"
+AutoFillString="自動補滿"
+ArmorString="戰鬥護甲"
+ChangePerkString="變更職業"
+
+[KFGFxTraderContainer_Filter]
+TabsArray[0]="職業"
+TabsArray[1]="類型"
+TabsArray[2]="我的最愛"
+TabsArray[3]="全部"
+
+WeaponTypeStrings[0]="手槍"
+WeaponTypeStrings[1]="霰彈槍"
+WeaponTypeStrings[2]="來福槍"
+WeaponTypeStrings[3]="投擲武器"
+WeaponTypeStrings[4]="火焰武器"
+WeaponTypeStrings[5]="電力武器"
+WeaponTypeStrings[6]="炸藥"
+WeaponTypeStrings[7]="突擊步槍"
+WeaponTypeStrings[8]="近身武器"
+WeaponTypeStrings[9]="衝鋒槍"
+
+OffPerkString="無職業加成"
+
+[KFGFxHUD_PostRoundMenu]
+RoundResultsString="回合結算"
+MatchResultsString="總計勝利者"
+SurvivorVictory="生存者獲勝！"
+ZEDVictory="Zed 獲勝！"
+TieString="平手！"
+YourTeamString="你的隊伍獲勝！"
+OpposingTeamString="對手獲勝！"
+MatchOnGoingString="正在交換隊伍…"
+
+[KFGFxPostRoundContainer_Team]
+TitleString="回合 "
+ScoreString="分數"
+WavesCompleteString="攻擊完成加成"
+BossDeadString="擊敗頭目"
+DeathsString="玩家死亡扣分"
+DamageString="頭目傷害扣分"
+TotalString="總計"
+YourTeamString=" （你的隊伍）"
+OpponentsString=" （對手）"
+
+[KFGFxMenu_PostGameReport]
+MapVoteString="地圖表決"
+PlayerStatsString="玩家統計資料"
+TeamAwardsString="獎勵"
+PostGameReportString="賽後報告"
+NextMapString="下一場地圖："
+WaveString="攻擊波數"
+XPString="XP"
+VictoryString="勝利"
+DefeatString="敗北"
+ItemDropTitleString="獲得新物品！"
+
+[EphemeralMatchStats]
+MedicineMaster="醫藥專家"
+MedicineMasterValue="生命值"
+ZedSlayer="Zed 殺手"
+ZedSlayerValue="殺敵數"
+Enforcer="執行者"
+EnforcerValue="助攻"
+Destroyer="毀滅者"
+DestroyerValue="傷害"
+GiantSlayer="巨人殺手"
+GiantSlayerValue="大型 Zed"
+MoneyBags="錢袋"
+MoneyBagsValue="金錢"
+HeadPopper="爆頭專家"
+HeadPopperValue="爆頭"
+Dominator="強者"
+DominatorValue="頭目"
+
+Carnage="屠戮"
+Closer="救援王"
+ComboMaker="連擊高手"
+Grabby="貪心鬼"
+ZedSupport="Zed 支援"
+Zednnihilation="Zed 化"
+CarnageValue="Zed 造成傷害"
+CloserValue="殺死生存者數"
+ComboMakerValue="Zed 助攻"
+GrabbyValue="抓到的玩家"
+ZedSupportValue="間接傷害"
+ZednnihilationValue="一波攻擊中殺敵數"
+
+
+
+EPB_Healing="療傷"
+EPB_Kills="殺敵數"
+EPB_Assists="助攻"
+EPB_LargeZedKill="殺死大型 Zed 數"
+EPB_Dosh="獲得金錢數"
+EPB_HeadShots="爆頭"
+EPB_KnifeKills="刀殺"
+EPB_PistolKills="槍殺"
+EPB_DoorWelding="焊接門"
+
+EPB_HealingValue="生命值"
+EPB_KillsValue="殺敵數"
+EPB_AssistsValue="助攻"
+EPB_LargeZedKillValue="大型 Zed"
+EPB_DoshValue="金錢"
+EPB_HeadShotsValue="爆頭"
+EPB_KnifeKillsValue="殺敵數"
+EPB_PistolKillsValue="殺敵數"
+EPB_DoorWeldingValue="焊接分數"
+
+[KFGFxPostGameContainer_TeamAwards]
+TeamAwardsString="隊伍獎勵"
+PersonalBestsString="個人紀錄"
+NoTeamAwardsGivenString="未獲得獎勵"
+
+[KFGFxPostGameContainer_MapVote]
+YourVoteString="你的投票數"
+TopVotesString="最高投票數"
+
+[KFGFxPostGameContainer_PlayerStats]
+AchievementsString="成就"
+KnifeString="刀"
+TopWeaponsString="最常用武器"
+ZedKillsString="殺死 Zed 數"
+TotalDamageDealtString="總計造成傷害："
+HeadShotsString="爆頭："
+LargeZedKillsString="殺死大型 Zed 數："
+TotalDoshEarnedString="總計獲得金錢："
+TotalKillsString="總計殺敵數："
+AssistsString="助攻："
+DamageDealtString="造成傷害："
+
+
+
+[KFGFxWidget_BaseParty]
+PlayerReadyString="[ READY ]"
+WaitingString="等待玩家"
+DeployingString="正在布署 "
+CreatePartyString="建立隊伍"
+ReadyString="準備就緒"
+LeaveString="離開隊伍"
+SquadString="小隊"
+SoloString="單人"
+DefaultPlayerName="玩家"
+
+PartyLeaderSearchingForMatchString="正在尋找配對…"
+PartyLeaderIsUpdatingMatchOptionsString="正在設定配對選項…"
+PartyLeaderInServerBrowserString="正在搜尋伺服器瀏覽器…"
+PartyLeaderInOtherMenuString="正在其它選單…"
+SearchingForGameString="正在尋找連線遊戲…"
+
+PartHostLeftString="隊長已離開"
+PartyLeaderChangedString="成為隊長"
+
+MuteString="靜音玩家"
+UnmuteString="取消靜音玩家"
+AddFriendString="加入好友"
+RemoveFriendString="移除好友"
+VoteKickString="踢出遊戲"
+ViewProfileString="檢視個人檔案"
+
+RemainingString="剩餘："
+DownLoadingString="正在下載："
+PartyLeaderString="隊長"
+
+[KFGFxWidget_PartyInGame_Versus]
+SwitchTeamsString="交換隊伍"
+balanceWarningString="警告：隊伍將自動平衡人數"
+
+[KFGFxMenu_Gear]
+GearHeaderString="自訂裝備"
+BioString="生化"
+CharacterString="角色"
+HeadString="頭"
+BodyString="軀幹"
+SkinsString="飾品"
+AttachmentsString="配件"
+BackString="返回"
+NoneString="無"
+WeaponsString="武器"
+WeaponsInfoString="自訂"
+
+[KFGFxMenu_Inventory]
+NoItemsString="在此過濾結果下，您目前沒有任何庫存物品。"
+ItemExchangeTimeOutString="無法連線至物品伺服器"
+TryAgainString="無法交換物品。請稍後再試。若此問題持續發生，請聯絡技術支援。"
+RecycleOneString="回收單項物品"
+RecycleDuplicatesString="回收複數物品"
+InventoryString="庫存"
+UseString="使用"
+EquipString="裝備"
+UnequipString="卸下"
+AllString="全部"
+WeaponSkinString="武器飾品"
+CosmeticString="妝容"
+CraftingMatsString="合成"
+ItemString="物品"
+FiltersString="篩選器"
+MoreItemsString="你需要相配的鑰匙與箱子。你可於遊戲商店購買鑰匙。"
+FailedToExchangeString="無法開啟箱子"
+RecycleString="回收"
+CraftString="合成"
+CraftCosmeticString="合成妝容"
+CraftWeaponString="合成武器飾品"
+CraftWeaponStrings[0]="少見\n武器飾品"
+CraftWeaponStrings[1]="珍貴\n武器飾品"
+CraftWeaponStrings[2]="極稀有\n武器飾品"
+CraftWeaponStrings[3]="大師級\n武器飾品"
+CraftCosmeticStrings[0]="少見\n妝容"
+CraftCosmeticStrings[1]="珍貴\n妝容"
+CraftCosmeticStrings[2]="極稀有\n妝容"
+CraftCosmeticStrings[3]="大師級\n妝容"
+RecycleWarningString="警告：此動作無法復原。這會破壞選擇的物品，將其取代為合成其他物品的材料。"
+RecycleItemString="是否回收物品？"
+ConfirmCraftItemString="合成這個物品會使用資源且無法取消。"
+CraftItemString="確定要合成物品？"
+FailedToCraftItemString="無法合成物品"
+CraftRequirementString="需要的合成材料不足"
+CraftCosmeticDescriptionString="你可由此選單使用妝容材料合成新妝容物品。你可以回收現有的妝容物品以取得妝容材料。若要回收，請選擇物品並按下回收。"
+CraftWeaponDescriptionString="你可由此選單使用武器飾品材料合成新武器飾品。你可以回收現有的武器飾品以取得武器飾品材料。若要回收，請選擇物品並按下回收。"
+RequiresString="需要： "
+PurchaseKeyString="購買鑰匙： "
+LookUpOnMarketString="在市場尋找"
+
+[KFGFxPerksContainer]
+LevelString=""
+
+[KFGFxPerksContainer_Header]
+ExperienceString="經驗"
+PrestigeLevelString="聲望"
+
+[KFGFxPerksContainer_SkillsSummary]
+ConfigureString="設定"
+SkillsString="技能"
+
+[KFGFxMenu_Perks]
+TierUnlockedText="新等級已解鎖！"
+TierUnlockedSecondaryText="你已經解鎖下列職業的新等級："
+
+
+[KFGFxPerksContainer_Details]
+ObjectivesString="XP 目標"
+PerkBonusesString="職業加成"
+BasicLoadoutString="初始武器庫"
+
+[KFGFxPerksContainer_Skills]
+ConfigureSkillsString="設定技能"
+BackButtonString="<<返回"
+
+[KFGFxPerksContainer_Selection]
+HeaderTitle="選擇職業"
+EndOfWaveString="職業變更將在此波攻擊後生效！"
+ChangesAppliedOnCloseString="職業變更將在此選單關閉後生效。"
+OncePerWaveString="一波攻擊中只能變更一次職業！"
+
+[KFGFxMenu_Store]
+StoreString="商店"
+
+[KFGFxStoreContainer_Cart]
+CartString="購物車"
+TotalString="總計"
+CheckOutString="結帳"
+
+[KFGFxStoreContainer_Main]
+WeaponSkinsRotationString="武器飾品"
+WeaponSkinsString="武器飾品市場"
+MarketConsumablesString="箱子 / USB 市場"
+MarketCosmeticsString="妝容市場"
+
+[KFGFxStoreContainer_Details]
+LookUpOnMarketString="在市場尋找"
+AddToCartString="購買物品"
+PreviewString="預覽"
+
+
+[KFGFxWidget_ButtonPrompt]
+CancelString="返回"
+ConfirmString="選擇"
+
+[KFGFxWidget_MenuBar]
+MenuStrings[0]="主頁"
+MenuStrings[1]="職業"
+MenuStrings[2]="裝備"
+MenuStrings[3]="庫存"
+MenuStrings[4]="商店"
+MenuStrings[5]="選項"
+MenuStrings[6]="離開"
+
+ServerBrowserString="伺服器瀏覽器"
+MatchmakingString="配對"
+SoloString="單人"
+OverviewString="遊戲一覽"
+
+TitleStrings[0]="你已經要放棄戰鬥了嗎？"
+TitleStrings[1]="這麼快就要離開了？"
+TitleStrings[2]="被咬到累了嗎？"
+
+DescriptionStrings[0]="好吧，逃命然後苟延殘喘去吧。你在殺戮空間撐不過五分鐘的。"
+DescriptionStrings[1]="你離開的每一秒，都有更多的怪物誕生，吞噬你的朋友。你要背棄他們嗎？"
+DescriptionStrings[2]="它們反正會找到你的。它們會找到你，把你的心臟當點心。"
+
+ExitString="離開"
+CancelString="取消"
+
+[KFGFxWidget_LevelUpNotification]
+LevelUpString="升級"
+TierUnlockedString="新技能已解鎖"
+
+[KFGFxHUD_WaveInfo]
+WaveString="攻擊波數"
+BossWaveString="頭目"
+FinalWaveString="最終"
+
+[KFGFxHUD_TraderCompass]
+TraderString="商人"
+
+[KFGFxHUD_SpectatorInfo]
+PrevPlayerString="下一位玩家"
+NextPlayerString="前一位玩家"
+ChangeCameraString="變更拍攝角度"
+
+[KFGFxHUD_ScoreboardWidget]
+PlayerString="玩家"
+DoshString="金錢"
+KillsString="殺敵數"
+AssistsString="助攻"
+PingString="PING"
+
+[KFGFxHUD_ScoreboardVersusWidget]
+ScoreString="分數"
+
+[KFGFxHUD_PlayerStatus]
+EXPString="XP"
+
+
+[KFGFxHUD_ScoreboardMapInfoContainer]
+WaveString="攻擊波數"
+FinalString="最終"
+
+[KFGFxHUD_WeaponSelectWidget]
+PrimaryString="主要"
+EquiptmentString="裝備"
+MeleeString="近身"
+SecondaryString="次要"
+ThrowString="投擲武器"
+
+[KFGFxWidget_KickVote]
+VoteKickString="將玩家踢出遊戲？"
+
+[KFLocalMessage_PlayerKills]
+KilledString="殺敵數"
+ZedString="Zed"
+
+[KFLocalMessage_VoiceComms]
+VoiceCommsOptionStrings[0]="請求治療"
+VoiceCommsOptionStrings[1]="請求金錢"
+VoiceCommsOptionStrings[2]="請求協助"
+VoiceCommsOptionStrings[3]="挑釁 Zed"
+VoiceCommsOptionStrings[4]="跟我來"
+VoiceCommsOptionStrings[5]="到商人那裡"
+VoiceCommsOptionStrings[6]="同意"
+VoiceCommsOptionStrings[7]="不同意"
+
+[KFGFxMenu_Exit]
+HeaderString="離開遊戲"
+ExitToMainDescription="離開遊戲並回到主頁？"
+ExitToMainMenu="回到主頁"
+ExitKF2="回到桌面"
+
+[KFGFxOptionsMenu_Selection]
+HeaderString="選項"
+OptionStrings[0]="影片"
+OptionStrings[1]="聲音"
+OptionStrings[2]="控制"
+OptionStrings[3]="遊戲操控"
+OptionStrings[4]="工作人員"
+
+[KFGFxOptionsMenu_Audio]
+AudioString="音訊選項"
+SectionNameString="音量"
+OptionsString="選項"
+MasterVolumeString="主要音量"
+DialogVolumeString="對話音量"
+MusicString="遊戲配樂音量"
+SFxString="音效音量"
+VOIPVolumeString="聊天音量"
+ConfigureMicString="設定麥克風"
+VocalsString="音樂人聲"
+BattleChatterString="將戰鬥聊天室最小化"
+PushToVoIPString="推至 VoIP"
+
+[KFGFxOptionsMenu_Graphics]
+KeepSettingsPromptString="是否使用此影片設定？"
+WarningPromptString="警告"
+WillExpireString="設定將在 %x% 秒後重設"
+SingleWarningString="某些選擇的設定可能會 %x%"
+DoubleWarningString="某些選擇的設定可能會 %x% 且 %x%"
+PerformanceDescString[0]="對遊戲效能有不利影響"
+PerformanceDescString[1]="對遊戲效能有嚴重影響"
+RestartDescString="需要重新啟動"
+OKString="OK"
+CancelString="取消"
+UnsavedChangesString="你有未儲存的變更"
+SaveChangesString="你要儲存嗎？"
+ContinueString="你要繼續嗎？"
+
+AdjustGammaDescription="調整捲軸直到左側幾乎看不見而右側很清楚"
+ResetGammaString="重設"
+SetGammaString="申請"
+
+
+GraphicsString="圖形"
+BasicString="基本"
+AdvancedString="進階"
+EffectsString="效果"
+
+AspectRatioString="寬高比"
+ResolutionString="解析度"
+GraphicsQualityString="畫質"
+VSyncString="垂直同步"
+FullscreenString="顯示"
+VariableFrameRateString="不同顯示刷新率"
+FilmGrainString="底片顆粒"
+AdjustGammaString="調整 GAMMA 值"
+
+PhysicsLevelString="NVIDIA® FleX"
+
+PhysicsLevelOptionStrings[0]="關閉"
+PhysicsLevelOptionStrings[1]="Gibs*"
+PhysicsLevelOptionStrings[2]="Gibs AND Fluids*"
+
+PhysicsLevelSuggestionStrings[0]=""
+PhysicsLevelSuggestionStrings[1]="建議使用 *GeForce® GTX™ 770 或更高級"
+PhysicsLevelSuggestionStrings[2]="建議使用 *GeForce® GTX™ 980 或更高級"
+
+FlexPopUpString="NVIDIA® FleX 支援模擬血跡與液體此設定對遊戲效能有不利影響且需要重新啟動。"
+
+EnvironmentDetailsString="環境細節"
+FoliageString="葉片細節"
+CharacterDetailString="角色細節"
+FXString="FX"
+TextureResolutionString="紋路解析度"
+TextureFilteringString="紋路過濾器"
+ShadowsString="陰影質感"
+RealtimeReflectionsString="即時反映"
+AntiAliasingString="反鋸齒處理"
+BloomString="光暈"
+MotionBlurString="動態模糊"
+AmbientOcclusionString="環境光遮蔽"
+DepthOfFieldString="景深"
+
+
+VolumetricLightingString="體積光渲染 FX"
+LensFlaresString="鏡頭光暈"
+LightShaftsString="體積光"
+CustomString="自訂"
+IniOverrideString="INI 覆蓋"
+
+ApplyString="申請"
+CancelString="取消"
+DefaultString="預設"
+
+AspectRatioString_All="全部"
+StandardAspectRatioString_4_3="4:3"
+StandardAspectRatioString_5_4="5:4"
+StandardAspectRatioString_3_2="3:2"
+WideAspectRatioString_16_9="16:9"
+WideAspectRatioString_16_10="16:10"
+ExtraWideAspectRatioString_2_1="2:1"
+ExtraWideAspectRatioString_21_9="21:9"
+MultiMonitorAspectRatioString="多螢幕"
+
+FullScreenStringOptions[0]="視窗"
+FullScreenStringOptions[1]="無邊界"
+FullScreenStringOptions[2]="全螢幕"
+
+OffOnStringOptions[0]="關閉"
+OffOnStringOptions[1]="開啟"
+
+GraphicsQualityStringOptions[0]="低"
+GraphicsQualityStringOptions[1]="中"
+GraphicsQualityStringOptions[2]="高"
+GraphicsQualityStringOptions[3]="超高"
+
+VSyncStringOptions[0]="關閉"
+VSyncStringOptions[1]="開啟"
+;VSyncStringOptions[2]="Triple Buffered"
+
+EnvironmentDetailsStringOptions[0]="低"
+EnvironmentDetailsStringOptions[1]="中"
+EnvironmentDetailsStringOptions[2]="高"
+EnvironmentDetailsStringOptions[3]="超高"
+
+FoliageStringOptions[0]="低"
+FoliageStringOptions[1]="中"
+FoliageStringOptions[2]="高"
+
+CharacterDetailStringOptions[0]="低"
+CharacterDetailStringOptions[1]="高"
+CharacterDetailStringOptions[2]="超高"
+
+FXStringOptions[0]="低"
+FXStringOptions[1]="中"
+FXStringOptions[2]="高"
+FXStringOptions[3]="超高"
+
+TextureResolutionStringOptions[0]="低"
+TextureResolutionStringOptions[1]="中"
+TextureResolutionStringOptions[2]="高"
+TextureResolutionStringOptions[3]="超高"
+
+TextureFilteringStringOptions[0]="雙線性"
+TextureFilteringStringOptions[1]="三線性"
+TextureFilteringStringOptions[2]="4x 各向性"
+TextureFilteringStringOptions[3]="16x 各向性"
+
+ShadowsStringOptions[0]="低"
+ShadowsStringOptions[1]="中"
+ShadowsStringOptions[2]="高"
+ShadowsStringOptions[3]="超高"
+
+PhysicsStringOptions[0]="關閉"
+PhysicsStringOptions[1]="普通"
+PhysicsStringOptions[2]="高"
+
+RealtimeReflectionsStringOptions[0]="關閉"
+RealtimeReflectionsStringOptions[1]="開啟"
+
+AntiAliasingStringOptions[0]="關閉"
+AntiAliasingStringOptions[1]="FXAA"
+
+BloomStringOptions[0]="關閉"
+BloomStringOptions[1]="低"
+BloomStringOptions[2]="高"
+
+MotionBlurStringOptions[0]="關閉"
+MotionBlurStringOptions[1]="普通"
+MotionBlurStringOptions[2]="高"
+
+AmbientOcclusionStringOptions[0]="關閉"
+AmbientOcclusionStringOptions[1]="SSAO"
+AmbientOcclusionStringOptions[2]="HBAO+"
+
+DepthOfFieldStringOptions[0]="關閉"
+DepthOfFieldStringOptions[1]="開啟"
+
+[KFGFxOptionsMenu_Graphics_DX10]
+AmbientOcclusionStringOptions_DX10[0]="關閉"
+AmbientOcclusionStringOptions_DX10[1]="SSAO"
+
+[KFGFxOptionsMenu_Controls]
+TabStrings[0]="輸入"
+TabStrings[1]="定義按鈕"
+TabStrings[2]="按鈕排列"
+HeaderText="控制選項"
+
+[KFGFxOptionsMenu_GameSettings]
+SectionNameString="選項"
+GameSettingsString="遊戲設定"
+FOVString="FOV"
+GoreString="血跡"
+ShowCrosshairString="顯示十字線"
+ClassicWeaponSelectString="武器快速選擇"
+GoreOptionStrings[0]="無血跡"
+GoreOptionStrings[1]="少血跡"
+GoreOptionStrings[2]="多血跡"
+NormalString="普通"
+WiderString="寬"
+FriendlyHudScaleString="友善 HUD 比例"
+KillTickerString="顯示 Zed 殺敵數"
+HideBossHealthBarString="隱藏頭目血量"
+ShowWelderInInvString="在庫存中顯示焊槍"
+UseAltAimOnDualString="使用手槍雙瞄準器"
+AntiMotionSicknessString="防手震"
+AutoTurnOffString="不自動開啟凝塊抓取"
+ReduceHighPitchNoiseString="降低高頻雜訊"
+
+[LocalizedControls]
+ControllerLayoutDefault="預設"
+ControllerLayoutJumper="跳躍"
+ControllerLayoutQuickDraw="快速拔槍"
+ControllerLayoutSouthPaw="左撇子"
+
+GBA_TurnLeft="左轉"
+GBA_TurnRight="右轉"
+GBA_Backward="往後移動"
+GBA_MoveForward="往前移動"
+GBA_WeaponSelect_Gamepad="選擇武器（長按）"
+GBA_Reload_Gamepad="裝填彈藥"
+GBA_StrafeLeft_Gamepad="移動控制"
+GBA_MoveForward_Gamepad="往前移動"
+GBA_Look_Gamepad="視線控制"
+GBA_Grenade_Gamepad="投擲手榴彈"
+GBA_TurnLeft_Gamepad="視線控制"
+GBA_Look_Gamepad="視線控制"
+GBA_DPad_Left_Gamepad="語音指令"
+GBA_DPad_Up_Gamepad="裝備治療道具"
+GBA_DPad_Right_Gamepad="投擲金錢"
+GBA_DPad_Down_Gamepad="開啟手電筒"
+
+
+GBA_MoveForward="往前移動"
+GBA_StrafeLeft="往左閃避"
+GBA_Backward="往後移動"
+GBA_StrafeRight="往右閃避"
+GBA_Jump="跳"
+GBA_Sprint="衝刺"
+GBA_CrouchToggle="蹲下（切換）"
+GBA_CrouchHold="長蹲（長按）"
+GBA_SprintAndCrouch="蹲下 / 衝刺"
+GBA_SprintAndMelee="近身 / 衝刺"
+GBA_ShowMenu="在遊戲選單中切換"
+
+GBA_Use="使用 / 快速焊接（長按）"
+GBA_Talk="對話"
+GBA_TeamTalk="團隊對話"
+GBA_VoiceChat="團隊語音"
+GBA_PublicVoiceChat="公開語音"
+GBA_ShowVoiceComms="語音指令"
+GBA_ShowScores="顯示記分板"
+GBA_TossMoney="投擲金錢"
+GBA_DropWeapon="投擲武器"
+
+GBA_Fire="主要攻擊"
+GBA_IronSightsToggle="瞄具（切換）"
+GBA_IronsightsHold="瞄具（長按）"
+GBA_Reload="裝填彈藥"
+GBA_Grenade="投擲手榴彈"
+GBA_QuickHeal="快速治療"
+GBA_SwitchFireMode="預備主要攻擊 / 防禦"
+GBA_TertiaryFire="近身便擊"
+GBA_ToggleFlashlight="開啟手電筒"
+GBA_AltFire="預備主要攻擊 / 防禦"
+GBA_AltFire_Gamepad="預備主要攻擊 / 防禦"
+
+GBA_WeaponSelect_Gamepad="選擇武器（長按）"
+GBA_NextWeapon="下一武器"
+GBA_PrevWeapon="前一武器"
+GBA_LastWeapon="最後使用的武器"
+GBA_SwitchWeapon1="主要武器"
+GBA_SwitchWeapon2="次要武器"
+GBA_SwitchWeapon3="近身武器"
+GBA_SwitchWeapon4="裝備"
+GBA_VoteYes="投票同意（長按）"
+GBA_VoteNo="投票不同意（長按）"
+
+GBA_VoiceCommReqHealing="請求治療"
+GBA_VoiceCommReqDosh="請求金錢"
+GBA_VoiceCommReqHelp="請求協助"
+GBA_VoiceCommTauntZeds="挑釁 Zed"
+GBA_VoiceCommFollowMe="跟我來"
+GBA_VoiceCommGetToTheTrader="到商人那裡"
+GBA_VoiceCommAffirmative="同意"
+GBA_VoiceCommNegative="不同意"
+
+[KFGFxControlsContainer_Input]
+SensitivityString="敏感度"
+InvertedString="Y 反相"
+ControllerString="搖桿"
+ControllerSensitivityString="外觀敏感度"
+MouseString="滑鼠"
+MouseSmoothingString="滑鼠流暢化"
+ZoomSensitivityString="變焦敏感度"
+ControllerZoomSensitivityString="變焦敏感度"
+AimAssistLockOnString="瞄準輔助變焦鎖定"
+AimAssistRotationString="瞄準輔助轉換"
+AimAssistSlowDownString="瞄準輔助遲緩"
+ForceFeedbackString="搖桿震動"
+
+[KFGFxControlsContainer_Keybinding]
+SectionHeaders[0]="動作"
+SectionHeaders[1]="互動"
+SectionHeaders[2]="戰鬥"
+SectionHeaders[3]="武器選擇"
+SectionHeaders[4]="語音指令"
+
+ResetString="全部重設"
+ApplyString="申請"
+PressKeyString="[請按鍵]"
+WarningString="警告"
+KeyAlreadyBoundString="<%x%> 鍵已綁定為："
+RebindString="重新綁定為："
+ClearedString="（之前的綁定會取消）"
+CancelString="取消"
+AcceptString="接受"
+IgnoredKeyString="無法綁定至閒置按鍵"
+
+[KFGFxControlsContainer_ControllerPresets]
+MovementString="移動控制"
+LookString="視線控制"
+WeaponSelectMenuString="武器選擇選單（長按）"
+ShowScoardBoardString="顯示記分板"
+ShowIngameMenuString="在遊戲選單中切換"
+CurrentControllerPresetString="目前的搖桿預設值"
+PresetStrings[0]="預設"
+PresetStrings[1]="快速拔槍"
+PresetStrings[2]="跳躍"
+PresetStrings[3]="左撇子"
+
+BashString="近身便擊"
+BlockString="防禦（長按）"
+HoldString="長按"
+TapString="輕碰"
+
+[KFInventoryManager]
+FullHealthMsg="滿血"
+
+[KFLocalMessage]
+SystemString="系統："
+AdminString ="（管理員）"
+LoggedInAsAdminString=" 已登入為伺服器管理員"
+LoggedOutAsAdminString=" 已登出伺服器管理員"
+MustLoginToCheatString="你必須登入以開啟金手指"
+CheatsEnabledString=" 已開啟金手指。本次遊戲不計入統計資料"
+ServerMaintenanceString="遊戲結束後伺服器將進行維護"
+KickVoteStartedString="開始投票決定踢除："
+KickVoteSucceededString="已投票通過踢除："
+KickVoteFailedString="投票未通過踢除："
+KickVoteRejectedString="從上次未通過投票後還沒經過足夠時間。請稍後再試"
+KickVoteInProgressString="無法開始踢除投票，已有投票在進行"
+KickVoteDisabledString="本伺服器不允許踢除投票"
+KickVoteYesReceivedString="你投票同意踢除："
+KickVoteNoReceivedString="你投票不同意踢除："
+KickVoteKickAdminString="你不能踢除伺服器管理員"
+KickVoteActiveTimeString="遊戲時間不夠久，無法進行踢除投票"
+KickVoteMatchNotStartedString="遊戲開始前無法進行踢除投票"
+KickVoteMaxKicksReachedString="你無法於本場遊戲再次提出踢除"
+KickVoteNotEnoughPlayersString="玩家不夠，無法進行踢除投票"
+KickVoteNoSpectatorsString="觀戰者無法提出踢除投票"
+KickedFromServerString="你已退出本伺服器"
+BannedFromServerString="你已退出本伺服器。你現在無法再加入"
+
+[KFLocalMessage_Game]
+ReceivedAmmoFromMessage="你收到的彈藥來自"
+GaveAmmoToMessage="你將彈藥給予"
+PendingPerkChangesSet="職業變更將在此波攻擊後生效"
+PendingPerkChangesApplied="職業已變更！"
+HealedByMessage="你獲得的治療來自"
+HealedMessage="你治療了"
+YourselfString="你自己。"
+PickedupArmorMessage="你撿起了護甲"
+FullArmorMessage="你的護甲值已滿"
+PickupAmmoMessage="你撿起了彈藥"
+AmmoFullMessage="你的彈藥已滿"
+PickupWeaponAmmoMessage="你撿起了 %x% 彈藥"
+AlreadyCarryingWeaponMessage="你已經擁有這個武器。"
+PickupMessage="你撿起了"
+TooMuchWeightMessage="這個武器太重了。請丟棄或賣出其他武器"
+FailedDropInventoryMessage="你不能在此丟棄"
+ReceivedGrenadesFromMessage="你收到的手榴彈來自"
+GaveGrenadesToMessage="你將手榴彈給予"
+SharingContentString="正在分享內容"
+HeadShotAddedString="%x 爆頭 - 增加 %y% 傷害！"
+HeadShotMaxString="爆頭！增加 %x% 傷害！"
+HeadShotResetString="爆頭未擊中。普通傷害！"
+
+SuicideMessage=" 已經放棄生命…"
+KilledMessage=" 被生吞了"
+KillzedBy_PatriarchString=" 不能再傷害凱文的孩子了"
+KillzedBy_HansString="的屍體已被收去進行研究"
+KillzedBy_ZedCrawlerString="的腳踝已被咬掉"
+KillzedBy_ZedBloatString=" 已淹死在體液中"
+KillzedBy_ZedFleshpoundString=" 已被打成肉醬"
+KillzedBy_ZedGorefastString=" 已被活剝"
+KillzedBy_ZedHuskString=" 已被燒死"
+KillzedBy_ZedScrakeString=" 已英年早逝"
+KillzedBy_ZedSirenString="的耳朵被炸碎，已死亡"
+KillzedBy_ZedStalkerString=" 沒預料到"
+KillzedBy_ZedClot_CystString=" 已痛苦地死去"
+KillzedBy_ZedClot_AlphaString=" 已被騷擾"
+KillzedBy_ZedClot_SlasherString=" 不再喜歡恐怖片"
+
+FoundAMapCollectibleMessage="%x% 找到了 %y%。%z% 已離開…"
+FoundAllMapCollectiblesMessage="已找到每一個 %x%！"
+MapCollectibleName="金錢閃耀著"
+
+[KFLocalMessage_Priority]
+WaveStartMessage="新一波攻擊即將來臨"
+WaveEndMessage="本波攻擊結束"
+GetToTraderMessage="到商人那裡"
+YouLostMessage="戰敗"
+YouWonMessage="勝利"
+SquadWipedOutMessage="你的小隊已被殲滅！"
+SquadSurvivedMessage="你的小隊順利存活！"
+ObjectiveStartMessage="目標已開始！"
+ObjectiveWonMessage="達成目標！"
+ObjectiveEndedMessage="目標已結束！"
+ObjectiveLostMessage="已錯失目標！"
+ObjNotEnoughPlayersMessage="玩家不足！"
+ObjTimeRanOutMessage="時間已到！"
+HumansLoseMessage="人類小隊已被殲滅！"
+HumansWinMessage="人類小隊順利存活！"
+AttackHumanPlayersString="攻擊人類玩家！"
+ZedGroupRegroupingString="一群 Zed 正在形成！"
+NextRoundBeginString="下一回合"
+PlayerCanChangePerksString="可變更職業"
+ZedWaitingForNextRoundString="Zed 群即將襲來！"
+
+[KFLocalMessage_Interaction]
+UseTraderMessage="使用商人<%HOLD%>自動升級"
+UseDoorMessage="開啟 / 關閉<%HOLD%>裝備焊槍"
+EquipWelderMessage="<%HOLD%>裝備焊槍"
+ZedUseDoorMessage="開啟 / 關閉"
+ZedUseDoorWeldedMessage="門被焊住了，摧毀它！"
+RepairDoorMessage="<%HOLD%>裝備焊槍以修復門"
+AcceptObjectiveMessage="接受目標"
+ReceiveAmmoMessage="接收彈藥"
+ReceiveGrenadesMessage="接收手榴彈"
+HealSelfWarning="治療自己"
+HealSelfGamepadWarning="<%HOLD%>治療自己"
+PressToBashWarning="便擊"
+GamepadWeaponSelectHint="<%HOLD%>選擇武器"
+PlayerClotGrabWarningMessage="殺死 ZED 以重獲自由！"
+
+[KFLocalMessage_ServerNotification]
+TeamPendingBalanceMessage="隊伍人數不平均，將進行調整"
+
+[KFGfxPerkComp_Abilities]
+RankNames[0]="級別 I"
+RankNames[1]="級別 II"
+RankNames[2]="級別 III"
+
+[KFPerk]
+SkillCatagories[0]=""
+SkillCatagories[1]=""
+SkillCatagories[2]=""
+SkillCatagories[3]=""
+SkillCatagories[4]=""
+
+LevelString="等級"
+
+SpecialAbilityName="標準能力"
+SpecialAbilityDescription=""
+
+Passives[0]=(Title="",Description="");
+Passives[1]=(Title="",Description="");
+Passives[2]=(Title="",Description="");
+Passives[3]=(Title="",Description="");
+Passives[4]=(Title="",Description="");
+
+SkillSlots0[0]=(Title="", Description="")
+SkillSlots0[1]=(Title="", Description="")
+
+SkillSlots1[0]=(Title="", Description="")
+SkillSlots1[1]=(Title="", Description="")
+
+SkillSlots2[0]=(Title="", Description="")
+SkillSlots2[1]=(Title="", Description="")
+
+SkillSlots3[0]=(Title="", Description="")
+SkillSlots3[1]=(Title="", Description="")
+
+SkillSlots4[0]=(Title="", Description="")
+SkillSlots4[1]=(Title="", Description="")
+
+WeaponDroppedMessage="由於你的負重量改變，你丟棄了 %%%%！"
+
+[KFPerk_Berserker]
+PerkName="狂戰士"
+
+SkillCatagories[0]="生存模式"
+SkillCatagories[1]="戰鬥"
+SkillCatagories[2]="近身戰鬥"
+SkillCatagories[3]="力量"
+SkillCatagories[4]="進階訓練"
+
+
+Passives[0]=(Title="狂戰士傷害",Description="每級增加職業武器傷害 x%x");
+Passives[1]=(Title="傷害抵抗",Description="每 5 級增加傷害抵抗 x%x");
+Passives[2]=(Title="+夜視能力",Description="手電筒與夜視鏡");
+Passives[3]=(Title="+凝塊抓不住你",Description="凝塊無法抓住狂戰士");
+
+EXPAction1="造成狂戰士武器傷害"
+EXPAction2="使用狂戰士武器殺死附近的 Zed"
+
+Fortitude="勇士"
+FortitudeDescription="血量增加 75%。"
+
+Ninja="散兵"
+NinjaDescription="移動速度增加 20%，衝刺速度增加 25%，使用職業近身武器時每秒回復 1 點血量。"
+
+Vampire="吸血鬼"
+VampireDescription="每次使用近身武器殺死 Zed 可回復 4 點血量。使用職業近身武器攻擊時速度增加 20%。"
+
+Speed="屠夫"
+SpeedDescription="使用職業近身武器攻擊時速度增加 20% 且傷害增加 25%。"
+
+Resistance="抗性"
+ResistanceDescription="對所有傷害抵抗增加 20%毒害與超音波傷害抵抗再增加 20%"
+
+Parry="格檔"
+ParryDescription="以職業近身武器進行格檔可減少 40% 即將受到的傷害，且增加 5% 近身攻速與 35% 近身攻擊傷害，效果持續 10 秒。"
+
+Smash="猛擊"
+SmashDescription="以職業近身武器重擊可增加 50% 傷害，擊中頭部時增加 25 %傷害，並增加 200% 踉蹌力量。"
+
+Fury="屠殺"
+FuryDescription="使用職業近身武器輕擊可增加 30% 傷害，且所有職業近身武器攻速增加 5%。"
+
+Spartan="ZED 時間 - 斯巴達 "
+SpartanDescription="Zed 時間發動時，你可在使用職業武器的同時移動。"
+
+Rage="ZED 時間 - 狂戰士之怒"
+RageDescription="回復 25% 血量，當你發動 Zed 時間時，周圍的 Zed 會逃跑。"
+
+[KFPerk_Commando]
+PerkName="突擊隊"
+
+SkillCatagories[0]="彈藥管理"
+SkillCatagories[1]="戰略"
+SkillCatagories[2]="生存模式"
+SkillCatagories[3]="武器專家"
+SkillCatagories[4]="進階訓練"
+
+Passives[0]=(Title="職業武器傷害",Description="每級增加職業武器傷害 x%x");
+Passives[1]=(Title="偵測躲藏敵人與血量",Description="初始範圍為 5 公尺，每次升級再加 x%x");
+Passives[2]=(Title="延長 Zed 時間",Description="每 5 級增加 Zed 時間 x%x");
+Passives[3]=(Title="裝填速度",Description="每 5 級增加職業武器裝填速度 x%x");
+Passives[4]=(Title="+夜視能力",Description="手電筒與夜視鏡");
+Passives[5]=(Title="+叫出躲藏 Zed",Description="讓隊友可以看見躲藏的敵人");
+
+EXPAction1="造成突擊武器傷害"
+EXPAction2="使用突擊武器殺害跟蹤狂"
+
+TacticalReload="戰略裝填"
+TacticalReloadDescription="職業武器裝填速度增加"
+
+LargeMags="高容量彈匣"
+LargeMagsDescription="職業武器彈匣容量增加 50%"
+
+Backup="後援"
+BackupDescription="使用 9 釐米手槍與刀的傷害增加 110%，且武器切換速度增加 50%"
+
+Impact="衝擊回合"
+ImpactDescription="職業武器踉蹌力量增加 150%"
+
+HealthIncrease="不屈不撓"
+HealthIncreaseDescription="血量與護甲值增加 25%。"
+
+AmmoVest="準備就緒"
+AmmoVestDescription="為每樣職業武器多帶最多 20% 的彈藥"
+
+HollowPoints="中空彈回合"
+HollowPointsDescription="職業武器傷害增加 25% 且後座力減少 50% "
+
+EatLead="吃鉛"
+EatLeadDescription="職業武器彈匣容量增加 100%"
+
+RapidFire="ZED 時間 - 機槍手"
+RapidFireDescription="Zed 時間發動時，增加職業武器傷害 3%，且所有槍枝的射速變為 3 倍。"
+
+Professional="ZED 時間 - 謀略家"
+ProfessionalDescription="Zed 時間發動時，以全速裝填職業武器並以雙倍速度切換職業武器。"
+
+[KFPerk_Demolitionist]
+PerkName="殲滅"
+EXPAction1="造成殲滅武器傷害"
+EXPAction2="使用殲滅武器殺害絞碎者"
+
+SkillCatagories[0]="技術"
+SkillCatagories[1]="炸藥"
+SkillCatagories[2]="進階技術"
+SkillCatagories[3]="武器技術"
+SkillCatagories[4]="進階炸藥"
+
+Passives[0]=(Title="職業武器傷害",Description="每級增加職業武器傷害 x%x");
+Passives[1]=(Title="炸藥抗性",Description="炸藥抗性增加 10%，每次升級再加 x%x");
+Passives[2]=(Title="額外炸藥彈藥",Description="每 5 級增加炸藥彈藥 x%x");
+Passives[3]=(Title="+手榴彈提供者",Description="隊友會在每波攻擊中收到 1 枚手榴彈");
+Passives[4]=(Title="+門上陷阱",Description="你焊接的門遭到破壞時會爆炸");
+Passives[5]=(Title="反應式護甲",Description="當血量第一次降到 0 時你的護甲會爆炸，且你會剩下１點血量");
+
+
+Damage="炸彈客"
+DamageDescription="爆炸性職業武器傷害增加 25%。"
+
+Speed="震擊部隊"
+SpeedDescription="職業武器裝填速度增加 20%，且擊倒和踉蹌力量增加 25%。"
+
+DirectHit="高衝擊回合"
+DirectHitDescription="爆炸性武器直接擊中時，傷害增加 20%。"
+
+Ammo="加分回合"
+AmmoDescription="爆炸性職業武器彈藥上限增加 5。"
+
+SirenResistance="防超音回合"
+SirenResistanceDescription="你的炸藥不受海妖的叫聲影響，一定會爆炸"
+
+AreaOfEffect="分裂回合"
+AreaOfEffectDescription="爆炸性職業武器影響範圍增加 50%，但傷害減少 30%"
+
+CriticalHit="破甲回合"
+CriticalHitDescription="職業武器直接命中重要部位時，傷害增加 50% "
+
+ConcussiveForce="腦震盪回合"
+ConcussiveForceDescription="職業武器的反應、暈眩、踉蹌與擊倒力量增加 50%"
+
+Nuke="ZED 時間 - 世界毀滅者"
+NukeDescription="Zed 時間發動時，你的炸藥會帶有強力的放射傷害，使 Zed 中毒，且爆炸性彈藥可於任何範圍爆炸。"
+
+Professional="ZED 時間 - 瘋狂炸彈客"
+ProfessionalDescription="Zed 時間發動時，你的射擊與裝填皆與一般時間相近，職業武器攻擊範圍增加 25%，且爆炸性彈藥可於任何範圍爆炸。"
+
+
+[KFPerk_FieldMedic]
+PerkName="戰地軍醫"
+
+SkillCatagories[0]="調節"
+SkillCatagories[1]="動作"
+SkillCatagories[2]="傷害"
+SkillCatagories[3]="戰鬥技術"
+SkillCatagories[4]="高科技"
+
+Passives[0]=(Title="注射器裝填速度",Description="每級增加注射器裝填速度 %x%");
+Passives[1]=(Title="注射器效力",Description="每級增加注射器所能補充的血量 %x%");
+Passives[2]=(Title="膽腫脹抗性",Description="每級減少毒傷害 %x%");
+Passives[3]=(Title="移動速度",Description="每 5 級增加移動速度 %x%");
+Passives[4]=(Title="護甲值加成",Description="每級增加護甲值 %x%");
+
+HealingSurge="共同生命"
+HealingSurgeDescription="增加 25% 血量。治療隊友也會治療你 10% 的血量"
+
+Survivalist="恢復力"
+SurvivalistDescription="每失去 1 點血量就增加傷害抵抗 1%，最多增加到 50%"
+
+HealingSpeedBoost="腎上腺素注射"
+HealingSpeedBoostDescription="以治療鏢射擊隊友能增加他們的移動速度 10%，效力維持 5 秒。這可加到總共 30% 的加成。"
+
+Combatant="搏鬥醫師"
+CombatantDescription="職業武器彈匣上限增加 50% 且移動速度增加 10% "
+
+HealingDamageBoost="注意力注射"
+HealingDamageBoostDescription="以治療鏢射擊隊友能增加他們的殺傷力 5%，效力維持 5 秒。這可加到總共 20% 的加成。 "
+
+AcidicCompound="酸性回合"
+AcidicCompoundDescription="職業武器可使 Zed 中毒，造成持續傷害。"
+
+HealingShield="凝結加速器"
+HealingShieldDescription="以治療鏢射擊隊友能增加他們的傷害抵抗 10%，效力維持 5 秒。這可加到總共 30% 的加成。 "
+
+Enforcer="戰地外科醫生"
+EnforcerDescription="職業武器傷害增加 20%。"
+
+AirborneAgent="ZED 時間 - 空中飛人"
+AirborneAgentDescription="Zed 時間發動時，你會施放治療瓦斯，用來治療附近的隊友。"
+
+Sedative="ZED 時間 - Zed 動作"
+SedativeDescription="Zed 時間發動時，以職業武器對 Zed 造成傷害會使他們動作減緩 30% 且造成大量毒傷害。 "
+
+
+EXPAction1="造成醫學武器傷害"
+EXPAction2="治療隊友"
+
+[KFPerk_Firebug]
+PerkName="縱火狂"
+EXPAction1="造成縱火狂武器傷害"
+EXPAction2="使用縱火狂武器殺害爬行者"
+
+SkillCatagories[0]="補給"
+SkillCatagories[1]="辣"
+SkillCatagories[2]="燒"
+SkillCatagories[3]="火焰"
+SkillCatagories[4]="進階訓練"
+
+Passives[0]=(Title="職業武器傷害",Description="每級增加職業武器傷害 x%x");
+Passives[1]=(Title="職業武器裝填",Description="每級增加職業武器裝填速度 x%x");
+Passives[2]=(Title="抵抗 Zed 火焰傷害",Description="對 Zed 火焰傷害的抗性增加 30%，每次升級再加 x%x");
+Passives[3]=(Title="抵抗自身火焰傷害",Description="對自己火焰的傷害抵抗增加 25%，每次升級再加 x%x");
+Passives[4]=(Title="初始彈藥",Description="每 5 級增加 x%x 的初始彈藥");
+
+BringTheHeat="放火"
+BringTheHeatDescription="增加火焰武器傷害 35%"
+
+HighCapFuelTank="高容量燃料槽"
+HighCapFuelTankDescription="所有職業武器燃料槽與彈匣上限增加 100%"
+
+Fuse="烤肉"
+FuseDescription="職業武器的燒傷效果延長 150%，隨時間增加傷害。"
+
+GroundFire="地面火力"
+GroundFireDescription="地面火力可大幅加強傷害，且降低 Zed 移動速度 20%。"
+
+ZedShrapnel="Zed 霰彈"
+ZedShrapnelDescription="以火焰殺害的 Zed 有 20% 可能性會爆炸，對附近其他 Zed 造成傷害並將其擊倒。"
+
+Napalm="凝固汽油"
+NapalmDescription="燃燒的 Zed 碰觸到其他 Zed 會使它們起火，燒傷效果延長 150%。"
+
+Range="火旋風"
+RangeDescription="職業武器的攻擊範圍增加。"
+
+SplashDamage="熱浪"
+SplashDamageDescription="被近距離擊中的 Zed 會往後跌。"
+
+Inferno="ZED 時間 - 火焰地獄"
+InfernoDescription="Zed 時間發動時，被火燒到的 Zed 速度會減緩 30% 並受到額外 50% 的燃燒傷害。"
+
+Scorch="ZED 時間 - 縱火狂"
+ScorchDescription="Zed 時間發動時，幾乎可以瞬間連發職業武器，而且彈藥不會耗盡。"
+
+[KFPerk_Gunslinger]
+PerkName="槍砲工"
+EXPAction1="造成槍砲武器傷害"
+EXPAction2="槍砲武器爆頭"
+
+SkillCatagories[0]="技術"
+SkillCatagories[1]="技能"
+SkillCatagories[2]="進階技術"
+SkillCatagories[3]="重要打擊"
+SkillCatagories[4]="大師技術"
+
+Passives[0]=(Title="職業武器傷害",Description="每級增加職業武器傷害 x%x");
+Passives[1]=(Title="防彈",Description="對拋物線攻擊的抗性增加 5%，每次升級再加 x%x");
+Passives[2]=(Title="移動速度",Description="每 5 級增加移動速度 %x%");
+Passives[3]=(Title="後座力",Description="每級減少職業武器的後座力 %x%");
+Passives[4]=(Title="Zed 時間裝填",Description="每級增加 Zed 時間發動時提升的裝填速度 %x%");
+
+ShootnMove="穩健"
+ShootnMoveDescription="可無視使用瞄具的速度延遲，並大幅減少職業武器的震動。"
+
+QuickSwitch="快速拔槍"
+QuickSwitchDescription="可無視由腰際拔槍帶來的後座力影響，移動速度增加 5%，且職業武器切換速度增加 50%。"
+
+RhythmMethod="連擊王"
+RhythmMethodDescription="連續以職業武器爆頭時，每次可增加 10% 傷害，最多增加到 50%。"
+
+BoneBreaker="碎骨機"
+BoneBreakerDescription="使用職業武器時的傷害增加 20%，對手臂與腿的傷害再增加 30%"
+
+SpeedReload="快速裝填"
+SpeedReloadDescription="職業武器裝填速度增加"
+
+Penetration="排排站"
+PenetrationDescription="以職業武器射擊穿透 Zed 時，穿透後擊中其他 Zed 也不會減輕傷害。"
+
+Skullcracker="頭骨粉碎者"
+SkullcrackerDescription="以職業武器將 Zed 爆頭，會使 Zed 速度減少 30%"
+
+KnockEmDown="擊倒王"
+KnockEmDownDescription="當Zed衝刺時擊中其腿部能大幅增加擊倒力量。使用職業武器擊中 Zed 胸部能大幅增加踉蹌力量。"
+
+Fanfare="ZED 時間 - 搧風點火"
+FanfareDescription="Zed 時間發動時，你的職業武器射速變為 3 倍，裝填速度不變。"
+
+UberAmmo="ZED 時間 - 子彈旋風"
+UberAmmoDescription="Zed 時間發動時，你職業武器的彈藥不會耗盡。"
+
+[KFPerk_Sharpshooter]
+PerkName="神射手"
+
+EXPAction1="造成神射手武器傷害"
+EXPAction2="神射手武器爆頭"
+
+SkillCatagories[0]="動作"
+SkillCatagories[1]="基本技術"
+SkillCatagories[2]="技能"
+SkillCatagories[3]="裝備"
+SkillCatagories[4]="大師技術"
+
+Passives[0]=(Title="爆頭傷害",Description="每級增加爆頭傷害 %x%");
+Passives[1]=(Title="後座力",Description="每級減少後座力 %x%");
+Passives[2]=(Title="武器變更",Description="每級增加武器切換速度 %x%");
+
+StationaryAim="狙擊者"
+StationaryAimDescription="在靜止狀態下使用職業武器時，傷害增加 25%"
+
+Trigger="狙擊手"
+TriggerDescription="使用職業武器時，射速增加 25%，移動速度增加 10%"
+
+CrouchAim="穩定度"
+CrouchAimDescription="以蹲姿使用職業武器時，傷害增加 30%、速度增加 50%，且裝填速度增加 20%。"
+
+Stun="驚悚彈道"
+StunDescription="職業武器暈眩效果增加 100%"
+
+RhythmMethod="連擊王"
+RhythmMethodDescription="連續以職業武器爆頭時，每次可增加 10% 傷害，最多增加到 50%。  "
+
+TacticalReload="戰略裝填"
+TacticalReloadDescription="職業武器裝填速度增加"
+
+Scoped="死亡之眼"
+ScopedDescription="手持職業武器使用瞄具時，後座力減少 10%，爆頭傷害增加 10%。"
+
+AmmoPouch="隨時就緒"
+AmmoPouchDescription="為每樣職業武器和手榴彈多帶最多 25% 的彈藥"
+
+ZTKnockdown="ZED 時間 - 暗殺者"
+ZTKnockdownDescription="以職業武器爆頭時有 5% 的機會直接觸發 Zed 時間。Zed 時間發動時，以職業武器造成的爆頭傷害增加 35%。"
+
+ZTStun="ZED 時間 - 遊俠"
+ZTStunDescription="以職業武器爆頭時有 5% 的機會直接觸發 Zed 時間。Zed 時間發動時，以職業武器爆頭會使被擊中的 Zed 暈眩。"
+
+[KFPerk_Support]
+PerkName="支援"
+
+SkillCatagories[0]="彈藥管理"
+SkillCatagories[1]="訓練"
+SkillCatagories[2]="火力"
+SkillCatagories[3]="物流"
+SkillCatagories[4]="進階訓練"
+
+Passives[0]=(Title="焊接效率",Description="每級增加焊接速度 %x%");
+Passives[1]=(Title="霰彈槍傷害",Description="每級增加職業武器傷害 x%x");
+Passives[2]=(Title="霰彈槍穿透",Description="每級增加職業武器穿透 x%x");
+Passives[3]=(Title="彈藥",Description="彈藥增量 15%，每次升級再加 %x%");
+Passives[4]=(Title="力量",Description="每 5 級增加負重量 1");
+Passives[5]=(Title="彈藥備援 + 門維修",Description="每回合玩家可從背包取得彈藥和維修壞掉的門一次");
+
+EXPAction1="造成協助武器傷害"
+EXPAction2="焊接門"
+
+HighCapMags="高容量彈匣"
+HighCapMagsDescription="職業武器彈匣容量增加 50%"
+
+TacticalReload="戰略裝填"
+TacticalReloadDescription="職業武器裝填速度增加"
+
+Fortitude="不屈不撓"
+FortitudeDescription="增加 50% 血量"
+
+Salvo="齊射"
+SalvoDescription="職業武器傷害增加 30%"
+
+APShot="破甲射擊"
+APShotDescription="職業武器穿透大幅增加"
+
+TightChoke="窒息式攻擊"
+TightChokeDescription="職業武器分散效果增加 50%"
+
+Resupply="補給包"
+ResupplyDescription="每波攻擊期間，只要與你互動，你的隊友即可恢復 30% 的彈藥與 20% 的護甲值。你可以為職業武器多帶最多 20% 的彈藥"
+
+ConcussionRounds="腦震盪回合"
+ConcussionRoundsDescription="職業武器踉蹌力量增加 150%"
+
+Perforate="ZED 時間 - 貫穿射手"
+PerforateDescription="Zed 時間發動時，你的職業武器會貫穿任何擊中的目標。"
+
+Barrage="ZED 時間 - 彈幕"
+BarrageDescription="Zed 時間發動時，你的職業武器即時射擊。"
+
+[KFPerk_Sharpshooter]
+PerkName="神射手"
+
+[KFPerk_SWAT]
+PerkName="特種部隊"
+EXPAction1="造成特種部隊武器傷害"
+EXPAction2="使用特種部隊武器殺害凝塊"
+
+SkillCatagories[0]="特技"
+SkillCatagories[1]="攻擊技術"
+SkillCatagories[2]="裝備"
+SkillCatagories[3]="防守技術"
+SkillCatagories[4]="特別訓練"
+
+Passives[0]=(Title="職業武器傷害",Description="每級增加職業武器傷害 x%x");
+Passives[1]=(Title="防彈",Description="對拋物線攻擊的抗性每次升級增加 5% 再加 x%x");
+Passives[2]=(Title="增加彈匣容量",Description="每級增加彈匣容量 x%x");
+Passives[3]=(Title="武器變更速度",Description="每級增加武器變更速度 %x%");
+
+HeavyArmor="重護甲訓練"
+HeavyArmorDescription="若你穿著身體護甲，你只會受到超音波攻擊傷害，而凝塊抓不住你。你在每次遊戲開始時會擁有 50% 的護甲值。"
+
+TacticalMovement="戰略性移動"
+TacticalMovementDescription="手持職業武器時，使用瞄具或匍匐前進都不會受到移動懲罰。"
+
+Backup="近身戰鬥訓練"
+BackupDescription="使用 9 釐米手槍與刀的傷害增加 110%。你在每個遊戲開始時會擁有兩把 9 釐米手槍。"
+
+TacticalReload="戰略裝填"
+TacticalReloadDescription="職業武器裝填速度增加"
+
+SpecialAmmunition="鎮壓回合"
+SpecialAmmunitionDescription="職業武器踉蹌力量增加 100%。"
+
+AmmoVest="彈匣背心"
+AmmoVestDescription="為每樣職業武器多帶最多 30% 的彈藥"
+
+BodyArmor="突擊護甲"
+BodyArmorDescription="護甲值上限增加 50%你在每次遊戲開始時會擁有 50% 的護甲，可與重護甲訓練給予你的護甲值疊加。"
+
+Cripple="傷殘"
+CrippleDescription="以職業武器同時命中多個目標時，會使 Zed 速度減少最多 30%。打中腿部效用最顯著。"
+
+SWATEnforcer="ZED 時間 - 強力撞擊"
+SWATEnforcerDescription="Zed 時間發動時，你的動作為即時速度，碰撞Zed時會有強大的擊倒力量。"
+
+RapidAssault="ZED 時間 - 快速進攻"
+RapidAssaultDescription="Zed 時間發動時，使用職業武器有無限彈藥，近乎即時射擊，且踉蹌力量增加 100%。"
+
+
+[Fonts]
+Bicubik="Bicubik"
+
+[KFObjective]
+ObjectiveDifficulties[0]="簡單"
+ObjectiveDifficulties[1]="中"
+ObjectiveDifficulties[2]="困難"
+ObjectiveStartTitle="沿著小路走到初始位置"
+ObjectiveWaitingString="等待更多玩家！"
+ObjectiveWonString="完成！"
+ObjectiveFailedString="失敗！"
+ObjectiveEndedString="結束！"
+ObjectiveFailReasons[0]="時間已到！"
+ObjectiveFailReasons[1]="隊伍被殲滅"
+ObjectiveFailReasons[2]="血量少的玩家已死亡"
+ObjectiveFailReasons[3]="攻擊波結束"
+ObjectiveFailReasons[4]="目標已結束"
+ObjectiveFailReasons[5]="沒有低金錢玩家"
+ObjectiveFailReasons[6]="玩家不足！"
+ObjectiveXPString="XP："
+ObjectiveTimeLimitString="限制時間："
+ObjectiveTimeUnit="s"
+ObjectiveStatusString="目標狀況"
+
+[KFObj_Wave]
+ObjectiveAvailableString="目標仍存在"
+
+[KFObj_Wave_Defend]
+ObjectiveTypeString="防守"
+ObjectiveTargetTitle="防止病毒上載！"
+ObjectiveStatusTitle="連結下載狀況"
+
+[KFObj_Coop_Healer]
+ObjectiveTypeString="治療道具"
+ObjectiveTargetTitle="治療血量少的玩家"
+ObjectiveStatusTitle="治療的玩家"
+ObjectiveTimeString="剩下"
+
+[KFObj_Coop_PayDay]
+ObjectiveTypeString="發薪日"
+ObjectiveTargetTitle="給重生的玩家金錢"
+ObjectiveStatusTitle="領回 30% 現金"
+ObjectiveTimeString="剩下"
+
+[KFGameViewportClient]
+TripWireOfficialString="Tripwire 官方地圖"
+OfficialCommunityString="官方群組地圖"
+CommunityCustomString="群組自訂地圖"
+RandomLoadingStrings[0]="絞碎者對炸藥弱但不怕子彈。"
+RandomLoadingStrings[1]="電鋸不怕炸藥但對子彈弱。"
+RandomLoadingStrings[2]="你只能攜帶限制的重量賣掉較弱的武器，創造空間收納好武器。"
+RandomLoadingStrings[3]="留意氣孔與水管，Zed 可能由任何地方出現。"
+RandomLoadingStrings[4]="注意地圖裡可能散落的裝備與彈藥盒。在危機時可能會救你一命。"
+RandomLoadingStrings[5]="胖胖的身體非常耐打。瞄準頭部攻擊。"
+RandomLoadingStrings[6]="格檔會使 Zed 踉蹌，你能趁機多進行攻擊。"
+RandomLoadingStrings[7]="小心焦驅。受了一定傷害後它會自爆，與你的團隊同歸於盡。"
+RandomLoadingStrings[8]="攻擊 Zed 後，讓其受傷的武器所屬的職業將可獲得經驗值。"
+RandomLoadingStrings[9]="保持團體行動。如果落單，在危急時存活的機會會降低。"
+RandomLoadingStrings[10]="玩家可使用注射器治療自己或隊友。"
+RandomLoadingStrings[11]="將門焊接可以防禦 Zed，但它們遲早會將其破壞。"
+RandomLoadingStrings[12]="如果隊友陣亡，可幫助他撿起他的武器，帶去放在商人那裡。"
+RandomLoadingStrings[13]="有多餘金錢嗎？為了隊友留一些下來吧，他們也可能會回報你。"
+RandomLoadingStrings[14]="選擇目標。不同的武器對不同類型的 Zed 有不一樣的效果。"
+RandomLoadingStrings[15]="設定主要的目標。絞碎者比起凝塊更值得你的注意力。"
+RandomLoadingStrings[16]="所有的 Zed 都有弱點。若不是頭部，找看看他們身上的亮點。"
+RandomLoadingStrings[17]="想買賣妝容物品或武器飾品嗎？去市場瞧瞧吧。"
+RandomLoadingStrings[18]="海妖的尖叫會使得手榴彈與其它炸藥失效。"
+RandomLoadingStrings[19]="電鋸與胖胖受了一定的傷害後會暴走。小心閃避它們。"
+RandomLoadingStrings[20]="有很多不用的妝容物品或武器飾品嗎？從庫存中合成新的吧。"
+RandomLoadingStrings[21]="小心選擇你的服裝與裝備。滅殺 Zed 的時候一定要時尚一點。"
+RandomLoadingStrings[22]="近身攻擊依你的動作會有方向的不同。"
+RandomLoadingStrings[23]="將門焊接能限制Zed襲來的方向，但也會限制到你逃跑的路線。"
+RandomLoadingStrings[24]="就算是最弱的 Zed 也不要太接近它們。它們可能抓住你，直到它們的大朋友過來。"
+RandomLoadingStrings[25]="想要醫學 XP 和金錢嗎？治療你的團隊吧，雙方都可獲利！"
+RandomLoadingStrings[26]="武器要小心安排使用。打到一半沒有彈藥會讓你陷入窘境。"
+RandomLoadingStrings[27]="每 5 級就會解鎖新的職業技能。請至職業選單看詳細內容。"
+RandomLoadingStrings[28]="M79 與 RPG 必須經過一定距離才能裝好炸藥。"
+RandomLoadingStrings[29]="如果你看不見 Zed，可以使用手電筒。"
+RandomLoadingStrings[30]="存活一直有困難嗎？試試新的職業吧！你可能找到更適合你玩法的職業。"
+RandomLoadingStrings[31]="任何時候都要先確定有路可逃。被逼進死角等於是踩進了墓穴。"
+RandomLoadingStrings[32]="護甲是你的好朋友。有更多護甲絕不會是壞事。"
+RandomLoadingStrings[33]="火是一個讓 Zed 無法接近你的好辦法。用火燒死 Zed 很花時間，但著火會讓它們無法正常攻擊。"
+RandomLoadingStrings[34]="如果 Zed 或它的武器閃紅光，格檔它的近身攻擊會沒什麼效用。逃就對了！"
+RandomLoadingStrings[35]="用火燒 Zed 會讓他們陷入緊張。可以玩大家最喜歡的遊戲：天啊，我著火了！"
+RandomLoadingStrings[36]="機關槍有很大機會能讓目標踉蹌，無法接近。"
+RandomLoadingStrings[37]="電磁砲若發射角度正確可以射穿複數 Zed。"
+RandomLoadingStrings[38]="微波砲對手持金屬的 Zed，例如絞碎者和海妖，有更好的效果。"
+RandomLoadingStrings[39]="試試看你的武器的替代主要攻擊模式。並不是所有武器都有此功能，但危急時可能派上用場。"
+RandomLoadingStrings[40]="助攻與殺害都能獲得 XP 與金錢，所以為隊友製造機會不用感覺很差。"
+
+[WhatsNewMessages]
+Jaegorhorn="追蹤社群以解鎖耶格霍恩。"
+HorzineSupplyCrateKey1="Horzine 補給箱子鑰匙 | 系列 #1 - $2.49"
+HorzineSupplyCrateKey2="Horzine 補給箱子鑰匙 | 系列 #2 - $2.49"
+HorzineSupplyCrateKey3="Horzine 補給箱子鑰匙 | 系列 #3 - $2.49"
+HorzineSupplyCrateKey4="Horzine 補給箱子鑰匙 | 系列 #4 - $2.49"
+HorzineSupplyCrateKey5="Horzine 補給箱子鑰匙 | 系列 #5 - $2.49"
+HorzineSupplyCrateKey6="Horzine 補給箱子鑰匙 | 系列 #6 - $2.49"
+HorzineSupplyCrateKey7="Horzine 補給箱子鑰匙 | 系列 #7 - $2.49"
+HorzineSupplyCrateKey8="Horzine 補給箱子鑰匙 | 系列 #8 - $2.49"
+HorzineSupplyCrateKey9="Horzine 補給箱子鑰匙 | 系列 #9 - $2.49"
+USBCyberboneKey="生化骨 USB 鑰匙 - $2.49"
+USBDragonfireKey="龍火 USB 鑰匙 - $2.49"
+USBEmergencyIssueKey="緊急事件 USB 鑰匙 - $2.49"
+USBHorzineFirstEncounterKey="Horzine 初次遭遇 USB 鑰匙 - $2.49"
+USBHorzineIssueKey="Horzine 配給 USB 鑰匙 - $2.49"
+USBMedicKey="醫療 USB 鑰匙 - $2.49"
+USBOlExhibitKey="Ol' Exhibit USB 鑰匙 - $2.49"
+USBPredatorKey="掠食者 USB 鑰匙 - $2.49"
+USBStoriesofWarKey="戰爭往事 USB 鑰匙 - $2.49"
+USBStreetPunksKey="街頭混混 USB 鑰匙 - $2.49"
+USBSWATKey="SWAT USB 鑰匙 - $2.49"
+USBTacticalHorzineKey="Horzine 戰略 USB 鑰匙 - $2.49"
+USBVictorianKey="維多利亞 USB 鑰匙 - $2.49"
+USBZedKillerKey="Zed 殺手 USB 鑰匙 - $2.49"
+BullseyeUpdate="最新內容 - 紅心更新"
+LatestUpdate="最新內容更新"
+Forums="看看我們的社群論壇"
+Survey="填寫遊戲問卷"
+CommunityTracker="搜尋社群問題"
+FeaturedCrateKey="特賣 Horzine 補給箱子鑰匙 - $2.49"
+FeaturedUsbKey="特賣武器飾品 USB 鑰匙 - $2.49"
+FeaturedRareItem="特賣珍貴物品 - $3.99"
+FeaturedExceptionalItem="特賣極稀有物品 - $7.49"
+FeaturedMasterCraftedItem="特賣大師級物品 - $9.99"
+FeaturedItemBundle="特賣物品同捆包"
+Merch="獲得 Tripwire 官方商品。"
+PS4AnnounceMent="請插入 PS4 特別新聞"
+PS4Key="Horzine 箱子鑰匙 - 開啟任何箱子！$2.49"
+PS4CosmeticCrate1="Horzine 補給妝容箱子 | 系列 1"
+PS4CosmeticCrate2="Horzine 補給妝容箱子 | 系列 2"
+PS4WeaponSkinCrate1="Horzine 補給武器飾品箱子 | 系列 1"
+PS4WeaponSkinCrate2="Horzine 補給武器飾品箱子 | 系列 2"
+Artbook="《殺戮空間 2》數位畫冊"
+Uncovered="觀賞《殺戮空間：揭密》現場動作電影"
+
+[Zeds]
+KFPawn_ZedBloat="胖胖"
+KFPawn_ZedClot="凝塊"
+KFPawn_ZedCrawler="爬行者"
+KFPawn_ZedFleshPound="絞碎者"
+KFPawn_ZedGorefast="砍殺者"
+KFPawn_ZedHans="漢斯華特博士"
+KFPawn_ZedHusk="焦驅"
+KFPawn_ZedStalker="潛行者"
+KFPawn_ZedClot_Cyst="囊腫"
+KFPawn_ZedClot_Slasher="揮爪者"
+KFPawn_ZedClot_Alpha="突變凝塊"
+KFPawn_ZedScrake="電鋸"
+KFPawn_ZedSiren="海妖"
+KFPawn_ZedPatriarch="長老"
+;Human zeds
+KFPawn_ZedBloat_Versus="胖胖 - 玩家"
+KFPawn_ZedClot_Versus="凝塊 - 玩家"
+KFPawn_ZedCrawler_Versus="爬行者 - 玩家"
+KFPawn_ZedFleshPound_Versus="絞碎者 - 玩家"
+KFPawn_ZedGorefast_Versus="砍殺者 - 玩家"
+KFPawn_ZedHans_Versus="漢斯華特博士 - 玩家"
+KFPawn_ZedHusk_Versus="焦驅 - 玩家"
+KFPawn_ZedStalker_Versus="潛行者 - 玩家"
+KFPawn_ZedClot_Cyst_Versus="囊腫 - 玩家"
+KFPawn_ZedClot_Slasher_Versus="揮爪者 - 玩家"
+KFPawn_ZedClot_Alpha_Versus="突變凝塊 - 玩家"
+KFPawn_ZedScrake_Versus="電鋸 - 玩家"
+KFPawn_ZedSiren_Versus="海妖 - 玩家"
+KFPawn_ZedPatriarch_Versus="長老 - 玩家"
+
+[ZedMoves]
+Melee="近身"
+Rally="集合"
+Grab="抓抱"
+Light="輕"
+Heavy="重"
+Spin="轉"
+Evade="逃"
+Jump="跳"
+Puke="吐"
+Mine="地雷"
+Bite="咬"
+Scream="尖叫"
+Vortex="旋風"
+Shoot="射擊"
+Flame="火焰"
+Suicide="自殺"
+Rage="暴走"
+Minigun="小槍"
+Rocket="火箭"
+Mortar="臼"
+Heal="療傷"
+Block="防禦"
+
+[Keybinds]
+CtrlCombo="Ctrl - "
+ShiftCombo="Shift - "
+AltCombo="輔助功能鍵："
+LeftMouseButton="LMB"
+MiddleMouseButton="釐米 B"
+RightMouseBUtton="RMB"
+ThumbMouseButton="滑鼠 4"
+ThumbMouseButton2="滑鼠 5"
+MouseScrollDown="M 轉輪往下"
+MouseScrollUp="M 轉輪往上"
+CapsLock="CapsLock"
+Tab="Tab"
+BackSpace="刪除鍵"
+SpaceBar="空白鍵"
+LeftShift="左 Shift"
+RightSift="右 Shift"
+LeftCtrl="左 Ctrl"
+RightCtrl="右 Ctrl"
+LeftAlt="左 Alt"
+RightAlt="右 Alt"
+BackSlash="\"
+Slash=" / "
+RightBracket="]"
+LeftBracket="["
+Quote="'"
+SemiColon=";"
+Period="."
+Comma="，"
+Subtract=" - "
+Add="+"
+Equals="="
+Multiply="*"
+Divide="數字鍵 / "
+Underscore="-"
+NumPadZero="0"
+NumPadOne="1"
+NumPadTwo="2"
+NumPadThree="3"
+NumPadFour="4"
+NumPadFive="5"
+NumPadSix="6"
+NumPadSeven="7"
+NumPadEight="8"
+NumPadNine="9"
+Decimal="數字鍵 . "
+NumLock="Num Lock"
+PageUp="Page Up"
+PageDown="Page Down"
+Home="主頁"
+End="End"
+Insert="Insert"
+Delete="Delete"
+Up="上"
+Down="下"
+Left="左"
+Right="右"
+ScrollLock="Scroll Lock"
+Pause="Pause"
+Enter="Enter"
+one="1"
+two="2"
+three="3"
+four="4"
+five="5"
+six="6"
+seven="7"
+eight="8"
+nine="9"
+zero="0"
+
+[SharedUnlocks]
+KFWeap_Zweihander="騎士制度宣傳影片"
+
+
+Source0="騎士制度宣傳影片"
+;============================================
+; Map Localization
+;============================================
+[KF-BioticsLab KFMapSummary]
+DisplayName="Biotics 實驗室"
+
+[KF-Outpost KFMapSummary]
+DisplayName="前哨"
+
+[KF-BurningParis KFMapSummary]
+DisplayName="燃燒的巴黎"
+
+[Survival KFGameInfoSummary]
+GameName="生存模式"
+
+[KF-VolterManor KFMapSummary]
+DisplayName="華特大宅"
+
+[KF-Catacombs KFMapSummary]
+DisplayName="萬人塚"
+
+[KF-EvacuationPoint KFMapSummary]
+DisplayName="避難場所"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName="農莊"
+
+[KF-BlackForest KFMapSummary]
+DisplayName="黑森林"
+
+[KF-Prison KFMapSummary]
+DisplayName="監獄"
+
+[KF-ContainmentStation KFMapSummary]
+DisplayName="控制站"
+
+[KF-HostileGrounds KFMapSummary]
+DisplayName="敵營"
+
+[KF-InfernalRealm KFMapSummary]
+DisplayName="地獄"
+
+
+[KFMapInfo]
+; defaults
+FoundCollectibleString="%x% 找到了可收集物品。剩下 %y% 可以找到"
+FoundAllCollectiblesString="每一個可收集物品都已成功找到！"

@@ -219,6 +219,11 @@ function OnLobbyMemberStatusUpdate(const out array<ActiveLobbyInfo> LobbyList, i
     }
 }
 
+function LobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted)
+{
+    OnLobbyInvite(LobbyId, FriendId, bAccepted);
+}
+
 function OnLobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted)
 {
     if(bDebug)

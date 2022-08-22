@@ -32,6 +32,7 @@ struct PlayerZedAtkInfo
     var bool bIsInputHeld;
     var KFSM_PlayerMeleeBase.EPlayerZedAtkType Type;
     var KFPawn.EAnimSlotStance Stance;
+    var float MomentumPush;
     var bool bForceDisableRootMotion;
     var bool bCannotBeParried;
 
@@ -41,6 +42,7 @@ struct PlayerZedAtkInfo
         bIsInputHeld=false
         Type=EPlayerZedAtkType.PZA_Default
         Stance=EAnimSlotStance.EAS_FullBody
+        MomentumPush=0
         bForceDisableRootMotion=false
         bCannotBeParried=false
     }
@@ -172,7 +174,7 @@ function UnpackSpecialMoveFlags()
     AnimStance = Attacks[AtkIdx].Stance;
     bDisableMovement = AnimStance == 0;
     bUseRootMotion = (AnimStance == 0) && !Attacks[AtkIdx].bForceDisableRootMotion;
-    bAllowMomentumPush = Attacks[AtkIdx].Type != 5;
+    bAllowMomentumPush = !bUseRootMotion || Attacks[AtkIdx].Type != 5;
     bCannotBeParried = Attacks[AtkIdx].bCannotBeParried;
     if(Attacks[AtkIdx].bIsInputHeld)
     {
@@ -181,6 +183,10 @@ function UnpackSpecialMoveFlags()
         {
             KFPOwner.SetTimer(KFSkeletalMeshComponent(KFPOwner.Mesh).GetAnimInterruptTime(AnimName), false, 'Timer_AnimInterrupt', self);
         }
+    }
+    if((bAllowMomentumPush && Attacks[AtkIdx].MomentumPush > 0) && (KFPOwner.Role == ROLE_Authority) || KFPOwner.IsLocallyControlled())
+    {
+        KFPOwner.Velocity += (vector(KFPOwner.Rotation) * Attacks[AtkIdx].MomentumPush);
     }
 }
 

@@ -151,6 +151,8 @@ struct SPopupData
     }
 };
 
+var float LastForceCloseTime;
+var float AllowMenusOpenAfterForceCloseTime;
 var array<SMenuPaths> MenuSWFPaths;
 var KFGFxObject_Menu CurrentMenu;
 var byte CurrentMenuIndex;
@@ -679,9 +681,13 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
     local string MenuPath;
 
     bShowWidgets = true;
+    PC = GetPC();
+    if(((PC.WorldInfo.TimeSeconds - LastForceCloseTime) < AllowMenusOpenAfterForceCloseTime) && LastForceCloseTime != float(0))
+    {
+        return;
+    }
     if(NewMenuIndex == 2)
     {
-        PC = GetPC();
         if(PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun)
         {
             return;
@@ -806,6 +812,10 @@ function ClosePostGameMenu()
 function CloseMenus(optional bool bForceClose)
 {
     bForceClose = false;
+    if(bForceClose)
+    {
+        LastForceCloseTime = GetPC().WorldInfo.TimeSeconds;
+    }
     if((bMenusOpen && bCanCloseMenu) || bForceClose)
     {
         UnloadCurrentPopup();
@@ -1404,6 +1414,7 @@ function currentFocus()
 
 defaultproperties
 {
+    AllowMenusOpenAfterForceCloseTime=0.5
     MenuSWFPaths(0)=(BaseSWFPath="../UI_Menus/StartMenu_SWF.swf",ConsoleSWFPath="")
     MenuSWFPaths(1)=(BaseSWFPath="../UI_Menus/PerksMenu_SWF.swf",ConsoleSWFPath="")
     MenuSWFPaths(2)=(BaseSWFPath="../UI_Menus/GearMenu_SWF.swf",ConsoleSWFPath="")

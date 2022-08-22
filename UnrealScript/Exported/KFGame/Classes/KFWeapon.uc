@@ -5020,14 +5020,20 @@ simulated state Active
 	}
 
 	/**
-	 * @see Weapon::HasAnyAmmo
+	 * Called when the weapon runs out of ammo after firing
 	 */
-	simulated function bool HasAnyAmmo()
+	simulated function WeaponEmpty()
 	{
-		// If we have grenades don't let Weapon.Active.BeginState() skip checking
-		// PendingFire[].  It's hacky, but do this in active state so that it can't 
-		// interfere with other (e.g InvManager) uses of HasAnyAmmo()
-		return Global.HasAnyAmmo() || (PendingFire(GRENADE_FIREMODE) && HasAmmo(GRENADE_FIREMODE));
+		// Check firemodes that don't require ammo, since Weapon.Active.BeginState()
+		// will skip it's PendingFire check when !HasAnyAmmo().
+		if ( PendingFire(GRENADE_FIREMODE) && HasAmmo(GRENADE_FIREMODE) )
+		{
+			BeginFire(GRENADE_FIREMODE);
+		}
+		else if ( PendingFire(BASH_FIREMODE) && HasAmmo(BASH_FIREMODE) )
+		{
+			BeginFire(BASH_FIREMODE);
+		}
 	}
 }
 

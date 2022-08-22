@@ -1,0 +1,493 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[KFTutorial]
+;Lobby start
+RewardsTitleKey="歡迎來到訓練處"
+RewardsDescriptionKey="訓練處會教導你一些生存技能，你在訓練時不會死亡。完成訓練後，你會獲得妝容物品，另外獲得足夠 XP 讓你的職業等級升上 1 級。"
+WelcomeTitleKey="選擇職業"
+WelcomeDescriptionKey="開始之前，從畫面頂端的<font color="#caab05">職業</font>按鍵選擇一個職業。每個職業都擁有被動的<font color="#caab05">職業加成</font>、可設定的<font color="#caab05">技能</font>和<font color="#caab05">武器庫</font>。"
+PerksTitleKey="職業詳細資訊"
+PerksDescriptionKey="在遊戲裡執行<font color="#caab05">XP 目標</font>以取得 XP 讓職業升級。每次升級時，你職業的<font color="#caab05">職業加成</font>會增加。每 5 級你就會解鎖新的<font color="#caab05">技能</font>，解鎖後可以<font color="#caab05">設定</font>。選擇職業後按下<font color="#caab05">準備就緒</font>開始遊戲。"
+
+;Gear Menu
+GearTitleKey="裝備選單"
+GearDescriptionKey="裝備選單可讓你選擇及<font color="#caab05">自訂</font>你的角色。每個角色都有特別的外觀、聲音與性格。每個角色的臉和身體都可以自訂。你最多可以選擇 3 項妝容。使用選單左側的按鈕選擇及自訂你的角色。"
+
+;Inventory Menu
+InventoryMenuTitleKey="庫存選單"
+InventoryMenuDescriptionKey="庫存選單讓你可以檢視並管理你的庫存。有時候打完一場遊戲可以獲得物品。你也可以靠著開啟箱子、解開武器飾品 USB、和朋友交換以及在市場購買等方式來獲得。"
+WeaponSkinsTitleKey="裝備武器"
+WeaponSkinsDescriptionKey="選擇物品能檢視其詳細資訊。如果你選了武器飾品，可以按下<font color="#caab05">裝備</font>鈕進行裝備。如果你裝備了武器飾品，在遊戲中使用該武器時，所配備的武器飾品就會一起出現。"
+
+;Store Menu
+StoreTitleKey="商店選單"
+StoreDescriptionsKey="商店選單讓你可以購買鑰匙，用來開啟你找到的箱子或 USB。你也可以購買某些角色專屬的妝容物品。你購買或收到的物品會出現在庫存選單裡。"
+
+;Match Start
+InventoryTitleKey="了解你的庫存"
+InventoryDescriptionKey="每個職業的武器庫一開始都有一項特別的主要武器、備用的 9 釐米手槍，一把特殊小刀和手榴彈。按下<font color="#caab05">%x%</font> 來瀏覽你的武器。你也可以按下以下按鍵快速選擇武器：<font color="#caab05">%x%</font> 裝備你的主要長距離武器、<font color="#caab05">%x%</font> 裝備手槍、<font color="#caab05">%x%</font> 裝備近身武器、<font color="#caab05">%x%</font> 裝備注射器。"
+InventoryContTitleKey="了解你的庫存"
+InventoryContDescriptionKey="每個職業的武器庫一開始都有一項特別的主要武器、備用的 9 釐米手槍，一把特殊小刀和手榴彈。長按 <font color="#caab05">%x%</font> 並使用方向鍵選擇武器。"
+AlternateFireKey="輔助功能"
+AlternateFireDescription="大部分的主要武器都具有輔助功能模式。按下 <font color="#caab05">%x%</font> 來選定你目前的主要攻擊模式。會有圖示顯示你目前選擇的主要攻擊模式。"
+FlashLightBatteryTitleKey="使用手電筒"
+FlashLightBatteryDescriptionKey="有的地方相當黑暗。按下 <font color="#caab05">%x%</font> 開啟或關閉你的<font color="#caab05">手電筒</font>。你的手電筒電池電力會逐漸消耗。電源用盡時手電筒會自動熄滅，並直接開始充電。"
+GrenadeTitleKey="使用手榴彈"
+GrenadeDescriptionKey="手榴彈讓你方便處理一群你附近成群的 Zed。各職業在其<font color="#caab05">武器庫</font>裡有不同的手榴彈，都會對 Zed 造成傷害，但可能分別有其他效果。按下 <font color="#caab05">%x%</font> 來投擲手榴彈。 "
+
+;Wave 1 end
+TraderTimeTitleKey="商人時間"
+TraderTimeDescriptionKey="在每波攻擊之間，你可以找商人買賣武器、購買護甲，或補滿你的彈藥。跟著藍色箭頭走可以找到商人。"
+InventoryWeightTitleKey="負重量"
+InventoryWeightDescriptionKey="你所能攜帶的物品重量有所限制。如果你無法攜帶你想要的物品，先把其中一些裝備賣掉好清出空間。"
+
+;Trader Menu Open
+TraderRefillTitleKey="補滿你的彈藥與護甲"
+TraderRefillDescriptionKey="你可以按下物品旁邊的<font color="#caab05">MAG</font>、<font color="#caab05">1X</font>或是<font color="#caab05">補滿</font>按鈕裝填你的<font color="#caab05">彈藥</font>、<font color="#caab05">手榴彈</font>，還有<font color="#caab05">身體護甲</font>。如果你時間不夠（或金錢充足），按下<font color="#caab05">自動補滿</font>會自動花費你的金錢，幫你補滿彈藥、護甲與手榴彈。"
+TraderSellTitleKey="販賣武器"
+TraderSellDescriptionKey="要<font color="#caab05">販賣武器</font>，按下想賣的物品右邊的<font color="#caab05">販賣按鈕</font>。<font color="#caab05">販賣按鈕</font>上會顯示你販賣物品後會獲得的金錢。你不能販賣你的備用 9 釐米手槍、護甲或手榴彈。"
+TraderBuyTitleKey="購買武器"
+TraderBuyDescriptionKey="要<font color="#caab05">購買武器</font>，按下想購買的物品左邊的<font color="#caab05">購買按鈕</font>。請確定你有足夠的<font color="#caab05">金錢</font>與<font color="#caab05">負重量</font>可購買武器。"
+TraderWeightTitleKey="武器重量與容量"
+TraderWeightDescriptionKey="每個武器都有<font color="#caab05">重量值</font>。你目前武器的重量可能會讓你無法購買新的武器。武器的重量在武器清單和武器詳細資訊中可以看到。你的<font color="#caab05">負重量</font>顯示在畫面中央，位於你目前所擁有的金錢數下方。會讓你無法購買目前選擇的物品的因素會以紅色顯示。"
+
+;Trader Open Gamepad
+TraderRefillGamepadTitleKey="補滿你的彈藥與護甲"
+TraderRefillGamepadDescriptionKey="你可以在商人那裡補滿你的<font color="#caab05">彈藥</font>、<font color="#caab05">手榴彈</font>還有<font color="#caab05">身體護甲</font>。要補充彈藥，用左搖桿在商人選單的左側選擇你想要購買彈藥的武器。你可以按下 <font color="#caab05">%x%</font>，為選擇的武器購買一個彈匣或一個手榴彈，或是按下 <font color="#caab05">%x%</font> 以購買你目前金錢可負擔的所有彈藥或手榴彈。如果你時間不夠（或金錢充足），按下 <font color="#caab05">%x%</font>會自動花費你的金錢，幫你補充彈藥、護甲與手榴彈。"
+TraderSellGamepadTitleKey="販賣武器"
+TraderSellGamepadDescriptionKey="要 <font color="#caab05">販賣武器</font>，用左搖桿在商人選單的左側選擇你想要販賣的武器並按下 <font color="#caab05">%x%</font>。你會看見販賣物品後會獲得的金錢。你不能販賣你的備用 9 釐米手槍、護甲或手榴彈。"
+TraderBuyGamepadTitleKey="購買武器"
+TraderBuyGamepadDescriptionKey="要<font color="#caab05">購買武器</font>，用左搖桿在商人選單的左側選擇你想要購買的武器並按下 <font color="#caab05">%x%</font>。請確定你有足夠的<font color="#caab05">金錢</font>與<font color="#caab05">負重量</font>可購買武器。"
+TraderWeightGamepadTitleKey="武器重量與容量"
+TraderWeightGamepadDescriptionKey="每個武器都有<font color="#caab05">重量值</font>。你目前武器的重量可能會讓你無法購買新的武器。武器的重量在武器清單和武器詳細資訊中可以看到。你的<font color="#caab05">負重量</font>顯示在畫面中央，位於你目前所擁有的金錢數下方。會讓你無法購買目前選擇的物品的因素會以紅色顯示。"
+
+
+
+;Trader Menu Close
+DoorWeldTitleKey="焊接門"
+DoorWeldDescriptionKey="你可以<font color="#caab05">焊接門</font>以減緩敵人進入特定區域的速度。若要焊接，走到門前<font color="#caab05">長按 %x%</font> 來裝備你的焊槍。"
+HoldOutRunTitleKey="逃跑或堅守陣線"
+HoldOutRunDescriptionKey="知道什麼時候該堅持，什麼時候該逃跑。找個能夠固守的地方，但若時機不對，先定好逃跑路線。"
+TeamAdviceTitleKey="千萬別落單"
+TeamAdviceDescriptionKey="<font color="#caab05">跟你的隊員們待在一起！</font>你的隊友對你的存活而言很重要。他們可以幫你治療，也可以幫你對抗大型 Zed。"
+
+;Victory
+CongratulationsTitleKey="勝利！"
+CongratulationsDescriptionKey="恭喜！你完成了訓練處課程。"
+NextStepsTitleKey="接下來要做什麼？"
+NextStepsDescriptionKey="在主選單，你可選擇離線模式來精進你的技術，或和其他生存者一同進行連線遊戲。現在就去殺一些 Zed 吧！"
+
+;Healing Section
+QuickHealTitleKey="在受傷時自行治療"
+QuickHealDescriptionKey="若你受傷了，可以按下 <font color="#caab05">%x%</font> 為自己療傷。療傷後，注射器要重新裝填，因此過一段時間才能使用。"
+HowToSyringeTitleKey="治療你的隊友"
+HowToSyringeDescriptionKey="你可以裝備注射器並靠近隊友，按下 <font color="#caab05">%x%</font> 再按下 <font color="#caab05">%x%</font>，為你的隊友療傷。"
+HealOthersTitleKey="使用治療武器為隊友療傷"
+HealOthersDescriptionKey="治療職業武器可以藉由輔助功能模式，從遠距離為隊友療傷。使用治療武器時，按下 <font color="#caab05">%x%</font> 發射治療鏢。另外，如果你選擇了戰地軍醫這個職業，也可按下 <font color="#caab05">%x%</font> 投擲治療瓦斯手榴彈。"
+
+;Zed Time
+ZedTimeTitleKey="Zed 時間"
+ZedTimeDescriptionKey="<font color="#caab05">Zed 慢動作時間</font> 會在造成爆頭或是炸死大量敵人等很酷的事情發生時開始。你可以利用這段時間休息一下，或是奮發起來，多殺幾個敵人。"
+
+;Melee Section
+MeleeTitleKey="近身武器"
+MeleeDescriptionKey="你可使用近身武器做出輕或重擊。按下 <font color="#caab05">%x%</font> 來輕擊或按下 <font color="#caab05">%x%</font> 來重擊。"
+BlockingTitleKey="用近身武器防禦"
+BlockingDescriptionKey="你可以<font color="#caab05">長按 %x%</font> 用近身武器進行防禦。防禦可以減弱 Zed 攻擊時帶來的傷害。"
+ParryTitleKey="用近身武器格擋"
+ParryDescriptionKey="如果你防禦 Zed 進攻的時機正確，會形成格擋，讓它往後踉蹌。如果格擋成功，你會看見一道閃光效果。"
+UnblockableTitleKey="無法防禦的 Zed 攻擊"
+UnblockableDescriptionKey="有一些大型 Zed 的攻擊動作無法防禦。如果 Zed 攻擊時有發光特效，表示該攻擊無法防禦。"
+
+[KFGFxTutorialContainer]
+BackString="返回"
+NextString="繼續"
+DoneString="完成"
+SkipString="跳過"
+
+[Armor]
+ItemName="戰鬥護甲"
+ItemCategory="裝備"
+ItemDescription="•戰鬥護甲能為你抵擋幾種攻擊，但會受損。\n•可以跟商人購買新護甲或修護受損的護甲。\n\n•是一件內藏高科技纖維與鋼板的夾克。"
+
+[KFProj_DynamiteGrenade]
+ItemName="半條炸藥"
+ItemCategory =" 炸藥"
+ItemDescription="•一個附有引信的小炸藥。\n•它也可能傷到你，所以請小心使用！ "
+
+[KFProj_MedicGrenade]
+ItemName="治療手榴彈"
+ItemCategory =" 炸藥"
+ItemDescription="•會放出對 Zed 有毒但對人類有治療效果的氣體。\n\n•站在藍色氣體中便可受到治療。\n我們的科學家這麼說：「這些手榴彈施放的物質會對人類有療效，而對 Zed 有毒。希望這樣能有幫助。」 "
+
+[KFProj_MolotovGrenade]
+ItemName="莫洛托夫雞尾酒"
+ItemCategory="炸藥"
+ItemDescription="•簡單來說，這是會使 Zed 起火燃燒的火焰手榴彈。\n•小心，可能會傷到自己！\n\n這東西名稱的由來是當初在 1939-40 年進行的冬季遊擊戰期間由芬蘭士兵們以當時的蘇聯外交部長「維亞切斯拉夫·米哈伊洛維奇·莫洛托夫」所取的無禮名稱…嗯？你不是想來一堂速成歷史課嗎？ "
+
+[KFProj_EMPGrenade]
+ItemName="電磁脈衝手榴彈"
+ItemCategory="炸藥"
+ItemDescription="•產生一股傷害 Zed 的電流，也可能讓它們暈眩一下子。\n\n•如果你想了解得更詳細的話，它會發出一個很短暫的電波，干擾四周的電子系統。尤其是 Zed 身上的。還滿好用的。 "
+
+[KFProj_HEGrenade]
+ItemName="高爆手榴彈"
+ItemCategory="炸藥"
+ItemDescription="•一種爆炸力很強的手榴彈。傷害 Zed，也會傷害人。\n\n就這麼簡單。高爆是高爆炸力的縮寫，它會發出轟的一聲把東西炸爛。我們非得說明不可嗎？ "
+
+[KFProj_FragGrenade]
+ItemName="破片手榴彈"
+ItemCategory="炸藥"
+ItemDescription="•經典的破片手榴彈：爆炸時會散發出小小的金屬碎片，殺傷周圍的所有東西。\n\n•我很確定所有人在感染事件爆發前都玩過電動遊戲，所以都知道破片手榴彈是什麼。別假裝不懂了，誰會信啊。 "
+
+[KFProj_NailBombGrenade]
+ItemName="鐵釘炸藥"
+ItemCategory =" 炸藥"
+ItemDescription="•一整箱的舊鐵釘，中間有個爆炸裝置。\n\n不是什麼討人喜歡或精巧的 Zed 處理方式，但 Zed 本身就不討人喜歡也不精巧了，不是嗎？"
+
+[KFProj_FreezeGrenade]
+ItemName="冷凍手榴彈"
+ItemCategory =" 炸藥"
+ItemDescription="•高科技武器，內含壓縮液態氮。\n\n接觸到裡面的物質會讓 Zed 暫時無法行動。成效可能會非常不錯。"
+
+[KFProj_FlashBangGrenade]
+ItemName="閃光彈"
+ItemCategory =" 炸藥"
+ItemDescription="•很亮很大聲，請不要直視。最好也不要聽。\n•雖然不會致命，但閃光彈還是可能傷害你，請小心！ "
+
+[KFWeap_Healer_Syringe]
+ItemName="醫療注射器"
+ItemCategory="裝備"
+
+[KFWeap_Welder]
+ItemName="焊槍"
+ItemCategory="裝備"
+
+[KFWeap_Pistol_9mm]
+ItemName="9 釐米手槍"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•這是制式的 9 釐米手槍。簡單便宜（對你來說非常便宜），所有 Horizine 人員的基本配備。"
+
+[KFWeap_Pistol_Deagle]
+ItemName="點 50 沙漠之鷹"
+ItemCategory="手砲"
+ItemDescription="•主要攻擊模式只有半自動。\n•沙漠之鷹是手槍界的野獸，所以我們都叫它手砲。"
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="AR-15 惡棍來福槍"
+ItemCategory="突擊步槍"
+ItemDescription="•可以一次射擊單發或三發子彈。\n•按下輔助功能鍵來切換主要攻擊模式。\n•這是打 Zed 用的，不是打惡棍。"
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="SCAR-H 突擊步槍"
+ItemCategory="突擊步槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n本來是設計給美國特種部隊使用的，真的很特別！"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="卡拉什尼科夫 AK-12"
+ItemCategory="突擊步槍"
+ItemDescription="•可選擇全自動或射擊三發子彈。\n•按下輔助功能鍵變更主要攻擊模式。\n•這枝 AK-12 由死去的俄羅斯特勤取得，原本是檢查用。"
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="SA80 L85A2 小鬥牛"
+ItemCategory="突擊步槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•SA80 是英國陸軍的標準配備，直到陸軍，呃，被吃了。"
+
+[KFWeap_Knife_Demolitionist]
+ItemName="多功能小刀"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•開箱子用的小刀。最適合用來開啟殺戮空間裡的任何箱子。"
+
+[KFWeap_Knife_FieldMedic]
+ItemName="手術刀"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•是把手術刀。你是軍醫，所以我們應該不用再為你說明使用方法。"
+
+[KFWeap_Knife_Firebug]
+ItemName="消防員用刀"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•消防員用刀。你是消防員，所以我們應該不用再為你說明使用方法。"
+
+[KFWeap_Knife_Gunslinger]
+ItemName="長獵刀"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。•\n西部電影可以看到的那種大刀。適用於切割 Zed。"
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="庫克理彎刀"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•印地安人的傳統用刀，比較適合拿來砍而不是切。 "
+
+[KFWeap_Knife_SWAT]
+ItemName="戰略小刀"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•就是一把刀。用來切東西。戰略用品。"
+
+[KFWeap_Pistol_Medic]
+ItemName="HMTech-101 手槍"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•預備主要攻擊模式射擊式治療鏢，用來治療隊友。\n•彈藥不需要彈匣，會自動計算彈藥。"
+
+[KFWeap_SMG_Medic]
+ItemName="HMTech-201 突擊步槍"
+ItemCategory="衝鋒槍"
+ItemDescription="•主要攻擊模式只有全自動。\n•按下輔助功能鍵射出射擊式治療鏢，用來治療隊友。\n•跟 HMTech 手槍相同但經過加強。"
+
+[KFWeap_Shotgun_Medic]
+ItemName="HMTech-301 霰彈槍"
+ItemCategory="霰彈槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•按下輔助功能鍵射出射擊式治療鏢，用來治療隊友。\n•HMTech 手槍的戰鬥霰彈槍版本。"
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="HMTech-401 突擊步槍"
+ItemCategory="突擊步槍"
+ItemDescription="•主要攻擊模式只有全自動。\n•按下輔助功能鍵射出射擊式治療鏢，用來治療隊友。\n•HMTech 手槍的完整突擊步槍版本。"
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="雙發散彈槍"
+ItemCategory="霰彈槍"
+ItemDescription="•主要攻擊模式只射擊一發。\n•按下輔助功能鍵可同時射出兩發。\n•並排雙槍管 12 口徑霰彈槍。適合用在近距離戰鬥。就連最大型的 Zed 也會被震懾！"
+
+[KFWeap_Shotgun_AA12]
+ItemName="AA-12 自動霰彈槍"
+ItemCategory="霰彈槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•AA-12 是一把自動霰彈槍。它在短中程具有強大的火力，但彈藥消耗速度也很可觀。"
+
+[KFWeap_Shotgun_MB500]
+ItemName="SG 500 泵動式"
+ItemCategory="霰彈槍"
+ItemDescription="•主要攻擊模式只有泵動式。\n•泵動式 SG500 用手槍拿法即可握起，在近距離對 Zed 有強大的殺傷力。簡單有效。"
+
+[KFWeap_Shotgun_M4]
+ItemName="M4 戰鬥霰彈槍"
+ItemCategory="霰彈槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•Benelli 為美國軍隊設計了 M4 戰鬥霰彈槍。它是半自動發射，能以穩定頻率射出子彈。"
+
+[KFWeap_Knife_Berserker]
+ItemName="除草機刀片"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•沒錯，其實它是除草機刀片。好好享受吧！"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•Horzine改造的突擊部隊刀。"
+
+[KFWeap_Knife_Support]
+ItemName="彎刀"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•可別因為你拿的刀最大把就開始自我感覺良好。"
+
+[KFWeap_Edged_Katana]
+ItemName="日本刀"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•試著給這把刀的水準一點面子。"
+
+[KFWeap_Blunt_Crovel]
+ItemName="改造鏟子"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•一半是鐵橇一半是鏟子，兩種都很致命。"
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="VLAD-1000 釘槍"
+ItemCategory="霰彈槍"
+ItemDescription="•可選擇射擊一根或多根鐵釘。\n•按下輔助功能鍵變更主要攻擊模式。\n•我們得知這把釘槍是 Horzine 科學家是從一個（死去的）維修人員那裡拿來改造過的。"
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="粉碎器"
+ItemCategory="近身"
+ItemDescription="•主要攻擊為揮擊，長按以連擊。\n•次要為發射炸藥。沒有彈藥的話，次要攻擊為重揮擊。記得裝填！\n•輔助功能鍵：防禦 / 格擋。"
+
+[KFWeap_Eviscerator]
+ItemName="剔骨器"
+ItemCategory="特別"
+ItemDescription="•主要射擊會射出鋸片。\n•輔助功能為近身攻擊，但耗油量大。\n•原本是 Horzine 的 SDS 團隊設計的，這是頭粗魯的野獸。"
+SecondaryAmmo="汽油"
+
+[KFWeap_Edged_Zweihander]
+ItemName="雙手劍"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：中 / 強傷害，控制力較佳。\n•次要攻擊鍵：較慢，但傷害較高。\n•輔助功能鍵：防禦 / 格擋。\n•一面前進一面攻擊傷害會更高。"
+SharedUnlockSource="騎士中古大戰 "
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="裝好就燒"
+ItemCategory="火焰"
+ItemDescription="•主要攻擊模式會射出火焰。\n•自製手持火焰噴射器。請不要在家嘗試。"
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="噴火霰彈槍"
+ItemCategory="霰彈槍"
+ItemDescription="•主要攻擊模式只有泵動式。\n•會像龍一樣噴出火焰的霰彈槍。除了很致命之外，外型也很讚。"
+
+[KFWeap_Flame_Flamethrower]
+ItemName="火焰噴射器"
+ItemCategory="火焰"
+ItemDescription="•主要攻擊模式會射出火焰。就這樣。\n•在任何世代都是經典。如果有懷疑，把所有東西都燒掉就對了。"
+
+[KFWeap_Beam_Microwave]
+ItemName="微波槍"
+ItemCategory="火焰"
+ItemDescription="•主要攻擊模式會施放微波，把範圍內的 Zed 烤得外酥內嫩。\n•輔助功能模式會放出近距離微波衝擊波。\n•高科技奇蹟：手拿式 Zed 料理工具。"
+
+[KFWeap_Thrown_C4]
+ItemName="C4 炸藥"
+ItemCategory="炸藥"
+ItemDescription="•主要攻擊模式會在地上設置 C4。\n•輔助功能會讓 C4 按照你放置的順序爆炸。\n•一綑遙控引爆的 C4 炸藥。"
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="HX25 手榴彈手槍"
+ItemCategory="炸藥"
+ItemDescription="•主要攻擊模式會射出數發次彈械，碰觸到物品即爆炸。"
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="M79 手榴彈發射器"
+ItemCategory="炸藥"
+ItemDescription="•主要攻擊模式會射出一枚手榴彈。\n•手榴彈碰觸到物品即爆炸。\n•射出後才會解除保險，所以你不會炸爛自己的臉。"
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7 "
+ItemCategory="炸藥"
+ItemDescription="•主要攻擊模式會射出一枚火箭。\n•火箭碰觸到物品即爆炸。\n•射出後才會解除保險，所以你不會炸爛自己的臉。\n•小心後座力！"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="9 釐米雙槍"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 9 釐米手槍。如果你需要，可以賣掉一把。（只能賣掉一把）"
+
+[KFWeap_Pistol_Colt1911]
+ItemName="M1911 手槍"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•這是制式柯爾特 1911 半自動手槍。"
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="M1911 雙槍"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對柯爾特 1911 半自動手槍。兩把都可以各自賣掉或丟棄。"
+
+[KFWeap_Pistol_Deagle]
+ItemName="點 50 沙漠之鷹"
+ItemCategory="手砲"
+ItemDescription="•主要攻擊模式只有半自動。\n•沙漠之鷹是手槍界的野獸，所以我們都叫它手砲。"
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="點 50 沙漠之鷹雙槍"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對沙漠之鷹手砲。兩把都可以各自賣掉或丟棄。"
+
+[KFWeap_Revolver_Rem1858]
+ItemName="1858 左輪"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有單發。\n•典型的點 44 口徑雷明頓 1858 六發單發軍用左輪手槍。很老但還是有用。"
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="1858 左輪雙槍"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 1858 左輪手槍。兩把都可以各自賣掉或丟棄。"
+
+[KFWeap_Revolver_SW500]
+ItemName="點 500 馬格南左輪"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有單發。\n•一把手裡的大砲，長槍管點 50 口徑「骨頭收集者」左輪手槍，打出馬格南子彈。職業槍手專用。"
+
+[KFWeap_Revolver_DualSW500]
+ItemName="點 500 馬格南左輪雙槍"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對點 500 馬格南左輪手槍。兩把都可以各自賣掉或丟棄。掉到地上會很大聲。"
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="溫徹斯特 1894"
+ItemCategory="來福槍"
+ItemDescription="•主要攻擊模式只有單發。\n•經典的 1894 型溫徹斯特槓桿式步槍。"
+
+[KFWeap_Bow_Crossbow]
+ItemName="十字弓"
+ItemCategory="弓"
+ItemDescription="•主要攻擊模式只有單發。\n•射出去的箭常常可以撿回來！\n•強力的狩獵用十字弓，穿透力跟牽制力都極高！"
+
+[KFWeap_Rifle_M14EBR]
+ItemName="M14 EBR"
+ItemCategory="狙擊步槍"
+ItemDescription="•主要攻擊模式只有單發。\n•具有雷射瞄準器。\n•海豹部隊、三角部隊和其他許多強者都愛用的狙擊步槍。"
+
+[KFWeap_Rifle_RailGun]
+ItemName="電磁砲"
+ItemCategory="狙擊步槍"
+ItemDescription="•主要攻擊模式只有單發。\n•用瞄準器鎖定目標的弱點。\n•這項武器利用磁力發射鋼製子彈，可以像穿過衛生紙一樣打穿 Zed。"
+
+[KFWeap_SMG_MP7]
+ItemName="MP7 突擊步槍"
+ItemCategory="衝鋒槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•全世界的特種部隊和字母麥片湯供應商都喜歡。"
+
+[KFWeap_AssaultRifle_M16M203]
+ItemName="M16 M203 突擊步槍"
+ItemCategory="突擊步槍"
+ItemDescription="•主要攻擊模式只有全自動。\n•按下輔助功能鍵會射出手榴彈。\n•適合難以決定使用子彈還是炸藥的人。"
+SecondaryAmmo="M203 手榴彈"
+
+[KFWeap_SMG_MP5RAS]
+ItemName="MP5RAS 突擊步槍"
+ItemCategory="衝鋒槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•全世界最常用的衝鋒槍之一，最新版本。"
+
+[KFWeap_SMG_P90]
+ItemName="P90 突擊步槍"
+ItemCategory="衝鋒槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•看起來怪怪的，但穿透力很強，你還能模仿雷射槍的聲音。"
+
+[KFWeap_SMG_Kriss]
+ItemName="克里斯突擊步槍"
+ItemCategory="衝鋒槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•使用最新的戰鬥子彈，砲火猛烈。"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="漢斯華特博士"
+BossCaptionStrings[0]="受重傷時，漢斯會用盾牌防禦，一邊找尋可以讓它吸血的人。如果你摧毀這面盾牌，它就無法療傷了！"
+BossCaptionStrings[1]="注意它的力量中樞：漢斯變更顏色"
+BossCaptionStrings[2]="瞄準它的放射性力量中樞。那是個虛弱的區塊。"
+BossCaptionStrings[3]="就像胖胖吐的酸一樣，漢斯的手榴彈瓦斯會黏在你身上。試著閃過它！"
+BossCaptionStrings[4]="它的近距離攻擊太強，因此無法格擋。你還是會受到全部的傷害。"
+BossCaptionStrings[5]="注意紅色的手榴彈提醒，它會告訴你手榴彈掉落的位置。"
+BossCaptionStrings[6]="當漢斯拿出槍時，請躲到射程視線外。人盡皆知，但真的很重要！"
+
+[KFPawn_ZedPatriarch]
+BossName="長老"
+BossCaptionStrings[0]="凱文克萊米是個很棒的科學家，直到他變成自己的偉大創造物。"
+BossCaptionStrings[1]="長老非常自負，很可能會告訴你它接下來會使出什麼攻擊。"
+BossCaptionStrings[2]="躲在再大的東西後面都不見得有用。其實有應付長老有辦法！"
+BossCaptionStrings[3]="自己逃跑其實不是逃跑，反而會讓你成為他容易鎖定的目標。"
+BossCaptionStrings[4]="是的，長老還是可能隱身、跑掉，並治療它自己。有的事情是不會改變的。"
+BossCaptionStrings[5]="雖然你也別無選擇，殺死長老的「孩子」會使他（更）生氣。"
+
+[KFGameInfo_Tutorial]
+GameName="基本訓練"
+
+[KFGameInfo_Survival]
+GameName="生存模式"
+
+[KFGameInfo_VersusSurvival]
+GameName="對抗生存模式"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="無法治療"
+LowHealthMsg="血量是關鍵！快治療！"
+NoMortarTargetsMsg="沒有有效的砲擊目標"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x% 被海妖困住了！"
+
+[KFGFXHudWrapper_Versus]
+WaitingToSpawnString="產生時間倒數：%x% 秒"
+ZedTakeOverActiveString="尋找可接收的 ZED…"
+PerkSwitchAllowedString="職業選擇剩餘時間：%x% 秒"
+
+[KFWeap_Random]
+ItemName="隨機武器"
+ItemCategory="隨機"
+ItemDescription="• 隨機武器。\n•"

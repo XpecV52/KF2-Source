@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="ID de usuario duplicada"
+InvalidUID="ID de usuario no válida"
+FailedKickOff="No es posible iniciar la autenticación"
+RequiresAuthentication="Es necesario autenticarse para acceder al servidor"
+CouldNotConnect_Title="Conexión fallida"

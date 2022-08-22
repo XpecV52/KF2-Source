@@ -98,6 +98,7 @@ var	protected 	const	AkEvent					RhythmMethodSoundHit;
 var	protected 	const	AkEvent					RhythmMethodSoundTop;
 var	protected 	const 	name 					RhytmMethodRTPCName;
 var	protected	const	float					QuickSwitchSpeedModifier;
+var private 	const	float					QuickSwitchRecoilModifier;
 
 /* The bob damping amount when the Shoot and Move perk skill is active */
 var	private 	const	float					ShootnMooveBobDamp;
@@ -274,11 +275,16 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 
 		if( IsQuickSwitchActive() && !KFW.bUsingSights )
 		{
-			CurrentRecoilModifier = 0;
+			CurrentRecoilModifier *= static.GetQuickSwitchRecoilModifier();
 			;
 		}
 	}
 }
+
+simulated private static function float GetQuickSwitchRecoilModifier()
+{
+	return default.QuickSwitchRecoilModifier;
+} 
 
 /**
  * @brief Modifies the reload speed for commando weapons
@@ -854,6 +860,7 @@ defaultproperties
    RhythmMethodSoundTop=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Top'
    RhytmMethodRTPCName="R_Method"
    QuickSwitchSpeedModifier=0.050000
+   QuickSwitchRecoilModifier=0.500000
    ShootnMooveBobDamp=1.110000
    BoneBreakerBodyParts(0)=2
    BoneBreakerBodyParts(1)=3

@@ -858,6 +858,7 @@ function OnOpen()
     {
         Manager.SetStartMenuState(GetStartMenuState());
     }
+    Class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword("");
 }
 
 function bool OnHandshakeComplete(bool bSuccess, string Description, out int SuppressPasswordRetry)
@@ -1117,6 +1118,7 @@ native function string GenerateRandomPassword();
 function Callback_StartOnlineGame()
 {
     LobbyOwnerPassword = "";
+    Class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword("");
     if(OptionsComponent.GetMakeNewServer())
     {
         if(OptionsComponent.GetPrivacyIndex() == 2)

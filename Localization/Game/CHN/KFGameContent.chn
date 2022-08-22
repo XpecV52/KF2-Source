@@ -6,102 +6,102 @@
 
 [KFTutorial]
 ;Lobby start
-RewardsTitleKey="欢迎来到训练空间"
-RewardsDescriptionKey="训练空间能有惊无险地教给你基本的生存能力。完成训练空间时，你会获得一件饰品，以及足够将所选职业升到 1 级的经验值。"
-WelcomeTitleKey="选择一个职业"
-WelcomeDescriptionKey="Before you begin the match, select the <font color="#caab05">PERKS</font> tab at the top of the screen and select a perk. Perks are classes with different passive <font color="#caab05">PERK BONUSES</font>, configurable <font color="#caab05">SKILLS</font>, and <font color="#caab05">WEAPON LOADOUTS</font>."
-PerksTitleKey="职业详情"
-PerksDescriptionKey="Perform <font color="#caab05">XP OBJECTIVES</font> in game to gain XP and level up your perks. Each time you level up, your <font color="#caab05">PERK BONUSES</font> increase for that perk. Every 5 levels you will unlock new <font color="#caab05">SKILLS</font> that you can <font color="#caab05">CONFIGURE</font> once unlocked. Select a perk and press <font color="#caab05">READY UP</font> to begin the match."
+RewardsTitleKey="欢迎来到训练场"
+RewardsDescriptionKey="在训练场中，你可以学到一些基本的生存技巧，而无需担心死掉。完成训练场后，你将获得一件装饰品和足够的经验，将选中的一个神射升到 1 级。"
+WelcomeTitleKey="选择一个神射"
+WelcomeDescriptionKey="在开始比赛前，选择屏幕顶部的<font color="#caab05">神射</font>选项卡，然后选择一个神射。不同的神射类别有不同的被动<font color="#caab05">神射奖励</font>、可配置的<font color="#caab05">技能</font>和<font color="#caab05">武器加载</font>。"
+PerksTitleKey="神射详细信息"
+PerksDescriptionKey="完成游戏中的<font color="#caab05">经验目标</font>可以获得经验使神射升级。每次升级时，该神射的<font color="#caab05">神射奖励</font>将会增加。每五级，你将会解锁新的<font color="#caab05">技能</font>以及可以<font color="#caab05">配置</font>它们。选择一个神射和按<font color="#caab05">准备就绪</font>开始比赛。"
 
 ;Gear Menu
-GearTitleKey="Gear Menu"
-GearDescriptionKey="The Gear Menu lets you select and <font color="#caab05">CUSTOMIZE</font> your character. Each character has a unique visual look, voice, and personality. Each character's head and body can be customized. You can wear up to 3 cosmetic accessories. Select and customize your character using the buttons on the left side of this menu."
+GearTitleKey="装备菜单"
+GearDescriptionKey="在装备菜单中，你可以选择和<font color="#caab05">自定义</font>你的角色。每个角色都有独特的外貌、声音和个性。每个角色的头部和身体都可以自定义。你可以佩戴最多三件装饰配件。使用菜单左侧的按钮选择和自定义你的角色。"
 
 ;Inventory Menu
-InventoryMenuTitleKey="Inventory Menu"
-InventoryMenuDescriptionKey="The inventory menu allows you to view and manage your item inventory. You can obtain items as rewards for completing matches from time to time, but you can also get items by opening crates, decrypting weapon skin USBs, trading with your friends, or purchasing them on the Market."
-WeaponSkinsTitleKey="Equipping Weapon Skins"
-WeaponSkinsDescriptionKey="Selecting any item will let you view the item details. If you have a weapon skin selected, you can equip it by pressing the <font color="#caab05">EQUIP</font> button. If you have a weapon skin equipped, any time you use that weapon in a match it will appear with the currently equipped skin."
+InventoryMenuTitleKey="仓库菜单"
+InventoryMenuDescriptionKey="在仓库菜单中，你可以查看和管理你的物品仓库。你可以不时完成比赛获得物品作为奖励，也可以打开板条箱、解密武器皮肤 USB、和好友交换来获得物品或在市场上购买它们。"
+WeaponSkinsTitleKey="装备武器皮肤"
+WeaponSkinsDescriptionKey="选择任意物品即可查看物品的详细信息。如果你选择了一个武器皮肤，按下<font color="#caab05">装备</font>按钮就可以装备它。如果你已经装备了武器皮肤，你在游戏中的任意时候使用该武器时，它将会以目前装备的皮肤显示。"
 
 ;Store Menu
-StoreTitleKey="Store Menu"
-StoreDescriptionsKey="The Store Menu allows you to purchase keys that are used to open crates and decrypt weapon skin USBs you find. There are also several character specific cosmetic item bundles you can purchase. Items that you purchase or receive as rewards will appear in the Inventory Menu."
+StoreTitleKey="商店菜单"
+StoreDescriptionsKey="在商店菜单中，你可以购买钥匙打开板条箱和解密你找到的武器皮肤 USB。此外，你还可以购买数个角色特定装饰品捆绑包。你购买或作为奖励收到的物品将在仓库菜单中显示。"
 
 ;Match Start
-InventoryTitleKey="Know Your Inventory"
-InventoryDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife, and grenades. Press <font color="#caab05">%x%</font> to cycle through your weapons. You can also quick select weapon categories by pressing the following: <font color="#caab05">%x%</font> to equip your primary ranged weapon, <font color="#caab05">%x%</font> to equip your pistol, <font color="#caab05">%x%</font> to equip your melee weapon, and <font color="#caab05">%x%</font> to equip your syringe."
-InventoryContTitleKey="Know Your Inventory"
-InventoryContDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife and grenade. Hold <font color="#caab05">%x%</font> and use the directional buttons to select a weapon."
-AlternateFireKey="Alternate Fire"
-AlternateFireDescription="Most primary weapon have an alternate fire mode. Press <font color="#caab05">%x%</font> to toggle your current fire mode. An icon in your view will show the currently selected firemode."
-FlashLightBatteryTitleKey="Using a Flashlight"
-FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When it is out of power it will turn off and automatically start recharging again."
-GrenadeTitleKey="Using Grenades"
-GrenadeDescriptionKey="Grenades allow you to deal with closely packed groups of Zeds. Perks have different grenades in their <font color="#caab05">WEAPON LOADOUTS</font>, all of which damage Zeds, but may have additional effects. Press <font color="#caab05">%x%</font> to throw a grenade." 
+InventoryTitleKey="了解你的仓库"
+InventoryDescriptionKey="每个神射加载从独特的主武器开始，然后是备用 9 毫米手枪、专家匕首和手榴弹。按 <font color="#caab05">%x%</font> 可以浏览武器。你还可以快速选择武器类别，按<font color="#caab05">%X%</font> 装备主远程武器，<font color="#caab05">%x%</font> 装备手枪，<font color="#caab05">%x%</font> 装备近战武器，和 <font color="#caab05">%x%</font> 装备注射器。"
+InventoryContTitleKey="了解你的仓库"
+InventoryContDescriptionKey="每个神射加载从独特的主武器开始，然后是备用 9 毫米手枪、专家匕首和手榴弹。按住 <font color="#caab05">%x%</font> 和使用方向按钮可以选择武器。"
+AlternateFireKey="备用射击"
+AlternateFireDescription="大部分主武器都有备用射击模式。按 <font color="#caab05">%x%</font> 切换目前的射击模式。你将看到一个图标，显示目前选择的射击模式。"
+FlashLightBatteryTitleKey="使用手电筒"
+FlashLightBatteryDescriptionKey="外面的环境可能较暗。按 <font color="#caab05">%x%</font> 可以开关<font color="#caab05">手电筒</font>。手电筒将缓慢没电。当完全没电时，它将关闭并且自动开始充电。"
+GrenadeTitleKey="使用手榴弹"
+GrenadeDescriptionKey="手榴弹可以有效对付聚集在一起的丧尸。神射在<font color="#caab05">武器加载</font>中有不同的手榴弹，每一种都可以伤害丧尸，而且可能有额外的效果。按 <font color="#caab05">%x%</font> 投掷一枚手榴弹。 "
 
 ;Wave 1 end
-TraderTimeTitleKey="Trader Time"
-TraderTimeDescriptionKey="In between waves you can buy and sell weapons, buy armor, and fill your ammo at the Trader. Follow the blue arrows to find the Trader."
-InventoryWeightTitleKey="Carrying Weight"
-InventoryWeightDescriptionKey="You are limited in the weight you can carry. If you can't carry what you want, sell some gear first to make room."
+TraderTimeTitleKey="商人时间"
+TraderTimeDescriptionKey="在每波之间，你可以到商人那里购买和出售武器，购买护甲和补充弹药。跟随蓝色箭头找到商人。"
+InventoryWeightTitleKey="携带重量"
+InventoryWeightDescriptionKey="你只能携带一定的重量。如果装不下你想携带的东西，先出售一些装备腾出空间。"
 
 ;Trader Menu Open
-TraderRefillTitleKey="Refill Your Ammo and Armor"
-TraderRefillDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> by pressing the <font color="#caab05">MAG</font>, <font color="#caab05">1X</font>, or <font color="#caab05">FILL</font> buttons to the left of the appropriate item. If you are short of time (or long on dosh), pressing <font color="#caab05">AUTOFILL</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
-TraderSellTitleKey="Selling Weapons"
-TraderSellDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, press the <font color="#caab05">SELL BUTTON</font> to the right of the item you wish to sell. You can see the amount of dosh you will get for selling the item on the <font color="#caab05">SELL BUTTON</font>. You cannot sell your backup 9mm pistol, body armor, or grenades."
-TraderBuyTitleKey="Buying Weapons"
-TraderBuyDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, press the <font color="#caab05">BUY BUTTON</font> to the left of the item you wish to buy. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
-TraderWeightTitleKey="Weapon Weight and Capacity"
-TraderWeightDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown below your current dosh in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
+TraderRefillTitleKey="补充弹药和护甲"
+TraderRefillDescriptionKey="你可以补充<font color="#caab05">弹药</font>、<font color="#caab05">手榴弹</font>和<font color="#caab05">身体护甲</font>，方法是按下恰当物品左侧的<font color="#caab05">弹匣</font>、<font color="#caab05">1X</font>或<font color="#caab05">补充</font>按钮。如果你没有时间（或资金充足），按<font color="#caab05">自动补充</font>将为你自动付款，快速补充弹药、护甲和手榴弹。 "
+TraderSellTitleKey="出售武器"
+TraderSellDescriptionKey="要<font color="#caab05">出售武器</font>，按想要出售的物品右侧的<font color="#caab05">出售按钮</font>。你可以在<font color="#caab05">出售按钮</font>上看见出售该物品你可以获得的金钱。你不能出售备用 9 毫升手枪、身体护甲或手榴弹。"
+TraderBuyTitleKey="购买武器"
+TraderBuyDescriptionKey="要<font color="#caab05">购买武器</font>，按想要购买的物品左侧的<font color="#caab05">购买按钮</font>。确保你有充足的<font color="#caab05">金钱</font>和<font color="#caab05">重量容量</font>来购买武器。"
+TraderWeightTitleKey="武器重量和容量"
+TraderWeightDescriptionKey="每件武器都有一个<font color="#caab05">重量值</font>。你目前的武器重量可能会使你无法购买你想要的武器。武器重量在武器列表上和武器详细信息中显示。你的<font color="#caab05">重量容量</font>在屏幕中心目前的金钱下方显示。使你无法购买目前选中的物品的原因会以红色高亮显示。"
 
 ;Trader Open Gamepad
-TraderRefillGamepadTitleKey="Refill Your Ammo and Armor"
-TraderRefillGamepadDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> at the trader. To do so, select the weapon you wish to buy ammo for on the left side of the trader menu using the left stick. You can purchase one magazine or grenade for the selected weapon by pressing <font color="#caab05">%x%</font>, or buy as much ammo or as many grenades as you can afford, up to your limit, by pressing <font color="#caab05">%x%</font>. If you are short on time (or long on dosh), pressing <font color="#caab05">%x%</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
-TraderSellGamepadTitleKey="Selling Weapons"
-TraderSellGamepadDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon you wish to sell on the left side of the trader menu using the left stick and press <font color="#caab05">%x%</font>. You can see the amount of dosh you will get for selling the item. You cannot sell your backup 9mm pistol, body armor, or grenades."
-TraderBuyGamepadTitleKey="Buying Weapons"
-TraderBuyGamepadDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select the weapon you wish to buy on the right side of the trader menu using the left stick and press <font color="#caab05">%x%</font>. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
-TraderWeightGamepadTitleKey="Weapon Weight and Capacity"
-TraderWeightGamepadDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown below your current dosh in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
+TraderRefillGamepadTitleKey="补充弹药和护甲"
+TraderRefillGamepadDescriptionKey="你可以在商人那里补充<font color="#caab05">弹药</font>、<font color="#caab05">手榴弹</font>和<font color="#caab05">身体护甲</font>。如需这样做，使用左摇杆在商人菜单的左侧选择想要购买弹药的武器。你可以按 <font color="#caab05">%x%</font> 为选中的武器购买一匣子弹或一枚手榴弹，或按 <font color="#caab05">%x%</font> 购买你买得起的尽可能多的弹药和手榴弹。如果你没有时间（或资金充足），按 <font color="#caab05">%x%</font> 将为你自动付款，快速补充弹药、护甲和手榴弹。"
+TraderSellGamepadTitleKey="出售武器"
+TraderSellGamepadDescriptionKey="要<font color="#caab05">出售武器</font>，使用左摇杆和按 <font color="#caab05">%x%</font> 在商人菜单的左侧选择想要出售的武器。你可以看见出售该物品你可以获得的金钱。你不能出售备用 9 毫升手枪、身体护甲或手榴弹。"
+TraderBuyGamepadTitleKey="购买武器"
+TraderBuyGamepadDescriptionKey="要<font color="#caab05">购买武器</font>，使用左摇杆和按 <font color="#caab05">%x%</font> 在商人菜单的右侧选择想要购买的武器。确保你有充足的<font color="#caab05">金钱</font>和<font color="#caab05">重量容量</font>来购买武器。"
+TraderWeightGamepadTitleKey="武器重量和容量"
+TraderWeightGamepadDescriptionKey="每件武器都有一个<font color="#caab05">重量值</font>。你目前的武器重量可能会使你无法购买你想要的武器。武器重量在武器列表上和武器详细信息中显示。你的<font color="#caab05">重量容量</font>在屏幕中心目前的金钱下方显示。使你无法购买目前选中的物品的原因会以红色高亮显示。"
 
 
 
 ;Trader Menu Close
-DoorWeldTitleKey="Weld Doors"
-DoorWeldDescriptionKey="You can <font color="#caab05">WELD DOORS</font> to slow the flow of enemies to a given area. To weld a door, walk up to it and <font color="#caab05">HOLD %x%</font> to equip your welder."
-HoldOutRunTitleKey="Run vs. Hold Out"
-HoldOutRunDescriptionKey="Know when to hold out and when to run. Find a good hold out spot, but once you start getting overrun, find an exit."
-TeamAdviceTitleKey="Stick Together"
-TeamAdviceDescriptionKey="<font color="#caab05">STAY WITH YOUR TEAM!</font> Your teammates are vital to your survival. They can heal you as well as help you take down the bigger Zeds."
+DoorWeldTitleKey="焊接门"
+DoorWeldDescriptionKey="你可以<font color="#caab05">焊接门</font>来拖慢敌人通过特定区域的速度。为焊接门，走到门的前面并<font color="#caab05">按住 %x%</font> 以装备焊机。"
+HoldOutRunTitleKey="逃跑 vs 坚持"
+HoldOutRunDescriptionKey="知道何时要坚持，何时应逃跑。寻找一个良好的据点，但一旦处于劣势立即寻找出路。"
+TeamAdviceTitleKey="团结一致"
+TeamAdviceDescriptionKey="<font color="#caab05">和队伍保持在一起！</font>队员就是你的救命稻草。他们可以为你疗伤和帮助你对付较大的丧尸。"
 
 ;Victory
-CongratulationsTitleKey="Victory!"
-CongratulationsDescriptionKey="Congratulations! You have completed the Training Floor!"
-NextStepsTitleKey="What to Do Next"
-NextStepsDescriptionKey="From the main menu, you can practice more offline or jump into an online game with other survivors. Now go kill some Zeds!"
+CongratulationsTitleKey="胜利！"
+CongratulationsDescriptionKey="恭喜你！你完成了训练场！"
+NextStepsTitleKey="下一步该怎么做"
+NextStepsDescriptionKey="你可在主菜单选择离线练习多次，或是与其他幸存者跳进一个在线游戏中。立刻去杀丧尸吧！"
 
 ;Healing Section
-QuickHealTitleKey="Heal Yourself When Hurt"
-QuickHealDescriptionKey="If you are hurt, you can heal yourself by pressing <font color="#caab05">%x%</font>. After healing, your syringe will take sometime to recharge before you can use it again."
-HowToSyringeTitleKey="Heal Your Teammates"
-HowToSyringeDescriptionKey="You can also equip the syringe to heal your teammates by pressing <font color="#caab05">%x%</font> and then pressing <font color="#caab05">%x%</font> when close to a teammate."
-HealOthersTitleKey="Use Field Medic Weapons to Heal Teammates"
-HealOthersDescriptionKey="Field Medic perk weapons can heal teammates from a distance with their alternate fire mode. If you are using a Field Medic weapon, press <font color="#caab05">%x%</font> to fire a healing dart. Also, when you have selected the Field Medic perk, press <font color="#caab05">%x%</font> to throw a healing gas grenade."
+QuickHealTitleKey="在受伤时治愈自己"
+QuickHealDescriptionKey="如果你受伤了，你可以按 <font color="#caab05">%x%</font> 给自己疗伤。治愈后，注射器需要一段时间才能补充完，以便再次使用。"
+HowToSyringeTitleKey="治愈队友"
+HowToSyringeDescriptionKey="你也可以装备注射器为队友疗伤，方法是靠近队友然后按 <font color="#caab05">%x%</font> 和 <font color="#caab05">%x%</font>。"
+HealOthersTitleKey="使用医疗兵武器治疗队友"
+HealOthersDescriptionKey="医疗兵神射武器的备用射击模式可以治愈远距离的队友。如果你正在使用医疗兵武器，按 <font color="#caab05">%x%</font> 射出治愈飞镖。或者，选择医疗兵神射，按 <font color="#caab05">%x%</font> 扔出治愈气体手榴弹。"
 
 ;Zed Time
-ZedTimeTitleKey="Zed Time"
-ZedTimeDescriptionKey="<font color="#caab05">ZED TIME SLO-MO</font> kicks in when cool things happen like headshots or hordes of enemies dying in an explosion. You can use this time to catch a small breather and daisy-chain some kills together."
+ZedTimeTitleKey="丧尸时间"
+ZedTimeDescriptionKey="<font color="#caab05">丧尸时间慢动作</font>在爆头或在爆炸中杀死一群丧尸时触发，发生一些神奇的事情。你可以在这段时间稍作休息和进行连击。"
 
 ;Melee Section
-MeleeTitleKey="Melee Weapons"
-MeleeDescriptionKey="Melee weapons have both light and hard attacks. Perform a light attack by pressing <font color="#caab05">%x%</font> and a hard attack by pressing <font color="#caab05">%x%</font>."
-BlockingTitleKey="Blocking with Melee Weapons"
-BlockingDescriptionKey="You can also block with melee weapons by <font color="#caab05">HOLDING %x%</font>. Blocking will reduce incoming Zed damage."
-ParryTitleKey="Parrying with Melee Weapons"
-ParryDescriptionKey="If you time a block correctly with an incoming Zed attack, you will parry the Zed and stumble him back. You will see an effect flash if you successfully parry a Zed."
-UnblockableTitleKey="Unblockable Zed Attacks"
-UnblockableDescriptionKey="Larger Zeds have some unblockable attacks. You can tell if an attack is unblockable by glowing effects on the Zed during an attack."
+MeleeTitleKey="近战武器"
+MeleeDescriptionKey="近战武器有轻击和重击。按 <font color="#caab05">%x%</font> 实施轻击，按 <font color="#caab05">%x%</font> 实施重击。"
+BlockingTitleKey="使用近战武器阻挡"
+BlockingDescriptionKey="你还可以<font color="#caab05">按住 %x%</font> 使用近战武器阻挡。阻挡将会减少丧尸造成的伤害。"
+ParryTitleKey="使用近战武器闪避"
+ParryDescriptionKey="如果正确阻拦丧尸的攻击，你将会闪避丧尸，使其向后倒。如果你成功避开丧尸，你将会看见一个效果闪烁。"
+UnblockableTitleKey="不可阻挡的丧尸攻击"
+UnblockableDescriptionKey="较大的丧尸有些不可阻挡的攻击。如果丧尸上有闪光的效果，就表示该攻击不可阻挡。"
 
 [KFGFxTutorialContainer]
 BackString="返回"
@@ -112,382 +112,382 @@ SkipString="跳过"
 [Armor]
 ItemName="战斗护甲"
 ItemCategory="装备"
-ItemDescription="• 战斗护甲可以在你受到多种形式的伤害时起到保护作用，但是在此过程中会逐渐损坏。\n• 你可以从商人手中买到全新的护甲，也可以修复受损的护甲。\n\n战斗护甲是一套外衣，配有高科技纤维材料和钨钢制成的插板。"
+ItemDescription="•战斗护甲可以保护你不受各种伤害，但是会在此过程中逐渐减弱。\n•在商人那里购买新护甲或维修损坏的护甲。\n\n这是一件夹克，上面的装甲是使用高科技纤维和钨钢制造而成。"
 
 [KFProj_DynamiteGrenade]
-ItemName="半根炸药"
-ItemCategory =" 炸弹"
-ItemDescription="• 只是一小根炸药，连有一截导火索。\n• 小心，别把自己也炸伤了！"
+ItemName="1/2 炸药包"
+ItemCategory =" 爆炸物"
+ItemDescription="•连着导火线的一小包炸弹。\n•爆炸的时候连你也会伤到，别靠太近 "
 
 [KFProj_MedicGrenade]
-ItemName="医疗手雷"
-ItemCategory =" 炸弹"
-ItemDescription="• 释放出一股气体，毒杀其中的变异体，而同时治疗人类。\n• 站在蓝色气体云内以接受治疗。\n\n引用一句我们当中的一名科学家的话：“这种手雷放出的化学物质可以让正常人类充满活力，让变异人类安乐得去死。”我们希望他没说错。"
+ItemName="医疗兵手榴弹"
+ItemCategory =" 爆炸物"
+ItemDescription="•释放出的气体会使丧尸中毒，但是会帮助人类疗伤。\n\n•站在蓝色的气体云中可以获得治疗。\n其中一名科学家是这样说的：‘这些手榴弹放出的物质将会使人类复活，但是会使尸类死亡。’我们希望这会有所帮助。 "
 
 [KFProj_MolotovGrenade]
-ItemName="燃烧瓶"
-ItemCategory="炸弹"
-ItemDescription="• 非常简单，就是一个能点燃变异体的燃烧手雷。\n• 小心不要弄伤自己！\n\n在1939-1940年的冬季战争期间，芬兰人侮辱性地将他们的燃烧瓶以苏联外交人民委员维亚切斯拉夫·米哈伊洛维奇·莫洛托夫的名字来命名… 怎么，你不是想上堂历史课吗？"
+ItemName="燃烧弹"
+ItemCategory="爆炸物"
+ItemDescription="•简而言之，就是可以烧死丧尸的火焰手榴弹。\n•注意，它连你也会伤到！\n\n这个名字是由芬兰人在 1939-40 冬季战斗中以斯大林的苏联外交部长 Vyacheslav Mikhailovich Molotov 而命名的…抱歉，你想要上一堂历史课吗？ "
 
 [KFProj_EMPGrenade]
-ItemName="电磁手雷"
-ItemCategory="炸弹"
-ItemDescription="• 爆炸时产生电磁脉冲，对变异体同时具有伤害和短时间的击晕作用。\n\n如果你想知道更多细节的话 - 在引爆时，它会释放出纳秒级的高能电磁脉冲，破坏近距离内的电子系统。对于变异体体内的电子系统特别有效。很方便，你也来试试。"
+ItemName="EMP 手榴弹"
+ItemCategory="爆炸物"
+ItemDescription="•释放的电脉冲可以伤害丧尸以及使它们暂时眩晕。\n\n如果你想要知道更多细节 - 在爆炸时，它会释放纳秒电磁脉冲，破坏短距离内的电子系统。尤其是丧尸内的电子系统。非常好用。 "
 
 [KFProj_HEGrenade]
-ItemName="高爆手雷"
-ItemCategory="炸弹"
-ItemDescription="• 一个非常简易的高爆手雷。能够同样有效地炸伤人类和变异体。\n\n真的简直不要太简单了。高爆 - 也就是说 - 把东西炸得又飞又高还能爆炸。我们真有必要解释给你听吗？"
+ItemName="HE 手榴弹"
+ItemCategory="爆炸物"
+ItemDescription="•非常简单但威力惊人的手榴弹。伤害丧尸也伤害人类。\n\n再也简单不过了。HE - 高爆炸力 - 可以将一切东西炸飞。这还要解释吗？ "
 
 [KFProj_FragGrenade]
-ItemName="破片手雷"
-ItemCategory="炸弹"
-ItemDescription="• 经典的破片手雷：把讨厌的金属小碎片抛得到处都是，任何东西都不能幸免于难。\n\n我很确定你们在变异体爆发之前都玩过相当多的电子游戏，你们都已经非常了解破片手雷是个什么东西了。别给我装傻。这里没人会被你骗到的。"
+ItemName="破片手榴弹"
+ItemCategory="爆炸物"
+ItemDescription="•经典的破片手榴弹：在周围扔一些金属，没有东西可以抵挡得住。\n\n我非常肯定，你们在疫情爆发前玩过很多电视游戏，所以你们肯定知道破片手榴弹是什么东东。别装不知道。这里没人会信你的。 "
 
 [KFProj_NailBombGrenade]
-ItemName="钉子炸弹"
-ItemCategory =" 炸弹"
-ItemDescription="• 就是一个装满了旧钉子的罐子，中间放着一块小型炸药。\n\n就对付变异体而言，这并非是最愉悦或微妙的手段。然而“愉悦”或“微妙”根本和变异体搭不上边，不是吗？"
+ItemName="长钉炸弹"
+ItemCategory =" 爆炸物"
+ItemDescription="•一个普通的小罐装满了旧长钉，中间塞了一个小炸药包。\n\n这样对付丧尸似乎不够光明正大，但是对丧尸根本不用谈光明，不是吗？"
 
 [KFProj_FreezeGrenade]
-ItemName="冰冻手雷"
+ItemName="冷冻手榴弹"
 ItemCategory =" 爆炸物"
-ItemDescription="•A technologically advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
+ItemDescription="•一个装有高压液氮的高科技小罐。\n\n一小罐就足以冻住丧尸一会儿。威力非常令人震惊。"
 
 [KFProj_FlashBangGrenade]
-ItemName="FlashBang"
-ItemCategory = "Explosives"
-ItemDescription="•Both bright and loud, do not look directly at it. Try not to hear it either.\n•While technically less than lethal, flash bangs can still hurt you, so be careful!" 
+ItemName="闪光弹"
+ItemCategory =" 爆炸物"
+ItemDescription="•又亮又大声，千万不要直视它。最好也不要听。\n•虽然威力不足以致死，但是闪光弹也会伤害你，所以要小心咯！ "
 
 [KFWeap_Healer_Syringe]
-ItemName="医疗注射器"
+ItemName="医用注射器"
 ItemCategory="装备"
 
 [KFWeap_Welder]
-ItemName="电焊枪"
+ItemName="焊机"
 ItemCategory="装备"
 
 [KFWeap_Pistol_9mm]
 ItemName="9 毫米手枪"
 ItemCategory="手枪"
-ItemDescription="• 开火模式仅限半自动。\n• 这是一把标准的 9 毫米手枪。简约而廉价（非常廉价，真的，对你来说的话），这种手枪是所有赫睿尊集团特种人员手头的标配武器。"
+ItemDescription="•射击模式只有半自动式。\n•这是标准的 9 毫米手枪。简单又便宜（老实说，非常便宜），这是所有霍因行动的基本装备。"
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 沙漠之鹰"
-ItemCategory="手枪"
-ItemDescription="• 开火模式仅限半自动。\n• 沙漠之鹰是手枪中的怪兽，这也是为什么我们都把它认作是“手上加农炮”。"
+ItemCategory="手炮"
+ItemDescription="•射击模式只有半自动式。\n•沙漠之鹰是手枪中的野兽，所以我们把它叫做‘手炮’。"
 
 [KFWeap_AssaultRifle_AR15]
-ItemName="AR-15 狐鼠步枪"
+ItemName="AR-15 Varmint 步枪"
 ItemCategory="突击步枪"
-ItemDescription="• 开火模式可在三连发爆炸开火和半自动之间切换。\n• 辅助开火键切换开火模式。\n• 这是用来打变异体的，不是去对付“狐鼠”的。"
+ItemDescription="•有三连发或单发射击模式可以选择。\n•备用射击可以切换射击模式。\n•这是用来对付丧尸，而不是‘流氓’。"
 
 [KFWeap_AssaultRifle_SCAR]
 ItemName="SCAR-H 突击步枪"
 ItemCategory="突击步枪"
-ItemDescription="• 开火模式可在全自动和半自动之间切换。\n• 辅助开火键切换开火模式。\n• 这把武器原本是为美军的特别行动司令部设计的，枪如其名，没错，十分特别！"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•最初是为美国特种作战司令部设计，所以，真的，很特别！"
 
 [KFWeap_AssaultRifle_AK12]
-ItemName="卡拉什尼科夫 AK-12 自动步枪"
+ItemName="Kalashnikov AK-12"
 ItemCategory="突击步枪"
-ItemDescription="• 开火模式可在全自动和三连发爆炸开火之间切换。\n• 辅助开火键切换开火模式。\n• 这支 AK-12 是从一具俄罗斯特种部队士兵的尸体上搜到的。"
+ItemDescription="•可以选择全自动和三连发射击模式。\n•备用射击可以切换射击模式。\n•这把 AK-12 来自死掉的俄罗斯特种部队，扫射效果明显。"
 
 [KFWeap_AssaultRifle_Bullpup]
-ItemName="SA80 L85A2 无托式突击步枪"
+ItemName="SA80 L85A2 小斗牛式导弹"
 ItemCategory="突击步枪"
-ItemDescription="• 开火模式可在全自动和三连发爆炸开火之间切换。\n• 辅助开火键切换开火模式。\n• SA80 曾经是英国陆军的标准武器。当然，这指的是，在军队在被吃掉之前。"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•SA80 是英队的标准武器，呃，是在军队被吃掉之前。"
 
 [KFWeap_Knife_Demolitionist]
-ItemName="万能匕首"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 快速挥砍，按住可以连击。\n• 次要攻击 - 大力挥砍。\n• 辅助 - 格挡/招架。\n• 这是一把美工刀。非常适合切开那些你在杀戮空间中见到的各种各样的箱子。"
+ItemName="万用刀"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•就是一把美工刀。最适合用来割开你在游戏中找到的箱子。"
 
 [KFWeap_Knife_FieldMedic]
-ItemName="手术刀"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 快速挥砍，按住可以连击。\n• 次要攻击 - 大力挥砍\n• 辅助 - 格挡/招架\n• 这是一把手术刀。你是一名医生，所以我们就当作不需要向你解释用法了。"
+ItemName="解剖刀"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•就是一把解剖刀。你是一名医疗兵，无需我们废话你也知道怎么用它。"
 
 [KFWeap_Knife_Firebug]
-ItemName="消防员匕首"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 快速挥砍，按住可以连击。\n• 次要攻击 - 大力挥砍。\n• 辅助 - 格挡/招架。\n• 这是一把消防员的匕首。你是一名消防员，所以我们就当作不需要向你解释用法了。"
+ItemName="消防员的匕首"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•就是一把消防员的匕首。你是一名消防员，无需我们废话你也知道怎么用它。"
 
 [KFWeap_Knife_Gunslinger]
 ItemName="鲍伊猎刀"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 快速挥砍，按住可以连击。\n• 次要攻击 - 大力挥砍。\n• 辅助 - 格挡/招架。\n• 来自西部的大砍刀。十分适合把变异体们切成片或者丁。"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•大号的老西部匕首。最适合切碎这里的丧尸。"
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="反曲刀"
-ItemCategory="近战武器"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The traditional knife of the Ghurka, it's more a chopping knife than a slicing knife. "
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•戈卡士兵的传统匕首，就是一把斩刀。 "
 
 [KFWeap_Knife_SWAT]
-ItemName="Tactical Knife"
-ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a knife. It cuts things. Tactical things."
+ItemName="策略匕首"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•就是一把匕首。削铁如泥。用心使用。"
 
 [KFWeap_Pistol_Medic]
 ItemName="HMTech-101 手枪"
-ItemCategory="自动手枪"
-ItemDescription="• 开火模式仅限半自动。\n• 辅助开火键发射能治疗队友的特殊飞镖。\n• 使用无壳弹药，它能帮你计算还剩多少发子弹。"
+ItemCategory="手枪"
+ItemDescription="•射击模式只有半自动\n•备用射击可以射出治愈飞镖治疗队友。\n•它使用无壳弹，会显示剩余的弹药数。"
 
 [KFWeap_SMG_Medic]
 ItemName="HMTech-201 冲锋枪"
 ItemCategory="冲锋枪"
-ItemDescription="• 开火模式仅限全自动。\n• 辅助开火键发射能治疗队友的特殊飞镖。\n• 你的手枪变强了！"
+ItemDescription="•射击模式只有全自动。\n•备用射击可以射出治愈飞镖治疗队友。\n•HMTech 手枪让你如虎添翼！"
 
 [KFWeap_Shotgun_Medic]
 ItemName="HMTech-301 霰弹枪"
 ItemCategory="霰弹枪"
-ItemDescription="• 开火模式仅限半自动。\n• 辅助开火键发射能治疗队友的特殊飞镖。\n• 医生专用的战斗霰弹枪。"
+ItemDescription="•射击模式只有半自动。\n•备用射击可以射出治愈飞镖治疗队友。\n•HMTech 手枪的战斗版霰弹枪。"
 
 [KFWeap_AssaultRifle_Medic]
 ItemName="HMTech-401 突击步枪"
 ItemCategory="突击步枪"
-ItemDescription="• 开火模式仅限全自动。\n• 辅助开火键发射能治疗队友的特殊飞镖。\n• 突击步枪的火力全开版本。"
+ItemDescription="•射击模式只有全自动。\n•备用射击可以射出治愈飞镖治疗队友。\n•HMTech 手枪的完全版突击步枪。"
 
 [KFWeap_Shotgun_DoubleBarrel]
-ItemName="双管霰弹枪"
+ItemName="双发霰弹枪"
 ItemCategory="霰弹枪"
-ItemDescription="• 主要开火仅发射一支枪管。\n• 辅助开火为双管齐射。\n• 平置双管 12 号口径霰弹枪。近距离作战的理想之选。即使是最为庞大的变异体也要抖三抖！"
+ItemDescription="•主射击只使用单管。\n•备用射击可以一次射两发。\n•双发 12 子弹霰弹枪。非常适合近战。即使是最大的丧尸也会被吓到脚软！"
 
 [KFWeap_Shotgun_AA12]
 ItemName="AA-12 自动霰弹枪"
 ItemCategory="霰弹枪"
-ItemDescription="• 开火模式可在全自动和三连发爆炸开火之间切换。\n• 辅助开火键切换开火模式。\n• AA-12 是一把全自动霰弹枪。其火力制霸中近距离，但是很吃弹药！"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•AA-12 是自动霰弹枪。中至远程威力惊人，但是全自动时非常消耗子弹。"
 
 [KFWeap_Shotgun_MB500]
-ItemName="SG 500 泵动霰弹枪"
+ItemName="SG 500 枪栓式"
 ItemCategory="霰弹枪"
-ItemDescription="• 开火模式仅限泵动。\n• 泵动式的莫斯伯格 SG 500 霰弹枪，配有手枪握把，是完美的近距离变异体杀手。简单有效。"
+ItemDescription="•射击模式只有枪栓式。\n•配备手枪式握把的枪栓式 Mossberg SG 500 是威力惊人的近距离丧尸杀手。简单，高效。"
 
 [KFWeap_Shotgun_M4]
 ItemName="M4 战斗霰弹枪"
 ItemCategory="霰弹枪"
-ItemDescription="• 开火模式仅限半自动。\n• 贝纳利公司为美军设计了 M4 战斗霰弹枪。采用半自动模式，具有良好、稳定的射速。"
+ItemDescription="•射击模式只有半自动。\n•贝内利为美国军队设计了 M4 战斗霰弹枪。它是半自动式，可以良好和稳定地射击。"
 
 [KFWeap_Knife_Berserker]
-ItemName="割草刀"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 快速挥砍，按住可以连击。\n• 次要攻击 - 大力挥砍。\n• 辅助 - 格挡/招架。\n• 没错，这就是除草机的刀片。好好享受吧！"
+ItemName="割草机刀片"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•是的，就是一块割草机刀片。祝你好运！"
 
 [KFWeap_Knife_Commando]
 ItemName="KF-BAR"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 快速挥砍，按住可以连击。\n• 次要攻击 - 大力挥砍。\n• 辅助 - 格挡/招架。\n• 经典特种兵匕首之赫睿尊版本。"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•霍因版的经典战斗刀。"
 
 [KFWeap_Knife_Support]
-ItemName="砍刀"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 快速挥砍，按住可以连击。\n• 次要攻击 - 大力挥砍。\n• 辅助 - 格挡/招架。\n• 不要以为我们给你的刀最大，就可以感觉自己很特别。"
+ItemName="弯刀"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•别因为这是最大的刀就沾沾自喜。"
 
 [KFWeap_Edged_Katana]
 ItemName="武士刀"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 快速挥砍，按住可以连击。\n• 次要攻击 - 大力挥砍。\n• 辅助 - 格挡/招架。\n• 试着对这把武器的高贵气质体现出一点尊重。"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•试挥一下，别忘了礼仪。"
 
 [KFWeap_Blunt_Crovel]
-ItemName="克罗牌求生工具"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 快速挥砍，按住可以连击。\n• 次要攻击 - 大力挥砍。\n• 辅助 - 格挡/招架。\n• 一半是撬棍，一半是铲子，合起来相当致命。"
+ItemName="Crovel 求生工具"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•撬棍，铁铲，非常有杀伤力。"
 
 [KFWeap_Shotgun_Nailgun]
-ItemName="VLAD-1000 射钉枪"
+ItemName="VLAD-1000 钉枪"
 ItemCategory="霰弹枪"
-ItemDescription="• 开火模式可在单发和散射之间切换。\n• 辅助开火键切换开火模式。\n• 我们了解到，这把射钉枪的原型，是赫睿尊集团的其中一名科学家从一位（已逝世的）修理工那里“借”来的。"
+ItemDescription="•可以选择单发或多发钉枪射击模式。\n•备用射击可以切换射击模式。\n•我们知道一名霍因科学家从一个（死了的）维修工那里借了这把原始钉枪。"
 
 [KFWeap_Blunt_Pulverizer]
-ItemName="碎裂者大锤"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 快速钝击，按住主要攻击键可以连击。\n• 次要攻击向与其接触的物体发射爆炸弹药。弹药耗尽时，次要攻击为大力钝击 - 所以记得给它装弹！\n• 辅助 - 格挡/招架。"
+ItemName="粉碎机"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助射击可以射出爆炸弹。当用完弹药时，辅助攻击是重击 - 所以一定要记住填弹！\n•Alt - 阻挡/闪避。"
 
 [KFWeap_Eviscerator]
-ItemName="内脏切割机"
-ItemCategory="特殊"
-ItemDescription="• 主要攻击为发射锯片。\n• 辅助开火为近战攻击，会快速消耗燃料。\n• 这台野兽似的机器，最初是由赫睿尊集团 SDS 小组在他们迷茫的日日夜夜之中的某一天设计出来的，所以并不是很精致。"
+ItemName="开膛锯"
+ItemCategory="特别任务"
+ItemDescription="•主射击会射出锯片。\n•备用射击是近战攻击，但是会快速消耗燃料。\n•最初是由霍因的 SDS 小组在一次疯狂实验中制造出来，使用起来并不复杂。"
 SecondaryAmmo="汽油"
 
 [KFWeap_Edged_Zweihander]
-ItemName="德式巨剑"
-ItemCategory="近战武器"
-ItemDescription="• 主要攻击 - 中/高伤害，能造成群伤控制。\n• 次要攻击 - 速度更慢，但是伤害更高。\n• 辅助 - 格挡/招架\n• 你要是向前移动还能造成更大的伤害。"
-SharedUnlockSource="《骑士：中世纪战争》"
+ItemName="双手剑"
+ItemCategory="近战"
+ItemDescription="•主要 - 中/重伤害，可以对付一群怪物。\n•辅助 - 较慢，但是伤害力更高。\n•Alt - 阻挡/闪避\n•快速向前移动时伤害力甚至更大。"
+SharedUnlockSource="骑士精神：中世纪战争 (Chivalry: Medieval Warfare)”  "
 
 [KFWeap_Flame_CaulkBurn]
-ItemName="土制喷火器"
-ItemCategory="火焰武器"
-ItemDescription="• 开火模式为喷射火焰。\n• 手持式，土制式火焰喷射器。请勿在家尝试。"
+ItemName="喷火枪"
+ItemCategory="火焰"
+ItemDescription="•射击模式喷出火焰。\n•手持式自制喷火器。切勿在家自行尝试。"
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="龙息堑壕枪"
-ItemCategory="Shotgun"
-ItemDescription="• 开火模式仅限泵动。\n• 一支发射龙之吐息燃烧弹的霰弹枪。不仅能够致命，火光也相当华丽。"
+ItemName="燃烧战壕枪"
+ItemCategory="霰弹枪"
+ItemDescription="•射击模式只有压动式。\n•一把采用龙息燃烧弹的霰弹枪。不仅致命，看起来也超棒。"
 
 [KFWeap_Flame_Flamethrower]
 ItemName="火焰喷射器"
-ItemCategory="火焰武器"
-ItemDescription="• 开火模式为喷射火焰。没什么可说的了。\n• 跨越时代的经典武器。如果有疑问，烧光一切就行了。"
+ItemCategory="火焰"
+ItemDescription="•射击模式喷出火焰。就是这样。\n•古今中外的经典武器。迟疑时，烧个精光就好。"
 
 [KFWeap_Beam_Microwave]
 ItemName="微波枪"
-ItemCategory="火焰武器"
-ItemDescription="• 开火模式使用微波来烧烤近距离的变异体，烧得它们外焦里嫩。\n• 辅助开火键发射短距离的冲击波。\n• 现代科技的奇迹。便携式变异体烹调工具。"
+ItemCategory="火焰"
+ItemDescription="•射击模式投射一道能由里到外烹煮敌人的微波射线。\n•备用射击喷出一股短程的冲击波。\n•现代工艺奇迹：一款手持式丧尸烹煮工具。"
 
 [KFWeap_Thrown_C4]
-ItemName="C4 炸弹"
-ItemCategory="炸弹"
-ItemDescription="• 开火模式为放置你的 C4 炸弹。\n• 辅助开火键引爆你的 C4 炸弹，按放置时的顺序逐个引爆。\n• 一块 C4 炸弹，连接有无线引信，便于远程引爆。"
+ItemName="C4 爆炸物"
+ItemCategory="爆炸物"
+ItemDescription="•射击模式放置你的 C4 炸药。\n•备用射击以先前放置的顺序引爆你的 C4 炸药。\n•一块根据请求远程引爆的 C4 炸药。"
 
 [KFWeap_GrenadeLauncher_HX25]
-ItemName="HX25 榴弹手枪"
-ItemCategory="炸弹"
-ItemDescription="• 开火模式发射多发小型弹药，在接触物体时爆炸。"
+ItemName="HX25 手榴弹手枪"
+ItemCategory="爆炸物"
+ItemDescription="•射击模式喷射出多枚接触物体时引爆的小型炸弹。"
 
 [KFWeap_GrenadeLauncher_M79]
 ItemName="M79 榴弹发射器"
-ItemCategory="炸弹"
-ItemDescription="• 开火模式为发射一枚榴弹。\n• 榴弹在接触物体时爆炸。\n• 榴弹在飞行几米后才能爆炸，这样你就不会糊自己一脸了。"
+ItemCategory="爆炸物"
+ItemDescription="•射击模式发射一枚榴弹。\n•射出的榴弹在冲击作用下爆炸。\n•射出的榴弹在经过几米的保险距离后装备完成，避免炸到自己的脸部。"
 
 [KFWeap_RocketLauncher_RPG7]
 ItemName="RPG-7"
-ItemCategory="炸弹"
-ItemDescription="• 开火模式为发射一枚火箭。\n• 火箭在接触物体时爆炸。\n• 火箭在飞行几米后才能爆炸，这样你就不会糊自己一脸了。\n• 另外小心尾焰喷射！"
+ItemCategory="爆炸物"
+ItemDescription="•射击模式发射一枚火箭。\n•射出的火箭在冲击作用下爆炸。\n•射出的榴弹在经过几米的保险距离后装备完成，避免炸到自己的脸部。\n•小心向后爆破！"
 
 [KFWeap_Pistol_Dual9mm]
-ItemName="9 毫米双枪"
+ItemName="两把 9 毫米手枪。"
 ItemCategory="手枪"
-ItemDescription="• 开火模式仅限半自动。\n• 在机械瞄准时，用辅助开火键切换射击样式。\n• 一对标准的 9 毫米手枪。如果你有需要，可以（也只能）卖掉其中的一把。"
+ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准分割。\n•这是一对标准 9 毫米手枪。如需要，你可卖出一把（仅限一把）。"
 
 [KFWeap_Pistol_Colt1911]
 ItemName="M1911 手枪"
 ItemCategory="手枪"
-ItemDescription="• 开火模式仅限半自动。\n• 经典的柯尔特 1911 半自动手枪。"
+ItemDescription="•射击模式只有半自动。\n•经典柯尔特 1911 半自动手枪。"
 
 [KFWeap_Pistol_DualColt1911]
-ItemName="M1911 双枪"
+ItemName="两把 M1911 手枪。"
 ItemCategory="手枪"
-ItemDescription="• 开火模式仅限半自动。\n• 在机械瞄准时，用辅助开火键切换射击样式。\n• 这是一双 M1911 半自动手枪。每一把都可以单独出售或者扔掉。"
+ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准分割。\n•这是一对柯尔特 1911 半自动手枪。可单独售出或抛弃一把。"
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 沙漠之鹰"
-ItemCategory="手枪"
-ItemDescription="• 开火模式仅限半自动。\n• 沙漠之鹰是手枪中的怪兽，这也是为什么我们都把它认作是“手上加农炮”。"
+ItemCategory="手炮"
+ItemDescription="•射击模式只有半自动式。\n•沙漠之鹰是手枪中的野兽，所以我们把它叫做‘手炮’。"
 
 [KFWeap_Pistol_DualDeagle]
-ItemName=".50 沙漠之鹰双枪"
+ItemName="双.50 沙漠之鹰"
 ItemCategory="手枪"
-ItemDescription="• 开火模式仅限半自动。\n• 在机械瞄准时，用辅助开火键切换射击样式。\n• 这是一双沙漠之鹰手炮。每一把都可以单独出售或者扔掉。"
+ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准分割。\n•一对沙漠之鹰手炮。可单独售出或抛弃一把。"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 左轮手枪"
 ItemCategory="手枪"
-ItemDescription="• 开火模式仅限单发射击。\n• 雷明顿 1858 年款式中的经典范例，是一把拥有 .44 英寸口径，6 发子弹的陆军单动式左轮手枪。古老，但不失威力。"
+ItemDescription="•射击模式只有单发射击。\n• .44 口径雷明顿‘型号 1858’6 单动军用左轮手枪的典范。古老但仍然强大。"
 
 [KFWeap_Revolver_DualRem1858]
-ItemName="1858 左轮双枪"
+ItemName="两把 1858 左轮手枪"
 ItemCategory="手枪"
-ItemDescription="• 开火模式仅限半自动。\n• 在机械瞄准时，用辅助开火键切换射击样式。\n• 这是一双雷明顿 1858 左轮手枪。每一把都可以单独出售或者扔掉。"
+ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准分割。\n•一对雷明顿 1858 左轮手枪。可单独售出或抛弃一把。"
 
 [KFWeap_Revolver_SW500]
 ItemName=".500 马格南左轮手枪"
 ItemCategory="手枪"
-ItemDescription="• 开火模式仅限单发射击。\n• 真正的手持大炮，有着长管 .50 口径的左轮手枪，人称“碎骨者”，满载着马格南子弹。专为高端快枪手设计。"
+ItemDescription="•射击模式只有单发射击。\n•长管 .50-口径‘人骨拼图’左轮手枪，发射满载大剂量马格南回合，堪称真正的手炮。适合真正的枪手。"
 
 [KFWeap_Revolver_DualSW500]
-ItemName=".500 马格南双枪"
+ItemName="两把 .500 马格南"
 ItemCategory="手枪"
-ItemDescription="• 开火模式仅限半自动。\n• 在机械瞄准时，用辅助开火键切换射击样式。\n• 这是一双 .500 马格南左轮手枪，人称“拾骨者”。每一把都可以单独出售或者扔掉。“砰”声作大死。"
+ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准分割。\n•一对.500 马格南“人骨拼图”左轮手枪。可单独售出或抛弃一把。‘砰声’较大。"
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="温彻斯特 1894"
 ItemCategory="步枪"
-ItemDescription="• 开火模式仅限单发射击。\n• 经典的温彻斯特 1894 年款杠杆式步枪。"
+ItemDescription="•射击模式只有单发射击。\n•经典型号 1894 温彻斯特杠杆式步枪。"
 
 [KFWeap_Bow_Crossbow]
-ItemName="弓弩"
+ItemName="十字弓"
 ItemCategory="弓"
-ItemDescription="• 开火模式仅限单发射击。\n• 弩箭通常可以回收后重复利用！\n• 一把大威力的狩猎用弓弩，具有良好的穿透力和制动能力！"
+ItemDescription="•射击模式只有单发射击。\n•十字弓栓通常可收回！\n•一支高性能狩猎十字弓，穿透力和停止力俱佳！"
 
 [KFWeap_Rifle_M14EBR]
 ItemName="M14 EBR"
 ItemCategory="狙击步枪"
-ItemDescription="• 开火模式仅限半自动。\n• 附有激光指示器。\n• 海豹突击队、三角洲部队和许多特别牛逼的特种部队首选的狙击步枪。"
+ItemDescription="•射击模式只有单发射击。\n•配备有一个激光瞄准具。\n•一把受海豹突击队、三角洲部队和其他基地偏爱的狙击步枪。"
 
 [KFWeap_Rifle_RailGun]
-ItemName="磁轨枪"
+ItemName="轨道炮"
 ItemCategory="狙击步枪"
-ItemDescription="•Fire mode is single shot only.\n•Using the sight lets you lock on to vulnerable spots on your target. \n•This weapon fires a solid steel slug at high speeds using magnets, penetrating Zeds like tissue paper."
+ItemDescription="•射击模式只有单发射击。\n•使用瞄准具可让你锁定在目标的薄弱点上。\n•这个武器使用磁铁快速射出实心钢炮弹，像薄纸一样穿透丧尸。"
 
 [KFWeap_SMG_MP7]
-ItemName="MP7 SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Used by alphabet soup agencies and special forces units the world over."
+ItemName="MP7 冲锋枪"
+ItemCategory="冲锋枪"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•全球许多机构和特种部队都在使用。"
 
 [KFWeap_AssaultRifle_M16M203]
-ItemName="M16 M203 Assault Rifle"
-ItemCategory="Assault Rifle"
-ItemDescription="•Firemode is full-auto only.\n•Alt-fire to fire grenades.\n•For those who can't decide between bullets and explosives."
-SecondaryAmmo="M203 Grenade"
+ItemName="M16 M203 突击步枪"
+ItemCategory="突击步枪"
+ItemDescription="•射击模式只有全自动。\n•备用射击射出手榴弹。\n•适合在子弹和爆炸物之间犹豫不决的人士。"
+SecondaryAmmo="M203 手榴弹"
 
 [KFWeap_SMG_MP5RAS]
-ItemName="MP5RAS SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest version of one of the most widely used submachine guns in the world."
+ItemName="MP5RAS 冲锋枪"
+ItemCategory="冲锋枪"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•全球使用最广的冲锋枪之一的最新版本。"
 
 [KFWeap_SMG_P90]
-ItemName="P90 SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Sure it looks weird, but it shreds Zeds really well and you can make laser noises if you want."
+ItemName="P90 冲锋枪"
+ItemCategory="冲锋枪"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•虽然看起来很奇怪，但打起丧尸来效果不错，可根据喜好，使用激光噪声。"
 
 [KFWeap_SMG_Kriss]
-ItemName="Kriss SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest in compact bullet redistrbution, it is a firehose of destruction."
+ItemName="Kriss 冲锋枪"
+ItemCategory="冲锋枪"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•最新密实子弹再分布，是破坏消防带。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
-BossName="汉斯·沃特博士"
-BossCaptionStrings[0]="身受重伤的汉斯会释放护盾，并寻找目标抽取其生命值。如果你能摧毁他的护盾，他就不能为自己治疗了。"
-BossCaptionStrings[1]="观察他的能量核心：颜色变化时汉斯更具侵略性。"
-BossCaptionStrings[2]="瞄准他发光的能量核心。那块区域是弱点。"
-BossCaptionStrings[3]="汉斯的手雷放出的气体会将你缠住，就像浮肿魔的胆汁。试着躲避气体！"
-BossCaptionStrings[4]="他的猛击强大到让人根本无法招架。你依然会承受全部的伤害。"
-BossCaptionStrings[5]="注意观察红色的手雷提示，可以帮助你看到落地的手雷。"
-BossCaptionStrings[6]="当汉斯掏出枪时，远离他的视野。不难想到，但非常重要！"
+BossName="汉斯-沃尔特博士"
+BossCaptionStrings[0]="严重受伤后，汉斯在寻找受害者，消耗其生命时会举起盾牌。如果你能摧毁这个盾牌，他就无法治愈了！"
+BossCaptionStrings[1]="查看他的力量核心：由于能够变换颜色，因此汉斯非常具有攻击性。"
+BossCaptionStrings[2]="瞄准他释放的力量核心。这是一个薄弱区。"
+BossCaptionStrings[3]="汉斯的手榴弹中的毒气会附着于你，就像胆汁怪胆汁一样。试着躲开！"
+BossCaptionStrings[4]="他的快速砍杀凶猛而无法阻挡。你将仍然承担全部伤害。"
+BossCaptionStrings[5]="小心红色手榴弹警告指示器，可能会帮助你在它们到来时识别到。"
+BossCaptionStrings[6]="当汉斯掏出他的手枪时，离开他的视线。很明显，但很重要！"
 
 [KFPawn_ZedPatriarch]
-BossName="变异体之父"
-BossCaptionStrings[0]="凯文·克雷姆利曾经是一位才华横溢的科学家，直到他变成了他自己最“伟大”的发明。"
-BossCaptionStrings[1]="变异体之父的狂妄自大超乎你的想象——他甚至会告诉你他下次要出什么招。"
-BossCaptionStrings[2]="你以为掩体够大，就能保你不死？变异体之父自有他的办法来对付你！"
-BossCaptionStrings[3]="如果你孤身一人逃跑，只有死路一条——你落单了，他会优先攻击你。"
-BossCaptionStrings[4]="和以前一样，变异体之父能隐身，让你看不见他，然后跑到僻静的地方自我治疗。有些事情还是老样子。"
-BossCaptionStrings[5]="对变异体之父创造出来的“子子孙孙”痛下杀手，只会让他变得（更）愤怒。不过你在这方面的选择似乎很有限。"
+BossName="长老丧尸"
+BossCaptionStrings[0]="凯文·克里默里曾经是一位才华横溢的科学家，后来他成为了自己最伟大的作品。"
+BossCaptionStrings[1]="长老丧尸极其傲慢自大——他可能会告诉你他接下来要使用的攻击是什么。"
+BossCaptionStrings[2]="即使是躲在很大的物体后面，也不会如你想象的那样有用。长老丧尸总有办法！"
+BossCaptionStrings[3]="自己逃跑不算是逃跑——这样，你会很容易被抓住，成为他首先攻击的目标。"
+BossCaptionStrings[4]="没错，长老丧尸仍然可以遮盖、隐身、逃跑和自愈。有些东西没有改变。"
+BossCaptionStrings[5]="尽管对于它，你没有更多选择，但是杀掉长老丧尸的‘孩子们’会让他发疯（更加疯狂）。"
 
 [KFGameInfo_Tutorial]
-GameName="Basic Training"
+GameName="基准训练"
 
 [KFGameInfo_Survival]
 GameName="生存"
 
 [KFGameInfo_VersusSurvival]
-GameName="生存对抗"
+GameName="VS 生存"
 
 [KFPawn_ZedPatriarch_Versus]
-NoHealsRemainingMsg="无剩余治疗次数"
-LowHealthMsg="生命值已临界！快治疗！"
-NoMortarTargetsMsg="没有有效的轰炸目标"
+NoHealsRemainingMsg="没有剩余的治愈"
+LowHealthMsg="保命要紧！马上治愈！"
+NoMortarTargetsMsg="没有有效的追击炮目标"
 
 [KFSM_PlayerSiren_VortexVictim]
 VortexGrabTeamWarningMsg="%x% 被女妖困住了！"
 
 [KFGFXHudWrapper_Versus]
-WaitingToSpawnString="TIME UNTIL SPAWN: %x% second(s)"
-ZedTakeOverActiveString="SEARCHING FOR ZEDS TO TAKE OVER..."
-PerkSwitchAllowedString="TIME REMAINING TO SELECT YOUR PERK: %x% second(s)"
+WaitingToSpawnString="直到大量产生的时间：%x% 秒"
+ZedTakeOverActiveString="正在搜索需要接管的丧尸…"
+PerkSwitchAllowedString="选择你的神射的剩余时间：%x% 秒"
 
 [KFWeap_Random]
-ItemName="Random Weapon"
-ItemCategory="Random"
-ItemDescription="• Random Weapon.\n•"
+ItemName="随机武器"
+ItemCategory="随机"
+ItemDescription="• 随机武器。\n•"

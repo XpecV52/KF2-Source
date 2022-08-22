@@ -53,7 +53,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=20
-	SpareAmmoCapacity[0]=160
+	SpareAmmoCapacity[0]=120
 	InitialSpareMags[0]=2
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -88,9 +88,9 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_M14EBR'
-	InstantHitDamage(DEFAULT_FIREMODE)=75.0
+	InstantHitDamage(DEFAULT_FIREMODE)=90.0 //75
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M14EBR'
-	FireInterval(DEFAULT_FIREMODE)=0.2
+	FireInterval(DEFAULT_FIREMODE)=0.22 //0.2
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	Spread(DEFAULT_FIREMODE)=0.006
 	FireOffset=(X=30,Y=3.0,Z=-2.5)

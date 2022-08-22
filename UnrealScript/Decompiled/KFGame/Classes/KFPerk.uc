@@ -344,7 +344,7 @@ static function MultiplySecondaryXPPoints(out int XP, byte Difficulty)
 
 static function bool IsBackupWeapon(KFWeapon KFW)
 {
-    return KFW.default.bIsBackupWeapon;
+    return (KFW != none) && KFW.default.bIsBackupWeapon;
 }
 
 // Export UKFPerk::execGetLevel(FFrame&, void* const)

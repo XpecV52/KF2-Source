@@ -38,9 +38,9 @@ defaultproperties
 	AttachmentArchetype=KFWeaponAttachment'wep_mp7_arch.Wep_MP7_3P'
 
 	// Ammo
-	MagazineCapacity[0]=40
-	SpareAmmoCapacity[0]=320
-	InitialSpareMags[0]=4
+	MagazineCapacity[0]=30
+	SpareAmmoCapacity[0]=330
+	InitialSpareMags[0]=6
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -70,7 +70,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_MP7'
 	FireInterval(DEFAULT_FIREMODE)=+.063 // 950 RPM
 	Spread(DEFAULT_FIREMODE)=0.015
-	InstantHitDamage(DEFAULT_FIREMODE)=20
+	InstantHitDamage(DEFAULT_FIREMODE)=16 //20
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -80,7 +80,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_MP7'
 	FireInterval(ALTFIRE_FIREMODE)=+.063 // 950 RPM
-	InstantHitDamage(ALTFIRE_FIREMODE)=20
+	InstantHitDamage(ALTFIRE_FIREMODE)=16 //20
 	Spread(ALTFIRE_FIREMODE)=0.01
 
 	// BASH_FIREMODE

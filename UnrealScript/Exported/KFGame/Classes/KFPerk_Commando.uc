@@ -754,7 +754,7 @@ defaultproperties
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Commando'
    PerkSkills(0)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_TacticalReload")
    PerkSkills(1)=(Name="LargeMags",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_LargeMag")
-   PerkSkills(2)=(Name="Backup",StartingValue=2.100000,MaxValue=2.100000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Backup")
+   PerkSkills(2)=(Name="Backup",StartingValue=1.100000,MaxValue=1.100000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Backup")
    PerkSkills(3)=(Name="Impact",StartingValue=1.500000,MaxValue=1.500000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Impact")
    PerkSkills(4)=(Name="HealthIncrease",StartingValue=0.250000,MaxValue=0.250000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_HP")
    PerkSkills(5)=(Name="AmmoVest",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_AmmoVest")

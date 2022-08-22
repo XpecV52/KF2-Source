@@ -1218,7 +1218,7 @@ LargeMags="High Capacity Mags"
 LargeMagsDescription="Increase magazine capacity of perk weapons 50%."
 
 Backup="Fallback"
-BackupDescription="Increase damage with your 9mm pistol and knife, and increase weapon switching speed 50%."
+BackupDescription="Increase damage with your 9mm pistol and knife 110%, and increase weapon switching speed 50%."
 
 Impact="Impact Rounds"
 ImpactDescription="Increase stumble power for perk weapons 150%."
@@ -1555,7 +1555,7 @@ TacticalMovement="Tactical Movement"
 TacticalMovementDescription="No movement penalty for using iron sights or crouch movement."
 
 Backup="Close Combat Training"
-BackupDescription="Increase damage with your 9mm pistol and knife 100%. You begin each game with dual 9mm pistols."
+BackupDescription="Increase damage with your 9mm pistol and knife 110%. You begin each game with dual 9mm pistols."
 
 TacticalReload="Tactical Reload"
 TacticalReloadDescription="Increase reload speed with perk weapons."
@@ -1638,7 +1638,7 @@ RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he
 RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
 RandomLoadingStrings[9]="Stick together. Getting singled out decreases your chances of survival if things get hairy."
 RandomLoadingStrings[10]="Players can use the syringe to heal themselves as well as their teammates."
-RandomLoadingStrings[11]="Welding doors can hold Zeds back, but they can evenutally break them down."
+RandomLoadingStrings[11]="Welding doors can hold Zeds back, but they can eventually break them down."
 RandomLoadingStrings[12]="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
 RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may return the favor."
 RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."

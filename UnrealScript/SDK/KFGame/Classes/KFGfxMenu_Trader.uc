@@ -18,6 +18,8 @@ class KFGFxMenu_Trader extends KFGFxObject_Menu
 	DependsOn(KFGFxObject_TraderItems)
 	native(UI);
 
+`include(KFProfileSettings.uci)
+
 enum EItemType
 {
   	EIT_Weapon,
@@ -31,8 +33,8 @@ struct native SItemInformation
 	/** True if this item is being used to hold secondary ammo info */
 	var bool bIsSecondaryAmmo;
     /** Holds the final values for the owned item */
-	var int SpareAmmoCount, MaxSpareAmmo, MaxSecondaryAmmo, SellPrice;
-	var byte MagazineCapacity, SecondaryAmmoCount;
+	var int SpareAmmoCount, MaxSpareAmmo, MaxSecondaryAmmo, SellPrice, SecondaryAmmoCount;
+	var byte MagazineCapacity;
 	/** The dosh built up during an autofill for this item */
 	var int AutoFillDosh, AmmoPricePerMagazine;
 	/** Holds trader and default weapon information such as prices and stats */
@@ -695,6 +697,7 @@ function Callback_PerkChanged(int PerkIndex)
 	{
 		MyKFPC.RequestPerkChange(PerkIndex);
 		MyKFPC.SetHaveUpdatePerk(true);
+		Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPerkIndex, PerkIndex);
 	}
 		
 	if( PlayerInventoryContainer != none )

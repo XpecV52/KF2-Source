@@ -30,7 +30,6 @@ simulated function PostBeginPlay()
     if( Instigator.Role == ROLE_Authority && KFPC != none )
     {
         InstigatorPerk = KFPC.GetPerk();
-        ExplosionTemplate.Damage *= InstigatorPerk.GetAoEDamageModifier();
         ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
     }
 }

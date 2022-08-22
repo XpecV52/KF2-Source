@@ -234,27 +234,31 @@ function SendVoipData()
 	local GFxObject DataProvider, TempObj;
 	local KFPlayerController KFPC;
 
-	KFPC = KFPlayerController(GetPC());
-	
 	DataProvider = CreateArray();
-
-	for ( i = 0; i < CurrentPlayerList.length; i++ )
+	if( DataProvider != none )
 	{
-		TempObj = CreateObject( "Object" );
-		TempObj.SetString( "label", CurrentPlayerList[i].PlayerName );
-		TempObj.SetBool("bTalking", (TalkerPRIs.Find(CurrentPlayerList[i]) != INDEX_NONE));
-		if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+		KFPC = KFPlayerController( GetPC() );
+		for ( i = 0; i < CurrentPlayerList.length; i++ )
 		{
-			TempObj.SetString("avatar", (KFPC.GetPS4Avatar(CurrentPlayerList[i].PlayerName)));
+			TempObj = CreateObject( "Object" );
+			if( TempObj != none )
+			{
+				TempObj.SetString( "label", CurrentPlayerList[i].PlayerName );
+				TempObj.SetBool("bTalking", (TalkerPRIs.Find(CurrentPlayerList[i]) != INDEX_NONE));
+				if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+				{
+					TempObj.SetString("avatar", (KFPC.GetPS4Avatar(CurrentPlayerList[i].PlayerName)));
+				}
+				else
+				{
+					TempObj.SetString("avatar", (KFPC.GetSteamAvatar(CurrentPlayerList[i].UniqueId)));
+				}
+				DataProvider.SetElementObject( i, TempObj );
+			}
 		}
-		else
-		{
-			TempObj.SetString("avatar", (KFPC.GetSteamAvatar(CurrentPlayerList[i].UniqueId)));
-		}
-		DataProvider.SetElementObject( i, TempObj );
-	}
 
-	SetObject( "playerList", DataProvider );
+		SetObject( "playerList", DataProvider );
+	}
 }
 
 function VOIPEventTriggered(PlayerReplicationInfo TalkerPRI, bool bIsTalking)

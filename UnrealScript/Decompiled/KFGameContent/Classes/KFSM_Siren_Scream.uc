@@ -150,9 +150,9 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 
 defaultproperties
 {
-    ScreamDamageFrequency=1
+    ScreamDamageFrequency=0.5
     begin object name=ExploTemplate0 class=KFGameExplosion
-        Damage=18
+        Damage=15
         DamageRadius=800
         ActorClassToIgnoreForDamage=Class'KFGame.KFPawn_Monster'
         MyDamageType=Class'KFGame.KFDT_Sonic'
@@ -164,7 +164,7 @@ defaultproperties
     ExplosionTemplate=ExploTemplate0
     ExplosionActorClass=Class'KFExplosion_SirenScream'
     ScreamInterruptSound=AkEvent'WW_ZED_Siren.Stop_Siren_Scream'
-    ProjectileShieldLifetime=1
+    ProjectileShieldLifetime=2.2
     AnimName=Atk_Combo1_V1
     AnimStance=EAnimSlotStance.EAS_UpperBody
     bCanBeInterrupted=true

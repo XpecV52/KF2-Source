@@ -3519,29 +3519,33 @@ event bool NotifyBump(Actor Other, Vector HitNormal)
     KFPM = KFPawn_Monster(Other);
     if(bSpecialBumpHandling)
     {
-        if(((((((MyKFPawn != none) && KFPM != none) && KFPM.Health > 0) && !KFPM.IsDoingSpecialMove(1)) && KFPM.MyKFAIC != none) && KFPM.MyKFAIC.DoorEnemy == none) && !IsZero(KFPM.Acceleration))
+        if(((MyKFPawn != none) && KFPM != none) && KFPM.Health > 0)
         {
-            bInPartialCollisionReductionTrigger = (MyKFPawn.CurrentChokePointTrigger != none) && MyKFPawn.CurrentChokePointTrigger.PartialReduceTeammateCollision();
-            if((MyKFPawn.CurrentChokePointTrigger != none) && (MyKFPawn.CurrentChokePointTrigger.CanReduceTeammateCollision() || bInPartialCollisionReductionTrigger) || ShouldReduceZedOnZedCollisionOnBumpForNavigating())
+            MyKFPawn.HandleMonsterBump(KFPM, HitNormal);
+            if(((!KFPM.IsDoingSpecialMove(1) && KFPM.MyKFAIC != none) && KFPM.MyKFAIC.DoorEnemy == none) && !IsZero(KFPM.Acceleration))
             {
-                if(bInPartialCollisionReductionTrigger && Enemy != none)
+                bInPartialCollisionReductionTrigger = (MyKFPawn.CurrentChokePointTrigger != none) && MyKFPawn.CurrentChokePointTrigger.PartialReduceTeammateCollision();
+                if((MyKFPawn.CurrentChokePointTrigger != none) && (MyKFPawn.CurrentChokePointTrigger.CanReduceTeammateCollision() || bInPartialCollisionReductionTrigger) || ShouldReduceZedOnZedCollisionOnBumpForNavigating())
                 {
-                    HitActor = Trace(HitLocation, MyHitNormal, Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), MyKFPawn.Location + (vect(0, 0, 1) * MyKFPawn.BaseEyeHeight), true);
-                }
-                if(!IsWithinAttackRange() || bInPartialCollisionReductionTrigger && (HitActor == none) || HitActor != Enemy)
-                {
-                    bBumpedThisFrame = true;
-                    LastBumper = KFPM;
-                    return true;                    
+                    if(bInPartialCollisionReductionTrigger && Enemy != none)
+                    {
+                        HitActor = Trace(HitLocation, MyHitNormal, Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), MyKFPawn.Location + (vect(0, 0, 1) * MyKFPawn.BaseEyeHeight), true);
+                    }
+                    if(!IsWithinAttackRange() || bInPartialCollisionReductionTrigger && (HitActor == none) || HitActor != Enemy)
+                    {
+                        bBumpedThisFrame = true;
+                        LastBumper = KFPM;
+                        return true;                        
+                    }
+                    else
+                    {
+                        AILog_Internal(((string(GetFuncName()) @ " Bumped: ") @ string(KFPM)) @ " but IsWithinAttackRange so not going to care about SpecialBumpHandling right now!!!", 'SpecialBumpHandling');
+                    }                    
                 }
                 else
                 {
-                    AILog_Internal(((string(GetFuncName()) @ " Bumped: ") @ string(KFPM)) @ " but IsWithinAttackRange so not going to care about SpecialBumpHandling right now!!!", 'SpecialBumpHandling');
-                }                
-            }
-            else
-            {
-                AILog_Internal(((string(GetFuncName()) @ " Bumped: ") @ string(KFPM)) @ " but not in a door trigger so not going to care about SpecialBumpHandling right now!!!", 'SpecialBumpHandling');
+                    AILog_Internal(((string(GetFuncName()) @ " Bumped: ") @ string(KFPM)) @ " but not in a door trigger so not going to care about SpecialBumpHandling right now!!!", 'SpecialBumpHandling');
+                }
             }
         }
     }

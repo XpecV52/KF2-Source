@@ -452,8 +452,8 @@ function int BuySecondaryAmmoMag(out SItemInformation ItemInfo)
             return int(FillAmmo(ItemInfo));
         }
         AddedAmmo = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagSize;
-        ItemInfo.SecondaryAmmoCount += byte(AddedAmmo);
-        ItemInfo.SecondaryAmmoCount = byte(Min(ItemInfo.MaxSecondaryAmmo, ItemInfo.SecondaryAmmoCount));
+        ItemInfo.SecondaryAmmoCount += AddedAmmo;
+        ItemInfo.SecondaryAmmoCount = Min(ItemInfo.MaxSecondaryAmmo, ItemInfo.SecondaryAmmoCount);
         BoughtAmmo(AddedAmmo, MagAmmoCost, 0, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
     }
     return MagAmmoCost;
@@ -523,7 +523,7 @@ function float FillAmmo(out SItemInformation ItemInfo, optional bool bIsGrenade)
     }
     if(ItemInfo.bIsSecondaryAmmo)
     {
-        ItemInfo.SecondaryAmmoCount += byte(MissingAmmo);        
+        ItemInfo.SecondaryAmmoCount += int(MissingAmmo);        
     }
     else
     {
@@ -905,7 +905,7 @@ function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
     WeaponInfo.SpareAmmoCount = KFW.GetTotalAmmoAmount(0);
     WeaponInfo.MaxSpareAmmo = KFW.GetMaxAmmoAmount(0);
     WeaponInfo.MagazineCapacity = KFW.MagazineCapacity[0];
-    WeaponInfo.SecondaryAmmoCount = byte(KFW.GetTotalAmmoAmount(1));
+    WeaponInfo.SecondaryAmmoCount = KFW.GetTotalAmmoAmount(1);
     WeaponInfo.MaxSecondaryAmmo = KFW.GetMaxAmmoAmount(1);
     WeaponInfo.DefaultItem = DefaultItem;
     WeaponInfo.AmmoPricePerMagazine = DefaultItem.WeaponDef.default.AmmoPricePerMag;
@@ -955,7 +955,8 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
 
     Outer.CurrentPerk.MaximizeSpareAmmoAmount(DefaultItem.AssociatedPerkClass, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity);
     WeaponInfo.SecondaryAmmoCount = DefaultItem.InitialSecondaryAmmo;
-    Outer.CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.SecondaryAmmoCount, DefaultItem.AssociatedPerkClass, true);
+    Outer.CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass, true);
+    Outer.CurrentPerk.ModifySpareAmmoAmount(none, WeaponInfo.SecondaryAmmoCount, DefaultItem, true);
     WeaponInfo.MaxSecondaryAmmo = DefaultItem.MaxSecondaryAmmo;
     Outer.CurrentPerk.ModifyMaxSpareAmmoAmount(none, WeaponInfo.MaxSecondaryAmmo, DefaultItem, true);
     WeaponInfo.AmmoPricePerMagazine = DefaultItem.WeaponDef.default.AmmoPricePerMag;
@@ -1134,8 +1135,8 @@ private native final function AddTransactionAmmo(byte ItemIndex, int Amount, boo
 
 defaultproperties
 {
-    GrenadeItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,MagazineCapacity=0,SecondaryAmmoCount=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0))
-    ArmorItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,MagazineCapacity=0,SecondaryAmmoCount=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0))
+    GrenadeItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0))
+    ArmorItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0))
     CostPerAutofillCycle=10
     DoshBuffer=150
 }

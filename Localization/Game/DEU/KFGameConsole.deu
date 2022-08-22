@@ -1,0 +1,112 @@
+
+[Presence]
+KFMainMenu="Hauptmenü"
+KF-Bioticslab="Biotika-Labor wird gespielt"
+KF-BlackForest="Schwarzwald wird gespielt"
+KF-BurningParis="Loderndes Paris wird gespielt"
+KF-Catacombs="Katakomben wird gespielt"
+KF-EvacuationPoint="Evakuierungsstelle wird gespielt"
+KF-Farmhouse="Bauernhof wird gespielt"
+KF-VolterManor="Volter-Anwesen wird gespielt"
+KF-Outpost="Außenposten wird gespielt"
+KF-Prison="Gefängnis wird gespielt"
+KF-ContainmentStation="Eindämmungszentrum wird gespielt"
+KF-InfernalRealm="Höllenebene wird gespielt"
+KF-HostileGrounds="Feindeszone wird gespielt"
+
+[ActivityFeed]
+BossKillCondensedCaption="Boss besiegt!"
+BossKillCaption="$USER_NAME_OR_ID hat %x% auf %y% besiegt"
+TeamAwardCondensedCaption="Team-Auszeichnung!"
+TeamAwardCaption="$USER_NAME_OR_ID hat %x% Team-Auszeichnung verdient"
+PerkLevelUpCondensedCaption="Levelaufstieg!"
+PerkLevelUpCaption="$USER_NAME_OR_ID hat die Level %x% %y% Fähigkeit freigeschaltet"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="Drücke XboxTypeS_A zum Starten"
+LoginButtonPrompt="Anmelden"
+LoggingIn="Anmeldung erfolgt ..."
+LoginFailed="Anmeldefehler"
+NoOnlinePlay="Online spielen nicht möglich"
+TooYoung="Die Online-Dienste sind wegen deiner Kindersicherungseinstellungen für dein Sony Entertainment Network-Konto deaktiviert."
+PatchAvailable="Patch verfügbar. Du musst die Anwendung aktualisieren, um die Netzwerk-Funktionen verwenden zu können."
+NotLoggedInOnlinePSN="Du musst beim PlayStation™Network angemeldet sein, um die Online-Funktionen verwenden zu können."
+NetworkError="Ein Netzwerk-Fehler ist aufgetreten, bitte überprüfe deine Netzwerk-Verbindung."
+ErrorNoPlayfabDescription="Es konnte keine Verbindung zu den Hauptservern des Spiels hergestellt werden. Bitte versuch es in einigen Minuten nochmal."
+ErrorTSSFailedDescription="Es konnte keine Verbindung zu den Balance-Servern des Spiels hergestellt werden. Bitte vergewissere dich, dass du mit dem Internet verbunden bist und versuch es nochmal."
+
+[Notifications]
+ControllerDisconnectedTitle="Controller getrennt"
+ControllerDisconnectedPS4Message="Die Verbindung vom Wireless-Controller wurde getrennt. Bitte verbinde den Wireless-Controller des Benutzers, der das Spiel gestartet hat."
+PlayGoBusyTitle="Installation erfolgt"
+PlayGoBusyMessage="Nur begrenzte Inhalte und Funktionen sind verfügbar, solange die Installation des Spiels noch nicht abgeschlossen wurde."
+UnableToJoinInviteTitle="Beitritt nicht möglich"
+UnableToJoinInviteMessage="Die Sitzung ist voll oder nicht länger verfügbar. Versuch es bitte später nochmal."
+InitiatingPlayTogetherTitle="Moment!"
+InitiatingPlayTogetherMessage="Wir erstellen ein Spiel für dein gemeinsames Spielerlebnis."
+UnableToPlayTogetherTitle="Gemeinsames Spiel fehlgeschlagen"
+UnableToPlayTogetherMessage="Ein gemeinsames Spielerlebnis konnte nicht erstellt werden. Versuch es später nochmal oder erstelle es manuell."
+CheckPlusTitle="PlayStation®Plus wird überprüft"
+CheckPlusMessage="Bitte warten, bis wir den PlayStation®Plus-Status überprüft haben."
+ConnectionLostTitle="Verbindung unterbrochen"
+ConnectionLostMessage="Deine Online-Verbindung wurde unterbrochen. Du bist zum Home-Menü zurückgekehrt."
+PSNSignoutMessage="Du wurdest vom PlayStation™Network abgemeldet. Du bist zum Home-Menü zurückgekehrt."
+InviteMessage="Jage mit mir Zeds in die Luft!"
+NotConnectedTitle="Netzwerk-Fehler"
+NotConnectedMessage="Nicht mit dem Internet verbunden. Überprüfe deine Verbindung und versuch es nochmal."
+NotConnectedForOnlinePlay="Nicht mit dem Internet verbunden. Überprüfe deine Verbindung und versuch es nochmal, um Online-Funktionen verwenden zu können"
+PartySizeTitle="Party Warning"
+PartySizeMessage="Too many members in your party. Not all members will show up in your squad and not all will get into a survival game."
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="Spieler-Profil ansehen"
+
+[KFGFxObject_Menu]
+ResetDefaults="Bist du sicher, dass du die Standardeinstellungen wiederherstellen möchtest?"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="VORTEIL"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="Controller-Sound"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="REGION"
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="REGION"
+
+[Entitlements]
+BriarBobbyBundleProductName="London Bobby Briar Uniform Bundle"
+BriarBobbyBundleShortDescription="Erhalte eine neue klassische Uniform eines Londoner Polizisten für den spielbaren Charakter Wachtmeister Rob Briar. Beinhaltet Briars London-Uniform (inklusive 5 Skin-Stilen) und das kosmetische Accessoire Aufseher-Helm (inklusive 3 Skin-Stilen)."
+
+BikerTanakaBundleProductName="Tanaka Biker Uniform Bundle"
+BikerTanakaBundlehortDescription="Erhalte eine neue Biker-Uniform für den spielbaren Charakter Hayato Tanaka. Beinhaltet Tanakas Motorradfahrer-Uniform (inklusive 7 Skin-Stilen) und einen Helm als kosmetisches Accessoire (inklusive 7 Skin-Stilen)."
+
+ClassicFosterBundleProductName="Mr.Foster Classic Uniform Bundle"
+ClassicFosterBundlehortDescription="Erhalte einen neuen klassischen Anzug für den spielbaren Charakter Mr. Foster. Beinhaltet Fosters Klassischen Anzug (inklusive 9 Skin-Stilen), zusätzlich mit Fliege und Klassischer Krawatte als kosmetische Accessoires (inklusive 7 Skin-Stilen für jedes Accessoire)."
+
+CardboardKnightBundleProductName="Cardboard Knight Uniform Bundle"
+CardboardKnightBundleShortDescription="Erhalte eine zum Schreien komische Papp-Ritterrüstung für die meisten spielbaren Charaktere. Beinhaltet eine Papp-Ritterrüstung für den Körper (inklusive 6 Skin-Stilen) und das kosmetische Accessoire Papp-Ritterhelm (inklusive 6 Skin-Stilen)."
+
+HorzineSecurityForceBundleProductName="Horzine Security Force Uniform Bundle"
+HorzineSecurityForceBundleShortDescription="Erhalte eine tolle neue Horzine-Sicherheitsuniform für die meisten spielbaren Charaktere. Beinhaltet eine hochtechnologische Horzine-Sicherheitsuniform für den Körper und das kosmetische Accessoire Horzine-Sicherheitshelm."
+
+HorzineSupplyCrateKeyProductName="Horzine-Vorratskistenschlüssel"
+HorzineSupplyCrateKeyShortDesription="Kauf dir einen Horzine-Vorratskistenschlüssel, ein Verbrauchsgegenstand im Spiel, der jede Horzine-Vorratskiste öffnet. Du benötigst diesen Schlüssel und eine Horzine-Vorratskiste, um ihn verwenden zu können."
+
+HorzineSupplyCrate1ProductName="Horzine-Vorratskiste Serie 1"
+HorzineSupplyCrate1ShortDesription="Diese Horzine-Vorratskiste beinhaltet ein kosmetisches Accessoire. Man braucht einen Horzine-Vorratskistenschlüssel, um sie zu öffnen. Beinhaltet einen der folgenden kosmetischen Gegenstände von seltener oder besserer Qualität: Taktischer Hut, Taktische Maske, Taktisches Headset MK1/MK2, Kopfband, GS9-Helm, GS9-Maske, Russische Militärbrille, Russischer Militärhelm, Russische Militärmaske oder ein extrem seltenes und wertvolles Accessoire!"
+
+HorzineSupplyCrate2ProductName="Horzine-Vorratskiste Serie 2"
+HorzineSupplyCrate2ShortDesription="Diese Horzine-Vorratskiste beinhaltet ein kosmetisches Accessoire. Man braucht einen Horzine-Vorratskistenschlüssel, um sie zu öffnen. Beinhaltet einen der folgenden kosmetischen Gegenstände von seltener oder besserer Qualität: Kugelsichere Devtac-Maske, US-Gasmaske, Skimaske, Baseballkappe, Taktischer Rucksack, Deutsche Gasmaske, Chemische Gasmaske, RPG7-Rucksack, M2-Flammenwerfertank oder ein extrem seltenes und wertvolles Accessoire!"
+
+HorzineSupplyCrate3ProductName="Horzine-Vorratskiste Serie 3"
+HorzineSupplyCrate3ShortDesription="Diese Horzine-Vorratskiste beinhaltet einen Waffen-Skin. Man braucht einen Horzine-Vorratskistenschlüssel, um sie zu öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:"
+
+HorzineSupplyCrate4ProductName="Horzine-Vorratskiste Serie 4"
+HorzineSupplyCrate4ShortDesription="Diese Horzine-Vorratskiste beinhaltet einen Waffen-Skin. Man braucht einen Horzine-Vorratskistenschlüssel, um sie zu öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:"
+
+StoreGameLegalText="Software unterliegt der Lizenz (us.playstation.com/softwarelicense). Die Online-Aktivitäten unterliegen den Nutzungsbedingungen und der Nutzervereinbarung (www.playstationnetwork.com/terms-of-service). Eine einmalige Lizenzgebühr fällt für das Spielen auf dem Konto des primären PS4™-Systems und anderen PS4™-Systemen an, wenn man mit dem Konto angemeldet ist. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® ist ein eingetragenes Warenzeichen von Tripwire Interactive in den USA und anderen Ländern. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Alle Rechte vorbehalten. Unreal® ist ein Warenzeichen oder ein eingetragenes Warenzeichen von Epic Games, Inc. in den Vereinigten Staaten von Amerika und anderen Ländern. Alle anderen Markennamen, Warenzeichen und Copyrights sind Eigentum der jeweiligen Rechteinhaber. Alle Rechte vorbehalten."
+
+StoreItemLegalText="Dieser Gegenstand benötigt das komplette Spiel Killing Floor 2, um ihn benutzen zu können. Die Verwendung dieses Gegenstands unterliegt dem Endbenutzer-Lizenzvertrag des Original-Spiels."

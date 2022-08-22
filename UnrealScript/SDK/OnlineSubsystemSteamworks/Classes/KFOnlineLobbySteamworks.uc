@@ -242,6 +242,11 @@ function OnLobbyMemberStatusUpdate(const out array<ActiveLobbyInfo> LobbyList, i
 	}
 }
 
+function LobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted)
+{
+	OnLobbyInvite(LobbyId, FriendId, bAccepted);
+}
+
 /** Client accepted/cancelled an invite from a lobby owner */
 function OnLobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted)
 {

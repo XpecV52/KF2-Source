@@ -193,7 +193,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 DefaultProperties
 {
 	// SpecialMove
-	ProjectileShieldLifetime=1.0 // 0.52
+	ProjectileShieldLifetime=2.2 // 0.52
 
 	AnimName=Atk_Combo1_V1
 	Handle=KFSM_SirenScream
@@ -202,7 +202,7 @@ DefaultProperties
    	AnimStance=EAS_UpperBody
    	bCanBeInterrupted=true
 
-	ScreamDamageFrequency=1.0f
+	ScreamDamageFrequency=0.5f //1.0
 	ScreamInterruptSound=AkEvent'WW_ZED_Siren.Stop_Siren_Scream'
 
    	bDrawProjectileShield=false
@@ -212,7 +212,7 @@ DefaultProperties
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=18	// Taking Radial Damage will round this down to 5 when you are as close as possible
+		Damage=15	// Taking Radial Damage will round this down to 5 when you are as close as possible //18
 		DamageRadius=800
 		DamageFalloffExponent=1f
 		DamageDelay=0.f

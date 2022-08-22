@@ -49,6 +49,9 @@ struct SMenuPaths
 	var string ConsoleSWFPath;
 };
 
+var float LastForceCloseTime;
+var float AllowMenusOpenAfterForceCloseTime;
+
 /** Points to the .swf location of each menu and is controlled by the EUIIndex */
 var array<SMenuPaths> MenuSWFPaths;
 
@@ -658,7 +661,6 @@ function AllowCloseMenu()
 	bCanCloseMenu = true;
 }
 
-
 function ForceUpdateNextFrame()
 {
 	// Forces the update on the next frame
@@ -727,9 +729,16 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 	local PlayerController PC;
 	local string MenuPath;
 
+	PC = GetPC();
+
+	if(PC.WorldInfo.TimeSeconds - LastForceCloseTime < AllowMenusOpenAfterForceCloseTime && LastForceCloseTime != 0)
+	{
+		return;
+	}
+
 	if( NewMenuIndex == UI_Gear )
 	{
-		PC = GetPC();
+		
 		if( PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun )
 		{
 			return;
@@ -873,6 +882,11 @@ function ClosePostGameMenu()
 }
 function CloseMenus(optional bool bForceClose=false)
 {
+	if(bForceClose)
+	{
+		LastForceCloseTime=GetPC().WorldInfo.TimeSeconds;
+	}
+
 	if ( (bMenusOpen && bCanCloseMenu) || bForceClose)
 	{
 		UnloadCurrentPopup();
@@ -1562,6 +1576,7 @@ function currentFocus()
 
 defaultproperties
 {
+	AllowMenusOpenAfterForceCloseTime=0.5f
 	InGamePartyWidgetClass=class'KFGFxWidget_PartyInGame'
 	BackgroundMovie=TextureMovie'UI_Managers.MenuBG'
 	IISMovie = TextureMovie'UI_Managers.IIS'

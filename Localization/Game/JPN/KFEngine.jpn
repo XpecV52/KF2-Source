@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="複製UID"
+InvalidUID="無効なUID"
+FailedKickOff="認証開始に失敗しました"
+RequiresAuthentication="サーバーには認証が必要です"
+CouldNotConnect_Title="接続に失敗しました"

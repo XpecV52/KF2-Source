@@ -304,7 +304,7 @@ function RecordWaveInfo()
 
     // After accumulating stats, clear back to zero for next wave.
     // Delayed long enough for replication to occur.
-   	Outer.SetTimer(1.f, false, nameof(ResetLastWaveInfo), self);
+   	Outer.SetTimer(0.5f, false, nameof(ResetLastWaveInfo), self);
 }
 
 /** Clear PWRI, but doesn't cause it to replicate */
@@ -420,7 +420,7 @@ static function RecordWeaponHeadShot(Controller InstigatedBy, class<DamageType> 
 			if(WeaponIndex == INDEX_NONE)
 			{
 				TempWeaponDamage.WeaponDef = KFDT.default.WeaponDef;
-				TempWeaponDamage.HeadShots++;
+				TempWeaponDamage.HeadShots = 1;
 				KFPC.MatchStats.WeaponDamageList.AddItem(TempWeaponDamage);
 			}
 			else

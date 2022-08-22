@@ -117,7 +117,7 @@ defaultproperties
 	InstantHitDamage(DEFAULT_FIREMODE)=350.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Piercing_Crossbow'
 	PenetrationPower(DEFAULT_FIREMODE)=4.0
-	FireInterval(DEFAULT_FIREMODE)=0.4 // For this weapon, this is not the fire rate, but the time when the auto reload anim kicks in
+	FireInterval(DEFAULT_FIREMODE)=0.3 // For this weapon, this is not the fire rate, but the time when the auto reload anim kicks in
 	Spread(DEFAULT_FIREMODE)=0.007
 	FireOffset=(X=25,Y=3.0,Z=-4.0)
 

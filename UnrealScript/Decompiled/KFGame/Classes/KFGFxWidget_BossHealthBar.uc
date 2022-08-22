@@ -55,10 +55,6 @@ function SetBossPawn(KFPawn_MonsterBoss NewBossPawn)
 {
     local string BossNameText;
 
-    if(KFPC.bHideBossHealthBar)
-    {
-        return;
-    }
     if(NewBossPawn == none)
     {
         return;
@@ -70,6 +66,10 @@ function SetBossPawn(KFPawn_MonsterBoss NewBossPawn)
         BossNameText = ((BossNameText $ "(") $ string(BossPawn.Controller.PlayerReplicationInfo)) $ ")";
     }
     SetBossName(BossNameText);
+    if(KFPC.bHideBossHealthBar)
+    {
+        return;
+    }
     UpdateBossHealth();
 }
 

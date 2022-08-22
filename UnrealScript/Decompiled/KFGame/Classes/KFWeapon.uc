@@ -4113,9 +4113,19 @@ simulated state Active
         }
     }
 
-    simulated function bool HasAnyAmmo()
+    simulated function WeaponEmpty()
     {
-        return (global.HasAnyAmmo()) || PendingFire(4) && HasAmmo(4);
+        if(PendingFire(4) && HasAmmo(4))
+        {
+            BeginFire(4);            
+        }
+        else
+        {
+            if(PendingFire(3) && HasAmmo(3))
+            {
+                BeginFire(3);
+            }
+        }
     }
     stop;    
 }

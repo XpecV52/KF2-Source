@@ -87,7 +87,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     {
         KFBoss = KFPawn_MonsterBoss(KFPOwner);
         KFGFxHudWrapper(KFPOwner.WorldInfo.GetALocalPlayerController().myHUD).BossPawn = KFBoss;
-        if(KFGameReplicationInfo(KFPOwner.WorldInfo.GRI).AnyPlayersAlive())
+        if((KFBoss.WorldInfo.TimeSeconds - KFBoss.CreationTime) < 1)
         {
             if(KFBoss.bVersusZed)
             {
@@ -107,6 +107,7 @@ function PlayAnimation()
     local Controller BossController;
     local KFPawn_MonsterBoss BossPawn;
     local KFPlayerController KFPC;
+    local KFWeapon KFW;
     local Vector CameraAnimOffset;
 
     CurrentTheatricType = byte(KFPOwner.SpecialMoveFlags & 15);
@@ -162,11 +163,21 @@ function PlayAnimation()
         {
             KFPC.ClientSetCameraFade(true, FadeInColor, vect2d(1, 0), FadeInTime, true);
             KFPC.SetViewTarget(BossPawn);
+            KFPC.ClientSetCameraMode('Boss');
             if(CameraAnim != none)
             {
                 BossPawn.bUseAnimatedTheatricCamera = true;
                 BossPawn.TheatricCameraAnimOffset = CameraAnimOffset;
                 KFPC.SetCinematicMode(true, false, false, true, true, true);
+                KFPC.StopFiring();
+                if((KFPC.Pawn != none) && KFPC.Pawn.Weapon != none)
+                {
+                    KFW = KFWeapon(KFPC.Pawn.Weapon);
+                    if((KFW != none) && KFW.bUsingSights)
+                    {
+                        KFW.SetIronSights(false);
+                    }
+                }
                 KFPC.ClientPlayCameraAnim(CameraAnim, 1, 0.99, BlendInTime, BlendOutTime + 0.03, false, false);
             }
         }

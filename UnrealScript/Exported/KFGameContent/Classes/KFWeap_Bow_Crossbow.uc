@@ -120,7 +120,7 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bolt_Crossbow'
-   FireInterval(0)=0.400000
+   FireInterval(0)=0.300000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()

@@ -67,41 +67,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 // for nukes && concussive force
 simulated protected function PrepareExplosionTemplate()
 {
-    local KFPlayerReplicationInfo InstigatorPRI;
-    local KFPlayerController KFPC;
-    local KFPerk InstigatorPerk;
-
-    if( Instigator != none )
-    {
-	    if( bWasTimeDilated )
-	    {
-	        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
-	        if( InstigatorPRI != none )
-	        {
-	            if( InstigatorPRI.bNukeActive && class'KFPerk_Demolitionist'.static.ProjectileShouldNuke( self ) )
-	            {
-	                ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
-	                ExplosionTemplate.Damage = default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
-	                ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
-	                ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;        
-	            }
-	            else if( InstigatorPRI.bConcussiveActive && AltExploEffects != none )
-	            {
-	                ExplosionTemplate.ExplosionEffects = AltExploEffects;
-	                ExplosionTemplate.ExplosionSound = class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
-	            }
-	        }
-	    }
-
-	    KFPC = KFPlayerController(Instigator.Controller);
-	    // Change the radius and damage based on the perk
-	    if( Instigator.Role == ROLE_Authority && KFPC != none )
-	    {
-	        InstigatorPerk = KFPC.GetPerk();
-	        ExplosionTemplate.Damage *= InstigatorPerk.GetAoEDamageModifier();
-	        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
-	    }
-	}
+	class'KFPerk_Demolitionist'.static.PrepareExplosive( Instigator, self );
 
     super.PrepareExplosionTemplate();
 }

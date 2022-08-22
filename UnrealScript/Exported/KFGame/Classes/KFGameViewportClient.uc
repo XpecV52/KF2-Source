@@ -118,13 +118,16 @@ function DrawMapInfo(Canvas Canvas, String MapName)
 
 	ParseStringIntoArray(KFGameEngine(Class'Engine'.static.GetEngine()).TransitionGameType, GamemModeStringArray, ".", true);
 
-	if(Caps(GamemModeStringArray[0]) == Caps("KFGameContent"))
+	if( GamemModeStringArray.Length > 0 )
 	{
-		GameModeString = Localize(GamemModeStringArray[1], "GameName", "KFGameContent" );
-	}
-	else
-	{
-		GameModeString = GamemModeStringArray[1];
+		if(Caps(GamemModeStringArray[0]) == Caps("KFGameContent"))
+		{
+			GameModeString = Localize(GamemModeStringArray[1], "GameName", "KFGameContent" );
+		}
+		else if( GamemModeStringArray.Length > 1 )
+		{
+			GameModeString = GamemModeStringArray[1];
+		}
 	}
 
 	MapData = class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
@@ -136,7 +139,10 @@ function DrawMapInfo(Canvas Canvas, String MapName)
     {
     	Class'Engine'.static.AddOverlay(MessageFont, Class'KFCommon_LocalizedStrings'.default.LoadingString, 0.12, 0.12, FontScale, FontScale, false);
 		Class'Engine'.static.AddOverlay(MessageFont, MapData.DisplayName@"-"@GetAssociationIdentifier(MapData), 0.135, 0.15, FontScale, FontScale, false);
-		Class'Engine'.static.AddOverlay(MessageFont, GameModeString, 0.135, 0.18, FontScale, FontScale, false);
+		if( GameModeString != "" )
+		{
+			Class'Engine'.static.AddOverlay(MessageFont, GameModeString, 0.135, 0.18, FontScale, FontScale, false);
+		}
     }
 }
 
@@ -182,7 +188,7 @@ defaultproperties
    RandomLoadingStrings(8)="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
    RandomLoadingStrings(9)="Stick together. Getting singled out decreases your chances of survival if things get hairy."
    RandomLoadingStrings(10)="Players can use the syringe to heal themselves as well as their teammates."
-   RandomLoadingStrings(11)="Welding doors can hold Zeds back, but they can evenutally break them down."
+   RandomLoadingStrings(11)="Welding doors can hold Zeds back, but they can eventually break them down."
    RandomLoadingStrings(12)="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
    RandomLoadingStrings(13)="Got some extra dosh? Drop some for your team; they may return the favor."
    RandomLoadingStrings(14)="Choose your targets. Different weapons are more or less effective against different types of Zeds."

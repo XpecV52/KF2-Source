@@ -628,22 +628,31 @@ private final function Callback_Attachment(byte MeshIndex, byte SkinIndex)
 {
     local Pawn P;
     local KFPawn KFP;
-    local KFPlayerReplicationInfo KFPRI;
     local int SlotIndex;
 
     P = Outer.GetPC().Pawn;
     if(P != none)
     {
         KFP = KFPawn(P);
-        KFPRI = KFPlayerReplicationInfo(P.PlayerReplicationInfo);
-        if((KFP != none) && KFPRI != none)
+        if((KFP != none) && MyKFPRI != none)
         {
-            CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFP, KFPRI);
+            CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFP, MyKFPRI);
             SlotIndex = CurrentCharInfo.GetAttachmentSlotIndex(MeshIndex, KFP);
             SelectCustomizationOption(KFP, 3, MeshIndex, SkinIndex, SlotIndex);
         }
     }
     SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
+    Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
+}
+
+function RelayFromCheatManager(Pawn P, KFGFxMenu_Gear.ECustomizationOption CustomizationOption, byte MeshIndex, byte SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots)
+{
+    bIgnoreConflictingSlots = false;
+    if(!bIgnoreConflictingSlots)
+    {
+        CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFPawn(P), MyKFPRI);
+    }
+    SelectCustomizationOption(P, CustomizationOption, MeshIndex, SkinIndex, AttachmentIndex);
     Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 

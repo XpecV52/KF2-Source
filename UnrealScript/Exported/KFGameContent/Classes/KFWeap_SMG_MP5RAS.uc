@@ -17,7 +17,7 @@ defaultproperties
    SingleFireSoundIndex=1
    BurstAmount=3
    InventorySize=4
-   MagazineCapacity(0)=30
+   MagazineCapacity(0)=40
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -25,8 +25,8 @@ defaultproperties
    IronSightPosition=(X=10.000000,Y=0.000000,Z=0.000000)
    GroupPriority=60.000000
    WeaponSelectTexture=Texture2D'WEP_UI_MP5RAS_TEX.UI_WeaponSelect_MP5RAS'
-   SpareAmmoCapacity(0)=360
-   InitialSpareMags(0)=5
+   SpareAmmoCapacity(0)=320
+   InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_MP5.Play_MP5_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_MP5.Play_MP5_Fire_1P_Loop')
@@ -73,8 +73,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.010000
    Spread(1)=0.010000
-   InstantHitDamage(0)=22.000000
-   InstantHitDamage(1)=22.000000
+   InstantHitDamage(0)=25.000000
+   InstantHitDamage(1)=25.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_MP5RAS'

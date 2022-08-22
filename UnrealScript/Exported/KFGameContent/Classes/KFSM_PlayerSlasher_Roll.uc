@@ -11,6 +11,14 @@ class KFSM_PlayerSlasher_Roll extends KFSM_Evade;
 /** How fast to roll in any direction */
 var float RollSpeed;
 
+/**
+ * Checks to see if this Special Move can be done.
+ */
+protected function bool InternalCanDoSpecialMove()
+{
+	return KFPOwner != none && KFPOwner.Physics == PHYS_Walking && super.InternalCanDoSpecialMove();
+}
+
 static function byte PackFlagsBase(KFPawn P)
 {
 	return class'KFSM_PlayerMeleeBase'.static.GetFourWayMoveDirection(P);
@@ -39,6 +47,11 @@ defaultproperties
    EvadeAnims(5)=()
    EvadeAnims(6)=()
    EvadeAnims(7)=()
+   bUseCustomThirdPersonViewOffset=True
+   CustomThirdPersonViewOffset=(OffsetHigh=(X=-175.000000,Y=50.000000,Z=-80.000000),OffsetMid=(X=-145.000000,Y=50.000000,Z=-90.000000),OffsetLow=(X=-220.000000,Y=50.000000,Z=-80.000000))
+   ViewOffsetInterpTime=0.300000
+   CustomCameraFOV=80.000000
+   CameraFOVTransitionTime=0.300000
    Name="Default__KFSM_PlayerSlasher_Roll"
    ObjectArchetype=KFSM_Evade'KFGame.Default__KFSM_Evade'
 }

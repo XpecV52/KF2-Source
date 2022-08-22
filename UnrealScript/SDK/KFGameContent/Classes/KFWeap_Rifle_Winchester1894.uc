@@ -38,8 +38,8 @@ defaultproperties
 	AttachmentArchetype=KFWeaponAttachment'wep_winchester_arch.Wep_Winchester_3P'
 
 	// Ammo
-	MagazineCapacity[0]=10
-	SpareAmmoCapacity[0]=60
+	MagazineCapacity[0]=12
+	SpareAmmoCapacity[0]=84
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=false
@@ -75,9 +75,9 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Winchester1894'
-	InstantHitDamage(DEFAULT_FIREMODE)=105.0
+	InstantHitDamage(DEFAULT_FIREMODE)=80 //105
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Winchester'
-	FireInterval(DEFAULT_FIREMODE)=0.75 // 70 RPM  0.85
+	FireInterval(DEFAULT_FIREMODE)=0.45 // 70 RPM  0.85 0.75
 	Spread(DEFAULT_FIREMODE)=0.007
 	PenetrationPower(DEFAULT_FIREMODE)=1.5
 	FireOffset=(X=25,Y=3.0,Z=-2.5)

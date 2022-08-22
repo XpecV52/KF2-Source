@@ -92,8 +92,8 @@ state Command_SpecialMove
 defaultproperties
 {
     MinScreamRange=130
-    MaxScreamRange=920
-    ScreamCooldown=6
+    MaxScreamRange=900
+    ScreamCooldown=4
     SpecialMove=ESpecialMove.SM_SonicAttack
     bIgnoreNotifies=true
 }

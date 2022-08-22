@@ -98,6 +98,47 @@ function Pawn GetMyPawn()
     return ((Outer.Pawn != none) ? Outer.Pawn : DebugCameraController(Outer).OriginalControllerRef.Pawn);
 }
 
+exec function SetCharacterAttachment(byte MeshIndex, byte SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots)
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    bIgnoreConflictingSlots = false;
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+    if((P == none) || KFPC == none)
+    {
+        return;
+    }
+    if((KFPC.MyGFxManager != none) && KFPC.MyGFxManager.GearMenu != none)
+    {
+        KFPC.MyGFxManager.GearMenu.RelayFromCheatManager(P, 3, MeshIndex, SkinIndex, AttachmentIndex, bIgnoreConflictingSlots);
+    }
+}
+
+exec function PrintOutCharacterCosmeticInfo()
+{
+    local KFPlayerReplicationInfo KFPRI;
+    local int I;
+
+    KFPRI = KFPlayerReplicationInfo(Outer.PlayerReplicationInfo);
+    if(KFPRI == none)
+    {
+        return;
+    }
+    LogInternal("PRINTING OUT COSMETIC INFO!");
+    I = 0;
+    J0x6D:
+
+    if(I < 3)
+    {
+        LogInternal((((("Item on slot index: " @ string(I)) @ "Mesh index: ") @ string(KFPRI.RepCustomizationInfo.AttachmentMeshIndices[I])) @ "Skin index") @ string(KFPRI.RepCustomizationInfo.AttachmentSkinIndices[I]));
+        ++ I;
+        goto J0x6D;
+    }
+    LogInternal("********END PRINT ATTACHMENTS*****************");
+}
+
 exec function TestLocalMessage()
 {
     Outer.ReceiveLocalizedMessage(Class'KFLocalMessage', 17);

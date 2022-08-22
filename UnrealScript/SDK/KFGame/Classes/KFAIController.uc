@@ -4621,39 +4621,43 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 	KFPM = KFPawn_Monster( Other );
 	if( bSpecialBumpHandling )
 	{
-		if( MyKFPawn != none && KFPM != none && KFPM.Health > 0 && !KFPM.IsDoingSpecialMove(SM_MeleeAttack) && KFPM.MyKFAIC != none && KFPM.MyKFAIC.DoorEnemy == none && !IsZero(KFPM.Acceleration) )
+		if( MyKFPawn != none && KFPM != none && KFPM.Health > 0 )
 		{
-			bInPartialCollisionReductionTrigger = MyKFPawn.CurrentChokePointTrigger != none && MyKFPawn.CurrentChokePointTrigger.PartialReduceTeammateCollision();
-
-            // Reduce the collision with other zeds if noone is watching, or we are in a choke point that allows it
-            if(  MyKFPawn.CurrentChokePointTrigger != none
-                && (MyKFPawn.CurrentChokePointTrigger.CanReduceTeammateCollision()
-                || bInPartialCollisionReductionTrigger
-                || ShouldReduceZedOnZedCollisionOnBumpForNavigating()) )
+			MyKFPawn.HandleMonsterBump( KFPM, HitNormal );
+			if( !KFPM.IsDoingSpecialMove(SM_MeleeAttack) && KFPM.MyKFAIC != none && KFPM.MyKFAIC.DoorEnemy == none && !IsZero(KFPM.Acceleration) )
 			{
+				bInPartialCollisionReductionTrigger = MyKFPawn.CurrentChokePointTrigger != none && MyKFPawn.CurrentChokePointTrigger.PartialReduceTeammateCollision();
 
-                if( bInPartialCollisionReductionTrigger && Enemy != none )
-                {
-                    // If this line doesn't hit our enemy, go ahead and let this bump count to reduce collision if we're standing in the trigger of a welded door!
-                    HitActor = Trace(HitLocation, MyHitNormal, Enemy.Location + vect(0,0,1) * Enemy.BaseEyeHeight, MyKFPawn.Location + vect(0,0,1) * MyKFPawn.BaseEyeHeight, true);
-                }
-
-                if( !IsWithinAttackRange() || (bInPartialCollisionReductionTrigger && (HitActor == none || HitActor != Enemy))  )
+	            // Reduce the collision with other zeds if noone is watching, or we are in a choke point that allows it
+	            if(  MyKFPawn.CurrentChokePointTrigger != none
+	                && (MyKFPawn.CurrentChokePointTrigger.CanReduceTeammateCollision()
+	                || bInPartialCollisionReductionTrigger
+	                || ShouldReduceZedOnZedCollisionOnBumpForNavigating()) )
 				{
-					bBumpedThisFrame = true;
-					lastbumper = KFPM;
-					//msg( "BUMP! "$CurBumpVal );
-					return true;
-					//MessagePlayer(GetFuncname()@"BUMP! -"@CurBumpVal);
+
+	                if( bInPartialCollisionReductionTrigger && Enemy != none )
+	                {
+	                    // If this line doesn't hit our enemy, go ahead and let this bump count to reduce collision if we're standing in the trigger of a welded door!
+	                    HitActor = Trace(HitLocation, MyHitNormal, Enemy.Location + vect(0,0,1) * Enemy.BaseEyeHeight, MyKFPawn.Location + vect(0,0,1) * MyKFPawn.BaseEyeHeight, true);
+	                }
+
+	                if( !IsWithinAttackRange() || (bInPartialCollisionReductionTrigger && (HitActor == none || HitActor != Enemy))  )
+					{
+						bBumpedThisFrame = true;
+						lastbumper = KFPM;
+						//msg( "BUMP! "$CurBumpVal );
+						return true;
+						//MessagePlayer(GetFuncname()@"BUMP! -"@CurBumpVal);
+					}
+					else
+					{
+						`AiLog( GetFuncName() @ " Bumped: " @ KFPM @ " but IsWithinAttackRange so not going to care about SpecialBumpHandling right now!!!", 'SpecialBumpHandling' );
+					}
 				}
 				else
 				{
-					`AiLog( GetFuncName() @ " Bumped: " @ KFPM @ " but IsWithinAttackRange so not going to care about SpecialBumpHandling right now!!!", 'SpecialBumpHandling' );
+					`AiLog( GetFuncName() @ " Bumped: " @ KFPM @ " but not in a door trigger so not going to care about SpecialBumpHandling right now!!!", 'SpecialBumpHandling' );
 				}
-			}
-			else
-			{
-				`AiLog( GetFuncName() @ " Bumped: " @ KFPM @ " but not in a door trigger so not going to care about SpecialBumpHandling right now!!!", 'SpecialBumpHandling' );
 			}
 		}
 	}

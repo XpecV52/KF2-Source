@@ -14,10 +14,10 @@ defaultproperties
    Attacks(1)=(Anims=("Player_Jump_Atk"),Type=PZA_Jumping,bForceDisableRootMotion=True)
    Attacks(2)=(Anims=("Player_Heavy_Lunge_V1","Player_Heavy_Lunge_V2","Player_Heavy_Lunge_V3","Player_Heavy_Lunge_V4"),Type=PZA_Sprinting)
    Attacks(3)=(Anims=("Player_Kick"),Type=PZA_Backwards)
-   Attacks(4)=(Anims=("Player_Spin_Atk"),Type=PZA_Left)
-   Attacks(5)=(Anims=("Player_Spin_Atk"),Type=PZA_Right)
-   Attacks(6)=(Anims=("Player_Shoulder_Light"),Type=PZA_Cloaked)
-   Attacks(7)=(Anims=("Player_Shoulder_Heavy"),Type=PZA_SprintCloaked)
+   Attacks(4)=(Anims=("Player_Spin_Atk"),Type=PZA_Left,bCannotBeParried=True)
+   Attacks(5)=(Anims=("Player_Spin_Atk"),Type=PZA_Right,bCannotBeParried=True)
+   Attacks(6)=(Anims=("Player_Shoulder_Light"),Type=PZA_Cloaked,bCannotBeParried=True)
+   Attacks(7)=(Anims=("Player_Shoulder_Heavy"),Type=PZA_SprintCloaked,bCannotBeParried=True)
    Name="Default__KFSM_PlayerPatriarch_Melee"
    ObjectArchetype=KFSM_PlayerMeleeBase'KFGame.Default__KFSM_PlayerMeleeBase'
 }

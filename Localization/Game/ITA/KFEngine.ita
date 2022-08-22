@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="UID duplicato"
+InvalidUID="UID non valido"
+FailedKickOff="Impossibile iniziare l'autenticazione"
+RequiresAuthentication="Il server richiede l'autenticazione"
+CouldNotConnect_Title="Connessione fallita"

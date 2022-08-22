@@ -1,0 +1,112 @@
+
+[Presence]
+KFMainMenu="Menu principal"
+KF-Bioticslab="Jogando o Laboratório de Biótica"
+KF-BlackForest="Jogando a Floresta Negra"
+KF-BurningParis="Jogando Paris em Chamas"
+KF-Catacombs="Jogando Catacumbas"
+KF-EvacuationPoint="Jogando Zona de Evacuação"
+KF-Farmhouse="Jogando Casa da Fazenda"
+KF-VolterManor="Jogando Mansão Volter"
+KF-Outpost="Jogando Posto Avançado"
+KF-Prison="Jogando Prisão"
+KF-ContainmentStation="Jogando Zona de Contenção"
+KF-InfernalRealm="Jogando Reino Infernal"
+KF-HostileGrounds="Jogando Terrenos Hostis"
+
+[ActivityFeed]
+BossKillCondensedCaption="Chefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID derrotou %x% em %y%"
+TeamAwardCondensedCaption="Prêmio de Equipe!"
+TeamAwardCaption="$USER_NAME_OR_ID ganhou o prêmio eq. %x%"
+PerkLevelUpCondensedCaption="Subiu de nível!"
+PerkLevelUpCaption="$USER_NAME_OR_ID desbloqueou o nível %x% da hab. %y%"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="Aperte XboxTypeS_A para iniciar"
+LoginButtonPrompt="Conectar-se"
+LoggingIn="Conectando em..."
+LoginFailed="Falha ao conectar"
+NoOnlinePlay="Impossível jogar on-line"
+TooYoung="Serviços on-line desativados na conta do Sony Entertainment Network por restrições de controle parental."
+PatchAvailable="Atualização disponível. Você deve atualizar o aplicativo para usar os recursos de rede."
+NotLoggedInOnlinePSN="Você deve estar conectar à PlayStation™Network para usar os recursos on-line."
+NetworkError="Ocorreu um erro de rede. Verifique a conexão."
+ErrorNoPlayfabDescription="Não foi possível estabelecer uma conexão com os servidores mestres. Repita daqui a alguns minutos."
+ErrorTSSFailedDescription="Não foi possível estabelecer uma conexão com o servidor de equilíbrio do jogo. Confira se há uma conexão, se você está conectado e tente de novo."
+
+[Notifications]
+ControllerDisconnectedTitle="Controle desconectado"
+ControllerDisconnectedPS4Message="Controle sem fio desconectado. Reconecte o controle sem fio do usuário que iniciou o jogo."
+PlayGoBusyTitle="Ainda instalando"
+PlayGoBusyMessage="O conteúdo e os recursos disponíveis ficam limitados enquanto o jogo termina de ser instalado."
+UnableToJoinInviteTitle="Não foi possível entrar"
+UnableToJoinInviteMessage="A sessão está cheia ou indisponível. Tente mais tarde."
+InitiatingPlayTogetherTitle="Espere!"
+InitiatingPlayTogetherMessage="Estamos criando um jogo para você experimentar Jogar Junto."
+UnableToPlayTogetherTitle="Falha ao Jogar Junto"
+UnableToPlayTogetherMessage="Não foi possível criar um jogo de Jogar Junto. Tente mais tarde ou crie um manualmente."
+CheckPlusTitle="Verificando PlayStation®Plus"
+CheckPlusMessage="Espere enquanto verificamos o status do PlayStation®Plus."
+ConnectionLostTitle="Perda de conexão"
+ConnectionLostMessage="A conexão com o jogo encerrou.  Você voltou ao menu inicial."
+PSNSignoutMessage="Você se desconectou da PlayStation™Network. Você voltou ao menu inicial."
+InviteMessage="Vamos explodir uns Zeds juntos!"
+NotConnectedTitle="Erro de rede"
+NotConnectedMessage="Não conectado à internet. Verifique a conexão e tente de novo."
+NotConnectedForOnlinePlay="Não conectado à internet. Verifique a conexão e tente de novo para usar os recursos on-line."
+PartySizeTitle="Aviso do grupo"
+PartySizeMessage="Há membros demais no grupo. Nem todos os membros aparecerão no pelotão e nem todos entrarão em um jogo de sobrevivência."
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="Exibir perfil do jogador"
+
+[KFGFxObject_Menu]
+ResetDefaults="Redefinir as configurações para os valores iniciais?"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="CLASSE"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="Som do controle"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="REGIÃO"
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="REGIÃO"
+
+[Entitlements]
+BriarBobbyBundleProductName="Pacote Unif. Bobby Briar Londres"
+BriarBobbyBundleShortDescription="Obtenha o clássico uniforme da polícia londrina para o personagem jogável PC Rob Briar. Vem com Uniforme Londrino de Briar (com 5 estilos de aparência) e o acessório cosmético Capacete de Guarda (com 3 estilos de aparência)."
+
+BikerTanakaBundleProductName="Pacote Unif. Motoqueiro Tanaka"
+BikerTanakaBundlehortDescription="Obtenha o novo uniforme de ciclista para o personagem jogável Hayato Tanaka. Vem com Uniforme de motociclista de Tanaka (com 7 estilos de aparência) e acessório cosmético Capacete (com 7 estilos de aparência)."
+
+ClassicFosterBundleProductName="Pacote Unif. Clássico Mr.Foster"
+ClassicFosterBundlehortDescription="Obtenha o clássico terno uniforme para o personagem jogável Mr. Foster. Vem com uniforme Terno Clássico de Foster (com 9 estilos de aparência), o acessório cosmético Gravata Borboleta e Gravata Clássica (com 7 estilos de aparência cada)."
+
+CardboardKnightBundleProductName="Pac. Unif. Cavaleiro de Papelão"
+CardboardKnightBundleShortDescription="Obtenha o hilariante uniforme de armadura de papelão, utilizável pela maioria dos personagens jogáveis. Vem com uma Armadura de Cavaleiro de Papelão para o corpo (com 6 estilos de aparência) e o acessório cosmético Capacete do Cavaleiro de Papelão (com 6 estilos de aparência)."
+
+HorzineSecurityForceBundleProductName="Pacote Unif. Força Segurança Horzine"
+HorzineSecurityForceBundleShortDescription="Obtenha um incrível uniforme da Segurança de Horzine, utilizável pela maioria dos personagens jogáveis. Vem com Terno da Segurança de Horzine de alta tecnologia para o corpo e o acessório cosmético Capacete da Segurança de Horzine."
+
+HorzineSupplyCrateKeyProductName="Chave cx. sup. Horzine"
+HorzineSupplyCrateKeyShortDesription="Compre uma Chave de caixote de suprimentos de Horzine, utilizável somente no jogo, que abre qualquer caixote de suprimentos de Horzine. Para usá-la, você precisará de um caixote de suprimentos de Horzine."
+
+HorzineSupplyCrate1ProductName="Chave cx. sup. Horzine s. 1"
+HorzineSupplyCrate1ShortDesription="Este caixote de suprimentos de Horzine contém um acessório cosmético. É necessária uma chave de caixote de suprimentos de Horzine para abrir. Contém um item raro ou melhor dos seguintes: Chapéu Tático, Máscara Tática, Fones Táticos V1/V2, Bandana, Capacete GS9, Máscara GS9, Óculos Militares Russos, Capacete Militar Russo, Máscara Militar Russa ou um acessório precioso e extremamente raro!"
+
+HorzineSupplyCrate2ProductName="Chave cx. sup. Horzine s. 2"
+HorzineSupplyCrate2ShortDesription="Este caixote de suprimentos de Horzine contém um acessório cosmético. É necessária uma chave de caixote de suprimentos de Horzine para abrir. Contém um item raro ou melhor dos seguintes: Máscara Balística Devtac, Máscara de Gás dos EUA, Máscara de Esqui, Boné de Beisebol, Mochila Tática, Máscara de Gás Alemã, Máscara de Gás Químico, Mochila RPG7, Tanque Lança-chamas M2 ou um acessório precioso e extremamente raro!"
+
+HorzineSupplyCrate3ProductName="Chave cx. sup. Horzine s. 3"
+HorzineSupplyCrate3ShortDesription="Este caixote de suprimentos de Horzine contém uma aparência para arma. É necessária uma chave de caixote de suprimentos de Horzine para abrir. Contém uma aparência de arma rara ou melhor das seguintes:"
+
+HorzineSupplyCrate4ProductName="Chave cx. sup. Horzine s. 4"
+HorzineSupplyCrate4ShortDesription="Este caixote de suprimentos de Horzine contém uma aparência para arma. É necessária uma chave de caixote de suprimentos de Horzine para abrir. Contém uma aparência de arma rara ou melhor das seguintes:"
+
+StoreGameLegalText="Software sujeito à licença (us.playstation.com/softwarelicense). Atividade on-line sujeita aos Termos de Serviços e Contrato do Usuário (www.playstationnetwork.com/terms-of-service). Taxa de licença única para jogo do sistema principal PS4™ designado da conta ou outros sistemas PS4™ quando conectados com aquela conta. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor© é uma marca registrada da Tripwire Interactive nos EUA e noutros países. Unreal® Engine, Copyright 1998–2016, Epic Games, Inc. Todos os direitos reservados. Unreal® é uma marca comercial ou uma marca registrada da Epic Games, Inc. nos Estados Unidos da América e noutros países. Todas as outras marcas, logotipos e direitos autorais são exclusivos dos respectivos proprietários. Todos os direitos reservados."
+
+StoreItemLegalText="Para usar este item, é necessário o jogo Killing Floor 2. O uso deste item está sujeito ao mesmo Contrato de Licença do Usuário Final do jogo original."

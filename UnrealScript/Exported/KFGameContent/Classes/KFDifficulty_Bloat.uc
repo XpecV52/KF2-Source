@@ -36,7 +36,7 @@ defaultproperties
 {
    PukeMinesToSpawnOnDeathByDifficulty(0)=0
    PukeMinesToSpawnOnDeathByDifficulty(1)=1
-   PukeMinesToSpawnOnDeathByDifficulty(2)=2
+   PukeMinesToSpawnOnDeathByDifficulty(2)=3
    PukeMinesToSpawnOnDeathByDifficulty(3)=3
    PukeMinesToSpawnOnDeath_Player_Versus=3
    Normal=(HealthMod=0.750000,HeadHealthMod=0.750000,SoloDamageMod=0.500000,BlockSettings=(Duration=1.250000,MaxBlocks=3.000000,Cooldown=3.500000,DamagedHealthPctToTrigger=0.100000,MeleeDamageModifier=0.300000,DamageModifier=0.300000,AfflictionModifier=0.200000,SoloChanceMultiplier=0.100000),RallySettings=(bCanRally=False))

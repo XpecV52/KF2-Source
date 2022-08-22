@@ -1,1688 +1,2021 @@
-//NOTES: 
-//1. CharacterName can be changed slightly. It can run to about ?? characters (MAX), including spaces.
-//2. Description is the bio and can be edited quite happily. Limit is just over 800 characters, including spaces. 
-//3. All the rest (Skin descriptions) should be 20-21 characters, max, including spaces.
-
-//Jagerhorn
 [CHR_Jagerhorn_Archetype]
-CharacterName=オイステン・ヤゲルホン
-Description=Being a big guy, from Sweden, who enjoyed beer and getting loud in bars, Jägerhorn tended to fit everyone's idea of a modern-day Viking, before the outbreak. But, after being vaguely involved in the craziness that was the Great Nordic Biker war in the 1990s, he'd decided that insane violence, directed at people, was far less fun than drinking plenty of beer and playing mediocre lead guitar for 'Metalbika' - his Metallica tribute band. \n\nOnce the outbreaks reached Scandinavia, on the other hand, insane violence became the order of the day after all. Zeds vs. People - not good karma, by Jägerhorn's standards. Big Swedish Viking Jägerhorn vs. Zeds? Bring it on!
-BodyMesh0=Biker Time
-HeadMesh0=Beard Power!
+CharacterName="Oisten Jägerhorn"
+Description="ビールとバーで騒ぐのが好きなスウェーデン出身の大男だったJägerhornは、アウトブレイク前は現代版海賊のイメージにぴったりだった。だが、1990年代にグレート・ノルディック・バイカー・ウォーという名の狂気に漠然と関わった後、人々に向けられる愚かな暴力は、浴びるほどビールを飲んで「メタルビカ」というメタリカのトリビュートバンドで演奏するよりはるかに面白くないと決めた。\n\nその一方で、アウトブレイクがスカンジナビアに達すると、結局は愚かな暴力が流行した。zed対人間―Jägerhorn基準では罰当たりだ。だがスウェーデンの海賊Jägerhorn対zed？かかって来い！"
+BodyMesh0="バイカータイム"
+BodyMesh1="ダンボールの騎士"
+BodyMesh2="ホージンセキュリティ"
+HeadMesh0="髭パワー！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
-BodySkin0=Guillotine
-BodySkin1=ホージン
-BodySkin2=DJスカリー
-BodySkin3=True Defiance
-BodySkin4=Demon Hunter
+BodySkin0="ギロチン"
+BodySkin1="ホージン"
+BodySkin2="DJスカリー"
+BodySkin3="True Defiance"
+BodySkin4="Demon Hunter"
+
+[CHR_Jagerhorn_Archetype.BodyMesh1]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[CHR_Jagerhorn_Archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
-HeadSkin0=スウェーデンブロンド
-HeadSkin1=The Black Album
-HeadSkin2=ブラッドレッド
+HeadSkin0="スウェーデンのブロンド"
+HeadSkin1="ブラックアルバム"
+HeadSkin2="ブラッドレッド"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
-Attachment=Spiky Cowboy Hat
-AttachmentSkin0=Dark Rider
-AttachmentSkin1=Worn Leather
-AttachmentSkin2=Clean Slate
-AttachmentSkin3=Blood Red
+Attachment="トゲトゲしたカウボーイハット"
+AttachmentSkin0="ダークライダー"
+AttachmentSkin1="よれよれの革"
+AttachmentSkin2="白紙"
+AttachmentSkin3="ブラッドレッド"
 
 [Cosmetic_Coleman_yuri_1_ARCH]
-Attachment=Infiltrator
-AttachmentSkin0=Red
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Precious
+Attachment="潜入者"
+AttachmentSkin0="レッド"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="希少"
 
 [Cosmetic_RussianGasmask_Alberts_1_ARCH]
-Attachment=Russian Gas Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Green
-AttachmentSkin2=Red
-AttachmentSkin3=Precious
+Attachment="ロシア軍ガスマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="プレシャス"
 
 [Cosmetic_USGasMask_Alberts_1_ARCH]
-Attachment=US Gas Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="USガスマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_Discount-Rex_Alberts_D_Rex_Alberts_1_ARCH]
-Attachment=Discount T-Rex Mask
-AttachmentSkin0=Blue
-AttachmentSkin1=Green
-AttachmentSkin2=Red
-AttachmentSkin3=Precious
+Attachment="ディスカウントT-Rexマスク"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="プレシャス"
 
 [Cosmetic_RoboScully_1_ARCH]
-Attachment=Robo-Scully
-AttachmentSkin0=Clean Slate
-AttachmentSkin1=Oldschool Patty
-AttachmentSkin2=Sellout
-AttachmentSkin3=Still Scully
-AttachmentSkin4=True Neutral
-AttachmentSkin5=Precious
+Attachment="ロボ・スカリー"
+AttachmentSkin0="白紙"
+AttachmentSkin1="伝統的パーティー"
+AttachmentSkin2="裏切り者"
+AttachmentSkin3="それでもスカリー"
+AttachmentSkin4="真の中立"
+AttachmentSkin5="プレシャス"
 
 [Cosmetic_RussianMilitaryHelmet_Alberts_1_ARCH]
-Attachment=Russian Military Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Olive
-AttachmentSkin4=Red
-AttachmentSkin5=White
-AttachmentSkin6=Precious
+Attachment="ロシア軍のヘルメット"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="オリーブ"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ホワイト"
+AttachmentSkin6="プレシャス"
 
 [Cosmetic_Tormentor_Headgear_ClassicMasterson_ARCH]
-Attachment=Tormentor Headgear
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="トーメンター・ヘッドギア"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_GSG9Helmet_ClassicMasterson_ARCH]
-Attachment=GS9 Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Brown
-AttachmentSkin3=Camo1
-AttachmentSkin4=Camo2
-AttachmentSkin5=Navy
-AttachmentSkin6=Olive
-AttachmentSkin7=Red
+Attachment="GS9ヘルメット"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ブラウン"
+AttachmentSkin3="迷彩1"
+AttachmentSkin4="迷彩2"
+AttachmentSkin5="ネイビー"
+AttachmentSkin6="オリーブ"
+AttachmentSkin7="レッド"
 
 [Cosmetic_Ana_Scarf01_OptMesh_ARCH]
-Attachment=スカーフ
-AttachmentSkin0=デスレイン
-AttachmentSkin1=タイガース
-AttachmentSkin2=バーバリー
-AttachmentSkin3=プリティブルー
+Attachment="スカーフ"
+AttachmentSkin0="デスレイン"
+AttachmentSkin1="ティグレス"
+AttachmentSkin2="バンベリー"
+AttachmentSkin3="プリティブルー"
 
 [chr_DJSkully_archetype]
-CharacterName=DJスカリー
-Description=スカリーは誰からも愛される、同年代のオランダ人アングラDJの中で最もイカした奴だ。後先考えずに女は彼を愛し、それだけに男は彼を憎むべきだが、彼は皆を楽しませてしまう。\n\nアウトブレイク発生時、彼はロンドン北にある閉鎖された精神病院でモンスターにとどめを刺していた。ZED共が人々を食らおうとしてきても、頭の回転と足の速さはあるので、戦闘訓練を受けていなくても彼は生き延びる。スカリーは真面目に人生を語るのがいつも苦手だったが、アポカリプスがあってもそれは変わらなかった。もう一つのスカリージョーク、奴は元特殊部隊出身に違いないという馬鹿げた噂を生むほど、彼はモンスターを始末するのが本当に得意だった。
-BodyMesh0=パーカー
-HeadMesh0=スカリーマスク
+CharacterName="DJスカリー"
+Description="オランダで世代の最もクールな地下DJのスカリーは、みんなから愛されずにはいられない。どれだけの良識が阻もうとも、女性は彼を愛することになる。それだけで男性には嫌われそうなものだが、一緒にいて楽しすぎるのだ。\n\nアウトブレイクが発生した時、彼はロンドン北部の使用されていない精神科病院で巨大セットを終えたばかりだった。zedが誰彼構わず食おうとした時、戦闘訓練までは受けていなくとも、機転が利いて逃げ足が早かったため、生き延びることができた。スカリーは人生というものを真剣に捉えることができず、黙示録が訪れてもそれは変わらなかった。ただバケモノを始末するのが本当に上手いのだ。あまりに上手いため、元特殊部隊ではないかという馬鹿馬鹿しい噂が流れたが、ただのスカリージョークだ。"
+BodyMesh0="パーカー"
+BodyMesh1="ダンボールの騎士"
+BodyMesh2="ホージンセキュリティ"
+HeadMesh0="スカリーマスク"
 
 [chr_DJSkully_archetype.BodyMesh0]
-BodySkin0=漆黒
-BodySkin1=エクストラレッド
-BodySkin2=ギアXT イエロー
-BodySkin3=グリーンハザード
-BodySkin4=レトロスカリー
+BodySkin0="ブラッケストブラック"
+BodySkin1="エクストラレッド"
+BodySkin2="ギアXTイエロー"
+BodySkin3="グリーンハザード"
+BodySkin4="レトロスカリー"
+
+[chr_DJSkully_archetype.BodyMesh1]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[chr_DJSkully_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [chr_DJSkully_archetype.HeadMesh0]
-HeadSkin0=漆黒
-HeadSkin1=エクストラレッド
-HeadSkin2=ギアXT イエロー
-HeadSkin3=グリーンハザード
-HeadSkin4=レトロスカリー
+HeadSkin0="ブラッケストブラック"
+HeadSkin1="エクストラレッド"
+HeadSkin2="ギアXTイエロー"
+HeadSkin3="グリーンハザード"
+HeadSkin4="レトロスカリー"
 
 [Cosmetic_DJHeadphones_1_ARCH]
-Attachment=スカリーフォン
-AttachmentSkin0=ギロチンレッド
-AttachmentSkin1=ギアXT イエロー
-AttachmentSkin2=ディープブルー
-AttachmentSkin3=ガーディアンオレンジ
-AttachmentSkin4=レトロスカリー
-AttachmentSkin5=ホージンホワイト
-AttachmentSkin6=Precious Gold
+Attachment="スカリーフォン"
+AttachmentSkin0="ギロチンレッド"
+AttachmentSkin1="ギアXTイエロー"
+AttachmentSkin2="ディープブルー"
+AttachmentSkin3="ガーディアンオレンジ"
+AttachmentSkin4="レトロスカリー"
+AttachmentSkin5="ホージンホワイト"
+AttachmentSkin6="プレシャスゴールド"
 
 [Cosmetic_ReinforcedHelmet_DJSKully_ARCH]
-Attachment=Reinforced Helmet
-AttachmentSkin0=Reinforced Helmet
+Attachment="強化ヘルメット"
+AttachmentSkin0="強化ヘルメット"
 
 [Cosmetic_Strasser_01_ARCH]
-Attachment=ドイツ軍サイドキャップ
-AttachmentSkin0=パレードキャップ
-AttachmentSkin1=血染めキャップ
+Attachment="ドイツ軍サイドキャップ"
+AttachmentSkin0="パレードキャップ"
+AttachmentSkin1="ブラッディキャップ"
 
 [chr_briar_archetype]
-CharacterName=ロブ・ブライアー巡査
-Description=ロブ・ブライアーは17歳の時から、馬鹿な反政府主義者の暴動と思われる現場への出動を上司に命令される日まで警察官・巡査だった。無政府主義者の暴動ではないというのは皆知っていたが、ブライアーは自分の目で知ることとなった。幸運にも、彼は昔ながらのロンドンの警察官とは違い、対テロ対策部門に長期間務めており銃の扱いには長けていた。楽天的で冗談好きな見かけだが、ブライアーは強健で、戦闘服のケブラーの強度に加えてその体の丈夫さで、最初の数日間を生き延びることができた。今でも彼は手に入るあらゆる武器で使って、この脅威を排除しようと公務員の義務を果たし続けている。
-BodyMesh0=機動隊戦闘服
-BodyMesh1=London
-HeadMesh0=髪
+CharacterName="ロブ・ブライアー巡査"
+Description="ロブ・ブライアーは17歳の時から巡査であり、ある日、間抜けなアナキストの暴動に駆りだされた。上司にはそのように映った。我々はそうではないと知っているが、ブライアーは辛い方法でそれを知った。幸運にも、彼はただの昔ながらの「ロンドン・ボビー」ではなく、対テロ任務にも就いていたため、様々な銃器に精通していた。楽天的で冗談好きな表面とは裏腹に、ブライアーは強靭な男だ。その自身の強靭さと、暴動鎮圧用装備にあるケブラーの強靭さのおかげで、最初の数日間を生き延びることができた。今、彼は義務を遂行し続け、手に入るありとあらゆる武器を使って、この脅威を排除しようとすることで社会に奉仕している。"
+BodyMesh0="暴動鎮圧用装備"
+BodyMesh1="ロンドン"
+BodyMesh2="ダンボールの騎士"
+BodyMesh3="ホージンセキュリティ"
+HeadMesh0="髪"
 
 [chr_briar_archetype.BodyMesh0]
-BodySkin0=ポリスブルー
-BodySkin1=ナイトブラック
-BodySkin2=アーミーグリーン
-BodySkin3=SASカモフラ
+BodySkin0="ポリスブルー"
+BodySkin1="ナイトブラック"
+BodySkin2="アーミーグリーン"
+BodySkin3="SAS迷彩"
 
 [chr_briar_archetype.BodyMesh1]
-BodySkin0=Metro
-BodySkin1=ナイトブラック
-BodySkin2=ブルー
-BodySkin3=Reflective
-BodySkin4=Reflective Black
+BodySkin0="メトロ"
+BodySkin1="ナイトブラック"
+BodySkin2="ブルー"
+BodySkin3="反射"
+BodySkin4="反射ブラック"
+
+[chr_briar_archetype.BodyMesh2]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[chr_briar_archetype.BodyMesh3]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [chr_briar_archetype.HeadMesh0]
-HeadSkin0=オリジナル
-HeadSkin1=ハイライト
-HeadSkin2=ブラック
+HeadSkin0="オリジナル"
+HeadSkin1="ハイライト"
+HeadSkin2="ブラック"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
-Attachment=Doctor's Mask
-AttachmentSkin0=White
-AttachmentSkin1=ブルー
-AttachmentSkin2=Green
+Attachment="医者のマスク"
+AttachmentSkin0="ホワイト"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
 
 [Cosmetic_BrokenMask_Briar_ARCH]
-Attachment=Shattered Mask
-AttachmentSkin0=WhiteYellow
-AttachmentSkin1=Geisha
-AttachmentSkin2=Metal
-AttachmentSkin3=Sugar Purple
-AttachmentSkin4=Sugar Red
-AttachmentSkin5=Skin
+Attachment="壊れたマスク"
+AttachmentSkin0="ホワイトイエロー"
+AttachmentSkin1="ゲイシャ"
+AttachmentSkin2="メタル"
+AttachmentSkin3="シュガーパープル"
+AttachmentSkin4="シュガーレッド"
+AttachmentSkin5="スキン"
 
 [CHR_MrFoster_archetype]
-CharacterName=フォスター氏
-Description=フォスターは平凡なイングランドの私立学校を卒業後、デイトレーダーとなった。学校の職業指導員からの「大物にはなれない」という言葉が耳の中から鳴り響いていたが、彼は全く気にしなかった。しかし信じられないほど、彼は自分にデイトレードの才能があることを見いだし、大金を稼ぎ始め、完全にハマり込んでいった。明らかに、彼は仕事を楽しめる人間ではない。また彼は権力者に向かって暴言を吐く気質も持っていた。フォスターが皮肉たっぷりのユーモアとセンスのある服と車を持った賢い利口な男と見るか、成り上がりの肝が小さい奴と見るか、決めるのはお前だ。
-BodyMesh0=レザージャケット
-BodyMesh1=Classic Suit
-HeadMesh0=ガスマスク
+CharacterName="フォスター氏"
+Description="フォスターは、イギリスの二流私立学校を卒業後、学校の進路相談員に言われた「おまえなど負け犬だ」という言葉を耳の中に響き渡らせながら、デイトレードの世界に迷い込んだ。フォスターは別に気にしていなかった。だが、奇妙なことに、彼にはデイトレードが向いていた。多額の金を生み出すようになり、心から楽しんだ。言うまでもなく、仕事を楽しんでいた、などと決して認めることはないが。権威ある者を口汚く罵る癖も持っていた。これにより、フォスターは利口で、頭が切れ、皮肉っぽいユーモアセンスを持ち、服と車の趣味がいい男、と見られるようになった。あるいは思い上がったキザ野郎、と。その判断はご自分で。"
+BodyMesh0="革ジャケット"
+BodyMesh1="クラシックスーツ"
+BodyMesh2="ダンボールの騎士"
+BodyMesh3="ホージンセキュリティ"
+HeadMesh0="ガスマスク"
 
 [CHR_MrFoster_archetype.BodyMesh0]
-BodySkin0=KF ブルー
-BodySkin1=PCG Dosh
-BodySkin2=バイオハザード
-BodySkin3=一流品
-BodySkin4=マグマレッド
+BodySkin0="KFブルー"
+BodySkin1="PCG dosh"
+BodySkin2="バイオハザード"
+BodySkin3="上品"
+BodySkin4="マグマレッド"
 
 [CHR_MrFoster_archetype.BodyMesh1]
-BodySkin0=Classic
-BodySkin1=Black
-BodySkin2=Gomez
-BodySkin3=Pin Stripe
-BodySkin4=The Rox
-BodySkin5=Vice Blue
-BodySkin6=Vice
-BodySkin7=Casino
-BodySkin8=Smokin'
+BodySkin0="クラシック"
+BodySkin1="ブラック"
+BodySkin2="ゴメス"
+BodySkin3="ピンストライプ"
+BodySkin4="ロックス"
+BodySkin5="ヴァイスブルー"
+BodySkin6="ヴァイス"
+BodySkin7="カジノ"
+BodySkin8="スモーキン"
+
+[CHR_MrFoster_archetype.BodyMesh2]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[CHR_MrFoster_archetype.BodyMesh3]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [CHR_MrFoster_archetype.HeadMesh0]
-HeadSkin0=オリジナルホワイト
-HeadSkin1=PCGレッド
-HeadSkin2=相棒スカリー
-HeadSkin3=マグマレッド
-HeadSkin4=英国流
+HeadSkin0="オリジナルホワイト"
+HeadSkin1="PCGレッド"
+HeadSkin2="ダチのスカリー"
+HeadSkin3="マグマレッド"
+HeadSkin4="ブリティッシュクラス"
 
 [Cosmetic_DJHeadphones_ARCH]
-Attachment=スカリーフォン
-AttachmentSkin0=ディープブルー
-AttachmentSkin1=ギロチンレッド
-AttachmentSkin2=ガーディアンオレンジ
-AttachmentSkin3=レトロスカル
-AttachmentSkin4=ホージンホワイト
-AttachmentSkin5=ギアXT イエロー
-AttachmentSkin6=Precious Gold
+Attachment="スカリーフォン"
+AttachmentSkin0="ディープブルー"
+AttachmentSkin1="ギロチンレッド"
+AttachmentSkin2="ガーディアンオレンジ"
+AttachmentSkin3="レトロスカル"
+AttachmentSkin4="ホージンホワイト"
+AttachmentSkin5="ギアXTイエロー"
+AttachmentSkin6="プレシャスゴールド"
 
 [Cosmetic_MrFoster_Suit_NeckTie_ARCH]
-Attachment=NeckTie
-AttachmentSkin0=Classic Blue
-AttachmentSkin1=Red Stripe
-AttachmentSkin2=Black
-AttachmentSkin3=Black and White
-AttachmentSkin4=Casino
-AttachmentSkin5=The Stuff
-AttachmentSkin6=Magma
-AttachmentSkin7=PC Gamer
+Attachment="フォスターのクラシックネクタイ"
+AttachmentSkin0="クラシックブルー"
+AttachmentSkin1="レッドストライプ"
+AttachmentSkin2="ブラック"
+AttachmentSkin3="ブラック&ホワイト"
+AttachmentSkin4="カジノ"
+AttachmentSkin5="ブツ"
+AttachmentSkin6="マグマ"
+AttachmentSkin7="ダークレッドストライプ"
 
 [Cosmetic_MrFoster_Suit_LooseTie_ARCH]
-Attachment=LooseTie
-AttachmentSkin0=Classic Blue
-AttachmentSkin1=Red Stripe
-AttachmentSkin2=Black
-AttachmentSkin3=Smokin'
-AttachmentSkin4=Casino
-AttachmentSkin5=The Stuff
-AttachmentSkin6=Magma
-AttachmentSkin7=PC Gamer
+Attachment="ルーズタイ"
+AttachmentSkin0="クラシックブルー"
+AttachmentSkin1="レッドストライプ"
+AttachmentSkin2="ブラック"
+AttachmentSkin3="スモーキン"
+AttachmentSkin4="カジノ"
+AttachmentSkin5="ブツ"
+AttachmentSkin6="マグマ"
+AttachmentSkin7="ダークレッドストライプ"
 
 [Cosmetic_MrFoster_Suit_BowTie_ARCH]
-Attachment=BowTie
-AttachmentSkin0=Classic Blue
-AttachmentSkin1=Red Stripe
-AttachmentSkin2=Black
-AttachmentSkin3=Black and White
-AttachmentSkin4=Casino
-AttachmentSkin5=The Stuff
-AttachmentSkin6=Magma
-AttachmentSkin7=PC Gamer
+Attachment="ボウタイ"
+AttachmentSkin0="クラシックブルー"
+AttachmentSkin1="レッドストライプ"
+AttachmentSkin2="ブラック"
+AttachmentSkin3="ブラック&ホワイト"
+AttachmentSkin4="カジノ"
+AttachmentSkin5="ブツ"
+AttachmentSkin6="マグマ"
+AttachmentSkin7="ダークレッドストライプ"
 
 [Cosmetic_MrFoster_01_LooseTie_ARCH]
-Attachment=LooseTie
-AttachmentSkin0=Classic Blue
-AttachmentSkin1=Red Stripe
-AttachmentSkin2=Black
-AttachmentSkin3=Black and White
-AttachmentSkin4=Casino
-AttachmentSkin5=The Stuff
+Attachment="ルーズタイ"
+AttachmentSkin0="クラシックブルー"
+AttachmentSkin1="レッドストライプ"
+AttachmentSkin2="ブラック"
+AttachmentSkin3="ブラック&ホワイト"
+AttachmentSkin4="カジノ"
+AttachmentSkin5="ブツ"
 
 [Cosmetic_Ana_CyberneticGasmask_ARCH]
-Attachment=Cybernetic Gas Mask
-AttachmentSkin0=Blue
-AttachmentSkin1=Green
-AttachmentSkin2=Pink
+Attachment="サイバネティック・ガスマスク"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="ピンク"
 
 [Cosmetic_rubbergasmask_alberts_1_ARCH]
-Attachment=Rubber Air Filter
-AttachmentSkin0=Beige
-AttachmentSkin1=Black
-AttachmentSkin2=Green
-AttachmentSkin3=Skull
+Attachment="ゴム製エアフィルター"
+AttachmentSkin0="ベージュ"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="スカル"
 
 [Cosmetic_TheInquisitor_1_ARCH]
-Attachment=The Inquisitor
-AttachmentSkin0=Leather
-AttachmentSkin1=White
+Attachment="尋問者"
+AttachmentSkin0="革"
+AttachmentSkin1="ホワイト"
 
 [Cosmetic_BgHelmet_1_ARCH]
-Attachment=Bloody Games
-AttachmentSkin0=Blue
-AttachmentSkin1=Black
-AttachmentSkin2=Red
-AttachmentSkin3=Yellow
+Attachment="ブラッディゲーム"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="レッド"
+AttachmentSkin3="イエロー"
 
 [Cosmetic_BrokenMask_ARCH]
-Attachment=Shattered Mask
-AttachmentSkin0=WhiteYellow
+Attachment="壊れたマスク"
+AttachmentSkin0="ホワイトイエロー"
 
 [Cosmetic_WastelandGoggles_Tanaka_ARCH]
-Attachment=Wasteland Goggles
-AttachmentSkin0=Bone
-AttachmentSkin1=Coal
-AttachmentSkin2=Frost
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="荒地のゴーグル"
+AttachmentSkin0="ボーン"
+AttachmentSkin1="コール"
+AttachmentSkin2="フロスト"
+AttachmentSkin3="レッド"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_VenomMask_ClassicMasterson_ARCH]
-Attachment=Venom Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="毒マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
 
 [Cosmetic_VenomGoggles_ClassicMasterson_ARCH]
-Attachment=Venom Goggles
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="毒ゴーグル"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
 
 [Cosmetic_RussianMilitaryGlasses_Briar_ARCH]
-Attachment=Russian Military Glasses
-AttachmentSkin0=Black
-AttachmentSkin1=Black Blue
-AttachmentSkin2=Black Green
-AttachmentSkin3=Black Orange
-AttachmentSkin4=White
-AttachmentSkin5=White Blue
-AttachmentSkin6=White Green
-AttachmentSkin7=White Orange
-AttachmentSkin8=Precious
+Attachment="ロシア軍メガネ"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラックブルー"
+AttachmentSkin2="ブラックグリーン"
+AttachmentSkin3="ブラックオレンジ"
+AttachmentSkin4="ホワイト"
+AttachmentSkin5="ホワイトブルー"
+AttachmentSkin6="ホワイトグリーン"
+AttachmentSkin7="ホワイトオレンジ"
+AttachmentSkin8="プレシャス"
 
 [Cosmetic_GSG9Mask_ClassicMasterson_ARCH]
-Attachment=GS9 Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Brown
-AttachmentSkin3=Camo
-AttachmentSkin4=Olive
-AttachmentSkin5=Red
-AttachmentSkin6=White
+Attachment="GS9マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ブラウン"
+AttachmentSkin3="迷彩"
+AttachmentSkin4="オリーブ"
+AttachmentSkin5="レッド"
+AttachmentSkin6="ホワイト"
 
 [CHR_Coleman_archetype]
-CharacterName=ドノヴァン・ニール
-Description=ドノヴァンは大男でたくましく、どんな状況下も乗り切ることができる。彼は一見だらしのない男に見えるが、多くのレスラーを警護するだけの男ではなく、自分で警備会社を立ち上げて経営している。ジョージア州アトランタ出身で頭がよく教養を身に着け、自身の会社を立ち上げる前は警官として働いており、単なる脳筋じゃなく、頭脳も兼ね備えていた。だが今は彼も生存者の一人として、間の悪いときに間が悪い場所で身動きが取れなくなってしまった。彼に立ちはだかるZED共にぶっきらぼうな祈りを捧げるか、さもなくばそこに向かい彼が奴らを殺すのを手伝え!
-BodyMesh0=RQパーカー
-HeadMesh0=顔
+CharacterName="ドノヴァン・ニール"
+Description="ドノヴァンは大柄で、頑丈で、ほぼあらゆる状況で冷静に対処できる。だが、彼は見た目以上の男だ。多数のレスラーに警護サービスを提供していた男たちのうちの一人というわけではない。彼こそがこのセキュリティビジネスを立ち上げ、所有し、運営していたのだ。ジョージア州アトランタで生まれた彼は頭が切れて教養があり、自身のビジネスを起ち上げる前は警察官だった。たくましい筋力を持つだけではなく、彼は組織の頭脳でもあった。だが今は、間の悪いときに間の悪い場所に居合わせた、ただのサバイバーだ。この男と、彼が欲しいものの間に立ちはだかるzedたちに短い祈りを捧げよう。あるいは、一緒にzedを殺すのだ！"
+BodyMesh0="RQパーカー"
+BodyMesh1="ダンボールの騎士"
+BodyMesh2="ホージンセキュリティ"
+HeadMesh0="顔"
 
 [CHR_Coleman_archetype.BodyMesh0]
-BodySkin0=レーシンググリーン
-BodySkin1=ラスティックレッド
-BodySkin2=クールグレイ
-BodySkin3=ペールアース
+BodySkin0="レーシンググリーン"
+BodySkin1="ラスティックレッド"
+BodySkin2="クールグレー"
+BodySkin3="ペールアース"
+
+[CHR_Coleman_archetype.BodyMesh1]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[CHR_Coleman_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [CHR_Coleman_archetype.HeadMesh0]
-HeadSkin0=ドノヴァン
-HeadSkin1=タトゥー
-HeadSkin2=グレア
+HeadSkin0="ドノヴァン"
+HeadSkin1="タトゥー"
+HeadSkin2="グレア"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
-Attachment=Boxing Headgear
-AttachmentSkin0=Red
-AttachmentSkin1=ブルー
-AttachmentSkin2=Brown
-AttachmentSkin3=Yellow
+Attachment="ボクシング用ヘッドギア"
+AttachmentSkin0="レッド"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ブラウン"
+AttachmentSkin3="イエロー"
 
 [Cosmetic_DJSkully01_ARCH]
-Attachment=スカリーキャップ
-AttachmentSkin0=漆黒
-AttachmentSkin1=エクストラレッド
-AttachmentSkin2=ギアXT イエロー
-AttachmentSkin3=グリーンハザード
-AttachmentSkin4=レトロスカリー
+Attachment="スカリーキャップ"
+AttachmentSkin0="ブラッケストブラック"
+AttachmentSkin1="エクストラレッド"
+AttachmentSkin2="ギアXTイエロー"
+AttachmentSkin3="グリーンハザード"
+AttachmentSkin4="レトロスカリー"
 
 [CHR_Alberts_archetype]
-CharacterName=アルバーツ牧師
-Description=イングランド人とスコットランド人のハーフであるアルバーツは体が丈夫で、人々を助けることを使命としていた。そのタフでしっかりとした真面目な気質は、従軍牧師としての職務に就き、その後の20年を南ロンドンで不良少年の更生に費やすのに適していた。悪から人々を改心させることに人生を捧げたが、ティータイムのひと時に凶暴なモンスターによって彼の生きがいを壊された時、アルバーツは悲しみにくれた。その日の午後、アルバーツは死者や死に行く者に祈りを捧げ、憎き悪魔共の脳天に怒りの一撃を振り下ろしていった。届く場所なら体のどこにでも振り下ろしていく・・・。
-BodyMesh0=詰め襟
-HeadMesh0=髪
+CharacterName="アルバーツ牧師"
+Description="イギリス人とスコットランド人のハーフであるアルバーツは、昔から肉体的に屈強で、他社を助けたいという願望によって抑えられていた。そのタフで、実直で、真面目なやり方は、従軍牧師としての仕事に最適で、その後20年間、南ロンドンで不満を抱く若者たちと向き合い続けた。人生のすべてを、人々を「悪い」側から「良い」側に導くことに費やしてきたアルバーツは、ある午後のティータイム中に荒れ狂うバケモノどもにライフワークを台無しにされたことを快く思わなかった。その午後彼は、死者や死にかけの人々を支援することから、邪悪な忌まわしき者の頭にアルバーツの憤怒を振り下ろすことに目的を変えた。頭だけでなく、手が届く範囲の他の部分にも。"
+BodyMesh0="犬の首輪"
+BodyMesh1="ダンボールの騎士"
+BodyMesh2="ホージンセキュリティ"
+HeadMesh0="髪"
 
 [CHR_Alberts_archetype.BodyMesh0]
-BodySkin0=ベーシックブラック
-BodySkin1=ルビーレッド
-BodySkin2=シャープブルー
-BodySkin3=トロピカルホワイト
+BodySkin0="ベーシックブラック"
+BodySkin1="ルビーレッド"
+BodySkin2="シャープブルー"
+BodySkin3="トロピカルホワイト"
+
+[CHR_Alberts_archetype.BodyMesh1]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[CHR_Alberts_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [CHR_Alberts_archetype.HeadMesh0]
-HeadSkin0=グレー
-HeadSkin1=ブラウン
-HeadSkin2=ブラック
-HeadSkin3=ホワイト
+HeadSkin0="グレー"
+HeadSkin1="ブラウン"
+HeadSkin2="ブラック"
+HeadSkin3="ホワイト"
 
 [Cosmetic_Alberts02_ARCH]
-Attachment=メガネ
-AttachmentSkin0=サングラス
-AttachmentSkin1=普通のメガネ
+Attachment="メガネ"
+AttachmentSkin0="サングラス"
+AttachmentSkin1="普通のメガネ"
 
 [Cosmetic_Alberts03_ARCH]
-Attachment=S10ガスマスク
-AttachmentSkin0=ブラック
-AttachmentSkin1=カモフラ
-AttachmentSkin2=バイオハザード
-AttachmentSkin3=Zed Time
-AttachmentSkin4=Precious
+Attachment="S10 NBCマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="迷彩"
+AttachmentSkin2="バイオハザード"
+AttachmentSkin3="Zed-Time"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_Bowler_ARCH]
-Attachment=山高帽
-AttachmentSkin0=ビジネスブラック
-AttachmentSkin1=英国一
-AttachmentSkin2=チョコレートブラウン
-AttachmentSkin3=フレーミングレッド
-AttachmentSkin4=シリアスパープル
-AttachmentSkin5=パフォーマンスホワイト
+Attachment="ボーラーハット"
+AttachmentSkin0="ビジネスブラック"
+AttachmentSkin1="ベスト・オブ・ブリティッシュ"
+AttachmentSkin2="チョコレートブラウン"
+AttachmentSkin3="フレーミングレッド"
+AttachmentSkin4="シリアスパープル"
+AttachmentSkin5="パフォーマンスホワイト"
 
 [Cosmetic_Alienware_Promo_ARCH]
-Attachment=Alienware
-AttachmentSkin0=Black
-AttachmentSkin1=Black Glow
-AttachmentSkin2=White
-AttachmentSkin3=White Glow
-AttachmentSkin4=ブルー
-AttachmentSkin5=Blue Glow
-AttachmentSkin6=Gold
-AttachmentSkin7=Gold Glow
-AttachmentSkin8=Green
-AttachmentSkin9=Green Glow
+Attachment="Alienware"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラックグロウ"
+AttachmentSkin2="ホワイト"
+AttachmentSkin3="ホワイトグロウ"
+AttachmentSkin4="ブルー"
+AttachmentSkin5="ブルーグロウ"
+AttachmentSkin6="ゴールド"
+AttachmentSkin7="ゴールドグロウ"
+AttachmentSkin8="グリーン"
+AttachmentSkin9="グリーングロウ"
 
 [Cosmetic_SunglassesAviator_Alberts_ARCH]
-Attachment=Aviators
-AttachmentSkin0=White Rims
-AttachmentSkin1=ブルー
-AttachmentSkin2=Green
-AttachmentSkin3=Red
+Attachment="パイロット"
+AttachmentSkin0="ホワイト縁"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
 
 [Cosmetic_BallisticMask_Alberts_ARCH]
-Attachment=Devtac Ballistic Mask
-AttachmentSkin0=Black
-AttachmentSkin1=ブルー
-AttachmentSkin2=Green
-AttachmentSkin3=Red
+Attachment="Devtacバリスティックマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
 
 [Cosmetic_BaseballCap_Alberts_ARCH]
-Attachment=Baseball Hat
-AttachmentSkin0=UK
-AttachmentSkin1=USA
-AttachmentSkin2=CA
-AttachmentSkin3=DE
-AttachmentSkin4=RU
-AttachmentSkin5=Gold
-AttachmentSkin6=Blue
+Attachment="野球帽"
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+AttachmentSkin5="ゴールド"
+AttachmentSkin6="ブルー"
 
 [Cosmetic_Flatcap_ARCH]
-Attachment=Flat Cap
-AttachmentSkin0=Olde English
-AttachmentSkin1=Leather Head
-AttachmentSkin2=ブルー
-AttachmentSkin3=Green Thumb
-AttachmentSkin4=Holier Than Thou
+Attachment="ハンチング"
+AttachmentSkin0="ブラウン"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="ブルー"
+AttachmentSkin3="イエロー"
+AttachmentSkin4="ホワイト"
 
 [Cosmetic_ChefHat_Alberts_LOD0_LOD0_ARCH]
-Attachment=Chef Hat
-AttachmentSkin0=An Excellent Hat
-AttachmentSkin1=Baker's Dozen
-AttachmentSkin2=Slightly Used
+Attachment="シェフ帽"
+AttachmentSkin0="素晴らしい帽子"
+AttachmentSkin1="パン屋の1ダース"
+AttachmentSkin2="若干使用済み"
 
 [Cosmetic_ChemicalGasMask_Alberts_ARCH]
-Attachment=Chemical Gas Mask
-AttachmentSkin0=Standard
-AttachmentSkin1=Black
-AttachmentSkin2=Green
-AttachmentSkin3=Yellow
+Attachment="化学ガスマスク"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="イエロー"
 
 [Cosmetic_CowboyHat_Alberts_ARCH]
-Attachment=Cowboy Hat
-AttachmentSkin0=Cowboy Hat
+Attachment="カウボーイハット"
+AttachmentSkin0="カウボーイハット"
 
 [Cosmetic_UKHelmet_Alberts_ARCH]
-Attachment=Kevlar Helmet
-AttachmentSkin0=カモフラ
+Attachment="ケブラーヘルメット"
+AttachmentSkin0="迷彩"
 
 [Cosmetic_UKHelmetNV_Alberts_ARCH]
-Attachment=Nightvision Helmet
-AttachmentSkin0=Blue Glow
+Attachment="暗視ヘルメット"
+AttachmentSkin0="ブルーグロウ"
 
 [Cosmetic_EyePatch_Alberts_ARCH]
-Attachment=Eye Patch
-AttachmentSkin0=Standard
-AttachmentSkin1=Asian
-AttachmentSkin2=Bio
-AttachmentSkin3=ブルー
-AttachmentSkin4=カモフラ
-AttachmentSkin5=Dosh
-AttachmentSkin6=Eye
-AttachmentSkin7=Fancy
-AttachmentSkin8=Flame
-AttachmentSkin9=Plaid
-AttachmentSkin10=Purple
-AttachmentSkin11=Skull
-AttachmentSkin12=Splatter
-AttachmentSkin13=Tie Dye
+Attachment="眼帯"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="アジアン"
+AttachmentSkin2="バイオ"
+AttachmentSkin3="ブルー"
+AttachmentSkin4="迷彩"
+AttachmentSkin5="dosh"
+AttachmentSkin6="目"
+AttachmentSkin7="ファンシー"
+AttachmentSkin8="火炎"
+AttachmentSkin9="格子柄"
+AttachmentSkin10="パープル"
+AttachmentSkin11="スカル"
+AttachmentSkin12="スプラッター"
+AttachmentSkin13="タイダイ"
 
 [Cosmetic_WeldingMask_ARCH]
-Attachment=Welding Mask
-AttachmentSkin0=Dark Metal
+Attachment="溶接マスク"
+AttachmentSkin0="ダークメタル"
 
 [Cosmetic_GermanGasMask_Alberts_ARCH]
-Attachment=ドイツ軍ガスマスク
-AttachmentSkin0=ドイツ軍ガスマスク
-
-[Cosmetic_Headband_Alberts_ARCH]
-Attachment=Headband
-AttachmentSkin0=Standard
-AttachmentSkin1=Asian White
-AttachmentSkin2=Black Red
-AttachmentSkin3=ブルー
-AttachmentSkin4=カモフラ
-AttachmentSkin5=ダークパープル
-AttachmentSkin6=Flame
-AttachmentSkin7=Green
-AttachmentSkin8=Japan
-AttachmentSkin9=ライトブルー
-AttachmentSkin10=Purple
-AttachmentSkin11=Red
-AttachmentSkin12=Red Black
-AttachmentSkin13=Red Pattern
-AttachmentSkin14=Star
-AttachmentSkin15=Stripe
-AttachmentSkin16=Tie Dye
-AttachmentSkin17=White
-AttachmentSkin18=Yellow
+Attachment="ドイツ軍ガスマスク"
+AttachmentSkin0="ドイツ軍ガスマスク"
 
 [Cosmetic_SkiMask_AlbertsSkin_ARCH]
-Attachment=Ski Mask
-AttachmentSkin0=Standard
-AttachmentSkin1=Asian
-AttachmentSkin2=Black Red
-AttachmentSkin3=Blue Green
-AttachmentSkin4=Blue White
-AttachmentSkin5=Blue Yellow
-AttachmentSkin6=カモフラ
-AttachmentSkin7=ダークパープル
-AttachmentSkin8=Flames
-AttachmentSkin9=Green Blue
-AttachmentSkin10=Green Yellow
-AttachmentSkin11=Pastel
-AttachmentSkin12=Purple
-AttachmentSkin13=Purple Black
-AttachmentSkin14=Rainbow
-AttachmentSkin15=Red White
-AttachmentSkin16=White Black
-AttachmentSkin17=Yellow Black
+Attachment="スキーマスク"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="アジアン"
+AttachmentSkin2="ブラックレッド"
+AttachmentSkin3="ブルーグリーン"
+AttachmentSkin4="ブルーホワイト"
+AttachmentSkin5="ブルーイエロー"
+AttachmentSkin6="迷彩"
+AttachmentSkin7="ダークパープル"
+AttachmentSkin8="火炎"
+AttachmentSkin9="グリーンブルー"
+AttachmentSkin10="グリーンイエロー"
+AttachmentSkin11="パステル"
+AttachmentSkin12="パープル"
+AttachmentSkin13="パープルブラック"
+AttachmentSkin14="レインボー"
+AttachmentSkin15="レッドホワイト"
+AttachmentSkin16="ホワイトブラック"
+AttachmentSkin17="イエローブラック"
 
 [Cosmetic_SunglassesRetro_Alberts_ARCH]
-Attachment=Retro Sunglasses
-AttachmentSkin0=Black
-AttachmentSkin1=カモフラ
-AttachmentSkin2=Tiger
-AttachmentSkin3=USA
+Attachment="レトロサングラス"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="迷彩"
+AttachmentSkin2="タイガー"
+AttachmentSkin3="USA"
 
 [Cosmetic_holyglassesv2_ARCH]
-Attachment=Holy Glasses
-AttachmentSkin0=Holy Glasses
+Attachment="聖なるメガネ"
+AttachmentSkin0="聖なるメガネ"
 
 [Cosmetic_VanAlbertsHat_Alberts_ARCH]
-Attachment=Van Alberts Hat
-AttachmentSkin0=Classic Caper
-AttachmentSkin1=Hell Singer
-AttachmentSkin2=Hierophant
+Attachment="ヴァンアルバーツハット"
+AttachmentSkin0="クラシックケーパー"
+AttachmentSkin1="ヘルシンガー"
+AttachmentSkin2="祭司"
 
 [Cosmetic_VanAlbertsCloak_Alberts_ARCH]
-Attachment=Van Alberts Cloak
-AttachmentSkin0=Classic Caper
-AttachmentSkin1=Hell Singer
-AttachmentSkin2=Hierophant
+Attachment="ヴァンアルバーツマント"
+AttachmentSkin0="クラシックケーパー"
+AttachmentSkin1="ヘルシンガー"
+AttachmentSkin2="祭司"
 
 [Cosmetic_FrontRowProtectionUp_Briar_ARCH]
-Attachment=Front Row Protection Up
-AttachmentSkin0=Standard
-AttachmentSkin1=Biohazard
-AttachmentSkin2=Bloodbath
-AttachmentSkin3=British Bone Dome
-AttachmentSkin4=カモフラ
-AttachmentSkin5=German Spray
-AttachmentSkin6=Skulltacular
-AttachmentSkin7=Stained
+Attachment="前線防具アップ"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="バイオハザード"
+AttachmentSkin2="ブラッドバス"
+AttachmentSkin3="ブリティッシュ・ボーンドーム"
+AttachmentSkin4="迷彩"
+AttachmentSkin5="ジャーマンスプレー"
+AttachmentSkin6="スカルタキュラー"
+AttachmentSkin7="ステインド"
 
 [Cosmetic_FrontRowProtectionDown_Briar_ARCH]
-Attachment=Front Row Protection Down
-AttachmentSkin0=Standard
-AttachmentSkin1=Biohazard
-AttachmentSkin2=Bloodbath
-AttachmentSkin3=British Bone Dome
-AttachmentSkin4=カモフラ
-AttachmentSkin5=German Spray
-AttachmentSkin6=Skulltacular
-AttachmentSkin7=Stained
+Attachment="前線防具ダウン"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="バイオハザード"
+AttachmentSkin2="ブラッドバス"
+AttachmentSkin3="ブリティッシュ・ボーンドーム"
+AttachmentSkin4="迷彩"
+AttachmentSkin5="ジャーマンスプレー"
+AttachmentSkin6="スカルタキュラー"
+AttachmentSkin7="ステインド"
 
 [Cosmetic_CriminalMask_Alberts_ARCH]
-Attachment=Criminally Insane Mask
-AttachmentSkin0=Criminally Insane Mask
+Attachment="触法精神障害者マスク"
+AttachmentSkin0="触法精神障害者マスク"
 
 [Cosmetic_FlightHelmet_ARCH]
-Attachment=Flight Helmet
-AttachmentSkin0=Flight Helmet
-AttachmentSkin1=Bloody Helmet
-AttachmentSkin2=Bubble Yum
-AttachmentSkin3=Crimson Sky
-AttachmentSkin4=Flame
-AttachmentSkin5=Ninja
+Attachment="飛行ヘルメット"
+AttachmentSkin0="飛行ヘルメット"
+AttachmentSkin1="ブラッディヘルメット"
+AttachmentSkin2="バブルヤム"
+AttachmentSkin3="クリムゾンスカイ"
+AttachmentSkin4="火炎"
+AttachmentSkin5="ニンジャ"
 
 [Cosmetic_SkullBreakerHelm_Alberts_ARCH]
-Attachment=Skull Breaker Helmet
-AttachmentSkin0=Skull Breaker Helmet
+Attachment="スカルブレイカー・ヘルメット"
+AttachmentSkin0="スカルブレイカー・ヘルメット"
 
 [Cosmetic_SkullBreakerMask_Alberts_ARCH]
-Attachment=Skull Breaker Mask
-AttachmentSkin0=Skull Breaker Mask
+Attachment="スカルブレイカー・マスク"
+AttachmentSkin0="スカルブレイカー・マスク"
 
 [Cosmetic_CustodianHelmet_ARCH]
-Attachment=カストディアンヘルメット
-AttachmentSkin0=Black
-AttachmentSkin1=Gold
-AttachmentSkin2=Blue
-AttachmentSkin3=Precious Gold
+Attachment="守衛ヘルメット"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ゴールド"
+AttachmentSkin2="ブルー"
+AttachmentSkin3="プレシャスゴールド"
 
 [Cosmetic_FlightMask_Alberts_mask1_ARCH]
-Attachment=Flight Mask
-AttachmentSkin0=Flight Mask
-AttachmentSkin1=Bloody Mask
-AttachmentSkin2=Bubble Yum
-AttachmentSkin3=Crimson Sky
-AttachmentSkin4=Flame
-AttachmentSkin5=Ninja
+Attachment="飛行マスク"
+AttachmentSkin0="飛行マスク"
+AttachmentSkin1="ブラッディマスク"
+AttachmentSkin2="バブルヤム"
+AttachmentSkin3="クリムゾンスカイ"
+AttachmentSkin4="火炎"
+AttachmentSkin5="ニンジャ"
 
 [Cosmetic_DonovanGoggles_ARCH]
-Attachment=Charm Goggles
-AttachmentSkin0=Blue
-AttachmentSkin1=Desert
-AttachmentSkin2=Green
-AttachmentSkin3=White
-AttachmentSkin4=Precious
+Attachment="チャームゴーグル"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="デザート"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="ホワイト"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_DonovanGogglesNoCharm_ARCH]
-Attachment=Aviator Goggles
-AttachmentSkin0=Blue
-AttachmentSkin1=Desert
-AttachmentSkin2=Green
-AttachmentSkin3=White
-AttachmentSkin4=Precious
+Attachment="パイロットゴーグル"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="デザート"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="ホワイト"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_BattleHelmet_ARCH]
-Attachment=Sawblade Battle Helm
-AttachmentSkin0=Default
+Attachment="ソーブレード・バトルヘルム"
+AttachmentSkin0="初期設定"
 
 [Cosmetic_Boonie_Cap_Alberts_ARCH]
-Attachment=Boonie Cap
-AttachmentSkin0=The Boonies
-AttachmentSkin1=Red Digi
-AttachmentSkin2=Red Tiger
-AttachmentSkin3=Green
-AttachmentSkin4=Green Digi
-AttachmentSkin5=Blue Digi
-AttachmentSkin6=Blue Tiger
+Attachment="ブーニーキャップ"
+AttachmentSkin0="初期設定"
+AttachmentSkin1="レッドデジ"
+AttachmentSkin2="レッドタイガー"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="グリーンデジ"
+AttachmentSkin5="ブルーデジ"
+AttachmentSkin6="ブルータイガー"
 
 [Cosmetic_Coleman_yuri_ARCH]
-Attachment=Infiltrator
-AttachmentSkin0=Red
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Precious
+Attachment="潜入者"
+AttachmentSkin0="レッド"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="プレシャス"
 
 [Cosmetic_cthulhumask_Alberts_ARCH]
-Attachment=Mask of the Abyss
-AttachmentSkin0=Ph'nglui
-AttachmentSkin1=Mglw'nafh 
-AttachmentSkin2=Wgah'nagl
-AttachmentSkin3=Fhtagn
-AttachmentSkin4=Precious
+Attachment="深淵のマスク"
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_Alberts_CyberneticGasmask_ARCH]
-Attachment=Cybernetic Gas Mask
-AttachmentSkin0=Blue
-AttachmentSkin1=Green
-AttachmentSkin2=Pink
+Attachment="サイバネティック・ガスマスク"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="ピンク"
 
 [Cosmetic_MrFoster_JFront_ARCH]
-Attachment=JFront Cap
-AttachmentSkin0=Red
-AttachmentSkin1=Green
-AttachmentSkin2=Blue
-AttachmentSkin3=Black
+Attachment="JFrontキャップ"
+AttachmentSkin0="レッド"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="ブルー"
+AttachmentSkin3="ブラック"
 
 [Cosmetic_LonghornHat_ARCH]
-Attachment=Longhorn
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Red
-AttachmentSkin3=White
-AttachmentSkin4=Precious
+Attachment="ロングホーン"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="ホワイト"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_mkitbag_Alberts_ARCH]
-Attachment=EMS Backpack
-AttachmentSkin0=Blue
-AttachmentSkin1=Red
+Attachment="EMSバックパック"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="レッド"
 
 [Cosmetic_MotoHelm_ARCH]
-Attachment=Motorcycle Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Orange
-AttachmentSkin3=Orange Fade
-AttachmentSkin4=Purple Fade
-AttachmentSkin5=Red
-AttachmentSkin6=Red White
-AttachmentSkin7=Silver
-AttachmentSkin8=Teal White
-AttachmentSkin9=Precious
+Attachment="バイク用ヘルメット"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="オレンジフェード"
+AttachmentSkin4="パープルフェード"
+AttachmentSkin5="レッド"
+AttachmentSkin6="レッドホワイト"
+AttachmentSkin7="シルバー"
+AttachmentSkin8="ティールホワイト"
+AttachmentSkin9="プレシャス"
 
 [Cosmetic_MotoHelmDamaged_ARCH]
-Attachment=Smashed Motorcycle Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Orange
-AttachmentSkin3=Orange Fade
-AttachmentSkin4=Purple Fade
-AttachmentSkin5=Red
-AttachmentSkin6=Red White
-AttachmentSkin7=Silver
-AttachmentSkin8=Teal White
+Attachment="粉々のバイク用ヘルメット"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="オレンジフェード"
+AttachmentSkin4="パープルフェード"
+AttachmentSkin5="レッド"
+AttachmentSkin6="レッドホワイト"
+AttachmentSkin7="シルバー"
+AttachmentSkin8="ティールホワイト"
 
 [Cosmetic_rubbergasmask_alberts_ARCH]
-Attachment=Rubber Air Filter
-AttachmentSkin0=Beige
-AttachmentSkin1=Black
-AttachmentSkin2=Green
-AttachmentSkin3=Skull
+Attachment="ゴム製エアフィルター"
+AttachmentSkin0="ベージュ"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="スカル"
 
 [Cosmetic_RussianGasmask_Alberts_ARCH]
-Attachment=Russian Gas Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Green
-AttachmentSkin2=Red
-AttachmentSkin3=Precious
+Attachment="ロシア軍ガスマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="プレシャス"
 
 [Cosmetic_SawtoothMask_Alberts_ARCH]
-Attachment=Sawtooth Mask
-AttachmentSkin0=Jawsome
-AttachmentSkin1=Redtooth
-AttachmentSkin2=Wasp
-AttachmentSkin3=Precious
+Attachment="ギザギザマスク"
+AttachmentSkin0="ジョーサム"
+AttachmentSkin1="レッドトゥース"
+AttachmentSkin2="ワスプ"
+AttachmentSkin3="プレシャス"
 
 [Cosmetic_TheInquisitor_ARCH]
-Attachment=The Inquisitor
-AttachmentSkin0=Leather
-AttachmentSkin1=White
+Attachment="尋問者"
+AttachmentSkin0="革"
+AttachmentSkin1="ホワイト"
 
 [Cosmetic_USGasMask_Alberts_ARCH]
-Attachment=US Gas Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="USガスマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_BgHelmet_ARCH]
-Attachment=Bloody Games
-AttachmentSkin0=Blue
-AttachmentSkin1=Black
-AttachmentSkin2=Red
-AttachmentSkin3=Yellow
+Attachment="ブラッディゲーム"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="レッド"
+AttachmentSkin3="イエロー"
 
 [Cosmetic_BrokenMask_Alberts_ARCH]
-Attachment=Shattered Mask
-AttachmentSkin0=WhiteYellow
-AttachmentSkin1=Geisha
-AttachmentSkin2=Metal
-AttachmentSkin3=Sugar Purple
-AttachmentSkin4=Sugar Red
-AttachmentSkin5=Skin
+Attachment="壊れたマスク"
+AttachmentSkin0="ホワイトイエロー"
+AttachmentSkin1="ゲイシャ"
+AttachmentSkin2="メタル"
+AttachmentSkin3="シュガーパープル"
+AttachmentSkin4="シュガーレッド"
+AttachmentSkin5="スキン"
 
 [Cosmetic_militarybeanie_albert_ARCH]
-Attachment=Military Surplus Beanie
-AttachmentSkin0=Beige
-AttachmentSkin1=Black
-AttachmentSkin2=Blue
-AttachmentSkin3=Red
-AttachmentSkin4=Green
+Attachment="軍の払い下げビーニー"
+AttachmentSkin0="ベージュ"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="ブルー"
+AttachmentSkin3="レッド"
+AttachmentSkin4="グリーン"
 
 [Cosmetic_pilotgoggles_alberts_ARCH]
-Attachment=RAF Goggles
-AttachmentSkin0=Glow Blue
-AttachmentSkin1=Glow Orange
-AttachmentSkin2=Black
-AttachmentSkin3=Orange
-AttachmentSkin4=Green Blue
-AttachmentSkin5=Brown
+Attachment="RAFゴーグル"
+AttachmentSkin0="蛍光ブルー"
+AttachmentSkin1="蛍光オレンジ"
+AttachmentSkin2="ブラック"
+AttachmentSkin3="オレンジ"
+AttachmentSkin4="グリーンブルー"
+AttachmentSkin5="ブラウン"
 
 [Cosmetic_PorkPieHat_Alberts_ARCH]
-Attachment=Pork Pie
-AttachmentSkin0=Mr White
+Attachment="ポークパイ"
+AttachmentSkin0="ミスターホワイト"
 
 [Cosmetic_AlbertsMask_base_ARCH]
-Attachment=Visage de Poupee
-AttachmentSkin0=Doll Face
-AttachmentSkin1=Squares
-AttachmentSkin2=Harlequin
-AttachmentSkin3=Bloody
-AttachmentSkin4=Muerto
-AttachmentSkin5=Skelington
-AttachmentSkin6=Zed
+Attachment="Visage de Poupee"
+AttachmentSkin0="ドールフェイス"
+AttachmentSkin1="スクエア"
+AttachmentSkin2="ハーレクイン"
+AttachmentSkin3="ブラッディ"
+AttachmentSkin4="ムエルト"
+AttachmentSkin5="スケリントン"
+AttachmentSkin6="zed"
 
 [Cosmetic_ProtGlasses_masterson_ARCH]
-Attachment=Protective Glasses
-AttachmentSkin0=Orange
-AttachmentSkin1=Red
-AttachmentSkin2=Purple
-AttachmentSkin3=Green
-AttachmentSkin4=Blue
-AttachmentSkin5=Precious
+Attachment="保護メガネ"
+AttachmentSkin0="オレンジ"
+AttachmentSkin1="レッド"
+AttachmentSkin2="パープル"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="ブルー"
+AttachmentSkin5="プレシャス"
 
 [Cosmetic_SamuraiMask_ARCH]
-Attachment=Samurai Mask
-AttachmentSkin0=Bushi
-AttachmentSkin1=Green
-AttachmentSkin2=Red
-AttachmentSkin3=Precious
+Attachment="サムライマスク"
+AttachmentSkin0="ブシ"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="プレシャス"
 
 [Cosmetic_SamuraiHatOnly_ARCH]
-Attachment=Samurai Helm
-AttachmentSkin0=Bushi
+Attachment="サムライカブト"
+AttachmentSkin0="ブシ"
 
 [Cosmetic_Masterson_SPBandana_ARCH]
-Attachment=Street Punk Bandana
-AttachmentSkin0=Red
-AttachmentSkin1=Purple
-AttachmentSkin2=Black
-AttachmentSkin3=White
-AttachmentSkin4=Green
-AttachmentSkin5=Blue
-AttachmentSkin6=El Knifo
+Attachment="ストリートパンクのバンダナ"
+AttachmentSkin0="レッド"
+AttachmentSkin1="パープル"
+AttachmentSkin2="ブラック"
+AttachmentSkin3="ホワイト"
+AttachmentSkin4="グリーン"
+AttachmentSkin5="ブルー"
+AttachmentSkin6="El Knifo"
 
 [Cosmetic_Donovan_SPGlasses_ARCH]
-Attachment=Street Punk Glasses
-AttachmentSkin0=RedX
-AttachmentSkin1=PurpleX
-AttachmentSkin2=WhiteX
-AttachmentSkin3=GreenX
-AttachmentSkin4=BlueX
-AttachmentSkin5=Red
-AttachmentSkin6=Purple
-AttachmentSkin7=Black
-AttachmentSkin8=Green
-AttachmentSkin9=Blue
-AttachmentSkin10=Precious
-AttachmentSkin11=PreciousX
+Attachment="ストリートパンクのメガネ"
+AttachmentSkin0="レッドX"
+AttachmentSkin1="パープルX"
+AttachmentSkin2="ホワイトX"
+AttachmentSkin3="グリーンX"
+AttachmentSkin4="ブルーX"
+AttachmentSkin5="レッド"
+AttachmentSkin6="パープル"
+AttachmentSkin7="ブラック"
+AttachmentSkin8="グリーン"
+AttachmentSkin9="ブルー"
+AttachmentSkin10="プレシャス"
+AttachmentSkin11="プレシャスX"
 
 [Cosmetic_Discount-Rex_Alberts_D_Rex_Alberts_ARCH]
-Attachment=Discount T-Rex Mask
-AttachmentSkin0=Blue
-AttachmentSkin1=Green
-AttachmentSkin2=Red
-AttachmentSkin3=Precious
+Attachment="ディスカウントT-Rexマスク"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="プレシャス"
 
 [Cosmetic_WastelandAlberts_ARCH]
-Attachment=Wasteland Goggles
-AttachmentSkin0=Bone
-AttachmentSkin1=Coal
-AttachmentSkin2=Frost
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="荒地のゴーグル"
+AttachmentSkin0="ボーン"
+AttachmentSkin1="コール"
+AttachmentSkin2="フロスト"
+AttachmentSkin3="レッド"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_mkitband_Alberts_ARCH]
-Attachment=EMS Arm Band
-AttachmentSkin0=Blue
-AttachmentSkin1=Red
+Attachment="EMSアームバンド"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="レッド"
 
 [Cosmetic_M2Tank_Alberts_ARCH]
-Attachment=M2 Flamethrower Tank
-AttachmentSkin0=Olive Grey
+Attachment="M2火炎放射戦車"
+AttachmentSkin0="オリーブグレー"
 
 [Cosmetic_RPG7Bag_Alberts_ARCH]
-Attachment=RPG7 Backbag
-AttachmentSkin0=Sierra Camo
-AttachmentSkin1=Forest Camo
-AttachmentSkin2=Desert Camo
-AttachmentSkin3=Backwoods Camo
-AttachmentSkin4=Zebrastripe Camo
-AttachmentSkin5=Green Camo
-AttachmentSkin6=Black Camo
+Attachment="RPG7バックバッグ"
+AttachmentSkin0="山脈迷彩"
+AttachmentSkin1="森林迷彩"
+AttachmentSkin2="砂漠迷彩"
+AttachmentSkin3="僻地迷彩"
+AttachmentSkin4="ゼブラ柄迷彩"
+AttachmentSkin5="グリーン迷彩"
+AttachmentSkin6="ブラック迷彩"
 
 [Cosmetic_EnforcerGoggles_Alberts_ARCH]
-Attachment=Enforcer Goggles
-AttachmentSkin0=Black Coat
-AttachmentSkin1=Black Coat Blue
-AttachmentSkin2=Black Coat Red
-AttachmentSkin3=Black Coat Green
-AttachmentSkin4=Green Coat
-AttachmentSkin5=Blue Coat
-AttachmentSkin6=Red Coat
+Attachment="用心棒ゴーグル"
+AttachmentSkin0="黒塗り"
+AttachmentSkin1="黒塗りブルー"
+AttachmentSkin2="黒塗りレッド"
+AttachmentSkin3="黒塗りグリーン"
+AttachmentSkin4="緑塗り"
+AttachmentSkin5="青塗り"
+AttachmentSkin6="赤塗り"
 
 [Cosmetic_EnforcerHelmet_Alberts_ARCH]
-Attachment=Enforcer Helmet
-AttachmentSkin0=Black Coat
-AttachmentSkin1=Green Coat
-AttachmentSkin2=Blue Coat
-AttachmentSkin3=Red Coat
+Attachment="用心棒ヘルメット"
+AttachmentSkin0="黒塗り"
+AttachmentSkin1="緑塗り"
+AttachmentSkin2="青塗り"
+AttachmentSkin3="赤塗り"
 
 [Cosmetic_EnforcerMask_Alberts_ARCH]
-Attachment=Enforcer Mask
-AttachmentSkin0=Black Eyes
-AttachmentSkin1=Red Eyes
-AttachmentSkin2=Blue Eyes
-AttachmentSkin3=Green Eyes
-AttachmentSkin4=Green Filter
-AttachmentSkin5=Blue Filter
-AttachmentSkin6=Red Filter
+Attachment="用心棒マスク"
+AttachmentSkin0="黒い目"
+AttachmentSkin1="赤い目"
+AttachmentSkin2="青い目"
+AttachmentSkin3="緑の目"
+AttachmentSkin4="グリーンフィルター"
+AttachmentSkin5="ブルーフィルター"
+AttachmentSkin6="レッドフィルター"
 
 [Cosmetic_JusticeGoggles_Alberts_ARCH]
-Attachment=Justice Goggles
-AttachmentSkin0=Stealth Black
+Attachment="正義のゴーグル"
+AttachmentSkin0="ステルスブラック"
 
 [Cosmetic_JusticeHelmet_Alberts_ARCH]
-Attachment=Justice Helmet
-AttachmentSkin0=Stealth Black
-AttachmentSkin1=Tactical Green
-AttachmentSkin2=Savage Red
-AttachmentSkin3=Miami Blue
+Attachment="正義のヘルメット"
+AttachmentSkin0="ステルスブラック"
+AttachmentSkin1="タクティカルグリーン"
+AttachmentSkin2="サヴェッジレッド"
+AttachmentSkin3="マイアミブルー"
 
 [Cosmetic_JusticeMask_Alberts_ARCH]
-Attachment=Justice Mask
-AttachmentSkin0=Stealth Black
-AttachmentSkin1=Tactical Green
-AttachmentSkin2=Savage Red
-AttachmentSkin3=Miami Blue
-AttachmentSkin4=Blue Steel
-AttachmentSkin5=Blue Magnum
-AttachmentSkin6=Green Rally
-AttachmentSkin7=Green Synergy
-AttachmentSkin8=Red Face
-AttachmentSkin9=Red Cheeks
-AttachmentSkin10=Reaper Black
+Attachment="正義のマスク"
+AttachmentSkin0="ステルスブラック"
+AttachmentSkin1="タクティカルグリーン"
+AttachmentSkin2="サヴェッジレッド"
+AttachmentSkin3="マイアミブルー"
+AttachmentSkin4="ブルースチール"
+AttachmentSkin5="ブルーマグナム"
+AttachmentSkin6="グリーンラリー"
+AttachmentSkin7="グリーンシナジー"
+AttachmentSkin8="レッドフェイス"
+AttachmentSkin9="レッドチーク"
+AttachmentSkin10="リーパーブラック"
 
 [Cosmetic_TacticalBackbag_Alberts_Backpack_ARCH]
-Attachment=Tactical Backbag
-AttachmentSkin0=Black
-AttachmentSkin1=Forest Camo
-AttachmentSkin2=Backwoods Camo
-AttachmentSkin3=Desert Camo
-AttachmentSkin4=Sierra Camo
-AttachmentSkin5=Olive Camo
+Attachment="タクティカルバックバッグ"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="森林迷彩"
+AttachmentSkin2="僻地迷彩"
+AttachmentSkin3="砂漠迷彩"
+AttachmentSkin4="山脈迷彩"
+AttachmentSkin5="オリーブ迷彩"
 
 [Cosmetic_TacticalHat_Alberts_ARCH]
-Attachment=Tactical Hat
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Camo
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="タクティカルハット"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="迷彩"
+AttachmentSkin3="グレー"
+AttachmentSkin4="ネイビー"
+AttachmentSkin5="オリーブ"
+AttachmentSkin6="レッド"
 
 [Cosmetic_TacticalMask_Alberts_ARCH]
-Attachment=Tactical Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Camo
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="タクティカルマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="迷彩"
+AttachmentSkin3="グレー"
+AttachmentSkin4="ネイビー"
+AttachmentSkin5="オリーブ"
+AttachmentSkin6="レッド"
 
 [Cosmetic_TacticalHeadsetMK1_Alberts_ARCH]
-Attachment=Tactical Headset MK1
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Green
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="タクティカル・ヘッドセットMK1"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="グレー"
+AttachmentSkin4="ネイビー"
+AttachmentSkin5="オリーブ"
+AttachmentSkin6="レッド"
 
 [Cosmetic_TacticalHeadsetMK2_Alberts_ARCH]
-Attachment=Tactical Headset MK2
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Green
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="タクティカル・ヘッドセットMK2"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="グレー"
+AttachmentSkin4="ネイビー"
+AttachmentSkin5="オリーブ"
+AttachmentSkin6="レッド"
 
 [Cosmetic_VenomMask_Alberts_ARCH]
-Attachment=Venom Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="毒マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
 
 [Cosmetic_VenomMaskFiltered_Alberts_ARCH]
-Attachment=Venom Mask Filtered
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
-AttachmentSkin7=Precious
+Attachment="フィルター済み毒マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
+AttachmentSkin7="プレシャス"
 
 [Cosmetic_VenomGoggles_Alberts_ARCH]
-Attachment=Venom Goggles
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="毒ゴーグル"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
 
 [Cosmetic_VenomGogglesCoverUp_Alberts_ARCH]
-Attachment=Venom Goggles Up
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="毒ゴーグルアップ"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
 
 [Cosmetic_VenomGogglesCoverDown_Alberts_ARCH]
-Attachment=Venom Goggles Down
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
-AttachmentSkin7=Precious
+Attachment="毒ゴーグルダウン"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
+AttachmentSkin7="プレシャス"
 
 [Cosmetic_VenomHeadphones_Alberts_ARCH]
-Attachment=Venom Headphones
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="毒ヘッドホン"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
 
 [Cosmetic_RoboScully_ARCH]
-Attachment=Robo-Scully
-AttachmentSkin0=Clean Slate
-AttachmentSkin1=Oldschool Patty
-AttachmentSkin2=Sellout
-AttachmentSkin3=Still Scully
-AttachmentSkin4=True Neutral
-AttachmentSkin5=Precious
+Attachment="ロボ・スカリー"
+AttachmentSkin0="白紙"
+AttachmentSkin1="伝統的パーティー"
+AttachmentSkin2="裏切り者"
+AttachmentSkin3="それでもスカリー"
+AttachmentSkin4="真の中立"
+AttachmentSkin5="プレシャス"
 
 [Cosmetic_ZedDundee_ARCH]
-Attachment=ZED Dundee
-AttachmentSkin0=Brown
+Attachment="zedダンディー"
+AttachmentSkin0="ブラウン"
 
 [Cosmetic_RussianMilitaryHelmet_Alberts_ARCH]
-Attachment=Russian Military Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Olive
-AttachmentSkin4=Red
-AttachmentSkin5=White
-AttachmentSkin6=Precious
+Attachment="ロシア軍のヘルメット"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="オリーブ"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ホワイト"
+AttachmentSkin6="プレシャス"
 
 [Cosmetic_RussianMilitaryMask_Briar_ARCH]
-Attachment=Russian Military Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Olive
-AttachmentSkin4=Red
-AttachmentSkin5=White
-AttachmentSkin6=Precious
+Attachment="ロシア軍マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="オリーブ"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ホワイト"
+AttachmentSkin6="プレシャス"
 
 [Cosmetic_RussianMilitaryGlasses_Masterson_ARCH]
-Attachment=Russian Military Glasses
-AttachmentSkin0=Black
-AttachmentSkin1=Black Blue
-AttachmentSkin2=Black Green
-AttachmentSkin3=Black Orange
-AttachmentSkin4=White
-AttachmentSkin5=White Blue
-AttachmentSkin6=White Green
-AttachmentSkin7=White Orange
-AttachmentSkin8=Precious
+Attachment="ロシア軍メガネ"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラックブルー"
+AttachmentSkin2="ブラックグリーン"
+AttachmentSkin3="ブラックオレンジ"
+AttachmentSkin4="ホワイト"
+AttachmentSkin5="ホワイトブルー"
+AttachmentSkin6="ホワイトグリーン"
+AttachmentSkin7="ホワイトオレンジ"
+AttachmentSkin8="プレシャス"
 
 [Cosmetic_Tormentor_Headgear_Alberts_ARCH]
-Attachment=Tormentor Headgear
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="トーメンター・ヘッドギア"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_Tormentor_Mask_Alberts_ARCH]
-Attachment=Tormentor Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
+Attachment="トーメンター・マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
 
 [Cosmetic_Tormentor_Mask_Tubes_Alberts_ARCH]
-Attachment=Tormentor Tubes Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="トーメンター・チューブマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_GSG9Helmet_Alberts_ARCH]
-Attachment=GS9 Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Brown
-AttachmentSkin3=Camo1
-AttachmentSkin4=Camo2
-AttachmentSkin5=Navy
-AttachmentSkin6=Olive
-AttachmentSkin7=Red
+Attachment="GS9ヘルメット"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ブラウン"
+AttachmentSkin3="迷彩1"
+AttachmentSkin4="迷彩2"
+AttachmentSkin5="ネイビー"
+AttachmentSkin6="オリーブ"
+AttachmentSkin7="レッド"
 
 [Cosmetic_GSG9Mask_Alberts_ARCH]
-Attachment=GS9 Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Brown
-AttachmentSkin3=Camo
-AttachmentSkin4=Olive
-AttachmentSkin5=Red
-AttachmentSkin6=White
+Attachment="GS9マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ブラウン"
+AttachmentSkin3="迷彩"
+AttachmentSkin4="オリーブ"
+AttachmentSkin5="レッド"
+AttachmentSkin6="ホワイト"
 
 [Cosmetic_GraduationCap_ARCH]
-Attachment=Graduation Cap
-AttachmentSkin0=Black
+Attachment="卒業キャップ"
+AttachmentSkin0="ブラック"
+
+[Cosmetic_PsychoGoggles_ARCH]
+Attachment="サイコゴーグル"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラッディ"
+AttachmentSkin2="レッド"
+AttachmentSkin3="ホワイト"
+
+[Cosmetic_PsychoMaskClosed_ARCH]
+Attachment="サイコマスク(クローズド)"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラッディ"
+AttachmentSkin2="レッド"
+AttachmentSkin3="ホワイト"
+
+[Cosmetic_PsychoMaskOpen_ARCH]
+Attachment="サイコマスク(オープン)"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラッディ"
+AttachmentSkin2="レッド"
+AttachmentSkin3="ホワイト"
+
+[Cosmetic_PsychoMaskSmile_ARCH]
+Attachment="サイコマスク(スマイル)"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラッディ"
+AttachmentSkin2="レッド"
+AttachmentSkin3="ホワイト"
+
+[Cosmetic_PsychoPainGogglesClosed_ARCH]
+Attachment="サイコペインゴーグル(クローズド)"
+AttachmentSkin0="ラテックス"
+AttachmentSkin1="革"
+AttachmentSkin2="錆びた鉄"
+AttachmentSkin3="スチール"
+
+[Cosmetic_PsychoPainGogglesOpen_ARCH]
+Attachment="サイコペインゴーグル(オープン)"
+AttachmentSkin0="ラテックス"
+AttachmentSkin1="革"
+AttachmentSkin2="錆びた鉄"
+AttachmentSkin3="スチール"
+AttachmentSkin4="プレシャス"
+
+[Cosmetic_PsychoPainMaskClosed_ARCH]
+Attachment="サイコペインマスク(クローズド)"
+AttachmentSkin0="ラテックス"
+AttachmentSkin1="革"
+AttachmentSkin2="錆びた鉄"
+AttachmentSkin3="スチール"
+
+[Cosmetic_PsychoPainMaskOpen_ARCH]
+Attachment="サイコペインマスク(オープン)"
+AttachmentSkin0="ラテックス"
+AttachmentSkin1="革"
+AttachmentSkin2="錆びた鉄"
+AttachmentSkin3="スチール"
+
+[Cosmetic_PsychoPainMaskSmile_ARCH]
+Attachment="サイコペインマスク(スマイル)"
+AttachmentSkin0="ラテックス"
+AttachmentSkin1="革"
+AttachmentSkin2="錆びた鉄"
+AttachmentSkin3="スチール"
+AttachmentSkin4="プレシャス"
+
+[Cosmetic_BoxKnightHelmet_ARCH]
+Attachment="ダンボールの騎士ヘルメット"
+AttachmentSkin0="クラシック"
+AttachmentSkin1="BareSo"
+AttachmentSkin2="Bio Cola"
+AttachmentSkin3="ホージンデポ"
+AttachmentSkin4="トリップワイヤー"
+AttachmentSkin5="ZedEx"
+
+[Cosmetic_ReaperEyes_ARCH]
+Attachment="リーパーアイズ"
+AttachmentSkin0="ブラッディ"
+
+[Cosmetic_ReaperHat_ARCH]
+Attachment="リーパーハット"
+AttachmentSkin0="ブラック"
+
+[Cosmetic_ReaperJaw_ARCH]
+Attachment="リーパージョー"
+AttachmentSkin0="ブラッディ"
+
+[Cosmetic_ReaperRavenEyes_ARCH]
+Attachment="リーパーレイブンアイズ"
+AttachmentSkin0="レッドバンド"
+AttachmentSkin1="ホワイトバンド"
+
+[Cosmetic_ReaperRavenHat_ARCH]
+Attachment="リーパーレイブンハット"
+AttachmentSkin0="ホワイト"
+
+[Cosmetic_ReaperRavenJaw_ARCH]
+Attachment="リーパーレイブンジョー"
+AttachmentSkin0="レッドバンド"
+AttachmentSkin1="ホワイトバンド"
+
+[Cosmetic_ReaperDeadEyes_ARCH]
+Attachment="リーパーデッドアイズ"
+AttachmentSkin0="ブラッディ"
+AttachmentSkin1="レッド"
+
+[Cosmetic_ReaperDeadHood_ARCH]
+Attachment="リーパーデッドフード"
+AttachmentSkin0="ブラッディ"
+
+[Cosmetic_ReaperDeadMask_ARCH]
+Attachment="リーパーデッドマスク"
+AttachmentSkin0="ブラッディ"
+
+[Cosmetic_ReaperFaceArmor_ARCH]
+Attachment="リーパーフェイスアーマー"
+AttachmentSkin0="スカル"
+
+[Cosmetic_HorzineSecurityHelmet_ARCH]
+Attachment="ホージンセキュリティヘルメット"
+AttachmentSkin0="Mark 7"
+AttachmentSkin1="スノーデジカメ"
+AttachmentSkin2="エリートブルー"
+AttachmentSkin3="エリートグリーン"
 
 [Cosmetic_Chivalry_Knight_Helm01_ARCH]
-Attachment=騎士の兜
-AttachmentSkin0=アガサ
-AttachmentSkin1=クリーズ
-AttachmentSkin2=パーシヴァル
-AttachmentSkin3=ジェイミー
+Attachment="騎士のヘルム"
+AttachmentSkin0="アガサ"
+AttachmentSkin1="クリース"
+AttachmentSkin2="パーシヴァル"
+AttachmentSkin3="ジェイミー"
 
 [CHR_Masterson_archetype]
-CharacterName=ビル・マスターソン中尉
-Description=ビル・マスターソンは軍人として波乱の生涯を送った。 女王と国を脅かす大胆かつ凶悪な敵に対抗する英雄的な兵士となりたかったが、待ち構えていたのは多くの薄汚いテロリストだった。実戦を望んでも、スラム街で部下に一連の退屈な治安維持活動を指示するだけだった。そして彼は除隊した。2つ3つ役に立たない仕事に就いた後、アポカリプス後のロンドンの通りで目を覚ました。その時マスターソンは英雄的な兵士になるため、地元の予備兵舎へと向かい、武装し実戦を開始した。想像通りでも演習通りでもない戦争となってしまったが、彼は全力を尽くして戦う。
-BodyMesh0=戦闘服
-HeadMesh0=顔
+CharacterName="ビル・マスターソン中尉"
+Description="ビル・マスターソンの陸軍での経歴は波乱に富んでいた。大胆で邪悪なクイーン・アンド・カントリーの敵に対する英雄的な兵役を望んだが、汚いテロリストばかりだった。武力戦争を望んだが、世界中の酷い場所での馬鹿げた「治安維持活動」で部下を率いるばかりだった。だから辞めた。いくつかのつまらない仕事の後、ある朝目覚めると、ロンドンの街中で黙示録が始まっていた。望んでいた英雄的兵士となったマスターソンは、地域の予備軍兵舎に行き、装備し、自分自身の武力戦争を始めた。この戦争は想定していたものでもなく、そのための訓練はしていなかったが、十分だった。むしろ彼の得意分野だ！"
+BodyMesh0="戦闘衣装"
+BodyMesh1="ダンボールの騎士"
+BodyMesh2="ホージンセキュリティ"
+HeadMesh0="顔"
 
 [CHR_Masterson_archetype.HeadMesh0]
-HeadSkin0=クリーン
-HeadSkin1=カモフラ
+HeadSkin0="クリーン"
+HeadSkin1="迷彩"
 
 [CHR_Masterson_archetype.BodyMesh0]
-BodySkin0=グリーン
-BodySkin1=ブラック
-BodySkin2=スノー
-BodySkin3=迷彩
+BodySkin0="グリーン"
+BodySkin1="ブラック"
+BodySkin2="スノー"
+BodySkin3="DPM"
+
+[CHR_Masterson_archetype.BodyMesh1]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[CHR_Masterson_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [CHR_Tanaka_Archetype]
-CharacterName=ハヤト・タナカ
-Description=タナカは死への願望と葛藤を抱えた男だ。沖縄で生まれアメリカ人兵士を見て育ち、家族とともに本州へと引っ越した。アメリカンな考えに浸っていたタナカは周囲に馴染めず劇団員となり、大学卒業後、ヨーロッパで更なる\大きな\"仕事を見つけ出そうとする前に、ロサンゼルスへと渡米しB級映画に出演する。フランスのギャング映画では悪役を演じ刺青を彫った。アポカリプスとなった今、彼は武士道を身につけ、ヤクザ・鬼・ハリウッドを連想させる映画の中で演じた役と現実の状況が区別出来ていないようだ。"
-BodyMesh0=死に装束
-BodyMesh1=Motorcycle
-HeadMesh0=髪
+CharacterName="ハヤト・タナカ"
+Description="タナカは、強い希死念慮を抱えた、葛藤する一人の人間だ。沖縄で生まれ、軍隊のアメリカ人が周りにいる中、育てられた。家族と共に本州に引っ越し、アメリカナイズされたタナカは周囲に馴染めず、演技のクラスに参加した。大学卒業後LAに引っ越し、いくつかの三流映画でありふれた端役をやり、その後ヨーロッパに渡ってもっと「本物の」仕事を探した。そこで得たものは、フランスのギャングスター映画での悪役と、いくつかの刺青だけだった。今、黙示録の最中において、自身の現実と、過去に演じた役とを混同しているようだ。これには、ヤクザに関する幻、悪魔、そしてハリウッドによる武士道についての見解が関わっているようだ。"
+BodyMesh0="かっこ良く死ぬ"
+BodyMesh1="バイク"
+BodyMesh2="ダンボールの騎士"
+BodyMesh3="ホージンセキュリティ"
+HeadMesh0="髪"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
-HeadSkin0=ブラック
-HeadSkin1=ブロンド
+HeadSkin0="ブラック"
+HeadSkin1="ブロンド"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
-BodySkin0=高級品
-BodySkin1=カキハラさん
-BodySkin2=黒
-BodySkin3=青龍
+BodySkin0="しかも上品"
+BodySkin1="カキハラさん"
+BodySkin2="インブラック"
+BodySkin3="ブルードラゴン"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
-BodySkin0=Red and Black
-BodySkin1=Mastodon
-BodySkin2=Stig
-BodySkin3=Blue Blur
-BodySkin4=Dragon
-BodySkin5=Death Game
-BodySkin6=Crane
+BodySkin0="レッド&ブラック"
+BodySkin1="マストドン"
+BodySkin2="スティーグ"
+BodySkin3="ブルーブラー"
+BodySkin4="ドラゴン"
+BodySkin5="デスゲーム"
+BodySkin6="ツル"
+
+[CHR_Tanaka_Archetype.BodyMesh2]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[CHR_Tanaka_Archetype.BodyMesh3]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
-Attachment=Helmet
-AttachmentSkin0=Rising Sun
-AttachmentSkin1=America
-AttachmentSkin2=Black
-AttachmentSkin3=Blue Blur
-AttachmentSkin4=Cheif Green
-AttachmentSkin5=Doom Grey
-AttachmentSkin6=Death Game
-AttachmentSkin7=White
+Attachment="ヘルメット"
+AttachmentSkin0="ライジングサン"
+AttachmentSkin1="アメリカ"
+AttachmentSkin2="ブラック"
+AttachmentSkin3="ブルーブラー"
+AttachmentSkin4="チーフグリーン"
+AttachmentSkin5="ドゥームグレー"
+AttachmentSkin6="デスゲーム"
+AttachmentSkin7="ホワイト"
 
 [Cosmetic_Mempo_Tanaka_ARCH]
-Attachment=Mempo
-AttachmentSkin0=Standard
-AttachmentSkin1=Purple
-AttachmentSkin2=Red
-AttachmentSkin3=Yellow
+Attachment="面鎧"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="パープル"
+AttachmentSkin2="レッド"
+AttachmentSkin3="イエロー"
 
 [Cosmetic_Rockabilly_Wig_ARCH]
-Attachment=Rockabilly Wig
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Gold
-AttachmentSkin3=Red
-AttachmentSkin4=Teal
-AttachmentSkin5=Pink
+Attachment="ロカビリーウィッグ"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="ゴールド"
+AttachmentSkin3="レッド"
+AttachmentSkin4="ティール"
+AttachmentSkin5="ピンク"
 
 [CHR_Ana_Archetype]
-CharacterName=アナ・ラリーヴ
-Description=アナは社会に不満を抱く若者と世間からは思われそうだが、廃墟の撮影とデスメタルバンドの追っかけの為にヨーロッパを旅することに情熱を注いでいる以外、何に対しても興味がないだけだ。社会が無くなってしまった今、アナが気にするものはない。ツアー中のバンドがいなくなった今も、廃墟となった場所を増えている。彼女はその廃墟となった場所に侵入し、更に荒れ果てさせる今の仕事にやりがいを感じている。彼女は新たな情熱を注げるものを見つけたのだ - 芸術は爆発だ！
-BodyMesh0=メタルコア
-HeadMesh0=モヒカン
+CharacterName="アナ ラリヴ"
+Description="彼女は恐らく、権力層からは「不満を抱く若者」のグループに割り当てられるだろうが、ヨーロッパを旅行すること、廃墟の写真を撮ること、そしてデスメタルバンドのこと以外、興味も関心もなかった。そして「権力層」がほとんど残されていない今、アナはさらに関心を失っている。ツアー中のバンドは目に見えて減ったものの、廃墟の数はこれまで以上に増えた。そして現在の仕事で好きなところは、そういった場所に入ってさらに廃墟らしく見せることができることだ。ほら、新たな情熱を見つけたのだ。いろいろ爆破すること！"
+BodyMesh0="メタルコア"
+BodyMesh1="ホージンセキュリティ"
+BodyMesh2="ダンボールの騎士"
+HeadMesh0="モヒカン"
 
 [CHR_Ana_Archetype.HeadMesh0]
-HeadSkin0=デスレイン
-HeadSkin1=ブライトブラッド
-HeadSkin2=バイオコーラグリーン
-HeadSkin3=プリティブルー
+HeadSkin0="デスレイン"
+HeadSkin1="ブライトブラッド"
+HeadSkin2="Bio-Colaグリーン"
+HeadSkin3="プリティブルー"
 
 [CHR_Ana_Archetype.BodyMesh0]
-BodySkin0=デスレイン
-BodySkin1=ブライトブラッド
-BodySkin2=バイオコーラグリーン
-BodySkin3=プリティブルー
-BodySkin4=敬愛なるチキネーター
+BodySkin0="デスレイン"
+BodySkin1="ブライトブラッド"
+BodySkin2="Bio-Colaグリーン"
+BodySkin3="プリティブルー"
+BodySkin4="チキンネーターへのオマージュ"
+
+[CHR_Ana_Archetype.BodyMesh1]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
+
+[CHR_Ana_Archetype.BodyMesh2]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
 
 [Cosmetic_3dGlasses_ARCH]
-Attachment=3Dメガネ
-AttachmentSkin0=アナグリフ3D
-AttachmentSkin1=パッシブシャッター
-AttachmentSkin2=トリオスコピック3D
-AttachmentSkin3=透視メガネ
+Attachment="3Dメガネ"
+AttachmentSkin0="アナグリフ3D"
+AttachmentSkin1="パッシブシャッター"
+AttachmentSkin2="トリオスコピック3D"
+AttachmentSkin3="透視メガネ"
 
 [Cosmetic_mkitbag_Masterson_ARCH]
-Attachment=EMS Backpack
-AttachmentSkin0=Blue
-AttachmentSkin1=Red
+Attachment="EMSバックパック"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="レッド"
 
 [chr_mark_archetype]
-CharacterName=クラシック・ブライアー
-Description=ある日のこと、ブライアーはロンドンで暴動鎮圧のために召集された。だが、今度の相手は警棒で言うことを聞かせていた環境保護主義者や原始人のような無政府主義者といった単なるヒッピーの類ではなかった。幸運にも、英国を離れ他国に移る前のこれからの数か月、彼は理不尽な暴力を切り抜けるのに適した人間だ。\n\n今、彼は不良少年の首を捕まえるような古典的な警察官の型を破り、人食いミュータントモンスター共の群れを撃って、燃やして、粉々に吹き飛ばしている。彼の楽天的なロンドン警官としての性格はチームの士気を保つのに役立つかもしれない。いや、ウザいかもしれない。
-BodyMesh0=機動隊戦闘服
-BodyMesh1=London
-HeadMesh0=髪
+CharacterName="クラシック・ブライアー"
+Description="昔々あるところで、ロンドンで起きた暴動に対処するように呼びだされた。だが今回は、いつものヒッピーや環境保護主義者、髪の長いアナキストの行進がブライアーの警棒を食らうわけではなかった。幸運にも、余計な暴力との親和性おかげで次の数か月を乗り切ることができ、その後英国を見捨てて海外の戦場に移った。\n\n今、彼は昔ながらの警察手法を、逸脱した10代の頭の上部を狩ることを超え、発砲、燃焼、粉々に爆発して人食の突然変異のバケモノを制御することまで差し伸べることができる。そして彼の楽天的な、ロンドン・ボビーの人格が、チームの士気を保つために一役買っている。あるいは完全に苛立たせるか、だ。"
+BodyMesh0="暴動鎮圧用装備"
+BodyMesh1="ロンドン"
+BodyMesh2="ダンボールの騎士"
+BodyMesh3="ホージンセキュリティ"
+HeadMesh0="髪"
 
 [chr_mark_archetype.BodyMesh0]
-BodySkin0=ポリスブルー
-BodySkin1=ナイトブラック
-BodySkin2=アーミーグリーン
-BodySkin3=SASカモフラ
+BodySkin0="ポリスブルー"
+BodySkin1="ナイトブラック"
+BodySkin2="アーミーグリーン"
+BodySkin3="SAS迷彩"
 
 [chr_mark_archetype.BodyMesh1]
-BodySkin0=Metro
-BodySkin1=ナイトブラック
-BodySkin2=Blue
-BodySkin3=Reflective
-BodySkin4=Reflective Black
+BodySkin0="メトロ"
+BodySkin1="ナイトブラック"
+BodySkin2="ブルー"
+BodySkin3="反射"
+BodySkin4="反射ブラック"
+
+[chr_mark_archetype.BodyMesh2]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[chr_mark_archetype.BodyMesh3]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [chr_mark_archetype.HeadMesh0]
-HeadSkin0=本人
-HeadSkin1=5時の血染め
-HeadSkin2=だんな、いい茶色だな？
-HeadSkin3=スウェーデンブロンド
+HeadSkin0="ホンモノ"
+HeadSkin1="クソ5時"
+HeadSkin2="ナイスなブラウン？"
+HeadSkin3="スウェーデンのブロンド"
 
 [chr_alan_archetype]
-CharacterName=クラシック・マスターソン
-Description=マスターソンがどうやって階級を昇格してきたか知るものはいないが、金持ちでハンサムのいとこのリチャード・ウィギンズ卿隊長のおかげか、それとも賢い兄弟のおかげかと噂するものはいた。しかし、戦場ではぶっきらぼうだが根は親切で、口数が少なく(礼儀正しく)異様に落ち着きのある男として、いつも有名だった。多くの人はこれは彼が想像力、感情陥入、知性が欠落しているからと思っている。幸運にも、彼は部下に的確な指示を出し、いつも仕事をやり遂げる。その仕事が良識あるまともな人間なら良い顔をしない仕事でもだ。
-BodyMesh0=機動隊戦闘服
-HeadMesh0=顔
+CharacterName="クラシック・マスターソン"
+Description="このマスターソンとやらが、そもそもなぜこれほど昇級したのか誰にも分からなかったが、彼のより裕福でよりハンサムないとこ、サー・リチャード・ウィギンス大尉の影響があったのではないかと言う者もいる。あるいはより利口な兄だったも知れない。だが、いつも言われるように、彼はダイアモンドの原石であり、(丁重な)言葉少なで、戦闘状態で異常なほど冷静な男だった。ほぼ全員が、これは彼の想像力、共感能力、そして知性の欠落によるものだと考えた。幸運にも、彼は部下を決定的に指揮し、常に成果を収めた。その任務が例え、悪趣味ではない者や品行方正な者にとってどれだけ受け入れられないものであっても。"
+BodyMesh0="暴動鎮圧用装備"
+BodyMesh1="ダンボールの騎士"
+BodyMesh2="ホージンセキュリティ"
+HeadMesh0="顔"
 
 [CHR_alan_archetype.BodyMesh0]
-BodySkin0=グリーン
-BodySkin1=ブラック
-BodySkin2=スノー
-BodySkin3=迷彩
+BodySkin0="グリーン"
+BodySkin1="ブラック"
+BodySkin2="スノー"
+BodySkin3="DPM"
+
+[CHR_alan_archetype.BodyMesh1]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[CHR_alan_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [chr_alan_archetype.HeadMesh0]
-HeadSkin0=本人
-HeadSkin1=赤毛だ！ホント？
-HeadSkin2=大変だな、相棒？
-HeadSkin3=カモフラージュ！
+HeadSkin0="ホンモノ"
+HeadSkin1="ジンジャー！本当に？"
+HeadSkin2="大変な1日だった？"
+HeadSkin3="迷彩に身を包め！"
 
 [Cosmetic_Coleman01_ARCH]
-Attachment=RQキャップ
-AttachmentSkin0=メローイエロー
-AttachmentSkin1=ラスティックレッド
-AttachmentSkin2=トゥルーブルー
-AttachmentSkin3=リーングリーン
+Attachment="RQキャップ"
+AttachmentSkin0="メローイエロー"
+AttachmentSkin1="ラスティックレッド"
+AttachmentSkin2="トゥルーブルー"
+AttachmentSkin3="リーングリーン"
 
 [chr_strasser_archetype]
-CharacterName=アントン・シュトラッサー
-Description=シュトラッサーはドイツ軍兵士として人生初の戦争で1939年ポーランドを侵略し、1940年にフランス占領、1941年にはロシアに侵攻していった。しかし、冬将軍とソ連軍を相手にした命がけの戦いで彼は凍え死にそうになる。1942年、スターリングラードへと侵攻したが、勝利は幻へと終わった。ヴォルゴグラード国際空港で彼は頭を強く打ち、昏睡状態のまま、冬眠テストの素晴らしい被験者として彼は秘密裏にハンス・ヴォルターの待ち構える研究所へと連れ去られた。アウトブレイクが偶然にも発生するまで、そこで人口冬眠されたまま忘れ去られていた。ヴォルターを殺す機会も一度はあったものの、混乱していた彼にはそれができなかった。冬眠していた間に何があったか知ったとき、彼はひどく落胆したのだ。
-BodyMesh0=RO2: Hero of Stalingrad
-HeadMesh0=髪
+CharacterName="アントン・シュトラッサー"
+Description="シュトラッサーは1939年にドイツ軍の兵士としてポーランド侵攻の際に初陣を飾り、1940年にフランスを踏み荒らし、1941年にはロシアに突撃した。だがそれは彼を凍死寸前まで追い込み、冬将軍と赤軍両方に対して、命を賭けて戦わなければならなかった。1942年にスターリングラード攻防戦が発生し、勝利は終わり、幻滅が始まった。グムラク飛行場で激しい脳震とうを受けたが、幸運だった。ハンス・ヴォルターという男が待ち受ける中、昏睡状態で移送され、極低温試験の素晴らしい被験者として密かにヴォルターの研究室に連れ去られた。彼はそこに、アウトブレイクによって誤って解放されるまで、凍らされて忘れ去られたまま残された。混乱した彼は、ヴォルターを殺すわずかな機会を逸し、何が起こっているか分かった時にはそれを後悔した。"
+BodyMesh0="RO2:Hero of Stalingrad"
+BodyMesh1="ダンボールの騎士"
+BodyMesh2="ホージンセキュリティ"
+HeadMesh0="髪"
 
 [CHR_strasser_archetype.BodyMesh0]
-BodySkin0=新兵
-BodySkin1=百戦錬磨
+BodySkin0="未熟な新兵"
+BodySkin1="百戦錬磨"
+
+[CHR_strasser_archetype.BodyMesh1]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
+
+[CHR_strasser_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
 
 [chr_strasser_archetype.HeadMesh0]
-HeadSkin0=ダークスティール
-HeadSkin1=ブロンドスティール
+HeadSkin0="ダークスチール"
+HeadSkin1="ブロンドスチール"
 
 [Cosmetic_Strasser_02_ARCH]
-Attachment=ドイツ軍ヘルメット
-AttachmentSkin0=伝統品
-AttachmentSkin1=使い古し
+Attachment="ドイツ軍スチールヘルメット"
+AttachmentSkin0="クラシックスチール"
+AttachmentSkin1="古いスチール"
 
 [Cosmetic_GermanOfficerHat_Strasser_ARCH]
-Attachment=German Officer's Hat
-AttachmentSkin0=Blue
-AttachmentSkin1=Green
+Attachment="ドイツ軍士官の帽子"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
 
 [Cosmetic_Tanaka_Mask01_ARCH]
-Attachment=フェイスマスク
-AttachmentSkin0=金の龍
-AttachmentSkin1=カキハラさん
-AttachmentSkin2=般若
-AttachmentSkin3=トゥルーブルー
+Attachment="フェイスマスク"
+AttachmentSkin0="ゴールドドラゴン"
+AttachmentSkin1="カキハラさん"
+AttachmentSkin2="ハンニャ"
+AttachmentSkin3="トゥルーブルー"
 
 [chr_knight_archetype]
-CharacterName=トム・バナー
-Description=トム・バナーは子供の時から、中世のヒロイズムに憧れていた。カナダで生まれ、ボストンで育ち、イングランドへと引っ越し経営コンサルタントとしてのキャリアを十分積んだ彼は、この強迫性概念のような夢を実現させた。自分自身で甲冑を作り上げ、古き良きイングランド時代に生きる新しい自分を演じたのだ。正気とも思えない夢を実行に移させたのは、ゲーム「Chivalry」の発売と同じ頃だった。アウトブレイク発生時、彼は急いで甲冑を着こなし、モンスター共からお姫様を救出するために出陣したのだ。いや、マジで。彼が甲冑を脱ぐのを拒むのは、彼は完全に中世時代に生きているという証なのだ。でも、どうでもいいでしょ？
-BodyMesh0=甲冑
-HeadMesh0=頭
+CharacterName="トム・バナー"
+Description="トム・バナーは、子どもの頃から、中世の英雄について妄想していた。経営コンサルタントとしてのそれなりに安定したキャリアによって、故郷のカナダからボストンへ、そしてイギリスへ引っ越し、この妄想は膨らんでいった。彼はすでに自身の甲冑を作成し、「陽気な古き良きイギリス」の再現者としての新たな人格を纏った。この動きは'Chivalry'のリリースと一致したため、再現者としては絶対に安全ではない程度まで、ファンタジーを演じることができた。アウトブレイクが発生した時、トムは甲冑を身にまとい、バケモノから淑女を救うために出発した。本当に。甲冑を脱ぐことを拒むことで、この中世ごっこを少しやり過ぎてるんじゃないかという懸念に繋がった。でもそんなことどうでも良いだろ？"
+BodyMesh0="甲冑"
+HeadMesh0="頭部"
 
 [CHR_knight_archetype.BodyMesh0]
-BodySkin0=アガサ
-BodySkin1=クリーズ
-BodySkin2=パーシヴァル
-BodySkin3=ジェイミー
+BodySkin0="アガサ"
+BodySkin1="クリース"
+BodySkin2="パーシヴァル"
+BodySkin3="ジェイミー"
+
+[CHR_knight_archetype.BodyMesh1]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
 
 [chr_knight_archetype.HeadMesh0]
-HeadSkin0=戦だ！
-HeadSkin1=自由のために！
-HeadSkin2=戦争へ！
-HeadSkin3=ヴァルハラ！
+HeadSkin0="戦闘へ！"
+HeadSkin1="自由を！"
+HeadSkin2="戦争へ！"
+HeadSkin3="ヴァルハラ！"
 
 [Cosmetic_Chivalry_Knight_Helm02HP_ARCH]
-Attachment=騎手の兜
-AttachmentSkin0=アガサ
-AttachmentSkin1=クリーズ
-AttachmentSkin2=パーシヴァル
-AttachmentSkin3=ジェイミー
+Attachment="騎兵の兜"
+AttachmentSkin0="アガサ"
+AttachmentSkin1="クリース"
+AttachmentSkin2="パーシヴァル"
+AttachmentSkin3="ジェイミー"
 
 [Cosmetic_Chivalry_Knight_Helm03Veteran_ARCH]
-Attachment=熟練者の兜
-AttachmentSkin0=アガサ
-AttachmentSkin1=クリーズ
-AttachmentSkin2=パーシヴァル
-AttachmentSkin3=ジェイミー
+Attachment="古参兵の兜"
+AttachmentSkin0="アガサ"
+AttachmentSkin1="クリース"
+AttachmentSkin2="パーシヴァル"
+AttachmentSkin3="ジェイミー"
 
 [Cosmetic_Briar_01_ARCH]
-Attachment=使い古しの機動隊兜
-AttachmentSkin0=キングリーレッド
-AttachmentSkin1=ナイトリーブルー
-AttachmentSkin2=ロードリーグリーン
-AttachmentSkin3=ブラックナイト
+Attachment="オールド・ライオット兜"
+AttachmentSkin0="キングリーレッド"
+AttachmentSkin1="ナイトリーブルー"
+AttachmentSkin2="ロードリーグリーン"
+AttachmentSkin3="ブラックナイト"
 
 [Cosmetic_Tanaka03'_ARCH]
-Attachment=眼鏡
-AttachmentSkin0=サングラス
-AttachmentSkin1=普通のメガネ
+Attachment="眼鏡"
+AttachmentSkin0="日光を遮る"
+AttachmentSkin1="視界良好"
 
 [Cosmetic_TacticalHat_ClassicMasterson_ARCH]
-Attachment=Tactical Hat
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Camo
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="タクティカルハット"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="迷彩"
+AttachmentSkin3="グレー"
+AttachmentSkin4="ネイビー"
+AttachmentSkin5="オリーブ"
+AttachmentSkin6="レッド"
 
 [Cosmetic_TacticalMask_ClassicMasterson_ARCH]
-Attachment=Tactical Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Camo
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="タクティカルマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="迷彩"
+AttachmentSkin3="グレー"
+AttachmentSkin4="ネイビー"
+AttachmentSkin5="オリーブ"
+AttachmentSkin6="レッド"
 
 [Cosmetic_TacticalHeadsetMK1_ClassicMasterson_ARCH]
-Attachment=Tactical Headset MK1
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Green
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="タクティカル・ヘッドセットMK1"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="グレー"
+AttachmentSkin4="ネイビー"
+AttachmentSkin5="オリーブ"
+AttachmentSkin6="レッド"
 
 [Cosmetic_TacticalHeadsetMK2_ClassicMasterson_ARCH]
-Attachment=Tactical Headset MK2
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Green
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="タクティカル・ヘッドセットMK2"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="グレー"
+AttachmentSkin4="ネイビー"
+AttachmentSkin5="オリーブ"
+AttachmentSkin6="レッド"
 
 [Cosmetic_RussianMilitaryMask_Knight_ARCH]
-Attachment=Russian Military Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Olive
-AttachmentSkin4=Red
-AttachmentSkin5=White
-AttachmentSkin6=Precious
+Attachment="ロシア軍マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="オリーブ"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ホワイト"
+AttachmentSkin6="プレシャス"
 
 [Cosmetic_Tormentor_Mask_ClassicMasterson_ARCH]
-Attachment=Tormentor Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
+Attachment="トーメンター・マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
 
 [Cosmetic_Tormentor_Mask_Tubes_ClassicMasterson_ARCH]
-Attachment=Tormentor Tubes Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="トーメンター・チューブマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_Briar_01_1_ARCH]
-Attachment=機動隊ヘルメット
-AttachmentSkin0=ビジブルレッド
-AttachmentSkin1=ポリスブルー
-AttachmentSkin2=アーミーグリーン
-AttachmentSkin3=ナイトブラック
+Attachment="暴動鎮圧用ヘルメット"
+AttachmentSkin0="ヴィジブルレッド"
+AttachmentSkin1="ポリスブルー"
+AttachmentSkin2="アーミーグリーン"
+AttachmentSkin3="ナイトブラック"
 
 [chr_rockabilly_archetype]
-CharacterName=Rae Higgins
-Description=Rae Higgins is an Australian import into Europe. Born in Melbourne, grew up in Darwin and then took time out to explore the world, before settling down to work in London. Quiet, mild-mannered data analyst by day, Rae lights up the night in her true Rockabilly form. The low-key, long-sleeved clothes concealing her tats from boring, conservative middle-managers. Makeup and hair for an inane office environment. Until the weekend, when all gray is banned and Rae's world explodes in music, fun and loud primary colors. \n\nPerhaps fortunately for Rae, she was at the High Rockabilly Festival in Calafell, Spain when the original outbreak kicked off, so she missed out as her dull, boring co-workers were chewed to pieces. And now she doesn't have to hide her light. Rock my world, Zeds!
-BodyMesh0=Default Dress
-HeadMesh0=Default Head
+CharacterName="レイ・ヒギンス"
+Description="レイ・ヒギンスはオーストラリアからヨーロッパへの移住者だ。メルボルン生まれのレイはダーウィンで育ち、それから休みを取って世界を探検し、仕事でロンドンに落ち着いた。日中は物静かで穏やかなデータアナリストとして働く彼女だが、夜になるとロカビリーで真の姿を現す。退屈で保守的な中間管理職に腕のタトゥーが見つからないように地味な長袖の服を着用し、くだらないオフィス環境に合わせてメイクと髪も控えめだ。だが、週末になると彼女の世界は変わる。憂鬱なことはすべて忘れ、音楽、楽しいこと、明るくてカラフルな世界が溢れる。\n\nおそらく幸運と呼ぶべき出来事なのだが、最初のアウトブレイクが始まった時、レイはスペインのカラフェルで開催された「ハイ・ロカビリー・フェス」に参加していた。そのため、冴えない退屈な同僚たちが噛み千切られバラバラになる中、彼女は難を逃れたのだった。これからは、自身の明かりを隠す必要はない。zedどもよ、私の世界を震わせろ！"
+BodyMesh0="デフォルトドレス"
+BodyMesh1="ホージンセキュリティ"
+BodyMesh2="ダンボールの騎士"
+HeadMesh0="デフォルト頭部"
 
 [chr_rockabilly_archetype.BodyMesh0]
-BodySkin0=Rose Red
-BodySkin1=Check Mate
-BodySkin2=Charismatic
-BodySkin3=Force of Nature
-BodySkin4=Red Stripe
-BodySkin5=Sailor
+BodySkin0="ローズレッド"
+BodySkin1="チェックメイト"
+BodySkin2="カリズマティック"
+BodySkin3="自然の猛威"
+BodySkin4="レッドストライプ"
+BodySkin5="セーラー"
+
+[chr_rockabilly_archetype.BodyMesh1]
+BodySkin0="Mark 7"
+BodySkin1="スノーデジカメ"
+BodySkin2="エリートブルー"
+BodySkin3="エリートグリーン"
+
+[chr_rockabilly_archetype.BodyMesh2]
+BodySkin0="クラシック"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="トリップワイヤー"
+BodySkin5="ZedEx"
 
 [chr_rockabilly_archetype.HeadMesh0]
-HeadSkin0=Black
-HeadSkin1=Brunette
-HeadSkin2=Ginger
-HeadSkin3=Gold
-HeadSkin4=Teal
-HeadSkin5=Pink
+HeadSkin0="ブラック"
+HeadSkin1="ダークブラウン"
+HeadSkin2="ジンジャー"
+HeadSkin3="ゴールド"
+HeadSkin4="ティール"
+HeadSkin5="ピンク"
 
 [Cosmetic_EyePatch_Ana_ARCH]
-Attachment=Eye Patch
-AttachmentSkin0=Standard
-AttachmentSkin1=Asian
-AttachmentSkin2=Bio
-AttachmentSkin3=Blue
-AttachmentSkin4=Camo
-AttachmentSkin5=Dosh
-AttachmentSkin6=Eye
-AttachmentSkin7=Fancy
-AttachmentSkin8=Flame
-AttachmentSkin9=Plaid
-AttachmentSkin10=Purple
-AttachmentSkin11=Skull
-AttachmentSkin12=Splatter
-AttachmentSkin13=Tie Dye
+Attachment="眼帯"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="アジアン"
+AttachmentSkin2="バイオ"
+AttachmentSkin3="ブルー"
+AttachmentSkin4="迷彩"
+AttachmentSkin5="dosh"
+AttachmentSkin6="目"
+AttachmentSkin7="ファンシー"
+AttachmentSkin8="火炎"
+AttachmentSkin9="格子柄"
+AttachmentSkin10="パープル"
+AttachmentSkin11="スカル"
+AttachmentSkin12="スプラッター"
+AttachmentSkin13="タイダイ"
 
 [Cosmetic_SkiMask_BriarSkin_ARCH]
-Attachment=Ski Mask
-AttachmentSkin0=Standard
-AttachmentSkin1=Asian
-AttachmentSkin2=Black Red
-AttachmentSkin3=Blue Green
-AttachmentSkin4=Blue White
-AttachmentSkin5=Blue Yellow
-AttachmentSkin6=Camo
-AttachmentSkin7=Dark Purple
-AttachmentSkin8=Flames
-AttachmentSkin9=Green Blue
-AttachmentSkin10=Green Yellow
-AttachmentSkin11=Pastel
-AttachmentSkin12=Purple
-AttachmentSkin13=Purple Black
-AttachmentSkin14=Rainbow
-AttachmentSkin15=Red White
-AttachmentSkin16=White Black
-AttachmentSkin17=Yellow Black
+Attachment="スキーマスク"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="アジアン"
+AttachmentSkin2="ブラックレッド"
+AttachmentSkin3="ブルーグリーン"
+AttachmentSkin4="ブルーホワイト"
+AttachmentSkin5="ブルーイエロー"
+AttachmentSkin6="迷彩"
+AttachmentSkin7="ダークパープル"
+AttachmentSkin8="火炎"
+AttachmentSkin9="グリーンブルー"
+AttachmentSkin10="グリーンイエロー"
+AttachmentSkin11="パステル"
+AttachmentSkin12="パープル"
+AttachmentSkin13="パープルブラック"
+AttachmentSkin14="レインボー"
+AttachmentSkin15="レッドホワイト"
+AttachmentSkin16="ホワイトブラック"
+AttachmentSkin17="イエローブラック"
 
 [Cosmetic_BRIAR_Doctor_1_ARCH]
-Attachment=Doctor's Mask
-AttachmentSkin0=White
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
+Attachment="医者のマスク"
+AttachmentSkin0="ホワイト"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
 
 [Cosmetic_CriminalMask_Briar_ARCH]
-Attachment=Criminally Insane Mask
-AttachmentSkin0=Criminally Insane Mask
+Attachment="触法精神障害者マスク"
+AttachmentSkin0="触法精神障害者マスク"
 
 [Cosmetic_SkullBreakerHelm_Alberts_1_ARCH]
-Attachment=Skull Breaker Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="スカルブレイカー・ヘルメット"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_SkullBreakerMask_Briar_ARCH]
-Attachment=Skull Breaker Mask
-AttachmentSkin0=Blue
-AttachmentSkin1=Black
-AttachmentSkin2=Red
-AttachmentSkin3=Yellow
+Attachment="スカルブレイカー・マスク"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="レッド"
+AttachmentSkin3="イエロー"
 
 [Cosmetic_FlightMask_Brair_mask1_ARCH]
-Attachment=Flight Mask
-AttachmentSkin0=Flight Mask
-AttachmentSkin1=Bloody Mask
-AttachmentSkin2=Bubble Yum
-AttachmentSkin3=Crimson Sky
-AttachmentSkin4=Flame
-AttachmentSkin5=Ninja
+Attachment="飛行マスク"
+AttachmentSkin0="飛行マスク"
+AttachmentSkin1="ブラッディマスク"
+AttachmentSkin2="バブルヤム"
+AttachmentSkin3="クリムゾンスカイ"
+AttachmentSkin4="火炎"
+AttachmentSkin5="ニンジャ"
 
 [Cosmetic_cthulhumask_Briar_ARCH]
-Attachment=Mask of the Abyss
-AttachmentSkin0=Ph'nglui
-AttachmentSkin1=Mglw'nafh 
-AttachmentSkin2=Wgah'nagl
-AttachmentSkin3=Fhtagn
-AttachmentSkin4=Precious
+Attachment="深淵のマスク"
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="プレシャス"
 
 [Cosmetic_TheInquisitor_Briar_ARCH]
-Attachment=The Inquisitor
-AttachmentSkin0=Leather
-AttachmentSkin1=White
+Attachment="尋問者"
+AttachmentSkin0="革"
+AttachmentSkin1="ホワイト"
 
 [Cosmetic_BrokenMask_Briar_1_ARCH]
-Attachment=Shattered Mask
-AttachmentSkin0=WhiteYellow
-AttachmentSkin1=Geisha
-AttachmentSkin2=Metal
-AttachmentSkin3=Sugar Purple
-AttachmentSkin4=Sugar Red
-AttachmentSkin5=Skin
+Attachment="壊れたマスク"
+AttachmentSkin0="ホワイトイエロー"
+AttachmentSkin1="ゲイシャ"
+AttachmentSkin2="メタル"
+AttachmentSkin3="シュガーパープル"
+AttachmentSkin4="シュガーレッド"
+AttachmentSkin5="スキン"
 
 [Cosmetic_pilotgoggles_donovan_ARCH]
-Attachment=RAF Goggles
-AttachmentSkin0=Glow Blue
-AttachmentSkin1=Glow Orange
-AttachmentSkin2=Black
-AttachmentSkin3=Orange
-AttachmentSkin4=Green Blue
-AttachmentSkin5=Brown
+Attachment="RAFゴーグル"
+AttachmentSkin0="蛍光ブルー"
+AttachmentSkin1="蛍光オレンジ"
+AttachmentSkin2="ブラック"
+AttachmentSkin3="オレンジ"
+AttachmentSkin4="グリーンブルー"
+AttachmentSkin5="ブラウン"
 
 [Cosmetic_EnforcerGoggles_Briar_ARCH]
-Attachment=Enforcer Goggles
-AttachmentSkin0=Black Coat
-AttachmentSkin1=Black Coat Blue
-AttachmentSkin2=Black Coat Red
-AttachmentSkin3=Black Coat Green
-AttachmentSkin4=Green Coat
-AttachmentSkin5=Blue Coat
-AttachmentSkin6=Red Coat
+Attachment="用心棒ゴーグル"
+AttachmentSkin0="黒塗り"
+AttachmentSkin1="黒塗りブルー"
+AttachmentSkin2="黒塗りレッド"
+AttachmentSkin3="黒塗りグリーン"
+AttachmentSkin4="緑塗り"
+AttachmentSkin5="青塗り"
+AttachmentSkin6="赤塗り"
 
 [Cosmetic_EnforcerMask_Briar_ARCH]
-Attachment=Enforcer Mask
-AttachmentSkin0=Black Eyes
-AttachmentSkin1=Red Eyes
-AttachmentSkin2=Blue Eyes
-AttachmentSkin3=Green Eyes
-AttachmentSkin4=Green Filter
-AttachmentSkin5=Blue Filter
-AttachmentSkin6=Red Filter
+Attachment="用心棒マスク"
+AttachmentSkin0="黒い目"
+AttachmentSkin1="赤い目"
+AttachmentSkin2="青い目"
+AttachmentSkin3="緑の目"
+AttachmentSkin4="グリーンフィルター"
+AttachmentSkin5="ブルーフィルター"
+AttachmentSkin6="レッドフィルター"
 
 [Cosmetic_JusticeGoggles_Briar_ARCH]
-Attachment=Justice Goggles
-AttachmentSkin0=Stealth Black
+Attachment="正義のゴーグル"
+AttachmentSkin0="ステルスブラック"
 
 [Cosmetic_JusticeMask_Briar_ARCH]
-Attachment=Justice Mask
-AttachmentSkin0=Stealth Black
-AttachmentSkin1=Tactical Green
-AttachmentSkin2=Savage Red
-AttachmentSkin3=Miami Blue
-AttachmentSkin4=Blue Steel
-AttachmentSkin5=Blue Magnum
-AttachmentSkin6=Green Rally
-AttachmentSkin7=Green Synergy
-AttachmentSkin8=Red Face
-AttachmentSkin9=Red Cheeks
-AttachmentSkin10=Reaper Black
+Attachment="正義のマスク"
+AttachmentSkin0="ステルスブラック"
+AttachmentSkin1="タクティカルグリーン"
+AttachmentSkin2="サヴェッジレッド"
+AttachmentSkin3="マイアミブルー"
+AttachmentSkin4="ブルースチール"
+AttachmentSkin5="ブルーマグナム"
+AttachmentSkin6="グリーンラリー"
+AttachmentSkin7="グリーンシナジー"
+AttachmentSkin8="レッドフェイス"
+AttachmentSkin9="レッドチーク"
+AttachmentSkin10="リーパーブラック"
 
 [Cosmetic_TacticalMask_Alberts_1_ARCH]
-Attachment=Tactical Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Camo
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="タクティカルマスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="迷彩"
+AttachmentSkin3="グレー"
+AttachmentSkin4="ネイビー"
+AttachmentSkin5="オリーブ"
+AttachmentSkin6="レッド"
 
 [Cosmetic_VenomMask_Alberts_1_ARCH]
-Attachment=Venom Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="毒マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
 
 [Cosmetic_VenomMaskFiltered_Alberts_1_ARCH]
-Attachment=Venom Mask Filtered
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
-AttachmentSkin7=Precious
+Attachment="フィルター済み毒マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
+AttachmentSkin7="プレシャス"
 
 [Cosmetic_VenomGoggles_Alberts_1_ARCH]
-Attachment=Venom Goggles
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="毒ゴーグル"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
 
 [Cosmetic_VenomGogglesCoverDown_Alberts_1_ARCH]
-Attachment=Venom Goggles Down
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
-AttachmentSkin7=Precious
+Attachment="毒ゴーグルダウン"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
+AttachmentSkin7="プレシャス"
 
 [Cosmetic_VenomHeadphones_Alberts_1_ARCH]
-Attachment=Venom Headphones
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="毒ヘッドホン"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ダークグリーン"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ヴァイオレット"
+AttachmentSkin6="ホワイト"
+
+[Cosmetic_Headband_Alberts_ARCH]
+Attachment="ヘッドバンド"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="アジアンホワイト"
+AttachmentSkin2="ブラックレッド"
+AttachmentSkin3="ブルー"
+AttachmentSkin4="迷彩"
+AttachmentSkin5="ダークパープル"
+AttachmentSkin6="火炎"
+AttachmentSkin7="グリーン"
+AttachmentSkin8="日本"
+AttachmentSkin9="ライトブルー"
+AttachmentSkin10="パープル"
+AttachmentSkin11="レッド"
+AttachmentSkin12="レッドブラック"
+AttachmentSkin13="レッドパターン"
+AttachmentSkin14="スター"
+AttachmentSkin15="ストライプ"
+AttachmentSkin16="タイダイ"
+AttachmentSkin17="ホワイト"
+AttachmentSkin18="イエロー"
 
 [Cosmetic_Alberts01_ARCH]
-Attachment=中折れ帽
-AttachmentSkin0=ベーシックブラック
-AttachmentSkin1=ルビーレッド
-AttachmentSkin2=エレガントグレー
-AttachmentSkin3=ダークブルー
-
+Attachment="フェドーラ"
+AttachmentSkin0="ベーシックブラック"
+AttachmentSkin1="ルビーレッド"
+AttachmentSkin2="エレガントグレー"
+AttachmentSkin3="ダークブルー"

@@ -30,10 +30,10 @@ static simulated function bool CanDismemberHitZone(name InHitZoneName)
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_M14EBR'
-    StunPower=8
+    StunPower=15
     KnockdownPower=20
     StumblePower=0
-    GunHitPower=50
+    GunHitPower=80
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=2250
     KDeathVel=250

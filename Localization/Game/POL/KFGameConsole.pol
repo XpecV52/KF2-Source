@@ -1,0 +1,112 @@
+
+[Presence]
+KFMainMenu="Menu główne"
+KF-Bioticslab="Gra na mapie laboratorium biotyczne"
+KF-BlackForest="Gra na mapie czarny las"
+KF-BurningParis="Gra na mapie płonący Paryż"
+KF-Catacombs="Gra na mapie katakumby"
+KF-EvacuationPoint="Gra na mapie punkt ewakuacyjny"
+KF-Farmhouse="Gra na mapie farma"
+KF-VolterManor="Gra na mapie dwór Voltera"
+KF-Outpost="Gra na mapie stacja"
+KF-Prison="Gra na mapie więzienie"
+KF-ContainmentStation="Gra na mapie ośrodek izolacyjny"
+KF-InfernalRealm="Gra na mapie piekielna domena"
+KF-HostileGrounds="Gra na mapie wrogie terytorium"
+
+[ActivityFeed]
+BossKillCondensedCaption="Boss został pokonany!"
+BossKillCaption="$USER_NAME_OR_ID pokonuje %x% na %y%"
+TeamAwardCondensedCaption="Nagroda zespołowa!"
+TeamAwardCaption="$USER_NAME_OR_ID zdobywa nagrodę zespołową %x%"
+PerkLevelUpCondensedCaption="Nowy poziom!"
+PerkLevelUpCaption="$USER_NAME_OR_ID odblokowuje poziom %x% umiejętności %y%"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="Naciśnij XboxTypeS_A, aby rozpocząć"
+LoginButtonPrompt="Zaloguj się"
+LoggingIn="Logowanie…"
+LoginFailed="Logowanie nie powiodło się"
+NoOnlinePlay="Nie można zagrać online"
+TooYoung="Usługa online jest wyłączona na twoim koncie Sony Entertainment Network z powodu ograniczeń kontroli rodzicielskiej."
+PatchAvailable="Dostępna poprawka. Musisz zaktualizować aplikację, aby móc korzystać z funkcji online."
+NotLoggedInOnlinePSN="Aby korzystać z funkcji online, należy się wpisać do PlayStation™Network."
+NetworkError="Wystąpił błąd sieci, sprawdź swoje połączenie sieciowe."
+ErrorNoPlayfabDescription="Nie można nawiązać połączenia z serwerami głównymi gry. Spróbuj ponownie za kilka minut."
+ErrorTSSFailedDescription="Nie można nawiązać połączenia z serwerem balansowym gry. Sprawdź, czy podłączenie internetu i spróbuj ponownie."
+
+[Notifications]
+ControllerDisconnectedTitle="Kontroler odłączony"
+ControllerDisconnectedPS4Message="Kontroler bezprzewodowy został odłączony. Podłącz kontroler bezprzewodowy dla użytkownika, który uruchomił grę."
+PlayGoBusyTitle="Trwa instalacja"
+PlayGoBusyMessage="Podczas zakańczania instalacji gry dostępna jest ograniczona zawartość i funkcje."
+UnableToJoinInviteTitle="Nie można dołączyć"
+UnableToJoinInviteMessage="Sesja jest pełna lub nie jest już dostępna. Spróbuj ponownie później."
+InitiatingPlayTogetherTitle="Cierpliwości!"
+InitiatingPlayTogetherMessage="Tworzymy dla ciebie grę Zagrajmy Razem."
+UnableToPlayTogetherTitle="Błąd Zagrajmy Razem."
+UnableToPlayTogetherMessage="Nie można utworzyć gry Zagrajmy Razem. Spróbuj ponownie później lub utwórz grę ręcznie."
+CheckPlusTitle="Sprawdzanie stanu PlayStation®Plus"
+CheckPlusMessage="Poczekaj na sprawdzenie stanu PlayStation®Plus."
+ConnectionLostTitle="Utracono połączenie"
+ConnectionLostMessage="Utracono połączenie z internetem.  Nastąpił powrót do menu głównego."
+PSNSignoutMessage="Wypisano z PlayStation™Network. Nastąpił powrót do menu głównego."
+InviteMessage="Zapraszam na rozwałkę zetów!"
+NotConnectedTitle="Błąd sieci"
+NotConnectedMessage="Brak połączenia z internetem. Sprawdź połączenie i spróbuj ponownie."
+NotConnectedForOnlinePlay="Brak połączenia z internetem. Aby korzystać z funkcji online, sprawdź połączenie i spróbuj ponownie"
+PartySizeTitle="Ostrzeżenie dotyczące imprezy"
+PartySizeMessage="W twojej imprezie jest za dużo członków. Nie wszyscy członkowie pojawią się w twoim oddziale i uzyskają dostęp do gry typu przetrwanie."
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="Zobacz profil gracza"
+
+[KFGFxObject_Menu]
+ResetDefaults="Czy na pewno chcesz zresetować ustawienia do wartości domyślnych?"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="SPECJALIZACJA"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="Dźwięk kontrolera"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="REGION"
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="REGION"
+
+[Entitlements]
+BriarBobbyBundleProductName="Zestaw munduru policjanta Briara"
+BriarBobbyBundleShortDescription="Zgarnij nowy klasyczny mundur londyńskiego policjanta dla grywalnej postaci – posterunkowego Roba Briara. W zestawie londyński mundur Briara (wraz 5 skórkami) i akcesorium hełm policyjny (wraz z 3 skórkami)."
+
+BikerTanakaBundleProductName="Zestaw munduru motocyklisty Tanaki"
+BikerTanakaBundlehortDescription="Zgarnij nowy strój motocyklisty dla grywalnej postaci – Hayato Tanaki. W zestawie strój motocyklisty Tanaki (wraz 7 skórkami) i akcesorium kask (wraz z 7 skórkami)."
+
+ClassicFosterBundleProductName="Zestaw munduru pana Fostera"
+ClassicFosterBundlehortDescription="Zgarnij nowy klasyczny garnitur dla grywalnej postaci – pana Fostera. W zestawie klasyczny garnitur Fostera (wraz z 9 skórkami), akcesorium muszka oraz akcesorium klasyczny krawat (każde z 7 skórkami)."
+
+CardboardKnightBundleProductName="Zestaw munduru kartonowego rycerza"
+CardboardKnightBundleShortDescription="Zgarnij nową komiczną kartonową zbroję rycerza dla większości grywalnych postaci. W zestawie zbroja kartonowego rycerza na korpus (wraz 6 skórkami) oraz akcesorium hełm kartonowego rycerza (wraz z 6 skórkami)."
+
+HorzineSecurityForceBundleProductName="Zestaw munduru ochroniarza Horzine"
+HorzineSecurityForceBundleShortDescription="Zgarnij nowy kapitalny mundur ochroniarza Horzine dla większości grywalnych postaci. W zestawie ultranowoczesny mundur ochroniarza Horzine na korpus oraz akcesorium hełm ochroniarza Horzine."
+
+HorzineSupplyCrateKeyProductName="Klucz do skrzyni Horzine"
+HorzineSupplyCrateKeyShortDesription="Kup klucz do skrzyni Horzine do wykorzystania w grze, dzięki któremu otworzysz dowolną skrzynię Horzine. Aby go użyć, będziesz potrzebować tego klucza i dowolnej skrzyni Horzine."
+
+HorzineSupplyCrate1ProductName="Skrzynia Horzine seria 1"
+HorzineSupplyCrate1ShortDesription="Ta skrzynia Horzine zawiera akcesorium. Do otwarcia potrzeba klucza do skrzyni Horzine. Zawiera jeden rzadki lub lepszy przedmiot ozdobny z następujących: czapka taktyczna, maska taktyczna, zestaw taktyczny MK1/MK2, opaska na głowę, hełm GS9, maska GS9, rosyjskie okulary , rosyjski hełm, rosyjska maska lub niezmiernie rzadkie cenne akcesorium!"
+
+HorzineSupplyCrate2ProductName="Skrzynia Horzine seria 2"
+HorzineSupplyCrate2ShortDesription="Ta skrzynia Horzine zawiera akcesorium. Do otwarcia potrzeba klucza do skrzyni Horzine. Zawiera jeden rzadki lub lepszy przedmiot ozdobny z następujących: Maska balistyczna Devtac, amerykańska maska gazowa, maska narciarska, baseballówka, plecak taktyczny, niemiecka maska gazowa, chemiczna maska gazowa, plecak na RPG7, zbiornik miotacza M2 lub niezmiernie rzadkie cenne akcesorium!"
+
+HorzineSupplyCrate3ProductName="Skrzynia Horzine seria 3"
+HorzineSupplyCrate3ShortDesription="Ta skrzynia Horzine zawiera skórkę broni. Do otwarcia potrzeba klucza do skrzyni Horzine. Zawiera jedną rzadką lub lepszą skórkę broni z następujących:"
+
+HorzineSupplyCrate4ProductName="Skrzynia Horzine seria 4"
+HorzineSupplyCrate4ShortDesription="Ta skrzynia Horzine zawiera skórkę broni. Do otwarcia potrzeba klucza do skrzyni Horzine. Zawiera jedną rzadką lub lepszą skórkę broni z następujących:"
+
+StoreGameLegalText="Oprogramowanie podlega licencji (us.playstation.com/softwarelicense). Aktywność online podlega Warunkom świadczenia usługi i Umowie użytkownika (www.playstationnetwork.com/terms-of-service). Jednorazowa opłata licencyjna za grę na głównym systemie PS4™ konta i innych systemach PS4™ po wpisaniu się na to konto. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® to zarejestrowany znak towarowy Tripwire Interactive w USA i innych krajach. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Wszelkie prawa zastrzeżone. Unreal® to znak towarowy lub zarejestrowany znak towarowy Epic Games, Inc. w USA i innych krajach. Pozostałe znaki handlowe, logo oraz prawa autorskie są własnością ich właścicieli. Wszelkie prawa zastrzeżone."
+
+StoreItemLegalText="Ten przedmiot wymaga pełnej gry Killing Floor 2. Wykorzystanie tego przedmiotu jest przedmiotem Umowy licencyjnej użytkownika końcowego obejmującej oryginalną grę."

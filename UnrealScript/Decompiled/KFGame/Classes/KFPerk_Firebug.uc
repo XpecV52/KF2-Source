@@ -162,7 +162,7 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacit
 
     bSecondary = false;
     TempCapacity = float(MagazineCapacity);
-    if(IsHighCapFuelTankActive())
+    if((IsWeaponOnPerk(KFW)) && IsHighCapFuelTankActive())
     {
         if(KFW != none)
         {

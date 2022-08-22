@@ -13,10 +13,13 @@ defaultproperties
    WeaponDef=Class'KFGame.KFWeapDef_Pulverizer'
    bCanObliterate=False
    GoreDamageGroup=DGT_Obliteration
-   KnockdownPower=0.000000
+   KnockdownPower=100.000000
    StumblePower=340.000000
    MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
+   KDeathVel=500.000000
+   KDeathUpKick=1000.000000
+   RadialDamageImpulse=3000.000000
    Name="Default__KFDT_Explosive_Pulverizer"
    ObjectArchetype=KFDT_Explosive'KFGame.Default__KFDT_Explosive'
 }

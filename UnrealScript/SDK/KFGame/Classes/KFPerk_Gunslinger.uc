@@ -28,6 +28,7 @@ var	protected 	const	AkEvent					RhythmMethodSoundHit;
 var	protected 	const	AkEvent					RhythmMethodSoundTop;
 var	protected 	const 	name 					RhytmMethodRTPCName;
 var	protected	const	float					QuickSwitchSpeedModifier;
+var private 	const	float					QuickSwitchRecoilModifier;
 
 /* The bob damping amount when the Shoot and Move perk skill is active */
 var	private 	const	float					ShootnMooveBobDamp;
@@ -204,11 +205,16 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 
 		if( IsQuickSwitchActive() && !KFW.bUsingSights )
 		{
-			CurrentRecoilModifier = 0;
+			CurrentRecoilModifier *= static.GetQuickSwitchRecoilModifier();
 			`QALog( "Hipped quick switch recoil =" @ CurrentRecoilModifier, bLogPerk );
 		}
 	}
 }
+
+simulated private static function float GetQuickSwitchRecoilModifier()
+{
+	return default.QuickSwitchRecoilModifier;
+} 
 
 /**
  * @brief Modifies the reload speed for commando weapons
@@ -787,6 +793,7 @@ DefaultProperties
 	RhythmMethodSoundHit=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Hit'
 	RhythmMethodSoundTop=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Top'
 	QuickSwitchSpeedModifier=0.05
+	QuickSwitchRecoilModifier=0.5f
 	HeadShotCountdownIntervall=2.f
 	BoneBreakerDamage=0.3f //this is for arms and legs
 	SnarePower=100 //this is for the head hit. need to test out if 100 is to powerful or not.

@@ -1,0 +1,112 @@
+
+[Presence]
+KFMainMenu="Menu principale"
+KF-Bioticslab="In gioco - Laboratori biologici"
+KF-BlackForest="In gioco - Foresta nera"
+KF-BurningParis="In gioco - Parigi in fiamme"
+KF-Catacombs="In gioco - Catacombe"
+KF-EvacuationPoint="In gioco - Punto di evacuazione"
+KF-Farmhouse="In gioco - Fattoria"
+KF-VolterManor="In gioco - Residenza Volter"
+KF-Outpost="In gioco - Avamposto"
+KF-Prison="In gioco - Prigione"
+KF-ContainmentStation="In gioco - Stazione di contenimento"
+KF-InfernalRealm="In gioco - Regno infernale"
+KF-HostileGrounds="In gioco - Terreno ostile"
+
+[ActivityFeed]
+BossKillCondensedCaption="Boss sconfitto!"
+BossKillCaption="$USER_NAME_OR_ID ha sconfitto %x% su %y%"
+TeamAwardCondensedCaption="Premio di squadra!"
+TeamAwardCaption="$USER_NAME_OR_ID vince il premio %x%"
+PerkLevelUpCondensedCaption="Aumento di livello!"
+PerkLevelUpCaption="$USER_NAME_OR_ID sblocca %y% liv %x%"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="Premi XboxTypeS_A per iniziare"
+LoginButtonPrompt="Effettuare il login"
+LoggingIn="Accesso..."
+LoginFailed="Login fallito"
+NoOnlinePlay="Impossibile giocare online"
+TooYoung="L'accesso ai servizi online è disabilitato per il tuo account su Sony Entertainment Network a causa di restrizioni impostate dal Controllo genitori."
+PatchAvailable="Patch disponibile. Devi aggiornare l'applicazione per utilizzare le funzionalità di rete."
+NotLoggedInOnlinePSN="Devi essere collegato al PlayStation™ Network per utilizzare le funzionalità online."
+NetworkError="Si è verificato un errore di rete, controlla la connessione."
+ErrorNoPlayfabDescription="Impossibile stabilire una connessione con i Master Server di gioco. Riprova fra qualche minuto."
+ErrorTSSFailedDescription="Impossibile stabilire una connessione con il server di bilanciamento del gioco. Assicurati di essere connesso e riprova."
+
+[Notifications]
+ControllerDisconnectedTitle="Controller disconnesso"
+ControllerDisconnectedPS4Message="Il controller wireless è stato disconnesso. Riconnetti il controller wireless per l'Utente che ha avviato il gioco."
+PlayGoBusyTitle="Installazione ancora in corso"
+PlayGoBusyMessage="Fino a quando il gioco non avrà terminato l'installazione, saranno disponibili contenuti e funzionalità limitati."
+UnableToJoinInviteTitle="Impossibile partecipare"
+UnableToJoinInviteMessage="La sessione è piena o non più disponibile. Riprova più tardi."
+InitiatingPlayTogetherTitle="Attendi!"
+InitiatingPlayTogetherMessage="Stiamo creando una partita per la tua esperienza Play together."
+UnableToPlayTogetherTitle="Play together non riuscito"
+UnableToPlayTogetherMessage="Impossibile creare una partita Play together. Riprova più tardi o creane una manualmente."
+CheckPlusTitle="Controllo Status PlayStation®Plus"
+CheckPlusMessage="Attendi mentre controlliamo lo status PlayStation®Plus."
+ConnectionLostTitle="Connessione persa"
+ConnectionLostMessage="La connessione è stata persa. Sei stato riportato al menu principale."
+PSNSignoutMessage="Sei uscito dal PlayStation™Network. Sei stato riportato al menu principale."
+InviteMessage="Eliminiamo qualche Zed insieme!"
+NotConnectedTitle="Errore di rete"
+NotConnectedMessage="Nessuna connessione a internet. Controlla la connessione e riprova."
+NotConnectedForOnlinePlay="Nessuna connessione a internet. Controlla la tua connessione e riprova a usare le funzionalità online"
+PartySizeTitle="Party Warning"
+PartySizeMessage="Too many members in your party. Not all members will show up in your squad and not all will get into a survival game."
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="Vedi profilo giocatore"
+
+[KFGFxObject_Menu]
+ResetDefaults="Vuoi davvero ripristinare le impostazioni ai valori predefiniti?"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="CLASSE"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="Suoni controller"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="REGIONE"
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="REGIONE"
+
+[Entitlements]
+BriarBobbyBundleProductName="London Bobby Briar Uniform Bundle"
+BriarBobbyBundleShortDescription="Prendi la nuova uniforme da Poliziotto Londinese per il personaggio giocabile Rob Briar. Viene fornita con l'uniforme londinese di Briar (con 5 skin incluse) e l'accessorio estetico casco da guardiano (con 3 skin incluse)."
+
+BikerTanakaBundleProductName="Tanaka Biker Uniform Bundle"
+BikerTanakaBundlehortDescription="Prendi la nuova uniforme da motociclista per il personaggio giocabile Hayato Tanaka. Viene fornita con l'uniforme da motociclista di Tanaka (con 7 skin incluse) e l'accessorio estetico casco (con 7 skin incluse)."
+
+ClassicFosterBundleProductName="Mr.Foster Classic Uniform Bundle"
+ClassicFosterBundlehortDescription="Prendi la nuova uniforme abito classico per il personaggio giocabile Mr. Foster. Viene fornita con l'uniforme abito classico di Foster (con 9 skin incluse), l'accessorio estetico farfallino e cravatta classica (con 7 skin incluse per ognuno)."
+
+CardboardKnightBundleProductName="Cardboard Knight Uniform Bundle"
+CardboardKnightBundleShortDescription="Prendi la nuova, esilarante uniforme armatura da cavaliere di cartone utilizzabile dalla maggior parte dei personaggi. Viene fornita con l'armatura da cavaliere di cartone (con 6 skin incluse) e l'accessorio estetico elmo da cavaliere di cartone (con 6 skin incluse)."
+
+HorzineSecurityForceBundleProductName="Horzine Security Force Uniform Bundle"
+HorzineSecurityForceBundleShortDescription="Prendi la nuova, fantastica uniforme da addetto della sicurezza Horzine utilizzabile dalla maggior parte dei personaggi. Viene fornita con l'uniforme da addetto della sicurezza della Horzine e l'accessorio estetico casco della sicurezza."
+
+HorzineSupplyCrateKeyProductName="Chiave cassa Horzine"
+HorzineSupplyCrateKeyShortDesription="Acquista una chiave per la cassa dei rifornimenti Horzine, una chiave utilizzabile in gioco che aprirà qualsiasi cassa dei rifornimenti Horzine. Ti serve una cassa dei rifornimenti Horzine per usare questa chiave."
+
+HorzineSupplyCrate1ProductName="Cassa Horzine S 1"
+HorzineSupplyCrate1ShortDesription="Questa cassa dei rifornimenti Horzine contiene un accessorio estetico. Serve una chiave della cassa dei rifornimenti Horzine per aprirla. Contiene uno di questi accessori estetici, raro o migliore: Cappello tattico, Maschera tattica, Cuffie tattiche MK1/MK2, Fascia, Casco GS9, Maschera GS9, Occhiali militari russi, Casco militare russo, Maschera militare russa o un accessorio prezioso estremamente raro!"
+
+HorzineSupplyCrate2ProductName="Cassa Horzine S 2"
+HorzineSupplyCrate2ShortDesription="Questa cassa dei rifornimenti Horzine contiene un accessorio estetico. Serve una chiave della cassa dei rifornimenti Horzine per aprirla. Contiene uno di questi accessori estetici, raro o migliore: Maschera balistica Devtac, Maschera antigas US, Maschera da sci, Cappello da baseball, Zaino tattico, Maschera antigas tedesca, Maschera anti gas chimici, Zaino RPG7, Tanica per lanciafiamme M2 o un accessorio prezioso estremamente raro!"
+
+HorzineSupplyCrate3ProductName="Cassa Horzine S 3"
+HorzineSupplyCrate3ShortDesription="Questa cassa dei rifornimenti Horzine contiene una skin arma. Serve una chiave della cassa dei rifornimenti Horzine per aprirla. Contiene una delle seguenti skin arma, rara o migliore:"
+
+HorzineSupplyCrate4ProductName="Cassa Horzine S 4"
+HorzineSupplyCrate4ShortDesription="Questa cassa dei rifornimenti Horzine contiene una skin arma. Serve una chiave della cassa dei rifornimenti Horzine per aprirla. Contiene una delle seguenti skin arma, rara o migliore:"
+
+StoreGameLegalText="Software soggetto a licenza (us.playstation.com/softwarelicense). Attività online soggetta ai Termini di Servizio e all'Accordo con l'Utente (www.playstationnetwork.com/terms-of-service). Quota di licenza una tantum per giocare sul sistema primario PS4™ indicato nell'account e altri sistemi PS4™ quando connessi con tale account. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® è un marchio registrato di Tripwire Interactive negli USA e in altri paesi. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Tutti i diritti riservati. Unreal® è un marchio o un marchio registrato di Epic Games, Inc. negli Stati Uniti d'America e altrove. Tutti gli altri marchi, loghi e copyright sono proprietà dei rispettivi proprietari. Tutti i diritti riservati."
+
+StoreItemLegalText="Per usare questo oggetto è richiesta la versione completa di Killing Floor 2. L'uso di questo elemento è soggetto allo stesso contratto di licenza con l'utente finale del gioco originale."

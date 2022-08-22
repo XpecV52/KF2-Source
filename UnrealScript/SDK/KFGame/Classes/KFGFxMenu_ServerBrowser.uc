@@ -382,6 +382,7 @@ function OnOpen()
 	{
 		ServerListContainer.OnRefeshClick();
 	}
+	class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword("");
 }
 
 event OnClose()

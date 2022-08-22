@@ -392,6 +392,7 @@ var float DOF_GP_LerpControl;
 var float DOF_IS_LerpControl;
 var float DOF_NVG_BlendInSpeed;
 var float DOF_NVG_BlendOutSpeed;
+var float CIN_ImageGrainScale;
 /** Postprocess parameters when Night Vision is enabled */
 var(NVG_Post) float NVG_FocusBlendRate;
 var(NVG_Post) float NVG_ImageGrainScale;
@@ -603,7 +604,7 @@ reliable client simulated function ClientRestart(Pawn NewPawn)
     UsablePawn = KFPawn_Human(NewPawn);
     FixFOV();
     SetRTPCValue('GRENADEFX', 0, true);
-    MyGFxManager.CloseMenus();
+    MyGFxManager.CloseMenus(true);
     if((MyGFxHUD != none) && MyGFxHUD.SpectatorInfoWidget != none)
     {
         MyGFxHUD.SpectatorInfoWidget.SetVisible(!PlayerReplicationInfo.bOnlySpectator);
@@ -755,6 +756,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
     local KFPlayerReplicationInfo KFPRI;
     local string MatchmakingRegion;
     local KFGoreManager GoreMgr;
+    local UniqueNetId LobbyId, Zero;
 
     Profile = KFProfileSettings(OnlineSub.PlayerInterface.GetProfileSettings(LocalUserNum));
     if(Profile != none)
@@ -800,6 +802,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
             KFEngine.bShowWelderInInv = Profile.GetProfileBool(160);
             KFEngine.bUseAltAimOnDual = Profile.GetProfileBool(157);
             KFEngine.bAntiMotionSickness = Profile.GetProfileBool(159);
+            KFEngine.bMinimalChatter = Profile.GetProfileBool(119);
             if(Class'WorldInfo'.static.IsConsoleBuild())
             {
                 Class'KFGameEngine'.static.SetCrosshairEnabled(Profile.GetProfileBool(163));                
@@ -836,6 +839,10 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
         {
             GoreMgr.DesiredGoreLevel = Profile.GetProfileInt(107);
         }
+    }
+    if(OnlineSub.GetLobbyInterface().GetLobbyFromCommandline(LobbyId))
+    {
+        OnlineSub.GetLobbyInterface().LobbyInvite(LobbyId, Zero, true);
     }
 }
 
@@ -1860,6 +1867,10 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
         {
             SetViewTarget(KFBoss);
         }
+        if(MyGFxHUD != none)
+        {
+            MyGFxHUD.ShowVoiceComms(false);
+        }
         ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);        
     }
     else
@@ -2159,15 +2170,6 @@ protected simulated function DoForceFeedbackForScreenShake(CameraShake ShakeData
     {
         ClientPlayForceFeedbackWaveform(KFCameraShake(ShakeData).FFWaveform);
     }
-}
-
-reliable client simulated event ClientPlayForceFeedbackWaveform(ForceFeedbackWaveform FFWaveform, optional Actor FFWaveformInstigator)
-{
-    if((((PlayerReplicationInfo.bIsSpectator || PlayerReplicationInfo.bOnlySpectator) || PlayerReplicationInfo.bWaitingPlayer) || !PlayerReplicationInfo.bReadyToPlay) || IsInState('Spectating'))
-    {
-        return;
-    }
-    super(PlayerController).ClientPlayForceFeedbackWaveform(FFWaveform, FFWaveformInstigator);
 }
 
 function bool AdminCmdOk()
@@ -5612,6 +5614,8 @@ state PlayerWalking
 
 state Dead
 {
+    ignores ClientPlayForceFeedbackWaveform;
+
     event BeginState(name PreviousStateName)
     {
         local KFPawn KFP;
@@ -5661,7 +5665,7 @@ state Dead
 
     function SetViewTarget(Actor NewViewTarget, optional ViewTargetTransitionParams TransitionParams)
     {
-        if(PlayerCamera.CameraStyle == 'Boss')
+        if((PlayerCamera.CameraStyle == 'Boss') && KFPawn_MonsterBoss(NewViewTarget) != none)
         {
             super(PlayerController).SetViewTarget(NewViewTarget, TransitionParams);
         }
@@ -5693,7 +5697,7 @@ state Dead
 
 state Spectating
 {
-    ignores StartFire;
+    ignores ClientPlayForceFeedbackWaveform, StartFire;
 
     event BeginState(name PreviousStateName)
     {
@@ -5907,6 +5911,7 @@ defaultproperties
     DOFMaxEnemyAngle=15
     DOF_NVG_BlendInSpeed=4
     DOF_NVG_BlendOutSpeed=10
+    CIN_ImageGrainScale=5
     NVG_FocusBlendRate=3
     NVG_ImageGrainScale=6
     NVG_DOF_FocalDistance=1200

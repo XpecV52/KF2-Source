@@ -1,0 +1,112 @@
+
+[Presence]
+KFMainMenu="主選單"
+KF-Bioticslab="正在進行：Biotics 實驗室"
+KF-BlackForest="正在進行：黑森林"
+KF-BurningParis="正在進行：燃燒的巴黎"
+KF-Catacombs="正在進行：萬人塚"
+KF-EvacuationPoint="正在進行：避難場所"
+KF-Farmhouse="正在進行：農莊"
+KF-VolterManor="正在進行：華特大宅"
+KF-Outpost="正在進行：前哨"
+KF-Prison="正在進行：監獄"
+KF-ContainmentStation="正在進行：控制站"
+KF-InfernalRealm="正在進行：地獄"
+KF-HostileGrounds="正在進行：敵營"
+
+[ActivityFeed]
+BossKillCondensedCaption="已擊敗頭目！"
+BossKillCaption="$USER_NAME_OR_ID 在 %y% 難度中擊敗了 %x%"
+TeamAwardCondensedCaption="隊伍獎勵！"
+TeamAwardCaption="$USER_NAME_OR_ID 獲得了 %x% 隊伍獎勵"
+PerkLevelUpCondensedCaption="升級！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 解鎖了 %x% %y% 升級技能"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="請按 XboxTypeS_A 開始"
+LoginButtonPrompt="登入"
+LoggingIn="正在登入…"
+LoginFailed="登入失敗"
+NoOnlinePlay="無法連線遊玩"
+TooYoung="由於家長控制設定，你的 Sony Entertainment Network 帳號連線功能已被關閉。"
+PatchAvailable="有新的更新。你必須更新應用程式以使用線上的內容。"
+NotLoggedInOnlinePSN="你必須登入 PlayStation™Network 以使用連線功能。"
+NetworkError="連線發生錯誤，請檢查你的網路連線。"
+ErrorNoPlayfabDescription="無法連線至遊戲主伺服器。請稍後再試。"
+ErrorTSSFailedDescription="無法連線至遊戲平衡伺服器。請確定你有連線至網際網路，然後再試一次。"
+
+[Notifications]
+ControllerDisconnectedTitle="已中斷連接搖桿"
+ControllerDisconnectedPS4Message="已中斷連接無線搖桿。請重新連接開啟遊戲的使用者的無線搖桿。"
+PlayGoBusyTitle="仍在安裝中"
+PlayGoBusyMessage="遊戲安裝完成前僅可使用部分內容。"
+UnableToJoinInviteTitle="無法加入"
+UnableToJoinInviteMessage="人數已滿或遊戲已取消。請稍後再試。"
+InitiatingPlayTogetherTitle="請稍候！"
+InitiatingPlayTogetherMessage="我們正在為你建立多人遊戲。"
+UnableToPlayTogetherTitle="多人遊戲失敗"
+UnableToPlayTogetherMessage="無法建立多人遊戲。請稍後再試或手動建立。"
+CheckPlusTitle="正在檢查 PlayStation®Plus 狀態"
+CheckPlusMessage="正在檢查 PlayStation®Plus 狀態，請稍候。"
+ConnectionLostTitle="已失去連線"
+ConnectionLostMessage="已失去你的網路連線。你已經回到主頁。"
+PSNSignoutMessage="你已經登出 PlayStation™Network。你已經回到主頁。"
+InviteMessage="來跟我一起獵殺 Zed 吧！"
+NotConnectedTitle="網路錯誤"
+NotConnectedMessage="未連線至網路。請檢查連線後再試。"
+NotConnectedForOnlinePlay="未連線至網路。檢查你的連線狀態，再嘗試使用連線功能"
+PartySizeTitle="隊伍警告"
+PartySizeMessage="您的隊伍成員數量過多。無法在您的小隊中顯示所有成員，而且無法讓所有成員加入生存模式。"
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="檢視玩家個人檔案"
+
+[KFGFxObject_Menu]
+ResetDefaults="你確定要重設至預設值嗎？"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="職業"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="搖桿音效"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="地區"
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="地區"
+
+[Entitlements]
+BriarBobbyBundleProductName="倫敦鮑比布萊爾警察同捆包"
+BriarBobbyBundleShortDescription="取得遊戲角色 PC 羅伯布萊爾的經典倫敦警察制服內含布萊爾的倫敦制服（5 種配色）以及警官帽妝容配件（3 種配色）"
+
+BikerTanakaBundleProductName="田中車手制服同捆包"
+BikerTanakaBundlehortDescription="取得遊戲角色田中隼人的車手制服內含田中的機車制服（7 種配色）以及安全帽妝容配件（7 種配色）"
+
+ClassicFosterBundleProductName="佛斯特先生經典制服同捆包"
+ClassicFosterBundlehortDescription="取得遊戲角色佛斯特先生的經典西裝制服內含佛斯特的經典西裝制服（9 種配色）領結妝容配件以及經典領帶妝容配件（各 7 種配色）"
+
+CardboardKnightBundleProductName="紙板騎士制服同捆包"
+CardboardKnightBundleShortDescription="取得有趣的紙板騎士盔甲制服，適用於大部份角色。內含紙板騎士盔甲（6 種配色）以及紙板騎士頭盔妝容配件（6 種配色）"
+
+HorzineSecurityForceBundleProductName="Horzine 保全人員制服同捆包"
+HorzineSecurityForceBundleShortDescription="取得酷炫的 Horzine 保全制服，適用於大部份角色。內含 Horzine 保全制服以及 Horzine 保全安全帽妝容配件。"
+
+HorzineSupplyCrateKeyProductName="Horzine 補給箱子鑰匙"
+HorzineSupplyCrateKeyShortDesription="購買 Horzine 補給箱子鑰匙，能夠開啟任何 Horzine 補給箱子的遊戲消耗品。使用本鑰匙需要 Horzine 補給箱子。"
+
+HorzineSupplyCrate1ProductName="Horzine 補給箱子系列 1"
+HorzineSupplyCrate1ShortDesription="Horzine 補給箱子含有一項妝容配件。需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的妝容物品：戰略帽、戰略面具、戰略耳機 MK1 / MK2、頭帶、GS9 頭盔、GS9面罩、俄羅斯軍用眼鏡、俄羅斯軍盔、俄羅斯軍隊面罩或超珍貴的珍貴配件！"
+
+HorzineSupplyCrate2ProductName="Horzine 補給箱子系列 2"
+HorzineSupplyCrate2ShortDesription="Horzine 補給箱子含有一項妝容配件。需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的妝容物品：防彈面具、美國防毒面具、滑雪面罩、棒球帽、戰術背包、德國防毒面具、化學防毒面具、RPG7 背包、M2 噴火坦克或超珍貴的珍貴配件！"
+
+HorzineSupplyCrate3ProductName="Horzine 補給箱子系列 3"
+HorzineSupplyCrate3ShortDesription="Horzine 補給箱子含有一項武器飾品。需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品："
+
+HorzineSupplyCrate4ProductName="Horzine 補給箱子系列 4"
+HorzineSupplyCrate4ShortDesription="Horzine 補給箱子含有一項武器飾品。需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品："
+
+StoreGameLegalText="軟體以憑證為準 (us.playstation.com/softwarelicense)。線上活動以服務條款及使用同意書為準 (www.playstationnetwork.com/terms-of-service)。一次性驗證收費，發生於帳號所指定的主要 PS4™ 系統以及該帳號所登入的其他 PS4™ 系統。Killing Floor© 2009-2016 Tripwire Interactive.Killing Floor® 為Tripwire Interactive 於美國及其他國家的註冊商標。Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. 版權所有。Unreal® 為Epic Games, Inc. 於美國及其他國家的註冊商標。所有註冊商標、標誌與版權皆僅屬於其所有者。版權所有。"
+
+StoreItemLegalText="此項物品需要完整的《殺戮空間 2》遊戲才能使用。此物品的使用以原本遊戲的使用者驗證同意書為準。"

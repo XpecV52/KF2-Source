@@ -974,7 +974,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=none
 	InstantHitDamage(DEFAULT_FIREMODE)=375  //750
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_RailGun'
-	FireInterval(DEFAULT_FIREMODE)=0.4
+	FireInterval(DEFAULT_FIREMODE)=0.1 //0.4
 	PenetrationPower(DEFAULT_FIREMODE)=10.0
 	Spread(DEFAULT_FIREMODE)=0.005
 	FireOffset=(X=30,Y=3.0,Z=-2.5)
@@ -989,7 +989,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=none
 	InstantHitDamage(ALTFIRE_FIREMODE)=750 //750
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_RailGun'
-	FireInterval(ALTFIRE_FIREMODE)=0.4
+	FireInterval(ALTFIRE_FIREMODE)=0.1 //0.4
 	PenetrationPower(ALTFIRE_FIREMODE)=10.0
 	Spread(ALTFIRE_FIREMODE)=0.005
 

@@ -268,7 +268,7 @@ function RecordWaveInfo()
         DeathStreak = 0;
         ++ SurvivedStreak;
     }
-    Outer.SetTimer(1, false, 'ResetLastWaveInfo', self);
+    Outer.SetTimer(0.5, false, 'ResetLastWaveInfo', self);
 }
 
 function ResetLastWaveInfo()
@@ -379,7 +379,7 @@ static function RecordWeaponHeadShot(Controller InstigatedBy, class<DamageType> 
             if(WeaponIndex == -1)
             {
                 TempWeaponDamage.WeaponDef = KFDT.default.WeaponDef;
-                ++ TempWeaponDamage.HeadShots;
+                TempWeaponDamage.HeadShots = 1;
                 KFPC.MatchStats.WeaponDamageList.AddItem(TempWeaponDamage;                
             }
             else

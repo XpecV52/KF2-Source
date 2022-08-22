@@ -236,7 +236,7 @@ function ModifyBloatBileDoT(out float DoTScaler)
 static simulated function GetPassiveStrings(out array<string> PassiveValues, out array<string> Increments, byte Level)
 {
     PassiveValues[0] = string(Round((GetPassiveValue(default.BerserkerDamage, Level)) * float(100))) $ "%";
-    PassiveValues[1] = string(Round((GetPassiveValue(default.DamageResistance, Level)) * float(100))) $ "%";
+    PassiveValues[1] = string(Round(GetPassiveDamageResistance(Level) * float(100))) $ "%";
     PassiveValues[2] = "";
     PassiveValues[3] = "";
     Increments[0] = ((("[" @ Left(string(default.BerserkerDamage.Increment * float(100)), InStr(string(default.BerserkerDamage.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
@@ -539,7 +539,7 @@ simulated function LogPerkSkills()
 defaultproperties
 {
     BerserkerDamage=(Name="Berserker Damage",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
-    DamageResistance=(Name="Damage Resistance",Increment=0.02,Rank=0,StartingValue=0,MaxValue=0.1,ModifierValue=0,IconPath="",bActive=false)
+    DamageResistance=(Name="Damage Resistance",Increment=0.03,Rank=0,StartingValue=0,MaxValue=0.15,ModifierValue=0,IconPath="",bActive=false)
     NightVision=(Name="Night Vision",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="",bActive=false)
     NinjaSprintModifer=0.25
     SmashStumbleModifier=2

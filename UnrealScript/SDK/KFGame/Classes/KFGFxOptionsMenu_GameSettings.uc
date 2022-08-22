@@ -223,10 +223,13 @@ function Callback_FriendlyHudChanged(float NewFriendlyHudScale)
 function Callback_WeaponSelectChanged(bool bActive)
 {
 	local KFPlayerInput KFPI;
+	local OnlineProfileSettings Settings;
 
 	KFPI = KFPlayerInput(GetPC().PlayerInput);
 	KFPI.bQuickWeaponSelect = bActive;
-	KFPI.SaveConfig();
+	
+	Settings = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId);
+	Settings.SetProfileSettingValueInt(KFID_QuickWeaponSelect, bActive ? 1 : 0);
 }
 
 function Callback_KillTickerChanged(bool bActive)

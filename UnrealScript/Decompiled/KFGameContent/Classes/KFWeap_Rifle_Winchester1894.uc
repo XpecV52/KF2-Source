@@ -12,7 +12,7 @@ class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase
 defaultproperties
 {
     InventorySize=5
-    MagazineCapacity=10
+    MagazineCapacity=12
     bHasIronSights=true
     bWarnAIWhenAiming=true
     bCanBeReloaded=true
@@ -25,7 +25,7 @@ defaultproperties
     AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=25
     WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
-    SpareAmmoCapacity=60
+    SpareAmmoCapacity=84
     InitialSpareMags=3
     FireSightedAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */

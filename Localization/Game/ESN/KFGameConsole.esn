@@ -1,0 +1,112 @@
+
+[Presence]
+KFMainMenu="Menú principal"
+KF-Bioticslab="Jugando en Laboratorio biótico"
+KF-BlackForest="Jugando en Selva negra"
+KF-BurningParis="Jugando en París arde"
+KF-Catacombs="Jugando en Catacumbas"
+KF-EvacuationPoint="Jugando en Punto de evacuación"
+KF-Farmhouse="Jugando en Casa rural"
+KF-VolterManor="Jugando en Mansión Volter"
+KF-Outpost="Jugando en Avanzada"
+KF-Prison="Jugando en Cárcel"
+KF-ContainmentStation="Jugando en Puesto de contención"
+KF-InfernalRealm="Jugando en Reino infernal"
+KF-HostileGrounds="Jugando en Tierra hostil"
+
+[ActivityFeed]
+BossKillCondensedCaption="¡Jefe derrotado!"
+BossKillCaption="$USER_NAME_OR_ID ha derrotado a %x% en %y%"
+TeamAwardCondensedCaption="¡Premio de equipo!"
+TeamAwardCaption="$USER_NAME_OR_ID ha ganado el premio %x%"
+PerkLevelUpCondensedCaption="¡Nuevo nivel!"
+PerkLevelUpCaption="$USER_NAME_OR_ID ha desbloqueado la hab. %y% del nivel %x%"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="Pulsa XboxTypeS_A para empezar"
+LoginButtonPrompt="Iniciar sesión"
+LoggingIn="Iniciando sesión..."
+LoginFailed="Error al iniciar sesión"
+NoOnlinePlay="No puedes jugar en línea."
+TooYoung="Se ha desactivado el servicio en línea en tu cuenta de Sony Entertainment Network debido a las restricciones de control paterno."
+PatchAvailable="Parche disponible. Para hacer uso de las características en línea, debes actualizar la aplicación."
+NotLoggedInOnlinePSN="Para utilizar las características en línea debes iniciar sesión en PlayStation™Network."
+NetworkError="Se ha producido un error de red. Comprueba tu conexión de red."
+ErrorNoPlayfabDescription="No se ha podido establecer conexión con los servidores maestros del juego. Vuelve a intentarlo en unos minutos."
+ErrorTSSFailedDescription="No se ha podido establecer conexión con el servidor de equilibrio del juego. Asegúrate de que estás conectado a Internet e inténtalo de nuevo."
+
+[Notifications]
+ControllerDisconnectedTitle="Mando desconectado"
+ControllerDisconnectedPS4Message="El mando inalámbrico se ha desconectado. Vuelve a conectar el mando inalámbrico del usuario que ha iniciado la partida."
+PlayGoBusyTitle="Instalación en curso"
+PlayGoBusyMessage="Mientras el juego se instala, las características y el contenido a los que puedes acceder son limitados."
+UnableToJoinInviteTitle="Fallo al unirse"
+UnableToJoinInviteMessage="La sesión está completa o ha dejado de estar disponible. Inténtalo de nuevo más tarde."
+InitiatingPlayTogetherTitle="Un momento."
+InitiatingPlayTogetherMessage="Estamos creando una partida para que puedas disfrutar de la experiencia del Juego colectivo."
+UnableToPlayTogetherTitle="Error en Juego colectivo"
+UnableToPlayTogetherMessage="No se ha podido crear una partida en Juego colectivo. Vuelve a intentarlo más tarde o crea una manualmente."
+CheckPlusTitle="Comp. estado de PlayStation®Plus"
+CheckPlusMessage="Espera mientras comprobamos el estado de PlayStation®Plus."
+ConnectionLostTitle="Se ha perdido la conexión"
+ConnectionLostMessage="Has perdido la conexión a la red. Has vuelto al menú principal."
+PSNSignoutMessage="Se ha cerrado tu sesión de PlayStation™Network. Has vuelto al menú principal."
+InviteMessage="¡Ven a matar unos zeds conmigo!"
+NotConnectedTitle="Error de red"
+NotConnectedMessage="No hay conexión a Internet. Comprueba tu conexión e inténtalo de nuevo."
+NotConnectedForOnlinePlay="No hay conexión a Internet. Revisa tu conexión y vuelve a intentarlo para usar las características en línea."
+PartySizeTitle="Aviso de grupo"
+PartySizeMessage="Demasiados miembros en tu grupo. No todos los miembros aparecerán en tu escuadrón y no todos participarán en un juego de supervivencia."
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="Ver perfil de jugador"
+
+[KFGFxObject_Menu]
+ResetDefaults="¿Seguro que quieres volver a utilizar la configuración por defecto?"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="ESPECIALIZACIÓN"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="Sonido del mando"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="REGIÓN"
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="REGIÓN"
+
+[Entitlements]
+BriarBobbyBundleProductName="Paquete policía de Londres de Briar"
+BriarBobbyBundleShortDescription="Consigue un uniforme de policía londinense para el personaje jugable Agente Rob Briar. Incluye el uniforme londinense de Briar (con 5 apariencias distintas) y el accesorio cosmético Casco guardián (con 3 apariencias distintas)."
+
+BikerTanakaBundleProductName="Paquete policía londinense de Briar"
+BikerTanakaBundlehortDescription="Consigue un uniforme motero para el personaje jugable Hayato Tanaka. Incluye el uniforme motero de Tanaka (con 7 apariencias distintas) y el accesorio cosmético Casco (con 7 apariencias distintas)."
+
+ClassicFosterBundleProductName="Paquete uniforme motero de Tanaka"
+ClassicFosterBundlehortDescription="Consigue un uniforme de policía londinense para el personaje jugable Sr. Foster. Incluye el uniforme Traje clásico de Foster (con 9 apariencias distintas) y el accesorio cosmético Pajarita (con 7 apariencias distintas)."
+
+CardboardKnightBundleProductName="Paquete uniforme clásico de Foster"
+CardboardKnightBundleShortDescription="Consigue una nueva y divertida armadura de caballero de cartón, compatible con la mayoría de personajes jugables. Incluye la armadura para el cuerpo Caballero de cartón (con 6 apariencias distintas) y el accesorio cosmético Casco caballero de cartón (con 6 apariencias distintas)."
+
+HorzineSecurityForceBundleProductName="Paquete uniforme Caballero de cartón"
+HorzineSecurityForceBundleShortDescription="Consigue el genial uniforme Seguridad de Horzine, compatible con la mayoría de personajes jugables. Incluye el traje Seguridad de Horzine y el accesorio cosmético Casco Horzine."
+
+HorzineSupplyCrateKeyProductName="Ll. c. sumin. Horzine"
+HorzineSupplyCrateKeyShortDesription="Compra una llave de la caja de suministros de Horzine, un objeto consumible que puedes usar en el juego para abrir cualquier caja de suministros de Horzine. Para utilizarla, necesitarás la llave y una caja de suministros de Horzine."
+
+HorzineSupplyCrate1ProductName="Ll. c. sumin. Horzine Serie 1"
+HorzineSupplyCrate1ShortDesription="Esta caja de suministros de Horzine contiene un accesorio cosmético. Para abrirla, necesitas una llave de caja de suministros de Horzine. Contiene uno de los siguientes cosméticos de categoría "infrecuente" o superior: Sombrero táctico, Máscara táctica, Set táctico MK1/MK2, Cinta, Casco GS9, Máscara GS9, Gafas militares rusas, Casco militar ruso, Máscara militar rusa o un accesorio sumamente infrecuente."
+
+HorzineSupplyCrate2ProductName="Ll. c. sumin. Horzine Serie 2"
+HorzineSupplyCrate2ShortDesription="Esta caja de suministros de Horzine contiene un accesorio cosmético. Para abrirla, necesitas una llave de caja de suministros de Horzine. Contiene uno de los siguientes cosméticos de categoría "infrecuente" o superior: Máscara Devtac Ballistic, Máscara antigás EEUU, Pasamontañas, Gorra de béisbol, Mochila táctica, Máscara antigás, Mochila RPG7, Tanque lanzallamas M2 o un accesorio sumamente infrecuente."
+
+HorzineSupplyCrate3ProductName="Ll. c. sumin. Horzine Serie 3"
+HorzineSupplyCrate3ShortDesription="Esta caja de suministros de Horzine contiene una apariencia de arma. Para abrirla, necesitas una llave de caja de suministros de Horzine. Contiene una de las siguientes apariencias de arma de categoría "infrecuente" o superior:"
+
+HorzineSupplyCrate4ProductName="Ll. c. sumin. Horzine Serie 4"
+HorzineSupplyCrate4ShortDesription="Esta caja de suministros de Horzine contiene una apariencia de arma. Para abrirla, necesitas una llave de caja de suministros de Horzine. Contiene una de las siguientes apariencias de arma de categoría "infrecuente" o superior:"
+
+StoreGameLegalText="Software sujeto a licencia (www.playstation.com/en-us/legal/softwarelicense-esp). La actividad en línea cumple los Términos del Servicio y el Acuerdo de Usuario (www.playstationnetwork.com/terms-of-service). Cuota única por jugar en el sistema PS4™ principal asociado a la cuenta y otros sistemas PS4™ al iniciar sesión con esa cuenta. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® es una marca registrada de Tripwire Interactive en EE.UU. y otros. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Todos los derechos reservados. Unreal® es una marca comercial o registrada de Epic Games, Inc. en EE.UU. y otros. Toda marca comercial, logotipo y derecho de autor pertenece a sus propietarios. Todos los derechos reservados."
+
+StoreItemLegalText="Para poder usarlo, este objeto requiere el juego completo Killing Floor 2. El uso de este objeto está sujeto al mismo Contrato para Licencia del Usuario final que el juego original."

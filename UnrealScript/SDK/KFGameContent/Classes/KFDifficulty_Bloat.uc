@@ -84,7 +84,7 @@ defaultproperties
 	// Death Puke Mine numbers -- maximum of 3
 	PukeMinesToSpawnOnDeathByDifficulty(`DIFFICULTY_Normal)			=0
 	PukeMinesToSpawnOnDeathByDifficulty(`DIFFICULTY_Hard)			=1
-	PukeMinesToSpawnOnDeathByDifficulty(`DIFFICULTY_Suicidal)		=2
+	PukeMinesToSpawnOnDeathByDifficulty(`DIFFICULTY_Suicidal)		=3
 	PukeMinesToSpawnOnDeathByDifficulty(`DIFFICULTY_HellOnEarth)	=3
 	PukeMinesToSpawnOnDeath_Versus									=0
 	PukeMinesToSpawnOnDeath_Player_Versus							=3

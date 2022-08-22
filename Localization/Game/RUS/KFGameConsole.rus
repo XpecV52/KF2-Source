@@ -1,0 +1,112 @@
+
+[Presence]
+KFMainMenu="Главное меню"
+KF-Bioticslab="Игра в Биолаборатории"
+KF-BlackForest="Игра в Черном лесу"
+KF-BurningParis="Игра в Горящем Париже"
+KF-Catacombs="Игра в Катакомбах"
+KF-EvacuationPoint="Игра в Точке эвакуации"
+KF-Farmhouse="Игра на Ферме"
+KF-VolterManor="Игра в Поместье Вольтера"
+KF-Outpost="Игра на Аванпосте"
+KF-Prison="Игра в Тюрьме"
+KF-ContainmentStation="Игра на Станции локализации"
+KF-InfernalRealm="Игра в Царстве ада"
+KF-HostileGrounds="Игра во Враждебных землях"
+
+[ActivityFeed]
+BossKillCondensedCaption="Босс побежден!"
+BossKillCaption="$USER_NAME_OR_ID: убит босс %x%, зона %y%"
+TeamAwardCondensedCaption="Командная награда!"
+TeamAwardCaption="$USER_NAME_OR_ID: командная награда %x%"
+PerkLevelUpCondensedCaption="Новый уровень!"
+PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="Чтобы начать, нажмите XboxTypeS_A"
+LoginButtonPrompt="Вход"
+LoggingIn="Вход..."
+LoginFailed="Войти не удалось."
+NoOnlinePlay="Онлайн-игра невозможна"
+TooYoung="Онлайновые сервисы для вашей учетной записи Sony Entertainment Network отключены ограничениями родительского контроля."
+PatchAvailable="Есть доступный патч. Чтобы использовать сетевые функции, необходимо обновить приложение."
+NotLoggedInOnlinePSN="Для использования этих функций войдите в сеть PlayStation™Network."
+NetworkError="Произошла сетевая ошибка. Пожалуйста, проверьте подключение к сети."
+ErrorNoPlayfabDescription="Необходимо установить подключение к мастер-серверам игры. Повторите попытку через несколько минут."
+ErrorTSSFailedDescription="Не удалось связаться с сервером игрового баланса. Пожалуйста, проверьте подключение к интернету и повторите попытку."
+
+[Notifications]
+ControllerDisconnectedTitle="Контроллер отключен"
+ControllerDisconnectedPS4Message="Беспроводной контроллер отключен. Пожалуйста, восстановите подключение беспроводного контроллера у игрока, запустившего игру."
+PlayGoBusyTitle="Установка не завершена"
+PlayGoBusyMessage="Пока установка игры не завершится, контент и функции доступны в ограниченном режиме."
+UnableToJoinInviteTitle="Присоединиться не удалось"
+UnableToJoinInviteMessage="Сессия закрылась или в ней нет свободных мест. Повторите попытку позже."
+InitiatingPlayTogetherTitle="Будьте с нами!"
+InitiatingPlayTogetherMessage="Мы создаем для вас игру в режиме Play Together."
+UnableToPlayTogetherTitle="Сбой Play Together"
+UnableToPlayTogetherMessage="Создать игру в режиме Play Together не удалось. Повторите попытку позже или создайте игру вручную."
+CheckPlusTitle="Проверка статуса PlayStation®Plus"
+CheckPlusMessage="Просим дождаться результатов проверки статуса PlayStation®Plus."
+ConnectionLostTitle="Связь потеряна"
+ConnectionLostMessage="Онлайн-подключение потеряно. Вы возвращаетесь в домашнее меню."
+PSNSignoutMessage="Вы вышли из сети PlayStation™Network. Вы вернулись в домашнее меню."
+InviteMessage="Пошли со мной мочить мутантов!"
+NotConnectedTitle="Сетевая ошибка"
+NotConnectedMessage="Нет подключения к Интернету. Проверьте подключение и повторите попытку."
+NotConnectedForOnlinePlay="Нет подключения к Интернету. Проверьте подключение и повторите обращение к онлайн-функциям."
+PartySizeTitle="Предупреждение"
+PartySizeMessage="В вашей команде слишком много бойцов. Часть членов команды войдет в состав отряда и не будет принимать участие в игре на выживание."
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="Просмотреть профиль игрока"
+
+[KFGFxObject_Menu]
+ResetDefaults="Вы уверены, что хотите вернуть настройки по умолчанию?"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="ПРОФЕССИЯ"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="Звуковой контроллер"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="РЕГИОН"
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="РЕГИОН"
+
+[Entitlements]
+BriarBobbyBundleProductName="Набор лондонского бобби для Бриара"
+BriarBobbyBundleShortDescription="Получите новую классическую форму лондонского бобби для констебля Роба Бриара. В наборе: лондонская форма Бриара (5 скинов) и аксессуар — шлем констебля (3 скина)."
+
+BikerTanakaBundleProductName="Байкерский набор для Танаки"
+BikerTanakaBundlehortDescription="Получите новый байкерский костюм для Хаято Танаки. В наборе: байкерский костюм Танаки (7 скинов) и аксессуар — шлем (7 скинов)."
+
+ClassicFosterBundleProductName="Классический набор для Фостера"
+ClassicFosterBundlehortDescription="Получите новый классический костюм для г-на Фостера. В наборе: классический костюм Фостера (9 скинов) и аксессуары: галстук-бабочка и классический галстук (по 7 скинов каждый)."
+
+CardboardKnightBundleProductName="Набор картонных доспехов"
+CardboardKnightBundleShortDescription="Получите картонные рыцарские доспехи, подходящие для большинства персонажей. В наборе: картонные рыцарские доспехи (6 скинов) и аксессуар — картонный рыцарский шлем (6 скинов)."
+
+HorzineSecurityForceBundleProductName="Набор формы службы безопасности Horzine"
+HorzineSecurityForceBundleShortDescription="Получите великолепную новую униформу службы безопасности Horzine, подходящую для большинства персонажей. В наборе: высокотехнологичная форма службы безопасности Horzine и аксессуар — шлем СБ Horzine."
+
+HorzineSupplyCrateKeyProductName="Ключ от ящика Horzine"
+HorzineSupplyCrateKeyShortDesription="Приобретите ключ от ящика Horzine, игровой расходный предмет, который позволяет открыть любой ящик Horzine. Для использования необходимо иметь ключ и ящик Horzine."
+
+HorzineSupplyCrate1ProductName="Ящик Horzine, тип  1"
+HorzineSupplyCrate1ShortDesription="В этом ящике Horzine находится аксессуар. Чтобы открыть его, необходим ключ от ящика Horzine. Содержит один аксессуар (редкий или лучше) из следующего списка: Тактическая шляпа, Тактическая маска, Тактическая гарнитура MK1 или MK2, Головная повязка, Шлем GS9, Маска GS9, Русские военные очки, Русская каска, Русская военная маска или крайне редкий дорогой аксессуар."
+
+HorzineSupplyCrate2ProductName="Ящик Horzine, тип  2"
+HorzineSupplyCrate2ShortDesription="В этом ящике Horzine находится аксессуар. Чтобы открыть его, необходим ключ от ящика Horzine. Содержит один аксессуар (редкий или лучше) из следующего списка: Баллистическая маска, Американский противогаз, Лыжная маска, Бейсболка, Тактический рюкзак, Немецкий противогаз, Химическая маска, Рюкзак RPG7, Огнеметный бак M2 или крайне редкий дорогой аксессуар."
+
+HorzineSupplyCrate3ProductName="Ящик Horzine, тип  3"
+HorzineSupplyCrate3ShortDesription="В этом ящике Horzine находится скин оружия. Чтобы открыть его, необходим ключ от ящика Horzine. Содержит один скин (редкий или лучше) из следующего списка:"
+
+HorzineSupplyCrate4ProductName="Ящик Horzine, тип  4"
+HorzineSupplyCrate4ShortDesription="В этом ящике Horzine находится скин оружия. Чтобы открыть его, необходим ключ от ящика Horzine. Содержит один скин (редкий или лучше) из следующего списка:"
+
+StoreGameLegalText="ПО поставляется по лицензии (us.playstation.com/softwarelicense). Онлайн-деятельность — на условиях пользовательского соглашения (www.playstationnetwork.com/terms-of-service). Платеж позволяет играть на основной системе PS4™ для учетной записи и других системах PS4™ с этой учетной записью. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® — зарегистрированная в США и других странах торговая марка Tripwire Interactive. Unreal® Engine, Copyright 1998–2016, Epic Games, Inc. Все права защищены. Unreal® — торговый знак или зарегистрированный торговый знак Epic Games, Inc. в Соединенных Штатах Америки и повсеместно. Все другие торговые знаки, логотипы и права являются собственностью их владельцев. Все права защищены."
+
+StoreItemLegalText="Для использования этого предмета необходима полная версия игры Killing Floor 2. Использование этого предмета подлежит тому же лицензионному соглашению конечного пользователя, что и сама игра."

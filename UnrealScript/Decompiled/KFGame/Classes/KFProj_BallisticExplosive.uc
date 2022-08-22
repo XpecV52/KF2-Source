@@ -250,42 +250,7 @@ simulated function bool TraceProjHitZones(Pawn P, Vector EndTrace, Vector StartT
 
 protected simulated function PrepareExplosionTemplate()
 {
-    local KFPlayerReplicationInfo InstigatorPRI;
-    local KFPlayerController KFPC;
-    local KFPerk InstigatorPerk;
-
-    if(Instigator != none)
-    {
-        if(bWasTimeDilated)
-        {
-            InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
-            if(InstigatorPRI != none)
-            {
-                if(InstigatorPRI.bNukeActive && Class'KFPerk_Demolitionist'.static.ProjectileShouldNuke(self))
-                {
-                    ExplosionTemplate = Class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
-                    ExplosionTemplate.Damage = default.ExplosionTemplate.Damage * Class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
-                    ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius * Class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
-                    ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;                    
-                }
-                else
-                {
-                    if(InstigatorPRI.bConcussiveActive && AltExploEffects != none)
-                    {
-                        ExplosionTemplate.ExplosionEffects = AltExploEffects;
-                        ExplosionTemplate.ExplosionSound = Class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
-                    }
-                }
-            }
-        }
-        KFPC = KFPlayerController(Instigator.Controller);
-        if((Instigator.Role == ROLE_Authority) && KFPC != none)
-        {
-            InstigatorPerk = KFPC.GetPerk();
-            ExplosionTemplate.Damage *= InstigatorPerk.GetAoEDamageModifier();
-            ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
-        }
-    }
+    Class'KFPerk_Demolitionist'.static.PrepareExplosive(Instigator, self);
     super.PrepareExplosionTemplate();
 }
 
@@ -327,7 +292,7 @@ defaultproperties
     GlassShatterType=FracturedMeshGlassShatterType.FMGS_ShatterAll
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_7673' was not found.
+System.ArgumentException: Requested value '!=_7676' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

@@ -1,1688 +1,2021 @@
-//NOTES: 
-//1. CharacterName can be changed slightly. It can run to about ?? characters (MAX), including spaces.
-//2. Description is the bio and can be edited quite happily. Limit is just over 800 characters, including spaces. 
-//3. All the rest (Skin descriptions) should be 20-21 characters, max, including spaces.
-
-//Jagerhorn
 [CHR_Jagerhorn_Archetype]
-CharacterName=Oisten Jägerhorn
-Description=Jägerhorn es un gran hombre, natural de Suecia, al que le gusta beber cerveza y armar jaleo en los bares. Encajaría para todo el mundo en el perfil de un vikingo moderno, al menos antes del brote. Pero tras haberse visto levemente involucrado en la disparatada Gran Guerra de los Moteros Nórdicos en 1990, decidió que la violencia demencial directamente contra las personas era, de lejos, mucho menos divertida que beber litros de cerveza y ser un mediocre solista de 'Metalbika'... su banda tributo a Metallica. \n\nCuando el brote llegó a Escandinavia la cosa cambió, la violencia demencial se acabó convirtiendo en el pan de cada día. Zeds contra personas... para Jägerhorn el karma no estaba siendo justo. ¿Jägerhorn, el gran vikingo sueco contra Zeds? ¡Eso sí, dale caña!
-BodyMesh0=Hora del motero
-HeadMesh0=¡Poder barbudo!
+CharacterName="Oisten Jägerhorn"
+Description="Al ser un tipo grande, sueco, amante de la cerveza y de las discusiones de bar, podría decirse que, antes del brote, Jägerhorn encajaba perfectamente en el estereotipo de vikingo moderno. Sin embargo, tras verse ligeramente implicado la Gran Guerra Nórdica Motera de los años 90, comprendió que la violencia desmedida contra otros seres humanos no tenía ninguna gracia en comparación con beber ríos de cerveza y tocar sin pena ni gloria la guitarra solista en "Metalbika", su grupo de música en homenaje a Metallica. \n\nLamentablemente, en cuanto el brote llegó a Escandinavia, la violencia desmedida pasó a estar a la orden del día. Zeds contra personas... Eso, según Jägerhorn, no trae buen karma. ¿Jägerhorn, el vikingo sueco, contra los zeds? ¡Que empiece la fiesta!"
+BodyMesh0="Estilo motero"
+BodyMesh1="Caballero de cartón"
+BodyMesh2="Seguridad de Horzine"
+HeadMesh0="¡Barbudos al poder!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
-BodySkin0=Guillotina
-BodySkin1=Horzine
-BodySkin2=DJ Scully
-BodySkin3=Desafío verdadero
-BodySkin4=Cazador de demonios
+BodySkin0="Guillotina"
+BodySkin1="Horzine"
+BodySkin2="DJ Calavera"
+BodySkin3="Rebelión"
+BodySkin4="Cazador de demonios"
+
+[CHR_Jagerhorn_Archetype.BodyMesh1]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_Jagerhorn_Archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
-HeadSkin0=Rubia sueca
-HeadSkin1=The Black Album
-HeadSkin2=Rojo sangre
+HeadSkin0="Rubio sueco"
+HeadSkin1="El disco negro"
+HeadSkin2="Rojo sangre"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
-Attachment=Sombrero de vaquero puntiagudo
-AttachmentSkin0=Jinete oscuro
-AttachmentSkin1=Cuero desgastado
-AttachmentSkin2=Borrón y cuenta nueva
-AttachmentSkin3=Rojo sangre
+Attachment="Sombrero puntiagudo"
+AttachmentSkin0="Acero oscuro"
+AttachmentSkin1="Cuero usado"
+AttachmentSkin2="Óxido"
+AttachmentSkin3="Rojo sangre"
 
 [Cosmetic_Coleman_yuri_1_ARCH]
-Attachment=Infiltrator
-AttachmentSkin0=Red
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Precious
+Attachment="Infiltrado"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_RussianGasmask_Alberts_1_ARCH]
-Attachment=Russian Gas Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Green
-AttachmentSkin2=Red
-AttachmentSkin3=Precious
+Attachment="Máscara antigás rusa"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_USGasMask_Alberts_1_ARCH]
-Attachment=US Gas Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="Máscara antigás EEUU"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_Discount-Rex_Alberts_D_Rex_Alberts_1_ARCH]
-Attachment=Discount T-Rex Mask
-AttachmentSkin0=Blue
-AttachmentSkin1=Green
-AttachmentSkin2=Red
-AttachmentSkin3=Precious
+Attachment="Máscara T-Rex"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_RoboScully_1_ARCH]
-Attachment=Robo-Scully
-AttachmentSkin0=Clean Slate
-AttachmentSkin1=Oldschool Patty
-AttachmentSkin2=Sellout
-AttachmentSkin3=Still Scully
-AttachmentSkin4=True Neutral
-AttachmentSkin5=Precious
+Attachment="Robo-Scully"
+AttachmentSkin0="Óxido"
+AttachmentSkin1="Vieja escuela"
+AttachmentSkin2="El no va más"
+AttachmentSkin3="Calavera"
+AttachmentSkin4="Neutral 100%"
+AttachmentSkin5="Precioso"
 
 [Cosmetic_RussianMilitaryHelmet_Alberts_1_ARCH]
-Attachment=Russian Military Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Olive
-AttachmentSkin4=Red
-AttachmentSkin5=White
-AttachmentSkin6=Precious
+Attachment="Casco militar ruso"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Verde aceituna"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Blanco"
+AttachmentSkin6="Precioso"
 
 [Cosmetic_Tormentor_Headgear_ClassicMasterson_ARCH]
-Attachment=Tormentor Headgear
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="Casco Tormentor"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_GSG9Helmet_ClassicMasterson_ARCH]
-Attachment=GS9 Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Brown
-AttachmentSkin3=Camo1
-AttachmentSkin4=Camo2
-AttachmentSkin5=Navy
-AttachmentSkin6=Olive
-AttachmentSkin7=Red
+Attachment="Casco GS9"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Marrón"
+AttachmentSkin3="Camuflaje1"
+AttachmentSkin4="Camuflaje2"
+AttachmentSkin5="Azul marino"
+AttachmentSkin6="Verde aceituna"
+AttachmentSkin7="Rojo"
 
 [Cosmetic_Ana_Scarf01_OptMesh_ARCH]
-Attachment=Bufanda
-AttachmentSkin0=Lluvia de muerte
-AttachmentSkin1=Tigresa
-AttachmentSkin2=Bunberry
-AttachmentSkin3=Azul intenso
+Attachment="Pañuelo"
+AttachmentSkin0="Lluvia mortal"
+AttachmentSkin1="Tigresa"
+AttachmentSkin2="Bunberry"
+AttachmentSkin3="Azul eléctrico"
 
 [chr_DJSkully_archetype]
-CharacterName=DJ Skully
-Description=Todo el mundo quiere a Skully, el DJ que más mola de su generación. Las mujeres acaban perdiendo la razón y enamorándose de él. Sólo por eso los hombres deberían odiarlo, pero se lo pasan demasiado bien con él.\n\nCuando estalló el brote, acababa de liquidar a un monstruo que se hallaba en un manicomio abandonado al norte de Londres. Cuando los Zeds empezaron a comerse a todo el mundo, se salvó por ser de mente ágil y pies rápidos, pese a no estar instruido en el combate. A Skully siempre le ha costado tomarse en serio la vida y con el apocalipsis eso no ha cambiado. Es simplemente demasiado bueno cargándose monstruos. Tan bueno que dio pie a rumores tontos que decían que debía de ser un veterano de las fuerzas especiales, lo cual no es más que otro chiste de Skully.
-BodyMesh0=Sudadera
-HeadMesh0=Máscara de Skully
+CharacterName="DJ Calavera"
+Description="Todos aman a Calavera, el DJ holandés más éxitoso de su generación. Gracias a eso, las mujeres se rinden a sus pies, dejando a un lado todo sentido común. De hecho, es tan divertido y gracioso, que ni siquiera el hecho de que se las lleve a todas de calle suscita antipatías entre los hombres. \n\nEl inicio del brote le pilló saliendo de un concierto multitudinario que dio en un manicomio abandonado del norte de Londres. Cuando los zeds empezaron a comerse vivo a todo el mundo, consiguió salvarse gracias a su agilidad y su rapidez mental, puesto que no posee entrenamiento militar alguno. Calavera nunca fue de los que se toma la vida en serio el apocalipsis no le hizo cambiar de actitud. Es solo que se le da bien aporrear monstruos. Es tan bueno que hay quien dice que perteneció a las fuerzas especiales... Pero no, solo es una broma de las suyas."
+BodyMesh0="Sudadera"
+BodyMesh1="Caballero de cartón"
+BodyMesh2="Seguridad de Horzine"
+HeadMesh0="Máscara de Calavera"
 
 [chr_DJSkully_archetype.BodyMesh0]
-BodySkin0=Negro más negro
-BodySkin1=Rojo extra
-BodySkin2=Amarillo GearXT
-BodySkin3=Verde peligro
-BodySkin4=Skully retro
+BodySkin0="El negro más negro"
+BodySkin1="Rojo Xtra"
+BodySkin2="GearXT amarillo"
+BodySkin3="Peligro verde"
+BodySkin4="Calavera retro"
+
+[chr_DJSkully_archetype.BodyMesh1]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[chr_DJSkully_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [chr_DJSkully_archetype.HeadMesh0]
-HeadSkin0=Negro más negro
-HeadSkin1=Rojo extra
-HeadSkin2=Amarillo GearXT
-HeadSkin3=Verde peligro
-HeadSkin4=Skully retro
+HeadSkin0="El negro más negro"
+HeadSkin1="Rojo Xtra"
+HeadSkin2="GearXT amarillo"
+HeadSkin3="Peligro verde"
+HeadSkin4="Calavera retro"
 
 [Cosmetic_DJHeadphones_1_ARCH]
-Attachment=Cascos de Skully
-AttachmentSkin0=Rojo guillotina
-AttachmentSkin1=Amarillo GearXT
-AttachmentSkin2=Azul profundo
-AttachmentSkin3=Naranja protector
-AttachmentSkin4=Skully retro
-AttachmentSkin5=Blanco Horzine
-AttachmentSkin6=Dorado precioso
+Attachment="Auriculares"
+AttachmentSkin0="Rojo guillotina"
+AttachmentSkin1="GearXT amarillo"
+AttachmentSkin2="Azul metálico"
+AttachmentSkin3="Guardián naranja"
+AttachmentSkin4="Calavera retro"
+AttachmentSkin5="Horzine blanco"
+AttachmentSkin6="Oro precioso"
 
 [Cosmetic_ReinforcedHelmet_DJSKully_ARCH]
-Attachment=Casco reforzado
-AttachmentSkin0=Casco reforzado
+Attachment="Casco reforzado"
+AttachmentSkin0="Casco reforzado"
 
 [Cosmetic_Strasser_01_ARCH]
-Attachment=Boina alemana
-AttachmentSkin0=Boina de desfile
-AttachmentSkin1=Boina ensangrentada
+Attachment="Gorra alemana"
+AttachmentSkin0="Gorra de desfile"
+AttachmentSkin1="Gorra ensangrentada"
 
 [chr_briar_archetype]
-CharacterName=Agente Rob Briar
-Description=Rob Briar fue agente de policía desde los 17 años hasta el día en que fue llamado a sofocar lo que parecía, según sus superiores, un simple disturbio anarquista. Todos sabemos que no era eso, pero Briar se enteró de la peor de las formas. Por suerte, no era un anticuado poli de Londres, sino que tenía suficiente experiencia en la lucha antiterrorista para estar familiarizado con una amplia gama de armas de fuego. Pese a su apariencia feliz y despreocupada, Briar es duro como una roca. Fue esa dureza suya y del Kevlar de su equipo antidisturbios lo que le mantuvo vivo durante los primeros días. Ahora sigue cumpliendo con su deber y sirviendo a los ciudadanos, intentando acabar con esta amenaza con cualquier arma que tenga a mano.
-BodyMesh0=Equipo antidisturbios
-BodyMesh1=Londres
-HeadMesh0=Cabello
+CharacterName="Agente Rob Briar"
+Description="Rob Briar fue agente de policía desde los 17 años y hasta el día en que sus superiores lo llamaron para que contuviera lo que parecía una revuelta anarquista. Efectivamente, hoy sabemos que no lo era, pero el pobre Briar lo descubrió por las malas. Por suerte, no era uno de esos policías oxidados calientasillas, sino que, después de su experiencia en la brigada antiterrorista, manejaba con soltura un amplio surtido de armas de fuego. A pesar de esa fachada risueña y despreocupada, Briar es más duro que una roca, y gracias a eso logró mantenerse con vida durante esos terribles primeros días. Bueno, a eso y al Kevlar de su uniforme de antidisturbios. Hoy en día sigue cumpliendo con su deber de servir al público, combatiendo como puede a esta amenaza, valiéndose de cualquier objeto contundente que caiga en sus manos."
+BodyMesh0="Antidisturbios"
+BodyMesh1="Londres"
+BodyMesh2="Caballero de cartón"
+BodyMesh3="Seguridad de Horzine"
+HeadMesh0="Pelo"
 
 [chr_briar_archetype.BodyMesh0]
-BodySkin0=Azul policía
-BodySkin1=Negro noche
-BodySkin2=Verde ejército
-BodySkin3=Camuflaje SAS
+BodySkin0="Unif. policía azul"
+BodySkin1="Negro"
+BodySkin2="Verde militar"
+BodySkin3="Camuflaje militar"
 
 [chr_briar_archetype.BodyMesh1]
-BodySkin0=Metro
-BodySkin1=Negro noche
-BodySkin2=Azul
-BodySkin3=Reflectante
-BodySkin4=Negro reflectante
+BodySkin0="Metro"
+BodySkin1="Negro noche"
+BodySkin2="Azul"
+BodySkin3="Reflectante"
+BodySkin4="Negro reflectante"
+
+[chr_briar_archetype.BodyMesh2]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[chr_briar_archetype.BodyMesh3]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [chr_briar_archetype.HeadMesh0]
-HeadSkin0=Original
-HeadSkin1=Mechas
-HeadSkin2=Negro
+HeadSkin0="Original"
+HeadSkin1="Imprescindibles"
+HeadSkin2="Negro"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
-Attachment=Máscara del doctor
-AttachmentSkin0=Blanco
-AttachmentSkin1=Azul
-AttachmentSkin2=Verde
+Attachment="Máscara de doctor"
+AttachmentSkin0="Blanco"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
 
 [Cosmetic_BrokenMask_Briar_ARCH]
-Attachment=Shattered Mask
-AttachmentSkin0=WhiteYellow
-AttachmentSkin1=Geisha
-AttachmentSkin2=Metal
-AttachmentSkin3=Sugar Purple
-AttachmentSkin4=Sugar Red
-AttachmentSkin5=Skin
+Attachment="Máscara rota"
+AttachmentSkin0="Blanco y amarillo"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Azúcar morada"
+AttachmentSkin4="Azúcar roja"
+AttachmentSkin5="Aspecto"
 
 [CHR_MrFoster_archetype]
-CharacterName=Mr. Foster
-Description=Foster llegó al mundo de las operaciones day trading tras recibir su educación en un colegio privado inglés mediocre, escuchando continuamente el clásico 'nunca llegarás a nada' en la oficina de su orientador escolar. No es que a Foster le importara demasiado pero, por alguna extraña razón, descubrió que se le daban bien las operaciones day trading. Empezó a acumular grandes sumas de dinero y le encantaba. Aunque no admitía que disfrutaba trabajando, obviamente. También tenía la costumbre de abusar verbalmente de la autoridad. Así Foster se ganó la imagen de tipo inteligente y sagaz con un sarcástico sentido del humor y un gran gusto por la ropa y los coches. O como a un estúpido presumido, tú decides.
-BodyMesh0=Chaqueta de cuero
-BodyMesh1=Traje clásico
-HeadMesh0=Máscara antigás
+CharacterName="Sr. Foster"
+Description="Foster había llegado al entrenamiento desde una mediocre escuela privada inglesa con el clásico: "nunca triunfarás, Foster" de su oficial resonando en sus oídos. No es que a Foster le importara mucho. En cambio, se dio cuenta de que ese entrenamiento le vino bien. Comenzó a generar grandes sumas de dinero y a disfrutar de ello. Obviamente, no iba a admitir que disfrutaba de un trabajo. Incluso tenía la costumbre de insultar a las autoridades. Esto hacía que Foster fuera considerado un tipo listo con un sentido del humor sarcástico y un gusto excelente en coches y ropa. O un títere presumido. Tú decides."
+BodyMesh0="Chaqueta de cuero"
+BodyMesh1="Traje clásico"
+BodyMesh2="Caballero de cartón"
+BodyMesh3="Seguridad de Horzine"
+HeadMesh0="Máscara de gas"
 
 [CHR_MrFoster_archetype.BodyMesh0]
-BodySkin0=Azul KF
-BodySkin1=Dinero PCG
-BodySkin2=Riesgo biológico
-BodySkin3=Pura elegancia
-BodySkin4=Rojo magma
+BodySkin0="Azul KF"
+BodySkin1="Dinero JPC"
+BodySkin2="Peligro biológico"
+BodySkin3="Clásico sencillo"
+BodySkin4="Magma rojo"
 
 [CHR_MrFoster_archetype.BodyMesh1]
-BodySkin0=Clásico
-BodySkin1=Negro
-BodySkin2=Gómez
-BodySkin3=A rayas
-BodySkin4=El Rox
-BodySkin5=Azul vicio
-BodySkin6=Vicio
-BodySkin7=Casino
-BodySkin8=Esmoquin
+BodySkin0="Clásico"
+BodySkin1="Negro"
+BodySkin2="Gómez"
+BodySkin3="Rayas verticales"
+BodySkin4="The Rox"
+BodySkin5="Plateado azul"
+BodySkin6="Plateado"
+BodySkin7="Casino"
+BodySkin8="Esmoquin"
+
+[CHR_MrFoster_archetype.BodyMesh2]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_MrFoster_archetype.BodyMesh3]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [CHR_MrFoster_archetype.HeadMesh0]
-HeadSkin0=Blanco original
-HeadSkin1=Rojo PCG
-HeadSkin2=Mi colega Skully
-HeadSkin3=Rojo magma
-HeadSkin4=Clase británica
+HeadSkin0="Blanco original"
+HeadSkin1="JPC rojo"
+HeadSkin2="En los huesos"
+HeadSkin3="Magma rojo"
+HeadSkin4="Clase británica"
 
 [Cosmetic_DJHeadphones_ARCH]
-Attachment=Cascos de Skully
-AttachmentSkin0=Azul profundo
-AttachmentSkin1=Rojo guillotina
-AttachmentSkin2=Naranja protector
-AttachmentSkin3=Skully retro
-AttachmentSkin4=Blanco Horzine
-AttachmentSkin5=Amarillo GearXT
-AttachmentSkin6=Dorado precioso
+Attachment="Auriculares"
+AttachmentSkin0="Azul metálico"
+AttachmentSkin1="Rojo guillotina"
+AttachmentSkin2="Guardián naranja"
+AttachmentSkin3="Calavera retro"
+AttachmentSkin4="Horzine blanco"
+AttachmentSkin5="GearXT amarillo"
+AttachmentSkin6="Oro precioso"
 
 [Cosmetic_MrFoster_Suit_NeckTie_ARCH]
-Attachment=Corbata
-AttachmentSkin0=Azul clásico
-AttachmentSkin1=Franja roja
-AttachmentSkin2=Negro
-AttachmentSkin3=Blanco y negro
-AttachmentSkin4=Casino
-AttachmentSkin5=Las cosas
-AttachmentSkin6=Magma
-AttachmentSkin7=PC Gamer
+Attachment="Corbata de Foster"
+AttachmentSkin0="Azul clásico"
+AttachmentSkin1="Franja roja"
+AttachmentSkin2="Negro"
+AttachmentSkin3="Blanco y negro"
+AttachmentSkin4="Casino"
+AttachmentSkin5="La Cosa"
+AttachmentSkin6="Magma"
+AttachmentSkin7="Franja roja oscura"
 
 [Cosmetic_MrFoster_Suit_LooseTie_ARCH]
-Attachment=Corbata suelta
-AttachmentSkin0=Azul clásico
-AttachmentSkin1=Franja roja
-AttachmentSkin2=Negro
-AttachmentSkin3=Esmoquin
-AttachmentSkin4=Casino
-AttachmentSkin5=Las cosas
-AttachmentSkin6=Magma
-AttachmentSkin7=PC Gamer
+Attachment="Corbata aflojada"
+AttachmentSkin0="Azul clásico"
+AttachmentSkin1="Franja roja"
+AttachmentSkin2="Negro"
+AttachmentSkin3="Esmoquin"
+AttachmentSkin4="Casino"
+AttachmentSkin5="La Cosa"
+AttachmentSkin6="Magma"
+AttachmentSkin7="Franja roja oscura"
 
 [Cosmetic_MrFoster_Suit_BowTie_ARCH]
-Attachment=Pajarita
-AttachmentSkin0=Azul clásico
-AttachmentSkin1=Franja roja
-AttachmentSkin2=Negro
-AttachmentSkin3=Blanco y negro
-AttachmentSkin4=Casino
-AttachmentSkin5=Las cosas
-AttachmentSkin6=Magma
-AttachmentSkin7=PC Gamer
+Attachment="Pajarita"
+AttachmentSkin0="Azul clásico"
+AttachmentSkin1="Franja roja"
+AttachmentSkin2="Negro"
+AttachmentSkin3="Blanco y negro"
+AttachmentSkin4="Casino"
+AttachmentSkin5="La Cosa"
+AttachmentSkin6="Magma"
+AttachmentSkin7="Franja roja oscura"
 
 [Cosmetic_MrFoster_01_LooseTie_ARCH]
-Attachment=Corbata suelta
-AttachmentSkin0=Azul clásico
-AttachmentSkin1=Franja roja
-AttachmentSkin2=Negro
-AttachmentSkin3=Blanco y negro
-AttachmentSkin4=Casino
-AttachmentSkin5=Las cosas
+Attachment="Corbata aflojada"
+AttachmentSkin0="Azul clásico"
+AttachmentSkin1="Franja roja"
+AttachmentSkin2="Negro"
+AttachmentSkin3="Blanco y negro"
+AttachmentSkin4="Casino"
+AttachmentSkin5="La Cosa"
 
 [Cosmetic_Ana_CyberneticGasmask_ARCH]
-Attachment=Cybernetic Gas Mask
-AttachmentSkin0=Blue
-AttachmentSkin1=Green
-AttachmentSkin2=Pink
+Attachment="Más. antigás cibern."
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosa"
 
 [Cosmetic_rubbergasmask_alberts_1_ARCH]
-Attachment=Rubber Air Filter
-AttachmentSkin0=Beige
-AttachmentSkin1=Black
-AttachmentSkin2=Green
-AttachmentSkin3=Skull
+Attachment="Filtro de aire"
+AttachmentSkin0="Beige"
+AttachmentSkin1="Negro"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Calavera"
 
 [Cosmetic_TheInquisitor_1_ARCH]
-Attachment=The Inquisitor
-AttachmentSkin0=Leather
-AttachmentSkin1=White
+Attachment="Inquisidor"
+AttachmentSkin0="Cuero"
+AttachmentSkin1="Blanco"
 
 [Cosmetic_BgHelmet_1_ARCH]
-Attachment=Bloody Games
-AttachmentSkin0=Blue
-AttachmentSkin1=Black
-AttachmentSkin2=Red
-AttachmentSkin3=Yellow
+Attachment="Juegos sangrientos"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Negro"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Amarillo"
 
 [Cosmetic_BrokenMask_ARCH]
-Attachment=Shattered Mask
-AttachmentSkin0=WhiteYellow
+Attachment="Máscara rota"
+AttachmentSkin0="Blanco y amarillo"
 
 [Cosmetic_WastelandGoggles_Tanaka_ARCH]
-Attachment=Wasteland Goggles
-AttachmentSkin0=Bone
-AttachmentSkin1=Coal
-AttachmentSkin2=Frost
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="Gafas Wasteland"
+AttachmentSkin0="Hueso"
+AttachmentSkin1="Carbón"
+AttachmentSkin2="Escarcha"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_VenomMask_ClassicMasterson_ARCH]
-Attachment=Venom Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="Máscara Venom"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
 
 [Cosmetic_VenomGoggles_ClassicMasterson_ARCH]
-Attachment=Venom Goggles
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="Gafas Venom"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
 
 [Cosmetic_RussianMilitaryGlasses_Briar_ARCH]
-Attachment=Russian Military Glasses
-AttachmentSkin0=Black
-AttachmentSkin1=Black Blue
-AttachmentSkin2=Black Green
-AttachmentSkin3=Black Orange
-AttachmentSkin4=White
-AttachmentSkin5=White Blue
-AttachmentSkin6=White Green
-AttachmentSkin7=White Orange
-AttachmentSkin8=Precious
+Attachment="Gafas militares rusas"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul oscuro"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Naranja oscuro"
+AttachmentSkin4="Blanco"
+AttachmentSkin5="Azul claro"
+AttachmentSkin6="Verde claro"
+AttachmentSkin7="Naranja claro"
+AttachmentSkin8="Precioso"
 
 [Cosmetic_GSG9Mask_ClassicMasterson_ARCH]
-Attachment=GS9 Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Brown
-AttachmentSkin3=Camo
-AttachmentSkin4=Olive
-AttachmentSkin5=Red
-AttachmentSkin6=White
+Attachment="Máscara GS9"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Marrón"
+AttachmentSkin3="Camuflaje"
+AttachmentSkin4="Verde aceituna"
+AttachmentSkin5="Rojo"
+AttachmentSkin6="Blanco"
 
 [CHR_Coleman_archetype]
-CharacterName=Donovan Neal
-Description=Donovan es grande, duro y se desenvuelve bien en casi cualquier situación. Pero es mucho más de lo que parece a simple vista. No sólo era escolta de un grupo de luchadores – era propietario, creador y director de todo el negocio de la seguridad. Nació en Atlanta (Georgia, EE.UU.), era inteligente y culto y trabajaba en la policía antes de establecer su propio negocio. No sólo tenía músculos, también era el cerebro de la operación. Pero ahora sólo es otro superviviente, atrapado en el lugar equivocado en el momento equivocado. Puedes rezar por todos los Zeds que osan enfrentarse a este hombre. ¡O ve allí y ayúdale a matarlos!
-BodyMesh0=Sudadera RQ
-HeadMesh0=Cara
+CharacterName="Donovan Neal"
+Description="Donovan es grande, duro y puede desenvolverse en casi todas las situaciones. Pero es mucho más de lo que aparenta a simple vista. No era uno de esos tíos que ofrecían servicios de protección a unos cuantos luchadores; él creó el negocio de la seguridad y lo dirige, además de ser el propietario. Nació en Atlanta, Georgia. Era un chico listo y bien instruido, trabajó de agente de policía antes de crear su propio negocio. No es solo la fuerza, también era el cerebro de la operación. Ahora es otro superviviente, atrapado en el lugar equivocado en el momento equivocado. Reza una plegaría por todos los zeds que se encuentran entre este hombre y lo que quiere. ¡O ve allí y ayúdale a matarlos!"
+BodyMesh0="Sudadera RQ"
+BodyMesh1="Caballero de cartón"
+BodyMesh2="Seguridad de Horzine"
+HeadMesh0="Cara"
 
 [CHR_Coleman_archetype.BodyMesh0]
-BodySkin0=Verde carreras
-BodySkin1=Rojo rústico
-BodySkin2=Gris frío
-BodySkin3=Tierra pálida
+BodySkin0="Verde competición"
+BodySkin1="Rojo rústico"
+BodySkin2="Gris guay"
+BodySkin3="Marrón claro"
+
+[CHR_Coleman_archetype.BodyMesh1]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_Coleman_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [CHR_Coleman_archetype.HeadMesh0]
-HeadSkin0=Donovan
-HeadSkin1=Tatuaje
-HeadSkin2=Brillo
+HeadSkin0="Donovan"
+HeadSkin1="Tatu"
+HeadSkin2="Mirada"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
-Attachment=Casco de boxeo
-AttachmentSkin0=Rojo
-AttachmentSkin1=Azul
-AttachmentSkin2=Marrón
-AttachmentSkin3=Amarillo
+Attachment="Casco boxeo"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Marrón"
+AttachmentSkin3="Amarillo"
 
 [Cosmetic_DJSkully01_ARCH]
-Attachment=Gorra de Skully
-AttachmentSkin0=Negro más negro
-AttachmentSkin1=Rojo extra
-AttachmentSkin2=Amarillo GearXT
-AttachmentSkin3=Verde peligro
-AttachmentSkin4=Skully retro
+Attachment="Gorra calavera"
+AttachmentSkin0="El negro más negro"
+AttachmentSkin1="Rojo Xtra"
+AttachmentSkin2="GearXT amarillo"
+AttachmentSkin3="Peligro verde"
+AttachmentSkin4="Calavera retro"
 
 [CHR_Alberts_archetype]
-CharacterName=Reverendo Alberts
-Description=Alberts, medio inglés, medio escocés, siempre había sido de complexión fuerte y templado por su deseo de ayudar a los demás. Su orientación dura, sólida y sensata era perfecta para un trabajo temporal como capellán del ejército, con la que obtuvo experiencia durante 20 años trabajando con jóvenes marginados en el sur de Londres. Después de haber pasado su vida tratando de apartar a gente del mal camino y llevarlos al lado bueno, Alberts se llevó un gran disgusto cuando una tarde a la hora del té vio destruida la obra de su vida por una manada de monstruos rabiosos. Esa tarde, Alberts pasó rápidamente de servir a los muertos y moribundos a desatar su ira sobre las cabezas de todas esas malignas abominaciones. Y sobre cualquier otra parte del cuerpo que consiga alcanzar.
-BodyMesh0=Alzacuellos
-HeadMesh0=Cabello
+CharacterName="Reverendo Alberts"
+Description="Medio inglés, medio escocés, Alberts siempre fue físicamente duro, controlado por su deseo de ayudar a los demás. Este acercamiento duro, sólido y sensato fue perfecto durante una temporada como capellán castrense, seguida por 20 años de trabajo con los jóvenes marginales del sur de Londres. Tras toda una vida dedicada a desviar a la gente del "mal" camino al "bueno", Alberts no estaba precisamente contento al ver una tarde cómo unos monstruos rabiosos destrozaban el trabajo de toda su vida una tarde a la hora del té. Esa tarde pasó rápidamente de atender a los muertos y agonizantes a verter toda la ira de Alberts sobre la cabeza de todas las abominaciones diabólicas. Y en cualquier otra parte del cuerpo que pudiera alcanzar."
+BodyMesh0="Collar de perro"
+BodyMesh1="Caballero de cartón"
+BodyMesh2="Seguridad de Horzine"
+HeadMesh0="Pelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
-BodySkin0=Negro básico
-BodySkin1=Rojo rubí
-BodySkin2=Azul intenso
-BodySkin3=Blanco tropical
+BodySkin0="Negro básico"
+BodySkin1="Rojo rubí"
+BodySkin2="Azul eléctrico"
+BodySkin3="Blanco tropical"
+
+[CHR_Alberts_archetype.BodyMesh1]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_Alberts_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [CHR_Alberts_archetype.HeadMesh0]
-HeadSkin0=Gris
-HeadSkin1=Marrón
-HeadSkin2=Negro
-HeadSkin3=Blanco
+HeadSkin0="Gris"
+HeadSkin1="Marrón"
+HeadSkin2="Negro"
+HeadSkin3="Blanco"
 
 [Cosmetic_Alberts02_ARCH]
-Attachment=Gafas
-AttachmentSkin0=Gafas de sol
-AttachmentSkin1=Gafas normales
+Attachment="Gafas"
+AttachmentSkin0="Cristales oscuros"
+AttachmentSkin1="Cristales transparentes"
 
 [Cosmetic_Alberts03_ARCH]
-Attachment=Máscara NBQ S10
-AttachmentSkin0=Negro
-AttachmentSkin1=Camuflaje
-AttachmentSkin2=Riesgo biológico
-AttachmentSkin3=Tiempo Zed
-AttachmentSkin4=Precioso
+Attachment="Máscara S10 NBC"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Camuflaje"
+AttachmentSkin2="Peligro biológico"
+AttachmentSkin3="Momento zed"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_Bowler_ARCH]
-Attachment=Bombín
-AttachmentSkin0=Negro negocios
-AttachmentSkin1=Lo mejor británico
-AttachmentSkin2=Marrón chocolate
-AttachmentSkin3=Rojo fuego
-AttachmentSkin4=Jodidamente morado
-AttachmentSkin5=Blanco eficaz
+Attachment="Bombín"
+AttachmentSkin0="Negro ejecutivo"
+AttachmentSkin1="Estilo inglés"
+AttachmentSkin2="Marrón chocolate"
+AttachmentSkin3="Rojo fuego"
+AttachmentSkin4="Seriedad morada"
+AttachmentSkin5="Actuación blanca"
 
 [Cosmetic_Alienware_Promo_ARCH]
-Attachment=Alienware
-AttachmentSkin0=Negro
-AttachmentSkin1=Resplandor negro
-AttachmentSkin2=Blanco
-AttachmentSkin3=Resplandor blanco
-AttachmentSkin4=Azul
-AttachmentSkin5=Resplandor azul
-AttachmentSkin6=Dorado
-AttachmentSkin7=Resplandor dorado
-AttachmentSkin8=Verde
-AttachmentSkin9=Resplandor verde
+Attachment="Alienware"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Brillo negro"
+AttachmentSkin2="Blanco"
+AttachmentSkin3="Brillo blanco"
+AttachmentSkin4="Azul"
+AttachmentSkin5="Brillo azul"
+AttachmentSkin6="Dorado"
+AttachmentSkin7="Brillo dorado"
+AttachmentSkin8="Verde"
+AttachmentSkin9="Brillo verde"
 
 [Cosmetic_SunglassesAviator_Alberts_ARCH]
-Attachment=Gafas de aviador
-AttachmentSkin0=Bordes blancos
-AttachmentSkin1=Azul
-AttachmentSkin2=Verde
-AttachmentSkin3=Rojo
+Attachment="Gafas de aviador"
+AttachmentSkin0="Bordes blancos"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
 
 [Cosmetic_BallisticMask_Alberts_ARCH]
-Attachment=Máscara antibalas
-AttachmentSkin0=Negro
-AttachmentSkin1=Azul
-AttachmentSkin2=Verde
-AttachmentSkin3=Rojo
+Attachment="Más. Devtac Ballistic"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
 
 [Cosmetic_BaseballCap_Alberts_ARCH]
-Attachment=Gorra de béisbol
-AttachmentSkin0=Reino Unido
-AttachmentSkin1=EE. UU.
-AttachmentSkin2=Canadá
-AttachmentSkin3=Alemania
-AttachmentSkin4=Rusia
-AttachmentSkin5=Gold
-AttachmentSkin6=Blue
+Attachment="Gorra de béisbol"
+AttachmentSkin0="Reino Unido"
+AttachmentSkin1="EEUU"
+AttachmentSkin2="CA"
+AttachmentSkin3="AL"
+AttachmentSkin4="RU"
+AttachmentSkin5="Dorado"
+AttachmentSkin6="Azul"
 
 [Cosmetic_Flatcap_ARCH]
-Attachment=Gorra de lana
-AttachmentSkin0=Marrón
-AttachmentSkin1=Negro
-AttachmentSkin2=Azul
-AttachmentSkin3=Amarillo
-AttachmentSkin4=Blanco
+Attachment="Gorra plana"
+AttachmentSkin0="Marrón"
+AttachmentSkin1="Negro"
+AttachmentSkin2="Azul"
+AttachmentSkin3="Amarillo"
+AttachmentSkin4="Blanco"
 
 [Cosmetic_ChefHat_Alberts_LOD0_LOD0_ARCH]
-Attachment=Gorro de chef
-AttachmentSkin0=Blanco
-AttachmentSkin1=A rayas
-AttachmentSkin2=Sangriento
+Attachment="Sombrero de cocinero"
+AttachmentSkin0="Un sombrero genial"
+AttachmentSkin1="Docena y uno más"
+AttachmentSkin2="Poco uso"
 
 [Cosmetic_ChemicalGasMask_Alberts_ARCH]
-Attachment=Máscara antigás químico
-AttachmentSkin0=Estándar
-AttachmentSkin1=Negro
-AttachmentSkin2=Verde
-AttachmentSkin3=Amarillo
+Attachment="Máscara antigás"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Negro"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Amarillo"
 
 [Cosmetic_CowboyHat_Alberts_ARCH]
-Attachment=Sombrero de vaquero
-AttachmentSkin0=Sombrero de vaquero
+Attachment="Sombrero de cowboy"
+AttachmentSkin0="Sombrero de cowboy"
 
 [Cosmetic_UKHelmet_Alberts_ARCH]
-Attachment=Casco de Kevlar
-AttachmentSkin0=Camuflaje
+Attachment="Casco Kevlar"
+AttachmentSkin0="Camuflaje"
 
 [Cosmetic_UKHelmetNV_Alberts_ARCH]
-Attachment=Casco de visión nocturna
-AttachmentSkin0=Resplandor azul
+Attachment="Casco de v. nocturna"
+AttachmentSkin0="Brillo azul"
 
 [Cosmetic_EyePatch_Alberts_ARCH]
-Attachment=Parche de ojo
-AttachmentSkin0=Estándar
-AttachmentSkin1=Asiático
-AttachmentSkin2=Bio
-AttachmentSkin3=Azul
-AttachmentSkin4=Camuflaje
-AttachmentSkin5=Pasta
-AttachmentSkin6=Ojo
-AttachmentSkin7=Elegante
-AttachmentSkin8=Llama
-AttachmentSkin9=Tartán
-AttachmentSkin10=Púrpura
-AttachmentSkin11=Cráneo
-AttachmentSkin12=Salpicadura
-AttachmentSkin13=Tie-dye
+Attachment="Parche ocular"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Asiático"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Camuflaje"
+AttachmentSkin5="Dinero"
+AttachmentSkin6="Ojo"
+AttachmentSkin7="Elegante"
+AttachmentSkin8="Llamarada"
+AttachmentSkin9="Cuadros"
+AttachmentSkin10="Morado"
+AttachmentSkin11="Calavera"
+AttachmentSkin12="Salpicadura"
+AttachmentSkin13="Tie Dye"
 
 [Cosmetic_WeldingMask_ARCH]
-Attachment=Máscara de soldar
-AttachmentSkin0=Dark Metal
+Attachment="Máscara de soldadura"
+AttachmentSkin0="Metal oscuro"
 
 [Cosmetic_GermanGasMask_Alberts_ARCH]
-Attachment=Máscara antigás alemana
-AttachmentSkin0=Máscara antigás alemana
-
-[Cosmetic_Headband_Alberts_ARCH]
-Attachment=Bandana
-AttachmentSkin0=Estándar
-AttachmentSkin1=Blanco asiático
-AttachmentSkin2=Rojo negruzco
-AttachmentSkin3=Azul
-AttachmentSkin4=Camuflaje
-AttachmentSkin5=Púrpura oscuro
-AttachmentSkin6=Llama
-AttachmentSkin7=Verde
-AttachmentSkin8=Japón
-AttachmentSkin9=Azul claro
-AttachmentSkin10=Púrpura
-AttachmentSkin11=Rojo
-AttachmentSkin12=Negro rojizo
-AttachmentSkin13=Patrón rojo
-AttachmentSkin14=Estrella
-AttachmentSkin15=Franja
-AttachmentSkin16=Tie-dye
-AttachmentSkin17=Blanco
-AttachmentSkin18=Amarillo
+Attachment="Máscara antigás ale."
+AttachmentSkin0="Máscara antigás ale."
 
 [Cosmetic_SkiMask_AlbertsSkin_ARCH]
-Attachment=Pasamontañas
-AttachmentSkin0=Estándar
-AttachmentSkin1=Asiático
-AttachmentSkin2=Rojo negruzco
-AttachmentSkin3=Verde azulado
-AttachmentSkin4=Blanco azulado
-AttachmentSkin5=Amarillo azulado
-AttachmentSkin6=Camuflaje
-AttachmentSkin7=Púrpura oscuro
-AttachmentSkin8=Llamas
-AttachmentSkin9=Azul verdoso
-AttachmentSkin10=Amarillo verdoso
-AttachmentSkin11=Pastel
-AttachmentSkin12=Púrpura
-AttachmentSkin13=Negro púrpura
-AttachmentSkin14=Arcoíris
-AttachmentSkin15=Blanco rojizo
-AttachmentSkin16=Negro blancuzco
-AttachmentSkin17=Negro amarillento
+Attachment="Pasamontañas"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Asiático"
+AttachmentSkin2="Rojo y negro"
+AttachmentSkin3="Verde y azul"
+AttachmentSkin4="Azul claro"
+AttachmentSkin5="Amarillo azulado"
+AttachmentSkin6="Camuflaje"
+AttachmentSkin7="Morado oscuro"
+AttachmentSkin8="Llamaradas"
+AttachmentSkin9="Azul y verde"
+AttachmentSkin10="Amarillo y verde"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Morado"
+AttachmentSkin13="Negro y morado"
+AttachmentSkin14="Arcoíris"
+AttachmentSkin15="Blanco y rojo"
+AttachmentSkin16="Blanco y negro"
+AttachmentSkin17="Amarillo y negro"
 
 [Cosmetic_SunglassesRetro_Alberts_ARCH]
-Attachment=Gafas de sol retro
-AttachmentSkin0=Negro
-AttachmentSkin1=Camuflaje
-AttachmentSkin2=Tigre
-AttachmentSkin3=EE. UU.
+Attachment="Gafas de sol retro"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Camuflaje"
+AttachmentSkin2="Tigre"
+AttachmentSkin3="EEUU"
 
 [Cosmetic_holyglassesv2_ARCH]
-Attachment=Gafas sagradas
-AttachmentSkin0=Gafas sagradas
+Attachment="Gafas sagradas"
+AttachmentSkin0="Gafas sagradas"
 
 [Cosmetic_VanAlbertsHat_Alberts_ARCH]
-Attachment=Sombrero de Van Alberts
-AttachmentSkin0=Manzana clásico
-AttachmentSkin1=Cantante infernal
-AttachmentSkin2=Hierofante
+Attachment="Sombrero Van Alberts"
+AttachmentSkin0="Cabriola clásica"
+AttachmentSkin1="Cantante infernal"
+AttachmentSkin2="Gerofante"
 
 [Cosmetic_VanAlbertsCloak_Alberts_ARCH]
-Attachment=Capa de Van Alberts
-AttachmentSkin0=Manzana clásico
-AttachmentSkin1=Cantante infernal
-AttachmentSkin2=Hierofante
+Attachment="Capa de Van Alberts"
+AttachmentSkin0="Cabriola clásica"
+AttachmentSkin1="Cantante infernal"
+AttachmentSkin2="Gerofante"
 
 [Cosmetic_FrontRowProtectionUp_Briar_ARCH]
-Attachment=Sin protección frontal
-AttachmentSkin0=Estándar
-AttachmentSkin1=Riesgo biológico
-AttachmentSkin2=Baño de sangre
-AttachmentSkin3=Casco de piloto británico
-AttachmentSkin4=Camuflaje
-AttachmentSkin5=Spray alemán
-AttachmentSkin6=Testactacular
-AttachmentSkin7=Manchado
+Attachment="Casco K6 subido"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Peligro biológico"
+AttachmentSkin2="Baño de sangre"
+AttachmentSkin3="Cráneo externo UK"
+AttachmentSkin4="Camuflaje"
+AttachmentSkin5="Spray alemán"
+AttachmentSkin6="Skullacular"
+AttachmentSkin7="Manchas"
 
 [Cosmetic_FrontRowProtectionDown_Briar_ARCH]
-Attachment=Con protección frontal
-AttachmentSkin0=Estándar
-AttachmentSkin1=Riesgo biológico
-AttachmentSkin2=Baño de sangre
-AttachmentSkin3=Casco de piloto británico
-AttachmentSkin4=Camuflaje
-AttachmentSkin5=Spray alemán
-AttachmentSkin6=Testactacular
-AttachmentSkin7=Manchado
+Attachment="Casco K6 bajado"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Peligro biológico"
+AttachmentSkin2="Baño de sangre"
+AttachmentSkin3="Cráneo externo UK"
+AttachmentSkin4="Camuflaje"
+AttachmentSkin5="Spray alemán"
+AttachmentSkin6="Skullacular"
+AttachmentSkin7="Manchas"
 
 [Cosmetic_CriminalMask_Alberts_ARCH]
-Attachment=Máscara de loco criminal
-AttachmentSkin0=Máscara de loco criminal
+Attachment="Máscara criminal"
+AttachmentSkin0="Máscara criminal"
 
 [Cosmetic_FlightHelmet_ARCH]
-Attachment=Casco de vuelo
-AttachmentSkin0=Casco de vuelo
-AttachmentSkin1=Bloody Helmet
-AttachmentSkin2=Bubble Yum
-AttachmentSkin3=Crimson Sky
-AttachmentSkin4=Flame
-AttachmentSkin5=Ninja
+Attachment="Casco de vuelo"
+AttachmentSkin0="Casco de vuelo"
+AttachmentSkin1="Casco sangriento"
+AttachmentSkin2="Rosa chicle"
+AttachmentSkin3="Cielo escarlata"
+AttachmentSkin4="Llamarada"
+AttachmentSkin5="Ninja"
 
 [Cosmetic_SkullBreakerHelm_Alberts_ARCH]
-Attachment=Casco del rompecrismas
-AttachmentSkin0=Casco del rompecrismas
+Attachment="Casco rompecráneos"
+AttachmentSkin0="Casco rompecráneos"
 
 [Cosmetic_SkullBreakerMask_Alberts_ARCH]
-Attachment=Máscara del rompecrismas
-AttachmentSkin0=Máscara del rompecrismas
+Attachment="Máscara rompecráneos"
+AttachmentSkin0="Máscara rompecráneos"
 
 [Cosmetic_CustodianHelmet_ARCH]
-Attachment=Casco de bobby
-AttachmentSkin0=Negro
-AttachmentSkin1=Dorado
-AttachmentSkin2=Azul
-AttachmentSkin3=Dorado precioso
+Attachment="Casco guardián"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Dorado"
+AttachmentSkin2="Azul"
+AttachmentSkin3="Oro precioso"
 
 [Cosmetic_FlightMask_Alberts_mask1_ARCH]
-Attachment=Flight Mask
-AttachmentSkin0=Flight Mask
-AttachmentSkin1=Bloody Mask
-AttachmentSkin2=Bubble Yum
-AttachmentSkin3=Crimson Sky
-AttachmentSkin4=Flame
-AttachmentSkin5=Ninja
+Attachment="Máscara de vuelo"
+AttachmentSkin0="Máscara de vuelo"
+AttachmentSkin1="Máscara sangrienta"
+AttachmentSkin2="Rosa chicle"
+AttachmentSkin3="Cielo escarlata"
+AttachmentSkin4="Llamarada"
+AttachmentSkin5="Ninja"
 
 [Cosmetic_DonovanGoggles_ARCH]
-Attachment=Charm Goggles
-AttachmentSkin0=Blue
-AttachmentSkin1=Desert
-AttachmentSkin2=Green
-AttachmentSkin3=White
-AttachmentSkin4=Precious
+Attachment="Gafas talismán"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Desierto"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Blanco"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_DonovanGogglesNoCharm_ARCH]
-Attachment=Aviator Goggles
-AttachmentSkin0=Blue
-AttachmentSkin1=Desert
-AttachmentSkin2=Green
-AttachmentSkin3=White
-AttachmentSkin4=Precious
+Attachment="Gafas de aviador"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Desierto"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Blanco"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_BattleHelmet_ARCH]
-Attachment=Sawblade Battle Helm
-AttachmentSkin0=Default
+Attachment="Casco cuchilla"
+AttachmentSkin0="Por defecto"
 
 [Cosmetic_Boonie_Cap_Alberts_ARCH]
-Attachment=Boonie Cap
-AttachmentSkin0=The Boonies
-AttachmentSkin1=Red Digi
-AttachmentSkin2=Red Tiger
-AttachmentSkin3=Green
-AttachmentSkin4=Green Digi
-AttachmentSkin5=Blue Digi
-AttachmentSkin6=Blue Tiger
+Attachment="Gorro militar"
+AttachmentSkin0="Por defecto"
+AttachmentSkin1="Rojo camuflaje"
+AttachmentSkin2="Rojo tigre"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Verde camuflaje"
+AttachmentSkin5="Azul camuflaje"
+AttachmentSkin6="Azul tigre"
 
 [Cosmetic_Coleman_yuri_ARCH]
-Attachment=Infiltrator
-AttachmentSkin0=Red
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Precious
+Attachment="Infiltrado"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_cthulhumask_Alberts_ARCH]
-Attachment=Mask of the Abyss
-AttachmentSkin0=Ph'nglui
-AttachmentSkin1=Mglw'nafh 
-AttachmentSkin2=Wgah'nagl
-AttachmentSkin3=Fhtagn
-AttachmentSkin4=Precious
+Attachment="Máscara del abismo"
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_Alberts_CyberneticGasmask_ARCH]
-Attachment=Cybernetic Gas Mask
-AttachmentSkin0=Blue
-AttachmentSkin1=Green
-AttachmentSkin2=Pink
+Attachment="Más. antigás cibern."
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosa"
 
 [Cosmetic_MrFoster_JFront_ARCH]
-Attachment=JFront Cap
-AttachmentSkin0=Red
-AttachmentSkin1=Green
-AttachmentSkin2=Blue
-AttachmentSkin3=Black
+Attachment="Gorra JFront"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Azul"
+AttachmentSkin3="Negro"
 
 [Cosmetic_LonghornHat_ARCH]
-Attachment=Longhorn
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Red
-AttachmentSkin3=White
-AttachmentSkin4=Precious
+Attachment="Calavera buey"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Blanco"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_mkitbag_Alberts_ARCH]
-Attachment=EMS Backpack
-AttachmentSkin0=Blue
-AttachmentSkin1=Red
+Attachment="Mochila botiquín"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Rojo"
 
 [Cosmetic_MotoHelm_ARCH]
-Attachment=Motorcycle Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Orange
-AttachmentSkin3=Orange Fade
-AttachmentSkin4=Purple Fade
-AttachmentSkin5=Red
-AttachmentSkin6=Red White
-AttachmentSkin7=Silver
-AttachmentSkin8=Teal White
-AttachmentSkin9=Precious
+Attachment="Casco de moto"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Naranja"
+AttachmentSkin3="Naranja desteñido"
+AttachmentSkin4="Morado desteñido"
+AttachmentSkin5="Rojo"
+AttachmentSkin6="Blanco y rojo"
+AttachmentSkin7="Plata"
+AttachmentSkin8="Blanco y turquesa"
+AttachmentSkin9="Precioso"
 
 [Cosmetic_MotoHelmDamaged_ARCH]
-Attachment=Smashed Motorcycle Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Orange
-AttachmentSkin3=Orange Fade
-AttachmentSkin4=Purple Fade
-AttachmentSkin5=Red
-AttachmentSkin6=Red White
-AttachmentSkin7=Silver
-AttachmentSkin8=Teal White
+Attachment="Casco de moto roto"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Naranja"
+AttachmentSkin3="Naranja desteñido"
+AttachmentSkin4="Morado desteñido"
+AttachmentSkin5="Rojo"
+AttachmentSkin6="Blanco y rojo"
+AttachmentSkin7="Plata"
+AttachmentSkin8="Blanco y turquesa"
 
 [Cosmetic_rubbergasmask_alberts_ARCH]
-Attachment=Rubber Air Filter
-AttachmentSkin0=Beige
-AttachmentSkin1=Black
-AttachmentSkin2=Green
-AttachmentSkin3=Skull
+Attachment="Filtro de aire"
+AttachmentSkin0="Beige"
+AttachmentSkin1="Negro"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Calavera"
 
 [Cosmetic_RussianGasmask_Alberts_ARCH]
-Attachment=Russian Gas Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Green
-AttachmentSkin2=Red
-AttachmentSkin3=Precious
+Attachment="Máscara antigás rusa"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_SawtoothMask_Alberts_ARCH]
-Attachment=Sawtooth Mask
-AttachmentSkin0=Jawsome
-AttachmentSkin1=Redtooth
-AttachmentSkin2=Wasp
-AttachmentSkin3=Precious
+Attachment="Máscara fauces"
+AttachmentSkin0="Colmillos"
+AttachmentSkin1="Dientes rojos"
+AttachmentSkin2="Avispa"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_TheInquisitor_ARCH]
-Attachment=The Inquisitor
-AttachmentSkin0=Leather
-AttachmentSkin1=White
+Attachment="Inquisidor"
+AttachmentSkin0="Cuero"
+AttachmentSkin1="Blanco"
 
 [Cosmetic_USGasMask_Alberts_ARCH]
-Attachment=US Gas Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="Máscara antigás EEUU"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_BgHelmet_ARCH]
-Attachment=Bloody Games
-AttachmentSkin0=Blue
-AttachmentSkin1=Black
-AttachmentSkin2=Red
-AttachmentSkin3=Yellow
+Attachment="Juegos sangrientos"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Negro"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Amarillo"
 
 [Cosmetic_BrokenMask_Alberts_ARCH]
-Attachment=Shattered Mask
-AttachmentSkin0=WhiteYellow
-AttachmentSkin1=Geisha
-AttachmentSkin2=Metal
-AttachmentSkin3=Sugar Purple
-AttachmentSkin4=Sugar Red
-AttachmentSkin5=Skin
+Attachment="Máscara rota"
+AttachmentSkin0="Blanco y amarillo"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Azúcar morada"
+AttachmentSkin4="Azúcar roja"
+AttachmentSkin5="Aspecto"
 
 [Cosmetic_militarybeanie_albert_ARCH]
-Attachment=Military Surplus Beanie
-AttachmentSkin0=Beige
-AttachmentSkin1=Black
-AttachmentSkin2=Blue
-AttachmentSkin3=Red
-AttachmentSkin4=Green
+Attachment="Gorro militar"
+AttachmentSkin0="Beige"
+AttachmentSkin1="Negro"
+AttachmentSkin2="Azul"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Verde"
 
 [Cosmetic_pilotgoggles_alberts_ARCH]
-Attachment=RAF Goggles
-AttachmentSkin0=Glow Blue
-AttachmentSkin1=Glow Orange
-AttachmentSkin2=Black
-AttachmentSkin3=Orange
-AttachmentSkin4=Green Blue
-AttachmentSkin5=Brown
+Attachment="Gafas RAF"
+AttachmentSkin0="Azul brillante"
+AttachmentSkin1="Naranja brillante"
+AttachmentSkin2="Negro"
+AttachmentSkin3="Naranja"
+AttachmentSkin4="Azul y verde"
+AttachmentSkin5="Marrón"
 
 [Cosmetic_PorkPieHat_Alberts_ARCH]
-Attachment=Pork Pie
-AttachmentSkin0=Mr White
+Attachment="Sombrero copa"
+AttachmentSkin0="Sr. White"
 
 [Cosmetic_AlbertsMask_base_ARCH]
-Attachment=Visage de Poupee
-AttachmentSkin0=Doll Face
-AttachmentSkin1=Squares
-AttachmentSkin2=Harlequin
-AttachmentSkin3=Bloody
-AttachmentSkin4=Muerto
-AttachmentSkin5=Skelington
-AttachmentSkin6=Zed
+Attachment="Visage de Poupee"
+AttachmentSkin0="Cara de muñeca"
+AttachmentSkin1="Plaza"
+AttachmentSkin2="Arlequín"
+AttachmentSkin3="Sangriento"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skeleton"
+AttachmentSkin6="Zed"
 
 [Cosmetic_ProtGlasses_masterson_ARCH]
-Attachment=Protective Glasses
-AttachmentSkin0=Orange
-AttachmentSkin1=Red
-AttachmentSkin2=Purple
-AttachmentSkin3=Green
-AttachmentSkin4=Blue
-AttachmentSkin5=Precious
+Attachment="Gafas protectoras"
+AttachmentSkin0="Naranja"
+AttachmentSkin1="Rojo"
+AttachmentSkin2="Morado"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Azul"
+AttachmentSkin5="Precioso"
 
 [Cosmetic_SamuraiMask_ARCH]
-Attachment=Samurai Mask
-AttachmentSkin0=Bushi
-AttachmentSkin1=Green
-AttachmentSkin2=Red
-AttachmentSkin3=Precious
+Attachment="Máscara de samurái"
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_SamuraiHatOnly_ARCH]
-Attachment=Samurai Helm
-AttachmentSkin0=Bushi
+Attachment="Casco de samurái"
+AttachmentSkin0="Bushi"
 
 [Cosmetic_Masterson_SPBandana_ARCH]
-Attachment=Street Punk Bandana
-AttachmentSkin0=Red
-AttachmentSkin1=Purple
-AttachmentSkin2=Black
-AttachmentSkin3=White
-AttachmentSkin4=Green
-AttachmentSkin5=Blue
-AttachmentSkin6=El Knifo
+Attachment="Bandana punk"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Morado"
+AttachmentSkin2="Negro"
+AttachmentSkin3="Blanco"
+AttachmentSkin4="Verde"
+AttachmentSkin5="Azul"
+AttachmentSkin6="El Knifo"
 
 [Cosmetic_Donovan_SPGlasses_ARCH]
-Attachment=Street Punk Glasses
-AttachmentSkin0=RedX
-AttachmentSkin1=PurpleX
-AttachmentSkin2=WhiteX
-AttachmentSkin3=GreenX
-AttachmentSkin4=BlueX
-AttachmentSkin5=Red
-AttachmentSkin6=Purple
-AttachmentSkin7=Black
-AttachmentSkin8=Green
-AttachmentSkin9=Blue
-AttachmentSkin10=Precious
-AttachmentSkin11=PreciousX
+Attachment="Gafas punk"
+AttachmentSkin0="RojoX"
+AttachmentSkin1="MoradoX"
+AttachmentSkin2="BlancoX"
+AttachmentSkin3="VerdeX"
+AttachmentSkin4="AzulX"
+AttachmentSkin5="Rojo"
+AttachmentSkin6="Morado"
+AttachmentSkin7="Negro"
+AttachmentSkin8="Verde"
+AttachmentSkin9="Azul"
+AttachmentSkin10="Precioso"
+AttachmentSkin11="PreciosoX"
 
 [Cosmetic_Discount-Rex_Alberts_D_Rex_Alberts_ARCH]
-Attachment=Discount T-Rex Mask
-AttachmentSkin0=Blue
-AttachmentSkin1=Green
-AttachmentSkin2=Red
-AttachmentSkin3=Precious
+Attachment="Máscara T-Rex"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_WastelandAlberts_ARCH]
-Attachment=Wasteland Goggles
-AttachmentSkin0=Bone
-AttachmentSkin1=Coal
-AttachmentSkin2=Frost
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="Gafas Wasteland"
+AttachmentSkin0="Hueso"
+AttachmentSkin1="Carbón"
+AttachmentSkin2="Escarcha"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_mkitband_Alberts_ARCH]
-Attachment=EMS Arm Band
-AttachmentSkin0=Blue
-AttachmentSkin1=Red
+Attachment="Banda brazo médico"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Rojo"
 
 [Cosmetic_M2Tank_Alberts_ARCH]
-Attachment=M2 Flamethrower Tank
-AttachmentSkin0=Olive Grey
+Attachment="Tanque lanzallamas M2"
+AttachmentSkin0="Verde oliva"
 
 [Cosmetic_RPG7Bag_Alberts_ARCH]
-Attachment=RPG7 Backbag
-AttachmentSkin0=Sierra Camo
-AttachmentSkin1=Forest Camo
-AttachmentSkin2=Desert Camo
-AttachmentSkin3=Backwoods Camo
-AttachmentSkin4=Zebrastripe Camo
-AttachmentSkin5=Green Camo
-AttachmentSkin6=Black Camo
+Attachment="Mochila RPG7"
+AttachmentSkin0="Camuflaje sierra"
+AttachmentSkin1="Camuflaje bosque"
+AttachmentSkin2="Camuflaje desierto"
+AttachmentSkin3="Camuflaje rústico"
+AttachmentSkin4="Camuflaje cebra"
+AttachmentSkin5="Camuflaje verde"
+AttachmentSkin6="Camuflaje negro"
 
 [Cosmetic_EnforcerGoggles_Alberts_ARCH]
-Attachment=Enforcer Goggles
-AttachmentSkin0=Black Coat
-AttachmentSkin1=Black Coat Blue
-AttachmentSkin2=Black Coat Red
-AttachmentSkin3=Black Coat Green
-AttachmentSkin4=Green Coat
-AttachmentSkin5=Blue Coat
-AttachmentSkin6=Red Coat
+Attachment="Gafas comando"
+AttachmentSkin0="Abrigo negro"
+AttachmentSkin1="Abrigo negro y azul"
+AttachmentSkin2="Abrigo negro y rojo"
+AttachmentSkin3="Abrigo negro y verde"
+AttachmentSkin4="Abrigo verde"
+AttachmentSkin5="Abrigo azul"
+AttachmentSkin6="Abrigo rojo"
 
 [Cosmetic_EnforcerHelmet_Alberts_ARCH]
-Attachment=Enforcer Helmet
-AttachmentSkin0=Black Coat
-AttachmentSkin1=Green Coat
-AttachmentSkin2=Blue Coat
-AttachmentSkin3=Red Coat
+Attachment="Casco sicario"
+AttachmentSkin0="Abrigo negro"
+AttachmentSkin1="Abrigo verde"
+AttachmentSkin2="Abrigo azul"
+AttachmentSkin3="Abrigo rojo"
 
 [Cosmetic_EnforcerMask_Alberts_ARCH]
-Attachment=Enforcer Mask
-AttachmentSkin0=Black Eyes
-AttachmentSkin1=Red Eyes
-AttachmentSkin2=Blue Eyes
-AttachmentSkin3=Green Eyes
-AttachmentSkin4=Green Filter
-AttachmentSkin5=Blue Filter
-AttachmentSkin6=Red Filter
+Attachment="Máscara de sicario"
+AttachmentSkin0="Ojos negros"
+AttachmentSkin1="Ojos rojos"
+AttachmentSkin2="Ojos azules"
+AttachmentSkin3="Ojos verdes"
+AttachmentSkin4="Filtro verde"
+AttachmentSkin5="Filtro azul"
+AttachmentSkin6="Filtro rojo"
 
 [Cosmetic_JusticeGoggles_Alberts_ARCH]
-Attachment=Justice Goggles
-AttachmentSkin0=Stealth Black
+Attachment="Gafas justicia "
+AttachmentSkin0="Sigilo negro"
 
 [Cosmetic_JusticeHelmet_Alberts_ARCH]
-Attachment=Justice Helmet
-AttachmentSkin0=Stealth Black
-AttachmentSkin1=Tactical Green
-AttachmentSkin2=Savage Red
-AttachmentSkin3=Miami Blue
+Attachment="Casco justicia"
+AttachmentSkin0="Sigilo negro"
+AttachmentSkin1="Verde táctico"
+AttachmentSkin2="Rojo salvaje"
+AttachmentSkin3="Azul Miami"
 
 [Cosmetic_JusticeMask_Alberts_ARCH]
-Attachment=Justice Mask
-AttachmentSkin0=Stealth Black
-AttachmentSkin1=Tactical Green
-AttachmentSkin2=Savage Red
-AttachmentSkin3=Miami Blue
-AttachmentSkin4=Blue Steel
-AttachmentSkin5=Blue Magnum
-AttachmentSkin6=Green Rally
-AttachmentSkin7=Green Synergy
-AttachmentSkin8=Red Face
-AttachmentSkin9=Red Cheeks
-AttachmentSkin10=Reaper Black
+Attachment="Máscara justicia"
+AttachmentSkin0="Sigilo negro"
+AttachmentSkin1="Verde táctico"
+AttachmentSkin2="Rojo salvaje"
+AttachmentSkin3="Azul Miami"
+AttachmentSkin4="Acero azul"
+AttachmentSkin5="Magnum azul"
+AttachmentSkin6="Verde carrera"
+AttachmentSkin7="Sinergia verde"
+AttachmentSkin8="Cara roja"
+AttachmentSkin9="Mejilla roja"
+AttachmentSkin10="La Parca"
 
 [Cosmetic_TacticalBackbag_Alberts_Backpack_ARCH]
-Attachment=Tactical Backbag
-AttachmentSkin0=Black
-AttachmentSkin1=Forest Camo
-AttachmentSkin2=Backwoods Camo
-AttachmentSkin3=Desert Camo
-AttachmentSkin4=Sierra Camo
-AttachmentSkin5=Olive Camo
+Attachment="Mochila táctica"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Camuflaje bosque"
+AttachmentSkin2="Camuflaje rústico"
+AttachmentSkin3="Camuflaje desierto"
+AttachmentSkin4="Camuflaje sierra"
+AttachmentSkin5="Camuflaje oliva"
 
 [Cosmetic_TacticalHat_Alberts_ARCH]
-Attachment=Tactical Hat
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Camo
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="Sombrero táctico"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Camuflaje"
+AttachmentSkin3="Gris"
+AttachmentSkin4="Azul marino"
+AttachmentSkin5="Verde aceituna"
+AttachmentSkin6="Rojo"
 
 [Cosmetic_TacticalMask_Alberts_ARCH]
-Attachment=Tactical Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Camo
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="Máscara táctica"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Camuflaje"
+AttachmentSkin3="Gris"
+AttachmentSkin4="Azul marino"
+AttachmentSkin5="Verde aceituna"
+AttachmentSkin6="Rojo"
 
 [Cosmetic_TacticalHeadsetMK1_Alberts_ARCH]
-Attachment=Tactical Headset MK1
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Green
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="Set táctico MK1"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Gris"
+AttachmentSkin4="Azul marino"
+AttachmentSkin5="Verde aceituna"
+AttachmentSkin6="Rojo"
 
 [Cosmetic_TacticalHeadsetMK2_Alberts_ARCH]
-Attachment=Tactical Headset MK2
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Green
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="Set táctico MK2"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Gris"
+AttachmentSkin4="Azul marino"
+AttachmentSkin5="Verde aceituna"
+AttachmentSkin6="Rojo"
 
 [Cosmetic_VenomMask_Alberts_ARCH]
-Attachment=Venom Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="Máscara Venom"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
 
 [Cosmetic_VenomMaskFiltered_Alberts_ARCH]
-Attachment=Venom Mask Filtered
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
-AttachmentSkin7=Precious
+Attachment="Filtros Venom"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
+AttachmentSkin7="Precioso"
 
 [Cosmetic_VenomGoggles_Alberts_ARCH]
-Attachment=Venom Goggles
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="Gafas Venom"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
 
 [Cosmetic_VenomGogglesCoverUp_Alberts_ARCH]
-Attachment=Venom Goggles Up
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="Gafas Venom subidas"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
 
 [Cosmetic_VenomGogglesCoverDown_Alberts_ARCH]
-Attachment=Venom Goggles Down
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
-AttachmentSkin7=Precious
+Attachment="Gafas Venom bajadas"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
+AttachmentSkin7="Precioso"
 
 [Cosmetic_VenomHeadphones_Alberts_ARCH]
-Attachment=Venom Headphones
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="Cascos Venom"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
 
 [Cosmetic_RoboScully_ARCH]
-Attachment=Robo-Scully
-AttachmentSkin0=Clean Slate
-AttachmentSkin1=Oldschool Patty
-AttachmentSkin2=Sellout
-AttachmentSkin3=Still Scully
-AttachmentSkin4=True Neutral
-AttachmentSkin5=Precious
+Attachment="Robo-Scully"
+AttachmentSkin0="Óxido"
+AttachmentSkin1="Vieja escuela"
+AttachmentSkin2="El no va más"
+AttachmentSkin3="Calavera"
+AttachmentSkin4="Neutral 100%"
+AttachmentSkin5="Precioso"
 
 [Cosmetic_ZedDundee_ARCH]
-Attachment=ZED Dundee
-AttachmentSkin0=Brown
+Attachment="ZED Dundee"
+AttachmentSkin0="Marrón"
 
 [Cosmetic_RussianMilitaryHelmet_Alberts_ARCH]
-Attachment=Russian Military Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Olive
-AttachmentSkin4=Red
-AttachmentSkin5=White
-AttachmentSkin6=Precious
+Attachment="Casco militar ruso"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Verde aceituna"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Blanco"
+AttachmentSkin6="Precioso"
 
 [Cosmetic_RussianMilitaryMask_Briar_ARCH]
-Attachment=Russian Military Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Olive
-AttachmentSkin4=Red
-AttachmentSkin5=White
-AttachmentSkin6=Precious
+Attachment="Máscara militar rusa"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Verde aceituna"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Blanco"
+AttachmentSkin6="Precioso"
 
 [Cosmetic_RussianMilitaryGlasses_Masterson_ARCH]
-Attachment=Russian Military Glasses
-AttachmentSkin0=Black
-AttachmentSkin1=Black Blue
-AttachmentSkin2=Black Green
-AttachmentSkin3=Black Orange
-AttachmentSkin4=White
-AttachmentSkin5=White Blue
-AttachmentSkin6=White Green
-AttachmentSkin7=White Orange
-AttachmentSkin8=Precious
+Attachment="Gafas militares rusas"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul oscuro"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Naranja oscuro"
+AttachmentSkin4="Blanco"
+AttachmentSkin5="Azul claro"
+AttachmentSkin6="Verde claro"
+AttachmentSkin7="Naranja claro"
+AttachmentSkin8="Precioso"
 
 [Cosmetic_Tormentor_Headgear_Alberts_ARCH]
-Attachment=Tormentor Headgear
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="Casco Tormentor"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_Tormentor_Mask_Alberts_ARCH]
-Attachment=Tormentor Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
+Attachment="Máscara Tormentor"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
 
 [Cosmetic_Tormentor_Mask_Tubes_Alberts_ARCH]
-Attachment=Tormentor Tubes Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="Más. tubos Tormentor"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_GSG9Helmet_Alberts_ARCH]
-Attachment=GS9 Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Brown
-AttachmentSkin3=Camo1
-AttachmentSkin4=Camo2
-AttachmentSkin5=Navy
-AttachmentSkin6=Olive
-AttachmentSkin7=Red
+Attachment="Casco GS9"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Marrón"
+AttachmentSkin3="Camuflaje1"
+AttachmentSkin4="Camuflaje2"
+AttachmentSkin5="Azul marino"
+AttachmentSkin6="Verde aceituna"
+AttachmentSkin7="Rojo"
 
 [Cosmetic_GSG9Mask_Alberts_ARCH]
-Attachment=GS9 Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Brown
-AttachmentSkin3=Camo
-AttachmentSkin4=Olive
-AttachmentSkin5=Red
-AttachmentSkin6=White
+Attachment="Máscara GS9"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Marrón"
+AttachmentSkin3="Camuflaje"
+AttachmentSkin4="Verde aceituna"
+AttachmentSkin5="Rojo"
+AttachmentSkin6="Blanco"
 
 [Cosmetic_GraduationCap_ARCH]
-Attachment=Graduation Cap
-AttachmentSkin0=Black
+Attachment="Birrete"
+AttachmentSkin0="Negro"
+
+[Cosmetic_PsychoGoggles_ARCH]
+Attachment="Gafas loco"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Sangriento"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Blanco"
+
+[Cosmetic_PsychoMaskClosed_ARCH]
+Attachment="Máscara loco cerrada"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Sangriento"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Blanco"
+
+[Cosmetic_PsychoMaskOpen_ARCH]
+Attachment="Máscara loco abierta"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Sangriento"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Blanco"
+
+[Cosmetic_PsychoMaskSmile_ARCH]
+Attachment="Máscara loco sonrisa"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Sangriento"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Blanco"
+
+[Cosmetic_PsychoPainGogglesClosed_ARCH]
+Attachment="Gafas loco cerradas"
+AttachmentSkin0="Látex"
+AttachmentSkin1="Cuero"
+AttachmentSkin2="Hierro oxidado"
+AttachmentSkin3="Acero"
+
+[Cosmetic_PsychoPainGogglesOpen_ARCH]
+Attachment="Gafas loco abiertas"
+AttachmentSkin0="Látex"
+AttachmentSkin1="Cuero"
+AttachmentSkin2="Hierro oxidado"
+AttachmentSkin3="Acero"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_PsychoPainMaskClosed_ARCH]
+Attachment="Máscara dolor cerrada"
+AttachmentSkin0="Látex"
+AttachmentSkin1="Cuero"
+AttachmentSkin2="Hierro oxidado"
+AttachmentSkin3="Acero"
+
+[Cosmetic_PsychoPainMaskOpen_ARCH]
+Attachment="Máscara dolor abierta"
+AttachmentSkin0="Látex"
+AttachmentSkin1="Cuero"
+AttachmentSkin2="Hierro oxidado"
+AttachmentSkin3="Acero"
+
+[Cosmetic_PsychoPainMaskSmile_ARCH]
+Attachment="Máscara sonrisa abierta"
+AttachmentSkin0="Látex"
+AttachmentSkin1="Cuero"
+AttachmentSkin2="Hierro oxidado"
+AttachmentSkin3="Acero"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_BoxKnightHelmet_ARCH]
+Attachment="Casco caballero cartón"
+AttachmentSkin0="Clásico"
+AttachmentSkin1="BareSo"
+AttachmentSkin2="Bio Cola"
+AttachmentSkin3="Depósito de Horzine"
+AttachmentSkin4="Tripwire"
+AttachmentSkin5="ZedEx"
+
+[Cosmetic_ReaperEyes_ARCH]
+Attachment="Ojos Parca"
+AttachmentSkin0="Sangriento"
+
+[Cosmetic_ReaperHat_ARCH]
+Attachment="Sombrero Parca"
+AttachmentSkin0="Negro"
+
+[Cosmetic_ReaperJaw_ARCH]
+Attachment="Bozal Parca"
+AttachmentSkin0="Sangriento"
+
+[Cosmetic_ReaperRavenEyes_ARCH]
+Attachment="Ojos Parca cuernos"
+AttachmentSkin0="Banda roja"
+AttachmentSkin1="Banda blanca"
+
+[Cosmetic_ReaperRavenHat_ARCH]
+Attachment="Sombr. Parca cuernos"
+AttachmentSkin0="Blanco"
+
+[Cosmetic_ReaperRavenJaw_ARCH]
+Attachment="Bozal Parca cuernos"
+AttachmentSkin0="Banda roja"
+AttachmentSkin1="Banda blanca"
+
+[Cosmetic_ReaperDeadEyes_ARCH]
+Attachment="Ojos muertos Parca"
+AttachmentSkin0="Sangriento"
+AttachmentSkin1="Rojo"
+
+[Cosmetic_ReaperDeadHood_ARCH]
+Attachment="Capucha Parca"
+AttachmentSkin0="Sangriento"
+
+[Cosmetic_ReaperDeadMask_ARCH]
+Attachment="Máscara Parca"
+AttachmentSkin0="Sangriento"
+
+[Cosmetic_ReaperFaceArmor_ARCH]
+Attachment="Máscara Parca"
+AttachmentSkin0="Calavera"
+
+[Cosmetic_HorzineSecurityHelmet_ARCH]
+Attachment="Casco Horzine"
+AttachmentSkin0="Mark 7"
+AttachmentSkin1="Cámara en la nieve"
+AttachmentSkin2="Élite azul"
+AttachmentSkin3="Élite verde"
 
 [Cosmetic_Chivalry_Knight_Helm01_ARCH]
-Attachment=Yelmo de caballero
-AttachmentSkin0=Agatha
-AttachmentSkin1=Cleese
-AttachmentSkin2=Parsifal
-AttachmentSkin3=Jaime
+Attachment="Casco de caballero"
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
 
 [CHR_Masterson_archetype]
-CharacterName=Teniente Bill Masterson
-Description=Bill Masterson tuvo una carrera con altibajos en el ejército. Quería ser un soldado heroico y combatir a los malvados y atrevidos enemigos de la reina y de la patria. Pero sólo pudo enfrentarse a un puñado de sucios terroristas. Él quería una buena guerra a tiros. Pero sólo le dejaron llevar a sus hombres a recónditas y desagradables partes del mundo en una serie de estúpidas acciones policiales. Así que renunció. Tras un par de trabajos sin valor, se despertó una mañana y vio llegar el apocalipsis a las calles de Londres. Masterson, el ahora heroico soldado que siempre quiso ser, entró en el cuartel de reserva local, se armó e inició su propia campaña de guerra. No era la guerra que esperaba ni aquella para la que había sido entrenado, pero funcionó. ¡Y es realmente bueno en el combate!
-BodyMesh0=Traje de combate
-HeadMesh0=Cara
+CharacterName="Tte. Bill Masterson"
+Description="A Bill Masterson le precede una escabrosa carrera en el ejército. Quería ser un heroico soldado luchando contra los enemigos más encarnizados de la Reina y el país, pero en su lugar, solo se encontró con unos sucios terroristas. Aunque quería una guerra abierta, se encontró a sí mismo liderando a sus hombres a través de una serie de estúpidas "acciones policiales" en los lugares más desagradables del mundo. Así que dimitió. Después de un par de trabajos de pacotilla, se despertó una mañana con las calles de Londres tomadas por el apocalipsis. Masterson, ahora como el soldado heroico que quería ser, se introdujo en los barracones de los locales, trabajando en ellos y comenzando su propia guerra. No era la guerra que esperaba o para la que se había entrenado, pero le valía. ¡Y se le daba endemoniadamente bien!"
+BodyMesh0="Vestido de combate"
+BodyMesh1="Caballero de cartón"
+BodyMesh2="Seguridad de Horzine"
+HeadMesh0="Cara"
 
 [CHR_Masterson_archetype.HeadMesh0]
-HeadSkin0=Limpia
-HeadSkin1=Camuflaje
+HeadSkin0="Limpio"
+HeadSkin1="Camuflaje"
 
 [CHR_Masterson_archetype.BodyMesh0]
-BodySkin0=Verde
-BodySkin1=Negro
-BodySkin2=Nieve
-BodySkin3=Camuflaje
+BodySkin0="Verde"
+BodySkin1="Negro"
+BodySkin2="Nieve"
+BodySkin3="DPM"
+
+[CHR_Masterson_archetype.BodyMesh1]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_Masterson_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [CHR_Tanaka_Archetype]
-CharacterName=Hayako Tanaka
-Description=Tanaka es un individuo conflictivo que tiene un problema grave con sus ansias de matar. Nació en Okinawa y creció rodeado de norteamericanos en el ejército. Tras mudarse a Japón con su familia, Tanaka no encajaba en la sociedad por su americanización y se apuntó a clases de teatro. Después de la universidad se trasladó a Los Ángeles y actuó en cortas escenas tópicas de películas malas. Más tarde acabó en Europa para encontrar un trabajo más serio. Sólo consiguió papeles de tipos malos en películas de gánsteres franceses y algunos tatuajes. Ahora, con el apocalipsis, parece estar confundiendo su propia realidad con algunas de sus películas. Al parecer, incluyen visiones de los Yakuza, demonios y una producción de Hollywood sobre Bushido.
-BodyMesh0=Muerte con estilo
-BodyMesh1=Motocicleta
-HeadMesh0=Cabello
+CharacterName="Hayato Tanaka"
+Description="Tanaka es un tipo conflictivo con la mala costumbre de coquetear con la muerte. Nacido en Okinawa, creció rodeado de americanos en la milicia. Cuando volvió a Japón con su familia, el Tanaka americanizado no consiguió adaptarse y recibió clases de interpretación. Después de la universidad se mudó a Los Ángeles, donde interpretó unos cuantos papeles de secundario en películas malas antes de trasladarse a Europa en un intento de encontrar un trabajo más "serio". Todo lo que consiguió fue hacer del tipo malo en películas franceses de mafiosos y basura de ese tipo. Ahora, en el apocalipsis, parecía confundir su propia realidad con escenas de las películas en las que había participado. Esto parecía incluir visiones de la Yakuza, demonios y una escena de Hollywood sobre el bushido."
+BodyMesh0="Duro de matar"
+BodyMesh1="Moto"
+BodyMesh2="Caballero de cartón"
+BodyMesh3="Seguridad de Horzine"
+HeadMesh0="Pelo"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
-HeadSkin0=Negro
-HeadSkin1=Rubio
+HeadSkin0="Negro"
+HeadSkin1="Rubio"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
-BodySkin0=Y con clase
-BodySkin1=Kakihara-san
-BodySkin2=De negro
-BodySkin3=Dragón azul
+BodySkin0="Y elegante"
+BodySkin1="Kakihara-san"
+BodySkin2="De negro"
+BodySkin3="Dragón azul"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
-BodySkin0=Rojo y negro
-BodySkin1=Mastodonte
-BodySkin2=Stig
-BodySkin3=Difuminado azul
-BodySkin4=Dragón
-BodySkin5=Juego mortal
-BodySkin6=Grulla
+BodySkin0="Rojo y negro"
+BodySkin1="Mastodonte"
+BodySkin2="Stig"
+BodySkin3="Niebla azul"
+BodySkin4="Dragón"
+BodySkin5="Juego mortal"
+BodySkin6="Grulla"
+
+[CHR_Tanaka_Archetype.BodyMesh2]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_Tanaka_Archetype.BodyMesh3]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
-Attachment=Casco
-AttachmentSkin0=Sol naciente
-AttachmentSkin1=América
-AttachmentSkin2=Negro
-AttachmentSkin3=Difuminado azul
-AttachmentSkin4=Verde jefe
-AttachmentSkin5=Gris condenación
-AttachmentSkin6=Juego mortal
-AttachmentSkin7=Blanco
+Attachment="Casco"
+AttachmentSkin0="Sol naciente"
+AttachmentSkin1="América"
+AttachmentSkin2="Negro"
+AttachmentSkin3="Niebla azul"
+AttachmentSkin4="Verde hierba"
+AttachmentSkin5="Cúpula gris"
+AttachmentSkin6="Juego mortal"
+AttachmentSkin7="Blanco"
 
 [Cosmetic_Mempo_Tanaka_ARCH]
-Attachment=Menpo
-AttachmentSkin0=Estándar
-AttachmentSkin1=Púrpura
-AttachmentSkin2=Rojo
-AttachmentSkin3=Amarillo
+Attachment="Mempo"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Morado"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Amarillo"
 
 [Cosmetic_Rockabilly_Wig_ARCH]
-Attachment=Rockabilly Wig
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Gold
-AttachmentSkin3=Red
-AttachmentSkin4=Teal
-AttachmentSkin5=Pink
+Attachment="Peluca rockabilly"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Dorado"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Turquesa"
+AttachmentSkin5="Rosa"
 
 [CHR_Ana_Archetype]
-CharacterName=Ana Larive
-Description=Probablemente se le podría incluir en ese grupo al que la sociedad de bien llama juventud perdida, aunque en gran parte a Ana le importa un bledo todo menos viajar por Europa dejándose llevar por su pasión por la fotografía en lugares abandonados y los grupos de death metal. Y ahora que no queda mucha sociedad de bien, a Ana le importa todo menos aún. Aunque es cierto que ahora hay una evidente escasez de grupos de música en gira, hay todavía más lugares abandonados. Y lo mejor de todo de su trabajo actual es que puede entrar en esos lugares y hacer que parezcan aún más abandonados. Como ves, ha descubierto una nueva pasión: ¡hacer explotar cosas!
-BodyMesh0=Atuendo Metalcore
-HeadMesh0=Cresta
+CharacterName="Ana Larive"
+Description="Podría haber sido asignada al grupo que la institución llamaban "jóvenes marginales", excepto porque a Ana no le importaba lo más mínimo todo menos viajar por alrededor de Europa, satisfaciendo su pasión por fotografiar lugares abandonados y bandas de death metal. Y ahora que ya no quedaba mucho de la "institución", a Ana le importaba incluso menos. Pese a que ya no había muchas giras de grupos, había más lugares abandonados que nunca. Y lo mejor de su trabajo actual es que se metía en esos lugares y los hacía parecer estar incluso más abandonados. Ya ves, ha descubierto una nueva pasión: ¡volar las cosas por los aires!"
+BodyMesh0="Metalcore"
+BodyMesh1="Seguridad de Horzine"
+BodyMesh2="Caballero de cartón"
+HeadMesh0="Cresta"
 
 [CHR_Ana_Archetype.HeadMesh0]
-HeadSkin0=Lluvia de muerte
-HeadSkin1=Sangre brillante
-HeadSkin2=Verde Bio-Cola
-HeadSkin3=Azul intenso
+HeadSkin0="Lluvia mortal"
+HeadSkin1="Sangre brillante"
+HeadSkin2="Bio-cola verde"
+HeadSkin3="Azul eléctrico"
 
 [CHR_Ana_Archetype.BodyMesh0]
-BodySkin0=Lluvia de muerte
-BodySkin1=Sangre brillante
-BodySkin2=Verde Bio-Cola
-BodySkin3=Azul intenso
-BodySkin4=Homenaje a Chickenator
+BodySkin0="Lluvia mortal"
+BodySkin1="Sangre brillante"
+BodySkin2="Bio-cola verde"
+BodySkin3="Azul eléctrico"
+BodySkin4="Homenaje Chickenator"
+
+[CHR_Ana_Archetype.BodyMesh1]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
+
+[CHR_Ana_Archetype.BodyMesh2]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
 
 [Cosmetic_3dGlasses_ARCH]
-Attachment=Gafas 3D
-AttachmentSkin0=Anáglifo 3D
-AttachmentSkin1=Obturador pasivo
-AttachmentSkin2=Trioscópico 3D
-AttachmentSkin3=Rayos X
+Attachment="Gafas 3D"
+AttachmentSkin0="Anaglyph 3D"
+AttachmentSkin1="Cristales opacos"
+AttachmentSkin2="Trioscopic 3D"
+AttachmentSkin3="Rayos X"
 
 [Cosmetic_mkitbag_Masterson_ARCH]
-Attachment=EMS Backpack
-AttachmentSkin0=Blue
-AttachmentSkin1=Red
+Attachment="Mochila botiquín"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Rojo"
 
 [chr_mark_archetype]
-CharacterName=Briar clásico
-Description=Una vez Briar tenía que controlar un disturbio en Londres. Pero esta vez no era la típica procesión de hippies, ecologistas y anarquistas con greñas degustando la porra de Briar. Afortunadamente, su afinidad por la violencia sin motivo le permitió sobrevivir los siguientes meses, antes de tener que abandonar Blighty y trasladarse a campos extranjeros. Ahora puede extender sus buenos métodos policiales de la vieja escuela (aplicados hasta ahora en cabezas de adolescentes) para controlar una horda de monstruos mutantes antropófagos que conviene disparar, quemar y reducir a escombros. Y su feliz y despreocupada personalidad de policía londinense ayuda a mantener alta la moral del equipo. O a fastidiarlos bien.
-BodyMesh0=Equipo antidisturbios
-BodyMesh1=Londres
-HeadMesh0=Cabeza
+CharacterName="Briar clásico"
+Description="Érase una vez, Briar recibió una llamada para contener unos disturbios en Londres. Pero en esta ocasión no se trataba de la típica procesión de perroflautas, ecologistas y anarquistas melenudos ante la furiosa porra de Briar. Afortunadamente, descubrió su afinidad por la violencia gratuita durante los próximos meses, antes de abandonar Inglaterra y mudarse a territorios extranjeros.\n\nAhora puede ampliar sus antiguos métodos policiales más allá de porrazos a adolescentes descarriados a controlar una horda de monstruos mutantes devoradores de hombres disparándoles, quemándoles y haciéndoles papilla. Y este famoso y despreocupado policía de Londres ayuda a mantener alta la moral del equipo. O a tocarles las narices."
+BodyMesh0="Antidisturbios"
+BodyMesh1="Londres"
+BodyMesh2="Caballero de cartón"
+BodyMesh3="Seguridad de Horzine"
+HeadMesh0="Pelo"
 
 [chr_mark_archetype.BodyMesh0]
-BodySkin0=Azul policía
-BodySkin1=Negro noche
-BodySkin2=Verde ejército
-BodySkin3=Camuflaje SAS
+BodySkin0="Unif. policía azul"
+BodySkin1="Negro noche"
+BodySkin2="Verde militar"
+BodySkin3="Camuflaje militar"
 
 [chr_mark_archetype.BodyMesh1]
-BodySkin0=Metro
-BodySkin1=Negro noche
-BodySkin2=Azul
-BodySkin3=Reflectante
-BodySkin4=Negro reflectante
+BodySkin0="Metro"
+BodySkin1="Negro noche"
+BodySkin2="Azul"
+BodySkin3="Reflectante"
+BodySkin4="Negro reflectante"
+
+[chr_mark_archetype.BodyMesh2]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[chr_mark_archetype.BodyMesh3]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [chr_mark_archetype.HeadMesh0]
-HeadSkin0=Lo más auténtico
-HeadSkin1=Hora del té sangrienta
-HeadSkin2=Un buen marrón
-HeadSkin3=Rubia sueca
+HeadSkin0="Trato hecho"
+HeadSkin1="Hora del té"
+HeadSkin2="Bonito moreno, Guv"
+HeadSkin3="Rubio sueco"
 
 [chr_alan_archetype]
-CharacterName=Masterson clásico
-Description=Nadie ha entendido nunca realmente cómo este Masterson logró ascender tanto, aunque algunos sugieren que su primo más rico y más apuesto, el capitán Sir Richard Wiggins, pudo influir en algo. O tal vez fuera su hermano más listo. Pero, como se suele observar, es un diamante en bruto, un hombre de pocas palabras (de cortesía) y con una actitud sorprendentemente tranquila en situaciones de combate. Casi todo el mundo reconoce que se debe a su falta de imaginación, empatía e inteligencia. Por suerte, dirige a sus hombres con decisión y siempre acaba el trabajo - sin importar lo desagradable que pueda parecer a cualquier persona decente y de buenos modales.
-BodyMesh0=Equipo antidisturbios
-HeadMesh0=Cabeza
+CharacterName="Masterson clásico"
+Description="Nadie ha llegado a comprender cómo Masterson ascendió a través de todos esos puestos, aunque alguno sugirió que su primo más guapo y rico, el capitán Sir Richard Wiggins, hizo uso de su influencia. O quizás fue su hermano más listo. Pero, como siempre se dijo, es un diamante en bruto, un hombre de pocas (pero educadas) palabras y tiene una manera antinatural de mantener la calma en los combates. Unos cuantos pensarían que esto se debe a su falta de imaginación, empatía e inteligencia. Afortunadamente, dirige a sus hombres con decisión y siempre consigue un buen trabajo sin importar lo desagradable que sea este trabajo para cualquiera con buen gusto o buenas maneras."
+BodyMesh0="Antidisturbios"
+BodyMesh1="Caballero de cartón"
+BodyMesh2="Seguridad de Horzine"
+HeadMesh0="Cara"
 
 [CHR_alan_archetype.BodyMesh0]
-BodySkin0=Verde
-BodySkin1=Negro
-BodySkin2=Nieve
-BodySkin3=Camuflaje
+BodySkin0="Verde"
+BodySkin1="Negro"
+BodySkin2="Nieve"
+BodySkin3="DPM"
+
+[CHR_alan_archetype.BodyMesh1]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_alan_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [chr_alan_archetype.HeadMesh0]
-HeadSkin0=Lo más auténtico
-HeadSkin1=¡Pelirrojo! ¿En serio?
-HeadSkin2=¿Un día duro, amigo?
-HeadSkin3=¡De camuflaje, tío!
+HeadSkin0="Trato hecho"
+HeadSkin1="¿Pelirrojo? ¡No!"
+HeadSkin2="¿Un día duro, tío?"
+HeadSkin3="¡Camuflaje, amigos!"
 
 [Cosmetic_Coleman01_ARCH]
-Attachment=Gorra RQ
-AttachmentSkin0=Amarillo suave
-AttachmentSkin1=Rojo rústico
-AttachmentSkin2=Azul verdadero
-AttachmentSkin3=Verde moderno
+Attachment="Gorra RQ"
+AttachmentSkin0="Mostaza"
+AttachmentSkin1="Rojo rústico"
+AttachmentSkin2="Azul verdadero"
+AttachmentSkin3="Listón verde"
 
 [chr_strasser_archetype]
-CharacterName=Anton Strasser
-Description=Strasser marchó a su primera guerra en 1939, como soldado en el ejército alemán para invadir Polonia, seguido de un viaje a través de Francia en 1940 y una carga en Rusia en 1941. Así casi sufrió una hipotermia, luchando por su vida contra el General del Invierno y el Ejército Rojo. En 1942, Stalingrado amenazó, las victorias terminaron y llego la desilusión. En el campo de aviación Gumrak, tuvo una grave conmoción pero tuvo suerte. Voló, comatoso, a los brazos de Hans Volter, y fue llevado al laboratorio de Volter como excelente sujeto para pruebas criogénicas. Allí permaneció, congelado y olvidado, hasta que fue liberado accidentalmente por un brote. Desconcertado, tuvo la oportunidad de matar a Volter, pero no lo hizo. Lo lamentaría más tarde, cuando se enteró de lo que estaba pasando.
-BodyMesh0=Héroe de Stalingrado
-HeadMesh0=Cabello
+CharacterName="Anton Strasser"
+Description="Strasser se enroló en su primera guerra en 1939, en el ejército alemán que invadía Polonia. Después acudió a una incursión en Francia en 1940 y una carga contra Rusia en 1941. En esta última casi muere congelado, luchando por su vida contra el General Invierno y el ejército rojo a la vez. En 1942, con la amenaza de Stanlingrado, las posibilidades de victoria se desvanecieron y la desilusión se extendió. Fue gravemente herido en el aeródromo de Gumrak, aunque tuvo suerte. Comatoso, voló hacia los brazos de Hans Volter, derivado discretamente al laboratorio de Volter como un maravilloso sujeto de prueba para pruebas criogénicas. Y ahí estaba, congelado y olvidado, hasta que fue accidentalmente liberado en un brote. Desconcertado, tuvo una oportunidad de matar a Volter pero no la aprovechó; algo que lamentó mucho cuando descubrió lo que estaba pasando."
+BodyMesh0="RO2: Héroe de Stalingr."
+BodyMesh1="Caballero de cartón"
+BodyMesh2="Seguridad de Horzine"
+HeadMesh0="Pelo"
 
 [CHR_strasser_archetype.BodyMesh0]
-BodySkin0=Recluta en bruto
-BodySkin1=Curtido en batalla
+BodySkin0="Novato"
+BodySkin1="Curtido en batalla"
+
+[CHR_strasser_archetype.BodyMesh1]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_strasser_archetype.BodyMesh2]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
 
 [chr_strasser_archetype.HeadMesh0]
-HeadSkin0=Acero oscuro
-HeadSkin1=Acero claro
+HeadSkin0="Acero oscuro"
+HeadSkin1="Acero rubio"
 
 [Cosmetic_Strasser_02_ARCH]
-Attachment=Casco de acero alemán
-AttachmentSkin0=Acero clásico
-AttachmentSkin1=Acero envejecido
+Attachment="Casco acero alemán"
+AttachmentSkin0="Acero clásico"
+AttachmentSkin1="Acero envejecido"
 
 [Cosmetic_GermanOfficerHat_Strasser_ARCH]
-Attachment=Gorra de oficial alemán
-AttachmentSkin0=Azul
-AttachmentSkin1=Verde
+Attachment="Gorra oficial alemán"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
 
 [Cosmetic_Tanaka_Mask01_ARCH]
-Attachment=Bandana
-AttachmentSkin0=Dragón de oro
-AttachmentSkin1=Kakihara-san
-AttachmentSkin2=Hannya
-AttachmentSkin3=Azul verdadero
+Attachment="Máscara"
+AttachmentSkin0="Dragón de oro"
+AttachmentSkin1="Kakihara-san"
+AttachmentSkin2="Hannya"
+AttachmentSkin3="Azul verdadero"
 
 [chr_knight_archetype]
-CharacterName=Tom Banner
-Description=Tom Banner estaba obsesionado con los heroísmos de la Edad Media desde pequeño. Su brillante carrera como consultor de gestión permitió acrecentar su obsesión al mudarse de su país natal, Canadá, pasando por Boston, a Inglaterra. Ya había creado su propia armadura y adoptó su nueva personalidad como recreador en la antigua Inglaterra. Este movimiento coincidió con el lanzamiento de 'Chivalry', que le permitió representar la fantasía en un grado que definitivamente no sería muy seguro como recreador. Cuando llegó el brote, Tom se metió en su armadura y se fue a salvar doncellas de las garras de monstruos. De verdad. Que se niegue a quitarse su armadura ha llevado a la preocupación de que se esté tomando toda esta cosa medieval un pelín demasiado en serio. Pero ¿a quién le importa?
-BodyMesh0=Armadura
-HeadMesh0=Cabeza
+CharacterName="Tom Banner"
+Description="Tom Banner se obsesionó con las heroicidades de la Edad Media desde que era pequeño. Su fugaz carrera como consultor administrativo hizo que su obsesión aumentara hasta que se mudo de su Canadá nativa a Inglaterra, pasando por Boston. Ya había creado su propia armadura y reconvertido su personaje en alguien sacado de la Alegre Inglaterra. Esto coincidió con la liberación de "Chivalry", lo que le permitió llevar la fantasía a un grado que definitivamente no es seguro. Cuando el brote estalló, Tom se embutió en su armadura y se lanzó a salvar a doncellas de las garras de los monstruos. De verdad. Eso de que se niegue a quitarse la armadura hace pensar que está llevando esta tontería medieval un poco lejos. Pero, ¿a quién le importa?"
+BodyMesh0="Armadura"
+HeadMesh0="Cabeza"
 
 [CHR_knight_archetype.BodyMesh0]
-BodySkin0=Agatha
-BodySkin1=Cleese
-BodySkin2=Parsifal
-BodySkin3=Jaime
+BodySkin0="Agatha"
+BodySkin1="Cleese"
+BodySkin2="Perceval"
+BodySkin3="Jaime"
+
+[CHR_knight_archetype.BodyMesh1]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
 
 [chr_knight_archetype.HeadMesh0]
-HeadSkin0=¡A la batalla!
-HeadSkin1=¡Libertad!
-HeadSkin2=¡A la guerra!
-HeadSkin3=¡Valhalla!
+HeadSkin0="¡A la batalla!"
+HeadSkin1="¡Libertad!"
+HeadSkin2="¡A la guerra!"
+HeadSkin3="¡Valhalla!"
 
 [Cosmetic_Chivalry_Knight_Helm02HP_ARCH]
-Attachment=Yelmo de jinete
-AttachmentSkin0=Agatha
-AttachmentSkin1=Cleese
-AttachmentSkin2=Parsifal
-AttachmentSkin3=Jaime
+Attachment="Casco de jinete"
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
 
 [Cosmetic_Chivalry_Knight_Helm03Veteran_ARCH]
-Attachment=Yelmo de veterano
-AttachmentSkin0=Agatha
-AttachmentSkin1=Cleese
-AttachmentSkin2=Parsifal
-AttachmentSkin3=Jaime
+Attachment="Casco de veterano"
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
 
 [Cosmetic_Briar_01_ARCH]
-Attachment=Yelmo antidisturbios
-AttachmentSkin0=Rojo real
-AttachmentSkin1=Azul caballeresco
-AttachmentSkin2=Verde señorial
-AttachmentSkin3=Noche negra
+Attachment="Casco antidisturbios"
+AttachmentSkin0="Rojo real"
+AttachmentSkin1="Azul caballero"
+AttachmentSkin2="Verde señor"
+AttachmentSkin3="Negro noche"
 
 [Cosmetic_Tanaka03'_ARCH]
-Attachment=Quevedos
-AttachmentSkin0=Oscurecióse el sol
-AttachmentSkin1=Para ver mejor
+Attachment="Gafas de sol Seh"
+AttachmentSkin0="Ensombrece el sol"
+AttachmentSkin1="Lo mejor que ver"
 
 [Cosmetic_TacticalHat_ClassicMasterson_ARCH]
-Attachment=Tactical Hat
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Camo
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="Sombrero táctico"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Camuflaje"
+AttachmentSkin3="Gris"
+AttachmentSkin4="Azul marino"
+AttachmentSkin5="Verde aceituna"
+AttachmentSkin6="Rojo"
 
 [Cosmetic_TacticalMask_ClassicMasterson_ARCH]
-Attachment=Tactical Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Camo
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="Máscara táctica"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Camuflaje"
+AttachmentSkin3="Gris"
+AttachmentSkin4="Azul marino"
+AttachmentSkin5="Verde aceituna"
+AttachmentSkin6="Rojo"
 
 [Cosmetic_TacticalHeadsetMK1_ClassicMasterson_ARCH]
-Attachment=Tactical Headset MK1
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Green
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="Set táctico MK1"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Gris"
+AttachmentSkin4="Azul marino"
+AttachmentSkin5="Verde aceituna"
+AttachmentSkin6="Rojo"
 
 [Cosmetic_TacticalHeadsetMK2_ClassicMasterson_ARCH]
-Attachment=Tactical Headset MK2
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Green
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="Set táctico MK2"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Gris"
+AttachmentSkin4="Azul marino"
+AttachmentSkin5="Verde aceituna"
+AttachmentSkin6="Rojo"
 
 [Cosmetic_RussianMilitaryMask_Knight_ARCH]
-Attachment=Russian Military Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Olive
-AttachmentSkin4=Red
-AttachmentSkin5=White
-AttachmentSkin6=Precious
+Attachment="Máscara militar rusa"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Verde aceituna"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Blanco"
+AttachmentSkin6="Precioso"
 
 [Cosmetic_Tormentor_Mask_ClassicMasterson_ARCH]
-Attachment=Tormentor Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
+Attachment="Máscara Tormentor"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
 
 [Cosmetic_Tormentor_Mask_Tubes_ClassicMasterson_ARCH]
-Attachment=Tormentor Tubes Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="Más. tubos Tormentor"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_Briar_01_1_ARCH]
-Attachment=Casco antidisturbios
-AttachmentSkin0=Rojo visible
-AttachmentSkin1=Azul policía
-AttachmentSkin2=Verde ejército
-AttachmentSkin3=Negro noche
+Attachment="Casco antidisturbios"
+AttachmentSkin0="Rojo vivo"
+AttachmentSkin1="Unif. policía azul"
+AttachmentSkin2="Verde militar"
+AttachmentSkin3="Negro noche"
 
 [chr_rockabilly_archetype]
-CharacterName=Rae Higgins
-Description=Rae Higgins is an Australian import into Europe. Born in Melbourne, grew up in Darwin and then took time out to explore the world, before settling down to work in London. Quiet, mild-mannered data analyst by day, Rae lights up the night in her true Rockabilly form. The low-key, long-sleeved clothes concealing her tats from boring, conservative middle-managers. Makeup and hair for an inane office environment. Until the weekend, when all gray is banned and Rae's world explodes in music, fun and loud primary colors. \n\nPerhaps fortunately for Rae, she was at the High Rockabilly Festival in Calafell, Spain when the original outbreak kicked off, so she missed out as her dull, boring co-workers were chewed to pieces. And now she doesn't have to hide her light. Rock my world, Zeds!
-BodyMesh0=Default Dress
-HeadMesh0=Default Head
+CharacterName="Rae Higgins"
+Description="Rae Higgins es una australiana establecida en Europa. Nació en Melbourne, creció en Darwin y luego exploró el mundo que la rodeaba antes de establecerse en Londres por trabajo. Durante el día, es una tranquila analista de datos de buenas maneras, por la noche, deja salir la verdadera Rae rockabilly. Las discretas prendas de manga larga ocultaba su cuerpo de los conservadores gerentes, y su maquillaje y pelo eran los apropiados para una aburrida oficina. Hasta el fin de semana. Todo este triste y gris mundo se desterró y el mundo de Rae explotó en música, diversión y colores primarios. \n\nAfortunadamente para Rae, se encontraba en el festival High Rockabilly Festival en Calafell, España cuando estalló el primer brote, así que se perdió cuando hicieron añicos a sus aburridos compañeros. Y ya no tiene por qué seguir escondiéndose. ¡Cómo moláis, Zeds!"
+BodyMesh0="Vestido por defecto"
+BodyMesh1="Seguridad de Horzine"
+BodyMesh2="Caballero de cartón"
+HeadMesh0="Cabeza por defecto"
 
 [chr_rockabilly_archetype.BodyMesh0]
-BodySkin0=Rose Red
-BodySkin1=Check Mate
-BodySkin2=Charismatic
-BodySkin3=Force of Nature
-BodySkin4=Red Stripe
-BodySkin5=Sailor
+BodySkin0="Rosa roja"
+BodySkin1="Jaque mate"
+BodySkin2="Carismático"
+BodySkin3="Fuerzas de la naturaleza"
+BodySkin4="Franja roja"
+BodySkin5="Marinero"
+
+[chr_rockabilly_archetype.BodyMesh1]
+BodySkin0="Mark 7"
+BodySkin1="Cámara en la nieve"
+BodySkin2="Élite azul"
+BodySkin3="Élite verde"
+
+[chr_rockabilly_archetype.BodyMesh2]
+BodySkin0="Clásico"
+BodySkin1="BareSo"
+BodySkin2="Bio Cola"
+BodySkin3="Depósito de Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
 
 [chr_rockabilly_archetype.HeadMesh0]
-HeadSkin0=Black
-HeadSkin1=Brunette
-HeadSkin2=Ginger
-HeadSkin3=Gold
-HeadSkin4=Teal
-HeadSkin5=Pink
+HeadSkin0="Negro"
+HeadSkin1="Moreno"
+HeadSkin2="Pelirrojo"
+HeadSkin3="Dorado"
+HeadSkin4="Turquesa"
+HeadSkin5="Rosa"
 
 [Cosmetic_EyePatch_Ana_ARCH]
-Attachment=Eye Patch
-AttachmentSkin0=Standard
-AttachmentSkin1=Asian
-AttachmentSkin2=Bio
-AttachmentSkin3=Blue
-AttachmentSkin4=Camo
-AttachmentSkin5=Dosh
-AttachmentSkin6=Eye
-AttachmentSkin7=Fancy
-AttachmentSkin8=Flame
-AttachmentSkin9=Plaid
-AttachmentSkin10=Purple
-AttachmentSkin11=Skull
-AttachmentSkin12=Splatter
-AttachmentSkin13=Tie Dye
+Attachment="Parche ocular"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Asiático"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Camuflaje"
+AttachmentSkin5="Dinero"
+AttachmentSkin6="Ojo"
+AttachmentSkin7="Elegante"
+AttachmentSkin8="Llama"
+AttachmentSkin9="Cuadros"
+AttachmentSkin10="Morado"
+AttachmentSkin11="Calavera"
+AttachmentSkin12="Salpicadura"
+AttachmentSkin13="Tie Dye"
 
 [Cosmetic_SkiMask_BriarSkin_ARCH]
-Attachment=Ski Mask
-AttachmentSkin0=Standard
-AttachmentSkin1=Asian
-AttachmentSkin2=Black Red
-AttachmentSkin3=Blue Green
-AttachmentSkin4=Blue White
-AttachmentSkin5=Blue Yellow
-AttachmentSkin6=Camo
-AttachmentSkin7=Dark Purple
-AttachmentSkin8=Flames
-AttachmentSkin9=Green Blue
-AttachmentSkin10=Green Yellow
-AttachmentSkin11=Pastel
-AttachmentSkin12=Purple
-AttachmentSkin13=Purple Black
-AttachmentSkin14=Rainbow
-AttachmentSkin15=Red White
-AttachmentSkin16=White Black
-AttachmentSkin17=Yellow Black
+Attachment="Pasamontañas"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Asiático"
+AttachmentSkin2="Rojo y negro"
+AttachmentSkin3="Verde y azul"
+AttachmentSkin4="Blanco y azul"
+AttachmentSkin5="Amarillo y azul"
+AttachmentSkin6="Camuflaje"
+AttachmentSkin7="Morado oscuro"
+AttachmentSkin8="Llamaradas"
+AttachmentSkin9="Azul y verde"
+AttachmentSkin10="Verde y amarillo"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Morado"
+AttachmentSkin13="Negro y morado"
+AttachmentSkin14="Arcoíris"
+AttachmentSkin15="Blanco y rojo"
+AttachmentSkin16="Blanco y negro"
+AttachmentSkin17="Amarillo y negro"
 
 [Cosmetic_BRIAR_Doctor_1_ARCH]
-Attachment=Doctor's Mask
-AttachmentSkin0=White
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
+Attachment="Máscara de doctor"
+AttachmentSkin0="Blanco"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
 
 [Cosmetic_CriminalMask_Briar_ARCH]
-Attachment=Criminally Insane Mask
-AttachmentSkin0=Criminally Insane Mask
+Attachment="Máscara criminal"
+AttachmentSkin0="Máscara criminal"
 
 [Cosmetic_SkullBreakerHelm_Alberts_1_ARCH]
-Attachment=Skull Breaker Helmet
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Green
-AttachmentSkin3=Red
-AttachmentSkin4=Precious
+Attachment="Casco rompecráneos"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_SkullBreakerMask_Briar_ARCH]
-Attachment=Skull Breaker Mask
-AttachmentSkin0=Blue
-AttachmentSkin1=Black
-AttachmentSkin2=Red
-AttachmentSkin3=Yellow
+Attachment="Máscara rompecráneos"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Negro"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Amarillo"
 
 [Cosmetic_FlightMask_Brair_mask1_ARCH]
-Attachment=Flight Mask
-AttachmentSkin0=Flight Mask
-AttachmentSkin1=Bloody Mask
-AttachmentSkin2=Bubble Yum
-AttachmentSkin3=Crimson Sky
-AttachmentSkin4=Flame
-AttachmentSkin5=Ninja
+Attachment="Máscara de vuelo"
+AttachmentSkin0="Máscara de vuelo"
+AttachmentSkin1="Máscara sangrienta"
+AttachmentSkin2="Rosa chicle"
+AttachmentSkin3="Cielo escarlata"
+AttachmentSkin4="Llama"
+AttachmentSkin5="Ninja"
 
 [Cosmetic_cthulhumask_Briar_ARCH]
-Attachment=Mask of the Abyss
-AttachmentSkin0=Ph'nglui
-AttachmentSkin1=Mglw'nafh 
-AttachmentSkin2=Wgah'nagl
-AttachmentSkin3=Fhtagn
-AttachmentSkin4=Precious
+Attachment="Máscara del abismo"
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_TheInquisitor_Briar_ARCH]
-Attachment=The Inquisitor
-AttachmentSkin0=Leather
-AttachmentSkin1=White
+Attachment="Inquisidor"
+AttachmentSkin0="Cuero"
+AttachmentSkin1="Blanco"
 
 [Cosmetic_BrokenMask_Briar_1_ARCH]
-Attachment=Shattered Mask
-AttachmentSkin0=WhiteYellow
-AttachmentSkin1=Geisha
-AttachmentSkin2=Metal
-AttachmentSkin3=Sugar Purple
-AttachmentSkin4=Sugar Red
-AttachmentSkin5=Skin
+Attachment="Máscara rota"
+AttachmentSkin0="Blanco y amarillo"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Azúcar morada"
+AttachmentSkin4="Azúcar roja"
+AttachmentSkin5="Aspecto"
 
 [Cosmetic_pilotgoggles_donovan_ARCH]
-Attachment=RAF Goggles
-AttachmentSkin0=Glow Blue
-AttachmentSkin1=Glow Orange
-AttachmentSkin2=Black
-AttachmentSkin3=Orange
-AttachmentSkin4=Green Blue
-AttachmentSkin5=Brown
+Attachment="Gafas RAF"
+AttachmentSkin0="Azul brillante"
+AttachmentSkin1="Naranja brillante"
+AttachmentSkin2="Negro"
+AttachmentSkin3="Naranja"
+AttachmentSkin4="Azul y verde"
+AttachmentSkin5="Marrón"
 
 [Cosmetic_EnforcerGoggles_Briar_ARCH]
-Attachment=Enforcer Goggles
-AttachmentSkin0=Black Coat
-AttachmentSkin1=Black Coat Blue
-AttachmentSkin2=Black Coat Red
-AttachmentSkin3=Black Coat Green
-AttachmentSkin4=Green Coat
-AttachmentSkin5=Blue Coat
-AttachmentSkin6=Red Coat
+Attachment="Gafas comando"
+AttachmentSkin0="Abrigo negro"
+AttachmentSkin1="Abrigo negro y azul"
+AttachmentSkin2="Abrigo negro y rojo"
+AttachmentSkin3="Abrigo negro y verde"
+AttachmentSkin4="Abrigo verde"
+AttachmentSkin5="Abrigo azul"
+AttachmentSkin6="Abrigo rojo"
 
 [Cosmetic_EnforcerMask_Briar_ARCH]
-Attachment=Enforcer Mask
-AttachmentSkin0=Black Eyes
-AttachmentSkin1=Red Eyes
-AttachmentSkin2=Blue Eyes
-AttachmentSkin3=Green Eyes
-AttachmentSkin4=Green Filter
-AttachmentSkin5=Blue Filter
-AttachmentSkin6=Red Filter
+Attachment="Máscara de sicario"
+AttachmentSkin0="Ojos negros"
+AttachmentSkin1="Ojos rojos"
+AttachmentSkin2="Ojos azules"
+AttachmentSkin3="Ojos verdes"
+AttachmentSkin4="Filtro verde"
+AttachmentSkin5="Filtro azul"
+AttachmentSkin6="Filtro rojo"
 
 [Cosmetic_JusticeGoggles_Briar_ARCH]
-Attachment=Justice Goggles
-AttachmentSkin0=Stealth Black
+Attachment="Gafas justicia"
+AttachmentSkin0="Sigilo negro"
 
 [Cosmetic_JusticeMask_Briar_ARCH]
-Attachment=Justice Mask
-AttachmentSkin0=Stealth Black
-AttachmentSkin1=Tactical Green
-AttachmentSkin2=Savage Red
-AttachmentSkin3=Miami Blue
-AttachmentSkin4=Blue Steel
-AttachmentSkin5=Blue Magnum
-AttachmentSkin6=Green Rally
-AttachmentSkin7=Green Synergy
-AttachmentSkin8=Red Face
-AttachmentSkin9=Red Cheeks
-AttachmentSkin10=Reaper Black
+Attachment="Máscara justicia"
+AttachmentSkin0="Sigilo negro"
+AttachmentSkin1="Verde táctico"
+AttachmentSkin2="Rojo salvaje"
+AttachmentSkin3="Azul Miami"
+AttachmentSkin4="Acero azul"
+AttachmentSkin5="Magnum azul"
+AttachmentSkin6="Verde carrera"
+AttachmentSkin7="Sinergia verde"
+AttachmentSkin8="Cara roja"
+AttachmentSkin9="Mejilla roja"
+AttachmentSkin10="La Parca"
 
 [Cosmetic_TacticalMask_Alberts_1_ARCH]
-Attachment=Tactical Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Brown
-AttachmentSkin2=Camo
-AttachmentSkin3=Grey
-AttachmentSkin4=Navy
-AttachmentSkin5=Olive
-AttachmentSkin6=Red
+Attachment="Máscara táctica"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Camuflaje"
+AttachmentSkin3="Gris"
+AttachmentSkin4="Azul marino"
+AttachmentSkin5="Verde aceituna"
+AttachmentSkin6="Rojo"
 
 [Cosmetic_VenomMask_Alberts_1_ARCH]
-Attachment=Venom Mask
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="Máscara Venom"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
 
 [Cosmetic_VenomMaskFiltered_Alberts_1_ARCH]
-Attachment=Venom Mask Filtered
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
-AttachmentSkin7=Precious
+Attachment="Filtros Venom"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
+AttachmentSkin7="Precioso"
 
 [Cosmetic_VenomGoggles_Alberts_1_ARCH]
-Attachment=Venom Goggles
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="Gafas Venom"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
 
 [Cosmetic_VenomGogglesCoverDown_Alberts_1_ARCH]
-Attachment=Venom Goggles Down
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
-AttachmentSkin7=Precious
+Attachment="Gafas Venom bajadas"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
+AttachmentSkin7="Precioso"
 
 [Cosmetic_VenomHeadphones_Alberts_1_ARCH]
-Attachment=Venom Headphones
-AttachmentSkin0=Black
-AttachmentSkin1=Blue
-AttachmentSkin2=Dark Green
-AttachmentSkin3=Green
-AttachmentSkin4=Red
-AttachmentSkin5=Violet
-AttachmentSkin6=White
+Attachment="Cascos Venom"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Violeta"
+AttachmentSkin6="Blanco"
+
+[Cosmetic_Headband_Alberts_ARCH]
+Attachment="Cinta"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Blanco oriental"
+AttachmentSkin2="Rojo y negro"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Camuflaje"
+AttachmentSkin5="Morado oscuro"
+AttachmentSkin6="Llama"
+AttachmentSkin7="Verde"
+AttachmentSkin8="Japón"
+AttachmentSkin9="Azul claro"
+AttachmentSkin10="Morado"
+AttachmentSkin11="Rojo"
+AttachmentSkin12="Negro y rojo"
+AttachmentSkin13="Estampado rojo"
+AttachmentSkin14="Estrella"
+AttachmentSkin15="Rayas"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="Blanco"
+AttachmentSkin18="Amarillo"
 
 [Cosmetic_Alberts01_ARCH]
-Attachment=Sombrero de fieltro
-AttachmentSkin0=Negro básico
-AttachmentSkin1=Rojo rubí
-AttachmentSkin2=Gris elegante
-AttachmentSkin3=Azul oscuro
-
+Attachment="Borsalino"
+AttachmentSkin0="Negro básico"
+AttachmentSkin1="Rojo rubí"
+AttachmentSkin2="Gris elegante"
+AttachmentSkin3="Azul oscuro"

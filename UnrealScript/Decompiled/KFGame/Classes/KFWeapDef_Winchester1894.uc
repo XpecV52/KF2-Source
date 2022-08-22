@@ -13,6 +13,6 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_Rifle_Winchester1894"
     ImagePath="wep_ui_winchester_tex.UI_WeaponSelect_Winchester"
     BuyPrice=200
-    AmmoPricePerMag=30
+    AmmoPricePerMag=32
     EffectiveRange=70
 }

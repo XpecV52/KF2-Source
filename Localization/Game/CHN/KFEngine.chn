@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="复制 UID"
+InvalidUID="无效的 UID"
+FailedKickOff="无法开始认证"
+RequiresAuthentication="服务器需要认证"
+CouldNotConnect_Title="连接失败"

@@ -1201,9 +1201,6 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
 /** The wave ended */
 function WaveEnded(EWaveEndCondition WinCondition)
 {
-	local KFPlayerController KFPC;
-	local bool bOpeningTrader;
-
 	MyKFGRI.NotifyWaveEnded();
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime( !MyKFGRI.IsFinalWave() );
 
@@ -1223,7 +1220,6 @@ function WaveEnded(EWaveEndCondition WinCondition)
 		if( WaveNum < WaveMax )
 		{
 			GotoState( 'TraderOpen', 'Begin' );
-			bOpeningTrader = true;
 		}
 		else
 		{
@@ -1231,16 +1227,28 @@ function WaveEnded(EWaveEndCondition WinCondition)
 		}
 	}
 
-	ForEach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+	// To allow any statistics that are recorded on the very last zed killed at the end of the wave,
+	// wait a single frame to allow them to finalize.
+	SetTimer( WorldInfo.DeltaSeconds, false, nameOf(Timer_FinalizeEndOfWaveStats) );
+}
+
+/** All stats should be finalized here */
+function Timer_FinalizeEndOfWaveStats()
+{
+	local bool bOpeningTrader;
+	local KFPlayerController KFPC;
+
+	bOpeningTrader = MyKFGRI.bTraderIsOpen && !IsInState( 'MatchEnded' ) && !IsInState( 'RoundEnded ');
+	foreach WorldInfo.AllControllers( class'KFPlayerController', KFPC )
 	{
 		// save online stats
 		KFPC.ClientWriteAndFlushStats();
 
 		// submit online player analytics
-		LogWaveEndAnalyticsFor(KFPC);
+		LogWaveEndAnalyticsFor( KFPC );
 
 		// submit aar/dialog stats
-		KFPC.SubmitPostWaveStats(bOpeningTrader);
+		KFPC.SubmitPostWaveStats( bOpeningTrader );
 
 		;
 	}
@@ -1449,7 +1457,7 @@ function NotifyTraderOpened()
 			}
 		}
 
-		SetTimer(1, false, nameof(ProcessAwards));
+		SetTimer(1.f, false, nameof(ProcessAwards));
 		SetTimer(AARDisplayDelay, false, nameof(ShowPostGameMenu));
 	}
 
@@ -1485,7 +1493,6 @@ function EndOfMatch(bool bVictory)
 		BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_MatchLost);
 		SetZedsToVictoryState();
 	}
-
 
 	WorldInfo.TWRefreshTweakParams();
 	WorldInfo.TWPushLogs();

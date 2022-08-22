@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="Doppelte UID"
+InvalidUID="Ungültige UID"
+FailedKickOff="Authentifizierung konnte nicht gestartet werden"
+RequiresAuthentication="Server benötigt Authentifizierung"
+CouldNotConnect_Title="Verbindung fehlgeschlagen"

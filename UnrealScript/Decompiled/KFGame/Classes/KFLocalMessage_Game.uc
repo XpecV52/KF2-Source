@@ -180,9 +180,12 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
 
 static function string GetKilledByZedMessage(Object KillerClass)
 {
-    if(KillerClass != none)
+    local class<Pawn> PawnClass;
+
+    PawnClass = class<Pawn>(KillerClass);
+    if((PawnClass != none) && PawnClass.default.ControllerClass != none)
     {
-        switch(KillerClass.Name)
+        switch(PawnClass.default.ControllerClass.Name)
         {
             case 'KFAIController_ZedPatriarch':
                 return default.KillzedBy_PatriarchString;

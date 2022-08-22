@@ -227,6 +227,7 @@ var float SpeedAdjustTransitionRate;
 var transient array<AttachedGoreChunkInfo> AttachedGoreChunks;
 var transient int NumHeadChunksRemoved;
 var transient array<name> BrokenHeadBones;
+var protected const float NapalmCheckCollisionScale;
 var transient int DeadHorseHitStreakAmt;
 var transient float LastDeadHorseHitTime;
 var float DefaultCollisionRadius;
@@ -482,33 +483,27 @@ event SpiderBumpLevel(Vector HitLocation, Vector HitNormal, optional Actor Wall)
 
 simulated event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
 {
-    local KFPawn_Monster KFPM;
-    local KFPawn_Human KFPH;
-    local byte DoTIndex;
-
     super(Actor).Bump(Other, OtherComp, HitNormal);
     if(SpecialMove != 0)
     {
         SpecialMoves[SpecialMove].NotifyBump(Other, HitNormal);
     }
-    if(DamageOverTimeArray.Length > 0)
+    if((((Physics == 2) && JumpBumpDamageType != none) && Other.GetTeamNum() != GetTeamNum()) && VSizeSq2D(Velocity) > Square(GroundSpeed * 1.1))
     {
-        DoTIndex = byte(DamageOverTimeArray.Find('DoT_Type', Class'KFDT_Fire'.default.DoT_Type);
-        if(((DoTIndex != -1) && DamageOverTimeArray[DoTIndex].InstigatedBy != none) && !bNapalmInfected)
-        {
-            KFPM = KFPawn_Monster(Other);
-            if(KFPM != none)
-            {
-                CheckForNapalmInfect(KFPM, DamageOverTimeArray[DoTIndex].InstigatedBy);
-            }
-        }
+        Other.TakeDamage(int(MeleeAttackHelper.BaseDamage), Controller, Other.Location, Normal(Velocity), JumpBumpDamageType);
     }
-    if(JumpBumpDamageType != none)
+}
+
+function HandleMonsterBump(KFPawn_Monster Other, Vector HitNormal)
+{
+    local int DoTIndex;
+
+    if(!bNapalmInfected && DamageOverTimeArray.Length > 0)
     {
-        KFPH = KFPawn_Human(Other);
-        if(((KFPH != none) && Physics == 2) && VSize2D(Velocity) > (GroundSpeed * 1.1))
+        DoTIndex = DamageOverTimeArray.Find('DoT_Type', Class'KFDT_Fire'.default.DoT_Type;
+        if((DoTIndex != -1) && DamageOverTimeArray[DoTIndex].InstigatedBy != none)
         {
-            KFPH.TakeDamage(int(MeleeAttackHelper.BaseDamage), Controller, KFPH.Location, Normal(Velocity), JumpBumpDamageType);
+            CheckForNapalmInfect(Other, DamageOverTimeArray[DoTIndex].InstigatedBy);
         }
     }
 }
@@ -990,6 +985,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     local KFPlayerReplicationInfo KFPRI;
     local KFAIController KFAIC;
     local KFPawn_Monster KFPM;
+    local float NapalmCheckDist;
     local int DoTIndex;
 
     AIMonster = KFAIController_Monster(InstigatedBy);
@@ -1026,17 +1022,22 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
         {
             bCouldTurnIntoShrapnel = InstigatorPerk.CouldBeZedShrapnel(KFDT);
         }
-        if((DamageOverTimeArray.Length > 0) && DamageCauser != none)
+        if(((!bNapalmInfected && InstigatedBy != none) && DamageCauser != none) && DamageOverTimeArray.Length > 0)
         {
             DoTIndex = DamageOverTimeArray.Find('DoT_Type', Class'KFDT_Fire'.default.DoT_Type;
-            if((DoTIndex != -1) && !bNapalmInfected)
+            if(DoTIndex != -1)
             {
-                if(ClassIsChildOf(KFDT, Class'KFDT_Fire') && InstigatedBy != none)
+                if(ClassIsChildOf(KFDT, Class'KFDT_Fire'))
                 {
-                    foreach WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM, Location, 30)
+                    NapalmCheckDist = Square(CylinderComponent.CollisionRadius * NapalmCheckCollisionScale);
+                    foreach WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM, Location)
                     {
-                        if(KFPM != self)
+                        if((KFPM != self) && KFPM.IsAliveAndWell())
                         {
+                            if(VSizeSq(Location - KFPM.Location) > NapalmCheckDist)
+                            {
+                                continue;                                
+                            }
                             CheckForNapalmInfect(KFPM, InstigatedBy);
                         }                        
                     }                    
@@ -3036,6 +3037,7 @@ defaultproperties
     BumpFrequency=0.5
     BumpDamageType=Class'KFDT_NPCBump'
     SpeedAdjustTransitionRate=100
+    NapalmCheckCollisionScale=6
     CollisionRadiusForReducedZedOnZedPinchPointCollisionState=1
     OnDeathAchievementID=-1
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

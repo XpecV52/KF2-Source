@@ -56,10 +56,7 @@ function TickHud(float DeltaTime)
 function SetBossPawn(KFPawn_MonsterBoss NewBossPawn)
 {
     local string BossNameText;
-    if(KFPC.bHideBossHealthBar)
-    {
-        return;
-    }
+    
     if(NewBossPawn == none)
     {
         return;
@@ -72,6 +69,10 @@ function SetBossPawn(KFPawn_MonsterBoss NewBossPawn)
     }
 
     SetBossName(BossNameText);
+    if(KFPC.bHideBossHealthBar)
+    {
+        return;
+    }
     UpdateBossHealth(); 
 }
 

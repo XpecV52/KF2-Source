@@ -15,7 +15,7 @@ defaultproperties
     SingleFireSoundIndex=1
     BurstAmount=3
     InventorySize=4
-    MagazineCapacity=30
+    MagazineCapacity=40
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -23,8 +23,8 @@ defaultproperties
     IronSightPosition=(X=10,Y=0,Z=0)
     GroupPriority=60
     WeaponSelectTexture=Texture2D'WEP_UI_MP5RAS_TEX.UI_WeaponSelect_MP5RAS'
-    SpareAmmoCapacity=360
-    InitialSpareMags=5
+    SpareAmmoCapacity=320
+    InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

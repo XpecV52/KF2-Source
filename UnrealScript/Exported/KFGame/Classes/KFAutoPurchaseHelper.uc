@@ -1013,7 +1013,8 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 	CurrentPerk.MaximizeSpareAmmoAmount( DefaultItem.AssociatedPerkClass, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity );
 
 	WeaponInfo.SecondaryAmmoCount = DefaultItem.InitialSecondaryAmmo;
-	CurrentPerk.ModifyMagSizeAndNumber( none, WeaponInfo.SecondaryAmmoCount, DefaultItem.AssociatedPerkClass, true );
+	CurrentPerk.ModifyMagSizeAndNumber( none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass, true );
+	CurrentPerk.ModifySpareAmmoAmount( none, WeaponInfo.SecondaryAmmoCount, DefaultItem, true );
 
 	WeaponInfo.MaxSecondaryAmmo = DefaultItem.MaxSecondaryAmmo;
 	CurrentPerk.ModifyMaxSpareAmmoAmount( none, WeaponInfo.MaxSecondaryAmmo, DefaultItem, true );

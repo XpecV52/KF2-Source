@@ -102,6 +102,9 @@ function bool GetCurrentLobby(out ActiveLobbyInfo LobbyInfo);
 function bool MakeLobby(int MaxPlayers, ELobbyVisibility Type);
 
 function UniqueNetId GetCurrentLobbyId();
+function bool GetLobbyFromCommandline(out UniqueNetId LobbyId, optional bool bMarkAsJoined=True);
+
+function LobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted);
 
 defaultproperties
 {

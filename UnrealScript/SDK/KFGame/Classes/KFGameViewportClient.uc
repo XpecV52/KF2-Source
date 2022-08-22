@@ -118,13 +118,16 @@ function DrawMapInfo(Canvas Canvas, String MapName)
 
 	ParseStringIntoArray(KFGameEngine(Class'Engine'.static.GetEngine()).TransitionGameType, GamemModeStringArray, ".", true);
 
-	if(Caps(GamemModeStringArray[0]) == Caps("KFGameContent"))
+	if( GamemModeStringArray.Length > 0 )
 	{
-		GameModeString = Localize(GamemModeStringArray[1], "GameName", "KFGameContent" );
-	}
-	else
-	{
-		GameModeString = GamemModeStringArray[1];
+		if(Caps(GamemModeStringArray[0]) == Caps("KFGameContent"))
+		{
+			GameModeString = Localize(GamemModeStringArray[1], "GameName", "KFGameContent" );
+		}
+		else if( GamemModeStringArray.Length > 1 )
+		{
+			GameModeString = GamemModeStringArray[1];
+		}
 	}
 
 	MapData = class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
@@ -136,7 +139,10 @@ function DrawMapInfo(Canvas Canvas, String MapName)
     {
     	Class'Engine'.static.AddOverlay(MessageFont, Class'KFCommon_LocalizedStrings'.default.LoadingString, 0.12, 0.12, FontScale, FontScale, false);
 		Class'Engine'.static.AddOverlay(MessageFont, MapData.DisplayName@"-"@GetAssociationIdentifier(MapData), 0.135, 0.15, FontScale, FontScale, false);
-		Class'Engine'.static.AddOverlay(MessageFont, GameModeString, 0.135, 0.18, FontScale, FontScale, false);
+		if( GameModeString != "" )
+		{
+			Class'Engine'.static.AddOverlay(MessageFont, GameModeString, 0.135, 0.18, FontScale, FontScale, false);
+		}
     }
 }
 

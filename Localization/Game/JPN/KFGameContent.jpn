@@ -6,158 +6,158 @@
 
 [KFTutorial]
 ;Lobby start
-RewardsTitleKey="Welcome to the Training Floor"
-RewardsDescriptionKey="The Training Floor will teach you some survival basics, but without the fear of death. Complete the Training Floor and you will receive a cosmetic item and enough XP to bring your selected perk up to Level 1."
-WelcomeTitleKey="Select a Perk"
-WelcomeDescriptionKey="Before you begin the match, select the <font color="#caab05">PERKS</font> tab at the top of the screen and select a perk. Perks are classes with different passive <font color="#caab05">PERK BONUSES</font>, configurable <font color="#caab05">SKILLS</font>, and <font color="#caab05">WEAPON LOADOUTS</font>."
-PerksTitleKey="Perk Details"
-PerksDescriptionKey="Perform <font color="#caab05">XP OBJECTIVES</font> in game to gain XP and level up your perks. Each time you level up, your <font color="#caab05">PERK BONUSES</font> increase for that perk. Every 5 levels you will unlock new <font color="#caab05">SKILLS</font> that you can <font color="#caab05">CONFIGURE</font> once unlocked. Select a perk and press <font color="#caab05">READY UP</font> to begin the match."
+RewardsTitleKey="訓練フロアへようこそ"
+RewardsDescriptionKey="訓練フロアでは、死を心配することなく、サバイバルの基本を学ぶことができます。訓練フロアを完了すると、服飾アイテムと、選択したPerkをレベル1にあげるために十分なXPを獲得します。"
+WelcomeTitleKey="Perkを選択"
+WelcomeDescriptionKey="マッチを開始する前に、画面上部の<font color="#caab05">PERKS</font>タブを選択し、Perkを選択してください。Perkは、それぞれ異なるパッシブな<font color="#caab05">PERKボーナス</font>、設定可能な<font color="#caab05">スキル</font>、そして<font color="#caab05">武器ロードアウト</font>を持つクラスです。"
+PerksTitleKey="Perk詳細"
+PerksDescriptionKey="ゲーム中で<font color="#caab05">XP目標</font>を行い、XPを獲得してPerkをレベルアップします。レベルアップする毎に、そのPerkの<font color="#caab05">PERKボーナス</font>が増加します。5レベル毎に、新たな<font color="#caab05">スキル</font>をロック解除し、<font color="#caab05">設定</font>を行うことができます。Perkを選択して<font color="#caab05">準備する</font>を押してマッチを開始します。"
 
 ;Gear Menu
-GearTitleKey="Gear Menu"
-GearDescriptionKey="The Gear Menu lets you select and <font color="#caab05">CUSTOMIZE</font> your character. Each character has a unique visual look, voice, and personality. Each character's head and body can be customized. You can wear up to 3 cosmetic accessories. Select and customize your character using the buttons on the left side of this menu."
+GearTitleKey="装備メニュー"
+GearDescriptionKey="装備メニューではキャラクターを選択し、<font color="#caab05">カスタマイズ</font>できます。各キャラクターは固有の容貌、声、性格を持っています。各キャラクターの頭部と胴体はカスタマイズできます。最大で3つの服飾アクセサリーを装備できます。このメニューの左側のボタンを使用してキャラクターを選択し、カスタマイズします。"
 
 ;Inventory Menu
-InventoryMenuTitleKey="Inventory Menu"
-InventoryMenuDescriptionKey="The inventory menu allows you to view and manage your item inventory. You can obtain items as rewards for completing matches from time to time, but you can also get items by opening crates, decrypting weapon skin USBs, trading with your friends, or purchasing them on the Market."
-WeaponSkinsTitleKey="Equipping Weapon Skins"
-WeaponSkinsDescriptionKey="Selecting any item will let you view the item details. If you have a weapon skin selected, you can equip it by pressing the <font color="#caab05">EQUIP</font> button. If you have a weapon skin equipped, any time you use that weapon in a match it will appear with the currently equipped skin."
+InventoryMenuTitleKey="インベントリメニュー"
+InventoryMenuDescriptionKey="インベントリメニューでは、アイテムのインベントリを確認および管理できます。アイテムは、マッチを完了した報酬として獲得することもありますが、木箱を開ける、武器スキンUSBを解読する、フレンドと交換する、または市場で購入することでも獲得できます。"
+WeaponSkinsTitleKey="武器スキンを装備する"
+WeaponSkinsDescriptionKey="アイテムを選択すると、アイテム詳細を確認できます。武器スキンを選択した状態で、<font color="#caab05">装備する</font>ボタンを押すと装備します。武器スキンを装備している状態で、マッチ中にその武器を使用すると、現在装備中のスキンで表示されます。"
 
 ;Store Menu
-StoreTitleKey="Store Menu"
-StoreDescriptionsKey="The Store Menu allows you to purchase keys that are used to open crates and decrypt weapon skin USBs you find. There are also several character specific cosmetic item bundles you can purchase. Items that you purchase or receive as rewards will appear in the Inventory Menu."
+StoreTitleKey="ストアメニュー"
+StoreDescriptionsKey="ストアメニューでは、木箱を開けたり、発見した武器スキンUSBを解読するために使用する鍵を購入できます。また、多数のキャラクター特有の服飾アイテムバンドルも購入できます。購入、または報酬として獲得したアイテムは、インベントリメニューに表示されます。"
 
 ;Match Start
-InventoryTitleKey="Know Your Inventory"
-InventoryDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife, and grenades. Press <font color="#caab05">%x%</font> to cycle through your weapons. You can also quick select weapon categories by pressing the following: <font color="#caab05">%x%</font> to equip your primary ranged weapon, <font color="#caab05">%x%</font> to equip your pistol, <font color="#caab05">%x%</font> to equip your melee weapon, and <font color="#caab05">%x%</font> to equip your syringe."
-InventoryContTitleKey="Know Your Inventory"
-InventoryContDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife and grenade. Hold <font color="#caab05">%x%</font> and use the directional buttons to select a weapon."
-AlternateFireKey="Alternate Fire"
-AlternateFireDescription="Most primary weapon have an alternate fire mode. Press <font color="#caab05">%x%</font> to toggle your current fire mode. An icon in your view will show the currently selected firemode."
-FlashLightBatteryTitleKey="Using a Flashlight"
-FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When it is out of power it will turn off and automatically start recharging again."
-GrenadeTitleKey="Using Grenades"
-GrenadeDescriptionKey="Grenades allow you to deal with closely packed groups of Zeds. Perks have different grenades in their <font color="#caab05">WEAPON LOADOUTS</font>, all of which damage Zeds, but may have additional effects. Press <font color="#caab05">%x%</font> to throw a grenade." 
+InventoryTitleKey="インベントリを知ろう"
+InventoryDescriptionKey="各Perkロードアウトは、固有のプライマリ武器、バックアップの9mmピストル、スペシャリストナイフ、手榴弾で始まります。<font color="#caab05">%x%</font>を押して武器を切り替えます。また、次の各ボタンを押すことで武器カテゴリをクイック選択できます：<font color="#caab05">%x%</font>でプライマリ遠距離武器を装備、<font color="#caab05">%x%</font>でピストルを装備、<font color="#caab05">%x%</font>で近接武器を装備、<font color="#caab05">%x%</font>で注射器を装備します。"
+InventoryContTitleKey="インベントリを知ろう"
+InventoryContDescriptionKey="各Perkロードアウトは、固有のプライマリ武器、バックアップの9mmピストル、スペシャリストナイフ、手榴弾で始まります。<font color="#caab05">%x%</font>を長押しして方向ボタンを使い、武器を選択します。"
+AlternateFireKey="オルトファイア"
+AlternateFireDescription="多くのプライマリ武器は、オルトファイアモードを持っています。<font color="#caab05">%x%</font>を押して現在のファイアモードを切り替えます。アイコンが現在選択しているファイアモードを示します。"
+FlashLightBatteryTitleKey="懐中電灯を使用する"
+FlashLightBatteryDescriptionKey="暗くなることもあります。<font color="#caab05">%x%</font>を押して、<font color="#caab05">懐中電灯</font>のオン/オフを切り替えます。懐中電灯の電池は、少しずつ減っていきます。電池が切れるとオフになり、自動的に充電が開始します。"
+GrenadeTitleKey="手榴弾を使う"
+GrenadeDescriptionKey="手榴弾によって、密集したzedの集団に対処することができます。Perkはそれぞれの<font color="#caab05">武器ロードアウト</font>に異なる手榴弾を持ちます。いずれもzedにダメージを与えますが、追加効果がある場合があります。<font color="#caab05">%x%</font>を押して手榴弾を投げます。 "
 
 ;Wave 1 end
-TraderTimeTitleKey="Trader Time"
-TraderTimeDescriptionKey="In between waves you can buy and sell weapons, buy armor, and fill your ammo at the Trader. Follow the blue arrows to find the Trader."
-InventoryWeightTitleKey="Carrying Weight"
-InventoryWeightDescriptionKey="You are limited in the weight you can carry. If you can't carry what you want, sell some gear first to make room."
+TraderTimeTitleKey="トレーダータイム"
+TraderTimeDescriptionKey="ウェーブの間に、トレーダーで武器の購入と売却、アーマーの購入、弾薬の補充を行うことができます。青い矢印を辿ってトレーダーを見つけましょう。"
+InventoryWeightTitleKey="運ぶ重量"
+InventoryWeightDescriptionKey="運べる重量には制限があります。持ちたいものが運べない場合、装備を売って空きを作りましょう。"
 
 ;Trader Menu Open
-TraderRefillTitleKey="Refill Your Ammo and Armor"
-TraderRefillDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> by pressing the <font color="#caab05">MAG</font>, <font color="#caab05">1X</font>, or <font color="#caab05">FILL</font> buttons to the left of the appropriate item. If you are short of time (or long on dosh), pressing <font color="#caab05">AUTOFILL</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
-TraderSellTitleKey="Selling Weapons"
-TraderSellDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, press the <font color="#caab05">SELL BUTTON</font> to the right of the item you wish to sell. You can see the amount of dosh you will get for selling the item on the <font color="#caab05">SELL BUTTON</font>. You cannot sell your backup 9mm pistol, body armor, or grenades."
-TraderBuyTitleKey="Buying Weapons"
-TraderBuyDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, press the <font color="#caab05">BUY BUTTON</font> to the left of the item you wish to buy. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
-TraderWeightTitleKey="Weapon Weight and Capacity"
-TraderWeightDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown below your current dosh in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
+TraderRefillTitleKey="弾薬とアーマーを補充する"
+TraderRefillDescriptionKey="適当なアイテムの左にある<font color="#caab05">MAG</font>、<font color="#caab05">1X</font>、または<font color="#caab05">FILL</font>ボタンを押すことで、<font color="#caab05">弾薬</font>、<font color="#caab05">手榴弾</font>、<font color="#caab05">ボディーアーマー</font>を補充できます。あまり時間がない(またはdoshが多い)場合、<font color="#caab05">AUTOFILL</font>を押すとdoshを自動で消費し、素早く弾薬、アーマー、手榴弾に振り分けます。"
+TraderSellTitleKey="武器を売却する"
+TraderSellDescriptionKey="<font color="#caab05">武器を売却</font>するには、売却したいアイテムの右にある<font color="#caab05">売却ボタン</font>を押します。そのアイテムを売却して得られるdoshは、<font color="#caab05">売却ボタン</font>で見ることができます。バックアップ9mmピストル、ボディーアーマー、手榴弾は売却できません。"
+TraderBuyTitleKey="武器を購入する"
+TraderBuyDescriptionKey="<font color="#caab05">武器を購入</font>するには、購入したいアイテムの左にある<font color="#caab05">購入ボタン</font>を押します。その武器を購入するために十分な<font color="#caab05">DOSH</font>と<font color="#caab05">最大重量</font>があることを確認しましょう。"
+TraderWeightTitleKey="武器重量と最大重量"
+TraderWeightDescriptionKey="すべての武器に<font color="#caab05">重量値</font>があります。現在の武器の重量によって、欲しい武器を購入できない場合があるかも知れません。武器の重量は、武器リストおよび武器詳細で確認できます。あなたの<font color="#caab05">最大重量</font>は、画面中心部の現在のdoshの下に表示されています。選択したアイテムの購入を妨げるものは、赤でハイライトされます。"
 
 ;Trader Open Gamepad
-TraderRefillGamepadTitleKey="Refill Your Ammo and Armor"
-TraderRefillGamepadDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> at the trader. To do so, select the weapon you wish to buy ammo for on the left side of the trader menu using the left stick. You can purchase one magazine or grenade for the selected weapon by pressing <font color="#caab05">%x%</font>, or buy as much ammo or as many grenades as you can afford, up to your limit, by pressing <font color="#caab05">%x%</font>. If you are short on time (or long on dosh), pressing <font color="#caab05">%x%</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
-TraderSellGamepadTitleKey="Selling Weapons"
-TraderSellGamepadDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon you wish to sell on the left side of the trader menu using the left stick and press <font color="#caab05">%x%</font>. You can see the amount of dosh you will get for selling the item. You cannot sell your backup 9mm pistol, body armor, or grenades."
-TraderBuyGamepadTitleKey="Buying Weapons"
-TraderBuyGamepadDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select the weapon you wish to buy on the right side of the trader menu using the left stick and press <font color="#caab05">%x%</font>. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
-TraderWeightGamepadTitleKey="Weapon Weight and Capacity"
-TraderWeightGamepadDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown below your current dosh in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
+TraderRefillGamepadTitleKey="弾薬とアーマーを補充する"
+TraderRefillGamepadDescriptionKey="<font color="#caab05">弾薬</font>、<font color="#caab05">手榴弾</font>、および<font color="#caab05">ボディーアーマー</font>は、トレーダーで補充できます。そうするには、左スティックを使い、トレーダーメニューの左側で、弾薬が欲しい武器を選択します。<font color="#caab05">%x%</font>を押して、選択した武器のマガジンまたは手榴弾を1つ購入するか、<font color="#caab05">%x%</font>を押して、最大限まで買えるだけの弾薬または手榴弾を購入できます。あまり時間がない(またはdoshが多い)場合、<font color="#caab05">%x%</font>を押すとdoshを自動で消費し、素早く弾薬、アーマー、手榴弾に振り分けます。"
+TraderSellGamepadTitleKey="武器を売却する"
+TraderSellGamepadDescriptionKey="<font color="#caab05">武器を売却</font>するには、左スティックを使ってトレーダーメニューの左側で売却したい武器を選択し、<font color="#caab05">%x%</font>を押します。そのアイテムを売却して得られるdoshが確認できます。バックアップ9mmピストル、ボディーアーマー、手榴弾は売却できません。"
+TraderBuyGamepadTitleKey="武器を購入する"
+TraderBuyGamepadDescriptionKey="<font color="#caab05">武器を購入</font>するには、左スティックを使ってトレーダーメニューの右側で購入したい武器を選択し、<font color="#caab05">%x%</font>を押します。その武器を購入するために十分な<font color="#caab05">DOSH</font>と<font color="#caab05">最大重量</font>があることを確認しましょう。"
+TraderWeightGamepadTitleKey="武器重量と最大重量"
+TraderWeightGamepadDescriptionKey="すべての武器に<font color="#caab05">重量値</font>があります。現在の武器の重量によって、欲しい武器を購入できない場合があるかも知れません。武器の重量は、武器リストおよび武器詳細で確認できます。あなたの<font color="#caab05">最大重量</font>は、画面中心部の現在のdoshの下に表示されています。選択したアイテムの購入を妨げるものは、赤でハイライトされます。"
 
 
 
 ;Trader Menu Close
-DoorWeldTitleKey="Weld Doors"
-DoorWeldDescriptionKey="You can <font color="#caab05">WELD DOORS</font> to slow the flow of enemies to a given area. To weld a door, walk up to it and <font color="#caab05">HOLD %x%</font> to equip your welder."
-HoldOutRunTitleKey="Run vs. Hold Out"
-HoldOutRunDescriptionKey="Know when to hold out and when to run. Find a good hold out spot, but once you start getting overrun, find an exit."
-TeamAdviceTitleKey="Stick Together"
-TeamAdviceDescriptionKey="<font color="#caab05">STAY WITH YOUR TEAM!</font> Your teammates are vital to your survival. They can heal you as well as help you take down the bigger Zeds."
+DoorWeldTitleKey="ドアを溶接する"
+DoorWeldDescriptionKey="<font color="#caab05">ドアを溶接</font>すると、特定のエリアの敵の流れを遅らせることができます。溶接するにはドアに近づき、<font color="#caab05">%x%を長押し</font>して溶接機を装備します。"
+HoldOutRunTitleKey="逃げるVS耐える"
+HoldOutRunDescriptionKey="耐えるべき時と、逃げるべき時を理解しましょう。耐えるのに良い場所を見つけましょう。しかし、敵の数が増えすぎると、脱出経路を探しましょう。"
+TeamAdviceTitleKey="みんなで協力する"
+TeamAdviceDescriptionKey="<font color="#caab05">チームから離れないように！</font>チームメイトは、生存するために不可欠です。あなたを回復してくれたり、より大きなzedを倒す手助けもしてくれます。"
 
 ;Victory
-CongratulationsTitleKey="Victory!"
-CongratulationsDescriptionKey="Congratulations! You have completed the Training Floor!"
-NextStepsTitleKey="What to Do Next"
-NextStepsDescriptionKey="From the main menu, you can practice more offline or jump into an online game with other survivors. Now go kill some Zeds!"
+CongratulationsTitleKey="勝利！"
+CongratulationsDescriptionKey="おめでとうございます！訓練フロアを完了しました！"
+NextStepsTitleKey="次に行うこと"
+NextStepsDescriptionKey="メインメニューから、さらにオフラインで練習することも他のサバイバーと共にオンラインゲームに飛び込むこともできます。 さぁ、Zed殺しを始めましょう！"
 
 ;Healing Section
-QuickHealTitleKey="Heal Yourself When Hurt"
-QuickHealDescriptionKey="If you are hurt, you can heal yourself by pressing <font color="#caab05">%x%</font>. After healing, your syringe will take sometime to recharge before you can use it again."
-HowToSyringeTitleKey="Heal Your Teammates"
-HowToSyringeDescriptionKey="You can also equip the syringe to heal your teammates by pressing <font color="#caab05">%x%</font> and then pressing <font color="#caab05">%x%</font> when close to a teammate."
-HealOthersTitleKey="Use Field Medic Weapons to Heal Teammates"
-HealOthersDescriptionKey="Field Medic perk weapons can heal teammates from a distance with their alternate fire mode. If you are using a Field Medic weapon, press <font color="#caab05">%x%</font> to fire a healing dart. Also, when you have selected the Field Medic perk, press <font color="#caab05">%x%</font> to throw a healing gas grenade."
+QuickHealTitleKey="傷ついたら自分を回復しよう"
+QuickHealDescriptionKey="傷を受けたら、<font color="#caab05">%x%</font>を押して自分を回復できます。回復したあと、注射器を再度使えるようになるまで、リチャージにある程度の時間がかかります。"
+HowToSyringeTitleKey="チームメイトを回復しよう"
+HowToSyringeDescriptionKey="<font color="#caab05">%x%</font>を押し、その後チームメイトの近くにいる際に<font color="#caab05">%x%</font>を押すと、注射器を装備してチームメイトを回復させることができます。"
+HealOthersTitleKey="フィールドメディック武器を使ってチームメイトを回復する"
+HealOthersDescriptionKey="フィールドメディックのPerk武器は、オルトファイアモードで遠くにいるチームメイトを回復させることができます。フィールドメディック武器を使用している場合、<font color="#caab05">%x%</font>を押して回復ダーツを発射します。また、フィールドメディックPerkを選択した場合は、<font color="#caab05">%x%</font>を押して回復ガス手榴弾を投げます。"
 
 ;Zed Time
-ZedTimeTitleKey="Zed Time"
-ZedTimeDescriptionKey="<font color="#caab05">ZED TIME SLO-MO</font> kicks in when cool things happen like headshots or hordes of enemies dying in an explosion. You can use this time to catch a small breather and daisy-chain some kills together."
+ZedTimeTitleKey="Zed-Time"
+ZedTimeDescriptionKey="<font color="#caab05">Zed-Timeスローモー</font>は、ヘッドショットや、敵の大群が爆発で死ぬ等、クールなことが起こった際に起こります。この時間を使って一休みしたり、キルの連鎖を作りましょう。"
 
 ;Melee Section
-MeleeTitleKey="Melee Weapons"
-MeleeDescriptionKey="Melee weapons have both light and hard attacks. Perform a light attack by pressing <font color="#caab05">%x%</font> and a hard attack by pressing <font color="#caab05">%x%</font>."
-BlockingTitleKey="Blocking with Melee Weapons"
-BlockingDescriptionKey="You can also block with melee weapons by <font color="#caab05">HOLDING %x%</font>. Blocking will reduce incoming Zed damage."
-ParryTitleKey="Parrying with Melee Weapons"
-ParryDescriptionKey="If you time a block correctly with an incoming Zed attack, you will parry the Zed and stumble him back. You will see an effect flash if you successfully parry a Zed."
-UnblockableTitleKey="Unblockable Zed Attacks"
-UnblockableDescriptionKey="Larger Zeds have some unblockable attacks. You can tell if an attack is unblockable by glowing effects on the Zed during an attack."
+MeleeTitleKey="近接武器"
+MeleeDescriptionKey="近接武器には弱攻撃と強攻撃の両方があります。<font color="#caab05">%x%</font>を押して弱攻撃を、<font color="#caab05">%x%</font>を押して強攻撃を行います。"
+BlockingTitleKey="近接武器でブロック"
+BlockingDescriptionKey="<font color="#caab05">%x%を長押し</font>して、近接武器でブロックすることもできます。ブロックすると、zedダメージが減少します。"
+ParryTitleKey="近接武器で受け流し"
+ParryDescriptionKey="zedの攻撃をタイミング良くブロックすると、zedを受け流し、よろめかせます。zedの受け流しに成功すると、エフェクトがフラッシュします。"
+UnblockableTitleKey="ブロック不可能なzed攻撃"
+UnblockableDescriptionKey="大きいzedは、ブロック不可能な攻撃を持っています。攻撃中にzedに光るエフェクトがあると、攻撃がブロック不可能だと判断できます。"
 
 [KFGFxTutorialContainer]
-BackString="BACK"
-NextString="NEXT"
-DoneString="DONE"
-SkipString="SKIP"
+BackString="戻る"
+NextString="次"
+DoneString="終了"
+SkipString="スキップ"
 
 [Armor]
 ItemName="コンバットアーマー"
-ItemCategory="Equipment"
-ItemDescription="• コンバットアーマーは様々なダメージからあなたを保護するが、劣化していく。\n• トレーダーで新しいアーマーを購入するか修理しろ\n\nこのジャケットは、ハイテク繊維とタングステン鋼を合わせて作られたプレートが取り付けられている。"
+ItemCategory="装備"
+ItemDescription="•コンバットアーマーは様々な形態のダメージから守ってくれますが、劣化します。\n•新たなアーマーを購入するか、トレーダーで損傷したアーマーを修理します。\n\nハイテクファイバーとタングステンスチールを組み合わせて作られたプレートを装着したジャケットです。"
 
 [KFProj_DynamiteGrenade]
-ItemName="ハーフカットのダイナマイト"
-ItemCategory ="爆発物"
-ItemDescription="•導火線をつけただけの小さなダイナマイト。\n• 自分も怪我をするので、気を付けろ!"
+ItemName="ダイナマイト1/2本"
+ItemCategory =" 「爆発物"
+ItemDescription="•信管が取り付けられた、ただの小さなダイナマイト。\n•あなたに危害を与えることもあるので、注意しましょう！」 "
 
 [KFProj_MedicGrenade]
-ItemName="メディックグレネード"
-ItemCategory ="爆発物"
-ItemDescription="• 噴出するガスはZEDには毒だが、人々には癒しとなる\n• 青いガスの中に立つと回復する\n\n我々の科学者一人からの引用すると: 「エージェントがこのグレネードを投げるとホモサピエンスを蘇らせ、同時にHomo Zedicusを安楽死させる」 これが役に立つといいのだが。"
+ItemName="メディック手榴弾"
+ItemCategory =" 「爆発物"
+ItemDescription="•zedには毒を与えるが、人間は回復するガスを放出します。\n\n•回復するには青いガス雲の中に立ちましょう。\n我々の科学者の言葉を引用するなら：『これらの手榴弾から放出される化学物質はホモサピエンスを生き返らせるが、ホモゼディカスを安楽死させる。』お役に立てれば幸いです。」 "
 
 [KFProj_MolotovGrenade]
-ItemName="モロトフ・カクテル"
+ItemName="モロトフ火炎手榴弾"
 ItemCategory="爆発物"
-ItemDescription="•簡素なZedを燃やせる火炎瓶。\n• 自分も怪我をするので気をつけて!\n\n1939-49年の冬戦争時にスターリン政権下のソ連外相ヴャチェスラフ・モロトフを皮肉ってフィンランド人によって名付けられ...すまない、歴史の授業を受ける気はなかった？"
+ItemDescription="•ごく単純に、zedを燃やす炎の手榴弾です。\n•あなたにも危害が加わる場合があるのでご注意ください！\n\n1939-1940年の冬戦争中に、スターリンの下のソビエト外務大臣、ヴャチェスラフ・ミハイロヴィチ・モロトフから、侮辱的に名付けられ...すいません、歴史の授業は不要でしたか？」 "
 
 [KFProj_EMPGrenade]
-ItemName="EMPグレネード"
+ItemName="EMP手榴弾"
 ItemCategory="爆発物"
-ItemDescription="• 電磁パルスを発生させダメージをZEDに与えると共に短時間スタンさせる。\n\n詳しく説明すると - 爆発時にナノ秒の電磁パルスを発生させ近距離の電気機器を妨害する。とりわけ、ZEDの体内にあるものに役に立つ。"
+ItemDescription="•zedにダメージを与え、さらに短時間スタンさせることもある、電気パルスを発生させます。\n\n詳細を加えるなら―爆発の際、ナノ秒電磁気パルスが発生し、短距離内の電気系統を妨害します。特にzed内にあるものを。便利ですね。」 "
 
 [KFProj_HEGrenade]
-ItemName="HEグレネード"
+ItemName="HE手榴弾"
 ItemCategory="爆発物"
-ItemDescription="• とてもシンプルな高性能炸薬グレネード。人間同様にZEDを傷付ける。\n\nこれ以上シンプルにできない。 HE - 高性能炸薬 - 爆発して色々な物を吹き飛ばす。本当に説明が必要？"
+ItemDescription="•とてもシンプルな高性能手榴弾です。zedにも人間にも同様にダメージを与えます。\n\nこの上なくシンプルです。HE―高性能―これはドカン！といろいろなものを爆破します。こんなこと説明する必要ありますか？」 "
 
 [KFProj_FragGrenade]
 ItemName="フラググレネード"
 ItemCategory="爆発物"
-ItemDescription="• 典型的な破片手榴弾: たちの悪い金属片を周囲にばら撒き、あらゆるものに傷を負わせる。\n\nアウトブレイク以前にあなた方はビデオゲームを十分に遊んで、フラググレネードの事を完璧に理解しているはずだ。知らないふりをするのはやめなよ。ここにはあなたの事を信じる人は誰も居ませんから。"
+ItemDescription="•かの有名なフラググレネード：小さな鉄片を周りに飛ばし、何もかも傷つける。\n\n君たちはアウトブレイク前に十分ビデオゲームで遊んだはずなので、フラググレネードが何であるかは知ってるでしょう。知らないフリはやめなさい。誰も君のことを信じませんよ。」 "
 
 [KFProj_NailBombGrenade]
-ItemName="ネイルボム"
-ItemCategory ="爆発物"
-ItemDescription="•A simple canister full of old nails with a small explosive charge in the middle.\n\nNot the most pleasant or subtle way of dealing with Zeds, but there is nothing pleasant or subtle about Zeds, is there?"
+ItemName="釘爆弾"
+ItemCategory =" 「爆発物"
+ItemDescription="•古い釘と、小さな爆薬を中央にセットした、シンプルな筒。\n\nzedに対処するにはあまり愉快でも繊細でもない方法でもありませんが、zedに関して愉快なことも繊細なこともありませんよね？"
 
 [KFProj_FreezeGrenade]
-ItemName="Freeze Grenade"
-ItemCategory = "Explosives"
-ItemDescription="•A technologically advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
+ItemName="凍結手榴弾"
+ItemCategory =" 「爆発物"
+ItemDescription="•技術的に高度な、加圧液体窒素の缶。\n\nこの中身と十分に触れさせると、zedを一定時間その場に凍らせます。打ち砕かれるような結果になります。"
 
 [KFProj_FlashBangGrenade]
-ItemName="FlashBang"
-ItemCategory = "Explosives"
-ItemDescription="•Both bright and loud, do not look directly at it. Try not to hear it either.\n•While technically less than lethal, flash bangs can still hurt you, so be careful!" 
+ItemName="フラッシュバン"
+ItemCategory =" 「爆発物"
+ItemDescription="眩しく、音が大きいため、直視しないこと。できたら聞かないように。\n•厳密には致命的ではありませんが、フラッシュバンで怪我をすることもありますので、ご注意ください！」 "
 
 [KFWeap_Healer_Syringe]
 ItemName="医療注射器"
@@ -170,324 +170,324 @@ ItemCategory="装備"
 [KFWeap_Pistol_9mm]
 ItemName="9mmピストル"
 ItemCategory="ハンドガン"
-ItemDescription="• 射撃モードはセミオートのみ。\n• これは標準的な9mmピストルだ。シンプルで安く（とても安く、はっきり言って、あなた向け）ホージン社で働く人間の基本武器となる。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•標準的な9mmピストルです。シンプルで安く(あなたにとっては本当に安いです)、全ホージン工作員の基本的なサイドアームです。"
 
 [KFWeap_Pistol_Deagle]
-ItemName=".50 デザートイーグル"
-ItemCategory="ハンドガン"
-ItemDescription="• 射撃モードはセミオートのみです。\n• デザートイーグルは超スゴいハンドガンで、「ハンドキャノン」と呼ばれる理由でもあります。"
+ItemName=".50デザートイーグル"
+ItemCategory="ハンドキャノン"
+ItemDescription="•ファイアモードはセミオートのみ。\n•デザートイーグルはハンドガンの王様で、「ハンドキャノン」として知られている所以です。"
 
 [KFWeap_AssaultRifle_AR15]
-ItemName="AR-15 ヴァーミントライフル"
+ItemName="AR-15バーミントライフル"
 ItemCategory="アサルトライフル"
-ItemDescription="• 3点バーストと単発射撃モードを選択できる。\n• オルトファイアで射撃モードを切り換え。\n• フラッシュライトが付属する。\n• これはZED用で害獣用ではない。"
+ItemDescription="•3連射または単発ファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•これはzed用です、「バーミント」用ではありません。"
 
 [KFWeap_AssaultRifle_SCAR]
-ItemName="SCAR-H アサルトライフル"
+ItemName="SCAR-Hアサルトライフル"
 ItemCategory="アサルトライフル"
-ItemDescription="• フルオートとセミオート射撃モードを選択できる。\n• オルトファイアで射撃モードを切り換え。\n• 元々はアメリカ特殊作戦軍用にデザインされ、そう、実に、特殊！"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•元々はアメリカ特殊作戦群のために設計され、確かに、特殊です！"
 
 [KFWeap_AssaultRifle_AK12]
-ItemName="カラシニコフ AK-12"
+ItemName="カラシニコフAK-12"
 ItemCategory="アサルトライフル"
-ItemDescription="• フルオートと3点バーストを選択できる。\n• オルトファイアで射撃モードを切り換え。\n• このAK-12は偵察任務中に死亡したロシアのスペツナズ隊員から入手した。"
+ItemDescription="•フルオートまたは3連射のファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•このAK-12は、死亡したロシアのスペツナズ工作員から、スキャニングのために奪われました。"
 
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="SA80 L85A2 ブルパップ"
 ItemCategory="アサルトライフル"
-ItemDescription="• フルオートとセミオート射撃モードを選択できる。\n• オルトファイアで射撃モードを切り換え。\n• SA80はイギリス軍の標準武器でした、軍人が、えーと、食べられるまでは。"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•SA80は、軍隊が…食われるまでは、イギリス軍の標準武器でした。"
 
 [KFWeap_Knife_Demolitionist]
-ItemName="カッターナイフ"
+ItemName="万能ナイフ"
 ItemCategory="近接"
-ItemDescription="• プライマリ - 素早い斬りつけ攻撃、長押しでコンボアタック。\n• セカンダリ - 激しい斬りつけ攻撃\n• オルト - ブロック/パリィ\n• カッターナイフです。Killing Floorで見つけた箱を開封するのに最適。"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•カッターナイフです。Killing Floorで見かけるあらゆるダンボール箱を開けるために最適。"
 
 [KFWeap_Knife_FieldMedic]
 ItemName="外科用メス"
 ItemCategory="近接"
-ItemDescription="• プライマリ - 素早い斬りつけ攻撃、長押しでコンボアタック。\n• セカンダリ - 激しい斬りつけ攻撃\n• オルト - ブロック/パリィ\n• 外科用メスです。 あなたはメディックです、そういうわけで使い方を説明する必要があるとは思えません。"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•メスです。あなたはメディックです、これの使い方は説明する必要ないでしょう。"
 
 [KFWeap_Knife_Firebug]
-ItemName="消防用ナイフ"
+ItemName="消防士のナイフ"
 ItemCategory="近接"
-ItemDescription="• プライマリ - 素早い斬りつけ攻撃、長押しでコンボアタック。\n• セカンダリ - 激しい斬りつけ攻撃\n• オルト - ブロック/パリィ\n• 消防用ナイフ。 あなたは消防士だ、そういうわけで使い方を説明する必要があるとは思えません。"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•消防士のナイフです。あなたは消防士です、これの使い方は説明する必要ないでしょう。"
 
 [KFWeap_Knife_Gunslinger]
 ItemName="ボウイナイフ"
 ItemCategory="近接"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
+ItemDescription="•プライマリ―素早い切り裂き攻撃、長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•西部開拓時代の大きすぎるナイフです。今この場でzedを切り裂くのに最適。"
 
 [KFWeap_Knife_Sharpshooter]
-ItemName="Kukri"
-ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The traditional knife of the Ghurka, it's more a chopping knife than a slicing knife. "
+ItemName="クックリ刀"
+ItemCategory="近接"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•グルカの伝統的なナイフ。切り裂くよりも切り落としに向いてます。 "
 
 [KFWeap_Knife_SWAT]
-ItemName="Tactical Knife"
-ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a knife. It cuts things. Tactical things."
+ItemName="タクティカルナイフ"
+ItemCategory="近接"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•ナイフです。いろんなものを切ります。タクティカルなものです。"
 
 [KFWeap_Pistol_Medic]
-ItemName="HMTech-101 ピストル"
+ItemName="HMTech-101ピストル"
 ItemCategory="ピストル"
-ItemDescription="• 射撃モードはセミオートのみ。\n• オルトファイアで回復ダーツを撃ちチームメンバーを回復。\n• ケースレス弾薬を使っており、あなたのために弾薬をカウントしてくれる。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアはチームメンバーを回復させる回復ダーツを発射します。\n•ケースレス弾薬を使い、ラウンドを数えてくれます。"
 
 [KFWeap_SMG_Medic]
-ItemName="HMTech-201 サブマシンガン"
+ItemName="HMTech-201サブマシンガン"
 ItemCategory="サブマシンガン"
-ItemDescription="• 射撃モードはフルオートのみ\n• オルトファイアで回復ダーツを撃ちチームメンバーを回復。\n• フラッシュライトが付属する。\n• あなたのピストルは強化された！"
+ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアはチームメンバーを回復させる回復ダーツを発射します。\n•HMTechピストルがパワーアップ！"
 
 [KFWeap_Shotgun_Medic]
-ItemName="HMTech-301 ショットガン"
+ItemName="HMTech-301ショットガン"
 ItemCategory="ショットガン"
-ItemDescription="• 射撃モードはセミオートのみ。\n• オルトファイアで回復ダーツを撃ちチームメンバーを回復。\n• フラッシュライトが付属する。\n• メディック用のコンバットショットガンだ。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアはチームメンバーを回復させる回復ダーツを発射します。\n•HMTechピストルのコンバットショットガン版です。"
 
 [KFWeap_AssaultRifle_Medic]
-ItemName="HMTech-401 アサルトライフル"
+ItemName="HMTech-401アサルトライフル"
 ItemCategory="アサルトライフル"
-ItemDescription="• 射撃モードはフルオートのみ\n• オルトファイアで回復ダーツを撃ちチームメンバーを回復。\n• フラッシュライトが付属する。\n• アサルトライフルの最終形態。"
+ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアはチームメンバーを回復させる回復ダーツを発射します。\n•HMTechピストルの本格的アサルトライフル版です。"
 
 [KFWeap_Shotgun_DoubleBarrel]
-ItemName="ダブルバレル ブームスティック"
+ItemName="ダブルバレル・ブームスティック"
 ItemCategory="ショットガン"
-ItemDescription="•Primary fire uses a single barrel only.\n•Alt-fire shoots both barrels at once.\n•Double-barrelle, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger!"
+ItemDescription="•プライマリファイアはシングルバレルのみ使用。\n•オルトファイアは両方のバレルで同時に発射します。\n•ダブルバレル、水平12ゲージのショットガンです。近距離戦闘に理想的。最大のzedでさえ、ぐらつかせます！"
 
 [KFWeap_Shotgun_AA12]
-ItemName="AA-12 オートショットガン"
+ItemName="AA-12オートショットガン"
 ItemCategory="ショットガン"
-ItemDescription="• 射撃モードはフルオートのみ\n• AA-12はフルオートマティックのショットガンだ。近距離や中距離で絶大な威力がありますが、弾薬を大量に消費する。"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•AA-12は自動ショットガンです。近距離から中距離で壊滅的な火力を発揮しますが、フルオートでは弾薬が食われます！"
 
 [KFWeap_Shotgun_MB500]
-ItemName="SG 500 ポンプアクション"
+ItemName="SG 500ポンプアクションショットガン"
 ItemCategory="ショットガン"
-ItemDescription="• 射撃モードはポンプアクションのみ。\n• フラッシュライトが付属する。\n• ポンプアクションのモスバーグ SG 500はピストルグリップ付きで、近距離では素敵なZEDキラー。シンプルかつ効果的。"
+ItemDescription="•ファイアモードはポンプアクションのみ。\n•ピストルグリップを持つポンプアクションモスバーグSG 500は、素晴らしい接近戦用zedキラーです。シンプルで効果的です。"
 
 [KFWeap_Shotgun_M4]
-ItemName="M4 コンバットショットガン"
+ItemName="M4コンバットショットガン"
 ItemCategory="ショットガン"
-ItemDescription="• 射撃モードはセミオートのみ。\n• フラッシュライトが付属する。\n• M4コンバットショットガンはアメリカ軍用にベネリがデザインした。セミオートで安定した連射が可能。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•ベネリがM4コンバットショットガンを米軍のために設計しました。セミオートマチックなので、安定した発射速度を可能にします。"
 
 [KFWeap_Knife_Berserker]
 ItemName="芝刈り機の刃"
 ItemCategory="近接"
-ItemDescription="• プライマリ - 素早い斬りつけ攻撃、長押しでコンボアタック。\n• セカンダリ - 激しい斬りつけ攻撃\n• オルト - ブロック/パリィ\n• そう、実は芝刈り機の刃です。楽しんで！"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•ええ、芝刈り機の刃です。お楽しみください！"
 
 [KFWeap_Knife_Commando]
 ItemName="KF-BAR"
 ItemCategory="近接"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•Horzine's version of the classic commando knife."
+ItemDescription="•プライマリ―素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•伝統的なコマンドーナイフのホージン版です。"
 
 [KFWeap_Knife_Support]
-ItemName="マチェット"
+ItemName="マチェーテ"
 ItemCategory="近接"
-ItemDescription="• プライマリ - 素早い斬りつけ攻撃、長押しでコンボアタック。\n• セカンダリ - 激しい斬りつけ攻撃\n• オルト - ブロック/パリィ\n• 一番大きなナイフを渡されたからといって、いい気にならないでください。"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•一番大きなナイフを上げたからって、勘違いしないでくださいね。"
 
 [KFWeap_Edged_Katana]
-ItemName="カタナ"
+ItemName="刀"
 ItemCategory="近接"
-ItemDescription="• プライマリ - 素早い斬りつけ攻撃、長押しでコンボアタック。\n• セカンダリ - 激しい斬りつけ攻撃\n• オルト - ブロック/パリィ\n• 試しに使って少しはその出来栄えに敬意を。"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•この上品さに敬意を現してください。"
 
 [KFWeap_Blunt_Crovel]
 ItemName="クロベル・サバイバルツール"
 ItemCategory="近接"
-ItemDescription="• プライマリ - 素早い斬りつけ攻撃、長押しでコンボアタック。\n• セカンダリ - 激しい殴打攻撃\n• オルト - ブロック/パリィ\n• バール部分、ショベル部分、全てが命取り間違いなし。"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•半分クロウバー、半分シャベル、合わせ技で致命的。"
 
 [KFWeap_Shotgun_Nailgun]
 ItemName="VLAD-1000 ネイルガン"
 ItemCategory="ショットガン"
-ItemDescription="•Choice of single or multiple nail fire modes.\n•Alt-fire to toggle between fire modes.\n•We understand that one of the Horzine scientists borrowed the original nailgun from a (dead) maintenance man."
+ItemDescription="•単発または複数発のネイルファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•ホージンの科学者がオリジナルのネイルガンを(死亡した)整備員から借りたと認識しております。"
 
 [KFWeap_Blunt_Pulverizer]
-ItemName="Pulverizer"
+ItemName="パルベライザー"
 ItemCategory="近接"
-ItemDescription="• プライマリ - 素早い殴打攻撃、長押しでコンボアタック。\n• セカンダリで炸薬弾も利用する。 空弾倉時は激しい殴打攻撃 - リロードを忘れずに！\n• オルト - ブロック/パリィ"
+ItemDescription="•プライマリ―素早く殴りつけ、プライマリを長押しでコンボ攻撃。\n•セカンダリは直撃した際に爆発ラウンドを発射します。弾薬が切れると、セカンダリは重い殴りつけです。なのでリロードを忘れないように！\n•オルト―ブロック/受け流し"
 
 [KFWeap_Eviscerator]
 ItemName="エヴィスレイター"
-ItemCategory="スペシャル"
-ItemDescription="•Primary fire shoots saw-blades.\n•Alt-fire is a melee attack, but uses fuel fast.\n•Originally designed by Horzine's SDS group in one of their wilder moments, this beast isn't subtle."
+ItemCategory="特殊"
+ItemDescription="•プライマリはソーブレードを発射します。\n•オルトファイアは近接攻撃ですが、燃料を食います。\n•元々はホージンのSDSグループが、荒れ狂っていた時に設計したもので、このケモノは繊細ではありません。"
 SecondaryAmmo="ガソリン"
 
 [KFWeap_Edged_Zweihander]
 ItemName="ツヴァイヘンダー"
 ItemCategory="近接"
-ItemDescription="• プライマリ - 中/大ダメージで、大勢を相手にできる。\n• セカンダリ - 遅いが、強力な攻撃\n• オルト - ブロック/パリィ\n• 前進中はダメージがさらに増加する。"
-SharedUnlockSource="Chivalry Medieval Warfare"
+ItemDescription="•プライマリ―中/強ダメージ、さらに戦況コントロールもできます。\n•セカンダリ―より遅いですが、ダメージは増えます。\n•オルト―ブロック/受け流し\n•前進するとさらにダメージが増えます。"
+SharedUnlockSource="Chivalry Medieval Warfare" "
 
 [KFWeap_Flame_CaulkBurn]
-ItemName="Caulk n' Burn"
+ItemName="チョーク&バーン"
 ItemCategory="火炎"
-ItemDescription="• 炎を噴射する。\n• 携帯式の自家製火炎放射器。 家庭でまねしないでください。"
+ItemDescription="•ファイアモードは火炎を発射します。\n•手持ちの、ホームメイド火炎放射器です。良い子のみなさんは真似しないでください。"
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="焼夷トレンチガン"
 ItemCategory="ショットガン"
-ItemDescription="• 射撃モードはポンプアクションのみ。\n• ドラゴンブレス弾を使用したショットガン。致命的なだけでなく、見た目も素晴らしい。"
+ItemDescription="•ファイアモードはポンプアクションのみ。\n•ドラゴンブレス焼夷弾を使用したショットガンです。致命的なだけでなく、見た目も素敵です。"
 
 [KFWeap_Flame_Flamethrower]
 ItemName="火炎放射器"
 ItemCategory="火炎"
-ItemDescription="炎を噴射する。それだけ。\n• あらゆる世代にお馴染み。怪しい箇所は、全部燃やそう。"
+ItemDescription="•ファイアモードは火炎を発射します。それだけです。\n•どの世代でもクラシック。迷ったら、すべて焼きつくしましょう。"
 
 [KFWeap_Beam_Microwave]
-ItemName="マイクロウェーブガン"
+ItemName="マイクロ波銃"
 ItemCategory="火炎"
-ItemDescription="• マイクロ波を使いZEDを遠距離から熱し、彼らを徹底的に燃やす。\n• オルトファイアで短距離のマイクロ波を放つ。\n• 現代科学の奇跡。携帯ZED調理器。"
+ItemDescription="•ファイアモードはマイクロ波を使って遠距離のzedを温め、内側から燃やします。\n•オルトファイアは近距離のマイクロ波ブラストを放出します。\n•現代テクノロジーの奇跡：手持ちのzed調理器具です。"
 
 [KFWeap_Thrown_C4]
-ItemName="C4 爆弾"
+ItemName="C4爆薬"
 ItemCategory="爆発物"
-ItemDescription="•Fire mode places your C4 charge.\n•Alt-fire detonates your C4 charges, in the sequence that you placed them.\n•A block of C4, wired for on-demand remote detonation."
+ItemDescription="•ファイアモードはC4弾薬を設置します。\n•オルトファイアは、設置した順番にC4弾薬を爆発させます。\n•オンデマンドの遠隔爆破のために配線されたC4のブロックです。"
 
 [KFWeap_GrenadeLauncher_HX25]
-ItemName="HX25 グレネードピストル"
+ItemName="HX25グレネードピストル"
 ItemCategory="爆発物"
-ItemDescription="• 着弾時に爆発する弾頭を、複数発射する。"
+ItemDescription="•ファイアモードは、当たると爆発する複数の子爆発体を発射する。"
 
 [KFWeap_GrenadeLauncher_M79]
 ItemName="M79 グレネードランチャー"
 ItemCategory="爆発物"
-ItemDescription="•Fire mode launches a grenade.\n•Grenade explodes on impact.\n•Only arms itself a few meters downrange so you don't blow your own face off."
+ItemDescription="•ファイアモードは手榴弾を発射します。\n•手榴弾は当たると爆発します。\n•顔を吹き飛ばされないように、射程の数メートル先でのみ作動します。"
 
 [KFWeap_RocketLauncher_RPG7]
 ItemName="RPG-7"
 ItemCategory="爆発物"
-ItemDescription="• ロケットを発射する。\n• ロケットは着弾時に爆発。\n• 数メーター離れた距離で構えよう、そうすれば自分の顔を吹き飛ばすに済む。\n• そして後方爆風に注意！"
+ItemDescription="•ファイアモードはロケット弾を発射します。\n•ロケット弾は当たると爆発します。\n•顔を吹き飛ばされないように、射程の数メートル先でのみ作動します。\n後方爆風に注意してください！"
 
 [KFWeap_Pistol_Dual9mm]
-ItemName="デュアル 9mm ピストル"
+ItemName="デュアル9mmピストル"
 ItemCategory="ハンドガン"
-ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•This is a pair of standard 9mm pistols. You can sell one (only), if you need to."
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•標準的な9mmピストル2丁です。必要であれば1つ(のみ)売却できます。"
 
 [KFWeap_Pistol_Colt1911]
-ItemName="M1911 ピストル"
+ItemName="M1911ピストル"
 ItemCategory="ハンドガン"
-ItemDescription="•射撃モードはセミオートのみ。\n•著名なコルト1911セミオートマチックピストル。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•定番のColt 1911セミオートマチックピストルです。"
 
 [KFWeap_Pistol_DualColt1911]
-ItemName="デュアル M1911 ピストル"
+ItemName="デュアルM1911ピストル"
 ItemCategory="ハンドガン"
-ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•This is a pair of Colt 1911 semi-automatic pistols. Each can be individually sold or dropped."
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•Colt 1911セミオートマチックピストル2丁です。それぞれ個別に売却やドロップできます。"
 
 [KFWeap_Pistol_Deagle]
-ItemName=".50 デザートイーグル"
-ItemCategory="ハンドガン"
-ItemDescription="• 射撃モードはセミオートのみです。\n• デザートイーグルは超スゴいハンドガンで、「ハンドキャノン」と呼ばれる理由でもあります。"
+ItemName=".50デザートイーグル"
+ItemCategory="ハンドキャノン"
+ItemDescription="•ファイアモードはセミオートのみ。\n•デザートイーグルはハンドガンの王様で、「ハンドキャノン」として知られている所以です。"
 
 [KFWeap_Pistol_DualDeagle]
-ItemName="デュアル .50 デザートイーグル"
+ItemName="デュアル.50デザートイーグル"
 ItemCategory="ハンドガン"
-ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•A pair of Desert Eagle hand cannons. Each can be individually sold or dropped."
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•デザートイーグル・ハンドキャノン2丁です。それぞれ個別に売却やドロップできます。"
 
 [KFWeap_Revolver_Rem1858]
-ItemName="1858 リボルバー"
+ItemName="1858リボルバー"
 ItemCategory="ハンドガン"
-ItemDescription="• 射撃モードは単発のみ。\n• .44-キャリバーで6発装填の軍用シングルアクションリボルバー、レミントン「モデル1858」の素晴らしい例。古風であるが、それでも強力。"
+ItemDescription="•ファイアモードは単発のみ。\n•.44口径レミントン'モデル1858' 6発シングルアクション・アーミーリボルバーです。古いですが、まだ使えます。"
 
 [KFWeap_Revolver_DualRem1858]
-ItemName="デュアル 1858 リボルバー"
+ItemName="デュアル1858リボルバー"
 ItemCategory="ハンドガン"
-ItemDescription="• 射撃モードはセミオートのみ。\n• オルトファイアでアイアンサイトの覗き方を切り替え。\n• レミントン1858リボルバーのペア。それぞれ別個に売却やドロップが可能。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•レミントン1858リボルバー2丁です。それぞれ個別に売却やドロップできます。"
 
 [KFWeap_Revolver_SW500]
-ItemName=".500 Magnum Revolver"
+ItemName=".500マグナムリボルバー"
 ItemCategory="ハンドガン"
-ItemDescription="• 射撃モードは単発のみ。\n• これぞ手持ち大砲。ロングバレルの.50-キャリバー「ボーン・コレクター」リボルバーから、フルロードのマグナム弾が放たれる。真のガンスリンガーへ送る。"
+ItemDescription="•ファイアモードは単発のみ。\n•ロングバレル.50口径 'ボーンコレクター' の形をした、本物の手持ち大砲で、フルロードのマグナム弾を発射します。本格的なガンスリンガー向け。"
 
 [KFWeap_Revolver_DualSW500]
-ItemName="Dual .500 Magnums"
+ItemName="デュアル.500マグナム"
 ItemCategory="ハンドガン"
-ItemDescription="• 射撃モードはセミオートのみ。\n• オルトファイアでアイアンサイトの覗き方を切り替え。\n• .500 マグナム「ボーン・コレクター」リボルバーのペア。それぞれ別個に売却やドロップが可能。落とすと「ドスン」と音がする。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•.500マグナム 'ボーンコレクター' リボルバー2丁です。それぞれ個別に売却やドロップできます。重い「ドスン」と共に。"
 
 [KFWeap_Rifle_Winchester1894]
-ItemName="Winchester 1894"
-ItemCategory="Rifle"
-ItemDescription="•Fire mode is single shot only.\n•The classic Model 1894 Winchester lever-action rifle."
+ItemName="ウィンチェスター1894"
+ItemCategory="ライフル"
+ItemDescription="•ファイアモードは単発のみ。\n•定番のモデル1894ウィンチェスター・レバーアクションライフルです。"
 
 [KFWeap_Bow_Crossbow]
-ItemName="Crossbow"
-ItemCategory="Bow"
-ItemDescription="•Fire mode is single shot only.\n•Crossbow bolts are often recoverable!\n•A high-powered hunting crossbow, giving good penetration and stopping power!"
+ItemName="クロスボウ"
+ItemCategory="ボウ"
+ItemDescription="•ファイアモードは単発のみ。\n•クロスボウのボルトは大抵、回収可能です！\n•高い貫通力とストッピングパワーを持つ、強力なハンティング用クロスボウです！"
 
 [KFWeap_Rifle_M14EBR]
 ItemName="M14 EBR"
-ItemCategory="Sniper Rifle"
-ItemDescription="•Fire mode is single shot only.\n•Equipped with a laser sight.\n•The preferred sniper rifle of Navy SEALs, Delta Force, and other various badasses."
+ItemCategory="スナイパーライフル"
+ItemDescription="•ファイアモードは単発のみ。\n•レーザー照準を装備。\n•ネイビーシールズ、デルタフォースや他のイケてるヤツらが好むスナイパーライフルです。"
 
 [KFWeap_Rifle_RailGun]
-ItemName="Rail Gun"
-ItemCategory="Sniper Rifle"
-ItemDescription="•Fire mode is single shot only.\n•Using the sight lets you lock on to vulnerable spots on your target. \n•This weapon fires a solid steel slug at high speeds using magnets, penetrating Zeds like tissue paper."
+ItemName="レールガン"
+ItemCategory="スナイパーライフル"
+ItemDescription="•ファイアモードは単発のみ。\n•照準器を使うと、ターゲットの弱点にロックオンできます。\n•この武器は磁石を使ってスラッグ弾を高速で発射し、zedをティッシュのように貫通します。"
 
 [KFWeap_SMG_MP7]
-ItemName="MP7 SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Used by alphabet soup agencies and special forces units the world over."
+ItemName="MP7サブマシンガン"
+ItemCategory="サブマシンガン"
+ItemDescription="•ファイアモードはフルオートまたはセミオートを選択できます。\n•オルトファイアはファイアモードを切り替えます。\n•世界中の政府系機関や特殊部隊に使用されています。"
 
 [KFWeap_AssaultRifle_M16M203]
-ItemName="M16 M203 Assault Rifle"
-ItemCategory="Assault Rifle"
-ItemDescription="•Firemode is full-auto only.\n•Alt-fire to fire grenades.\n•For those who can't decide between bullets and explosives."
-SecondaryAmmo="M203 Grenade"
+ItemName="M16 M203アサルトライフル"
+ItemCategory="アサルトライフル"
+ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアで手榴弾を発射。\n•銃弾か手榴弾か決められない人向けです。"
+SecondaryAmmo="M203手榴弾"
 
 [KFWeap_SMG_MP5RAS]
-ItemName="MP5RAS SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest version of one of the most widely used submachine guns in the world."
+ItemName="MP5RASサブマシンガン"
+ItemCategory="サブマシンガン"
+ItemDescription="•ファイアモードはフルオートまたはセミオートを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•世界で最も使用されているサブマシンガンの最新版です。"
 
 [KFWeap_SMG_P90]
-ItemName="P90 SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Sure it looks weird, but it shreds Zeds really well and you can make laser noises if you want."
+ItemName="P90サブマシンガン"
+ItemCategory="サブマシンガン"
+ItemDescription="•ファイアモードはフルオートまたはセミオートを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•確かに変な見た目ですが、zedをズタズタにするのに非常に有効で、レーザー音を出すこともできます。"
 
 [KFWeap_SMG_Kriss]
-ItemName="Kriss SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest in compact bullet redistrbution, it is a firehose of destruction."
+ItemName="クリスサブマシンガン"
+ItemCategory="サブマシンガン"
+ItemDescription="•ファイアモードはフルオートまたはセミオートを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•最新のコンパクトな銃弾再配分で、破壊の消火ホースです。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="ドクター ハンス・ヴォルター"
-BossCaptionStrings[0]="ハンスはスモークグレネードで治療中、ほぼ不死身だ。弾薬を消費するな！"
-BossCaptionStrings[1]="奴の動力コアを見ろ: 色が変わるとハンスはより攻撃的になる。"
-BossCaptionStrings[2]="奴の放射性動力コアを狙え。そこが弱点だ。"
-BossCaptionStrings[3]="ハンスのグレネードからはブロートの胆汁のような体に付着するガスが出てくる。避けろ！"
-BossCaptionStrings[4]="ハンスの切り裂き攻撃はパリィするには強すぎる。ダメージは軽減されないぞ。"
-BossCaptionStrings[5]="赤いグレネード警告インディケータをよく見ろ。着弾位置の判断に役立つ。"
-BossCaptionStrings[6]="ハンスが銃を構えたときは、奴の視線から距離を置け。当たり前だが、重要だ！"
+BossCaptionStrings[0]="大きな怪我を負うと、ハンスはヘルスを吸い取る相手を探す間、シールドを上げる。このシールドを破壊すると、回復できない！"
+BossCaptionStrings[1]="パワーコアに注目しよう。色が変わると、より攻撃的になる。"
+BossCaptionStrings[2]="放射性のパワーコアを狙おう。脆弱なゾーンだ。"
+BossCaptionStrings[3]="ブロートの毒と同様、ハンスの手榴弾のガスは付着する。避けるようにしよう！"
+BossCaptionStrings[4]="切り裂き攻撃は強すぎて受け流せない。フルダメージを受けてしまう。"
+BossCaptionStrings[5]="赤の手榴弾警告インジケータに注意しよう、どこに着弾するか分かるかも知れない。"
+BossCaptionStrings[6]="ハンスが銃を抜いたら、視界に入らないようにしよう。当たり前のことだが、重要だ！"
 
 [KFPawn_ZedPatriarch]
-BossName="The Patriarch"
-BossCaptionStrings[0]="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
-BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
-BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
-BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you easy prey he will target first."
-BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off, and heal himself. Some things don't change."
-BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
+BossName="ペイトリアーク"
+BossCaptionStrings[0]="ケビン・クレイムリーはかつて優れた科学者だったが、自身が自身の最高傑作となった。"
+BossCaptionStrings[1]="ペイトリアークは驚くほど傲慢だ―次に行う攻撃を教えてくれることが多い。"
+BossCaptionStrings[2]="大きな物体の後ろに隠れても、望むほどは助けとならない。ペイトリアークはそれにも対処法を持っている！"
+BossCaptionStrings[3]="一人で逃げ出すことは脱走ではない―ペイトリアークが最初に狙う、楽な獲物となる。"
+BossCaptionStrings[4]="ああ、ペイトリアークはクローキングし、透明になり、走り去り、自己回復することができる。変わらないものもあるということだ。"
+BossCaptionStrings[5]="選択肢があるわけではないが、ペイトリアークの「子ども」を殺すと、(さらに)怒らせるだけだ。"
 
 [KFGameInfo_Tutorial]
-GameName="Basic Training"
+GameName="基本トレーニング"
 
 [KFGameInfo_Survival]
 GameName="サバイバル"
 
 [KFGameInfo_VersusSurvival]
-GameName="VS Survival"
+GameName="VSサバイバル"
 
 [KFPawn_ZedPatriarch_Versus]
-NoHealsRemainingMsg="No Heals Remaining"
-LowHealthMsg="Health Is Critical! Heal Now!"
-NoMortarTargetsMsg="No Valid Mortar Targets"
+NoHealsRemainingMsg="回復が残っていません"
+LowHealthMsg="ヘルスはクリティカルです！今すぐ回復！"
+NoMortarTargetsMsg="有効な迫撃砲ターゲットがありません"
 
 [KFSM_PlayerSiren_VortexVictim]
-VortexGrabTeamWarningMsg="%x% is trapped by a Siren!"
+VortexGrabTeamWarningMsg="%x%がサイレンに捕まりました！"
 
 [KFGFXHudWrapper_Versus]
-WaitingToSpawnString="TIME UNTIL SPAWN: %x% second(s)"
-ZedTakeOverActiveString="SEARCHING FOR ZEDS TO TAKE OVER..."
-PerkSwitchAllowedString="TIME REMAINING TO SELECT YOUR PERK: %x% second(s)"
+WaitingToSpawnString="スポーンまで：%x%秒"
+ZedTakeOverActiveString="引き継ぐzedを検索中..."
+PerkSwitchAllowedString="Perk選択のための残り時間：%x%秒"
 
 [KFWeap_Random]
-ItemName="Random Weapon"
-ItemCategory="Random"
-ItemDescription="• Random Weapon.\n•"
+ItemName="ランダム武器"
+ItemCategory="ランダム"
+ItemDescription="•ランダム武器です。\n•"

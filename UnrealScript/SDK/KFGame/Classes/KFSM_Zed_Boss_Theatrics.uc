@@ -93,7 +93,7 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 		KFBoss = KFPawn_MonsterBoss(KFPOwner);
 
 		KFGFxHudWrapper(KFPOwner.WorldInfo.GetALocalPlayerController().myHUD).BossPawn = KFBoss;
-		if(KFGameReplicationInfo(KFPOwner.WorldInfo.GRI).AnyPlayersAlive()) //Boss intro
+		if( KFBoss.WorldInfo.TimeSeconds - KFBoss.CreationTime < 1.f ) //Boss intro
 		{
 			if(KFBoss.bVersusZed)
 			{
@@ -113,6 +113,7 @@ function PlayAnimation()
 	local Controller BossController;
 	local KFPawn_MonsterBoss BossPawn;
 	local KFPlayerController KFPC;
+	local KFWeapon KFW;
 	local vector CameraAnimOffset;
 
 	CurrentTheatricType = KFPOwner.SpecialMoveFlags & 15;
@@ -180,7 +181,7 @@ function PlayAnimation()
 
 			// Set view target and camera mode
 			KFPC.SetViewTarget( BossPawn );
-			//KFPC.ClientSetCameraMode( 'Boss' );
+			KFPC.ClientSetCameraMode( 'Boss' );
 
 			// Play a camera anim if we have one
 			if( CameraAnim != none )
@@ -190,6 +191,19 @@ function PlayAnimation()
 
 				// Set cinematic mode
 				KFPC.SetCinematicMode( true, false, false, true, true, true );
+
+				// Stop any weapons from firing
+				KFPC.StopFiring();
+
+				// Remove players from ironsights
+				if( KFPC.Pawn != none && KFPC.Pawn.Weapon != none )
+				{
+					KFW = KFWeapon( KFPC.Pawn.Weapon );
+					if( KFW != none && KFW.bUsingSights )
+					{
+						KFW.SetIronSights( false );
+					}
+				}
 
 				// Lengthen and add a tiny bit of blend out time to avoid snapping
 				KFPC.ClientPlayCameraAnim( CameraAnim, 1.f, 0.99f, BlendInTime, BlendOutTime + 0.03f, false, false );

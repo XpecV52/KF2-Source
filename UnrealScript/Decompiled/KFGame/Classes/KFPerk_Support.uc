@@ -507,7 +507,7 @@ simulated function PlayerDied()
 
 defaultproperties
 {
-    Ammo=(Name="Ammo",Increment=0.02,Rank=0,StartingValue=0,MaxValue=0.5,ModifierValue=0,IconPath="",bActive=false)
+    Ammo=(Name="Ammo",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     WeldingProficiency=(Name="Welding Proficiency",Increment=0.03,Rank=0,StartingValue=1,MaxValue=1.75,ModifierValue=0,IconPath="",bActive=false)
     ShotgunDamage=(Name="Shotgun Damage",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     ShotgunPenetration=(Name="Shotgun Penetration",Increment=0.2,Rank=0,StartingValue=0,MaxValue=5,ModifierValue=0,IconPath="",bActive=false)

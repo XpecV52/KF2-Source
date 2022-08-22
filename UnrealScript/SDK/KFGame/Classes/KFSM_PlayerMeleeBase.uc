@@ -35,6 +35,7 @@ struct PlayerZedAtkInfo
 	var bool bIsInputHeld;
 	var EPlayerZedAtkType Type;
 	var EAnimSlotStance Stance;
+	var float MomentumPush;
 	var bool bForceDisableRootMotion;
 	var bool bCannotBeParried;
 };
@@ -159,7 +160,7 @@ function UnpackSpecialMoveFlags()
 
 	// If we're doing a PHYS_Falling attack we need to allow RM take over
 	// which means disabling bAllowMomentumPush.
-	bAllowMomentumPush = (Attacks[AtkIdx].Type != PZA_Jumping);
+	bAllowMomentumPush = (!bUseRootMotion || Attacks[AtkIdx].Type != PZA_Jumping);
 
 	// Set parry flag on a per-attack basis
 	bCannotBeParried = Attacks[AtkIdx].bCannotBeParried;
@@ -171,6 +172,12 @@ function UnpackSpecialMoveFlags()
 		{
 			KFPOwner.SetTimer( KFSkeletalMeshComponent(KFPOwner.Mesh).GetAnimInterruptTime(AnimName), false, nameOf(Timer_AnimInterrupt), self );
 		}
+	}
+
+	// Apply momentum push, if we allow it and momentum is > 0
+	if( bAllowMomentumPush && Attacks[AtkIdx].MomentumPush > 0.f && (KFPOwner.Role == ROLE_Authority || KFPOwner.IsLocallyControlled()) )
+	{
+		KFPOwner.Velocity += vector(KFPOwner.Rotation) * Attacks[AtkIdx].MomentumPush;
 	}
 }
 

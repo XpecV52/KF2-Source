@@ -2552,7 +2552,7 @@ function bool AddPlayerReservations(out array<UniqueNetId> PlayerIDs)
 	}
 	if (OldCount == 0 && PlayerReservations.length > 0)
 	{
-		SetTimer(1.f, true, 'TimeReservations');
+		SetTimer(1.f, true, nameOf(TimeReservations) );
 	}
 	return true;
 }
@@ -2590,7 +2590,7 @@ function TimeReservations()
 	}
 	if (PlayerReservations.length == 0)
 	{
-		ClearTimer('TimeReservations');
+		ClearTimer( nameOf(TimeReservations) );
 	}
 }
 
@@ -2858,12 +2858,13 @@ private function CheckServerUnlock()
 	if ( GetNumPlayers() == 0 )
 	{
 		bWasAvailableForTakeover = KFEngine.bAvailableForTakeover;
-
+		
 		// Won't unlock a server that's not lockable
 		KFEngine.UnlockServer();
 		if (!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
 		{
 			AccessControl.SetGamePassword("");
+			StripPasswordFromLastURL(KFEngine);
 		}
 		// If the status changed, update game settings immediately
 		if( bWasAvailableForTakeover != KFEngine.bAvailableForTakeover )
@@ -2872,6 +2873,8 @@ private function CheckServerUnlock()
 		}
 	}
 }
+
+private native final function StripPasswordFromLastURL(KFGameEngine Engine);
 
 function StartMatch()
 {

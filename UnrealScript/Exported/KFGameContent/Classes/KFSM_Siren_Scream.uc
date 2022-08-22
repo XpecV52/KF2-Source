@@ -192,11 +192,11 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 
 defaultproperties
 {
-   ScreamDamageFrequency=1.000000
+   ScreamDamageFrequency=0.500000
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFSM_Siren_Scream:ExploTemplate0'
    ExplosionActorClass=Class'kfgamecontent.KFExplosion_SirenScream'
    ScreamInterruptSound=AkEvent'WW_ZED_Siren.Stop_Siren_Scream'
-   ProjectileShieldLifetime=1.000000
+   ProjectileShieldLifetime=2.200000
    AnimName="Atk_Combo1_V1"
    AnimStance=EAS_UpperBody
    bCanBeInterrupted=True

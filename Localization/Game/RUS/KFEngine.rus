@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="Дублированный индикатор пользователя"
+InvalidUID="Недопустимый идентификатор пользователя"
+FailedKickOff="Не удалось начать аутентификацию"
+RequiresAuthentication="Сервер требует аутентификации"
+CouldNotConnect_Title="Нет подключения"

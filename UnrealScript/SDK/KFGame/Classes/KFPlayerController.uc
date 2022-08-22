@@ -365,6 +365,9 @@ var float DOF_NVG_BlendInSpeed;
 /** Controls how fast NVG DOF lerps off */
 var float DOF_NVG_BlendOutSpeed;
 
+/** Film grain scale to use when bCinematicMode=TRUE */
+var float CIN_ImageGrainScale;
+
 /** Postprocess parameters when Night Vision is enabled */
 var(NVG_Post) float NVG_FocusBlendRate;
 var(NVG_Post) float NVG_ImageGrainScale;
@@ -831,7 +834,7 @@ reliable client function ClientRestart(Pawn NewPawn)
     SetRTPCValue( 'GRENADEFX', 0, true );
 
 	// Upon spawning close all menus
-	MyGFxManager.CloseMenus();
+	MyGFxManager.CloseMenus(true);
 	if(MyGFxHUD != none && MyGFxHUD.SpectatorInfoWidget != none)
 	{
 		MyGFxHUD.SpectatorInfoWidget.SetVisible(!PlayerReplicationInfo.bOnlySpectator);
@@ -1018,6 +1021,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 	local KFPlayerReplicationInfo KFPRI;
 	local string MatchmakingRegion;
 	local KFGoreManager GoreMgr;
+	local UniqueNetId LobbyId, Zero;
 
 	Profile = KFProfileSettings(OnlineSub.PlayerInterface.GetProfileSettings(LocalUserNum));
 	`QAlog(`location@`showvar(Profile), true);
@@ -1073,6 +1077,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 			KFEngine.bShowWelderInInv 		= Profile.GetProfileBool(KFID_ShowWelderInInventory);
 			KFEngine.bUseAltAimOnDual 		= Profile.GetProfileBool(KFID_UseAltAimOnDuals);
 			KFEngine.bAntiMotionSickness 	= Profile.GetProfileBool(KFID_AntiMotionSickness);
+			KFEngine.bMinimalChatter		= Profile.GetProfileBool(KFID_MinimalChatter);
 
 			if(class'WorldInfo'.static.IsConsoleBuild())
 			{
@@ -1118,6 +1123,10 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		{
 			GoreMgr.DesiredGoreLevel = Profile.GetProfileInt(KFID_GoreLevel);
 		}
+	}
+	if (OnlineSub.GetLobbyInterface().GetLobbyFromCommandline(LobbyId))
+	{
+		OnlineSub.GetLobbyInterface().LobbyInvite(LobbyId, Zero, true);
 	}
 }
 
@@ -2393,6 +2402,11 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 		{
 			SetViewTarget(KFBoss);
 		}
+
+		if(MyGFxHUD != none)
+		{
+			MyGFxHUD.ShowVoiceComms(false);
+		}
 		//hide interaction widget
 		ReceiveLocalizedMessage( class'KFLocalMessage_Interaction', IMT_None );
 	}
@@ -2756,27 +2770,6 @@ simulated protected function DoForceFeedbackForScreenShake( CameraShake ShakeDat
 	{
 		ClientPlayForceFeedbackWaveform( KFCameraShake(ShakeData).FFWaveform );
 	}
-}
-
-/**
- * Tells the client to play a waveform for the specified damage type
- *
- * @param FFWaveform The forcefeedback waveform to play
- * @param FFWaveformInstigator the actor causing the waveform to play
- */
-reliable client event ClientPlayForceFeedbackWaveform(ForceFeedbackWaveform FFWaveform,optional Actor FFWaveformInstigator)
-{
-	// Don't play rumble if we're a spectator
-	if( PlayerReplicationInfo.bIsSpectator 
-		|| PlayerReplicationInfo.bOnlySpectator
-		|| PlayerReplicationInfo.bWaitingPlayer
-		|| !PlayerReplicationInfo.bReadyToPlay
-		|| IsInState('Spectating') )
-	{
-		return;
-	}
-
-	super.ClientPlayForceFeedbackWaveform( FFWaveform, FFWaveformInstigator );
 }
 
 /*********************************************************************************************
@@ -7309,6 +7302,8 @@ event Destroyed()
  *********************************************************************************************/
 state Dead
 {
+	ignores ClientPlayForceFeedbackWaveform;
+
 	event BeginState(Name PreviousStateName)
 	{
 		local KFPawn KFP;
@@ -7372,11 +7367,10 @@ state Dead
 
 	function SetViewTarget( Actor NewViewTarget, optional ViewTargetTransitionParams TransitionParams )
 	{
-		if( PlayerCamera.CameraStyle == 'Boss' )
+		if( PlayerCamera.CameraStyle == 'Boss' && KFPawn_MonsterBoss(NewViewTarget) != none )
 		{
 			super.SetViewTarget( NewViewTarget, TransitionParams );
 		}
-		// do nothing / don't allow switch during this state
 	}
 
 	event EndState( Name NextStateName )
@@ -7452,6 +7446,8 @@ function MoveToValidSpectatorLocation()
 
 state Spectating
 {
+	ignores ClientPlayForceFeedbackWaveform;
+
 	event BeginState(Name PreviousStateName)
 	{
 		local KFGFxHudWrapper GFxHUDWrapper;
@@ -8507,6 +8503,8 @@ defaultproperties
 
 	NVG_FocusBlendRate=3.0f
 	NVG_ImageGrainScale=6.0f
+
+	CIN_ImageGrainScale=5.0f
 
 	NVG_DOF_FocalDistance=1200.0
 	NVG_DOF_SharpRadius=1000.0

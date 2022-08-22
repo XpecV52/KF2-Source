@@ -13,11 +13,15 @@ var Actor LastBumpLevelActor;
 var float LastBumpLevelTime;
 var protected const KFGameExplosion DeathExplosionTemplate;
 var protected repnotify bool bIsSpecialCrawler;
+var bool bShouldExplode;
 
 replication
 {
      if(bNetInitial)
         bIsSpecialCrawler;
+
+     if(bIsSpecialCrawler && bTearOff)
+        bShouldExplode;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -104,28 +108,68 @@ event SpiderBumpLevel(Vector HitLocation, Vector HitNormal, optional Actor Wall)
     }
 }
 
+simulated function CancelExplosion()
+{
+    if(bIsSpecialCrawler)
+    {
+        bShouldExplode = false;
+        if(IsTimerActive('Timer_CheckForExplode'))
+        {
+            ClearTimer('Timer_CheckForExplode');
+        }
+    }
+}
+
+function CauseHeadTrauma(optional float BleedOutTime)
+{
+    BleedOutTime = 5;
+    super.CauseHeadTrauma(BleedOutTime);
+    CancelExplosion();
+}
+
+simulated function PlayHeadAsplode()
+{
+    super.PlayHeadAsplode();
+    CancelExplosion();
+}
+
+function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLocation)
+{
+    if((bIsSpecialCrawler && !bPlayedDeath) && DamageType != Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType)
+    {
+        bShouldExplode = true;
+    }
+    return super.Died(Killer, DamageType, HitLocation);
+}
+
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
-    local bool bShouldGib;
+    super.PlayDying(DamageType, HitLoc);
+    if(bIsSpecialCrawler && bShouldExplode)
+    {
+        SetTimer(WorldInfo.DeltaSeconds, false, 'Timer_CheckForExplode');
+    }
+}
+
+simulated function Timer_CheckForExplode()
+{
     local KFGoreManager GoreManager;
     local array<name> OutGibBoneList;
     local int NumGibs;
 
-    if((bIsSpecialCrawler && !bPlayedDeath) && DamageType != Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType)
+    if(bShouldExplode)
     {
         Class'KFSM_PlayerCrawler_Suicide'.static.TriggerExplosion(self, DeathExplosionTemplate, true);
-        bShouldGib = true;
-    }
-    super.PlayDying(DamageType, HitLoc);
-    if(bShouldGib && WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-        if(GoreManager != none)
+        if(WorldInfo.NetMode != NM_DedicatedServer)
         {
-            NumGibs = 10 + Rand(4);
-            NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
-            GetClosestHitBones(NumGibs, Location, OutGibBoneList);
-            GoreManager.CauseGibsAndApplyImpulse(self, Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType, Location, OutGibBoneList, none, Mesh.GetBoneLocation(Mesh.GetBoneName(0)));
+            GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
+            if(GoreManager != none)
+            {
+                NumGibs = 10 + Rand(4);
+                NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
+                GetClosestHitBones(NumGibs, Location, OutGibBoneList);
+                GoreManager.CauseGibsAndApplyImpulse(self, Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType, Location, OutGibBoneList, none, Mesh.GetBoneLocation(Mesh.GetBoneName(0)));
+            }
         }
     }
 }

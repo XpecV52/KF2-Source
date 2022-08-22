@@ -38,6 +38,7 @@ var protected const AkEvent RhythmMethodSoundHit;
 var protected const AkEvent RhythmMethodSoundTop;
 var protected const name RhytmMethodRTPCName;
 var protected const float QuickSwitchSpeedModifier;
+var private const float QuickSwitchRecoilModifier;
 var private const float ShootnMooveBobDamp;
 var private const array<byte> BoneBreakerBodyParts;
 var private const float BoneBreakerDamage;
@@ -130,9 +131,14 @@ simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW)
         CurrentRecoilModifier -= (CurrentRecoilModifier * (GetPassiveValue(Recoil, GetLevel())));
         if((IsQuickSwitchActive()) && !KFW.bUsingSights)
         {
-            CurrentRecoilModifier = 0;
+            CurrentRecoilModifier *= GetQuickSwitchRecoilModifier();
         }
     }
+}
+
+private static final simulated function float GetQuickSwitchRecoilModifier()
+{
+    return default.QuickSwitchRecoilModifier;
 }
 
 simulated function float GetReloadRateScale(KFWeapon KFW)
@@ -516,6 +522,7 @@ defaultproperties
     RhythmMethodSoundTop=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Top'
     RhytmMethodRTPCName=R_Method
     QuickSwitchSpeedModifier=0.05
+    QuickSwitchRecoilModifier=0.5
     ShootnMooveBobDamp=1.11
     BoneBreakerBodyParts(0)=
 /* Exception thrown while deserializing BoneBreakerBodyParts
@@ -524,7 +531,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_8077
+    BoneBreakerBodyParts(1)=.!=_8080
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -570,7 +577,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_978
+    BodyPartsCanStumble(1)=.!=_979
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4

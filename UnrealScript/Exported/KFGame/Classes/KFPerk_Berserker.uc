@@ -411,7 +411,7 @@ function ModifyBloatBileDoT( out float DoTScaler )
 simulated static function GetPassiveStrings( out array<string> PassiveValues, out array<string> Increments, byte Level )
 {
 	PassiveValues[0] = Round(GetPassiveValue( default.BerserkerDamage, Level ) * 100) $ "%";
-	PassiveValues[1] = Round((GetPassiveValue(default.DamageResistance, Level)) * 100) $ "%";
+	PassiveValues[1] = Round(GetPassiveDamageResistance( Level ) * 100) $ "%";
 	PassiveValues[2] = "";
 	PassiveValues[3] = "";
 
@@ -887,7 +887,7 @@ simulated function LogPerkSkills()
 defaultproperties
 {
    BerserkerDamage=(Name="Berserker Damage",Increment=0.010000,MaxValue=0.250000)
-   DamageResistance=(Name="Damage Resistance",Increment=0.020000,MaxValue=0.100000)
+   DamageResistance=(Name="Damage Resistance",Increment=0.030000,MaxValue=0.150000)
    NightVision=(Name="Night Vision")
    NinjaSprintModifer=0.250000
    SmashStumbleModifier=2.000000

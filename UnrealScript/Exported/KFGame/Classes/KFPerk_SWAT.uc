@@ -238,7 +238,7 @@ simulated function bool HasHeavyArmor()
 
 static simulated private function bool Is9mm( KFWeapon KFW )
 {
-	return KFW.default.bIsBackupWeapon && !KFW.IsMeleeWeapon();
+	return KFW != none && KFW.default.bIsBackupWeapon && !KFW.IsMeleeWeapon();
 }
 
 /**
@@ -617,10 +617,9 @@ defaultproperties
    EXPAction1="Dealing SWAT weapon damage"
    EXPAction2="Killing Clots with SWAT weapons"
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_SWAT'
-   AssistDoshModifier=1.150000
    PerkSkills(0)=(Name="HeavyArmor",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_HeavyArmor")
    PerkSkills(1)=(Name="TacticalMovement",StartingValue=2.500000,MaxValue=2.500000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalMovement")
-   PerkSkills(2)=(Name="Backup",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup")
+   PerkSkills(2)=(Name="Backup",StartingValue=1.100000,MaxValue=1.100000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup")
    PerkSkills(3)=(Name="TacticalReload",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalReload")
    PerkSkills(4)=(Name="SpecialAmmunition",StartingValue=3.000000,MaxValue=3.000000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition")
    PerkSkills(5)=(Name="AmmoVest",StartingValue=0.300000,MaxValue=0.300000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_AmmoVest")

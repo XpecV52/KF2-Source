@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_Rifle_M14EBR"
    ImagePath="WEP_UI_M14EBR_TEX.UI_WeaponSelect_SM14-EBR"
    BuyPrice=1100
-   AmmoPricePerMag=40
+   AmmoPricePerMag=60
    EffectiveRange=90
    Name="Default__KFWeapDef_M14EBR"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

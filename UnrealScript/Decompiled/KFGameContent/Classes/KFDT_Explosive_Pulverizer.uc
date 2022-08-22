@@ -13,8 +13,11 @@ defaultproperties
     WeaponDef=Class'KFGame.KFWeapDef_Pulverizer'
     bCanObliterate=false
     GoreDamageGroup=EGoreDamageGroup.DGT_Obliteration
-    KnockdownPower=0
+    KnockdownPower=100
     StumblePower=340
     MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */
+    KDeathVel=500
+    KDeathUpKick=1000
+    RadialDamageImpulse=3000
 }

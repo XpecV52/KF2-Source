@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="NIE duplicado"
+InvalidUID="NIE inválido"
+FailedKickOff="Falha na autenticação"
+RequiresAuthentication="O servidor requer autenticação"
+CouldNotConnect_Title="Falha na conexão"

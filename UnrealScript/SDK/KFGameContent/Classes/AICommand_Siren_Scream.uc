@@ -121,6 +121,6 @@ DefaultProperties
 	// ---------------------------------------------
 	// Behaviors
 	MinScreamRange=130
-	MaxScreamRange=920
-	ScreamCooldown=6 //5
+	MaxScreamRange=900 //920
+	ScreamCooldown=4 //5 //6
 }

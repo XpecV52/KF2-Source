@@ -1,0 +1,112 @@
+
+[Presence]
+KFMainMenu="主菜单"
+KF-Bioticslab="玩生命学实验室"
+KF-BlackForest="玩黑森林"
+KF-BurningParis="玩燃烧的巴黎"
+KF-Catacombs="玩地下墓穴"
+KF-EvacuationPoint="玩撤退点"
+KF-Farmhouse="玩农舍"
+KF-VolterManor="玩沃尔特庄园"
+KF-Outpost="玩前哨"
+KF-Prison="玩监狱"
+KF-ContainmentStation="玩隔离站"
+KF-InfernalRealm="玩地狱领域"
+KF-HostileGrounds="玩敌对区域"
+
+[ActivityFeed]
+BossKillCondensedCaption="玩打败的首领！"
+BossKillCaption="$USER_NAME_OR_ID 已在 %y% 打败 %x%"
+TeamAwardCondensedCaption="队伍奖励！"
+TeamAwardCaption="$USER_NAME_OR_ID 已赢取 %x% 队伍奖励"
+PerkLevelUpCondensedCaption="升级！"
+PerkLevelUpCaption="$USER_NAME_OR_ID 已解锁第 %x% 级的 %y% 技能"
+
+[KFGFxMenu_IIS]
+PressButtonToStart="按 XboxTypeS_A，开始"
+LoginButtonPrompt="登录"
+LoggingIn="正在登录…"
+LoginFailed="登录失败"
+NoOnlinePlay="无法在线玩"
+TooYoung="由于家长控制限制，你的索尼娱乐网络账户上的在线服务被禁用。"
+PatchAvailable="可提供补丁。要使用网络功能，你必须更新应用程序。"
+NotLoggedInOnlinePSN="要使用在线功能，你必须注册 PlayStation™Network。"
+NetworkError="出现网络错误，请检查你的网络连接。"
+ErrorNoPlayfabDescription="无法与游戏主服务器建立连接。请几分钟后重试。"
+ErrorTSSFailedDescription="无法与游戏均衡服务器建立连接。请确保你已连接到网络，并重试。"
+
+[Notifications]
+ControllerDisconnectedTitle="控制器断开连接"
+ControllerDisconnectedPS4Message="无线控制器已断开连接。请为启动游戏的用户重新连接无线控制器。"
+PlayGoBusyTitle="仍然正在安装"
+PlayGoBusyMessage="游戏安装完成后会有受限制的内容和功能。"
+UnableToJoinInviteTitle="无法加入"
+UnableToJoinInviteMessage="会话已满或已经不存在。请稍后再试一次。"
+InitiatingPlayTogetherTitle="稍等！"
+InitiatingPlayTogetherMessage="我们正在创建一款让大家一起玩的游戏。"
+UnableToPlayTogetherTitle="一起玩失败"
+UnableToPlayTogetherMessage="无法创建一起玩游戏。稍后再试或手动创建一个。"
+CheckPlusTitle="正在检查 PlayStation®Plus 状态"
+CheckPlusMessage="我们正在检查 PlayStation®Plus 状态，请稍等。"
+ConnectionLostTitle="连接丢失"
+ConnectionLostMessage="你的在线连接已丢失。你已返回到主页菜单。"
+PSNSignoutMessage="你已经从 PlayStation™Network 注销。你已返回到主页菜单。"
+InviteMessage="和我一起炸飞丧尸吧！"
+NotConnectedTitle="网络错误"
+NotConnectedMessage="未连接到网络。检查你的连接并重试。"
+NotConnectedForOnlinePlay="未连接到网络。请检查你的连接并重试，以使用在线功能"
+PartySizeTitle="小队警告"
+PartySizeMessage="你的小队中的队友过多。并不是所有队友都会出现在你的小队中，也不是所有队友都会进入生存游戏。"
+
+[KFGFxWidget_BaseParty]
+ViewProfileString="查看玩家档案"
+
+[KFGFxObject_Menu]
+ResetDefaults="你确定希望将设置重置到默认值吗？"
+
+[KFGFxTraderContainer_PlayerInventory]
+PerkPrompt="神射"
+
+[KFGFxOptionsMenu_Audio]
+ControllerSound="控制器音效"
+
+[KFGFxMenu_StartGame]
+MatchmakingRegionString="区域"
+
+[KFGFxStartGameContainer_Options]
+MatchmakingRegionString="区域"
+
+[Entitlements]
+BriarBobbyBundleProductName="伦敦警察布莱尔制服物品包"
+BriarBobbyBundleShortDescription="为可参加游戏的人物 PC 罗伯-布莱尔获得一套新的经典伦敦警服。包括布莱尔的伦敦警服（含 5 种皮肤风格）和监护人头盔装饰配件（含 3 种皮肤风格）。"
+
+BikerTanakaBundleProductName="田中勇人摩托车车手服物品包"
+BikerTanakaBundlehortDescription="为可参加游戏的人物田中勇人获得一套新的摩托车手服。包括田中勇人的摩托车制服（含 7 种皮肤风格）和头盔装饰配件（含 7 种皮肤风格）。"
+
+ClassicFosterBundleProductName="福斯特先生的经典制服物品包"
+ClassicFosterBundlehortDescription="为可参加游戏的人物福斯特先生获得一套新的经典西装。包括福斯特的经典西装（含 9 种皮肤风格）、蝴蝶结装饰配件和经典领带装饰配件（每个含 7 种皮肤风格）。"
+
+CardboardKnightBundleProductName="硬纸板骑士制服物品包"
+CardboardKnightBundleShortDescription="为大多数可参加游戏的人物获得一套新的滑稽硬纸板骑士护甲制服。包括全身硬纸板骑士护甲（含 6 种皮肤风格）和硬纸板骑士头盔装饰配件（含 6 种皮肤风格）。"
+
+HorzineSecurityForceBundleProductName="霍因保安制服物品包"
+HorzineSecurityForceBundleShortDescription="为大多数可参加游戏的人物获得一套新的超棒霍因保安制服。包括一套全身高科技霍因保安套装和霍因保安头盔装饰配件。"
+
+HorzineSupplyCrateKeyProductName="霍因供应箱钥匙"
+HorzineSupplyCrateKeyShortDesription="购买一把霍因供应箱钥匙，这是游戏中的一把可消费钥匙，能够打开任何霍因供应箱。你将需要获得这把钥匙和任何要用到钥匙的霍因供应箱。"
+
+HorzineSupplyCrate1ProductName="霍因供应箱系列 1"
+HorzineSupplyCrate1ShortDesription="这个霍因供应箱包含一个装饰配件。需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的装饰品：策略帽、策略面具、策略耳机 MK1/MK2、头巾、GS9 头盔、GS9 面具、俄罗斯军用眼镜、俄罗斯军用头盔、俄罗斯军用面具或一种极其稀有宝贵的配件！"
+
+HorzineSupplyCrate2ProductName="霍因供应箱系列 2"
+HorzineSupplyCrate2ShortDesription="这个霍因供应箱包含一个装饰配件。需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的装饰品：Devtac 弹道面具、美国防毒面具、滑雪面具、棒球帽、策略背包、德国防毒面具、化学防毒面具、RPG7 背包、M2 喷火器坦克或一种极其稀有宝贵的配件！"
+
+HorzineSupplyCrate3ProductName="霍因供应箱系列 3"
+HorzineSupplyCrate3ShortDesription="这个霍因供应箱包含一种武器皮肤。需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的武器皮肤："
+
+HorzineSupplyCrate4ProductName="霍因供应箱系列 4"
+HorzineSupplyCrate4ShortDesription="这个霍因供应箱包含一种武器皮肤。需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的武器皮肤："
+
+StoreGameLegalText="软件需经过许可 (us.playstation.com/softwarelicense)。在线活动需遵循服务条款和用户协议 (www.playstationnetwork.com/terms-of-service)。使用账户注册时其指定的主要 PS4™ 系统和其他 PS4™ 系统玩游戏时的一次许可费用。Killing Floor© 2009-2016 Tripwire Interactive 版权所有。Killing Floor® 是 Tripwire Interactive 在美国和其他国家的注册商标。Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc.保留所有权利。Unreal® 是 Epic Games, Inc. 在美国和其他国家的商标或注册商标。所有其他商标、标识和版权均为其各自所有者的财产。保留所有权利。"
+
+StoreItemLegalText="要使用此物品，需要完整的《杀戮空间 2》游戏。此物品的使用需遵循与原始游戏相同的最终用户许可协议。"

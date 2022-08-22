@@ -11,10 +11,10 @@ class KFSM_PlayerScrake_Melee2 extends KFSM_PlayerScrake_Melee;
 defaultproperties
 {
    Attacks(0)=(Anims=("Player_Heavy_Atk"))
-   Attacks(1)=(Anims=("Player_Lunge_Heavy"))
+   Attacks(1)=(Anims=("Player_Lunge_Heavy"),bCannotBeParried=True)
    Attacks(2)=()
    Attacks(3)=(Anims=("Player_Stab_Atk"),bIsInputHeld=True,Type=PZA_Backwards,Stance=EAS_FullBody)
-   Attacks(4)=(Anims=("Player_Rage_Heavy"))
+   Attacks(4)=(Anims=("Player_Rage_Heavy"),bCannotBeParried=True)
    Attacks(5)=(Anims=("Player_RLunge_Heavy"))
    Attacks(6)=()
    Attacks(7)=(Anims=("Player_Stab_Atk"),bIsInputHeld=True,Type=PZA_SpecialBackwards)

@@ -26,12 +26,12 @@ defaultproperties
 {
    Attacks(0)=(Anims=("Player_Light_Atk"))
    Attacks(1)=(Anims=("Player_Sprint_Light_Atk","Player_Light_Atk"),Type=PZA_Sprinting)
-   Attacks(2)=(Anims=("Player_Kick"),Type=PZA_Backwards)
+   Attacks(2)=(Anims=("Player_Kick"),Type=PZA_Backwards,bCannotBeParried=True)
    Attacks(3)=(Anims=("Player_Jump_Atk"),Type=PZA_Jumping,bForceDisableRootMotion=True)
    Attacks(4)=(Anims=("Player_Headless_Atk_V1","Player_Headless_Atk_V2"),Type=PZA_Headless,Stance=EAS_UpperBody)
-   Attacks(5)=(Anims=("Player_Rage_Light","Player_Rsprint_Light"),Type=PZA_SpecialDefault)
-   Attacks(6)=(Anims=("Player_Rsprint_Light","Player_Rage_Light"),Type=PZA_SpecialSprinting)
-   Attacks(7)=(Anims=("Player_360_Spin"),Type=PZA_SpecialBackwards)
+   Attacks(5)=(Anims=("Player_Rage_Light","Player_Rsprint_Light"),Type=PZA_SpecialDefault,bCannotBeParried=True)
+   Attacks(6)=(Anims=("Player_Rsprint_Light","Player_Rage_Light"),Type=PZA_SpecialSprinting,bCannotBeParried=True)
+   Attacks(7)=(Anims=("Player_360_Spin"),Type=PZA_SpecialBackwards,bCannotBeParried=True)
    Name="Default__KFSM_PlayerFleshpound_Melee"
    ObjectArchetype=KFSM_PlayerMeleeBase'KFGame.Default__KFSM_PlayerMeleeBase'
 }

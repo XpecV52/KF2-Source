@@ -1708,11 +1708,7 @@ Parameter name: index
     /*@Error*/
     foreach WorldInfo.AllControllers(Class'KFAIController', AI)
     {
-        (ImpactSoundCoolDowns)
-        @NULL
-        default.@NULL
-        @NULL
-        string(GetFuncName()) $ "() Notifying ";
+        PlayFiringSound.Insert(@NULL, @NULL[default.@NULL]string(GetFuncName()) $ "() Notifying ";
         string(AI)        
         " that navigation has changed for "        
         string(N)        
@@ -2424,6 +2420,7 @@ private final function CheckServerUnlock()
         if(!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
         {
             AccessControl.SetGamePassword("");
+            StripPasswordFromLastURL(KFEngine);
         }
         if(bWasAvailableForTakeover != KFEngine.bAvailableForTakeover)
         {
@@ -2431,6 +2428,9 @@ private final function CheckServerUnlock()
         }
     }
 }
+
+// Export UKFGameInfo::execStripPasswordFromLastURL(FFrame&, void* const)
+private native final function StripPasswordFromLastURL(KFGameEngine Engine);
 
 function StartMatch()
 {

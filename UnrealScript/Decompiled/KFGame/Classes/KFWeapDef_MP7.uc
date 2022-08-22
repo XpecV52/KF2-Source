@@ -13,6 +13,6 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_SMG_MP7"
     ImagePath="WEP_UI_MP7_TEX.UI_WeaponSelect_MP7"
     BuyPrice=200
-    AmmoPricePerMag=26
+    AmmoPricePerMag=16
     EffectiveRange=70
 }

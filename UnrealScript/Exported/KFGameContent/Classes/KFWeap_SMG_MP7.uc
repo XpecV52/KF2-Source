@@ -16,7 +16,7 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
    InventorySize=4
-   MagazineCapacity(0)=40
+   MagazineCapacity(0)=30
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -26,8 +26,8 @@ defaultproperties
    IronSightPosition=(X=5.000000,Y=0.000000,Z=0.000000)
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_MP7_TEX.UI_WeaponSelect_MP7'
-   SpareAmmoCapacity(0)=320
-   InitialSpareMags(0)=4
+   SpareAmmoCapacity(0)=330
+   InitialSpareMags(0)=6
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_MP7.Play_MP7_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_MP7.Play_MP7_Fire_1P_Loop')
@@ -74,8 +74,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.015000
    Spread(1)=0.010000
-   InstantHitDamage(0)=20.000000
-   InstantHitDamage(1)=20.000000
+   InstantHitDamage(0)=16.000000
+   InstantHitDamage(1)=16.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_MP7'

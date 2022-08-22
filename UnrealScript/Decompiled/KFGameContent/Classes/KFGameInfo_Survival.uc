@@ -784,9 +784,6 @@ function CheckWaveEnd(optional bool bForceWaveEnd)
 
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
-    local KFPlayerController KFPC;
-    local bool bOpeningTrader;
-
     MyKFGRI.NotifyWaveEnded();
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
     {
@@ -808,8 +805,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             UpdateWaveEndDialogInfo();
             if(WaveNum < WaveMax)
             {
-                GotoState('TraderOpen', 'Begin');
-                bOpeningTrader = true;                
+                GotoState('TraderOpen', 'Begin');                
             }
             else
             {
@@ -817,6 +813,15 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             }
         }
     }
+    SetTimer(WorldInfo.DeltaSeconds, false, 'Timer_FinalizeEndOfWaveStats');
+}
+
+function Timer_FinalizeEndOfWaveStats()
+{
+    local bool bOpeningTrader;
+    local KFPlayerController KFPC;
+
+    bOpeningTrader = (MyKFGRI.bTraderIsOpen && !IsInState('MatchEnded')) && !IsInState('RoundEnded ');
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
     {
         KFPC.ClientWriteAndFlushStats();

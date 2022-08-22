@@ -1126,6 +1126,10 @@ exec function ShowVoiceComms()
     {
         return;
     }
+    if(Outer.IsBossCameraMode())
+    {
+        return;
+    }
     if((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.VoiceCommsWidget != none)
     {
         Outer.MyGFxHUD.ShowVoiceComms(true);

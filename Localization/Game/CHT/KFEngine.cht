@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="UID 重複"
+InvalidUID="UID 無效"
+FailedKickOff="無法開始驗證"
+RequiresAuthentication="伺服器需要驗證"
+CouldNotConnect_Title="無法連線"

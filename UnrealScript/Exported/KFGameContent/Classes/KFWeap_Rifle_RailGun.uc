@@ -1021,8 +1021,8 @@ defaultproperties
    FiringStatesArray(4)=()
    WeaponProjectiles(0)=None
    WeaponProjectiles(1)=None
-   FireInterval(0)=0.400000
-   FireInterval(1)=0.400000
+   FireInterval(0)=0.100000
+   FireInterval(1)=0.100000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()

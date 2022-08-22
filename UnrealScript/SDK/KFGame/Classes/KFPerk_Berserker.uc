@@ -341,7 +341,7 @@ function ModifyBloatBileDoT( out float DoTScaler )
 simulated static function GetPassiveStrings( out array<string> PassiveValues, out array<string> Increments, byte Level )
 {
 	PassiveValues[0] = Round(GetPassiveValue( default.BerserkerDamage, Level ) * 100) $ "%";
-	PassiveValues[1] = Round((GetPassiveValue(default.DamageResistance, Level)) * 100) $ "%";
+	PassiveValues[1] = Round(GetPassiveDamageResistance( Level ) * 100) $ "%";
 	PassiveValues[2] = "";
 	PassiveValues[3] = "";
 
@@ -856,7 +856,7 @@ DefaultProperties
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Berserker'
 
 	BerserkerDamage=(Name="Berserker Damage",Increment=0.01,Rank=0,StartingValue=0.f,MaxValue=0.25)
-	DamageResistance=(Name="Damage Resistance",Increment=0.02f,Rank=0,StartingValue=0.f,MaxValue=0.10f)
+	DamageResistance=(Name="Damage Resistance",Increment=0.03f,Rank=0,StartingValue=0.f,MaxValue=0.15f)
 	NightVision=(Name="Night Vision",Increment=0.f,Rank=0,StartingValue=0.f,MaxValue=0.f)
 
 	PerkSkills(EBerserkerFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",Increment=0.f,Rank=0,StartingValue=0.75,MaxValue=0.75)

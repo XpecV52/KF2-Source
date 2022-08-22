@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_SMG_MP5RAS"
    ImagePath="WEP_UI_MP5RAS_TEX.UI_WeaponSelect_MP5RAS"
    BuyPrice=650
-   AmmoPricePerMag=22
+   AmmoPricePerMag=33
    EffectiveRange=70
    Name="Default__KFWeapDef_MP5RAS"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

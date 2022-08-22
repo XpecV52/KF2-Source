@@ -47,7 +47,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M14EBR_TEX.UI_WeaponSelect_SM14-EBR'
-   SpareAmmoCapacity(0)=160
+   SpareAmmoCapacity(0)=120
    InitialSpareMags(0)=2
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
@@ -88,13 +88,13 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_M14EBR'
-   FireInterval(0)=0.200000
+   FireInterval(0)=0.220000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.006000
-   InstantHitDamage(0)=75.000000
+   InstantHitDamage(0)=90.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=27.000000

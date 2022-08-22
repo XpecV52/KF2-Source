@@ -755,7 +755,7 @@ DefaultProperties
 	ReceivedAmmoAndArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
 	ReceivedArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
 
-	Ammo=(Name="Ammo",Increment=0.02f,Rank=0,StartingValue=0.0,MaxValue=0.5f) //0.4
+	Ammo=(Name="Ammo",Increment=0.01f,Rank=0,StartingValue=0.0,MaxValue=0.25f) //0.4
 	WeldingProficiency=(Name="Welding Proficiency",Increment=0.03f,Rank=0,StartingValue=1.f,MaxValue=1.75f) //1.5
 	ShotgunDamage=(Name="Shotgun Damage",Increment=0.01f,Rank=0,StartingValue=0.f,MaxValue=0.25f)
 	ShotgunPenetration=(Name="Shotgun Penetration",Increment=0.20,Rank=0,StartingValue=0.0f,MaxValue=5.0f) //6.25

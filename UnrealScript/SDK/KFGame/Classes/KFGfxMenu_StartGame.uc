@@ -813,7 +813,6 @@ native function SortServers(OnlineGameSearch Search);
 function string BuildTakeoverURL(optional out string Password)
 {
 	local string TakeoverURL;
-
 	TakeoverURL = MakeMapURL(OptionsComponent);
 	if (len(Password) > 0)
 	{
@@ -949,6 +948,7 @@ function OnOpen()
 	{
 		Manager.SetStartMenuState(EStartMenuState(GetStartMenuState()));
 	}
+	class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword("");
 }
 
 
@@ -1244,6 +1244,7 @@ native function string GenerateRandomPassword();
 function Callback_StartOnlineGame()
 {
 	LobbyOwnerPassword = "";
+	class'GameEngine'.static.GetOnlineSubsystem().SetSharedPassword("");
 	if (OptionsComponent.GetMakeNewServer())
 	{
 		if (OptionsComponent.GetPrivacyIndex() == ESPr_PasswordProtected)
