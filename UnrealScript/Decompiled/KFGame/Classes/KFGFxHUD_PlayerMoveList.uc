@@ -75,6 +75,7 @@ function InitializeMoveList()
     local KeyBind MyKeyBind;
     local int LookupIndex, ButtonPriority;
     local HUDMoveInfo SavedMoveInfo;
+    local string BindName;
 
     if(MyKFPM == none)
     {
@@ -117,7 +118,13 @@ function InitializeMoveList()
                 if((LookupIndex >= 0) && LookupIndex < PlayerMoveKeyBinds.Length)
                 {
                     MyInput.GetKeyBindFromCommand(MyKeyBind, PlayerMoveKeyBinds[LookupIndex], false);
-                    MoveObject.SetString("buttonString", MyInput.GetBindDisplayName(MyKeyBind));
+                    BindName = MyInput.GetBindDisplayName(MyKeyBind);
+                    if(BindName ~= "None")
+                    {
+                        MyInput.GetKeyBindFromCommand(MyKeyBind, GetAlternateBindName(PlayerMoveKeyBinds[LookupIndex]), false);
+                        BindName = MyInput.GetBindDisplayName(MyKeyBind);
+                    }
+                    MoveObject.SetString("buttonString", BindName);
                 }
             }
             if(AttackArray[I].NameLocalizationKey != "")
@@ -132,19 +139,19 @@ function InitializeMoveList()
             SavedMoveInfo.AtkIndex = I;
             SavedMoveInfo.ButtonPriority = ButtonPriority;
             J = 0;
-            J0x5D5:
+            J0x674:
 
             if(J < CurrentMoves.Length)
             {
                 if(ButtonPriority < CurrentMoves[J].ButtonPriority)
                 {
                     CurrentMoves.InsertItem(J, SavedMoveInfo;
-                    goto J0x651;
+                    goto J0x6F0;
                 }
                 ++ J;
-                goto J0x5D5;
+                goto J0x674;
             }
-            J0x651:
+            J0x6F0:
 
             if(J == CurrentMoves.Length)
             {
@@ -155,6 +162,29 @@ function InitializeMoveList()
         goto J0x84;
     }
     BuildObjectArray();
+}
+
+function string GetAlternateBindName(string OriginalName)
+{
+    if(OriginalName ~= "GBA_IronsightsToggle")
+    {
+        return "GBA_IronsightsHold";        
+    }
+    else
+    {
+        if(OriginalName ~= "GBA_SwitchFireMode")
+        {
+            return "GBA_AltFire";            
+        }
+        else
+        {
+            if(OriginalName ~= "GBA_QuickHeal")
+            {
+                return "GBA_Reload_GamePad";
+            }
+        }
+    }
+    return OriginalName;
 }
 
 function UpdateMoveList()

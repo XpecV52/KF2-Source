@@ -1,21 +1,21 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 8425209183884178817 / 3/20/2017 9:54:09 PM
+Manifest ID / date     : 2047047071213274898 / 3/22/2017 8:03:26 PM
 Total number of files  : 4072
 Total number of chunks : 4137
-Total bytes on disk    : 90817853
-Total bytes compressed : 26197504
+Total bytes on disk    : 90681394
+Total bytes compressed : 26175952
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
              0      0 0000000000000000000000000000000000000000    64 Binaries\GFx
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
-       1592832      2 9CB7541F9719ACFC050315359F3719A8250BF2A8     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 8BC9D53D9CFB057E5DC52719FB37CE74DF7290F7     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      64531968     62 3AD6C3B0B6266C0671AB112BFFF0F1D3567FC1F6     0 Binaries\Win64\KFEditor.exe
+      64394752     62 775485FC82874AB2DA2C4842E09C33B1863F7DDF     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -2381,7 +2381,7 @@ Total bytes compressed : 26197504
           2285      1 CE3FFA3ABCA686EFFDE9A16AEDBA03064BC92821     0 Development\Src\KFGame\Classes\KFGFxGearContainer_PerksSelection.uc
           2352      1 FB216CFE11FCDB7D18015E79CB26B67A579210C4     0 Development\Src\KFGame\Classes\KFGFxHUD_ChatBoxWidget.uc
           7534      1 C1979CA138121EB2F7C1ABFB7A03099DB0F75569     0 Development\Src\KFGame\Classes\KFGFxHUD_PlayerBackpack.uc
-          7436      1 E5D26489530C5047F0F88A2F112996DB1D5D471B     0 Development\Src\KFGame\Classes\KFGFxHUD_PlayerMoveList.uc
+          8193      1 625EADA1D2FBB7281934C66159B495BE6544D986     0 Development\Src\KFGame\Classes\KFGFxHUD_PlayerMoveList.uc
           5950      1 5386C450AC4321F817E8EFADE3D0FDD2AF813E1C     0 Development\Src\KFGame\Classes\KFGFxHUD_PlayerStatus.uc
           3742      1 C28193EFAAC859A1513609E4F9BD20E4D17B46D5     0 Development\Src\KFGame\Classes\KFGFxHUD_PostRoundMenu.uc
           3048      1 1BCED9AC2FE842F430F0485DCAA9D14C445BD562     0 Development\Src\KFGame\Classes\KFGFxHUD_ScoreboardMapInfoContainer.uc

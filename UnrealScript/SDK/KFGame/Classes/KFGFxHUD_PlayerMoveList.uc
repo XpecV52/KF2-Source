@@ -91,6 +91,7 @@ function InitializeMoveList()
 	local int LookupIndex;
 	local int ButtonPriority;
 	local HUDMoveInfo SavedMoveInfo;
+    local string BindName;
 
 	// No monster pawn, no moves
 	if( MyKFPM == none )
@@ -140,7 +141,13 @@ function InitializeMoveList()
 				if(LookupIndex >= 0 && LookupIndex < PlayerMoveKeyBinds.Length)
 				{
 					MyInput.GetKeyBindFromCommand(MyKeyBind, PlayerMoveKeyBinds[LookupIndex], false);
-					MoveObject.SetString("buttonString", MyInput.GetBindDisplayName(MyKeyBind) );
+                    BindName = MyInput.GetBindDisplayName(MyKeyBind);
+                    if (BindName ~= "None")
+                    {
+                        MyInput.GetKeyBindFromCommand(MyKeyBind, GetAlternateBindName(PlayerMoveKeyBinds[LookupIndex]), false);
+                        BindName = MyInput.GetBindDisplayName(MyKeyBind);
+                    }
+					MoveObject.SetString("buttonString", BindName );
 				}
 			}
 							
@@ -180,6 +187,24 @@ function InitializeMoveList()
 
 	// finally (after sorting) assign the ObjectArray
 	BuildObjectArray();
+}
+
+function string GetAlternateBindName(string OriginalName)
+{
+    if (OriginalName ~= "GBA_IronsightsToggle")
+    {
+        return "GBA_IronsightsHold";
+    }
+    else if (OriginalName ~= "GBA_SwitchFireMode")
+    {
+        return "GBA_AltFire";
+    }
+    else if (OriginalName ~= "GBA_QuickHeal")
+    {
+        return "GBA_Reload_GamePad";
+    }
+
+    return OriginalName;
 }
 
 /** Called each tick to update modified values */
