@@ -1548,6 +1548,9 @@ auto state Inactive
  * a weapon should loop any number of idle animations, as well as check the PendingFire flags
  * to see if a shot has been fired.
  *********************************************************************************************/
+`if(`__TW_)
+simulated function bool CanProcessPendingFire( Name PrevStateName, byte FireModeNum ) { return true; }
+`endif
 
 simulated state Active
 {
@@ -1577,7 +1580,11 @@ simulated state Active
 	        // if either of the fire modes are pending, perform them
 			for( i=0; i<GetPendingFireLength(); i++ )
 			{
+`if(`__TW_)
+				if( CanProcessPendingFire(PreviousStateName, i) && PendingFire(i) )
+`else
 				if( PendingFire(i) )
+`endif
 				{
 					BeginFire(i);
 					break;

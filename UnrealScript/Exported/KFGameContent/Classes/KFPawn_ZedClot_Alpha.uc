@@ -8,9 +8,6 @@
 //=============================================================================
 class KFPawn_ZedClot_Alpha extends KFPawn_ZedClot;
 
-/** Pawn class used for the special gorefast */
-var class<KFPawn_Monster> SpecialAlphaPawnClass;
-
 /** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
 static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
@@ -19,7 +16,7 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 	WI = class'WorldInfo'.static.GetWorldInfo();
 	if( fRand() < class<KFDifficulty_ClotAlpha>(default.DifficultySettings).static.GetSpecialAlphaChance(KFGameReplicationInfo(WI.GRI)) )
 	{
-		return default.SpecialAlphaPawnClass;
+		return default.ElitePawnClass;
 	}
 
 	return super.GetAIPawnClassToSpawn();
@@ -33,8 +30,8 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
-   SpecialAlphaPawnClass=Class'kfgamecontent.KFPawn_ZedClot_AlphaKing'
-   CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Alpha_Archetype'
+   MonsterArchPath="ZED_ARCH.ZED_Clot_Alpha_Archetype"
+   ElitePawnClass=Class'kfgamecontent.KFPawn_ZedClot_AlphaKing'
    GrabAttackFrequency=0.330000
    ParryResistance=0
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedClot:MeleeHelper_0'

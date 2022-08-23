@@ -12,7 +12,7 @@ class KFDifficulty_Patriarch extends KFMonsterDifficultyInfo
 defaultproperties
 {
 	// Normal difficulty
-	Normal={(HealthMod=.760000,
+	Normal={(HealthMod=.76000,
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
 		DamageMod=0.650000,
@@ -26,7 +26,7 @@ defaultproperties
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
 		DamageMod=0.800000,
-		SoloDamageMod=0.450000,
+		SoloDamageMod=0.45000,
 
 		RallySettings={(bCanRally=false)}
 	)}
@@ -50,7 +50,7 @@ defaultproperties
 		HeadHealthMod=1.160000,
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
-		DamageMod=1.49000,
+		DamageMod=1.490000,
 		SoloDamageMod=0.660000,
 
 		BlockSettings={(Chance=0.85, Duration=1.25, MaxBlocks=6, Cooldown=3.5, DamagedHealthPctToTrigger=0.1,

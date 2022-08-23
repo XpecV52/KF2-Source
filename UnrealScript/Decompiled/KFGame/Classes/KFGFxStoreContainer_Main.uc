@@ -112,7 +112,7 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
     {
         if((StoreItemArray[I].ProductID != "") && StoreItemArray[I].SignedOfferId == "")
         {
-            LogInternal(("Skipping PSN store item" @ string(StoreItemArray[I].Definition)) @ "since it has no store offer ID");            
+            LogInternal(("Skipping console store item" @ string(StoreItemArray[I].Definition)) @ "since it has no store offer ID");            
         }
         else
         {

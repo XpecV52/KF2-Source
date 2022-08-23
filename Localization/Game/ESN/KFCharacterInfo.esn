@@ -2127,6 +2127,7 @@ AttachmentSkin0="Agatha"
 AttachmentSkin1="Cleese"
 AttachmentSkin2="Jamie"
 AttachmentSkin3="Perceval"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
 Attachment="M. gas steampunk básica"
@@ -2324,3 +2325,114 @@ EmoteName="Apareamiento+"
 
 [KickinIt_Deluxe]
 EmoteName="A patadas+"
+
+[Cosmetic_FirefighterHelmet_ARCH]
+Attachment="Casco de bombero"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde aceituna"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Blanco"
+AttachmentSkin5="Amarillo"
+
+[Cosmetic_FirefighterHelmetDown_ARCH]
+Attachment="Casco bombero bajado"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde aceituna"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Blanco"
+AttachmentSkin5="Amarillo"
+
+[Cosmetic_FirefighterHelmetUp_ARCH]
+Attachment="Másc. casco bombero subida"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde aceituna"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Blanco"
+AttachmentSkin5="Amarillo"
+
+[Cosmetic_FirefighterMask_ARCH]
+Attachment="Máscara gas bombero"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde aceituna"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Blanco"
+AttachmentSkin5="Amarillo"
+
+[Cosmetic_FirefighterTank_ARCH]
+Attachment="Tanque oxígeno bombero"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde aceituna"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Blanco"
+AttachmentSkin5="Amarillo"
+
+[Cosmetic_InsectoidClosed_ARCH]
+Attachment="Casco cerrado insecto"
+AttachmentSkin0="Luz negra y roja"
+AttachmentSkin1="Adorno negro y rojo"
+AttachmentSkin2="Luz negra y amarilla"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Verde oscuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Morado"
+AttachmentSkin7="Rojo"
+AttachmentSkin8="Óxido"
+AttachmentSkin9="EEUU"
+AttachmentSkin10="Blanco"
+AttachmentSkin11="Amarillo"
+
+[Cosmetic_InsectoidOpen_ARCH]
+Attachment="Casco abierto insecto"
+AttachmentSkin0="Luz negra y roja"
+AttachmentSkin1="Adorno negro y rojo"
+AttachmentSkin2="Luz negra y amarilla"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Verde oscuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Morado"
+AttachmentSkin7="Rojo"
+AttachmentSkin8="Óxido"
+AttachmentSkin9="EEUU"
+AttachmentSkin10="Blanco"
+AttachmentSkin11="Amarillo"
+
+[Cosmetic_InsectoidGogglesUp_ARCH]
+Attachment="Casco insecto gafas arriba"
+AttachmentSkin0="Luz negra y roja"
+AttachmentSkin1="Adorno negro y rojo"
+AttachmentSkin2="Luz negra y amarilla"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Verde oscuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Morado"
+AttachmentSkin7="Rojo"
+AttachmentSkin8="Óxido"
+AttachmentSkin9="EEUU"
+AttachmentSkin10="Blanco"
+AttachmentSkin11="Amarillo"
+
+[Cosmetic_InsectoidGogglesDown_ARCH]
+Attachment="Casco insecto gafas abajo"
+AttachmentSkin0="Luz negra y roja"
+AttachmentSkin1="Adorno negro y rojo"
+AttachmentSkin2="Luz negra y amarilla"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Verde oscuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Morado"
+AttachmentSkin7="Rojo"
+AttachmentSkin8="Óxido"
+AttachmentSkin9="EEUU"
+AttachmentSkin10="Blanco"
+AttachmentSkin11="Amarillo"
+AttachmentSkin12="Precioso"
+
+[Cosmetic_DemonSlayerHelmet_ARCH]
+Attachment="Casco matademonios"
+AttachmentSkin0="Gris"
+AttachmentSkin1="Precioso"

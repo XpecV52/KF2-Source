@@ -425,6 +425,8 @@ var float       MaxTimeBetweenStatusUPdates;
 var float		LastMoveFinishTime;
 /** Used to prevent changing my enemy too frequently (see SetEnemy()) */
 var float		MinTimeBetweenEnemyChanges;
+/** Last time we collided with a destructible */
+var float 		LastDestructibleBumpTime;
 /** Enemies are pawns - use this for temporary actor enemies (like destructibles that need to be melee-attacked) */
 var Actor		ActorEnemy;
 /** Set when attacking a welded door */
@@ -789,6 +791,7 @@ native function vector CalcAimLocToHit( vector AimSpot, vector StartFireLoc, flo
 /** Used for leading Zed's target */
 static native function float EstimateProjectileTimeToTarget( float Distance, float StartSpeed, float MaxSpeed );
 native function bool FastActorTrace( vector TraceEnd, optional vector TraceStart, optional vector BoxExtent, optional bool bTraceComplex );
+native function Actor ActorBlockTest( vector TraceEnd, optional vector TraceStart, optional vector BoxExtent, optional bool bTraceActors, optional bool bTraceComplex );
 native function bool TestTrace( vector TraceEnd, optional vector TraceStart );
 native function bool IsPawnInFireLine( Pawn CheckPawn, vector FireStart, vector FireLine );
 native final function bool SuggestNewWanderPoint( out vector out_NewMovePt, vector TryThisDirFirst, optional float MoveDist = 1024.f );
@@ -1943,14 +1946,6 @@ function bool DoHeavyZedBump( Actor Other, vector HitNormal )
 	if( Other.bCanBeDamaged && KFFracturedMeshGlass(Other) != none )
 	{
 		KFFracturedMeshGlass(Other).BreakOffAllFragments();
-		return true;
-	}
-
-	if( Other.IsA('KFDestructibleActor') && !GetActiveCommand().IsA('AICommand_Melee') && Other.bCollideActors && !MyKFPawn.IsDoingSpecialMove() )
-	{
-		AIZeroMovementVariables();
-		DisableBump(2.f);
-		NotifyAttackActor( Other );
 		return true;
 	}
 
@@ -3655,16 +3650,55 @@ final function DisableNotifyHitWall( optional float DisabledTime=0.2f )
 	the pawn's HitWall() event will be called directly.  */
 event bool NotifyHitWall( vector HitNormal, actor Wall )
 {
+	local KFDestructibleActor KFDA;
+	local bool bEmerging;
+
 	LastWallHitNormal       = HitNormal;
 	LastHitWall             = Wall;
 	LastNotifyHitWallTime   = WorldInfo.TimeSeconds;
 
 	`AiLog( GetFuncName() @ " Wall: " @ Wall @ " HitNormal: " @ HitNormal );
 
-	/** I shouldn't be colliding if I'm emerging, so ignore notification but return true to prevent move adjusting in native code */
 	if( MyKFPawn != none && MyKFPawn.IsDoingSpecialMove(SM_Emerge) )
 	{
-		DisableNotifyHitWall( 0.5f );
+		bEmerging = true;
+	}
+
+	if( !Wall.bStatic && Wall.bCollideActors && Wall.bCanBeDamaged )
+	{
+		KFDA = KFDestructibleActor( Wall );
+		if( KFDA != none )
+		{
+			MyKFPawn.HandleDestructibleBump( KFDA, HitNormal );
+
+			if( bEmerging )
+			{
+				return true;
+			}
+
+			if( ActorEnemy != KFDA
+				&& KFDA.bBlockActors
+				&& !MyKFPawn.IsDoingSpecialMove()
+				&& (LastDestructibleBumpTime == 0.f || `TimeSince(LastDestructibleBumpTime) > 1.f)
+				&& CanAttackDestructibles()
+				&& KFDA.HasAnyHealth()
+				&& !GetActiveCommand().IsA('AICommand_Melee') )
+			{
+				// FOV test
+				if( vector(MyKFPawn.Rotation) dot Normal(KFDA.Location - MyKFPawn.Location) >= 0.67f )
+				{
+					AIZeroMovementVariables();
+					NotifyAttackActor( Wall );
+				}
+			}
+
+			LastDestructibleBumpTime = WorldInfo.TimeSeconds;
+		}
+	}
+
+	/** I shouldn't be colliding if I'm emerging, so ignore notification but return true to prevent move adjusting in native code */
+	if( bEmerging )
+	{
 		return true;
 	}
 
@@ -4628,7 +4662,6 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 	local KFPawn_Monster KFPM;
 	local bool bInPartialCollisionReductionTrigger;
 	local actor HitActor;
-	local vector HitLocation, MyHitNormal;
 
 	if( MyKFPawn != none && MyKFPawn.IsDoingSpecialMove(SM_Emerge) )
 	{
@@ -4652,11 +4685,10 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 	                || bInPartialCollisionReductionTrigger
 	                || ShouldReduceZedOnZedCollisionOnBumpForNavigating()) )
 				{
-
 	                if( bInPartialCollisionReductionTrigger && Enemy != none )
 	                {
 	                    // If this line doesn't hit our enemy, go ahead and let this bump count to reduce collision if we're standing in the trigger of a welded door!
-	                    HitActor = Trace(HitLocation, MyHitNormal, Enemy.Location + vect(0,0,1) * Enemy.BaseEyeHeight, MyKFPawn.Location + vect(0,0,1) * MyKFPawn.BaseEyeHeight, true);
+	                    HitActor = ActorBlockTest( Enemy.Location + vect(0,0,1) * Enemy.BaseEyeHeight, MyKFPawn.Location + vect(0,0,1) * MyKFPawn.BaseEyeHeight,, true );
 	                }
 
 	                if( !IsWithinAttackRange() || (bInPartialCollisionReductionTrigger && (HitActor == none || HitActor != Enemy))  )
@@ -6712,6 +6744,11 @@ function NotifyAttackActor( Actor A )
 		Focus = A;
 		class'AICommand_Attack_Melee'.static.Melee( self, A );
 	}
+}
+
+function bool CanAttackDestructibles()
+{
+	return bCanDoHeavyBump;
 }
 
 /*********************************************************************************************

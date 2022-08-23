@@ -11,7 +11,7 @@
 class KFPerk_SWAT extends KFPerk
 	native;
 
-`include(KFOnlineStats.uci)
+//`include(KFOnlineStats.uci)
 
 /** Passives */
 var	private const PerkSkill 				WeaponDamage;						// 1% increased Perk weapon damage per level (max 25%)
@@ -276,7 +276,7 @@ simulated static function float GetSnareSpeedModifier()
 	return default.PerkSkills[ESWAT_Cripple].StartingValue;
 }
 
-simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsCrippleActive() && DamageType != none && IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
 	{
@@ -536,8 +536,8 @@ DefaultProperties
 	KnifeWeaponDef=class'KFweapDef_Knife_SWAT'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_SWAT'
 
-	ProgressStatID=`STATID_Swat_Progress
-   	PerkBuildStatID=`STATID_Swat_Build
+	ProgressStatID=STATID_Swat_Progress
+   	PerkBuildStatID=STATID_Swat_Build
 
     // Skill tracking
 	HitAccuracyHandicap=0.0

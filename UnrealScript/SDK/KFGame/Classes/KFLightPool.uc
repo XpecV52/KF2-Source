@@ -75,7 +75,7 @@ event PreBeginPlay()
 /**
  * Register a light with the pool so it can be managed relative to other lights
  */
-function bool RegisterPointLight(PointLightComponent LightComp, optional LightPoolPriority PriorityType=LPP_Low, optional bool bForceAllowReenable)
+function bool RegisterPointLight(PointLightComponent LightComp, optional LightPoolPriority PriorityType=LPP_Low)
 {
 	local LightPoolInfo NewLight;
 	local int i;
@@ -96,17 +96,9 @@ function bool RegisterPointLight(PointLightComponent LightComp, optional LightPo
 		return false;
 	}
 
-	if ( !LightComp.bEnabled && bForceAllowReenable )
-	{
-		`log(GetFuncName()@"failed because bEnabled == FALSE.  Unsupported with bForceAllowReenable");
-		LightComp.DetachFromAny();
-		return false;
-	}
-
 	NewLight.Component = LightComp;
 	NewLight.Priority = 100 * PriorityType;
-	NewLight.bAllowReenable = (LightComp.bEnabled &&
-		(Owner.LifeSpan == 0 || PriorityType == LPP_GameplayUsed || bForceAllowReenable));
+	NewLight.bAllowReenable = LightComp.bEnabled && (Owner.LifeSpan == 0 || PriorityType == LPP_GameplayUsed);
 	if ( LightComp.Owner.Instigator != None && LightComp.Owner.Instigator.IsLocallyControlled() )
 	{
 		NewLight.Priority += 50.f;
@@ -126,10 +118,10 @@ function bool RegisterPointLight(PointLightComponent LightComp, optional LightPo
 		}
 	}
 
-	// insert into reverse sorted list
+	// insert into sorted list
 	for (i = 0; i < ActiveComponents.Length; i++)
 	{
-		if ( ActiveComponents[i].Priority > NewLight.Priority )
+		if ( NewLight.Priority >= ActiveComponents[i].Priority)
 		{
 			break;
 		}

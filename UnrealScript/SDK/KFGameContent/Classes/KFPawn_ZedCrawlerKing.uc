@@ -117,7 +117,7 @@ simulated function Timer_CheckForExplode()
 defaultproperties
 {
 	LocalizationKey=KFPawn_ZedCrawlerKing
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_CrawlerKing_Archetype'
+	MonsterArchPath="ZED_ARCH.ZED_CrawlerKing_Archetype"
 	ControllerClass=class'KFAIController_ZedCrawlerKing'
 	DifficultySettings=class'KFDifficulty_CrawlerKing'
 }

@@ -25,17 +25,28 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
 {
     local KFPawn_Monster Zed;
     local MaterialInstanceConstant MIC;
+    local KFGoreManager GoreManager;
+    local float IceScalar;
 
+    IceScalar = 1;
     if(!bMaterialOnly)
     {
         Zed = KFPawn_Monster(P);
         if(Zed != none)
         {
-            if(!Zed.bIsGoreMesh)
+            GoreManager = KFGoreManager(P.WorldInfo.MyGoreEffectManager);
+            if((GoreManager != none) && GoreManager.AllowMutilation())
             {
-                Zed.SwitchToGoreMesh();
+                if(!Zed.bIsGoreMesh)
+                {
+                    Zed.SwitchToGoreMesh();
+                }
+                Zed.ForceBreakAllConstraints();                
             }
-            Zed.ForceBreakAllConstraints();
+            else
+            {
+                IceScalar = 0.4;
+            }
             if(!IsZero(RBLinearVelocity))
             {
                 P.Mesh.SetRBLinearVelocity(RBLinearVelocity, true);
@@ -49,7 +60,7 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
     }
     foreach P.CharacterMICs(MIC,)
     {
-        MIC.SetScalarParameterValue('Scalar_Ice', 1);        
+        MIC.SetScalarParameterValue('Scalar_Ice', IceScalar);        
     }    
 }
 

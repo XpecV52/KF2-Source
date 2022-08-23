@@ -45,6 +45,19 @@ var(Collectibles) const int	CollectiblesToFind;
 /** How many collectibles players have found */
 var const transient int		CollectiblesFound;
 
+/** Custom map gameplay types */
+enum ESubGameType
+{
+	ESGT_Normal,
+	ESGT_Descent
+};
+
+/**
+ * The sub-gameplay type of map this (i.e. Descent map inside Survival)
+ * NOTE: Setting this option incorrectly may disable or enable unwanted game features!
+ */
+var() ESubGameType SubGameType;
+
 // (cpptext)
 // (cpptext)
 // (cpptext)

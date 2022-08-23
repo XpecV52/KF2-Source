@@ -192,8 +192,11 @@ var config bool bDebugNoGFxUI;
 /** TRUE if input is allowed from multiple controllers */
 var bool bAllowInputFromMultipleControllers;
 
-/** TRUE if we need to pair a new gamepad. If this is set, any controller can take over when there is input */
-var bool bNeedsNewGamepadPairing;
+/** TRUE if we need to pair a new gamepad due a controller disconnect */
+var bool bNeedsNewGamepadPairingForControllerDisconnect;
+
+/** TRUE if we need to pair a new gamepad because of a new profile taking over. We aren't sure which gamepad to use */
+var bool bNeedsNewGamepadPairingForNewProfile;
 //@HSL_END
 
 // (cpptext)

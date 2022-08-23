@@ -11,7 +11,7 @@
 class KFPerk_FieldMedic extends KFPerk
 	native;
 
-`include(KFOnlineStats.uci)
+//`include(KFOnlineStats.uci)
 
 /** Passive skills */
 var	const PerkSkill 				HealerRecharge;			
@@ -354,7 +354,7 @@ simulated static function ParticleSystem GetAAEffect()
 	return default.AAParticleSystem;
 }
 
-simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsSlugActive() && DamageType != none && IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
 	{
@@ -537,8 +537,8 @@ DefaultProperties
 	KnifeWeaponDef=class'KFWeapDef_Knife_Medic'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Medic'
 
-	ProgressStatID=`STATID_Medic_Progress
-   	PerkBuildStatID=`STATID_Medic_Build
+	ProgressStatID=STATID_Medic_Progress
+   	PerkBuildStatID=STATID_Medic_Build
 
   	SelfHealingSurgePct=0.1f
 	MaxSurvivalistResistance=0.5f //0.8

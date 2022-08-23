@@ -23,10 +23,10 @@ defaultproperties
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         ChainSequence_F=/* Array type was not detected. */
         ChainSequence_B=/* Array type was not detected. */
-        WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
         MeleeImpactCamShakeScale=0.04
         MaxHitRange=200
         HitboxChain=/* Array type was not detected. */
+        WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Edged_Zweihander.MeleeHelper'
     MeleeAttackHelper=MeleeHelper

@@ -98,7 +98,7 @@ function RestartPlayer(Controller NewPlayer)
 }
 
 /** 50% damage recieved */
-function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser)
+function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
 {
     if ( Injured.IsHumanControlled() )
     {
@@ -114,7 +114,7 @@ function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vec
     }
 
     // checks neutral zone and god mode and calls mutator hook
-    Super.ReduceDamage(Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
+    Super.ReduceDamage(Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
 }
 
 function bool PreventDeath(Pawn KilledPawn, Controller Killer, class<DamageType> DamageType, vector HitLocation)
@@ -330,6 +330,32 @@ function RemoveTutorialHud()
         }
     }
 }
+
+
+function NotifyControllerDisconnected()
+{
+	if( MyGFXTutorial != none )
+	{
+		MyGFXTutorial.SetVisibility( false );
+		// Make tutorial hide if we need to show controller disconnect dialog
+		MyGFXTutorial.SetPriority(1);
+		KFPlayerController(GetALocalPlayerController()).MyGFxManager.SetPriority(2);
+	}
+}
+
+
+function NotifyControllerReconnected()
+{
+	if (MyGFXTutorial != none)
+	{
+		MyGFXTutorial.SetVisibility( true );
+		// Put tutorial back on top
+		MyGFXTutorial.SetPriority(2);
+		KFPlayerController(GetALocalPlayerController()).MyGFxManager.SetPriority(1);
+	}
+}
+
+
 /*********************************************************************************************
  * Update
  *********************************************************************************************/

@@ -338,7 +338,7 @@ simulated function UpdateInteractionMessage()
         if((Instigator.Health <= InstigatorKFPC.LowHealthThreshold) && AmmoCount[0] >= AmmoCost[1])
         {
             bIsQuickHealMessageShowing = true;
-            InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 9);
+            InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 11);
         }
     }
 }

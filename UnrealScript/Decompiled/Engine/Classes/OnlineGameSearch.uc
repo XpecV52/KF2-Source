@@ -36,7 +36,7 @@ enum EOnlineGameSearchSortType
 
 struct native OnlineGameSearchResult
 {
-    var const OnlineGameSettings GameSettings;
+    var OnlineGameSettings GameSettings;
     var native const Pointer PlatformData;
 
     structdefaultproperties

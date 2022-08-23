@@ -36,7 +36,7 @@ event PostBeginPlay()
     }
 }
 
-simulated function PlayImpactEffects(const Vector HitLocation, const Pawn EffectInstigator, optional Vector HitNormal, optional KFImpactEffectInfo CustomImpactEffects, optional bool bWorldImpactsOnly, optional bool bMeleeHit)
+simulated function PlayImpactEffects(const Vector HitLocation, const Pawn EffectInstigator, optional Vector HitNormal, optional KFImpactEffectInfo CustomImpactEffects, optional bool bWorldImpactsOnly)
 {
     local Vector NewHitLoc, FireDir, WaterHitNormal;
     local Actor HitActor;
@@ -75,14 +75,7 @@ simulated function PlayImpactEffects(const Vector HitLocation, const Pawn Effect
             FracturedMeshActor = KFFracturedMeshActor(HitActor);
             if(FracturedMeshActor != none)
             {
-                if(bMeleeHit)
-                {
-                    Class'KFMeleeHelperBase'.static.MeleeFractureMeshImpact(FracturedMeshActor, HitLocation, HitNormal);                    
-                }
-                else
-                {
-                    FracturedMeshActor.SimulateRemoteHit(HitLocation, HitNormal, HitInfo);
-                }
+                FracturedMeshActor.SimulateRemoteHit(HitLocation, HitNormal, HitInfo);
             }
         }
         GetImpactEffect(HitInfo.PhysMaterial, ImpactEffect, ImpactEffectInfo);

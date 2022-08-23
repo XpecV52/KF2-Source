@@ -133,6 +133,13 @@ simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingC
 	}
 }
 
+simulated event ChangeVisibility(bool bVisible)
+{
+    LaserDotMeshComp.SetHidden(!bVisible);
+    LaserSightMeshComp.SetHidden(!bVisible);
+    LaserBeamMeshComp.SetHidden(!bVisible);
+}
+
 /** 
  * Update function called from currently equipped 1st person weapon 
  * @todo: move to c++?

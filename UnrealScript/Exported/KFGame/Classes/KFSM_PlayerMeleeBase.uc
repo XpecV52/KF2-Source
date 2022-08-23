@@ -44,6 +44,9 @@ var bool bAnimCanBeInterrupted;
 
 var array<PlayerZedAtkInfo> Attacks;
 
+/** global stop event for looping sounds played during the animation */
+var AkEvent SoundStopEvent;
+
 static function byte PackFlagsBase( KFPawn P )
 {
 	local byte AtkIdx, Variant;
@@ -124,6 +127,16 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 	// Must be able to interrupt a parriable (e.g. stumble) attack
 	// @todo: all these interrupt variables are confusing and have a lot of overlap
 	bCanBeInterrupted = !bCannotBeParried;
+}
+
+function SpecialMoveEnded( Name PrevMove, Name NextMove )
+{
+	Super.SpecialMoveEnded(PrevMove, NextMove);
+
+	if ( SoundStopEvent != None && PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		PawnOwner.PostAkEvent(SoundStopEvent);
+	}
 }
 
 /** Can be overridden in subclasses to determine if special attacks are used over defaults */

@@ -243,14 +243,14 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     DeathPukeMineRotations(2)=
 /* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_655' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_665' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     bIsBloatClass=true
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Bloat_ARCH.ZED_Bloat_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Bloat_Archetype"
     HeadlessBleedOutTime=6
     ParryResistance=3
     MinSpawnSquadSizeType=ESquadType.EST_Large

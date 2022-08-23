@@ -125,12 +125,13 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     KnockdownPower = DamageType.default.KnockdownPower;
     StumblePower = DamageType.default.StumblePower;
     StunPower = DamageType.default.StunPower;
+    SnarePower = DamageType.default.SnarePower;
     if(InstigatorPerk != none)
     {
         KnockdownPower *= InstigatorPerk.GetKnockdownPowerModifier(DamageType, BodyPart, Outer.bIsSprinting);
         StumblePower *= InstigatorPerk.GetStumblePowerModifier(Outer, DamageType,, BodyPart);
         StunPower *= InstigatorPerk.GetStunPowerModifier(DamageType, HitZoneIdx);
-        SnarePower = InstigatorPerk.GetSnarePower(DamageType, HitZoneIdx);
+        SnarePower *= InstigatorPerk.GetSnarePowerModifier(DamageType, HitZoneIdx);
     }
     if((KnockdownPower > float(0)) && Outer.CanDoSpecialMove(6))
     {

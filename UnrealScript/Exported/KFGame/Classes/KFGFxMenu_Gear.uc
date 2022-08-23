@@ -64,10 +64,14 @@ var array<Emote> EmoteList;
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
 	super.InitializeMenu(InManager);
+
+	CheckForCustomizationPawn( GetPC() );
+
 	MyKFPRI = KFPlayerReplicationInfo( GetPC().PlayerReplicationInfo );
 	LocalizeText();
 
 	EmoteList = class'KFEmoteList'.static.GetEmoteArray();
+
 	// Set the list of usable characters
 	UpdateCharacterList();	
 	UpdateGear();
@@ -99,7 +103,9 @@ function OnOpen()
 	{
 		return;
 	}
-	
+
+	CheckForCustomizationPawn( PC );
+
 	// @hack: moved from KFGfxMoviePlayer_Manager because this causes a crash while 
 	// bink (e.g. KFII-25456) are playing.  Don't use HandleInputAxis with Bink! (for now) :) 
 	GetGameViewportClient().HandleInputAxis = OnAxisModified;
@@ -114,8 +120,23 @@ function OnOpen()
 		SetBool("characterButtonEnabled", false);
 		return;
 	}
-	UpdateCharacterList();	
+	UpdateCharacterList();
 	UpdateGear();
+}
+
+/** The customization pawn won't exist if this menu was opened mid-match */
+function CheckForCustomizationPawn( PlayerController PC )
+{
+	local KFPlayerController KFPC;
+
+	if( PC.Pawn == none || (!PC.Pawn.IsAliveAndWell() && KFPawn_Customization(PC.Pawn) == none) )
+	{
+		KFPC = KFPlayerController( PC );
+		if( KFPC != none )
+		{
+			KFPC.SpawnMidGameCustomizationPawn();
+		}
+	}	
 }
 
 //@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
@@ -500,6 +521,7 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
 event OnClose()
 {
 	local PlayerController PC;
+	local KFPlayerController KFPC;
 
 	super.OnClose();
 
@@ -514,10 +536,17 @@ event OnClose()
 
 	// If we are alive, in game, with a playable pawn. switch back to first person view when leaving this menu
 	PC = GetPC();
-	if( PC != none && PC.WorldInfo.GRI.bMatchHasBegun && 
-		PC.Pawn != none && !PC.Pawn.IsA('KFPawn_Customization') )
+	if( PC != none )
 	{
-		PC.ServerCamera( 'FirstPerson' );
+		KFPC = KFPlayerController( PC );
+		if( KFPC != none )
+		{
+			KFPC.ReturnToViewTarget();
+			if( PC.WorldInfo.GRI.bMatchHasBegun && PC.Pawn != none && !PC.Pawn.IsA('KFPawn_Customization') )
+			{
+				PC.ServerCamera( 'FirstPerson' );
+			}
+		}
 	}
 }
 

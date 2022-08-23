@@ -55,6 +55,8 @@ SecondaryWeaponPurchasedString="Куплено дополнительное ор
 NoItemsPurchasedString="Предметы не куплены"
 
 SetTakeoverServerPasswordTitle="Введите пароль для защиты игры:"
+FreeConsolePlayOverString="Благодарим вас за интерес к игре Killing Floor 2! Бесплатное событие завершено, но вы можете купить игру и получить дополнительные сведения, нажав кнопку «Магазин»."
+BuyGameString="МАГАЗИН"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="НЕ УДАЛОСЬ НАЙТИ ИГРУ"
@@ -1068,8 +1070,7 @@ BloomStringOptions[1]="Низкое"
 BloomStringOptions[2]="Высокое"
 
 MotionBlurStringOptions[0]="Откл"
-MotionBlurStringOptions[1]="Обычная"
-MotionBlurStringOptions[2]="Высокое"
+MotionBlurStringOptions[1]="Вкл"
 
 AmbientOcclusionStringOptions[0]="Откл"
 AmbientOcclusionStringOptions[1]="SSAO"
@@ -1108,6 +1109,7 @@ UseAltAimOnDualString="Альт. прицел 2 пистолетов"
 AntiMotionSicknessString="Антиукачивание"
 AutoTurnOffString="Откл. автовкл. захв. зомби"
 ReduceHighPitchNoiseString="Менее пронзительные шум"
+DisableAutoUpgradeString="Отключить автоулучшение"
 
 [LocalizedControls]
 ControllerLayoutDefault="По умолчанию"
@@ -1127,7 +1129,7 @@ GBA_Look_Gamepad="Управление взглядом"
 GBA_Grenade_Gamepad="Бросить гранату"
 GBA_TurnLeft_Gamepad="Управление взглядом"
 GBA_Look_Gamepad="Управление взглядом"
-GBA_DPad_Left_Gamepad="Голосовая связь"
+GBA_DPad_Left_Gamepad="Голос. связь/эмоции"
 GBA_DPad_Up_Gamepad="Уст. леч. устройство"
 GBA_DPad_Right_Gamepad="Бросить деньги"
 GBA_DPad_Down_Gamepad="Включить фонарь"
@@ -1236,6 +1238,12 @@ BashString="Сильный удар"
 BlockString="Блок (держать)"
 HoldString="ДЕРЖАТЬ"
 TapString="НАЖАТЬ"
+
+[KFGFxScreenSizeContainer]
+TitleString="Приложение будет отображаться в области в рамке"
+DescriptionString="Подогнать под экран телевизора"
+EnlargeString="Увеличить"
+ShrinkString="Уменьшить"
 
 [KFInventoryManager]
 FullHealthMsg="Здоровье полное"
@@ -1347,6 +1355,8 @@ HealSelfGamepadWarning="<%HOLD%>ЛЕЧИТЬ СЕБЯ"
 PressToBashWarning="СИЛЬНЫЙ УДАР"
 GamepadWeaponSelectHint="<%HOLD%>ВЫБОР ОРУЖИЯ"
 PlayerClotGrabWarningMessage="УБЕЙТЕ МУТАНТА, ЧТОБЫ ОСВОБОДИТЬСЯ!"
+UseMinigameMessage="АКТИВИРОВАТЬ МИНИ-ИГРУ"
+UseMinigameGeneratorMessage="АКТИВИРОВАТЬ ГЕНЕРАТОР"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Команды не сбалансированы и будут изменены"
@@ -1593,7 +1603,7 @@ SmashDescription="Сильные атаки профильным холодны�
 Fury="Бойня"
 FuryDescription="Легкие атаки профильным холодным оружием наносят на 30% больше урона; все атаки профильным холодным оружием быстрее на 5%."
 
-Spartan="МУТАНТ ВРЕМЯ — спартанец "
+Spartan="ЗАМЕДЛЕНИЕ ВРЕМЕНИ — спартанец"
 SpartanDescription="При замедлении времени атакует профильным холодным оружием и движется в реальном времени."
 
 Rage="МУТАНТ ВРЕМЯ — ярость берсеркера"
@@ -1750,7 +1760,7 @@ EXPAction2="Лечит бойцов команды"
 [KFPerk_Firebug]
 PerkName="Поджигатель"
 EXPAction1="Наносит урон оружием поджигателя"
-EXPAction2="Уб. ползунов и толстяков оруж. поджигателя"
+EXPAction2="Убивает ползунов оружием поджигателя"
 
 SkillCatagories[0]="Запасы"
 SkillCatagories[1]="Пикантность"
@@ -1900,7 +1910,7 @@ Passives[0]=(Title="Мастерство сварки",Description="Скорос
 Passives[1]=(Title="Урон дробовика",Description="Урон профильного оружия растет на %x% за уровень");
 Passives[2]=(Title="Пробивная способность дробовика",Description="Пробивная способность профильного оружия растет на %x% за уровень");
 Passives[3]=(Title="Боезапас",Description="Боезапас увеличивается на 15% плюс %x% за уровень");
-Passives[4]=(Title="Сила",Description="Максимальный вес растет на 1 каждые 5 уровней");
+Passives[4]=(Title="Повышен макс. вес",Description="Макс. вес растет на 1 каждые 5 уровней");
 Passives[5]=(Title="Ранец с патроны + ремонт двери",Description="Один раз за раунд игроки могут получить боеприпасы из ранца — ремонт разрушенных дверей");
 
 EXPAction1="Наносит урон оружием бойца поддержки"
@@ -2094,7 +2104,7 @@ RandomLoadingStrings[13]="Есть лишние деньги? Поделитес
 RandomLoadingStrings[14]="Выбирайте себе цели. Разные виды оружия эффективны против разных типов мутантов."
 RandomLoadingStrings[15]="Определяйте приоритетные цели. Отбивальщик заслуживает внимания намного больше, чем зомби."
 RandomLoadingStrings[16]="У всех мутантов есть слабые места. Если голова к таковым не относится, ищите светящиеся элементы у них на теле."
-RandomLoadingStrings[17]="Хотите купить или продать косметический предмет или внешний вид оружия? Зайдите на рынок."
+RandomLoadingStrings[17]="Время от времени вы будете получать аксессуары в качестве добычи. Некоторые аксессуары можно купить."
 RandomLoadingStrings[18]="Звук сирены нейтрализует гранаты и другие взрывные устройства."
 RandomLoadingStrings[19]="Получив определенный урон, мясники и отбивальщики приходят в ярость. Держитесь от них подальше."
 RandomLoadingStrings[20]="Есть неиспользуемые внешние виды оружия или косметические предметы? Изготовьте новые в инвентаре."
@@ -2118,7 +2128,7 @@ RandomLoadingStrings[37]="Рельсовая пушка пробьет неск�
 RandomLoadingStrings[38]="Энергопушка наносит больший урон мутантам, на которых есть металл, в том числе отбивальщикам и сиренам."
 RandomLoadingStrings[39]="Попробуйте альтернативный режим огня. Он есть не у всех видов оружия, но выручит в трудной ситуации."
 RandomLoadingStrings[40]="Вы получаете опыт и деньги не только за убийства, но и за помощь. Если убиваемого вами монстра положит кто-то из союзников, это не страшно."
-RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
+RandomLoadingStrings[41]="Чтобы вскрыть заваренную дверь, установите сварочный аппарат и нажмите кнопку прицела."
 
 [WhatsNewMessages]
 Jaegorhorn="Следите за новостями, чтобы открыть Ягерхорна"
@@ -2167,20 +2177,29 @@ PS4WeaponSkinCrate2="Ящик Horzine с вн. видом оружия | Тип 
 Artbook="Цифровой альбом графики Killing Floor 2"
 Uncovered="Фильм "Killing Floor: Без прикрытия""
 NewEmotes="Новое! Ключ к ящику с эмоцией - $2,49"
+HorzineSupplyCrateKey10="Ключ от ящика Horzine | Тип 10 - $2.49"
+HorzineSupplyCrateKey11="Ключ от ящика Horzine | Тип 11 - $2.49"
+HorzineSupplyCrateKey12="Ключ от ящика Horzine | Тип 12 - $2.49"
+HorzineSupplyCrateKey13="Ключ от ящика Horzine | Тип 13 - $2.49"
+USBSpitfire="Spit Fire USB Key - $2.49"
+USBHighVoltage="High Voltage USB Key - $2.49"
+MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Толстяк"
 KFPawn_ZedClot="Зомби"
 KFPawn_ZedCrawler="Ползун"
+KFPawn_ZedCrawlerKing="Элитный ползун"
 KFPawn_ZedFleshPound="Отбивальщик"
 KFPawn_ZedGorefast="Берсеркер"
-KFPawn_ZedGorefastDualBlade="Gorefiend"
+KFPawn_ZedGorefastDualBlade="Берсерк с 2 мечами"
 KFPawn_ZedHans="Д-р Ганс Вольтер"
 KFPawn_ZedHusk="Хаск"
 KFPawn_ZedStalker="Сталкер"
 KFPawn_ZedClot_Cyst="Киста"
 KFPawn_ZedClot_Slasher="Расчленитель"
 KFPawn_ZedClot_Alpha="Альфа-зомби"
+KFPawn_ZedClot_AlphaKing="Элитный альфа"
 KFPawn_ZedScrake="Мясник"
 KFPawn_ZedSiren="Сирена"
 KFPawn_ZedPatriarch="Патриарх"
@@ -2510,6 +2529,38 @@ DisplayName_POL="Lądowanie zetów"
 DisplayName_PTB="Pouso Forçado ZED"
 DisplayName_RUS="Высадка среди мутантов"
 
+[KF-TheDescent KFMapSummary]
+DisplayName_CHN="后裔"
+DisplayName_CHT="地下鐵"
+DisplayName_DEU="Der Abstieg"
+DisplayName_ESL="El descendiente"
+DisplayName_ESN="El descendiente"
+DisplayName_FRA="La descente"
+DisplayName_FRC="La descente"
+DisplayName_INT="The Descent"
+DisplayName_ITA="La discesa"
+DisplayName_JPN="The Descent"
+DisplayName_KOR="경사로"
+DisplayName_POL="Zejście"
+DisplayName_PTB="A Descida"
+DisplayName_RUS="Спуск"
+
+[KF-Nuked KFMapSummary]
+DisplayName_CHN="核武器"
+DisplayName_CHT="核電廠"
+DisplayName_DEU="Atomisiert"
+DisplayName_ESL="Bombardeado"
+DisplayName_ESN="Bombardeado"
+DisplayName_FRA="Atomisé"
+DisplayName_FRC="Atomisé"
+DisplayName_INT="Nuked"
+DisplayName_ITA="Nuclearizzato"
+DisplayName_JPN="Nuked"
+DisplayName_KOR="방사능 누출지"
+DisplayName_POL="Wysadzeni"
+DisplayName_PTB="Bombardeio"
+DisplayName_RUS="Ядерный удар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Биотич. лаборатория"
 
@@ -2552,6 +2603,11 @@ DisplayName="Царство ада"
 [KF-ZedLanding KFMapSummary]
 DisplayName="Высадка среди мутантов"
 
+[KF-TheDescent KFMapSummary]
+DisplayName="Спуск"
+
+[KF-Nuked KFMapSummary]
+DisplayName="Ядерный удар"
 
 [KFMapInfo]
 ; defaults

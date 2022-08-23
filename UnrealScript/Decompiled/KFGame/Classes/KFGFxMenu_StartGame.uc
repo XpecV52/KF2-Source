@@ -79,9 +79,7 @@ native static function GetMapList(out array<string> MapList);
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
     local DataStoreClient DSClient;
-    local PlayerController PC;
 
-    PC = Outer.GetPC();
     super.InitializeMenu(InManager);
     GetMapList(MapStringList);
     DSClient = Class'UIInteraction'.static.GetDataStoreClient();
@@ -92,8 +90,8 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     if(Class'GameEngine'.static.GetOnlineSubsystem() != none)
     {
         GameInterface = Class'GameEngine'.static.GetOnlineSubsystem().GameInterface;
-        bIsPlayGoRun = ((NotEqual_InterfaceInterface(Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface, (none))) ? !Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled() : false);
-        if(PC.WorldInfo.IsConsoleBuild(8) && bIsPlayGoRun)
+        bIsPlayGoRun = !Class'GameEngine'.static.IsGameFullyInstalled();
+        if(bIsPlayGoRun)
         {
             Manager.DelayedOpenPopup(2, 0, Localize("Notifications", "PlayGoBusyTitle", "KFGameConsole"), Localize("Notifications", "PlayGoBusyMessage", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
         }
@@ -135,14 +133,14 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             break;
         case 'MatchMakingButton':
             MatchMakingButton = Widget;
-            if(Class'WorldInfo'.static.IsConsoleBuild(8) && ServerBrowserButton != none)
+            if(Class'WorldInfo'.static.IsConsoleBuild() && ServerBrowserButton != none)
             {
                 CheckGameFullyInstalled();
             }
             break;
         case 'ServerBrowserButton':
             ServerBrowserButton = Widget;
-            if(Class'WorldInfo'.static.IsConsoleBuild(8) && MatchMakingButton != none)
+            if(Class'WorldInfo'.static.IsConsoleBuild() && MatchMakingButton != none)
             {
                 CheckGameFullyInstalled();
             }
@@ -155,7 +153,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 
 function string GetCouldNotFindGameDescription()
 {
-    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
         return CouldNotFindGameDescriptionStringOrbis;        
     }
@@ -169,7 +167,7 @@ function CheckGameFullyInstalled()
 {
     if(bIsPlayGoRun)
     {
-        if(Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled())
+        if(Class'GameEngine'.static.IsGameFullyInstalled())
         {
             MatchMakingButton.SetBool("enabled", true);
             ServerBrowserButton.SetBool("enabled", true);
@@ -444,18 +442,25 @@ function Callback_OnWhatsNewClicked(int Index)
                     {
                         if(OnlineSub.ItemPropertiesList[I].SignedOfferId != "")
                         {
-                            OnlineSub.OpenMarketPlaceSearch(OnlineSub.ItemPropertiesList[I]);                            
+                            if(Class'WorldInfo'.static.IsConsoleBuild(8))
+                            {
+                                OnlineSub.OpenMarketPlaceSearch(OnlineSub.ItemPropertiesList[I]);                                
+                            }
+                            else
+                            {
+                                OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI(byte(Outer.GetLP().ControllerId), OnlineSub.ItemPropertiesList[I].ProductID);
+                            }                            
                         }
                         else
                         {
                             WarnInternal("No PSN signed offer ID for item with product ID" @ FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId);
                         }
-                        goto J0x25D;
+                        goto J0x32A;
                     }
                     ++ I;
                     goto J0xA8;
                 }
-                J0x25D:
+                J0x32A:
                 
             }
             else
@@ -525,7 +530,7 @@ function Callback_OptionListOpened(string ListName, int OptionIndex)
 {
     local string MessageString;
 
-    if((ListName == "mapList") || Outer.GetPC().WorldInfo.IsConsoleBuild(8) && ListName == "serverTypeList")
+    if((ListName == "mapList") || Outer.GetPC().WorldInfo.IsConsoleBuild() && ListName == "serverTypeList")
     {
         return;
     }
@@ -601,7 +606,7 @@ function Callback_StartMenuRequestReinit()
     if(OptionsComponent != none)
     {
         OptionsComponent.InitializeGameOptions();
-        OptionsComponent.SetOptions();
+        OptionsComponent.SetOptions(true);
     }
 }
 
@@ -678,7 +683,7 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
         {
             if(Class'WorldInfo'.static.IsConsoleBuild())
             {
-                if(Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled())
+                if(Class'GameEngine'.static.IsGameFullyInstalled())
                 {
                     MapName = MapStringList[Rand(MapStringList.Length)];                    
                 }
@@ -733,7 +738,7 @@ function OnFindGameServerComplete(bool bWasSuccessful)
 {
     if(bWasSuccessful && !bPauseTryingServers)
     {
-        if(bAttemptingServerCreate)
+        if(bAttemptingServerCreate && Class'WorldInfo'.static.IsConsoleBuild())
         {
             RandomizeSearchResults(SearchDataStore.GetActiveGameSearch());            
         }
@@ -1014,7 +1019,6 @@ function AddLobbyFilter(out array<LobbyFilter> Filters, bool bIsSet, string Key,
 
 function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGameContainer_Options Options, OnlineGameSearch Search)
 {
-    local string MapName;
     local int GameMode, GameDifficulty, GameLength;
     local bool AllowInProgress;
     local string GameTagFilters;
@@ -1036,12 +1040,6 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
     }
     else
     {
-        MapName = OptionsComponent.GetMapName();
-        LogInternal("Map searched:" @ MapName);
-        if((MapName != "") && !Class'WorldInfo'.static.IsConsoleBuild())
-        {
-            Search.AddServerFilter("map", MapName);
-        }
         if(((OnlineLobby != none) && OnlineLobby.GetCurrentLobby(LobbyInfo)) && LobbyInfo.Members.Length >= 6)
         {
             Search.AddServerFilter("noplayers", "");            
@@ -1167,6 +1165,11 @@ native function string GenerateRandomPassword();
 
 function Callback_StartOnlineGame()
 {
+    if(Class'KFGameEngine'.static.IsFreeConsolePlayOver())
+    {
+        Manager.DelayedOpenPopup(0, 0, "", Class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString, Class'KFCommon_LocalizedStrings'.default.BuyGameString, Class'KFCommon_LocalizedStrings'.default.OKString, OnBuyGamePressed);
+        return;
+    }
     LobbyOwnerPassword = "";
     if(OptionsComponent.GetMakeNewServer())
     {
@@ -1178,6 +1181,17 @@ function Callback_StartOnlineGame()
     }
     bAttemptingServerCreate = false;
     StartOnlineGame();
+}
+
+function OnBuyGamePressed()
+{
+    local OnlineSubsystem OnlineSub;
+
+    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+        OnlineSub.OpenGameStorePage();
+    }
 }
 
 function UnpauseTryingServers()
@@ -1278,5 +1292,7 @@ defaultproperties
     StockMaps(10)="kf-hostilegrounds"
     StockMaps(11)="kf-infernalrealm"
     StockMaps(12)="kf-zedlanding"
+    StockMaps(13)="kf-thedescent"
+    StockMaps(14)="kf-nuked"
     SubWidgetBindings=/* Array type was not detected. */
 }

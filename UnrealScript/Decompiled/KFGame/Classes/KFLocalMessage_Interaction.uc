@@ -17,6 +17,8 @@ enum EInteractionMessageType
     IMT_UseDoor,
     IMT_UseDoorWelded,
     IMT_RepairDoor,
+    IMT_UseMinigame,
+    IMT_UseMinigameGenerator,
     IMT_GamepadWeaponSelectHint,
     IMT_HealSelfWarning,
     IMT_ClotGrabWarning,
@@ -38,6 +40,8 @@ var const localized string GamepadWeaponSelectHint;
 var const localized string ZedUseDoorMessage;
 var const localized string ZedUseDoorWeldedMessage;
 var const localized string PlayerClotGrabWarningMessage;
+var const localized string UseMinigameMessage;
+var const localized string UseMinigameGeneratorMessage;
 var const string USE_COMMAND;
 var const string HEAL_COMMAND;
 var const string HEAL_COMMAND_CONTROLLER;
@@ -64,7 +68,7 @@ static function float GetMessageDuration(int Switch)
 {
     switch(Switch)
     {
-        case 8:
+        case 10:
             return 2;
         default:
             return 0;
@@ -100,7 +104,7 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
             KFInput.GetKeyBindFromCommand(BoundKey, default.USE_COMMAND, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 9:
+        case 11:
             if(KFInput.bUsingGamepad)
             {
                 KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND_CONTROLLER, false);                
@@ -111,11 +115,11 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
             }
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 10:
+        case 12:
             KFInput.GetKeyBindFromCommand(BoundKey, default.BASH_COMMAND, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 8:
+        case 10:
             KFInput.GetKeyBindFromCommand(BoundKey, default.WEAPON_SELECT_CONTROLLER, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
@@ -161,15 +165,19 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
             return default.ReceiveAmmoMessage;
         case 3:
             return default.ReceiveGrenadesMessage;
-        case 9:
+        case 11:
             Input = Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerInput;
             return (((Input != none) && Input.bUsingGamepad) ? default.HealSelfGamepadWarning : default.HealSelfWarning);
-        case 10:
+        case 12:
             return default.PressToBashWarning;
-        case 11:
+        case 13:
             return default.PlayerClotGrabWarningMessage;
-        case 8:
+        case 10:
             return default.GamepadWeaponSelectHint;
+        case 8:
+            return default.UseMinigameMessage;
+        case 9:
+            return default.UseMinigameGeneratorMessage;
         default:
             return "";
             break;
@@ -202,6 +210,8 @@ defaultproperties
     ZedUseDoorMessage="OPEN/CLOSE"
     ZedUseDoorWeldedMessage="DOOR WELDED, BREAK IT DOWN!"
     PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
+    UseMinigameMessage="ACTIVATE MINIGAME"
+    UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
     USE_COMMAND="GBA_Use"
     HEAL_COMMAND="GBA_QuickHeal"
     HEAL_COMMAND_CONTROLLER="GBA_Reload_Gamepad"

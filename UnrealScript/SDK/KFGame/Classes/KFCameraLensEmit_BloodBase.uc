@@ -8,7 +8,7 @@
 //  - Sakib Saikia 10/31/2013
 //=============================================================================
 
-class KFCameraLensEmit_BloodBase extends EmitterCameraLensEffectBase;
+class KFCameraLensEmit_BloodBase extends KFEmit_CameraEffect;
 
 defaultproperties
 {

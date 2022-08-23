@@ -136,6 +136,13 @@ struct native UniqueNetId
 			Uid = InQWORD;
 		}
 
+#if WITH_STEAMWORKS && !defined( _WIN32 )
+		FORCEINLINE FUniqueNetId(uint64 Id)
+		{
+			Uid = (QWORD)Id;
+		}
+#endif
+
 		/** Copy constructor */
 		FORCEINLINE FUniqueNetId(const FUniqueNetId& Other)
 		{
@@ -193,6 +200,14 @@ struct native UniqueNetId
 			Uid = Id;
 			return *this;
 		}
+
+#if WITH_STEAMWORKS && !defined( _WIN32 )
+		FORCEINLINE FUniqueNetId& operator=(const uint64 Id)
+		{
+			Uid = (QWORD)Id;
+			return *this;
+		}        
+#endif
 
 		/**
 		 * Converts the unique id to a DWORD
@@ -542,10 +557,8 @@ struct native OnlineFriend
 //@HSL_BEGIN - JRO - 8/11/2016 - Useful data for each party member
 struct native PartyMember
 {
-	var UniqueNetId PartyMemberId;
 	var UniqueNetId OnlineId;
 	var string NickName;
-	var UniqueNetId AccountId;
 };
 //@HSL_END
 
@@ -1158,7 +1171,8 @@ enum EMediaItemType
 	MIT_Application,
 	MIT_GameContent,
 	MIT_GameConsumable,
-	MIT_Subscription
+	MIT_Subscription,
+	MIT_All
 };
 
 /** Holds the information about a marketplace product */
@@ -1395,6 +1409,8 @@ var const config string PartySessionTemplateName;
 struct native CurrentInventoryEntry
 {
 	var const UniqueNetId Instance;
+	/** The original playfab item ID linked to this item */
+	var const string PlayfabItemId;
 	var const int Definition;
 	var const int Quantity;
 	var int NewlyAdded;
@@ -1465,8 +1481,8 @@ struct native ItemProperties
 			appMemzero(this, sizeof(FItemProperties));
 		}
 
-		// Retrieves a list of bundled items based on the Bundle property
-		TArray<INT> GetBundledItems() const;
+		// Retrieves a list of bundled items based on the Bundle property. This is recursive and returns only items NOT other bundles
+		void GetBundledItems( TArray<FItemProperties>& OutList ) const;
 		// Localizes properties that require localizing
 		void LocalizeProperties();
 	private:
@@ -1493,6 +1509,7 @@ var array<ExchangeRuleSets> ExchangeRuleSetList;
 native function OpenMarketPlaceSearch(ItemProperties Item);
 native function OpenItemPurchaseOverlay(int SKU);
 native function OpenURL(string WebsiteLink);
+native function OpenGameStorePage();
 
 // return a list of rulesets this item is a source for (Crates,
 // Crafting, ... )
@@ -2383,6 +2400,17 @@ function CancelRegionPing() {};
 
 //@HSL_BEGIN - BWJ - 10-4-16 - Detecting if local player has a chat restriction
 native function bool HasChatRestriction( byte LocalUserNum );
+//@HSL_END
+
+//@HSL_BEGIN - BWJ - 12-12-16 - Support for activating user. Used for XB1
+function ManuallyActivateUser( const UniqueNetId ForUniqueId );
+// Activates a game pad to whichever user is active for it
+function ActivateGamepad( const int GamepadIndex );
+//@HSL_END
+
+
+//@HSL_BEGIN - BWJ - 1-11-17 - Support for setting a cached profile
+function SetCachedProfile( OnlineProfileSettings InSettings );
 //@HSL_END
 
 `endif //(`__TW_ONLINESUBSYSTEM_)

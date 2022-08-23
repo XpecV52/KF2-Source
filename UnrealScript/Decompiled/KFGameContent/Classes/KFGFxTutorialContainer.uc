@@ -22,18 +22,18 @@ function InitMenu()
     LocalizeText();
     if(Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
-        UpdateUsingGamepad(true);        
+        UpdateUsingGamePad(true);        
     }
     else
     {
         if(KFPI != none)
         {
-            UpdateUsingGamepad(KFPI.bUsingGamepad);
+            UpdateUsingGamePad(KFPI.bUsingGamepad);
         }
     }
 }
 
-function UpdateUsingGamepad(bool bValue)
+function UpdateUsingGamePad(bool bValue)
 {
     SetBool("bUsingGamepad", bValue);
 }

@@ -174,7 +174,10 @@ function DrawHUD()
             }
         }
 
-        CheckAndDrawHiddenPlayerIcons( VisibleHumanPlayers, HiddenHumanPlayers );
+        if( !KFGRI.bHidePawnIcons )
+        {
+            CheckAndDrawHiddenPlayerIcons( VisibleHumanPlayers, HiddenHumanPlayers );
+        }
     }
     
     

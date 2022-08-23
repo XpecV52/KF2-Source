@@ -11,7 +11,7 @@ class KFPawn_ZedGorefastDualBlade extends KFPawn_ZedGorefast;
 defaultproperties
 {
 	LocalizationKey=KFPawn_ZedGorefastDualBlade
-	CharacterMonsterArch=KFCharacterInfo_Monster'zed_gorefast2_arch.ZED_Gorefast2_Archetype'
+	MonsterArchPath="ZED_ARCH.ZED_Gorefast2_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Gorefast2_ANIM.Gorefast2_AnimGroup'
 	ControllerClass=class'KFAIController_ZedGorefastDualBlade'
 	DifficultySettings=class'KFDifficulty_GorefastDualBlade'
@@ -21,8 +21,6 @@ defaultproperties
 	XPValues(1)=14
 	XPValues(2)=14
 	XPValues(3)=14
-
-
 
 	// ---------------------------------------------
 	// Gameplay

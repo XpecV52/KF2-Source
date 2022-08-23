@@ -93,7 +93,7 @@ function Init(optional LocalPlayer LocPlay)
     UpdateRatio();
     UpdateScale();
     // Let the HUD Manager know if we are in a console build of the game.
-    KFGXHUDManager.SetBool("bConsoleBuild",class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis));
+    KFGXHUDManager.SetBool("bConsoleBuild",class'WorldInfo'.static.IsConsoleBuild());
 
 }
 

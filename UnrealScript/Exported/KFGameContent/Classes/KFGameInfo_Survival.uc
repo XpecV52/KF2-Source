@@ -568,7 +568,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 }
 
 /*	Use reduce damage for friendly fire, etc. */
-function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser)
+function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
 {
 	if( Injured.Controller != none && Injured.Controller.bIsPlayer && !MyKFGRI.bMatchHasBegun )
 	{
@@ -576,7 +576,7 @@ function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vec
 		Momentum = vect(0,0,0);
 	}
 
-	Super.ReduceDamage(Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
+	Super.ReduceDamage(Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
 }
 
 function BossDied(Controller Killer, optional bool bCheckWaveEnded = true)
@@ -1088,6 +1088,13 @@ function SetupNextTrader()
 {
 	local byte NextTraderIndex;
 
+	// Try to set the scripted trader first
+	if( ScriptedTrader != none )
+	{
+		MyKFGRI.NextTrader = ScriptedTrader;
+		return;
+	}
+
 	if( TraderList.Length > 0 )
 	{
 		NextTraderIndex = DetermineNextTraderIndex();
@@ -1212,6 +1219,39 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
 /** The wave ended */
 function WaveEnded(EWaveEndCondition WinCondition)
 {
+	local array<SequenceObject> AllWaveEndEvents;
+	local array<int> OutputLinksToActivate;
+	local KFSeqEvent_WaveEnd WaveEndEvt;
+	local Sequence GameSeq;
+	local int i;
+
+	// Get the gameplay sequence.
+	GameSeq = WorldInfo.GetGameSequence();
+
+	if( GameSeq != none )
+	{
+		GameSeq.FindSeqObjectsByClass( class'KFSeqEvent_WaveEnd', TRUE, AllWaveEndEvents );
+		for( i = 0; i < AllWaveEndEvents.Length; ++i )
+		{
+			WaveEndEvt = KFSeqEvent_WaveEnd( AllWaveEndEvents[i] );
+
+			if( WaveEndEvt != None  )
+			{
+				WaveEndEvt.Reset();
+				WaveEndEvt.SetWaveNum( WaveNum, WaveMax );
+				if( WaveNum == WaveMax && WaveEndEvt.OutputLinks.Length > 1 )
+				{
+					OutputLinksToActivate.AddItem( 1 );
+				}
+				else
+				{
+					OutputLinksToActivate.AddItem( 0 );
+				}
+				WaveEndEvt.CheckActivate( self, self,, OutputLinksToActivate );
+			}
+		}
+	}
+
 	MyKFGRI.NotifyWaveEnded();
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime( !MyKFGRI.IsFinalWave() );
 
@@ -1318,6 +1358,13 @@ function CloseTraderTimer();
 /** Cleans up anything from the previous wave that needs to be removed for trader time */
 function DoTraderTimeCleanup();
 
+/** Handle functionality for opening trader */
+function OpenTrader()
+{
+    MyKFGRI.OpenTrader(TimeBetweenWaves);
+	NotifyTraderOpened();
+}
+
 State TraderOpen
 {
 	function BeginState( Name PreviousStateName )
@@ -1338,8 +1385,7 @@ State TraderOpen
 		// Restart players
 		StartHumans();
 
-		MyKFGRI.OpenTrader(TimeBetweenWaves);
-		NotifyTraderOpened();
+		OpenTrader();
 
 		BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_WaveEnd);
 
@@ -1452,27 +1498,12 @@ function NotifyTraderOpened()
  {
  	function BeginState( Name PreviousStateName )
 	{
-		local int i;
-
-		MyKFGRI.bMatchHasBegun = false;
-		MyKFGRI.bMatchIsOver = true;
+		MyKFGRI.EndGame();
 		MyKFGRI.bWaitingForAAR = true; //@HSL - JRO - 6/15/2016 - Make sure we're still at full speed before the end of game menu shows up
 
 		if ( AllowBalanceLogging() )
 		{
 			LogPlayersKillCount();
-		}
-
-		// Add the remaining gameplay time for the players
-		if( PlayfabInter != None && PlayfabInter.IsRegisteredWithPlayfab() )
-		{
-			for( i = 0; i < GameReplicationInfo.PRIArray.Length; i++ )
-			{
-				if( GameReplicationInfo.PRIArray[i].PlayfabPlayerId != "" )
-				{
-					AddGameplayTimeForPlayer( KFPlayerReplicationInfo(GameReplicationInfo.PRIArray[i]), int(KFGameReplicationInfo(GameReplicationInfo).GetHeartbeatAccumulatorAmount()), true );
-				}
-			}
 		}
 
 		SetTimer(1.f, false, nameof(ProcessAwards));
@@ -1512,7 +1543,6 @@ function EndOfMatch(bool bVictory)
 		SetZedsToVictoryState();
 	}
 
-	WorldInfo.TWRefreshTweakParams();
 	WorldInfo.TWPushLogs();
 
 	GotoState('MatchEnded');

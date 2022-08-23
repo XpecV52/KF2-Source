@@ -1549,6 +1549,9 @@ auto state Inactive
  * to see if a shot has been fired.
  *********************************************************************************************/
 
+simulated function bool CanProcessPendingFire( Name PrevStateName, byte FireModeNum ) { return true; }
+
+
 simulated state Active
 {
 	/** Initialize the weapon as being active and ready to go. */
@@ -1577,7 +1580,11 @@ simulated state Active
 	        // if either of the fire modes are pending, perform them
 			for( i=0; i<GetPendingFireLength(); i++ )
 			{
-				if( PendingFire(i) )
+
+				if( CanProcessPendingFire(PreviousStateName, i) && PendingFire(i) )
+
+
+
 				{
 					BeginFire(i);
 					break;

@@ -32,7 +32,6 @@ defaultproperties
     Components(0)=Sprite
     Components(1)=SkyLightComponent'Default__SkyLightToggleable.SkyLightComponent0'
     bHardAttach=true
-    BlockRigidBody=false
     begin object name=LightMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none
     object end

@@ -16,7 +16,7 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Slasher_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Clot_Slasher_Archetype"
     GrabAttackFrequency=0.38
     ParryResistance=0
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedClot_Slasher.MeleeHelper'

@@ -100,12 +100,27 @@ event PreBeginPlay()
 simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
 	local StickInfo MyStickInfo;
+    local KActorFromStatic NewKActor;
 	local KFDestructibleActor HitDestructible;
 	local StaticMeshComponent HitComponent;
-	local vector DestructableHitLocation;
+	local TraceHitInfo HitInfo;
 
 	SetRotation(rotator(Normal(Velocity)));
 	SetPhysics(PHYS_Falling);
+
+	if( bBounce && !Wall.bStatic && Wall.bCanBeDamaged && Wall.bProjTarget )
+	{
+        HitInfo.HitComponent = WallComp;
+        HitInfo.Item = INDEX_None;  // force TraceComponent on fractured meshes
+        Wall.TakeDamage( Damage, InstigatorController, Location, MomentumTransfer * -HitNormal, MyDamageType, HitInfo, self );
+
+        // If we destroyed the wall we just hit, pass through but stop bouncing
+        if( !Wall.bBlockActors || (WallComp != none && !WallComp.BlockActors) )
+        {
+        	BouncesLeft = 0;
+        	return;
+        }
+	}
 
 	// check if we should do a bounce, otherwise stick
 	if( !Bounce(HitNormal, Wall) )
@@ -118,7 +133,7 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 		}
 
 		// Check to see whether we should stick or not.
-		if ( (!Wall.bStatic && !Wall.bWorldGeometry && Wall.bProjTarget))
+		if( !Wall.bStatic && Wall.bWorldGeometry && Wall.bCanBeDamaged && Wall.bProjTarget )
 		{
 			// If the object is client side, don't stick, because it's destruction won't be replicated
 			HitDestructible = KFDestructibleActor(Wall);
@@ -127,20 +142,18 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 				// Pass through with no collision.
 				return;
 			}
-
-			// Trace the component that was hit (in this code path, WallComp is null) so we know where the projectile should be placed
-			// This is done because hit locations aren't handled properly on destructibles in the engine.
-			TraceComponent(DestructableHitLocation, HitNormal, WallComp,  Location,  LastLocation,,, bCollideComplex);
-
-			SetLocation(DestructableHitLocation);
 		}
 		else
 		{
 			// If our hit object can become dynamic, don't stick.
-			HitComponent = StaticMeshComponent(WallComp);
-			if(HitComponent != none && HitComponent.CanBecomeDynamic())
+			HitComponent = StaticMeshComponent( WallComp );
+			if( HitComponent != none && HitComponent.CanBecomeDynamic() )
 			{
-				// Pass through with no collision.
+		        NewKActor = class'KActorFromStatic'.static.MakeDynamic( HitComponent );
+		        if( NewKActor != none )
+		        {
+		            NewKActor.TakeDamage( Damage, InstigatorController, Location, MomentumTransfer * -HitNormal, MyDamageType, HitInfo, self );
+		        }
 				return;
 			}
 		}
@@ -422,7 +435,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 	local KFPawn KFP;
 	local bool bPassThrough;
 
-	if ( Other != Instigator && !Other.bWorldGeometry && Other.bCanBeDamaged )
+	if ( Other != Instigator && Other.bCanBeDamaged && (!Other.bWorldGeometry || !Other.bStatic) )
 	{
 		if( ShouldProcessBulletTouch() )
 		{

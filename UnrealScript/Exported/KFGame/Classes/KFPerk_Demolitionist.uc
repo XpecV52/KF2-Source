@@ -11,81 +11,7 @@
 class KFPerk_Demolitionist extends KFPerk
 		native;
 
-
-
- 
-
-
- 
-
-
-  
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
-
-
- 
-
-
- 
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-#linenumber 14
+//`include(KFOnlineStats.uci)
 
 var				const	PerkSkill 					ExplosiveDamage;			// 1% increased explosive damage per level (max 25%)
 var 			const	PerkSkill					ExplosiveResistance;        // 10% explosive resistance, additional 2% resistance per level (max 60%)
@@ -825,7 +751,7 @@ simulated function bool IsCriticalHitActive()
  */
 simulated final private function bool IsProfessionalActive()
 {
-	return PerkSkills[EDemoProfessional].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[EDemoProfessional].bActive;
 }
 
 /**

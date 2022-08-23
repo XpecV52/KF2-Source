@@ -22,6 +22,7 @@ var GFxObject StoreButton;
 var int SaveCurrentMenuIndex;
 var bool bCachedGameFullyInstalled;
 var bool bAllowBumper;
+var bool bGearButtonEnabled;
 
 function InitializeCurrentMenu(byte CurrentMenuIndex)
 {
@@ -68,7 +69,7 @@ function UpdateMenu(byte CurrentMenuIndex)
     J0x189:
 
     SaveCurrentMenuIndex = CurrentMenuIndex;
-    if((((InventoryButton != none) && StoreButton != none) && !Class'WorldInfo'.static.IsE3Build()) && Class'WorldInfo'.static.IsConsoleBuild(8))
+    if((((InventoryButton != none) && StoreButton != none) && !Class'WorldInfo'.static.IsE3Build()) && Class'WorldInfo'.static.IsConsoleBuild())
     {
         CheckGameFullyInstalled();
     }
@@ -79,13 +80,20 @@ function UpdateMenu(byte CurrentMenuIndex)
 function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 {
     GfxButton.SetInt("index", ButtonIndex);
-    GfxButton.SetString("label", MenuStrings[ButtonIndex]);
-    GfxButton.SetBool("enabled", true);
+    if(((ButtonIndex == 6) && Class'WorldInfo'.static.IsMenuLevel()) && Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        GfxButton.SetString("label", ConsoleLocalize("LogoutTitle"));        
+    }
+    else
+    {
+        GfxButton.SetString("label", MenuStrings[ButtonIndex]);
+    }
     switch(ButtonIndex)
     {
         case 2:
-            GfxButton.SetBool("enabled", CanUseGearButton());
-            break;
+            bGearButtonEnabled = CanUseGearButton(Outer.GetPC(), Manager);
+            GfxButton.SetBool("enabled", bGearButtonEnabled);
+            return;
         case 0:
             GfxButton.SetString("label", GetHomeButtonName());
             GfxButton.SetBool("bPulsing", ShouldStartMenuPulse());
@@ -93,21 +101,43 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
         case 3:
             GfxButton.SetBool("enabled", CanUseInventory());
             InventoryButton = GfxButton;
-            break;
+            return;
         case 4:
+            if(Class'WorldInfo'.static.IsConsoleBuild(9))
+            {
+                GfxButton.SetString("label", ConsoleLocalize("StoreStringXB1", "KFGFxMenu_Store"));
+            }
             GfxButton.SetBool("enabled", CanUseStore());
             StoreButton = GfxButton;
-            break;
+            return;
         default:
             break;
     }
+    GfxButton.SetBool("enabled", true);
+}
+
+function UpdateGearButtonState()
+{
+    local bool bCanChangeGear;
+
+    bCanChangeGear = CanUseGearButton(Outer.GetPC(), Manager);
+    if(bCanChangeGear != bGearButtonEnabled)
+    {
+        SetGearMenuEnabled(bCanChangeGear);
+        bGearButtonEnabled = bCanChangeGear;
+    }
+}
+
+function SetGearMenuEnabled(bool bEnabled)
+{
+    ActionScriptVoid("setGearButtonEnabled");
 }
 
 function CheckGameFullyInstalled()
 {
     if(!bCachedGameFullyInstalled)
     {
-        if(Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled())
+        if(Class'GameEngine'.static.IsGameFullyInstalled())
         {
             bCachedGameFullyInstalled = true;
             InventoryButton.SetBool("enabled", true);
@@ -138,6 +168,19 @@ function OpenQuitPopUp()
 function OnQuitConfirm()
 {
     Outer.ConsoleCommand("quit");
+}
+
+function OpenLogoutPopup()
+{
+    if(Manager != none)
+    {
+        Manager.DelayedOpenPopup(0, 0, ConsoleLocalize("LogoutDialogTitle"), ConsoleLocalize("LogoutDialogMessage"), ConsoleLocalize("LogoutTitle"), Class'KFCommon_LocalizedStrings'.default.CancelString, OnLogoutConfirm);
+    }
+}
+
+function OnLogoutConfirm()
+{
+    KFGameEngine(Class'Engine'.static.GetEngine()).PerformLogout();
 }
 
 function string GetHomeButtonName()
@@ -187,9 +230,9 @@ function bool ShouldStartMenuPulse()
     return false;
 }
 
-function bool CanUseGearButton()
+static function bool CanUseGearButton(PlayerController PC, KFGFxMoviePlayer_Manager GfxManager)
 {
-    if(((Outer.GetPC().Pawn != none) && !Manager.bAfterLobby) || Class'WorldInfo'.static.IsMenuLevel())
+    if((!GfxManager.bAfterLobby || Class'WorldInfo'.static.IsMenuLevel()) || PC.IsSpectating() && !PC.PlayerReplicationInfo.bOnlySpectator)
     {
         return true;
     }

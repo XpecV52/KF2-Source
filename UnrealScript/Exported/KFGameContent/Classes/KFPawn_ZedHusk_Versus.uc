@@ -154,6 +154,10 @@ simulated function OnExploded( Controller SuicideController )
     }
 }
 
+simulated function ESpecialMove GetSuicideSM()
+{
+	return SM_PlayerZedMove_G;
+}
 
 /** Returns TRUE if we're aiming with the husk cannon */
 simulated function bool UseAdjustedControllerSensitivity()
@@ -248,7 +252,7 @@ defaultproperties
    SpecialMoveCooldowns(3)=(CoolDownTime=0.100000,SMHandle=SM_PlayerZedMove_V,SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Melee',NameLocalizationKey="Melee")
    SpecialMoveCooldowns(4)=()
    SpecialMoveCooldowns(5)=()
-   SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Explode',NameLocalizationKey="Suicide")
+   SpecialMoveCooldowns(6)=(CoolDownTime=2.500000,SMHandle=SM_PlayerZedMove_G,SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Explode',NameLocalizationKey="Suicide")
    SpecialMoveCooldowns(7)=(CoolDownTime=1.000000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Jump',bShowOnHud=False)
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHusk:ThirdPersonHead0'
       ReplacementPrimitive=None

@@ -11,7 +11,7 @@
 class KFPerk_Firebug extends KFPerk
 	native;
 
-`include(KFOnlineStats.uci)
+//`include(KFOnlineStats.uci)
 
 var		const	PerkSkill 			WeaponDamage;						// 1% increased Perk weapon damage per level (max 25%)
 var 	const	PerkSkill			WeaponReload;              			// 1% faster perk weapon reload per level (max 25%)
@@ -368,7 +368,7 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	return 1.f;
 }
 
-simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsGroundFireActive() &&	DamageType != none && 
 		ClassIsChildOf( DamageType,  SnareCausingDmgTypeClass ) )
@@ -610,8 +610,8 @@ DefaultProperties
 	KnifeWeaponDef=class'KFWeapDef_Knife_Firebug'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Firebug'
 
-	ProgressStatID=`STATID_Fire_Progress
-   	PerkBuildStatID=`STATID_Fire_Build
+	ProgressStatID=STATID_Fire_Progress
+   	PerkBuildStatID=STATID_Fire_Build
 
    	HeatWaveRadiusSQ=90000
 

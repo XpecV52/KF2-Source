@@ -44,6 +44,15 @@ const ShootDartIronAnim	= 'Shoot_Iron_Dart';
   * Prevents us from missing healing shots from being grabbed */
 var(Weapon) float   HealDartShotWeakZedGrabCooldown;
 
+/** Recoil override for healing dart alt-fire */
+var(Recoil)	int		DartMaxRecoilPitch;
+var(Recoil)	int 	DartMinRecoilPitch;
+var(Recoil)	int		DartMaxRecoilYaw;
+var(Recoil)	int		DartMinRecoilYaw;
+
+/** Controller rumble override for healing dart. */
+var ForceFeedbackWaveform HealingDartWaveForm;
+
 /*********************************************************************************************
  * @name Weapon lock on support
  ********************************************************************************************* */
@@ -287,6 +296,48 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 	}
 
 	return SpawnedProjectile;
+}
+
+/**
+* Called on the client when the weapon is fired calculate the recoil parameters
+* Network: LocalPlayer
+*/
+simulated event HandleRecoil()
+{
+	// Separate recoil settings for healing darts. Doesn't update RecoilRate
+	// or BlendOutRate, but that could be problematic if currently recoiling.
+	if ( CurrentFireMode == ALTFIRE_FIREMODE )
+	{
+		minRecoilPitch = DartMinRecoilPitch;
+		maxRecoilPitch = DartMaxRecoilPitch;
+		minRecoilYaw = DartMinRecoilYaw;
+		maxRecoilYaw = DartMaxRecoilYaw;
+	}
+	else
+	{
+		minRecoilPitch = default.minRecoilPitch;
+		maxRecoilPitch = default.maxRecoilPitch;
+		minRecoilYaw = default.minRecoilYaw;
+		maxRecoilYaw = default.maxRecoilYaw;
+	}
+
+	Super.HandleRecoil();
+}
+
+/** plays view shake on the owning client only */
+simulated function ShakeView()
+{
+	// All healing darts use the same force feedback wave form
+	if ( CurrentFireMode == ALTFIRE_FIREMODE )
+	{
+		WeaponFireWaveForm = HealingDartWaveForm;
+	}
+	else
+	{
+		WeaponFireWaveForm = default.WeaponFireWaveForm;
+	}
+
+	Super.ShakeView();
 }
 
 /*********************************************************************************************
@@ -835,6 +886,11 @@ defaultproperties
    HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
    DartFireSnd=(DefaultCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_1P')
    HealDartShotWeakZedGrabCooldown=0.500000
+   DartMaxRecoilPitch=250
+   DartMinRecoilPitch=200
+   DartMaxRecoilYaw=100
+   DartMinRecoilYaw=-100
+   HealingDartWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
    LockCheckTime=0.100000
    LockRange=50000.000000
    LockAcquireTime=0.200000

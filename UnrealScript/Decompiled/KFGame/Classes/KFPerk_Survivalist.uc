@@ -204,7 +204,7 @@ simulated function bool IsWeaponOnPerkHeavy(KFWeapon KFW)
 {
     if(KFW != none)
     {
-        return (Class'KFPerk_Demolitionist'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Demolitionist') || Class'KFPerk_Support'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Support')) || Class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Sharpshooter');
+        return ((Class'KFPerk_Demolitionist'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Demolitionist') || Class'KFPerk_Support'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Support')) || Class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Sharpshooter')) || KFW.IsHeavyWeapon() && IsWeaponOnPerk(KFW);
     }
     return false;
 }
@@ -309,7 +309,7 @@ function float GetStunPowerModifier(optional class<DamageType> DamageType, optio
     return 1;
 }
 
-simulated function float GetSnarePower(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     if(GetIncapMasterActive())
     {

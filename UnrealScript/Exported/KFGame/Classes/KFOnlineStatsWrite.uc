@@ -12,80 +12,125 @@ class KFOnlineStatsWrite extends OnlineStatsWrite
 	native
 	config(game);
 
-
-
- 
-
+const KFMAX_Perks = 					10;
 
  
+const VIEWID_KFGameStats =				1;
 
+ 
+const STATID_None 			 =			0;
 
   
-
-
-
- 
-
-
+const STATID_Cmdo_Progress	 =			1;
+const STATID_Cmdo_Build      =				2;
 
  
-
-
-
-
- 
-
-
+const STATID_Bsrk_Progress	 =			10;
+const STATID_Bsrk_Build		 =			11;
 
  
-
-
-
-
- 
-
-
+const STATID_Sup_Progress	 =				20;
+const STATID_Sup_Build		 =			21;
+const STATID_Sup_WeldPoints	 =			22;
 
  
-
-
-
- 
-
-
+const STATID_Fire_Progress	 =			30;
+const STATID_Fire_Build		 =			31;
 
  
-
-
-
- 
-
-
+const STATID_Medic_Progress		 =		40;
+const STATID_Medic_Build	 =				41;
+const STATID_Medic_HealPoints =				42;
 
  
-
-
-
-
+const STATID_Shrp_Progress	 =			50;
+const STATID_Shrp_Build		 =			51;
 
  
-
-
- 
-
+const STATID_Demo_Progress	=			60;
+const STATID_Demo_Build		=			61;
 
  
-
-
-
-
-
-
-
-
+const STATID_Surv_Progress	 =			70;
+const STATID_Surv_Build		 =			71;
 
  
+const STATID_Guns_Progress	 =			80;
+const STATID_Guns_Build		 =			81;
 
+ 
+const STATID_SWAT_Progress	 =			90;
+const STATID_SWAT_Build		 =			91;
+
+ 
+const STATID_Kills 			 =			200;
+const STATID_StalkerKills 	 =			201;
+const STATID_CrawlerKills 	 =			202;
+const STATID_FleshpoundKills	 =			203;
+
+ 
+const STATID_SpecialEventProgress =     300;
+const STATID_WeeklyEventProgress =      301;
+
+ 
+const STATID_AchievementPlaceholder	 =	500;
+
+ 
+const STATID_AnalyticsPlaceholder	 =		800;
+
+ 
+const STATID_PersonalBest_KnifeKills =		2000;
+const STATID_PersonalBest_PistolKills	 =	2001;
+const STATID_PersonalBest_HeadShots	 =		2002;
+const STATID_PersonalBest_Healing	 =		2003;
+const STATID_PersonalBest_Kills	 =		2004;
+const STATID_PersonalBest_Assists =			2005;
+const STATID_PersonalBest_LargeZedKill =	2006;
+const STATID_PersonalBest_Dosh =			2007;
+
+ 
+const STATID_MatchWins =					3000;
+
+ 
+const STATID_DingoAchievementStart	= 4000;
+const STATID_ACHIEVE_MrPerky5		= 4001;
+const STATID_ACHIEVE_MrPerky10		= 4002;
+const STATID_ACHIEVE_MrPerky15		= 4003;
+const STATID_ACHIEVE_MrPerky20		= 4004;
+const STATID_ACHIEVE_MrPerky25		= 4005;
+
+const STATID_ACHIEVE_HardWins		= 4015;
+const STATID_ACHIEVE_SuicidalWins	= 4016;
+const STATID_ACHIEVE_HellWins		= 4017;
+
+const STATID_ACHIEVE_VSZedWins		= 4009;
+const STATID_ACHIEVE_VSHumanWins	= 4010;
+
+const STATID_ACHIEVE_HoldOut			= 4011;
+const STATID_ACHIEVE_DieVolter			= 4012;
+const STATID_ACHIEVE_FleshPoundKill		= 4013;
+const STATID_ACHIEVE_ShrikeKill			= 4014;
+const STATID_ACHIEVE_SirenKill			= 4018;
+const STATID_ACHIEVE_Benefactor			= 4019;
+const STATID_ACHIEVE_HealTeam			= 4020;
+const STATID_ACHIEVE_QuickOnTheTrigger	= 4033;
+
+const STATID_ACHIEVE_CollectCatacolmbs		= 4021;
+const STATID_ACHIEVE_BioticsCollectibles	= 4022;
+const STATID_ACHIEVE_EvacsCollectibles		= 4023;
+const STATID_ACHIEVE_OutpostCollectibles	= 4024;
+const STATID_ACHIEVE_PrisonCollectibles		= 4025;
+const STATID_ACHIEVE_ManorCollectibles		= 4026;
+const STATID_ACHIEVE_ParisCollectibles		= 4027;
+const STATID_ACHIEVE_FarmhouseCollectibles	= 4028;
+const STATID_ACHIEVE_BlackForestCollectibles= 4029;
+const STATID_ACHIEVE_ContainmentStationCollectibles	= 4030;
+const STATID_ACHIEVE_InfernalRealmCollectibles		= 4031;
+const STATID_ACHIEVE_HostileGroundsCollectibles		= 4032;
+const STATID_ACHIEVE_ZedLandingCollectibles			= 4035;
+const STATID_ACHIEVE_DescentCollectibles			= 4036;
+const STATID_ACHIEVE_NukedCollectibles				= 4037;
+ 
 #linenumber 15
 
 
@@ -146,6 +191,9 @@ const	HealingPointsRequired = 10;
 const 	MaxPerkLevel = 25;
 const 	MaxPrestigeLevel = 10;
 
+//Event consts
+const   SpecialEventObjectiveCount = 4;
+
 /** Cached PC */
 var KFPlayerController MyKFPC;
 
@@ -188,7 +236,9 @@ var private int 	PersonalBest_Assists;
 var private int 	PersonalBest_LargeZedKil;
 var private int 	PersonalBest_Dosh;
 
-const KFSTATID_MatchWins 						=	3000			;
+/** Cached Event Stats */
+var private int     SpecialEventInfo;
+var private int     WeeklyEventInfo;
 
 /** Achievement IDs **/
 // ids must be sequential (no gaps)
@@ -392,7 +442,17 @@ const KFACHID_ZedLandingSuicidal				=	175;
 const KFACHID_ZedLandingHellOnEarth				=	176;
 const KFACHID_ZedLandingCollectibles			= 	177;
 
+const KFACHID_DescentNormal						=	178;
+const KFACHID_DescentHard						=	179;
+const KFACHID_DescentSuicidal					=	180;
+const KFACHID_DescentHellOnEarth				=	181;
+const KFACHID_DescentCollectibles				= 	182;
 
+const KFACHID_NukedNormal						=	183;
+const KFACHID_NukedHard							=	184;
+const KFACHID_NukedSuicidal						=	185;
+const KFACHID_NukedHellOnEarth					=	186;
+const KFACHID_NukedCollectibles					= 	187;
 
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
@@ -441,15 +501,15 @@ simulated function LogStats()
 	LogInternal("MedicXP, MedicLVL " @ "          =" @ MedicXP @ MedicLVL);
 	LogInternal("---------------------------------------------------------------");
 	LogInternal("STEAM VALUES:");
-	LogInternal("CommandoXP, CommandoLVL " @ "    =" @ GetXPFromProgress( LogSubsystemIntStat( 1) ) @ GetLVLFromProgress( LogSubsystemIntStat( 1) ));
-	LogInternal("BerserkerXP, BerserkerLVL " @ "  =" @ GetXPFromProgress( LogSubsystemIntStat( 10) ) @ GetLVLFromProgress( LogSubsystemIntStat( 10) ));
-	LogInternal("SupportXP, SupportLVL " @ "      =" @ GetXPFromProgress( LogSubsystemIntStat( 20) ) @ GetLVLFromProgress( LogSubsystemIntStat( 20) ));
-	LogInternal("MedicXP, MedicLVL " @ "          =" @ GetXPFromProgress( LogSubsystemIntStat( 40) ) @ GetLVLFromProgress( LogSubsystemIntStat( 40) ));
+	LogInternal("CommandoXP, CommandoLVL " @ "    =" @ GetXPFromProgress( LogSubsystemIntStat( STATID_Cmdo_Progress ) ) @ GetLVLFromProgress( LogSubsystemIntStat( STATID_Cmdo_Progress ) ));
+	LogInternal("BerserkerXP, BerserkerLVL " @ "  =" @ GetXPFromProgress( LogSubsystemIntStat( STATID_Bsrk_Progress ) ) @ GetLVLFromProgress( LogSubsystemIntStat( STATID_Bsrk_Progress ) ));
+	LogInternal("SupportXP, SupportLVL " @ "      =" @ GetXPFromProgress( LogSubsystemIntStat( STATID_Sup_Progress ) ) @ GetLVLFromProgress( LogSubsystemIntStat( STATID_Sup_Progress ) ));
+	LogInternal("MedicXP, MedicLVL " @ "          =" @ GetXPFromProgress( LogSubsystemIntStat( STATID_Medic_Progress ) ) @ GetLVLFromProgress( LogSubsystemIntStat( STATID_Medic_Progress ) ));
 	LogInternal(" ");
-	LogInternal("CommandoProgress " @ "           =" @ LogSubsystemIntStat( 1));
-	LogInternal("BerserkerProgress " @ "          =" @ LogSubsystemIntStat( 10));
-	LogInternal("SupportProgress " @ "            =" @ LogSubsystemIntStat( 20));
-	LogInternal("MedicProgress " @ "              =" @ LogSubsystemIntStat( 40));
+	LogInternal("CommandoProgress " @ "           =" @ LogSubsystemIntStat( STATID_Cmdo_Progress ));
+	LogInternal("BerserkerProgress " @ "          =" @ LogSubsystemIntStat( STATID_Bsrk_Progress ));
+	LogInternal("SupportProgress " @ "            =" @ LogSubsystemIntStat( STATID_Sup_Progress ));
+	LogInternal("MedicProgress " @ "              =" @ LogSubsystemIntStat( STATID_Medic_Progress ));
 	LogInternal("###############################################################");
 }
 
@@ -459,170 +519,178 @@ event CacheStatsValue(int StatID, float Value)
 	switch( StatID )
 	{
 		// Perk XPs and builds
-		case 1:
+		case STATID_Cmdo_Progress:
 			CommandoXP = GetXPFromProgress( Value );
 			CommandoLVL = GetLVLFromProgress( Value );
 			CommandoPSG = GetPSGFromProgress( Value );
 			CheckPerkLvlAchievement( class'KFPerk_Commando', CommandoLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "CommandoXP:" @ CommandoXP @CommandoLVL @ "VALUE:" @ Round( value ));
 			break;
-		case 2:
+		case STATID_Cmdo_Build:
 			CommandoBuild = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "CommandoBuild:" @ CommandoBuild);
 			break;
-		case 10:
+		case STATID_Bsrk_Progress:
 			BerserkerXP = GetXPFromProgress( Value );
 			BerserkerLVL = GetLVLFromProgress( Value );
 			BerserkerPSG = GetPSGFromProgress( Value );
 			CheckPerkLvlAchievement( class'KFPerk_Berserker', BerserkerLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "BerserkerXP:" @ BerserkerXP @ BerserkerLVL @ "VALUE:" @ Round( value ));
 			break;
-		case 11:
+		case STATID_Bsrk_Build:
 			BerserkerBuild = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "BerserkerBuild:" @ BerserkerBuild);
 			break;
-		case 20:
+		case STATID_Sup_Progress:
 			SupportXP = GetXPFromProgress( Value );
 			SupportLVL = GetLVLFromProgress( Value );
 			SupportPSG = GetPSGFromProgress( Value );
 			CheckPerkLvlAchievement( class'KFPerk_Support', SupportLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SupportXP:" @ SupportXP @ SupportLVL @ "VALUE:" @ Round( value ));
 			break;
-		case 21:
+		case STATID_Sup_Build:
 			SupportBuild = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SupportBuild:" @ SupportBuild);
 			break;
-		case 40:
+		case STATID_Medic_Progress:
 			MedicXP = GetXPFromProgress( Value );
 			MedicLVL = GetLVLFromProgress( Value );
 			MedicPSG = GetPSGFromProgress( Value );
 			CheckPerkLvlAchievement( class'KFPerk_FieldMedic', MedicLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "MedicXP:" @ MedicXP @ MedicLVL @ "VALUE:" @ Round( value ));
 			break;
-		case 41:
+		case STATID_Medic_Build:
 			MedicBuild = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "MedicBuild:" @ MedicBuild);
 			break;
-		case 30:
+		case STATID_Fire_Progress:
 			FirebugXP = GetXPFromProgress( Value );
 			FirebugLVL = GetLVLFromProgress( Value );
 			FirebugPSG = GetPSGFromProgress( Value );
 			CheckPerkLvlAchievement( class'KFPerk_Firebug', FirebugLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "FirebugXP:" @ FirebugXP @ FirebugLVL @ "VALUE:" @ Round( value ));
 			break;
-		case 31:
+		case STATID_Fire_Build:
 			FirebugBuild = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "FirebugBuild:" @ FirebugBuild);
 			break;
-		case 60:
+		case STATID_Demo_Progress:
 			DemoXP = GetXPFromProgress( Value );
 			DemoLVL = GetLVLFromProgress( Value );
 			DemoPSG = GetPSGFromProgress( Value );
 			CheckPerkLvlAchievement( class'KFPerk_Demolitionist', DemoLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "DemoXP:" @ DemoXP @ DemoLVL @ "VALUE:" @ Round( value ));
 			break;
-		case 61:
+		case STATID_Demo_Build:
 			DemoBuild = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "DemoBuild:" @ DemoBuild);
 			break;
-		case 80:
+		case STATID_Guns_Progress:
 			GunslingerXP = GetXPFromProgress( Value );
 			GunslingerLVL = GetLVLFromProgress( Value );
 			GunslingerPSG = GetPSGFromProgress( Value );
 			CheckPerkLvlAchievement( class'KFPerk_Gunslinger', GunslingerLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "GunslingerXP:" @ GunslingerXP @ GunslingerLVL @ "VALUE:" @ Round( value ));
 			break;
-		case 81:
+		case STATID_Guns_Build:
 			GunslingerBuild = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "GunslingerBuild:" @ GunslingerBuild);
 			break;
-		case 50:
+		case STATID_Shrp_Progress:
 			SharpshooterXP = GetXPFromProgress( Value );
 			SharpshooterLVL = GetLVLFromProgress( Value );
 			SharpshooterPSG = GetPSGFromProgress( Value );
 			CheckPerkLvlAchievement( class'KFPerk_Sharpshooter', SharpshooterLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SharpshooterXP:" @ SharpshooterXP @ SharpshooterLVL @ "VALUE:" @ Round( value ));
 			break;
-		case 51:
+		case STATID_Shrp_Build:
 			SharpshooterBuild = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SharpshooterBuild:" @ SharpshooterBuild);
 			break;
-		case 90:
+		case STATID_Swat_Progress:
 			SwatXP = GetXPFromProgress( Value );
 			SwatLVL = GetLVLFromProgress( Value );
 			SwatPSG = GetPSGFromProgress( Value );
 			CheckPerkLvlAchievement( class'KFPerk_Swat', SwatLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SwatXP:" @ SwatXP @ SwatLVL @ "VALUE:" @ Round( value ));
 			break;
-		case 91:
+		case STATID_Swat_Build:
 			SwatBuild = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SwatBuild:" @ SwatBuild);
 			break;
-		case 70:
+		case STATID_Surv_Progress:
 			SurvXP = GetXPFromProgress( Value );
 			SurvLVL = GetLVLFromProgress( Value );
 			SurvPSG = GetPSGFromProgress( Value );
 			CheckPerkLvlAchievement( class'KFPerk_Survivalist', SurvLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SurvXP:" @ SurvXP @ SurvLVL @ "VALUE:" @ Round( value ));
 			break;
-		case 71:
+		case STATID_Surv_Build:
 			SurvBuild = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SurvBuild:" @ SurvBuild);
 			break;
 		// end of perk progress stats
-		case 200:
+		case STATID_Kills:
 			Kills = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "Kills:" @ Kills);
 			break;
-		case 201:
+		case STATID_StalkerKills:
 			StalkerKills = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "Stalker Kills:" @ StalkerKills);
 			break;
-		case 22:
+		case STATID_Sup_WeldPoints:
 			WeldingPoints = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "Welding points:" @ WeldingPoints);
 			break;
-		case 42:
+		case STATID_Medic_HealPoints:
 			HealingPoints = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "Healing points:" @ HealingPoints);
 			break;
-		case 202:
+		case STATID_CrawlerKills:
 			CrawlerKills = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "Crawler kills:" @ CrawlerKills);
 			break;
-		case 203:
+		case STATID_FleshpoundKills:
 			FleshpoundKills = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "Fleshpound kills:" @ FleshpoundKills);
 			break;
-		case 2000:
+        case STATID_SpecialEventProgress:
+            CacheSpecialEventState(Value);
+            if (bLogStatsWrite) LogInternal(GetFuncName() @ "Special Event: " @ SpecialEventInfo);
+            break;
+        case STATID_WeeklyEventProgress:
+            CacheWeeklyEventState(Value);
+            if (bLogStatsWrite) LogInternal(GetFuncName() @ "Weekly Event:" @ WeeklyEventInfo);
+            break;
+		case STATID_PersonalBest_KnifeKills:
 			PersonalBest_KnifeKills = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_KnifeKills:" @ PersonalBest_KnifeKills);
 			break;
-		case 2001:
+		case STATID_PersonalBest_PistolKills:
 			PersonalBest_PistolKills = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_PistolKills:" @ PersonalBest_PistolKills);
 			break;
-		case 2002:
+		case STATID_PersonalBest_HeadShots:
 			PersonalBest_HeadShots = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_HeadShots:" @ PersonalBest_HeadShots);
 			break;
-		case 2003:
+		case STATID_PersonalBest_Healing:
 			PersonalBest_Healing = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_Healing:" @ PersonalBest_Healing);
 			break;
-		case 2004:
+		case STATID_PersonalBest_Kills:
 			PersonalBest_Kills = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_Kills:" @ PersonalBest_Kills);
 			break;
-		case 2005:
+		case STATID_PersonalBest_Assists:
 			PersonalBest_Assists = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_Assists:" @ PersonalBest_Assists);
 			break;
-		case 2006:
+		case STATID_PersonalBest_LargeZedKill:
 			PersonalBest_LargeZedKil = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_LargeZedKil:" @ PersonalBest_LargeZedKil);
 			break;
-		case 2007:
+		case STATID_PersonalBest_Dosh:
 			PersonalBest_Dosh = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_Dosh:" @ PersonalBest_Dosh);
 			break;
@@ -732,16 +800,16 @@ private event int GetPerkXP( int StatID )
 {
 	switch( StatID )
 	{
-		case 1:			return CommandoXP;
-		case 10:			return BerserkerXP;
-		case 20:			return SupportXP;
-		case 40:		return MedicXP;
-		case 30:			return FirebugXP;
-		case 60:			return DemoXP;
-		case 80:			return GunslingerXP;
-		case 50:			return SharpshooterXP;
-		case 90:			return SwatXP;
-		case 70:			return SurvXP;
+		case STATID_Cmdo_Progress:			return CommandoXP;
+		case STATID_Bsrk_Progress:			return BerserkerXP;
+		case STATID_Sup_Progress:			return SupportXP;
+		case STATID_Medic_Progress:		return MedicXP;
+		case STATID_Fire_Progress:			return FirebugXP;
+		case STATID_Demo_Progress:			return DemoXP;
+		case STATID_Guns_Progress:			return GunslingerXP;
+		case STATID_Shrp_Progress:			return SharpshooterXP;
+		case STATID_Swat_Progress:			return SwatXP;
+		case STATID_Surv_Progress:			return SurvXP;
 	}
 
 	return 0;
@@ -752,16 +820,16 @@ private event int GetPerkLVLInternal( int StatID )
 {
 	switch( StatID )
 	{
-		case 1:			return CommandoLVL;
-		case 10:			return BerserkerLVL;
-		case 20:			return SupportLVL;
-		case 40:		return MedicLVL;
-		case 30:			return FirebugLVL;
-		case 60:			return DemoLVL;
-		case 80:			return GunslingerLVL;
-		case 50:			return SharpshooterLVL;
-		case 90:			return SwatLVL;		
-		case 70:			return SurvLVL;		
+		case STATID_Cmdo_Progress:			return CommandoLVL;
+		case STATID_Bsrk_Progress:			return BerserkerLVL;
+		case STATID_Sup_Progress:			return SupportLVL;
+		case STATID_Medic_Progress:		return MedicLVL;
+		case STATID_Fire_Progress:			return FirebugLVL;
+		case STATID_Demo_Progress:			return DemoLVL;
+		case STATID_Guns_Progress:			return GunslingerLVL;
+		case STATID_Shrp_Progress:			return SharpshooterLVL;
+		case STATID_Swat_Progress:			return SwatLVL;		
+		case STATID_Surv_Progress:			return SurvLVL;		
 	}
 
 	return 0;
@@ -772,16 +840,16 @@ private event int GetPerkPSG( int StatID )
 {
 	switch( StatID )
 	{
-		case 1:			return CommandoPSG;
-		case 10:			return BerserkerPSG;
-		case 20:			return SupportPSG;
-		case 40:		return MedicPSG;
-		case 30:			return FirebugPSG;
-		case 60:			return DemoPSG;
-		case 80:			return GunslingerPSG;
-		case 50:			return SharpshooterPSG;
-		case 90:			return SwatPSG;
-		case 70:			return SurvPSG;
+		case STATID_Cmdo_Progress:			return CommandoPSG;
+		case STATID_Bsrk_Progress:			return BerserkerPSG;
+		case STATID_Sup_Progress:			return SupportPSG;
+		case STATID_Medic_Progress:		return MedicPSG;
+		case STATID_Fire_Progress:			return FirebugPSG;
+		case STATID_Demo_Progress:			return DemoPSG;
+		case STATID_Guns_Progress:			return GunslingerPSG;
+		case STATID_Shrp_Progress:			return SharpshooterPSG;
+		case STATID_Swat_Progress:			return SwatPSG;
+		case STATID_Surv_Progress:			return SurvPSG;
 	}
 
 	return 0;
@@ -820,14 +888,14 @@ function SavePersonalBest( EPersonalBests PersonalBestID, int Value )
 {
 	switch( PersonalBestID )
 	{
-		case EPB_KnifeKills:			SetIntStat(2000, Value); 	break;
-		case EPB_PistolKills:			SetIntStat(2001, Value); 	break;
-		case EPB_HeadShots:				SetIntStat(2002, Value); 		break;
-		case EPB_Healing:				SetIntStat(2003, Value); 		break;
-		case EPB_Kills:					SetIntStat(2004, Value); 			break;
-		case EPB_Assists:				SetIntStat(2005, Value); 		break;
-		case EPB_LargeZedKill:			SetIntStat(2006, Value); 	break;
-		case EPB_Dosh:					SetIntStat(2007, Value); 			break;
+		case EPB_KnifeKills:			SetIntStat(STATID_PersonalBest_KnifeKills, Value); 	break;
+		case EPB_PistolKills:			SetIntStat(STATID_PersonalBest_PistolKills, Value); 	break;
+		case EPB_HeadShots:				SetIntStat(STATID_PersonalBest_HeadShots, Value); 		break;
+		case EPB_Healing:				SetIntStat(STATID_PersonalBest_Healing, Value); 		break;
+		case EPB_Kills:					SetIntStat(STATID_PersonalBest_Kills, Value); 			break;
+		case EPB_Assists:				SetIntStat(STATID_PersonalBest_Assists, Value); 		break;
+		case EPB_LargeZedKill:			SetIntStat(STATID_PersonalBest_LargeZedKill, Value); 	break;
+		case EPB_Dosh:					SetIntStat(STATID_PersonalBest_Dosh, Value); 			break;
 	}	
 }
 
@@ -843,7 +911,7 @@ function SavePersonalBest( EPersonalBests PersonalBestID, int Value )
  */
 private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT )
 {
-	IncrementIntStat( 200, 1 );
+	IncrementIntStat( STATID_Kills, 1 );
 	Kills++;
 
 	if(!MonsterClass.default.bVersusZed)
@@ -884,7 +952,7 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
 private function AddStalkerKill( byte Difficulty )
 {
 	StalkerKills++;
-	IncrementIntStat( 201, 1 );
+	IncrementIntStat( STATID_StalkerKills, 1 );
 	AddXP( class'KFPerk_Commando', class'KFPerk_Commando'.static.GetStalkerKillXP( Difficulty ) );
 	if (bLogStatsWrite) LogInternal(GetFuncName() @ "Adding stalker kill, IncrementIntStat STATID_StalkerKills by:" @ class'KFPerk_Commando'.static.GetStalkerKillXP(Difficulty));
 
@@ -918,7 +986,7 @@ private event AddSmallRadiusKill( byte Difficulty )
 private function AddCrawlerKill( byte Difficulty )
 {
 	CrawlerKills++;
-	IncrementIntStat( 202, 1 );
+	IncrementIntStat( STATID_CrawlerKills, 1 );
 	AddXP( class'KFPerk_Firebug', class'KFPerk_Firebug'.static.GetCrawlerKillXP( Difficulty ) );
 	if (bLogStatsWrite) LogInternal(GetFuncName() @ "Adding crawler kill, IncrementIntStat STATID_CrawlerKills by:" @ class'KFPerk_Firebug'.static.GetCrawlerKillXP(Difficulty));
 
@@ -936,7 +1004,7 @@ private function AddCrawlerKill( byte Difficulty )
 private function AddFleshpoundKill( byte Difficulty )
 {
 	FleshpoundKills++;
-	IncrementIntStat( 203, 1 );
+	IncrementIntStat( STATID_FleshpoundKills, 1 );
 	AddXP( class'KFPerk_Demolitionist', class'KFPerk_Demolitionist'.static.GetFleshpoundKillXP( Difficulty ) );
 	if (bLogStatsWrite) LogInternal(GetFuncName() @ "Adding crawler kill, IncrementIntStat STATID_CrawlerKills by:" @ class'KFPerk_Firebug'.static.GetCrawlerKillXP(Difficulty));
 
@@ -1091,7 +1159,7 @@ private event int AddWeldingPoints( int PointsWelded )
 	}
 
 	// We need the welding points to be persistent
-	SetIntStat( 22,  WeldingPoints );
+	SetIntStat( STATID_Sup_WeldPoints,  WeldingPoints );
 
 	return XPEarned;
 }
@@ -1143,7 +1211,7 @@ private event int AddHealingPoints( int PointsHealed )
 	}
 
 	// We need the welding points to be persistent
-	SetIntStat( 42,  HealingPoints );
+	SetIntStat( STATID_Medic_HealPoints,  HealingPoints );
 
 	if( MyKFPC != none )
 	{
@@ -1207,8 +1275,7 @@ private function AddSharpshooterHeadshot( byte Difficulty )
  */
 private final function bool IsGunslingerHeadshot( class<DamageType> DT )
 {
-	return (class'KFPerk_Gunslinger'.static.IsDamageTypeOnPerk( class<KFDamageType>(DT) ) &&
-			MyKFPC.GetPerk().static.GetPerkClass() != class'KFPerk_Sharpshooter'.static.GetPerkClass());
+	return (class'KFPerk_Gunslinger'.static.IsDamageTypeOnPerk( class<KFDamageType>(DT) ));
 }
 
 /**
@@ -1219,8 +1286,7 @@ private final function bool IsGunslingerHeadshot( class<DamageType> DT )
  */
 private final function bool IsSharpshooterHeadshot( class<DamageType> DT )
 {
-	return (class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Sharpshooter'.static.GetPerkClass() ) && 
-			MyKFPC.GetPerk().static.GetPerkClass() != class'KFPerk_Gunslinger'.static.GetPerkClass());
+	return (class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Sharpshooter'.static.GetPerkClass() ));
 }
 
 /*********************************************************************************************
@@ -1246,6 +1312,8 @@ function OnUnlockAchievement( int AchievementIndex )
 	//Reload the achievement list to get the change
 	GetAchievements();
 }
+
+native function UnlockDingoAchievement(int AchievementId, optional int Value = 1);
 
 /**
  * @brief Call into native to determine if we achieved anything
@@ -1294,6 +1362,28 @@ native final private function CheckAllPerksLvl25();
  */
 native final function UnlockTutorialAchievement();
 native final function CheckForRoundTeamWinAchievements( byte WinningTeam );
+
+/*********************************************************************************************
+* @name Events
+********************************************************************************************* */
+/** Verify what event we're in and cache local event state.  If we've changed to a new event,
+ *      clear out the status flags before caching new date value.
+ */
+native final private function CacheSpecialEventState(int Value);
+
+/** Update the state of a special event.  If the passed in EventIndex doesn't match our current
+ *      special event index, do not update the stat.  Also, if the map name passed doesn't match
+ *      the list of allowed maps in native, don't record.
+ */
+native final function UpdateSpecialEvent(int EventIndex, int ObjectiveIndex);
+
+/** Cache the state of the weekly event.If the cached week/year combo in the stored
+ *      value don't match, everything is cleared.
+ */
+native final private function CacheWeeklyEventState(int Value);
+
+/** Update the state of the weekly event.  Called via game type. */
+native final function WeeklyEventComplete();
 
 defaultproperties
 {
@@ -1348,15 +1438,17 @@ defaultproperties
    Properties(23)=(PropertyId=42,Data=(Type=SDT_Int32))
    Properties(24)=(PropertyId=202,Data=(Type=SDT_Int32))
    Properties(25)=(PropertyId=203,Data=(Type=SDT_Int32))
-   Properties(26)=(PropertyId=2000,Data=(Type=SDT_Int32))
-   Properties(27)=(PropertyId=2001,Data=(Type=SDT_Int32))
-   Properties(28)=(PropertyId=2002,Data=(Type=SDT_Int32))
-   Properties(29)=(PropertyId=2003,Data=(Type=SDT_Int32))
-   Properties(30)=(PropertyId=2004,Data=(Type=SDT_Int32))
-   Properties(31)=(PropertyId=2005,Data=(Type=SDT_Int32))
-   Properties(32)=(PropertyId=2006,Data=(Type=SDT_Int32))
-   Properties(33)=(PropertyId=2007,Data=(Type=SDT_Int32))
-   Properties(34)=(PropertyId=3000,Data=(Type=SDT_Int32))
+   Properties(26)=(PropertyId=300,Data=(Type=SDT_Int32))
+   Properties(27)=(PropertyId=301,Data=(Type=SDT_Int32))
+   Properties(28)=(PropertyId=2000,Data=(Type=SDT_Int32))
+   Properties(29)=(PropertyId=2001,Data=(Type=SDT_Int32))
+   Properties(30)=(PropertyId=2002,Data=(Type=SDT_Int32))
+   Properties(31)=(PropertyId=2003,Data=(Type=SDT_Int32))
+   Properties(32)=(PropertyId=2004,Data=(Type=SDT_Int32))
+   Properties(33)=(PropertyId=2005,Data=(Type=SDT_Int32))
+   Properties(34)=(PropertyId=2006,Data=(Type=SDT_Int32))
+   Properties(35)=(PropertyId=2007,Data=(Type=SDT_Int32))
+   Properties(36)=(PropertyId=3000,Data=(Type=SDT_Int32))
    ViewIds(0)=1
    Name="Default__KFOnlineStatsWrite"
    ObjectArchetype=OnlineStatsWrite'Engine.Default__OnlineStatsWrite'

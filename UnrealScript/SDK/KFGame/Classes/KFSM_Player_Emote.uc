@@ -36,7 +36,9 @@ var protected array<ParticleSystemComponent> AnimParticles;
 /** Checks to see if this Special Move can be done */
 protected function bool InternalCanDoSpecialMove()
 {
-	if( KFPOwner == none || KFPOwner.Physics == PHYS_Falling || `TimeSinceEx(KFPOwner, LastEmoteTime) < EmoteCooldownTime )
+	if( KFPOwner == none
+		|| KFPOwner.Physics == PHYS_Falling
+		||  `TimeSinceEx(KFPOwner, LastEmoteTime) < EmoteCooldownTime )
 	{
 		return false;
 	}
@@ -120,8 +122,50 @@ function ClearSMParticles()
 	}	
 }
 
+function SetParticlesVisible( bool bWasPlayingCustomAnim )
+{
+	local PlayerController LocalPC;
+	local ParticleSystemComponent PSC;
+	local vector Loc;
+	local rotator Rot;
+
+	LocalPC = class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController();
+
+	// Stop our animnotify-created particle systems early if we have any
+	foreach AnimParticles( PSC )
+	{
+		if( PSC == none || !PSC.bAttached )
+		{
+			continue;
+		}
+
+		// This allows the player to see the particle FX from their emote after the move is over.
+		// Only reattach particle systems that were actually attached to the pawn. Some may not
+		// be attached, in which case their owner will be an Emitter.
+		if( LocalPC != none && PSC.Owner == KFPOwner )
+		{
+			Loc = PSC.GetPosition();
+			Rot = PSC.GetRotation();
+
+			// Attach to a player controller and set position/rotation
+		    LocalPC.AttachComponent( PSC );
+			PSC.SetAbsolute( true, true, true );
+			PSC.SetTranslation( Loc );
+			PSC.SetRotation( Rot );
+
+			// Playercontrollers are always hidden, so we need to ignore that
+			PSC.SetIgnoreOwnerHidden( true );
+		}
+
+		if( bWasPlayingCustomAnim && PSC.bIsActive )
+		{
+			PSC.DeactivateSystem();
+		}
+	}	
+}
+
 /** Called from KFPawn::OnAnimNotifyParticleSystemSpawned() */
-simulated function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC )
+function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC )
 {
 	local AnimSequence AnimSeq;
 
@@ -157,25 +201,14 @@ function Tick( float DeltaTime )
 
 function SpecialMoveEnded( Name PrevMove, Name NextMove )
 {
-	local int i;
+	local bool bWasPlayingCustomAnim;
 
 	// abort animation if something ended the emote early
  	if( KFPOwner.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim )
  	{
 		KFPOwner.StopBodyAnim( AnimStance, 0.2 );
-
-		// Stop our animnotify-created particle systems early if we have any
-		for( i = 0; i < AnimParticles.Length; ++i )
-		{
-			if( AnimParticles[i] != none && AnimParticles[i].bIsActive )
-			{
-				AnimParticles[i].DeactivateSystem();
-			}
+		bWasPlayingCustomAnim = true;
 	}
-	}
-
-	// Clear particles spawned by animnotifies
-	ClearSMParticles();
 
 	// Don't change attachment visibility if another camera mode has already been set
 	KFPOwner.SetWeaponAttachmentVisibility( PCOwner == none || PCOwner.IsEmoteCameraMode() );
@@ -189,6 +222,9 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 			PCOwner.PlayerCamera.CameraStyle = LastCameraMode;
 		}
 
+		SetParticlesVisible( bWasPlayingCustomAnim );
+		ClearSMParticles();
+
 		Super.SpecialMoveEnded( PrevMove, NextMove );
 		return;
 	}
@@ -201,6 +237,9 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 	{
 		PCOwner.ClientStopCameraAnim( CameraAnim );
 	}
+
+	SetParticlesVisible( bWasPlayingCustomAnim );
+	ClearSMParticles();
 
 	// Return the camera to the player
 	if( PCOwner.IsEmoteCameraMode() )
@@ -216,6 +255,13 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 	}
 
 	Super.SpecialMoveEnded( PrevMove, NextMove );
+}
+
+/** Make sure aim rotation is the same as our original aim rot */
+function bool GetSMAimRotation( out rotator AimRot )
+{
+	AimRot = InitialRotation;
+	return true;
 }
 
 DefaultProperties

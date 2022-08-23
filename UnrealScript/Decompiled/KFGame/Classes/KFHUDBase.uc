@@ -68,6 +68,7 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;
 
 struct sHiddenHumanPawnInfo
 {
@@ -479,8 +480,11 @@ function DrawHUD()
                 HiddenHumanPlayers[0].HumanPRI = KFPH.PlayerReplicationInfo;
             }            
         }        
-        CheckAndDrawHiddenPlayerIcons(VisibleHumanPlayers, HiddenHumanPlayers);
-        CheckAndDrawRemainingZedIcons();
+        if(!KFGRI.bHidePawnIcons)
+        {
+            CheckAndDrawHiddenPlayerIcons(VisibleHumanPlayers, HiddenHumanPlayers);
+            CheckAndDrawRemainingZedIcons();
+        }
         Canvas.EnableStencilTest(false);
     }
 }

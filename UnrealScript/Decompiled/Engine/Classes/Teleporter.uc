@@ -272,7 +272,7 @@ defaultproperties
     // Reference: PathRenderingComponent'Default__Teleporter.PathRenderer'
     Components(4)=PathRenderer
     RemoteRole=ENetRole.ROLE_SimulatedProxy
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
+    CollisionType=ECollisionType.COLLIDE_TouchAll
     bCollideActors=true
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=80

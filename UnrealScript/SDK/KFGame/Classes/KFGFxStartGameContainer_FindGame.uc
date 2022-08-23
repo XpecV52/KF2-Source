@@ -38,6 +38,22 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
     StartMenu = KFGFxMenu_StartGame( NewParentMenu );
     LocalizeMenu();
     SetWhatsNewItems();
+
+    if( class'KFGameEngine'.static.IsSoloPlayDisabled())
+    {
+        DisableSoloButton();
+    }
+}
+
+function DisableSoloButton()
+{
+    local GFxObject SoloButton;
+
+    SoloButton = GetObject("soloOfflineButton");
+    if(SoloButton != none)
+    {
+        SoloButton.SetBool("enabled", false);
+    }
 }
 
 function SetWhatsNewItems()
@@ -104,13 +120,14 @@ function LocalizeMenu()
 
 DefaultProperties
 {
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_volcano", Textfield="LatestUpdate", RedirectURL="http://www.killingfloor2.com/bullseye")) 
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Descent", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch", Textfield="Merch", RedirectURL="https://tripwire.manheadmerch.com/"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_Spitfire_17", Textfield="USBSpitfire", RedirectURL="https://store.steampowered.com/buyitem/232090/4801"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Insectoid_13", Textfield="HorzineSupplyCrateKey13", RedirectURL="https://store.steampowered.com/buyitem/232090/4775"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_HighVoltage_16", Textfield="USBHighVoltage", RedirectURL="https://store.steampowered.com/buyitem/232090/4785"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub", Textfield="Jaegorhorn", RedirectURL="https://steamcommunity.com/app/232090"))    
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Emote_01_11", Textfield="NewEmotes", RedirectURL="https://store.steampowered.com/buyitem/232090/4540"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_MaceShield_15", Textfield="USBBoneCrusher", RedirectURL="https://store.steampowered.com/buyitem/232090/4562"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums", Textfield="Forums", RedirectURL="http://forums.tripwireinteractive.com/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey", Textfield="Survey", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue", Textfield="CommunityTracker", RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch", Textfield="Merch", RedirectURL="https://tripwire.gomerch.com/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered", Textfield="Uncovered", RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/"))
 }

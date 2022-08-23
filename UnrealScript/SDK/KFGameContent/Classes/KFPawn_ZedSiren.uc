@@ -117,8 +117,8 @@ defaultproperties
 
 	// ---------------------------------------------
 	// Content
+    MonsterArchPath="ZED_ARCH.ZED_Siren_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
-	CharacterMonsterArch=KFCharacterInfo_Monster'zed_siren_arch.ZED_Siren_Archetype'
 	DifficultySettings=class'KFDifficulty_Siren'
 
 	Begin Object Name=KFPawnSkeletalMeshComponent

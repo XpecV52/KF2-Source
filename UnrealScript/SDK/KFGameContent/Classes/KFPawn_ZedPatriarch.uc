@@ -1898,7 +1898,7 @@ defaultproperties
 
     // ---------------------------------------------
     // Content
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Patriarch_ARCH.ZED_Patriarch_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Patriarch_Archetype"
     PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
 
 	CloakedBodyMaterial=MaterialInstanceConstant'ZED_Patriarch_MAT.ZED_Patriarch_Mech_Cloak_M'

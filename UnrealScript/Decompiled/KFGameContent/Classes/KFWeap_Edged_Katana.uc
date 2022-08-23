@@ -21,10 +21,10 @@ defaultproperties
     PlayerViewOffset=(X=2,Y=0,Z=0)
     AttachmentArchetype=KFWeaponAttachment'WEP_Katana_ARCH.Wep_Katana_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
-        WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
         MeleeImpactCamShakeScale=0.03
         MaxHitRange=190
         HitboxChain=/* Array type was not detected. */
+        WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Edged_Katana.MeleeHelper'
     MeleeAttackHelper=MeleeHelper

@@ -31,19 +31,21 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
     local KFGameReplicationInfo KFGRI;
 
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     super.InitializeMenu(InManager);
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
-    if(KFGRI != none)
-    {
-        KFGRI.ProcessChanceDrop();
-    }
-    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {
+        Class'GameEngine'.static.GetPlayfabInterface().AddOnCloudScriptExecutionCompleteDelegate(OnProcessEndGameRewardsComplete);
+        KFGRI.SendPlayfabGameTimeUpdate(true);
         Class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(SearchPlayfabInventoryForNewItem);        
     }
     else
     {
+        if(KFGRI != none)
+        {
+            KFGRI.ProcessChanceDrop();
+        }
         OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
     }
     LocalizeText();
@@ -75,7 +77,7 @@ function LocalizeText()
         {
             TextObject.SetString("serverName", WI.GRI.ServerName);
         }
-        if(Class'WorldInfo'.static.IsConsoleBuild(8))
+        if(Class'WorldInfo'.static.IsConsoleBuild())
         {
             TextObject.SetString("serverIP", "");            
         }
@@ -92,6 +94,15 @@ function SearchPlayfabInventoryForNewItem(bool bSuccess)
     if(bSuccess)
     {
         SearchInventoryForNewItem();
+    }
+}
+
+function OnProcessEndGameRewardsComplete(bool bWasSuccessful, string FunctionName, JsonObject FunctionResult)
+{
+    Class'GameEngine'.static.GetPlayfabInterface().ClearOnCloudScriptExecutionCompleteDelegate(OnProcessEndGameRewardsComplete);
+    if(FunctionName == "UpdatePlayRewards")
+    {
+        Class'GameEngine'.static.GetPlayfabInterface().ReadInventory();
     }
 }
 
@@ -299,7 +310,6 @@ function OnOpen()
         if(Outer.GetPC().WorldInfo.NetMode == NM_Client)
         {
             Class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(SearchPlayfabInventoryForNewItem);
-            Class'GameEngine'.static.GetPlayfabInterface().ReadInventory();
         }        
     }
     else

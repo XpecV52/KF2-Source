@@ -66,6 +66,7 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;
 
 enum EServerType
 {
@@ -144,6 +145,7 @@ var GFxObject InProgressButton;
 var GFxObject PrivacyButton;
 var GFxObject LengthButton;
 var GFxObject DifficultyButton;
+var GFxObject MapButton;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
@@ -162,6 +164,7 @@ function GetButtons()
     PrivacyButton = GetObject("privacyButton");
     LengthButton = GetObject("lengthButton");
     DifficultyButton = GetObject("difficultyButton");
+    MapButton = GetObject("mapButton");
 }
 
 function ClampSavedFiltersToMode()
@@ -227,7 +230,7 @@ function InitializeGameOptions()
     {
         SavedSoloMapString = "";
     }
-    if(Class'KFGameEngine'.static.IsPlaygoModePS4())
+    if(!Class'GameEngine'.static.IsGameFullyInstalled())
     {
         SavedMapString = "KF-EvacuationPoint";
         SavedSoloMapString = "KF-EvacuationPoint";        
@@ -283,7 +286,7 @@ function InitializeGameOptions()
     if(bIsSoloGame)
     {
         I = 0;
-        J0x9C6:
+        J0x9C8:
 
         if(I < SupportedGameModeStrings.Length)
         {
@@ -293,7 +296,7 @@ function InitializeGameOptions()
                 -- I;
             }
             ++ I;
-            goto J0x9C6;
+            goto J0x9C8;
         }
     }
     TextObject.SetObject("modeList", CreateList(SupportedGameModeStrings, byte(Min(((bIsSoloGame) ? SavedSoloModeIndex : SavedModeIndex), SupportedGameModeStrings.Length)), false));
@@ -372,10 +375,30 @@ function GFxObject CreateList(array<string> TextArray, byte SelectedIndex, bool 
     return OptionList;
 }
 
-function SetOptions()
+function SetOptions(optional bool bMenuOpening)
 {
+    local array<string> PlayfabRegionList;
+
     InProgressChanged(SavedInProgressIndex);
     PrivacyChanged(SavedPrivacyIndex);
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        if(bMenuOpening && !bIsSoloGame)
+        {
+            if(Class'WorldInfo'.static.IsConsoleBuild(9) && Class'GameEngine'.static.GetPlayfabInterface().CurrRegionName == "")
+            {
+                Class'GameEngine'.static.GetOnlineSubsystem().StartRegionPingAndSelectDefaultRegion(None);
+                ParentMenu.Manager.DelayedOpenPopup(2, 0, Localize("Notifications", "NewRegionTitle", "KFGameConsole"), Localize("Notifications", "NewRegionMessage", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+            }
+            RegionIndex = byte(Class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion());
+            PlayfabRegionList = Class'PlayfabInterface'.static.GetLocalizedRegionList();
+            ServerTypeButton.SetString("infoString", PlayfabRegionList[RegionIndex]);
+        }        
+    }
+    else
+    {
+        ServerTypeChanged(SavedServerTypeIndex, true);
+    }
 }
 
 function SetSearching(bool bSearching)
@@ -479,6 +502,7 @@ function PrivacyChanged(int Index, optional bool bSetText)
         {
             PrivacyButton.SetString("infoString", Class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(Outer.GetPC().WorldInfo.IsConsoleBuild())[SavedInProgressIndex]);
         }
+        StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(152, SavedPrivacyIndex);
     }
 }
 
@@ -502,8 +526,6 @@ function CheckAndUpdateBasedOnPrivacy()
 
 function ServerTypeChanged(int Index, optional bool bSetText)
 {
-    LogInternal("Server Type changed to" @ string(Index));
-    ScriptTrace();
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {
         RegionIndex = byte(Index);
@@ -517,6 +539,14 @@ function ServerTypeChanged(int Index, optional bool bSetText)
         if(bSetText)
         {
             ServerTypeButton.SetString("infoString", ServerTypeStrings[SavedServerTypeIndex]);
+        }
+        if(SavedServerTypeIndex == 2)
+        {
+            MapButton.SetBool("enabled", false);            
+        }
+        else
+        {
+            MapButton.SetBool("enabled", true);
         }
     }
 }

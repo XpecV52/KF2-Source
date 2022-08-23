@@ -412,7 +412,7 @@ function bool DialogEventCanBePlayed(KFPawn KFP, const out DialogEventInfo Event
         }
         return false;
     }
-    if((KFP.SpecialMove == 30) && EventInfo.Priority > InterruptPriorityThreshold)
+    if((KFP.SpecialMove == 31) && EventInfo.Priority > InterruptPriorityThreshold)
     {
         if(bLogDialog)
         {

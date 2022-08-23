@@ -2127,6 +2127,7 @@ AttachmentSkin0="Agatha"
 AttachmentSkin1="Cleese"
 AttachmentSkin2="Jamie"
 AttachmentSkin3="Perceval"
+AttachmentSkin4="Doré"
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
 Attachment="Masque à gaz punk basique"
@@ -2324,3 +2325,114 @@ EmoteName="Danse nuptiale+"
 
 [KickinIt_Deluxe]
 EmoteName="Dégagement+"
+
+[Cosmetic_FirefighterHelmet_ARCH]
+Attachment="Casque de pompier"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Olive"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Blanc"
+AttachmentSkin5="Jaune"
+
+[Cosmetic_FirefighterHelmetDown_ARCH]
+Attachment="Casque de pompier baissé"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Olive"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Blanc"
+AttachmentSkin5="Jaune"
+
+[Cosmetic_FirefighterHelmetUp_ARCH]
+Attachment="Casque de pompier levé"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Olive"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Blanc"
+AttachmentSkin5="Jaune"
+
+[Cosmetic_FirefighterMask_ARCH]
+Attachment="Masque à gaz pompier"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Olive"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Blanc"
+AttachmentSkin5="Jaune"
+
+[Cosmetic_FirefighterTank_ARCH]
+Attachment="Réservoir O2 pompier"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Olive"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Blanc"
+AttachmentSkin5="Jaune"
+
+[Cosmetic_InsectoidClosed_ARCH]
+Attachment="Casque insecte fermé"
+AttachmentSkin0="Noir lumière rouge"
+AttachmentSkin1="Noir bordure rouge"
+AttachmentSkin2="Noir jaune clair"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Vert foncé"
+AttachmentSkin5="Vert"
+AttachmentSkin6="Violet"
+AttachmentSkin7="Rouge"
+AttachmentSkin8="Rouille"
+AttachmentSkin9="USA"
+AttachmentSkin10="Blanc"
+AttachmentSkin11="Jaune"
+
+[Cosmetic_InsectoidOpen_ARCH]
+Attachment="Casque insecte ouvert"
+AttachmentSkin0="Noir lumière rouge"
+AttachmentSkin1="Noir bordure rouge"
+AttachmentSkin2="Noir jaune clair"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Vert foncé"
+AttachmentSkin5="Vert"
+AttachmentSkin6="Violet"
+AttachmentSkin7="Rouge"
+AttachmentSkin8="Rouille"
+AttachmentSkin9="USA"
+AttachmentSkin10="Blanc"
+AttachmentSkin11="Jaune"
+
+[Cosmetic_InsectoidGogglesUp_ARCH]
+Attachment="Lunettes insecte levées"
+AttachmentSkin0="Noir lumière rouge"
+AttachmentSkin1="Noir bordure rouge"
+AttachmentSkin2="Noir jaune clair"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Vert foncé"
+AttachmentSkin5="Vert"
+AttachmentSkin6="Violet"
+AttachmentSkin7="Rouge"
+AttachmentSkin8="Rouille"
+AttachmentSkin9="USA"
+AttachmentSkin10="Blanc"
+AttachmentSkin11="Jaune"
+
+[Cosmetic_InsectoidGogglesDown_ARCH]
+Attachment="Lunettes insecte baissées"
+AttachmentSkin0="Noir lumière rouge"
+AttachmentSkin1="Noir bordure rouge"
+AttachmentSkin2="Noir jaune clair"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Vert foncé"
+AttachmentSkin5="Vert"
+AttachmentSkin6="Violet"
+AttachmentSkin7="Rouge"
+AttachmentSkin8="Rouille"
+AttachmentSkin9="USA"
+AttachmentSkin10="Blanc"
+AttachmentSkin11="Jaune"
+AttachmentSkin12="Doré"
+
+[Cosmetic_DemonSlayerHelmet_ARCH]
+Attachment="Casque tueur démon"
+AttachmentSkin0="Gris"
+AttachmentSkin1="Doré"

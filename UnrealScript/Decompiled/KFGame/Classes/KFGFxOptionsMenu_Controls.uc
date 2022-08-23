@@ -64,6 +64,7 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;
 
 var KFGFxControlsContainer_Keybinding KeybindingsContainer;
 var KFGFxControlsContainer_Input InputContainer;

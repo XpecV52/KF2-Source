@@ -488,7 +488,7 @@ private final function bool IsConcussionRoundsActive()
     return PerkSkills[7].bActive;
 }
 
-private final function bool IsResupplyActive()
+private final simulated function bool IsResupplyActive()
 {
     return PerkSkills[6].bActive;
 }
@@ -548,16 +548,16 @@ defaultproperties
     AdditionalOnPerkDTNames(2)=KFDT_Ballistic_NailShotgun
     ProgressStatID=20
     PerkBuildStatID=21
-    SecondaryXPModifier[0]=6
+    SecondaryXPModifier[0]=8
     SecondaryXPModifier[1]=8
-    SecondaryXPModifier[2]=10
-    SecondaryXPModifier[3]=14
+    SecondaryXPModifier[2]=8
+    SecondaryXPModifier[3]=8
     PerkName="Support"
     Passives(0)=(Title="Welding Proficiency",Description="Welding speed increased by %x% per level",IconPath="")
     Passives(1)=(Title="Shotgun Damage",Description="Perk weapon damage increased by %x% per level",IconPath="")
     Passives(2)=(Title="Shotgun Penetration",Description="Perk weapon penetration power increased by %x% per level",IconPath="")
     Passives(3)=(Title="Ammo",Description="Ammo increased by 15% plus %x% per level",IconPath="")
-    Passives(4)=(Title="Strength",Description="Weight capacity increased by 1 every 5 levels",IconPath="")
+    Passives(4)=(Title="Increased Weight Capacity",Description="Weight capacity increased by 1 every 5 levels",IconPath="")
     Passives(5)=(Title="Ammo Backpack + Door repair",Description="Once per round players can get ammo from backpack - repair destroyed doors",IconPath="")
     SkillCatagories[0]="Ammo Management"
     SkillCatagories[1]="Training"

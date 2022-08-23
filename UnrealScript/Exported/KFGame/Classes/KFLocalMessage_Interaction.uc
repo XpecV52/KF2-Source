@@ -22,6 +22,8 @@ enum EInteractionMessageType
 	IMT_UseDoor,
 	IMT_UseDoorWelded,
 	IMT_RepairDoor,
+    IMT_UseMinigame,
+    IMT_UseMinigameGenerator,
 
 	// conditional messaging
 	IMT_GamepadWeaponSelectHint,
@@ -44,6 +46,8 @@ var localized string 			GamepadWeaponSelectHint;
 var localized string 			ZedUseDoorMessage;
 var localized string 			ZedUseDoorWeldedMessage;
 var localized string 			PlayerClotGrabWarningMessage;
+var localized string            UseMinigameMessage;
+var localized string            UseMinigameGeneratorMessage;
 
 var const string USE_COMMAND;
 var const string HEAL_COMMAND;
@@ -192,6 +196,10 @@ static function string GetString(
 			return default.PlayerClotGrabWarningMessage;
 		case IMT_GamepadWeaponSelectHint:
 			return default.GamepadWeaponSelectHint;
+        case IMT_UseMinigame:
+            return default.UseMinigameMessage;
+        case IMT_UseMinigameGenerator:
+            return default.UseMinigameGeneratorMessage;
 		default:
 			return "";
 	}
@@ -224,6 +232,8 @@ defaultproperties
    ZedUseDoorMessage="OPEN/CLOSE"
    ZedUseDoorWeldedMessage="DOOR WELDED, BREAK IT DOWN!"
    PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
+   UseMinigameMessage="ACTIVATE MINIGAME"
+   UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
    USE_COMMAND="GBA_Use"
    HEAL_COMMAND="GBA_QuickHeal"
    HEAL_COMMAND_CONTROLLER="GBA_Reload_Gamepad"

@@ -11,81 +11,7 @@
 class KFPerk_Firebug extends KFPerk
 	native;
 
-
-
- 
-
-
- 
-
-
-  
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
-
-
- 
-
-
- 
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-#linenumber 14
+//`include(KFOnlineStats.uci)
 
 var		const	PerkSkill 			WeaponDamage;						// 1% increased Perk weapon damage per level (max 25%)
 var 	const	PerkSkill			WeaponReload;              			// 1% faster perk weapon reload per level (max 25%)
@@ -442,7 +368,7 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	return 1.f;
 }
 
-simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsGroundFireActive() &&	DamageType != none && 
 		ClassIsChildOf( DamageType,  SnareCausingDmgTypeClass ) )
@@ -708,7 +634,7 @@ defaultproperties
    SkillCatagories(3)="Flame"
    SkillCatagories(4)="Advanced Training"
    EXPAction1="Dealing Firebug weapon damage"
-   EXPAction2="Killing Crawlers and Bloats with Firebug weapons"
+   EXPAction2="Killing Crawlers with Firebug weapons"
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
    PerkSkills(0)=(Name="BringTheHeat",StartingValue=0.350000,MaxValue=0.350000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_BringtheHeat")
    PerkSkills(1)=(Name="HighCapFuelTank",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HighCapacityFuel")

@@ -26,6 +26,13 @@ enum EAIType
     AT_MAX
 };
 
+enum EBossAIType
+{
+    BAT_Hans,
+    BAT_Patriarch,
+    BAT_MAX
+};
+
 struct native DifficultyWaveInfo
 {
     var array<KFAIWaveInfo> Waves;
@@ -293,11 +300,11 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
                 AIType = Squad.MonsterList[I].Type;
                 if(AIType == 11)
                 {
-                    TempSpawnList.AddItem(Outer.AIBossClassList[Rand(Outer.AIBossClassList.Length)];                    
+                    TempSpawnList.AddItem(Outer.GetBossAISpawnType();                    
                 }
                 else
                 {
-                    TempSpawnList.AddItem(Outer.AIClassList[AIType];
+                    TempSpawnList.AddItem(Outer.GetAISpawnType(AIType);
                 }
             }
             if(TempSpawnList[TempSpawnList.Length - 1].default.MinSpawnSquadSizeType < LargestMonsterSquadType)
@@ -312,14 +319,14 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
     }
     if(TempSpawnList.Length > 0)
     {
-        J0x2C5:
+        J0x2A2:
 
         if(TempSpawnList.Length > 0)
         {
             RandNum = Rand(TempSpawnList.Length);
             AISpawnList.AddItem(TempSpawnList[RandNum];
             TempSpawnList.Remove(RandNum, 1;
-            goto J0x2C5;
+            goto J0x2A2;
         }
         DesiredSquadType = Squad.MinVolumeType;
         if(LargestMonsterSquadType < DesiredSquadType)
@@ -635,6 +642,7 @@ function float GetNextSpawnTimeMod()
             LogInternal("Spawn rate modifier (difficulty):" @ string(Outer.DifficultyInfo.GetSpawnRateModifier()));
         }
     }
+    SpawnTimeMod *= Outer.GetGameInfoSpawnRateMod();
     return SpawnTimeMod * Outer.GameConductor.CurrentSpawnRateModification;
 }
 

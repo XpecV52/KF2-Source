@@ -117,9 +117,6 @@ native static function GetMapList( out array<string> MapList );
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
 	local DataStoreClient DSClient;
-	local PlayerController PC;
-
-	PC = GetPC();
 
 	super.InitializeMenu(InManager);
 	GetMapList(MapStringList);
@@ -135,10 +132,8 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 		GameInterface = class'GameEngine'.static.GetOnlineSubsystem().GameInterface;
 		
 		//@HSL_BEGIN - JRO - 4/28/2016 - Show a message when we're still installing
-		bIsPlayGoRun = class'GameEngine'.static.GetOnlineSubsystem().ContentInterface != none
-						? !class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled()
-						: false;
-		if(PC.WorldInfo.IsConsoleBuild(CONSOLE_Orbis) && bIsPlayGoRun)
+		bIsPlayGoRun = !class'GameEngine'.static.IsGameFullyInstalled();
+		if( bIsPlayGoRun )
 		{
 			Manager.DelayedOpenPopup(ENotification,EDPPID_Misc, Localize("Notifications", "PlayGoBusyTitle", "KFGameConsole"),  Localize("Notifications", "PlayGoBusyMessage", "KFGameConsole"), class'KFCommon_LocalizedStrings'.default.OKString);
 		}
@@ -183,14 +178,14 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 		//@HSL_BEGIN - JRO - 4/28/2016 - Disable certain features for PlayGo
 		case ('matchMakingButton'):
 			MatchMakingButton = Widget;
-			if(class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) && ServerBrowserButton != None)
+			if(class'WorldInfo'.static.IsConsoleBuild() && ServerBrowserButton != None)
 			{
 				CheckGameFullyInstalled();
 			}
 		break;
 		case ('serverBrowserButton'):
 			ServerBrowserButton = Widget;
-			if(class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) && MatchMakingButton != None)
+			if(class'WorldInfo'.static.IsConsoleBuild() && MatchMakingButton != None)
 			{
 				CheckGameFullyInstalled();
 			}
@@ -203,7 +198,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 
 function string GetCouldNotFindGameDescription()
 {
-	if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+	if (class'WorldInfo'.static.IsConsoleBuild())
 	{
 		return CouldNotFindGameDescriptionStringOrbis;
 	}
@@ -219,7 +214,7 @@ function CheckGameFullyInstalled()
 {
 	if(bIsPlayGoRun)
 	{
-		if(class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled())
+		if( class'GameEngine'.static.IsGameFullyInstalled() )
 		{
 			MatchMakingButton.SetBool("enabled", true);
 			ServerBrowserButton.SetBool("enabled", true);
@@ -538,7 +533,14 @@ function Callback_OnWhatsNewClicked(int Index)
 					{
 						if( OnlineSub.ItemPropertiesList[i].SignedOfferId != "" )
 						{
-							OnlineSub.OpenMarketPlaceSearch( OnlineSub.ItemPropertiesList[i] );
+							if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+							{
+								OnlineSub.OpenMarketPlaceSearch( OnlineSub.ItemPropertiesList[i] );
+							}
+							else
+							{
+								OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI( GetLP().ControllerId, OnlineSub.ItemPropertiesList[i].ProductId );
+							}
 						}
 						else
 						{
@@ -622,7 +624,7 @@ function Callback_OptionListOpened(string ListName, int OptionIndex)
 {
 	local string MessageString;
 
-	if(ListName == "mapList" || GetPC().WorldInfo.IsConsoleBuild(CONSOLE_Orbis) && ListName == "serverTypeList")
+	if(ListName == "mapList" || GetPC().WorldInfo.IsConsoleBuild() && ListName == "serverTypeList")
 	{
 		return;
 	}
@@ -707,7 +709,7 @@ function Callback_StartMenuRequestReinit()
 	if( OptionsComponent != none )
 	{
 		OptionsComponent.InitializeGameOptions();
-		OptionsComponent.SetOptions();
+		OptionsComponent.SetOptions(true);
 	}
 }
 
@@ -784,7 +786,7 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 		else if( class'WorldInfo'.static.IsConsoleBuild() )
 		{
 			// Pick a random map is game is fully installed
-			if( class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled() )
+			if( class'GameEngine'.static.IsGameFullyInstalled() )
 			{
 				MapName = MapStringList[rand(MapStringList.Length)];
 			}
@@ -839,7 +841,7 @@ function OnFindGameServerComplete(bool bWasSuccessful)
 	if (bWasSuccessful && !bPauseTryingServers)
 	{
 		// If doing takeover, randomize the list to reduce risk of clients trying to take over the same server. Order is irrelevant for console when (no ping)
-		if( bAttemptingServerCreate )
+		if( bAttemptingServerCreate && class'WorldInfo'.static.IsConsoleBuild() )
 		{
 			RandomizeSearchResults(SearchDataStore.GetActiveGameSearch());
 		}
@@ -1118,7 +1120,6 @@ function AddLobbyFilter(out array<LobbyFilter> Filters, bool bIsSet, string Key,
 
 function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGameContainer_Options Options, OnlineGameSearch Search)
 {
-	local string MapName;
 	local int 	GameMode;
 	local int	GameDifficulty;
 	local int	GameLength;
@@ -1146,14 +1147,6 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
 	}
 	else
 	{
-		MapName = OptionsComponent.GetMapName();
-		LogInternal("Map searched:" @ MapName);
-		// BWJ - 8-17-16 - Map is a preference. Not an actual filter for console. We sort by map after we get the search results.
-		if (MapName != "" && !class'WorldInfo'.static.IsConsoleBuild())
-		{
-			Search.AddServerFilter( "map", MapName);
-		}
-
 		if( OnlineLobby != none && OnlineLobby.GetCurrentLobby(LobbyInfo) && LobbyInfo.Members.length >= 6)
 		{
 			Search.AddServerFilter( "noplayers", "");
@@ -1306,6 +1299,15 @@ native function string GenerateRandomPassword();
 
 function Callback_StartOnlineGame()
 {
+	if ( class'KFGameEngine'.static.IsFreeConsolePlayOver() )
+	{
+		Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, "", 
+			class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString, 
+			class'KFCommon_LocalizedStrings'.default.BuyGameString, 
+			class'KFCommon_LocalizedStrings'.default.OKString, OnBuyGamePressed);
+		return;
+	}
+
 	LobbyOwnerPassword = "";
 	if (OptionsComponent.GetMakeNewServer())
 	{
@@ -1318,6 +1320,18 @@ function Callback_StartOnlineGame()
 
 	bAttemptingServerCreate = false;
 	StartOnlineGame();
+}
+
+/** Called when player selects buy game from the end of demo popup */
+function OnBuyGamePressed()
+{
+	local OnlineSubsystem OnlineSub;
+
+	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+	{
+		OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+		OnlineSub.OpenGameStorePage();
+	}
 }
 
 function UnpauseTryingServers()
@@ -1423,6 +1437,8 @@ defaultproperties
    StockMaps(10)="kf-hostilegrounds"
    StockMaps(11)="kf-infernalrealm"
    StockMaps(12)="kf-zedlanding"
+   StockMaps(13)="kf-thedescent"
+   StockMaps(14)="kf-nuked"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
    SubWidgetBindings(1)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')
    SubWidgetBindings(2)=(WidgetName="OverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_InGameOverview')

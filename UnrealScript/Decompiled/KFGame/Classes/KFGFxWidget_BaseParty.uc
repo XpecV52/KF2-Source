@@ -170,6 +170,7 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
     local bool bConsoleBuild;
     local GFxObject DataProvider;
     local int OptionIndex;
+    local string ProfileString;
 
     DataProvider = Outer.CreateArray();
     OptionIndex = 0;
@@ -198,7 +199,28 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
             ++ OptionIndex;
         }
     }
-    AddStringOptionToList(ViewProfileKey, OptionIndex, ((bConsoleBuild) ? Localize("KFGFxWidget_BaseParty", "ViewProfileString", "KFGameConsole") : ViewProfileString), DataProvider);
+    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        ProfileString = ConsoleLocalize("ViewProfileString", "KFGFxWidget_BaseParty");        
+    }
+    else
+    {
+        if(Class'WorldInfo'.static.IsConsoleBuild(9))
+        {
+            if(KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus == 2)
+            {
+                ProfileString = ConsoleLocalize("ViewProfileStringXB1", "KFGFxWidget_BaseParty");
+            }            
+        }
+        else
+        {
+            ProfileString = ViewProfileString;
+        }
+    }
+    if(ProfileString != "")
+    {
+        AddStringOptionToList(ViewProfileKey, OptionIndex, ProfileString, DataProvider);
+    }
     ++ OptionIndex;
     SetObject("listOptions", DataProvider);
 }

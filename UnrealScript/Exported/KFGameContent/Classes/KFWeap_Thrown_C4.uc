@@ -135,6 +135,7 @@ simulated function Projectile ProjectileFire()
 	{
 		DeployedCharges.AddItem( Charge );
 		NumDeployedCharges = DeployedCharges.Length;
+		bForceNetUpdate = true;
 	}
 
 	return P;
@@ -176,6 +177,7 @@ function RemoveDeployedCharge( optional int ChargeIndex = INDEX_NONE, optional A
 	{
 		DeployedCharges.Remove( ChargeIndex, 1 );
 		NumDeployedCharges = DeployedCharges.Length;
+		bForceNetUpdate = true;
 	}
 }
 
@@ -190,6 +192,7 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 
 	DeployedCharges = KFWeap_Thrown_C4(PickedUpWeapon).DeployedCharges;
 	NumDeployedCharges = DeployedCharges.Length;
+	bForceNetUpdate = true;
 
 	for( i = 0; i < NumDeployedCharges; ++i )
 	{
@@ -210,9 +213,79 @@ static simulated event bool UsesAmmo()
     return true;
 }
 
+simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
+{
+	if( FireModeNum == DETONATE_FIREMODE )
+	{
+		return NumDeployedCharges > 0;
+	}
+
+	return super.HasAmmo( FireModeNum, Amount );
+}
+
+simulated function BeginFire( byte FireModeNum )
+{
+	if( FireModeNum == DETONATE_FIREMODE && IsInState('WeaponSprinting') )
+	{
+		PrepareAndDetonate();
+	}
+	else
+	{
+		super.BeginFire( FireModeNum );
+	}
+}
+
+simulated function PrepareAndDetonate()
+{
+	local name DetonateAnimName;
+	local float AnimDuration;
+	local bool bInSprintState;
+
+	DetonateAnimName = ShouldPlayLastAnims() ? DetonateLastAnim : DetonateAnim;
+	AnimDuration = MySkelMesh.GetAnimLength( DetonateAnimName );
+	bInSprintState = IsInState( 'WeaponSprinting' );
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( NumDeployedCharges > 0 )
+		{
+			PlaySoundBase( DetonateAkEvent, true );
+		}
+		else
+		{
+			PlaySoundBase( DryFireAkEvent, true );
+		}
+
+		if( bInSprintState )
+		{
+			AnimDuration *= 0.25f;
+			PlayAnimation( DetonateAnimName, AnimDuration );
+		}
+		else
+		{
+			PlayAnimation( DetonateAnimName );
+		}
+	}
+
+	if( Role == ROLE_Authority )
+	{
+		Detonate();
+	}
+
+	IncrementFlashCount();
+
+	if( bInSprintState )
+	{
+		SetTimer( AnimDuration * 0.8f, false, nameof(PlaySprintStart) );
+	}
+	else
+	{
+		SetTimer( AnimDuration * 0.5f, false, nameof(GotoActiveState) );
+	}
+}
+
 // do nothing, as we have no alt fire mode
 simulated function AltFireMode();
-
 
 /*********************************************************************************************
  * State Active
@@ -248,34 +321,7 @@ simulated state WeaponDetonating
 
 	simulated event BeginState( name PreviousStateName )
 	{
-		local name DetonateAnimName;
-		local float AnimDuration;
-
-		DetonateAnimName = ShouldPlayLastAnims() ? DetonateLastAnim : DetonateAnim;
-		AnimDuration = MySkelMesh.GetAnimLength( DetonateAnimName );
-
-		if( WorldInfo.NetMode != NM_DedicatedServer )
-	{
-			if( NumDeployedCharges > 0 )
-			{
-				PlaySoundBase( DetonateAkEvent, true );
-			}
-			else
-			{
-				PlaySoundBase( DryFireAkEvent, true );
-	}
-
-			PlayAnimation( DetonateAnimName );
-		}
-
-		if( Role == ROLE_Authority )
-		{
-			Detonate();
-		}
-
-		IncrementFlashCount();
-
-		SetTimer( AnimDuration / 2.f, false, nameof(GotoActiveState) );
+		PrepareAndDetonate();
 	}
 
 	simulated function GotoActiveState()

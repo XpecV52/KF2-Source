@@ -1790,7 +1790,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
         DrivenVehicle.AdjustDriverDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
     }
     actualDamage = Damage;
-    WorldInfo.Game.ReduceDamage(actualDamage, self, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
+    WorldInfo.Game.ReduceDamage(actualDamage, self, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
     AdjustDamage(actualDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
     super.TakeDamage(actualDamage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
     Health -= actualDamage;

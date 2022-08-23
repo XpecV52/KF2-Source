@@ -30,20 +30,20 @@ simulated function ParticleSystemComponent AttachEffectToHitLocation( KFPawn P, 
 
 defaultproperties
 {
-   ImpactFX(0)=(DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(1)=(Type=FXG_Bludgeon,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(2)=(Type=FXG_Piercing,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(3)=(Type=FXG_Slashing,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(4)=(Type=FXG_Fire,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(5)=(Type=FXG_Toxic,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(6)=(Type=FXG_Healing,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(7)=(Type=FXG_Sawblade,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(8)=(Type=FXG_DrainLife,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(9)=(Type=FXG_IncendiaryRound,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(10)=(Type=FXG_UnexplodedGrenade,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(11)=(Type=FXG_MicrowaveBlast,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(12)=(Type=FXG_ShieldBash,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
-   ImpactFX(13)=(Type=FXG_MetalMace,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(0)=(DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(1)=(Type=FXG_Bludgeon,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(2)=(Type=FXG_Piercing,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(3)=(Type=FXG_Slashing,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(4)=(Type=FXG_Fire,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(5)=(Type=FXG_Toxic,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(6)=(Type=FXG_Healing,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(7)=(Type=FXG_Sawblade,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(8)=(Type=FXG_DrainLife,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(9)=(Type=FXG_IncendiaryRound,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(10)=(Type=FXG_UnexplodedGrenade,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(11)=(Type=FXG_MicrowaveBlast,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(12)=(Type=FXG_ShieldBash,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+   ImpactFXArray(13)=(Type=FXG_MetalMace,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',bAttachToHitLocation=True,DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
    Name="Default__KFSkinTypeEffects_HansShield"
    ObjectArchetype=KFSkinTypeEffects'KFGame.Default__KFSkinTypeEffects'
 }

@@ -611,11 +611,14 @@ function DrawHUD()
 			}
 		}
 
-		// Draw hidden players
-		CheckAndDrawHiddenPlayerIcons( VisibleHumanPlayers, HiddenHumanPlayers );
+		if( !KFGRI.bHidePawnIcons )
+		{
+			// Draw hidden players
+			CheckAndDrawHiddenPlayerIcons( VisibleHumanPlayers, HiddenHumanPlayers );
 
-		// Draw last remaining zeds
-		CheckAndDrawRemainingZedIcons();
+			// Draw last remaining zeds
+			CheckAndDrawRemainingZedIcons();
+		}
 
 		Canvas.EnableStencilTest(false);
 	}

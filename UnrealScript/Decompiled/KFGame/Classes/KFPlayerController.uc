@@ -11,6 +11,82 @@ class KFPlayerController extends GamePlayerController
     config(Game)
     hidecategories(Navigation);
 
+const KFMAX_Perks = 10;
+const VIEWID_KFGameStats = 1;
+const STATID_None = 0;
+const STATID_Cmdo_Progress = 1;
+const STATID_Cmdo_Build = 2;
+const STATID_Bsrk_Progress = 10;
+const STATID_Bsrk_Build = 11;
+const STATID_Sup_Progress = 20;
+const STATID_Sup_Build = 21;
+const STATID_Sup_WeldPoints = 22;
+const STATID_Fire_Progress = 30;
+const STATID_Fire_Build = 31;
+const STATID_Medic_Progress = 40;
+const STATID_Medic_Build = 41;
+const STATID_Medic_HealPoints = 42;
+const STATID_Shrp_Progress = 50;
+const STATID_Shrp_Build = 51;
+const STATID_Demo_Progress = 60;
+const STATID_Demo_Build = 61;
+const STATID_Surv_Progress = 70;
+const STATID_Surv_Build = 71;
+const STATID_Guns_Progress = 80;
+const STATID_Guns_Build = 81;
+const STATID_SWAT_Progress = 90;
+const STATID_SWAT_Build = 91;
+const STATID_Kills = 200;
+const STATID_StalkerKills = 201;
+const STATID_CrawlerKills = 202;
+const STATID_FleshpoundKills = 203;
+const STATID_SpecialEventProgress = 300;
+const STATID_WeeklyEventProgress = 301;
+const STATID_AchievementPlaceholder = 500;
+const STATID_AnalyticsPlaceholder = 800;
+const STATID_PersonalBest_KnifeKills = 2000;
+const STATID_PersonalBest_PistolKills = 2001;
+const STATID_PersonalBest_HeadShots = 2002;
+const STATID_PersonalBest_Healing = 2003;
+const STATID_PersonalBest_Kills = 2004;
+const STATID_PersonalBest_Assists = 2005;
+const STATID_PersonalBest_LargeZedKill = 2006;
+const STATID_PersonalBest_Dosh = 2007;
+const STATID_MatchWins = 3000;
+const STATID_DingoAchievementStart = 4000;
+const STATID_ACHIEVE_MrPerky5 = 4001;
+const STATID_ACHIEVE_MrPerky10 = 4002;
+const STATID_ACHIEVE_MrPerky15 = 4003;
+const STATID_ACHIEVE_MrPerky20 = 4004;
+const STATID_ACHIEVE_MrPerky25 = 4005;
+const STATID_ACHIEVE_HardWins = 4015;
+const STATID_ACHIEVE_SuicidalWins = 4016;
+const STATID_ACHIEVE_HellWins = 4017;
+const STATID_ACHIEVE_VSZedWins = 4009;
+const STATID_ACHIEVE_VSHumanWins = 4010;
+const STATID_ACHIEVE_HoldOut = 4011;
+const STATID_ACHIEVE_DieVolter = 4012;
+const STATID_ACHIEVE_FleshPoundKill = 4013;
+const STATID_ACHIEVE_ShrikeKill = 4014;
+const STATID_ACHIEVE_SirenKill = 4018;
+const STATID_ACHIEVE_Benefactor = 4019;
+const STATID_ACHIEVE_HealTeam = 4020;
+const STATID_ACHIEVE_QuickOnTheTrigger = 4033;
+const STATID_ACHIEVE_CollectCatacolmbs = 4021;
+const STATID_ACHIEVE_BioticsCollectibles = 4022;
+const STATID_ACHIEVE_EvacsCollectibles = 4023;
+const STATID_ACHIEVE_OutpostCollectibles = 4024;
+const STATID_ACHIEVE_PrisonCollectibles = 4025;
+const STATID_ACHIEVE_ManorCollectibles = 4026;
+const STATID_ACHIEVE_ParisCollectibles = 4027;
+const STATID_ACHIEVE_FarmhouseCollectibles = 4028;
+const STATID_ACHIEVE_BlackForestCollectibles = 4029;
+const STATID_ACHIEVE_ContainmentStationCollectibles = 4030;
+const STATID_ACHIEVE_InfernalRealmCollectibles = 4031;
+const STATID_ACHIEVE_HostileGroundsCollectibles = 4032;
+const STATID_ACHIEVE_ZedLandingCollectibles = 4035;
+const STATID_ACHIEVE_DescentCollectibles = 4036;
+const STATID_ACHIEVE_NukedCollectibles = 4037;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -68,6 +144,7 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;
 const MAX_AIM_CORRECTION_SIZE = 35.f;
 
 enum ETextChatChannel
@@ -204,6 +281,20 @@ struct native sPlayerZedSpawnInfo
     }
 };
 
+struct native sSavedViewTargetInfo
+{
+    var Actor SavedViewTarget;
+    var name SavedCameraMode;
+    var Rotator SavedRotation;
+
+    structdefaultproperties
+    {
+        SavedViewTarget=none
+        SavedCameraMode=None
+        SavedRotation=(Pitch=0,Yaw=0,Roll=0)
+    }
+};
+
 struct native ObjectiveAnnouncementInfo
 {
     /** the default announcement sound to play (can be None) */
@@ -314,7 +405,6 @@ var KFPawn_Human UsablePawn;
 var protected float UnmodifiedFOV;
 var protected transient int BenefactorDosh;
 var private const int BenefactorDoshReq;
-var KFEmit_CameraEffect CameraEffect;
 var PostProcessSettings PostProcessModifier;
 var float NextAdminCmdTime;
 var int ShotsFired;
@@ -327,6 +417,7 @@ var class<KFGFxMoviePlayer_PostRoundMenu> PostRoundMenuClass;
 var class<KFAutoPurchaseHelper> PurchaseHelperClass;
 var KFAutoPurchaseHelper PurchaseHelper;
 var float NextSpectatorDelay;
+var transient KFPawn_Customization LocalCustomizationPawn;
 var AkEvent ZedTimeEnterSound;
 var AkEvent ZedTimeExitSound;
 var AkEvent ZedTimePartialEnterSound;
@@ -452,6 +543,7 @@ var transient float LastUpdateSpectatorActiveTime;
 var transient float UpdateSpectatorActiveInterval;
 var transient int TargetViewRotationPitch;
 var transient int TargetViewRotationYaw;
+var transient sSavedViewTargetInfo SavedViewTargetInfo;
 /** Interp curve to scale autotarget scoring for different ranges */
 var(AimAssist) InterpCurveFloat ScoreTargetDistanceCurve;
 /** Aim correction */
@@ -486,6 +578,9 @@ replication
 
 // Export UKFPlayerController::execSetHardwarePhysicsEnabled(FFrame&, void* const)
 native function SetHardwarePhysicsEnabled(bool bEnabled);
+
+// Export UKFPlayerController::execSyncInventoryProperties(FFrame&, void* const)
+native function SyncInventoryProperties();
 
 // Export UKFPlayerController::execIsKeyboardAvailable(FFrame&, void* const)
 native simulated function bool IsKeyboardAvailable();
@@ -535,6 +630,8 @@ simulated event ReplicatedEvent(name VarName)
 simulated event ReceivedPlayer()
 {
     local UIDataStore_OnlinePlayerData PlayerDataDS;
+    local int I;
+    local KFGameEngine KFEngine;
 
     super(PlayerController).ReceivedPlayer();
     if(IsLocalPlayerController())
@@ -545,11 +642,30 @@ simulated event ReceivedPlayer()
         }
         else
         {
-            PlayerDataDS = UIDataStore_OnlinePlayerData(Class'UIInteraction'.static.GetDataStoreClient().FindDataStore('OnlinePlayerData', LocalPlayer(Player)));
-            if(PlayerDataDS != none)
+            if(!WorldInfo.IsConsoleBuild(9))
             {
-                OnlineSub.PlayerInterface.AddReadProfileSettingsCompleteDelegate(byte(LocalPlayer(Player).ControllerId), OnReadProfileSettingsComplete);
-                OnlineSub.PlayerInterface.ReadProfileSettings(byte(LocalPlayer(Player).ControllerId), OnlineProfileSettings(PlayerDataDS.ProfileProvider.Profile));
+                PlayerDataDS = UIDataStore_OnlinePlayerData(Class'UIInteraction'.static.GetDataStoreClient().FindDataStore('OnlinePlayerData', LocalPlayer(Player)));
+                if(PlayerDataDS != none)
+                {
+                    OnlineSub.PlayerInterface.AddReadProfileSettingsCompleteDelegate(byte(LocalPlayer(Player).ControllerId), OnReadProfileSettingsComplete);
+                    OnlineSub.PlayerInterface.ReadProfileSettings(byte(LocalPlayer(Player).ControllerId), OnlineProfileSettings(PlayerDataDS.ProfileProvider.Profile));
+                }
+            }
+        }
+        if(WorldInfo.NetMode == NM_Client)
+        {
+            KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
+            I = KFEngine.LastURL.Op.Length - 1;
+            J0x2ED:
+
+            if(I >= 0)
+            {
+                if(((InStr(KFEngine.LastURL.Op[I], "Difficulty=", false, true) != -1) || InStr(KFEngine.LastURL.Op[I], "Game=", false, true) != -1) || InStr(KFEngine.LastURL.Op[I], "GameLength=", false, true) != -1)
+                {
+                    KFEngine.LastURL.Op.Remove(I, 1;
+                }
+                -- I;
+                goto J0x2ED;
             }
         }
     }
@@ -611,6 +727,11 @@ reliable client simulated function ClientRestart(Pawn NewPawn)
     if(NewPawn == none)
     {
         return;
+    }
+    if(((LocalCustomizationPawn != none) && NewPawn != LocalCustomizationPawn) && !LocalCustomizationPawn.bPendingDelete)
+    {
+        LocalCustomizationPawn.Destroy();
+        LocalCustomizationPawn = none;
     }
     UsablePawn = KFPawn_Human(NewPawn);
     FixFOV();
@@ -700,16 +821,24 @@ event InitInputSystem()
     {
         CurrentVoiceChannel = 1;
     }
-    if(OnlineSub != none)
+    if((WorldInfo.NetMode == NM_ListenServer) || WorldInfo.NetMode == NM_Client)
     {
-        OnlineSub.RegisterLocalTalker(0);        
-    }
-    else
-    {
-        if(NotEqual_InterfaceInterface(VoiceInterface, (none)))
+        if(OnlineSub != none)
         {
-            VoiceInterface.RegisterLocalTalker(0);
+            OnlineSub.RegisterLocalTalker(byte(LocalPlayer(Player).ControllerId));            
         }
+        else
+        {
+            if(NotEqual_InterfaceInterface(VoiceInterface, (none)))
+            {
+                VoiceInterface.RegisterLocalTalker(byte(LocalPlayer(Player).ControllerId));
+            }
+        }
+        ServerNotifyRegisteredAsLocalTalker();
+    }
+    if(WorldInfo.IsConsoleBuild(9))
+    {
+        SetTimer(2, false, 'CheckForConnectedControllers');
     }
     RegisterTalkerDelegate();
 }
@@ -752,6 +881,104 @@ function NavigationPoint GetBestCustomizationStart(KFGameInfo KFGI)
         }
     }
     return BestStartSpot;
+}
+
+function SpawnMidGameCustomizationPawn()
+{
+    local class<KFGameInfo> KFGameClass;
+    local NavigationPoint BestCP;
+    local KFCustomizationPoint CP;
+    local PlayerStart PS;
+    local Rotator StartRotation;
+    local KFPawn_Customization CustomizationPawn;
+
+    KFGameClass = class<KFGameInfo>(WorldInfo.GRI.GameClass);
+    if(KFGameClass == none)
+    {
+        return;
+    }
+    foreach AllActors(Class'KFCustomizationPoint', CP)
+    {
+        if(KFGameClass.static.CheckSpawnProximity(CP, self, GetTeamNum(), true))
+        {
+            BestCP = CP;
+            break;
+        }        
+    }    
+    if(BestCP == none)
+    {
+        BestCP = CP;
+        if(BestCP == none)
+        {
+            foreach AllActors(Class'PlayerStart', PS)
+            {
+                if(KFGameClass.static.CheckSpawnProximity(CP, self, GetTeamNum(), true))
+                {
+                    BestCP = PS;
+                    break;
+                }                
+            }            
+        }
+        if(BestCP == none)
+        {
+            BestCP = PS;
+        }
+    }
+    StartRotation.Yaw = BestCP.Rotation.Yaw;
+    CustomizationPawn = Spawn(KFGameClass.default.CustomizationPawnClass,,, BestCP.Location, StartRotation,, true);
+    if(CustomizationPawn != none)
+    {
+        SavedViewTargetInfo.SavedViewTarget = ViewTarget;
+        SavedViewTargetInfo.SavedCameraMode = PlayerCamera.CameraStyle;
+        SavedViewTargetInfo.SavedRotation = Rotation;
+        ClientSetCameraFade(true, MakeColor(0, 0, 0, 255), vect2d(1, 0), 0.5, true);
+        CustomizationPawn.RemoteRole = ROLE_None;
+        Pawn = CustomizationPawn;
+        CustomizationPawn.InitializeCustomizationPawn(self, BestCP);
+        LocalCustomizationPawn = CustomizationPawn;        
+    }
+    else
+    {
+        SavedViewTargetInfo.SavedViewTarget = none;
+    }
+}
+
+function ReturnToViewTarget()
+{
+    local bool bNeedsNewViewTarget;
+
+    if(LocalCustomizationPawn != none)
+    {
+        if(ViewTarget == LocalCustomizationPawn)
+        {
+            bNeedsNewViewTarget = true;
+        }
+        if(Pawn == LocalCustomizationPawn)
+        {
+            UnPossess();
+            bNeedsNewViewTarget = true;
+        }
+        if((LocalCustomizationPawn != none) && !LocalCustomizationPawn.bPendingDelete)
+        {
+            LocalCustomizationPawn.Destroy();
+            LocalCustomizationPawn = none;
+        }
+    }
+    if((bNeedsNewViewTarget && WorldInfo.GRI.bMatchHasBegun) && IsSpectating())
+    {
+        ClientSetCameraFade(true, MakeColor(0, 0, 0, 255), vect2d(1, 0), 0.75, true);
+        if((SavedViewTargetInfo.SavedViewTarget != none) && !SavedViewTargetInfo.SavedViewTarget.bPendingDelete)
+        {
+            SetViewTarget(SavedViewTargetInfo.SavedViewTarget);
+            SetCameraMode(SavedViewTargetInfo.SavedCameraMode);
+            SetRotation(SavedViewTargetInfo.SavedRotation);            
+        }
+        else
+        {
+            ServerViewNextPlayer();
+        }
+    }
+    SavedViewTargetInfo.SavedViewTarget = none;
 }
 
 function RegisterOnlineDelegates()
@@ -829,6 +1056,11 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
             KFEngine.bUseAltAimOnDual = Profile.GetProfileBool(157);
             KFEngine.bAntiMotionSickness = Profile.GetProfileBool(159);
             KFEngine.bMinimalChatter = Profile.GetProfileBool(119);
+            KFEngine.SafeFrameScale = Profile.GetProfileFloat(168);
+            if(KFEngine.SafeFrameScale == 0)
+            {
+                KFEngine.SafeFrameScale = 1;
+            }
             if(Class'WorldInfo'.static.IsConsoleBuild())
             {
                 Class'KFGameEngine'.static.SetCrosshairEnabled(Profile.GetProfileBool(163));                
@@ -841,11 +1073,11 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
             KFEngine.SetGamma(KFEngine.GammaMultiplier);
             KFEngine.PadVolumeMultiplier = ((Profile.GetProfileBool(155)) ? 100 : 0);
             KFEngine.InitAudioOptions();
-            KFEngine.InitVideoOptions();
+            KFEngine.InitGamma();
             if(PlayfabInter != none)
             {
                 MatchmakingRegion = Profile.GetProfileString(156);
-                if(MatchmakingRegion == "")
+                if((MatchmakingRegion == "") && WorldInfo.IsConsoleBuild(8))
                 {
                     OnlineSub.StartRegionPingAndSelectDefaultRegion(None);
                     MatchmakingRegion = Class'PlayfabInterface'.default.CurrRegionName;
@@ -907,6 +1139,7 @@ simulated function HandleLoginStatusChange(bool bLoggedIn)
 simulated function HandleNetworkError(bool bConnectionLost)
 {
     local KFGameViewportClient GVC;
+    local string ErrorMessage;
 
     GVC = KFGameViewportClient(MyGFxManager.GetGameViewportClient());
     if(GVC.bSeenIIS)
@@ -931,10 +1164,18 @@ simulated function HandleNetworkError(bool bConnectionLost)
         {
             if(MyGFxManager.GetMultiplayerMenuActive())
             {
+                if(bConnectionLost)
+                {
+                    ErrorMessage = Localize("Notifications", ((Class'WorldInfo'.static.IsConsoleBuild(9)) ? "ConnectionLostMessageLive" : "ConnectionLostMessage"), "KFGameConsole");                    
+                }
+                else
+                {
+                    ErrorMessage = Localize("Notifications", ((Class'WorldInfo'.static.IsConsoleBuild(8)) ? "PSNSignoutMessage" : "LoggedOutMessage"), "KFGameConsole");
+                }
                 MyGFxManager.SetStartMenuState(MyGFxManager.GetStartMenuState());
                 MyGFxManager.StartMenu.ApproveMatchMakingLeave();
                 MyGFxManager.OpenMenu(0);
-                MyGFxManager.DelayedOpenPopup(2, 7, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), Localize("Notifications", ((bConnectionLost) ? "ConnectionLostMessage" : "PSNSignoutMessage"), "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+                MyGFxManager.DelayedOpenPopup(2, 7, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), ErrorMessage, Class'KFCommon_LocalizedStrings'.default.OKString);
             }
             if(((MyGFxManager != none) && MyGFxManager.StartMenu != none) && MyGFxManager.StartMenu.FindGameContainer != none)
             {
@@ -976,7 +1217,7 @@ function HandleConsoleSessions()
             {
                 LogInternal("SESSIONS - Make one!");
                 GRI.ConsoleGameSessionHost = PlayerReplicationInfo.UniqueId;
-                ClientCreateGameSession(PlayfabInter.GetCachedLobbyId(), GameEngine(Class'Engine'.static.GetEngine()).bPrivateServer);                
+                ClientCreateGameSession(PlayfabInter.GetCachedLobbyId(), GameEngine(Class'Engine'.static.GetEngine()).bPrivateServer, WorldInfo.Game.MaxPlayers);                
             }
             else
             {
@@ -987,10 +1228,10 @@ function HandleConsoleSessions()
     }
 }
 
-reliable client simulated function ClientCreateGameSession(string LobbyId, bool bPrivate)
+reliable client simulated function ClientCreateGameSession(string LobbyId, bool bPrivate, int MaxPlayers)
 {
-    local OnlineGameSettings GameSettings;
-    local string RemoteAddressString;
+    local OnlineGameSettings GameSettings, OldGameSettings;
+    local string RemoteAddressString, SessionGuid;
 
     LogInternal("SESSIONS - ClientCreateGameSession" @ LobbyId);
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
@@ -1001,11 +1242,22 @@ reliable client simulated function ClientCreateGameSession(string LobbyId, bool 
         GameSettings.JoinString = RemoteAddressString;
         GameSettings.LobbyId = LobbyId;
         GameSettings.bRequiresPassword = bPrivate;
+        GameSettings.NumPublicConnections = MaxPlayers;
+        GameSettings.SessionTemplateName = "KF2GameSessionTemplate";
         PendingGameSessionCreateGameSettings = GameSettings;
         if(OnlineSub.IsInSession('Game'))
         {
-            OnlineSub.GameInterface.AddDestroyOnlineGameCompleteDelegate(OnOldSessionDestroyedForNewGameSessionCreate);
-            OnlineSub.GameInterface.DestroyOnlineGame('Game');            
+            OldGameSettings = OnlineSub.GameInterface.GetGameSettings('Game');
+            if((WorldInfo.IsConsoleBuild(9) && OldGameSettings.SessionTemplateName == GameSettings.SessionTemplateName) && bPrivate)
+            {
+                OnlineSub.GameInterface.ReadSessionGuidBySessionName('Game', SessionGuid);
+                ServerGameSessionCreated(SessionGuid);                
+            }
+            else
+            {
+                OnlineSub.GameInterface.AddDestroyOnlineGameCompleteDelegate(OnOldSessionDestroyedForNewGameSessionCreate);
+                OnlineSub.GameInterface.DestroyOnlineGame('Game');
+            }            
         }
         else
         {
@@ -1075,7 +1327,7 @@ reliable server function ServerGameSessionFailed()
         {
             if(Controller.PlayerReplicationInfo.UniqueId == GRI.ConsoleGameSessionHost)
             {
-                Controller.ClientCreateGameSession(PlayfabInter.GetCachedLobbyId(), GameEngine(Class'Engine'.static.GetEngine()).bPrivateServer);
+                Controller.ClientCreateGameSession(PlayfabInter.GetCachedLobbyId(), GameEngine(Class'Engine'.static.GetEngine()).bPrivateServer, WorldInfo.Game.MaxPlayers);
                 break;
             }            
         }                
@@ -1160,7 +1412,7 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, Eng
     local KFGameViewportClient Viewport;
 
     LogInternal("SESSIONS - OnGameInviteAccepted");
-    if(!OnlineSub.ContentInterface.IsGameFullyInstalled())
+    if(!Class'GameEngine'.static.IsGameFullyInstalled())
     {
         NotifyInviteFailed("PlayGoBusy");
         return;
@@ -1169,6 +1421,23 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, Eng
     if(CachedInviteResult.GameSettings != none)
     {
         Viewport = KFGameViewportClient(Class'Engine'.static.GetEngine().GameViewport);
+        if(WorldInfo.IsConsoleBuild(9) && CachedInviteResult.GameSettings.OwningPlayerId != LocalPlayer(Player).GetUniqueNetId())
+        {
+            if(WorldInfo.bIsMenuLevel)
+            {
+                if(Viewport.bSeenIIS)
+                {
+                    KFGameEngine(Class'Engine'.static.GetEngine()).PerformLogout();
+                }
+                OnlineSub.ManuallyActivateUser(CachedInviteResult.GameSettings.OwningPlayerId);                
+            }
+            else
+            {
+                KFGameEngine(Class'Engine'.static.GetEngine()).GameSettingsForPendingInvite = CachedInviteResult.GameSettings;
+                KFGameEngine(Class'Engine'.static.GetEngine()).PerformLogout();
+                return;
+            }
+        }
         if(Viewport.bSeenIIS)
         {
             StartLogin(OnLoginForGameInviteComplete, true);            
@@ -1250,21 +1519,36 @@ function OnGameDestroyedForInviteComplete(name SessionName, bool bWasSuccessful)
 function OnSessionJoinComplete(name SessionName, bool bWasSuccessful)
 {
     local OnlineGameSettings GameSettings;
+    local bool bGameSession, bPartySession;
 
-    if(SessionName == 'Game')
+    GameSettings = OnlineSub.GameInterface.GetGameSettings(SessionName);
+    if(Class'WorldInfo'.static.IsConsoleBuild(9))
     {
-        GameSettings = OnlineSub.GameInterface.GetGameSettings(SessionName);
+        bGameSession = GameSettings.SessionTemplateName == "KF2GameSessionTemplate";
+        bPartySession = GameSettings.SessionTemplateName == "KF2PartySessionTemplate";        
+    }
+    else
+    {
+        bGameSession = SessionName == 'Game';
+        bPartySession = SessionName == 'Party';
+    }
+    if(bGameSession)
+    {
         LogInternal(("SESSIONS - OnSessionJoinComplete" @ GameSettings.LobbyId) @ GameSettings.JoinString);
         JoinPlayfabServer(bWasSuccessful, GameSettings.JoinString);        
     }
     else
     {
-        if(SessionName == 'Party')
+        if(bPartySession)
         {
             if(!WorldInfo.bIsMenuLevel)
             {                
                 ConsoleCommand("open KFMainMenu");
-            }
+            }            
+        }
+        else
+        {
+            WarnInternal((("Unknown session joined" @ string(SessionName)) @ "and template name") @ GameSettings.SessionTemplateName);
         }
     }
 }
@@ -1331,7 +1615,7 @@ function TryAutoLoginForPlayTogether()
 function OnLoginForPlayTogetherComplete()
 {
     LogInternal("PLAY - OnLoginForPlayTogetherComplete");
-    if(!Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled() && WorldInfo.IsConsoleBuild())
+    if(!Class'GameEngine'.static.IsGameFullyInstalled())
     {
         NotifyPlayTogetherFailed();
         return;
@@ -1523,6 +1807,11 @@ reliable client simulated function ClientStopNetworkedVoice()
     }
 }
 
+reliable server function ServerNotifyRegisteredAsLocalTalker()
+{
+    KFPlayerReplicationInfo(PlayerReplicationInfo).bVOIPRegisteredWithOSS = true;
+}
+
 function SetCinematicMode(bool bInCinematicMode, bool bHidePlayer, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsButtons)
 {
     super(PlayerController).SetCinematicMode(bInCinematicMode, bHidePlayer, bAffectsHUD, bAffectsMovement, bAffectsTurning, bAffectsButtons);
@@ -1689,7 +1978,7 @@ event NotifyPerkUpdated()
 
 function NotifyXPGain(class<KFPerk> PerkClass, int Amount)
 {
-    if((((PerkClass != none) && MyGFxHUD != none) && MyGFxHUD.PlayerStatusContainer != none) && IsLocalController())
+    if(((((PerkClass != none) && PerkClass == GetPerk().GetPerkClass()) && MyGFxHUD != none) && MyGFxHUD.PlayerStatusContainer != none) && IsLocalController())
     {
         MyGFxHUD.PlayerStatusContainer.UpdateXP(Amount, 0, false, PerkClass);
     }
@@ -1814,40 +2103,6 @@ exec function ToggleScreenShotMode()
     if((Pawn != none) && KFWeapon(Pawn.Weapon) != none)
     {
         KFWeapon(Pawn.Weapon).bForceHidden = !myHUD.bShowHUD;
-    }
-}
-
-function RemoveCameraEffect(KFEmit_CameraEffect CamEmitter)
-{
-    if(CameraEffect == CamEmitter)
-    {
-        CameraEffect = none;
-    }
-}
-
-unreliable client simulated function ClientSpawnCameraEffect(class<KFEmit_CameraEffect> CameraEffectClass)
-{
-    local Vector CamLoc;
-    local Rotator CamRot;
-
-    if((CameraEffectClass != none) && CameraEffect == none)
-    {
-        CameraEffect = Spawn(CameraEffectClass, self);
-        if(CameraEffect != none)
-        {
-            GetPlayerViewPoint(CamLoc, CamRot);
-            CameraEffect.RegisterCamera(self);
-            CameraEffect.UpdateLocation(CamLoc, CamRot, UnmodifiedFOV);
-        }
-    }
-}
-
-function ClearCameraEffect()
-{
-    if(CameraEffect != none)
-    {
-        CameraEffect.Destroy();
-        CameraEffect = none;
     }
 }
 
@@ -3161,11 +3416,11 @@ function SetGrabEffect(bool bValue, optional bool bPlayerZed, optional bool bSki
     {
         if(bPlayerZed)
         {
-            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 11);            
+            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 13);            
         }
         else
         {
-            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 10);
+            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 12);
         }        
     }
     else
@@ -3643,7 +3898,10 @@ reliable client simulated function ClientSetFrontEnd(class<KFGFxMoviePlayer_Mana
                 OnControllerChanged(LP.ControllerId, false, false);
             }
         }
-        MyGFxManager.OnProfileSettingsRead();
+        if(!WorldInfo.IsConsoleBuild(9))
+        {
+            MyGFxManager.OnProfileSettingsRead();
+        }
     }
 }
 
@@ -4087,6 +4345,7 @@ function OpenTraderMenu(optional bool bForce)
     local KFInventoryManager KFIM;
 
     bForce = false;
+    SyncInventoryProperties();
     if((Role == ROLE_Authority) && Pawn != none)
     {
         KFIM = KFInventoryManager(Pawn.InvManager);
@@ -4105,6 +4364,7 @@ reliable client simulated function ClientOpenTraderMenu(optional bool bForce)
     {
         return;
     }
+    SyncInventoryProperties();
     if(MyGFxManager != none)
     {
         MyGFxManager.OpenMenu(14, false);
@@ -4162,6 +4422,7 @@ reliable client simulated function ClientOpenRoundSummary()
 
 function ClosePostRoundSummary()
 {
+    SyncInventoryProperties();
     if(MyGFxPostRoundMenu != none)
     {
         MyGFxPostRoundMenu.Close(true);
@@ -4427,6 +4688,10 @@ function bool SetPause(bool bPause, optional delegate<CanUnpause> CanUnpauseDele
     local bool bWasPaused, bIsPaused;
 
     CanUnpauseDelegate = CanUnpause;
+    if((bPause && !KFGameViewportClient(Class'Engine'.static.GetEngine().GameViewport).bSeenIIS) && WorldInfo.IsConsoleBuild())
+    {
+        return false;
+    }
     bWasPaused = IsPaused();
     bIsPaused = super(PlayerController).SetPause(bPause, CanUnpauseDelegate);
     if(bWasPaused != bIsPaused)
@@ -4532,15 +4797,36 @@ native exec function LogPerkBuilds();
 
 simulated event InitializeStats()
 {
+    local class<KFOnlineStatsRead> StatsReadClass;
+    local class<KFOnlineStatsWrite> StatsWriteClass;
+
     if((StatsRead == none) && WorldInfo.NetMode != NM_DedicatedServer)
     {
-        StatsWrite = new (self) Class'KFOnlineStatsWrite';
-        StatsRead = new (self) Class'KFOnlineStatsRead';
+        if(WorldInfo.IsConsoleBuild(9))
+        {
+            StatsReadClass = Class'KFOnlineStatsReadDingo';
+            StatsWriteClass = Class'KFOnlineStatsWriteDingo';            
+        }
+        else
+        {
+            StatsReadClass = Class'KFOnlineStatsRead';
+            StatsWriteClass = Class'KFOnlineStatsWrite';
+        }
+        StatsWrite = new (self) StatsWriteClass;
+        StatsRead = new (self) StatsReadClass;
         StatsWrite.MyKFPC = self;
-        StatsRead.OwningUniqueID = PlayerReplicationInfo.UniqueId;
+        StatsRead.OwningUniqueID = ((WorldInfo.IsConsoleBuild()) ? LocalPlayer(Player).GetUniqueNetId() : PlayerReplicationInfo.UniqueId);
         StatsRead.LinkedWriteObject = StatsWrite;
-        ReadStats();
+        if(!WorldInfo.IsConsoleBuild(9) || KFGameViewportClient(Class'Engine'.static.GetEngine().GameViewport).bSeenIIS)
+        {
+            ReadStats();
+        }
     }
+}
+
+simulated function SetStatsReadOwningPlayerId(UniqueNetId InUniqueId)
+{
+    StatsRead.OwningUniqueID = InUniqueId;
 }
 
 simulated function ReadStats()
@@ -4551,18 +4837,25 @@ simulated function ReadStats()
     {
         LogInternal((((("ReadStats called! OnlineSub=" $ string(OnlineSub)) @ "StatsRead.UserStatsReceivedState=") $ string(StatsRead.UserStatsReceivedState)) @ "StatsRead.OwningUniqueID=") $ Class'OnlineSubsystem'.static.UniqueNetIdToString(StatsRead.OwningUniqueID));
     }
-    if((OnlineSub != none) && StatsRead.UserStatsReceivedState != 2)
+    if(KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus == 1)
     {
-        OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate(OnStatsInitialized);
-        Players[0] = StatsRead.OwningUniqueID;
-        OnlineSub.StatsInterface.ReadOnlineStats(byte(LocalPlayer(Player).ControllerId), Players, StatsRead);        
+        OnStatsInitialized(false);        
     }
     else
     {
-        if(OnlineSub == none)
+        if((OnlineSub != none) && StatsRead.UserStatsReceivedState != 2)
         {
-            WarnInternal("KFPlayerController.ReadStats: No online subsystem present.");
-            OnStatsInitialized(false);
+            OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate(OnStatsInitialized);
+            Players[0] = StatsRead.OwningUniqueID;
+            OnlineSub.StatsInterface.ReadOnlineStats(byte(LocalPlayer(Player).ControllerId), Players, StatsRead);            
+        }
+        else
+        {
+            if(OnlineSub == none)
+            {
+                WarnInternal("KFPlayerController.ReadStats: No online subsystem present.");
+                OnStatsInitialized(false);
+            }
         }
     }
 }
@@ -4580,9 +4873,14 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
     {
         MyGFxManager.StatsInitialized();
     }
+    LoadAllPerkLevels();
     ClientInitializePerks();
+    if((MyGFxManager != none) && MyGFxManager.PerksMenu != none)
+    {
+        MyGFxManager.PerksMenu.UpdateContainers(PerkList[SavedPerkIndex].PerkClass);
+    }
     I = 0;
-    J0xC1:
+    J0x15D:
 
     if(I < PerkList.Length)
     {
@@ -4591,13 +4889,13 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
             self.MatchStats.RecordPerkXPGain(PerkList[I].PerkClass, 0);
         }
         ++ I;
-        goto J0xC1;
+        goto J0x15D;
     }
 }
 
 reliable client simulated function ClientWriteAndFlushStats()
 {
-    if(WorldInfo.NetMode == NM_DedicatedServer)
+    if((WorldInfo.NetMode == NM_DedicatedServer) || KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus != 2)
     {
         return;
     }
@@ -4638,11 +4936,43 @@ reliable client simulated function ClientRoundEnded(byte WinningTeam)
     }
 }
 
+final function FinishedSpecialEvent(string MapName, int EventIndex, int ObjectiveIndex)
+{
+    if(IsValidSpecialEventMap(MapName))
+    {
+        ClientFinishedSpecialEvent(EventIndex, ObjectiveIndex);
+    }
+}
+
+reliable client final simulated function ClientFinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
+{
+    if((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController())
+    {
+        StatsWrite.UpdateSpecialEvent(EventIndex, ObjectiveIndex);
+    }
+}
+
+// Export UKFPlayerController::execIsValidSpecialEventMap(FFrame&, void* const)
+native function bool IsValidSpecialEventMap(string MapName);
+
+reliable client final simulated function ClientCompletedWeeklySurvival()
+{
+    if((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController())
+    {
+        StatsWrite.WeeklyEventComplete();
+    }
+}
+
 reliable client simulated event ClientUnlockAchievement(int AchievementIndex, optional bool bAlwaysUnlock)
 {
     bAlwaysUnlock = false;
     if((((((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController()) && bIsAchievementPlayer || bAlwaysUnlock) && !PlayerReplicationInfo.bOnlySpectator) && !StatsWrite.HasCheated()) && !StatsWrite.IsAchievementUnlocked(AchievementIndex))
     {
+        if(WorldInfo.IsConsoleBuild(9))
+        {
+            StatsWrite.UnlockDingoAchievement(AchievementIndex);
+            OnlineSub.StatsInterface.WriteOnlineStats('Game', PlayerReplicationInfo.UniqueId, StatsWrite);
+        }
         if(OnlineSub.PlayerInterface.UnlockAchievement(byte(LocalPlayer(Player).ControllerId), AchievementIndex))
         {
             StatsWrite.OnUnlockAchievement(AchievementIndex);
@@ -5070,6 +5400,10 @@ event Destroyed()
             KFProj.OnInstigatorControllerLeft();
         }        
     }    
+    if((LocalCustomizationPawn != none) && !LocalCustomizationPawn.bPendingDelete)
+    {
+        LocalCustomizationPawn.Destroy();
+    }
     super(PlayerController).Destroyed();
 }
 
@@ -5113,13 +5447,25 @@ function NotifyChangeSpectateViewTarget()
     local KFPlayerReplicationInfo KFPRI;
     local KFPawn KFP;
 
-    KFP = KFPawn(ViewTarget);
     if((WorldInfo.GRI == none) || float(WorldInfo.GRI.ElapsedTime) < 2)
     {
         return;
     }
+    if(ViewTarget == LocalCustomizationPawn)
+    {
+        return;
+    }
+    if((LocalCustomizationPawn != none) && !LocalCustomizationPawn.bPendingDelete)
+    {
+        if(((MyGFxManager != none) && MyGFxManager.CurrentMenu != none) && MyGFxManager.CurrentMenu == MyGFxManager.GearMenu)
+        {
+            MyGFxManager.CloseMenus();
+        }
+        LocalCustomizationPawn.Destroy();
+    }
     if((MyGFxHUD != none) && MyGFxHUD.SpectatorInfoWidget != none)
     {
+        KFP = KFPawn(ViewTarget);
         if(KFP != none)
         {
             if((KFP == Pawn) && Pawn.IsAliveAndWell())
@@ -5480,13 +5826,13 @@ exec function DoEmote()
     local byte SMFlags;
 
     MyPawn = KFPawn(Pawn);
-    if((((MyPawn != none) && !MyPawn.IsDoingSpecialMove()) && Class'KFEmoteList'.static.GetEquippedEmoteId() != -1) && MyPawn.CanDoSpecialMove(32))
+    if(((((MyPawn != none) && !bCinematicMode) && !MyPawn.IsDoingSpecialMove()) && Class'KFEmoteList'.static.GetEquippedEmoteId() != -1) && MyPawn.CanDoSpecialMove(33))
     {
-        SMFlags = MyPawn.SpecialMoveHandler.SpecialMoveClasses[32].static.PackFlagsBase(MyPawn);
-        MyPawn.DoSpecialMove(32, true,, SMFlags);
-        if((Role < ROLE_Authority) && MyPawn.IsDoingSpecialMove(32))
+        SMFlags = MyPawn.SpecialMoveHandler.SpecialMoveClasses[33].static.PackFlagsBase(MyPawn);
+        MyPawn.DoSpecialMove(33, true,, SMFlags);
+        if((Role < ROLE_Authority) && MyPawn.IsDoingSpecialMove(33))
         {
-            MyPawn.ServerDoSpecialMove(32, true,, SMFlags);
+            MyPawn.ServerDoSpecialMove(33, true,, SMFlags);
         }
     }
 }
@@ -5651,17 +5997,98 @@ exec function GCF()
 function OnControllerChanged(int ControllerId, bool bIsConnected, bool bPauseGame)
 {
     local LocalPlayer LP;
+    local bool bActiveUserEstablished;
 
     LP = LocalPlayer(Player);
-    if((((WorldInfo.IsConsoleBuild() && LP != none) && LP.ControllerId == ControllerId) && !bIsConnected) && MyGFxManager != none)
+    if(MyGFxManager != none)
+    {
+        bActiveUserEstablished = KFGameViewportClient(MyGFxManager.GetGameViewportClient()).bSeenIIS;
+        bActiveUserEstablished = bActiveUserEstablished || (MyGFxManager.IISMenu != none) && MyGFxManager.IISMenu.bLoggingIn;
+    }
+    if((((((!Class'Engine'.static.GetEngine().GameViewport.bNeedsNewGamepadPairingForControllerDisconnect && !Class'Engine'.static.GetEngine().GameViewport.bNeedsNewGamepadPairingForNewProfile) && WorldInfo.IsConsoleBuild()) && LP != none) && LP.ControllerId == ControllerId) && !bIsConnected) && bActiveUserEstablished)
     {
         if(!MyGFxManager.bMenusOpen)
         {
             MyGFxManager.ToggleMenus();
         }
-        MyGFxManager.DelayedOpenPopup(2, 7, Localize("Notifications", "ControllerDisconnectedTitle", "KFGameConsole"), Localize("Notifications", "ControllerDisconnectedPS4Message", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+        if(WorldInfo.IsConsoleBuild(9))
+        {
+            Class'Engine'.static.GetEngine().GameViewport.bNeedsNewGamepadPairingForControllerDisconnect = true;
+        }
+        ShowControllerDisconnectedDialog();
+        if(WorldInfo.Game != none)
+        {
+            WorldInfo.Game.NotifyControllerDisconnected();
+        }
+        if(MyGFxManager.ScreenSizeMovie != none)
+        {
+            MyGFxManager.ScreenSizeMovie.NotifyControllerDisconnected();
+        }
     }
     super(PlayerController).OnControllerChanged(ControllerId, bIsConnected, bPauseGame);
+}
+
+simulated function ShowControllerDisconnectedDialog()
+{
+    local string DisconnectMessage;
+    local bool bActiveUserEstablished;
+
+    if(WorldInfo.IsConsoleBuild(9))
+    {
+        DisconnectMessage = "ControllerDisconnectedXB1";        
+    }
+    else
+    {
+        DisconnectMessage = "ControllerDisconnectedPS4Message";
+    }
+    bActiveUserEstablished = KFGameViewportClient(MyGFxManager.GetGameViewportClient()).bSeenIIS;
+    bActiveUserEstablished = bActiveUserEstablished || (MyGFxManager.IISMenu != none) && MyGFxManager.IISMenu.bLoggingIn;
+    if(bActiveUserEstablished)
+    {
+        MyGFxManager.DelayedOpenPopup(0, 7, Localize("Notifications", "ControllerDisconnectedTitle", "KFGameConsole"), Localize("Notifications", DisconnectMessage, "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString, "", OnControllerDisconnectDialogDismissed);
+    }
+}
+
+simulated function OnControllerDisconnectDialogDismissed()
+{
+    if(WorldInfo.Game != none)
+    {
+        WorldInfo.Game.NotifyControllerReconnected();
+    }
+    if(MyGFxManager.ScreenSizeMovie != none)
+    {
+        MyGFxManager.ScreenSizeMovie.NotifyControllerReconnected();
+    }
+}
+
+simulated function CheckForConnectedControllers()
+{
+    local bool bHasAnyControllersConnected;
+    local int I;
+
+    if(Class'Engine'.static.GetEngine().GameViewport.bNeedsNewGamepadPairingForNewProfile)
+    {
+        I = 0;
+        J0x58:
+
+        if(I < 24)
+        {
+            bHasAnyControllersConnected = bHasAnyControllersConnected || OnlineSub.SystemInterface.IsControllerConnected(I);
+            ++ I;
+            goto J0x58;
+        }
+        if(!bHasAnyControllersConnected)
+        {
+            ShowControllerDisconnectedDialog();
+        }        
+    }
+    else
+    {
+        if(!OnlineSub.SystemInterface.IsControllerConnected(LocalPlayer(Player).ControllerId))
+        {
+            ShowControllerDisconnectedDialog();
+        }
+    }
 }
 
 function OnLoginCompleted(bool bSuccess)
@@ -5696,16 +6123,24 @@ function StartLogin(delegate<LoginCompleteCallback> InDel, optional bool bInLogg
     }
     __LoginCompleteCallback__Delegate = InDel;
     bLoggingInForOnlinePlay = bInLoggingInForOnlinePlay;
-    if(OnlineSub.PlayerInterface.GetLoginStatus(byte(LocalPlayer(Player).ControllerId)) == 0)
+    if(WorldInfo.IsConsoleBuild(9))
     {
-        OnlineSub.PlayerInterface.AddLoginCompleteDelegate(byte(LocalPlayer(Player).ControllerId), OnOSSLoginComplete);
-        OnlineSub.PlayerInterface.Login(byte(LocalPlayer(Player).ControllerId), "", "");        
+        OnlineSub.PlayerInterface.Login(byte(LocalPlayer(Player).ControllerId), "", "");
+        OnOSSLoginComplete(byte(LocalPlayer(Player).ControllerId), true, 1);        
     }
     else
     {
-        if(bLoggingInForOnlinePlay)
+        if(OnlineSub.PlayerInterface.GetLoginStatus(byte(LocalPlayer(Player).ControllerId)) == 0)
         {
-            CheckPrivilegesForMultiplayer();
+            OnlineSub.PlayerInterface.AddLoginCompleteDelegate(byte(LocalPlayer(Player).ControllerId), OnOSSLoginComplete);
+            OnlineSub.PlayerInterface.Login(byte(LocalPlayer(Player).ControllerId), "", "");            
+        }
+        else
+        {
+            if(bLoggingInForOnlinePlay)
+            {
+                CheckPrivilegesForMultiplayer();
+            }
         }
     }
 }
@@ -5716,8 +6151,15 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
     PlayerReplicationInfo.PlayerName = LocalPlayer(Player).GetNickname();
     PlayerReplicationInfo.UniqueId = LocalPlayer(Player).GetUniqueNetId();
     if(ErrorCode == 1)
-    {        
-        GetPS4Avatar(PlayerReplicationInfo.PlayerName);
+    {
+        if(WorldInfo.IsConsoleBuild(8))
+        {            
+            GetPS4Avatar(PlayerReplicationInfo.PlayerName);            
+        }
+        else
+        {            
+            GetSteamAvatar(PlayerReplicationInfo.UniqueId);
+        }
         if((PlayfabInter != none) && PlayfabInter.CachedPlayfabId == "")
         {
             if(OnlineSub.Patcher != none)
@@ -5745,7 +6187,7 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
     }
     else
     {
-        if(ErrorCode == 11)
+        if((ErrorCode == 11) || ErrorCode == 12)
         {
             if(bLoggingInForOnlinePlay)
             {
@@ -5755,7 +6197,7 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
             else
             {
                 OnLoginCompleted(true);
-                MyGFxManager.DelayedOpenPopup(0, 0, Localize("KFGFxMenu_IIS", "NoOnlinePlay", "KFGameConsole"), Localize("KFGFxMenu_IIS", "NotLoggedInOnlinePSN", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+                MyGFxManager.DelayedOpenPopup(0, 0, Localize("KFGFxMenu_IIS", "NoOnlinePlay", "KFGameConsole"), Localize("KFGFxMenu_IIS", ((ErrorCode == 11) ? "NotLoggedInOnlinePSN" : "LiveRequiredMessage"), "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
             }            
         }
         else
@@ -5805,9 +6247,30 @@ function CheckPrivilegesForMultiplayer()
 {
     local Engine.OnlineSubsystem.EFeaturePrivilegeLevel HintPrivLevel;
 
+    if(Class'KFGameEngine'.static.IsFreeConsolePlayOver())
+    {
+        MyGFxManager.DelayedOpenPopup(0, 0, "", Class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString, Class'KFCommon_LocalizedStrings'.default.BuyGameString, Class'KFCommon_LocalizedStrings'.default.OKString, OnBuyGamePressed);
+        OnLoginCompleted(false);
+        return;
+    }
+    if((WorldInfo.IsConsoleBuild(9) && bLoggingInForOnlinePlay) && OnlineSub.SystemInterface.GetCurrentConnectionStatus() != 1)
+    {
+        MyGFxManager.DelayedOpenPopup(2, 6, Localize("Notifications", "MultiplayerNotAllowed_Title", "KFGameConsole"), Localize("Notifications", "NotConnectedForOnlinePlay", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+        OnLoginCompleted(false);
+        return;
+    }
     bOnlinePrivilegeCheckPending = true;
     OnlineSub.PlayerInterface.AddPrivilegeLevelCheckedDelegate(OnCanPlayOnlineCheckForMatchmakingComplete);
     OnlineSub.PlayerInterface.CanPlayOnline(byte(LocalPlayer(Player).ControllerId), HintPrivLevel);
+}
+
+function OnBuyGamePressed()
+{
+    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+        OnlineSub.OpenGameStorePage();
+    }
 }
 
 function OnCanPlayOnlineCheckForMatchmakingComplete(byte LocalUserNum, Engine.OnlineSubsystem.EFeaturePrivilege Privilege, Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel, bool bDiffersFromHint)
@@ -5822,7 +6285,14 @@ function OnCanPlayOnlineCheckForMatchmakingComplete(byte LocalUserNum, Engine.On
         }
         else
         {
-            OnlineSub.PlayerInterfaceEx.UpsellPremiumOnlineService();
+            if(Class'WorldInfo'.static.IsConsoleBuild(9))
+            {
+                MyGFxManager.DelayedOpenPopup(2, 6, Localize("Notifications", "MultiplayerNotAllowed_Title", "KFGameConsole"), Localize("Notifications", "MultiplayerNotAllowed_MessageLive", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);                
+            }
+            else
+            {
+                OnlineSub.PlayerInterfaceEx.UpsellPremiumOnlineService();
+            }
             OnLoginCompleted(false);
         }
     }
@@ -5831,6 +6301,15 @@ function OnCanPlayOnlineCheckForMatchmakingComplete(byte LocalUserNum, Engine.On
 function OnPlayfabLoginComplete(bool bWasSuccessful, string SessionTicket, string PlayfabId)
 {
     PlayfabInter.ClearOnLoginCompleteDelegate(OnPlayfabLoginComplete);
+    PlayerReplicationInfo.PlayfabPlayerId = PlayfabId;
+    KFGameEngine(Class'Engine'.static.GetEngine()).ReadPFStoreData();
+    PlayfabInter.AddTitleDataReadCompleteDelegate(OnClientTitleDataRead);
+    PlayfabInter.ReadTitleData();
+}
+
+function OnClientTitleDataRead()
+{
+    PlayfabInter.ClearTitleDataReadCompleteDelegate(OnClientTitleDataRead);
     if(bLoggingInForOnlinePlay)
     {
         CheckPrivilegesForMultiplayer();        
@@ -5839,8 +6318,26 @@ function OnPlayfabLoginComplete(bool bWasSuccessful, string SessionTicket, strin
     {
         OnLoginCompleted(true);
     }
-    PlayerReplicationInfo.PlayfabPlayerId = PlayfabId;
-    KFGameEngine(Class'Engine'.static.GetEngine()).ReadPFStoreData();
+}
+
+simulated function PerformLogout()
+{
+    StatsRead = none;
+    StatsWrite = none;
+    InitializeStats();
+    if(WorldInfo.bIsMenuLevel)
+    {
+        if((MyGFxManager.StartMenu != none) && MyGFxManager.StartMenu.GetStartMenuState() == 0)
+        {
+            MyGFxManager.StartMenu.ApproveMatchMakingLeave();
+        }
+        MyGFxManager = none;
+        ClientSetFrontEnd(KFGameInfo(WorldInfo.Game).KFGFxManagerClass);        
+    }
+    else
+    {        
+        ConsoleCommand("open KFMainMenu");
+    }
 }
 
 state PlayerWalking
@@ -6034,6 +6531,10 @@ state Spectating
             KFPRI.PlayerHealthPercent = 0;
             KFPRI.bNetDirty = true;
         }
+        if(MyGFxManager != none)
+        {
+            MyGFxManager.NotifySpectateStateChanged(true);
+        }
     }
 
     exec function SpectateNextPlayer()
@@ -6062,6 +6563,10 @@ state Spectating
         if(MyGFxHUD != none)
         {
             MyGFxHUD.SetHUDSpectating(false);
+        }
+        if(MyGFxManager != none)
+        {
+            MyGFxManager.NotifySpectateStateChanged(false);
         }
     }
 

@@ -33,7 +33,7 @@ event OnRegister(LocalPlayer InPlayer)
     local OnlinePlayerInterface PlayerInterface;
 
     super.OnRegister(InPlayer);
-    if(PlayerControllerId != -1)
+    if((PlayerControllerId != -1) && !Class'WorldInfo'.static.IsConsoleBuild(9))
     {
         OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
         if(OnlineSub != none)
@@ -102,10 +102,13 @@ function OnLoginChange(byte LocalUserNum)
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     if(OnlineSub != none)
     {
-        PlayerInterface = OnlineSub.PlayerInterface;
-        if((NotEqual_InterfaceInterface(PlayerInterface, (none)) && PlayerInterface.GetLoginStatus(byte(PlayerControllerId)) > 0) && !PlayerInterface.IsGuestLogin(byte(PlayerControllerId)))
+        if(!Class'WorldInfo'.static.IsConsoleBuild(9))
         {
-            PlayerInterface.ReadFriendsList(byte(PlayerControllerId));
+            PlayerInterface = OnlineSub.PlayerInterface;
+            if((NotEqual_InterfaceInterface(PlayerInterface, (none)) && PlayerInterface.GetLoginStatus(byte(PlayerControllerId)) > 0) && !PlayerInterface.IsGuestLogin(byte(PlayerControllerId)))
+            {
+                PlayerInterface.ReadFriendsList(byte(PlayerControllerId));
+            }
         }
     }
 }
@@ -120,11 +123,14 @@ event RefreshFriendsList()
         OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
         if(OnlineSub != none)
         {
-            PlayerInterface = OnlineSub.PlayerInterface;
-            if((NotEqual_InterfaceInterface(PlayerInterface, (none)) && PlayerInterface.GetLoginStatus(byte(PlayerControllerId)) > 0) && !PlayerInterface.IsGuestLogin(byte(PlayerControllerId)))
+            if(!Class'WorldInfo'.static.IsConsoleBuild(9))
             {
-                PlayerInterface.ReadFriendsList(byte(PlayerControllerId));
-                LogInternal("Refreshing friends list", 'DevOnline');
+                PlayerInterface = OnlineSub.PlayerInterface;
+                if((NotEqual_InterfaceInterface(PlayerInterface, (none)) && PlayerInterface.GetLoginStatus(byte(PlayerControllerId)) > 0) && !PlayerInterface.IsGuestLogin(byte(PlayerControllerId)))
+                {
+                    PlayerInterface.ReadFriendsList(byte(PlayerControllerId));
+                    LogInternal("Refreshing friends list", 'DevOnline');
+                }
             }
         }
     }

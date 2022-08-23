@@ -121,6 +121,7 @@ var class<KFGameDifficultyInfo> DifficultyInfoConsoleClass;
 
 /** Trader */
 var array<KFTraderTrigger>	TraderList;
+var transient KFTraderTrigger ScriptedTrader;
 
 /** Pickups */
 var	array<KFPickupFactory>	ItemPickups;
@@ -142,6 +143,11 @@ const 						TeamDeathPenaltyPerc	= 0.05f;
 
 /** Maximum value (aka NumDifficulties - 1) for the GameDifficulty */
 var int 					MaxGameDifficulty;
+
+/** Minimum value for the GameDifficulty.  Paired with above, allows game type to
+ *      clamp difficulty at InitGame time.
+ */
+var int                     MinGameDifficulty;
 
 /************************************************************************************
  * @name		Game Length
@@ -479,7 +485,22 @@ static function string StripPlayOnPrefix( String MapName )
  * - Use when direct ref loading is not possible (e.g. unused GameInfo is loaded)
  * - Class refs can be cached using the supplied GRI
  */
-static function PreloadContentClasses(KFGameReplicationInfo GRI);
+static function PreloadContentClasses()
+{
+	local class<KFPawn_Monster> PawnClass;
+
+	class'KFGameEngine'.static.RefreshEventContent();
+
+	foreach default.AIClassList(PawnClass)
+	{
+		PawnClass.static.PreloadContent();
+	}
+
+	foreach default.AIBossClassList(PawnClass)
+	{
+		PawnClass.static.PreloadContent();
+	}
+}
 
 /** Various functions used by UI when setting game mode */
 static function string GetGameModeFriendlyNameFromNum( int GameModeNum )
@@ -555,7 +576,7 @@ event InitGame( string Options, out string ErrorMessage )
  	Super.InitGame( Options, ErrorMessage );
 
 	GameLength = Clamp(GetIntOption( Options, "GameLength", GameLength ), 0, SpawnManagerClasses.Length - 1);
-	GameDifficulty = Clamp(GameDifficulty, 0, MaxGameDifficulty);
+	GameDifficulty = Clamp(GameDifficulty, MinGameDifficulty, MaxGameDifficulty);
 
 	if( OnlineSub != none && OnlineSub.GetLobbyInterface() != none )
 	{
@@ -642,7 +663,7 @@ protected native function CheckForCustomSettings();
 
 event PreBeginPlay()
 {
-	WorldInfo.TWApplyTweaks();
+	class'KFGameEngine'.static.ApplyTweaks(WorldInfo.GetMapName());
 
 	super.PreBeginPlay();
 
@@ -743,7 +764,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	if( WorldInfo.NetMode == NM_DedicatedServer && !HasOption( Options, "bJoinViaInvite" ) )
 	{
 		DesiredDifficulty = ParseOption( Options, "Difficulty" );
-		if( DesiredDifficulty != "" && int(DesiredDifficulty) != GameDifficulty )
+		if( !bIsVersusGame && DesiredDifficulty != "" && int(DesiredDifficulty) != GameDifficulty )
 		{
 			`log("Got bad difficulty"@DesiredDifficulty@"expected"@GameDifficulty);
 			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
@@ -751,7 +772,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 		}
 
 		DesiredWaveLength = ParseOption( Options, "GameLength" );
-		if( DesiredWaveLength != "" && int(DesiredWaveLength) != GameLength )
+		if( !bIsVersusGame && DesiredWaveLength != "" && int(DesiredWaveLength) != GameLength )
 		{
 			`log("Got bad wave length"@DesiredWaveLength@"expected"@GameLength);
 			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
@@ -956,6 +977,9 @@ function InitTraderList()
 		TraderList.AddItem(MyTrader);
 	}
 }
+
+/** Stub, implement in subclasses */
+function SetupNextTrader();
 
 /** Sets the number of possible pickups on this difficulty and activates that many around the map */
 function InitAllPickups()
@@ -1260,7 +1284,7 @@ function bool ShouldSpawnAtStartSpot(Controller Player)
 
 	// Without NM_Standalone (see super) for online predicted spawn location / texture streaming
 	if ( Player != None && Player.StartSpot != None &&
-	     (IsInitialSpawnPointSelection() || (Player.PlayerReplicationInfo != None && Player.PlayerReplicationInfo.bWaitingPlayer)) )
+	     (IsInitialSpawnPointSelection(WorldInfo) || (Player.PlayerReplicationInfo != None && Player.PlayerReplicationInfo.bWaitingPlayer)) )
 	{
 		StartSpot = PlayerStart(Player.StartSpot);
 		if ( StartSpot == None )
@@ -1293,18 +1317,22 @@ function KFCustomizationPoint FindCustomizationStart( Controller Player )
 }
 
 /** Returns false if this is near another player or in-use spawn point */
-function bool CheckSpawnProximity( NavigationPoint P, Controller Player, byte TeamNum, optional bool bCustomizationPoint )
+static function bool CheckSpawnProximity( NavigationPoint P, Controller Player, byte TeamNum, optional bool bCustomizationPoint )
 {
 	local PlayerController PC;
 	local KFPawn_Customization CPawn;
+	local WorldInfo WI;
 
-	foreach WorldInfo.AllControllers(class'PlayerController', PC)
+	WI = class'WorldInfo'.static.GetWorldInfo();
+	foreach WI.AllControllers( class'PlayerController', PC )
+	{
+		if( PC == Player )
 		{
-		if ( PC == Player )
 			continue;
+		}
 
 		// During initial StartSpot selection, before 1st spawn, choose a unique spawn for each player
-		if ( IsInitialSpawnPointSelection() && !bCustomizationPoint )
+		if( IsInitialSpawnPointSelection(WI) && !bCustomizationPoint )
 		{
 			if ( PC.StartSpot == P && PC.GetTeamNum() == TeamNum )
 			{
@@ -1312,13 +1340,13 @@ function bool CheckSpawnProximity( NavigationPoint P, Controller Player, byte Te
 			}
 		}
 		// During gameplay, or using customization starts, ignore StartSpot and use distance
-		else if ( PC.Pawn != None && !PC.Pawn.bHidden )
+		else if( PC.Pawn != None && !PC.Pawn.bHidden )
 		{
-			if ( bCustomizationPoint )
+			if( bCustomizationPoint )
 			{
 				// invisible customization pawns are okay
 				CPawn = KFPawn_Customization(PC.Pawn);
-				if ( CPawn != None && CPawn.bServerHidden )
+				if( CPawn != None && CPawn.bServerHidden )
 				{
 					continue;
 				}
@@ -1327,15 +1355,15 @@ function bool CheckSpawnProximity( NavigationPoint P, Controller Player, byte Te
 			if( VSizeSq(PC.Pawn.Location - P.Location) < Square(2.1 * PC.Pawn.GetCollisionRadius()) )
 			{
 				return false;
-			}				
+			}
 		}
 	}
 	return true;
 }
 
-function bool IsInitialSpawnPointSelection()
+static function bool IsInitialSpawnPointSelection( WorldInfo WI )
 {
-	return bWaitingToStartMatch;
+	return WI.Game != none ? WI.Game.bWaitingToStartMatch : !WI.GRI.bMatchHasBegun;
 }
 
 /* @see GameInfo::SetPlayerDefaults */
@@ -1369,6 +1397,39 @@ function bool IsWaveActive();
 static function float GetNumAlwaysRelevantZeds()
 {
 	return default.NumAlwaysRelevantZeds;
+}
+
+/** Allow specific game type to override the spawn class.  Default implementation returns from the AI class list. */
+function class<KFPawn_Monster> GetAISpawnType(EAIType AIType)
+{
+    return AIClassList[AIType];
+}
+
+/** Allow specific game type to override the boss spawn class.  Default implementation returns from the AI class list. */
+function class<KFPawn_Monster> GetBossAISpawnType()
+{
+    return AIBossClassList[Rand(AIBossClassList.Length)];
+}
+
+/** Allow gametype to do any adjustments to the spawned AI pawn */
+event AdjustSpawnedAIPawn(KFPawn NewSpawn);
+
+/** Allow specific game types to modify the spawn rate at a global level */
+function float GetGameInfoSpawnRateMod()
+{
+    return 1.f;
+}
+
+/** Whether or not a specific primary weapon is allowed.  Called at player spawn time while setting inventory. */
+function bool AllowPrimaryWeapon(string ClassPath)
+{
+    return true;
+}
+
+/** Allows gametype to adjust starting grenade count.  Called at player spawn time from GiveInitialGrenadeCount in the inventory. */
+function int AdjustStartingGrenadeCount(int CurrentCount)
+{
+    return CurrentCount;
 }
 
 /************************************************************************************
@@ -1552,7 +1613,7 @@ function bool CanSpectate( PlayerController Viewer, PlayerReplicationInfo ViewTa
  ***********************************************************************************/
 
 /*	Use reduce damage for friendly fire, etc. */
-function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser)
+function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
 {
 	local class<KFDamageType> KFDT;
 
@@ -1587,7 +1648,7 @@ function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vec
 	}
 
 	// checks neutral zone and god mode and calls mutator hook
-	Super.ReduceDamage(Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
+	Super.ReduceDamage(Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
 }
 
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> DT)
@@ -1949,7 +2010,11 @@ function int GetNumHumanTeamPlayers()
 
     foreach WorldInfo.AllControllers( class'Controller', C )
     {
-        if( C.bIsPlayer && C.PlayerReplicationInfo != none && !C.PlayerReplicationInfo.bOnlySpectator && C.GetTeamNum() == 0 )
+        if( C.bIsPlayer
+        	&& C.PlayerReplicationInfo != none
+        	&& C.PlayerReplicationInfo.bReadyToPlay
+        	&& !C.PlayerReplicationInfo.bOnlySpectator
+        	&& C.GetTeamNum() == 0 )
         {
             ++HumanTeamPlayers;
         }
@@ -2503,7 +2568,7 @@ event MakeReservations(const string URLOptions, const UniqueNetId PlayerId, out 
 event PlayerController Login(string Portal, string Options, const UniqueNetID UniqueID, out string ErrorMessage)
 {
 	local PlayerController SpawnedPC;
-	local string ClientAuthTicket, PlayerfabPlayerId;
+	local string PlayerfabPlayerId;
 
 	SeatPlayer(UniqueID);
 	SpawnedPC = super.Login(Portal, Options, UniqueID, ErrorMessage);
@@ -2511,21 +2576,14 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 	if( PlayfabInter != none && PlayfabInter.IsRegisteredWithPlayfab() && SpawnedPC != None )
 	{
 		`log("Player login with options"@Options);
-
-		ClientAuthTicket = ParseOption( Options, "AuthTicket" );
 		PlayerfabPlayerId = ParseOption( Options, "PlayfabPlayerId" );
-		`log("Player controller log in with auth ticket"@ClientAuthTicket@"and playfab player id"@PlayerfabPlayerId);
-
-		if( ClientAuthTicket != "" )
-		{
-			// BWJ - 8-12-16 - Disabling this API. I don't see a reason for it.
-	//		PlayfabInter.ServerValidatePlayer( ClientAuthTicket );
-		}
 
 		SpawnedPC.PlayerReplicationInfo.PlayfabPlayerId = PlayerfabPlayerId;
 
-		// Now read in the gameplay time info for this player so we can track when to award gifts
-		ReadGameplayTimeForPlayer( PlayerfabPlayerId );
+		if( PlayerfabPlayerId != "")
+		{
+			PlayfabInter.ServerNotifyPlayerJoined(PlayerfabPlayerId);
+		}
 	}
 
 	return SpawnedPC;
@@ -2989,7 +3047,7 @@ private function CheckServerUnlock()
         
         if( Playfab != none )
 	    {
-		    Playfab.serverDeallocate();
+		    Playfab.ServerDeallocate();
 	    }
 
 		// Won't unlock a server that's not lockable
@@ -3125,110 +3183,6 @@ function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime);
 /*********************************************************************************************
  * @name 	Playfab
  *********************************************************************************************/
-
-
-function ReadGameplayTimeForPlayer( const string ForPlayerId )
-{
-	local array<string> Keys;
-	Keys.AddItem( "LastCrateGiftTime" );
-	Keys.AddItem( "GameplayTime" );
-	PlayfabInter.ServerRetrieveInternalUserData( ForPlayerId, Keys );
-}
-
-
-function ResetGameplayTimeForPlayer( const string ForPlayerId )
-{
-	local array<string> Keys, Values;
-
-	Keys.AddItem( "LastCrateGiftTime" );
-	Values.AddItem( GenerateUTCTimeStamp() );
-	Keys.AddItem( "GameplayTime" );
-	Values.AddItem( "0" );
-	PlayfabInter.ServerUpdateInternalUserData( ForPlayerId, Keys, Values );
-}
-
-
-function AwardCrateToPlayer( string PlayfabPlayerId )
-{
-	local array<string> ItemIds;
-
-	// BWJ - 8-8-16 - 910000 is a master container that contains a master drop table. This drop table contains everything the player can get from rewards.
-	ItemIds.AddItem( "910000" );
-	PlayfabInter.ServerGrantItemsForUser( PlayfabPlayerId, ItemIds );
-}
-
-
-event AddGameplayTimeForPlayer( KFPlayerReplicationInfo ForPRI, int AmountToAdd, optional bool bFinal )
-{
-	local array<string> Keys, Values;
-
-	// If we have a valid player Id, and seconds of gameplay has been readin successfully, and we have an amount to add. Increment cached value and write to backend
-	if( ForPRI.PlayfabPlayerId != "" &&
-		ForPRI.SecondsOfGameplay >= 0 )
-	{
-		ForPRI.SecondsOfGameplay += AmountToAdd;
-
-		// Final time add for this game session and player has earned enough time for reward
-		if( bFinal && HasEnoughTimeForReward( ForPRI ) )
-		{
-			// Reset the timer and gift a new item
-			ResetGameplayTimeForPlayer( ForPRI.PlayfabPlayerId );
-			ForPRI.SecondsOfGameplay = 0;
-			AwardCrateToPlayer( ForPRI.PlayfabPlayerId );
-		}
-		// Not final add or not enough time
-		else if( AmountToAdd > 0 )
-		{
-			Keys.AddItem( "GameplayTime" );
-			Values.AddItem( string(ForPRI.SecondsOfGameplay) );
-			PlayfabInter.ServerUpdateInternalUserData( ForPRI.PlayfabPlayerId, Keys, Values );
-		}
-	}
-}
-
-
-native function string GenerateUTCTimeStamp();
-native function bool HasEnoughTimeForReward( KFPlayerReplicationInfo PRI );
-
-
-function OnRetreivedPFInternalUserData( const string ForPlayerId, array<string> Keys, array<string> Values )
-{
-	local KFPlayerReplicationInfo ForPRI;
-	local int i;
-	local bool bFoundCrateGiftValue, bFoundGameplayValue;
-
-	ForPRI = KFPlayerReplicationInfo(GameReplicationInfo.GetPRIByPlayfabId( ForPlayerId ));
-	if( ForPRI != none )
-	{
-		for( i = 0; i < Keys.Length; i++ )
-		{
-			if( Keys[i] == "LastCrateGiftTime" )
-			{
-				ForPRI.LastCrateGiftTimestamp = Values[i];
-				bFoundCrateGiftValue = true;
-			}
-			else if( Keys[i] == "GameplayTime" )
-			{
-				ForPRI.SecondsOfGameplay = int(Values[i]);
-				bFoundGameplayValue = true;
-			}
-		}
-
-		// If no crate gift value was read in. Set as empty. That way we know that its been attempted to be read in, its just new data.
-		if( !bFoundCrateGiftValue )
-		{
-			ForPRI.LastCrateGiftTimestamp = "Empty";
-		}
-
-		// If gameplay time wasn't read in, set to 0 so we know its initialized. We won't ever write/add to it if its -1 to ensure we don't stomp data that hasn't been read in
-		if( !bFoundGameplayValue )
-		{
-			ForPRI.SecondsOfGameplay = 0;
-		}
-	}
-}
-
-//@HSL_END
 
 /**
   * Checks if the next map exists.

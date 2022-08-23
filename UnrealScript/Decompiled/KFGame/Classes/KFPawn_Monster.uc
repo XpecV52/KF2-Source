@@ -120,7 +120,6 @@ struct native AttachedGoreChunkInfo
 
 var bool bLargeZed;
 var bool bVersusZed;
-var const bool bForceUseOfDebugCharInfo;
 var(Combat) bool bCanGrabAttack;
 var(Combat) bool bCanMeleeAttack;
 var(Combat) bool bHasExtraSprintJumpVelocity;
@@ -154,8 +153,9 @@ var bool bDebug_DrawSprintingOverheadInfo;
 var const bool bDebug_UseIconForShowingSprintingOverheadInfo;
 var bool bReducedZedOnZedPinchPointCollisionStateActive;
 var protected bool bOnDeathAchivementbDisabled;
+var private const string MonsterArchPath;
 var private const KFCharacterInfo_Monster CharacterMonsterArch;
-var private const KFCharacterInfo_Monster CharacterMonsterArchDebug;
+var const class<KFPawn_Monster> ElitePawnClass;
 /** Custom third person camera offsets */
 var() ViewOffsetData ThirdPersonViewOffset;
 /** The chance that this monster pawn will sprint */
@@ -309,6 +309,12 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
     return default.Class;
 }
 
+// Export UKFPawn_Monster::execPreloadContent(FFrame&, void* const)
+native static final function PreloadContent();
+
+// Export UKFPawn_Monster::execLastChanceLoad(FFrame&, void* const)
+private native final function LastChanceLoad();
+
 simulated event PreBeginPlay()
 {
     local KFGameReplicationInfo KFGRI;
@@ -322,16 +328,13 @@ simulated event PreBeginPlay()
     super.PreBeginPlay();
     if(CharacterArch == none)
     {
-        if(bForceUseOfDebugCharInfo && CharacterMonsterArchDebug != none)
+        if(CharacterMonsterArch == none)
         {
-            SetCharacterArch(CharacterMonsterArchDebug);            
+            LastChanceLoad();
         }
-        else
+        if(CharacterMonsterArch != none)
         {
-            if(CharacterMonsterArch != none)
-            {
-                SetCharacterArch(CharacterMonsterArch);
-            }
+            SetCharacterArch(CharacterMonsterArch);
         }
     }
     if(CharacterArch == none)
@@ -553,11 +556,26 @@ function bool HandleAIDoorBump(KFDoorActor door);
 
 function bool NotifyCollideWithActor(Vector HitNormal, Actor Other)
 {
+    local KFDestructibleActor KFDA;
+
+    if(!Other.bStatic && IsHumanControlled())
+    {
+        KFDA = KFDestructibleActor(Other);
+        if(KFDA != none)
+        {
+            HandleDestructibleBump(KFDA, HitNormal);
+        }
+    }
     if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
     {
         MyKFAIC.AILog_Internal((string(GetFuncName()) $ "() Other: ") $ string(Other), 'BumpEvent');
     }
     return false;
+}
+
+function HandleDestructibleBump(KFDestructibleActor Destructible, Vector HitNormal)
+{
+    Destructible.BumpedByMonster(self, HitNormal);
 }
 
 simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
@@ -728,7 +746,7 @@ function SetMovementPhysics()
 function CrushedBy(Pawn OtherPawn)
 {
     super(Pawn).CrushedBy(OtherPawn);
-    if((((bKnockdownWhenJumpedOn && Health > 0) && (OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderComponent.CollisionHeight)) && !IsHumanControlled()) && GetTeamNum() != OtherPawn.GetTeamNum())
+    if(((((bKnockdownWhenJumpedOn && Health > 0) && !IsDoingSpecialMove(10)) && (OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderComponent.CollisionHeight)) && !IsHumanControlled()) && GetTeamNum() != OtherPawn.GetTeamNum())
     {
         Knockdown(,, vect(1, 1, 1), OtherPawn.Location, 1000, 100);
     }
@@ -1004,6 +1022,11 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     Timer_EndRallyBoost();
     super.PlayDying(DamageType, HitLoc);
+}
+
+function bool CanCountHeadshots()
+{
+    return !bIsHeadless;
 }
 
 event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
@@ -1452,6 +1475,7 @@ event OnRigidBodyLinearConstraintViolated(name StretchedBoneName)
 {
     local KFGoreManager GoreManager;
 
+    LogInternal("Linear constraint violated, hiding bone " @ string(StretchedBoneName));
     GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
     if((GoreManager != none) && GoreManager.AllowMutilation())
     {
@@ -1459,16 +1483,13 @@ event OnRigidBodyLinearConstraintViolated(name StretchedBoneName)
         {
             SwitchToGoreMesh();
         }
+        if(bIsGoreMesh)
+        {
+            GoreManager.CrushBone(self, StretchedBoneName);
+            return;
+        }
     }
-    if(bIsGoreMesh && GoreManager != none)
-    {
-        GoreManager.CrushBone(self, StretchedBoneName);        
-    }
-    else
-    {
-        Mesh.HideBoneByName(StretchedBoneName, 1);
-    }
-    LogInternal("Linear constraint violated, hiding bone " @ string(StretchedBoneName));
+    Mesh.HideBoneByName(StretchedBoneName, 1);
 }
 
 protected simulated function ResetHealthVisibilty()
@@ -2448,22 +2469,22 @@ simulated function bool PlayDismemberment(int InHitZoneIndex, class<KFDamageType
         {
             SwitchToGoreMesh();
         }
-    }
-    if(bIsGoreMesh && GoreManager != none)
-    {
-        BreakBoneName = HitZones[InHitZoneIndex].BoneName;
-        if((Health <= 0) && !IsZero(HitDirection))
+        if(bIsGoreMesh)
         {
-            InDmgType.static.GetBoneToDismember(self, HitDirection, HitZones[InHitZoneIndex].ZoneName, BreakBoneName);
+            BreakBoneName = HitZones[InHitZoneIndex].BoneName;
+            if((Health <= 0) && !IsZero(HitDirection))
+            {
+                InDmgType.static.GetBoneToDismember(self, HitDirection, HitZones[InHitZoneIndex].ZoneName, BreakBoneName);
+            }
+            GoreManager.CauseDismemberment(self, BreakBoneName, InDmgType);
+            PlayHitZoneGoreSounds(BreakBoneName, Mesh.GetBoneLocation(BreakBoneName));
+            HitZones[InHitZoneIndex].bPlayedInjury = true;
+            if((Health > 0) && bHasBrokenConstraints)
+            {
+                InitPartialKinematics();
+            }
+            return true;
         }
-        GoreManager.CauseDismemberment(self, BreakBoneName, InDmgType);
-        PlayHitZoneGoreSounds(BreakBoneName, Mesh.GetBoneLocation(BreakBoneName));
-        HitZones[InHitZoneIndex].bPlayedInjury = true;
-        if((Health > 0) && bHasBrokenConstraints)
-        {
-            InitPartialKinematics();
-        }
-        return true;
     }
     return false;
 }

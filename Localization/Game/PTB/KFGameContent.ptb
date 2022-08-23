@@ -83,7 +83,7 @@ NextStepsDescriptionKey="No menu principal, você pode praticar mais off-line ou
 
 ;Healing Section
 QuickHealTitleKey="Quando se machucar, cure-se"
-QuickHealDescriptionKey="Aperte <font color="#caab05">%x%</font> para se curar quando se machucar. Após a cura, a seringa levará algum tempo para se recarregar até estar pronta para novo uso."
+QuickHealDescriptionKey="Aperte e segure <font color="#caab05">%x%</font> para se curar quando se machucar. Após a cura, a seringa levará algum tempo para se recarregar até estar pronta para novo uso."
 HowToSyringeTitleKey="Cure os companheiros"
 HowToSyringeDescriptionKey="Para curar os companheiros, aperte <font color="#caab05">%x%</font> para equipar-se e <font color="#caab05">%x%</font> novamente quando estiver perto do companheiro."
 HealOthersTitleKey="Armas de médico de campo curam companheiros"
@@ -174,7 +174,7 @@ ItemDescription="•O modo de tiro é somente semiautomático.\n•É o padrão 
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle .50"
-ItemCategory="Canhão de mão"
+ItemCategory="Pistola de mão"
 ItemDescription="•O modo de tiro é somente semiautomático.\n•A Desert Eagle é a fera das armas de mão, por isso a chamamos de ‘canhão de mão’."
 
 [KFWeap_AssaultRifle_AR15]
@@ -197,7 +197,10 @@ ItemName="Bullpup SA80 L85A2"
 ItemCategory="Fuzil de assalto"
 ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•O SA80 era a arma padrão do exército britânico, antes do exército ser... devorado."
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="Stoner 63A LMG"
+ItemCategory="Submetralhadora Leve"
+ItemDescription="• Disparo somente automático.\n• Uma submetralhadora dos SEALs da Marinha norte-americana usada na Guerra do Vietnã, a Stoner 63A tem alta capacidade de munição e um grande poder de contenção."
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Faca utilitária"
@@ -269,8 +272,6 @@ ItemName="Esping. de Combate M4"
 ItemCategory="Espingarda"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Benelli projetou a Espingarda de Combate M4 para o exército norte-americano. Como é semiautomática, tem uma cadência de tiro boa e estável."
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="Cortador de grama"
 ItemCategory="Corpo a corpo"
@@ -328,6 +329,16 @@ ItemName="Pistola de Fogo"
 ItemCategory="Chamas"
 ItemDescription="•Atira fogo.\n•Um lança-chamas portátil e caseiro. NÃO tente isso em casa."
 
+[KFWeap_Pistol_Flare]
+ItemName="Lança-chamas"
+ItemCategory="Chamas"
+ItemDescription="• Disparo de projéteis explosivos e inflamáveis. \n• Sistema de disparo de rajadas mais distantes e convenientes."
+
+[KFWeap_Pistol_DualFlare]
+ItemName="Lança-chamas duplo"
+ItemCategory="Chamas"
+ItemDescription="• Disparo de projéteis explosivos e inflamáveis. \n• Disparo alternativo que alterna estilos de mira ao usar uma mira metálica.\n• Um par de lança-chamas. É possível vendê-las ou descartá-las individualmente."
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Arma Incendiária"
 ItemCategory="Espingarda"
@@ -363,8 +374,6 @@ ItemName="RPG-7"
 ItemCategory="Explosivos"
 ItemDescription="•Modo de tiro lança um foguete.\n•O foguete explode com o impacto.\n•Ela se arma a alguns metros de distância do objetivo para que você não exploda junto.\n•Tome cuidado ao ficar atrás deles!"
 
-
-
 [KFWeap_Pistol_Dual9mm]
 ItemName="Duas Pistolas 9 mm"
 ItemCategory="Pistola de mão"
@@ -382,7 +391,7 @@ ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle .50"
-ItemCategory="Canhão de mão"
+ItemCategory="Pistola de mão"
 ItemDescription="•O modo de tiro é somente semiautomático.\n•A Desert Eagle é a fera das armas de mão, por isso a chamamos de ‘canhão de mão’."
 
 [KFWeap_Pistol_DualDeagle]
@@ -414,8 +423,6 @@ ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Modo tiro único, somente.\n•O modelo clássico do rifle Winchester modelo 1894 com alavanca."
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="Besta"

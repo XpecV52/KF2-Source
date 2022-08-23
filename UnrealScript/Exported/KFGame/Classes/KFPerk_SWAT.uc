@@ -11,81 +11,7 @@
 class KFPerk_SWAT extends KFPerk
 	native;
 
-
-
- 
-
-
- 
-
-
-  
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
-
-
- 
-
-
- 
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-#linenumber 14
+//`include(KFOnlineStats.uci)
 
 /** Passives */
 var	private const PerkSkill 				WeaponDamage;						// 1% increased Perk weapon damage per level (max 25%)
@@ -350,7 +276,7 @@ simulated static function float GetSnareSpeedModifier()
 	return default.PerkSkills[ESWAT_Cripple].StartingValue;
 }
 
-simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsCrippleActive() && DamageType != none && IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
 	{

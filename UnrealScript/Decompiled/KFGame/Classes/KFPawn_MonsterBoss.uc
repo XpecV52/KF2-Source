@@ -379,7 +379,8 @@ defaultproperties
         SpecialMoveClasses(30)=none
         SpecialMoveClasses(31)=none
         SpecialMoveClasses(32)=none
-        SpecialMoveClasses(33)=class'KFSM_Zed_Boss_Theatrics'
+        SpecialMoveClasses(33)=none
+        SpecialMoveClasses(34)=class'KFSM_Zed_Boss_Theatrics'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_MonsterBoss.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

@@ -83,7 +83,7 @@ NextStepsDescriptionKey="在主選單，你可選擇離線模式來精進你的�
 
 ;Healing Section
 QuickHealTitleKey="在受傷時自行治療"
-QuickHealDescriptionKey="若你受傷了，可以按下 <font color="#caab05">%x%</font> 為自己療傷。療傷後，注射器要重新裝填，因此過一段時間才能使用。"
+QuickHealDescriptionKey="若你受傷了，可以按住<font color="#caab05">%x%</font>為自己療傷。療傷後，注射器要重新裝填，因此過一段時間才能使用。"
 HowToSyringeTitleKey="治療你的隊友"
 HowToSyringeDescriptionKey="你可以裝備注射器並靠近隊友，按下 <font color="#caab05">%x%</font> 再按下 <font color="#caab05">%x%</font>，為你的隊友療傷。"
 HealOthersTitleKey="使用治療武器為隊友療傷"
@@ -174,7 +174,7 @@ ItemDescription="•主要攻擊模式只有半自動。\n•這是制式的 9 �
 
 [KFWeap_Pistol_Deagle]
 ItemName="點 50 沙漠之鷹"
-ItemCategory="手砲"
+ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•沙漠之鷹是手槍界的野獸，所以我們都叫它手砲。"
 
 [KFWeap_AssaultRifle_AR15]
@@ -197,7 +197,10 @@ ItemName="SA80 L85A2 小鬥牛"
 ItemCategory="突擊步槍"
 ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•SA80 是英國陸軍的標準配備，直到陸軍，呃，被吃了。"
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="斯通納63A輕機槍"
+ItemCategory="輕機槍"
+ItemDescription="•主要攻擊模式只有全自動。\n•美國海軍海豹部隊在越南戰爭主要使用的武器之一， 斯通納63A配備高攜彈量並具有強大的火力。"
 
 [KFWeap_Knife_Demolitionist]
 ItemName="多功能小刀"
@@ -269,8 +272,6 @@ ItemName="M4 戰鬥霰彈槍"
 ItemCategory="霰彈槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•Benelli 為美國軍隊設計了 M4 戰鬥霰彈槍。它是半自動發射，能以穩定頻率射出子彈。"
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="除草機刀片"
 ItemCategory="近身"
@@ -328,6 +329,16 @@ ItemName="裝好就燒"
 ItemCategory="火焰"
 ItemDescription="•主要攻擊模式會射出火焰。\n•自製手持火焰噴射器。請不要在家嘗試。"
 
+[KFWeap_Pistol_Flare]
+ItemName="火槍"
+ItemCategory="火焰"
+ItemDescription="•主要攻擊模式為發射爆炸性、火焰投擲物體。\n•在一個較為便利、可攜式的大小包裝下發射砲火系統。"
+
+[KFWeap_Pistol_DualFlare]
+ItemName="雙管火槍"
+ItemCategory="火焰"
+ItemDescription="•主要攻擊模式為發射爆炸性、火焰投擲物體。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•此為一對火槍。兩把都可以各自賣掉或丟棄。"
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="噴火霰彈槍"
 ItemCategory="霰彈槍"
@@ -363,8 +374,6 @@ ItemName="RPG-7 "
 ItemCategory="炸藥"
 ItemDescription="•主要攻擊模式會射出一枚火箭。\n•火箭碰觸到物品即爆炸。\n•射出後才會解除保險，所以你不會炸爛自己的臉。\n•小心後座力！"
 
-
-
 [KFWeap_Pistol_Dual9mm]
 ItemName="9 釐米雙槍"
 ItemCategory="手槍"
@@ -382,7 +391,7 @@ ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，�
 
 [KFWeap_Pistol_Deagle]
 ItemName="點 50 沙漠之鷹"
-ItemCategory="手砲"
+ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•沙漠之鷹是手槍界的野獸，所以我們都叫它手砲。"
 
 [KFWeap_Pistol_DualDeagle]
@@ -414,8 +423,6 @@ ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，�
 ItemName="溫徹斯特 1894"
 ItemCategory="來福槍"
 ItemDescription="•主要攻擊模式只有單發。\n•經典的 1894 型溫徹斯特槓桿式步槍。"
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="十字弓"

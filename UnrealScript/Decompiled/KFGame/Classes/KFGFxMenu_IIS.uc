@@ -11,6 +11,7 @@ class KFGFxMenu_IIS extends KFGFxObject_Menu within GFxMoviePlayer
 var delegate<OnAutoLoginComplete> AutoLoginCompleteDelegate;
 var bool bLoggingIn;
 var bool bForceConnectionAtLogin;
+var bool bStatsRead;
 var OnlineSubsystem OnlineSub;
 var PlayfabInterface PlayfabInter;
 var delegate<OnAutoLoginComplete> __OnAutoLoginComplete__Delegate;
@@ -26,10 +27,43 @@ event AttemptAutoLogin(optional delegate<OnAutoLoginComplete> del)
 
 function OnOpen()
 {
+    local string LoginTextString;
+    local GFxObject PressStartTxtField;
+    local KFGameEngine KFEngine;
+
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
-    SetString("loginText", ConsoleLocalize("PressButtonToStart"));
+    LoginTextString = ConsoleLocalize("PressButtonToStart");
+    if(Class'WorldInfo'.static.IsConsoleBuild(9))
+    {        
+        LoginTextString @= ("<br>" $ (ConsoleLocalize("SwitchProfile")));
+        PressStartTxtField = GetObject("textField");
+        PressStartTxtField.SetBool("multiline", true);
+    }
+    SetString("loginText", LoginTextString);
     SetBool("showLoading", false);
+    Class'Engine'.static.GetEngine().GameViewport.bAllowInputFromMultipleControllers = true;
+    KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
+    if(Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        KFEngine.LocalLoginStatus = 0;
+    }
+    if(KFEngine.GameSettingsForPendingInvite != none)
+    {
+        Outer.GetPC().CachedInviteResult.GameSettings = KFEngine.GameSettingsForPendingInvite;
+        OnlineSub.ManuallyActivateUser(KFEngine.GameSettingsForPendingInvite.OwningPlayerId);
+        KFEngine.GameSettingsForPendingInvite = none;
+        Outer.GetPC().OnGameInviteAccepted(Outer.GetPC().CachedInviteResult, 0);        
+    }
+    else
+    {
+        if(KFEngine.ReturnToIISConnectionErrorMessage != "")
+        {
+            Manager.DelayedOpenPopup(2, 0, KFEngine.ReturnToIISConnectionErrorTitle, KFEngine.ReturnToIISConnectionErrorMessage, Class'KFCommon_LocalizedStrings'.default.OKString);
+            KFEngine.ReturnToIISConnectionErrorTitle = "";
+            KFEngine.ReturnToIISConnectionErrorMessage = "";
+        }
+    }
 }
 
 event OnClose()
@@ -40,6 +74,7 @@ event OnClose()
     if(GVC != none)
     {
         GVC.bSeenIIS = true;
+        GVC.bAllowInputFromMultipleControllers = false;
     }
     UnRegisterDelegates();
 }
@@ -48,29 +83,147 @@ function UnRegisterDelegates();
 
 event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInputEvent InputEvent)
 {
-    if((((ButtonName == 'XboxTypeS_A') && InputEvent == 0) && Manager != none) && Manager.CurrentPopup == none)
+    if(((InputEvent == 0) && Manager != none) && Manager.CurrentPopup == none)
     {
-        LoginToGame();
-        return true;
+        if(ButtonName == 'XboxTypeS_A')
+        {
+            OnlineSub.ActivateGamepad(ControllerId);
+            if(ValidateActiveAccount(byte(Outer.GetLP().ControllerId)))
+            {
+                LoginToGame();
+            }
+            return true;            
+        }
+        else
+        {
+            if(Class'WorldInfo'.static.IsConsoleBuild(9) && ButtonName == 'XboxTypeS_Y')
+            {
+                if(ValidateActiveAccount(byte(ControllerId)))
+                {
+                    OnlineSub.PlayerInterface.ShowLoginUI(byte(ControllerId));
+                }
+                return true;
+            }
+        }
     }
     return false;
 }
 
+function bool ValidateActiveAccount(byte ControllerId)
+{
+    local UniqueNetId NewUniqueId, ZeroId;
+
+    if(Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        if(ControllerId != Outer.GetLP().ControllerId)
+        {
+            Outer.GetLP().ControllerId = ControllerId;
+        }
+        OnlineSub.PlayerInterface.GetUniquePlayerId(ControllerId, NewUniqueId);
+        if(NewUniqueId == ZeroId)
+        {
+            ShowLoginUI();
+            return false;
+        }
+    }
+    return true;
+}
+
+function ShowLoginUI()
+{
+    OnlineSub.PlayerInterface.AddLoginCancelledDelegate(OnLoginCancelled);
+    OnlineSub.PlayerInterface.AddLoginStatusChangeDelegate(OnLoginStatusChanged, byte(Outer.GetLP().ControllerId));
+    OnlineSub.PlayerInterface.ShowLoginUI(byte(Outer.GetLP().ControllerId));
+}
+
+function OnLoginCancelled()
+{
+    OnlineSub.PlayerInterface.ClearLoginCancelledDelegate(OnLoginCancelled);
+    OnlineSub.PlayerInterface.ClearLoginStatusChangeDelegate(OnLoginStatusChanged, byte(Outer.GetLP().ControllerId));
+    Manager.DelayedOpenPopup(0, 0, ConsoleLocalize("NotSignedInTitle"), ConsoleLocalize("PlayOffline"), Class'KFCommon_LocalizedStrings'.default.OKString, Class'KFCommon_LocalizedStrings'.default.CancelString, OnConfirmPlayOffline, ShowLoginUI);
+}
+
+function OnConfirmPlayOffline()
+{
+    local UIDataStore_OnlinePlayerData PlayerDataDS;
+    local OnlineProfileSettings ProfileSettings;
+
+    PlayerDataDS = UIDataStore_OnlinePlayerData(Class'UIInteraction'.static.GetDataStoreClient().FindDataStore('OnlinePlayerData', Outer.GetLP()));
+    ProfileSettings = OnlineProfileSettings(PlayerDataDS.ProfileProvider.Profile);
+    ProfileSettings.SetToDefaults();
+    ProfileSettings.ExpandExtraFromProfileSettings();
+    OnlineSub.SetCachedProfile(ProfileSettings);
+    KFPlayerController(Outer.GetPC()).case assert((@NULL != @NULL) != assert((@NULL != (true != )) != KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus = 1)) != :
+        default.@NULL
+        @NULL
+}
+
+function OnLoginStatusChanged(Engine.OnlineSubsystem.ELoginStatus NewStatus, UniqueNetId NewId)
+{
+    OnlineSub.PlayerInterface.ClearLoginCancelledDelegate(OnLoginCancelled);
+    OnlineSub.PlayerInterface.ClearLoginStatusChangeDelegate(OnLoginStatusChanged, byte(Outer.GetLP().ControllerId));
+    if(NewStatus == 2)
+    {
+        LoginToGame();
+    }
+}
+
 function LoginToGame()
 {
+    local UIDataStore_OnlinePlayerData PlayerDataDS;
+    local string LoggingInText;
+    local UniqueNetId ZeroId;
+
     if(bLoggingIn)
     {
         WarnInternal("Ignoring login while one is already occurring");
         return;
     }
     bLoggingIn = true;
-    SetString("loginText", ConsoleLocalize("LoggingIn"));
+    LoggingInText = ConsoleLocalize("LoggingIn");
+    if(Class'WorldInfo'.static.IsConsoleBuild(9) && Outer.GetLP().GetUniqueNetId() != ZeroId)
+    {
+        LoggingInText = (Outer.GetLP().GetNickname() $ "<br>") $ LoggingInText;
+    }
+    SetString("loginText", LoggingInText);
     SetBool("showLoading", true);
+    if(Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        PlayerDataDS = UIDataStore_OnlinePlayerData(Class'UIInteraction'.static.GetDataStoreClient().FindDataStore('OnlinePlayerData', Outer.GetLP()));
+        OnlineSub.PlayerInterface.AddReadProfileSettingsCompleteDelegate(byte(Outer.GetLP().ControllerId), OnReadProfileSettingsComplete);
+        OnlineSub.PlayerInterface.ReadProfileSettings(byte(Outer.GetLP().ControllerId), OnlineProfileSettings(PlayerDataDS.ProfileProvider.Profile));        
+    }
+    else
+    {
+        KFPlayerController(Outer.GetPC()).StartLogin(OnLoginToGameComplete, AutoLoginCompleteDelegate != none);
+    }
+}
+
+function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
+{
+    LogInternal((("Profile settings read for" @ string(LocalUserNum)) @ "with success") @ string(bWasSuccessful));
+    OnlineSub.PlayerInterface.ClearReadProfileSettingsCompleteDelegate(byte(Outer.GetLP().ControllerId), OnReadProfileSettingsComplete);
+    KFPlayerController(Outer.GetPC()).OnReadProfileSettingsComplete(LocalUserNum, bWasSuccessful);
+    OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate(OnStatsRead);
+    KFPlayerController(Outer.GetPC()).SetStatsReadOwningPlayerId(Outer.GetLP().GetUniqueNetId());
+    KFPlayerController(Outer.GetPC()).ReadStats();
+}
+
+function OnStatsRead(bool bWasSuccessful)
+{
+    LogInternal("stats read with success" @ string(bWasSuccessful));
+    OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate(OnStatsRead);
     KFPlayerController(Outer.GetPC()).StartLogin(OnLoginToGameComplete, AutoLoginCompleteDelegate != none);
 }
 
 function OnLoginToGameComplete()
 {
+    if((OnlineSub.PlayerInterface.GetLoginStatus(byte(Outer.GetLP().ControllerId)) != 2) && Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        Manager.DelayedOpenPopup(2, 7, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), "LoggedOutMessage", Class'KFCommon_LocalizedStrings'.default.OKString);
+        return;
+    }
+    KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus = 2;
     ProceedToMainMenu();
     if(AutoLoginCompleteDelegate != none)
     {
@@ -83,12 +236,40 @@ function ProceedToMainMenu()
 {
     local KFPlayerController PC;
 
+    if(Class'WorldInfo'.static.IsConsoleBuild(8) && !bStatsRead)
+    {
+        OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate(OnPS4StatsRead);
+        return;
+    }
     PC = KFPlayerController(Outer.GetPC());
     PC.ResetPerkStatsLoaded();
     PC.ClientInitializePerks();
     Manager.PartyWidget.RefreshParty();
     Manager.OpenMenu(0);
     bLoggingIn = false;
+    Class'KFGameEngine'.static.InitEventContent();
+    Class'Engine'.static.GetEngine().GameViewport.bAllowInputFromMultipleControllers = false;
+    if((Class'WorldInfo'.static.IsConsoleBuild(9) && !Manager.bSetGamma) && !Class'KFGameEngine'.static.CheckSkipGammaCheck())
+    {
+        PC.SetTimer(0.01, false, 'DelayedOpenGammaPopup', self);
+    }
+    if(Class'WorldInfo'.static.IsConsoleBuild(9) && !OnlineSub.SystemInterface.IsControllerConnected(Outer.GetLP().ControllerId))
+    {
+        PC.SetTimer(0.01, false, 'ShowControllerDisconnectedDialog');
+    }
+}
+
+function OnPS4StatsRead(bool bSuccess)
+{
+    OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate(OnPS4StatsRead);
+    bStatsRead = true;
+    ProceedToMainMenu();
+}
+
+function DelayedOpenGammaPopup()
+{
+    Manager.ManagerObject.SetBool("bStartUpGamma", true);
+    Manager.DelayedOpenPopup(1, 4, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
 }
 
 function NotifyLoginFailed()

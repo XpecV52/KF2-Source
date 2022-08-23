@@ -1514,6 +1514,11 @@ function bool IsWithinAttackRange()
 	return false;
 }
 
+function bool CanAttackDestructibles()
+{
+    return !MyHansPawn.bGunsEquipped && bCanDoHeavyBump;
+}
+
 /*********************************************************************************************
 * Battle-phase switching
 **********************************************************************************************/
@@ -1941,14 +1946,6 @@ function bool DoHeavyZedBump( Actor Other, vector HitNormal )
 	if( Other.bCanBeDamaged && KFFracturedMeshGlass(Other) != none )
 	{
 		KFFracturedMeshGlass(Other).BreakOffAllFragments();
-		return true;
-	}
-
-	if( Other.IsA('KFDestructibleActor') && !GetActiveCommand().IsA('AICommand_Melee') && Other.bCollideActors && !MyKFPawn.IsDoingSpecialMove() )
-	{
-		AIZeroMovementVariables();
-		DisableBump(2.f);
-		NotifyAttackActor( Other );
 		return true;
 	}
 

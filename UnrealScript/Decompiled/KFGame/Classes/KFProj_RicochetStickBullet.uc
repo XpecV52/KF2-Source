@@ -74,12 +74,24 @@ event PreBeginPlay()
 simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
     local StickInfo MyStickInfo;
+    local KActorFromStatic NewKActor;
     local KFDestructibleActor HitDestructible;
     local editinline StaticMeshComponent HitComponent;
-    local Vector DestructableHitLocation;
+    local TraceHitInfo HitInfo;
 
     SetRotation(rotator(Normal(Velocity)));
     SetPhysics(2);
+    if(((bBounce && !Wall.bStatic) && Wall.bCanBeDamaged) && Wall.bProjTarget)
+    {
+        HitInfo.HitComponent = WallComp;
+        HitInfo.Item = -1;
+        Wall.TakeDamage(int(Damage), InstigatorController, Location, MomentumTransfer * -HitNormal, MyDamageType, HitInfo, self);
+        if(!Wall.bBlockActors || (WallComp != none) && !WallComp.BlockActors)
+        {
+            BouncesLeft = 0;
+            return;
+        }
+    }
     if(!Bounce(HitNormal, Wall))
     {
         if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
@@ -87,21 +99,24 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
             ProjEffects.DeactivateSystem();
             ProjEffects.SetVectorParameter('Rotation', vect(0, 0, 0));
         }
-        if((!Wall.bStatic && !Wall.bWorldGeometry) && Wall.bProjTarget)
+        if(((!Wall.bStatic && Wall.bWorldGeometry) && Wall.bCanBeDamaged) && Wall.bProjTarget)
         {
             HitDestructible = KFDestructibleActor(Wall);
             if((HitDestructible != none) && HitDestructible.ReplicationMode >= 2)
             {
                 return;
-            }
-            TraceComponent(DestructableHitLocation, HitNormal, WallComp, Location, LastLocation,,, bCollideComplex);
-            SetLocation(DestructableHitLocation);            
+            }            
         }
         else
         {
             HitComponent = StaticMeshComponent(WallComp);
             if((HitComponent != none) && HitComponent.CanBecomeDynamic())
             {
+                NewKActor = Class'KActorFromStatic'.static.MakeDynamic(HitComponent);
+                if(NewKActor != none)
+                {
+                    NewKActor.TakeDamage(int(Damage), InstigatorController, Location, MomentumTransfer * -HitNormal, MyDamageType, HitInfo, self);
+                }
                 return;
             }
         }
@@ -234,7 +249,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
     local KFPawn KFP;
     local bool bPassThrough;
 
-    if(((Other != Instigator) && !Other.bWorldGeometry) && Other.bCanBeDamaged)
+    if(((Other != Instigator) && Other.bCanBeDamaged) && !Other.bWorldGeometry || !Other.bStatic)
     {
         if(ShouldProcessBulletTouch())
         {

@@ -78,7 +78,7 @@ function RestartPlayer(Controller NewPlayer)
     }
 }
 
-function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser)
+function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
 {
     if(injured.IsHumanControlled())
     {
@@ -91,7 +91,7 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
             }
         }
     }
-    super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
+    super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
 }
 
 function bool PreventDeath(Pawn KilledPawn, Controller Killer, class<DamageType> DamageType, Vector HitLocation)
@@ -274,6 +274,26 @@ function RemoveTutorialHud()
             MyGFXTutorial = none;
             PC.SetPause(false);
         }
+    }
+}
+
+function NotifyControllerDisconnected()
+{
+    if(MyGFXTutorial != none)
+    {
+        MyGFXTutorial.SetVisibility(false);
+        MyGFXTutorial.SetPriority(1);
+        KFPlayerController(GetALocalPlayerController()).MyGFxManager.SetPriority(2);
+    }
+}
+
+function NotifyControllerReconnected()
+{
+    if(MyGFXTutorial != none)
+    {
+        MyGFXTutorial.SetVisibility(true);
+        MyGFXTutorial.SetPriority(2);
+        KFPlayerController(GetALocalPlayerController()).MyGFxManager.SetPriority(1);
     }
 }
 

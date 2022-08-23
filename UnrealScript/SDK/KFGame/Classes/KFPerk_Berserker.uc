@@ -11,7 +11,7 @@
 class KFPerk_Berserker extends KFPerk
 	native;
 
-`include(KFOnlineStats.uci)
+//`include(KFOnlineStats.uci)
 
 var	const				PerkSkill 	BerserkerDamage;
 var const				PerkSkill	DamageResistance;                   // 0% resistance to all damage – Max 25%
@@ -842,8 +842,8 @@ DefaultProperties
 
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'
 
-	ProgressStatID=`STATID_Bsrk_Progress
-	PerkBuildStatID=`STATID_Bsrk_Build
+	ProgressStatID=STATID_Bsrk_Progress
+	PerkBuildStatID=STATID_Bsrk_Build
 
 	SecondaryXPModifier(0)=6
 	SecondaryXPModifier(1)=8

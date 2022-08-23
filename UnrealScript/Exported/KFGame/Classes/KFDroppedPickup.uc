@@ -36,6 +36,12 @@ var protected const bool bUseLowHealthDelay;
 /** Skin assigned from dropped weapon */
 var private int SkinItemId;
 
+/** Whether or not to use the authority's rigid body update */
+var protected bool bUseAuthorityRBUpdate;
+
+/** Life span after changing authority update status */
+var protected float PostAuthorityChangeLifeSpan;
+
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -46,7 +52,7 @@ var private int SkinItemId;
 replication
 {
 	if ( Role == ROLE_Authority )
-		RBState;
+		RBState, bUseAuthorityRBUpdate;
 
 	if ( bNetInitial )
 		SkinItemId;
@@ -241,10 +247,10 @@ simulated final function AlignCollisionCylinder()
 }
 
 /** @see GearWeapon.DropFrom  for the ScriptRigidBodyCollisionThreshold value we use **/
-event RigidBodyCollision( PrimitiveComponent HitComponent, PrimitiveComponent OtherComponent,
-						 const out CollisionImpactData RigidCollisionData, int ContactIndex)
+event RigidBodyCollision(PrimitiveComponent HitComponent, PrimitiveComponent OtherComponent,
+    const out CollisionImpactData RigidCollisionData, int ContactIndex)
 {
-	PlayCollisionSound();
+    PlayCollisionSound();
 }
 
 /*********************************************************************************************
@@ -383,6 +389,7 @@ auto state Pickup
 	{
 		local Actor HitA;
 		local vector HitLocation, HitNormal;
+		local TraceHitInfo HitInfo;
 		local bool bHitWall;
 
 		// make sure its a live player
@@ -403,9 +410,9 @@ auto state Pickup
 		}
 
 		// make sure not touching through wall
-		foreach Other.TraceActors(class'Actor', HitA, HitLocation, HitNormal, MyCylinderComp.GetPosition() + vect(0,0,10), Other.Location/*, vect(1,1,1)*/)
+		foreach Other.TraceActors( class'Actor', HitA, HitLocation, HitNormal, MyCylinderComp.GetPosition() + vect(0,0,10), Other.Location, vect(1,1,1), HitInfo )
 		{
-			if ( IsTouchBlockedBy(HitA) )
+			if ( IsTouchBlockedBy(HitA, HitInfo.HitComponent) )
 			{
 				if (MyMeshComp == None)
 				{
@@ -421,9 +428,9 @@ auto state Pickup
 		if (bHitWall)
 		{
 			// fail only if wall between both cylinder and mesh center
-			foreach Other.TraceActors(class'Actor', HitA, HitLocation, HitNormal, MyMeshComp.Bounds.Origin + vect(0,0,10), Other.Location/*, vect(1,1,1)*/)
+			foreach Other.TraceActors( class'Actor', HitA, HitLocation, HitNormal, MyMeshComp.Bounds.Origin + vect(0,0,10), Other.Location, vect(1,1,1), HitInfo )
 			{
-				if ( IsTouchBlockedBy(HitA) )
+				if ( IsTouchBlockedBy(HitA, HitInfo.HitComponent) )
 				{
 					return false;
 				}
@@ -448,9 +455,9 @@ auto state Pickup
 }
 
 /** helper for ValidTouch */
-simulated function bool IsTouchBlockedBy(Actor A)
+simulated function bool IsTouchBlockedBy( Actor A, PrimitiveComponent HitComponent )
 {
-	if (A != self && A.bBlockActors && A.bWorldGeometry)
+	if( A != self && A.bWorldGeometry && HitComponent != none && HitComponent.BlockActors )
 	{
 		if ( BlockingVolume(A) != None )
 		{
@@ -467,6 +474,19 @@ simulated function bool IsTouchBlockedBy(Actor A)
 function Reset()
 {
 	Destroy();
+}
+
+/** Handle any behavior associated with disabling the authority override for RB simulation.  Also
+ *      flip the replicated flag to let the clients take over.
+ */
+function DisableAuthorityRBSim()
+{
+    bUseAuthorityRBUpdate = false;
+
+    //Since we're now doing client simulation, keep it around long enough to
+    //      be useful, but no longer.  Reset fadeout timer.
+    ClearTimer(nameof(TryFadeOut));
+    SetTimer(PostAuthorityChangeLifeSpan, false, nameof(TryFadeOut));
 }
 
 /*********************************************************************************************
@@ -501,15 +521,20 @@ function TryFadeOut()
 {
 	local Pawn P;
 
-	// don't fade out yet if a player is nearby
-	foreach WorldInfo.AllPawns(class'Pawn', P, Location, 1024.0)
-	{
-		if (P.IsPlayerOwned())
-		{
-			SetTimer(5.0, false, nameof(TryFadeOut));
-			return;
-		}
-	}
+    //Only do this if we're letting server run the RB updates
+    if (bUseAuthorityRBUpdate)
+    {
+        // don't fade out yet if a player is nearby
+        foreach WorldInfo.AllPawns(class'Pawn', P, Location, 1024.0)
+        {
+            if (P.IsPlayerOwned())
+            {
+                SetTimer(5.0, false, nameof(TryFadeOut));
+                return;
+            }
+        }
+    }
+	
 	GotoState('FadeOut');
 }
 
@@ -517,6 +542,8 @@ defaultproperties
 {
    bEnableStaticMeshRBPhys=True
    bUseLowHealthDelay=True
+   bUseAuthorityRBUpdate=True
+   PostAuthorityChangeLifeSpan=5.000000
    Begin Object Class=SpriteComponent Name=Sprite Archetype=SpriteComponent'Engine.Default__DroppedPickup:Sprite'
       Sprite=Texture2D'EditorResources.S_Inventory'
       SpriteCategoryName="Inventory"

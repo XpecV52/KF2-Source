@@ -47,7 +47,7 @@ function DropFrom(vector StartLocation, vector StartVelocity)
 	StartLocation.Z += Instigator.BaseEyeHeight / 2;
 
 	// the last bool param is to prevent collision from preventing spawns
-	KFDP = KFDroppedPickup_Cash(Spawn(DroppedPickupClass,,, StartLocation,,,true));
+	KFDP = KFDroppedPickup_Cash(Spawn(DroppedPickupClass,PlayerController(Instigator.Controller),, StartLocation,,,true));
 	if( KFDP == None )
 	{
 		PlayerController(Instigator.Controller).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_FailedDropInventory );

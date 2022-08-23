@@ -118,7 +118,7 @@ defaultproperties
     ScreamLightFalloffExponent=2
     MinFlickerBrightness=0.4
     MaxFlickerBrightness=2
-    CharacterMonsterArch=KFCharacterInfo_Monster'zed_siren_arch.ZED_Siren_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Siren_Archetype"
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=13
         MyDamageType=Class'KFDT_Slashing_ZedWeak'

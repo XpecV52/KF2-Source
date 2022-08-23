@@ -29,6 +29,12 @@ var(Sounds) WeaponFireSndInfo DartFireSnd;
  *  Prevents us from missing healing shots from being grabbed
  */
 var(Weapon) float HealDartShotWeakZedGrabCooldown;
+/** Recoil override for healing dart alt-fire */
+var(Recoil) int DartMaxRecoilPitch;
+var(Recoil) int DartMinRecoilPitch;
+var(Recoil) int DartMaxRecoilYaw;
+var(Recoil) int DartMinRecoilYaw;
+var ForceFeedbackWaveform HealingDartWaveForm;
 /** The frequency with which we will check for a lock */
 var(Locking) float LockCheckTime;
 /** How far out should we be considering actors for a lock */
@@ -196,6 +202,38 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
         KFProj_HealingDart(SpawnedProjectile).SeekTarget = LockedTarget;
     }
     return SpawnedProjectile;
+}
+
+simulated event HandleRecoil()
+{
+    if(CurrentFireMode == 1)
+    {
+        minRecoilPitch = DartMinRecoilPitch;
+        maxRecoilPitch = DartMaxRecoilPitch;
+        minRecoilYaw = DartMinRecoilYaw;
+        maxRecoilYaw = DartMaxRecoilYaw;        
+    }
+    else
+    {
+        minRecoilPitch = default.minRecoilPitch;
+        maxRecoilPitch = default.maxRecoilPitch;
+        minRecoilYaw = default.minRecoilYaw;
+        maxRecoilYaw = default.maxRecoilYaw;
+    }
+    super.HandleRecoil();
+}
+
+simulated function ShakeView()
+{
+    if(CurrentFireMode == 1)
+    {
+        WeaponFireWaveForm = HealingDartWaveForm;        
+    }
+    else
+    {
+        WeaponFireWaveForm = default.WeaponFireWaveForm;
+    }
+    super.ShakeView();
 }
 
 simulated function StartFire(byte FireModeNum)
@@ -611,6 +649,11 @@ defaultproperties
     HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
     DartFireSnd=(DefaultCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_1P')
     HealDartShotWeakZedGrabCooldown=0.5
+    DartMaxRecoilPitch=250
+    DartMinRecoilPitch=200
+    DartMaxRecoilYaw=100
+    DartMinRecoilYaw=-100
+    HealingDartWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
     LockCheckTime=0.1
     LockRange=50000
     LockAcquireTime=0.2

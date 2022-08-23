@@ -83,7 +83,7 @@ NextStepsDescriptionKey="Depuis l'Accueil, vous pouvez vous entraîner hors lign
 
 ;Healing Section
 QuickHealTitleKey="Soignez-vos blessures"
-QuickHealDescriptionKey="Si vous êtes blessé, soignez-vous en appuyant sur <font color="#caab05">%x%</font>. Après le soin, votre seringue prend un peu de temps pour se recharger avant que vous ne puissiez la réutiliser."
+QuickHealDescriptionKey="En cas de blessure, soignez-vous en maintenant <font color="#caab05">%x%</font>. Après le soin, votre seringue prend un peu de temps pour se recharger avant que vous ne puissiez la réutiliser."
 HowToSyringeTitleKey="Soignez vos équipiers"
 HowToSyringeDescriptionKey="Vous pouvez également équiper la seringue pour soigner vos équipiers en appuyant sur <font color="#caab05">%x%</font> puis sur <font color="#caab05">%x%</font> à proximité d'un équipier."
 HealOthersTitleKey="Utiliser les armes du Médecin pour soigner"
@@ -174,7 +174,7 @@ ItemDescription="•Tir semi-auto uniquement.\n•Pistolet 9 mm standard. Simpl
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle .50"
-ItemCategory="Hand Cannon"
+ItemCategory="Arme de poing"
 ItemDescription="•Mode de tir semi-automatique seulement.\n•Le Desert Eagle est le mastodonte des armes de poing, ce qui lui vaut le surnom de « Hand Cannon »."
 
 [KFWeap_AssaultRifle_AR15]
@@ -197,7 +197,10 @@ ItemName="SA80 L85A2 Bullpup"
 ItemCategory="Fusil d'assaut"
 ItemDescription="•Modes tir automatique et semi-automatique.\n•Alt-Feu pour alterner entre les modes de tir.\n•Le SA80 était l'arme de base de l'armée britannique, avant que l'armée ne se fasse bouffer."
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="Stoner 63A LMG"
+ItemCategory="Mitrailleuse légère"
+ItemDescription="• Mode de tir uniquement automatique.\n• Incontournable chez les Navy Seals durant la guerre du Vietnam, la Stoner 63A est dotée d'une capacité en munitions importante et un bon pouvoir d'arrêt."
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Couteau utilitaire"
@@ -269,8 +272,6 @@ ItemName="Fusil à pompe M4 Combat"
 ItemCategory="Fusil à pompe"
 ItemDescription="•Tir semi-auto uniquement\n•Le fusil à pompe de combat M4, conçu par Benelli pour l'armée américaine. Son mode de tir semi-automatique permet une cadence de tir régulière."
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="Lame de tondeuse"
 ItemCategory="Mêlée"
@@ -328,6 +329,16 @@ ItemName="Brûleur"
 ItemCategory="Incendiaire"
 ItemDescription="•Lance des flammes.\n•Lance-flammes artisanal portatif. N'essayez PAS d'en fabriquer un chez vous."
 
+[KFWeap_Pistol_Flare]
+ItemName="Cracheur de feu"
+ItemCategory="Flammes"
+ItemDescription="• Lance des projectiles explosifs inflammables. \n• Système de tir plus pratique et moins encombrant."
+
+[KFWeap_Pistol_DualFlare]
+ItemName="Duo cracheurs de feu"
+ItemCategory="Flammes"
+ItemDescription="• Lance des flammes et des projectiles enflammés. \n• Tir alternatif quand vous utilisez la mire.\n• Une paire de Cracheurs de feu. Chaque arme peut être vendue ou jetée individuellement."
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Trench Gun incendiaire"
 ItemCategory="Fusil à pompe"
@@ -363,8 +374,6 @@ ItemName="RPG-7"
 ItemCategory="Explosifs"
 ItemDescription="•Lance une roquette.\n• La roquette explose à l'impact.\n•Ne s'arme qu'à quelques mètres pour que tu ne te fasses pas exploser la cervelle.\n•Attention au retour de flamme !"
 
-
-
 [KFWeap_Pistol_Dual9mm]
 ItemName="Double pistolet 9 mm"
 ItemCategory="Arme de poing"
@@ -382,7 +391,7 @@ ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif p
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle .50"
-ItemCategory="Hand Cannon"
+ItemCategory="Arme de poing"
 ItemDescription="•Mode de tir semi-automatique seulement.\n•Le Desert Eagle est le mastodonte des armes de poing, ce qui lui vaut le surnom de « Hand Cannon »."
 
 [KFWeap_Pistol_DualDeagle]
@@ -414,8 +423,6 @@ ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif p
 ItemName="Winchester 1894"
 ItemCategory="Fusil"
 ItemDescription="•Mode de tir manuel seulement.\n•Le légendaire fusil à levier Winchester modèle 1894."
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="Arbalète"

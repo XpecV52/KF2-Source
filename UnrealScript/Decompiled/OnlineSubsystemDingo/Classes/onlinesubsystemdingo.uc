@@ -47,6 +47,8 @@ struct native PerUserDelegateLists
     var array< delegate<OnRecognitionComplete> > SpeechRecognitionDelegates;
     var array< delegate<OnUnlockAchievementComplete> > AchievementDelegates;
     var array< delegate<OnReadAchievementsComplete> > AchievementReadDelegates;
+    var array< delegate<OnReadProfileSettingsComplete> > ReadProfileSettingsDelegates;
+    var array< delegate<OnWriteProfileSettingsComplete> > WriteProfileSettingsDelegates;
 
     structdefaultproperties
     {
@@ -54,6 +56,8 @@ struct native PerUserDelegateLists
         SpeechRecognitionDelegates=none
         AchievementDelegates=none
         AchievementReadDelegates=none
+        ReadProfileSettingsDelegates=none
+        WriteProfileSettingsDelegates=none
     }
 };
 
@@ -88,6 +92,18 @@ struct native CachedAchievements
     }
 };
 
+struct native CountryRegionMapping
+{
+    var const int CountryCode;
+    var const int MatchingRegion;
+
+    structdefaultproperties
+    {
+        CountryCode=0
+        MatchingRegion=0
+    }
+};
+
 var private native const noexport Pointer VfTable_FCallbackEventDevice;
 var OnlineGameDVRInterfaceDingo GameDVRInterfaceImpl;
 var OnlineStatsInterfaceDingo StatsInterfaceImpl;
@@ -95,12 +111,11 @@ var OnlineTitleFileInterfaceDingo TitleFileInterfaceImpl;
 var OnlineCommunityContentInterfaceDingo CommunityContentInterfaceImpl;
 var OnlineMarketplaceInterfaceDingo MarketplaceInterfaceImpl;
 var OnlineContentInterfaceDingo ContentInterfaceImpl;
+var KFOnlineLobbyDingo LobbyInterface;
 var native const array<Pointer> QueuedActivationAsyncTasks;
 var native const array<Pointer> AsyncTasks;
 var config string ProfileDataDirectory;
 var config string ProfileDataExtension;
-var array< delegate<OnReadProfileSettingsComplete> > ReadProfileSettingsDelegates;
-var array< delegate<OnWriteProfileSettingsComplete> > WriteProfileSettingsDelegates;
 var array< delegate<OnReadOnlineProfilesComplete> > ReadOnlineProfileDelegates;
 var OnlineProfileSettings CachedProfile;
 var array< delegate<OnKeyboardInputComplete> > KeyboardInputDelegates;
@@ -142,12 +157,14 @@ var native const bool bIsAppConstrained;
 var native const bool bIsAppSuspended;
 var native const bool bLoginStatusUpdated;
 var const bool bLoginStatusUpdatedWhileSuspended;
+var const bool bPeoplePickerActive;
 var native const bool bCurrentUserChanged;
 var native const bool bConnectionStatusUpdated;
 var native const bool bRefreshMarketplaceInventory;
 var native const bool bConnectedToLIVENetwork;
 var native const bool bControllerPairingChanged;
 var native const bool bLisenceInfoUpdated;
+var const bool bProductPurchased;
 var native const bool bWasActivated;
 var const bool bAudioDeviceAdded;
 var const bool bLocalUserRegisteringForVoice;
@@ -167,6 +184,7 @@ var config string ProductID;
 var const string ServiceConfigId;
 var config string DefaultSessionKeyword;
 var config string DefaultHopperName;
+var const config array<config CountryRegionMapping> CountryMatchmakingRegionMappings;
 var native HatPointer ShowContentAsyncAction;
 var native HatPointer ActiveLicenseInfo;
 var delegate<OnLoginChange> __OnLoginChange__Delegate;
@@ -222,7 +240,6 @@ var delegate<OnRemoteTalkerStatusChange> __OnRemoteTalkerStatusChange__Delegate;
 var delegate<OnTrialModeUpdate> __OnTrialModeUpdate__Delegate;
 var delegate<OnReadMicroTransactionStatusComplete> __OnReadMicroTransactionStatusComplete__Delegate;
 var delegate<OnIsConnectedToOnlineServiceChecked> __OnIsConnectedToOnlineServiceChecked__Delegate;
-var delegate<OnOnlineServiceAuthComplete> __OnOnlineServiceAuthComplete__Delegate;
 var delegate<OnStoreDataRead> __OnStoreDataRead__Delegate;
 var delegate<OnEntitlementsRead> __OnEntitlementsRead__Delegate;
 
@@ -354,10 +371,8 @@ function ClearLoginFailedDelegate(byte LocalUserNum, delegate<OnLoginFailed> Fai
     LoginFailedDelegates.RemoveItem(FailedDelegate;
 }
 
-function bool Logout(byte LocalUserNum)
-{
-    return false;
-}
+// Export Uonlinesubsystemdingo::execLogout(FFrame&, void* const)
+native function bool Logout(byte LocalUserNum);
 
 delegate OnLogoutCompleted(bool bWasSuccessful);
 
@@ -393,6 +408,17 @@ event ClearOnSystemUserControllerPairingChangedDelegate()
     ClearSystemUserContrllerPairingChangedDelegate(OnUserControllerPairingChanged);
 }
 
+event bool SetLobbyInterface(Object NewInterface)
+{
+    LobbyInterface = KFOnlineLobbyDingo(NewInterface);
+    return (LobbyInterface != none) && LobbyInterface.Initialize();
+}
+
+function TWOnlineLobby GetLobbyInterface()
+{
+    return LobbyInterface;
+}
+
 // Export Uonlinesubsystemdingo::execPairUserAndControllerAtIndex(FFrame&, void* const)
 native function bool PairUserAndControllerAtIndex(byte PlayerIndex, byte ControllerIndex, int PairIndex);
 
@@ -409,7 +435,7 @@ native function bool GetControllerIdFromNetId(UniqueNetId PlayerID, out byte Con
 native function ManuallyActivateUser(const UniqueNetId ForUniqueId);
 
 // Export Uonlinesubsystemdingo::execActivateGamepad(FFrame&, void* const)
-native function ActivateGamepad(const int CurrentUserIndex, const int GamepadIndex);
+native function ActivateGamepad(const int GamepadIndex);
 
 // Export Uonlinesubsystemdingo::execGetPlayerNickname(FFrame&, void* const)
 native function string GetPlayerNickname(byte LocalUserNum);
@@ -695,11 +721,11 @@ delegate OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful);
 
 function AddReadProfileSettingsCompleteDelegate(byte LocalUserNum, delegate<OnReadProfileSettingsComplete> ReadProfileSettingsCompleteDelegate)
 {
-    if(LocalUserNum == 0)
+    if((LocalUserNum >= 0) && LocalUserNum < 24)
     {
-        if(ReadProfileSettingsDelegates.Find(ReadProfileSettingsCompleteDelegate == -1)
+        if(PerUserDelegates[LocalUserNum].ReadProfileSettingsDelegates.Find(ReadProfileSettingsCompleteDelegate == -1)
         {
-            ReadProfileSettingsDelegates[ReadProfileSettingsDelegates.Length] = ReadProfileSettingsCompleteDelegate;
+            PerUserDelegates[LocalUserNum].ReadProfileSettingsDelegates.AddItem(ReadProfileSettingsCompleteDelegate;
         }        
     }
     else
@@ -710,15 +736,9 @@ function AddReadProfileSettingsCompleteDelegate(byte LocalUserNum, delegate<OnRe
 
 function ClearReadProfileSettingsCompleteDelegate(byte LocalUserNum, delegate<OnReadProfileSettingsComplete> ReadProfileSettingsCompleteDelegate)
 {
-    local int RemoveIndex;
-
-    if(LocalUserNum == 0)
+    if((LocalUserNum >= 0) && LocalUserNum < 24)
     {
-        RemoveIndex = ReadProfileSettingsDelegates.Find(ReadProfileSettingsCompleteDelegate;
-        if(RemoveIndex != -1)
-        {
-            ReadProfileSettingsDelegates.Remove(RemoveIndex, 1;
-        }        
+        PerUserDelegates[LocalUserNum].ReadProfileSettingsDelegates.RemoveItem(ReadProfileSettingsCompleteDelegate;        
     }
     else
     {
@@ -726,13 +746,14 @@ function ClearReadProfileSettingsCompleteDelegate(byte LocalUserNum, delegate<On
     }
 }
 
+function SetCachedProfile(OnlineProfileSettings InSettings)
+{
+    CachedProfile = InSettings;
+}
+
 function OnlineProfileSettings GetProfileSettings(byte LocalUserNum)
 {
-    if(LocalUserNum == 0)
-    {
-        return CachedProfile;
-    }
-    return none;
+    return CachedProfile;
 }
 
 // Export Uonlinesubsystemdingo::execWriteProfileSettings(FFrame&, void* const)
@@ -742,11 +763,11 @@ delegate OnWriteProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful);
 
 function AddWriteProfileSettingsCompleteDelegate(byte LocalUserNum, delegate<OnWriteProfileSettingsComplete> WriteProfileSettingsCompleteDelegate)
 {
-    if(LocalUserNum == 0)
+    if((LocalUserNum >= 0) && LocalUserNum < 24)
     {
-        if(WriteProfileSettingsDelegates.Find(WriteProfileSettingsCompleteDelegate == -1)
+        if(PerUserDelegates[LocalUserNum].WriteProfileSettingsDelegates.Find(WriteProfileSettingsCompleteDelegate == -1)
         {
-            WriteProfileSettingsDelegates[WriteProfileSettingsDelegates.Length] = WriteProfileSettingsCompleteDelegate;
+            PerUserDelegates[LocalUserNum].WriteProfileSettingsDelegates.AddItem(WriteProfileSettingsCompleteDelegate;
         }        
     }
     else
@@ -757,15 +778,9 @@ function AddWriteProfileSettingsCompleteDelegate(byte LocalUserNum, delegate<OnW
 
 function ClearWriteProfileSettingsCompleteDelegate(byte LocalUserNum, delegate<OnWriteProfileSettingsComplete> WriteProfileSettingsCompleteDelegate)
 {
-    local int RemoveIndex;
-
-    if(LocalUserNum == 0)
+    if((LocalUserNum >= 0) && LocalUserNum < 24)
     {
-        RemoveIndex = WriteProfileSettingsDelegates.Find(WriteProfileSettingsCompleteDelegate;
-        if(RemoveIndex != -1)
-        {
-            WriteProfileSettingsDelegates.Remove(RemoveIndex, 1;
-        }        
+        PerUserDelegates[LocalUserNum].WriteProfileSettingsDelegates.RemoveItem(WriteProfileSettingsCompleteDelegate;        
     }
     else
     {
@@ -1256,6 +1271,9 @@ function ClearShowHelpCompleteDelegate(delegate<OnShowHelpComplete> HelpDelegate
 // Export Uonlinesubsystemdingo::execShowVideo(FFrame&, void* const)
 native function bool ShowVideo(string URL);
 
+// Export Uonlinesubsystemdingo::execOpenURL(FFrame&, void* const)
+native function OpenURL(string WebsiteLink);
+
 delegate OnTokenAndSignatureRetrieved(byte LocalUserNum, string URL, string Token, string Signature);
 
 // Export Uonlinesubsystemdingo::execGetTokenAndSignatureForURL(FFrame&, void* const)
@@ -1545,14 +1563,6 @@ function PostActivityFeedTeamAward(string AwardName);
 
 function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
 
-delegate OnOnlineServiceAuthComplete();
-
-function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
-
-function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
-
-function AuthWithOnlineService();
-
 function ReadStoreData();
 
 delegate OnStoreDataRead(bool bSuccessful);
@@ -1568,6 +1578,39 @@ delegate OnEntitlementsRead(bool bSuccess);
 function AddOnEntitlementsReadDelegate(delegate<OnEntitlementsRead> InDelegate);
 
 function ClearOnEntitlementsReadDelegate(delegate<OnEntitlementsRead> InDelegate);
+
+private final event StartSaveDataRead(byte LocalUserNum, string Filename)
+{
+    ContentInterfaceImpl.AddReadSaveGameDataComplete(LocalUserNum, OnReadProfileSaveData);
+    ContentInterfaceImpl.ReadSaveGameData(LocalUserNum, 0, "", "", Filename);
+}
+
+private final function OnReadProfileSaveData(bool bWasSuccessful, byte LocalUserNum, int DeviceID, string FriendlyName, string Filename, string SaveFileName)
+{
+    ContentInterfaceImpl.ClearReadSaveGameDataComplete(LocalUserNum, OnReadProfileSaveData);
+    HandleReadProfileSaveDataComplete(bWasSuccessful, LocalUserNum, SaveFileName);
+}
+
+// Export Uonlinesubsystemdingo::execHandleReadProfileSaveDataComplete(FFrame&, void* const)
+private native final function HandleReadProfileSaveDataComplete(bool bWasSuccessful, byte LocalUserNum, string SaveFileName);
+
+private final event WriteProfileData(byte LocalUserNum, string Filename, const out array<byte> ProfileData)
+{
+    ContentInterfaceImpl.AddWriteSaveGameDataComplete(LocalUserNum, OnWriteProfileSaveData);
+    ContentInterfaceImpl.WriteSaveGameData(LocalUserNum, 0, "", "", Filename, ProfileData);
+}
+
+private final function OnWriteProfileSaveData(bool bWasSuccessful, byte LocalUserNum, int DeviceID, string FriendlyName, string Filename, string SaveFileName)
+{
+    ContentInterfaceImpl.ClearWriteSaveGameDataComplete(LocalUserNum, OnWriteProfileSaveData);
+    HandleWriteProfileSaveDataComplete(bWasSuccessful, LocalUserNum, SaveFileName);
+}
+
+// Export Uonlinesubsystemdingo::execHandleWriteProfileSaveDataComplete(FFrame&, void* const)
+private native final function HandleWriteProfileSaveDataComplete(bool bWasSuccessful, byte LocalUserNum, string SaveFileName);
+
+// Export Uonlinesubsystemdingo::execStartRegionPingAndSelectDefaultRegion(FFrame&, void* const)
+native function StartRegionPingAndSelectDefaultRegion(delegate<OnPingRegionsComplete> Callback);
 
 defaultproperties
 {

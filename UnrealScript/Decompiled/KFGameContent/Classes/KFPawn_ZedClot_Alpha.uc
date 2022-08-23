@@ -9,8 +9,6 @@ class KFPawn_ZedClot_Alpha extends KFPawn_ZedClot
     config(Game)
     hidecategories(Navigation);
 
-var class<KFPawn_Monster> SpecialAlphaPawnClass;
-
 static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
     local WorldInfo WI;
@@ -18,7 +16,7 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
     WI = Class'WorldInfo'.static.GetWorldInfo();
     if(FRand() < class<KFDifficulty_ClotAlpha>(default.DifficultySettings).static.GetSpecialAlphaChance(KFGameReplicationInfo(WI.GRI)))
     {
-        return default.SpecialAlphaPawnClass;
+        return default.ElitePawnClass;
     }
     return super(KFPawn_Monster).GetAIPawnClassToSpawn();
 }
@@ -30,8 +28,8 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
-    SpecialAlphaPawnClass=Class'KFPawn_ZedClot_AlphaKing'
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Alpha_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Clot_Alpha_Archetype"
+    ElitePawnClass=Class'KFPawn_ZedClot_AlphaKing'
     GrabAttackFrequency=0.33
     ParryResistance=0
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedClot_Alpha.MeleeHelper'

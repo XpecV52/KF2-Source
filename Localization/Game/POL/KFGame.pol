@@ -55,6 +55,8 @@ SecondaryWeaponPurchasedString="Zakupiono broń rezerwową"
 NoItemsPurchasedString="Nie zakupiono przedmiotów"
 
 SetTakeoverServerPasswordTitle="Wpisz nowe hasło, aby chronić grę:"
+FreeConsolePlayOverString="Dziękujemy za grę w Killing Floor 2! Wydarzenie umożliwiające bezpłatną grę dobiegło końca, ale możesz zakupić grę i uzyskać więcej informacji, naciskając poniższy przycisk Sklep."
+BuyGameString="SKLEP"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="NIE UDAŁO SIĘ ZNALEŹĆ ROZGRYWKI"
@@ -1068,8 +1070,7 @@ BloomStringOptions[1]="Niska jakość"
 BloomStringOptions[2]="Wysoka jakość"
 
 MotionBlurStringOptions[0]="Wył."
-MotionBlurStringOptions[1]="Normalne"
-MotionBlurStringOptions[2]="Wysokie"
+MotionBlurStringOptions[1]="Wł."
 
 AmbientOcclusionStringOptions[0]="Wył."
 AmbientOcclusionStringOptions[1]="SSAO"
@@ -1108,6 +1109,7 @@ UseAltAimOnDualString="Alt. celowanie pistoletami"
 AntiMotionSicknessString="Ograniczanie kinetozy"
 AutoTurnOffString="Bez obrotu po złapaniu"
 ReduceHighPitchNoiseString="Redukcja wys. dźwięków"
+DisableAutoUpgradeString="Wyłącz automatyczne uaktualnienia"
 
 [LocalizedControls]
 ControllerLayoutDefault="Domyślne"
@@ -1127,7 +1129,7 @@ GBA_Look_Gamepad="Kontrola widoku"
 GBA_Grenade_Gamepad="Rzut granatem"
 GBA_TurnLeft_Gamepad="Kontrola widoku"
 GBA_Look_Gamepad="Kontrola widoku"
-GBA_DPad_Left_Gamepad="Komunikacja głosowa"
+GBA_DPad_Left_Gamepad="Kom. głosowe/emocje"
 GBA_DPad_Up_Gamepad="Używaj uzdrowiciela"
 GBA_DPad_Right_Gamepad="Rozrzuć forsę"
 GBA_DPad_Down_Gamepad="Przełączanie latarki"
@@ -1236,6 +1238,12 @@ BashString="Cios wręcz"
 BlockString="Blok (przytrzymaj)"
 HoldString="PRZYTRZYMAJ"
 TapString="STUKNIJ"
+
+[KFGFxScreenSizeContainer]
+TitleString="Aplikacja będzie wyświetlana w obszarze okna"
+DescriptionString="Dostosuj obszar, aby pasował do ekranu telewizora"
+EnlargeString="Powiększ"
+ShrinkString="Pomniejsz"
 
 [KFInventoryManager]
 FullHealthMsg="Zdrowie pełne"
@@ -1347,6 +1355,8 @@ HealSelfGamepadWarning="<%HOLD%>LECZ SIEBIE"
 PressToBashWarning="CIOS"
 GamepadWeaponSelectHint="<%HOLD%>WYBÓR BRONI"
 PlayerClotGrabWarningMessage="ZABIJ ZETA, ŻEBY SIĘ UWOLNIĆ!"
+UseMinigameMessage="AKTYWUJ MINIGRĘ"
+UseMinigameGeneratorMessage="AKTYWUJ GENERATOR"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Drużyny mają nierówną liczbę graczy i zostaną zrównoważone"
@@ -1593,7 +1603,7 @@ SmashDescription="Ciężkie ataki bronią białą specjalizacji zadają o 50% wi
 Fury="Masakra"
 FuryDescription="Słabe ataki zadają o 30% więcej obrażeń, a wszystkie ataki są o 5% szybsze podczas używania broni białej specjalizacji."
 
-Spartan="CZAS ZET – Spartanin "
+Spartan="CZAS ZET – Spartanin"
 SpartanDescription="W czasie zet atakujesz bronią specjalizacji i poruszasz się w czasie rzeczywistym."
 
 Rage="CZAS ZET – Szał berserkera"
@@ -1750,7 +1760,7 @@ EXPAction2="Leczenie członków drużyny"
 [KFPerk_Firebug]
 PerkName="Podpalacz"
 EXPAction1="Zadawanie obrażeń bronią podpalacza"
-EXPAction2="Bronią podpalacza w pełzaczy i spaślaka"
+EXPAction2="Zabijanie pełzaczy bronią podpalacza"
 
 SkillCatagories[0]="Zaopatrzenie"
 SkillCatagories[1]="Ostrość"
@@ -1900,7 +1910,7 @@ Passives[0]=(Title="Biegłość spawania",Description="Szybkość spawania wzras
 Passives[1]=(Title="Obrażenia strzelby",Description="Obr. broni spec. wzrastają o %x% na poziom");
 Passives[2]=(Title="Penetracja strzelby",Description="Penetracja broni spec. wzrasta o %x% na poziom");
 Passives[3]=(Title="Amunicja",Description="Ilość amunicji wzrasta o 15% oraz %x% na poziom");
-Passives[4]=(Title="Siła",Description="Udźwig zwiększony o 1 co 5 poziomów");
+Passives[4]=(Title="Zwiększony udźwig",Description="Udźwig zwiększony o 1 co 5 poziomów");
 Passives[5]=(Title="Plecak z amunicją + naprawa drzwi",Description="Raz na rundę gracze mogą otrzymać amunicję z plecaka; naprawa drzwi");
 
 EXPAction1="Zadawanie obrażeń bronią wsparcia"
@@ -2094,10 +2104,10 @@ RandomLoadingStrings[13]="Masz więcej forsy? Upuść nieco dla swojej drużyny,
 RandomLoadingStrings[14]="Wybieraj cele. Skuteczność danego rodzaju broni zależy od rodzaju zeta."
 RandomLoadingStrings[15]="Nadawaj celom priorytet. Mięśniak jest ważniejszym celem niż skrzep."
 RandomLoadingStrings[16]="Wszystkie zety mają słabe punkty. Jeśli nie jest nim głowa, szukaj świecących elementów na ich ciele."
-RandomLoadingStrings[17]="Chcesz kupić lub sprzedać ozdobę albo skórkę broni?  Sprawdź ofertę na rynku."
+RandomLoadingStrings[17]="Chociaż w ramach łupu zdobędziesz nieraz ozdoby, niektóre z nich można kupić."
 RandomLoadingStrings[18]="Krzyk syreny neutralizuje granaty i inne ładunki wybuchowe."
 RandomLoadingStrings[19]="Rzeźnicy i mięśniaki wpadają we wściekłość po otrzymaniu określonej ilości obrażeń. Lepiej nie stać im na drodze."
-RandomLoadingStrings[20]="Masz trochę skórek broni lub ozdób, których nie używasz?  Wytwórz nowe w ekwipunku."
+RandomLoadingStrings[20]="Masz trochę skórek broni lub ozdób, których nie używasz? Wytwórz nowe w ekwipunku."
 RandomLoadingStrings[21]="Uważnie dobieraj ubranie i sprzęt. Trzeba się dobrze prezentować, zabijając zetów."
 RandomLoadingStrings[22]="Ataki bronią białą są kierunkowe i zależą od twojego ruchu."
 RandomLoadingStrings[23]="Zaspawanie drzwi może ograniczyć liczbę kierunków, z których nadciągną zety, ale ograniczy też drogi ucieczki."
@@ -2118,7 +2128,7 @@ RandomLoadingStrings[37]="Działo elektromagnetyczne może przestrzelić kilka z
 RandomLoadingStrings[38]="Działo mikrofalowe zadaje więcej obrażeń zetom, które mają przy sobie metal, takim jak mięśniaki i syreny."
 RandomLoadingStrings[39]="Wypróbuj alternatywny tryb ognia broni. Nie każda broń go ma, ale może się okazać pomocny w trudnej sytuacji."
 RandomLoadingStrings[40]="Otrzymujesz PD i forsę za zabójstwa, ale też za asysty. Nie przejmuj się, że tylko pomagasz sojusznikom."
-RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
+RandomLoadingStrings[41]="Aby usunąć spaw z drzwi, użyj spawarki i naciśnij przycisk celownika mechanicznego."
 
 [WhatsNewMessages]
 Jaegorhorn="Obserwuj społeczność, by zdobyć Jägerhorna"
@@ -2167,20 +2177,29 @@ PS4WeaponSkinCrate2="Skrzynia Horzine ze skórkami broni | Seria 2"
 Artbook="Cyfrowy artbook Killing Floor 2"
 Uncovered="Film live action Killing Floor: Uncovered"
 NewEmotes="Nowość! Klucz do skrzyni emocji – 2,49$"
+HorzineSupplyCrateKey10="Klucz do skrzyni Horzine | Seria 10 - $2.49"
+HorzineSupplyCrateKey11="Klucz do skrzyni Horzine | Seria 11 - $2.49"
+HorzineSupplyCrateKey12="Klucz do skrzyni Horzine | Seria 12 - $2.49"
+HorzineSupplyCrateKey13="Klucz do skrzyni Horzine | Seria 13 - $2.49"
+USBSpitfire="Spit Fire USB Key - $2.49"
+USBHighVoltage="High Voltage USB Key - $2.49"
+MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Spaślak"
 KFPawn_ZedClot="Skrzep"
 KFPawn_ZedCrawler="Pełzacz"
+KFPawn_ZedCrawlerKing="Elitarny pełzacz"
 KFPawn_ZedFleshPound="Mięśniak"
 KFPawn_ZedGorefast="Rozpruwacz"
-KFPawn_ZedGorefastDualBlade="Gorefiend"
+KFPawn_ZedGorefastDualBlade="Dręczyciel"
 KFPawn_ZedHans="Dr Hans Volter"
 KFPawn_ZedHusk="Truchło"
 KFPawn_ZedStalker="Zmora"
 KFPawn_ZedClot_Cyst="Cysta"
 KFPawn_ZedClot_Slasher="Siepacz"
 KFPawn_ZedClot_Alpha="Skrzep alfa"
+KFPawn_ZedClot_AlphaKing="Elitarny alfa"
 KFPawn_ZedScrake="Rzeźnik"
 KFPawn_ZedSiren="Syrena"
 KFPawn_ZedPatriarch="Patriarcha"
@@ -2510,6 +2529,38 @@ DisplayName_POL="Lądowanie zetów"
 DisplayName_PTB="Pouso Forçado ZED"
 DisplayName_RUS="Высадка среди мутантов"
 
+[KF-TheDescent KFMapSummary]
+DisplayName_CHN="后裔"
+DisplayName_CHT="地下鐵"
+DisplayName_DEU="Der Abstieg"
+DisplayName_ESL="El descendiente"
+DisplayName_ESN="El descendiente"
+DisplayName_FRA="La descente"
+DisplayName_FRC="La descente"
+DisplayName_INT="The Descent"
+DisplayName_ITA="La discesa"
+DisplayName_JPN="The Descent"
+DisplayName_KOR="경사로"
+DisplayName_POL="Zejście"
+DisplayName_PTB="A Descida"
+DisplayName_RUS="Спуск"
+
+[KF-Nuked KFMapSummary]
+DisplayName_CHN="核武器"
+DisplayName_CHT="核電廠"
+DisplayName_DEU="Atomisiert"
+DisplayName_ESL="Bombardeado"
+DisplayName_ESN="Bombardeado"
+DisplayName_FRA="Atomisé"
+DisplayName_FRC="Atomisé"
+DisplayName_INT="Nuked"
+DisplayName_ITA="Nuclearizzato"
+DisplayName_JPN="Nuked"
+DisplayName_KOR="방사능 누출지"
+DisplayName_POL="Wysadzeni"
+DisplayName_PTB="Bombardeio"
+DisplayName_RUS="Ядерный удар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorium biotyczne"
 
@@ -2552,6 +2603,11 @@ DisplayName="Piekielna domena"
 [KF-ZedLanding KFMapSummary]
 DisplayName="Lądowanie zetów"
 
+[KF-TheDescent KFMapSummary]
+DisplayName="Zejście"
+
+[KF-Nuked KFMapSummary]
+DisplayName="Wysadzeni"
 
 [KFMapInfo]
 ; defaults

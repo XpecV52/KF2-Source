@@ -1,6 +1,6 @@
 [CHR_Jagerhorn_Archetype]
 CharacterName="Oisten Jägerhorn"
-Description="Als der große Kerl aus Schweden, dem vor dem Ausbruch Bier schmeckte und der gern in Bars laut wurde, entsprach Jägerhorn der allgemeinen Vorstellung eines zeitgenössischen Wikingers. Nachdem er jedoch in die Hirnrissigkeit, die der Große Nordische Bikerkrieg der 1990er war, vage involviert war, beschloss er, dass wahnsinnige Gewalt gegen Menschen wesentlich unlustiger ist als reichlich Bier zu trinken und mittelmäßig Leadgitarre für „Metalbika“ – seine Metallica-Tribute-Band – zu spielen. \nAls die Ausbrüche Skandinavien erreichten, stand wahnsinnige Gewalt dann doch schließlich auf der Tagesordnung. Zeds gegen Menschen – kein gutes Karma, nach Jägerhorns Maßstäben. Großer Schwedischer Wikinger Jägerhorn gegen Zeds? Immer her damit!"
+Description="Als der große Kerl aus Schweden, dem vor dem Ausbruch Bier schmeckte und der gern in Bars laut wurde, entsprach Jägerhorn der allgemeinen Vorstellung eines zeitgenössischen Wikingers. Nachdem er jedoch in die Hirnrissigkeit, die der Große Nordische Bikerkrieg der 1990er war, vage involviert war, beschloss er, dass wahnsinnige Gewalt gegen Menschen wesentlich unlustiger ist als reichlich Bier zu trinken und mittelmäßig Leadgitarre für „Metalbika“ – seine Metallica-Tribute-Band – zu spielen. \n\nAls die Ausbrüche Skandinavien erreichten, stand wahnsinnige Gewalt dann doch schließlich auf der Tagesordnung. Zeds gegen Menschen – kein gutes Karma, nach Jägerhorns Maßstäben. Großer Schwedischer Wikinger Jägerhorn gegen Zeds? Immer her damit!"
 BodyMesh0="Biker-Zeit"
 BodyMesh1="Papp-Ritter"
 BodyMesh2="Horzine-Security"
@@ -122,7 +122,7 @@ AttachmentSkin3="Schönes Blau"
 
 [chr_DJSkully_archetype]
 CharacterName="DJ Scully"
-Description="Als der coolste holländische Underground-DJ seiner Generation kommt Scully nicht umhin, von jedem geliebt zu werden. Frauen verlieben sich am Ende immer in ihn, unabhängig von jeglichem gesunden Menschenverstand. Die Männer müssten ihn allein schon deswegen alle hassen, aber es macht einfach zu viel Spaß ihn um sich zu haben. \n\nAls der Ausbruch begann, hatte er gerade eine Monstershow in einer stillgelegten Irrenanstalt im Norden von London beendet. Als die Zeds versuchten alle zu fressen, haben seine Schlagfertigkeit und seine schnellen Beine ihm das Leben gerettet. Scully konnte das Leben nie ernst nehmen und die Apokalypse hat nichts daran geändert. Aber er ist wirklich gut darin, Monster zu erledigen. So gut, dass alberne Gerüchte in Umlauf kamen, dass er ein Ex-Mitglied der Spezialeinheiten sein muss, was einfach nur ein weiterer Scully-Witz ist."
+Description="Als der coolste holländische Underground-DJ seiner Generation kommt Scully nicht umhin, von jedem geliebt zu werden. Frauen verlieben sich am Ende immer in ihn, unabhängig von jeglichem gesunden Menschenverstand. Die Männer müssten ihn allein schon deswegen alle hassen, aber es macht einfach zu viel Spaß ihn um sich zu haben. \nAls der Ausbruch begann, hatte er gerade eine Monstershow in einer stillgelegten Irrenanstalt im Norden von London beendet. Als die Zeds versuchten alle zu fressen, haben seine Schlagfertigkeit und seine schnellen Beine ihm das Leben gerettet. Scully konnte das Leben nie ernst nehmen und die Apokalypse hat nichts daran geändert. Aber er ist wirklich gut darin, Monster zu erledigen. So gut, dass alberne Gerüchte in Umlauf kamen, dass er ein Ex-Mitglied der Spezialeinheiten sein muss, was einfach nur ein weiterer Scully-Witz ist."
 BodyMesh0="Kapuzenjacke"
 BodyMesh1="Papp-Ritter"
 BodyMesh2="Horzine-Security"
@@ -2127,6 +2127,7 @@ AttachmentSkin0="Agatha"
 AttachmentSkin1="Cleese"
 AttachmentSkin2="Jamie"
 AttachmentSkin3="Perceval"
+AttachmentSkin4="Edel"
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
 Attachment="Steampunk-Gasmaske, einfach"
@@ -2324,3 +2325,114 @@ EmoteName="Balzritual+"
 
 [KickinIt_Deluxe]
 EmoteName="Volltreffer+"
+
+[Cosmetic_FirefighterHelmet_ARCH]
+Attachment="Feuerwehrhelm"
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Blau"
+AttachmentSkin2="Oliv"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Weiß"
+AttachmentSkin5="Gelb"
+
+[Cosmetic_FirefighterHelmetDown_ARCH]
+Attachment="Feuerwehrhelm, Maske unten"
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Blau"
+AttachmentSkin2="Oliv"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Weiß"
+AttachmentSkin5="Gelb"
+
+[Cosmetic_FirefighterHelmetUp_ARCH]
+Attachment="Feuerwehrhelm, Maske oben"
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Blau"
+AttachmentSkin2="Oliv"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Weiß"
+AttachmentSkin5="Gelb"
+
+[Cosmetic_FirefighterMask_ARCH]
+Attachment="Feuerwehr-Gasmaske"
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Blau"
+AttachmentSkin2="Oliv"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Weiß"
+AttachmentSkin5="Gelb"
+
+[Cosmetic_FirefighterTank_ARCH]
+Attachment="Feuerwehr-Sauerstofftank"
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Blau"
+AttachmentSkin2="Oliv"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Weiß"
+AttachmentSkin5="Gelb"
+
+[Cosmetic_InsectoidClosed_ARCH]
+Attachment="Insektoider Helm, geschl."
+AttachmentSkin0="Schwarz/Rotlicht"
+AttachmentSkin1="Schwarz mit Rot"
+AttachmentSkin2="Schwarzgelbes Licht"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Dunkelgrün"
+AttachmentSkin5="Grün"
+AttachmentSkin6="Lila"
+AttachmentSkin7="Rot"
+AttachmentSkin8="Rost"
+AttachmentSkin9="USA"
+AttachmentSkin10="Weiß"
+AttachmentSkin11="Gelb"
+
+[Cosmetic_InsectoidOpen_ARCH]
+Attachment="Insektoider Helm, offen"
+AttachmentSkin0="Schwarz/Rotlicht"
+AttachmentSkin1="Schwarz mit Rot"
+AttachmentSkin2="Schwarzgelbes Licht"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Dunkelgrün"
+AttachmentSkin5="Grün"
+AttachmentSkin6="Lila"
+AttachmentSkin7="Rot"
+AttachmentSkin8="Rost"
+AttachmentSkin9="USA"
+AttachmentSkin10="Weiß"
+AttachmentSkin11="Gelb"
+
+[Cosmetic_InsectoidGogglesUp_ARCH]
+Attachment="Insektoider Helm, Brille oben"
+AttachmentSkin0="Schwarz/Rotlicht"
+AttachmentSkin1="Schwarz mit Rot"
+AttachmentSkin2="Schwarzgelbes Licht"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Dunkelgrün"
+AttachmentSkin5="Grün"
+AttachmentSkin6="Lila"
+AttachmentSkin7="Rot"
+AttachmentSkin8="Rost"
+AttachmentSkin9="USA"
+AttachmentSkin10="Weiß"
+AttachmentSkin11="Gelb"
+
+[Cosmetic_InsectoidGogglesDown_ARCH]
+Attachment="Insektoider Helm, Brille unten"
+AttachmentSkin0="Schwarz/Rotlicht"
+AttachmentSkin1="Schwarz mit Rot"
+AttachmentSkin2="Schwarzgelbes Licht"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Dunkelgrün"
+AttachmentSkin5="Grün"
+AttachmentSkin6="Lila"
+AttachmentSkin7="Rot"
+AttachmentSkin8="Rost"
+AttachmentSkin9="USA"
+AttachmentSkin10="Weiß"
+AttachmentSkin11="Gelb"
+AttachmentSkin12="Edel"
+
+[Cosmetic_DemonSlayerHelmet_ARCH]
+Attachment="Dämonenkiller-Helm"
+AttachmentSkin0="Grau"
+AttachmentSkin1="Edel"

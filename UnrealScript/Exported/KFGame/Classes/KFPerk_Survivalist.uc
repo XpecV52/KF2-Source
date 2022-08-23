@@ -10,81 +10,7 @@
 class KFPerk_Survivalist extends KFPerk
 	native;
 
-
-
- 
-
-
- 
-
-
-  
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
-
-
- 
-
-
- 
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-#linenumber 13
+//`include(KFOnlineStats.uci)
 
 /** Passives */
 var private const PerkSkill	WeaponDamage;	
@@ -364,7 +290,8 @@ simulated function bool IsWeaponOnPerkHeavy( KFWeapon KFW )
 	{
 		return (class'KFPerk_Demolitionist'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Demolitionist' ) ||
 				class'KFPerk_Support'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Support' ) ||
-				class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Sharpshooter' ));
+				class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Sharpshooter' ) ||
+				(KFW.IsHeavyWeapon() && IsWeaponOnPerk(KFW)) );
 	}
 
 
@@ -529,7 +456,7 @@ function float GetStunPowerModifier( optional class<DamageType> DamageType, opti
     return 1.f;
 }
 
-simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( GetIncapMasterActive() )
 	{

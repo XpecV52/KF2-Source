@@ -19,18 +19,18 @@ enum ETitleStoreIconLocation
 struct StoreItem
 {
     var int SKU;
-    var string ItemName;
     var string ItemDesciption;
     var string IconLocation;
+    var string ItemName;
     var float ItemPrice;
     var name ItemType;
 
     structdefaultproperties
     {
         SKU=0
-        ItemName=""
         ItemDesciption=""
         IconLocation=""
+        ItemName=""
         ItemPrice=0
         ItemType=None
     }
@@ -129,7 +129,7 @@ function LocalizeText()
     local GFxObject LocalizedObject;
 
     LocalizedObject = Outer.CreateObject("Object");
-    LocalizedObject.SetString("store", StoreString);
+    LocalizedObject.SetString("store", ((Class'WorldInfo'.static.IsConsoleBuild(9)) ? ConsoleLocalize("StoreStringXB1") : StoreString));
     SetObject("localizedText", LocalizedObject);
 }
 
@@ -182,7 +182,14 @@ function Callback_AddToCartClicked(int ItemSKU)
         {
             if(StoreItemDetails.SignedOfferId != "")
             {
-                OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);
+                if(Class'WorldInfo'.static.IsConsoleBuild(9))
+                {
+                    OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI(byte(Outer.GetLP().ControllerId), StoreItemDetails.ProductID);                    
+                }
+                else
+                {
+                    OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);
+                }
             }            
         }
         else

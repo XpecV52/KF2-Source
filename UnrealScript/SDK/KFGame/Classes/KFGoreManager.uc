@@ -23,7 +23,7 @@ class KFGoreManager extends Actor
  `define BLOOD_SPLATTER_GORE_LEVEL 1
  `define BLOOD_POOL_GORE_LEVEL 1
  `define MUTILATION_GORE_LEVEL 0
- `define HEADLESS_GORE_LEVEL 1
+ `define HEADLESS_GORE_LEVEL 2
  `define GIB_SPLAT_COOLDOWN 0.08
 
 /**

@@ -181,6 +181,11 @@ event bool SetEnemy(Pawn NewEnemy)
     return bNewEnemySet;
 }
 
+function bool CanAttackDestructibles()
+{
+    return !IsEnraged() && super(KFAIController).CanAttackDestructibles();
+}
+
 function DoRageTauntAt(optional KFPawn Target)
 {
     if(Role == ROLE_Authority)

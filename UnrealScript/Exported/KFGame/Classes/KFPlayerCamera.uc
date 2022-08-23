@@ -75,7 +75,8 @@ const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
-const KFID_DisableAutoUpgrade = 167;#linenumber 14;
+const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;#linenumber 14;
 
 /** Implements typical third person camera. */
 var(Camera) editinline transient KFCustomizationCamera			CustomizationCam;
@@ -186,7 +187,57 @@ simulated function UpdateViewTarget(out TViewTarget OutVT, float DeltaSeconds)
 	}
 
 	// Call this after the FOV has been adjusted
-	UpdateCameraLensEffects( OutVT );
+	if( CameraLensEffects.Length > 0 )
+	{
+		UpdateCameraLensEffects( OutVT );
+	}
+}
+
+/** Function that allows us to control the FOV value. Needed for half-res checkerboard rendering */
+function float GetActualFOV()
+{
+	local LocalPlayer LP;
+	local vector2D ViewportSize;
+	local float ActualFOV;
+
+	// Scale FOV by aspect ratio
+	if( WorldInfo.IsNeoCheckerboardRendering() )
+	{
+		LP = LocalPlayer( PCOwner.Player );
+		if( LP != none && LP.ViewportClient != none )
+		{
+			// Grab our viewport size, not our canvas size
+			LP.ViewportClient.GetViewportSize( ViewportSize );
+			class'KFPlayerController'.static.CalcFOVForAspectRatio( GetFOVAngle(), ViewportSize.X, ViewportSize.Y, ActualFOV );
+
+			return ActualFOV;
+		}
+	}
+
+	return super.GetActualFOV();
+}
+
+/** Update any attached camera lens effects (e.g. blood) **/
+simulated function UpdateCameraLensEffects( const out TViewTarget OutVT )
+{
+	local EmitterCameraLensEffectBase CameraEffect;
+	local float ActualFOV;
+
+	ActualFOV = GetActualFOV();
+	foreach CameraLensEffects( CameraEffect )
+	{
+		if( CameraEffect != none )
+		{
+			if( class'WorldInfo'.static.IsNeoCheckerboardRendering() )
+            {
+                CameraEffect.UpdateLocation( OutVT.POV.Location, OutVT.POV.Rotation, UnModifiedFOV );
+            }
+            else
+            {
+                CameraEffect.UpdateLocation( OutVT.POV.Location, OutVT.POV.Rotation, ActualFOV );
+            }
+		}
+	}
 }
 
 /**
@@ -217,11 +268,15 @@ function  float GetOptionsFOVScale()
 	local float FOVScale;
 	local KFProfileSettings Settings;
 
+	FOVScale = 1.0f;
+
 	if(class'WorldInfo'.static.IsConsoleBuild())
 	{
-		
 		Settings = KFProfileSettings(class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(LocalPlayer(PCOwner.Player).ControllerId));
-		FOVScale = Settings.GetProfileFloat(KFID_FOVOptionsPercentageValue);
+		if(Settings != None)
+		{
+			FOVScale = Settings.GetProfileFloat(KFID_FOVOptionsPercentageValue);
+		}
 	}
 	else // PC
 	{

@@ -11,7 +11,7 @@ class KFPerk_Support extends KFPerk
 	hidecategories(Mobile, Object, Debug, Advanced, Physics, Actor, Attachment, Display)
 	native;
 
-`include(KFOnlineStats.uci)
+//`include(KFOnlineStats.uci)
 
 struct native sSuppliedPawnInfo
 {
@@ -701,7 +701,7 @@ private function bool IsConcussionRoundsActive()
  *
  * @return true/false
  */
-private function bool IsResupplyActive()
+simulated private function bool IsResupplyActive()
 {
 	return PerkSkills[ESupportResupply].bActive;
 }
@@ -779,8 +779,8 @@ simulated function PlayerDied()
 
 DefaultProperties
 {
-	ProgressStatID=`STATID_Sup_Progress
-	PerkBuildStatID=`STATID_Sup_Build
+	ProgressStatID=STATID_Sup_Progress
+	PerkBuildStatID=STATID_Sup_Build
 
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Support'
 	InteractIcon=Texture2D'UI_World_TEX.Support_Supplier_HUD'
@@ -813,10 +813,10 @@ DefaultProperties
 	PerkSkills(ESupportPerforate)=(Name="Perforate",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Penetrator",Increment=0.f,Rank=0,StartingValue=40.f,MaxValue=40.f)
 	PerkSkills(ESupportBarrage)=(Name="Barrage",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Barrage",Increment=0.f,Rank=0,StartingValue=5.f,MaxValue=5.f)
 
-	SecondaryXPModifier[0]=6
+	SecondaryXPModifier[0]=8
 	SecondaryXPModifier[1]=8
-	SecondaryXPModifier[2]=10
-	SecondaryXPModifier[3]=14
+	SecondaryXPModifier[2]=8
+	SecondaryXPModifier[3]=8
 
     // Skill tracking
 	HitAccuracyHandicap=-6.0

@@ -2127,6 +2127,7 @@ AttachmentSkin0="Agatha"
 AttachmentSkin1="Cleese"
 AttachmentSkin2="Jamie"
 AttachmentSkin3="Perceval"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
 Attachment="Másc. Gás Retrô Básica"
@@ -2324,3 +2325,114 @@ EmoteName="Ritual de Acasalar+"
 
 [KickinIt_Deluxe]
 EmoteName="Chute Alto"
+
+[Cosmetic_FirefighterHelmet_ARCH]
+Attachment="Casquete"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde-oliva"
+AttachmentSkin3="Vermelho"
+AttachmentSkin4="Branco"
+AttachmentSkin5="Amarelo"
+
+[Cosmetic_FirefighterHelmetDown_ARCH]
+Attachment="Casquete Abaixado"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde-oliva"
+AttachmentSkin3="Vermelho"
+AttachmentSkin4="Branco"
+AttachmentSkin5="Amarelo"
+
+[Cosmetic_FirefighterHelmetUp_ARCH]
+Attachment="Casquete Levantado"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde-oliva"
+AttachmentSkin3="Vermelho"
+AttachmentSkin4="Branco"
+AttachmentSkin5="Amarelo"
+
+[Cosmetic_FirefighterMask_ARCH]
+Attachment="Máscara de Gás de Bombeiro"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde-oliva"
+AttachmentSkin3="Vermelho"
+AttachmentSkin4="Branco"
+AttachmentSkin5="Amarelo"
+
+[Cosmetic_FirefighterTank_ARCH]
+Attachment="Tanque de Oxigênio de Bombeiro"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde-oliva"
+AttachmentSkin3="Vermelho"
+AttachmentSkin4="Branco"
+AttachmentSkin5="Amarelo"
+
+[Cosmetic_InsectoidClosed_ARCH]
+Attachment="Insetoide Fechado"
+AttachmentSkin0="Preto com Luz Verm."
+AttachmentSkin1="Preto com Verm."
+AttachmentSkin2="Amar. e Preto Claro"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Verde-escuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Roxo"
+AttachmentSkin7="Vermelho"
+AttachmentSkin8="Ferrugem"
+AttachmentSkin9="EUA"
+AttachmentSkin10="Branco"
+AttachmentSkin11="Amarelo"
+
+[Cosmetic_InsectoidOpen_ARCH]
+Attachment="Insetoide Aberto"
+AttachmentSkin0="Preto com Luz Verm."
+AttachmentSkin1="Preto com Verm."
+AttachmentSkin2="Amar. e Preto Claro"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Verde-escuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Roxo"
+AttachmentSkin7="Vermelho"
+AttachmentSkin8="Ferrugem"
+AttachmentSkin9="EUA"
+AttachmentSkin10="Branco"
+AttachmentSkin11="Amarelo"
+
+[Cosmetic_InsectoidGogglesUp_ARCH]
+Attachment="Insetoide V. Aberta"
+AttachmentSkin0="Preto com Luz Verm."
+AttachmentSkin1="Preto com Verm."
+AttachmentSkin2="Amar. e Preto Claro"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Verde-escuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Roxo"
+AttachmentSkin7="Vermelho"
+AttachmentSkin8="Ferrugem"
+AttachmentSkin9="EUA"
+AttachmentSkin10="Branco"
+AttachmentSkin11="Amarelo"
+
+[Cosmetic_InsectoidGogglesDown_ARCH]
+Attachment="Insetoide V. Fechada"
+AttachmentSkin0="Preto com Luz Verm."
+AttachmentSkin1="Preto com Verm."
+AttachmentSkin2="Amar. e Preto Claro"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Verde-escuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Roxo"
+AttachmentSkin7="Vermelho"
+AttachmentSkin8="Ferrugem"
+AttachmentSkin9="EUA"
+AttachmentSkin10="Branco"
+AttachmentSkin11="Amarelo"
+AttachmentSkin12="Precioso"
+
+[Cosmetic_DemonSlayerHelmet_ARCH]
+Attachment="Capacete Demonicida"
+AttachmentSkin0="Cinza"
+AttachmentSkin1="Precioso"

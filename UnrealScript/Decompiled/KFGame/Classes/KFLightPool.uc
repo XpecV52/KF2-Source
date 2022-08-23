@@ -57,12 +57,12 @@ event PreBeginPlay()
     super.PreBeginPlay();
 }
 
-function bool RegisterPointLight(PointLightComponent LightComp, optional KFLightPool.LightPoolPriority PriorityType, optional bool bForceAllowReenable)
+function bool RegisterPointLight(PointLightComponent LightComp, optional KFLightPool.LightPoolPriority PriorityType)
 {
     local LightPoolInfo NewLight;
     local int I;
 
-    PriorityType = 0;    
+    PriorityType = 0;
     if((LightComp.Owner == none) || !LightComp.bAttached)
     {
         LogInternal(string(GetFuncName()) @ "failed because light has not been attached");
@@ -75,15 +75,9 @@ function bool RegisterPointLight(PointLightComponent LightComp, optional KFLight
         LightComp.DetachFromAny();
         return false;
     }
-    if(!LightComp.bEnabled && bForceAllowReenable)
-    {
-        LogInternal(string(GetFuncName()) @ "failed because bEnabled == FALSE.  Unsupported with bForceAllowReenable");
-        LightComp.DetachFromAny();
-        return false;
-    }
     NewLight.Component = LightComp;
     NewLight.Priority = 100 * PriorityType;
-    NewLight.bAllowReenable = LightComp.bEnabled && ((Owner.LifeSpan == float(0)) || PriorityType == 2) || bForceAllowReenable;
+    NewLight.bAllowReenable = LightComp.bEnabled && (Owner.LifeSpan == float(0)) || PriorityType == 2;
     if((LightComp.Owner.Instigator != none) && LightComp.Owner.Instigator.IsLocallyControlled())
     {
         NewLight.Priority += int(50);
@@ -102,18 +96,18 @@ function bool RegisterPointLight(PointLightComponent LightComp, optional KFLight
         }
     }
     I = 0;
-    J0x502:
+    J0x444:
 
     if(I < ActiveComponents.Length)
     {
-        if(ActiveComponents[I].Priority > NewLight.Priority)
+        if(NewLight.Priority >= ActiveComponents[I].Priority)
         {
-            goto J0x572;
+            goto J0x4B4;
         }
         ++ I;
-        goto J0x502;
+        goto J0x444;
     }
-    J0x572:
+    J0x4B4:
 
     if(bDebug)
     {

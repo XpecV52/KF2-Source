@@ -373,9 +373,6 @@ function bool DeleteSaveGame(byte LocalUserNum,int DeviceId,string FriendlyName,
  */
 function bool ClearSaveGames(byte LocalUserNum);
 
-//@HSL_BEGIN - JRO - 4/28/2016 - Adding PlayGo capability to script
-function bool IsGameFullyInstalled() {return true;}
-//@HSL_END
 
 //@HSL_BEGIN_DINGO
 /**

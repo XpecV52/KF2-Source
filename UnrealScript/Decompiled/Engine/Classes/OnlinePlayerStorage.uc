@@ -42,7 +42,7 @@ var const int VersionSettingsId;
 var const int SaveCountSettingId;
 var array<OnlineProfileSetting> ProfileSettings;
 var array<SettingsPropertyPropertyMetaData> ProfileMappings;
-var const OnlinePlayerStorage.EOnlinePlayerStorageAsyncState AsyncState;
+var OnlinePlayerStorage.EOnlinePlayerStorageAsyncState AsyncState;
 var int DeviceID;
 
 // Export UOnlinePlayerStorage::execGetProfileSettingId(FFrame&, void* const)

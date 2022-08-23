@@ -273,7 +273,7 @@ defaultproperties
 
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Scrake_ARCH.ZED_Scrake_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Scrake_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
 	DifficultySettings=class'KFDifficulty_Scrake'
 

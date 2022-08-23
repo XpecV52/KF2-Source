@@ -666,6 +666,12 @@ var transient bool bLockReadOnlyLevels;
 var NetDriver QueryNetDriver;
 //@HSL_END
 
+//@HSL_BEGIN - BWJ - 2-27-17 - Support for safe frame scale
+/** The safe frame scale. Currently only used for XB1 */
+var float SafeFrameScale;
+//@HSL_END
+
+
 // (cpptext)
 // (cpptext)
 // (cpptext)

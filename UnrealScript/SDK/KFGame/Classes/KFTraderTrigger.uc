@@ -10,7 +10,8 @@
 class KFTraderTrigger extends Trigger_PawnsOnly
 	config(Game)
 	native
-	implements(KFInterface_Usable);
+	implements(KFInterface_Usable)
+	dependsOn(KFSeqAct_ShowPath);
 
 /** reference to actor to play open/close animations */
 var() SkeletalMeshActor	TraderMeshActor;
@@ -147,7 +148,7 @@ simulated function ShowTraderPath()
 	local EPathSearchType OldSearchType;
 	local KFEmit_TraderPath Path;
 	local Actor nodePathRoot;
-	local bool bPathFound;
+	local bool bInsideVolume, bPathFound;
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 
@@ -158,6 +159,25 @@ simulated function ShowTraderPath()
 			if( PC.Pawn == none || PC.GetTeamNum() == 255 || !PC.Pawn.IsAliveAndWell() )
 			{
 				continue;
+			}
+
+			if( KFGRI.TraderVolumeCheckType != VCT_None && KFGRI.TraderVolume != none )
+			{
+				bInsideVolume = class'KFSeqAct_SetTraderVolumeIgnore'.static.IsActorInVolume( PC.Pawn, KFGRI.TraderVolume );
+				if( KFGRI.TraderVolumeCheckType == VCT_InVolume )
+				{
+					if( !bInsideVolume )
+					{
+						continue;
+					}
+				}
+				else if( KFGRI.TraderVolumeCheckType == VCT_NotInVolume )
+				{
+					if( bInsideVolume )
+					{
+						continue;
+					}
+				}
 			}
 
 			// Cache off our previous path search type

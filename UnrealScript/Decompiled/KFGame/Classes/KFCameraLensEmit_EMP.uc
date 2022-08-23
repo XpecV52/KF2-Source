@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFCameraLensEmit_EMP extends EmitterCameraLensEffectBase
+class KFCameraLensEmit_EMP extends KFEmit_CameraEffect
     hidecategories(Navigation);
 
 defaultproperties

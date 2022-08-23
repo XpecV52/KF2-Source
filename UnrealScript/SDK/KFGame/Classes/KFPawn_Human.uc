@@ -266,7 +266,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 	ResetIdleStartTime();
 
 	// See if we should start our surrounded timer
-	if( WorldInfo.Game.NumPlayers == 1 && KFGameInfo(WorldInfo.Game).bOnePlayerAtStart )
+	if( IsAliveAndWell() && WorldInfo.Game != none && WorldInfo.Game.NumPlayers == 1 && KFGameInfo(WorldInfo.Game).bOnePlayerAtStart )
 	{
 		SetTimer( 1.f, true, nameOf(Timer_CheckSurrounded) );
 	}
@@ -553,7 +553,9 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 	local class<KFDamageType> KFDT;
     local int i;
     local bool bRepairedArmor;
+    local int OldHealth;
 
+    OldHealth = Health;
 	InstigatorPC = KFPlayerController(Healer);
 	InstigatorPerk = InstigatorPC != None ? InstigatorPC.GetPerk() : None;
 	if( InstigatorPerk != None )
@@ -649,15 +651,15 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 				{
 					if( bMessageHealer )
 					{
-					InstigatorPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_HealedSelf, PlayerReplicationInfo );
-				}
-			}
+                        InstigatorPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_HealedSelf, PlayerReplicationInfo );
+                    }
+                }
 			}
 
 			// don't play dialog for healing done through perk skills (e.g. berserker vampire skill)
 			if( bMessageHealer )
 			{
-			`DialogManager.PlayHealingDialog( KFPawn(Healer.Pawn), self, float(Health + HealthToRegen) / float(HealthMax) );
+			    `DialogManager.PlayHealingDialog( KFPawn(Healer.Pawn), self, float(Health + HealthToRegen) / float(HealthMax) );
 			}
 
             // Reduce burn duration and damage in half if you heal while burning
@@ -671,10 +673,19 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 }
         	}
 
+            if (Health - OldHealth > 0)
+            {
+                WorldInfo.Game.ScoreHeal(Health - OldHealth, OldHealth, Healer, self, DamageType);
+            }
+
 		    return true;
 		}
     }
 
+    if (Health - OldHealth > 0)
+    {
+        WorldInfo.Game.ScoreHeal(Health - OldHealth, OldHealth, Healer, self, DamageType);
+    }
 	return bRepairedArmor;
 }
 
@@ -687,6 +698,8 @@ function GiveHealthOverTime()
 	{
 		Health++;
 		HealthToRegen--;
+
+        WorldInfo.Game.ScoreHeal(1, Health - 1, Controller, self, none);
 
 		KFPRI = KFPlayerReplicationInfo( PlayerReplicationInfo );
 		if( KFPRI != none )
@@ -1821,6 +1834,7 @@ defaultproperties
 	// Special moves
 	Begin Object Name=SpecialMoveHandler_0
 		SpecialMoveClasses(SM_GrappleVictim)=class'KFGame.KFSM_GrappleVictim'
+        SpecialMoveClasses(SM_DisabledGrappleVictim)=class'KFGame.KFSM_DisabledGrappleVictim'
 		SpecialMoveClasses(SM_HansGrappleVictim)=class'KFGame.KFSM_HansGrappleVictim'
 		SpecialMoveClasses(SM_Emote)=class'KFGame.KFSM_Player_Emote'
 	End Object

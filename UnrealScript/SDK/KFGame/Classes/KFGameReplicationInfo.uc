@@ -37,11 +37,18 @@ var		KFTraderTrigger		NextTrader;
 /** Trader that is currently open for business */
 var     KFTraderTrigger     OpenedTrader;
 
+/** Settings used by Kismet for scripted trader actions */
+var 	Volume 				TraderVolume;
+var     byte 				TraderVolumeCheckType;
+
 // used for debuging purposes to walk through the traders
 var     int                 DebugingNextTraderIndex;
 
 /** The Archtype that holds all of our trader information */
 var KFGFxObject_TraderItems TraderItems;
+
+/** Allow grenades */
+var bool bAllowGrenadePurchase;
 
 /** Trader dialog manager */
 var KFTraderDialogManager				TraderDialogManager;
@@ -67,9 +74,6 @@ var repnotify		byte						WaveNum; 	// The wave we are currently in
 var					int							AIRemaining;
 var					int							WaveTotalAICount;
 
-/** Cached class references loaded once */
-//var	array< class<KFPawn_Monster> >		AIClassList;
-
 //@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
 /************************************
 * Console Sessions
@@ -86,9 +90,10 @@ var array<UniqueNetId> ConsoleGameSessionPendingPlayers;
 var    				byte						GameLength;
 var    				byte						GameDifficulty;
 var 				bool 						bCustom;
+var                 float                       GameAmmoCostScale;
 
- /** Combined from the PRI unlocks, but does not subtract logged out players */
- var private const byte		GameSharedUnlocks;
+/** Combined from the PRI unlocks, but does not subtract logged out players */
+var private const byte GameSharedUnlocks;
 
 /************************************
 * Wave Debugging
@@ -179,6 +184,9 @@ var PickupInfo PickupInfos[20];
 /** How often to update replicating pickups for the tracker map. */
 var float UpdatePickupInfoInterval;
 
+/** When TRUE, the icons that are drawn when a pawn is not visible will be hidden */
+var bool bHidePawnIcons;
+
 /************************************
 * GameConductor
 ************************************/
@@ -245,7 +253,6 @@ var bool            bVersusGame;
 ************************************/
 var bool bAllowSwitchTeam;
 
-
 /************************************
 * Actor Iterators
 ************************************/
@@ -258,14 +265,6 @@ var array<KFDoorActor> DoorList;
 var KFObjective 	CurrentObjective;
 
 /************************************
-*  native
-************************************/
-
-/************************************
-*  Localization
-************************************/
-
-/************************************
 *  Music
 ************************************/
 /** Audio component used for playing music tracks via SeqAct_PlayMusicTrack */
@@ -276,10 +275,6 @@ var KFMusicTrackInfo            CurrentMusicTrackInfo;
 var byte                        MusicIntensity;
 /** replicated music track (allows server to force play/sync specific tracks) */
 var repnotify KFMusicTrackInfo  ReplicatedMusicTrackInfo;
-
-/************************************
-*  Perks
-************************************/
 
 /************************************
 *  debug
@@ -315,11 +310,11 @@ cpptext
 replication
 {
 	if ( bNetDirty )
-		bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount,
+		TraderVolume, TraderVolumeCheckType, bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount,
 		CurrentObjective, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
-		bIsUnrankedGame, GameSharedUnlocks, ConsoleGameSessionGuid; //@HSL - JRO - 3/21/2016 - PS4 Sessions
+		bIsUnrankedGame, GameSharedUnlocks, bHidePawnIcons, ConsoleGameSessionGuid; //@HSL - JRO - 3/21/2016 - PS4 Sessions
 	if ( bNetInitial )
-		GameLength, GameDifficulty, WaveMax, bCustom, bVersusGame;
+		GameLength, GameDifficulty, WaveMax, bCustom, bVersusGame, TraderItems, GameAmmoCostScale, bAllowGrenadePurchase;
 	if ( bNetInitial && Role == ROLE_Authority )
 		ServerAdInfo;
 
@@ -342,7 +337,6 @@ replication
         PlayersHealthStatusTracker, PlayersAmmoStatusTracker, AggregatePlayersStatusTracker,
         CurrentParZedLifeSpan, OverallRankAndSkillModifierTracker, ZedMovementSpeedModifierTracker,
         ZedSpawnRateModifierTracker, ZedSpawnRateTracker, CurrentGameConductorStatus;
-
 	if ( bGameConductorGraphingEnabled && bNetDirty && bVersusGame )
 		VersusZedHealthMod, VersusZedDamageMod;
 // endif
@@ -445,7 +439,7 @@ simulated function ReceivedGameClass()
 	if ( KFGameClass != None )
 	{
 		// Load/Cache game type specific classes (Network: All)
-		KFGameClass.static.PreloadContentClasses(self);
+		KFGameClass.static.PreloadContentClasses();
 
 		if( TraderDialogManager != none )
 		{
@@ -505,6 +499,20 @@ simulated function NotifyWaveEnded()
 			KFPRI.NotifyWaveEnded();
 		}
 	}
+}
+
+/**
+ * Called on the server when the match is over
+ *
+ * Network - Server and Client (Via ReplicatedEvent)
+ */
+
+simulated function EndGame()
+{
+	bMatchHasBegun = false;
+	bMatchIsOver = true;
+
+	class'KFGameEngine'.static.RefreshOnlineGameData();
 }
 
 /* Welcome screen shenanigans */
@@ -643,7 +651,13 @@ simulated function OpenTraderNext(optional int time)
 		RemainingMinute = time;
 	}
 
-	if( kfGameInfo.TraderList.Length > 0 )
+	// See if we have a scripted trader to assign first
+	if( kfGameInfo.ScriptedTrader != none )
+	{
+		NextTrader = kfGameInfo.ScriptedTrader;
+		kfGameInfo.ScriptedTrader = none;
+	}
+	else if( kfGameInfo.TraderList.Length > 0 )
 	{
 		if( DebugingNextTraderIndex == -1 && OpenedTrader != none )
 		{
@@ -661,7 +675,7 @@ simulated function OpenTraderNext(optional int time)
 		//kfGameInfo.TraderList.Remove( kfGameInfo.NextTraderIndex, 1 );
 	}
 
-	OpenedTrader = NextTrader;
+	OpenedTrader = NextTrader;	
 	OpenedTrader.OpenTrader();
 
 	`TraderDialogManager.PlayOpenTraderDialog( WaveNum, WaveMax, GetALocalPlayerController() );
@@ -757,6 +771,16 @@ simulated function ProcessChanceDrop()
 	SendSteamHeartbeat(); // be sure no time is lost at the end of match
 	SendSteamRequestItemDrop(); // see if we've accumulated enough time
 	`endif
+}
+
+simulated event SendPlayfabGameTimeUpdate( optional bool bGameEnd )
+{
+	local JsonObject Parms;
+
+	Parms = new class'JsonObject';
+	Parms.SetIntValue("UpdateTime", SteamHeartbeatAccumulator);
+	Parms.SetBoolValue("bGameEnd", bGameEnd);
+	class'GameEngine'.static.GetPlayfabInterface().ExecuteCloudScript("UpdatePlayRewards", Parms);
 }
 
 simulated function int GetNextMapTimeRemaining()
@@ -1450,6 +1474,18 @@ function int GetCurrentRoundNumber();
 ************************************************************/
 simulated function bool AreTeamsOutOfBalanced();
 
+
+//@HSL_BEGIN - AGM - 7-16-15 - Support for checking for valid stats session
+/***********************************************************
+@name Stats management
+************************************************************/
+simulated event bool IsStatsSessionValid()
+{
+	return true;
+}
+//@HSL_END
+
+
 defaultproperties
 {
 	TraderItems=KFGFxObject_TraderItems'GP_Trader_ARCH.DefaultTraderItems'
@@ -1461,4 +1497,6 @@ defaultproperties
 	UpdatePickupInfoInterval=1.0
 	WaveMax=255
 	bAllowSwitchTeam=false
+    GameAmmoCostScale=1.0
+    bAllowGrenadePurchase = true
 }

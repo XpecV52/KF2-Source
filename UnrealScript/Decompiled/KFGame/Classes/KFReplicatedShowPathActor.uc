@@ -78,58 +78,56 @@ simulated function ShowPath()
         }
         if((VolumeCheckType != 0) && CheckVolume != none)
         {
-            bInsideVolume = CheckVolume.Encompasses(PC.Pawn);
-            switch(VolumeCheckType)
+            bInsideVolume = Class'KFSeqAct_SetTraderVolumeIgnore'.static.IsActorInVolume(PC.Pawn, CheckVolume);
+            if(VolumeCheckType == 1)
             {
-                case 1:
-                    if(!bInsideVolume)
-                    {                        
-                        return;
-                    }
-                    break;
-                case 2:
-                    if(bInsideVolume)
-                    {                        
-                        return;
-                    }
-                    break;
-                default:
-                    break;
+                if(!bInsideVolume)
+                {
+                    continue;                    
+                }                
             }
+            else
+            {
+                if(VolumeCheckType == 2)
+                {
+                    if(bInsideVolume)
+                    {
+                        continue;                        
+                    }
+                }
+            }
+        }
+        OldSearchType = PC.Pawn.PathSearchType;
+        PC.Pawn.PathSearchType = 3;
+        Class'Path_ToTrader'.static.ToTrader(PC.Pawn);
+        Class'Goal_AtActor'.static.AtActor(PC.Pawn, Target,, false);
+        nodePathRoot = PC.FindPathToward(Target);
+        if(nodePathRoot != none)
+        {
+            bPathFound = true;            
         }
         else
         {
-            OldSearchType = PC.Pawn.PathSearchType;
-            PC.Pawn.PathSearchType = 3;
-            Class'Path_ToTrader'.static.ToTrader(PC.Pawn);
-            Class'Goal_AtActor'.static.AtActor(PC.Pawn, Target,, false);
-            nodePathRoot = PC.FindPathToward(Target);
-            if(nodePathRoot != none)
-            {
-                bPathFound = true;                
-            }
-            else
-            {
-                bPathFound = false;
-            }
-            if(bPathFound)
-            {
-                Path = Target.Spawn(Class'KFEmit_ScriptedPath', PC,, PC.Pawn.Location);
-                Path.SetDestination(Target.Location + vect(0, 0, 50));                
-            }
-            else
-            {
-                LogInternal("ShowScriptedPath - No Path Found");
-            }
-            PC.Pawn.ClearConstraints();
-            PC.Pawn.PathSearchType = OldSearchType;            
-        }/* !MISMATCHING REMOVE, tried ForEach got Type:Else Position:0x191! */        
-    }/* !MISMATCHING REMOVE, tried Else got Type:ForEach Position:0x000! */
+            bPathFound = false;
+        }
+        if(bPathFound)
+        {
+            Path = Target.Spawn(Class'KFEmit_ScriptedPath', PC,, PC.Pawn.Location);
+            Path.SetDestination(Target.Location + vect(0, 0, 50));            
+        }
+        else
+        {
+            LogInternal("[KFReplicatedShowPathActor] ShowScriptedPath - No Path Found");
+        }
+        PC.Pawn.ClearConstraints();
+        PC.Pawn.PathSearchType = OldSearchType;        
+    }    
 }
 
 defaultproperties
 {
     RemoteRole=ENetRole.ROLE_SimulatedProxy
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bIgnoreEncroachers=true
     bPushedByEncroachers=false
     bAlwaysRelevant=true

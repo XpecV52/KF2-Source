@@ -8,9 +8,6 @@
 //=============================================================================
 class KFPawn_ZedCrawler extends KFPawn_Monster;
 
-/** Pawn class used for the special crawler */
-var class<KFPawn_Monster> SpecialCrawlerPawnClass;
-
 var protected Actor LastBumpLevelActor;
 var protected float LastBumpLevelTime;
 
@@ -28,7 +25,7 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 	WI = class'WorldInfo'.static.GetWorldInfo();
 	if( fRand() < class<KFDifficulty_Crawler>(default.DifficultySettings).static.GetSpecialCrawlerChance(KFGameReplicationInfo(WI.GRI)) )
 	{
-		return default.SpecialCrawlerPawnClass;
+		return default.ElitePawnClass;
 	}
 
 	return super.GetAIPawnClassToSpawn();
@@ -358,7 +355,7 @@ defaultproperties
 
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_Crawler_Archetype'
+	MonsterArchPath="ZED_ARCH.ZED_Crawler_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
 	DifficultySettings=class'KFDifficulty_Crawler'
 
@@ -408,7 +405,7 @@ defaultproperties
 
 	// ---------------------------------------------
 	// AI / Navigation
-	SpecialCrawlerPawnClass=class'KFPawn_ZedCrawlerKing'
+	ElitePawnClass=class'KFPawn_ZedCrawlerKing'
 	ControllerClass=class'KFAIController_ZedCrawler'
 	bDebugCrawlerPhysics=false
 	bDisableTurnInPlace=true

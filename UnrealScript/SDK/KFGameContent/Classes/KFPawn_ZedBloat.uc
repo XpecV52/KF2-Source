@@ -289,7 +289,7 @@ DefaultProperties
 	//BaseEyeHeight=1.f
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Bloat_ARCH.ZED_Bloat_Archetype'
+	MonsterArchPath="ZED_ARCH.ZED_Bloat_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
 	DifficultySettings=class'KFDifficulty_Bloat'
 

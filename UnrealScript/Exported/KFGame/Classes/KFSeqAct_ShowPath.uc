@@ -6,7 +6,7 @@
 // Killing Floor 2
 // Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-class KFSeqAct_ShowPath extends SeqAct_Latent;
+class KFSeqAct_ShowPath extends SequenceAction;
 
 enum eVolumeCheckType
 {
@@ -26,7 +26,7 @@ var transient KFReplicatedShowPathActor ReplicatedPathActor;
 var() eVolumeCheckType VolumeCheckType;
 
 /** Team number to display path to. 0 = Survivors, 255 = Zeds */
-var() byte TeamNumToDisplayPathTo;
+var() byte TeamToDisplayPathTo;
 
 event Activated()
 {
@@ -79,7 +79,7 @@ event Activated()
 		ReplicatedPathActor = class'WorldInfo'.static.GetWorldInfo().Spawn( class'KFReplicatedShowPathActor', none );
 		if( ReplicatedPathActor != none )
 		{
-			ReplicatedPathActor.SetPathTarget( Target, Volume, (VolumeCheckType != VCT_None && Volume == none) ? VCT_None : VolumeCheckType, TeamNumToDisplayPathTo );
+			ReplicatedPathActor.SetPathTarget( Target, Volume, (VolumeCheckType != VCT_None && Volume == none) ? VCT_None : VolumeCheckType, TeamToDisplayPathTo );
 		}
 		else
 		{
@@ -88,24 +88,9 @@ event Activated()
 	}
 }
 
-event bool Update( float DeltaTime )
-{
-	if( bPathActive && ReplicatedPathActor != none && ReplicatedPathActor.Target != none && !ReplicatedPathActor.bDeleteMe )
-	{
-		return true;
-	}
-
-	// Sanity check -- cleanup
-	if( ReplicatedPathActor != none && !ReplicatedPathActor.bDeleteMe )
-	{
-		ReplicatedPathActor.Destroy();
-	}
-
-	return false;
-}
-
 defaultproperties
 {
+   bCallHandler=False
    InputLinks(0)=(LinkDesc="Start")
    InputLinks(1)=(LinkDesc="Stop")
    VariableLinks(0)=(LinkDesc="Destination Actor",PropertyName=,MaxVars=1)
@@ -113,5 +98,5 @@ defaultproperties
    ObjName="Display Path To Actor"
    ObjCategory="Killing Floor"
    Name="Default__KFSeqAct_ShowPath"
-   ObjectArchetype=SeqAct_Latent'Engine.Default__SeqAct_Latent'
+   ObjectArchetype=SequenceAction'Engine.Default__SequenceAction'
 }

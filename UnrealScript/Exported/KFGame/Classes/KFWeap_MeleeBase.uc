@@ -61,6 +61,12 @@ var() byte ParryStrength;
 /** If true, owning pawn moves at a slower (iron sight) walking speed */
 var bool bMoveAtWalkingSpeed;
 
+/** Time between block hit reaction anims */
+var() protected float BlockHitAnimCooldownTime;
+
+/** The last time we played a block hit reaction anim */
+var transient protected float LastBlockHitAnimTime;
+
 /*********************************************************************************************
  * @name Animation
  *********************************************************************************************/
@@ -379,6 +385,36 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
 	bFollowAnimSeqCamera = true;
 
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayMeleeAttackDialog( KFPawn(Instigator), IsHeavyAttack(CurrentFireMode) );
+}
+
+/*********************************************************************************************
+ * State Active
+ *********************************************************************************************/
+
+simulated state Active
+{
+	simulated function bool CanProcessPendingFire( Name PrevStateName, byte FireModeNum ) { return false; }
+
+	/** Initialize the weapon as being active and ready to go. */
+	simulated event BeginState( Name PreviousStateName )
+	{
+		local int i;
+
+		super.BeginState( PreviousStateName );
+		
+		if( Instigator != none && Instigator.IsLocallyControlled() )
+		{
+	        // We route our fire calls through startfire to take advantage of StartMeleeFire()
+			for( i = 0; i < GetPendingFireLength(); ++i )
+			{
+				if( PendingFire(i) )
+				{
+					StartFire(i);
+					break;
+				}
+			}
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -976,13 +1012,14 @@ simulated state MeleeBlocking
 			InstigatorPerk.SetSuccessfullBlock();
 		}
 
-		if ( MeleeBlockHitAnims.Length > 0 && !IsTimerActive(nameof(ParryCheckTimer)) )
+		if( MeleeBlockHitAnims.Length > 0 && (WorldInfo.TimeSeconds - LastBlockHitAnimTime) > BlockHitAnimCooldownTime && !IsTimerActive(nameof(ParryCheckTimer)) )
 		{
 			AnimIdx = Rand(MeleeBlockHitAnims.Length);
 			Duration = MySkelMesh.GetAnimLength(MeleeBlockHitAnims[AnimIdx]);
 
 			if ( Duration > 0 )
 			{
+				LastBlockHitAnimTime = WorldInfo.TimeSeconds;
 				PlayAnimation(MeleeBlockHitAnims[AnimIdx]);
 				SetTimer(Duration, false, nameof(BlockLoopTimer));
 			}
@@ -1239,6 +1276,7 @@ defaultproperties
    BlockTypes(1)=(dmgType=Class'KFGame.KFDT_Slashing')
    BlockDamageMitigation=0.500000
    ParryDamageMitigationPercent=0.200000
+   BlockHitAnimCooldownTime=0.500000
    MeleeAttackSettleAnims(0)="Settle_V1"
    MeleeBlockHitAnims(0)="Block_Hit_V1"
    MeleeBlockHitAnims(1)="Block_Hit_V2"

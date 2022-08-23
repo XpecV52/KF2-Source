@@ -1235,19 +1235,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_45
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
-   ObjValue=KFSpawner'KF-BurningParis.TheWorld:PersistentLevel.KFSpawner_10'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1192
-   ObjPosY=704
-   ObjComment="CHILD"
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_46"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_47
    ObjValue=KFSpawner'KF-BurningParis.TheWorld:PersistentLevel.KFSpawner_42'
    ObjInstanceVersion=1

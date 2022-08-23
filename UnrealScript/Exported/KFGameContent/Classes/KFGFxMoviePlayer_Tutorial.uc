@@ -39,7 +39,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			{
 				ManagerObject = Widget;
 				// Let the menuManager know if we are on console.
-				if ( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+				if ( class'WorldInfo'.static.IsConsoleBuild() )
 				{
 					ManagerObject.SetBool("bUsingGamepad", true);
 				}
@@ -68,7 +68,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
  and open / close the perk selector */
 event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent InputEvent)
 {
-	if ( !class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+	if ( !class'WorldInfo'.static.IsConsoleBuild() )
 	{
 		CheckIfUsingGamepad();
 	}

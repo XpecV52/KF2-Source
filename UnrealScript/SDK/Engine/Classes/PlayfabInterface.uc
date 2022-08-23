@@ -34,6 +34,11 @@ var const string CachedPlayfabId;
 /** The session ticket with successful login */
 var const string CachedSessionTicket;
 
+/** The cached auth code for when talking to a backend */
+var const string CachedAuthCode;
+/** Cached auth code for consuming entitlements. Used for XB1 only */
+var const string CachedAuthForEntitlements;
+
 /** TRUE if login process has finished */
 var const private bool bLoginProcessFinished;
 
@@ -73,6 +78,9 @@ var string CurrRegionName;
 
 /** Service label used to consume PSN entitlements */
 var const int PlayfabNPServiceLabel;
+
+/** The title data */
+var native Map_Mirror TitleData{TMap<FString, FString>};
 
 // SERVER ONLY
 /////////////////////////////////////////////////////////////////
@@ -129,6 +137,7 @@ var array<delegate<OnLoginComplete> > LoginCompleteDelegates;
 var array<delegate<OnRegionQueryComplete> > RegionQueryCompleteDelegates;
 var array<delegate<OnServerStarted> > ServerStartedDelegates;
 var array<delegate<OnInventoryRead> > InventoryReadDelegates;
+var array<delegate<OnTitleDataRead> > TitleDataReadDelegates;
 var array<delegate<OnStoreDataRead> > StoreDataReadDelegates;
 var array<delegate<OnCloudScriptExecutionComplete> > CloudScriptExecutionCompleteDelegates;
 
@@ -159,6 +168,14 @@ native function ReadInventory();
 delegate OnInventoryRead(bool bWasSuccessful);
 function AddInventoryReadCompleteDelegate( delegate<OnInventoryRead> InDelegate) { `FillAddDel(InventoryReadDelegates); }
 function ClearInventoryReadCompleteDelegate( delegate<OnInventoryRead> InDelegate) { `FillClearDel(InventoryReadDelegates); }
+
+// Read title data
+native function ReadTitleData();
+delegate OnTitleDataRead();
+function AddTitleDataReadCompleteDelegate( delegate<OnTitleDataRead> InDelegate ) { `FillAddDel(TitleDataReadDelegates); }
+function ClearTitleDataReadCompleteDelegate( delegate<OnTitleDataRead> InDelegate ) { `FillClearDel(TitleDataReadDelegates); }
+// Retrieves title data value for a particular key
+native function string GetTitleDataForKey( string InKey );
 
 // Unlocks a container for the user
 native function UnlockContainer(string ContainerId);
@@ -272,10 +289,17 @@ static function string GetLocalizedRegionName(int RegionIndex)
 }
 
 
+event OnlineProfileSettings GetProfileSettings( byte LocalUserNum )
+{
+	return class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings( LocalUserNum );
+}
+
+
 
 // Server API calls
 /////////////////////////////////////////////////////////////////////////
 native function ServerValidatePlayer( const string ClientAuthTicket );
+native function ServerNotifyPlayerJoined( const string PlayfabId );
 native function ServerNotifyPlayerLeft( const string PlayfabId );
 native function ServerUpdateOnlineGame();
 native function ServerRegisterGame();
@@ -288,7 +312,7 @@ native function ServerRemoveVirtualCurrencyForUser( const string ForPlayerId, co
 native function ServerGrantItemsForUser( const string ForPlayerId, array<string> ItemIds );
 
 native function ServerAllocate();
-native function serverDeallocate();
+native function ServerDeallocate( optional bool bForce );
 
 function CreateGameSettings( class<OnlineGameSettings> GameSettingsClass )
 {
@@ -308,27 +332,28 @@ event OnlineGameSettings GetGameSettings()
 /////////////////////////////////////////////////////////////////////////////
 
 // Auths with online service (ex. PSN). Calls into OSS to do this
-private event AuthWithOnlineService()
+private event AuthWithOnlineService( byte LocalUserNum, string ForURL )
 {
 	local OnlineSubsystem OSS;
 
 	OSS = class'GameEngine'.static.GetOnlineSubsystem();
 	if( OSS != none && OSS.PlayerInterface != none )
 	{
-		OSS.PlayerInterface.AddOnlineServiceAuthCompleteDelegate( OnOnlineServiceAuthComplete );
-		OSS.PlayerInterface.AuthWithOnlineService();
+		OSS.PlayerInterface.AddURLTokenRetrievedDelegate( LocalUserNum, OnTokenAndSignatureRetrieved );
+		OSS.PlayerInterface.GetTokenAndSignatureForURL( LocalUserNum, ForURL );
 	}
 }
 
-
-private function OnOnlineServiceAuthComplete()
+private function OnTokenAndSignatureRetrieved(byte LocalUserNum, string URL, string Token, string Signature)
 {
-	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.ClearOnlineServiceAuthCompleteDelegate( OnOnlineServiceAuthComplete );
-	OnlineServiceAuthComplete();
+	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.ClearURLTokenRetrievedDelegate(LocalUserNum, OnTokenAndSignatureRetrieved);
+	OnlineServiceAuthComplete( URL, Token, Signature );
 }
 
+
 // The rest is handled in native
-private native function OnlineServiceAuthComplete();
+private native function OnlineServiceAuthComplete( string ForURL, string Token, string Signature );
+
 
 cpptext
 {
@@ -364,6 +389,9 @@ cpptext
 
 	// Sets a timer to attempt registration again
 	virtual void Reregister();
+
+	// Retrieves the catalog name
+	virtual FString GetCatalogName() { return CatalogName; }
 }
 
 

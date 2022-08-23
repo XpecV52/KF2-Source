@@ -2127,6 +2127,7 @@ AttachmentSkin0="Агата"
 AttachmentSkin1="Клиз"
 AttachmentSkin2="Джейми"
 AttachmentSkin3="Персиваль"
+AttachmentSkin4="Дорогой"
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
 Attachment="Противог. «Стимпанк»"
@@ -2324,3 +2325,114 @@ EmoteName="Ритуал братания+"
 
 [KickinIt_Deluxe]
 EmoteName="Пинай+"
+
+[Cosmetic_FirefighterHelmet_ARCH]
+Attachment="Пожарный шлем"
+AttachmentSkin0="Черный"
+AttachmentSkin1="Синий"
+AttachmentSkin2="Оливковый"
+AttachmentSkin3="Красный"
+AttachmentSkin4="Белый"
+AttachmentSkin5="Желтый"
+
+[Cosmetic_FirefighterHelmetDown_ARCH]
+Attachment="Шлем с опущ. щитком"
+AttachmentSkin0="Черный"
+AttachmentSkin1="Синий"
+AttachmentSkin2="Оливковый"
+AttachmentSkin3="Красный"
+AttachmentSkin4="Белый"
+AttachmentSkin5="Желтый"
+
+[Cosmetic_FirefighterHelmetUp_ARCH]
+Attachment="Шлем с подн. щитком"
+AttachmentSkin0="Черный"
+AttachmentSkin1="Синий"
+AttachmentSkin2="Оливковый"
+AttachmentSkin3="Красный"
+AttachmentSkin4="Белый"
+AttachmentSkin5="Желтый"
+
+[Cosmetic_FirefighterMask_ARCH]
+Attachment="Пожарный противогаз"
+AttachmentSkin0="Черный"
+AttachmentSkin1="Синий"
+AttachmentSkin2="Оливковый"
+AttachmentSkin3="Красный"
+AttachmentSkin4="Белый"
+AttachmentSkin5="Желтый"
+
+[Cosmetic_FirefighterTank_ARCH]
+Attachment="Пожарный кис. баллон"
+AttachmentSkin0="Черный"
+AttachmentSkin1="Синий"
+AttachmentSkin2="Оливковый"
+AttachmentSkin3="Красный"
+AttachmentSkin4="Белый"
+AttachmentSkin5="Желтый"
+
+[Cosmetic_InsectoidClosed_ARCH]
+Attachment="Шлем инсектоида зак."
+AttachmentSkin0="Черный с красн. огнями"
+AttachmentSkin1="Черный с красн. элем."
+AttachmentSkin2="Черный с желт. огнями"
+AttachmentSkin3="Синий"
+AttachmentSkin4="Темно-зеленый"
+AttachmentSkin5="Зеленый"
+AttachmentSkin6="Пурпурный"
+AttachmentSkin7="Красный"
+AttachmentSkin8="Ржавый"
+AttachmentSkin9="США"
+AttachmentSkin10="Белый"
+AttachmentSkin11="Желтый"
+
+[Cosmetic_InsectoidOpen_ARCH]
+Attachment="Шлем инсектоида отк."
+AttachmentSkin0="Черный с красн. огнями"
+AttachmentSkin1="Черный с красн. элем."
+AttachmentSkin2="Черный с желт. огнями"
+AttachmentSkin3="Синий"
+AttachmentSkin4="Темно-зеленый"
+AttachmentSkin5="Зеленый"
+AttachmentSkin6="Пурпурный"
+AttachmentSkin7="Красный"
+AttachmentSkin8="Ржавый"
+AttachmentSkin9="США"
+AttachmentSkin10="Белый"
+AttachmentSkin11="Желтый"
+
+[Cosmetic_InsectoidGogglesUp_ARCH]
+Attachment="Шл. инсект. очки вв."
+AttachmentSkin0="Черный с красн. огнями"
+AttachmentSkin1="Черный с красн. элем."
+AttachmentSkin2="Черный с желт. огнями"
+AttachmentSkin3="Синий"
+AttachmentSkin4="Темно-зеленый"
+AttachmentSkin5="Зеленый"
+AttachmentSkin6="Пурпурный"
+AttachmentSkin7="Красный"
+AttachmentSkin8="Ржавый"
+AttachmentSkin9="США"
+AttachmentSkin10="Белый"
+AttachmentSkin11="Желтый"
+
+[Cosmetic_InsectoidGogglesDown_ARCH]
+Attachment="Шл. инсект. очки вн."
+AttachmentSkin0="Черный с красн. огнями"
+AttachmentSkin1="Черный с красн. элем."
+AttachmentSkin2="Черный с желт. огнями"
+AttachmentSkin3="Синий"
+AttachmentSkin4="Темно-зеленый"
+AttachmentSkin5="Зеленый"
+AttachmentSkin6="Пурпурный"
+AttachmentSkin7="Красный"
+AttachmentSkin8="Ржавый"
+AttachmentSkin9="США"
+AttachmentSkin10="Белый"
+AttachmentSkin11="Желтый"
+AttachmentSkin12="Дорогой"
+
+[Cosmetic_DemonSlayerHelmet_ARCH]
+Attachment="Шлем убийцы демонов"
+AttachmentSkin0="Серый"
+AttachmentSkin1="Дорогой"

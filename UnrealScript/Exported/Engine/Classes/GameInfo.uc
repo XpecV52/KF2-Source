@@ -374,19 +374,26 @@ event PostBeginPlay()
 	PlayfabInter = class'GameEngine'.static.GetPlayfabInterface();
 	if( WorldInfo.IsConsoleDedicatedServer() )
 	{
-		if( PlayfabInter != none && PlayfabInter.GetGameSettings() == None )
+		if( PlayfabInter != none )
 		{
-			PlayfabInter.CreateGameSettings( OnlineGameSettingsClass );
-			GameSettings = PlayfabInter.GetGameSettings();
-			GameSettings.UpdateFromURL(ServerOptions, self);
-
-			// If this server wasn't launched by playfab, register the server now
-			if( !WasLaunchedByPlayfab() )
+			if( PlayfabInter.GetGameSettings() == None )
 			{
-				// First we update game settings
-				UpdateGameSettings();
-				// Now register the game
-				PlayfabInter.ServerRegisterGame();
+				PlayfabInter.CreateGameSettings( OnlineGameSettingsClass );
+				GameSettings = PlayfabInter.GetGameSettings();
+				GameSettings.UpdateFromURL(ServerOptions, self);
+
+				// If this server wasn't launched by playfab, register the server now
+				if( !WasLaunchedByPlayfab() )
+				{
+					// First we update game settings
+					UpdateGameSettings();
+					// Now register the game
+					PlayfabInter.ServerRegisterGame();
+				}
+
+				// Initialize title data, see also TWRefreshOnlineGameData
+				PlayfabInter.AddTitleDataReadCompleteDelegate( OnServerTitleDataRead );
+				PlayfabInter.ReadTitleData();
 			}
 		}
 	}
@@ -398,6 +405,16 @@ event PostBeginPlay()
 		UpdateGameSettings();
 	}
 }
+
+
+//@HSL_BEGIN - BWJ - 1-5-17 - Support for reading title data
+function OnServerTitleDataRead()
+{
+	PlayfabInter.ClearTitleDataReadCompleteDelegate(OnServerTitleDataRead);
+}
+//@HSL_END
+
+
 
 /**
   *  Use 'ShowGameDebug' console command to show this debug info
@@ -1297,9 +1314,9 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 	
 //@HSL_BEGIN_XBOX
 	InName     = ParseOption ( Options, "Name");
-	class'GameEngine'.static.DecodeURLString(InName);
 	// Steam names can contain up to 32 characters
 	InName     = Left(ParseOption ( Options, "Name"), 32);
+	class'GameEngine'.static.DecodeURLString(InName);
 //@HSL_END_XBOX
 
 
@@ -1441,6 +1458,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 static function bool AllowAnalyticsLogging();
 
 function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType );
+function ScoreHeal( int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn, class<DamageType> DamageType );
 
 // OnlineSubsystem
 event bool SeatPlayer(const UniqueNetId SeatedPlayerID);
@@ -2280,7 +2298,11 @@ function bool CanSpectate( PlayerController Viewer, PlayerReplicationInfo ViewTa
 
 /* ReduceDamage:
 	Use reduce damage for teamplay modifications, etc. */
-function ReduceDamage(out int Damage, pawn injured, Controller instigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser)
+
+function ReduceDamage(out int Damage, pawn injured, Controller instigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
+
+
+
 {
 	local int OriginalDamage;
 
@@ -3979,6 +4001,11 @@ native function bool WasLaunchedByPlayfab();
 event string GetFriendlyNameForCurrentGameMode();
 //@HSL_END
 
+
+//@HSL_BEGIN - BWJ - 2-16-17 - Hooks for controller change notifications 
+function NotifyControllerDisconnected();
+function NotifyControllerReconnected();
+//@HSL_END
 
 
 event bool GetRequiresPassword()

@@ -12,7 +12,7 @@ class KFPerk_Sharpshooter extends KFPerk
 	native;
 
 
-`include(KFOnlineStats.uci)
+//`include(KFOnlineStats.uci)
 
 var private const PerkSkill		HeadshotDamage;
 var private	const PerkSkill		Recoil;
@@ -495,7 +495,7 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
 	}
 
    	KFPM = KFPawn_Monster(Impact.HitActor);
-   	if( KFPM != none )
+   	if( KFPM != none && !KFPM.bIsHeadless )
    	{
 	   	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
 	   	if( HitZoneIdx == HZI_Head && KFPM != none && KFPM.IsAliveAndWell() )
@@ -645,8 +645,8 @@ DefaultProperties
 	KnifeWeaponDef=class'KFWeapDef_Knife_Sharpshooter'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Sharpshooter'
 
-	ProgressStatID=`STATID_Shrp_Progress
-   	PerkBuildStatID=`STATID_Shrp_Build
+	ProgressStatID=STATID_Shrp_Progress
+   	PerkBuildStatID=STATID_Shrp_Build
 
    	MaxHeadShotComboCount=5
    	HeadShotCountdownIntervall=2.f
@@ -695,8 +695,8 @@ DefaultProperties
 	// xp per headshot (all headshots, not just lethal)
 	SecondaryXPModifier(0)=1
    	SecondaryXPModifier(1)=1
-   	SecondaryXPModifier(2)=2
-   	SecondaryXPModifier(3)=3
+   	SecondaryXPModifier(2)=1
+   	SecondaryXPModifier(3)=1
 
    	CameraViewShakeScale=0.5
    	AutoBuyLoadOutPath=(class'KFWeapDef_Winchester1894', class'KFWeapDef_Crossbow', class'KFWeapDef_M14EBR', class'KFWeapDef_RailGun')

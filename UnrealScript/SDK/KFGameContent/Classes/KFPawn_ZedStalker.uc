@@ -438,7 +438,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Stalker_ARCH.ZED_Stalker_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Stalker_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
 	DifficultySettings=class'KFDifficulty_Stalker'
 

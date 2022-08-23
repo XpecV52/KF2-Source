@@ -804,7 +804,7 @@ function int GetLivingPlayerCount()
 }
 
 /*  Use reduce damage for friendly fire, etc. */
-function ReduceDamage( out int Damage, Pawn Injured, Controller InstigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser )
+function ReduceDamage( out int Damage, Pawn Injured, Controller InstigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo )
 {
     local KFPawn InstigatorPawn, InjuredPawn;
 
@@ -835,7 +835,7 @@ function ReduceDamage( out int Damage, Pawn Injured, Controller InstigatedBy, ve
         }
     }
 
-    super.ReduceDamage( Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser );
+    super.ReduceDamage( Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo );
 }
 
 function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> damageType )
@@ -947,7 +947,6 @@ function EndOfMatch(bool bVictory)
         }
     }
 
-	WorldInfo.TWRefreshTweakParams();
     WorldInfo.TWPushLogs();
 
     // Calculate final score
@@ -1310,9 +1309,17 @@ protected function BeginNextRound()
     ClosePostRoundMenu();
 }
 
-function bool IsInitialSpawnPointSelection()
+static function bool IsInitialSpawnPointSelection( WorldInfo WI )
 {
-	return MyKFGRI.bRoundIsOver || super.IsInitialSpawnPointSelection();
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo( WI.GRI );
+	if( KFGRI != none )
+	{
+		return KFGRI.bRoundIsOver || super.IsInitialSpawnPointSelection( WI );
+	}
+
+	return false;
 }
 
 /** Attempts to pre-select player starts and begin texture streaming */

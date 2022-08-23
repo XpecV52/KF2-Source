@@ -5,12 +5,12 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFCameraLensEmit_Fire extends EmitterCameraLensEffectBase
+class KFCameraLensEmit_Fire extends KFEmit_CameraEffect
     hidecategories(Navigation);
 
 function NotifyRetriggered()
 {
-    super.NotifyRetriggered();
+    super(EmitterCameraLensEffectBase).NotifyRetriggered();
     LifeSpan = default.LifeSpan;
 }
 

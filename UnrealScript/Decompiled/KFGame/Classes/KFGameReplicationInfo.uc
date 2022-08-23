@@ -96,21 +96,8 @@ var int PrimaryXPAccumulator;
 var int SecondaryXPAccumulator;
 var KFTraderTrigger NextTrader;
 var KFTraderTrigger OpenedTrader;
-var int DebugingNextTraderIndex;
-var KFGFxObject_TraderItems TraderItems;
-var KFTraderDialogManager TraderDialogManager;
-var class<KFTraderDialogManager> TraderDialogManagerClass;
-var class<KFTraderVoiceGroupBase> TraderVoiceGroupClass;
-var repnotify bool bTraderIsOpen;
-var private const bool bIsUnrankedGame;
-var bool bMatchVictory;
-var bool bCustom;
-var bool bCurrentSMFinishedSpawning;
-var bool bDebugSpawnManager;
-var bool bTrackingMapEnabled;
-var bool bGameConductorGraphingEnabled;
-var bool bVersusGame;
-var bool bAllowSwitchTeam;
+var Volume TraderVolume;
+var byte TraderVolumeCheckType;
 var repnotify byte MusicTrackRepCount;
 var repnotify byte RepKickVotes;
 var byte WaveMax;
@@ -120,11 +107,29 @@ var byte GameDifficulty;
 var private const byte GameSharedUnlocks;
 var byte CurrentGameConductorStatus;
 var byte MusicIntensity;
+var int DebugingNextTraderIndex;
+var KFGFxObject_TraderItems TraderItems;
+var bool bAllowGrenadePurchase;
+var repnotify bool bTraderIsOpen;
+var private const bool bIsUnrankedGame;
+var bool bMatchVictory;
+var bool bCustom;
+var bool bCurrentSMFinishedSpawning;
+var bool bDebugSpawnManager;
+var bool bTrackingMapEnabled;
+var bool bHidePawnIcons;
+var bool bGameConductorGraphingEnabled;
+var bool bVersusGame;
+var bool bAllowSwitchTeam;
+var KFTraderDialogManager TraderDialogManager;
+var class<KFTraderDialogManager> TraderDialogManagerClass;
+var class<KFTraderVoiceGroupBase> TraderVoiceGroupClass;
 var int AIRemaining;
 var int WaveTotalAICount;
 var repnotify string ConsoleGameSessionGuid;
 var UniqueNetId ConsoleGameSessionHost;
 var array<UniqueNetId> ConsoleGameSessionPendingPlayers;
+var float GameAmmoCostScale;
 var float CurrentSineMod;
 var float CurrentNextSpawnTime;
 var float CurrentSineWavFreq;
@@ -175,13 +180,16 @@ replication
         CurrentObjective, GameSharedUnlocks, 
         MusicIntensity, MusicTrackRepCount, 
         NextTrader, ReplicatedMusicTrackInfo, 
+        TraderVolume, TraderVolumeCheckType, 
         WaveNum, WaveTotalAICount, 
-        bIsUnrankedGame, bTraderIsOpen;
+        bHidePawnIcons, bIsUnrankedGame, 
+        bTraderIsOpen;
 
      if(bNetInitial)
-        GameDifficulty, GameLength, 
-        WaveMax, bCustom, 
-        bVersusGame;
+        GameAmmoCostScale, GameDifficulty, 
+        GameLength, TraderItems, 
+        WaveMax, bAllowGrenadePurchase, 
+        bCustom, bVersusGame;
 
      if(bNetInitial && Role == ROLE_Authority)
         ServerAdInfo;
@@ -333,7 +341,7 @@ simulated function ReceivedGameClass()
     KFGameClass = class<KFGameInfo>(GameClass);
     if(KFGameClass != none)
     {
-        KFGameClass.static.PreloadContentClasses(self);
+        KFGameClass.static.PreloadContentClasses();
         if(TraderDialogManager != none)
         {
             TraderDialogManager.TraderVoiceGroupClass = KFGameClass.default.TraderVoiceGroupClass;
@@ -385,6 +393,13 @@ simulated function NotifyWaveEnded()
             KFPRI.NotifyWaveEnded();
         }        
     }    
+}
+
+simulated function EndGame()
+{
+    bMatchHasBegun = false;
+    bMatchIsOver = true;
+    Class'KFGameEngine'.static.RefreshOnlineGameData();
 }
 
 reliable client simulated exec function ShowPreGameServerWelcomeScreen()
@@ -519,18 +534,26 @@ simulated function OpenTraderNext(optional int Time)
         RemainingTime = Time;
         RemainingMinute = Time;
     }
-    if(KFGameInfo.TraderList.Length > 0)
+    if(KFGameInfo.ScriptedTrader != none)
     {
-        if((DebugingNextTraderIndex == -1) && OpenedTrader != none)
+        NextTrader = KFGameInfo.ScriptedTrader;
+        KFGameInfo.ScriptedTrader = none;        
+    }
+    else
+    {
+        if(KFGameInfo.TraderList.Length > 0)
         {
-            KFGameInfo.TraderList.AddItem(OpenedTrader;
+            if((DebugingNextTraderIndex == -1) && OpenedTrader != none)
+            {
+                KFGameInfo.TraderList.AddItem(OpenedTrader;
+            }
+            if((DebugingNextTraderIndex + 1) >= KFGameInfo.TraderList.Length)
+            {
+                DebugingNextTraderIndex = -1;
+            }
+            DebugingNextTraderIndex = DebugingNextTraderIndex + 1;
+            NextTrader = KFGameInfo.TraderList[DebugingNextTraderIndex];
         }
-        if((DebugingNextTraderIndex + 1) >= KFGameInfo.TraderList.Length)
-        {
-            DebugingNextTraderIndex = -1;
-        }
-        DebugingNextTraderIndex = DebugingNextTraderIndex + 1;
-        NextTrader = KFGameInfo.TraderList[DebugingNextTraderIndex];
     }
     OpenedTrader = NextTrader;
     OpenedTrader.OpenTrader();
@@ -628,6 +651,16 @@ simulated function ProcessChanceDrop()
 {
     SendSteamHeartbeat();
     SendSteamRequestItemDrop();
+}
+
+simulated event SendPlayfabGameTimeUpdate(optional bool bGameEnd)
+{
+    local JsonObject Parms;
+
+    Parms = new Class'JsonObject';
+    Parms.SetIntValue("UpdateTime", int(SteamHeartbeatAccumulator));
+    Parms.SetBoolValue("bGameEnd", bGameEnd);
+    Class'GameEngine'.static.GetPlayfabInterface().ExecuteCloudScript("UpdatePlayRewards", Parms);
 }
 
 simulated function int GetNextMapTimeRemaining()
@@ -1260,11 +1293,18 @@ function int GetCurrentRoundNumber();
 
 simulated function bool AreTeamsOutOfBalanced();
 
+simulated event bool IsStatsSessionValid()
+{
+    return true;
+}
+
 defaultproperties
 {
-    TraderItems=KFGFxObject_TraderItems'GP_Trader_ARCH.DefaultTraderItems'
-    TraderDialogManagerClass=Class'KFTraderDialogManager'
     WaveMax=255
+    TraderItems=KFGFxObject_TraderItems'GP_Trader_ARCH.DefaultTraderItems'
+    bAllowGrenadePurchase=true
+    TraderDialogManagerClass=Class'KFTraderDialogManager'
+    GameAmmoCostScale=1
     VoteCollectorClass=Class'KFVoteCollector'
     UpdateZedInfoInterval=0.5
     UpdateHumanInfoInterval=0.5

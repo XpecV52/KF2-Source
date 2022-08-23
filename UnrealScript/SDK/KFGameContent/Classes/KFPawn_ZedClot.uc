@@ -56,7 +56,7 @@ DefaultProperties
 	bIsClotClass=true
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_UnDev_Archetype'
+	MonsterArchPath="ZED_ARCH.ZED_Clot_UnDev_Archetype"
 
 	// ---------------------------------------------
 	// Gameplay

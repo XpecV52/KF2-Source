@@ -98,6 +98,13 @@ simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingC
     }
 }
 
+simulated event ChangeVisibility(bool bVisible)
+{
+    LaserDotMeshComp.SetHidden(!bVisible);
+    LaserSightMeshComp.SetHidden(!bVisible);
+    LaserBeamMeshComp.SetHidden(!bVisible);
+}
+
 simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 {
     local Vector TraceStart, TraceEnd, InstantTraceHitLocation, InstantTraceHitNormal, HitLocation, HitNormal,

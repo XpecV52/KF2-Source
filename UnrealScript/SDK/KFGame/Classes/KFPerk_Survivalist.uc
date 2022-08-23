@@ -10,7 +10,7 @@
 class KFPerk_Survivalist extends KFPerk
 	native;
 
-`include(KFOnlineStats.uci)
+//`include(KFOnlineStats.uci)
 
 /** Passives */
 var private const PerkSkill	WeaponDamage;	
@@ -290,7 +290,8 @@ simulated function bool IsWeaponOnPerkHeavy( KFWeapon KFW )
 	{
 		return (class'KFPerk_Demolitionist'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Demolitionist' ) ||
 				class'KFPerk_Support'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Support' ) ||
-				class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Sharpshooter' ));
+				class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Sharpshooter' ) ||
+				(KFW.IsHeavyWeapon() && IsWeaponOnPerk(KFW)) );
 	}
 
 
@@ -455,7 +456,7 @@ function float GetStunPowerModifier( optional class<DamageType> DamageType, opti
     return 1.f;
 }
 
-simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( GetIncapMasterActive() )
 	{
@@ -659,8 +660,8 @@ DefaultProperties
 	HealingGrenadeWeaponDef=class'KFWeapDef_Grenade_Medic'
 	MolotovGrenadeWeaponDef=class'KFWeapDef_Grenade_Firebug'
 
-	ProgressStatID=`STATID_Surv_Progress
-   	PerkBuildStatID=`STATID_Surv_Build
+	ProgressStatID=STATID_Surv_Progress
+   	PerkBuildStatID=STATID_Surv_Build
 
 	WeaponDamage=(Name="Weapon Damage",Increment=0.006f,Rank=0,StartingValue=0.f,MaxValue=0.15f)
 	DamageResistance=(Name="Damage Resistance",Increment=0.01,Rank=0,StartingValue=0.f,MaxValue=0.25)

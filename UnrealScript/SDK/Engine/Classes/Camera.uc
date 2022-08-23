@@ -355,6 +355,9 @@ function SetUnmodifiedFOV(float NewFOV)
 	UnmodifiedFOV = NewFOV;
 }
 
+`if(`__TW_)
+function float GetActualFOV() { return GetFOVAngle(); }
+`endif
 
 /**
  * Master function to retrieve Camera's actual view point.
@@ -834,7 +837,11 @@ function AddCameraLensEffect(class<EmitterCameraLensEffectBase> LensEffectEmitte
 			if (LensEffect != None)
 			{
 				GetCameraViewPoint(CamLoc, CamRot);
-				LensEffect.UpdateLocation(CamLoc, CamRot, UnmodifiedFOV);
+`if(`__TW_)
+				LensEffect.UpdateLocation( CamLoc, CamRot, GetActualFOV() );
+`else
+				LensEffect.UpdateLocation(CamLoc, CamRot, GetFOVAngle());
+`endif
 				LensEffect.RegisterCamera(self);
 
 				CameraLensEffects.AddItem(LensEffect);

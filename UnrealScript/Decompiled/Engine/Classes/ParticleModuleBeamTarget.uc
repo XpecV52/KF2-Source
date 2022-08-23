@@ -16,6 +16,8 @@ var(Target) ParticleModuleBeamBase.Beam2SourceTargetMethod TargetMethod;
 var(Target) ParticleModuleBeamBase.Beam2SourceTargetTangentMethod TargetTangentMethod;
 /** The target point sources of each beam, when using the end point method. */
 var(Target) name TargetName;
+/** Specific socket name to attach to if using Actor method */
+var(Target) name TargetSocketName;
 /** Default target-point information to use if the beam method is endpoint. */
 var(Target) RawDistributionVector Target;
 /** Whether to treat the as an absolute position in world space. */

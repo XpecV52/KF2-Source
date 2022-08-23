@@ -4,11 +4,10 @@
 // Camera effect for being on fire
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 // John "Ramm-Jaeger" Gibson
 //=============================================================================
-
-class KFCameraLensEmit_Fire extends EmitterCameraLensEffectBase;
+class KFCameraLensEmit_Fire extends KFEmit_CameraEffect;
 
 function NotifyRetriggered()
 {

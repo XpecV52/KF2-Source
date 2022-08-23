@@ -31,7 +31,7 @@ function DropFrom(Vector StartLocation, Vector StartVelocity)
         return;
     }
     StartLocation.Z += (Instigator.BaseEyeHeight / float(2));
-    KFDP = KFDroppedPickup_Cash(Spawn(DroppedPickupClass,,, StartLocation,,, true));
+    KFDP = KFDroppedPickup_Cash(Spawn(DroppedPickupClass, PlayerController(Instigator.Controller),, StartLocation,,, true));
     if(KFDP == none)
     {
         PlayerController(Instigator.Controller).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 21);

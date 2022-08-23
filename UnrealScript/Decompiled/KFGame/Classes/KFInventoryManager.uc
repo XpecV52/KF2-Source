@@ -981,6 +981,10 @@ function bool GiveInitialGrenadeCount()
     {
         GrenadeCount = byte(KFPawn(Instigator).GetPerk().InitialGrenadeCount);
     }
+    if(KFGameInfo(WorldInfo.Game) != none)
+    {
+        GrenadeCount = byte(KFGameInfo(WorldInfo.Game).AdjustStartingGrenadeCount(GrenadeCount));
+    }
     return GrenadeCount > OriginalGrenadeCount;
 }
 
@@ -1711,21 +1715,31 @@ private final function bool ProcessWeaponDosh(out STraderItem PurchasedItem)
 private final function bool ProcessAmmoDosh(out STraderItem PurchasedItem, int AdditionalAmmo, optional bool bSecondaryAmmo)
 {
     local int BuyPrice;
-    local float PricePerMag, MagSize;
+    local float PricePerMag, MagSize, AmmoCostScale;
     local KFPlayerReplicationInfo KFPRI;
+    local KFGameReplicationInfo KFGRI;
 
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if(KFGRI != none)
+    {
+        AmmoCostScale = KFGRI.GameAmmoCostScale;        
+    }
+    else
+    {
+        AmmoCostScale = 1;
+    }
     KFPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
     if(KFPRI != none)
     {
         if(bSecondaryAmmo)
         {
-            PricePerMag = float(PurchasedItem.WeaponDef.default.SecondaryAmmoMagPrice);
+            PricePerMag = AmmoCostScale * float(PurchasedItem.WeaponDef.default.SecondaryAmmoMagPrice);
             MagSize = float(PurchasedItem.WeaponDef.default.SecondaryAmmoMagSize);
             BuyPrice = FCeil((PricePerMag / MagSize) * float(AdditionalAmmo));            
         }
         else
         {
-            PricePerMag = float(PurchasedItem.WeaponDef.default.AmmoPricePerMag);
+            PricePerMag = AmmoCostScale * float(PurchasedItem.WeaponDef.default.AmmoPricePerMag);
             MagSize = float(PurchasedItem.MagazineCapacity);
             BuyPrice = FCeil((PricePerMag / MagSize) * float(AdditionalAmmo));
         }

@@ -4,11 +4,9 @@
 // Class Description
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
-//  - Author 3/13/2014
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
-class KFCameraLensEmit_Puke extends EmitterCameraLensEffectBase;
+class KFCameraLensEmit_Puke extends KFEmit_CameraEffect;
 
 defaultproperties
 {

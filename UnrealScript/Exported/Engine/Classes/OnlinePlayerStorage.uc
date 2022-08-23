@@ -103,7 +103,9 @@ enum EOnlinePlayerStorageAsyncState
 };
 
 /** Indicates the state of the profile (whether an async action is happening and what type) */
-var const EOnlinePlayerStorageAsyncState AsyncState;
+//@HSL_BEGIN - BWJ - 2-21-17 - Removing const so we can modify in script
+var /*const*/ EOnlinePlayerStorageAsyncState AsyncState;
+//@HSL_END
 
 /** The device id this data is stored to if applicable */
 var int DeviceId;

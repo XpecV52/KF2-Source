@@ -148,6 +148,7 @@ defaultproperties
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=9
+    QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
     GrenadeFireOffset=(X=25,Y=15,Z=0)
     GroupPriority=110
     WeaponSelectTexture=Texture2D'WEP_UI_Shield_Melee_TEX.UI_WeaponSelect_MaceShield'

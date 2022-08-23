@@ -37,22 +37,24 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
 	local KFGameReplicationInfo KFGRI;
 
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+
 	super.InitializeMenu( InManager );
 
 	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
 
-	if(KFGRI != none)
-	{
-		KFGRI.ProcessChanceDrop();
-	}	
-	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
-
 	if( class'WorldInfo'.static.IsConsoleBuild() )
 	{
+		class'GameEngine'.static.GetPlayfabInterface().AddOnCloudScriptExecutionCompleteDelegate(OnProcessEndGameRewardsComplete);
+		KFGRI.SendPlayfabGameTimeUpdate(true);
 		class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( SearchPlayfabInventoryForNewItem );
 	}
 	else
 	{
+		if (KFGRI != none)
+		{
+			KFGRI.ProcessChanceDrop();
+		}
 		OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
 	}
 
@@ -90,7 +92,7 @@ function LocalizeText()
         {
             TextObject.SetString("serverName", WI.GRI.ServerName);    
         }
-        if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+        if( class'WorldInfo'.static.IsConsoleBuild() )
         {
         	TextObject.SetString("serverIP", "");
         }
@@ -111,6 +113,19 @@ function SearchPlayfabInventoryForNewItem( bool bSuccess )
 		SearchInventoryForNewItem();
 	}
 }
+
+
+function OnProcessEndGameRewardsComplete( bool bWasSuccessful, string FunctionName, JsonObject FunctionResult )
+{
+	class'GameEngine'.static.GetPlayfabInterface().ClearOnCloudScriptExecutionCompleteDelegate( OnProcessEndGameRewardsComplete );
+
+	if( FunctionName == "UpdatePlayRewards" )
+	{
+		// Now read inventory to see if anything changed
+		class'GameEngine'.static.GetPlayfabInterface().ReadInventory();
+	}
+}
+
 
 function SearchInventoryForNewItem()
 {
@@ -341,8 +356,6 @@ function OnOpen()
 		if( GetPC().WorldInfo.NetMode == NM_Client )
 		{
 			class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( SearchPlayfabInventoryForNewItem );
-			// Now read inventory to see if anything changed
-			class'GameEngine'.static.GetPlayfabInterface().ReadInventory();
 		}
 	}
 	else if( OnlineSub != none )

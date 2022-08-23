@@ -41,6 +41,8 @@ var const localized string WeaponUpgradeComepleteString;
 var const localized string SecondaryWeaponPurchasedString;
 var const localized string NoItemsPurchasedString;
 var const localized string SetTakeoverServerPasswordTitle;
+var const localized string FreeConsolePlayOverString;
+var const localized string BuyGameString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -184,4 +186,6 @@ defaultproperties
     SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
     NoItemsPurchasedString="No Items Purchased"
     SetTakeoverServerPasswordTitle="Enter a new password to protect your game:"
+    FreeConsolePlayOverString="Thanks for playing Killing Floor 2! The free event is over, but you can purchase the game and get more information by selecting the Store button below."
+    BuyGameString="STORE"
 }

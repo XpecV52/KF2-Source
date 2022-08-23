@@ -16,6 +16,8 @@ var(Source) ParticleModuleBeamBase.Beam2SourceTargetMethod SourceMethod;
 var(Source) ParticleModuleBeamBase.Beam2SourceTargetTangentMethod SourceTangentMethod;
 /** The strength of the tangent from the source point for each beam. */
 var(Source) name SourceName;
+/** Specific socket name to attach to if using Actor method */
+var(Source) name SourceSocketName;
 /** Whether to treat the as an absolute position in world space. */
 var(Source) bool bSourceAbsolute;
 /** Whether to lock the source to the life of the particle. */

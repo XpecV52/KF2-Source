@@ -136,7 +136,10 @@ function DrawHUD()
                 }
             }            
         }        
-        CheckAndDrawHiddenPlayerIcons(VisibleHumanPlayers, HiddenHumanPlayers);
+        if(!KFGRI.bHidePawnIcons)
+        {
+            CheckAndDrawHiddenPlayerIcons(VisibleHumanPlayers, HiddenHumanPlayers);
+        }
     }
     CheckAndDrawBossPawnIcon(ViewLocation, ViewVector);
     Canvas.EnableStencilTest(false);

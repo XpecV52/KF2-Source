@@ -29,7 +29,7 @@ StoreDescriptionsKey="在商店菜单中，你可以购买钥匙打开板条箱�
 
 ;Match Start
 InventoryTitleKey="了解你的仓库"
-InventoryDescriptionKey="每个神射加载从独特的主武器开始，然后是备用 9 毫米手枪、专家匕首和手榴弹。按 <font color="#caab05">%x%</font> 可以浏览武器。你还可以快速选择武器类别，按<font color="#caab05">%X%</font> 装备主远程武器，<font color="#caab05">%x%</font> 装备手枪，<font color="#caab05">%x%</font> 装备近战武器，和 <font color="#caab05">%x%</font> 装备注射器。"
+InventoryDescriptionKey="每个神射加载从独特的主武器开始，然后是备用 9 毫米手枪、专家匕首和手榴弹。按 <font color="#caab05">%x%</font> 可以浏览武器。你还可以快速选择武器类别，按<font color="#caab05">%x%</font> 装备主远程武器，<font color="#caab05">%x%</font> 装备手枪，<font color="#caab05">%x%</font> 装备近战武器，和 <font color="#caab05">%x%</font> 装备注射器。"
 InventoryContTitleKey="了解你的仓库"
 InventoryContDescriptionKey="每个神射加载从独特的主武器开始，然后是备用 9 毫米手枪、专家匕首和手榴弹。按住 <font color="#caab05">%x%</font> 和使用方向键可以选择武器。"
 AlternateFireKey="备用射击"
@@ -83,7 +83,7 @@ NextStepsDescriptionKey="你可在主页菜单选择离线练习多次，或是�
 
 ;Healing Section
 QuickHealTitleKey="在受伤时治愈自己"
-QuickHealDescriptionKey="如果你受伤了，你可以按 <font color="#caab05">%x%</font> 给自己疗伤。治愈后，注射器需要一段时间才能补充完，以便再次使用。"
+QuickHealDescriptionKey="如果您受伤了，可以按住 <font color="#caab05">%x%</font> 治愈自己。治愈后，注射器需要一段时间才能补充满，以便再次使用。"
 HowToSyringeTitleKey="治愈队友"
 HowToSyringeDescriptionKey="你也可以装备注射器为队友疗伤，方法是靠近队友然后按 <font color="#caab05">%x%</font> 和 <font color="#caab05">%x%</font>。"
 HealOthersTitleKey="使用医疗兵武器治疗队友"
@@ -174,7 +174,7 @@ ItemDescription="•射击模式只有半自动式。\n•这是标准的 9 毫�
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 沙漠之鹰"
-ItemCategory="手炮"
+ItemCategory="手枪"
 ItemDescription="•射击模式只有半自动式。\n•沙漠之鹰是手枪中的野兽，所以我们把它叫做‘手炮’。"
 
 [KFWeap_AssaultRifle_AR15]
@@ -197,7 +197,10 @@ ItemName="SA80 L85A2 小斗牛式导弹"
 ItemCategory="突击步枪"
 ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•SA80 是英队的标准武器，呃，是在军队被吃掉之前。"
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="斯通纳 63A 轻机枪"
+ItemCategory="轻机枪"
+ItemDescription="•射击模式是全自动的。\n•斯坦纳 63A 是美国海军海豹突击队在越南战争中使用的主要武器，其弹药容量高，而且停止力极高。"
 
 [KFWeap_Knife_Demolitionist]
 ItemName="万用刀"
@@ -269,8 +272,6 @@ ItemName="M4 战斗霰弹枪"
 ItemCategory="霰弹枪"
 ItemDescription="•射击模式只有半自动。\n•贝内利为美国军队设计了 M4 战斗霰弹枪。它是半自动式，可以良好和稳定地射击。"
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="割草机刀片"
 ItemCategory="近战"
@@ -328,6 +329,16 @@ ItemName="喷火枪"
 ItemCategory="火焰"
 ItemDescription="•射击模式喷出火焰。\n•手持式自制喷火器。切勿在家自行尝试。"
 
+[KFWeap_Pistol_Flare]
+ItemName="喷火式战斗机"
+ItemCategory="火焰"
+ItemDescription="•射击模式发射爆炸、易燃的炮弹。\n•射击传递系统在更便捷的小型包装内。"
+
+[KFWeap_Pistol_DualFlare]
+ItemName="双持喷火式战斗机"
+ItemCategory="火焰"
+ItemDescription="•射击模式发射爆炸、易燃的炮弹。\n•使用机械瞄准具时，备用射击会切换瞄准方式。\n•这是一对喷火式战斗机。可单独售出或抛弃一把。"
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="燃烧战壕枪"
 ItemCategory="霰弹枪"
@@ -363,8 +374,6 @@ ItemName="RPG-7"
 ItemCategory="爆炸物"
 ItemDescription="•射击模式发射一枚火箭。\n•射出的火箭在冲击作用下爆炸。\n•射出的榴弹在经过几米的保险距离后装备完成，避免炸到自己的脸部。\n•小心向后爆破！"
 
-
-
 [KFWeap_Pistol_Dual9mm]
 ItemName="两把 9 毫米手枪。"
 ItemCategory="手枪"
@@ -382,7 +391,7 @@ ItemDescription="•射击模式只有半自动。\n•备用射击在使用机�
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 沙漠之鹰"
-ItemCategory="手炮"
+ItemCategory="手枪"
 ItemDescription="•射击模式只有半自动式。\n•沙漠之鹰是手枪中的野兽，所以我们把它叫做‘手炮’。"
 
 [KFWeap_Pistol_DualDeagle]
@@ -414,8 +423,6 @@ ItemDescription="•射击模式只有半自动。\n•备用射击在使用机�
 ItemName="温彻斯特 1894"
 ItemCategory="步枪"
 ItemDescription="•射击模式只有单发射击。\n•经典型号 1894 温彻斯特杠杆式步枪。"
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="十字弓"

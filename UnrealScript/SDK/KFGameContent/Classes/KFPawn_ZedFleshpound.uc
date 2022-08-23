@@ -415,10 +415,9 @@ DefaultProperties
 
 	bIsFleshpoundClass=true
 
-	//bBlocksNavigation=true
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Fleshpound_ARCH.ZED_Fleshpound_Archetype'
+	MonsterArchPath="ZED_ARCH.ZED_Fleshpound_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
 	DifficultySettings=class'KFDifficulty_Fleshpound'
 

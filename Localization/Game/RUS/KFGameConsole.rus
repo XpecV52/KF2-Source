@@ -13,7 +13,9 @@ KF-Prison="Игра в Тюрьме"
 KF-ContainmentStation="Игра на Станции локализации"
 KF-InfernalRealm="Игра в Царстве ада"
 KF-HostileGrounds="Игра во Враждебных землях"
-KF-ZedLanding="Игра во Высадка среди мутантов"
+KF-ZedLanding="Проходит «Высадку среди мутантов»"
+KF-TheDescent="Проходит «Спуск»"
+KF-Nuked="Проходит «Ядерный удар»"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -129,6 +131,7 @@ PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="Чтобы начать, нажмите XboxTypeS_A"
+SwitchProfile="Смена профилей — XboxTypeS_Y"
 LoginButtonPrompt="Вход"
 LoggingIn="Вход..."
 LoginFailed="Войти не удалось."
@@ -139,6 +142,8 @@ NotLoggedInOnlinePSN="Для использования этих функций 
 NetworkError="Произошла сетевая ошибка. Пожалуйста, проверьте подключение к сети."
 ErrorNoPlayfabDescription="Необходимо установить подключение к мастер-серверам игры. Повторите попытку через несколько минут."
 ErrorTSSFailedDescription="Не удалось связаться с сервером игрового баланса. Пожалуйста, проверьте подключение к интернету и повторите попытку."
+NotSignedInTitle="Не выполнен вход."
+
 
 [Notifications]
 ControllerDisconnectedTitle="Контроллер отключен"
@@ -160,12 +165,24 @@ InviteMessage="Пошли со мной мочить мутантов!"
 NotConnectedTitle="Сетевая ошибка"
 NotConnectedMessage="Нет подключения к Интернету. Проверьте подключение и повторите попытку."
 NotConnectedForOnlinePlay="Нет подключения к Интернету. Проверьте подключение и повторите обращение к онлайн-функциям."
+MultiplayerNotAllowed_Title="Многопользов. игра недоступна"
+LoggedOutMessage="Активный профиль изменен. Вы вернулись к главному экрану."
+LoggedOutTitle="Выполнен выход"
+LoggedInTitle="Выполнен вход"
+NewRegionTitle="Welcome"
+NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Просмотреть профиль игрока"
+ViewProfileStringXB1="Смотреть карту игрока"
 
 [KFGFxObject_Menu]
 ResetDefaults="Вы уверены, что хотите вернуть настройки по умолчанию?"
+
+[KFGFxWidget_MenuBar]
+LogoutTitle="ВЫХОД"
+LogoutDialogTitle="К главному экрану"
+LogoutDialogMessage="Вы действительно хотите вернуться к главному экрану?"
 
 [KFGFxTraderContainer_PlayerInventory]
 PerkPrompt="ПРОФЕССИЯ"
@@ -177,9 +194,19 @@ ControllerSound="Звуковой контроллер"
 MatchmakingRegionString="РЕГИОН"
 LeaveMenuString="Выходя из матча, вы также покидаете свою команду"
 
+[KFGFxMenu_Store]
+
+
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="РЕГИОН"
 MapPreference="ЛЮБИМАЯ КАРТА"
+
+[KFGFxMenu_Exit]
+HeaderStringXB1="ВЫХОД"
+LogoutKF2="К главному экрану"
+
+[Misc]
+NotSignedIn="Вход не выполнен"
 
 [Entitlements]
 BriarBobbyBundleProductName="Набор лондонского бобби для Бриара"

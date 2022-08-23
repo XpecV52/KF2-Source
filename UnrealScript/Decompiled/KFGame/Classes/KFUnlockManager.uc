@@ -63,7 +63,7 @@ static event bool GetAvailableCharacterArchetype(KFCharacterInfo_Human Archetype
 
 static function bool GetAvailable(KFUnlockableAsset Asset)
 {
-    if(((Class'WorldInfo'.static.IsConsoleBuild(8) && !Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled()) && string(Asset.Name) != "CHR_MrFoster_archetype") && string(Asset.Name) != "CHR_Ana_Archetype")
+    if((!Class'GameEngine'.static.IsGameFullyInstalled() && string(Asset.Name) != "CHR_MrFoster_archetype") && string(Asset.Name) != "CHR_Ana_Archetype")
     {
         return false;
     }

@@ -713,18 +713,8 @@ protected event TriggerDestroyedEvent(Controller EventInstigator)
     TriggerEventClass(Class'SeqEvent_Destroyed', EventInstigator);
 }
 
-event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
+function BumpedByMonster(KFPawn_Monster P, Vector HitNormal)
 {
-    if(bAllowBumpDamageFromAI)
-    {
-        Bump(Other, OtherComp, HitNormal);
-    }
-}
-
-event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
-{
-    local KFPawn_Monster P;
-
     if(bAllowBumpDamageFromAI)
     {
         if((WorldInfo.TimeSeconds - LastBumpCheckTime) < 0.5)
@@ -732,8 +722,7 @@ event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
             return;
         }
         LastBumpCheckTime = WorldInfo.TimeSeconds;
-        P = KFPawn_Monster(Other);
-        if(((P != none) && P.Controller != none) && P.GetTeamNum() == 255)
+        if(P.Controller != none)
         {
             TakeDamage(0, P.Controller, P.Location, vect(0, 0, 0), P.BumpDamageType,, P);
         }
@@ -921,6 +910,7 @@ defaultproperties
     Components(0)=Sprite
     CollisionType=ECollisionType.COLLIDE_CustomDefault
     bNoDelete=true
+    bWorldGeometry=true
     bAlwaysRelevant=true
     bSkipActorPropertyReplication=true
     bOnlyDirtyReplication=true

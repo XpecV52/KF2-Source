@@ -1535,15 +1535,19 @@ simulated function PerformZoom(bool bZoomStatus, optional bool bAnimateTransitio
 
 		ZoomIn(bAnimateTransition, default.ZoomInTime);
 
-		if( Role < ROLE_Authority)
+		if( bUsingSights && Role < ROLE_Authority )
+		{
 			ServerZoomIn(bAnimateTransition);
+		}
 	}
 	else
 	{
 		ZoomOut(bAnimateTransition, default.ZoomOutTime);
 
-		if( Role < ROLE_Authority)
+		if( !bUsingSights && Role < ROLE_Authority )
+		{
 			ServerZoomOut(bAnimateTransition);
+		}
 	}
 }
 
@@ -2384,7 +2388,7 @@ simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocatio
 {
 	local name WeaponFireAnimName;
 	local KFPerk CurrentPerk;
-	local float AdjustedAnimLength;
+	local float TempTweenTime, AdjustedAnimLength;
 
 	// If we have stopped the looping fire sound to play single fire sounds for zed time
 	// start the looping sound back up again when the time is back above zed time speed
@@ -2411,14 +2415,25 @@ simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocatio
 					if ( WeaponFireAnimName != '' )
 					{
 						AdjustedAnimLength = MySkelMesh.GetAnimLength(WeaponFireAnimName);
+						TempTweenTime = FireTweenTime;
 
 						CurrentPerk = GetPerk();
 						if( CurrentPerk != none )
 						{
 							CurrentPerk.ModifyRateOfFire( AdjustedAnimLength, self );
+
+							// We need to unlock the slide if we fire from zero ammo while uber ammo is active
+							if( EmptyMagBlendNode != none
+								&& BonesToLockOnEmpty.Length > 0
+								&& AmmoCount[GetAmmoType(FireModeNum)] == 0
+								&& CurrentPerk.GetIsUberAmmoActive(self) )
+							{
+								EmptyMagBlendNode.SetBlendTarget( 0, 0 );
+								TempTweenTime = 0.f;
+							}
 						}
 
-						PlayAnimation(WeaponFireAnimName, AdjustedAnimLength,,FireTweenTime);
+						PlayAnimation(WeaponFireAnimName, AdjustedAnimLength,, TempTweenTime);
 					}
 				}
 
@@ -2782,15 +2797,7 @@ simulated function StartFire(byte FireModeNum)
 simulated function BeginFire( Byte FireModeNum )
 {
 	local KFPerk_Gunslinger GunslingerPerk;
-	local KFPawn_Human KFPH;
-
 	super.BeginFire( FireModeNum );
-
-	KFPH = KFPawn_Human(Instigator);
-	if( KFPH != none )
-	{
-		KFPH.CheckAndEndActiveEMoteSpecialMove();
-	}
 
 	if( Role == Role_Authority )
 	{
@@ -2870,6 +2877,8 @@ simulated function AltFireModeRelease()
  */
 simulated function SendToFiringState(byte FireModeNum)
 {
+	local KFPawn_Human KFPH;
+
     if( FireModeNum == GRENADE_FIREMODE && !GetPerk().GetGrenadeClass().default.bAllowTossDuringZedGrabRotation )
     {
 		// Don't let us toss a grenade right after being grabbed and spun
@@ -2885,6 +2894,13 @@ simulated function SendToFiringState(byte FireModeNum)
 	if ( FireModeNum == RELOAD_FIREMODE && Instigator.IsLocallyControlled() )
 	{
 		InitializeReload();
+	}
+
+    //End emote before reload starts so 1P anims get triggered properly
+    KFPH = KFPawn_Human(Instigator);
+	if( KFPH != none )
+	{
+		KFPH.CheckAndEndActiveEMoteSpecialMove();
 	}
 
     super.SendToFiringState(FireModeNum);
@@ -3552,6 +3568,9 @@ simulated function ProcessGrenadeProjectileImpact(ImpactInfo Impact, class<KFPro
 						Fragment.default.MyDamageType, Impact.HitInfo, Instigator );
 	}
 }
+
+/** Can be overridden on a per-weapon or per-state basis */
+simulated function bool IsHeavyWeapon();
 
 /*********************************************************************************************
  * @name	Clientside Hit Detection
@@ -5892,6 +5911,11 @@ simulated state Reloading
 			Global.ZoomIn(bAnimateTransition, ZoomTimeToGo);
 
 			AbortReload();
+		}
+		else if( Role == ROLE_Authority && !Instigator.IsLocallyControlled() )
+		{
+			// In client-server situations, allow the client to tell the server when it's zooming in and out
+			Global.ZoomIn( bAnimateTransition, ZoomTimeToGo );
 		}
 	}
 

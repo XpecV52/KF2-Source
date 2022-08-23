@@ -284,6 +284,24 @@ simulated function TerminateEffectsOnDeath()
 * Explode / Suicide
 **********************************************************************************************/
 
+/** Called from SkeletalMeshComponent::PlayParticleEffect() */
+simulated function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC )
+{
+	// Since anim notify particle systems can spawn after the special move ends, we need to kill any latent suicide FX
+	if( !IsDoingSpecialMove(GetSuicideSM()) && InStr(string(PSC.Template.Name), "suicide",, true) != INDEX_NONE )
+	{
+		PSC.SetActive( false );
+		return;
+	}
+
+	super.OnAnimNotifyParticleSystemSpawned( AnimNotifyData, PSC );
+}
+
+simulated function ESpecialMove GetSuicideSM()
+{
+	return SM_Suicide;
+}
+
 /** Initialize GoreHealth (Server only) */
 function ApplySpecialZoneHealthMod(float HealthMod)
 {
@@ -346,6 +364,10 @@ function TriggerExplosion(optional bool bIgnoreHumans)
 				{
 					ExplosionTemplate.ActorClassToIgnoreForDamage = class'KFPawn_Human';
 				}
+                else
+                {
+                    ExplosionTemplate.ActorClassToIgnoreForDamage = none;
+                }
 
 				ExploActor.Explode(ExplosionTemplate, vect(0,0,1));
 			}
@@ -470,7 +492,7 @@ defaultproperties
    FireballLightRadiusInterpSpeed=100.000000
    FireballLightMinBrightness=1.100000
    FireballLightMaxBrightness=1.250000
-   CharacterMonsterArch=KFCharacterInfo_Monster'zed_husk_arch.ZED_Husk_Archetype'
+   MonsterArchPath="ZED_ARCH.ZED_Husk_Archetype"
    ParryResistance=2
    MinSpawnSquadSizeType=EST_Medium
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'

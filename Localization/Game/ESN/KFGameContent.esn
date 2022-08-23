@@ -83,7 +83,7 @@ NextStepsDescriptionKey="Desde el menú principal, puedes seguir practicando sin
 
 ;Healing Section
 QuickHealTitleKey="Cúrate si te hieren"
-QuickHealDescriptionKey="Si resultas herido, puedes curarte pulsando <font color="#caab05">%x%</font>. Tras realizar una cura, tu jeringa se recargará. Tendrás que esperar un tiempo para volverla a usar."
+QuickHealDescriptionKey="Si resultas herido, puedes curarte manteniendo <font color="#caab05">%x%</font>. Tras realizar una cura, tu jeringa se recargará. Tendrás que esperar un tiempo para volverla a usar."
 HowToSyringeTitleKey="Curar a los compañeros"
 HowToSyringeDescriptionKey="También puedes equipar la jeringa para curar a tus compañeros; pulsa <font color="#caab05">%x%</font> y, cuando estés cerca de alguno de ellos, pulsa <font color="#caab05">%x%</font>."
 HealOthersTitleKey="Armas curativas del médico de campo"
@@ -174,7 +174,7 @@ ItemDescription="•Solo dispara en modo semiautomático.\n•Es la pistola de 9
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle de .50"
-ItemCategory="Cañón de mano"
+ItemCategory="Arma corta"
 ItemDescription="•Solo dispara en modo semiautomático.\n•El Desert Eagle es la mejor pistola de mano, y por eso se la conoce como el "Cañón de mano"."
 
 [KFWeap_AssaultRifle_AR15]
@@ -197,7 +197,10 @@ ItemName="Bullpup SA80 L85A2"
 ItemCategory="Rifle de asalto"
 ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•El SA80 era el arma oficial del ejército británico antes de que se... Bueno, de que se lo comieran."
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="Stoner 63A LMG"
+ItemCategory="Ametralladora ligera"
+ItemDescription="•Solo dispara en modo automático.\n•La Stoner 63A fue un arma básica de las operaciones especiales de EE. UU. en Vietnam. Tiene gran capacidad de munición y es muy potente."
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Cúter"
@@ -269,8 +272,6 @@ ItemName="E. de combate M4"
 ItemCategory="Escopeta"
 ItemDescription="•Solo dispara en modo semiautomático.\n•Benelli diseñó la escopeta de combate M4 para el ejército estadounidense. Es semiautomática, así que dispone de una buena y constante cadencia de fuego."
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="Hoja de cortacésped"
 ItemCategory="Cuerpo a cuerpo"
@@ -328,6 +329,16 @@ ItemName="Sella y quema"
 ItemCategory="Llamaradas"
 ItemDescription="•Modo de disparo: lanza un chorro de llamas.\n•Lanzallamas casero y portátil. NO intentes esto en casa."
 
+[KFWeap_Pistol_Flare]
+ItemName="Escupefuego"
+ItemCategory="Llamaradas"
+ItemDescription="•Modo de disparo: lanza proyectiles inflamables y explosivos.\n•Sistema ígneo portátil y más cómo de usar."
+
+[KFWeap_Pistol_DualFlare]
+ItemName="Escupefuego doble"
+ItemCategory="Llamaradas"
+ItemDescription="•Modo de disparo: lanza proyectiles inflamables y explosivos.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de Escupefuegos. Puedes tanto soltarlas como venderlas por separado."
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Escopeta incendiaria"
 ItemCategory="Escopeta"
@@ -363,8 +374,6 @@ ItemName="RPG-7"
 ItemCategory="Explosivos"
 ItemDescription="•Modo de disparo: lanza una misil.\n•La el misil explota al impactar.\n•Se activa al acercase al objetivo para evitar que te explote en la cara.\n•¡Cuidado con el retroceso!"
 
-
-
 [KFWeap_Pistol_Dual9mm]
 ItemName="2 pistolas de 9 mm"
 ItemCategory="Arma corta"
@@ -382,7 +391,7 @@ ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al u
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle de .50"
-ItemCategory="Cañón de mano"
+ItemCategory="Arma corta"
 ItemDescription="•Solo dispara en modo semiautomático.\n•El Desert Eagle es la mejor pistola de mano, y por eso se la conoce como el "Cañón de mano"."
 
 [KFWeap_Pistol_DualDeagle]
@@ -414,8 +423,6 @@ ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al u
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Modo de disparo: solo tiro único.\n•El clásico rifle de Winchester modelo 1894 con acción de palanca."
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="Ballesta"

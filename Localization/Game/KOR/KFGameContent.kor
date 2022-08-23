@@ -83,7 +83,7 @@ NextStepsDescriptionKey="홈 메뉴에서 오프라인으로 더 연습을 하�
 
 ;Healing Section
 QuickHealTitleKey="부상을 당했을 때 스스로 치료하기"
-QuickHealDescriptionKey="부상을 당했을 때 <font color="#caab05">%x%</font>을(를) 누르면 스스로 치료할 수 있습니다. 치료 후에는 주사기를 재충전하여 사용할 수 있을 때까지 시간이 걸립니다."
+QuickHealDescriptionKey="부상당했을 때 <font color="#caab05">%x%</font>버튼을 누르고 있으면 치료를 행합니다. 치료 후에는 주사기를 재충전하여 사용할 수 있을 때까지 시간이 걸립니다."
 HowToSyringeTitleKey="팀원 치료하기"
 HowToSyringeDescriptionKey="플레이어는 또한 <font color="#caab05">%x%</font>을(를) 누른 다음 팀원에게 가까이 가서 <font color="#caab05">%x%</font>을(를) 누르면 팀원을 치료할 주사기를 장착할 수 있습니다."
 HealOthersTitleKey="필드 메딕 무기를 이용하여 팀원 치료하기"
@@ -174,7 +174,7 @@ ItemDescription="•사격 모드는 반자동 전용.\n•이것은 표준형 9
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 데저트 이글"
-ItemCategory="핸드 캐논"
+ItemCategory="권총"
 ItemDescription="•사격 모드는 반자동 전용.\n•데저트 이글은 핸드건의 괴수입니다. 그렇기 때문에 ‘핸드 캐논’이라고 부르죠."
 
 [KFWeap_AssaultRifle_AR15]
@@ -197,7 +197,10 @@ ItemName="SA80 L85A2 불펍"
 ItemCategory="돌격소총"
 ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•SA80은 영국군이 잡아 먹히기 전에 표준 무기로 사용하였던 무기입니다."
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="스토너 63A LMG"
+ItemCategory="경기관총"
+ItemDescription="•전자동만 가능합니다.\n•베트남 전쟁에서 미국 해군 특수 물자의 주요품으로 쓰인 스토너 63A는 장탄수와 저지력이 높습니다."
 
 [KFWeap_Knife_Demolitionist]
 ItemName="유틸리티 나이프"
@@ -269,8 +272,6 @@ ItemName="M4 전투 샷건"
 ItemCategory="샷건"
 ItemDescription="•사격 모드는 반자동 전용.\n•베넬리에서 미군을 위해 M4 전투 샷건을 설계하였습니다. 반자동 샷건으로 지속적인 발사속도를 유지합니다."
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="잔디깎기 날"
 ItemCategory="백병전"
@@ -328,6 +329,16 @@ ItemName="코크 앤 번"
 ItemCategory="화염"
 ItemDescription="•사격 모드에서 화염 발사.\n•집에서 만든 휴대용 화염방사기. 집에서는 사용하지 마세요."
 
+[KFWeap_Pistol_Flare]
+ItemName="스핏파이어"
+ItemCategory="화염계 무기"
+ItemDescription="•폭발하는 인화성 투사체를 발사합니다. \n•더욱 휴대성이 용이해진 휴대용 가방 크기의 화염 방사 시스템."
+
+[KFWeap_Pistol_DualFlare]
+ItemName="듀얼 스핏파이어"
+ItemCategory="화염계 무기"
+ItemDescription="•폭발하는 인화성 투사체를 발사합니다. \n•아이언 사이트 사용 시 조준 방식을 변경할 수 있습니다.\n•스핏파이어 한 쌍으로 구성되어 있습니다. 따로 팔거나 버릴 수 있습니다."
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="화염 박격포"
 ItemCategory="샷건"
@@ -363,8 +374,6 @@ ItemName="RPG-7"
 ItemCategory="폭발물"
 ItemDescription="•사격 모드 시 로켓 발사.\n•로켓이 충격을 받으면 폭발합니다.\n•발사 거리가 몇 미터에 불과하므로 본인의 얼굴을 날려버리지 않도록 주의하십시오.\n•후폭풍도 주의하세요!"
 
-
-
 [KFWeap_Pistol_Dual9mm]
 ItemName="듀얼 9mm 권총"
 ItemCategory="핸드건"
@@ -382,7 +391,7 @@ ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 데저트 이글"
-ItemCategory="핸드 캐논"
+ItemCategory="권총"
 ItemDescription="•사격 모드는 반자동 전용.\n•데저트 이글은 핸드건의 괴수입니다. 그렇기 때문에 ‘핸드 캐논’이라고 부르죠."
 
 [KFWeap_Pistol_DualDeagle]
@@ -414,8 +423,6 @@ ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 
 ItemName="윈체스터 1894"
 ItemCategory="소총"
 ItemDescription="•사격 모드는 단발 전용.\n•클래식 모델 1894 윈체스터 레버 액션 소총."
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="크로스보우"

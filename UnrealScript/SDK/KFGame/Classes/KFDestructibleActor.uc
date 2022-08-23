@@ -836,19 +836,8 @@ protected event TriggerDestroyedEvent(Controller EventInstigator)
 	TriggerEventClass(class'SeqEvent_Destroyed', EventInstigator);
 }
 
-event Touch( Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal )
+function BumpedByMonster( KFPawn_Monster P, vector HitNormal )
 {
-	// allow bump to handle this too
-	if( bAllowBumpDamageFromAI )
-	{
-		Bump(Other, OtherComp, HitNormal);
-	}
-}
-
-event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
-{
-	local KFPawn_Monster P;
-
 	if( bAllowBumpDamageFromAI )
 	{
 		if ( `TimeSince(LastBumpCheckTime) < 0.5f )
@@ -857,13 +846,10 @@ event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
 		}
 		LastBumpCheckTime = WorldInfo.TimeSeconds;
 
-		// changed from AI Controlled to AI Team (3/9/2016)
-		P = KFPawn_Monster(Other);
-		if ( P != none && P.Controller != None && P.GetTeamNum() == 255 )
+		if( P.Controller != none )
 		{
-
 			// Call TakeDamage with 0 because we only want to take bump damage if it is in the array of InstaKillDamageTypes
-			TakeDamage(0, P.Controller, P.Location, vect(0,0,0), P.BumpDamageType,, P );
+			TakeDamage( 0, P.Controller, P.Location, vect(0,0,0), P.BumpDamageType,, P );
 		}
 	}
 }
@@ -1116,7 +1102,7 @@ defaultproperties
 	bCollideWorld=false
 	bProjTarget=true
 	bBlockActors=true
-	bWorldGeometry=false
+	bWorldGeometry=true
 	bNoDelete=true
 	bCollideActors=true
 	bNoEncroachCheck=true

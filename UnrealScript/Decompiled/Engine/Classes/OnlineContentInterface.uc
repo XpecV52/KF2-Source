@@ -98,11 +98,6 @@ function bool DeleteSaveGame(byte LocalUserNum, int DeviceID, string FriendlyNam
 
 function bool ClearSaveGames(byte LocalUserNum);
 
-function bool IsGameFullyInstalled()
-{
-    return true;
-}
-
 function bool ReadDownloadableContentList(byte LocalUserNum);
 
 function ClearDownloadableContentList(byte LocalUserNum);

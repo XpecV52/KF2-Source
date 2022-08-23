@@ -364,6 +364,7 @@ function CopyProperties(PlayerReplicationInfo PRI)
     PRI.Team = Team;
     PRI.UniqueId = UniqueId;
     PRI.AutomatedTestingData = AutomatedTestingData;
+    PRI.PlayfabPlayerId = PlayfabPlayerId;
 }
 
 function IncrementDeaths(optional int Amt)
@@ -421,7 +422,7 @@ simulated function RegisterPlayerWithSession()
 {
     local OnlineSubsystem Online;
     local OnlineRecentPlayersList PlayersList;
-    local UniqueNetId ZeroId, LocalId;
+    local UniqueNetId ZeroId;
 
     Online = Class'GameEngine'.static.GetOnlineSubsystem();
     if((((UniqueId != ZeroId && Online != none) && NotEqual_InterfaceInterface(Online.GameInterface, (none))) && SessionName != 'None') && Online.GameInterface.GetGameSettings(SessionName) != none)
@@ -436,35 +437,19 @@ simulated function RegisterPlayerWithSession()
             }
         }
     }
-    if(WorldInfo.IsConsoleBuild() && UniqueId != ZeroId)
-    {
-        Online.PlayerInterface.GetUniquePlayerId(0, LocalId);
-        if(LocalId != UniqueId)
-        {
-            Online.VoiceInterface.RegisterRemoteTalker(UniqueId);
-        }
-    }
 }
 
 simulated function UnregisterPlayerFromSession()
 {
     local OnlineSubsystem OnlineSub;
-    local UniqueNetId ZeroId, LocalId;
+    local UniqueNetId ZeroId;
 
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     if((UniqueId != ZeroId && WorldInfo.NetMode == NM_Client) && SessionName != 'None')
     {
-        if((((OnlineSub != none) && NotEqual_InterfaceInterface(OnlineSub.GameInterface, (none))) && OnlineSub.GameInterface.GetGameSettings(SessionName) != none) && !WorldInfo.PeerHostMigration.bHostMigrationEnabled && WorldInfo.PeerHostMigration.HostMigrationProgress != 0)
+        if(((OnlineSub != none) && NotEqual_InterfaceInterface(OnlineSub.GameInterface, (none))) && !WorldInfo.PeerHostMigration.bHostMigrationEnabled && WorldInfo.PeerHostMigration.HostMigrationProgress != 0)
         {
             OnlineSub.GameInterface.UnregisterPlayer(SessionName, UniqueId);
-        }
-    }
-    if(WorldInfo.IsConsoleBuild() && UniqueId != ZeroId)
-    {
-        OnlineSub.PlayerInterface.GetUniquePlayerId(0, LocalId);
-        if(LocalId != UniqueId)
-        {
-            OnlineSub.VoiceInterface.UnregisterRemoteTalker(UniqueId);
         }
     }
 }

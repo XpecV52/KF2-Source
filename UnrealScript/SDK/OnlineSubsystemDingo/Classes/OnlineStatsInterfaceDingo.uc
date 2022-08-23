@@ -10,6 +10,10 @@ class OnlineStatsInterfaceDingo extends Object within OnlineSubsystemDingo
 	implements(OnlineStatsInterface)
 	config(Engine);
 
+
+`include(KFGame\KFOnlineStats.uci);
+
+
 /** The owning subsystem that this object is providing an implementation for */
 var OnlineSubsystemDingo OwningSubsystem;
 
@@ -202,10 +206,7 @@ native function FreeStats(OnlineStatsRead StatsRead);
  *
  * @return TRUE if the call is successful, FALSE otherwise
  */
-function bool WriteOnlineStats(name SessionName,UniqueNetId Player,OnlineStatsWrite StatsWrite)
-{
-	//Dingo leaderboards are built off the stats system so we don't write to them this way.
-}
+native function bool WriteOnlineStats(name SessionName, UniqueNetId Player, OnlineStatsWrite StatsWrite);
 
 /**
  * Commits any changes in the online stats cache to the permanent storage

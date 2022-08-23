@@ -2127,6 +2127,7 @@ AttachmentSkin0="아가사"
 AttachmentSkin1="클리스"
 AttachmentSkin2="제이미"
 AttachmentSkin3="퍼시벌"
+AttachmentSkin4="프레셔스"
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
 Attachment="스팀펑크 가스 마스크 베이직"
@@ -2324,3 +2325,114 @@ EmoteName="짝짓기 의식+"
 
 [KickinIt_Deluxe]
 EmoteName="발차기+"
+
+[Cosmetic_FirefighterHelmet_ARCH]
+Attachment="소방관 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="올리브"
+AttachmentSkin3="레드"
+AttachmentSkin4="화이트"
+AttachmentSkin5="옐로우"
+
+[Cosmetic_FirefighterHelmetDown_ARCH]
+Attachment="소방관 헬멧(마스크 내림)"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="올리브"
+AttachmentSkin3="레드"
+AttachmentSkin4="화이트"
+AttachmentSkin5="옐로우"
+
+[Cosmetic_FirefighterHelmetUp_ARCH]
+Attachment="소방관 헬멧(마스크 올림)"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="올리브"
+AttachmentSkin3="레드"
+AttachmentSkin4="화이트"
+AttachmentSkin5="옐로우"
+
+[Cosmetic_FirefighterMask_ARCH]
+Attachment="소방관 가스마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="올리브"
+AttachmentSkin3="레드"
+AttachmentSkin4="화이트"
+AttachmentSkin5="옐로우"
+
+[Cosmetic_FirefighterTank_ARCH]
+Attachment="소방관 산소탱크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="올리브"
+AttachmentSkin3="레드"
+AttachmentSkin4="화이트"
+AttachmentSkin5="옐로우"
+
+[Cosmetic_InsectoidClosed_ARCH]
+Attachment="곤충 헬멧(닫힘)"
+AttachmentSkin0="블랙 레드 광원"
+AttachmentSkin1="블랙 레드 테두리"
+AttachmentSkin2="블랙 옐로우 광원"
+AttachmentSkin3="블루"
+AttachmentSkin4="다크 그린"
+AttachmentSkin5="그린"
+AttachmentSkin6="퍼플"
+AttachmentSkin7="레드"
+AttachmentSkin8="부식"
+AttachmentSkin9="미국"
+AttachmentSkin10="화이트"
+AttachmentSkin11="옐로우"
+
+[Cosmetic_InsectoidOpen_ARCH]
+Attachment="곤충 헬멧(열림)"
+AttachmentSkin0="블랙 레드 광원"
+AttachmentSkin1="블랙 레드 테두리"
+AttachmentSkin2="블랙 옐로우 광원"
+AttachmentSkin3="블루"
+AttachmentSkin4="다크 그린"
+AttachmentSkin5="그린"
+AttachmentSkin6="퍼플"
+AttachmentSkin7="레드"
+AttachmentSkin8="부식"
+AttachmentSkin9="미국"
+AttachmentSkin10="화이트"
+AttachmentSkin11="옐로우"
+
+[Cosmetic_InsectoidGogglesUp_ARCH]
+Attachment="곤충 헬멧(고글 올림)"
+AttachmentSkin0="블랙 레드 광원"
+AttachmentSkin1="블랙 레드 테두리"
+AttachmentSkin2="블랙 옐로우 광원"
+AttachmentSkin3="블루"
+AttachmentSkin4="다크 그린"
+AttachmentSkin5="그린"
+AttachmentSkin6="퍼플"
+AttachmentSkin7="레드"
+AttachmentSkin8="부식"
+AttachmentSkin9="미국"
+AttachmentSkin10="화이트"
+AttachmentSkin11="옐로우"
+
+[Cosmetic_InsectoidGogglesDown_ARCH]
+Attachment="곤충 헬멧(고글 내림)"
+AttachmentSkin0="블랙 레드 광원"
+AttachmentSkin1="블랙 레드 테두리"
+AttachmentSkin2="블랙 옐로우 광원"
+AttachmentSkin3="블루"
+AttachmentSkin4="다크 그린"
+AttachmentSkin5="그린"
+AttachmentSkin6="퍼플"
+AttachmentSkin7="레드"
+AttachmentSkin8="부식"
+AttachmentSkin9="미국"
+AttachmentSkin10="화이트"
+AttachmentSkin11="옐로우"
+AttachmentSkin12="프레셔스"
+
+[Cosmetic_DemonSlayerHelmet_ARCH]
+Attachment="악마 학살자 헬멧"
+AttachmentSkin0="그레이"
+AttachmentSkin1="프레셔스"

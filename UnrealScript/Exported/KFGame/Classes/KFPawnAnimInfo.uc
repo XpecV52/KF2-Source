@@ -39,7 +39,8 @@ struct AttackAnimInfo
 	var() const bool bIsInterruptible;
 	/** If Interruptible, is this attack affected by parry stumble */
 	var() const bool bCannotBeParried<EditCondition=bIsInterruptible>;
-
+	/** If set, this attack will not be able to be pushed around by damage impulses */
+	var() const bool bNoDamageImpulses;
 	/** If set, only perform this attack while sprinting */
 	var() const bool bOnlyWhileSprinting;
 	/** If set, only perform this attack while not sprinting */
@@ -261,6 +262,7 @@ function name InitMeleeSpecialMove(KFSM_MeleeAttack InSpecialMove, int Index, in
 		InSpecialMove.bUseRootMotion = Attacks[Index].bUseRootMotion;
 		InSpecialMove.bCanBeInterrupted = Attacks[Index].bIsInterruptible;
 		InSpecialMove.bCannotBeParried = Attacks[Index].bCannotBeParried;
+		InSpecialMove.bAllowMomentumPush = !Attacks[Index].bNoDamageImpulses;
 	}
 
 	return AnimName;

@@ -76,6 +76,29 @@ event Destroyed()
 }
 
 /*********************************************************************************************
+ * Minigame Support
+ *
+ * Kind of a best worst case fix here.  One of our minigames is client-authority for win
+ *      condition.  Using the thrown cash's owner (thrower PC) to notify the server that the 
+ *      game is complete for victory condition.
+ ********************************************************************************************/
+simulated function NotifyMinigameHit(KFInterface_MinigameTarget MinigameTarget)
+{
+    if (MinigameTarget.IsAlive())
+    {
+        ServerNotifyMinigameHit(Actor(MinigameTarget));
+    }
+}
+
+reliable private server function ServerNotifyMinigameHit(Actor MinigameTarget)
+{
+    if (KFInterface_MinigameTarget(MinigameTarget) != none)
+    {
+        KFInterface_MinigameTarget(MinigameTarget).ValidHit(Controller(Owner), self);
+    }
+}
+
+/*********************************************************************************************
  * State Pickup
  * Pickup is active
  *********************************************************************************************/

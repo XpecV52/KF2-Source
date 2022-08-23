@@ -64,6 +64,7 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;
 
 var const localized string SectionNameString;
 var const localized string OptionsString;
@@ -102,7 +103,10 @@ function LocalizeText()
         LocalizedObject.SetString("sectionName", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[1]));
         LocalizedObject.SetString("options", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[0]));
         LocalizedObject.SetString("configureMic", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaString);
-        LocalizedObject.SetString("controllerSound", Localize("KFGFxOptionsMenu_Audio", "ControllerSound", "KFGameConsole"));        
+        if(Class'WorldInfo'.static.IsConsoleBuild(8))
+        {
+            LocalizedObject.SetString("controllerSound", Localize("KFGFxOptionsMenu_Audio", "ControllerSound", "KFGameConsole"));
+        }        
     }
     else
     {
@@ -125,20 +129,29 @@ function InitValues()
     local float VoIPCurrent;
     local KFPlayerInput KFPI;
     local bool bControllerSoundEnabled;
+    local GFxObject ControllerSndObj;
 
-    if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
+    if(Outer.GetPC().WorldInfo.IsConsoleBuild())
+    {
+        bControllerSoundEnabled = Manager.CachedProfile.GetProfileBool(155);
+        SetBool("controllerSound", bControllerSoundEnabled);
+        Class'KFGameEngine'.static.SetWWisePADVolume(((bControllerSoundEnabled) ? 100 : 0));
+        if(!Outer.GetPC().WorldInfo.IsConsoleBuild(8))
+        {
+            ControllerSndObj = GetObject("controllerSoundCheckBox");
+            if(ControllerSndObj != none)
+            {
+                ControllerSndObj.SetVisible(false);
+            }
+        }        
+    }
+    else
     {
         KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
         Class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
         SetFloat("voipVolume", (VoIPCurrent / VoIPMax) * float(100));
         SetBool("bPushToTalk", Class'KFPlayerInput'.default.bRequiresPushToTalk);
-        SetBool("bPushToTalk", KFPI.bRequiresPushToTalk);        
-    }
-    else
-    {
-        bControllerSoundEnabled = Manager.CachedProfile.GetProfileBool(155);
-        SetBool("controllerSound", bControllerSoundEnabled);
-        Class'KFGameEngine'.static.SetWWisePADVolume(((bControllerSoundEnabled) ? 100 : 0));
+        SetBool("bPushToTalk", KFPI.bRequiresPushToTalk);
     }
     SetFloat("masterVolume", Manager.CachedProfile.GetProfileFloat(112));
     SetFloat("dialogVolume", Manager.CachedProfile.GetProfileFloat(113));

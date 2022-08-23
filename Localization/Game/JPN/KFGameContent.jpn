@@ -83,7 +83,7 @@ NextStepsDescriptionKey="ホームメニューからオフラインでもっと�
 
 ;Healing Section
 QuickHealTitleKey="傷ついたら自分を回復しよう"
-QuickHealDescriptionKey="傷を受けたら、<font color="#caab05">%x%</font>を押して自分を回復できます。回復したあと、注射器を再度使えるようになるまで、リチャージにある程度の時間がかかります。"
+QuickHealDescriptionKey="傷を受けたら、<font color="#caab05">%x%</font>を長押しして自分を回復できます。回復したあと、注射器を再度使えるようになるまで、リチャージにある程度の時間がかかります。"
 HowToSyringeTitleKey="チームメイトを回復しよう"
 HowToSyringeDescriptionKey="<font color="#caab05">%x%</font>を押し、その後チームメイトの近くにいる際に<font color="#caab05">%x%</font>を押すと、注射器を装備してチームメイトを回復させることができます。"
 HealOthersTitleKey="フィールドメディック武器を使ってチームメイトを回復する"
@@ -174,7 +174,7 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•標準�
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50デザートイーグル"
-ItemCategory="ハンドキャノン"
+ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•デザートイーグルはハンドガンの王様で、「ハンドキャノン」として知られている所以です。"
 
 [KFWeap_AssaultRifle_AR15]
@@ -197,7 +197,10 @@ ItemName="SA80 L85A2 ブルパップ"
 ItemCategory="アサルトライフル"
 ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•SA80は、軍隊が…食われるまでは、イギリス軍の標準武器でした。"
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="ストーナー63A LMG"
+ItemCategory="ライトマシンガン"
+ItemDescription="•ファイアモードはフルオートのみ。\n•ベトナム戦争中にネイビーシールズ御用達であったストーナー63Aは、弾薬数が多く、高いストッピングパワーを持つ武器です。"
 
 [KFWeap_Knife_Demolitionist]
 ItemName="万能ナイフ"
@@ -269,8 +272,6 @@ ItemName="M4コンバットショットガン"
 ItemCategory="ショットガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•ベネリがM4コンバットショットガンを米軍のために設計しました。セミオートマチックなので、安定した発射速度を可能にします。"
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="芝刈り機の刃"
 ItemCategory="近接"
@@ -328,6 +329,16 @@ ItemName="チョーク&バーン"
 ItemCategory="火炎"
 ItemDescription="•ファイアモードは火炎を発射します。\n•手持ちの、ホームメイド火炎放射器です。良い子のみなさんは真似しないでください。"
 
+[KFWeap_Pistol_Flare]
+ItemName="スピットファイア"
+ItemCategory="火炎"
+ItemDescription="•ファイアモードは可燃性の爆発物を発射します。\n•「火」を配達するトラベルサイズの便利な武器と言えるでしょう。"
+
+[KFWeap_Pistol_DualFlare]
+ItemName="デュアルスピットファイア"
+ItemCategory="火炎"
+ItemDescription="•ファイアモードは可燃性の爆発物を発射します。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•スピットファイア2丁です。それぞれ個別に売却やドロップできます。"
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="焼夷トレンチガン"
 ItemCategory="ショットガン"
@@ -363,8 +374,6 @@ ItemName="RPG-7"
 ItemCategory="爆発物"
 ItemDescription="•ファイアモードはロケット弾を発射します。\n•ロケット弾は当たると爆発します。\n•顔を吹き飛ばされないように、射程の数メートル先でのみ作動します。\n後方爆風に注意してください！"
 
-
-
 [KFWeap_Pistol_Dual9mm]
 ItemName="デュアル9mmピストル"
 ItemCategory="ハンドガン"
@@ -382,7 +391,7 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•オル�
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50デザートイーグル"
-ItemCategory="ハンドキャノン"
+ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•デザートイーグルはハンドガンの王様で、「ハンドキャノン」として知られている所以です。"
 
 [KFWeap_Pistol_DualDeagle]
@@ -414,8 +423,6 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•オル�
 ItemName="ウィンチェスター1894"
 ItemCategory="ライフル"
 ItemDescription="•ファイアモードは単発のみ。\n•定番のモデル1894ウィンチェスター・レバーアクションライフルです。"
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="クロスボウ"

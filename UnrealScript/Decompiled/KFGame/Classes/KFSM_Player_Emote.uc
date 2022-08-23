@@ -82,7 +82,41 @@ function ClearSMParticles()
     }
 }
 
-simulated function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC)
+function SetParticlesVisible(bool bWasPlayingCustomAnim)
+{
+    local PlayerController LocalPC;
+    local editinline ParticleSystemComponent PSC;
+    local Vector Loc;
+    local Rotator Rot;
+
+    LocalPC = Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController();
+    foreach AnimParticles(PSC,)
+    {
+        if((PSC == none) || !PSC.bAttached)
+        {
+            continue;            
+        }
+        else
+        {
+            if((LocalPC != none) && PSC.Owner == KFPOwner)
+            {
+                Loc = PSC.GetPosition();
+                Rot = PSC.GetRotation();
+                LocalPC.AttachComponent(PSC);
+                PSC.SetAbsolute(true, true, true);
+                PSC.SetTranslation(Loc);
+                PSC.SetRotation(Rot);
+                PSC.SetIgnoreOwnerHidden(true);
+            }
+            if(bWasPlayingCustomAnim && PSC.bIsActive)
+            {
+                PSC.DeactivateSystem();
+            }            
+        }
+    }    
+}
+
+function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC)
 {
     local AnimSequence AnimSeq;
 
@@ -114,25 +148,13 @@ function Tick(float DeltaTime)
 
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
-    local int I;
+    local bool bWasPlayingCustomAnim;
 
     if(KFPOwner.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim)
     {
         KFPOwner.StopBodyAnim(AnimStance, 0.2);
-        I = 0;
-        J0x7B:
-
-        if(I < AnimParticles.Length)
-        {
-            if((AnimParticles[I] != none) && AnimParticles[I].bIsActive)
-            {
-                AnimParticles[I].DeactivateSystem();
-            }
-            ++ I;
-            goto J0x7B;
-        }
+        bWasPlayingCustomAnim = true;
     }
-    ClearSMParticles();
     KFPOwner.SetWeaponAttachmentVisibility((PCOwner == none) || PCOwner.IsEmoteCameraMode());
     if((PCOwner == none) || !KFPOwner.IsLocallyControlled())
     {
@@ -141,6 +163,8 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
             PCOwner.SetRotation(InitialRotation);
             PCOwner.PlayerCamera.CameraStyle = LastCameraMode;
         }
+        SetParticlesVisible(bWasPlayingCustomAnim);
+        ClearSMParticles();
         super.SpecialMoveEnded(PrevMove, NextMove);
         return;
     }
@@ -149,6 +173,8 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     {
         PCOwner.ClientStopCameraAnim(CameraAnim);
     }
+    SetParticlesVisible(bWasPlayingCustomAnim);
+    ClearSMParticles();
     if(PCOwner.IsEmoteCameraMode())
     {
         PCOwner.ClientSetCameraFade(true, FadeOutColor, vect2d(1, 0), FadeOutTime, true);
@@ -159,6 +185,12 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         }
     }
     super.SpecialMoveEnded(PrevMove, NextMove);
+}
+
+function bool GetSMAimRotation(out Rotator AimRot)
+{
+    AimRot = InitialRotation;
+    return true;
 }
 
 defaultproperties

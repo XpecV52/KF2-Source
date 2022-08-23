@@ -53,6 +53,9 @@ var localized string NoItemsPurchasedString;
 
 var localized string SetTakeoverServerPasswordTitle;
 
+var localized string FreeConsolePlayOverString;
+var localized string BuyGameString;
+
 static function array<string> GetDifficultyStringsArray()
 {
 	return default.DifficultyStrings;

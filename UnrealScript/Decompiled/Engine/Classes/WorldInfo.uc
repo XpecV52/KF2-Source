@@ -1192,12 +1192,6 @@ native function TWLogEvent(string EventName, PlayerReplicationInfo Info, coerce 
 // Export UWorldInfo::execTWPushLogs(FFrame&, void* const)
 native function TWPushLogs();
 
-// Export UWorldInfo::execTWRefreshTweakParams(FFrame&, void* const)
-native function TWRefreshTweakParams();
-
-// Export UWorldInfo::execTWApplyTweaks(FFrame&, void* const)
-native function TWApplyTweaks();
-
 defaultproperties
 {
     bBumpOffsetEnabled=true

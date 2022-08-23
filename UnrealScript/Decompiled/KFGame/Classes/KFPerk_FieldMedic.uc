@@ -263,7 +263,7 @@ static simulated function ParticleSystem GetAAEffect()
     return default.AAParticleSystem;
 }
 
-simulated function float GetSnarePower(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     if(((IsSlugActive()) && DamageType != none) && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
     {

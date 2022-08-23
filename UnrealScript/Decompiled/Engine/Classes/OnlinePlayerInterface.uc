@@ -383,11 +383,3 @@ function OnlineSubsystem.EOnlineEnumerationReadState GetAchievements(byte LocalU
 {
     TitleId = 0;
 }
-
-delegate OnOnlineServiceAuthComplete();
-
-function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
-
-function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
-
-function AuthWithOnlineService();

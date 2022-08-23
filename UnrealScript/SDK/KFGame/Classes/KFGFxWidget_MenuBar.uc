@@ -33,6 +33,9 @@ var bool bCachedGameFullyInstalled;
 
 var bool bAllowBumper;
 
+/** Used for mid-match gear changes */
+var bool bGearButtonEnabled;
+
 function InitializeCurrentMenu(byte CurrentMenuIndex)
 {
 	UpdateMenu(CurrentMenuIndex);
@@ -61,7 +64,6 @@ function  UpdateMenu(byte CurrentMenuIndex)
 	local byte i;
 	DataProvider = CreateArray();
 
-
 	GetObject("menuButtonBar").GetObject("dataProvider");
 
 	for (i = 0; i < MenuStrings.length; i++)
@@ -71,20 +73,15 @@ function  UpdateMenu(byte CurrentMenuIndex)
 			// Console doesn't show exit game in the main menu.
 			break;
 		}
+
 	    TempObj = CreateObject( "Object" );
-	    
-		
 		HandleButtonSpecialCase(i, TempObj);
-
-
-
 		DataProvider.SetElementObject(i, TempObj);
-
 	}
 
 	//@HSL_BEGIN - JRO - 4/28/2016 - Update the buttons if the game is finished installing while sitting in the main menus
 	SaveCurrentMenuIndex = CurrentMenuIndex;
-	if(InventoryButton != None && StoreButton != None && !class'WorldInfo'.static.IsE3Build() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+	if(InventoryButton != None && StoreButton != None && !class'WorldInfo'.static.IsE3Build() && class'WorldInfo'.static.IsConsoleBuild())
 	{
 		CheckGameFullyInstalled();
 	}
@@ -96,16 +93,25 @@ function  UpdateMenu(byte CurrentMenuIndex)
 
 function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 {
-	GfxButton.SetInt( "index", ButtonIndex );		
-	GfxButton.SetString( "label", MenuStrings[ButtonIndex] );
-	GfxButton.SetBool( "enabled", true );
+	GfxButton.SetInt( "index", ButtonIndex );
+
+	// For XB1, we change the EXIT button to logout while in the menus
+	if (ButtonIndex == 6 && class'WorldInfo'.static.IsMenuLevel() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
+	{
+		GfxButton.SetString( "label",  ConsoleLocalize("LogoutTitle") );
+	}
+	else
+	{
+		GfxButton.SetString( "label", MenuStrings[ButtonIndex] );
+	}
 
 	switch (ButtonIndex)
 	{
 		case UI_GEAR:
-			// Disable the gear button if we're a spectator (must be done through data provider since buttons don't exist yet)	
-			GfxButton.SetBool( "enabled", CanUseGearButton() );			
-			break;
+			// Disable the gear button if we're a spectator (must be done through data provider since buttons don't exist yet)
+			bGearButtonEnabled = CanUseGearButton( GetPC(), Manager );
+			GfxButton.SetBool( "enabled", bGearButtonEnabled );
+			return;
 		case UI_Start:
 			GfxButton.SetString( "label",  GetHomeButtonName());
 			GfxButton.SetBool( "bPulsing", ShouldStartMenuPulse() );
@@ -114,13 +120,37 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 		case UI_Inventory:
 			GfxButton.SetBool( "enabled", CanUseInventory() ); // Disabled for E3 build
 			InventoryButton = GfxButton;
-			break;
+			return;
 		case UI_Store:
+			// XB1 needs Xbox Store terminology 
+			if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) )
+			{
+				GfxButton.SetString( "label", ConsoleLocalize("StoreStringXB1", "KFGFxMenu_Store") );
+			}
 			GfxButton.SetBool("enabled", CanUseStore() ); // Disabled for E3 build
 			StoreButton = GfxButton;
-			break;
+			return;
 		//@HSL_END
 	}
+
+	GfxButton.SetBool( "enabled", true );
+}
+
+function UpdateGearButtonState()
+{
+	local bool bCanChangeGear;
+
+	bCanChangeGear = CanUseGearButton( GetPC(), Manager );
+	if( bCanChangeGear != bGearButtonEnabled )
+	{
+		SetGearMenuEnabled( bCanChangeGear );
+		bGearButtonEnabled = bCanChangeGear;
+	}
+}
+
+function SetGearMenuEnabled( bool bEnabled )
+{
+    ActionScriptVoid( "setGearButtonEnabled" );
 }
 
 //@HSL_BEGIN - JRO - 4/28/2016 - Disable certain features for PlayGo
@@ -128,7 +158,7 @@ function CheckGameFullyInstalled()
 {
 	if(!bCachedGameFullyInstalled)
 	{
-		if(class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled())
+		if( class'GameEngine'.static.IsGameFullyInstalled() )
 		{
 			bCachedGameFullyInstalled = true;
 			InventoryButton.SetBool("enabled", true);
@@ -163,6 +193,22 @@ function OnQuitConfirm()
 {
 	consolecommand("quit");
 }
+
+
+function OpenLogoutPopup()
+{
+	if (Manager != none)
+	{
+		Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, ConsoleLocalize("LogoutDialogTitle"), ConsoleLocalize("LogoutDialogMessage"), ConsoleLocalize("LogoutTitle"), Class'KFCommon_LocalizedStrings'.default.CancelString, OnLogoutConfirm);
+	}
+}
+
+
+function OnLogoutConfirm()
+{
+	KFGameEngine(class'Engine'.static.GetEngine()).PerformLogout();
+}
+
 
 function string GetHomeButtonName()
 {
@@ -213,10 +259,11 @@ function bool ShouldStartMenuPulse()
 	return false;
 }
 
-function bool CanUseGearButton()
+static function bool CanUseGearButton( PlayerController PC, KFGfxMoviePlayer_Manager GfxManager )
 {
-	if( GetPC().Pawn != none && !Manager.bAfterLobby ||
-		class'WorldInfo'.static.IsMenuLevel() )
+	if( !GfxManager.bAfterLobby
+		|| class'WorldInfo'.static.IsMenuLevel()
+		|| (PC.IsSpectating() && !PC.PlayerReplicationInfo.bOnlySpectator) )
 	{
 		return true;
 	}
@@ -253,7 +300,6 @@ function bool CanUseStore()
 
 	return true;
 }
-
 
 DefaultProperties
 {

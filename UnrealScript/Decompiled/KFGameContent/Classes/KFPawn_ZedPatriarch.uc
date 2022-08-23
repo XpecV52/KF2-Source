@@ -1729,7 +1729,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_240' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_247' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1780,7 +1780,7 @@ Parameter name: index
     TheatricCameraSocketName=TheatricCameraRootSocket
     bLargeZed=true
     bCanGrabAttack=true
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Patriarch_ARCH.ZED_Patriarch_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Patriarch_Archetype"
     HeadlessBleedOutTime=6
     ParryResistance=4
     begin object name=MeleeHelper class=KFMeleeHelperAI

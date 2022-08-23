@@ -2127,6 +2127,7 @@ AttachmentSkin0=Agatha
 AttachmentSkin1=Cleese
 AttachmentSkin2=Jamie
 AttachmentSkin3=Perceval
+AttachmentSkin4=Precious
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
 Attachment=Steampunk Gas Mask Basic
@@ -2269,7 +2270,7 @@ AttachmentSkin4=Tan
 EmoteName="Let's Get Crazy"
 
 [ThunderClap]
-EmoteName="Thunder Clap"
+EmoteName="Booty Dance"
 
 [UncleCharlie] 	
 EmoteName="Uncle Charlie"
@@ -2302,7 +2303,7 @@ EmoteName="Fireball+"
 EmoteName="Make It Rain+"
 
 [ThunderClap_Deluxe] 
-EmoteName="Thunder Clap+"
+EmoteName="Booty Dance+"
 
 [UncleCharlie_Deluxe]
 EmoteName="Uncle Charlie+"
@@ -2324,3 +2325,114 @@ EmoteName="Mating Ritual+"
 
 [KickinIt_Deluxe]
 EmoteName="Kickin It+"
+
+[Cosmetic_FirefighterHelmet_ARCH]
+Attachment=Firefighter Helmet
+AttachmentSkin0=Black
+AttachmentSkin1=Blue
+AttachmentSkin2=Olive
+AttachmentSkin3=Red
+AttachmentSkin4=White
+AttachmentSkin5=Yellow
+
+[Cosmetic_FirefighterHelmetDown_ARCH]
+Attachment=Firefighter Helmet Mask Down
+AttachmentSkin0=Black
+AttachmentSkin1=Blue
+AttachmentSkin2=Olive
+AttachmentSkin3=Red
+AttachmentSkin4=White
+AttachmentSkin5=Yellow
+
+[Cosmetic_FirefighterHelmetUp_ARCH]
+Attachment=Firefighter Helmet Mask Up
+AttachmentSkin0=Black
+AttachmentSkin1=Blue
+AttachmentSkin2=Olive
+AttachmentSkin3=Red
+AttachmentSkin4=White
+AttachmentSkin5=Yellow
+
+[Cosmetic_FirefighterMask_ARCH]
+Attachment=Firefighter Gasmask
+AttachmentSkin0=Black
+AttachmentSkin1=Blue
+AttachmentSkin2=Olive
+AttachmentSkin3=Red
+AttachmentSkin4=White
+AttachmentSkin5=Yellow
+
+[Cosmetic_FirefighterTank_ARCH]
+Attachment=Firefighter Oxygen Tank
+AttachmentSkin0=Black
+AttachmentSkin1=Blue
+AttachmentSkin2=Olive
+AttachmentSkin3=Red
+AttachmentSkin4=White
+AttachmentSkin5=Yellow
+
+[Cosmetic_InsectoidClosed_ARCH]
+Attachment=Insectoid Helmet Closed
+AttachmentSkin0=Black Red Light
+AttachmentSkin1=Black Red Trim
+AttachmentSkin2=Black Yellow Light
+AttachmentSkin3=Blue
+AttachmentSkin4=Dark Green
+AttachmentSkin5=Green
+AttachmentSkin6=Purple
+AttachmentSkin7=Red
+AttachmentSkin8=Rust
+AttachmentSkin9=USA
+AttachmentSkin10=White
+AttachmentSkin11=Yellow
+
+[Cosmetic_InsectoidOpen_ARCH]
+Attachment=Insectoid Helmet Open
+AttachmentSkin0=Black Red Light
+AttachmentSkin1=Black Red Trim
+AttachmentSkin2=Black Yellow Light
+AttachmentSkin3=Blue
+AttachmentSkin4=Dark Green
+AttachmentSkin5=Green
+AttachmentSkin6=Purple
+AttachmentSkin7=Red
+AttachmentSkin8=Rust
+AttachmentSkin9=USA
+AttachmentSkin10=White
+AttachmentSkin11=Yellow
+
+[Cosmetic_InsectoidGogglesUp_ARCH]
+Attachment=Insectoid Helmet Goggles Up
+AttachmentSkin0=Black Red Light
+AttachmentSkin1=Black Red Trim
+AttachmentSkin2=Black Yellow Light
+AttachmentSkin3=Blue
+AttachmentSkin4=Dark Green
+AttachmentSkin5=Green
+AttachmentSkin6=Purple
+AttachmentSkin7=Red
+AttachmentSkin8=Rust
+AttachmentSkin9=USA
+AttachmentSkin10=White
+AttachmentSkin11=Yellow
+
+[Cosmetic_InsectoidGogglesDown_ARCH]
+Attachment=Insectoid Helmet Goggles Down
+AttachmentSkin0=Black Red Light
+AttachmentSkin1=Black Red Trim
+AttachmentSkin2=Black Yellow Light
+AttachmentSkin3=Blue
+AttachmentSkin4=Dark Green
+AttachmentSkin5=Green
+AttachmentSkin6=Purple
+AttachmentSkin7=Red
+AttachmentSkin8=Rust
+AttachmentSkin9=USA
+AttachmentSkin10=White
+AttachmentSkin11=Yellow
+AttachmentSkin12=Precious
+
+[Cosmetic_DemonSlayerHelmet_ARCH]
+Attachment=Demon Slayer Helmet
+AttachmentSkin0=Grey
+AttachmentSkin1=Precious

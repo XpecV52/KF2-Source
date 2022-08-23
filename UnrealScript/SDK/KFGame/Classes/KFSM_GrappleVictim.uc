@@ -29,7 +29,7 @@ function SpecialMoveStarted(bool bForced, Name PrevMove )
 		SetGrabEffect(OwnerController, true);
 		if( OwnerController.IsLocalController() )
 		{
-			OwnerController.PostAkEvent(GrabbedSoundModeStartEvent);
+			OwnerController.PostAkEvent(GrabbedSoundModeStartEvent,,,true);
 
 			if ( bDisableLook || !OwnerController.bSkipNonCriticalForceLookAt )
 			{

@@ -32,6 +32,7 @@ defaultproperties
    Attacks(5)=(Anims=("Player_Rage_Light","Player_Rsprint_Light"),Type=PZA_SpecialDefault,bCannotBeParried=True)
    Attacks(6)=(Anims=("Player_Rsprint_Light","Player_Rage_Light"),Type=PZA_SpecialSprinting,bCannotBeParried=True)
    Attacks(7)=(Anims=("Player_360_Spin"),Type=PZA_SpecialBackwards,bCannotBeParried=True)
+   SoundStopEvent=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Righ_Arm_LP_Stop'
    Name="Default__KFSM_PlayerFleshpound_Melee"
    ObjectArchetype=KFSM_PlayerMeleeBase'KFGame.Default__KFSM_PlayerMeleeBase'
 }

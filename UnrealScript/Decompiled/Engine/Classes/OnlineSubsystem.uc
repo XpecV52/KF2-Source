@@ -264,6 +264,7 @@ enum EMediaItemType
     MIT_GameContent,
     MIT_GameConsumable,
     MIT_Subscription,
+    MIT_All,
     MIT_MAX
 };
 
@@ -414,17 +415,13 @@ struct native OnlineFriend
 
 struct native PartyMember
 {
-    var UniqueNetId PartyMemberId;
     var UniqueNetId OnlineId;
     var string NickName;
-    var UniqueNetId AccountId;
 
     structdefaultproperties
     {
-        PartyMemberId=(Uid=none)
         OnlineId=(Uid=none)
         NickName=""
-        AccountId=(Uid=none)
     }
 };
 
@@ -1083,6 +1080,7 @@ struct native SessionUpdateInfo
 struct native CurrentInventoryEntry
 {
     var const UniqueNetId Instance;
+    var const string PlayfabItemId;
     var const int Definition;
     var const int Quantity;
     var int NewlyAdded;
@@ -1092,6 +1090,7 @@ struct native CurrentInventoryEntry
     structdefaultproperties
     {
         Instance=(Uid=none)
+        PlayfabItemId=""
         Definition=0
         Quantity=0
         NewlyAdded=0
@@ -1226,6 +1225,9 @@ native function OpenItemPurchaseOverlay(int SKU);
 
 // Export UOnlineSubsystem::execOpenURL(FFrame&, void* const)
 native function OpenURL(string WebsiteLink);
+
+// Export UOnlineSubsystem::execOpenGameStorePage(FFrame&, void* const)
+native function OpenGameStorePage();
 
 // Export UOnlineSubsystem::execIsExchangeable(FFrame&, void* const)
 native function int IsExchangeable(int SourceSKU, out array<ExchangeRuleSets> Ret);
@@ -1643,6 +1645,12 @@ function CancelRegionPing();
 
 // Export UOnlineSubsystem::execHasChatRestriction(FFrame&, void* const)
 native function bool HasChatRestriction(byte LocalUserNum);
+
+function ManuallyActivateUser(const UniqueNetId ForUniqueId);
+
+function ActivateGamepad(const int GamepadIndex);
+
+function SetCachedProfile(OnlineProfileSettings InSettings);
 
 defaultproperties
 {

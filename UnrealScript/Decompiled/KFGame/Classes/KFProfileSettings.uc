@@ -65,6 +65,7 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;
 
 struct native WeaponSkinPairs
 {
@@ -109,7 +110,10 @@ event Save(byte ControllerId)
     if(Dirty)
     {
         FlattenExtraToProfileSettings();
-        Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.WriteProfileSettings(ControllerId, self);
+        if(KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus != 1)
+        {
+            Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.WriteProfileSettings(ControllerId, self);
+        }
         Dirty = false;
     }
 }

@@ -83,7 +83,7 @@ NextStepsDescriptionKey="W menu głównym możesz wybrać między treningiem off
 
 ;Healing Section
 QuickHealTitleKey="Lecz swoją postać, gdy jest ranna"
-QuickHealDescriptionKey="Swoją postać można leczyć, wciskając <font color="#caab05">%x%</font>. Po użyciu leczenia trzeba nieco poczekać, zanim ponownie będzie można użyć strzykawki."
+QuickHealDescriptionKey="Jeśli twoja postać jest ranna, możesz się leczyć, wciskając <font color="#caab05">%x%</font>. Po użyciu leczenia trzeba nieco poczekać, zanim ponownie będzie można użyć strzykawki."
 HowToSyringeTitleKey="Lecz sojuszników"
 HowToSyringeDescriptionKey="Możesz także wyjąć strzykawkę, aby leczyć członków drużyny, wciskając <font color="#caab05">%x%</font>, a następnie <font color="#caab05">%x%</font>, gdy znajdziesz się przy członku drużyny."
 HealOthersTitleKey="Lecz sojuszników bronią sanitariusza"
@@ -174,7 +174,7 @@ ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Standardowy pistole
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle .50"
-ItemCategory="Ręczna armata"
+ItemCategory="Broń krótka"
 ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Desert Eagle to potwór wśród broni krótkich, czemu zawdzięcza miano „ręcznej armaty”."
 
 [KFWeap_AssaultRifle_AR15]
@@ -197,7 +197,10 @@ ItemName="Bullpup SA80 L85A2"
 ItemCategory="Karabin szturmowy"
 ItemDescription="•Tryb ataku: ogień ciągły lub pojedynczy.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•SA80 był na standardowym wyposażeniu armii brytyjskiej, dopóki nie została, no cóż, zjedzona."
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="Stoner 63A LMG"
+ItemCategory="Lekki pistolet maszynowy"
+ItemDescription="•Tryb ataku: tylko ogień ciągły.\n•Stoner 63A, używany przez amerykańskich Navy SEALs podczas wojny w Wietnamie, ma dużą pojemność magazynka i ogromną moc obalającą."
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Nóż uniwersalny"
@@ -269,8 +272,6 @@ ItemName="Strzelba bojowa M4"
 ItemCategory="Strzelba"
 ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Firma Benelli zaprojektowała strzelbę bojową M4 dla armii USA. Jest to broń samopowtarzalna, która zapewnia dobrą, stałą szybkość ostrzału."
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="Ostrze kosiarki"
 ItemCategory="Broń biała"
@@ -328,6 +329,16 @@ ItemName="Płomiennica"
 ItemCategory="Ogień"
 ItemDescription="•Tryb ataku: miotanie płomieni.\n•Ręczny miotacz ognia domowej roboty. NIE próbuj tego w domu."
 
+[KFWeap_Pistol_Flare]
+ItemName="Spitfire"
+ItemCategory="Ogień"
+ItemDescription="•Tryb ataku: miotanie wybuchającymi, zapalnymi pociskami. \n•Miotanie ogniem za pomocą wygodnej podręcznej broni."
+
+[KFWeap_Pistol_DualFlare]
+ItemName="Podwójny Spitfire"
+ItemCategory="Ogień"
+ItemDescription="•Tryb ataku: miotanie wybuchającymi, zapalnymi pociskami. \n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•To para Spitfire'ów. Można je oddzielenie sprzedać lub wyrzucić."
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Strzelba zapalająca"
 ItemCategory="Strzelba"
@@ -363,8 +374,6 @@ ItemName="RPG-7"
 ItemCategory="Materiały wybuchowe"
 ItemDescription="•Tryb ataku: wystrzeliwuje rakietę.\n•Rakieta wybucha przy uderzeniu.\n•Uzbraja się dopiero po kilku metrach, żeby strzelający nie urwał sobie twarzy.\n•Uwaga na gazy wylotowe!"
 
-
-
 [KFWeap_Pistol_Dual9mm]
 ItemName="Dwa pistolety 9 mm"
 ItemCategory="Broń krótka"
@@ -382,7 +391,7 @@ ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Tryb alternatywny p
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle .50"
-ItemCategory="Ręczna armata"
+ItemCategory="Broń krótka"
 ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Desert Eagle to potwór wśród broni krótkich, czemu zawdzięcza miano „ręcznej armaty”."
 
 [KFWeap_Pistol_DualDeagle]
@@ -414,8 +423,6 @@ ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Tryb alternatywny p
 ItemName="Winchester 1894"
 ItemCategory="Karabin"
 ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•Klasyczny karabin dźwigniowy Winchester model 1894."
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="Kusza"

@@ -60,7 +60,6 @@ var delegate<OnJoinFriendGameComplete> __OnJoinFriendGameComplete__Delegate;
 var delegate<OnFriendMessageReceived> __OnFriendMessageReceived__Delegate;
 var delegate<OnUnlockAchievementComplete> __OnUnlockAchievementComplete__Delegate;
 var delegate<OnReadAchievementsComplete> __OnReadAchievementsComplete__Delegate;
-var delegate<OnOnlineServiceAuthComplete> __OnOnlineServiceAuthComplete__Delegate;
 var delegate<OnStatisticChanged> __OnStatisticChanged__Delegate;
 
 // Export Uonlinesubsystempc::execInit(FFrame&, void* const)
@@ -835,14 +834,6 @@ function Engine.OnlineSubsystem.EOnlineEnumerationReadState GetAchievements(byte
 {
     TitleId = 0;
 }
-
-delegate OnOnlineServiceAuthComplete();
-
-function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
-
-function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
-
-function AuthWithOnlineService();
 
 function ClearAchievements(byte LocalUserNum, optional int TitleId)
 {

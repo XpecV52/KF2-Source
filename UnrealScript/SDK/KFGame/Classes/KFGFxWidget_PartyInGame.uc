@@ -11,18 +11,25 @@
 class KFGFxWidget_PartyInGame extends KFGFxWidget_BaseParty;
 
 var KFGameReplicationInfo KFGRI;
+var KFPlayerReplicationInfo MyKFPRI;
+var  GFxObject MatchStartContainer;
 
 function InitializeWidget()
 {
 	super.InitializeWidget();
 	SetReadyButtonVisibility(true);
 
+	MyKFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
+	MatchStartContainer = GetObject("matchStartContainer");
 	KFGRI = KFGameReplicationInfo( GetPC().WorldInfo.GRI );
 	if ( KFGRI != none )
 	{
 		if (KFGRI.bMatchHasBegun || KFGRI.bMatchIsOver)
 		{
-			GetObject("matchStartContainer").SetVisible(false);
+			if(MatchStartContainer != none)
+			{
+				MatchStartContainer.SetVisible(false);
+			}
 			if (GetPC().PlayerReplicationInfo.bReadyToPlay || KFGRI.bMatchIsOver)
 			{
 				GetObject("readyButton").SetVisible(false);
@@ -31,6 +38,7 @@ function InitializeWidget()
 		StartCountdown(KFGRI.RemainingTime, false);		
 	}	
 	RefreshParty();
+	UpdateReadyButtonVisibility();
 }
 
 function UpdateReadyButtonVisibility()
@@ -53,11 +61,15 @@ function UpdateReadyButtonVisibility()
 
 			if (KFGRI.bMatchHasBegun || KFGRI.bMatchIsOver)
 			{
-				GetObject("matchStartContainer").SetVisible(false);
+				MatchStartContainer.SetVisible(false);
 				if (GetPC().PlayerReplicationInfo.bReadyToPlay || KFGRI.bMatchIsOver)
 				{
 					SetReadyButtonVisibility(false);
 				}
+			}
+			else if(GetPC().WorldInfo.NetMode == NM_Standalone && MyKFPRI != none)
+			{	
+				MatchStartContainer.SetVisible(MyKFPRI.bReadyToPlay); //hide the waiting for players text when alone		
 			}
 		}
 	}

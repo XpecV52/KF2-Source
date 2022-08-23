@@ -11,7 +11,7 @@ class KFPerk_Commando extends KFPerk
 	hidecategories(Mobile, Object, Debug, Advanced, Physics, Actor, Attachment, Display)
 	native;
 
-`include(KFOnlineStats.uci)
+//`include(KFOnlineStats.uci)
 
 //Passives
 var private const	PerkSkill 		WeaponDamage;						// weapon dmg modifier
@@ -666,8 +666,8 @@ DefaultProperties
    	bCanSeeCloakedZeds=true
 
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Commando'
-   	ProgressStatID=`STATID_Cmdo_Progress
-   	PerkBuildStatID=`STATID_Cmdo_Build
+   	ProgressStatID=STATID_Cmdo_Progress
+   	PerkBuildStatID=STATID_Cmdo_Build
 
    	PrimaryWeaponDef=class'KFWeapDef_AR15'
 	KnifeWeaponDef=class'KFweapDef_Knife_Commando'

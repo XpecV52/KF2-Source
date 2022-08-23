@@ -83,7 +83,7 @@ NextStepsDescriptionKey="Dal menu principale puoi fare pratica offline o iniziar
 
 ;Healing Section
 QuickHealTitleKey="Curati quando sei ferito"
-QuickHealDescriptionKey="Se sei ferito, puoi curarti premendo <font color="#caab05">%x%</font>. Dopo esserti curato, la tua siringa ci metterà un po' a ricaricarsi prima di essere usata nuovamente."
+QuickHealDescriptionKey="Se sei ferito, puoi curarti tenendo premuto <font color="#caab05">%x%</font>. Dopo esserti curato, la tua siringa ci metterà un po' a ricaricarsi prima di poter essere usata nuovamente."
 HowToSyringeTitleKey="Cura i tuoi compagni di squadra"
 HowToSyringeDescriptionKey="Puoi equipaggiare la siringa per curare i tuoi compagni premendo <font color="#caab05">%x%</font> e poi <font color="#caab05">%x%</font> quando sei vicino a un compagno."
 HealOthersTitleKey="Cura con armi Medico da campo"
@@ -174,7 +174,7 @@ ItemDescription="•Solo semiautomatica.\n•È la pistola 9mm standard. Semplic
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 Desert Eagle"
-ItemCategory="Cannone portatile"
+ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•La Desert Eagle è la più mostruosa, ed è per quello che la conosciamo come il ‘Cannone portatile’."
 
 [KFWeap_AssaultRifle_AR15]
@@ -197,7 +197,10 @@ ItemName="Bullpup SA80 L85A2"
 ItemCategory="Fucile d'assalto"
 ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico.\n•Usa il fuoco alternativo per cambiare modalità.\n•Il SA80 era l'arma standard dell'Esercito britannico prima che l'esercito fosse, beh, mangiato."
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="Stoner 63A LMG"
+ItemCategory="Mitragliatrice leggera"
+ItemDescription="•Solo automatica.\n•La Stoner 63a, arma fondamentale degli U.S. Navy SEALs nella guerra del Vietnam, ha una capacità di munizioni elevata e un buon potere d’arresto."
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Coltello multiuso"
@@ -269,8 +272,6 @@ ItemName="Fucile da guerra M4"
 ItemCategory="Fucile"
 ItemDescription="•Solo semiautomatica.\n•Benelli ha progettato il fucile da combattimento M4 per l'esercito statunitense. È semiautomatico, con una buona e costante frequenza di fuoco."
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="Lama tosaerba"
 ItemCategory="Mischia"
@@ -328,6 +329,16 @@ ItemName="Inceneritore"
 ItemCategory="Fiamme"
 ItemDescription="•Lancia fiamme.\n•Lanciafiamme portatile fatto in casa. NON provatelo a casa."
 
+[KFWeap_Pistol_Flare]
+ItemName="Spitfire"
+ItemCategory="Fiamme"
+ItemDescription="•Lancia proiettili infiammabili ed esplosivi. \n•Munizioni disponibili in un comodo formato da viaggio."
+
+[KFWeap_Pistol_DualFlare]
+ItemName="Doppio Spitfire"
+ItemCategory="Fiamme"
+ItemDescription="•Lancia proiettili infiammabili ed esplosivi. \n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Sono due spitfire. Vendibili o scartabili individualmente."
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Fucile incendiario"
 ItemCategory="Fucile"
@@ -363,8 +374,6 @@ ItemName="RPG-7"
 ItemCategory="Esplosivi"
 ItemDescription="•Lancia un razzo.\n•I razzi esplodono all’impatto.\n•Si arma lungo la traiettoria, così non ti farai esplodere la faccia.\n•E attento al ritorno di fiamma!"
 
-
-
 [KFWeap_Pistol_Dual9mm]
 ItemName="Doppia pistola 9mm"
 ItemCategory="Pistola"
@@ -382,7 +391,7 @@ ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il meto
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 Desert Eagle"
-ItemCategory="Cannone portatile"
+ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•La Desert Eagle è la più mostruosa, ed è per quello che la conosciamo come il ‘Cannone portatile’."
 
 [KFWeap_Pistol_DualDeagle]
@@ -414,8 +423,6 @@ ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il meto
 ItemName="Winchester 1894"
 ItemCategory="Fucile da caccia"
 ItemDescription="•Spara un colpo alla volta.\n•Il classico modello di fucile Winchester 1894 a leva."
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="Balestra"

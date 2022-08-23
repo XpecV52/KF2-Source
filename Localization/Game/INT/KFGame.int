@@ -54,7 +54,9 @@ WeaponUpgradeComepleteString="Weapon Upgraded"
 SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
 NoItemsPurchasedString="No Items Purchased"
 
-SetTakeoverServerPasswordTitle=Enter a new password to protect your game:
+SetTakeoverServerPasswordTitle="Enter a new password to protect your game:"
+FreeConsolePlayOverString="Thanks for playing Killing Floor 2! The free event is over, but you can purchase the game and get more information by selecting the Store button below."
+BuyGameString="STORE"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FAILED TO FIND MATCH"
@@ -780,7 +782,7 @@ ConfigureSkillsString="CONFIGURE SKILLS"
 BackButtonString="<< BACK"
 
 [KFGFxPerksContainer_Selection]
-HeaderTitle=SELECT PERK
+HeaderTitle="SELECT PERK"
 EndOfWaveString="Perk changes will be applied at end of the wave!"
 ChangesAppliedOnCloseString="Perk changes will be applied when this menu is closed."
 OncePerWaveString="Perk changes can only be done once per wave!"
@@ -789,9 +791,9 @@ OncePerWaveString="Perk changes can only be done once per wave!"
 StoreString="STORE"
 
 [KFGFxStoreContainer_Cart]
-CartString=Cart
-TotalString=Total
-CheckOutString=Check Out
+CartString="Cart"
+TotalString="Total"
+CheckOutString="Check Out"
 
 [KFGFxStoreContainer_Main]
 WeaponSkinsRotationString="Weapon Skins"
@@ -882,7 +884,7 @@ VoteKickString="Kick Player?"
 
 [KFLocalMessage_PlayerKills]
 KilledString="killed"
-ZedString=ZEDs
+ZedString="ZEDs"
 
 [KFLocalMessage_VoiceComms]
 VoiceCommsOptionStrings[0]="REQUEST HEALING"
@@ -1068,8 +1070,7 @@ BloomStringOptions[1]="Low"
 BloomStringOptions[2]="High"
 
 MotionBlurStringOptions[0]="Off"
-MotionBlurStringOptions[1]="Normal"
-MotionBlurStringOptions[2]="High"
+MotionBlurStringOptions[1]="On"
 
 AmbientOcclusionStringOptions[0]="Off"
 AmbientOcclusionStringOptions[1]="SSAO"
@@ -1098,8 +1099,8 @@ ClassicWeaponSelectString="Weapon Quick Select"
 GoreOptionStrings[0]="Low Gore"
 GoreOptionStrings[1]="Medium Gore"
 GoreOptionStrings[2]="High Gore"
-NormalString=Normal
-WiderString=Wider
+NormalString="Normal"
+WiderString="Wider"
 FriendlyHudScaleString="Friendly HUD Scale"
 KillTickerString="Show Zed Kill Ticker"
 HideBossHealthBarString="Hide Boss Healthbar"
@@ -1128,7 +1129,7 @@ GBA_Look_Gamepad="Look Control"
 GBA_Grenade_Gamepad="Throw Grenade"
 GBA_TurnLeft_Gamepad="Look Control"
 GBA_Look_Gamepad="Look Control"
-GBA_DPad_Left_Gamepad="Voice Comms"
+GBA_DPad_Left_Gamepad="Voice Comms / Emotes"
 GBA_DPad_Up_Gamepad="Equip Healer"
 GBA_DPad_Right_Gamepad="Throw Dosh"
 GBA_DPad_Down_Gamepad="Toggle Flashlight"
@@ -1238,6 +1239,12 @@ BlockString="Block (Hold)"
 HoldString="HOLD"
 TapString="TAP"
 
+[KFGFxScreenSizeContainer]
+TitleString="Application will be displayed in the boxed area"
+DescriptionString="Adjust the area to fit the TV display"
+EnlargeString="Enlarge"
+ShrinkString="Shrink"
+
 [KFInventoryManager]
 FullHealthMsg="Health Full"
 
@@ -1294,14 +1301,14 @@ HeadShotResetString="Missed Headshot. Normal Damage!"
 SuicideMessage=" just gave up on life..."
 KilledMessage=" was eaten alive"
 KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
-KillzedBy_HansString="'s body has been removed for further experimentation"
-KillzedBy_ZedCrawlerString="'s ankles have been chewed off"
+KillzedBy_HansString="s body has been removed for further experimentation"
+KillzedBy_ZedCrawlerString="s ankles have been chewed off"
 KillzedBy_ZedBloatString=" has drowned in bodily fluids"
 KillzedBy_ZedFleshpoundString=" has been ground to a pulp"
 KillzedBy_ZedGorefastString=" was skinned alive"
 KillzedBy_ZedHuskString=" has been charred to death"
 KillzedBy_ZedScrakeString=" was cut down in their prime"
-KillzedBy_ZedSirenString="'s ears have blown out - fatally"
+KillzedBy_ZedSirenString="s ears have blown out - fatally"
 KillzedBy_ZedStalkerString=" didn't see it coming"
 KillzedBy_ZedClot_CystString=" has suffered an underwhelming death"
 KillzedBy_ZedClot_AlphaString=" was grabbed inappropriately"
@@ -1348,6 +1355,8 @@ HealSelfGamepadWarning="<%HOLD%>HEAL SELF"
 PressToBashWarning="BASH"
 GamepadWeaponSelectHint="<%HOLD%>WEAPON SELECT"
 PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
+UseMinigameMessage="ACTIVATE MINIGAME"
+UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
@@ -1375,20 +1384,20 @@ Passives[2]=(Title="",Description="");
 Passives[3]=(Title="",Description="");
 Passives[4]=(Title="",Description="");
 
-SkillSlots0[0]=(Title="", Description="")
-SkillSlots0[1]=(Title="", Description="")
+SkillSlots0[0]=(Title="",Description="");
+SkillSlots0[1]=(Title="",Description="");
 
-SkillSlots1[0]=(Title="", Description="")
-SkillSlots1[1]=(Title="", Description="")
+SkillSlots1[0]=(Title="",Description="");
+SkillSlots1[1]=(Title="",Description="");
 
-SkillSlots2[0]=(Title="", Description="")
-SkillSlots2[1]=(Title="", Description="")
+SkillSlots2[0]=(Title="",Description="");
+SkillSlots2[1]=(Title="",Description="");
 
-SkillSlots3[0]=(Title="", Description="")
-SkillSlots3[1]=(Title="", Description="")
+SkillSlots3[0]=(Title="",Description="");
+SkillSlots3[1]=(Title="",Description="");
 
-SkillSlots4[0]=(Title="", Description="")
-SkillSlots4[1]=(Title="", Description="")
+SkillSlots4[0]=(Title="",Description="");
+SkillSlots4[1]=(Title="",Description="");
 
 WeaponDroppedMessage="You dropped%%%% because of your new carrying capacity!"
 
@@ -1562,10 +1571,10 @@ SkillCatagories[3]="Power"
 SkillCatagories[4]="Advanced Training"
 
 
-Passives[0]=(Title="Berserker Damage",Description="Perk weapon damage increases x%x per level")
-Passives[1]=(Title="Damage Resistance",Description="Damage resistance increases x%x every 5 levels")
-Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
-Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
+Passives[0]=(Title="Berserker Damage",Description="Perk weapon damage increases x%x per level");
+Passives[1]=(Title="Damage Resistance",Description="Damage resistance increases x%x every 5 levels");
+Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles");
+Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker");
 
 EXPAction1="Dealing Berserker weapon damage"
 EXPAction2="Killing Zeds near a player with a Berserker weapon"
@@ -1590,11 +1599,11 @@ ParryDescription="Parrying with a perk melee weapon reduces incoming damage 40% 
 
 Smash="Smash"
 SmashDescription="Hard attacks with perk melee weapons do 50% more damage, do 25% more damage on head hits, and have 200% more stumble power."
- 
+
 Fury="Massacre"
 FuryDescription="Light attacks with perk melee weapons do 30% more damage and all attacks with perk melee weapons are 5% faster."
 
-Spartan="ZED TIME - Spartan" 
+Spartan="ZED TIME - Spartan"
 SpartanDescription="During Zed time, you attack with perk weapons and move in real-time."
 
 Rage="ZED TIME - Berserker Rage"
@@ -1739,10 +1748,10 @@ Enforcer="Battle Surgeon"
 EnforcerDescription="Increase damage with perk weapons 20%."
 
 AirborneAgent="ZED TIME - Airborne Agent"
-AirborneAgentDescription="You release a healing gas During Zed time, healing teammates close by."
+AirborneAgentDescription="You release a healing gas during Zed time, healing teammates close by."
 
 Sedative="ZED TIME - Zedative"
-SedativeDescription="During Zed time, damaging Zeds with perk weapons will slow them 30% and do massive amounts of poison damage. 
+SedativeDescription="During Zed time, damaging Zeds with perk weapons will slow them 30% and do massive amounts of poison damage. "
 
 
 EXPAction1="Dealing Field Medic weapon damage"
@@ -1751,7 +1760,7 @@ EXPAction2="Healing teammates"
 [KFPerk_Firebug]
 PerkName="Firebug"
 EXPAction1="Dealing Firebug weapon damage"
-EXPAction2="Killing Crawlers and Bloats with Firebug weapons"
+EXPAction2="Killing Crawlers with Firebug weapons"
 
 SkillCatagories[0]="Supplies"
 SkillCatagories[1]="Spicy"
@@ -1810,7 +1819,7 @@ Passives[0]=(Title="Perk Weapon Damage",Description="Increase perk weapon damage
 Passives[1]=(Title="Bullet Resistance",Description="Increase resistance to projectile damage 5% plus %x% per level");
 Passives[2]=(Title="Movement Speed",Description="Increase movement speed %x% every five levels");
 Passives[3]=(Title="Recoil",Description="Reduce perk weapon recoil %x% per level");
-Passives[4]=(Title="Zedtime Reload", Description="Increase reload speed in Zed time %x% per level");
+Passives[4]=(Title="Zedtime Reload",Description="Increase reload speed in Zed time %x% per level");
 
 ShootnMove="Steady"
 ShootnMoveDescription="Ignore movement speed penalty for iron sights and drastically reduce weapon bob with perk weapons."
@@ -1831,7 +1840,7 @@ Penetration="Line 'em Up"
 PenetrationDescription="Suffer no damage reduction from shooting through Zeds to hit other Zeds with perk weapons."
 
 Skullcracker="Skullcracker"
-SkullcrackerDescription="Headshots with perk weapons slow Zeds 30%.
+SkullcrackerDescription="Headshots with perk weapons slow Zeds 30%."
 
 KnockEmDown="Knock 'em Down"
 KnockEmDownDescription="Shooting sprinting Zeds in the legs massively increases knockdown power. Shooting Zeds in the chest with perk weapons massively increases stumble power."
@@ -1901,7 +1910,7 @@ Passives[0]=(Title="Welding Proficiency",Description="Welding speed increased by
 Passives[1]=(Title="Shotgun Damage",Description="Perk weapon damage increased by %x% per level");
 Passives[2]=(Title="Shotgun Penetration",Description="Perk weapon penetration power increased by %x% per level");
 Passives[3]=(Title="Ammo",Description="Ammo increased by 15% plus %x% per level");
-Passives[4]=(Title="Strength",Description="Weight capacity increased by 1 every 5 levels");
+Passives[4]=(Title="Increased Weight Capacity",Description="Weight capacity increased by 1 every 5 levels");
 Passives[5]=(Title="Ammo Backpack + Door repair",Description="Once per round players can get ammo from backpack - repair destroyed doors");
 
 EXPAction1="Dealing Support weapon damage"
@@ -1997,7 +2006,7 @@ SkillCatagories[4]="Specialist Training"
 Passives[0]=(Title="Weapon Damage",Description="Increase weapon damage %x% per level");
 Passives[1]=(Title="Global Damage Resistance",Description="Increase resistance to all damage %x% per level");
 Passives[2]=(Title="Heavy Body Armor",Description="%x% every level (max 25%) take no health damage if you have armor.");
-Passives[3]=(Title="Zedtime Reload", Description="Increase reload speed in Zed time %x% per level");
+Passives[3]=(Title="Zedtime Reload",Description="Increase reload speed in Zed time %x% per level");
 
 
 HeavyWeaponsReload="Heavy Weapons Training"
@@ -2028,7 +2037,7 @@ Madman="ZED TIME - Madman"
 MadmanDescription="During Zed time, all your weapons shoot 3x faster."
 
 IncapMaster="ZED TIME - Lockdown"
-IncapMasterDescription="During Zed time, the power of all incapacitation methods are increased 200% for all weapons." 
+IncapMasterDescription="During Zed time, the power of all incapacitation methods are increased 200% for all weapons." "
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2095,10 +2104,10 @@ RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may
 RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."
 RandomLoadingStrings[15]="Prioritize your targets. A fleshpound is a lot more deserving of your attention than a clot."
 RandomLoadingStrings[16]="All Zeds have weak points. If it's not the head, look for glowing elements on their bodies."
-RandomLoadingStrings[17]="Medic weapons fire healing darts using Alternate Fire and automatically regenerate their healing dart ammo."
+RandomLoadingStrings[17]="While you will get occasional cosmetic items as loot, some cosmetic items can be purchased."
 RandomLoadingStrings[18]="The siren's scream neutralizes grenades and other explosives."
 RandomLoadingStrings[19]="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
-RandomLoadingStrings[20]="When you don't have much time at the Trader, use Auto-Upgrade to get the weapons and ammo you need."
+RandomLoadingStrings[20]="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
 RandomLoadingStrings[21]="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
 RandomLoadingStrings[22]="Melee attacks are directional based on your movement."
 RandomLoadingStrings[23]="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
@@ -2168,6 +2177,13 @@ PS4WeaponSkinCrate2="Horzine Supply Weapon Skin Crate | Series #2"
 Artbook="Killing Floor 2 Digital Art Book"
 Uncovered="Watch Killing Floor: Uncovered Live Action Film"
 NewEmotes="New! Emote Crate Key - $2.49"
+HorzineSupplyCrateKey10="Horzine Supply Crate Key | Series #10 - $2.49"
+HorzineSupplyCrateKey11="Horzine Supply Crate Key | Series #11 - $2.49"
+HorzineSupplyCrateKey12="Horzine Supply Crate Key | Series #12 - $2.49"
+HorzineSupplyCrateKey13="Horzine Supply Crate Key | Series #13 - $2.49"
+USBSpitfire="Spit Fire USB Key - $2.49"
+USBHighVoltage="High Voltage USB Key - $2.49"
+MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
@@ -2301,7 +2317,7 @@ zero="0"
 [SharedUnlocks]
 KFWeap_Zweihander="Chivalry Promo"
 
-SharedUnlocks
+
 Source0="Chivalry Promo"
 ;============================================
 ; Map Localization
@@ -2505,13 +2521,45 @@ DisplayName_ESL="Aterrizaje ZED"
 DisplayName_ESN="Aterrizaje ZED"
 DisplayName_FRA="Île des Zeds"
 DisplayName_FRC="Île des Zeds"
-DisplayName_INT="Zed Landing"
+DisplayName_INT="ZED Landing"
 DisplayName_ITA="Atterraggio ZED"
 DisplayName_JPN="zed Landing"
 DisplayName_KOR="제드 상륙"
 DisplayName_POL="Lądowanie zetów"
 DisplayName_PTB="Pouso Forçado ZED"
 DisplayName_RUS="Высадка среди мутантов"
+
+[KF-TheDescent KFMapSummary]
+DisplayName_CHN="后裔"
+DisplayName_CHT="地下鐵"
+DisplayName_DEU="Der Abstieg"
+DisplayName_ESL="El descendiente"
+DisplayName_ESN="El descendiente"
+DisplayName_FRA="La descente"
+DisplayName_FRC="La descente"
+DisplayName_INT="The Descent"
+DisplayName_ITA="La discesa"
+DisplayName_JPN="The Descent"
+DisplayName_KOR="경사로"
+DisplayName_POL="Zejście"
+DisplayName_PTB="A Descida"
+DisplayName_RUS="Спуск"
+
+[KF-Nuked KFMapSummary]
+DisplayName_CHN="核武器"
+DisplayName_CHT="核電廠"
+DisplayName_DEU="Atomisiert"
+DisplayName_ESL="Bombardeado"
+DisplayName_ESN="Bombardeado"
+DisplayName_FRA="Atomisé"
+DisplayName_FRC="Atomisé"
+DisplayName_INT="Nuked"
+DisplayName_ITA="Nuclearizzato"
+DisplayName_JPN="Nuked"
+DisplayName_KOR="방사능 누출지"
+DisplayName_POL="Wysadzeni"
+DisplayName_PTB="Bombardeio"
+DisplayName_RUS="Ядерный удар"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
@@ -2555,6 +2603,11 @@ DisplayName="Infernal Realm"
 [KF-ZedLanding KFMapSummary]
 DisplayName="ZED Landing"
 
+[KF-TheDescent KFMapSummary]
+DisplayName="The Descent"
+
+[KF-Nuked KFMapSummary]
+DisplayName="Nuked"
 
 [KFMapInfo]
 ; defaults

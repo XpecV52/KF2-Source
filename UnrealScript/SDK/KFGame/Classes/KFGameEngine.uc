@@ -19,6 +19,12 @@ enum SupportedPlatform
 	PLATFORM_PC_DX10
 };
 
+enum SeasonalEventIndex
+{
+    SEI_None,
+    SEI_Summer
+};
+
 /** The game state we were in (paused, in game, etc.) when we lost focus */
 var int LastFocusedGameStateID;
 
@@ -29,6 +35,12 @@ var float KFFontScale;
 
 /** TRUE if we are actively logging into playfab */
 var bool bReadingPlayfabStoreData;
+
+/** Currently running event */
+var private{private} const int SeasonalEventId;
+
+/** Week index of the year - Used as index into weekly event */
+var private int WeeklyEventIndex;
 
 /************************************************************************************
  * @name		User Options
@@ -82,6 +94,16 @@ var EConnectionError LastConnectionError;
 var string ConsoleGameSessionGuid; 
 //@HSL_END
 
+/** The game settings for a pending invite. Used when an idle profile accepts an invite and we need to switch profiles for XB1 */
+var OnlineGameSettings GameSettingsForPendingInvite;
+
+/** Title and message for notification that should appear if user ever gets kicked back to IIS */
+var string ReturnToIISConnectionErrorTitle;
+var string ReturnToIISConnectionErrorMessage;
+
+/** The login status for the one local user */
+var ELoginStatus LocalLoginStatus;
+
 /************************************************************************************
  * @name		Debugging
  ***********************************************************************************/
@@ -96,6 +118,10 @@ var config bool	bEnableAdvDebugLines;
 
 cpptext
 {
+	// static members
+	static FString GetSeasonalEventPrefix();
+	static FString GetSeasonalEventPackageName(INT EventId = -1);
+	
 	// UEngine interface.
 	void Init();
 	void FinishDestroy();
@@ -110,11 +136,29 @@ cpptext
 	 */
 	virtual void OnLostFocusPause( UBOOL EnablePause );
 
+	// One-time init
+	void LoadContentRootClass();
+	void LoadSeekFreePackages();
+	void LoadSeekFreeZedPackage();
+	void InitGfxSettings();
+	void DeallocatePlayfabServer();
+	void SyncInventoryProperties();
+	void SetSeasonalEventFromTitleData();
+
 	/** Initializes default resolution */
 	void InitializeResolution(INT CompatLevel);
 
 	virtual void PerformBetweenMapTasks();
+
+#if __TW_INTERNET_TIME_
+    /** Trigger a network time lookup to update any time-based events (Weekly, Seasonal, etc) */
+    virtual void UpdateTimedGameEvents();
+#endif
 }
+
+/***********************************************************************************
+* @name		Debug
+***********************************************************************************/
 
 native static function bool CheckSkipLobby(); // If -skiplobby is added to the command line, return true
 native static function bool CheckSkipGammaCheck(); // If -NoGammaStartup is added to the command line, return true
@@ -122,30 +166,284 @@ native static function bool CheckNoAutoStart(); // If -NoAutoStart is added to t
 native static function bool CheckNoMusic(); // If -NoMusic is added to the command line or PIE, return true
 native static function bool CheckNoRandomStart(); // If -NoRandomStart is added to the command line or PIE, return true
 
-//Gets the game version for use on Steam
-native static function int GetGameVersion();
-
-native static function bool IsPlaygoModePS4();
+/** Gets debug information for the number of loaded classes and their resource size*/
+native static function GetClassCountAndSize(out int ClassCount, out float ClassSize, out float ResourceSize, class LoadedClass);
 
 /** Returns the debug lines object, will create one if none exists */
 native static function KFDebugLines GetDebugLines(); // Accessor for KFDebugLines, if enabled
 
-//////////////////////////////
-// Platform
-//////////////////////////////
+/***********************************************************************************
+* @name		Platform / Online Backend
+***********************************************************************************/
+
+//Gets the game version for use on Steam
+native static function int GetGameVersion();
+/** Gets the current game version */
+native static function int GetKFGameVersion();
+/** Gets the current game Steam AppID */
+native static function int GetAppID();
+
 native static function SupportedPlatform GetPlatform(); 
+native static function InitEventContent();
+native static function RefreshEventContent();
 
-//////////////////////////////
-// Debug
-//////////////////////////////
-/** Gets debug information for the number of loaded classes and their resource size*/
-native static function GetClassCountAndSize( out int ClassCount, out float ClassSize, out float ResourceSize, class LoadedClass );
+// make sure our current tweak values are up-to-date with global
+native static function RefreshOnlineGameData();
+native static function ApplyTweaks(string MapName);
 
-//////////////////////////////
-// Options
-//////////////////////////////
+/** returns true if solo play should be disabled for this build */
+native static function bool IsSoloPlayDisabled();
+/** returns true if the free event has ended */
+native static function bool IsFreeConsolePlayOver();
+
+function ReadPFStoreData()
+{
+	bReadingPlayfabStoreData = true;
+	// Read Playfab store data
+	GetPlayfabInterface().AddStoreDataReadCompleteDelegate(OnPlayfabStoreReadComplete);
+	GetPlayfabInterface().ReadStoreData();
+}
+
+function OnPlayfabStoreReadComplete(bool bSuccessful)
+{
+	GetPlayfabInterface().ClearStoreDataReadCompleteDelegate(OnPlayfabStoreReadComplete);
+
+	if (bSuccessful)
+	{
+		if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
+		{
+			OnlineSubsystem.MarketplaceInterface.ResetAvailableProducts(GamePlayers[0].ControllerId, MIT_GameContent);
+			OnlineSubsystem.MarketplaceInterface.ResetAvailableProducts(GamePlayers[0].ControllerId, MIT_GameConsumable);
+			OnlineSubsystem.MarketplaceInterface.AddReadAvailableProductsCompleteDelegate(GamePlayers[0].ControllerId, OnReadAvailableProductsComplete);
+			OnlineSubsystem.MarketplaceInterface.ReadAvailableProducts(GamePlayers[0].ControllerId, "", MIT_Game, MIT_GameContent);
+		}
+		else
+		{
+			// Read PSN store data
+			OnlineSubsystem.PlayerInterfaceEx.AddStoreDataReadCompleteDelegate(OnStoreDataRead);
+			OnlineSubsystem.PlayerInterfaceEx.ReadStoreData();
+		}
+	}
+}
+
+function OnReadAvailableProductsComplete(EMediaItemType MediaType)
+{
+	`log("Read products for store items of type"@MediaType);
+
+	// If this was the game content, kick off the consumable read request
+	if (MediaType == MIT_GameContent)
+	{
+		OnlineSubsystem.MarketplaceInterface.ReadAvailableProducts(GamePlayers[0].ControllerId, "", MIT_Game, MIT_GameConsumable);
+	}
+	// Reads all finished, next step is to read additional details for the products
+	else
+	{
+		OnlineSubsystem.MarketplaceInterface.ClearReadAvailableProductsCompleteDelegate(GamePlayers[0].ControllerId, OnReadAvailableProductsComplete);
+
+		// Now read additional details for the products. We'll start with gamecontent again
+		OnlineSubsystem.MarketplaceInterface.AddReadAdditionalProductDetailsCompleteDelegate(GamePlayers[0].ControllerId, OnReadAdditionalProductDetailsComplete);
+		OnlineSubsystem.MarketplaceInterface.ReadAdditionalDetailsForProducts(GamePlayers[0].ControllerId, MIT_GameContent);
+	}
+}
+
+function OnReadAdditionalProductDetailsComplete(EMediaItemType MediaType)
+{
+	`log("Additional info for products read complete for type"@MediaType);
+
+	// If this was the game content, kick off the consumable read request
+	if (MediaType == MIT_GameContent)
+	{
+		OnlineSubsystem.MarketplaceInterface.ReadAdditionalDetailsForProducts(GamePlayers[0].ControllerId, MIT_GameConsumable);
+	}
+	else
+	{
+		OnlineSubsystem.MarketplaceInterface.ClearReadAdditionalProductDetailsCompleteDelegate(GamePlayers[0].ControllerId, OnReadAdditionalProductDetailsComplete);
+
+		// Now read inventory
+		OnlineSubsystem.MarketplaceInterface.AddReadInventoryItemsCompleteDelegate(GamePlayers[0].ControllerId, OnReadInventoryItemsComplete);
+		OnlineSubsystem.MarketplaceInterface.ResetInventoryItems(GamePlayers[0].ControllerId, MIT_All);
+		OnlineSubsystem.MarketplaceInterface.ReadInventoryItems(GamePlayers[0].ControllerId, MIT_All);
+	}
+}
+
+
+function OnReadInventoryItemsComplete(EMediaItemType MediaType)
+{
+	`log("Inventory items read for"@MediaType);
+	OnlineSubsystem.MarketplaceInterface.ClearReadInventoryItemsCompleteDelegate(GamePlayers[0].ControllerId, OnReadInventoryItemsComplete);
+	OnStoreDataRead(true);
+}
+
+function OnStoreDataRead(bool bSuccessful)
+{
+	OnlineSubsystem.PlayerInterfaceEx.ClearStoreDataReadCompleteDelegate(OnStoreDataRead);
+	// Read playfab inventory
+	GetPlayfabInterface().AddInventoryReadCompleteDelegate(OnPlayfabInventoryReadComplete);
+	GetPlayfabInterface().ReadInventory();
+}
+
+function OnPlayfabInventoryReadComplete(bool bSuccessful)
+{
+	bReadingPlayfabStoreData = false;
+	GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnPlayfabInventoryReadComplete);
+	OnlineSubsystem.ClearNewlyAdded();
+}
+
+function OnLinkStatusChange(bool bIsConnected)
+{
+	OnConnectionStatusChanged(bIsConnected ? OSCS_Connected : OSCS_ConnectionDropped);
+}
+
+function OnConnectionStatusChanged(EOnlineServerConnectionStatus ConnectionStatus)
+{
+	local KFGameViewportClient GVC;
+
+	// Let player controller handle state change
+	if (GamePlayers[0].Actor != none && KFPlayerController(GamePlayers[0].Actor) != none)
+	{
+		KFPlayerController(GamePlayers[0].Actor).HandleConnectionStatusChange(ConnectionStatus);
+	}
+	// Must be in a transition, kick back to main menu
+	else
+	{
+		GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
+		GVC = KFGameViewportClient(class'GameEngine'.static.GetEngine().GameViewport);
+		GVC.bNeedDisconnectMessage = true;
+		GVC.ConsoleCommand("open KFMainMenu");
+	}
+}
+
+function OnLoginChange(byte LocalUserNum)
+{
+	local OnlinePlayerInterface PlayerInterface;
+
+	PlayerInterface = GetOnlineSubsystem().PlayerInterface;
+
+	// Xbox kicks player back to IIS if active player signs out past the IIS
+	if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) &&
+		KFGameViewportClient(GameViewport).bSeenIIS)
+	{
+		// Kick previously active player back to IIS with an error message.
+		if( LocalUserNum == GamePlayers[0].ControllerId && PlayerInterface.GetLoginStatus(LocalUserNum) != LS_LoggedIn )
+		{	
+			KickBackToIIS("LoggedOutTitle", "LoggedOutMessage");
+		}
+		// Also kick back offline player if a user has signed in
+		else if( LocalLoginStatus == LS_UsingLocalProfile && PlayerInterface.GetLoginStatus(LocalUserNum) == LS_LoggedIn ) 
+		{
+			KickBackToIIS("LoggedInTitle", "LoggedOutMessage");
+		}
+	}
+}
+
+function OnLoginStatusChanged(ELoginStatus NewStatus, UniqueNetId NewId)
+{
+	local KFGameViewportClient GVC;
+	local UniqueNetId ZeroId, LocalPlayerId;
+
+	LocalPlayerId = GamePlayers[0].GetUniqueNetId();
+
+	// Only bother with active user
+	if (LocalPlayerId == NewId && NewId != ZeroId)
+	{
+		// Let player controller handle state change
+		if (GamePlayers[0].Actor != none && KFPlayerController(GamePlayers[0].Actor) != none)
+		{
+			KFPlayerController(GamePlayers[0].Actor).HandleLoginStatusChange(NewStatus == LS_LoggedIn);
+		}
+		// Logged out
+		else if (NewStatus == LS_NotLoggedIn)
+		{
+			GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
+			GVC = KFGameViewportClient(GameViewport);
+			GVC.bNeedSignoutMessage = true;
+			GVC.ConsoleCommand("open KFMainMenu");
+		}
+	}
+}
+
+function KickBackToIIS(string ErrorTitleKey, string ErrorMessageKey)
+{
+	// Set the cached errors
+	ReturnToIISConnectionErrorTitle = Localize("Notifications", ErrorTitleKey, "KFGameConsole");
+	ReturnToIISConnectionErrorMessage = Localize("Notifications", ErrorMessageKey, "KFGameConsole");;
+
+	// Now perform logout
+	PerformLogout();
+}
+
+function PerformLogout()
+{
+	local UIDataStore_OnlinePlayerData PlayerDataDS;
+
+	OnlineSubsystem.PlayerInterface.Logout(GamePlayers[0].ControllerId);
+	if (PlayfabInterfaceInst != none)
+	{
+		PlayfabInterfaceInst.Logout();
+	}
+
+	// Logout active player
+	OnlineSubsystem.PlayerInterface.Logout(GamePlayers[0].ControllerId);
+
+	// Reset the async state for the profile settings so a full read will complete
+	PlayerDataDS = UIDataStore_OnlinePlayerData(class'UIInteraction'.static.GetDataStoreClient().FindDataStore('OnlinePlayerData', GamePlayers[0]));
+	PlayerDataDS.ProfileProvider.Profile.AsyncState = OPAS_NotStarted;
+
+	// Clear seen IIS flag
+	KFGameViewportClient(GameViewport).bSeenIIS = false;
+
+	// Destroy active game session
+	OnlineSubsystem.GameInterface.DestroyOnlineGame('Game');
+
+	// If we have a player controller, let it handle the state
+	if (GamePlayers[0].Actor != none && KFPlayerController(GamePlayers[0].Actor) != none)
+	{
+		KFPlayerController(GamePlayers[0].Actor).PerformLogout();
+	}
+	// Must be in a transition. Kick back to the menu
+	else
+	{
+		GameViewport.ConsoleCommand("open KFMainMenu");
+	}
+}
+
+function RegisterOnlineDelegates()
+{
+	local int i;
+
+	OnlineSubsystem.SystemInterface.AddConnectionStatusChangeDelegate(OnConnectionStatusChanged);
+
+	for (i = 0; i < `MAX_NUM_PLAYERS; i++)
+	{
+		OnlineSubsystem.PlayerInterface.AddLoginStatusChangeDelegate(OnLoginStatusChanged, i);
+	}
+
+	OnlineSubsystem.PlayerInterface.AddLoginChangeDelegate(OnLoginChange);
+}
+
+function ClearOnlineDelegates()
+{
+	local int i;
+
+	OnlineSubsystem.SystemInterface.ClearConnectionStatusChangeDelegate(OnConnectionStatusChanged);
+
+	for (i = 0; i < `MAX_NUM_PLAYERS; i++)
+	{
+		OnlineSubsystem.PlayerInterface.ClearLoginStatusChangeDelegate(OnLoginStatusChanged, i);
+	}
+
+	OnlineSubsystem.PlayerInterface.ClearLoginChangeDelegate(OnLoginChange);
+}
+
+/** Static because these are both called on default object */
+native static function int GetSeasonalEventID();
+native static function int GetWeeklyEventIndex();
+
+/***********************************************************************************
+* @name		Game Options
+***********************************************************************************/
 native static function InitAudioOptions();
-native static function InitVideoOptions();
+native static function InitGamma();
 
 native static function SetWWiseSFXVolume( float Volume );
 native static function SetWWiseMusicVolume( float Volume );
@@ -157,36 +455,108 @@ native static function GetVoIPVolumeRange(out float MinVol, out float MaxVol, ou
 native static function PlayFullScreenMovie(string MovieName);
 native static function bool IsFullScreenMoviePlaying();
 
-//////////////////////////////
-// Helpers
-//////////////////////////////
+/**
+* Sets the current gamma value.
+*
+* @param New Gamma Value, must be between 0.0 and 1.0
+*/
+native static function SetGamma(float InGammaMultiplier);
+
+/***********************************************************************************
+* @name		Server takeover/reconfigure
+***********************************************************************************/
+
+/**
+* Helper function that will return an enum value representative of the actual error that occurred
+* We have to do this by comparing the localized connection error message to what we know exists in the localization files
+*
+* @param Message the localized connection error message
+*
+* @return The EConnectionError representing the actual error that occurred
+*/
+static function EConnectionError GetConnectionErrorForMessage(out string Message, out string Title)
+{
+	if (Message == "<Strings:Engine.AccessControl.NeedPassword>") {
+		return CE_NeedPassword;
+	}
+
+	if (Message == "<Strings:Engine.AccessControl.WrongPassword>") {
+		return CE_WrongPassword;
+	}
+
+	return CE_Generic;
+}
+
+function SetLastConnectionError(string Message, string Title)
+{
+	if (LastConnectionError == CE_None) {
+		// Let's try to determine what exactly happened here ... and unfortunately we only have these localized strings to do it
+		LastConnectionError = GetConnectionErrorForMessage(Message, Title);
+	}
+}
+
+delegate bool HandshakeCompleteCallback(bool bSuccess, string Error, out int SuppressPasswordRetry);
+
+event bool CheckHandshakeComplete(EProgressMessageType MessageType, string Title, out int SuppressPasswordRetry, out int Cleanup)
+{
+	local bool SuppressPopup;
+
+	SuppressPopup = false;
+	Cleanup = 0;
+
+	if (OnHandshakeComplete != None)
+	{
+		switch (MessageType)
+		{
+		case PMT_ConnectionFailure:
+		case PMT_PeerConnectionFailure:
+		case PMT_PeerHostMigrationFailure:
+		case PMT_SocketFailure:
+			Cleanup = 1;
+			SuppressPopup = OnHandshakeComplete(false, Title, SuppressPasswordRetry);
+			break;
+		case PMT_Information:
+			if (Title == "HandshakeDone") //This string is set in UnPenLev.cpp UNetPendingLevel::NotifyControlMessage
+			{
+				SuppressPopup = OnHandshakeComplete(true, Title, SuppressPasswordRetry);
+			}
+			break;
+		}
+	}
+	return SuppressPopup;
+}
+
+native static function CancelPendingLevel();
+
+function bool IsLockedServer()
+{
+	return bUsedForTakeover && !bAvailableForTakeover;
+}
+
+function UnlockServer()
+{
+	local UniqueNetId NullId;
+
+	if (bUsedForTakeover)
+	{
+		ConsoleGameSessionGuid = "";
+		KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI).ConsoleGameSessionHost = NullId;
+		bAvailableForTakeover = true;
+		bPrivateServer = false;
+	}
+}
+
+native function KillPendingServerConnection();
+
+/***********************************************************************************
+* @name		Misc Helpers
+***********************************************************************************/
 /**
  * Wrapper for engine fast trace
  * Very fast, uses RBCC_Visibility. Returns TRUE if did not hit world geometry. Does not use extents or complex collision.
  * @NOTE: Will not hit KFDoorActors, KFDestructibleActors, KFFracturedMeshActors, or CanBecomeDynamic() actors
  */
 native static function bool FastTrace_PhysX( vector TraceEnd, vector TraceStart );
-
-/**
- * Sets the current gamma value.
- *
- * @param New Gamma Value, must be between 0.0 and 1.0
- */
-native static function SetGamma(float InGammaMultiplier);
-
-/**
- * @brief Gets the current game version
- * 
- * @return GameVersion as int
- */
-native static function int GetKFGameVersion();
-
-/**
- * @brief Gets the current game Steam AppID
- * 
- * @return Steam AppID as int
- */
-native static function int GetAppID();
 
 /* TODO: Using LoadPackageAsync
 
@@ -229,191 +599,20 @@ static function SetCrosshairEnabled(bool bEnable)
 	}
 }
 
-/**
- * Helper function that will return an enum value representative of the actual error that occurred
- * We have to do this by comparing the localized connection error message to what we know exists in the localization files
- *
- * @param Message the localized connection error message
- *
- * @return The EConnectionError representing the actual error that occurred
- */
-static function EConnectionError GetConnectionErrorForMessage(out string Message, out string Title)
-{
-	if(Message == "<Strings:Engine.AccessControl.NeedPassword>") {
-		return CE_NeedPassword;
-	}
-
-	if(Message == "<Strings:Engine.AccessControl.WrongPassword>") {
-		return CE_WrongPassword;
-	}
-
-	return CE_Generic;
-}
-
-function SetLastConnectionError(string Message, string Title)
-{
-	if(LastConnectionError == CE_None) {
-		// Let's try to determine what exactly happened here ... and unfortunately we only have these localized strings to do it
-		LastConnectionError = GetConnectionErrorForMessage(Message, Title);
-	}
-}
-
-delegate bool HandshakeCompleteCallback(bool bSuccess, string Error, out int SuppressPasswordRetry);
-
-event bool CheckHandshakeComplete(EProgressMessageType MessageType, string Title, out int SuppressPasswordRetry, out int Cleanup)
-{
-	local bool SuppressPopup;
-
-	SuppressPopup = false;
-	Cleanup = 0;
-
-	if (OnHandshakeComplete != None)
-	{
-		switch(MessageType)
-		{
-		case PMT_ConnectionFailure:
-		case PMT_PeerConnectionFailure:
-		case PMT_PeerHostMigrationFailure:
-		case PMT_SocketFailure:
-			Cleanup = 1;
-			SuppressPopup = OnHandshakeComplete(false, Title, SuppressPasswordRetry);
-			break;
-		case PMT_Information:
-			if (Title == "HandshakeDone") //This string is set in UnPenLev.cpp UNetPendingLevel::NotifyControlMessage
-			{
-				SuppressPopup = OnHandshakeComplete(true, Title, SuppressPasswordRetry);
-			}
-			break;
-		}
-	}
-	return SuppressPopup;
-}
-
-native static function CancelPendingLevel();
-
-function bool IsLockedServer()
-{
-	return bUsedForTakeover && !bAvailableForTakeover;
-}
-
-function UnlockServer()
-{
-	local UniqueNetId NullId;
-
-	if (bUsedForTakeover)
-	{
-		ConsoleGameSessionGuid = "";
-		KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI).ConsoleGameSessionHost = NullId;
-		bAvailableForTakeover = true;
-		bPrivateServer = false;
-	}
-}
-
-native function KillPendingServerConnection();
-
-
-function ReadPFStoreData()
-{
-	bReadingPlayfabStoreData = true;
-	// Read Playfab store data
-	GetPlayfabInterface().AddStoreDataReadCompleteDelegate( OnPlayfabStoreReadComplete );
-	GetPlayfabInterface().ReadStoreData();
-}
-
-
-function OnPlayfabStoreReadComplete( bool bSuccessful )
-{
-	GetPlayfabInterface().ClearStoreDataReadCompleteDelegate( OnPlayfabStoreReadComplete );
-
-	if( bSuccessful )
-	{
-		// Read PSN store data
-		GetOnlineSubsystem().PlayerInterfaceEx.AddStoreDataReadCompleteDelegate( OnStoreDataRead );
-		GetOnlineSubsystem().PlayerInterfaceEx.ReadStoreData();
-	}
-}
-
-
-function OnStoreDataRead( bool bSuccessful )
-{
-	GetOnlineSubsystem().PlayerInterfaceEx.ClearStoreDataReadCompleteDelegate( OnStoreDataRead );
-	// Read playfab inventory
-	GetPlayfabInterface().AddInventoryReadCompleteDelegate( OnPlayfabInventoryReadComplete );
-	GetPlayfabInterface().ReadInventory();
-}
-
-
-function OnPlayfabInventoryReadComplete( bool bSuccessful )
-{
-	bReadingPlayfabStoreData = false;
-	GetPlayfabInterface().ClearInventoryReadCompleteDelegate( OnPlayfabInventoryReadComplete );
-	GetOnlineSubsystem().ClearNewlyAdded();
-}
-
-function OnLinkStatusChange(bool bIsConnected)
-{
-	OnConnectionStatusChanged( bIsConnected ? OSCS_Connected : OSCS_ConnectionDropped );
-}
-	
-function OnConnectionStatusChanged(EOnlineServerConnectionStatus ConnectionStatus)
-{
-	local KFGameViewportClient GVC;
-	
-	// Let player controller handle state change
-	if( GamePlayers[0].Actor != none && KFPlayerController(GamePlayers[0].Actor) != none )
-	{
-		KFPlayerController(GamePlayers[0].Actor).HandleConnectionStatusChange( ConnectionStatus );
-	}
-	// Must be in a transition, kick back to main menu
-	else
-	{
-		GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
-		GVC = KFGameViewportClient(class'GameEngine'.static.GetEngine().GameViewport);
-		GVC.bNeedDisconnectMessage = true;
-		GVC.ConsoleCommand("open KFMainMenu");
-	}
-}
-
-
-function OnLoginStatusChanged(ELoginStatus NewStatus, UniqueNetId NewId)
-{
-	local KFGameViewportClient GVC;
-
-	// Let player controller handle state change
-	if( GamePlayers[0].Actor != none && KFPlayerController(GamePlayers[0].Actor) != none )
-	{
-		KFPlayerController(GamePlayers[0].Actor).HandleLoginStatusChange( NewStatus == LS_LoggedIn );
-	}
-	// Logged out
-	else if( NewStatus == LS_NotLoggedIn )
-	{
-		GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
-		GVC = KFGameViewportClient(class'GameEngine'.static.GetEngine().GameViewport);
-		GVC.bNeedSignoutMessage = true;
-		GVC.ConsoleCommand("open KFMainMenu");
-	}
-}
-
-
-
-function RegisterOnlineDelegates()
-{
-	GetOnlineSubsystem().SystemInterface.AddConnectionStatusChangeDelegate(OnConnectionStatusChanged);
-	// TODO: Need to handle this for consoles that have non-zero controller IDs
-	GetOnlineSubsystem().PlayerInterface.AddLoginStatusChangeDelegate( OnLoginStatusChanged, 0 );
-}
-
-function ClearOnlineDelegates()
-{
-	GetOnlineSubsystem().SystemInterface.ClearConnectionStatusChangeDelegate(OnConnectionStatusChanged);
-	GetOnlineSubsystem().PlayerInterface.ClearLoginStatusChangeDelegate( OnLoginStatusChanged, 0 );
-}
-
 DefaultProperties
 {
 	DefaultGammaMult=.68
 	KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
 	KFFontScale=0.6f
+	SeasonalEventId=-1
+    WeeklyEventIndex=-1
+	LocalLoginStatus=LS_LoggedIn
+	SafeFrameScale=1.0
+
+	MasterVolumeMultiplier=100.0
+	DialogVolumeMultiplier=100.0
+	MusicVolumeMultiplier=50.0
+	SFxVolumeMultiplier=100.0
 
 	// By default disable AILogging (see `define AILog)
 	// by command line: '-enableailogging'

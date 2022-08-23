@@ -48,7 +48,10 @@ event Save( byte ControllerId )
 	if(Dirty)
 	{
 		FlattenExtraToProfileSettings();
-		class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.WriteProfileSettings(ControllerId, self);
+		if( KFGameEngine(class'Engine'.static.GetEngine()).LocalLoginStatus != LS_UsingLocalProfile )
+		{
+			class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.WriteProfileSettings(ControllerId, self);
+		}
 		Dirty = false;
 	}
 }
@@ -252,6 +255,9 @@ defaultproperties
 	ProfileMappings.Add((Id=KFID_ShowConsoleCrossHair, Name="Show Console Crosshair", MappingType=PVMT_RawValue))
 
 	ProfileMappings.Add((Id=KFID_SavedEmoteId, Name="Saved Emote ID", MappingType=PVMT_RawValue))
+
+	//Added 2/27/2017 - Support for safe frame setting
+	ProfileMappings.Add((Id=KFID_SafeFrameScale, Name="Safe Frame", MappingType=PVMT_RawValue))
 	
 	// Hex values for SDT_Float values, I use http://www.h-schmidt.net/FloatConverter/IEEE754.html for conversion
 
@@ -317,4 +323,7 @@ defaultproperties
 
 	//Added 11/2/2016- Support for Emotes
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedEmoteId,Data=(Type=SDT_Int32,Value1=-1))))
+
+	//Added 2/27/2017 - Support for safe frame setting
+	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_SafeFrameScale,Data=(Type=SDT_Float,Value1=0x3f800000))))
 }

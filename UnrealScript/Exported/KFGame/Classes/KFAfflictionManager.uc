@@ -191,6 +191,7 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
     KnockdownPower = DamageType.default.KnockdownPower;
     StumblePower = DamageType.default.StumblePower;
     StunPower = DamageType.default.StunPower;
+    SnarePower = DamageType.default.SnarePower;
 
 	// Allow damage instigator perk to modify reaction
     if ( InstigatorPerk != None )
@@ -198,7 +199,7 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
         KnockdownPower *= InstigatorPerk.GetKnockdownPowerModifier( DamageType, BodyPart, bIsSprinting );
         StumblePower *= InstigatorPerk.GetStumblePowerModifier( Outer, DamageType,, BodyPart );
         StunPower *= InstigatorPerk.GetStunPowerModifier( DamageType, HitZoneIdx );
-        SnarePower = InstigatorPerk.GetSnarePower( DamageType, HitZoneIdx );
+        SnarePower *= InstigatorPerk.GetSnarePowerModifier( DamageType, HitZoneIdx );
     }
 
     // increment affliction power

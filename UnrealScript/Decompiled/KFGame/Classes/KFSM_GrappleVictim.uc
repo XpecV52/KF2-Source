@@ -24,7 +24,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         SetGrabEffect(OwnerController, true);
         if(OwnerController.IsLocalController())
         {
-            OwnerController.PostAkEvent(GrabbedSoundModeStartEvent);
+            OwnerController.PostAkEvent(GrabbedSoundModeStartEvent,,, true);
             if(bDisableLook || !OwnerController.bSkipNonCriticalForceLookAt)
             {
                 OwnerController.SetForceLookAtPawn(Leader);

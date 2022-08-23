@@ -41,7 +41,7 @@ event OnRegister(LocalPlayer InPlayer)
     local OnlineSubsystem OnlineSub;
     local OnlinePlayerInterface PlayerInterface;
 
-    if(InPlayer != none)
+    if((InPlayer != none) && !Class'WorldInfo'.static.IsConsoleBuild(9))
     {
         PlayerControllerId = InPlayer.ControllerId;
         OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();

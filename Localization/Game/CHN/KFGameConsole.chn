@@ -13,7 +13,9 @@ KF-Prison="玩监狱"
 KF-ContainmentStation="玩隔离站"
 KF-InfernalRealm="玩地狱领域"
 KF-HostileGrounds="玩敌对区域"
-KF-ZedLanding="玩丧尸登陆"
+KF-ZedLanding="正在玩丧尸登陆"
+KF-TheDescent="正在玩后裔"
+KF-Nuked="正在玩核武器"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -129,6 +131,7 @@ PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="按 XboxTypeS_A，开始"
+SwitchProfile="按下 XboxTypeS_Y 切换配置文件"
 LoginButtonPrompt="登录"
 LoggingIn="正在登录…"
 LoginFailed="登录失败"
@@ -139,6 +142,8 @@ NotLoggedInOnlinePSN="要使用在线功能，你必须注册 PlayStation™Netw
 NetworkError="出现网络错误，请检查你的网络连接。"
 ErrorNoPlayfabDescription="无法与游戏主服务器建立连接。请几分钟后重试。"
 ErrorTSSFailedDescription="无法与游戏均衡服务器建立连接。请确保你已连接到网络，并重试。"
+NotSignedInTitle="未登录。"
+
 
 [Notifications]
 ControllerDisconnectedTitle="控制器断开连接"
@@ -160,12 +165,24 @@ InviteMessage="和我一起炸飞丧尸吧！"
 NotConnectedTitle="网络错误"
 NotConnectedMessage="未连接到网络。检查你的连接并重试。"
 NotConnectedForOnlinePlay="未连接到网络。请检查你的连接并重试，以使用在线功能"
+MultiplayerNotAllowed_Title="不允许多人游戏"
+LoggedOutMessage="激活的配置文件已被修改。您已被返回标题界面。"
+LoggedOutTitle="已退出"
+LoggedInTitle="已登录"
+NewRegionTitle="Welcome"
+NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="查看玩家档案"
+ViewProfileStringXB1="查看玩家卡"
 
 [KFGFxObject_Menu]
 ResetDefaults="你确定希望将设置重置到默认值吗？"
+
+[KFGFxWidget_MenuBar]
+LogoutTitle="退出"
+LogoutDialogTitle="返回到标题界面"
+LogoutDialogMessage="您确定要返回到标题界面？"
 
 [KFGFxTraderContainer_PlayerInventory]
 PerkPrompt="神射"
@@ -177,9 +194,19 @@ ControllerSound="控制器音效"
 MatchmakingRegionString="区域"
 LeaveMenuString="离开比赛匹配也将意味着离开你的小队"
 
+[KFGFxMenu_Store]
+
+
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="区域"
 MapPreference="首选地图"
+
+[KFGFxMenu_Exit]
+HeaderStringXB1="退出"
+LogoutKF2="返回到标题界面"
+
+[Misc]
+NotSignedIn="未登录"
 
 [Entitlements]
 BriarBobbyBundleProductName="伦敦警察布莱尔制服物品包"

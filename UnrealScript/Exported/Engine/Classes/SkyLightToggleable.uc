@@ -59,7 +59,6 @@ defaultproperties
    Components(0)=Sprite
    Components(1)=SkyLightComponent0
    bHardAttach=True
-   BlockRigidBody=False
    CollisionComponent=LightMeshComponent0
    Name="Default__SkyLightToggleable"
    ObjectArchetype=SkyLight'Engine.Default__SkyLight'

@@ -17,6 +17,11 @@ var(Source)			Beam2SourceTargetMethod			SourceMethod;
 /** The strength of the tangent from the source point for each beam. */
 var(Source)			name							SourceName;
 
+`if(`__TW_BEAM_SOCKETS_)
+/** Specific socket name to attach to if using Actor method */
+var(Source)         name                            SourceSocketName;
+`endif
+
 /** Whether to treat the as an absolute position in world space. */
 var(Source)			bool							bSourceAbsolute;
 

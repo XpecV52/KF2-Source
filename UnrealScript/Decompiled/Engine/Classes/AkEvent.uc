@@ -34,9 +34,9 @@ struct native EventRTPCInfo
 
 var() AkBank RequiredBank;
 /** The range at which the sound has attenuated completely (-1: no sound; 0: 2D; 3D otherwise) */
-var(TW) editconst float MaxAudibleDistance;
-/** How long this event plays for */
-var(TW) editconst float Duration;
+var(TW) const float MaxAudibleDistance<EditCondition=bOverrideMaxAudibleDistance>;
+/** (Advanced) Check this flag to be able to modify MaxAudibleDistance instead of using the "MaxAttenuation" value from WWise */
+var(TW) const bool bOverrideMaxAudibleDistance;
 /** Whether the sound is modified by the distance to listener */
 var(TW) const bool bUseListenerDistance;
 /** Whether to use the environment this event is played in to determine what sound Wwise should play */
@@ -55,6 +55,8 @@ var(TW) const bool bIsMusicTrack;
  *  echo sounds
  */
 var(Advanced) bool bUseAdvancedSoundFunctionality;
+/** How long this event plays for */
+var(TW) editconst float Duration;
 var const float OcclusionUpdateInterval;
 /**  
  *Add a tag if you want this event to use a specific Wwise game sync (switch/RTPC).

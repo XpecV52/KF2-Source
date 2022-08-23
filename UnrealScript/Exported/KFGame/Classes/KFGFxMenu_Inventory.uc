@@ -221,7 +221,8 @@ function InitInventory()
 		//look item up to get info on it.
 		ItemIndex = OnlineSub.ItemPropertiesList.Find('Definition', OnlineSub.CurrentInventory[i].Definition);
 
-		if(ItemIndex != INDEX_NONE)
+		// BWJ - 12-21-16 - Hide items that have no definition
+		if(ItemIndex != INDEX_NONE && OnlineSub.CurrentInventory[i].Definition != 0 )
 		{
 			TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
 			
@@ -349,7 +350,11 @@ function OnInventoryReadComplete()
 
 function bool IsItemRecyclable( ItemProperties ItemDetailsHolder, out const array<ExchangeRuleSets> ExchangeRules )
 {
-	return (ExchangeRules.length > 0 && (ItemDetailsHolder.Type == ITP_WeaponSkin || ItemDetailsHolder.Type == ITP_CharacterSkin || ItemDetailsHolder.Type == ITP_Emote) ) || (ItemDetailsHolder.Type == ITP_KeyCrate && ExchangeRules.length == 2);
+	local int RequireRulesToRecycle;
+
+	RequireRulesToRecycle = class'WorldInfo'.static.IsConsoleBuild() ? 1 : 2;
+	
+	return (ExchangeRules.length > 0 && (ItemDetailsHolder.Type == ITP_WeaponSkin || ItemDetailsHolder.Type == ITP_CharacterSkin || ItemDetailsHolder.Type == ITP_Emote) ) || (ItemDetailsHolder.Type == ITP_KeyCrate && ExchangeRules.length == RequireRulesToRecycle);
 }
 
 function bool IsItemExchangeable( out ItemProperties ItemDetailsHolder, out const array<ExchangeRuleSets> ExchangeRules )
@@ -920,8 +925,15 @@ function Callback_UseItem( int ItemDefinition )
 		NeededItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', NeededItemID)];
 		if(NeededItem.Price == "" || NeededItem.SignedOfferId != "")
 		{
-			//open market place item
-			OnlineSub.OpenMarketPlaceSearch(NeededItem);
+			if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
+			{
+				OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI( GetLP().ControllerId, NeededItem.ProductID );
+			}
+			else
+			{
+				//open market place item
+				OnlineSub.OpenMarketPlaceSearch(NeededItem);
+			}
 		}
 		else
 		{

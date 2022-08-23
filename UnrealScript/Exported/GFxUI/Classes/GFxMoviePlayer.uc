@@ -715,6 +715,10 @@ function ApplyPriorityVisibilityEffect(bool bRemoveEffect);
  */
 native function UpdateSplitscreenLayout();
 
+//@HSL_BEGIN - BWJ - 2-17-17 - Support for changing visibility of the movie
+native function SetVisibility( bool bVisible );
+//@HSL_END
+
 defaultproperties
 {
    bDisplayWithHudOff=True

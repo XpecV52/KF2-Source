@@ -579,10 +579,6 @@ function ClearDeleteSaveGameDataCompleteDelegate(byte LocalUserNum,delegate<OnDe
 	}
 }
 
-//@HSL_BEGIN - JRO - 4/28/2016 - Adding PlayGo capability to script
-function bool IsGameFullyInstalled() {return true;}
-//@HSL_END
-
 /**
 * Deletes a player's save game data
 *
@@ -593,7 +589,10 @@ function bool IsGameFullyInstalled() {return true;}
 *
 * @return true if the delete succeeded, false otherwise
 */
-function bool DeleteSaveGame(byte LocalUserNum,int DeviceId,string FriendlyName,string FileName);
+function bool DeleteSaveGame(byte LocalUserNum,int DeviceId,string FriendlyName,string FileName)
+{
+	return DeleteSaveGameData( LocalUserNum, FileName );
+}
 
 /**
 * Clears any cached save games

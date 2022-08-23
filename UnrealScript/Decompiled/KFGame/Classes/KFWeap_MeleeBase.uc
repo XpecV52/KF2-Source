@@ -76,6 +76,9 @@ var array<BlockEffectInfo> BlockTypes;
 var() float BlockDamageMitigation;
 /** Parry damage will be mitigated by this percentage */
 var() float ParryDamageMitigationPercent;
+/** Time between block hit reaction anims */
+var() protected float BlockHitAnimCooldownTime;
+var protected transient float LastBlockHitAnimTime;
 var array<name> MeleeAttackSettleAnims;
 var array<name> MeleeBlockHitAnims;
 var ParticleSystem DistortTrailParticle;
@@ -464,6 +467,40 @@ static simulated function float CalculateTraderWeaponStatFireRate()
 static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
 {
     return 8;
+}
+
+simulated state Active
+{
+    simulated function bool CanProcessPendingFire(name PrevStateName, byte FireModeNum)
+    {
+        return false;
+    }
+
+    simulated event BeginState(name PreviousStateName)
+    {
+        local int I;
+
+        super.BeginState(PreviousStateName);
+        if((Instigator != none) && Instigator.IsLocallyControlled())
+        {
+            I = 0;
+            J0x51:
+
+            if(I < GetPendingFireLength())
+            {
+                if(PendingFire(I))
+                {
+                    StartFire(byte(I));
+                    goto J0xA5;
+                }
+                ++ I;
+                goto J0x51;
+            }
+        }
+        J0xA5:
+
+    }
+    stop;    
 }
 
 simulated state WeaponUpkeep
@@ -947,12 +984,13 @@ simulated state MeleeBlocking
         {
             InstigatorPerk.SetSuccessfullBlock();
         }
-        if((MeleeBlockHitAnims.Length > 0) && !IsTimerActive('ParryCheckTimer'))
+        if(((MeleeBlockHitAnims.Length > 0) && (WorldInfo.TimeSeconds - LastBlockHitAnimTime) > BlockHitAnimCooldownTime) && !IsTimerActive('ParryCheckTimer'))
         {
             AnimIdx = Rand(MeleeBlockHitAnims.Length);
             Duration = MySkelMesh.GetAnimLength(MeleeBlockHitAnims[AnimIdx]);
             if(Duration > float(0))
             {
+                LastBlockHitAnimTime = WorldInfo.TimeSeconds;
                 PlayAnimation(MeleeBlockHitAnims[AnimIdx]);
                 SetTimer(Duration, false, 'BlockLoopTimer');
             }
@@ -1025,6 +1063,7 @@ defaultproperties
     BlockTypes(1)=(dmgType=Class'KFDT_Slashing',BlockSound=none,ParrySound=none,BlockParticleSys=none,ParryParticleSys=none)
     BlockDamageMitigation=0.5
     ParryDamageMitigationPercent=0.2
+    BlockHitAnimCooldownTime=0.5
     MeleeAttackSettleAnims(0)=Settle_V1
     MeleeBlockHitAnims(0)=Block_Hit_V1
     MeleeBlockHitAnims(1)=Block_Hit_V2

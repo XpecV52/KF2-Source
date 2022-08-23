@@ -229,7 +229,7 @@ function UpdatePerkHeadShots(ImpactInfo Impact, class<DamageType> DamageType, in
         return;
     }
     KFPM = KFPawn_Monster(Impact.HitActor);
-    if(KFPM != none)
+    if((KFPM != none) && !KFPM.bIsHeadless)
     {
         HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName;
         if(((HitZoneIdx == 0) && KFPM != none) && KFPM.IsAliveAndWell())
@@ -360,7 +360,7 @@ simulated function bool IgnoresPenetrationDmgReduction()
     return IsPenetrationActive();
 }
 
-simulated function float GetSnarePower(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     if((((IsSkullCrackerActive()) && DamageType != none) && IsDamageTypeOnPerk(class<KFDamageType>(DamageType))) && HitZoneIdx == 0)
     {
@@ -534,7 +534,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_8284
+    BoneBreakerBodyParts(1)=.!=_8445
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -544,8 +544,8 @@ Parameter name: index
     ProgressStatID=80
     PerkBuildStatID=81
     SecondaryXPModifier[1]=1
-    SecondaryXPModifier[2]=2
-    SecondaryXPModifier[3]=3
+    SecondaryXPModifier[2]=1
+    SecondaryXPModifier[3]=1
     PerkName="Gunslinger"
     Passives(0)=(Title="Perk Weapon Damage",Description="Increase perk weapon damage %x% per level",IconPath="")
     Passives(1)=(Title="Bullet Resistance",Description="Increase resistance to projectile damage 5% plus %x% per level",IconPath="")
@@ -581,7 +581,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_993
+    BodyPartsCanStumble(1)=.!=_1044
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4

@@ -230,6 +230,7 @@ simulated function PlayTraderTickDialog(int RemainingTime, Controller C, WorldIn
     local KFPawn_Human KFPH, Teammate;
     local KFGameReplicationInfo KFGRI;
     local KFPlayerController KFPC;
+    local KFMapInfo KFMI;
     local int BestOptionID;
     local byte NumOptions;
 
@@ -269,13 +270,14 @@ simulated function PlayTraderTickDialog(int RemainingTime, Controller C, WorldIn
     KFGRI = KFGameReplicationInfo(WI.GRI);
     if((KFGRI != none) && KFGRI.OpenedTrader != none)
     {
-        if(VSize(KFGRI.OpenedTrader.Location - KFPH.Location) >= default.FarFromTraderDistance)
+        KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+        if(((KFMI == none) || KFMI.SubGameType != 1) && VSize(KFGRI.OpenedTrader.Location - KFPH.Location) >= default.FarFromTraderDistance)
         {
             AddRandomOption(10, NumOptions, BestOptionID);
         }
     }
     P = WI.PawnList;
-    J0x25B:
+    J0x2C9:
 
     if(P != none)
     {
@@ -303,16 +305,16 @@ simulated function PlayTraderTickDialog(int RemainingTime, Controller C, WorldIn
                         if(Teammate.GetHealthPercentage() < default.TeammateNeedsHealPct)
                         {
                             AddRandomOption(16, NumOptions, BestOptionID);
-                            goto J0x37F;
+                            goto J0x3ED;
                         }
                     }
                 }
             }
         }
         P = P.NextPawn;
-        goto J0x25B;
+        goto J0x2C9;
     }
-    J0x37F:
+    J0x3ED:
 
     PlayDialog(BestOptionID, C);
 }

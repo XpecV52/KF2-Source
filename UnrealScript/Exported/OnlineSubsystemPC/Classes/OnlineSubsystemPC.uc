@@ -2210,14 +2210,6 @@ function ClearReadAchievementsCompleteDelegate(byte LocalUserNum,delegate<OnRead
  */
 function EOnlineEnumerationReadState GetAchievements(byte LocalUserNum,out array<AchievementDetails> Achievements,optional int TitleId = 0);
 
-
-//@HSL_BEGIN - BWJ - 6-15-16 - Auth support for backend service
-delegate OnOnlineServiceAuthComplete();
-function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
-function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
-function AuthWithOnlineService();
-//@HSL_END
-
 //@HSL_BEGIN_XBOX
 function ClearAchievements(byte LocalUserNum, optional int TitleId = 0);
 delegate OnStatisticChanged(UniqueNetId PlayerNetId, name StatName, string NewStatValue);

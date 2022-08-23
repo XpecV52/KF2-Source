@@ -101,8 +101,7 @@ static event bool GetAvailableCharacterArchetype(KFCharacterInfo_Human archetype
 static function bool GetAvailable(KFUnlockableAsset Asset)
 {
 	//@HSL_BEGIN - JRO - 5/12/2016 - Disable non-starter characters while installing
-	if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) &&
-		!class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled() &&
+	if ( !class'GameEngine'.static.IsGameFullyInstalled() &&
 		String(Asset.Name) != "CHR_MrFoster_archetype" &&
 		String(Asset.Name) != "CHR_Ana_Archetype")
 	{

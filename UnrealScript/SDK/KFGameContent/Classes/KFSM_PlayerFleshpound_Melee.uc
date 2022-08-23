@@ -24,6 +24,8 @@ static function bool IsInSpecialMode( KFPawn P )
 
 defaultproperties
 {
+	SoundStopEvent=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Righ_Arm_LP_Stop'
+
 	Attacks.Add((Type=PZA_Default,  Stance=EAS_FullBody, Anims=(Player_Light_Atk)))
 	Attacks.Add((Type=PZA_Sprinting, Stance=EAS_FullBody, Anims=(Player_Sprint_Light_Atk, Player_Light_Atk)))
 	Attacks.Add((Type=PZA_Backwards,  Stance=EAS_FullBody, Anims=(Player_Kick), bCannotBeParried=true))

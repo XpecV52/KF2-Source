@@ -11,81 +11,7 @@
 class KFPerk_FieldMedic extends KFPerk
 	native;
 
-
-
- 
-
-
- 
-
-
-  
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
-
-
- 
-
-
- 
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-#linenumber 14
+//`include(KFOnlineStats.uci)
 
 /** Passive skills */
 var	const PerkSkill 				HealerRecharge;			
@@ -428,7 +354,7 @@ simulated static function ParticleSystem GetAAEffect()
 	return default.AAParticleSystem;
 }
 
-simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsSlugActive() && DamageType != none && IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
 	{

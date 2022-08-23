@@ -463,12 +463,24 @@ function int BuySecondaryAmmoMag( out SItemInformation ItemInfo  )
 	local int MagAmmoCost;
 	local int MagSpaceAvailable;
 	local int AddedAmmo;
+    local float AmmoCostScale;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if (KFGRI != none)
+    {
+        AmmoCostScale = KFGRI.GameAmmoCostScale;
+    }
+    else
+    {
+        AmmoCostScale = 1.0;
+    }
 
 	MagAmmoCost = 0;
     MagSpaceAvailable = ItemInfo.MaxSecondaryAmmo - ItemInfo.SecondaryAmmoCount;
     if( MagSpaceAvailable > 0 )
     {
-        MagAmmoCost = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
+        MagAmmoCost = AmmoCostScale * ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
 
         // Don't charge them full price if they don't buy a full mag's worth of ammo
         // or we can only afford part of a magazine
@@ -542,11 +554,23 @@ function float FillAmmo( out SItemInformation ItemInfo, optional bool bIsGrenade
 	local float MissingAmmo, MagSize;
 	local float FillAmmoCost, PricePerMag;
     local float PricePerRound;
+    local float AmmoCostScale;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if (KFGRI != none)
+    {
+        AmmoCostScale = KFGRI.GameAmmoCostScale;
+    }
+    else
+    {
+        AmmoCostScale = 1.0;
+    }
 
     if( ItemInfo.bIsSecondaryAmmo )
     {
 		MagSize = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagSize;
-		PricePerMag = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
+		PricePerMag = AmmoCostScale * ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
 		MissingAmmo = ItemInfo.MaxSecondaryAmmo - ItemInfo.SecondaryAmmoCount;
 		FillAmmoCost = GetFillAmmoCost(ItemInfo);
     }
@@ -594,12 +618,24 @@ function int GetFillAmmoCost( out SItemInformation ItemInfo )
 {
 	local int AmmoCount, MaxAmmoCount;
     local float MissingAmmo, PricePerMag, MagSize, PricePerRound;
+    local float AmmoCostScale;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if (KFGRI != none)
+    {
+        AmmoCostScale = KFGRI.GameAmmoCostScale;
+    }
+    else
+    {
+        AmmoCostScale = 1.0;
+    }
 
     if( ItemInfo.bIsSecondaryAmmo )
     {
     	AmmoCount = ItemInfo.SecondaryAmmoCount;
     	MaxAmmoCount = ItemInfo.MaxSecondaryAmmo;
-    	PricePerMag = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
+    	PricePerMag = AmmoCostScale * ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
     	MagSize = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagSize;
     }
     else
@@ -670,13 +706,25 @@ function bool AutoFillOwnedItems( out int AutoFillDosh, bool bLastCycle )
 {
 	local int i, PricePerMag, AmmoCount, MaxAmmoCount;
 	local SItemInformation ItemInfo;
+    local float AmmoCostScale;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if (KFGRI != none)
+    {
+        AmmoCostScale = KFGRI.GameAmmoCostScale;
+    }
+    else
+    {
+        AmmoCostScale = 1.0;
+    }
 	
 	for (i = 0; i < OwnedItemList.Length; i++)
 	{
 		ItemInfo = OwnedItemList[ i ];
 	    if( ItemInfo.bIsSecondaryAmmo )
 	    {
-			PricePerMag = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
+			PricePerMag = AmmoCostScale * ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
 	    	AmmoCount = ItemInfo.SecondaryAmmoCount;
 	    	MaxAmmoCount = ItemInfo.MaxSecondaryAmmo;
 	    }
@@ -804,10 +852,12 @@ function InitializeOwnedItemList()
    	local Inventory Inv;
    	local KFWeapon KFW;
 	local KFPawn_Human KFP;
+    local bool AllowGrenades;
 
     OwnedItemList.length = 0;
 
 	TraderItems = KFGameReplicationInfo( WorldInfo.GRI ).TraderItems;
+    AllowGrenades = KFGameReplicationInfo( WorldInfo.GRI ).bAllowGrenadePurchase;
 
 	KFP = KFPawn_Human( Pawn );
     if( KFP != none )
@@ -820,7 +870,7 @@ function InitializeOwnedItemList()
 
 		// init grenade purchase values
 		GrenadeItem.SpareAmmoCount = MyKFIM.GrenadeCount;
-		GrenadeItem.MaxSpareAmmo = KFP.GetPerk().MaxGrenadeCount;
+		GrenadeItem.MaxSpareAmmo = AllowGrenades ? KFP.GetPerk().MaxGrenadeCount : 0;
 	   	GrenadeItem.AmmoPricePerMagazine = TraderItems.GrenadePrice;
 	   	GrenadeItem.DefaultItem.WeaponDef = CurrentPerk.GetGrenadeWeaponDef();
 
@@ -953,6 +1003,18 @@ function SetWeaponInformation( KFWeapon KFW )
 function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
 {
    	local SItemInformation WeaponInfo;
+    local float AmmoCostScale;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if (KFGRI != none)
+    {
+        AmmoCostScale = KFGRI.GameAmmoCostScale;
+    }
+    else
+    {
+        AmmoCostScale = 1.0;
+    }
 
    	// Include current magazine ammo in spare ammo count
 	WeaponInfo.SpareAmmoCount = KFW.GetTotalAmmoAmount(0);
@@ -963,7 +1025,7 @@ function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
 	WeaponInfo.MaxSecondaryAmmo = KFW.GetMaxAmmoAmount(1);
 	WeaponInfo.DefaultItem = DefaultItem;
 
-	WeaponInfo.AmmoPricePerMagazine = DefaultItem.WeaponDef.default.AmmoPricePerMag;
+	WeaponInfo.AmmoPricePerMagazine = AmmoCostScale * DefaultItem.WeaponDef.default.AmmoPricePerMag;
 	WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor( DefaultItem, KFW );
 
     AddItemByPriority( WeaponInfo );
@@ -983,6 +1045,18 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 	local byte ItemIndex;
 	local int  AddedWeaponIndex, OwnedSingleIdx, SingleDualAmmoDiff;
 	local bool bAddingDual;
+    local float AmmoCostScale;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if (KFGRI != none)
+    {
+        AmmoCostScale = KFGRI.GameAmmoCostScale;
+    }
+    else
+    {
+        AmmoCostScale = 1.0;
+    }
 
 	// Magazine capacity affects both spare ammo and max spare ammo. modify this first
    	WeaponInfo.MagazineCapacity = DefaultItem.MagazineCapacity;
@@ -1006,10 +1080,7 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 			if( OwnedItemList[OwnedSingleIdx].DefaultItem.ClassName == DefaultItem.SingleClassName )
 			{
 				SingleDualAmmoDiff = OwnedItemList[OwnedSingleIdx].SpareAmmoCount - WeaponInfo.SpareAmmoCount;
-				if( OwnedItemList[OwnedSingleIdx].SpareAmmoCount >= WeaponInfo.SpareAmmoCount )
-				{
-					WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount /*+ WeaponInfo.MagazineCapacity/2*/; // can't add mag/2 ammo here because it makes buying two singles better than buying a dual
-				}
+				WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount /*+ WeaponInfo.MagazineCapacity/2*/; // can't add mag/2 ammo here because it makes buying two singles better than buying a dual
 				break;
 			}
 		}
@@ -1026,7 +1097,7 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 	WeaponInfo.MaxSecondaryAmmo = DefaultItem.MaxSecondaryAmmo;
 	CurrentPerk.ModifyMaxSpareAmmoAmount( none, WeaponInfo.MaxSecondaryAmmo, DefaultItem, true );
 
-	WeaponInfo.AmmoPricePerMagazine = DefaultItem.WeaponDef.default.AmmoPricePerMag;
+	WeaponInfo.AmmoPricePerMagazine = AmmoCostScale * DefaultItem.WeaponDef.default.AmmoPricePerMag;
    	WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor( DefaultItem );
 
 	WeaponInfo.DefaultItem = DefaultItem;

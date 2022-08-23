@@ -4561,14 +4561,6 @@ function bool ShowGamerCardUIByUsername(byte LocalUserNum, string UserName);
 function bool RecordPlayersRecentlyMet( byte LocalUserNum, out array<PlayerNameIdPair> Players, string GameDescription ); //@HSL_BEGIN - JRO - 4/28/2016 - PS4 needs player names
 // @zombie_ps4_end
 
-
-//@HSL_BEGIN - BWJ - 6-15-16 - Auth support for backend service
-delegate OnOnlineServiceAuthComplete();
-function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
-function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
-function AuthWithOnlineService();
-//@HSL_END
-
 defaultproperties
 {
    CurrentNotificationPosition=NNP_TopRight

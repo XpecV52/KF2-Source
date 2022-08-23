@@ -22,4 +22,5 @@ static function bool IsInSpecialMode(KFPawn P)
 defaultproperties
 {
     Attacks=/* Array type was not detected. */
+    SoundStopEvent=AkEvent'ww_zed_fleshpound_2.Play_FleshPound_Righ_Arm_LP_Stop'
 }

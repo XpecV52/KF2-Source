@@ -559,8 +559,8 @@ var globalconfig bool bAllowRagdollAndGoreOnDeadBodies;
 /** The time when a gib last collided with something in the world (relative to WorldInfo.TimeSeconds) */
 var transient float LastGibCollisionTime;
 
-/** Tells remote clients to play a melee impact effect */
-var repnotify vector MeleeImpactLocation;
+/** Scale to apply to mesh when changed */
+var repnotify float VisualScale;
 
 /*********************************************************************************************
  * @name	Status Effects
@@ -889,6 +889,7 @@ enum ESpecialMove
 
 	/** Human Moves */
 	SM_GrappleVictim,
+    SM_DisabledGrappleVictim,
 	SM_HansGrappleVictim,
 	SM_SirenVortexVictim,
 	SM_Emote,
@@ -1082,7 +1083,7 @@ replication
 	if ( bNetDirty )
 		AmbientSound, WeaponAttachmentTemplate, bIsSprinting, InjuredHitZones,
 		KnockdownImpulse, ReplicatedSpecialMove, bEmpDisrupted, bEmpPanicked, bFirePanicked,
-        RepFireBurnedAmount, bUnaffectedByZedTime, bMovesFastInZedTime;
+        RepFireBurnedAmount, bUnaffectedByZedTime, bMovesFastInZedTime, VisualScale;
 	if ( bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout )
 		HitFxInfo, HitFxRadialInfo, HitFxInstigator, HitFxAddedRelativeLocs, HitFxAddedHitCount;
 	if ( Physics == PHYS_RigidBody && !bTearOff )
@@ -1100,7 +1101,7 @@ replication
 
 	// Replicated to all but the owning client
 	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
-		WeaponAmbientSound, MeleeImpactLocation;
+		WeaponAmbientSound;
 	if ( bEnableAimOffset && (!bNetOwner || bDemoRecording) )
 		ReplicatedAimOffsetPct;
     if ( bNetDirty && bCanCloak )
@@ -1327,9 +1328,9 @@ simulated event ReplicatedEvent(name VarName)
 		AfflictionHandler.UpdateMaterialParameter(AF_FirePanic, ByteToFloat(RepFireBurnedAmount));
 		break;
 
-	case nameOf(MeleeImpactLocation):
-		OnMeleeImpactLocationUpdated();
-		break;
+    case nameof(VisualScale):
+        SetVisualScale(VisualScale);
+        break;
 	}
 
 	Super.ReplicatedEvent(VarName);
@@ -1565,9 +1566,9 @@ event BaseChange()
 simulated function SetBaseEyeheight()
 {
 	if ( !bIsCrouched )
-		BaseEyeheight = Default.BaseEyeheight;
+		BaseEyeheight = Default.BaseEyeheight * VisualScale;
 	else
-		BaseEyeheight = Default.BaseCrouchEyeHeight;
+		BaseEyeheight = Default.BaseCrouchEyeHeight * VisualScale;
 
 	//`log(self@"Absolute BaseEyeheight="$BaseEyeheight + CylinderComponent.CollisionHeight);
 }
@@ -1906,24 +1907,6 @@ simulated function PlayWeaponSwitch(Weapon OldWeapon, Weapon NewWeapon)
 }
 
 /**
- * Sets the melee impact location for hit effect processing
- * Network: Server
- */
-function SetMeleeImpactLocation( vector MeleeImpactLoc )
-{
-	MeleeImpactLocation = MeleeImpactLoc;
-}
-
-/**
- * Processes a melee impact location
- * Network: Remote Players
- */
-simulated function OnMeleeImpactLocationUpdated()
-{
-	KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects( MeleeImpactLocation, self,,,, true );
-}
-
-/**
  * Overridden to iterate through the DefaultInventory array and
  * give each item to this Pawn.
  *
@@ -2230,6 +2213,23 @@ simulated function ANIMNOTIFY_ShellEject()
 simulated function ANIMNOTIFY_SpawnedKActor( KFKActorSpawnable NewKActor, AnimNodeSequence AnimSeqInstigator );
 
 /**
+ * returns base Aim Rotation without any adjustment (no aim error, no autolock, no adhesion.. just clean initial aim rotation!)
+ *
+ * @return	base Aim rotation.
+ */
+simulated event Rotator GetBaseAimRotation()
+{
+	local rotator AimRot;
+
+	if( IsDoingSpecialMove() && SpecialMoves[SpecialMove].GetSMAimRotation(AimRot) )
+	{
+		return AimRot;
+	}
+
+	return super.GetBaseAimRotation();
+}
+
+/**
  * Allow Controller.GetAdjustedAimFor() on clients
  */
 simulated function Rotator GetAdjustedAimFor( Weapon W, vector StartFireLoc )
@@ -2350,8 +2350,8 @@ function bool DoJump( bool bUpdating )
 			MyKFWeapon.PerformZoom(false);
 		}
 
-		return true;
-	}
+        return true;
+    }
 
 	return false;
 }
@@ -2463,6 +2463,39 @@ function RestoreAirControlTimer()
 	}
 
 	AirControl = default.AirControl;
+}
+
+/** Let Kismet know we've teleported so it can handle any transitions */
+function PostTeleport( Teleporter OutTeleporter )
+{
+	local array<SequenceObject> AllTeleportEvents;
+	local KFSeqEvent_PawnTeleported TeleportEvt;
+	local Sequence GameSeq;
+	local int i;
+
+	if( WorldInfo.NetMode == NM_Client )
+	{
+		return;
+	}
+
+	// Get the gameplay sequence.
+	GameSeq = WorldInfo.GetGameSequence();
+
+	if( GameSeq != none )
+	{
+		GameSeq.FindSeqObjectsByClass( class'KFSeqEvent_PawnTeleported', true, AllTeleportEvents );
+
+		for( i = 0; i < AllTeleportEvents.Length; ++i )
+		{
+			TeleportEvt = KFSeqEvent_PawnTeleported( AllTeleportEvents[i] );
+
+			if( TeleportEvt != None  )
+			{
+				TeleportEvt.Reset();
+				TeleportEvt.CheckActivate( self, self );
+			}
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -2601,7 +2634,8 @@ function HandleMomentum( vector Momentum, Vector HitLocation, class<DamageType> 
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bRepairArmor=true, optional bool bMessageHealer=true)
 {
     local int i;
-
+    local int OldHealth;
+    local bool superResult;
     // Reduce burn duration and damage in half if you heal while burning
     for( i=0; i<DamageOverTimeArray.Length; ++i )
 	{
@@ -2613,7 +2647,16 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
         }
 	}
 
-	return Super.HealDamage(Amount, Healer, DamageType);
+    OldHealth = Health;
+
+	superResult = Super.HealDamage(Amount, Healer, DamageType);
+
+    if (Health - OldHealth > 0)
+    {
+        WorldInfo.Game.ScoreHeal(Health - OldHealth, OldHealth, Healer, self, DamageType);
+    }
+
+    return superResult;
 }
 
 /** Overloaded to use a custom damagetype */
@@ -2672,6 +2715,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	local class<KFDamageType> KFDT;
 	local KFGameInfo KFGI;
 	local KFPlayerController KFPC;
+	local bool bAllowHeadshot;
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 
@@ -2681,7 +2725,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
-
+	bAllowHeadshot = CanCountHeadshots();
 	OldHealth = Health;
 	Super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
 
@@ -2702,7 +2746,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 		}
 	}
 
-	if(HitFxInfo.HitBoneIndex == HZI_HEAD && OldHealth > 0 &&  WorldInfo.Game != None )
+	if( bAllowHeadshot && HitFxInfo.HitBoneIndex == HZI_HEAD && OldHealth > 0 && WorldInfo.Game != None )
 	{
 		KFPC = KFPlayerController(InstigatedBy);
 		KFGI = KFGameInfo(WorldInfo.Game);
@@ -2777,6 +2821,12 @@ function AdjustRadiusDamage(out float InBaseDamage, float DamageScale, vector Hu
 
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
+}
+
+/** Overridden in subclasses, determines if we should record a headshot when taking damage */
+function bool CanCountHeadshots()
+{
+	return true;
 }
 
 /*********************************************************************************************
@@ -3634,6 +3684,17 @@ simulated function PlayHealEffects(class<KFDamageType> DamageType)
 	}
 }
 
+/** client side call to update visual scale of the mesh */
+simulated function SetVisualScale(float NewScale)
+{
+    VisualScale = NewScale;
+    Mesh.SetScale(VisualScale);
+    SetRTPCValue('Visual_Scale', VisualScale);
+    DialogAkComponent.SetRTPCValue("Visual_Scale", VisualScale);
+
+    SetBaseEyeheight();
+}
+
 /** Called clientside by PlayTakeHitEffects on the Instigating Pawn */
 simulated function PlayDamageInstigatorHitEffects(KFPawn Victim)
 {
@@ -4124,7 +4185,7 @@ simulated function UpdateMeshForFleXCollision()
 simulated function SetEnableFleXCollision(bool bEnabled)
 {
 	if ( bPlayedDeath )
-		return;
+    return;
 
 	if ( Mesh.RBCollideWithChannels.FlexAsset != bEnabled )
 	{
@@ -4989,6 +5050,7 @@ defaultproperties
    HeadBoneName="head"
    TorsoBoneName="Spine2"
    PelvisBoneName="Spine"
+   VisualScale=1.000000
    Begin Object Class=KFAfflictionManager Name=Afflictions_0
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000

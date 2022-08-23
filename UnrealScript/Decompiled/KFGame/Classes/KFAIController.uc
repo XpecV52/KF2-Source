@@ -378,6 +378,7 @@ var float MinTimeBetweenStatusUpdates;
 var float MaxTimeBetweenStatusUPdates;
 var float LastMoveFinishTime;
 var float MinTimeBetweenEnemyChanges;
+var float LastDestructibleBumpTime;
 var Actor ActorEnemy;
 var KFDoorActor DoorEnemy;
 var KFPawn MeleeTarget;
@@ -488,6 +489,9 @@ native static function float EstimateProjectileTimeToTarget(float Distance, floa
 
 // Export UKFAIController::execFastActorTrace(FFrame&, void* const)
 native function bool FastActorTrace(Vector TraceEnd, optional Vector TraceStart, optional Vector BoxExtent, optional bool bTraceComplex);
+
+// Export UKFAIController::execActorBlockTest(FFrame&, void* const)
+native function Actor ActorBlockTest(Vector TraceEnd, optional Vector TraceStart, optional Vector BoxExtent, optional bool bTraceActors, optional bool bTraceComplex);
 
 // Export UKFAIController::execTestTrace(FFrame&, void* const)
 native function bool TestTrace(Vector TraceEnd, optional Vector TraceStart);
@@ -1561,13 +1565,6 @@ function bool DoHeavyZedBump(Actor Other, Vector HitNormal)
     if(Other.bCanBeDamaged && KFFracturedMeshGlass(Other) != none)
     {
         KFFracturedMeshGlass(Other).BreakOffAllFragments();
-        return true;
-    }
-    if(((Other.IsA('KFDestructibleActor') && !GetActiveCommand().IsA('AICommand_Melee')) && Other.bCollideActors) && !MyKFPawn.IsDoingSpecialMove())
-    {
-        AIZeroMovementVariables();
-        DisableBump(2);
-        NotifyAttackActor(Other);
         return true;
     }
     BumpedMonster = KFPawn_Monster(Other);
@@ -3051,6 +3048,9 @@ final function DisableNotifyHitWall(optional float DisabledTime)
 
 event bool NotifyHitWall(Vector HitNormal, Actor Wall)
 {
+    local KFDestructibleActor KFDA;
+    local bool bEmerging;
+
     LastWallHitNormal = HitNormal;
     LastHitWall = Wall;
     LastNotifyHitWallTime = WorldInfo.TimeSeconds;
@@ -3060,7 +3060,31 @@ event bool NotifyHitWall(Vector HitNormal, Actor Wall)
     }
     if((MyKFPawn != none) && MyKFPawn.IsDoingSpecialMove(10))
     {
-        DisableNotifyHitWall(0.5);
+        bEmerging = true;
+    }
+    if((!Wall.bStatic && Wall.bCollideActors) && Wall.bCanBeDamaged)
+    {
+        KFDA = KFDestructibleActor(Wall);
+        if(KFDA != none)
+        {
+            MyKFPawn.HandleDestructibleBump(KFDA, HitNormal);
+            if(bEmerging)
+            {
+                return true;
+            }
+            if(((((((ActorEnemy != KFDA) && KFDA.bBlockActors) && !MyKFPawn.IsDoingSpecialMove()) && (LastDestructibleBumpTime == 0) || (WorldInfo.TimeSeconds - LastDestructibleBumpTime) > 1) && CanAttackDestructibles()) && KFDA.HasAnyHealth()) && !GetActiveCommand().IsA('AICommand_Melee'))
+            {
+                if((vector(MyKFPawn.Rotation) Dot Normal(KFDA.Location - MyKFPawn.Location)) >= 0.67)
+                {
+                    AIZeroMovementVariables();
+                    NotifyAttackActor(Wall);
+                }
+            }
+            LastDestructibleBumpTime = WorldInfo.TimeSeconds;
+        }
+    }
+    if(bEmerging)
+    {
         return true;
     }
     if(CachedAICommandList != none)
@@ -3865,7 +3889,6 @@ event bool NotifyBump(Actor Other, Vector HitNormal)
     local KFPawn_Monster KFPM;
     local bool bInPartialCollisionReductionTrigger;
     local Actor HitActor;
-    local Vector HitLocation, MyHitNormal;
 
     if((MyKFPawn != none) && MyKFPawn.IsDoingSpecialMove(10))
     {
@@ -3885,7 +3908,7 @@ event bool NotifyBump(Actor Other, Vector HitNormal)
                 {
                     if(bInPartialCollisionReductionTrigger && Enemy != none)
                     {
-                        HitActor = Trace(HitLocation, MyHitNormal, Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), MyKFPawn.Location + (vect(0, 0, 1) * MyKFPawn.BaseEyeHeight), true);
+                        HitActor = ActorBlockTest(Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), MyKFPawn.Location + (vect(0, 0, 1) * MyKFPawn.BaseEyeHeight),, true);
                     }
                     if(!IsWithinAttackRange() || bInPartialCollisionReductionTrigger && (HitActor == none) || HitActor != Enemy)
                     {
@@ -5504,6 +5527,11 @@ function NotifyAttackActor(Actor A)
         Focus = A;
         Class'AICommand_Attack_Melee'.static.Melee(self, A);
     }
+}
+
+function bool CanAttackDestructibles()
+{
+    return bCanDoHeavyBump;
 }
 
 final function DebugLogRoute();

@@ -1175,7 +1175,7 @@ defaultproperties
    TheatricCameraSocketName="TheatricCameraRootSocket"
    bLargeZed=True
    bCanGrabAttack=True
-   CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Archetype'
+   MonsterArchPath="ZED_ARCH.ZED_Hans_Archetype"
    HeadlessBleedOutTime=6.000000
    ParryResistance=4
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_ZedHansBase:MeleeHelper_0'
@@ -1308,11 +1308,12 @@ defaultproperties
       SpecialMoveClasses(30)=None
       SpecialMoveClasses(31)=None
       SpecialMoveClasses(32)=None
-      SpecialMoveClasses(33)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
-      SpecialMoveClasses(34)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
-      SpecialMoveClasses(35)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
-      SpecialMoveClasses(36)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
-      SpecialMoveClasses(37)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
+      SpecialMoveClasses(33)=None
+      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
+      SpecialMoveClasses(36)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
+      SpecialMoveClasses(37)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
+      SpecialMoveClasses(38)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_ZedHansBase:SpecialMoveHandler_0'
    End Object

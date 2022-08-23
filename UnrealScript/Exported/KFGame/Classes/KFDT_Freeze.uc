@@ -518,19 +518,32 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
 {
 	local KFPawn_Monster Zed;
 	local MaterialInstanceConstant MIC;
+	local KFGoreManager GoreManager;
+	local float IceScalar;
 
+	IceScalar = 1.f;
 	if ( !bMaterialOnly )
 	{
 		// Switch to gore mesh first so we can apply our gore material param
 		Zed = KFPawn_Monster(P);
 		if ( Zed != None )
 		{
-			if ( !Zed.bIsGoreMesh )
+			GoreManager = KFGoreManager( P.WorldInfo.MyGoreEffectManager );
+			if( GoreManager != none && GoreManager.AllowMutilation() )
 			{
-				Zed.SwitchToGoreMesh();
-			}
+				if ( !Zed.bIsGoreMesh )
+				{
+					Zed.SwitchToGoreMesh();
+				}
 
-	 		Zed.ForceBreakAllConstraints();
+		 		Zed.ForceBreakAllConstraints();
+		 	}
+		 	else
+		 	{
+		 		// If we're ragdolling instead of shattering, make the zed look less solid
+		 		IceScalar = 0.4f;
+		 	}
+
 	 		// Because we're going outside of the standard gore path, allow for some extra some whole body impulse here
 	 		if ( !IsZero(RBLinearVelocity) )
 	 		{
@@ -548,7 +561,7 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
 	// Force instant freeze on gore MIC
     foreach P.CharacterMICs(MIC)
     {
-		MIC.SetScalarParameterValue( 'Scalar_Ice', 1.f );
+		MIC.SetScalarParameterValue( 'Scalar_Ice', IceScalar );
     }
 }
 

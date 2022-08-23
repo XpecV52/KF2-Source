@@ -2127,6 +2127,7 @@ AttachmentSkin0="Agatha"
 AttachmentSkin1="Cleese"
 AttachmentSkin2="Jamie"
 AttachmentSkin3="Perceval"
+AttachmentSkin4="Prezioso"
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
 Attachment="Mas. antigas Steampunk base"
@@ -2324,3 +2325,114 @@ EmoteName="Rituale accoppiamento+"
 
 [KickinIt_Deluxe]
 EmoteName="Pallonetto+"
+
+[Cosmetic_FirefighterHelmet_ARCH]
+Attachment="Elmetto da pompiere"
+AttachmentSkin0="Nero"
+AttachmentSkin1="Blu"
+AttachmentSkin2="Oliva"
+AttachmentSkin3="Rosso"
+AttachmentSkin4="Bianco"
+AttachmentSkin5="Giallo"
+
+[Cosmetic_FirefighterHelmetDown_ARCH]
+Attachment="Casco Pomp. Masch. bocca"
+AttachmentSkin0="Nero"
+AttachmentSkin1="Blu"
+AttachmentSkin2="Oliva"
+AttachmentSkin3="Rosso"
+AttachmentSkin4="Bianco"
+AttachmentSkin5="Giallo"
+
+[Cosmetic_FirefighterHelmetUp_ARCH]
+Attachment="Casco Pomp. Masch. occhi"
+AttachmentSkin0="Nero"
+AttachmentSkin1="Blu"
+AttachmentSkin2="Oliva"
+AttachmentSkin3="Rosso"
+AttachmentSkin4="Bianco"
+AttachmentSkin5="Giallo"
+
+[Cosmetic_FirefighterMask_ARCH]
+Attachment="Masch. Antigas Pomp."
+AttachmentSkin0="Nero"
+AttachmentSkin1="Blu"
+AttachmentSkin2="Oliva"
+AttachmentSkin3="Rosso"
+AttachmentSkin4="Bianco"
+AttachmentSkin5="Giallo"
+
+[Cosmetic_FirefighterTank_ARCH]
+Attachment="Bombola ossig. Pomp."
+AttachmentSkin0="Nero"
+AttachmentSkin1="Blu"
+AttachmentSkin2="Oliva"
+AttachmentSkin3="Rosso"
+AttachmentSkin4="Bianco"
+AttachmentSkin5="Giallo"
+
+[Cosmetic_InsectoidClosed_ARCH]
+Attachment="Casco Insetto chiuso"
+AttachmentSkin0="Nero - luce rossa"
+AttachmentSkin1="Nero - rivest. rosso"
+AttachmentSkin2="Nero - luce gialla"
+AttachmentSkin3="Blu"
+AttachmentSkin4="Verde scuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Viola"
+AttachmentSkin7="Rosso"
+AttachmentSkin8="Ruggine"
+AttachmentSkin9="USA"
+AttachmentSkin10="Bianco"
+AttachmentSkin11="Giallo"
+
+[Cosmetic_InsectoidOpen_ARCH]
+Attachment="Casco Insetto aperto"
+AttachmentSkin0="Nero - luce rossa"
+AttachmentSkin1="Nero - rivest. rosso"
+AttachmentSkin2="Nero - luce gialla"
+AttachmentSkin3="Blu"
+AttachmentSkin4="Verde scuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Viola"
+AttachmentSkin7="Rosso"
+AttachmentSkin8="Ruggine"
+AttachmentSkin9="USA"
+AttachmentSkin10="Bianco"
+AttachmentSkin11="Giallo"
+
+[Cosmetic_InsectoidGogglesUp_ARCH]
+Attachment="Occh. casco Insetto su"
+AttachmentSkin0="Nero - luce rossa"
+AttachmentSkin1="Nero - rivest. rosso"
+AttachmentSkin2="Nero - luce gialla"
+AttachmentSkin3="Blu"
+AttachmentSkin4="Verde scuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Viola"
+AttachmentSkin7="Rosso"
+AttachmentSkin8="Ruggine"
+AttachmentSkin9="USA"
+AttachmentSkin10="Bianco"
+AttachmentSkin11="Giallo"
+
+[Cosmetic_InsectoidGogglesDown_ARCH]
+Attachment="Occh. casco Insetto giù"
+AttachmentSkin0="Nero - luce rossa"
+AttachmentSkin1="Nero - rivest. rosso"
+AttachmentSkin2="Nero - luce gialla"
+AttachmentSkin3="Blu"
+AttachmentSkin4="Verde scuro"
+AttachmentSkin5="Verde"
+AttachmentSkin6="Viola"
+AttachmentSkin7="Rosso"
+AttachmentSkin8="Ruggine"
+AttachmentSkin9="USA"
+AttachmentSkin10="Bianco"
+AttachmentSkin11="Giallo"
+AttachmentSkin12="Prezioso"
+
+[Cosmetic_DemonSlayerHelmet_ARCH]
+Attachment="Elm. sterm. demoni"
+AttachmentSkin0="Grigio"
+AttachmentSkin1="Prezioso"

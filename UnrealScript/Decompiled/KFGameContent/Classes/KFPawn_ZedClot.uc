@@ -50,7 +50,7 @@ defaultproperties
     bCanGrabAttack=true
     bKnockdownWhenJumpedOn=true
     bIsClotClass=true
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Undev_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Clot_UnDev_Archetype"
     begin object name=MeleeHelper class=KFMeleeHelperAI
         MyDamageType=Class'KFDT_Slashing_ZedWeak'
         MomentumTransfer=25000

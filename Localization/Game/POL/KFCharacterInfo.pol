@@ -2127,6 +2127,7 @@ AttachmentSkin0="Agata"
 AttachmentSkin1="Cleese"
 AttachmentSkin2="Jamie"
 AttachmentSkin3="Parsifal"
+AttachmentSkin4="Cenny egzemplarz"
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
 Attachment="Steampunk. maska zw."
@@ -2324,3 +2325,114 @@ EmoteName="Rytuał godowy+"
 
 [KickinIt_Deluxe]
 EmoteName="Wykop+"
+
+[Cosmetic_FirefighterHelmet_ARCH]
+Attachment="Hełm strażacki"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Oliwkowy"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Biały"
+AttachmentSkin5="Żółty"
+
+[Cosmetic_FirefighterHelmetDown_ARCH]
+Attachment="Hełm str. maska dół"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Oliwkowy"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Biały"
+AttachmentSkin5="Żółty"
+
+[Cosmetic_FirefighterHelmetUp_ARCH]
+Attachment="Hełm str. maska góra"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Oliwkowy"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Biały"
+AttachmentSkin5="Żółty"
+
+[Cosmetic_FirefighterMask_ARCH]
+Attachment="Straż. maska pgaz."
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Oliwkowy"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Biały"
+AttachmentSkin5="Żółty"
+
+[Cosmetic_FirefighterTank_ARCH]
+Attachment="Straż. butla tlenowa"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Oliwkowy"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Biały"
+AttachmentSkin5="Żółty"
+
+[Cosmetic_InsectoidClosed_ARCH]
+Attachment="Hełm ins. zamknięty"
+AttachmentSkin0="Czarno-czerw. jasny"
+AttachmentSkin1="Czarno-czerw. wyk."
+AttachmentSkin2="Czarno-żółty jasny"
+AttachmentSkin3="Niebieski"
+AttachmentSkin4="Ciemnozielony"
+AttachmentSkin5="Zielony"
+AttachmentSkin6="Fioletowy"
+AttachmentSkin7="Czerwony"
+AttachmentSkin8="Rdzawy"
+AttachmentSkin9="USA"
+AttachmentSkin10="Biały"
+AttachmentSkin11="Żółty"
+
+[Cosmetic_InsectoidOpen_ARCH]
+Attachment="Hełm ins. otwarty"
+AttachmentSkin0="Czarno-czerw. jasny"
+AttachmentSkin1="Czarno-czerw. wyk."
+AttachmentSkin2="Czarno-żółty jasny"
+AttachmentSkin3="Niebieski"
+AttachmentSkin4="Ciemnozielony"
+AttachmentSkin5="Zielony"
+AttachmentSkin6="Fioletowy"
+AttachmentSkin7="Czerwony"
+AttachmentSkin8="Rdzawy"
+AttachmentSkin9="USA"
+AttachmentSkin10="Biały"
+AttachmentSkin11="Żółty"
+
+[Cosmetic_InsectoidGogglesUp_ARCH]
+Attachment="Hełm ins. gogle góra"
+AttachmentSkin0="Czarno-czerw. jasny"
+AttachmentSkin1="Czarno-czerw. wyk."
+AttachmentSkin2="Czarno-żółty jasny"
+AttachmentSkin3="Niebieski"
+AttachmentSkin4="Ciemnozielony"
+AttachmentSkin5="Zielony"
+AttachmentSkin6="Fioletowy"
+AttachmentSkin7="Czerwony"
+AttachmentSkin8="Rdzawy"
+AttachmentSkin9="USA"
+AttachmentSkin10="Biały"
+AttachmentSkin11="Żółty"
+
+[Cosmetic_InsectoidGogglesDown_ARCH]
+Attachment="Hełm ins. gogle dół"
+AttachmentSkin0="Czarno-czerw. jasny"
+AttachmentSkin1="Czarno-czerw. wyk."
+AttachmentSkin2="Czarno-żółty jasny"
+AttachmentSkin3="Niebieski"
+AttachmentSkin4="Ciemnozielony"
+AttachmentSkin5="Zielony"
+AttachmentSkin6="Fioletowy"
+AttachmentSkin7="Czerwony"
+AttachmentSkin8="Rdzawy"
+AttachmentSkin9="USA"
+AttachmentSkin10="Biały"
+AttachmentSkin11="Żółty"
+AttachmentSkin12="Cenny egzemplarz"
+
+[Cosmetic_DemonSlayerHelmet_ARCH]
+Attachment="Hełm pogromcy dem."
+AttachmentSkin0="Szary"
+AttachmentSkin1="Cenny egzemplarz"

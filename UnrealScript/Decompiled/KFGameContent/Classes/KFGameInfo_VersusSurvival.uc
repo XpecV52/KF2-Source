@@ -728,7 +728,7 @@ function int GetLivingPlayerCount()
     return UsedLivingHumanPlayersCount;
 }
 
-function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser)
+function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
 {
     local KFPawn InstigatorPawn, InjuredPawn;
 
@@ -751,7 +751,7 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
             return;
         }
     }
-    super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
+    super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
 }
 
 function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType)
@@ -856,7 +856,6 @@ function EndOfMatch(bool bVictory)
             KFPRIV.RecordEndGameInfo();
         }        
     }    
-    WorldInfo.TWRefreshTweakParams();
     WorldInfo.TWPushLogs();
     WaveBonus = Max(WaveNum - 1, 0) * POINTS_FOR_WAVE_COMPLETION;
     if(bVictory)
@@ -1146,9 +1145,16 @@ protected function BeginNextRound()
     ClosePostRoundMenu();
 }
 
-function bool IsInitialSpawnPointSelection()
+static function bool IsInitialSpawnPointSelection(WorldInfo WI)
 {
-    return MyKFGRI.bRoundIsOver || super(KFGameInfo).IsInitialSpawnPointSelection();
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WI.GRI);
+    if(KFGRI != none)
+    {
+        return KFGRI.bRoundIsOver || super(KFGameInfo).IsInitialSpawnPointSelection(WI);
+    }
+    return false;
 }
 
 protected function PreSelectPlayerStarts()

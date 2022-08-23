@@ -377,9 +377,10 @@ defaultproperties
       SpecialMoveClasses(27)=None
       SpecialMoveClasses(28)=None
       SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(31)=None
-      SpecialMoveClasses(32)=Class'KFGame.KFSM_Player_Emote'
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_DisabledGrappleVictim'
+      SpecialMoveClasses(31)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(32)=None
+      SpecialMoveClasses(33)=Class'KFGame.KFSM_Player_Emote'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Human:SpecialMoveHandler_0'
    End Object

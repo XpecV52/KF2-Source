@@ -13,7 +13,9 @@ KF-Prison="In gioco - Prigione"
 KF-ContainmentStation="In gioco - Stazione di contenimento"
 KF-InfernalRealm="In gioco - Regno infernale"
 KF-HostileGrounds="In gioco - Terreno ostile"
-KF-ZedLanding="In gioco - Atterraggio ZED"
+KF-ZedLanding="Sta giocando: Atterraggio ZED"
+KF-TheDescent="Sta giocando: La discesa"
+KF-Nuked="Sta giocando: Nuclearizzato"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -129,6 +131,7 @@ PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="Premi XboxTypeS_A per iniziare"
+SwitchProfile="Premi XboxTypeS_Y per cambiare prof."
 LoginButtonPrompt="Effettuare il login"
 LoggingIn="Accesso..."
 LoginFailed="Login fallito"
@@ -139,6 +142,8 @@ NotLoggedInOnlinePSN="Devi essere collegato al PlayStation™ Network per utiliz
 NetworkError="Si è verificato un errore di rete, controlla la connessione."
 ErrorNoPlayfabDescription="Impossibile stabilire una connessione con i Master Server di gioco. Riprova fra qualche minuto."
 ErrorTSSFailedDescription="Impossibile stabilire una connessione con il server di bilanciamento del gioco. Assicurati di essere connesso e riprova."
+NotSignedInTitle="Accesso non effettuato."
+
 
 [Notifications]
 ControllerDisconnectedTitle="Controller disconnesso"
@@ -160,12 +165,24 @@ InviteMessage="Eliminiamo qualche Zed insieme!"
 NotConnectedTitle="Errore di rete"
 NotConnectedMessage="Nessuna connessione a internet. Controlla la connessione e riprova."
 NotConnectedForOnlinePlay="Nessuna connessione a internet. Controlla la tua connessione e riprova a usare le funzionalità online"
+MultiplayerNotAllowed_Title="Multiplayer non consentito"
+LoggedOutMessage="Il profilo è stato cambiato. Sei stato riportato alla schermata del titolo."
+LoggedOutTitle="Disconnesso"
+LoggedInTitle="Accesso effettuato"
+NewRegionTitle="Welcome"
+NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Vedi profilo giocatore"
+ViewProfileStringXB1="Visualizza gamercard"
 
 [KFGFxObject_Menu]
 ResetDefaults="Vuoi davvero ripristinare le impostazioni ai valori predefiniti?"
+
+[KFGFxWidget_MenuBar]
+LogoutTitle="LOGOUT"
+LogoutDialogTitle="Torna a scherm. titolo"
+LogoutDialogMessage="Sei sei sicuro di voler tornare alla schermata del titolo?"
 
 [KFGFxTraderContainer_PlayerInventory]
 PerkPrompt="CLASSE"
@@ -177,9 +194,19 @@ ControllerSound="Suoni controller"
 MatchmakingRegionString="REGIONE"
 LeaveMenuString="Leaving matchmaking will also leave your party"
 
+[KFGFxMenu_Store]
+
+
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGIONE"
 MapPreference="MAPPA PREFERITA"
+
+[KFGFxMenu_Exit]
+HeaderStringXB1="LOGOUT"
+LogoutKF2="Torna a scherm. titolo"
+
+[Misc]
+NotSignedIn="Accesso non effettuato"
 
 [Entitlements]
 BriarBobbyBundleProductName="London Bobby Briar Uniform Bundle"

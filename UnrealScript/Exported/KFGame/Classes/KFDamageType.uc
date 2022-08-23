@@ -565,6 +565,7 @@ var float EMPPower;
 var float PoisonPower;
 var float MicrowavePower;
 var float FreezePower;
+var float SnarePower;
 
 /*********************************************************************************************
 Impact Effects

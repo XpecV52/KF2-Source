@@ -218,6 +218,10 @@ package tripwire.containers.store
             this.selectContainer();
             if(bManagerConsoleBuild)
             {
+                this.weaponSkinsButton.visible = false;
+                this.cosmeticsButton.visible = false;
+                this.consumablesButton.visible = false;
+                this.emotesButton.visible = false;
                 this.marketWeaponSkinsButton.visible = false;
                 this.marketCosmeticsButton.visible = false;
                 this.marketConsumableButton.visible = false;

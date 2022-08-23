@@ -183,7 +183,7 @@ simulated event GrenadeIsAtRest()
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
-    if(((Other != none) && Other != Instigator) && !Other.bWorldGeometry)
+    if(((Other != none) && Other != Instigator) && !Other.bWorldGeometry || !Other.bStatic)
     {
         if(Pawn(Other) != none)
         {
@@ -195,7 +195,17 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
         }
         else
         {
-            ProcessDestructibleTouchOnBounce(Other, HitLocation, HitNormal);
+            if(!Other.bCanBeDamaged && Other.bBlockActors)
+            {
+                if(!CheckRepeatingTouch(Other))
+                {
+                    HitWall(HitNormal, Other, LastTouchComponent);
+                }                
+            }
+            else
+            {
+                ProcessDestructibleTouchOnBounce(Other, HitLocation, HitNormal);
+            }
         }
     }
 }

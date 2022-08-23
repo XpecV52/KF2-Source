@@ -83,7 +83,7 @@ NextStepsDescriptionKey="From the Home Menu, you can practice more offline or ju
 
 ;Healing Section
 QuickHealTitleKey="Heal Yourself When Hurt"
-QuickHealDescriptionKey="If you are hurt, you can heal yourself by pressing <font color="#caab05">%x%</font>. After healing, your syringe will take sometime to recharge before you can use it again."
+QuickHealDescriptionKey="If you are hurt, you can heal yourself by holding <font color="#caab05">%x%</font>. After healing, your syringe will take sometime to recharge before you can use it again."
 HowToSyringeTitleKey="Heal Your Teammates"
 HowToSyringeDescriptionKey="You can also equip the syringe to heal your teammates by pressing <font color="#caab05">%x%</font> and then pressing <font color="#caab05">%x%</font> when close to a teammate."
 HealOthersTitleKey="Use Field Medic Weapons to Heal Teammates"
@@ -197,7 +197,10 @@ ItemName="SA80 L85A2 Bullpup"
 ItemCategory="Assault Rifle"
 ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The SA80 was the British Army's standard weapon before the Army was, well, eaten."
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="Stoner 63A LMG"
+ItemCategory="Light Machine Gun"
+ItemDescription="•Fire mode is full-auto only.\n•A staple of U.S. Navy SEALs in the Vietnam War, the Stoner 63A has high ammo capacity and tons of stopping power."
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Utility Knife"
@@ -269,8 +272,6 @@ ItemName="M4 Combat Shotgun"
 ItemCategory="Shotgun"
 ItemDescription="•Fire mode is semi-auto only.\n•Benelli designed the M4 Combat Shotgun for the US military. It is semi-automatic, allowing for a good, steady rate of fire."
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="Lawn Mower Blade"
 ItemCategory="Melee"
@@ -328,6 +329,16 @@ ItemName="Caulk n' Burn"
 ItemCategory="Flames"
 ItemDescription="•Fire mode shoots flame.\n•Hand-held, home-made flamethrower. Please do NOT try this at home."
 
+[KFWeap_Pistol_Flare]
+ItemName="Spitfire"
+ItemCategory="Flames"
+ItemDescription="•Fire mode shoots exploding, flammable projectiles. \n•Fire delivery system in a more convenient, travel-sized package."
+
+[KFWeap_Pistol_DualFlare]
+ItemName="Dual Spitfires"
+ItemCategory="Flames"
+ItemDescription="•Fire mode shoots exploding, flammable projectiles. \n•Alt-fire switches aiming styles when using iron sights.\n•This is a pair of Spitfires. Each can be individually sold or dropped."
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Incendiary Trench Gun"
 ItemCategory="Shotgun"
@@ -362,8 +373,6 @@ ItemDescription="•Fire mode launches a grenade.\n•Grenade explodes on impact
 ItemName="RPG-7"
 ItemCategory="Explosives"
 ItemDescription="•Fire mode launches the rocket.\n•Rocket explodes on impact.\n•Only arms itself a few meters downrange so you don't blow your own face off.\n•And watch the back-blast!"
-
-
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="Dual 9mm Pistols"
@@ -414,8 +423,6 @@ ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming st
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Fire mode is single shot only.\n•The classic Model 1894 Winchester lever-action rifle."
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="Crossbow"

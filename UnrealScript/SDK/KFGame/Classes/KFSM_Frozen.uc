@@ -161,7 +161,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	if( KFPOwner.Role == ROLE_Authority )
 	{
 		KFPOwner.bCanCloak = KFPOwner.default.bCanCloak;
-	}		
+	}
 
 	KFPOwner.ClearTimer( nameof(UpdateFreezeInParam), self );
 	KFPOwner.ClearTimer( nameof(DoThaw), self );

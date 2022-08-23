@@ -1,8 +1,8 @@
 [TestItems]
-LocTestName=Loc Test Name
-LocTestType=Loc Test Type
-LocTestDescription=Loc Test Game Description
-LocTestSteamDescription=Loc Test Steam Description
+LocTestName="Loc Test Name"
+LocTestType="Loc Test Type"
+LocTestDescription="Loc Test Game Description"
+LocTestSteamDescription="Loc Test Steam Description"
 
 [Bundles]
 ;Bundle Names
@@ -79,6 +79,7 @@ HorzineSupplyCrateSeries9Name="Horzine 보급상자 | 시리즈 9"
 HorzineSupplyCrateSeries10Name="Horzine 보급상자 | 시리즈 10"
 HorzineSupplyCrateSeries11Name="Horzine 보급상자 | 시리즈 11"
 HorzineSupplyCrateSeries12Name="Horzine 보급상자 | 시리즈 12"
+HorzineSupplyCrateSeries13Name="Horzine 보급상자 | 시리즈 13"
 EmoteCrateSeries1Name="Emote 상자 | 시리즈 1"
 
 ;Crate Descriptions
@@ -106,7 +107,9 @@ HorzineSupplyCrateSeries11Description="상자를 여시려면 시리즈 11 Horzi
 
 HorzineSupplyCrateSeries12Description="상자를 여시려면 시리즈 12 Horzine 보급상자 열쇠가 필요합니다. <br><font color="#4b69cd">딥스트라이크 헬멧</font><br><font color="#4b69cd">딥스트라이크 고글</font><br><font color="#4b69cd">딥스트라이크 마스크</font><br><font color="#6600a1">딥스트라이크 헬멧 마스크</font><br><font color="#8847ff">딥스트라이크 전술용 등가방</font><br><font color="#caab05">또는 매우 희귀한 고급 액세서리와 같은 희귀 이상의 아이템 중 하나를 포함합니다!</font>"
 
-EmoteCrateSeries1Description="상자를 여시려면 시리즈 1 Emote 보급상자 열쇠가 필요합니다. <br><font color="#4b69cd">미쳐봅시다</font><br><font color="#4b69cd">천둥 소리</font><br><font color="#4b69cd">찰리 삼촌</font><br><font color="#4b69cd">별난 파도</font><br><font color="#6600a1">비오는 Dosh</font><br><font color="#6600a1">사자 어퍼컷</font><br><font color="#6600a1">짝짓기 의식</font><br><font color="#8847ff">발차기</font><br><font color="#8847ff">파이어볼</font><br><font color="#8847ff">비오게 하기</font><br><font color="#caab05">또는 매우 희귀한 디럭스 Emote와 같은 희귀 이상의 아이템 중 하나를 포함합니다!</font>"
+HorzineSupplyCrateSeries13Description="이 상자에는 시리즈 13 Horzine 보급상자 열쇠가 필요합니다. 다음 중 희소 이상의 아이템 하나를 포함합니다:<br><font color="#4b69cd">곤충 헬멧(닫힘)</font><br><font color="#4b69cd">로봇 스컬리</font><br><font color="#4b69cd">곤충 헬멧(열림)</font><br><font color="#6600a1">곤충 헬멧(고글 올림)</font><br><font color="#6600a1">악마 학살자 헬멧</font><br><font color="#8847ff">곤충 헬멧(고글 내림)</font><br><font color="#8847ff">미노타우르스 헬멧</font><br><font color="#caab05">또는 대단히 희소한 액세서리!</font>"
+
+EmoteCrateSeries1Description="이 상자에는 시리즈 1 Emote 보급상자 열쇠가 필요합니다. 다음 중 희소 이상의 아이템 하나를 포함합니다:<br><font color="#4b69cd">미쳐봅시다</font><br><font color="#4b69cd">부티 댄스</font><br><font color="#4b69cd">찰리 삼촌</font><br><font color="#4b69cd">별난 파도</font><br><font color="#6600a1">비오는 도쉬</font><br><font color="#6600a1">사자 어퍼컷</font><br><font color="#6600a1">짝짓기 의식</font><br><font color="#8847ff">발차기</font><br><font color="#8847ff">화구</font><br><font color="#8847ff">비오게 하기</font><br><font color="#caab05">또는 대단히 희소한 디럭스 Emote!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Horzine 보급상자 열쇠 | 시리즈 1"
@@ -121,6 +124,7 @@ HorzineSupplyCrateKeySeries9Name="Horzine 보급상자 열쇠 | 시리즈 9"
 HorzineSupplyCrateKeySeries10Name="Horzine 보급상자 열쇠 | 시리즈 10"
 HorzineSupplyCrateKeySeries11Name="Horzine 보급상자 열쇠 | 시리즈 11"
 HorzineSupplyCrateKeySeries12Name="Horzine 보급상자 열쇠 | 시리즈 12"
+HorzineSupplyCrateKeySeries13Name="Horzine 보급상자 열쇠 | 시리즈 13"
 EmoteCrateKeySeries1Name="Emote 상자 키 | 시리즈 1"
 
 ;Key Descriptions
@@ -136,6 +140,7 @@ HorzineSupplyCrateKeySeries9Description="이 열쇠는 Horzine 시리즈 9 보�
 HorzineSupplyCrateKeySeries10Description="이 열쇠는 Horzine 시리즈 10 보급상자만 엽니다."
 HorzineSupplyCrateKeySeries11Description="이 열쇠는 Horzine 시리즈 11 보급상자만 엽니다."
 HorzineSupplyCrateKeySeries12Description="이 열쇠는 Horzine 시리즈 12 보급상자만 엽니다."
+HorzineSupplyCrateKeySeries13Description="이 열쇠는 Horzine 시리즈 13 보급상자만 열 수 있습니다."
 EmoteCrateKeySeries1Description="이 열쇠는 시리즈 1 Emote 상자만 엽니다."
 
 ;UsbNames
@@ -156,6 +161,8 @@ ZedKillerEncryptedUSBName="제드 킬러 암호화 USB"
 TacticalMKIIEncryptedUSBName="전술 MKII 암호화 USB"
 MaceAndShieldEncryptedUSBName="본 크러셔 암호화 USB"
 DeepstrikeEncryptedUSBName="딥스트라이크 암호화 USB"
+HighVoltageEncryptedUSBName="고전압 암호화 USB"
+FlarePistolEncryptedUSBName="스핏파이어 암호화 USB"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="상자를 여시려면 사이버본 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">AR15 | 사이버본</font><br><font color="#4b69cd">AA-12 | 사이버본</font><br><font color="#4b69cd">AA-12 | 사이버본</font><br><font color="#4b69cd">카타나 | 사이버본</font><br><font color="#8847ff">M79 | 푸트리드 바일</font><br><font color="#8847ff">AR15 | 폐쇄</font><br><font color="#caab05">또는 매우 희귀한 스킨!</font>"
@@ -164,7 +171,7 @@ DragonfireEncryptedUSBDescription="상자를 여시려면 드래곤파이어 블
 
 EmergencyIssueEncryptedUSBDescription="상자를 여시려면 이머전시 이슈 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">9MM | 이머전시 이슈</font><br><font color="#4b69cd">코크 앤 번 | 이머전시 이슈</font><br><font color="#4b69cd">데저트 이글 | 이머전시 이슈</font><br><font color="#4b69cd">SG500 | 이머전시 이슈</font><br><font color="#4b69cd">VLAD-1000 네일건 | 이머전시 이슈</font><br><font color="#6600a1">화염방사기 | 이머전시 이슈</font><br><font color="#8847ff">마이크로웨이브 건 | 이머전시 이슈</font><br><font color="#8847ff">내장 제거기| 이머전시 이슈</font><br><font color="#caab05">또는 매우 희귀한 코만도 스킨!</font>"
 
-HorzineFirstEncounterEncryptedUSBDescription="상자를 여시려면 Horzine 퍼스트 엔카운터 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">SG500 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">AA-12 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">힐러 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">용접기 | Horzine 퍼스트 엔카운터</font><br><font color="#6600a1">AA-12 | 엘리트 AA-12 그린</font><br><font color="#6600a1">AA-12 | 엘리트 AA-12 화이트</font><br><font color="#8847ff">AA-12 | 엘리트 AA-12 레드</font><br><font color="#8847ff">AA-12 | 엘리트 AA-12 블루</font><br><font color="#caab05">또는 매우 희귀한 데몰리션 스킨!</font>"
+HorzineFirstEncounterEncryptedUSBDescription="이 상자에는 Horzine 퍼스트 엔카운터 블루프린트 열쇠가 필요합니다. 다음 중 희소 이상의 무기 스킨 하나를 포함합니다:<br><font color="#4b69cd">SG500 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">AA-12 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">힐러 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">용접기 | Horzine 퍼스트 엔카운터</font><br><font color="#6600a1">AK-12 | 엘리트 AK-12 그린</font><br><font color="#6600a1">AK-12 | 엘리트 AK-12 화이트</font><br><font color="#8847ff">AK-12 | 엘리트 AK-12 레드</font><br><font color="#8847ff">AK-12 | 엘리트 AK-12 블루</font><br><font color="#caab05">또는 대단히 희소한 데몰리션 스킨!</font>"
 
 HorzineIssueEncryptedUSBDescription="상자를 여시려면 Horzine 이슈 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">M4 | 몬스터 킬러</font><br><font color="#4b69cd">9mm | 에어록</font><br><font color="#4b69cd">L85A2 | 조종사</font><br><font color="#4b69cd">붐스틱 |샤크티스</font><br><font color="#8847ff">스카 | Horzine 엘리트 레드</font><br><font color="#8847ff">스카 | Horzine 엘리트 블루</font><br><font color="#caab05">또는 매우 희귀한 스킨!</font>"
 
@@ -172,13 +179,13 @@ MedicEncryptedUSBDescription="상자를 열려면 메딕 블루프린트 열쇠�
 
 OlExhibitEncryptedUSBDescription="상자를 여시려면 올 엑지빗 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">L85A2 | 정크야드 레이서</font><br><font color="#4b69cd">1858 리볼버 | 정크야드 레이서</font><br><font color="#4b69cd">윈체스터 1984 | 정크야드 레이서</font><br><font color="#4b69cd">9MM | 거너 클래식</font><br><font color="#6600a1">9MM | Tripwire 거너</font><br><font color="#6600a1">힐러 | 아웃모드</font><br><font color="#8847ff">AA-12 | 클롯 콜라</font><br><font color="#8847ff">마이크로웨이브 건 | 휴먼 팝콘</font><br><font color="#caab05">또는 매우 희귀한 9mm 스킨!</font>"
 
-PredatorEncryptedUSBDescription="상자를 여시려면 프레데터 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">AA-12 | 프레데터</font><br><font color="#4b69cd">HX25 | 프레데터</font><br><font color="#4b69cd">L85A2 | 프레데터</font><br><font color="#4b69cd">SG500 | 프레데터</font><br><font color="#6600a1">분쇄기 | 플레시</font><br><font color="#8847ff">AA-12 | 카르카스</font><br><font color="#8847ff">HX25 | 베타브래</font><br><font color="#caab05">또는 매우 희귀한 서포트 스킨!</font>"
+PredatorEncryptedUSBDescription="이 상자에는 프레데터 블루프린트 열쇠가 필요합니다. 다음 중 희소 이상의 무기 스킨 하나를 포함합니다:<br><font color="#4b69cd">AK-12 | 프레데터</font><br><font color="#4b69cd">HX25 | 프레데터</font><br><font color="#4b69cd">L85A2 | 프레데터</font><br><font color="#4b69cd">SG500 | 프레데터</font><br><font color="#6600a1">분쇄기 | 플레시</font><br><font color="#8847ff">AA-12 | 카르카스</font><br><font color="#8847ff">HX25 | 베타브래</font><br><font color="#caab05">또는 대단히 희소한 서포트 스킨!</font>"
 
 StoriesofWarEncryptedUSBDescription="상자를 여시려면 스토리즈 오브 워 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">M4 | 스토리즈 오브 워</font><br><font color="#4b69cd">스카 | 스토리즈 오브 워</font><br><font color="#4b69cd">드래곤브레스 | 스토리즈 오브 워</font><br><font color="#4b69cd">M79 | 스토리즈 오브 워</font><br><font color="#6600a1">M79 | 피스메이커</font><br><font color="#8847ff">AA-12 | 스토리즈 오브 워</font><br><font color="#8847ff">RPG-7 | 스토리즈 오브 워</font><br><font color="#caab05">또는 매우 희귀한 스킨!</font>"
 
-StreetPunksEncryptedUSBDescription="상자를 여시려면 스트릿 펑크 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">9MM | 스트릿 펑크</font><br><font color="#4b69cd">AA-12 | 스트릿 펑크</font><br><font color="#4b69cd">AR15 | 스트릿 펑크</font><br><font color="#4b69cd">코크 앤 번 | 스트릿 펑크</font><br><font color="#4b69cd">데저트 이글 | 스트릿 펑크</font><br><font color="#4b69cd">KF-BAR | 스트릿 펑크</font><br><font color="#4b69cd">G500 | 스트릿 펑크</font><br><font color="#6600a1">스카 | 스프레이 캔</font><br><font color="#8847ff">AA-12 | 레비아탄</font><br><font color="#caab05">또는 매우 희귀한 파이어버그 스킨!</font>"
+StreetPunksEncryptedUSBDescription="이 상자에는 스트릿 펑크 블루프린트 열쇠가 필요합니다. 다음 중 희소 이상의 무기 스킨 하나를 포함합니다:<br><font color="#4b69cd">9MM | 스트릿 펑크</font><br><font color="#4b69cd">AK-12 | 스트릿 펑크</font><br><font color="#4b69cd">AR15 | 스트릿 펑크</font><br><font color="#4b69cd">코크 앤 번 | 스트릿 펑크</font><br><font color="#4b69cd">데저트 이글 | 스트릿 펑크</font><br><font color="#4b69cd">KF-BAR | 스트릿 펑크</font><br><font color="#4b69cd">SG500 | 스트릿 펑크</font><br><font color="#6600a1">스카 | 스프레이 캔</font><br><font color="#8847ff">AK-12 | 레비아탄</font><br><font color="#caab05">또는 대단히 희소한 파이어버그 스킨!</font>"
 
-SWATEncryptedUSBDescription="상자를 여시려면 SWAT 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">9MM | SWAT</font><br><font color="#4b69cd">MB500 | SWAT</font><br><font color="#4b69cd">분쇄기 | SWAT</font><br><font color="#4b69cd">AA-12 | SWAT</font><br><font color="#6600a1">AA-12 | SWAT</font><br><font color="#8847ff">스카 | SWAT</font><br><font color="#caab05">또는 매우 희귀한 코만도 스킨!</font>"
+SWATEncryptedUSBDescription="이 상자에는 SWAT 블루프린트 열쇠가 필요합니다. 다음 중 희소 이상의 무기 스킨 하나를 포함합니다:<br><font color="#4b69cd">9MM | SWAT</font><br><font color="#4b69cd">MB500 | SWAT</font><br><font color="#4b69cd">분쇄기 | SWAT</font><br><font color="#4b69cd">AK-12 | SWAT</font><br><font color="#6600a1">AK-12 | SWAT</font><br><font color="#8847ff">SCAR | SWAT</font><br><font color="#caab05">또는 대단히 희소한 코만도 스킨!</font>"
 
 TacticalHorzineEncryptedUSBDescription="상자를 여시려면 전술 Horzine 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">500 매그넘 리볼버 | 전술용</font><br><font color="#4b69cd">9MM | 전술용</font><br><font color="#4b69cd">AR15 | 전술용</font><br><font color="#4b69cd">데저트 이글 | 전술용</font><br><font color="#4b69cd">M1911 | 전술용</font><br><font color="#6600a1">L85A2 | 엘리트 L85A2 그린</font><br><font color="#6600a1">L85A2 | 엘리트 L85A2 화이트</font><br><font color="#8847ff">L85A2 | 엘리트 L85A2 레드</font><br><font color="#8847ff">L85A2 | 엘리트 L85A2 블루</font><br><font color="#caab05">또는 매우 희귀한 건슬링거 스킨!</font>"
 
@@ -191,6 +198,10 @@ TacticalMKIIEncryptedUSBDescription="상자를 여시려면 전술 MKII 블루�
 MaceAndShieldEncryptedUSBDescription="상자를 여시려면 본 크러셔 블루프린트 열쇠가 필요합니다. <br><font color="#4b69cd">본 크러셔 | 서킷</font><br><font color="#4b69cd">본 크러셔 | USA</font><br><font color="#4b69cd">본 크러셔 | 제드 해저드</font><br><font color="#4b69cd">본 크러셔 | 경고</font><br><font color="#6600a1">본 크러셔 | Batcat</font><br><font color="#8847ff">본 크러셔 | 길로틴</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨과 같은 희귀 이상의 무기 스킨 중 하나를 포함합니다!</font>"
 
 DeepstrikeEncryptedUSBDescription="상자를 여시려면 딥스트라이크 블루프린트 열쇠가 필요합니다. <br><font color="#4b69cd">9MM | 딥스트라이크</font><br><font color="#4b69cd">크로스보우 | 딥스트라이크</font><br><font color="#4b69cd">스카 | 딥스트라이크</font><br><font color="#4b69cd">데저트 이글 | 딥스트라이크</font><br><font color="#6600a1">윈체스터 1894 | 딥스트라이크</font><br><font color="#6600a1">M79 | 딥스트라이크</font><br><font color="#6600a1">RPG-7 | 딥스트라이크</font><br><font color="#6600a1">크리스 SMG | Horzine 엘리트 그린</font><br><font color="#6600a1">크리스 SMG | Horzine 엘리트 화이트</font><br><font color="#8847ff">크리스 SMG | Horzine 엘리트 레드</font><br><font color="#8847ff">크리스 SMG | Horzine 엘리트 블루</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨과 같은 희귀 이상의 무기 스킨 중 하나를 포함합니다!</font>"
+
+HighVoltageEncryptedUSBDescription="이 상자에는 고전압 블루프린트 열쇠가 필요합니다. 다음 중 희소 이상의 무기 스킨 하나를 포함합니다:<br><font color="#4b69cd">크로스보우 | 공업용</font><br><font color="#4b69cd">500 매그넘 리볼버 | 공업용</font><br><font color="#4b69cd">M14 EBR | 공업용</font><br><font color="#4b69cd">MP5RAS | 공업용</font><br><font color="#6600a1">MP7 | 잭해머</font><br><font color="#6600a1">크리스 SMG | 파쇄기</font><br><font color="#8847ff">P90 | 원형 톱</font><br><font color="#8847ff">레일건 | 고전압</font><br><font color="#caab05">또는 대단히 희소한 프레셔스 스킨!</font>"
+
+FlarePistolEncryptedUSBDescription="이 상자에는 스핏파이어 블루프린트 열쇠가 필요합니다. 다음 중 희소 이상의 무기 스킨 하나를 포함합니다:<br><font color="#4b69cd">스핏파이어 | 플레임 블루</font><br><font color="#4b69cd">스핏파이어 | 플레임 오렌지</font><br><font color="#4b69cd">스핏파이어 | 플레임 레드</font><br><font color="#4b69cd">스핏파이어 | DigiCam 오렌지</font><br><font color="#6600a1">스핏파이어 | 절단기</font><br><font color="#6600a1">스핏파이어 | 잉어</font><br><font color="#8847ff">스핏파이어 | 도자기</font><br><font color="#caab05">또는 대단히 희소한 프레셔스 스킨!</font>"
 
 ;usb key names
 CyberboneUSBKeyName="사이버본 USB Key"
@@ -210,6 +221,8 @@ ZedKillerUSBKeyName="제드 킬러 USB 키"
 TacticalMKIIUSBKeyName="전술 MKII USB 키"
 MaceAndShieldUSBKeyName="본 크러셔 USB 키"
 DeepstrikeUSBKeyName="딥스트라이크 USB 키"
+HighVoltageUSBKeyName="고전압 USB 키"
+FlarePistolUSBKeyName="스핏파이어 USB 키"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="이 키는 사이버본 암호화 블루프린트만 해독합니다."
@@ -229,6 +242,8 @@ ZedKillerUSBKeyDescription="이 키는 제드 킬러 암호화 블루프린트�
 TacticalMKIIUSBKeyDescription="이 키는 전술 MKII 암호화 블루프린트만 해독합니다."
 MaceAndShieldUSBKeyDescription="이 키는 본 크러셔 암호화 블루프린트만 해독합니다."
 DeepstrikeUSBKeyDescription="이 키는 딥스트라이크 암호화 블루프린트만 해독합니다."
+HighVoltageUSBKeyDescription="이 키는 고전압 암호화 블루프린트만 해독합니다."
+FlarePistolUSBKeyDescription="이 키는 스핏파이어 암호화 블루프린트만 해독합니다."
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Horzine 꾸미기 보급상자 | 시리즈 1"
@@ -236,6 +251,7 @@ HorzineSupplyCosmeticCrateSeries2Name="Horzine 꾸미기 보급상자 | 시리�
 HorzineSupplyWeaponSkinCrateSeries1Name="Horzine 보급 무기 스킨 상자 | 시리즈 1"
 HorzineSupplyWeaponSkinCrateSeries2Name="Horzine 보급 무기 스킨 상자 | 시리즈 2"
 HorzineSupplyWeaponSkinCrateSeries3Name="Horzine 보급 무기 스킨 상자 | 시리즈 3"
+HorzineSupplyWeaponSkinCrateSeries4Name="Horzine 보급 무기 스킨 상자 | 시리즈 4"
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description="상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. 다음의 희귀 이상 아이템을 포함함:<br><font color="#4b69cd">데브택 볼리스틱 마스크</font><br><font color="#4b69cd">미국 가스 마스크</font><br><font color="#4b69cd">스키 마스크</font><br><font color="#4b69cd">야구 모자</font><br><font color="#6600a1">전술용 등가방</font><br><font color="#6600a1">독일 가스 마스크</font><br><font color="#6600a1">화학 가스 마스크</font><br><font color="#6600a1">RPG7 등가방</font><br><font color="#8847ff">M2 화염방사기 탱크</font><br><font color="#caab05">또는 매우 희귀한 액세서리!</font>"
@@ -247,6 +263,8 @@ HorzineSupplyWeaponSkinCrateSeries1Description="상자를 여시려면 Horzine �
 HorzineSupplyWeaponSkinCrateSeries2Description="상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">L85A2 | 정크야드 레이서</font><br><font color="#4b69cd">1858 리볼버 | 정크야드 레이서</font><br><font color="#4b69cd">윈체스터 1984 | 정크야드 레이서</font><br><font color="#4b69cd">9MM | 거너 클래식</font><br><font color="#6600a1">9MM | Tripwire 거너</font><br><font color="#6600a1">힐러 | 아웃모드</font><br><font color="#8847ff">AA-12 | 클롯 콜라</font><br><font color="#8847ff">마이크로웨이브 건 | 휴먼 팝콘</font><br><font color="#caab05">또는 매우 희귀한 9mm 스킨!</font>"
 
 HorzineSupplyWeaponSkinCrateSeries3Description="상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. <br><font color="#4b69cd">본 크러셔 | 서킷</font><br><font color="#4b69cd">본 크러셔 | USA</font><br><font color="#4b69cd">본 크러셔 | 제드 해저드</font><br><font color="#4b69cd">본 크러셔 | 경고</font><br><font color="#6600a1">본 크러셔 | Batcat</font><br><font color="#8847ff">본 크러셔 | 길로틴</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨과 같은 희귀 이상의 무기 스킨 중 하나를 포함합니다!</font>"
+
+HorzineSupplyWeaponSkinCrateSeries4Description="상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. 다음 중 희소 이상의 무기 스킨 하나를 포함합니다:<br><font color="#4b69cd">스핏파이어 | 플레임 블루</font><br><font color="#4b69cd">스핏파이어 | 플레임 오렌지</font><br><font color="#4b69cd">스핏파이어 | 플레임 레드</font><br><font color="#4b69cd">스핏파이어 | DigiCam 오렌지</font><br><font color="#6600a1">스핏파이어 | 절단기</font><br><font color="#6600a1">스핏파이어 | 잉어</font><br><font color="#8847ff">스핏파이어 | 도자기</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="Horzine 보급상자 열쇠"
@@ -359,6 +377,9 @@ HMTechHealerPreciousName="HMTech 힐러 | 프레셔스"
 500MagnumRevolverTacticalMintName=".500 매그넘 리볼버 | 전술용 | 민트"
 500MagnumRevolverTacticalFieldTestedName=".500 매그넘 리볼버 | 전술용 | 현장 테스트"
 500MagnumRevolverTacticalBattleScarredName=".500 매그넘 리볼버 | 전술용 | 전투 흔적"
+500MagnumRevolverIndustrialMintName=".500 매그넘 리볼버 | 공업용 | 민트"
+500MagnumRevolverIndustrialFieldTestedName=".500 매그넘 리볼버 | 공업용 | 현장 테스트"
+500MagnumRevolverIndustrialBattleScarredName=".500 매그넘 리볼버 | 공업용 | 전투 흔적"
 
 ;9mm Descriptions
 9MMMintDescription="외관: 민트급 | 단순하고 저렴하며 (정말 쌉니다) 모든 Horzine 요원을 위한 보조 무기입니다."
@@ -602,6 +623,9 @@ CrossbowPreciousName="크로스보우 | 프레셔스"
 CrossbowDeepstrikeMintName="크로스보우 | 딥스트라이크 | 민트급"
 CrossbowDeepstrikeFieldTestedName="크로스보우 | 딥스트라이크 | 현장 테스트"
 CrossbowDeepstrikeBattleScarredName="크로스보우 | 딥스트라이크 | 전투흔적"
+CrossbowIndustrialMintName="크로스보우 | 공업용 | 민트"
+CrossbowIndustrialFieldTestedName="크로스보우 | 공업용 | 현장 테스트"
+CrossbowIndustrialBattleScarredName="크로스보우 | 공업용 | 전투 흔적"
 
 ;Crovel Descriptions
 CrovelMintDescription="외관: 민트급 | 한쪽은 빠루, 한쪽은 삽, 살벌하네요."
@@ -710,6 +734,36 @@ FlamethrowerEmergencyIssuefireMintName="화염방사기 | 이머전시 이슈 | 
 FlamethrowerEmergencyIssueFieldTestedName="화염방사기 | 이머전시 이슈 | 현장 테스트"
 FlamethrowerEmergencyIssueBattleScarredName="화염방사기 | 이머전시 이슈 | 전투흔적"
 FlamethrowerPreciousName="화염방사기 | 프레셔스"
+
+;Spitfire Descriptions
+FlarePistolMintDescription="외관: 민트 | 더욱 휴대성이 용이해진 휴대용 가방 크기의 화염 방사 시스템."
+FlarePistolFieldTestedDescription="외관: 현장 테스트 | 더욱 휴대성이 용이해진 휴대용 가방 크기의 화염 방사 시스템."
+FlarePistolBattleScarredDescription="외관: 전투 흔적 | 더욱 휴대성이 용이해진 휴대용 가방 크기의 화염 방사 시스템."
+FlarePistolPreciousDescription="외관: 프레셔스 | 더욱 휴대성이 용이해진 휴대용 가방 크기의 화염 방사 시스템."
+
+;Spitfire Names
+FlarePistolPreciousName="스핏파이어 | 프레셔스"
+FlarePistolDigiCamMintName="스핏파이어 | DigiCam 오렌지 | 민트"
+FlarePistolDigiCamFieldTestedName="스핏파이어 | DigiCam 오렌지 | 현장 테스트"
+FlarePistolDigiCamBattleScarredName="스핏파이어 | DigiCam 오렌지 | 전투 흔적"
+FlarePistolFineChinaMintName="스핏파이어 | 도자기 | 민트"
+FlarePistolFineChinaFieldTestedName="스핏파이어 | 도자기 | 현장 테스트"
+FlarePistolFineChinaBattleScarredName="스핏파이어 | 도자기 | 전투 흔적"
+FlarePistolGuillotineMintName="스핏파이어 | 절단기 | 민트"
+FlarePistolGuillotineFieldTestedName="스핏파이어 | 절단기 | 현장 테스트"
+FlarePistolGuillotineBattleScarredName="스핏파이어 | 절단기 | 전투 흔적"
+FlarePistolKoiMintName="스핏파이어 | 잉어 | 민트"
+FlarePistolKoiFieldTestedName="스핏파이어 | 잉어 | 현장 테스트"
+FlarePistolKoiBattleScarredName="스핏파이어 | 잉어 | 전투 흔적"
+FlarePistolFlameBlueMintName="스핏파이어 | 플레임 블루 | 민트"
+FlarePistolFlameBlueFieldTestedName="스핏파이어 | 플레임 블루 | 현장 테스트"
+FlarePistolFlameBlueBattleScarredName="스핏파이어 | 플레임 블루 | 전투 흔적"
+FlarePistolFlameOrangeMintName="스핏파이어 | 플레임 오렌지 | 민트"
+FlarePistolFlameOrangeFieldTestedName="스핏파이어 | 플레임 오렌지 | 현장 테스트"
+FlarePistolFlameOrangeBattleScarredName="스핏파이어 | 플레임 오렌지 | 전투 흔적"
+FlarePistolFlameRedMintName="스핏파이어 | 플레임 레드 | 민트"
+FlarePistolFlameRedFieldTestedName="스핏파이어 | 플레임 레드 | 현장 테스트"
+FlarePistolFlameRedBattleScarredName="스핏파이어 | 플레임 레드 | 전투 흔적"
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="외관: 민트급 | 메스입니다. 당신은 메딕이니 사용법은 따로 설명드릴 필요가 없을 겁니다."
@@ -869,6 +923,9 @@ KrissHorzineEliteWhiteMintName="크리스 SMG | Horzine 엘리트 화이트 | �
 KrissHorzineEliteWhiteFieldTestedName="크리스 SMG | Horzine 엘리트 화이트 | 현장 테스트"
 KrissHorzineEliteWhiteBattleScarredName="크리스 SMG | Horzine 엘리트 화이트 | 전투흔적"
 KrissPreciousName="크리스 SMG | 프레셔스"
+KrissShredderMintName="크리스 SMG | 파쇄기 | 민트"
+KrissShredderFieldTestedName="크리스 SMG | 파쇄기 | 현장 테스트"
+KrissShredderBattleScarredName="크리스 SMG | 파쇄기 | 전투 흔적"
 
 ;L85A2 Descriptions
 L85A2MintDescription="외관: 민트급 | SA80은 영국군이 잡아 먹히기 전에 표준 무기로 사용하였던 무기입니다."
@@ -908,6 +965,18 @@ L85A2PreciousName="L85A2 | 프레셔스"
 L85A2TacticalMintName="L85A2 | 전술용 | 민트급"
 L85A2TacticalFieldTestedName="L85A2 | 전술용 | 현장 테스트"
 L85A2TacticalBattleScarredName="L85A2 | 전술용 | 전투흔적"
+
+;M14EBR Descriptions
+M14EBRMintDescription="외관: 민트 | 해군 특수 부대, 델타 포스 및 기타 공격적인 이들이 선호하는 저격소총."
+M14EBRFieldTestedDescription="외관: 현장 테스트 | 해군 특수 부대, 델타 포스 및 기타 공격적인 이들이 선호하는 저격소총."
+M14EBRBattleScarredDescription="외관: 전투 흔적 | 해군 특수 부대, 델타 포스 및 기타 공격적인 이들이 선호하는 저격소총."
+M14EBRPreciousDescription="외관: 프레셔스 | 해군 특수 부대, 델타 포스 및 기타 공격적인 이들이 선호하는 저격소총."
+
+;M14EBR Names
+M14EBRIndustrialMintName="M14 EBR | 공업용 | 민트"
+M14EBRIndustrialFieldTestedName="M14 EBR | 공업용 | 현장 테스트"
+M14EBRIndustrialBattleScarredName="M14 EBR | 공업용 | 전투 흔적"
+M14EBRPreciousName="M14 EBR | 프레셔스"
 
 ;M1911 Descriptions
 M1911MintDescription="외관: 민트급 | 클래식 1911 반자동 권총"
@@ -1008,6 +1077,42 @@ MicrowaveGunHumanPopcornFieldTestedName="마이크로웨이브 건 | 휴먼 팝�
 MicrowaveGunHumanPopcornBattleScarredName="마이크로웨이브 건 | 휴먼 팝콘 | 전투흔적"
 MicrowaveGunPreciousName="마이크로웨이브 건 | 프레셔스"
 
+;MP5RAS Descriptions
+MP5RASMintDescription="외관: 민트 | 세계에서 가장 많이 사용하는 자동소총 중 하나."
+MP5RASFieldTestedDescription="외관: 현장 테스트 | 세계에서 가장 많이 사용하는 자동소총 중 하나."
+MP5RASBattleScarredDescription="외관: 전투 흔적 | 세계에서 가장 많이 사용하는 자동소총 중 하나."
+MP5RASPreciousDescription="외관: 프레셔스 | 세계에서 가장 많이 사용하는 자동소총 중 하나."
+
+;MP5RAS Names
+MP5RASIndustrialMintName="MP5RAS | 공업용 | 민트"
+MP5RASIndustrialFieldTestedName="MP5RAS | 공업용 | 현장 테스트"
+MP5RASIndustrialBattleScarredName="MP5RAS | 공업용 | 전투 흔적"
+MP5RASPreciousName="MP5RAS | 프레셔스"
+
+;MP7 Descriptions
+MP7MintDescription="외관: 민트 | 알파벳 수프 에이전시 및 전 세계의 특수부대가 사용하는 총."
+MP7FieldTestedDescription="외관: 현장 테스트 | 알파벳 수프 에이전시 및 전 세계의 특수부대가 사용하는 총."
+MP7BattleScarredDescription="외관: 전투 흔적 | 알파벳 수프 에이전시 및 전 세계의 특수부대가 사용하는 총."
+MP7PreciousDescription="외관: 프레셔스 | 알파벳 수프 에이전시 및 전 세계의 특수부대가 사용하는 총."
+
+;MP7 Names
+MP7JackhammerMintName="MP7 | 잭해머 | 민트"
+MP7JackhammerFieldTestedName="MP7 | 잭해머 | 현장 테스트"
+MP7JackhammerBattleScarredName="MP7 | 잭해머 | 전투 흔적"
+MP7PreciousName="MP7 | 프레셔스"
+
+;P90 Descriptions
+P90MintDescription="외관: 민트 | 확실히 괴상한 외형을 지녔지만, 제드를 제거하는 데 탁월하며 필요하다면 레이저음을 낼 수도 있다."
+P90FieldTestedDescription="외관: 현장 테스트 | 확실히 괴상한 외형을 지녔지만, 제드를 제거하는 데 탁월하며 필요하다면 레이저음을 낼 수도 있다."
+P90BattleScarredDescription="외관: 전투 흔적 | 확실히 괴상한 외형을 지녔지만, 제드를 제거하는 데 탁월하며 필요하다면 레이저음을 낼 수도 있다."
+P90PreciousDescription="외관: 프레셔스 | 확실히 괴상한 외형을 지녔지만, 제드를 제거하는 데 탁월하며 필요하다면 레이저음을 낼 수도 있다."
+
+;P90 Names
+P90BuzzsawMintName="P90 | 원형 톱 | 민트"
+P90BuzzsawFieldTestedName="P90 | 원형 톱 | 현장 테스트"
+P90BuzzsawBattleScarredName="P90 | 원형 톱 | 전투 흔적"
+P90PreciousName="P90 | 프레셔스"
+
 ;Pulverizer Descriptions
 PulverizerMintDescription="외관: 민트급 | 샷건 슬레지해머를 조합해서 써보시는 건 어떨까요?"
 PulverizerFieldTestedDescription="외관: 현장 테스트 | 샷건 슬레지해머를 조합해서 써보시는 건 어떨까요?"
@@ -1028,6 +1133,18 @@ PulverizerEmergencyIssueMintName="분쇄기 | 이머전시 이슈 | 민트급"
 PulverizerEmergencyIssueFieldTestedName="분쇄기 | 이머전시 이슈 | 현장 테스트"
 PulverizerEmergencyIssueBattleScarredName="분쇄기 | 이머전시 이슈 | 전투흔적"
 PulverizerPreciousName="분쇄기 | 프레셔스"
+
+;Railgun Descriptions
+RailgunMintDescription="외관: 민트 | 이 무기는 자력을 이용하여 단단한 강철탄을 빠른 속도로 발사해 제드를 휴지조각처럼 찢어버린다."
+RailgunFieldTestedDescription="외관: 현장 테스트 | 이 무기는 자력을 이용하여 단단한 강철탄을 빠른 속도로 발사해 제드를 휴지조각처럼 찢어버린다."
+RailgunBattleScarredDescription="외관: 전투 흔적 | 이 무기는 자력을 이용하여 단단한 강철탄을 빠른 속도로 발사해 제드를 휴지조각처럼 찢어버린다."
+RailgunPreciousDescription="외관: 프레셔스 | 이 무기는 자력을 이용하여 단단한 강철탄을 빠른 속도로 발사해 제드를 휴지조각처럼 찢어버린다."
+
+;Railgun Names
+RailgunHighVoltageMintName="레일건 | 고전압 | 민트"
+RailgunHighVoltageFieldTestedName="레일건 | 고전압 | 현장 테스트"
+RailgunHighVoltageBattleScarredName="레일건 | 고전압 | 전투 흔적"
+RailgunPreciousName="레일건 | 프레셔스"
 
 ;RPG-7 Descriptions
 RPG7MintDescription="외관: 민트급 | 발사 거리가 몇 미터에 불과하므로 본인의 얼굴을 날려버리지 않도록 주의하십시오. 후폭풍에 주의하세요!"
@@ -1773,6 +1890,7 @@ MinotaurHelmetAgathaName="미노타우르스 헬멧 | 아가사"
 MinotaurHelmetCleeseName="미노타우르스 헬멧 | 클리스"
 MinotaurHelmetJaimeName="미노타우르스 헬멧 | 제이미"
 MinotaurHelmetPercevalName="미노타우르스 헬멧 | 퍼시벌"
+MinotaurHelmetPreciousName="미노타우르스 헬멧 | 프레셔스"
 RebelHelmetBlackName="반란군 헬멧 | 블랙"
 RebelHelmetDarkBlueName="반란군 헬멧 | 다크 블루"
 RebelHelmetDarkGreenName="반란군 헬멧 | 다크 그린"
@@ -1846,6 +1964,87 @@ DeepstrikeTacticalBackbagOliveName="딥스트라이크 전술용 등가방 | 올
 DeepstrikeTacticalBackbagRedName="딥스트라이크 전술용 등가방 | 레드"
 DeepstrikeTacticalBackbagWhiteName="딥스트라이크 전술용 등가방 | 화이트"
 DeepstrikeTacticalBackbagPreciousName="딥스트라이크 전술용 등가방 | 프레셔스"
+FirefighterHelmetBlackName="소방관 헬멧 | 블랙"
+FirefighterHelmetBlueName="소방관 헬멧 | 블루"
+FirefighterHelmetOliveName="소방관 헬멧 | 올리브"
+FirefighterHelmetRedName="소방관 헬멧 | 레드"
+FirefighterHelmetWhiteName="소방관 헬멧 | 화이트"
+FirefighterHelmetYellowName="소방관 헬멧 | 옐로우"
+FirefighterHelmetMaskDownBlackName="소방관 헬멧(마스크 내림) | 블랙"
+FirefighterHelmetMaskDownBlueName="소방관 헬멧(마스크 내림) | 블루"
+FirefighterHelmetMaskDownOliveName="소방관 헬멧(마스크 내림) | 올리브"
+FirefighterHelmetMaskDownRedName="소방관 헬멧(마스크 내림) | 레드"
+FirefighterHelmetMaskDownWhiteName="소방관 헬멧(마스크 내림) | 화이트"
+FirefighterHelmetMaskDownYellowName="소방관 헬멧(마스크 내림) | 엘로우"
+FirefighterHelmetMaskUpBlackName="소방관 헬멧(마스크 올림) | 블랙"
+FirefighterHelmetMaskUpBlueName="소방관 헬멧(마스크 올림) | 블루"
+FirefighterHelmetMaskUpOliveName="소방관 헬멧(마스크 올림) | 올리브"
+FirefighterHelmetMaskUpRedName="소방관 헬멧(마스크 올림) | 레드"
+FirefighterHelmetMaskUpWhiteName="소방관 헬멧(마스크 올림) | 화이트"
+FirefighterHelmetMaskUpYellowName="소방관 헬멧(마스크 올림) | 엘로우"
+FirefighterGasmaskBlackName="소방관 가스마스크 | 블랙"
+FirefighterGasmaskBlueName="소방관 가스마스크 | 블루"
+FirefighterGasmaskOliveName="소방관 가스마스크 | 올리브"
+FirefighterGasmaskRedName="소방관 가스마스크 | 레드"
+FirefighterGasmaskWhiteName="소방관 가스마스크 | 화이트"
+FirefighterGasmaskYellowName="소방관 가스마스크 | 옐로우"
+FirefighterOxygenTankBlackName="소방관 산소탱크 | 블랙"
+FirefighterOxygenTankBlueName="소방관 산소탱크 | 블루"
+FirefighterOxygenTankOliveName="소방관 산소탱크 | 올리브"
+FirefighterOxygenTankRedName="소방관 산소탱크 | 레드"
+FirefighterOxygenTankWhiteName="소방관 산소탱크 | 화이트"
+FirefighterOxygenTankYellowName="소방관 산소탱크 | 옐로우"
+InsectoidHelmetClosedBlackRedLightName="곤충 헬멧(닫힘) | 블랙 레드 광원"
+InsectoidHelmetClosedBlackRedTrimName="곤충 헬멧(닫힘) | 블랙 레드 테두리"
+InsectoidHelmetClosedBlackYellowLightName="곤충 헬멧(닫힘) | 블랙 옐로우 광원"
+InsectoidHelmetClosedBlueName="곤충 헬멧(닫힘) | 블루"
+InsectoidHelmetClosedDarkGreenName="곤충 헬멧(닫힘) | 다크 그린"
+InsectoidHelmetClosedGreenName="곤충 헬멧(닫힘) | 그린"
+InsectoidHelmetClosedPurpleName="곤충 헬멧(닫힘) | 퍼플"
+InsectoidHelmetClosedRedName="곤충 헬멧(닫힘) | 레드"
+InsectoidHelmetClosedRustName="곤충 헬멧(닫힘) | 부식"
+InsectoidHelmetClosedUSAName="곤충 헬멧(닫힘) | USA"
+InsectoidHelmetClosedWhiteName="곤충 헬멧(닫힘) | 화이트"
+InsectoidHelmetClosedYellowName="곤충 헬멧(닫힘) | 옐로우"
+InsectoidHelmetOpenBlackRedLightName="곤충 헬멧(열림) | 블랙 레드 광원"
+InsectoidHelmetOpenBlackRedTrimName="곤충 헬멧(열림) | 블랙 레드 테두리"
+InsectoidHelmetOpenBlackYellowLightName="곤충 헬멧(열림) | 블랙 옐로우 광원"
+InsectoidHelmetOpenBlueName="곤충 헬멧(열림) | 블루"
+InsectoidHelmetOpenDarkGreenName="곤충 헬멧(열림) | 다크 그린"
+InsectoidHelmetOpenGreenName="곤충 헬멧(열림) | 그린"
+InsectoidHelmetOpenPurpleName="곤충 헬멧(열림) | 퍼플"
+InsectoidHelmetOpenRedName="곤충 헬멧(열림) | 레드"
+InsectoidHelmetOpenRustName="곤충 헬멧(열림) | 부식"
+InsectoidHelmetOpenUSAName="곤충 헬멧(열림) | USA"
+InsectoidHelmetOpenWhiteName="곤충 헬멧(열림) | 화이트"
+InsectoidHelmetOpenYellowName="곤충 헬멧(열림) | 옐로우"
+InsectoidHelmetGogglesUpBlackRedLightName="곤충 헬멧(고글 올림) | 블랙 레드 광원"
+InsectoidHelmetGogglesUpBlackRedTrimName="곤충 헬멧(고글 올림) | 블랙 레드 테두리"
+InsectoidHelmetGogglesUpBlackYellowLightName="곤충 헬멧(고글 올림) | 블랙 옐로우 광원"
+InsectoidHelmetGogglesUpBlueName="곤충 헬멧(고글 올림) | 블루"
+InsectoidHelmetGogglesUpDarkGreenName="곤충 헬멧(고글 올림) | 다크 그린"
+InsectoidHelmetGogglesUpGreenName="곤충 헬멧(고글 올림) | 그린"
+InsectoidHelmetGogglesUpPurpleName="곤충 헬멧(고글 올림) | 퍼플"
+InsectoidHelmetGogglesUpRedName="곤충 헬멧(고글 올림) | 레드"
+InsectoidHelmetGogglesUpRustName="곤충 헬멧(고글 올림) | 부식"
+InsectoidHelmetGogglesUpUSAName="곤충 헬멧(고글 올림) | USA"
+InsectoidHelmetGogglesUpWhiteName="곤충 헬멧(고글 올림) | 화이트"
+InsectoidHelmetGogglesUpYellowName="곤충 헬멧(고글 올림) | 옐로우"
+InsectoidHelmetGogglesDownBlackRedLightName="곤충 헬멧(고글 내림) | 블랙 레드 광원"
+InsectoidHelmetGogglesDownBlackRedTrimName="곤충 헬멧(고글 내림) | 블랙 레드 테두리"
+InsectoidHelmetGogglesDownBlackYellowLightName="곤충 헬멧(고글 내림) | 블랙 옐로우 광원"
+InsectoidHelmetGogglesDownBlueName="곤충 헬멧(고글 내림) | 블루"
+InsectoidHelmetGogglesDownDarkGreenName="곤충 헬멧(고글 내림) | 다크 그린"
+InsectoidHelmetGogglesDownGreenName="곤충 헬멧(고글 내림) | 그린"
+InsectoidHelmetGogglesDownPurpleName="곤충 헬멧(고글 내림) | 퍼플"
+InsectoidHelmetGogglesDownRedName="곤충 헬멧(고글 내림) | 레드"
+InsectoidHelmetGogglesDownRustName="곤충 헬멧(고글 내림) | 부식"
+InsectoidHelmetGogglesDownUSAName="곤충 헬멧(고글 내림) | USA"
+InsectoidHelmetGogglesDownWhiteName="곤충 헬멧(고글 내림) | 화이트"
+InsectoidHelmetGogglesDownYellowName="곤충 헬멧(고글 내림) | 옐로우"
+InsectoidHelmetGogglesDownPreciousName="곤충 헬멧(고글 내림) | 프레셔스"
+DemonSlayerHelmetGreyName="악마 학살자 헬멧 | 그레이"
+DemonSlayerHelmetPreciousName="악마 학살자 헬멧 | 프레셔스"
 
 ;Cosmetic Descriptions
 
@@ -1957,21 +2156,31 @@ ReaperFaceArmorSkullDescription="장비 메뉴에서 장착; 호환: 오이스�
 SteampunkGasMaskBasicDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
 SteampunkGasMaskOpenDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
 SteampunkGasMaskClosedDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-SteampunkGasMaskFilteredDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 래 히긴스."
-SteampunkGasMaskOpenFilteredDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 래 히긴스."
-SteampunkGasMaskClosedFilteredDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 래 히긴스."
-MinotaurHelmetDescription="장비 메뉴에서 장착; 호환: 오이스텐 예거호른, DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-RebelHelmetDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-RebelHelmetGogglesDownDescription="장비 메뉴에서 장착; 호환: PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-RebelHelmetGogglesUpDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-RebelMaskDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-RebelNeckWarmerDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-JacksCowboyHatDescription="장비 메뉴에서 장착; 호환: 오이스텐 예거호른, DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-DeepstrikeHelmetDescription="장비 메뉴에서 장착; 호환: 오이스텐 예거호른, DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-DeepstrikeGogglesDescription="장비 메뉴에서 장착; 호환: 오이스텐 예거호른, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-DeepstrikeMaskDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
-DeepstrikeHelmetMaskDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+SteampunkGasMaskFilteredDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 래 히긴스."
+SteampunkGasMaskOpenFilteredDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 래 히긴스."
+SteampunkGasMaskClosedFilteredDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 래 히긴스."
+MinotaurHelmetDescription="장비 메뉴에서 장착 가능, 호환: 오이스텐 예거호른, DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+RebelHelmetDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+RebelHelmetGogglesDownDescription="장비 메뉴에서 장착 가능, 호환: PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+RebelHelmetGogglesUpDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+RebelMaskDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+RebelNeckWarmerDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+JacksCowboyHatDescription="장비 메뉴에서 장착 가능, 호환: 오이스텐 예거호른, DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+DeepstrikeHelmetDescription="장비 메뉴에서 장착 가능, 호환: 오이스텐 예거호른, DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+DeepstrikeGogglesDescription="장비 메뉴에서 장착 가능, 호환: 오이스텐 예거호른, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+DeepstrikeMaskDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+DeepstrikeHelmetMaskDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
 DeepstrikeTacticalBackbagDescription="장비 메뉴에서 장착; 호환: 오이스텐 예거호른, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+FirefighterHelmetDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너."
+FirefighterHelmetMaskDownDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너."
+FirefighterHelmetMaskUpDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너."
+FirefighterGasmaskDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너."
+FirefighterOxygenTankDescription="장비 메뉴에서 장착; 호환: 오이스텐 예거호른, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+InsectoidHelmetClosedDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+InsectoidHelmetOpenDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+InsectoidHelmetGogglesUpDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+InsectoidHelmetGogglesDownDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+DemonSlayerHelmetDescription="장비 메뉴에서 장착; 호환: 오이스텐 예거호른, DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
 
 [EmoteSection]
 

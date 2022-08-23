@@ -13,7 +13,9 @@ KF-Prison="감옥 플레이"
 KF-ContainmentStation="폐쇄 스테이션"
 KF-InfernalRealm="지옥의 왕국 플레이"
 KF-HostileGrounds="적진 플레이"
-KF-ZedLanding="제드 상륙 플레이"
+KF-ZedLanding="제드 착륙 플레이"
+KF-TheDescent="경사로 플레이 중"
+KF-Nuked="방사능 누출지 플레이 중"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -129,6 +131,7 @@ PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="XboxTypeS_A을(를) 눌러 시작"
+SwitchProfile="XboxTypeS_Y 버튼을 눌러 프로필을 변경하세요"
 LoginButtonPrompt="로그인"
 LoggingIn="로그인 중..."
 LoginFailed="로그인 실패"
@@ -139,6 +142,8 @@ NotLoggedInOnlinePSN="온라인 기능을 이용하려면 PlayStation™Network�
 NetworkError="네트워크 오류가 발생하였습니다. 네트워크 연결상태를 확인해주십시오."
 ErrorNoPlayfabDescription="게임 마스터 서버에 연결할 수 없습니다. 몇 분 뒤에 다시 시도해주십시오."
 ErrorTSSFailedDescription="게임 밸런스 서버에 연결할 수 없습니다. 인터넷에 연결되었는지 확인하시고 다시 시도해주십시오."
+NotSignedInTitle="로그인하지 않았습니다."
+
 
 [Notifications]
 ControllerDisconnectedTitle="컨트롤러 분리"
@@ -160,12 +165,24 @@ InviteMessage="저와 함께 제드를 처치해주세요!"
 NotConnectedTitle="네트워크 오류"
 NotConnectedMessage="인터넷에 연결되지 않았습니다. 연결 상태를 확인하시고 다시 시도해주십시오."
 NotConnectedForOnlinePlay="인터넷에 연결되지 않았습니다. 온라인 기능을 이용하시려면 연결 상태를 확인하시고 다시 시도해주십시오."
+MultiplayerNotAllowed_Title="멀티플레이어 불가"
+LoggedOutMessage="활동 중인 프로필이 변경되었습니다. 타이틀 화면으로 돌아갑니다."
+LoggedOutTitle="접속 끊김"
+LoggedInTitle="접속됨"
+NewRegionTitle="Welcome"
+NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="플레이어 프로필 보기"
+ViewProfileStringXB1="새 게임 카드"
 
 [KFGFxObject_Menu]
 ResetDefaults="기본값으로 설정을 리셋하시겠습니까?"
+
+[KFGFxWidget_MenuBar]
+LogoutTitle="로그아웃"
+LogoutDialogTitle="타이틀 화면으로"
+LogoutDialogMessage="타이틀 화면으로 돌아가시겠습니까?"
 
 [KFGFxTraderContainer_PlayerInventory]
 PerkPrompt="병과"
@@ -177,9 +194,19 @@ ControllerSound="컨트롤러 사운드"
 MatchmakingRegionString="지역"
 LeaveMenuString="대전상대 찾기에서 나가시면 부대에서도 나가게 됩니다."
 
+[KFGFxMenu_Store]
+
+
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="지역"
 MapPreference="선호 맵"
+
+[KFGFxMenu_Exit]
+HeaderStringXB1="로그아웃"
+LogoutKF2="타이틀 화면으로"
+
+[Misc]
+NotSignedIn="접속할 수 없음"
 
 [Entitlements]
 BriarBobbyBundleProductName="런던 보비 브라이어 유니폼 번들"

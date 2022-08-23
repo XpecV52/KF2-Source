@@ -1,18 +1,16 @@
 Content Manifest for Depot 232152
 
-Manifest ID / date     : 8941642160407136821 / 11/21/2016 6:59:29 PM
-Total number of files  : 7
-Total number of chunks : 7
-Total bytes on disk    : 946774
-Total bytes compressed : 438112
+Manifest ID / date     : 7729343339933115632 / 2/8/2017 10:18:56 PM
+Total number of files  : 6
+Total number of chunks : 6
+Total bytes on disk    : 877654
+Total bytes compressed : 404944
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
-        526336      1 FEC17A72454999791E7DE5FEA2CF9B5D8D586FEC     0 Binaries\SDKFrontend.exe
-         75264      1 29F81E40778152B3EC2CCC146B13476A10B26348     0 Binaries\UnrealControls.dll
-             0      0 0000000000000000000000000000000000000000    64 Binaries\Win32
-         70144      1 E02F711FC0638BB0630F9F1B3E374E7145A4DAC0     0 Binaries\Win32\Workshopdll.dll
-         17408      1 CCA209018C0ACF09F4072BEAF1104D87165CF736     0 Binaries\WorkshopUserTool.exe
-         70144      1 E02F711FC0638BB0630F9F1B3E374E7145A4DAC0     0 Binaries\Workshopdll.dll
+        526848      1 32853BBDA33EC8FD287CCF91AE46CC8E9BDA341E     0 Binaries\SDKFrontend.exe
+         75264      1 B3685C44B25CD966ECCEE5B9A2A48CA52DED1CC0     0 Binaries\UnrealControls.dll
+         17408      1 3857C811A7C8057B2A875CFD3A7711FCCDDA8792     0 Binaries\WorkshopUserTool.exe
+         70656      1 F01ECE288A4987985B6445DEE6411828257C7A42     0 Binaries\Workshopdll.dll
         187472      1 A4767AF5372CD93D11F2AC05202376147B4C73B8     0 Binaries\steam_api.dll
              6      1 1B660278282005510C1EAD4CF8B32E49FC164586     0 Binaries\steam_appid.txt

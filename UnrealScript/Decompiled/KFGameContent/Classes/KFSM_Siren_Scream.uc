@@ -13,6 +13,7 @@ var KFPawn_ZedSiren MySirenPawn;
 var float ScreamDamageFrequency;
 var byte ScreamCount;
 var float LastScreamTime;
+var protected const int ScreamDamage;
 var GameExplosion ExplosionTemplate;
 var const class<GameExplosionActor> ExplosionActorClass;
 var bool bEndedNormally;
@@ -22,7 +23,6 @@ var AkEvent ScreamInterruptSound;
 var GameExplosionActor ExplosionActor;
 var KFTrigger_SirenProjectileShield ProjectileShield;
 var const float ProjectileShieldLifetime;
-var transient int DefaultScreamDamage;
 
 function bool CanOverrideMoveWith(name NewMove)
 {
@@ -49,10 +49,6 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     if(MySirenPawn == none)
     {
         MySirenPawn = KFPawn_ZedSiren(KFPOwner);
-    }
-    if(DefaultScreamDamage == 0)
-    {
-        DefaultScreamDamage = int(ExplosionTemplate.Damage);
     }
     LastScreamTime = MySirenPawn.WorldInfo.TimeSeconds;
     KFPOwner.SetTimer(ProjectileShieldLifetime, false, 'Timer_DestroyProjectileShield', self);
@@ -141,7 +137,7 @@ function ScreamExplosion()
         return;
     }
     LastScreamTime = KFPOwner.WorldInfo.TimeSeconds;
-    ExplosionTemplate.Damage = float(KFPawn_Monster(KFPOwner).GetRallyBoostDamage(DefaultScreamDamage));
+    ExplosionTemplate.Damage = float(KFPawn_Monster(KFPOwner).GetRallyBoostDamage(ScreamDamage));
     ExplosionActor.Explode(ExplosionTemplate);
     ++ ScreamCount;
     if(ScreamCount >= 4)
@@ -178,8 +174,8 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 defaultproperties
 {
     ScreamDamageFrequency=0.5
+    ScreamDamage=15
     begin object name=ExploTemplate0 class=KFGameExplosion
-        Damage=15
         DamageRadius=800
         ActorClassToIgnoreForDamage=Class'KFGame.KFPawn_Monster'
         MyDamageType=Class'KFGame.KFDT_Sonic'

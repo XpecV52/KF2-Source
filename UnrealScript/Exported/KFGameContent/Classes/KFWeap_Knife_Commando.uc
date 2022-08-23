@@ -31,7 +31,6 @@ defaultproperties
       ChainSequence_R(2)=()
       ChainSequence_R(3)=DIR_Right
       ChainSequence_R(4)=()
-      WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
       MeleeImpactCamShakeScale=0.030000
       MaxHitRange=220.000000
       HitboxChain(0)=(BoneOffset=(X=0.000000,Y=3.000000,Z=125.000000))
@@ -41,6 +40,7 @@ defaultproperties
       HitboxChain(4)=(BoneOffset=(X=0.000000,Y=3.000000,Z=25.000000))
       HitboxChain(5)=(BoneOffset=(X=0.000000,Y=-3.000000,Z=0.000000))
       HitboxChain(6)=(BoneOffset=(X=0.000000,Y=0.000000,Z=-25.000000))
+      WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
    End Object

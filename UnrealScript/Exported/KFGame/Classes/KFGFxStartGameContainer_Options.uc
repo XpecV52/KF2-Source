@@ -76,7 +76,8 @@ const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
-const KFID_DisableAutoUpgrade = 167;#linenumber 15
+const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;#linenumber 15
 
 enum EServerType
 {
@@ -174,6 +175,7 @@ var GFxObject InProgressButton;
 var GFxObject PrivacyButton;
 var GFxObject LengthButton;
 var GFxObject DifficultyButton;
+var GfxObject MapButton;
 
 //==============================================================
 // Initialization
@@ -195,6 +197,7 @@ function GetButtons()
 	PrivacyButton = GetObject("privacyButton");
 	LengthButton = GetObject("lengthButton");
 	DifficultyButton = GetObject("difficultyButton");
+	MapButton = GetObject("mapButton");
 }
 
 function ClampSavedFiltersToMode()
@@ -268,7 +271,7 @@ function InitializeGameOptions()
 	}
     
     // Override any map selection history preferences if in PS4 Playgo Mode. We only support KF-EvacuationPoint on early install.
-    if( class'KFGameEngine'.static.IsPlaygoModePS4() )
+    if( !class'GameEngine'.Static.IsGameFullyInstalled() )
     {
         SavedMapString = "KF-EvacuationPoint";
         SavedSoloMapString = "KF-EvacuationPoint";
@@ -438,10 +441,40 @@ function GFxObject CreateList( array<string> TextArray, byte SelectedIndex, bool
 }
 
 // Set the game options based on our stored information
-function SetOptions()
+function SetOptions( optional bool bMenuOpening )
 {
+	local array<string> PlayfabRegionList;
+
 	InProgressChanged(SavedInProgressIndex);
 	PrivacyChanged(SavedPrivacyIndex);
+
+	if( class'WorldInfo'.static.IsConsoleBuild() )
+	{
+		if( bMenuOpening && !bIsSoloGame )
+		{
+			// For first time users on XB1, we need to detect best fit region and notify the user
+			if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) && class'GameEngine'.static.GetPlayfabInterface().CurrRegionName == "")
+			{
+				class'GameEngine'.static.GetOnlineSubsystem().StartRegionPingAndSelectDefaultRegion(none);
+
+				// Notify the user as well
+				ParentMenu.Manager.DelayedOpenPopup(ENotification, EDPPID_Misc,
+					Localize("Notifications", "NewRegionTitle", "KFGameConsole"),
+					Localize("Notifications", "NewRegionMessage", "KFGameConsole"),
+					class'KFCommon_LocalizedStrings'.default.OKString);
+			}
+
+			RegionIndex = class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion();
+			PlayfabRegionList = class'PlayfabInterface'.static.GetLocalizedRegionList();
+
+			// Set the correct region now
+			ServerTypeButton.SetString("infoString", PlayfabRegionList[RegionIndex]);
+		}
+	}
+	else
+	{
+		ServerTypeChanged(SavedServerTypeIndex, true);
+	}
 }
 
 function SetSearching(bool bSearching)
@@ -555,6 +588,8 @@ function PrivacyChanged( int Index, optional bool bSetText )
 			PrivacyButton.SetString("infoString", class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(GetPC().WorldInfo.IsConsoleBuild())[SavedInProgressIndex]);
 		}
 		//SetBool("bPublicGame", GetPartyPrivacy() == LV_Public || GetPartyPrivacy() == LV_Friends );
+
+		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPrivacyIndex, SavedPrivacyIndex);
 	}	
 }
 
@@ -582,16 +617,10 @@ function CheckAndUpdateBasedOnPrivacy()
 
 function ServerTypeChanged( int Index, optional bool bSetText )
 {
-	LogInternal("Server Type changed to"@Index);
-	ScriptTrace();
-
 	if( class'WorldInfo'.static.IsConsoleBuild() )
 	{
 		RegionIndex = Index;
 		class'GameEngine'.static.GetPlayfabInterface().SetIndexForCurrentRegion( RegionIndex );
-
-		/// This is now done in the selection above.
-		//StartMenu.Manager.CachedProfile.SetProfileSettingValue(KFID_MatchmakingRegion, class'GameEngine'.static.GetPlayfabInterface().CurrRegionName);
 	}
 	else
 	{
@@ -601,6 +630,14 @@ function ServerTypeChanged( int Index, optional bool bSetText )
 		if(bSetText)
 		{
 			ServerTypeButton.SetString("infoString", ServerTypeStrings[SavedServerTypeIndex]);
+		}
+		if (SavedServerTypeIndex == ES_Custom)
+		{
+			MapButton.SetBool("enabled", false);
+		}
+		else
+		{
+			MapButton.SetBool("enabled", true);
 		}
 	}
 }

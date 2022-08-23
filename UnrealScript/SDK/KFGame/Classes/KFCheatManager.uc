@@ -73,6 +73,29 @@ function Pawn GetMyPawn()
 	return (Pawn!=none)?Pawn:DebugCameraController(Outer).OriginalControllerRef.Pawn;
 }
 
+exec function OpenScreenSizeMovie()
+{
+	KFPlayerController(Outer).MyGFxManager.OpenScreenSizeMovie();
+}
+
+exec function OpenIIS ()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Outer);
+
+    KFPC.MyGFxManager.OpenMenu(UI_IIS);
+}
+
+exec function SetIISText (string MyString)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Outer);
+
+    KFPC.MyGFxManager.IISMenu.SetString("loginText",  MyString);
+}
+
 exec function TestSongInfoWidget(String S)
 {
     local Pawn P;
@@ -788,7 +811,6 @@ simulated exec function Melee()
     GiveWeapon( "KFGameContent.KFWeap_Knife_Medic" );
     GiveWeapon( "KFGameContent.KFWeap_Knife_Support" );
     GiveWeapon( "KFGameContent.KFWeap_Edged_Zweihander");
-    GiveWeapon( "KFGameContent.KFWeap_Blunt_MaceAndShield");
 }
 
 /**
@@ -801,6 +823,7 @@ simulated exec function Assault()
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_SCAR" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_AK12" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_M16M203" );
+    GiveWeapon( "KFGameContent.KFWeap_LMG_Stoner63A" );
 }
 
 /**
@@ -862,6 +885,8 @@ simulated exec function Firebug()
     GiveWeapon( "KFGameContent.KFWeap_Shotgun_DragonsBreath" );
     GiveWeapon( "KFGameContent.KFWeap_Flame_Flamethrower" );
     GiveWeapon( "KFGameContent.KFWeap_Beam_Microwave" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_Flare" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_DualFlare" );
 }
 
 /**
@@ -4587,6 +4612,14 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
 	{
 		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_Alpha"$VersusSuffix, class'Class'));
 	}
+    else if( Left(ZedName, 4) ~= "EAlp")
+    {
+        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_AlphaKing"$VersusSuffix, class'Class'));
+    }
+    else if( Left(ZedName, 4) ~= "ECra")
+    {
+        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedCrawlerKing"$VersusSuffix, class'Class'));
+    }
 	else if( Left(ZedName, 5) ~= "ClotS" )
 	{
 		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_Slasher"$VersusSuffix, class'Class'));
@@ -5604,14 +5637,6 @@ exec function CameraBlood()
 
 exec function HeadShotPing (bool value)
 {
-    if(value )
-    {
-        Outer.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShotPing');
-    }
-    else
-    {
-        Outer.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShot');
-    }
 }
 
 exec function CameraPuke()
@@ -6431,7 +6456,7 @@ exec function ReadPFStoreData()
 function OnPlayfabStoreReadComplete( bool bSuccessful )
 {
 	class'GameEngine'.static.GetPlayfabInterface().ClearStoreDataReadCompleteDelegate( OnPlayfabStoreReadComplete );
-	`log("Inventory read with success"@bSuccessful);
+	`log("store catalog read with success"@bSuccessful);
 }
 
 
@@ -6557,6 +6582,147 @@ exec function DebugConsumeEntitlements()
 exec function TestTutorialRewards()
 {
 	class'GameEngine'.static.GetPlayfabInterface().ExecuteCloudScript( "ClaimTutorialRewards", none );
+}
+
+
+exec function DeleteXboxSaveData()
+{
+	OnlineSub.ContentInterface.DeleteSaveGame( LocalPlayer(Player).ControllerId, 0, "", "ProfileData" );
+}
+
+
+exec function ShowXboxProductDetails( optional string ProductId )
+{
+	OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI( LocalPlayer(Player).ControllerId, ProductId );
+}
+
+
+
+exec function DumpGameProducts() { DumpStoreCatalog(MIT_Game); }
+exec function DumpApplicationProducts() { DumpStoreCatalog(MIT_Application); }
+exec function DumpDurables() { DumpStoreCatalog(MIT_GameContent); }
+exec function DumpConsumables() { DumpStoreCatalog(MIT_GameConsumable); }
+exec function DumpSubscriptions() { DumpStoreCatalog(MIT_Subscription); }
+exec function DumpFullCatalog()
+{
+	`log("Dumping Game Products");
+	DumpGameProducts();
+	`log("Dumping Application Products");
+	DumpApplicationProducts();
+	`log("Dumping Durable Products");
+	DumpDurables();
+	`log("Dumping Consumable Products");
+	DumpConsumables();
+	`log("Dumping Subscription Products");
+	DumpSubscriptions();
+}
+
+exec function DumpStoreCatalog(EMediaItemType MediaType)
+{
+	local int i, j, k;
+	local array<MarketplaceProductDetails> AvailableProducts;
+
+	OnlineSub.MarketplaceInterface.GetAvailableProducts(LocalPlayer(Player).ControllerId, MediaType, AvailableProducts);
+
+	`log("Dumping products now... size"@AvailableProducts.Length);
+
+	for (i = 0; i < AvailableProducts.Length; i++)
+	{
+		`log(i@"StandardId"@AvailableProducts[i].StandardId);
+		`log(i@"MediaItemType"@AvailableProducts[i].MediaItemType);
+		`log(i@"ProductName"@AvailableProducts[i].ProductName);
+		`log(i@"ProductId"@AvailableProducts[i].ProductId);
+		`log(i@"SandboxId"@AvailableProducts[i].SandboxId);
+		`log(i@"TitleId"@AvailableProducts[i].TitleId);
+		`log(i@"IsBundle"@AvailableProducts[i].bIsBundle);
+		`log(i@"IsPartOfAnyBundle"@AvailableProducts[i].bIsPartOfAnyBundle);
+		`log(i@"ReducedName"@AvailableProducts[i].ReducedName);
+		`log(i@"DetailsReadState"@AvailableProducts[i].DetailsReadState);
+		`log(i@"ProductDescription"@AvailableProducts[i].ProductDescription);
+
+		`log(i@"images length"@AvailableProducts[i].Images.Length);
+			for (j = 0; j < AvailableProducts[i].Images.Length; j++)
+			{
+				`log("  Id"@AvailableProducts[i].Images[j].Id);
+				`log("  Height"@AvailableProducts[i].Images[j].Height);
+				`log("  Width"@AvailableProducts[i].Images[j].Width);
+				`log("  Purpose"@AvailableProducts[i].Images[j].Purpose);
+				`log("  ResizeURL"@AvailableProducts[i].Images[j].ResizeURL);
+				`log("  purposes length"@AvailableProducts[i].Images[j].Purposes.Length);
+				for (k = 0; k < AvailableProducts[i].Images[j].Purposes.Length; k++)
+				{
+					`log("      "@AvailableProducts[i].Images[j].Purposes[k]);
+				}
+			}
+
+		`log(i@"availabilities length"@AvailableProducts[i].Availabilities.Length);
+			for (j = 0; j < AvailableProducts[i].Availabilities.Length; j++)
+			{
+				`log("  Title"@AvailableProducts[i].Availabilities[j].Title);
+				`log("  Description"@AvailableProducts[i].Availabilities[j].Description);
+				`log("  ContentId"@AvailableProducts[i].Availabilities[j].ContentId);
+				`log("  CurrencyCode"@AvailableProducts[i].Availabilities[j].CurrencyCode);
+				`log("  DisplayListPrice"@AvailableProducts[i].Availabilities[j].DisplayListPrice);
+				`log("  DisplayPrice"@AvailableProducts[i].Availabilities[j].DisplayPrice);
+				`log("  DistributionType"@AvailableProducts[i].Availabilities[j].DistributionType);
+				`log("  bIsPurchasable"@AvailableProducts[i].Availabilities[j].bIsPurchasable);
+				`log("  ListPrice"@AvailableProducts[i].Availabilities[j].ListPrice);
+				`log("  Price"@AvailableProducts[i].Availabilities[j].Price);
+				`log("  PromotionalText"@AvailableProducts[i].Availabilities[j].PromotionalText);
+				`log("  OfferId"@AvailableProducts[i].Availabilities[j].OfferId);
+				`log("  SignedOffer"@AvailableProducts[i].Availabilities[j].SignedOffer);
+
+				`log("  AcceptablePaymentInstrumentTypes length"@AvailableProducts[i].Availabilities[j].AcceptablePaymentInstrumentTypes.Length);
+				for (k = 0; k < AvailableProducts[i].Availabilities[j].AcceptablePaymentInstrumentTypes.Length; k++)
+				{
+					`log("      "@AvailableProducts[i].Availabilities[j].AcceptablePaymentInstrumentTypes[k]);
+				}
+			}
+	}
+}
+
+
+exec function RefreshXboxInventory()
+{
+	OnlineSub.MarketplaceInterface.ResetInventoryItems( LocalPlayer(Player).ControllerId, MIT_All );
+	OnlineSub.MarketplaceInterface.ReadInventoryItems( LocalPlayer(Player).ControllerId, MIT_All );
+}
+
+
+exec function ReadPlayfabTitleData()
+{
+	class'GameEngine'.static.GetPlayfabInterface().AddTitleDataReadCompleteDelegate( OnTitleDataRead );
+	class'GameEngine'.static.GetPlayfabInterface().ReadTitleData();
+}
+
+
+exec function OnTitleDataRead()
+{
+	`log("Title data read");
+}
+
+
+exec function GetTitleDataValueForKey( string Key )
+{
+	class'GameEngine'.static.GetPlayfabInterface().ClearTitleDataReadCompleteDelegate( OnTitleDataRead );
+	`log("title data value for key"@Key@"is"@class'GameEngine'.static.GetPlayfabInterface().GetTitleDataForKey( Key ) );
+}
+
+
+exec function DebugEndGameRewards(float GameplayTime, optional bool bFinal)
+{
+	local JsonObject Parms;
+
+	Parms = new class'JsonObject';
+	Parms.SetIntValue("UpdateTime", GameplayTime);
+	Parms.SetBoolValue("bGameEnd", bFinal);
+	PlayfabInter.ExecuteCloudScript("UpdatePlayRewards", Parms);
+}
+
+
+exec function DebugSetSafeFrame(float NewScale)
+{
+	KFGameEngine(class'Engine'.static.GetEngine()).SafeFrameScale = NewScale;
 }
 
 

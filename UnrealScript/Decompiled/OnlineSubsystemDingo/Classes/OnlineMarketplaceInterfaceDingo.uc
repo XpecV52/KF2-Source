@@ -49,6 +49,7 @@ struct native UserMarketplaceCache
         ProductCaches[3]=(Products=none,ReadState=EOnlineEnumerationReadState.OERS_NotStarted)
         ProductCaches[4]=(Products=none,ReadState=EOnlineEnumerationReadState.OERS_NotStarted)
         ProductCaches[5]=(Products=none,ReadState=EOnlineEnumerationReadState.OERS_NotStarted)
+        ProductCaches[6]=(Products=none,ReadState=EOnlineEnumerationReadState.OERS_NotStarted)
     }
 };
 
@@ -77,6 +78,7 @@ struct native UserInventoryCache
         InventoryCaches[3]=(Items=none,ReadState=EOnlineEnumerationReadState.OERS_NotStarted)
         InventoryCaches[4]=(Items=none,ReadState=EOnlineEnumerationReadState.OERS_NotStarted)
         InventoryCaches[5]=(Items=none,ReadState=EOnlineEnumerationReadState.OERS_NotStarted)
+        InventoryCaches[6]=(Items=none,ReadState=EOnlineEnumerationReadState.OERS_NotStarted)
     }
 };
 

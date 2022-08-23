@@ -351,7 +351,7 @@ defaultproperties
     bLargeZed=true
     bCanRage=true
     bIsFleshpoundClass=true
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Fleshpound_ARCH.ZED_Fleshpound_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Fleshpound_Archetype"
     HeadlessBleedOutTime=7
     ParryResistance=4
     MinSpawnSquadSizeType=ESquadType.EST_Large

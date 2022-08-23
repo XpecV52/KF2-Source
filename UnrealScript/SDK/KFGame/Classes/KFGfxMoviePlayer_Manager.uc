@@ -87,6 +87,9 @@ var KFGFxMenu_ServerBrowser ServerBrowserMenu;
 var KFGFxMenu_Exit ExitMenu;
 var KFGFxMenu_IIS IISMenu;
 
+/** The screen size movie used to adjusted safe frame */
+var KFGFxMoviePlayer_ScreenSize ScreenSizeMovie;
+
 var KFProfileSettings CachedProfile;
 
 var bool bPostGameState;
@@ -288,7 +291,7 @@ function OnProfileSettingsRead()
 		bSetGamma = CachedProfile.GetProfileBool( KFID_SetGamma );
 
 		// Now that profile settings have been read in, show the gamma popup if needed
-		if( !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() )
+		if( !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() && !class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
 		{
 			`log(`location@"33"@`showvar(bSetGamma)@`showvar(CurrentMenu));
 			ManagerObject.SetBool("bStartUpGamma", true);   // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
@@ -396,7 +399,7 @@ function LaunchMenus( optional bool bForceSkipLobby )
 	}
 
 	// Only read if cached profile has finished reading in
-	if( !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() && CachedProfile != None && CachedProfile.AsyncState != OPAS_Read  )
+	if( !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() && CachedProfile != None && CachedProfile.AsyncState != OPAS_Read && !class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
 	{
 		`log(`location@"22"@`showvar(bSetGamma)@`showvar(bShowIIS));
 		ManagerObject.SetBool("bStartUpGamma", true);   // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
@@ -415,7 +418,7 @@ function DelayedShowDisconnectMessage()
 	{
 		DelayedOpenPopup(ENotification, EDPPID_JoinFailure,
 			Localize("Notifications", "ConnectionLostTitle",   "KFGameConsole"),
-			Localize("Notifications", "ConnectionLostMessage", "KFGameConsole"),
+			Localize("Notifications", class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) ? "ConnectionLostMessageLive" : "ConnectionLostMessage", "KFGameConsole"),
 			class'KFCommon_LocalizedStrings'.default.OKString);
 	}
 }
@@ -488,7 +491,7 @@ function DelayedOpenPopup( EPopUpType PopUpType, int PopupPriority, string Title
 
 function ShowDelayedPopupMessage()
 {
-	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentMenu == IISMenu)
+	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying() || (CurrentMenu == IISMenu && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis)) )
 	{
 		`TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
 		return;
@@ -533,7 +536,6 @@ function bool CheckSkipLobby()
 /** Ties the GFxClikWidget variables to the .swf components and handles events */
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
-	local PlayerController PC;
 	local bool bHandled;
 
 	bHandled = true;
@@ -582,8 +584,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			OnMenuOpen( WidgetPath, ServerBrowserMenu );
 		break;
 		case ( 'gearMenu' ):
-			PC = GetPC();
-			if( PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun )
+			if( MenuBarWidget != none && !MenuBarWidget.CanUseGearButton(GetPC(), self) )
 			{
 				break;
 			}
@@ -595,7 +596,6 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			OnMenuOpen( WidgetPath, GearMenu );
 		break;
 		case ( 'inventoryMenu' ):
-			PC = GetPC();
 			if (InventoryMenu == none)
 			{
 				InventoryMenu = KFGFxMenu_Inventory( Widget );
@@ -605,7 +605,6 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 		break;
 		
 		case ( 'storeMenu' ):
-			PC = GetPC();
 			if (StoreMenu == none)
 			{
 				StoreMenu = KFGFxMenu_Store( Widget );
@@ -733,7 +732,11 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 
 function StatsInitialized()
 {
-	//not used anymore
+	// Notify IIS menu that stats have been read
+	if( IISMenu != none )
+	{
+		IISMenu.bStatsRead = true;
+	}
 }
 
 function AllowCloseMenu()
@@ -824,8 +827,7 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 
 	if( NewMenuIndex == UI_Gear )
 	{
-		
-		if( PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun )
+		if( MenuBarWidget != none && !MenuBarWidget.CanUseGearButton(PC, self) )
 		{
 			return;
 		}
@@ -870,6 +872,8 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		ManagerObject.SetBool("backgroundVisible", false);
 		IISMovie.Play();
 		ManagerObject.SetBool("IISMovieVisible", true);
+		class'Engine'.static.GetEngine().GameViewport.bAllowInputFromMultipleControllers = true;
+		SetWidgetsVisible( false );
 	}
 	//@HSL_END
 
@@ -1496,9 +1500,14 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 		{
 			if(!GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby && !class'WorldInfo'.static.IsMenuLevel() && CurrentPopup == none )
 			{
+				if(!KFPRI.bReadyToPlay)
+				{
+					PlaySoundFromTheme('PARTYWIDGET_READYUP_BUTTON_CLICK', 'UI');
+				}
 				CurrentMenu.Callback_ReadyClicked(!KFPRI.bReadyToPlay);
 				PartyWidget.SetBool("bReady", KFPRI.bReadyToPlay);
 				PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);
+
 			}
 		}
 		else if(ButtonName == 'XboxTypeS_RightThumbstick')
@@ -1529,7 +1538,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 		if ( CurrentMenu != none )
 		{
 		
-			if ( !class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+			if ( !class'WorldInfo'.static.IsConsoleBuild() )
     		{
 				CheckIfUsingGamepad();
 			}
@@ -1643,6 +1652,14 @@ function RemotePlayerDisconnected( UniqueNetId UniqueId )
 
 }
 
+function NotifySpectateStateChanged( bool bIsSpectating )
+{
+	if( MenuBarWidget != none )
+	{
+		MenuBarWidget.UpdateGearButtonState();
+	}
+}
+
 /*********************************************************************************************
 * @name Kick Vote
 ********************************************************************************************* */
@@ -1702,6 +1719,25 @@ function CastNoVote()
 		}
 	}
 }
+
+
+function OpenScreenSizeMovie()
+{
+	if( ScreenSizeMovie == none )
+	{
+		ScreenSizeMovie = new class'KFGFxMoviePlayer_ScreenSize';
+		ScreenSizeMovie.SetTimingMode(TM_Real);
+		ScreenSizeMovie.Init();
+	}
+}
+
+function CloseScreenSizeMovie()
+{
+	ScreenSizeMovie.Close();
+	ScreenSizeMovie = none;
+}
+
+
 
 function currentFocus()
 {

@@ -38,6 +38,21 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     StartMenu = KFGFxMenu_StartGame(NewParentMenu);
     LocalizeMenu();
     SetWhatsNewItems();
+    if(Class'KFGameEngine'.static.IsSoloPlayDisabled())
+    {
+        DisableSoloButton();
+    }
+}
+
+function DisableSoloButton()
+{
+    local GFxObject SoloButton;
+
+    SoloButton = GetObject("soloOfflineButton");
+    if(SoloButton != none)
+    {
+        SoloButton.SetBool("enabled", false);
+    }
 }
 
 function SetWhatsNewItems()
@@ -107,15 +122,16 @@ function LocalizeMenu()
 
 defaultproperties
 {
-    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_volcano",TextField="LatestUpdate",RedirectURL="http://www.killingfloor2.com/bullseye",PSNProductId="")
-    WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
-    WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Emote_01_11",TextField="NewEmotes",RedirectURL="https://store.steampowered.com/buyitem/232090/4540",PSNProductId="")
-    WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_MaceShield_15",TextField="USBBoneCrusher",RedirectURL="https://store.steampowered.com/buyitem/232090/4562",PSNProductId="")
-    WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/",PSNProductId="")
-    WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/",PSNProductId="")
-    WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap",PSNProductId="")
-    WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="https://tripwire.gomerch.com/",PSNProductId="")
-    WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/",PSNProductId="")
+    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Descent",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/",PSNProductId="")
+    WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="https://tripwire.manheadmerch.com/",PSNProductId="")
+    WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_Spitfire_17",TextField="USBSpitfire",RedirectURL="https://store.steampowered.com/buyitem/232090/4801",PSNProductId="")
+    WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Insectoid_13",TextField="HorzineSupplyCrateKey13",RedirectURL="https://store.steampowered.com/buyitem/232090/4775",PSNProductId="")
+    WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_HighVoltage_16",TextField="USBHighVoltage",RedirectURL="https://store.steampowered.com/buyitem/232090/4785",PSNProductId="")
+    WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
+    WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/",PSNProductId="")
+    WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/",PSNProductId="")
+    WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap",PSNProductId="")
+    WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/",PSNProductId="")
     MultiplayerString="Online Matchmaking"
     SoloString="Play Solo Offline"
     TutorialString="Basic Training"

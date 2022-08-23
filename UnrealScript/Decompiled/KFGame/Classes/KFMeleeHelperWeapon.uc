@@ -42,7 +42,6 @@ var() float InitialImpactDelay;
 var() float ImpactRetryDuration;
 /** World time to stop retrying traces for melee impact */
 var() float ImpactComplete_ActorTime;
-var KFImpactEffectInfo WorldImpactEffects;
 var InterpCurveFloat FatigueCurve;
 var float MeleeImpactCamShakeScale;
 
@@ -613,8 +612,6 @@ simulated function float GetDamageScaleByAngle(Vector HitLoc)
 
 simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector HitDirection, optional bool bShakeInstigatorCamera)
 {
-    local KFPawn KFP;
-
     bShakeInstigatorCamera = true;
     if(Outer.WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -629,42 +626,31 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
         if(!Target.bCanBeDamaged && Target.IsA('Pawn'))
         {
             KFImpactEffectManager(Outer.WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Outer.Instigator, HitDirection, WorldImpactEffects);
-        }        
-    }
-    else
-    {
-        if((Outer.WorldInfo.NetMode != NM_Client) && !Target.IsA('Pawn'))
-        {
-            KFP = KFPawn(Outer.Instigator);
-            if(KFP != none)
-            {
-                KFP.SetMeleeImpactLocation(HitLocation);
-            }
         }
     }
 }
 
 defaultproperties
 {
-    ChainSequence_F(0)=73
+    ChainSequence_F(0)=203
     ChainSequence_F(1)=25
     ChainSequence_F(2)=0
     ChainSequence_F(3)=0
     ChainSequence_F(4)=0
-    ChainSequence_B(0)=69
+    ChainSequence_B(0)=199
     ChainSequence_B(1)=25
     ChainSequence_B(2)=0
     ChainSequence_B(3)=0
     ChainSequence_B(4)=0
     ChainSequence_B(5)=0
     ChainSequence_B(6)=0
-    ChainSequence_L(0)=76
+    ChainSequence_L(0)=206
     ChainSequence_L(1)=25
     ChainSequence_L(2)=0
     ChainSequence_L(3)=0
     ChainSequence_L(4)=0
     ChainSequence_L(5)=0
-    ChainSequence_R(0)=73
+    ChainSequence_R(0)=203
     ChainSequence_R(1)=25
     ChainSequence_R(2)=0
     ChainSequence_R(3)=0
@@ -672,7 +658,6 @@ defaultproperties
     ChainSequence_R(5)=0
     InitialImpactDelay=0.2
     ImpactRetryDuration=0.2
-    WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Blunted_melee_impact'
     FatigueCurve=(Points=/* Array type was not detected. */,InVal=2,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     MeleeImpactCamShakeScale=1
     bHitboxPawnsOnly=true

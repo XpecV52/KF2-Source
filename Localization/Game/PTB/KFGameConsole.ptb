@@ -14,6 +14,8 @@ KF-ContainmentStation="Jogando Zona de Contenção"
 KF-InfernalRealm="Jogando Reino Infernal"
 KF-HostileGrounds="Jogando Terrenos Hostis"
 KF-ZedLanding="Jogando Pouso Forçado ZED"
+KF-TheDescent="Jogando a Descida"
+KF-Nuked="Jogando Bombardeio"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -129,6 +131,7 @@ PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="Aperte XboxTypeS_A para iniciar"
+SwitchProfile="Aperte XboxTypeS_Y para alterar perfil"
 LoginButtonPrompt="Conectar-se"
 LoggingIn="Conectando em..."
 LoginFailed="Falha ao conectar"
@@ -139,6 +142,8 @@ NotLoggedInOnlinePSN="Você deve estar conectar à PlayStation™Network para us
 NetworkError="Ocorreu um erro de rede. Verifique a conexão."
 ErrorNoPlayfabDescription="Não foi possível estabelecer uma conexão com os servidores mestres. Repita daqui a alguns minutos."
 ErrorTSSFailedDescription="Não foi possível estabelecer uma conexão com o servidor de equilíbrio do jogo. Confira se há uma conexão, se você está conectado e tente de novo."
+NotSignedInTitle="Não conectado."
+
 
 [Notifications]
 ControllerDisconnectedTitle="Controle desconectado"
@@ -160,12 +165,24 @@ InviteMessage="Vamos explodir uns Zeds juntos!"
 NotConnectedTitle="Erro de rede"
 NotConnectedMessage="Não conectado à internet. Verifique a conexão e tente de novo."
 NotConnectedForOnlinePlay="Não conectado à internet. Verifique a conexão e tente de novo para usar os recursos on-line."
+MultiplayerNotAllowed_Title="Multijogador não permitido"
+LoggedOutMessage="O perfil ativo foi alterado. Você voltou à tela inicial."
+LoggedOutTitle="Desconectado"
+LoggedInTitle="Conectado."
+NewRegionTitle="Welcome"
+NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Exibir perfil do jogador"
+ViewProfileStringXB1="Exibir cartão do jogo"
 
 [KFGFxObject_Menu]
 ResetDefaults="Redefinir as configurações para os valores iniciais?"
+
+[KFGFxWidget_MenuBar]
+LogoutTitle="DESCONECTAR"
+LogoutDialogTitle="Voltar à tela inicial."
+LogoutDialogMessage="Quer mesmo voltar à tela inicial?"
 
 [KFGFxTraderContainer_PlayerInventory]
 PerkPrompt="CLASSE"
@@ -177,9 +194,19 @@ ControllerSound="Som do controle"
 MatchmakingRegionString="REGIÃO"
 LeaveMenuString="Se você sair do criador de partidas, também sairá do grupo"
 
+[KFGFxMenu_Store]
+
+
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGIÃO"
 MapPreference="MAPA FAVORITO"
+
+[KFGFxMenu_Exit]
+HeaderStringXB1="DESCONECTAR"
+LogoutKF2="Voltar à tela inicial."
+
+[Misc]
+NotSignedIn="Não conectado"
 
 [Entitlements]
 BriarBobbyBundleProductName="Pacote Unif. Bobby Briar Londres"

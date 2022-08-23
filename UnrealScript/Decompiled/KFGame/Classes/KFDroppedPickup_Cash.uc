@@ -66,6 +66,22 @@ event Destroyed()
     Inventory = none;
 }
 
+simulated function NotifyMinigameHit(KFInterface_MinigameTarget MinigameTarget)
+{
+    if(MinigameTarget.IsAlive())
+    {
+        ServerNotifyMinigameHit(Actor(bool(MinigameTarget)));
+    }
+}
+
+private reliable server final function ServerNotifyMinigameHit(Actor MinigameTarget)
+{
+    if(NotEqual_InterfaceInterface(KFInterface_MinigameTarget(MinigameTarget), (none)))
+    {
+        KFInterface_MinigameTarget(MinigameTarget).ValidHit(Controller(Owner), self);
+    }
+}
+
 auto state Pickup
 {
     event OnSleepRBPhysics()

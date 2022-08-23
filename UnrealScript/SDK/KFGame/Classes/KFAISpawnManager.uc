@@ -106,6 +106,13 @@ enum EAIType
 	AT_BossRandom,
 };
 
+/** IDs into the BossAIClassList array */
+enum EBossAIType
+{
+    BAT_Hans,
+    BAT_Patriarch,
+};
+
 /** The list of zeds the spawn manager currently has queued up to spawn*/
 var array< class<KFPawn_Monster> >  LeftoverSpawnSquad;
 
@@ -379,11 +386,11 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
                     }
                     else
 `endif
-					TempSpawnList.AddItem(AIBossClassList[Rand(AIBossClassList.Length)]);
+					TempSpawnList.AddItem(GetBossAISpawnType());
 				}
 				else
 				{
-					TempSpawnList.AddItem(AIClassList[AIType]);
+					TempSpawnList.AddItem(GetAISpawnType(AIType));
 				}
 			}
 
@@ -750,6 +757,9 @@ function float GetNextSpawnTimeMod()
         SpawnTimeMod *= DifficultyInfo.GetSpawnRateModifier();
         `log("Spawn rate modifier (difficulty):"@DifficultyInfo.GetSpawnRateModifier(), bLogAISpawning);
     }
+
+    //Apply global game mode spawn rate modifier
+    SpawnTimeMod *= GetGameInfoSpawnRateMod();
 
 	return SpawnTimeMod * GameConductor.CurrentSpawnRateModification;
 }

@@ -176,6 +176,9 @@ defaultproperties
 	InventorySize=9
 	WeaponSelectTexture=Texture2D'WEP_UI_Shield_Melee_TEX.UI_WeaponSelect_MaceShield'
 
+	// For procedural weapon hiding
+	QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
+
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
 	InstantHitDamage(DEFAULT_FIREMODE)=80 //70
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Bludgeon_MaceAndShield'

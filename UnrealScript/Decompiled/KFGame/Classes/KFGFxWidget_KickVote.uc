@@ -58,10 +58,10 @@ function SendVoteKickToAS3(string PlayerName, byte VoteDuration, bool bShowChoic
     KickVoteData.SetInt("voteDuration", VoteDuration);
     KickVoteData.SetBool("bShowChoices", bShowChoices);
     SetObject("kickVoteData", KickVoteData);
-    UpdateUsingGamepad(Outer.GetPC().PlayerInput.bUsingGamepad);
+    UpdateUsingGamePad(Outer.GetPC().PlayerInput.bUsingGamepad);
 }
 
-function UpdateUsingGamepad(bool bIsUsingGamepad)
+function UpdateUsingGamePad(bool bIsUsingGamepad)
 {
     SetBool("bUsingGamepad", bIsUsingGamepad);
     if(!bIsUsingGamepad)

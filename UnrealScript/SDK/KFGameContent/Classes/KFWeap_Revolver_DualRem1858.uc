@@ -80,7 +80,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RevolverRem1858'
 	FireInterval(DEFAULT_FIREMODE)=+0.11 // about twice as fast as single
 	InstantHitDamage(DEFAULT_FIREMODE)=30.0
-	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Rem1858'
+	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Rem1858_Dual'
 	Spread(DEFAULT_FIREMODE)=0.015
 
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
@@ -91,7 +91,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_RevolverRem1858'
 	FireInterval(ALTFIRE_FIREMODE)=+0.11 // about twice as fast as single
 	InstantHitDamage(ALTFIRE_FIREMODE)=30.0
-	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_Rem1858'
+	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_Rem1858_Dual'
 	Spread(ALTFIRE_FIREMODE)=0.015
 
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'

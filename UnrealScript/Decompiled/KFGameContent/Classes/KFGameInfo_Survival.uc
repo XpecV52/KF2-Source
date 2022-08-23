@@ -267,14 +267,14 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     CheckWaveEnd();
 }
 
-function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser)
+function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
 {
     if(((injured.Controller != none) && injured.Controller.bIsPlayer) && !MyKFGRI.bMatchHasBegun)
     {
         Damage = 0;
         Momentum = vect(0, 0, 0);
     }
-    super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
+    super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
 }
 
 function BossDied(Controller Killer, optional bool bCheckWaveEnded)
@@ -684,6 +684,11 @@ function SetupNextTrader()
 {
     local byte NextTraderIndex;
 
+    if(ScriptedTrader != none)
+    {
+        MyKFGRI.NextTrader = ScriptedTrader;
+        return;
+    }
     if(TraderList.Length > 0)
     {
         NextTraderIndex = DetermineNextTraderIndex();
@@ -792,6 +797,40 @@ function CheckWaveEnd(optional bool bForceWaveEnd)
 
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
+    local array<SequenceObject> AllWaveEndEvents;
+    local array<int> OutputLinksToActivate;
+    local KFSeqEvent_WaveEnd WaveEndEvt;
+    local Sequence GameSeq;
+    local int I;
+
+    GameSeq = WorldInfo.GetGameSequence();
+    if(GameSeq != none)
+    {
+        GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveEnd', true, AllWaveEndEvents);
+        I = 0;
+        J0x75:
+
+        if(I < AllWaveEndEvents.Length)
+        {
+            WaveEndEvt = KFSeqEvent_WaveEnd(AllWaveEndEvents[I]);
+            if(WaveEndEvt != none)
+            {
+                WaveEndEvt.Reset();
+                WaveEndEvt.SetWaveNum(WaveNum, WaveMax);
+                if((WaveNum == WaveMax) && WaveEndEvt.OutputLinks.Length > 1)
+                {
+                    OutputLinksToActivate.AddItem(1;                    
+                }
+                else
+                {
+                    OutputLinksToActivate.AddItem(0;
+                }
+                WaveEndEvt.CheckActivate(self, self,, OutputLinksToActivate);
+            }
+            ++ I;
+            goto J0x75;
+        }
+    }
     MyKFGRI.NotifyWaveEnded();
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
     {
@@ -873,6 +912,12 @@ function CloseTraderTimer();
 
 function DoTraderTimeCleanup();
 
+function OpenTrader()
+{
+    MyKFGRI.OpenTrader(TimeBetweenWaves);
+    NotifyTraderOpened();
+}
+
 function NotifyTraderOpened()
 {
     local array<SequenceObject> AllTraderOpenedEvents;
@@ -933,7 +978,6 @@ function EndOfMatch(bool bVictory)
         BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 3);
         SetZedsToVictoryState();
     }
-    WorldInfo.TWRefreshTweakParams();
     WorldInfo.TWPushLogs();
     GotoState('MatchEnded');
 }
@@ -1076,8 +1120,7 @@ state TraderOpen
             KFPC.ApplyPendingPerks();            
         }        
         StartHumans();
-        MyKFGRI.OpenTrader(TimeBetweenWaves);
-        NotifyTraderOpened();
+        OpenTrader();
         BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 1);
         if(AllowBalanceLogging())
         {
@@ -1132,29 +1175,11 @@ state MatchEnded
 {
     function BeginState(name PreviousStateName)
     {
-        local int I;
-
-        MyKFGRI.bMatchHasBegun = false;
-        MyKFGRI.bMatchIsOver = true;
+        MyKFGRI.EndGame();
         MyKFGRI.bWaitingForAAR = true;
         if(AllowBalanceLogging())
         {
             LogPlayersKillCount();
-        }
-        if((PlayfabInter != none) && PlayfabInter.IsRegisteredWithPlayfab())
-        {
-            I = 0;
-            J0xB8:
-
-            if(I < GameReplicationInfo.PRIArray.Length)
-            {
-                if(GameReplicationInfo.PRIArray[I].PlayfabPlayerId != "")
-                {
-                    AddGameplayTimeForPlayer(KFPlayerReplicationInfo(GameReplicationInfo.PRIArray[I]), int(KFGameReplicationInfo(GameReplicationInfo).GetHeartbeatAccumulatorAmount()), true);
-                }
-                ++ I;
-                goto J0xB8;
-            }
         }
         SetTimer(1, false, 'ProcessAwards');
         SetTimer(AARDisplayDelay, false, 'ShowPostGameMenu');

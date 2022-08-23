@@ -94,6 +94,9 @@ var	texture		CharPortrait;
 /** 0 is Not Talking, 1 is Public, 2 is Team, 3 is Squad, 4 is Vehicle, 5 is Spectator, 6 is Sequestered Spectator */
 var	repnotify byte	VOIPStatus;
 
+/** TRUE if player has registered as a local talker with the OSS */
+var repnotify bool bVOIPRegisteredWithOSS;
+
 /** The cumulative amount of damage this player has dealt, resets on team change */
 var int DamageDealtOnTeam;
 
@@ -164,7 +167,7 @@ replication
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
-		CharPortrait, DamageDealtOnTeam;
+		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
@@ -191,7 +194,6 @@ simulated event ReplicatedEvent(name VarName)
 	{
 		UpdateTraderDosh();
 	}
-	//@HSL_BEGIN - JRO - 4/28/2016 - Keep track of played we've played with
 	else if ( VarName == 'PlayerName' )
 	{
 		LocalPC = KFPlayerController(GetALocalPlayerController());
@@ -207,7 +209,10 @@ simulated event ReplicatedEvent(name VarName)
 			}
 		}
 	}
-	//@HSL_END
+	else if (VarName == 'bVOIPRegisteredWithOSS')
+	{
+		OnTalkerRegistered();
+	}
 
 	
 	if ( VarName == 'Team' )
@@ -496,13 +501,54 @@ simulated function VOIPStatusChanged( PlayerReplicationInfo Talker, bool bIsTalk
 	}
 }
 
-//@HSL_BEGIN - JRO - Make sure the talking icon doesn't continue to show up after leaving
+
+simulated function OnTalkerRegistered()
+{
+	local PlayerController LocalPC;
+	local int i;
+	local KFPlayerReplicationInfo PRI;
+	local OnlineSubsystem OnlineSub;
+
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+
+	LocalPC = GetALocalPlayerController();
+
+	// If there is no PRI for the local player or GRI, we wait (really shouldn't be more than a frame) and try again
+	if( LocalPC.PlayerReplicationInfo == None || WorldInfo.GRI == None )
+	{
+		SetTimer( 0.1, false, nameof(OnTalkerRegistered) );
+	}
+
+	if (LocalPC != none && LocalPC.PlayerReplicationInfo != none && WorldInfo.GRI != none)
+	{
+		// Local player has regigistered
+		if (LocalPC.PlayerReplicationInfo == self)
+		{
+			// Register all other players that have been registered
+			for (i = 0; i < WorldInfo.GRI.PRIArray.Length; i++)
+			{
+				PRI = KFPlayerReplicationInfo(WorldInfo.GRI.PRIArray[i]);
+				if (PRI != self && PRI.bVOIPRegisteredWithOSS)
+				{
+					OnlineSub.VoiceInterface.RegisterRemoteTalker(PRI.UniqueId);
+				}
+			}
+		}
+		// Registering someone else other than the local player
+		else if (KFPlayerReplicationInfo(LocalPC.PlayerReplicationInfo).bVOIPRegisteredWithOSS)
+		{
+			OnlineSub.VoiceInterface.RegisterRemoteTalker(UniqueId);
+		}
+	}
+}
+
+
+// JRO - Make sure the talking icon doesn't continue to show up after leaving
 simulated function UnregisterPlayerFromSession()
 {
 	VOIPStatusChanged(self, false);
 	super.UnregisterPlayerFromSession();
 }
-//@HSL_END
 
 /*********************************************************************************************
 `* Kick Voting

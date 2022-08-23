@@ -1869,11 +1869,6 @@ native function TWLogEvent( string EventName,
 							optional coerce string P9 );
 
 native function TWPushLogs();
-
-// make sure our current tweak values are up-to-date with global
-native function TWRefreshTweakParams(); 
-native function TWApplyTweaks();
-
 `endif
 
 defaultproperties

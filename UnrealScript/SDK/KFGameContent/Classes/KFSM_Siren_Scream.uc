@@ -23,6 +23,9 @@ var float 			LastScreamTime;
 /** Maximum number of times a scream can deal damage */
 const DAMAGE_COUNT_PER_SCREAM = 4;
 
+/** How much base damage a scream does */
+var protected const int ScreamDamage;
+
 /** Temp reference to the explosion template, used for delayed damage */
 var GameExplosion ExplosionTemplate;
 
@@ -43,8 +46,6 @@ var bool			bDrawProjectileShield;
 
 var KFTrigger_SirenProjectileShield ProjectileShield;
 var const	float	ProjectileShieldLifetime;
-
-var transient int DefaultScreamDamage;
 
 /**
  * Can a new special move override this one before it is finished?
@@ -81,12 +82,6 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 	if( MySirenPawn == none )
 	{
 		MySirenPawn = KFPawn_ZedSiren( KFPOwner );
-	}
-
-	// Temporarily store scream damage for modification later
-	if( DefaultScreamDamage == 0 )
-	{
-		DefaultScreamDamage = ExplosionTemplate.Damage;
 	}
 
 	LastScreamTime = MySirenPawn.WorldInfo.TimeSeconds;
@@ -195,7 +190,7 @@ function ScreamExplosion()
 
 	LastScreamTime = KFPOwner.WorldInfo.TimeSeconds;
 
-	ExplosionTemplate.Damage = KFPawn_Monster(KFPOwner).GetRallyBoostDamage( DefaultScreamDamage );
+	ExplosionTemplate.Damage = KFPawn_Monster(KFPOwner).GetRallyBoostDamage( ScreamDamage );
 	ExplosionActor.Explode(ExplosionTemplate);		// go bewm
 
 	ScreamCount++;
@@ -243,6 +238,7 @@ DefaultProperties
    	AnimStance=EAS_UpperBody
    	bCanBeInterrupted=true
 
+	ScreamDamage=15
 	ScreamDamageFrequency=0.5f //1.0
 	ScreamInterruptSound=AkEvent'WW_ZED_Siren.Stop_Siren_Scream'
 
@@ -253,7 +249,7 @@ DefaultProperties
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=15	// Taking Radial Damage will round this down to 5 when you are as close as possible //18
+		//Damage=15	@NOTE: This is now set using the ScreamDamage variable -MattF
 		DamageRadius=800 //800
 		DamageFalloffExponent=1f
 		DamageDelay=0.f
@@ -278,6 +274,4 @@ DefaultProperties
 		bOrientCameraShakeTowardsEpicenter=true
 	End Object
 	ExplosionTemplate=ExploTemplate0
-
-	DefaultScreamDamage=0
 }

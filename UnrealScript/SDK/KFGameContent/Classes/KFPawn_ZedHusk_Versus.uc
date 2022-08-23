@@ -154,6 +154,10 @@ simulated function OnExploded( Controller SuicideController )
     }
 }
 
+simulated function ESpecialMove GetSuicideSM()
+{
+	return SM_PlayerZedMove_G;
+}
 
 /** Returns TRUE if we're aiming with the husk cannon */
 simulated function bool UseAdjustedControllerSensitivity()
@@ -202,7 +206,7 @@ DefaultProperties
 	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedMove_RMB,		CooldownTime=2.0f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Flamethrower', NameLocalizationKey="Flame")
 	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=1.0f,	bShowOnHud=false,bShowOnHud=false))
 	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedMove_V,		CooldownTime=0.1f,	SpecialMoveIcon=Texture2D'ZED_clot_UI.ZED-VS_Icons_AlphaClot-Melee', NameLocalizationKey="Melee")
-	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,		CooldownTime=0.0f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Explode', NameLocalizationKey="Suicide")
+	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,		CooldownTime=2.5f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Explode', NameLocalizationKey="Suicide")
 	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Jump', bShowOnHud=false)) // Jump always at end of array)) // Jump always at end of array
 
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.8)))  //3.0

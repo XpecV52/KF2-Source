@@ -53,7 +53,7 @@ function Init(optional LocalPlayer LocPlay)
     KFGXHUDManager = GetVariableObject("root");
     UpdateRatio();
     UpdateScale();
-    KFGXHUDManager.SetBool("bConsoleBuild", Class'WorldInfo'.static.IsConsoleBuild(8));
+    KFGXHUDManager.SetBool("bConsoleBuild", Class'WorldInfo'.static.IsConsoleBuild());
 }
 
 function CreateScoreboard()
@@ -289,7 +289,7 @@ function TickHud(float DeltaTime)
     if(bUsingGamepad != KFPC.PlayerInput.bUsingGamepad)
     {
         bUsingGamepad = KFPC.PlayerInput.bUsingGamepad;
-        UpdateUsingGamepad();
+        UpdateUsingGamePad();
         UpdateWeaponSelect();
     }
     if(bossHealthBar != none)
@@ -580,9 +580,9 @@ function DisplayInteractionMessage(string MessageString, int MessageIndex, optio
 
 function int GetInteractionMessagePriority(int MessageIndex)
 {
-    if(MessageIndex < 8)
+    if(MessageIndex < 10)
     {
-        return 8 - 1;
+        return 10 - 1;
     }
     return MessageIndex;
 }
@@ -647,15 +647,15 @@ function EatMyInput(bool bValue)
     SetPriority(HUDPriority);
 }
 
-function UpdateUsingGamepad()
+function UpdateUsingGamePad()
 {
     if(SpectatorInfoWidget != none)
     {
-        SpectatorInfoWidget.UpdateUsingGamepad(bUsingGamepad);
+        SpectatorInfoWidget.UpdateUsingGamePad(bUsingGamepad);
     }
     if(KickVoteWidget != none)
     {
-        KickVoteWidget.UpdateUsingGamepad(bUsingGamepad);
+        KickVoteWidget.UpdateUsingGamePad(bUsingGamepad);
     }
 }
 

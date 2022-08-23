@@ -2568,7 +2568,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	}
 
 	ActualDamage = Damage;
+`if(`__TW_)
+    WorldInfo.Game.ReduceDamage(ActualDamage, self, instigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
+`else
 	WorldInfo.Game.ReduceDamage(ActualDamage, self, instigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
+`endif
 	AdjustDamage(ActualDamage, Momentum, instigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
 
 	// call Actor's version to handle any SeqEvent_TakeDamage for scripting

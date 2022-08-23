@@ -50,17 +50,17 @@ var NavigationPoint MyMarker;
 var float MaxZVelocity;
 var float StayOpenTime;
 /** sound played when the mover is interpolated forward */
-var() SoundCue OpenSound;
+var() AkBaseSoundObject OpenSound;
 /** looping sound while opening */
 var() SoundCue OpeningAmbientSound;
 /** sound played when mover finished moving forward */
-var() SoundCue OpenedSound;
+var() AkBaseSoundObject OpenedSound;
 /** sound played when the mover is interpolated in reverse */
-var() SoundCue CloseSound;
+var() AkBaseSoundObject CloseSound;
 /** looping sound while closing */
 var() SoundCue ClosingAmbientSound;
 /** sound played when mover finished moving backward */
-var() SoundCue ClosedSound;
+var() AkBaseSoundObject ClosedSound;
 var export editinline AudioComponent AmbientSoundComponent;
 
 simulated event PostBeginPlay()
@@ -268,7 +268,8 @@ function FinishedOpen()
 
 simulated function PlayMovingSound(bool bClosing)
 {
-    local SoundCue SoundToPlay, AmbientToPlay;
+    local AkBaseSoundObject SoundToPlay;
+    local SoundCue AmbientToPlay;
 
     if(bClosing)
     {
@@ -282,7 +283,7 @@ simulated function PlayMovingSound(bool bClosing)
     }
     if(SoundToPlay != none)
     {
-        PlaySound(SoundToPlay, true);
+        PlaySoundBase(SoundToPlay, true);
     }
     if(AmbientToPlay != none)
     {
@@ -304,7 +305,7 @@ simulated event InterpolationFinished(SeqAct_Interp InterpAction)
 {
     local DoorMarker DoorNav;
     local Controller C;
-    local SoundCue StoppedSound;
+    local AkBaseSoundObject StoppedSound;
 
     if(AmbientSoundComponent != none)
     {
@@ -313,7 +314,7 @@ simulated event InterpolationFinished(SeqAct_Interp InterpAction)
     StoppedSound = ((InterpAction.bReversePlayback) ? ClosedSound : OpenedSound);
     if(StoppedSound != none)
     {
-        PlaySound(StoppedSound, true);
+        PlaySoundBase(StoppedSound, true);
     }
     DoorNav = DoorMarker(MyMarker);
     if(InterpAction.bReversePlayback)

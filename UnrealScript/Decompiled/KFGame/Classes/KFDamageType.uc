@@ -67,6 +67,7 @@ var float EMPPower;
 var float PoisonPower;
 var float MicrowavePower;
 var float FreezePower;
+var float SnarePower;
 var array< class<KFPerk> > ModifierPerkList;
 var array<MaterialInstance> BodyWoundDecalMaterials;
 var float BodyWoundDecalWidth;
@@ -159,7 +160,7 @@ static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDir
 {
     local KFSkinTypeEffects SkinType;
 
-    if((P.CharacterArch != none) && default.EffectGroup < 14)
+    if((P.CharacterArch != none) && default.EffectGroup < 15)
     {
         SkinType = P.GetHitZoneSkinTypeEffects(HitZoneIndex);
         if(SkinType != none)

@@ -122,6 +122,11 @@ simulated function OnExploded(Controller SuicideController)
     }
 }
 
+simulated function KFGame.KFPawn.ESpecialMove GetSuicideSM()
+{
+    return 28;
+}
+
 simulated function bool UseAdjustedControllerSensitivity()
 {
     return IsDoingSpecialMove(23);

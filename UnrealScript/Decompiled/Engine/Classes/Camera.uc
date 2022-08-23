@@ -215,6 +215,11 @@ function SetUnmodifiedFOV(float NewFOV)
     UnmodifiedFOV = NewFOV;
 }
 
+function float GetActualFOV()
+{
+    return GetFOVAngle();
+}
+
 final function GetCameraViewPoint(out Vector OutCamLoc, out Rotator OutCamRot)
 {
     OutCamLoc = CameraCache.POV.Location;
@@ -538,7 +543,7 @@ function AddCameraLensEffect(class<EmitterCameraLensEffectBase> LensEffectEmitte
             if(LensEffect != none)
             {
                 GetCameraViewPoint(CamLoc, CamRot);
-                LensEffect.UpdateLocation(CamLoc, CamRot, UnmodifiedFOV);
+                LensEffect.UpdateLocation(CamLoc, CamRot, GetActualFOV());
                 LensEffect.RegisterCamera(self);
                 CameraLensEffects.AddItem(LensEffect;
             }

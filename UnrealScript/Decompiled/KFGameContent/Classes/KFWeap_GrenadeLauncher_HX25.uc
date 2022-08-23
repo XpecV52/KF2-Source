@@ -9,8 +9,8 @@ class KFWeap_GrenadeLauncher_HX25 extends KFWeap_GrenadeLauncher_Base
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
-var(Weapon) array<byte> NumPellets;
-var array<Vector2D> PelletSpread;
+var(Weapon) protected array<byte> NumPellets;
+var protected const array<Vector2D> PelletSpread;
 var float LastSubmunitionFireTime;
 
 simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)

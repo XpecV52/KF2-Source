@@ -55,6 +55,8 @@ SecondaryWeaponPurchasedString="辅助武器已购买"
 NoItemsPurchasedString="没有已买到的物品"
 
 SetTakeoverServerPasswordTitle="输入新密码以保护游戏："
+FreeConsolePlayOverString="感谢您游戏《杀戮空间 2》！免费活动已结束，但是您可以选择下方的“商店”按钮购买游戏并了解详细信息。"
+BuyGameString="商店"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="无法找到比赛"
@@ -1068,8 +1070,7 @@ BloomStringOptions[1]="低"
 BloomStringOptions[2]="高"
 
 MotionBlurStringOptions[0]="关"
-MotionBlurStringOptions[1]="普通"
-MotionBlurStringOptions[2]="高"
+MotionBlurStringOptions[1]="开"
 
 AmbientOcclusionStringOptions[0]="关"
 AmbientOcclusionStringOptions[1]="SSAO"
@@ -1108,6 +1109,7 @@ UseAltAimOnDualString="使用备用双枪瞄准"
 AntiMotionSicknessString="反晕动病"
 AutoTurnOffString="不自动转向血凝丧尸抓取的方向"
 ReduceHighPitchNoiseString="减少高分贝噪音"
+DisableAutoUpgradeString="禁用“自动升级”功能"
 
 [LocalizedControls]
 ControllerLayoutDefault="默认"
@@ -1127,7 +1129,7 @@ GBA_Look_Gamepad="视点控制"
 GBA_Grenade_Gamepad="扔手榴弹"
 GBA_TurnLeft_Gamepad="视点控制"
 GBA_Look_Gamepad="视点控制"
-GBA_DPad_Left_Gamepad="语音命令"
+GBA_DPad_Left_Gamepad="语音命令/表情"
 GBA_DPad_Up_Gamepad="装备治愈师"
 GBA_DPad_Right_Gamepad="扔钱"
 GBA_DPad_Down_Gamepad="切换手电筒"
@@ -1236,6 +1238,12 @@ BashString="近战痛击"
 BlockString="阻挡（保留）"
 HoldString="保留"
 TapString="轻触"
+
+[KFGFxScreenSizeContainer]
+TitleString="应用程序将显示在方框区域"
+DescriptionString="调整该区域以适应电视显示屏"
+EnlargeString="放大"
+ShrinkString="缩小"
 
 [KFInventoryManager]
 FullHealthMsg="生命满"
@@ -1347,6 +1355,8 @@ HealSelfGamepadWarning="<%HOLD%>治愈自己"
 PressToBashWarning="猛击"
 GamepadWeaponSelectHint="<%HOLD%>武器选择"
 PlayerClotGrabWarningMessage="杀死丧尸，冲出重围！"
+UseMinigameMessage="激活小游戏"
+UseMinigameGeneratorMessage="激活发生器"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="目前的队伍不平衡，将会进行调整"
@@ -1593,7 +1603,7 @@ SmashDescription="使用神射近战武器发起重击，伤害提升 50%，爆�
 Fury="大屠杀"
 FuryDescription="使用神射近战武器发起轻击，伤害提升 30%，使用神射近战武器时所有攻击的速度提升 5%。"
 
-Spartan="丧尸时间 - 斯巴达式 "
+Spartan="丧尸时间 - 斯巴达式"
 SpartanDescription="在丧尸时间中，你要使用神射武器进行攻击并且实时移动。"
 
 Rage="丧尸时间 - 狂战士的咆哮"
@@ -1750,7 +1760,7 @@ EXPAction2="治愈队员"
 [KFPerk_Firebug]
 PerkName="纵火犯"
 EXPAction1="造成纵火犯武器伤害"
-EXPAction2="使用纵火犯武器杀死爬行怪和胆汁怪 "
+EXPAction2="使用纵火犯武器杀死爬行怪"
 
 SkillCatagories[0]="供应品"
 SkillCatagories[1]="辛辣"
@@ -1900,7 +1910,7 @@ Passives[0]=(Title="焊接效率",Description="焊接速度每级加快 %x%");
 Passives[1]=(Title="霰弹枪伤害",Description="神射武器伤害每级增加 %x%");
 Passives[2]=(Title="霰弹枪穿透",Description="神射武器穿透力每级增加 %x%");
 Passives[3]=(Title="弹药",Description="每级弹药增加 15% + %x%");
-Passives[4]=(Title="力量",Description="每 5 级重量容量会额外提升 1 格");
+Passives[4]=(Title="重量容量增加",Description="每上升 5 级，重量容量会提升 1 格");
 Passives[5]=(Title="弹药背包 + 门维修",Description="每回合玩家可以从背包中获取一次弹药，以及维修毁坏的门");
 
 EXPAction1="造成支援兵武器伤害"
@@ -2094,7 +2104,7 @@ RandomLoadingStrings[13]="有多余的钱？不如分给队友一些，他们也
 RandomLoadingStrings[14]="选择你的目标。不同的武器对不同类型的丧尸有不同的效果。"
 RandomLoadingStrings[15]="为你的目标排好优先顺序。与血凝丧尸相比，你更应该提防血凝丧尸。"
 RandomLoadingStrings[16]="所有丧尸都有弱点。如果不是头部，寻找它们身上发光的地方。"
-RandomLoadingStrings[17]="想要购买或出售装饰品或武器皮肤？到市场逛一下吧。"
+RandomLoadingStrings[17]="在您偶尔获得装饰品作为战利品的同时，部分装饰品也可以购买。"
 RandomLoadingStrings[18]="女妖的尖叫会使手榴弹和其他爆炸物失效。"
 RandomLoadingStrings[19]="电据和血凝丧尸受到足够多的伤害后会发狂。别跟它们硬碰。"
 RandomLoadingStrings[20]="有很多不用的武器皮肤或装饰品？在仓库中制造一些新的。"
@@ -2118,7 +2128,7 @@ RandomLoadingStrings[37]="轨炮可以射穿一排丧尸。"
 RandomLoadingStrings[38]="微波枪对携带金属的丧尸会造成更大伤害，比如血凝丧尸和女妖。"
 RandomLoadingStrings[39]="尝试武器的备用射击模式。不是所有武器都有，但是在紧要关头也许能救你一命。"
 RandomLoadingStrings[40]="在助攻时，除了杀敌数外，你还能获得经验和金钱，所以不需要为盟友被杀而感到难过。"
-RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
+RandomLoadingStrings[41]="要移除门上的焊接点，装备您的焊机并按下机械瞄准具按钮。"
 
 [WhatsNewMessages]
 Jaegorhorn="关注社区以解锁 Jägerhorn"
@@ -2167,20 +2177,29 @@ PS4WeaponSkinCrate2="霍因武器皮肤供应箱 | 系列 #2"
 Artbook="《杀戮空间 2》数字美术书"
 Uncovered="观看《杀戮空间》：揭幕的真人电影"
 NewEmotes="新上市！表情供应箱钥匙 - $2.49"
+HorzineSupplyCrateKey10="霍因供应箱钥匙 | 系列 #10 - $2.49"
+HorzineSupplyCrateKey11="霍因供应箱钥匙 | 系列 #11 - $2.49"
+HorzineSupplyCrateKey12="霍因供应箱钥匙 | 系列 #12 - $2.49"
+HorzineSupplyCrateKey13="霍因供应箱钥匙 | 系列 #13 - $2.49"
+USBSpitfire="Spit Fire USB Key - $2.49"
+USBHighVoltage="High Voltage USB Key - $2.49"
+MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 
 [Zeds]
 KFPawn_ZedBloat="胆汁怪"
 KFPawn_ZedClot="血凝丧尸"
 KFPawn_ZedCrawler="爬行怪"
+KFPawn_ZedCrawlerKing="精英爬行怪"
 KFPawn_ZedFleshPound="血凝丧尸"
 KFPawn_ZedGorefast="速冲怪"
-KFPawn_ZedGorefastDualBlade="Gorefiend"
+KFPawn_ZedGorefastDualBlade="血魔"
 KFPawn_ZedHans="汉斯-沃尔特博士"
 KFPawn_ZedHusk="火球怪"
 KFPawn_ZedStalker="潜行怪"
 KFPawn_ZedClot_Cyst="囊肿怪"
 KFPawn_ZedClot_Slasher="砍伐怪"
 KFPawn_ZedClot_Alpha="阿尔法血凝丧尸"
+KFPawn_ZedClot_AlphaKing="精英阿尔法"
 KFPawn_ZedScrake="刮痕丧尸"
 KFPawn_ZedSiren="女妖"
 KFPawn_ZedPatriarch="长老丧尸"
@@ -2510,6 +2529,38 @@ DisplayName_POL="Lądowanie zetów"
 DisplayName_PTB="Pouso Forçado ZED"
 DisplayName_RUS="Высадка среди мутантов"
 
+[KF-TheDescent KFMapSummary]
+DisplayName_CHN="后裔"
+DisplayName_CHT="地下鐵"
+DisplayName_DEU="Der Abstieg"
+DisplayName_ESL="El descendiente"
+DisplayName_ESN="El descendiente"
+DisplayName_FRA="La descente"
+DisplayName_FRC="La descente"
+DisplayName_INT="The Descent"
+DisplayName_ITA="La discesa"
+DisplayName_JPN="The Descent"
+DisplayName_KOR="경사로"
+DisplayName_POL="Zejście"
+DisplayName_PTB="A Descida"
+DisplayName_RUS="Спуск"
+
+[KF-Nuked KFMapSummary]
+DisplayName_CHN="核武器"
+DisplayName_CHT="核電廠"
+DisplayName_DEU="Atomisiert"
+DisplayName_ESL="Bombardeado"
+DisplayName_ESN="Bombardeado"
+DisplayName_FRA="Atomisé"
+DisplayName_FRC="Atomisé"
+DisplayName_INT="Nuked"
+DisplayName_ITA="Nuclearizzato"
+DisplayName_JPN="Nuked"
+DisplayName_KOR="방사능 누출지"
+DisplayName_POL="Wysadzeni"
+DisplayName_PTB="Bombardeio"
+DisplayName_RUS="Ядерный удар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="生命学实验室"
 
@@ -2552,6 +2603,11 @@ DisplayName="地狱领域"
 [KF-ZedLanding KFMapSummary]
 DisplayName="丧尸登陆"
 
+[KF-TheDescent KFMapSummary]
+DisplayName="后裔"
+
+[KF-Nuked KFMapSummary]
+DisplayName="核武器"
 
 [KFMapInfo]
 ; defaults

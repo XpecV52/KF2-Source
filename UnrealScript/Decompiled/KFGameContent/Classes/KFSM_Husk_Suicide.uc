@@ -8,6 +8,7 @@
 class KFSM_Husk_Suicide extends KFSM_PlaySingleAnim;
 
 var protected bool bSuicideAnimFinished;
+var export editinline array<export editinline ParticleSystemComponent> AnimFlamePSCs;
 
 protected function bool InternalCanDoSpecialMove()
 {
@@ -29,7 +30,22 @@ protected function bool InternalCanDoSpecialMove()
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     bSuicideAnimFinished = false;
+    AnimFlamePSCs.Length = 0;
     super.SpecialMoveStarted(bForced, PrevMove);
+}
+
+function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC)
+{
+    local AnimSequence AnimSeq;
+
+    if(AnimNotifyData.Outer != none)
+    {
+        AnimSeq = AnimSequence(AnimNotifyData.Outer);
+        if(((AnimSeq != none) && string(AnimSeq.SequenceName) ~= string(AnimName)) && InStr(string(PSC.Template.Name), "suicide",, true) != -1)
+        {
+            AnimFlamePSCs.AddItem(PSC;
+        }
+    }
 }
 
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
@@ -40,14 +56,27 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
 
 simulated function SpecialMoveEnded(name PrevMove, name NextMove)
 {
+    local editinline ParticleSystemComponent PSC;
+
     if(KFPOwner.bLogSpecialMove)
     {
         LogInternal(string(self) $ " SpecialMoveEnded");
     }
     if(bSuicideAnimFinished && !bPendingStopFire)
     {
-        KFPawn_ZedHusk(PawnOwner).TriggerExplosion();
+        KFPawn_ZedHusk(PawnOwner).TriggerExplosion();        
     }
+    else
+    {
+        if(AnimFlamePSCs.Length > 0)
+        {
+            foreach AnimFlamePSCs(PSC,)
+            {
+                PSC.SetActive(false);                
+            }            
+        }
+    }
+    AnimFlamePSCs.Length = 0;
     super.SpecialMoveEnded(PrevMove, NextMove);
 }
 

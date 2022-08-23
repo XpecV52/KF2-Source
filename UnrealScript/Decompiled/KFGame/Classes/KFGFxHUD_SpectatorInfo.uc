@@ -45,7 +45,7 @@ function TickHud(float DeltaTime)
     UpdateSpectateeInfo();
 }
 
-function UpdateUsingGamepad(bool bIsUsingGamepad)
+function UpdateUsingGamePad(bool bIsUsingGamepad)
 {
     SetBool("bUsingGamePad", bIsUsingGamepad);
 }

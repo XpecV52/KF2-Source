@@ -16,6 +16,13 @@ enum ECollectibleType
     ECT_MAX
 };
 
+enum ESubGameType
+{
+    ESGT_Normal,
+    ESGT_Descent,
+    ESGT_MAX
+};
+
 /** Base value to use for how long to wait between spawning groups of AI. Turn this number down to make zeds spawn faster and the map harder, turn it up to make zeds spawn slower and the map easier */
 var(Spawning) float WaveSpawnPeriod;
 /** list of destructibles that require replicated damage states in this map */
@@ -26,6 +33,11 @@ var transient array<byte> ShuffledActionMusicTrackIdxes;
 var transient byte CurrShuffledActionMusicTrackIdx;
 var transient byte CurrShuffledAmbientMusicTrackIdx;
 var const KFMapInfo.ECollectibleType CollectibleType;
+/**  
+ *The sub-gameplay type of map this (i.e. Descent map inside Survival)
+ * NOTE: Setting this option incorrectly may disable or enable unwanted game features!
+ */
+var() KFMapInfo.ESubGameType SubGameType;
 /** list of music tracks played during trader time // @todo: make these not editconst when we're ready to have mappers or whomever change them */
 var(Music) editconst array<editconst KFMusicTrackInfo> AmbientMusicTracks;
 var transient array<byte> ShuffledAmbientMusicTrackIdxes;

@@ -67,6 +67,7 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -105,6 +106,7 @@ var byte PlayerHealthPercent;
 var byte PerkSupplyLevel;
 var byte SharedUnlocks;
 var bool bHasSpawnedIn;
+var repnotify bool bVOIPRegisteredWithOSS;
 var bool bExtraFireRange;
 var bool bSplashActive;
 var bool bNukeActive;
@@ -135,7 +137,8 @@ replication
         PlayerHealthPercent, RepCustomizationInfo, 
         bConcussiveActive, bExtraFireRange, 
         bHasSpawnedIn, bNukeActive, 
-        bObjectivePlayer, bSplashActive;
+        bObjectivePlayer, bSplashActive, 
+        bVOIPRegisteredWithOSS;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -178,6 +181,13 @@ simulated event ReplicatedEvent(name VarName)
                         {
                             LocalPC.MyGFxManager.ForceUpdateNextFrame();
                         }
+                    }                    
+                }
+                else
+                {
+                    if(VarName == 'bVOIPRegisteredWithOSS')
+                    {
+                        OnTalkerRegistered();
                     }
                 }
             }
@@ -448,6 +458,47 @@ simulated function VOIPStatusChanged(PlayerReplicationInfo Talker, bool bIsTalki
             KFPC.MyGFxManager.UpdateVOIP(Talker, bIsTalking);
         }        
     }    
+}
+
+simulated function OnTalkerRegistered()
+{
+    local PlayerController LocalPC;
+    local int I;
+    local KFPlayerReplicationInfo PRI;
+    local OnlineSubsystem OnlineSub;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    LocalPC = GetALocalPlayerController();
+    if((LocalPC.PlayerReplicationInfo == none) || WorldInfo.GRI == none)
+    {
+        SetTimer(0.1, false, 'OnTalkerRegistered');
+    }
+    if(((LocalPC != none) && LocalPC.PlayerReplicationInfo != none) && WorldInfo.GRI != none)
+    {
+        if(LocalPC.PlayerReplicationInfo == self)
+        {
+            I = 0;
+            J0x124:
+
+            if(I < WorldInfo.GRI.PRIArray.Length)
+            {
+                PRI = KFPlayerReplicationInfo(WorldInfo.GRI.PRIArray[I]);
+                if((PRI != self) && PRI.bVOIPRegisteredWithOSS)
+                {
+                    OnlineSub.VoiceInterface.RegisterRemoteTalker(PRI.UniqueId);
+                }
+                ++ I;
+                goto J0x124;
+            }            
+        }
+        else
+        {
+            if(KFPlayerReplicationInfo(LocalPC.PlayerReplicationInfo).bVOIPRegisteredWithOSS)
+            {
+                OnlineSub.VoiceInterface.RegisterRemoteTalker(UniqueId);
+            }
+        }
+    }
 }
 
 simulated function UnregisterPlayerFromSession()

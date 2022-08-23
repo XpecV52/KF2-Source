@@ -337,6 +337,7 @@ var transient string VisibleLevelsForMatineeCapture;
 var transient int MatineeCaptureFPS;
 var transient int MatineeCaptureType;
 var NetDriver QueryNetDriver;
+var float SafeFrameScale;
 
 // Export UEngine::execIsEditor(FFrame&, void* const)
 native static final function bool IsEditor();

@@ -55,6 +55,8 @@ SecondaryWeaponPurchasedString="セカンダリ武器を購入しました"
 NoItemsPurchasedString="購入したアイテムはありません"
 
 SetTakeoverServerPasswordTitle="ゲームを保護するため、新たなパスワードを入力してください："
+FreeConsolePlayOverString="Killing Floor 2をプレイしてくれてありがとうございます！無料イベントは終了しましたが、下の「ストア」ボタンからゲームを購入してさらなる情報を手に入れることができます。"
+BuyGameString="ストア"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="マッチが見つかりませんでした"
@@ -1068,8 +1070,7 @@ BloomStringOptions[1]="低"
 BloomStringOptions[2]="高"
 
 MotionBlurStringOptions[0]="オフ"
-MotionBlurStringOptions[1]="通常"
-MotionBlurStringOptions[2]="高"
+MotionBlurStringOptions[1]="オン"
 
 AmbientOcclusionStringOptions[0]="オフ"
 AmbientOcclusionStringOptions[1]="SSAO"
@@ -1108,6 +1109,7 @@ UseAltAimOnDualString="オルトデュアルピストル照準を使用"
 AntiMotionSicknessString="乗り物酔い防止"
 AutoTurnOffString="クロトの掴みで自動ターンなし"
 ReduceHighPitchNoiseString="高ピッチ音を減少"
+DisableAutoUpgradeString="オートアップグレード無効化"
 
 [LocalizedControls]
 ControllerLayoutDefault="初期設定"
@@ -1127,7 +1129,7 @@ GBA_Look_Gamepad="操作確認"
 GBA_Grenade_Gamepad="手榴弾を投げる"
 GBA_TurnLeft_Gamepad="操作確認"
 GBA_Look_Gamepad="操作確認"
-GBA_DPad_Left_Gamepad="音声通信"
+GBA_DPad_Left_Gamepad="音声通信/顔文字"
 GBA_DPad_Up_Gamepad="ヒーラーを装備"
 GBA_DPad_Right_Gamepad="doshを投げる"
 GBA_DPad_Down_Gamepad="懐中電灯を切り替え"
@@ -1236,6 +1238,12 @@ BashString="近接強打"
 BlockString="ブロック(長押し)"
 HoldString="長押し"
 TapString="タップ"
+
+[KFGFxScreenSizeContainer]
+TitleString="アプリケーションは枠内に表示されます"
+DescriptionString="テレビのディスプレイに合うように枠を調整してください"
+EnlargeString="拡大"
+ShrinkString="縮小"
 
 [KFInventoryManager]
 FullHealthMsg="ヘルス満タン"
@@ -1347,6 +1355,8 @@ HealSelfGamepadWarning="<%HOLD%>自身を回復する"
 PressToBashWarning="強打"
 GamepadWeaponSelectHint="<%HOLD%>武器選択"
 PlayerClotGrabWarningMessage="zedをキルして逃げる！"
+UseMinigameMessage="ミニゲーム起動"
+UseMinigameGeneratorMessage="ジェネレータ起動"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="チームのバランスが悪いため、調整されます"
@@ -1593,7 +1603,7 @@ SmashDescription="Perk近接武器による強攻撃のダメージが50%増加�
 Fury="皆殺し"
 FuryDescription="Perk近接武器による弱攻撃のダメージが30%増加し、Perk近接武器によるすべての攻撃が5%速くなる。"
 
-Spartan="Zed-Time―スパルタン" "
+Spartan="Zed-Time―スパルタン"
 SpartanDescription="Zed-Time中、Perk武器で攻撃し、リアルタイムで動作する。"
 
 Rage="Zed-Time―バーサーカーの怒り"
@@ -1750,7 +1760,7 @@ EXPAction2="チームメイトを回復する"
 [KFPerk_Firebug]
 PerkName="ファイアバグ"
 EXPAction1="ファイアバグ武器でダメージを与える"
-EXPAction2="クローラーとブロートをファイアバグ武器でキルする"
+EXPAction2="ファイアバグ武器でクローラーをキルする"
 
 SkillCatagories[0]="物資"
 SkillCatagories[1]="スパイシー"
@@ -1900,7 +1910,7 @@ Passives[0]=(Title="溶接効率",Description="レベル毎に、溶接速度が
 Passives[1]=(Title="ショットガンダメージ",Description="レベル毎に、Perk武器ダメージが%x%増加する");
 Passives[2]=(Title="ショットガン貫通",Description="レベル毎に、Perk武器の貫通パワーが%x%増加する");
 Passives[3]=(Title="弾薬",Description="弾薬が15%増加し、レベル毎にさらに%x%増加する");
-Passives[4]=(Title="強さ",Description="5レベル毎に、最大重量が1増加する");
+Passives[4]=(Title="最大重量増加",Description="5レベル毎に、最大重量が1増加する");
 Passives[5]=(Title="弾薬バックアップ + ドア修理",Description="各ラウンド1回、プレイヤーはバックアップから弾薬を取得できる―破壊されたドアを修理する");
 
 EXPAction1="サポート武器でダメージを与える"
@@ -2094,7 +2104,7 @@ RandomLoadingStrings[13]="doshが余ってる？チームのためにドロッ�
 RandomLoadingStrings[14]="ターゲットは選ぼう。それぞれの武器は、異なるタイプのzedに対して効果が高かったり低かったりする。"
 RandomLoadingStrings[15]="ターゲットに優先順位を付けよう。クロトよりもフレッシュパウンドに気をつけるべきだ。"
 RandomLoadingStrings[16]="すべてのzedは弱点がある。頭でなければ、体にある光る要素を探そう。"
-RandomLoadingStrings[17]="服飾アイテムや武器スキンを売り買いしたい？マーケットプレイスを見てみよう。"
+RandomLoadingStrings[17]="服飾アイテムは戦利品として獲得できる場合もありますが、購入が必要な服飾アイテムもあります。"
 RandomLoadingStrings[18]="サイレンの叫びは、手榴弾や他の爆発物を無力化する。"
 RandomLoadingStrings[19]="スクレイクとフレッシュパウンドは、ある程度ダメージを受けると怒る。彼らには手出ししないようにしよう。"
 RandomLoadingStrings[20]="使っていない武器スキンや服飾アイテムがたくさん余ってる？インベントリで新たなものを作成しよう。"
@@ -2118,7 +2128,7 @@ RandomLoadingStrings[37]="レールガンは、うまく直線状に捉えられ
 RandomLoadingStrings[38]="マイクロ波銃は、フレッシュパウンドやサイレン等の、多くのメタルを運ぶzedに対してより多くのダメージを与える。"
 RandomLoadingStrings[39]="武器のオルトファイアモードを試してみよう。すべての武器にあるわけではないが、ピンチの時に役立つかも知れない。"
 RandomLoadingStrings[40]="キル数に加えてアシスト数でもXPとdoshを獲得できる。仲間のためにキルをお膳立てしても気を落とさないように。"
-RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
+RandomLoadingStrings[41]="ドアの溶接を外すには、溶接機を装備してアイアンサイトボタンを押そう。"
 
 [WhatsNewMessages]
 Jaegorhorn="コミュニティをフォローしてJägerhornをロック解除"
@@ -2167,20 +2177,29 @@ PS4WeaponSkinCrate2="ホージン物資武器スキン箱 | シリーズ#2"
 Artbook="Killing Floor 2 デジタルアートブック"
 Uncovered="Killing Floor: 公開ライブアクションフィルムを見る"
 NewEmotes="New!エモーション箱の鍵 - $2.49"
+HorzineSupplyCrateKey10="ホージン物資箱の鍵 | シリーズ#10 - $2.49"
+HorzineSupplyCrateKey11="ホージン物資箱の鍵 | シリーズ#11 - $2.49"
+HorzineSupplyCrateKey12="ホージン物資箱の鍵 | シリーズ#12 - $2.49"
+HorzineSupplyCrateKey13="ホージン物資箱の鍵 | シリーズ#13 - $2.49"
+USBSpitfire="Spit Fire USB Key - $2.49"
+USBHighVoltage="High Voltage USB Key - $2.49"
+MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 
 [Zeds]
 KFPawn_ZedBloat="ブロート"
 KFPawn_ZedClot="クロト"
 KFPawn_ZedCrawler="クローラー"
+KFPawn_ZedCrawlerKing="エリートクロウラー"
 KFPawn_ZedFleshPound="フレッシュパウンド"
 KFPawn_ZedGorefast="ゴアファスト"
-KFPawn_ZedGorefastDualBlade="Gorefiend"
+KFPawn_ZedGorefastDualBlade="ゴアフィンド"
 KFPawn_ZedHans="ドクター ハンス・ヴォルター"
 KFPawn_ZedHusk="ハスク"
 KFPawn_ZedStalker="ストーカー"
 KFPawn_ZedClot_Cyst="シスト"
 KFPawn_ZedClot_Slasher="スラッシャー"
 KFPawn_ZedClot_Alpha="アルファクロト"
+KFPawn_ZedClot_AlphaKing="エリートアルファ"
 KFPawn_ZedScrake="スクレイク"
 KFPawn_ZedSiren="サイレン"
 KFPawn_ZedPatriarch="ペイトリアーク"
@@ -2510,6 +2529,38 @@ DisplayName_POL="Lądowanie zetów"
 DisplayName_PTB="Pouso Forçado ZED"
 DisplayName_RUS="Высадка среди мутантов"
 
+[KF-TheDescent KFMapSummary]
+DisplayName_CHN="后裔"
+DisplayName_CHT="地下鐵"
+DisplayName_DEU="Der Abstieg"
+DisplayName_ESL="El descendiente"
+DisplayName_ESN="El descendiente"
+DisplayName_FRA="La descente"
+DisplayName_FRC="La descente"
+DisplayName_INT="The Descent"
+DisplayName_ITA="La discesa"
+DisplayName_JPN="The Descent"
+DisplayName_KOR="경사로"
+DisplayName_POL="Zejście"
+DisplayName_PTB="A Descida"
+DisplayName_RUS="Спуск"
+
+[KF-Nuked KFMapSummary]
+DisplayName_CHN="核武器"
+DisplayName_CHT="核電廠"
+DisplayName_DEU="Atomisiert"
+DisplayName_ESL="Bombardeado"
+DisplayName_ESN="Bombardeado"
+DisplayName_FRA="Atomisé"
+DisplayName_FRC="Atomisé"
+DisplayName_INT="Nuked"
+DisplayName_ITA="Nuclearizzato"
+DisplayName_JPN="Nuked"
+DisplayName_KOR="방사능 누출지"
+DisplayName_POL="Wysadzeni"
+DisplayName_PTB="Bombardeio"
+DisplayName_RUS="Ядерный удар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2552,6 +2603,11 @@ DisplayName="Infernal Realm"
 [KF-ZedLanding KFMapSummary]
 DisplayName="zed Landing"
 
+[KF-TheDescent KFMapSummary]
+DisplayName="The Descent"
+
+[KF-Nuked KFMapSummary]
+DisplayName="Nuked"
 
 [KFMapInfo]
 ; defaults

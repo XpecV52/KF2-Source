@@ -480,7 +480,6 @@ var delegate<OnWriteUserFileComplete> __OnWriteUserFileComplete__Delegate;
 var delegate<OnDeleteUserFileComplete> __OnDeleteUserFileComplete__Delegate;
 var delegate<OnReadSharedFileComplete> __OnReadSharedFileComplete__Delegate;
 var delegate<OnWriteSharedFileComplete> __OnWriteSharedFileComplete__Delegate;
-var delegate<OnOnlineServiceAuthComplete> __OnOnlineServiceAuthComplete__Delegate;
 
 // Export UOnlineSubsystemSteamworks::execInit(FFrame&, void* const)
 native event bool Init();
@@ -2258,14 +2257,6 @@ function bool AddInGamePost(int InPostID, optional string InPostParam);
 function bool ShowGamerCardUIByUsername(byte LocalUserNum, string UserName);
 
 function bool RecordPlayersRecentlyMet(byte LocalUserNum, out array<PlayerNameIdPair> Players, string GameDescription);
-
-delegate OnOnlineServiceAuthComplete();
-
-function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
-
-function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
-
-function AuthWithOnlineService();
 
 defaultproperties
 {

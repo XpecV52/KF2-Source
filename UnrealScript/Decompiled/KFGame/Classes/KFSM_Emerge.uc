@@ -108,6 +108,10 @@ function name PlayEmerge()
     KFPOwner.Mesh.RootMotionRotationMode = 1;
     KFPOwner.SetCollision(KFPOwner.bCollideActors, false);
     KFPOwner.bCollideWorld = false;
+    if(KFPOwner.WorldInfo.NetMode != NM_Client)
+    {
+        KFPOwner.SetTimer(0.25, true, 'Timer_CheckForPortalDestructibles', self);
+    }
     KFPOwner.bAlwaysRelevant = true;
     return EmergeAnim;
 }
@@ -120,9 +124,32 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     DisableRootMotion();
     KFPOwner.bAlwaysRelevant = PawnOwner.default.bAlwaysRelevant;
     RestoreCollision();
+    if(KFPOwner.WorldInfo.NetMode != NM_Client)
+    {
+        KFPOwner.ClearTimer('Timer_CheckForPortalDestructibles', self);
+    }
     if((PawnOwner.Role == ROLE_Authority) && !PawnOwner.IsHumanControlled())
     {
         PawnOwner.SetTimer(5, false, 'FindAnchorFailsafe', self);
+    }
+}
+
+function Timer_CheckForPortalDestructibles()
+{
+    local KFPawn_Monster KFPM;
+    local KFDestructibleActor KFDA;
+
+    if(KFPOwner.bCollideWorld)
+    {
+        return;
+    }
+    KFPM = KFPawn_Monster(KFPOwner);
+    if(KFPM != none)
+    {
+        foreach KFPOwner.OverlappingActors(Class'KFDestructibleActor', KFDA, KFPOwner.CylinderComponent.CollisionRadius,, true)
+        {
+            KFDA.BumpedByMonster(KFPM, Normal(KFDA.Location - KFPOwner.Location));            
+        }        
     }
 }
 

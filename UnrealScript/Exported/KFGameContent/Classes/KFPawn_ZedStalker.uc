@@ -438,7 +438,7 @@ defaultproperties
    DeCloakSpeed=4.500000
    bCloakOnMeleeEnd=True
    bIsStalkerClass=True
-   CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Stalker_ARCH.ZED_Stalker_Archetype'
+   MonsterArchPath="ZED_ARCH.ZED_Stalker_Archetype"
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=9.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_ZedWeak'

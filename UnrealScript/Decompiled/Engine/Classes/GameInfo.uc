@@ -192,15 +192,20 @@ event PostBeginPlay()
     PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
     if(WorldInfo.IsConsoleDedicatedServer())
     {
-        if((PlayfabInter != none) && PlayfabInter.GetGameSettings() == none)
+        if(PlayfabInter != none)
         {
-            PlayfabInter.CreateGameSettings(OnlineGameSettingsClass);
-            GameSettings = PlayfabInter.GetGameSettings();
-            GameSettings.UpdateFromURL(ServerOptions, self);
-            if(!WasLaunchedByPlayfab())
+            if(PlayfabInter.GetGameSettings() == none)
             {
-                UpdateGameSettings();
-                PlayfabInter.ServerRegisterGame();
+                PlayfabInter.CreateGameSettings(OnlineGameSettingsClass);
+                GameSettings = PlayfabInter.GetGameSettings();
+                GameSettings.UpdateFromURL(ServerOptions, self);
+                if(!WasLaunchedByPlayfab())
+                {
+                    UpdateGameSettings();
+                    PlayfabInter.ServerRegisterGame();
+                }
+                PlayfabInter.AddTitleDataReadCompleteDelegate(OnServerTitleDataRead);
+                PlayfabInter.ReadTitleData();
             }
         }        
     }
@@ -211,6 +216,11 @@ event PostBeginPlay()
             UpdateGameSettings();
         }
     }
+}
+
+function OnServerTitleDataRead()
+{
+    PlayfabInter.ClearTitleDataReadCompleteDelegate(OnServerTitleDataRead);
 }
 
 simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
@@ -914,8 +924,8 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
     bPerfTesting = (ParseOption(Options, "AutomatedPerfTesting")) ~= "1";
     bSpectator = bPerfTesting || (ParseOption(Options, "SpectatorOnly")) ~= "1";
     InName = ParseOption(Options, "Name");
-    Class'GameEngine'.static.DecodeURLString(InName);
     InName = Left(ParseOption(Options, "Name"), 32);
+    Class'GameEngine'.static.DecodeURLString(InName);
     InTeam = byte(GetIntOption(Options, "Team", 255));
     InPassword = ParseOption(Options, "Password");
     if(AccessControl != none)
@@ -993,6 +1003,8 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
 static function bool AllowAnalyticsLogging();
 
 function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType);
+
+function ScoreHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn, class<DamageType> DamageType);
 
 event bool SeatPlayer(const UniqueNetId SeatedPlayerID);
 
@@ -1646,7 +1658,7 @@ function bool CanSpectate(PlayerController Viewer, PlayerReplicationInfo ViewTar
     return true;
 }
 
-function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser)
+function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
 {
     local int OriginalDamage;
 
@@ -2741,6 +2753,10 @@ event OnRetreivedPFInternalUserData(const string ForPlayerId, array<string> Keys
 native function bool WasLaunchedByPlayfab();
 
 event string GetFriendlyNameForCurrentGameMode();
+
+function NotifyControllerDisconnected();
+
+function NotifyControllerReconnected();
 
 event bool GetRequiresPassword()
 {

@@ -32,11 +32,9 @@ defaultproperties
 
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_UnDev_Archetype'
+	MonsterArchPath="ZED_ARCH.ZED_Clot_UnDev_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.UndevClot_AnimGroup'
 	DifficultySettings=class'KFDifficulty_ClotCyst'
-
-	CharacterMonsterArchDebug=KFCharacterInfo_Monster'ZED_AI_DEBUG_Clot_ARCH.ZED_Clot_Undev_Archetype_DEBUG'
 
 	// ---------------------------------------------
 	// Gameplay

@@ -62,7 +62,7 @@ var() int MaxSpawnMarkers<ClampMin=1>;
 var() array<DoorListInfo> DoorList;
 /** Rotation to use when spawning pawns from this volume */
 var() Rotator SpawnRotation;
-var bool bCanUseForSpawning;
+var transient bool bCanUseForSpawning;
 var bool bNoCollisionFailForSpawn;
 /** Whether this volume should more aggressively check its visibility against where the viewer is moving to */
 var() bool bUsePredictiveVisibilityChecks;

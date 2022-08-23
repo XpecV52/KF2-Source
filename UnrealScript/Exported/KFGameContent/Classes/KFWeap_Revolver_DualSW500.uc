@@ -186,8 +186,8 @@ defaultproperties
    InstantHitDamage(1)=150.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
-   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_SW500'
-   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_SW500'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_SW500_Dual'
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_SW500_Dual'
    InstantHitDamageTypes(2)=None
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_SW500'
    FireOffset=(X=17.000000,Y=4.000000,Z=-2.250000)

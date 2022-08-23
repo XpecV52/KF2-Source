@@ -188,7 +188,7 @@ static simulated function float GetSnareSpeedModifier()
     return default.PerkSkills[7].StartingValue;
 }
 
-simulated function float GetSnarePower(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     if((IsCrippleActive() && DamageType != none) && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
     {

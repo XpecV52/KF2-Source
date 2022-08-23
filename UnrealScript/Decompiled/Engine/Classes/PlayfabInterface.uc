@@ -29,6 +29,8 @@ var private native const noexport Pointer VfTable_FTickableObject;
 var OnlineGameSearch PendingGameSearch;
 var const string CachedPlayfabId;
 var const string CachedSessionTicket;
+var const string CachedAuthCode;
+var const string CachedAuthForEntitlements;
 var private const bool bLoginProcessFinished;
 var private const bool bLaunchedByPlayfab;
 var private const bool bCloudServer;
@@ -40,6 +42,7 @@ var private const config string CatalogName;
 var const config array<config RegionDefinition> KnownRegions;
 var string CurrRegionName;
 var const int PlayfabNPServiceLabel;
+var native Map_Mirror TitleData;
 var private const string CachedLobbyId;
 var private const string CachedServerId;
 var private const float ElapsedTimeSinceLastHeartBeat;
@@ -58,11 +61,13 @@ var array< delegate<OnLoginComplete> > LoginCompleteDelegates;
 var array< delegate<OnRegionQueryComplete> > RegionQueryCompleteDelegates;
 var array< delegate<OnServerStarted> > ServerStartedDelegates;
 var array< delegate<OnInventoryRead> > InventoryReadDelegates;
+var array< delegate<OnTitleDataRead> > TitleDataReadDelegates;
 var array< delegate<OnStoreDataRead> > StoreDataReadDelegates;
 var array< delegate<OnCloudScriptExecutionComplete> > CloudScriptExecutionCompleteDelegates;
 var delegate<OnLoginComplete> __OnLoginComplete__Delegate;
 var delegate<OnStoreDataRead> __OnStoreDataRead__Delegate;
 var delegate<OnInventoryRead> __OnInventoryRead__Delegate;
+var delegate<OnTitleDataRead> __OnTitleDataRead__Delegate;
 var delegate<OnFindOnlineGamesComplete> __OnFindOnlineGamesComplete__Delegate;
 var delegate<OnQueryServerInfoComplete> __OnQueryServerInfoComplete__Delegate;
 var delegate<OnRegionQueryComplete> __OnRegionQueryComplete__Delegate;
@@ -149,6 +154,33 @@ function ClearInventoryReadCompleteDelegate(delegate<OnInventoryRead> InDelegate
         InventoryReadDelegates.Remove(RemoveIndex, 1;
     }
 }
+
+// Export UPlayfabInterface::execReadTitleData(FFrame&, void* const)
+native function ReadTitleData();
+
+delegate OnTitleDataRead();
+
+function AddTitleDataReadCompleteDelegate(delegate<OnTitleDataRead> InDelegate)
+{
+    if(TitleDataReadDelegates.Find(InDelegate == -1)
+    {
+        TitleDataReadDelegates[TitleDataReadDelegates.Length] = InDelegate;
+    }
+}
+
+function ClearTitleDataReadCompleteDelegate(delegate<OnTitleDataRead> InDelegate)
+{
+    local int RemoveIndex;
+
+    RemoveIndex = TitleDataReadDelegates.Find(InDelegate;
+    if(RemoveIndex != -1)
+    {
+        TitleDataReadDelegates.Remove(RemoveIndex, 1;
+    }
+}
+
+// Export UPlayfabInterface::execGetTitleDataForKey(FFrame&, void* const)
+native function string GetTitleDataForKey(string InKey);
 
 // Export UPlayfabInterface::execUnlockContainer(FFrame&, void* const)
 native function UnlockContainer(string ContainerId);
@@ -353,8 +385,16 @@ static function string GetLocalizedRegionName(int RegionIndex)
     return Localize("Regions", default.KnownRegions[RegionIndex].Name, "KFGameConsole");
 }
 
+event OnlineProfileSettings GetProfileSettings(byte LocalUserNum)
+{
+    return Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(LocalUserNum);
+}
+
 // Export UPlayfabInterface::execServerValidatePlayer(FFrame&, void* const)
 native function ServerValidatePlayer(const string ClientAuthTicket);
+
+// Export UPlayfabInterface::execServerNotifyPlayerJoined(FFrame&, void* const)
+native function ServerNotifyPlayerJoined(const string PlayfabId);
 
 // Export UPlayfabInterface::execServerNotifyPlayerLeft(FFrame&, void* const)
 native function ServerNotifyPlayerLeft(const string PlayfabId);
@@ -392,8 +432,8 @@ native function ServerGrantItemsForUser(const string ForPlayerId, array<string> 
 // Export UPlayfabInterface::execServerAllocate(FFrame&, void* const)
 native function ServerAllocate();
 
-// Export UPlayfabInterface::execserverDeallocate(FFrame&, void* const)
-native function serverDeallocate();
+// Export UPlayfabInterface::execServerDeallocate(FFrame&, void* const)
+native function ServerDeallocate(optional bool bForce);
 
 function CreateGameSettings(class<OnlineGameSettings> GameSettingsClass)
 {
@@ -408,26 +448,26 @@ event OnlineGameSettings GetGameSettings()
     return CachedGameSettings;
 }
 
-private final event AuthWithOnlineService()
+private final event AuthWithOnlineService(byte LocalUserNum, string ForURL)
 {
     local OnlineSubsystem OSS;
 
     OSS = Class'GameEngine'.static.GetOnlineSubsystem();
     if((OSS != none) && NotEqual_InterfaceInterface(OSS.PlayerInterface, (none)))
     {
-        OSS.PlayerInterface.AddOnlineServiceAuthCompleteDelegate(OnOnlineServiceAuthComplete);
-        OSS.PlayerInterface.AuthWithOnlineService();
+        OSS.PlayerInterface.AddURLTokenRetrievedDelegate(LocalUserNum, OnTokenAndSignatureRetrieved);
+        OSS.PlayerInterface.GetTokenAndSignatureForURL(LocalUserNum, ForURL);
     }
 }
 
-private final function OnOnlineServiceAuthComplete()
+private final function OnTokenAndSignatureRetrieved(byte LocalUserNum, string URL, string Token, string Signature)
 {
-    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.ClearOnlineServiceAuthCompleteDelegate(OnOnlineServiceAuthComplete);
-    OnlineServiceAuthComplete();
+    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.ClearURLTokenRetrievedDelegate(LocalUserNum, OnTokenAndSignatureRetrieved);
+    OnlineServiceAuthComplete(URL, Token, Signature);
 }
 
 // Export UPlayfabInterface::execOnlineServiceAuthComplete(FFrame&, void* const)
-private native final function OnlineServiceAuthComplete();
+private native final function OnlineServiceAuthComplete(string ForURL, string Token, string Signature);
 
 defaultproperties
 {

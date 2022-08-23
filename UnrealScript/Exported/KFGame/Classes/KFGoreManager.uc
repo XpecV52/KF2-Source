@@ -76,7 +76,8 @@ const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
-const KFID_DisableAutoUpgrade = 167;#linenumber 15;
+const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;#linenumber 15;
 
 /**
  * Predefined values
@@ -440,7 +441,7 @@ simulated final function bool AllowMutilation()
 
 simulated final function bool AllowHeadless()
 {
-	return DesiredGoreLevel <= 1;
+	return DesiredGoreLevel <= 2;
 }
 
 /** Spawns blood effects due to limb dismemberment or gibbing

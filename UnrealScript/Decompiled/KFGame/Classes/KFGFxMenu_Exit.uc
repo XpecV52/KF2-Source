@@ -37,7 +37,17 @@ function SetExitOptions()
     OptionStrings.AddItem(ExitToMainMenu;
     if(!Class'WorldInfo'.static.IsConsoleBuild(8))
     {
-        OptionStrings.AddItem(ExitKF2;
+        if(Class'WorldInfo'.static.IsConsoleBuild(9))
+        {
+            if(Class'WorldInfo'.static.IsMenuLevel())
+            {
+                OptionStrings.AddItem(ConsoleLocalize("LogoutKF2");
+            }            
+        }
+        else
+        {
+            OptionStrings.AddItem(ExitKF2;
+        }
     }
     SetMenuText();
 }
@@ -46,19 +56,28 @@ function SetMenuText()
 {
     local byte I, ButtonCount;
     local GFxObject DataProvider, DataObject;
+    local bool bMenuLevel;
 
+    bMenuLevel = Class'WorldInfo'.static.IsMenuLevel();
     ButtonCount = 0;
     DataProvider = Outer.CreateArray();
-    DataProvider.SetString("header", HeaderString);
+    if(Class'WorldInfo'.static.IsConsoleBuild(9) && bMenuLevel)
+    {
+        DataProvider.SetString("header", ConsoleLocalize("HeaderStringXB1"));        
+    }
+    else
+    {
+        DataProvider.SetString("header", HeaderString);
+    }
     I = 0;
-    J0x72:
+    J0x117:
 
     if(I < OptionStrings.Length)
     {
         DataObject = Outer.CreateObject("Object");
         DataObject.SetString("label", OptionStrings[I]);
         DataObject.SetInt("buttonID", I);
-        if((OptionStrings[I] == ExitToMainMenu) && Class'WorldInfo'.static.IsMenuLevel())
+        if((OptionStrings[I] == ExitToMainMenu) && bMenuLevel)
         {            
         }
         else
@@ -67,7 +86,7 @@ function SetMenuText()
             ++ ButtonCount;
         }
         ++ I;
-        goto J0x72;
+        goto J0x117;
     }
     SetObject("buttonNames", DataProvider);
 }
@@ -106,7 +125,14 @@ function ShowExitToOSPopUp()
 {
     if((Manager != none) && Manager.MenuBarWidget != none)
     {
-        Manager.MenuBarWidget.OpenQuitPopUp();
+        if(Class'WorldInfo'.static.IsConsoleBuild(9))
+        {
+            Manager.MenuBarWidget.OpenLogoutPopup();            
+        }
+        else
+        {
+            Manager.MenuBarWidget.OpenQuitPopUp();
+        }
     }
 }
 

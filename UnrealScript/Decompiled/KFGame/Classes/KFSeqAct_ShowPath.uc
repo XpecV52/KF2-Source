@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFSeqAct_ShowPath extends SeqAct_Latent
+class KFSeqAct_ShowPath extends SequenceAction
     forcescriptorder(true)
     hidecategories(Object);
 
@@ -26,7 +26,7 @@ var transient KFReplicatedShowPathActor ReplicatedPathActor;
  */
 var() KFSeqAct_ShowPath.eVolumeCheckType VolumeCheckType;
 /** Team number to display path to. 0 = Survivors, 255 = Zeds */
-var() byte TeamNumToDisplayPathTo;
+var() byte TeamToDisplayPathTo;
 
 event Activated()
 {
@@ -73,7 +73,7 @@ event Activated()
         ReplicatedPathActor = Class'WorldInfo'.static.GetWorldInfo().Spawn(Class'KFReplicatedShowPathActor', none);
         if(ReplicatedPathActor != none)
         {
-            ReplicatedPathActor.SetPathTarget(Target, Volume, (((VolumeCheckType != 0) && Volume == none) ? 0 : VolumeCheckType), TeamNumToDisplayPathTo);            
+            ReplicatedPathActor.SetPathTarget(Target, Volume, (((VolumeCheckType != 0) && Volume == none) ? 0 : VolumeCheckType), TeamToDisplayPathTo);            
         }
         else
         {
@@ -82,21 +82,9 @@ event Activated()
     }
 }
 
-event bool Update(float DeltaTime)
-{
-    if(((bPathActive && ReplicatedPathActor != none) && ReplicatedPathActor.Target != none) && !ReplicatedPathActor.bDeleteMe)
-    {
-        return true;
-    }
-    if((ReplicatedPathActor != none) && !ReplicatedPathActor.bDeleteMe)
-    {
-        ReplicatedPathActor.Destroy();
-    }
-    return false;
-}
-
 defaultproperties
 {
+    bCallHandler=false
     InputLinks(0)=(LinkDesc="Start",bHasImpulse=false,QueuedActivations=0,bDisabled=false,bDisabledPIE=false,LinkedOp=none,DrawY=0,bHidden=false,ActivateDelay=0,bMoving=false,bClampedMax=false,bClampedMin=false,OverrideDelta=0)
     InputLinks(1)=(LinkDesc="Stop",bHasImpulse=false,QueuedActivations=0,bDisabled=false,bDisabledPIE=false,LinkedOp=none,DrawY=0,bHidden=false,ActivateDelay=0,bMoving=false,bClampedMax=false,bClampedMin=false,OverrideDelta=0)
     VariableLinks(0)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=none,LinkDesc="Destination Actor",LinkVar=None,PropertyName=None,bWriteable=false,bSequenceNeverReadsOnlyWritesToThisVar=false,bModifiesLinkedObject=false,bHidden=false,MinVars=1,MaxVars=1,DrawX=0,CachedProperty=none,bAllowAnyType=false,bMoving=false,bClampedMax=false,bClampedMin=false,OverrideDelta=0)

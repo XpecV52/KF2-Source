@@ -114,6 +114,13 @@ event bool PlayParticleEffect( const AnimNotify_PlayParticleEffect AnimNotifyDat
 
 		PSC.ActivateSystem(true);
 		PSC.OnSystemFinished = SkelMeshCompOnParticleSystemFinished;
+
+		// We use this to keep track of particle systems spawned by animations
+		if( PSC != none && Owner != none )
+		{
+			Owner.OnAnimNotifyParticleSystemSpawned( AnimNotifyData, PSC );
+		}
+
 		return true;
 	}
 

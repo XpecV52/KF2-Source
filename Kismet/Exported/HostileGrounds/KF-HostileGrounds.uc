@@ -884,6 +884,7 @@ Begin Object Class=InterpData Name=InterpData_0
 End Object
 
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
+   PlayRate=0.800000
    InputLinks(0)=(DrawY=-818,OverrideDelta=15)
    InputLinks(1)=(DrawY=-796,OverrideDelta=37)
    InputLinks(2)=(DrawY=-774,OverrideDelta=59)

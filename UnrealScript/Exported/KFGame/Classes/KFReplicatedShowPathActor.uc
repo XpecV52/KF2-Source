@@ -83,22 +83,20 @@ simulated function ShowPath()
 
 		if( VolumeCheckType != VCT_None && CheckVolume != none )
 		{
-			bInsideVolume = CheckVolume.Encompasses( PC.Pawn );
-			switch( VolumeCheckType )
+			bInsideVolume = class'KFSeqAct_SetTraderVolumeIgnore'.static.IsActorInVolume( PC.Pawn, CheckVolume );
+			if( VolumeCheckType == VCT_InVolume )
 			{
-				case VCT_InVolume:
-					if( !bInsideVolume )
-					{
-						return;
-					}
-					break;
-
-				case VCT_NotInVolume:
-					if( bInsideVolume )
-					{
-						return;
-					}
-					break;
+				if( !bInsideVolume )
+				{
+					continue;
+				}
+			}
+			else if( VolumeCheckType == VCT_NotInVolume )
+			{
+				if( bInsideVolume )
+				{
+					continue;
+				}
 			}
 		}
 
@@ -126,7 +124,7 @@ simulated function ShowPath()
 		}
 		else
 		{
-			LogInternal("ShowScriptedPath - No Path Found");
+			LogInternal("[KFReplicatedShowPathActor] ShowScriptedPath - No Path Found");
 		}
 
 		PC.Pawn.ClearConstraints();
@@ -137,6 +135,7 @@ simulated function ShowPath()
 defaultproperties
 {
    RemoteRole=ROLE_SimulatedProxy
+   CollisionType=COLLIDE_CustomDefault
    bIgnoreEncroachers=True
    bPushedByEncroachers=False
    bAlwaysRelevant=True

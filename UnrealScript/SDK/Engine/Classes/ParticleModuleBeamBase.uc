@@ -34,6 +34,13 @@ enum Beam2SourceTargetMethod
 	 *	The name of the actor should be set in <Source/Target>Name.
 	 */
 	PEB2STM_Actor
+`if(`__TW_BEAM_SOCKETS_)
+    /** Actor socket - use a specified socket on an actor as the source/target
+     *  The name of the actor should be set in <Source/Target>Name, as well as
+     *  the name of the socket in <Source/Target>SocketName.
+     */
+    , PEB2STM_ActorSocket
+`endif
 };
 
 /** The method to use in determining the source/target tangent. */

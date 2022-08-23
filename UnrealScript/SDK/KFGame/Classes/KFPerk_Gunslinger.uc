@@ -11,7 +11,7 @@
 class KFPerk_Gunslinger extends KFPerk
 		native;
 
-`include(KFOnlineStats.uci)
+//`include(KFOnlineStats.uci)
 
 //Passives
 var	const				PerkSkill 				WeaponDamage;
@@ -361,7 +361,7 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
 	}
 
    	KFPM = KFPawn_Monster(Impact.HitActor);
-   	if( KFPM != none )
+   	if( KFPM != none && !KFPM.bIsHeadless )
    	{
 	   	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
 	   	if( HitZoneIdx == HZI_Head && KFPM != none && KFPM.IsAliveAndWell() )
@@ -541,7 +541,7 @@ simulated function bool IgnoresPenetrationDmgReduction()
 	return IsPenetrationActive();
 }
 
-simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsSkullCrackerActive() && 
 		DamageType != none && 
@@ -782,8 +782,8 @@ DefaultProperties
 	KnifeWeaponDef=class'KFWeapDef_Knife_Gunslinger'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Gunslinger'
 
-	ProgressStatID=`STATID_Guns_Progress
-   	PerkBuildStatID=`STATID_Guns_Build
+	ProgressStatID=STATID_Guns_Progress
+   	PerkBuildStatID=STATID_Guns_Build
 
    	ShootnMooveBobDamp=1.11f
 
@@ -807,8 +807,8 @@ DefaultProperties
    	// xp per headshot (all headshots, not just lethal)
    	SecondaryXPModifier(0)=1
    	SecondaryXPModifier(1)=1
-   	SecondaryXPModifier(2)=2
-   	SecondaryXPModifier(3)=3
+   	SecondaryXPModifier(2)=1
+   	SecondaryXPModifier(3)=1
 
    	ZedTimeModifyingStates(0)="WeaponFiring"
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"

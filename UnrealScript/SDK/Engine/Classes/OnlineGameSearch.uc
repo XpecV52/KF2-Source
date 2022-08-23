@@ -28,7 +28,9 @@ var const bool bIsSearchInProgress;
 struct native OnlineGameSearchResult
 {
 	/** The settings used by this particular server */
-	var const OnlineGameSettings GameSettings;
+//@HSL_BEGIN - BWJ - 12-12-16-  Need to be able to change this in script (script const is kinda stupid anyways. doesn't hold true in native)
+	var /*const*/ OnlineGameSettings GameSettings;
+//@HSL_END
 	/**
 	 * Platform/online provider specific data
 	 * NOTE: It is imperative that the subsystem be called to clean this data

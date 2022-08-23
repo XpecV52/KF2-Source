@@ -55,6 +55,8 @@ SecondaryWeaponPurchasedString="已購買次要武器"
 NoItemsPurchasedString="未購買任何物品"
 
 SetTakeoverServerPasswordTitle="請輸入保護遊戲用的新密碼："
+FreeConsolePlayOverString="感謝您遊玩殺戮空間2！免費活動已經結束，但是您仍可以點選下方的商店按鈕來購買遊戲即獲得更多資訊。"
+BuyGameString="商店"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="無法找到遊戲"
@@ -1068,8 +1070,7 @@ BloomStringOptions[1]="低"
 BloomStringOptions[2]="高"
 
 MotionBlurStringOptions[0]="關閉"
-MotionBlurStringOptions[1]="普通"
-MotionBlurStringOptions[2]="高"
+MotionBlurStringOptions[1]="開啟"
 
 AmbientOcclusionStringOptions[0]="關閉"
 AmbientOcclusionStringOptions[1]="SSAO"
@@ -1108,6 +1109,7 @@ UseAltAimOnDualString="使用手槍雙瞄準器"
 AntiMotionSicknessString="防手震"
 AutoTurnOffString="不自動開啟凝塊抓取"
 ReduceHighPitchNoiseString="降低高頻雜訊"
+DisableAutoUpgradeString="關閉自動更新"
 
 [LocalizedControls]
 ControllerLayoutDefault="預設"
@@ -1127,7 +1129,7 @@ GBA_Look_Gamepad="視線控制"
 GBA_Grenade_Gamepad="投擲手榴彈"
 GBA_TurnLeft_Gamepad="視線控制"
 GBA_Look_Gamepad="視線控制"
-GBA_DPad_Left_Gamepad="語音指令"
+GBA_DPad_Left_Gamepad="語音／表情動作指令"
 GBA_DPad_Up_Gamepad="裝備治療道具"
 GBA_DPad_Right_Gamepad="投擲金錢"
 GBA_DPad_Down_Gamepad="開啟手電筒"
@@ -1236,6 +1238,12 @@ BashString="近身便擊"
 BlockString="防禦（長按）"
 HoldString="長按"
 TapString="輕碰"
+
+[KFGFxScreenSizeContainer]
+TitleString="應用程式將會顯示於方形區域中"
+DescriptionString="調整畫面大小以符合TV顯示區域"
+EnlargeString="放大"
+ShrinkString="縮小"
 
 [KFInventoryManager]
 FullHealthMsg="滿血"
@@ -1347,6 +1355,8 @@ HealSelfGamepadWarning="<%HOLD%>治療自己"
 PressToBashWarning="便擊"
 GamepadWeaponSelectHint="<%HOLD%>選擇武器"
 PlayerClotGrabWarningMessage="殺死 ZED 以重獲自由！"
+UseMinigameMessage="啟動小遊戲"
+UseMinigameGeneratorMessage="啟動產生器"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="隊伍人數不平均，將進行調整"
@@ -1593,7 +1603,7 @@ SmashDescription="以職業近身武器重擊可增加 50% 傷害，擊中頭部
 Fury="屠殺"
 FuryDescription="使用職業近身武器輕擊可增加 30% 傷害，且所有職業近身武器攻速增加 5%。"
 
-Spartan="ZED 時間 - 斯巴達 "
+Spartan="ZED 時間 - 斯巴達"
 SpartanDescription="Zed 時間發動時，你可在使用職業武器的同時移動。"
 
 Rage="ZED 時間 - 狂戰士之怒"
@@ -1750,7 +1760,7 @@ EXPAction2="治療隊友"
 [KFPerk_Firebug]
 PerkName="縱火狂"
 EXPAction1="造成縱火狂武器傷害"
-EXPAction2="使用縱火狂武器殺死爬行者和腫脹毒屍"
+EXPAction2="使用縱火狂武器殺害爬行者"
 
 SkillCatagories[0]="補給"
 SkillCatagories[1]="辣"
@@ -1900,7 +1910,7 @@ Passives[0]=(Title="焊接效率",Description="每級增加焊接速度 %x%");
 Passives[1]=(Title="霰彈槍傷害",Description="每級增加職業武器傷害 x%x");
 Passives[2]=(Title="霰彈槍穿透",Description="每級增加職業武器穿透 x%x");
 Passives[3]=(Title="彈藥",Description="彈藥增量 15%，每次升級再加 %x%");
-Passives[4]=(Title="力量",Description="每 5 級增加負重量 1");
+Passives[4]=(Title="增加負重量",Description="每 5 級增加負重量 1");
 Passives[5]=(Title="彈藥備援 + 門維修",Description="每回合玩家可從背包取得彈藥和維修壞掉的門一次");
 
 EXPAction1="造成協助武器傷害"
@@ -2094,7 +2104,7 @@ RandomLoadingStrings[13]="有多餘金錢嗎？為了隊友留一些下來吧，
 RandomLoadingStrings[14]="選擇目標。不同的武器對不同類型的 Zed 有不一樣的效果。"
 RandomLoadingStrings[15]="設定主要的目標。絞碎者比起凝塊更值得你的注意力。"
 RandomLoadingStrings[16]="所有的 Zed 都有弱點。若不是頭部，找看看他們身上的亮點。"
-RandomLoadingStrings[17]="想買賣妝容物品或武器飾品嗎？去市場瞧瞧吧。"
+RandomLoadingStrings[17]="雖然你能夠偶然從戰利品中獲得妝容物品，但部分妝容物品都可以購買。"
 RandomLoadingStrings[18]="海妖的尖叫會使得手榴彈與其它炸藥失效。"
 RandomLoadingStrings[19]="電鋸與胖胖受了一定的傷害後會暴走。小心閃避它們。"
 RandomLoadingStrings[20]="有很多不用的妝容物品或武器飾品嗎？從庫存中合成新的吧。"
@@ -2118,7 +2128,7 @@ RandomLoadingStrings[37]="電磁砲若發射角度正確可以射穿複數 Zed�
 RandomLoadingStrings[38]="微波砲對手持金屬的 Zed，例如絞碎者和海妖，有更好的效果。"
 RandomLoadingStrings[39]="試試看你的武器的替代主要攻擊模式。並不是所有武器都有此功能，但危急時可能派上用場。"
 RandomLoadingStrings[40]="助攻與殺害都能獲得 XP 與金錢，所以為隊友製造機會不用感覺很差。"
-RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
+RandomLoadingStrings[41]="裝備焊槍並按下瞄具的按鈕可以移除門上的焊接，"
 
 [WhatsNewMessages]
 Jaegorhorn="追蹤社群以解鎖耶格霍恩。"
@@ -2167,20 +2177,29 @@ PS4WeaponSkinCrate2="Horzine 補給武器飾品箱子 | 系列 2"
 Artbook="《殺戮空間 2》數位畫冊"
 Uncovered="觀賞《殺戮空間：揭密》現場動作電影"
 NewEmotes="全新！Emote 箱子鑰匙 - $2.49"
+HorzineSupplyCrateKey10="Horzine 補給箱子鑰匙 | 系列 #10 - $2.49"
+HorzineSupplyCrateKey11="Horzine 補給箱子鑰匙 | 系列 #11 - $2.49"
+HorzineSupplyCrateKey12="Horzine 補給箱子鑰匙 | 系列 #12 - $2.49"
+HorzineSupplyCrateKey13="Horzine 補給箱子鑰匙 | 系列 #13 - $2.49"
+USBSpitfire="Spit Fire USB Key - $2.49"
+USBHighVoltage="High Voltage USB Key - $2.49"
+MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 
 [Zeds]
 KFPawn_ZedBloat="胖胖"
 KFPawn_ZedClot="凝塊"
 KFPawn_ZedCrawler="爬行者"
+KFPawn_ZedCrawlerKing="精英爬行者"
 KFPawn_ZedFleshPound="絞碎者"
 KFPawn_ZedGorefast="砍殺者"
-KFPawn_ZedGorefastDualBlade="Gorefiend"
+KFPawn_ZedGorefastDualBlade="雙刀砍殺者"
 KFPawn_ZedHans="漢斯華特博士"
 KFPawn_ZedHusk="焦驅"
 KFPawn_ZedStalker="潛行者"
 KFPawn_ZedClot_Cyst="囊腫"
 KFPawn_ZedClot_Slasher="揮爪者"
 KFPawn_ZedClot_Alpha="突變凝塊"
+KFPawn_ZedClot_AlphaKing="精英突變凝塊"
 KFPawn_ZedScrake="電鋸"
 KFPawn_ZedSiren="海妖"
 KFPawn_ZedPatriarch="長老"
@@ -2510,6 +2529,38 @@ DisplayName_POL="Lądowanie zetów"
 DisplayName_PTB="Pouso Forçado ZED"
 DisplayName_RUS="Высадка среди мутантов"
 
+[KF-TheDescent KFMapSummary]
+DisplayName_CHN="后裔"
+DisplayName_CHT="地下鐵"
+DisplayName_DEU="Der Abstieg"
+DisplayName_ESL="El descendiente"
+DisplayName_ESN="El descendiente"
+DisplayName_FRA="La descente"
+DisplayName_FRC="La descente"
+DisplayName_INT="The Descent"
+DisplayName_ITA="La discesa"
+DisplayName_JPN="The Descent"
+DisplayName_KOR="경사로"
+DisplayName_POL="Zejście"
+DisplayName_PTB="A Descida"
+DisplayName_RUS="Спуск"
+
+[KF-Nuked KFMapSummary]
+DisplayName_CHN="核武器"
+DisplayName_CHT="核電廠"
+DisplayName_DEU="Atomisiert"
+DisplayName_ESL="Bombardeado"
+DisplayName_ESN="Bombardeado"
+DisplayName_FRA="Atomisé"
+DisplayName_FRC="Atomisé"
+DisplayName_INT="Nuked"
+DisplayName_ITA="Nuclearizzato"
+DisplayName_JPN="Nuked"
+DisplayName_KOR="방사능 누출지"
+DisplayName_POL="Wysadzeni"
+DisplayName_PTB="Bombardeio"
+DisplayName_RUS="Ядерный удар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics 實驗室"
 
@@ -2552,6 +2603,11 @@ DisplayName="地獄"
 [KF-ZedLanding KFMapSummary]
 DisplayName="僵屍群登陸"
 
+[KF-TheDescent KFMapSummary]
+DisplayName="地下鐵"
+
+[KF-Nuked KFMapSummary]
+DisplayName="核電廠"
 
 [KFMapInfo]
 ; defaults

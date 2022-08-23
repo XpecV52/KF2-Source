@@ -165,6 +165,7 @@ defaultproperties
    FireModeIconPaths(4)=()
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
    InventorySize=9
+   QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
    GrenadeFireOffset=(X=25.000000,Y=15.000000,Z=0.000000)
    GroupPriority=110.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Shield_Melee_TEX.UI_WeaponSelect_MaceShield'

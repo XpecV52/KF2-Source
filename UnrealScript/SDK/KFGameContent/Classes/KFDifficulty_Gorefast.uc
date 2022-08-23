@@ -77,8 +77,8 @@ defaultproperties
 	RallySettings_Player_Versus={(DealtDamageModifier=1.2)}
 
 	// Special Gorefast spawn chances
-	ChanceToSpawnAsSpecial(`DIFFICULTY_Normal)		=0.0
-	ChanceToSpawnAsSpecial(`DIFFICULTY_Hard)		=0.05
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Normal)		=0.10// 0.0
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Hard)		=0.25//0.5
 	ChanceToSpawnAsSpecial(`DIFFICULTY_Suicidal)	=0.35//  0.15
 	ChanceToSpawnAsSpecial(`DIFFICULTY_HellOnEarth)	=0.45
 }

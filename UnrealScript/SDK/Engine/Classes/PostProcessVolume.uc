@@ -37,6 +37,9 @@ struct native LUTBlender
 		/** resolve to one LUT (render thread only)*/
 		const FTextureRHIRef ResolveLUT(class FViewInfo& View, const struct ColorTransformMaterialProperties& ColorTransform);
 
+		/** use compute shader to resolve LUT */
+		const FTextureRHIRef ComputeLUT(class FViewInfo& View, const struct ColorTransformMaterialProperties& ColorTransform);
+
 		/** Is updated every frame if GColorGrading is set to debug mode, empty if not */
 		static UBOOL GetDebugInfo(FString& Out);
 

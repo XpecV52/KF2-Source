@@ -97,7 +97,7 @@ simulated function Timer_CheckForExplode()
 defaultproperties
 {
     DeathExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedCrawlerKing.ExploTemplate0'
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_CrawlerKing_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_CrawlerKing_Archetype"
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedCrawlerKing.MeleeHelper'
     DifficultySettings=Class'KFDifficulty_CrawlerKing'
     LocalizationKey=KFPawn_ZedCrawlerKing

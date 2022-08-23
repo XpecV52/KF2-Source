@@ -146,7 +146,14 @@ function Callback_Quit()
 {
     if(Manager != none)
     {
-        Manager.MenuBarWidget.OpenQuitPopUp();
+		if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
+		{
+			Manager.MenuBarWidget.OpenLogoutPopup();
+		}
+		else
+		{
+			Manager.MenuBarWidget.OpenQuitPopUp();
+		}
     }
 }
 

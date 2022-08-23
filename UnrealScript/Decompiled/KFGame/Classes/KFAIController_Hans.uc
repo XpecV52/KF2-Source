@@ -771,7 +771,7 @@ function TickGunSystem()
             }
             return;
         }
-        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(34) && !MyKFPawn.IsDoingSpecialMove(33))
+        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(35) && !MyKFPawn.IsDoingSpecialMove(34))
         {
             if((Pawn.IsFiring() || IsTimerActive('FireTimer', self)) || IsTimerActive('StartFireTiming', self))
             {
@@ -873,7 +873,7 @@ function DrawRangedAttackInfo(HUD HUD)
     DrawDebugText(HUD, "Battle Phase: " $ string(MyHansPawn.CurrentBattlePhase));
     DrawDebugText(HUD, "--Guns--");
     DrawDebugText(HUD, (("Guns Equipped: " $ string(MyHansPawn.bGunsEquipped)) $ " Can Use Guns In This Phase: ") $ string(MyHansPawn.CanUseGunsInThisPhase()));
-    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(34))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
+    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(35))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
     if((WorldInfo.TimeSeconds - StartDrawGunsTime) > DrawGunFireDelay)
     {
         UsedDrawGunsCooldown = 0;        
@@ -1033,7 +1033,7 @@ function bool GrenadeAttackInterruptGuns()
 
 function bool SetupGrenadeAttack()
 {
-    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(34)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
+    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(35)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
     {
         CurrentNadeAttackType = 0;
         if(!IsWithinAttackRange())
@@ -1132,6 +1132,11 @@ function bool IsWithinAttackRange()
         return true;
     }
     return false;
+}
+
+function bool CanAttackDestructibles()
+{
+    return !MyHansPawn.bGunsEquipped && bCanDoHeavyBump;
 }
 
 function NotifyAttackDoor(KFDoorActor door)
@@ -1447,13 +1452,6 @@ function bool DoHeavyZedBump(Actor Other, Vector HitNormal)
     if(Other.bCanBeDamaged && KFFracturedMeshGlass(Other) != none)
     {
         KFFracturedMeshGlass(Other).BreakOffAllFragments();
-        return true;
-    }
-    if(((Other.IsA('KFDestructibleActor') && !GetActiveCommand().IsA('AICommand_Melee')) && Other.bCollideActors) && !MyKFPawn.IsDoingSpecialMove())
-    {
-        AIZeroMovementVariables();
-        DisableBump(2);
-        NotifyAttackActor(Other);
         return true;
     }
     BumpedMonster = KFPawn_Monster(Other);

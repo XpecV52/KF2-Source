@@ -403,7 +403,7 @@ function DeferOnAnimEnd()
     }
 }
 
-simulated function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC);
+function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC);
 
 function AbortedByAICommand();
 
@@ -429,6 +429,8 @@ function bool CanDrawCrosshair()
 {
     return true;
 }
+
+function bool GetSMAimRotation(out Rotator AimRot);
 
 defaultproperties
 {

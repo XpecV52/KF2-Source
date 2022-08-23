@@ -65,7 +65,7 @@ var() array< DoorListInfo > DoorList;
 var() rotator 				SpawnRotation;
 
 /** Used to include or exclude spawn volumes from gameplay code */
-var bool bCanUseForSpawning;
+var transient bool bCanUseForSpawning;
 
 /*********************************************************************************************
  Rendering in Game ("show SpawnVolumes" and Editor (when volume is selected)

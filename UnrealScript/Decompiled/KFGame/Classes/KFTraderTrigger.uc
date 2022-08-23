@@ -118,7 +118,7 @@ simulated function ShowTraderPath()
     local Engine.Pawn.EPathSearchType OldSearchType;
     local KFEmit_TraderPath Path;
     local Actor nodePathRoot;
-    local bool bPathFound;
+    local bool bInsideVolume, bPathFound;
 
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(((bCollideActors && KFGRI != none) && KFGRI.bTraderIsOpen) && KFGRI.OpenedTrader == self)
@@ -128,6 +128,27 @@ simulated function ShowTraderPath()
             if(((PC.Pawn == none) || PC.GetTeamNum() == 255) || !PC.Pawn.IsAliveAndWell())
             {
                 continue;                
+            }
+            if((KFGRI.TraderVolumeCheckType != 0) && KFGRI.TraderVolume != none)
+            {
+                bInsideVolume = Class'KFSeqAct_SetTraderVolumeIgnore'.static.IsActorInVolume(PC.Pawn, KFGRI.TraderVolume);
+                if(KFGRI.TraderVolumeCheckType == 1)
+                {
+                    if(!bInsideVolume)
+                    {
+                        continue;                        
+                    }                    
+                }
+                else
+                {
+                    if(KFGRI.TraderVolumeCheckType == 2)
+                    {
+                        if(bInsideVolume)
+                        {
+                            continue;                            
+                        }
+                    }
+                }
             }
             OldSearchType = PC.Pawn.PathSearchType;
             PC.Pawn.PathSearchType = 3;

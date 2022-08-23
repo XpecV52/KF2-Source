@@ -28,10 +28,38 @@ struct STutorialSlide
     }
 };
 
+struct SControllerTutorialSlide
+{
+    /** Image to use for PS4 builds */
+    var() Texture2D PS4Image;
+    /** Image to use for xbox one builds */
+    var() Texture2D XboxOneImage;
+    /** Image to use for xbox 360 builds or on PC with controller */
+    var() Texture2D PCImage;
+    /** Image to use for xbox 360 builds or on PC with controller */
+    var() string TitleKey;
+    /** Image to use for xbox 360 builds or on PC with controller */
+    var() string DescriptionKey;
+    /** Key binds to locate and merge with description text */
+    var() array<string> KeyGBAs;
+
+    structdefaultproperties
+    {
+        PS4Image=none
+        XboxOneImage=none
+        PCImage=none
+        TitleKey=""
+        DescriptionKey=""
+        KeyGBAs=none
+    }
+};
+
 /** Default slides */
 var() private array<STutorialSlide> TutorialSlides;
-/** Override slides used only for gamepad */
+/** DEPRECATED - Override slides used only for gamepad */
 var() private array<STutorialSlide> GamepadReplacementSlides;
+/** Override slides for use on controller or with consoles */
+var() private array<SControllerTutorialSlide> ControllerReplacementSlides;
 var() AkEvent VoiceOverOpenEvent;
 var() AkEvent VoiceOverCloseEvent;
 /** Delay before this screen opens */
@@ -40,7 +68,7 @@ var() float OpenDelay;
 function array<STutorialSlide> GetSlides(PlayerController PC)
 {
     local array<STutorialSlide> MergedSlides;
-    local STutorialSlide NextSlide;
+    local STutorialSlide NextSlide, NewSlide;
 
     if(GamepadReplacementSlides.Length > 0)
     {
@@ -48,13 +76,38 @@ function array<STutorialSlide> GetSlides(PlayerController PC)
         {
             foreach TutorialSlides(NextSlide,)
             {
-                if((NextSlide.GamepadSlideIndex >= 0) && NextSlide.GamepadSlideIndex < GamepadReplacementSlides.Length)
+                if((NextSlide.GamepadSlideIndex >= 0) && NextSlide.GamepadSlideIndex < ControllerReplacementSlides.Length)
                 {
-                    MergedSlides.AddItem(GamepadReplacementSlides[NextSlide.GamepadSlideIndex];                    
+                    NewSlide.TitleKey = ControllerReplacementSlides[NextSlide.GamepadSlideIndex].TitleKey;
+                    NewSlide.DescriptionKey = ControllerReplacementSlides[NextSlide.GamepadSlideIndex].DescriptionKey;
+                    NewSlide.KeyGBAs = ControllerReplacementSlides[NextSlide.GamepadSlideIndex].KeyGBAs;
+                    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+                    {
+                        NewSlide.UIImage = ControllerReplacementSlides[NextSlide.GamepadSlideIndex].PS4Image;                        
+                    }
+                    else
+                    {
+                        if(Class'WorldInfo'.static.IsConsoleBuild(9))
+                        {
+                            NewSlide.UIImage = ControllerReplacementSlides[NextSlide.GamepadSlideIndex].XboxOneImage;                            
+                        }
+                        else
+                        {
+                            NewSlide.UIImage = ControllerReplacementSlides[NextSlide.GamepadSlideIndex].PCImage;
+                        }
+                    }
+                    MergedSlides.AddItem(NewSlide;                    
                 }
                 else
                 {
-                    MergedSlides.AddItem(NextSlide;
+                    if((NextSlide.GamepadSlideIndex >= 0) && NextSlide.GamepadSlideIndex < GamepadReplacementSlides.Length)
+                    {
+                        MergedSlides.AddItem(GamepadReplacementSlides[NextSlide.GamepadSlideIndex];                        
+                    }
+                    else
+                    {
+                        MergedSlides.AddItem(NextSlide;
+                    }
                 }                
             }            
             return MergedSlides;

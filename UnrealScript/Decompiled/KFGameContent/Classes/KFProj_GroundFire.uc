@@ -8,7 +8,7 @@
 class KFProj_GroundFire extends KFProjectile
     hidecategories(Navigation);
 
-var() float BurnDamageInterval;
+var() float DamageInterval;
 
 function WarnAI(Vector Direction)
 {
@@ -16,12 +16,19 @@ function WarnAI(Vector Direction)
     local Vector DangerPoint;
 
     DangerPoint = Location;
-    foreach VisibleCollidingActors(Class'KFPawn_Monster', KFPM, 300, Location, true)
+    foreach WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
         if((KFPM.MyKFAIC != none) && KFPM.IsAliveAndWell())
         {
-            DangerPoint.Z = KFPM.Location.Z;
-            KFPM.MyKFAIC.ReceiveLocationalWarning(DangerPoint, Location, self);
+            if(VSizeSq(KFPM.Location - Location) > 90000)
+            {
+                continue;                
+            }
+            if(Class'KFGameEngine'.static.FastTrace_PhysX(Location, KFPM.Location))
+            {
+                DangerPoint.Z = KFPM.Location.Z;
+                KFPM.MyKFAIC.ReceiveLocationalWarning(DangerPoint, Location, self);
+            }
         }        
     }    
 }
@@ -42,10 +49,17 @@ simulated function PostBeginPlay()
 {
     local KFPlayerReplicationInfo InstigatorPRI;
 
-    InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
-    if(InstigatorPRI != none)
+    if(AltExploEffects != none)
     {
-        bAltExploEffects = InstigatorPRI.bSplashActive;
+        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+        if(InstigatorPRI != none)
+        {
+            bAltExploEffects = InstigatorPRI.bSplashActive;
+        }        
+    }
+    else
+    {
+        bAltExploEffects = false;
     }
     TriggerExplosion(Location, vector(Rotation), none);
     super.PostBeginPlay();
@@ -60,7 +74,7 @@ protected simulated function PrepareExplosionActor(GameExplosionActor GEA)
     KFE_GroundFire = KFExplosionActorLingering(GEA);
     if(KFE_GroundFire != none)
     {
-        KFE_GroundFire.interval = BurnDamageInterval;
+        KFE_GroundFire.interval = DamageInterval;
     }
 }
 
@@ -75,7 +89,7 @@ protected simulated function PrepareExplosionTemplate()
 
 defaultproperties
 {
-    BurnDamageInterval=0.25
+    DamageInterval=0.25
     bAutoStartAmbientSound=true
     ExplosionActorClass=Class'KFExplosion_GroundFire'
     begin object name=ExploTemplate0 class=KFGameExplosion

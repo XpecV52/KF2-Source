@@ -56,7 +56,7 @@ event PostBeginPlay()
 /**
  * Spawn any effects that occur at the impact point.  It's called from the pawn.
  */
-simulated function PlayImpactEffects(const vector HitLocation, const Pawn EffectInstigator, optional vector HitNormal, optional KFImpactEffectInfo CustomImpactEffects, optional bool bWorldImpactsOnly, optional bool bMeleeHit )
+simulated function PlayImpactEffects(const vector HitLocation, const Pawn EffectInstigator, optional vector HitNormal, optional KFImpactEffectInfo CustomImpactEffects, optional bool bWorldImpactsOnly)
 {
 	local vector NewHitLoc, FireDir, WaterHitNormal;
 	local Actor HitActor;
@@ -103,14 +103,7 @@ simulated function PlayImpactEffects(const vector HitLocation, const Pawn Effect
 			FracturedMeshActor = KFFracturedMeshActor(HitActor);
 			if ( FracturedMeshActor != None )
 			{
-				if( bMeleeHit )
-				{
-					class'KFMeleeHelperBase'.static.MeleeFractureMeshImpact( FracturedMeshActor, HitLocation, HitNormal );
-				}
-				else
-				{
-					FracturedMeshActor.SimulateRemoteHit(HitLocation, HitNormal, HitInfo);
-				}
+				FracturedMeshActor.SimulateRemoteHit(HitLocation, HitNormal, HitInfo);
 			}
 		}
 

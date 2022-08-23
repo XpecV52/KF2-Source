@@ -78,9 +78,6 @@ var bool bHitEnemyThisAttack;
  * Animation / FX
  *********************************************************************************************/
 
-/** Content references for this weapon's impact effects */
-var KFImpactEffectInfo WorldImpactEffects;
-
 /** Scale animation playrate by fatigue level */
 var InterpCurveFloat FatigueCurve;
 
@@ -780,10 +777,7 @@ simulated function float GetDamageScaleByAngle(vector HitLoc)
  */
 simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector HitDirection, optional bool bShakeInstigatorCamera=true)
 {
-	local KFPawn KFP;
-	// @todo: all super does is add camera shake, which we don't want for player-against-player melee.
-	// we'll need to re-add camera shake some other way if/when we add PvP.
-	//Super.PlayMeleeHitEffects(Target, HitLocation, HitDirection);
+	// @note: Skipping super().  No victim camera shake is intentional
 
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
@@ -804,15 +798,6 @@ simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector 
 		{
 			// Use ImpactEffectManager to material based world impacts
 			KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Instigator, HitDirection, WorldImpactEffects);
-		}
-	}
-	else if( WorldInfo.NetMode != NM_Client && !Target.IsA('Pawn') )
-	{
-		// Tell remote clients to play impacts
-		KFP = KFPawn( Instigator );
-		if( KFP != none )
-		{
-			KFP.SetMeleeImpactLocation( HitLocation );
 		}
 	}
 }
@@ -845,7 +830,6 @@ defaultproperties
    ChainSequence_R(5)=DIR_Right
    InitialImpactDelay=0.200000
    ImpactRetryDuration=0.200000
-   WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Blunted_melee_impact'
    FatigueCurve=(Points=((InVal=2.000000,OutVal=1.000000),(InVal=15.000000,OutVal=1.500000)))
    MeleeImpactCamShakeScale=1.000000
    bHitboxPawnsOnly=True

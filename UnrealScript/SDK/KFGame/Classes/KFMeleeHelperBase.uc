@@ -94,6 +94,9 @@ var() const CameraShake MeleeVictimCamShake;
 /** This is the camera shake that we play when we hit a melee attack **/
 var() const CameraShake MeleeImpactCamShake;
 
+/** Content references for this weapon's impact effects */
+var KFImpactEffectInfo WorldImpactEffects;
+
 /**	If TRUE, meleeing a FSM with this weapons will cause fracture. */
 var bool bAllowMeleeToFracture;
 /** If TRUE, this attack animation already hit something */
@@ -368,10 +371,9 @@ simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector 
 {
 	local Pawn Victim;
 	local PlayerController PC;
-	local KFPawn KFP;
 	local FracturedStaticMeshActor FracActor;
 
-	// Server-only
+	// Victim camera shake (Server-only - via RPC)
 	if( WorldInfo.NetMode != NM_Client )
 	{
 		// If we hit a pawn
@@ -388,28 +390,26 @@ simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector 
 				}
 			}
 		}
-		else if( WorldInfo.NetMode != NM_Client )
-		{
-			// Tell remote clients to play impacts
-			KFP = KFPawn( Instigator );
-			if( KFP != none )
-			{
-				KFP.SetMeleeImpactLocation( HitLocation );
-			}
-		}
 	}
-	else if( Instigator.IsHumanControlled() && Instigator.IsLocallyControlled() ) // Local client impacts
+
+	// Local client impacts
+	if( Instigator.IsHumanControlled() && Instigator.IsLocallyControlled() ) 
 	{
 		// Fracture meshes if we hit them
-		FracActor = FracturedStaticMeshActor( Target );
-		if(FracActor != None)
+		if ( bAllowMeleeToFracture )
 		{
-			class'KFMeleeHelperBase'.static.MeleeFractureMeshImpact( FracActor, HitLocation, HitDirection );
+			FracActor = FracturedStaticMeshActor(Target);
+			if ( FracActor != None )
+			{
+				class'KFMeleeHelperBase'.static.MeleeFractureMeshImpact(FracActor, HitLocation, HitDirection);
+				return;
+			}
 		}
-		else if( !Target.IsA('Pawn') ) // Pawns will handle impacts in PlayHit()
-		{
-			// Play impacts for local players
-			`ImpactEffectManager.PlayImpactEffects( HitLocation, Instigator, HitDirection,,, true );		
+
+		// Play world geometry impacts for local players
+		if ( !(Target.bCanBeDamaged && Target.IsA('Pawn')) )
+		{			
+			`ImpactEffectManager.PlayImpactEffects(HitLocation, Instigator, HitDirection, WorldImpactEffects);
 		}
 	}
 }
@@ -448,4 +448,5 @@ defaultproperties
 	//bDebugShowCollision=TRUE
 
 	MeleeImpactCamShake=CameraShake'FX_CameraShake_Arch.Melee.Default_Melee'
+	WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Blunted_melee_impact'
 }

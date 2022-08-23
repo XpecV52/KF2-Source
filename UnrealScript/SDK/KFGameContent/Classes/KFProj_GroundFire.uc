@@ -10,7 +10,7 @@
 
 class KFProj_GroundFire extends KFProjectile;
 
-var() float BurnDamageInterval;
+var() float DamageInterval;
 
 /** Warns AI that this projectile has been fired */
 function WarnAI( vector Direction )
@@ -20,15 +20,25 @@ function WarnAI( vector Direction )
 
 	DangerPoint = Location;
 
-	foreach VisibleCollidingActors( class'KFPawn_Monster', KFPM, 300.f, Location, true )
+	foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM )
 	{
         if( KFPM.MyKFAIC != none && KFPM.IsAliveAndWell() )
         {
-        	// Scale danger point up to pawn's Z location
-        	DangerPoint.Z = KFPM.Location.Z;
+        	// Distance check
+ 			if( VSizeSQ(KFPM.Location - Location) > 90000.f )
+ 			{
+ 				continue;
+ 			}
 
-	        // Tell the zed to evade away from the DangerPoint
-	        KFPM.MyKFAIC.ReceiveLocationalWarning( DangerPoint, Location, self );
+ 			// Visibility check
+ 			if( `FastTracePhysX(Location, KFPM.Location) )
+ 			{
+	        	// Scale danger point up to pawn's Z location
+	        	DangerPoint.Z = KFPM.Location.Z;
+
+		        // Tell the zed to evade away from the DangerPoint
+		        KFPM.MyKFAIC.ReceiveLocationalWarning( DangerPoint, Location, self );
+		    }
 	    }
 	}
 }
@@ -53,10 +63,17 @@ simulated function PostBeginPlay()
 	local KFPlayerReplicationInfo InstigatorPRI;
 
 	// Checks if we want to swap the explosion effects
-	InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
-	if( InstigatorPRI != none )
+	if( AltExploEffects != none )
 	{
-		bAltExploEffects = InstigatorPRI.bSplashActive;
+		InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+		if( InstigatorPRI != none )
+		{
+			bAltExploEffects = InstigatorPRI.bSplashActive;
+		}
+	}
+	else
+	{
+		bAltExploEffects = false;
 	}
 
 	TriggerExplosion( Location, vector(Rotation), None );
@@ -79,7 +96,7 @@ simulated protected function PrepareExplosionActor(GameExplosionActor GEA)
 	KFE_GroundFire = KFExplosionActorLingering( GEA );
 	if( KFE_GroundFire != none )
 	{
-		KFE_GroundFire.Interval = BurnDamageInterval;
+		KFE_GroundFire.Interval = DamageInterval;
 	}
 }
 
@@ -163,7 +180,7 @@ defaultproperties
 	End Object
 	ExplosionTemplate=ExploTemplate0
 
-	BurnDamageInterval=0.25f
+	DamageInterval=0.25f
 
 	RemoteRole=ROLE_None
 }

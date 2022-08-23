@@ -33,7 +33,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             if(ManagerObject == none)
             {
                 ManagerObject = Widget;
-                if(Class'WorldInfo'.static.IsConsoleBuild(8))
+                if(Class'WorldInfo'.static.IsConsoleBuild())
                 {
                     ManagerObject.SetBool("bUsingGamepad", true);
                 }
@@ -59,7 +59,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 
 event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInputEvent InputEvent)
 {
-    if(!Class'WorldInfo'.static.IsConsoleBuild(8))
+    if(!Class'WorldInfo'.static.IsConsoleBuild())
     {
         CheckIfUsingGamepad();
     }

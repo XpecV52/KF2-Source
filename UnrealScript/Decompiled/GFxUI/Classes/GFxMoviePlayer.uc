@@ -514,6 +514,9 @@ function ApplyPriorityVisibilityEffect(bool bRemoveEffect);
 // Export UGFxMoviePlayer::execUpdateSplitscreenLayout(FFrame&, void* const)
 native function UpdateSplitscreenLayout();
 
+// Export UGFxMoviePlayer::execSetVisibility(FFrame&, void* const)
+native function SetVisibility(bool bVisible);
+
 defaultproperties
 {
     bDisplayWithHudOff=true

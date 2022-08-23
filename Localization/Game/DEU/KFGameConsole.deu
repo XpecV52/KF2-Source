@@ -14,6 +14,8 @@ KF-ContainmentStation="Eindämmungszentrum wird gespielt"
 KF-InfernalRealm="Höllenebene wird gespielt"
 KF-HostileGrounds="Feindeszone wird gespielt"
 KF-ZedLanding="ZED-Landung wird gespielt"
+KF-TheDescent="Der Abstieg wird gespielt"
+KF-Nuked="Atomisiert wird gespielt"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -129,6 +131,7 @@ PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="Drücke XboxTypeS_A zum Starten"
+SwitchProfile="Drücke XboxTypeS_Y für Profilwechsel"
 LoginButtonPrompt="Anmelden"
 LoggingIn="Anmeldung erfolgt ..."
 LoginFailed="Anmeldefehler"
@@ -139,6 +142,8 @@ NotLoggedInOnlinePSN="Du musst beim PlayStation™Network angemeldet sein, um di
 NetworkError="Ein Netzwerk-Fehler ist aufgetreten, bitte überprüfe deine Netzwerk-Verbindung."
 ErrorNoPlayfabDescription="Es konnte keine Verbindung zu den Hauptservern des Spiels hergestellt werden. Bitte versuch es in einigen Minuten nochmal."
 ErrorTSSFailedDescription="Es konnte keine Verbindung zu den Balance-Servern des Spiels hergestellt werden. Bitte vergewissere dich, dass du mit dem Internet verbunden bist und versuch es nochmal."
+NotSignedInTitle="Nicht angemeldet."
+
 
 [Notifications]
 ControllerDisconnectedTitle="Controller getrennt"
@@ -160,12 +165,24 @@ InviteMessage="Jage mit mir Zeds in die Luft!"
 NotConnectedTitle="Netzwerk-Fehler"
 NotConnectedMessage="Nicht mit dem Internet verbunden. Überprüfe deine Verbindung und versuch es nochmal."
 NotConnectedForOnlinePlay="Nicht mit dem Internet verbunden. Überprüfe deine Verbindung und versuch es nochmal, um Online-Funktionen verwenden zu können"
+MultiplayerNotAllowed_Title="Mehrspieler nicht erlaubt"
+LoggedOutMessage="Das aktive Profil wurde geändert. Du bist zum Titelbildschirm zurückgekehrt."
+LoggedOutTitle="Abgemeldet"
+LoggedInTitle="Angemeldet"
+NewRegionTitle="Welcome"
+NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Spieler-Profil ansehen"
+ViewProfileStringXB1="Spielerkarte ansehen"
 
 [KFGFxObject_Menu]
 ResetDefaults="Bist du sicher, dass du die Standardeinstellungen wiederherstellen möchtest?"
+
+[KFGFxWidget_MenuBar]
+LogoutTitle="ABMELDUNG"
+LogoutDialogTitle="Zum Titelbildschirm"
+LogoutDialogMessage="Möchtest du wirklich zum Titelbildschirm zurückkehren?"
 
 [KFGFxTraderContainer_PlayerInventory]
 PerkPrompt="VORTEIL"
@@ -177,9 +194,19 @@ ControllerSound="Controller-Sound"
 MatchmakingRegionString="REGION"
 LeaveMenuString="Verlässt du die Spielsuche, verlässt du auch die Gruppe."
 
+[KFGFxMenu_Store]
+
+
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGION"
 MapPreference="LIEBLINGSKARTE"
+
+[KFGFxMenu_Exit]
+HeaderStringXB1="ABMELDUNG"
+LogoutKF2="Zum Titelbildschirm"
+
+[Misc]
+NotSignedIn="Nicht angemeldet"
 
 [Entitlements]
 BriarBobbyBundleProductName="Briars Bullen-Uniform-Paket"

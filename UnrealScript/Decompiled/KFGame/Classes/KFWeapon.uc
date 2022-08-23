@@ -1035,7 +1035,7 @@ simulated function PerformZoom(bool bZoomStatus, optional bool bAnimateTransitio
             return;
         }
         ZoomIn(bAnimateTransition, default.ZoomInTime);
-        if(Role < ROLE_Authority)
+        if(bUsingSights && Role < ROLE_Authority)
         {
             ServerZoomIn(bAnimateTransition);
         }        
@@ -1043,7 +1043,7 @@ simulated function PerformZoom(bool bZoomStatus, optional bool bAnimateTransitio
     else
     {
         ZoomOut(bAnimateTransition, default.ZoomOutTime);
-        if(Role < ROLE_Authority)
+        if(!bUsingSights && Role < ROLE_Authority)
         {
             ServerZoomOut(bAnimateTransition);
         }
@@ -1701,7 +1701,7 @@ simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation
 {
     local name WeaponFireAnimName;
     local KFPerk CurrentPerk;
-    local float AdjustedAnimLength;
+    local float TempTweenTime, AdjustedAnimLength;
 
     if(((FireModeNum < bLoopingFireSnd.Length) && bLoopingFireSnd[FireModeNum]) && !bPlayingLoopingFireSnd)
     {
@@ -1721,12 +1721,18 @@ simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation
                     if(WeaponFireAnimName != 'None')
                     {
                         AdjustedAnimLength = MySkelMesh.GetAnimLength(WeaponFireAnimName);
+                        TempTweenTime = FireTweenTime;
                         CurrentPerk = GetPerk();
                         if(CurrentPerk != none)
                         {
                             CurrentPerk.ModifyRateOfFire(AdjustedAnimLength, self);
+                            if((((EmptyMagBlendNode != none) && BonesToLockOnEmpty.Length > 0) && AmmoCount[GetAmmoType(FireModeNum)] == 0) && CurrentPerk.GetIsUberAmmoActive(self))
+                            {
+                                EmptyMagBlendNode.SetBlendTarget(0, 0);
+                                TempTweenTime = 0;
+                            }
                         }
-                        PlayAnimation(WeaponFireAnimName, AdjustedAnimLength,, FireTweenTime);
+                        PlayAnimation(WeaponFireAnimName, AdjustedAnimLength,, TempTweenTime);
                     }
                 }
                 CauseMuzzleFlash(FireModeNum);
@@ -2002,14 +2008,8 @@ simulated function StartFire(byte FireModeNum)
 simulated function BeginFire(byte FireModeNum)
 {
     local KFPerk_Gunslinger GunslingerPerk;
-    local KFPawn_Human KFPH;
 
     super.BeginFire(FireModeNum);
-    KFPH = KFPawn_Human(Instigator);
-    if(KFPH != none)
-    {
-        KFPH.CheckAndEndActiveEMoteSpecialMove();
-    }
     if(Role == ROLE_Authority)
     {
         GunslingerPerk = KFPerk_Gunslinger(GetPerk());
@@ -2063,6 +2063,8 @@ simulated function AltFireModeRelease()
 
 simulated function SendToFiringState(byte FireModeNum)
 {
+    local KFPawn_Human KFPH;
+
     if((FireModeNum == 4) && !static.GetPerk().GetGrenadeClass().default.bAllowTossDuringZedGrabRotation)
     {
         if((WorldInfo.TimeSeconds - ZedGrabGrenadeTossCooldown) < float(0))
@@ -2073,6 +2075,11 @@ simulated function SendToFiringState(byte FireModeNum)
     if((FireModeNum == 2) && Instigator.IsLocallyControlled())
     {
         InitializeReload();
+    }
+    KFPH = KFPawn_Human(Instigator);
+    if(KFPH != none)
+    {
+        KFPH.CheckAndEndActiveEMoteSpecialMove();
     }
     super.SendToFiringState(FireModeNum);
 }
@@ -2561,6 +2568,8 @@ simulated function ProcessGrenadeProjectileImpact(ImpactInfo Impact, class<KFPro
         Impact.HitActor.TakeDamage(TotalDamage, Instigator.Controller, Impact.HitLocation, Fragment.default.MomentumTransfer * Impact.RayDir, Fragment.default.MyDamageType, Impact.HitInfo, Instigator);
     }
 }
+
+simulated function bool IsHeavyWeapon();
 
 // Export UKFWeapon::execServerRegisterImpact1(FFrame&, void* const)
 private reliable server native final event ServerRegisterImpact1(byte FiringMode, ImpactRepInfo NetImpact);
@@ -4808,7 +4817,14 @@ simulated state Reloading
         if(!bReloadFromMagazine)
         {
             global.ZoomIn(bAnimateTransition, ZoomTimeToGo);
-            AbortReload();
+            AbortReload();            
+        }
+        else
+        {
+            if((Role == ROLE_Authority) && !Instigator.IsLocallyControlled())
+            {
+                global.ZoomIn(bAnimateTransition, ZoomTimeToGo);
+            }
         }
     }
 

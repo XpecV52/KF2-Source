@@ -52,6 +52,7 @@ var array<Emote> EmoteList;
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
     super.InitializeMenu(InManager);
+    CheckForCustomizationPawn(Outer.GetPC());
     MyKFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
     LocalizeText();
     EmoteList = Class'KFEmoteList'.static.GetEmoteArray();
@@ -86,6 +87,7 @@ function OnOpen()
     {
         return;
     }
+    CheckForCustomizationPawn(PC);
     Outer.GetGameViewportClient().__HandleInputAxis__Delegate = OnAxisModified;
     if(Class'WorldInfo'.static.IsMenuLevel())
     {
@@ -101,6 +103,20 @@ function OnOpen()
     }
     UpdateCharacterList();
     UpdateGear();
+}
+
+function CheckForCustomizationPawn(PlayerController PC)
+{
+    local KFPlayerController KFPC;
+
+    if((PC.Pawn == none) || !PC.Pawn.IsAliveAndWell() && KFPawn_Customization(PC.Pawn) == none)
+    {
+        KFPC = KFPlayerController(PC);
+        if(KFPC != none)
+        {
+            KFPC.SpawnMidGameCustomizationPawn();
+        }
+    }
 }
 
 function SaveChanges()
@@ -451,6 +467,7 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
 event OnClose()
 {
     local PlayerController PC;
+    local KFPlayerController KFPC;
 
     super.OnClose();
     Manager.CachedProfile.Save(byte(Outer.GetLP().ControllerId));
@@ -460,9 +477,17 @@ event OnClose()
         Manager.ManagerObject.SetBool("backgroundVisible", true);
     }
     PC = Outer.GetPC();
-    if((((PC != none) && PC.WorldInfo.GRI.bMatchHasBegun) && PC.Pawn != none) && !PC.Pawn.IsA('KFPawn_Customization'))
+    if(PC != none)
     {
-        PC.ServerCamera('FirstPerson');
+        KFPC = KFPlayerController(PC);
+        if(KFPC != none)
+        {
+            KFPC.ReturnToViewTarget();
+            if((PC.WorldInfo.GRI.bMatchHasBegun && PC.Pawn != none) && !PC.Pawn.IsA('KFPawn_Customization'))
+            {
+                PC.ServerCamera('FirstPerson');
+            }
+        }
     }
 }
 

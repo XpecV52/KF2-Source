@@ -9,8 +9,6 @@ class KFPawn_ZedGorefast extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
-var class<KFPawn_Monster> SpecialGorefastPawnClass;
-
 static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
     local WorldInfo WI;
@@ -18,7 +16,7 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
     WI = Class'WorldInfo'.static.GetWorldInfo();
     if(FRand() < class<KFDifficulty_Gorefast>(default.DifficultySettings).static.GetSpecialGorefastChance(KFGameReplicationInfo(WI.GRI)))
     {
-        return default.SpecialGorefastPawnClass;
+        return default.ElitePawnClass;
     }
     return super.GetAIPawnClassToSpawn();
 }
@@ -30,8 +28,8 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
-    SpecialGorefastPawnClass=Class'KFPawn_ZedGorefastDualBlade'
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Gorefast_ARCH.ZED_Gorefast_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Gorefast_Archetype"
+    ElitePawnClass=Class'KFPawn_ZedGorefastDualBlade'
     ParryResistance=2
     MinSpawnSquadSizeType=ESquadType.EST_Medium
     begin object name=MeleeHelper class=KFMeleeHelperAI

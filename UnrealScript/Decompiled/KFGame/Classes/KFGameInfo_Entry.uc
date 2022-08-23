@@ -10,11 +10,11 @@ class KFGameInfo_Entry extends KFGameInfo
     hidecategories(Navigation,Movement,Collision);
 
 var bool bInitialized;
+var int LastSystemTimeMinutes;
 
-function bool NeedPlayers()
-{
-    return false;
-}
+static function PreloadContentClasses();
+
+function bool NeedPlayers();
 
 function Pawn SpawnDefaultPawnFor(Controller NewPlayer, NavigationPoint StartSpot);
 
@@ -42,16 +42,6 @@ function StartMatch()
     }    
 }
 
-function Tick(float DeltaTime)
-{
-    super.Tick(DeltaTime);
-    if(!bInitialized)
-    {
-        ForceMenuMusicTrack();
-        bInitialized = true;
-    }
-}
-
 event InitGame(string Options, out string ErrorMessage)
 {
     if((ParseOption(Options, "PerformUnitTests")) ~= "1")
@@ -62,7 +52,31 @@ event InitGame(string Options, out string ErrorMessage)
         }
         MyAutoTestManager.InitializeOptions(Options);
     }
+    if(HasOption(Options, "Closed"))
+    {
+        Class'KFGameEngine'.static.RefreshOnlineGameData();
+    }
+    LastSystemTimeMinutes = GetSystemTimeMinutes();
     BroadcastHandler = Spawn(BroadcastHandlerClass);
+}
+
+private final function int GetSystemTimeMinutes()
+{
+    local int Year, Month, DayOfWeek, Day, Hour, minute,
+	    second, MSec;
+
+    GetSystemTime(Year, Month, DayOfWeek, Day, Hour, minute, second, MSec);
+    return (minute + (Hour * 60)) + ((Day * 60) * 24);
+}
+
+function Tick(float DeltaTime)
+{
+    super.Tick(DeltaTime);
+    if(!bInitialized)
+    {
+        ForceMenuMusicTrack();
+        bInitialized = true;
+    }
 }
 
 exec function FinishCraft()
@@ -81,7 +95,19 @@ exec function FinishCraft()
 
 auto state PendingMatch
 {
-    ignores RestartPlayer, Timer, EndState;
+    ignores RestartPlayer, EndState;
+
+    function Timer()
+    {
+        local int SystemTimeMinutes;
+
+        SystemTimeMinutes = GetSystemTimeMinutes();
+        if((SystemTimeMinutes - LastSystemTimeMinutes) >= 30)
+        {
+            Class'KFGameEngine'.static.RefreshOnlineGameData();
+            LastSystemTimeMinutes = SystemTimeMinutes;
+        }
+    }
 
     function BeginState(name PreviousStateName)
     {

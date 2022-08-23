@@ -10,8 +10,8 @@
 
 class KFWeap_GrenadeLauncher_HX25 extends KFWeap_GrenadeLauncher_Base;
 
-var(Weapon) array<byte>	NumPellets;
-var array<vector2D> PelletSpread;
+var(Weapon) protected array<byte> NumPellets;
+var protected const array<vector2D> PelletSpread;
 
 /** Last time a submunition projectile was fired from this weapon */
 var float LastSubmunitionFireTime;

@@ -40,8 +40,19 @@ function SetExitOptions()
 	OptionStrings.AddItem(ExitToMainMenu);
 	if ( !class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
 	{
-		// Console shouldn't have exit to desktop option.
-		OptionStrings.AddItem(ExitKF2);
+		if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
+		{
+			// XB1 has this option only for the menu level
+			if( class'WorldInfo'.static.IsMenuLevel() )
+			{
+				OptionStrings.AddItem(ConsoleLocalize("LogoutKF2"));
+			}
+		}
+		else
+		{
+			// Console shouldn't have exit to desktop option.
+			OptionStrings.AddItem(ExitKF2);
+		}
 	}
 
 	SetMenuText();
@@ -51,16 +62,29 @@ function SetMenuText()
 {
 	local byte i, ButtonCount;
 	local GFxObject DataProvider, DataObject;
+	local bool bMenuLevel;
+
+	bMenuLevel =  class'WorldInfo'.static.IsMenuLevel();
 
 	ButtonCount = 0;
 	DataProvider = CreateArray();
-	DataProvider.SetString( "header", HeaderString );
+
+	// XB1 change text to LOGOUT for menu level
+	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) && bMenuLevel )
+	{
+		DataProvider.SetString( "header",  ConsoleLocalize("HeaderStringXB1") );
+	}
+	else
+	{
+		DataProvider.SetString( "header",  HeaderString );
+	}
+
 	for( i = 0; i < OptionStrings.length; i++ )
 	{
 		DataObject = CreateObject( "Object" );
 		DataObject.SetString( "label", OptionStrings[i] );
 		DataObject.SetInt( "buttonID", i );
-		if(OptionStrings[i] == ExitToMainMenu && class'WorldInfo'.static.IsMenuLevel())
+		if(OptionStrings[i] == ExitToMainMenu && bMenuLevel)
 		{
 			continue;
 		}
@@ -104,7 +128,14 @@ function ShowExitToOSPopUp()
 {
 	if(Manager != none && Manager.MenuBarWidget != none )
 	{
-		Manager.MenuBarWidget.OpenQuitPopUp();
+		if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) )
+		{
+			Manager.MenuBarWidget.OpenLogoutPopup();
+		}
+		else
+		{
+			Manager.MenuBarWidget.OpenQuitPopUp();
+		}
 	}
 }
 

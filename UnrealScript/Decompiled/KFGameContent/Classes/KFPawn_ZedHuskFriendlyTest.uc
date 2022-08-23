@@ -27,6 +27,7 @@ defaultproperties
 {
     ExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedHuskFriendlyTest.ExploTemplate0'
     ChestLightComponent=PointLightComponent'Default__KFPawn_ZedHuskFriendlyTest.ChestLightComponent0'
+    CharacterMonsterArch=KFCharacterInfo_Monster'zed_husk_arch.ZED_Husk_Archetype'
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHuskFriendlyTest.MeleeHelper'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

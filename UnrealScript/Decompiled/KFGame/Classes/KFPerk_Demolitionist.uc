@@ -539,7 +539,7 @@ simulated function bool IsCriticalHitActive()
 
 private final simulated function bool IsProfessionalActive()
 {
-    return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
+    return PerkSkills[9].bActive;
 }
 
 private static final simulated function float GetSharedExplosiveResistance()

@@ -78,7 +78,8 @@ const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
-const KFID_DisableAutoUpgrade = 167;#linenumber 17
+const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;#linenumber 17
 
 /** Cached a typed Player controller.  Unlike PawnOwner we only set this once in PostBeginPlay */
 var KFPlayerController KFPlayerOwner;
@@ -675,11 +676,14 @@ function DrawHUD()
 			}
 		}
 
-		// Draw hidden players
-		CheckAndDrawHiddenPlayerIcons( VisibleHumanPlayers, HiddenHumanPlayers );
+		if( !KFGRI.bHidePawnIcons )
+		{
+			// Draw hidden players
+			CheckAndDrawHiddenPlayerIcons( VisibleHumanPlayers, HiddenHumanPlayers );
 
-		// Draw last remaining zeds
-		CheckAndDrawRemainingZedIcons();
+			// Draw last remaining zeds
+			CheckAndDrawRemainingZedIcons();
+		}
 
 		Canvas.EnableStencilTest(false);
 	}

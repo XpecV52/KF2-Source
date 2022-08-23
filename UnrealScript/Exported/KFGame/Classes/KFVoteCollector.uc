@@ -246,25 +246,16 @@ function bool ShouldConcludeVote()
 	local array<KFPlayerReplicationInfo> PRIs;
 	local KFGameInfo KFGI;
 	local int NumPRIs;
+	local int KickVotesNeeded;
 
 	KFGI = KFGameInfo(WorldInfo.Game);
 
-	// Clamp kick vote percentage to ensure it stays valid
-	if( KFGI != none )
-	{
-		if( KFGI.KickVotePercentage < 0.f || KFGI.KickVotePercentage > 1.f )
-		{
-			KFGI.KickVotePercentage = 0.5f;
-			KFGI.SaveConfig();
-		}
-	}
-
-		GetKFPRIArray(PRIs);
+	GetKFPRIArray(PRIs);
 	NumPRIs = PRIs.Length;
 
 	// Current Kickee PRI should not count towards vote percentage
 	if( PRIs.Find(CurrentVote.PlayerPRI) != INDEX_NONE )
-		{
+	{
 		NumPRIs--;
 	}
 
@@ -274,11 +265,14 @@ function bool ShouldConcludeVote()
 	}
 	else if( KFGI != none )
 	{
-		if( (float(YesVotes) / float(NumPRIs)) > KFGI.KickVotePercentage ) // conclude if vote kick is majority yes
+		KickVotesNeeded = FCeil(float(NumPRIs) * KFGI.KickVotePercentage);
+		KickVotesNeeded = Clamp(KickVotesNeeded, 1, NumPRIs);
+
+		if( YesVotes >= KickVotesNeeded ) // conclude if vote kick is majority yes
 		{
 			return true;
 		}
-		else if( (float(NoVotes) / float(NumPRIs)) >= (1.f-KFGI.KickVotePercentage) ) // conclude if vote kick can never succeed
+		else if( NoVotes > (NumPRIs - KickVotesNeeded) ) // conclude if vote kick can never succeed
 		{
 			return true;
 		}
@@ -294,18 +288,9 @@ reliable server function ConcludeVoteKick()
 	local int i, NumPRIs;
 	local KFGameInfo KFGI;
 	local KFPlayerController KickedPC;
+	local int KickVotesNeeded;
 
 	KFGI = KFGameInfo(WorldInfo.Game);
-
-	// Clamp kick vote percentage to ensure it stays valid
-	if( KFGI != none )
-	{
-		if( KFGI.KickVotePercentage < 0.f || KFGI.KickVotePercentage > 1.f )
-		{
-			KFGI.KickVotePercentage = 0.5f;
-			KFGI.SaveConfig();
-		}
-	}
 
 	if(bIsVoteInProgress)
 	{
@@ -324,11 +309,14 @@ reliable server function ConcludeVoteKick()
 			NumPRIs--;
 		}
 
-		if( YesVotes >= NumPRIs || (float(YesVotes) / float(NumPRIs)) > KFGI.KickVotePercentage)
+		KickVotesNeeded = FCeil(float(NumPRIs) * KFGI.KickVotePercentage);
+		KickVotesNeeded = Clamp(KickVotesNeeded, 1, NumPRIs);
+
+		if( YesVotes >= KickVotesNeeded )
 		{
 			// See if kicked player has left
 			if( CurrentVote.PlayerPRI == none || CurrentVote.PlayerPRI.bPendingDelete )
-		{
+			{
 				for( i = 0; i < WorldInfo.Game.InactivePRIArray.Length; i++ )
 				{
 					if( WorldInfo.Game.InactivePRIArray[i].UniqueId == CurrentVote.PlayerID )

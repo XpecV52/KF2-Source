@@ -331,6 +331,10 @@ simulated event PlayerReplicationInfo GetPRIByPlayfabId( const string InPlayfabP
 }
 //@HSL_END
 
+//@HSL_BEGIN - AGM - 7-16-15 - Support for checking for valid stats session
+simulated event bool IsStatsSessionValid();
+//@HSL_END
+
 defaultproperties
 {
 	TickGroup=TG_DuringAsyncWork

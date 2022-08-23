@@ -56,7 +56,11 @@ function LocalizeText()
 		// This should just be Video string
 		LocalizedObject.SetString("options", Caps(class'KFGFxOptionsMenu_Selection'.default.OptionStrings[0]));
 		LocalizedObject.SetString("configureMic", class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaString);
-		LocalizedObject.SetString("controllerSound",Localize("KFGFxOptionsMenu_Audio","ControllerSound","KFGameConsole"));
+		// Controller sound available for PS4 only
+		if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+		{
+			LocalizedObject.SetString("controllerSound", Localize("KFGFxOptionsMenu_Audio","ControllerSound","KFGameConsole"));
+		}
 	}
 	else
 	{
@@ -80,25 +84,36 @@ function  InitValues()
 	local float VoIPCurrent;
 	local KFPlayerInput KFPI;
 	local bool bControllerSoundEnabled;
+	local GFxObject ControllerSndObj;
 
 	// Don't try to set values of objects that aren't there on Console.
-	if( !GetPC().WorldInfo.IsConsoleBuild() )
+	if( GetPC().WorldInfo.IsConsoleBuild() )
+	{
+		bControllerSoundEnabled = Manager.CachedProfile.GetProfileBool(KFID_ControllerSoundEnabled);
+		SetBool("controllerSound", bControllerSoundEnabled);
+		class'KFGameEngine'.static.SetWWisePADVolume(bControllerSoundEnabled ? 100.f : 0.0f);
+
+		// Hide controller sound for any thing that isn't PS4
+		if( !GetPC().WorldInfo.IsConsoleBuild(CONSOLE_Orbis) )
+		{
+			ControllerSndObj = GetObject("controllerSoundCheckBox");
+			if (ControllerSndObj != None)
+			{
+				ControllerSndObj.SetVisible(false);
+			}
+		}
+	}
+	else
 	{
 		KFPI = KFPlayerInput(GetPC().PlayerInput);
 
 		// Retrieve current volume from online sub (indirectly from profile) along with min/max
 		class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
 		// convert to % for the slider
-		SetFloat("voipVolume", VoIPCurrent/VoIPMax * 100 );
+		SetFloat("voipVolume", VoIPCurrent / VoIPMax * 100);
 
 		SetBool("bPushToTalk", class'KFPlayerInput'.default.bRequiresPushToTalk);
- 		SetBool("bPushToTalk", KFPI.bRequiresPushToTalk);
-	}
-	else
-	{
-		bControllerSoundEnabled =  Manager.CachedProfile.GetProfileBool(KFID_ControllerSoundEnabled);
-		SetBool("controllerSound",bControllerSoundEnabled);
-		class'KFGameEngine'.static.SetWWisePADVolume(bControllerSoundEnabled ? 100.f : 0.0f);
+		SetBool("bPushToTalk", KFPI.bRequiresPushToTalk);
 	}
 
 	SetFloat("masterVolume", Manager.CachedProfile.GetProfileFloat(KFID_MasterVolumeMultiplier));

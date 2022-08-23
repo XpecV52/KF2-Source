@@ -8,9 +8,6 @@
 //=============================================================================
 class KFPawn_ZedGorefast extends KFPawn_Monster;
 
-/** Pawn class used for the special gorefast */
-var class<KFPawn_Monster> SpecialGorefastPawnClass;
-
 /** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
 static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
@@ -19,7 +16,7 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 	WI = class'WorldInfo'.static.GetWorldInfo();
 	if( fRand() < class<KFDifficulty_Gorefast>(default.DifficultySettings).static.GetSpecialGorefastChance(KFGameReplicationInfo(WI.GRI)) )
 	{
-		return default.SpecialGorefastPawnClass;
+		return default.ElitePawnClass;
 	}
 
 	return super.GetAIPawnClassToSpawn();
@@ -43,7 +40,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Gorefast_ARCH.ZED_Gorefast_Archetype'
+	MonsterArchPath="ZED_ARCH.ZED_Gorefast_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Gorefast_Anim.Gorefast_AnimGroup'
 	DifficultySettings=class'KFDifficulty_Gorefast'
 
@@ -82,7 +79,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// AI / Navigation
-	SpecialGorefastPawnClass=class'KFPawn_ZedGorefastDualBlade'
+	ElitePawnClass=class'KFPawn_ZedGorefastDualBlade'
 	ControllerClass=class'KFAIController_ZedGorefast'
 	ReachedEnemyThresholdScale=1.f
 	//ReachedGoalThresholdOverride=0

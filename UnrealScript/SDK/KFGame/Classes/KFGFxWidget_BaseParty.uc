@@ -147,6 +147,7 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 	local bool bConsoleBuild;
 	local GFxObject DataProvider;
 	local int OptionIndex;
+	local string ProfileString;
 
 	DataProvider = CreateArray();
 	OptionIndex=0;
@@ -181,8 +182,32 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 		}
 	}
 
-	//View profile option Added at the end if we are on PC but first on console.
-	AddStringOptionToList(ViewProfileKey, OptionIndex, bConsoleBuild ? Localize("KFGFxWidget_BaseParty","ViewProfileString","KFGameConsole") : ViewProfileString, DataProvider); 
+	
+
+	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+	{
+		ProfileString = ConsoleLocalize("ViewProfileString", "KFGFxWidget_BaseParty");
+	}
+	else if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
+	{
+		// Only show this option if we are logged in
+		if( KFGameEngine(class'Engine'.static.GetEngine()).LocalLoginStatus == LS_LoggedIn )
+		{
+			ProfileString = ConsoleLocalize("ViewProfileStringXB1", "KFGFxWidget_BaseParty");
+		}
+	}
+	else
+	{
+		ProfileString = ViewProfileString;
+	}
+
+	// Only add this option if there's something to show
+	if( ProfileString != "" )
+	{
+		//View profile option Added at the end if we are on PC but first on console.
+		AddStringOptionToList(ViewProfileKey, OptionIndex, ProfileString, DataProvider);
+	}
+
 	OptionIndex++;
 
 	SetObject("listOptions", DataProvider);

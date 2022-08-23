@@ -4,24 +4,22 @@
 // Class Description
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
-//  - Author 3/13/2014
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
-class KFCameraLensEmit_Puke extends EmitterCameraLensEffectBase;
+class KFCameraLensEmit_Puke extends KFEmit_CameraEffect;
 
 defaultproperties
 {
    PS_CameraEffect=ParticleSystem'FX_Camera_EMIT.FX_Puke_screen_01'
-   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent0 Archetype=ParticleSystemComponent'Engine.Default__EmitterCameraLensEffectBase:ParticleSystemComponent0'
+   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent0 Archetype=ParticleSystemComponent'KFGame.Default__KFEmit_CameraEffect:ParticleSystemComponent0'
       SecondsBeforeInactive=0.000000
       ReplacementPrimitive=None
       bOnlyOwnerSee=True
       Name="ParticleSystemComponent0"
-      ObjectArchetype=ParticleSystemComponent'Engine.Default__EmitterCameraLensEffectBase:ParticleSystemComponent0'
+      ObjectArchetype=ParticleSystemComponent'KFGame.Default__KFEmit_CameraEffect:ParticleSystemComponent0'
    End Object
    ParticleSystemComponent=ParticleSystemComponent0
    Components(0)=ParticleSystemComponent0
    Name="Default__KFCameraLensEmit_Puke"
-   ObjectArchetype=EmitterCameraLensEffectBase'Engine.Default__EmitterCameraLensEffectBase'
+   ObjectArchetype=KFEmit_CameraEffect'KFGame.Default__KFEmit_CameraEffect'
 }

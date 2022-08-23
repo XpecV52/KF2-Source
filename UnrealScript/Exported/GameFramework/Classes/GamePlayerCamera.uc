@@ -285,7 +285,6 @@ function UpdateViewTarget(out TViewTarget OutVT, float DeltaTime)
 	bResetInterp = FALSE;
 }
 
-
 /** Update any attached camera lens effects (e.g. blood) **/
 simulated function UpdateCameraLensEffects( const out TViewTarget OutVT )
 {
@@ -295,17 +294,10 @@ simulated function UpdateCameraLensEffects( const out TViewTarget OutVT )
 	{
 		if (CameraLensEffects[Idx] != None)
 		{
-
-			// The FOV in OutVT is not correct since AdjustFOVForViewport() handles the FOV differently.
-			// So, use GetFOVAngle() instead to get the correct FOV
-			CameraLensEffects[Idx].UpdateLocation(OutVT.POV.Location, OutVT.POV.Rotation, UnmodifiedFOV);
-
-
-
+			CameraLensEffects[Idx].UpdateLocation(OutVT.POV.Location, OutVT.POV.Rotation, OutVT.POV.FOV);
 		}
 	}
 }
-
 
 simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
 {

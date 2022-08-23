@@ -17,6 +17,13 @@ enum SupportedPlatform
     PLATFORM_PC_MAX
 };
 
+enum SeasonalEventIndex
+{
+    SEI_None,
+    SEI_Summer,
+    SEI_MAX
+};
+
 enum EConnectionError
 {
     CE_None,
@@ -39,6 +46,8 @@ var private config bool bShowCrossHair;
 var private bool bShowCrossHairConsole;
 var config bool bMuteOnLossOfFocus;
 var config bool bEnableAdvDebugLines;
+var private const int SeasonalEventId;
+var private int WeeklyEventIndex;
 var float DefaultGammaMult;
 var float MusicVolumeMultiplier;
 var float SFxVolumeMultiplier;
@@ -50,7 +59,11 @@ var float GammaMultiplier;
 var config float FOVOptionsPercentageValue;
 var transient delegate<HandshakeCompleteCallback> OnHandshakeComplete;
 var KFGameEngine.EConnectionError LastConnectionError;
+var Engine.OnlineSubsystem.ELoginStatus LocalLoginStatus;
 var string ConsoleGameSessionGuid;
+var OnlineGameSettings GameSettingsForPendingInvite;
+var string ReturnToIISConnectionErrorTitle;
+var string ReturnToIISConnectionErrorMessage;
 /** List of categories to filter */
 var(Debug) config array<config name> AILogFilter;
 var private transient KFDebugLines KFDebugLines;
@@ -71,26 +84,265 @@ native static function bool CheckNoMusic();
 // Export UKFGameEngine::execCheckNoRandomStart(FFrame&, void* const)
 native static function bool CheckNoRandomStart();
 
-// Export UKFGameEngine::execGetGameVersion(FFrame&, void* const)
-native static function int GetGameVersion();
-
-// Export UKFGameEngine::execIsPlaygoModePS4(FFrame&, void* const)
-native static function bool IsPlaygoModePS4();
+// Export UKFGameEngine::execGetClassCountAndSize(FFrame&, void* const)
+native static function GetClassCountAndSize(out int ClassCount, out float ClassSize, out float ResourceSize, Class LoadedClass);
 
 // Export UKFGameEngine::execGetDebugLines(FFrame&, void* const)
 native static function KFDebugLines GetDebugLines();
 
+// Export UKFGameEngine::execGetGameVersion(FFrame&, void* const)
+native static function int GetGameVersion();
+
+// Export UKFGameEngine::execGetKFGameVersion(FFrame&, void* const)
+native static function int GetKFGameVersion();
+
+// Export UKFGameEngine::execGetAppID(FFrame&, void* const)
+native static function int GetAppID();
+
 // Export UKFGameEngine::execGetPlatform(FFrame&, void* const)
 native static function KFGameEngine.SupportedPlatform GetPlatform();
 
-// Export UKFGameEngine::execGetClassCountAndSize(FFrame&, void* const)
-native static function GetClassCountAndSize(out int ClassCount, out float ClassSize, out float ResourceSize, Class LoadedClass);
+// Export UKFGameEngine::execInitEventContent(FFrame&, void* const)
+native static function InitEventContent();
+
+// Export UKFGameEngine::execRefreshEventContent(FFrame&, void* const)
+native static function RefreshEventContent();
+
+// Export UKFGameEngine::execRefreshOnlineGameData(FFrame&, void* const)
+native static function RefreshOnlineGameData();
+
+// Export UKFGameEngine::execApplyTweaks(FFrame&, void* const)
+native static function ApplyTweaks(string MapName);
+
+// Export UKFGameEngine::execIsSoloPlayDisabled(FFrame&, void* const)
+native static function bool IsSoloPlayDisabled();
+
+// Export UKFGameEngine::execIsFreeConsolePlayOver(FFrame&, void* const)
+native static function bool IsFreeConsolePlayOver();
+
+function ReadPFStoreData()
+{
+    bReadingPlayfabStoreData = true;
+    GetPlayfabInterface().AddStoreDataReadCompleteDelegate(OnPlayfabStoreReadComplete);
+    GetPlayfabInterface().ReadStoreData();
+}
+
+function OnPlayfabStoreReadComplete(bool bSuccessful)
+{
+    GetPlayfabInterface().ClearStoreDataReadCompleteDelegate(OnPlayfabStoreReadComplete);
+    if(bSuccessful)
+    {
+        if(Class'WorldInfo'.static.IsConsoleBuild(9))
+        {
+            OnlineSubsystem.MarketplaceInterface.ResetAvailableProducts(byte(GamePlayers[0].ControllerId), 3);
+            OnlineSubsystem.MarketplaceInterface.ResetAvailableProducts(byte(GamePlayers[0].ControllerId), 4);
+            OnlineSubsystem.MarketplaceInterface.AddReadAvailableProductsCompleteDelegate(byte(GamePlayers[0].ControllerId), OnReadAvailableProductsComplete);
+            OnlineSubsystem.MarketplaceInterface.ReadAvailableProducts(byte(GamePlayers[0].ControllerId), "", 1, 3);            
+        }
+        else
+        {
+            OnlineSubsystem.PlayerInterfaceEx.AddStoreDataReadCompleteDelegate(OnStoreDataRead);
+            OnlineSubsystem.PlayerInterfaceEx.ReadStoreData();
+        }
+    }
+}
+
+function OnReadAvailableProductsComplete(Engine.OnlineSubsystem.EMediaItemType MediaType)
+{
+    LogInternal("Read products for store items of type" @ string(MediaType));
+    if(MediaType == 3)
+    {
+        OnlineSubsystem.MarketplaceInterface.ReadAvailableProducts(byte(GamePlayers[0].ControllerId), "", 1, 4);        
+    }
+    else
+    {
+        OnlineSubsystem.MarketplaceInterface.ClearReadAvailableProductsCompleteDelegate(byte(GamePlayers[0].ControllerId), OnReadAvailableProductsComplete);
+        OnlineSubsystem.MarketplaceInterface.AddReadAdditionalProductDetailsCompleteDelegate(byte(GamePlayers[0].ControllerId), OnReadAdditionalProductDetailsComplete);
+        OnlineSubsystem.MarketplaceInterface.ReadAdditionalDetailsForProducts(byte(GamePlayers[0].ControllerId), 3);
+    }
+}
+
+function OnReadAdditionalProductDetailsComplete(Engine.OnlineSubsystem.EMediaItemType MediaType)
+{
+    LogInternal("Additional info for products read complete for type" @ string(MediaType));
+    if(MediaType == 3)
+    {
+        OnlineSubsystem.MarketplaceInterface.ReadAdditionalDetailsForProducts(byte(GamePlayers[0].ControllerId), 4);        
+    }
+    else
+    {
+        OnlineSubsystem.MarketplaceInterface.ClearReadAdditionalProductDetailsCompleteDelegate(byte(GamePlayers[0].ControllerId), OnReadAdditionalProductDetailsComplete);
+        OnlineSubsystem.MarketplaceInterface.AddReadInventoryItemsCompleteDelegate(byte(GamePlayers[0].ControllerId), OnReadInventoryItemsComplete);
+        OnlineSubsystem.MarketplaceInterface.ResetInventoryItems(byte(GamePlayers[0].ControllerId), 6);
+        OnlineSubsystem.MarketplaceInterface.ReadInventoryItems(byte(GamePlayers[0].ControllerId), 6);
+    }
+}
+
+function OnReadInventoryItemsComplete(Engine.OnlineSubsystem.EMediaItemType MediaType)
+{
+    LogInternal("Inventory items read for" @ string(MediaType));
+    OnlineSubsystem.MarketplaceInterface.ClearReadInventoryItemsCompleteDelegate(byte(GamePlayers[0].ControllerId), OnReadInventoryItemsComplete);
+    OnStoreDataRead(true);
+}
+
+function OnStoreDataRead(bool bSuccessful)
+{
+    OnlineSubsystem.PlayerInterfaceEx.ClearStoreDataReadCompleteDelegate(OnStoreDataRead);
+    GetPlayfabInterface().AddInventoryReadCompleteDelegate(OnPlayfabInventoryReadComplete);
+    GetPlayfabInterface().ReadInventory();
+}
+
+function OnPlayfabInventoryReadComplete(bool bSuccessful)
+{
+    bReadingPlayfabStoreData = false;
+    GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnPlayfabInventoryReadComplete);
+    OnlineSubsystem.ClearNewlyAdded();
+}
+
+function OnLinkStatusChange(bool bIsConnected)
+{
+    OnConnectionStatusChanged(((bIsConnected) ? 1 : 2));
+}
+
+function OnConnectionStatusChanged(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus)
+{
+    local KFGameViewportClient GVC;
+
+    if((GamePlayers[0].Actor != none) && KFPlayerController(GamePlayers[0].Actor) != none)
+    {
+        KFPlayerController(GamePlayers[0].Actor).HandleConnectionStatusChange(ConnectionStatus);        
+    }
+    else
+    {
+        GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
+        GVC = KFGameViewportClient(Class'GameEngine'.static.GetEngine().GameViewport);
+        GVC.bNeedDisconnectMessage = true;        
+        GVC.ConsoleCommand("open KFMainMenu");
+    }
+}
+
+function OnLoginChange(byte LocalUserNum)
+{
+    local OnlinePlayerInterface PlayerInterface;
+
+    PlayerInterface = GetOnlineSubsystem().PlayerInterface;
+    if(Class'WorldInfo'.static.IsConsoleBuild(9) && KFGameViewportClient(GameViewport).bSeenIIS)
+    {
+        if((LocalUserNum == GamePlayers[0].ControllerId) && PlayerInterface.GetLoginStatus(LocalUserNum) != 2)
+        {
+            KickBackToIIS("LoggedOutTitle", "LoggedOutMessage");            
+        }
+        else
+        {
+            if((LocalLoginStatus == 1) && PlayerInterface.GetLoginStatus(LocalUserNum) == 2)
+            {
+                KickBackToIIS("LoggedInTitle", "LoggedOutMessage");
+            }
+        }
+    }
+}
+
+function OnLoginStatusChanged(Engine.OnlineSubsystem.ELoginStatus NewStatus, UniqueNetId NewId)
+{
+    local KFGameViewportClient GVC;
+    local UniqueNetId ZeroId, LocalPlayerId;
+
+    LocalPlayerId = GamePlayers[0].GetUniqueNetId();
+    if(LocalPlayerId == NewId && NewId != ZeroId)
+    {
+        if((GamePlayers[0].Actor != none) && KFPlayerController(GamePlayers[0].Actor) != none)
+        {
+            KFPlayerController(GamePlayers[0].Actor).HandleLoginStatusChange(NewStatus == 2);            
+        }
+        else
+        {
+            if(NewStatus == 0)
+            {
+                GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
+                GVC = KFGameViewportClient(GameViewport);
+                GVC.bNeedSignoutMessage = true;                
+                GVC.ConsoleCommand("open KFMainMenu");
+            }
+        }
+    }
+}
+
+function KickBackToIIS(string ErrorTitleKey, string ErrorMessageKey)
+{
+    ReturnToIISConnectionErrorTitle = Localize("Notifications", ErrorTitleKey, "KFGameConsole");
+    ReturnToIISConnectionErrorMessage = Localize("Notifications", ErrorMessageKey, "KFGameConsole");
+    PerformLogout();
+}
+
+function PerformLogout()
+{
+    local UIDataStore_OnlinePlayerData PlayerDataDS;
+
+    OnlineSubsystem.PlayerInterface.Logout(byte(GamePlayers[0].ControllerId));
+    if(PlayfabInterfaceInst != none)
+    {
+        PlayfabInterfaceInst.Logout();
+    }
+    OnlineSubsystem.PlayerInterface.Logout(byte(GamePlayers[0].ControllerId));
+    PlayerDataDS = UIDataStore_OnlinePlayerData(Class'UIInteraction'.static.GetDataStoreClient().FindDataStore('OnlinePlayerData', GamePlayers[0]));
+    PlayerDataDS.ProfileProvider.Profile.AsyncState = 0;
+    KFGameViewportClient(GameViewport).bSeenIIS = false;
+    OnlineSubsystem.GameInterface.DestroyOnlineGame('Game');
+    if((GamePlayers[0].Actor != none) && KFPlayerController(GamePlayers[0].Actor) != none)
+    {
+        KFPlayerController(GamePlayers[0].Actor).PerformLogout();        
+    }
+    else
+    {        
+        GameViewport.ConsoleCommand("open KFMainMenu");
+    }
+}
+
+function RegisterOnlineDelegates()
+{
+    local int I;
+
+    OnlineSubsystem.SystemInterface.AddConnectionStatusChangeDelegate(OnConnectionStatusChanged);
+    I = 0;
+    J0x51:
+
+    if(I < 24)
+    {
+        OnlineSubsystem.PlayerInterface.AddLoginStatusChangeDelegate(OnLoginStatusChanged, byte(I));
+        ++ I;
+        goto J0x51;
+    }
+    OnlineSubsystem.PlayerInterface.AddLoginChangeDelegate(OnLoginChange);
+}
+
+function ClearOnlineDelegates()
+{
+    local int I;
+
+    OnlineSubsystem.SystemInterface.ClearConnectionStatusChangeDelegate(OnConnectionStatusChanged);
+    I = 0;
+    J0x51:
+
+    if(I < 24)
+    {
+        OnlineSubsystem.PlayerInterface.ClearLoginStatusChangeDelegate(OnLoginStatusChanged, byte(I));
+        ++ I;
+        goto J0x51;
+    }
+    OnlineSubsystem.PlayerInterface.ClearLoginChangeDelegate(OnLoginChange);
+}
+
+// Export UKFGameEngine::execGetSeasonalEventID(FFrame&, void* const)
+native static function int GetSeasonalEventID();
+
+// Export UKFGameEngine::execGetWeeklyEventIndex(FFrame&, void* const)
+native static function int GetWeeklyEventIndex();
 
 // Export UKFGameEngine::execInitAudioOptions(FFrame&, void* const)
 native static function InitAudioOptions();
 
-// Export UKFGameEngine::execInitVideoOptions(FFrame&, void* const)
-native static function InitVideoOptions();
+// Export UKFGameEngine::execInitGamma(FFrame&, void* const)
+native static function InitGamma();
 
 // Export UKFGameEngine::execSetWWiseSFXVolume(FFrame&, void* const)
 native static function SetWWiseSFXVolume(float Volume);
@@ -119,41 +371,8 @@ native static function PlayFullScreenMovie(string MovieName);
 // Export UKFGameEngine::execIsFullScreenMoviePlaying(FFrame&, void* const)
 native static function bool IsFullScreenMoviePlaying();
 
-// Export UKFGameEngine::execFastTrace_PhysX(FFrame&, void* const)
-native static function bool FastTrace_PhysX(Vector TraceEnd, Vector TraceStart);
-
 // Export UKFGameEngine::execSetGamma(FFrame&, void* const)
 native static function SetGamma(float InGammaMultiplier);
-
-// Export UKFGameEngine::execGetKFGameVersion(FFrame&, void* const)
-native static function int GetKFGameVersion();
-
-// Export UKFGameEngine::execGetAppID(FFrame&, void* const)
-native static function int GetAppID();
-
-static function Font GetKFCanvasFont()
-{
-    return default.KFCanvasFont;
-}
-
-static function float GetKFFontScale()
-{
-    return default.KFFontScale;
-}
-
-static function bool IsCrosshairEnabled()
-{
-    return default.bShowCrossHair;
-}
-
-static function SetCrosshairEnabled(bool bEnable)
-{
-    default.bShowCrossHair = bEnable;
-    if(!Class'WorldInfo'.static.IsConsoleBuild())
-    {
-        StaticSaveConfig();
-    }
-}
 
 static function KFGameEngine.EConnectionError GetConnectionErrorForMessage(out string Message, out string Title)
 {
@@ -235,89 +454,31 @@ function UnlockServer()
 // Export UKFGameEngine::execKillPendingServerConnection(FFrame&, void* const)
 native function KillPendingServerConnection();
 
-function ReadPFStoreData()
+// Export UKFGameEngine::execFastTrace_PhysX(FFrame&, void* const)
+native static function bool FastTrace_PhysX(Vector TraceEnd, Vector TraceStart);
+
+static function Font GetKFCanvasFont()
 {
-    bReadingPlayfabStoreData = true;
-    GetPlayfabInterface().AddStoreDataReadCompleteDelegate(OnPlayfabStoreReadComplete);
-    GetPlayfabInterface().ReadStoreData();
+    return default.KFCanvasFont;
 }
 
-function OnPlayfabStoreReadComplete(bool bSuccessful)
+static function float GetKFFontScale()
 {
-    GetPlayfabInterface().ClearStoreDataReadCompleteDelegate(OnPlayfabStoreReadComplete);
-    if(bSuccessful)
+    return default.KFFontScale;
+}
+
+static function bool IsCrosshairEnabled()
+{
+    return default.bShowCrossHair;
+}
+
+static function SetCrosshairEnabled(bool bEnable)
+{
+    default.bShowCrossHair = bEnable;
+    if(!Class'WorldInfo'.static.IsConsoleBuild())
     {
-        GetOnlineSubsystem().PlayerInterfaceEx.AddStoreDataReadCompleteDelegate(OnStoreDataRead);
-        GetOnlineSubsystem().PlayerInterfaceEx.ReadStoreData();
+        StaticSaveConfig();
     }
-}
-
-function OnStoreDataRead(bool bSuccessful)
-{
-    GetOnlineSubsystem().PlayerInterfaceEx.ClearStoreDataReadCompleteDelegate(OnStoreDataRead);
-    GetPlayfabInterface().AddInventoryReadCompleteDelegate(OnPlayfabInventoryReadComplete);
-    GetPlayfabInterface().ReadInventory();
-}
-
-function OnPlayfabInventoryReadComplete(bool bSuccessful)
-{
-    bReadingPlayfabStoreData = false;
-    GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnPlayfabInventoryReadComplete);
-    GetOnlineSubsystem().ClearNewlyAdded();
-}
-
-function OnLinkStatusChange(bool bIsConnected)
-{
-    OnConnectionStatusChanged(((bIsConnected) ? 1 : 2));
-}
-
-function OnConnectionStatusChanged(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus)
-{
-    local KFGameViewportClient GVC;
-
-    if((GamePlayers[0].Actor != none) && KFPlayerController(GamePlayers[0].Actor) != none)
-    {
-        KFPlayerController(GamePlayers[0].Actor).HandleConnectionStatusChange(ConnectionStatus);        
-    }
-    else
-    {
-        GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
-        GVC = KFGameViewportClient(Class'GameEngine'.static.GetEngine().GameViewport);
-        GVC.bNeedDisconnectMessage = true;        
-        GVC.ConsoleCommand("open KFMainMenu");
-    }
-}
-
-function OnLoginStatusChanged(Engine.OnlineSubsystem.ELoginStatus NewStatus, UniqueNetId NewId)
-{
-    local KFGameViewportClient GVC;
-
-    if((GamePlayers[0].Actor != none) && KFPlayerController(GamePlayers[0].Actor) != none)
-    {
-        KFPlayerController(GamePlayers[0].Actor).HandleLoginStatusChange(NewStatus == 2);        
-    }
-    else
-    {
-        if(NewStatus == 0)
-        {
-            GetOnlineSubsystem().GameInterface.DestroyOnlineGame('Game');
-            GVC = KFGameViewportClient(Class'GameEngine'.static.GetEngine().GameViewport);
-            GVC.bNeedSignoutMessage = true;            
-            GVC.ConsoleCommand("open KFMainMenu");
-        }
-    }
-}
-
-function RegisterOnlineDelegates()
-{
-    GetOnlineSubsystem().SystemInterface.AddConnectionStatusChangeDelegate(OnConnectionStatusChanged);
-    GetOnlineSubsystem().PlayerInterface.AddLoginStatusChangeDelegate(OnLoginStatusChanged, 0);
-}
-
-function ClearOnlineDelegates()
-{
-    GetOnlineSubsystem().SystemInterface.ClearConnectionStatusChangeDelegate(OnConnectionStatusChanged);
-    GetOnlineSubsystem().PlayerInterface.ClearLoginStatusChangeDelegate(OnLoginStatusChanged, 0);
 }
 
 defaultproperties
@@ -325,7 +486,15 @@ defaultproperties
     KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
     KFFontScale=0.6
     bMuteOnLossOfFocus=true
+    SeasonalEventId=-1
+    WeeklyEventIndex=-1
     DefaultGammaMult=0.68
+    MusicVolumeMultiplier=50
+    SFxVolumeMultiplier=100
+    DialogVolumeMultiplier=100
+    MasterVolumeMultiplier=100
     FOVOptionsPercentageValue=1
+    LocalLoginStatus=ELoginStatus.LS_LoggedIn
     bDisableAILogging=true
+    SafeFrameScale=1
 }

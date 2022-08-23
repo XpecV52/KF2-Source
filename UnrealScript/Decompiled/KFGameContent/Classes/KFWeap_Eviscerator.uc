@@ -284,9 +284,9 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     AttachmentArchetype=KFWeapAttach_Eviscerator'WEP_Sawblade_ARCH.Wep_Eviscerator_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
-        WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
         MaxHitRange=180
         MeleeImpactCamShake=KFCameraShake'FX_CameraShake_Arch.Melee.Eviscerator'
+        WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Eviscerator.MeleeHelper'
     MeleeAttackHelper=MeleeHelper

@@ -849,7 +849,17 @@ function AddDefaultInventory( KFPawn P )
 			KFIM.GiveInitialGrenadeCount();
 		}
 
-		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
+        if (KFGameInfo(WorldInfo.Game) != none)
+        {
+            if (KFGameInfo(WorldInfo.Game).AllowPrimaryWeapon(GetPrimaryWeaponClassPath()))
+            {
+                P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
+            }
+        }
+        else
+        {
+            P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
+        }		
 		// Secondary weapon is spawned through the pawn unless we want an additional one  not anymore
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), class'Class')));
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetKnifeWeaponClassPath(), class'Class')));
@@ -1003,6 +1013,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart ){ return 1.f; }
 function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 1.f; }
 function float GetReactionModifier( optional class<KFDamageType> DamageType ){ return 1.f; }
+simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 1.f; }
 function GameExplosion GetExplosionTemplate(){ return none; }
 function bool ShouldGetAllTheXP(){ return false; }
 
@@ -1097,7 +1108,6 @@ simulated function bool IgnoresPenetrationDmgReduction(){ return false; }
 
 /** SWAT functions */
 simulated event float GetCrouchSpeedModifier( KFWeapon KFW ) { return 1.f; }
-simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 0.f; }
 simulated function bool HasHeavyArmor(){ return false; }
 simulated function bool ShouldKnockDownOnBump(){ return false; }
 simulated function int GetArmorDamageAmount( int AbsorbedAmt ) { return AbsorbedAmt; }

@@ -11,7 +11,7 @@ class KFPawn_ZedGorefastDualBlade extends KFPawn_ZedGorefast
 
 defaultproperties
 {
-    CharacterMonsterArch=KFCharacterInfo_Monster'zed_gorefast2_arch.ZED_Gorefast2_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Gorefast2_Archetype"
     begin object name=MeleeHelper class=KFMeleeHelperAI
         MaxHitRange=210
     object end

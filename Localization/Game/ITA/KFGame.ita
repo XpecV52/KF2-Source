@@ -55,6 +55,8 @@ SecondaryWeaponPurchasedString="Arma secondaria acquistata"
 NoItemsPurchasedString="Nessun oggetto acquistato"
 
 SetTakeoverServerPasswordTitle="Nuova password gioco:"
+FreeConsolePlayOverString="Grazie per aver giocato a Killing Floor2! L’evento gratuito è finito, ma puoi comunque acquistare il gioco. Per ottenere più informazioni seleziona il pulsante “Negozio” in basso."
+BuyGameString="NEGOZIO"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="INCONTRO NON TROVATO"
@@ -1068,8 +1070,7 @@ BloomStringOptions[1]="Basso"
 BloomStringOptions[2]="Alto"
 
 MotionBlurStringOptions[0]="Off"
-MotionBlurStringOptions[1]="Normale"
-MotionBlurStringOptions[2]="Alto"
+MotionBlurStringOptions[1]="On"
 
 AmbientOcclusionStringOptions[0]="Off"
 AmbientOcclusionStringOptions[1]="SSAO"
@@ -1108,6 +1109,7 @@ UseAltAimOnDualString="Mira pistole doppie alt."
 AntiMotionSicknessString="Anti chinetosi"
 AutoTurnOffString="Rot. auto off presa Clot"
 ReduceHighPitchNoiseString="Riduci suoni acuti"
+DisableAutoUpgradeString="Disattiva l'auto-upgrade"
 
 [LocalizedControls]
 ControllerLayoutDefault="Predefinito"
@@ -1127,7 +1129,7 @@ GBA_Look_Gamepad="Controllo sguardo"
 GBA_Grenade_Gamepad="Lancia granata"
 GBA_TurnLeft_Gamepad="Controllo sguardo"
 GBA_Look_Gamepad="Controllo sguardo"
-GBA_DPad_Left_Gamepad="Comandi vocali"
+GBA_DPad_Left_Gamepad="Comandi vocali/Emote"
 GBA_DPad_Up_Gamepad="Equipaggia cura"
 GBA_DPad_Right_Gamepad="Getta denaro"
 GBA_DPad_Down_Gamepad="Accendi/spegni torcia"
@@ -1236,6 +1238,12 @@ BashString="Colpo arma da mischia"
 BlockString="Blocca (hold)"
 HoldString="HOLD"
 TapString="TOCCA"
+
+[KFGFxScreenSizeContainer]
+TitleString="L’applicazione verrà visualizzata nel riquadro"
+DescriptionString="Adatta l’area allo schermo"
+EnlargeString="Allarga"
+ShrinkString="Restringi"
 
 [KFInventoryManager]
 FullHealthMsg="Salute al massimo"
@@ -1347,6 +1355,8 @@ HealSelfGamepadWarning="<%HOLD%>CURATI"
 PressToBashWarning="COLPISCI"
 GamepadWeaponSelectHint="<%HOLD%>SELEZIONA ARMA"
 PlayerClotGrabWarningMessage="UCCIDI GLI ZED PER LA LIBERTÀ!"
+UseMinigameMessage="ATTIVA IL MINIGIOCO"
+UseMinigameGeneratorMessage="ATTIVA IL GENERATORE"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Le squadre sono sbilanciate e saranno regolate"
@@ -1593,7 +1603,7 @@ SmashDescription="Con attacchi duri con armi classe da mischia, danni maggiori d
 Fury="Massacro"
 FuryDescription="Con attacchi leggeri con armi di classe da mischia 30% danni in più, e 5% velocità in più a tutti gli attacchi con armi di classe da mischia"
 
-Spartan="ZED TIME - Spartano" "
+Spartan="ZED TIME - Spartano"
 SpartanDescription="Durante gli Zed time, puoi attaccare con armi di classe e muoverti in tempo reale."
 
 Rage="ZED TIME - Furia berserker"
@@ -1750,7 +1760,7 @@ EXPAction2="Curare compagni di squadra"
 [KFPerk_Firebug]
 PerkName="Piromane"
 EXPAction1="Arrecare danni con arma Piromane"
-EXPAction2="Uccidere Crawler e Bloat con armi Piromane"
+EXPAction2="Uccidere i Crawler con armi Piromane"
 
 SkillCatagories[0]="Scorte"
 SkillCatagories[1]="Piccanti"
@@ -1900,7 +1910,7 @@ Passives[0]=(Title="Competenze di saldatura",Description="Aumento %x% velocità 
 Passives[1]=(Title="Danno da fucile",Description="Aumento %x% danni arma di classe per livello");
 Passives[2]=(Title="Perforazione da fucile",Description="Arma classe - aumento %x% forza di penetrazione per livello");
 Passives[3]=(Title="Munizioni",Description="Aumento 15% munizioni più %x% per livello");
-Passives[4]=(Title="Forza",Description="Aumento di 1 della capacità di carico ogni 5 livelli");
+Passives[4]=(Title="Capacità di carico maggiore",Description="Capacità di carico +1 ogni 5 livelli");
 Passives[5]=(Title="Zaino munizioni + Riparazione porte",Description="Una volta per round si possono prendere munizioni o riparare le porte");
 
 EXPAction1="Arrecare danni con arma Supporto"
@@ -2094,7 +2104,7 @@ RandomLoadingStrings[13]="Hai del denaro in più? Lasciane un po' alla tua squad
 RandomLoadingStrings[14]="Scegli i tuoi bersagli. Armi differenti possono essere più o meno efficaci contro diversi tipi di Zed."
 RandomLoadingStrings[15]="Scegli la priorità dei tuoi bersagli. Un Fleshpound richiede più attenzione di un Clot."
 RandomLoadingStrings[16]="Tutti gli Zed hanno dei punti deboli. Se non è la testa, cerca le aree luminose sui loro corpi."
-RandomLoadingStrings[17]="Vuoi comprare o vendere un accessorio estetico o una skin arma? Dai uno sguardo al negozio."
+RandomLoadingStrings[17]="Puoi ottenere occasionalmente elementi estetici come bottino, altri possono essere acquistati."
 RandomLoadingStrings[18]="L'urlo della Sirena neutralizza le granate e gli altri esplosivi."
 RandomLoadingStrings[19]="Scrake e Fleshpound si infurieranno dopo aver subito molti danni. Stai lontano da loro."
 RandomLoadingStrings[20]="Hai skin arma o accessori estetici che non utilizzi? Costruiscine di nuovi nel tuo Inventario."
@@ -2118,7 +2128,7 @@ RandomLoadingStrings[37]="La rail gun può trapassare gli Zed se sono allineati 
 RandomLoadingStrings[38]="Il fucile a microonde infligge danni maggiori agli Zed con oggetti in metallo, come i Fleshpound e le Sirene."
 RandomLoadingStrings[39]="Prova la modalità di fuoco alternativa della tua arma. Non tutte le armi ne hanno una, ma potrebbe esserti d'aiuto in caso di difficoltà."
 RandomLoadingStrings[40]="Otterrai punti XP e denaro per gli assist, oltre che per le uccisioni, quindi non dispiacerti di aver aiutato un tuo alleato in un'uccisione."
-RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
+RandomLoadingStrings[41]="Per rimuovere una saldatura da una porta, equipaggia il tuo saldatore e premi il tasto Visuale arma."
 
 [WhatsNewMessages]
 Jaegorhorn="Segui la community per sbloccare Jaegorhorn"
@@ -2167,11 +2177,19 @@ PS4WeaponSkinCrate2="Cassa skin armi Horzine | Serie #2"
 Artbook="Artbook digitale Killing Floor 2"
 Uncovered="Guarda il live action Killing Floor: Uncovered"
 NewEmotes="Novità! Chiave cassa Emote - $2.49"
+HorzineSupplyCrateKey10="Chiave cassa Horzine | Serie #10 - $2.49"
+HorzineSupplyCrateKey11="Chiave cassa Horzine | Serie #11 - $2.49"
+HorzineSupplyCrateKey12="Chiave cassa Horzine | Serie #12 - $2.49"
+HorzineSupplyCrateKey13="Chiave cassa Horzine | Serie #13 - $2.49"
+USBSpitfire="Spit Fire USB Key - $2.49"
+USBHighVoltage="High Voltage USB Key - $2.49"
+MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
+KFPawn_ZedCrawlerKing="Crawler Elite"
 KFPawn_ZedFleshPound="Fleshpound"
 KFPawn_ZedGorefast="Gorefast"
 KFPawn_ZedGorefastDualBlade="Gorefiend"
@@ -2181,6 +2199,7 @@ KFPawn_ZedStalker="Stalker"
 KFPawn_ZedClot_Cyst="Cyst"
 KFPawn_ZedClot_Slasher="Slasher"
 KFPawn_ZedClot_Alpha="Clot Alfa"
+KFPawn_ZedClot_AlphaKing="Alfa Elite"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Sirena"
 KFPawn_ZedPatriarch="Patriarca"
@@ -2510,6 +2529,38 @@ DisplayName_POL="Lądowanie zetów"
 DisplayName_PTB="Pouso Forçado ZED"
 DisplayName_RUS="Высадка среди мутантов"
 
+[KF-TheDescent KFMapSummary]
+DisplayName_CHN="后裔"
+DisplayName_CHT="地下鐵"
+DisplayName_DEU="Der Abstieg"
+DisplayName_ESL="El descendiente"
+DisplayName_ESN="El descendiente"
+DisplayName_FRA="La descente"
+DisplayName_FRC="La descente"
+DisplayName_INT="The Descent"
+DisplayName_ITA="La discesa"
+DisplayName_JPN="The Descent"
+DisplayName_KOR="경사로"
+DisplayName_POL="Zejście"
+DisplayName_PTB="A Descida"
+DisplayName_RUS="Спуск"
+
+[KF-Nuked KFMapSummary]
+DisplayName_CHN="核武器"
+DisplayName_CHT="核電廠"
+DisplayName_DEU="Atomisiert"
+DisplayName_ESL="Bombardeado"
+DisplayName_ESN="Bombardeado"
+DisplayName_FRA="Atomisé"
+DisplayName_FRC="Atomisé"
+DisplayName_INT="Nuked"
+DisplayName_ITA="Nuclearizzato"
+DisplayName_JPN="Nuked"
+DisplayName_KOR="방사능 누출지"
+DisplayName_POL="Wysadzeni"
+DisplayName_PTB="Bombardeio"
+DisplayName_RUS="Ядерный удар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio Biotics"
 
@@ -2552,6 +2603,11 @@ DisplayName="Regno infernale"
 [KF-ZedLanding KFMapSummary]
 DisplayName="Atterraggio ZED"
 
+[KF-TheDescent KFMapSummary]
+DisplayName="La discesa"
+
+[KF-Nuked KFMapSummary]
+DisplayName="Nuclearizzato"
 
 [KFMapInfo]
 ; defaults

@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFCameraLensEmit_Puke extends EmitterCameraLensEffectBase
+class KFCameraLensEmit_Puke extends KFEmit_CameraEffect
     hidecategories(Navigation);
 
 defaultproperties

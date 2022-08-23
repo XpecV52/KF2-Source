@@ -65,6 +65,7 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;
 
 enum EUIIndex
 {
@@ -205,6 +206,7 @@ var KFGFxMenu_Trader TraderMenu;
 var KFGFxMenu_ServerBrowser ServerBrowserMenu;
 var KFGFxMenu_Exit ExitMenu;
 var KFGFxMenu_IIS IISMenu;
+var KFGFxMoviePlayer_ScreenSize ScreenSizeMovie;
 var KFProfileSettings CachedProfile;
 var bool bPostGameState;
 var bool bKickVotePopupActive;
@@ -295,7 +297,7 @@ function OnProfileSettingsRead()
     if((CachedProfile != none) && CachedProfile.AsyncState == 3)
     {
         bSetGamma = CachedProfile.GetProfileBool(129);
-        if(!bSetGamma && !Class'KFGameEngine'.static.CheckSkipGammaCheck())
+        if((!bSetGamma && !Class'KFGameEngine'.static.CheckSkipGammaCheck()) && !Class'WorldInfo'.static.IsConsoleBuild(9))
         {
             LogInternal(((((((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "33") @ "bSetGamma:'") $ string(bSetGamma)) $ "'") @ "CurrentMenu:'") $ string(CurrentMenu)) $ "'");
             ManagerObject.SetBool("bStartUpGamma", true);
@@ -382,7 +384,7 @@ function LaunchMenus(optional bool bForceSkipLobby)
         bAfterLobby = true;
         CloseMenus(true);
     }
-    if(((!bSetGamma && !Class'KFGameEngine'.static.CheckSkipGammaCheck()) && CachedProfile != none) && CachedProfile.AsyncState != 1)
+    if((((!bSetGamma && !Class'KFGameEngine'.static.CheckSkipGammaCheck()) && CachedProfile != none) && CachedProfile.AsyncState != 1) && !Class'WorldInfo'.static.IsConsoleBuild(9))
     {
         LogInternal(((((((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "22") @ "bSetGamma:'") $ string(bSetGamma)) $ "'") @ "bShowIIS:'") $ string(bShowIIS)) $ "'");
         ManagerObject.SetBool("bStartUpGamma", true);
@@ -398,7 +400,7 @@ function DelayedShowDisconnectMessage()
     }
     else
     {
-        DelayedOpenPopup(2, 6, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), Localize("Notifications", "ConnectionLostMessage", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+        DelayedOpenPopup(2, 6, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), Localize("Notifications", ((Class'WorldInfo'.static.IsConsoleBuild(9)) ? "ConnectionLostMessageLive" : "ConnectionLostMessage"), "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
     }
 }
 
@@ -456,7 +458,7 @@ function DelayedOpenPopup(KFGFxMoviePlayer_Manager.EPopUpType PopUpType, int Pop
 
 function ShowDelayedPopupMessage()
 {
-    if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentMenu == IISMenu)
+    if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying() || (CurrentMenu == IISMenu) && Class'WorldInfo'.static.IsConsoleBuild(8))
     {
         Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
         return;
@@ -485,7 +487,6 @@ function bool CheckSkipLobby()
 
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
-    local PlayerController PC;
     local bool bHandled;
 
     bHandled = true;
@@ -532,10 +533,9 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             OnMenuOpen(WidgetPath, ServerBrowserMenu);
             break;
         case 'GearMenu':
-            PC = GetPC();
-            if(PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun)
+            if((MenuBarWidget != none) && !MenuBarWidget.CanUseGearButton(GetPC(), self))
             {
-                goto J0xB90;
+                goto J0xB0F;
             }
             if(GearMenu == none)
             {
@@ -545,7 +545,6 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             OnMenuOpen(WidgetPath, GearMenu);
             break;
         case 'InventoryMenu':
-            PC = GetPC();
             if(InventoryMenu == none)
             {
                 InventoryMenu = KFGFxMenu_Inventory(Widget);
@@ -554,7 +553,6 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             OnMenuOpen(WidgetPath, InventoryMenu);
             break;
         case 'StoreMenu':
-            PC = GetPC();
             if(StoreMenu == none)
             {
                 StoreMenu = KFGFxMenu_Store(Widget);
@@ -677,12 +675,18 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             bHandled = false;
             break;
     }
-    J0xB90:
+    J0xB0F:
 
     return bHandled;
 }
 
-function StatsInitialized();
+function StatsInitialized()
+{
+    if(IISMenu != none)
+    {
+        IISMenu.bStatsRead = true;
+    }
+}
 
 function AllowCloseMenu()
 {
@@ -757,7 +761,7 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
     }
     if(NewMenuIndex == 2)
     {
-        if(PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun)
+        if((MenuBarWidget != none) && !MenuBarWidget.CanUseGearButton(PC, self))
         {
             return;
         }
@@ -793,6 +797,8 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
         ManagerObject.SetBool("backgroundVisible", false);
         IISMovie.Play();
         ManagerObject.SetBool("IISMovieVisible", true);
+        Class'Engine'.static.GetEngine().GameViewport.bAllowInputFromMultipleControllers = true;
+        SetWidgetsVisible(false);
     }
     if(NewMenuIndex != 14)
     {
@@ -1311,6 +1317,10 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
             {
                 if(((!GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby) && !Class'WorldInfo'.static.IsMenuLevel()) && CurrentPopup == none)
                 {
+                    if(!KFPRI.bReadyToPlay)
+                    {
+                        PlaySoundFromTheme('PARTYWIDGET_READYUP_BUTTON_CLICK', 'UI');
+                    }
                     CurrentMenu.Callback_ReadyClicked(!KFPRI.bReadyToPlay);
                     PartyWidget.SetBool("bReady", KFPRI.bReadyToPlay);
                     PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);
@@ -1348,7 +1358,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
     }
     if(CurrentMenu != none)
     {
-        if(!Class'WorldInfo'.static.IsConsoleBuild(8))
+        if(!Class'WorldInfo'.static.IsConsoleBuild())
         {
             CheckIfUsingGamepad();
         }
@@ -1448,6 +1458,14 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking)
 
 function RemotePlayerDisconnected(UniqueNetId UniqueId);
 
+function NotifySpectateStateChanged(bool bIsSpectating)
+{
+    if(MenuBarWidget != none)
+    {
+        MenuBarWidget.UpdateGearButtonState();
+    }
+}
+
 function ShowKickVote(PlayerReplicationInfo PRI)
 {
     VotePRI = PRI;
@@ -1498,6 +1516,22 @@ function CastNoVote()
             KFPRI.CastKickVote(KFPRI, false);
         }
     }
+}
+
+function OpenScreenSizeMovie()
+{
+    if(ScreenSizeMovie == none)
+    {
+        ScreenSizeMovie = new Class'KFGFxMoviePlayer_ScreenSize';
+        ScreenSizeMovie.SetTimingMode(1);
+        ScreenSizeMovie.Init();
+    }
+}
+
+function CloseScreenSizeMovie()
+{
+    ScreenSizeMovie.Close();
+    ScreenSizeMovie = none;
 }
 
 function currentFocus()

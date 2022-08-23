@@ -1246,11 +1246,3 @@ function ClearReadAchievementsCompleteDelegate(byte LocalUserNum,delegate<OnRead
  * @return OERS_Done if the read has completed, otherwise one of the other states
  */
 function EOnlineEnumerationReadState GetAchievements(byte LocalUserNum,out array<AchievementDetails> Achievements,optional int TitleId = 0);
-
-
-//@HSL_BEGIN - BWJ - 6-15-16 - Auth support for backend service
-delegate OnOnlineServiceAuthComplete();
-function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
-function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
-function AuthWithOnlineService();
-//@HSL_END

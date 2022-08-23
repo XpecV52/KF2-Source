@@ -324,20 +324,26 @@ class KFPawn_Monster extends KFPawn
 #linenumber 18;
 
 /************************************
- * @name	Ephemeral Stats Tracking
+ * @name	General info for AAR/Stats
  ************************************/
 
 var bool bLargeZed;
 var bool bVersusZed;
 
 /************************************
- * @name	Spawning vars
+ * @name	Content
  ************************************/
-/** Default content loaded by this pawn.  Private, use 'GetCharacterMonsterInfo' */
+
+ /** Path for DLO of the MonsterArch */
+var private const string MonsterArchPath;
+/** 
+ * Default content loaded by this pawn.  Private, use GetCharacterMonsterInfo()
+ * NOTE: DO NOT statically reference in defaults as it needs to be loaded dynamically
+ */
 var private const KFCharacterInfo_Monster CharacterMonsterArch;
 
-var const bool bForceUseOfDebugCharInfo;
-var private const KFCharacterInfo_Monster CharacterMonsterArchDebug;
+/** Variant of this pawn that can be spawned sometimes */
+var const class<KFPawn_Monster> ElitePawnClass;
 
 /** Custom third person camera offsets */
 var() ViewOffsetData	ThirdPersonViewOffset;
@@ -772,7 +778,6 @@ replication
 // (cpptext)
 // (cpptext)
 // (cpptext)
-// (cpptext)
 
 native function bool SpiderPhysicsWallAdjust( vector HitNormal, actor HitActor );
 /** Tells the monster whether or not it should shrink its collision cylinder when going through a choke point */
@@ -840,6 +845,11 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 	return default.class;
 }
 
+/** Load content archetype when map loads */
+native static final function PreloadContent();
+/** Called if preload was not called before 1st spawn */
+native private function LastChanceLoad();
+
 /*********************************************************************************************
  * @name	Constructors, Destructors, and Loading
 ********************************************************************************************* */
@@ -863,11 +873,13 @@ simulated event PreBeginPlay()
 	// If we don't have an archetype select one
 	if ( CharacterArch == None )
 	{
-		if( bForceUseOfDebugCharInfo && CharacterMonsterArchDebug != none )
+		// Preload should have been called already, but if not do it now!
+		if ( CharacterMonsterArch == None )
 		{
-			SetCharacterArch(CharacterMonsterArchDebug);
+			LastChanceLoad();
 		}
-		else if ( CharacterMonsterArch != None )
+
+		if ( CharacterMonsterArch != None )
 		{
 			SetCharacterArch(CharacterMonsterArch);
 		}
@@ -1153,8 +1165,24 @@ function bool HandleAIDoorBump( KFDoorActor Door );
 /** Notification that Zed collided with an actor */
 function bool NotifyCollideWithActor( Vector HitNormal, Actor Other )
 {
+	local KFDestructibleActor KFDA;
+
+	if( !Other.bStatic && IsHumanControlled() )
+	{
+		KFDA = KFDestructibleActor( Other );
+		if( KFDA != none )
+		{
+			HandleDestructibleBump( KFDA, HitNormal );
+		}
+	}
+
 	if( !class'Engine'.static.GetEngine().bDIsableAILogging && MyKFAIC!= None ) { MyKFAIC.AILog_Internal(GetFuncName()$"() Other: "$Other,'BumpEvent'); };
 	return false;
+}
+
+function HandleDestructibleBump( KFDestructibleActor Destructible, vector HitNormal )
+{
+	Destructible.BumpedByMonster( self, HitNormal );
 }
 
 simulated event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal)
@@ -1340,6 +1368,8 @@ function CrushedBy(Pawn OtherPawn)
 	if ( bKnockdownWhenJumpedOn 
 		// Still alive after crush damage
 		&& Health > 0 
+		// Not emerging
+		&& !IsDoingSpecialMove(SM_Emerge)
 		// Actually above and not a side-swipe
 		&& ((OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderCOmponent.CollisionHeight))
 		// Opposing team; player only
@@ -1720,6 +1750,16 @@ State Dying
 		return Global.CalcCamera( fDeltaTime, out_CamLoc, out_CamRot, out_FOV );
 	}
 };
+
+/**
+ * Don't allow headshots to be counted for any purpose if we were headless before entering the takedamage state
+ * NOTE: This addresses an issue with low gore where the head is not hidden after a headless event, allowing headshots
+ * to count when they shouldn't.
+ */
+function bool CanCountHeadshots()
+{
+	return !bIsHeadless;
+}
 
 event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
@@ -2242,6 +2282,8 @@ event OnRigidBodyLinearConstraintViolated(name StretchedBoneName)
 {
 	local KFGoreManager GoreManager;
 
+	LogInternal("Linear constraint violated, hiding bone " @ StretchedBoneName);
+
 	GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
 	if( GoreManager != none && GoreManager.AllowMutilation() )
 	{
@@ -2249,17 +2291,16 @@ event OnRigidBodyLinearConstraintViolated(name StretchedBoneName)
 		{
 			SwitchToGoreMesh();
 		}
+
+		if( bIsGoreMesh )
+		{
+			GoreManager.CrushBone( self, StretchedBoneName );
+			return;
+		}
 	}
 
-	if( bIsGoreMesh && GoreManager != none )
-	{
-		GoreManager.CrushBone( self, StretchedBoneName );
-	}
-	else
-	{
-		mesh.HideBoneByName(StretchedBoneName, PBO_Term);
-	}
-	LogInternal("Linear constraint violated, hiding bone " @ StretchedBoneName);
+	// no gore fallback
+	mesh.HideBoneByName(StretchedBoneName, PBO_Term);
 }
 
 protected simulated function ResetHealthVisibilty()
@@ -3512,31 +3553,31 @@ simulated function bool PlayDismemberment(int InHitZoneIndex, class<KFDamageType
 		{
 			SwitchToGoreMesh();
 		}
-	}
 
-    // Apply mutilation gore only if we were able to successfully switch to the gore mesh
-	if( bIsGoreMesh && GoreManager != none )
-	{
-		// Get the bone to dismember from the hit zone
-		BreakBoneName = HitZones[InHitZoneIndex].BoneName;
-		// If we're dead, allow damage type to override the bone
-		if ( Health <= 0 && !IsZero(HitDirection) )
+	    // Apply mutilation gore only if we were able to successfully switch to the gore mesh
+		if( bIsGoreMesh )
 		{
-			InDmgType.static.GetBoneToDismember(self, HitDirection, HitZones[InHitZoneIndex].ZoneName, BreakBoneName);
-		}
+			// Get the bone to dismember from the hit zone
+			BreakBoneName = HitZones[InHitZoneIndex].BoneName;
+			// If we're dead, allow damage type to override the bone
+			if ( Health <= 0 && !IsZero(HitDirection) )
+			{
+				InDmgType.static.GetBoneToDismember(self, HitDirection, HitZones[InHitZoneIndex].ZoneName, BreakBoneName);
+			}
 
-		// Dismember
-		GoreManager.CauseDismemberment(self, BreakBoneName, InDmgType);
-	    PlayHitZoneGoreSounds(BreakBoneName, mesh.GetBoneLocation(BreakBoneName));
-		HitZones[InHitZoneIndex].bPlayedInjury = true;
+			// Dismember
+			GoreManager.CauseDismemberment(self, BreakBoneName, InDmgType);
+		    PlayHitZoneGoreSounds(BreakBoneName, mesh.GetBoneLocation(BreakBoneName));
+			HitZones[InHitZoneIndex].bPlayedInjury = true;
 
-		// If we're still alive (non-ragdoll), start partial physics ragdoll
-		// Note: bPlayedDeath may not be set yet on client, so use Health
-		if ( Health > 0 && bHasBrokenConstraints )
-		{
-			InitPartialKinematics();
+			// If we're still alive (non-ragdoll), start partial physics ragdoll
+			// Note: bPlayedDeath may not be set yet on client, so use Health
+			if ( Health > 0 && bHasBrokenConstraints )
+			{
+				InitPartialKinematics();
+			}
+			return true;
 		}
-		return true;
 	}
 	return false;
 }

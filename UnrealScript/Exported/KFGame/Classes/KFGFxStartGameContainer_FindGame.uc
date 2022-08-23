@@ -38,6 +38,22 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
     StartMenu = KFGFxMenu_StartGame( NewParentMenu );
     LocalizeMenu();
     SetWhatsNewItems();
+
+    if( class'KFGameEngine'.static.IsSoloPlayDisabled())
+    {
+        DisableSoloButton();
+    }
+}
+
+function DisableSoloButton()
+{
+    local GFxObject SoloButton;
+
+    SoloButton = GetObject("soloOfflineButton");
+    if(SoloButton != none)
+    {
+        SoloButton.SetBool("enabled", false);
+    }
 }
 
 function SetWhatsNewItems()
@@ -104,15 +120,16 @@ function LocalizeMenu()
 
 defaultproperties
 {
-   WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_volcano",TextField="LatestUpdate",RedirectURL="http://www.killingfloor2.com/bullseye")
-   WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
-   WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Emote_01_11",TextField="NewEmotes",RedirectURL="https://store.steampowered.com/buyitem/232090/4540")
-   WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_MaceShield_15",TextField="USBBoneCrusher",RedirectURL="https://store.steampowered.com/buyitem/232090/4562")
-   WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")
-   WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/")
-   WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap")
-   WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="https://tripwire.gomerch.com/")
-   WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/")
+   WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Descent",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")
+   WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="https://tripwire.manheadmerch.com/")
+   WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_Spitfire_17",TextField="USBSpitfire",RedirectURL="https://store.steampowered.com/buyitem/232090/4801")
+   WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Insectoid_13",TextField="HorzineSupplyCrateKey13",RedirectURL="https://store.steampowered.com/buyitem/232090/4775")
+   WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_HighVoltage_16",TextField="USBHighVoltage",RedirectURL="https://store.steampowered.com/buyitem/232090/4785")
+   WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
+   WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")
+   WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/")
+   WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap")
+   WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/")
    MultiplayerString="Online Matchmaking"
    SoloString="Play Solo Offline"
    TutorialString="Basic Training"

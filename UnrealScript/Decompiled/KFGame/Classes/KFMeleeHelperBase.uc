@@ -42,6 +42,7 @@ var const array<Actor> ActorsCollidedWith;
 var() const CameraShake MeleeVictimCamShake;
 /** This is the camera shake that we play when we hit a melee attack */
 var() const CameraShake MeleeImpactCamShake;
+var KFImpactEffectInfo WorldImpactEffects;
 
 simulated function Vector GetMeleeStartTraceLocation()
 {
@@ -240,7 +241,6 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
 {
     local Pawn Victim;
     local PlayerController PC;
-    local KFPawn KFP;
     local FracturedStaticMeshActor FracActor;
 
     bShakeInstigatorCamera = true;
@@ -256,36 +256,23 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
                 {
                     PC.ClientPlayCameraShake(MeleeVictimCamShake, 1, true);
                 }
-            }            
-        }
-        else
-        {
-            if(Outer.WorldInfo.NetMode != NM_Client)
-            {
-                KFP = KFPawn(Outer.Instigator);
-                if(KFP != none)
-                {
-                    KFP.SetMeleeImpactLocation(HitLocation);
-                }
             }
-        }        
+        }
     }
-    else
+    if(Outer.Instigator.IsHumanControlled() && Outer.Instigator.IsLocallyControlled())
     {
-        if(Outer.Instigator.IsHumanControlled() && Outer.Instigator.IsLocallyControlled())
+        if(bAllowMeleeToFracture)
         {
             FracActor = FracturedStaticMeshActor(Target);
             if(FracActor != none)
             {
-                Class'KFMeleeHelperBase'.static.MeleeFractureMeshImpact(FracActor, HitLocation, HitDirection);                
+                Class'KFMeleeHelperBase'.static.MeleeFractureMeshImpact(FracActor, HitLocation, HitDirection);
+                return;
             }
-            else
-            {
-                if(!Target.IsA('Pawn'))
-                {
-                    KFImpactEffectManager(Outer.WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Outer.Instigator, HitDirection,,, true);
-                }
-            }
+        }
+        if(!Target.bCanBeDamaged && Target.IsA('Pawn'))
+        {
+            KFImpactEffectManager(Outer.WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Outer.Instigator, HitDirection, WorldImpactEffects);
         }
     }
 }
@@ -316,4 +303,5 @@ defaultproperties
     // Reference: CameraShake'Default__KFMeleeHelperBase.MeleeImpactCamShake0'
     MeleeVictimCamShake=MeleeImpactCamShake0
     MeleeImpactCamShake=KFCameraShake'FX_CameraShake_Arch.Melee.Default_Melee'
+    WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Blunted_melee_impact'
 }

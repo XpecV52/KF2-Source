@@ -10,6 +10,8 @@ class KFSkinTypeEffects extends Object
     config(Engine)
     hidecategories(Object);
 
+const FXG_MAX = 15;
+
 enum EEffectDamageGroup
 {
     FXG_Ballistic,
@@ -26,6 +28,7 @@ enum EEffectDamageGroup
     FXG_MicrowaveBlast,
     FXG_ShieldBash,
     FXG_MetalMace,
+    FXG_Flare,
     FXG_MAX
 };
 
@@ -56,7 +59,7 @@ struct native SkinEffectInfo
 };
 
 /** Container for effects per type of damage/weapon */
-var() editfixedsize array<SkinEffectInfo> ImpactFX;
+var() SkinEffectInfo ImpactFXArray[15];
 /** Dynamic container for additional modability */
 var() array<SkinEffectInfo> CustomEffects;
 var config float ImpactParticleEffectInterval;
@@ -71,13 +74,13 @@ function PlayImpactParticleEffect(KFPawn P, Vector HitLocation, Vector HitDirect
     {
         return;
     }
-    if(ImpactFX[EffectGroup].bAttachParticle)
+    if(ImpactFXArray[EffectGroup].bAttachParticle)
     {
         AttachEffectToBone(P, ParticleTemplate, HitZoneIndex);        
     }
     else
     {
-        if(ImpactFX[EffectGroup].bAttachToHitLocation)
+        if(ImpactFXArray[EffectGroup].bAttachToHitLocation)
         {
             AttachEffectToHitLocation(P, ParticleTemplate, HitZoneIndex, HitLocation, HitDirection);            
         }
@@ -191,7 +194,7 @@ function ParticleSystemComponent DefaultSpawnEffect(KFPawn P, ParticleSystem Par
 
 function ParticleSystem GetImpactParticleEffect(KFSkinTypeEffects.EEffectDamageGroup EffectGroup)
 {
-    return ImpactFX[EffectGroup].DefaultParticle;
+    return ImpactFXArray[EffectGroup].DefaultParticle;
 }
 
 function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSkinTypeEffects.EEffectDamageGroup EffectGroup)
@@ -215,11 +218,11 @@ function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSki
 
 function AkEvent GetImpactSound(KFSkinTypeEffects.EEffectDamageGroup EffectGroup, Pawn DamageCauser)
 {
-    if((((ImpactFX[EffectGroup].LocalSound != none) && DamageCauser != none) && DamageCauser.IsLocallyControlled()) && DamageCauser.IsHumanControlled())
+    if((((ImpactFXArray[EffectGroup].LocalSound != none) && DamageCauser != none) && DamageCauser.IsLocallyControlled()) && DamageCauser.IsHumanControlled())
     {
-        return ImpactFX[EffectGroup].LocalSound;
+        return ImpactFXArray[EffectGroup].LocalSound;
     }
-    return ImpactFX[EffectGroup].DefaultSound;
+    return ImpactFXArray[EffectGroup].DefaultSound;
 }
 
 defaultproperties

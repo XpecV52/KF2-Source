@@ -27,7 +27,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// Content
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Slasher_Archetype'
+	MonsterArchPath="ZED_ARCH.ZED_Clot_Slasher_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.SlasherClot_AnimGroup'
 	DifficultySettings=class'KFDifficulty_ClotSlasher'
 

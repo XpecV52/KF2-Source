@@ -14,6 +14,8 @@ KF-ContainmentStation="正在進行：控制站"
 KF-InfernalRealm="正在進行：地獄"
 KF-HostileGrounds="正在進行：敵營"
 KF-ZedLanding="正在進行：僵屍群登陸"
+KF-TheDescent="正在進行：地下鐵"
+KF-Nuked="正在進行：核電廠"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -129,6 +131,7 @@ PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="請按 XboxTypeS_A 開始"
+SwitchProfile="按下XboxTypeS_Y可以切換個人檔案"
 LoginButtonPrompt="登入"
 LoggingIn="正在登入…"
 LoginFailed="登入失敗"
@@ -139,6 +142,8 @@ NotLoggedInOnlinePSN="你必須登入 PlayStation™Network 以使用連線功�
 NetworkError="連線發生錯誤，請檢查你的網路連線。"
 ErrorNoPlayfabDescription="無法連線至遊戲主伺服器。請稍後再試。"
 ErrorTSSFailedDescription="無法連線至遊戲平衡伺服器。請確定你有連線至網際網路，然後再試一次。"
+NotSignedInTitle="未登入。"
+
 
 [Notifications]
 ControllerDisconnectedTitle="已中斷連接控制器"
@@ -160,12 +165,24 @@ InviteMessage="來跟我一起獵殺 Zed 吧！"
 NotConnectedTitle="網路錯誤"
 NotConnectedMessage="未連線至網路。請檢查連線後再試。"
 NotConnectedForOnlinePlay="未連線至網路。檢查你的連線狀態，再嘗試使用連線功能"
+MultiplayerNotAllowed_Title="無法開啟多重玩家"
+LoggedOutMessage="已經修改該個人檔案。已經回到標題畫面。"
+LoggedOutTitle="已登出"
+LoggedInTitle="已登入"
+NewRegionTitle="Welcome"
+NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="檢視玩家個人檔案"
+ViewProfileStringXB1="查看玩家卡片"
 
 [KFGFxObject_Menu]
 ResetDefaults="你確定要重設至預設值嗎？"
+
+[KFGFxWidget_MenuBar]
+LogoutTitle="登出"
+LogoutDialogTitle="回到標題畫面"
+LogoutDialogMessage="您確定要回到標題畫面嗎？"
 
 [KFGFxTraderContainer_PlayerInventory]
 PerkPrompt="職業"
@@ -177,9 +194,19 @@ ControllerSound="控制器音效"
 MatchmakingRegionString="地區"
 LeaveMenuString="離開配對也會解散你的隊伍"
 
+[KFGFxMenu_Store]
+
+
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="地區"
 MapPreference="偏好地圖"
+
+[KFGFxMenu_Exit]
+HeaderStringXB1="登出"
+LogoutKF2="回到標題畫面"
+
+[Misc]
+NotSignedIn="未登入"
 
 [Entitlements]
 BriarBobbyBundleProductName="倫敦鮑比布萊爾警察同捆包"

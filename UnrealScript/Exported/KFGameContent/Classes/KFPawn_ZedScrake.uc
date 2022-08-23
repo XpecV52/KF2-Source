@@ -275,7 +275,7 @@ defaultproperties
    RageHealthThresholdHellOnEarth=0.900000
    bLargeZed=True
    bCanRage=True
-   CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Scrake_ARCH.ZED_Scrake_Archetype'
+   MonsterArchPath="ZED_ARCH.ZED_Scrake_Archetype"
    HeadlessBleedOutTime=6.000000
    ParryResistance=4
    MinSpawnSquadSizeType=EST_Large

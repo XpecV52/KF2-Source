@@ -19,5 +19,5 @@ DefaultProperties
 		MyDamageType=class'KFDT_Fire_ZedGround'
 	End Object
 
-	BurnDamageInterval=0.25f
+	DamageInterval=0.25f
 }

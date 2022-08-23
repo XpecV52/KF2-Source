@@ -123,7 +123,8 @@ event OnRegister(LocalPlayer InPlayer)
 	local OnlineSubsystem OnlineSub;
 	local OnlinePlayerInterface PlayerInterface;
 
-	if (InPlayer != None)
+	// BWJ - 12-14-16 - Don't care about this
+	if (InPlayer != None && !class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
 	{
 		PlayerControllerId = InPlayer.ControllerId;
 		// Figure out if we have an online subsystem registered

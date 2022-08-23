@@ -24,10 +24,34 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_3
 End Object
 
 Begin Object Class=InterpData Name=InterpData_2
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Tabs(0)=(ViewStartInput=8.193157,ViewEndInput=58.199333)
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=15.030812,OutVal=(X=0.000000,Y=0.000000,Z=84.633759),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=15.030812,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=15.030812)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_ZedLanding_MAT.Water.Env_Ocean_Water_Ocean_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-ZedLanding.TheWorld:PersistentLevel.InterpActor_23.StaticMeshComponent_868')))
+         ParamName="Scalar_Water_WPO_Min"
+         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=0.300000,ArriveTangent=0.106667,LeaveTangent=0.106667,InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=0.800000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_0"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(Time=15.010483,EventName="ExtinguishFlames")
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackEvent_0'
+      InterpTracks(2)=InterpTrackFloatMaterialParam'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackFloatMaterialParam_0'
+      GroupName="ocean"
+      GroupColor=(B=152,G=0,R=186,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
@@ -43,34 +67,10 @@ Begin Object Class=InterpData Name=InterpData_2
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(Time=15.010483,EventName="ExtinguishFlames")
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_ZedLanding_MAT.Water.Env_Ocean_Water_Ocean_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-ZedLanding.TheWorld:PersistentLevel.InterpActor_23.StaticMeshComponent_868')))
-         ParamName="Scalar_Water_WPO_Min"
-         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=0.300000,ArriveTangent=0.106667,LeaveTangent=0.106667,InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=0.800000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_0"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=15.030812,OutVal=(X=0.000000,Y=0.000000,Z=84.633759),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=15.030812,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=15.030812)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackEvent_0'
-      InterpTracks(2)=InterpTrackFloatMaterialParam'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackFloatMaterialParam_0'
-      GroupName="ocean"
-      GroupColor=(B=152,G=0,R=186,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Tabs(0)=(ViewStartInput=8.193157,ViewEndInput=58.199333)
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=60.007412
    InterpGroups(0)=InterpGroup'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1'
@@ -282,173 +282,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
 End Object
 
 Begin Object Class=InterpData Name=InterpData_3
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(Curves=((CurveObject=InterpTrackFloatMaterialParam'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2.InterpTrackFloatMaterialParam_0',CurveColor=(B=69,G=225,R=0,A=255),CurveName="VolcanoFlow_Progression_Float Material Param"),(CurveObject=InterpTrackFloatMaterialParam'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_10.InterpTrackFloatMaterialParam_1',CurveColor=(B=186,G=151,R=0,A=255),CurveName="VolcanoFlow_LavaSpeckle_Float Material Param")))
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(Time=4.500000,EventName="EruptionDestructible")
-         EventTrack(1)=(Time=30.000000,EventName="FlowingLavaInterp")
-         EventTrack(2)=(Time=448.820618,EventName="LavaFlowStart")
-         EventTrack(3)=(Time=450.000000,EventName="CaveLavaLights")
-         EventTrack(4)=(Time=462.000000,EventName="CaveLavaPain")
-         EventTrack(5)=(Time=500.000000,EventName="AshEmitters")
-         bFireEventsWhenBackwards=False
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_3
-         PropertyName="HeightFogComponent0.FogDensity"
-         FloatTrack=(Points=((OutVal=0.050000,InterpMode=CIM_CurveAutoClamped),(InVal=1000.000000,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="FogDensity"
-         Name="InterpTrackFloatProp_3"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      InterpTracks(0)=InterpTrackEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0.InterpTrackEvent_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0.InterpTrackFloatProp_3'
-      GroupName="Fog"
-      GroupColor=(B=69,G=225,R=0,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InVal=450.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=0.000000,Y=0.000000,Z=79.999939),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InVal=450.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=0.000000,Y=0.000000,Z=-32.000122),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InVal=450.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=((Time=450.000000),(Time=465.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
+         Name="InterpTrackMove_2"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackMove_1'
-      GroupName="CaveLava1"
-      GroupColor=(B=120,G=206,R=0,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_10
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_ZedLanding_MAT.volcano.ENV_ZedLanding_Volcano_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-ZedLanding.TheWorld:PersistentLevel.StaticMeshActor_142.StaticMeshComponent_25'),(Primitive=StaticMeshComponent'KF-ZedLanding.TheWorld:PersistentLevel.InterpActor_7.StaticMeshComponent_59')))
-         ParamName="Volcano_Lava_Mask"
-         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=299.236481,OutVal=20.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_1"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_10.InterpTrackFloatMaterialParam_1'
-      GroupName="VolcanoFlow_LavaSpeckle"
-      GroupColor=(B=186,G=151,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_10"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_11
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Time=22.833691,Event=AkEvent'WW_ENV_Zed_Landing.Set_ZL_Wind_Post')
-         Name="InterpTrackAkEvent_0"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Time=21.041431,Event=AkEvent'WW_ENV_Zed_Landing.Play_ZL_Volcano_Erupt_Main')
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_11.InterpTrackAkEvent_1'
-      InterpTracks(1)=InterpTrackAkEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_11.InterpTrackAkEvent_0'
-      GroupName="Sounds"
-      GroupColor=(B=226,G=0,R=69,A=255)
-      bCollapsed=True
-      Name="InterpGroup_11"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_ZedLanding_MAT.volcano.ENV_Lava_Mat_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-ZedLanding.TheWorld:PersistentLevel.StaticMeshActor_270.StaticMeshComponent_48')))
-         ParamName="Scalar_Progression"
-         FloatTrack=(Points=((OutVal=-1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=499.119415,OutVal=18.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_0"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2.InterpTrackFloatMaterialParam_0'
-      GroupName="VolcanoFlow_Progression"
-      GroupColor=(B=69,G=225,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InVal=450.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=0.000000,Y=0.000000,Z=79.999939),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InVal=450.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=((Time=450.000000),(Time=465.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackMove_1'
-      GroupName="CaveLava2"
-      GroupColor=(B=177,G=0,R=163,A=255)
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
-         PropertyName="LightColor"
-         VectorTrack=(Points=((InVal=455.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=1.000000,Y=0.151058,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_0"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="Brightness"
-         FloatTrack=(Points=((InVal=455.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=1.500000,InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_0"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="Radius"
-         FloatTrack=(Points=((InVal=455.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=425.000000,InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="Radius"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackFloatProp_0'
-      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackColorProp_0'
-      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackFloatProp_1'
-      GroupName="CaveLavaLights"
-      GroupColor=(B=207,G=118,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="WindDirectionalSourceComponent0.Strength"
-         FloatTrack=(Points=((InVal=20.954815,OutVal=7.000000)))
-         TrackTitle="Strength"
-         Name="InterpTrackFloatProp_0"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="WindDirectionalSourceComponent0.Speed"
-         FloatTrack=(Points=((InVal=20.954815,OutVal=0.250000)))
-         TrackTitle="Speed"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      InterpTracks(0)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_5.InterpTrackFloatProp_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_5.InterpTrackFloatProp_1'
-      GroupName="WindDirectionalSource"
-      GroupColor=(B=180,G=0,R=159,A=255)
-      bCollapsed=True
-      Name="InterpGroup_5"
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_8.InterpTrackMove_2'
+      GroupName="CaveWater2"
+      GroupColor=(B=191,G=145,R=0,A=255)
+      Name="InterpGroup_8"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_6
@@ -466,20 +312,174 @@ Begin Object Class=InterpData Name=InterpData_3
       Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InVal=450.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=0.000000,Y=0.000000,Z=-32.000122),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_5
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="WindDirectionalSourceComponent0.Speed"
+         FloatTrack=(Points=((InVal=20.954815,OutVal=0.250000)))
+         TrackTitle="Speed"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
+         PropertyName="WindDirectionalSourceComponent0.Strength"
+         FloatTrack=(Points=((InVal=20.954815,OutVal=7.000000)))
+         TrackTitle="Strength"
+         Name="InterpTrackFloatProp_0"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_5.InterpTrackFloatProp_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_5.InterpTrackFloatProp_1'
+      GroupName="WindDirectionalSource"
+      GroupColor=(B=180,G=0,R=159,A=255)
+      bCollapsed=True
+      Name="InterpGroup_5"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="Radius"
+         FloatTrack=(Points=((InVal=455.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=425.000000,InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="Radius"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
+         PropertyName="Brightness"
+         FloatTrack=(Points=((InVal=455.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=1.500000,InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_0"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
+         PropertyName="LightColor"
+         VectorTrack=(Points=((InVal=455.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=1.000000,Y=0.151058,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_0"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackFloatProp_0'
+      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackColorProp_0'
+      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackFloatProp_1'
+      GroupName="CaveLavaLights"
+      GroupColor=(B=207,G=118,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_4"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InVal=450.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=0.000000,Y=0.000000,Z=79.999939),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InVal=450.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=((Time=450.000000),(Time=465.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_8.InterpTrackMove_2'
-      GroupName="CaveWater2"
-      GroupColor=(B=191,G=145,R=0,A=255)
-      Name="InterpGroup_8"
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackMove_1'
+      GroupName="CaveLava2"
+      GroupColor=(B=177,G=0,R=163,A=255)
+      Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_ZedLanding_MAT.volcano.ENV_Lava_Mat_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-ZedLanding.TheWorld:PersistentLevel.StaticMeshActor_270.StaticMeshComponent_48')))
+         ParamName="Scalar_Progression"
+         FloatTrack=(Points=((OutVal=-1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=499.119415,OutVal=18.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_0"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2.InterpTrackFloatMaterialParam_0'
+      GroupName="VolcanoFlow_Progression"
+      GroupColor=(B=69,G=225,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_11
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Time=21.041431,Event=AkEvent'WW_ENV_Zed_Landing.Play_ZL_Volcano_Erupt_Main')
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Time=22.833691,Event=AkEvent'WW_ENV_Zed_Landing.Set_ZL_Wind_Post')
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackAkEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_11.InterpTrackAkEvent_1'
+      InterpTracks(1)=InterpTrackAkEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_11.InterpTrackAkEvent_0'
+      GroupName="Sounds"
+      GroupColor=(B=226,G=0,R=69,A=255)
+      bCollapsed=True
+      Name="InterpGroup_11"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_10
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_ZedLanding_MAT.volcano.ENV_ZedLanding_Volcano_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-ZedLanding.TheWorld:PersistentLevel.StaticMeshActor_142.StaticMeshComponent_25'),(Primitive=StaticMeshComponent'KF-ZedLanding.TheWorld:PersistentLevel.InterpActor_7.StaticMeshComponent_59')))
+         ParamName="Volcano_Lava_Mask"
+         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=299.236481,OutVal=20.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_1"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_10.InterpTrackFloatMaterialParam_1'
+      GroupName="VolcanoFlow_LavaSpeckle"
+      GroupColor=(B=186,G=151,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_10"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InVal=450.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=0.000000,Y=0.000000,Z=79.999939),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InVal=450.000000,InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=((Time=450.000000),(Time=465.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackMove_1'
+      GroupName="CaveLava1"
+      GroupColor=(B=120,G=206,R=0,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_3
+         PropertyName="HeightFogComponent0.FogDensity"
+         FloatTrack=(Points=((OutVal=0.050000,InterpMode=CIM_CurveAutoClamped),(InVal=1000.000000,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="FogDensity"
+         Name="InterpTrackFloatProp_3"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(Time=4.500000,EventName="EruptionDestructible")
+         EventTrack(1)=(Time=30.000000,EventName="FlowingLavaInterp")
+         EventTrack(2)=(Time=448.820618,EventName="LavaFlowStart")
+         EventTrack(3)=(Time=450.000000,EventName="CaveLavaLights")
+         EventTrack(4)=(Time=462.000000,EventName="CaveLavaPain")
+         EventTrack(5)=(Time=500.000000,EventName="AshEmitters")
+         bFireEventsWhenBackwards=False
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0.InterpTrackEvent_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0.InterpTrackFloatProp_3'
+      GroupName="Fog"
+      GroupColor=(B=69,G=225,R=0,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(Curves=((CurveObject=InterpTrackFloatMaterialParam'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2.InterpTrackFloatMaterialParam_0',CurveColor=(B=69,G=225,R=0,A=255),CurveName="VolcanoFlow_Progression_Float Material Param"),(CurveObject=InterpTrackFloatMaterialParam'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_10.InterpTrackFloatMaterialParam_1',CurveColor=(B=186,G=151,R=0,A=255),CurveName="VolcanoFlow_LavaSpeckle_Float Material Param")))
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1000.002441
    InterpGroups(0)=InterpGroup'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0'
@@ -551,341 +551,108 @@ Begin Object Class=KFSeqEvent_TraderOpened Name=KFSeqEvent_TraderOpened_1
 End Object
 
 Begin Object Class=Sequence Name=Tremble_Handler
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_0
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_0.CameraShake_0'
-      ShakeScale=0.050000
-      InputLinks(0)=(DrawY=-148,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-128,OverrideDelta=33)
-      OutputLinks(0)=(DrawY=-138,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=9083,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=9149,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_9'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=9213,OverrideDelta=148)
-      ObjInstanceVersion=2
+   Begin Object Class=SeqVar_Player Name=SeqVar_Player_1
+      ObjInstanceVersion=1
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=9045
-      ObjPosY=-184
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_0"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+      ObjPosX=7272
+      ObjPosY=344
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Player_1"
+      ObjectArchetype=SeqVar_Player'Engine.Default__SeqVar_Player'
    End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_1
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_1.CameraShake_0'
-      ShakeScale=0.100000
-      InputLinks(0)=(DrawY=-244,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-224,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_11')),DrawY=-234,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=5190,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=5256,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_6'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=5320,OverrideDelta=148)
-      ObjInstanceVersion=2
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_9
+      ExpectedType=Class'Engine.SeqVar_Float'
+      FindVarName="Mag_Falloff"
+      ObjInstanceVersion=1
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=5152
-      ObjPosY=-280
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_1"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+      ObjPosX=9032
+      ObjPosY=40
+      ObjColor=(B=255,G=0,R=0,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_9"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_10
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_10.CameraShake_0'
-      ShakeScale=0.050000
-      InputLinks(0)=(DrawY=-172,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-152,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_0')),DrawY=-162,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=8811,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=8877,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_9'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=8941,OverrideDelta=148)
-      ObjInstanceVersion=2
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_8
+      ExpectedType=Class'Engine.SeqVar_Float'
+      FindVarName="Mag_Max"
+      ObjInstanceVersion=1
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=8773
-      ObjPosY=-208
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_10"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+      ObjPosX=6920
+      ObjPosY=-104
+      ObjColor=(B=255,G=0,R=0,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_8"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_11
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_11.CameraShake_0'
-      ShakeScale=0.150000
-      InputLinks(0)=(DrawY=-252,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-232,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_13')),DrawY=-242,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=5459,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=5525,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_7'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=5589,OverrideDelta=148)
-      ObjInstanceVersion=2
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_7
+      ExpectedType=Class'Engine.SeqVar_Float'
+      FindVarName="Mag_Med"
+      ObjInstanceVersion=1
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=5421
-      ObjPosY=-288
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_11"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+      ObjPosX=6088
+      ObjPosY=56
+      ObjColor=(B=255,G=0,R=0,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_7"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_12
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_12.CameraShake_0'
-      ShakeScale=0.150000
-      InputLinks(0)=(DrawY=-228,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-208,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_3')),DrawY=-218,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=6523,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=6589,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_7'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=6653,OverrideDelta=148)
-      ObjInstanceVersion=2
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_6
+      ExpectedType=Class'Engine.SeqVar_Float'
+      FindVarName="Mag_Min"
+      ObjInstanceVersion=1
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=6485
-      ObjPosY=-264
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_12"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+      ObjPosX=5288
+      ObjPosY=-120
+      ObjColor=(B=255,G=0,R=0,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_6"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_13
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_13.CameraShake_0'
-      ShakeScale=0.150000
-      InputLinks(0)=(DrawY=-268,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-248,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_14')),DrawY=-258,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=5715,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=5781,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_7'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=5845,OverrideDelta=148)
-      ObjInstanceVersion=2
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_2
+      ExpectedType=Class'Engine.SeqVar_Float'
+      FindVarName="Mag_Med"
+      ObjInstanceVersion=1
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=5677
-      ObjPosY=-304
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_13"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+      ObjPosX=7592
+      ObjPosY=72
+      ObjColor=(B=255,G=0,R=0,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_2"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_14
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_14.CameraShake_0'
-      ShakeScale=0.150000
-      InputLinks(0)=(DrawY=-260,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-240,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_2')),DrawY=-250,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=6003,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=6069,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_7'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=6133,OverrideDelta=148)
-      ObjInstanceVersion=2
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_10
+      ExpectedType=Class'Engine.SeqVar_Float'
+      FindVarName="Mag_Min"
+      ObjInstanceVersion=1
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=5965
-      ObjPosY=-296
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_14"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+      ObjPosX=8464
+      ObjPosY=24
+      ObjColor=(B=255,G=0,R=0,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_10"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_2
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_2.CameraShake_0'
-      ShakeScale=0.150000
-      InputLinks(0)=(DrawY=-252,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-232,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_12')),DrawY=-242,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=6275,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=6341,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_7'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=6405,OverrideDelta=148)
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_0
+      EventName="GroundTremble"
+      MaxWidth=215
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_1')),DrawY=-174,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=4851,OverrideDelta=75)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=6237
-      ObjPosY=-288
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_2"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
-   End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_3
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_3.CameraShake_0'
-      ShakeScale=0.250000
-      InputLinks(0)=(DrawY=-228,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-208,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_6')),DrawY=-218,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=6819,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=6885,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_8'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=6949,OverrideDelta=148)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=6781
-      ObjPosY=-264
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_3"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
-   End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_4
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_4.CameraShake_0'
-      ShakeScale=0.150000
-      InputLinks(0)=(DrawY=-212,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-192,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_5')),DrawY=-202,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=7659,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7725,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_2'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=7789,OverrideDelta=148)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=7621
-      ObjPosY=-248
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_4"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
-   End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_5
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_5.CameraShake_0'
-      ShakeScale=0.150000
-      InputLinks(0)=(DrawY=-204,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-184,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_8')),DrawY=-194,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=7923,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7989,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_2'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=8053,OverrideDelta=148)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=7885
+      ObjPosX=4744
       ObjPosY=-240
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_5"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
-   End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_6
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_6.CameraShake_0'
-      ShakeScale=0.150000
-      InputLinks(0)=(DrawY=-228,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-208,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_7')),DrawY=-218,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=7115,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7181,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_2'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=7245,OverrideDelta=148)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=7077
-      ObjPosY=-264
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_6"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
-   End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_7
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_7.CameraShake_0'
-      ShakeScale=0.150000
-      InputLinks(0)=(DrawY=-228,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-208,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_4')),DrawY=-218,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=7379,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7445,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_2'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=7509,OverrideDelta=148)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=7341
-      ObjPosY=-264
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_7"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
-   End Object
-   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_8
-      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-         OscillationDuration=1.000000
-         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-         Name="CameraShake_0"
-         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-      End Object
-      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_8.CameraShake_0'
-      ShakeScale=0.100000
-      InputLinks(0)=(DrawY=-196,ActivateDelay=0.200000,OverrideDelta=13)
-      InputLinks(1)=(DrawY=-176,OverrideDelta=33)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_9')),DrawY=-186,OverrideDelta=23)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=8227,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=8293,OverrideDelta=76)
-      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_10'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=8357,OverrideDelta=148)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=8189
-      ObjPosY=-232
-      DrawWidth=204
-      DrawHeight=101
-      Name="SeqAct_CameraShake_8"
-      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+      ObjComment="GroundTremble"
+      DrawWidth=127
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_0"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
    Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_9
       Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
@@ -912,108 +679,341 @@ Begin Object Class=Sequence Name=Tremble_Handler
       Name="SeqAct_CameraShake_9"
       ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
    End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_0
-      EventName="GroundTremble"
-      MaxWidth=215
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_1')),DrawY=-174,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=4851,OverrideDelta=75)
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_8
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_8.CameraShake_0'
+      ShakeScale=0.100000
+      InputLinks(0)=(DrawY=-196,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-176,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_9')),DrawY=-186,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=8227,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=8293,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_10'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=8357,OverrideDelta=148)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=4744
+      ObjPosX=8189
+      ObjPosY=-232
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_8"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+   End Object
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_7
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_7.CameraShake_0'
+      ShakeScale=0.150000
+      InputLinks(0)=(DrawY=-228,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-208,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_4')),DrawY=-218,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=7379,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7445,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_2'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=7509,OverrideDelta=148)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
+      ObjPosX=7341
+      ObjPosY=-264
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_7"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+   End Object
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_6
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_6.CameraShake_0'
+      ShakeScale=0.150000
+      InputLinks(0)=(DrawY=-228,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-208,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_7')),DrawY=-218,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=7115,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7181,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_2'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=7245,OverrideDelta=148)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
+      ObjPosX=7077
+      ObjPosY=-264
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_6"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+   End Object
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_5
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_5.CameraShake_0'
+      ShakeScale=0.150000
+      InputLinks(0)=(DrawY=-204,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-184,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_8')),DrawY=-194,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=7923,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7989,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_2'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=8053,OverrideDelta=148)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
+      ObjPosX=7885
       ObjPosY=-240
-      ObjComment="GroundTremble"
-      DrawWidth=127
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_0"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_5"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
    End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_10
-      ExpectedType=Class'Engine.SeqVar_Float'
-      FindVarName="Mag_Min"
-      ObjInstanceVersion=1
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_4
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_4.CameraShake_0'
+      ShakeScale=0.150000
+      InputLinks(0)=(DrawY=-212,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-192,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_5')),DrawY=-202,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=7659,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7725,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_2'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=7789,OverrideDelta=148)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=8464
-      ObjPosY=24
-      ObjColor=(B=255,G=0,R=0,A=255)
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Named_10"
-      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+      ObjPosX=7621
+      ObjPosY=-248
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_4"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
    End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_2
-      ExpectedType=Class'Engine.SeqVar_Float'
-      FindVarName="Mag_Med"
-      ObjInstanceVersion=1
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_3
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_3.CameraShake_0'
+      ShakeScale=0.250000
+      InputLinks(0)=(DrawY=-228,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-208,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_6')),DrawY=-218,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=6819,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=6885,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_8'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=6949,OverrideDelta=148)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=7592
-      ObjPosY=72
-      ObjColor=(B=255,G=0,R=0,A=255)
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Named_2"
-      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+      ObjPosX=6781
+      ObjPosY=-264
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_3"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
    End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_6
-      ExpectedType=Class'Engine.SeqVar_Float'
-      FindVarName="Mag_Min"
-      ObjInstanceVersion=1
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_2
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_2.CameraShake_0'
+      ShakeScale=0.150000
+      InputLinks(0)=(DrawY=-252,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-232,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_12')),DrawY=-242,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=6275,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=6341,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_7'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=6405,OverrideDelta=148)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=5288
-      ObjPosY=-120
-      ObjColor=(B=255,G=0,R=0,A=255)
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Named_6"
-      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+      ObjPosX=6237
+      ObjPosY=-288
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_2"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
    End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_7
-      ExpectedType=Class'Engine.SeqVar_Float'
-      FindVarName="Mag_Med"
-      ObjInstanceVersion=1
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_14
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_14.CameraShake_0'
+      ShakeScale=0.150000
+      InputLinks(0)=(DrawY=-260,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-240,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_2')),DrawY=-250,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=6003,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=6069,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_7'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=6133,OverrideDelta=148)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=6088
-      ObjPosY=56
-      ObjColor=(B=255,G=0,R=0,A=255)
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Named_7"
-      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+      ObjPosX=5965
+      ObjPosY=-296
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_14"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
    End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_8
-      ExpectedType=Class'Engine.SeqVar_Float'
-      FindVarName="Mag_Max"
-      ObjInstanceVersion=1
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_13
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_13.CameraShake_0'
+      ShakeScale=0.150000
+      InputLinks(0)=(DrawY=-268,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-248,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_14')),DrawY=-258,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=5715,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=5781,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_7'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=5845,OverrideDelta=148)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=6920
-      ObjPosY=-104
-      ObjColor=(B=255,G=0,R=0,A=255)
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Named_8"
-      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+      ObjPosX=5677
+      ObjPosY=-304
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_13"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
    End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_9
-      ExpectedType=Class'Engine.SeqVar_Float'
-      FindVarName="Mag_Falloff"
-      ObjInstanceVersion=1
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_12
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_12.CameraShake_0'
+      ShakeScale=0.150000
+      InputLinks(0)=(DrawY=-228,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-208,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_3')),DrawY=-218,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=6523,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=6589,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_7'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=6653,OverrideDelta=148)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=9032
-      ObjPosY=40
-      ObjColor=(B=255,G=0,R=0,A=255)
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Named_9"
-      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+      ObjPosX=6485
+      ObjPosY=-264
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_12"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
    End Object
-   Begin Object Class=SeqVar_Player Name=SeqVar_Player_1
-      ObjInstanceVersion=1
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_11
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_11.CameraShake_0'
+      ShakeScale=0.150000
+      InputLinks(0)=(DrawY=-252,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-232,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_13')),DrawY=-242,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=5459,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=5525,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_7'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=5589,OverrideDelta=148)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
-      ObjPosX=7272
-      ObjPosY=344
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Player_1"
-      ObjectArchetype=SeqVar_Player'Engine.Default__SeqVar_Player'
+      ObjPosX=5421
+      ObjPosY=-288
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_11"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+   End Object
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_10
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_10.CameraShake_0'
+      ShakeScale=0.050000
+      InputLinks(0)=(DrawY=-172,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-152,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_0')),DrawY=-162,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=8811,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=8877,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_9'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=8941,OverrideDelta=148)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
+      ObjPosX=8773
+      ObjPosY=-208
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_10"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+   End Object
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_1
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_1.CameraShake_0'
+      ShakeScale=0.100000
+      InputLinks(0)=(DrawY=-244,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-224,OverrideDelta=33)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_11')),DrawY=-234,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=5190,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=5256,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_6'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=5320,OverrideDelta=148)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
+      ObjPosX=5152
+      ObjPosY=-280
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_1"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
+   End Object
+   Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_0
+      Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+         OscillationDuration=1.000000
+         RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+         Name="CameraShake_0"
+         ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+      End Object
+      Shake=CameraShake'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqAct_CameraShake_0.CameraShake_0'
+      ShakeScale=0.050000
+      InputLinks(0)=(DrawY=-148,ActivateDelay=0.200000,OverrideDelta=13)
+      InputLinks(1)=(DrawY=-128,OverrideDelta=33)
+      OutputLinks(0)=(DrawY=-138,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Player_1'),DrawX=9083,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=9149,OverrideDelta=76)
+      VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Float',LinkedVariables=(SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_9'),LinkDesc="ShakeScale",PropertyName="ShakeScale",MinVars=0,DrawX=9213,OverrideDelta=148)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler'
+      ObjPosX=9045
+      ObjPosY=-184
+      DrawWidth=204
+      DrawHeight=101
+      Name="SeqAct_CameraShake_0"
+      ObjectArchetype=SeqAct_CameraShake'Engine.Default__SeqAct_CameraShake'
    End Object
    SequenceObjects(0)=SeqEvent_RemoteEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqEvent_RemoteEvent_0'
    SequenceObjects(1)=SeqVar_Named'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.Tremble_Handler.SeqVar_Named_9'
@@ -2123,180 +2123,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
    VariableLinks(4)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_139'),LinkDesc="LavaLight2",MinVars=0,DrawX=3891,OverrideDelta=263)
    VariableLinks(5)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_140'),LinkDesc="LavaLight3",MinVars=0,DrawX=3947,OverrideDelta=319)
    VariableLinks(6)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_141'),LinkDesc="LavaLight4",MinVars=0,DrawX=4003,OverrideDelta=375)
+   VariableLinks(7)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18'),LinkDesc="LavaLight_Falls",MinVars=0,DrawX=4073,OverrideDelta=431)
+   VariableLinks(8)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_125'),LinkDesc="LavaLight0",MinVars=0,DrawX=4144,OverrideDelta=516)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3608
    ObjPosY=3872
-   DrawWidth=431
+   DrawWidth=572
    DrawHeight=173
    Name="SeqAct_Interp_0"
    ObjectArchetype=SeqAct_Interp'Engine.Default__SeqAct_Interp'
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(ViewStartInput=-0.070777,ViewEndInput=31.929226,ViewStartOutput=-0.928571,ViewEndOutput=1.071429)
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_11
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
-         PropertyName="LightColor"
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_2"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.150401,InterpMode=CIM_CurveAutoClamped),(InVal=11.500000,InterpMode=CIM_CurveAutoClamped),(InVal=13.000000,OutVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_5
-         PropertyName="Radius"
-         TrackTitle="Radius"
-         Name="InterpTrackFloatProp_5"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
-         Name="InterpTrackMove_4"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11.InterpTrackMove_4'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11.InterpTrackFloatProp_4'
-      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11.InterpTrackColorProp_2'
-      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11.InterpTrackFloatProp_5'
-      GroupName="LavaLight1"
-      GroupColor=(B=224,G=0,R=79,A=255)
-      Name="InterpGroup_11"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_12
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_3
-         PropertyName="LightColor"
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_3"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_6
-         PropertyName="Brightness"
-         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.150401,InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_6"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_7
-         PropertyName="Radius"
-         TrackTitle="Radius"
-         Name="InterpTrackFloatProp_7"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_12.InterpTrackMove_5'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_12.InterpTrackFloatProp_6'
-      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_12.InterpTrackColorProp_3'
-      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_12.InterpTrackFloatProp_7'
-      GroupName="LavaLight2"
-      GroupColor=(B=0,G=197,R=136,A=255)
-      Name="InterpGroup_12"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_13
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_4
-         PropertyName="LightColor"
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_4"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_8
-         PropertyName="Brightness"
-         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.150401,InterpMode=CIM_CurveAutoClamped),(InVal=16.000000,InterpMode=CIM_CurveAutoClamped),(InVal=18.000000,OutVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_8"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_9
-         PropertyName="Radius"
-         TrackTitle="Radius"
-         Name="InterpTrackFloatProp_9"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
-         Name="InterpTrackMove_6"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_13.InterpTrackMove_6'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_13.InterpTrackFloatProp_8'
-      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_13.InterpTrackColorProp_4'
-      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_13.InterpTrackFloatProp_9'
-      GroupName="LavaLight3"
-      GroupColor=(B=0,G=145,R=191,A=255)
-      Name="InterpGroup_13"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_15
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_6
-         PropertyName="LightColor"
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_6"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_12
-         PropertyName="Brightness"
-         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.150401,InterpMode=CIM_CurveAutoClamped),(InVal=18.000000,InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_12"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_13
-         PropertyName="Radius"
-         TrackTitle="Radius"
-         Name="InterpTrackFloatProp_13"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_8
-         Name="InterpTrackMove_8"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackMove_8'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackFloatProp_12'
-      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackColorProp_6'
-      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackFloatProp_13'
-      GroupName="LavaLight4"
-      GroupColor=(B=213,G=105,R=0,A=255)
-      Name="InterpGroup_15"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Time=5.297424,Event=AkEvent'WW_ENV_Zed_Landing.Set_ZL_Lava')
-         Name="InterpTrackAkEvent_0"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_1
-         AnimSeqs(0)=(AnimSeqName="LavaPathBaked",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_1"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(Time=5.467335,EventName="Waterfall_OFF")
-         bFireEventsWhenBackwards=False
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_2.InterpTrackAnimControl_1'
-      InterpTracks(1)=InterpTrackEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_2.InterpTrackEvent_0'
-      InterpTracks(2)=InterpTrackAkEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_2.InterpTrackAkEvent_0'
-      GroupName="NewSkeletalMeshGroup"
-      GroupColor=(B=206,G=0,R=123,A=255)
-      GroupAnimSets(0)=AnimSet'VFX_textures.LavaPathBaked_Anims'
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_9
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=7.000000,OutVal=(X=0.000000,Y=-0.001953,Z=11.180176),ArriveTangent=(X=0.000000,Y=-0.000244,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=12.000000,OutVal=(X=0.000000,Y=-0.002930,Z=-108.001465),ArriveTangent=(X=0.000000,Y=-0.000293,Z=-2.441538),LeaveTangent=(X=0.000000,Y=-0.000293,Z=-2.441538),InterpMode=CIM_CurveAutoClamped),(InVal=12.000000,OutVal=(X=0.000000,Y=-0.003418,Z=-108.001709),InterpMode=CIM_CurveAutoClamped),(InVal=12.000000,OutVal=(X=0.000000,Y=-0.003418,Z=-108.001709),InterpMode=CIM_CurveAutoClamped),(InVal=12.000000,OutVal=(X=0.000000,Y=-0.002930,Z=-108.001465),InterpMode=CIM_CurveAutoClamped)))
@@ -2309,8 +2148,242 @@ Begin Object Class=InterpData Name=InterpData_0
       InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_9.InterpTrackMove_3'
       GroupName="LavaRiver"
       GroupColor=(B=0,G=153,R=184,A=255)
+      bCollapsed=True
       Name="InterpGroup_9"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(Time=5.467335,EventName="Waterfall_OFF")
+         bFireEventsWhenBackwards=False
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_1
+         AnimSeqs(0)=(AnimSeqName="LavaPathBaked",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_1"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Time=5.297424,Event=AkEvent'WW_ENV_Zed_Landing.Set_ZL_Lava')
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackAnimControl'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_2.InterpTrackAnimControl_1'
+      InterpTracks(1)=InterpTrackEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_2.InterpTrackEvent_0'
+      InterpTracks(2)=InterpTrackAkEvent'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_2.InterpTrackAkEvent_0'
+      GroupName="NewSkeletalMeshGroup"
+      GroupColor=(B=206,G=0,R=123,A=255)
+      GroupAnimSets(0)=AnimSet'VFX_textures.LavaPathBaked_Anims'
+      bCollapsed=True
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_15
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_8
+         Name="InterpTrackMove_8"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_13
+         PropertyName="Radius"
+         TrackTitle="Radius"
+         Name="InterpTrackFloatProp_13"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_12
+         PropertyName="Brightness"
+         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.150401,InterpMode=CIM_CurveAutoClamped),(InVal=18.000000,InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_12"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_6
+         PropertyName="LightColor"
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_6"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackMove_8'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackFloatProp_12'
+      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackColorProp_6'
+      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackFloatProp_13'
+      GroupName="LavaLight4"
+      GroupColor=(B=213,G=105,R=0,A=255)
+      Name="InterpGroup_15"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_13
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
+         Name="InterpTrackMove_6"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_9
+         PropertyName="Radius"
+         TrackTitle="Radius"
+         Name="InterpTrackFloatProp_9"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_8
+         PropertyName="Brightness"
+         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.150401,InterpMode=CIM_CurveAutoClamped),(InVal=16.000000,InterpMode=CIM_CurveAutoClamped),(InVal=18.000000,OutVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_8"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_4
+         PropertyName="LightColor"
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_4"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_13.InterpTrackMove_6'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_13.InterpTrackFloatProp_8'
+      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_13.InterpTrackColorProp_4'
+      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_13.InterpTrackFloatProp_9'
+      GroupName="LavaLight3"
+      GroupColor=(B=0,G=145,R=191,A=255)
+      bCollapsed=True
+      Name="InterpGroup_13"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_12
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_7
+         PropertyName="Radius"
+         TrackTitle="Radius"
+         Name="InterpTrackFloatProp_7"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_6
+         PropertyName="Brightness"
+         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.150401,InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_6"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_3
+         PropertyName="LightColor"
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_3"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_12.InterpTrackMove_5'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_12.InterpTrackFloatProp_6'
+      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_12.InterpTrackColorProp_3'
+      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_12.InterpTrackFloatProp_7'
+      GroupName="LavaLight2"
+      GroupColor=(B=0,G=197,R=136,A=255)
+      bCollapsed=True
+      Name="InterpGroup_12"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_11
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
+         Name="InterpTrackMove_4"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_5
+         PropertyName="Radius"
+         TrackTitle="Radius"
+         Name="InterpTrackFloatProp_5"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.150401,InterpMode=CIM_CurveAutoClamped),(InVal=11.500000,InterpMode=CIM_CurveAutoClamped),(InVal=13.000000,OutVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
+         PropertyName="LightColor"
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_2"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11.InterpTrackMove_4'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11.InterpTrackFloatProp_4'
+      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11.InterpTrackColorProp_2'
+      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11.InterpTrackFloatProp_5'
+      GroupName="LavaLight1"
+      GroupColor=(B=224,G=0,R=79,A=255)
+      bCollapsed=True
+      Name="InterpGroup_11"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_3
+         PropertyName="Radius"
+         TrackTitle="Radius"
+         Name="InterpTrackFloatProp_3"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_2
+         PropertyName="Brightness"
+         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=7.916533,InterpMode=CIM_CurveAutoClamped),(InVal=9.631008,OutVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_2"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
+         PropertyName="LightColor"
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_1"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1.InterpTrackFloatProp_2'
+      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1.InterpTrackColorProp_1'
+      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1.InterpTrackFloatProp_3'
+      GroupName="LavaLight0"
+      GroupColor=(B=0,G=133,R=199,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="Radius"
+         TrackTitle="Radius"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
+         PropertyName="Brightness"
+         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.487256,InterpMode=CIM_CurveAutoClamped),(InVal=4.762341,OutVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_0"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
+         PropertyName="LightColor"
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_0"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackFloatProp_0'
+      InterpTracks(2)=InterpTrackColorProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackColorProp_0'
+      InterpTracks(3)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackFloatProp_1'
+      GroupName="LavaLight_Falls"
+      GroupColor=(B=51,G=0,R=229,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(ViewStartInput=-0.070777,ViewEndInput=31.929226,ViewStartOutput=-0.928571,ViewEndOutput=1.071429)
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=32.000000
    InterpGroups(0)=InterpGroup'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_2'
@@ -2319,6 +2392,8 @@ Begin Object Class=InterpData Name=InterpData_0
    InterpGroups(3)=InterpGroup'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_12'
    InterpGroups(4)=InterpGroup'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_13'
    InterpGroups(5)=InterpGroup'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15'
+   InterpGroups(6)=InterpGroup'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
+   InterpGroups(7)=InterpGroup'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1'
    CurveEdSetup=InterpCurveEdSetup'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=32.000000
@@ -2396,7 +2471,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_32
    InputLinks(1)=(DrawY=3930,OverrideDelta=35)
    InputLinks(2)=(DrawY=3951,OverrideDelta=56)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_38',InputLinkIdx=1)),DrawY=3930,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_143',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_144',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_145'),DrawX=2590,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_143',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_144',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_145',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_126',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_127'),DrawX=2590,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2641,OverrideDelta=76)
    EventLinks(0)=(DrawX=2690,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -3731,13 +3806,13 @@ End Object
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_0
    bReplicateToClients=True
    Event=AkEvent'WW_ENV_Zed_Landing.Play_ZL_Lava_Explo'
-   InputLinks(0)=(DrawY=3890,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=3890,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=4152,OverrideDelta=26)
+   InputLinks(0)=(DrawY=3842,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=3842,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=4160,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4104
-   ObjPosY=3856
+   ObjPosX=4112
+   ObjPosY=3808
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_0"
@@ -3826,28 +3901,6 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_1
 End Object
 
 Begin Object Class=InterpData Name=InterpData_1
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_0"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((OutVal=(X=0.001465,Y=0.000183,Z=0.000092),InterpMode=CIM_CurveAuto),(InVal=2.500000,OutVal=(X=438.327637,Y=241.229492,Z=80.000114),ArriveTangent=(X=219.501373,Y=135.154129,Z=23.466675),LeaveTangent=(X=219.501373,Y=135.154129,Z=23.466675),InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,OutVal=(X=1757.236572,Y=1206.710449,Z=176.000153),ArriveTangent=(X=197.608521,Y=85.165283,Z=33.589081),LeaveTangent=(X=197.608521,Y=85.165283,Z=33.589081),InterpMode=CIM_CurveUser),(InVal=12.000000,OutVal=(X=2710.825928,Y=1154.605957,Z=560.000366),ArriveTangent=(X=235.384583,Y=-159.152771,Z=0.000055),LeaveTangent=(X=235.384583,Y=-159.152771,Z=0.000055),InterpMode=CIM_CurveUser),(InVal=15.500000,OutVal=(X=3091.305664,Y=552.775391,Z=560.000488),ArriveTangent=(X=0.000000,Y=-174.941284,Z=0.000000),LeaveTangent=(X=0.000000,Y=-174.941284,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.500000,OutVal=(X=2395.676025,Y=-332.395020,Z=544.000549),ArriveTangent=(X=0.000000,Y=-37.854576,Z=0.000000),LeaveTangent=(X=0.000000,Y=-37.854576,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=23.500000,OutVal=(X=2744.105469,Y=-390.937988,Z=576.000610),ArriveTangent=(X=125.803116,Y=-39.510384,Z=19.056038),LeaveTangent=(X=125.803116,Y=-39.510384,Z=19.056038),InterpMode=CIM_CurveAutoClamped),(InVal=27.500000,OutVal=(X=3276.297852,Y=-1002.600098,Z=736.000732),ArriveTangent=(X=0.000000,Y=-191.069092,Z=0.000000),LeaveTangent=(X=0.000000,Y=-191.069092,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=29.500000,OutVal=(X=3209.537354,Y=-1537.352539,Z=720.000854),ArriveTangent=(X=-61.177647,Y=-203.159668,Z=0.000000),LeaveTangent=(X=-61.177647,Y=-203.159668,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=32.500000,OutVal=(X=2732.177246,Y=-2018.398438,Z=752.000977),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.000115),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.000115),InterpMode=CIM_CurveAutoClamped),(InVal=35.000000,OutVal=(X=2858.163330,Y=-1992.231934,Z=752.001099),ArriveTangent=(X=90.072433,Y=22.449394,Z=0.000110),LeaveTangent=(X=90.072433,Y=22.449394,Z=0.000110),InterpMode=CIM_CurveAutoClamped),(InVal=38.500000,OutVal=(X=3547.729492,Y=-1279.823730,Z=768.001221),ArriveTangent=(X=193.056381,Y=220.385361,Z=0.000000),LeaveTangent=(X=193.056381,Y=220.385361,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=41.500000,OutVal=(X=4113.029785,Y=-559.727051,Z=624.001343),ArriveTangent=(X=97.379044,Y=277.246338,Z=-28.011957),LeaveTangent=(X=97.379044,Y=277.246338,Z=-28.011957),InterpMode=CIM_CurveAutoClamped),(InVal=44.500000,OutVal=(X=4271.439453,Y=383.654297,Z=576.001465),ArriveTangent=(X=110.414139,Y=233.357452,Z=0.000000),LeaveTangent=(X=110.414139,Y=233.357452,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=47.000000,OutVal=(X=4982.766602,Y=777.835938,Z=688.001587),ArriveTangent=(X=311.907318,Y=113.213333,Z=27.793669),LeaveTangent=(X=311.907318,Y=113.213333,Z=27.793669),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=5986.929688,Y=1006.327637,Z=736.001709),ArriveTangent=(X=294.118927,Y=0.000000,Z=0.000000),LeaveTangent=(X=294.118927,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=53.500000,OutVal=(X=6894.539551,Y=673.733398,Z=528.001831),ArriveTangent=(X=179.055038,Y=-166.789383,Z=0.000000),LeaveTangent=(X=179.055038,Y=-166.789383,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=56.500000,OutVal=(X=7238.857422,Y=-152.591797,Z=528.001892),ArriveTangent=(X=89.557861,Y=-216.757324,Z=0.000020),LeaveTangent=(X=89.557861,Y=-216.757324,Z=0.000020),InterpMode=CIM_CurveAutoClamped),(InVal=59.500000,OutVal=(X=7431.886719,Y=-626.810547,Z=528.001953),ArriveTangent=(X=0.000000,Y=-136.568619,Z=0.000022),LeaveTangent=(X=0.000000,Y=-136.568619,Z=0.000022),InterpMode=CIM_CurveAutoClamped),(InVal=62.000000,OutVal=(X=7249.742676,Y=-903.719238,Z=528.002014),ArriveTangent=(X=0.000000,Y=-149.943909,Z=0.000065),LeaveTangent=(X=0.000000,Y=-149.943909,Z=0.000065),InterpMode=CIM_CurveAutoClamped),(InVal=64.000000,OutVal=(X=7365.806641,Y=-1301.558105,Z=544.002075),ArriveTangent=(X=135.156357,Y=-152.161957,Z=7.603629),LeaveTangent=(X=135.156357,Y=-152.161957,Z=7.603629),InterpMode=CIM_CurveUser),(InVal=66.000000,OutVal=(X=7719.053711,Y=-1360.706543,Z=608.002197),ArriveTangent=(X=239.667297,Y=-7.885750,Z=56.405449),LeaveTangent=(X=239.667297,Y=-7.885750,Z=56.405449),InterpMode=CIM_CurveUser),(InVal=69.000000,OutVal=(X=8450.772461,Y=-1558.862793,Z=880.002502),ArriveTangent=(X=168.299942,Y=-180.322083,Z=36.414047),LeaveTangent=(X=168.299942,Y=-180.322083,Z=36.414047),InterpMode=CIM_CurveUser),(InVal=72.500000,OutVal=(X=8460.683594,Y=-2516.736328,Z=992.002502),ArriveTangent=(X=0.000000,Y=-311.519562,Z=49.454556),LeaveTangent=(X=0.000000,Y=-311.519562,Z=49.454556),InterpMode=CIM_CurveAutoClamped),(InVal=74.500000,OutVal=(X=8287.563477,Y=-3272.220459,Z=1152.002563),ArriveTangent=(X=-72.229004,Y=-375.939331,Z=64.000046),LeaveTangent=(X=-72.229004,Y=-375.939331,Z=64.000046),InterpMode=CIM_CurveAutoClamped),(InVal=76.500000,OutVal=(X=8171.767578,Y=-4020.493652,Z=1248.002686),ArriveTangent=(X=-88.964149,Y=-292.001801,Z=0.000113),LeaveTangent=(X=-88.964149,Y=-292.001801,Z=0.000113),InterpMode=CIM_CurveAutoClamped),(InVal=79.500000,OutVal=(X=7764.364258,Y=-4732.229492,Z=1248.002808),ArriveTangent=(X=-118.726158,Y=-223.064941,Z=0.000102),LeaveTangent=(X=-118.726158,Y=-223.064941,Z=0.000102),InterpMode=CIM_CurveAutoClamped),(InVal=82.500000,OutVal=(X=7459.410645,Y=-5358.883301,Z=1264.002930),ArriveTangent=(X=-78.549477,Y=-216.903320,Z=10.138201),LeaveTangent=(X=-78.549477,Y=-216.903320,Z=10.138201),InterpMode=CIM_CurveAutoClamped),(InVal=85.500000,OutVal=(X=7293.067383,Y=-6033.649414,Z=1328.003052),ArriveTangent=(X=0.000000,Y=-185.239990,Z=18.666708),LeaveTangent=(X=0.000000,Y=-185.239990,Z=18.666708),InterpMode=CIM_CurveAutoClamped),(InVal=88.500000,OutVal=(X=7405.052734,Y=-6470.323242,Z=1376.003174),ArriveTangent=(X=0.000000,Y=-167.905991,Z=0.000000),LeaveTangent=(X=0.000000,Y=-167.905991,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=91.000000,OutVal=(X=7093.457031,Y=-6957.132324,Z=1344.003418),ArriveTangent=(X=-190.557877,Y=-43.196613,Z=-24.379135),LeaveTangent=(X=-190.557877,Y=-43.196613,Z=-24.379135),InterpMode=CIM_CurveAutoClamped),(InVal=93.500000,OutVal=(X=6442.982910,Y=-7005.563965,Z=1215.003540),ArriveTangent=(X=-272.211029,Y=-39.506683,Z=-47.999958),LeaveTangent=(X=-272.211029,Y=-39.506683,Z=-47.999958),InterpMode=CIM_CurveAutoClamped),(InVal=97.000000,OutVal=(X=5460.190918,Y=-7643.333496,Z=1056.003662),ArriveTangent=(X=-149.858826,Y=-468.062042,Z=0.000000),LeaveTangent=(X=-149.858826,Y=-468.062042,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=100.000000,OutVal=(X=6133.399414,Y=-8523.530273,Z=1072.003662),ArriveTangent=(X=0.000000,Y=-320.878662,Z=6.333374),LeaveTangent=(X=0.000000,Y=-320.878662,Z=6.333374),InterpMode=CIM_CurveAutoClamped),(InVal=103.000000,OutVal=(X=5669.548340,Y=-9568.605469,Z=1094.003906),ArriveTangent=(X=-142.057785,Y=-50.875824,Z=0.000000),LeaveTangent=(X=-142.057785,Y=-50.875824,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=105.500000,OutVal=(X=5348.887695,Y=-9493.232422,Z=1104.004028),ArriveTangent=(X=-124.007469,Y=88.810997,Z=-5.333292),LeaveTangent=(X=-124.007469,Y=88.810997,Z=-5.333292),InterpMode=CIM_CurveUser),(InVal=107.500000,OutVal=(X=4959.420410,Y=-9150.695313,Z=1120.004028),ArriveTangent=(X=-217.381927,Y=130.682816,Z=11.696037),LeaveTangent=(X=-217.381927,Y=130.682816,Z=11.696037),InterpMode=CIM_CurveAutoClamped),(InVal=110.500000,OutVal=(X=4261.978027,Y=-8839.818359,Z=1169.004395),ArriveTangent=(X=-203.389771,Y=279.129700,Z=24.541946),LeaveTangent=(X=-203.389771,Y=279.129700,Z=24.541946),InterpMode=CIM_CurveUser),(InVal=113.000000,OutVal=(X=4300.201660,Y=-8009.787109,Z=1142.004517),ArriveTangent=(X=214.334229,Y=347.015564,Z=18.333008),LeaveTangent=(X=214.334229,Y=347.015564,Z=18.333008),InterpMode=CIM_CurveUser),(InVal=115.000000,OutVal=(X=4417.400879,Y=-7583.789063,Z=1140.004517),ArriveTangent=(X=0.000000,Y=264.196289,Z=-2.406167),LeaveTangent=(X=0.000000,Y=264.196289,Z=-2.406167),InterpMode=CIM_CurveAutoClamped),(InVal=117.000000,OutVal=(X=4411.117188,Y=-6953.001953,Z=1079.004639),ArriveTangent=(X=42.215820,Y=244.225952,Z=0.000000),LeaveTangent=(X=42.215820,Y=244.225952,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=119.000000,OutVal=(X=4745.781250,Y=-6508.345703,Z=1039.004761),ArriveTangent=(X=228.458984,Y=213.862915,Z=-7.189754),LeaveTangent=(X=228.458984,Y=213.862915,Z=-7.189754),InterpMode=CIM_CurveAutoClamped),(InVal=121.000000,OutVal=(X=5324.953125,Y=-6097.550293,Z=1032.004883),ArriveTangent=(X=83.382362,Y=273.653198,Z=-7.980669),LeaveTangent=(X=83.382362,Y=273.653198,Z=-7.980669),InterpMode=CIM_CurveAutoClamped),(InVal=123.000000,OutVal=(X=5402.652344,Y=-5413.732910,Z=944.004944),ArriveTangent=(X=69.207718,Y=308.350922,Z=-40.888847),LeaveTangent=(X=69.207718,Y=308.350922,Z=-40.888847),InterpMode=CIM_CurveAutoClamped),(InVal=125.500000,OutVal=(X=5746.705566,Y=-4709.971191,Z=848.005066),ArriveTangent=(X=212.081665,Y=256.344421,Z=0.000000),LeaveTangent=(X=212.081665,Y=256.344421,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=6478.392090,Y=-4132.010742,Z=848.005188),ArriveTangent=(X=92.668213,Y=273.813416,Z=0.000000),LeaveTangent=(X=92.668213,Y=273.813416,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=130.500000,OutVal=(X=6588.208984,Y=-3340.904053,Z=720.005249),ArriveTangent=(X=-61.205933,Y=121.267899,Z=0.000000),LeaveTangent=(X=-61.205933,Y=121.267899,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=133.000000,OutVal=(X=6202.384277,Y=-3215.717041,Z=736.005371),ArriveTangent=(X=-216.541275,Y=0.000000,Z=0.000000),LeaveTangent=(X=-216.541275,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=136.000000,OutVal=(X=5383.677246,Y=-3497.772705,Z=720.005493),ArriveTangent=(X=-307.943054,Y=-104.541359,Z=-13.608181),LeaveTangent=(X=-307.943054,Y=-104.541359,Z=-13.608181),InterpMode=CIM_CurveAutoClamped),(InVal=138.000000,OutVal=(X=4662.668945,Y=-3738.423828,Z=544.005615),ArriveTangent=(X=-359.158142,Y=0.000000,Z=-63.999958),LeaveTangent=(X=-359.158142,Y=0.000000,Z=-63.999958),InterpMode=CIM_CurveAutoClamped),(InVal=140.500000,OutVal=(X=3767.465576,Y=-3509.599365,Z=432.005676),ArriveTangent=(X=-353.661469,Y=0.000000,Z=-63.999981),LeaveTangent=(X=-353.661469,Y=0.000000,Z=-63.999981),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=2894.361572,Y=-3989.904053,Z=224.005707),ArriveTangent=(X=-104.844940,Y=-284.244690,Z=0.000000),LeaveTangent=(X=-104.844940,Y=-284.244690,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=146.000000,OutVal=(X=2752.582275,Y=-5138.461426,Z=416.005768),ArriveTangent=(X=0.000000,Y=-382.589264,Z=75.636391),LeaveTangent=(X=0.000000,Y=-382.589264,Z=75.636391),InterpMode=CIM_CurveAutoClamped),(InVal=148.500000,OutVal=(X=2858.372803,Y=-6094.145020,Z=640.005859),ArriveTangent=(X=-46.935059,Y=-333.746338,Z=105.600052),LeaveTangent=(X=-46.935059,Y=-333.746338,Z=105.600052),InterpMode=CIM_CurveUser),(InVal=150.500000,OutVal=(X=2700.515137,Y=-6719.190918,Z=915.006165),ArriveTangent=(X=41.068237,Y=-251.482101,Z=77.714317),LeaveTangent=(X=41.068237,Y=-251.482101,Z=77.714317),InterpMode=CIM_CurveUser),(InVal=153.000000,OutVal=(X=3175.454102,Y=-7320.631836,Z=1084.006226),ArriveTangent=(X=44.166756,Y=-255.047943,Z=42.488033),LeaveTangent=(X=44.166756,Y=-255.047943,Z=42.488033),InterpMode=CIM_CurveAutoClamped),(InVal=155.500000,OutVal=(X=3225.271973,Y=-7994.430664,Z=1147.006348),ArriveTangent=(X=-201.075623,Y=-237.833069,Z=0.000000),LeaveTangent=(X=-201.075623,Y=-237.833069,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=158.000000,OutVal=(X=2537.915039,Y=-8196.763672,Z=1008.006409),ArriveTangent=(X=-335.257233,Y=0.000000,Z=-42.199940),LeaveTangent=(X=-335.257233,Y=0.000000,Z=-42.199940),InterpMode=CIM_CurveAutoClamped),(InVal=160.500000,OutVal=(X=1548.985840,Y=-8177.775391,Z=936.006653),ArriveTangent=(X=-352.205566,Y=0.000000,Z=0.000000),LeaveTangent=(X=-352.205566,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=163.000000,OutVal=(X=776.887207,Y=-8328.244141,Z=952.006775),ArriveTangent=(X=-219.081100,Y=0.000000,Z=2.790858),LeaveTangent=(X=-219.081100,Y=0.000000,Z=2.790858),InterpMode=CIM_CurveAutoClamped),(InVal=165.000000,OutVal=(X=488.087891,Y=-8123.486328,Z=955.006897),ArriveTangent=(X=-24.842117,Y=114.999344,Z=0.000041),LeaveTangent=(X=-24.842117,Y=114.999344,Z=0.000041),InterpMode=CIM_CurveUser),(InVal=167.500000,OutVal=(X=486.691895,Y=-7526.584473,Z=928.006897),ArriveTangent=(X=69.894653,Y=199.564011,Z=0.000000),LeaveTangent=(X=69.894653,Y=199.564011,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=170.500000,OutVal=(X=1042.986328,Y=-6905.625488,Z=880.007019),ArriveTangent=(X=90.958374,Y=236.453003,Z=-42.017941),LeaveTangent=(X=90.958374,Y=236.453003,Z=-42.017941),InterpMode=CIM_CurveUser),(InVal=173.500000,OutVal=(X=1021.467041,Y=-6501.679199,Z=756.007202),ArriveTangent=(X=-82.235031,Y=226.844833,Z=-54.399963),LeaveTangent=(X=-82.235031,Y=226.844833,Z=-54.399963),InterpMode=CIM_CurveUser),(InVal=176.000000,OutVal=(X=576.104004,Y=-5962.438965,Z=627.007324),ArriveTangent=(X=-123.172012,Y=216.457184,Z=-63.999958),LeaveTangent=(X=-123.172012,Y=216.457184,Z=-63.999958),InterpMode=CIM_CurveUser),(InVal=178.000000,OutVal=(X=482.605469,Y=-5358.538086,Z=416.007294),ArriveTangent=(X=57.407104,Y=281.563934,Z=-25.309837),LeaveTangent=(X=57.407104,Y=281.563934,Z=-25.309837),InterpMode=CIM_CurveUser),(InVal=180.500000,OutVal=(X=781.493164,Y=-4473.432617,Z=384.007416),ArriveTangent=(X=58.518147,Y=292.839539,Z=-29.171822),LeaveTangent=(X=58.518147,Y=292.839539,Z=-29.171822),InterpMode=CIM_CurveAutoClamped),(InVal=183.000000,OutVal=(X=859.244629,Y=-3894.340332,Z=-15.992615),ArriveTangent=(X=24.831249,Y=223.569824,Z=-17.079735),LeaveTangent=(X=24.831249,Y=223.569824,Z=-17.079735),InterpMode=CIM_CurveAutoClamped),(InVal=185.500000,OutVal=(X=905.649414,Y=-3355.583496,Z=-33.992607),ArriveTangent=(X=37.945503,Y=258.804230,Z=0.000000),LeaveTangent=(X=37.945503,Y=258.804230,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=188.500000,OutVal=(X=1293.727539,Y=-2470.916992,Z=0.007401),ArriveTangent=(X=0.000000,Y=285.181549,Z=0.000017),LeaveTangent=(X=0.000000,Y=285.181549,Z=0.000017),InterpMode=CIM_CurveAutoClamped),(InVal=190.500000,OutVal=(X=805.534668,Y=-1929.675781,Z=0.007416),ArriveTangent=(X=-174.454681,Y=326.588531,Z=0.000000),LeaveTangent=(X=-174.454681,Y=326.588531,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=193.500000,OutVal=(X=421.454102,Y=-836.395020,Z=-31.992577),ArriveTangent=(X=-135.458542,Y=333.532593,Z=0.000000),LeaveTangent=(X=-135.458542,Y=333.532593,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=196.000000,OutVal=(X=60.512695,Y=-95.246582,Z=-15.992561),ArriveTangent=(X=73.866760,Y=222.506180,Z=2.909094),LeaveTangent=(X=73.866760,Y=222.506180,Z=2.909094),InterpMode=CIM_CurveUser),(InVal=198.000000,OutVal=(X=315.836914,Y=35.311035,Z=0.007454),ArriveTangent=(X=98.788727,Y=4.060852,Z=0.000006),LeaveTangent=(X=98.788727,Y=4.060852,Z=0.000006),InterpMode=CIM_CurveUser),(InVal=200.000000,OutVal=(X=555.899414,Y=23.020020,Z=0.007469),ArriveTangent=(X=51.707359,Y=-53.201679,Z=0.000002),LeaveTangent=(X=51.707359,Y=-53.201679,Z=0.000002),InterpMode=CIM_CurveUser),(InVal=202.500000,OutVal=(X=568.286621,Y=-83.733398,Z=0.007484),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=2.500000,OutVal=(X=0.000000,Y=0.000000,Z=27.246094),InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,OutVal=(X=0.000000,Y=13.359375,Z=10.019531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-5.231467),LeaveTangent=(X=0.000000,Y=0.000000,Z=-5.231467),InterpMode=CIM_CurveUser),(InVal=12.000000,OutVal=(X=0.000000,Y=-2.109375,Z=-36.738281),ArriveTangent=(X=0.000000,Y=-0.865688,Z=-8.470459),LeaveTangent=(X=0.000000,Y=-0.865688,Z=-8.470459),InterpMode=CIM_CurveUser),(InVal=15.500000,OutVal=(X=0.000000,Y=-5.800781,Z=-125.507813),ArriveTangent=(X=0.000000,Y=-0.092460,Z=-13.956976),LeaveTangent=(X=0.000000,Y=-0.092460,Z=-13.956976),InterpMode=CIM_CurveAutoClamped),(InVal=20.500000,OutVal=(X=0.000000,Y=-5.976563,Z=-162.597656),InterpMode=CIM_CurveAutoClamped),(InVal=23.500000,OutVal=(X=0.000000,Y=0.351563,Z=-45.175781),InterpMode=CIM_CurveAutoClamped),(InVal=27.500000,OutVal=(X=0.000000,Y=-1.054688,Z=-118.828125),ArriveTangent=(X=0.000000,Y=-0.799454,Z=-15.427368),LeaveTangent=(X=0.000000,Y=-0.799454,Z=-15.427368),InterpMode=CIM_CurveAutoClamped),(InVal=29.500000,OutVal=(X=0.000000,Y=-5.449219,Z=-143.613281),ArriveTangent=(X=0.000000,Y=-2.285156,Z=-7.201799),LeaveTangent=(X=0.000000,Y=-2.285156,Z=-7.201799),InterpMode=CIM_CurveAutoClamped),(InVal=32.500000,OutVal=(X=0.000000,Y=-12.480469,Z=-155.390625),InterpMode=CIM_CurveAutoClamped),(InVal=35.000000,OutVal=(X=0.000000,Y=-2.812500,Z=24.609375),ArriveTangent=(X=0.000000,Y=0.511907,Z=14.032631),LeaveTangent=(X=0.000000,Y=0.511907,Z=14.032631),InterpMode=CIM_CurveAutoClamped),(InVal=38.500000,OutVal=(X=0.000000,Y=-2.109375,Z=44.648438),ArriveTangent=(X=0.000000,Y=0.243389,Z=5.922476),LeaveTangent=(X=0.000000,Y=0.243389,Z=5.922476),InterpMode=CIM_CurveAutoClamped),(InVal=41.500000,OutVal=(X=0.000000,Y=-1.230469,Z=63.105469),ArriveTangent=(X=0.000000,Y=0.632886,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.632886,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.500000,OutVal=(X=0.000000,Y=5.625000,Z=29.179688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.921165),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.921165),InterpMode=CIM_CurveAutoClamped),(InVal=47.000000,OutVal=(X=0.000000,Y=-1.757813,Z=-2.460938),ArriveTangent=(X=0.000000,Y=0.000000,Z=-14.062500),LeaveTangent=(X=0.000000,Y=0.000000,Z=-14.062500),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=-0.527344,Z=-48.164063),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.709736),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.709736),InterpMode=CIM_CurveAutoClamped),(InVal=53.500000,OutVal=(X=0.000000,Y=-2.812500,Z=-78.574219),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.034255),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.034255),InterpMode=CIM_CurveAutoClamped),(InVal=56.500000,OutVal=(X=0.000000,Y=-2.460938,Z=-126.386719),ArriveTangent=(X=0.000000,Y=0.270440,Z=-23.613281),LeaveTangent=(X=0.000000,Y=0.270440,Z=-23.613281),InterpMode=CIM_CurveAutoClamped),(InVal=59.500000,OutVal=(X=0.000000,Y=2.636719,Z=-220.253906),InterpMode=CIM_CurveAutoClamped),(InVal=62.000000,OutVal=(X=0.000000,Y=-0.527344,Z=-100.898438),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.796795),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.796795),InterpMode=CIM_CurveAutoClamped),(InVal=64.000000,OutVal=(X=0.000000,Y=2.988281,Z=-93.691406),ArriveTangent=(X=0.000000,Y=1.605471,Z=3.953888),LeaveTangent=(X=0.000000,Y=1.605471,Z=3.953888),InterpMode=CIM_CurveUser),(InVal=66.000000,OutVal=(X=0.000000,Y=15.117188,Z=-30.410156),InterpMode=CIM_CurveUser),(InVal=69.000000,OutVal=(X=0.000000,Y=6.152344,Z=-88.769531),ArriveTangent=(X=0.000000,Y=-1.353516,Z=-8.638144),LeaveTangent=(X=0.000000,Y=-1.353516,Z=-8.638144),InterpMode=CIM_CurveUser),(InVal=72.500000,OutVal=(X=0.000000,Y=1.582031,Z=-117.246094),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.182249),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.182249),InterpMode=CIM_CurveAutoClamped),(InVal=74.500000,OutVal=(X=0.000000,Y=4.042969,Z=-117.421875),InterpMode=CIM_CurveAutoClamped),(InVal=76.500000,OutVal=(X=0.000000,Y=0.703125,Z=-116.542969),ArriveTangent=(X=0.000000,Y=-0.155370,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.155370,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=79.500000,OutVal=(X=0.000000,Y=0.527344,Z=-166.289063),InterpMode=CIM_CurveAutoClamped),(InVal=82.500000,OutVal=(X=0.000000,Y=6.328125,Z=-101.953125),ArriveTangent=(X=0.000000,Y=3.506211,Z=26.806641),LeaveTangent=(X=0.000000,Y=3.506211,Z=26.806641),InterpMode=CIM_CurveAutoClamped),(InVal=85.500000,OutVal=(X=0.000000,Y=25.839844,Z=-5.449219),InterpMode=CIM_CurveAutoClamped),(InVal=88.500000,OutVal=(X=0.000000,Y=2.285156,Z=-105.644531),ArriveTangent=(X=0.000000,Y=-4.867859,Z=-20.420835),LeaveTangent=(X=0.000000,Y=-4.867859,Z=-20.420835),InterpMode=CIM_CurveAutoClamped),(InVal=91.000000,OutVal=(X=0.000000,Y=-5.097656,Z=-136.406250),ArriveTangent=(X=0.000000,Y=0.000000,Z=-5.568115),LeaveTangent=(X=0.000000,Y=0.000000,Z=-5.568115),InterpMode=CIM_CurveAutoClamped),(InVal=93.500000,OutVal=(X=0.000000,Y=-3.515625,Z=-143.613281),ArriveTangent=(X=0.000000,Y=0.301490,Z=-4.351737),LeaveTangent=(X=0.000000,Y=0.301490,Z=-4.351737),InterpMode=CIM_CurveAutoClamped),(InVal=97.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-165.585938),InterpMode=CIM_CurveUser),(InVal=100.000000,OutVal=(X=0.000000,Y=-3.515625,Z=-129.375000),ArriveTangent=(X=0.000000,Y=0.000000,Z=20.941216),LeaveTangent=(X=0.000000,Y=0.000000,Z=20.941216),InterpMode=CIM_CurveAutoClamped),(InVal=103.000000,OutVal=(X=0.000000,Y=0.703125,Z=-23.730469),InterpMode=CIM_CurveUser),(InVal=105.500000,OutVal=(X=0.000000,Y=-0.703125,Z=-137.460938),ArriveTangent=(X=0.000000,Y=0.000000,Z=-28.710938),LeaveTangent=(X=0.000000,Y=0.000000,Z=-28.710938),InterpMode=CIM_CurveUser),(InVal=107.500000,OutVal=(X=0.000000,Y=2.988281,Z=-195.996094),ArriveTangent=(X=0.000000,Y=0.000000,Z=-20.425781),LeaveTangent=(X=0.000000,Y=0.000000,Z=-20.425781),InterpMode=CIM_CurveAutoClamped),(InVal=110.500000,OutVal=(X=0.000000,Y=-0.527344,Z=-239.589844),ArriveTangent=(X=0.000000,Y=-1.195313,Z=-19.476563),LeaveTangent=(X=0.000000,Y=-1.195313,Z=-19.476563),InterpMode=CIM_CurveUser),(InVal=113.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-293.378906),ArriveTangent=(X=0.000000,Y=0.000000,Z=-25.703125),LeaveTangent=(X=0.000000,Y=0.000000,Z=-25.703125),InterpMode=CIM_CurveUser),(InVal=115.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-355.253906),InterpMode=CIM_CurveAutoClamped),(InVal=117.000000,OutVal=(X=0.000000,Y=-2.285156,Z=-309.023438),InterpMode=CIM_CurveUser),(InVal=119.000000,OutVal=(X=0.000000,Y=-4.570313,Z=-318.164063),ArriveTangent=(X=0.000000,Y=-1.820832,Z=0.000000),LeaveTangent=(X=0.000000,Y=-1.820832,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=121.000000,OutVal=(X=0.000000,Y=-9.843750,Z=-281.425781),InterpMode=CIM_CurveAutoClamped),(InVal=123.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-293.730469),ArriveTangent=(X=0.000000,Y=1.718750,Z=-8.203125),LeaveTangent=(X=0.000000,Y=1.718750,Z=-8.203125),InterpMode=CIM_CurveAutoClamped),(InVal=125.500000,OutVal=(X=0.000000,Y=-2.109375,Z=-318.339844),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=0.000000,Y=-4.921875,Z=-298.476563),ArriveTangent=(X=0.000000,Y=0.000000,Z=5.555865),LeaveTangent=(X=0.000000,Y=0.000000,Z=5.555865),InterpMode=CIM_CurveAutoClamped),(InVal=130.500000,OutVal=(X=0.000000,Y=-4.921875,Z=-289.687500),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.749048),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.749048),InterpMode=CIM_CurveUser),(InVal=133.000000,OutVal=(X=0.000000,Y=1.230469,Z=-165.058594),InterpMode=CIM_CurveAutoClamped),(InVal=136.000000,OutVal=(X=0.000000,Y=-2.812500,Z=-171.914063),ArriveTangent=(X=0.000000,Y=0.000000,Z=-3.410156),LeaveTangent=(X=0.000000,Y=0.000000,Z=-3.410156),InterpMode=CIM_CurveAutoClamped),(InVal=138.000000,OutVal=(X=0.000000,Y=-2.636719,Z=-182.109375),InterpMode=CIM_CurveAutoClamped),(InVal=140.500000,OutVal=(X=0.000000,Y=-5.273438,Z=-181.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.175247),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.175247),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=0.000000,Y=-0.351563,Z=-124.101563),ArriveTangent=(X=0.000000,Y=2.045455,Z=15.519600),LeaveTangent=(X=0.000000,Y=2.045455,Z=15.519600),InterpMode=CIM_CurveAutoClamped),(InVal=146.000000,OutVal=(X=0.000000,Y=5.976563,Z=-95.976563),ArriveTangent=(X=0.000000,Y=2.780540,Z=0.000000),LeaveTangent=(X=0.000000,Y=2.780540,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=148.500000,OutVal=(X=0.000000,Y=14.941406,Z=-106.347656),InterpMode=CIM_CurveUser),(InVal=150.500000,OutVal=(X=0.000000,Y=7.910156,Z=-70.136719),ArriveTangent=(X=0.000000,Y=-1.757813,Z=3.754520),LeaveTangent=(X=0.000000,Y=-1.757813,Z=3.754520),InterpMode=CIM_CurveUser),(InVal=153.000000,OutVal=(X=0.000000,Y=2.636719,Z=-63.457031),ArriveTangent=(X=0.000000,Y=-1.230997,Z=0.000000),LeaveTangent=(X=0.000000,Y=-1.230997,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=155.500000,OutVal=(X=0.000000,Y=0.878906,Z=-153.984375),ArriveTangent=(X=0.000000,Y=-1.152911,Z=-28.546875),LeaveTangent=(X=0.000000,Y=-1.152911,Z=-28.546875),InterpMode=CIM_CurveUser),(InVal=158.000000,OutVal=(X=0.000000,Y=-3.691406,Z=-206.191406),ArriveTangent=(X=0.000000,Y=-1.244242,Z=0.000000),LeaveTangent=(X=0.000000,Y=-1.244242,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=160.500000,OutVal=(X=0.000000,Y=-5.625000,Z=-171.386719),ArriveTangent=(X=0.000000,Y=0.000000,Z=13.921875),LeaveTangent=(X=0.000000,Y=0.000000,Z=13.921875),InterpMode=CIM_CurveAutoClamped),(InVal=163.000000,OutVal=(X=0.000000,Y=-0.351563,Z=-136.582031),ArriveTangent=(X=0.000000,Y=0.377399,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.377399,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=165.000000,OutVal=(X=0.000000,Y=0.000000,Z=-223.945313),ArriveTangent=(X=0.000000,Y=0.192598,Z=-28.945313),LeaveTangent=(X=0.000000,Y=0.192598,Z=-28.945313),InterpMode=CIM_CurveUser),(InVal=167.500000,OutVal=(X=0.000000,Y=0.878906,Z=-310.253906),ArriveTangent=(X=0.000000,Y=0.678939,Z=-31.218750),LeaveTangent=(X=0.000000,Y=0.678939,Z=-31.218750),InterpMode=CIM_CurveUser),(InVal=170.500000,OutVal=(X=0.000000,Y=5.449219,Z=-380.039063),InterpMode=CIM_CurveUser),(InVal=173.500000,OutVal=(X=0.000000,Y=-5.273438,Z=-239.589844),ArriveTangent=(X=0.000000,Y=0.000000,Z=2.413883),LeaveTangent=(X=0.000000,Y=0.000000,Z=2.413883),InterpMode=CIM_CurveUser),(InVal=176.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-236.953125),InterpMode=CIM_CurveUser),(InVal=178.000000,OutVal=(X=0.000000,Y=-6.152344,Z=-286.875000),InterpMode=CIM_CurveUser),(InVal=180.500000,OutVal=(X=0.000000,Y=-3.867188,Z=-286.171875),ArriveTangent=(X=0.000000,Y=0.984375,Z=0.691351),LeaveTangent=(X=0.000000,Y=0.984375,Z=0.691351),InterpMode=CIM_CurveAutoClamped),(InVal=183.000000,OutVal=(X=0.000000,Y=-1.230469,Z=-238.183594),ArriveTangent=(X=0.000000,Y=1.089844,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.089844,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=185.500000,OutVal=(X=0.000000,Y=1.582031,Z=-306.914063),InterpMode=CIM_CurveAutoClamped),(InVal=188.500000,OutVal=(X=0.000000,Y=-0.703125,Z=-249.433594),InterpMode=CIM_CurveAutoClamped),(InVal=190.500000,OutVal=(X=0.000000,Y=-0.703125,Z=-264.726563),InterpMode=CIM_CurveAutoClamped),(InVal=193.500000,OutVal=(X=0.000000,Y=1.582031,Z=-226.054688),ArriveTangent=(X=0.000000,Y=1.214489,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.214489,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=196.000000,OutVal=(X=0.000000,Y=5.976563,Z=-271.582031),ArriveTangent=(X=0.000000,Y=0.150649,Z=-10.802557),LeaveTangent=(X=0.000000,Y=0.150649,Z=-10.802557),InterpMode=CIM_CurveUser),(InVal=198.000000,OutVal=(X=0.000000,Y=6.328125,Z=-344.882813),ArriveTangent=(X=0.000000,Y=0.143209,Z=-11.748047),LeaveTangent=(X=0.000000,Y=0.143209,Z=-11.748047),InterpMode=CIM_CurveUser),(InVal=200.000000,OutVal=(X=0.000000,Y=10.898438,Z=-412.558594),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.114783),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.114783),InterpMode=CIM_CurveUser),(InVal=202.500000,OutVal=(X=0.000000,Y=3.515625,Z=-489.375000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=2.500000),(Time=7.500000),(Time=12.000000),(Time=15.500000),(Time=20.500000),(Time=23.500000),(Time=27.500000),(Time=29.500000),(Time=32.500000),(Time=35.000000),(Time=38.500000),(Time=41.500000),(Time=44.500000),(Time=47.000000),(Time=50.000000),(Time=53.500000),(Time=56.500000),(Time=59.500000),(Time=62.000000),(Time=64.000000),(Time=66.000000),(Time=69.000000),(Time=72.500000),(Time=74.500000),(Time=76.500000),(Time=79.500000),(Time=82.500000),(Time=85.500000),(Time=88.500000),(Time=91.000000),(Time=93.500000),(Time=97.000000),(Time=100.000000),(Time=103.000000),(Time=105.500000),(Time=107.500000),(Time=110.500000),(Time=113.000000),(Time=115.000000),(Time=117.000000),(Time=119.000000),(Time=121.000000),(Time=123.000000),(Time=125.500000),(Time=128.000000),(Time=130.500000),(Time=133.000000),(Time=136.000000),(Time=138.000000),(Time=140.500000),(Time=143.000000),(Time=146.000000),(Time=148.500000),(Time=150.500000),(Time=153.000000),(Time=155.500000),(Time=158.000000),(Time=160.500000),(Time=163.000000),(Time=165.000000),(Time=167.500000),(Time=170.500000),(Time=173.500000),(Time=176.000000),(Time=178.000000),(Time=180.500000),(Time=183.000000),(Time=185.500000),(Time=188.500000),(Time=190.500000),(Time=193.500000),(Time=196.000000),(Time=198.000000),(Time=200.000000),(Time=202.500000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackFloatProp_0'
-      GroupName="FlythroughCamera"
-      GroupColor=(B=213,G=105,R=0,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
       Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
          CutTrack(0)=(TargetCamGroup="FlythroughCamera",ShotNumber=10)
@@ -3858,6 +3911,28 @@ Begin Object Class=InterpData Name=InterpData_1
       GroupColor=(B=69,G=225,R=0,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((OutVal=(X=0.001465,Y=0.000183,Z=0.000092),InterpMode=CIM_CurveAuto),(InVal=2.500000,OutVal=(X=438.327637,Y=241.229492,Z=80.000114),ArriveTangent=(X=219.501373,Y=135.154129,Z=23.466675),LeaveTangent=(X=219.501373,Y=135.154129,Z=23.466675),InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,OutVal=(X=1757.236572,Y=1206.710449,Z=176.000153),ArriveTangent=(X=197.608521,Y=85.165283,Z=33.589081),LeaveTangent=(X=197.608521,Y=85.165283,Z=33.589081),InterpMode=CIM_CurveUser),(InVal=12.000000,OutVal=(X=2710.825928,Y=1154.605957,Z=560.000366),ArriveTangent=(X=235.384583,Y=-159.152771,Z=0.000055),LeaveTangent=(X=235.384583,Y=-159.152771,Z=0.000055),InterpMode=CIM_CurveUser),(InVal=15.500000,OutVal=(X=3091.305664,Y=552.775391,Z=560.000488),ArriveTangent=(X=0.000000,Y=-174.941284,Z=0.000000),LeaveTangent=(X=0.000000,Y=-174.941284,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.500000,OutVal=(X=2395.676025,Y=-332.395020,Z=544.000549),ArriveTangent=(X=0.000000,Y=-37.854576,Z=0.000000),LeaveTangent=(X=0.000000,Y=-37.854576,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=23.500000,OutVal=(X=2744.105469,Y=-390.937988,Z=576.000610),ArriveTangent=(X=125.803116,Y=-39.510384,Z=19.056038),LeaveTangent=(X=125.803116,Y=-39.510384,Z=19.056038),InterpMode=CIM_CurveAutoClamped),(InVal=27.500000,OutVal=(X=3276.297852,Y=-1002.600098,Z=736.000732),ArriveTangent=(X=0.000000,Y=-191.069092,Z=0.000000),LeaveTangent=(X=0.000000,Y=-191.069092,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=29.500000,OutVal=(X=3209.537354,Y=-1537.352539,Z=720.000854),ArriveTangent=(X=-61.177647,Y=-203.159668,Z=0.000000),LeaveTangent=(X=-61.177647,Y=-203.159668,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=32.500000,OutVal=(X=2732.177246,Y=-2018.398438,Z=752.000977),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.000115),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.000115),InterpMode=CIM_CurveAutoClamped),(InVal=35.000000,OutVal=(X=2858.163330,Y=-1992.231934,Z=752.001099),ArriveTangent=(X=90.072433,Y=22.449394,Z=0.000110),LeaveTangent=(X=90.072433,Y=22.449394,Z=0.000110),InterpMode=CIM_CurveAutoClamped),(InVal=38.500000,OutVal=(X=3547.729492,Y=-1279.823730,Z=768.001221),ArriveTangent=(X=193.056381,Y=220.385361,Z=0.000000),LeaveTangent=(X=193.056381,Y=220.385361,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=41.500000,OutVal=(X=4113.029785,Y=-559.727051,Z=624.001343),ArriveTangent=(X=97.379044,Y=277.246338,Z=-28.011957),LeaveTangent=(X=97.379044,Y=277.246338,Z=-28.011957),InterpMode=CIM_CurveAutoClamped),(InVal=44.500000,OutVal=(X=4271.439453,Y=383.654297,Z=576.001465),ArriveTangent=(X=110.414139,Y=233.357452,Z=0.000000),LeaveTangent=(X=110.414139,Y=233.357452,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=47.000000,OutVal=(X=4982.766602,Y=777.835938,Z=688.001587),ArriveTangent=(X=311.907318,Y=113.213333,Z=27.793669),LeaveTangent=(X=311.907318,Y=113.213333,Z=27.793669),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=5986.929688,Y=1006.327637,Z=736.001709),ArriveTangent=(X=294.118927,Y=0.000000,Z=0.000000),LeaveTangent=(X=294.118927,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=53.500000,OutVal=(X=6894.539551,Y=673.733398,Z=528.001831),ArriveTangent=(X=179.055038,Y=-166.789383,Z=0.000000),LeaveTangent=(X=179.055038,Y=-166.789383,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=56.500000,OutVal=(X=7238.857422,Y=-152.591797,Z=528.001892),ArriveTangent=(X=89.557861,Y=-216.757324,Z=0.000020),LeaveTangent=(X=89.557861,Y=-216.757324,Z=0.000020),InterpMode=CIM_CurveAutoClamped),(InVal=59.500000,OutVal=(X=7431.886719,Y=-626.810547,Z=528.001953),ArriveTangent=(X=0.000000,Y=-136.568619,Z=0.000022),LeaveTangent=(X=0.000000,Y=-136.568619,Z=0.000022),InterpMode=CIM_CurveAutoClamped),(InVal=62.000000,OutVal=(X=7249.742676,Y=-903.719238,Z=528.002014),ArriveTangent=(X=0.000000,Y=-149.943909,Z=0.000065),LeaveTangent=(X=0.000000,Y=-149.943909,Z=0.000065),InterpMode=CIM_CurveAutoClamped),(InVal=64.000000,OutVal=(X=7365.806641,Y=-1301.558105,Z=544.002075),ArriveTangent=(X=135.156357,Y=-152.161957,Z=7.603629),LeaveTangent=(X=135.156357,Y=-152.161957,Z=7.603629),InterpMode=CIM_CurveUser),(InVal=66.000000,OutVal=(X=7719.053711,Y=-1360.706543,Z=608.002197),ArriveTangent=(X=239.667297,Y=-7.885750,Z=56.405449),LeaveTangent=(X=239.667297,Y=-7.885750,Z=56.405449),InterpMode=CIM_CurveUser),(InVal=69.000000,OutVal=(X=8450.772461,Y=-1558.862793,Z=880.002502),ArriveTangent=(X=168.299942,Y=-180.322083,Z=36.414047),LeaveTangent=(X=168.299942,Y=-180.322083,Z=36.414047),InterpMode=CIM_CurveUser),(InVal=72.500000,OutVal=(X=8460.683594,Y=-2516.736328,Z=992.002502),ArriveTangent=(X=0.000000,Y=-311.519562,Z=49.454556),LeaveTangent=(X=0.000000,Y=-311.519562,Z=49.454556),InterpMode=CIM_CurveAutoClamped),(InVal=74.500000,OutVal=(X=8287.563477,Y=-3272.220459,Z=1152.002563),ArriveTangent=(X=-72.229004,Y=-375.939331,Z=64.000046),LeaveTangent=(X=-72.229004,Y=-375.939331,Z=64.000046),InterpMode=CIM_CurveAutoClamped),(InVal=76.500000,OutVal=(X=8171.767578,Y=-4020.493652,Z=1248.002686),ArriveTangent=(X=-88.964149,Y=-292.001801,Z=0.000113),LeaveTangent=(X=-88.964149,Y=-292.001801,Z=0.000113),InterpMode=CIM_CurveAutoClamped),(InVal=79.500000,OutVal=(X=7764.364258,Y=-4732.229492,Z=1248.002808),ArriveTangent=(X=-118.726158,Y=-223.064941,Z=0.000102),LeaveTangent=(X=-118.726158,Y=-223.064941,Z=0.000102),InterpMode=CIM_CurveAutoClamped),(InVal=82.500000,OutVal=(X=7459.410645,Y=-5358.883301,Z=1264.002930),ArriveTangent=(X=-78.549477,Y=-216.903320,Z=10.138201),LeaveTangent=(X=-78.549477,Y=-216.903320,Z=10.138201),InterpMode=CIM_CurveAutoClamped),(InVal=85.500000,OutVal=(X=7293.067383,Y=-6033.649414,Z=1328.003052),ArriveTangent=(X=0.000000,Y=-185.239990,Z=18.666708),LeaveTangent=(X=0.000000,Y=-185.239990,Z=18.666708),InterpMode=CIM_CurveAutoClamped),(InVal=88.500000,OutVal=(X=7405.052734,Y=-6470.323242,Z=1376.003174),ArriveTangent=(X=0.000000,Y=-167.905991,Z=0.000000),LeaveTangent=(X=0.000000,Y=-167.905991,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=91.000000,OutVal=(X=7093.457031,Y=-6957.132324,Z=1344.003418),ArriveTangent=(X=-190.557877,Y=-43.196613,Z=-24.379135),LeaveTangent=(X=-190.557877,Y=-43.196613,Z=-24.379135),InterpMode=CIM_CurveAutoClamped),(InVal=93.500000,OutVal=(X=6442.982910,Y=-7005.563965,Z=1215.003540),ArriveTangent=(X=-272.211029,Y=-39.506683,Z=-47.999958),LeaveTangent=(X=-272.211029,Y=-39.506683,Z=-47.999958),InterpMode=CIM_CurveAutoClamped),(InVal=97.000000,OutVal=(X=5460.190918,Y=-7643.333496,Z=1056.003662),ArriveTangent=(X=-149.858826,Y=-468.062042,Z=0.000000),LeaveTangent=(X=-149.858826,Y=-468.062042,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=100.000000,OutVal=(X=6133.399414,Y=-8523.530273,Z=1072.003662),ArriveTangent=(X=0.000000,Y=-320.878662,Z=6.333374),LeaveTangent=(X=0.000000,Y=-320.878662,Z=6.333374),InterpMode=CIM_CurveAutoClamped),(InVal=103.000000,OutVal=(X=5669.548340,Y=-9568.605469,Z=1094.003906),ArriveTangent=(X=-142.057785,Y=-50.875824,Z=0.000000),LeaveTangent=(X=-142.057785,Y=-50.875824,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=105.500000,OutVal=(X=5348.887695,Y=-9493.232422,Z=1104.004028),ArriveTangent=(X=-124.007469,Y=88.810997,Z=-5.333292),LeaveTangent=(X=-124.007469,Y=88.810997,Z=-5.333292),InterpMode=CIM_CurveUser),(InVal=107.500000,OutVal=(X=4959.420410,Y=-9150.695313,Z=1120.004028),ArriveTangent=(X=-217.381927,Y=130.682816,Z=11.696037),LeaveTangent=(X=-217.381927,Y=130.682816,Z=11.696037),InterpMode=CIM_CurveAutoClamped),(InVal=110.500000,OutVal=(X=4261.978027,Y=-8839.818359,Z=1169.004395),ArriveTangent=(X=-203.389771,Y=279.129700,Z=24.541946),LeaveTangent=(X=-203.389771,Y=279.129700,Z=24.541946),InterpMode=CIM_CurveUser),(InVal=113.000000,OutVal=(X=4300.201660,Y=-8009.787109,Z=1142.004517),ArriveTangent=(X=214.334229,Y=347.015564,Z=18.333008),LeaveTangent=(X=214.334229,Y=347.015564,Z=18.333008),InterpMode=CIM_CurveUser),(InVal=115.000000,OutVal=(X=4417.400879,Y=-7583.789063,Z=1140.004517),ArriveTangent=(X=0.000000,Y=264.196289,Z=-2.406167),LeaveTangent=(X=0.000000,Y=264.196289,Z=-2.406167),InterpMode=CIM_CurveAutoClamped),(InVal=117.000000,OutVal=(X=4411.117188,Y=-6953.001953,Z=1079.004639),ArriveTangent=(X=42.215820,Y=244.225952,Z=0.000000),LeaveTangent=(X=42.215820,Y=244.225952,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=119.000000,OutVal=(X=4745.781250,Y=-6508.345703,Z=1039.004761),ArriveTangent=(X=228.458984,Y=213.862915,Z=-7.189754),LeaveTangent=(X=228.458984,Y=213.862915,Z=-7.189754),InterpMode=CIM_CurveAutoClamped),(InVal=121.000000,OutVal=(X=5324.953125,Y=-6097.550293,Z=1032.004883),ArriveTangent=(X=83.382362,Y=273.653198,Z=-7.980669),LeaveTangent=(X=83.382362,Y=273.653198,Z=-7.980669),InterpMode=CIM_CurveAutoClamped),(InVal=123.000000,OutVal=(X=5402.652344,Y=-5413.732910,Z=944.004944),ArriveTangent=(X=69.207718,Y=308.350922,Z=-40.888847),LeaveTangent=(X=69.207718,Y=308.350922,Z=-40.888847),InterpMode=CIM_CurveAutoClamped),(InVal=125.500000,OutVal=(X=5746.705566,Y=-4709.971191,Z=848.005066),ArriveTangent=(X=212.081665,Y=256.344421,Z=0.000000),LeaveTangent=(X=212.081665,Y=256.344421,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=6478.392090,Y=-4132.010742,Z=848.005188),ArriveTangent=(X=92.668213,Y=273.813416,Z=0.000000),LeaveTangent=(X=92.668213,Y=273.813416,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=130.500000,OutVal=(X=6588.208984,Y=-3340.904053,Z=720.005249),ArriveTangent=(X=-61.205933,Y=121.267899,Z=0.000000),LeaveTangent=(X=-61.205933,Y=121.267899,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=133.000000,OutVal=(X=6202.384277,Y=-3215.717041,Z=736.005371),ArriveTangent=(X=-216.541275,Y=0.000000,Z=0.000000),LeaveTangent=(X=-216.541275,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=136.000000,OutVal=(X=5383.677246,Y=-3497.772705,Z=720.005493),ArriveTangent=(X=-307.943054,Y=-104.541359,Z=-13.608181),LeaveTangent=(X=-307.943054,Y=-104.541359,Z=-13.608181),InterpMode=CIM_CurveAutoClamped),(InVal=138.000000,OutVal=(X=4662.668945,Y=-3738.423828,Z=544.005615),ArriveTangent=(X=-359.158142,Y=0.000000,Z=-63.999958),LeaveTangent=(X=-359.158142,Y=0.000000,Z=-63.999958),InterpMode=CIM_CurveAutoClamped),(InVal=140.500000,OutVal=(X=3767.465576,Y=-3509.599365,Z=432.005676),ArriveTangent=(X=-353.661469,Y=0.000000,Z=-63.999981),LeaveTangent=(X=-353.661469,Y=0.000000,Z=-63.999981),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=2894.361572,Y=-3989.904053,Z=224.005707),ArriveTangent=(X=-104.844940,Y=-284.244690,Z=0.000000),LeaveTangent=(X=-104.844940,Y=-284.244690,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=146.000000,OutVal=(X=2752.582275,Y=-5138.461426,Z=416.005768),ArriveTangent=(X=0.000000,Y=-382.589264,Z=75.636391),LeaveTangent=(X=0.000000,Y=-382.589264,Z=75.636391),InterpMode=CIM_CurveAutoClamped),(InVal=148.500000,OutVal=(X=2858.372803,Y=-6094.145020,Z=640.005859),ArriveTangent=(X=-46.935059,Y=-333.746338,Z=105.600052),LeaveTangent=(X=-46.935059,Y=-333.746338,Z=105.600052),InterpMode=CIM_CurveUser),(InVal=150.500000,OutVal=(X=2700.515137,Y=-6719.190918,Z=915.006165),ArriveTangent=(X=41.068237,Y=-251.482101,Z=77.714317),LeaveTangent=(X=41.068237,Y=-251.482101,Z=77.714317),InterpMode=CIM_CurveUser),(InVal=153.000000,OutVal=(X=3175.454102,Y=-7320.631836,Z=1084.006226),ArriveTangent=(X=44.166756,Y=-255.047943,Z=42.488033),LeaveTangent=(X=44.166756,Y=-255.047943,Z=42.488033),InterpMode=CIM_CurveAutoClamped),(InVal=155.500000,OutVal=(X=3225.271973,Y=-7994.430664,Z=1147.006348),ArriveTangent=(X=-201.075623,Y=-237.833069,Z=0.000000),LeaveTangent=(X=-201.075623,Y=-237.833069,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=158.000000,OutVal=(X=2537.915039,Y=-8196.763672,Z=1008.006409),ArriveTangent=(X=-335.257233,Y=0.000000,Z=-42.199940),LeaveTangent=(X=-335.257233,Y=0.000000,Z=-42.199940),InterpMode=CIM_CurveAutoClamped),(InVal=160.500000,OutVal=(X=1548.985840,Y=-8177.775391,Z=936.006653),ArriveTangent=(X=-352.205566,Y=0.000000,Z=0.000000),LeaveTangent=(X=-352.205566,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=163.000000,OutVal=(X=776.887207,Y=-8328.244141,Z=952.006775),ArriveTangent=(X=-219.081100,Y=0.000000,Z=2.790858),LeaveTangent=(X=-219.081100,Y=0.000000,Z=2.790858),InterpMode=CIM_CurveAutoClamped),(InVal=165.000000,OutVal=(X=488.087891,Y=-8123.486328,Z=955.006897),ArriveTangent=(X=-24.842117,Y=114.999344,Z=0.000041),LeaveTangent=(X=-24.842117,Y=114.999344,Z=0.000041),InterpMode=CIM_CurveUser),(InVal=167.500000,OutVal=(X=486.691895,Y=-7526.584473,Z=928.006897),ArriveTangent=(X=69.894653,Y=199.564011,Z=0.000000),LeaveTangent=(X=69.894653,Y=199.564011,Z=0.000000),InterpMode=CIM_CurveUser),(InVal=170.500000,OutVal=(X=1042.986328,Y=-6905.625488,Z=880.007019),ArriveTangent=(X=90.958374,Y=236.453003,Z=-42.017941),LeaveTangent=(X=90.958374,Y=236.453003,Z=-42.017941),InterpMode=CIM_CurveUser),(InVal=173.500000,OutVal=(X=1021.467041,Y=-6501.679199,Z=756.007202),ArriveTangent=(X=-82.235031,Y=226.844833,Z=-54.399963),LeaveTangent=(X=-82.235031,Y=226.844833,Z=-54.399963),InterpMode=CIM_CurveUser),(InVal=176.000000,OutVal=(X=576.104004,Y=-5962.438965,Z=627.007324),ArriveTangent=(X=-123.172012,Y=216.457184,Z=-63.999958),LeaveTangent=(X=-123.172012,Y=216.457184,Z=-63.999958),InterpMode=CIM_CurveUser),(InVal=178.000000,OutVal=(X=482.605469,Y=-5358.538086,Z=416.007294),ArriveTangent=(X=57.407104,Y=281.563934,Z=-25.309837),LeaveTangent=(X=57.407104,Y=281.563934,Z=-25.309837),InterpMode=CIM_CurveUser),(InVal=180.500000,OutVal=(X=781.493164,Y=-4473.432617,Z=384.007416),ArriveTangent=(X=58.518147,Y=292.839539,Z=-29.171822),LeaveTangent=(X=58.518147,Y=292.839539,Z=-29.171822),InterpMode=CIM_CurveAutoClamped),(InVal=183.000000,OutVal=(X=859.244629,Y=-3894.340332,Z=-15.992615),ArriveTangent=(X=24.831249,Y=223.569824,Z=-17.079735),LeaveTangent=(X=24.831249,Y=223.569824,Z=-17.079735),InterpMode=CIM_CurveAutoClamped),(InVal=185.500000,OutVal=(X=905.649414,Y=-3355.583496,Z=-33.992607),ArriveTangent=(X=37.945503,Y=258.804230,Z=0.000000),LeaveTangent=(X=37.945503,Y=258.804230,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=188.500000,OutVal=(X=1293.727539,Y=-2470.916992,Z=0.007401),ArriveTangent=(X=0.000000,Y=285.181549,Z=0.000017),LeaveTangent=(X=0.000000,Y=285.181549,Z=0.000017),InterpMode=CIM_CurveAutoClamped),(InVal=190.500000,OutVal=(X=805.534668,Y=-1929.675781,Z=0.007416),ArriveTangent=(X=-174.454681,Y=326.588531,Z=0.000000),LeaveTangent=(X=-174.454681,Y=326.588531,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=193.500000,OutVal=(X=421.454102,Y=-836.395020,Z=-31.992577),ArriveTangent=(X=-135.458542,Y=333.532593,Z=0.000000),LeaveTangent=(X=-135.458542,Y=333.532593,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=196.000000,OutVal=(X=60.512695,Y=-95.246582,Z=-15.992561),ArriveTangent=(X=73.866760,Y=222.506180,Z=2.909094),LeaveTangent=(X=73.866760,Y=222.506180,Z=2.909094),InterpMode=CIM_CurveUser),(InVal=198.000000,OutVal=(X=315.836914,Y=35.311035,Z=0.007454),ArriveTangent=(X=98.788727,Y=4.060852,Z=0.000006),LeaveTangent=(X=98.788727,Y=4.060852,Z=0.000006),InterpMode=CIM_CurveUser),(InVal=200.000000,OutVal=(X=555.899414,Y=23.020020,Z=0.007469),ArriveTangent=(X=51.707359,Y=-53.201679,Z=0.000002),LeaveTangent=(X=51.707359,Y=-53.201679,Z=0.000002),InterpMode=CIM_CurveUser),(InVal=202.500000,OutVal=(X=568.286621,Y=-83.733398,Z=0.007484),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=2.500000,OutVal=(X=0.000000,Y=0.000000,Z=27.246094),InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,OutVal=(X=0.000000,Y=13.359375,Z=10.019531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-5.231467),LeaveTangent=(X=0.000000,Y=0.000000,Z=-5.231467),InterpMode=CIM_CurveUser),(InVal=12.000000,OutVal=(X=0.000000,Y=-2.109375,Z=-36.738281),ArriveTangent=(X=0.000000,Y=-0.865688,Z=-8.470459),LeaveTangent=(X=0.000000,Y=-0.865688,Z=-8.470459),InterpMode=CIM_CurveUser),(InVal=15.500000,OutVal=(X=0.000000,Y=-5.800781,Z=-125.507813),ArriveTangent=(X=0.000000,Y=-0.092460,Z=-13.956976),LeaveTangent=(X=0.000000,Y=-0.092460,Z=-13.956976),InterpMode=CIM_CurveAutoClamped),(InVal=20.500000,OutVal=(X=0.000000,Y=-5.976563,Z=-162.597656),InterpMode=CIM_CurveAutoClamped),(InVal=23.500000,OutVal=(X=0.000000,Y=0.351563,Z=-45.175781),InterpMode=CIM_CurveAutoClamped),(InVal=27.500000,OutVal=(X=0.000000,Y=-1.054688,Z=-118.828125),ArriveTangent=(X=0.000000,Y=-0.799454,Z=-15.427368),LeaveTangent=(X=0.000000,Y=-0.799454,Z=-15.427368),InterpMode=CIM_CurveAutoClamped),(InVal=29.500000,OutVal=(X=0.000000,Y=-5.449219,Z=-143.613281),ArriveTangent=(X=0.000000,Y=-2.285156,Z=-7.201799),LeaveTangent=(X=0.000000,Y=-2.285156,Z=-7.201799),InterpMode=CIM_CurveAutoClamped),(InVal=32.500000,OutVal=(X=0.000000,Y=-12.480469,Z=-155.390625),InterpMode=CIM_CurveAutoClamped),(InVal=35.000000,OutVal=(X=0.000000,Y=-2.812500,Z=24.609375),ArriveTangent=(X=0.000000,Y=0.511907,Z=14.032631),LeaveTangent=(X=0.000000,Y=0.511907,Z=14.032631),InterpMode=CIM_CurveAutoClamped),(InVal=38.500000,OutVal=(X=0.000000,Y=-2.109375,Z=44.648438),ArriveTangent=(X=0.000000,Y=0.243389,Z=5.922476),LeaveTangent=(X=0.000000,Y=0.243389,Z=5.922476),InterpMode=CIM_CurveAutoClamped),(InVal=41.500000,OutVal=(X=0.000000,Y=-1.230469,Z=63.105469),ArriveTangent=(X=0.000000,Y=0.632886,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.632886,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.500000,OutVal=(X=0.000000,Y=5.625000,Z=29.179688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.921165),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.921165),InterpMode=CIM_CurveAutoClamped),(InVal=47.000000,OutVal=(X=0.000000,Y=-1.757813,Z=-2.460938),ArriveTangent=(X=0.000000,Y=0.000000,Z=-14.062500),LeaveTangent=(X=0.000000,Y=0.000000,Z=-14.062500),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=-0.527344,Z=-48.164063),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.709736),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.709736),InterpMode=CIM_CurveAutoClamped),(InVal=53.500000,OutVal=(X=0.000000,Y=-2.812500,Z=-78.574219),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.034255),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.034255),InterpMode=CIM_CurveAutoClamped),(InVal=56.500000,OutVal=(X=0.000000,Y=-2.460938,Z=-126.386719),ArriveTangent=(X=0.000000,Y=0.270440,Z=-23.613281),LeaveTangent=(X=0.000000,Y=0.270440,Z=-23.613281),InterpMode=CIM_CurveAutoClamped),(InVal=59.500000,OutVal=(X=0.000000,Y=2.636719,Z=-220.253906),InterpMode=CIM_CurveAutoClamped),(InVal=62.000000,OutVal=(X=0.000000,Y=-0.527344,Z=-100.898438),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.796795),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.796795),InterpMode=CIM_CurveAutoClamped),(InVal=64.000000,OutVal=(X=0.000000,Y=2.988281,Z=-93.691406),ArriveTangent=(X=0.000000,Y=1.605471,Z=3.953888),LeaveTangent=(X=0.000000,Y=1.605471,Z=3.953888),InterpMode=CIM_CurveUser),(InVal=66.000000,OutVal=(X=0.000000,Y=15.117188,Z=-30.410156),InterpMode=CIM_CurveUser),(InVal=69.000000,OutVal=(X=0.000000,Y=6.152344,Z=-88.769531),ArriveTangent=(X=0.000000,Y=-1.353516,Z=-8.638144),LeaveTangent=(X=0.000000,Y=-1.353516,Z=-8.638144),InterpMode=CIM_CurveUser),(InVal=72.500000,OutVal=(X=0.000000,Y=1.582031,Z=-117.246094),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.182249),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.182249),InterpMode=CIM_CurveAutoClamped),(InVal=74.500000,OutVal=(X=0.000000,Y=4.042969,Z=-117.421875),InterpMode=CIM_CurveAutoClamped),(InVal=76.500000,OutVal=(X=0.000000,Y=0.703125,Z=-116.542969),ArriveTangent=(X=0.000000,Y=-0.155370,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.155370,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=79.500000,OutVal=(X=0.000000,Y=0.527344,Z=-166.289063),InterpMode=CIM_CurveAutoClamped),(InVal=82.500000,OutVal=(X=0.000000,Y=6.328125,Z=-101.953125),ArriveTangent=(X=0.000000,Y=3.506211,Z=26.806641),LeaveTangent=(X=0.000000,Y=3.506211,Z=26.806641),InterpMode=CIM_CurveAutoClamped),(InVal=85.500000,OutVal=(X=0.000000,Y=25.839844,Z=-5.449219),InterpMode=CIM_CurveAutoClamped),(InVal=88.500000,OutVal=(X=0.000000,Y=2.285156,Z=-105.644531),ArriveTangent=(X=0.000000,Y=-4.867859,Z=-20.420835),LeaveTangent=(X=0.000000,Y=-4.867859,Z=-20.420835),InterpMode=CIM_CurveAutoClamped),(InVal=91.000000,OutVal=(X=0.000000,Y=-5.097656,Z=-136.406250),ArriveTangent=(X=0.000000,Y=0.000000,Z=-5.568115),LeaveTangent=(X=0.000000,Y=0.000000,Z=-5.568115),InterpMode=CIM_CurveAutoClamped),(InVal=93.500000,OutVal=(X=0.000000,Y=-3.515625,Z=-143.613281),ArriveTangent=(X=0.000000,Y=0.301490,Z=-4.351737),LeaveTangent=(X=0.000000,Y=0.301490,Z=-4.351737),InterpMode=CIM_CurveAutoClamped),(InVal=97.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-165.585938),InterpMode=CIM_CurveUser),(InVal=100.000000,OutVal=(X=0.000000,Y=-3.515625,Z=-129.375000),ArriveTangent=(X=0.000000,Y=0.000000,Z=20.941216),LeaveTangent=(X=0.000000,Y=0.000000,Z=20.941216),InterpMode=CIM_CurveAutoClamped),(InVal=103.000000,OutVal=(X=0.000000,Y=0.703125,Z=-23.730469),InterpMode=CIM_CurveUser),(InVal=105.500000,OutVal=(X=0.000000,Y=-0.703125,Z=-137.460938),ArriveTangent=(X=0.000000,Y=0.000000,Z=-28.710938),LeaveTangent=(X=0.000000,Y=0.000000,Z=-28.710938),InterpMode=CIM_CurveUser),(InVal=107.500000,OutVal=(X=0.000000,Y=2.988281,Z=-195.996094),ArriveTangent=(X=0.000000,Y=0.000000,Z=-20.425781),LeaveTangent=(X=0.000000,Y=0.000000,Z=-20.425781),InterpMode=CIM_CurveAutoClamped),(InVal=110.500000,OutVal=(X=0.000000,Y=-0.527344,Z=-239.589844),ArriveTangent=(X=0.000000,Y=-1.195313,Z=-19.476563),LeaveTangent=(X=0.000000,Y=-1.195313,Z=-19.476563),InterpMode=CIM_CurveUser),(InVal=113.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-293.378906),ArriveTangent=(X=0.000000,Y=0.000000,Z=-25.703125),LeaveTangent=(X=0.000000,Y=0.000000,Z=-25.703125),InterpMode=CIM_CurveUser),(InVal=115.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-355.253906),InterpMode=CIM_CurveAutoClamped),(InVal=117.000000,OutVal=(X=0.000000,Y=-2.285156,Z=-309.023438),InterpMode=CIM_CurveUser),(InVal=119.000000,OutVal=(X=0.000000,Y=-4.570313,Z=-318.164063),ArriveTangent=(X=0.000000,Y=-1.820832,Z=0.000000),LeaveTangent=(X=0.000000,Y=-1.820832,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=121.000000,OutVal=(X=0.000000,Y=-9.843750,Z=-281.425781),InterpMode=CIM_CurveAutoClamped),(InVal=123.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-293.730469),ArriveTangent=(X=0.000000,Y=1.718750,Z=-8.203125),LeaveTangent=(X=0.000000,Y=1.718750,Z=-8.203125),InterpMode=CIM_CurveAutoClamped),(InVal=125.500000,OutVal=(X=0.000000,Y=-2.109375,Z=-318.339844),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=0.000000,Y=-4.921875,Z=-298.476563),ArriveTangent=(X=0.000000,Y=0.000000,Z=5.555865),LeaveTangent=(X=0.000000,Y=0.000000,Z=5.555865),InterpMode=CIM_CurveAutoClamped),(InVal=130.500000,OutVal=(X=0.000000,Y=-4.921875,Z=-289.687500),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.749048),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.749048),InterpMode=CIM_CurveUser),(InVal=133.000000,OutVal=(X=0.000000,Y=1.230469,Z=-165.058594),InterpMode=CIM_CurveAutoClamped),(InVal=136.000000,OutVal=(X=0.000000,Y=-2.812500,Z=-171.914063),ArriveTangent=(X=0.000000,Y=0.000000,Z=-3.410156),LeaveTangent=(X=0.000000,Y=0.000000,Z=-3.410156),InterpMode=CIM_CurveAutoClamped),(InVal=138.000000,OutVal=(X=0.000000,Y=-2.636719,Z=-182.109375),InterpMode=CIM_CurveAutoClamped),(InVal=140.500000,OutVal=(X=0.000000,Y=-5.273438,Z=-181.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.175247),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.175247),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=0.000000,Y=-0.351563,Z=-124.101563),ArriveTangent=(X=0.000000,Y=2.045455,Z=15.519600),LeaveTangent=(X=0.000000,Y=2.045455,Z=15.519600),InterpMode=CIM_CurveAutoClamped),(InVal=146.000000,OutVal=(X=0.000000,Y=5.976563,Z=-95.976563),ArriveTangent=(X=0.000000,Y=2.780540,Z=0.000000),LeaveTangent=(X=0.000000,Y=2.780540,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=148.500000,OutVal=(X=0.000000,Y=14.941406,Z=-106.347656),InterpMode=CIM_CurveUser),(InVal=150.500000,OutVal=(X=0.000000,Y=7.910156,Z=-70.136719),ArriveTangent=(X=0.000000,Y=-1.757813,Z=3.754520),LeaveTangent=(X=0.000000,Y=-1.757813,Z=3.754520),InterpMode=CIM_CurveUser),(InVal=153.000000,OutVal=(X=0.000000,Y=2.636719,Z=-63.457031),ArriveTangent=(X=0.000000,Y=-1.230997,Z=0.000000),LeaveTangent=(X=0.000000,Y=-1.230997,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=155.500000,OutVal=(X=0.000000,Y=0.878906,Z=-153.984375),ArriveTangent=(X=0.000000,Y=-1.152911,Z=-28.546875),LeaveTangent=(X=0.000000,Y=-1.152911,Z=-28.546875),InterpMode=CIM_CurveUser),(InVal=158.000000,OutVal=(X=0.000000,Y=-3.691406,Z=-206.191406),ArriveTangent=(X=0.000000,Y=-1.244242,Z=0.000000),LeaveTangent=(X=0.000000,Y=-1.244242,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=160.500000,OutVal=(X=0.000000,Y=-5.625000,Z=-171.386719),ArriveTangent=(X=0.000000,Y=0.000000,Z=13.921875),LeaveTangent=(X=0.000000,Y=0.000000,Z=13.921875),InterpMode=CIM_CurveAutoClamped),(InVal=163.000000,OutVal=(X=0.000000,Y=-0.351563,Z=-136.582031),ArriveTangent=(X=0.000000,Y=0.377399,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.377399,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=165.000000,OutVal=(X=0.000000,Y=0.000000,Z=-223.945313),ArriveTangent=(X=0.000000,Y=0.192598,Z=-28.945313),LeaveTangent=(X=0.000000,Y=0.192598,Z=-28.945313),InterpMode=CIM_CurveUser),(InVal=167.500000,OutVal=(X=0.000000,Y=0.878906,Z=-310.253906),ArriveTangent=(X=0.000000,Y=0.678939,Z=-31.218750),LeaveTangent=(X=0.000000,Y=0.678939,Z=-31.218750),InterpMode=CIM_CurveUser),(InVal=170.500000,OutVal=(X=0.000000,Y=5.449219,Z=-380.039063),InterpMode=CIM_CurveUser),(InVal=173.500000,OutVal=(X=0.000000,Y=-5.273438,Z=-239.589844),ArriveTangent=(X=0.000000,Y=0.000000,Z=2.413883),LeaveTangent=(X=0.000000,Y=0.000000,Z=2.413883),InterpMode=CIM_CurveUser),(InVal=176.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-236.953125),InterpMode=CIM_CurveUser),(InVal=178.000000,OutVal=(X=0.000000,Y=-6.152344,Z=-286.875000),InterpMode=CIM_CurveUser),(InVal=180.500000,OutVal=(X=0.000000,Y=-3.867188,Z=-286.171875),ArriveTangent=(X=0.000000,Y=0.984375,Z=0.691351),LeaveTangent=(X=0.000000,Y=0.984375,Z=0.691351),InterpMode=CIM_CurveAutoClamped),(InVal=183.000000,OutVal=(X=0.000000,Y=-1.230469,Z=-238.183594),ArriveTangent=(X=0.000000,Y=1.089844,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.089844,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=185.500000,OutVal=(X=0.000000,Y=1.582031,Z=-306.914063),InterpMode=CIM_CurveAutoClamped),(InVal=188.500000,OutVal=(X=0.000000,Y=-0.703125,Z=-249.433594),InterpMode=CIM_CurveAutoClamped),(InVal=190.500000,OutVal=(X=0.000000,Y=-0.703125,Z=-264.726563),InterpMode=CIM_CurveAutoClamped),(InVal=193.500000,OutVal=(X=0.000000,Y=1.582031,Z=-226.054688),ArriveTangent=(X=0.000000,Y=1.214489,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.214489,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=196.000000,OutVal=(X=0.000000,Y=5.976563,Z=-271.582031),ArriveTangent=(X=0.000000,Y=0.150649,Z=-10.802557),LeaveTangent=(X=0.000000,Y=0.150649,Z=-10.802557),InterpMode=CIM_CurveUser),(InVal=198.000000,OutVal=(X=0.000000,Y=6.328125,Z=-344.882813),ArriveTangent=(X=0.000000,Y=0.143209,Z=-11.748047),LeaveTangent=(X=0.000000,Y=0.143209,Z=-11.748047),InterpMode=CIM_CurveUser),(InVal=200.000000,OutVal=(X=0.000000,Y=10.898438,Z=-412.558594),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.114783),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.114783),InterpMode=CIM_CurveUser),(InVal=202.500000,OutVal=(X=0.000000,Y=3.515625,Z=-489.375000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=2.500000),(Time=7.500000),(Time=12.000000),(Time=15.500000),(Time=20.500000),(Time=23.500000),(Time=27.500000),(Time=29.500000),(Time=32.500000),(Time=35.000000),(Time=38.500000),(Time=41.500000),(Time=44.500000),(Time=47.000000),(Time=50.000000),(Time=53.500000),(Time=56.500000),(Time=59.500000),(Time=62.000000),(Time=64.000000),(Time=66.000000),(Time=69.000000),(Time=72.500000),(Time=74.500000),(Time=76.500000),(Time=79.500000),(Time=82.500000),(Time=85.500000),(Time=88.500000),(Time=91.000000),(Time=93.500000),(Time=97.000000),(Time=100.000000),(Time=103.000000),(Time=105.500000),(Time=107.500000),(Time=110.500000),(Time=113.000000),(Time=115.000000),(Time=117.000000),(Time=119.000000),(Time=121.000000),(Time=123.000000),(Time=125.500000),(Time=128.000000),(Time=130.500000),(Time=133.000000),(Time=136.000000),(Time=138.000000),(Time=140.500000),(Time=143.000000),(Time=146.000000),(Time=148.500000),(Time=150.500000),(Time=153.000000),(Time=155.500000),(Time=158.000000),(Time=160.500000),(Time=163.000000),(Time=165.000000),(Time=167.500000),(Time=170.500000),(Time=173.500000),(Time=176.000000),(Time=178.000000),(Time=180.500000),(Time=183.000000),(Time=185.500000),(Time=188.500000),(Time=190.500000),(Time=193.500000),(Time=196.000000),(Time=198.000000),(Time=200.000000),(Time=202.500000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_0"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackFloatProp_0'
+      GroupName="FlythroughCamera"
+      GroupColor=(B=213,G=105,R=0,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=295.000000
    InterpGroups(0)=InterpGroup'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
@@ -4744,12 +4819,12 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_5
    ConsoleEventName="lava"
    MaxWidth=146
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_32')),DrawY=3786,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=1793,OverrideDelta=41)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_32')),DrawY=3938,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=2273,OverrideDelta=41)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1720
-   ObjPosY=3720
+   ObjPosX=2200
+   ObjPosY=3872
    DrawWidth=93
    DrawHeight=128
    Name="SeqEvent_Console_5"
@@ -4974,7 +5049,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_123
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_138
-   ObjValue=PointLightMovable'KF-ZedLanding.TheWorld:PersistentLevel.PointLightMovable_11'
+   ObjValue=PointLightMovable'KF-ZedLanding.TheWorld:PersistentLevel.PointLightMovable_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3800
@@ -5022,7 +5097,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_141
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_142
-   ObjValue=PointLightMovable'KF-ZedLanding.TheWorld:PersistentLevel.PointLightMovable_11'
+   ObjValue=PointLightMovable'KF-ZedLanding.TheWorld:PersistentLevel.PointLightMovable_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2432
@@ -5385,16 +5460,16 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_17
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_21
-   SizeX=399
-   SizeY=321
+   SizeX=410
+   SizeY=411
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2416
    ObjPosY=3848
    ObjComment="LavaFall Main - ON"
-   DrawWidth=399
-   DrawHeight=321
+   DrawWidth=410
+   DrawHeight=411
    Name="SequenceFrame_21"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
@@ -5772,7 +5847,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
    InputLinks(1)=(DrawY=3642,OverrideDelta=35)
    InputLinks(2)=(DrawY=3663,OverrideDelta=56)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_26')),DrawY=3642,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_143',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_144',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_145'),DrawX=2454,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_143',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_144',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_145',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_126',SeqVar_Object'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_127'),DrawX=2454,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2505,OverrideDelta=76)
    EventLinks(0)=(DrawX=2554,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -6085,4 +6160,52 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_3
    DrawHeight=109
    Name="SeqAct_Delay_3"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
+   ObjValue=PointLightMovable'KF-ZedLanding.TheWorld:PersistentLevel.PointLightMovable_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4056
+   ObjPosY=4144
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_18"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_125
+   ObjValue=PointLightMovable'KF-ZedLanding.TheWorld:PersistentLevel.PointLightMovable_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=4136
+   ObjPosY=4152
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_125"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_126
+   ObjValue=PointLightMovable'KF-ZedLanding.TheWorld:PersistentLevel.PointLightMovable_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=2584
+   ObjPosY=4144
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_126"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_127
+   ObjValue=PointLightMovable'KF-ZedLanding.TheWorld:PersistentLevel.PointLightMovable_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ZedLanding.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=2680
+   ObjPosY=4144
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_127"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object

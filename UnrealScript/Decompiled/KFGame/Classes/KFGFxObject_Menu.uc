@@ -129,7 +129,14 @@ function Callback_Quit()
 {
     if(Manager != none)
     {
-        Manager.MenuBarWidget.OpenQuitPopUp();
+        if(Class'WorldInfo'.static.IsConsoleBuild(9))
+        {
+            Manager.MenuBarWidget.OpenLogoutPopup();            
+        }
+        else
+        {
+            Manager.MenuBarWidget.OpenQuitPopUp();
+        }
     }
 }
 

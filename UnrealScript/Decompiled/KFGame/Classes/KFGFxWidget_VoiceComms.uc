@@ -73,6 +73,8 @@ function EnableComm()
         Outer.GetGameViewportClient().__HandleInputAxis__Delegate = OnAxisModified;
         SetBool("bUsingGamePad", PC.PlayerInput.bUsingGamepad);
         ActionScriptVoid("enableComm");
+        UpdateEmoteState();
+        PC.SetTimer(0.15, true, 'UpdateEmoteState', self);
     }
 }
 
@@ -95,7 +97,30 @@ function DisableComm()
         {
             SayVoiceCommms(SavedSelectionIndex);
         }
+        PC.ClearTimer('UpdateEmoteState', self);
     }
+}
+
+function UpdateEmoteState()
+{
+    local bool bEnabled;
+    local KFPawn KFP;
+
+    bEnabled = false;
+    if(((PC != none) && PC.Pawn != none) && PC.Pawn.IsAliveAndWell())
+    {
+        KFP = KFPawn(PC.Pawn);
+        if(((KFP != none) && Class'KFEmoteList'.static.GetEquippedEmoteId() != -1) && KFP.CanDoSpecialMove(33))
+        {
+            bEnabled = true;
+        }
+    }
+    UpdateGFxEmoteState(bEnabled);
+}
+
+function UpdateGFxEmoteState(bool bEnabled)
+{
+    ActionScriptVoid("setEmoteEnabled");
 }
 
 function HandleInputChange()

@@ -1114,7 +1114,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Hans_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
 
 	MeleeAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Melee_Master'

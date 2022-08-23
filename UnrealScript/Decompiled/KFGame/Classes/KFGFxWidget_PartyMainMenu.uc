@@ -147,6 +147,7 @@ function RefreshParty()
     {
         PC = Outer.GetPC();
         DataProvider.SetElementObject(0, RefreshSlot(0, PC.PlayerReplicationInfo.UniqueId));
+        LastLeaderID = ZeroUniqueId;
         bInParty = false || bInLobby;
         bIsInParty = bInParty;
         SetSearchingText("");
@@ -193,7 +194,7 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
     }
     bIsLeader = PlayerUID == AdminId && PlayerUID != ZeroUniqueId;
     PlayerInfoObject.SetBool("bLeader", bIsLeader);
-    bIsMyPlayer = OnlineLobby.GetMyId() == PlayerUID;
+    bIsMyPlayer = (OnlineLobby != none) && OnlineLobby.GetMyId() == PlayerUID;
     PlayerInfoObject.SetBool("myPlayer", bIsMyPlayer);
     if(bIsMyPlayer)
     {

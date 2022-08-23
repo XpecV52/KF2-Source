@@ -157,6 +157,7 @@ var KFGameDifficultyInfo DifficultyInfo;
 var class<KFGameDifficultyInfo> DifficultyInfoClass;
 var class<KFGameDifficultyInfo> DifficultyInfoConsoleClass;
 var array<KFTraderTrigger> TraderList;
+var transient KFTraderTrigger ScriptedTrader;
 var array<KFPickupFactory> ItemPickups;
 var array<KFPickupFactory> AmmoPickups;
 var array<KFPickupFactory> AllPickupFactories;
@@ -166,6 +167,7 @@ var const byte ForcedNumLivingPlayers;
 var array<float> DeathPenaltyModifiers;
 var array<float> MaxRespawnDosh;
 var int MaxGameDifficulty;
+var int MinGameDifficulty;
 var array<float> GameLengthDoshScale;
 var array< class<KFAISpawnManager> > SpawnManagerClasses;
 var KFGameConductor GameConductor;
@@ -318,7 +320,20 @@ static function string StripPlayOnPrefix(string MapName)
     return MapName;
 }
 
-static function PreloadContentClasses(KFGameReplicationInfo GRI);
+static function PreloadContentClasses()
+{
+    local class<KFPawn_Monster> PawnClass;
+
+    Class'KFGameEngine'.static.RefreshEventContent();
+    foreach default.AIClassList(PawnClass,)
+    {
+        PawnClass.static.PreloadContent();        
+    }    
+    foreach default.AIBossClassList(PawnClass,)
+    {
+        PawnClass.static.PreloadContent();        
+    }    
+}
 
 static function string GetGameModeFriendlyNameFromNum(int GameModeNum)
 {
@@ -381,7 +396,7 @@ event InitGame(string Options, out string ErrorMessage)
 {
     super(GameInfo).InitGame(Options, ErrorMessage);
     GameLength = Clamp(GetIntOption(Options, "GameLength", GameLength), 0, SpawnManagerClasses.Length - 1);
-    GameDifficulty = float(Clamp(int(GameDifficulty), 0, MaxGameDifficulty));
+    GameDifficulty = float(Clamp(int(GameDifficulty), MinGameDifficulty, MaxGameDifficulty));
     if((OnlineSub != none) && OnlineSub.GetLobbyInterface() != none)
     {
         OnlineSub.GetLobbyInterface().LobbyJoinGame();
@@ -442,7 +457,7 @@ protected native function CheckForCustomSettings();
 
 event PreBeginPlay()
 {
-    WorldInfo.TWApplyTweaks();
+    Class'KFGameEngine'.static.ApplyTweaks(WorldInfo.GetMapName());
     super(GameInfo).PreBeginPlay();
     MyKFGRI = KFGameReplicationInfo(GameReplicationInfo);
     InitGRIVariables();
@@ -515,14 +530,14 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
     if((WorldInfo.NetMode == NM_DedicatedServer) && !HasOption(Options, "bJoinViaInvite"))
     {
         DesiredDifficulty = ParseOption(Options, "Difficulty");
-        if((DesiredDifficulty != "") && float(int(DesiredDifficulty)) != GameDifficulty)
+        if((!bIsVersusGame && DesiredDifficulty != "") && float(int(DesiredDifficulty)) != GameDifficulty)
         {
             LogInternal((("Got bad difficulty" @ DesiredDifficulty) @ "expected") @ string(GameDifficulty));
             ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
             return;
         }
         DesiredWaveLength = ParseOption(Options, "GameLength");
-        if((DesiredWaveLength != "") && int(DesiredWaveLength) != GameLength)
+        if((!bIsVersusGame && DesiredWaveLength != "") && int(DesiredWaveLength) != GameLength)
         {
             LogInternal((("Got bad wave length" @ DesiredWaveLength) @ "expected") @ string(GameLength));
             ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
@@ -700,6 +715,8 @@ function InitTraderList()
         TraderList.AddItem(MyTrader;        
     }    
 }
+
+function SetupNextTrader();
 
 function InitAllPickups()
 {
@@ -948,7 +965,7 @@ function bool ShouldSpawnAtStartSpot(Controller Player)
 {
     local PlayerStart StartSpot;
 
-    if(((Player != none) && Player.StartSpot != none) && (IsInitialSpawnPointSelection()) || (Player.PlayerReplicationInfo != none) && Player.PlayerReplicationInfo.bWaitingPlayer)
+    if(((Player != none) && Player.StartSpot != none) && (IsInitialSpawnPointSelection(WorldInfo)) || (Player.PlayerReplicationInfo != none) && Player.PlayerReplicationInfo.bWaitingPlayer)
     {
         StartSpot = PlayerStart(Player.StartSpot);
         if(StartSpot == none)
@@ -974,18 +991,20 @@ function KFCustomizationPoint FindCustomizationStart(Controller Player)
     return CP;
 }
 
-function bool CheckSpawnProximity(NavigationPoint P, Controller Player, byte TeamNum, optional bool bCustomizationPoint)
+static function bool CheckSpawnProximity(NavigationPoint P, Controller Player, byte TeamNum, optional bool bCustomizationPoint)
 {
     local PlayerController PC;
     local KFPawn_Customization CPawn;
+    local WorldInfo WI;
 
-    foreach WorldInfo.AllControllers(Class'PlayerController', PC)
+    WI = Class'WorldInfo'.static.GetWorldInfo();
+    foreach WI.AllControllers(Class'PlayerController', PC)
     {
         if(PC == Player)
         {
             continue;            
         }
-        if((IsInitialSpawnPointSelection()) && !bCustomizationPoint)
+        if((IsInitialSpawnPointSelection(WI)) && !bCustomizationPoint)
         {
             if((PC.StartSpot == P) && PC.GetTeamNum() == TeamNum)
             {                
@@ -1012,9 +1031,9 @@ function bool CheckSpawnProximity(NavigationPoint P, Controller Player, byte Tea
     return true;
 }
 
-function bool IsInitialSpawnPointSelection()
+static function bool IsInitialSpawnPointSelection(WorldInfo WI)
 {
-    return bWaitingToStartMatch;
+    return ((WI.Game != none) ? WI.Game.bWaitingToStartMatch : !WI.GRI.bMatchHasBegun);
 }
 
 function SetPlayerDefaults(Pawn PlayerPawn)
@@ -1042,6 +1061,33 @@ function bool IsWaveActive();
 static function float GetNumAlwaysRelevantZeds()
 {
     return float(default.NumAlwaysRelevantZeds);
+}
+
+function class<KFPawn_Monster> GetAISpawnType(KFAISpawnManager.EAIType AIType)
+{
+    return AIClassList[AIType];
+}
+
+function class<KFPawn_Monster> GetBossAISpawnType()
+{
+    return AIBossClassList[Rand(AIBossClassList.Length)];
+}
+
+event AdjustSpawnedAIPawn(KFPawn NewSpawn);
+
+function float GetGameInfoSpawnRateMod()
+{
+    return 1;
+}
+
+function bool AllowPrimaryWeapon(string ClassPath)
+{
+    return true;
+}
+
+function int AdjustStartingGrenadeCount(int CurrentCount)
+{
+    return CurrentCount;
 }
 
 function SetMonsterDefaults(KFPawn_Monster P)
@@ -1174,7 +1220,7 @@ function bool CanSpectate(PlayerController Viewer, PlayerReplicationInfo ViewTar
     return ((TargetController != none) && TargetController.Pawn != none) && TargetController.Pawn.IsAliveAndWell();
 }
 
-function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser)
+function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
 {
     local class<KFDamageType> KFDT;
 
@@ -1202,7 +1248,7 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
             Momentum = vect(0, 0, 0);
         }
     }
-    super(GameInfo).ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
+    super(GameInfo).ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
 }
 
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> DT)
@@ -1501,7 +1547,7 @@ function int GetNumHumanTeamPlayers()
 
     foreach WorldInfo.AllControllers(Class'Controller', C)
     {
-        if(((C.bIsPlayer && C.PlayerReplicationInfo != none) && !C.PlayerReplicationInfo.bOnlySpectator) && C.GetTeamNum() == 0)
+        if((((C.bIsPlayer && C.PlayerReplicationInfo != none) && C.PlayerReplicationInfo.bReadyToPlay) && !C.PlayerReplicationInfo.bOnlySpectator) && C.GetTeamNum() == 0)
         {
             ++ HumanTeamPlayers;
         }        
@@ -1996,21 +2042,19 @@ event MakeReservations(const string URLOptions, const UniqueNetId PlayerID, out 
 event PlayerController Login(string Portal, string Options, const UniqueNetId UniqueId, out string ErrorMessage)
 {
     local PlayerController SpawnedPC;
-    local string ClientAuthTicket, PlayerfabPlayerId;
+    local string PlayerfabPlayerId;
 
     SeatPlayer(UniqueId);
     SpawnedPC = super(GameInfo).Login(Portal, Options, UniqueId, ErrorMessage);
     if(((PlayfabInter != none) && PlayfabInter.IsRegisteredWithPlayfab()) && SpawnedPC != none)
     {
         LogInternal("Player login with options" @ Options);
-        ClientAuthTicket = ParseOption(Options, "AuthTicket");
         PlayerfabPlayerId = ParseOption(Options, "PlayfabPlayerId");
-        LogInternal((("Player controller log in with auth ticket" @ ClientAuthTicket) @ "and playfab player id") @ PlayerfabPlayerId);
-        if(ClientAuthTicket != "")
-        {
-        }
         SpawnedPC.PlayerReplicationInfo.PlayfabPlayerId = PlayerfabPlayerId;
-        ReadGameplayTimeForPlayer(PlayerfabPlayerId);
+        if(PlayerfabPlayerId != "")
+        {
+            PlayfabInter.ServerNotifyPlayerJoined(PlayerfabPlayerId);
+        }
     }
     return SpawnedPC;
 }
@@ -2484,7 +2528,7 @@ private final function CheckServerUnlock()
         Playfab = KFEngine.GetPlayfabInterface();
         if(Playfab != none)
         {
-            Playfab.serverDeallocate();
+            Playfab.ServerDeallocate();
         }
         if(KFEngine.IsLockedServer())
         {
@@ -2610,106 +2654,6 @@ function bool IsPlayerReady(KFPlayerReplicationInfo PRI)
 
 function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime);
 
-function ReadGameplayTimeForPlayer(const string ForPlayerId)
-{
-    local array<string> Keys;
-
-    Keys.AddItem("LastCrateGiftTime";
-    Keys.AddItem("GameplayTime";
-    PlayfabInter.ServerRetrieveInternalUserData(ForPlayerId, Keys);
-}
-
-function ResetGameplayTimeForPlayer(const string ForPlayerId)
-{
-    local array<string> Keys, Values;
-
-    Keys.AddItem("LastCrateGiftTime";
-    Values.AddItem(GenerateUTCTimeStamp();
-    Keys.AddItem("GameplayTime";
-    Values.AddItem("0";
-    PlayfabInter.ServerUpdateInternalUserData(ForPlayerId, Keys, Values);
-}
-
-function AwardCrateToPlayer(string PlayfabPlayerId)
-{
-    local array<string> ItemIds;
-
-    ItemIds.AddItem("910000";
-    PlayfabInter.ServerGrantItemsForUser(PlayfabPlayerId, ItemIds);
-}
-
-event AddGameplayTimeForPlayer(KFPlayerReplicationInfo ForPRI, int AmountToAdd, optional bool bFinal)
-{
-    local array<string> Keys, Values;
-
-    if((ForPRI.PlayfabPlayerId != "") && ForPRI.SecondsOfGameplay >= 0)
-    {
-        ForPRI.SecondsOfGameplay += AmountToAdd;
-        if(bFinal && HasEnoughTimeForReward(ForPRI))
-        {
-            ResetGameplayTimeForPlayer(ForPRI.PlayfabPlayerId);
-            ForPRI.SecondsOfGameplay = 0;
-            AwardCrateToPlayer(ForPRI.PlayfabPlayerId);            
-        }
-        else
-        {
-            if(AmountToAdd > 0)
-            {
-                Keys.AddItem("GameplayTime";
-                Values.AddItem(string(ForPRI.SecondsOfGameplay);
-                PlayfabInter.ServerUpdateInternalUserData(ForPRI.PlayfabPlayerId, Keys, Values);
-            }
-        }
-    }
-}
-
-// Export UKFGameInfo::execGenerateUTCTimeStamp(FFrame&, void* const)
-native function string GenerateUTCTimeStamp();
-
-// Export UKFGameInfo::execHasEnoughTimeForReward(FFrame&, void* const)
-native function bool HasEnoughTimeForReward(KFPlayerReplicationInfo PRI);
-
-function OnRetreivedPFInternalUserData(const string ForPlayerId, array<string> Keys, array<string> Values)
-{
-    local KFPlayerReplicationInfo ForPRI;
-    local int I;
-    local bool bFoundCrateGiftValue, bFoundGameplayValue;
-
-    ForPRI = KFPlayerReplicationInfo(GameReplicationInfo.GetPRIByPlayfabId(ForPlayerId));
-    if(ForPRI != none)
-    {
-        I = 0;
-        J0x55:
-
-        if(I < Keys.Length)
-        {
-            if(Keys[I] == "LastCrateGiftTime")
-            {
-                ForPRI.LastCrateGiftTimestamp = Values[I];
-                bFoundCrateGiftValue = true;                
-            }
-            else
-            {
-                if(Keys[I] == "GameplayTime")
-                {
-                    ForPRI.SecondsOfGameplay = int(Values[I]);
-                    bFoundGameplayValue = true;
-                }
-            }
-            ++ I;
-            goto J0x55;
-        }
-        if(!bFoundCrateGiftValue)
-        {
-            ForPRI.LastCrateGiftTimestamp = "Empty";
-        }
-        if(!bFoundGameplayValue)
-        {
-            ForPRI.SecondsOfGameplay = 0;
-        }
-    }
-}
-
 // Export UKFGameInfo::execCheckNextMap(FFrame&, void* const)
 native function string CheckNextMap(string NextMap);
 
@@ -2797,7 +2741,7 @@ defaultproperties
     EndOfGameDelay=15
     GameModes(0)=(FriendlyName="Survival",ClassNameAndPath="KFGameContent.KFGameInfo_Survival",bSoloPlaySupported=true,DifficultyLevels=4,Lengths=4,LocalizeID=0)
     GameModes(1)=(FriendlyName="Versus",ClassNameAndPath="KFGameContent.KFGameInfo_VersusSurvival",bSoloPlaySupported=false,DifficultyLevels=0,Lengths=0,LocalizeID=1)
-    KickVotePercentage=0.5
+    KickVotePercentage=0.66
     TimeBetweenFailedVotes=10
     MapVoteDuration=60
     ServerMOTD="Welcome to our server. \\n \\n Have fun and good luck!"
@@ -2821,7 +2765,7 @@ defaultproperties
     NumAlwaysRelevantZeds=3
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

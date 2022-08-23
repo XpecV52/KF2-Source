@@ -913,7 +913,7 @@ exec function ReleaseGamepadWeaponSelect()
                 Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('GamepadWeaponMenuTimer', self);
                 if(bShowGamepadWeaponSelectHint)
                 {
-                    Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 8);
+                    Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 10);
                 }
                 if(bUseGamepadLastWeapon)
                 {

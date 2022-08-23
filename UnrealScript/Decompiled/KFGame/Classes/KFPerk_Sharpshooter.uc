@@ -325,7 +325,7 @@ function UpdatePerkHeadShots(ImpactInfo Impact, class<DamageType> DamageType, in
         return;
     }
     KFPM = KFPawn_Monster(Impact.HitActor);
-    if(KFPM != none)
+    if((KFPM != none) && !KFPM.bIsHeadless)
     {
         HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName;
         if(((HitZoneIdx == 0) && KFPM != none) && KFPM.IsAliveAndWell())
@@ -466,8 +466,8 @@ defaultproperties
     ProgressStatID=50
     PerkBuildStatID=51
     SecondaryXPModifier[1]=1
-    SecondaryXPModifier[2]=2
-    SecondaryXPModifier[3]=3
+    SecondaryXPModifier[2]=1
+    SecondaryXPModifier[3]=1
     PerkName="Sharpshooter"
     Passives(0)=(Title="Headshot Damage",Description="Increase headshot damage %x% per level",IconPath="")
     Passives(1)=(Title="Recoil",Description="Decrease recoil %x% per level",IconPath="")

@@ -351,6 +351,47 @@ simulated function Vector GetPredictedHitLocation(Vector StartTrace, Vector EndT
 // Export UKFProjectile::execCalculateStickOrientation(FFrame&, void* const)
 native function Rotator CalculateStickOrientation(Vector HitNormal);
 
+singular simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
+{
+    local KActorFromStatic NewKActor;
+    local editinline StaticMeshComponent HitStaticMesh;
+    local TraceHitInfo HitInfo;
+
+    super(Actor).HitWall(HitNormal, Wall, WallComp);
+    if(Wall.bWorldGeometry)
+    {
+        HitStaticMesh = StaticMeshComponent(WallComp);
+        if((HitStaticMesh != none) && HitStaticMesh.CanBecomeDynamic())
+        {
+            NewKActor = Class'KActorFromStatic'.static.MakeDynamic(HitStaticMesh);
+            if(NewKActor != none)
+            {
+                Wall = NewKActor;
+            }            
+        }
+        else
+        {
+            if((!Wall.bStatic && Wall.bCanBeDamaged) && Wall.bProjTarget)
+            {
+                LastBounced.Actor = Wall;
+                LastBounced.Time = WorldInfo.TimeSeconds;
+                NotifyHitDestructible(HitNormal, Wall, WallComp);
+            }
+        }
+    }
+    ImpactedActor = Wall;
+    if(!Wall.bStatic && (DamageRadius == float(0)) || bDamageDestructiblesOnTouch)
+    {
+        HitInfo.HitComponent = WallComp;
+        HitInfo.Item = -1;
+        Wall.TakeDamage(int(Damage), InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
+    }
+    Explode(Location, HitNormal);
+    ImpactedActor = none;
+}
+
+simulated function NotifyHitDestructible(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp);
+
 simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
 {
     local editinline StaticMeshComponent HitStaticMesh;

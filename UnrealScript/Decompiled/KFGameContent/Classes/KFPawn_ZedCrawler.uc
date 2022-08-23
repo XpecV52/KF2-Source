@@ -9,7 +9,6 @@ class KFPawn_ZedCrawler extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
-var class<KFPawn_Monster> SpecialCrawlerPawnClass;
 var protected Actor LastBumpLevelActor;
 var protected float LastBumpLevelTime;
 var protected const KFGameExplosion DeathExplosionTemplate;
@@ -22,7 +21,7 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
     WI = Class'WorldInfo'.static.GetWorldInfo();
     if(FRand() < class<KFDifficulty_Crawler>(default.DifficultySettings).static.GetSpecialCrawlerChance(KFGameReplicationInfo(WI.GRI)))
     {
-        return default.SpecialCrawlerPawnClass;
+        return default.ElitePawnClass;
     }
     return super.GetAIPawnClassToSpawn();
 }
@@ -165,7 +164,6 @@ function int GetSpotterDialogID()
 
 defaultproperties
 {
-    SpecialCrawlerPawnClass=Class'KFPawn_ZedCrawlerKing'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_Crawler_ARCH.ToxicGasAoE_Explosion'
         Damage=4
@@ -184,7 +182,8 @@ defaultproperties
     LowGoreExplosionImpulse=5000
     bKnockdownWhenJumpedOn=true
     bIsCrawlerClass=true
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_Crawler_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Crawler_Archetype"
+    ElitePawnClass=Class'KFPawn_ZedCrawlerKing'
     MinSpawnSquadSizeType=ESquadType.EST_Crawler
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=7

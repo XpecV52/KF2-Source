@@ -98,7 +98,7 @@ simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'bGunsEquipped')
     {
-        if(SpecialMove != 34)
+        if(SpecialMove != 35)
         {
             SetWeaponStance(bGunsEquipped);
         }        
@@ -457,7 +457,7 @@ function bool IsThrowingGrenade()
     {
         return false;
     }
-    return ((IsDoingSpecialMove(35) || IsDoingSpecialMove(37)) || IsDoingSpecialMove(36)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
+    return ((IsDoingSpecialMove(36) || IsDoingSpecialMove(38)) || IsDoingSpecialMove(37)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
 }
 
 function DrawDebugOverheadText(KFHUDBase HUD, out Vector2D ScreenPos)
@@ -1013,7 +1013,11 @@ defaultproperties
     BattleDamageFX_Blood_High=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Blood_Spray_01'
     InvulnerableShieldFX=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Hunt_Shield'
     ShieldSocketName=Hips
-    ShieldImpactEffects=KFSkinTypeEffects_HansShield'Default__KFPawn_ZedHans.ShieldEffects'
+    begin object name=ShieldEffects class=KFSkinTypeEffects_HansShield
+        ImpactFXArray[14]=(Type=EEffectDamageGroup.FXG_Flare)
+    object end
+    // Reference: KFSkinTypeEffects_HansShield'Default__KFPawn_ZedHans.ShieldEffects'
+    ShieldImpactEffects=ShieldEffects
     begin object name=ShatterExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_Hans_EMIT.ShieldShatter_Explosion'
         Damage=30
@@ -1052,7 +1056,7 @@ defaultproperties
     TheatricCameraSocketName=TheatricCameraRootSocket
     bLargeZed=true
     bCanGrabAttack=true
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Hans_Archetype"
     HeadlessBleedOutTime=6
     ParryResistance=4
     begin object name=MeleeHelper class=KFMeleeHelperAI

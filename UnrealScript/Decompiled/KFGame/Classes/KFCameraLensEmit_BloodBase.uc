@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFCameraLensEmit_BloodBase extends EmitterCameraLensEffectBase
+class KFCameraLensEmit_BloodBase extends KFEmit_CameraEffect
     hidecategories(Navigation);
 
 defaultproperties

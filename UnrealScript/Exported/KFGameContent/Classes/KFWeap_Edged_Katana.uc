@@ -24,7 +24,6 @@ defaultproperties
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True
-      WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
       MeleeImpactCamShakeScale=0.030000
       MaxHitRange=190.000000
       HitboxChain(0)=(BoneOffset=(X=3.000000,Y=0.000000,Z=190.000000))
@@ -37,6 +36,7 @@ defaultproperties
       HitboxChain(7)=(BoneOffset=(X=-3.000000,Y=0.000000,Z=50.000000))
       HitboxChain(8)=(BoneOffset=(X=3.000000,Y=0.000000,Z=30.000000))
       HitboxChain(9)=(BoneOffset=(X=0.000000,Y=0.000000,Z=10.000000))
+      WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object

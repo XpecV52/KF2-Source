@@ -83,6 +83,10 @@ function EnableComm()
 		GetGameViewportClient().HandleInputAxis = OnAxisModified;
 		SetBool("bUsingGamePad", PC.PlayerInput.bUsingGamepad);
 		ActionScriptVoid("enableComm");
+		UpdateEmoteState();
+
+		// Need to keep our emote state constantly updated
+		PC.SetTimer( 0.15f, true, nameOf(UpdateEmoteState), self );
 	}
 }
 
@@ -110,7 +114,32 @@ function DisableComm()
 		{
 			SayVoiceCommms( SavedSelectionIndex );
 		}
+
+		PC.ClearTimer( nameOf(UpdateEmoteState), self );
 	}
+}
+
+function UpdateEmoteState()
+{
+	local bool bEnabled;
+	local KFPawn KFP;
+
+	bEnabled = false;
+	if( PC != none && PC.Pawn != none && PC.Pawn.IsAliveAndWell() )
+	{
+		KFP = KFPawn( PC.Pawn );
+		if( KFP != none && class'KFEmoteList'.static.GetEquippedEmoteId() != INDEX_NONE && KFP.CanDoSpecialMove(SM_Emote) )
+		{
+			bEnabled = true;
+		}
+	}
+
+	UpdateGFxEmoteState( bEnabled );
+}
+
+function UpdateGFxEmoteState( bool bEnabled )
+{
+	ActionScriptVoid( "setEmoteEnabled" );
 }
 
 function HandleInputChange()

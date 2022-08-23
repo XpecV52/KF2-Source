@@ -13,7 +13,9 @@ KF-Prison="Jugando en Cárcel"
 KF-ContainmentStation="Jugando en Puesto de contención"
 KF-InfernalRealm="Jugando en Reino infernal"
 KF-HostileGrounds="Jugando en Tierra hostil"
-KF-ZedLanding="Jugando en Aterrizaje ZED"
+KF-ZedLanding="Jugando a Aterrizaje ZED"
+KF-TheDescent="Jugando a El descendiente"
+KF-Nuked="Jugando a Bombardeado"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -129,6 +131,7 @@ PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="Pulsa XboxTypeS_A para empezar"
+SwitchProfile="Usa XboxTypeS_Y para cambiar de perfil"
 LoginButtonPrompt="Iniciar sesión"
 LoggingIn="Iniciando sesión..."
 LoginFailed="Error al iniciar sesión"
@@ -139,6 +142,8 @@ NotLoggedInOnlinePSN="Para utilizar las características en línea debes iniciar
 NetworkError="Se ha producido un error de red. Comprueba tu conexión de red."
 ErrorNoPlayfabDescription="No se ha podido establecer conexión con los servidores maestros del juego. Vuelve a intentarlo en unos minutos."
 ErrorTSSFailedDescription="No se ha podido establecer conexión con el servidor de equilibrio del juego. Asegúrate de que estás conectado a Internet e inténtalo de nuevo."
+NotSignedInTitle="No has iniciado sesión."
+
 
 [Notifications]
 ControllerDisconnectedTitle="Control desconectado"
@@ -160,12 +165,24 @@ InviteMessage="¡Ven a matar unos zeds conmigo!"
 NotConnectedTitle="Error de red"
 NotConnectedMessage="No hay conexión a Internet. Comprueba tu conexión e inténtalo de nuevo."
 NotConnectedForOnlinePlay="No hay conexión a Internet. Revisa tu conexión y vuelve a intentarlo para usar las características en línea."
+MultiplayerNotAllowed_Title="Multijugador no permitido"
+LoggedOutMessage="El perfil activo ha cambiado. Has vuelto la pantalla de título."
+LoggedOutTitle="Sesión cerrada"
+LoggedInTitle="Sesión iniciada"
+NewRegionTitle="Welcome"
+NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Ver perfil de jugador"
+ViewProfileStringXB1="Ver tarjeta de jugador"
 
 [KFGFxObject_Menu]
 ResetDefaults="¿Seguro que quieres volver a utilizar la configuración por defecto?"
+
+[KFGFxWidget_MenuBar]
+LogoutTitle="CERRAR SESIÓN"
+LogoutDialogTitle="Ir a pantalla de título"
+LogoutDialogMessage="¿Seguro que quieres volver a la pantalla de título?"
 
 [KFGFxTraderContainer_PlayerInventory]
 PerkPrompt="ESPECIALIZACIÓN"
@@ -177,9 +194,19 @@ ControllerSound="Sonido del control"
 MatchmakingRegionString="REGIÓN"
 LeaveMenuString="También saldrás de tu grupo si sales del emparejamiento."
 
+[KFGFxMenu_Store]
+
+
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGIÓN"
 MapPreference="MAPA PREFERIDO"
+
+[KFGFxMenu_Exit]
+HeaderStringXB1="CERRAR SESIÓN"
+LogoutKF2="Ir a pantalla de título"
+
+[Misc]
+NotSignedIn="No has iniciado sesión."
 
 [Entitlements]
 BriarBobbyBundleProductName="Paquete policía de Londres de Briar"

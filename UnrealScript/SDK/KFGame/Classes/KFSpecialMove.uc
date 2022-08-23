@@ -590,7 +590,7 @@ function DeferOnAnimEnd()
 }
 
 /** Called from KFPawn::OnAnimNotifyParticleSystemSpawned() */
-simulated function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC );
+function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC );
 
 /*********************************************************************************************
  * Gameplay notications/hooks
@@ -625,6 +625,9 @@ event ModifyInteractionPawn(out KFPawn OtherPawn);
 
 /** Allows special moves to control the crosshair */
 function bool CanDrawCrosshair() { return true; }
+
+/** Allows special move to alter aim rotation */
+function bool GetSMAimRotation( out rotator AimRot );
 
 defaultproperties
 {

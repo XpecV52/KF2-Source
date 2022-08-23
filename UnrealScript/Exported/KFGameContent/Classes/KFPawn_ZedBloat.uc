@@ -280,7 +280,7 @@ defaultproperties
    DeathPukeMineRotations(1)=(Pitch=7000,Yaw=32767,Roll=0)
    DeathPukeMineRotations(2)=(Pitch=7000,Yaw=-10480,Roll=0)
    bIsBloatClass=True
-   CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Bloat_ARCH.ZED_Bloat_Archetype'
+   MonsterArchPath="ZED_ARCH.ZED_Bloat_Archetype"
    HeadlessBleedOutTime=6.000000
    ParryResistance=3
    MinSpawnSquadSizeType=EST_Large

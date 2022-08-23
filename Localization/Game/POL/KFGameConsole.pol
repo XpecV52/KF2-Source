@@ -13,7 +13,9 @@ KF-Prison="Gra na mapie więzienie"
 KF-ContainmentStation="Gra na mapie ośrodek izolacyjny"
 KF-InfernalRealm="Gra na mapie piekielna domena"
 KF-HostileGrounds="Gra na mapie wrogie terytorium"
-KF-ZedLanding="Gra na mapie lądowanie zetów"
+KF-ZedLanding="Gra w Lądowanie zetów"
+KF-TheDescent="Gra na mapie Zejście"
+KF-Nuked="Gra na mapie Wysadzeni"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -129,6 +131,7 @@ PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="Naciśnij XboxTypeS_A, aby rozpocząć"
+SwitchProfile="Wciśnij XboxTypeS_Y, by zmienić profil"
 LoginButtonPrompt="Zaloguj się"
 LoggingIn="Logowanie…"
 LoginFailed="Logowanie nie powiodło się"
@@ -139,6 +142,8 @@ NotLoggedInOnlinePSN="Aby korzystać z funkcji online, należy się wpisać do P
 NetworkError="Wystąpił błąd sieci, sprawdź swoje połączenie sieciowe."
 ErrorNoPlayfabDescription="Nie można nawiązać połączenia z serwerami głównymi gry. Spróbuj ponownie za kilka minut."
 ErrorTSSFailedDescription="Nie można nawiązać połączenia z serwerem balansowym gry. Sprawdź, czy podłączenie internetu i spróbuj ponownie."
+NotSignedInTitle="Nie zalogowano."
+
 
 [Notifications]
 ControllerDisconnectedTitle="Kontroler odłączony"
@@ -160,12 +165,24 @@ InviteMessage="Zapraszam na rozwałkę zetów!"
 NotConnectedTitle="Błąd sieci"
 NotConnectedMessage="Brak połączenia z internetem. Sprawdź połączenie i spróbuj ponownie."
 NotConnectedForOnlinePlay="Brak połączenia z internetem. Aby korzystać z funkcji online, sprawdź połączenie i spróbuj ponownie"
+MultiplayerNotAllowed_Title="Gra wieloosobowa niedozwolona"
+LoggedOutMessage="Aktywny profil został zmieniony. Nastąpił powrót do ekranu tytułowego."
+LoggedOutTitle="Wylogowano"
+LoggedInTitle="Zalogowano"
+NewRegionTitle="Welcome"
+NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Zobacz profil gracza"
+ViewProfileStringXB1="Pokaż kartę gracza"
 
 [KFGFxObject_Menu]
 ResetDefaults="Czy na pewno chcesz zresetować ustawienia do wartości domyślnych?"
+
+[KFGFxWidget_MenuBar]
+LogoutTitle="WYLOGUJ"
+LogoutDialogTitle="Powrót do ekranu tytuł."
+LogoutDialogMessage="Czy na pewno chcesz powrócić do ekranu tytułowego?"
 
 [KFGFxTraderContainer_PlayerInventory]
 PerkPrompt="SPECJALIZACJA"
@@ -177,9 +194,19 @@ ControllerSound="Dźwięk kontrolera"
 MatchmakingRegionString="REGION"
 LeaveMenuString="Opuszczenie matchmakingu spowoduje opuszczenie imprezy."
 
+[KFGFxMenu_Store]
+
+
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGION"
 MapPreference="PREFEROWANA MAPA"
+
+[KFGFxMenu_Exit]
+HeaderStringXB1="WYLOGUJ"
+LogoutKF2="Powrót do ekranu tytuł."
+
+[Misc]
+NotSignedIn="Nie zalogowano"
 
 [Entitlements]
 BriarBobbyBundleProductName="Zestaw munduru policjanta Briara"

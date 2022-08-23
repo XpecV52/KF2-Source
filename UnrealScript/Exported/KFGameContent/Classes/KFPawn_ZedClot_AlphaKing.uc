@@ -103,7 +103,7 @@ simulated function int GetRallyBoostResistance( int NewDamage )
 
 defaultproperties
 {
-   CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_AlphaKing_Archetype'
+   MonsterArchPath="ZED_ARCH.ZED_Clot_AlphaKing_Archetype"
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedClot_Alpha:MeleeHelper_0'
       BaseDamage=6.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_ZedWeak'

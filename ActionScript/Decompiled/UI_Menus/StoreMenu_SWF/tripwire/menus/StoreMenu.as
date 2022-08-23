@@ -118,9 +118,7 @@ package tripwire.menus
         
         public function storeItemClicked(param1:ListEvent) : void
         {
-            trace("BRIAN:: [" + this + "] storeItemClicked");
             this.coverBGTween.play();
-            trace("BRIAN:: [" + this + "] play");
             FocusManager.setFocus(null);
             FocusManager.setModalClip(this.itemDetails);
             this.storeMainContainer.deselectContainer();

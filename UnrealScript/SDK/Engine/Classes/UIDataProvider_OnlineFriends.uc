@@ -68,7 +68,8 @@ event OnRegister(LocalPlayer InPlayer)
 
 	Super.OnRegister(InPlayer);
 	// If the player is None, we are in the editor
-	if (PlayerControllerId != -1)
+	// BWJ - 12-14-16 - Don't care about this
+	if (PlayerControllerId != -1 && !class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
 	{
 		// Figure out if we have an online subsystem registered
 		OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
@@ -166,14 +167,18 @@ function OnLoginChange(byte LocalUserNum)
 	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
 	if (OnlineSub != None)
 	{
-		// Grab the player interface to verify the subsystem supports it
-		PlayerInterface = OnlineSub.PlayerInterface;
-		if (PlayerInterface != None &&
-			PlayerInterface.GetLoginStatus(PlayerControllerId) > LS_NotLoggedIn &&
-			!PlayerInterface.IsGuestLogin(PlayerControllerId))
+		// BWJ - 12-12-16 - We don't want this for XB1. Maybe for nothing at all?
+		if( !class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
 		{
-			// Start the async task
-			PlayerInterface.ReadFriendsList(PlayerControllerId);
+			// Grab the player interface to verify the subsystem supports it
+			PlayerInterface = OnlineSub.PlayerInterface;
+			if (PlayerInterface != None &&
+				PlayerInterface.GetLoginStatus(PlayerControllerId) > LS_NotLoggedIn &&
+				!PlayerInterface.IsGuestLogin(PlayerControllerId))
+			{
+				// Start the async task
+				PlayerInterface.ReadFriendsList(PlayerControllerId);
+			}
 		}
 	}
 }
@@ -191,15 +196,19 @@ event RefreshFriendsList()
 		OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
 		if (OnlineSub != None)
 		{
-			// Grab the player interface to verify the subsystem supports it
-			PlayerInterface = OnlineSub.PlayerInterface;
-			if (PlayerInterface != None &&
-				PlayerInterface.GetLoginStatus(PlayerControllerId) > LS_NotLoggedIn &&
-				!PlayerInterface.IsGuestLogin(PlayerControllerId))
+			// BWJ - 12-12-16 - We don't want this for XB1. Maybe for nothing at all?
+			if (!class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
 			{
-				// Start the async task
-				PlayerInterface.ReadFriendsList(PlayerControllerId);
-				`log("Refreshing friends list",,'DevOnline');
+				// Grab the player interface to verify the subsystem supports it
+				PlayerInterface = OnlineSub.PlayerInterface;
+				if (PlayerInterface != None &&
+					PlayerInterface.GetLoginStatus(PlayerControllerId) > LS_NotLoggedIn &&
+					!PlayerInterface.IsGuestLogin(PlayerControllerId))
+				{
+					// Start the async task
+					PlayerInterface.ReadFriendsList(PlayerControllerId);
+					`log("Refreshing friends list",,'DevOnline');
+				}
 			}
 		}
 	}

@@ -8,9 +8,6 @@
 //=============================================================================
 class KFPawn_ZedClot_Alpha extends KFPawn_ZedClot;
 
-/** Pawn class used for the special gorefast */
-var class<KFPawn_Monster> SpecialAlphaPawnClass;
-
 /** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
 static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
@@ -19,7 +16,7 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 	WI = class'WorldInfo'.static.GetWorldInfo();
 	if( fRand() < class<KFDifficulty_ClotAlpha>(default.DifficultySettings).static.GetSpecialAlphaChance(KFGameReplicationInfo(WI.GRI)) )
 	{
-		return default.SpecialAlphaPawnClass;
+		return default.ElitePawnClass;
 	}
 
 	return super.GetAIPawnClassToSpawn();
@@ -43,7 +40,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// Content
-	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Alpha_Archetype'
+	MonsterArchPath="ZED_ARCH.ZED_Clot_Alpha_Archetype"
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.AlphaClot_AnimGroup'
 	DifficultySettings=class'KFDifficulty_ClotAlpha'
 
@@ -102,7 +99,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// AI / Navigation
-	SpecialAlphaPawnClass=class'KFPawn_ZedClot_AlphaKing'
+	ElitePawnClass=class'KFPawn_ZedClot_AlphaKing'
 	ControllerClass=class'KFAIController_ZedClot_Alpha'
 	DamageRecoveryTimeHeavy=0.75f
 	DamageRecoveryTimeMedium=1.0f

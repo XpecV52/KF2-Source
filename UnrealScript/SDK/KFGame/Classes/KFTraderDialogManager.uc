@@ -268,7 +268,7 @@ simulated function PlayTraderTickDialog( int RemainingTime, Controller C, WorldI
 	local KFPawn_Human KFPH, Teammate;
 	local KFGameReplicationInfo KFGRI;
 	local KFPlayerController KFPC;
-
+	local KFMapInfo KFMI;
 	local int BestOptionID;
 	local byte NumOptions;
 
@@ -318,7 +318,9 @@ simulated function PlayTraderTickDialog( int RemainingTime, Controller C, WorldI
 
 	if( KFGRI != none && KFGRI.OpenedTrader != none )
 	{
-		if( VSize(KFGRI.OpenedTrader.Location - KFPH.Location) >= default.FarFromTraderDistance )
+		KFMI = KFMapInfo( WorldInfo.GetMapInfo() );
+		if( (KFMI == none || KFMI.SubGameType != ESGT_Descent)
+			&& VSize(KFGRI.OpenedTrader.Location - KFPH.Location) >= default.FarFromTraderDistance )
 		{
 			// far from trader
 			AddRandomOption( `TRAD_PlayerFarAway, NumOptions, BestOptionID );

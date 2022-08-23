@@ -139,7 +139,7 @@ function UpdatePerk()
 
 function UpdateHealth()
 {
-    if( MyHumanPawn == none )
+    if( MyPC.Pawn != MyHumanPawn )
     {
         MyHumanPawn = KFPawn_Human( MyPC.Pawn );
     }
@@ -164,7 +164,7 @@ function UpdateHealth()
 
 function UpdateArmor()
 {
-    if( MyHumanPawn == none )
+    if( MyPC.Pawn != MyHumanPawn )
     {
         MyHumanPawn = KFPawn_Human( MyPC.Pawn );
     }

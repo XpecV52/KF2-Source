@@ -18,6 +18,7 @@ enum Beam2SourceTargetMethod
     PEB2STM_Emitter,
     PEB2STM_Particle,
     PEB2STM_Actor,
+    PEB2STM_ActorSocket,
     PEB2STM_MAX
 };
 

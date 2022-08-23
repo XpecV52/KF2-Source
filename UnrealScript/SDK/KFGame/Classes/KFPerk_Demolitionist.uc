@@ -11,7 +11,7 @@
 class KFPerk_Demolitionist extends KFPerk
 		native;
 
-`include(KFOnlineStats.uci)
+//`include(KFOnlineStats.uci)
 
 var				const	PerkSkill 					ExplosiveDamage;			// 1% increased explosive damage per level (max 25%)
 var 			const	PerkSkill					ExplosiveResistance;        // 10% explosive resistance, additional 2% resistance per level (max 60%)
@@ -751,7 +751,7 @@ simulated function bool IsCriticalHitActive()
  */
 simulated final private function bool IsProfessionalActive()
 {
-	return PerkSkills[EDemoProfessional].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[EDemoProfessional].bActive;
 }
 
 /**
@@ -978,8 +978,8 @@ DefaultProperties
 	KnifeWeaponDef=class'KFWeapDef_Knife_Demo'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Demo'
 
-	ProgressStatID=`STATID_Demo_Progress
-   	PerkBuildStatID=`STATID_Demo_Build
+	ProgressStatID=STATID_Demo_Progress
+   	PerkBuildStatID=STATID_Demo_Build
 
    	SecondaryXPModifier(0)=10
 	SecondaryXPModifier(1)=17

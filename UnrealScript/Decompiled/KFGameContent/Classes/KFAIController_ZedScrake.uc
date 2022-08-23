@@ -46,6 +46,11 @@ function bool CanEvadeGrenade()
     return super(KFAIController).CanEvadeGrenade();
 }
 
+function bool CanAttackDestructibles()
+{
+    return !MyKFPawn.bIsEnraged && super(KFAIController).CanAttackDestructibles();
+}
+
 defaultproperties
 {
     bUseRunOverWarning=true

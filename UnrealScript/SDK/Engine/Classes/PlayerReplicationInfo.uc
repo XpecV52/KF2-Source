@@ -478,6 +478,10 @@ function CopyProperties(PlayerReplicationInfo PRI)
 	PRI.Team = Team;
 	PRI.UniqueId = UniqueId;
 	PRI.AutomatedTestingData = AutomatedTestingData;
+
+//@HSL_BEGIN - BWJ - 4-12-16 - Playfab support
+	PRI.PlayfabPlayerId = PlayfabPlayerId;
+//@HSL_END
 }
 
 function IncrementDeaths(optional int Amt = 1)
@@ -553,7 +557,7 @@ simulated function RegisterPlayerWithSession()
 {
 	local OnlineSubsystem Online;
 	local OnlineRecentPlayersList PlayersList;
-	local UniqueNetId ZeroId, LocalId;
+	local UniqueNetId ZeroId;
 
 	Online = class'GameEngine'.static.GetOnlineSubsystem();
 	if (UniqueId != ZeroId &&
@@ -574,19 +578,6 @@ simulated function RegisterPlayerWithSession()
 			}
 		}
 	}
-
-//@HSL_BEGIN - BWJ - 3-18-16 - Register remote talker for console
-	if( WorldInfo.IsConsoleBuild() &&
-		UniqueId != ZeroId )
-	{
-		// Register players that are NOT local
-		Online.PlayerInterface.GetUniquePlayerId(0, LocalId);
-		if( LocalId != UniqueId )
-		{
-			Online.VoiceInterface.RegisterRemoteTalker( UniqueId );
-		}
-	}
-//@HSL_END
 }
 
 /**
@@ -596,7 +587,7 @@ simulated function RegisterPlayerWithSession()
 simulated function UnregisterPlayerFromSession()
 {
 	local OnlineSubsystem OnlineSub;
-	local UniqueNetId ZeroId, LocalId;
+	local UniqueNetId ZeroId;
 
 	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
 
@@ -607,7 +598,9 @@ simulated function UnregisterPlayerFromSession()
 	{
 		if (OnlineSub != None &&
 			OnlineSub.GameInterface != None &&
-			OnlineSub.GameInterface.GetGameSettings(SessionName) != None &&
+//@HSL_BEGIN - BWJ - 12-12-16 - Game settings is not important for this
+		//	OnlineSub.GameInterface.GetGameSettings(SessionName) != None &&
+//@HSL_END
 			// if host migration is currently in-progress then don't unregister players as this is handled manually (see RemoveMissingPeersFromSession)
 			!(WorldInfo.PeerHostMigration.bHostMigrationEnabled && WorldInfo.PeerHostMigration.HostMigrationProgress != HostMigration_None))
 		{
@@ -615,19 +608,6 @@ simulated function UnregisterPlayerFromSession()
 			OnlineSub.GameInterface.UnregisterPlayer(SessionName,UniqueId);
 		}
 	}
-
-//@HSL_BEGIN - BWJ - 3-18-16 - Register remote talker for console
-	if( WorldInfo.IsConsoleBuild() &&
-		UniqueId != ZeroId )
-	{
-		// Register players that are NOT local
-		OnlineSub.PlayerInterface.GetUniquePlayerId(0, LocalId);
-		if( LocalId != UniqueId )
-		{
-			OnlineSub.VoiceInterface.UnregisterRemoteTalker( UniqueId );
-		}
-	}
-//@HSL_END
 }
 
 /** return TRUE if PRI is primary (ie. non-splitscreen) player */

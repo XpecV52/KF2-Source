@@ -26,6 +26,11 @@ var OnlineMarketplaceInterfaceDingo MarketplaceInterfaceImpl;
 /** The object that handles the content interface implementation */
 var OnlineContentInterfaceDingo ContentInterfaceImpl;
 
+//@HSL_BEGIN - urias.rooney@hardsuitlabs.com – 12/08/16 - Dingo Party Interface
+/** The object that handles the lobby interface implementation */
+var KFOnlineLobbyDingo LobbyInterface;
+//@HSL_END
+
 /**
  * This is the array of queued async tasks that will be held until
  * the game is activated and will then be transferred to the standard async 
@@ -44,12 +49,6 @@ var config string ProfileDataDirectory;
 
 /** The file extension to use when saving profile data */
 var config string ProfileDataExtension;
-
-/** The array of delegates that notify read completion of profile data */
-var array<delegate<OnReadProfileSettingsComplete> > ReadProfileSettingsDelegates;
-
-/** The array of delegates that notify write completion of profile data */
-var array<delegate<OnWriteProfileSettingsComplete> > WriteProfileSettingsDelegates;
 
 /** The array of delegates that notify the completion of OnlineProfile reads */ 
 var array<delegate<OnReadOnlineProfilesComplete> > ReadOnlineProfileDelegates;
@@ -184,6 +183,9 @@ var native const bool bLoginStatusUpdated;
 /** TRUE if the login status updated while suspended */
 var const bool bLoginStatusUpdatedWhileSuspended;
 
+/** TRUE if people picker is active */
+var const bool bPeoplePickerActive;
+
 /** Have we received a current user changed message? */
 var native const bool bCurrentUserChanged;
 
@@ -201,6 +203,9 @@ var native const bool bControllerPairingChanged;
 
 /** Have we received info about license updated */
 var native const bool bLisenceInfoUpdated;
+
+/** Have we received a product purchased event? */
+var const bool bProductPurchased;
 
 /** Were we activated on the previous frame? */
 var native const bool bWasActivated;
@@ -286,10 +291,10 @@ struct native PerUserDelegateLists
 	var array<delegate<OnUnlockAchievementComplete> > AchievementDelegates;
 	/** The array of delegates for notifying when an achievements list read has completed */
 	var array<delegate<OnReadAchievementsComplete> > AchievementReadDelegates;
-	///** The list of delegates to notify when posting an image to social sites */
-	//var array<delegate<OnPostImageCompleted> > PostImageDelegates;
-	///** The list of delegates to notify when posting an image link to social sites */
-	//var array<delegate<OnPostImageCompleted> > PostLinkDelegates;
+	/** The array of delegates for reading profile settings */
+	var array<delegate<OnReadProfileSettingsComplete> > ReadProfileSettingsDelegates;
+	/** The array of delegates that notify write completion of profile data */
+	var array<delegate<OnWriteProfileSettingsComplete> > WriteProfileSettingsDelegates;
 };
 
 /** Per user array of array of delegates */
@@ -339,6 +344,18 @@ var config string ProductID;
 var const string ServiceConfigId;
 var config string DefaultSessionKeyword;
 var config string DefaultHopperName;
+
+struct native CountryRegionMapping
+{
+	/** The country code*/
+	var const int CountryCode;
+	/** The matching region */
+	var const int MatchingRegion;
+};
+
+/** The mappings from country to matchmaking region */
+var const config array<CountryRegionMapping> CountryMatchmakingRegionMappings;
+
 
 var native hatpointer ShowContentAsyncAction{Windows::Foundation::IAsyncAction};
 
@@ -548,10 +565,7 @@ function ClearLoginFailedDelegate(byte LocalUserNum,delegate<OnLoginFailed> Fail
  *
  * @return TRUE if the call succeeded, FALSE otherwise
  */
-function bool Logout(byte LocalUserNum)
-{
-	return false;
-}
+native function bool Logout(byte LocalUserNum);
 
 /**
  * Delegate used in notifying the UI/game that the manual logout completed
@@ -629,6 +643,26 @@ event ClearOnSystemUserControllerPairingChangedDelegate()
 	ClearSystemUserContrllerPairingChangedDelegate(OnUserControllerPairingChanged);
 }
 
+//@HSL_BEGIN - urias.rooney@hardsuitlabs.com – 12/08/16 - Dingo Party Interface
+/**
+ * Called from native code to assign the lobby interface
+ *
+ * @param NewInterface	The object to assign as providing the lobby interface
+ * @return		Returns True if the interface is valid, False otherwise
+ */
+event bool SetLobbyInterface( object NewInterface )
+{
+	LobbyInterface = KFOnlineLobbyDingo( NewInterface );
+	// Will return false if the interface isn't supported
+    return LobbyInterface != none && LobbyInterface.Initialize();
+}
+
+function TWOnlineLobby GetLobbyInterface()
+{
+	return LobbyInterface;
+}
+//@HSL_END
+
 /**
  * Pairs a player and controller at a given index
  *
@@ -671,7 +705,7 @@ native function bool GetControllerIdFromNetId(UniqueNetId PlayerId, out byte Con
 
 native function ManuallyActivateUser( const UniqueNetId ForUniqueId );
 
-native function ActivateGamepad( const int CurrentUserIndex, const int GamepadIndex );
+native function ActivateGamepad( const int GamepadIndex );
 
 /**
  * Reads the player's nick name from the online service
@@ -1173,14 +1207,9 @@ delegate OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful);
  */
 function AddReadProfileSettingsCompleteDelegate(byte LocalUserNum,delegate<OnReadProfileSettingsComplete> ReadProfileSettingsCompleteDelegate)
 {
-	// @igs(jtl) TODO, support > 1 user
-	if (LocalUserNum == 0)
+	if (LocalUserNum >= 0 && LocalUserNum < ArrayCount(PerUserDelegates))
 	{
-		// Add this delegate to the array if not already present
-		if (ReadProfileSettingsDelegates.Find(ReadProfileSettingsCompleteDelegate) == INDEX_NONE)
-		{
-			ReadProfileSettingsDelegates[ReadProfileSettingsDelegates.Length] = ReadProfileSettingsCompleteDelegate;
-		}
+		if (PerUserDelegates[LocalUserNum].ReadProfileSettingsDelegates.Find(ReadProfileSettingsCompleteDelegate) == INDEX_NONE) { PerUserDelegates[LocalUserNum].ReadProfileSettingsDelegates.AddItem(ReadProfileSettingsCompleteDelegate);	};
 	}
 	else
 	{
@@ -1197,23 +1226,24 @@ function AddReadProfileSettingsCompleteDelegate(byte LocalUserNum,delegate<OnRea
  */
 function ClearReadProfileSettingsCompleteDelegate(byte LocalUserNum,delegate<OnReadProfileSettingsComplete> ReadProfileSettingsCompleteDelegate)
 {
-	local int RemoveIndex;
-
-	// @igs(jtl) TODO, support > 1 user
-	if (LocalUserNum == 0)
+	if (LocalUserNum >= 0 && LocalUserNum < ArrayCount(PerUserDelegates))
 	{
-		RemoveIndex = ReadProfileSettingsDelegates.Find(ReadProfileSettingsCompleteDelegate);
-		// Remove this delegate from the array if found
-		if (RemoveIndex != INDEX_NONE)
-		{
-			ReadProfileSettingsDelegates.Remove(RemoveIndex,1);
-		}
+		PerUserDelegates[LocalUserNum].ReadProfileSettingsDelegates.RemoveItem(ReadProfileSettingsCompleteDelegate);
 	}
 	else
 	{
 		WarnInternal("Invalid user index ("$LocalUserNum$") specified for ClearReadProfileSettingsCompleteDelegate()");
 	}
 }
+
+
+//@HSL_BEGIN - BWJ - 1-11-17 - Support for setting a cached profile
+function SetCachedProfile(OnlineProfileSettings InSettings)
+{
+	CachedProfile = InSettings;
+}
+//@HSL_END
+
 
 /**
  * Returns the online profile settings for a given user
@@ -1224,12 +1254,7 @@ function ClearReadProfileSettingsCompleteDelegate(byte LocalUserNum,delegate<OnR
  */
 function OnlineProfileSettings GetProfileSettings(byte LocalUserNum)
 {
-	// @igs(jtl) TODO, support > 1 user
-	if (LocalUserNum == 0)
-	{
-		return CachedProfile;
-	}
-	return None;
+	return CachedProfile;
 }
 
 /**
@@ -1258,14 +1283,9 @@ delegate OnWriteProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful);
  */
 function AddWriteProfileSettingsCompleteDelegate(byte LocalUserNum,delegate<OnWriteProfileSettingsComplete> WriteProfileSettingsCompleteDelegate)
 {
-	// @igs(jtl) TODO, support > 1 user
-	if (LocalUserNum == 0)
+	if (LocalUserNum >= 0 && LocalUserNum < ArrayCount(PerUserDelegates))
 	{
-		// Add this delegate to the array if not already present
-		if (WriteProfileSettingsDelegates.Find(WriteProfileSettingsCompleteDelegate) == INDEX_NONE)
-		{
-			WriteProfileSettingsDelegates[WriteProfileSettingsDelegates.Length] = WriteProfileSettingsCompleteDelegate;
-		}
+		if (PerUserDelegates[LocalUserNum].WriteProfileSettingsDelegates.Find(WriteProfileSettingsCompleteDelegate) == INDEX_NONE) { PerUserDelegates[LocalUserNum].WriteProfileSettingsDelegates.AddItem(WriteProfileSettingsCompleteDelegate);	};
 	}
 	else
 	{
@@ -1282,17 +1302,9 @@ function AddWriteProfileSettingsCompleteDelegate(byte LocalUserNum,delegate<OnWr
  */
 function ClearWriteProfileSettingsCompleteDelegate(byte LocalUserNum,delegate<OnWriteProfileSettingsComplete> WriteProfileSettingsCompleteDelegate)
 {
-	local int RemoveIndex;
-
-	// @igs(jtl) TODO, support > 1 user
-	if (LocalUserNum == 0)
+	if (LocalUserNum >= 0 && LocalUserNum < ArrayCount(PerUserDelegates))
 	{
-		RemoveIndex = WriteProfileSettingsDelegates.Find(WriteProfileSettingsCompleteDelegate);
-		// Remove this delegate from the array if found
-		if (RemoveIndex != INDEX_NONE)
-		{
-			WriteProfileSettingsDelegates.Remove(RemoveIndex,1);
-		}
+		PerUserDelegates[LocalUserNum].WriteProfileSettingsDelegates.RemoveItem(WriteProfileSettingsCompleteDelegate);
 	}
 	else
 	{
@@ -2553,6 +2565,10 @@ function ClearShowHelpCompleteDelegate(delegate<OnShowHelpComplete> HelpDelegate
  */
 native function bool ShowVideo(string URL);
 
+// Overriden from Onlinesubsystem.uc
+native function OpenURL(string WebsiteLink);
+
+
 //@HSL_BEGIN_XBOX
 /** 
  * Delegate called when OSS-side tokens are acquired 
@@ -3189,14 +3205,6 @@ function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
 //@HSL_END
 
 
-//@HSL_BEGIN - BWJ - 6-15-16 - Auth support for backend service
-delegate OnOnlineServiceAuthComplete();
-function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
-function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
-function AuthWithOnlineService();
-//@HSL_END
-
-
 //@HSL_BEGIN - BWJ - 5-26-16 - Support for reading store data
 function ReadStoreData();
 delegate OnStoreDataRead( bool bSuccessful );
@@ -3207,6 +3215,44 @@ function ReadEntitlements();
 delegate OnEntitlementsRead( bool bSuccess );
 function AddOnEntitlementsReadDelegate( delegate<OnEntitlementsRead> InDelegate );
 function ClearOnEntitlementsReadDelegate( delegate<OnEntitlementsRead> InDelegate );
+//@HSL_END
+
+//@HSL_BEGIN - BWJ - 12-1-16 - Support for save data
+private event StartSaveDataRead( byte LocalUserNum, string FileName )
+{
+	ContentInterfaceImpl.AddReadSaveGameDataComplete(LocalUserNum, OnReadProfileSaveData);
+	ContentInterfaceImpl.ReadSaveGameData(LocalUserNum, 0, "", "", FileName);
+}
+
+private function OnReadProfileSaveData(bool bWasSuccessful,byte LocalUserNum,int DeviceId,string FriendlyName,string FileName,string SaveFileName)
+{
+	ContentInterfaceImpl.ClearReadSaveGameDataComplete( LocalUserNum, OnReadProfileSaveData );
+	HandleReadProfileSaveDataComplete( bWasSuccessful, LocalUserNum, SaveFileName );
+}
+
+
+private native function HandleReadProfileSaveDataComplete( bool bWasSuccessful, byte LocalUserNum, string SaveFileName );
+
+
+private event WriteProfileData(byte LocalUserNum, string FileName, const out array<byte> ProfileData)
+{
+	ContentInterfaceImpl.AddWriteSaveGameDataComplete(LocalUserNum, OnWriteProfileSaveData);
+	ContentInterfaceImpl.WriteSaveGameData(LocalUserNum, 0, "", "", FileName, ProfileData);
+}
+
+// Callback for profile writing complete
+private function OnWriteProfileSaveData(bool bWasSuccessful,byte LocalUserNum,int DeviceId,string FriendlyName,string FileName,string SaveFileName)
+{
+	ContentInterfaceImpl.ClearWriteSaveGameDataComplete(LocalUserNum, OnWriteProfileSaveData);
+	HandleWriteProfileSaveDataComplete(bWasSuccessful, LocalUserNum, SaveFileName);
+}
+
+// Fire off write profile delegates in native
+private native function HandleWriteProfileSaveDataComplete(bool bWasSuccessful, byte LocalUserNum, string SaveFileName);
+//@HSL_END
+
+//@HSL BEGIN - BWJ - 2-27-17 - Support for detecting default region
+native function StartRegionPingAndSelectDefaultRegion(delegate<OnPingRegionsComplete> Callback);
 //@HSL_END
 
 defaultproperties

@@ -223,7 +223,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
     return 1;
 }
 
-simulated function float GetSnarePower(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     if((IsGroundFireActive() && DamageType != none) && ClassIsChildOf(DamageType, SnareCausingDmgTypeClass))
     {
@@ -392,7 +392,7 @@ defaultproperties
     SkillCatagories[3]="Flame"
     SkillCatagories[4]="Advanced Training"
     EXPAction1="Dealing Firebug weapon damage"
-    EXPAction2="Killing Crawlers and Bloats with Firebug weapons"
+    EXPAction2="Killing Crawlers with Firebug weapons"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
     PerkSkills(0)=(Name="BringTheHeat",Increment=0,Rank=0,StartingValue=0.35,MaxValue=0.35,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_BringtheHeat",bActive=false)
     PerkSkills(1)=(Name="HighCapFuelTank",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HighCapacityFuel",bActive=false)

@@ -70,6 +70,10 @@ event bool PlayParticleEffect(const AnimNotify_PlayParticleEffect AnimNotifyData
         }
         PSC.ActivateSystem(true);
         PSC.__OnSystemFinished__Delegate = SkelMeshCompOnParticleSystemFinished;
+        if((PSC != none) && Owner != none)
+        {
+            Owner.OnAnimNotifyParticleSystemSpawned(AnimNotifyData, PSC);
+        }
         return true;
     }
     return super.PlayParticleEffect(AnimNotifyData);

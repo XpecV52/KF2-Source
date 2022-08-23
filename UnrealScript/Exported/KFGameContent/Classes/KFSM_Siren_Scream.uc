@@ -23,6 +23,9 @@ var float 			LastScreamTime;
 /** Maximum number of times a scream can deal damage */
 const DAMAGE_COUNT_PER_SCREAM = 4;
 
+/** How much base damage a scream does */
+var protected const int ScreamDamage;
+
 /** Temp reference to the explosion template, used for delayed damage */
 var GameExplosion ExplosionTemplate;
 
@@ -43,8 +46,6 @@ var bool			bDrawProjectileShield;
 
 var KFTrigger_SirenProjectileShield ProjectileShield;
 var const	float	ProjectileShieldLifetime;
-
-var transient int DefaultScreamDamage;
 
 /**
  * Can a new special move override this one before it is finished?
@@ -81,12 +82,6 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 	if( MySirenPawn == none )
 	{
 		MySirenPawn = KFPawn_ZedSiren( KFPOwner );
-	}
-
-	// Temporarily store scream damage for modification later
-	if( DefaultScreamDamage == 0 )
-	{
-		DefaultScreamDamage = ExplosionTemplate.Damage;
 	}
 
 	LastScreamTime = MySirenPawn.WorldInfo.TimeSeconds;
@@ -195,7 +190,7 @@ function ScreamExplosion()
 
 	LastScreamTime = KFPOwner.WorldInfo.TimeSeconds;
 
-	ExplosionTemplate.Damage = KFPawn_Monster(KFPOwner).GetRallyBoostDamage( DefaultScreamDamage );
+	ExplosionTemplate.Damage = KFPawn_Monster(KFPOwner).GetRallyBoostDamage( ScreamDamage );
 	ExplosionActor.Explode(ExplosionTemplate);		// go bewm
 
 	ScreamCount++;
@@ -234,6 +229,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 defaultproperties
 {
    ScreamDamageFrequency=0.500000
+   ScreamDamage=15
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFSM_Siren_Scream:ExploTemplate0'
    ExplosionActorClass=Class'kfgamecontent.KFExplosion_SirenScream'
    ScreamInterruptSound=AkEvent'WW_ZED_Siren.Stop_Siren_Scream'

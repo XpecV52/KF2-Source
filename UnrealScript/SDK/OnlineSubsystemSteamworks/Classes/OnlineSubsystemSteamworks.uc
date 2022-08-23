@@ -4562,13 +4562,6 @@ function bool RecordPlayersRecentlyMet( byte LocalUserNum, out array<PlayerNameI
 // @zombie_ps4_end
 
 
-//@HSL_BEGIN - BWJ - 6-15-16 - Auth support for backend service
-delegate OnOnlineServiceAuthComplete();
-function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
-function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
-function AuthWithOnlineService();
-//@HSL_END
-
 defaultproperties
 {
 	LoggedInPlayerName="Local Profile"

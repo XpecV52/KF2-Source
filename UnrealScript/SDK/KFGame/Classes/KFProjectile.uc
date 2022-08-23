@@ -588,6 +588,48 @@ simulated function vector GetPredictedHitLocation(vector StartTrace, vector EndT
 /** Calculates rotator that aligns actor to hit surface */
 native function Rotator CalculateStickOrientation( vector HitNormal );
 
+/** Mostly copied from Projectile.uc, overridden to handle destructibles properly */
+simulated singular event HitWall( vector HitNormal, actor Wall, PrimitiveComponent WallComp )
+{
+    local KActorFromStatic NewKActor;
+    local StaticMeshComponent HitStaticMesh;
+    local TraceHitInfo HitInfo;
+
+    Super(Actor).HitWall(HitNormal, Wall, WallComp);
+
+    if ( Wall.bWorldGeometry )
+    {
+        HitStaticMesh = StaticMeshComponent(WallComp);
+        if ( (HitStaticMesh != None) && HitStaticMesh.CanBecomeDynamic() )
+        {
+            NewKActor = class'KActorFromStatic'.Static.MakeDynamic(HitStaticMesh);
+            if ( NewKActor != None )
+            {
+                Wall = NewKActor;
+            }
+        }
+        else if( !Wall.bStatic && Wall.bCanBeDamaged && Wall.bProjTarget )
+        {
+            LastBounced.Actor = Wall;
+            LastBounced.Time = WorldInfo.TimeSeconds;
+            NotifyHitDestructible( HitNormal, Wall, WallComp );
+        }
+    }
+
+    ImpactedActor = Wall;
+    if( !Wall.bStatic && (DamageRadius == 0 || bDamageDestructiblesOnTouch) )
+    {
+        HitInfo.HitComponent = WallComp;
+        HitInfo.Item = INDEX_None;  // force TraceComponent on fractured meshes
+        Wall.TakeDamage( Damage, InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
+    }
+
+    Explode(Location, HitNormal);
+    ImpactedActor = None;
+}
+
+simulated function NotifyHitDestructible( vector HitNormal, actor Wall, PrimitiveComponent WallComp );
+
 simulated event Touch( Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal )
 {
 	local StaticMeshComponent HitStaticMesh;
@@ -643,7 +685,10 @@ simulated function bool CheckRepeatingTouch(Actor Other)
   * Returns true if projectile actually bounced / was allowed to bounce */
 simulated function bool Bounce( vector HitNormal, Actor BouncedOff );
 
-/** Called by projectiles that bounce off world geometry when they touch a damagable non-pawn actor */
+/** 
+ * Called by projectiles that bounce off world geometry when they touch a damagable non-pawn actor 
+ * @note: This may be deprecated now that KFDestructibleActor has bWorldGeometry=true
+ */
 simulated function ProcessDestructibleTouchOnBounce( Actor Other, Vector HitLocation, Vector HitNormal )
 {
 	local TraceHitInfo HitInfo;

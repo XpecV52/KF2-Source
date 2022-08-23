@@ -27,10 +27,10 @@ defaultproperties
         ChainSequence_B=/* Array type was not detected. */
         ChainSequence_L=/* Array type was not detected. */
         ChainSequence_R=/* Array type was not detected. */
-        WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
         MeleeImpactCamShakeScale=0.03
         MaxHitRange=220
         HitboxChain=/* Array type was not detected. */
+        WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Edged_Knife.MeleeHelper'
     MeleeAttackHelper=MeleeHelper

@@ -76,7 +76,8 @@ const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
-const KFID_DisableAutoUpgrade = 167;#linenumber 15;
+const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;#linenumber 15;
 //@HSL_MOD_END
 
 
@@ -366,10 +367,10 @@ struct native GraphicsQualitySetting
 			// Motion Blur
 			GSAOptions[12].name = TEXT("MotionBlur");
 			GSAOptions[12].value.type = NV_GSA_TYPE_INT;
-			GSAOptions[12].value.asInt = 2;
-			GSAOptions[12].numRange.maxValue.asInt = 2;
+			GSAOptions[12].value.asInt = 0;
+			GSAOptions[12].numRange.maxValue.asInt = 1;
 			GSAOptions[12].numRange.minValue.asInt = 0;
-			GSAOptions[12].numRange.numSteps = 2;
+			GSAOptions[12].numRange.numSteps = 1;
 
 			// AO
 			GSAOptions[13].name = TEXT("AmbientOcclusion");
@@ -3529,8 +3530,7 @@ defaultproperties
    BloomStringOptions(1)="Low"
    BloomStringOptions(2)="High"
    MotionBlurStringOptions(0)="Off"
-   MotionBlurStringOptions(1)="Normal"
-   MotionBlurStringOptions(2)="High"
+   MotionBlurStringOptions(1)="On"
    AmbientOcclusionStringOptions(0)="Off"
    AmbientOcclusionStringOptions(1)="SSAO"
    AmbientOcclusionStringOptions(2)="HBAO+"
@@ -3538,12 +3538,12 @@ defaultproperties
    DepthOfFieldStringOptions(1)="On"
    OffOnStringOptions(0)="Off"
    OffOnStringOptions(1)="On"
-   GraphicsQualityPresets(1)=(EnvironmentDetailIndex=1,FXQualityIndex=1,TextureResolutionIndex=1,TextureFilteringIndex=1,ShadowQualityIndex=1,AntiAliasingIndex=1,BloomIndex=1,MotionBlurIndex=1)
-   GraphicsQualityPresets(2)=(EnvironmentDetailIndex=2,CharacterDetailIndex=1,FXQualityIndex=2,TextureResolutionIndex=2,TextureFilteringIndex=2,ShadowQualityIndex=2,LightShafts=True,VolumetricLighting=True,LensFlares=True,AntiAliasingIndex=1,BloomIndex=2,MotionBlurIndex=2,AmbientOcclusionIndex=1,DOFIndex=1)
-   GraphicsQualityPresets(3)=(EnvironmentDetailIndex=3,CharacterDetailIndex=2,FXQualityIndex=3,TextureResolutionIndex=3,TextureFilteringIndex=3,ShadowQualityIndex=3,RealtimeReflectionsIndex=1,LightShafts=True,VolumetricLighting=True,LensFlares=True,AntiAliasingIndex=1,BloomIndex=2,MotionBlurIndex=2,AmbientOcclusionIndex=2,DOFIndex=1)
-   GraphicsQualityPresets(4)=(EnvironmentDetailIndex=2,CharacterDetailIndex=1,FXQualityIndex=2,TextureResolutionIndex=2,TextureFilteringIndex=2,ShadowQualityIndex=2,LightShafts=True,VolumetricLighting=True,LensFlares=True,AntiAliasingIndex=1,BloomIndex=2,MotionBlurIndex=2,AmbientOcclusionIndex=1,DOFIndex=1,FlexIndex=1)
-   GraphicsQualityPresets(5)=(EnvironmentDetailIndex=2,CharacterDetailIndex=1,FXQualityIndex=2,TextureResolutionIndex=2,TextureFilteringIndex=2,ShadowQualityIndex=2,LightShafts=True,VolumetricLighting=True,LensFlares=True,AntiAliasingIndex=1,BloomIndex=2,MotionBlurIndex=2,AmbientOcclusionIndex=1,DOFIndex=1,FlexIndex=2)
-   GraphicsQualityPresets(6)=(EnvironmentDetailIndex=3,CharacterDetailIndex=2,FXQualityIndex=3,TextureResolutionIndex=3,TextureFilteringIndex=3,ShadowQualityIndex=3,RealtimeReflectionsIndex=1,LightShafts=True,VolumetricLighting=True,LensFlares=True,AntiAliasingIndex=1,BloomIndex=2,MotionBlurIndex=2,AmbientOcclusionIndex=2,DOFIndex=1,FlexIndex=2)
+   GraphicsQualityPresets(1)=(EnvironmentDetailIndex=1,FXQualityIndex=1,TextureResolutionIndex=1,TextureFilteringIndex=1,ShadowQualityIndex=1,AntiAliasingIndex=1,BloomIndex=1)
+   GraphicsQualityPresets(2)=(EnvironmentDetailIndex=2,CharacterDetailIndex=1,FXQualityIndex=2,TextureResolutionIndex=2,TextureFilteringIndex=2,ShadowQualityIndex=2,LightShafts=True,VolumetricLighting=True,LensFlares=True,AntiAliasingIndex=1,BloomIndex=2,AmbientOcclusionIndex=1,DOFIndex=1)
+   GraphicsQualityPresets(3)=(EnvironmentDetailIndex=3,CharacterDetailIndex=2,FXQualityIndex=3,TextureResolutionIndex=3,TextureFilteringIndex=3,ShadowQualityIndex=3,RealtimeReflectionsIndex=1,LightShafts=True,VolumetricLighting=True,LensFlares=True,AntiAliasingIndex=1,BloomIndex=2,MotionBlurIndex=1,AmbientOcclusionIndex=2,DOFIndex=1)
+   GraphicsQualityPresets(4)=(EnvironmentDetailIndex=2,CharacterDetailIndex=1,FXQualityIndex=2,TextureResolutionIndex=2,TextureFilteringIndex=2,ShadowQualityIndex=2,LightShafts=True,VolumetricLighting=True,LensFlares=True,AntiAliasingIndex=1,BloomIndex=2,AmbientOcclusionIndex=1,DOFIndex=1,FlexIndex=1)
+   GraphicsQualityPresets(5)=(EnvironmentDetailIndex=2,CharacterDetailIndex=1,FXQualityIndex=2,TextureResolutionIndex=2,TextureFilteringIndex=2,ShadowQualityIndex=2,LightShafts=True,VolumetricLighting=True,LensFlares=True,AntiAliasingIndex=1,BloomIndex=2,AmbientOcclusionIndex=1,DOFIndex=1,FlexIndex=2)
+   GraphicsQualityPresets(6)=(EnvironmentDetailIndex=3,CharacterDetailIndex=2,FXQualityIndex=3,TextureResolutionIndex=3,TextureFilteringIndex=3,ShadowQualityIndex=3,RealtimeReflectionsIndex=1,LightShafts=True,VolumetricLighting=True,LensFlares=True,AntiAliasingIndex=1,BloomIndex=2,MotionBlurIndex=1,AmbientOcclusionIndex=2,DOFIndex=1,FlexIndex=2)
    DisplayPresets(1)=(BorderlessWindow=True)
    DisplayPresets(2)=(Fullscreen=True)
    VSyncPresets(1)=(VSync=True)
@@ -3582,7 +3582,6 @@ defaultproperties
    BloomPresets(1)=(Bloom=True,BloomQuality=1)
    BloomPresets(2)=(Bloom=True,BloomQuality=2)
    MotionBlurPresets(1)=(MotionBlur=True,MotionBlurQuality=1)
-   MotionBlurPresets(2)=(MotionBlur=True,MotionBlurQuality=2)
    AntiAliasingPresets(1)=(PostProcessAA=True)
    AmbientOcclusionPresets(1)=(AmbientOcclusion=True)
    AmbientOcclusionPresets(2)=(AmbientOcclusion=True,HBAO=True)

@@ -45,6 +45,7 @@ defaultproperties
       ObjectArchetype=PointLightComponent'kfgamecontent.Default__KFPawn_ZedHusk:ChestLightComponent0'
    End Object
    ChestLightComponent=ChestLightComponent0
+   CharacterMonsterArch=KFCharacterInfo_Monster'zed_husk_arch.ZED_Husk_Archetype'
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedHusk:MeleeHelper_0'
       BaseDamage=15.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_ZedWeak'

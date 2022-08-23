@@ -4,7 +4,9 @@ class AkEvent extends AkBaseSoundObject
 var() AkBank RequiredBank;
 
 /** The range at which the sound has attenuated completely (-1: no sound; 0: 2D; 3D otherwise) */
-var(TW) editconst float   MaxAudibleDistance;
+var(TW)     const float   MaxAudibleDistance<EditCondition=bOverrideMaxAudibleDistance>;
+/** (Advanced) Check this flag to be able to modify MaxAudibleDistance instead of using the "MaxAttenuation" value from WWise */
+var(TW)     const bool    bOverrideMaxAudibleDistance;
 
 /** How long this event plays for */
 var(TW) editconst float   Duration;

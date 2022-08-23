@@ -16,14 +16,16 @@ var transient bool bCollisionSoundsEnabled;
 var const bool bEnableStaticMeshRBPhys;
 var const bool bIgnoreBlockingVolumes;
 var protected const bool bUseLowHealthDelay;
+var protected bool bUseAuthorityRBUpdate;
 var protectedwrite export editinline MeshComponent MyMeshComp;
 var protectedwrite export editinline CylinderComponent MyCylinderComp;
 var private int SkinItemId;
+var protected float PostAuthorityChangeLifeSpan;
 
 replication
 {
      if(Role == ROLE_Authority)
-        RBState;
+        RBState, bUseAuthorityRBUpdate;
 
      if(bNetInitial)
         SkinItemId;
@@ -267,9 +269,9 @@ function NotifyHUDofWeapon(Pawn P)
 
 function bool ValidTouch(Pawn Other);
 
-simulated function bool IsTouchBlockedBy(Actor A)
+simulated function bool IsTouchBlockedBy(Actor A, PrimitiveComponent HitComponent)
 {
-    if(((A != self) && A.bBlockActors) && A.bWorldGeometry)
+    if((((A != self) && A.bWorldGeometry) && HitComponent != none) && HitComponent.BlockActors)
     {
         if(BlockingVolume(A) != none)
         {
@@ -285,18 +287,28 @@ function Reset()
     Destroy();
 }
 
+function DisableAuthorityRBSim()
+{
+    bUseAuthorityRBUpdate = false;
+    ClearTimer('TryFadeOut');
+    SetTimer(PostAuthorityChangeLifeSpan, false, 'TryFadeOut');
+}
+
 function TryFadeOut()
 {
     local Pawn P;
 
-    foreach WorldInfo.AllPawns(Class'Pawn', P, Location, 1024)
+    if(bUseAuthorityRBUpdate)
     {
-        if(P.IsPlayerOwned())
+        foreach WorldInfo.AllPawns(Class'Pawn', P, Location, 1024)
         {
-            SetTimer(5, false, 'TryFadeOut');            
-            return;
+            if(P.IsPlayerOwned())
+            {
+                SetTimer(5, false, 'TryFadeOut');                
+                return;
+            }            
         }        
-    }    
+    }
     GotoState('FadeOut');
 }
 
@@ -306,6 +318,7 @@ auto state Pickup
     {
         local Actor HitA;
         local Vector HitLocation, HitNormal;
+        local TraceHitInfo HitInfo;
         local bool bHitWall;
 
         if((((Other == none) || !Other.bCanPickupInventory) || !Other.IsAliveAndWell()) || (Other.DrivenVehicle == none) && Other.Controller == none)
@@ -319,9 +332,9 @@ auto state Pickup
                 return false;
             }
         }
-        foreach Other.TraceActors(Class'Actor', HitA, HitLocation, HitNormal, MyCylinderComp.GetPosition() + vect(0, 0, 10), Other.Location)
+        foreach Other.TraceActors(Class'Actor', HitA, HitLocation, HitNormal, MyCylinderComp.GetPosition() + vect(0, 0, 10), Other.Location, vect(1, 1, 1), HitInfo)
         {
-            if(IsTouchBlockedBy(HitA))
+            if(IsTouchBlockedBy(HitA, HitInfo.HitComponent))
             {
                 if(MyMeshComp == none)
                 {                    
@@ -334,9 +347,9 @@ auto state Pickup
         }        
         if(bHitWall)
         {
-            foreach Other.TraceActors(Class'Actor', HitA, HitLocation, HitNormal, MyMeshComp.Bounds.Origin + vect(0, 0, 10), Other.Location)
+            foreach Other.TraceActors(Class'Actor', HitA, HitLocation, HitNormal, MyMeshComp.Bounds.Origin + vect(0, 0, 10), Other.Location, vect(1, 1, 1), HitInfo)
             {
-                if(IsTouchBlockedBy(HitA))
+                if(IsTouchBlockedBy(HitA, HitInfo.HitComponent))
                 {                    
                     return false;
                 }                
@@ -381,6 +394,8 @@ defaultproperties
     bCollisionSoundsEnabled=true
     bEnableStaticMeshRBPhys=true
     bUseLowHealthDelay=true
+    bUseAuthorityRBUpdate=true
+    PostAuthorityChangeLifeSpan=5
     begin object name=Sprite class=SpriteComponent
         ReplacementPrimitive=none
     object end

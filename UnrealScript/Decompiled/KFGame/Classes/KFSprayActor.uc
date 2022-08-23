@@ -530,7 +530,7 @@ simulated function BeginSpray()
     {
         SprayStartPSC.ActivateSystem(true);
     }
-    if(Role == ROLE_Authority)
+    if((Role == ROLE_Authority) && ImpactProjectileClass != none)
     {
         SetTimer(ImpactProjectileInterval, true, 'LeaveImpactProjectile');
     }

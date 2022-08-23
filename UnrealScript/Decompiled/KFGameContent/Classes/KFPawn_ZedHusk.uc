@@ -230,6 +230,21 @@ simulated function TerminateEffectsOnDeath()
     super(KFPawn).TerminateEffectsOnDeath();
 }
 
+simulated function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC)
+{
+    if(!IsDoingSpecialMove(GetSuicideSM()) && InStr(string(PSC.Template.Name), "suicide",, true) != -1)
+    {
+        PSC.SetActive(false);
+        return;
+    }
+    super(KFPawn).OnAnimNotifyParticleSystemSpawned(AnimNotifyData, PSC);
+}
+
+simulated function KFGame.KFPawn.ESpecialMove GetSuicideSM()
+{
+    return 22;
+}
+
 function ApplySpecialZoneHealthMod(float HealthMod)
 {
     super.ApplySpecialZoneHealthMod(HealthMod);
@@ -276,7 +291,11 @@ function TriggerExplosion(optional bool bIgnoreHumans)
                 ExploActor.Attachee = self;
                 if(bIgnoreHumans)
                 {
-                    ExplosionTemplate.ActorClassToIgnoreForDamage = Class'KFPawn_Human';
+                    ExplosionTemplate.ActorClassToIgnoreForDamage = Class'KFPawn_Human';                    
+                }
+                else
+                {
+                    ExplosionTemplate.ActorClassToIgnoreForDamage = none;
                 }
                 ExploActor.Explode(ExplosionTemplate, vect(0, 0, 1));
             }
@@ -392,7 +411,7 @@ defaultproperties
     FireballLightRadiusInterpSpeed=100
     FireballLightMinBrightness=1.1
     FireballLightMaxBrightness=1.25
-    CharacterMonsterArch=KFCharacterInfo_Monster'zed_husk_arch.ZED_Husk_Archetype'
+    MonsterArchPath="ZED_ARCH.ZED_Husk_Archetype"
     ParryResistance=2
     MinSpawnSquadSizeType=ESquadType.EST_Medium
     begin object name=MeleeHelper class=KFMeleeHelperAI

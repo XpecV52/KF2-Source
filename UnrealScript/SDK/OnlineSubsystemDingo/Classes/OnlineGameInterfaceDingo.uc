@@ -1316,4 +1316,3 @@ function bool IsJoinOperationInProgress();
 function bool SetRankedReadyStatus(bool bReady);
 function bool IsCurrentRoomOwner();
 //@HSL_END_PS4
-

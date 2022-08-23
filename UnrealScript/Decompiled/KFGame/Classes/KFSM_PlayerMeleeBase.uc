@@ -50,6 +50,7 @@ struct PlayerZedAtkInfo
 
 var bool bAnimCanBeInterrupted;
 var array<PlayerZedAtkInfo> Attacks;
+var AkEvent SoundStopEvent;
 
 static function byte PackFlagsBase(KFPawn P)
 {
@@ -149,6 +150,15 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     bAnimCanBeInterrupted = false;
     bPendingStopFire = false;
     bCanBeInterrupted = !bCannotBeParried;
+}
+
+function SpecialMoveEnded(name PrevMove, name NextMove)
+{
+    super.SpecialMoveEnded(PrevMove, NextMove);
+    if((SoundStopEvent != none) && PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        PawnOwner.PostAkEvent(SoundStopEvent);
+    }
 }
 
 static function bool IsInSpecialMode(KFPawn P)

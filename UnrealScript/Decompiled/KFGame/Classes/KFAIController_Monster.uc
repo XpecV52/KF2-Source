@@ -256,19 +256,19 @@ event bool CanGrabAttack()
 function bool CanDoStrike()
 {
     local Actor HitActor;
-    local Vector TraceStepLocation, HitLocation, HitNormal;
+    local Vector TraceStepLocation;
 
     bIsBodyBlocked = false;
     TraceStepLocation = Pawn.Location + (vect(0, 0, -1) * (Pawn.CylinderComponent.CollisionHeight * 0.5));
-    HitActor = Pawn.Trace(HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies,,, 8);
+    HitActor = ActorBlockTest(Enemy.Location, TraceStepLocation,, !bCanStrikeThroughEnemies);
     if((HitActor != none) && HitActor != Enemy)
     {
         if(HitActor.bWorldGeometry)
         {
             bIsBodyBlocked = true;
         }
-        HitActor = Pawn.Trace(HitLocation, HitNormal, Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), Pawn.Location + (vect(0, 0, 1) * Pawn.BaseEyeHeight), !bCanStrikeThroughEnemies,,, 8);
-        if(((HitActor != none) && HitActor != Enemy) && (!bCanStrikeThroughEnemies || HitActor.bWorldGeometry) || HitActor.bGameRelevant)
+        HitActor = ActorBlockTest(Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), Pawn.Location + (vect(0, 0, 1) * Pawn.BaseEyeHeight),, !bCanStrikeThroughEnemies);
+        if(((HitActor != none) && HitActor != Enemy) && !bCanStrikeThroughEnemies || HitActor.bWorldGeometry)
         {
             return false;
         }
@@ -308,10 +308,9 @@ function DoMeleeAttack(optional Pawn NewEnemy, optional Actor InTarget, optional
 function bool HandleZedBlockedPath()
 {
     local Actor HitActor;
-    local Vector HitLocation, HitNormal;
     local KFPawn_Monster HitMonster;
 
-    HitActor = MyKFPawn.Trace(HitLocation, HitNormal, Enemy.Location + (vect(0, 0, 1) * (Enemy.BaseEyeHeight * 0.5)), MyKFPawn.Location + (vect(0, 0, 1) * (MyKFPawn.BaseEyeHeight * 0.5)), true, MyKFPawn.GetCollisionExtent() * vect(0.2, 0.2, 0.2),, 8);
+    HitActor = ActorBlockTest(Enemy.Location + (vect(0, 0, 1) * (Enemy.BaseEyeHeight * 0.5)), MyKFPawn.Location + (vect(0, 0, 1) * (MyKFPawn.BaseEyeHeight * 0.5)), MyKFPawn.GetCollisionExtent() * vect(0.2, 0.2, 0.2), true);
     if((HitActor == none) || HitActor == Enemy)
     {
         return false;

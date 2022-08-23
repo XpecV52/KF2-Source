@@ -2,8 +2,10 @@ package tripwire.controls.voiceComms
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import fl.motion.Color;
     import flash.display.MovieClip;
     import flash.events.Event;
+    import flash.filters.GlowFilter;
     import flash.text.TextField;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.core.UIComponent;
@@ -15,6 +17,10 @@ package tripwire.controls.voiceComms
         
         public var bActive:Boolean = false;
         
+        public var bCenterOption:Boolean = false;
+        
+        public var bEnabled:Boolean = true;
+        
         public var textField:TextField;
         
         public var iconLoader:UILoader;
@@ -25,7 +31,7 @@ package tripwire.controls.voiceComms
         
         public var initialWidth:Number = 0;
         
-        public var xMod:Number = 1;
+        public var xMod:Number = 0;
         
         public var SelectHighlight:MovieClip;
         
@@ -37,8 +43,17 @@ package tripwire.controls.voiceComms
         
         public var HighlightBG:MovieClip;
         
+        public var disabledAlpha:Number = 0.5;
+        
+        private var iconColor:Color;
+        
+        private var defaultColor:uint = 16503487;
+        
+        private var disabledColor:uint = 8024936;
+        
         public function VoiceCommsOptionRenderer()
         {
+            this.iconColor = new Color();
             super();
             stage.addEventListener("PopoutItems",this.popoutItem);
             this.HighlightBG.visible = false;
@@ -56,9 +71,9 @@ package tripwire.controls.voiceComms
             {
                 this.initialX = this.x;
                 this.initialWidth = this.width;
-                if(this.initialX > 500)
+                if(!this.bCenterOption)
                 {
-                    this.xMod = -1;
+                    this.xMod = this.initialX > 500 ? Number(-1) : Number(1);
                 }
                 this.textField.text = !!param1.text ? param1.text : "";
                 if(param1.iconPath && param1.iconPath != "")
@@ -82,9 +97,30 @@ package tripwire.controls.voiceComms
             return "";
         }
         
+        override public function set enabled(param1:Boolean) : void
+        {
+            this.bEnabled = param1;
+            gotoAndStop(!!param1 ? "off" : "disabled");
+            this.alpha = !!param1 ? Number(1) : Number(this.disabledAlpha);
+        }
+        
+        override public function get enabled() : Boolean
+        {
+            return this.bEnabled;
+        }
+        
+        public function tintItems(param1:uint) : void
+        {
+            var _loc2_:GlowFilter = new GlowFilter(param1,1,8,8,1,3,false,false);
+            this.textField.textColor = param1;
+            this.textField.filters = [_loc2_];
+            this.iconColor.setTint(param1,1);
+            this.iconLoader.transform.colorTransform = this.iconColor;
+        }
+        
         public function activateItem() : void
         {
-            if(visible)
+            if(visible && this.enabled)
             {
                 this.bActive = true;
                 this.HighlightBG.visible = true;

@@ -297,7 +297,7 @@ defaultproperties
    End Object
    Components(4)=PathRenderer
    RemoteRole=ROLE_SimulatedProxy
-   CollisionType=COLLIDE_CustomDefault
+   CollisionType=COLLIDE_TouchAll
    bCollideActors=True
    CollisionComponent=CollisionCylinder
    Name="Default__Teleporter"

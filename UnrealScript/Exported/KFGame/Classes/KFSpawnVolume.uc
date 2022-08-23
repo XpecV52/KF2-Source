@@ -319,7 +319,7 @@ var() array< DoorListInfo > DoorList;
 var() rotator 				SpawnRotation;
 
 /** Used to include or exclude spawn volumes from gameplay code */
-var bool bCanUseForSpawning;
+var transient bool bCanUseForSpawning;
 
 /*********************************************************************************************
  Rendering in Game ("show SpawnVolumes" and Editor (when volume is selected)
@@ -721,7 +721,6 @@ function HandleTeleportedTo()
 defaultproperties
 {
    MaxSpawnMarkers=11
-   bCanUseForSpawning=True
    bMinimalDebugRatingChecks=True
    DefaultSpawnMarkerColor=(B=50,G=205,R=50,A=255)
    SpawnInteriorBoxColor=(B=0,G=69,R=255,A=255)

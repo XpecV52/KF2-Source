@@ -14,6 +14,8 @@ KF-ContainmentStation="Containment Stationをプレイ中"
 KF-InfernalRealm="Infernal Realmをプレイ中"
 KF-HostileGrounds="Hostile Groundsをプレイ中"
 KF-ZedLanding="Zed Landingをプレイ中"
+KF-TheDescent="The Descentをプレイ中"
+KF-Nuked="Nukedをプレイ中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -129,6 +131,7 @@ PerkLevelUpCaption="$USER_NAME_OR_ID: уровень %x% навыка %y%"
 
 [KFGFxMenu_IIS]
 PressButtonToStart="XboxTypeS_Aを押してスタート"
+SwitchProfile="XboxTypeS_Yを押してプロフィールを変更"
 LoginButtonPrompt="ログイン"
 LoggingIn="ログインしています..."
 LoginFailed="ログイン失敗"
@@ -139,6 +142,8 @@ NotLoggedInOnlinePSN="オンライン機能を使うにはPlayStation™Network�
 NetworkError="ネットワークエラーが発生しました。ネットワーク接続をご確認ください。"
 ErrorNoPlayfabDescription="ゲームのマスターサーバーへの接続を確立できませんでした。数分後に再試行してください。"
 ErrorTSSFailedDescription="ゲームのバランスサーバーへの接続を確立できませんでした。インターネットに接続されていることをご確認の上、再試行してください。"
+NotSignedInTitle="サインインしていません。"
+
 
 [Notifications]
 ControllerDisconnectedTitle="コントローラーの接続が切れました"
@@ -160,12 +165,24 @@ InviteMessage="一緒にzedを爆破しよう！"
 NotConnectedTitle="ネットワークエラー"
 NotConnectedMessage="インターネットに接続されていません。接続をご確認の上、再試行してください。"
 NotConnectedForOnlinePlay="インターネットに接続されていません。 接続を確認してからもう一度オンライン機能の使用を試みてください"
+MultiplayerNotAllowed_Title="マルチプレイ制限中"
+LoggedOutMessage="プロフィールが変更されました。タイトル画面に戻りました。"
+LoggedOutTitle="サインアウト済み"
+LoggedInTitle="サインイン済み"
+NewRegionTitle="Welcome"
+NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="プレイヤープロフィールを確認"
+ViewProfileStringXB1="ゲーマーカードを確認"
 
 [KFGFxObject_Menu]
 ResetDefaults="本当に設定を初期値にリセットしますか？"
+
+[KFGFxWidget_MenuBar]
+LogoutTitle="ログアウト"
+LogoutDialogTitle="タイトル画面に戻る"
+LogoutDialogMessage="タイトル画面に戻ります。よろしいですか？"
 
 [KFGFxTraderContainer_PlayerInventory]
 PerkPrompt="Perk"
@@ -177,9 +194,19 @@ ControllerSound="コントローラー音"
 MatchmakingRegionString="地域"
 LeaveMenuString="マッチメイキングから離脱すると、パーティーからも離脱することになります。"
 
+[KFGFxMenu_Store]
+
+
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="地域"
 MapPreference="最適マップ"
+
+[KFGFxMenu_Exit]
+HeaderStringXB1="ログアウト"
+LogoutKF2="タイトル画面に戻る"
+
+[Misc]
+NotSignedIn="未サインイン"
 
 [Entitlements]
 BriarBobbyBundleProductName="ロンドン・ボビー・ブライアー ユニフォームバンドル"

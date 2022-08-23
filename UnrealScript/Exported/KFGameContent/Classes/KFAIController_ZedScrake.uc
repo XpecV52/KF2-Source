@@ -49,6 +49,11 @@ function bool CanEvadeGrenade()
     return super.CanEvadeGrenade();
 }
 
+function bool CanAttackDestructibles()
+{
+    return !MyKFPawn.bIsEnraged && super.CanAttackDestructibles();
+}
+
 defaultproperties
 {
    bUseRunOverWarning=True

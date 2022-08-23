@@ -27,9 +27,9 @@ var GFxObject AddCartButton;
 struct StoreItem
 {
 	var int 	SKU;
-	var string 	ItemName;
 	var string 	ItemDesciption;
 	var string 	IconLocation;
+	var string 	ItemName;
 	var float 	ItemPrice;
 	var name 	ItemType;
 };
@@ -125,7 +125,7 @@ function LocalizeText()
 
 	LocalizedObject = CreateObject( "Object" );
 	
-	LocalizedObject.SetString("store", 					StoreString); 
+	LocalizedObject.SetString("store", class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) ? ConsoleLocalize("StoreStringXB1") : StoreString); 
 
 	SetObject("localizedText", LocalizedObject);
 }
@@ -180,7 +180,14 @@ function Callback_AddToCartClicked(int ItemSKU)
 		{
 			if( StoreItemDetails.SignedOfferId != "" )
 			{
-				OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);
+				if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
+				{
+					OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI( GetLP().ControllerId, StoreItemDetails.ProductID );
+				}
+				else
+				{
+					OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);
+				}
 			}
 		}
 		else if( StoreItemDetails.Price == "" )

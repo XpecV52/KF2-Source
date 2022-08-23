@@ -83,7 +83,7 @@ NextStepsDescriptionKey="Du kannst vom Start-Menü aus entweder weiter im Offlin
 
 ;Healing Section
 QuickHealTitleKey="Heile dich selbst, wenn du verletzt bist"
-QuickHealDescriptionKey="Wenn du verletzt bist, kannst du <font color="#caab05">%x%</font> drücken, um dich selbst zu heilen. Nach der Heilung braucht deine Spritze etwas Zeit um sich aufzuladen, bevor du sie wieder benutzen kannst."
+QuickHealDescriptionKey="Wenn du verletzt bist, kannst du <font color="#caab05">%x%</font> gedrückt halten, um dich selbst zu heilen. Nach der Heilung braucht deine Spritze etwas Zeit, um sich aufzuladen, bevor du sie wieder benutzen kannst."
 HowToSyringeTitleKey="Heile deine Teamkollegen"
 HowToSyringeDescriptionKey="Du kannst die Spritze auch anlegen um deine Teamkollegen zu heilen, indem du zuerst <font color="#caab05">%x%</font> und dann <font color="#caab05">%x%</font> drückst, wenn du dich in der Nähe eines Teamkollegen befindest."
 HealOthersTitleKey="FS-Waffen nutzen um Teamkollegen zu heilen"
@@ -174,7 +174,7 @@ ItemDescription="•Der Feuer-Modus ist ausschließlich halbautomatisch.\n•Das
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 Desert Eagle"
-ItemCategory="Handkanone"
+ItemCategory="Handfeuerwaffe"
 ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Die Desert Eagle ist das Monster unter den Handfeuerwaffen. Deswegen nennt man sie auch „Handkanone“."
 
 [KFWeap_AssaultRifle_AR15]
@@ -197,7 +197,10 @@ ItemName="SA80 L85A2 Kurzgewehr"
 ItemCategory="Sturmgewehr"
 ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer um zwischen den Feuer-Modi zu wechseln.\n•Das SA80 war die Standardwaffe der British Army, bis die Armee, nun ja, gefressen wurde."
 
-
+[KFWeap_LMG_Stoner63A]
+ItemName="Stoner 63A LMG"
+ItemCategory="Leichtes Maschinengewehr"
+ItemDescription="•Der Feuer-Modus ist ausschließlich vollautomatisch.\n•Das Stoner 63A war im Vietnamkrieg Teil der Grundausrüstung der US Navy SEALs und verfügt über eine hohe Munitionskapazität und eine Menge Mannstoppwirkung."
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Allzweckmesser"
@@ -269,8 +272,6 @@ ItemName="M4 Kampf-Schrotflinte"
 ItemCategory="Schrotflinte"
 ItemDescription="•Der Feuer-Modus ist ausschließlich halbautomatisch.\n•Benelli hat die M4 Kampf-Schrotflinte für das US-Militär entworfen. Da es sich hierbei um eine halbautomatische Waffe handelt, besticht sie durch eine beeindruckende Schussfolge."
 
-
-
 [KFWeap_Knife_Berserker]
 ItemName="Rasenmähermesser"
 ItemCategory="Nahkampf"
@@ -328,6 +329,16 @@ ItemName="Ausräucherer"
 ItemCategory="Flammen"
 ItemDescription="•Der Feuer-Modus schießt Flammen.\n•Handlicher und selbstgemachter Flammenwerfer. Bitte NICHT zu Hause nachmachen."
 
+[KFWeap_Pistol_Flare]
+ItemName="Spitfire"
+ItemCategory="Flammen"
+ItemDescription="•Der Feuer-Modus schießt explodierende, entzündliche Geschosse. \n•Ein Feuer-System in einem praktischeren Paket in Reisegröße."
+
+[KFWeap_Pistol_DualFlare]
+ItemName="Dual Spitfires"
+ItemCategory="Flammen"
+ItemDescription="•Der Feuer-Modus schießt explodierende, entzündliche Geschosse. \n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Hierbei handelt es sich um Spitfires im Doppelpack. Jede davon kann einzeln verkauft oder fallengelassen werden."
+
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Brand-Grabenwaffe"
 ItemCategory="Schrotflinte"
@@ -363,8 +374,6 @@ ItemName="RPG-7"
 ItemCategory="Sprengstoffe"
 ItemDescription="•Der Feuer-Modus feuert die Rakete ab.\n•Raketen explodieren beim Aufprall.\n•Die Munition wird erst dann scharf, nachdem sie einige Meter zurückgelegt hat, um das eigene Gesicht vor potentiellen Explosionen zu schützen.\n•Und pass auf den Rückstoß auf!"
 
-
-
 [KFWeap_Pistol_Dual9mm]
 ItemName="Zwei 9mm Pistolen"
 ItemCategory="Handfeuerwaffe"
@@ -382,7 +391,7 @@ ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-F
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 Desert Eagle"
-ItemCategory="Handkanone"
+ItemCategory="Handfeuerwaffe"
 ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Die Desert Eagle ist das Monster unter den Handfeuerwaffen. Deswegen nennt man sie auch „Handkanone“."
 
 [KFWeap_Pistol_DualDeagle]
@@ -414,8 +423,6 @@ ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-F
 ItemName="Winchester 1894"
 ItemCategory="Gewehr"
 ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Das klassische Gewehr-Modell 1894 Winchester mit Repetierbügel."
-
-
 
 [KFWeap_Bow_Crossbow]
 ItemName="Armbrust"

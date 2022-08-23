@@ -205,7 +205,7 @@ function InitInventory()
     if(I < OnlineSub.CurrentInventory.Length)
     {
         ItemIndex = OnlineSub.ItemPropertiesList.Find('Definition', OnlineSub.CurrentInventory[I].Definition;
-        if(ItemIndex != -1)
+        if((ItemIndex != -1) && OnlineSub.CurrentInventory[I].Definition != 0)
         {
             TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
             if(((CurrentInventoryFilter == 0) || CurrentInventoryFilter == (TempItemDetailsHolder.Type + 1)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
@@ -253,13 +253,13 @@ function InitInventory()
     }
     OnlineSub.ClearNewlyAdded();
     I = 0;
-    J0x9E9:
+    J0xA2C:
 
     if(I < ActiveItems.Length)
     {
         ItemArray.SetElementObject(I, ActiveItems[I].GfxItemObject);
         ++ I;
-        goto J0x9E9;
+        goto J0xA2C;
     }
     SetObject("inventoryList", ItemArray);
     bInitialInventoryPassComplete = true;
@@ -329,7 +329,10 @@ function OnInventoryReadComplete()
 
 function bool IsItemRecyclable(ItemProperties ItemDetailsHolder, const out array<ExchangeRuleSets> ExchangeRules)
 {
-    return ((ExchangeRules.Length > 0) && ((ItemDetailsHolder.Type == 0) || ItemDetailsHolder.Type == 1) || ItemDetailsHolder.Type == 5) || (ItemDetailsHolder.Type == 2) && ExchangeRules.Length == 2;
+    local int RequireRulesToRecycle;
+
+    RequireRulesToRecycle = ((Class'WorldInfo'.static.IsConsoleBuild()) ? 1 : 2);
+    return ((ExchangeRules.Length > 0) && ((ItemDetailsHolder.Type == 0) || ItemDetailsHolder.Type == 1) || ItemDetailsHolder.Type == 5) || (ItemDetailsHolder.Type == 2) && ExchangeRules.Length == RequireRulesToRecycle;
 }
 
 function bool IsItemExchangeable(out ItemProperties ItemDetailsHolder, const out array<ExchangeRuleSets> ExchangeRules)
@@ -890,7 +893,14 @@ function Callback_UseItem(int ItemDefinition)
         NeededItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', NeededItemID];
         if((NeededItem.Price == "") || NeededItem.SignedOfferId != "")
         {
-            OnlineSub.OpenMarketPlaceSearch(NeededItem);            
+            if(Class'WorldInfo'.static.IsConsoleBuild(9))
+            {
+                OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI(byte(Outer.GetLP().ControllerId), NeededItem.ProductID);                
+            }
+            else
+            {
+                OnlineSub.OpenMarketPlaceSearch(NeededItem);
+            }            
         }
         else
         {

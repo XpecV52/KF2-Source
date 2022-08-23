@@ -116,6 +116,7 @@ simulated function Projectile ProjectileFire()
     {
         DeployedCharges.AddItem(Charge;
         NumDeployedCharges = DeployedCharges.Length;
+        bForceNetUpdate = true;
     }
     return P;
 }
@@ -152,6 +153,7 @@ function RemoveDeployedCharge(optional int ChargeIndex, optional Actor ChargeAct
     {
         DeployedCharges.Remove(ChargeIndex, 1;
         NumDeployedCharges = DeployedCharges.Length;
+        bForceNetUpdate = true;
     }
 }
 
@@ -162,8 +164,9 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
     super(KFWeapon).SetOriginalValuesFromPickup(PickedUpWeapon);
     DeployedCharges = KFWeap_Thrown_C4(PickedUpWeapon).DeployedCharges;
     NumDeployedCharges = DeployedCharges.Length;
+    bForceNetUpdate = true;
     I = 0;
-    J0x63:
+    J0x6F:
 
     if(I < NumDeployedCharges)
     {
@@ -173,13 +176,78 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
             DeployedCharges[I].InstigatorController = Instigator.Controller;
         }
         ++ I;
-        goto J0x63;
+        goto J0x6F;
     }
 }
 
 static simulated event bool UsesAmmo()
 {
     return true;
+}
+
+simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
+{
+    if(FireModeNum == 5)
+    {
+        return NumDeployedCharges > 0;
+    }
+    return super(KFWeapon).HasAmmo(FireModeNum, Amount);
+}
+
+simulated function BeginFire(byte FireModeNum)
+{
+    if((FireModeNum == 5) && IsInState('WeaponSprinting'))
+    {
+        PrepareAndDetonate();        
+    }
+    else
+    {
+        super(KFWeapon).BeginFire(FireModeNum);
+    }
+}
+
+simulated function PrepareAndDetonate()
+{
+    local name DetonateAnimName;
+    local float AnimDuration;
+    local bool bInSprintState;
+
+    DetonateAnimName = ((ShouldPlayLastAnims()) ? DetonateLastAnim : DetonateAnim);
+    AnimDuration = MySkelMesh.GetAnimLength(DetonateAnimName);
+    bInSprintState = IsInState('WeaponSprinting');
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        if(NumDeployedCharges > 0)
+        {
+            PlaySoundBase(DetonateAkEvent, true);            
+        }
+        else
+        {
+            PlaySoundBase(DryFireAkEvent, true);
+        }
+        if(bInSprintState)
+        {
+            AnimDuration *= 0.25;
+            PlayAnimation(DetonateAnimName, AnimDuration);            
+        }
+        else
+        {
+            PlayAnimation(DetonateAnimName);
+        }
+    }
+    if(Role == ROLE_Authority)
+    {
+        Detonate();
+    }
+    IncrementFlashCount();
+    if(bInSprintState)
+    {
+        SetTimer(AnimDuration * 0.8, false, 'PlaySprintStart');        
+    }
+    else
+    {
+        SetTimer(AnimDuration * 0.5, false, 'GotoActiveState');
+    }
 }
 
 simulated function AltFireMode();
@@ -210,29 +278,7 @@ simulated state WeaponDetonating
 
     simulated event BeginState(name PreviousStateName)
     {
-        local name DetonateAnimName;
-        local float AnimDuration;
-
-        DetonateAnimName = ((ShouldPlayLastAnims()) ? DetonateLastAnim : DetonateAnim);
-        AnimDuration = MySkelMesh.GetAnimLength(DetonateAnimName);
-        if(WorldInfo.NetMode != NM_DedicatedServer)
-        {
-            if(NumDeployedCharges > 0)
-            {
-                PlaySoundBase(DetonateAkEvent, true);                
-            }
-            else
-            {
-                PlaySoundBase(DryFireAkEvent, true);
-            }
-            PlayAnimation(DetonateAnimName);
-        }
-        if(Role == ROLE_Authority)
-        {
-            Detonate();
-        }
-        IncrementFlashCount();
-        SetTimer(AnimDuration / 2, false, 'GotoActiveState');
+        PrepareAndDetonate();
     }
 
     simulated function GotoActiveState()

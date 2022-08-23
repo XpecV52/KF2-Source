@@ -22,7 +22,7 @@ defaultproperties
 	)}
 
 	// Hard difficulty
-	Hard={(HealthMod=.9,
+	Hard={(HealthMod=.84,
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
 		DamageMod=0.700000,

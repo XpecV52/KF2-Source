@@ -123,6 +123,12 @@ function name PlayEmerge()
 	KFPOwner.SetCollision(KFPOwner.bCollideActors, FALSE);
 	KFPOwner.bCollideWorld = FALSE;
 
+	// Custom handler for destructibles
+	if( KFPOwner.WorldInfo.NetMode != NM_Client )
+	{
+		KFPOwner.SetTimer( 0.25f, true, nameOf(Timer_CheckForPortalDestructibles), self );
+	}
+
 	// Force always relevant to fix a bug where the actor becomes relevant midway through his root motion 
 	// animation. bUpdateSimulatedPosition might be a alternative?
 	KFPOwner.bAlwaysRelevant = true;
@@ -146,10 +152,35 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 
 	RestoreCollision();
 
+	if( KFPOwner.WorldInfo.NetMode != NM_Client )
+	{
+		KFPOwner.ClearTimer( nameOf(Timer_CheckForPortalDestructibles), self );
+	}
+
 	// Sometime after the move is over make sure our new AI was able to generate a valid path
 	if ( PawnOwner.Role == ROLE_Authority && !PawnOwner.IsHumanControlled() )
 	{
 		PawnOwner.SetTimer(5.f, false, nameof(FindAnchorFailsafe), self);
+	}
+}
+
+function Timer_CheckForPortalDestructibles()
+{
+	local KFPawn_Monster KFPM;
+	local KFDestructibleActor KFDA;
+
+	if( KFPOwner.bCollideWorld )
+	{
+		return;
+	}
+
+	KFPM = KFPawn_Monster( KFPOwner );
+	if( KFPM != none )
+	{
+		foreach KFPOwner.OverlappingActors( class'KFDestructibleActor', KFDA, KFPOwner.CylinderComponent.CollisionRadius,, true )
+		{
+			KFDA.BumpedByMonster( KFPM, Normal(KFDA.Location - KFPOwner.Location) );
+		}
 	}
 }
 

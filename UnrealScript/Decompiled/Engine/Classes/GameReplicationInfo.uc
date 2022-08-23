@@ -253,6 +253,8 @@ simulated event PlayerReplicationInfo GetPRIByPlayfabId(const string InPlayfabPl
     return none;
 }
 
+simulated event bool IsStatsSessionValid();
+
 defaultproperties
 {
     bStopCountDown=true

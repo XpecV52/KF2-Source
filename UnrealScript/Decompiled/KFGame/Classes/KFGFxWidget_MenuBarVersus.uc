@@ -7,11 +7,7 @@
  *******************************************************************************/
 class KFGFxWidget_MenuBarVersus extends KFGFxWidget_MenuBar within GFxMoviePlayer;
 
-function bool CanUseGearButton()
+static function bool CanUseGearButton(PlayerController PC, KFGFxMoviePlayer_Manager GfxManager)
 {
-    if((((Outer.GetPC().Pawn != none) && !Manager.bAfterLobby) && Outer.GetPC().PlayerReplicationInfo.GetTeamNum() != 255) || Class'WorldInfo'.static.IsMenuLevel())
-    {
-        return true;
-    }
-    return false;
+    return (PC.PlayerReplicationInfo.GetTeamNum() != 255) && super.CanUseGearButton(PC, GfxManager);
 }

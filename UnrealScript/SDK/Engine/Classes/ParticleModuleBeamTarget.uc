@@ -17,6 +17,11 @@ var(Target)			Beam2SourceTargetMethod			TargetMethod;
 /** The target point sources of each beam, when using the end point method. */
 var(Target)			name							TargetName;
 
+`if(`__TW_BEAM_SOCKETS_)
+/** Specific socket name to attach to if using Actor method */
+var(Target)         name                            TargetSocketName;
+`endif
+
 /** Default target-point information to use if the beam method is endpoint. */
 var(Target)			rawdistributionvector			Target;
 
