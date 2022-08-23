@@ -59,7 +59,13 @@ enum ESettingsDataType
 	/** Binary data with count in Value1 and pointer in Value2 */
 	SDT_Blob,
 	/** Date/time structure. Date in Value1 and time Value2 */
-	SDT_DateTime
+	SDT_DateTime,
+//@HSL_BEGIN_XBOX
+	/** 32 bit unsigned integer goes in Value1 only*/
+	SDT_UInt32,
+	/** 64 bit unsigned integer stored in both value fields */
+	SDT_UInt64,
+//@HSL_END_XBOX
 };
 
 /** Structure to hold arbitrary data of a given type */
@@ -101,6 +107,15 @@ struct native SettingsData
 		 * @param InData the new data to assign
 		 */
 		void SetData(INT InData);
+
+//@HSL_BEGIN_XBOX
+		/**
+		 * Copies the data and sets the type
+		 *
+		 * @param InData the new data to assign
+		 */
+		void SetData(UINT InData);
+//@HSL_END_XBOX
 
 		/**
 		 * Copies the data and sets the type to DateTime
@@ -144,6 +159,15 @@ struct native SettingsData
 		 *
 		 * @param InData the new data to assign
 		 */
+//@HSL_BEGIN_XBOX
+		void SetData(SQWORD InData);
+
+		/**
+		 * Copies the data and sets the type
+		 *
+		 * @param InData the new data to assign
+		 */
+//@HSL_END_XBOX
 		void SetData(QWORD InData);
 
 		/**
@@ -165,6 +189,22 @@ struct native SettingsData
 		 *
 		 * @param OutData out value that receives the copied data
 		 */
+//@HSL_BEGIN_XBOX
+		void GetData(UINT& OutData) const;
+
+		/**
+		 * Copies the data after verifying the type
+		 *
+		 * @param OutData out value that receives the copied data
+		 */
+		void GetData(SQWORD& OutData) const;
+
+		/**
+		 * Copies the data after verifying the type
+		 *
+		 * @param OutData out value that receives the copied data
+		 */
+//@HSL_END_XBOX
 		void GetData(QWORD& OutData) const;
 
 		/**
@@ -207,6 +247,9 @@ struct native SettingsData
 		FORCEINLINE void Increment(TYPE IncBy)
 		{
 			checkSlow(Type == SDT_Int32 || Type == SDT_Int64 ||
+//@HSL_BEGIN_XBOX
+				Type == SDT_UInt32 || Type == SDT_UInt64 ||
+//@HSL_END_XBOX
 				Type == SDT_Float || Type == SDT_Double);
 			if (Type == ENUM_TYPE)
 			{
@@ -223,6 +266,9 @@ struct native SettingsData
 		FORCEINLINE void Decrement(TYPE DecBy)
 		{
 			checkSlow(Type == SDT_Int32 || Type == SDT_Int64 ||
+//@HSL_BEGIN_XBOX
+				Type == SDT_UInt32 || Type == SDT_UInt64 ||
+//@HSL_END_XBOX
 				Type == SDT_Float || Type == SDT_Double);
 			if (Type == ENUM_TYPE)
 			{
@@ -304,6 +350,10 @@ struct native SettingsData
 				case SDT_Empty: return TEXT("Empty");
 				case SDT_Int32: return TEXT("Int32");
 				case SDT_Int64: return TEXT("Int64");
+//@HSL_BEGIN_XBOX
+				case SDT_UInt32: return TEXT("UInt32");
+				case SDT_UInt64: return TEXT("UInt64");
+//@HSL_END_XBOX
 				case SDT_Double: return TEXT("Double");
 				case SDT_String: return TEXT("String");
 				case SDT_Float: return TEXT("Float");

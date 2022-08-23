@@ -68,13 +68,16 @@ function ENetworkNotificationPosition GetNetworkNotificationPosition();
  */
 function SetNetworkNotificationPosition(ENetworkNotificationPosition NewPos);
 
+//@HSL_BEGIN_XBOX
 /**
  * Delegate fired when the controller becomes dis/connected
  *
  * @param ControllerId the id of the controller that changed connection state
  * @param bIsConnected whether the controller connected (true) or disconnected (false)
+ * @param bPauseGame wheater the game should pause or not
  */
-delegate OnControllerChange(int ControllerId,bool bIsConnected);
+delegate OnControllerChange(int ControllerId,bool bIsConnected,bool bPauseGame);
+//@HSL_END_XBOX
 
 /**
  * Sets the delegate used to notify the gameplay code that the controller state changed

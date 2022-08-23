@@ -124,7 +124,7 @@ function SetViewTarget(Actor NewViewTarget, optional ViewTargetTransitionParams 
 
 unreliable server function ServerViewSelf(optional ViewTargetTransitionParams TransitionParams)
 {
-    super(PlayerController).ServerViewSelf(TransitionParams);
+    super.ServerViewSelf(TransitionParams);
     MyRealViewTarget = none;
 }
 

@@ -240,7 +240,7 @@ defaultproperties
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Blunt_Pulverizer.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     MuzzleFlashTemplate=KFMuzzleFlash'WEP_Pulverizer_ARCH.Wep_Pulverizer_MuzzleFlash'
-    AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

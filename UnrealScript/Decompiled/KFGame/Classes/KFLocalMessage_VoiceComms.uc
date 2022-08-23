@@ -17,6 +17,7 @@ enum EVoiceCommsType
     VCT_GET_TO_THE_TRADER,
     VCT_AFFIRMATIVE,
     VCT_NEGATIVE,
+    VCT_EMOTE,
     VCT_MAX
 };
 
@@ -45,4 +46,5 @@ defaultproperties
     VoiceCommsOptionStrings(5)="GET TO THE TRADER"
     VoiceCommsOptionStrings(6)="AFFIRMATIVE"
     VoiceCommsOptionStrings(7)="NEGATIVE"
+    VoiceCommsOptionStrings(8)="EMOTE"
 }

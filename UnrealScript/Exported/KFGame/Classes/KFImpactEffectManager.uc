@@ -235,7 +235,7 @@ simulated function SpawnImpactDecal(vector HitLocation, vector HitNormal, Actor 
 	local MaterialInterface MI;
 	local MaterialInstanceTimeVarying MITV_Decal;
 	local int DecalMaterialsLength;
-	local float DecalSize;
+	local float DecalSize, DecalThickness;
 
 	// if we have a decal to spawn on impact
 	DecalMaterialsLength = ImpactEffect.DecalMaterials.length;
@@ -244,7 +244,16 @@ simulated function SpawnImpactDecal(vector HitLocation, vector HitNormal, Actor 
 		MI = ImpactEffect.DecalMaterials[Rand(DecalMaterialsLength)];
 		if( MI != None )
 		{
-			DecalSize = RandRange(ImpactEffect.DecalMinSize, ImpactEffect.DecalMaxSize);
+			DecalSize = RandRange(ImpactEffect.DecalMinSize, ImpactEffect.DecalMaxSize);			
+			if ( ShouldExtendDecalThickness(HitActor) ) 
+			{
+				DecalThickness = DecalSize * 2.2f;
+			}
+			else
+			{
+				DecalThickness = 10.f;
+			}
+
 			if( MaterialInstanceTimeVarying(MI) != none )
 			{
 				// hack, since they don't show up on terrain anyway
@@ -254,7 +263,7 @@ simulated function SpawnImpactDecal(vector HitLocation, vector HitNormal, Actor 
 					MITV_Decal.SetParent( MI );
 
 					ImpactEffectDecalManager.SpawnDecal( MITV_Decal, HitLocation, rotator(-HitNormal), DecalSize,
-						DecalSize, 10.0, false, (ImpactEffect.bNoDecalRotation) ? 0.f : (FRand() * 360.0), HitInfo.HitComponent, true, false, HitInfo.BoneName, HitInfo.Item, HitInfo.LevelIndex );
+						DecalSize, DecalThickness, false, (ImpactEffect.bNoDecalRotation) ? 0.f : (FRand() * 360.0), HitInfo.HitComponent, true, false, HitInfo.BoneName, HitInfo.Item, HitInfo.LevelIndex );
 					//here we need to see if we are an MITV and then set the burn out times to occur
 					MITV_Decal.SetScalarStartTime( ImpactEffect.DecalDissolveParamName, ImpactEffect.DecalDuration );
 				}
@@ -262,10 +271,26 @@ simulated function SpawnImpactDecal(vector HitLocation, vector HitNormal, Actor 
 			else
 			{
 				ImpactEffectDecalManager.SpawnDecal( MI, HitLocation, rotator(-HitNormal), DecalSize,
-					DecalSize, 10.0, false, (ImpactEffect.bNoDecalRotation) ? 0.f : (FRand() * 360.0), HitInfo.HitComponent, true, false, HitInfo.BoneName, HitInfo.Item, HitInfo.LevelIndex, ImpactEffect.DecalDuration );
+					DecalSize, DecalThickness, false, (ImpactEffect.bNoDecalRotation) ? 0.f : (FRand() * 360.0), HitInfo.HitComponent, true, false, HitInfo.BoneName, HitInfo.Item, HitInfo.LevelIndex, ImpactEffect.DecalDuration );
 			}
 		}
 	}
+}
+
+/**
+ * On landscape with certain non-uniform scale (e.g. Zed Landing) decals have clipping
+ * issues.  Increasing the thickness, and therefore bounds, resolves the issue at a
+ * small perf cost.
+ */
+static function bool ShouldExtendDecalThickness(Actor HitActor)
+{
+	// using actor flags to reject most actors before casting		
+	if ( HitActor != None && !HitActor.bGameRelevant && HitActor.bStatic && HitActor.IsA('Landscape') ) 
+	{
+		return true;
+	}
+
+	return false;
 }
 
 /**

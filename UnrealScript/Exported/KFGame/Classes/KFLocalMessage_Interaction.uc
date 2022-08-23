@@ -149,13 +149,16 @@ static function string GetString(
 {
 	local PlayerInput Input;
 	local KFGameReplicationInfo KFGRI;
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
 	
 	switch ( Switch )
 	{
 		case IMT_UseTrader:
 		
    			KFGRI = KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI);
-			if(KFGRI != none && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')	
+			if(KFGRI != none && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial' || (KFPC != none && KFPC.bDisableAutoUpgrade) )	
 			{
 				return Left( default.UseTraderMessage, InStr(default.UseTraderMessage, "<%HOLD%>"));
 			}

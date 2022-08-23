@@ -65,11 +65,11 @@ simulated function SetFlameDebugFX(bool bDebugShowSeeds, bool bDebugShowBones, b
 
 simulated event Tick(float DeltaTime)
 {
-    local int Idx;
+    local int I, Idx;
     local float FlameHeat;
 
     super.Tick(DeltaTime);
-    if(((((WorldInfo.NetMode != NM_DedicatedServer) && WeaponMIC != none) && Instigator != none) && Instigator.IsLocallyControlled()) && Instigator.IsHumanControlled())
+    if(((((WorldInfo.NetMode != NM_DedicatedServer) && WeaponMICs.Length > 0) && Instigator != none) && Instigator.IsLocallyControlled()) && Instigator.IsHumanControlled())
     {
         if(bFireSpraying && ActiveFlameSpray != none)
         {
@@ -96,12 +96,23 @@ simulated event Tick(float DeltaTime)
         }
         if(BarrelHeat != LastBarrelHeat)
         {
-            WeaponMIC.SetScalarParameterValue('Glow_Intensity', BarrelHeat);
+            I = 0;
+            J0x1FD:
+
+            if(I < WeaponMICs.Length)
+            {
+                if(WeaponMICs[I] != none)
+                {
+                    WeaponMICs[I].SetScalarParameterValue('Glow_Intensity', BarrelHeat);
+                }
+                ++ I;
+                goto J0x1FD;
+            }
         }
         LastBarrelHeat = BarrelHeat;
     }
     Idx = 0;
-    J0x240:
+    J0x295:
 
     if(Idx < PilotLights.Length)
     {
@@ -111,7 +122,7 @@ simulated event Tick(float DeltaTime)
             PilotLights[Idx].Light.SetLightProperties(PilotLights[Idx].LastLightBrightness, PilotLights[Idx].Light.LightColor, PilotLights[Idx].Light.Function);
         }
         ++ Idx;
-        goto J0x240;
+        goto J0x295;
     }
 }
 

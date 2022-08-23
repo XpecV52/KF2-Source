@@ -1,8 +1,8 @@
 //--------------------------------------------
 //   RypeL Cam for Red Orchestra 2, C, 2012
 //--------------------------------------------
-class CamControl extends actor;
-	//config(RypelCam);
+class CamControl extends actor
+		config(RypelCam);
 
 
 struct TMultiArray {
@@ -10,11 +10,11 @@ struct TMultiArray {
 };
 var TMultiArray M[121];
 
-var /*config*/ bool bxedited, conf, do_not_update_Spline;
-var /*config*/ float basic_speed2, Flag_Fovs[121], Flag_Times[121], kabstand, mabstand, X[121];
-var /*config*/ int drawdetail, Z;
-var /*config*/ rotator Rotation_At_Flags[121];
-var /*config*/ vector Flag_Locations[121];
+var config bool bxedited, conf, do_not_update_Spline;
+var config float basic_speed2, Flag_Fovs[121], Flag_Times[121], kabstand, mabstand, X[121];
+var config int drawdetail, Z;
+var config rotator Rotation_At_Flags[121];
+var config vector Flag_Locations[121];
 
 var bool	startCam, bbadaccel, bisdrawing, bpcam, bredox, bSpline_update_required, btimedpath,
 			C4D_Export_Target, C4D_Export, combineLoc, dif_tpstart_add, dif_tpstart_subtract,

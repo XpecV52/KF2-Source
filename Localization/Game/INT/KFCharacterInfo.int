@@ -1349,15 +1349,18 @@ AttachmentSkin0=Bloody
 Attachment=Reaper Raven Eyes
 AttachmentSkin0=Red Band
 AttachmentSkin1=White Band
+AttachmentSkin2=Precious
 
 [Cosmetic_ReaperRavenHat_ARCH]
 Attachment=Reaper Raven Hat
 AttachmentSkin0=White
+AttachmentSkin1=Precious
 
 [Cosmetic_ReaperRavenJaw_ARCH]
 Attachment=Reaper Raven Jaw
 AttachmentSkin0=Red Band
 AttachmentSkin1=White Band
+AttachmentSkin2=Precious
 
 [Cosmetic_ReaperDeadEyes_ARCH]
 Attachment=Reaper Dead Eyes
@@ -2139,6 +2142,7 @@ AttachmentSkin1=Black
 Attachment=Steampunk Gas Mask Closed
 AttachmentSkin0=Brown
 AttachmentSkin1=Black
+AttachmentSkin2=Precious
 
 [Cosmetic_SteampunkGasMaskFiltered_ARCH]
 Attachment=Steampunk Gas Mask Filtered
@@ -2178,6 +2182,7 @@ AttachmentSkin5=Light Green
 AttachmentSkin6=Light Red
 AttachmentSkin7=Tan
 AttachmentSkin8=White
+AttachmentSkin9=Precious
 
 [Cosmetic_RebelHelmetGogglesUp_ARCH]
 Attachment=Rebel Helmet Goggles Up
@@ -2232,6 +2237,17 @@ AttachmentSkin2=Green
 AttachmentSkin3=Olive
 AttachmentSkin4=Red
 AttachmentSkin5=White
+AttachmentSkin6=Precious
+
+[Cosmetic_DeepstrikeTacticalBackbag_ARCH]
+Attachment=Deepstrike Tactical Backbag
+AttachmentSkin0=Black
+AttachmentSkin1=Blue
+AttachmentSkin2=Green
+AttachmentSkin3=Olive
+AttachmentSkin4=Red
+AttachmentSkin5=White
+AttachmentSkin6=Precious
 
 [Cosmetic_RebelMask_ARCH]
 Attachment=Rebel Mask
@@ -2248,3 +2264,63 @@ AttachmentSkin1=Blue
 AttachmentSkin2=Green
 AttachmentSkin3=Red
 AttachmentSkin4=Tan
+
+[LetsGetCrazy] 	
+EmoteName="Let's Get Crazy"
+
+[ThunderClap]
+EmoteName="Thunder Clap"
+
+[UncleCharlie] 	
+EmoteName="Uncle Charlie"
+
+[WackyWave]		
+EmoteName="Wacky Wave"
+
+[RainingDosh] 		
+EmoteName="Raining Dosh"
+
+[LionUppercut] 	
+EmoteName="Lion Uppercut"
+
+[MatingRitual] 	
+EmoteName="Mating Ritual"
+
+[KickinIt]	
+EmoteName="Kickin' It"
+
+[Fireball] 		
+EmoteName="Fireball"
+
+[Makeitrain]
+EmoteName="Make It Rain" 		
+
+[Fireball_Deluxe]
+EmoteName="Fireball+"
+
+[Makeitrain_Deluxe] 
+EmoteName="Make It Rain+"
+
+[ThunderClap_Deluxe] 
+EmoteName="Thunder Clap+"
+
+[UncleCharlie_Deluxe]
+EmoteName="Uncle Charlie+"
+
+[LetsGetCrazy_Deluxe]
+EmoteName="Let's Get Crazy+"
+
+[WackyWave_Deluxe]
+EmoteName="Wacky Wave+"
+
+[RainingDosh_Deluxe] 
+EmoteName="Raining Dosh+"
+
+[LionUppercut_Deluxe]
+EmoteName="Lion Uppercut+"
+
+[MatingRitual_Deluxe]
+EmoteName="Mating Ritual+"
+
+[KickinIt_Deluxe]
+EmoteName="Kickin It+"

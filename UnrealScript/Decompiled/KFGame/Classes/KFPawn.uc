@@ -82,6 +82,7 @@ enum ESpecialMove
     SM_GrappleVictim,
     SM_HansGrappleVictim,
     SM_SirenVortexVictim,
+    SM_Emote,
     SM_BossTheatrics,
     SM_ChangeStance,
     SM_Hans_ThrowGrenade,
@@ -759,11 +760,7 @@ simulated function SetCharacterAnimationInfo()
             }
         }
     }
-    Mesh.AnimSets = CharacterArch.AnimSets;
-    if(Mesh.AnimTreeTemplate != CharacterArch.AnimTreeTemplate)
-    {
-        Mesh.SetAnimTreeTemplate(CharacterArch.AnimTreeTemplate);
-    }
+    CharacterArch.SetCharacterAnimFromArch(self);
     if(CharacterArch.AnimArchetype != none)
     {
         PawnAnimInfo = CharacterArch.AnimArchetype;
@@ -1172,7 +1169,7 @@ simulated function WeaponFired(Weapon InWeapon, bool bViaReplication, optional V
     {
         if(WeaponAttachment != none)
         {
-            WeaponAttachment.ThirdPersonFireEffects(HitLocation, self);
+            WeaponAttachment.ThirdPersonFireEffects(HitLocation, self, GetWeaponAttachmentAnimRateByte());
         }
     }
     if((HitLocation != vect(0, 0, 0)) && WorldInfo.NetMode != NM_DedicatedServer)
@@ -1204,6 +1201,11 @@ simulated function WeaponStoppedFiring(Weapon InWeapon, bool bViaReplication)
         WeaponAttachment.StopThirdPersonFireEffects();
         WeaponAttachment.StopFirstPersonFireEffects(Weapon);
     }
+}
+
+simulated function byte GetWeaponAttachmentAnimRateByte()
+{
+    return 0;
 }
 
 simulated function Vector WeaponBob(float BobDamping, float JumpDamping)
@@ -1359,6 +1361,8 @@ simulated function Vector GetAutoLookAtLocation(Vector CamLoc, Pawn InstigatingP
     }
     return Location + (BaseEyeHeight * vect(0, 0, 0.5));
 }
+
+function SetCloaked(bool bNewCloaking);
 
 // Export UKFPawn::execIsUsingSuperSpeed(FFrame&, void* const)
 native final function bool IsUsingSuperSpeed();
@@ -1903,7 +1907,7 @@ function NotifyFriendlyAIDamageTaken(Controller DamagerController, int Damage, A
 
 function class<KFPerk> GetUsedWeaponPerk(Controller DamagerController, Actor DamageCauser, class<KFDamageType> DamageType)
 {
-    local class<KFPerk> WeaponPerk;
+    local class<KFPerk> WeaponPerk, InstigatorPerkClass;
     local KFPlayerController KFPC;
     local KFWeapon KFW;
 
@@ -1912,7 +1916,12 @@ function class<KFPerk> GetUsedWeaponPerk(Controller DamagerController, Actor Dam
     {
         return none;
     }
-    WeaponPerk = Class'KFPerk'.static.GetPerkFromDamageCauser(DamageCauser);
+    InstigatorPerkClass = KFPC.GetPerk().GetPerkClass();
+    if(InstigatorPerkClass == none)
+    {
+        return none;
+    }
+    WeaponPerk = Class'KFPerk'.static.GetPerkFromDamageCauser(DamageCauser, InstigatorPerkClass);
     if(WeaponPerk == none)
     {
         KFW = KFWeapon(DamageCauser);
@@ -1921,13 +1930,13 @@ function class<KFPerk> GetUsedWeaponPerk(Controller DamagerController, Actor Dam
             KFW = KFWeapon(KFPC.Pawn.Weapon);
             if(KFW != none)
             {
-                WeaponPerk = Class'KFPerk'.static.GetPerkFromDamageCauser(KFW);
+                WeaponPerk = Class'KFPerk'.static.GetPerkFromDamageCauser(KFW, InstigatorPerkClass);
             }
         }
-        if(((WeaponPerk == none) && KFW != none) && Class'KFPerk'.static.IsBackupWeapon(KFW))
-        {
-            WeaponPerk = KFPC.GetPerk().GetPerkClass();
-        }
+    }
+    if(((WeaponPerk == none) && KFW != none) && Class'KFPerk'.static.IsBackupWeapon(KFW))
+    {
+        WeaponPerk = InstigatorPerkClass;
     }
     return WeaponPerk;
 }
@@ -2233,7 +2242,7 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
     bHasNewHitEffect = true;
     if(bNeedsProcessHitFx)
     {
-        if(((InstigatedBy != none) && InstigatedBy.Pawn == HitFxInstigator) && KFDT == HitFxInfo.DamageType)
+        if((((InstigatedBy != none) && InstigatedBy.Pawn == HitFxInstigator) && KFDT != none) && KFDT == HitFxInfo.DamageType)
         {
             if((HitFxAddedHitCount < 7) && !bTakingRadiusDamage)
             {
@@ -2254,7 +2263,7 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
     {
         HitFxInstigator = ((InstigatedBy != none) ? InstigatedBy.Pawn : none);
         HitFxInfo.HitLocation = HitLocation;
-        HitFxInfo.EncodedHitDirection = EncodeUnitVector(Normal(Momentum));
+        HitFxInfo.EncodedHitDirection = ((((KFDT != none) && KFDT.default.bPointImpulseTowardsOrigin) && InstigatedBy.Pawn != none) ? EncodeUnitVector(Normal(Location - InstigatedBy.Pawn.Location)) : EncodeUnitVector(Normal(Momentum)));
         HitFxInfo.HitBoneIndex = byte(HitZoneIdx);
         HitFxInfo.bRadialDamage = bTakingRadiusDamage;
         HitFxInfo.DamageType = KFDT;
@@ -2359,6 +2368,11 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
     return false;
 }
 
+simulated function bool HasInjuredHitZones()
+{
+    return InjuredHitZones > 0;
+}
+
 simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
 {
     local KFPlayerController KFPC;
@@ -2454,7 +2468,7 @@ simulated function ApplyRagdollImpulse(class<KFDamageType> DamageType, Vector Hi
     }
     if(bHasBrokenConstraints && Mesh.IsBrokenConstraint(HitBoneName))
     {
-        GoreImpulseScale *= Class'KFGoreManager'.static.GetGibImpulseMax();
+        GoreImpulseScale *= DamageType.default.GibImpulseScale;
     }
     Impulse *= (PhysRagdollImpulseScale * GoreImpulseScale);
     if(!IsZero(Impulse))
@@ -2820,6 +2834,14 @@ simulated function SetEnableFleXCollision(bool bEnabled)
                 Mesh.MinDistFactorForKinematicUpdate = default.Mesh.MinDistFactorForKinematicUpdate;
             }
         }
+    }
+}
+
+simulated function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC)
+{
+    if(IsDoingSpecialMove())
+    {
+        SpecialMoves[SpecialMove].OnAnimNotifyParticleSystemSpawned(AnimNotifyData, PSC);
     }
 }
 
@@ -3463,41 +3485,7 @@ defaultproperties
     ArmsMesh=FirstPersonArms
     WeaponAttachmentSocket=RW_Weapon
     TurnInPlaceAnimRate=1
-    begin object name=SpecialMoveHandler class=KFSpecialMoveHandler
-        SpecialMoveClasses(0)=none
-        SpecialMoveClasses(1)=none
-        SpecialMoveClasses(2)=none
-        SpecialMoveClasses(3)=none
-        SpecialMoveClasses(4)=none
-        SpecialMoveClasses(5)=none
-        SpecialMoveClasses(6)=none
-        SpecialMoveClasses(7)=none
-        SpecialMoveClasses(8)=none
-        SpecialMoveClasses(9)=none
-        SpecialMoveClasses(10)=none
-        SpecialMoveClasses(11)=none
-        SpecialMoveClasses(12)=none
-        SpecialMoveClasses(13)=none
-        SpecialMoveClasses(14)=none
-        SpecialMoveClasses(15)=none
-        SpecialMoveClasses(16)=none
-        SpecialMoveClasses(17)=none
-        SpecialMoveClasses(18)=none
-        SpecialMoveClasses(19)=none
-        SpecialMoveClasses(20)=none
-        SpecialMoveClasses(21)=none
-        SpecialMoveClasses(22)=none
-        SpecialMoveClasses(23)=none
-        SpecialMoveClasses(24)=none
-        SpecialMoveClasses(25)=none
-        SpecialMoveClasses(26)=none
-        SpecialMoveClasses(27)=none
-        SpecialMoveClasses(28)=none
-        SpecialMoveClasses(29)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(30)=class'KFSM_HansGrappleVictim'
-    object end
-    // Reference: KFSpecialMoveHandler'Default__KFPawn.SpecialMoveHandler'
-    SpecialMoveHandler=SpecialMoveHandler
+    SpecialMoveHandler=KFSpecialMoveHandler'Default__KFPawn.SpecialMoveHandler'
     MeshRotSmoothingInterpSpeed=30
     begin object name=AmbientAkSoundComponent_1 class=AkComponent
         BoneName=Dummy

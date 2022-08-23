@@ -14,7 +14,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SupportKnife'
     AttachmentArchetype=KFWeaponAttachment'WEP_SupportKnife_ARCH.Wep_SupportKnife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Support.MeleeHelper'
-    AssociatedPerkClass=Class'KFGame.KFPerk_Support'
+    AssociatedPerkClasses=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         SkeletalMesh=SkeletalMesh'WEP_1P_SupportKnife_MESH.Wep_1stP_SupportKnife_Rig'
         ReplacementPrimitive=none

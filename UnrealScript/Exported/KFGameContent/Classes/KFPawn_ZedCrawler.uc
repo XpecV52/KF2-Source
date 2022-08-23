@@ -8,6 +8,9 @@
 //=============================================================================
 class KFPawn_ZedCrawler extends KFPawn_Monster;
 
+/** Pawn class used for the special crawler */
+var class<KFPawn_Monster> SpecialCrawlerPawnClass;
+
 var protected Actor LastBumpLevelActor;
 var protected float LastBumpLevelTime;
 
@@ -17,30 +20,18 @@ var protected const KFGameExplosion DeathExplosionTemplate;
 /** How much of an impulse to apply to crawler if gore settings prevent dismemberment */
 var protected const float LowGoreExplosionImpulse;
 
-/** TRUE when difficulty has dictated that this is a special crawler type */
-var repnotify protected bool bIsSpecialCrawler;
-
-/** Tells clients to try to spawn an explosion */
-var bool bShouldExplode;
-
-replication
+/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
+static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
-	if( bNetInitial )
-		bIsSpecialCrawler;
+	local WorldInfo WI;
 
-	if( bIsSpecialCrawler && bTearOff )
-		bShouldExplode;
-}
-
-simulated event ReplicatedEvent( name VarName )
-{
-	if( VarName == nameOf(bIsSpecialCrawler) )
+	WI = class'WorldInfo'.static.GetWorldInfo();
+	if( fRand() < class<KFDifficulty_Crawler>(default.DifficultySettings).static.GetSpecialCrawlerChance(KFGameReplicationInfo(WI.GRI)) )
 	{
-		UpdateBodyMIC();
-		return;
+		return default.SpecialCrawlerPawnClass;
 	}
 
-	super.ReplicatedEvent( VarName );
+	return super.GetAIPawnClassToSpawn();
 }
 
 event PossessedBy( Controller C, bool bVehicleTransition )
@@ -55,31 +46,6 @@ event PossessedBy( Controller C, bool bVehicleTransition )
 	if( CrawlerController != none )
 	{
 		CrawlerController.OriginalMeshTranslation = Mesh.Translation;
-
-		// See if we should spawn as an alternate crawler type
-		if( fRand() < class<KFDifficulty_Crawler>(DifficultySettings).static.GetSpecialCrawlerChance(self, KFGameReplicationInfo(WorldInfo.GRI)) )
-		{
-			bIsSpecialCrawler = true;
-			if( WorldInfo.NetMode != NM_DedicatedServer )
-			{
-				UpdateBodyMIC();
-			}
-		}
-	}
-}
-
-/** If true, assign custom player controlled skin when available */
-simulated event bool UsePlayerControlledZedSkin()
-{
-	return bIsSpecialCrawler || super.UsePlayerControlledZedSkin();
-}
-
-/** Change body MIC if we're a special crawler */
-simulated protected function UpdateBodyMIC()
-{
-	if( GetCharacterMonsterInfo() != none )
-	{
-		CharacterMICs[0].SetParent( GetCharacterMonsterInfo().PlayerControlledSkins[0] );
 	}
 }
 
@@ -244,106 +210,6 @@ event SpiderBumpLevel( vector HitLocation, vector HitNormal, optional actor Wall
 	}
 }
 
-/** Stops a special crawler from spawning a poison gas cloud */
-simulated function CancelExplosion()
-{
-	if( bIsSpecialCrawler )
-	{
-		bShouldExplode = false;
-		if( IsTimerActive(nameOf(Timer_CheckForExplode)) )
-		{
-			ClearTimer( nameOf(Timer_CheckForExplode) );
-		}
-	}
-}
-
-/** Called on server when pawn should has been crippled (e.g. Headless) */
-function CauseHeadTrauma( float BleedOutTime=5.f )
-{
-	super.CauseHeadTrauma( BleedOutTime );
-
-	CancelExplosion();
-}
-
-/** Reliably play any gore effects related to a zone/limb being dismembered */
-simulated function PlayHeadAsplode()
-{
-	super.PlayHeadAsplode();
-
-	CancelExplosion();
-}
-
-/** Set our gib flag on the server, replicate it with bTearOff */
-function bool Died(Controller Killer, class<DamageType> DamageType, vector HitLocation)
-{
-	if( bIsSpecialCrawler && !bPlayedDeath && DamageType != class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType )
-	{
-		bShouldExplode = true;
-	}
-
-	return super.Died( Killer, DamageType, HitLocation );
-}
-
-simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
-{
-	super.PlayDying( DamageType, HitLoc );
-
-	// Set a timer to check if we should spawn our gas cloud (wait a single frame to allow hitzone damage to process)
-	if( bIsSpecialCrawler && bShouldExplode )
-	{
-		SetTimer( WorldInfo.DeltaSeconds, false, nameOf(Timer_CheckForExplode) );
-	}
-}
-
-simulated function Timer_CheckForExplode()
-{
-	local KFGoreManager GoreManager;
-	local array<name> OutGibBoneList;
-	local int NumGibs;
-	local vector Impulse;
-
-	if( bShouldExplode )
-	{
-		class'KFSM_PlayerCrawler_Suicide'.static.TriggerExplosion( self, DeathExplosionTemplate, true );
-
-		if( WorldInfo.NetMode != NM_DedicatedServer )
-		{
-			GoreManager = KFGoreManager( WorldInfo.MyGoreEffectManager );
-			if( GoreManager != none && GoreManager.AllowMutilation() )
-			{
-				// Enable alternate bone weighting and gore skeleton
-				if( !bIsGoreMesh )
-				{
-					SwitchToGoreMesh();
-				}
-
-				// Apply gore only if we were able to successfully switch to the gore mesh
-				if( bIsGoreMesh )
-				{
-					NumGibs = 10 + Rand(4);
-					NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
-					GetClosestHitBones( NumGibs, Location, OutGibBoneList );
-
-					GoreManager.CauseGibsAndApplyImpulse( self,
-														Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType,
-														Location,
-														OutGibBoneList,
-														none,
-														Mesh.GetBoneLocation(Mesh.GetBoneName(0)) );
-					return;
-				}
-			}
-
-			// If we didn't gib, add a ragdoll impulse
-			if( NumGibs == 0 && Physics == PHYS_RigidBody )
-			{
-				Impulse = vect(0,0,1) * LowGoreExplosionImpulse * PhysRagdollImpulseScale;
-				Mesh.AddImpulse( Impulse, Location );
-			}
-		}
-	}
-}
-
 // Disabled for Early Access 1/14/15 as part of disabling wall walking - Ramm
 //simulated event RootMotionProcessed(SkeletalMeshComponent SkelComp)
 //{
@@ -466,6 +332,7 @@ function int GetSpotterDialogID()
 
 defaultproperties
 {
+   SpecialCrawlerPawnClass=Class'kfgamecontent.KFPawn_ZedCrawlerKing'
    DeathExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedCrawler:ExploTemplate0'
    LowGoreExplosionImpulse=5000.000000
    bKnockdownWhenJumpedOn=True
@@ -560,21 +427,6 @@ defaultproperties
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
       SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
-      SpecialMoveClasses(16)=None
-      SpecialMoveClasses(17)=None
-      SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=None
-      SpecialMoveClasses(22)=None
-      SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=None
-      SpecialMoveClasses(25)=None
-      SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

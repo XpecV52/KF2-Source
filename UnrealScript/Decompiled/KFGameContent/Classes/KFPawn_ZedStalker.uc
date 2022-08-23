@@ -148,7 +148,7 @@ simulated event Tick(float DeltaTime)
     {
         if(ViewerPlayer == none)
         {
-            ViewerPlayer = KFPlayerController(WorldInfo.GetALocalPlayerController());
+            ViewerPlayer = KFPlayerController(GetALocalPlayerController());
         }
         MinCloakPct = GetMinCloakPct();
         if(!bIsCloaking)
@@ -182,7 +182,6 @@ protected simulated function float GetMinCloakPct()
 simulated event UpdateSpottedStatus()
 {
     local bool bOldSpottedByLP;
-    local KFPlayerController LocalPC;
     local KFPerk LocalPerk;
     local float DistanceSq, Range;
 
@@ -194,21 +193,24 @@ simulated event UpdateSpottedStatus()
     bIsCloakingSpottedByLP = false;
     if(!IsHumanControlled() || bIsSprinting)
     {
-        LocalPC = KFPlayerController(GetALocalPlayerController());
-        if(LocalPC != none)
+        if(ViewerPlayer == none)
         {
-            LocalPerk = LocalPC.GetPerk();
+            ViewerPlayer = KFPlayerController(GetALocalPlayerController());
         }
-        if((((((LocalPC != none) && LocalPC.Pawn != none) && LocalPC.Pawn.IsAliveAndWell()) && LocalPerk != none) && LocalPerk.bCanSeeCloakedZeds) && (WorldInfo.TimeSeconds - LastRenderTime) < 1)
+        if(ViewerPlayer != none)
         {
-            DistanceSq = VSizeSq(LocalPC.Pawn.Location - Location);
+            LocalPerk = ViewerPlayer.GetPerk();
+        }
+        if((((((ViewerPlayer != none) && ViewerPlayer.Pawn != none) && ViewerPlayer.Pawn.IsAliveAndWell()) && LocalPerk != none) && LocalPerk.bCanSeeCloakedZeds) && (WorldInfo.TimeSeconds - LastRenderTime) < 1)
+        {
+            DistanceSq = VSizeSq(ViewerPlayer.Pawn.Location - Location);
             Range = LocalPerk.GetCloakDetectionRange();
             if(DistanceSq < Square(Range))
             {
                 bIsCloakingSpottedByLP = true;
                 if(LocalPerk.IsCallOutActive())
                 {
-                    LocalPC.ServerCallOutPawnCloaking(self);
+                    ViewerPlayer.ServerCallOutPawnCloaking(self);
                 }
             }
         }

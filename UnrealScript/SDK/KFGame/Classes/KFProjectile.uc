@@ -165,6 +165,10 @@ var bool bFadingOutProjEffects;
 /** If set to something greater than zero the ProjEffects won't be instantly stopped on shutdown, they'll need to do a custom fade out that will shut them down over time*/
 var float ProjEffectsFadeOutDuration;
 
+/** (optional) This is the light attached while in flight */
+var PointLightComponent ProjFlightLight;
+var LightPoolPriority ProjFlightLightPriority;
+
 /** Effects Template for the bullet flying through the air in Zed time */
 var(Projectile) ParticleSystem ProjFlightTemplateZedTime;
 
@@ -1100,6 +1104,13 @@ simulated function SpawnFlightEffects()
 			}
 		}
 
+        // Set its light if it has one
+        if ( ProjFlightLight != None )
+        {
+            AttachComponent(ProjFlightLight);
+            `LightPool.RegisterPointLight(ProjFlightLight, ProjFlightLightPriority);
+        }
+
 		// Play zed time flight effects
         if( `IsInZedTime(self) && ProjFlightTemplateZedTime != none )
 		{
@@ -1134,6 +1145,12 @@ simulated protected function StopFlightEffects()
             bFadingOutProjEffects=true;
         }
 
+         // Disable flight light if it has one
+        if ( ProjFlightLight != None && ProjFlightLight.bAttached )
+        {
+            DetachComponent(ProjFlightLight);
+        }
+
         // Turn off the projectile effects. In the emitter, some parts of the
         // effect can be set not to shut down on deactivate, and those are the
         // ones you can fade out over time (like the zed time bullet trail)
@@ -1149,6 +1166,41 @@ function Timer_Explode();
 
 /** Called when the owning instigator controller has left a game */
 simulated function OnInstigatorControllerLeft();
+
+/*********************************************************************************************
+* @name Residual/Splash flame spawner (Perf warning: use with caution)
+********************************************************************************************* */
+
+/** Calculates residual flame velocity using */
+function vector CalculateResidualFlameVelocity( vector HitNormal, vector HitVelDir, float HitVelMag )
+{
+    local vector SpawnDir;
+
+    // apply some spread
+    SpawnDir = VRandCone( HitVelDir, PI/4 );
+
+    // make HitVelDir parallel to contact surface by subtracting component parallel to HitNormal
+    SpawnDir = SpawnDir + (-(SpawnDir dot HitNormal) * HitNormal);
+
+    // apply some more spread to get some of the flames to stick to the wall and others the ground beneath the wall
+    // (makes it looks kind of smeared down the wall, like a real molotov)
+    SpawnDir = VRandCone( SpawnDir, PI/4 );
+
+    return SpawnDir * (HitVelMag / 3.f);
+}
+
+function SpawnResidualFlame( class<KFProjectile> SpawnClass, vector SpawnLoc, vector SpawnVel )
+{
+    local KFProjectile SpawnedProjectile;
+
+    SpawnedProjectile = Spawn( SpawnClass, Self,, SpawnLoc );
+    if( SpawnedProjectile != none && !SpawnedProjectile.bDeleteMe )
+    {
+        SpawnedProjectile.Init( Normal(SpawnVel) );
+        SpawnedProjectile.Velocity = SpawnVel;
+        SpawnedProjectile.Speed = VSize( SpawnedProjectile.Velocity );
+    }
+}
 
 defaultproperties
 {

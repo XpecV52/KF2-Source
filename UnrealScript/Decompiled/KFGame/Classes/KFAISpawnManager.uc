@@ -333,15 +333,21 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
 {
     local array< class<KFPawn_Monster> > NewSquad, RequiredSquad;
     local int RandNum, AINeeded;
-    local bool bNeedsNewDesiredSquadType;
-    local int EntryIdx;
 
     if((DesiredSquadType == 0) && LeftoverSpawnSquad.Length > 0)
     {
         LeftoverSpawnSquad.Length = 0;
     }
-    AINeeded = GetNumAINeeded();
-    if(LeftoverSpawnSquad.Length < AINeeded)
+    if(LeftoverSpawnSquad.Length > 0)
+    {
+        if(bLogAISpawning)
+        {
+            LogMonsterList(LeftoverSpawnSquad, "Leftover LeftoverSpawnSquad");
+        }
+        NewSquad = LeftoverSpawnSquad;
+        SetDesiredSquadTypeForZedList(NewSquad);        
+    }
+    else
     {
         if(!IsAISquadAvailable())
         {
@@ -392,30 +398,12 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
             LogAvailableSquads();
         }
     }
-    if(LeftoverSpawnSquad.Length > 0)
-    {
-        if(bLogAISpawning)
-        {
-            LogMonsterList(LeftoverSpawnSquad, "Leftover LeftoverSpawnSquad");
-        }
-        J0x3DD:
-
-        if(LeftoverSpawnSquad.Length > 0)
-        {
-            EntryIdx = LeftoverSpawnSquad.Length - 1;
-            NewSquad.Insert(0, 1;
-            NewSquad[0] = LeftoverSpawnSquad[EntryIdx];
-            LeftoverSpawnSquad.Remove(EntryIdx, 1;
-            goto J0x3DD;
-        }
-        bNeedsNewDesiredSquadType = true;
-    }
+    AINeeded = GetNumAINeeded();
     if(AINeeded < NewSquad.Length)
     {
         LeftoverSpawnSquad = NewSquad;
         LeftoverSpawnSquad.Remove(0, AINeeded;
-        NewSquad.Length = AINeeded;
-        bNeedsNewDesiredSquadType = true;        
+        NewSquad.Length = AINeeded;        
     }
     else
     {
@@ -425,10 +413,6 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     {
         LogMonsterList(NewSquad, "NewSquad");
         LogMonsterList(LeftoverSpawnSquad, "LeftoverSpawnSquad");
-    }
-    if(bNeedsNewDesiredSquadType)
-    {
-        SetDesiredSquadTypeForZedList(NewSquad);
     }
     return NewSquad;
 }
@@ -712,7 +696,7 @@ function StopSummoningBossMinions()
     AvailableSquads.Length = 0;
 }
 
-function int SpawnSquad(array< class<KFPawn_Monster> > AIToSpawn, optional bool bSkipHumanZedSpawning)
+function int SpawnSquad(out array< class<KFPawn_Monster> > AIToSpawn, optional bool bSkipHumanZedSpawning)
 {
     local KFSpawnVolume KFSV;
     local int SpawnerAmount, VolumeAmount, FinalAmount, I;
@@ -821,13 +805,16 @@ function RecordSpawnInformation(KFSpawnVolume BestSpawnVolume, int ZedsSpawned)
 
 function Update()
 {
+    local array< class<KFPawn_Monster> > SpawnList;
+
     if(Outer.IsWaveActive())
     {
         TotalWavesActiveTime += 1;
         TimeUntilNextSpawn -= 1;
         if(ShouldAddAI())
         {
-            Outer.NumAISpawnsQueued += (SpawnSquad(GetNextSpawnList()));
+            SpawnList = GetNextSpawnList();
+            Outer.NumAISpawnsQueued += (SpawnSquad(SpawnList));
             TimeUntilNextSpawn = CalcNextGroupSpawnTime();
         }
     }

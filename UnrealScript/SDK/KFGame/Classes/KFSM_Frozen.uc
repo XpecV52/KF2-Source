@@ -44,6 +44,10 @@ function DoFreeze()
 		// Disable Movement by using the DefaultAICommandClass to call LockdownAI()
 		TimeUntilThaw = KFPOwner.IncapSettings[AF_Freeze].Duration > 0 ? KFPOwner.IncapSettings[AF_Freeze].Duration : RandRange(FreezeDuration.X, FreezeDuration.Y);
 		KFPOwner.SetTimer(TimeUntilThaw, false, nameof(DoThaw), self);
+
+		// Disable cloaking
+		KFPOwner.SetCloaked( false );
+		KFPOwner.bCanCloak = false;
 	}
 
 	if ( PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
@@ -145,15 +149,19 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 			PlayDeathEffects();
 			KFPOwner.ClearTimer( nameof(UpdateFreezeOutParam), self );
 		}
-
-		// Just in case the special move was ended prematurely, we still need to stop the freeze effect
-		if( !bIsThawing )
+		else if( !bIsThawing ) // Just in case the special move was ended prematurely, we still need to stop the freeze effect
 		{
 			BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
 			FreezeOutTime = 0.5f;
 			KFPOwner.SetTimer( 0.1f, true, nameof(UpdateFreezeOutParam), self );
 		}
 	}
+
+	// Restore cloaking flag
+	if( KFPOwner.Role == ROLE_Authority )
+	{
+		KFPOwner.bCanCloak = KFPOwner.default.bCanCloak;
+	}		
 
 	KFPOwner.ClearTimer( nameof(UpdateFreezeInParam), self );
 	KFPOwner.ClearTimer( nameof(DoThaw), self );

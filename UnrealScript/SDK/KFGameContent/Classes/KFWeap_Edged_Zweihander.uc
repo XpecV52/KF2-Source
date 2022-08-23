@@ -29,7 +29,7 @@ defaultproperties
 	End Object
 
 	Begin Object Name=MeleeHelper_0
-		MaxHitRange=400    //330
+		MaxHitRange=200    //330 //400
 		// Override automatic hitbox creation (advanced)
 		HitboxChain.Add((BoneOffset=(X=+3,Z=190)))
 		HitboxChain.Add((BoneOffset=(X=-3,Z=170)))
@@ -65,7 +65,7 @@ defaultproperties
 	GroupPriority=85
 	InventorySize=6
 	WeaponSelectTexture=Texture2D'WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander'
-	AssociatedPerkClass=class'KFPerk_Berserker'
+	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
 
 	// Block Sounds
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'

@@ -13,11 +13,11 @@ function Activate()
     super.Activate();
 }
 
-protected function ActivateKnockdown(class<DamageType> DamageType, Vector HitLoc, Vector HitDir, byte HitZoneIdx)
+protected function ActivateKnockdown(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, byte HitZoneIdx)
 {
     local Vector Impulse;
 
-    if(DamageType.default.RadialDamageImpulse > float(0))
+    if((DamageType.default.RadialDamageImpulse > float(0)) && !DamageType.default.bPointImpulseTowardsOrigin)
     {
         Impulse = DamageType.default.RadialDamageImpulse * HitDir;
         if(PawnOwner.HitFxInfo.bRadialDamage && PawnOwner.HitFxRadialInfo.RadiusDamageScale != 255)

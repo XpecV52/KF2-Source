@@ -555,9 +555,12 @@ enum EConsoleType
 	CONSOLE_Android,
 	CONSOLE_WiiU,
 	CONSOLE_Flash,
-//@zombie_ps4_begin
+//@HSL_BEGIN_PS4
 	CONSOLE_Orbis,
-//@zombie_ps4_end
+//@HSL_END_PS4
+//@HSL_BEGIN_XBOX
+	CONSOLE_Durango,
+//@HSL_END_XBOX
 };
 
 /** Struct used for passing back results from GetWorldFractureSettings */
@@ -1009,11 +1012,13 @@ var transient Actor MyImpactEffectManager;
 var string GoreEffectManagerClassPath;
 var transient Actor MyGoreEffectManager;
 
+/** Light Pool Manager **/
+var string LightPoolClassPath;
+var transient Actor MyLightPool;
+
 /** DeferredWorkManager **/
-`if(`__TW_)
 var string TWDeferredWorkManagerClassPath;
 var transient Actor DeferredWorkManager;
-`endif
 
 /** Turbulence effect pool **/
 var string TurbEffectPoolClassPath;
@@ -1029,6 +1034,10 @@ var transient EmitterPool ImpactFXEmitterPool;
 /** Custom decal managers */
 var globalconfig int MaxExplosionDecals;
 var transient DecalManager ExplosionDecalManager;
+
+/** Realtime timer helper */
+var string TimerHelperClassPath;
+var transient Actor TimerHelper;
 
 // ---------------------------------------------
 // Editor
@@ -1436,6 +1445,8 @@ simulated function PreBeginPlay()
 	local class<Actor> GoreEffectManagerClass;
 	local class<Actor> TurbEffectPoolClass;
 	local class<Actor> GameplayPoolManagerClass;
+	local class<Actor> LightPoolClass;
+	local class<Actor> TimerHelperClass;
 `endif
 
 	Super.PreBeginPlay();
@@ -1514,6 +1525,15 @@ simulated function PreBeginPlay()
 			}
 		}
 
+		if (LightPoolClassPath != "")
+		{
+			LightPoolClass = class<Actor>(DynamicLoadObject(LightPoolClassPath, class'Class'));
+			if (LightPoolClass != None)
+			{
+				MyLightPool = Spawn(LightPoolClass, self,, vect(0,0,0), rot(0,0,0));
+			}
+		}
+
 		if (TurbEffectPoolClassPath != "")
 		{
 			TurbEffectPoolClass = class<Actor>(DynamicLoadObject(TurbEffectPoolClassPath, class'Class'));
@@ -1530,25 +1550,35 @@ simulated function PreBeginPlay()
 	}
 
 `if(`__TW_)
-
-	// Manager that defers work from during async to post asycn runs on both client and server.
 	if(IsInPersistentLevel())
 	{
+		// Manager that defers work from during async to post asycn runs on both client and server.
 		DeferredWorkManager = Spawn(class'TWDeferredWorkManager', self,, vect(0,0,0), rot(0,0,0));
-	}
 
-	// Instance gameplay pool manager
-	if( WorldInfo.NetMode != NM_Client && IsInPersistentLevel() )
-	{
-		if (GameplayPoolManagerClassPath != "")
+		// We want the timer helper to exist on both client and server
+		if( TimerHelperClassPath != "" )
 		{
-			GameplayPoolManagerClass = class<Actor>(DynamicLoadObject(GameplayPoolManagerClassPath, class'Class'));
-			if (GameplayPoolManagerClass != None)
+			TimerHelperClass = class<Actor>( DynamicLoadObject(TimerHelperClassPath, class'Class') );
+			if( TimerHelperClass != None )
 			{
-				MyGameplayPoolManager = Spawn(GameplayPoolManagerClass, self,, vect(0,0,0), rot(0,0,0));
+				TimerHelper = Spawn( TimerHelperClass, self,, vect(0,0,0), rot(0,0,0) );
+			}
+		}
+
+		// Instance gameplay pool manager
+		if( WorldInfo.NetMode != NM_Client )
+		{
+			if (GameplayPoolManagerClassPath != "")
+			{
+				GameplayPoolManagerClass = class<Actor>(DynamicLoadObject(GameplayPoolManagerClassPath, class'Class'));
+				if (GameplayPoolManagerClass != None)
+				{
+					MyGameplayPoolManager = Spawn(GameplayPoolManagerClass, self,, vect(0,0,0), rot(0,0,0));
+				}
 			}
 		}
 	}
+
 `endif
 }
 
@@ -1632,7 +1662,9 @@ native final iterator function AllPawns(class<Pawn> BaseClass, out Pawn P, optio
  * @param ClientIP		The IP of the NetConnection
  * @param ClientPort		The port the net connection is on
  */
-native final iterator function AllClientConnections(out Player ClientConnection, out int ClientIP, out int ClientPort);
+//@HSL_BEGIN_XBOX
+native final iterator function AllClientConnections(out Player ClientConnection, out IpAddr ClientIP, out int ClientPort);
+//@HSL_END_XBOX
 
 
 /**
@@ -2004,6 +2036,8 @@ defaultproperties
 	FractureManagerClassPath="Engine.FractureManager"
 	ImpactEffectManagerClassPath="KFGame.KFImpactEffectManager"
 	GoreEffectManagerClassPath="KFGame.KFGoreManager"
+	LightPoolClassPath="KFGame.KFLightPool"
+	TimerHelperClassPath="KFGame.KFRealtimeTimerHelper"
 	TWDeferredWorkManagerClassPath="Engine.TWDeferredWorkManager"
 	//TurbEffectPoolClassPath="KFGame.TurbEffectPool"
 

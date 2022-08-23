@@ -59,7 +59,7 @@ defaultproperties
     RecoilISMaxPitchLimit=400
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.5
-    AssociatedPerkClass=Class'KFGame.KFPerk_Gunslinger'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

@@ -260,6 +260,12 @@ reliable client function ClientReset()
 	local array<Actor> BloodSplatActors;
 	local int i;
 
+	// Ensures this only runs once on listen servers
+	if( !IsLocalPlayerController() )
+	{
+		return;
+	}
+
 	// Reset all actors (except controllers and blood splats)
 	foreach AllActors( class'Actor', A )
 	{
@@ -269,7 +275,7 @@ reliable client function ClientReset()
 			continue;
 		}
 
-		if( !A.IsA('Controller') )
+		if( WorldInfo.NetMode == NM_Client && !A.IsA('Controller') )
 		{
 			A.Reset();
 		}

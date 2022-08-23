@@ -25,11 +25,24 @@ var databinding int NumOpenPrivateConnections;
 var const qword ServerNonce;
 
 //@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
-/** The session guid */
-var string SessionGuid;
 /** UE3 Join string for PS4 invites */
 var databinding string JoinString;
 //@HSL_END
+
+//@HSL_BEGIN_XBOX
+/** ID unique to our game */
+var string ServiceConfigId;
+/** Template that describes how the session is made and behaves */
+var string SessionTemplateName;
+/** */
+var string MatchHopperName;
+/** The session guid */
+var string SessionGuid;
+/** The handle of the session used strictly for invite purposes */
+var string SessionHandle;
+/** The list of members to add a reservation for */
+var array<UniqueNetId> ReservedMembers;
+//@HSL_END_XBOX
 
 /** Whether this match is publicly advertised on the online service */
 var databinding bool bShouldAdvertise;

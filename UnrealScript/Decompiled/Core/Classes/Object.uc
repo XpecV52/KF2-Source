@@ -117,15 +117,40 @@ struct Pointer
     var native const int Dummy;
 };
 
+struct HatPointer
+{
+    var native const int Dummy;
+};
+
 struct QWord
 {
+    /** @HSL_END_XBOX */
     var() native int A;
+    /** @HSL_END_XBOX */
     var() native int B;
 };
 
 struct dword
 {
     var() native int A;
+};
+
+struct IpAddr
+{
+    var int AddrA;
+    var int AddrB;
+    var int AddrC;
+    var int AddrD;
+    var int Port;
+
+    structdefaultproperties
+    {
+        AddrA=0
+        AddrB=0
+        AddrC=0
+        AddrD=0
+        Port=0
+    }
 };
 
 struct Double

@@ -20,12 +20,12 @@ function Activate()
 }
 
 /** Apply a knockdown (on hit) to this character */
-protected function ActivateKnockdown(class<DamageType> damageType, vector HitLoc, vector HitDir, byte HitZoneIdx)
+protected function ActivateKnockdown(class<KFDamageType> DamageType, vector HitLoc, vector HitDir, byte HitZoneIdx)
 {
 	local vector Impulse;
 
 	// Handle explosive damage types as radial impulses
-	if ( DamageType.default.RadialDamageImpulse > 0 )
+	if ( DamageType.default.RadialDamageImpulse > 0 && !DamageType.default.bPointImpulseTowardsOrigin )
 	{
 		Impulse = DamageType.default.RadialDamageImpulse * HitDir;
 		// If we have a cached RadiusDamageScale, assume it's from this hit and use it to calc the radius impulse falloff

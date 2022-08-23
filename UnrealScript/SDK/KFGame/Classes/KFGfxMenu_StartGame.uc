@@ -112,7 +112,7 @@ var transient string CurrentConnectMap;
 /** If we didn't boot up installing, we don't really need to do installation checks */
 var transient bool bIsPlayGoRun;
 
-native function GetMapList( out array<string> MapList );
+native static function GetMapList( out array<string> MapList );
 
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
@@ -135,7 +135,9 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 		GameInterface = class'GameEngine'.static.GetOnlineSubsystem().GameInterface;
 		
 		//@HSL_BEGIN - JRO - 4/28/2016 - Show a message when we're still installing
-		bIsPlayGoRun = !class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled();
+		bIsPlayGoRun = class'GameEngine'.static.GetOnlineSubsystem().ContentInterface != none
+						? !class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled()
+						: false;
 		if(PC.WorldInfo.IsConsoleBuild(CONSOLE_Orbis) && bIsPlayGoRun)
 		{
 			Manager.DelayedOpenPopup(ENotification,EDPPID_Misc, Localize("Notifications", "PlayGoBusyTitle", "KFGameConsole"),  Localize("Notifications", "PlayGoBusyMessage", "KFGameConsole"), class'KFCommon_LocalizedStrings'.default.OKString);
@@ -228,7 +230,7 @@ function CheckGameFullyInstalled()
 		{
 			MatchMakingButton.SetBool("enabled", false);
 			ServerBrowserButton.SetBool("enabled", false);
-			Manager.TimerHelper.SetTimer(1.0f, false, nameof(CheckGameFullyInstalled), self);
+			`TimerHelper.SetTimer(1.0f, false, nameof(CheckGameFullyInstalled), self);
 		}
 	}
 }
@@ -238,7 +240,7 @@ native function ReloadSounds();
 
 function SetOverview(optional bool bInitialize)
 {
-	local UniqueNetId AdminId, MyUID;
+	local UniqueNetId AdminId, MyUID, ZeroId;
 	local bool bCurrentlyLeader;
 	local bool bCurrentlyInParty;
 
@@ -252,7 +254,7 @@ function SetOverview(optional bool bInitialize)
 		MyUID = OnlineLobby.GetMyId();
 		OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
 		
-		bCurrentlyLeader = (MyUID == AdminId);
+		bCurrentlyLeader = (MyUID == AdminId && MyUID != ZeroId);
 		bCurrentlyInParty = OnlineLobby.IsInLobby();
 	}
 		
@@ -679,7 +681,7 @@ function Callback_OpenServerBrowser()
 	}
 }
 
-function OnCanPlayOnlineCheckComplete(byte LocalUserNum, EFeaturePrivilege Privilege, EFeaturePrivilegeLevel PrivilegeLevel)
+function OnCanPlayOnlineCheckComplete(byte LocalUserNum, EFeaturePrivilege Privilege, EFeaturePrivilegeLevel PrivilegeLevel, bool bDiffersFromHint)
 {
 	// If it's not FP_OnlinePlay, we caught another async check that we don't care about...
 	if(Privilege == FP_OnlinePlay)
@@ -957,9 +959,10 @@ function ConnectToPlayfabServer(string ServerIp)
 	OpenCommand @= ServerIp;
 
 	bInParty = OnlineLobby != None && OnlineLobby.IsInLobby() && OnlineLobby.IsLobbyOwner();
+
 	if( bInParty )
 	{
-		OnlineLobby.LobbyJoinServer(ServerIp);
+		PendingResolvedAddress = ServerIp;
 	}
 	
 	if( bAttemptingServerCreate )
@@ -979,7 +982,7 @@ function ConnectToPlayfabServer(string ServerIp)
 
 	KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
 	// Give a longer timeout for servers that need to spin up
-	Manager.TimerHelper.SetTimer( ServerConnectTimeout, false, nameof(ServerConnectGiveUp), self);
+	`TimerHelper.SetTimer( bAttemptingServerCreate ? 8 : ServerConnectTimeout, false, nameof(ServerConnectGiveUp), self);
 
 	// Attach playfab ID
 	OpenCommand $= "?PlayfabPlayerId="$class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId;
@@ -992,7 +995,7 @@ function ConnectToPlayfabServer(string ServerIp)
 
 event SetServerConnectGiveUpTimer(bool ServerTakover)
 {
-	Manager.TimerHelper.SetTimer(ServerTakover ? ServerTakeoverTimeout : ServerConnectTimeout, false, nameof(ServerConnectGiveUp), self);
+	`TimerHelper.SetTimer(ServerTakover ? ServerTakeoverTimeout : ServerConnectTimeout, false, nameof(ServerConnectGiveUp), self);
 }
 
 event AddJoinGameCompleteDelegate(OnlineGameSearch LatestGameSearch)
@@ -1037,11 +1040,18 @@ function bool OnHandshakeComplete(bool bSuccess, string Description, out int Sup
 	AttemptingJoin = false;
 	
 	KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = None;
-	Manager.TimerHelper.ClearTimer(nameof(ServerConnectGiveUp), self);
+	`TimerHelper.ClearTimer(nameof(ServerConnectGiveUp), self);
 	if (bSuccess)
 	{
 		`log("KFGFxMenu_StartGame.OnHandShakeComplete: LobbyJoinServer" @ PendingResolvedAddress, bLogSearchInfo);
-		if( !class'WorldInfo'.static.IsConsoleBuild() )
+		if( class'WorldInfo'.static.IsConsoleBuild() )
+		{
+			if(OnlineLobby != None && OnlineLobby.IsInLobby() && OnlineLobby.IsLobbyOwner())
+			{
+				OnlineLobby.LobbyJoinServer(PendingResolvedAddress);
+			}
+		}
+		else
 		{
 			if (Len(LobbyOwnerPassword) > 0)
 			{
@@ -1054,7 +1064,12 @@ function bool OnHandshakeComplete(bool bSuccess, string Description, out int Sup
 	else
 	{
 		`log("KFGFxMenu_StartGame.OnHandShakeComplete:  TryNextServer", bLogSearchInfo);
-		GameInterface.DestroyOnlineGame('Game');
+		//@HSL_BEGIN - JRO - Console doesn't make a session until after connect, don't need to clean it up on failure. Also, Party is a session and that needs to *not* be destroyed!
+		if( !class'WorldInfo'.static.IsConsoleBuild() )
+		{
+			GameInterface.DestroyOnlineGame('Game');
+		}
+		//@HSL_END
 		PendingResolvedAddress = "";
 		TryNextServer();
 	}
@@ -1265,7 +1280,7 @@ event StartOnlineGame()
 	else
 	{
 		bPauseTryingServers = true;
-		Manager.TimerHelper.SetTimer(InitialSearchPause, false, nameof(UnpauseTryingServers), self);
+		`TimerHelper.SetTimer(InitialSearchPause, false, nameof(UnpauseTryingServers), self);
 		bSearchingForGame = true;
 
 		OptionsComponent.SetSearching(bSearchingForGame);

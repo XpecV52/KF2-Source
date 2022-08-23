@@ -76,6 +76,10 @@ function DrawHUD()
     local byte MyTeamNum;
 
     super.DrawHUD();
+    if((WorldInfo.GRI == none) || (KFPlayerOwner != none) && KFPlayerOwner.bCinematicMode)
+    {
+        return;
+    }
     if(KFPlayerOwner.PlayerCamera != none)
     {
         KFPlayerOwner.PlayerCamera.GetCameraViewPoint(ViewLocation, ViewRotation);
@@ -86,6 +90,10 @@ function DrawHUD()
     if(MyKFGRIV == none)
     {
         MyKFGRIV = KFGameReplicationInfoVersus(WorldInfo.GRI);
+    }
+    if(MyKFGRIV == none)
+    {
+        return;
     }
     if((KFPlayerOwner != none) && MyTeamNum == 255)
     {

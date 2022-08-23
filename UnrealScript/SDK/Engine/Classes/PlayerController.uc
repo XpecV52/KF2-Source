@@ -191,6 +191,20 @@ var OnlineVoiceInterface VoiceInterface;
 /** The data store that holds any online player data */
 var UIDataStore_OnlinePlayerData OnlinePlayerData;
 
+//@HSL_BEGIN_XBOX
+/** Cached result for CanPlayOnline */
+var bool bCanPlayOnline;
+
+/** Cached result for CanShareUserCreatedContent */
+var bool bCanShareUserCreatedContent;
+
+/** Cached result for CanCommunicateVoice */
+var bool bCanCommunicateVoice;
+
+/** bool to use before checking privileges */
+var bool bPrivilegesInitialized;
+//@HSL_END_XBOX
+
 //@HSL_BEGIN - JRO - 6/17/2015 - Keep this around so we can still join the game after leaving the current one
 /** Save the invite result so a later delegate can use it to join the online game */
 var OnlineGameSearchResult CachedInviteResult;
@@ -216,6 +230,11 @@ var bool bInteractiveMode;
 
 /** The state of the inputs from cinematic mode */
 var bool bCinemaDisableInputMove, bCinemaDisableInputLook;
+
+//@HSL_BEGIN_XBOX
+/** Whether or not to render the UI within the cinematic black bars */
+var bool bRenderHUDFullScreen;
+//@HSL_END_XBOX
 
 /** Used to cache the session name to join until the timer fires */
 var name DelayedJoinSessionName;
@@ -570,6 +589,126 @@ function ForceClearUnpauseDelegates()
 	}
 }
 
+//@HSL_BEGIN_XBOX
+event CheckPrivileges()
+{
+	local LocalPlayer LP;
+	local int PlayerIdx;
+	local EFeaturePrivilegeLevel HintPrivLevel;
+	
+	LP = LocalPlayer(Player);
+
+    bPrivilegesInitialized = TRUE;
+
+	if (LP != None && OnlineSub != None && OnlineSub.PlayerInterface != None)
+	{
+		PlayerIdx = LP.ControllerId;
+
+		if (!OnlineSub.PlayerInterface.CanPlayOnline(PlayerIdx, HintPrivLevel))
+		{
+			`log("Failed to check CanPlayOnline");
+		}
+		else
+		{
+			if (HintPrivLevel == FPL_Disabled)
+			{
+				bCanPlayOnline = FALSE;
+			}
+			else
+			{
+				bCanPlayOnline = TRUE;
+			}
+		}
+
+		if (!OnlineSub.PlayerInterface.CanShareUserCreatedContent(PlayerIdx, HintPrivLevel))
+		{
+			`log("Failed to check CanShareUserCreatedContent");
+		}
+		else
+		{
+			if (HintPrivLevel == FPL_Disabled)
+			{
+				bCanShareUserCreatedContent = FALSE;
+			}
+			else
+			{
+				bCanShareUserCreatedContent = TRUE;
+			}
+		}
+
+		if (!OnlineSub.PlayerInterface.CanCommunicateVoice(PlayerIdx, HintPrivLevel))
+		{
+			`log("Failed to check CanCommunicateVoice");
+		}
+		else
+		{
+			if (HintPrivLevel == FPL_Disabled)
+			{
+				bCanCommunicateVoice = FALSE;
+			}
+			else
+			{
+				bCanCommunicateVoice = TRUE;
+			}
+            `log(bCanCommunicateVoice ? "Voice is enabled" : "Voice is disabled");
+		}
+	}
+	else
+	{
+		`log("PlayerController.CheckPrivileges failed");
+	}
+}
+
+function OnPrivilegeLevelChecked(byte LocalUserNum, EFeaturePrivilege Privilege, EFeaturePrivilegeLevel PrivilegeLevel, bool bDiffersFromHint)
+{
+	if (Privilege == FP_OnlinePlay)
+	{
+		`log("OnlineSub.PlayerInterface.CanPlayOnline completed : " $ PrivilegeLevel);
+
+		if (PrivilegeLevel == FPL_Disabled)
+		{
+			bCanPlayOnline = false;
+		}
+		else
+		{
+			bCanPlayOnline = true;
+		}
+
+        // Check for an invite that may have occured on launch of the game
+        if( bCanPlayOnline )
+        {
+            OnlineSub.PlayerInterface.CheckForGameInviteOnLaunch();
+        }
+	}
+	else if (Privilege == FP_ShareUserCreatedContent)
+	{
+		`log("OnlineSub.PlayerInterface.CanShareUserCreatedContent completed : " $ PrivilegeLevel);
+
+		if (PrivilegeLevel == FPL_Disabled)
+		{
+			bCanShareUserCreatedContent = false;
+		}
+		else
+		{
+			bCanShareUserCreatedContent = true;
+		}
+	}
+	else if (Privilege == FP_CommunicationVoice)
+	{
+		`log("OnlineSub.PlayerInterface.CanCommunicateVoice completed : " $ PrivilegeLevel);
+
+		if (PrivilegeLevel == FPL_Disabled)
+		{
+			bCanCommunicateVoice = false;
+		}
+		else
+		{
+			bCanCommunicateVoice = true;
+		}
+	}
+}
+//@HSL_END_XBOX
+
 /**
  * Attempts to pause/unpause the game when the UI opens/closes. Note: pausing
  * only happens in standalone mode
@@ -588,14 +727,16 @@ function bool CanUnpauseExternalUI()
 	return !bIsExternalUIOpen || bPendingDelete || bPendingDestroy || bDeleteMe;
 }
 
+//@HSL_BEGIN_XBOX
 /**
  * Attempts to pause/unpause the game when a controller becomes
  * disconnected/connected
  *
  * @param ControllerId the id of the controller that changed
  * @param bIsConnected whether the controller is connected or not
+ * @param bPauseGame wheater the game should pause or not
  */
-function OnControllerChanged(int ControllerId,bool bIsConnected)
+function OnControllerChanged(int ControllerId,bool bIsConnected,bool bPauseGame)
 {
 	local LocalPlayer LP;
 
@@ -617,6 +758,18 @@ function OnControllerChanged(int ControllerId,bool bIsConnected)
 		SetPause(!bIsConnected,CanUnpauseControllerConnected);
 	}
 }
+
+/** Pauses the game when a controller is disconnected */
+function ControllerChangedPause()
+{
+    SetPause(true,CanUnpauseControllerConnected);
+}
+/** Unpauses the game when a controller is disconnected */
+function ControllerChangedUnpause()
+{
+    SetPause(false,CanUnpauseControllerConnected);
+}
+//@HSL_END_XBOX
 
 /** Callback that checks to see if the controller is connected before unpausing */
 function bool CanUnpauseControllerConnected()
@@ -2373,6 +2526,13 @@ function RegisterOnlineDelegates()
 			OnlineSub.PartyChatInterface.AddPartyMemberListChangedDelegate(LP.ControllerId,OnPartyMemberListChanged);
 			OnlineSub.PartyChatInterface.AddPartyMembersInfoChangedDelegate(LP.ControllerId,OnPartyMembersInfoChanged);
 		}
+
+//@HSL_BEGIN_XBOX
+        if (OnlineSub.PlayerInterface != None)
+        {
+            OnlineSub.PlayerInterface.AddPrivilegeLevelCheckedDelegate(OnPrivilegeLevelChecked);
+        }
+//@HSL_END_XBOX
 	}
 }
 
@@ -2436,6 +2596,13 @@ event ClearOnlineDelegates()
 					OnlineSub.PartyChatInterface.ClearPartyMemberListChangedDelegate(LP.ControllerId, OnPartyMemberListChanged);
 					OnlineSub.PartyChatInterface.ClearPartyMembersInfoChangedDelegate(LP.ControllerId, OnPartyMembersInfoChanged);
 				}
+
+//@HSL_BEGIN_XBOX
+                if (OnlineSub.PlayerInterface != None)
+                {
+                    OnlineSub.PlayerInterface.ClearPrivilegeLevelCheckedDelegate(OnPrivilegeLevelChecked);
+                }
+//@HSL_END_XBOX
 			}
 		}
 	}
@@ -6728,7 +6895,7 @@ exec function ListConsoleEvents()
 	local int Idx;
 
 `if(`__TW_)
-`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))
+`if(`notdefined(ShippingPC))
 	GameSeq = WorldInfo.GetGameSequence();
 	if (GameSeq != None)
 	{
@@ -6813,7 +6980,7 @@ unreliable server function ServerRemoteEvent(name EventName)
 		}
 	}
 `if(`__TW_)
-`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))
+`if(`notdefined(ShippingPC))
 	if( !bFoundEvt && !class'WorldInfo'.Static.IsConsoleBuild() && !class'WorldInfo'.Static.IsConsoleDedicatedServer() )
 	{
 		`log("Remote events:");
@@ -7799,7 +7966,9 @@ function bool CanAllPlayersPlayOnline()
 		{
 			// Check their login status and permissions
 			if (OnlineSub.PlayerInterface.GetLoginStatus(LocPlayer.ControllerId) != LS_LoggedIn ||
-				OnlineSub.PlayerInterface.CanPlayOnline(LocPlayer.ControllerId) == FPL_Disabled)
+//@HSL_BEGIN_XBOX
+				!PC.bCanPlayOnline)
+//@HSL_END_XBOX
 			{
 				return false;
 			}
@@ -8313,14 +8482,9 @@ reliable client function ClientEndOnlineGame()
 /** Checks for parental controls blocking user created content */
 function bool CanViewUserCreatedContent()
 {
-	local LocalPlayer LocPlayer;
-
-	LocPlayer = LocalPlayer(Player);
-	if (LocPlayer != None && OnlineSub != None && OnlineSub.PlayerInterface != None)
-	{
-		return OnlineSub.PlayerInterface.CanDownloadUserContent(LocPlayer.ControllerId) == FPL_Enabled;
-	}
-	return true;
+//@HSL_BEGIN_XBOX
+	return bCanShareUserCreatedContent;
+//@HSL_END_XBOX
 }
 
 
@@ -9289,6 +9453,54 @@ exec function DumpPeers()
 	}
 }
 
+//@HSL_BEGIN_XBOX
+exec function SetCallback()
+{
+	OnlineSub.GameInterface.AddJoinOnlineGameCompleteDelegate(OnInviteJoinComplete);
+}
+
+function OnFriendsReadComplete(bool bWasSuccessful)
+{
+	local OnlinePlayerInterface PlayerInterface;
+	local array<OnlineFriend> FriendsList;
+
+	if (bWasSuccessful == true)
+	{
+		// Figure out if we have an online subsystem registered
+		if (OnlineSub != None)
+		{
+			// Grab the player interface to verify the subsystem supports it
+			PlayerInterface = OnlineSub.PlayerInterface;
+			if (PlayerInterface != None)
+			{
+				// Make a copy of the friends data for the UI
+				PlayerInterface.GetFriendsList(0,FriendsList);
+			}
+		}
+	}
+	else
+	{
+		`Log("Failed to read friends list",,'DevOnline');
+	}
+	OnlineSub.PlayerInterface.ClearReadFriendsCompleteDelegate(0,OnFriendsReadComplete);
+}
+
+exec function ReadFriendsList()
+{
+	local OnlinePlayerInterface PlayerInterface;
+
+	if (OnlineSub != None)
+	{
+		PlayerInterface = OnlineSub.PlayerInterface;
+		if (PlayerInterface != None)
+		{
+			PlayerInterface.AddReadFriendsCompleteDelegate(0,OnFriendsReadComplete);
+			PlayerInterface.ReadFriendsList(0);
+		}
+	}
+}
+//@HSL_END_XBOX
+
 `endif
 
 function DisableDebugAI()
@@ -9352,6 +9564,50 @@ unreliable client event ClientReplicationDebug(vector CamLocation, vector DebugL
 `endif
 }
 `endif //(`__TW_)
+
+
+//@HSL_BEGIN_XBOX
+simulated event SendReliableVoicePacketToServer( byte MessageType, UniqueNetId Receiver, int Length, byte InData[60] )
+{
+	ServerReceiveReliableVoicePacket( MessageType, Receiver, Length, InData );
+}
+
+
+reliable server function ServerReceiveReliableVoicePacket( byte MessageType, UniqueNetId Receiver, int Length, byte InData[60] )
+{
+	local UniqueNetId ZeroId;
+	local int i;
+
+	if( Receiver != ZeroId )
+	{
+		for( i = 0; i < WorldInfo.GRI.PRIArray.Length; i++ )
+		{
+			if( WorldInfo.GRI.PRIArray[i].UniqueId == Receiver )
+			{
+				`log("Sending reliable voice packet of message type"@MessageType@"to"@WorldInfo.GRI.PRIArray[i].PlayerName);
+				PlayerController(WorldInfo.GRI.PRIArray[i].Owner).ClientReceiveReliableVoicePacket( MessageType, PlayerReplicationInfo.UniqueId, Length, InData );
+				return;
+			}
+		}
+		`log("COULD NOT FIND RECIEVER"@class'OnlineSubsystem'.static.UniqueNetIdToString( Receiver, false )@"FOR RELIABLE VOICE PACKET.  CLIENT WILL NOT RECIEVE IT!");
+	}
+	else
+	{
+		`log("Sending reliable voice packet of message type"@MessageType);
+
+		for( i = 0; i < WorldInfo.GRI.PRIArray.Length; i++ )
+		{
+			PlayerController(WorldInfo.GRI.PRIArray[i].Owner).ClientReceiveReliableVoicePacket( MessageType, PlayerReplicationInfo.UniqueId, Length, InData );
+		}
+	}
+}
+
+
+reliable client function ClientReceiveReliableVoicePacket( byte MessageType, UniqueNetId Sender, int Length, byte InData[60] )
+{
+	OnlineSub.VoiceInterface.ReceiveReliableVoicePacket(MessageType, Sender, Length, InData);
+}
+//@HSL_END_XBOX
 
 defaultproperties
 {

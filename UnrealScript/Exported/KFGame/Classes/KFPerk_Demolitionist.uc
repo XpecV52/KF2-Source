@@ -198,7 +198,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 		KFW = GetWeaponFromDamageCauser( DamageCauser );
 	}
 
-	if( (KFW != none && IsWeaponOnPerk( KFW )) || (DamageType != none && IsDamageTypeOnPerk( DamageType )) )
+	if( (KFW != none && IsWeaponOnPerk( KFW,, self.class )) || (DamageType != none && IsDamageTypeOnPerk( DamageType )) )
 	{
 		;
 		//Passive
@@ -305,19 +305,19 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
  */
 simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false )
 {
-	local class<KFPerk> WeaponPerkClass;
+	local array< class<KFPerk> > WeaponPerkClass;
 	local bool bUsesAmmo;
 	local name WeaponClassName;
 
 	if( KFW == none )
 	{
-		WeaponPerkClass = TraderItem.AssociatedPerkClass;
+		WeaponPerkClass = TraderItem.AssociatedPerkClasses;
 		bUsesAmmo = TraderItem.WeaponDef.static.UsesAmmo();
 		WeaponClassName = TraderItem.ClassName;
 	}
 	else
 	{
-		WeaponPerkClass = KFW.AssociatedPerkClass;
+		WeaponPerkClass = KFW.GetAssociatedPerkClasses();
 		bUsesAmmo = KFW.UsesAmmo();
 		WeaponClassName = KFW.class.Name;
 	}
@@ -329,28 +329,28 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 	}
 }
 
-simulated private function GivePassiveExtraAmmo( out int PrimarySpareAmmo, KFWeapon KFW, class<KFPerk> WeaponPerkClass, name WeaponClassName, optional bool bSecondary=false )
+simulated private function GivePassiveExtraAmmo( out int PrimarySpareAmmo, KFWeapon KFW, array< class<KFPerk> > WeaponPerkClass, name WeaponClassName, optional bool bSecondary=false )
 {
 	if( ShouldGiveOnlySecondaryAmmo( WeaponClassName ) && !bSecondary )
 	{
 		return;
 	}
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && 
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && 
 		PassiveExtraAmmoIgnoredClassNames.Find( WeaponClassName ) == INDEX_NONE )
 	{
 		PrimarySpareAmmo += GetExtraAmmo( CurrentLevel );
 	}
 }
 
-simulated private function GiveAmmoExtraAmmo( out int PrimarySpareAmmo, KFWeapon KFW, class<KFPerk> WeaponPerkClass, name WeaponClassName, optional bool bSecondary=false  )
+simulated private function GiveAmmoExtraAmmo( out int PrimarySpareAmmo, KFWeapon KFW, array< class<KFPerk> > WeaponPerkClass, name WeaponClassName, optional bool bSecondary=false  )
 {
 	if( ShouldGiveOnlySecondaryAmmo( WeaponClassName ) && !bSecondary )
 	{
 		return;
 	}
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && 
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && 
 		ExtraAmmoIgnoredClassNames.Find( WeaponClassName ) == INDEX_NONE )
 	{
 		PrimarySpareAmmo += GetAmmoExtraAmmo();
@@ -371,19 +371,19 @@ simulated function bool ShouldGiveOnlySecondaryAmmo( name WeaponClassName )
  */
 simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false )
 {
-	local class<KFPerk> WeaponPerkClass;
+	local array< class<KFPerk> > WeaponPerkClass;
 	local bool bUsesAmmo;
 	local name WeaponClassName;
 
 	if( KFW == none )
 	{
-		WeaponPerkClass = TraderItem.AssociatedPerkClass;
+		WeaponPerkClass = TraderItem.AssociatedPerkClasses;
 		bUsesAmmo = TraderItem.WeaponDef.static.UsesAmmo();
 		WeaponClassName = TraderItem.ClassName;
 	}
 	else
 	{
-		WeaponPerkClass = KFW.AssociatedPerkClass;
+		WeaponPerkClass = KFW.GetAssociatedPerkClasses();
 		bUsesAmmo = KFW.UsesAmmo();
 		WeaponClassName = KFW.class.Name;
 	}
@@ -488,7 +488,7 @@ simulated protected function int GetAmmoExtraAmmo()
  */
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
-	return ( IsTacticalReloadActive() && (IsWeaponOnPerk( KFW ) || IsBackupWeapon( KFW )) );
+	return ( IsTacticalReloadActive() && (IsWeaponOnPerk( KFW,, self.class ) || IsBackupWeapon( KFW )) );
 }
 
 /**
@@ -503,7 +503,7 @@ simulated final private function ResetSupplier()
 			SuppliedPawnList.Remove( 0, SuppliedPawnList.Length );
 		}
 
-		MyPRI.bPerkCanSupply = true;
+		MyPRI.PerkSupplyLevel = 1;
 
 		if( InteractionTrigger != none )
 		{
@@ -742,7 +742,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	local name StateName;
 
 	StateName = W.GetStateName();
-	if( IsProfessionalActive() && IsWeaponOnPerk(W) )
+	if( IsProfessionalActive() && IsWeaponOnPerk( W,, self.class ) )
 	{
 		if( ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 		{

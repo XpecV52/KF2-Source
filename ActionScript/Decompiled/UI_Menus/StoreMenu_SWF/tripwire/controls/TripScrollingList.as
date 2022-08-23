@@ -12,6 +12,7 @@ package tripwire.controls
     import scaleform.clik.events.IndexEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.interfaces.IListItemRenderer;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
@@ -227,7 +228,7 @@ package tripwire.controls
             {
                 if(this.bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                 {
-                    FocusManager.setFocus(this.associatedButton);
+                    FocusHandler.getInstance().setFocus(this.associatedButton);
                 }
             }
             if(FocusManager.getModalClip() == this)

@@ -78,6 +78,10 @@ public:
 }
 
 native final function SetTranslation(vector NewTranslation);
+`if(`__TW_LIGHTING_MODIFICATIONS_)
+/** Sets the radius and calls BeginDeferredReattach() if radius has changed */
+native final function SetRadius( float NewRadius );
+`endif
 
 /** Called from matinee code when LightColor property changes. */
 function OnUpdatePropertyLightColor()

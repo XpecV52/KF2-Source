@@ -906,6 +906,14 @@ function Callback_VoiceCommsSay(int CommsIndex)
     }
 }
 
+function Callback_VoiceCommsSelection( int CommsIndex )
+{
+    if( VoiceCommsWidget != none )
+    {
+        VoiceCommsWidget.SaveVoiceCommSelection( CommsIndex );
+    }
+}
+
 function Callback_VoteKick(bool bKick)
 {
     local KFPlayerReplicationInfo KFPRI;
@@ -914,7 +922,6 @@ function Callback_VoteKick(bool bKick)
 
     KFPRI.CastKickVote(KFPRI, bKick);
 }
-
 
 DefaultProperties
 {

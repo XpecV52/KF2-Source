@@ -377,6 +377,35 @@ function bool ClearSaveGames(byte LocalUserNum);
 function bool IsGameFullyInstalled() {return true;}
 //@HSL_END
 
+//@HSL_BEGIN_DINGO
+/**
+* Starts an async task that retrieves the list of downloaded content for the player.
+*
+* @param LocalUserNum The user to read the content list of
+*
+* @return true if the read request was issued successfully, false otherwise
+*/
+function bool ReadDownloadableContentList(byte LocalUserNum);
+
+/**
+* Starts an async task that frees any downloaded content resources for that player
+*
+* @param LocalUserNum The user to clear the content list for
+*/
+function ClearDownloadableContentList(byte LocalUserNum);
+
+/**
+* Retrieve the list of content the given user has downloaded
+* to the local console.
+
+* @param LocalUserNum The user to read the content list of
+* @param ContentList The out array that receives the list of all content
+*
+* @return OERS_Done if the read has completed, otherwise one of the other states
+*/
+function EOnlineEnumerationReadState GetDownloadableContentList(byte LocalUserNum, out array<OnlineContent> ContentList);
+//@HSL_END_DINGO
+
 defaultproperties
 {
    Name="Default__OnlineContentInterface"

@@ -10,16 +10,14 @@ class KFWeap_DualBase extends KFWeap_PistolBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
-const ReloadEmptyHalfAnim = 'Reload_Empty_Half';
-const ReloadEmptyHalfEliteAnim = 'Reload_Empty_Half_Elite';
+const ReloadOneEmptyAnim = 'Reload_Empty_Half';
+const ReloadOneEmptyEliteAnim = 'Reload_Empty_Half_Elite';
 
 /** Animations to play when the weapon is fired */
 var(Animations) const editconst name LeftFireAnim;
 /** Animation to play when the weapon is fired */
 var(Animations) const editconst array<editconst name> LeftFireSightedAnims;
 var KFMuzzleFlash LeftMuzzleFlash;
-/** A reference to the left muzzle flash template */
-var(Attachments) const KFMuzzleFlash LeftMuzzleFlashTemplate;
 /** Holds an offest for spawning protectile effects for left weapon */
 var() Vector LeftFireOffset;
 var transient bool bFireFromRightWeapon;
@@ -75,8 +73,8 @@ simulated function AttachMuzzleFlash()
     {
         if(MuzzleFlashTemplate != none)
         {
-            LeftMuzzleFlash = new (self) Class'KFMuzzleFlash' (LeftMuzzleFlashTemplate);
-            LeftMuzzleFlash.AttachMuzzleFlash(MySkelMesh);
+            LeftMuzzleFlash = new (self) Class'KFMuzzleFlash' (MuzzleFlashTemplate);
+            LeftMuzzleFlash.AttachMuzzleFlash(MySkelMesh, 'MuzzleFlash_L', 'ShellEject_L');
         }
     }
 }
@@ -644,6 +642,20 @@ simulated state Reloading
         {
             ResetCylinderLeft();
         }
+    }
+
+    simulated function byte GetWeaponStateId()
+    {
+        local KFPerk Perk;
+        local bool bTacticalReload;
+
+        Perk = GetPerk();
+        bTacticalReload = (Perk != none) && Perk.GetUsingTactialReload(self);
+        if(AmmoCount[0] == 1)
+        {
+            return byte(((bTacticalReload) ? 12 : 11));
+        }
+        return super.GetWeaponStateId();
     }
     stop;    
 }

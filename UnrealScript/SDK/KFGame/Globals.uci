@@ -8,6 +8,9 @@
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
  
+ /** Same as cpp */
+`define NAME_NONE ''
+
 /** Difficulty setting consts, don't want to use arbitrary numbers all over the place */
 `define	DIFFICULTY_NORMAL		0.0
 `define	DIFFICULTY_HARD 		1.0
@@ -45,26 +48,27 @@
 
 /** Shortcut frequently used references */
 `define GoreManager KFGoreManager(WorldInfo.MyGoreEffectManager)
+`define LightPool KFLightPool(WorldInfo.MyLightPool)
 `define DeferredWorkManager TWDeferredWorkManager(WorldInfo.DeferredWorkManager)
 `define ImpactEffectManager KFImpactEffectManager(WorldInfo.MyImpactEffectManager)
 `define DialogManager if( `CheckDialogManager ) KFGameInfo(WorldInfo.Game).DialogManager
 `define TraderDialogManager if( `CheckTraderDialogManager ) KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager
+`define TimerHelper class'WorldInfo'.static.GetWorldInfo().TimerHelper
 
-/** Useful shortcut for calling a function on the next frame */
-`define CallOnNextTick(funcname,Object) class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().SetTimer(0.001f, false, `funcname, `Object)
+/** This is a slick way to to do thing like:  TimeSince(LastFoo) < Delta  where the macro makes it a lot easier to read what the code is doing **/
+`define RealTimeSince(Time)	 (WorldInfo.RealTimeSeconds - `Time)
+/** This is used for classes which are object derived and do not have access to WorldInfo so we need to pass in the Actor to get a worldinfo **/
+`define RealTimeSinceEx(Actor,Time)	 (`Actor.WorldInfo.RealTimeSeconds - `Time)
+
+/** Helper function for the speedier FastTrace_PhysX */
+`define FastTracePhysX(traceend,tracestart) class'KFGameEngine'.static.FastTrace_PhysX(`traceend, `tracestart)
 
 /** Zed-time helper, halfway between normal time and full zedtime */
 `define IsInZedTime(Actor) (`Actor.WorldInfo.TimeDilation < 1.f)
 `define NotInZedTime(Actor) !`IsInZedTime(`Actor)
 
-/** balance & analytics logging (PC only) */
-`if(`isdefined(FINAL_RELEASE))
-`define BalanceLog(tag,pri,text)
-`define AnalyticsLog( arg )
-`else
-`define BalanceLog(tag,pri,text) if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(`tag$","$`PRI.PlayerName$","$`text)
 `define AnalyticsLog( arg ) if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent `arg 
-`endif
+`define BalanceLog(tag,pri,text) if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(`tag$","$`PRI.PlayerName$","$`text)
 
 /** dev-only logs */
 `if(`isdefined(ShippingPC))

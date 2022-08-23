@@ -216,10 +216,6 @@ defaultproperties
       SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerFleshpound_Melee2'
       SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerFleshpound_Rage'
       SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerFleshpound_Block'
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:SpecialMoveHandler_0'
    End Object

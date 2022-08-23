@@ -46,7 +46,6 @@ function LocalizeText()
 	}
 
 	LocalizedObject = CreateObject( "Object" );
-
 	LocalizedObject.SetString("waveText", WaveString);
 	LocalizedObject.SetString("mapText", class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(GetPC().WorldInfo.GetMapName(true)));
 	LocalizedObject.SetString("matchInfo", MatchInfoString);

@@ -58,7 +58,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     {
         KFW = GetWeaponFromDamageCauser(DamageCauser);
     }
-    if(((KFW != none) && IsWeaponOnPerk(KFW)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
+    if(((KFW != none) && IsWeaponOnPerk(KFW,, self.Class)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
     {
         TempDamage *= (GetPassiveValue(WeaponDamage, CurrentLevel));
         if(IsBringTheHeatActive())
@@ -79,7 +79,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
 
 simulated function float GetReloadRateScale(KFWeapon KFW)
 {
-    if(IsWeaponOnPerk(KFW))
+    if(IsWeaponOnPerk(KFW,, self.Class))
     {
         return 1 - (GetPassiveValue(WeaponReload, CurrentLevel));
     }
@@ -107,17 +107,17 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
 simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo, const optional out STraderItem TraderItem, optional bool bSecondary)
 {
     local float TempSpareAmmoAmount;
-    local class<KFPerk> WeaponPerkClass;
+    local array< class<KFPerk> > WeaponPerkClass;
 
     if(KFW == none)
     {
-        WeaponPerkClass = TraderItem.AssociatedPerkClass;        
+        WeaponPerkClass = TraderItem.AssociatedPerkClasses;        
     }
     else
     {
-        WeaponPerkClass = KFW.AssociatedPerkClass;
+        WeaponPerkClass = KFW.GetAssociatedPerkClasses();
     }
-    if(IsWeaponOnPerk(KFW, WeaponPerkClass))
+    if(IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class))
     {
         TempSpareAmmoAmount = float(PrimarySpareAmmo);
         TempSpareAmmoAmount *= (float(1) + GetStartingAmmoPercent(CurrentLevel));
@@ -125,7 +125,7 @@ simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo,
     }
 }
 
-simulated function MaximizeSpareAmmoAmount(class<KFPerk> WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo);
+simulated function MaximizeSpareAmmoAmount(array< class<KFPerk> > WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo);
 
 private static final simulated function float GetStartingAmmoPercent(int Level)
 {
@@ -134,17 +134,14 @@ private static final simulated function float GetStartingAmmoPercent(int Level)
 
 function ModifyDoTScaler(out float DoTScaler, optional class<KFDamageType> KFDT, optional bool bNapalmInfected)
 {
-    local float TempScaler;
-
     if(IsFuseActive() && IsDamageTypeOnPerk(KFDT))
     {
-        TempScaler = GetSkillValue(PerkSkills[2]);
+        DoTScaler = GetSkillValue(PerkSkills[2]);
     }
     if(IsNapalmActive() && IsDamageTypeOnPerk(KFDT))
     {
-        TempScaler += (GetSkillValue(PerkSkills[4]));
+        DoTScaler += (GetSkillValue(PerkSkills[4]));
     }
-    DoTScaler = TempScaler;
 }
 
 static function int GetNapalmDamage()
@@ -157,13 +154,13 @@ function bool InHeatRange(KFPawn KFP)
     return VSizeSq(OwnerPawn.Location - KFP.Location) <= float(HeatWaveRadiusSQ);
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if((IsWeaponOnPerk(KFW, WeaponPerkClass)) && IsHighCapFuelTankActive())
+    if((IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && IsHighCapFuelTankActive())
     {
         TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[1])));
     }
@@ -204,7 +201,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
 {
     local name StateName;
 
-    if(GetScorchActive() && IsWeaponOnPerk(W))
+    if(GetScorchActive() && IsWeaponOnPerk(W,, self.Class))
     {
         StateName = W.GetStateName();
         if(ZedTimeModifyingStates.Find(StateName != -1)
@@ -241,7 +238,7 @@ simulated function float GetSnarePower(optional class<DamageType> DamageType, op
 
 simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
 {
-    return (IsWeaponOnPerk(KFW)) && GetScorchActive();
+    return (IsWeaponOnPerk(KFW,, self.Class)) && GetScorchActive();
 }
 
 private final simulated function bool IsBringTheHeatActive()
@@ -266,7 +263,7 @@ private final simulated function bool IsGroundFireActive()
 
 simulated function bool IsFlarotovActive()
 {
-    return IsGroundFireActive();
+    return true;
 }
 
 private final simulated function bool IsHeatWaveActive()
@@ -376,7 +373,7 @@ defaultproperties
     SnarePower=100
     SnareCausingDmgTypeClass=Class'KFDT_Fire_Ground'
     NapalmDamage=7
-    NapalmCheckCollisionScale=1
+    NapalmCheckCollisionScale=2
     ProgressStatID=30
     PerkBuildStatID=31
     SecondaryXPModifier[0]=2
@@ -395,7 +392,7 @@ defaultproperties
     SkillCatagories[3]="Flame"
     SkillCatagories[4]="Advanced Training"
     EXPAction1="Dealing Firebug weapon damage"
-    EXPAction2="Killing Crawlers with Firebug weapons"
+    EXPAction2="Killing Crawlers and Bloats with Firebug weapons"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
     PerkSkills(0)=(Name="BringTheHeat",Increment=0,Rank=0,StartingValue=0.35,MaxValue=0.35,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_BringtheHeat",bActive=false)
     PerkSkills(1)=(Name="HighCapFuelTank",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HighCapacityFuel",bActive=false)

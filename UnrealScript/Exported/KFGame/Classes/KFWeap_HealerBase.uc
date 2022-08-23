@@ -780,6 +780,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'KFGame.Default__KFWeap_HealerBase:MeleeHelper_0'
+   AssociatedPerkClasses(0)=None
    FiringStatesArray(0)="WeaponHealing"
    FiringStatesArray(1)="WeaponHealing"
    FiringStatesArray(2)=()

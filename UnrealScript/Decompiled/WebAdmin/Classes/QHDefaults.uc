@@ -614,7 +614,7 @@ function handleSessionBans(WebAdminQuery Q)
     if(roac != none)
     {
         I = 0;
-        J0x23F:
+        J0x240:
 
         if(I < roac.SessionBannedIDs.Length)
         {
@@ -642,7 +642,7 @@ function handleSessionBans(WebAdminQuery Q)
             }            
             bans $= webadmin.Include(Q, "policy_session_row.inc");
             ++ I;
-            goto J0x23F;
+            goto J0x240;
         }
         if(roac.SessionBannedIDs.Length == 0)
         {

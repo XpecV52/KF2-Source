@@ -451,9 +451,9 @@ defaultproperties
 	End Object
 
 	Begin Object Class=SpotLightComponent Name=FlashlightTemplate_0
-		Brightness=10
-		InnerConeAngle=20
-		OuterConeAngle=30
+		Brightness=0.5
+		InnerConeAngle=5
+		OuterConeAngle=20
 		Radius=3000
 		CastShadows=FALSE
 		CastStaticShadows=FALSE

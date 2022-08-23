@@ -13,6 +13,7 @@ KF-Prison="Gra na mapie więzienie"
 KF-ContainmentStation="Gra na mapie ośrodek izolacyjny"
 KF-InfernalRealm="Gra na mapie piekielna domena"
 KF-HostileGrounds="Gra na mapie wrogie terytorium"
+KF-ZedLanding="Gra na mapie lądowanie zetów"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

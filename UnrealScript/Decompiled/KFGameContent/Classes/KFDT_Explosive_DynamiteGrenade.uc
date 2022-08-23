@@ -17,7 +17,8 @@ defaultproperties
     StumblePower=300
     MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */
+    GibImpulseScale=0.15
     KDeathVel=300
     KDeathUpKick=1000
-    RadialDamageImpulse=3000
+    RadialDamageImpulse=2000
 }

@@ -303,7 +303,7 @@ simulated function SpawnImpactDecal( vector HitLocation, vector HitNormal )
 simulated function bool ValidTouch( Pawn Other )
 {
 	// Make sure only enemies detonate
-	if( Other.GetTeamNum() == TeamNum )
+	if( Other.GetTeamNum() == TeamNum || !Other.IsAliveAndWell() )
 	{
 		return false;
 	}
@@ -313,21 +313,22 @@ simulated function bool ValidTouch( Pawn Other )
 }
 
 /** When touched by an actor */
-simulated singular event Touch( Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal )
+simulated event Touch( Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal )
 {
 	local Pawn P;
 
-	// Don't test for touches immediately after spawning
-	if( `TimeSince(CreationTime) < 0.1f )
+	// If touched by an enemy pawn, explode
+	P = Pawn( Other );
+	if( P != None )
 	{
-		return;
+		if( `TimeSince(CreationTime) >= 0.1f && ValidTouch(P) )
+		{
+			TriggerExplosion( Location, vect(0,0,1), P );
+		}
 	}
-
-	// If touched by a player pawn, let him pick this up.
-	P = Pawn(Other);
-	if( P != None && ValidTouch(P) )
+	else if( bBounce )
 	{
-		TriggerExplosion( Location, vect(0,0,1), P );
+		super.Touch( Other, OtherComp, HitLocation, HitNormal );
 	}
 }
 
@@ -582,8 +583,6 @@ defaultproperties
 
 	LandedFXOffset=(X=0,Y=0,Z=2)
 
-	// Additional zero-extent line traces
-	ExtraLineCollisionOffsets.Add((Z=50))
 	// Since we're still using an extent cylinder, we need a line at 0
 	ExtraLineCollisionOffsets.Add(())
 

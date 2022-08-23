@@ -20,7 +20,7 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	super.Initialize( NewParentMenu );
 	PerkMenu = KFGFxMenu_Perks(NewParentMenu);
 	LocalizeContainer();
-	ParentMenu.Manager.TimerHelper.SetTimer(0.1f, false,'DelayedRefresh', self);
+	`TimerHelper.SetTimer(0.1f, false,'DelayedRefresh', self);
 }
 
 function DelayedRefresh()

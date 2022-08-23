@@ -46,7 +46,7 @@ defaultproperties
     RecoilISMinYawLimit=65385
     RecoilISMinPitchLimit=65435
     IronSightMeshFOVCompensationScale=1.5
-    AssociatedPerkClass=Class'KFGame.KFPerk_SWAT'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

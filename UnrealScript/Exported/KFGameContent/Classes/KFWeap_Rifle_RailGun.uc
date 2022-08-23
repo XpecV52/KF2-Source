@@ -1014,7 +1014,7 @@ defaultproperties
    RecoilISMinPitchLimit=65485
    HippedRecoilModifier=2.333330
    FallingRecoilModifier=1.500000
-   AssociatedPerkClass=Class'KFGame.KFPerk_Sharpshooter'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Sharpshooter'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

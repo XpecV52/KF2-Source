@@ -45,7 +45,7 @@ function CalloutButtonBumperPress(int Delta)
 	{
 		SetInt("calloutButtonBumperPress", Delta);
 		bAllowBumper= false;
-		Manager.TimerHelper.SetTimer(0.1, false, 'UnblockBumper', self);
+		`TimerHelper.SetTimer(0.1, false, 'UnblockBumper', self);
 	}
 }
 
@@ -139,7 +139,7 @@ function CheckGameFullyInstalled()
 		{
 			InventoryButton.SetBool("enabled", false);
 			StoreButton.SetBool("enabled", false);
-			Manager.TimerHelper.SetTimer(1.0f, false, nameof(CheckGameFullyInstalled), self);
+			`TimerHelper.SetTimer(1.0f, false, nameof(CheckGameFullyInstalled), self);
 		}
 	}
 }

@@ -862,7 +862,7 @@ function bool NotifyBump(Actor Other, Vector HitNormal)
 {
     local KFPawn KFP;
 
-    if(Outer.IsDoingLatentMove() && Outer.MyKFPawn.Physics != 2)
+    if(Outer.IsDoingLatentMove() && Outer.MyKFPawn.Physics == 1)
     {
         KFP = KFPawn(Other);
         if(KFP != none)
@@ -878,7 +878,7 @@ function bool NotifyBump(Actor Other, Vector HitNormal)
             }
             if(KFDoorMarker(Outer.MoveTarget) != none)
             {
-                if(((Outer.PendingDoor == none) && !KFDoorMarker(Outer.MoveTarget).MyKFDoor.IsCompletelyOpen()) && VSize(Outer.MoveTarget.Location - Outer.MyKFPawn.Location) < 350)
+                if(((Outer.PendingDoor == none) && !KFDoorMarker(Outer.MoveTarget).MyKFDoor.IsCompletelyOpen()) && VSizeSq(Outer.MoveTarget.Location - Outer.MyKFPawn.Location) < 122500)
                 {
                     Outer.WaitForDoor(KFDoorMarker(Outer.MoveTarget).MyKFDoor);
                     return true;
@@ -889,7 +889,10 @@ function bool NotifyBump(Actor Other, Vector HitNormal)
                 return false;
             }
         }
-        AdjustAround(Other, HitNormal);
+        if(Other.Physics == 1)
+        {
+            AdjustAround(Other, HitNormal);
+        }
         return true;
     }
     return false;
@@ -1414,7 +1417,7 @@ DirectMoveToPosition:
                 }
                 if((((Outer.PendingDoor != none) && Outer.bPreparingMove) && Outer.PendingDoor.WeldIntegrity > 0) && !Outer.PendingDoor.IsCompletelyOpen())
                 {
-                    if(!Outer.Pawn.FastTrace(Outer.PendingDoor.Location, Outer.Pawn.Location))
+                    if(Class'KFGameEngine'.static.FastTrace_PhysX(Outer.PendingDoor.Location, Outer.Pawn.Location))
                     {
                         Outer.AIActionStatus = "Wants to attack door " $ string(Outer.PendingDoor);
                         Outer.NotifyAttackDoor(Outer.PendingDoor);
@@ -1443,7 +1446,7 @@ PathingTowardActor:
                         Outer.AILog_Internal("GetNextMoveTarget FAILED after skipahead changed the route cache.. Aborting move", 'PathWarning');
                     }
                     IntermediateMoveGoal = none;
-                    goto J0x2C8D;
+                    goto J0x2C7B;
                 }
             }
             Outer.SetDirectPathCheckTime();
@@ -1521,11 +1524,11 @@ PathingTowardActor:
             }
             goto J0x19CD;
         }
-        J0x2C8D:
+        J0x2C7B:
 
         if(Outer.GetBasedPosition(Outer.MovePosition) != vect(0, 0, 0))
         {
-            J0x2CDC:
+            J0x2CCA:
 
             if(!HasReachedMoveGoal())
             {
@@ -1551,7 +1554,7 @@ PathingTowardActor:
                 {
                     Outer.WaitForLanding();
                 }
-                goto J0x2CDC;
+                goto J0x2CCA;
             }
         }        
     }
@@ -1659,7 +1662,7 @@ FailedMove:
             }
         }
     }
-    J0x3AAD:
+    J0x3A9B:
 
     if(Outer.MoveGoal != none)
     {
@@ -1677,7 +1680,7 @@ FailedMove:
     }
     Status = 'Success';
     Outer.PopCommand(self);
-    stop;                    
+    stop;            
 }
 
 state DelayFailure

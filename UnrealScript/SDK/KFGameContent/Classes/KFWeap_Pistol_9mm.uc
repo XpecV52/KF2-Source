@@ -87,7 +87,7 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=true
 
-	AssociatedPerkClass=none
+	AssociatedPerkClasses(0)=none
 
 	// Inventory
 	InventorySize=0

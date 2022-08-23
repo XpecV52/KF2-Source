@@ -140,9 +140,12 @@ function bool CanAITargetThisPawn(Controller TargetingController)
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     local KFGameReplicationInfo KFGRI;
+    local string ClassName;
 
     super.PlayDying(DamageType, HitLoc);
-    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(string(Class.Name), WorldInfo.GetMapName(true));
+    ClassName = string(Class.Name);    
+    ClassName -= string('_Versus');
+    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(ClassName, WorldInfo.GetMapName(true));
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if((KFGRI != none) && !KFGRI.IsFinalWave())
     {
@@ -372,10 +375,11 @@ defaultproperties
         SpecialMoveClasses(26)=none
         SpecialMoveClasses(27)=none
         SpecialMoveClasses(28)=none
-        SpecialMoveClasses(29)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(30)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(29)=none
+        SpecialMoveClasses(30)=none
         SpecialMoveClasses(31)=none
-        SpecialMoveClasses(32)=class'KFSM_Zed_Boss_Theatrics'
+        SpecialMoveClasses(32)=none
+        SpecialMoveClasses(33)=class'KFSM_Zed_Boss_Theatrics'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_MonsterBoss.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

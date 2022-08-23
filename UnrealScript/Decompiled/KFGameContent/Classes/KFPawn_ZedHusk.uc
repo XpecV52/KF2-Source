@@ -23,11 +23,19 @@ struct sHuskFireballSettings
     }
 };
 
-var const class<KFProj_Husk_Fireball> FireballClass;
+var protected const class<KFProj_Husk_Fireball> FireballClass;
 var transient sHuskFireballSettings FireballSettings;
-var Vector PlayerFireOffset;
-var KFGameExplosion ExplosionTemplate;
-var transient bool bHasExploded;
+var protected Vector PlayerFireOffset;
+var protected KFGameExplosion ExplosionTemplate;
+var protected transient bool bHasExploded;
+var protected bool bUseFireballLightRadius;
+var protected export editinline PointLightComponent ChestLightComponent;
+var protected const name ChestLightSocketName;
+var protected const float FireballChargeLightRadius;
+var protected const float AmbientLightRadiusInterpSpeed;
+var protected const float FireballLightRadiusInterpSpeed;
+var protected const float FireballLightMinBrightness;
+var protected const float FireballLightMaxBrightness;
 
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
@@ -41,6 +49,17 @@ function PossessedBy(Controller C, bool bVehicleTransition)
         {
             FireballSettings = class<KFDifficulty_Husk>(DifficultySettings).static.GetFireballSettings(self, KFGRI);
         }
+    }
+}
+
+simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
+{
+    super(KFPawn).SetCharacterArch(Info, bForce);
+    if(((WorldInfo.NetMode != NM_DedicatedServer) && !ChestLightComponent.bAttached) && WorldInfo.GetDetailMode() > 0)
+    {
+        Mesh.AttachComponentToSocket(ChestLightComponent, ChestLightSocketName);
+        ChestLightComponent.SetEnabled(true);
+        KFLightPool(WorldInfo.MyLightPool).RegisterPointLight(ChestLightComponent, 2);
     }
 }
 
@@ -62,13 +81,13 @@ simulated function ANIMNOTIFY_FlameThrowerOff()
 
 function NotifyAnimInterrupt(optional AnimNodeSequence SeqNode)
 {
-    if(((MyKFAIC != none) && IsImpaired()) && !MyKFAIC.GetActiveCommand().IsA('AICommand_HeadlessWander'))
+    if(((MyKFAIC != none) && (IsImpaired()) || IsHeadless()) && !MyKFAIC.GetActiveCommand().IsA('AICommand_HeadlessWander'))
     {
         Class'AICommand_HeadlessWander'.static.HeadlessWander(MyKFAIC);
     }
 }
 
-function ANIMNOTIFY_WarnZedsOfFireball()
+simulated function ANIMNOTIFY_WarnZedsOfFireball()
 {
     local Actor HitActor;
     local PlayerController PC;
@@ -87,7 +106,7 @@ function ANIMNOTIFY_WarnZedsOfFireball()
             }
             FireLocation = (GetPawnViewLocation()) + (PlayerFireOffset >> (GetViewRotation()));
             TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
-            TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + (vector(PC.PlayerCamera.CameraCache.POV.Rotation) * float(100000));
+            TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + (vector(PC.PlayerCamera.CameraCache.POV.Rotation) * 5000);
             HitActor = Trace(HitLocation, HitNormal, TraceEnd, TraceStart, true,,, 1);
             if(HitActor != none)
             {
@@ -113,26 +132,70 @@ function ANIMNOTIFY_WarnZedsOfFireball()
             }            
         }        
     }
+    SetFireLightEnabled(((bVersusZed) ? false : true));
 }
 
-function ANIMNOTIFY_HuskFireballAttack()
+simulated function SetFireLightEnabled(bool bEnable)
+{
+    if((((WorldInfo.NetMode == NM_DedicatedServer) || bPlayedDeath) || ChestLightComponent == none) || !ChestLightComponent.bAttached)
+    {
+        return;
+    }
+    bUseFireballLightRadius = (bEnable && !WorldInfo.bDropDetail) && (WorldInfo.TimeSeconds - ChestLightComponent.LastRenderTime) < 0.25;
+    if(bEnable)
+    {
+        ChestLightComponent.MinBrightness = FireballLightMinBrightness;
+        ChestLightComponent.MaxBrightness = FireballLightMaxBrightness;        
+    }
+    else
+    {
+        ChestLightComponent.MinBrightness = default.ChestLightComponent.MinBrightness;
+        ChestLightComponent.MaxBrightness = default.ChestLightComponent.MaxBrightness;
+    }
+}
+
+simulated event Tick(float DeltaTime)
+{
+    super(KFPawn).Tick(DeltaTime);
+    if((((WorldInfo.NetMode == NM_DedicatedServer) || bPlayedDeath) || ChestLightComponent == none) || !ChestLightComponent.bAttached)
+    {
+        return;
+    }
+    if(bUseFireballLightRadius)
+    {
+        if(ChestLightComponent.Radius < FireballChargeLightRadius)
+        {
+            ChestLightComponent.SetRadius(FInterpConstantTo(ChestLightComponent.Radius, FireballChargeLightRadius, DeltaTime, FireballLightRadiusInterpSpeed));
+        }        
+    }
+    else
+    {
+        if(ChestLightComponent.Radius > default.ChestLightComponent.Radius)
+        {
+            ChestLightComponent.SetRadius(FInterpConstantTo(ChestLightComponent.Radius, default.ChestLightComponent.Radius, DeltaTime, AmbientLightRadiusInterpSpeed));
+        }
+    }
+}
+
+simulated function ANIMNOTIFY_HuskFireballAttack()
 {
     local KFAIController_ZedHusk HuskAIC;
     local KFSM_Husk_FireBallAttack FireballSM;
 
     if(MyKFAIC != none)
     {
-        HuskAIC = KFAIController_ZedHusk(MyKFAIC);
-        if(HuskAIC != none)
-        {
-            HuskAIC.ShootFireball(FireballClass);
-        }
         FireballSM = KFSM_Husk_FireBallAttack(SpecialMoves[SpecialMove]);
         if(FireballSM != none)
         {
             FireballSM.NotifyFireballFired();
         }
+        HuskAIC = KFAIController_ZedHusk(MyKFAIC);
+        if(HuskAIC != none)
+        {
+            HuskAIC.ShootFireball(FireballClass, FireballSM.GetFireOffset());
+        }
     }
+    SetFireLightEnabled(false);
 }
 
 simulated event Vector GetWeaponStartTraceLocation(optional Weapon CurrentWeapon)
@@ -158,6 +221,11 @@ simulated function TerminateEffectsOnDeath()
     if(IsDoingSpecialMove(21))
     {
         SpecialMoveHandler.EndSpecialMove();
+    }
+    if((ChestLightComponent != none) && ChestLightComponent.bAttached)
+    {
+        ChestLightComponent.DetachFromAny();
+        ChestLightComponent = none;
     }
     super(KFPawn).TerminateEffectsOnDeath();
 }
@@ -304,6 +372,26 @@ defaultproperties
     object end
     // Reference: KFGameExplosion'Default__KFPawn_ZedHusk.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
+    begin object name=ChestLightComponent0 class=PointLightComponent
+        Radius=160
+        Brightness=0.5
+        LightColor=(B=40,G=155,R=250,A=255)
+        bEnabled=false
+        CastShadows=false
+        LightingChannels=(Outdoor=true)
+        MaxBrightness=0.5
+        MinBrightness=0.4
+        AnimationType=1
+        AnimationFrequency=2
+    object end
+    // Reference: PointLightComponent'Default__KFPawn_ZedHusk.ChestLightComponent0'
+    ChestLightComponent=ChestLightComponent0
+    ChestLightSocketName=ChestLightSocket
+    FireballChargeLightRadius=256
+    AmbientLightRadiusInterpSpeed=300
+    FireballLightRadiusInterpSpeed=100
+    FireballLightMinBrightness=1.1
+    FireballLightMaxBrightness=1.25
     CharacterMonsterArch=KFCharacterInfo_Monster'zed_husk_arch.ZED_Husk_Archetype'
     ParryResistance=2
     MinSpawnSquadSizeType=ESquadType.EST_Medium

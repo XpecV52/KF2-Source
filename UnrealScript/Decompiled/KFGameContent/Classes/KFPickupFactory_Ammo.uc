@@ -15,6 +15,10 @@ simulated function InitializePickup()
 {
     local KFGameInfo KFGI;
 
+    if(bKismetDriven)
+    {
+        return;
+    }
     KFGI = KFGameInfo(WorldInfo.Game);
     if(KFGI != none)
     {
@@ -24,6 +28,7 @@ simulated function InitializePickup()
 
 simulated event SetInitialState()
 {
+    super.SetInitialState();
     bScriptInitialized = true;
 }
 
@@ -53,6 +58,11 @@ function PickedUpBy(Pawn P)
 {
     local KFGameInfo KFGI;
 
+    if(bKismetDriven)
+    {
+        super(PickupFactory).PickedUpBy(P);
+        return;
+    }
     KFGI = KFGameInfo(WorldInfo.Game);
     if(KFGI != none)
     {

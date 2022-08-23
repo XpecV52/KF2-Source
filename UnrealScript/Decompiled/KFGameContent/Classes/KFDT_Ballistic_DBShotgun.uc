@@ -32,9 +32,10 @@ defaultproperties
     WeaponDef=Class'KFGame.KFWeapDef_DoubleBarrel'
     StumblePower=35
     GunHitPower=45
+    GibImpulseScale=1
     BloodSpread=0.4
     BloodScale=0.6
-    KDamageImpulse=350
+    KDamageImpulse=160
     KDeathVel=15
-    KDeathUpKick=350
+    KDeathUpKick=250
 }

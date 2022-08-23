@@ -275,6 +275,11 @@ var const int InternalFormatLODBias;
 /** Per asset specific setting to define the mip-map generation properties like sharpening and kernel size. */
 var() TextureMipGenSettings MipGenSettings;
 
+//@HSL_BEGIN_XBOX
+/** Flags that are required when creating this texture. */
+var int RequiredCreationFlags;
+//@HSL_END_XBOX
+
 cpptext
 {
 	/**

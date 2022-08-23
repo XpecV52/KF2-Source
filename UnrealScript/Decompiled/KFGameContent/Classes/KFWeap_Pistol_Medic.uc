@@ -53,7 +53,7 @@ defaultproperties
     RecoilISMinYawLimit=65485
     RecoilISMaxPitchLimit=250
     RecoilISMinPitchLimit=65485
-    AssociatedPerkClass=Class'KFGame.KFPerk_FieldMedic'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

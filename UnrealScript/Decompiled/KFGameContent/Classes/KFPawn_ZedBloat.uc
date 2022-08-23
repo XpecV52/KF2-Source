@@ -14,6 +14,7 @@ var protected const float VomitRange;
 var protected const int VomitDamage;
 var protected const float ExplodeRange;
 var protected bool bHasExploded;
+var protected transient bool bWasDismembered;
 var protected const class<KFProjectile> PukeMineProjectileClass;
 var protected array<Rotator> DeathPukeMineRotations;
 var protected byte NumPukeMinesToSpawnOnDeath;
@@ -39,6 +40,8 @@ function Puke()
     local Pawn P;
     local Vector PukeLocation, PukeDirection;
     local Rotator PukeRotation;
+    local Vector HitLocation, HitNormal, EndTrace, Momentum;
+    local Actor HitActor;
 
     Mesh.GetSocketWorldLocationAndRotation('PukeSocket', PukeLocation, PukeRotation);
     PukeDirection = vector(Rotation);
@@ -50,6 +53,15 @@ function Puke()
             DealPukeDamage(P, PukeLocation);
         }        
     }    
+    EndTrace = PukeLocation + (PukeDirection * VomitRange);
+    HitActor = Trace(HitLocation, HitNormal, EndTrace, PukeLocation, true, vect(10, 10, 10));
+    if(((HitActor != none) && HitActor.bCanBeDamaged) && Pawn(HitActor) == none)
+    {
+        Momentum = EndTrace - PukeLocation;
+        Momentum.Z = 0;
+        Momentum = Normal(Momentum);
+        HitActor.TakeDamage(VomitDamage, Controller, HitLocation, Momentum, Class'KFDT_BloatPuke',, self);
+    }
 }
 
 function DealPukeDamage(Pawn Victim, Vector Origin)
@@ -75,7 +87,7 @@ function bool CanPukeOnTarget(Pawn PukeTarget, Vector PukeLocation, Vector PukeD
         PukeTarget.GetComponentsBoundingBox(ActorBox);
         if(((!PukeTarget.bWorldGeometry || PukeTarget.bCanBeDamaged) && ActorBox.Min.Z < PukeLocation.Z) && (VectToEnemy Dot PukeDirection) > 0.5)
         {
-            if(PukeTarget.FastTrace((ActorBox.Min + ActorBox.Max) * 0.5, PukeLocation))
+            if(PukeTarget.FastTrace((ActorBox.Min + ActorBox.Max) * 0.5, PukeLocation,, true))
             {
                 return true;
             }
@@ -90,7 +102,17 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
     {
         return true;
     }
-    return super(KFPawn).CanInjureHitZone(DamageType, HitZoneIdx);
+    if(super(KFPawn).CanInjureHitZone(DamageType, HitZoneIdx))
+    {
+        bWasDismembered = true;
+        return true;
+    }
+    return false;
+}
+
+simulated function bool HasInjuredHitZones()
+{
+    return bWasDismembered || IsHeadless();
 }
 
 function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLocation)
@@ -221,7 +243,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     DeathPukeMineRotations(2)=
 /* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_643' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_655' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

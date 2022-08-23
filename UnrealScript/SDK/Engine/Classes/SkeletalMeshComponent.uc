@@ -1621,6 +1621,13 @@ event bool PlayParticleEffect( const AnimNotify_PlayParticleEffect AnimNotifyDat
 		// NVCHANGE_END: JCAO - Apply the lightingChannel for the particle from the pawn
 		PSC.SetActorParameter(AnimNotifyData.BoneSocketModuleActorName, Owner);
 	}
+`if(`__TW_)
+	// We use this to keep track of particle systems spawned by animations
+	if( PSC != none && Owner != none )
+	{
+		Owner.OnAnimNotifyParticleSystemSpawned( AnimNotifyData, PSC );
+	}
+`endif
 
 	return true;
 }

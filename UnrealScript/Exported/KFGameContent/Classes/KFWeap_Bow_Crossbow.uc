@@ -107,7 +107,7 @@ defaultproperties
    RecoilISMinYawLimit=65485
    RecoilISMaxPitchLimit=375
    RecoilISMinPitchLimit=65460
-   AssociatedPerkClass=Class'KFGame.KFPerk_Sharpshooter'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Sharpshooter'
    FiringStatesArray(0)="WeaponSingleFireAndReload"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

@@ -15,20 +15,26 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
 {
     local int I;
     local Rotator AimRot;
+    local KFPerk InstigatorPerk;
 
     if(CurrentFireMode == 4)
     {
         return super.SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
     }
+    InstigatorPerk = GetPerk();
+    if(InstigatorPerk != none)
+    {
+        Spread[CurrentFireMode] = default.Spread[CurrentFireMode] * InstigatorPerk.GetTightChokeModifier();
+    }
     AimRot = rotator(AimDir);
     I = 0;
-    J0x58:
+    J0xC7:
 
     if(I < NumPellets[CurrentFireMode])
     {
         super.SpawnProjectile(KFProjClass, RealStartLoc, vector(Class'KFWeap_ShotgunBase'.static.AddMultiShotSpread(AimRot, Spread[CurrentFireMode])));
         ++ I;
-        goto J0x58;
+        goto J0xC7;
     }
     return none;
 }
@@ -113,7 +119,7 @@ defaultproperties
     RecoilISMinPitchLimit=65485
     HippedRecoilModifier=1.5
     FallingRecoilModifier=1.5
-    AssociatedPerkClass=Class'KFGame.KFPerk_FieldMedic'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

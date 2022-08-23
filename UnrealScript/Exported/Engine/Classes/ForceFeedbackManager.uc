@@ -29,6 +29,14 @@ var int CurrentSample;
 /** The amount of time elapsed since the start of this waveform */
 var float ElapsedTime;
 
+//@HSL_BEGIN_XBOX
+/** The next waveform sample being played */
+var int NextSample;
+
+/** The amount of time elapsed since the start of this waveform, for the next frame */
+var float NextElapsedTime;
+//@HSL_END_XBOX
+
 /** The amount to scale all waveforms by (user settable) (TCR C5-3) */
 var float ScaleAllWaveformsBy;
 
@@ -46,6 +54,10 @@ simulated function PlayForceFeedbackWaveform(ForceFeedbackWaveform Waveform,Acto
 	// Zero out the current sample and duration and unpause if paused
 	CurrentSample = 0;
 	ElapsedTime = 0.0;
+//@HSL_BEGIN_XBOX
+	NextSample = 0;
+	NextElapsedTime = 0.0;
+//@HSL_END_XBOX
 	bIsPaused = false;
 	FFWaveform = None;
 	WaveformInstigator = None;

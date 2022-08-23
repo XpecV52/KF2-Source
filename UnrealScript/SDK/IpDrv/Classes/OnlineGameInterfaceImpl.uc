@@ -374,6 +374,9 @@ native function bool FreeSearchResults(OnlineGameSearch Search);
  * @return true if the call completed successfully, false otherwise
  */
 native function bool JoinOnlineGame(byte PlayerNum,name SessionName,const out OnlineGameSearchResult DesiredGame);
+//@HSL_BEGIN_XBOX
+function bool JoinOnlineGameBySessionHandle( byte PlayerNum, name SessionName, const string InSessionGuid );
+//@HSL_END_XBOX
 
 //@zombie_ps4_begin
 function bool JoinOnlineGameByMatchingParams(QWORD RoomId, out OnlineGameSettings JoinedGameSettings);
@@ -419,6 +422,293 @@ function ClearJoinOnlineGameCompleteDelegate(delegate<OnJoinOnlineGameComplete> 
 		JoinOnlineGameCompleteDelegates.Remove(RemoveIndex,1);
 	}
 }
+
+
+//@HSL_BEGIN_XBOX
+/**
+ * Not implemented for default implementation
+ */
+delegate OnMultiplayerSessionChange(Name SessionName, SessionUpdateInfo SessionChanges)
+{
+}
+
+/**
+ * Not implemented for default implementation
+ */
+function AddMultiplayerSessionChangeDelegate(delegate<OnMultiplayerSessionChange> MultiplayerSessionChangeDelegate)
+{
+}
+
+/**
+ * Not implemented for default implementation
+ */
+function ClearMultiplayerSessionChangeDelegate(delegate<OnMultiplayerSessionChange> MultiplayerSessionChangeDelegate)
+{
+}
+//@HSL_END_XBOX
+
+/**
+ * Not implemented for default implementation
+ */
+function bool QueryMatchmakingForSession(byte ScoutingPlayerNum, name SessionName, int MatchTimeout, optional EOnlineCreateGameSessionFlag CreateGameSessionType=OCGSF_New)
+{
+	return false;
+}
+
+/**
+ * Not implemented for default implementation
+ */
+function bool QueryMatchmakingForSessionWithHopper(byte ScoutingPlayerNum, name SessionName, int MatchTimeout, string HopperName, optional EOnlineCreateGameSessionFlag CreateGameSessionType=OCGSF_New)
+{
+	return false;
+}
+
+delegate OnQueryMatchmakingForSessionComplete(name SessionName, bool bWasSuccessful);
+
+/**
+ * Not implemented for default implementation
+ */
+function AddQueryMatchmakingForSessionCompleteDelegate(delegate<OnQueryMatchmakingForSessionComplete> QueryMatchmakingForSessionCompleteDelegate)
+{
+}
+
+/**
+ * Not implemented for default implementation
+ */
+function ClearQueryMatchmakingForSessionCompleteDelegate(delegate<OnQueryMatchmakingForSessionComplete> QueryMatchmakingForSessionCompleteDelegate)
+{
+}
+
+/**
+ * Delete the match ticket associated with a session.  Call when cancelling matchmaking.
+ * Assumes the default hopper.
+ *
+ * @param SessionName The name of the session to delete the ticket for
+ */
+function bool DeleteMatchTicket(byte ScoutingPlayerNum, name SessionName);
+
+/**
+ * Delete the match ticket associated with a session.  Call when cancelling matchmaking.
+ *
+ * @param SessionName The name of the session to delete the ticket for
+ * @param HopperName The name of the Hopper used to search matchmaking
+ */
+function bool DeleteMatchTicketWithHopper(byte ScoutingPlayerNum, name SessionName, string HopperName);
+
+/**
+ * Delegate fired when deleting a match ticket completes
+ *
+ * @param SessionName the name of the session this callback is for
+ * @param bWasSuccessful true if the async action completed without error, false if there was an error
+ */
+delegate OnDeleteMatchTicketComplete(name SessionName, bool bWasSuccessful);
+
+/**
+ * Sets the delegate used to notify the gameplay code that the matchmaking query 
+ * has completed 
+ *
+ * @param DeleteMatchTicketCompleteDelegate the delegate to use for notifications
+ */
+function AddDeleteMatchTicketCompleteDelegate(delegate<OnDeleteMatchTicketComplete> DeleteMatchTicketCompleteDelegate);
+
+/**
+ * Removes the delegate from the list of notifications
+ *
+ * @param DeleteMatchTicketCompleteDelegate the delegate to use for notifications
+ */
+function ClearDeleteMatchTicketCompleteDelegate(delegate<OnDeleteMatchTicketComplete> DeleteMatchTicketCompleteDelegate);
+
+/** 
+ * Queue a custom session property for update
+ * NOT updated until UpdateSessionProperties() is called
+ *
+ * @param SessionName name of the session to update
+ * @param PropertyName property to update
+ * @param PropertyValue new value of property
+ */
+function bool SetCustomSessionProperty(name SessionName, string PropertyName, string PropertyValue);
+
+/** 
+ * Queue a custom session property for delete
+ * NOT updated until UpdateSessionProperties() is called
+ *
+ * @param SessionName name of the session to update
+ * @param PropertyName property to delete
+ */
+function bool DeleteCustomSessionProperty(name SessionName, string PropertyName);
+
+/** 
+ * Queue a custom session member property for update
+ * NOT updated until UpdateSessionProperties() is called
+ *
+ * @param SessionName name of the session to update
+ * @param PropertyName property to update
+ * @param PropertyValue new value of property
+ */
+function bool SetCustomMemberProperty(name SessionName, string PropertyName, string PropertyValue);
+
+/** 
+ * Queue a custom session member property for delete
+ * NOT updated until UpdateSessionProperties() is called
+ *
+ * @param SessionName name of the session to update
+ * @param PropertyName property to delete
+ */
+function bool DeleteCustomMemberProperty(name SessionName, string PropertyName);
+
+/**
+ * Update the queued properties for the session
+ *
+ * @param SessionName name of the session to update
+ */
+function bool UpdateSessionProperties(byte ScoutingUserNum, name SessionName);
+
+/**
+ * Delegate fired when updating session properties is complete
+ * 
+ * @param SessionName the name of the session this callback is for
+ * @param bWasSuccessful true if the async action completed without error, false if there was an error
+ */
+delegate OnUpdateSessionPropertiesComplete(name SessionName, bool bWasSuccessful);
+
+/**
+ * Sets the delegate used to notify the gameplay code that the session properties update
+ * has completed 
+ *
+ * @param UpdateSessionPropertiesCompleteDelegate the delegate to use for notifications
+ */
+function AddUpdateSessionPropertiesCompleteDelegate(delegate<OnUpdateSessionPropertiesComplete> UpdateSessionPropertiesCompleteDelegate);
+
+/**
+ * Removes the delegate from the list of notifications
+ *
+ * @param UpdateSessionPropertiesCompleteDelegate the delegate to use for notifications
+ */
+function ClearUpdateSessionPropertiesCompleteDelegate(delegate<OnUpdateSessionPropertiesComplete> UpdateSessionPropertiesCompleteDelegate);
+
+/**
+ * Delegate fired when the List of available Game Players has changed
+ *
+ * @param SessionName the name of the session this callback is for
+ * @param Players the array of available Game Players for the session
+ */
+delegate OnGamePlayersChanged(name SessionName, array<UniqueNetId> Players);
+
+
+/**
+ * Sets the delegate used to notify the gameplay code that the list of 
+ * available game players has changed
+ *
+ * @param GamePlayersChangedDelegate the delegate to use for notifications
+ */
+function AddGamePlayersChangedDelegate(delegate<OnGamePlayersChanged> GamePlayersChangedDelegate)
+{
+}
+
+/**
+ * Removes the delegate from the list of notifications
+ *
+ * @param GamePlayersChangedDelegate the delegate to use for notifications
+ */
+function ClearGamePlayersChangedDelegate(delegate<OnGamePlayersChanged> GamePlayersChangedDelegate)
+{
+}
+
+/**
+ * Delegate fired when the status of a match session has changed
+ *
+ * @param SessionName the name of the session this callback is for
+ */
+delegate OnMatchStatusChanged(name SessionName, byte Status);
+
+/**
+ * Sets the delegate used to notify the gameplay code that the match status
+ * has changed
+ *
+ * @param MatchStatusChangedDelegate the delegate to use for notifications
+ */
+function AddMatchStatusChangedDelegate(delegate<OnMatchStatusChanged> MatchStatusChangedDelegate)
+{
+}
+
+/**
+ * Removes the delegate from the list of notifications
+ *
+ * @param MatchStatusChangedDelegate the delegate to use for notifications
+ */
+function ClearMatchStatusChangedDelegate(delegate<OnMatchStatusChanged> MatchStatusChangedDelegate)
+{
+}
+
+/**
+ * Leave an online game session
+ *
+ * @param LocalPlayerNum the player to leave
+ * @param SessionName the session to leave
+ * @param bClearSessionIfHost completely clears the session immediately (ie synchronously) if we are the host
+ */
+function bool LeaveOnlineSession(byte LocalPlayerNum, name SessionName, optional bool bClearSessionIfHost = false)
+{
+	return false;
+}
+
+
+/**
+ * Leaves all online game sessions
+ *
+ * @param bClearSessionIfHost completely clears the sessions immediately (ie synchronously) if we are the host
+ */
+function LeaveAllOnlineSessions(optional bool bClearSessionIfHost = false);
+
+/**
+ * Get a list of sessions for a user
+ *
+ * @param LocalPlayerNum The player to query
+ */
+function bool QuerySessionsForUser(byte LocalPlayerNum)
+{
+	return false;
+}
+
+/**
+ * Get a list of sessions with a keyword
+ *
+ * @param LocalPlayerNum The player who is requesting the sessions
+ * @param Keyword The keyworkd to search session with
+ * @param SearchSettings the desired search to bind the session to
+ */
+function bool QuerySessionsByKeyword(byte LocalPlayerNum, string Keyword, OnlineGameSearch SearchSettings)
+{
+	return false;
+}
+
+/**
+ * Delegate fired when QuerySessionsForUser has completed
+ *
+ * @param LocalPlayerNum the player queried
+ * @param bWasSuccessful true if the async action completed without error, false if there was an error
+ */
+delegate OnQuerySessionsForUserComplete(byte LocalPlayerNum, bool bWasSuccessful);
+
+/**
+ * Sets the delegate used to notify the gameplay code that the query request
+ * has completed 
+ *
+ * @param QuerySessionsForUserCompleteDelegate the delegate to use for notifications
+ */
+function AddQuerySessionsForUserCompleteDelegate(delegate<OnQuerySessionsForUserComplete> QuerySessionsForUserCompleteDelegate)
+{
+}
+
+/**
+ * Removes the delegate from the list of notifications
+ *
+ * @param QuerySessionsForUserCompleteDelegate the delegate to use for notifications
+ */
+function ClearQuerySessionsForUserCompleteDelegate(delegate<OnQuerySessionsForUserComplete> QuerySessionsForUserCompleteDelegate)
+{
+}
+//@HSL_END_XBOX
 
 /**
  * Returns the platform specific connection information for joining the match.

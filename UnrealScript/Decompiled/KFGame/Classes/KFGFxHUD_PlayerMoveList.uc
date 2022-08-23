@@ -76,11 +76,15 @@ function InitializeMoveList()
     local int LookupIndex, ButtonPriority;
     local HUDMoveInfo SavedMoveInfo;
 
+    if(MyKFPM == none)
+    {
+        return;
+    }
     CurrentMoves.Remove(0, CurrentMoves.Length;
     AttackArray = MyKFPM.GetSpecialMoveCooldowns();
     MoveListObjectArray = Outer.CreateArray();
     I = 0;
-    J0x73:
+    J0x84:
 
     if(I < AttackArray.Length)
     {
@@ -128,19 +132,19 @@ function InitializeMoveList()
             SavedMoveInfo.AtkIndex = I;
             SavedMoveInfo.ButtonPriority = ButtonPriority;
             J = 0;
-            J0x5C4:
+            J0x5D5:
 
             if(J < CurrentMoves.Length)
             {
                 if(ButtonPriority < CurrentMoves[J].ButtonPriority)
                 {
                     CurrentMoves.InsertItem(J, SavedMoveInfo;
-                    goto J0x640;
+                    goto J0x651;
                 }
                 ++ J;
-                goto J0x5C4;
+                goto J0x5D5;
             }
-            J0x640:
+            J0x651:
 
             if(J == CurrentMoves.Length)
             {
@@ -148,7 +152,7 @@ function InitializeMoveList()
             }
         }
         ++ I;
-        goto J0x73;
+        goto J0x84;
     }
     BuildObjectArray();
 }

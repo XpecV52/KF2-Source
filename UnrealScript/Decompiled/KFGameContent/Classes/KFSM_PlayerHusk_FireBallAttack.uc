@@ -41,6 +41,10 @@ function PlayFireHeldAnimation()
 {
     bReadyToFire = true;
     PlaySpecialMoveAnim(FireHeldAnimName, AnimStance, BlendInTime, BlendOutTime, 1, true);
+    if(MyHuskPawn != none)
+    {
+        MyHuskPawn.SetFireLightEnabled(true);
+    }
 }
 
 function PlayFireAnimation()

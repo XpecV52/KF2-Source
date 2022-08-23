@@ -587,8 +587,11 @@ function DeferOnAnimEnd()
 	{
 		AnimEndNotify(None, 0, 0);
 	}
-	
 }
+
+/** Called from KFPawn::OnAnimNotifyParticleSystemSpawned() */
+simulated function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC );
+
 /*********************************************************************************************
  * Gameplay notications/hooks
  *********************************************************************************************/
@@ -619,6 +622,9 @@ function OnEMPDisrupted()
 
 /** Used for changing attack target (non claimable, switch to other enemy) */
 event ModifyInteractionPawn(out KFPawn OtherPawn);
+
+/** Allows special moves to control the crosshair */
+function bool CanDrawCrosshair() { return true; }
 
 defaultproperties
 {

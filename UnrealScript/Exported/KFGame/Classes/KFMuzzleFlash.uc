@@ -27,7 +27,9 @@ struct native MuzzleEffectInfo
 
 	/** Muzzle flash PSC and Templates */
 	var() ParticleSystem		ParticleSystemTemplate;
-	var() bool					bPSCLoops;
+	var() bool					bPSCLoops<EditCondition=!bIgnoreStopFire>;
+	/** If set, do not deactivate when weapon stops firing (only works with bPSCLoops=FALSE) */
+	var() bool  				bIgnoreStopFire<EditCondition=!bPSCLoops>;
 
 	/** Sets LifeSpan of PSC (iff bMuzzleFlashPSCLoops=FALSE) and light */
 	var() float					Duration;
@@ -104,7 +106,7 @@ native function StopMuzzleFlash();
 native function MuzzleFlashTimer();
 native function MuzzleFlashAltTimer();
 
-function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name SocketNameOverride, optional name AltSocketNameOverride)
+function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name SocketNameOverride, optional name ShellEjectSocketOverride)
 {
 	local float OwnerMeshFOV;
 
@@ -133,12 +135,6 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
 
 	if ( bEnableSecondaryMuzzleFlash )
 	{
-		// Allow code to override attachment socket
-		if ( AltSocketNameOverride != 'None' )
-		{
-			MuzzleFlashAlt.SocketName = AltSocketNameOverride;
-		}
-
 		// Attach the alt fire muzzle flash
 		if( MuzzleFlashAlt.ParticleSystemTemplate != none )
 		{
@@ -159,7 +155,11 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
 
 	// Initialize and attach the shell eject psc
 	if ( ShellEjectPSCTemplate != None )
-	{
+	{	
+		if ( ShellEjectSocketOverride != 'None' )
+		{
+			ShellEjectSocketName = ShellEjectSocketOverride;
+		}
 		ShellEjectPSC = new(self) class'KFParticleSystemComponent';
 		ShellEjectPSC.bAutoActivate = false;
 		ShellEjectPSC.SetTemplate(ShellEjectPSCTemplate);

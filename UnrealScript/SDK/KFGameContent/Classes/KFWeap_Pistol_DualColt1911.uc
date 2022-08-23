@@ -22,9 +22,7 @@ defaultproperties
 	End Object
 
 	AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_M1911_ARCH.Wep_Dual_M1911_3P'
-
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_M1911_ARCH.Wep_Dual_M1911_MuzzleFlash'
-	LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_M1911_ARCH.Wep_Dual_M1911_MuzzleFlash_L'
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -116,7 +114,7 @@ defaultproperties
 	GroupPriority=40
 	WeaponSelectTexture=Texture2D'WEP_UI_Dual_M1911_TEX.UI_WeaponSelect_DualM1911'
 	bIsBackupWeapon=false
-	AssociatedPerkClass=class'KFPerk_Gunslinger'
+	AssociatedPerkClasses(0)=class'KFPerk_Gunslinger'
 
 	BonesToLockOnEmpty=(RW_Bolt, RW_Bullets1)
     BonesToLockOnEmpty_L=(LW_Bolt, LW_Bullets1)

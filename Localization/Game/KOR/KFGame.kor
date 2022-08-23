@@ -284,7 +284,7 @@ SellString="판매"
 CannotSellString="판매할 수 없음"
 CannotBuyString="구입할 수 없음"
 FavoriteString="즐겨찾기"
-UnfavoriteString="즐겨찾기 제거"
+UnfavoriteString="UNFAVORITE"
 
 [KFGFxTraderContainer_PlayerInventory]
 FillString="보충"
@@ -708,6 +708,7 @@ BackString="뒤로"
 NoneString="없음"
 WeaponsString="무기"
 WeaponsInfoString="커스터마이즈"
+EmotesString="EMOTES"
 
 [KFGFxMenu_Inventory]
 NoItemsString="현재 선택된 필터에 맞는 인벤토리 아이템이 없습니다."
@@ -723,6 +724,7 @@ UnequipString="장착 해제"
 AllString="전체"
 WeaponSkinString="무기 스킨"
 CosmeticString="꾸미기"
+EmotesString="Emotes"
 CraftingMatsString="작업"
 ItemString="아이템"
 FiltersString="필터"
@@ -796,6 +798,7 @@ WeaponSkinsRotationString="무기 스킨"
 WeaponSkinsString="무기 스킨 거래"
 MarketConsumablesString="상자/USB 거래"
 MarketCosmeticsString="꾸미기 거래"
+MarketEmotesString="시장 Emote"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="시장에서 찾기"
@@ -890,6 +893,7 @@ VoiceCommsOptionStrings[4]="나를 따라오시오"
 VoiceCommsOptionStrings[5]="상점에 가기"
 VoiceCommsOptionStrings[6]="확인"
 VoiceCommsOptionStrings[7]="거부"
+VoiceCommsOptionStrings[8]="EMOTE"
 
 [KFGFxMenu_Exit]
 HeaderString="게임 종료"
@@ -1182,6 +1186,7 @@ GBA_VoiceCommFollowMe="나를 따라오시오"
 GBA_VoiceCommGetToTheTrader="상점에 가기"
 GBA_VoiceCommAffirmative="확인"
 GBA_VoiceCommNegative="거부"
+GBA_VoiceCommEmote="EMOTE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="감도"
@@ -1745,7 +1750,7 @@ EXPAction2="팀원 치료"
 [KFPerk_Firebug]
 PerkName="파이어버그"
 EXPAction1="파이어버그 무기 데미지"
-EXPAction2="파이어버그 무기로 Crawler 처치"
+EXPAction2="파이어버그 무기로 Crawler 및 Bloat 처치"
 
 SkillCatagories[0]="보급"
 SkillCatagories[1]="스파이시"
@@ -1810,7 +1815,7 @@ ShootnMove="고정"
 ShootnMoveDescription="병과 무기의 가늠좌 이동 속도 페널티를 무시 및 무기 흔들림을 크게 감소"
 
 QuickSwitch="빨리 쏘기"
-QuickSwitchDescription="힙 사격의 반동 페널티를 무시하고 이동 속도를 5% 향상 및 병과 무기 전환 속도 50% 향상"
+QuickSwitchDescription="힙 사격의 반동 페널티를 줄이고 이동 속도를 5% 향상 및 병과 무기 전환 속도를 50% 향상"
 
 RhythmMethod="쓸어 버리기"
 RhythmMethodDescription="병과 무기로 연속 헤드샷에 성공하면 최대 50%까지 데미지가 10%씩 증가"
@@ -2113,6 +2118,7 @@ RandomLoadingStrings[37]="레일건은 일렬로 서있는 여러 제드를 관�
 RandomLoadingStrings[38]="마이크로웨이브 건은 Fleshpound와 Siren처럼 금속을 가지고 다니는 제드에 더 많은 데미지를 가합니다."
 RandomLoadingStrings[39]="무기의 대체 사격 모드를 이용해보십시오. 모든 무기가 이 기능을 갖고 있는 것은 아니지만 궁지에 처했을 때 도움이 될 것입니다."
 RandomLoadingStrings[40]="적을 처치하는데 도움을 주면 XP와 Dosh를 받습니다. 그러니 같은 편의 킬 수만 높여줬다고 기분 나빠하지 마십시오."
+RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
 
 [WhatsNewMessages]
 Jaegorhorn="커뮤니티를 따라 예거호른을 잠금해제하십시오."
@@ -2139,6 +2145,7 @@ USBSWATKey="SWAT USB 키 - $2.49"
 USBTacticalHorzineKey="전술 Horzine USB Key - $2.49"
 USBVictorianKey="빅토리아 USB 키 - $2.49"
 USBZedKillerKey="제드 킬러 USB 키 - $2.49"
+USBBoneCrusher="본 크러셔 USB 키 - $2.49"
 BullseyeUpdate="최신 소식 콘텐츠 - 불스아이 업데이트"
 LatestUpdate="최신 콘텐츠 업데이트"
 Forums="저희 커뮤니티 포럼을 방문해주세요."
@@ -2159,6 +2166,7 @@ PS4WeaponSkinCrate1="Horzine 보급 무기 스킨 상자 | 시리즈 1"
 PS4WeaponSkinCrate2="Horzine 보급 무기 스킨 상자 | 시리즈 2"
 Artbook="Killing Floor 2 디지털 아트북"
 Uncovered="Killing Floor 보기: 라이브 액션 영상 공개"
+NewEmotes="신상품! Emote 상자 키 - $2.49"
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
@@ -2166,6 +2174,7 @@ KFPawn_ZedClot="클롯"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedFleshPound="Fleshpound"
 KFPawn_ZedGorefast="Gorefast"
+KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
 KFPawn_ZedHusk="Husk"
 KFPawn_ZedStalker="Stalker"
@@ -2365,7 +2374,6 @@ DisplayName_DEU="Katakomben"
 DisplayName_ESL="Catacumbas"
 DisplayName_ESN="Catacumbas"
 DisplayName_FRA="Catacombes"
-DisplayName_FRC="Catacombes"
 DisplayName_INT="Catacombs"
 DisplayName_ITA="Catacombe"
 DisplayName_JPN="Catacombs"
@@ -2486,6 +2494,22 @@ DisplayName_POL="Piekielna domena"
 DisplayName_PTB="Reino Infernal"
 DisplayName_RUS="Царство ада"
 
+[KF-ZedLanding KFMapSummary]
+DisplayName_CHN="丧尸登陆"
+DisplayName_CHT="僵屍群登陸"
+DisplayName_DEU="ZED-Landung"
+DisplayName_ESL="Aterrizaje ZED"
+DisplayName_ESN="Aterrizaje ZED"
+DisplayName_FRA="Île des Zeds"
+DisplayName_FRC="Île des Zeds"
+DisplayName_INT="Zed Landing"
+DisplayName_ITA="Atterraggio ZED"
+DisplayName_JPN="zed Landing"
+DisplayName_KOR="제드 상륙"
+DisplayName_POL="Lądowanie zetów"
+DisplayName_PTB="Pouso Forçado ZED"
+DisplayName_RUS="Высадка среди мутантов"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="바이오틱스 연구소"
 
@@ -2524,6 +2548,9 @@ DisplayName="적진"
 
 [KF-InfernalRealm KFMapSummary]
 DisplayName="지옥의 왕국"
+
+[KF-ZedLanding KFMapSummary]
+DisplayName="제드 상륙"
 
 
 [KFMapInfo]

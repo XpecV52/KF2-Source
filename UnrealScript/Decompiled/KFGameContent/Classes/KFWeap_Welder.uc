@@ -523,7 +523,7 @@ simulated state WeaponWelding extends WeaponFiring
 {
     simulated function byte GetWeaponStateId()
     {
-        return 29;
+        return 31;
     }
 
     simulated function BeginState(name PrevStateName)
@@ -571,6 +571,7 @@ defaultproperties
     AttachmentArchetype=KFWeaponAttachment'WEP_Welder_ARCH.Welder_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Welder.MeleeHelper'
     MuzzleFlashTemplate=KFMuzzleFlash'WEP_Welder_ARCH.Wep_Welder_MuzzleFlash'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

@@ -72,7 +72,9 @@ delegate OnReadTitleFileComplete(bool bWasSuccessful,string FileName);
  *
  * @return true if the calls starts successfully, false otherwise
  */
-function bool ReadTitleFile(string FileToRead);
+//@HSL_BEGIN_XBOX
+function bool ReadTitleFile(string FileToRead, optional EOnlineFileType FileType = OFT_Binary);
+//@HSL_END_XBOX
 
 /**
  * Adds the delegate to the list to be notified when a requested file has been read
@@ -141,15 +143,17 @@ function bool ClearDownloadedFile(string FileName);
 /**
  * Async call to request a list of files (returned as string) from EMS
  */
-function RequestTitleFileList();
+ //@HSL_BEGIN_XBOX
+function bool RequestTitleFileList();
 
 /**
- * Delegate fired when the request for a list of files completes
- *
- * @param bWasSuccessful whether the request completed successfully
- * @param ResultStr contains the list of files and associated meta data
- */
-delegate OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr);
+* Delegate fired when the request for a list of files completes
+*
+* @param bWasSuccessful whether the request completed successfully
+* @param ResultStr contains the list of files and associated meta data
+*/
+delegate OnRequestTitleFileListComplete(bool bWasSuccessful, array<string> FilePaths);
+//@HSL_END_XBOX
 
 /**
  * Adds the delegate to the list to be notified when the list of requested files has been received

@@ -113,20 +113,20 @@ function UpdatePendingPerkInfo(byte SelectedPerkIndex)
         {
             if((!KFPC.CanUpdatePerkInfo() && !KFGRI.CanChangePerks()) || ((KFGRI.CanChangePerks() && PerksMenu.bModifiedPerk) && KFPC.PlayerReplicationInfo.bReadyToPlay) && KFPC.WorldInfo.GRI.bMatchHasBegun)
             {
-                PerkName = KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass.default.PerkName;                
+                PerkName = KFPC.PerkList[SelectedPerkIndex].PerkClass.default.PerkName;                
             }
             else
             {
                 PerkName = "";
             }
         }
-        if(KFGRI.CanChangePerks())
+        if(KFGRI.CanChangePerks() && KFPC.CanUpdatePerkInfo())
         {
-            SetPendingPerkChanges(PerkName, "img://" $ KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass.static.GetPerkIconPath(), ChangesAppliedOnCloseString);            
+            SetPendingPerkChanges(PerkName, "img://" $ KFPC.PerkList[SelectedPerkIndex].PerkClass.static.GetPerkIconPath(), ChangesAppliedOnCloseString);            
         }
         else
         {
-            SetPendingPerkChanges(PerkName, "img://" $ KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass.static.GetPerkIconPath(), EndOfWaveString);
+            SetPendingPerkChanges(PerkName, "img://" $ KFPC.PerkList[SelectedPerkIndex].PerkClass.static.GetPerkIconPath(), EndOfWaveString);
         }
     }
 }

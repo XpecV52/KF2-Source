@@ -47,7 +47,10 @@ function UpdateWaveCount()
 {
     local int CurrentWaveMax, CurrentWave;
 
-    KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
+    if(KFGRI == none)
+    {
+        KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
+    }
     if(KFGRI == none)
     {
         return;

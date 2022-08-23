@@ -57,6 +57,15 @@ event PreBeginPlay()
     super.PreBeginPlay();
 }
 
+event ChangeVisibility(bool bIsVisible)
+{
+    super.ChangeVisibility(bIsVisible);
+    if((LeftWeapMesh != none) && !bWeapMeshIsPawnMesh)
+    {
+        LeftWeapMesh.SetHidden(!bIsVisible);
+    }
+}
+
 simulated function AttachTo(KFPawn P)
 {
     super.AttachTo(P);
@@ -142,23 +151,27 @@ function bool ChooseActiveWeapon(byte FlashCount)
     return bPlayFXOnSecondWeapon;
 }
 
-simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
+simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
 {
     ChooseActiveWeapon(P.FlashCount);
-    return super.ThirdPersonFireEffects(HitLocation, P);
+    return super.ThirdPersonFireEffects(HitLocation, P, ThirdPersonAnimRateByte);
 }
 
 simulated function PlayWeaponFireAnim()
 {
+    local float Duration;
+
     if((Instigator.FiringMode == 1) && 'Shoot' != 'None')
     {
         if(bPlayFXOnSecondWeapon)
         {
-            LeftWeapMesh.PlayAnim('Shoot_LW',,, true);            
+            Duration = LeftWeapMesh.GetAnimLength('Shoot_LW');
+            LeftWeapMesh.PlayAnim('Shoot_LW', Duration / ThirdPersonAnimRate,, true);            
         }
         else
         {
-            WeapMesh.PlayAnim('Shoot_RW',,, true);
+            Duration = WeapMesh.GetAnimLength('Shoot_RW');
+            WeapMesh.PlayAnim('Shoot_RW', Duration / ThirdPersonAnimRate,, true);
         }        
     }
     else
@@ -167,11 +180,13 @@ simulated function PlayWeaponFireAnim()
         {
             if(bPlayFXOnSecondWeapon)
             {
-                LeftWeapMesh.PlayAnim('Shoot_LW',,, true);                
+                Duration = LeftWeapMesh.GetAnimLength('Shoot_LW');
+                LeftWeapMesh.PlayAnim('Shoot_LW', Duration / ThirdPersonAnimRate,, true);                
             }
             else
             {
-                WeapMesh.PlayAnim('Shoot_RW',,, true);
+                Duration = WeapMesh.GetAnimLength('Shoot_RW');
+                WeapMesh.PlayAnim('Shoot_RW', Duration / ThirdPersonAnimRate,, true);
             }
         }
     }
@@ -181,17 +196,17 @@ simulated function PlayPawnFireAnim(KFPawn P, KFPawn.EAnimSlotStance AnimType)
 {
     if(P.bIsCrouched)
     {
-        P.PlayBodyAnim(((bPlayFXOnSecondWeapon) ? 'ADD_CH_Shoot_LW' : 'ADD_CH_Shoot_RW'), 0, 1, ShootBlendInTime, ShootBlendOutTime);        
+        P.PlayBodyAnim(((bPlayFXOnSecondWeapon) ? 'ADD_CH_Shoot_LW' : 'ADD_CH_Shoot_RW'), 0, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);        
     }
     else
     {
         if(P.bIsWalking)
         {
-            P.PlayBodyAnim(((bPlayFXOnSecondWeapon) ? 'ADD_Iron_Shoot_LW' : 'ADD_Iron_Shoot_RW'), 0, 1, ShootBlendInTime, ShootBlendOutTime);            
+            P.PlayBodyAnim(((bPlayFXOnSecondWeapon) ? 'ADD_Iron_Shoot_LW' : 'ADD_Iron_Shoot_RW'), 0, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);            
         }
         else
         {
-            P.PlayBodyAnim(((bPlayFXOnSecondWeapon) ? 'ADD_Shoot_LW' : 'ADD_Shoot_RW'), 0, 1, ShootBlendInTime, ShootBlendOutTime);
+            P.PlayBodyAnim(((bPlayFXOnSecondWeapon) ? 'ADD_Shoot_LW' : 'ADD_Shoot_RW'), 0, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);
         }
     }
 }
@@ -240,8 +255,11 @@ simulated function Vector GetMuzzleLocation(optional byte MuzzleID)
 
 simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool bLoop)
 {
+    local float Duration;
+
     super.PlayWeaponMeshAnim(AnimName, SyncNode, bLoop);
-    LeftWeapMesh.PlayAnim(AnimName, 0, bLoop);
+    Duration = LeftWeapMesh.GetAnimLength(AnimName);
+    LeftWeapMesh.PlayAnim(AnimName, Duration / ThirdPersonAnimRate, bLoop);
 }
 
 simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)

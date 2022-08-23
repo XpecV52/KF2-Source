@@ -13,6 +13,7 @@ KF-Prison="Playing Prison"
 KF-ContainmentStation="Playing Containment Station"
 KF-InfernalRealm="Playing Infernal Realm"
 KF-HostileGrounds="Playing Hostile Grounds"
+KF-ZedLanding="Playing Zed Landing"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

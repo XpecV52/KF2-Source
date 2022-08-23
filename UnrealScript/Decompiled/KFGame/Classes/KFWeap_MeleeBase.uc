@@ -40,6 +40,24 @@ const MeleeSustainedLoopAnim = 'Atk_F_Loop';
 const MeleeSustainedStartAnim = 'Atk_F_In';
 const MeleeSUstainedEndAnim = 'Atk_F_Out';
 
+struct native BlockEffectInfo
+{
+    var class<DamageType> dmgType;
+    var AkEvent BlockSound;
+    var AkEvent ParrySound;
+    var ParticleSystem BlockParticleSys;
+    var ParticleSystem ParryParticleSys;
+
+    structdefaultproperties
+    {
+        dmgType=none
+        BlockSound=none
+        ParrySound=none
+        BlockParticleSys=none
+        ParryParticleSys=none
+    }
+};
+
 var bool bIsBloody;
 var bool bMoveAtWalkingSpeed;
 var byte MaxChainAtkCount;
@@ -53,7 +71,7 @@ var() byte EstimatedFireRate;
 var float MinMeleeSustainedTime;
 /** Minimum amount of time to wait before dealing damage in the  MeleeSustained state */
 var() float MeleeSustainedWarmupTime;
-var array< class<DamageType> > BlockDamageType;
+var array<BlockEffectInfo> BlockTypes;
 /** Damage while blocking will be mitigated by this percentage */
 var() float BlockDamageMitigation;
 /** Parry damage will be mitigated by this percentage */
@@ -211,11 +229,24 @@ private reliable server final function ServerSetBloody(bool bNewIsBloody)
 
 simulated function ANIMNOTIFY_CleanBlood()
 {
+    local int I;
+
     bIsBloody = false;
-    if(WorldInfo.NetMode != NM_DedicatedServer)
+    if((WorldInfo.NetMode != NM_DedicatedServer) && WeaponMICs.Length > 0)
     {
         BloodParamValue = 0;
-        WeaponMIC.SetScalarParameterValue('Scalar_Blood_Contrast', BloodParamValue);
+        I = 0;
+        J0x61:
+
+        if(I < WeaponMICs.Length)
+        {
+            if(WeaponMICs[I] != none)
+            {
+                WeaponMICs[I].SetScalarParameterValue('Scalar_Blood_Contrast', BloodParamValue);
+            }
+            ++ I;
+            goto J0x61;
+        }
     }
 }
 
@@ -269,28 +300,30 @@ simulated function BlockLoopTimer();
 
 simulated function ParryCheckTimer();
 
-unreliable client simulated function ClientPlayBlockEffects()
+unreliable client simulated function ClientPlayBlockEffects(optional byte BlockTypeIndex)
 {
-    PlayLocalBlockEffects(BlockSound, BlockParticleSystem);
+    local AkBaseSoundObject Sound;
+    local ParticleSystem PSTemplate;
+
+    BlockTypeIndex = 255;
+    GetBlockEffects(BlockTypeIndex, Sound, PSTemplate);
+    PlayLocalBlockEffects(Sound, PSTemplate);
 }
 
-reliable client simulated function ClientPlayParryEffects(bool bInterruptSuccess)
+reliable client simulated function ClientPlayParryEffects(optional byte BlockTypeIndex)
 {
+    local AkBaseSoundObject Sound;
+    local ParticleSystem PSTemplate;
     local KFPerk InstigatorPerk;
 
-    if(bInterruptSuccess)
+    BlockTypeIndex = 255;
+    InstigatorPerk = GetPerk();
+    if(InstigatorPerk != none)
     {
-        InstigatorPerk = GetPerk();
-        if(InstigatorPerk != none)
-        {
-            InstigatorPerk.SetSuccessfullParry();
-        }
-        PlayLocalBlockEffects(ParrySound, ParryParticleSystem);        
+        InstigatorPerk.SetSuccessfullParry();
     }
-    else
-    {
-        PlayLocalBlockEffects(BlockSound, BlockParticleSystem);
-    }
+    GetParryEffects(BlockTypeIndex, Sound, PSTemplate);
+    PlayLocalBlockEffects(Sound, PSTemplate);
 }
 
 simulated function float PlayBlockStart()
@@ -337,23 +370,59 @@ simulated function PlayLocalBlockEffects(AkBaseSoundObject Sound, ParticleSystem
     }
 }
 
-function bool CanBlockDamageType(class<DamageType> DamageType)
+function bool CanBlockDamageType(class<DamageType> DamageType, optional out byte out_Idx)
 {
     local int Idx;
 
     Idx = 0;
-    J0x0B:
+    J0x0C:
 
-    if(Idx < BlockDamageType.Length)
+    if(Idx < BlockTypes.Length)
     {
-        if(ClassIsChildOf(DamageType, BlockDamageType[Idx]))
+        if(ClassIsChildOf(DamageType, BlockTypes[Idx].dmgType))
         {
+            out_Idx = byte(Idx);
             return true;
         }
         ++ Idx;
-        goto J0x0B;
+        goto J0x0C;
     }
+    out_Idx = 255;
     return false;
+}
+
+simulated function GetBlockEffects(byte BlockIndex, out AkBaseSoundObject outSound, out ParticleSystem outParticleSys)
+{
+    outSound = BlockSound;
+    outParticleSys = BlockParticleSystem;
+    if(BlockIndex != 255)
+    {
+        if(BlockTypes[BlockIndex].BlockSound != none)
+        {
+            outSound = BlockTypes[BlockIndex].BlockSound;
+        }
+        if(BlockTypes[BlockIndex].BlockParticleSys != none)
+        {
+            outParticleSys = BlockTypes[BlockIndex].BlockParticleSys;
+        }
+    }
+}
+
+simulated function GetParryEffects(byte BlockIndex, out AkBaseSoundObject outSound, out ParticleSystem outParticleSys)
+{
+    outSound = ParrySound;
+    outParticleSys = ParryParticleSystem;
+    if(BlockIndex != 255)
+    {
+        if(BlockTypes[BlockIndex].ParrySound != none)
+        {
+            outSound = BlockTypes[BlockIndex].ParrySound;
+        }
+        if(BlockTypes[BlockIndex].ParryParticleSys != none)
+        {
+            outParticleSys = BlockTypes[BlockIndex].ParryParticleSys;
+        }
+    }
 }
 
 simulated function BlockCooldownTimer();
@@ -401,7 +470,7 @@ simulated state WeaponUpkeep
 {
     simulated function byte GetWeaponStateId()
     {
-        return 23;
+        return 25;
     }
 
     simulated function BeginState(name PreviousStateName)
@@ -463,23 +532,23 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
         switch(MeleeAttackHelper.CurrentAttackDir)
         {
             case 0:
-                return 16;
+                return 18;
             case 4:
-                return 16;
+                return 18;
             case 5:
-                return 16;
+                return 18;
             case 1:
-                return 17;
+                return 19;
             case 6:
-                return 17;
+                return 19;
             case 7:
-                return 17;
+                return 19;
             case 2:
-                return 14;
+                return 16;
             case 3:
-                return 15;
+                return 17;
             default:
-                return 12;
+                return 14;
                 break;
         }
     }
@@ -513,6 +582,7 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
 
     simulated function name GetMeleeAnimName(KFPawn.EPawnOctant AtkDir, KFMeleeHelperWeapon.EMeleeAttackType AtkType)
     {
+        UpdateWeaponAttachmentAnimRate(GetThirdPersonAnimRate());
         KFPawn(Instigator).WeaponStateChanged(GetWeaponStateId());
         if(AtkType == 1)
         {
@@ -568,6 +638,20 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
     {
         return true;
     }
+
+    simulated function float GetThirdPersonAnimRate()
+    {
+        local KFPerk CurrentPerk;
+        local float ScaledRate;
+
+        ScaledRate = EvalInterpCurveFloat(MeleeAttackHelper.FatigueCurve, float(MeleeAttackHelper.NumChainedAttacks));
+        CurrentPerk = GetPerk();
+        if(CurrentPerk != none)
+        {
+            CurrentPerk.ModifyMeleeAttackSpeed(ScaledRate, self);
+        }
+        return 1 / ScaledRate;
+    }
     stop;    
 }
 
@@ -578,21 +662,21 @@ simulated state MeleeHeavyAttacking extends MeleeAttackBasic
         switch(MeleeAttackHelper.CurrentAttackDir)
         {
             case 0:
-                return 20;
+                return 22;
             case 4:
-                return 20;
+                return 22;
             case 5:
-                return 20;
+                return 22;
             case 1:
-                return 21;
+                return 23;
             case 6:
-                return 21;
+                return 23;
             case 7:
-                return 21;
+                return 23;
             case 2:
-                return 18;
+                return 20;
             case 3:
-                return 19;
+                return 21;
             default:
                 return 0;
                 break;
@@ -730,7 +814,7 @@ simulated state MeleeSustained extends WeaponFiring
 
     simulated function byte GetWeaponStateId()
     {
-        return 13;
+        return 15;
     }
     stop;    
 }
@@ -741,7 +825,7 @@ simulated state MeleeBlocking
 
     simulated function byte GetWeaponStateId()
     {
-        return 22;
+        return 24;
     }
 
     simulated function BeginState(name PreviousStateName)
@@ -794,7 +878,7 @@ simulated state MeleeBlocking
             if(IsTimerActive('ParryCheckTimer'))
             {
                 KFPawn(InstigatedBy).NotifyAttackParried(Instigator, 255);
-                ClientPlayParryEffects(true);                
+                ClientPlayParryEffects();                
             }
             else
             {
@@ -810,10 +894,11 @@ simulated state MeleeBlocking
         local float FacingDot;
         local Vector Dir2d;
         local KFPerk InstigatorPerk;
+        local byte BlockTypeIndex;
 
         Dir2d = Normal2D(DamageCauser.Location - Instigator.Location);
         FacingDot = vector(Instigator.Rotation) Dot Dir2d;
-        if((FacingDot > 0.087) && CanBlockDamageType(DamageType))
+        if((FacingDot > 0.087) && CanBlockDamageType(DamageType, BlockTypeIndex))
         {
             InstigatorPerk = GetPerk();
             if(IsTimerActive('ParryCheckTimer'))
@@ -823,7 +908,7 @@ simulated state MeleeBlocking
                 {
                     KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
                 }
-                ClientPlayParryEffects(true);
+                ClientPlayParryEffects(BlockTypeIndex);
                 if(InstigatorPerk != none)
                 {
                     InstigatorPerk.SetSuccessfullParry();
@@ -832,7 +917,7 @@ simulated state MeleeBlocking
             else
             {
                 InDamage *= BlockDamageMitigation;
-                ClientPlayBlockEffects();
+                ClientPlayBlockEffects(BlockTypeIndex);
                 if(InstigatorPerk != none)
                 {
                     InstigatorPerk.SetSuccessfullBlock();
@@ -849,13 +934,14 @@ simulated state MeleeBlocking
         }
     }
 
-    unreliable client simulated function ClientPlayBlockEffects()
+    unreliable client simulated function ClientPlayBlockEffects(optional byte BlockTypeIndex)
     {
         local int AnimIdx;
         local float Duration;
         local KFPerk InstigatorPerk;
 
-        global.ClientPlayBlockEffects();
+        BlockTypeIndex = 255;
+        global.ClientPlayBlockEffects(BlockTypeIndex);
         InstigatorPerk = GetPerk();
         if(InstigatorPerk != none)
         {
@@ -870,15 +956,6 @@ simulated state MeleeBlocking
                 PlayAnimation(MeleeBlockHitAnims[AnimIdx]);
                 SetTimer(Duration, false, 'BlockLoopTimer');
             }
-        }
-    }
-
-    reliable client simulated function ClientPlayParryEffects(bool bInterruptSuccess)
-    {
-        global.ClientPlayParryEffects(bInterruptSuccess);
-        if(!bInterruptSuccess && Instigator.IsLocallyControlled())
-        {
-            StopFire(1);
         }
     }
     stop;    
@@ -944,8 +1021,8 @@ defaultproperties
     EstimatedFireRate=100
     MinMeleeSustainedTime=0.5
     MeleeSustainedWarmupTime=0.25
-    BlockDamageType(0)=class'KFDT_Bludgeon'
-    BlockDamageType(1)=class'KFDT_Slashing'
+    BlockTypes(0)=(dmgType=Class'KFDT_Bludgeon',BlockSound=none,ParrySound=none,BlockParticleSys=none,ParryParticleSys=none)
+    BlockTypes(1)=(dmgType=Class'KFDT_Slashing',BlockSound=none,ParrySound=none,BlockParticleSys=none,ParryParticleSys=none)
     BlockDamageMitigation=0.5
     ParryDamageMitigationPercent=0.2
     MeleeAttackSettleAnims(0)=Settle_V1

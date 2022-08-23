@@ -245,7 +245,7 @@ protected function EndKnockdown()
 	// If we have a dismembered limb (partial kinematics), then we can't get back up
 	// note: It should be possible to handle this using bEnableFullAnimWeightBodies/bAlwaysFullAnimWeight
 	// on the dismembered limb, but for now just kill the pawn.
-	if ( KFPOwner.InjuredHitZones > 0 )
+	if ( KFPOwner.HasInjuredHitZones() )
 	{
 		KnockdownFailsafe();
 	}
@@ -314,7 +314,7 @@ static function TermKnockdownRagdoll(KFPawn P)
 	}
 
 	// If Pawn was using partial kinamatics for gore (e.g. Headless), reset those settings now
-	if ( P.bHasBrokenConstraints && P.InjuredHitZones > 0 )
+	if ( P.bHasBrokenConstraints && P.HasInjuredHitZones() )
 	{
 		P.InitPartialKinematics();
 		P.Mesh.UpdateMeshForBrokenConstraints();

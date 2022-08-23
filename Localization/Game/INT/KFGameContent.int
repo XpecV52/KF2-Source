@@ -155,7 +155,7 @@ ItemCategory = "Explosives"
 ItemDescription="•A technologically advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
 
 [KFProj_FlashBangGrenade]
-ItemName="FlashBang"
+ItemName="Flashbang"
 ItemCategory = "Explosives"
 ItemDescription="•Both bright and loud, do not look directly at it. Try not to hear it either.\n•While technically less than lethal, flash bangs can still hurt you, so be careful!" 
 
@@ -196,6 +196,8 @@ ItemDescription="•Choice of full-auto and 3-round-burst fire modes.\n•Alt-fi
 ItemName="SA80 L85A2 Bullpup"
 ItemCategory="Assault Rifle"
 ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The SA80 was the British Army's standard weapon before the Army was, well, eaten."
+
+
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Utility Knife"
@@ -267,6 +269,8 @@ ItemName="M4 Combat Shotgun"
 ItemCategory="Shotgun"
 ItemDescription="•Fire mode is semi-auto only.\n•Benelli designed the M4 Combat Shotgun for the US military. It is semi-automatic, allowing for a good, steady rate of fire."
 
+
+
 [KFWeap_Knife_Berserker]
 ItemName="Lawn Mower Blade"
 ItemCategory="Melee"
@@ -314,6 +318,11 @@ ItemCategory="Melee"
 ItemDescription="•Primary - medium/heavy damage, with some crowd control.\n•Secondary - slower, but with more damage.\n•Alt - block/parry\n•You do even more damage when moving forwards."
 SharedUnlockSource="Chivalry Medieval Warfare" 
 
+[KFWeap_Blunt_MaceAndShield]
+ItemName="Bone Crusher"
+ItemCategory="Melee"
+ItemDescription="•Primary - fast blunt attack, Hold Primary for combo attack.\n•Secondary - heavy blunt attack that makes more use of the Shield.\n•Alt - block/parry. Blocking reduces damage from Zed projectiles.\n• Has a powerful Shield Bash attack."
+
 [KFWeap_Flame_CaulkBurn]
 ItemName="Caulk n' Burn"
 ItemCategory="Flames"
@@ -353,6 +362,8 @@ ItemDescription="•Fire mode launches a grenade.\n•Grenade explodes on impact
 ItemName="RPG-7"
 ItemCategory="Explosives"
 ItemDescription="•Fire mode launches the rocket.\n•Rocket explodes on impact.\n•Only arms itself a few meters downrange so you don't blow your own face off.\n•And watch the back-blast!"
+
+
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="Dual 9mm Pistols"
@@ -403,6 +414,8 @@ ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming st
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Fire mode is single shot only.\n•The classic Model 1894 Winchester lever-action rifle."
+
+
 
 [KFWeap_Bow_Crossbow]
 ItemName="Crossbow"

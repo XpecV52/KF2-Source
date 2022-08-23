@@ -14,7 +14,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Gunslinger_Knife_TEX.UI_WeaponSelect_GunslingerKnife'
     AttachmentArchetype=KFWeaponAttachment'WEP_Gunslinger_Knife_ARCH.Wep_Gunslinger_Knife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Gunslinger.MeleeHelper'
-    AssociatedPerkClass=Class'KFGame.KFPerk_Gunslinger'
+    AssociatedPerkClasses=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         SkeletalMesh=SkeletalMesh'WEP_1P_Gunslinger_Knife_MESH.Wep_1stP_GunslingerKnife_Rig'
         ReplacementPrimitive=none

@@ -550,7 +550,10 @@ function ClearAuthDelegates(bool bExiting)
 event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool bSupportsAuth, out string OutError, bool bSpectator)
 {
 	local string InPassword;
-	local int i, CurIP, CurPort, ClientIP, LingeringPort;
+	local int i, CurPort, LingeringPort;
+//@HSL_BEGIN_XBOX
+	local IpAddr CurIP, ClientIP;
+//@HSL_END_XBOX
 	local bool bFound, bSuccess, bHasPrivateServerOption;
 	local UniqueNetId NullId, HostUID;
 	local Player ClientConn, CurConn;
@@ -563,7 +566,8 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 
 	Engine = GameEngine(class'Engine'.static.GetEngine());
 
-	if (WorldInfo.IsConsoleBuild())
+	// BWJ - This option exists only for dedicated server on consoles
+	if (WorldInfo.IsConsoleDedicatedServer() )
 	{
 		bHasPrivateServerOption = WorldInfo.Game.HasOption( Options, "bJoinViaInvite" );
 	}
@@ -967,8 +971,10 @@ function OnAuthReady()
  * @param ClientIP		The IP of the client
  * @param AuthTicketUID		The UID used to reference the auth data
  */
-function ProcessClientAuthResponse(UniqueNetId ClientUID, int ClientIP, int AuthTicketUID)
+//@HSL_BEGIN_XBOX
+function ProcessClientAuthResponse(UniqueNetId ClientUID, IpAddr ClientIP, int AuthTicketUID)
 {
+//@HSL_END_XBOX
 	local bool bSuccess;
 	local int i, PendingIdx, OldLength;
 
@@ -1141,8 +1147,10 @@ function OnClientAuthComplete(bool bSuccess, UniqueNetId ClientUID, Player Clien
  * @param ClientIP		The IP of the client making the request
  * @param ClientPort		The port the client is on
  */
-function ProcessServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID, int ClientIP, int ClientPort)
+//@HSL_BEGIN_XBOX
+function ProcessServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort)
 {
+//@HSL_END_XBOX
 	local int AuthTicketUID;
 	local LocalAuthSession CurServerSession;
 	local bool bFound;
@@ -1185,7 +1193,10 @@ function ProcessServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID
 function ProcessServerAuthRetryRequest(Player ClientConnection)
 {
 	local bool bFoundAndAuthenticated;
-	local int ClientIP, ClientPort, i, CurRetryIdx;
+//@HSL_BEGIN_XBOX
+	local IpAddr ClientIP; 
+//@HSL_END_XBOX
+	local int ClientPort, i, CurRetryIdx;
 	local UniqueNetId ClientUID;
 	local AuthSession CurClientSession;
 	local LocalAuthSession CurServerSession;
@@ -1266,7 +1277,10 @@ function ProcessServerAuthRetryRequest(Player ClientConnection)
 function BeginListenHostAuth(optional bool bRetry)
 {
 	local UniqueNetId ServerUID, HostUID;
-	local int ServerIP, ServerPort;
+//@HSL_BEGIN_XBOX
+	local IpAddr ServerIP;
+	local int ServerPort;
+//@HSL_END_XBOX
 	local OnlineGameSettings GameSettings;
 	local bool bGotHostInfo, bFound, bSecure;
 	local AuthSession CurClientSession, ListenSession;
@@ -1342,7 +1356,10 @@ function ContinueListenHostAuth()
 {
 	local bool bGotHostInfo;
 	local UniqueNetId HostUID;
-	local int ServerIP, ServerPort;
+//@HSL_BEGIN_XBOX
+	local IpAddr ServerIP;
+	local int ServerPort;
+//@HSL_END_XBOX
 
 	if (OnlineSub.PlayerInterface != none)
 	{
@@ -1365,7 +1382,10 @@ function EndListenHostAuth()
 {
 	local bool bGotHostInfo;
 	local UniqueNetId ServerUID, HostUID;
-	local int ServerIP, ServerPort;
+//@HSL_BEGIN_XBOX
+	local IpAddr ServerIP;
+	local int ServerPort;
+//@HSL_END_XBOX
 
 	if (OnlineSub.PlayerInterface != none)
 	{
@@ -1509,7 +1529,10 @@ static final function StaticOnClientConnectionClose(Player ClientConnection)
  */
 function OnDestroyOnlineGameComplete(name SessionName, bool bWasSuccessful)
 {
-	local int CurIP, CurPort;
+//@HSL_BEGIN_XBOX
+	local IpAddr CurIP;
+	local int CurPort;
+//@HSL_END_XBOX
 	local Player ClientConn, CurConn;
 	local AuthSession CurClientSession;
 

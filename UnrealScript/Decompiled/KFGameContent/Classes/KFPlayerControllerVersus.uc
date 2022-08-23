@@ -179,6 +179,10 @@ reliable client simulated function ClientReset()
     local array<Actor> BloodSplatActors;
     local int I;
 
+    if(!IsLocalPlayerController())
+    {
+        return;
+    }
     foreach AllActors(Class'Actor', A)
     {
         if(A.IsA('KFPersistentBloodActor'))
@@ -186,19 +190,19 @@ reliable client simulated function ClientReset()
             BloodSplatActors.AddItem(A;
             continue;            
         }
-        if(!A.IsA('Controller'))
+        if((WorldInfo.NetMode == NM_Client) && !A.IsA('Controller'))
         {
             A.Reset();
         }        
     }    
     I = 0;
-    J0xA7:
+    J0xE3:
 
     if(I < BloodSplatActors.Length)
     {
         BloodSplatActors[I].Reset();
         ++ I;
-        goto J0xA7;
+        goto J0xE3;
     }
 }
 

@@ -8,9 +8,13 @@
 interface OnlineVoiceInterface extends Interface
     abstract;
 
-function bool RegisterLocalTalker(byte LocalUserNum);
+function bool RegisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
 
-function bool UnregisterLocalTalker(byte LocalUserNum);
+function bool UnregisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
+
+function bool AreAnyLocalTalkersRegistered();
+
+function ReceiveReliableVoicePacket(byte MessageType, UniqueNetId Sender, int Length, byte InData[60]);
 
 function bool RegisterRemoteTalker(UniqueNetId PlayerID);
 
@@ -24,9 +28,13 @@ function bool IsHeadsetPresent(byte LocalUserNum);
 
 function bool SetRemoteTalkerPriority(byte LocalUserNum, UniqueNetId PlayerID, int Priority);
 
+function bool UpdatePlayerMuteSetting(bool PlayerMuteSetting);
+
 function bool MuteRemoteTalker(byte LocalUserNum, UniqueNetId PlayerID, optional bool bIsSystemWide);
 
 function bool UnmuteRemoteTalker(byte LocalUserNum, UniqueNetId PlayerID, optional bool bIsSystemWide);
+
+function bool IsTalkerMuted(UniqueNetId ConsoleId);
 
 delegate OnPlayerTalkingStateChange(UniqueNetId Player, bool bIsTalking);
 

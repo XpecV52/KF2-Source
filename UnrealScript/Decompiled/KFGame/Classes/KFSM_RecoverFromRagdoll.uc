@@ -72,7 +72,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     }
     bBlendToGetUp = true;
     GetUpBlendStartTime = PawnOwner.WorldInfo.TimeSeconds;
-    if(KFPOwner.bHasBrokenConstraints && KFPOwner.InjuredHitZones > 0)
+    if(KFPOwner.bHasBrokenConstraints && KFPOwner.HasInjuredHitZones())
     {
         PawnOwner.Mesh.PhysicsWeight = 0;
         FinishedBlendToGetUp();

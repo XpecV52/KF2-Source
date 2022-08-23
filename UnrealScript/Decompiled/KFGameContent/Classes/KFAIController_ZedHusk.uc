@@ -23,6 +23,7 @@ var float TimeBetweenFireBalls;
 var float TimeBetweenFlameThrower;
 var float FireballRandomizedValue;
 var int MaxDistanceForFlameThrower;
+var int MinDistanceForFireBall;
 var int MaxDistanceForFireBall;
 var float LastCheckSpecialMoveTime;
 var float CheckSpecialMoveTime;
@@ -39,7 +40,6 @@ var const float FireballFireIntervalHard;
 var const float FireballFireIntervalSuicidal;
 var const float FireballFireIntervalHellOnEarth;
 var const float LowIntensityAttackScaleOfFireballInterval;
-var Vector FireOffset;
 
 function bool IsNearDoor()
 {
@@ -178,11 +178,7 @@ function bool CanDoFireball(float DistToTargetSq)
     {
         return false;
     }
-    if((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq <= float(MaxDistanceForFireBall * MaxDistanceForFireBall)) && MyKFPawn.CanDoSpecialMove(20))
-    {
-        return true;
-    }
-    return false;
+    return ((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq >= Square(float(MinDistanceForFireBall))) && DistToTargetSq <= Square(float(MaxDistanceForFireBall))) && MyKFPawn.CanDoSpecialMove(20);
 }
 
 event bool SetEnemy(Pawn NewEnemy)
@@ -222,7 +218,7 @@ function DoStrike()
     super.DoStrike();
 }
 
-function ShootFireball(class<KFProj_Husk_Fireball> FireballClass)
+function ShootFireball(class<KFProj_Husk_Fireball> FireballClass, Vector FireballOffset)
 {
     local Vector SocketLocation, DirToEnemy, HitLocation, HitNormal;
     local KFProj_Husk_Fireball MyFireball;
@@ -244,7 +240,7 @@ function ShootFireball(class<KFProj_Husk_Fireball> FireballClass)
         DebugAimError();
         return;
     }
-    SocketLocation = MyKFPawn.GetPawnViewLocation() + (FireOffset >> Pawn.GetViewRotation());
+    SocketLocation = MyKFPawn.GetPawnViewLocation() + (FireballOffset >> Pawn.GetViewRotation());
     if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(20))
     {
         AimLocation = Enemy.Location;
@@ -379,6 +375,7 @@ defaultproperties
     TimeBetweenFlameThrower=5
     FireballRandomizedValue=1
     MaxDistanceForFlameThrower=500
+    MinDistanceForFireBall=300
     MaxDistanceForFireBall=4000
     CheckSpecialMoveTime=0.25
     FireballSocketName=FireballSocket
@@ -394,7 +391,6 @@ defaultproperties
     FireballFireIntervalSuicidal=4
     FireballFireIntervalHellOnEarth=3.5
     LowIntensityAttackScaleOfFireballInterval=1.25
-    FireOffset=(X=15,Y=32,Z=-12)
     bCanTeleportCloser=false
     bUseDesiredRotationForMelee=false
     EvadeGrenadeChance=0.9

@@ -16,6 +16,9 @@ struct transient native URL
 	var		string			Map;		// Map name, i.e. "SkyCity", default is "Index".
 	var		array<string>	Op;			// Options.
 	var		string			Portal;		// Portal to enter through, default is "".
+//@HSL_BEGIN_XBOX - BWJ - 11/20/14 - Adding support for secure address (for use in XB1)
+	var		string			SecureAddress;
+//@HSL_END_XBOX
 	var		int 			Valid;
 structcpptext
 {
@@ -51,6 +54,22 @@ structcpptext
 	 */
 	static void FilterURLString( FString& Str );
 
+//@HSL_BEGIN_XBOX
+	/**
+	 * Static: Replaces any special URL characters with encoded versions
+	 *
+	 * @param Str String to be encoded
+	 */
+	static void EncodeURLString( FString& Str );
+
+	/**
+	 * Static: Replaces any encoded versions of special URL characters with their decoded versions
+	 *
+	 * @param Str String to be decoded
+	 */
+	static void DecodeURLString( FString& Str );
+//@HSL_END_XBOX
+
 
 	// Functions.
 	UBOOL IsInternal() const;
@@ -63,6 +82,9 @@ structcpptext
 	void RemoveOption( const TCHAR* Key, const TCHAR* Section = NULL, const TCHAR* Filename = NULL);
 	FString String( UBOOL FullyQualified=0 ) const;
 	friend FArchive& operator<<( FArchive& Ar, FURL& U );
+//@HSL_BEGIN_XBOX - BWJ - 11-20-14- Adding support for secure address (for use in XB1)
+	UBOOL HasSecureAddress() const;
+//@HSL_END_XBOX
 
 	// Operators.
 	UBOOL operator==( const FURL& Other ) const;
@@ -294,6 +316,11 @@ struct native AnimTag
  */
 var config array<AnimTag> AnimTags;	
 
+//@HSL_BEGIN_XBOX
+/** True if trial mode is active */
+var const transient bool bTrialActive;
+//@HSL_END_XBOX
+
 /**
  * Creates a UNetDriver and associates a name with it.
  *
@@ -332,6 +359,44 @@ native static function int GetWebAdminPort();
 native final function DisableServerTakeover();
 
 
+//@HSL_BEGIN_XBOX
+/** Encodes special URL characters in a string */
+native static final noexport function EncodeURLString(out string Str);
+
+/** Decodes special URL characters in a string */
+native static final noexport function DecodeURLString(out string Str);
+//@HSL_END_XBOX
+
+
+//@HSL_BEGIN
+/** Retrieves percentage of installation finished for streaming install */
+native static final function float GetPercentageOfStreamingInstallComplete();
+/** Checks to see if streaming install has finished */
+native static final function bool IsGameFullyInstalled();
+/** Checks to see if some particular chunks have finished installing */
+native static final function bool AreChunksInstalled(const out array<int> ChunksToCheck);
+/** Gets the install progress of some particular chunks */
+native static final function float GetChunksInstallProgress(const out array<int> ChunksToCheck);
+/** Gets the install progress of a particular chunk */
+native static final function float GetChunkInstallProgress(int ChunkToCheck);
+//@HSL_END
+
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)

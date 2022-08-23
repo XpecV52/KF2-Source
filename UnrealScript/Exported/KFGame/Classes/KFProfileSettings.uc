@@ -72,7 +72,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
-#linenumber 12
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;#linenumber 12
 
 struct native WeaponSkinPairs
 {
@@ -296,8 +297,10 @@ defaultproperties
    DefaultSettings(49)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=160,Data=(Type=SDT_Int32)))
    DefaultSettings(50)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=161,Data=(Type=SDT_Int32)))
    DefaultSettings(51)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=162,Data=(Type=SDT_Int32)))
-   DefaultSettings(52)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=165,Data=(Type=SDT_String)))
-   DefaultSettings(53)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=163,Data=(Type=SDT_Int32,Value1=1)))
+   DefaultSettings(52)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=167,Data=(Type=SDT_Int32)))
+   DefaultSettings(53)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=165,Data=(Type=SDT_String)))
+   DefaultSettings(54)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=163,Data=(Type=SDT_Int32,Value1=1)))
+   DefaultSettings(55)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=166,Data=(Type=SDT_Int32,Value1=-1)))
    VersionNumber=4
    ProfileMappings(0)=(Id=100,Name="Quick Weapon Select",MappingType=PVMT_RawValue,ValueMappings=((Id=0),))
    ProfileMappings(1)=(Id=101,Name="Current Layout Index",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))
@@ -351,8 +354,10 @@ defaultproperties
    ProfileMappings(49)=(Id=160,Name="Show Welder in Inventory")
    ProfileMappings(50)=(Id=161,Name="Auto Turn off")
    ProfileMappings(51)=(Id=162,Name="Reduce High Pitch Sounds")
-   ProfileMappings(52)=(Id=165,Name="Weapon Skin KeyValue Pairs")
-   ProfileMappings(53)=(Id=163,Name="Show Console Crosshair")
+   ProfileMappings(52)=(Id=167,Name="Disable Auto Upgrade")
+   ProfileMappings(53)=(Id=165,Name="Weapon Skin KeyValue Pairs")
+   ProfileMappings(54)=(Id=163,Name="Show Console Crosshair")
+   ProfileMappings(55)=(Id=166,Name="Saved Emote ID")
    Name="Default__KFProfileSettings"
    ObjectArchetype=OnlineProfileSettings'Engine.Default__OnlineProfileSettings'
 }

@@ -33,22 +33,27 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 }
 
 /** AnimNotify which launches the fireball projectile */
-function ANIMNOTIFY_HuskFireballAttack()
+simulated function ANIMNOTIFY_HuskFireballAttack()
 {
 	local float FireballStartTime;
 
-	// Determine how strong the fireball attack will be
-	if( IsDoingSpecialMove(SM_PlayerZedMove_LMB) )
+	if( WorldInfo.NetMode != NM_Client )
 	{
-		FireballStartTime = KFSM_PlayerHusk_FireBallAttack( SpecialMoves[SpecialMove] ).HoldStartTime;
-		FireballStrength = fClamp( (WorldInfo.TimeSeconds - FireballStartTime) * FireballStrengthPerSecond, FireballStrengthRange.X, FireballStrengthRange.Y );
-	}
-	else
-	{
-		FireballStrength = 1.f;
+		// Determine how strong the fireball attack will be
+		if( IsDoingSpecialMove(SM_PlayerZedMove_LMB) )
+		{
+			FireballStartTime = KFSM_PlayerHusk_FireBallAttack( SpecialMoves[SpecialMove] ).HoldStartTime;
+			FireballStrength = fClamp( (WorldInfo.TimeSeconds - FireballStartTime) * FireballStrengthPerSecond, FireballStrengthRange.X, FireballStrengthRange.Y );
+		}
+		else
+		{
+			FireballStrength = 1.f;
+		}
+
+		ShootFireball();
 	}
 
-	ShootFireball();
+	SetFireLightEnabled( false );
 }
 
 /** Shoots a fireball at the crosshair */
@@ -75,7 +80,7 @@ function ShootFireball()
 
 	    Dir = vector( Rotation );
 	    TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
-	    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + ( vector(PC.PlayerCamera.CameraCache.POV.Rotation)*100000 );
+	    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + ( vector(PC.PlayerCamera.CameraCache.POV.Rotation)*10000.f );
 
 		// Shoot the fireball
 		MyFireball = Spawn( FireballClass, self,, SocketLocation, Rotation );
@@ -176,6 +181,21 @@ defaultproperties
    FireballClass=Class'kfgamecontent.KFProj_Husk_Fireball_Versus'
    PlayerFireOffset=(X=15.000000,Y=32.000000,Z=-12.000000)
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHusk_Versus:ExploTemplate0'
+   Begin Object Class=PointLightComponent Name=ChestLightComponent0 Archetype=PointLightComponent'kfgamecontent.Default__KFPawn_ZedHusk:ChestLightComponent0'
+      Radius=160.000000
+      Brightness=0.500000
+      LightColor=(B=40,G=155,R=250,A=255)
+      bEnabled=False
+      CastShadows=False
+      LightingChannels=(Outdoor=True)
+      MaxBrightness=0.500000
+      MinBrightness=0.400000
+      AnimationType=1
+      AnimationFrequency=2.000000
+      Name="ChestLightComponent0"
+      ObjectArchetype=PointLightComponent'kfgamecontent.Default__KFPawn_ZedHusk:ChestLightComponent0'
+   End Object
+   ChestLightComponent=ChestLightComponent0
    bVersusZed=True
    ThirdPersonViewOffset=(OffsetHigh=(X=-175.000000,Y=75.000000,Z=40.000000),OffsetMid=(X=-160.000000,Y=60.000000,Z=0.000000),OffsetLow=(X=-220.000000,Y=75.000000,Z=50.000000))
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedHusk:MeleeHelper_0'
@@ -327,8 +347,6 @@ defaultproperties
       SpecialMoveClasses(26)=None
       SpecialMoveClasses(27)=None
       SpecialMoveClasses(28)=Class'kfgamecontent.KFSM_PlayerHusk_Suicide'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHusk:SpecialMoveHandler_0'
    End Object

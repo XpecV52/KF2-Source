@@ -16,7 +16,7 @@ static simulated event EFilterTypeUI GetAltTraderFilter()
 
 defaultproperties
 {
-   NumPellets(0)=10
+   NumPellets(0)=9
    NumPellets(1)=()
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
@@ -24,7 +24,7 @@ defaultproperties
    MagazineCapacity(0)=6
    bHasIronSights=True
    bCanBeReloaded=True
-   PenetrationPower(0)=3.000000
+   PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshFOV=75.000000
    MeshIronSightFOV=52.000000
@@ -34,8 +34,8 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
-   SpareAmmoCapacity(0)=45
-   InitialSpareMags(0)=3
+   SpareAmmoCapacity(0)=57
+   InitialSpareMags(0)=4
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    BonesToLockOnEmpty(0)="RW_Hammer"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Fire_1P')
@@ -67,7 +67,8 @@ defaultproperties
    RecoilISMinPitchLimit=65485
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
-   AssociatedPerkClass=Class'KFGame.KFPerk_Firebug'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
+   AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Support'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -79,14 +80,14 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_DragonsBreath'
-   FireInterval(0)=0.770000
+   FireInterval(0)=0.690000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   Spread(0)=0.100000
+   Spread(0)=0.160000
    Spread(1)=()
-   InstantHitDamage(0)=15.000000
+   InstantHitDamage(0)=27.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=25.000000

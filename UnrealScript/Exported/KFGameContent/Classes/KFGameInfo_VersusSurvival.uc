@@ -507,6 +507,13 @@ function byte PickTeam(byte Current, Controller C, const out UniqueNetId PlayerI
 {
     local int Group;
 
+
+
+
+
+
+
+
 	Group = GetPlayerGroup(PlayerId);
 	if (Group == INDEX_NONE)
 	{

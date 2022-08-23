@@ -129,12 +129,14 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
 {
     local PlayerInput Input;
     local KFGameReplicationInfo KFGRI;
+    local KFPlayerController KFPC;
 
+    KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
     switch(Switch)
     {
         case 4:
             KFGRI = KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI);
-            if((KFGRI != none) && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')
+            if(((KFGRI != none) && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial') || (KFPC != none) && KFPC.bDisableAutoUpgrade)
             {
                 return Left(default.UseTraderMessage, InStr(default.UseTraderMessage, "<%HOLD%>"));
             }

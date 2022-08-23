@@ -23,6 +23,7 @@ enum ECrateSeries
     Ecrate_Exhibit,
     Ecrate_EliteMedic,
     Ecrate_Victorian,
+    Ecrate_MaceShield,
     ECrate_HorzineSupply_S1,
     ECrate_HorzineSupply_S2,
     ECrate_HorzineSupply_S3,
@@ -36,6 +37,13 @@ enum ECrateSeries
     ECrate_PSNHorzineSupply_CS2,
     ECrate_PSNHorzineSupply_WS1,
     ECrate_PSNHorzineSupply_WS2,
+    ECrate_PSNHorzineSupply_WS3,
+    ECrate_HorzineSupply_S10,
+    ECrate_HorzineSupply_S11,
+    ECrate_Emote_S1,
+    Ecrate_TacticalHorzineMKII,
+    ECrate_HorzineSupply_S12,
+    ECrate_Deepstrike,
     ECrateSeries_MAX
 };
 
@@ -119,17 +127,25 @@ defaultproperties
     ItemKeyArray(11)=(ContainerId=4115,KeyId=4114,ItemSeriesName=exhibit,ContainerType=EItemDisplayContainerType.IDT_USB)
     ItemKeyArray(12)=(ContainerId=4145,KeyId=4144,ItemSeriesName=elitemedic,ContainerType=EItemDisplayContainerType.IDT_USB)
     ItemKeyArray(13)=(ContainerId=4214,KeyId=4215,ItemSeriesName=victorian,ContainerType=EItemDisplayContainerType.IDT_USB)
-    ItemKeyArray(14)=(ContainerId=3284,KeyId=3282,ItemSeriesName=horzine1,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(15)=(ContainerId=3285,KeyId=3283,ItemSeriesName=horzine2,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(16)=(ContainerId=3598,KeyId=3599,ItemSeriesName=horzine3,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(17)=(ContainerId=3600,KeyId=3601,ItemSeriesName=horzine4,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(18)=(ContainerId=3882,KeyId=3880,ItemSeriesName=horzine5,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(19)=(ContainerId=3883,KeyId=3881,ItemSeriesName=horzine6,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(20)=(ContainerId=4107,KeyId=4105,ItemSeriesName=horzine7,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(21)=(ContainerId=4108,KeyId=4106,ItemSeriesName=horzine8,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(22)=(ContainerId=4207,KeyId=4208,ItemSeriesName=horzine9,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(23)=(ContainerId=4304,KeyId=4303,ItemSeriesName=psncrate_cs1,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(24)=(ContainerId=4305,KeyId=4303,ItemSeriesName=psncrate_cs2,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(25)=(ContainerId=4307,KeyId=4303,ItemSeriesName=psncrate_ws1,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(26)=(ContainerId=4306,KeyId=4303,ItemSeriesName=psncrate_ws2,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(14)=(ContainerId=4561,KeyId=4562,ItemSeriesName=maceshield,ContainerType=EItemDisplayContainerType.IDT_USB)
+    ItemKeyArray(15)=(ContainerId=3284,KeyId=3282,ItemSeriesName=horzine1,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(16)=(ContainerId=3285,KeyId=3283,ItemSeriesName=horzine2,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(17)=(ContainerId=3598,KeyId=3599,ItemSeriesName=horzine3,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(18)=(ContainerId=3600,KeyId=3601,ItemSeriesName=horzine4,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(19)=(ContainerId=3882,KeyId=3880,ItemSeriesName=horzine5,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(20)=(ContainerId=3883,KeyId=3881,ItemSeriesName=horzine6,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(21)=(ContainerId=4107,KeyId=4105,ItemSeriesName=horzine7,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(22)=(ContainerId=4108,KeyId=4106,ItemSeriesName=horzine8,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(23)=(ContainerId=4207,KeyId=4208,ItemSeriesName=horzine9,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(24)=(ContainerId=4304,KeyId=4303,ItemSeriesName=psncrate_cs1,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(25)=(ContainerId=4305,KeyId=4303,ItemSeriesName=psncrate_cs2,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(26)=(ContainerId=4307,KeyId=4303,ItemSeriesName=psncrate_ws1,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(27)=(ContainerId=4306,KeyId=4303,ItemSeriesName=psncrate_ws2,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(28)=(ContainerId=4569,KeyId=4303,ItemSeriesName=psncrate_ws3,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(29)=(ContainerId=4499,KeyId=4501,ItemSeriesName=horzine10,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(30)=(ContainerId=4500,KeyId=4502,ItemSeriesName=horzine11,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(31)=(ContainerId=4541,KeyId=4540,ItemSeriesName=emote1,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(32)=(ContainerId=4514,KeyId=4513,ItemSeriesName=tacticalhorzineII,ContainerType=EItemDisplayContainerType.IDT_USB)
+    ItemKeyArray(33)=(ContainerId=4604,KeyId=4603,ItemSeriesName=horzine12,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(34)=(ContainerId=4593,KeyId=4594,ItemSeriesName=deepstrike,ContainerType=EItemDisplayContainerType.IDT_USB)
 }

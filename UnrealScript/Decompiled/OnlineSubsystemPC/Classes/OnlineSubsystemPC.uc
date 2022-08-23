@@ -24,13 +24,17 @@ var array< delegate<OnFriendsChange> > FriendsChangeDelegates;
 var array< delegate<OnMutingChange> > MutingChangeDelegates;
 var delegate<OnLoginChange> __OnLoginChange__Delegate;
 var delegate<OnLoginCancelled> __OnLoginCancelled__Delegate;
+var delegate<OnCurrentUserChanged> __OnCurrentUserChanged__Delegate;
+var delegate<OnTokenAndSignatureRetrieved> __OnTokenAndSignatureRetrieved__Delegate;
 var delegate<OnMutingChange> __OnMutingChange__Delegate;
 var delegate<OnReadTitleFileComplete> __OnReadTitleFileComplete__Delegate;
 var delegate<OnPlayerTalkingStateChange> __OnPlayerTalkingStateChange__Delegate;
 var delegate<OnFriendsChange> __OnFriendsChange__Delegate;
 var delegate<OnLoginComplete> __OnLoginComplete__Delegate;
 var delegate<OnLoginFailed> __OnLoginFailed__Delegate;
+var delegate<OnSystemUserControllerPairingChanged> __OnSystemUserControllerPairingChanged__Delegate;
 var delegate<OnLogoutCompleted> __OnLogoutCompleted__Delegate;
+var delegate<OnPrivilegeLevelChecked> __OnPrivilegeLevelChecked__Delegate;
 var delegate<OnReadProfileSettingsComplete> __OnReadProfileSettingsComplete__Delegate;
 var delegate<OnWriteProfileSettingsComplete> __OnWriteProfileSettingsComplete__Delegate;
 var delegate<OnLoginStatusChange> __OnLoginStatusChange__Delegate;
@@ -51,12 +55,13 @@ var delegate<OnReadPlayerStorageComplete> __OnReadPlayerStorageComplete__Delegat
 var delegate<OnAddFriendByNameComplete> __OnAddFriendByNameComplete__Delegate;
 var delegate<OnFriendInviteReceived> __OnFriendInviteReceived__Delegate;
 var delegate<OnReceivedGameInvite> __OnReceivedGameInvite__Delegate;
+var delegate<OnReceivedGameInviteById> __OnReceivedGameInviteById__Delegate;
 var delegate<OnJoinFriendGameComplete> __OnJoinFriendGameComplete__Delegate;
 var delegate<OnFriendMessageReceived> __OnFriendMessageReceived__Delegate;
 var delegate<OnUnlockAchievementComplete> __OnUnlockAchievementComplete__Delegate;
 var delegate<OnReadAchievementsComplete> __OnReadAchievementsComplete__Delegate;
-var delegate<OnPrivilegeLevelChecked> __OnPrivilegeLevelChecked__Delegate;
 var delegate<OnOnlineServiceAuthComplete> __OnOnlineServiceAuthComplete__Delegate;
+var delegate<OnStatisticChanged> __OnStatisticChanged__Delegate;
 
 // Export Uonlinesubsystempc::execInit(FFrame&, void* const)
 native event bool Init();
@@ -64,6 +69,16 @@ native event bool Init();
 delegate OnLoginChange(byte LocalUserNum);
 
 delegate OnLoginCancelled();
+
+delegate OnCurrentUserChanged(byte LocalUserNum, string CurrentUser, string LoggedInUser);
+
+delegate OnTokenAndSignatureRetrieved(byte LocalUserNum, string URL, string Token, string Signature);
+
+function GetTokenAndSignatureForURL(byte LocalUserNum, string URL);
+
+function AddURLTokenRetrievedDelegate(byte LocalUserNum, delegate<OnTokenAndSignatureRetrieved> tsrDelegate);
+
+function ClearURLTokenRetrievedDelegate(byte LocalUserNum, delegate<OnTokenAndSignatureRetrieved> tsrDelegate);
 
 delegate OnMutingChange();
 
@@ -87,7 +102,7 @@ function ClearPlayerTalkingDelegate(delegate<OnPlayerTalkingStateChange> TalkerD
 
 delegate OnFriendsChange();
 
-function bool ShowLoginUI(optional bool bShowOnlineOnly)
+function bool ShowLoginUI(byte LocalUserNum, optional bool bShowOnlineOnly)
 {
     bShowOnlineOnly = false;
 }
@@ -107,6 +122,14 @@ delegate OnLoginFailed(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineServerCo
 function AddLoginFailedDelegate(byte LocalUserNum, delegate<OnLoginFailed> LoginDelegate);
 
 function ClearLoginFailedDelegate(byte LocalUserNum, delegate<OnLoginFailed> LoginDelegate);
+
+delegate OnSystemUserControllerPairingChanged(int NewLocalUserNum, int PreviousLocalUserNum);
+
+function AddSystemUserContrllerPairingChangedDelegate(delegate<OnSystemUserControllerPairingChanged> PairingChangeDelegate);
+
+function ClearSystemUserContrllerPairingChangedDelegate(delegate<OnSystemUserControllerPairingChanged> PairingChangeDelegate);
+
+function bool PairUserAndControllerAtIndex(byte PlayerIndex, byte ControllerIndex, int PairIndex);
 
 function bool Logout(byte LocalUserNum);
 
@@ -132,23 +155,117 @@ function string GetPlayerNickname(byte LocalUserNum)
     return LoggedInPlayerName;
 }
 
-function Engine.OnlineSubsystem.EFeaturePrivilegeLevel CanPlayOnline(byte LocalUserNum);
+function bool GetControllerIdFromNetId(UniqueNetId PlayerID, out byte ControllerId);
 
-function Engine.OnlineSubsystem.EFeaturePrivilegeLevel CanCommunicate(byte LocalUserNum);
+delegate OnPrivilegeLevelChecked(byte LocalUserNum, Engine.OnlineSubsystem.EFeaturePrivilege Privilege, Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel, bool bDiffersFromHint);
 
-function Engine.OnlineSubsystem.EFeaturePrivilegeLevel CanDownloadUserContent(byte LocalUserNum);
+function AddPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
 
-function Engine.OnlineSubsystem.EFeaturePrivilegeLevel CanPurchaseContent(byte LocalUserNum);
+function ClearPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
 
-function Engine.OnlineSubsystem.EFeaturePrivilegeLevel CanViewPlayerProfiles(byte LocalUserNum);
+function bool CanPlayOnline(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
 
-function Engine.OnlineSubsystem.EFeaturePrivilegeLevel CanShowPresenceInformation(byte LocalUserNum);
+function bool CanCommunicateText(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanCommunicateVideo(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanCommunicateVoice(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanShareUserCreatedContent(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanPurchaseContent(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanViewPlayerProfiles(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanShowPresenceInformation(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanRecordDVRClips(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanUseCloudStorage(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanAccessPremiumContent(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanAccessPremiumVideoContent(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanBrowseInternet(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanShareWithSocialNetwork(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanShareKinectContent(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
+
+function bool CanUploadFitnessData(byte LocalUserNum, out Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve, optional string Reason)
+{
+    bAttemptToResolve = false;
+    Reason = "";
+}
 
 function bool IsFriend(byte LocalUserNum, UniqueNetId PlayerID);
 
 function bool AreAnyFriends(byte LocalUserNum, out array<FriendsQuery> Query);
 
 function bool IsMuted(byte LocalUserNum, UniqueNetId PlayerID);
+
+function bool IsTalkerMuted(UniqueNetId ConsoleId);
 
 function bool ShowFriendsUI(byte LocalUserNum);
 
@@ -159,6 +276,10 @@ function ClearLoginChangeDelegate(delegate<OnLoginChange> LoginDelegate);
 function AddLoginCancelledDelegate(delegate<OnLoginCancelled> CancelledDelegate);
 
 function ClearLoginCancelledDelegate(delegate<OnLoginCancelled> CancelledDelegate);
+
+function AddCurrentUserChangedDelegate(delegate<OnCurrentUserChanged> CurrentUserDelegate);
+
+function ClearCurrentUserChangedDelegate(delegate<OnCurrentUserChanged> CurrentUserDelegate);
 
 function bool IsLocalLogin(byte LocalUserNum);
 
@@ -365,9 +486,13 @@ function ClearReadFriendsCompleteDelegate(byte LocalUserNum, delegate<OnReadFrie
 
 function Engine.OnlineSubsystem.EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum, out array<OnlineFriend> Friends, optional int Count, optional int StartingAt);
 
-function bool RegisterLocalTalker(byte LocalUserNum);
+function bool RegisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
 
-function bool UnregisterLocalTalker(byte LocalUserNum);
+function bool UnregisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
+
+function bool AreAnyLocalTalkersRegistered();
+
+function ReceiveReliableVoicePacket(byte MessageType, UniqueNetId Sender, int Length, byte InData[60]);
 
 function bool RegisterRemoteTalker(UniqueNetId PlayerID);
 
@@ -422,11 +547,27 @@ function bool SetSpeechRecognitionObject(byte LocalUserNum, SpeechRecognition Sp
 
 delegate OnReadOnlineStatsComplete(bool bWasSuccessful);
 
-function bool ReadOnlineStats(const out array<UniqueNetId> Players, OnlineStatsRead StatsRead);
+function bool SendPlayerSessionStart(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId);
 
-function bool ReadOnlineStatsForFriends(byte LocalUserNum, OnlineStatsRead StatsRead);
+function bool SendPlayerSessionEnd(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId, int ExitStatusId);
 
-function bool ReadOnlineStatsByRank(OnlineStatsRead StatsRead, optional int StartIndex, optional int NumToRead)
+function bool SendPlayerSessionPause(byte LocalUserNum, string MultiplayerCorrelationId);
+
+function bool SendPlayerSessionResume(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId);
+
+function bool SendTestEvent(byte LocalUserNum, string TestStatInstancing, int TestStatParameter);
+
+function bool ReadOnlineStatsForPlayer(byte LocalUserNum, OnlineStatsRead StatsRead);
+
+function bool ReadOnlineStats(byte LocalUserNum, const out array<UniqueNetId> Players, OnlineStatsRead StatsRead);
+
+function bool ReadOnlineStatsForFriends(byte LocalUserNum, OnlineStatsRead StatsRead, optional bool FavoriteFriendsOnly, optional int NumToRead)
+{
+    FavoriteFriendsOnly = false;
+    NumToRead = 100;
+}
+
+function bool ReadOnlineStatsByRank(byte LocalUserNum, OnlineStatsRead StatsRead, optional int StartIndex, optional int NumToRead)
 {
     StartIndex = 1;
     NumToRead = 100;
@@ -461,9 +602,9 @@ function bool RegisterHostStatGuid(const out string HostStatGuid);
 
 delegate OnRegisterHostStatGuidComplete(bool bWasSuccessful);
 
-function AddRegisterHostStatGuidCompleteDelegate(delegate<OnFlushOnlineStatsComplete> RegisterHostStatGuidCompleteDelegate);
+function AddRegisterHostStatGuidCompleteDelegate(delegate<OnRegisterHostStatGuidComplete> RegisterHostStatGuidCompleteDelegate);
 
-function ClearRegisterHostStatGuidCompleteDelegateDelegate(delegate<OnFlushOnlineStatsComplete> RegisterHostStatGuidCompleteDelegate);
+function ClearRegisterHostStatGuidCompleteDelegateDelegate(delegate<OnRegisterHostStatGuidComplete> RegisterHostStatGuidCompleteDelegate);
 
 function string GetClientStatGuid();
 
@@ -501,7 +642,7 @@ function Engine.OnlineSubsystem.ENetworkNotificationPosition GetNetworkNotificat
 
 function SetNetworkNotificationPosition(Engine.OnlineSubsystem.ENetworkNotificationPosition NewPos);
 
-delegate OnControllerChange(int ControllerId, bool bIsConnected);
+delegate OnControllerChange(int ControllerId, bool bIsConnected, bool bPauseGame);
 
 function AddControllerChangeDelegate(delegate<OnControllerChange> ControllerChangeDelegate);
 
@@ -554,6 +695,8 @@ function bool ShowKeyboardUI(byte LocalUserNum, string TitleText, string Descrip
     bShouldValidate = true;    
     MaxResultLength = 256;
 }
+
+function bool HideKeyboardUI(byte LocalUserNum);
 
 delegate OnKeyboardInputComplete(bool bWasSuccessful);
 
@@ -622,17 +765,23 @@ function ClearFriendInviteReceivedDelegate(byte LocalUserNum, delegate<OnFriendI
 
 function bool SendMessageToFriend(byte LocalUserNum, UniqueNetId Friend, string Message);
 
-function bool SendGameInviteToFriend(byte LocalUserNum, UniqueNetId Friend, optional string Text);
+function bool SendGameInviteToFriend(byte LocalUserNum, name SessionName, UniqueNetId Friend, optional string Text);
 
-function bool SendGameInviteToFriends(byte LocalUserNum, array<UniqueNetId> Friends, optional string Text);
+function bool SendGameInviteToFriends(byte LocalUserNum, name SessionName, array<UniqueNetId> Friends, optional string Text);
 
-function bool SendGameInviteToUsers(string SessionId, array<string> MembersToInvite, optional string Text);
+function bool SendGameInviteToUsers(string SessionId, name SessionName, array<string> MembersToInvite, optional string Text);
 
 delegate OnReceivedGameInvite(byte LocalUserNum, string InviterName);
 
 function AddReceivedGameInviteDelegate(byte LocalUserNum, delegate<OnReceivedGameInvite> ReceivedGameInviteDelegate);
 
 function ClearReceivedGameInviteDelegate(byte LocalUserNum, delegate<OnReceivedGameInvite> ReceivedGameInviteDelegate);
+
+delegate OnReceivedGameInviteById(byte LocalUserNum, UniqueNetId InviterId);
+
+function AddReceivedGameInviteByIdDelegate(byte LocalUserNum, delegate<OnReceivedGameInviteById> ReceivedGameInviteDelegate);
+
+function ClearReceivedGameInviteByIdDelegate(byte LocalUserNum, delegate<OnReceivedGameInviteById> ReceivedGameInviteDelegate);
 
 function bool JoinFriendGame(byte LocalUserNum, UniqueNetId Friend);
 
@@ -653,6 +802,8 @@ function ClearFriendMessageReceivedDelegate(byte LocalUserNum, delegate<OnFriend
 function bool MuteAll(byte LocalUserNum, bool bAllowFriends);
 
 function bool UnmuteAll(byte LocalUserNum);
+
+function bool UpdatePlayerMuteSetting(bool PlayerMuteSetting);
 
 function bool DeleteMessage(byte LocalUserNum, int MessageIndex);
 
@@ -685,12 +836,6 @@ function Engine.OnlineSubsystem.EOnlineEnumerationReadState GetAchievements(byte
     TitleId = 0;
 }
 
-delegate OnPrivilegeLevelChecked(byte LocalUserNum, Engine.OnlineSubsystem.EFeaturePrivilege Privilege, Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel);
-
-function AddPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
-
-function ClearPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
-
 delegate OnOnlineServiceAuthComplete();
 
 function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
@@ -698,6 +843,23 @@ function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComple
 function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate);
 
 function AuthWithOnlineService();
+
+function ClearAchievements(byte LocalUserNum, optional int TitleId)
+{
+    TitleId = 0;
+}
+
+delegate OnStatisticChanged(UniqueNetId PlayerNetId, name StatName, string NewStatValue);
+
+function SubscribeToStatisticEvent(byte LocalUserNum, UniqueNetId PlayerNetId, name StatName, delegate<OnStatisticChanged> EventDelegate);
+
+function UnsubscribeToStatisticEvent(byte LocalUserNum, UniqueNetId PlayerNetId, name StatName);
+
+function CheckForGameInviteOnLaunch();
+
+function StartRealtimeMultiplay();
+
+function StopRealtimeMultiplay();
 
 defaultproperties
 {

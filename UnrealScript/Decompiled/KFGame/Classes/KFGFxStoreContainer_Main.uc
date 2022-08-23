@@ -13,9 +13,11 @@ enum EStore_Filter
     EStore_WeaponSkins,
     EStore_Cosmetics,
     EStore_Consumables,
+    EStore_Emotes,
     EStore_Market_WeaponSkins,
     EStore_Market_Cosmetics,
     EStore_Market_Consumables,
+    EStore_Market_Emotes,
     EStore_Max
 };
 
@@ -23,6 +25,7 @@ var const localized string WeaponSkinsRotationString;
 var const localized string WeaponSkinsString;
 var const localized string MarketConsumablesString;
 var const localized string MarketCosmeticsString;
+var const localized string MarketEmotesString;
 var const localized string LookUpOnMarketString;
 var KFGFxMenu_Store StoreMenu;
 var KFGFxStoreContainer_Main.EStore_Filter CurrentStoreFilter;
@@ -43,9 +46,11 @@ function LocalizeText()
     LocalizedObject.SetString("all", Class'KFGFxMenu_Inventory'.default.AllString);
     LocalizedObject.SetString("weaponSkin", WeaponSkinsRotationString);
     LocalizedObject.SetString("cosmetics", Class'KFGFxMenu_Inventory'.default.CosmeticString);
+    LocalizedObject.SetString("emotes", Class'KFGFxMenu_Inventory'.default.EmotesString);
     LocalizedObject.SetString("items", Class'KFGFxMenu_Inventory'.default.ItemString);
     LocalizedObject.SetString("marketWeaponSkins", WeaponSkinsString);
     LocalizedObject.SetString("marketCosmetics", MarketCosmeticsString);
+    LocalizedObject.SetString("marketEmotes", MarketEmotesString);
     LocalizedObject.SetString("marketConsumables", MarketConsumablesString);
     SetObject("localizedText", LocalizedObject);
 }
@@ -77,6 +82,12 @@ function UpdateFilter(int NewFilterIndex)
         case 6:
             NewFilter = 6;
             break;
+        case 7:
+            NewFilter = 7;
+            break;
+        case 8:
+            NewFilter = 8;
+            break;
         default:
             break;
     }
@@ -99,13 +110,13 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
 
     if(I < StoreItemArray.Length)
     {
-        if((StoreItemArray[I].ProductId != "") && StoreItemArray[I].SignedOfferId == "")
+        if((StoreItemArray[I].ProductID != "") && StoreItemArray[I].SignedOfferId == "")
         {
             LogInternal(("Skipping PSN store item" @ string(StoreItemArray[I].Definition)) @ "since it has no store offer ID");            
         }
         else
         {
-            if(CurrentStoreFilter < 4)
+            if(CurrentStoreFilter < 5)
             {
                 if((StoreItemArray[I].Price != "") && (IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter)) || CurrentStoreFilter == 0)
                 {
@@ -144,13 +155,13 @@ function GFxObject CreateStoreItem(ItemProperties StoreItem)
 
 function bool IsFilterSame(Engine.OnlineSubsystem.ItemType FirstType, KFGFxStoreContainer_Main.EStore_Filter SecondType)
 {
-    if(SecondType < 4)
+    if(SecondType < 5)
     {
         return (FirstType + 1) == SecondType;        
     }
     else
     {
-        return (FirstType + 1) == (SecondType - 3);
+        return (FirstType + 1) == (SecondType - 4);
     }
     return false;
 }
@@ -161,4 +172,5 @@ defaultproperties
     WeaponSkinsString="Market Weapon Skins"
     MarketConsumablesString="Market Crates/USBs"
     MarketCosmeticsString="Market Cosmetics"
+    MarketEmotesString="Market Emotes"
 }

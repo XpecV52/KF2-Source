@@ -59,7 +59,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     {
         KFW = GetWeaponFromDamageCauser(DamageCauser);
     }
-    if(((KFW != none) && IsWeaponOnPerk(KFW)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
+    if(((KFW != none) && IsWeaponOnPerk(KFW,, self.Class)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
     {
         TempDamage += (float(InDamage) * (GetPassiveValue(WeaponDamage, CurrentLevel)));
         if(IsRapidFireActive())
@@ -73,7 +73,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[2])));
         }
-        if(IsWeaponOnPerk(KFW))
+        if(IsWeaponOnPerk(KFW,, self.Class))
         {
             if(IsHollowPointsActive())
             {
@@ -133,7 +133,7 @@ private static final simulated function float GetExtraReloadSpeed(int Level)
 
 simulated function float GetReloadRateScale(KFWeapon KFW)
 {
-    if(IsWeaponOnPerk(KFW))
+    if(IsWeaponOnPerk(KFW,, self.Class))
     {
         return 1 - GetExtraReloadSpeed(CurrentLevel);
     }
@@ -166,16 +166,16 @@ function ModifyArmor(out byte MaxArmor)
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return IsTacticalReloadActive() && (IsWeaponOnPerk(KFW)) || IsBackupWeapon(KFW);
+    return IsTacticalReloadActive() && (IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW);
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if((IsWeaponOnPerk(KFW, WeaponPerkClass)) && (KFW == none) || !KFW.bNoMagazine)
+    if((!bSecondary && IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine)
     {
         if(IsLargeMagActive())
         {
@@ -194,7 +194,7 @@ simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, 
     local float TempMaxSpareAmmoAmount;
 
     bSecondary = false;
-    if(IsAmmoVestActive() && (IsWeaponOnPerk(KFW, TraderItem.AssociatedPerkClass)) || IsBackupWeapon(KFW))
+    if(IsAmmoVestActive() && (IsWeaponOnPerk(KFW, TraderItem.AssociatedPerkClasses, self.Class)) || IsBackupWeapon(KFW))
     {
         TempMaxSpareAmmoAmount = float(MaxSpareAmmo);
         TempMaxSpareAmmoAmount += (float(MaxSpareAmmo) * (GetSkillValue(PerkSkills[5])));
@@ -202,14 +202,19 @@ simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, 
     }
 }
 
+private static final simulated function bool Is9mm(KFWeapon KFW)
+{
+    return ((KFW != none) && KFW.default.bIsBackupWeapon) && !KFW.IsMeleeWeapon();
+}
+
 simulated function float GetZedTimeModifier(KFWeapon W)
 {
     local name StateName;
 
     StateName = W.GetStateName();
-    if(IsProfessionalActive() && IsWeaponOnPerk(W))
+    if(IsProfessionalActive() && (IsWeaponOnPerk(W,, self.Class)) || IsBackupWeapon(W))
     {
-        if(StateName == 'Reloading')
+        if((StateName == 'Reloading') || StateName == 'AltReloading')
         {
             return 1;            
         }
@@ -221,7 +226,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
             }
         }
     }
-    if(((IsWeaponOnPerk(W)) && CouldRapidFireActive()) && ZedTimeModifyingStates.Find(StateName != -1)
+    if(((CouldRapidFireActive()) && Is9mm(W) || IsWeaponOnPerk(W,, self.Class)) && ZedTimeModifyingStates.Find(StateName != -1)
     {
         return RapidFireFiringRate;
     }
@@ -233,7 +238,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
     local KFWeapon KFW;
 
     KFW = GetOwnerWeapon();
-    if(IsImpactActive() && IsWeaponOnPerk(KFW))
+    if(IsImpactActive() && IsWeaponOnPerk(KFW,, self.Class))
     {
         return 1 + (GetSkillValue(PerkSkills[3]));
     }
@@ -255,7 +260,7 @@ static final simulated function float GetBackupWeaponSwitchModifier()
 
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW)
 {
-    if((IsWeaponOnPerk(KFW)) && IsHollowPointsActive())
+    if((IsWeaponOnPerk(KFW,, self.Class)) && IsHollowPointsActive())
     {
         CurrentRecoilModifier -= (CurrentRecoilModifier * GetHollowPointRecoilModifier());
     }
@@ -360,32 +365,36 @@ static simulated function int GetStalkerKillXP(byte Difficulty)
 simulated function DrawSpecialPerkHUD(Canvas C)
 {
     local KFPawn_Monster KFPM;
-    local float DetectionRangeSq, ThisDot;
+    local Vector ViewLocation, ViewDir;
+    local float DetectionRangeSq, ThisDot, HealthBarLength, HealthbarHeight;
 
     if(CheckOwnerPawn())
     {
         DetectionRangeSq = Square(GetPassiveValue(CloakedEnemyDetection, CurrentLevel));
+        HealthBarLength = FMin(50 * (float(C.SizeX) / 1024), 50);
+        HealthbarHeight = FMin(6 * (float(C.SizeX) / 1024), 6);
+        ViewLocation = OwnerPawn.GetPawnViewLocation();
+        ViewDir = vector(OwnerPawn.GetViewRotation());
         foreach WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
         {
-            ThisDot = Normal(vector(OwnerPawn.GetViewRotation())) Dot Normal(KFPM.Location - OwnerPawn.Location);
-            if(((KFPM.IsAliveAndWell() && KFPM.bShowHealth) && DetectionRangeSq >= VSizeSq(KFPM.Location - OwnerPawn.Location)) && ThisDot > float(0))
+            if(((!KFPM.CanShowHealth() || !KFPM.IsAliveAndWell()) || (WorldInfo.TimeSeconds - KFPM.Mesh.LastRenderTime) > 0.1) || VSizeSq(KFPM.Location - OwnerPawn.Location) > DetectionRangeSq)
             {
-                DrawZedHealthbar(C, KFPM);
+                continue;                
+            }
+            ThisDot = ViewDir Dot Normal(KFPM.Location - OwnerPawn.Location);
+            if(ThisDot > 0)
+            {
+                DrawZedHealthbar(C, KFPM, ViewLocation, HealthbarHeight, HealthBarLength);
             }            
         }        
     }
 }
 
-simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM)
+simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM, Vector CameraLocation, float HealthbarHeight, float HealthBarLength)
 {
-    local Vector ScreenPos, TargetLocation, CameraLocation;
-    local float HealthBarLength, HealthbarHeight, HealthScale;
+    local Vector ScreenPos, TargetLocation;
+    local float HealthScale;
 
-    CheckOwnerPawn();
-    CameraLocation = OwnerPawn.GetPawnViewLocation();
-    HealthBarLength = FMin(50 * (float(C.SizeX) / 1024), 50);
-    HealthbarHeight = FMin(6 * (float(C.SizeX) / 1024), 6);
-    HealthScale = float(KFPM.Health) / float(KFPM.HealthMax);
     if((KFPM.bCrawler && KFPM.Floor.Z <= -0.7) && KFPM.Physics == 8)
     {
         TargetLocation = KFPM.Location + ((vect(0, 0, -1) * KFPM.GetCollisionHeight()) * 1.2);        
@@ -399,8 +408,9 @@ simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM)
     {
         return;
     }
-    if(FastTrace(TargetLocation, CameraLocation))
+    if(Class'KFGameEngine'.static.FastTrace_PhysX(TargetLocation, CameraLocation))
     {
+        HealthScale = float(KFPM.Health) / float(KFPM.HealthMax);
         C.EnableStencilTest(true);
         C.SetDrawColor(0, 0, 0, 255);
         C.SetPos(ScreenPos.X - (HealthBarLength * 0.5), ScreenPos.Y);

@@ -96,13 +96,21 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
     return false;
 }
 
+simulated function bool AllowSprinting()
+{
+    return !IsTimerActive('PerformArtificialReload');
+}
+
 reliable client simulated function ClientNotifyAmmoAddedEmpty()
 {
     local int IdleIndex;
 
-    IdleIndex = Rand(IdleLastPickupAnims.Length);
-    PlayAnimation(IdleLastPickupAnims[IdleIndex], 0, false, 0.2);
-    SetTimer(ConsumeSpareAmmoDelay, false, 'PerformArtificialReload');
+    if(!HasAmmo(0) && !IsTimerActive('PerformArtificialReload'))
+    {
+        IdleIndex = Rand(IdleLastPickupAnims.Length);
+        PlayAnimation(IdleLastPickupAnims[IdleIndex], 0, false, 0.2);
+        SetTimer(ConsumeSpareAmmoDelay - (GetFireInterval(0)), false, 'PerformArtificialReload');
+    }
 }
 
 simulated function PerformArtificialReload()
@@ -113,6 +121,15 @@ simulated function PerformArtificialReload()
         InitializeReload();
         ServerSyncReload(SpareAmmoCount[0]);
     }
+}
+
+simulated function SendToFiringState(byte FireModeNum)
+{
+    if(FireModeNum == 2)
+    {
+        return;
+    }
+    super.SendToFiringState(FireModeNum);
 }
 
 simulated function bool ShouldIncrementFlashCountOnFire()
@@ -148,11 +165,12 @@ simulated state Active
 {
     simulated event BeginState(name PreviousStateName)
     {
-        super.BeginState(PreviousStateName);
         if(((PreviousStateName == 'WeaponSprinting') && !HasAmmo(0)) && HasSpareAmmo())
         {
+            ClearTimer('PerformArtificialReload');
             PerformArtificialReload();
         }
+        super.BeginState(PreviousStateName);
     }
 
     simulated function PlayIdleAnim()

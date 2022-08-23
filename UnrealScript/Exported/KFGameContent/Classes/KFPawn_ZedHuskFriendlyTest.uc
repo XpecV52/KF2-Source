@@ -30,6 +30,21 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 defaultproperties
 {
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHuskFriendlyTest:ExploTemplate0'
+   Begin Object Class=PointLightComponent Name=ChestLightComponent0 Archetype=PointLightComponent'kfgamecontent.Default__KFPawn_ZedHusk:ChestLightComponent0'
+      Radius=160.000000
+      Brightness=0.500000
+      LightColor=(B=40,G=155,R=250,A=255)
+      bEnabled=False
+      CastShadows=False
+      LightingChannels=(Outdoor=True)
+      MaxBrightness=0.500000
+      MinBrightness=0.400000
+      AnimationType=1
+      AnimationFrequency=2.000000
+      Name="ChestLightComponent0"
+      ObjectArchetype=PointLightComponent'kfgamecontent.Default__KFPawn_ZedHusk:ChestLightComponent0'
+   End Object
+   ChestLightComponent=ChestLightComponent0
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedHusk:MeleeHelper_0'
       BaseDamage=15.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_ZedWeak'
@@ -100,14 +115,6 @@ defaultproperties
       SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
       SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
       SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Husk_Suicide'
-      SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=None
-      SpecialMoveClasses(25)=None
-      SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHusk:SpecialMoveHandler_0'
    End Object

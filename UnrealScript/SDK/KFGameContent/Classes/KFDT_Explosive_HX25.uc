@@ -17,8 +17,9 @@ defaultproperties
 	bShouldSpawnPersistentBlood=true
 
 	// physics impact
-	RadialDamageImpulse=1500
-	KDeathUpKick=500
+	RadialDamageImpulse=500//1500
+	GibImpulseScale=0.77
+	KDeathUpKick=250//500
 	KDeathVel=250
 
 	KnockdownPower=100

@@ -1036,6 +1036,13 @@ function RemoveMutator( Mutator MutatorToRemove )
 	}
 }
 
+`if (`__TW_)
+function string CheckNextMap(string NextMap)
+{
+	return NextMap;
+}
+`endif
+
 /* ProcessServerTravel()
  Optional handling of ServerTravel for network games.
 */
@@ -1043,7 +1050,9 @@ function ProcessServerTravel(string URL, optional bool bAbsolute)
 {
 	local PlayerController LocalPlayer;
 	local bool bSeamless;
-	local string NextMap;
+//@HSL_BEGIN_XBOX
+	local string NextMap, EncodedPlayerName;
+//@HSL_END_XBOX
 	local Guid NextMapGuid;
 	local int OptionStart;
 
@@ -1069,6 +1078,18 @@ function ProcessServerTravel(string URL, optional bool bAbsolute)
 			NextMap = Left(URL, OptionStart);
 		}
 	}
+`if (`__TW_)
+	NextMap = CheckNextMap(NextMap);
+	if (OptionStart == INDEX_NONE)
+	{
+		URL = NextMap;
+	}
+	else
+	{
+		URL = NextMap $ Right(URL, Len(URL)-OptionStart);
+	}
+`endif
+
 	NextMapGuid = GetPackageGuid(name(NextMap));
 
 	// Notify clients we're switching level and give them time to receive.
@@ -1078,10 +1099,16 @@ function ProcessServerTravel(string URL, optional bool bAbsolute)
 	WorldInfo.NextURL = URL;
 	if (WorldInfo.NetMode == NM_ListenServer && LocalPlayer != None)
 	{
+//@HSL_BEGIN_XBOX
+		// is this necessary or can we assume the DefaultURL name is valid?
+		EncodedPlayerName = LocalPlayer.GetDefaultURL("Name");
+		class'GameEngine'.static.EncodeURLString(EncodedPlayerName);
+
 		WorldInfo.NextURL $= "?Team="$LocalPlayer.GetDefaultURL("Team")
-							$"?Name="$LocalPlayer.GetDefaultURL("Name")
+							$"?Name="$EncodedPlayerName
 							$"?Class="$LocalPlayer.GetDefaultURL("Class")
 							$"?Character="$LocalPlayer.GetDefaultURL("Character");
+//@HSL_END_XBOX
 	}
 
 
@@ -1268,8 +1295,12 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 
 	// Get URL options.
 `if(`__TW_)	
+//@HSL_BEGIN_XBOX
+	InName     = ParseOption ( Options, "Name");
+	class'GameEngine'.static.DecodeURLString(InName);
 	// Steam names can contain up to 32 characters
 	InName     = Left(ParseOption ( Options, "Name"), 32);
+//@HSL_END_XBOX
 `else
 	InName     = Left(ParseOption ( Options, "Name"), 20);
 `endif
@@ -3991,8 +4022,11 @@ defaultproperties
 	StreamingPauseIcon=Material'EngineResources.M_StreamingPause'
 
 `if(`__TW_)
-	GameInfoClassAliases(0)=(ShortName="BenchMark", GameClassName="KFGameContent.KFGameInfo_BenchMark")
-	GameInfoClassAliases(1)=(ShortName="Survival", GameClassName="KFGameContent.KFGameInfo_Survival")
-	GameInfoClassAliases(2)=(ShortName="Versus", GameClassName="KFGameContent.KFGameInfo_VersusSurvival")
+	// @note: this could be be done in the config (GameInfoClassAliases is normally config),
+	// but then we have to mess with ini patching, etc... so just do it here.
+	GameInfoClassAliases.Add((ShortName="BenchMark", GameClassName="KFGameContent.KFGameInfo_BenchMark"))
+	GameInfoClassAliases.Add((ShortName="Survival", GameClassName="KFGameContent.KFGameInfo_Survival"))
+	GameInfoClassAliases.Add((ShortName="Versus", GameClassName="KFGameContent.KFGameInfo_VersusSurvival"))
+	GameInfoClassAliases.Add((ShortName="Tutorial", GameClassName="KFGameContent.KFGameInfo_Tutorial"))
 `endif
 }

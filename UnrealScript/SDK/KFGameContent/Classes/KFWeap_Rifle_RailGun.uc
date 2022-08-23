@@ -899,7 +899,7 @@ defaultproperties
 	InventorySize=10
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun'
-   	AssociatedPerkClass=class'KFPerk_Sharpshooter'
+   	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
 
    	// 2D scene capture
 	Begin Object Name=SceneCapture2DComponent0

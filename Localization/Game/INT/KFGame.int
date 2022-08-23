@@ -708,6 +708,7 @@ BackString="BACK"
 NoneString="NONE"
 WeaponsString="Weapons"
 WeaponsInfoString="Customize"
+EmotesString="EMOTES"
 
 [KFGFxMenu_Inventory]
 NoItemsString="You have no Inventory items within the currently selected filter."
@@ -723,6 +724,7 @@ UnequipString="UNEQUIP"
 AllString="All"
 WeaponSkinString="Weapon Skins"
 CosmeticString="Cosmetics"
+EmotesString="Emotes"
 CraftingMatsString="Crafting"
 ItemString="Items"
 FiltersString="FILTERS"
@@ -796,6 +798,7 @@ WeaponSkinsRotationString="Weapon Skins"
 WeaponSkinsString="Market Weapon Skins"
 MarketConsumablesString="Market Crates/USBs"
 MarketCosmeticsString="Market Cosmetics"
+MarketEmotesString="Market Emotes"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="FIND IN MARKET"
@@ -890,6 +893,7 @@ VoiceCommsOptionStrings[4]="FOLLOW ME"
 VoiceCommsOptionStrings[5]="GET TO THE TRADER"
 VoiceCommsOptionStrings[6]="AFFIRMATIVE"
 VoiceCommsOptionStrings[7]="NEGATIVE"
+VoiceCommsOptionStrings[8]="EMOTE"
 
 [KFGFxMenu_Exit]
 HeaderString="EXIT GAME"
@@ -1104,6 +1108,7 @@ UseAltAimOnDualString="Use Alt Dual Pistol Aim"
 AntiMotionSicknessString="Anti Motion Sickness"
 AutoTurnOffString="No Auto Turn On Clot Grab"
 ReduceHighPitchNoiseString="Reduce High Pitch Noise"
+DisableAutoUpgradeString="Disable Auto-Upgrade"
 
 [LocalizedControls]
 ControllerLayoutDefault="Default"
@@ -1182,6 +1187,7 @@ GBA_VoiceCommFollowMe="FOLLOW ME"
 GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
 GBA_VoiceCommAffirmative="AFFIRMATIVE"
 GBA_VoiceCommNegative="NEGATIVE"
+GBA_VoiceCommEmote="EMOTE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Sensitivity"
@@ -1568,7 +1574,7 @@ Fortitude="Dreadnaught"
 FortitudeDescription="Increase total Health 75%."
 
 Ninja="Skirmisher"
-NinjaDescription="Move 20% faster, sprint 25% faster, and regenerate 1 point of Health every second when using a perk melee weapon."
+NinjaDescription="Move 20% faster and sprint 25% faster when using a perk melee weapon. You also regenerate 2 points of Health every second."
 
 Vampire="Vampire"
 VampireDescription="Heal 4 points of Health for every Zed you kill with perk weapons. Attack 20% faster with perk melee weapons."
@@ -1745,7 +1751,7 @@ EXPAction2="Healing teammates"
 [KFPerk_Firebug]
 PerkName="Firebug"
 EXPAction1="Dealing Firebug weapon damage"
-EXPAction2="Killing Crawlers with Firebug weapons"
+EXPAction2="Killing Crawlers and Bloats with Firebug weapons"
 
 SkillCatagories[0]="Supplies"
 SkillCatagories[1]="Spicy"
@@ -1810,7 +1816,7 @@ ShootnMove="Steady"
 ShootnMoveDescription="Ignore movement speed penalty for iron sights and drastically reduce weapon bob with perk weapons."
 
 QuickSwitch="Quick Draw"
-QuickSwitchDescription="Ignore recoil penalty for shooting from the hip, increase movement speed 5%, and switch perk weapons 50% faster."
+QuickSwitchDescription="Reduce recoil penalty for shooting from the hip, increase movement speed 5%, and switch perk weapons 50% faster."
 
 RhythmMethod="Rack ‘em Up"
 RhythmMethodDescription="Consecutive headshots with perk weapons increases damage 10%, to a maximum of 50%."
@@ -2089,10 +2095,10 @@ RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may
 RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."
 RandomLoadingStrings[15]="Prioritize your targets. A fleshpound is a lot more deserving of your attention than a clot."
 RandomLoadingStrings[16]="All Zeds have weak points. If it's not the head, look for glowing elements on their bodies."
-RandomLoadingStrings[17]="Looking to buy or sell a cosmetic item or weapon skin?  Check the marketplace."
+RandomLoadingStrings[17]="Medic weapons fire healing darts using Alternate Fire and automatically regenerate their healing dart ammo."
 RandomLoadingStrings[18]="The siren's scream neutralizes grenades and other explosives."
 RandomLoadingStrings[19]="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
-RandomLoadingStrings[20]="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
+RandomLoadingStrings[20]="When you don't have much time at the Trader, use Auto-Upgrade to get the weapons and ammo you need."
 RandomLoadingStrings[21]="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
 RandomLoadingStrings[22]="Melee attacks are directional based on your movement."
 RandomLoadingStrings[23]="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
@@ -2113,6 +2119,7 @@ RandomLoadingStrings[37]="The rail gun can fire through multiple Zeds if you lin
 RandomLoadingStrings[38]="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."
 RandomLoadingStrings[39]="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
 RandomLoadingStrings[40]="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
+RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
 
 [WhatsNewMessages]
 Jaegorhorn="Follow Community To Unlock Jägerhorn"
@@ -2139,6 +2146,7 @@ USBSWATKey="SWAT USB Key - $2.49"
 USBTacticalHorzineKey="Tactical Horzine USB Key - $2.49"
 USBVictorianKey="Victorian USB Key - $2.49"
 USBZedKillerKey="Zed Killer USB Key - $2.49"
+USBBoneCrusher="Bone Crusher USB Key - $2.49"
 BullseyeUpdate="Latest New Content - Bullseye Update"
 LatestUpdate="Latest Content Update"
 Forums="Visit Our Community Forums"
@@ -2159,19 +2167,23 @@ PS4WeaponSkinCrate1="Horzine Supply Weapon Skin Crate | Series #1"
 PS4WeaponSkinCrate2="Horzine Supply Weapon Skin Crate | Series #2"
 Artbook="Killing Floor 2 Digital Art Book"
 Uncovered="Watch Killing Floor: Uncovered Live Action Film"
+NewEmotes="New! Emote Crate Key - $2.49"
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
+KFPawn_ZedCrawlerKing="Elite Crawler"
 KFPawn_ZedFleshPound="Fleshpound"
 KFPawn_ZedGorefast="Gorefast"
+KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
 KFPawn_ZedHusk="Husk"
 KFPawn_ZedStalker="Stalker"
 KFPawn_ZedClot_Cyst="Cyst"
 KFPawn_ZedClot_Slasher="Slasher"
 KFPawn_ZedClot_Alpha="Alpha Clot"
+KFPawn_ZedClot_AlphaKing="Elite Alpha"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
 KFPawn_ZedPatriarch="Patriarch"
@@ -2365,7 +2377,6 @@ DisplayName_DEU="Katakomben"
 DisplayName_ESL="Catacumbas"
 DisplayName_ESN="Catacumbas"
 DisplayName_FRA="Catacombes"
-DisplayName_FRC="Catacombes"
 DisplayName_INT="Catacombs"
 DisplayName_ITA="Catacombe"
 DisplayName_JPN="Catacombs"
@@ -2486,6 +2497,22 @@ DisplayName_POL="Piekielna domena"
 DisplayName_PTB="Reino Infernal"
 DisplayName_RUS="Царство ада"
 
+[KF-ZedLanding KFMapSummary]
+DisplayName_CHN="丧尸登陆"
+DisplayName_CHT="僵屍群登陸"
+DisplayName_DEU="ZED-Landung"
+DisplayName_ESL="Aterrizaje ZED"
+DisplayName_ESN="Aterrizaje ZED"
+DisplayName_FRA="Île des Zeds"
+DisplayName_FRC="Île des Zeds"
+DisplayName_INT="Zed Landing"
+DisplayName_ITA="Atterraggio ZED"
+DisplayName_JPN="zed Landing"
+DisplayName_KOR="제드 상륙"
+DisplayName_POL="Lądowanie zetów"
+DisplayName_PTB="Pouso Forçado ZED"
+DisplayName_RUS="Высадка среди мутантов"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2524,6 +2551,9 @@ DisplayName="Hostile Grounds"
 
 [KF-InfernalRealm KFMapSummary]
 DisplayName="Infernal Realm"
+
+[KF-ZedLanding KFMapSummary]
+DisplayName="ZED Landing"
 
 
 [KFMapInfo]

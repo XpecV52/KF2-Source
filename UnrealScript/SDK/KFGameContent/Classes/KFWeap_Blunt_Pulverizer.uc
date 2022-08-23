@@ -272,7 +272,7 @@ simulated state MeleeHeavyAttacking
 defaultproperties
 {
 	AttachmentArchetype=KFWeaponAttachment'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'
-	AssociatedPerkClass=class'KFPerk_Berserker'
+	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
 
 	Begin Object Name=FirstPersonMesh
 		SkeletalMesh=SkeletalMesh'WEP_1P_Pulverizer_MESH.Wep_1stP_Pulverizer_Rig_New'

@@ -891,6 +891,7 @@ enum ESpecialMove
 	SM_GrappleVictim,
 	SM_HansGrappleVictim,
 	SM_SirenVortexVictim,
+	SM_Emote,
 
 	/** Boss special attacks */
 	SM_BossTheatrics,
@@ -1502,12 +1503,10 @@ simulated function SetCharacterAnimationInfo()
 		}
 	}
 
-	// Character Animation
-    Mesh.AnimSets = CharacterArch.AnimSets;
-	if ( Mesh.AnimTreeTemplate != CharacterArch.AnimTreeTemplate )
-	{
-		Mesh.SetAnimTreeTemplate(CharacterArch.AnimTreeTemplate);
-	}
+	// Character Animation+
+	CharacterArch.SetCharacterAnimFromArch( self );
+
+
 
 	if ( CharacterArch.AnimArchetype != None )
 	{
@@ -2056,7 +2055,7 @@ simulated function WeaponFired(Weapon InWeapon, bool bViaReplication, optional v
 	{
 		if (WeaponAttachment != None)
 		{
-			WeaponAttachment.ThirdPersonFireEffects(HitLocation, self);
+			WeaponAttachment.ThirdPersonFireEffects(HitLocation, self, GetWeaponAttachmentAnimRateByte() );
 		}
 	}
 
@@ -2096,6 +2095,12 @@ simulated function WeaponStoppedFiring(Weapon InWeapon, bool bViaReplication)
 		WeaponAttachment.StopThirdPersonFireEffects();
 		WeaponAttachment.StopFirstPersonFireEffects(Weapon);
 	}
+}
+
+/** Returns the animation rate to scale all animations in the WeaponAttachment by */
+simulated function byte GetWeaponAttachmentAnimRateByte()
+{
+	return 0;
 }
 
 simulated function vector WeaponBob( float BobDamping, float JumpDamping )
@@ -2296,6 +2301,9 @@ simulated function vector GetAutoLookAtLocation(vector CamLoc, Pawn InstigatingP
 /*********************************************************************************************
  * @name	Movement Methods
 ********************************************************************************************* */
+
+/** Cloaking & Spotted */
+function SetCloaked( bool bNewCloaking );
 
 /** Is this pawn using super speed? */
 native final function bool IsUsingSuperSpeed() const;
@@ -2930,7 +2938,7 @@ function NotifyFriendlyAIDamageTaken( Controller DamagerController, int Damage, 
 
 function class<KFPerk> GetUsedWeaponPerk( Controller DamagerController, Actor DamageCauser, class<KFDamageType> DamageType )
 {
-	local class<KFPerk> WeaponPerk;
+	local class<KFPerk> WeaponPerk, InstigatorPerkClass;
 	local KFPlayerController KFPC;
 	local KFWeapon KFW;
 
@@ -2940,9 +2948,15 @@ function class<KFPerk> GetUsedWeaponPerk( Controller DamagerController, Actor Da
 		return none;
 	}
 
+	InstigatorPerkClass = KFPC.GetPerk().GetPerkClass();
+	if( InstigatorPerkClass == none )
+	{
+		return none;
+	}
+
 	// Make sure we have a weapon perk class. Grab the active perk's class as a fallback.
 	// Helps with the shared weapons like the 9mm etc.
-	WeaponPerk = class'KFPerk'.static.GetPerkFromDamageCauser( DamageCauser );
+	WeaponPerk = class'KFPerk'.static.GetPerkFromDamageCauser( DamageCauser, InstigatorPerkClass );
 	if( WeaponPerk == none )
 	{
 		KFW = KFWeapon(DamageCauser);
@@ -2950,15 +2964,15 @@ function class<KFPerk> GetUsedWeaponPerk( Controller DamagerController, Actor Da
 		{
 			KFW = KFWeapon(KFPC.Pawn.Weapon);
 			if( KFW != none )
-		{
-				WeaponPerk = class'KFPerk'.static.GetPerkFromDamageCauser( KFW );
+			{
+					WeaponPerk = class'KFPerk'.static.GetPerkFromDamageCauser( KFW, InstigatorPerkClass );
+			}
 		}
 	}
 
-		if( WeaponPerk == none && KFW != none && class'KFPerk'.static.IsBackupWeapon( KFW ) )
+	if( WeaponPerk == none && KFW != none && class'KFPerk'.static.IsBackupWeapon( KFW ) )
 	{
-			WeaponPerk = KFPC.GetPerk().GetPerkClass();
-		}
+		WeaponPerk = InstigatorPerkClass;
 	}
 
 	return WeaponPerk;
@@ -3379,7 +3393,7 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 	// We don't process any new effects until we are done processing old ones. 
 	if ( bNeedsProcessHitFx ) 
 	{
-		if ( InstigatedBy != none && InstigatedBy.Pawn == HitFxInstigator && KFDT == HitFXInfo.DamageType )
+		if ( InstigatedBy != none && InstigatedBy.Pawn == HitFxInstigator && KFDT != none && KFDT == HitFXInfo.DamageType )
 		{
 			// Add any additional hits to a separate repliated array
 			// @note: Do not stack radial hits because they already affect the whole body (and are more expensive)
@@ -3404,7 +3418,9 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 		HitFxInstigator = InstigatedBy != None ? InstigatedBy.Pawn : None;
 
 		HitFxInfo.HitLocation = HitLocation;
-		HitFxInfo.EncodedHitDirection = EncodeUnitVector(Normal(Momentum));
+		HitFxInfo.EncodedHitDirection = (KFDT != none && KFDT.default.bPointImpulseTowardsOrigin && InstigatedBy.Pawn != none)
+										? EncodeUnitVector(Normal(Location - InstigatedBy.Pawn.Location))
+										: EncodeUnitVector(Normal(Momentum));
 		HitFxInfo.HitBoneIndex = HitZoneIdx;
 		HitFxInfo.bRadialDamage = bTakingRadiusDamage;
 		HitFxInfo.DamageType = KFDT; 	// If we do not have a damagetype, replicate none
@@ -3536,6 +3552,12 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 	}
 
 	return false;
+}
+
+/** Returns TRUE if any limbs were dismembered */
+simulated function bool HasInjuredHitZones()
+{
+	return InjuredHitZones > 0;
 }
 
 /** Plays clientside hit effects using the data in HitFxInfo */
@@ -3680,7 +3702,7 @@ simulated function ApplyRagdollImpulse(class<KFDamageType> DamageType, vector Hi
 	// Reduce impulse if the gore system has dismembered this bone already
 	if ( bHasBrokenConstraints && Mesh.IsBrokenConstraint( HitBoneName ) )
 	{
-		GoreImpulseScale *= class'KFGoreManager'.static.GetGibImpulseMax();
+		GoreImpulseScale *= DamageType.default.GibImpulseScale;
 	}
 
 	// Lastly, multiply scaling factors and apply impulse
@@ -4125,6 +4147,15 @@ simulated function SetEnableFleXCollision(bool bEnabled)
 	}
 }
 
+/** Called from SkeletalMeshComponent::PlayParticleEffect() */
+simulated function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC )
+{
+	if( IsDoingSpecialMove() )
+	{
+		SpecialMoves[SpecialMove].OnAnimNotifyParticleSystemSpawned( AnimNotifyData, PSC );
+	}
+}
+
 /*********************************************************************************************
  * @name	Audio
 ********************************************************************************************* */
@@ -4182,21 +4213,21 @@ simulated event PlayFootStepSound(int FootDown)
 	// Play the foot sound locational to where the foot actually is
 	switch( FootDown )
 	{
-	case 0:
-	   FootSoundLoc = Mesh.GetBoneLocation(LeftFootBoneName, 0);
-	   break;
+		case 0:
+			FootSoundLoc = Mesh.GetBoneLocation(LeftFootBoneName, 0);
+			break;
 
-	case 1:
-	   FootSoundLoc = Mesh.GetBoneLocation(RightFootBoneName, 0);
-	   break;
+		case 1:
+			FootSoundLoc = Mesh.GetBoneLocation(RightFootBoneName, 0);
+			break;
 
-	case 2:
-	   FootSoundLoc = Mesh.GetBoneLocation(LeftHandBoneName, 0);
-	   break;
+		case 2:
+			FootSoundLoc = Mesh.GetBoneLocation(LeftHandBoneName, 0);
+			break;
 
-	case 3:
-	   FootSoundLoc = Mesh.GetBoneLocation(RightHandBoneName, 0);
-	   break;
+		case 3:
+			FootSoundLoc = Mesh.GetBoneLocation(RightHandBoneName, 0);
+			break;
 	};
 
 	MaterialType = GetMaterialBelowFeet( FootSoundLoc );
@@ -4991,37 +5022,6 @@ defaultproperties
    WeaponAttachmentSocket="RW_Weapon"
    TurnInPlaceAnimRate=1.000000
    Begin Object Class=KFSpecialMoveHandler Name=SpecialMoveHandler_0
-      SpecialMoveClasses(0)=None
-      SpecialMoveClasses(1)=None
-      SpecialMoveClasses(2)=None
-      SpecialMoveClasses(3)=None
-      SpecialMoveClasses(4)=None
-      SpecialMoveClasses(5)=None
-      SpecialMoveClasses(6)=None
-      SpecialMoveClasses(7)=None
-      SpecialMoveClasses(8)=None
-      SpecialMoveClasses(9)=None
-      SpecialMoveClasses(10)=None
-      SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=None
-      SpecialMoveClasses(13)=None
-      SpecialMoveClasses(14)=None
-      SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=None
-      SpecialMoveClasses(17)=None
-      SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=None
-      SpecialMoveClasses(22)=None
-      SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=None
-      SpecialMoveClasses(25)=None
-      SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFSpecialMoveHandler'
    End Object

@@ -36,6 +36,9 @@ var protected byte NumPukeMinesToSpawnOnDeath;
 var protected vector OldLocation;
 var protected rotator OldRotation;
 
+/** Set to TRUE when a non-explosive hitzone was injured */
+var transient protected bool bWasDismembered;
+
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
@@ -59,6 +62,8 @@ function Puke()
 	local Pawn P;
 	local Vector PukeLocation, PukeDirection;
 	local Rotator PukeRotation;
+	local vector HitLocation, HitNormal, EndTrace, Momentum;
+	local Actor HitActor;
 
 	Mesh.GetSocketWorldLocationAndRotation( 'PukeSocket', PukeLocation, PukeRotation );
 
@@ -71,11 +76,23 @@ function Puke()
         	DealPukeDamage( P, PukeLocation );
 		}
 	}
+
+	// Extra handling for fracture mesh actors, etc
+	EndTrace = PukeLocation + PukeDirection*VomitRange;
+	HitActor = Trace( HitLocation, HitNormal, EndTrace, PukeLocation, true, vect(10,10,10) );
+	if( HitActor != none && HitActor.bCanBeDamaged && Pawn(HitActor) == none )
+	{
+		Momentum = EndTrace - PukeLocation;
+		Momentum.Z = 0.f;
+		Momentum = Normal(Momentum);
+		HitActor.TakeDamage( VomitDamage, Controller, HitLocation, Momentum, class'KFDT_BloatPuke',, self );
+	}
 }
 
 function DealPukeDamage( Pawn Victim, Vector Origin )
 {
 	local Vector VectToEnemy;
+
 	VectToEnemy = Victim.Location - Origin;
 	VectToEnemy.Z = 0.f;
 	VectToEnemy = Normal( VectToEnemy );
@@ -100,7 +117,7 @@ function bool CanPukeOnTarget( Pawn PukeTarget, Vector PukeLocation, Vector Puke
 			ActorBox.Min.Z < PukeLocation.Z && VectToEnemy dot PukeDirection > 0.5f )  // (0.5 = vomitarc)
 		{
 			// use the bounding box for the world trace to account for meshes with way off center origins
-			if( PukeTarget.FastTrace( (ActorBox.Min + ActorBox.Max) * 0.5, PukeLocation) )
+			if( PukeTarget.FastTrace( (ActorBox.Min + ActorBox.Max) * 0.5, PukeLocation,, true) )
 			{
 				return true;
 			}
@@ -110,14 +127,27 @@ function bool CanPukeOnTarget( Pawn PukeTarget, Vector PukeLocation, Vector Puke
 	return false;
 }
 
-// Override so you can always injure a bloats stomach and cause an explosion
+/** Override so you can always injure a bloats stomach and cause an explosion */
 function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 {
 	if( HitExplosiveBone( HitZones[HitZoneIdx].BoneName ) )
 	{
 		return true;
 	}
-	return super.CanInjureHitZone(DamageType, HitZoneIdx);
+	
+	if( super.CanInjureHitZone(DamageType, HitZoneIdx) )
+	{
+		bWasDismembered = true;
+		return true;
+	}
+
+	return false;
+}
+
+/** Overridden to only return TRUE if a non-explosive bone was hit */
+simulated function bool HasInjuredHitZones()
+{
+	return bWasDismembered || IsHeadless();
 }
 
 /** This pawn has died. */
@@ -365,20 +395,6 @@ defaultproperties
       SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
       SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
       SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
-      SpecialMoveClasses(17)=None
-      SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=None
-      SpecialMoveClasses(22)=None
-      SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=None
-      SpecialMoveClasses(25)=None
-      SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

@@ -708,6 +708,7 @@ BackString="ATRÁS"
 NoneString="NADA"
 WeaponsString="Armas"
 WeaponsInfoString="Personalizar"
+EmotesString="EMOTES"
 
 [KFGFxMenu_Inventory]
 NoItemsString="No hay objetos en el Inventario con el filtro actual."
@@ -723,6 +724,7 @@ UnequipString="DESEQUIPAR"
 AllString="Todo"
 WeaponSkinString="Apariencia de arma"
 CosmeticString="Cosméticos"
+EmotesString="Emotes"
 CraftingMatsString="Fabricación"
 ItemString="Objetos"
 FiltersString="FILTROS"
@@ -796,6 +798,7 @@ WeaponSkinsRotationString="Apariencia de arma"
 WeaponSkinsString="Aparien. arma mercado"
 MarketConsumablesString="Cajas de mercado/USB"
 MarketCosmeticsString="Cosméticos de mercado"
+MarketEmotesString="Emo. mercado"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="BUSCAR EN MERCADO"
@@ -816,7 +819,7 @@ MenuStrings[4]="TIENDA"
 MenuStrings[5]="OPCIONES"
 MenuStrings[6]="SALIR"
 
-ServerBrowserString="EXPLORADOR DE SERVIDORES"
+ServerBrowserString="EXPLORAR SERVIDORES"
 MatchmakingString="EMPAREJAMIENTO"
 SoloString="UN JUGADOR"
 OverviewString="VISTA GENERAL"
@@ -890,6 +893,7 @@ VoiceCommsOptionStrings[4]="SEGUIDME"
 VoiceCommsOptionStrings[5]="AL MERCADER"
 VoiceCommsOptionStrings[6]="AFIRMATIVO"
 VoiceCommsOptionStrings[7]="NEGATIVO"
+VoiceCommsOptionStrings[8]="EMOTE"
 
 [KFGFxMenu_Exit]
 HeaderString="SALIR DE LA PARTIDA"
@@ -1182,6 +1186,7 @@ GBA_VoiceCommFollowMe="SEGUIDME"
 GBA_VoiceCommGetToTheTrader="AL MERCADER"
 GBA_VoiceCommAffirmative="AFIRMATIVO"
 GBA_VoiceCommNegative="NEGATIVO"
+GBA_VoiceCommEmote="EMOTE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Sensibilidad"
@@ -1745,7 +1750,7 @@ EXPAction2="Curar a los compañeros"
 [KFPerk_Firebug]
 PerkName="Pirómano"
 EXPAction1="Infligir daño con armas incendiarias"
-EXPAction2="Matar crawlers con armas incendiarias"
+EXPAction2="Matar crawlers y bloats con armas incendiarias"
 
 SkillCatagories[0]="Suministros"
 SkillCatagories[1]="Picante"
@@ -1810,7 +1815,7 @@ ShootnMove="Inmutable"
 ShootnMoveDescription="Ignora la penalización en la velocidad de movimiento con mirilla y reduce drásticamente la inestabilidad de las armas de especialización."
 
 QuickSwitch="Desenfundado rápido"
-QuickSwitchDescription="Ignora la penalización en el retroceso al disparar sin apuntar. Velocidad de movimiento: +5 %. Velocidad de cambio de arma de esp.: +50 %."
+QuickSwitchDescription="Reduce la penalización en el retroceso al disparar sin apuntar. Velocidad de movimiento: +5 %. Velocidad de cambio de arma de esp.: +50 %."
 
 RhythmMethod="Sin parar"
 RhythmMethodDescription="Los disparos consecutivos en la cabeza con armas de especialización aumentan el daño un 10 % (hasta un máximo del 50 %)."
@@ -2113,6 +2118,7 @@ RandomLoadingStrings[37]="El cañón de riel puede herir a múltiples zeds a la 
 RandomLoadingStrings[38]="El arma de microondas hace más daño a los zeds que contienen metal, como los fleshpounds o las sirens."
 RandomLoadingStrings[39]="Prueba el modo de disparo alternativo de tu arma. Puede sacarte de un aprieto, aunque no todas las armas lo tienen."
 RandomLoadingStrings[40]="Además de matando, también recibes EXP y dinero al ayudar a otros; no te sientas mal por meterte en matanzas ajenas."
+RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
 
 [WhatsNewMessages]
 Jaegorhorn="Sigue a la comunidad y desbl. Jaegorhorn"
@@ -2139,6 +2145,7 @@ USBSWATKey="Llave USB SWAT - 2,49 $"
 USBTacticalHorzineKey="Llave USB Horzine táctico - 2,49 $"
 USBVictorianKey="Llave USB Victoriana - 2,49 $"
 USBZedKillerKey="Llave USB Asesino de zeds - 2,49 $"
+USBBoneCrusher="Llave USB Partehuesos - 2,49 $"
 BullseyeUpdate="Contenido nuevo: Actualización de diana"
 LatestUpdate="Nueva actualización de contenido"
 Forums="Visita los foros de la comunidad"
@@ -2159,6 +2166,7 @@ PS4WeaponSkinCrate1="Caja sum. apariencia arma Horzine | Serie 1"
 PS4WeaponSkinCrate2="Caja sum. apariencia arma Horzine | Serie 2"
 Artbook="Libro de arte digital de Killing Floor 2"
 Uncovered="Mira la película Killing Floor: Uncovered"
+NewEmotes="¡Nuevo! Llave caja de emote - 2,49 $"
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
@@ -2166,6 +2174,7 @@ KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedFleshPound="Fleshpound"
 KFPawn_ZedGorefast="Gorefast"
+KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
 KFPawn_ZedHusk="Husk"
 KFPawn_ZedStalker="Stalker"
@@ -2365,7 +2374,6 @@ DisplayName_DEU="Katakomben"
 DisplayName_ESL="Catacumbas"
 DisplayName_ESN="Catacumbas"
 DisplayName_FRA="Catacombes"
-DisplayName_FRC="Catacombes"
 DisplayName_INT="Catacombs"
 DisplayName_ITA="Catacombe"
 DisplayName_JPN="Catacombs"
@@ -2486,6 +2494,22 @@ DisplayName_POL="Piekielna domena"
 DisplayName_PTB="Reino Infernal"
 DisplayName_RUS="Царство ада"
 
+[KF-ZedLanding KFMapSummary]
+DisplayName_CHN="丧尸登陆"
+DisplayName_CHT="僵屍群登陸"
+DisplayName_DEU="ZED-Landung"
+DisplayName_ESL="Aterrizaje ZED"
+DisplayName_ESN="Aterrizaje ZED"
+DisplayName_FRA="Île des Zeds"
+DisplayName_FRC="Île des Zeds"
+DisplayName_INT="Zed Landing"
+DisplayName_ITA="Atterraggio ZED"
+DisplayName_JPN="zed Landing"
+DisplayName_KOR="제드 상륙"
+DisplayName_POL="Lądowanie zetów"
+DisplayName_PTB="Pouso Forçado ZED"
+DisplayName_RUS="Высадка среди мутантов"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio biótico"
 
@@ -2524,6 +2548,9 @@ DisplayName="Tierra hostil"
 
 [KF-InfernalRealm KFMapSummary]
 DisplayName="Reino infernal"
+
+[KF-ZedLanding KFMapSummary]
+DisplayName="Aterrizaje ZED"
 
 
 [KFMapInfo]

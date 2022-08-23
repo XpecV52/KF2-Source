@@ -19,6 +19,8 @@ package tripwire.containers.trader
         
         public var PlayerInventoryContainerRef:TraderPlayerInventoryContainer;
         
+        public var oncePerWaveTextField:TextField;
+        
         public function TraderPerkListContainer()
         {
             super();

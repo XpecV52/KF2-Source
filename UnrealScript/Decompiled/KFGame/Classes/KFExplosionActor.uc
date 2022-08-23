@@ -11,6 +11,7 @@ class KFExplosionActor extends GameExplosionActor
 
 var MaterialImpactEffect MyImpactEffect;
 var byte NumPawnsKilled;
+var const KFLightPool.LightPoolPriority ExplosionLightPriority;
 var const float DamageScalePerStack;
 
 simulated function Explode(GameExplosion NewExplosionTemplate, optional Vector Direction)
@@ -34,6 +35,10 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional Vector D
     if(((TemplateExplosion != none) && TemplateExplosion.NumShards > 0) && TemplateExplosion.ShardClass != none)
     {
         SpawnShards(NewExplosionTemplate, TemplateExplosion.NumShards, TemplateExplosion.ShardClass);
+    }
+    if(((ExplosionLight != none) && ExplosionLight.bAttached) && ExplosionLight.bEnabled)
+    {
+        KFLightPool(WorldInfo.MyLightPool).RegisterPointLight(ExplosionLight, ExplosionLightPriority);
     }
 }
 
@@ -122,7 +127,7 @@ simulated function SpawnExplosionDecal()
     local MaterialInterface MI;
     local MaterialInstanceTimeVarying MITV_Decal;
     local int DecalMaterialsLength;
-    local float DecalSize;
+    local float DecalSize, DecalThickness;
     local KFGameExplosion KFExplosionTemplate;
 
     if(WorldInfo.bDropDetail)
@@ -145,16 +150,24 @@ simulated function SpawnExplosionDecal()
         if(MI != none)
         {
             DecalSize = RandRange(MyImpactEffect.DecalMinSize, MyImpactEffect.DecalMaxSize);
+            if(Class'KFImpactEffectManager'.static.ShouldExtendDecalThickness(HitActorFromPhysMaterialTrace))
+            {
+                DecalThickness = DecalSize * 2;                
+            }
+            else
+            {
+                DecalThickness = 32;
+            }
             if(MaterialInstanceTimeVarying(MI) != none)
             {
                 MITV_Decal = new (self) Class'MaterialInstanceTimeVarying';
                 MITV_Decal.SetParent(MI);
-                WorldInfo.ExplosionDecalManager.SpawnDecal(MITV_Decal, ExplosionTemplate.HitLocation, rotator(-ExplosionTemplate.HitNormal), DecalSize, DecalSize, 32, false, ((MyImpactEffect.bNoDecalRotation) ? 0 : FRand() * 360));
+                WorldInfo.ExplosionDecalManager.SpawnDecal(MITV_Decal, ExplosionTemplate.HitLocation, rotator(-ExplosionTemplate.HitNormal), DecalSize, DecalSize, DecalThickness, false, ((MyImpactEffect.bNoDecalRotation) ? 0 : FRand() * 360));
                 MITV_Decal.SetScalarStartTime(MyImpactEffect.DecalDissolveParamName, MyImpactEffect.DecalDuration);                
             }
             else
             {
-                WorldInfo.ExplosionDecalManager.SpawnDecal(MI, ExplosionTemplate.HitLocation, rotator(-ExplosionTemplate.HitNormal), DecalSize, DecalSize, 32, true, ((MyImpactEffect.bNoDecalRotation) ? 0 : FRand() * 360),,,,,,, MyImpactEffect.DecalDuration);
+                WorldInfo.ExplosionDecalManager.SpawnDecal(MI, ExplosionTemplate.HitLocation, rotator(-ExplosionTemplate.HitNormal), DecalSize, DecalSize, DecalThickness, true, ((MyImpactEffect.bNoDecalRotation) ? 0 : FRand() * 360),,,,,,, MyImpactEffect.DecalDuration);
             }
         }
     }
@@ -334,6 +347,7 @@ function Reset()
 defaultproperties
 {
     MyImpactEffect=(MaterialType=EMaterialTypes.EMT_None,Sound=none,StopSoundEvent=none,ParticleTemplate=none,DecalMaterials=none,DecalDissolveParamName=DissolveAmount,DecalDuration=24,DecalMinSize=16,DecalMaxSize=16,bNoDecalRotation=false)
+    ExplosionLightPriority=LightPoolPriority.LPP_High
     DamageScalePerStack=1
     RadialImpulseComponent=none
     Components=none

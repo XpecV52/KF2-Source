@@ -197,6 +197,8 @@ ItemName="SA80 L85A2 Kurzgewehr"
 ItemCategory="Sturmgewehr"
 ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer um zwischen den Feuer-Modi zu wechseln.\n•Das SA80 war die Standardwaffe der British Army, bis die Armee, nun ja, gefressen wurde."
 
+
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Allzweckmesser"
 ItemCategory="Nahkampf"
@@ -267,6 +269,8 @@ ItemName="M4 Kampf-Schrotflinte"
 ItemCategory="Schrotflinte"
 ItemDescription="•Der Feuer-Modus ist ausschließlich halbautomatisch.\n•Benelli hat die M4 Kampf-Schrotflinte für das US-Militär entworfen. Da es sich hierbei um eine halbautomatische Waffe handelt, besticht sie durch eine beeindruckende Schussfolge."
 
+
+
 [KFWeap_Knife_Berserker]
 ItemName="Rasenmähermesser"
 ItemCategory="Nahkampf"
@@ -314,6 +318,11 @@ ItemCategory="Nahkampf"
 ItemDescription="•Primär – mittlerer/schwerer Schaden, mit etwas Feindeskontrolle (CC).\n•Sekundär – langsamer, aber mit mehr Schaden.\n•Alt – blocken/parieren\n•Du verursachst noch mehr Schaden, wenn du dich vorwärts bewegst."
 SharedUnlockSource="Chivalry Medieval Warfare "
 
+[KFWeap_Blunt_MaceAndShield]
+ItemName="Knochenmalmer"
+ItemCategory="Nahkampf"
+ItemDescription="•Primär – schneller, stumpfer Angriff, Primär halten für Komboangriff.\n•Sekundär – schwerer, stumpfer Angriff, der mehr Gebrauch vom Schild macht.\n•Alt – blocken/parieren. Blocken verringert den von Zed-Geschossen erhaltenen Schaden.\n• Hat einen mächtigen Schildschlag-Angriff."
+
 [KFWeap_Flame_CaulkBurn]
 ItemName="Ausräucherer"
 ItemCategory="Flammen"
@@ -353,6 +362,8 @@ ItemDescription="•Der Feuer-Modus feuert eine Granate ab.\n•Granaten explodi
 ItemName="RPG-7"
 ItemCategory="Sprengstoffe"
 ItemDescription="•Der Feuer-Modus feuert die Rakete ab.\n•Raketen explodieren beim Aufprall.\n•Die Munition wird erst dann scharf, nachdem sie einige Meter zurückgelegt hat, um das eigene Gesicht vor potentiellen Explosionen zu schützen.\n•Und pass auf den Rückstoß auf!"
+
+
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="Zwei 9mm Pistolen"
@@ -403,6 +414,8 @@ ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-F
 ItemName="Winchester 1894"
 ItemCategory="Gewehr"
 ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Das klassische Gewehr-Modell 1894 Winchester mit Repetierbügel."
+
+
 
 [KFWeap_Bow_Crossbow]
 ItemName="Armbrust"

@@ -174,6 +174,18 @@ simulated function float GetReloadRateScale(KFWeapon KFW)
     return 1;
 }
 
+function ModifyArmor(out byte MaxArmor)
+{
+    local float TempArmor;
+
+    if(HasHeavyArmor())
+    {
+        TempArmor = float(MaxArmor);
+        TempArmor += (float(MaxArmor) * (GetPassiveValue(HeavyBodyArmor, CurrentLevel)));
+        MaxArmor = byte(Round(TempArmor));
+    }
+}
+
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
     return (IsTacticalReloadActive() && IsWeaponOnPerkLight(KFW)) || IsHeavyReloadActive() && IsWeaponOnPerkHeavy(KFW);
@@ -183,7 +195,7 @@ simulated function bool IsWeaponOnPerkLight(KFWeapon KFW)
 {
     if(KFW != none)
     {
-        return ((KFW.AssociatedPerkClass == Class'KFPerk_Commando') || KFW.AssociatedPerkClass == Class'KFPerk_Gunslinger') || KFW.AssociatedPerkClass == Class'KFPerk_SWAT';
+        return (Class'KFPerk_Commando'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Commando') || Class'KFPerk_Gunslinger'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Gunslinger')) || Class'KFPerk_SWAT'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_SWAT');
     }
     return false;
 }
@@ -192,7 +204,7 @@ simulated function bool IsWeaponOnPerkHeavy(KFWeapon KFW)
 {
     if(KFW != none)
     {
-        return ((KFW.AssociatedPerkClass == Class'KFPerk_Demolitionist') || KFW.AssociatedPerkClass == Class'KFPerk_Support') || KFW.AssociatedPerkClass == Class'KFPerk_Sharpshooter';
+        return (Class'KFPerk_Demolitionist'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Demolitionist') || Class'KFPerk_Support'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Support')) || Class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Sharpshooter');
     }
     return false;
 }

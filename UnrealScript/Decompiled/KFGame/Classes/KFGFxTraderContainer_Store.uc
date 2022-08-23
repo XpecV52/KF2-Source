@@ -44,11 +44,12 @@ function SetSelectedIndex(int SelectedIndex)
     SetInt("selectedIndex", SelectedIndex);
 }
 
-function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemList)
+function RefreshWeaponListByPerk(byte FilterIndex, const out array<STraderItem> ItemList)
 {
     local int I, SlotIndex;
     local GFxObject ItemDataArray;
-    local array<STraderItem> FullItemList;
+    local array<STraderItem> OnPerkWeapons, SecondaryWeapons, OffPerkWeapons;
+    local class<KFPerk> TargetPerkClass;
 
     if((FilterIndex == 255) || FilterIndex == -1)
     {
@@ -56,103 +57,144 @@ function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemLi
     }
     if(KFPC != none)
     {
-        SlotIndex = 0;
-        ItemList.Length = 0;
-        ItemDataArray = Outer.CreateArray();
-        FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
-        I = 0;
-        J0xDB:
-
-        if(I < FullItemList.Length)
+        if(FilterIndex < KFPC.PerkList.Length)
         {
-            if(IsItemFiltered(FullItemList[I]))
+            TargetPerkClass = KFPC.PerkList[FilterIndex].PerkClass;            
+        }
+        else
+        {
+            TargetPerkClass = none;
+        }
+        SlotIndex = 0;
+        ItemDataArray = Outer.CreateArray();
+        I = 0;
+        J0xFF:
+
+        if(I < ItemList.Length)
+        {
+            if(IsItemFiltered(ItemList[I]))
             {
-                goto J0x28D;                
+                goto J0x307;                
             }
             else
             {
-                if(((FullItemList[I].AssociatedPerkClass != none) && KFPC.PerkList[FilterIndex].PerkClass != Class'KFPerk_Survivalist') && (FilterIndex >= KFPC.PerkList.Length) || FullItemList[I].AssociatedPerkClass != KFPC.PerkList[FilterIndex].PerkClass)
+                if((((ItemList[I].AssociatedPerkClasses.Length > 0) && ItemList[I].AssociatedPerkClasses[0] != none) && TargetPerkClass != Class'KFPerk_Survivalist') && (FilterIndex >= KFPC.PerkList.Length) || ItemList[I].AssociatedPerkClasses.Find(TargetPerkClass == -1)
                 {
-                    goto J0x28D;                    
+                    goto J0x307;                    
                 }
                 else
                 {
-                    ItemList.AddItem(FullItemList[I];
-                    SetItemInfo(ItemDataArray, FullItemList[I], SlotIndex);
-                    ++ SlotIndex;
+                    if(ItemList[I].AssociatedPerkClasses.Length > 0)
+                    {
+                        switch(ItemList[I].AssociatedPerkClasses.Find(TargetPerkClass)
+                        {
+                            case 0:
+                                OnPerkWeapons.AddItem(ItemList[I];
+                                break;
+                            case 1:
+                                SecondaryWeapons.AddItem(ItemList[I];
+                                break;
+                            default:
+                                OffPerkWeapons.AddItem(ItemList[I];
+                                break;
+                                break;
+                        }
+                    }
                 }
             }
-            J0x28D:
+            J0x307:
 
             ++ I;
-            goto J0xDB;
+            goto J0xFF;
+        }
+        I = 0;
+        J0x320:
+
+        if(I < OnPerkWeapons.Length)
+        {
+            SetItemInfo(ItemDataArray, OnPerkWeapons[I], SlotIndex);
+            ++ SlotIndex;
+            ++ I;
+            goto J0x320;
+        }
+        I = 0;
+        J0x38B:
+
+        if(I < SecondaryWeapons.Length)
+        {
+            SetItemInfo(ItemDataArray, SecondaryWeapons[I], SlotIndex);
+            ++ SlotIndex;
+            ++ I;
+            goto J0x38B;
+        }
+        I = 0;
+        J0x3F6:
+
+        if(I < OffPerkWeapons.Length)
+        {
+            SetItemInfo(ItemDataArray, OffPerkWeapons[I], SlotIndex);
+            ++ SlotIndex;
+            ++ I;
+            goto J0x3F6;
         }
         SetObject("shopData", ItemDataArray);
     }
 }
 
-function RefreshItemsByType(byte FilterIndex, out array<STraderItem> ItemList)
+function RefreshItemsByType(byte FilterIndex, const out array<STraderItem> ItemList)
 {
     local int I, SlotIndex;
     local GFxObject ItemDataArray;
-    local array<STraderItem> FullItemList;
 
     SlotIndex = 0;
-    ItemList.Length = 0;
     ItemDataArray = Outer.CreateArray();
-    FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
     I = 0;
-    J0x9F:
+    J0x3F:
 
-    if(I < FullItemList.Length)
+    if(I < ItemList.Length)
     {
-        if((IsItemFiltered(FullItemList[I])) || !(FilterIndex == FullItemList[I].TraderFilter) || FilterIndex == FullItemList[I].AltTraderFilter)
+        if((IsItemFiltered(ItemList[I])) || !(FilterIndex == ItemList[I].TraderFilter) || FilterIndex == ItemList[I].AltTraderFilter)
         {
-            goto J0x1AD;            
+            goto J0x12D;            
         }
         else
         {
-            ItemList.AddItem(FullItemList[I];
-            SetItemInfo(ItemDataArray, FullItemList[I], SlotIndex);
+            SetItemInfo(ItemDataArray, ItemList[I], SlotIndex);
             ++ SlotIndex;
         }
-        J0x1AD:
+        J0x12D:
 
         ++ I;
-        goto J0x9F;
+        goto J0x3F;
     }
     SetObject("shopData", ItemDataArray);
 }
 
-function RefreshFavoriteItems(out array<STraderItem> ItemList)
+function RefreshFavoriteItems(const out array<STraderItem> ItemList)
 {
     local int I, SlotIndex;
     local GFxObject ItemDataArray;
-    local array<STraderItem> FullItemList;
 
     SlotIndex = 0;
-    ItemList.Length = 0;
     ItemDataArray = Outer.CreateArray();
-    FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
     I = 0;
-    J0x9F:
+    J0x3F:
 
-    if(I < FullItemList.Length)
+    if(I < ItemList.Length)
     {
-        if((IsItemFiltered(FullItemList[I])) || !MyTraderMenu.GetIsFavorite(FullItemList[I].ClassName))
+        if((IsItemFiltered(ItemList[I])) || !MyTraderMenu.GetIsFavorite(ItemList[I].ClassName))
         {
-            goto J0x183;            
+            goto J0x103;            
         }
         else
         {
-            ItemList.AddItem(FullItemList[I];
-            SetItemInfo(ItemDataArray, FullItemList[I], SlotIndex);
+            SetItemInfo(ItemDataArray, ItemList[I], SlotIndex);
             ++ SlotIndex;
         }
-        J0x183:
+        J0x103:
 
         ++ I;
-        goto J0x9F;
+        goto J0x3F;
     }
     SetObject("shopData", ItemDataArray);
 }
@@ -161,55 +203,57 @@ function RefreshAllItems(out array<STraderItem> ItemList)
 {
     local int I, SlotIndex;
     local GFxObject ItemDataArray;
-    local array<STraderItem> FullItemList;
 
     SlotIndex = 0;
-    ItemList.Length = 0;
     ItemDataArray = Outer.CreateArray();
-    FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
     I = 0;
-    J0x9F:
+    J0x3F:
 
-    if(I < FullItemList.Length)
+    if(I < ItemList.Length)
     {
-        if(IsItemFiltered(FullItemList[I]))
+        if(IsItemFiltered(ItemList[I]))
         {
-            goto J0x137;            
+            goto J0xB7;            
         }
         else
         {
-            ItemList.AddItem(FullItemList[I];
-            SetItemInfo(ItemDataArray, FullItemList[I], SlotIndex);
+            SetItemInfo(ItemDataArray, ItemList[I], SlotIndex);
             ++ SlotIndex;
         }
-        J0x137:
+        J0xB7:
 
         ++ I;
-        goto J0x9F;
+        goto J0x3F;
     }
     SetObject("shopData", ItemDataArray);
 }
 
-function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, int SlotIndex)
+function SetItemInfo(out GFxObject ItemDataArray, STraderItem TraderItem, int SlotIndex)
 {
     local GFxObject SlotObject;
-    local string ItemTexPath, IconPath;
+    local string ItemTexPath, IconPath, SecondaryIconPath;
     local bool bCanAfford, bCanCarry;
     local int AdjustedBuyPrice;
 
     SlotObject = Outer.CreateObject("Object");
     ItemTexPath = "img://" $ TraderItem.WeaponDef.static.GetImagePath();
-    if(TraderItem.AssociatedPerkClass != none)
+    if((TraderItem.AssociatedPerkClasses.Length > 0) && TraderItem.AssociatedPerkClasses[0] != none)
     {
-        IconPath = "img://" $ TraderItem.AssociatedPerkClass.static.GetPerkIconPath();        
+        IconPath = "img://" $ TraderItem.AssociatedPerkClasses[0].static.GetPerkIconPath();
+        if(TraderItem.AssociatedPerkClasses.Length > 1)
+        {
+            SecondaryIconPath = "img://" $ TraderItem.AssociatedPerkClasses[1].static.GetPerkIconPath();
+        }        
     }
     else
     {
         IconPath = "img://" $ Class'KFGFxObject_TraderItems'.default.OffPerkIconPath;
     }
     SlotObject.SetString("buyText", Localize("KFGFxTraderContainer_ItemDetails", "BuyString", "KFGame"));
+    SlotObject.SetInt("itemID", TraderItem.ItemId);
     SlotObject.SetString("weaponSource", ItemTexPath);
     SlotObject.SetString("perkIconSource", IconPath);
+    SlotObject.SetString("perkSecondaryIconSource", SecondaryIconPath);
     SlotObject.SetString("weaponName", TraderItem.WeaponDef.static.GetItemName());
     SlotObject.SetString("weaponType", TraderItem.WeaponDef.static.GetItemCategory());
     SlotObject.SetInt("weaponWeight", MyTraderMenu.GetDisplayedBlocksRequiredFor(TraderItem));
@@ -222,7 +266,7 @@ function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, in
     ItemDataArray.SetElementObject(SlotIndex, SlotObject);
 }
 
-function bool IsItemFiltered(const out STraderItem Item)
+function bool IsItemFiltered(STraderItem Item)
 {
     if(KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.ClassName))
     {

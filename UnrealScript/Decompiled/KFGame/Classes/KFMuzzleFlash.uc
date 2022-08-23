@@ -17,7 +17,9 @@ struct native MuzzleEffectInfo
     /** Muzzle flash PSC and Templates */
     var() ParticleSystem ParticleSystemTemplate;
     /** Muzzle flash PSC and Templates */
-    var() bool bPSCLoops;
+    var() bool bPSCLoops<EditCondition=!bIgnoreStopFire>;
+    /** If set, do not deactivate when weapon stops firing (only works with bPSCLoops=FALSE) */
+    var() bool bIgnoreStopFire<EditCondition=!bPSCLoops>;
     /** Sets LifeSpan of PSC (iff bMuzzleFlashPSCLoops=FALSE) and light */
     var() float Duration;
     /** The default socket name to attach to */
@@ -34,6 +36,7 @@ struct native MuzzleEffectInfo
         LightTemplate=none
         ParticleSystemTemplate=none
         bPSCLoops=false
+        bIgnoreStopFire=false
         Duration=0.33
         SocketName=MuzzleFlash
         FirstPersonDepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
@@ -75,7 +78,7 @@ native function MuzzleFlashTimer();
 // Export UKFMuzzleFlash::execMuzzleFlashAltTimer(FFrame&, void* const)
 native function MuzzleFlashAltTimer();
 
-function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name SocketNameOverride, optional name AltSocketNameOverride)
+function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name SocketNameOverride, optional name ShellEjectSocketOverride)
 {
     local float OwnerMeshFOV;
 
@@ -97,10 +100,6 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
     }
     if(bEnableSecondaryMuzzleFlash)
     {
-        if(AltSocketNameOverride != 'None')
-        {
-            MuzzleFlashAlt.SocketName = AltSocketNameOverride;
-        }
         if(MuzzleFlashAlt.ParticleSystemTemplate != none)
         {
             OwnerMesh.AttachComponentToSocket(MuzzleFlashAlt.PSC, MuzzleFlashAlt.SocketName);
@@ -116,6 +115,10 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
     }
     if(ShellEjectPSCTemplate != none)
     {
+        if(ShellEjectSocketOverride != 'None')
+        {
+            ShellEjectSocketName = ShellEjectSocketOverride;
+        }
         ShellEjectPSC = new (self) Class'KFParticleSystemComponent';
         ShellEjectPSC.bAutoActivate = false;
         ShellEjectPSC.SetTemplate(ShellEjectPSCTemplate);
@@ -199,9 +202,9 @@ function SetShellEjectLife(optional float NewLifetime)
 
 defaultproperties
 {
-    MuzzleFlash=(LightTemplate=none,ParticleSystemTemplate=none,bPSCLoops=false,Duration=0.33,SocketName=MuzzleFlash,FirstPersonDepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground,TimerName=MuzzleFlashTimer,PSC=KFParticleSystemComponent'Default__KFMuzzleFlash.ParticleSystemComponent0',LightComponent=none,bIsActive=false)
+    MuzzleFlash=(LightTemplate=none,ParticleSystemTemplate=none,bPSCLoops=false,bIgnoreStopFire=false,Duration=0.33,SocketName=MuzzleFlash,FirstPersonDepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground,TimerName=MuzzleFlashTimer,PSC=KFParticleSystemComponent'Default__KFMuzzleFlash.ParticleSystemComponent0',LightComponent=none,bIsActive=false)
     bAutoActivateShellEject=true
-    MuzzleFlashAlt=(LightTemplate=none,ParticleSystemTemplate=none,bPSCLoops=false,Duration=0.33,SocketName=MuzzleFlash,FirstPersonDepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground,TimerName=MuzzleFlashAltTimer,PSC=KFParticleSystemComponent'Default__KFMuzzleFlash.ParticleSystemComponent1',LightComponent=none,bIsActive=false)
+    MuzzleFlashAlt=(LightTemplate=none,ParticleSystemTemplate=none,bPSCLoops=false,bIgnoreStopFire=false,Duration=0.33,SocketName=MuzzleFlash,FirstPersonDepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground,TimerName=MuzzleFlashAltTimer,PSC=KFParticleSystemComponent'Default__KFMuzzleFlash.ParticleSystemComponent1',LightComponent=none,bIsActive=false)
     FireModeAlternateBothEffects=255
     FireModeFireBothEffects=255
     ShellEjectSocketName=ShellEject

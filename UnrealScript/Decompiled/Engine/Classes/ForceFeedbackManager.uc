@@ -15,6 +15,8 @@ var bool bIsPaused;
 var ForceFeedbackWaveform FFWaveform;
 var int CurrentSample;
 var float ElapsedTime;
+var int NextSample;
+var float NextElapsedTime;
 var float ScaleAllWaveformsBy;
 var Actor WaveformInstigator;
 
@@ -22,6 +24,8 @@ simulated function PlayForceFeedbackWaveform(ForceFeedbackWaveform WaveForm, Act
 {
     CurrentSample = 0;
     ElapsedTime = 0;
+    NextSample = 0;
+    NextElapsedTime = 0;
     bIsPaused = false;
     FFWaveform = none;
     WaveformInstigator = none;

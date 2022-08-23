@@ -9,30 +9,31 @@
 class KFDifficulty_ClotAlpha extends KFMonsterDifficultyInfo
 	abstract;
 
-/** Struct containing values for Alpha Clot rallies */
-struct sRallyTriggerInfo
-{
-	/** Chance to spawn as a rally-capable Alpha */
-	var float SpawnChance;
-	/** Chance to rally when all conditions are met */
-	var float RallyChance;
-	/** Cooldown between rallies */
-	var float Cooldown;
-	/** How much to modify dealt damage on self when rallying */
-	var float SelfDealtDamageModifier;
-	/** How much to modify taken damage on self when rallying */
-	var float SelfTakenDamageModifier;
-};
+/** Chances, by difficulty, to spawn as a special crawler */
+var array<float> ChanceToSpawnAsSpecial;
 
-/** Per-difficulty rally settings */
-var const array<sRallyTriggerInfo> RallyTriggerSettings;
+/** Chances, by difficulty, to spawn as a special gorefast */
+static function float GetSpecialAlphaChance( KFGameReplicationInfo KFGRI )
+{
+	if( KFGRI.bVersusGame )
+	{
+		return 0.f;
+	}
+	
+
+
+
+
+
+	return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
+}
 
 defaultproperties
 {
-   RallyTriggerSettings(0)=(Cooldown=15.000000,SelfDealtDamageModifier=2.500000,SelfTakenDamageModifier=0.100000)
-   RallyTriggerSettings(1)=(Cooldown=15.000000,SelfDealtDamageModifier=2.500000,SelfTakenDamageModifier=0.100000)
-   RallyTriggerSettings(2)=(SpawnChance=0.250000,RallyChance=0.700000,Cooldown=15.000000,SelfDealtDamageModifier=2.500000,SelfTakenDamageModifier=0.100000)
-   RallyTriggerSettings(3)=(SpawnChance=0.350000,RallyChance=0.800000,Cooldown=15.000000,SelfDealtDamageModifier=2.500000,SelfTakenDamageModifier=0.100000)
+   ChanceToSpawnAsSpecial(0)=0.000000
+   ChanceToSpawnAsSpecial(1)=0.000000
+   ChanceToSpawnAsSpecial(2)=0.250000
+   ChanceToSpawnAsSpecial(3)=0.350000
    Normal=(HealthMod=0.750000,HeadHealthMod=0.750000,RallySettings=(bCanRally=False))
    Hard=(DamagedSprintChance=0.050000,RallySettings=(bCanRally=False))
    Suicidal=(SprintChance=0.050000,DamagedSprintChance=1.000000,RallySettings=(bCauseSprint=True,TakenDamageModifier=0.500000,DealtDamageModifier=2.000000))

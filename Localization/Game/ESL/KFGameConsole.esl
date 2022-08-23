@@ -13,6 +13,7 @@ KF-Prison="Jugando en Cárcel"
 KF-ContainmentStation="Jugando en Puesto de contención"
 KF-InfernalRealm="Jugando en Reino infernal"
 KF-HostileGrounds="Jugando en Tierra hostil"
+KF-ZedLanding="Jugando en Aterrizaje ZED"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

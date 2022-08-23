@@ -708,6 +708,7 @@ BackString="返回"
 NoneString="無"
 WeaponsString="武器"
 WeaponsInfoString="自訂"
+EmotesString="EMOTES"
 
 [KFGFxMenu_Inventory]
 NoItemsString="在此過濾結果下，您目前沒有任何庫存物品。"
@@ -723,6 +724,7 @@ UnequipString="卸下"
 AllString="全部"
 WeaponSkinString="武器飾品"
 CosmeticString="妝容"
+EmotesString="Emotes"
 CraftingMatsString="合成"
 ItemString="物品"
 FiltersString="篩選器"
@@ -749,7 +751,7 @@ CraftRequirementString="需要的合成材料不足"
 CraftCosmeticDescriptionString="你可由此選單使用妝容材料合成新妝容物品。你可以回收現有的妝容物品以取得妝容材料。若要回收，請選擇物品並按下回收。"
 CraftWeaponDescriptionString="你可由此選單使用武器飾品材料合成新武器飾品。你可以回收現有的武器飾品以取得武器飾品材料。若要回收，請選擇物品並按下回收。"
 RequiresString="需要： "
-PurchaseKeyString="購買鑰匙： "
+PurchaseKeyString="購買鑰匙"
 LookUpOnMarketString="在市場尋找"
 
 [KFGFxPerksContainer]
@@ -796,6 +798,7 @@ WeaponSkinsRotationString="武器飾品"
 WeaponSkinsString="武器飾品市場"
 MarketConsumablesString="箱子 / USB 市場"
 MarketCosmeticsString="妝容市場"
+MarketEmotesString="市場Emotes"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="在市場尋找"
@@ -890,6 +893,7 @@ VoiceCommsOptionStrings[4]="跟我來"
 VoiceCommsOptionStrings[5]="到商人那裡"
 VoiceCommsOptionStrings[6]="同意"
 VoiceCommsOptionStrings[7]="不同意"
+VoiceCommsOptionStrings[8]="EMOTE"
 
 [KFGFxMenu_Exit]
 HeaderString="離開遊戲"
@@ -1182,6 +1186,7 @@ GBA_VoiceCommFollowMe="跟我來"
 GBA_VoiceCommGetToTheTrader="到商人那裡"
 GBA_VoiceCommAffirmative="同意"
 GBA_VoiceCommNegative="不同意"
+GBA_VoiceCommEmote="EMOTE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="敏感度"
@@ -1745,7 +1750,7 @@ EXPAction2="治療隊友"
 [KFPerk_Firebug]
 PerkName="縱火狂"
 EXPAction1="造成縱火狂武器傷害"
-EXPAction2="使用縱火狂武器殺害爬行者"
+EXPAction2="使用縱火狂武器殺死爬行者和腫脹毒屍"
 
 SkillCatagories[0]="補給"
 SkillCatagories[1]="辣"
@@ -1810,7 +1815,7 @@ ShootnMove="穩健"
 ShootnMoveDescription="可無視使用瞄具的速度延遲，並大幅減少職業武器的震動。"
 
 QuickSwitch="快速拔槍"
-QuickSwitchDescription="可無視由腰際拔槍帶來的後座力影響，移動速度增加 5%，且職業武器切換速度增加 50%。"
+QuickSwitchDescription="神速射擊可減少後座力影響，增加移動速度5%，並提高perk武器切換速度50%。"
 
 RhythmMethod="連擊王"
 RhythmMethodDescription="連續以職業武器爆頭時，每次可增加 10% 傷害，最多增加到 50%。"
@@ -2113,6 +2118,7 @@ RandomLoadingStrings[37]="電磁砲若發射角度正確可以射穿複數 Zed�
 RandomLoadingStrings[38]="微波砲對手持金屬的 Zed，例如絞碎者和海妖，有更好的效果。"
 RandomLoadingStrings[39]="試試看你的武器的替代主要攻擊模式。並不是所有武器都有此功能，但危急時可能派上用場。"
 RandomLoadingStrings[40]="助攻與殺害都能獲得 XP 與金錢，所以為隊友製造機會不用感覺很差。"
+RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
 
 [WhatsNewMessages]
 Jaegorhorn="追蹤社群以解鎖耶格霍恩。"
@@ -2139,6 +2145,7 @@ USBSWATKey="SWAT USB 鑰匙 - $2.49"
 USBTacticalHorzineKey="Horzine 戰略 USB 鑰匙 - $2.49"
 USBVictorianKey="維多利亞 USB 鑰匙 - $2.49"
 USBZedKillerKey="Zed 殺手 USB 鑰匙 - $2.49"
+USBBoneCrusher="碎骨者USB鑰匙 - $2.49"
 BullseyeUpdate="最新內容 - 紅心更新"
 LatestUpdate="最新內容更新"
 Forums="看看我們的社群論壇"
@@ -2159,6 +2166,7 @@ PS4WeaponSkinCrate1="Horzine 補給武器飾品箱子 | 系列 1"
 PS4WeaponSkinCrate2="Horzine 補給武器飾品箱子 | 系列 2"
 Artbook="《殺戮空間 2》數位畫冊"
 Uncovered="觀賞《殺戮空間：揭密》現場動作電影"
+NewEmotes="全新！Emote 箱子鑰匙 - $2.49"
 
 [Zeds]
 KFPawn_ZedBloat="胖胖"
@@ -2166,6 +2174,7 @@ KFPawn_ZedClot="凝塊"
 KFPawn_ZedCrawler="爬行者"
 KFPawn_ZedFleshPound="絞碎者"
 KFPawn_ZedGorefast="砍殺者"
+KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="漢斯華特博士"
 KFPawn_ZedHusk="焦驅"
 KFPawn_ZedStalker="潛行者"
@@ -2365,7 +2374,6 @@ DisplayName_DEU="Katakomben"
 DisplayName_ESL="Catacumbas"
 DisplayName_ESN="Catacumbas"
 DisplayName_FRA="Catacombes"
-DisplayName_FRC="Catacombes"
 DisplayName_INT="Catacombs"
 DisplayName_ITA="Catacombe"
 DisplayName_JPN="Catacombs"
@@ -2486,6 +2494,22 @@ DisplayName_POL="Piekielna domena"
 DisplayName_PTB="Reino Infernal"
 DisplayName_RUS="Царство ада"
 
+[KF-ZedLanding KFMapSummary]
+DisplayName_CHN="丧尸登陆"
+DisplayName_CHT="僵屍群登陸"
+DisplayName_DEU="ZED-Landung"
+DisplayName_ESL="Aterrizaje ZED"
+DisplayName_ESN="Aterrizaje ZED"
+DisplayName_FRA="Île des Zeds"
+DisplayName_FRC="Île des Zeds"
+DisplayName_INT="Zed Landing"
+DisplayName_ITA="Atterraggio ZED"
+DisplayName_JPN="zed Landing"
+DisplayName_KOR="제드 상륙"
+DisplayName_POL="Lądowanie zetów"
+DisplayName_PTB="Pouso Forçado ZED"
+DisplayName_RUS="Высадка среди мутантов"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics 實驗室"
 
@@ -2524,6 +2548,9 @@ DisplayName="敵營"
 
 [KF-InfernalRealm KFMapSummary]
 DisplayName="地獄"
+
+[KF-ZedLanding KFMapSummary]
+DisplayName="僵屍群登陸"
 
 
 [KFMapInfo]

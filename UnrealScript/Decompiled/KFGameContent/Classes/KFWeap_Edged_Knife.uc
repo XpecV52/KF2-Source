@@ -34,7 +34,7 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Edged_Knife.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    AssociatedPerkClass=Class'KFGame.KFPerk_Commando'
+    AssociatedPerkClasses=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitMomentum=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */

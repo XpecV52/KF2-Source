@@ -66,6 +66,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;
 
 struct sHiddenHumanPawnInfo
 {
@@ -167,6 +169,7 @@ function SetShowOverlays(bool bShow)
 function DrawCrosshair()
 {
     local float CrosshairSize, CrossHairSpread;
+    local KFPawn KFP;
     local KFWeapon KFWP;
     local bool bMonsterPawn, bDrawCrosshairNoWeapon;
     local byte CrossHairAlpha;
@@ -179,7 +182,8 @@ function DrawCrosshair()
         KFWP = KFWeapon(PlayerOwner.Pawn.Weapon);
         MyKFPerk = KFPlayerController(PlayerOwner).GetPerk();
         bMonsterPawn = PlayerOwner.GetTeamNum() == 255;
-        bDrawCrosshairNoWeapon = KFPawn(PlayerOwner.Pawn).bNeedsCrosshair;
+        KFP = KFPawn(PlayerOwner.Pawn);
+        bDrawCrosshairNoWeapon = KFP.bNeedsCrosshair;
         if(bMonsterPawn)
         {
             if(!bDrawCrosshairNoWeapon)
@@ -197,6 +201,10 @@ function DrawCrosshair()
             {
                 return;
             }
+        }
+        if(KFP.IsDoingSpecialMove() && !KFP.SpecialMoves[KFP.SpecialMove].CanDrawCrosshair())
+        {
+            return;
         }
         TargetCrossHairMod = 1;
         if(bForceDrawCrosshair)
@@ -236,7 +244,7 @@ function DrawCrosshair()
             }
             else
             {
-                if((KFPawn(PlayerOwner.Pawn) != none) && KFPawn(PlayerOwner.Pawn).bIsSprinting)
+                if((KFP != none) && KFP.bIsSprinting)
                 {
                     TargetCrossHairMod *= 3;                    
                 }
@@ -431,12 +439,13 @@ function DrawHUD()
     {
         KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     }
-    if((bDrawCrosshair || bForceDrawCrosshair) || (KFPlayerOwner != none) && KFPlayerOwner.GetTeamNum() == 255)
+    if((KFPlayerOwner != none) && KFPlayerOwner.bCinematicMode)
     {
-        if((KFPlayerOwner != none) && !KFPlayerOwner.bCinematicMode)
-        {
-            DrawCrosshair();
-        }
+        return;
+    }
+    if((KFPlayerOwner != none) && (bDrawCrosshair || bForceDrawCrosshair) || KFPlayerOwner.GetTeamNum() == 255)
+    {
+        DrawCrosshair();
     }
     if(PlayerOwner.GetTeamNum() == 0)
     {
@@ -518,9 +527,33 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     Canvas.SetDrawColorStruct(PlayerBarTextColor);
     Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), ScreenPos.Y + (BarHeight * 0.6));
     Canvas.DrawText(string(KFPRI.GetActivePerkLevel()) @ KFPRI.CurrentPerkClass.default.PerkName,, FontScale * FriendlyHudScale, FontScale * FriendlyHudScale, MyFontRenderInfo);
-    if(KFPRI.bPerkCanSupply && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none)
+    if((KFPRI.PerkSupplyLevel > 0) && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none)
     {
-        TempColor = ((KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed) ? SupplierActiveColor : ((!KFPRI.bPerkPrimarySupplyUsed && !KFPRI.bPerkSecondarySupplyUsed) ? SupplierUsableColor : SupplierHalfUsableColor));
+        if(KFPRI.PerkSupplyLevel == 2)
+        {
+            if(KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed)
+            {
+                TempColor = SupplierActiveColor;                
+            }
+            else
+            {
+                if(KFPRI.bPerkPrimarySupplyUsed || KFPRI.bPerkSecondarySupplyUsed)
+                {
+                    TempColor = SupplierHalfUsableColor;                    
+                }
+                else
+                {
+                    TempColor = SupplierUsableColor;
+                }
+            }            
+        }
+        else
+        {
+            if(KFPRI.PerkSupplyLevel == 1)
+            {
+                TempColor = ((KFPRI.bPerkPrimarySupplyUsed) ? SupplierActiveColor : SupplierUsableColor);
+            }
+        }
         Canvas.SetDrawColorStruct(TempColor);
         Canvas.SetPos(ScreenPos.X + (BarLength * 0.5), ScreenPos.Y - (BarHeight * float(2)));
         Canvas.DrawTile(KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256);
@@ -547,13 +580,17 @@ simulated function CheckAndDrawHiddenPlayerIcons(array<PlayerReplicationInfo> Vi
     local KFPlayerReplicationInfo KFPRI;
     local float ThisDot;
 
+    if(WorldInfo.GRI == none)
+    {
+        return;
+    }
     if(KFPlayerOwner.PlayerCamera != none)
     {
         KFPlayerOwner.PlayerCamera.GetCameraViewPoint(ViewLocation, ViewRotation);
     }
     ViewVector = vector(ViewRotation);
     I = 0;
-    J0x8A:
+    J0xB0:
 
     if(I < WorldInfo.GRI.PRIArray.Length)
     {
@@ -582,12 +619,12 @@ simulated function CheckAndDrawHiddenPlayerIcons(array<PlayerReplicationInfo> Vi
                     PawnLocation = KFPRI.GetSmoothedPawnIconLocation(HumanPlayerIconInterpMult);
                     if(IsZero(PawnLocation) || KFPRI.PlayerHealth <= 0)
                     {
-                        goto J0x4BA;
+                        goto J0x4E0;
                     }                    
                 }
                 else
                 {
-                    goto J0x4BA;
+                    goto J0x4E0;
                 }
             }
             ThisDot = Normal((PawnLocation + (Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) Dot ViewVector;
@@ -596,10 +633,10 @@ simulated function CheckAndDrawHiddenPlayerIcons(array<PlayerReplicationInfo> Vi
                 DrawHiddenHumanPlayerIcon(PRI, PawnLocation);
             }
         }
-        J0x4BA:
+        J0x4E0:
 
         ++ I;
-        goto J0x8A;
+        goto J0xB0;
     }
 }
 

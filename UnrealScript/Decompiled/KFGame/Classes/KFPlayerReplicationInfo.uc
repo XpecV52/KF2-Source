@@ -65,6 +65,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -100,14 +102,13 @@ var byte NetPerkIndex;
 var private byte ActivePerkLevel;
 var byte PlayerHealth;
 var byte PlayerHealthPercent;
+var byte PerkSupplyLevel;
 var byte SharedUnlocks;
-var bool bClientActiveSpawn;
 var bool bHasSpawnedIn;
 var bool bExtraFireRange;
 var bool bSplashActive;
 var bool bNukeActive;
 var bool bConcussiveActive;
-var bool bPerkCanSupply;
 var bool bPerkPrimarySupplyUsed;
 var bool bPerkSecondarySupplyUsed;
 var bool bObjectivePlayer;
@@ -130,12 +131,11 @@ replication
         ActivePerkLevel, Assists, 
         CharPortrait, CurrentPerkClass, 
         DamageDealtOnTeam, NetPerkIndex, 
-        PlayerHealth, PlayerHealthPercent, 
-        RepCustomizationInfo, bClientActiveSpawn, 
+        PerkSupplyLevel, PlayerHealth, 
+        PlayerHealthPercent, RepCustomizationInfo, 
         bConcussiveActive, bExtraFireRange, 
         bHasSpawnedIn, bNukeActive, 
-        bObjectivePlayer, bPerkCanSupply, 
-        bSplashActive;
+        bObjectivePlayer, bSplashActive;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -147,6 +147,7 @@ replication
 simulated event ReplicatedEvent(name VarName)
 {
     local KFPlayerController LocalPC;
+    local PlayerNameIdPair NewPlayer;
 
     if(VarName == 'RepCustomizationInfo')
     {
@@ -171,7 +172,8 @@ simulated event ReplicatedEvent(name VarName)
                     LocalPC = KFPlayerController(GetALocalPlayerController());
                     if(LocalPC != none)
                     {
-                        LocalPC.RecentlyMetPlayers.AddItem(PlayerName;
+                        NewPlayer.PlayerName = PlayerName;
+                        LocalPC.RecentlyMetPlayers.AddItem(NewPlayer;
                         if(LocalPC.MyGFxManager != none)
                         {
                             LocalPC.MyGFxManager.ForceUpdateNextFrame();
@@ -546,7 +548,14 @@ reliable server function ServerCastMapVote(PlayerReplicationInfo PRI, string Map
     }
     if((KFGRI != none) && !bOnlySpectator)
     {
-        KFGRI.ReceiveVoteMap(PRI, KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Find(MapName);
+        if(WorldInfo.NetMode == NM_Standalone)
+        {
+            KFGRI.ReceiveVoteMap(PRI, KFGameReplicationInfo(WorldInfo.GRI).VoteCollector.MapList.Find(MapName);            
+        }
+        else
+        {
+            KFGRI.ReceiveVoteMap(PRI, KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Find(MapName);
+        }
     }
 }
 
@@ -876,6 +885,12 @@ simulated function ResetSupplierUsed()
         ++ I;
         goto J0x52;
     }
+}
+
+simulated function NotifyWaveEnded()
+{
+    bPerkPrimarySupplyUsed = false;
+    bPerkSecondarySupplyUsed = false;
 }
 
 // Export UKFPlayerReplicationInfo::execHasHadInitialSpawn(FFrame&, void* const)

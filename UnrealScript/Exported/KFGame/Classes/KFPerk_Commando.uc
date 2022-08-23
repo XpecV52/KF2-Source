@@ -156,7 +156,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 		KFW = GetWeaponFromDamageCauser( DamageCauser );
 	}
 
-	if( (KFW != none && IsWeaponOnPerk( KFW )) || (DamageType != none && IsDamageTypeOnPerk( DamageType )) )
+	if( (KFW != none && IsWeaponOnPerk( KFW,, self.class )) || (DamageType != none && IsDamageTypeOnPerk( DamageType )) )
 	{
 		TempDamage += InDamage * GetPassiveValue( WeaponDamage, CurrentLevel );
 		if( IsRapidFireActive() )
@@ -174,7 +174,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoBackup] );
 		}
 
-		if( IsWeaponOnPerk(KFW) )
+		if( IsWeaponOnPerk( KFW,, self.class ) )
 		{
 			if( IsHollowPointsActive() )
 			{
@@ -250,7 +250,7 @@ simulated private final static function float GetExtraReloadSpeed( int Level )
  */
 simulated function float GetReloadRateScale( KFWeapon KFW )
 {
-	if( IsWeaponOnPerk( KFW ) )
+	if( IsWeaponOnPerk( KFW,, self.class ) )
 	{
 		return 1.f - GetExtraReloadSpeed( CurrentLevel );
 	}
@@ -305,7 +305,7 @@ function ModifyArmor( out byte MaxArmor )
  */
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
-	return ( IsTacticalReloadActive() && (IsWeaponOnPerk( KFW ) || IsBackupWeapon( KFW )) );
+	return ( IsTacticalReloadActive() && (IsWeaponOnPerk( KFW,, self.class ) || IsBackupWeapon( KFW )) );
 }
 
 /**
@@ -315,13 +315,13 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
 	TempCapacity = MagazineCapacity;
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && (KFW == none || !KFW.bNoMagazine) )
+	if( !bSecondary && IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && (KFW == none || !KFW.bNoMagazine) )
 	{
 		if( IsLargeMagActive() )
 		{
@@ -348,7 +348,7 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 {
 	local float TempMaxSpareAmmoAmount;
 
-	if( IsAmmoVestActive() && (IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClass ) ||
+	if( IsAmmoVestActive() && (IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClasses, self.class ) ||
 		IsBackupWeapon( KFW )) )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
@@ -357,8 +357,13 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 	}
 }
 
+static simulated private function bool Is9mm( KFWeapon KFW )
+{
+	return KFW != none && KFW.default.bIsBackupWeapon && !KFW.IsMeleeWeapon();
+}
+
 /**
- * @brief Skills can modify the zed time time delation
+ * @brief Skills can modify the zed time time dilation
  *
  * @param StateName used weapon's state
  * @return time dilation modifier
@@ -368,9 +373,10 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	local name StateName;
 	StateName = W.GetStateName();
 
-	if( IsProfessionalActive() && IsWeaponOnPerk( W ) )
+	if( IsProfessionalActive() && (IsWeaponOnPerk( W,, self.class ) || IsBackupWeapon( W )) )
 	{
-		if( StateName == 'Reloading' )
+		if( StateName == 'Reloading' || 
+			StateName == 'AltReloading' )
 		{
 			return 1.f;
 		}
@@ -380,7 +386,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 		}
 	}
 
-	if( IsWeaponOnPerk( W ) && CouldRapidFireActive() && ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
+	if( CouldRapidFireActive() && (Is9mm(W) || IsWeaponOnPerk( W,, self.class )) && ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 	{
 		return RapidFireFiringRate;
 	}
@@ -397,7 +403,7 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	local KFWeapon KFW;
 
 	KFW = GetOwnerWeapon();
-	if( IsImpactActive() && IsWeaponOnPerk( KFW ) )
+	if( IsImpactActive() && IsWeaponOnPerk( KFW,, self.class ) )
 	{
 		return 1.f + GetSkillValue( PerkSkills[ECommandoImpact] );
 	}
@@ -431,7 +437,7 @@ simulated final static function float GetBackupWeaponSwitchModifier()
  */
 simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 {
-	if( IsWeaponOnPerk( KFW ) && IsHollowPointsActive() )
+	if( IsWeaponOnPerk( KFW,, self.class ) && IsHollowPointsActive() )
 	{
 		CurrentRecoilModifier -= CurrentRecoilModifier * GetHollowPointRecoilModifier();
 	}
@@ -619,35 +625,43 @@ simulated static function int GetStalkerKillXP( byte Difficulty )
 simulated function DrawSpecialPerkHUD(Canvas C)
 {
 	local KFPawn_Monster KFPM;
+	local vector ViewLocation, ViewDir;
 	local float DetectionRangeSq, ThisDot;
+	local float HealthBarLength, HealthbarHeight;
 
 	if( CheckOwnerPawn() )
 	{
-		DetectionRangeSq = Square( GetPassiveValue( CloakedEnemyDetection, CurrentLevel ) );
+		DetectionRangeSq = Square( GetPassiveValue(CloakedEnemyDetection, CurrentLevel) );
 
-		foreach WorldInfo.AllPawns(class'KFPawn_Monster', KFPM)
+		HealthbarLength = FMin( 50.f * (float(C.SizeX) / 1024.f), 50.f );
+		HealthbarHeight = FMin( 6.f * (float(C.SizeX) / 1024.f), 6.f );
+
+		ViewLocation = OwnerPawn.GetPawnViewLocation();
+		ViewDir = vector( OwnerPawn.GetViewRotation() );
+
+		foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM )
 		{
-			ThisDot = Normal(vector(OwnerPawn.GetViewRotation())) dot Normal(KFPM.Location - OwnerPawn.Location);
-			if( KFPM.IsAliveAndWell() && KFPM.bShowHealth && DetectionRangeSq >= VSizeSq(KFPM.Location - OwnerPawn.Location) && ThisDot > 0  )
+			if( !KFPM.CanShowHealth()
+				|| !KFPM.IsAliveAndWell()
+				|| (WorldInfo.TimeSeconds - KFPM.Mesh.LastRenderTime) > 0.1f
+				|| VSizeSQ(KFPM.Location - OwnerPawn.Location) > DetectionRangeSq )
 			{
-				DrawZedHealthbar( C, KFPM );
+				continue;
+			}
+
+			ThisDot = ViewDir dot Normal( KFPM.Location - OwnerPawn.Location );
+			if( ThisDot > 0.f )
+			{
+				DrawZedHealthbar( C, KFPM, ViewLocation, HealthbarHeight, HealthbarLength );
 			}
 		}
 	}
 }
 
-simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM)
+simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM, vector CameraLocation, float HealthbarHeight, float HealthbarLength )
 {
-	local vector ScreenPos, TargetLocation, CameraLocation;
-	local float HealthBarLength, HealthbarHeight, HealthScale;
-
-	CheckOwnerPawn();
-
-	CameraLocation = OwnerPawn.GetPawnViewLocation();
-
-	HealthbarLength = FMin(50.f * (float(C.SizeX) / 1024.f), 50.f);
-	HealthbarHeight = FMin(6.f * (float(C.SizeX) / 1024.f), 6.f);
-	HealthScale = float(KFPM.Health) / float(KFPM.HealthMax);
+	local vector ScreenPos, TargetLocation;
+	local float HealthScale;
 
 	if( KFPM.bCrawler && KFPM.Floor.Z <=  -0.7f && KFPM.Physics == PHYS_Spider )
 	{
@@ -658,23 +672,25 @@ simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM)
 		TargetLocation = KFPM.Location + vect(0,0,1) * KFPM.GetCollisionHeight() * 1.2;
 	}
 
-	ScreenPos = C.Project(TargetLocation);
+	ScreenPos = C.Project( TargetLocation );
 	if( ScreenPos.X < 0 || ScreenPos.X > C.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > C.SizeY )
 	{
 		return;
 	}
 
-	if( FastTrace(TargetLocation,  CameraLocation) )
+	if( class'KFGameEngine'.static.FastTrace_PhysX(TargetLocation, CameraLocation) )
 	{
-		C.EnableStencilTest(true);
-		C.SetDrawColor(0, 0, 0, 255);
-		C.SetPos(ScreenPos.X - HealthBarLength * 0.5, ScreenPos.Y);
-		C.DrawTile(WhiteMaterial, HealthbarLength, HealthbarHeight, 0, 0, 32, 32);
+		HealthScale = float(KFPM.Health) / float(KFPM.HealthMax);
 
-		C.SetDrawColor(237, 8, 0, 255);
-		C.SetPos(ScreenPos.X - HealthBarLength * 0.5 + 1.0, ScreenPos.Y + 1.0);
-		C.DrawTile(WhiteMaterial, (HealthBarLength - 2.0) * HealthScale, HealthbarHeight - 2.0, 0, 0, 32, 32);
-		C.EnableStencilTest(false);
+		C.EnableStencilTest( true );
+		C.SetDrawColor(0, 0, 0, 255);
+		C.SetPos( ScreenPos.X - HealthBarLength * 0.5, ScreenPos.Y );
+		C.DrawTile( WhiteMaterial, HealthbarLength, HealthbarHeight, 0, 0, 32, 32 );
+
+		C.SetDrawColor( 237, 8, 0, 255 );
+		C.SetPos( ScreenPos.X - HealthBarLength * 0.5 + 1.0, ScreenPos.Y + 1.0 );
+		C.DrawTile( WhiteMaterial, (HealthBarLength - 2.0) * HealthScale, HealthbarHeight - 2.0, 0, 0, 32, 32 );
+		C.EnableStencilTest( false );
 	}
 }
 

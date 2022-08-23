@@ -125,7 +125,7 @@ function Callback_ControllerCloseMenu()
 	{
 		if( !class'WorldInfo'.static.IsMenuLevel() && Manager.bUsingGamepad )
 		{
-			if(KFPRI.bClientActiveSpawn || KFPRI.bOnlySpectator)
+			if(KFPRI.bReadyToPlay || KFPRI.bOnlySpectator)
 			{
 				if ( KFPRI.WorldInfo.GRI.bMatchHasBegun )
 				{

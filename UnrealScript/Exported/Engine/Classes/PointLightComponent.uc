@@ -79,6 +79,10 @@ var() bool bAIIgnoreLuminosity;
 
 native final function SetTranslation(vector NewTranslation);
 
+/** Sets the radius and calls BeginDeferredReattach() if radius has changed */
+native final function SetRadius( float NewRadius );
+
+
 /** Called from matinee code when LightColor property changes. */
 function OnUpdatePropertyLightColor()
 {

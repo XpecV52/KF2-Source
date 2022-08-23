@@ -45,7 +45,7 @@ defaultproperties
 	InventorySize=6
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'WEP_UI_Crossbow_TEX.UI_WeaponSelect_Crossbow'
-   	AssociatedPerkClass=class'KFPerk_Sharpshooter'
+   	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
 
     // FOV / Position
     MeshFOV=70

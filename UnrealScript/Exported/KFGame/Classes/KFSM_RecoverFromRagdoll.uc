@@ -105,7 +105,7 @@ function SpecialMoveStarted(bool bForced, Name PrevMove)
 	GetUpBlendStartTime = PawnOwner.WorldInfo.TimeSeconds;
 
 	// Skip BlendToGetUp if Pawn was using partial kinamatics for gore (e.g. Headless)
-	if ( KFPOwner.bHasBrokenConstraints && KFPOwner.InjuredHitZones > 0 )
+	if ( KFPOwner.bHasBrokenConstraints && KFPOwner.HasInjuredHitZones() )
 	{
 		PawnOwner.Mesh.PhysicsWeight = 0.f;
 		FinishedBlendToGetUp();

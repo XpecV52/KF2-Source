@@ -22,6 +22,8 @@ var GFxObject NoAwardsTextField;
 //==============================================================
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
+	local KFPlayerController KFPC;
+
 	super.Initialize( NewParentMenu );
 	LocalizeText();
 	//send team awards
@@ -29,6 +31,15 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	SendTeamAwards();
 	SendPersonalBests();
 
+	// Record stats only after personal bests have been given
+	if( GetPC() != none && GetPC().IsLocalPlayerController() )
+	{
+		KFPC = KFPlayerController( GetPC() );
+		if( KFPC != none )
+		{
+			KFPC.ClientWriteAndFlushStats();
+		}
+	}
 }
 
 function LocalizeText()

@@ -12,6 +12,8 @@ class KFGFxHUD_PlayerStatus extends GFxObject;
 
 /** Cached KFPlayerController */
 var KFPlayerController 				MyPC;
+var KFPawn_Human                    MyHumanPawn;
+var KFInventoryManager              MyInventoryManager;
 // Player's perk type as of the last tick.
 var class<KFPerk>					LastPerkClass;
 // The experience level of the player's perk as of the last tick.
@@ -77,14 +79,16 @@ function ClearBuffIcons()
 function UpdateHealer()
 {
 	local float CurrentHealerAmmoPct;
-    local KFInventoryManager KFInvManager;
-    
+
 	if( MyPC.Pawn != none && MyPC.Pawn.IsAliveAndWell() )
 	{
-        KFInvManager = KFInventoryManager(MyPC.Pawn.InvManager);
-        if( KFInvManager != none && KFInvManager.HealerWeapon != none)
+        if( MyInventoryManager == none )
         {
-            CurrentHealerAmmoPct = FClamp(float(KFInvManager.HealerWeapon.AmmoCount[0]) / float(KFInvManager.HealerWeapon.MagazineCapacity[0]),0.f,1.f);
+            MyInventoryManager = KFInventoryManager(MyPC.Pawn.InvManager);
+        }
+        if( MyInventoryManager != none && MyInventoryManager.HealerWeapon != none)
+        {
+            CurrentHealerAmmoPct = FClamp(float(MyInventoryManager.HealerWeapon.AmmoCount[0]) / float(MyInventoryManager.HealerWeapon.MagazineCapacity[0]),0.f,1.f);
         }
 	}
 
@@ -135,44 +139,50 @@ function UpdatePerk()
 
 function UpdateHealth()
 {
-	local KFPawn_Human MyKFP;
-
-    MyKFP = KFPawn_Human(MyPC.Pawn);
-    if( MyKFP == none )
+    if( MyHumanPawn == none )
+    {
+        MyHumanPawn = KFPawn_Human( MyPC.Pawn );
+    }
+    if( MyHumanPawn == none )
     {
         LastHealth = 0;
         SetInt("playerHealth" , LastHealth);
 	}
-	else if( LastHealth != MyKFP.Health )
+	else if( LastHealth != MyHumanPawn.Health )
 	{
-        SetInt("playerHealth" , MyKFP.Health);
-        LastHealth = MyKFP.Health;
+        if(MyHumanPawn.Health < 0)
+        {
+            SetInt("playerHealth" , 0);
+        }
+        else
+        {
+            SetInt("playerHealth" , MyHumanPawn.Health);
+        }
+        LastHealth = MyHumanPawn.Health;
 	}
 }
 
 function UpdateArmor()
 {
-	local KFPawn_Human MyKFP;
-
-    MyKFP = KFPawn_Human(MyPC.Pawn);
-    if( MyKFP == none )
+    if( MyHumanPawn == none )
+    {
+        MyHumanPawn = KFPawn_Human( MyPC.Pawn );
+    }
+    if( MyHumanPawn == none )
     {
         LastArmor = 0;
         SetInt("playerArmor" , LastArmor);
 	}
-	else if( LastArmor != MyKFP.Armor )
+	else if( LastArmor != MyHumanPawn.Armor )
 	{
-        SetInt("playerArmor" , MyKFP.Armor);
-        LastArmor = MyKFP.Armor;
+        SetInt("playerArmor" , MyHumanPawn.Armor);
+        LastArmor = MyHumanPawn.Armor;
 	}
 }
 
 function UpdateXP(int XPDelta, int XPPercent, bool bLevelUp, Class<KFPerk> PerkClass)
 {
     local bool bIsCurrentPerk;
-    local KFPlayerController KFPC;
-
-    KFPC = KFPlayerController(GetPC());
 
     SetBool("bLevelUp", bLevelUp);
 
@@ -181,7 +191,7 @@ function UpdateXP(int XPDelta, int XPPercent, bool bLevelUp, Class<KFPerk> PerkC
     {
         SetInt("playerPerkXPPercent", MyPC.GetPerkLevelProgressPercentage(PerkClass));
     }
-    if(!bLevelUp && KFPC.GetPerkLevelFromPerkList(PerkClass) < `MAX_PERK_LEVEL)
+    if(!bLevelUp && MyPC.GetPerkLevelFromPerkList(PerkClass) < `MAX_PERK_LEVEL)
     {
         ShowXPBark( XPDelta, "img://"$PerkClass.Static.GetPerkIconPath(), bIsCurrentPerk );
     }

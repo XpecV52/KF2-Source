@@ -28,6 +28,7 @@ struct native transient URL
     var init string Map;
     var init array<string> Op;
     var init string Portal;
+    var init string SecureAddress;
     var init int Valid;
 
     structdefaultproperties
@@ -38,6 +39,7 @@ struct native transient URL
         Map=""
         Op=none
         Portal=""
+        SecureAddress=""
         Valid=0
     }
 };
@@ -134,6 +136,7 @@ var const bool bShouldCommitPendingMapChange;
 var config bool bClearAnimSetLinkupCachesOnLoadMap;
 var config bool bEnableSecondaryDisplay;
 var config bool bEnableSecondaryViewport;
+var const transient bool bTrialActive;
 var const transient OnlineSubsystem OnlineSubsystem;
 var const transient PlayfabInterface PlayfabInterfaceInst;
 var const transient GamePadLightbarSubsystem GamePadLightbarSubsystem;
@@ -186,10 +189,31 @@ native static function int GetWebAdminPort();
 // Export UGameEngine::execDisableServerTakeover(FFrame&, void* const)
 native final function DisableServerTakeover();
 
+// Export UGameEngine::execEncodeURLString(FFrame&, void* const)
+native static final function EncodeURLString(out string Str);
+
+// Export UGameEngine::execDecodeURLString(FFrame&, void* const)
+native static final function DecodeURLString(out string Str);
+
+// Export UGameEngine::execGetPercentageOfStreamingInstallComplete(FFrame&, void* const)
+native static final function float GetPercentageOfStreamingInstallComplete();
+
+// Export UGameEngine::execIsGameFullyInstalled(FFrame&, void* const)
+native static final function bool IsGameFullyInstalled();
+
+// Export UGameEngine::execAreChunksInstalled(FFrame&, void* const)
+native static final function bool AreChunksInstalled(const out array<int> ChunksToCheck);
+
+// Export UGameEngine::execGetChunksInstallProgress(FFrame&, void* const)
+native static final function float GetChunksInstallProgress(const out array<int> ChunksToCheck);
+
+// Export UGameEngine::execGetChunkInstallProgress(FFrame&, void* const)
+native static final function float GetChunkInstallProgress(int ChunkToCheck);
+
 defaultproperties
 {
-    LastURL=(Protocol="",Host="",Port=0,Map="",Op=none,Portal="",Valid=1)
-    LastRemoteURL=(Protocol="",Host="",Port=0,Map="",Op=none,Portal="",Valid=1)
+    LastURL=(Protocol="",Host="",Port=0,Map="",Op=none,Portal="",SecureAddress="",Valid=1)
+    LastRemoteURL=(Protocol="",Host="",Port=0,Map="",Op=none,Portal="",SecureAddress="",Valid=1)
     ServerActors(0)="IpDrv.WebServer"
     bUsedForTakeover=true
 }

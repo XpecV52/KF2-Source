@@ -43,6 +43,8 @@ var bool bShouldSpawnBloodSplat;
 var bool bShouldSpawnPersistentBlood;
 var bool bCanGib;
 var bool bCanObliterate;
+var bool bUseHitLocationForGibImpulses;
+var bool bPointImpulseTowardsOrigin;
 var bool bNoPain;
 var bool bIgnoreSelfInflictedScale;
 var bool bIgnoreZedOnZedScaling;
@@ -76,6 +78,10 @@ var class<EmitterCameraLensEffectBase> AltCameraLensEffectTemplate;
 var(Obliteration) int ObliterationHealthThreshold;
 /** How much damage this damage type must deal before causing obliteration */
 var(Obliteration) int ObliterationDamageThreshold;
+var float MaxObliterationGibs;
+var float GibImpulseScale;
+var float ImpulseOriginScale;
+var float ImpulseOriginLift;
 var float BloodSpread;
 var float BloodScale<ClampMin=0.0|ClampMax=1.0>;
 var name DeathMaterialEffectParamName;
@@ -153,7 +159,7 @@ static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDir
 {
     local KFSkinTypeEffects SkinType;
 
-    if((P.CharacterArch != none) && default.EffectGroup < 12)
+    if((P.CharacterArch != none) && default.EffectGroup < 14)
     {
         SkinType = P.GetHitZoneSkinTypeEffects(HitZoneIndex);
         if(SkinType != none)
@@ -209,6 +215,8 @@ defaultproperties
     EffectGroup=EEffectDamageGroup.None
     BodyWoundDecalWidth=20
     BodyWoundDecalHeight=20
+    GibImpulseScale=0.1
+    ImpulseOriginScale=50
     BloodScale=1
     bExtraMomentumZ=false
     bCausesFracture=true

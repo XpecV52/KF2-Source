@@ -173,6 +173,7 @@ function DrawCrosshair()
 {
 	local float CrosshairSize;
 	local float CrossHairSpread;
+	local KFPawn KFP;
 	local KFWeapon KFWP;
 	local bool bMonsterPawn, bDrawCrosshairNoWeapon;
 	local byte CrossHairAlpha;
@@ -192,7 +193,8 @@ function DrawCrosshair()
 		bMonsterPawn = PlayerOwner.GetTeamNum() == 255;
 
 		// If our pawn class uses a crosshair regardless of weapon, draw it
-		bDrawCrosshairNoWeapon = KFPawn(PlayerOwner.Pawn).bNeedsCrosshair;
+		KFP = KFPawn( PlayerOwner.Pawn );
+		bDrawCrosshairNoWeapon = KFP.bNeedsCrosshair;
 
         // Don't draw the crosshair if we're not a monster with a weapon class, or we're not forcing the crosshair for the zed without a weapon
         if( bMonsterPawn )
@@ -216,6 +218,12 @@ function DrawCrosshair()
 			{
 				return;
 			}
+		}
+
+		// Don't draw the crosshair if our special move won't allow it
+		if( KFP.IsDoingSpecialMove() && !KFP.SpecialMoves[KFP.SpecialMove].CanDrawCrosshair() )
+		{
+			return;
 		}
 
         TargetCrossHairMod = 1.0;
@@ -269,7 +277,7 @@ function DrawCrosshair()
 		            TargetCrossHairMod *= KFWP.FallingRecoilModifier;
 	        	}
 	        }
-	        else if( KFPawn(PlayerOwner.Pawn) != none && KFPawn(PlayerOwner.Pawn).bIsSprinting )
+	        else if( KFP != none && KFP.bIsSprinting )
 	        {
 	            TargetCrossHairMod *= 3.0;
 	        }
@@ -554,13 +562,16 @@ function DrawHUD()
         KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
     }
 
-	// Draw the crosshair for casual mode
-	if( bDrawCrosshair || bForceDrawCrosshair || (KFPlayerOwner != none && KFPlayerOwner.GetTeamNum() == 255) )
+    // Don't draw canvas HUD in cinematic mode
+	if( KFPlayerOwner != none && KFPlayerOwner.bCinematicMode )
 	{
-		if( KFPlayerOwner != none && !KFPlayerOwner.bCinematicMode )
-		{
-	        DrawCrosshair();
-	    }
+		return;
+	}
+
+	// Draw the crosshair for casual mode
+	if( KFPlayerOwner != none && (bDrawCrosshair || bForceDrawCrosshair || KFPlayerOwner.GetTeamNum() == 255) )
+	{
+        DrawCrosshair();
     }
 
     // Friendly player status
@@ -675,10 +686,28 @@ simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 	Canvas.SetPos(ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y + BarHeight * 0.6);
 	Canvas.DrawText( KFPRI.GetActivePerkLevel() @KFPRI.CurrentPerkClass.default.PerkName,,FontScale * FriendlyHudScale, FontScale * FriendlyHudScale, MyFontRenderInfo );
 
-	if( KFPRI.bPerkCanSupply && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none )
+	if( KFPRI.PerkSupplyLevel > 0 && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none )
 	{
-		TempColor = (KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed) ? SupplierActiveColor
-					: (!KFPRI.bPerkPrimarySupplyUsed && !KFPRI.bPerkSecondarySupplyUsed) ? SupplierUsableColor : SupplierHalfUsableColor;
+		if( KFPRI.PerkSupplyLevel == 2 )
+		{
+			if( KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed )
+			{
+				TempColor = SupplierActiveColor;
+			}
+			else if( KFPRI.bPerkPrimarySupplyUsed || KFPRI.bPerkSecondarySupplyUsed )
+			{
+				TempColor = SupplierHalfUsableColor;
+			}
+			else
+			{
+				TempColor = SupplierUsableColor;
+			}
+		}
+		else if( KFPRI.PerkSupplyLevel == 1 )
+		{
+			TempColor = KFPRI.bPerkPrimarySupplyUsed ? SupplierActiveColor : SupplierUsableColor;
+		}
+
 		Canvas.SetDrawColorStruct( TempColor );
 		Canvas.SetPos( ScreenPos.X + BarLength * 0.5f, ScreenPos.Y - BarHeight * 2 );
 		Canvas.DrawTile( KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256); 
@@ -724,6 +753,12 @@ simulated function CheckAndDrawHiddenPlayerIcons( array<PlayerReplicationInfo> V
     local rotator ViewRotation;
  	local KFPlayerReplicationInfo KFPRI;
  	local float ThisDot;
+
+ 	// GRI hasn't replicated yet
+ 	if( WorldInfo.GRI == none )
+ 	{
+ 		return;
+ 	}
 
  	if( KFPlayerOwner.PlayerCamera != none )
     {

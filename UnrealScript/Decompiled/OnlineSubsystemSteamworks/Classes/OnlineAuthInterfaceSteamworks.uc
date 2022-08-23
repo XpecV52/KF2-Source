@@ -15,19 +15,19 @@ native function bool SendClientAuthRequest(Player ClientConnection, UniqueNetId 
 native function bool SendServerAuthRequest(UniqueNetId ServerUID);
 
 // Export UOnlineAuthInterfaceSteamworks::execCreateClientAuthSession(FFrame&, void* const)
-native function bool CreateClientAuthSession(UniqueNetId ServerUID, int ServerIP, int ServerPort, bool bSecure, out int OutAuthTicketUID);
+native function bool CreateClientAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort, bool bSecure, out int OutAuthTicketUID);
 
 // Export UOnlineAuthInterfaceSteamworks::execVerifyClientAuthSession(FFrame&, void* const)
-native function bool VerifyClientAuthSession(UniqueNetId ClientUID, int ClientIP, int ClientPort, int AuthTicketUID);
+native function bool VerifyClientAuthSession(UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort, int AuthTicketUID);
 
 // Export UOnlineAuthInterfaceSteamworks::execCreateServerAuthSession(FFrame&, void* const)
-native function bool CreateServerAuthSession(UniqueNetId ClientUID, int ClientIP, int ClientPort, out int OutAuthTicketUID);
+native function bool CreateServerAuthSession(UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort, out int OutAuthTicketUID);
 
 // Export UOnlineAuthInterfaceSteamworks::execVerifyServerAuthSession(FFrame&, void* const)
-native function bool VerifyServerAuthSession(UniqueNetId ServerUID, int ServerIP, int AuthTicketUID);
+native function bool VerifyServerAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int AuthTicketUID);
 
 // Export UOnlineAuthInterfaceSteamworks::execGetServerUniqueId(FFrame&, void* const)
 native function bool GetServerUniqueId(out UniqueNetId OutServerUID);
 
 // Export UOnlineAuthInterfaceSteamworks::execGetServerAddr(FFrame&, void* const)
-native function bool GetServerAddr(out int OutServerIP, out int OutServerPort);
+native function bool GetServerAddr(out IpAddr OutServerIP, out int OutServerPort);

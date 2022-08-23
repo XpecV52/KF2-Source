@@ -49,7 +49,7 @@ function SendSearching()
     if((OnlineLobby != none) && OnlineLobby.IsInLobby())
     {
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
-        bIsLeader = OnlineLobby.GetMyId() == AdminId;
+        bIsLeader = OnlineLobby.GetMyId() == AdminId && AdminId != ZeroUniqueId;
         if(bIsLeader)
         {
             if(Manager.CurrentMenuIndex == 0)
@@ -191,7 +191,7 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
     {
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
     }
-    bIsLeader = PlayerUID == AdminId;
+    bIsLeader = PlayerUID == AdminId && PlayerUID != ZeroUniqueId;
     PlayerInfoObject.SetBool("bLeader", bIsLeader);
     bIsMyPlayer = OnlineLobby.GetMyId() == PlayerUID;
     PlayerInfoObject.SetBool("myPlayer", bIsMyPlayer);

@@ -30,6 +30,7 @@ var const string AttachmentKey;
 var const string AttachmentSkinKey;
 var const string AttachmentFunctionKey;
 var const string KFCharacterInfoString;
+var const string KFEmoteInfoString;
 var KFCharacterInfo_Human CurrentCharInfo;
 var string CharInfoPath;
 var const localized string GearHeaderString;
@@ -41,20 +42,19 @@ var const localized string AttachmentsString;
 var const localized string SkinsString;
 var const localized string BackString;
 var const localized string NoneString;
-var const localized string WeaponsString;
-var const localized string WeaponsInfoString;
 var KFGFxObject_TraderItems TraderItems;
-var array< class<KFWeaponDefinition> > CurrentWearponDefList;
 var const int ControllerRotationRate;
 var const float ControllerRotationThreshold;
 var int CurrentPerkIndex;
 var string ClearImagePath;
+var array<Emote> EmoteList;
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
     super.InitializeMenu(InManager);
     MyKFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
     LocalizeText();
+    EmoteList = Class'KFEmoteList'.static.GetEmoteArray();
     UpdateCharacterList();
     UpdateGear();
     TraderItems = KFGameReplicationInfo(KFPlayerController(Outer.GetPC()).WorldInfo.GRI).TraderItems;
@@ -122,89 +122,41 @@ function LocalizeText()
     LocalizedObject.SetString("bioStringText", BioString);
     LocalizedObject.SetString("charactersString", CharacterString);
     LocalizedObject.SetString("headsString", HeadString);
+    LocalizedObject.SetString("emoteString", Class'KFLocalMessage_VoiceComms'.default.VoiceCommsOptionStrings[8]);
     LocalizedObject.SetString("bodiesString", BodyString);
     LocalizedObject.SetString("skinsString", SkinsString);
     LocalizedObject.SetString("attachmentsString", AttachmentsString);
-    LocalizedObject.SetString("weapons", WeaponsString);
-    LocalizedObject.SetString("weaponsInfo", WeaponsInfoString);
     SetObject("localizeText", LocalizedObject);
 }
 
-function UpdateWeaponList()
+function UpdateEmoteList()
 {
-    local int I, ItemIndex;
+    local byte ItemIndex, I;
     local GFxObject DataProvider, SlotObject;
     local string TexturePath;
-    local KFPlayerController KFPC;
-    local array<STraderItem> FullItemList;
 
-    KFPC = KFPlayerController(Outer.GetPC());
-    if((KFPC == none) || TraderItems == none)
-    {
-        return;
-    }
     ItemIndex = 0;
     DataProvider = Outer.CreateArray();
-    FullItemList = TraderItems.SaleItems;
-    CurrentWearponDefList.Length = 0;
     I = 0;
-    J0xC7:
+    J0x41:
 
-    if(I < FullItemList.Length)
+    if(I < EmoteList.Length)
     {
-        if((FullItemList[I].AssociatedPerkClass == none) || (CurrentPerkIndex < KFPC.PerkList.Length) && FullItemList[I].AssociatedPerkClass == KFPC.PerkList[CurrentPerkIndex].PerkClass)
+        if(Class'KFEmoteList'.static.GetUnlockedEmote(EmoteList[I].Id) != 'None')
         {
             SlotObject = Outer.CreateObject("Object");
             SlotObject.SetInt("ItemIndex", I);
-            SlotObject.SetString("label", FullItemList[I].WeaponDef.static.GetItemName());
-            TexturePath = "img://" $ FullItemList[I].WeaponDef.static.GetImagePath();
+            SlotObject.SetString("label", Localize(EmoteList[I].ItemName, "EmoteName", KFCharacterInfoString));
+            TexturePath = "img://" $ EmoteList[I].IconPath;
+            SlotObject.SetBool("enabled", true);
             SlotObject.SetString("source", TexturePath);
-            SlotObject.SetBool("enabled", Class'KFWeaponSkinList'.default.Skins.Find('WeaponDef', FullItemList[I].WeaponDef != -1);
-            UpdateWeaponVariants(FullItemList[I].WeaponDef, SlotObject);
             DataProvider.SetElementObject(ItemIndex, SlotObject);
-            ++ ItemIndex;
-            CurrentWearponDefList.AddItem(FullItemList[I].WeaponDef;
+            ++ ItemIndex;            
         }
         ++ I;
-        goto J0xC7;
+        goto J0x41;
     }
-    SetObject("weaponArray", DataProvider);
-    SaveChanges();
-}
-
-function UpdateWeaponVariants(class<KFWeaponDefinition> WeaponDef, out GFxObject MeshObject)
-{
-    local int I, ItemIndex;
-    local GFxObject DataProvider, SlotObject;
-
-    ItemIndex = 0;
-    DataProvider = Outer.CreateArray();
-    SlotObject = Outer.CreateObject("Object");
-    SlotObject.SetString("label", NoneString);
-    SlotObject.SetString("source", "img://" $ ClearImagePath);
-    SlotObject.SetBool("enabled", true);
-    DataProvider.SetElementObject(ItemIndex, SlotObject);
-    ++ ItemIndex;
-    I = 0;
-    J0x142:
-
-    if(I < Class'KFWeaponSkinList'.default.Skins.Length)
-    {
-        if(Class'KFWeaponSkinList'.default.Skins[I].WeaponDef == WeaponDef)
-        {
-            SlotObject = Outer.CreateObject("Object");
-            SlotObject.SetInt("ItemIndex", I);
-            SlotObject.SetString("label", Class'KFWeaponSkinList'.default.Skins[I].MIC_3P);
-            SlotObject.SetBool("enabled", Class'KFUnlockManager'.static.GetWeaponSkinAvailable(Class'KFWeaponSkinList'.default.Skins[I].Id));
-            SlotObject.SetInt("definition", Class'KFWeaponSkinList'.default.Skins[I].Id);
-            DataProvider.SetElementObject(ItemIndex, SlotObject);
-            ++ ItemIndex;
-        }
-        ++ I;
-        goto J0x142;
-    }
-    MeshObject.SetObject("skinInfo", DataProvider);
-    SaveChanges();
+    SetObject("emoteArray", DataProvider);
 }
 
 function UpdateCharacterList()
@@ -244,6 +196,7 @@ function UpdateGear()
     UpdateMeshList(BodyMeshKey, BodySkinKey, CurrentCharInfo.BodyVariants, "bodyArray");
     UpdateMeshList(HeadMeshKey, HeadSkinKey, CurrentCharInfo.HeadVariants, "headsArray");
     UpdateAttachmentsList(CurrentCharInfo.CosmeticVariants);
+    UpdateEmoteList();
     SetCurrentCharacterButtons();
 }
 
@@ -418,6 +371,27 @@ function SetCurrentCharacterButtons()
     SetGearButtons(MyKFPRI.RepCustomizationInfo.HeadMeshIndex, MyKFPRI.RepCustomizationInfo.HeadSkinIndex, HeadMeshKey, HeadSkinKey, HeadFunctionKey);
     SetGearButtons(MyKFPRI.RepCustomizationInfo.BodyMeshIndex, MyKFPRI.RepCustomizationInfo.BodySkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
     SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
+    SetEmoteButton();
+}
+
+function SetEmoteButton()
+{
+    local GFxObject DataObject;
+    local int EmoteIndex;
+
+    EmoteIndex = Class'KFEmoteList'.static.GetEmoteIndex(Class'KFEmoteList'.static.GetEquippedEmoteId());
+    DataObject = Outer.CreateObject("Object");
+    if(EmoteIndex == 255)
+    {
+        DataObject.SetString("selectedEmote", "");
+        DataObject.SetInt("selectedEmoteIndex", 0);        
+    }
+    else
+    {
+        DataObject.SetString("selectedEmote", Localize(EmoteList[EmoteIndex].ItemName, "EmoteName", KFCharacterInfoString));
+        DataObject.SetInt("selectedEmoteIndex", 0);
+    }
+    SetObject("selectedEmote", DataObject);
 }
 
 function SetGearButtons(byte MeshIndex, byte SkinIndex, string MeshKey, string SkinKey, string sectionFunctionName)
@@ -526,16 +500,6 @@ function Callback_EndRotateCamera()
     }
 }
 
-function Callback_Weapon(int ItemIndex, int SkinIndex)
-{
-    local KFPawn_Customization KFP;
-
-    KFP = KFPawn_Customization(Outer.GetPC().Pawn);
-    if(KFP != none)
-    {
-    }
-}
-
 function Callback_BodyCamera()
 {
     if(KFPlayerCamera(Outer.GetPC().PlayerCamera) != none)
@@ -550,6 +514,22 @@ function Callback_HeadCamera()
     {
         KFPlayerCamera(Outer.GetPC().PlayerCamera).CustomizationCam.SetBodyView(1);
     }
+}
+
+private final function Callback_Emote(byte Index)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Outer.GetPC());
+    if(KFPC != none)
+    {
+        Class'KFEmoteList'.static.SaveEquippedEmote(EmoteList[Index].Id);
+        if(KFPawn_Customization(KFPC.Pawn) != none)
+        {
+            KFPawn_Customization(KFPC.Pawn).PlayEmoteAnimation();
+        }
+    }
+    SetEmoteButton();
 }
 
 private final function Callback_Character(byte Index)
@@ -652,6 +632,7 @@ defaultproperties
     AttachmentSkinKey="AttachmentSkin"
     AttachmentFunctionKey="selectedAttachment"
     KFCharacterInfoString="KFCharacterInfo"
+    KFEmoteInfoString="KFEmoteInfo"
     GearHeaderString="CUSTOMIZE GEAR"
     CharacterString="CHARACTER"
     BioString="BIO"
@@ -661,8 +642,6 @@ defaultproperties
     SkinsString="SKINS"
     BackString="BACK"
     NoneString="NONE"
-    WeaponsString="Weapons"
-    WeaponsInfoString="Customize"
     ControllerRotationRate=15
     ControllerRotationThreshold=0.25
     CurrentPerkIndex=-1

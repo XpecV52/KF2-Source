@@ -149,7 +149,6 @@ simulated function Detonate()
 		if( DeployedCharges.Length > 0 )
 		{
 			DeployedCharges[0].Detonate();
-				RemoveDeployedCharge( 0 );
 		}
 
 		if( !HasAnyAmmo() && NumDeployedCharges == 0 )
@@ -170,7 +169,7 @@ function RemoveDeployedCharge( optional int ChargeIndex = INDEX_NONE, optional A
 		if( ChargeActor != none )
 		{
 			ChargeIndex = DeployedCharges.Find( ChargeActor );
-	}
+		}
 	}
 
 	if( ChargeIndex != INDEX_NONE )
@@ -374,7 +373,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ThrownBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Thrown_C4:MeleeHelper_0'
-   AssociatedPerkClass=Class'KFGame.KFPerk_Demolitionist'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
    FiringStatesArray(5)="WeaponDetonating"
    WeaponFireTypes(5)=EWFT_Custom
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Thrown_C4'

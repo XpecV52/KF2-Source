@@ -96,7 +96,7 @@ defaultproperties
 	bDropOnDeath=true
 	WeaponSelectTexture=Texture2D'WEP_UI_Deagle_TEX.UI_WeaponSelect_Deagle'
 	bIsBackupWeapon=false
-	AssociatedPerkClass=class'KFPerk_Gunslinger'
+	AssociatedPerkClasses(0)=class'KFPerk_Gunslinger'
 
 	DualClass=class'KFWeap_Pistol_DualDeagle'
 

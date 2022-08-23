@@ -21,9 +21,10 @@ defaultproperties
    StumblePower=300.000000
    MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
+   GibImpulseScale=0.150000
    KDeathVel=300.000000
    KDeathUpKick=1000.000000
-   RadialDamageImpulse=3000.000000
+   RadialDamageImpulse=2000.000000
    Name="Default__KFDT_Explosive_DynamiteGrenade"
    ObjectArchetype=KFDT_Explosive'KFGame.Default__KFDT_Explosive'
 }

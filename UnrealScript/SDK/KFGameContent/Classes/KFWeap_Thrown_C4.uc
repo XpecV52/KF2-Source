@@ -149,7 +149,6 @@ simulated function Detonate()
 		if( DeployedCharges.Length > 0 )
 		{
 			DeployedCharges[0].Detonate();
-				RemoveDeployedCharge( 0 );
 		}
 
 		if( !HasAnyAmmo() && NumDeployedCharges == 0 )
@@ -170,7 +169,7 @@ function RemoveDeployedCharge( optional int ChargeIndex = INDEX_NONE, optional A
 		if( ChargeActor != none )
 		{
 			ChargeIndex = DeployedCharges.Find( ChargeActor );
-	}
+		}
 	}
 
 	if( ChargeIndex != INDEX_NONE )
@@ -397,7 +396,7 @@ defaultproperties
 	WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
 	InventorySize=3
 
-   	AssociatedPerkClass=class'KFPerk_Demolitionist'
+   	AssociatedPerkClasses(0)=class'KFPerk_Demolitionist'
 
    	DetonateAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Handling_Detonate'
 	DryFireAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_DryFire'

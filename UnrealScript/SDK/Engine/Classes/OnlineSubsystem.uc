@@ -25,6 +25,11 @@ var OnlinePlayerInterface PlayerInterface;
 /** The interface for accessing online player extension methods */
 var OnlinePlayerInterfaceEx PlayerInterfaceEx;
 
+//@HSL_BEGIN_XBOX
+/** The interface for accessing online marketplace methods */
+var OnlineMarketplaceInterface MarketplaceInterface;
+//@HSL_END_XBOX
+
 /** The interface for accessing system wide network functions */
 var OnlineSystemInterface SystemInterface;
 
@@ -75,6 +80,17 @@ var array<delegate<OnInventoryReadComplete> > ReadInventoryCompleteDelegates;
 var const bool bInventoryReady;
 var array<delegate<OnPingRegionsComplete> > PingRegionsCompleteDelegates;
 `endif 
+
+
+//@HSL_BEGIN_XBOX
+/** The interface to use for recording game events */
+var OnlineGameDVRInterface GameDVRInterface;
+
+/** The interface to use for recording game events */
+var OnlineCommunityContentInterface CommunityContentInterface;
+//@HSL_END_XBOX
+
+
 /** Struct that holds a transient, unique identifier for a player */
 struct native UniqueNetId
 {
@@ -157,11 +173,13 @@ struct native UniqueNetId
 		 */
 		FORCEINLINE FUniqueNetId& operator=(const DWORD Id)
 		{
-#if WITH_PANORAMA || XBOX || WITH_STEAMWORKS
+//@HSL_BEGIN_XBOX
+#if WITH_PANORAMA || XBOX || DINGO || WITH_STEAMWORKS
 			check(0 && "Bad conversion loses data");
 #else
 			Uid = Id;
 #endif
+//@HSL_END_XBOX
 			return *this;
 		}
 
@@ -183,12 +201,14 @@ struct native UniqueNetId
 		 */
 		FORCEINLINE DWORD ToDWORD(void) const
 		{
-#if WITH_PANORAMA || XBOX || WITH_STEAMWORKS
+//@HSL_BEGIN_XBOX
+#if WITH_PANORAMA || XBOX || DINGO || WITH_STEAMWORKS
 			check(0 && "Bad conversion loses data");
 			return 0;
 #else
 			return Uid & 0xFFFFFFFF;
 #endif
+//@HSL_END_XBOX
 		}
 
 		/**
@@ -207,6 +227,18 @@ struct native UniqueNetId
 		}
 	}
 };
+
+//@HSL_BEGIN_XBOX
+/** Keeps track of the last player to login to game  */
+var native UniqueNetId LoggedInPlayerNetId;
+
+/** Adding support for name-id pairs since Sony uses names and the rest of the world uses Ids*/
+struct native PlayerNameIdPair
+{
+	var init string PlayerName;
+	var UniqueNetId UniqueId;
+};
+//@HSL_END
 
 /** The different login statuses for a player */
 enum ELoginStatus
@@ -269,7 +301,34 @@ enum EFeaturePrivilegeLevel
 	/** Privilege Check Failed and is Unknown */
 	FPL_Unknown,
 };
-//@HSL_END
+
+//@HSL_BEGIN_XBOX
+enum EReputationFeedbackType
+{
+    /** Player is using abusive language */
+    RFBT_CommunicationsAbusiveVoice,
+    /** Player is showing inappropriate video */
+    RFBT_CommunicationsInappropriateVideo,
+    /** Player is cheating the game */
+    RFBT_FairPlayCheater,
+    /** Player was kicked from game */
+    RFBT_FairPlayKicked,
+    /** Player is killing his own teammates */
+    RFBT_FairPlayKillsTeammates,
+    /** Player quit the game before it was over */
+    RFBT_FairPlayQuitter,
+    /** Player has tampered with on-disk content */
+    RFBT_FairPlayTampering,
+    /** Player has inappropriate user generated content */
+    RFBT_InappropriateUserGeneratedContent,
+    /** Player was helpful to another player */
+    RFBT_PositiveHelpfulPlayer,
+    /** Player has awesome user generated content */
+    RFBT_PositiveHighQualityUserGeneratedContent,
+    /** Player is awesome */
+    RFBT_PositiveSkilledPlayer,
+};
+//@HSL_END_XBOX
 
 /** Used to bulk query the friends list */
 struct native FriendsQuery
@@ -330,6 +389,41 @@ enum OnGameInviteAcceptedResult
 };
 //@HSL_END
 
+//@HSL_BEGIN_XBOX
+/** The account tier of this profile */
+enum EOnlineAccountTier
+{
+	OAT_Unknown,
+	OAT_NewUser,
+	OAT_Silver,
+	OAT_Gold,
+	OAT_FamilyGold
+};
+
+/** Holds information about an online profile for a player */
+struct native OnlineProfile
+{
+	/** The user id for this profile */
+	var string UserId;
+	/** The account tier of this profile*/
+	var EOnlineAccountTier AccountTier;
+	/** The total gamerscore for the player associated with this profile */
+	var int Gamerscore;
+	/** The name displayed in the application for the player associated with this profile */
+	var string ApplicationDisplayName;
+	/** The user name to display in-game for the player associated with this profile */
+	var string GameDisplayName;
+	/** The URL of the picture to display for the player associated with this profile */
+	var string DisplayPictureURL;
+	/** The URL of the resized display picture for the player associated with this profile */
+	var string ApplicationDisplayPictureResizeURL;
+	/** The URL of the profile's public gamer picture */
+	var string PublicGamerPictureURL;
+	/** The URL of the resized picture of the user to show in the game */
+	var string GameDisplayPictureResizeURL;
+};
+//@HSL_END_XBOX
+
 /** The possible friend states for a friend entry */
 enum EOnlineFriendState
 {
@@ -342,6 +436,15 @@ enum EOnlineFriendState
 	/** Signed in, online, and asks to be left alone */
 	OFS_Busy
 };
+
+//@HSL_BEGIN_XBOX
+/** Possilbe Flags that can be used to create a Game Session */
+enum EOnlineCreateGameSessionFlag
+{
+	OCGSF_New,
+	OCGSF_ReSubmit
+};
+//@HSL_END_XBOX
 
 /** Holds information about a player in a friends list */
 struct native OnlineFriend
@@ -510,14 +613,16 @@ enum EOnlineServerConnectionStatus
 	OSCS_DuplicateLoginDetected,
 	/** Can't connect because of an invalid/unknown user */
 	OSCS_InvalidUser,
-//@zombie_ps4_begin
+//@HSL_BEGIN_PS4
 	/** Can't connect because we are banned */
 	OSCS_Banned,
 	/** Can't connect because user age is too young */
 	OSCS_TooYoung,
 	/** Can't connect because PSN is not available */
 	OSCS_PSNUnavailable,
-//@zombie_ps4_end
+	/** Can't connect because XBox Live is not available */
+	OSCS_XBLiveUnavailable,
+//@HSL_END_PS4
 };
 
 /**
@@ -657,6 +762,10 @@ struct native LocalTalker
 	var bool bIsTalking;
 	/** Whether this player was already registered with the voice interface or not */
 	var bool bIsRegistered;
+//@HSL_BEGIN_XBOX
+	/** Used to keep track of whether a player has been talking recently */
+	var float TimeSinceLastPacket;
+//@HSL_END_XBOX
 };
 
 /** Information about a remote talker */
@@ -672,6 +781,12 @@ struct native RemoteTalker
 	var bool bIsTalking;
 	/** Whether this player was already registered with the voice interface or not */
 	var bool bIsRegistered;
+//@HSL_BEGIN_XBOX
+	/** Used to keep track of whether a player has been talking recently */
+	var float TimeSinceLastPacket;
+	/** Used to keep track of how long the user has been in chat */
+	var float TimeSinceJoining;
+//@HSL_END_XBOX
 };
 
 /** Holds the data used in a friend message */
@@ -741,15 +856,26 @@ struct native TitleFile
 	var array<byte> Data;
 };
 
+//@HSL_BEGIN_XBOX
+enum EOnlineFileType
+{
+	OFT_Unknown,
+	OFT_Binary,
+	OFT_Json
+};
+//@HSL_END_XBOX
+
 /** Community file info */
 struct native CommunityContentFile
 {
+//@HSL_BEGIN_XBOX
 	/** Unique identifier for this content file */
 	var int ContentId;
-	/** Additional identifier for providers that need it */
-	var int FileId;
-	/** Game specific content type field */
-	var int ContentType;
+	/** The path to the file on the server */
+	var string RemoteContentPath;
+	/** Content type field */
+	var EOnlineFileType ContentType;
+//@HSL_END_XBOX
 	/** Size in bytes of the payload in the file */
 	var int FileSize;
 	/** The original owner of the file */
@@ -769,11 +895,29 @@ struct native CommunityContentFile
 /** Community file metadata */
 struct native CommunityContentMetadata
 {
-	/** Unique identifier for this content type */
-	var int ContentType;
-	/** Metadata to associate with the file */
-	var array<SettingsProperty> MetadataItems;
+//@HSL_BEGIN_XBOX
+	/** Content type field */
+	var EOnlineFileType ContentType;
+	/** The remote path for where the file will live on the server */
+	var string RemotePath;
+	/** The display (friendly) name for the file */
+	var string DisplayName;
 };
+
+struct native UserAccountInfo
+{
+	/** The date of birth of the user */
+	var string DateOfBirth;
+	/** The e-mail address of the user */
+	var string Email;
+	/** The first name of the user */
+	var string FirstName;
+	/** The last name of the user */
+	var string LastName;
+	/** The gamertag of the user */
+	var string Gamertag;
+};
+//@HSL_END_XBOX
 
 /** Holds the per session information for named sessions */
 struct native NamedSession
@@ -793,35 +937,305 @@ struct native NamedSession
 /** The list of sessions currently managed by the online subsystem */
 var const protected array<NamedSession> Sessions;
 
+//@HSL_BEGIN_XBOX
+/** The type of an achievement reward */
+enum EAchievementRewardType
+{
+	ART_Unknown,
+	ART_Gamerscore,
+	ART_InApp,
+	ART_Art
+};
+
+/** The type of an achievement media asset*/
+enum EAchievementMediaAssetType
+{
+	AMAT_Unknown,
+	AMAT_Icon,
+	AMAT_Art
+};
+
+/** The type of an achievement */
+enum EAchievementUnlockType
+{
+	AUT_Unknown,
+	AUT_All,
+	AUT_Persistent,
+	AUT_Challenge
+};
+
+/** The participation type of an achievement */
+enum EAchievementParticipationType
+{
+	EAPT_Unknown,
+	EAPT_Individual,
+	EAPT_Group
+};
+
+/** The progress state of an achievement */
+enum EAchievementProgressState
+{
+	APS_Unknown,
+	APS_Achieved,
+	APS_NotStarted,
+	APS_InProgress,
+};
+
+/** A reward granted when an achievement is unlocked */
+struct native AchievementReward
+{
+	/** The name of the reward */
+	var const string RewardName;
+	/** The descrion of the award */
+	var const string Description;
+	/** The data associated with the reward */
+	var const string Data;
+	/** Type type of the reward */
+	var const EAchievementRewardType RewardType;
+};
+
+/** A media asset tied to an achievement */
+struct native AchievementMediaAsset
+{
+	/** The name of the asset */
+	var const string AssetName;
+	/** The type of the asset */
+	var const EAchievementMediaAssetType AssetType;
+	/** The URL of the asset */
+	var const string AssetURL;
+};
+
+/** An association between a title ID and an achievement */
+struct native AchievementTitleAssociation
+{
+	/** The localized name of the title */
+	var const string LocalizedTitleName;
+	/** The title ID */
+	var const int TitleID;
+};
+//@HSL_END_XBOX
+
 /** Holds the information contained in Live's achievements for this title */
 struct native AchievementDetails
 {
-	/** The ID of the achievement */
+//@HSL_BEGIN_XBOX
+	/** The ID of the achievement DINGO_DEPRECATED in favor of the ID stored as a string */
 	var const int Id;
+	/** The ID of the achievement as a string */
+	var const string StringId;
 	/** The name of the achievement */
 	var const string AchievementName;
-	/** The description of the achievement */
+	/** The description of the achievement NOTE: on Dingo this is the "Unlocked Description" */
     var const string Description;
-	/** The description of how to meet the requirements of the achievement */
+	/** The description of how to meet the requirements of the achievement NOTE: on Dingo this is the "Locked Description"*/
     var const string HowTo;
     /** The image associated with the achievement */
 	var Surface Image;
-	/** The month of when it was earned */
+	/** The month of when it was earned DINGO_DEPRECATED */
 	var const byte MonthEarned;
-	/** The day of the month of when it was earned */
+	/** The day of the month of when it was earned DINGO_DEPRECATED */
 	var const byte DayEarned;
-	/** The year of when it was earned (byte is fine since the none of the consoles will last that long :) ) */
+	/** The year of when it was earned (byte is fine since the none of the consoles will last that long :) ) DINGO_DEPRECATED */
 	var const byte YearEarned;
-	/** The day of week since we have a byte available for padding */
+	/** The day of week since we have a byte available for padding DINGO_DEPRECATED */
 	var const byte DayOfWeekEarned;
-	/** How much this achievement is worth */
+	/** How much this achievement is worth NOTE: on Dingo this info will be stored in Rewards */
 	var const int GamerPoints;
 	/** Whether the achievement is secret (hidden if not achieved) or not */
 	var const bool bIsSecret;
-	/** Whether the achievement awarded online or not */
+	/** Whether the achievement awarded online or not DINGO_DEPRECATED */
 	var const bool bWasAchievedOnline;
-	/** Whether the achievement awarded offline or not */
+	/** Whether the achievement awarded offline or not DINGO_DEPRECATED */
 	var const bool bWasAchievedOffline;
+	/** The type of this achievement (eg Challenge or Persistent) */
+	var const EAchievementUnlockType UnlockType;
+	/** The start time for a Challenge achievement window */
+	var const qword ChallengeWindowBegin;
+	/** The end time for a Challenge achievement window */
+	var const qword ChallengeWindowEnd;
+	/** The in-game Deep Link that specifies the starting point for this achievement */
+	var const string DeepLink;
+	/** The estimated time the achievement will take to earn */
+	var const qword EstimatedUnlockTime;
+	/** Whether this achievement has been revoked or not */
+	var const bool bIsRevoked;
+	/** The participation type of this Achievement */
+	var const EAchievementParticipationType ParticipationType;
+	/* The platform this achievement was earned on */
+	var const array<string> PlatformsAvailableOn;
+	/** The progress state of this achievement */
+	var const EAchievementProgressState ProgressState;
+	/** The rewards associated with this achievement */
+	var const array<AchievementReward> Rewards;
+	/** The media assets associated with this achievement */
+	var const array<AchievementMediaAsset> MediaAssets;
+	/** The product ID in which this achievement can be unlocked */
+	var const string ProductID;
+	/** ID of the service configuration set associated with the achievement */
+	var const string ServiceConfigurationID;
+	/** The titles associated with the achievement */
+	var const array<AchievementTitleAssociation> TitleAssociations;
+
+};
+
+// pseudo-enum for ProductItemType (has to be done this way because it is a bitmask)
+const PIT_Game			= 0x0001;
+const PIT_App			= 0x0002;
+const PIT_Consumable	= 0x0004;
+const PIT_Durable		= 0x0008;
+const PIT_GameDemo		= 0x0010;
+const PIT_All			= 0x001F; // PIT_Game | PIT_App | PIT_Consumable | PIT_Durable | PIT_GameDemo;
+
+/** The order products should be sorted when reading them from the online service */
+enum ECatalogSortOrder
+{
+	CSO_FreeAndPaidCountDaily,
+	CSO_PaidCountAllTime,
+	CSO_PaidCountDail,
+	CSO_DigitalReleaseDate,
+	CSO_ReleaseDate,
+	CSO_UserRatings
+};
+
+/** Holds the details of a marketplace product's availabilty */
+struct native MarketplaceProductAvailability
+{
+	/** The list of acceptable payment types for the catalog item */
+	var const array<string>						AcceptablePaymentInstrumentTypes;
+	/** Text that describes the catalog item's availability */
+	var const string							Description;
+    /** The title of the product */
+    var const string                            Title;
+    /** The number of units available for the catalog item */
+    var const int                               ConsumableQuantity;
+	/** Identifier for the content of the product */
+	var const string							ContentId;
+	/** Code for the currency used in the product price */
+	var const string							CurrencyCode;
+	/** String version of product list price */
+	var const string							DisplayListPrice;
+	/** String version of product price */
+	var const string							DisplayPrice;
+	/** Distribution type of the product */
+	var const string							DistributionType;
+	/** Is this product purchaseable? */
+	var const bool								bIsPurchasable;
+	/** The published price listed for the catalog item */
+	var const float								ListPrice;
+    /** An identifier of an offer for the catalog item */
+    var const string                            OfferId;
+	/** The price of the catalog item, which is the amount the customer actually pays after any specials or discounts are applied */
+	var const float								Price;
+	/** Text to display to the user to interest them in the product */
+	var const string							PromotionalText;
+	/** Signed offer for the product */
+	var const string							SignedOffer;
+
+};
+
+/** Holds details about an image related to a marketplace product */
+struct native MarketplaceProductImage
+{
+	/** Identifier for the image */
+	var const string							Id;
+	/** Height of the image */
+	var const int								Height;
+	/** Width of the image */
+	var const int								Width;
+	/** String describing the purpose of the image */
+	var const string							Purpose;
+	/** A list of purposes for the image */
+	var const array<string>						Purposes;
+	/** URL where alternate sizes of the image are stored */
+	var const string							ResizeURL;
+};
+
+/** The type of media for a marketplace product */
+enum EMediaItemType
+{
+	MIT_Unknown,
+	MIT_Game,
+	MIT_Application,
+	MIT_GameContent,
+	MIT_GameConsumable,
+	MIT_Subscription
+};
+
+/** Holds the information about a marketplace product */
+struct native MarketplaceProductDetails
+{
+	/** The identifier for the product */
+	var const string									StandardId;
+	/** The type of media of the product */
+	var const EMediaItemType							MediaItemType;
+	/** The name of the product */
+	var const string									ProductName;
+	/** The product identifier for the product */
+	var const string									ProductId;
+	/** The release date of the product */
+	var const qword										ReleaseDate;
+	/** The sandboxid of the product */
+	var const string									SandboxId;
+	/** The id of the title this product belongs to */
+	var const int										TitleId;
+    /** Indicates if this product is a Bundle that includes entitlements to other products */
+    var const bool                                      bIsBundle;
+    /** Indicates if this Product is a member of a Bundle in the Marketplace */
+    var const bool                                      bIsPartOfAnyBundle;
+    /** The short version of the name of the catalog item */
+    var const string                                    ReducedName;
+	/** The images associated with the product */
+	var const array<MarketplaceProductImage>			Images;
+	/** The state of reading additional details for this product */
+	var EOnlineEnumerationReadState						DetailsReadState;
+	/** The availability details for the product (NOTE: only filled in after a request for additional details) */
+	var const array<MarketplaceProductAvailability>		Availabilities;
+	/** The description for the product (NOTE: only filled in after a request for additional details) */
+	var const string									ProductDescription;
+
+	structcpptext
+	{
+		FMarketplaceProductDetails() : DetailsReadState(OERS_NotStarted) {}
+	}
+};
+
+/** The state of an inventory item */
+enum EInventoryItemState
+{
+	IIS_Unknown,
+	IIS_All,
+	IIS_Enabled,
+	IIS_Suspended,
+	IIS_Expired,
+	IIS_Canceled
+};
+
+/** Holds the information about a marketplace inventory item */
+struct native MarketplaceInventoryItem
+{
+	/** Product identifier of the item */
+	var const string				ProductId;
+	/** Media type of the item (eg game, consumable, etc) */
+	var const EMediaItemType		MediaItemType;
+	/** State of the item */
+	var const EInventoryItemState	ItemState;
+	/** Quantity of the consumable item available */
+	var const int					ConsumableBalance;
+	/** The title identifier for which the item is valid */
+	var const int					TitleId;
+	/** A list of content container identifiers that contain this item (eg if this item is available as part of multiple content packs */
+	var const array<string>			ContainerIds;
+	/** The date the item became available */
+	var const qword					StartDate;
+	/** The date the item will no longer be available */
+	var const qword					EndDate;
+	/** The date the user received the rights to access this content */
+	var const qword					RightsObtainedDate;
+	/** The URL of the item */
+	var const string				Url;
+	/** The URL of the consumable item */
+	var const string				ConsumableUrl;
+//@HSL_END_XBOX
 };
 
 /** The state of an async enumeration (friends, content, etc) read request */
@@ -832,6 +1246,34 @@ enum EOnlineNewsType
 	ONT_ContentAnnouncements,
 	ONT_Misc
 };
+
+enum ESessionMemberStatus
+{
+	DSMS_Reserved,
+	DSMS_Inactive,
+	DSMS_Ready,
+	DSMS_Active
+};
+
+struct native SessionMemberInfo
+{
+	var UniqueNetId PlayerNetId;
+	var ESessionMemberStatus MemberStatus;
+	var init string SecureAddress;
+    /** The gamertag of the player */
+    var init string Nickname;
+    var bool Muted;
+};
+
+struct native PermissionsResult
+{
+	var SessionMemberInfo User;
+	var bool bHasPermission;
+};
+
+var array<SessionMemberInfo> PartyMemberList;
+var array<SessionMemberInfo> GameMemberList;
+//@HSL_END_XBOX
 
 /** Whether to use the override or not */
 var config bool bUseBuildIdOverride;
@@ -928,6 +1370,25 @@ struct native SocialPostLinkInfo extends SocialPostImageInfo
     var string PictureURL;
 };
 
+//@HSL_BEGIN_XBOX
+struct native SessionUpdateInfo
+{
+    var const array<SessionMemberInfo> MembersJoined;
+    var const array<SessionMemberInfo> MembersLeft;
+	var const bool bHostDeviceTokenChanged;
+	var const bool bInitializationStateChanged;
+	var const bool bMatchmakingStatusChanged;
+	var const bool bMemberJoinedOrLeft;
+	var const bool bMemberStatusChanged;
+	var const bool bSessionJoinabilityChanged;
+	var const bool bCustomPropertyChange;
+	var const bool bMemberCustomPropertyChange;
+};
+
+var const config string DefaultSessionTemplateName;
+var const config string PartySessionTemplateName;
+//@HSL_END_XBOX
+
 `if (`__TW_ONLINESUBSYSTEM_)
 
 /* Used to contain a local list of inventory items fetched from Steam */
@@ -950,8 +1411,9 @@ enum ItemType
 	ITP_WeaponSkin,
 	ITP_CharacterSkin,
 	ITP_KeyCrate,
-	ITP_CraftingComponent,
 	ITP_Item,
+	ITP_CraftingComponent,
+	ITP_Emote,
 
 	ITP_NONE,
 };
@@ -974,7 +1436,7 @@ struct native ItemProperties
 	/** The playfab item name. It can differ from Definition if its mapped to an entitlement */
 	var string PlayfabItemId;
 	/** The product ID as exists in PSN */
-	var string ProductId;
+	var string ProductID;
 	/** signed offer ID for PSN item */
 	var string SignedOfferId;
 	/** Key ID used to open this item (used for playfab locked containers) */
@@ -1125,7 +1587,9 @@ cpptext
 	 *
 	 * @return	the specified UniqueNetId represented as a string.
 	 */
-	static FString UniqueNetIdToString( const FUniqueNetId& IdToConvert );
+//@HSL_BEGIN_XBOX
+	static FString UniqueNetIdToString( const FUniqueNetId& IdToConvert, UBOOL Hex = TRUE );
+//@HSL_END_XBOX
 
 	/**
 	 * Converts a string representing a UniqueNetId into a UniqueNetId struct.
@@ -1151,7 +1615,9 @@ cpptext
 	 *
 	 * @return pointer to the struct if found, NULL otherwise
 	 */
-	inline FNamedSession* GetNamedSession(FName SessionName)
+//@HSL_BEGIN_XBOX
+	virtual FNamedSession* GetNamedSession(FName SessionName)
+//@HSL_END_XBOX
 	{
 		for (INT SearchIndex = 0; SearchIndex < Sessions.Num(); SearchIndex++)
 		{
@@ -1232,6 +1698,12 @@ cpptext
 	virtual void NotifyCleanupWorld(UBOOL bSessionEnded)
 	{
 	}
+
+//@HSL_BEGIN_XBOX
+	//@igs(jc): Adding base64 functionality to common OSS
+	static TArray<BYTE> DecodeBase64(const TArray<BYTE>& Encoded);
+	static TArray<BYTE> EncodeBase64(const TArray<BYTE>& Decoded);
+//@HSL_END_XBOX
 }
 
 /**
@@ -1270,7 +1742,9 @@ event bool PostInit()
  * Called from the engine shutdown code to allow the subsystem to release any
  * resources that may have been allocated
  */
-event Exit();
+//@HSL_BEGIN_XBOX
+native event Exit();
+//@HSL_END_XBOX
 
 /**
  * Called from native code to assign the account interface
@@ -1313,6 +1787,22 @@ event bool SetPlayerInterfaceEx(Object NewInterface)
 	// This will return false, if the interface wasn't supported
 	return PlayerInterfaceEx != None;
 }
+
+//@HSL_BEGIN_XBOX
+/**
+ * Called from native code to assign the marketplace interface
+ *
+ * @param NewInterface the object to assign as providing the marketplace interface
+ *
+ * @return TRUE if the interface is valid, FALSE otherwise
+ */
+event bool SetMarketplaceInterface(Object NewInterface)
+{
+	MarketplaceInterface = OnlineMarketplaceInterface(NewInterface);
+	// This will return false, if the interface wasn't supported
+	return MarketplaceInterface != None;
+}
+//@HSL_END_XBOX
 
 /**
  * Called from native code to assign the system interface
@@ -1504,6 +1994,36 @@ event bool SetSharedCloudInterface(Object InCloudInterface)
 	return SharedCloudInterface != None;
 }
 
+//@HSL_BEGIN_XBOX
+/**
+ * Called from native code to assign the game DVR interface
+ *
+ * @param GameDVRInterface the object to assign as providing the interface for game DVR
+ *
+ * @return TRUE if the interface is valid, FALSE otherwise
+ */
+event bool SetGameDVRInterface(Object InGameDVRInterface)
+{
+	GameDVRInterface = OnlineGameDVRInterface(InGameDVRInterface);
+	// This will return false, if the interface wasn't supported
+	return GameDVRInterface != None;
+}
+
+/**
+ * Called from native code to assign the Community Content interface
+ *
+ * @param InCommunityContentInterface the object to assign as providing the interface for Community Content
+ *
+ * @return TRUE if the interface is valid, FALSE otherwise
+ */
+event bool SetCommunityContentInterface(Object InCommunityContentInterface)
+{
+	CommunityContentInterface = OnlineCommunityContentInterface(InCommunityContentInterface);
+	// This will return false, if the interface wasn't supported
+	return CommunityContentInterface != None;
+}
+//@HSL_END_XBOX
+
 /**
  * Adds the interface object to the named interface list with the specified name
  *
@@ -1547,6 +2067,16 @@ event Object GetNamedInterface(name InterfaceName)
 	return None;
 }
 
+//@HSL_BEGIN_XBOX
+/**
+ * Signals the online service that the given event occurred
+ *
+ * @param EventName the name of the event to signal
+ * @param EventParams the parameters to pass with the event
+ */
+native event bool RaiseEvent(const string EventName, const array<string> EventParams);
+//@HSL_END_XBOX
+
 /**
  * Generates a string representation of a UniqueNetId struct.
  *
@@ -1554,7 +2084,9 @@ event Object GetNamedInterface(name InterfaceName)
  *
  * @return	the specified UniqueNetId represented as a string.
  */
-static final native noexportheader function string UniqueNetIdToString(const out UniqueNetId IdToConvert);
+//@HSL_BEGIN_XBOX
+static final native noexportheader function string UniqueNetIdToString(const out UniqueNetId IdToConvert, optional bool Hex=true);
+//@HSL_END_XBOX
 
 /**
  * Converts a string representing a UniqueNetId into a UniqueNetId struct.
@@ -1728,7 +2260,7 @@ function SetDebugSpewLevel(int DebugSpewLevel);
 
 function TWOnlineLobby GetLobbyInterface();
 
-function bool RegisterLocalTalker(byte LocalUserNum);
+function bool RegisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
 
 delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Avatar);
 delegate OnReadOnlineAvatarByNameComplete(const string PlayerName, const string AvatarURL);

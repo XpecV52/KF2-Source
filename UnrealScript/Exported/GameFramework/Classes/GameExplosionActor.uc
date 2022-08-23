@@ -472,7 +472,7 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional vector D
 
 			// turn on the light
 
-			if (ExplosionTemplate.ExploLight != None && WorldInfo.bAllowExplosionLights)
+			if (ExplosionTemplate.ExploLight != None && WorldInfo.bAllowExplosionLights && !WorldInfo.bDropDetail )
 
 
 

@@ -97,6 +97,20 @@ simulated function SetBodySkin(byte CurrentSkinIndex, KFPawn KFP, KFPlayerReplic
 /** Assign an arm mesh and material to this pawn */
 function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerReplicationInfo KFPRI );
 
+static function int GetWeaponAnimSetIdx()
+{
+	return default.AnimSets.length;
+}
+
+function SetCharacterAnimFromArch( KFPawn Pawn )
+{
+	Pawn.Mesh.AnimSets = AnimSets;
+	if( Pawn.Mesh.AnimTreeTemplate != AnimTreeTemplate )
+	{
+		Pawn.Mesh.SetAnimTreeTemplate( AnimTreeTemplate );
+	}
+}
+
 defaultproperties
 {
 	AnimArchetype=KFPawnAnimInfo'ZED_Clot_Anim.AlphaClot_AnimGroup'

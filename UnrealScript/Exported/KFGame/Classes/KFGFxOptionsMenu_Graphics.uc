@@ -75,7 +75,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
-#linenumber 15;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;#linenumber 15;
 //@HSL_MOD_END
 
 

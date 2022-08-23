@@ -346,7 +346,7 @@ function bool CanDoStrike()
 
 	// Check if a wall or another Zed is blocking my pawn from performing a melee attack, ignore zed collision if bCanStrikeThroughEnemies is true,
 	TraceStepLocation = Pawn.Location + (vect(0,0,-1) * (Pawn.CylinderComponent.CollisionHeight * 0.5f));
-	HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies );
+	HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies,,, TRACEFLAG_Blocking );
 	if( HitActor != None && HitActor != Enemy )
 	{
 		if( HitActor.bWorldGeometry )
@@ -356,9 +356,8 @@ function bool CanDoStrike()
 		}
 
 		// Try again at eyeheight
-		HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location + vect(0,0,1) * (Enemy.BaseEyeHeight), Pawn.Location + vect(0,0,1) * (Pawn.BaseEyeHeight), !bCanStrikeThroughEnemies );
-
-		if( HitActor != None && HitActor != Enemy )
+		HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location + vect(0,0,1) * (Enemy.BaseEyeHeight), Pawn.Location + vect(0,0,1) * (Pawn.BaseEyeHeight), !bCanStrikeThroughEnemies,,, TRACEFLAG_Blocking );
+		if( HitActor != None && HitActor != Enemy && (!bCanStrikeThroughEnemies || HitActor.bWorldGeometry || HitActor.bGameRelevant) )
 		{
 			return false;
 		}
@@ -448,7 +447,7 @@ function bool HandleZedBlockedPath()
 	local vector HitLocation, HitNormal;
 	local KFPawn_Monster HitMonster;
 
-	HitActor = MyKFPawn.Trace( HitLocation, HitNormal, Enemy.Location + vect(0,0,1) * (Enemy.BaseEyeHeight * 0.5f), MyKFPawn.Location + vect(0,0,1) * (MyKFPawn.BaseEyeHeight * 0.5f), true, MyKFPawn.GetCollisionExtent() * vect(0.2f,0.2f,0.2f) );
+	HitActor = MyKFPawn.Trace( HitLocation, HitNormal, Enemy.Location + vect(0,0,1) * (Enemy.BaseEyeHeight * 0.5f), MyKFPawn.Location + vect(0,0,1) * (MyKFPawn.BaseEyeHeight * 0.5f), true, MyKFPawn.GetCollisionExtent() * vect(0.2f,0.2f,0.2f),, TRACEFLAG_Blocking );
 	if( HitActor == none || HitActor == Enemy )
 	{
 		return false;

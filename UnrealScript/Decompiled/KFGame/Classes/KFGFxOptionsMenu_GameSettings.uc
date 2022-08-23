@@ -62,6 +62,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;
 
 var const localized string SectionNameString;
 var const localized string GameSettingsString;
@@ -73,6 +75,7 @@ var const localized string WiderString;
 var const localized string NormalString;
 var const localized string ClassicWeaponSelectString;
 var const localized string KillTickerString;
+var const localized string DisableAutoUpgradeString;
 var const localized string HideBossHealthBarString;
 var const localized string ShowWelderInInvString;
 var const localized string UseAltAimOnDualString;
@@ -120,6 +123,7 @@ function LocalizeText()
     LocalizedObject.SetString("wider", WiderString);
     LocalizedObject.SetString("normal", NormalString);
     LocalizedObject.SetString("killTicker", KillTickerString);
+    LocalizedObject.SetString("disableAutoUpgrade", DisableAutoUpgradeString);
     LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
     LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics", "DefaultString", "KFGame"));
     LocalizedObject.SetString("hideBossHealthBar", HideBossHealthBarString);
@@ -153,6 +157,7 @@ function InitValues()
     DataObject.SetFloat("friendlyHud", Manager.CachedProfile.GetProfileFloat(125));
     DataObject.SetBool("crosshair", ((Class'WorldInfo'.static.IsConsoleBuild()) ? Manager.CachedProfile.GetProfileBool(163) : Manager.CachedProfile.GetProfileBool(121)));
     DataObject.SetBool("killTicker", Manager.CachedProfile.GetProfileBool(123));
+    DataObject.SetBool("disableAutoUpgrade", Manager.CachedProfile.GetProfileBool(167));
     DataObject.SetBool("hideBossHealthBar", Manager.CachedProfile.GetProfileBool(158));
     DataObject.SetBool("showWelderInInv", Manager.CachedProfile.GetProfileBool(160));
     DataObject.SetBool("useAltAimOnDual", Manager.CachedProfile.GetProfileBool(157));
@@ -252,6 +257,17 @@ function Callback_WeaponSelectChanged(bool bActive)
     KFPI.bQuickWeaponSelect = bActive;
     Settings = Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(Outer.GetLP().ControllerId));
     Settings.SetProfileSettingValueInt(100, ((bActive) ? 1 : 0));
+}
+
+function Callback_DisableAutoUpgradeChanged(bool bActive)
+{
+    local KFPlayerController KFPC;
+    local OnlineProfileSettings Settings;
+
+    KFPC = KFPlayerController(Outer.GetPC());
+    KFPC.bDisableAutoUpgrade = bActive;
+    Settings = Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(Outer.GetLP().ControllerId));
+    Settings.SetProfileSettingValueInt(167, ((bActive) ? 1 : 0));
 }
 
 function Callback_KillTickerChanged(bool bActive)
@@ -446,6 +462,7 @@ defaultproperties
     NormalString="Normal"
     ClassicWeaponSelectString="Weapon Quick Select"
     KillTickerString="Show Zed Kill Ticker"
+    DisableAutoUpgradeString="Disable Auto-Upgrade"
     HideBossHealthBarString="Hide Boss Healthbar"
     ShowWelderInInvString="Show Welder In Inventory"
     UseAltAimOnDualString="Use Alt Dual Pistol Aim"

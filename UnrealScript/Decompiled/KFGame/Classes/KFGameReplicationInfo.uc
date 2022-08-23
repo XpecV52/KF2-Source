@@ -16,12 +16,14 @@ struct native PreGameServerAdInfo
     var string BannerLink;
     var string ServerMOTD;
     var string WebsiteLink;
+    var string ClanMotto;
 
     structdefaultproperties
     {
         BannerLink=""
         ServerMOTD=""
         WebsiteLink=""
+        ClanMotto=""
     }
 };
 
@@ -284,7 +286,8 @@ simulated event ReplicatedEvent(name VarName)
                         {
                             if(VarName == 'WaveNum')
                             {
-                                UpdateHUDWaveCount();                                
+                                UpdateHUDWaveCount();
+                                TriggerClientWaveStartEvents();                                
                             }
                             else
                             {
@@ -376,14 +379,10 @@ simulated function NotifyWaveEnded()
     }
     foreach PRIArray(PRI,)
     {
-        if(!PRI.bBot)
+        KFPRI = KFPlayerReplicationInfo(PRI);
+        if(KFPRI != none)
         {
-            KFPRI = KFPlayerReplicationInfo(PRI);
-            if(KFPRI != none)
-            {
-                KFPRI.bPerkPrimarySupplyUsed = false;
-                KFPRI.bPerkSecondarySupplyUsed = false;
-            }
+            KFPRI.NotifyWaveEnded();
         }        
     }    
 }
@@ -435,6 +434,11 @@ simulated function FadeOutLingeringExplosions()
 simulated function OpenTrader(optional int Time)
 {
     local KFPlayerController KFPC;
+    local array<int> OutputLinksToActivate;
+    local array<SequenceObject> AllTraderOpenedEvents;
+    local KFSeqEvent_TraderOpened TraderOpenedEvt;
+    local Sequence GameSeq;
+    local int I;
 
     if(OpenedTrader != none)
     {
@@ -464,6 +468,37 @@ simulated function OpenTrader(optional int Time)
             if(KFPC.MyGFxHUD != none)
             {
                 KFPC.MyGFxHUD.UpdateWaveCount();
+            }
+        }
+    }
+    if(WorldInfo.NetMode == NM_Client)
+    {
+        GameSeq = WorldInfo.GetGameSequence();
+        if(GameSeq != none)
+        {
+            GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_TraderOpened', true, AllTraderOpenedEvents);
+            I = 0;
+            J0x332:
+
+            if(I < AllTraderOpenedEvents.Length)
+            {
+                TraderOpenedEvt = KFSeqEvent_TraderOpened(AllTraderOpenedEvents[I]);
+                if((TraderOpenedEvt != none) && TraderOpenedEvt.bClientSideOnly)
+                {
+                    TraderOpenedEvt.Reset();
+                    TraderOpenedEvt.SetWaveNum(WaveNum, WaveMax);
+                    if((WaveNum == (WaveMax - 1)) && TraderOpenedEvt.OutputLinks.Length > 1)
+                    {
+                        OutputLinksToActivate.AddItem(1;                        
+                    }
+                    else
+                    {
+                        OutputLinksToActivate.AddItem(0;
+                    }
+                    TraderOpenedEvt.CheckActivate(self, self,, OutputLinksToActivate);
+                }
+                ++ I;
+                goto J0x332;
             }
         }
     }
@@ -531,6 +566,47 @@ simulated function CloseTrader()
 simulated function int GetTraderTimeRemaining()
 {
     return Max(0, RemainingTime);
+}
+
+simulated function TriggerClientWaveStartEvents()
+{
+    local array<SequenceObject> AllWaveStartEvents;
+    local array<int> OutputLinksToActivate;
+    local KFSeqEvent_WaveStart WaveStartEvt;
+    local Sequence GameSeq;
+    local int I;
+
+    if(WorldInfo.NetMode == NM_Client)
+    {
+        GameSeq = WorldInfo.GetGameSequence();
+        if(GameSeq != none)
+        {
+            GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveStart', true, AllWaveStartEvents);
+            I = 0;
+            J0x9E:
+
+            if(I < AllWaveStartEvents.Length)
+            {
+                WaveStartEvt = KFSeqEvent_WaveStart(AllWaveStartEvents[I]);
+                if((WaveStartEvt != none) && WaveStartEvt.bClientSideOnly)
+                {
+                    WaveStartEvt.Reset();
+                    WaveStartEvt.SetWaveNum(WaveNum, WaveMax);
+                    if((WaveNum == WaveMax) && WaveStartEvt.OutputLinks.Length > 1)
+                    {
+                        OutputLinksToActivate.AddItem(1;                        
+                    }
+                    else
+                    {
+                        OutputLinksToActivate.AddItem(0;
+                    }
+                    WaveStartEvt.CheckActivate(self, self,, OutputLinksToActivate);
+                }
+                ++ I;
+                goto J0x9E;
+            }
+        }
+    }
 }
 
 function float GetHeartbeatAccumulatorAmount()

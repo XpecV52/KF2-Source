@@ -50,7 +50,7 @@ defaultproperties
     JoggingRecoilModifier=1.2
     WalkingRecoilModifier=1.1
     IronSightMeshFOVCompensationScale=1.6
-    AssociatedPerkClass=Class'KFGame.KFPerk_SWAT'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

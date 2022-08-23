@@ -80,7 +80,7 @@ var const sRallyInfo RallySettings_Player_Versus;
 /** Versus-specific zed time speed scales */
 var const float ZedTimeSpeedScale_Versus;
 var const float ZedTimeSpeedScale_Player_Versus;
-`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))
+`if(`notdefined(ShippingPC))
 var bool bForceSpecialSpawn;
 `endif
 

@@ -261,7 +261,7 @@ function ModeChanged(int index)
 {
 	if (index >= 0 && index < class'KFGameInfo'.default.GameModes.length)
 	{
-		SavedGameModeIndexPending = index;
+	SavedGameModeIndexPending = index;
 	}
 	else
 	{

@@ -50,7 +50,7 @@ defaultproperties
     RecoilISMinPitchLimit=65485
     HippedRecoilModifier=1.5
     FallingRecoilModifier=1.5
-    AssociatedPerkClass=Class'KFGame.KFPerk_Support'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

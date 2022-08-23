@@ -555,9 +555,12 @@ enum EConsoleType
 	CONSOLE_Android,
 	CONSOLE_WiiU,
 	CONSOLE_Flash,
-//@zombie_ps4_begin
+//@HSL_BEGIN_PS4
 	CONSOLE_Orbis,
-//@zombie_ps4_end
+//@HSL_END_PS4
+//@HSL_BEGIN_XBOX
+	CONSOLE_Durango,
+//@HSL_END_XBOX
 };
 
 /** Struct used for passing back results from GetWorldFractureSettings */
@@ -1009,11 +1012,13 @@ var transient Actor MyImpactEffectManager;
 var string GoreEffectManagerClassPath;
 var transient Actor MyGoreEffectManager;
 
-/** DeferredWorkManager **/
+/** Light Pool Manager **/
+var string LightPoolClassPath;
+var transient Actor MyLightPool;
 
+/** DeferredWorkManager **/
 var string TWDeferredWorkManagerClassPath;
 var transient Actor DeferredWorkManager;
-
 
 /** Turbulence effect pool **/
 var string TurbEffectPoolClassPath;
@@ -1029,6 +1034,10 @@ var transient EmitterPool ImpactFXEmitterPool;
 /** Custom decal managers */
 var globalconfig int MaxExplosionDecals;
 var transient DecalManager ExplosionDecalManager;
+
+/** Realtime timer helper */
+var string TimerHelperClassPath;
+var transient Actor TimerHelper;
 
 // ---------------------------------------------
 // Editor
@@ -1436,6 +1445,8 @@ simulated function PreBeginPlay()
 	local class<Actor> GoreEffectManagerClass;
 	local class<Actor> TurbEffectPoolClass;
 	local class<Actor> GameplayPoolManagerClass;
+	local class<Actor> LightPoolClass;
+	local class<Actor> TimerHelperClass;
 
 
 	Super.PreBeginPlay();
@@ -1514,6 +1525,15 @@ simulated function PreBeginPlay()
 			}
 		}
 
+		if (LightPoolClassPath != "")
+		{
+			LightPoolClass = class<Actor>(DynamicLoadObject(LightPoolClassPath, class'Class'));
+			if (LightPoolClass != None)
+			{
+				MyLightPool = Spawn(LightPoolClass, self,, vect(0,0,0), rot(0,0,0));
+			}
+		}
+
 		if (TurbEffectPoolClassPath != "")
 		{
 			TurbEffectPoolClass = class<Actor>(DynamicLoadObject(TurbEffectPoolClassPath, class'Class'));
@@ -1530,25 +1550,35 @@ simulated function PreBeginPlay()
 	}
 
 
-
-	// Manager that defers work from during async to post asycn runs on both client and server.
 	if(IsInPersistentLevel())
 	{
+		// Manager that defers work from during async to post asycn runs on both client and server.
 		DeferredWorkManager = Spawn(class'TWDeferredWorkManager', self,, vect(0,0,0), rot(0,0,0));
-	}
 
-	// Instance gameplay pool manager
-	if( WorldInfo.NetMode != NM_Client && IsInPersistentLevel() )
-	{
-		if (GameplayPoolManagerClassPath != "")
+		// We want the timer helper to exist on both client and server
+		if( TimerHelperClassPath != "" )
 		{
-			GameplayPoolManagerClass = class<Actor>(DynamicLoadObject(GameplayPoolManagerClassPath, class'Class'));
-			if (GameplayPoolManagerClass != None)
+			TimerHelperClass = class<Actor>( DynamicLoadObject(TimerHelperClassPath, class'Class') );
+			if( TimerHelperClass != None )
 			{
-				MyGameplayPoolManager = Spawn(GameplayPoolManagerClass, self,, vect(0,0,0), rot(0,0,0));
+				TimerHelper = Spawn( TimerHelperClass, self,, vect(0,0,0), rot(0,0,0) );
+			}
+		}
+
+		// Instance gameplay pool manager
+		if( WorldInfo.NetMode != NM_Client )
+		{
+			if (GameplayPoolManagerClassPath != "")
+			{
+				GameplayPoolManagerClass = class<Actor>(DynamicLoadObject(GameplayPoolManagerClassPath, class'Class'));
+				if (GameplayPoolManagerClass != None)
+				{
+					MyGameplayPoolManager = Spawn(GameplayPoolManagerClass, self,, vect(0,0,0), rot(0,0,0));
+				}
 			}
 		}
 	}
+
 
 }
 
@@ -1632,7 +1662,9 @@ native final iterator function AllPawns(class<Pawn> BaseClass, out Pawn P, optio
  * @param ClientIP		The IP of the NetConnection
  * @param ClientPort		The port the net connection is on
  */
-native final iterator function AllClientConnections(out Player ClientConnection, out int ClientIP, out int ClientPort);
+//@HSL_BEGIN_XBOX
+native final iterator function AllClientConnections(out Player ClientConnection, out IpAddr ClientIP, out int ClientPort);
+//@HSL_END_XBOX
 
 
 /**
@@ -1851,7 +1883,7 @@ defaultproperties
    bAllowTemporalAA=True
    bUsePxVisibilityCollision=True
    bAllowExplosionLights=True
-   DefaultPostProcessSettings=(bOverride_Bloom_Scale=True,bOverride_Bloom_Threshold=True,bOverride_Bloom_Tint=True,bOverride_Bloom_ScreenBlendThreshold=True,bOverride_Bloom_InterpolationDuration=True,bOverride_DOF_FalloffExponent=True,bOverride_DOF_BlurKernelSize=True,bOverride_DOF_BlurBloomKernelSize=True,bOverride_DOF_MaxNearBlurAmount=True,bOverride_DOF_MaxFarBlurAmount=True,bOverride_DOF_FocusType=True,bOverride_DOF_FocusInnerRadius=True,bOverride_DOF_FocusDistance=True,bOverride_DOF_FocusPosition=True,bOverride_DOF_InterpolationDuration=True,bOverride_Scene_Desaturation=True,bOverride_Scene_HighLights=True,bOverride_Scene_MidTones=True,bOverride_Scene_Shadows=True,bOverride_Scene_InterpolationDuration=True,bOverride_RimShader_Color=True,bOverride_RimShader_InterpolationDuration=True,bEnableBloom=True,bEnableMotionBlur=True,bEnableSceneEffect=True,bAllowAmbientOcclusion=True,TripwireSettings=(DOF_FocalDistance=1000.000000,DOF_SharpRadius=800.000000,DOF_FocalRadius=1200.000000,DOF_ExpFalloff=1.000000,DOF_FG_SharpRadius=75.000000,DOF_FG_FocalRadius=150.000000,DOF_FG_ExpFalloff=1.000000,Bloom_Intensity=1.050000,Bloom_Width=4.000000,Bloom_Exposure=1.250000,Bloom_Threshold=0.600000,Bloom_InterpolationDuration=1.000000,NoiseIntensity=1.000000,Fog_MaxStrength_Distance=10000.000000,Fog_AnimationCutoff_Distance=8000.000000,Fog_Intensity=0.300000,Fog_MinAmount=0.100000,Fog_Color=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),Fog_InterpolationDuration=3.000000,MB_TileMaxEnabled=True,bEnableScreenSpaceReflections=True),LegacySettings=(Bloom_Scale=1.000000,Bloom_Threshold=1.000000,Bloom_InterpolationDuration=1.000000,DOF_BlurBloomKernelSize=16.000000,DOF_FalloffExponent=4.000000,DOF_BlurKernelSize=16.000000,DOF_MaxNearBlurAmount=1.000000,DOF_MaxFarBlurAmount=1.000000,DOF_FocusInnerRadius=2000.000000,DOF_InterpolationDuration=1.000000,MotionBlur_MaxVelocity=1.000000,MotionBlur_Amount=0.500000,MotionBlur_FullMotionBlur=True,MotionBlur_CameraRotationThreshold=45.000000,MotionBlur_CameraTranslationThreshold=10000.000000,MotionBlur_InterpolationDuration=1.000000,RimShader_Color=(R=0.470440,G=0.585973,B=0.827726,A=1.000000),RimShader_InterpolationDuration=1.000000,MobileColorGrading=(TransitionTime=1.000000,HighLights=(R=0.700000,G=0.700000,B=0.700000,A=1.000000),MidTones=(R=0.000000,G=0.000000,B=0.000000,A=1.000000),Shadows=(R=0.000000,G=0.000000,B=0.000000,A=1.000000)),MobilePostProcess=(Mobile_BlurAmount=16.000000,Mobile_TransitionTime=1.000000,Mobile_Bloom_Scale=0.500000,Mobile_Bloom_Threshold=0.750000,Mobile_Bloom_Tint=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),Mobile_DOF_Distance=1500.000000,Mobile_DOF_MinRange=600.000000,Mobile_DOF_MaxRange=1200.000000,Mobile_DOF_FarBlurFactor=1.000000)),Bloom_Tint=(B=255,G=255,R=255,A=0),Bloom_ScreenBlendThreshold=10.000000,Scene_Colorize=(X=1.000000,Y=1.000000,Z=1.000000),Scene_TonemapperScale=1.000000,Scene_HighLights=(X=1.000000,Y=1.000000,Z=1.000000),Scene_MidTones=(X=1.000000,Y=1.000000,Z=1.000000))
+   DefaultPostProcessSettings=(bOverride_Bloom_Scale=True,bOverride_Bloom_Threshold=True,bOverride_Bloom_Tint=True,bOverride_Bloom_ScreenBlendThreshold=True,bOverride_Bloom_InterpolationDuration=True,bOverride_DOF_FalloffExponent=True,bOverride_DOF_BlurKernelSize=True,bOverride_DOF_BlurBloomKernelSize=True,bOverride_DOF_MaxNearBlurAmount=True,bOverride_DOF_MaxFarBlurAmount=True,bOverride_DOF_FocusType=True,bOverride_DOF_FocusInnerRadius=True,bOverride_DOF_FocusDistance=True,bOverride_DOF_FocusPosition=True,bOverride_DOF_InterpolationDuration=True,bOverride_Scene_Desaturation=True,bOverride_Scene_HighLights=True,bOverride_Scene_MidTones=True,bOverride_Scene_Shadows=True,bOverride_Scene_InterpolationDuration=True,bOverride_RimShader_Color=True,bOverride_RimShader_InterpolationDuration=True,bEnableBloom=True,bEnableMotionBlur=True,bEnableSceneEffect=True,bAllowAmbientOcclusion=True,TripwireSettings=(DOF_FocalDistance=1000.000000,DOF_SharpRadius=800.000000,DOF_FocalRadius=1200.000000,DOF_ExpFalloff=1.000000,DOF_FG_SharpRadius=75.000000,DOF_FG_FocalRadius=150.000000,DOF_FG_ExpFalloff=1.000000,Bloom_Intensity=1.050000,Bloom_Width=4.000000,Bloom_Exposure=1.250000,Bloom_Threshold=0.600000,Bloom_InterpolationDuration=1.000000,NoiseIntensity=1.000000,Fog_MaxStrength_Distance=10000.000000,Fog_AnimationCutoff_Distance=8000.000000,Fog_Intensity=0.300000,Fog_MinAmount=0.100000,Fog_Color=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),Fog_InterpolationDuration=3.000000,MB_TileMaxEnabled=True,bEnableScreenSpaceReflections=True),LegacySettings=(Bloom_Scale=1.000000,Bloom_Threshold=1.000000,Bloom_InterpolationDuration=1.000000,DOF_BlurBloomKernelSize=16.000000,DOF_FalloffExponent=4.000000,DOF_BlurKernelSize=16.000000,DOF_MaxNearBlurAmount=1.000000,DOF_MaxFarBlurAmount=1.000000,DOF_FocusInnerRadius=2000.000000,DOF_InterpolationDuration=1.000000,MotionBlur_MaxVelocity=1.000000,MotionBlur_Amount=0.500000,MotionBlur_FullMotionBlur=True,MotionBlur_CameraRotationThreshold=45.000000,MotionBlur_CameraTranslationThreshold=10000.000000,MotionBlur_InterpolationDuration=1.000000,RimShader_Color=(R=0.470440,G=0.585973,B=0.827726,A=1.000000),RimShader_InterpolationDuration=1.000000,MobileColorGrading=(TransitionTime=1.000000,HighLights=(R=0.700000,G=0.700000,B=0.700000,A=1.000000),MidTones=(R=0.000000,G=0.000000,B=0.000000,A=1.000000),Shadows=(R=0.000000,G=0.000000,B=0.000000,A=1.000000)),MobilePostProcess=(Mobile_BlurAmount=16.000000,Mobile_TransitionTime=1.000000,Mobile_Bloom_Scale=0.500000,Mobile_Bloom_Threshold=0.750000,Mobile_Bloom_Tint=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),Mobile_DOF_Distance=1500.000000,Mobile_DOF_MinRange=600.000000,Mobile_DOF_MaxRange=1200.000000,Mobile_DOF_NearBlurFactor=1.000000,Mobile_DOF_FarBlurFactor=1.000000)),Bloom_Tint=(B=255,G=255,R=255,A=0),Bloom_ScreenBlendThreshold=10.000000,Scene_Colorize=(X=1.000000,Y=1.000000,Z=1.000000),Scene_TonemapperScale=1.000000,Scene_HighLights=(X=1.000000,Y=1.000000,Z=1.000000),Scene_MidTones=(X=1.000000,Y=1.000000,Z=1.000000))
    SquintModeKernelSize=128.000000
    LevelShadowDepthBias=0.012000
    DefaultReverbSettings=(bApplyReverb=True,Volume=0.500000,FadeTime=2.000000)
@@ -1923,10 +1955,12 @@ defaultproperties
    GameplayPoolManagerClassPath="KFGame.KFGameplayPoolManager"
    ImpactEffectManagerClassPath="KFGame.KFImpactEffectManager"
    GoreEffectManagerClassPath="KFGame.KFGoreManager"
+   LightPoolClassPath="KFGame.KFLightPool"
    TWDeferredWorkManagerClassPath="Engine.TWDeferredWorkManager"
    GroundFireEmitterPoolClassPath="KFGame.GroundFireEmitterPool"
    ImpactFXEmitterPoolClassPath="KFGame.KFImpactFXEmitterPool"
    MaxExplosionDecals=15
+   TimerHelperClassPath="KFGame.KFRealtimeTimerHelper"
    LastSuccessfulPathBuildTime="Never!"
    RemoteRole=ROLE_SimulatedProxy
    bWorldGeometry=True

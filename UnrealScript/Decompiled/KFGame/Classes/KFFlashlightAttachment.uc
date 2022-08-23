@@ -365,10 +365,10 @@ simulated function ChooseBestFlashlight()
 defaultproperties
 {
     begin object name=FlashLightTemplate class=SpotLightComponent
-        InnerConeAngle=20
-        OuterConeAngle=30
+        InnerConeAngle=5
+        OuterConeAngle=20
         Radius=3000
-        Brightness=10
+        Brightness=0.5
         Function=LightFunction'Default__KFFlashlightAttachment.FlashLightFunction'
         bEnabled=false
         CastShadows=false

@@ -18,7 +18,10 @@ var private array<TitleFileMcp> TitleFiles;
 var transient int DownloadCount;
 
 // Export UOnlineTitleFileDownloadMcp::execReadTitleFile(FFrame&, void* const)
-native function bool ReadTitleFile(string FileToRead);
+native function bool ReadTitleFile(string FileToRead, optional Engine.OnlineSubsystem.EOnlineFileType FileType)
+{
+    FileType = 1;                
+}
 
 // Export UOnlineTitleFileDownloadMcp::execGetTitleFileContents(FFrame&, void* const)
 native function bool GetTitleFileContents(string Filename, out array<byte> FileContents);

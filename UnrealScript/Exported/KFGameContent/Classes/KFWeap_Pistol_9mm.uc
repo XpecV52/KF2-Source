@@ -57,6 +57,7 @@ defaultproperties
    RecoilISMinYawLimit=65485
    RecoilISMaxPitchLimit=250
    RecoilISMinPitchLimit=65485
+   AssociatedPerkClasses(0)=None
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

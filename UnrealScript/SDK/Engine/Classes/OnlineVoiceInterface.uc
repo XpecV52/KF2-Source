@@ -18,7 +18,9 @@ interface OnlineVoiceInterface
  *
  * @return TRUE if the call succeeded, FALSE otherwise
  */
-function bool RegisterLocalTalker(byte LocalUserNum);
+//@HSL_BEGIN_XBOX
+function bool RegisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
+//@HSL_END_XBOX
 
 /**
  * Unregisters the user as a talker
@@ -27,7 +29,24 @@ function bool RegisterLocalTalker(byte LocalUserNum);
  *
  * @return TRUE if the call succeeded, FALSE otherwise
  */
-function bool UnregisterLocalTalker(byte LocalUserNum);
+//@HSL_BEGIN_XBOX
+function bool UnregisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
+
+/**
+* Determines if there are any local talkers that are currently registered
+*/
+function bool AreAnyLocalTalkersRegistered();
+
+/**
+* Recieves a reliable voice packet from server
+*
+* @param MessageType the type of message sent
+* @param Sender the Unique Net Id for the sender who sent the packet
+* @param InData the reliable voice data 
+*
+*/
+function ReceiveReliableVoicePacket( byte MessageType, UniqueNetId Sender, int Length, byte InData[60]);
+//@HSL_END_XBOX
 
 /**
  * Registers a remote player as a talker
@@ -86,6 +105,17 @@ function bool IsHeadsetPresent(byte LocalUserNum);
  */
 function bool SetRemoteTalkerPriority(byte LocalUserNum,UniqueNetId PlayerId,int Priority);
 
+//@HSL_BEGIN_XBOX
+/**
+ * Mutes all the players (including self)
+ *
+ * @param PlayerMuteSetting whether to mute all or mute just bad rep players
+ *
+ * @return TRUE if the function succeeds, FALSE otherwise
+ */
+function bool UpdatePlayerMuteSetting(bool PlayerMuteSetting);
+//@HSL_END_XBOX
+
 /**
  * Mutes a remote talker for the specified local player. NOTE: This only mutes them in the
  * game unless the bIsSystemWide flag is true, which attempts to mute them globally
@@ -109,6 +139,17 @@ function bool MuteRemoteTalker(byte LocalUserNum,UniqueNetId PlayerId,optional b
  * @return TRUE if the function succeeds, FALSE otherwise
  */
 function bool UnmuteRemoteTalker(byte LocalUserNum,UniqueNetId PlayerId,optional bool bIsSystemWide);
+
+//@HSL_BEGIN_XBOX
+/**
+ * Checks if a user is muted or not
+ *
+ * @param ConsoleId the remote talker that is being restored to talking
+ *
+ * @return TRUE if the player is muted, FALSE otherwise
+ */
+function bool IsTalkerMuted(UniqueNetId ConsoleId);
+//@HSL_END_XBOX
 
 /**
  * Called when a player is talking either locally or remote. This will be called

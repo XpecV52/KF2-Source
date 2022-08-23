@@ -37,11 +37,12 @@ defaultproperties
    WeaponDef=Class'KFGame.KFWeapDef_DoubleBarrel'
    StumblePower=35.000000
    GunHitPower=45.000000
+   GibImpulseScale=1.000000
    BloodSpread=0.400000
    BloodScale=0.600000
-   KDamageImpulse=350.000000
+   KDamageImpulse=160.000000
    KDeathVel=15.000000
-   KDeathUpKick=350.000000
+   KDeathUpKick=250.000000
    Name="Default__KFDT_Ballistic_DBShotgun"
    ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

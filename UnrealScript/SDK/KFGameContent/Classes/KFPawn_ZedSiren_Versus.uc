@@ -84,7 +84,6 @@ defaultproperties
 
 
 
-
 	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.5, 0.1, 0.1, 0.1), Cooldown=3.0, Duration=2.0)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(0.3),                     Cooldown=10.0)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(0.2),                     Cooldown=3.0)

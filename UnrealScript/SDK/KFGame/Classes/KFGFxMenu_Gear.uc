@@ -9,7 +9,7 @@
 //=============================================================================
 
 class KFGFxMenu_Gear extends KFGFxObject_Menu
-	dependson(KFWeaponSkinList)
+	dependson(KFEmoteList)
 	native(UI);
 
 /** The customization option we want alter */
@@ -35,6 +35,7 @@ var const string AttachmentKey;
 var const string AttachmentSkinKey; 
 var const string AttachmentFunctionKey;
 var const string KFCharacterInfoString; 
+var const string KFEmoteInfoString;
 
 var KFCharacterInfo_Human CurrentCharInfo;
 var string CharInfoPath;
@@ -49,13 +50,7 @@ var localized string SkinsString;
 var localized string BackString;
 var localized string NoneString;
 
-/*********** Weapon customization *****************/
-var localized string WeaponsString;
-var localized string WeaponsInfoString;
-
 var KFGFxObject_TraderItems TraderItems;
-
-var array<class<KFWeaponDefinition> > CurrentWearponDefList;
 
 var const int ControllerRotationRate;
 var const float ControllerRotationThreshold;
@@ -64,11 +59,15 @@ var int CurrentPerkIndex;
 
 var string ClearImagePath;
 
+var array<Emote> EmoteList;
+
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
 	super.InitializeMenu(InManager);
 	MyKFPRI = KFPlayerReplicationInfo( GetPC().PlayerReplicationInfo );
 	LocalizeText();
+
+	EmoteList = class'KFEmoteList'.static.GetEmoteArray();
 	// Set the list of usable characters
 	UpdateCharacterList();	
 	UpdateGear();
@@ -142,102 +141,43 @@ function LocalizeText()
 	LocalizedObject.SetString("bioStringText", BioString);
 	LocalizedObject.SetString("charactersString", CharacterString);
 	LocalizedObject.SetString("headsString", HeadString);
+	LocalizedObject.SetString("emoteString", Class'KFLocalMessage_VoiceComms'.default.VoiceCommsOptionStrings[8]);
 	LocalizedObject.SetString("bodiesString", BodyString);
 	LocalizedObject.SetString("skinsString", SkinsString);
 	LocalizedObject.SetString("attachmentsString", AttachmentsString);
 
-	LocalizedObject.SetString("weapons", WeaponsString);
-	LocalizedObject.SetString("weaponsInfo", WeaponsInfoString);
-
 	SetObject("localizeText", LocalizedObject);
 }
 
-//WEAPONS CUSTOMIZATION 
-function UpdateWeaponList()
+function UpdateEmoteList()
 {
-	local int i, ItemIndex;
+	local byte ItemIndex, i;
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath;
-	local KFPlayerController KFPC; 
-	local array<STraderItem> FullItemList;
-
-	KFPC = KFPlayerController(GetPC());
-	if (KFPC == none || TraderItems == none)
-	{
-		return;
-	}
 
 	ItemIndex = 0;
 	DataProvider = CreateArray();
-	FullItemList = TraderItems.SaleItems;
 
-	CurrentWearponDefList.length = 0;
-
-	for (i = 0; i < FullItemList.Length; i++)
+	for (i = 0; i < EmoteList.length; i++)
 	{
-		if ( FullItemList[i].AssociatedPerkClass == None ||
-				 (CurrentPerkIndex < KFPC.PerkList.Length && FullItemList[i].AssociatedPerkClass == KFPC.PerkList[CurrentPerkIndex].PerkClass) )
+		if ( class'KFEmoteList'.static.GetUnlockedEmote(EmoteList[i].Id) != 'NONE')
 		{
 			SlotObject = CreateObject( "Object" );
 			SlotObject.SetInt("ItemIndex", i);
-			SlotObject.SetString("label", FullItemList[i].WeaponDef.static.GetItemName());
-			TexturePath = "img://"$FullItemList[i].WeaponDef.static.GetImagePath();
+			SlotObject.SetString("label", Localize(EmoteList[i].ItemName, "EmoteName", KFCharacterInfoString));
+			TexturePath = "img://"$EmoteList[i].IconPath;
+			SlotObject.SetBool("enabled", true);
 			SlotObject.SetString("source", TexturePath);
-			SlotObject.SetBool("enabled", (class'KFWeaponSkinList'.default.Skins.Find('WeaponDef', FullItemList[i].WeaponDef) != INDEX_NONE));
-
-			UpdateWeaponVariants( FullItemList[i].WeaponDef, SlotObject );
-
 			DataProvider.SetElementObject(ItemIndex, SlotObject);
 			ItemIndex++;
-			CurrentWearponDefList.AddItem(FullItemList[i].WeaponDef);
 		}
-		
-	}
-
-	SetObject("weaponArray", DataProvider);
-	//@HSL_MOD_BEGIN - amiller 5/23/2016 - Unifying Gear saving so that it doesn't make multiple write requests unnecessarily
-	SaveChanges();
-	//@HSL_MOD_END
-}
-
-function UpdateWeaponVariants(class<KFWeaponDefinition> WeaponDef, out GFxObject MeshObject)
-{
-	local int i, ItemIndex;
-	local GFxObject DataProvider, SlotObject;
-	//local string SectionPath;
-	//local string TexturePath;
-
-	ItemIndex = 0;
-	DataProvider = CreateArray();
-
-	SlotObject = CreateObject( "Object" );
-	SlotObject.SetString("label", NoneString);
-	SlotObject.SetString("source", "img://"$ClearImagePath);
-	SlotObject.SetBool("enabled", true);
-	DataProvider.SetElementObject(ItemIndex, SlotObject);
-	ItemIndex++;
-
-	for (i = 0; i < class'KFWeaponSkinList'.default.Skins.length; i++)
-	{
-		if( class'KFWeaponSkinList'.default.Skins[i].Weapondef == WeaponDef )
+		else
 		{
-			SlotObject = CreateObject( "Object" );
-			SlotObject.SetInt("ItemIndex", i);
-			SlotObject.SetString("label", class'KFWeaponSkinList'.default.Skins[i].MIC_3P);
-			SlotObject.SetBool("enabled", class'KFUnlockManager'.static.GetWeaponSkinAvailable(class'KFWeaponSkinList'.default.Skins[i].Id));
-			SlotObject.SetInt("definition", class'KFWeaponSkinList'.default.Skins[i].Id);
-			//TexturePath = "img://"$PathName(Skin.UITexture);
-			//SlotObject.SetString("source", TexturePath);
-
-			DataProvider.SetElementObject(ItemIndex, SlotObject);
-			ItemIndex++;
+			//`log(MyKFPRI.EmoteList[i] @ "is not purchased.");
 		}
 	}
-
-	MeshObject.SetObject("skinInfo", DataProvider);
-	//@HSL_MOD_BEGIN - amiller 5/23/2016 - Unifying Gear saving so that it doesn't make multiple write requests unnecessarily
-	SaveChanges();
-	//@HSL_MOD_END
+	
+	SetObject("emoteArray", DataProvider);
 }
 
 function UpdateCharacterList()
@@ -280,6 +220,8 @@ function UpdateGear()
 	UpdateMeshList(HeadMeshKey, HeadSkinKey, CurrentCharInfo.HeadVariants, "headsArray");
 	// Set the list of usable attachments for this character
 	UpdateAttachmentsList(CurrentCharInfo.CosmeticVariants);
+
+	UpdateEmoteList();
 
 	SetCurrentCharacterButtons();
 }
@@ -472,6 +414,31 @@ function SetCurrentCharacterButtons()
 	SetGearButtons(MyKFPRI.RepCustomizationInfo.BodyMeshIndex, MyKFPRI.RepCustomizationInfo.BodySkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
 	//set attachments
 	SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
+
+	SetEmoteButton();
+}
+
+function SetEmoteButton()
+{
+	local GFxObject DataObject;
+	local int EmoteIndex;
+
+	EmoteIndex = class'KFEmoteList'.static.GetEmoteIndex( class'KFEmoteList'.static.GetEquippedEmoteId());
+
+	DataObject = CreateObject("Object");
+	if(EmoteIndex == 255)
+	{
+		DataObject.SetString( "selectedEmote", "");
+		DataObject.SetInt( "selectedEmoteIndex", 0 );
+	}
+	else
+	{
+		DataObject.SetString( "selectedEmote", Localize(EmoteList[EmoteIndex].ItemName, "EmoteName", KFCharacterInfoString));
+		DataObject.SetInt( "selectedEmoteIndex", 0 );
+	}
+	
+
+	SetObject("selectedEmote", DataObject);
 }
 
 /** Update the labels for our gear buttons */
@@ -592,18 +559,6 @@ function Callback_EndRotateCamera()
 	}
 }
 
-function Callback_Weapon( int ItemIndex, int SkinIndex )
-{
-	local KFPawn_Customization KFP;
-
-	KFP = KFPawn_Customization(GetPC().Pawn);
-	if(KFP != none)
-	{
-		//KFP.AttachWeaponByItemDefinition(SkinIndex);
-	}
-	
-}
-
 function Callback_BodyCamera()
 {
 	if ( KFPlayerCamera( GetPC().PlayerCamera ) != none )
@@ -618,6 +573,24 @@ function Callback_HeadCamera()
 	{
 		KFPlayerCamera( GetPC().PlayerCamera ).CustomizationCam.SetBodyView( 1 );
 	}
+}
+
+private function Callback_Emote(byte Index)
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(GetPC());
+	if( KFPC != none )
+	{
+		class'KFEmoteList'.static.SaveEquippedEmote(EmoteList[Index].ID);
+
+		if ( KFPawn_Customization(KFPC.Pawn) != none )
+		{
+			KFPawn_Customization(KFPC.Pawn).PlayEmoteAnimation();
+		}
+	}
+
+	SetEmoteButton();
 }
 
 private function Callback_Character(byte Index)
@@ -720,6 +693,7 @@ defaultproperties
 
 	ControllerRotationThreshold=.25
 	ControllerRotationRate=15
+	KFEmoteInfoString="KFEmoteInfo"
 	KFCharacterInfoString="KFCharacterInfo"
 	HeadFunctionKey="selectedHead"
 	BodyFunctionKey="selectedBody"

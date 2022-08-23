@@ -26,6 +26,7 @@ defaultproperties
    OutputLinks(12)=(LinkDesc="WiiU")
    OutputLinks(13)=(LinkDesc="Flash")
    OutputLinks(14)=(LinkDesc="Orbis")
+   OutputLinks(15)=(LinkDesc="Xbox One")
    ObjName="Platform"
    ObjCategory="Switch Platform"
    Name="Default__SeqCond_SwitchPlatform"

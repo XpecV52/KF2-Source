@@ -77,7 +77,7 @@ state Command_SpecialMove
 	        RangeToEnemySQ = VSizeSQ( EnemyLocation - MyEyeLocation );
 
 			if( RangeToEnemySQ < MaxScreamRangeSQ && RangeToEnemySQ > MinScreamRangeSQ
-				&& FastTrace(EnemyLocation, MyEyeLocation) )
+				&& `FastTracePhysX(EnemyLocation, MyEyeLocation) )
 			{
 				LastScreamTime = WorldInfo.TimeSeconds;
 				KFGI = KFGameInfo( WorldInfo.Game );

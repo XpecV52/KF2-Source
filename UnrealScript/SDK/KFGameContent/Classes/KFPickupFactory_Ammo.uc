@@ -18,6 +18,11 @@ simulated function InitializePickup()
 {
 	local KFGameInfo KFGI;
 
+	if( bKismetDriven )
+	{
+		return;
+	}
+
 	KFGI = KFGameInfo( WorldInfo.Game );
 	if ( KFGI != none )
 	{
@@ -28,6 +33,8 @@ simulated function InitializePickup()
 /** Bypass PickupFactory implementation. This class doesn't use InventoryType. */
 simulated event SetInitialState()
 {
+	super.SetInitialState();
+
 	bScriptInitialized = true;
 }
 
@@ -52,6 +59,12 @@ function GiveTo( Pawn P )
 function PickedUpBy(Pawn P)
 {
 	local KFGameInfo KFGI;
+
+	if( bKismetDriven )
+	{
+		super.PickedUpBy( P );
+		return;
+	}
 
 	KFGI = KFGameInfo( WorldInfo.Game );
 	if ( KFGI != none )

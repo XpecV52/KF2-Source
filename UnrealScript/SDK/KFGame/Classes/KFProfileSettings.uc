@@ -244,11 +244,14 @@ defaultproperties
 	ProfileMappings.Add((Id=KFID_ShowWelderInInventory, Name="Show Welder in Inventory", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_AutoTurnOff, Name="Auto Turn off", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_ReduceHightPitchSounds, Name="Reduce High Pitch Sounds", MappingType=PVMT_RawValue))
+	ProfileMappings.Add((Id=KFID_DisableAutoUpgrade, Name="Disable Auto Upgrade", MappingType=PVMT_RawValue))
 
 	//Added 9/6/2016- Support for WeaponSkins
 	ProfileMappings.Add((Id=KFID_WeaponSkinAssociations, Name="Weapon Skin KeyValue Pairs", MappingType=PVMT_RawValue))
 	//PS4 specific
 	ProfileMappings.Add((Id=KFID_ShowConsoleCrossHair, Name="Show Console Crosshair", MappingType=PVMT_RawValue))
+
+	ProfileMappings.Add((Id=KFID_SavedEmoteId, Name="Saved Emote ID", MappingType=PVMT_RawValue))
 	
 	// Hex values for SDT_Float values, I use http://www.h-schmidt.net/FloatConverter/IEEE754.html for conversion
 
@@ -305,10 +308,13 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ShowWelderInInventory,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_AutoTurnOff,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ReduceHightPitchSounds,Data=(Type=SDT_Int32,Value1=0))))
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_DisableAutoUpgrade,Data=(Type=SDT_Int32,Value1=0))))
 	
 	//Added 9/6/2016- Support for WeaponSkins
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_WeaponSkinAssociations,Data=(Type=SDT_String, Value1=0))))
 
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ShowConsoleCrossHair,Data=(Type=SDT_Int32,Value1=1))))
-	
+
+	//Added 11/2/2016- Support for Emotes
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedEmoteId,Data=(Type=SDT_Int32,Value1=-1))))
 }

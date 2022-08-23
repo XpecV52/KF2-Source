@@ -8,8 +8,23 @@
 class KFDifficulty_Gorefast extends KFMonsterDifficultyInfo
     abstract;
 
+var array<float> ChanceToSpawnAsSpecial;
+
+static function float GetSpecialGorefastChance(KFGameReplicationInfo KFGRI)
+{
+    if(KFGRI.bVersusGame)
+    {
+        return 0;
+    }
+    return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
+}
+
 defaultproperties
 {
+    ChanceToSpawnAsSpecial(0)=0
+    ChanceToSpawnAsSpecial(1)=0.05
+    ChanceToSpawnAsSpecial(2)=0.35
+    ChanceToSpawnAsSpecial(3)=0.45
     Normal=(HealthMod=0.75,HeadHealthMod=0.75,SprintChance=1,DamagedSprintChance=1,SoloDamageMod=0.65,BlockSettings=(Chance=0.2,Duration=1,MaxBlocks=4,Cooldown=1,DamagedHealthPctToTrigger=0.01,MeleeDamageModifier=0.8,DamageModifier=0.8,AfflictionModifier=0.2,SoloChanceMultiplier=0.2),RallySettings=(bCanRally=false))
     Hard=(SprintChance=1,DamagedSprintChance=1,DamageMod=0.75,SoloDamageMod=0.8,BlockSettings=(Chance=0.5,Duration=1,MaxBlocks=4,Cooldown=1,DamagedHealthPctToTrigger=0.01,MeleeDamageModifier=0.8,DamageModifier=0.8,AfflictionModifier=0.2,SoloChanceMultiplier=0.3),RallySettings=(bCanRally=false))
     Suicidal=(SprintChance=1,DamagedSprintChance=1,SoloDamageMod=0.65,BlockSettings=(Chance=0.75,Duration=1,MaxBlocks=4,Cooldown=1,DamagedHealthPctToTrigger=0.01,MeleeDamageModifier=0.8,DamageModifier=0.8,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(TakenDamageModifier=0.9,DealtDamageModifier=1.2))

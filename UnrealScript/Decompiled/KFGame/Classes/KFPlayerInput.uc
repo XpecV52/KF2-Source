@@ -40,6 +40,7 @@ var bool bUsingVersusGamepadScheme;
 var transient float PressedJumpTime;
 var config float GamepadButtonHoldTime;
 var config float SprintAnalogThreshold;
+var const float ZedAutoSprintAnalogThreshold;
 var transient float GamepadSprintAnalogStart;
 var int CurrentLayoutIndex;
 var transient float RawJoyMagnitude;
@@ -223,6 +224,14 @@ function Engine.Actor.EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
     if(!bUsingGamepad || Outer.bRun > 0)
     {
         return 0;
+    }
+    if((Outer.Pawn != none) && Outer.Pawn.GetTeamNum() != 0)
+    {
+        if(IsDirectingJoyStick(FMax(ZedAutoSprintAnalogThreshold, SprintAnalogThreshold)))
+        {
+            Outer.bRun = 1;
+            bExtendedSprinting = true;
+        }
     }
     CurveOut = EvalInterpCurveFloat(MoveSensitivityScaleCurve, RawJoyMagnitude);
     MinCurveOut = MoveSensitivityScaleCurve.Points[0].OutVal;
@@ -414,7 +423,7 @@ exec function GamepadSprint()
     GamepadSprintTimer();
     if(Outer.bRun == 0)
     {
-        Outer.SetTimer(0.05, true, 'GamepadSprintTimer', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.05, true, 'GamepadSprintTimer', self);
     }
 }
 
@@ -423,7 +432,7 @@ function GamepadSprintTimer()
     if(ShouldActivateGamepadSprint())
     {
         Outer.bRun = 1;
-        Outer.ClearTimer('GamepadSprintTimer', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('GamepadSprintTimer', self);
     }
 }
 
@@ -441,7 +450,7 @@ exec function GamepadSprintRelease()
         }
     }
     Outer.bRun = 0;
-    Outer.ClearTimer('GamepadSprintTimer', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('GamepadSprintTimer', self);
 }
 
 function float GetLeftAnalogDistance()
@@ -472,19 +481,19 @@ exec function GamepadReload()
     {
         return;
     }
-    Outer.SetTimer(GamepadButtonHoldTime, false, 'GamepadReloadTimer', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(GamepadButtonHoldTime, false, 'GamepadReloadTimer', self);
 }
 
 exec function GamepadReloadRelease()
 {
-    if(Outer.IsTimerActive('GamepadReloadTimer', self))
+    if(Class'WorldInfo'.static.GetWorldInfo().TimerHelper.IsTimerActive('GamepadReloadTimer', self))
     {
         if(Outer.Pawn != none)
         {
             Outer.Pawn.StartFire(2);
             Outer.Pawn.StopFire(2);
         }
-        Outer.ClearTimer('GamepadReloadTimer', self);        
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('GamepadReloadTimer', self);        
     }
     else
     {
@@ -505,7 +514,7 @@ exec function GamepadCrouch()
     ToggleCrouch();
     if(Outer.bDuck == 1)
     {
-        Outer.SetTimer(GamepadButtonHoldTime, false, 'GamepadCrouchTimer', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(GamepadButtonHoldTime, false, 'GamepadCrouchTimer', self);
     }
 }
 
@@ -513,7 +522,7 @@ exec function GamepadCrouchRelease()
 {
     local bool bWasButtonHeld;
 
-    bWasButtonHeld = !Outer.IsTimerActive('GamepadCrouchTimer', self);
+    bWasButtonHeld = !Class'WorldInfo'.static.GetWorldInfo().TimerHelper.IsTimerActive('GamepadCrouchTimer', self);
     if(bWasButtonHeld)
     {
         StopCrouch();
@@ -524,15 +533,15 @@ function GamepadCrouchTimer();
 
 exec function GamepadJump()
 {
-    Outer.SetTimer(GamepadButtonHoldTime, false, 'GamepadJumpTimer', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(GamepadButtonHoldTime, false, 'GamepadJumpTimer', self);
 }
 
 exec function GamepadJumpRelease()
 {
-    if(Outer.IsTimerActive('GamepadJumpTimer', self))
+    if(Class'WorldInfo'.static.GetWorldInfo().TimerHelper.IsTimerActive('GamepadJumpTimer', self))
     {
         Jump();
-        Outer.ClearTimer('GamepadJumpTimer', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('GamepadJumpTimer', self);
     }
 }
 
@@ -549,8 +558,8 @@ exec function GamepadSwitchFire()
     {
         if(Outer.MyGFxHUD.WeaponSelectWidget != none)
         {
-            W = Outer.Pawn.Weapon;
-            if(W != none)
+            W = ((Outer.Pawn.InvManager.PendingWeapon != none) ? Outer.Pawn.InvManager.PendingWeapon : Outer.Pawn.Weapon);
+            if((W != none) && W.bCanThrow)
             {
                 Outer.ServerThrowOtherWeapon(W);
             }
@@ -675,7 +684,7 @@ simulated exec function ToggleFlashlight()
         {
             if(bPerkHasNightVision)
             {
-                Outer.SetTimer(GamepadButtonHoldTime, false, 'FlashlightTimer', self);                
+                Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(GamepadButtonHoldTime, false, 'FlashlightTimer', self);                
             }
             else
             {
@@ -687,9 +696,9 @@ simulated exec function ToggleFlashlight()
 
 exec function FlashlightRelease()
 {
-    if(Outer.IsTimerActive('FlashlightTimer', self))
+    if(Class'WorldInfo'.static.GetWorldInfo().TimerHelper.IsTimerActive('FlashlightTimer', self))
     {
-        Outer.ClearTimer('FlashlightTimer', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('FlashlightTimer', self);
         InternalToggleFlashlight();
     }
 }
@@ -875,7 +884,7 @@ exec function GamepadWeaponSelect()
         {
             return;
         }
-        Outer.SetTimer(GamepadButtonHoldTime, false, 'GamepadWeaponMenuTimer', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(GamepadButtonHoldTime, false, 'GamepadWeaponMenuTimer', self);
     }
 }
 
@@ -899,9 +908,9 @@ exec function ReleaseGamepadWeaponSelect()
         if((KFW == none) || KFW.CanSwitchWeapons())
         {
             KFIM = KFInventoryManager(Outer.Pawn.InvManager);
-            if(Outer.IsTimerActive('GamepadWeaponMenuTimer', self))
+            if(Class'WorldInfo'.static.GetWorldInfo().TimerHelper.IsTimerActive('GamepadWeaponMenuTimer', self))
             {
-                Outer.ClearTimer('GamepadWeaponMenuTimer', self);
+                Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('GamepadWeaponMenuTimer', self);
                 if(bShowGamepadWeaponSelectHint)
                 {
                     Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 8);
@@ -926,9 +935,9 @@ exec function ReleaseGamepadWeaponSelect()
 
 function bool CheckForWeaponMenuTimerInterrupt()
 {
-    if(Outer.IsTimerActive('GamepadWeaponMenuTimer', self))
+    if(Class'WorldInfo'.static.GetWorldInfo().TimerHelper.IsTimerActive('GamepadWeaponMenuTimer', self))
     {
-        Outer.ClearTimer('GamepadWeaponMenuTimer', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('GamepadWeaponMenuTimer', self);
         GamepadWeaponMenuTimer();
         return true;
     }
@@ -999,6 +1008,8 @@ exec function SwitchWeaponGroup(byte GroupID)
         KFIM.ShowOnlyHUDGroup(GroupID);
     }
 }
+
+exec function QuickEmote();
 
 exec function QuickHeal()
 {
@@ -1197,18 +1208,18 @@ exec function OnVoteNoRelease()
 
 exec function Interact()
 {
-    Outer.SetTimer(GamepadButtonHoldTime, false, 'InteractTimer', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(GamepadButtonHoldTime, false, 'InteractTimer', self);
 }
 
 exec function InteractRelease()
 {
     local bool bButtonWasHeld;
 
-    bButtonWasHeld = !Outer.IsTimerActive('InteractTimer', self);
+    bButtonWasHeld = !Class'WorldInfo'.static.GetWorldInfo().TimerHelper.IsTimerActive('InteractTimer', self);
     if(!bButtonWasHeld)
     {
         Outer.Use();
-        Outer.ClearTimer('InteractTimer', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('InteractTimer', self);
     }
 }
 
@@ -1251,7 +1262,7 @@ exec function StartVoiceChat(optional bool bPublicChat)
         {
             Outer.CurrentVoiceChannel = 1;
         }
-        Outer.ClearTimer('ClientStopNetworkedVoice');
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('ClientStopNetworkedVoice');
         Outer.ClientStartNetworkedVoice();
     }
 }
@@ -1260,7 +1271,7 @@ exec function StopVoiceChat()
 {
     if(bRequiresPushToTalk)
     {
-        Outer.SetTimer(0.25, false, 'ClientStopNetworkedVoice');
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.25, false, 'ClientStopNetworkedVoice');
     }
 }
 
@@ -2175,6 +2186,7 @@ defaultproperties
     bViewAccelerationEnabled=true
     GamepadButtonHoldTime=0.25
     SprintAnalogThreshold=0.6
+    ZedAutoSprintAnalogThreshold=0.75
     LookSensitivityScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0.5,LeaveTangent=0.5,InterpMode=EInterpCurveMode.CIM_CurveAuto)
     MoveSensitivityScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.3,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Constant)
     SprintingSensitivityScale=0.675

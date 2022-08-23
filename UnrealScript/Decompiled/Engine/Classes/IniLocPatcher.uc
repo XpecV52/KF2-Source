@@ -103,7 +103,7 @@ function DownloadFiles()
     }
 }
 
-function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
+function OnRequestTitleFileListComplete(bool bWasSuccessful, array<string> ResultStr)
 {
     local JsonObject Root;
     local int JsonObjectIdx;
@@ -113,12 +113,12 @@ function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
     TitleFileInterface.ClearRequestTitleFileListCompleteDelegate(OnRequestTitleFileListComplete);
     if(bWasSuccessful)
     {
-        Root = Class'JsonObject'.static.DecodeJson(ResultStr);
+        Root = Class'JsonObject'.static.DecodeJson(ResultStr[0]);
         if(Root != none)
         {
             Files.Length = 0;
             JsonObjectIdx = 0;
-            J0x96:
+            J0x98:
 
             if(JsonObjectIdx < Root.ObjectArray.Length)
             {
@@ -128,15 +128,15 @@ function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
                 RequestFileEntry.bIsUnicode = (InStr(RequestFileEntry.Filename, ".ini",, true) == -1) && InStr(RequestFileEntry.Filename, ".int",, true) == -1;
                 Files.AddItem(RequestFileEntry;
                 ++ JsonObjectIdx;
-                goto J0x96;
+                goto J0x98;
             }
             StartLoadingFiles();            
         }
         else
         {
-            LogInternal(((((((("(" $ string(Name)) $ ") IniLocPatcher::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "Download of file list failed. Bad json.") @ "ResultStr=") $ ResultStr);
+            LogInternal(((((((("(" $ string(Name)) $ ") IniLocPatcher::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "Download of file list failed. Bad json.") @ "ResultStr=") $ ResultStr[0]);
             Index = 0;
-            J0x334:
+            J0x338:
 
             if(Index < AllTitleFilesCompletedDelegates.Length)
             {
@@ -147,7 +147,7 @@ function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
                     __OnAllTitleFilesCompleted__Delegate = None;
                 }
                 ++ Index;
-                goto J0x334;
+                goto J0x338;
             }
         }        
     }
@@ -155,7 +155,7 @@ function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
     {
         LogInternal(((((("(" $ string(Name)) $ ") IniLocPatcher::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "Download of file list failed.", 'DevConfig');
         Index = 0;
-        J0x437:
+        J0x43B:
 
         if(Index < AllTitleFilesCompletedDelegates.Length)
         {
@@ -166,7 +166,7 @@ function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
                 __OnAllTitleFilesCompleted__Delegate = None;
             }
             ++ Index;
-            goto J0x437;
+            goto J0x43B;
         }
     }
 }

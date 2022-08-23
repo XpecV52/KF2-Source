@@ -71,6 +71,17 @@ event PreBeginPlay()
  	super.PreBeginPlay();
 }
 
+/** Weapon Mesh Attachment */
+event ChangeVisibility( bool bIsVisible )
+{
+	super.ChangeVisibility( bIsVisible );
+
+	if( LeftWeapMesh != none && !bWeapMeshIsPawnMesh )
+	{
+		LeftWeapMesh.SetHidden( !bIsVisible );
+	}
+}
+
 /*********************************************************************************************
  * Attach / Detach
 ********************************************************************************************* */
@@ -180,10 +191,10 @@ function bool ChooseActiveWeapon(byte FlashCount)
 }
 
 /** Added second weapon */
-simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
+simulated function bool ThirdPersonFireEffects( vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte )
 {
 	ChooseActiveWeapon(P.FlashCount);
-    return super.ThirdPersonFireEffects( HitLocation, P );
+    return super.ThirdPersonFireEffects( HitLocation, P, ThirdPersonAnimRateByte );
 }
 
 /** Plays fire animation on weapon mesh.
@@ -191,26 +202,32 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
   */
 simulated function PlayWeaponFireAnim()
 {
-	if (Instigator.FiringMode == 1 && WeaponAltFireAnim != 'None')
+	local float Duration;
+
+	if( Instigator.FiringMode == 1 && WeaponAltFireAnim != 'None' )
 	{
 		if( bPlayFXOnSecondWeapon )
 		{
-			LeftWeapMesh.PlayAnim(WeaponAltFireAnim_L,,, true);
+			Duration = LeftWeapMesh.GetAnimLength( WeaponAltFireAnim_L );
+			LeftWeapMesh.PlayAnim( WeaponAltFireAnim_L, Duration / ThirdPersonAnimRate,, true );
 		}
 		else
-	{
-			WeapMesh.PlayAnim(WeaponAltFireAnim_R,,, true);
+		{
+			Duration = WeapMesh.GetAnimLength( WeaponAltFireAnim_R );
+			WeapMesh.PlayAnim( WeaponAltFireAnim_R, Duration / ThirdPersonAnimRate,, true );
+		}
 	}
-	}
-	else if (WeaponFireAnim != 'None')
+	else if( WeaponFireAnim != 'None' )
 	{
 		if( bPlayFXOnSecondWeapon )
 		{
-			LeftWeapMesh.PlayAnim(WeaponFireAnim_L,,, true);
+			Duration = LeftWeapMesh.GetAnimLength( WeaponFireAnim_L );
+			LeftWeapMesh.PlayAnim( WeaponFireAnim_L, Duration / ThirdPersonAnimRate,, true );
 		}
 		else
 		{
-			WeapMesh.PlayAnim(WeaponFireAnim_R,,, true);
+			Duration = WeapMesh.GetAnimLength( WeaponFireAnim_R );
+			WeapMesh.PlayAnim( WeaponFireAnim_R, Duration / ThirdPersonAnimRate,, true );
 		}
 	}
 }
@@ -222,15 +239,15 @@ simulated function PlayPawnFireAnim( KFPawn P, EAnimSlotStance AnimType )
 {
 	if ( P.bIsCrouched )
 	{
-		P.PlayBodyAnim((bPlayFXOnSecondWeapon) ? CrouchShootLeftAnim : CrouchShootRightAnim, EAS_FullBody, 1.f, ShootBlendInTime, ShootBlendOutTime);
+		P.PlayBodyAnim((bPlayFXOnSecondWeapon) ? CrouchShootLeftAnim : CrouchShootRightAnim, EAS_FullBody, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);
 	}
 	else if ( P.bIsWalking )
 	{
-		P.PlayBodyAnim((bPlayFXOnSecondWeapon) ? IronShootLeftAnim : IronShootRightAnim, EAS_FullBody, 1.f, ShootBlendInTime, ShootBlendOutTime);
+		P.PlayBodyAnim((bPlayFXOnSecondWeapon) ? IronShootLeftAnim : IronShootRightAnim, EAS_FullBody, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);
 	}
 	else
 	{
-		P.PlayBodyAnim((bPlayFXOnSecondWeapon) ? ShootLeftAnim : ShootRightAnim, EAS_FullBody, 1.f, ShootBlendInTime, ShootBlendOutTime);
+		P.PlayBodyAnim((bPlayFXOnSecondWeapon) ? ShootLeftAnim : ShootRightAnim, EAS_FullBody, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);
 	}
 }
 
@@ -275,8 +292,8 @@ simulated function vector GetMuzzleLocation(optional byte MuzzleID)
 		if( LeftMuzzleFlash != none )
 		{
 	        LeftWeapMesh.GetSocketWorldLocationAndRotation(LeftMuzzleFlash.GetSocketName(), SocketLocation);
-		return SocketLocation;
-	}
+			return SocketLocation;
+		}
 	}
 
 	return Super.GetMuzzleLocation(MuzzleID);
@@ -285,8 +302,12 @@ simulated function vector GetMuzzleLocation(optional byte MuzzleID)
 /** Overrides super to play anim on both meshes. Used for reloads at the moment (will this mess up other possible anims?) */
 simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool bLoop)
 {
+	local float Duration;
+
 	super.PlayWeaponMeshAnim( AnimName, SyncNode, bLoop );	
-	LeftWeapMesh.PlayAnim(AnimName, 0.f, bLoop);
+
+	Duration = LeftWeapMesh.GetAnimLength( AnimName );
+	LeftWeapMesh.PlayAnim( AnimName, Duration / ThirdPersonAnimRate, bLoop );
 }
 
 /*********************************************************************************************

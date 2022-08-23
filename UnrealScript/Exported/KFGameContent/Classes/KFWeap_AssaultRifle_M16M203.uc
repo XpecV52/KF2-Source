@@ -466,7 +466,8 @@ defaultproperties
    RecoilISMinPitchLimit=65460
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.700000
-   AssociatedPerkClass=Class'KFGame.KFPerk_Demolitionist'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
+   AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Commando'
    FiringStatesArray(1)="FiringSecondaryState"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

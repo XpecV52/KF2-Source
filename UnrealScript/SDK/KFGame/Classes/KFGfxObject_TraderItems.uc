@@ -66,7 +66,7 @@ struct native STraderItem
 	var name 	DualClassName;
 
 	/** The perk this weapon is tied to */
-	var class<KFPerk> AssociatedPerkClass;
+	var array< Class<KFPerk> >	AssociatedPerkClasses;
 
 	var int MaxSpareAmmo;
 
@@ -93,9 +93,12 @@ struct native STraderItem
 	/** The group that this weapon belongs to */
 	var byte InventoryGroup;
 
+	var int ItemID; //used since the list will be sorted. 
+
 	StructDefaultProperties
 	{
 		AltTraderFilter=FT_None
+		ItemID=-1
 	}
 };
 

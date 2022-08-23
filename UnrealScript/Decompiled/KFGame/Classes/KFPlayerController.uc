@@ -66,6 +66,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;
 const MAX_AIM_CORRECTION_SIZE = 35.f;
 
 enum ETextChatChannel
@@ -284,6 +286,7 @@ var transient bool bPlayingLowHealthSFX;
 var bool bCachedSeeZedTimePawn;
 var bool bRecursingZedTimeVisibility;
 var bool bShowKillTicker;
+var bool bDisableAutoUpgrade;
 var bool bHideBossHealthBar;
 var bool bDOFEnabled;
 var bool bGamePlayDOFActive;
@@ -439,8 +442,9 @@ var float BlurBlendOutSpeed;
 var float BlurLerpControl;
 var private KFOnlineStatsRead StatsRead;
 var private KFOnlineStatsWrite StatsWrite;
-var array<string> RecentlyMetPlayers;
+var array<PlayerNameIdPair> RecentlyMetPlayers;
 var delegate<LoginCompleteCallback> OnLoginComplete;
+var OnlineGameSettings PendingGameSessionCreateGameSettings;
 var repnotify PostWaveReplicationInfo PWRI;
 var EphemeralMatchStats MatchStats;
 var class<EphemeralMatchStats> MatchStatsClass;
@@ -594,7 +598,6 @@ event Possess(Pawn aPawn, bool bVehicleTransition)
     if((KFPRI != none) && KFPawn_Customization(aPawn) == none)
     {
         KFPRI.bHasSpawnedIn = true;
-        KFPRI.bClientActiveSpawn = true;
         KFPRI.bNetDirty = true;
     }
     super(PlayerController).Possess(aPawn, bVehicleTransition);
@@ -656,13 +659,7 @@ function PawnDied(Pawn inPawn)
     super(PlayerController).PawnDied(inPawn);
 }
 
-exec function ListConsoleEvents()
-{
-    if(!Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsConsoleDedicatedServer())
-    {
-        super(PlayerController).ListConsoleEvents();
-    }
-}
+exec function ListConsoleEvents();
 
 function SpawnReconnectedPlayer()
 {
@@ -794,6 +791,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
         bShowKillTicker = Profile.GetProfileBool(123);
         bNoEarRingingSound = Profile.GetProfileBool(162);
         bHideBossHealthBar = Profile.GetProfileBool(158);
+        bDisableAutoUpgrade = Profile.GetProfileBool(167);
         KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
         if(KFPRI != none)
         {
@@ -873,6 +871,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
     {
         OnlineSub.GetLobbyInterface().LobbyInvite(LobbyId, Zero, true);
     }
+    Class'KFEmoteList'.static.RefreshCachedEmoteId();
 }
 
 simulated function HandleConnectionStatusChange(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus)
@@ -991,7 +990,6 @@ function HandleConsoleSessions()
 reliable client simulated function ClientCreateGameSession(string LobbyId, bool bPrivate)
 {
     local OnlineGameSettings GameSettings;
-    local byte LocalPlayerNum;
     local string RemoteAddressString;
 
     LogInternal("SESSIONS - ClientCreateGameSession" @ LobbyId);
@@ -1003,14 +1001,34 @@ reliable client simulated function ClientCreateGameSession(string LobbyId, bool 
         GameSettings.JoinString = RemoteAddressString;
         GameSettings.LobbyId = LobbyId;
         GameSettings.bRequiresPassword = bPrivate;
-        LocalPlayerNum = byte(LocalPlayer(Player).ControllerId);
-        OnlineSub.GameInterface.AddCreateOnlineGameCompleteDelegate(OnGameSessionCreateComplete);
-        if(!OnlineSub.GameInterface.CreateOnlineGame(LocalPlayerNum, 'Game', GameSettings))
+        PendingGameSessionCreateGameSettings = GameSettings;
+        if(OnlineSub.IsInSession('Game'))
         {
-            LogInternal("Failed to create online game");
-            OnlineSub.GameInterface.ClearCreateOnlineGameCompleteDelegate(OnGameSessionCreateComplete);
+            OnlineSub.GameInterface.AddDestroyOnlineGameCompleteDelegate(OnOldSessionDestroyedForNewGameSessionCreate);
+            OnlineSub.GameInterface.DestroyOnlineGame('Game');            
+        }
+        else
+        {
+            TryCreateGameSessionNow();
         }
     }
+}
+
+private final simulated function OnOldSessionDestroyedForNewGameSessionCreate(name SessionName, bool bWasSuccessful)
+{
+    OnlineSub.GameInterface.ClearDestroyOnlineGameCompleteDelegate(OnOldSessionDestroyedForNewGameSessionCreate);
+    TryCreateGameSessionNow();
+}
+
+private final simulated function TryCreateGameSessionNow()
+{
+    OnlineSub.GameInterface.AddCreateOnlineGameCompleteDelegate(OnGameSessionCreateComplete);
+    if(!OnlineSub.GameInterface.CreateOnlineGame(byte(LocalPlayer(Player).ControllerId), 'Game', PendingGameSessionCreateGameSettings))
+    {
+        LogInternal("Failed to create online game");
+        OnlineSub.GameInterface.ClearCreateOnlineGameCompleteDelegate(OnGameSessionCreateComplete);
+    }
+    PendingGameSessionCreateGameSettings = none;
 }
 
 simulated function OnGameSessionCreateComplete(name SessionName, bool bWasSuccessful)
@@ -1071,6 +1089,8 @@ reliable server function ServerGameSessionFailed()
 
 simulated function TryJoinGameSession()
 {
+    local OnlineGameSettings GS;
+
     LogInternal("SESSIONS - TryJoinGameSession");
     if(KFGameReplicationInfo(WorldInfo.GRI).ConsoleGameSessionGuid == "")
     {
@@ -1080,15 +1100,27 @@ simulated function TryJoinGameSession()
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     if((OnlineSub != none) && NotEqual_InterfaceInterface(OnlineSub.GameInterface, (none)))
     {
-        if(OnlineSub.IsInSession('Game'))
+        GS = OnlineSub.GameInterface.GetGameSettings('Game');
+        if(GS == none)
         {
-            LogInternal("  - Skipped join, already in a session");            
+            JoinGameSessionNow();            
         }
         else
         {
-            JoinGameSessionNow();
+            if(GS.SessionGuid != KFGameReplicationInfo(WorldInfo.GRI).ConsoleGameSessionGuid)
+            {
+                LogInternal("need to clean up old session before joining new one");
+                OnlineSub.GameInterface.AddDestroyOnlineGameCompleteDelegate(OnOldSessionDestroyedForNewGameSessionJoin);
+                OnlineSub.GameInterface.DestroyOnlineGame('Game');
+            }
         }
     }
+}
+
+private final simulated function OnOldSessionDestroyedForNewGameSessionJoin(name SessionName, bool bWasSuccessful)
+{
+    OnlineSub.GameInterface.ClearDestroyOnlineGameCompleteDelegate(OnOldSessionDestroyedForNewGameSessionJoin);
+    JoinGameSessionNow();
 }
 
 simulated function JoinGameSessionNow()
@@ -1379,7 +1411,7 @@ function OnCreateGameSessionForPlayTogetherComplete(string SessionGuid, bool bWa
     }
     MyGFxManager.UnloadCurrentPopup();
     InviteMessage = Localize("Notifications", "InviteMessage", "KFGameConsole");
-    OnlineSub.PlayerInterface.SendGameInviteToUsers(SessionGuid, OnlineSub.GameInterface.GetPendingMembersToInvite(), InviteMessage);
+    OnlineSub.PlayerInterface.SendGameInviteToUsers(SessionGuid, 'Game', OnlineSub.GameInterface.GetPendingMembersToInvite(), InviteMessage);
     OnlineSub.GameInterface.ResetPendingMembersToInvite();
 }
 
@@ -1952,8 +1984,6 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
 {
     local KFPawn KFP;
     local KFPawn_MonsterBoss KFBoss;
-    local Vector Loc, pos, HitLocation, HitNormal;
-    local Rotator Rot;
 
     KFP = KFPawn(ViewTarget);
     if(KFP != none)
@@ -1982,14 +2012,7 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
         {
             if((PlayerCamera != none) && PlayerCamera.CameraStyle != NewCamMode)
             {
-                Loc = Location;
-                Loc += (PlayerCamera.FreeCamOffset >> Rotation);
-                Rot = PlayerCamera.CameraCache.POV.Rotation;
-                Rot.Roll = 0;
-                pos = Loc + (vector(Rot) * PlayerCamera.FreeCamDistance);
-                Trace(HitLocation, HitNormal, pos, Loc, false, vect(12, 12, 12));
-                SetLocation(((IsZero(HitLocation)) ? pos : HitLocation));
-                SetRotation(Rot);
+                MoveToAdjustedFreeCamPosition();
             }            
         }
         else
@@ -2029,6 +2052,15 @@ function bool IsBossCameraMode()
     return false;
 }
 
+function bool IsEmoteCameraMode()
+{
+    if((PlayerCamera != none) && PlayerCamera.CameraStyle == 'Emote')
+    {
+        return true;
+    }
+    return false;
+}
+
 function KFPawn_MonsterBoss GetBoss()
 {
     local KFPawn_MonsterBoss KFBoss;
@@ -2042,28 +2074,33 @@ function KFPawn_MonsterBoss GetBoss()
 
 function SetCameraMode(name NewCamMode)
 {
-    local Vector Loc, pos, HitLocation, HitNormal;
-    local Rotator Rot;
-
-    if(PlayerCamera != none)
+    if((PlayerCamera != none) && PlayerCamera.CameraStyle != NewCamMode)
     {
-        PlayerCamera.CameraStyle = NewCamMode;
         if(NewCamMode == 'FreeCam')
         {
-            Loc = Location;
-            Loc += (PlayerCamera.FreeCamOffset >> Rotation);
-            Rot = PlayerCamera.CameraCache.POV.Rotation;
-            Rot.Roll = 0;
-            pos = Loc + (vector(Rot) * PlayerCamera.FreeCamDistance);
-            Trace(HitLocation, HitNormal, pos, Loc, false, vect(12, 12, 12));
-            SetLocation(((IsZero(HitLocation)) ? pos : HitLocation));
-            SetRotation(Rot);
+            MoveToAdjustedFreeCamPosition();
         }
         if(WorldInfo.Role == ROLE_Authority)
         {
             ClientSetCameraMode(NewCamMode);
         }
+        PlayerCamera.CameraStyle = NewCamMode;
     }
+}
+
+function MoveToAdjustedFreeCamPosition()
+{
+    local Vector Loc, pos, HitLocation, HitNormal;
+    local Rotator Rot;
+
+    Loc = Location;
+    Loc += (PlayerCamera.FreeCamOffset >> Rotation);
+    Rot = PlayerCamera.CameraCache.POV.Rotation;
+    Rot.Roll = 0;
+    pos = Loc + (vector(Rot) * PlayerCamera.FreeCamDistance);
+    Trace(HitLocation, HitNormal, pos, Loc, false, vect(12, 12, 12));
+    SetLocation(((IsZero(HitLocation)) ? pos : HitLocation));
+    SetRotation(Rot);
 }
 
 simulated function bool LandingShake()
@@ -2080,17 +2117,21 @@ function ProcessViewRotation(float DeltaTime, out Rotator out_ViewRotation, Rota
     super(PlayerController).ProcessViewRotation(DeltaTime, out_ViewRotation, DeltaRot);
 }
 
-function SetBossCamera(Pawn Boss)
+function SetBossCamera(KFPawn Boss)
 {
-    local KFPawn_MonsterBoss KFPMBoss;
-
-    KFPMBoss = KFPawn_MonsterBoss(Boss);
-    if((KFPMBoss != none) && KFPMBoss.HitFxInfo.bObliterated)
+    if((Boss != none) && Boss.HitFxInfo.bObliterated)
     {
         SetLocation(Boss.Location);
     }
     SetViewTarget(Boss);
-    ServerCamera('Boss');
+    if((Role == ROLE_Authority) && !IsLocalPlayerController())
+    {
+        PlayerCamera.CameraStyle = 'Boss';        
+    }
+    else
+    {
+        ClientSetCameraMode('Boss');
+    }
 }
 
 event ResetCameraMode()
@@ -2158,7 +2199,13 @@ simulated function EnableReflections(bool bEnabled)
     bReflectionsEnabled = bEnabled;
 }
 
-exec function Camera(name NewMode);
+exec function Camera(name NewMode)
+{
+    if((StatsWrite != none) && StatsWrite.HasCheated())
+    {
+        super(PlayerController).Camera(NewMode);
+    }
+}
 
 exec function ResetCustomizationCamera()
 {
@@ -3593,7 +3640,7 @@ reliable client simulated function ClientSetFrontEnd(class<KFGFxMoviePlayer_Mana
             if((OnlineSub.PlayerInterface.GetLoginStatus(byte(LP.ControllerId)) > 0) && !OnlineSub.SystemInterface.IsControllerConnected(LP.ControllerId))
             {
                 LogInternal("Controller Disconnected");
-                OnControllerChanged(LP.ControllerId, false);
+                OnControllerChanged(LP.ControllerId, false, false);
             }
         }
         MyGFxManager.OnProfileSettingsRead();
@@ -4013,7 +4060,7 @@ function DoAutoPurchase()
     local KFGameReplicationInfo KFGRI;
 
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI != none) && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')
+    if(((KFGRI != none) && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial') || bDisableAutoUpgrade)
     {
         OpenTraderMenu();
         return;
@@ -4508,7 +4555,7 @@ simulated function ReadStats()
     {
         OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate(OnStatsInitialized);
         Players[0] = StatsRead.OwningUniqueID;
-        OnlineSub.StatsInterface.ReadOnlineStats(Players, StatsRead);        
+        OnlineSub.StatsInterface.ReadOnlineStats(byte(LocalPlayer(Player).ControllerId), Players, StatsRead);        
     }
     else
     {
@@ -5170,7 +5217,10 @@ function SpectatePlayer(KFPlayerController.KFSpectateModes Mode)
         TryViewNextPlayer();
         if(KFPawn(ViewTarget) == none)
         {
-            SpectateRoaming();
+            if(ViewTarget != self)
+            {
+                SpectateRoaming();
+            }
             return;
         }
     }
@@ -5197,6 +5247,19 @@ reliable server function SpectateRoaming()
     if(ViewTarget == self)
     {
         SetCameraMode('FirstPerson');
+    }
+}
+
+unreliable server function ServerViewSelf(optional ViewTargetTransitionParams TransitionParams)
+{
+    if(IsSpectating())
+    {
+        SetViewTarget(self, TransitionParams);
+        ClientSetViewTarget(self, TransitionParams);
+        if((PlayerCamera != none) && PlayerCamera.CameraStyle != 'FirstPerson')
+        {
+            ResetCameraMode();
+        }
     }
 }
 
@@ -5271,11 +5334,15 @@ function SubmitPostWaveStats(optional bool bOpeningTrader)
         PWRI.bOpeningTrader = bOpeningTrader;
         ++ PWRI.RepCount;
     }
-    if(PWRI.bOpeningTrader && IsLocalController())
+    if(IsLocalPlayerController())
     {
-        if(((WorldInfo.NetMode != NM_DedicatedServer) && KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager != none)
+        ClientWriteAndFlushStats();
+        if(PWRI.bOpeningTrader)
         {
-            KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager.PlayBeginTraderTimeDialog(self);
+            if(((WorldInfo.NetMode != NM_DedicatedServer) && KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager != none)
+            {
+                KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager.PlayBeginTraderTimeDialog(self);
+            }
         }
     }
 }
@@ -5405,6 +5472,23 @@ unreliable server function ServerPlayVoiceCommsDialog(int CommsIndex)
 exec function PlayVoiceCommsDialog(int CommsIndex)
 {
     ServerPlayVoiceCommsDialog(CommsIndex);
+}
+
+exec function DoEmote()
+{
+    local KFPawn MyPawn;
+    local byte SMFlags;
+
+    MyPawn = KFPawn(Pawn);
+    if((((MyPawn != none) && !MyPawn.IsDoingSpecialMove()) && Class'KFEmoteList'.static.GetEquippedEmoteId() != -1) && MyPawn.CanDoSpecialMove(32))
+    {
+        SMFlags = MyPawn.SpecialMoveHandler.SpecialMoveClasses[32].static.PackFlagsBase(MyPawn);
+        MyPawn.DoSpecialMove(32, true,, SMFlags);
+        if((Role < ROLE_Authority) && MyPawn.IsDoingSpecialMove(32))
+        {
+            MyPawn.ServerDoSpecialMove(32, true,, SMFlags);
+        }
+    }
 }
 
 exec function ItemExchangeTimeOut()
@@ -5564,7 +5648,7 @@ exec function GCF()
     }
 }
 
-function OnControllerChanged(int ControllerId, bool bIsConnected)
+function OnControllerChanged(int ControllerId, bool bIsConnected, bool bPauseGame)
 {
     local LocalPlayer LP;
 
@@ -5577,7 +5661,7 @@ function OnControllerChanged(int ControllerId, bool bIsConnected)
         }
         MyGFxManager.DelayedOpenPopup(2, 7, Localize("Notifications", "ControllerDisconnectedTitle", "KFGameConsole"), Localize("Notifications", "ControllerDisconnectedPS4Message", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
     }
-    super(PlayerController).OnControllerChanged(ControllerId, bIsConnected);
+    super(PlayerController).OnControllerChanged(ControllerId, bIsConnected, bPauseGame);
 }
 
 function OnLoginCompleted(bool bSuccess)
@@ -5666,7 +5750,7 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
             if(bLoggingInForOnlinePlay)
             {
                 OnLoginCompleted(false);
-                OnlineSub.PlayerInterface.ShowLoginUI();                
+                OnlineSub.PlayerInterface.ShowLoginUI(byte(LocalPlayer(Player).ControllerId));                
             }
             else
             {
@@ -5719,12 +5803,14 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
 
 function CheckPrivilegesForMultiplayer()
 {
+    local Engine.OnlineSubsystem.EFeaturePrivilegeLevel HintPrivLevel;
+
     bOnlinePrivilegeCheckPending = true;
     OnlineSub.PlayerInterface.AddPrivilegeLevelCheckedDelegate(OnCanPlayOnlineCheckForMatchmakingComplete);
-    OnlineSub.PlayerInterface.CanPlayOnline(byte(LocalPlayer(Player).ControllerId));
+    OnlineSub.PlayerInterface.CanPlayOnline(byte(LocalPlayer(Player).ControllerId), HintPrivLevel);
 }
 
-function OnCanPlayOnlineCheckForMatchmakingComplete(byte LocalUserNum, Engine.OnlineSubsystem.EFeaturePrivilege Privilege, Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel)
+function OnCanPlayOnlineCheckForMatchmakingComplete(byte LocalUserNum, Engine.OnlineSubsystem.EFeaturePrivilege Privilege, Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel, bool bDiffersFromHint)
 {
     if(Privilege == 0)
     {
@@ -5859,7 +5945,7 @@ state Dead
 
     event ResetCameraMode()
     {
-        if(Role == ROLE_Authority)
+        if(((Role == ROLE_Authority) && Pawn != none) && !Pawn.bPlayedDeath)
         {
             global.ResetCameraMode();
         }
@@ -5867,9 +5953,28 @@ state Dead
     stop;    
 }
 
+state BaseSpectating
+{
+    ignores ClientPlayForceFeedbackWaveform, ClientPlayCameraShake;
+    stop;    
+}
+
+auto state PlayerWaiting
+{
+    ignores SeePlayer, HearNoise, NotifyBump, TakeDamage, PhysicsVolumeChange, NextWeapon, 
+	    PrevWeapon, SwitchToBestWeapon, ClientPlayForceFeedbackWaveform, ClientPlayCameraShake;
+    stop;    
+}
+
+state WaitingForPawn
+{
+    ignores SeePlayer, HearNoise, KilledBy, ClientPlayForceFeedbackWaveform, ClientPlayCameraShake;
+    stop;    
+}
+
 state Spectating
 {
-    ignores ClientPlayForceFeedbackWaveform, StartFire;
+    ignores ClientPlayForceFeedbackWaveform, ClientPlayCameraShake, StartFire;
 
     event BeginState(name PreviousStateName)
     {
@@ -5902,7 +6007,11 @@ state Spectating
             }
             if(ViewTarget == self)
             {
-                SpectateRoaming();                
+                if(CurrentSpectateMode != 3)
+                {
+                    CurrentSpectateMode = 0;
+                    SetCameraMode('FreeCam');
+                }                
             }
             else
             {

@@ -37,7 +37,7 @@ YesString="Oui"
 NoString="Non"
 TeamSwappedString="On vous a changé d'équipe"
 
-DisbandPartyString="DISSOUDRE LE GROUPE"
+DisbandPartyString="DISSOUDRE GROUPE"
 LeaveCurrentMenuString="Quitter le menu actuel ?"
 ZedString="ZED"
 HumanString="SURVIVANT"
@@ -59,7 +59,7 @@ SetTakeoverServerPasswordTitle="Saisir nouv. MDP pour partie :"
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="AUCUN MATCH TROUVÉ"
 FailedSearchString="Le matchmaking n'a pas trouvé de match correspondant aux options. Veuillez élargir votre recherche ou utiliser le navigateur de serveurs pour trouver un match."
-BrowseServersString="PARCOURIR LES SERVEURS"
+BrowseServersString="PARCOURIR SERVEURS"
 HasInvitedToGameString=" vous a invité à rejoindre une partie"
 JoinGameString="Rejoindre la partie ?"
 
@@ -82,7 +82,7 @@ ExplosiveString="Trappe :"
 CreateMatchString="CRÉER UN MATCH"
 MatchmakingString="MATCHMAKING EN LIGNE"
 ConsoleMatchmakingString="JOUER EN LIGNE"
-ServerBrowserString="Parcourir les serveurs"
+ServerBrowserString="Parcourir serveurs"
 
 DifficultyTitle="DIFFICULTÉ"
 GameModeTitle="MODE DE JEU"
@@ -708,6 +708,7 @@ BackString="RETOUR"
 NoneString="AUCUN"
 WeaponsString="Armes"
 WeaponsInfoString="Personnaliser"
+EmotesString="EMOTES"
 
 [KFGFxMenu_Inventory]
 NoItemsString="Aucun élément de votre inventaire ne correspond au filtre sélectionné."
@@ -723,6 +724,7 @@ UnequipString="DÉSÉQUIPER"
 AllString="Tous"
 WeaponSkinString="Modèles d'armes"
 CosmeticString="Cosmétiques"
+EmotesString="Emotes"
 CraftingMatsString="Fabrication"
 ItemString="Éléments"
 FiltersString="FILTRES"
@@ -749,7 +751,7 @@ CraftRequirementString="Quantité insuffisante des matériaux de fabrication req
 CraftCosmeticDescriptionString="Vous pouvez fabriquer de nouveaux éléments cosmétiques à partir de matériaux cosmétiques depuis ce menu. Vous obtenez des matériaux cosmétiques en recyclant des éléments cosmétiques existants. Pour recycler, sélectionnez un élément et appuyez sur recycler."
 CraftWeaponDescriptionString="Vous pouvez fabriquer de nouveaux éléments de modèle d'armes à partir de matériaux de modèle d'armes depuis ce menu. Vous obtenez des matériaux de modèle d'armes en recyclant des éléments de modèle d'armes existants. Pour recycler, sélectionnez un élément et appuyez sur recycler."
 RequiresString="Nécessite : "
-PurchaseKeyString="ACHETER CLÉ "
+PurchaseKeyString="ACHETER CLÉ"
 LookUpOnMarketString="Rechercher Marché"
 
 [KFGFxPerksContainer]
@@ -796,6 +798,7 @@ WeaponSkinsRotationString="Modèles d'armes"
 WeaponSkinsString="Modèles d'armes du marché"
 MarketConsumablesString="USB / Caisses du marché"
 MarketCosmeticsString="Cosmétiques du marché"
+MarketEmotesString="Emotes du marché"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="TROUVER DANS LE MARCHÉ"
@@ -890,6 +893,7 @@ VoiceCommsOptionStrings[4]="SUIVEZ MOI"
 VoiceCommsOptionStrings[5]="À LA MARCHANDE"
 VoiceCommsOptionStrings[6]="AFFIRMATIF"
 VoiceCommsOptionStrings[7]="NÉGATIF"
+VoiceCommsOptionStrings[8]="EMOTE"
 
 [KFGFxMenu_Exit]
 HeaderString="QUITTER LA PARTIE"
@@ -1182,6 +1186,7 @@ GBA_VoiceCommFollowMe="SUIVEZ MOI"
 GBA_VoiceCommGetToTheTrader="À LA MARCHANDE"
 GBA_VoiceCommAffirmative="AFFIRMATIF"
 GBA_VoiceCommNegative="NÉGATIF"
+GBA_VoiceCommEmote="EMOTE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Sensibilité"
@@ -1745,7 +1750,7 @@ EXPAction2="Soigner des équipiers"
 [KFPerk_Firebug]
 PerkName="Pyromane"
 EXPAction1="Infliger des dégâts d'arme de Pyromane"
-EXPAction2="Tuer des Lèche-bottes avec armes de Pyromane"
+EXPAction2="Tuer Lèche-bottes et Bouffis avec armes Pyro"
 
 SkillCatagories[0]="Provisions"
 SkillCatagories[1]="Épicé"
@@ -1810,7 +1815,7 @@ ShootnMove="Paré"
 ShootnMoveDescription="Ignore les pénalités de vitesse pour les mires et réduit considérablement l'inclinaison des armes de classe."
 
 QuickSwitch="Dégaine rapide"
-QuickSwitchDescription="Ignore la pénalité de recul des tirs à la hanche, augmente la vitesse de mouvement de 5 % et change d'arme de classe 50 % plus vite."
+QuickSwitchDescription="Réduit la pénalité de recul des tirs à la hanche, augmente la vitesse de mouvement de 5 % et change d'arme de classe 50 % plus vite."
 
 RhythmMethod="C'est l'heure du massacre !"
 RhythmMethodDescription="Les dégâts des tirs à la tête consécutifs avec des armes de classe augmentent de 10 % jusqu'à 50 % maximum."
@@ -2113,6 +2118,7 @@ RandomLoadingStrings[37]="Le canon électrique peut tirer à travers plusieurs Z
 RandomLoadingStrings[38]="Le pistolet à micro-ondes fait plus de dégâts aux Zeds portant du métal, comme les Barbacks et les Sirènes."
 RandomLoadingStrings[39]="Essayez le mode de tir alternatif de votre arme. Toutes les armes n'en ont pas, mais il peut parfois vous tirer d'affaire."
 RandomLoadingStrings[40]="Vous obtenez de l'XP et du fric pour vos assistances en plus des tués, donc ne vous sentez pas frustré si vous préparez des tués pour vos alliés."
+RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
 
 [WhatsNewMessages]
 Jaegorhorn="Suivez la communauté pour dév. Jaegorhorn."
@@ -2139,6 +2145,7 @@ USBSWATKey="Clé USB SWAT - 2,49 $"
 USBTacticalHorzineKey="Clé USB Horzine tactique - 2,49 $"
 USBVictorianKey="Clé USB Victorienne - 2,49 $"
 USBZedKillerKey="Clé USB Tueur de Zeds - 2,49 $"
+USBBoneCrusher="Clé USB Broyeur d'os - 2,49 $"
 BullseyeUpdate="Dernier contenu - Mise à jour Bullseye"
 LatestUpdate="Dernière mise à jour de contenu"
 Forums="Visitez les forums de la communauté"
@@ -2159,6 +2166,7 @@ PS4WeaponSkinCrate1="Caisse de modèle Horzine | Série 1"
 PS4WeaponSkinCrate2="Caisse de modèle Horzine | Série 2"
 Artbook="Art book numérique de Killing Floor 2"
 Uncovered="Regarder film Killing Floor: Uncovered"
+NewEmotes="Nouveau ! Clé de caisse d'emote - 2,49 $"
 
 [Zeds]
 KFPawn_ZedBloat="Bouffi"
@@ -2166,6 +2174,7 @@ KFPawn_ZedClot="Andouille"
 KFPawn_ZedCrawler="Lèche-bottes"
 KFPawn_ZedFleshPound="Barback"
 KFPawn_ZedGorefast="Éventreur"
+KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
 KFPawn_ZedHusk="Bogue"
 KFPawn_ZedStalker="Rôdeuse"
@@ -2365,7 +2374,6 @@ DisplayName_DEU="Katakomben"
 DisplayName_ESL="Catacumbas"
 DisplayName_ESN="Catacumbas"
 DisplayName_FRA="Catacombes"
-DisplayName_FRC="Catacombes"
 DisplayName_INT="Catacombs"
 DisplayName_ITA="Catacombe"
 DisplayName_JPN="Catacombs"
@@ -2486,6 +2494,22 @@ DisplayName_POL="Piekielna domena"
 DisplayName_PTB="Reino Infernal"
 DisplayName_RUS="Царство ада"
 
+[KF-ZedLanding KFMapSummary]
+DisplayName_CHN="丧尸登陆"
+DisplayName_CHT="僵屍群登陸"
+DisplayName_DEU="ZED-Landung"
+DisplayName_ESL="Aterrizaje ZED"
+DisplayName_ESN="Aterrizaje ZED"
+DisplayName_FRA="Île des Zeds"
+DisplayName_FRC="Île des Zeds"
+DisplayName_INT="Zed Landing"
+DisplayName_ITA="Atterraggio ZED"
+DisplayName_JPN="zed Landing"
+DisplayName_KOR="제드 상륙"
+DisplayName_POL="Lądowanie zetów"
+DisplayName_PTB="Pouso Forçado ZED"
+DisplayName_RUS="Высадка среди мутантов"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Labo biotique"
 
@@ -2524,6 +2548,9 @@ DisplayName="Terrains hostiles"
 
 [KF-InfernalRealm KFMapSummary]
 DisplayName="Royaume des enfers"
+
+[KF-ZedLanding KFMapSummary]
+DisplayName="Île des Zeds"
 
 
 [KFMapInfo]

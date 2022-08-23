@@ -27,6 +27,14 @@ defaultproperties
 	KDeathVel=350
     KDamageImpulse=2000
 
+	DoT_Type=DOT_Fire
+	DoT_Duration=1.7 //5.0
+	DoT_Interval=0.5
+	DoT_DamageScale=0.8
+	bIgnoreSelfInflictedScale=true
+
+
+	BurnPower=5.5 //2.5
 	MicrowavePower=10
 	StumblePower=30
 

@@ -1,6 +1,7 @@
 package tripwire.containers.trader
 {
     import fl.motion.Color;
+    import flash.display.MovieClip;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
@@ -41,6 +42,8 @@ package tripwire.containers.trader
         
         public var _bCanFavorite:Boolean;
         
+        public var perkSecondaryArrow:MovieClip;
+        
         private var cachedFavorite_X:Number;
         
         private var cachedItemData:Object;
@@ -67,12 +70,12 @@ package tripwire.containers.trader
         public function set localizeContainer(param1:Object) : void
         {
             visible = false;
-            this.detailedStats.damageTitle.text = !!param1.damageTitle ? param1.damageTitle : "";
-            this.detailedStats.fireRateTitle.text = !!param1.fireRateTitle ? param1.fireRateTitle : "";
-            this.detailedStats.penetrationTitle.text = !!param1.penetrationTitle ? param1.penetrationTitle : "";
-            this.detailedStats.accuracyTitle.text = !!param1.accuracyTitle ? param1.accuracyTitle : "";
-            this.detailedStats.ammoTitle.text = !!param1.capacityTitle ? param1.capacityTitle : "";
-            this.detailedStats.magTitle.text = !!param1.magTitle ? param1.magTitle : "";
+            this.detailedStats.damageTitle.text = param1.damageTitle;
+            this.detailedStats.fireRateTitle.text = param1.fireRateTitle;
+            this.detailedStats.penetrationTitle.text = param1.penetrationTitle;
+            this.detailedStats.accuracyTitle.text = param1.accuracyTitle;
+            this.detailedStats.ammoTitle.text = param1.capacityTitle;
+            this.detailedStats.magTitle.text = param1.magTitle;
             this._favoriteString = param1.favorite;
             this._unfavoriteString = param1.unfavorite;
             this.cachedFavorite_X = this.detailedStats.favoriteTextField.x;
@@ -88,18 +91,30 @@ package tripwire.containers.trader
             this.nameTextField.text = !!param1.type ? param1.type : "";
             if(MenuManager.manager && MenuManager.manager.bUsingGamepad)
             {
-                this.detailedStats.favoriteIcon.visible = !!param1.bCanFavorite ? Boolean(param1.bCanFavorite) : false;
+                this.detailedStats.favoriteIcon.visible = param1.bCanFavorite;
                 this.detailedStats.favoriteButton.visible = false;
             }
             else
             {
                 this.detailedStats.favoriteIcon.visible = false;
-                this.detailedStats.favoriteButton.visible = !!param1.bCanFavorite ? Boolean(param1.bCanFavorite) : false;
+                this.detailedStats.favoriteButton.visible = param1.bCanFavorite;
             }
             this.weaponLoader.source = !!param1.texturePath ? param1.texturePath : "";
             this.weaponLoader.visible = true;
             this.perkLoader.source = !!param1.perkIconPath ? param1.perkIconPath : "";
-            this.SetHideStats(!!param1.bHideStats ? Boolean(param1.bHideStats) : false);
+            if(param1.perkIconPathSecondary)
+            {
+                this.perkSecondaryLoader.source = param1.perkIconPathSecondary;
+                this.perkSecondaryLoader.visible = true;
+                this.perkSecondaryArrow.visible = true;
+            }
+            else
+            {
+                this.perkSecondaryLoader.source = "";
+                this.perkSecondaryLoader.visible = false;
+                this.perkSecondaryArrow.visible = false;
+            }
+            this.SetHideStats(param1.bHideStats);
             this.bCanFavorite = !!param1.bCanFavorite ? Boolean(param1.bCanFavorite) : false;
             if(!param1.bHideStats)
             {

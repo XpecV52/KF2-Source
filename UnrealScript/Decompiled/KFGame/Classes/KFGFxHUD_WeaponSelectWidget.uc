@@ -182,6 +182,7 @@ function RefreshTimer()
 {
     local Inventory Inv;
     local int InvCount;
+    local KFInventoryManager KFIM;
 
     Inv = Outer.GetPC().Pawn.InvManager.InventoryChain;
     J0x68:
@@ -195,6 +196,14 @@ function RefreshTimer()
     if(InvCount != LastRefreshInvCount)
     {
         RefreshWeaponSelect();
+        if(Outer.GetPC().Pawn.InvManager != none)
+        {
+            KFIM = KFInventoryManager(Outer.GetPC().Pawn.InvManager);
+            if(KFIM != none)
+            {
+                KFIM.UpdateHUD();
+            }
+        }
     }
     LastRefreshInvCount = byte(InvCount);
 }

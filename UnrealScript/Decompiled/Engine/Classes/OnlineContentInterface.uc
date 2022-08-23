@@ -102,3 +102,9 @@ function bool IsGameFullyInstalled()
 {
     return true;
 }
+
+function bool ReadDownloadableContentList(byte LocalUserNum);
+
+function ClearDownloadableContentList(byte LocalUserNum);
+
+function OnlineSubsystem.EOnlineEnumerationReadState GetDownloadableContentList(byte LocalUserNum, out array<OnlineContent> ContentList);

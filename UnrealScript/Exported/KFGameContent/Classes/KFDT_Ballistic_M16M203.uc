@@ -17,6 +17,7 @@ defaultproperties
    WeaponDef=Class'KFGame.KFWeapDef_M16M203'
    GunHitPower=0.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
+   ModifierPerkList(1)=Class'KFGame.KFPerk_Commando'
    KDamageImpulse=900.000000
    KDeathVel=100.000000
    KDeathUpKick=-300.000000

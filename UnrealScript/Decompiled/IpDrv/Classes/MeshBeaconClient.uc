@@ -115,13 +115,13 @@ function DumpInfo()
     LogInternal("	BandwidthTest.TestType: " $ string(CurrentBandwidthTest.TestType), 'DevBeacon');
     LogInternal("	Bandwidth History: " $ string(ClientPendingRequest.BandwidthHistory.Length), 'DevBeacon');
     HistoryIdx = 0;
-    J0x281:
+    J0x282:
 
     if(HistoryIdx < ClientPendingRequest.BandwidthHistory.Length)
     {
         LogInternal(((((("		" $ " Upstream bytes/sec: ") $ string(ClientPendingRequest.BandwidthHistory[HistoryIdx].UpstreamRate)) $ " Downstream bytes/sec: ") $ string(ClientPendingRequest.BandwidthHistory[HistoryIdx].DownstreamRate)) $ " Roundrtrip msec: ") $ string(ClientPendingRequest.BandwidthHistory[HistoryIdx].RoundtripLatency), 'DevBeacon');
         ++ HistoryIdx;
-        goto J0x281;
+        goto J0x282;
     }
 }
 
@@ -158,12 +158,12 @@ function DebugRender(Canvas Canvas)
     Canvas.DrawText("Bandwidth History: " $ string(ClientPendingRequest.BandwidthHistory.Length));
     Canvas.SetPos(Canvas.CurX + float(10), Canvas.CurY);
     HistoryIdx = 0;
-    J0x845:
+    J0x846:
 
     if(HistoryIdx < ClientPendingRequest.BandwidthHistory.Length)
     {
         Canvas.DrawText(((" Upstream bytes/sec: " $ string(ClientPendingRequest.BandwidthHistory[HistoryIdx].UpstreamRate)) $ " Roundrtrip msec: ") $ string(ClientPendingRequest.BandwidthHistory[HistoryIdx].RoundtripLatency));
         ++ HistoryIdx;
-        goto J0x845;
+        goto J0x846;
     }
 }

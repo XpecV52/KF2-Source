@@ -66,7 +66,8 @@ defaultproperties
    RecoilISMinYawLimit=65485
    RecoilISMaxPitchLimit=250
    RecoilISMinPitchLimit=65485
-   AssociatedPerkClass=Class'KFGame.KFPerk_FieldMedic'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
+   AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Gunslinger'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)=()
    FiringStatesArray(2)=()

@@ -705,6 +705,7 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Welder:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Welder_ARCH.Wep_Welder_MuzzleFlash'
+   AssociatedPerkClasses(0)=None
    FiringStatesArray(0)="WeaponWelding"
    FiringStatesArray(1)="WeaponWelding"
    FiringStatesArray(2)=()

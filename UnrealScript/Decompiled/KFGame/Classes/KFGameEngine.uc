@@ -119,6 +119,9 @@ native static function PlayFullScreenMovie(string MovieName);
 // Export UKFGameEngine::execIsFullScreenMoviePlaying(FFrame&, void* const)
 native static function bool IsFullScreenMoviePlaying();
 
+// Export UKFGameEngine::execFastTrace_PhysX(FFrame&, void* const)
+native static function bool FastTrace_PhysX(Vector TraceEnd, Vector TraceStart);
+
 // Export UKFGameEngine::execSetGamma(FFrame&, void* const)
 native static function SetGamma(float InGammaMultiplier);
 
@@ -226,10 +229,6 @@ function UnlockServer()
         KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI).ConsoleGameSessionHost = NullId;
         bAvailableForTakeover = true;
         bPrivateServer = false;
-        if(GetPlayfabInterface() != none)
-        {
-            GetPlayfabInterface().serverDeallocate();
-        }
     }
 }
 

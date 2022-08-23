@@ -26,10 +26,10 @@ defaultproperties
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    ObliterationHealthThreshold=-400
    ObliterationDamageThreshold=400
-   KDamageImpulse=3000.000000
+   GibImpulseScale=0.150000
    KDeathVel=300.000000
-   KDeathUpKick=800.000000
-   RadialDamageImpulse=3000.000000
+   KDeathUpKick=1000.000000
+   RadialDamageImpulse=2000.000000
    Name="Default__KFDT_Explosive_C4"
    ObjectArchetype=KFDT_Explosive'KFGame.Default__KFDT_Explosive'
 }

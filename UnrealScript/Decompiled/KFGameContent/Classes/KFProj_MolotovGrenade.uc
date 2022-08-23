@@ -15,7 +15,7 @@ var AkEvent ThrowAkEvent;
 
 simulated function SpawnFlightEffects()
 {
-    super(KFProjectile).SpawnFlightEffects();
+    super.SpawnFlightEffects();
     PlaySoundBase(ThrowAkEvent);
 }
 
@@ -69,7 +69,7 @@ simulated function Explode(Vector HitLocation, Vector HitNormal)
     }
 }
 
-simulated function SpawnResidualFlames(Vector HitLocation, Vector HitNormal, Vector HitVelocity)
+function SpawnResidualFlames(Vector HitLocation, Vector HitNormal, Vector HitVelocity)
 {
     local int I;
     local Vector HitVelDir;
@@ -85,34 +85,11 @@ simulated function SpawnResidualFlames(Vector HitLocation, Vector HitNormal, Vec
     if(I < NumResidualFlames)
     {
         SpawnVel = CalculateResidualFlameVelocity(HitNormal, HitVelDir, HitVelMag);
-        SpawnResidualFlame(SpawnLoc, SpawnVel);
+        SpawnResidualFlame(ResidualFlameProjClass, SpawnLoc, SpawnVel);
         ++ I;
         goto J0x5A;
     }
-    SpawnResidualFlame(HitLocation, HitVelocity / 3);
-}
-
-function Vector CalculateResidualFlameVelocity(Vector HitNormal, Vector HitVelDir, float HitVelMag)
-{
-    local Vector SpawnDir;
-
-    SpawnDir = VRandCone(HitVelDir, 3.141593 / float(4));
-    SpawnDir = SpawnDir + (-SpawnDir Dot HitNormal * HitNormal);
-    SpawnDir = VRandCone(SpawnDir, 3.141593 / float(4));
-    return SpawnDir * (HitVelMag / 3);
-}
-
-function SpawnResidualFlame(Vector SpawnLoc, Vector SpawnVel)
-{
-    local KFProjectile SpawnedProjectile;
-
-    SpawnedProjectile = Spawn(ResidualFlameProjClass, self,, SpawnLoc);
-    if((SpawnedProjectile != none) && !SpawnedProjectile.bDeleteMe)
-    {
-        SpawnedProjectile.Init(Normal(SpawnVel));
-        SpawnedProjectile.Velocity = SpawnVel;
-        SpawnedProjectile.Speed = VSize(SpawnedProjectile.Velocity);
-    }
+    SpawnResidualFlame(ResidualFlameProjClass, HitLocation, HitVelocity / 3);
 }
 
 defaultproperties

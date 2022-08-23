@@ -64,6 +64,26 @@ delegate OnLoginChange(byte LocalUserNum);
  */
 delegate OnLoginCancelled();
 
+//@HSL_BEGIN_XBOX
+/**
+ * Delegate called when the current user changes
+ *
+ * @param LocalUserNum - The index of the player who is now the current user
+ * @param CurrentUser  - The current user's Gamertag
+ * @param LoggedInUser - The logged in user's Gamertag
+ */
+delegate OnCurrentUserChanged(byte LocalUserNum, string CurrentUser, string LoggedInUser);
+
+delegate OnTokenAndSignatureRetrieved(byte LocalUserNum, string URL, string Token, string Signature);
+
+function GetTokenAndSignatureForURL(byte LocalUserNum, string URL);
+
+function AddURLTokenRetrievedDelegate(byte LocalUserNum,delegate<OnTokenAndSignatureRetrieved> tsrDelegate);
+
+function ClearURLTokenRetrievedDelegate(byte LocalUserNum, delegate<OnTokenAndSignatureRetrieved> tsrDelegate);
+
+//@HSL_END_XBOX
+
 /**
  * Delegate used in mute list change notifications
  */
@@ -157,7 +177,9 @@ delegate OnFriendsChange();
  *
  * @return TRUE if it was able to show the UI, FALSE if it failed
  */
-function bool ShowLoginUI(optional bool bShowOnlineOnly = false);
+//@HSL_BEGIN_XBOX
+function bool ShowLoginUI(byte LocalUserNum, optional bool bShowOnlineOnly = false);
+//@HSL_END_XBOX
 
 /**
  * Logs the player into the online service. If this fails, it generates a
@@ -210,6 +232,43 @@ function AddLoginFailedDelegate(byte LocalUserNum,delegate<OnLoginFailed> LoginD
  * @param LoginDelegate the delegate to use for notifications
  */
 function ClearLoginFailedDelegate(byte LocalUserNum,delegate<OnLoginFailed> LoginDelegate);
+
+//@HSL_BEGIN_XBOX
+/**
+ * Delegate used to notify the game that the system has detected a user controller pairing change
+ * NOTE: This will not change the engine's user controller pairing. To do that, the game must call PairUserAndControllerAtIndex(...)
+ *       in response to this delegate.
+ *
+ * @param NewLocalUserNum the index of the user now associated with the controller, INDEX_NONE if the controller no longer has a paired user
+ * @param PreviousLocalUserNum the index of the user previously associated with the controller, INDEX_NONE if the controller was not previously paired
+ */
+delegate OnSystemUserControllerPairingChanged(INT NewLocalUserNum, INT PreviousLocalUserNum);
+
+/**
+ * Sets the delegate used to notify the game that a system user controller pairing change has occurred
+ *
+ * @param PairingChangeDelegate the delegate to use for notification
+ */
+function AddSystemUserContrllerPairingChangedDelegate(delegate<OnSystemUserControllerPairingChanged> PairingChangeDelegate);
+
+/**
+ * Removes the specified delegate from the notification list 
+ *
+ * @param PairingChangeDelegate the delegate to remove from notification
+ */
+function ClearSystemUserContrllerPairingChangedDelegate(delegate<OnSystemUserControllerPairingChanged> PairingChangeDelegate);
+
+/**
+ * Pairs a player and controller at a given index
+ *
+ * @param PlayerIndex the index of the desired player to pair
+ * @param ControllerIndex the index of the desired controller to pair
+ * @param PairIndex the index to pair at
+ *
+ * @return true if successfull, false otherwise
+ */
+function bool PairUserAndControllerAtIndex(byte PlayerIndex, byte ControllerIndex, INT PairIndex);
+//@HSL_END_XBOX
 
 /**
  * Signs the player out of the online service
@@ -282,60 +341,234 @@ function string GetPlayerNickname(byte LocalUserNum)
 	return LoggedInPlayerName;
 }
 
+//@HSL_BEGIN_XBOX
+/**
+ * Gets the ControllerId for the platform specific unique Id 
+ *
+ * @param PlayerId the platform specific unique Id
+ * @param ControllerId the byte that will receive the controllerId
+ *
+ * @return TRUE if the call succeeded, FALSE otherwise
+ */
+function bool GetControllerIdFromNetId(UniqueNetId PlayerId, out byte ControllerId);
+
+/**
+ * Delegate called when a user's privilege level has been checked
+ *
+ * @param LocalUserNum -  the player that checked a privilege level
+ * @param Privilege - the privilege that was checked
+ * @param PrivilegeLevel - the privilege level for the given user for the requested Privilege
+ * @param bDiffersFromHint - does the returned privilege level differ from the hint that was given earlier?
+ */
+delegate OnPrivilegeLevelChecked(byte LocalUserNum, EFeaturePrivilege Privilege, EFeaturePrivilegeLevel PrivilegeLevel, bool bDiffersFromHint);
+
+/**
+ * Sets the delegate used to notify the gameplay code that a privilege check was completed
+ *
+ * @param PrivilegeDelegate the delegate to use for notifications
+ */
+function AddPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+
+/**
+ * Removes the specified delegate from the notification list
+ *
+ * @param PrivilegeDelegate the delegate to use for notifications
+ */
+function ClearPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+
 /**
  * Determines whether the player is allowed to play online
  *
  * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
  *
- * @return the Privilege level that is enabled
+ * @return true if the call succeeds, false otherwise
  */
-function EFeaturePrivilegeLevel CanPlayOnline(byte LocalUserNum);
+function bool CanPlayOnline(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
 
 /**
- * Determines whether the player is allowed to use voice or text chat online
+ * Determines whether the player is allowed to use text chat online
  *
  * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
  *
- * @return the Privilege level that is enabled
+ * @return true if the call succeeds, false otherwise
  */
-function EFeaturePrivilegeLevel CanCommunicate(byte LocalUserNum);
+function bool CanCommunicateText(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
 
 /**
- * Determines whether the player is allowed to download user created content
+ * Determines whether the player is allowed to use video chat online
  *
  * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
  *
- * @return the Privilege level that is enabled
+ * @return true if the call succeeds, false otherwise
  */
-function EFeaturePrivilegeLevel CanDownloadUserContent(byte LocalUserNum);
+function bool CanCommunicateVideo(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+
+/**
+ * Determines whether the player is allowed to use voice chat online
+ *
+ * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
+ *
+ * @return true if the call succeeds, false otherwise
+ */
+function bool CanCommunicateVoice(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+
+/**
+ * Determines whether the player is allowed to share (upload/download) user created content
+ *
+ * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
+ *
+ * @return true if the call succeeds, false otherwise
+ */
+function bool CanShareUserCreatedContent(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
 
 /**
  * Determines whether the player is allowed to buy content online
  *
  * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
  *
- * @return the Privilege level that is enabled
+ * @return true if the call succeeds, false otherwise
  */
-function EFeaturePrivilegeLevel CanPurchaseContent(byte LocalUserNum);
+function bool CanPurchaseContent(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
 
 /**
  * Determines whether the player is allowed to view other people's player profile
  *
  * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
  *
- * @return the Privilege level that is enabled
+ * @return true if the call succeeds, false otherwise
  */
-function EFeaturePrivilegeLevel CanViewPlayerProfiles(byte LocalUserNum);
+function bool CanViewPlayerProfiles(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
 
 /**
  * Determines whether the player is allowed to have their online presence
  * information shown to remote clients
  *
  * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
  *
- * @return the Privilege level that is enabled
+ *@return true if the call succeeds, false otherwise
  */
-function EFeaturePrivilegeLevel CanShowPresenceInformation(byte LocalUserNum);
+function bool CanShowPresenceInformation(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+
+/**
+ * Determines whether the player is allowed to record DVR clips
+ *
+ * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
+ *
+ *@return true if the call succeeds, false otherwise
+ */
+function bool CanRecordDVRClips(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+
+/**
+ * Determines whether the player is allowed to use Cloud storage
+ *
+ * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
+ *
+ *@return true if the call succeeds, false otherwise
+ */
+function bool CanUseCloudStorage(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+
+/**
+ * Determines whether the player is allowed to access premium content
+ *
+ * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
+ *
+ *@return true if the call succeeds, false otherwise
+ */
+function bool CanAccessPremiumContent(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+
+/**
+ * Determines whether the player is allowed to access premium video content
+ *
+ * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
+ *
+ *@return true if the call succeeds, false otherwise
+ */
+function bool CanAccessPremiumVideoContent(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+
+/**
+ * Determines whether the player is allowed to browse the internet
+ *
+ * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
+ *
+ *@return true if the call succeeds, false otherwise
+ */
+function bool CanBrowseInternet(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+
+/**
+ * Determines whether the player is allowed to share content with a social network
+ *
+ * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
+ *
+ *@return true if the call succeeds, false otherwise
+ */
+function bool CanShareWithSocialNetwork(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+
+/**
+ * Determines whether the player is allowed to share kinect generated/recorded content with other users
+ *
+ * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
+ *
+ *@return true if the call succeeds, false otherwise
+ */
+function bool CanShareKinectContent(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+
+/**
+ * Determines whether the player is allowed to upload fitness data (eg height, weight, age, gender)
+ *
+ * @param LocalUserNum the controller number of the associated user
+ * @param PrivilegeLevelHint upon completion, this parameter holds a hint about the expected value being retrieved asynchronously
+ * @param bAttemptToResolve if the user does not have the proper privilege, should the system attempt to resolve the issue (eg via upsell)
+ * @param Reason friendly display string explaining privilege failure
+ *
+ *@return true if the call succeeds, false otherwise
+ */
+function bool CanUploadFitnessData(byte LocalUserNum, out EFeaturePrivilegeLevel PrivilegeLevelHint, optional bool bAttemptToResolve = false, optional string Reason = "");
+//@HSL_END_XBOX
 
 /**
  * Checks that a unique player id is part of the specified user's friends list
@@ -367,6 +600,17 @@ function bool AreAnyFriends(byte LocalUserNum,out array<FriendsQuery> Query);
  * @return TRUE if the player should be muted, FALSE otherwise
  */
 function bool IsMuted(byte LocalUserNum,UniqueNetId PlayerId);
+
+//@HSL_BEGIN_XBOX
+/**
+ * Checks if a user is muted or not
+ *
+ * @param ConsoleId the remote talker that is being restored to talking
+ *
+ * @return TRUE if the player is muted, FALSE otherwise
+ */
+function bool IsTalkerMuted(UniqueNetId ConsoleId);
+//@HSL_END_XBOX
 
 /**
  * Displays the UI that shows a user's list of friends
@@ -406,6 +650,22 @@ function AddLoginCancelledDelegate(delegate<OnLoginCancelled> CancelledDelegate)
  * @param CancelledDelegate the delegate to remove fromt he list
  */
 function ClearLoginCancelledDelegate(delegate<OnLoginCancelled> CancelledDelegate);
+
+//@HSL_BEGIN_XBOX
+/**
+ * Adds a delegate to the list of delegates that are fired when the current user changes
+ *
+ * @param CurrentUserDelegate the delegate to add to the list
+ */
+function AddCurrentUserChangedDelegate(delegate<OnCurrentUserChanged> CurrentUserDelegate);
+
+/**
+ * Removes the specified delegate from the notification list
+ *
+ * @param CurrentUserDelegate the delegate to remove from the list
+ */
+function ClearCurrentUserChangedDelegate(delegate<OnCurrentUserChanged> CurrentUserDelegate);
+//@HSL_END_XBOX
 
 /**
  * Determines whether the specified user is a local (non-online) login or not
@@ -772,6 +1032,7 @@ function ClearReadFriendsCompleteDelegate(byte LocalUserNum,delegate<OnReadFrien
  */
 function EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum,out array<OnlineFriend> Friends,optional int Count,optional int StartingAt);
 
+//@HSL_BEGIN_XBOX
 /**
  * Registers the user as a talker
  *
@@ -779,7 +1040,7 @@ function EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum,out array<
  *
  * @return TRUE if the call succeeded, FALSE otherwise
  */
-function bool RegisterLocalTalker(byte LocalUserNum);
+function bool RegisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
 
 /**
  * Unregisters the user as a talker
@@ -788,7 +1049,23 @@ function bool RegisterLocalTalker(byte LocalUserNum);
  *
  * @return TRUE if the call succeeded, FALSE otherwise
  */
-function bool UnregisterLocalTalker(byte LocalUserNum);
+function bool UnregisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
+
+/**
+* Determines if there are any local talkers that are currently registered
+*/
+function bool AreAnyLocalTalkersRegistered();
+
+/**
+* Recieves a reliable voice packet from server
+*
+* @param MessageType the type of message sent
+* @param Sender the Unique Net Id for the sender who sent the packet
+* @param InData the reliable voice data 
+*
+*/
+function ReceiveReliableVoicePacket( byte MessageType, UniqueNetId Sender, int Length, byte InData[60]);
+//@HSL_END_XBOX
 
 /**
  * Registers a remote player as a talker
@@ -980,49 +1257,69 @@ function bool SetSpeechRecognitionObject(byte LocalUserNum,SpeechRecognition Spe
  */
 delegate OnReadOnlineStatsComplete(bool bWasSuccessful);
 
+//@HSL_BEGIN_XBOX
+function bool SendPlayerSessionStart(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId);
+function bool SendPlayerSessionEnd(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId, int ExitStatusId);
+function bool SendPlayerSessionPause(byte LocalUserNum, string MultiplayerCorrelationId);
+function bool SendPlayerSessionResume(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId);
+function bool SendTestEvent(byte LocalUserNum, string TestStatInstancing, int TestStatParameter);
+//@HSL_END_XBOX
+
+/**
+ * Reads a set of stats for a player
+ *
+ * @param LocalUserNum the local player having their stats queried
+ * @param StatsRead holds the names of the stats to be queried and
+ *		  results are copied into the specified object
+ *
+ * @return TRUE if the call is successful, FALSE otherwise
+ */
+function bool ReadOnlineStatsForPlayer(byte LocalUserNum, OnlineStatsRead StatsRead);
+
 /**
  * Reads a set of stats for the specified list of players
  *
  * @param Players the array of unique ids to read stats for
- * @param StatsRead holds the definitions of the tables to read the data from and
+ * @param StatsRead holds the names of the stats to be queried and
  *		  results are copied into the specified object
  *
  * @return TRUE if the call is successful, FALSE otherwise
  */
-function bool ReadOnlineStats(const out array<UniqueNetId> Players,OnlineStatsRead StatsRead);
+function bool ReadOnlineStats(byte LocalUserNum, const out array<UniqueNetId> Players, OnlineStatsRead StatsRead);
 
 /**
- * Reads a player's stats and all of that player's friends stats for the
- * specified set of stat views. This allows you to easily compare a player's
- * stats to their friends.
+ * Reads a player's stat and all of that player's friends' stats for the
+ * specified stat name. This allows you to easily compare a player's
+ * stat to their friends'.
  *
- * @param LocalUserNum the local player having their stats and friend's stats read for
- * @param StatsRead holds the definitions of the tables to read the data from and
+ * @param LocalUserNum the local player having their stats and friend's stats read
+ * @param StatsRead holds the name of the stat to query and
  *		  results are copied into the specified object
  *
  * @return TRUE if the call is successful, FALSE otherwise
  */
-function bool ReadOnlineStatsForFriends(byte LocalUserNum,OnlineStatsRead StatsRead);
+function bool ReadOnlineStatsForFriends(byte LocalUserNum, OnlineStatsRead StatsRead, optional bool FavoriteFriendsOnly=false, optional int NumToRead = 100);
 
 /**
  * Reads stats by ranking. This grabs the rows starting at StartIndex through
  * NumToRead and places them in the StatsRead object.
  *
- * @param StatsRead holds the definitions of the tables to read the data from and
+ * @param StatsRead holds the name of a leaderboard to be queried and
  *		  results are copied into the specified object
  * @param StartIndex the starting rank to begin reads at (1 for top)
  * @param NumToRead the number of rows to read (clamped at 100 underneath)
  *
  * @return TRUE if the call is successful, FALSE otherwise
  */
-function bool ReadOnlineStatsByRank(OnlineStatsRead StatsRead,optional int StartIndex = 1,optional int NumToRead = 100);
+function bool ReadOnlineStatsByRank(byte LocalUserNum, OnlineStatsRead StatsRead, optional int StartIndex = 1, optional int NumToRead = 100);
 
 /**
  * Reads stats by ranking centered around a player. This grabs a set of rows
  * above and below the player's current rank
  *
  * @param LocalUserNum the local player having their stats being centered upon
- * @param StatsRead holds the definitions of the tables to read the data from and
+ * @param StatsRead holds the name of the leaderboard to be queried and
+//@HSL_END_XBOX
  *		  results are copied into the specified object
  * @param NumRows the number of rows to read above and below the player's rank
  *
@@ -1059,7 +1356,7 @@ function FreeStats(OnlineStatsRead StatsRead);
  * request is ignored. No more than 5 stats views can be written to at a time
  * or the write request is ignored.
  *
- * @param SessionName the name of the session to write stats for
+ * @param SessionName the name of the session the stats are being written to
  * @param Player the player to write stats for
  * @param StatsWrite the object containing the information to write
  *
@@ -1070,7 +1367,7 @@ function bool WriteOnlineStats(name SessionName,UniqueNetId Player,OnlineStatsWr
 /**
  * Commits any changes in the online stats cache to the permanent storage
  *
- * @param SessionName the name of the session having stats flushed
+ * @param SessionName the name of the session having stats flushed for
  *
  * @return TRUE if the call is successful, FALSE otherwise
  */
@@ -1079,7 +1376,7 @@ function bool FlushOnlineStats(name SessionName);
 /**
  * Delegate called when the stats flush operation has completed
  *
- * @param SessionName the name of the session having stats flushed
+ * @param SessionName the name of the session having stats flushed for
  * @param bWasSuccessful true if the async action completed without error, false if there was an error
  */
 delegate OnFlushOnlineStatsComplete(name SessionName,bool bWasSuccessful);
@@ -1101,7 +1398,7 @@ function ClearFlushOnlineStatsCompleteDelegate(delegate<OnFlushOnlineStatsComple
 /**
  * Writes the score data for the match
  *
- * @param SessionName the name of the session to write scores for
+ * @param SessionName the name of the session the player stats are being recorded for
  * @param LeaderboardId the leaderboard to write the score information to
  * @param PlayerScores the list of players, teams, and scores they earned
  *
@@ -1139,14 +1436,16 @@ delegate OnRegisterHostStatGuidComplete(bool bWasSuccessful);
  *
  * @param RegisterHostStatGuidCompleteDelegate the delegate to use for notifications
  */
-function AddRegisterHostStatGuidCompleteDelegate(delegate<OnFlushOnlineStatsComplete> RegisterHostStatGuidCompleteDelegate);
+//@HSL_BEGIN_XBOX
+function AddRegisterHostStatGuidCompleteDelegate(delegate<OnRegisterHostStatGuidComplete> RegisterHostStatGuidCompleteDelegate);
 
 /**
  * Clears the delegate used to notify the gameplay code
  *
  * @param RegisterHostStatGuidCompleteDelegate the delegate to use for notifications
  */
-function ClearRegisterHostStatGuidCompleteDelegateDelegate(delegate<OnFlushOnlineStatsComplete> RegisterHostStatGuidCompleteDelegate);
+function ClearRegisterHostStatGuidCompleteDelegateDelegate(delegate<OnRegisterHostStatGuidComplete> RegisterHostStatGuidCompleteDelegate);
+//@HSL_END_XBOX
 
 /**
  * Reads the client's stat guid that was generated by registering the host's guid
@@ -1257,13 +1556,15 @@ function ENetworkNotificationPosition GetNetworkNotificationPosition();
  */
 function SetNetworkNotificationPosition(ENetworkNotificationPosition NewPos);
 
+//@HSL_BEGIN_XBOX
 /**
  * Delegate fired when the controller becomes dis/connected
  *
  * @param ControllerId the id of the controller that changed connection state
  * @param bIsConnected whether the controller connected (true) or disconnected (false)
  */
-delegate OnControllerChange(int ControllerId,bool bIsConnected);
+delegate OnControllerChange(int ControllerId,bool bIsConnected,bool bPauseGame);
+//@HSL_END_XBOX
 
 /**
  * Sets the delegate used to notify the gameplay code that the controller state changed
@@ -1395,6 +1696,17 @@ function bool ShowKeyboardUI(byte LocalUserNum,string TitleText,string Descripti
 	optional bool bShouldValidate = true,
 	optional string DefaultText,
 	optional int MaxResultLength = 256);
+
+//@HSL_BEGIN_XBOX
+/**
+ * Hides the UI that shows the keyboard for inputing text
+ *
+ * @param LocalUserNum the controller number of the associated user
+ *
+ * @return TRUE if it was able to hide the UI, FALSE if it failed
+ */
+function bool HideKeyboardUI(byte LocalUserNum);
+//@HSL_END_XBOX
 
 /**
  * Delegate used when the keyboard input request has completed
@@ -1662,6 +1974,7 @@ function ClearFriendInviteReceivedDelegate(byte LocalUserNum,delegate<OnFriendIn
  */
 function bool SendMessageToFriend(byte LocalUserNum,UniqueNetId Friend,string Message);
 
+//@HSL_BEGIN_XBOX
 /**
  * Sends an invitation to play in the player's current session
  *
@@ -1671,21 +1984,22 @@ function bool SendMessageToFriend(byte LocalUserNum,UniqueNetId Friend,string Me
  *
  * @return true if successful, false otherwise
  */
-function bool SendGameInviteToFriend(byte LocalUserNum,UniqueNetId Friend,optional string Text);
+function bool SendGameInviteToFriend(byte LocalUserNum,name SessionName,UniqueNetId Friend,optional string Text);
 
 /**
- * Sends invitations to play in the player's current session
- *
- * @param LocalUserNum the user that is sending the invite
- * @param Friends the player to send the invite to
- * @param Text the text of the message for the invite
- *
- * @return true if successful, false otherwise
- */
-function bool SendGameInviteToFriends(byte LocalUserNum,array<UniqueNetId> Friends,optional string Text);
+* Sends invitations to play in the player's current session
+*
+* @param LocalUserNum the user that is sending the invite
+* @param Friends the player to send the invite to
+* @param Text the text of the message for the invite
+*
+* @return true if successful, false otherwise
+*/
+function bool SendGameInviteToFriends(byte LocalUserNum,name SessionName,array<UniqueNetId> Friends,optional string Text);
+//@HSL_END_XBOX
 
 //@HSL_BEGIN - JRO - 6/10/2016 - Programmatic invites
-function bool SendGameInviteToUsers(string SessionId, array<string> MembersToInvite, optional string Text);
+function bool SendGameInviteToUsers(string SessionId, name SessionName, array<string> MembersToInvite, optional string Text);
 //@HSL_END
 
 /**
@@ -1711,6 +2025,10 @@ function AddReceivedGameInviteDelegate(byte LocalUserNum,delegate<OnReceivedGame
  * @param ReceivedGameInviteDelegate the delegate to use for notifications
  */
 function ClearReceivedGameInviteDelegate(byte LocalUserNum,delegate<OnReceivedGameInvite> ReceivedGameInviteDelegate);
+
+delegate OnReceivedGameInviteById(byte LocalUserNum, UniqueNetId InviterId);
+function AddReceivedGameInviteByIdDelegate(byte LocalUserNum,delegate<OnReceivedGameInviteById> ReceivedGameInviteDelegate);
+function ClearReceivedGameInviteByIdDelegate(byte LocalUserNum,delegate<OnReceivedGameInviteById> ReceivedGameInviteDelegate);
 
 /**
  * Allows the local player to follow a friend into a game
@@ -1791,6 +2109,17 @@ function bool MuteAll(byte LocalUserNum,bool bAllowFriends);
  * @param LocalUserNum the local user that is making the change
  */
 function bool UnmuteAll(byte LocalUserNum);
+
+//@HSL_BEGIN_XBOX 
+/**
+ * Mutes all the players (including self)
+ *
+ * @param PlayerMuteSetting whether to mute all or mute just bad rep players
+ *
+ * @return TRUE if the function succeeds, FALSE otherwise
+ */
+function bool UpdatePlayerMuteSetting(bool PlayerMuteSetting);
+//@HSL_END_XBOX
 
 /**
  * Deletes a message from the list of messages
@@ -1882,17 +2211,25 @@ function ClearReadAchievementsCompleteDelegate(byte LocalUserNum,delegate<OnRead
 function EOnlineEnumerationReadState GetAchievements(byte LocalUserNum,out array<AchievementDetails> Achievements,optional int TitleId = 0);
 
 
-delegate OnPrivilegeLevelChecked(byte LocalUserNum, EFeaturePrivilege Privilege, EFeaturePrivilegeLevel PrivilegeLevel);
-function AddPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
-function ClearPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
-
-
 //@HSL_BEGIN - BWJ - 6-15-16 - Auth support for backend service
 delegate OnOnlineServiceAuthComplete();
 function AddOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
 function ClearOnlineServiceAuthCompleteDelegate(delegate<OnOnlineServiceAuthComplete> InDelegate );
 function AuthWithOnlineService();
 //@HSL_END
+
+//@HSL_BEGIN_XBOX
+function ClearAchievements(byte LocalUserNum, optional int TitleId = 0);
+delegate OnStatisticChanged(UniqueNetId PlayerNetId, name StatName, string NewStatValue);
+function SubscribeToStatisticEvent(byte LocalUserNum, UniqueNetId PlayerNetId, name StatName, delegate<OnStatisticChanged> EventDelegate);
+function UnsubscribeToStatisticEvent(byte LocalUserNum, UniqueNetId PlayerNetId, name StatName);
+function CheckForGameInviteOnLaunch();
+//@HSL_END_XBOX
+
+//@HSL_BEGIN_PS4
+function StartRealtimeMultiplay();
+function StopRealtimeMultiplay();
+//@HSL_END_PS4
 
 defaultproperties
 {

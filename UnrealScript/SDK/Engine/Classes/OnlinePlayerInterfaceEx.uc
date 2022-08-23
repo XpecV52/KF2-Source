@@ -19,6 +19,76 @@ interface OnlinePlayerInterfaceEx dependson(OnlineSubsystem);
  */
 function bool ShowFeedbackUI(byte LocalUserNum,UniqueNetId PlayerId);
 
+//@HSL_BEGIN_XBOX
+/**
+ * Displays the UI with Help documentation
+ *
+ * @param LocalUserNum the controller number of the associated user
+ *
+ * @return TRUE if the async show command is processing, FALSE if it failed to initialize
+ */
+function bool ShowHelpUI(byte LocalUserNum);
+
+/**
+ * Displays the UI with Help documentation for a given error the application has encountered
+ *
+ * @param ContextId application specific context within which the error occurred
+ * @param ErrorString a string representation of the error
+ *
+ * @return TRUE if the async show command is processing, FALSE if it failed to initialize
+ */
+function bool ShowHelpForErrorUI(string ContextId, string ErrorString);
+
+/**
+ * Delegate used when a show help request has completed
+ *
+ * @param bWasSuccessful true if the async action completed without error, false if there was an error
+ */
+delegate OnShowHelpComplete(bool bWasSuccessful);
+
+/**
+ * Adds the delegate used to notify the gameplay code that a show help request has finished
+ *
+ * @param ShowHelpDelegate the delegate to use for notifications
+ */
+function AddShowHelpCompleteDelegate(delegate<OnShowHelpComplete> HelpDelegate);
+
+/**
+ * Removes the specified delegate from the list of callbacks
+ *
+ * @param ShowHelpDelegate the delegate to use for notifications
+ */
+function ClearShowHelpCompleteDelegate(delegate<OnShowHelpComplete> HelpDelegate);
+
+/**
+ * Displays the UI with Help documentation
+ *
+ * @param URL link to show
+ *
+ * @return TRUE if the show command succeded, FALSE otherwise
+ */
+function bool ShowVideo(string URL);
+
+/**
+ * Delegate used when a show gamer card request has completed
+ */
+delegate OnShowGamerCardComplete(bool bWasSuccessful);
+
+/**
+ * Adds the delegate used to notify the gameplay code that a show gamer card request has finished
+ *
+ * @param OnShowGamerCardComplete the delegate to use for notifications
+ */
+function AddShowGamerCardCompleteDelegate(delegate<OnShowGamerCardComplete> GamerCardDelegate);
+
+/**
+ * Removes the specified delegate from the list of callbacks
+ *
+ * @param OnShowGamerCardComplete the delegate to use for notifications
+ */
+function ClearShowGamerCardCompleteDelegate(delegate<OnShowGamerCardComplete> GamerCardDelegate);
+//@HSL_END_XBOX
+
 /**
  * Displays the gamer card UI for the specified player
  *
@@ -58,14 +128,87 @@ function bool ShowAchievementsUI(byte LocalUserNum);
  */
 function bool ShowInviteUI(byte LocalUserNum,optional string InviteText);
 
+//@HSL_BEGIN_XBOX
+/**
+ * Displays the people picker ui
+ *
+ * @param LocalUserNum the local user sending the invite
+ * @param People the people to fill out the people picker list with
+ * @param Text the text to show in the people picker
+ */
+function bool ShowPeoplePickerUI(byte LocalUserNum, array<OnlineFriend> People, int MaxSelectable, optional string Text);
+
+/**
+ * Delegate used when the device selection request has completed
+ *
+ * @param bWasSuccessful true if the async action completed without error, false if there was an error
+ */
+delegate OnPeoplePickerComplete(bool bWasSuccessful, array<OnlineFriend> PeoplePicked);
+
+/**
+ * Adds the delegate used to notify the gameplay code that the user has completed
+ * their device selection
+ *
+ * @param DeviceDelegate the delegate to use for notifications
+ */
+function AddPeoplePickerCompleteDelegate(byte LocalUserNum,delegate<OnPeoplePickerComplete> InDelegate);
+
+/**
+ * Removes the specified delegate from the list of callbacks
+ *
+ * @param DeviceDelegate the delegate to use for notifications
+ */
+function ClearPeoplePickerCompleteDelegate(byte LocalUserNum,delegate<OnPeoplePickerComplete> InDelegate);
+
+// Displays UI for sending data to other users using system-supplied UI
+function bool ShowDataSendingUI(byte LocalUserNum, string Message, string DataName, string DataDescription, array<byte> Data, int MaxSelectableUsers);
+delegate OnAcceptReceivedData(string Data);
+function AddAcceptReceivedDataDelegate(byte LocalUserNum, delegate<OnAcceptReceivedData> InDelegate);
+function ClearAcceptReceivedDataDelegate(byte LocalUserNum, delegate<OnAcceptReceivedData> InDelegate);
+
+/**
+ * Displays the UI for a products details 
+ *
+ * @param LocalUserNum the local user viewing available content
+ * @param ParentProductId the product ID of the parent product for which to show child content
+ */
+function bool ShowProductDetailsUI(byte LocalUserNum, optional string ParentProductId);
+//@HSL_END_XBOX
+
 /**
  * Displays the marketplace UI for content
  *
  * @param LocalUserNum the local user viewing available content
- * @param CategoryMask the bitmask to use to filter content by type
- * @param OfferId a specific offer that you want shown
+ * @param ParentProductType the type of the parent product specified by ParentProductId 
+ *                          (use constants defined in OnlineSubsyste.uc, generally this should be PIT_Game)
+ * @param RequestedProductTypes the types of child products to show in the marketplace UI
+ *                          (use constants defined in OnlineSubsyste.uc, generally this should be PIT_Durable | PIT_Consumable)
+ * @param ParentProductId the product ID of the parent product for which to show child content
  */
-function bool ShowContentMarketplaceUI(byte LocalUserNum,optional int CategoryMask = -1,optional int OfferId);
+ function bool ShowContentMarketplaceUI(byte LocalUserNum, int ParentProductType, int RequestedProductTypes, optional string ParentProductId);
+
+/**
+ * Displays the purchase UI for an offer
+ *
+ * @param LocalUserNum the local user viewing available content
+ * @param Offer the offer that you want the purchase screen shown for
+ */
+function bool ShowContentPurchaseUI(byte LocalUserNum, string Offer);
+
+/**
+ * Displays the redeem code UI for content
+ *
+ * @param LocalUserNum the local user viewing available content
+ * @param Offer the offer that you want the redeem code screen shown for
+ */
+function bool ShowContentRedeemCodeUI(byte LocalUserNum, string Offer);
+
+/**
+ * Close the current content UI
+ *
+ */
+function CloseCurrentContentUI();
+//@HSL_END_XBOX
 
 /**
  * Displays the marketplace UI for memberships
@@ -200,7 +343,7 @@ function bool ShowCustomPlayersUI(byte LocalUserNum,const out array<UniqueNetId>
  *
  * @return TRUE if it was able to show the UI, FALSE if it failed
  */
-function bool RecordPlayersRecentlyMet( byte LocalUserNum, out array<string> Players, string GameDescription ); //@HSL_BEGIN - JRO - 4/28/2016 - PS4 needs player names
+function bool RecordPlayersRecentlyMet( byte LocalUserNum, out array<PlayerNameIdPair> Players, string GameDescription ); //@HSL_BEGIN - JRO - 4/28/2016 - PS4 needs player names
 
 /**
  * Adds an In Game Post to the Activity Feed
@@ -310,6 +453,17 @@ function ClearOnEntitlementsReadDelegate( delegate<OnEntitlementsRead> InDelegat
 function UpsellPremiumOnlineService();
 //@HSL_END
 
+
+/**
+ * Shows a system dialog with the given error code and context
+ *
+ * @param ErrorCode the error code to display
+ * @param ErrorContext the error context to display
+ *
+ * @return true of successful, false otherwise
+ */
+function bool ShowSystemErrorUI(int ErrorCode, string ErrorContext);
+
 //@HSL_BEGIN - BWJ - 6-21-16 - Error dialog support
 /**
  * Shows a customized system dialog with the given error code, context, title and content
@@ -323,3 +477,152 @@ function UpsellPremiumOnlineService();
  */
 function bool ShowCustomErrorUI(int ErrorCode, optional string ErrorContext, optional string DialogTitle, optional string DialogContent);
 //@HSL_END
+
+
+/**
+ * Look up a player's nickname from their net ID
+ *
+ * @param InPlayerId the player ID for which to retrieve the nickname
+ * @param OutPlayerNickname the nickname for the player with the given ID
+ *
+ * @return true if successful, false otherwise
+ */
+function bool GetPlayerNicknameForPlayerId(UniqueNetId InPlayerId, out string OutPlayerNickname);
+
+/**
+ * Look up a player's net ID from their nickname
+ *
+ * @param InPlayerNickname the nickname to look up a player ID for
+ * @param OutPlayerId the player ID for the player with the given nickname
+ *
+ * @return true if successful, false otherwise
+ */
+function bool GetPlayerIDForPlayerNickname(string InPlayerNickname, out UniqueNetId OutPlayerId);
+
+/**
+ * Asynchronously retrieve a set of OnlineProfiles for a list of Player IDs
+ *
+ * @param PlayerIDs the list of Player IDs for which to retrieve OnlineProfiles
+ *
+ * @return true if the async action began successfully, false otherwise
+ */
+function bool ReadOnlineProfilesForPlayers(array<string> PlayerIDs);
+
+/**
+ * Delegate fired when an OnlineProfile read completes
+ *
+ * @param bWasSuccessful true if the async action completed without error, false if there was an error
+ * @param PlayerIDs the list of Player IDs that the request originated with
+ * @param OnlineProfiles the list of OnlineProfiles for the requested Player IDs
+ */
+delegate OnReadOnlineProfilesComplete(bool bWasSuccessful, array<string> PlayerIDs, array<OnlineProfile> OnlineProfiles);
+
+/**
+ * Adds the delegate used to notify the gameplay code that an OnlineProfile read has completed
+ *
+ * @param ReadOnlineProfileDelegate the delegate to use for notifications
+ */
+function AddReadOnlineProfilesCompleteDelegate(delegate<OnReadOnlineProfilesComplete> ReadOnlineProfileDelegate);
+
+/**
+ * Removes the specified delegate from the list of callbacks
+ *
+ * @param ReadOnlineProfileDelegate the delegate to use for notifications
+ */
+function ClearReadOnlineProfilesCompleteDelegate(delegate<OnReadOnlineProfilesComplete> ReadOnlineProfileDelegate);
+
+
+/**
+ * Delegate used when registration of a local talker completes
+ *
+ * @param LocalUserNum the controller index of the player who is registered as a local talker
+  * @param bWasSuccessful true if the async action completed without error, false if there was an error
+ */
+delegate OnRegisterLocalTalkerComplete(byte LocalUserNum,bool bWasSuccessful);
+
+/**
+ * Sets the delegate used to notify the gameplay code that the local talker registration has completed
+ *
+ * @param RegisterLocalTalkerCompleteDelegate the delegate to use for notifications
+ */
+function AddRegisterLocalTalkerCompleteDelegate(delegate<OnRegisterLocalTalkerComplete> RegisterLocalTalkerCompleteDelegate);
+
+/**
+ * Searches the existing set of delegates for the one specified and removes it
+ * from the list
+ *
+  * @param RegisterLocalTalkerCompleteDelegate the delegate to find and clear
+ */
+function ClearRegisterLocalTalkerCompleteDelegate(delegate<OnRegisterLocalTalkerComplete> RegisterLocalTalkerCompleteDelegate);
+
+
+/**
+ * Delegate used when unregistration of a local talker completes
+ *
+ * @param LocalUserNum the controller index of the player who is unregistered as a local talker
+  * @param bWasSuccessful true if the async action completed without error, false if there was an error
+ */
+delegate OnUnregisterLocalTalkerComplete(byte LocalUserNum,bool bWasSuccessful);
+
+/**
+ * Sets the delegate used to notify the gameplay code that the local talker unregistration has completed
+ *
+ * @param UnregisterLocalTalkerCompleteDelegate the delegate to use for notifications
+ */
+function AddUnregisterLocalTalkerCompleteDelegate(delegate<OnUnregisterLocalTalkerComplete> UnregisterLocalTalkerCompleteDelegate);
+
+/**
+ * Searches the existing set of delegates for the one specified and removes it
+ * from the list
+ *
+  * @param UnregisterLocalTalkerCompleteDelegate the delegate to find and clear
+ */
+function ClearUnregisterLocalTalkerCompleteDelegate(delegate<OnUnregisterLocalTalkerComplete> UnregisterLocalTalkerCompleteDelegate);
+
+
+/**
+ * Delegate used when unregistration of a remote talker completes
+ *
+ * @param netId ofthe player who is unregistered as a remote talker
+ * @param bWasSuccessful true if the async action completed without error, false if there was an error
+ */
+delegate OnUnregisterRemoteTalkerComplete(UniqueNetId RemoteNetId,bool bWasSuccessful);
+
+/**
+ * Sets the delegate used to notify the gameplay code that the remote talker unregistration has completed
+ *
+ * @param UnregisterRmeoteTalkerCompleteDelegate the delegate to use for notifications
+ */
+function AddUnregisterRemoteTalkerCompleteDelegate(delegate<OnUnregisterRemoteTalkerComplete> UnregisterRemoteTalkerCompleteDelegate);
+
+/**
+ * Searches the existing set of delegates for the one specified and removes it
+ * from the list
+ *
+  * @param UnregisterRmeoteTalkerCompleteDelegate the delegate to find and clear
+ */
+function ClearUnregisterRemoteTalkerCompleteDelegate(delegate<OnUnregisterRemoteTalkerComplete> UnregisterRemoteTalkerCompleteDelegate);
+
+/**
+ * Delegate used when unregistration of a remote talker completes
+ *
+ * @param netId ofthe player who is unregistered as a remote talker
+ * @param bWasSuccessful true if the async action completed without error, false if there was an error
+ */
+delegate OnRemoteTalkerStatusChange(UniqueNetId RemoteNetId, bool bIsTalking);
+
+/**
+ * Sets the delegate used to notify the gameplay code that the remote talker unregistration has completed
+ *
+ * @param UnregisterRmeoteTalkerCompleteDelegate the delegate to use for notifications
+ */
+function AddPlayerTalkingDelegate(delegate<OnRemoteTalkerStatusChange> RemoteTalkerStatusChangeDelegate);
+
+/**
+ * Searches the existing set of delegates for the one specified and removes it
+ * from the list
+ *
+  * @param UnregisterRmeoteTalkerCompleteDelegate the delegate to find and clear
+ */
+function ClearPlayerTalkingDelegate(delegate<OnRemoteTalkerStatusChange> RemoteTalkerStatusChangeDelegate);
+//@HSL_END_XBOX

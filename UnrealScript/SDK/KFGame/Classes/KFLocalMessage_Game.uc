@@ -193,11 +193,12 @@ static function string GetString(
 	}
 }
 
-static function string GetKilledByZedMessage( Object KillerClass )
+static function string GetKilledByZedMessage( Object KillerObject )
 {	
 	local class<Pawn> PawnClass;
+	local class<KFDamageType> KFDT;
 
-	PawnClass = class<Pawn>(KillerClass);
+	PawnClass = class<Pawn>(KillerObject);
 
 	if( PawnClass != none && PawnClass.default.ControllerClass != none)
 	{
@@ -208,12 +209,14 @@ static function string GetKilledByZedMessage( Object KillerClass )
 			case 'KFAIController_Hans':
 				return default.KillzedBy_HansString;
 			case 'KFAIController_ZedCrawler':
+			case 'KFAIController_ZedCrawlerKing':
 				return default.KillzedBy_ZedCrawlerString;
 			case 'KFAIController_ZedBloat':
 				return default.KillzedBy_ZedBloatString;
 			case 'KFAIController_ZedFleshpound':
 				return default.KillzedBy_ZedFleshpoundString;
 			case 'KFAIController_ZedGorefast':
+			case 'KFAIController_ZedGorefastDualBlade':
 				return default.KillzedBy_ZedGorefastString;
 			case 'KFAIController_ZedHusk':
 				return default.KillzedBy_ZedHuskString;
@@ -226,10 +229,37 @@ static function string GetKilledByZedMessage( Object KillerClass )
 			case 'KFAIController_ZedClot_Cyst':
 				return default.KillzedBy_ZedClot_CystString;
 			case 'KFAIController_ZedClot_Alpha':
+			case 'KFAIController_ZedClot_AlphaKing':
 				return default.KillzedBy_ZedClot_AlphaString;
 			case 'KFAIController_ZedClot_Slasher':
 				return default.KillzedBy_ZedClot_SlasherString;
 			
+		}
+	}
+	else
+	{
+		// Killer controller no longer exists for some reason, try to get death message by damagetype
+		KFDT = class<KFDamageType>( KillerObject );
+		if( KFDT != none )
+		{
+			switch( KFDT.Name )
+			{
+				// Crawler damagetypes
+				case 'KFDT_Explosive_CrawlerSuicide':
+				case 'KFDT_Toxic_PlayerCrawlerSuicide':
+					return default.KillzedBy_ZedCrawlerString;
+
+				// Bloat damagetypes
+				case 'KFDT_BloatPuke':
+				case 'KFDT_Toxic_BloatPukeMine':
+					return default.KillzedBy_ZedBloatString;
+
+				// Husk damagetypes
+				case 'KFDT_Fire_HuskFireball':
+				case 'KFDT_Fire_HuskFlamethrower':
+				case 'KFDT_Explosive_HuskSuicide':
+					return default.KillzedBy_ZedHuskString;
+			}
 		}
 	}
 

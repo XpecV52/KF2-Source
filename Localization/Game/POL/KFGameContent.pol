@@ -197,6 +197,8 @@ ItemName="Bullpup SA80 L85A2"
 ItemCategory="Karabin szturmowy"
 ItemDescription="•Tryb ataku: ogień ciągły lub pojedynczy.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•SA80 był na standardowym wyposażeniu armii brytyjskiej, dopóki nie została, no cóż, zjedzona."
 
+
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Nóż uniwersalny"
 ItemCategory="Broń biała"
@@ -267,6 +269,8 @@ ItemName="Strzelba bojowa M4"
 ItemCategory="Strzelba"
 ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Firma Benelli zaprojektowała strzelbę bojową M4 dla armii USA. Jest to broń samopowtarzalna, która zapewnia dobrą, stałą szybkość ostrzału."
 
+
+
 [KFWeap_Knife_Berserker]
 ItemName="Ostrze kosiarki"
 ItemCategory="Broń biała"
@@ -314,6 +318,11 @@ ItemCategory="Broń biała"
 ItemDescription="•Główny atak – średnie/silne obrażenia oraz nieco kontroli tłumu.\n•Drugi atak– wolniejszy, ale jeszcze więcej obrażeń.\n•Alt. – blokowanie/parowanie\n•Poruszając się do przodu, zadajesz jeszcze więcej obrażeń."
 SharedUnlockSource="Chivalry: Medieval Warfare "
 
+[KFWeap_Blunt_MaceAndShield]
+ItemName="Łamignat"
+ItemCategory="Broń biała"
+ItemDescription="•Główny atak – szybki atak obuchowy. Przytrzymaj, by wykonać combo.\n•Drugi atak – silny atak obuchowy, który lepiej wykorzystuje tarczę.\n•Alt. – blok/parowanie. Blokowanie zmniejsza obrażenia otrzymywane od pocisków zetów.\n• Potężny atak – uderzenie tarczą."
+
 [KFWeap_Flame_CaulkBurn]
 ItemName="Płomiennica"
 ItemCategory="Ogień"
@@ -353,6 +362,8 @@ ItemDescription="•Tryb ataku: miota granat.\n•Granat wybucha przy uderzeniu.
 ItemName="RPG-7"
 ItemCategory="Materiały wybuchowe"
 ItemDescription="•Tryb ataku: wystrzeliwuje rakietę.\n•Rakieta wybucha przy uderzeniu.\n•Uzbraja się dopiero po kilku metrach, żeby strzelający nie urwał sobie twarzy.\n•Uwaga na gazy wylotowe!"
+
+
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="Dwa pistolety 9 mm"
@@ -403,6 +414,8 @@ ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Tryb alternatywny p
 ItemName="Winchester 1894"
 ItemCategory="Karabin"
 ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•Klasyczny karabin dźwigniowy Winchester model 1894."
+
+
 
 [KFWeap_Bow_Crossbow]
 ItemName="Kusza"

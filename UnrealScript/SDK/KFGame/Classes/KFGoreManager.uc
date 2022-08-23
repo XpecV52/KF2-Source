@@ -25,7 +25,6 @@ class KFGoreManager extends Actor
  `define MUTILATION_GORE_LEVEL 0
  `define HEADLESS_GORE_LEVEL 1
  `define GIB_SPLAT_COOLDOWN 0.08
- `define GIB_IMPULSE_MAX 0.1
 
 /**
  *  Transient Values managed outside of class
@@ -378,11 +377,6 @@ simulated final function bool AllowMutilation()
 simulated final function bool AllowHeadless()
 {
 	return DesiredGoreLevel <= `HEADLESS_GORE_LEVEL;
-}
-
-static function float GetGibImpulseMax()
-{
- 	return `GIB_IMPULSE_MAX;
 }
 
 /** Spawns blood effects due to limb dismemberment or gibbing
@@ -820,23 +814,26 @@ simulated function CauseGibsAndApplyImpulse(
 	local int NumGibs;
 	local float ModifiedImpulseLerpValue;
 	local float ModifiedImpulse;
-	local float GibImpulseMin;
+	local float GibImpulseMin, GibImpulseMax;
 
 	MonsterInfo = InPawn.GetCharacterMonsterInfo();
 
 	// We need to scale the impule values based on the # of gibs to disconnect otherwise their impulses are way
 	// to high and limbs go flying really far. We perform a linear interpolation
-	GibImpulseMin = `GIB_IMPULSE_MAX/2.0f;
+	GibImpulseMax = InDmgType.default.GibImpulseScale;
+	GibImpulseMin = GibImpulseMax/2.0f;
 	NumGibs = InGibBoneList.Length; 
 	ModifiedImpulseLerpValue = 1.0f - numGibs/ MonsterInfo.GoreJointSettings.length;
-	ModifiedImpulse = lerp(GibImpulseMin, `GIB_IMPULSE_MAX, ModifiedImpulseLerpValue);
+	ModifiedImpulse = lerp(GibImpulseMin, GibImpulseMax, ModifiedImpulseLerpValue);
 
     for( GibIdx=0; GibIdx<InGibBoneList.length; GibIdx++ )
     {
     	GibBoneName = InGibBoneList[GibIdx];
 
     	BoneLocation = InPawn.mesh.GetBoneLocation(GibBoneName);
-		Impulse =  InDmgType.default.RadialDamageImpulse * Normal(BoneLocation - InExplosionOrigin);
+		Impulse =  InDmgType.default.RadialDamageImpulse * InDmgType.default.bPointImpulseTowardsOrigin
+					? Normal((InPawn.Location - InExplosionOrigin) + (vect(0,0,1) * InDmgType.default.ImpulseOriginLift))
+					: Normal(BoneLocation - InExplosionOrigin);
 		Impulse *= MonsterInfo.ExplosionImpulseScale*ModifiedImpulse;
 
 		for( JointIndex = 0; JointIndex < MonsterInfo.GoreJointSettings.length; JointIndex++ )

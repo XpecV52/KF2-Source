@@ -29,14 +29,14 @@ function Exit();
  *
  * @return true if the async task succeeded in starting up, false otherwise
  */
-function bool ReadContentList(byte PlayerNum,optional int StartAt = 0,optional int NumToRead = -1);
+function bool ReadContentList(byte PlayerNum,UniqueNetId NetId,optional string Path="",optional int StartAt = 0,optional int NumToRead = 0);
 
 /**
  * Delegate fired when the async read task has completed
  *
  * @param bWasSuccessful true if the async action completed without error, false if there was an error
  */
-delegate OnReadContentListComplete(bool bWasSuccessful);
+delegate OnReadContentListComplete(bool bWasSuccessful, array<CommunityContentFile> ContentFiles);
 
 /**
  * Adds the delegate to the list that will be notified when the task completes
@@ -156,7 +156,7 @@ function bool DownloadContent(byte PlayerNum,const out CommunityContentFile File
  * @param bWasSuccessful true if the async action completed without error, false if there was an error
  * @param FileDownloaded the information for the file that was downloaded
  */
-delegate OnDownloadContentComplete(bool bWasSuccessful,CommunityContentFile FileDownloaded);
+delegate OnDownloadContentComplete(bool bWasSuccessful,CommunityContentFile FileDownloaded, array<byte> Payload);
 
 /**
  * Adds the delegate to the list that will be notified when the task completes

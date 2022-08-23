@@ -22,8 +22,11 @@ var float LowHealthSpeedPenalty;
 * @name Animation
 ********************************************************************************************* */
 
-/** replicated state of 1st person for 3rd person animations */
+/** Replicated state of 1st person for 3rd person animations */
 var repnotify byte CurrentWeaponState;
+
+/** Replicated 3rd person attachment animation rate value, for matching up to 1st person anims */
+var protected byte WeaponAttachmentAnimRateByte;
 
 /** Item Id for 3rd person weapon skin */
 var const repnotify int WeaponSkinItemId;
@@ -177,7 +180,7 @@ replication
 
 	// Replicated to all but the owning client
 	if(bNetDirty && (!bNetOwner || bDemoRecording))
-		CurrentWeaponState, bFlashlightOn;
+		CurrentWeaponState, WeaponAttachmentAnimRateByte, bFlashlightOn;
 }
 
 cpptext
@@ -485,8 +488,21 @@ simulated function WeaponStateChanged(byte NewState, optional bool bViaReplicati
 
 	if( WeaponAttachment != None )
 	{
-		WeaponAttachment.UpdateThirdPersonWeaponAction(EWeaponState(CurrentWeaponState), self);
+		WeaponAttachment.UpdateThirdPersonWeaponAction( EWeaponState(CurrentWeaponState), self, GetWeaponAttachmentAnimRateByte() );
 	}
+}
+
+
+/** Sets the current weapon animation rate to synchronize 3rd person animations with 1st person */
+function SetWeaponAttachmentAnimRateByte( float NewAnimRate )
+{
+	WeaponAttachmentAnimRateByte = FloatToByte( fClamp(NewAnimRate - 1.f, 0.f, 1.f) );
+}
+
+/** Returns the animation rate to scale all animations in the WeaponAttachment by */
+simulated function byte GetWeaponAttachmentAnimRateByte()
+{
+	return WeaponAttachmentAnimRateByte;
 }
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
@@ -509,6 +525,14 @@ simulated function StopAllAnimations()
 	PlayBodyAnim(FacePose, EAS_Face,,,, true);
 
 	Super.StopAllAnimations();
+}
+
+simulated function CheckAndEndActiveEMoteSpecialMove()
+{
+	if( IsDoingSpecialMove() && SpecialMove == SM_Emote )
+	{
+		SpecialMoveHandler.EndSpecialMove( SM_EMote );
+	}
 }
 
 /*********************************************************************************************
@@ -706,7 +730,7 @@ function ShieldAbsorb( out int InDamage )
 	if( MyPerk != none && MyPerk.HasHeavyArmor() )
 	{
 		AbsorbedDmg = Min(InDamage, Armor);
-		Armor -= AbsorbedDmg;
+		Armor -= MyPerk.GetArmorDamageAmount( AbsorbedDmg );
 		InDamage -= AbsorbedDmg;
 		return;
 	}
@@ -1024,6 +1048,8 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
 	if( ActualDamageTaken > 0 && IsAliveAndWell() )
 	{
+		CheckAndEndActiveEMoteSpecialMove();
+
 		`DialogManager.PlayPlayerDamageDialog( self, DamageType, ActualDamageTaken );
 
 		InstigatedByBoss = KFAIController_ZedBoss( InstigatedBy );
@@ -1428,11 +1454,11 @@ simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNorma
 	local KFPerk MyPerk;
 	local KFPawn_Monster KFPM;
 
-	if( WorldInfo.TimeDilation < 1.f && !IsZero( Velocity ) )
+	if( WorldInfo.TimeDilation < 1.f && !IsZero(Velocity) && Other.GetTeamNum() != GetTeamNum() )
 	{
 		MyPerk = GetPerk();
 		if( MyPerk != none && MyPerk.ShouldKnockDownOnBump() &&
-			Normal(Velocity) dot Normal(Vector(Rotation)) > 0.7f )
+			Normal(Velocity) dot Vector(Rotation) > 0.7f )
 		{
 			KFPM = KFPawn_Monster(Other);
 			if( KFPM != none )
@@ -1790,4 +1816,12 @@ defaultproperties
 	DeathFaceAnims=(Death_V1, Death_V2, Death_V3)
 
 	PerkFXEmitterPoolClassPath="KFGame.KFPerkFXEmitterPool"
+
+	// ---------------------------------------------
+	// Special moves
+	Begin Object Name=SpecialMoveHandler_0
+		SpecialMoveClasses(SM_GrappleVictim)=class'KFGame.KFSM_GrappleVictim'
+		SpecialMoveClasses(SM_HansGrappleVictim)=class'KFGame.KFSM_HansGrappleVictim'
+		SpecialMoveClasses(SM_Emote)=class'KFGame.KFSM_Player_Emote'
+	End Object
 }

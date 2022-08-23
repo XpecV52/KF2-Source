@@ -164,10 +164,6 @@ defaultproperties
       SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerBloat_PukeMineAttack'
       SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerBloat_Melee'
       SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerBloat_Block'
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedBloat:SpecialMoveHandler_0'
    End Object

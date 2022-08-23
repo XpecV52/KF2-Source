@@ -15,7 +15,7 @@ protected function bool InternalCanDoSpecialMove()
 {
 	if( KFPOwner.IsHumanControlled() )
 	{
-		return KFPOwner.IsCombatCapable();
+		return KFPOwner.IsAliveAndWell() && !KFPOwner.IsImpaired() && !KFPOwner.IsIncapacitated(); // allow headless suicides
 	}
 
 	if( AIOwner == none || AIOwner.MyKFPawn == none || AIOwner.Enemy == none )

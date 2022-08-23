@@ -13,7 +13,7 @@ class UIRoot extends Object
 
 const DEFAULT_SIZE_X = 1024;
 const DEFAULT_SIZE_Y = 768;
-const MAX_SUPPORTED_GAMEPADS = 4;
+const MAX_SUPPORTED_GAMEPADS = 24;
 
 enum EInputPlatformType
 {

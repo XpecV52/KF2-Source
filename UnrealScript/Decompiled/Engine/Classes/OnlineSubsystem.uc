@@ -10,6 +10,13 @@ class OnlineSubsystem extends Object
     native
     config(Engine);
 
+const PIT_Game = 0x0001;
+const PIT_App = 0x0002;
+const PIT_Consumable = 0x0004;
+const PIT_Durable = 0x0008;
+const PIT_GameDemo = 0x0010;
+const PIT_All = 0x001F;
+
 enum ELoginStatus
 {
     LS_NotLoggedIn,
@@ -46,6 +53,22 @@ enum EFeaturePrivilegeLevel
     FPL_Enabled,
     FPL_Unknown,
     FPL_MAX
+};
+
+enum EReputationFeedbackType
+{
+    RFBT_CommunicationsAbusiveVoice,
+    RFBT_CommunicationsInappropriateVideo,
+    RFBT_FairPlayCheater,
+    RFBT_FairPlayKicked,
+    RFBT_FairPlayKillsTeammates,
+    RFBT_FairPlayQuitter,
+    RFBT_FairPlayTampering,
+    RFBT_InappropriateUserGeneratedContent,
+    RFBT_PositiveHelpfulPlayer,
+    RFBT_PositiveHighQualityUserGeneratedContent,
+    RFBT_PositiveSkilledPlayer,
+    RFBT_MAX
 };
 
 enum ENetworkNotificationPosition
@@ -91,6 +114,16 @@ enum OnGameInviteAcceptedResult
     OGIAR_MAX
 };
 
+enum EOnlineAccountTier
+{
+    OAT_Unknown,
+    OAT_NewUser,
+    OAT_Silver,
+    OAT_Gold,
+    OAT_FamilyGold,
+    OAT_MAX
+};
+
 enum EOnlineFriendState
 {
     OFS_Offline,
@@ -98,6 +131,13 @@ enum EOnlineFriendState
     OFS_Away,
     OFS_Busy,
     OFS_MAX
+};
+
+enum EOnlineCreateGameSessionFlag
+{
+    OCGSF_New,
+    OCGSF_ReSubmit,
+    OCGSF_MAX
 };
 
 enum EOnlineContentType
@@ -121,6 +161,7 @@ enum EOnlineServerConnectionStatus
     OSCS_Banned,
     OSCS_TooYoung,
     OSCS_PSNUnavailable,
+    OSCS_XBLiveUnavailable,
     OSCS_MAX
 };
 
@@ -153,6 +194,90 @@ enum EOnlineAccountCreateStatus
     OACS_MAX
 };
 
+enum EOnlineFileType
+{
+    OFT_Unknown,
+    OFT_Binary,
+    OFT_Json,
+    OFT_MAX
+};
+
+enum EAchievementRewardType
+{
+    ART_Unknown,
+    ART_Gamerscore,
+    ART_InApp,
+    ART_Art,
+    ART_MAX
+};
+
+enum EAchievementMediaAssetType
+{
+    AMAT_Unknown,
+    AMAT_Icon,
+    AMAT_Art,
+    AMAT_MAX
+};
+
+enum EAchievementUnlockType
+{
+    AUT_Unknown,
+    AUT_All,
+    AUT_Persistent,
+    AUT_Challenge,
+    AUT_MAX
+};
+
+enum EAchievementParticipationType
+{
+    EAPT_Unknown,
+    EAPT_Individual,
+    EAPT_Group,
+    EAPT_MAX
+};
+
+enum EAchievementProgressState
+{
+    APS_Unknown,
+    APS_Achieved,
+    APS_NotStarted,
+    APS_InProgress,
+    APS_MAX
+};
+
+enum ECatalogSortOrder
+{
+    CSO_FreeAndPaidCountDaily,
+    CSO_PaidCountAllTime,
+    CSO_PaidCountDail,
+    CSO_DigitalReleaseDate,
+    CSO_ReleaseDate,
+    CSO_UserRatings,
+    CSO_MAX
+};
+
+enum EMediaItemType
+{
+    MIT_Unknown,
+    MIT_Game,
+    MIT_Application,
+    MIT_GameContent,
+    MIT_GameConsumable,
+    MIT_Subscription,
+    MIT_MAX
+};
+
+enum EInventoryItemState
+{
+    IIS_Unknown,
+    IIS_All,
+    IIS_Enabled,
+    IIS_Suspended,
+    IIS_Expired,
+    IIS_Canceled,
+    IIS_MAX
+};
+
 enum EOnlineNewsType
 {
     ONT_Unknown,
@@ -162,13 +287,23 @@ enum EOnlineNewsType
     ONT_MAX
 };
 
+enum ESessionMemberStatus
+{
+    DSMS_Reserved,
+    DSMS_Inactive,
+    DSMS_Ready,
+    DSMS_Active,
+    DSMS_MAX
+};
+
 enum ItemType
 {
     ITP_WeaponSkin,
     ITP_CharacterSkin,
     ITP_KeyCrate,
-    ITP_CraftingComponent,
     ITP_Item,
+    ITP_CraftingComponent,
+    ITP_Emote,
     ITP_NONE,
     ITP_MAX
 };
@@ -195,6 +330,18 @@ struct native UniqueNetId
     }
 };
 
+struct native PlayerNameIdPair
+{
+    var init string PlayerName;
+    var UniqueNetId UniqueId;
+
+    structdefaultproperties
+    {
+        PlayerName=""
+        UniqueId=(Uid=none)
+    }
+};
+
 struct native FriendsQuery
 {
     var UniqueNetId UniqueId;
@@ -204,6 +351,32 @@ struct native FriendsQuery
     {
         UniqueId=(Uid=none)
         bIsFriend=false
+    }
+};
+
+struct native OnlineProfile
+{
+    var string UserId;
+    var OnlineSubsystem.EOnlineAccountTier AccountTier;
+    var int Gamerscore;
+    var string ApplicationDisplayName;
+    var string GameDisplayName;
+    var string DisplayPictureURL;
+    var string ApplicationDisplayPictureResizeURL;
+    var string PublicGamerPictureURL;
+    var string GameDisplayPictureResizeURL;
+
+    structdefaultproperties
+    {
+        UserId=""
+        AccountTier=EOnlineAccountTier.OAT_Unknown
+        Gamerscore=0
+        ApplicationDisplayName=""
+        GameDisplayName=""
+        DisplayPictureURL=""
+        ApplicationDisplayPictureResizeURL=""
+        PublicGamerPictureURL=""
+        GameDisplayPictureResizeURL=""
     }
 };
 
@@ -340,6 +513,7 @@ struct native LocalTalker
     var bool bWasTalking;
     var bool bIsTalking;
     var bool bIsRegistered;
+    var float TimeSinceLastPacket;
 
     structdefaultproperties
     {
@@ -349,6 +523,7 @@ struct native LocalTalker
         bWasTalking=false
         bIsTalking=false
         bIsRegistered=false
+        TimeSinceLastPacket=0
     }
 };
 
@@ -359,6 +534,8 @@ struct native RemoteTalker
     var bool bWasTalking;
     var bool bIsTalking;
     var bool bIsRegistered;
+    var float TimeSinceLastPacket;
+    var float TimeSinceJoining;
 
     structdefaultproperties
     {
@@ -367,6 +544,8 @@ struct native RemoteTalker
         bWasTalking=false
         bIsTalking=false
         bIsRegistered=false
+        TimeSinceLastPacket=0
+        TimeSinceJoining=0
     }
 };
 
@@ -449,8 +628,8 @@ struct native TitleFile
 struct native CommunityContentFile
 {
     var int ContentId;
-    var int FileId;
-    var int ContentType;
+    var string RemoteContentPath;
+    var OnlineSubsystem.EOnlineFileType ContentType;
     var int FileSize;
     var UniqueNetId Owner;
     var int DownloadCount;
@@ -462,8 +641,8 @@ struct native CommunityContentFile
     structdefaultproperties
     {
         ContentId=0
-        FileId=0
-        ContentType=0
+        RemoteContentPath=""
+        ContentType=EOnlineFileType.OFT_Unknown
         FileSize=0
         Owner=(Uid=none)
         DownloadCount=0
@@ -476,13 +655,33 @@ struct native CommunityContentFile
 
 struct native CommunityContentMetadata
 {
-    var int ContentType;
-    var array<SettingsProperty> MetadataItems;
+    var OnlineSubsystem.EOnlineFileType ContentType;
+    var string RemotePath;
+    var string DisplayName;
 
     structdefaultproperties
     {
-        ContentType=0
-        MetadataItems=none
+        ContentType=EOnlineFileType.OFT_Unknown
+        RemotePath=""
+        DisplayName=""
+    }
+};
+
+struct native UserAccountInfo
+{
+    var string DateOfBirth;
+    var string Email;
+    var string FirstName;
+    var string LastName;
+    var string Gamertag;
+
+    structdefaultproperties
+    {
+        DateOfBirth=""
+        Email=""
+        FirstName=""
+        LastName=""
+        Gamertag=""
     }
 };
 
@@ -503,9 +702,52 @@ struct native NamedSession
     }
 };
 
+struct native AchievementReward
+{
+    var const string RewardName;
+    var const string Description;
+    var const string Data;
+    var const OnlineSubsystem.EAchievementRewardType RewardType;
+
+    structdefaultproperties
+    {
+        RewardName=""
+        Description=""
+        Data=""
+        RewardType=EAchievementRewardType.ART_Unknown
+    }
+};
+
+struct native AchievementMediaAsset
+{
+    var const string AssetName;
+    var const OnlineSubsystem.EAchievementMediaAssetType AssetType;
+    var const string AssetURL;
+
+    structdefaultproperties
+    {
+        AssetName=""
+        AssetType=EAchievementMediaAssetType.AMAT_Unknown
+        AssetURL=""
+    }
+};
+
+struct native AchievementTitleAssociation
+{
+    var const string LocalizedTitleName;
+    var const int TitleId;
+
+    structdefaultproperties
+    {
+        LocalizedTitleName=""
+        TitleId=0
+    }
+};
+
 struct native AchievementDetails
 {
     var const int Id;
+    var const string StringId;
     var const string AchievementName;
     var const string Description;
     var const string HowTo;
@@ -518,10 +760,25 @@ struct native AchievementDetails
     var const bool bIsSecret;
     var const bool bWasAchievedOnline;
     var const bool bWasAchievedOffline;
+    var const OnlineSubsystem.EAchievementUnlockType UnlockType;
+    var const QWord ChallengeWindowBegin;
+    var const QWord ChallengeWindowEnd;
+    var const string DeepLink;
+    var const QWord EstimatedUnlockTime;
+    var const bool bIsRevoked;
+    var const OnlineSubsystem.EAchievementParticipationType ParticipationType;
+    var const array<string> PlatformsAvailableOn;
+    var const OnlineSubsystem.EAchievementProgressState ProgressState;
+    var const array<AchievementReward> Rewards;
+    var const array<AchievementMediaAsset> MediaAssets;
+    var const string ProductID;
+    var const string ServiceConfigurationID;
+    var const array<AchievementTitleAssociation> TitleAssociations;
 
     structdefaultproperties
     {
         Id=0
+        StringId=""
         AchievementName=""
         Description=""
         HowTo=""
@@ -534,6 +791,174 @@ struct native AchievementDetails
         bIsSecret=false
         bWasAchievedOnline=false
         bWasAchievedOffline=false
+        UnlockType=EAchievementUnlockType.AUT_Unknown
+        ChallengeWindowBegin=none
+        ChallengeWindowEnd=none
+        DeepLink=""
+        EstimatedUnlockTime=none
+        bIsRevoked=false
+        ParticipationType=EAchievementParticipationType.EAPT_Unknown
+        PlatformsAvailableOn=none
+        ProgressState=EAchievementProgressState.APS_Unknown
+        Rewards=none
+        MediaAssets=none
+        ProductID=""
+        ServiceConfigurationID=""
+        TitleAssociations=none
+    }
+};
+
+struct native MarketplaceProductAvailability
+{
+    var const array<string> AcceptablePaymentInstrumentTypes;
+    var const string Description;
+    var const string Title;
+    var const int ConsumableQuantity;
+    var const string ContentId;
+    var const string CurrencyCode;
+    var const string DisplayListPrice;
+    var const string DisplayPrice;
+    var const string DistributionType;
+    var const bool bIsPurchasable;
+    var const float ListPrice;
+    var const string OfferId;
+    var const float Price;
+    var const string PromotionalText;
+    var const string SignedOffer;
+
+    structdefaultproperties
+    {
+        AcceptablePaymentInstrumentTypes=none
+        Description=""
+        Title=""
+        ConsumableQuantity=0
+        ContentId=""
+        CurrencyCode=""
+        DisplayListPrice=""
+        DisplayPrice=""
+        DistributionType=""
+        bIsPurchasable=false
+        ListPrice=0
+        OfferId=""
+        Price=0
+        PromotionalText=""
+        SignedOffer=""
+    }
+};
+
+struct native MarketplaceProductImage
+{
+    var const string Id;
+    var const int Height;
+    var const int Width;
+    var const string Purpose;
+    var const array<string> Purposes;
+    var const string ResizeURL;
+
+    structdefaultproperties
+    {
+        Id=""
+        Height=0
+        Width=0
+        Purpose=""
+        Purposes=none
+        ResizeURL=""
+    }
+};
+
+struct native MarketplaceProductDetails
+{
+    var const string StandardId;
+    var const OnlineSubsystem.EMediaItemType MediaItemType;
+    var const string ProductName;
+    var const string ProductID;
+    var const QWord ReleaseDate;
+    var const string SandboxId;
+    var const int TitleId;
+    var const bool bIsBundle;
+    var const bool bIsPartOfAnyBundle;
+    var const string ReducedName;
+    var const array<MarketplaceProductImage> Images;
+    var OnlineSubsystem.EOnlineEnumerationReadState DetailsReadState;
+    var const array<MarketplaceProductAvailability> Availabilities;
+    var const string ProductDescription;
+
+    structdefaultproperties
+    {
+        StandardId=""
+        MediaItemType=EMediaItemType.MIT_Unknown
+        ProductName=""
+        ProductID=""
+        ReleaseDate=none
+        SandboxId=""
+        TitleId=0
+        bIsBundle=false
+        bIsPartOfAnyBundle=false
+        ReducedName=""
+        Images=none
+        DetailsReadState=EOnlineEnumerationReadState.OERS_NotStarted
+        Availabilities=none
+        ProductDescription=""
+    }
+};
+
+struct native MarketplaceInventoryItem
+{
+    var const string ProductID;
+    var const OnlineSubsystem.EMediaItemType MediaItemType;
+    var const OnlineSubsystem.EInventoryItemState ItemState;
+    var const int ConsumableBalance;
+    var const int TitleId;
+    var const array<string> ContainerIds;
+    var const QWord StartDate;
+    var const QWord EndDate;
+    var const QWord RightsObtainedDate;
+    var const string URL;
+    var const string ConsumableUrl;
+
+    structdefaultproperties
+    {
+        ProductID=""
+        MediaItemType=EMediaItemType.MIT_Unknown
+        ItemState=EInventoryItemState.IIS_Unknown
+        ConsumableBalance=0
+        TitleId=0
+        ContainerIds=none
+        StartDate=none
+        EndDate=none
+        RightsObtainedDate=none
+        URL=""
+        ConsumableUrl=""
+    }
+};
+
+struct native SessionMemberInfo
+{
+    var UniqueNetId PlayerNetId;
+    var OnlineSubsystem.ESessionMemberStatus MemberStatus;
+    var init string SecureAddress;
+    var init string NickName;
+    var bool Muted;
+
+    structdefaultproperties
+    {
+        PlayerNetId=(Uid=none)
+        MemberStatus=ESessionMemberStatus.DSMS_Reserved
+        SecureAddress=""
+        NickName=""
+        Muted=false
+    }
+};
+
+struct native PermissionsResult
+{
+    var SessionMemberInfo User;
+    var bool bHasPermission;
+
+    structdefaultproperties
+    {
+        User=(PlayerNetId=(Uid=none),MemberStatus=ESessionMemberStatus.DSMS_Reserved,SecureAddress="",NickName="",Muted=false)
+        bHasPermission=false
     }
 };
 
@@ -627,6 +1052,34 @@ struct native SocialPostLinkInfo extends SocialPostImageInfo
     var string PictureURL;
 };
 
+struct native SessionUpdateInfo
+{
+    var const array<SessionMemberInfo> MembersJoined;
+    var const array<SessionMemberInfo> MembersLeft;
+    var const bool bHostDeviceTokenChanged;
+    var const bool bInitializationStateChanged;
+    var const bool bMatchmakingStatusChanged;
+    var const bool bMemberJoinedOrLeft;
+    var const bool bMemberStatusChanged;
+    var const bool bSessionJoinabilityChanged;
+    var const bool bCustomPropertyChange;
+    var const bool bMemberCustomPropertyChange;
+
+    structdefaultproperties
+    {
+        MembersJoined=none
+        MembersLeft=none
+        bHostDeviceTokenChanged=false
+        bInitializationStateChanged=false
+        bMatchmakingStatusChanged=false
+        bMemberJoinedOrLeft=false
+        bMemberStatusChanged=false
+        bSessionJoinabilityChanged=false
+        bCustomPropertyChange=false
+        bMemberCustomPropertyChange=false
+    }
+};
+
 struct native CurrentInventoryEntry
 {
     var const UniqueNetId Instance;
@@ -651,7 +1104,7 @@ struct native ItemProperties
 {
     var int Definition;
     var string PlayfabItemId;
-    var string ProductId;
+    var string ProductID;
     var string SignedOfferId;
     var string RequiredKeyId;
     var string Name;
@@ -673,7 +1126,7 @@ struct native ItemProperties
     {
         Definition=0
         PlayfabItemId=""
-        ProductId=""
+        ProductID=""
         SignedOfferId=""
         RequiredKeyId=""
         Name=""
@@ -723,6 +1176,7 @@ var private native const noexport Pointer VfTable_FTickableObject;
 var OnlineAccountInterface AccountInterface;
 var OnlinePlayerInterface PlayerInterface;
 var OnlinePlayerInterfaceEx PlayerInterfaceEx;
+var OnlineMarketplaceInterface MarketplaceInterface;
 var OnlineSystemInterface SystemInterface;
 var OnlineGameInterface GameInterface;
 var OnlineContentInterface ContentInterface;
@@ -741,13 +1195,20 @@ var array< delegate<OnInventoryReadComplete> > ReadInventoryCompleteDelegates;
 var const bool bInventoryReady;
 var config bool bUseBuildIdOverride;
 var array< delegate<OnPingRegionsComplete> > PingRegionsCompleteDelegates;
+var OnlineGameDVRInterface GameDVRInterface;
+var OnlineCommunityContentInterface CommunityContentInterface;
+var native UniqueNetId LoggedInPlayerNetId;
 var private array<NamedInterface> NamedInterfaces;
 var config array<config NamedInterfaceDef> NamedInterfaceDefs;
 var protected const array<NamedSession> Sessions;
+var array<SessionMemberInfo> PartyMemberList;
+var array<SessionMemberInfo> GameMemberList;
 var config int BuildIdOverride;
 var config string IniLocPatcherClassName;
 var transient IniLocPatcher Patcher;
 var config float AsyncMinCompletionTime;
+var const config string DefaultSessionTemplateName;
+var const config string PartySessionTemplateName;
 var const array<CurrentInventoryEntry> CurrentInventory;
 var const array<string> OwnedEntitlementIds;
 var array<ItemProperties> ItemPropertiesList;
@@ -839,7 +1300,8 @@ event bool PostInit()
     return true;
 }
 
-event Exit();
+// Export UOnlineSubsystem::execExit(FFrame&, void* const)
+native event Exit();
 
 event bool SetAccountInterface(Object NewInterface)
 {
@@ -857,6 +1319,12 @@ event bool SetPlayerInterfaceEx(Object NewInterface)
 {
     PlayerInterfaceEx = OnlinePlayerInterfaceEx(NewInterface);
     return NotEqual_InterfaceInterface(PlayerInterfaceEx, (none));
+}
+
+event bool SetMarketplaceInterface(Object NewInterface)
+{
+    MarketplaceInterface = OnlineMarketplaceInterface(NewInterface);
+    return NotEqual_InterfaceInterface(MarketplaceInterface, (none));
 }
 
 event bool SetSystemInterface(Object NewInterface)
@@ -943,6 +1411,18 @@ event bool SetSharedCloudInterface(Object InCloudInterface)
     return NotEqual_InterfaceInterface(SharedCloudInterface, (none));
 }
 
+event bool SetGameDVRInterface(Object InGameDVRInterface)
+{
+    GameDVRInterface = OnlineGameDVRInterface(InGameDVRInterface);
+    return NotEqual_InterfaceInterface(GameDVRInterface, (none));
+}
+
+event bool SetCommunityContentInterface(Object InCommunityContentInterface)
+{
+    CommunityContentInterface = OnlineCommunityContentInterface(InCommunityContentInterface);
+    return NotEqual_InterfaceInterface(CommunityContentInterface, (none));
+}
+
 event SetNamedInterface(name InterfaceName, Object NewInterface)
 {
     local int InterfaceIndex;
@@ -969,8 +1449,14 @@ event Object GetNamedInterface(name InterfaceName)
     return none;
 }
 
+// Export UOnlineSubsystem::execRaiseEvent(FFrame&, void* const)
+native event bool RaiseEvent(const string EventName, const array<string> EventParams);
+
 // Export UOnlineSubsystem::execUniqueNetIdToString(FFrame&, void* const)
-native static final function string UniqueNetIdToString(const out UniqueNetId IdToConvert);
+native static final function string UniqueNetIdToString(const out UniqueNetId IdToConvert, optional bool Hex)
+{
+    Hex = true;                
+}
 
 // Export UOnlineSubsystem::execStringToUniqueNetId(FFrame&, void* const)
 native static final function bool StringToUniqueNetId(string UniqueNetIdString, out UniqueNetId out_UniqueId);
@@ -1071,14 +1557,14 @@ function DumpSessionState()
         }
         LogInternal("    Number of arbitrated players: " $ string(Sessions[Index].ArbitrationRegistrants.Length));
         PlayerIndex = 0;
-        J0x2AD:
+        J0x2AE:
 
         if(PlayerIndex < Sessions[Index].ArbitrationRegistrants.Length)
         {
             NetId = Sessions[Index].ArbitrationRegistrants[PlayerIndex].PlayerNetId;
             LogInternal("      Player: " $ UniqueNetIdToString(NetId));
             ++ PlayerIndex;
-            goto J0x2AD;
+            goto J0x2AE;
         }
         ++ Index;
         goto J0xBF;
@@ -1108,7 +1594,7 @@ function SetDebugSpewLevel(int DebugSpewLevel);
 
 function TWOnlineLobby GetLobbyInterface();
 
-function bool RegisterLocalTalker(byte LocalUserNum);
+function bool RegisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
 
 delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Avatar);
 

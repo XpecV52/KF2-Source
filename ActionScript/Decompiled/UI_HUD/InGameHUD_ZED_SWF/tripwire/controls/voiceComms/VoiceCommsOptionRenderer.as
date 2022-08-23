@@ -41,8 +41,6 @@ package tripwire.controls.voiceComms
         {
             super();
             stage.addEventListener("PopoutItems",this.popoutItem);
-            this.textField.visible = false;
-            this.iconLoader.visible = false;
             this.HighlightBG.visible = false;
             this.SelectHighlight.visible = false;
         }
@@ -135,65 +133,12 @@ package tripwire.controls.voiceComms
         {
             stage.removeEventListener("PopoutItems",this.popoutItem);
             stage.addEventListener("PopinItems",this.popinItem);
-            if(this.bManagerConsoleBuild)
-            {
-                this.Bumper.x = this.xMod * -400;
-                this.textField.visible = true;
-                this.iconLoader.visible = true;
-                this.BG.scaleX = this.HighlightBG.scaleX = this.SelectHighlight.scaleX = this.Scanlines.scaleX = 1;
-            }
-            if(!this.bManagerConsoleBuild)
-            {
-                TweenMax.killTweensOf(this.textField);
-                TweenMax.killTweensOf(this.iconLoader);
-                TweenMax.fromTo(this.Bumper,2,{"x":this.xMod * -48},{
-                    "x":this.xMod * -400,
-                    "delay":2,
-                    "useFrames":true,
-                    "ease":Cubic.easeOut
-                });
-                TweenMax.allFromTo([this.BG,this.HighlightBG,this.SelectHighlight,this.Scanlines],2,{"scaleX":0.12},{
-                    "scaleX":1,
-                    "delay":2,
-                    "useFrames":true,
-                    "ease":Cubic.easeOut
-                });
-                TweenMax.allFromTo([this.textField,this.iconLoader],2,{"autoAlpha":0},{
-                    "autoAlpha":1,
-                    "delay":4,
-                    "useFrames":true,
-                    "ease":Cubic.easeOut
-                });
-            }
         }
         
         protected function popinItem(param1:Event) : void
         {
             stage.removeEventListener("PopinItems",this.popinItem);
             stage.addEventListener("PopoutItems",this.popoutItem);
-            if(!this.bManagerConsoleBuild)
-            {
-                TweenMax.killTweensOf(this.textField);
-                TweenMax.killTweensOf(this.iconLoader);
-                TweenMax.allTo([this.textField,this.iconLoader],2,{
-                    "alpha":0,
-                    "visible":false,
-                    "useFrames":true,
-                    "ease":Cubic.easeIn
-                });
-                TweenMax.allFromTo([this.BG,this.HighlightBG,this.SelectHighlight,this.Scanlines],2,{"scaleX":1},{
-                    "scaleX":0.12,
-                    "delay":2,
-                    "useFrames":true,
-                    "ease":Cubic.easeIn
-                });
-                TweenMax.fromTo(this.Bumper,2,{"x":this.xMod * -400},{
-                    "x":this.xMod * -48,
-                    "delay":2,
-                    "useFrames":true,
-                    "ease":Cubic.easeIn
-                });
-            }
         }
     }
 }

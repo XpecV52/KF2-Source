@@ -1252,7 +1252,7 @@ function KFPawn CheckForEnemiesInFOV(float MaxRange, float MinFOV, float MaxFOV,
         {
             continue;            
         }
-        if(!Pawn.FastTrace(KFP.Location, Pawn.Location,, true))
+        if(!Class'KFGameEngine'.static.FastTrace_PhysX(KFP.Location, Pawn.Location))
         {
             continue;            
         }
@@ -2256,9 +2256,10 @@ function DoWander(optional Actor WanderGoal, optional float WanderDuration, opti
     Class'AICommand_Wander'.static.BeginWander(self, WanderDuration, WanderGoal, bWanderAwayFromGoal, MaxWanderDist);
 }
 
-function DoFleeFrom(Actor FleeFrom, optional float FleeDuration, optional float FleeDistance, optional bool bShouldStopAtGoal)
+function DoFleeFrom(Actor FleeFrom, optional float FleeDuration, optional float FleeDistance, optional bool bShouldStopAtGoal, optional bool bFromFear)
 {
     bShouldStopAtGoal = false;
+    bFromFear = false;
     Class'AICommand_Flee'.static.FleeFrom(self, FleeFrom, FleeDuration, FleeDistance, bShouldStopAtGoal);
 }
 
@@ -5369,7 +5370,7 @@ final function byte GetBestEvadeDir(Vector DangerPoint, optional Pawn ThreatPawn
 
 function bool CanReachEvadeLocation(Vector EvadeLocation, float CheckHeight, Vector Extent)
 {
-    if(FastTrace(EvadeLocation, Pawn.Location) && !FastTrace(EvadeLocation + (vect(0, 0, -1) * CheckHeight), EvadeLocation, Extent))
+    if(Class'KFGameEngine'.static.FastTrace_PhysX(EvadeLocation, Pawn.Location) && !FastTrace(EvadeLocation + (vect(0, 0, -1) * CheckHeight), EvadeLocation, Extent))
     {
         if(!IsPawnBlockingLine(Pawn.Location, EvadeLocation))
         {

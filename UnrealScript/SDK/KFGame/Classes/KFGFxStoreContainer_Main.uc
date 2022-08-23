@@ -14,6 +14,7 @@ var localized string WeaponSkinsRotationString;
 var localized string WeaponSkinsString;
 var localized string MarketConsumablesString;
 var localized string MarketCosmeticsString;
+var localized string MarketEmotesString;
 var localized string LookUpOnMarketString;
 
 var KFGFxMenu_Store StoreMenu;
@@ -24,9 +25,11 @@ enum EStore_Filter
     EStore_WeaponSkins,
 	EStore_Cosmetics,
 	EStore_Consumables,
+	EStore_Emotes,
 	EStore_Market_WeaponSkins,
 	EStore_Market_Cosmetics,
 	EStore_Market_Consumables,
+	EStore_Market_Emotes,
 	EStore_Max
 };
 
@@ -50,9 +53,11 @@ function LocalizeText()
 	LocalizedObject.SetString("all",				class'KFGFxMenu_Inventory'.default.AllString);
 	LocalizedObject.SetString("weaponSkin",			WeaponSkinsRotationString);
 	LocalizedObject.SetString("cosmetics",			class'KFGFxMenu_Inventory'.default.CosmeticString);
+	LocalizedObject.SetString("emotes",				Class'KFGFxMenu_Inventory'.default.EmotesString);
 	LocalizedObject.SetString("items",				class'KFGFxMenu_Inventory'.default.ItemString);
 	LocalizedObject.SetString("marketWeaponSkins",	WeaponSkinsString);
 	LocalizedObject.SetString("marketCosmetics",	MarketCosmeticsString);
+	LocalizedObject.SetString("marketEmotes",		MarketEmotesString);
 	LocalizedObject.SetString("marketConsumables",	MarketConsumablesString);
 	
 	SetObject("localizedText", LocalizedObject);
@@ -77,13 +82,19 @@ function UpdateFilter(int NewFilterIndex)
 			NewFilter = EStore_Consumables;
 			break;
 		case 4:
+			NewFilter = EStore_Emotes;
+			break;
+		case 5:
 			NewFilter = EStore_Market_WeaponSkins;
 			break;	
-		case 5:
+		case 6:
 			NewFilter = EStore_Market_Cosmetics;
 			break;
-		case 6:
+		case 7:
 			NewFilter = EStore_Market_Consumables;
+			break;
+		case 8:
+			NewFilter = EStore_Market_Emotes;
 			break;
 	}
 
@@ -156,7 +167,7 @@ function bool IsFilterSame(ItemType FirstType, EStore_Filter SecondType)
 	}
 	else
 	{
-		return (FirstType + 1) == (SecondType - 3);	
+		return (FirstType + 1) == ( SecondType - 4 );	
 	}
 	return false;
 }

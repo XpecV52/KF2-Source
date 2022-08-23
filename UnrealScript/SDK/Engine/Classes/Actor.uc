@@ -4209,6 +4209,9 @@ native function SpriteComponent GetActorSpriteComponent() const;
 // Called in addition to AdjustDamage, but specific to radius damage scaling
 function AdjustRadiusDamage(out float InBaseDamage, float DamageScale, vector HurtOrigin);
 
+/** Called from SkeletalMeshComponent::PlayParticleEffect() */
+simulated function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC );
+
 /** Accumlated actor tick time
  * Use this instead of WorldInfo.TimeSeconds if the actor is affected by CustomTimeDilation (e.g. Pawns, Weapons)
  * To reduce confusion any container vars should be labelled with the suffix "ActorTime"

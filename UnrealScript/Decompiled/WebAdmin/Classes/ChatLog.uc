@@ -65,8 +65,8 @@ function string createFilename()
 {
     local string Result, tmp;
     local InternetLink il;
-    local IpAddr Addr;
-    local int ServerIP, ServerPort;
+    local IpAddr Addr, ServerIP;
+    local int ServerPort;
 
     if(NotEqual_InterfaceInterface(WorldInfo.Game.OnlineSub.AuthInterface, (none)))
     {
@@ -75,7 +75,7 @@ function string createFilename()
     else
     {
         ServerPort = 0;
-        ServerIP = 0;
+        ServerIP.AddrD = 0;
     }
     Result = Filename;
     Result = Repl(Result, "%p", string(ServerPort));

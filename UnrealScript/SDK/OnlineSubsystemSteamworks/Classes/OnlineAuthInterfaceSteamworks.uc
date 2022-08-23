@@ -43,7 +43,8 @@ native function bool SendServerAuthRequest(UniqueNetId ServerUID);
  * @param OutAuthTicketUID	Outputs the UID of the auth data, which is used to verify the auth session on the server
  * @return			whether or not the local half of the auth session was kicked off successfully
  */
-native function bool CreateClientAuthSession(UniqueNetId ServerUID, int ServerIP, int ServerPort, bool bSecure, out int OutAuthTicketUID);
+//@HSL_BEGIN_XBOX
+native function bool CreateClientAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort, bool bSecure, out int OutAuthTicketUID);
 
 /**
  * Kicks off asynchronous verification and setup of a client auth session, on the server;
@@ -55,7 +56,8 @@ native function bool CreateClientAuthSession(UniqueNetId ServerUID, int ServerIP
  * @param AuthTicketUID		The UID for the auth data sent by the client (as obtained through OnClientAuthResponse)
  * @return			whether or not asynchronous verification was kicked off successfully
  */
-native function bool VerifyClientAuthSession(UniqueNetId ClientUID, int ClientIP, int ClientPort, int AuthTicketUID);
+native function bool VerifyClientAuthSession(UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort, int AuthTicketUID);
+//@HSL_END_XBOX
 
 
 /**
@@ -72,7 +74,7 @@ native function bool VerifyClientAuthSession(UniqueNetId ClientUID, int ClientIP
  * @param OutAuthTicketUID	Outputs the UID of the auth data, which is used to verify the auth session on the client
  * @return			whether or not the local half of the auth session was kicked off successfully
  */
-native function bool CreateServerAuthSession(UniqueNetId ClientUID, int ClientIP, int ClientPort, out int OutAuthTicketUID);
+native function bool CreateServerAuthSession(UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort, out int OutAuthTicketUID);
 
 /**
  * Kicks off asynchronous verification and setup of a server auth session, on the client;
@@ -83,7 +85,7 @@ native function bool CreateServerAuthSession(UniqueNetId ClientUID, int ClientIP
  * @param AuthTicketUID		The UID of the auth data sent by the server (as obtained through OnServerAuthResponse)
  * @return			whether or not asynchronous verification was kicked off successfully
  */
-native function bool VerifyServerAuthSession(UniqueNetId ServerUID, int ServerIP, int AuthTicketUID);
+native function bool VerifyServerAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int AuthTicketUID);
 
 
 /**
@@ -106,7 +108,7 @@ native function bool GetServerUniqueId(out UniqueNetId OutServerUID);
  * @param OutServerIP		The public IP of the server (or, for platforms which don't support it, the local IP)
  * @param OutServerPort		The port of the server
  */
-native function bool GetServerAddr(out int OutServerIP, out int OutServerPort);
+native function bool GetServerAddr(out IpAddr OutServerIP, out int OutServerPort);
 
 
 

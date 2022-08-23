@@ -723,24 +723,38 @@ static function SendMapOptionsAndOpenAARMenu()
 	local KFPlayerReplicationInfo KFPRI;
 	local KFGameInfo KFGI;
 	local int i;
+	local KFGameReplicationInfo KFGRI;
 
 	WI = Class'WorldInfo'.Static.GetWorldInfo();
 
 	KFGI = KFGameInfo(WI.Game);
+	KFGRI = KFGameReplicationInfo(WI.GRI);
 
 	foreach WI.AllControllers(class'KFPlayerController', KFPC)
 	{
-		KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
-		for (i = 0; i < KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.length; i++)
-	    {	
-			if(KFPRI != none)
+		if(WI.NetMode == NM_StandAlone)
+		{
+			//set map list in vote collector
+			if(KFGRI != none && KFGRI.VoteCollector != none)
 			{
-				if (KFGI.IsMapAllowedInCycle(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[i]))
+				class'KFGfxMenu_StartGame'.static.GetMapList(KFGRI.VoteCollector.MapList);
+			}
+		}
+		else
+		{
+			KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+			for (i = 0; i < KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.length; i++)
+		    {	
+				if(KFPRI != none)
 				{
-					KFPRI.RecieveAARMapOption(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[i]);
+					if (KFGI.IsMapAllowedInCycle(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[i]))
+					{
+						KFPRI.RecieveAARMapOption(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[i]);
+					}
 				}
 			}
 		}
+		
 		KFPC.ClientShowPostGameMenu();
 	}
 }

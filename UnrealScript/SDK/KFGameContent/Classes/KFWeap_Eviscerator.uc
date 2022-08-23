@@ -446,7 +446,7 @@ defaultproperties
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
 	ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
 
-	AssociatedPerkClass=class'KFPerk_Berserker'
+	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
 
     bHasLaserSight=TRUE
 

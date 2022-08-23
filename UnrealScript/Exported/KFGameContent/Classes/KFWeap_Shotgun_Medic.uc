@@ -20,10 +20,17 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 {
 	local int i;
 	local rotator AimRot;
+	local KFPerk InstigatorPerk;
 
     if( CurrentFireMode == GRENADE_FIREMODE )
     {
         return Super.SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
+    }
+
+    InstigatorPerk = GetPerk();
+    if( InstigatorPerk != none )
+    {
+    	Spread[CurrentFireMode] = default.Spread[CurrentFireMode] * InstigatorPerk.GetTightChokeModifier();
     }
 
 	AimRot = rotator(AimDir);
@@ -140,7 +147,8 @@ defaultproperties
    RecoilISMinPitchLimit=65485
    HippedRecoilModifier=1.500000
    FallingRecoilModifier=1.500000
-   AssociatedPerkClass=Class'KFGame.KFPerk_FieldMedic'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
+   AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Support'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)=()
    FiringStatesArray(2)=()

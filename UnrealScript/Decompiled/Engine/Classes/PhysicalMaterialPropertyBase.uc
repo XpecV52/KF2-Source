@@ -45,6 +45,8 @@ enum EMaterialTypes
     EMT_Asphalt,
     EMT_Flesh,
     EMT_PlasticBag,
+    EMT_Sand,
+    EMT_Lava,
     EMT_Custom0,
     EMT_Custom1,
     EMT_Custom2,

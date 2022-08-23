@@ -231,6 +231,7 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
     local KFPawn_ZedHansBase HansPawn;
 
     KFPOwner.ClearTimer( nameof(Timer_DrainHealth), self );
+    KFPOwner.ClearTimer( nameof(Timer_DetachFollower), self );
 
     if( KFPOwner != none && KFPOwner.MyKFAIC != none && KFPOwner.MyKFAIC != none
         && KFAIController_Hans(KFPOwner.MyKFAIC) != none )
@@ -240,7 +241,7 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
         // stop hunting players and sucking health if you got enough health
         if( HansPawn != none )
         {        
-            if( HansPawn.AmountHealedThisPhase > EnemyDrawLifeThreshold * 0.75f )
+            if( HansPawn.AmountHealedThisPhase > HansPawn.GetHealAmountForThisPhase() * 0.75f )
             { 
                 HansPawn.SetHuntAndHealMode( false );
             }
@@ -332,14 +333,14 @@ function Timer_DetachFollower()
             }
         }
 
+        // Zero movement variables on Follower to stop any animation-driven motion
+        if( bAlignPawns && !KFPOwner.IsHumanControlled() )
+        {
+            Follower.ZeroMovementVariables();
+        }
+
         // End special move on Follower
         Follower.EndSpecialMove();
-    }
-
-    // Zero movement variables on Follower to stop any animation-driven motion
-    if( bAlignPawns && !KFPOwner.IsHumanControlled() )
-    {
-        Follower.ZeroMovementVariables();
     }
 
     if( ExecutionCameraAnimInst_Follower != None )

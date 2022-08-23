@@ -29,9 +29,12 @@ defaultproperties
 	OutputLinks(11)=(LinkDesc="NGP")
 	OutputLinks(12)=(LinkDesc="WiiU")
 	OutputLinks(13)=(LinkDesc="Flash")
-//@zombie_ps4_begin
+//@HSL_BEGIN_PS4
 	OutputLinks(14)=(LinkDesc="Orbis")
-//@zombie_ps4_end
+//@HSL_END_PS4
+//@HSL_BEGIN_XBOX
+    OutputLinks(15)=(LinkDesc="Xbox One")
+//@HSL_END_XBOX
 
 	VariableLinks.Empty
 }

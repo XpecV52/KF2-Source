@@ -329,7 +329,6 @@ package scaleform.clik.controls
         
         override public function handleInput(param1:InputEvent) : void
         {
-            trace("BRIAN:: [" + this + "] Handle Input");
             if(param1.isDefaultPrevented())
             {
                 return;
@@ -341,7 +340,6 @@ package scaleform.clik.controls
                 case NavigationCode.ENTER:
                     if(_loc2_.value == InputValue.KEY_DOWN)
                     {
-                        trace("BRIAN:: [" + this + "] We are in Button AS ENTER");
                         this.handlePress(_loc3_);
                         param1.handled = true;
                     }

@@ -59,18 +59,23 @@ simulated event PostBeginPlay()
     {
         SetTimer(FuseTime, false, 'ExplodeTimer');
     }
-    if(WorldInfo.NetMode == NM_ListenServer)
+    AdjustCanDisintigrate();
+}
+
+simulated function SpawnFlightEffects()
+{
+    super.SpawnFlightEffects();
+    if(WorldInfo.Role == ROLE_Authority)
     {
         EnableGrenadeWarning();
     }
-    AdjustCanDisintigrate();
 }
 
 simulated function EnableGrenadeWarning()
 {
     local PlayerController LocalPC;
 
-    if(bNetOwner || GetTeamNum() != 0)
+    if((ProjEffects == none) || GetTeamNum() != 0)
     {
         return;
     }

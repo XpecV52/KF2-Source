@@ -197,6 +197,8 @@ ItemName="Bullpup SA80 L85A2"
 ItemCategory="Fucile d'assalto"
 ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico.\n•Usa il fuoco alternativo per cambiare modalità.\n•Il SA80 era l'arma standard dell'Esercito britannico prima che l'esercito fosse, beh, mangiato."
 
+
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Coltello multiuso"
 ItemCategory="Mischia"
@@ -267,6 +269,8 @@ ItemName="Fucile da guerra M4"
 ItemCategory="Fucile"
 ItemDescription="•Solo semiautomatica.\n•Benelli ha progettato il fucile da combattimento M4 per l'esercito statunitense. È semiautomatico, con una buona e costante frequenza di fuoco."
 
+
+
 [KFWeap_Knife_Berserker]
 ItemName="Lama tosaerba"
 ItemCategory="Mischia"
@@ -314,6 +318,11 @@ ItemCategory="Mischia"
 ItemDescription="•Primario - danno medio/pesanti, con controllo folla.\n•Secondario- più lento ma più dannoso.\n•Alt - blocca/para\n•Infligge più danno se ti muovi in avanti."
 SharedUnlockSource="Chivalry Medieval Warfare" "
 
+[KFWeap_Blunt_MaceAndShield]
+ItemName="Spezzaossa"
+ItemCategory="Mischia"
+ItemDescription="•Primario - attacco veloce contundente, tieni premuto Primario per le combo.\n•Secondario - violento attacco contundente che richiede uso maggiore di Scudo.\n•Alt - blocca/para. Il Blocco riduce il danno dei proiettili Zed.\n• Ha un potente attacco Colpo di Scudo."
+
 [KFWeap_Flame_CaulkBurn]
 ItemName="Inceneritore"
 ItemCategory="Fiamme"
@@ -353,6 +362,8 @@ ItemDescription="•Lancia una granata.\n•Le granate esplodono all’impatto.\
 ItemName="RPG-7"
 ItemCategory="Esplosivi"
 ItemDescription="•Lancia un razzo.\n•I razzi esplodono all’impatto.\n•Si arma lungo la traiettoria, così non ti farai esplodere la faccia.\n•E attento al ritorno di fiamma!"
+
+
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="Doppia pistola 9mm"
@@ -403,6 +414,8 @@ ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il meto
 ItemName="Winchester 1894"
 ItemCategory="Fucile da caccia"
 ItemDescription="•Spara un colpo alla volta.\n•Il classico modello di fucile Winchester 1894 a leva."
+
+
 
 [KFWeap_Bow_Crossbow]
 ItemName="Balestra"

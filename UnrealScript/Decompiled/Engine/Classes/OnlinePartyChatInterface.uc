@@ -26,6 +26,12 @@ function AddPartyMemberListChangedDelegate(byte LocalUserNum, delegate<OnPartyMe
 
 function ClearPartyMemberListChangedDelegate(byte LocalUserNum, delegate<OnPartyMemberListChanged> PartyMemberListChangedDelegate);
 
+delegate OnReservedPartyMemberListChanged(bool bJoinedOrLeft, string PlayerName, UniqueNetId PlayerID);
+
+function AddReservedPartyMemberListChangedDelegate(byte LocalUserNum, delegate<OnReservedPartyMemberListChanged> ReservedPartyMemberListChangedDelegate);
+
+function ClearReservedPartyMemberListChangedDelegate(byte LocalUserNum, delegate<OnReservedPartyMemberListChanged> ReservedPartyMemberListChangedDelegate);
+
 delegate OnPartyMembersInfoChanged(string PlayerName, UniqueNetId PlayerID, int CustomData1, int CustomData2, int CustomData3, int CustomData4);
 
 function AddPartyMembersInfoChangedDelegate(byte LocalUserNum, delegate<OnPartyMembersInfoChanged> PartyMembersInfoChangedDelegate);

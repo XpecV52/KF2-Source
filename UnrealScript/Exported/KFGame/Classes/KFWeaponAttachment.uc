@@ -105,6 +105,8 @@ enum EWeaponState
 	WEP_ReloadSingleEmpty_Elite,
 	WEP_ReloadSecondary,
 	WEP_ReloadSecondary_Elite,
+	WEP_ReloadDualsOneEmpty,
+	WEP_ReloadDualsOneEmpty_Elite,
 	WEP_MeleeBasic,
 	WEP_MeleeChain,		// @deprecated
 	WEP_MeleeSustained,
@@ -135,6 +137,9 @@ enum EWeaponState
 	WEP_Custom8,
 	WEP_Custom9,
 };
+
+/** Animation rate to scale all of our 3rd person animations by */
+var protected transient float ThirdPersonAnimRate;
 
 /** Animation Physics Recoil */
 var GameSkelCtrl_Recoil.RecoilDef	Recoil_Hand;
@@ -188,14 +193,18 @@ const CH_EquipAnim		= 'Equip_CH';
 const CH_PutAwayAnim	= 'PutAway_CH';
 
 /** Reload (magazine) anims */
-const ReloadEmptyAnim		= 'Reload_Empty';
-const ReloadHalfAnim		= 'Reload_Half';
-const ReloadEmptyEliteAnim	= 'Reload_Empty_Elite';
-const ReloadHalfEliteAnim	= 'Reload_Half_Elite';
-const CH_ReloadEmptyAnim	  = 'Reload_Empty_CH';
-const CH_ReloadHalfAnim		  = 'Reload_Half_CH';
-const CH_ReloadEmptyEliteAnim = 'Reload_Empty_Elite_CH';
-const CH_ReloadHalfEliteAnim  = 'Reload_Half_Elite_CH';
+const ReloadEmptyAnim			= 'Reload_Empty';
+const ReloadHalfAnim			= 'Reload_Half';
+const ReloadEmptyEliteAnim		= 'Reload_Empty_Elite';
+const ReloadHalfEliteAnim		= 'Reload_Half_Elite';
+const ReloadDualsOneEmptyAnim 	= 'Reload_Empty_Half';
+const ReloadDualsOneEmptyEliteAnim 	= 'Reload_Empty_Half_Elite';
+const CH_ReloadEmptyAnim	  		= 'Reload_Empty_CH';
+const CH_ReloadHalfAnim		  		= 'Reload_Half_CH';
+const CH_ReloadEmptyEliteAnim 		= 'Reload_Empty_Elite_CH';
+const CH_ReloadHalfEliteAnim  		= 'Reload_Half_Elite_CH';
+const CH_ReloadDualsOneEmptyAnim 		= 'Reload_Empty_Half_CH';
+const CH_ReloadDualsOneEmptyEliteAnim 	= 'Reload_Empty_Half_Elite_CH';
 /** Reload (single) anims */
 const ReloadOpenAnim			= 'Reload_Open';
 const ReloadInsertAnim			= 'Reload_Insert';
@@ -276,7 +285,7 @@ var transient bool bIsReloading;
 ********************************************************************************************* */
 
 /** Weapon Mesh Attachment */
-native function ChangeVisibility(bool bIsVisible);
+native event ChangeVisibility(bool bIsVisible);
 
 event PreBeginPlay()
 {
@@ -331,7 +340,7 @@ simulated function AttachTo(KFPawn P)
 	// Animation
 	if ( CharacterAnimSet != None )
 	{
-		WeaponAnimSetIdx = P.CharacterArch.AnimSets.Length;
+		WeaponAnimSetIdx = P.CharacterArch.GetWeaponAnimSetIdx();
 		P.Mesh.AnimSets[WeaponAnimSetIdx] = CharacterAnimSet;
 		// update animations will reload all AnimSeqs with the new AnimSet
 		P.Mesh.UpdateAnimations();
@@ -442,7 +451,7 @@ simulated function StopFirstPersonFireEffects(Weapon W)	// Should be subclassed
  * if the local client is in a 3rd person mode.
  * @return TRUE if the effect culling check passes
 */
-simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
+simulated function bool ThirdPersonFireEffects( vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte )
 {
 	local EAnimSlotStance AnimType;
 
@@ -453,6 +462,8 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
 	{
 		return false;
 	}
+
+	DecodeThirdPersonAnimRate( ThirdPersonAnimRateByte );
 
 	// Weapon shoot anims
 	if( !bWeapMeshIsPawnMesh )
@@ -493,13 +504,17 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
 /** Plays fire animation on weapon mesh */
 simulated function PlayWeaponFireAnim()
 {
+	local float Duration;
+
 	if ( Instigator.bIsWalking )
 	{
-		WeapMesh.PlayAnim(WeaponIronFireAnim,,, true);
+		Duration = WeapMesh.GetAnimLength( WeaponIronFireAnim );
+		WeapMesh.PlayAnim( WeaponIronFireAnim, Duration / ThirdPersonAnimRate,, true );
 	}
 	else 
 	{
-		WeapMesh.PlayAnim(WeaponFireAnim,,, true);
+		Duration = WeapMesh.GetAnimLength( WeaponFireAnim );
+		WeapMesh.PlayAnim( WeaponFireAnim, Duration / ThirdPersonAnimRate,, true );
 	}
 }
 
@@ -508,15 +523,15 @@ simulated function PlayPawnFireAnim( KFPawn P, EAnimSlotStance AnimType )
 {
 	if ( P.bIsCrouched )
 	{
-		P.PlayBodyAnim(CrouchShootAnim, AnimType, 1.f, ShootBlendInTime, ShootBlendOutTime);
+		P.PlayBodyAnim(CrouchShootAnim, AnimType, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);
 	}
 	else if ( P.bIsWalking )
 	{
-		P.PlayBodyAnim(IronShootAnim, AnimType, 1.f, ShootBlendInTime, ShootBlendOutTime);
+		P.PlayBodyAnim(IronShootAnim, AnimType, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);
 	}
 	else
 	{
-		P.PlayBodyAnim(ShootAnim, AnimType, 1.f, ShootBlendInTime, ShootBlendOutTime);
+		P.PlayBodyAnim(ShootAnim, AnimType, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);
 	}
 }
 
@@ -658,7 +673,7 @@ simulated function float PlayCharacterMeshAnim(KFPawn P, name AnimName, optional
 	}
 
 	Stance = (!P.bIsCrouched) ? EAS_UpperBody : EAS_CH_UpperBody;
-	Duration = P.PlayBodyAnim(AnimName, Stance, 1.f, DefaultBlendInTime, DefaultBlendOutTime, bLooping);
+	Duration = P.PlayBodyAnim(AnimName, Stance, ThirdPersonAnimRate, DefaultBlendInTime, DefaultBlendOutTime, bLooping);
 
 	if ( Duration > 0 && bPlaySynchedWeaponAnim )
 	{
@@ -670,11 +685,19 @@ simulated function float PlayCharacterMeshAnim(KFPawn P, name AnimName, optional
 	return Duration;
 }
 
+function DecodeThirdPersonAnimRate( byte ThirdPersonAnimRateByte )
+{
+	ThirdPersonAnimRate = 1.f + ByteToFloat( ThirdPersonAnimRateByte );
+}
+
 /** Called from the pawn when our first person weapon changes states */
-simulated function UpdateThirdPersonWeaponAction(EWeaponState NewWeaponState, KFPawn P)
+simulated function UpdateThirdPersonWeaponAction(EWeaponState NewWeaponState, KFPawn P, byte ThirdPersonAnimRateByte )
 {
 	ClearTimer(nameof(LoopWeaponMeleeAnim));
 	bIsReloading = false;
+
+	// We need our anim rate scale before doing anything
+	DecodeThirdPersonAnimRate( ThirdPersonAnimRateByte );
 
 	if ( OnWeaponStateChanged != None )
 	{
@@ -730,6 +753,8 @@ simulated function UpdateThirdPersonWeaponAction(EWeaponState NewWeaponState, KF
 	case WEP_ReloadEmpty_Elite:
 	case WEP_ReloadSecondary:
 	case WEP_ReloadSecondary_Elite:
+	case WEP_ReloadDualsOneEmpty:
+	case WEP_ReloadDualsOneEmpty_Elite:
 		bIsReloading = true;
 		PlayReloadMagazineAnim(NewWeaponState, P);
 		break;
@@ -838,7 +863,7 @@ simulated function LoopWeaponMeleeAnim()
 	P = KFPawn(Owner);
 	if ( P != None && !P.IsDoingSpecialMove() )
 	{
-		UpdateThirdPersonWeaponAction(WEP_MeleeChain, P);
+		UpdateThirdPersonWeaponAction( WEP_MeleeChain, P, P.GetWeaponAttachmentAnimRateByte() );
 	}
 }
 
@@ -881,11 +906,17 @@ simulated function PlayReloadMagazineAnim(EWeaponState NewWeaponState, KFPawn P)
 	case WEP_ReloadEmpty:
 		AnimName = (!P.bIsCrouched) ? ReloadEmptyAnim : CH_ReloadEmptyAnim;
 		break;
+	case WEP_ReloadDualsOneEmpty:
+		AnimName = (!P.bIsCrouched) ? ReloadDualsOneEmptyAnim : CH_ReloadDualsOneEmptyAnim;
+		break;
 	case WEP_Reload_Elite:
 		AnimName = (!P.bIsCrouched) ? ReloadHalfEliteAnim : CH_ReloadHalfEliteAnim;
 		break;
 	case WEP_ReloadEmpty_Elite:
 		AnimName = (!P.bIsCrouched) ? ReloadEmptyEliteAnim : CH_ReloadEmptyEliteAnim;
+		break;
+	case WEP_ReloadDualsOneEmpty_Elite:
+		AnimName = (!P.bIsCrouched) ? ReloadDualsOneEmptyEliteAnim : CH_ReloadDualsOneEmptyEliteAnim;
 		break;
 	}
 
@@ -956,10 +987,13 @@ simulated function PlayWeldAnim(KFPawn P)
 
 simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool bLoop)
 {
+	local float Duration;
+
 	// Weapon shoot anims
 	if( !bWeapMeshIsPawnMesh )
 	{
-		WeapMesh.PlayAnim(AnimName, 0.f, bLoop);
+		Duration = WeapMesh.GetAnimLength(AnimName);
+		WeapMesh.PlayAnim(AnimName, Duration / ThirdPersonAnimRate, bLoop);
 
 		// syncronize this with the character anim
 		if ( SyncNode != None )
@@ -1117,23 +1151,24 @@ simulated State LoopingWeaponAction
 	}
 
 	/** Stop looping state and play outro anim */
-	simulated function UpdateThirdPersonWeaponAction(EWeaponState NewWeaponState, KFPawn P)
+	simulated function UpdateThirdPersonWeaponAction( EWeaponState NewWeaponState, KFPawn P, byte ThirdPersonAnimRateByte )
 	{
 		GotoState('');
 
-		if ( LoopOutroAnim != '' )
+		if( LoopOutroAnim != '' )
 		{
+			DecodeThirdPersonAnimRate( ThirdPersonAnimRateByte );
 			PlayCharacterMeshAnim(P, LoopOutroAnim, bLoopSynchedWeaponAnim);
 		}
 
-		Global.UpdateThirdPersonWeaponAction(NewWeaponState, P);
+		Global.UpdateThirdPersonWeaponAction( NewWeaponState, P, ThirdPersonAnimRateByte );
 	}
 
 	/** Stop looping state */
-	simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
+	simulated function bool ThirdPersonFireEffects( vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte )
 	{
 		GotoState('');
-		return Global.ThirdPersonFireEffects(HitLocation, P);
+		return Global.ThirdPersonFireEffects( HitLocation, P, ThirdPersonAnimRateByte );
 	}
 
 	/** Stop looping state */

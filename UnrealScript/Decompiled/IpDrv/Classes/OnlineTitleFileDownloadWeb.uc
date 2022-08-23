@@ -14,26 +14,27 @@ var private array<TitleFileWeb> TitleFiles;
 // Export UOnlineTitleFileDownloadWeb::execUncompressTitleFileContents(FFrame&, void* const)
 native function bool UncompressTitleFileContents(OnlineTitleFileDownloadBase.EMcpFileCompressionType FileCompressionType, const out array<byte> CompressedFileContents, out array<byte> UncompressedFileContents);
 
-function bool ReadTitleFile(string FileToRead)
+function bool ReadTitleFile(string FileToRead, optional Engine.OnlineSubsystem.EOnlineFileType FileType)
 {
     local int FileIndex, Idx;
     local string URL;
 
+    FileType = 1;
     FileIndex = -1;
     Idx = 0;
-    J0x1A:
+    J0x20:
 
     if(Idx < TitleFiles.Length)
     {
         if(InStr(TitleFiles[Idx].Filename, FileToRead, true, false) != -1)
         {
             FileIndex = Idx;
-            goto J0x94;
+            goto J0x9A;
         }
         ++ Idx;
-        goto J0x1A;
+        goto J0x20;
     }
-    J0x94:
+    J0x9A:
 
     if(FileIndex == -1)
     {
@@ -165,7 +166,7 @@ native function bool ClearDownloadedFiles();
 // Export UOnlineTitleFileDownloadWeb::execClearDownloadedFile(FFrame&, void* const)
 native function bool ClearDownloadedFile(string Filename);
 
-function RequestTitleFileList()
+function bool RequestTitleFileList()
 {
     local HttpRequestInterface HTTPRequest;
     local string URL;
@@ -183,20 +184,22 @@ function RequestTitleFileList()
     {
         LogInternal(((((("(" $ string(Name)) $ ") OnlineTitleFileDownloadWeb::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "HTTPRequest object missing");
     }
+    return true;
 }
 
 function OnFileListReceived(HttpRequestInterface Request, HttpResponseInterface Response, bool bDidSucceed)
 {
     local int Index;
     local delegate<OnRequestTitleFileListComplete> RequestTitleFileListDelegate;
-    local string ResponseStr;
+    local array<string> ResponseStr;
     local bool bSuccess;
 
+    ResponseStr.Length = 0;
     if(bDidSucceed)
     {
         if((Response != none) && Response.GetResponseCode() == 200)
         {
-            ResponseStr = Response.GetContentAsString();
+            ResponseStr.AddItem(Response.GetContentAsString();
             bSuccess = true;            
         }
         else
@@ -209,7 +212,7 @@ function OnFileListReceived(HttpRequestInterface Request, HttpResponseInterface 
         LogInternal(((((("(" $ string(Name)) $ ") OnlineTitleFileDownloadWeb::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "Download of file list failed.");
     }
     Index = 0;
-    J0x1D5:
+    J0x1E4:
 
     if(Index < RequestTitleFileListCompleteDelegates.Length)
     {
@@ -219,7 +222,7 @@ function OnFileListReceived(HttpRequestInterface Request, HttpResponseInterface 
             OnRequestTitleFileListComplete(bSuccess, ResponseStr);
         }
         ++ Index;
-        goto J0x1D5;
+        goto J0x1E4;
     }
 }
 

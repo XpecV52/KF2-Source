@@ -1107,6 +1107,10 @@ event bool PlayParticleEffect(const AnimNotify_PlayParticleEffect AnimNotifyData
         PSC.SetLightingChannels(LightingChannels);
         PSC.SetActorParameter(AnimNotifyData.BoneSocketModuleActorName, Owner);
     }
+    if((PSC != none) && Owner != none)
+    {
+        Owner.OnAnimNotifyParticleSystemSpawned(AnimNotifyData, PSC);
+    }
     return true;
 }
 

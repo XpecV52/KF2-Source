@@ -21,7 +21,10 @@ enum EDecompressionType
 	DTYPE_Native,
 	DTYPE_RealTime,
 	DTYPE_Procedural,
-	DTYPE_Xenon
+	DTYPE_Xenon,
+//@HSL_BEGIN_XBOX
+	DTYPE_Dingo
+//@HSL_END_XBOX
 };
 
 /** Platform agnostic compression quality. 1..100 with 1 being best compression and 100 being best quality */
@@ -75,6 +78,10 @@ var			   const int								RawPCMDataSize;
 var		native const	UntypedBulkData_Mirror			CompressedPCData{FByteBulkData};
 /** Cached cooked Xbox 360 data to speed up iteration times. */
 var		native const	UntypedBulkData_Mirror			CompressedXbox360Data{FByteBulkData};
+//@HSL_BEGIN_XBOX
+/** Cached cooked Dingo data to speed up iteration times. */
+var		native const	UntypedBulkData_Mirror			CompressedDingoData{FByteBulkData};
+//@HSL_END_XBOX
 /** Cached cooked PS3 data to speed up iteration times. */
 var		native const	UntypedBulkData_Mirror			CompressedPS3Data{FByteBulkData};
 /** Cached cooked WiiU data to speed up iteration times. */

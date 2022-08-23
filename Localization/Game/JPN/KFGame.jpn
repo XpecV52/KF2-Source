@@ -708,6 +708,7 @@ BackString="戻る"
 NoneString="なし"
 WeaponsString="武器"
 WeaponsInfoString="カスタマイズ"
+EmotesString="顔文字"
 
 [KFGFxMenu_Inventory]
 NoItemsString="現在選択しているフィルター内にはインベントリアイテムがありません。"
@@ -723,6 +724,7 @@ UnequipString="外す"
 AllString="すべて"
 WeaponSkinString="武器スキン"
 CosmeticString="服飾"
+EmotesString="顔文字"
 CraftingMatsString="作成中"
 ItemString="アイテム"
 FiltersString="フィルター"
@@ -749,7 +751,7 @@ CraftRequirementString="必要な作成素材が不足しています"
 CraftCosmeticDescriptionString="このメニューで、服飾素材から新たな服飾アイテムを作成できます。すでに持っている服飾アイテムをリサイクルすることで、服飾素材を獲得できます。リサイクルするには、アイテムを選択して「リサイクル」を押してください。"
 CraftWeaponDescriptionString="このメニューで、武器スキン素材から新たな武器スキンアイテムを作成できます。すでに持っている武器スキンアイテムをリサイクルすることで、武器スキン素材を獲得できます。リサイクルするには、アイテムを選択して「リサイクル」を押してください。"
 RequiresString="必要： "
-PurchaseKeyString="鍵を購入： "
+PurchaseKeyString="鍵を購入"
 LookUpOnMarketString="市場を調べる"
 
 [KFGFxPerksContainer]
@@ -796,6 +798,7 @@ WeaponSkinsRotationString="武器スキン"
 WeaponSkinsString="市場の武器スキン"
 MarketConsumablesString="市場の木箱/USB"
 MarketCosmeticsString="市場の服飾"
+MarketEmotesString="マーケット顔文字"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="市場で探す"
@@ -890,6 +893,7 @@ VoiceCommsOptionStrings[4]="ついて来い"
 VoiceCommsOptionStrings[5]="トレーダーに行く"
 VoiceCommsOptionStrings[6]="了解"
 VoiceCommsOptionStrings[7]="却下"
+VoiceCommsOptionStrings[8]="顔文字"
 
 [KFGFxMenu_Exit]
 HeaderString="ゲームを閉じる"
@@ -1182,6 +1186,7 @@ GBA_VoiceCommFollowMe="ついて来い"
 GBA_VoiceCommGetToTheTrader="トレーダーに行く"
 GBA_VoiceCommAffirmative="了解"
 GBA_VoiceCommNegative="却下"
+GBA_VoiceCommEmote="顔文字"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="感度"
@@ -1745,7 +1750,7 @@ EXPAction2="チームメイトを回復する"
 [KFPerk_Firebug]
 PerkName="ファイアバグ"
 EXPAction1="ファイアバグ武器でダメージを与える"
-EXPAction2="ファイアバグ武器でクローラーをキルする"
+EXPAction2="クローラーとブロートをファイアバグ武器でキルする"
 
 SkillCatagories[0]="物資"
 SkillCatagories[1]="スパイシー"
@@ -1810,7 +1815,7 @@ ShootnMove="安定"
 ShootnMoveDescription="アイアンサイトの速度ペナルティを無視し、Perk武器での視界揺れが大きく減少する。"
 
 QuickSwitch="クイックドロー"
-QuickSwitchDescription="腰から発射した際の反動ペナルティを無視し、移動速度が5%増加し、Perk武器の切り替え速度が50%増加する。"
+QuickSwitchDescription="腰から発射した際の反動ペナルティが減少し、移動速度が5%増加し、Perk武器の切り替え速度が50%増加する。"
 
 RhythmMethod="溜めろ"
 RhythmMethodDescription="Perk武器による連続ヘッドショットで、ダメージが10%増加する(最大50%まで)。"
@@ -2113,6 +2118,7 @@ RandomLoadingStrings[37]="レールガンは、うまく直線状に捉えられ
 RandomLoadingStrings[38]="マイクロ波銃は、フレッシュパウンドやサイレン等の、多くのメタルを運ぶzedに対してより多くのダメージを与える。"
 RandomLoadingStrings[39]="武器のオルトファイアモードを試してみよう。すべての武器にあるわけではないが、ピンチの時に役立つかも知れない。"
 RandomLoadingStrings[40]="キル数に加えてアシスト数でもXPとdoshを獲得できる。仲間のためにキルをお膳立てしても気を落とさないように。"
+RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
 
 [WhatsNewMessages]
 Jaegorhorn="コミュニティをフォローしてJägerhornをロック解除"
@@ -2139,6 +2145,7 @@ USBSWATKey="スワットUSBの鍵―$2.49"
 USBTacticalHorzineKey="タクティカルホージンUSBの鍵―$2.49"
 USBVictorianKey="ヴィクトリア朝USBの鍵―$2.49"
 USBZedKillerKey="zedキラーUSBの鍵―$2.49"
+USBBoneCrusher="ボーンクラッシャーUSBの鍵 - $2.49"
 BullseyeUpdate="最新コンテンツ―大当たりアップデート"
 LatestUpdate="最新コンテンツアップデート"
 Forums="コミュニティフォーラムにお越しください"
@@ -2159,6 +2166,7 @@ PS4WeaponSkinCrate1="ホージン物資武器スキン箱 | シリーズ#1"
 PS4WeaponSkinCrate2="ホージン物資武器スキン箱 | シリーズ#2"
 Artbook="Killing Floor 2 デジタルアートブック"
 Uncovered="Killing Floor: 公開ライブアクションフィルムを見る"
+NewEmotes="New!エモーション箱の鍵 - $2.49"
 
 [Zeds]
 KFPawn_ZedBloat="ブロート"
@@ -2166,6 +2174,7 @@ KFPawn_ZedClot="クロト"
 KFPawn_ZedCrawler="クローラー"
 KFPawn_ZedFleshPound="フレッシュパウンド"
 KFPawn_ZedGorefast="ゴアファスト"
+KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="ドクター ハンス・ヴォルター"
 KFPawn_ZedHusk="ハスク"
 KFPawn_ZedStalker="ストーカー"
@@ -2365,7 +2374,6 @@ DisplayName_DEU="Katakomben"
 DisplayName_ESL="Catacumbas"
 DisplayName_ESN="Catacumbas"
 DisplayName_FRA="Catacombes"
-DisplayName_FRC="Catacombes"
 DisplayName_INT="Catacombs"
 DisplayName_ITA="Catacombe"
 DisplayName_JPN="Catacombs"
@@ -2486,6 +2494,22 @@ DisplayName_POL="Piekielna domena"
 DisplayName_PTB="Reino Infernal"
 DisplayName_RUS="Царство ада"
 
+[KF-ZedLanding KFMapSummary]
+DisplayName_CHN="丧尸登陆"
+DisplayName_CHT="僵屍群登陸"
+DisplayName_DEU="ZED-Landung"
+DisplayName_ESL="Aterrizaje ZED"
+DisplayName_ESN="Aterrizaje ZED"
+DisplayName_FRA="Île des Zeds"
+DisplayName_FRC="Île des Zeds"
+DisplayName_INT="Zed Landing"
+DisplayName_ITA="Atterraggio ZED"
+DisplayName_JPN="zed Landing"
+DisplayName_KOR="제드 상륙"
+DisplayName_POL="Lądowanie zetów"
+DisplayName_PTB="Pouso Forçado ZED"
+DisplayName_RUS="Высадка среди мутантов"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2524,6 +2548,9 @@ DisplayName="Hostile Grounds"
 
 [KF-InfernalRealm KFMapSummary]
 DisplayName="Infernal Realm"
+
+[KF-ZedLanding KFMapSummary]
+DisplayName="zed Landing"
 
 
 [KFMapInfo]

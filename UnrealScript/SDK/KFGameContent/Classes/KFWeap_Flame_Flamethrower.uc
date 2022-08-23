@@ -299,7 +299,7 @@ defaultproperties
  	// AI Warning
  	bWarnAIWhenFiring=true
 
-   	AssociatedPerkClass=class'KFPerk_Firebug'
+   	AssociatedPerkClasses(0)=class'KFPerk_Firebug'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
 }

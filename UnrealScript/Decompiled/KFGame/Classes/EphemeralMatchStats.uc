@@ -648,26 +648,38 @@ static function SendMapOptionsAndOpenAARMenu()
     local KFPlayerReplicationInfo KFPRI;
     local KFGameInfo KFGI;
     local int I;
+    local KFGameReplicationInfo KFGRI;
 
     WI = Class'WorldInfo'.static.GetWorldInfo();
     KFGI = KFGameInfo(WI.Game);
+    KFGRI = KFGameReplicationInfo(WI.GRI);
     foreach WI.AllControllers(Class'KFPlayerController', KFPC)
     {
-        KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
-        I = 0;
-        J0xCA:
-
-        if(I < KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Length)
+        if(WI.NetMode == NM_Standalone)
         {
-            if(KFPRI != none)
+            if((KFGRI != none) && KFGRI.VoteCollector != none)
             {
-                if(KFGI.IsMapAllowedInCycle(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[I]))
+                Class'KFGFxMenu_StartGame'.static.GetMapList(KFGRI.VoteCollector.MapList);
+            }            
+        }
+        else
+        {
+            KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+            I = 0;
+            J0x1AE:
+
+            if(I < KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Length)
+            {
+                if(KFPRI != none)
                 {
-                    KFPRI.RecieveAARMapOption(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[I]);
+                    if(KFGI.IsMapAllowedInCycle(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[I]))
+                    {
+                        KFPRI.RecieveAARMapOption(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[I]);
+                    }
                 }
+                ++ I;
+                goto J0x1AE;
             }
-            ++ I;
-            goto J0xCA;
         }
         KFPC.ClientShowPostGameMenu();        
     }    

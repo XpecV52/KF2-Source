@@ -541,7 +541,7 @@ DefaultProperties
 
 	IncapSettings(AF_Snare)=	(Vulnerability=(0.7, 0.7, 1.0, 0.7),      Cooldown=8.5,  Duration=1.5)
 
-
+	
 	//defaults
 	ThirdPersonViewOffset={(
 		OffsetHigh=(X=-200,Y=90,Z=45),

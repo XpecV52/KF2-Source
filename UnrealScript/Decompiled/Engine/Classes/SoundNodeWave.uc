@@ -20,6 +20,7 @@ enum EDecompressionType
     DTYPE_RealTime,
     DTYPE_Procedural,
     DTYPE_Xenon,
+    DTYPE_Dingo,
     DTYPE_MAX
 };
 
@@ -65,6 +66,7 @@ var native const Pointer RawPCMData;
 var const int RawPCMDataSize;
 var native const UntypedBulkData_Mirror CompressedPCData;
 var native const UntypedBulkData_Mirror CompressedXbox360Data;
+var native const UntypedBulkData_Mirror CompressedDingoData;
 var native const UntypedBulkData_Mirror CompressedPS3Data;
 var native const UntypedBulkData_Mirror CompressedWiiUData;
 var native const UntypedBulkData_Mirror CompressedIPhoneData;

@@ -12,6 +12,7 @@ class KFGFxHUD_TraderCompass extends GFxObject;
 
 /** Cached KFPlayerController */
 var PlayerController 				MyPC;
+var KFGameReplicationInfo           MyKFGRI;
 //
 var private GfxObject               TraderPing;
 //
@@ -64,7 +65,6 @@ function TickHud(float DeltaTime)
 
 function vector GetCurrentTraderLocation()
 {
-    local KFGameReplicationInfo KFGRI;
     local vector TraderLoc;
 
     if( MyPC == none )
@@ -72,10 +72,13 @@ function vector GetCurrentTraderLocation()
         return Vect(0,0,0);
     }
 
-    KFGRI = KFGameReplicationInfo(MyPC.WorldInfo.GRI);
-    if(KFGRI != none && (KFGRI.OpenedTrader != none || KFGRI.NextTrader != none))
+    if( MyKFGRI == none )
     {
-        TraderLoc = KFGRI.OpenedTrader != none ? KFGRI.OpenedTrader.Location : KFGRI.NextTrader.Location;
+        MyKFGRI = KFGameReplicationInfo( MyPC.WorldInfo.GRI );
+    }
+    if(MyKFGRI != none && (MyKFGRI.OpenedTrader != none || MyKFGRI.NextTrader != none))
+    {
+        TraderLoc = MyKFGRI.OpenedTrader != none ? MyKFGRI.OpenedTrader.Location : MyKFGRI.NextTrader.Location;
     }
 
     return TraderLoc;

@@ -389,6 +389,7 @@ var protected export editinline AkComponent AmbientSoundComponent;
 var transient float ClosestLocalPlayerSqDist;
 /** Array of objects that comprise this destructible object (MAX: 8) */
 var(SubObjects) array<DestructibleSubobject> SubObjects;
+var init private native const array<init Pointer> DamagedSubObjects;
 /** Helper object to display RelativeLocation and RelativeRotation */
 var(SubObjects) editoronly transient Actor PreviewOffsetActor;
 /** Last value from PreviewOffsetActor */

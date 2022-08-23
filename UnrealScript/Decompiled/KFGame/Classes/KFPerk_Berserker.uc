@@ -91,14 +91,14 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
                 MyKFWeapon = KFWeapon(DamageCauser.Owner);
             }
         }
-        if(((MyKFWeapon != none) && IsWeaponOnPerk(MyKFWeapon)) || IsDamageTypeOnPerk(DamageType))
+        if(((MyKFWeapon != none) && IsWeaponOnPerk(MyKFWeapon,, self.Class)) || IsDamageTypeOnPerk(DamageType))
         {
             TempDamage += (float(InDamage) * (GetPassiveValue(BerserkerDamage, CurrentLevel)));
             if(IsSpeedActive())
             {
                 TempDamage += (float(InDamage) * GetSpeedDamageModifier());
             }
-            if(IsParryActive())
+            if(GetParryActive())
             {
                 TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[5])));
             }
@@ -361,7 +361,7 @@ function NotifyZedTimeStarted()
             KFAIC = KFAIController(P.Controller);
             if(KFAIC != none)
             {
-                KFAIC.DoFleeFrom(OwnerPawn, GetRageFleeDuration(), float(GetRageFleeDistance()));
+                KFAIC.DoFleeFrom(OwnerPawn, GetRageFleeDuration(), float(GetRageFleeDistance()),, true);
                 bScaredAI = true;
                 continue;
             }
@@ -394,7 +394,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     local name StateName;
 
     StateName = W.GetStateName();
-    if((IsWeaponOnPerk(W)) && ZedTimeModifyingStates.Find(StateName != -1)
+    if((IsWeaponOnPerk(W,, self.Class)) && ZedTimeModifyingStates.Find(StateName != -1)
     {
         if(CouldSpartanBeActive())
         {

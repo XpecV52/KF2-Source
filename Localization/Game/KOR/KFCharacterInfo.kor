@@ -27,7 +27,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -149,7 +149,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -218,7 +218,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -286,7 +286,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -459,7 +459,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -514,7 +514,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -1349,15 +1349,18 @@ AttachmentSkin0="블러디"
 Attachment="리퍼 레이븐 아이즈"
 AttachmentSkin0="레드 밴드"
 AttachmentSkin1="화이트 밴드"
+AttachmentSkin2="프레셔스"
 
 [Cosmetic_ReaperRavenHat_ARCH]
 Attachment="리퍼 레이븐 모자"
 AttachmentSkin0="화이트"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_ReaperRavenJaw_ARCH]
 Attachment="리퍼 레이븐 턱"
 AttachmentSkin0="레드 밴드"
 AttachmentSkin1="화이트 밴드"
+AttachmentSkin2="프레셔스"
 
 [Cosmetic_ReaperDeadEyes_ARCH]
 Attachment="리퍼 데드 아이즈"
@@ -1383,7 +1386,7 @@ AttachmentSkin1="엘리트 그린"
 AttachmentSkin2="엘리트 레드"
 AttachmentSkin3="엘리트 화이트"
 AttachmentSkin4="마크 7"
-AttachmentSkin5="스노우 디지캠"
+AttachmentSkin5="스노우 디지털 위장"
 AttachmentSkin6="데저트"
 AttachmentSkin7="멀티캠"
 AttachmentSkin8="해저드"
@@ -1429,7 +1432,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -1478,7 +1481,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -1539,7 +1542,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -1602,7 +1605,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -1643,7 +1646,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -1689,7 +1692,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -1863,7 +1866,7 @@ BodySkin1="엘리트 그린"
 BodySkin2="엘리트 레드"
 BodySkin3="엘리트 화이트"
 BodySkin4="마크 7"
-BodySkin5="스노우 디지캠"
+BodySkin5="스노우 디지털 위장"
 BodySkin6="데저트"
 BodySkin7="멀티캠"
 BodySkin8="해저드"
@@ -2139,6 +2142,7 @@ AttachmentSkin1="블랙"
 Attachment="스팀펑크 가스 마스크 닫힘"
 AttachmentSkin0="브라운"
 AttachmentSkin1="블랙"
+AttachmentSkin2="프레셔스"
 
 [Cosmetic_SteampunkGasMaskFiltered_ARCH]
 Attachment="스팀펑크 가스 마스크 필터"
@@ -2178,6 +2182,7 @@ AttachmentSkin5="라이트 그린"
 AttachmentSkin6="라이트 레드"
 AttachmentSkin7="탠"
 AttachmentSkin8="화이트"
+AttachmentSkin9="프레셔스"
 
 [Cosmetic_RebelHelmetGogglesUp_ARCH]
 Attachment="반란군 헬멧 고글 업"
@@ -2232,6 +2237,17 @@ AttachmentSkin2="그린"
 AttachmentSkin3="올리브"
 AttachmentSkin4="레드"
 AttachmentSkin5="화이트"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_DeepstrikeTacticalBackbag_ARCH]
+Attachment="Deepstrike 전술용 등가방"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="올리브"
+AttachmentSkin4="레드"
+AttachmentSkin5="화이트"
+AttachmentSkin6="프레셔스"
 
 [Cosmetic_RebelMask_ARCH]
 Attachment="반란군 마스크"
@@ -2248,3 +2264,63 @@ AttachmentSkin1="블루"
 AttachmentSkin2="그린"
 AttachmentSkin3="레드"
 AttachmentSkin4="탠"
+
+[LetsGetCrazy] 
+EmoteName="미쳐봅시다."
+
+[ThunderClap]
+EmoteName="부티 댄스"
+
+[UncleCharlie] 
+EmoteName="찰리 삼촌"
+
+[WackyWave]
+EmoteName="별난 파도"
+
+[RainingDosh] 
+EmoteName="비오는 Dosh"
+
+[LionUppercut] 
+EmoteName="사자 어퍼컷"
+
+[MatingRitual] 
+EmoteName="짝짓기 의식"
+
+[KickinIt]
+EmoteName="발차기"
+
+[Fireball] 
+EmoteName="파이어볼"
+
+[Makeitrain]
+EmoteName="비오게 하기"
+
+[Fireball_Deluxe]
+EmoteName="파이어볼+"
+
+[Makeitrain_Deluxe] 
+EmoteName="비오게 하기+"
+
+[ThunderClap_Deluxe] 
+EmoteName="천둥소리+"
+
+[UncleCharlie_Deluxe]
+EmoteName="찰리 삼촌+"
+
+[LetsGetCrazy_Deluxe]
+EmoteName="미쳐봅시다.+"
+
+[WackyWave_Deluxe]
+EmoteName="별난 파도+"
+
+[RainingDosh_Deluxe] 
+EmoteName="비오는 Dosh+"
+
+[LionUppercut_Deluxe]
+EmoteName="사자 어퍼컷+"
+
+[MatingRitual_Deluxe]
+EmoteName="짝짓기 의식+"
+
+[KickinIt_Deluxe]
+EmoteName="발차기+"

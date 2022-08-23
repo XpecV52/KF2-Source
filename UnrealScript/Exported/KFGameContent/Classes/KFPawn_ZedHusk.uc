@@ -25,22 +25,32 @@ struct sHuskFireballSettings
 };
 
 /** Fireball projectile attack */
-var const class<KFProj_Husk_Fireball> FireballClass;
+var protected const class<KFProj_Husk_Fireball> FireballClass;
 
 /** Fireball settings, set per difficulty */
 var transient sHuskFireballSettings FireballSettings;
 
 /** Player-controlled offset for firing fireballs. */
-var vector PlayerFireOffset;
+var protected vector PlayerFireOffset;
 
 /** HitZoneIndex of backpack zone */
 const BackpackZoneIndex = 3;
 
 /** Explosion template for backpack/suicide */
-var KFGameExplosion	ExplosionTemplate;
+var protected KFGameExplosion ExplosionTemplate;
 
 /** Set when husk blows up to make sure it only happens once */
-var transient bool bHasExploded;
+var protected transient bool bHasExploded;
+
+/** Chest light */
+var protected PointLightComponent ChestLightComponent;
+var protected const name ChestLightSocketName;
+var protected const float FireballChargeLightRadius;
+var protected const float AmbientLightRadiusInterpSpeed;
+var protected const float FireballLightRadiusInterpSpeed;
+var protected const float FireballLightMinBrightness;
+var protected const float FireballLightMaxBrightness;
+var protected bool bUseFireballLightRadius;
 
 /** Called from Possessed event when this controller has taken control of a Pawn */
 function PossessedBy( Controller C, bool bVehicleTransition )
@@ -57,6 +67,19 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 		{
 			FireballSettings = class<KFDifficulty_Husk>(DifficultySettings).static.GetFireballSettings( self, KFGRI );
 		}
+	}
+}
+
+/** Initialize our light */
+simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bForce )
+{
+	super.SetCharacterArch( Info, bForce );
+
+	if( WorldInfo.NetMode != NM_DedicatedServer && !ChestLightComponent.bAttached && WorldInfo.GetDetailMode() > DM_Low )
+	{
+		Mesh.AttachComponentToSocket( ChestLightComponent, ChestLightSocketName );
+		ChestLightComponent.SetEnabled( true );
+		KFLightPool(WorldInfo.MyLightPool).RegisterPointLight( ChestLightComponent, LPP_GameplayUsed );
 	}
 }
 
@@ -85,7 +108,7 @@ simulated function ANIMNOTIFY_FlameThrowerOff()
 /** Called from melee special move when it's interrupted */
 function NotifyAnimInterrupt( optional AnimNodeSequence SeqNode )
 {
-	if( MyKFAIC != none && IsImpaired() && !MyKFAIC.GetActiveCommand().IsA('AICommand_HeadlessWander') )
+	if( MyKFAIC != none && (IsImpaired() || IsHeadless()) && !MyKFAIC.GetActiveCommand().IsA('AICommand_HeadlessWander') )
 	{
 		class'AICommand_HeadlessWander'.Static.HeadlessWander( MyKFAIC );
 	}
@@ -95,7 +118,7 @@ function NotifyAnimInterrupt( optional AnimNodeSequence SeqNode )
 * Fireball projectile attack handling
 **********************************************************************************************/
 
-function ANIMNOTIFY_WarnZedsOfFireball()
+simulated function ANIMNOTIFY_WarnZedsOfFireball()
 {
 	local Actor HitActor;
 	local PlayerController PC;
@@ -117,7 +140,7 @@ function ANIMNOTIFY_WarnZedsOfFireball()
 		    FireLocation = GetPawnViewLocation() + (PlayerFireOffset >> GetViewRotation());
 
 		    TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
-		    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + vector(PC.PlayerCamera.CameraCache.POV.Rotation)*100000;
+		    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + vector(PC.PlayerCamera.CameraCache.POV.Rotation)*5000.f;
 
 		    HitActor = Trace( HitLocation, HitNormal, TraceEnd, TraceStart, TRUE,,,TRACEFLAG_Bullet );
 
@@ -149,28 +172,75 @@ function ANIMNOTIFY_WarnZedsOfFireball()
 			}
 		}
 	}
+
+	SetFireLightEnabled( bVersusZed ? false : true );
+}
+
+simulated function SetFireLightEnabled( bool bEnable )
+{
+	if( WorldInfo.NetMode == NM_DedicatedServer || bPlayedDeath || ChestLightComponent == none || !ChestLightComponent.bAttached )
+	{
+		return;
+	}
+
+	bUseFireballLightRadius = bEnable && !WorldInfo.bDropDetail && (WorldInfo.TimeSeconds - ChestLightComponent.LastRenderTime) < 0.25f;
+
+	if( bEnable )
+	{
+		ChestLightComponent.MinBrightness = FireballLightMinBrightness;
+		ChestLightComponent.MaxBrightness = FireballLightMaxBrightness;
+	}
+	else
+	{
+		ChestLightComponent.MinBrightness = default.ChestLightComponent.MinBrightness;
+		ChestLightComponent.MaxBrightness = default.ChestLightComponent.MaxBrightness;
+	}
+}
+
+simulated event Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( WorldInfo.NetMode == NM_DedicatedServer || bPlayedDeath || ChestLightComponent == none || !ChestLightComponent.bAttached )
+	{
+		return;
+	}
+
+	if( bUseFireballLightRadius )
+	{
+		if( ChestLightComponent.Radius < FireballChargeLightRadius )
+		{
+			ChestLightComponent.SetRadius( FInterpConstantTo(ChestLightComponent.Radius, FireballChargeLightRadius, DeltaTime, FireballLightRadiusInterpSpeed) );
+		}
+	}
+	else if( ChestLightComponent.Radius > default.ChestLightComponent.Radius )
+	{
+		ChestLightComponent.SetRadius( FInterpConstantTo(ChestLightComponent.Radius, default.ChestLightComponent.Radius, DeltaTime, AmbientLightRadiusInterpSpeed) );			
+	}
 }
 
 /** AnimNotify which launches the fireball projectile */
-function ANIMNOTIFY_HuskFireballAttack()
+simulated function ANIMNOTIFY_HuskFireballAttack()
 {
 	local KFAIController_ZedHusk HuskAIC;
 	local KFSM_Husk_FireballAttack FireballSM;
 
 	if( MyKFAIC != none )
 	{
-		HuskAIC = KFAIController_ZedHusk(MyKFAIC);
-		if( HuskAIC != none )
-		{
-			HuskAIC.ShootFireball(FireballClass);
-		}
-
 		FireballSM = KFSM_Husk_FireBallAttack( SpecialMoves[SpecialMove] );
 		if( FireballSM != none )
 		{
 			FireballSM.NotifyFireballFired();
 		}
+
+		HuskAIC = KFAIController_ZedHusk(MyKFAIC);
+		if( HuskAIC != none )
+		{
+			HuskAIC.ShootFireball( FireballClass, FireballSM.GetFireOffset() );
+		}
 	}
+
+	SetFireLightEnabled( false );
 }
 
 /** Overridden for updating spray collision */
@@ -199,6 +269,12 @@ simulated function TerminateEffectsOnDeath()
     if( IsDoingSpecialMove(SM_HoseWeaponAttack) )
 	{
 		SpecialMoveHandler.EndSpecialMove();
+	}
+
+ 	if( ChestLightComponent != none && ChestLightComponent.bAttached )
+ 	{
+		ChestLightComponent.DetachFromAny();
+		ChestLightComponent = none;
 	}
 
 	super.TerminateEffectsOnDeath();
@@ -373,6 +449,27 @@ defaultproperties
 {
    FireballClass=Class'kfgamecontent.KFProj_Husk_Fireball'
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHusk:ExploTemplate0'
+   Begin Object Class=PointLightComponent Name=ChestLightComponent0
+      Radius=160.000000
+      Brightness=0.500000
+      LightColor=(B=40,G=155,R=250,A=255)
+      bEnabled=False
+      CastShadows=False
+      LightingChannels=(Outdoor=True)
+      MaxBrightness=0.500000
+      MinBrightness=0.400000
+      AnimationType=1
+      AnimationFrequency=2.000000
+      Name="ChestLightComponent0"
+      ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'
+   End Object
+   ChestLightComponent=ChestLightComponent0
+   ChestLightSocketName="ChestLightSocket"
+   FireballChargeLightRadius=256.000000
+   AmbientLightRadiusInterpSpeed=300.000000
+   FireballLightRadiusInterpSpeed=100.000000
+   FireballLightMinBrightness=1.100000
+   FireballLightMaxBrightness=1.250000
    CharacterMonsterArch=KFCharacterInfo_Monster'zed_husk_arch.ZED_Husk_Archetype'
    ParryResistance=2
    MinSpawnSquadSizeType=EST_Medium
@@ -500,14 +597,6 @@ defaultproperties
       SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
       SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
       SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Husk_Suicide'
-      SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=None
-      SpecialMoveClasses(25)=None
-      SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

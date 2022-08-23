@@ -402,7 +402,7 @@ function OnFindOnlineGamesCompleteDelegate(bool bWasSuccessful)
 	{
 		if ( Search.Results.length > 0 && (!ServerMenu.ApplyFilters || !FilterEntry(Search, ServerMenu.FiltersContainer, Search.Results.length-1)) )
 		{
-			ServerMenu.Manager.TimerHelper.SetTimer( 0.01, false, nameof(UpdateListDataProvider), self );
+			`TimerHelper.SetTimer( 0.01, false, nameof(UpdateListDataProvider), self );
 		}
 		lastServerCount = Search.Results.length;
 	}
@@ -767,7 +767,6 @@ function string BuildJoinURL()
 	}
 	ConnectURL $= OnlineSub.GetLobbyInterface().GetLobbyURLString();
 	//ConnectURL $= BuildJoinFiltersRequestURL();
-
 	return ConnectURL;
 }
 
@@ -875,7 +874,7 @@ function UpdateListDataProvider()
 				if ( NewServerCount > 10 )
 				{
 					// delay
-					ServerMenu.Manager.TimerHelper.SetTimer( 0.01, false, nameof(UpdateListDataProvider), self );
+					`TimerHelper.SetTimer( 0.01, false, nameof(UpdateListDataProvider), self );
 					break;
 				}
 				TempOnlineGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[i].GameSettings);

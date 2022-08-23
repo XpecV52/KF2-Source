@@ -85,6 +85,33 @@ function AddPartyMemberListChangedDelegate(byte LocalUserNum,delegate<OnPartyMem
  */
 function ClearPartyMemberListChangedDelegate(byte LocalUserNum,delegate<OnPartyMemberListChanged> PartyMemberListChangedDelegate);
 
+//@HSL_BEGIN_XBOX
+/**
+ * Called when a reserved player has joined or left your party chat
+ *
+ * @param bJoinedOrLeft true if the reserved player joined, false if they left
+ * @param PlayerName the name of the player that was affected
+ * @param PlayerId the net id of the player that left
+ */
+delegate OnReservedPartyMemberListChanged(bool bJoinedOrLeft,string PlayerName,UniqueNetId PlayerId);
+
+/**
+ * Sets the delegate used to notify the gameplay code that async task has completed
+ *
+ * @param LocalUserNum the user to listening for party chat notifications
+ * @param PartyMemberListChangedDelegate the delegate to use for notifications
+ */
+function AddReservedPartyMemberListChangedDelegate(byte LocalUserNum,delegate<OnReservedPartyMemberListChanged> ReservedPartyMemberListChangedDelegate);
+
+/**
+ * Clears the delegate used to notify the gameplay code that async task has completed
+ *
+ * @param LocalUserNum the user to listening for party chat notifications
+ * @param PartyMemberListChangedDelegate the delegate to use for notifications
+ */
+function ClearReservedPartyMemberListChangedDelegate(byte LocalUserNum,delegate<OnReservedPartyMemberListChanged> ReservedPartyMemberListChangedDelegate);
+//@HSL_END_XBOX
+
 /**
  * Called when a player has joined or left your party chat
  *

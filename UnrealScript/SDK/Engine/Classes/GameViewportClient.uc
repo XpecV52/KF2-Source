@@ -188,6 +188,14 @@ var native const pointer ScaleformInteraction { UGFxInteraction };
 /** DEBUG: If TRUE, the GFx UI will NOT be rendered at runtime.  Note that to REMOVE GFx functionality permanently, you should compile with WITH_GFx set to 0.  This bool is for debugging only. */
 var config bool bDebugNoGFxUI;
 
+//@HSL_BEGIN - BWJ - Dingo controller support
+/** TRUE if input is allowed from multiple controllers */
+var bool bAllowInputFromMultipleControllers;
+
+/** TRUE if we need to pair a new gamepad. If this is set, any controller can take over when there is input */
+var bool bNeedsNewGamepadPairing;
+//@HSL_END
+
 cpptext
 {
 	/** Make sure that the UC mirror struct matches the size of EShowFlags */

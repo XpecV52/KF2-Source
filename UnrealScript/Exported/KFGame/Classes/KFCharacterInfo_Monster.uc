@@ -15,8 +15,11 @@ class KFCharacterInfo_Monster extends KFCharacterInfoBase
 /** Character mesh to use */
 var(ThirdPerson) SkeletalMesh CharacterMesh<DisplayName=Body Mesh>;
 
+/** Material overrides to use */
+var(ThirdPerson) array<MaterialInterface> Skins;
+
+/** Player-controlled material overrides to use */
 var(ThirdPerson) array<MaterialInterface> PlayerControlledSkins;
-var(ThirdPerson) array<MaterialInterface> PlayerControlledGoreSkins;
 
 /** Aggressively optimized mesh for the server with minimal bones */
 var(Server) SkeletalMesh ServerMesh;
@@ -58,6 +61,12 @@ var MaterialInstance BloodSplatterDecalMaterial;
 
 /** Gore mesh with alternate bone weights */
 var(Gore) SkeletalMesh GoreMesh;
+
+/** Materials to override on the gore mesh */
+var(Gore) array<MaterialInterface> GoreSkins;
+
+/** Player-controlled materials to override on the gore mesh */
+var(Gore) array<MaterialInterface> PlayerControlledGoreSkins;
 
 /** The LOD to use as the gore mesh */
 //var(Gore) int GoreMeshLOD;
@@ -137,6 +146,13 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 			for( i=0; i < PlayerControlledSkins.Length; i++ )
 			{
 				KFP.Mesh.SetMaterial(i, PlayerControlledSkins[i]);
+			}
+		}
+		else if( Skins.Length > 0 )
+		{
+			for( i = 0; i < Skins.Length; ++i )
+			{
+				KFP.Mesh.SetMaterial( i, Skins[i] );
 			}
 		}
 	}

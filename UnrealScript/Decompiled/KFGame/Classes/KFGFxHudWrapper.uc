@@ -86,6 +86,10 @@ event DrawHUD()
     local float XL, YL, YPos;
 
     super.DrawHUD();
+    if((KFPlayerOwner != none) && KFPlayerOwner.bCinematicMode)
+    {
+        return;
+    }
     if(bCrosshairOnFriendly)
     {
         bGreenCrosshair = CheckCrosshairOnFriendly();

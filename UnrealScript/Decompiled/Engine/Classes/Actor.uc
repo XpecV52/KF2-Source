@@ -2375,6 +2375,8 @@ native function SpriteComponent GetActorSpriteComponent();
 
 function AdjustRadiusDamage(out float InBaseDamage, float DamageScale, Vector HurtOrigin);
 
+simulated function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC);
+
 // Export UActor::execGetActorTimeSeconds(FFrame&, void* const)
 native final function float GetActorTimeSeconds();
 

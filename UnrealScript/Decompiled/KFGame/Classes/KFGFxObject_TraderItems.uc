@@ -58,7 +58,7 @@ struct native STraderItem
     var name ClassName;
     var name SingleClassName;
     var name DualClassName;
-    var class<KFPerk> AssociatedPerkClass;
+    var array< class<KFPerk> > AssociatedPerkClasses;
     var int MaxSpareAmmo;
     var string SecondaryAmmoImagePath;
     var float GroupPriority;
@@ -72,6 +72,7 @@ struct native STraderItem
     var KFGFxObject_TraderItems.EFilterTypeUI TraderFilter;
     var KFGFxObject_TraderItems.EFilterTypeUI AltTraderFilter;
     var byte InventoryGroup;
+    var int ItemId;
 
     structdefaultproperties
     {
@@ -79,7 +80,7 @@ struct native STraderItem
         ClassName=None
         SingleClassName=None
         DualClassName=None
-        AssociatedPerkClass=none
+        AssociatedPerkClasses=none
         MaxSpareAmmo=0
         SecondaryAmmoImagePath=""
         GroupPriority=0
@@ -92,6 +93,7 @@ struct native STraderItem
         TraderFilter=EFilterTypeUI.FT_Pistol
         AltTraderFilter=EFilterTypeUI.FT_None
         InventoryGroup=0
+        ItemId=-1
     }
 };
 

@@ -371,7 +371,7 @@ static function KFWeapon GetWeaponFromDamageCauser( Actor WeaponActor )
  * @param WeaponActor The used weapon or projectile
  * @return the weapon's or projectile's perk class
  */
-static function class<KFPerk> GetPerkFromDamageCauser( Actor WeaponActor )
+static function class<KFPerk> GetPerkFromDamageCauser( Actor WeaponActor, class<KFPerk> InstigatorPerkClass )
 {
 	local KFWeapon KFW;
 	local KFProjectile KFPrj;
@@ -401,7 +401,7 @@ static function class<KFPerk> GetPerkFromDamageCauser( Actor WeaponActor )
 
 		if( KFW != none ) // avoid accessed none if killed from cheat (killzeds, etc.)
 		{
-			return KFW.default.AssociatedPerkClass;
+			return KFW.static.GetWeaponPerkClass( InstigatorPerkClass );
 		}
 
 	return none;
@@ -429,15 +429,15 @@ static function class<KFPerk> GetPerkFromProjectile( Actor WeaponActor  )
  *
  * @return true/false
  */
-static simulated function bool IsWeaponOnPerk( KFWeapon W, optional class<KFPerk> WeaponPerkClass )
+static simulated function bool IsWeaponOnPerk( KFWeapon W, optional array < class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass )
 {
 	if( W != none )
 	{
-		return W.default.AssociatedPerkClass == default.Class;
+		return W.static.GetWeaponPerkClass( InstigatorPerkClass ) == default.Class;
 	}
-	else if( WeaponPerkClass != none )
+	else if( WeaponPerkClass.length > 0 )
 	{
-		return WeaponPerkClass == default.Class;
+		return WeaponPerkClass.Find(default.Class) != INDEX_NONE;
 	}
 
 	return false;
@@ -771,6 +771,16 @@ simulated event PreBeginPlay()
 	{
 		MyKFGI = KFGameInfo(WorldInfo.Game);
 	}
+
+	if( OwnerPC == none )
+    {
+    	OwnerPC = KFPlayerController(Owner);
+    }
+
+	if( OwnerPC != none )
+	{
+		OwnerPC.SetPerkEffect( false );
+	}
 }
 
 /** On spawn, modify owning pawn based on perk selection */
@@ -852,9 +862,8 @@ function ApplySkillsToPawn()
 		MyPRI.bSplashActive = false;
 		MyPRI.bNukeActive = false;
 		MyPRI.bConcussiveActive = false;
-		MyPRI.bPerkCanSupply = false;
+		MyPRI.PerkSupplyLevel = 0;
 
-		// Apply weight changes, if any, at the end of the function
 		ApplyWeightLimits();
 	}
 }
@@ -1052,11 +1061,11 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx );
 function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy );
 /** Ammunition capacity and mag count increased */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname );
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname );
 /** Update our weapons spare ammo count, *Use WeaponPerkClass for the trader when no weapon actually exists */
 simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false );
 /** Set our weapon's spare ammo to maximum (needed another function besides ModifySpareAmmoAmount because we need to be able to specify maximum somehow) */
-simulated function MaximizeSpareAmmoAmount( class<KFPerk> WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo );
+simulated function MaximizeSpareAmmoAmount( array< Class<KFPerk> > WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo );
 /** Update our weapons Max spare ammo count, *Use WeaponPerkClass for the trader when no weapon actually exists */
 simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false );
 /** Determines if a modified magazine size affects the spare ammo capacity of a weapon */
@@ -1119,6 +1128,7 @@ simulated function bool GetHealingDamageBoostActive(){ return false; }
 simulated function bool GetHealingShieldActive(){ return false; }
 simulated function bool IsSlugActive(){ return false; }
 
+
 /** Firebug functions */
 simulated function bool IsFlarotovActive(){ return false; }
 function ModifyDoTScaler( out float DoTScaler, optional class<KFDamageType> KFDT, optional bool bNapalmInfected );
@@ -1164,6 +1174,7 @@ simulated event float GetCrouchSpeedModifier( KFWeapon KFW ) { return 1.f; }
 simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 0.f; }
 simulated function bool HasHeavyArmor(){ return false; }
 simulated function bool ShouldKnockDownOnBump(){ return false; }
+simulated function int GetArmorDamageAmount( int AbsorbedAmt ) { return AbsorbedAmt; }
 
 
 static function ModifyAssistDosh( out int EarnedDosh )
@@ -1204,31 +1215,7 @@ simulated function KFWeapon GetOwnerWeapon()
 /**
  * @brief Resets certain perk values on wave start/end
  */
-function OnWaveEnded()
-{
-	if( WorldInfo.Role < ROLE_Authority )
-	{
-		return;
-	}
-
-	ClientOnWaveEnded();
-}
-
-/**
- * @brief Client version of OnWaveEnded()
- */
-reliable protected client function ClientOnWaveEnded()
-{
-	if( MyPRI == none && OwnerPawn != none )
-	{
-		MyPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
-	}
-
-	if( MyPRI != none )
-	{
-		MyPRI.ResetSupplierUsed();
-	}
-}
+function OnWaveEnded();
 
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {

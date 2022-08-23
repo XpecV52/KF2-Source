@@ -199,6 +199,23 @@ simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
 	AnimSet =  Mesh.AnimSets[Mesh.AnimSets.Length - 1];
 	AnimIndex = Rand(AnimSet.Sequences.Length);
 	AnimName = AnimSet.Sequences[AnimIndex].SequenceName;
+	
+	BlendInTime = (bNewCharacter) ? 0.f : 0.4;
+
+	// Briefly turn off notify so that PlayCustomAnim won't call OnAnimEnd (e.g. character swap)
+	BodyStanceNodes[EAS_FullBody].SetActorAnimEndNotification( FALSE );
+
+	BodyStanceNodes[EAS_FullBody].PlayCustomAnim(AnimName, 1.f, BlendInTime, 0.4, false, true);
+	BodyStanceNodes[EAS_FullBody].SetActorAnimEndNotification( TRUE );
+}
+
+simulated function PlayEmoteAnimation(optional bool bNewCharacter)
+{
+	local name AnimName;
+	local float BlendInTime;
+
+	AnimName = class'KFEmoteList'.static.GetUnlockedEmote( class'KFEmoteList'.static.GetEquippedEmoteId() );	
+
 	BlendInTime = (bNewCharacter) ? 0.f : 0.4;
 
 	// Briefly turn off notify so that PlayCustomAnim won't call OnAnimEnd (e.g. character swap)
@@ -361,6 +378,8 @@ defaultproperties
       SpecialMoveClasses(28)=None
       SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
       SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=Class'KFGame.KFSM_Player_Emote'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Human:SpecialMoveHandler_0'
    End Object

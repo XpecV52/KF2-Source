@@ -8,142 +8,21 @@
 //=============================================================================
 class KFPawn_ZedClot_Alpha extends KFPawn_ZedClot;
 
-/** TRUE when difficulty has dictated that this is a special Alpha type */
-var repnotify protected bool bIsSpecialAlpha;
+/** Pawn class used for the special gorefast */
+var class<KFPawn_Monster> SpecialAlphaPawnClass;
 
-/** Self-rally damage modifiers */
-var protected float SelfRallyDealtDamageModifier;
-var protected float SelfRallyTakenDamageModifier;
-
-/** If TRUE, this rally was applied to ourselves */
-var bool bWasSelfRally;
-
-replication
+/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
+static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
-	if( bNetInitial )
-		bIsSpecialAlpha;
-}
+	local WorldInfo WI;
 
-simulated event ReplicatedEvent( name VarName )
-{
-	if( VarName == nameOf(bIsSpecialAlpha) )
+	WI = class'WorldInfo'.static.GetWorldInfo();
+	if( fRand() < class<KFDifficulty_ClotAlpha>(default.DifficultySettings).static.GetSpecialAlphaChance(KFGameReplicationInfo(WI.GRI)) )
 	{
-		UpdateBodyMIC();
-		return;
+		return default.SpecialAlphaPawnClass;
 	}
 
-	super.ReplicatedEvent( VarName );
-}
-
-/** Called immediately after gameplay begins */
-simulated event PostBeginPlay()
-{
-	local class<KFDifficulty_ClotAlpha> MyDifficultySettings;
-	local KFGameReplicationInfo KFGRI;
-
-	super.PostBeginPlay();
-
-	if( bIsSpecialAlpha )
-	{
-		MyDifficultySettings = class<KFDifficulty_ClotAlpha>( DifficultySettings );
-		if( MyDifficultySettings != none )
-		{
-			// Set our (Network: ALL) difficulty-based settings
-			KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
-			if( KFGRI != none )
-			{
-				SelfRallyDealtDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GameDifficulty].SelfDealtDamageModifier;
-				SelfRallyTakenDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GameDifficulty].SelfTakenDamageModifier;
-			}
-		}
-	}
-}
-
-event PossessedBy( Controller C, bool bVehicleTransition )
-{
-	local KFAIController_ZedClot_Alpha AlphaController;
-
-	super.PossessedBy( C, bVehicleTransition );
-
-	// Initialize our rally settings
-	AlphaController = KFAIController_ZedClot_Alpha( MyKFAIC );
-	if( AlphaController != none )
-	{
-		AlphaController.InitRallySettings();
-		if( AlphaController.IsSpecialAlpha() )
-		{
-			bIsSpecialAlpha = true;
-			if( WorldInfo.NetMode != NM_DedicatedServer )
-			{
-				UpdateBodyMIC();
-			}
-		}
-	}
-}
-
-/** If true, assign custom player controlled skin when available */
-simulated event bool UsePlayerControlledZedSkin()
-{
-	return bIsSpecialAlpha || super.UsePlayerControlledZedSkin();
-}
-
-/** Change body MIC if we're a special alpha */
-simulated protected function UpdateBodyMIC()
-{
-	if( GetCharacterMonsterInfo() != none )
-	{
-		CharacterMICs[0].SetParent( GetCharacterMonsterInfo().PlayerControlledSkins[0] );
-	}
-}
-
-/** Applies the rally buff and spawns a rally effect */
-simulated function Rally(
-							KFPawn 			RallyInstigator,
-							ParticleSystem 	RallyEffect,
-							name 			EffectBoneName,
-							vector			EffectOffset,
-							ParticleSystem	AltRallyEffect,
-							name 			AltEffectBoneNames[2],
-							vector 			AltEffectOffset,
-							optional bool	bSkipEffects=false
-						)
-{
-	super.Rally( RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects );
-
-	if( RallyInstigator == self )
-	{
-		bWasSelfRally = true;
-	}
-	else
-	{
-		bWasSelfRally = false;
-	}
-}
-
-/** Applies the rally damage boost if applicable */
-simulated function int GetRallyBoostDamage( int NewDamage )
-{
-	if( bWasSelfRally && SelfRallyDealtDamageModifier > 0.f )
-	{
-		return NewDamage * ( IsTimerActive(nameOf(Timer_EndRallyBoost)) ? SelfRallyDealtDamageModifier : 1.f );
-	}
-	else
-	{
-		return super.GetRallyBoostDamage( NewDamage );
-	}
-}
-
-/** Applies the rally damage reduction if applicable */
-simulated function int GetRallyBoostResistance( int NewDamage )
-{
-	if( bWasSelfRally && SelfRallyTakenDamageModifier > 0.f )
-	{
-		return NewDamage * ( IsTimerActive(nameOf(Timer_EndRallyBoost)) ? SelfRallyTakenDamageModifier : 1.f );
-	}
-	else
-	{
-		return super.GetRallyBoostDamage( NewDamage );
-	}
+	return super.GetAIPawnClassToSpawn();
 }
 
 /** Returns (hardcoded) trader advice dialog ID */
@@ -223,6 +102,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// AI / Navigation
+	SpecialAlphaPawnClass=class'KFPawn_ZedClot_AlphaKing'
 	ControllerClass=class'KFAIController_ZedClot_Alpha'
 	DamageRecoveryTimeHeavy=0.75f
 	DamageRecoveryTimeMedium=1.0f

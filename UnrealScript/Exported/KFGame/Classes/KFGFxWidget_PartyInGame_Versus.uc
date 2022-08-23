@@ -108,7 +108,7 @@ function GFxObject RefreshSlot( int SlotIndex, KFPlayerReplicationInfo KFPRI )
 	}
 	
 	//leader
-	bIsLeader = (KFPRI.UniqueId == AdminId);
+	bIsLeader = (KFPRI.UniqueId == AdminId && KFPRI.UniqueId != ZeroUniqueId);
 	PlayerInfoObject.SetBool("bLeader", bIsLeader);
 	//my player
 	bIsMyPlayer = PC.PlayerReplicationInfo.UniqueId == KFPRI.UniqueId;

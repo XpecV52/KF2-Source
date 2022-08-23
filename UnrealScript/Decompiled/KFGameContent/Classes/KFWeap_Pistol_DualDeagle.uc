@@ -11,7 +11,6 @@ class KFWeap_Pistol_DualDeagle extends KFWeap_DualBase
 
 defaultproperties
 {
-    LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_Deagle_ARCH.Wep_Dual_Deagle_MuzzleFlash_L'
     LeftFireOffset=(X=17,Y=-4,Z=-2.25)
     SingleClass=Class'KFWeap_Pistol_Deagle'
     BonesToLockOnEmpty_L=/* Array type was not detected. */
@@ -52,7 +51,7 @@ defaultproperties
     RecoilISMinYawLimit=65485
     RecoilISMaxPitchLimit=500
     RecoilISMinPitchLimit=65485
-    AssociatedPerkClass=Class'KFGame.KFPerk_Gunslinger'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

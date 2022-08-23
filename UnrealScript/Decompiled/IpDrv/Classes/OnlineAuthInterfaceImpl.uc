@@ -67,7 +67,7 @@ function ClearAuthReadyDelegate(delegate<OnAuthReady> AuthReadyDelegate)
     }
 }
 
-delegate OnClientAuthRequest(UniqueNetId ServerUID, int ServerIP, int ServerPort, bool bSecure);
+delegate OnClientAuthRequest(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort, bool bSecure);
 
 function AddClientAuthRequestDelegate(delegate<OnClientAuthRequest> ClientAuthRequestDelegate)
 {
@@ -88,7 +88,7 @@ function ClearClientAuthRequestDelegate(delegate<OnClientAuthRequest> ClientAuth
     }
 }
 
-delegate OnServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID, int ClientIP, int ClientPort);
+delegate OnServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort);
 
 function AddServerAuthRequestDelegate(delegate<OnServerAuthRequest> ServerAuthRequestDelegate)
 {
@@ -109,7 +109,7 @@ function ClearServerAuthRequestDelegate(delegate<OnServerAuthRequest> ServerAuth
     }
 }
 
-delegate OnClientAuthResponse(UniqueNetId ClientUID, int ClientIP, int AuthTicketUID);
+delegate OnClientAuthResponse(UniqueNetId ClientUID, IpAddr ClientIP, int AuthTicketUID);
 
 function AddClientAuthResponseDelegate(delegate<OnClientAuthResponse> ClientAuthResponseDelegate)
 {
@@ -130,7 +130,7 @@ function ClearClientAuthResponseDelegate(delegate<OnClientAuthResponse> ClientAu
     }
 }
 
-delegate OnServerAuthResponse(UniqueNetId ServerUID, int ServerIP, int AuthTicketUID);
+delegate OnServerAuthResponse(UniqueNetId ServerUID, IpAddr ServerIP, int AuthTicketUID);
 
 function AddServerAuthResponseDelegate(delegate<OnServerAuthResponse> ServerAuthResponseDelegate)
 {
@@ -293,15 +293,15 @@ native function bool SendClientAuthEndSessionRequest(Player ClientConnection);
 // Export UOnlineAuthInterfaceImpl::execSendServerAuthRetryRequest(FFrame&, void* const)
 native function bool SendServerAuthRetryRequest();
 
-function bool CreateClientAuthSession(UniqueNetId ServerUID, int ServerIP, int ServerPort, bool bSecure, out int OutAuthTicketUID);
+function bool CreateClientAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort, bool bSecure, out int OutAuthTicketUID);
 
-function bool VerifyClientAuthSession(UniqueNetId ClientUID, int ClientIP, int ClientPort, int AuthTicketUID);
+function bool VerifyClientAuthSession(UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort, int AuthTicketUID);
 
 // Export UOnlineAuthInterfaceImpl::execEndLocalClientAuthSession(FFrame&, void* const)
-native final function EndLocalClientAuthSession(UniqueNetId ServerUID, int ServerIP, int ServerPort);
+native final function EndLocalClientAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort);
 
 // Export UOnlineAuthInterfaceImpl::execEndRemoteClientAuthSession(FFrame&, void* const)
-native final function EndRemoteClientAuthSession(UniqueNetId ClientUID, int ClientIP);
+native final function EndRemoteClientAuthSession(UniqueNetId ClientUID, IpAddr ClientIP);
 
 // Export UOnlineAuthInterfaceImpl::execEndAllLocalClientAuthSessions(FFrame&, void* const)
 native function EndAllLocalClientAuthSessions();
@@ -309,15 +309,15 @@ native function EndAllLocalClientAuthSessions();
 // Export UOnlineAuthInterfaceImpl::execEndAllRemoteClientAuthSessions(FFrame&, void* const)
 native function EndAllRemoteClientAuthSessions();
 
-function bool CreateServerAuthSession(UniqueNetId ClientUID, int ClientIP, int ClientPort, out int OutAuthTicketUID);
+function bool CreateServerAuthSession(UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort, out int OutAuthTicketUID);
 
-function bool VerifyServerAuthSession(UniqueNetId ServerUID, int ServerIP, int AuthTicketUID);
+function bool VerifyServerAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int AuthTicketUID);
 
 // Export UOnlineAuthInterfaceImpl::execEndLocalServerAuthSession(FFrame&, void* const)
-native final function EndLocalServerAuthSession(UniqueNetId ClientUID, int ClientIP);
+native final function EndLocalServerAuthSession(UniqueNetId ClientUID, IpAddr ClientIP);
 
 // Export UOnlineAuthInterfaceImpl::execEndRemoteServerAuthSession(FFrame&, void* const)
-native final function EndRemoteServerAuthSession(UniqueNetId ServerUID, int ServerIP);
+native final function EndRemoteServerAuthSession(UniqueNetId ServerUID, IpAddr ServerIP);
 
 // Export UOnlineAuthInterfaceImpl::execEndAllLocalServerAuthSessions(FFrame&, void* const)
 native function EndAllLocalServerAuthSessions();
@@ -351,4 +351,4 @@ native function bool FindLocalServerAuthSession(Player ClientConnection, out Loc
 
 function bool GetServerUniqueId(out UniqueNetId OutServerUID);
 
-function bool GetServerAddr(out int OutServerIP, out int OutServerPort);
+function bool GetServerAddr(out IpAddr OutServerIP, out int OutServerPort);

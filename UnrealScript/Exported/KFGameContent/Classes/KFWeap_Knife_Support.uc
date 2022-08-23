@@ -47,7 +47,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Knife_Support:MeleeHelper_0'
-   AssociatedPerkClass=Class'KFGame.KFPerk_Support'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Support'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:FirstPersonMesh'
       MinTickTimeStep=0.025000
       SkeletalMesh=SkeletalMesh'WEP_1P_SupportKnife_MESH.Wep_1stP_SupportKnife_Rig'

@@ -70,7 +70,8 @@ defaultproperties
    RecoilISMaxPitchLimit=375
    RecoilISMinPitchLimit=65460
    IronSightMeshFOVCompensationScale=1.500000
-   AssociatedPerkClass=Class'KFGame.KFPerk_FieldMedic'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
+   AssociatedPerkClasses(1)=Class'KFGame.KFPerk_SWAT'
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    WeaponProjectiles(1)=()
    FireInterval(0)=0.075000

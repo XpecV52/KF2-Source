@@ -91,6 +91,12 @@ function DrawHUD()
 
     super.DrawHUD();
 
+    // Don't draw canvas HUD in cinematic mode
+    if( WorldInfo.GRI == none || (KFPlayerOwner != none && KFPlayerOwner.bCinematicMode) )
+    {
+        return;
+    }
+
     if( KFPlayerOwner.PlayerCamera != none )
     {
         KFPlayerOwner.PlayerCamera.GetCameraViewPoint( ViewLocation, ViewRotation );
@@ -107,6 +113,11 @@ function DrawHUD()
     if( MyKFGRIV == none )
     {
         MyKFGRIV = KFGameReplicationInfoVersus( WorldInfo.GRI );
+    }
+
+    if( MyKFGRIV == none )
+    {
+        return;
     }
 
     if( KFPlayerOwner != none && MyTeamNum == 255 )

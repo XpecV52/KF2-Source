@@ -183,8 +183,8 @@ function SetGrenadeInfo(out SItemInformation GrenadeInfo, out int AutoFillCost)
     AmmoPricePerMagazine = GrenadeInfo.AmmoPricePerMagazine;
 
 	SlotObject = CreateObject("Object");	
-	SlotObject.SetString("itemSource", "img://"$GrenadeInfo.DefaultItem.WeaponDef.static.GetImagePath());
-	SlotObject.SetString("itemName", GrenadeInfo.DefaultItem.WeaponDef.static.GetItemName());
+	SlotObject.SetString("itemSource", "img://"$KFPC.CurrentPerk.GrenadeWeaponDef.static.GetImagePath());
+	SlotObject.SetString("itemName", KFPC.CurrentPerk.GrenadeWeaponDef.static.GetItemName());
 
 	FillCost = KFPC.GetPurchaseHelper().GetFillGrenadeCost();
 	MagCost = (GrenadeInfo.SpareAmmoCount != GrenadeInfo.MaxSpareAmmo) ? GrenadeInfo.AmmoPricePerMagazine : 0;
@@ -207,11 +207,7 @@ function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef
     InfoSlot.SetString( "itemName", WeaponDef.static.GetItemLocalization(ItemKeyString) );
     InfoSlot.SetString( "itemAmmo", AmmoCount $"/" $MaxAmmoCount);
     InfoSlot.Setint( "itemWeight", BlocksRequired );
-    if(MaxAmmoCount > 0)
-    {
-    	InfoSlot.SetBool("lowAmmo", (float(AmmoCount) / float(MaxAmmoCount)) <= LowAmmoPercentThreshold );
-    }
-    
+    InfoSlot.SetBool("lowAmmo", (MaxAmmoCount > 0) ? (float(AmmoCount) / float(MaxAmmoCount)) <= LowAmmoPercentThreshold : false );
     InfoSlot.SetBool("isSubAmmo", bSecondaryAmmo );
 
     ItemTexPath = "img://"$TextureLocation;

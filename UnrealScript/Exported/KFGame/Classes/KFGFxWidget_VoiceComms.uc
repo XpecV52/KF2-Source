@@ -8,7 +8,11 @@
 //  - Zane Gholson 09/11/2014
 //=============================================================================
 
-class KFGFxWidget_VoiceComms extends GFxObject;
+class KFGFxWidget_VoiceComms extends GFxObject
+dependson(KFLocalMessage_VoiceComms);
+
+
+var private bool bPlayedVoiceComm;
 
 var Vector RawJoyVector;
 var PlayerController PC;
@@ -18,6 +22,9 @@ var bool bActive;
 
 var const float MouseDampening;
 var const float ControllerDampening;
+
+var private int SavedSelectionIndex;
+var private float DeselectTime;
 
 function InitializeHUD()
 {
@@ -31,7 +38,7 @@ function SetLocalizedText()
 	local byte i;
 
 	DataProvider = CreateArray();
-	for (i = 0; i < VCT_MAX; i++)
+	for (i = 0; i < class'KFLocalMessage_VoiceComms'.default.VoiceCommsOptionStrings.length; i++)
 	{
 		TempObj = CreateObject("Object");
 		TempObj.SetString("text", class'KFLocalMessage_VoiceComms'.default.VoiceCommsOptionStrings[i]);
@@ -43,13 +50,24 @@ function SetLocalizedText()
 	SetObject("textOptions", DataProvider);
 }
 
-function SayVoiceCommms(int CommsIndex)
-{	
-	KFPlayerController(GetPC()).ServerPlayVoiceCommsDialog(CommsIndex);
+function SaveVoiceCommSelection( int CommsIndex )
+{
+	if( CommsIndex >= 0 )
+	{
+		SavedSelectionIndex = CommsIndex;
+	}
+	else
+	{
+		DeselectTime = PC.WorldInfo.RealTimeSeconds;		
+	}
 }
 
 function EnableComm()
 {
+	DeselectTime = 0.f;
+	bPlayedVoiceComm = false;
+	SavedSelectionIndex = -1;
+
 	//Don't allow the user to open voice comms if they are dead. 
 	if(!PC.IsDead() && PC.Pawn != none)
 	{
@@ -84,12 +102,41 @@ function DisableComm()
 		}
 		GetGameViewportClient().HandleInputAxis = None;
 		ActionScriptVoid("disableComm");
+
+		// Play the last selection if it was made just before the widget was closed. This makes the
+		// comms menu still work properly if the selection stick/mouse was released/moved just before
+		// the menu was closed. -MattF
+		if( !bPlayedVoiceComm && SavedSelectionIndex >= 0 && DeselectTime > 0.f && (PC.WorldInfo.RealTimeSeconds - DeselectTime) <= 0.15f )
+		{
+			SayVoiceCommms( SavedSelectionIndex );
+		}
 	}
 }
 
 function HandleInputChange()
 {
 	PC.IgnoreLookInput( false );  // Since we are no longer toggling CinematicMode return lookInput to normal.
+}
+
+function SayVoiceCommms(int CommsIndex)
+{    
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(PC);
+    if( KFPC == none )
+    {
+    	return;
+    }
+
+    if( CommsIndex == VCT_EMOTE )
+    {
+        //do emote
+        KFPC.DoEmote();
+        return;
+    }
+    
+    KFPlayerController(PC).ServerPlayVoiceCommsDialog(CommsIndex);
+    bPlayedVoiceComm = true;
 }
 
 //==============================================================
@@ -148,6 +195,7 @@ defaultproperties
    IconPaths(5)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Trader"
    IconPaths(6)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Affirmative"
    IconPaths(7)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Negative"
+   IconPaths(8)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Emote"
    MouseDampening=0.200000
    ControllerDampening=2.500000
    Name="Default__KFGFxWidget_VoiceComms"

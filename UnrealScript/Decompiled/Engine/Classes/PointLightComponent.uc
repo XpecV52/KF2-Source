@@ -31,6 +31,9 @@ var() bool bAIIgnoreLuminosity;
 // Export UPointLightComponent::execSetTranslation(FFrame&, void* const)
 native final function SetTranslation(Vector NewTranslation);
 
+// Export UPointLightComponent::execSetRadius(FFrame&, void* const)
+native final function SetRadius(float NewRadius);
+
 function OnUpdatePropertyLightColor()
 {
     UpdateColorAndBrightness();

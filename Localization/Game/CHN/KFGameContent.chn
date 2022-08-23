@@ -197,6 +197,8 @@ ItemName="SA80 L85A2 小斗牛式导弹"
 ItemCategory="突击步枪"
 ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•SA80 是英队的标准武器，呃，是在军队被吃掉之前。"
 
+
+
 [KFWeap_Knife_Demolitionist]
 ItemName="万用刀"
 ItemCategory="近战"
@@ -267,6 +269,8 @@ ItemName="M4 战斗霰弹枪"
 ItemCategory="霰弹枪"
 ItemDescription="•射击模式只有半自动。\n•贝内利为美国军队设计了 M4 战斗霰弹枪。它是半自动式，可以良好和稳定地射击。"
 
+
+
 [KFWeap_Knife_Berserker]
 ItemName="割草机刀片"
 ItemCategory="近战"
@@ -314,6 +318,11 @@ ItemCategory="近战"
 ItemDescription="•主要 - 中/重伤害，可以对付一群怪物。\n•辅助 - 较慢，但是伤害力更高。\n•Alt - 阻挡/闪避\n•快速向前移动时伤害力甚至更大。"
 SharedUnlockSource="骑士精神：中世纪战争 (Chivalry: Medieval Warfare)”  "
 
+[KFWeap_Blunt_MaceAndShield]
+ItemName="碎骨者"
+ItemCategory="近战"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 更大限度利用护盾的重击。\n•Alt - 阻挡/闪避。阻挡将会减少丧尸投射物造成的伤害\n•拥有威力强大的盾击攻击。"
+
 [KFWeap_Flame_CaulkBurn]
 ItemName="喷火枪"
 ItemCategory="火焰"
@@ -353,6 +362,8 @@ ItemDescription="•射击模式发射一枚榴弹。\n•射出的榴弹在冲�
 ItemName="RPG-7"
 ItemCategory="爆炸物"
 ItemDescription="•射击模式发射一枚火箭。\n•射出的火箭在冲击作用下爆炸。\n•射出的榴弹在经过几米的保险距离后装备完成，避免炸到自己的脸部。\n•小心向后爆破！"
+
+
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="两把 9 毫米手枪。"
@@ -403,6 +414,8 @@ ItemDescription="•射击模式只有半自动。\n•备用射击在使用机�
 ItemName="温彻斯特 1894"
 ItemCategory="步枪"
 ItemDescription="•射击模式只有单发射击。\n•经典型号 1894 温彻斯特杠杆式步枪。"
+
+
 
 [KFWeap_Bow_Crossbow]
 ItemName="十字弓"

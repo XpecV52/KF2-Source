@@ -60,7 +60,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_Crovel:MeleeHelper_0'
-   AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
    InstantHitDamage(0)=49.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()

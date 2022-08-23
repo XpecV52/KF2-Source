@@ -429,7 +429,7 @@ struct native SpecialMoveCooldownInfo
 /** The amount to scale damage dealt by the fleshpound */
 var float ZedBumpDamageScale;
 
-var bool 	bShowHealth;
+var protected bool bShowHealth;
 
 /** Set only while inside AdjustDamage when calculating extra head explosion damage*/
 var transient bool bCheckingExtraHeadDamage;
@@ -686,8 +686,8 @@ var transient array<Name> BrokenHeadBones;
 /** How often to check for napalm infections */
 //var protected const float NapalmCheckInterval;
 
-/** We got burned by another Zed, we shouldn't spread it further */
-var bool bNapalmInfected;
+/** Last time we checked for a napalm infection upon taking damage */
+var transient protected float LastNapalmInfectCheckTime;
 
 /** Is there a chanced that we explode when we die? Set by the firebug's Zed shrapnel skill */
 var bool bCouldTurnIntoShrapnel;
@@ -743,7 +743,7 @@ replication
 	// Replicated to ALL
 	if (bNetDirty)
 		bIsHeadless, bIsPoisoned, bPlayPanicked, bPlayShambling, MaxHeadChunkGoreWhileAlive,
-		bShowHealth, RepInflateMatParam;
+		RepInflateMatParam;
 	if ( bNetDirty && bCanCloak )
 		bIsCloakingSpottedByTeam;
 	if ( bNetDirty && bCanRage )
@@ -832,6 +832,12 @@ simulated static function int GetDoshValue()
 simulated static function float GetXPValue(byte Difficulty)
 {
 	return default.XPValues[Difficulty];
+}
+
+/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
+static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
+{
+	return default.class;
 }
 
 /*********************************************************************************************
@@ -1120,18 +1126,15 @@ simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNorma
 	}
 }
 
+
 /** Called from AICommand_MoveToGoal, notifies us that we've bumped another KFPawn */
 function HandleMonsterBump( KFPawn_Monster Other, Vector HitNormal )
 {
-	local int DoTIndex;
+	local KFPlayerController KFPC;
 
-	if( !bNapalmInfected && DamageOverTimeArray.Length > 0 )
+	if( !Other.IsNapalmInfected() && CanNapalmInfect(KFPC) )
 	{
-		DoTIndex = DamageOverTimeArray.Find( 'DoT_Type', class'KFDT_Fire'.default.DoT_Type );
-		if( DoTIndex != INDEX_NONE && DamageOverTimeArray[DotIndex].InstigatedBy != none )
-		{
-			CheckForNapalmInfect( Other, DamageOverTimeArray[DotIndex].InstigatedBy );
-		}
+		InfectWithNapalm( Other, KFPC );
 	}
 }
 
@@ -1522,7 +1525,7 @@ simulated function StopPlayerZedMove(ESpecialMove Move)
 /** Called from KFSpecialMove::SpecialMoveEnded */
 simulated function NotifySpecialMoveEnded( KFSpecialMove FinishedMove, ESpecialMove SMHandle )
 {
-	local byte SMIndex;
+	local int SMIndex;
 
 	if( IsHumanControlled() && IsLocallyControlled() )
 	{
@@ -1729,7 +1732,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	local KFAIController KFAIC;
 	local KFPawn_Monster KFPM;
 	local float NapalmCheckDist;
-	local int DotIndex;
 
 	AIMonster = KFAIController_Monster(InstigatedBy);
 	KFDT = class<KFDamageType>(DamageType);
@@ -1772,40 +1774,41 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 		}
 	}
 
-	if( Damage > 0 )
+	if( Damage > 0
+		&& InstigatedBy != none
+		&& DamageCauser != none
+		&& KFDT != none
+		&& KFDT.default.DoT_Type == DOT_Fire
+		&& KFDT != class'KFDT_Fire_Napalm'
+		&& WorldInfo.RealTimeSeconds - LastNapalmInfectCheckTime > 0.25f )
 	{
-		if( !bNapalmInfected && InstigatedBy != none && DamageCauser != none && DamageOverTimeArray.Length > 0 )
+		if( KFPC != none
+			&& KFPC.GetPerk() != none
+			&& KFPC.GetPerk().CanSpreadNapalm()
+			&& class'KFPerk'.static.IsDamageTypeOnThisPerk(KFDT, class'KFPerk_Firebug') )
 		{
-			DoTIndex = DamageOverTimeArray.Find( 'DoT_Type', class'KFDT_Fire'.default.DoT_Type );
-			if( DotIndex != INDEX_NONE )
+			NapalmCheckDist = Square( CylinderComponent.CollisionRadius * class'KFPerk_Firebug'.static.GetNapalmCheckCollisionScale() );
+			foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM, Location )
 			{
-				if( class'KFPerk'.static.IsDamageTypeOnThisPerk(KFDT, class'KFPerk_Firebug') )
+				if( KFPM != self && KFPM.IsAliveAndWell() && !KFPM.IsNapalmInfected() )
 				{
-					// Start a timer to check for infections around us
-					//if( !IsTimerActive( nameOf(Timer_CheckForNapalmInfect)) )
-					//{
-					//	SetTimer( (NapalmCheckInterval-0.1f) + (fRand() * 0.2f), true, nameOf(Timer_CheckForNapalmInfect) );
-					//}
-
-					NapalmCheckDist = Square( CylinderComponent.CollisionRadius * class'KFPerk_Firebug'.static.GetNapalmCheckCollisionScale() );
-					foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM, Location )
+					if( VSizeSQ(Location - KFPM.Location) > NapalmCheckDist )
 					{
-						if( KFPM != self && KFPM.IsAliveAndWell() )
-						{
-							if( VSizeSQ(Location - KFPM.Location) > NapalmCheckDist )
-							{
-								continue;
-							}
-
-							CheckForNapalmInfect( KFPM, InstigatedBy );
-						}
+						continue;
 					}
+
+					InfectWithNapalm( KFPM, KFPC );
 				}
 			}
-		}
 
-		bShowHealth = true;
-		SetTimer(2.f, false, nameOf(ResetHealthVisibilty));
+			LastNapalmInfectCheckTime = WorldInfo.RealTimeSeconds;
+
+			// Make sure we're infected
+			if( !IsNapalmInfected() )
+			{
+				InfectWithNapalm( self, KFPC );
+			}
+		}
 	}
 
 	KFPRI = KFPlayerReplicationInfo( PlayerReplicationInfo );
@@ -2259,72 +2262,59 @@ event OnRigidBodyLinearConstraintViolated(name StretchedBoneName)
 	LogInternal("Linear constraint violated, hiding bone " @ StretchedBoneName);
 }
 
-function ResetHealthVisibilty()
+protected simulated function ResetHealthVisibilty()
 {
 	bShowHealth = false;
 }
 
-/** Runs on an interval, checks area around me for zeds to infect with napalm */
-/*function Timer_CheckForNapalmInfect()
+simulated function bool CanShowHealth()
 {
-	local int DotIndex;
-	local float NapalmCheckDist;
+	return bShowHealth;
+}
 
-	for( i = 0; i <  100; ++i )
+simulated function bool IsNapalmInfected()
+{
+	return DamageOverTimeArray.Find('DamageType', class'KFDT_Fire_Napalm') != INDEX_NONE;
+}
+
+function bool CanNapalmInfect( out KFPlayerController NapalmInstigator )
+{
+	local int DoTIndex;
+	local KFPlayerController KFPC;
+	local KFPerk InstigatorPerk;
+
+	if( DamageOverTimeArray.Length > 0 )
 	{
 		DoTIndex = DamageOverTimeArray.Find( 'DoT_Type', class'KFDT_Fire'.default.DoT_Type );
-		if( DotIndex == INDEX_NONE )
+		if( DoTIndex != INDEX_NONE && DamageOverTimeArray[DoTIndex].InstigatedBy != none )
 		{
-			ClearTimer( nameOf(Timer_CheckForNapalmInfect) );
-			return;
-		}
-
-		// Skip if we have no damage instigator
-		if( DamageOverTimeArray[DotIndex].InstigatedBy == none )
-		{
-			return;
-		}
-
-		NapalmCheckDist = Square( CylinderComponent.CollisionRadius * NapalmCheckCollisionScale );
-		foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM, Location )
-		{
-			if( KFPM != self && KFPM.IsAliveAndWell() )
+			KFPC = KFPlayerController( DamageOverTimeArray[DoTIndex].InstigatedBy );
+			if( KFPC != none )
 			{
-				if( VSizeSQ(Location - KFPM.Location) > NapalmCheckDist )
-				{
-					continue;
+				InstigatorPerk = KFPC.GetPerk();
+				if( InstigatorPerk != none && InstigatorPerk.CanSpreadNapalm() )
+		        {
+		        	NapalmInstigator = KFPC;
+		        	return true;
 				}
-
-				CheckForNapalmInfect( KFPM, DamageOverTimeArray[DotIndex].InstigatedBy );
 			}
 		}
 	}
-}*/
 
-function CheckForNapalmInfect( KFPawn_Monster KFPM, optional Controller InstigatedBy )
+	NapalmInstigator = none;
+	return false;
+}
+
+function InfectWithNapalm( KFPawn_Monster KFPM, KFPlayerController KFPC )
 {
-	local KFPerk InstigatorPerk;
-	local KFPlayerController KFPC;
-
-	if( InstigatedBy == none )
-	{
-		return;
-	}
-
-	KFPC = KFPlayerController(InstigatedBy);
 	if( KFPC != none )
 	{
-		InstigatorPerk = KFPC.GetPerk();
-		if( InstigatorPerk != none && InstigatorPerk.CanSpreadNapalm() )
-        {
-			KFPM.bNapalmInfected = true;
-			KFPM.TakeDamage( class'KFPerk_Firebug'.static.GetNapalmDamage(),
-							 KFPC,
-							 vect(0,0,0),
-							 vect(0,0,0),
-							 class'KFDT_Fire_Napalm',,
-							 KFPC );
-		}
+		KFPM.TakeDamage( class'KFPerk_Firebug'.static.GetNapalmDamage(),
+						 KFPC,
+						 vect(0,0,0),
+						 vect(0,0,0),
+						 class'KFDT_Fire_Napalm',,
+						 KFPC );
 	}
 }
 
@@ -2504,7 +2494,7 @@ simulated function bool IsHeadless()
 * zed from using its special abilities (Ex Husk Flamethrower) */
 simulated function bool IsImpaired()
 {
-	return bPlayShambling || bPlayPanicked || bEmpDisrupted;
+	return bPlayPanicked || bEmpDisrupted || (bPlayShambling && !bIsHeadless);
 }
 
 /** Reapply active gameplay related MIC params (e.g. when switching to the gore mesh) */
@@ -2759,6 +2749,12 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 		}
 	}
 
+	if( !bPlayedDeath )
+	{
+		bShowHealth = true;
+		SetTimer( 2.f, false, nameOf(ResetHealthVisibilty) );
+	}
+
 	Super.PlayTakeHitEffects( HitDirection, HitLocation );
 }
 
@@ -2810,8 +2806,8 @@ simulated function PlayDeadHitEffects(vector HitLocation, vector HitDirection, i
 	           PinProjectileClass.static.CreatePin(DeadPawn, HitLocation, HitDirection, HitBoneName);
 			}
 			
-			HandlePartialGoreAndGibs(DmgType, HitLocation, HitDirection, HitBoneName, false);
-		}
+				HandlePartialGoreAndGibs(DmgType, HitLocation, HitDirection, HitBoneName, false);
+			}
 		
 		// Apply an impulse to attached limbs and ragdoll
 		HandleRagdollImpulseEffects( HitLocation, HitDirection, HitZoneName, HitBoneName, DmgType, bIsDismemberingHit );
@@ -3270,8 +3266,15 @@ simulated function ApplyObliterationFxGore( KFGoreManager GoreManager, KFCharact
 	local vector ObliterationLocation;
 	local int MaxNumGibs;
 
-	// Allowed to disconnect 100 bones (basically, all bones.)
-	MaxNumGibs = 100;
+	if( DmgType.default.MaxObliterationGibs > 0 )
+	{
+		MaxNumGibs = DmgType.default.MaxObliterationGibs;
+	}
+	else
+	{
+		// Allowed to disconnect 100 bones (basically, all bones.)
+		MaxNumGibs = 100;
+	}
 
 	// Try to apply exlosion gore first
 	if( DmgType.default.bCanGib)
@@ -3280,6 +3283,18 @@ simulated function ApplyObliterationFxGore( KFGoreManager GoreManager, KFCharact
 		if(HitFxInfo.bRadialDamage == true)
 		{
 			ObliterationLocation = HitFxRadialInfo.RadiusHurtOrigin;
+		}
+		else if( DmgType.default.bUseHitLocationForGibImpulses )
+		{
+			ObliterationLocation = HitFxInfo.HitLocation;
+			if( DmgType.default.bPointImpulseTowardsOrigin )
+			{
+				ObliterationLocation -= DecodeUnitVector(HitFxInfo.EncodedHitDirection) * DmgType.default.ImpulseOriginScale;
+			}
+			else
+			{
+				ObliterationLocation.Z = Location.Z - CylinderComponent.CollisionHeight * 0.25f;			
+			}
 		}
 		else
 		{
@@ -3705,7 +3720,7 @@ function float GetPerkDoTScaler( optional Controller InstigatedBy, optional clas
 			InstigatorPerk = KFPC.GetPerk();
 			if( InstigatorPerk != none )
 			{
-				InstigatorPerk.ModifyDoTScaler( DoTScaler, KFDT, bNapalmInfected );
+				InstigatorPerk.ModifyDoTScaler( DoTScaler, KFDT, IsNapalmInfected() );
 			}
 		}
 	}
@@ -4231,23 +4246,6 @@ defaultproperties
       SpecialMoveClasses(11)=None
       SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(14)=None
-      SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=None
-      SpecialMoveClasses(17)=None
-      SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=None
-      SpecialMoveClasses(22)=None
-      SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=None
-      SpecialMoveClasses(25)=None
-      SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object

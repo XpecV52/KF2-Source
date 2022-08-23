@@ -12,30 +12,35 @@ class KFDifficulty_Siren extends KFMonsterDifficultyInfo
 defaultproperties
 {
 	// Normal difficulty
-	Normal={(HealthMod=0.750000,
-		HeadHealthMod=0.750000,
+	Normal={(HealthMod=1.00000,
+		HeadHealthMod=1.000000,
+		DamageMod=1.000000,
 		SoloDamageMod=0.500000,
 		RallySettings={(bCanRally=false)}
 	)}
 
 	// Hard difficulty
-	Hard={(DamageMod=0.750000,
+	Hard={(HealthMod=1.00000,
+		HeadHealthMod=1.000000,
+		DamageMod=1.000000,
 		SoloDamageMod=0.650000,
 		RallySettings={(bCanRally=false)}
 	)}
 	
 	// Suicidal difficulty
-	Suicidal={(HealthMod=1.200000,
+	Suicidal={(HealthMod=1.000000,
+		HeadHealthMod=1.000000,
+		DamageMod=1.000000,
 		DamagedSprintChance=0.050000,
 		SoloDamageMod=0.650000,
 		RallySettings={(DealtDamageModifier=1.2, TakenDamageModifier=0.9)}
 	)}
 
 	// Hell On Earth difficulty
-	HellOnEarth={(HealthMod=1.300000,
-		HeadHealthMod=1.100000,
+	HellOnEarth={(HealthMod=1.000000,
+		HeadHealthMod=1.000000,
 		DamagedSprintChance=0.100000,
-		DamageMod=1.500000,
+		DamageMod=1.000000,
 		SoloDamageMod=0.750000,
 		RallySettings={(bCauseSprint=true, DealtDamageModifier=1.2, TakenDamageModifier=0.9)}
 	)}

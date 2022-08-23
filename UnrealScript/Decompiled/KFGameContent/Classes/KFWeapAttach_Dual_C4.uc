@@ -13,22 +13,27 @@ const CrouchThrowAnim = 'C4_Throw_CH';
 const DetonateAnim = 'Shoot';
 const CrouchDetonateAnim = 'CH_Shoot';
 
-simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
+simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
 {
+    local float Duration;
+
     if(!ActorEffectIsRelevant(P, false, MaxFireEffectDistance))
     {
         return false;
     }
-    if(Instigator.FiringMode == 0)
+    DecodeThirdPersonAnimRate(ThirdPersonAnimRateByte);
+    if(P.FiringMode == 0)
     {
-        WeapMesh.PlayAnim('C4_Throw',,, true);
+        Duration = WeapMesh.GetAnimLength('C4_Throw');
+        WeapMesh.PlayAnim('C4_Throw', Duration / ThirdPersonAnimRate,, true);
         SetTimer(0.75, false, 'Unhide');        
     }
     else
     {
-        if(Instigator.FiringMode == 5)
+        if(P.FiringMode == 5)
         {
-            LeftWeapMesh.PlayAnim('Shoot',,, true);
+            Duration = WeapMesh.GetAnimLength('Shoot');
+            LeftWeapMesh.PlayAnim('Shoot', Duration / ThirdPersonAnimRate,, true);
         }
     }
     if(!P.IsDoingSpecialMove())
@@ -37,11 +42,11 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
         {
             if(P.bIsCrouched)
             {
-                P.PlayBodyAnim('C4_Throw_CH', 4, 1, ShootBlendInTime, ShootBlendOutTime);                
+                P.PlayBodyAnim('C4_Throw_CH', 4, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);                
             }
             else
             {
-                P.PlayBodyAnim('C4_Throw', 1, 1, ShootBlendInTime, ShootBlendOutTime);
+                P.PlayBodyAnim('C4_Throw', 1, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);
             }            
         }
         else
@@ -50,16 +55,16 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
             {
                 if(P.bIsCrouched)
                 {
-                    P.PlayBodyAnim('CH_Shoot', 4, 1, ShootBlendInTime, ShootBlendOutTime);                    
+                    P.PlayBodyAnim('CH_Shoot', 4, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);                    
                 }
                 else
                 {
-                    P.PlayBodyAnim('Shoot', 1, 1, ShootBlendInTime, ShootBlendOutTime);
+                    P.PlayBodyAnim('Shoot', 1, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);
                 }
             }
         }
     }
-    KFPawn(Instigator).LastWeaponFireTime = -1;
+    P.LastWeaponFireTime = -1;
     return true;
 }
 

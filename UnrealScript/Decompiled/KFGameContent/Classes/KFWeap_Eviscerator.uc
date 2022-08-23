@@ -291,7 +291,7 @@ defaultproperties
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Eviscerator.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     MuzzleFlashTemplate=KFMuzzleFlash'WEP_Sawblade_ARCH.Wep_Sawblade_MuzzleFlash'
-    AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

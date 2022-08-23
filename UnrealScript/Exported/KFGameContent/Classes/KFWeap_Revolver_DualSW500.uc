@@ -12,7 +12,6 @@ class KFWeap_Revolver_DualSW500 extends KFWeap_DualBase;
 
 defaultproperties
 {
-   LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_SW_500_ARCH.Wep_Dual_SW_500_MuzzleFlash_L'
    LeftFireOffset=(X=17.000000,Y=-4.000000,Z=-2.250000)
    SingleClass=Class'kfgamecontent.KFWeap_Revolver_SW500'
    BonesToLockOnEmpty_L(0)="LW_Hammer"
@@ -168,7 +167,7 @@ defaultproperties
    RecoilISMaxPitchLimit=500
    RecoilISMinPitchLimit=65485
    IronSightMeshFOVCompensationScale=1.400000
-   AssociatedPerkClass=Class'KFGame.KFPerk_Gunslinger'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

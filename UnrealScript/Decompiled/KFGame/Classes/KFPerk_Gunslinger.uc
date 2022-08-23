@@ -89,7 +89,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     {
         KFW = GetWeaponFromDamageCauser(DamageCauser);
     }
-    if(((KFW != none) && IsWeaponOnPerk(KFW)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
+    if(((KFW != none) && IsWeaponOnPerk(KFW,, self.Class)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
     {
         TempDamage += (float(InDamage) * (GetPassiveValue(WeaponDamage, CurrentLevel)));
         if(IsBoneBreakerActive())
@@ -126,7 +126,7 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
 
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW)
 {
-    if(IsWeaponOnPerk(KFW))
+    if(IsWeaponOnPerk(KFW,, self.Class))
     {
         CurrentRecoilModifier -= (CurrentRecoilModifier * (GetPassiveValue(Recoil, GetLevel())));
         if((IsQuickSwitchActive()) && !KFW.bUsingSights)
@@ -143,7 +143,7 @@ private static final simulated function float GetQuickSwitchRecoilModifier()
 
 simulated function float GetReloadRateScale(KFWeapon KFW)
 {
-    if(((IsWeaponOnPerk(KFW)) && WorldInfo.TimeDilation < 1) && !IsFanfareActive())
+    if(((IsWeaponOnPerk(KFW,, self.Class)) && WorldInfo.TimeDilation < 1) && !IsFanfareActive())
     {
         return 1 - (GetPassiveValue(ZedTimeReload, GetLevel()));
     }
@@ -152,7 +152,7 @@ simulated function float GetReloadRateScale(KFWeapon KFW)
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return (IsSpeedReloadActive()) && IsWeaponOnPerk(KFW);
+    return (IsSpeedReloadActive()) && IsWeaponOnPerk(KFW,, self.Class);
 }
 
 function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting)
@@ -187,7 +187,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
 {
     local name StateName;
 
-    if((GetFanfareActive()) && IsWeaponOnPerk(W))
+    if((GetFanfareActive()) && IsWeaponOnPerk(W,, self.Class))
     {
         StateName = W.GetStateName();
         if(ZedTimeModifyingStates.Find(StateName != -1)
@@ -204,7 +204,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
 
 simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
 {
-    return ((IsWeaponOnPerk(KFW)) && IsUberAmmoActive()) && WorldInfo.TimeDilation < 1;
+    return ((IsWeaponOnPerk(KFW,, self.Class)) && IsUberAmmoActive()) && WorldInfo.TimeDilation < 1;
 }
 
 function AddToHeadShotCombo(class<KFDamageType> KFDT, KFPawn_Monster KFPM)
@@ -262,14 +262,12 @@ reliable client simulated function HeadShotMessage(byte HeadShotNum, byte Displa
         case 4:
             if(!bMissed)
             {
-                OwnerPC.ClientSpawnCameraLensEffect(Class'KFCameraLensEmit_RackemHeadShot');
                 TempAkEvent = RhythmMethodSoundHit;
             }
             break;
         case 5:
             if(!bMissed)
             {
-                OwnerPC.ClientSpawnCameraLensEffect(Class'KFCameraLensEmit_RackemHeadShotPing');
                 TempAkEvent = RhythmMethodSoundTop;
                 I = 6;
             }
@@ -324,7 +322,7 @@ simulated function float GetPenetrationModifier(byte Level, class<KFDamageType> 
 
 simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
 {
-    if((IsShootnMooveActive()) && IsWeaponOnPerk(KFW))
+    if((IsShootnMooveActive()) && IsWeaponOnPerk(KFW,, self.Class))
     {
         return GetSkillValue(PerkSkills[0]);
     }
@@ -333,7 +331,7 @@ simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
 
 simulated function ModifyWeaponBopDamping(out float BobDamping, KFWeapon PawnWeapon)
 {
-    if((IsShootnMooveActive()) && IsWeaponOnPerk(PawnWeapon))
+    if((IsShootnMooveActive()) && IsWeaponOnPerk(PawnWeapon,, self.Class))
     {
         BobDamping *= default.ShootnMooveBobDamp;
     }
@@ -426,13 +424,13 @@ simulated function bool IsSkullCrackerActive()
     return PerkSkills[6].bActive;
 }
 
-static simulated function bool IsWeaponOnPerk(KFWeapon W, optional class<KFPerk> WeaponPerkClass)
+static simulated function bool IsWeaponOnPerk(KFWeapon W, optional array< class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass)
 {
     if((W != none) && default.AdditionalOnPerkWeaponNames.Find(W.Class.Name != -1)
     {
         return true;
     }
-    return super.IsWeaponOnPerk(W, WeaponPerkClass);
+    return super.IsWeaponOnPerk(W, WeaponPerkClass, InstigatorPerkClass);
 }
 
 static function bool IsDamageTypeOnPerk(class<KFDamageType> KFDT)
@@ -516,7 +514,12 @@ defaultproperties
     SpecialZedClassNames(0)=KFPawn_ZedFleshpound
     AdditionalOnPerkWeaponNames(0)=KFWeap_Pistol_9mm
     AdditionalOnPerkWeaponNames(1)=KFWeap_Pistol_Dual9mm
+    AdditionalOnPerkWeaponNames(2)=KFWeap_GrenadeLauncher_HX25
     AdditionalOnPerkDTNames(0)=KFDT_Ballistic_9mm
+    AdditionalOnPerkDTNames(1)=KFDT_Ballistic_Pistol_Medic
+    AdditionalOnPerkDTNames(2)=KFDT_Ballistic_Winchester
+    AdditionalOnPerkDTNames(3)=KFDT_Ballistic_HX25Impact
+    AdditionalOnPerkDTNames(4)=KFDT_Ballistic_HX25SubmunitionImpact
     RhythmMethodSoundReset=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Reset'
     RhythmMethodSoundHit=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Hit'
     RhythmMethodSoundTop=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Top'
@@ -531,7 +534,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_8151
+    BoneBreakerBodyParts(1)=.!=_8284
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -566,10 +569,11 @@ Parameter name: index
     PerkSkills(6)=(Name="Skullcracker",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Skullcracker",bActive=false)
     PerkSkills(7)=(Name="KnockEmDown",Increment=0,Rank=0,StartingValue=5.1,MaxValue=5.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_KnockEmDown",bActive=false)
     PerkSkills(8)=(Name="UberAmmo",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo",bActive=false)
-    PerkSkills(9)=(Name="Fanfare",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed",bActive=false)
+    PerkSkills(9)=(Name="Fanfare",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed",bActive=false)
     ZedTimeModifyingStates(0)=WeaponFiring
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
+    ZedTimeModifyingStates(3)=WeaponSingleFireAndReload
     BodyPartsCanStumble(0)=
 /* Exception thrown while deserializing BodyPartsCanStumble
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
@@ -577,7 +581,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_986
+    BodyPartsCanStumble(1)=.!=_993
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4

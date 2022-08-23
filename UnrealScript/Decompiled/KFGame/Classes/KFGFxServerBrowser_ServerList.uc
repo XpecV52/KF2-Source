@@ -302,7 +302,7 @@ function OnFindOnlineGamesCompleteDelegate(bool bWasSuccessful)
     {
         if((Search.Results.Length > 0) && !ServerMenu.ApplyFilters || !FilterEntry(Search, ServerMenu.FiltersContainer, Search.Results.Length - 1))
         {
-            ServerMenu.Manager.TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
+            Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
         }
         lastServerCount = Search.Results.Length;        
     }
@@ -697,8 +697,8 @@ function UpdateListDataProvider()
             {
                 if(NewServerCount > 10)
                 {
-                    ServerMenu.Manager.TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
-                    goto J0x940;
+                    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
+                    goto J0x941;
                 }
                 TempOnlineGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[I].GameSettings);
                 TempObj = Outer.CreateObject("Object");
@@ -732,7 +732,7 @@ function UpdateListDataProvider()
             ++ I;
             goto J0x5D;
         }
-        J0x940:
+        J0x941:
 
         SetObject("dataProvider", DataProvider);
     }

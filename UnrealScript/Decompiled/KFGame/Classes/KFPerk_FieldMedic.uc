@@ -127,13 +127,13 @@ simulated function float GetSelfHealingSurgePct()
     return default.SelfHealingSurgePct;
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if(((IsWeaponOnPerk(KFW, WeaponPerkClass)) && (KFW == none) || !KFW.bNoMagazine) && !bSecondary)
+    if(((IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine) && !bSecondary)
     {
         if(IsCombatantActive())
         {
@@ -215,7 +215,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     }
     if(KFW != none)
     {
-        if(IsEnforcerActive() && IsWeaponOnPerk(KFW))
+        if(IsEnforcerActive() && IsWeaponOnPerk(KFW,, self.Class))
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[7])));
         }
@@ -284,7 +284,7 @@ function bool IsAcidicCompoundActive()
 
 function bool IsToxicDmgActive()
 {
-    return (IsAcidicCompoundActive()) && IsWeaponOnPerk(GetOwnerWeapon());
+    return (IsAcidicCompoundActive()) && IsWeaponOnPerk(GetOwnerWeapon(),, self.Class);
 }
 
 private final simulated function bool IsHealingSpeedBoostActive()

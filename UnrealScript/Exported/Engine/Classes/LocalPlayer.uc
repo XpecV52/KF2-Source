@@ -452,7 +452,9 @@ event NotifyServerConnectionOpen()
  * @param ServerPort		The port of the game server
  * @param bSecure		whether or not the server has anticheat enabled (relevant to OnlineSubsystemSteamworks and VAC)
  */
-function ProcessClientAuthRequest(UniqueNetId ServerUID, int ServerIP, int ServerPort, bool bSecure)
+//@HSL_BEGIN_XBOX
+function ProcessClientAuthRequest(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort, bool bSecure)
+//@HSL_END_XBOX
 {
 	local UniqueNetId NullId;
 	local int AuthTicketUID;
@@ -514,7 +516,9 @@ function ProcessClientAuthEndSessionRequest(Player ServerConnection)
  * @param ServerIP		The IP of the server
  * @param AuthTicketUID		The UID used to reference the auth data
  */
-function ProcessServerAuthResponse(UniqueNetId ServerUID, int ServerIP, int AuthTicketUID)
+//@HSL_BEGIN_XBOX
+function ProcessServerAuthResponse(UniqueNetId ServerUID, IpAddr ServerIP, int AuthTicketUID)
+//@HSL_END_XBOX
 {
 	local WorldInfo WI;
 

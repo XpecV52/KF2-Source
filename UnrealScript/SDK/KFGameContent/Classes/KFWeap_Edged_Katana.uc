@@ -61,7 +61,7 @@ defaultproperties
 	GroupPriority=100
 	InventorySize=3
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
-	AssociatedPerkClass=class'KFPerk_Berserker'
+	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
 	
 	// Block Sounds
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'

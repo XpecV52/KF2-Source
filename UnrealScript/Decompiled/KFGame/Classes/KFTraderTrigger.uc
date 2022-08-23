@@ -113,7 +113,7 @@ simulated function StartTraderLoopAnim()
 
 simulated function ShowTraderPath()
 {
-    local KFPlayerController KFPC;
+    local PlayerController PC;
     local KFGameReplicationInfo KFGRI;
     local Engine.Pawn.EPathSearchType OldSearchType;
     local KFEmit_TraderPath Path;
@@ -123,17 +123,17 @@ simulated function ShowTraderPath()
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(((bCollideActors && KFGRI != none) && KFGRI.bTraderIsOpen) && KFGRI.OpenedTrader == self)
     {
-        foreach LocalPlayerControllers(Class'KFPlayerController', KFPC)
+        foreach LocalPlayerControllers(Class'PlayerController', PC)
         {
-            if(((KFPC.Pawn == none) || KFPC.GetTeamNum() == 255) || !KFPC.Pawn.IsAliveAndWell())
+            if(((PC.Pawn == none) || PC.GetTeamNum() == 255) || !PC.Pawn.IsAliveAndWell())
             {
                 continue;                
             }
-            OldSearchType = KFPC.Pawn.PathSearchType;
-            KFPC.Pawn.PathSearchType = 3;
-            Class'Path_ToTrader'.static.ToTrader(KFPC.Pawn);
-            Class'Goal_AtActor'.static.AtActor(KFPC.Pawn, self,, false);
-            nodePathRoot = KFPC.FindPathToward(self);
+            OldSearchType = PC.Pawn.PathSearchType;
+            PC.Pawn.PathSearchType = 3;
+            Class'Path_ToTrader'.static.ToTrader(PC.Pawn);
+            Class'Goal_AtActor'.static.AtActor(PC.Pawn, self,, false);
+            nodePathRoot = PC.FindPathToward(self);
             if(nodePathRoot != none)
             {
                 bPathFound = true;                
@@ -144,22 +144,22 @@ simulated function ShowTraderPath()
             }
             if(bPathFound)
             {
-                Path = Spawn(Class'KFEmit_TraderPath', KFPC,, KFPC.Pawn.Location);
+                Path = Spawn(Class'KFEmit_TraderPath', PC,, PC.Pawn.Location);
                 Path.SetDestination(((TraderMeshActor != none) ? TraderMeshActor.Location + vect(0, 0, 100) : Location));                
             }
             else
             {
                 if(Class'KFEmit_TraderPath'.default.bShowEmitPathDebugArtifacts)
                 {
-                    DrawDebugLine(KFPC.Pawn.Location, Location, 255, 0, 0, true);
+                    DrawDebugLine(PC.Pawn.Location, Location, 255, 0, 0, true);
                 }
                 if(bLogTrader)
                 {
-                    LogInternal((((("ShowTraderPath - No Path Found, KFGRI.OpenedTrader: " @ string(KFGRI.OpenedTrader)) @ " trader trigger loc: ") @ string(Location)) @ " - player loc: ") @ string(KFPC.Pawn.Location));
+                    LogInternal((((("ShowTraderPath - No Path Found, KFGRI.OpenedTrader: " @ string(KFGRI.OpenedTrader)) @ " trader trigger loc: ") @ string(Location)) @ " - player loc: ") @ string(PC.Pawn.Location));
                 }
             }
-            KFPC.Pawn.ClearConstraints();
-            KFPC.Pawn.PathSearchType = OldSearchType;            
+            PC.Pawn.ClearConstraints();
+            PC.Pawn.PathSearchType = OldSearchType;            
         }        
         WorldInfo.GetALocalPlayerController().SetTimer(2, false, 'ShowTraderPath', self);
     }

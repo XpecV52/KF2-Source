@@ -415,6 +415,7 @@ function CreateDifficultyInfo(string Options)
 {
     if((DifficultyInfoConsoleClass != none) && WorldInfo.IsConsoleBuild() || WorldInfo.IsConsoleDedicatedServer())
     {
+        LogInternal("Using difficulty override class:" @ string(DifficultyInfoConsoleClass));
         DifficultyInfo = new (self) DifficultyInfoConsoleClass;        
     }
     else
@@ -489,8 +490,9 @@ function ReplicateWelcomeScreen()
     if(MyKFGRI != none)
     {
         MyKFGRI.ServerAdInfo.BannerLink = BannerLink;
-        MyKFGRI.ServerAdInfo.ServerMOTD = ServerMOTD;
+        MyKFGRI.ServerAdInfo.ServerMOTD = Repl(ServerMOTD, "@nl@", Chr(10));
         MyKFGRI.ServerAdInfo.WebsiteLink = WebsiteLink;
+        MyKFGRI.ServerAdInfo.ClanMotto = ClanMotto;
     }
 }
 
@@ -901,14 +903,9 @@ function RestartPlayer(Controller NewPlayer)
 {
     local KFPlayerController KFPC;
     local KFPerk MyPerk;
-    local bool bIsBenchmark;
 
     KFPC = KFPlayerController(NewPlayer);
-    if((!Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsConsoleDedicatedServer()) && InStr(WorldInfo.GetLocalURL(), "?CAUSEEVENT=BENCHMARK",, true) > -1)
-    {
-        bIsBenchmark = true;
-    }
-    if(((KFPC != none) && KFPC.GetTeamNum() != 255) && !bIsBenchmark)
+    if((KFPC != none) && KFPC.GetTeamNum() != 255)
     {
         MyPerk = KFPC.GetPerk();
         if((MyPerk == none) || !MyPerk.bInitialized)
@@ -1335,7 +1332,7 @@ function class<DamageType> GetLastHitByDamageType(class<DamageType> DT, KFPawn_M
     {
         if(((RealDT.default.WeaponDef == none) && P.HitFxInfo.DamageType != none) && Killer == P.LastHitBy)
         {
-            if(!RealDT.default.bCausedByWorld && RealDT.default.DoT_Type != 3)
+            if((!RealDT.default.bAnyPerk && !RealDT.default.bCausedByWorld) && RealDT.default.DoT_Type != 3)
             {
                 WarnInternal(("Damage Type " @ string(RealDT.Name)) @ " has not had its weapon definition initialized");
             }
@@ -1351,19 +1348,29 @@ function class<DamageType> GetLastHitByDamageType(class<DamageType> DT, KFPawn_M
 
 function BroadcastDeathMessage(Controller Killer, Controller Other, class<DamageType> DamageType)
 {
-    if((Killer == Other) || Killer == none)
+    if(Killer == none)
     {
-        BroadcastLocalized(self, Class'KFLocalMessage_Game', 28, none, Other.PlayerReplicationInfo);        
+        if(Other.GetTeamNum() != 255)
+        {
+            BroadcastLocalized(self, Class'KFLocalMessage_Game', 27, none, Other.PlayerReplicationInfo, DamageType);
+        }        
     }
     else
     {
-        if(Killer.IsA('KFAIController'))
+        if(Killer == Other)
         {
-            BroadcastLocalized(self, Class'KFLocalMessage_Game', 27, none, Other.PlayerReplicationInfo, ((Killer.Pawn != none) ? Killer.Pawn.Class : Class'KFPawn_Human'));            
+            BroadcastLocalized(self, Class'KFLocalMessage_Game', 28, none, Other.PlayerReplicationInfo);            
         }
         else
         {
-            BroadcastLocalized(self, Class'KFLocalMessage_PlayerKills', 0, Killer.PlayerReplicationInfo, Other.PlayerReplicationInfo);
+            if(((Killer.Pawn != none) && !Killer.Pawn.IsHumanControlled()) || KFAIController(Killer) != none)
+            {
+                BroadcastLocalized(self, Class'KFLocalMessage_Game', 27, none, Other.PlayerReplicationInfo, ((Killer.Pawn != none) ? Killer.Pawn.Class : Class'KFPawn_Human'));                
+            }
+            else
+            {
+                BroadcastLocalized(self, Class'KFLocalMessage_PlayerKills', 0, Killer.PlayerReplicationInfo, Other.PlayerReplicationInfo);
+            }
         }
     }
 }
@@ -2075,12 +2082,12 @@ function StripFromMatchmakingGroups(const out UniqueNetId PlayerID)
         LogInternal(("StripFromMatchmakingGroups: Checking if player" @ Class'OnlineSubsystem'.static.UniqueNetIdToString(PlayerID)) @ "is already in a group");
     }
     GroupIndex = PlayerGroups.Length - 1;
-    J0x9A:
+    J0x9B:
 
     if(GroupIndex >= 0)
     {
         MemberIndex = PlayerGroups[GroupIndex].PlayerGroup.Length - 1;
-        J0xDD:
+        J0xDE:
 
         if(MemberIndex >= 0)
         {
@@ -2093,7 +2100,7 @@ function StripFromMatchmakingGroups(const out UniqueNetId PlayerID)
                 PlayerGroups[GroupIndex].PlayerGroup.Remove(MemberIndex, 1;
             }
             -- MemberIndex;
-            goto J0xDD;
+            goto J0xDE;
         }
         if(PlayerGroups[GroupIndex].PlayerGroup.Length == 0)
         {
@@ -2104,7 +2111,7 @@ function StripFromMatchmakingGroups(const out UniqueNetId PlayerID)
             PlayerGroups.Remove(GroupIndex, 1;
         }
         -- GroupIndex;
-        goto J0x9A;
+        goto J0x9B;
     }
 }
 
@@ -2469,20 +2476,29 @@ private final function CheckServerUnlock()
 {
     local bool bWasAvailableForTakeover;
     local KFGameEngine KFEngine;
+    local PlayfabInterface Playfab;
 
-    KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
     if((GetNumPlayers()) == 0)
     {
-        bWasAvailableForTakeover = KFEngine.bAvailableForTakeover;
-        KFEngine.UnlockServer();
-        if(!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
+        KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
+        Playfab = KFEngine.GetPlayfabInterface();
+        if(Playfab != none)
         {
-            AccessControl.SetGamePassword("");
-            StripPasswordFromLastURL(KFEngine);
+            Playfab.serverDeallocate();
         }
-        if(bWasAvailableForTakeover != KFEngine.bAvailableForTakeover)
+        if(KFEngine.IsLockedServer())
         {
-            UpdateGameSettings();
+            bWasAvailableForTakeover = KFEngine.bAvailableForTakeover;
+            KFEngine.UnlockServer();
+            if(!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
+            {
+                AccessControl.SetGamePassword("");
+                StripPasswordFromLastURL(KFEngine);
+            }
+            if(bWasAvailableForTakeover != KFEngine.bAvailableForTakeover)
+            {
+                UpdateGameSettings();
+            }
         }
     }
 }
@@ -2694,6 +2710,9 @@ function OnRetreivedPFInternalUserData(const string ForPlayerId, array<string> K
     }
 }
 
+// Export UKFGameInfo::execCheckNextMap(FFrame&, void* const)
+native function string CheckNextMap(string NextMap);
+
 function OnAIChangeEnemy(BaseAIController AI, Pawn Enemy)
 {
     if(BaseMutator != none)
@@ -2749,7 +2768,7 @@ auto state PendingMatch
                     MyKFGRI.bStopCountDown = true;
                 }
             }
-            if(KFGameEngine(Class'Engine'.static.GetEngine()).IsLockedServer() && !IsTimerActive('CheckServerUnlock'))
+            if(!IsTimerActive('CheckServerUnlock'))
             {
                 SetTimer(float(ReadyUpDelay), false, 'CheckServerUnlock');
             }
@@ -2802,7 +2821,7 @@ defaultproperties
     NumAlwaysRelevantZeds=3
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

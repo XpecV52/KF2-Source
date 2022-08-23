@@ -25,4 +25,5 @@ defaultproperties
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'
+	ModifierPerkList(1)=class'KFPerk_Commando'
 }

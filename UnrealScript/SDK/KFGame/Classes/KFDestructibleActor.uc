@@ -422,6 +422,9 @@ struct native DestructibleSubobject
 /** Array of objects that comprise this destructible object (MAX: 8) */
 var(SubObjects) array<DestructibleSubobject> SubObjects;
 
+/** Tick optimization -- store all damaged mods in a single-dimensional array */
+var native private const init array<pointer> DamagedSubObjects{FDestructibleSubobject};
+
 /** SubObject array size limit based on ReplicationMode */
 var(SubObjects) const editconst byte SubObjectLimit;
 /** SubObject array size limit based on ReplicationMode */

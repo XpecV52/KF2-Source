@@ -186,8 +186,6 @@ var array<string> WidgetPaths;
 //The target PRI for currnet vote
 var PlayerReplicationInfo VotePRI;
 
-var() transient KFHUDTimerHelper TimerHelper;
-
 /** Cached version of the TWOnlineLobby */
 var TWOnlineLobby OnlineLobby;
 var UniqueNetId CurrentInviteLobbyId;
@@ -242,7 +240,6 @@ function Init(optional LocalPlayer LocPlay)
 	local GameViewportClient GVC;
 	local float ScaleStage;
 	
-	TimerHelper = GetPC().Spawn(class'KFHUDTimerHelper');
 	// Initialize datastores
 	class'KFUIDataStore_GameResource'.static.InitializeProviders();
 
@@ -267,7 +264,7 @@ function Init(optional LocalPlayer LocPlay)
 
 	PlayfabInter = class'GameEngine'.static.GetPlayfabInterface();
 
-	TimerHelper.SetTimer( 1.0, true, nameof(OneSecondLoop), self );
+	`TimerHelper.SetTimer( 1.0, true, nameof(OneSecondLoop), self );
 	SetTimingMode(TM_Real);
 
 	GVC = GetGameViewportClient();
@@ -379,7 +376,7 @@ function LaunchMenus( optional bool bForceSkipLobby )
 		//@HSL_BEGIN - JRO - 6/30/2016 - PSN disconnect/logout
 		if(GVC.bNeedDisconnectMessage)
 		{
-			TimerHelper.SetTimer(0.1f, false, 'DelayedShowDisconnectMessage', self);
+			`TimerHelper.SetTimer(0.1f, false, 'DelayedShowDisconnectMessage', self);
 			GVC.bNeedDisconnectMessage = false;
 		}
 		if(GVC.bHandlePlayTogether)
@@ -412,7 +409,7 @@ function DelayedShowDisconnectMessage()
 {
 	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying())
 	{
-		TimerHelper.SetTimer(0.1f, false, 'DelayedShowDisconnectMessage', self);
+		`TimerHelper.SetTimer(0.1f, false, 'DelayedShowDisconnectMessage', self);
 	}
 	else
 	{
@@ -479,21 +476,21 @@ function DelayedOpenPopup( EPopUpType PopUpType, int PopupPriority, string Title
 		if(DelayedPopups[i - 1].Priority <= PopupPriority)
 		{
 			DelayedPopups.InsertItem(i, Popup);
-			TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
+			`TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
 			return;
 		}
 	}
 	
 	// Empty case, simply insert and show
 	DelayedPopups.InsertItem(0, Popup);
-	TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
+	`TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
 }
 
 function ShowDelayedPopupMessage()
 {
 	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentMenu == IISMenu)
 	{
-		TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
+		`TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
 		return;
 	}
 
@@ -748,7 +745,7 @@ function AllowCloseMenu()
 function ForceUpdateNextFrame()
 {
 	// Forces the update on the next frame
-	TimerHelper.SetTimer( 0.01, false, nameof(OnForceUpdate), self );
+	`TimerHelper.SetTimer( 0.01, false, nameof(OnForceUpdate), self );
 }
 
 
@@ -756,7 +753,7 @@ function OnForceUpdate()
 {
 	OneSecondLoop();
 	// Make sure this doesn't trigger again for another second
-	TimerHelper.SetTimer( 1.0, true, nameof(OneSecondLoop), self );
+	`TimerHelper.SetTimer( 1.0, true, nameof(OneSecondLoop), self );
 }
 
 
@@ -793,14 +790,15 @@ function SetMenusOpen(bool bIsOpen)
 {
 	local KFGFxHudWrapper HudWrapper;
 
-	TimerHelper.SetTickIsDisabled( !bIsOpen );
+	// Pause our 1 second loop if the menu isn't open
+	//`TimerHelper.PauseTimer( !bIsOpen, nameof(OneSecondLoop), self ); // not really needed since OneSecondLoop() checks bMenusOpen
 	SetPause( !bIsOpen );
 	bMenusOpen = bIsOpen;
 	bMenusActive = bIsOpen; //@HSL - JRO - 6/21/2016 - Mostly just useful for when bIsOpen is true. Set to false elsewhere, as this gets called too late to be useful in that case
 	SetMovieCanReceiveInput(bIsOpen);
 	if(bUsingGamepad)
 	{
-		FlushPlayerInput(false);
+		FlushPlayerInput(false); 
 	}
 	HudWrapper = KFGFxHudWrapper(HUD);
 	if( HudWrapper != none && HudWrapper.HudMovie != none )
@@ -891,7 +889,7 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 
 		// The trader menu is not opened through ToggleMenus, set the timer to mark when the menu is completely open
 		bCanCloseMenu = false;
-		TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
+		`TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
 	}
 
 	if(CurrentMenuIndex == UI_Start)
@@ -1015,7 +1013,7 @@ event OnClose()
 event OnCleanup()
 {
 	Super.OnCleanup();
-	TimerHelper.ClearAllTimers();
+
 	if( OnlineSub != none )
 	{
 		OnlineSub.ClearAllInventoryReadCompleteDelegates();
@@ -1049,8 +1047,8 @@ function bool ToggleMenus()
 
 		// set the timer to mark when the menu is completely open and we can close the menu down
 		bCanCloseMenu = false;
-		TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
-		TimerHelper.SetTimer( 0.15, false, nameof(PlayOpeningSound), self );//Delay due to pause
+		`TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
+		`TimerHelper.SetTimer( 0.15, false, nameof(PlayOpeningSound), self );//Delay due to pause
 	}
 	else if(bCanCloseMenu) //check to make sure
 	{
@@ -1308,7 +1306,7 @@ function UnloadCurrentPopup()
 		}
 	}
 	
-	TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
+	`TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
 }
 
 function LoadPopups( array<string> Paths)

@@ -64,6 +64,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;
 
 /** Implements typical third person camera. */
 var(Camera) editinline transient KFCustomizationCamera CustomizationCam;
@@ -77,6 +79,10 @@ var(Camera) protected const class<KFBossCamera> BossCameraClass;
 var(Camera) editinline transient KFFirstPersonCamera FirstPersonCam;
 /** Class to use for first person camera. */
 var(Camera) protected const class<GameCameraBase> FirstPersonCameraClass;
+/** Implements the Emote camera. */
+var(Camera) editinline transient KFEmoteCamera EmoteCam;
+/** Class to use for viewing the Emote camera. */
+var(Camera) protected const class<KFEmoteCamera> EmoteCameraClass;
 /** The FOV that the Camera is trying to acheive */
 var() float TargetFOV;
 var float TransitionStartFOV;
@@ -97,6 +103,10 @@ function PostBeginPlay()
     if((FirstPersonCam == none) && FirstPersonCameraClass != none)
     {
         FirstPersonCam = KFFirstPersonCamera(CreateCamera(FirstPersonCameraClass));
+    }
+    if((EmoteCam == none) && EmoteCameraClass != none)
+    {
+        EmoteCam = KFEmoteCamera(CreateCamera(EmoteCameraClass));
     }
 }
 
@@ -217,7 +227,14 @@ protected function GameCameraBase FindBestCameraType(Actor CameraTarget)
             {
                 if(CameraStyle == 'FirstPerson')
                 {
-                    return FirstPersonCam;
+                    return FirstPersonCam;                    
+                }
+                else
+                {
+                    if(CameraStyle == 'Emote')
+                    {
+                        return EmoteCam;
+                    }
                 }
             }
         }
@@ -232,6 +249,7 @@ defaultproperties
     CustomizationCameraClass=Class'KFCustomizationCamera'
     BossCameraClass=Class'KFBossCamera'
     FirstPersonCameraClass=Class'KFFirstPersonCamera'
+    EmoteCameraClass=Class'KFEmoteCamera'
     ThirdPersonCameraClass=Class'KFThirdPersonCamera'
     DefaultFOV=90
     FreeCamOffset=(X=0,Y=0,Z=68)

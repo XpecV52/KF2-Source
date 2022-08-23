@@ -311,6 +311,7 @@ var()			PointLightComponent AmplificationLightTemplate;
 var transient   PointLightComponent AmplificationLight;
 
 var 	bool 	bShowKillTicker;
+var 	bool 	bDisableAutoUpgrade;
 var 	bool 	bHideBossHealthBar;
 
 /*********************************************************************************************
@@ -451,7 +452,7 @@ var private KFOnlineStatsWrite StatsWrite;
 var bool bProcessingGameInvite;
 
 /** List of people we've played with this game */
-var array<string> RecentlyMetPlayers;
+var array<PlayerNameIdPair> RecentlyMetPlayers;
 //@HSL_END
 
 /** TRUE if we are logging in for online play. Requires privilege checks */
@@ -462,6 +463,9 @@ var bool bOnlinePrivilegeCheckPending;
 
 // Callback for login complete
 var delegate<LoginCompleteCallback> OnLoginComplete;
+
+/** Pending game settings for session create. Used when needing to destroy current session first */
+var OnlineGameSettings PendingGameSessionCreateGameSettings;
 
 /*********************************************************************************************
  * @name Dialog and AAR stats
@@ -739,7 +743,7 @@ simulated event ReceivedPlayer()
 	Super.ReceivedPlayer();
 
 	// Read profile settings for local player
-	if( IsLocalPlayerController() )
+	if( IsLocalPlayerController()  )
 	{
 		// Check to see if we already have profile settings
 		if( OnlineSub.PlayerInterface.GetProfileSettings( LocalPlayer(Player).ControllerId ) != None )
@@ -756,7 +760,7 @@ simulated event ReceivedPlayer()
 				OnlineSub.PlayerInterface.AddReadProfileSettingsCompleteDelegate(LocalPlayer(Player).ControllerId, OnReadProfileSettingsComplete);
 				OnlineSub.PlayerInterface.ReadProfileSettings( LocalPlayer(Player).ControllerId, OnlineProfileSettings(PlayerDataDS.ProfileProvider.Profile) );
 			}
-		}	
+		}
 	}
 
 	// Initialize our customization character as authority since we have a PRI
@@ -828,8 +832,6 @@ event Possess(Pawn aPawn, bool bVehicleTransition)
 	{
 		// BWJ - 10-5-16 - This is required for realtime multiplay on PS4
 		KFPRI.bHasSpawnedIn = true;
-
-		KFPRI.bClientActiveSpawn = true;
 		KFPRI.bNetDirty = true;
 	}
 
@@ -917,7 +919,7 @@ function PawnDied( Pawn inPawn )
  */
 exec function ListConsoleEvents()
 {
-`if(`notdefined(ShippingPC) && `notdefined(FINAL_RELEASE))
+`if(`notdefined(ShippingPC))
 	if( !class'WorldInfo'.Static.IsConsoleBuild() && !class'WorldInfo'.Static.IsConsoleDedicatedServer() )
 	{
 		super.ListConsoleEvents();
@@ -1076,6 +1078,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		bShowKillTicker					= Profile.GetProfileBool(KFID_ShowKillTicker);
 		bNoEarRingingSound				= Profile.GetProfileBool(KFID_ReduceHightPitchSounds);
 		bHideBossHealthBar 				= Profile.GetProfileBool(KFID_HideBossHealthBar);
+		bDisableAutoUpgrade 			= Profile.GetProfileBool(KFID_DisableAutoUpgrade);
 
 		KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
 		if(KFPRI != none)
@@ -1182,6 +1185,9 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 	{
 		OnlineSub.GetLobbyInterface().LobbyInvite(LobbyId, Zero, true);
 	}
+
+	// Update our cached Emote Id
+	class'KFEmoteList'.static.RefreshCachedEmoteId();
 }
 
 
@@ -1326,7 +1332,6 @@ function HandleConsoleSessions()
 reliable client function ClientCreateGameSession(string LobbyId, bool bPrivate)
 {
 	local OnlineGameSettings GameSettings;
-	local byte LocalPlayerNum;
 	local string RemoteAddressString;
 
 	`log("SESSIONS - ClientCreateGameSession"@LobbyId);
@@ -1342,19 +1347,46 @@ reliable client function ClientCreateGameSession(string LobbyId, bool bPrivate)
 		GameSettings.JoinString = RemoteAddressString;
 		GameSettings.LobbyId = LobbyId;
 		GameSettings.bRequiresPassword = bPrivate;
+		PendingGameSessionCreateGameSettings = GameSettings;
 
-		LocalPlayerNum = LocalPlayer(Player).ControllerId;
-
-		// Register the delegate so we can see when it's done
-		OnlineSub.GameInterface.AddCreateOnlineGameCompleteDelegate(OnGameSessionCreateComplete);
-		// Now kick off the async create
-		if ( !OnlineSub.GameInterface.CreateOnlineGame(LocalPlayerNum, 'Game', GameSettings) )
+		// If we are already in a session, we need to destroy the old one first
+		if( OnlineSub.IsInSession( 'Game' ) )
 		{
-			`log("Failed to create online game");
-			OnlineSub.GameInterface.ClearCreateOnlineGameCompleteDelegate(OnGameSessionCreateComplete);
+			OnlineSub.GameInterface.AddDestroyOnlineGameCompleteDelegate( OnOldSessionDestroyedForNewGameSessionCreate );
+			OnlineSub.GameInterface.DestroyOnlineGame( 'Game' );
+		}
+		// not in a session, create now
+		else
+		{
+			TryCreateGameSessionNow();
 		}
 	}
 }
+
+
+private simulated function OnOldSessionDestroyedForNewGameSessionCreate( name SessionName, bool bWasSuccessful )
+{
+	// Now that its destroyed, create now!
+	OnlineSub.GameInterface.ClearDestroyOnlineGameCompleteDelegate( OnOldSessionDestroyedForNewGameSessionCreate );
+	TryCreateGameSessionNow();
+}
+
+
+private simulated function TryCreateGameSessionNow()
+{
+	// Register the delegate so we can see when it's done
+	OnlineSub.GameInterface.AddCreateOnlineGameCompleteDelegate(OnGameSessionCreateComplete);
+	// Now kick off the async create
+	if (!OnlineSub.GameInterface.CreateOnlineGame(LocalPlayer(Player).ControllerId, 'Game', PendingGameSessionCreateGameSettings))
+	{
+		`log("Failed to create online game");
+		OnlineSub.GameInterface.ClearCreateOnlineGameCompleteDelegate(OnGameSessionCreateComplete);
+	}
+
+	// Clear the pending game settings
+	PendingGameSessionCreateGameSettings = none;
+}
+
 
 simulated function OnGameSessionCreateComplete(name SessionName,bool bWasSuccessful)
 {
@@ -1423,6 +1455,7 @@ reliable server function ServerGameSessionFailed()
 
 simulated function TryJoinGameSession()
 {
+	local OnlineGameSettings GS;
 	`log("SESSIONS - TryJoinGameSession");
 
 	if( KFGameReplicationInfo(WorldInfo.GRI).ConsoleGameSessionGuid == "" )
@@ -1435,17 +1468,31 @@ simulated function TryJoinGameSession()
 
 	if (OnlineSub != None && OnlineSub.GameInterface != None)
 	{
-		//if we're already in a session, safe to assume it's the one we're supposed to be in. Otherwise join it now!
-		if(OnlineSub.IsInSession('Game'))
-		{
-			`log("  - Skipped join, already in a session");
-		}
-		else
+		GS = OnlineSub.GameInterface.GetGameSettings( 'Game' );
+		// If session doesn't exist, join now
+		if( GS == none )
 		{
 			JoinGameSessionNow();
 		}
+		// In an old session, cleanup first
+		else if( GS.SessionGuid != KFGameReplicationInfo(WorldInfo.GRI).ConsoleGameSessionGuid )
+		{
+			`log("need to clean up old session before joining new one");
+			OnlineSub.GameInterface.AddDestroyOnlineGameCompleteDelegate(OnOldSessionDestroyedForNewGameSessionJoin);
+			OnlineSub.GameInterface.DestroyOnlineGame( 'Game' );
+		}
 	}
 }
+
+
+private simulated function OnOldSessionDestroyedForNewGameSessionJoin(name SessionName, bool bWasSuccessful)
+{
+	// Now that its destroyed, join new one now!
+	OnlineSub.GameInterface.ClearDestroyOnlineGameCompleteDelegate(OnOldSessionDestroyedForNewGameSessionJoin);
+	JoinGameSessionNow();
+}
+
+
 
 simulated function JoinGameSessionNow()
 {
@@ -1807,7 +1854,7 @@ function OnCreateGameSessionForPlayTogetherComplete(string SessionGuid,bool bWas
 
 	InviteMessage = Localize("Notifications", "InviteMessage", "KFGameConsole");
 
-	OnlineSub.PlayerInterface.SendGameInviteToUsers(SessionGuid, OnlineSub.GameInterface.GetPendingMembersToInvite(), InviteMessage);
+	OnlineSub.PlayerInterface.SendGameInviteToUsers(SessionGuid, 'Game', OnlineSub.GameInterface.GetPendingMembersToInvite(), InviteMessage);
 	OnlineSub.GameInterface.ResetPendingMembersToInvite();
 }
 
@@ -2512,8 +2559,6 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 {
 	local KFPawn KFP;
 	local KFPawn_MonsterBoss KFBoss;
-	local vector Loc, Pos, HitLocation, HitNormal;
-	local rotator Rot;
 
 	// Debugging - Show/Hide the player model using exec Camera()
 	KFP = KFPawn(ViewTarget);
@@ -2553,17 +2598,7 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 		{
 			if( PlayerCamera != none && PlayerCamera.CameraStyle != NewCamMode )
 			{
-				Loc = Location;
-				Loc += PlayerCamera.FreeCamOffset >> Rotation;
-				Rot = PlayerCamera.CameraCache.POV.Rotation;
-				Rot.Roll = 0;
-				Pos = Loc + Vector(Rot) * PlayerCamera.FreeCamDistance;
-
-				// Make sure we're not in geometry
-				Trace( HitLocation, HitNormal, Pos, Loc, false, vect(12,12,12) );
-
-				SetLocation( IsZero(HitLocation) ? Pos : HitLocation );
-				SetRotation( Rot );
+				MoveToAdjustedFreeCamPosition();
 			}
 		}
 		else if( NewCamMode == 'FirstPerson' && !PlayerReplicationInfo.bIsSpectator )
@@ -2583,9 +2618,9 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 
 	if(MyGFxHUD != none && MyGFxHUD.SpectatorInfoWidget != none)
 	{
-		if((NewCamMode == 'FirstPerson' && ViewTarget == self))
+		if( NewCamMode == 'FirstPerson' && ViewTarget == self )
 		{
-			MyGFxHUD.SpectatorInfoWidget.SetSpectatedKFPRI(none);
+			MyGFxHUD.SpectatorInfoWidget.SetSpectatedKFPRI( none );
 		}
 	}
 
@@ -2601,6 +2636,16 @@ function bool IsBossCameraMode()
 	{
 		return true;
 	}
+	return false;
+}
+
+function bool IsEmoteCameraMode()
+{
+	if ( PlayerCamera != None && PlayerCamera.CameraStyle == 'Emote' )
+	{
+		return true;
+	}
+
 	return false;
 }
 
@@ -2623,16 +2668,28 @@ function KFPawn_MonsterBoss GetBoss()
  */
 function SetCameraMode( name NewCamMode )
 {
-	local vector Loc, Pos, HitLocation, HitNormal;
-	local rotator Rot;
-
-	if ( PlayerCamera != None )
+	if ( PlayerCamera != None && PlayerCamera.CameraStyle != NewCamMode )
 	{
-		PlayerCamera.CameraStyle = NewCamMode;
-
 		// Apply the same camera offset that Camera.uc uses to avoid popping
 		if( NewCamMode == 'FreeCam' )
 		{
+			MoveToAdjustedFreeCamPosition();
+		}
+
+		if ( WorldInfo.Role == ROLE_Authority )
+		{
+			ClientSetCameraMode( NewCamMode );
+		}
+
+		PlayerCamera.CameraStyle = NewCamMode;
+	}
+}
+
+function MoveToAdjustedFreeCamPosition()
+{
+	local vector Loc, Pos, HitLocation, HitNormal;
+	local rotator Rot;
+
 	Loc = Location;
 	Loc += PlayerCamera.FreeCamOffset >> Rotation;
 	Rot = PlayerCamera.CameraCache.POV.Rotation;
@@ -2643,14 +2700,7 @@ function SetCameraMode( name NewCamMode )
 	Trace( HitLocation, HitNormal, Pos, Loc, false, vect(12,12,12) );
 
 	SetLocation( IsZero(HitLocation) ? Pos : HitLocation );
-			SetRotation( Rot );
-		}
-
-		if ( WorldInfo.Role == ROLE_Authority )
-		{
-			ClientSetCameraMode( NewCamMode );
-		}
-	}
+	SetRotation( Rot );	
 }
 
 /** LandingShake()
@@ -2684,20 +2734,25 @@ function ProcessViewRotation( float DeltaTime, out Rotator out_ViewRotation, Rot
 	super.ProcessViewRotation( DeltaTime, out_ViewRotation, DeltaRot );
 }
 
-function SetBossCamera( Pawn Boss )
+function SetBossCamera( KFPawn Boss )
 {
-	local KFPawn_MonsterBoss KFPMBoss;
-
 	// If our view target has been obliterated, the camera will default to view the player controller.
 	// So, put the player controller where the view target was.
-	KFPMBoss = KFPawn_MonsterBoss( Boss );
-	if( KFPMBoss != none && KFPMBoss.HitFxInfo.bObliterated )
+	if( Boss != none && Boss.HitFxInfo.bObliterated )
 	{
 		SetLocation( Boss.Location );
 	}
 
 	SetViewTarget( Boss );
-	ServerCamera( 'Boss' );
+
+	if( Role == ROLE_Authority && !IsLocalPlayerController() )
+	{
+		PlayerCamera.CameraStyle = 'Boss';
+	}
+	else
+	{
+		ClientSetCameraMode( 'Boss' );
+	}
 }
 
 // overridden because to view a dying boss as a client
@@ -2791,6 +2846,11 @@ exec function Camera( name NewMode )
 {
 `if(`notdefined(ShippingPC))
 	super.Camera( NewMode );
+`else
+	if(StatsWrite != none && StatsWrite.HasCheated())
+	{
+		super.Camera( NewMode );	
+	}
 `endif
 }
 
@@ -4578,7 +4638,7 @@ reliable client function ClientSetFrontEnd( class< KFGFxMoviePlayer_Manager > Fr
 		if(OnlineSub.PlayerInterface.GetLoginStatus(LP.ControllerId) > LS_NotLoggedIn && !OnlineSub.SystemInterface.IsControllerConnected(LP.ControllerId))
 		{
 			`log("Controller Disconnected");
-			OnControllerChanged(LP.ControllerId, false);
+			OnControllerChanged(LP.ControllerId, false, false);
 		}
     	}
 
@@ -5029,7 +5089,7 @@ function DoAutoPurchase()
 	local KFGameReplicationInfo KFGRI;
 
    	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if(KFGRI != none && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')	
+	if(KFGRI != none && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial' || bDisableAutoUpgrade)	
 	{
 		OpenTraderMenu();
 		return;
@@ -5635,7 +5695,7 @@ simulated function ReadStats()
 	{
 		OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate( OnStatsInitialized );
 		Players[0] = StatsRead.OwningUniqueID;
-		OnlineSub.StatsInterface.ReadOnlineStats( Players, StatsRead );
+		OnlineSub.StatsInterface.ReadOnlineStats( LocalPlayer(Player).ControllerId, Players, StatsRead );
 	}
 	else if (OnlineSub == None)
 	{
@@ -7608,7 +7668,7 @@ state Dead
 	/** ResetCameraMode is called from PlayerController:Dead::EndState and set the cam mode for both clients and server. We only want the server to do that. */
 	event ResetCameraMode()
 	{
-		if( Role == ROLE_Authority )
+		if( Role == ROLE_Authority && Pawn != none && !Pawn.bPlayedDeath )
 		{
 			Global.ResetCameraMode();
 		}
@@ -7632,6 +7692,33 @@ function StartSpectate( optional Name SpectateType )
 			ClientGotoState( 'Spectating' );
 		}
 	}
+}
+
+/*********************************************************************************************
+ * State BaseSpectating
+ * Base spectating state. Ignore rumble and camera shake in any non-play controller state.
+ *********************************************************************************************/
+state BaseSpectating
+{
+	ignores ClientPlayForceFeedbackWaveform, ClientPlayCameraShake;
+}
+
+/*********************************************************************************************
+ * State PlayerWaiting
+ * Base spectating state. Ignore rumble and camera shake in any non-play controller state.
+ *********************************************************************************************/
+auto state PlayerWaiting
+{
+	ignores SeePlayer, HearNoise, NotifyBump, TakeDamage, PhysicsVolumeChange, NextWeapon, PrevWeapon, SwitchToBestWeapon, ClientPlayForceFeedbackWaveform, ClientPlayCameraShake;
+}
+
+/*********************************************************************************************
+ * State WaitingForPawn
+ * Base spectating state. Ignore rumble and camera shake in any non-play controller state.
+ *********************************************************************************************/
+state WaitingForPawn
+{
+	ignores SeePlayer, HearNoise, KilledBy, ClientPlayForceFeedbackWaveform, ClientPlayCameraShake;
 }
 
 /*********************************************************************************************
@@ -7660,7 +7747,7 @@ function MoveToValidSpectatorLocation()
 
 state Spectating
 {
-	ignores ClientPlayForceFeedbackWaveform;
+	ignores ClientPlayForceFeedbackWaveform, ClientPlayCameraShake;
 
 	event BeginState(Name PreviousStateName)
 	{
@@ -7701,7 +7788,11 @@ state Spectating
 			// Put us in roaming if our viewtarget is ourself
 			if( ViewTarget == self )
 			{
-				SpectateRoaming();
+				if( CurrentSpectateMode != SMODE_Roaming )
+				{
+					CurrentSpectateMode = SMODE_PawnFreeCam;
+					SetCameraMode( 'FreeCam' );
+				}
 			}
 			else
 			{
@@ -7945,7 +8036,10 @@ function SpectatePlayer( KFSpectateModes Mode )
 		if ( KFPawn(ViewTarget) == None )
 		{
 			// if we couldn't find a valid player to target, switch to roaming cam
+			if( ViewTarget != self )
+			{
 				SpectateRoaming();
+			}
 			return;
 		}
 	}
@@ -7972,9 +8066,23 @@ reliable server function SpectateRoaming()
 {
 	CurrentSpectateMode = SMODE_Roaming;
 	ServerViewSelf();
-	if ( ViewTarget == self )
+	if( ViewTarget == self )
 	{
-		SetCameraMode('FirstPerson');
+		SetCameraMode( 'FirstPerson' );
+	}
+}
+
+/** Copied from PlayerController. Function call order wasn't correct, we need to call ResetCameraMode() after the viewtarget changes */
+unreliable server function ServerViewSelf(optional ViewTargetTransitionParams TransitionParams)
+{
+	if (IsSpectating())
+	{
+		SetViewTarget( Self, TransitionParams );
+		ClientSetViewTarget( Self, TransitionParams );
+		if( PlayerCamera != none && PlayerCamera.CameraStyle != 'FirstPerson' )
+		{
+			ResetCameraMode();
+		}
 	}
 }
 
@@ -8049,13 +8157,20 @@ function SubmitPostWaveStats(optional bool bOpeningTrader)
 		PWRI.RepCount++;
 	}
 
-	// Trigger trader open dialog after RecordWaveInfo, but before ResetLastWaveInfo!!!
-	// @todo: This should get moved to GRI.OpenTrader(), but for now we're
-	//  heavily dependant on accurate match stats.
-	if ( PWRI.bOpeningTrader && IsLocalController() )
+	// Record stats only after EphemeralMatchStats has propagated
+	if( IsLocalPlayerController() )
 	{
-		`TraderDialogManager.PlayBeginTraderTimeDialog( self );
+		ClientWriteAndFlushStats();
+
+		// Trigger trader open dialog after RecordWaveInfo, but before ResetLastWaveInfo!!!
+		// @todo: This should get moved to GRI.OpenTrader(), but for now we're
+		//  heavily dependant on accurate match stats.
+		if ( PWRI.bOpeningTrader )
+		{
+			`TraderDialogManager.PlayBeginTraderTimeDialog( self );
+		}
 	}
+
 }
 
 function SavePersonalBest(EPersonalBests PersonalBestID, int Value)
@@ -8183,6 +8298,29 @@ unreliable server function ServerPlayVoiceCommsDialog( int CommsIndex )
 exec function PlayVoiceCommsDialog( int CommsIndex )
 {
 	ServerPlayVoiceCommsDialog( CommsIndex );
+}
+
+/**
+ * @brief Called from the UI or key bind to start the emote action
+ */
+exec function DoEmote()
+{
+	local KFPawn MyPawn;
+	local byte SMFlags;
+
+	MyPawn = KFPawn(Pawn);
+	if( MyPawn != none
+		&& !MyPawn.IsDoingSpecialMove()
+		&& class'KFEmoteList'.static.GetEquippedEmoteId() != -1
+		&& MyPawn.CanDoSpecialMove(SM_Emote) )
+	{
+    	SMFlags = MyPawn.SpecialMoveHandler.SpecialMoveClasses[SM_Emote].static.PackFlagsBase( MyPawn );
+		MyPawn.DoSpecialMove( SM_Emote, true,, SMFlags );
+		if( Role < ROLE_Authority && MyPawn.IsDoingSpecialMove(SM_Emote) )
+		{
+			MyPawn.ServerDoSpecialMove( SM_Emote, true, , SMFlags );
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -8383,7 +8521,7 @@ exec function GCF()
 }
 
 
-function OnControllerChanged(int ControllerId,bool bIsConnected)
+function OnControllerChanged(int ControllerId,bool bIsConnected,bool bPauseGame)
 {
 	local LocalPlayer LP;
 
@@ -8406,7 +8544,7 @@ function OnControllerChanged(int ControllerId,bool bIsConnected)
 		MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_ControllerDisconnect, Localize("Notifications", "ControllerDisconnectedTitle", "KFGameConsole"), Localize("Notifications", "ControllerDisconnectedPS4Message", "KFGameConsole"), class'KFCommon_LocalizedStrings'.default.OKString);
 	}
 
-	Super.OnControllerChanged(ControllerId, bIsConnected);
+	Super.OnControllerChanged(ControllerId, bIsConnected, bPauseGame);
 }
 
 
@@ -8467,7 +8605,7 @@ function OnOSSLoginComplete( byte LocalUserNum, bool bWasSuccessful, EOnlineServ
 
 	if( ErrorCode == OSCS_Connected )
 	{
-		GetPS4Avatar( PlayerReplicationInfo.PlayerName );
+			GetPS4Avatar( PlayerReplicationInfo.PlayerName );
 
 		// Do playfab login if this has not been done yet
 		if( PlayfabInter != none && PlayfabInter.CachedPlayfabId == "" )
@@ -8505,7 +8643,7 @@ function OnOSSLoginComplete( byte LocalUserNum, bool bWasSuccessful, EOnlineServ
 		if( bLoggingInForOnlinePlay )
 		{
 			OnLoginCompleted(false);
-			OnlineSub.PlayerInterface.ShowLoginUI();
+			OnlineSub.PlayerInterface.ShowLoginUI(LocalPlayer(Player).ControllerId);
 		}
 		// Inform user that they must sign into PSN to use online features
 		else
@@ -8558,13 +8696,15 @@ function OnOSSLoginComplete( byte LocalUserNum, bool bWasSuccessful, EOnlineServ
 
 function CheckPrivilegesForMultiplayer()
 {
+	local EFeaturePrivilegeLevel HintPrivLevel;
+
 	bOnlinePrivilegeCheckPending = true;
 	OnlineSub.PlayerInterface.AddPrivilegeLevelCheckedDelegate(OnCanPlayOnlineCheckForMatchmakingComplete);
-	OnlineSub.PlayerInterface.CanPlayOnline(LocalPlayer(Player).ControllerId);
+	OnlineSub.PlayerInterface.CanPlayOnline(LocalPlayer(Player).ControllerId, HintPrivLevel);
 }
 
 
-function OnCanPlayOnlineCheckForMatchmakingComplete(byte LocalUserNum, EFeaturePrivilege Privilege, EFeaturePrivilegeLevel PrivilegeLevel)
+function OnCanPlayOnlineCheckForMatchmakingComplete(byte LocalUserNum, EFeaturePrivilege Privilege, EFeaturePrivilegeLevel PrivilegeLevel, bool bDiffersFromHint)
 {
 	// If it's not FP_OnlinePlay, we caught another async check that we don't care about...
 	if(Privilege == FP_OnlinePlay)
@@ -8605,7 +8745,24 @@ function OnPlayfabLoginComplete(bool bWasSuccessful, string SessionTicket, strin
 	KFGameEngine(class'Engine'.static.GetEngine()).ReadPFStoreData();
 }
 
+`if(`notdefined(ShippingPC))
+/** Clientside cheats for dev build only */
+exec function EnableEmoteDebugging()
+{
+    ConsoleCommand("SETNOPEC KFEmoteList bDebugEmotes true");
+}
 
+exec function DisableEmoteDebugging()
+{
+    ConsoleCommand("SETNOPEC KFEmoteList bDebugEmotes false");   
+}
+
+exec function SetEquippedEmote( int ItemId )
+{
+    EnableEmoteDebugging();
+    ConsoleCommand("SETNOPEC KFEmoteList EquippedEmoteId"@ItemId);
+}
+`endif
 
 defaultproperties
 {

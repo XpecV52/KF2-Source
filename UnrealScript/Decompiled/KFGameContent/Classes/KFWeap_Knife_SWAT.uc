@@ -14,7 +14,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'wep_ui_swat_knife_tex.UI_WeaponSelect_SWATKnife'
     AttachmentArchetype=KFWeaponAttachment'WEP_SWAT_Knife_ARCH.Wep_SWAT_Knife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_SWAT.MeleeHelper'
-    AssociatedPerkClass=Class'KFGame.KFPerk_SWAT'
+    AssociatedPerkClasses=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         SkeletalMesh=SkeletalMesh'wep_1p_swat_knife_mesh.Wep_1stP_SWAT_Knife_Rig'

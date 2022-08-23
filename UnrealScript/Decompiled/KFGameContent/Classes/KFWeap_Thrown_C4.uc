@@ -127,7 +127,6 @@ simulated function Detonate()
         if(DeployedCharges.Length > 0)
         {
             DeployedCharges[0].Detonate();
-            RemoveDeployedCharge(0);
         }
         if(!HasAnyAmmo() && NumDeployedCharges == 0)
         {
@@ -292,7 +291,7 @@ defaultproperties
     PlayerViewOffset=(X=6,Y=2,Z=-4)
     AttachmentArchetype=KFWeapAttach_Dual_C4'WEP_C4_ARCH.Wep_C4_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Thrown_C4.MeleeHelper'
-    AssociatedPerkClass=Class'KFGame.KFPerk_Demolitionist'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

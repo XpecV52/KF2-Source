@@ -119,21 +119,19 @@ function UpdateHealth()
 {
     local float HealthPct;
 
-    HealthPct = (100 / float(MyKFPH.HealthMax)) * float(MyKFPH.Health);
     if(MyKFPH == none)
     {
         LastHealthPct = 0;
         IconMC.GotoAndStopI(100);
-        HealthMeter.GotoAndStopI(100);        
+        HealthMeter.GotoAndStopI(100);
+        return;
     }
-    else
+    HealthPct = (100 / float(MyKFPH.HealthMax)) * float(MyKFPH.Health);
+    if(LastHealthPct != HealthPct)
     {
-        if(LastHealthPct != HealthPct)
-        {
-            LastHealthPct = HealthPct;
-            IconMC.GotoAndStopI(Max(int(float(100) - LastHealthPct), 1));
-            HealthMeter.GotoAndStopI(Min(int(LastHealthPct), 100));
-        }
+        LastHealthPct = HealthPct;
+        IconMC.GotoAndStopI(Max(int(float(100) - LastHealthPct), 1));
+        HealthMeter.GotoAndStopI(Min(int(LastHealthPct), 100));
     }
 }
 

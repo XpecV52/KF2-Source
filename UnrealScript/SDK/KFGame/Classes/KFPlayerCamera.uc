@@ -29,6 +29,11 @@ var(Camera) editinline transient KFFirstPersonCamera			FirstPersonCam;
 /** Class to use for first person camera. */
 var(Camera) protected const  class<GameCameraBase>      		FirstPersonCameraClass;
 
+/** Implements the Emote camera. */
+var(Camera) editinline transient KFEmoteCamera					EmoteCam;
+/** Class to use for viewing the Emote camera. */
+var(Camera) protected const  class<KFEmoteCamera>      			EmoteCameraClass;
+
 /*********************************************************************************************
  FOV Blending
 ********************************************************************************************* */
@@ -62,6 +67,11 @@ function PostBeginPlay()
 	if ( (FirstPersonCam == None) && (FirstPersonCameraClass != None) )
 	{
 		FirstPersonCam = KFFirstPersonCamera( CreateCamera(FirstPersonCameraClass) );
+	}
+
+	if ( EmoteCam == None && EmoteCameraClass != None )
+	{
+		EmoteCam = KFEmoteCamera( CreateCamera(EmoteCameraClass) );
 	}
 }
 
@@ -210,6 +220,10 @@ protected function GameCameraBase FindBestCameraType(Actor CameraTarget)
 	{
 		return FirstPersonCam;
 	}
+	else if( CameraStyle == 'Emote' )
+	{
+		return EmoteCam;
+	}
 
 	return Super.FindBestCameraType(CameraTarget);
 }
@@ -225,4 +239,5 @@ defaultproperties
 	CustomizationCameraClass=class'KFCustomizationCamera'
 	BossCameraClass=class'KFBossCamera'
 	FirstPersonCameraClass=class'KFFirstPersonCamera'
+	EmoteCameraClass=class'KFEmoteCamera'
 }

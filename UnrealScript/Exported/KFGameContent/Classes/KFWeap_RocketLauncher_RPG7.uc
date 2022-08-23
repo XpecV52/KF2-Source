@@ -152,7 +152,7 @@ defaultproperties
    RecoilISMinPitchLimit=65485
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
-   AssociatedPerkClass=Class'KFGame.KFPerk_Demolitionist'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

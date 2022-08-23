@@ -67,7 +67,7 @@ state Command_SpecialMove
             EnemyLocation = Outer.Enemy.Location + (vect(0, 0, 1) * Outer.Enemy.BaseEyeHeight);
             MyEyeLocation = Outer.MyKFPawn.Location + (vect(0, 0, 1) * Outer.MyKFPawn.BaseEyeHeight);
             RangeToEnemySQ = VSizeSq(EnemyLocation - MyEyeLocation);
-            if(((RangeToEnemySQ < float(MaxScreamRangeSQ)) && RangeToEnemySQ > float(MinScreamRangeSQ)) && Outer.FastTrace(EnemyLocation, MyEyeLocation))
+            if(((RangeToEnemySQ < float(MaxScreamRangeSQ)) && RangeToEnemySQ > float(MinScreamRangeSQ)) && Class'KFGameEngine'.static.FastTrace_PhysX(EnemyLocation, MyEyeLocation))
             {
                 Outer.LastScreamTime = Outer.WorldInfo.TimeSeconds;
                 KFGI = KFGameInfo(Outer.WorldInfo.Game);

@@ -90,7 +90,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     {
         KFW = GetWeaponFromDamageCauser(DamageCauser);
     }
-    if(((KFW != none) && IsWeaponOnPerk(KFW)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
+    if(((KFW != none) && IsWeaponOnPerk(KFW,, self.Class)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
     {
         if((MyKFPM != none) && HitZoneIdx == 0)
         {
@@ -129,7 +129,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
 
 simulated function ModifyRateOfFire(out float InRate, KFWeapon KFW)
 {
-    if((IsTriggerActive()) && IsWeaponOnPerk(KFW))
+    if((IsTriggerActive()) && IsWeaponOnPerk(KFW,, self.Class))
     {
         InRate -= (InRate * (GetSkillValue(PerkSkills[1])));
     }
@@ -147,7 +147,7 @@ simulated function float GetReloadRateScale(KFWeapon KFW)
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW)
 {
     CurrentRecoilModifier -= (CurrentRecoilModifier * (GetPassiveValue(Recoil, CurrentLevel)));
-    if((GetScopedActive(KFW)) && IsWeaponOnPerk(KFW))
+    if((GetScopedActive(KFW)) && IsWeaponOnPerk(KFW,, self.Class))
     {
         CurrentRecoilModifier -= (CurrentRecoilModifier * (GetSkillValue(PerkSkills[6])));
     }
@@ -172,7 +172,7 @@ simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, 
     local float TempMaxSpareAmmoAmount;
 
     bSecondary = false;
-    if((IsAmmoPouchActive()) && IsWeaponOnPerk(KFW, TraderItem.AssociatedPerkClass))
+    if((IsAmmoPouchActive()) && IsWeaponOnPerk(KFW, TraderItem.AssociatedPerkClasses, self.Class))
     {
         TempMaxSpareAmmoAmount = float(MaxSpareAmmo);
         TempMaxSpareAmmoAmount += (TempMaxSpareAmmoAmount * (GetSkillValue(PerkSkills[7])));
@@ -245,7 +245,7 @@ simulated function bool IsTriggerActive()
 
 simulated function bool IsCrouchAimActive(KFWeapon W)
 {
-    return ((PerkSkills[2].bActive && CheckOwnerPawn()) && OwnerPawn.bIsCrouched) && IsWeaponOnPerk(W);
+    return ((PerkSkills[2].bActive && CheckOwnerPawn()) && OwnerPawn.bIsCrouched) && IsWeaponOnPerk(W,, self.Class);
 }
 
 simulated function bool IsStunActive()
@@ -358,14 +358,12 @@ reliable client simulated function HeadShotMessage(byte HeadShotNum, byte Displa
         case 4:
             if(!bMissed)
             {
-                OwnerPC.ClientSpawnCameraLensEffect(Class'KFCameraLensEmit_RackemHeadShot');
                 TempAkEvent = RhythmMethodSoundHit;
             }
             break;
         case 5:
             if(!bMissed)
             {
-                OwnerPC.ClientSpawnCameraLensEffect(Class'KFCameraLensEmit_RackemHeadShotPing');
                 TempAkEvent = RhythmMethodSoundTop;
                 I = 6;
             }
@@ -433,7 +431,7 @@ static function bool IsDamageTypeOnPerk(class<KFDamageType> KFDT)
     return super.IsDamageTypeOnPerk(KFDT);
 }
 
-static simulated function bool IsWeaponOnPerk(KFWeapon W, optional class<KFPerk> WeaponPerkClass)
+static simulated function bool IsWeaponOnPerk(KFWeapon W, optional array< class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass)
 {
     if((W != none) && default.AdditionalOnPerkWeaponNames.Find(W.Class.Name != -1)
     {
@@ -459,7 +457,11 @@ defaultproperties
     CrouchAimReloadSpeedModifier=0.2
     AdditionalOnPerkWeaponNames(0)=KFWeap_Pistol_9mm
     AdditionalOnPerkWeaponNames(1)=KFWeap_Pistol_Dual9mm
+    AdditionalOnPerkWeaponNames(2)=KFWeap_Revolver_Rem1858
+    AdditionalOnPerkWeaponNames(3)=KFWeap_Revolver_SW500
     AdditionalOnPerkDTNames(0)=KFDT_Ballistic_9mm
+    AdditionalOnPerkDTNames(1)=KFDT_Ballistic_SW500
+    AdditionalOnPerkDTNames(2)=KFDT_Ballistic_Rem1858
     SkillZedTimeChance=0.05
     ProgressStatID=50
     PerkBuildStatID=51

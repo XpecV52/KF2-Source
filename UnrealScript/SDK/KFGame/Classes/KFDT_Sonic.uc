@@ -20,6 +20,7 @@ static function int GetDamageeDialogID()
 defaultproperties
 {
 	bArmorStops=false
+	bAllowAIDoorDestruction=true
 
 	ScreenMaterialName=Effect_Siren
 

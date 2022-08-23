@@ -34,18 +34,6 @@ enum EReceiveMode
     RMODE_MAX
 };
 
-struct IpAddr
-{
-    var int Addr;
-    var int Port;
-
-    structdefaultproperties
-    {
-        Addr=0
-        Port=0
-    }
-};
-
 var InternetLink.ELinkMode LinkMode;
 var InternetLink.ELineMode InLineMode;
 var InternetLink.ELineMode OutLineMode;

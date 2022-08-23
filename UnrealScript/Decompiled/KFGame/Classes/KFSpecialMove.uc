@@ -403,6 +403,8 @@ function DeferOnAnimEnd()
     }
 }
 
+simulated function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC);
+
 function AbortedByAICommand();
 
 function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy);
@@ -422,6 +424,11 @@ function OnEMPDisrupted()
 }
 
 event ModifyInteractionPawn(out KFPawn OtherPawn);
+
+function bool CanDrawCrosshair()
+{
+    return true;
+}
 
 defaultproperties
 {

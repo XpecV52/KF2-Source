@@ -447,10 +447,10 @@ simulated function ChooseBestFlashlight()
 defaultproperties
 {
    Begin Object Class=SpotLightComponent Name=FlashLightTemplate_0
-      InnerConeAngle=20.000000
-      OuterConeAngle=30.000000
+      InnerConeAngle=5.000000
+      OuterConeAngle=20.000000
       Radius=3000.000000
-      Brightness=10.000000
+      Brightness=0.500000
       Begin Object Class=LightFunction Name=FlashLightFunction_0
          SourceMaterial=Material'FX_Mat_Lib.VFX_Flashlight_PM'
          Name="FlashLightFunction_0"

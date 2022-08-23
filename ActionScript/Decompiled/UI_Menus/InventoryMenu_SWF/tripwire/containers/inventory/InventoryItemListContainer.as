@@ -56,6 +56,8 @@ package tripwire.containers.inventory
         
         public var cosmeticsButton:TripButton;
         
+        public var emotesButton:TripButton;
+        
         public var consumablesButton:TripButton;
         
         public var craftingMatsButton:TripButton;
@@ -128,6 +130,7 @@ package tripwire.containers.inventory
                 this.allButton.label = !!param1.all ? param1.all : "";
                 this.weaponSkinsButton.label = !!param1.weaponSkins ? param1.weaponSkins : "";
                 this.cosmeticsButton.label = !!param1.cosmetics ? param1.cosmetics : "";
+                this.emotesButton.label = !!param1.emotes ? param1.emotes : "";
                 this.consumablesButton.label = !!param1.items ? param1.items : "";
                 this.craftingMatsButton.label = !!param1.craftingMats ? param1.craftingMats : "";
                 this.craftWeaponsButton.label = !!param1.craftWeapon ? param1.craftWeapon : "";
@@ -141,7 +144,7 @@ package tripwire.containers.inventory
             super.addedToStage(param1);
             this.craftWeaponsButton.bHasVerticalAlign = true;
             this.craftCosmeticsButton.bHasVerticalAlign = true;
-            this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.consumablesButton,this.craftingMatsButton);
+            this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.consumablesButton,this.emotesButton,this.craftingMatsButton);
             var _loc2_:int = 0;
             while(_loc2_ < this.buttonList.length)
             {
@@ -153,6 +156,7 @@ package tripwire.containers.inventory
             this.allButton.tabIndex = 1;
             this.weaponSkinsButton.tabIndex = 2;
             this.cosmeticsButton.tabIndex = 3;
+            this.emotesButton.tabIndex = 3;
             this.consumablesButton.tabIndex = 4;
             this.craftingMatsButton.tabIndex = 5;
             this.inventoryItemScrollingList.tabIndex = 6;
@@ -163,6 +167,7 @@ package tripwire.containers.inventory
             this.allButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.weaponSkinsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.cosmeticsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.emotesButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.consumablesButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.craftingMatsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.craftWeaponsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
@@ -178,6 +183,7 @@ package tripwire.containers.inventory
             leftSidePanels.push(this.cosmeticsButton);
             leftSidePanels.push(this.consumablesButton);
             leftSidePanels.push(this.craftWeaponsButton);
+            leftSidePanels.push(this.emotesButton);
             leftSidePanels.push(this.craftingMatsButton);
             leftSidePanels.push(this.craftCosmeticsButton);
             leftSidePanels.push(this.filtersText);

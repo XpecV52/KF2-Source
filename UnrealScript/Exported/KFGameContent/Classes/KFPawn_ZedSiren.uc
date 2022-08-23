@@ -22,10 +22,11 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
 {
 	super.SetCharacterArch( Info, bForce );
 
-	if( WorldInfo.NetMode != NM_DedicatedServer )
+	if( WorldInfo.NetMode != NM_DedicatedServer && !NeckLightComponent.bAttached && WorldInfo.GetDetailMode() > DM_Low )
 	{
 		Mesh.AttachComponentToSocket( NeckLightComponent, NeckLightSocketName );
 		NeckLightComponent.SetEnabled( true );
+		KFLightPool(WorldInfo.MyLightPool).RegisterPointLight( NeckLightComponent, LPP_GameplayUsed );
 	}
 }
 
@@ -46,7 +47,7 @@ simulated function ANIMNOTIFY_SirenScream()
 
 simulated function EnableScreamFlicker( bool bEnabled )
 {
-	if( WorldInfo.NetMode == NM_DedicatedServer || bPlayedDeath || NeckLightComponent == none  )
+	if( WorldInfo.NetMode == NM_DedicatedServer || bPlayedDeath || NeckLightComponent == none || !NeckLightComponent.bAttached )
 	{
 		return;
 	}
@@ -74,24 +75,12 @@ simulated function EnableScreamFlicker( bool bEnabled )
 	Mesh.AttachComponentToSocket( NeckLightComponent, NeckLightSocketName );
 }
 
-/** Called when SwitchToGoreMesh is successful */
-simulated event NotifyGoreMeshActive()
-{
-	super.NotifyGoreMeshActive();
-
- 	if( NeckLightComponent != none )
- 	{
-		NeckLightComponent.DetachFromAny();
-		Mesh.AttachComponentToSocket( NeckLightComponent, NeckLightSocketName );
-	}
-}
-
  /** Clean up function to terminate any effects on death */
  simulated function TerminateEffectsOnDeath()
  {
  	super.TerminateEffectsOnDeath();
 
- 	if( NeckLightComponent != none )
+ 	if( NeckLightComponent != none && NeckLightComponent.bAttached )
  	{
 		NeckLightComponent.DetachFromAny();
 		NeckLightComponent = none;
@@ -169,6 +158,7 @@ defaultproperties
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm')
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858')
    DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_DBShotgun',DamageScale=(1.100000))
+   DifficultySettings=Class'kfgamecontent.KFDifficulty_Siren'
    OnDeathAchievementID=129
    PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
    LocalizationKey="KFPawn_ZedSiren"
@@ -262,17 +252,6 @@ defaultproperties
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Siren_Scream'
-      SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=None
-      SpecialMoveClasses(22)=None
-      SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=None
-      SpecialMoveClasses(25)=None
-      SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

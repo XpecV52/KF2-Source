@@ -98,7 +98,7 @@ simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'bGunsEquipped')
     {
-        if(SpecialMove != 33)
+        if(SpecialMove != 34)
         {
             SetWeaponStance(bGunsEquipped);
         }        
@@ -457,7 +457,7 @@ function bool IsThrowingGrenade()
     {
         return false;
     }
-    return ((IsDoingSpecialMove(34) || IsDoingSpecialMove(36)) || IsDoingSpecialMove(35)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
+    return ((IsDoingSpecialMove(35) || IsDoingSpecialMove(37)) || IsDoingSpecialMove(36)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
 }
 
 function DrawDebugOverheadText(KFHUDBase HUD, out Vector2D ScreenPos)

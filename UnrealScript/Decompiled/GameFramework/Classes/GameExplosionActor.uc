@@ -288,7 +288,7 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional Vector D
                 }
             }
             SpawnExplosionDecal();
-            if((ExplosionTemplate.ExploLight != none) && WorldInfo.bAllowExplosionLights)
+            if(((ExplosionTemplate.ExploLight != none) && WorldInfo.bAllowExplosionLights) && !WorldInfo.bDropDetail)
             {
                 if(ExplosionLight != none)
                 {

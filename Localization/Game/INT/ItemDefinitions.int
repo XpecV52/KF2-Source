@@ -63,6 +63,8 @@ WeaponSkinCrateType=Encrypted Weapon Skin Blueprint
 CosmeticKeyType=Horzine Supply Crate Key
 CosmeticCrateType=Accessory Supply Crate
 PSWeaponSkinCrateType=Weapon Skin Supply Crate
+EmoteKeyType=Emote Crate Key
+EmoteCrateType=Emote Crate
 
 ;Crate Names
 HorzineSupplyCrateSeries1Name=Horzine Supply Crate | Series #1
@@ -74,6 +76,10 @@ HorzineSupplyCrateSeries6Name=Horzine Supply Crate | Series #6
 HorzineSupplyCrateSeries7Name=Horzine Supply Crate | Series #7
 HorzineSupplyCrateSeries8Name=Horzine Supply Crate | Series #8
 HorzineSupplyCrateSeries9Name=Horzine Supply Crate | Series #9
+HorzineSupplyCrateSeries10Name=Horzine Supply Crate | Series #10
+HorzineSupplyCrateSeries11Name=Horzine Supply Crate | Series #11
+HorzineSupplyCrateSeries12Name=Horzine Supply Crate | Series #12
+EmoteCrateSeries1Name=Emote Crate | Series #1
 
 ;Crate Descriptions
 HorzineSupplyCrateSeries1Description=Requires a Series #1 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Doctors Mask</font><br><font color="#4b69cd">Aviators</font><br><font color="#4b69cd">Devtac Ballistic Mask</font><br><font color="#4b69cd">Baseball Hat</font><br><font color="#4b69cd">Eyepatch</font><br><font color="#4b69cd">Flatcap</font><br><font color="#4b69cd">Welding Mask</font><br><font color="#6600a1">Excellent Hat</font><br><font color="#6600a1">Chemical Gas Mask</font><br><font color="#6600a1">Boxing Headgear</font><br><font color="#6600a1">German Gas Mask</font><br><font color="#8847ff">Van Alberts Cloak</font><br><font color="#8847ff">Van Alberts Hat</font><br><font color="#8847ff">Skull Breaker Mask</font><br><font color="#8847ff">Skull Breaker Helmet</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
@@ -94,6 +100,14 @@ HorzineSupplyCrateSeries8Description=Requires a Series #8 Horzine Supply Crate K
 
 HorzineSupplyCrateSeries9Description=Requires a Series #9 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Psycho Goggles</font><br><font color="#4b69cd">Psycho Mask Closed</font><br><font color="#4b69cd">Psycho Mask Open</font><br><font color="#4b69cd">Psycho Mask Smile</font><br><font color="#6600a1">Psycho Goggles Bloody</font><br><font color="#6600a1">Psycho Mask Closed Bloody</font><br><font color="#6600a1">Psycho Mask Open Bloody</font><br><font color="#6600a1">Psycho Mask Smile Bloody</font><br><font color="#8847ff">Psycho Pain Goggles Closed</font><br><font color="#8847ff">Psycho Pain Goggles Open</font><br><font color="#8847ff">Psycho Pain Mask Closed</font><br><font color="#8847ff">Psycho Pain Mask Open</font><br><font color="#8847ff">Psycho Pain Mask Smile</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
 
+HorzineSupplyCrateSeries10Description=Requires a Series #10 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Rebel Helmet</font><br><font color="#4b69cd">Rebel Mask</font><br><font color="#4b69cd">Rebel Neck Warmer</font><br><font color="#6600a1">Rebel Helmet Goggles Down</font><br><font color="#6600a1">Rebel Helmet Goggles Up</font><br><font color="#6600a1">Steampunk Gas Mask Basic</font><br><font color="#8847ff">Steampunk Gas Mask Open</font><br><font color="#8847ff">Steampunk Gas Mask Closed</font><br><font color="#8847ff">Steampunk Gas Mask Filtered</font><br><font color="#8847ff">Steampunk Gas Mask Open Filtered</font><br><font color="#8847ff">Steampunk Gas Mask Closed Filtered</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCrateSeries11Description=Requires a Series #11 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Reaper Face Armor</font><br><font color="#4b69cd">Reaper Dead Eyes</font><br><font color="#4b69cd">Reaper Dead Hood</font><br><font color="#4b69cd">Reaper Dead Mask</font><br><font color="#6600a1">Reaper Jaw</font><br><font color="#6600a1">Reaper Eyes</font><br><font color="#6600a1">Reaper Hat</font><br><font color="#8847ff">Reaper Raven Jaw</font><br><font color="#8847ff">Reaper Raven Eyes</font><br><font color="#8847ff">Reaper Raven Hat</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+HorzineSupplyCrateSeries12Description=Requires a Series #12 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Deepstrike Helmet</font><br><font color="#4b69cd">Deepstrike Goggles</font><br><font color="#4b69cd">Deepstrike Mask</font><br><font color="#6600a1">Deepstrike Helmet Mask</font><br><font color="#8847ff">Deepstrike Tactical Backbag</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
+
+EmoteCrateSeries1Description=Requires a Series #1 Emote Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Lets Get Crazy</font><br><font color="#4b69cd">Thunder Clap</font><br><font color="#4b69cd">Uncle Charlie</font><br><font color="#4b69cd">Wacky Wavy</font><br><font color="#6600a1">Its Raining Dosh</font><br><font color="#6600a1">Lion Uppercut</font><br><font color="#6600a1">Mating Ritual</font><br><font color="#8847ff">Kickin It</font><br><font color="#8847ff">Fire Ball</font><br><font color="#8847ff">Make It Rain</font><br><font color="#caab05">or an Exceedingly Rare Deluxe Emote!</font>
+
 ;Key Names
 HorzineSupplyCrateKeySeries1Name=Horzine Supply Crate Key | Series #1
 HorzineSupplyCrateKeySeries2Name=Horzine Supply Crate Key | Series #2
@@ -104,6 +118,10 @@ HorzineSupplyCrateKeySeries6Name=Horzine Supply Crate Key | Series #6
 HorzineSupplyCrateKeySeries7Name=Horzine Supply Crate Key | Series #7
 HorzineSupplyCrateKeySeries8Name=Horzine Supply Crate Key | Series #8
 HorzineSupplyCrateKeySeries9Name=Horzine Supply Crate Key | Series #9
+HorzineSupplyCrateKeySeries10Name=Horzine Supply Crate Key | Series #10
+HorzineSupplyCrateKeySeries11Name=Horzine Supply Crate Key | Series #11
+HorzineSupplyCrateKeySeries12Name=Horzine Supply Crate Key | Series #12
+EmoteCrateKeySeries1Name=Emote Crate Key | Series #1
 
 ;Key Descriptions
 HorzineSupplyCrateKeySeries1Description=This key only opens the Horzine Series #1 Supply Crate.
@@ -115,6 +133,10 @@ HorzineSupplyCrateKeySeries6Description=This key only opens the Horzine Series #
 HorzineSupplyCrateKeySeries7Description=This key only opens the Horzine Series #7 Supply Crate.
 HorzineSupplyCrateKeySeries8Description=This key only opens the Horzine Series #8 Supply Crate.
 HorzineSupplyCrateKeySeries9Description=This key only opens the Horzine Series #9 Supply Crate.
+HorzineSupplyCrateKeySeries10Description=This key only opens the Horzine Series #10 Supply Crate.
+HorzineSupplyCrateKeySeries11Description=This key only opens the Horzine Series #11 Supply Crate.
+HorzineSupplyCrateKeySeries12Description=This key only opens the Horzine Series #12 Supply Crate.
+EmoteCrateKeySeries1Description=This key only opens the Series #1 Emote Crate.
 
 ;UsbNames
 CyberboneEncryptedUSBName=Cyberbone Encrypted USB
@@ -131,6 +153,9 @@ SWATEncryptedUSBName=SWAT Encrypted USB
 TacticalHorzineEncryptedUSBName=Tactical Horzine Encrypted USB
 VictorianEncryptedUSBName=Victorian Encrypted USB
 ZedKillerEncryptedUSBName=Zed Killer Encrypted USB
+TacticalMKIIEncryptedUSBName=Tactical MKII Encrypted USB
+MaceAndShieldEncryptedUSBName=Bone Crusher Encrypted USB
+DeepstrikeEncryptedUSBName=Deepstrike Encrypted USB
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription=Requires a Cyberbone Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">AR15 | Cyberbone</font><br><font color="#4b69cd">AA-12 | Cyberbone</font><br><font color="#4b69cd">AA-12 | Cyberbone</font><br><font color="#4b69cd">Katana | Cyberbone</font><br><font color="#8847ff">M79 | Putrid Bile</font><br><font color="#8847ff">AR15 | Containment</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
@@ -161,6 +186,12 @@ VictorianEncryptedUSBDescription=Requires a Victorian Key to open. Contains one 
 
 ZedKillerEncryptedUSBDescription=Requires a Zed Killer Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Scar | Clot Commando</font><br><font color="#4b69cd">9MM | Bloated</font><br><font color="#4b69cd">AA-12 | Fleshpounder</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Arachnid</font><br><font color="#6600a1">Crovel | Grave Digger</font><br><font color="#8847ff">SG 500 | Rusted Death</font><br><font color="#8847ff">Pulverizer | Skullcracker</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
 
+TacticalMKIIEncryptedUSBDescription=Requires a Tactical MKII Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">AA12 | Tactical</font><br><font color="#4b69cd">AK12 | Tactical</font><br><font color="#4b69cd">L85A2 | Tactical</font><br><font color="#4b69cd">SG500 | Tactical</font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Tactical</font><br><font color="#4b69cd">Scar | Tactical</font><br><font color="#6600a1">Desert Eagle | Horzine Elite Green</font><br><font color="#6600a1">Desert Eagle | Horzine Elite White</font><br><font color="#8847ff">Desert Eagle | Horzine Elite Blue</font><br><font color="#8847ff">Desert Eagle | Horzine Elite Red</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+
+MaceAndShieldEncryptedUSBDescription=Requires a Bone Crusher Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Bone Crusher | Circuit</font><br><font color="#4b69cd">Bone Crusher | USA</font><br><font color="#4b69cd">Bone Crusher | Zed Hazard</font><br><font color="#4b69cd">Bone Crusher | Warning</font><br><font color="#6600a1">Bone Crusher | Batcat</font><br><font color="#8847ff">Bone Crusher | Guillotine</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+
+DeepstrikeEncryptedUSBDescription=Requires a Deepstrike Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">9MM | Deepstrike</font><br><font color="#4b69cd">Crossbow | Deepstrike</font><br><font color="#4b69cd">Scar | Deepstrike</font><br><font color="#4b69cd">Desert Eagle | Deepstrike</font><br><font color="#6600a1">Winchester 1894 | Deepstrike</font><br><font color="#6600a1">M79 | Deepstrike</font><br><font color="#6600a1">RPG-7 | Deepstrike</font><br><font color="#6600a1">Kriss SMG | Horzine Elite Green</font><br><font color="#6600a1">Kriss SMG | Horzine Elite White</font><br><font color="#8847ff">Kriss SMG | Horzine Elite Red</font><br><font color="#8847ff">Kriss SMG | Horzine Elite Blue</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
+
 ;usb key names
 CyberboneUSBKeyName=Cyberbone USB Key
 DragonfireUSBKeyName=Dragonfire USB Key
@@ -176,6 +207,9 @@ SWATUSBKeyName=SWAT USB Key
 TacticalHorzineUSBKeyName=Tactical Horzine USB Key
 VictorianUSBKeyName=Victorian USB Key
 ZedKillerUSBKeyName=Zed Killer USB Key
+TacticalMKIIUSBKeyName=Tactical MKII USB Key
+MaceAndShieldUSBKeyName=Bone Crusher USB Key
+DeepstrikeUSBKeyName=Deepstrike USB Key
 
 ;usb key descriptions
 CyberboneUSBKeyDescription=This key only decrypts the Cyberbone Encrypted Blueprint
@@ -192,12 +226,16 @@ SWATUSBKeyDescription=This key only decrypts the SWAT Encrypted Blueprint
 TacticalHorzineUSBKeyDescription=This key only decrypts the Tactical Horzine Encrypted Blueprint
 VictorianUSBKeyDescription=This key only decrypts the Victorian Encrypted Blueprint
 ZedKillerUSBKeyDescription=This key only decrypts the Zed Killer Encrypted Blueprint
+TacticalMKIIUSBKeyDescription=This key only decrypts the Tactical MKII Encrypted Blueprint
+MaceAndShieldUSBKeyDescription=This key only decrypts the Bone Crusher Encrypted Blueprint
+DeepstrikeUSBKeyDescription=This key only decrypts the Deepstrike Encrypted Blueprint
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name=Horzine Supply Cosmetic Crate | Series #1
 HorzineSupplyCosmeticCrateSeries2Name=Horzine Supply Cosmetic Crate | Series #2
 HorzineSupplyWeaponSkinCrateSeries1Name=Horzine Supply Weapon Skin Crate | Series #1
 HorzineSupplyWeaponSkinCrateSeries2Name=Horzine Supply Weapon Skin Crate | Series #2
+HorzineSupplyWeaponSkinCrateSeries3Name=Horzine Supply Weapon Skin Crate | Series #3
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description=Requires a Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Devtac Ballistic Mask</font><br><font color="#4b69cd">US Gas Mask</font><br><font color="#4b69cd">Ski Mask</font><br><font color="#4b69cd">Baseball Hat</font><br><font color="#6600a1">Tactical Backbag</font><br><font color="#6600a1">German Gas Mask</font><br><font color="#6600a1">Chemical Gas Mask</font><br><font color="#6600a1">RPG7 Backbag</font><br><font color="#8847ff">M2 Flamethrower Tank</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>
@@ -207,6 +245,8 @@ HorzineSupplyCosmeticCrateSeries2Description=Requires a Horzine Supply Crate Key
 HorzineSupplyWeaponSkinCrateSeries1Description=Requires a Horzine Supply Crate Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Scar | Clot Commando</font><br><font color="#4b69cd">9MM | Bloated</font><br><font color="#4b69cd">AA-12 | Fleshpounder</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Arachnid</font><br><font color="#6600a1">Crovel | Grave Digger</font><br><font color="#8847ff">SG 500 | Rusted Death</font><br><font color="#8847ff">Pulverizer | Skullcracker</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
 
 HorzineSupplyWeaponSkinCrateSeries2Description=Requires a Horzine Supply Crate Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">L85A2 | Junkyard Racer</font><br><font color="#4b69cd">1858 Revolver | Junkyard Racer</font><br><font color="#4b69cd">Winchester 1984 | Junkyard Racer</font><br><font color="#4b69cd">9MM | Gunner Classic</font><br><font color="#6600a1">9MM | Tripwire Gunner</font><br><font color="#6600a1">Healer | Outmoded</font><br><font color="#8847ff">AA-12 | Clot Cola</font><br><font color="#8847ff">Microwave Gun | Human Popcorn</font><br><font color="#caab05">or an Exceedingly Rare Precious 9mm Skin!</font>
+
+HorzineSupplyWeaponSkinCrateSeries3Description=Requires a Horzine Supply Crate Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Bone Crusher | Circuit</font><br><font color="#4b69cd">Bone Crusher | USA</font><br><font color="#4b69cd">Bone Crusher | Zed Hazard</font><br><font color="#4b69cd">Bone Crusher | Warning</font><br><font color="#6600a1">Bone Crusher | Batcat</font><br><font color="#8847ff">Bone Crusher | Guillotine</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName=Horzine Supply Crate Key
@@ -233,6 +273,14 @@ CosmeticPreciousType=Exceedingly Rare Player Accessory
 
 ;Crafting Type Section
 CraftingType=Crafting Material
+
+;Emote Type Section
+EmoteCommonType=Common Emote
+EmoteUnCommonType=Uncommon Emote
+EmoteRareType=Rare Emote
+EmoteExceptionalType=Exceptional Emote
+EmoteMasterCraftedType=Master Crafted Emote
+EmoteDeluxeType=Deluxe Emote
 
 [Crafting]
 
@@ -801,6 +849,27 @@ KFBARStreetPunksFieldTestedName=KF-BAR | Street Punks | Field-Tested
 KFBARStreetPunksBattleScarredName=KF-BAR | Street Punks | Battle-Scarred
 KFBARPreciousName=KF-BAR | Precious
 
+;Kriss Descriptions
+KrissMintDescription=Exterior: Mint | The latest in compact bullet redistrbution, it is a firehose of destruction.
+KrissFieldTestedDescription=Exterior: Field-Tested | The latest in compact bullet redistrbution, it is a firehose of destruction.
+KrissBattleScarredDescription=Exterior: Battle-Scarred | The latest in compact bullet redistrbution, it is a firehose of destruction.
+KrissPreciousDescription=Exterior: Precious | The latest in compact bullet redistrbution, it is a firehose of destruction.
+
+;Kriss Names
+KrissHorzineEliteBlueMintName=Kriss SMG | Horzine Elite Blue | Mint
+KrissHorzineEliteBlueFieldTestedName=Kriss SMG | Horzine Elite Blue | Field-Tested
+KrissHorzineEliteBlueBattleScarredName=Kriss SMG | Horzine Elite Blue | Battle-Scarred
+KrissHorzineEliteGreenMintName=Kriss SMG | Horzine Elite Green | Mint
+KrissHorzineEliteGreenFieldTestedName=Kriss SMG | Horzine Elite Green | Field-Tested
+KrissHorzineEliteGreenBattleScarredName=Kriss SMG | Horzine Elite Green | Battle-Scarred
+KrissHorzineEliteRedMintName=Kriss SMG | Horzine Elite Red | Mint
+KrissHorzineEliteRedFieldTestedName=Kriss SMG | Horzine Elite Red | Field-Tested
+KrissHorzineEliteRedBattleScarredName=Kriss SMG | Horzine Elite Red | Battle-Scarred
+KrissHorzineEliteWhiteMintName=Kriss SMG | Horzine Elite White | Mint
+KrissHorzineEliteWhiteFieldTestedName=Kriss SMG | Horzine Elite White | Field-Tested
+KrissHorzineEliteWhiteBattleScarredName=Kriss SMG | Horzine Elite White | Battle-Scarred
+KrissPreciousName=Kriss SMG | Precious
+
 ;L85A2 Descriptions
 L85A2MintDescription=Exterior: Mint | The SA80 was the British Army's standard weapon, before the Army was, well, eaten.
 L85A2FieldTestedDescription=Exterior: Field-Tested | The SA80 was the British Army's standard weapon, before the Army was, well, eaten.
@@ -896,6 +965,33 @@ M79PreciousName=M79 | Precious
 M79DeepstrikeMintName=M79 | Deepstrike | Mint
 M79DeepstrikeFieldTestedName=M79 | Deepstrike | Field-Tested
 M79DeepstrikeBattleScarredName=M79 | Deepstrike | Battle-Scarred
+
+;Bone Crusher Descriptions
+MaceAndShieldMintDescription=Exterior: Mint | Has a powerful Shield Bash attack.
+MaceAndShieldFieldTestedDescription=Exterior: Field-Tested | Has a powerful Shield Bash attack.
+MaceAndShieldBattleScarredDescription=Exterior: Battle-Scarred | Has a powerful Shield Bash attack.
+MaceAndShieldPreciousDescription=Exterior: Precious | Has a powerful Shield Bash attack.
+
+;Bone Crusher Names
+MaceAndShieldCircuitMintName=Bone Crusher | Circuit | Mint
+MaceAndShieldCircuitFieldTestedName=Bone Crusher | Circuit | Field-Tested
+MaceAndShieldCircuitBattleScarredName=Bone Crusher | Circuit | Battle-Scarred
+MaceAndShieldUSAMintName=Bone Crusher | USA | Mint
+MaceAndShieldUSAFieldTestedName=Bone Crusher | USA | Field-Tested
+MaceAndShieldUSABattleScarredName=Bone Crusher | USA | Battle-Scarred
+MaceAndShieldZedHazardMintName=Bone Crusher | Zed Hazard | Mint
+MaceAndShieldZedHazardFieldTestedName=Bone Crusher | Zed Hazard | Field-Tested
+MaceAndShieldZedHazardBattleScarredName=Bone Crusher | Zed Hazard | Battle-Scarred
+MaceAndShieldWarningMintName=Bone Crusher | Warning | Mint
+MaceAndShieldWarningFieldTestedName=Bone Crusher | Warning | Field-Tested
+MaceAndShieldWarningBattleScarredName=Bone Crusher | Warning | Battle-Scarred
+MaceAndShieldBatcatMintName=Bone Crusher | Batcat | Mint
+MaceAndShieldBatcatFieldTestedName=Bone Crusher | Batcat | Field-Tested
+MaceAndShieldBatcatBattleScarredName=Bone Crusher | Batcat | Battle-Scarred
+MaceAndShieldGuillotineMintName=Bone Crusher | Guillotine | Mint
+MaceAndShieldGuillotineFieldTestedName=Bone Crusher | Guillotine | Field-Tested
+MaceAndShieldGuillotineBattleScarredName=Bone Crusher | Guillotine | Battle-Scarred
+MaceAndShieldPreciousName=Bone Crusher | Precious
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription=Exterior: Mint | The wonders of modern technology: a handheld Zed-cooker.
@@ -1649,9 +1745,12 @@ ReaperHatBlackName=Reaper Hat | Black
 ReaperJawBloodyName=Reaper Jaw | Bloody
 ReaperRavenEyesRedBandName=Reaper Raven Eyes | Red Band
 ReaperRavenEyesWhiteBandName=Reaper Raven Eyes | White Band
+ReaperRavenEyesPreciousName=Reaper Raven Eyes | Precious
 ReaperRavenHatWhiteName=Reaper Raven Hat | White
+ReaperRavenHatPreciousName=Reaper Raven Hat | Precious
 ReaperRavenJawRedBandName=Reaper Raven Jaw | Red Band
 ReaperRavenJawWhiteBandName=Reaper Raven Jaw | White Band
+ReaperRavenJawPreciousName=Reaper Raven Jaw | Precious
 ReaperDeadEyesBloodyName=Reaper Dead Eyes | Bloody
 ReaperDeadEyesRedName=Reaper Dead Eyes | Red
 ReaperDeadHoodBloodyName=Reaper Dead Hood | Bloody
@@ -1663,6 +1762,7 @@ SteampunkGasMaskOpenBrownName=Steampunk Gas Mask Open | Brown
 SteampunkGasMaskOpenBlackName=Steampunk Gas Mask Open | Black
 SteampunkGasMaskClosedBrownName=Steampunk Gas Mask Closed | Brown
 SteampunkGasMaskClosedBlackName=Steampunk Gas Mask Closed | Black
+SteampunkGasMaskClosedPreciousName=Steampunk Gas Mask Closed | Precious
 SteampunkGasMaskFilteredBrownName=Steampunk Gas Mask Filtered | Brown
 SteampunkGasMaskFilteredBlackName=Steampunk Gas Mask Filtered | Black
 SteampunkGasMaskOpenFilteredBrownName=Steampunk Gas Mask Open Filtered | Brown
@@ -1691,6 +1791,7 @@ RebelHelmetGogglesDownLightGreenName=Rebel Helmet Goggles Down | Light Green
 RebelHelmetGogglesDownLightRedName=Rebel Helmet Goggles Down | Light Red
 RebelHelmetGogglesDownTanName=Rebel Helmet Goggles Down | Tan
 RebelHelmetGogglesDownWhiteName=Rebel Helmet Goggles Down | White
+RebelHelmetGogglesDownPreciousName=Rebel Helmet Goggles Down | Precious
 RebelHelmetGogglesUpBlackName=Rebel Helmet Goggles Up | Black
 RebelHelmetGogglesUpDarkBlueName=Rebel Helmet Goggles Up | Dark Blue
 RebelHelmetGogglesUpDarkGreenName=Rebel Helmet Goggles Up | Dark Green
@@ -1737,6 +1838,14 @@ DeepstrikeHelmetMaskGreenName=Deepstrike Helmet Mask | Green
 DeepstrikeHelmetMaskOliveName=Deepstrike Helmet Mask | Olive
 DeepstrikeHelmetMaskRedName=Deepstrike Helmet Mask | Red
 DeepstrikeHelmetMaskWhiteName=Deepstrike Helmet Mask | White
+DeepstrikeHelmetMaskPreciousName=Deepstrike Helmet Mask | Precious
+DeepstrikeTacticalBackbagBlackName=Deepstrike Tactical Backbag | Black
+DeepstrikeTacticalBackbagBlueName=Deepstrike Tactical Backbag | Blue
+DeepstrikeTacticalBackbagGreenName=Deepstrike Tactical Backbag | Green
+DeepstrikeTacticalBackbagOliveName=Deepstrike Tactical Backbag | Olive
+DeepstrikeTacticalBackbagRedName=Deepstrike Tactical Backbag | Red
+DeepstrikeTacticalBackbagWhiteName=Deepstrike Tactical Backbag | White
+DeepstrikeTacticalBackbagPreciousName=Deepstrike Tactical Backbag | Precious
 
 ;Cosmetic Descriptions
 
@@ -1835,16 +1944,16 @@ WastelandGogglesDescription=Equipable from the gear menu; Compatible with Oisten
 WearableAirFilteringDeviceDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
 WeldingMaskDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
 ZEDDundeeHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
-ReaperEyesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive.
-ReaperHatDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
-ReaperJawDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive.
-ReaperRavenEyesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
-ReaperRavenHatDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
-ReaperRavenJawDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
-ReaperDeadEyesDescription=Equipable from the gear menu; Compatible with PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive.
-ReaperDeadHoodBloodyDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
-ReaperDeadMaskBloodyDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Ana Larive.
-ReaperFaceArmorSkullDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson.
+ReaperEyesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ReaperHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ReaperJawDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ReaperRavenEyesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ReaperRavenHatDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Tom Banner, Rae Higgins.
+ReaperRavenJawDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Classic Briar, Classic Masterson.
+ReaperDeadEyesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ReaperDeadHoodBloodyDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+ReaperDeadMaskBloodyDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Rae Higgins.
+ReaperFaceArmorSkullDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
 SteampunkGasMaskBasicDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
 SteampunkGasMaskOpenDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
 SteampunkGasMaskClosedDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
@@ -1862,3 +1971,52 @@ DeepstrikeHelmetDescription=Equipable from the gear menu; Compatible with Oisten
 DeepstrikeGogglesDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
 DeepstrikeMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
 DeepstrikeHelmetMaskDescription=Equipable from the gear menu; Compatible with DJ Scully, PC Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+DeepstrikeTacticalBackbagDescription=Equipable from the gear menu; Compatible with Oisten Jägerhorn, PC Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Classic Briar, Classic Masterson, Anton Strasser, Tom Banner, Rae Higgins.
+
+[EmoteSection]
+
+;Emote Names
+
+LetsGetCrazyName=Lets Get Crazy | Emote
+ThunderClapName=The Booty | Emote
+UncleCharlieName=Uncle Charlie | Emote
+WackyWavyName=Wacky Wavy | Emote
+ItsRainingDoshName=It's Raining Dosh | Emote
+LionUppercutName=Lion Uppercut | Emote
+MatingRitualName=Mating Ritual | Emote
+KickinItName=Kickin It | Emote
+FireBallName=Fire Ball | Emote
+MakeItRainName=Make It Rain | Emote
+LetsGetCrazyDeluxeName=Lets Get Crazy Deluxe | Emote
+ThunderClapDeluxeName=The Booty Deluxe | Emote
+UncleCharlieDeluxeName=Uncle Charlie Deluxe | Emote
+WackyWavyDeluxeName=Wacky Wavy Deluxe | Emote
+ItsRainingDoshDeluxeName=It's Raining Dosh Deluxe | Emote
+LionUppercutDeluxeName=Lion Uppercut Deluxe | Emote
+MatingRitualDeluxeName=Mating Ritual Deluxe | Emote
+KickinItDeluxeName=Kickin It Deluxe | Emote
+FireBallDeluxeName=Fire Ball Deluxe | Emote
+MakeItRainDeluxeName=Make It Rain Deluxe | Emote
+
+;Emote Descriptions
+
+LetsGetCrazyDescription=Waaankkkers! Can be recycled into a rare cosmetic material.
+ThunderClapDescription=I'm brick'n myself, wait up! Can be recycled into a rare cosmetic material.
+UncleCharlieDescription=That's just nasty! Can be recycled into a rare cosmetic material.
+WackyWavyDescription=I need drugs, now! Can be recycled into a rare cosmetic material.
+ItsRainingDoshDescription=Time for a car boot sale! Can be recycled into a rare cosmetic material.
+LionUppercutDescription=Bleeding action man.... punch! Can be recycled into a rare cosmetic material.
+MatingRitualDescription=It's like Croydon on a friday night! Can be recycled into a rare cosmetic material.
+KickinItDescription=Give us a few quid, govna! Can be recycled into a rare cosmetic material.
+FireBallDescription=The power of dosh compells me! Can be recycled into a rare cosmetic material.
+MakeItRainDescription=Make'n it rain, make'n it rain! Can be recycled into a rare cosmetic material.
+LetsGetCrazyDescriptionDeluxe=Waaankkkers! Can be recycled into an exceptional cosmetic material.
+ThunderClapDescriptionDeluxe=I'm brick'n myself, wait up! Can be recycled into an exceptional cosmetic material.
+UncleCharlieDescriptionDeluxe=That's just nasty! Can be recycled into an exceptional cosmetic material.
+WackyWavyDescriptionDeluxe=I need drugs, now! Can be recycled into an exceptional cosmetic material.
+ItsRainingDoshDescriptionDeluxe=Time for a car boot sale! Can be recycled into an exceptional cosmetic material.
+LionUppercutDescriptionDeluxe=Bleeding action man.... punch! Can be recycled into an exceptional cosmetic material.
+MatingRitualDescriptionDeluxe=It's like Croydon on a friday night! Can be recycled into an exceptional cosmetic material.
+KickinItDescriptionDeluxe=Give us a few quid, govna! Can be recycled into an exceptional cosmetic material.
+FireBallDescriptionDeluxe=The power of dosh compells me! Can be recycled into an exceptional cosmetic material.
+MakeItRainDescriptionDeluxe=Make'n it rain, make'n it rain! Can be recycled into an exceptional cosmetic material.

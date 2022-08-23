@@ -84,7 +84,9 @@ structcpptext
 	UBOOL Supports( UObject* Object ) const
 	{
 		UBOOL bResult = FALSE;
-		if ( Object->IsA(Class) )
+//@HSL_BEGIN_XBOX
+		if ( Object && Object->IsA(Class) )
+//@HSL_END_XBOX
 		{
 			bResult = TRUE;
 			if ( RequiredFlags != 0 )

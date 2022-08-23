@@ -15,7 +15,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     local KFPlayerController KFPC;
 
-    super.PlayDying(DamageType, HitLoc);
+    super(KFPawn_Monster).PlayDying(DamageType, HitLoc);
     if((OldController != none) && DamageType == Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType)
     {
         KFPC = KFPlayerController(OldController);

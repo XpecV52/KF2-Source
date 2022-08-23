@@ -34,6 +34,8 @@ package tripwire.menus
         
         public var characterButton:CategoryButton;
         
+        public var emoteButton:CategoryButton;
+        
         public var bioTextArea:TripTextArea;
         
         public var headButton:CategoryButton;
@@ -51,6 +53,8 @@ package tripwire.menus
         private var _meshIndex:int;
         
         private var _skinIndex:int;
+        
+        private var _selectedEmoteIndex:int = 0;
         
         private var _selectedCharacterSkinIndex:int = 0;
         
@@ -70,6 +74,8 @@ package tripwire.menus
         
         private var _charactersString:String;
         
+        private var _emoteString:String;
+        
         private var _headsString:String;
         
         private var _bodiesString:String;
@@ -83,6 +89,8 @@ package tripwire.menus
         private var _weaponSkins:Array;
         
         private var _characters:Array;
+        
+        private var _emotes:Array;
         
         private var _heads:Array;
         
@@ -126,6 +134,12 @@ package tripwire.menus
         {
             this._characters = param1;
             this.characterButton.enabled = this._characters.length > 1;
+        }
+        
+        public function set emoteArray(param1:Array) : void
+        {
+            this._emotes = param1;
+            this.emoteButton.enabled = this._emotes.length > 0;
         }
         
         public function set characterButtonEnabled(param1:Boolean) : void
@@ -174,6 +188,27 @@ package tripwire.menus
         public function set listButton(param1:String) : void
         {
             this.gearList.buttonText = param1;
+        }
+        
+        public function set selectedEmote(param1:Object) : void
+        {
+            var _loc3_:Number = NaN;
+            this.emoteButton.infoString = !!param1.selectedEmote ? param1.selectedEmote : "";
+            var _loc2_:int = 0;
+            if(param1.selectedEmoteIndex != undefined)
+            {
+                _loc3_ = 0;
+                while(_loc3_ < this._emotes.length)
+                {
+                    if(this._emotes[_loc3_].ItemIndex == param1.selectedEmoteIndex)
+                    {
+                        _loc2_ = _loc3_;
+                        break;
+                    }
+                    _loc3_++;
+                }
+            }
+            this._selectedEmoteIndex = _loc2_;
         }
         
         public function set selectedCharacter(param1:Object) : void
@@ -232,6 +267,8 @@ package tripwire.menus
             this.bioTextArea.titleText = param1.biosString;
             this._charactersString = param1.charactersString;
             this.characterButton.label = this._charactersString;
+            this._emoteString = !!param1.emoteString ? param1.emoteString : "";
+            this.emoteButton.label = this._emoteString;
             this._headsString = param1.headsString;
             this.headButton.label = this._headsString;
             this._bodiesString = param1.bodiesString;
@@ -264,6 +301,7 @@ package tripwire.menus
             if(!bManagerUsingGamepad)
             {
                 this.characterButton.selected = false;
+                this.emoteButton.selected = false;
                 this.headButton.selected = false;
                 this.bodyButton.selected = false;
                 this.attachmentButton.selected = false;
@@ -332,6 +370,7 @@ package tripwire.menus
         protected function setTabIndexes() : *
         {
             this.characterButton.tabIndex = 1;
+            this.emoteButton.tabIndex = 2;
             this.headButton.tabIndex = 3;
             this.bodyButton.tabIndex = 4;
             this.attachmentButton.tabIndex = 5;
@@ -341,6 +380,7 @@ package tripwire.menus
         {
             super.addedToStage(param1);
             this.characterButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.emoteButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.headButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.bodyButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.attachmentButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
@@ -351,6 +391,7 @@ package tripwire.menus
             this.skinList.visible = false;
             this.gearHeader.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.characterButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.emoteButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.bioTextArea.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.headButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.bodyButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
@@ -359,13 +400,13 @@ package tripwire.menus
             this.skinList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             leftSidePanels.push(this.gearHeader);
             leftSidePanels.push(this.characterButton);
+            leftSidePanels.push(this.emoteButton);
             leftSidePanels.push(this.bioTextArea);
             leftSidePanels.push(this.headButton);
             leftSidePanels.push(this.bodyButton);
             leftSidePanels.push(this.attachmentButton);
             rightSidePanels.push(this.gearList);
             rightSidePanels.push(this.skinList);
-            this.hideWeaponOptions();
             this.testMenu();
         }
         
@@ -396,6 +437,13 @@ package tripwire.menus
             }
             switch(this._selectedButton)
             {
+                case this.emoteButton:
+                    this.setOptionList(this.gearList,this._emotes,this._emoteString);
+                    if(bManagerUsingGamepad)
+                    {
+                        this.gearList.tileList.selectedIndex = this._selectedEmoteIndex;
+                    }
+                    break;
                 case this.characterButton:
                     this.setOptionList(this.gearList,this._characters,this._charactersString);
                     if(bManagerUsingGamepad)
@@ -488,6 +536,11 @@ package tripwire.menus
             {
                 switch(this._selectedButton)
                 {
+                    case this.emoteButton:
+                        ExternalInterface.call("Callback_Emote",this._emotes[param1.index].ItemIndex);
+                        this.selectButton();
+                        this.selectContainer();
+                        break;
                     case this.characterButton:
                         ExternalInterface.call("Callback_Character",this._characters[param1.index].ItemIndex);
                         this.selectButton();
@@ -507,6 +560,13 @@ package tripwire.menus
             {
                 switch(this._selectedButton)
                 {
+                    case this.emoteButton:
+                        this.setOptionList(this.gearList,this._emotes,this._emoteString);
+                        if(bManagerUsingGamepad)
+                        {
+                            this.gearList.tileList.selectedIndex = this._selectedEmoteIndex;
+                        }
+                        break;
                     case this.characterButton:
                         this.setOptionList(this.gearList,this._characters,this._charactersString);
                         if(bManagerUsingGamepad)
@@ -584,28 +644,6 @@ package tripwire.menus
                 this.selectContainer();
                 this._bSelectingSkin = false;
             }
-        }
-        
-        function showWeaponOptions(param1:ButtonEvent = null) : void
-        {
-            this.skinList.closeContainer();
-            this.gearList.closeContainer();
-            this.characterButton.visible = false;
-            this.bioTextArea.visible = false;
-            this.headButton.visible = false;
-            this.bodyButton.visible = false;
-            this.attachmentButton.visible = false;
-        }
-        
-        function hideWeaponOptions(param1:ButtonEvent = null) : void
-        {
-            this.skinList.closeContainer();
-            this.gearList.closeContainer();
-            this.characterButton.visible = true;
-            this.bioTextArea.visible = true;
-            this.headButton.visible = true;
-            this.bodyButton.visible = true;
-            this.attachmentButton.visible = true;
         }
         
         protected function handleOverEvent(param1:MouseEvent) : void

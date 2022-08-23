@@ -11,6 +11,8 @@ class SeqAct_AkPostEvent extends SeqAct_Latent
     hidecategories(Object);
 
 var transient int Signal;
+var() bool bReplicateToClients;
+/** Event to post on the targeted actor(s) */
 var() AkEvent Event;
 
 defaultproperties

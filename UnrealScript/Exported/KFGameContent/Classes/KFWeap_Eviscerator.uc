@@ -428,7 +428,7 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Eviscerator:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Sawblade_ARCH.Wep_Sawblade_MuzzleFlash'
-   AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)=()
    FiringStatesArray(2)="Reloading"

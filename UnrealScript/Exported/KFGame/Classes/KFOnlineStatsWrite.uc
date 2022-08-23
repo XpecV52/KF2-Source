@@ -386,6 +386,14 @@ const KFACHID_SurvHard							=	170;
 const KFACHID_SurvSuicidal						=	171;
 const KFACHID_SurvHellOnEarth					=	172;
 
+const KFACHID_ZedLandingNormal					=	173;
+const KFACHID_ZedLandingHard					=	174;
+const KFACHID_ZedLandingSuicidal				=	175;
+const KFACHID_ZedLandingHellOnEarth				=	176;
+const KFACHID_ZedLandingCollectibles			= 	177;
+
+
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -1153,7 +1161,7 @@ private event int AddHealingPoints( int PointsHealed )
  */
 private event AddToHeadshots( byte Difficulty, class<DamageType> DT )
 {
-	if( IsGunslingerHeadshot(DT) )
+	if( IsGunslingerHeadshot( DT ) )
 	{
 		AddGunslingerHeadshot( Difficulty );
 	}
@@ -1199,7 +1207,8 @@ private function AddSharpshooterHeadshot( byte Difficulty )
  */
 private final function bool IsGunslingerHeadshot( class<DamageType> DT )
 {
-	return class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Gunslinger'.static.GetPerkClass() );
+	return (class'KFPerk_Gunslinger'.static.IsDamageTypeOnPerk( class<KFDamageType>(DT) ) &&
+			MyKFPC.GetPerk().static.GetPerkClass() != class'KFPerk_Sharpshooter'.static.GetPerkClass());
 }
 
 /**
@@ -1210,7 +1219,8 @@ private final function bool IsGunslingerHeadshot( class<DamageType> DT )
  */
 private final function bool IsSharpshooterHeadshot( class<DamageType> DT )
 {
-	return class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Sharpshooter'.static.GetPerkClass() );
+	return (class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Sharpshooter'.static.GetPerkClass() ) && 
+			MyKFPC.GetPerk().static.GetPerkClass() != class'KFPerk_Gunslinger'.static.GetPerkClass());
 }
 
 /*********************************************************************************************
@@ -1287,31 +1297,31 @@ native final function CheckForRoundTeamWinAchievements( byte WinningTeam );
 
 defaultproperties
 {
-   XPTable(0)=1590
-   XPTable(1)=1809
-   XPTable(2)=2059
-   XPTable(3)=2343
-   XPTable(4)=2666
-   XPTable(5)=3034
-   XPTable(6)=3453
-   XPTable(7)=3930
-   XPTable(8)=4472
-   XPTable(9)=5089
-   XPTable(10)=5791
-   XPTable(11)=6590
-   XPTable(12)=7499
-   XPTable(13)=8534
-   XPTable(14)=9712
-   XPTable(15)=11052
-   XPTable(16)=12577
-   XPTable(17)=14313
-   XPTable(18)=16288
-   XPTable(19)=18536
-   XPTable(20)=21094
-   XPTable(21)=24005
-   XPTable(22)=27318
-   XPTable(23)=31088
-   XPTable(24)=35378
+   XPTable(0)=795
+   XPTable(1)=940
+   XPTable(2)=1112
+   XPTable(3)=1315
+   XPTable(4)=1556
+   XPTable(5)=1841
+   XPTable(6)=2178
+   XPTable(7)=2576
+   XPTable(8)=3047
+   XPTable(9)=3604
+   XPTable(10)=4263
+   XPTable(11)=5043
+   XPTable(12)=5965
+   XPTable(13)=7056
+   XPTable(14)=8347
+   XPTable(15)=9874
+   XPTable(16)=11680
+   XPTable(17)=13816
+   XPTable(18)=16343
+   XPTable(19)=19332
+   XPTable(20)=22868
+   XPTable(21)=27051
+   XPTable(22)=31999
+   XPTable(23)=37852
+   XPTable(24)=44775
    Properties(0)=(PropertyId=1,Data=(Type=SDT_Int32))
    Properties(1)=(PropertyId=2,Data=(Type=SDT_Int32))
    Properties(2)=(PropertyId=10,Data=(Type=SDT_Int32))

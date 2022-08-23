@@ -833,6 +833,39 @@ state Open
 		return true;
 	}
 
+//@HSL_BEGIN_XBOX
+	function KeyboardInputComplete(bool bWasSuccessful)
+	{
+		local string Temp;
+		local byte bWasCancelled;
+		local OnlineSubsystem OnlineSub;
+		
+		OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+		TypedStr = OnlineSub.PlayerInterface.GetKeyboardInputResults(bWasCancelled);
+
+		if( TypedStr!="" )
+		{
+			// Make a local copy of the string.
+			Temp=TypedStr;
+			SetInputText("");
+			SetCursorPos(0);
+
+			if (Temp~="cls")
+			{
+				ClearOutput();
+			}
+			else
+			{
+				ConsoleCommand(Temp);
+			}
+
+			UpdateCompleteIndices();
+		}
+
+		GotoState('');
+	}
+//@HSL_END_XBOX
+
 	/**
 	 * Process an input key event routed through unrealscript from another object. This method is assigned as the value for the
 	 * OnRecievedNativeInputKey delegate so that native input events are routed to this unrealscript function.
@@ -1201,17 +1234,36 @@ state Open
 
 	event BeginState(Name PreviousStateName)
 	{
+//@HSL_BEGIN_XBOX
+		local OnlineSubsystem OnlineSub;
+		
 		bCaptureKeyInput = true;
 		HistoryCur = HistoryTop;
 
 		SBPos = 0;
 		bCtrl = false;
 
+		OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+		OnlineSub.PlayerInterface.AddKeyboardInputDoneDelegate(KeyboardInputComplete);
+
+		OnlineSub.PlayerInterface.ShowKeyboardUI(0, "Console Input", "Input console commands");
+
 		if ( PreviousStateName == '' )
 		{
 			FlushPlayerInput();
 		}
 	}
+
+	event EndState( Name NextStateName )
+	{
+		local OnlineSubsystem OnlineSub;
+
+		OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+
+		OnlineSub.PlayerInterface.HideKeyboardUI(0);
+		OnlineSub.PlayerInterface.ClearKeyboardInputDoneDelegate(KeyboardInputComplete);
+	}
+//@HSL_END_XBOX
 }
 
 defaultproperties

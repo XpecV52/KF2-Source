@@ -525,9 +525,13 @@ var(Positioning) vector	PlayerViewOffset;
 var bool bPendingShow;
 
 /** Used to display effects such as blood splatter and muzzle glow */
-var MaterialInstanceConstant	WeaponMIC;
+var array<MaterialInstanceConstant>	WeaponMICs;
+
+/** Number of materials in mesh used for blood maps */
+var int NumBloodMapMaterials;
+
 /** Defines how bloody the weapon looks */
-var float						BloodParamValue;
+var float							BloodParamValue;
 
 /** ItemID for currently/last equipped weapon skin. TODO: Cloud save */
 var const config int SkinItemId;
@@ -600,6 +604,9 @@ var(Weapon) instanced KFMeleeHelperWeapon MeleeAttackHelper;
 var					   KFMuzzleFlash MuzzleFlash;
 /** A reference to the muzzle flash template */
 var(Attachments) const KFMuzzleFlash MuzzleFlashTemplate;
+
+/** How long ejected shells should stay in the foreground until changing to world depth */
+var(Attachments) const float EjectedShellForegroundDuration;
 
 /** DEPRECATED */
 var deprecated bool bHasFlashlight;
@@ -762,9 +769,8 @@ struct native ImpactRepInfo
  * @name	Perks
  ********************************************************************************************* */
 /** Is this perk backup weapon? */
-var 				bool 				bIsBackupWeapon;
-var(Weapon) 		Class<KFPerk> 		AssociatedPerkClass;
-
+var 				bool 						bIsBackupWeapon;
+var(Weapon) protected array< Class<KFPerk> >	AssociatedPerkClasses;
 /*********************************************************************************************
  * @name	Debug
  ********************************************************************************************* */
@@ -990,13 +996,14 @@ function ItemRemovedFromInvManager()
 reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNotActivate)
 {
 	local PlayerController PC;
+	local int i;
 
 	// This is the first time we have a valid Instigator (see PendingClientWeaponSet)
 	if ( Instigator != None && InvManager != None
 		&& WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		PC = PlayerController(Instigator.Controller);
-		if( Instigator.Controller != none && PC.myHUD != none )
+		if( PC != none && PC.myHUD != none )
 		{
 			InitFOV(PC.myHUD.SizeX, PC.myHUD.SizeY, PC.DefaultFOV);
 		}
@@ -1007,7 +1014,11 @@ reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNot
 			ClientSetFirstPersonSkin(SkinItemId);
 		}
 
-		WeaponMIC = Mesh.CreateAndSetMaterialInstanceConstant(0);
+		// Weapon MICs for blood maps
+		for( i = 0; i < NumBloodMapMaterials; ++i )
+		{
+			WeaponMICs.AddItem( Mesh.CreateAndSetMaterialInstanceConstant(i) );
+		}
 	}
 
 	Super.ClientWeaponSet(bOptionalSet, bDoNotActivate);
@@ -2194,6 +2205,7 @@ simulated event SetPosition(KFPawn Holder)
 	local vector DrawOffset, ViewOffset,  FinalLocation;
 	local rotator NewRotation, FinalRotation, SpecRotation;
 	local PlayerController PC;
+	local KFPlayerController KFPC;
 	local vector SpecViewLoc;
 	local Rotator DebugRotationOffset;
 	local rotator UsedBufferRotation;
@@ -2257,31 +2269,32 @@ simulated event SetPosition(KFPawn Holder)
 
 	// Rotation local space offsets
 	// Add in the free-aim rotation
-	if ( KFPlayerController(Holder.Controller) != None )
+	KFPC = KFPlayerController( Holder.Controller );
+	if ( KFPC != None )
 	{
 		if( bDebugRecoilPosition )
 		{
 			DebugRotationOffset.Pitch = RecoilISMaxPitchLimit;
-			KFPlayerController(Holder.Controller).WeaponBufferRotation = DebugRotationOffset;
+			KFPC.WeaponBufferRotation = DebugRotationOffset;
 		}
 
 		// Scale the rendered Buffer rotation by the FOV compensation scale
-		if( KFPlayerController(Holder.Controller).WeaponBufferRotation.Pitch < 32768 )
+		if( KFPC.WeaponBufferRotation.Pitch < 32768 )
 		{
-            UsedBufferRotation.Pitch = KFPlayerController(Holder.Controller).WeaponBufferRotation.Pitch/IronSightMeshFOVCompensationScale;
+            UsedBufferRotation.Pitch = KFPC.WeaponBufferRotation.Pitch/IronSightMeshFOVCompensationScale;
         }
         else
         {
-            UsedBufferRotation.Pitch = 65535 - ((65535 - KFPlayerController(Holder.Controller).WeaponBufferRotation.Pitch)/IronSightMeshFOVCompensationScale);
+            UsedBufferRotation.Pitch = 65535 - ((65535 - KFPC.WeaponBufferRotation.Pitch)/IronSightMeshFOVCompensationScale);
         }
 
-        if( KFPlayerController(Holder.Controller).WeaponBufferRotation.Yaw < 32768 )
+        if( KFPC.WeaponBufferRotation.Yaw < 32768 )
         {
-            UsedBufferRotation.Yaw = KFPlayerController(Holder.Controller).WeaponBufferRotation.Yaw/IronSightMeshFOVCompensationScale;
+            UsedBufferRotation.Yaw = KFPC.WeaponBufferRotation.Yaw/IronSightMeshFOVCompensationScale;
         }
         else
         {
-            UsedBufferRotation.Yaw = 65535 - ((65535 - KFPlayerController(Holder.Controller).WeaponBufferRotation.Yaw) / IronSightMeshFOVCompensationScale);
+            UsedBufferRotation.Yaw = 65535 - ((65535 - KFPC.WeaponBufferRotation.Yaw) / IronSightMeshFOVCompensationScale);
         }
 
 		NewRotation += UsedBufferRotation;
@@ -2382,34 +2395,40 @@ simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocatio
 
 	PlayFiringSound(CurrentFireMode);
 
-	if( Instigator != none && Instigator.IsLocallyControlled() )
+	if( Instigator != none )
 	{
-		if( Instigator.IsFirstPerson() )
+		// Tell our pawn about any changes in animation speed
+		UpdateWeaponAttachmentAnimRate( GetThirdPersonAnimRate() );
+
+		if( Instigator.IsLocallyControlled() )
 		{
-			if ( !bPlayingLoopingFireAnim )
+			if( Instigator.IsFirstPerson() )
 			{
-				WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
-
-				if ( WeaponFireAnimName != '' )
+				if ( !bPlayingLoopingFireAnim )
 				{
-					AdjustedAnimLength = MySkelMesh.GetAnimLength(WeaponFireAnimName);
+					WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
 
-					CurrentPerk = GetPerk();
-					if( CurrentPerk != none )
+					if ( WeaponFireAnimName != '' )
 					{
-						CurrentPerk.ModifyRateOfFire( AdjustedAnimLength, self );
-					}
+						AdjustedAnimLength = MySkelMesh.GetAnimLength(WeaponFireAnimName);
 
-					PlayAnimation(WeaponFireAnimName, AdjustedAnimLength,,FireTweenTime);
+						CurrentPerk = GetPerk();
+						if( CurrentPerk != none )
+						{
+							CurrentPerk.ModifyRateOfFire( AdjustedAnimLength, self );
+						}
+
+						PlayAnimation(WeaponFireAnimName, AdjustedAnimLength,,FireTweenTime);
+					}
 				}
+
+				// Start muzzle flash effect
+				CauseMuzzleFlash(FireModeNum);
 			}
 
-			// Start muzzle flash effect
-			CauseMuzzleFlash(FireModeNum);
+			HandleRecoil();
+			ShakeView();
 		}
-
-		HandleRecoil();
-		ShakeView();
 	}
 }
 
@@ -2610,6 +2629,7 @@ simulated function CauseMuzzleFlash(byte FireModeNum)
 		if ( MuzzleFlash.bAutoActivateShellEject )
 		{
 			MuzzleFlash.CauseShellEject();
+			SetShellEjectsToForeground();
 		}
 	}
 }
@@ -2625,6 +2645,7 @@ simulated function ANIMNOTIFY_ShellEject()
 	if (MuzzleFlash != None )
 	{
 		MuzzleFlash.CauseShellEject();
+		SetShellEjectsToForeground();
 	}
 }
 
@@ -2641,6 +2662,29 @@ simulated function AttachMuzzleFlash()
 			MuzzleFlash = new(self) Class'KFMuzzleFlash'(MuzzleFlashTemplate);
 			MuzzleFlash.AttachMuzzleFlash(MySkelMesh);
 		}
+	}
+}
+
+/** Sets the shell ejector to the foreground depth */
+simulated function SetShellEjectsToForeground()
+{
+	// Put shells in the foreground at first
+	if( MuzzleFlash != none && MuzzleFlash.ShellEjectPSC != none && EjectedShellForegroundDuration > 0.f )
+	{
+		MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup( SDPG_Foreground );
+		MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = true;
+
+		SetTimer( EjectedShellForegroundDuration, false, nameOf(Timer_RestoreShellEjectDepth) );
+	}
+}
+
+/** Sets the shell ejection PSC back to world depth */
+simulated function Timer_RestoreShellEjectDepth()
+{
+	if( MuzzleFlash != none && MuzzleFlash.ShellEjectPSC != none )
+	{
+		MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup( SDPG_World );
+		MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = false;
 	}
 }
 
@@ -2677,12 +2721,20 @@ simulated function ShakeView()
 simulated function AddBlood(float MinAmount, float MaxAmount)
 {
 	local float NewBlood;
+	local int i;
 
-	if ( WorldInfo.NetMode != NM_DedicatedServer && WeaponMIC != None )
+	if ( WorldInfo.NetMode != NM_DedicatedServer && WeaponMICs.Length > 0 )
 	{
 		NewBlood = RandRange(MinAmount, MaxAmount);
 		BloodParamValue = FMax(BloodParamValue + NewBlood, MinBloodParamValue);
-		WeaponMIC.SetScalarParameterValue(BloodParamName, BloodParamValue);
+
+		for( i = 0; i < WeaponMICs.Length; ++i )
+		{	
+			if( WeaponMICs[i] != none )
+			{
+				WeaponMICs[i].SetScalarParameterValue( BloodParamName, BloodParamValue );
+			}
+		}
 	}
 }
 
@@ -2730,13 +2782,20 @@ simulated function StartFire(byte FireModeNum)
 simulated function BeginFire( Byte FireModeNum )
 {
 	local KFPerk_Gunslinger GunslingerPerk;
+	local KFPawn_Human KFPH;
 
 	super.BeginFire( FireModeNum );
+
+	KFPH = KFPawn_Human(Instigator);
+	if( KFPH != none )
+	{
+		KFPH.CheckAndEndActiveEMoteSpecialMove();
+	}
 
 	if( Role == Role_Authority )
 	{
 		GunslingerPerk = KFPerk_Gunslinger(GetPerk());
-		if( GunslingerPerk != none && !IsMeleeWeapon() && !GunslingerPerk.IsWeaponOnPerk( self ) )
+		if( GunslingerPerk != none && !IsMeleeWeapon() && !GunslingerPerk.IsWeaponOnPerk( self,, GunslingerPerk.class ) )
 		{
 			GunslingerPerk.ResetHeadShotCombo();
 		}
@@ -4411,6 +4470,37 @@ simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
 }
 
 /*********************************************************************************************
+ * @name	Perks
+********************************************************************************************* */
+simulated static event class<KFPerk> GetWeaponPerkClass( class<KFPerk> InstigatorPerkClass )
+{
+	if( default.AssociatedPerkClasses.Length > 1 )
+	{
+		if( InstigatorPerkClass == default.AssociatedPerkClasses[1] )
+		{
+			return InstigatorPerkClass;
+		}
+	}
+
+	return default.AssociatedPerkClasses[0];
+}
+
+static event array< Class<KFPerk> > GetAssociatedPerkClasses()
+{
+	return default.AssociatedPerkClasses;
+}
+
+simulated static event class<KFPerk> GetWeaponPerkClassByIndex(int Index)
+{
+	return default.AssociatedPerkClasses[Index];
+}
+
+simulated static function bool IsMultiPerkWeapn()
+{
+	return default.AssociatedPerkClasses.Length > 1;
+}
+
+/*********************************************************************************************
  * @name	States
 ********************************************************************************************* */
 
@@ -4420,15 +4510,35 @@ simulated function byte GetWeaponStateId()
 	return WEP_Idle;
 }
 
+/** Gets the current animation rate, scaled or not */
+simulated function float GetThirdPersonAnimRate()
+{
+	return 1.0f;
+}
+
+/** Sets the animation rate on the (human) owner for 3rd person anim syncing */
+simulated function UpdateWeaponAttachmentAnimRate( float Rate )
+{
+	local KFPawn_Human KFPH;
+
+	KFPH = KFPawn_Human( Instigator );
+	if( KFPH != none )
+	{
+		KFPH.SetWeaponAttachmentAnimRateByte( Rate );
+	}
+}
+
 /** Register new state with owning pawn */
 simulated function NotifyBeginState()
 {
+	UpdateWeaponAttachmentAnimRate( GetThirdPersonAnimRate() );
 	KFPawn(Instigator).WeaponStateChanged(GetWeaponStateId());
 }
 
 /** Register new state with owning pawn */
 simulated function NotifyEndState()
 {
+	UpdateWeaponAttachmentAnimRate( 1.0f );
 	KFPawn(Instigator).WeaponStateChanged(WEP_Idle);
 }
 
@@ -4872,6 +4982,22 @@ simulated state WeaponEquipping
 		ClearZedTimeResist();
 		NotifyEndState();
 	}
+
+	/** Gets the current animation rate, scaled or not */
+	simulated function float GetThirdPersonAnimRate()
+	{
+		local KFPerk CurrentPerk;
+		local float ScaledRate;
+
+		ScaledRate = 1.0f;
+		CurrentPerk = GetPerk();
+		if( CurrentPerk != none )
+		{
+			CurrentPerk.ModifyWeaponSwitchTime( ScaledRate );
+		}
+
+		return 1.f / ScaledRate;
+	}
 }
 
 /**
@@ -4954,6 +5080,22 @@ simulated state WeaponPuttingDown
 	}
 
 	simulated function Activate();
+
+	/** Gets the current animation rate, scaled or not */
+	simulated function float GetThirdPersonAnimRate()
+	{
+		local KFPerk CurrentPerk;
+		local float ScaledRate;
+
+		ScaledRate = 1.0f;
+		CurrentPerk = GetPerk();
+		if( CurrentPerk != none )
+		{
+			CurrentPerk.ModifyWeaponSwitchTime( ScaledRate );
+		}
+
+		return 1.f / ScaledRate;
+	}
 }
 
 // Control 'WeaponDownSimple' state
@@ -5318,6 +5460,22 @@ simulated state WeaponFiring
 	simulated function bool DenyClientWeaponSet()
 	{
 		return true;
+	}
+
+	/** Gets the current animation rate, scaled or not */
+	simulated function float GetThirdPersonAnimRate()
+	{
+		local KFPerk CurrentPerk;
+		local float ScaledRate;
+
+		ScaledRate = 1.0f;
+		CurrentPerk = GetPerk();
+		if( CurrentPerk != none )
+		{
+			CurrentPerk.ModifyRateOfFire( ScaledRate, self );
+		}
+
+		return 1.f / ScaledRate;
 	}
 }
 
@@ -5778,6 +5936,12 @@ simulated state Reloading
 
 		// we're done, leave state and go back to active
 		GotoState('Active');
+	}
+
+	/** Gets the current animation rate, scaled or not */
+	simulated function float GetThirdPersonAnimRate()
+	{
+		return 1.f / GetReloadRateScale();
 	}
 }
 
@@ -6272,6 +6436,22 @@ simulated state MeleeAttackBasic
 	{
 		return WEP_MeleeBasic;
 	}
+
+	/** Gets the current animation rate, scaled or not */
+	simulated function float GetThirdPersonAnimRate()
+	{
+		local KFPerk CurrentPerk;
+		local float ScaledRate;
+
+		ScaledRate = 1.0f;
+		CurrentPerk = GetPerk();
+		if ( CurrentPerk != none )
+		{
+			CurrentPerk.ModifyMeleeAttackSpeed( ScaledRate, self );
+		}
+		
+		return 1.f / ScaledRate;
+	}
 }
 
 /** Called from the MeleeHelper class to allow for the weapon to override settings */
@@ -6308,7 +6488,7 @@ simulated function float GetForceReloadDelay();
 /** Detect/fix single fire projectile weapon network synchronization errors */
 reliable private server function ServerSyncWeaponFiring( byte FireModeNum )
 {
-	local float MeleeTimeRemaining;
+	local bool bNeedsToSync;
 
 	if( IsInState('Reloading') )
 	{
@@ -6328,17 +6508,14 @@ reliable private server function ServerSyncWeaponFiring( byte FireModeNum )
 			ServerSyncReload(InitialReloadSpareAmmo - 1);
 		}
 
-		// Move immediately to the firing state, as long as we have ammo
-		if( HasAmmo(FireModeNum) )
-		{
-			SendToFiringState( FireModeNum );
-		}
-		else
-		{
-			`warn("KFWeapon::ServerSyncWeaponFiring().Reloading - Failed to sync weapon ammo.");
-		}
+		bNeedsToSync = true;
 	}
-	else if( IsInState('WeaponEquipping') )
+	else if( IsInState('WeaponEquipping') || IsInState('MeleeAttackBasic') )
+	{
+		bNeedsToSync = true;
+	}
+
+	if( bNeedsToSync )
 	{
 		// Move immediately to the firing state, as long as we have ammo
 		if( HasAmmo(FireModeNum) )
@@ -6347,25 +6524,7 @@ reliable private server function ServerSyncWeaponFiring( byte FireModeNum )
 		}
 		else
 		{
-			`warn("KFWeapon::ServerSyncWeaponFiring().WeaponEquipping - Failed to sync weapon ammo.");
-		}
-	}
-	else if( IsInState('MeleeAttackBasic') )
-	{
-		if( HasAmmo(FireModeNum) )
-		{
-			// @NOTE: During testing with various simulated lag settings, I've found that this almost directly correlates
-			// with lag. The time remaining averages +/-5% that of ping. Since ping is only updated every few seconds, we
-			// give it a little extra padding to cover any small fluctuations. -MattF
-			MeleeTimeRemaining = GetRemainingTimeForTimer( nameOf(MeleeAttackHelper.MeleeCheckTimer), MeleeAttackHelper );
-			if( MeleeTimeRemaining < (Instigator.PlayerReplicationInfo.Ping * `PING_SCALE) * 0.0011f )
-			{
-				SendToFiringState( FireModeNum );
-			}
-		}
-		else
-		{
-			`warn("KFWeapon::ServerSyncWeaponFiring().MeleeAttackBasic - Failed to sync weapon ammo.");
+			`warn("KFWeapon::ServerSyncWeaponFiring()."$GetStateName()$" - Failed to sync weapon ammo.");
 		}
 	}
 }
@@ -6389,7 +6548,7 @@ simulated state WeaponSingleFireAndReload extends WeaponSingleFiring
 				ReloadDelay = GetForceReloadDelay();
 				if ( ReloadDelay > 0.f )
 				{
-					SetTimer( ReloadDelay + FireInterval[CurrentFireMode], false, nameOf(ForceReload) );
+					SetTimer( ReloadDelay + GetFireInterval(CurrentFireMode), false, nameOf(ForceReload) );
 				}
 				else
 				{
@@ -6636,6 +6795,7 @@ defaultproperties
 	ShakeScaleStandard=1.0
 	ShakeScaleSighted=0.4
 	SingleFireSoundIndex=FIREMODE_NONE
+	NumBloodMapMaterials=1
 
 	BobDamping=0.85000
 	JumpDamping=1.0

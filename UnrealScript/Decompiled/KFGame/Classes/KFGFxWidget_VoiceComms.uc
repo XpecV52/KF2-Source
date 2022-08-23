@@ -7,12 +7,15 @@
  *******************************************************************************/
 class KFGFxWidget_VoiceComms extends GFxObject within GFxMoviePlayer;
 
+var private bool bPlayedVoiceComm;
+var bool bActive;
 var Vector RawJoyVector;
 var PlayerController PC;
 var array<string> IconPaths;
-var bool bActive;
 var const float MouseDampening;
 var const float ControllerDampening;
+var private int SavedSelectionIndex;
+var private float DeselectTime;
 
 function InitializeHUD()
 {
@@ -29,7 +32,7 @@ function SetLocalizedText()
     I = 0;
     J0x35:
 
-    if(I < 8)
+    if(I < Class'KFLocalMessage_VoiceComms'.default.VoiceCommsOptionStrings.Length)
     {
         TempObj = Outer.CreateObject("Object");
         TempObj.SetString("text", Class'KFLocalMessage_VoiceComms'.default.VoiceCommsOptionStrings[I]);
@@ -41,13 +44,23 @@ function SetLocalizedText()
     SetObject("textOptions", DataProvider);
 }
 
-function SayVoiceCommms(int CommsIndex)
+function SaveVoiceCommSelection(int CommsIndex)
 {
-    KFPlayerController(Outer.GetPC()).ServerPlayVoiceCommsDialog(CommsIndex);
+    if(CommsIndex >= 0)
+    {
+        SavedSelectionIndex = CommsIndex;        
+    }
+    else
+    {
+        DeselectTime = PC.WorldInfo.RealTimeSeconds;
+    }
 }
 
 function EnableComm()
 {
+    DeselectTime = 0;
+    bPlayedVoiceComm = false;
+    SavedSelectionIndex = -1;
     if(!PC.IsDead() && PC.Pawn != none)
     {
         bActive = true;
@@ -78,12 +91,34 @@ function DisableComm()
         }
         Outer.GetGameViewportClient().__HandleInputAxis__Delegate = None;
         ActionScriptVoid("disableComm");
+        if(((!bPlayedVoiceComm && SavedSelectionIndex >= 0) && DeselectTime > 0) && (PC.WorldInfo.RealTimeSeconds - DeselectTime) <= 0.15)
+        {
+            SayVoiceCommms(SavedSelectionIndex);
+        }
     }
 }
 
 function HandleInputChange()
 {
     PC.IgnoreLookInput(false);
+}
+
+function SayVoiceCommms(int CommsIndex)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(PC);
+    if(KFPC == none)
+    {
+        return;
+    }
+    if(CommsIndex == 8)
+    {
+        KFPC.DoEmote();
+        return;
+    }
+    KFPlayerController(PC).ServerPlayVoiceCommsDialog(CommsIndex);
+    bPlayedVoiceComm = true;
 }
 
 function bool OnAxisModified(int ControllerId, name Key, float Delta, float DeltaTime, bool bGamepad)
@@ -140,6 +175,7 @@ defaultproperties
     IconPaths(5)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Trader"
     IconPaths(6)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Affirmative"
     IconPaths(7)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Negative"
+    IconPaths(8)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Emote"
     MouseDampening=0.2
     ControllerDampening=2.5
 }

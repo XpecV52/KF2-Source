@@ -1205,6 +1205,16 @@ function bool DoHeavyZedBump(Actor Other, Vector HitNormal)
     return false;
 }
 
+function DoFleeFrom(Actor FleeFrom, optional float FleeDuration, optional float FleeDistance, optional bool bShouldStopAtGoal, optional bool bFromFear)
+{
+    bShouldStopAtGoal = false;
+    bFromFear = false;
+    if(!bFromFear || !MyPatPawn.bInFleeAndHealMode)
+    {
+        super(KFAIController).DoFleeFrom(FleeFrom, FleeDuration, FleeDistance, bShouldStopAtGoal, bFromFear);
+    }
+}
+
 function Flee()
 {
     local Actor FleeFromTarget;
@@ -1257,6 +1267,10 @@ function Flee()
 function NotifyFleeFinished(optional bool bAcquireNewEnemy)
 {
     bAcquireNewEnemy = true;
+    if(!MyPatPawn.bInFleeAndHealMode)
+    {
+        return;
+    }
     if(MyPatPawn != none)
     {
         MyPatPawn.SetCloaked(false);

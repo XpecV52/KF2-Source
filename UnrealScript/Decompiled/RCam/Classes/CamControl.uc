@@ -6,6 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class CamControl extends Actor
+    config(RypelCam)
     notplaceable
     hidecategories(Navigation);
 
@@ -140,9 +141,9 @@ struct TMultiArray
 };
 
 var TMultiArray M[121];
-var bool bxedited;
-var bool conf;
-var bool do_not_update_Spline;
+var config bool bxedited;
+var config bool conf;
+var config bool do_not_update_Spline;
 var bool startCam;
 var bool bbadaccel;
 var bool bisdrawing;
@@ -168,16 +169,16 @@ var bool rollplus;
 var bool rollminus;
 var bool ssw;
 var bool Start;
-var float basic_speed2;
-var float Flag_Fovs[121];
-var float Flag_Times[121];
-var float kabstand;
-var float mabstand;
-var float X[121];
-var int drawdetail;
-var int Z;
-var Rotator Rotation_At_Flags[121];
-var Vector Flag_Locations[121];
+var config float basic_speed2;
+var config float Flag_Fovs[121];
+var config float Flag_Times[121];
+var config float kabstand;
+var config float mabstand;
+var config float X[121];
+var config int drawdetail;
+var config int Z;
+var config Rotator Rotation_At_Flags[121];
+var config Vector Flag_Locations[121];
 var float Accel;
 var float carry;
 var float Counter;

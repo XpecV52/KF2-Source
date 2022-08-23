@@ -787,10 +787,11 @@ defaultproperties
       SpecialMoveClasses(26)=None
       SpecialMoveClasses(27)=None
       SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=None
       SpecialMoveClasses(31)=None
-      SpecialMoveClasses(32)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(32)=None
+      SpecialMoveClasses(33)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_MonsterBoss:SpecialMoveHandler_0'
    End Object

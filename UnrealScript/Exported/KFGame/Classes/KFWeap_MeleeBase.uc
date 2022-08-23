@@ -37,7 +37,18 @@ var() float MeleeSustainedWarmupTime;
  * @name Defensive Abilities
  *********************************************************************************************/
 
-var array<class<DamageType> > BlockDamageType;
+struct native BlockEffectInfo
+{
+	var class<DamageType> DmgType;
+
+	/** If != None, overrides the class default FX */
+	var AkEvent 		BlockSound;
+	var AkEvent			ParrySound;
+	var ParticleSystem	BlockParticleSys;
+	var ParticleSystem  ParryParticleSys;
+};
+
+var array<BlockEffectInfo> BlockTypes;
 
 /** Damage while blocking will be mitigated by this percentage */
 var() float BlockDamageMitigation;
@@ -103,7 +114,7 @@ var array<name> MeleeBlockHitAnims;
  * @name	Effects
  ********************************************************************************************* */
 
-/** particle system templates for trail notifies */
+/** (deprecated) particle system templates for trail notifies */
 var ParticleSystem DistortTrailParticle;
 var ParticleSystem WhiteTrailParticle;
 var ParticleSystem BlueTrailParticle;
@@ -328,12 +339,21 @@ reliable server private function ServerSetBloody(bool bNewIsBloody)
 /** Remove blood material parameter from this weapon */
 simulated function ANIMNOTIFY_CleanBlood()
 {
+	local int i;
+
 	bIsBloody = false;
 
-	if ( WorldInfo.NetMode != NM_DedicatedServer )
+	if ( WorldInfo.NetMode != NM_DedicatedServer && WeaponMICs.Length > 0 )
 	{
 		BloodParamValue = 0.f;
-		WeaponMIC.SetScalarParameterValue(BloodParamName, BloodParamValue);
+
+		for( i = 0; i < WeaponMICs.Length; ++i )
+		{
+			if( WeaponMICs[i] != none )
+			{
+				WeaponMICs[i].SetScalarParameterValue( BloodParamName, BloodParamValue );
+			}
+		}
 	}
 }
 
@@ -516,6 +536,9 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
 	/** Get name of the animation to play for PlayFireEffects */
 	simulated function name GetMeleeAnimName(EPawnOctant AtkDir, EMeleeAttackType AtkType)
 	{
+		// Update our animation rate before changing weapon state to stay synced
+		UpdateWeaponAttachmentAnimRate( GetThirdPersonAnimRate() );
+
 		// update state id to match new attack direction
 		KFPawn(Instigator).WeaponStateChanged(GetWeaponStateId());
 
@@ -551,6 +574,22 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
 	simulated function bool IsLightAttack( byte FireMode )
 	{
 		return true;
+	}
+
+	/** Gets the current animation rate, scaled or not */
+	simulated function float GetThirdPersonAnimRate()
+	{
+		local KFPerk CurrentPerk;
+		local float ScaledRate;
+
+		ScaledRate = EvalInterpCurveFloat( MeleeAttackHelper.FatigueCurve, MeleeAttackHelper.NumChainedAttacks );
+		CurrentPerk = GetPerk();
+		if ( CurrentPerk != none )
+		{
+			CurrentPerk.ModifyMeleeAttackSpeed( ScaledRate, self );
+		}
+
+		return 1.f / ScaledRate;
 	}
 }
 
@@ -754,30 +793,30 @@ simulated function BlockLoopTimer();
 simulated function ParryCheckTimer();
 
 /** Called on the server when successfully block/parry an attack */
-unreliable client function ClientPlayBlockEffects()
+unreliable client function ClientPlayBlockEffects(optional byte BlockTypeIndex=255)
 {
-	PlayLocalBlockEffects(BlockSound, BlockParticleSystem);
+	local AkBaseSoundObject Sound;
+	local ParticleSystem PSTemplate;
+
+	GetBlockEffects(BlockTypeIndex, Sound, PSTemplate);
+	PlayLocalBlockEffects(Sound, PSTemplate);
 }
 
 /** Called on the server when successfully block/parry an attack */
-reliable client function ClientPlayParryEffects(bool bInterruptSuccess)
+reliable client function ClientPlayParryEffects(optional byte BlockTypeIndex=255)
 {
+	local AkBaseSoundObject Sound;
+	local ParticleSystem PSTemplate;
 	local KFPerk InstigatorPerk;
 
-	if ( bInterruptSuccess )
+	InstigatorPerk = GetPerk();
+	if( InstigatorPerk != none )
 	{
-		InstigatorPerk = GetPerk();
-		if( InstigatorPerk != none )
-		{
-			InstigatorPerk.SetSuccessfullParry();
-		}
+		InstigatorPerk.SetSuccessfullParry();
+	}
 
-		PlayLocalBlockEffects(ParrySound, ParryParticleSystem);
-	}
-	else
-	{
-		PlayLocalBlockEffects(BlockSound, BlockParticleSystem);
-	}
+	GetParryEffects(BlockTypeIndex, Sound, PSTemplate);
+	PlayLocalBlockEffects(Sound, PSTemplate);
 }
 
 simulated state MeleeBlocking
@@ -853,7 +892,7 @@ simulated state MeleeBlocking
 			if ( IsTimerActive(nameof(ParryCheckTimer)) )
 			{
 				KFPawn(InstigatedBy).NotifyAttackParried(Instigator, 255);
-				ClientPlayParryEffects(true);
+				ClientPlayParryEffects();
 			}
 			else
 			{
@@ -871,14 +910,14 @@ simulated state MeleeBlocking
 		local float FacingDot;
 		local vector Dir2d;
 		local KFPerk InstigatorPerk;
-		//local bool bInterruptSuccess;
+		local byte BlockTypeIndex;
 
 		// zero Z to give us a 2d dot product
 		Dir2d = Normal2d(DamageCauser.Location - Instigator.Location);
 		FacingDot = vector(Instigator.Rotation) dot (Dir2d);
 
 		// Cos(85)
-		if ( FacingDot > 0.087f && CanBlockDamageType(DamageType) )
+		if ( FacingDot > 0.087f && CanBlockDamageType(DamageType, BlockTypeIndex) )
 		{
 			InstigatorPerk = GetPerk();
 
@@ -888,13 +927,13 @@ simulated state MeleeBlocking
 				// Notify attacking pawn for effects / animations
 				if ( KFPawn(DamageCauser) != None )
 				{
-					/*bInterruptSuccess = */KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
+					KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
 				}
 
 				// @NOTE: This is now always true per discussion with AndrewL on KFII-29686. Since we always
 				// do the damage mitigation, we should always play the effect regardless of whether the
 				// zed was stumbled or knocked down. -MattF
-				ClientPlayParryEffects( true /*bInterruptSuccess*/);
+				ClientPlayParryEffects(BlockTypeIndex);
 
 				if( InstigatorPerk != none )
 				{
@@ -904,7 +943,7 @@ simulated state MeleeBlocking
 			else
 			{
 				InDamage *= BlockDamageMitigation;
-				ClientPlayBlockEffects();
+				ClientPlayBlockEffects(BlockTypeIndex);
 
 				if( InstigatorPerk != none )
 				{
@@ -923,13 +962,13 @@ simulated state MeleeBlocking
 	}
 
 	/** State override for Block_Hit animations */
-	unreliable client function ClientPlayBlockEffects()
+	unreliable client function ClientPlayBlockEffects(optional byte BlockTypeIndex=255)
 	{
 		local int AnimIdx;
 		local float Duration;
 		local KFPerk InstigatorPerk;
 
-		Global.ClientPlayBlockEffects();
+		Global.ClientPlayBlockEffects(BlockTypeIndex);
 
 		InstigatorPerk = GetPerk();
 		if( InstigatorPerk != none )
@@ -947,18 +986,6 @@ simulated state MeleeBlocking
 				PlayAnimation(MeleeBlockHitAnims[AnimIdx]);
 				SetTimer(Duration, false, nameof(BlockLoopTimer));
 			}
-		}
-	}
-
-	/** state override for cancel block */
-	reliable client function ClientPlayParryEffects(bool bInterruptSuccess)
-	{
-		Global.ClientPlayParryEffects(bInterruptSuccess);
-		if ( !bInterruptSuccess && Instigator.IsLocallyControlled() )
-		{
-			// force a replicated stop fire when zed is playing
-			// an uninterruptible special move
-			StopFire(BLOCK_FIREMODE);
 		}
 	}
 }
@@ -1014,20 +1041,60 @@ simulated function PlayLocalBlockEffects(AKBaseSoundObject Sound, ParticleSystem
 }
 
 /** If true, this damage type can be blocked by the MeleeBlocking state */
-function bool CanBlockDamageType(class<DamageType> DamageType)
+function bool CanBlockDamageType(class<DamageType> DamageType, optional out byte out_Idx)
 {
 	local int Idx;
 
 	// Check if this damage should be ignored completely
-	for (Idx = 0; Idx < BlockDamageType.length; ++Idx)
+	for (Idx = 0; Idx < BlockTypes.length; ++Idx)
 	{
-		if ( ClassIsChildOf(DamageType, BlockDamageType[Idx]) )
+		if ( ClassIsChildOf(DamageType, BlockTypes[Idx].DmgType) )
 		{
+			out_Idx = Idx;
 			return true;
 		}
 	}
 
+	out_Idx = INDEX_NONE;
 	return false;
+}
+
+/** Returns sound and particle system overrides using index into BlockTypes array */
+simulated function GetBlockEffects(byte BlockIndex, out AKBaseSoundObject outSound, out ParticleSystem outParticleSys)
+{
+	outSound = BlockSound;
+	outParticleSys = BlockParticleSystem;
+
+	if ( BlockIndex != 255 )
+	{
+		if ( BlockTypes[BlockIndex].BlockSound != None )
+		{
+			outSound = BlockTypes[BlockIndex].BlockSound;
+		}
+		if ( BlockTypes[BlockIndex].BlockParticleSys != None )
+		{
+			outParticleSys = BlockTypes[BlockIndex].BlockParticleSys;
+		}
+	}
+}
+
+/** Returns sound and particle system overrides using index into BlockTypes array */
+simulated function GetParryEffects(byte BlockIndex, out AKBaseSoundObject outSound, out ParticleSystem outParticleSys)
+{
+	outSound = ParrySound;
+	outParticleSys = ParryParticleSystem;
+
+	if ( BlockIndex != 255 )
+	{
+		if ( BlockTypes[BlockIndex].ParrySound != None )
+		{
+			outSound = BlockTypes[BlockIndex].ParrySound;
+		}
+		if ( BlockTypes[BlockIndex].ParryParticleSys != None )
+		{
+			outParticleSys = BlockTypes[BlockIndex].ParryParticleSys;
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -1168,8 +1235,8 @@ defaultproperties
    EstimatedFireRate=100
    MinMeleeSustainedTime=0.500000
    MeleeSustainedWarmupTime=0.250000
-   BlockDamageType(0)=Class'KFGame.KFDT_Bludgeon'
-   BlockDamageType(1)=Class'KFGame.KFDT_Slashing'
+   BlockTypes(0)=(dmgType=Class'KFGame.KFDT_Bludgeon')
+   BlockTypes(1)=(dmgType=Class'KFGame.KFDT_Slashing')
    BlockDamageMitigation=0.500000
    ParryDamageMitigationPercent=0.200000
    MeleeAttackSettleAnims(0)="Settle_V1"

@@ -128,7 +128,7 @@ package tripwire.popups
                         if(this.AcceptButton.label != "")
                         {
                             closePopup();
-                            param1.handled;
+                            param1.handled = true;
                         }
                 }
             }

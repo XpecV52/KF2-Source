@@ -67,7 +67,7 @@ defaultproperties
 	BlockDamageMitigation=0.8
 
 	//Perks
-	AssociatedPerkClass=class'KFPerk_Commando'
+	AssociatedPerkClasses(0)=class'KFPerk_Commando'
 
 	// Block Sounds
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'

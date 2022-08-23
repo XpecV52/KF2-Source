@@ -337,6 +337,7 @@ var() float AdjustRGBCurve;
 /** Static texture hue adjustment (0 - 360) (offsets HSV hue by value in degrees.)  (Non-destructive; Requires texture source art to be available.) */
 var() float AdjustHue;
 var const int InternalFormatLODBias;
+var int RequiredCreationFlags;
 
 defaultproperties
 {

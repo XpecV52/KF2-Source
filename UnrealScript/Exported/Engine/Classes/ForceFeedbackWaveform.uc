@@ -31,9 +31,15 @@ struct native WaveformSample
 	 */
 	var() byte LeftAmplitude;
 	var() byte RightAmplitude;
+//@HSL_BEGIN_XBOX
+	var() byte LeftTriggerAmplitude;
+	var() byte RightTriggerAmplitude;
 	/** For function generated samples, the type of function */
 	var() EWaveformFunction LeftFunction;
 	var() EWaveformFunction RightFunction;
+	var() EWaveformFunction LeftTriggerFunction;
+	var() EWaveformFunction RightTriggerFunction;
+//@HSL_END_XBOX
 	/** The amount of time this sample plays */
 	var() float Duration;
 
@@ -41,8 +47,24 @@ struct native WaveformSample
 	{
 		friend FArchive& operator<<(FArchive& Ar,FWaveformSample& A)
 		{	
-			return	Ar << A.LeftAmplitude << A.RightAmplitude << A.LeftFunction
+//@HSL_BEGIN_XBOX	
+			Ar << A.LeftAmplitude << A.RightAmplitude << A.LeftFunction
 				<< A.RightFunction << A.Duration;
+			if (Ar.IsLoading() && Ar.Ver() < VER_XBOX_ONE_INTEGRATION)
+			{
+				A.LeftTriggerAmplitude = 0;
+				A.RightTriggerAmplitude = 0;
+				A.LeftTriggerFunction = WF_Constant;
+				A.RightTriggerFunction = WF_Constant;
+			}
+			else
+			{
+				Ar << A.LeftTriggerAmplitude << A.RightTriggerAmplitude 
+					<< A.LeftTriggerFunction << A.RightTriggerFunction;
+			}
+
+			return Ar;
+//@HSL_END_XBOX
 		}
 	}
 };

@@ -25,4 +25,5 @@ defaultproperties
 	WeaponDef=class'KFWeapDef_Remington1858'
 
 	ModifierPerkList(0)=class'KFPerk_Gunslinger'
+	ModifierPerkList(1)=class'KFPerk_Sharpshooter'
 }

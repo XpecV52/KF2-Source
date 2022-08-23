@@ -468,8 +468,8 @@ function ClearAuthDelegates(bool bExiting)
 event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool bSupportsAuth, out string OutError, bool bSpectator)
 {
     local string InPassword;
-    local int I, CurIP, CurPort, ClientIP, LingeringPort;
-
+    local int I, CurPort, LingeringPort;
+    local IpAddr CurIP, ClientIP;
     local bool bFound, bSuccess, bHasPrivateServerOption;
     local UniqueNetId NullId, HostUID;
     local Player ClientConn, CurConn;
@@ -480,7 +480,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
     OutError = "";
     InPassword = WorldInfo.Game.ParseOption(Options, "Password");
     Engine = GameEngine(Class'Engine'.static.GetEngine());
-    if(WorldInfo.IsConsoleBuild())
+    if(WorldInfo.IsConsoleDedicatedServer())
     {
         bHasPrivateServerOption = WorldInfo.Game.HasOption(Options, "bJoinViaInvite");        
     }
@@ -543,7 +543,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
                     LingeringPort = 0;
                     foreach CachedAuthInt.AllClientAuthSessions(CurClientSession)
                     {
-                        if((CurClientSession.EndPointIP == ClientIP) && CurClientSession.EndPointUID == UniqueId)
+                        if(CurClientSession.EndPointIP == ClientIP && CurClientSession.EndPointUID == UniqueId)
                         {
                             LingeringPort = CurClientSession.EndPointPort;
                             break;
@@ -562,19 +562,19 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
                         }                        
                     }
                     I = 0;
-                    J0x967:
+                    J0x975:
 
                     if(I < ClientsPendingAuth.Length)
                     {
                         if(ClientsPendingAuth[I].ClientUID == UniqueId)
                         {
                             bFound = true;
-                            goto J0x9D7;
+                            goto J0x9E5;
                         }
                         ++ I;
-                        goto J0x967;
+                        goto J0x975;
                     }
-                    J0x9D7:
+                    J0x9E5:
 
                     if(!bFound)
                     {
@@ -775,7 +775,7 @@ function OnAuthReady()
     }
 }
 
-function ProcessClientAuthResponse(UniqueNetId ClientUID, int ClientIP, int AuthTicketUID)
+function ProcessClientAuthResponse(UniqueNetId ClientUID, IpAddr ClientIP, int AuthTicketUID)
 {
     local bool bSuccess;
     local int I, PendingIdx, OldLength;
@@ -908,7 +908,7 @@ function OnClientAuthComplete(bool bSuccess, UniqueNetId ClientUID, Player Clien
     }
 }
 
-function ProcessServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID, int ClientIP, int ClientPort)
+function ProcessServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort)
 {
     local int AuthTicketUID;
     local LocalAuthSession CurServerSession;
@@ -943,7 +943,8 @@ function ProcessServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID
 function ProcessServerAuthRetryRequest(Player ClientConnection)
 {
     local bool bFoundAndAuthenticated;
-    local int ClientIP, ClientPort, I, CurRetryIdx;
+    local IpAddr ClientIP;
+    local int ClientPort, I, CurRetryIdx;
     local UniqueNetId ClientUID;
     local AuthSession CurClientSession;
     local LocalAuthSession CurServerSession;
@@ -1009,7 +1010,8 @@ function ProcessServerAuthRetryRequest(Player ClientConnection)
 function BeginListenHostAuth(optional bool bRetry)
 {
     local UniqueNetId ServerUID, HostUID;
-    local int ServerIP, ServerPort;
+    local IpAddr ServerIP;
+    local int ServerPort;
     local OnlineGameSettings GameSettings;
     local bool bGotHostInfo, bFound, bSecure;
     local AuthSession CurClientSession, ListenSession;
@@ -1068,7 +1070,8 @@ function ContinueListenHostAuth()
 {
     local bool bGotHostInfo;
     local UniqueNetId HostUID;
-    local int ServerIP, ServerPort;
+    local IpAddr ServerIP;
+    local int ServerPort;
 
     if(NotEqual_InterfaceInterface(OnlineSub.PlayerInterface, (none)))
     {
@@ -1086,7 +1089,8 @@ function EndListenHostAuth()
 {
     local bool bGotHostInfo;
     local UniqueNetId ServerUID, HostUID;
-    local int ServerIP, ServerPort;
+    local IpAddr ServerIP;
+    local int ServerPort;
 
     if(NotEqual_InterfaceInterface(OnlineSub.PlayerInterface, (none)))
     {
@@ -1196,7 +1200,8 @@ static final function StaticOnClientConnectionClose(Player ClientConnection)
 
 function OnDestroyOnlineGameComplete(name SessionName, bool bWasSuccessful)
 {
-    local int CurIP, CurPort;
+    local IpAddr CurIP;
+    local int CurPort;
     local Player ClientConn, CurConn;
     local AuthSession CurClientSession;
 
@@ -1211,7 +1216,7 @@ function OnDestroyOnlineGameComplete(name SessionName, bool bWasSuccessful)
             CachedAuthInt.EndRemoteClientAuthSession(CurClientSession.EndPointUID, CurClientSession.EndPointIP);
             foreach WorldInfo.AllClientConnections(CurConn, CurIP, CurPort)
             {
-                if((CurIP == CurClientSession.EndPointIP) && CurPort == CurClientSession.EndPointPort)
+                if(CurIP == CurClientSession.EndPointIP && CurPort == CurClientSession.EndPointPort)
                 {
                     ClientConn = CurConn;
                     break;

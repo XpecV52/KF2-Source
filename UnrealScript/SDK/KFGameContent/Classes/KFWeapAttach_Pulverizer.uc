@@ -21,8 +21,10 @@ const CH_PulverizerShoot_R = 'Atk_R_Shoot_CH';
 var transient EWeaponState NextPulverizerShootType;
 
 /** Custom firing animations */
-simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
+simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte )
 {
+	DecodeThirdPersonAnimRate( ThirdPersonAnimRateByte );
+
 	// Character shoot anims
 	if ( !P.IsDoingSpecialMove() )
 	{
@@ -62,7 +64,7 @@ simulated function PlayPulverizerShoot(KFPawn P)
 }
 
 /** Cache the previous melee attact action to use it for 'ThirdPersonFireEffects'  */
-simulated function UpdateThirdPersonWeaponAction(EWeaponState NewWeaponState, KFPawn P)
+simulated function UpdateThirdPersonWeaponAction( EWeaponState NewWeaponState, KFPawn P, byte ThirdPersonAnimRateByte )
 {
 	switch(NewWeaponState)
 	{
@@ -74,7 +76,7 @@ simulated function UpdateThirdPersonWeaponAction(EWeaponState NewWeaponState, KF
 		break;
 	}
 
-	Super.UpdateThirdPersonWeaponAction(NewWeaponState, P);
+	Super.UpdateThirdPersonWeaponAction( NewWeaponState, P, ThirdPersonAnimRateByte );
 }
 
 defaultproperties

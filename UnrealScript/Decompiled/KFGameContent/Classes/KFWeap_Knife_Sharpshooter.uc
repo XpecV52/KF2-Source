@@ -14,7 +14,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Sharpshooter_Knife_TEX.UI_WeaponSelect_SharpshooterKnife'
     AttachmentArchetype=KFWeaponAttachment'wep_sharpshooter_knife_arch.Wep_Sharpshooter_Knife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Sharpshooter.MeleeHelper'
-    AssociatedPerkClass=Class'KFGame.KFPerk_Sharpshooter'
+    AssociatedPerkClasses=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         SkeletalMesh=SkeletalMesh'WEP_1P_Sharpshooter_Knife_MESH.Wep_1stP_SharpshooterKnife_Rig'
         ReplacementPrimitive=none

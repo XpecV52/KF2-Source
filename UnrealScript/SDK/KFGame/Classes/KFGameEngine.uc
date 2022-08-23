@@ -157,6 +157,16 @@ native static function GetVoIPVolumeRange(out float MinVol, out float MaxVol, ou
 native static function PlayFullScreenMovie(string MovieName);
 native static function bool IsFullScreenMoviePlaying();
 
+//////////////////////////////
+// Helpers
+//////////////////////////////
+/**
+ * Wrapper for engine fast trace
+ * Very fast, uses RBCC_Visibility. Returns TRUE if did not hit world geometry. Does not use extents or complex collision.
+ * @NOTE: Will not hit KFDoorActors, KFDestructibleActors, KFFracturedMeshActors, or CanBecomeDynamic() actors
+ */
+native static function bool FastTrace_PhysX( vector TraceEnd, vector TraceStart );
+
 /**
  * Sets the current gamma value.
  *
@@ -296,11 +306,6 @@ function UnlockServer()
 		KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI).ConsoleGameSessionHost = NullId;
 		bAvailableForTakeover = true;
 		bPrivateServer = false;
-
-		if( GetPlayfabInterface() != none )
-		{
-			GetPlayfabInterface().serverDeallocate();
-		}
 	}
 }
 

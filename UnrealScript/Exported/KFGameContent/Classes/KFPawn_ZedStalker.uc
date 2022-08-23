@@ -173,7 +173,7 @@ simulated event Tick( float DeltaTime )
 	{
 		if( ViewerPlayer == none )
 		{
-			ViewerPlayer = KFPlayerController( WorldInfo.GetALocalPlayerController() );
+			ViewerPlayer = KFPlayerController( GetALocalPlayerController() );
 		}
 
 		MinCloakPct = GetMinCloakPct();
@@ -217,7 +217,6 @@ simulated protected function float GetMinCloakPct()
 simulated event UpdateSpottedStatus()
 {
 	local bool bOldSpottedByLP;
-	local KFPlayerController LocalPC;
 	local KFPerk LocalPerk;
 	local float DistanceSq, Range;
 
@@ -231,16 +230,20 @@ simulated event UpdateSpottedStatus()
 
     if( !IsHumanControlled() || bIsSprinting )
     {
-		LocalPC = KFPlayerController(GetALocalPlayerController());
-		if( LocalPC != none )
-		{
-			LocalPerk = LocalPC.GetPerk();
+    	if( ViewerPlayer == none )
+    	{
+    		ViewerPlayer = KFPlayerController( GetALocalPlayerController() );
 		}
 
-		if ( LocalPC != none && LocalPC.Pawn != None && LocalPC.Pawn.IsAliveAndWell() && LocalPerk != none &&
+		if( ViewerPlayer != none )
+		{
+			LocalPerk = ViewerPlayer.GetPerk();
+		}
+
+		if ( ViewerPlayer != none && ViewerPlayer.Pawn != None && ViewerPlayer.Pawn.IsAliveAndWell() && LocalPerk != none &&
 			 LocalPerk.bCanSeeCloakedZeds && (WorldInfo.TimeSeconds - LastRenderTime) < 1.f )
 		{
-			DistanceSq = VSizeSq(LocalPC.Pawn.Location - Location);
+			DistanceSq = VSizeSq(ViewerPlayer.Pawn.Location - Location);
 			Range = LocalPerk.GetCloakDetectionRange();
 
 			if ( DistanceSq < Square(Range) )
@@ -249,7 +252,7 @@ simulated event UpdateSpottedStatus()
 				if ( LocalPerk.IsCallOutActive() )
 				{
 					// Beware of server spam.  This RPC is marked unreliable and UpdateSpottedStatus has it's own cooldown timer
-					LocalPC.ServerCallOutPawnCloaking(self);
+					ViewerPlayer.ServerCallOutPawnCloaking(self);
 				}
 			}
 		}
@@ -525,21 +528,6 @@ defaultproperties
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
       SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
-      SpecialMoveClasses(16)=None
-      SpecialMoveClasses(17)=None
-      SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=None
-      SpecialMoveClasses(22)=None
-      SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=None
-      SpecialMoveClasses(25)=None
-      SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

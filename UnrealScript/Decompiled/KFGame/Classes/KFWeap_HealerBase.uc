@@ -473,7 +473,7 @@ simulated state WeaponHealing extends WeaponSingleFiring
 {
     simulated function byte GetWeaponStateId()
     {
-        return 27;
+        return 29;
     }
 
     simulated event BeginState(name PreviousStateName)
@@ -518,7 +518,7 @@ simulated state WeaponQuickHeal extends WeaponHealing
 {
     simulated function byte GetWeaponStateId()
     {
-        return 28;
+        return 30;
     }
 
     simulated event BeginState(name PreviousStateName)
@@ -592,6 +592,7 @@ defaultproperties
     WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_3P_Fire_Single',FirstPersonCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_1P_Fire_Single')
     WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_3P_Fire_Single',FirstPersonCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_1P_Fire_Single')
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_HealerBase.MeleeHelper'
+    AssociatedPerkClasses(0)=none
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

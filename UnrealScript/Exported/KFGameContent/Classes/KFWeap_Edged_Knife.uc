@@ -56,7 +56,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
-   AssociatedPerkClass=Class'KFGame.KFPerk_Commando'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Commando'
    InstantHitDamage(0)=32.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()

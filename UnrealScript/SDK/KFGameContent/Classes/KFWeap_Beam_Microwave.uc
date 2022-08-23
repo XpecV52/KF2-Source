@@ -314,7 +314,7 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=false
 
-   	AssociatedPerkClass=class'KFPerk_Firebug'
+   	AssociatedPerkClasses(0)=class'KFPerk_Firebug'
 
    	BonesToLockOnEmpty=(RW_Handle1, RW_BatteryCylinder1, RW_BatteryCylinder2, RW_LeftArmSpinner, RW_RightArmSpinner, RW_LockEngager2, RW_LockEngager1)
 

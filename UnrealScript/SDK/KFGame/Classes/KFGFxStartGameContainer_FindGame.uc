@@ -104,10 +104,10 @@ function LocalizeMenu()
 
 DefaultProperties
 {
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_PS4Beta", Textfield="LatestUpdate", RedirectURL="http://www.killingfloor2.com/redirect/KF2LatestUpdate/")) 
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_volcano", Textfield="LatestUpdate", RedirectURL="http://www.killingfloor2.com/bullseye")) 
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub", Textfield="Jaegorhorn", RedirectURL="https://steamcommunity.com/app/232090"))    
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Tormentor_07", Textfield="HorzineSupplyCrateKey7", RedirectURL="https://store.steampowered.com/buyitem/232090/4105"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_CombatStar_08", Textfield="HorzineSupplyCrateKey8", RedirectURL="https://store.steampowered.com/buyitem/232090/4106"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Emote_01_11", Textfield="NewEmotes", RedirectURL="https://store.steampowered.com/buyitem/232090/4540"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_MaceShield_15", Textfield="USBBoneCrusher", RedirectURL="https://store.steampowered.com/buyitem/232090/4562"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums", Textfield="Forums", RedirectURL="http://forums.tripwireinteractive.com/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey", Textfield="Survey", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue", Textfield="CommunityTracker", RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap"))

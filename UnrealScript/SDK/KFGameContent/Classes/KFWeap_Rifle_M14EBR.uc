@@ -16,7 +16,7 @@ defaultproperties
 	InventorySize=7
 	GroupPriority=75
 	WeaponSelectTexture=Texture2D'WEP_UI_M14EBR_TEX.UI_WeaponSelect_SM14-EBR'
-   	AssociatedPerkClass=class'KFPerk_Sharpshooter'
+   	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
 
  	// 2D scene capture
 	Begin Object Name=SceneCapture2DComponent0

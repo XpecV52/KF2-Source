@@ -25,12 +25,12 @@ defaultproperties
         ChainSequence_B=/* Array type was not detected. */
         WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
         MeleeImpactCamShakeScale=0.04
-        MaxHitRange=400
+        MaxHitRange=200
         HitboxChain=/* Array type was not detected. */
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Edged_Zweihander.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
+    AssociatedPerkClasses=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitMomentum=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */

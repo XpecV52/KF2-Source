@@ -260,14 +260,14 @@ function DumpReservations()
         LogInternal("  Party team: " $ string(Reservations[PartyIndex].TeamNum), 'DevBeacon');
         LogInternal("  Party size: " $ string(Reservations[PartyIndex].PartyMembers.Length), 'DevBeacon');
         MemberIndex = 0;
-        J0x2D0:
+        J0x2D1:
 
         if(MemberIndex < Reservations[PartyIndex].PartyMembers.Length)
         {
             PlayerRes = Reservations[PartyIndex].PartyMembers[MemberIndex];
             LogInternal((((("  Party member: " $ Class'OnlineSubsystem'.static.UniqueNetIdToString(PlayerRes.NetId)) $ " skill: ") $ string(PlayerRes.Skill)) $ " xp: ") $ string(PlayerRes.XpLevel), 'DevBeacon');
             ++ MemberIndex;
-            goto J0x2D0;
+            goto J0x2D1;
         }
         ++ PartyIndex;
         goto J0x1AB;

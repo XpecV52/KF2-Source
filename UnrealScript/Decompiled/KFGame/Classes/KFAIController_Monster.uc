@@ -260,15 +260,15 @@ function bool CanDoStrike()
 
     bIsBodyBlocked = false;
     TraceStepLocation = Pawn.Location + (vect(0, 0, -1) * (Pawn.CylinderComponent.CollisionHeight * 0.5));
-    HitActor = Pawn.Trace(HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies);
+    HitActor = Pawn.Trace(HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies,,, 8);
     if((HitActor != none) && HitActor != Enemy)
     {
         if(HitActor.bWorldGeometry)
         {
             bIsBodyBlocked = true;
         }
-        HitActor = Pawn.Trace(HitLocation, HitNormal, Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), Pawn.Location + (vect(0, 0, 1) * Pawn.BaseEyeHeight), !bCanStrikeThroughEnemies);
-        if((HitActor != none) && HitActor != Enemy)
+        HitActor = Pawn.Trace(HitLocation, HitNormal, Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), Pawn.Location + (vect(0, 0, 1) * Pawn.BaseEyeHeight), !bCanStrikeThroughEnemies,,, 8);
+        if(((HitActor != none) && HitActor != Enemy) && (!bCanStrikeThroughEnemies || HitActor.bWorldGeometry) || HitActor.bGameRelevant)
         {
             return false;
         }
@@ -311,7 +311,7 @@ function bool HandleZedBlockedPath()
     local Vector HitLocation, HitNormal;
     local KFPawn_Monster HitMonster;
 
-    HitActor = MyKFPawn.Trace(HitLocation, HitNormal, Enemy.Location + (vect(0, 0, 1) * (Enemy.BaseEyeHeight * 0.5)), MyKFPawn.Location + (vect(0, 0, 1) * (MyKFPawn.BaseEyeHeight * 0.5)), true, MyKFPawn.GetCollisionExtent() * vect(0.2, 0.2, 0.2));
+    HitActor = MyKFPawn.Trace(HitLocation, HitNormal, Enemy.Location + (vect(0, 0, 1) * (Enemy.BaseEyeHeight * 0.5)), MyKFPawn.Location + (vect(0, 0, 1) * (MyKFPawn.BaseEyeHeight * 0.5)), true, MyKFPawn.GetCollisionExtent() * vect(0.2, 0.2, 0.2),, 8);
     if((HitActor == none) || HitActor == Enemy)
     {
         return false;

@@ -1870,7 +1870,7 @@ function KFPawn CheckForEnemiesInFOV( float MaxRange,
 		}
 
 		// Make sure enemy isn't obstructed
-		if( !Pawn.FastTrace(KFP.Location, Pawn.Location,, true) )
+		if( !class'KFGameEngine'.static.FastTrace_PhysX(KFP.Location, Pawn.Location) )
 		{
 			continue;
 		}
@@ -2990,7 +2990,8 @@ function DoWander( optional actor WanderGoal, optional float WanderDuration=-1.f
 function DoFleeFrom( actor FleeFrom,
 	optional float FleeDuration,
 	optional float FleeDistance,
-	optional bool bShouldStopAtGoal=false )
+	optional bool bShouldStopAtGoal=false,
+	optional bool bFromFear=false )
 {
 	class'AICommand_Flee'.static.FleeFrom( self, FleeFrom, FleeDuration, FleeDistance, bShouldStopAtGoal );
 }
@@ -6805,7 +6806,8 @@ final function byte GetBestEvadeDir( Vector DangerPoint, optional Pawn ThreatPaw
 /** Checks to see if a potential location to evade to is obstructed */
 function bool CanReachEvadeLocation( vector EvadeLocation, float CheckHeight, vector Extent )
 {
-	if( FastTrace(EvadeLocation, Pawn.Location) && !FastTrace(EvadeLocation + (vect(0,0,-1) * CheckHeight), EvadeLocation, Extent) )
+	if( class'KFGameEngine'.static.FastTrace_PhysX(EvadeLocation, Pawn.Location)
+		&& !FastTrace(EvadeLocation + (vect(0,0,-1) * CheckHeight), EvadeLocation, Extent) )
 	{
 		if( !IsPawnBlockingLine(Pawn.Location, EvadeLocation) )
 		{

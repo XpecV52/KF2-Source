@@ -46,26 +46,26 @@ DefaultProperties
 	// ---------------------------------------------
 	// Solo Spawn Rates
 	// Normal
-	SoloWaveSpawnRateModifier(0)={(RateModifier[0]=1.5,     // Wave 1
-                                   RateModifier[1]=1.5,     // Wave 2
-                                   RateModifier[2]=1.5,     // Wave 3
-                                   RateModifier[3]=1.5)}    // Wave 4
+	SoloWaveSpawnRateModifier(0)={(RateModifier[0]=1.65,     // Wave 1
+                                   RateModifier[1]=1.65,     // Wave 2
+                                   RateModifier[2]=1.65,     // Wave 3
+                                   RateModifier[3]=1.65)}    // Wave 4
 
 	// Hard
-	SoloWaveSpawnRateModifier(1)={(RateModifier[0]=1.5,     // Wave 1
-                                   RateModifier[1]=1.5,     // Wave 2
-                                   RateModifier[2]=1.5,     // Wave 3
-                                   RateModifier[3]=1.5)}    // Wave 4
+	SoloWaveSpawnRateModifier(1)={(RateModifier[0]=1.8,     // Wave 1
+                                   RateModifier[1]=1.8,     // Wave 2
+                                   RateModifier[2]=1.8,     // Wave 3
+                                   RateModifier[3]=1.8)}    // Wave 4
 
 	// Suicidal
-	SoloWaveSpawnRateModifier(2)={(RateModifier[0]=1.5,     // Wave 1
-                                   RateModifier[1]=1.5,     // Wave 2
-                                   RateModifier[2]=1.5,     // Wave 3
-                                   RateModifier[3]=1.5)}    // Wave 4
+	SoloWaveSpawnRateModifier(2)={(RateModifier[0]=1.8,     // Wave 1
+                                   RateModifier[1]=1.8,     // Wave 2
+                                   RateModifier[2]=1.8,     // Wave 3
+                                   RateModifier[3]=1.8)}    // Wave 4
 
 	// Hell On Earth
-	SoloWaveSpawnRateModifier(3)={(RateModifier[0]=1.0,     // Wave 1
-                                   RateModifier[1]=1.0,     // Wave 2
-                                   RateModifier[2]=1.0,     // Wave 3
-                                   RateModifier[3]=1.0)}    // Wave 4
+	SoloWaveSpawnRateModifier(3)={(RateModifier[0]=1.4,     // Wave 1
+                                   RateModifier[1]=1.4,     // Wave 2
+                                   RateModifier[2]=1.4,     // Wave 3
+                                   RateModifier[3]=1.4)}    // Wave 4
 }

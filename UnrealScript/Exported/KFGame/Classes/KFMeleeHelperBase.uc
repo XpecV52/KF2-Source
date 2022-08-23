@@ -141,6 +141,8 @@ simulated function Rotator GetMeleeAimRotation()
 	return R;
 }
 
+native function SetMeleeRange( float NewRange );
+
 /**
  * Returns the default melee attack hit detection range for this helper
  */
@@ -326,6 +328,8 @@ native function TickHitboxCollisionDetection(SkeletalMeshComponent SkelComp, flo
 native function BeginHitboxCollisionDetection(SkeletalMeshComponent SkelComp);
 /** Called once to place hitboxes */
 native function CreateHitboxChain(SkeletalMeshComponent SkelComp);
+/** Swaps the hitboxes with a new hitboxchain array */
+native function SetHitboxChain( const array<MeleeHitboxInfo> NewChain );
 /** returns true if a new actor was successfully added */
 //native function bool AddHitboxCollidingActor(Actor A);
 native function bool HasCollidedWithHitbox(Actor A);

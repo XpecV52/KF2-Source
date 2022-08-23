@@ -174,23 +174,20 @@ reliable client function ClientRecieveNewTeam()
 	local KFPlayerController KFPC;
 
 	KFPC = KFPlayerController(Owner);
-
-	if(KFPC != none && KFPC.IsLocalController())
+	if( KFPC != none && KFPC.IsLocalController() )
 	{
-		MyGFxHud = KFGFxHudWrapper(KFPC.myHUD);
+		MyGFxHud = KFGFxHudWrapper( KFPC.MyHUD );
+		if( MyGFxHud != none )
+		{
+			KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
+			if( KFGRI.bMatchHasBegun && KFPC.PlayerReplicationInfo.bReadyToPlay )
+			{
+				MyGFxHud.CreateHUDMovie( true );
+			}
+		}
+
 		KFPC.ClientRecieveNewTeam();
 	}
-	else
-	{
-		return;
-	}
-
-	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if(KFGRI.bMatchHasBegun)
-	{
-		MyGFxHud.CreateHUDMovie(true);
-	}
-
 }
 
 simulated function VOIPStatusChanged( PlayerReplicationInfo Talker, bool bIsTalking )
@@ -227,7 +224,7 @@ function IncrementDeaths(optional int Amt = 1)
 
 	super.IncrementDeaths( Amt );
 
-	if( GetTeamNum() == 0 )
+	if( bReadyToPlay && !bWaitingPlayer && WorldInfo.GRI.bMatchHasBegun && !WorldInfo.GRI.bMatchIsOver && GetTeamNum() == 0 )
 	{
 		MyGameInfo = KFGameInfo(WorldInfo.Game);
 		if( MyGameInfo != none )

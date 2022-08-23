@@ -9,23 +9,24 @@
 class KFDifficulty_ClotAlpha extends KFMonsterDifficultyInfo
 	abstract;
 
-/** Struct containing values for Alpha Clot rallies */
-struct sRallyTriggerInfo
-{
-	/** Chance to spawn as a rally-capable Alpha */
-	var float SpawnChance;
-	/** Chance to rally when all conditions are met */
-	var float RallyChance;
-	/** Cooldown between rallies */
-	var float Cooldown;
-	/** How much to modify dealt damage on self when rallying */
-	var float SelfDealtDamageModifier;
-	/** How much to modify taken damage on self when rallying */
-	var float SelfTakenDamageModifier;
-};
+/** Chances, by difficulty, to spawn as a special crawler */
+var array<float> ChanceToSpawnAsSpecial;
 
-/** Per-difficulty rally settings */
-var const array<sRallyTriggerInfo> RallyTriggerSettings;
+/** Chances, by difficulty, to spawn as a special gorefast */
+static function float GetSpecialAlphaChance( KFGameReplicationInfo KFGRI )
+{
+	if( KFGRI.bVersusGame )
+	{
+		return 0.f;
+	}
+	
+`if(`notdefined(ShippingPC))
+	if( default.bForceSpecialSpawn )
+		return 1.f;
+	else
+`endif
+	return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
+}
 
 defaultproperties
 {
@@ -56,9 +57,9 @@ defaultproperties
 	RallySettings_Versus={(bCauseSprint=true)}
 	RallySettings_Player_Versus={(DealtDamageModifier=1.5)} //1.2
 
-	// Settings for triggering a rally
-	RallyTriggerSettings(`DIFFICULTY_Normal)		={(SpawnChance=0.00, RallyChance=0.00, Cooldown=15.0, SelfTakenDamageModifier=0.1, SelfDealtDamageModifier=2.50)}
-	RallyTriggerSettings(`DIFFICULTY_Hard)			={(SpawnChance=0.00, RallyChance=0.00, Cooldown=15.0, SelfTakenDamageModifier=0.1, SelfDealtDamageModifier=2.50)}
-	RallyTriggerSettings(`DIFFICULTY_Suicidal)		={(SpawnChance=0.25, RallyChance=0.70, Cooldown=15.0, SelfTakenDamageModifier=0.1, SelfDealtDamageModifier=2.50)}
-	RallyTriggerSettings(`DIFFICULTY_HellOnEarth)	={(SpawnChance=0.35, RallyChance=0.80, Cooldown=15.0, SelfTakenDamageModifier=0.1, SelfDealtDamageModifier=2.50)}
+	// Special Alpha spawn chances
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Normal)		=0.0
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Hard)		=0.0
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Suicidal)	=0.25
+	ChanceToSpawnAsSpecial(`DIFFICULTY_HellOnEarth)	=0.35
 }

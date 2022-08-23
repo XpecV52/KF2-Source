@@ -23,6 +23,6 @@ defaultproperties
 	End Object
 
 	// Inventory
-	AssociatedPerkClass=class'KFPerk_Firebug'
+	AssociatedPerkClasses(0)=class'KFPerk_Firebug'
 	WeaponSelectTexture=Texture2D'WEP_UI_Firebug_Knife_TEX.UI_WeaponSelect_FirebugKnife'
 }

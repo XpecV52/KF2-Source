@@ -388,14 +388,13 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
-#linenumber 22;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;#linenumber 22;
 
 /** The time at which this PRI left the game */
 var float LastQuitTime;
 /** The number of times this PRI has reconnected to this game */
 var byte NumTimesReconnected;
-
-var bool bClientActiveSpawn;
 
 /** TRUE if this player has spawned in for the active round. This is used for realtime multipay on PS4 */
 var bool bHasSpawnedIn;
@@ -488,7 +487,7 @@ var 			bool 			bNukeActive;
 /** The demo Concussive skill changes the explosion template */
 var 			bool 			bConcussiveActive;
 /** Certain perks can supply ammo etc. We need to replicate that for the HUD */
-var 			bool 			bPerkCanSupply;
+var 			byte 			PerkSupplyLevel;
 
 /************************************
  *  Not replicated Perk Data,
@@ -532,9 +531,9 @@ var KFPlayerController KFPlayerOwner;
 replication
 {
 	if ( bNetDirty )
-		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, bClientActiveSpawn, bHasSpawnedIn,
+		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
-		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, bPerkCanSupply,
+		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
 		CharPortrait, DamageDealtOnTeam;
 
   	// sent to non owning clients
@@ -548,6 +547,7 @@ replication
 simulated event ReplicatedEvent(name VarName)
 {
 	local KFPlayerController LocalPC;
+	local PlayerNameIdPair newPlayer;
 
 	if ( VarName == 'RepCustomizationInfo' )
 	{
@@ -567,7 +567,8 @@ simulated event ReplicatedEvent(name VarName)
 		LocalPC = KFPlayerController(GetALocalPlayerController());
 		if( LocalPC != none )
 		{
-			LocalPC.RecentlyMetPlayers.AddItem(PlayerName);
+			newPlayer.PlayerName = PlayerName;
+			LocalPC.RecentlyMetPlayers.AddItem(newPlayer);
 
 			// Refresh the party widget when the name changes
 			if( LocalPC.MyGFxManager != none )
@@ -957,7 +958,7 @@ simulated function CastMapVote(int MapIndex, bool bDoubleClick)
 {
 	local KFGameInfo KFGI;
 
-	ServerCastMapVote(self, KFGameReplicationInfo(WorldInfo.GRI).VoteCollector.MapList[MapIndex]);
+	ServerCastMapVote(self, KFGameReplicationInfo(WorldInfo.GRI).VoteCollector.MapList[MapIndex]);	
 
 	if(WorldInfo.NetMode == NM_StandAlone)
 	{
@@ -985,14 +986,20 @@ reliable server function ServerCastMapVote(PlayerReplicationInfo PRI, string Map
 
 	if(KFGRI != none && !bOnlySpectator)
 	{
-		KFGRI.ReceiveVoteMap(PRI, KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Find(MapName));
+		if(WorldInfo.NetMode == NM_StandAlone)
+		{
+			KFGRI.ReceiveVoteMap(PRI, KFGameReplicationInfo(WorldInfo.GRI).VoteCollector.MapList.Find(MapName));
+		}
+		else
+		{
+			KFGRI.ReceiveVoteMap(PRI, KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Find(MapName));
+		}
 	}
 }
 
 reliable client function RecieveAARMapOption(string MapOption)
 {
 	local KFGameReplicationInfo kfGRI;
-
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 
 	if(KFGRI != none && KFGRI.VoteCollector != none)
@@ -1351,6 +1358,16 @@ simulated function ResetSupplierUsed()
 		KFPRIArray[i].bPerkPrimarySupplyUsed = false;	
 		KFPRIArray[i].bPerkSecondarySupplyUsed = false;	
 	}
+}
+
+/**
+ * Called when a wave has ended.
+ * Network: ALL
+ */
+simulated function NotifyWaveEnded()
+{
+	bPerkPrimarySupplyUsed = false;
+	bPerkSecondarySupplyUsed = false;
 }
 
 

@@ -673,7 +673,7 @@ function ResetAllPickups()
 function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
 {
     NumPickups *= (float(WaveNum) / float(WaveMax));
-    if(((NumPickups == 0) && PickupList.Length > 0) && KFPickupFactory_Ammo(PickupList[0]) != none)
+    if(((NumPickups == 0) && PickupList.Length > 0) && (WaveNum > 1) || KFPickupFactory_Ammo(PickupList[0]) != none)
     {
         NumPickups = 1;
     }
@@ -714,6 +714,7 @@ function byte DetermineNextTraderIndex()
 function WaveStarted()
 {
     local array<SequenceObject> AllWaveStartEvents;
+    local array<int> OutputLinksToActivate;
     local KFSeqEvent_WaveStart WaveStartEvt;
     local Sequence GameSeq;
     local int I;
@@ -747,7 +748,16 @@ function WaveStarted()
             if(WaveStartEvt != none)
             {
                 WaveStartEvt.Reset();
-                WaveStartEvt.CheckActivate(self, self);
+                WaveStartEvt.SetWaveNum(WaveNum, WaveMax);
+                if((WaveNum == WaveMax) && WaveStartEvt.OutputLinks.Length > 1)
+                {
+                    OutputLinksToActivate.AddItem(1;                    
+                }
+                else
+                {
+                    OutputLinksToActivate.AddItem(0;
+                }
+                WaveStartEvt.CheckActivate(self, self,, OutputLinksToActivate);
             }
             ++ I;
             goto J0x425;
@@ -822,7 +832,6 @@ function Timer_FinalizeEndOfWaveStats()
     bOpeningTrader = (MyKFGRI.bTraderIsOpen && !IsInState('MatchEnded')) && !IsInState('RoundEnded ');
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
     {
-        KFPC.ClientWriteAndFlushStats();
         LogWaveEndAnalyticsFor(KFPC);
         KFPC.SubmitPostWaveStats(bOpeningTrader);        
     }    
@@ -867,6 +876,7 @@ function DoTraderTimeCleanup();
 function NotifyTraderOpened()
 {
     local array<SequenceObject> AllTraderOpenedEvents;
+    local array<int> OutputLinksToActivate;
     local KFSeqEvent_TraderOpened TraderOpenedEvt;
     local Sequence GameSeq;
     local int I;
@@ -884,7 +894,16 @@ function NotifyTraderOpened()
             if(TraderOpenedEvt != none)
             {
                 TraderOpenedEvt.Reset();
-                TraderOpenedEvt.CheckActivate(self, self);
+                TraderOpenedEvt.SetWaveNum(WaveNum, WaveMax);
+                if((WaveNum == (WaveMax - 1)) && TraderOpenedEvt.OutputLinks.Length > 1)
+                {
+                    OutputLinksToActivate.AddItem(1;                    
+                }
+                else
+                {
+                    OutputLinksToActivate.AddItem(0;
+                }
+                TraderOpenedEvt.CheckActivate(self, self,, OutputLinksToActivate);
             }
             ++ I;
             goto J0x75;
@@ -931,7 +950,14 @@ function string GetNextMap()
     }
     if(NextMapIndex != -1)
     {
-        return GameMapCycles[ActiveMapCycle].Maps[NextMapIndex];
+        if(WorldInfo.NetMode == NM_Standalone)
+        {
+            return KFGRI.VoteCollector.MapList[NextMapIndex];            
+        }
+        else
+        {
+            return GameMapCycles[ActiveMapCycle].Maps[NextMapIndex];
+        }
     }
     return super.GetNextMap();
 }

@@ -72,6 +72,23 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 	return bTacticalReload ? ReloadEmptyMagEliteAnim : ReloadEmptyMagAnim;
 }
 
+/**
+ * See Pawn.ProcessInstantHit
+ * @param DamageReduction: Custom KF parameter to handle penetration damage reduction
+ */
+simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum )
+{
+	local KFPerk InstigatorPerk;
+
+	InstigatorPerk = GetPerk();
+	if( InstigatorPerk != none )
+	{
+		InstigatorPerk.UpdatePerkHeadShots( Impact, InstantHitDamageTypes[FiringMode], ImpactNum );
+	}
+	
+	super.ProcessInstantHitEx( FiringMode, Impact, NumHits, out_PenetrationVal, ImpactNum );
+}
+
 DefaultProperties
 {
 	ForceReloadTime=0.3

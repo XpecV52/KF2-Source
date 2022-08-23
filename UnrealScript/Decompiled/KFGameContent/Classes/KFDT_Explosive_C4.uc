@@ -22,8 +22,8 @@ defaultproperties
     ModifierPerkList=/* Array type was not detected. */
     ObliterationHealthThreshold=-400
     ObliterationDamageThreshold=400
-    KDamageImpulse=3000
+    GibImpulseScale=0.15
     KDeathVel=300
-    KDeathUpKick=800
-    RadialDamageImpulse=3000
+    KDeathUpKick=1000
+    RadialDamageImpulse=2000
 }

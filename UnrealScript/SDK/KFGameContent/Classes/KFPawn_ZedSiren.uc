@@ -22,10 +22,11 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
 {
 	super.SetCharacterArch( Info, bForce );
 
-	if( WorldInfo.NetMode != NM_DedicatedServer )
+	if( WorldInfo.NetMode != NM_DedicatedServer && !NeckLightComponent.bAttached && WorldInfo.GetDetailMode() > DM_Low )
 	{
 		Mesh.AttachComponentToSocket( NeckLightComponent, NeckLightSocketName );
 		NeckLightComponent.SetEnabled( true );
+		`LightPool.RegisterPointLight( NeckLightComponent, LPP_GameplayUsed );
 	}
 }
 
@@ -46,7 +47,7 @@ simulated function ANIMNOTIFY_SirenScream()
 
 simulated function EnableScreamFlicker( bool bEnabled )
 {
-	if( WorldInfo.NetMode == NM_DedicatedServer || bPlayedDeath || NeckLightComponent == none  )
+	if( WorldInfo.NetMode == NM_DedicatedServer || bPlayedDeath || NeckLightComponent == none || !NeckLightComponent.bAttached )
 	{
 		return;
 	}
@@ -74,24 +75,12 @@ simulated function EnableScreamFlicker( bool bEnabled )
 	Mesh.AttachComponentToSocket( NeckLightComponent, NeckLightSocketName );
 }
 
-/** Called when SwitchToGoreMesh is successful */
-simulated event NotifyGoreMeshActive()
-{
-	super.NotifyGoreMeshActive();
-
- 	if( NeckLightComponent != none )
- 	{
-		NeckLightComponent.DetachFromAny();
-		Mesh.AttachComponentToSocket( NeckLightComponent, NeckLightSocketName );
-	}
-}
-
  /** Clean up function to terminate any effects on death */
  simulated function TerminateEffectsOnDeath()
  {
  	super.TerminateEffectsOnDeath();
 
- 	if( NeckLightComponent != none )
+ 	if( NeckLightComponent != none && NeckLightComponent.bAttached )
  	{
 		NeckLightComponent.DetachFromAny();
 		NeckLightComponent = none;
@@ -130,6 +119,7 @@ defaultproperties
 	// Content
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
 	CharacterMonsterArch=KFCharacterInfo_Monster'zed_siren_arch.ZED_Siren_Archetype'
+	DifficultySettings=class'KFDifficulty_Siren'
 
 	Begin Object Name=KFPawnSkeletalMeshComponent
 		bPerBoneMotionBlur=false

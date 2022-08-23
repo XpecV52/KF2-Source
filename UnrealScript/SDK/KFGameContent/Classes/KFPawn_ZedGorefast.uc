@@ -4,10 +4,26 @@
 // Gorefast
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedGorefast extends KFPawn_Monster;
+
+/** Pawn class used for the special gorefast */
+var class<KFPawn_Monster> SpecialGorefastPawnClass;
+
+/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
+static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
+{
+	local WorldInfo WI;
+
+	WI = class'WorldInfo'.static.GetWorldInfo();
+	if( fRand() < class<KFDifficulty_Gorefast>(default.DifficultySettings).static.GetSpecialGorefastChance(KFGameReplicationInfo(WI.GRI)) )
+	{
+		return default.SpecialGorefastPawnClass;
+	}
+
+	return super.GetAIPawnClassToSpawn();
+}
 
 /** Returns (hardcoded) dialog event ID for when trader gives advice to player who was killed by this zed type */
 static function int GetTraderAdviceID()
@@ -66,6 +82,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// AI / Navigation
+	SpecialGorefastPawnClass=class'KFPawn_ZedGorefastDualBlade'
 	ControllerClass=class'KFAIController_ZedGorefast'
 	ReachedEnemyThresholdScale=1.f
 	//ReachedGoalThresholdOverride=0

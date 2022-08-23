@@ -1582,6 +1582,19 @@ function bool CanSwitchEnemies()
     return !bWantsToFlee && !bFleeing;
 }
 
+/* Starts Flee AICommand, with optional duration and distance */
+function DoFleeFrom( actor FleeFrom,
+    optional float FleeDuration,
+    optional float FleeDistance,
+    optional bool bShouldStopAtGoal=false,
+    optional bool bFromFear=false )
+{
+    if( !bFromFear || !MyHansPawn.bInHuntAndHealMode )
+    {
+        super.DoFleeFrom( FleeFrom, FleeDuration, FleeDistance, bShouldStopAtGoal, bFromFear );
+    }
+}
+
 /** Sets flee target if there is no enemy, starts flee command */
 function Flee()
 {
@@ -1714,6 +1727,12 @@ function NotifyCommandFinished( AICommand FinishedCommand )
 function NotifyFleeFinished( optional bool bAcquireNewEnemy=true )
 {
     local KFAISpawnManager SpawnManager;
+
+    // Don't do additional cleanup if this wasn't a hunt and heal flee
+    if( !MyHansPawn.bInHuntAndHealMode )
+    {
+        return;
+    }
 
     // Restore flee flags to default
     bFleeing = false;

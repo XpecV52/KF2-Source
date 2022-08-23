@@ -127,9 +127,6 @@ function SetStatsReadInfo()
  */
 event bool RefreshStats(byte ControllerIndex)
 {
-	local array<UniqueNetId> Players;
-	local UniqueNetId PlayerId;
-
 	SetStatsReadInfo();
 	// Clear the previous results and tell the UI to update
 	StatsInterface.FreeStats(StatsRead);
@@ -139,10 +136,9 @@ event bool RefreshStats(byte ControllerIndex)
 	switch (CurrentReadType)
 	{
 		case SFT_Player:
-			// Get the player id of the local player and then read the stats
-			PlayerInterface.GetUniquePlayerId(ControllerIndex,PlayerId);
-			Players[0] = PlayerId;
-			if (StatsInterface.ReadOnlineStats(Players, StatsRead) == false)
+//@HSL_BEGIN_XBOX
+			if (StatsInterface.ReadOnlineStatsForPlayer(ControllerIndex, StatsRead) == false)
+//@HSL_END_XBOX
 			{
 				// Clear the delegate that tells the UI to refresh
 				`warn("Querying Player failed.");
@@ -170,7 +166,9 @@ event bool RefreshStats(byte ControllerIndex)
 
 		case SFT_TopRankings:
 //@todo joeg -- expose a way to do virtual paging...different Kismet object?
-			if (StatsInterface.ReadOnlineStatsByRank(StatsRead) == false)
+//@HSL_BEGIN_XBOX
+			if (StatsInterface.ReadOnlineStatsByRank(ControllerIndex, StatsRead) == false)
+//@HSL_END_XBOX
 			{
 				// Clear the delegate that tells the UI to refresh
 				`log("Querying Top Rankings failed.");

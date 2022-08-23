@@ -33,6 +33,7 @@ var private const float RapidAssaultFiringRate;
 var private const float SnarePower;
 var private const float TacticalMovementBobDamp;
 var private const class<KFWeaponDefinition> BackupSecondaryWeaponDef;
+var private const float HeavyArmorAbsorptionPct;
 
 function SetPlayerDefaults(Pawn PlayerPawn)
 {
@@ -83,13 +84,13 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     InDamage = Round(TempDamage);
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if((!Is9mm(KFW) && IsWeaponOnPerk(KFW, WeaponPerkClass)) && (KFW == none) || !KFW.bNoMagazine)
+    if(((!bSecondary && !Is9mm(KFW)) && IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine)
     {
         TempCapacity += (float(MagazineCapacity) * (GetPassiveValue(MagSize, CurrentLevel)));
     }
@@ -118,7 +119,7 @@ private static final simulated function bool Is9mm(KFWeapon KFW)
 
 simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
 {
-    if((IsTacticalMovementActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW))
+    if((IsTacticalMovementActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class))
     {
         return GetSkillValue(PerkSkills[1]);
     }
@@ -127,7 +128,7 @@ simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
 
 simulated event float GetCrouchSpeedModifier(KFWeapon KFW)
 {
-    if((IsTacticalMovementActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW))
+    if((IsTacticalMovementActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class))
     {
         return GetSkillValue(PerkSkills[1]);
     }
@@ -136,7 +137,7 @@ simulated event float GetCrouchSpeedModifier(KFWeapon KFW)
 
 simulated function ModifyWeaponBopDamping(out float BobDamping, KFWeapon PawnWeapon)
 {
-    if((IsTacticalMovementActive()) && Is9mm(PawnWeapon) || IsWeaponOnPerk(PawnWeapon))
+    if((IsTacticalMovementActive()) && Is9mm(PawnWeapon) || IsWeaponOnPerk(PawnWeapon,, self.Class))
     {
         BobDamping *= default.TacticalMovementBobDamp;
     }
@@ -160,7 +161,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
         }
         else
         {
-            if((IsWeaponOnPerk(KFW)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
+            if((IsWeaponOnPerk(KFW,, self.Class)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
             {
                 TempDamage *= (GetPassiveValue(WeaponDamage, CurrentLevel));
             }
@@ -174,7 +175,7 @@ simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, 
     local float TempMaxSpareAmmoAmount;
 
     bSecondary = false;
-    if((IsAmmoVestActive() && !Is9mm(KFW)) && IsWeaponOnPerk(KFW, TraderItem.AssociatedPerkClass))
+    if((IsAmmoVestActive() && !Is9mm(KFW)) && IsWeaponOnPerk(KFW, TraderItem.AssociatedPerkClasses, self.Class))
     {
         TempMaxSpareAmmoAmount = float(MaxSpareAmmo);
         TempMaxSpareAmmoAmount += (float(MaxSpareAmmo) * (GetSkillValue(PerkSkills[5])));
@@ -213,7 +214,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     local name StateName;
 
     StateName = W.GetStateName();
-    if((IsRapidAssaultActive()) && Is9mm(W) || IsWeaponOnPerk(W))
+    if((IsRapidAssaultActive()) && Is9mm(W) || IsWeaponOnPerk(W,, self.Class))
     {
         if(ZedTimeModifyingStates.Find(StateName != -1)
         {
@@ -230,7 +231,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 
     StumbleModifier = 1;
     KFW = GetOwnerWeapon();
-    if((IsSpecialAmmunitionActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW))
+    if((IsSpecialAmmunitionActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class))
     {
         StumbleModifier *= (GetSkillValue(PerkSkills[4]));
     }
@@ -243,12 +244,21 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 
 simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
 {
-    return (IsRapidAssaultActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW);
+    return (IsRapidAssaultActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class);
 }
 
 simulated function bool ShouldKnockDownOnBump()
 {
     return (IsSWATEnforcerActive()) && WorldInfo.TimeDilation < 1;
+}
+
+simulated function int GetArmorDamageAmount(int AbsorbedAmt)
+{
+    if(HasHeavyArmor())
+    {
+        return Max(Round(float(AbsorbedAmt) * HeavyArmorAbsorptionPct), 1);
+    }
+    return AbsorbedAmt;
 }
 
 simulated function bool IsHeavyArmorActive()
@@ -273,7 +283,7 @@ private final simulated function bool IsTacticalReloadActive()
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return IsTacticalReloadActive() && Is9mm(KFW) || IsWeaponOnPerk(KFW);
+    return IsTacticalReloadActive() && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class);
 }
 
 simulated function bool IsSpecialAmmunitionActive()
@@ -335,6 +345,7 @@ defaultproperties
     SnarePower=9
     TacticalMovementBobDamp=1.11
     BackupSecondaryWeaponDef=Class'KFWeapDef_9mmDual'
+    HeavyArmorAbsorptionPct=0.65
     ProgressStatID=90
     PerkBuildStatID=91
     SecondaryXPModifier[0]=2

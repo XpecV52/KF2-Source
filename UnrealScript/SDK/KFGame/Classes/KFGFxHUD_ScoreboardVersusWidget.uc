@@ -88,9 +88,16 @@ function UpdatePlayerData()
 				TempData.SetString("avatar", KFPC.GetSteamAvatar(KFPRI.UniqueId));
 			}
             
-
-            TempData.SetFloat("health", KFPRI.PlayerHealth);  
-            TempData.SetFloat("healthPercent", ByteToFloat(KFPRI.PlayerHealthPercent) * 100);  
+            if(KFPRI.PlayerHealth < 0)
+            {
+                TempData.SetFloat("health", 0);  
+                TempData.SetFloat("healthPercent", 0);  
+            }
+            else
+            {
+                TempData.SetFloat("health", KFPRI.PlayerHealth);  
+                TempData.SetFloat("healthPercent", ByteToFloat(KFPRI.PlayerHealthPercent) * 100);  
+            }
 
             DataProvider.SetElementObject(PlayerIndex,TempData);
             PlayerIndex++;

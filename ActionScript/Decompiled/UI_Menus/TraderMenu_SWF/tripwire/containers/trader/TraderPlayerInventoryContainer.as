@@ -479,7 +479,6 @@ package tripwire.containers.trader
             this.updateFocusableOnFillButtons(false);
             this.updateFocusableOnInfoList(false);
             this.playerInfoContainer.focusable = true;
-            this.playerInfoContainer.oncePerWaveTextField.visible = true;
             this.playerInfoContainer.perkListContainer.perkList.focusable = true;
             this.playerInfoContainer.perkListContainer.perkList.focused = 1;
             if(bManagerUsingGamepad)
@@ -495,7 +494,6 @@ package tripwire.containers.trader
             this.fadeinAssets();
             this.updateFocusableOnFillButtons(true);
             this.playerInfoContainer.focusable = false;
-            this.playerInfoContainer.oncePerWaveTextField.visible = false;
             this.updateFocusableOnInfoList(true);
             this.playerInfoContainer.perkListContainer.perkList.focusable = false;
             this.armorItem.focused = 1;

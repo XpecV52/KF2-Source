@@ -1,12 +1,11 @@
 //=============================================================================
-// KFSM_SirenScream
+// KFSM_Siren_Scream
 //=============================================================================
 //
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
 class KFSM_Siren_Scream extends KFSM_PlaySingleAnim;
 
 /** Cached pawn reference */
@@ -45,6 +44,8 @@ var bool			bDrawProjectileShield;
 var KFTrigger_SirenProjectileShield ProjectileShield;
 var const	float	ProjectileShieldLifetime;
 
+var transient int DefaultScreamDamage;
+
 /**
  * Can a new special move override this one before it is finished?
  * This is only if CanDoSpecialMove() == TRUE && !bForce when starting it.
@@ -58,17 +59,37 @@ function bool CanOverrideMoveWith( Name NewMove )
 	return FALSE;
 }
 
+/**
+ * Can the special move be chained after the current one finishes?
+ */
+function bool CanChainMove( Name NextMove )
+{
+	if( NextMove == 'KFSM_MeleeAttack' )
+	{
+		return true;
+	}
+
+	return super.CanChainMove( NextMove );
+}
+
 function SpecialMoveStarted( bool bForced, name PrevMove )
 {
 	super.SpecialMoveStarted( bForced, PrevMove );
 
 	bEndedNormally = false;
-	LastScreamTime = 0.f;
 
 	if( MySirenPawn == none )
 	{
 		MySirenPawn = KFPawn_ZedSiren( KFPOwner );
 	}
+
+	// Temporarily store scream damage for modification later
+	if( DefaultScreamDamage == 0 )
+	{
+		DefaultScreamDamage = ExplosionTemplate.Damage;
+	}
+
+	LastScreamTime = MySirenPawn.WorldInfo.TimeSeconds;
 
 	//ShieldDestroyTime = KFSkeletalMeshComponent(KFPOwner.Mesh).GetAnimInterruptTime( AnimName );
 	KFPOwner.SetTimer( ProjectileShieldLifetime, false, nameof(Timer_DestroyProjectileShield), self );
@@ -174,7 +195,7 @@ function ScreamExplosion()
 
 	LastScreamTime = KFPOwner.WorldInfo.TimeSeconds;
 
-	ExplosionTemplate.Damage = KFPawn_Monster(KFPOwner).GetRallyBoostDamage( default.ExplosionTemplate.Damage );
+	ExplosionTemplate.Damage = KFPawn_Monster(KFPOwner).GetRallyBoostDamage( DefaultScreamDamage );
 	ExplosionActor.Explode(ExplosionTemplate);		// go bewm
 
 	ScreamCount++;
@@ -187,7 +208,7 @@ function ScreamExplosion()
 
 function CheckIfScreamWasInterrupted()
 {
-	if( !bEndedNormally && LastScreamTime > 0.f && KFPOwner.WorldInfo.TimeSeconds - LastScreamTime < 0.5f )
+	if( !bEndedNormally && LastScreamTime > 0.f && KFPOwner.WorldInfo.TimeSeconds - LastScreamTime < 1.0f )
 	{
 		KFPOwner.PlayAkevent( ScreamInterruptSound, false, true );
 	}
@@ -221,7 +242,7 @@ defaultproperties
    AnimStance=EAS_UpperBody
    bCanBeInterrupted=True
    bDisableSteering=False
-   Handle="KFSM_SirenScream"
+   Handle="KFSM_Siren_Scream"
    Name="Default__KFSM_Siren_Scream"
    ObjectArchetype=KFSM_PlaySingleAnim'KFGame.Default__KFSM_PlaySingleAnim'
 }

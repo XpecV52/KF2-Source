@@ -23,6 +23,6 @@ defaultproperties
 	End Object
 
 	// Inventory
-	AssociatedPerkClass=class'KFPerk_Sharpshooter'
+	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
 	WeaponSelectTexture=Texture2D'WEP_UI_Sharpshooter_Knife_TEX.UI_WeaponSelect_SharpshooterKnife'
 }

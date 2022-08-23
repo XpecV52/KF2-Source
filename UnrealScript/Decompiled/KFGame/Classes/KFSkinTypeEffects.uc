@@ -24,6 +24,8 @@ enum EEffectDamageGroup
     FXG_IncendiaryRound,
     FXG_UnexplodedGrenade,
     FXG_MicrowaveBlast,
+    FXG_ShieldBash,
+    FXG_MetalMace,
     FXG_MAX
 };
 
@@ -33,10 +35,6 @@ struct native SkinEffectInfo
     var() editoronly editconst KFSkinTypeEffects.EEffectDamageGroup Type;
     /** particle system used for this impact */
     var() ParticleSystem DefaultParticle;
-    /** particle system used for this impact */
-    var() ParticleSystem VulnerableParticle;
-    /** particle system used for this impact */
-    var() ParticleSystem ResistantParticle;
     /** If true, attach particle to the hit bone (e.g. fire) */
     var() bool bAttachParticle<DisplayName=Attach FX To Hit Bone|EditCondition=!bAttachToHitLocation>;
     /** If true, attach particle to hit bone but offset to the location of the hit (e.g. electricity) */
@@ -50,8 +48,6 @@ struct native SkinEffectInfo
     {
         Type=EEffectDamageGroup.FXG_Ballistic
         DefaultParticle=none
-        VulnerableParticle=none
-        ResistantParticle=none
         bAttachParticle=false
         bAttachToHitLocation=false
         DefaultSound=none

@@ -10,17 +10,13 @@
 class KFProj_Bullet_DragonsBreath extends KFProj_Bullet
 	hidedropdown;
 
-var PointLightComponent ProjLight;
-
-simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
-{
-	super.TriggerExplosion(HitLocation, HitNormal, HitActor);
-	ProjLight.SetEnabled(false);
-}
-
 defaultproperties
 {
-   Begin Object Class=PointLightComponent Name=ProjPointLight
+   bWarnAIWhenFired=True
+   GravityScale=0.350000
+   TerminalVelocity=7000.000000
+   ProjFlightTemplate=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer'
+   Begin Object Class=PointLightComponent Name=PointLight0
       Radius=500.000000
       FalloffExponent=10.000000
       Brightness=0.500000
@@ -29,14 +25,10 @@ defaultproperties
       CastStaticShadows=False
       CastDynamicShadows=False
       LightingChannels=(Outdoor=True)
-      Name="ProjPointLight"
+      Name="PointLight0"
       ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'
    End Object
-   ProjLight=ProjPointLight
-   bWarnAIWhenFired=True
-   GravityScale=0.350000
-   TerminalVelocity=7000.000000
-   ProjFlightTemplate=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer'
+   ProjFlightLight=PointLight0
    ProjFlightTemplateZedTime=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer_ZEDTime'
    AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Projectile_Loop'
    AmbientSoundStopEvent=AkEvent'WW_WEP_SA_DragonsBreath.Stop_SA_DragonsBreath_Projectile_Loop'
@@ -61,7 +53,6 @@ defaultproperties
    CylinderComponent=CollisionCylinder
    Components(0)=CollisionCylinder
    Components(1)=AmbientAkSoundComponent
-   Components(2)=ProjPointLight
    Physics=PHYS_Falling
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_Bullet_DragonsBreath"

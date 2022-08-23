@@ -479,7 +479,8 @@ defaultproperties
 	InventorySize=6
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'wep_ui_m16_m203_tex.UI_WeaponSelect_M16M203'
-   	AssociatedPerkClass=class'KFPerk_Demolitionist'
+   	AssociatedPerkClasses(0)=class'KFPerk_Demolitionist'
+   	AssociatedPerkClasses(1)=class'KFPerk_Commando'
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'

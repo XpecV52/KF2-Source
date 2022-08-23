@@ -22,6 +22,7 @@ var AkEvent ScreamInterruptSound;
 var GameExplosionActor ExplosionActor;
 var KFTrigger_SirenProjectileShield ProjectileShield;
 var const float ProjectileShieldLifetime;
+var transient int DefaultScreamDamage;
 
 function bool CanOverrideMoveWith(name NewMove)
 {
@@ -32,15 +33,28 @@ function bool CanOverrideMoveWith(name NewMove)
     return false;
 }
 
+function bool CanChainMove(name NextMove)
+{
+    if(NextMove == 'KFSM_MeleeAttack')
+    {
+        return true;
+    }
+    return super(GameSpecialMove).CanChainMove(NextMove);
+}
+
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     super.SpecialMoveStarted(bForced, PrevMove);
     bEndedNormally = false;
-    LastScreamTime = 0;
     if(MySirenPawn == none)
     {
         MySirenPawn = KFPawn_ZedSiren(KFPOwner);
     }
+    if(DefaultScreamDamage == 0)
+    {
+        DefaultScreamDamage = int(ExplosionTemplate.Damage);
+    }
+    LastScreamTime = MySirenPawn.WorldInfo.TimeSeconds;
     KFPOwner.SetTimer(ProjectileShieldLifetime, false, 'Timer_DestroyProjectileShield', self);
     if(AIOwner != none)
     {
@@ -127,7 +141,7 @@ function ScreamExplosion()
         return;
     }
     LastScreamTime = KFPOwner.WorldInfo.TimeSeconds;
-    ExplosionTemplate.Damage = float(KFPawn_Monster(KFPOwner).GetRallyBoostDamage(int(default.ExplosionTemplate.Damage)));
+    ExplosionTemplate.Damage = float(KFPawn_Monster(KFPOwner).GetRallyBoostDamage(DefaultScreamDamage));
     ExplosionActor.Explode(ExplosionTemplate);
     ++ ScreamCount;
     if(ScreamCount >= 4)
@@ -139,7 +153,7 @@ function ScreamExplosion()
 
 function CheckIfScreamWasInterrupted()
 {
-    if((!bEndedNormally && LastScreamTime > 0) && (KFPOwner.WorldInfo.TimeSeconds - LastScreamTime) < 0.5)
+    if((!bEndedNormally && LastScreamTime > 0) && (KFPOwner.WorldInfo.TimeSeconds - LastScreamTime) < 1)
     {
         KFPOwner.PlayAkEvent(ScreamInterruptSound, false, true);
     }
@@ -182,5 +196,5 @@ defaultproperties
     AnimStance=EAnimSlotStance.EAS_UpperBody
     bCanBeInterrupted=true
     bDisableSteering=false
-    Handle=KFSM_SirenScream
+    Handle=KFSM_Siren_Scream
 }

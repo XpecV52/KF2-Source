@@ -12,7 +12,6 @@ class KFWeap_Pistol_DualDeagle extends KFWeap_DualBase;
 
 defaultproperties
 {
-   LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_Deagle_ARCH.Wep_Dual_Deagle_MuzzleFlash_L'
    LeftFireOffset=(X=17.000000,Y=-4.000000,Z=-2.250000)
    SingleClass=Class'kfgamecontent.KFWeap_Pistol_Deagle'
    BonesToLockOnEmpty_L(0)="LW_Slide"
@@ -63,7 +62,7 @@ defaultproperties
    RecoilISMinYawLimit=65485
    RecoilISMaxPitchLimit=500
    RecoilISMinPitchLimit=65485
-   AssociatedPerkClass=Class'KFGame.KFPerk_Gunslinger'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

@@ -275,6 +275,7 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
 {
     local Inventory Item;
     local bool bFound;
+    local KFPlayerController KFPC;
 
     if(ItemToRemove == none)
     {
@@ -357,6 +358,14 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
                     }
                 }
             }
+        }
+    }
+    if((Instigator != none) && Instigator.IsLocallyControlled())
+    {
+        KFPC = KFPlayerController(Instigator.Controller);
+        if((((KFPC != none) && KFPC.MyGFxHUD != none) && KFPC.MyGFxHUD.WeaponSelectWidget != none) && KFPC.IsTimerActive('RefreshTimer', KFPC.MyGFxHUD.WeaponSelectWidget))
+        {
+            KFPC.MyGFxHUD.WeaponSelectWidget.RefreshTimer();
         }
     }
 }
@@ -456,7 +465,7 @@ simulated function KFWeapon GetBestPerkWeaponWithAmmo(class<KFPerk> PerkClass, o
     }
     foreach InventoryActors(Class'KFWeapon', NextWeapon)
     {
-        if(((NextWeapon.AssociatedPerkClass == PerkClass) && NextWeapon.HasAmmo(0)) && !NextWeapon.IsMeleeWeapon())
+        if(((NextWeapon.GetWeaponPerkClass(PerkClass) == PerkClass) && NextWeapon.HasAmmo(0)) && !NextWeapon.IsMeleeWeapon())
         {
             PerkWeapon = NextWeapon;
             break;
@@ -826,7 +835,7 @@ simulated function UpdateHUD()
     local byte WeaponIndex;
 
     WeaponIndex = 0;
-    if(PendingWeapon != none)
+    if(((PendingWeapon != none) && !PendingWeapon.bDeleteMe) && PendingWeapon.Instigator == Instigator)
     {
         KFPendingWeapon = KFWeapon(PendingWeapon);        
     }

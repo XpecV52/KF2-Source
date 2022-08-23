@@ -101,7 +101,8 @@ defaultproperties
 	bDropOnDeath=true
 	WeaponSelectTexture=Texture2D'WEP_UI_SW_500_TEX.UI_WeaponSelect_SW500'
 	bIsBackupWeapon=false
-	AssociatedPerkClass=class'KFPerk_Gunslinger'
+	AssociatedPerkClasses(0)=class'KFPerk_Gunslinger'
+	AssociatedPerkClasses(1)=class'KFPerk_Sharpshooter'
 
 	DualClass=class'KFWeap_Revolver_DualSW500'
 

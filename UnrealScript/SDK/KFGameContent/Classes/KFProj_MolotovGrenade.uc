@@ -94,7 +94,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 }
 
 /** Spawn several projectiles that explode and linger on impact */
-simulated function SpawnResidualFlames( vector HitLocation, vector HitNormal, vector HitVelocity )
+function SpawnResidualFlames( vector HitLocation, vector HitNormal, vector HitVelocity )
 {
 	local int i;
 	local vector HitVelDir;
@@ -110,43 +110,12 @@ simulated function SpawnResidualFlames( vector HitLocation, vector HitNormal, ve
 	for( i = 0; i < NumResidualFlames; ++i )
 	{
 		SpawnVel = CalculateResidualFlameVelocity( HitNormal, HitVelDir, HitVelMag );
-		SpawnResidualFlame( SpawnLoc, SpawnVel );
+		SpawnResidualFlame( ResidualFlameProjClass, SpawnLoc, SpawnVel );
 	}
 
 	// spawn one where we hit to a flame
 	// (we don't give this class a lingering flame because it can hit zeds, and if they die the lingering flame could be left floating)
-	SpawnResidualFlame( HitLocation, HitVelocity/3.f );
-}
-
-/** Calculates residual flame velocity using */
-function vector CalculateResidualFlameVelocity( vector HitNormal, vector HitVelDir, float HitVelMag )
-{
-	local vector SpawnDir;
-
-	// apply some spread
-	SpawnDir = VRandCone( HitVelDir, PI/4 );
-
-	// make HitVelDir parallel to contact surface by subtracting component parallel to HitNormal
-	SpawnDir = SpawnDir + (-(SpawnDir dot HitNormal) * HitNormal);
-
-	// apply some more spread to get some of the flames to stick to the wall and others the ground beneath the wall
-	// (makes it looks kind of smeared down the wall, like a real molotov)
-	SpawnDir = VRandCone( SpawnDir, PI/4 );
-
-	return SpawnDir * (HitVelMag / 3.f);
-}
-
-function SpawnResidualFlame( vector SpawnLoc, vector SpawnVel )
-{
-	local KFProjectile SpawnedProjectile;
-
-	SpawnedProjectile = Spawn( ResidualFlameProjClass, Self,, SpawnLoc );
-	if( SpawnedProjectile != none && !SpawnedProjectile.bDeleteMe )
-	{
-		SpawnedProjectile.Init( Normal(SpawnVel) );
-		SpawnedProjectile.Velocity = SpawnVel;
-		SpawnedProjectile.Speed = VSize( SpawnedProjectile.Velocity );
-	}
+	SpawnResidualFlame( ResidualFlameProjClass, HitLocation, HitVelocity/3.f );
 }
 
 defaultproperties

@@ -14,7 +14,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_BerserkerKnife'
     AttachmentArchetype=KFWeaponAttachment'WEP_BerserkerKnife_ARCH.Wep_Knife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Berserker.MeleeHelper'
-    AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
+    AssociatedPerkClasses=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         SkeletalMesh=SkeletalMesh'WEP_1P_BerserkerKnife_MESH.Wep_1stP_BerserkerKnife_Rig'

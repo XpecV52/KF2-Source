@@ -12,13 +12,14 @@ function bool Init();
 
 function Exit();
 
-function bool ReadContentList(byte PlayerNum, optional int StartAt, optional int NumToRead)
+function bool ReadContentList(byte PlayerNum, UniqueNetId NetId, optional string Path, optional int StartAt, optional int NumToRead)
 {
+    Path = "";
     StartAt = 0;
-    NumToRead = -1;
+    NumToRead = 0;
 }
 
-delegate OnReadContentListComplete(bool bWasSuccessful);
+delegate OnReadContentListComplete(bool bWasSuccessful, array<CommunityContentFile> ContentFiles);
 
 function AddReadContentListCompleteDelegate(delegate<OnReadContentListComplete> ReadContentListCompleteDelegate);
 
@@ -50,7 +51,7 @@ function ClearUploadContentCompleteDelegate(delegate<OnUploadContentComplete> Up
 
 function bool DownloadContent(byte PlayerNum, const out CommunityContentFile FileToDownload);
 
-delegate OnDownloadContentComplete(bool bWasSuccessful, CommunityContentFile FileDownloaded);
+delegate OnDownloadContentComplete(bool bWasSuccessful, CommunityContentFile FileDownloaded, array<byte> Payload);
 
 function AddDownloadContentCompleteDelegate(delegate<OnDownloadContentComplete> DownloadContentCompleteDelegate);
 

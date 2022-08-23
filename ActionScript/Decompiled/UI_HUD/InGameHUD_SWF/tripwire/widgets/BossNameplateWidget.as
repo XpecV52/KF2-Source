@@ -57,6 +57,8 @@ package tripwire.widgets
                 "rotationY":24,
                 "z":-160
             });
+            this.bossTimeline.stop();
+            this.bossTimeline.seek(0);
         }
         
         public function startAnim() : void

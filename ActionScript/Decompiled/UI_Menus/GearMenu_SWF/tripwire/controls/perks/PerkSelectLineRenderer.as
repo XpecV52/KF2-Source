@@ -45,6 +45,8 @@ package tripwire.controls.perks
         
         public const hitboxZ:int = 0;
         
+        public var bShrinkText:Boolean = true;
+        
         public function PerkSelectLineRenderer()
         {
             this.iconColor = new Color();
@@ -58,7 +60,10 @@ package tripwire.controls.perks
                 this.disableButton();
             }
             this.active = false;
-            TextFieldEx.setTextAutoSize(textField,"shrink");
+            if(this.bShrinkText)
+            {
+                TextFieldEx.setTextAutoSize(textField,"shrink");
+            }
         }
         
         override public function setData(param1:Object) : void
@@ -79,17 +84,7 @@ package tripwire.controls.perks
                 }
                 this.enabled = !!param1.unlocked ? Boolean(param1.unlocked) : true;
                 this.bTierUnlocked = !!param1.bTierUnlocked ? Boolean(param1.bTierUnlocked) : false;
-                if(this.bTierUnlocked)
-                {
-                    if(this.alertBG != null)
-                    {
-                        this.alertBG.gotoAndPlay("Glow");
-                    }
-                }
-                else if(this.alertBG != null)
-                {
-                    this.alertBG.gotoAndStop("Off");
-                }
+                this.glowActive = this.bTierUnlocked;
                 if(param1.iconSource != null && param1.iconSource != "")
                 {
                     if(this.iconLoader != null)
@@ -102,6 +97,35 @@ package tripwire.controls.perks
             {
                 visible = false;
             }
+        }
+        
+        public function set glowActive(param1:Boolean) : void
+        {
+            if(param1)
+            {
+                if(this.alertBG != null)
+                {
+                    this.alertBG.gotoAndPlay("Glow");
+                }
+            }
+            else if(this.alertBG != null)
+            {
+                this.alertBG.gotoAndStop("Off");
+            }
+        }
+        
+        public function get glowActive() : Boolean
+        {
+            if(this.alertBG)
+            {
+                return this.alertBG.currentFrameLabel == "Glow";
+            }
+            return false;
+        }
+        
+        public function set stateOverride(param1:String) : void
+        {
+            setState(param1);
         }
         
         public function set active(param1:Boolean) : void
@@ -127,7 +151,10 @@ package tripwire.controls.perks
             {
                 this.perkLevelText.text = this._perkLevelStr;
             }
-            TextFieldEx.setTextAutoSize(textField,"shrink");
+            if(this.bShrinkText)
+            {
+                TextFieldEx.setTextAutoSize(textField,"shrink");
+            }
         }
         
         protected function handleFocusIn(param1:FocusEvent) : *

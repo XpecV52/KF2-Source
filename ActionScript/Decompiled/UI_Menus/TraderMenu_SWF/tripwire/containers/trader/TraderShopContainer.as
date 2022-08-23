@@ -159,15 +159,19 @@ package tripwire.containers.trader
             {
                 this.shopList.selectedIndex = param1.index;
                 this.currentSelectedIndex = param1.index;
-                ExternalInterface.call("Callback_ShopItemSelected",param1.index);
+                ExternalInterface.call("Callback_ShopItemSelected",param1.itemData.itemID);
             }
         }
         
         protected function resetSelectedIndex() : void
         {
-            this.shopList.selectedIndex = 0;
-            this.currentSelectedIndex = 0;
-            ExternalInterface.call("Callback_ShopItemSelected",0);
+            this.currentSelectedIndex = this.shopList.selectedIndex;
+            if(this.shopList.selectedIndex >= this.shopList.dataProvider.length)
+            {
+                this.shopList.selectedIndex = 0;
+                this.currentSelectedIndex = 0;
+            }
+            ExternalInterface.call("Callback_ShopItemSelected",this.shopList.dataProvider[this.shopList.selectedIndex].itemID);
         }
         
         protected function buySelectedController(param1:ListEvent) : void
@@ -175,10 +179,7 @@ package tripwire.containers.trader
             if(bManagerUsingGamepad)
             {
                 ExternalInterface.call("Callback_BuyOrSellItem");
-                if(this.shopList.selectedIndex == 0)
-                {
-                    this.resetSelectedIndex();
-                }
+                this.resetSelectedIndex();
             }
         }
         

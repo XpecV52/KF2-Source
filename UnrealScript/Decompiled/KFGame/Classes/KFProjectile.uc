@@ -64,6 +64,7 @@ var protected const bool bWarnAIWhenFired;
 var float AlwaysRelevantDistanceSquared;
 var byte WeaponFireMode;
 var KFProjectile.FracturedMeshGlassShatterType GlassShatterType;
+var KFLightPool.LightPoolPriority ProjFlightLightPriority;
 var repnotify float InitialPenetrationPower;
 var float PenetrationPower;
 var TouchInfo LastTouched;
@@ -91,6 +92,7 @@ var KFImpactEffectInfo AltExploEffects;
 var export editinline ParticleSystemComponent ProjEffects;
 var(Projectile) ParticleSystem ProjFlightTemplate;
 var float ProjEffectsFadeOutDuration;
+var export editinline PointLightComponent ProjFlightLight;
 /** Effects Template for the bullet flying through the air in Zed time */
 var(Projectile) ParticleSystem ProjFlightTemplateZedTime;
 var AkEvent AmbientSoundPlayEvent;
@@ -739,6 +741,11 @@ simulated function SpawnFlightEffects()
                 }
             }
         }
+        if(ProjFlightLight != none)
+        {
+            AttachComponent(ProjFlightLight);
+            KFLightPool(WorldInfo.MyLightPool).RegisterPointLight(ProjFlightLight, ProjFlightLightPriority);
+        }
         if((self.WorldInfo.TimeDilation < 1) && ProjFlightTemplateZedTime != none)
         {
             ProjEffects = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ProjFlightTemplateZedTime);            
@@ -769,6 +776,10 @@ protected simulated function StopFlightEffects()
         {
             bFadingOutProjEffects = true;
         }
+        if((ProjFlightLight != none) && ProjFlightLight.bAttached)
+        {
+            DetachComponent(ProjFlightLight);
+        }
         ProjEffects.DeactivateSystem();
     }
 }
@@ -778,6 +789,29 @@ function Detonate();
 function Timer_Explode();
 
 simulated function OnInstigatorControllerLeft();
+
+function Vector CalculateResidualFlameVelocity(Vector HitNormal, Vector HitVelDir, float HitVelMag)
+{
+    local Vector SpawnDir;
+
+    SpawnDir = VRandCone(HitVelDir, 3.141593 / float(4));
+    SpawnDir = SpawnDir + (-SpawnDir Dot HitNormal * HitNormal);
+    SpawnDir = VRandCone(SpawnDir, 3.141593 / float(4));
+    return SpawnDir * (HitVelMag / 3);
+}
+
+function SpawnResidualFlame(class<KFProjectile> SpawnClass, Vector SpawnLoc, Vector SpawnVel)
+{
+    local KFProjectile SpawnedProjectile;
+
+    SpawnedProjectile = Spawn(SpawnClass, self,, SpawnLoc);
+    if((SpawnedProjectile != none) && !SpawnedProjectile.bDeleteMe)
+    {
+        SpawnedProjectile.Init(Normal(SpawnVel));
+        SpawnedProjectile.Velocity = SpawnVel;
+        SpawnedProjectile.Speed = VSize(SpawnedProjectile.Velocity);
+    }
+}
 
 defaultproperties
 {

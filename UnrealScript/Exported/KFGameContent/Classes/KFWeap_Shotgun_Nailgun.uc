@@ -150,7 +150,8 @@ defaultproperties
    RecoilISMaxPitchLimit=250
    RecoilISMinPitchLimit=65485
    FallingRecoilModifier=1.500000
-   AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
+   AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Support'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponAltFiring"
    FiringStatesArray(2)=()

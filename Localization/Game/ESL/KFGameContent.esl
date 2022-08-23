@@ -197,6 +197,8 @@ ItemName="Bullpup SA80 L85A2"
 ItemCategory="Rifle de asalto"
 ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•El SA80 era el arma oficial del ejército británico antes de que se... Bueno, de que se lo comieran."
 
+
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Cúter"
 ItemCategory="Cuerpo a cuerpo"
@@ -267,6 +269,8 @@ ItemName="E. de combate M4"
 ItemCategory="Escopeta"
 ItemDescription="•Solo dispara en modo semiautomático.\n•Benelli diseñó la escopeta de combate M4 para el ejército estadounidense. Es semiautomática, así que dispone de una buena y constante cadencia de fuego."
 
+
+
 [KFWeap_Knife_Berserker]
 ItemName="Hoja de cortacésped"
 ItemCategory="Cuerpo a cuerpo"
@@ -314,6 +318,11 @@ ItemCategory="Cuerpo a cuerpo"
 ItemDescription="•Principal: daño medio/alto, con cierto control de masas.\n•Secundario: más lento, pero más lesivo.\n•Alternativo: bloquear/parar.\n•Si avanzas mientras lo usas, harás aún más daño."
 SharedUnlockSource="Chivalry Medieval Warfare "
 
+[KFWeap_Blunt_MaceAndShield]
+ItemName="Partehuesos"
+ItemCategory="CaC"
+ItemDescription="•Principal: ataque contundente rápido. Mantén pulsado el botón de modo principal para realizar un combo.\n•Secundario: ataque contundente que utiliza más el escudo.\n•Alternativo: bloquear/parar. Los bloqueos mitigan el daño de proyectiles zed.\n• Su golpe con escudo es potente."
+
 [KFWeap_Flame_CaulkBurn]
 ItemName="Sella y quema"
 ItemCategory="Llamaradas"
@@ -353,6 +362,8 @@ ItemDescription="•Modo de disparo: lanza una granada.\n•La granada explota a
 ItemName="RPG-7"
 ItemCategory="Explosivos"
 ItemDescription="•Modo de disparo: lanza una misil.\n•La el misil explota al impactar.\n•Se activa al acercase al objetivo para evitar que te explote en la cara.\n•¡Cuidado con el retroceso!"
+
+
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="2 pistolas de 9 mm"
@@ -403,6 +414,8 @@ ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al u
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Modo de disparo: solo tiro único.\n•El clásico rifle de Winchester modelo 1894 con acción de palanca."
+
+
 
 [KFWeap_Bow_Crossbow]
 ItemName="Ballesta"

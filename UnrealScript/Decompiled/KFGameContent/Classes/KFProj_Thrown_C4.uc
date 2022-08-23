@@ -466,8 +466,17 @@ simulated function RestartMovement()
 
 function Detonate()
 {
+    local KFWeap_Thrown_C4 C4WeaponOwner;
     local Vector ExplosionNormal;
 
+    if(Role == ROLE_Authority)
+    {
+        C4WeaponOwner = KFWeap_Thrown_C4(Owner);
+        if(C4WeaponOwner != none)
+        {
+            C4WeaponOwner.RemoveDeployedCharge(,, self);
+        }
+    }
     ExplosionNormal = vect(0, 0, 1) >> Rotation;
     Explode(Location, ExplosionNormal);
 }

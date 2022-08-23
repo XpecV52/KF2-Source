@@ -312,6 +312,7 @@ defaultproperties
     VoiceCommBindList(5)="GBA_VoiceCommGetToTheTrader"
     VoiceCommBindList(6)="GBA_VoiceCommAffirmative"
     VoiceCommBindList(7)="GBA_VoiceCommNegative"
+    VoiceCommBindList(8)="GBA_VoiceCommEmote"
     SectionName="LocalizedControls"
     SectionHeaders(0)="MOVEMENT"
     SectionHeaders(1)="INTERACTION"

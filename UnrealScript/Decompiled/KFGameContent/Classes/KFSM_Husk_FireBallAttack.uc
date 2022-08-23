@@ -7,6 +7,15 @@
  *******************************************************************************/
 class KFSM_Husk_FireBallAttack extends KFSM_PlaySingleAnim;
 
+var array<name> AnimNames;
+var array<Vector> FireOffsets;
+var protected transient Vector FireOffset;
+
+static function byte PackFlagsBase(KFPawn P)
+{
+    return byte(Rand(default.AnimNames.Length));
+}
+
 protected function bool InternalCanDoSpecialMove()
 {
     if(KFPOwner.IsHumanControlled())
@@ -28,6 +37,11 @@ protected function bool InternalCanDoSpecialMove()
     return super(KFSpecialMove).InternalCanDoSpecialMove();
 }
 
+function Vector GetFireOffset()
+{
+    return FireOffset;
+}
+
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     super.SpecialMoveStarted(bForced, PrevMove);
@@ -40,6 +54,16 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         }
         AIOwner.AIZeroMovementVariables();
     }
+}
+
+function PlayAnimation()
+{
+    local int AnimNum;
+
+    AnimNum = Clamp(KFPOwner.SpecialMoveFlags, 0, AnimNames.Length);
+    AnimName = AnimNames[AnimNum];
+    FireOffset = FireOffsets[AnimNum];
+    super.PlayAnimation();
 }
 
 function NotifyFireballFired()
@@ -71,7 +95,24 @@ function bool CanOverrideMoveWith(name NewMove)
 
 defaultproperties
 {
-    AnimName=Atk_Shoot_V1
+    AnimNames(0)=Atk_Shoot_V1
+    AnimNames(1)=Atk_Shoot_V2
+    FireOffsets(0)=
+/* Exception thrown while deserializing FireOffsets
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    FireOffsets(1)=
+/* Exception thrown while deserializing FireOffsets
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     bCanBeInterrupted=true
     bUseCustomRotationRate=true
     bDisableMovement=true

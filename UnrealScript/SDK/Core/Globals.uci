@@ -131,6 +131,14 @@
 /** This is used for classes which are object derived and do not have access to WorldInfo so we need to pass in the Actor to get a worldinfo **/
 `define TimeSinceEx(Actor,Time)	 (`Actor.WorldInfo.TimeSeconds - `Time)
 
+//@HSL_BEGIN_XBOX
+`define AddUniqueItemToArray(Array,Item) if (`Array.Find(`Item) == INDEX_NONE) { `Array.AddItem(`Item);	}
+
+//@igs(jc): Make players and controllers 16 globally for our purposes.  If you change these
+//          numbers, make sure you also adjust the ones in UnDingo.h
+`define MAX_NUM_PLAYERS 24
+`define MAX_NUM_CONTROLLERS 24
+//@HSL_END_XBOX
 
 /** To use WITH_PHYSX directive in uc files. Comment this out when using WITH_NOVODEX **/
 `define WITH_PHYSX 

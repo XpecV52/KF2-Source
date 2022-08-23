@@ -2,9 +2,7 @@
 // KFSkinTypeEffects
 //=============================================================================
 // Defines content used for hit effects based on surface (e.g. Skin type),
-// damage type (aka EffectDamageGroup), and vulnerability.  There are more
-// types of effects contained in the DamageType (e.g. Decals), but only
-// these vary based on hit zone/location.
+// as well as damage type (aka EffectDamageGroup).
 //
 // Similar to the KFImpactEffectInfo and PhysicalMaterial system,
 // but specifically tailored to characters rather than world.
@@ -33,6 +31,8 @@ enum EEffectDamageGroup
 	FXG_IncendiaryRound,
 	FXG_UnexplodedGrenade,
 	FXG_MicrowaveBlast,
+	FXG_ShieldBash,
+	FXG_MetalMace
 };
 
 struct native SkinEffectInfo
@@ -42,22 +42,16 @@ struct native SkinEffectInfo
 
 	/** particle system used for this impact */
 	var() ParticleSystem DefaultParticle;
-	var() ParticleSystem VulnerableParticle;
-	var() ParticleSystem ResistantParticle;
 
 	/** If true, attach particle to the hit bone (e.g. fire) */
 	var() bool bAttachParticle<DisplayName=Attach FX To Hit Bone | EditCondition=!bAttachToHitLocation>;
-
 	/** If true, attach particle to hit bone but offset to the location of the hit (e.g. electricity) */
 	var() bool bAttachToHitLocation<DisplayName=Attach FX to Hit Location | EditCondition=!bAttachParticle>;
 
 	/** Sound used for this impact */
 	var() AkEvent DefaultSound;
-
 	/** Sounds used for local player (1st person) impacts only */
 	var() AKEvent LocalSound;
-	//var() AkEvent LocalVulnerableSound;
-	//var() AkEvent LocalResistantSound;
 };
 
 /** Container for effects per type of damage/weapon */

@@ -13,6 +13,7 @@ KF-Prison="正在進行：監獄"
 KF-ContainmentStation="正在進行：控制站"
 KF-InfernalRealm="正在進行：地獄"
 KF-HostileGrounds="正在進行：敵營"
+KF-ZedLanding="正在進行：僵屍群登陸"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

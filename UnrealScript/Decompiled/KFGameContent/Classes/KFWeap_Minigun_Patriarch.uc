@@ -90,6 +90,7 @@ defaultproperties
     RecoilISMaxPitchLimit=375
     RecoilISMinPitchLimit=65460
     IronSightMeshFOVCompensationScale=2.5
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

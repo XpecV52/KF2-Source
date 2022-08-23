@@ -60,7 +60,7 @@ defaultproperties
    JoggingRecoilModifier=1.200000
    WalkingRecoilModifier=1.100000
    IronSightMeshFOVCompensationScale=1.500000
-   AssociatedPerkClass=Class'KFGame.KFPerk_SWAT'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_SWAT'
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

@@ -104,10 +104,10 @@ function LocalizeMenu()
 
 defaultproperties
 {
-   WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_PS4Beta",TextField="LatestUpdate",RedirectURL="http://www.killingfloor2.com/redirect/KF2LatestUpdate/")
+   WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_volcano",TextField="LatestUpdate",RedirectURL="http://www.killingfloor2.com/bullseye")
    WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
-   WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Tormentor_07",TextField="HorzineSupplyCrateKey7",RedirectURL="https://store.steampowered.com/buyitem/232090/4105")
-   WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_CombatStar_08",TextField="HorzineSupplyCrateKey8",RedirectURL="https://store.steampowered.com/buyitem/232090/4106")
+   WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Emote_01_11",TextField="NewEmotes",RedirectURL="https://store.steampowered.com/buyitem/232090/4540")
+   WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_MaceShield_15",TextField="USBBoneCrusher",RedirectURL="https://store.steampowered.com/buyitem/232090/4562")
    WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")
    WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/")
    WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap")

@@ -74,7 +74,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
-#linenumber 14;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;#linenumber 14;
 
 var localized string SensitivityString, InvertedString;
 var localized string ControllerSensitivityString;

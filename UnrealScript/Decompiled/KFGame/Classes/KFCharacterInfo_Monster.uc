@@ -46,8 +46,10 @@ struct native MeleeSpecialDismembermentInfo
 
 /** Character mesh to use */
 var(ThirdPerson) SkeletalMesh CharacterMesh<DisplayName=Body Mesh>;
+/** Material overrides to use */
+var(ThirdPerson) array<MaterialInterface> Skins;
+/** Player-controlled material overrides to use */
 var(ThirdPerson) array<MaterialInterface> PlayerControlledSkins;
-var(ThirdPerson) array<MaterialInterface> PlayerControlledGoreSkins;
 /** Aggressively optimized mesh for the server with minimal bones */
 var(Server) SkeletalMesh ServerMesh;
 /** Additional material IDs that require MICs for gameplay material params */
@@ -56,6 +58,10 @@ var(Effects) DoorSoundFx DoorHitSound;
 var MaterialInstance BloodSplatterDecalMaterial;
 /** Gore mesh with alternate bone weights */
 var(Gore) SkeletalMesh GoreMesh;
+/** Materials to override on the gore mesh */
+var(Gore) array<MaterialInterface> GoreSkins;
+/** Player-controlled materials to override on the gore mesh */
+var(Gore) array<MaterialInterface> PlayerControlledGoreSkins;
 /**  
  *Gore settings for bones that can be dismembered.
  *       ALL HITZONE BONES MUST BE INCLUDED EVEN IF THEY CANNOT BE DISMEMBERED
@@ -123,6 +129,21 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 KFP.Mesh.SetMaterial(I, PlayerControlledSkins[I]);
                 ++ I;
                 goto J0x211;
+            }            
+        }
+        else
+        {
+            if(Skins.Length > 0)
+            {
+                I = 0;
+                J0x2A5:
+
+                if(I < Skins.Length)
+                {
+                    KFP.Mesh.SetMaterial(I, Skins[I]);
+                    ++ I;
+                    goto J0x2A5;
+                }
             }
         }
     }

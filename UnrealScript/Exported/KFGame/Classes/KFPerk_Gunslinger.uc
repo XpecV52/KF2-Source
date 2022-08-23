@@ -212,7 +212,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 		KFW = GetWeaponFromDamageCauser( DamageCauser );
 	}
 
-	if( (KFW != none && IsWeaponOnPerk( KFW )) || (DamageType != none && IsDamageTypeOnPerk( DamageType )) )
+	if( (KFW != none && IsWeaponOnPerk( KFW,, self.class )) || (DamageType != none && IsDamageTypeOnPerk( DamageType )) )
 	{
 		TempDamage += InDamage * GetPassiveValue( WeaponDamage, CurrentLevel );
 
@@ -272,7 +272,7 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
  */
 simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 {
-	if( IsWeaponOnPerk( KFW ) )
+	if( IsWeaponOnPerk( KFW,, self.class ) )
 	{
 		;
 		CurrentRecoilModifier -= CurrentRecoilModifier * GetPassiveValue( Recoil, GetLevel() );
@@ -298,7 +298,7 @@ simulated private static function float GetQuickSwitchRecoilModifier()
  */
 simulated function float GetReloadRateScale( KFWeapon KFW )
 {
-	if( IsWeaponOnPerk( KFW ) && WorldInfo.TimeDilation < 1.f && !IsFanFareActive() )
+	if( IsWeaponOnPerk( KFW,, self.class ) && WorldInfo.TimeDilation < 1.f && !IsFanFareActive() )
 	{
 		return 1.f -  GetPassiveValue( ZedTimeReload, GetLevel() );
 	}
@@ -317,7 +317,7 @@ simulated function float GetReloadRateScale( KFWeapon KFW )
  */
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
-	return IsSpeedReloadActive() && IsWeaponOnPerk( KFW );
+	return IsSpeedReloadActive() && IsWeaponOnPerk( KFW,, self.class );
 }
 
 /**
@@ -378,7 +378,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 {
 	local name StateName;
 
-	if( GetFanfareActive() && IsWeaponOnPerk( W ) )
+	if( GetFanfareActive() && IsWeaponOnPerk( W,, self.class ) )
 	{
 		StateName = W.GetStateName();
 		if( ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
@@ -404,7 +404,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
  */
 simulated function bool GetIsUberAmmoActive( KFWeapon KFW )
 {
-	return IsWeaponOnPerk( KFW ) && IsUberAmmoActive() && WorldInfo.TimeDilation < 1.f;
+	return IsWeaponOnPerk( KFW,, self.class ) && IsUberAmmoActive() && WorldInfo.TimeDilation < 1.f;
 }
 
 /**
@@ -474,14 +474,14 @@ reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, o
 		case 4:	
 			if( !bMissed )
 			{
-				OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShot');
+				//OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShot');
 				TempAkEvent = RhythmMethodSoundHit;
 			}
 			break;
 		case 5:
 			if( !bMissed )
 			{
-				OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShotPing');
+				//OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShotPing');
 				TempAkEvent = RhythmMethodSoundTop;
 				i = 6;
 			}
@@ -569,7 +569,7 @@ simulated function float GetPenetrationModifier( byte Level, class<KFDamageType>
  */
 simulated event float GetIronSightSpeedModifier( KFWeapon KFW )
 {
-	if( IsShootnMooveActive() && IsWeaponOnPerk( KFW ) )
+	if( IsShootnMooveActive() && IsWeaponOnPerk( KFW,, self.class ) )
 	{
 		;
 		return  GetSkillValue( PerkSkills[EGunslingerShootnMove] );
@@ -580,7 +580,7 @@ simulated event float GetIronSightSpeedModifier( KFWeapon KFW )
 
 simulated function ModifyWeaponBopDamping( out float BobDamping, KFWeapon PawnWeapon )
 {
-	If( IsShootnMooveActive() && IsWeaponOnPerk( PawnWeapon ) )
+	If( IsShootnMooveActive() && IsWeaponOnPerk( PawnWeapon,, self.class ) )
 	{
 		BobDamping *= default.ShootnMooveBobDamp;
 	}
@@ -745,14 +745,14 @@ simulated function bool IsSkullCrackerActive()
  *
  * @return true/false
  */
-static simulated function bool IsWeaponOnPerk( KFWeapon W, optional class<KFPerk> WeaponPerkClass )
+static simulated function bool IsWeaponOnPerk( KFWeapon W, optional array < class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass )
 {
 	if( W != none && default.AdditionalOnPerkWeaponNames.Find( W.class.name ) != INDEX_NONE )
 	{
 		return true;
 	}
 
-	return super.IsWeaponOnPerk( W, WeaponPerkClass );
+	return super.IsWeaponOnPerk( W, WeaponPerkClass, InstigatorPerkClass );
 }
 
 /**
@@ -858,7 +858,12 @@ defaultproperties
    SpecialZedClassNames(0)="KFPawn_ZedFleshpound"
    AdditionalOnPerkWeaponNames(0)="KFWeap_Pistol_9mm"
    AdditionalOnPerkWeaponNames(1)="KFWeap_Pistol_Dual9mm"
+   AdditionalOnPerkWeaponNames(2)="KFWeap_GrenadeLauncher_HX25"
    AdditionalOnPerkDTNames(0)="KFDT_Ballistic_9mm"
+   AdditionalOnPerkDTNames(1)="KFDT_Ballistic_Pistol_Medic"
+   AdditionalOnPerkDTNames(2)="KFDT_Ballistic_Winchester"
+   AdditionalOnPerkDTNames(3)="KFDT_Ballistic_HX25Impact"
+   AdditionalOnPerkDTNames(4)="KFDT_Ballistic_HX25SubmunitionImpact"
    RhythmMethodSoundReset=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Reset'
    RhythmMethodSoundHit=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Hit'
    RhythmMethodSoundTop=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Top'
@@ -902,10 +907,11 @@ defaultproperties
    PerkSkills(6)=(Name="Skullcracker",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Skullcracker")
    PerkSkills(7)=(Name="KnockEmDown",StartingValue=5.100000,MaxValue=5.100000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_KnockEmDown")
    PerkSkills(8)=(Name="UberAmmo",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo")
-   PerkSkills(9)=(Name="Fanfare",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed")
+   PerkSkills(9)=(Name="Fanfare",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed")
    ZedTimeModifyingStates(0)="WeaponFiring"
    ZedTimeModifyingStates(1)="WeaponBurstFiring"
    ZedTimeModifyingStates(2)="WeaponSingleFiring"
+   ZedTimeModifyingStates(3)="WeaponSingleFireAndReload"
    BodyPartsCanStumble(0)=0
    BodyPartsCanStumble(1)=2
    BodyPartsCanStumble(2)=0

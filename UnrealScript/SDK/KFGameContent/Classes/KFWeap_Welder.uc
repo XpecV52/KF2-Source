@@ -736,4 +736,6 @@ defaultproperties
     ScreenUIClass=class'KFGFxWorld_WelderScreen'
 
 	AttachmentArchetype=KFWeaponAttachment'WEP_Welder_ARCH.Welder_3P'
+
+	AssociatedPerkClasses(0)=none
 }

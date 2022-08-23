@@ -32,7 +32,8 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
-	KDamageImpulse=1100
+	KDamageImpulse=550//1100
+	GibImpulseScale=0.85
 	KDeathUpKick=-200
 	KDeathVel=200
 	

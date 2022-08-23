@@ -11,7 +11,6 @@ class KFWeap_Pistol_DualColt1911 extends KFWeap_DualBase
 
 defaultproperties
 {
-    LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_M1911_ARCH.Wep_Dual_M1911_MuzzleFlash_L'
     LeftFireOffset=(X=17,Y=-4,Z=-2.25)
     SingleClass=Class'KFWeap_Pistol_Colt1911'
     BonesToLockOnEmpty_L=/* Array type was not detected. */
@@ -54,7 +53,7 @@ defaultproperties
     RecoilISMaxPitchLimit=500
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.35
-    AssociatedPerkClass=Class'KFGame.KFPerk_Gunslinger'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

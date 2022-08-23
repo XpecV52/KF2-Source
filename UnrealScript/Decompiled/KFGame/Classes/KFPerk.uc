@@ -240,7 +240,7 @@ static function KFWeapon GetWeaponFromDamageCauser(Actor WeaponActor)
     return none;
 }
 
-static function class<KFPerk> GetPerkFromDamageCauser(Actor WeaponActor)
+static function class<KFPerk> GetPerkFromDamageCauser(Actor WeaponActor, class<KFPerk> InstigatorPerkClass)
 {
     local KFWeapon KFW;
     local KFProjectile KFPrj;
@@ -277,7 +277,7 @@ static function class<KFPerk> GetPerkFromDamageCauser(Actor WeaponActor)
     }
     if(KFW != none)
     {
-        return KFW.default.AssociatedPerkClass;
+        return KFW.GetWeaponPerkClass(InstigatorPerkClass);
     }
     return none;
 }
@@ -294,17 +294,17 @@ static function class<KFPerk> GetPerkFromProjectile(Actor WeaponActor)
     return none;
 }
 
-static simulated function bool IsWeaponOnPerk(KFWeapon W, optional class<KFPerk> WeaponPerkClass)
+static simulated function bool IsWeaponOnPerk(KFWeapon W, optional array< class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass)
 {
     if(W != none)
     {
-        return W.default.AssociatedPerkClass == default.Class;        
+        return W.GetWeaponPerkClass(InstigatorPerkClass) == default.Class;        
     }
     else
     {
-        if(WeaponPerkClass != none)
+        if(WeaponPerkClass.Length > 0)
         {
-            return WeaponPerkClass == default.Class;
+            return WeaponPerkClass.Find(default.Class != -1;
         }
     }
     return false;
@@ -545,6 +545,14 @@ simulated event PreBeginPlay()
     {
         MyKFGI = KFGameInfo(WorldInfo.Game);
     }
+    if(OwnerPC == none)
+    {
+        OwnerPC = KFPlayerController(Owner);
+    }
+    if(OwnerPC != none)
+    {
+        OwnerPC.SetPerkEffect(false);
+    }
 }
 
 function SetPlayerDefaults(Pawn PlayerPawn)
@@ -611,7 +619,7 @@ function ApplySkillsToPawn()
         MyPRI.bSplashActive = false;
         MyPRI.bNukeActive = false;
         MyPRI.bConcussiveActive = false;
-        MyPRI.bPerkCanSupply = false;
+        MyPRI.PerkSupplyLevel = 0;
         ApplyWeightLimits();
     }
 }
@@ -810,7 +818,7 @@ function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, option
 
 function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy);
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     bSecondary = false;    
 }
@@ -820,7 +828,7 @@ simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo,
     bSecondary = false;
 }
 
-simulated function MaximizeSpareAmmoAmount(class<KFPerk> WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo);
+simulated function MaximizeSpareAmmoAmount(array< class<KFPerk> > WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo);
 
 simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, const optional out STraderItem TraderItem, optional bool bSecondary)
 {
@@ -1178,6 +1186,11 @@ simulated function bool ShouldKnockDownOnBump()
     return false;
 }
 
+simulated function int GetArmorDamageAmount(int AbsorbedAmt)
+{
+    return AbsorbedAmt;
+}
+
 static function ModifyAssistDosh(out int EarnedDosh)
 {
     local float TempDosh;
@@ -1211,26 +1224,7 @@ simulated function KFWeapon GetOwnerWeapon()
     return none;
 }
 
-function OnWaveEnded()
-{
-    if(WorldInfo.Role < ROLE_Authority)
-    {
-        return;
-    }
-    ClientOnWaveEnded();
-}
-
-protected reliable client simulated function ClientOnWaveEnded()
-{
-    if((MyPRI == none) && OwnerPawn != none)
-    {
-        MyPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
-    }
-    if(MyPRI != none)
-    {
-        MyPRI.ResetSupplierUsed();
-    }
-}
+function OnWaveEnded();
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {

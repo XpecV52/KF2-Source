@@ -52,7 +52,7 @@ defaultproperties
     RecoilISMinPitchLimit=65460
     HippedRecoilModifier=1.5
     IronSightMeshFOVCompensationScale=1.5
-    AssociatedPerkClass=Class'KFGame.KFPerk_Commando'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

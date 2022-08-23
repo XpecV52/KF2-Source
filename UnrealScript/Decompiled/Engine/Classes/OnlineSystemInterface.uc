@@ -26,7 +26,7 @@ function OnlineSubsystem.ENetworkNotificationPosition GetNetworkNotificationPosi
 
 function SetNetworkNotificationPosition(OnlineSubsystem.ENetworkNotificationPosition NewPos);
 
-delegate OnControllerChange(int ControllerId, bool bIsConnected);
+delegate OnControllerChange(int ControllerId, bool bIsConnected, bool bPauseGame);
 
 function AddControllerChangeDelegate(delegate<OnControllerChange> ControllerChangeDelegate);
 

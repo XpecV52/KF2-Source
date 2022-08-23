@@ -318,6 +318,9 @@ var() array< DoorListInfo > DoorList;
 /** Rotation to use when spawning pawns from this volume */
 var() rotator 				SpawnRotation;
 
+/** Used to include or exclude spawn volumes from gameplay code */
+var bool bCanUseForSpawning;
+
 /*********************************************************************************************
  Rendering in Game ("show SpawnVolumes" and Editor (when volume is selected)
  ********************************************************************************************* */
@@ -498,6 +501,26 @@ event UnTouch(Actor Other)
 	}
 }
 
+/**	Handling Toggle event from Kismet. */
+simulated function OnToggle( SeqAct_Toggle Action )
+{
+	// Turn ON
+	if( Action.InputLinks[0].bHasImpulse )
+	{
+		bCanUseForSpawning = true;
+	}
+	// Turn OFF
+	else if (Action.InputLinks[1].bHasImpulse)
+	{
+		bCanUseForSpawning = false;
+	}
+	// Toggle
+	else if (Action.InputLinks[2].bHasImpulse)
+	{
+		bCanUseForSpawning = !bCanUseForSpawning;
+	}
+}
+
 /** Script implementation of RateVolume so mod authors can change things. Native implementation is commented out just
  *  in case we need it, or want to do something like handle KF2 spawning in native but calling this event to allow a
  *  complete override in script.
@@ -511,6 +534,10 @@ function bool IsValidForSpawn( ESquadType DesiredSquadType, Controller OtherCont
 	local int i;
 
 	// This volume is disabled
+	if( !bCanUseForSpawning )
+	{
+		return false;
+	}
 	if( SpawnMarkerInfoList.Length == 0 )
 	{
 		return false;
@@ -582,6 +609,12 @@ event float RateVolume( Controller RateController, bool bTeleporting, float Tele
 	local float DistSquared;
 	local String DebugText;
 	local vector TextOffset;
+
+	/** Skip rating if volume isn't enabled */
+	if( !bCanUseForSpawning )
+	{
+		return -1.f;
+	}
 
 	// Calculate UsageRating
 	UsageRating = 1.f;
@@ -688,9 +721,10 @@ function HandleTeleportedTo()
 defaultproperties
 {
    MaxSpawnMarkers=11
+   bCanUseForSpawning=True
+   bMinimalDebugRatingChecks=True
    DefaultSpawnMarkerColor=(B=50,G=205,R=50,A=255)
    SpawnInteriorBoxColor=(B=0,G=69,R=255,A=255)
-   bMinimalDebugRatingChecks=True
    SpawnBoundsScale=(X=0.750000,Y=0.750000,Z=0.750000)
    LargestSquadType=EST_Large
    DesirabilityMod=1.000000
@@ -725,6 +759,7 @@ defaultproperties
    Components(0)=BrushComponent0
    Components(1)=SpawnRenderer
    bNoDelete=False
+   bForceAllowKismetModification=True
    CollisionComponent=BrushComponent0
    Name="Default__KFSpawnVolume"
    ObjectArchetype=Volume'Engine.Default__Volume'

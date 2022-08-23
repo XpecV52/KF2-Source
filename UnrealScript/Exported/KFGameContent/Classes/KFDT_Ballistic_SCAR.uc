@@ -36,7 +36,8 @@ defaultproperties
    StumblePower=18.000000
    GunHitPower=0.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Commando'
-   KDamageImpulse=1100.000000
+   GibImpulseScale=0.850000
+   KDamageImpulse=550.000000
    KDeathVel=200.000000
    KDeathUpKick=-200.000000
    Name="Default__KFDT_Ballistic_SCAR"

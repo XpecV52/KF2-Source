@@ -59,6 +59,20 @@ simulated function SetBodySkin(byte CurrentSkinIndex, KFPawn KFP, KFPlayerReplic
 
 function SetFirstPersonArmsFromArch(KFPawn KFP, optional KFPlayerReplicationInfo KFPRI);
 
+static function int GetWeaponAnimSetIdx()
+{
+    return default.AnimSets.Length;
+}
+
+function SetCharacterAnimFromArch(KFPawn Pawn)
+{
+    Pawn.Mesh.AnimSets = AnimSets;
+    if(Pawn.Mesh.AnimTreeTemplate != AnimTreeTemplate)
+    {
+        Pawn.Mesh.SetAnimTreeTemplate(AnimTreeTemplate);
+    }
+}
+
 defaultproperties
 {
     DefaultMeshScale=1

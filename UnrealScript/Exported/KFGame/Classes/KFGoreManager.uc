@@ -75,12 +75,12 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
-#linenumber 15;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;#linenumber 15;
 
 /**
  * Predefined values
  */
- 
  
  
  
@@ -441,11 +441,6 @@ simulated final function bool AllowMutilation()
 simulated final function bool AllowHeadless()
 {
 	return DesiredGoreLevel <= 1;
-}
-
-static function float GetGibImpulseMax()
-{
- 	return 0.1;
 }
 
 /** Spawns blood effects due to limb dismemberment or gibbing
@@ -883,23 +878,26 @@ simulated function CauseGibsAndApplyImpulse(
 	local int NumGibs;
 	local float ModifiedImpulseLerpValue;
 	local float ModifiedImpulse;
-	local float GibImpulseMin;
+	local float GibImpulseMin, GibImpulseMax;
 
 	MonsterInfo = InPawn.GetCharacterMonsterInfo();
 
 	// We need to scale the impule values based on the # of gibs to disconnect otherwise their impulses are way
 	// to high and limbs go flying really far. We perform a linear interpolation
-	GibImpulseMin = 0.1/2.0f;
+	GibImpulseMax = InDmgType.default.GibImpulseScale;
+	GibImpulseMin = GibImpulseMax/2.0f;
 	NumGibs = InGibBoneList.Length; 
 	ModifiedImpulseLerpValue = 1.0f - numGibs/ MonsterInfo.GoreJointSettings.length;
-	ModifiedImpulse = lerp(GibImpulseMin, 0.1, ModifiedImpulseLerpValue);
+	ModifiedImpulse = lerp(GibImpulseMin, GibImpulseMax, ModifiedImpulseLerpValue);
 
     for( GibIdx=0; GibIdx<InGibBoneList.length; GibIdx++ )
     {
     	GibBoneName = InGibBoneList[GibIdx];
 
     	BoneLocation = InPawn.mesh.GetBoneLocation(GibBoneName);
-		Impulse =  InDmgType.default.RadialDamageImpulse * Normal(BoneLocation - InExplosionOrigin);
+		Impulse =  InDmgType.default.RadialDamageImpulse * InDmgType.default.bPointImpulseTowardsOrigin
+					? Normal((InPawn.Location - InExplosionOrigin) + (vect(0,0,1) * InDmgType.default.ImpulseOriginLift))
+					: Normal(BoneLocation - InExplosionOrigin);
 		Impulse *= MonsterInfo.ExplosionImpulseScale*ModifiedImpulse;
 
 		for( JointIndex = 0; JointIndex < MonsterInfo.GoreJointSettings.length; JointIndex++ )

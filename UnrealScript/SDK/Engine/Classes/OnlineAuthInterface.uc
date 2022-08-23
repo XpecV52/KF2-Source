@@ -35,7 +35,9 @@ enum EAuthStatus
  */
 struct native BaseAuthSession
 {
-	var const int		EndPointIP;		// The IP of the client/server on the other end of the auth session
+//@HSL_BEGIN_XBOX
+	var const IpAddr	EndPointIP;
+//@HSL_END_XBOX
 	var const int		EndPointPort;		// The Port of the client/server is on
 	var const UniqueNetId	EndPointUID;		// The UID of the client/server on the other end of the auth session
 							//	(NOTE: Not verified for AuthSession until AuthStatus is AUS_Authenticated)
@@ -93,7 +95,9 @@ function ClearAuthReadyDelegate(delegate<OnAuthReady> AuthReadyDelegate);
  * @param ServerPort	The port of the game server
  * @param bSecure		whether or not the server has anticheat enabled (relevant to OnlineSubsystemSteamworks and VAC)
  */
-delegate OnClientAuthRequest(UniqueNetId ServerUID, int ServerIP, int ServerPort, bool bSecure);
+//@HSL_BEGIN_XBOX
+delegate OnClientAuthRequest(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort, bool bSecure);
+//@HSL_END_XBOX
 
 /**
  * Sets the delegate used to notify when the client receives a message from the server, requesting a client auth session
@@ -117,7 +121,9 @@ function ClearClientAuthRequestDelegate(delegate<OnClientAuthRequest> ClientAuth
  * @param ClientIP		The IP of the client making the request
  * @param ClientPort		The port the client is on
  */
-delegate OnServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID, int ClientIP, int ClientPort);
+//@HSL_BEGIN_XBOX
+delegate OnServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort);
+//@HSL_END_XBOX
 
 /**
  * Sets the delegate used to notify when the server receives a message from a client, requesting a server auth session
@@ -140,7 +146,9 @@ function ClearServerAuthRequestDelegate(delegate<OnServerAuthRequest> ServerAuth
  * @param ClientIP		The IP of the client
  * @param AuthTicketUID		The UID used to reference the auth data
  */
-delegate OnClientAuthResponse(UniqueNetId ClientUID, int ClientIP, int AuthTicketUID);
+//@HSL_BEGIN_XBOX
+delegate OnClientAuthResponse(UniqueNetId ClientUID, IpAddr ClientIP, int AuthTicketUID);
+//@HSL_END_XBOX
 
 /**
  * Sets the delegate used to notify when the server receives a auth data from a client
@@ -163,7 +171,9 @@ function ClearClientAuthResponseDelegate(delegate<OnClientAuthResponse> ClientAu
  * @param ServerIP		The IP of the server
  * @param AuthTicketUID		The UID used to reference the auth data
  */
-delegate OnServerAuthResponse(UniqueNetId ServerUID, int ServerIP, int AuthTicketUID);
+//@HSL_BEGIN_XBOX
+delegate OnServerAuthResponse(UniqueNetId ServerUID, IpAddr ServerIP, int AuthTicketUID);
+//@HSL_END_XBOX
 
 /**
  * Sets the delegate used to notify when the client receives a auth data from the server
@@ -379,7 +389,9 @@ function bool SendServerAuthRetryRequest();
  * @param OutAuthTicketUID	Outputs the UID of the auth data, which is used to verify the auth session on the server
  * @return			whether or not the local half of the auth session was kicked off successfully
  */
-function bool CreateClientAuthSession(UniqueNetId ServerUID, int ServerIP, int ServerPort, bool bSecure, out int OutAuthTicketUID);
+//@HSL_BEGIN_XBOX
+function bool CreateClientAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort, bool bSecure, out int OutAuthTicketUID);
+//@HSL_END_XBOX
 
 /**
  * Kicks off asynchronous verification and setup of a client auth session, on the server;
@@ -391,7 +403,9 @@ function bool CreateClientAuthSession(UniqueNetId ServerUID, int ServerIP, int S
  * @param AuthTicketUID		The UID for the auth data sent by the client (as obtained through OnClientAuthResponse)
  * @return			whether or not asynchronous verification was kicked off successfully
  */
-function bool VerifyClientAuthSession(UniqueNetId ClientUID, int ClientIP, int ClientPort, int AuthTicketUID);
+//@HSL_BEGIN_XBOX
+function bool VerifyClientAuthSession(UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort, int AuthTicketUID);
+//@HSL_END_XBOX
 
 /**
  * Ends the clientside half of a client auth session
@@ -401,7 +415,9 @@ function bool VerifyClientAuthSession(UniqueNetId ClientUID, int ClientIP, int C
  * @param ServerIP		The external (public) IP address of the server
  * @param ServerPort		The port of the server
  */
-function EndLocalClientAuthSession(UniqueNetId ServerUID, int ServerIP, int ServerPort);
+//@HSL_BEGIN_XBOX
+function EndLocalClientAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort);
+//@HSL_END_XBOX
 
 /**
  * Ends the serverside half of a client auth session
@@ -410,7 +426,9 @@ function EndLocalClientAuthSession(UniqueNetId ServerUID, int ServerIP, int Serv
  * @param ClientUID		The UID of the client
  * @param ClientIP		The IP address of the client
  */
-function EndRemoteClientAuthSession(UniqueNetId ClientUID, int ClientIP);
+//@HSL_BEGIN_XBOX
+function EndRemoteClientAuthSession(UniqueNetId ClientUID, IpAddr ClientIP);
+//@HSL_END_XBOX
 
 /**
  * Ends the clientside halves of all client auth sessions
@@ -438,7 +456,9 @@ function EndAllRemoteClientAuthSessions();
  * @param OutAuthTicketUID	Outputs the UID of the auth data, which is used to verify the auth session on the client
  * @return			whether or not the local half of the auth session was kicked off successfully
  */
-function bool CreateServerAuthSession(UniqueNetId ClientUID, int ClientIP, int ClientPort, out int OutAuthTicketUID);
+//@HSL_BEGIN_XBOX
+function bool CreateServerAuthSession(UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort, out int OutAuthTicketUID);
+//@HSL_END_XBOX
 
 /**
  * Kicks off asynchronous verification and setup of a server auth session, on the client;
@@ -449,7 +469,9 @@ function bool CreateServerAuthSession(UniqueNetId ClientUID, int ClientIP, int C
  * @param AuthTicketUID		The UID of the auth data sent by the server (as obtained through OnServerAuthResponse)
  * @return			whether or not asynchronous verification was kicked off successfully
  */
-function bool VerifyServerAuthSession(UniqueNetId ServerUID, int ServerIP, int AuthTicketUID);
+//@HSL_BEGIN_XBOX
+function bool VerifyServerAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int AuthTicketUID);
+//@HSL_END_XBOX
 
 /**
  * Ends the serverside half of a server auth session
@@ -458,7 +480,9 @@ function bool VerifyServerAuthSession(UniqueNetId ServerUID, int ServerIP, int A
  * @param ClientUID		The UID of the client
  * @param ClientIP		The IP address of the client
  */
-function EndLocalServerAuthSession(UniqueNetId ClientUID, int ClientIP);
+//@HSL_BEGIN_XBOX
+function EndLocalServerAuthSession(UniqueNetId ClientUID, IpAddr ClientIP);
+//@HSL_END_XBOX
 
 /**
  * Ends the clientside half of a server auth session
@@ -467,7 +491,9 @@ function EndLocalServerAuthSession(UniqueNetId ClientUID, int ClientIP);
  * @param ServerUID		The UID of the server
  * @param ServerIP		The external/public IP address of the server
  */
-function EndRemoteServerAuthSession(UniqueNetId ServerUID, int ServerIP);
+//@HSL_BEGIN_XBOX
+function EndRemoteServerAuthSession(UniqueNetId ServerUID, IpAddr ServerIP);
+//@HSL_END_XBOX
 
 /**
  * Ends the serverside halves of all server auth sessions
@@ -576,7 +602,9 @@ function bool GetServerUniqueId(out UniqueNetId OutServerUID);
  * @param OutServerIP		The public IP of the server (or, for platforms which don't support it, the local IP)
  * @param OutServerPort		The port of the server
  */
-function bool GetServerAddr(out int OutServerIP, out int OutServerPort);
+//@HSL_BEGIN_XBOX
+function bool GetServerAddr(out IpAddr OutServerIP, out int OutServerPort);
+//@HSL_END_XBOX
 
 
 

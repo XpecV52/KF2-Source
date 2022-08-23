@@ -28,6 +28,7 @@ DefaultProperties
 	//Interval=0.25f INTERVAL IS OVERRIDDEN BY ITS PROJECTILE
 	MaxTime=2.0
 
+	ExplosionLightPriority=LPP_Low
 	LoopStartEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'
     LoopStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_Residual_Fire_Loop'
 }

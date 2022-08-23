@@ -506,7 +506,14 @@ function GetReservedTotals(out int Human, out int Zed)
 function byte PickTeam(byte Current, Controller C, const out UniqueNetId PlayerId)
 {
     local int Group;
-
+`if(`notdefined(ShippingPC))
+	// Allow us to force join as the zed team if we pass 128 as our team ID to the command line
+	if( Current == 128 )
+	{
+		`log( "[DEBUGVERSUS] Force joining zed team using ?Team=128 from command line!" );
+		return 1;
+	}
+`endif
 	Group = GetPlayerGroup(PlayerId);
 	if (Group == INDEX_NONE)
 	{

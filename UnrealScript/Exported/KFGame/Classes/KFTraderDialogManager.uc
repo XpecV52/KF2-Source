@@ -901,6 +901,10 @@ simulated function PlayPlayerSurvivedLastWaveDialog( KFPlayerController KFPC )
 	BestOptionID = -1;
 
 	KFPH = KFPawn_Human( KFPC.Pawn );
+	if( KFPH == none )
+	{
+		return;
+	}
 
 	if( KFPC.MatchStats.GetHealGivenInWave() >= 200 )
 	{

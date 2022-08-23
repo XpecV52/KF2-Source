@@ -174,7 +174,7 @@ simulated function SpawnImpactDecal(Vector HitLocation, Vector HitNormal, Actor 
     local MaterialInterface MI;
     local MaterialInstanceTimeVarying MITV_Decal;
     local int DecalMaterialsLength;
-    local float DecalSize;
+    local float DecalSize, DecalThickness;
 
     DecalMaterialsLength = ImpactEffect.DecalMaterials.Length;
     if(DecalMaterialsLength > 0)
@@ -183,22 +183,39 @@ simulated function SpawnImpactDecal(Vector HitLocation, Vector HitNormal, Actor 
         if(MI != none)
         {
             DecalSize = RandRange(ImpactEffect.DecalMinSize, ImpactEffect.DecalMaxSize);
+            if(ShouldExtendDecalThickness(HitActor))
+            {
+                DecalThickness = DecalSize * 2.2;                
+            }
+            else
+            {
+                DecalThickness = 10;
+            }
             if(MaterialInstanceTimeVarying(MI) != none)
             {
                 if(Terrain(HitActor) == none)
                 {
                     MITV_Decal = new (self) Class'MaterialInstanceTimeVarying';
                     MITV_Decal.SetParent(MI);
-                    ImpactEffectDecalManager.SpawnDecal(MITV_Decal, HitLocation, rotator(-HitNormal), DecalSize, DecalSize, 10, false, ((ImpactEffect.bNoDecalRotation) ? 0 : FRand() * 360), HitInfo.HitComponent, true, false, HitInfo.BoneName, HitInfo.Item, HitInfo.LevelIndex);
+                    ImpactEffectDecalManager.SpawnDecal(MITV_Decal, HitLocation, rotator(-HitNormal), DecalSize, DecalSize, DecalThickness, false, ((ImpactEffect.bNoDecalRotation) ? 0 : FRand() * 360), HitInfo.HitComponent, true, false, HitInfo.BoneName, HitInfo.Item, HitInfo.LevelIndex);
                     MITV_Decal.SetScalarStartTime(ImpactEffect.DecalDissolveParamName, ImpactEffect.DecalDuration);
                 }                
             }
             else
             {
-                ImpactEffectDecalManager.SpawnDecal(MI, HitLocation, rotator(-HitNormal), DecalSize, DecalSize, 10, false, ((ImpactEffect.bNoDecalRotation) ? 0 : FRand() * 360), HitInfo.HitComponent, true, false, HitInfo.BoneName, HitInfo.Item, HitInfo.LevelIndex, ImpactEffect.DecalDuration);
+                ImpactEffectDecalManager.SpawnDecal(MI, HitLocation, rotator(-HitNormal), DecalSize, DecalSize, DecalThickness, false, ((ImpactEffect.bNoDecalRotation) ? 0 : FRand() * 360), HitInfo.HitComponent, true, false, HitInfo.BoneName, HitInfo.Item, HitInfo.LevelIndex, ImpactEffect.DecalDuration);
             }
         }
     }
+}
+
+static function bool ShouldExtendDecalThickness(Actor HitActor)
+{
+    if((((HitActor != none) && !HitActor.bGameRelevant) && HitActor.bStatic) && HitActor.IsA('Landscape'))
+    {
+        return true;
+    }
+    return false;
 }
 
 static simulated function GetImpactEffect(PhysicalMaterial HitMaterial, out MaterialImpactEffect out_ImpactEffect, KFImpactEffectInfo ImpactEffectInfo)

@@ -31,8 +31,8 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
-    SpareAmmoCapacity=45
-    InitialSpareMags=3
+    SpareAmmoCapacity=57
+    InitialSpareMags=4
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
@@ -57,7 +57,7 @@ defaultproperties
     RecoilISMinPitchLimit=65485
     HippedRecoilModifier=1.25
     FallingRecoilModifier=1.5
-    AssociatedPerkClass=Class'KFGame.KFPerk_Firebug'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

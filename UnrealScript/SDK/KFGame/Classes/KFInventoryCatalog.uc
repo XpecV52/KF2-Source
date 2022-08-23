@@ -18,6 +18,7 @@ enum ECrateSeries
 	Ecrate_Exhibit,
 	Ecrate_EliteMedic,
 	Ecrate_Victorian,
+	Ecrate_MaceShield,
 	ECrate_HorzineSupply_S1,
 	ECrate_HorzineSupply_S2,
 	ECrate_HorzineSupply_S3,
@@ -31,6 +32,13 @@ enum ECrateSeries
 	ECrate_PSNHorzineSupply_CS2,
 	ECrate_PSNHorzineSupply_WS1,
 	ECrate_PSNHorzineSupply_WS2,
+	ECrate_PSNHorzineSupply_WS3,
+	ECrate_HorzineSupply_S10,
+	ECrate_HorzineSupply_S11,
+	ECrate_Emote_S1,
+	Ecrate_TacticalHorzineMKII,
+	ECrate_HorzineSupply_S12,
+	ECrate_Deepstrike,
 };
 
 enum EItemDisplayContainerType
@@ -110,4 +118,12 @@ DefaultProperties
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS2]=(ContainerID=4305, KeyID=4303, ItemSeriesName=psncrate_cs2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS1]=(ContainerID=4307, KeyID=4303, ItemSeriesName=psncrate_ws1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS2]=(ContainerID=4306, KeyID=4303, ItemSeriesName=psncrate_ws2, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS3]=(ContainerID=4569, KeyID=4303, ItemSeriesName=psncrate_ws3, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_HorzineSupply_S10]=(ContainerID=4499, KeyID=4501, ItemSeriesName=horzine10, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_HorzineSupply_S11]=(ContainerID=4500, KeyID=4502, ItemSeriesName=horzine11, ContainerType=IDT_Crate)
+	ItemKeyArray[Ecrate_TacticalHorzineMKII]=(ContainerID=4514, KeyID=4513, ItemSeriesName=tacticalhorzineII, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_MaceShield]=(ContainerID=4561, KeyID=4562, ItemSeriesName=maceshield, ContainerType=IDT_USB)
+	ItemKeyArray[ECrate_Emote_S1]=(ContainerID=4541, KeyID=4540, ItemSeriesName=emote1, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_HorzineSupply_S12]=(ContainerID=4604, KeyID=4603, ItemSeriesName=horzine12, ContainerType=IDT_Crate)
+	ItemKeyArray[Ecrate_Deepstrike]=(ContainerID=4593, KeyID=4594, ItemSeriesName=deepstrike, ContainerType=IDT_USB)
 }

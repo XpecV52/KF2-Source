@@ -19,7 +19,6 @@ var bool bPendingDoshUpdate;
 var int TotalBlocks;
 var byte MaxBlocks;
 var int PrevArmor;
-var array<STraderItem> ShopWeaponList;
 var int CostPerAutofillCycle;
 var int DoshBuffer;
 
@@ -256,7 +255,7 @@ function SellOnPerkWeapons()
 
     if(I < OwnedItemList.Length)
     {
-        if(((OwnedItemList[I].DefaultItem.AssociatedPerkClass != none) && OwnedItemList[I].DefaultItem.AssociatedPerkClass == Outer.CurrentPerk.Class) && OwnedItemList[I].DefaultItem.BlocksRequired != 255)
+        if(((OwnedItemList[I].DefaultItem.AssociatedPerkClasses.Length > 0) && OwnedItemList[I].DefaultItem.AssociatedPerkClasses[0] == Outer.CurrentPerk.Class) && OwnedItemList[I].DefaultItem.BlocksRequired != 255)
         {
             SellWeapon(OwnedItemList[I], I);
             I = -1;
@@ -275,7 +274,7 @@ function SellOffPerkWeapons()
 
     if(I < OwnedItemList.Length)
     {
-        if(((OwnedItemList[I].DefaultItem.AssociatedPerkClass != Outer.CurrentPerk.Class) && OwnedItemList[I].DefaultItem.BlocksRequired != 255) && OwnedItemList[I].SellPrice != 0)
+        if(((OwnedItemList[I].DefaultItem.AssociatedPerkClasses[0] != Outer.CurrentPerk.Class) && OwnedItemList[I].DefaultItem.BlocksRequired != 255) && OwnedItemList[I].SellPrice != 0)
         {
             if(Outer.CurrentPerk.AutoBuyLoadOutPath.Find(OwnedItemList[I].DefaultItem.WeaponDef == -1)
             {
@@ -365,7 +364,7 @@ function int GetFillArmorCost()
 {
     local float ArmorPercentage, FillCost, ArmorPricePerPercent;
 
-    ArmorPercentage = (float(ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount) / float(ArmorItem.MaxSpareAmmo)) * float(100);
+    ArmorPercentage = (float(ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount) / float(ArmorItem.MaxSpareAmmo)) * 100;
     ArmorPricePerPercent = float(ArmorItem.AmmoPricePerMagazine);
     FillCost = float(FCeil(ArmorPercentage * ArmorPricePerPercent));
     return int(FillCost);
@@ -373,19 +372,22 @@ function int GetFillArmorCost()
 
 function int FillArmor()
 {
-    local float ArmorPricePerPercent, FillCost, PercentArmorBought;
+    local float ArmorPricePerPercent, FillCost, PercentBoughtUnit, PercentArmorBought;
     local int ActualArmorPointsAvailable;
 
     FillCost = float(GetFillArmorCost());
     ActualArmorPointsAvailable = ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount;
-    PercentArmorBought = (float(ActualArmorPointsAvailable) / float(ArmorItem.MaxSpareAmmo)) * float(100);
+    PercentBoughtUnit = float(ActualArmorPointsAvailable) / float(ArmorItem.MaxSpareAmmo);
+    PercentArmorBought = PercentBoughtUnit * 100;
     if(FillCost > float(TotalDosh))
     {
         ArmorPricePerPercent = float(ArmorItem.AmmoPricePerMagazine);
         PercentArmorBought = float(TotalDosh) / ArmorPricePerPercent;
+        PercentBoughtUnit = PercentArmorBought / 100;
         FillCost = ArmorPricePerPercent * PercentArmorBought;
     }
-    ArmorItem.SpareAmmoCount = int(FMin(float(ArmorItem.SpareAmmoCount) + PercentArmorBought, float(ArmorItem.MaxSpareAmmo)));
+    PercentArmorBought = (((PercentArmorBought > 0) && PercentArmorBought < 1) ? 1 : PercentArmorBought);
+    ArmorItem.SpareAmmoCount = int(FMin(float(ArmorItem.SpareAmmoCount) + (PercentBoughtUnit * float(ArmorItem.MaxSpareAmmo)), float(ArmorItem.MaxSpareAmmo)));
     BoughtAmmo(int(PercentArmorBought), int(FillCost), 1);
     return int(FillCost);
 }
@@ -772,9 +774,9 @@ function InitializeOwnedItemList()
         GrenadeItem.MaxSpareAmmo = KFP.GetPerk().MaxGrenadeCount;
         GrenadeItem.AmmoPricePerMagazine = TraderItems.GrenadePrice;
         GrenadeItem.DefaultItem.WeaponDef = Outer.CurrentPerk.GetGrenadeWeaponDef();
-        GrenadeItem.DefaultItem.AssociatedPerkClass = Outer.CurrentPerk.Class;
+        GrenadeItem.DefaultItem.AssociatedPerkClasses[0] = Outer.CurrentPerk.Class;
         Inv = MyKFIM.InventoryChain;
-        J0x39B:
+        J0x39D:
 
         if(Inv != none)
         {
@@ -784,7 +786,7 @@ function InitializeOwnedItemList()
                 SetWeaponInformation(KFW);
             }
             Inv = Inv.Inventory;
-            goto J0x39B;
+            goto J0x39D;
         }
         if((Outer.MyGFxManager != none) && Outer.MyGFxManager.TraderMenu != none)
         {
@@ -926,7 +928,7 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
     local bool bAddingDual;
 
     WeaponInfo.MagazineCapacity = DefaultItem.MagazineCapacity;
-    Outer.CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass,, DefaultItem.ClassName);
+    Outer.CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClasses,, DefaultItem.ClassName);
     WeaponInfo.MaxSpareAmmo = DefaultItem.MaxSpareAmmo;
     Outer.CurrentPerk.ModifyMaxSpareAmmoAmount(none, WeaponInfo.MaxSpareAmmo, DefaultItem);
     WeaponInfo.MaxSpareAmmo += WeaponInfo.MagazineCapacity;
@@ -944,18 +946,21 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
             if(OwnedItemList[OwnedSingleIdx].DefaultItem.ClassName == DefaultItem.SingleClassName)
             {
                 SingleDualAmmoDiff = OwnedItemList[OwnedSingleIdx].SpareAmmoCount - WeaponInfo.SpareAmmoCount;
-                WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount;
-                goto J0x3E4;
+                if(OwnedItemList[OwnedSingleIdx].SpareAmmoCount >= WeaponInfo.SpareAmmoCount)
+                {
+                    WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount;
+                }
+                goto J0x42B;
             }
             ++ OwnedSingleIdx;
             goto J0x2D0;
         }
     }
-    J0x3E4:
+    J0x42B:
 
-    Outer.CurrentPerk.MaximizeSpareAmmoAmount(DefaultItem.AssociatedPerkClass, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity);
+    Outer.CurrentPerk.MaximizeSpareAmmoAmount(DefaultItem.AssociatedPerkClasses, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity);
     WeaponInfo.SecondaryAmmoCount = DefaultItem.InitialSecondaryAmmo;
-    Outer.CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass, true, DefaultItem.ClassName);
+    Outer.CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClasses, true, DefaultItem.ClassName);
     Outer.CurrentPerk.ModifySpareAmmoAmount(none, WeaponInfo.SecondaryAmmoCount, DefaultItem, true);
     WeaponInfo.MaxSecondaryAmmo = DefaultItem.MaxSecondaryAmmo;
     Outer.CurrentPerk.ModifyMaxSpareAmmoAmount(none, WeaponInfo.MaxSecondaryAmmo, DefaultItem, true);
@@ -1075,7 +1080,7 @@ function int AddItemByPriority(out SItemInformation WeaponInfo)
         if(WeaponGroup < OwnedItemList[I].DefaultItem.InventoryGroup)
         {
             BestIndex = I;
-            goto J0x2B5;            
+            goto J0x2BE;            
         }
         else
         {
@@ -1084,14 +1089,14 @@ function int AddItemByPriority(out SItemInformation WeaponInfo)
                 if(float(WeaponPriority) > OwnedItemList[I].DefaultItem.GroupPriority)
                 {
                     BestIndex = I;
-                    goto J0x2B5;                    
+                    goto J0x2BE;                    
                 }
                 else
                 {
-                    if((float(WeaponPriority) == OwnedItemList[I].DefaultItem.GroupPriority) && Outer.CurrentPerk.Class == WeaponInfo.DefaultItem.AssociatedPerkClass)
+                    if((float(WeaponPriority) == OwnedItemList[I].DefaultItem.GroupPriority) && WeaponInfo.DefaultItem.AssociatedPerkClasses.Find(Outer.CurrentPerk.Class != -1)
                     {
                         BestIndex = I;
-                        goto J0x2B5;
+                        goto J0x2BE;
                     }
                 }                
             }
@@ -1103,7 +1108,7 @@ function int AddItemByPriority(out SItemInformation WeaponInfo)
         ++ I;
         goto J0x8C;
     }
-    J0x2B5:
+    J0x2BE:
 
     OwnedItemList.InsertItem(BestIndex, WeaponInfo;
     if(WeaponInfo.DefaultItem.WeaponDef.static.UsesSecondaryAmmo())
@@ -1135,8 +1140,8 @@ private native final function AddTransactionAmmo(byte ItemIndex, int Amount, boo
 
 defaultproperties
 {
-    GrenadeItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0))
-    ArmorItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0))
+    GrenadeItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1))
+    ArmorItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1))
     CostPerAutofillCycle=10
     DoshBuffer=150
 }

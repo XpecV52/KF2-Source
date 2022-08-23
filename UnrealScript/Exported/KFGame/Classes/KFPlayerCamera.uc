@@ -74,7 +74,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
-#linenumber 14;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;#linenumber 14;
 
 /** Implements typical third person camera. */
 var(Camera) editinline transient KFCustomizationCamera			CustomizationCam;
@@ -91,6 +92,11 @@ var(Camera) protected const  class<KFBossCamera>      			BossCameraClass;
 var(Camera) editinline transient KFFirstPersonCamera			FirstPersonCam;
 /** Class to use for first person camera. */
 var(Camera) protected const  class<GameCameraBase>      		FirstPersonCameraClass;
+
+/** Implements the Emote camera. */
+var(Camera) editinline transient KFEmoteCamera					EmoteCam;
+/** Class to use for viewing the Emote camera. */
+var(Camera) protected const  class<KFEmoteCamera>      			EmoteCameraClass;
 
 /*********************************************************************************************
  FOV Blending
@@ -125,6 +131,11 @@ function PostBeginPlay()
 	if ( (FirstPersonCam == None) && (FirstPersonCameraClass != None) )
 	{
 		FirstPersonCam = KFFirstPersonCamera( CreateCamera(FirstPersonCameraClass) );
+	}
+
+	if ( EmoteCam == None && EmoteCameraClass != None )
+	{
+		EmoteCam = KFEmoteCamera( CreateCamera(EmoteCameraClass) );
 	}
 }
 
@@ -273,6 +284,10 @@ protected function GameCameraBase FindBestCameraType(Actor CameraTarget)
 	{
 		return FirstPersonCam;
 	}
+	else if( CameraStyle == 'Emote' )
+	{
+		return EmoteCam;
+	}
 
 	return Super.FindBestCameraType(CameraTarget);
 }
@@ -284,6 +299,7 @@ defaultproperties
    CustomizationCameraClass=Class'KFGame.KFCustomizationCamera'
    BossCameraClass=Class'KFGame.KFBossCamera'
    FirstPersonCameraClass=Class'KFGame.KFFirstPersonCamera'
+   EmoteCameraClass=Class'KFGame.KFEmoteCamera'
    ThirdPersonCameraClass=Class'KFGame.KFThirdPersonCamera'
    DefaultFOV=90.000000
    FreeCamOffset=(X=0.000000,Y=0.000000,Z=68.000000)

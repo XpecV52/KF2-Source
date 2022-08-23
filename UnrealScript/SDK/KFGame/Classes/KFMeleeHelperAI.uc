@@ -139,13 +139,13 @@ function bool ShouldDealDamageToEnemy(Actor Target, optional float Range=MaxHitR
 	}
 
 	// Trace world and block iff block actors is set (ignore CanBecomeDynamic actors)
-	HitActor = Trace(HitLoc, HitNormal, Target.Location, Location, false,, HitInfo);
-	if( HitActor != None && HitInfo.HitComponent != None && HitInfo.HitComponent.BlockActors )
+	HitActor = Trace(HitLoc, HitNormal, Target.Location, Location, false,, HitInfo, TRACEFLAG_Blocking);
+	if( HitActor != None && HitInfo.HitComponent != None && HitInfo.HitComponent.BlockActors && (HitActor.bWorldGeometry || HitActor.bGameRelevant) )
 	{
 		// Try again at the EyeHeight - Both must fail to obstruct damage
 		TraceOffset = Instigator.BaseEyeHeight * vect(0,0,1);
-		HitActor = Trace(HitLoc, HitNormal, Target.Location + TraceOffset, Location + TraceOffset, false,, HitInfo);
-		if( HitActor != None && HitInfo.HitComponent != None && HitInfo.HitComponent.BlockActors )
+		HitActor = Trace(HitLoc, HitNormal, Target.Location + TraceOffset, Location + TraceOffset, false,, HitInfo, TRACEFLAG_Blocking);
+		if( HitActor != None && HitInfo.HitComponent != None && HitInfo.HitComponent.BlockActors && (HitActor.bWorldGeometry || HitActor.bGameRelevant) )
 		{
 			return FALSE;
 		}
@@ -424,8 +424,10 @@ protected function bool DoSwipeImpact(
 		}
 
 		// Don't let them melee the target through a wall
-		HitActor = Trace( HitLoc, HitNorm, P.Location + (P.BaseEyeHeight * vect(0,0,1)), Location, false,,, TRACEFLAG_Blocking );
-		if( HitActor != none && HitActor != P )
+		HitActor = Trace( HitLoc, HitNorm, P.Location + (P.BaseEyeHeight * vect(0,0,1)), Location, false,,, TRACEFLAG_Blocking );	
+		// KAssets block non-actor traces even if they're not world geometry. Double check that what we've actually hit
+		// is really world geometry, or is at least GameRelevant. -MattF
+		if( HitActor != none && HitActor != P && (HitActor.bWorldGeometry || HitActor.bGameRelevant) )
 		{
 			`log(GetFuncName()@"rejected:"@P$", melee obstruction:"@HitActor, bLogMelee);
 			continue;

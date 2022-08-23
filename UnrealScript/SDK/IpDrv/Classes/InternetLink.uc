@@ -28,13 +28,6 @@ cpptext
 //-----------------------------------------------------------------------------
 // Types & Variables.
 
-// An IP address.
-struct IpAddr
-{
-	var int Addr;
-	var int Port;
-};
-
 // Data receive mode.
 // Cannot be set in default properties.
 var enum ELinkMode

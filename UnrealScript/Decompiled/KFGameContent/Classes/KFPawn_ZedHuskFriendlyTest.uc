@@ -26,6 +26,7 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
 defaultproperties
 {
     ExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedHuskFriendlyTest.ExploTemplate0'
+    ChestLightComponent=PointLightComponent'Default__KFPawn_ZedHuskFriendlyTest.ChestLightComponent0'
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHuskFriendlyTest.MeleeHelper'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

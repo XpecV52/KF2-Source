@@ -23,20 +23,24 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
     }
 }
 
-function ANIMNOTIFY_HuskFireballAttack()
+simulated function ANIMNOTIFY_HuskFireballAttack()
 {
     local float FireballStartTime;
 
-    if(IsDoingSpecialMove(23))
+    if(WorldInfo.NetMode != NM_Client)
     {
-        FireballStartTime = KFSM_PlayerHusk_FireBallAttack(SpecialMoves[SpecialMove]).HoldStartTime;
-        FireballStrength = FClamp((WorldInfo.TimeSeconds - FireballStartTime) * FireballStrengthPerSecond, FireballStrengthRange.X, FireballStrengthRange.Y);        
+        if(IsDoingSpecialMove())
+        {
+            FireballStartTime = KFSM_PlayerHusk_FireBallAttack(SpecialMoves[SpecialMove]).HoldStartTime;
+            FireballStrength = FClamp((WorldInfo.TimeSeconds - FireballStartTime) * FireballStrengthPerSecond, FireballStrengthRange.X, FireballStrengthRange.Y);            
+        }
+        else
+        {
+            FireballStrength = 1;
+        }
+        ShootFireball();
     }
-    else
-    {
-        FireballStrength = 1;
-    }
-    ShootFireball();
+    SetFireLightEnabled(false);
 }
 
 function ShootFireball()
@@ -59,7 +63,7 @@ function ShootFireball()
         Mesh.GetSocketWorldLocationAndRotation('FireballSocket', SocketLocation);
         Dir = vector(Rotation);
         TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
-        TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + (vector(PC.PlayerCamera.CameraCache.POV.Rotation) * float(100000));
+        TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + (vector(PC.PlayerCamera.CameraCache.POV.Rotation) * 10000);
         MyFireball = Spawn(FireballClass, self,, SocketLocation, Rotation);
         if(MyFireball == none)
         {
@@ -155,6 +159,7 @@ defaultproperties
     object end
     // Reference: KFGameExplosion'Default__KFPawn_ZedHusk_Versus.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
+    ChestLightComponent=PointLightComponent'Default__KFPawn_ZedHusk_Versus.ChestLightComponent0'
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=75,Z=40),OffsetMid=(X=-160,Y=60,Z=0),OffsetLow=(X=-220,Y=75,Z=50))
     begin object name=MeleeHelper class=KFMeleeHelperAI

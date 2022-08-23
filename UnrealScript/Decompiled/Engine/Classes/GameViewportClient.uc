@@ -125,6 +125,8 @@ var transient bool bShowSystemMouseCursor;
 var bool bDisableWorldRendering;
 var bool bCapturedWorldRendering;
 var config bool bDebugNoGFxUI;
+var bool bAllowInputFromMultipleControllers;
+var bool bNeedsNewGamepadPairing;
 var TitleSafeZoneArea TitleSafeZone;
 var array<SplitscreenData> SplitscreenInfo;
 var protected GameViewportClient.ESplitScreenType DesiredSplitscreenType;
@@ -351,7 +353,7 @@ function bool CreateInitialPlayer(out string OutError)
     ControllerId = 0;
     J0x0B:
 
-    if(ControllerId < 4)
+    if(ControllerId < 24)
     {
         if(UIController.IsLoggedIn(ControllerId))
         {
@@ -369,7 +371,7 @@ function bool CreateInitialPlayer(out string OutError)
         ControllerId = 0;
         J0xBA:
 
-        if(ControllerId < 4)
+        if(ControllerId < 24)
         {
             if(UIController.IsGamepadConnected(ControllerId))
             {

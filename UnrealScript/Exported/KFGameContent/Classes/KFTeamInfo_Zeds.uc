@@ -13,7 +13,7 @@ class KFTeamInfo_Zeds extends KFTeamInfo_Human;
 simulated function string GetHumanReadableName()
 {
     // Temp team name hax - Ramm
-    return class'KFCommon_LocalizedStrings'.default.HumanString @TeamName;
+    return class'KFCommon_LocalizedStrings'.default.ZedString @TeamName;
 }
 
 defaultproperties

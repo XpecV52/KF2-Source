@@ -61,7 +61,7 @@ defaultproperties
     RecoilISMinYawLimit=65385
     RecoilISMaxPitchLimit=375
     RecoilISMinPitchLimit=65460
-    AssociatedPerkClass=Class'KFGame.KFPerk_Sharpshooter'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

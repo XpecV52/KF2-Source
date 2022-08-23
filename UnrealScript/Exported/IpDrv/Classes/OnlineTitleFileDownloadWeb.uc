@@ -114,7 +114,7 @@ native function bool UncompressTitleFileContents(EMcpFileCompressionType FileCom
  *
  * @return true if the calls starts successfully, false otherwise
  */
-function bool ReadTitleFile(string FileToRead)
+function bool ReadTitleFile(string FileToRead, optional EOnlineFileType FileType = OFT_Binary)
 {
 	local int FileIndex,Idx;
 	local string URL;
@@ -312,7 +312,7 @@ native function bool ClearDownloadedFile(string FileName);
 /**
  * Async call to request a list of files (returned as string) from EMS
  */
-function RequestTitleFileList()
+function bool RequestTitleFileList()
 {
 	local HttpRequestInterface HTTPRequest;
 	local string URL;
@@ -330,7 +330,9 @@ function RequestTitleFileList()
 	{
 		LogInternal("("$Name$") OnlineTitleFileDownloadWeb::"$GetStateName()$":"$GetFuncName()@"HTTPRequest object missing");
 	}
+	return true;
 }
+
 
 /**
  * Delegate for when the EMS file list is received
@@ -346,15 +348,17 @@ function OnFileListReceived(HttpRequestInterface Request, HttpResponseInterface 
 {
 	local int Index;
 	local delegate<OnRequestTitleFileListComplete> RequestTitleFileListDelegate;
-	local string ResponseStr;
+	local array<string> ResponseStr;
 	local bool bSuccess;
+
+	ResponseStr.length = 0;
 
 	if (bDidSucceed)
 	{
 		if (Response != None &&
 			Response.GetResponseCode() == 200)
 		{
-			ResponseStr = Response.GetContentAsString();
+			ResponseStr.AddItem(Response.GetContentAsString());
 			bSuccess = true;
 		}
 		else

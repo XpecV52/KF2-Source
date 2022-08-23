@@ -33,10 +33,26 @@ struct native WaveformSample
      *        "on". This cuts the data needed to store the waveforms in half.
      */
     var() byte RightAmplitude;
+    /**  
+     *Use a byte with a range of 0 to 100 to represent the percentage of
+     *        "on". This cuts the data needed to store the waveforms in half.//@HSL_BEGIN_XBOX
+
+     */
+    var() byte LeftTriggerAmplitude;
+    /**  
+     *Use a byte with a range of 0 to 100 to represent the percentage of
+     *        "on". This cuts the data needed to store the waveforms in half.//@HSL_BEGIN_XBOX
+
+     */
+    var() byte RightTriggerAmplitude;
     /** For function generated samples, the type of function */
     var() ForceFeedbackWaveform.EWaveformFunction LeftFunction;
     /** For function generated samples, the type of function */
     var() ForceFeedbackWaveform.EWaveformFunction RightFunction;
+    /** For function generated samples, the type of function */
+    var() ForceFeedbackWaveform.EWaveformFunction LeftTriggerFunction;
+    /** For function generated samples, the type of function */
+    var() ForceFeedbackWaveform.EWaveformFunction RightTriggerFunction;
     /** The amount of time this sample plays */
     var() float Duration;
 
@@ -44,8 +60,12 @@ struct native WaveformSample
     {
         LeftAmplitude=0
         RightAmplitude=0
+        LeftTriggerAmplitude=0
+        RightTriggerAmplitude=0
         LeftFunction=EWaveformFunction.WF_Constant
         RightFunction=EWaveformFunction.WF_Constant
+        LeftTriggerFunction=EWaveformFunction.WF_Constant
+        RightTriggerFunction=EWaveformFunction.WF_Constant
         Duration=0
     }
 };

@@ -11,11 +11,113 @@ class KFPickupFactory extends PickupFactory
     hidecategories(Navigation,Lighting,LightColor,Force);
 
 var bool bToBeActivated;
+/** If TRUE, will not be added to the standard pickup list, and relies on kismet to enable/disable */
+var() bool bKismetDriven;
+/** [KISMET ONLY] Overrides the respawn time set in the InventoryType by the RespawnTime property */
+var() bool bUseRespawnTimeOverride<EditCondition=bKismetDriven>;
+/** [KISMET ONLY] Whether this pickup factory is enabled at the start of play, or spawns in disabled */
+var() bool bEnabledAtStart<EditCondition=bKismetDriven>;
+var transient bool bKismetEnabled;
+/** [KISMET ONLY] Time, in seconds, that it will take this pickup to respawn again after being picked up */
+var() float RespawnTime<EditCondition=bUseRespawnTimeOverride|ClampMin=1.0|Multiple=1.0>;
 
 function Reset()
 {
-    bToBeActivated = false;
-    GotoState('Pickup');
+    if(bKismetDriven)
+    {
+        SetInitialState();        
+    }
+    else
+    {
+        bToBeActivated = false;
+        GotoState('Pickup');
+    }
+}
+
+simulated event SetInitialState()
+{
+    if(!bKismetDriven || Role < ROLE_Authority)
+    {
+        return;
+    }
+    bKismetEnabled = bEnabledAtStart;
+    if(bEnabledAtStart)
+    {
+        GotoState('Pickup');        
+    }
+    else
+    {
+        GotoState('Disabled');
+    }
+}
+
+function OnToggle(SeqAct_Toggle Action)
+{
+    if(!bKismetDriven)
+    {
+        return;
+    }
+    if(Action.InputLinks[0].bHasImpulse)
+    {
+        bKismetEnabled = true;        
+    }
+    else
+    {
+        if(Action.InputLinks[1].bHasImpulse)
+        {
+            bKismetEnabled = false;            
+        }
+        else
+        {
+            if(Action.InputLinks[2].bHasImpulse)
+            {
+                bKismetEnabled = !bKismetEnabled;
+            }
+        }
+    }
+    if(bKismetEnabled)
+    {
+        if(!IsInState('Pickup'))
+        {
+            GotoState('Pickup');
+        }        
+    }
+    else
+    {
+        if(!IsInState('Disabled'))
+        {
+            GotoState('Disabled');
+        }
+    }
+}
+
+function SetRespawn()
+{
+    if(bKismetDriven)
+    {
+        if(!bKismetEnabled)
+        {
+            GotoState('Disabled');            
+        }
+        else
+        {
+            if(bUseRespawnTimeOverride)
+            {
+                GotoState('Sleeping');
+            }
+        }
+        return;
+    }
+    super.SetRespawn();
+}
+
+function float GetRespawnTime()
+{
+    if(bKismetDriven && bUseRespawnTimeOverride)
+    {
+        return RespawnTime;
+    }
+    return super.GetRespawnTime();
 }
 
 function StartSleeping()
@@ -26,6 +128,10 @@ function StartSleeping()
 
 function bool DelayRespawn()
 {
+    if(bKismetDriven)
+    {
+        return false;
+    }
     return true;
 }
 
@@ -64,6 +170,7 @@ simulated function SetPickupVisible()
 
 defaultproperties
 {
+    RespawnTime=45
     bAllowPathConnections=false
     bNoAutoConnect=true
     begin object name=CollisionCylinder class=CylinderComponent

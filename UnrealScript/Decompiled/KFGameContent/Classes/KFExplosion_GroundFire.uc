@@ -22,4 +22,5 @@ defaultproperties
 {
     LoopStartEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'
     LoopStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_Residual_Fire_Loop'
+    ExplosionLightPriority=LightPoolPriority.LPP_Low
 }

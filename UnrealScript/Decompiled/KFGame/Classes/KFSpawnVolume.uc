@@ -62,8 +62,7 @@ var() int MaxSpawnMarkers<ClampMin=1>;
 var() array<DoorListInfo> DoorList;
 /** Rotation to use when spawning pawns from this volume */
 var() Rotator SpawnRotation;
-var Color DefaultSpawnMarkerColor;
-var Color SpawnInteriorBoxColor;
+var bool bCanUseForSpawning;
 var bool bNoCollisionFailForSpawn;
 /** Whether this volume should more aggressively check its visibility against where the viewer is moving to */
 var() bool bUsePredictiveVisibilityChecks;
@@ -81,6 +80,8 @@ var const transient bool bCachedVisibility;
 var deprecated bool bExclusiveBossVolumes;
 /** Use for debugging to exclude this volume from being used */
 var(Debug) bool bDisabled;
+var Color DefaultSpawnMarkerColor;
+var Color SpawnInteriorBoxColor;
 var BoxSphereBounds VisibilityBounds;
 /** What percentage of the spawn volume's size will the inner spawn bounds be? */
 var() Vector SpawnBoundsScale;
@@ -149,11 +150,37 @@ event UnTouch(Actor Other)
     }
 }
 
+simulated function OnToggle(SeqAct_Toggle Action)
+{
+    if(Action.InputLinks[0].bHasImpulse)
+    {
+        bCanUseForSpawning = true;        
+    }
+    else
+    {
+        if(Action.InputLinks[1].bHasImpulse)
+        {
+            bCanUseForSpawning = false;            
+        }
+        else
+        {
+            if(Action.InputLinks[2].bHasImpulse)
+            {
+                bCanUseForSpawning = !bCanUseForSpawning;
+            }
+        }
+    }
+}
+
 function bool IsValidForSpawn(KFSpawnVolume.ESquadType DesiredSquadType, Controller OtherController)
 {
     local string DebugText;
     local int I;
 
+    if(!bCanUseForSpawning)
+    {
+        return false;
+    }
     if(SpawnMarkerInfoList.Length == 0)
     {
         return false;
@@ -191,7 +218,7 @@ function bool IsValidForSpawn(KFSpawnVolume.ESquadType DesiredSquadType, Control
         return false;
     }
     I = 0;
-    J0x2D1:
+    J0x2E2:
 
     if(I < DoorList.Length)
     {
@@ -200,7 +227,7 @@ function bool IsValidForSpawn(KFSpawnVolume.ESquadType DesiredSquadType, Control
             return false;
         }
         ++ I;
-        goto J0x2D1;
+        goto J0x2E2;
     }
     if(IsVisible(DesiredSquadType == 0))
     {
@@ -215,6 +242,10 @@ event float RateVolume(Controller RateController, bool bTeleporting, float Telep
     local string DebugText;
     local Vector TextOffset;
 
+    if(!bCanUseForSpawning)
+    {
+        return -1;
+    }
     UsageRating = 1;
     if((NextSpawnTime > 0) && NextSpawnTime > WorldInfo.TimeSeconds)
     {
@@ -327,9 +358,10 @@ function HandleTeleportedTo()
 defaultproperties
 {
     MaxSpawnMarkers=11
+    bCanUseForSpawning=true
+    bMinimalDebugRatingChecks=true
     DefaultSpawnMarkerColor=(B=50,G=205,R=50,A=255)
     SpawnInteriorBoxColor=(B=0,G=69,R=255,A=255)
-    bMinimalDebugRatingChecks=true
     SpawnBoundsScale=(X=0.75,Y=0.75,Z=0.75)
     LargestSquadType=ESquadType.EST_Large
     DesirabilityMod=1
@@ -364,6 +396,7 @@ defaultproperties
     // Reference: KFSpawnRenderingComponent'Default__KFSpawnVolume.SpawnRenderer'
     Components(1)=SpawnRenderer
     bNoDelete=false
+    bForceAllowKismetModification=true
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end

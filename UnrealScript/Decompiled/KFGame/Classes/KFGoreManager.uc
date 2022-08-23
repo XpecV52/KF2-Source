@@ -66,6 +66,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;
 
 struct native PersistentSplatInfo
 {
@@ -301,11 +303,6 @@ final simulated function bool AllowMutilation()
 final simulated function bool AllowHeadless()
 {
     return DesiredGoreLevel <= 1;
-}
-
-static function float GetGibImpulseMax()
-{
-    return 0.1;
 }
 
 final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, name DismemberedBone, optional array<BloodJetSettings> BloodJets, optional array<BloodTrailSettings> BloodTrails, optional array<name> BloodMICParams)
@@ -609,25 +606,26 @@ simulated function CauseGibsAndApplyImpulse(KFPawn_Monster inPawn, class<KFDamag
     local name RBBoneName;
     local editinline ParticleSystemComponent PSC;
     local int NumGibs;
-    local float ModifiedImpulseLerpValue, ModifiedImpulse, GibImpulseMin;
+    local float ModifiedImpulseLerpValue, ModifiedImpulse, GibImpulseMin, GibImpulseMax;
 
     HitBoneName = 'None';
     MonsterInfo = inPawn.GetCharacterMonsterInfo();
-    GibImpulseMin = 0.1 / 2;
+    GibImpulseMax = InDmgType.default.GibImpulseScale;
+    GibImpulseMin = GibImpulseMax / 2;
     NumGibs = InGibBoneList.Length;
     ModifiedImpulseLerpValue = 1 - float(NumGibs / MonsterInfo.GoreJointSettings.Length);
-    ModifiedImpulse = Lerp(GibImpulseMin, 0.1, ModifiedImpulseLerpValue);
+    ModifiedImpulse = Lerp(GibImpulseMin, GibImpulseMax, ModifiedImpulseLerpValue);
     GibIdx = 0;
-    J0xCB:
+    J0xFB:
 
     if(GibIdx < InGibBoneList.Length)
     {
         GibBoneName = InGibBoneList[GibIdx];
         BoneLocation = inPawn.Mesh.GetBoneLocation(GibBoneName);
-        Impulse = InDmgType.default.RadialDamageImpulse * Normal(BoneLocation - InExplosionOrigin);
+        Impulse = InDmgType.default.RadialDamageImpulse * ((InDmgType.default.bPointImpulseTowardsOrigin) ? Normal((inPawn.Location - InExplosionOrigin) + (vect(0, 0, 1) * InDmgType.default.ImpulseOriginLift)) : Normal(BoneLocation - InExplosionOrigin));
         Impulse *= (MonsterInfo.ExplosionImpulseScale * ModifiedImpulse);
         JointIndex = 0;
-        J0x1C7:
+        J0x275:
 
         if(JointIndex < MonsterInfo.GoreJointSettings.Length)
         {
@@ -644,19 +642,19 @@ simulated function CauseGibsAndApplyImpulse(KFPawn_Monster inPawn, class<KFDamag
                     {
                         bPlayedBloodEffects = false;
                         JointIndex = 0;
-                        J0x3D6:
+                        J0x484:
 
                         if(!bPlayedBloodEffects && JointIndex < MonsterInfo.GoreJointSettings.Length)
                         {
                             if(MonsterInfo.GoreJointSettings[JointIndex].HitBoneName == HitBoneName)
                             {
                                 ExplosionBreakIdx = 0;
-                                J0x46A:
+                                J0x518:
 
                                 if(!bPlayedBloodEffects && ExplosionBreakIdx < MonsterInfo.GoreJointSettings[JointIndex].HitExplosionGore.Length)
                                 {
                                     BoneIdx = 0;
-                                    J0x4D2:
+                                    J0x580:
 
                                     if(BoneIdx < MonsterInfo.GoreJointSettings[JointIndex].HitExplosionGore[ExplosionBreakIdx].BreakBones.Length)
                                     {
@@ -665,30 +663,30 @@ simulated function CauseGibsAndApplyImpulse(KFPawn_Monster inPawn, class<KFDamag
                                         {
                                             AttachMutilationBloodEffects(inPawn, GibBoneName, ExplosiveBreakBone.BloodJets, ExplosiveBreakBone.BloodTrails, ExplosiveBreakBone.BloodMICParamName);
                                             bPlayedBloodEffects = true;
-                                            goto J0x660;
+                                            goto J0x70E;
                                         }
                                         ++ BoneIdx;
-                                        goto J0x4D2;
+                                        goto J0x580;
                                     }
-                                    J0x660:
+                                    J0x70E:
 
                                     ++ ExplosionBreakIdx;
-                                    goto J0x46A;
+                                    goto J0x518;
                                 }
                             }
                             ++ JointIndex;
-                            goto J0x3D6;
+                            goto J0x484;
                         }
                     }
                 }
             }
             ++ JointIndex;
-            goto J0x1C7;
+            goto J0x275;
         }
         RBBoneName = inPawn.GetRBBoneFromBoneName(GibBoneName);
         inPawn.Mesh.AddImpulse(Impulse, BoneLocation, RBBoneName);
         ++ GibIdx;
-        goto J0xCB;
+        goto J0xFB;
     }
     if((bBrokenConstraint && !inPawn.bPlayedExplosionEffect) && ExplosionEffect != none)
     {

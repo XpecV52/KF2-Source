@@ -63,6 +63,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;
 
 enum EItemType
 {
@@ -113,7 +115,7 @@ struct native SItemInformation
         MagazineCapacity=0
         AutoFillDosh=0
         AmmoPricePerMagazine=0
-        DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0)
+        DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1)
     }
 };
 
@@ -354,10 +356,10 @@ function SetTraderItemDetails(int ItemIndex)
     SelectedList = 0;
     if((ItemDetails != none) && ShopContainer != none)
     {
-        if((MyKFPC.GetPurchaseHelper().ShopWeaponList.Length >= 0) && ItemIndex < MyKFPC.GetPurchaseHelper().ShopWeaponList.Length)
+        if((MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.Length >= 0) && ItemIndex < MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.Length)
         {
             SelectedItemIndex = byte(ItemIndex);
-            SelectedItem = MyKFPC.GetPurchaseHelper().ShopWeaponList[ItemIndex];
+            SelectedItem = MyKFPC.GetPurchaseHelper().TraderItems.SaleItems[ItemIndex];
             bCanAfford = MyKFPC.GetPurchaseHelper().GetCanAfford(MyKFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(SelectedItem));
             bCanCarry = MyKFPC.GetPurchaseHelper().CanCarry(SelectedItem);
             if(!bCanAfford || !bCanCarry)
@@ -466,19 +468,19 @@ function RefreshShopItemList(KFGFxMenu_Trader.TabIndices TabIndex, byte FilterIn
         switch(TabIndex)
         {
             case 0:
-                ShopContainer.RefreshWeaponListByPerk(FilterIndex, MyKFPC.GetPurchaseHelper().ShopWeaponList);
+                ShopContainer.RefreshWeaponListByPerk(FilterIndex, MyKFPC.GetPurchaseHelper().TraderItems.SaleItems);
                 FilterContainer.SetPerkFilterData(FilterIndex);
                 break;
             case 1:
-                ShopContainer.RefreshItemsByType(FilterIndex, MyKFPC.GetPurchaseHelper().ShopWeaponList);
+                ShopContainer.RefreshItemsByType(FilterIndex, MyKFPC.GetPurchaseHelper().TraderItems.SaleItems);
                 FilterContainer.SetTypeFilterData(FilterIndex);
                 break;
             case 2:
-                ShopContainer.RefreshFavoriteItems(MyKFPC.GetPurchaseHelper().ShopWeaponList);
+                ShopContainer.RefreshFavoriteItems(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems);
                 FilterContainer.ClearFilters();
                 break;
             case 3:
-                ShopContainer.RefreshAllItems(MyKFPC.GetPurchaseHelper().ShopWeaponList);
+                ShopContainer.RefreshAllItems(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems);
                 FilterContainer.ClearFilters();
                 break;
             default:
@@ -488,9 +490,9 @@ function RefreshShopItemList(KFGFxMenu_Trader.TabIndices TabIndex, byte FilterIn
         FilterContainer.SetInt("selectedFilter", FilterIndex);
         if(SelectedList == 0)
         {
-            if(SelectedItemIndex >= MyKFPC.GetPurchaseHelper().ShopWeaponList.Length)
+            if(SelectedItemIndex >= MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.Length)
             {
-                SelectedItemIndex = byte(MyKFPC.GetPurchaseHelper().ShopWeaponList.Length - 1);
+                SelectedItemIndex = byte(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.Length - 1);
             }
             SetTraderItemDetails(SelectedItemIndex);
             ShopContainer.SetSelectedIndex(SelectedItemIndex);
@@ -561,9 +563,9 @@ function Callback_BuyOrSellItem()
     {
         if(SelectedList == 0)
         {
-            ShopItem = MyKFPC.GetPurchaseHelper().ShopWeaponList[SelectedItemIndex];
+            ShopItem = MyKFPC.GetPurchaseHelper().TraderItems.SaleItems[SelectedItemIndex];
             MyKFPC.GetPurchaseHelper().PurchaseWeapon(ShopItem);
-            SetNewSelectedIndex(MyKFPC.GetPurchaseHelper().ShopWeaponList.Length);
+            SetNewSelectedIndex(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.Length);
             SetTraderItemDetails(SelectedItemIndex);
             ShopContainer.ActionScriptVoid("itemBought");            
         }
@@ -588,7 +590,7 @@ function Callback_BuyOrSellItem()
     {
         if(SelectedList == 0)
         {
-            ShopItem = MyKFPC.GetPurchaseHelper().ShopWeaponList[SelectedItemIndex];
+            ShopItem = MyKFPC.GetPurchaseHelper().TraderItems.SaleItems[SelectedItemIndex];
             MyKFPC.PlayTraderSelectItemDialog(!MyKFPC.GetPurchaseHelper().GetCanAfford(MyKFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(ShopItem)), !MyKFPC.GetPurchaseHelper().CanCarry(ShopItem));
         }
     }
@@ -599,10 +601,10 @@ function Callback_FavoriteItem()
 {
     if(SelectedList == 0)
     {
-        ToggleFavorite(MyKFPC.GetPurchaseHelper().ShopWeaponList[SelectedItemIndex].ClassName);
+        ToggleFavorite(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems[SelectedItemIndex].ClassName);
         if(CurrentTab == 2)
         {
-            SetNewSelectedIndex(MyKFPC.GetPurchaseHelper().ShopWeaponList.Length);
+            SetNewSelectedIndex(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.Length);
         }
         SetTraderItemDetails(SelectedItemIndex);        
     }
@@ -729,8 +731,8 @@ function Callback_Close()
 
 defaultproperties
 {
-    LastDefaultItemInfo=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0)
-    LastItemInfo=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0))
+    LastDefaultItemInfo=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1)
+    LastItemInfo=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1))
     ExitMenuString="EXIT MENU"
     SubWidgetBindings=/* Array type was not detected. */
 }

@@ -51,6 +51,11 @@ static function bool GetWeaponSkinAvailable(int Id)
     return GetIDAvailable(Id);
 }
 
+static event bool GetEmoteAvailable(int Id)
+{
+    return GetIDAvailable(Id);
+}
+
 static event bool GetAvailableCharacterArchetype(KFCharacterInfo_Human Archetype)
 {
     return GetAvailable((Archetype));

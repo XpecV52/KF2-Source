@@ -1,7 +1,8 @@
 //=============================================================================
 // KFGameplayPoolManager
 //=============================================================================
-// Manages pools for puke mines, c4, etc
+// Manages pools for puke mines, c4, etc... Unlike most pools this
+// is managed server-side, typically for replicated actors.
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2016 Tripwire Interactive LLC

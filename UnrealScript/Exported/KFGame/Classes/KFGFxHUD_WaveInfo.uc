@@ -58,7 +58,10 @@ function UpdateWaveCount()
 {
     local int CurrentWaveMax,CurrentWave;
 
-    KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
+    if( KFGRI == none )
+    {
+        KFGRI = KFGameReplicationInfo( GetPC().WorldInfo.GRI );
+    }
 
     if( KFGRI == none )
     {
@@ -90,7 +93,6 @@ function UpdateZEDCount()
     {
         return;
     }
-
 
     if(KFGRI.IsFinalWave())
     {

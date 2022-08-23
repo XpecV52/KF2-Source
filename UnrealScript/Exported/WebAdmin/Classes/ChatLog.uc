@@ -82,8 +82,8 @@ function string createFilename()
 {
 	local string result, tmp;
 	local InternetLink il;
-	local IpAddr addr;
-	local int serverIp, serverPort;
+	local IpAddr addr, serverIp;
+	local int serverPort;
 
 	if (WorldInfo.Game.OnlineSub.AuthInterface != none)
 	{
@@ -91,7 +91,7 @@ function string createFilename()
 	}
 	else {
 		serverPort = 0;
-		serverIp = 0;
+		serverIp.AddrD = 0;
 	}
 
 	result = filename;

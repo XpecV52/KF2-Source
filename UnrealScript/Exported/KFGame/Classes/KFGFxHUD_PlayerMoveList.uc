@@ -92,6 +92,12 @@ function InitializeMoveList()
 	local int ButtonPriority;
 	local HUDMoveInfo SavedMoveInfo;
 
+	// No monster pawn, no moves
+	if( MyKFPM == none )
+	{
+		return;
+	}
+
 	CurrentMoves.Remove(0, CurrentMoves.Length);
 	AttackArray = MyKFPM.GetSpecialMoveCooldowns();
 	

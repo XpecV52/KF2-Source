@@ -8,6 +8,19 @@
 //=============================================================================
 class KFSM_Husk_FireBallAttack extends KFSM_PlaySingleAnim;
 
+var array<Name> AnimNames;
+
+/** Offsets for firing fireballs. */
+var array<vector> FireOffsets;
+
+/** Set once each time move is invoked */
+var transient protected vector FireOffset;
+
+static function byte PackFlagsBase( KFPawn P )
+{
+	return Rand( default.AnimNames.Length );
+}
+
 protected function bool InternalCanDoSpecialMove()
 {
 	// Case for player-controlled Husk
@@ -27,12 +40,17 @@ protected function bool InternalCanDoSpecialMove()
 	}
 	
     // Make sure we have line of sight
-	if( !AIOwner.DirectProjectileFireBehavior.IsThereClearDirectFireAttackLaneFromGivenLoc( PawnOwner.Location, AIOwner.Enemy) )
+	if( !AIOwner.DirectProjectileFireBehavior.IsThereClearDirectFireAttackLaneFromGivenLoc(PawnOwner.Location, AIOwner.Enemy) )
 	{
 		return false;
 	}
 
 	return super.InternalCanDoSpecialMove();
+}
+
+function vector GetFireOffset()
+{
+	return FireOffset;
 }
 
 function SpecialMoveStarted( bool bForced, name PrevMove )
@@ -46,6 +64,17 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 		`AILog_Ext( self@"started for"@AIOwner, 'Husk', AIOwner );
 		AIOwner.AIZeroMovementVariables();
 	}
+}
+
+function PlayAnimation()
+{
+	local int AnimNum;
+
+	AnimNum = Clamp( KFPOwner.SpecialMoveFlags, 0, AnimNames.Length );
+	AnimName = AnimNames[AnimNum];
+	FireOffset = FireOffsets[AnimNum];
+
+	super.PlayAnimation();
 }
 
 /** Notification from KFPawn_ZedHusk that the animnotify to fire a shot has been triggered */
@@ -91,6 +120,11 @@ DefaultProperties
    	CustomRotationRate=(Pitch=66000,Yaw=30000,Roll=66000)
 
    	// Animation
-	AnimName=Atk_Shoot_V1
+	AnimNames.Add(Atk_Shoot_V1)
+	AnimNames.Add(Atk_Shoot_V2)
 	AnimStance=EAS_FullBody
+
+	// Firing
+	FireOffsets(0)=(X=15.f,Y=32,Z=-22)
+	FireOffsets(1)=(X=15.f,Y=32,Z=-62)
 }

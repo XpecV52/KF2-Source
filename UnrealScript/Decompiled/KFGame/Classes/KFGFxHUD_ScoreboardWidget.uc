@@ -176,7 +176,7 @@ function UpdatePlayerData()
     if(I < CurrentPlayerList.Length)
     {
         KFPRI = CurrentPlayerList[I];
-        if((KFPRI.GetTeamNum() != 255) && KFPRI.bClientActiveSpawn)
+        if((KFPRI.GetTeamNum() != 255) && KFPRI.bHasSpawnedIn)
         {
             TempData = Outer.CreateObject("Object");
             TempData.SetString("playername", KFPRI.PlayerName);
@@ -198,8 +198,16 @@ function UpdatePlayerData()
             {
                 TempData.SetString("avatar", KFPC.GetSteamAvatar(KFPRI.UniqueId));
             }
-            TempData.SetFloat("health", float(KFPRI.PlayerHealth));
-            TempData.SetFloat("healthPercent", ByteToFloat(KFPRI.PlayerHealthPercent) * float(100));
+            if(KFPRI.PlayerHealth < 0)
+            {
+                TempData.SetFloat("health", 0);
+                TempData.SetFloat("healthPercent", 0);                
+            }
+            else
+            {
+                TempData.SetFloat("health", float(KFPRI.PlayerHealth));
+                TempData.SetFloat("healthPercent", ByteToFloat(KFPRI.PlayerHealthPercent) * float(100));
+            }
             DataProvider.SetElementObject(PlayerIndex, TempData);
             ++ PlayerIndex;
         }

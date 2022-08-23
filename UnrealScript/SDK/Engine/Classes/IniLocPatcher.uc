@@ -128,7 +128,7 @@ function DownloadFiles()
 * @param bWasSuccessful whether the request completed successfully
 * @param ResultStr contains the list of files and associated meta data
 */
-function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
+function OnRequestTitleFileListComplete(bool bWasSuccessful, array<string> ResultStr)
 {
 	local JsonObject Root;
 	local int JsonObjectIdx;
@@ -138,7 +138,7 @@ function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
 	TitleFileInterface.ClearRequestTitleFileListCompleteDelegate(OnRequestTitleFileListComplete);
 	if (bWasSuccessful)
 	{
-		Root = class'JsonObject'.static.DecodeJson(ResultStr);
+		Root = class'JsonObject'.static.DecodeJson(ResultStr[0]);
 		if (Root != None)
 		{
 			Files.Length = 0;
@@ -157,8 +157,8 @@ function OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr)
 		}
 		else
 		{
-			`log(`location@"Download of file list failed. Bad json."
-				@"ResultStr="$ResultStr);
+			`log(`location @ "Download of file list failed. Bad json."
+				@"ResultStr="$ResultStr[0]);
 
 			// @ZOMBIE_FOXTROT_BEGIN - ccooper 1/13/2014 - Changed code to call the completed delegate if the title list fails since the client still wants to know about it
 			for(Index = 0; Index < AllTitleFilesCompletedDelegates.Length; ++Index)

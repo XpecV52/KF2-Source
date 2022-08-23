@@ -124,7 +124,7 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=false
 
-	AssociatedPerkClass=none
+	AssociatedPerkClasses(0)=none
 
 	bCanThrow=false
 	bDropOnDeath=false

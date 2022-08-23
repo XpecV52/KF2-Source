@@ -25,9 +25,7 @@ defaultproperties
 	End Object
 
 	AttachmentArchetype=KFWeaponAttachment'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_3P'
-
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_MuzzleFlash'
-	LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_MuzzleFlash_L'
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -118,7 +116,7 @@ defaultproperties
 	GroupPriority=35
 	WeaponSelectTexture=Texture2D'WEP_UI_DualRemington1858_TEX.UI_WeaponSelect_DualRemington'
 	bIsBackupWeapon=false
-	AssociatedPerkClass=class'KFPerk_Gunslinger'
+	AssociatedPerkClasses(0)=class'KFPerk_Gunslinger'
 
 	// Custom anims
 	IdleFidgetAnims=(Guncheck_v1, Guncheck_v2, Guncheck_v3, Guncheck_v4)

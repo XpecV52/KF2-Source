@@ -47,7 +47,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Knife_SWAT:MeleeHelper_0'
-   AssociatedPerkClass=Class'KFGame.KFPerk_SWAT'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_SWAT'
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_Knife_SWAT'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()

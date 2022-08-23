@@ -68,7 +68,7 @@ defaultproperties
 	InventorySize=6
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
-   	AssociatedPerkClass=class'KFPerk_Commando'
+   	AssociatedPerkClasses(0)=class'KFPerk_Commando'
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'

@@ -63,6 +63,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;
 
 enum EUIIndex
 {
@@ -229,7 +231,6 @@ var KFGFxWidget_BaseParty PartyWidget;
 var KFGFxWidget_ButtonPrompt ButtonPromptWidget;
 var array<string> WidgetPaths;
 var PlayerReplicationInfo VotePRI;
-var() transient KFHUDTimerHelper TimerHelper;
 var TWOnlineLobby OnlineLobby;
 var UniqueNetId CurrentInviteLobbyId;
 var const UniqueNetId ZeroUniqueId;
@@ -258,7 +259,6 @@ function Init(optional LocalPlayer LocPlay)
     local GameViewportClient GVC;
     local float ScaleStage;
 
-    TimerHelper = GetPC().Spawn(Class'KFHUDTimerHelper');
     Class'KFUIDataStore_GameResource'.static.InitializeProviders();
     HUD = KFHUDBase(GetPC().myHUD);
     super.Init(LocPlay);
@@ -276,7 +276,7 @@ function Init(optional LocalPlayer LocPlay)
         }
     }
     PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
-    TimerHelper.SetTimer(1, true, 'OneSecondLoop', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(1, true, 'OneSecondLoop', self);
     SetTimingMode(1);
     GVC = GetGameViewportClient();
     if((GVC != none) && Class'WorldInfo'.static.IsConsoleBuild(8))
@@ -367,7 +367,7 @@ function LaunchMenus(optional bool bForceSkipLobby)
         AllowCloseMenu();
         if(GVC.bNeedDisconnectMessage)
         {
-            TimerHelper.SetTimer(0.1, false, 'DelayedShowDisconnectMessage', self);
+            Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'DelayedShowDisconnectMessage', self);
             GVC.bNeedDisconnectMessage = false;
         }
         if(GVC.bHandlePlayTogether)
@@ -394,7 +394,7 @@ function DelayedShowDisconnectMessage()
 {
     if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying())
     {
-        TimerHelper.SetTimer(0.1, false, 'DelayedShowDisconnectMessage', self);        
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'DelayedShowDisconnectMessage', self);        
     }
     else
     {
@@ -444,21 +444,21 @@ function DelayedOpenPopup(KFGFxMoviePlayer_Manager.EPopUpType PopUpType, int Pop
         if(DelayedPopups[I - 1].Priority <= PopupPriority)
         {
             DelayedPopups.InsertItem(I, PopUp;
-            TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
+            Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
             return;
         }
         -- I;
         goto J0x293;
     }
     DelayedPopups.InsertItem(0, PopUp;
-    TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
 }
 
 function ShowDelayedPopupMessage()
 {
     if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying() || CurrentMenu == IISMenu)
     {
-        TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
         return;
     }
     if((DelayedPopups.Length > 0) && !DelayedPopups[DelayedPopups.Length - 1].bShown)
@@ -691,13 +691,13 @@ function AllowCloseMenu()
 
 function ForceUpdateNextFrame()
 {
-    TimerHelper.SetTimer(0.01, false, 'OnForceUpdate', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.01, false, 'OnForceUpdate', self);
 }
 
 function OnForceUpdate()
 {
     OneSecondLoop();
-    TimerHelper.SetTimer(1, true, 'OneSecondLoop', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(1, true, 'OneSecondLoop', self);
 }
 
 function OneSecondLoop()
@@ -727,7 +727,6 @@ function SetMenusOpen(bool bIsOpen)
 {
     local KFGFxHudWrapper HudWrapper;
 
-    TimerHelper.SetTickIsDisabled(!bIsOpen);
     SetPause(!bIsOpen);
     bMenusOpen = bIsOpen;
     bMenusActive = bIsOpen;
@@ -807,7 +806,7 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
             PC.PlayerInput.ResetInput();
         }
         bCanCloseMenu = false;
-        TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
     }
     if(CurrentMenuIndex == 0)
     {
@@ -920,7 +919,6 @@ event OnClose()
 event OnCleanup()
 {
     super.OnCleanup();
-    TimerHelper.ClearAllTimers();
     if(OnlineSub != none)
     {
         OnlineSub.ClearAllInventoryReadCompleteDelegates();
@@ -949,8 +947,8 @@ function bool ToggleMenus()
             UpdateMenuBar();
         }
         bCanCloseMenu = false;
-        TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
-        TimerHelper.SetTimer(0.15, false, 'PlayOpeningSound', self);        
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.15, false, 'PlayOpeningSound', self);        
     }
     else
     {
@@ -1154,7 +1152,7 @@ function UnloadCurrentPopup()
             DelayedPopups.Remove(DelayedPopups.Length - 1, 1;
         }
     }
-    TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'ShowDelayedPopupMessage', self);
 }
 
 function LoadPopups(array<string> Paths)

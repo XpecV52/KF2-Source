@@ -162,6 +162,18 @@ simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
     BodyStanceNodes[0].SetActorAnimEndNotification(true);
 }
 
+simulated function PlayEmoteAnimation(optional bool bNewCharacter)
+{
+    local name AnimName;
+    local float BlendInTime;
+
+    AnimName = Class'KFEmoteList'.static.GetUnlockedEmote(Class'KFEmoteList'.static.GetEquippedEmoteId());
+    BlendInTime = ((bNewCharacter) ? 0 : 0.4);
+    BodyStanceNodes[0].SetActorAnimEndNotification(false);
+    BodyStanceNodes[0].PlayCustomAnim(AnimName, 1, BlendInTime, 0.4, false, true);
+    BodyStanceNodes[0].SetActorAnimEndNotification(true);
+}
+
 simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
     PlayRandomIdleAnimation();

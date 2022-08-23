@@ -1180,10 +1180,10 @@ DefaultProperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun',          DamageScale=(0.8)))  //0.6
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun',          DamageScale=(0.8)))  //0.6
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle',            DamageScale=(0.9)))  //0.7
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing',                   DamageScale=(0.8)))  //0.6
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon',                   DamageScale=(0.8)))  //0.6
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing',                   DamageScale=(1.0)))  //0.8
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon',                   DamageScale=(1.0)))  //0.8
     DamageTypeModifiers.Add((DamageType=class'KFDT_Fire',                       DamageScale=(1.1)))  //1.1
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave',                  DamageScale=(1.2)))  //1.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave',                  DamageScale=(1.0)))  //1.5 //1.2
     DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive',                  DamageScale=(1.0)))  //1.0
     DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing',                   DamageScale=(0.8)))  //0.6
     DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic',                      DamageScale=(0.1)))  //0.1

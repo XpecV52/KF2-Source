@@ -145,13 +145,13 @@ function DumpConnections()
         LogInternal("	BandwidthTest.TestType: " $ string(ClientConnections[ClientIdx].BandwidthTest.TestType), 'DevBeacon');
         LogInternal("	Bandwidth History: " $ string(ClientConnections[ClientIdx].BandwidthHistory.Length), 'DevBeacon');
         HistoryIdx = 0;
-        J0x345:
+        J0x346:
 
         if(HistoryIdx < ClientConnections[ClientIdx].BandwidthHistory.Length)
         {
             LogInternal(((((("		" $ " Upstream bytes/sec: ") $ string(ClientConnections[ClientIdx].BandwidthHistory[HistoryIdx].UpstreamRate)) $ " Downstream bytes/sec: ") $ string(ClientConnections[ClientIdx].BandwidthHistory[HistoryIdx].DownstreamRate)) $ " Roundrtrip msec: ") $ string(ClientConnections[ClientIdx].BandwidthHistory[HistoryIdx].RoundtripLatency), 'DevBeacon');
             ++ HistoryIdx;
-            goto J0x345;
+            goto J0x346;
         }
         ++ ClientIdx;
         goto J0x3C;
@@ -181,7 +181,7 @@ function DebugRender(Canvas Canvas, UniqueNetId CurOptimalHostId)
     }
     Canvas.DrawText("Owning Host: " $ Class'OnlineSubsystem'.static.UniqueNetIdToString(OwningPlayerId));
     ClientIdx = 0;
-    J0x301:
+    J0x302:
 
     if(ClientIdx < ClientConnections.Length)
     {
@@ -215,17 +215,17 @@ function DebugRender(Canvas Canvas, UniqueNetId CurOptimalHostId)
         Canvas.DrawText("Bandwidth History: " $ string(ClientConnections[ClientIdx].BandwidthHistory.Length));
         Canvas.SetPos(Canvas.CurX + float(10), Canvas.CurY);
         HistoryIdx = 0;
-        J0xB56:
+        J0xB58:
 
         if(HistoryIdx < ClientConnections[ClientIdx].BandwidthHistory.Length)
         {
             Canvas.DrawText("Upstream bytes/sec: " $ string(ClientConnections[ClientIdx].BandwidthHistory[HistoryIdx].UpstreamRate));
             ++ HistoryIdx;
-            goto J0xB56;
+            goto J0xB58;
         }
         Canvas.SetPos(Canvas.CurX - float(20), Canvas.CurY);
         ++ ClientIdx;
-        goto J0x301;
+        goto J0x302;
     }
 }
 

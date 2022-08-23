@@ -22,9 +22,7 @@ defaultproperties
 	End Object
 
 	AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_9MM_ARCH.WEP_Dual_9MM_3P'
-
 	MuzzleFlashTemplate=KFMuzzleFlash'wep_dual_9mm_arch.Wep_Dual_9MM_MuzzleFlash'
-	LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_9MM_ARCH.Wep_Dual_9MM_MuzzleFlash_L'
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -108,7 +106,7 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=true
 
-	AssociatedPerkClass=none
+	AssociatedPerkClasses(0)=none
 
 	// Inventory
 	InventoryGroup=IG_Secondary

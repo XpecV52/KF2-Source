@@ -1622,6 +1622,13 @@ event bool PlayParticleEffect( const AnimNotify_PlayParticleEffect AnimNotifyDat
 		PSC.SetActorParameter(AnimNotifyData.BoneSocketModuleActorName, Owner);
 	}
 
+	// We use this to keep track of particle systems spawned by animations
+	if( PSC != none && Owner != none )
+	{
+		Owner.OnAnimNotifyParticleSystemSpawned( AnimNotifyData, PSC );
+	}
+
+
 	return true;
 }
 

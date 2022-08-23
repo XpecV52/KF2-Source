@@ -7,13 +7,13 @@
  *******************************************************************************/
 class CamHUD extends Interaction
     transient
-    config(Engine)
+    config(RypelCam)
     hidecategories(Object,UIRoot);
 
-var float PauseCamMouseSensitivity;
-var float speccamspeed;
-var float TimedPathStartTime;
-var int dumpframes_fps;
+var config float PauseCamMouseSensitivity;
+var config float speccamspeed;
+var config float TimedPathStartTime;
+var config int dumpframes_fps;
 var Actor ap;
 var Actor HackLockedSavedActor;
 var Actor target_actor;
@@ -140,7 +140,6 @@ exec function toggleMovieMode();
 
 function LoadRCamConfig()
 {
-    LogInternal("***LOADING RYPELCAM CONFIG");
     if(CC != none)
     {
         CC.Destroy();
@@ -504,6 +503,9 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
                 bdumpframes = !bdumpframes;
                 break;
             case 'F4':
+                CC.conf = true;
+                SaveConfig();
+                CC.SaveConfig();
                 break;
             case 'F5':
                 LoadRCamConfig();
@@ -539,7 +541,7 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
                     {
                         CC.StartTimedPath_Later_seconds = 0;
                         CC.dif_tpstart_add = true;
-                        goto J0x3689;
+                        goto J0x36C5;
                     }
                     CC.FOV = drs.DefaultFOV;
                     drs.SetFOV(drs.DefaultFOV);
@@ -560,7 +562,7 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
                     {
                         CC.StartTimedPath_Later_seconds = 0;
                         CC.dif_tpstart_subtract = true;
-                        goto J0x3689;
+                        goto J0x36C5;
                     }
                     CC.FOV = drs.DefaultFOV;
                     drs.SetFOV(drs.DefaultFOV);
@@ -1188,7 +1190,7 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
             default:
                 break;
         }
-        J0x3689:
+        J0x36C5:
         
     }
     else

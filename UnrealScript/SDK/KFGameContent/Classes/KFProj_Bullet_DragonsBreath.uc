@@ -10,14 +10,6 @@
 class KFProj_Bullet_DragonsBreath extends KFProj_Bullet
 	hidedropdown;
 
-var PointLightComponent ProjLight;
-
-simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
-{
-	super.TriggerExplosion(HitLocation, HitNormal, HitActor);
-	ProjLight.SetEnabled(false);
-}
-
 defaultproperties
 {
 	Physics=PHYS_Falling
@@ -32,7 +24,7 @@ defaultproperties
 	GravityScale=0.35
 	TossZ=0
 
-	Begin Object Class=PointLightComponent Name=ProjPointLight
+	Begin Object Class=PointLightComponent Name=PointLight0
 	    LightColor=(R=252,G=218,B=171,A=255)
 		Brightness=0.5f
 		Radius=500.f
@@ -43,8 +35,7 @@ defaultproperties
 		bEnabled=true
 		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
 	End Object
-	Components.Add(ProjPointLight)
-	ProjLight = ProjPointLight
+	ProjFlightLight=PointLight0
 
 	ImpactEffects=KFImpactEffectInfo'WEP_DragonsBreath_ARCH.DragonsBreath_bullet_impact'
 	ProjFlightTemplate=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer'

@@ -88,7 +88,7 @@ state Command_SpecialMove
         }
         if((SpecialMove != 0) && Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
-            Outer.MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), 255);
+            Outer.MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), Class'KFSM_Husk_FireBallAttack'.static.PackFlagsBase(Outer.MyKFPawn));
             return true;            
         }
         else

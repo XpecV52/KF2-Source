@@ -8,11 +8,17 @@
 interface OnlineStatsInterface extends Interface
     abstract;
 
-function bool ReadOnlineStats(const out array<UniqueNetId> Players, OnlineStatsRead StatsRead);
+function bool ReadOnlineStatsForPlayer(byte LocalUserNum, OnlineStatsRead StatsRead);
 
-function bool ReadOnlineStatsForFriends(byte LocalUserNum, OnlineStatsRead StatsRead);
+function bool ReadOnlineStats(byte LocalUserNum, const out array<UniqueNetId> Players, OnlineStatsRead StatsRead);
 
-function bool ReadOnlineStatsByRank(OnlineStatsRead StatsRead, optional int StartIndex, optional int NumToRead)
+function bool ReadOnlineStatsForFriends(byte LocalUserNum, OnlineStatsRead StatsRead, optional bool FavoriteFriendsOnly, optional int NumToRead)
+{
+    FavoriteFriendsOnly = false;
+    NumToRead = 100;
+}
+
+function bool ReadOnlineStatsByRank(byte LocalUserNum, OnlineStatsRead StatsRead, optional int StartIndex, optional int NumToRead)
 {
     StartIndex = 1;
     NumToRead = 100;
@@ -58,3 +64,19 @@ function string GetClientStatGuid();
 function bool RegisterStatGuid(UniqueNetId PlayerID, const out string ClientStatGuid);
 
 function CalcAggregateSkill(array<Double> Mus, array<Double> Sigmas, out Double OutAggregateMu, out Double OutAggregateSigma);
+
+delegate OnStatisticChanged(UniqueNetId PlayerNetId, name StatName, string NewStatValue);
+
+function SubscribeToStatisticEvent(byte LocalUserNum, UniqueNetId PlayerNetId, name StatName, delegate<OnStatisticChanged> EventDelegate);
+
+function UnsubscribeToStatisticEvent(byte LocalUserNum, UniqueNetId PlayerNetId, name StatName);
+
+function bool SendPlayerSessionStart(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId);
+
+function bool SendPlayerSessionEnd(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId, int ExitStatusId);
+
+function bool SendPlayerSessionPause(byte LocalUserNum, string MultiplayerCorrelationId);
+
+function bool SendPlayerSessionResume(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId);
+
+function bool SendTestEvent(byte LocalUserNum, string TestStatInstancing, int TestStatParameter);

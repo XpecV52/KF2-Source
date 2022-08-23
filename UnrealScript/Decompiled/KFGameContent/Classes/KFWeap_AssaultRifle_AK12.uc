@@ -49,19 +49,23 @@ simulated state WeaponBurstFiring
         {
             PlayFiringSound(CurrentFireMode);
         }
-        if((Instigator != none) && Instigator.IsFirstPerson())
+        if(Instigator != none)
         {
-            if(!bPlayingLoopingFireAnim && (FireModeNum != 1) || (FireModeNum == 1) && !bBurstPlayedFireEffects)
+            UpdateWeaponAttachmentAnimRate(GetThirdPersonAnimRate());
+            if(Instigator.IsFirstPerson())
             {
-                WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
-                if(WeaponFireAnimName != 'None')
+                if(!bPlayingLoopingFireAnim && (FireModeNum != 1) || (FireModeNum == 1) && !bBurstPlayedFireEffects)
                 {
-                    PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),, FireTweenTime);
+                    WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
+                    if(WeaponFireAnimName != 'None')
+                    {
+                        PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),, FireTweenTime);
+                    }
                 }
+                HandleRecoil();
+                ShakeView();
+                CauseMuzzleFlash(FireModeNum);
             }
-            HandleRecoil();
-            ShakeView();
-            CauseMuzzleFlash(FireModeNum);
         }
         bBurstPlayedFireEffects = true;
     }
@@ -183,7 +187,7 @@ defaultproperties
     RecoilISMaxPitchLimit=375
     RecoilISMinPitchLimit=65460
     IronSightMeshFOVCompensationScale=2.5
-    AssociatedPerkClass=Class'KFGame.KFPerk_Commando'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

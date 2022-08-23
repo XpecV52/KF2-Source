@@ -13,6 +13,7 @@ KF-Prison="玩监狱"
 KF-ContainmentStation="玩隔离站"
 KF-InfernalRealm="玩地狱领域"
 KF-HostileGrounds="玩敌对区域"
+KF-ZedLanding="玩丧尸登陆"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

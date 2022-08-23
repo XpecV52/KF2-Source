@@ -197,6 +197,8 @@ ItemName="SA80 L85A2 불펍"
 ItemCategory="돌격소총"
 ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•SA80은 영국군이 잡아 먹히기 전에 표준 무기로 사용하였던 무기입니다."
 
+
+
 [KFWeap_Knife_Demolitionist]
 ItemName="유틸리티 나이프"
 ItemCategory="백병전"
@@ -267,6 +269,8 @@ ItemName="M4 전투 샷건"
 ItemCategory="샷건"
 ItemDescription="•사격 모드는 반자동 전용.\n•베넬리에서 미군을 위해 M4 전투 샷건을 설계하였습니다. 반자동 샷건으로 지속적인 발사속도를 유지합니다."
 
+
+
 [KFWeap_Knife_Berserker]
 ItemName="잔디깎기 날"
 ItemCategory="백병전"
@@ -314,6 +318,11 @@ ItemCategory="백병전"
 ItemDescription="•기본 - 중/강 데미지, 약간의 군중 제어 기술.\n•보조 - 느리지만 더 강한 데미지.\n•대체 - 차단/회피\n•앞으로 이동하면 더 강한 데미지를 가할 수 있습니다."
 SharedUnlockSource="중세 기사전" "
 
+[KFWeap_Blunt_MaceAndShield]
+ItemName="본 크러셔"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 둔기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 강하고 둔한 공격으로 방패를 유용하게 사용.\n•대체 - 차단/회피. 블로킹으로 제드 발사체에 따른 손상을 줄입니다.\n• 강력한 방패 타격을 갖추고 있습니다."
+
 [KFWeap_Flame_CaulkBurn]
 ItemName="코크 앤 번"
 ItemCategory="화염"
@@ -353,6 +362,8 @@ ItemDescription="•사격 모드 시 유탄 발사.\n•유탄이 충격을 받
 ItemName="RPG-7"
 ItemCategory="폭발물"
 ItemDescription="•사격 모드 시 로켓 발사.\n•로켓이 충격을 받으면 폭발합니다.\n•발사 거리가 몇 미터에 불과하므로 본인의 얼굴을 날려버리지 않도록 주의하십시오.\n•후폭풍도 주의하세요!"
+
+
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="듀얼 9mm 권총"
@@ -403,6 +414,8 @@ ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 
 ItemName="윈체스터 1894"
 ItemCategory="소총"
 ItemDescription="•사격 모드는 단발 전용.\n•클래식 모델 1894 윈체스터 레버 액션 소총."
+
+
 
 [KFWeap_Bow_Crossbow]
 ItemName="크로스보우"

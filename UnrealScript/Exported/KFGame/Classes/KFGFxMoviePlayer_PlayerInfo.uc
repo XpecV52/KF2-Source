@@ -130,15 +130,16 @@ function UpdateHealth()
 {
 	local float HealthPct;
 
-	HealthPct = (100.f / float(MyKFPH.HealthMax)) * MyKFPH.Health;
-
 	if ( MyKFPH == none )
 	{
 		LastHealthPct = 0;
 		IconMC.GotoAndStopI(100);
 		HealthMeter.GotoAndStopI(100);
+		return;
 	}
-	else if ( LastHealthPct != HealthPct )
+
+	HealthPct = (100.f / float(MyKFPH.HealthMax)) * MyKFPH.Health;
+	if ( LastHealthPct != HealthPct )
 	{
 		LastHealthPct = HealthPct;
 		// The hud uses frame 1 as full health

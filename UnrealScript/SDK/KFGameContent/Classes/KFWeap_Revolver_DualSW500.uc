@@ -25,9 +25,7 @@ defaultproperties
 	End Object
 
 	AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_SW_500_ARCH.Wep_Dual_SW_500_3P'
-
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_SW_500_ARCH.Wep_Dual_SW_500_MuzzleFlash'
-	LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_SW_500_ARCH.Wep_Dual_SW_500_MuzzleFlash_L'
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -119,7 +117,7 @@ defaultproperties
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'WEP_UI_Dual_SW_500_TEX.UI_WeaponSelect_DualSW500'
 	bIsBackupWeapon=false
-	AssociatedPerkClass=class'KFPerk_Gunslinger'
+	AssociatedPerkClasses(0)=class'KFPerk_Gunslinger'
 
     bHasFireLastAnims=true
     BonesToLockOnEmpty=(RW_Hammer)

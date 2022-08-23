@@ -194,7 +194,7 @@ NameString="NAZWA"
 RefreshString="ODŚWIEŻ"
 GamesFoundString="ZNALEZIONE GRY:"
 
-ServerBrowserString="PRZEGLĄDARKA SERWERÓW"
+ServerBrowserString="SERWERY"
 
 JoinString="DOŁĄCZ"
 PasswordPromptString="WPISZ HASŁO"
@@ -254,7 +254,7 @@ MutatorsString="MUTATORY"
 JoinGameString="DOŁĄCZ DO GRY"
 SpectateGameString="OGLĄDAJ"
 ServerInfoString="DANE SERWERA"
-UnfavoriteString="USUŃ ULUBIONY"
+UnfavoriteString="USUŃ Z ULUBIONYCH"
 
 [KFGFxMenu_Trader]
 ExitMenuString="WYJDŹ"
@@ -708,6 +708,7 @@ BackString="WSTECZ"
 NoneString="BRAK"
 WeaponsString="Broń"
 WeaponsInfoString="Dostosuj"
+EmotesString="EMOTES"
 
 [KFGFxMenu_Inventory]
 NoItemsString="Nie masz w ekwipunku przedmiotów pasujących do obecnie wybranego filtra."
@@ -723,6 +724,7 @@ UnequipString="PRZESTAŃ"
 AllString="Wszystko"
 WeaponSkinString="Skórki broni"
 CosmeticString="Ozdoby"
+EmotesString="Emocje"
 CraftingMatsString="Wywarzanie przedmiotów"
 ItemString="Przedmioty"
 FiltersString="FILTRY"
@@ -796,6 +798,7 @@ WeaponSkinsRotationString="Skórki broni"
 WeaponSkinsString="Rynkowe skórki broni"
 MarketConsumablesString="Rynkowe skrzynie/USB"
 MarketCosmeticsString="Rynkowe ozdoby"
+MarketEmotesString="Rynkowe emocje"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="ZNAJDŹ NA RYNKU"
@@ -816,7 +819,7 @@ MenuStrings[4]="SKLEP"
 MenuStrings[5]="OPCJE"
 MenuStrings[6]="WYJDŹ"
 
-ServerBrowserString="PRZEGLĄDARKA SERWERÓW"
+ServerBrowserString="SERWERY"
 MatchmakingString="MATCHMAKING"
 SoloString="SOLO"
 OverviewString="PRZEGLĄD ROZGRYWKI"
@@ -890,6 +893,7 @@ VoiceCommsOptionStrings[4]="ZA MNĄ"
 VoiceCommsOptionStrings[5]="IDŹ DO HANDLARKI"
 VoiceCommsOptionStrings[6]="ZGODA"
 VoiceCommsOptionStrings[7]="ODMAWIAM"
+VoiceCommsOptionStrings[8]="EMOCJA"
 
 [KFGFxMenu_Exit]
 HeaderString="WYJDŹ Z GRY"
@@ -1182,6 +1186,7 @@ GBA_VoiceCommFollowMe="ZA MNĄ"
 GBA_VoiceCommGetToTheTrader="IDŹ DO HANDLARKI"
 GBA_VoiceCommAffirmative="ZGODA"
 GBA_VoiceCommNegative="ODMAWIAM"
+GBA_VoiceCommEmote="EMOCJA"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Czułość"
@@ -1745,7 +1750,7 @@ EXPAction2="Leczenie członków drużyny"
 [KFPerk_Firebug]
 PerkName="Podpalacz"
 EXPAction1="Zadawanie obrażeń bronią podpalacza"
-EXPAction2="Zabijanie pełzaczy bronią podpalacza"
+EXPAction2="Bronią podpalacza w pełzaczy i spaślaka"
 
 SkillCatagories[0]="Zaopatrzenie"
 SkillCatagories[1]="Ostrość"
@@ -1810,7 +1815,7 @@ ShootnMove="Pewna ręka"
 ShootnMoveDescription="Brak kary do ruchu przy używaniu celownika mechanicznego i znaczne zmniejszenie drgania broni specjalizacji."
 
 QuickSwitch="Szybkie wyjęcie broni"
-QuickSwitchDescription="Brak kary odrzutu przy strzale z biodra, zwiększenie szybkości ruchu o 5% oraz o 50% szybsza zmiana broni specjalizacji."
+QuickSwitchDescription="Zmniejszenie odrzutu przy strzale z biodra, zwiększenie szybkości ruchu o 5% oraz o 50% szybsza zmiana broni klasy."
 
 RhythmMethod="Kumulacja"
 RhythmMethodDescription="Kolejne strzały w głowę za pomocą broni specjalizacji zadają o 10% większe obrażenia, kumulując się do premii 50%."
@@ -2113,6 +2118,7 @@ RandomLoadingStrings[37]="Działo elektromagnetyczne może przestrzelić kilka z
 RandomLoadingStrings[38]="Działo mikrofalowe zadaje więcej obrażeń zetom, które mają przy sobie metal, takim jak mięśniaki i syreny."
 RandomLoadingStrings[39]="Wypróbuj alternatywny tryb ognia broni. Nie każda broń go ma, ale może się okazać pomocny w trudnej sytuacji."
 RandomLoadingStrings[40]="Otrzymujesz PD i forsę za zabójstwa, ale też za asysty. Nie przejmuj się, że tylko pomagasz sojusznikom."
+RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
 
 [WhatsNewMessages]
 Jaegorhorn="Obserwuj społeczność, by zdobyć Jägerhorna"
@@ -2139,6 +2145,7 @@ USBSWATKey="Klucz USB SWAT - 2,49$"
 USBTacticalHorzineKey="Klucz USB taktyczny Horzine - 2,49$"
 USBVictorianKey="Klucz USB wiktoriański - 2,49$"
 USBZedKillerKey="Klucz USB zabójca zetów - 2,49$"
+USBBoneCrusher="Klucz łamignat USB – 2,49 $"
 BullseyeUpdate="Nowa zawartość - aktualizacja Bullseye"
 LatestUpdate="Nowa aktualizacja zawartości"
 Forums="Odwiedź fora naszej społeczności"
@@ -2159,6 +2166,7 @@ PS4WeaponSkinCrate1="Skrzynia Horzine ze skórkami broni | Seria 1"
 PS4WeaponSkinCrate2="Skrzynia Horzine ze skórkami broni | Seria 2"
 Artbook="Cyfrowy artbook Killing Floor 2"
 Uncovered="Film live action Killing Floor: Uncovered"
+NewEmotes="Nowość! Klucz do skrzyni emocji – 2,49$"
 
 [Zeds]
 KFPawn_ZedBloat="Spaślak"
@@ -2166,6 +2174,7 @@ KFPawn_ZedClot="Skrzep"
 KFPawn_ZedCrawler="Pełzacz"
 KFPawn_ZedFleshPound="Mięśniak"
 KFPawn_ZedGorefast="Rozpruwacz"
+KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr Hans Volter"
 KFPawn_ZedHusk="Truchło"
 KFPawn_ZedStalker="Zmora"
@@ -2365,7 +2374,6 @@ DisplayName_DEU="Katakomben"
 DisplayName_ESL="Catacumbas"
 DisplayName_ESN="Catacumbas"
 DisplayName_FRA="Catacombes"
-DisplayName_FRC="Catacombes"
 DisplayName_INT="Catacombs"
 DisplayName_ITA="Catacombe"
 DisplayName_JPN="Catacombs"
@@ -2486,6 +2494,22 @@ DisplayName_POL="Piekielna domena"
 DisplayName_PTB="Reino Infernal"
 DisplayName_RUS="Царство ада"
 
+[KF-ZedLanding KFMapSummary]
+DisplayName_CHN="丧尸登陆"
+DisplayName_CHT="僵屍群登陸"
+DisplayName_DEU="ZED-Landung"
+DisplayName_ESL="Aterrizaje ZED"
+DisplayName_ESN="Aterrizaje ZED"
+DisplayName_FRA="Île des Zeds"
+DisplayName_FRC="Île des Zeds"
+DisplayName_INT="Zed Landing"
+DisplayName_ITA="Atterraggio ZED"
+DisplayName_JPN="zed Landing"
+DisplayName_KOR="제드 상륙"
+DisplayName_POL="Lądowanie zetów"
+DisplayName_PTB="Pouso Forçado ZED"
+DisplayName_RUS="Высадка среди мутантов"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorium biotyczne"
 
@@ -2524,6 +2548,9 @@ DisplayName="Wrogie terytorium"
 
 [KF-InfernalRealm KFMapSummary]
 DisplayName="Piekielna domena"
+
+[KF-ZedLanding KFMapSummary]
+DisplayName="Lądowanie zetów"
 
 
 [KFMapInfo]

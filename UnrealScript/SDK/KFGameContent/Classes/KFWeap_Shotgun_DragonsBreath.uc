@@ -50,25 +50,23 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_DragonsBreath'
-	InstantHitDamage(DEFAULT_FIREMODE)=15
+	InstantHitDamage(DEFAULT_FIREMODE)=27 //15
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_DragonsBreath'
-	PenetrationPower(DEFAULT_FIREMODE)=3.0
-	FireInterval(DEFAULT_FIREMODE)=0.77 // 78 RPM
+	PenetrationPower(DEFAULT_FIREMODE)=2.0 //3.0
+	FireInterval(DEFAULT_FIREMODE)=0.69 // 78 RPM //0.77
 	FireOffset=(X=30,Y=3,Z=-3)
 	// Shotgun
-	Spread(DEFAULT_FIREMODE)=0.1
-	NumPellets(DEFAULT_FIREMODE)=10//7
+	Spread(DEFAULT_FIREMODE)=0.16 //0.1
+	NumPellets(DEFAULT_FIREMODE)=9//7//10
 
 	// ALT_FIREMODE
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
 
-
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_DragonsBreath'
 	InstantHitDamage(BASH_FIREMODE)=25
-
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_DragonsBreath_ARCH.Wep_DragonsBreath_MuzzleFlash_3P'
@@ -86,8 +84,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=6
-	SpareAmmoCapacity[0]=45
-	InitialSpareMags[0]=3
+	SpareAmmoCapacity[0]=57
+	InitialSpareMags[0]=4
 	bCanBeReloaded=true
 	bReloadFromMagazine=false
 
@@ -110,7 +108,8 @@ defaultproperties
 	FallingRecoilModifier=1.5
 	HippedRecoilModifier=1.25
 
-	AssociatedPerkClass=class'KFPerk_Firebug'
+	AssociatedPerkClasses(0)=class'KFPerk_Firebug'
+	AssociatedPerkClasses(1)=class'KFPerk_Support'
 
 	BonesToLockOnEmpty=(RW_Hammer)
 

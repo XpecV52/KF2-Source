@@ -180,8 +180,6 @@ defaultproperties
       SpecialMoveClasses(26)=None
       SpecialMoveClasses(27)=None
       SpecialMoveClasses(28)=Class'kfgamecontent.KFSM_PlayerCrawler_Suicide'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedCrawler:SpecialMoveHandler_0'
    End Object

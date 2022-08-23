@@ -42,6 +42,9 @@ var config float GamepadButtonHoldTime;
 /** Amount thumbstick should be pressed to activate sprint */
 var config float SprintAnalogThreshold;
 
+/** Amount thumbstick should be pressed to auto-activate sprint when playing as a zed */
+var const float ZedAutoSprintAnalogThreshold;
+
 /** On tap weapon switch: TRUE for last weapon, FALSE for cycle next */
 var config bool bUseGamepadLastWeapon;
 
@@ -350,7 +353,15 @@ function EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
 		return EDoubleClickDir( 0 );
 	}
 
-	// Map RawJoyMagnitude to our movement speed enum range
+	// Check for autorun in Versus
+	if( Pawn != none && Pawn.GetTeamNum() != 0 )
+	{
+		if( IsDirectingJoyStick(fMax(ZedAutoSprintAnalogThreshold, SprintAnalogThreshold)) )
+		{
+			bRun = 1;
+			bExtendedSprinting = true;
+		}
+	}
 
 	// get curve out value and range
 	CurveOut = EvalInterpCurveFloat( MoveSensitivityScaleCurve, RawJoyMagnitude );
@@ -618,7 +629,7 @@ exec function GamepadSprint()
 	GamepadSprintTimer();
 	if ( bRun == 0 )
 	{
-		SetTimer(0.05, true, nameof(GamepadSprintTimer), self);
+		`TimerHelper.SetTimer(0.05, true, nameof(GamepadSprintTimer), self);
 	}
 }
 
@@ -628,7 +639,7 @@ function GamepadSprintTimer()
 	if ( ShouldActivateGamepadSprint() )
 	{		
 		bRun = 1;
-		ClearTimer(nameof(GamepadSprintTimer), self);
+		`TimerHelper.ClearTimer(nameof(GamepadSprintTimer), self);
 	}
 }
 
@@ -646,7 +657,7 @@ exec function GamepadSprintRelease()
 	}
 
 	bRun = 0;
-	ClearTimer(nameof(GamepadSprintTimer), self);
+	`TimerHelper.ClearTimer(nameof(GamepadSprintTimer), self);
 }
 
 /** Returns a radial distance from center */
@@ -692,13 +703,13 @@ exec function GamepadReload()
 		return;
 	}
 
-	SetTimer(GamepadButtonHoldTime, false, nameof(GamepadReloadTimer), self);
+	`TimerHelper.SetTimer(GamepadButtonHoldTime, false, nameof(GamepadReloadTimer), self);
 }
 
 /** GBA_Reload_Gamepad */
 exec function GamepadReloadRelease()
 {
-	if ( IsTimerActive(nameof(GamepadReloadTimer), self) )
+	if ( `TimerHelper.IsTimerActive(nameof(GamepadReloadTimer), self) )
 	{
 		if ( Pawn != None )
 		{
@@ -709,7 +720,7 @@ exec function GamepadReloadRelease()
 			Pawn.StopFire(2);
 		}
 
-		ClearTimer(nameof(GamepadReloadTimer), self);
+		`TimerHelper.ClearTimer(nameof(GamepadReloadTimer), self);
 	}
 	else if ( bVersusInput )
 	{
@@ -733,7 +744,7 @@ exec function GamepadCrouch()
 
 	if ( bDuck == 1 )
 	{
-		SetTimer(GamepadButtonHoldTime, false, nameof(GamepadCrouchTimer), self);
+		`TimerHelper.SetTimer(GamepadButtonHoldTime, false, nameof(GamepadCrouchTimer), self);
 	}
 }
 
@@ -742,7 +753,7 @@ exec function GamepadCrouchRelease()
 {
 	local bool bWasButtonHeld;
 
-	bWasButtonHeld = !IsTimerActive(nameof(GamepadCrouchTimer), self);
+	bWasButtonHeld = !`TimerHelper.IsTimerActive(nameof(GamepadCrouchTimer), self);
 	if ( bWasButtonHeld )
 	{
 		StopCrouch();
@@ -759,16 +770,16 @@ function GamepadCrouchTimer();
  */
 exec function GamepadJump()
 {
-	SetTimer(GamepadButtonHoldTime, false, nameof(GamepadJumpTimer), self);
+	`TimerHelper.SetTimer(GamepadButtonHoldTime, false, nameof(GamepadJumpTimer), self);
 }
 
 /** Tap function for GBA_Jump_Gamepad */
 exec function GamepadJumpRelease()
 {
-	if ( IsTimerActive(nameof(GamepadJumpTimer), self) )
+	if ( `TimerHelper.IsTimerActive(nameof(GamepadJumpTimer), self) )
 	{
 		Jump();
-		ClearTimer(nameof(GamepadJumpTimer), self);
+		`TimerHelper.ClearTimer(nameof(GamepadJumpTimer), self);
 	}
 }
 
@@ -787,8 +798,8 @@ exec function GamepadSwitchFire()
 	{
 		if(MyGFxHUD.WeaponSelectWidget != none)
 		{
-			W = Pawn.Weapon;
-			if ( W != None )
+			W = Pawn.InvManager.PendingWeapon != none ? Pawn.InvManager.PendingWeapon : Pawn.Weapon;
+			if( W != None && W.bCanThrow )
 			{
 				ServerThrowOtherWeapon(W);
 				//ThrowWeapon();
@@ -951,7 +962,7 @@ simulated exec function ToggleFlashlight()
 		// if able to use NVG, handle hold press
 		else if( bPerkHasNightVision )
 		{
-			SetTimer(GamepadButtonHoldTime, false, nameof(FlashlightTimer), self);
+			`TimerHelper.SetTimer(GamepadButtonHoldTime, false, nameof(FlashlightTimer), self);
 		}
 		// if unable to use NVG, simply tap to toggle flashlight
 		else
@@ -964,9 +975,9 @@ simulated exec function ToggleFlashlight()
 /** Tap function for GBA_ToggleFlashlight */
 exec function FlashlightRelease()
 {
-	if ( IsTimerActive(nameof(FlashlightTimer), self) )
+	if ( `TimerHelper.IsTimerActive(nameof(FlashlightTimer), self) )
 	{
-		ClearTimer(nameof(FlashlightTimer), self);
+		`TimerHelper.ClearTimer(nameof(FlashlightTimer), self);
 		InternalToggleFlashlight();
 	}
 }
@@ -1200,7 +1211,7 @@ exec function GamepadWeaponSelect()
     		return;
     	}
 
-		SetTimer(GamepadButtonHoldTime, false, nameof(GamepadWeaponMenuTimer), self);
+		`TimerHelper.SetTimer(GamepadButtonHoldTime, false, nameof(GamepadWeaponMenuTimer), self);
 	}
 }
 
@@ -1234,9 +1245,9 @@ exec function ReleaseGamepadWeaponSelect()
 			KFIM = KFInventoryManager(Pawn.InvManager);
 
 		    // On button tap, cycle weapons
-		    if (IsTimerActive(nameof(GamepadWeaponMenuTimer), self))
+		    if (`TimerHelper.IsTimerActive(nameof(GamepadWeaponMenuTimer), self))
 		    {
-				ClearTimer(nameof(GamepadWeaponMenuTimer), self);
+				`TimerHelper.ClearTimer(nameof(GamepadWeaponMenuTimer), self);
 
 		    	// once per match show hint for the hold function
 		    	if ( bShowGamepadWeaponSelectHint )
@@ -1269,9 +1280,9 @@ exec function ReleaseGamepadWeaponSelect()
 /** Checks if we can interrupt the weapon menu timer and open it immediately */
 function bool CheckForWeaponMenuTimerInterrupt()
 {
-	if( IsTimerActive(nameOf(GamepadWeaponMenuTimer), self) )
+	if( `TimerHelper.IsTimerActive(nameOf(GamepadWeaponMenuTimer), self) )
 	{
-		ClearTimer( nameOf(GamepadWeaponMenuTimer), self );
+		`TimerHelper.ClearTimer( nameOf(GamepadWeaponMenuTimer), self );
 		GamepadWeaponMenuTimer();
 		return true;
 	}
@@ -1361,6 +1372,11 @@ exec function SwitchWeaponGroup( byte GroupID )
 /*********************************************************************************************
 * @name	Misc Gameplay
 ********************************************************************************************* */
+
+exec function QuickEmote ()
+{
+	//DoEmote
+}
 
 /** Quick heal key was pressed */
 exec function QuickHeal()
@@ -1595,7 +1611,7 @@ exec function OnVoteNoRelease()
 //This takes is called in PlayerController::Use() place now.
 exec function Interact()
 {
-	SetTimer( GamepadButtonHoldTime, false, nameof(InteractTimer), self );
+	`TimerHelper.SetTimer( GamepadButtonHoldTime, false, nameof(InteractTimer), self );
 }
 
 //This takes is called in PlayerController::Use() place now.
@@ -1603,11 +1619,11 @@ exec function InteractRelease()
 {
 	local bool bButtonWasHeld;
 
-	bButtonWasHeld = !IsTimerActive( nameof(InteractTimer), self );
+	bButtonWasHeld = !`TimerHelper.IsTimerActive( nameof(InteractTimer), self );
 	if( !bButtonWasHeld )
 	{
 		Outer.Use();
-		ClearTimer( nameof(InteractTimer), self );
+		`TimerHelper.ClearTimer( nameof(InteractTimer), self );
 	}
 }
 
@@ -1654,7 +1670,7 @@ exec function StartVoiceChat(optional bool bPublicChat)
 			CurrentVoiceChannel = EVC_TEAM;	
 		}
 
-		ClearTimer('ClientStopNetworkedVoice');
+		`TimerHelper.ClearTimer('ClientStopNetworkedVoice');
 		ClientStartNetworkedVoice();
 	}
 }
@@ -1663,7 +1679,7 @@ exec function StopVoiceChat()
 {
 	if(bRequiresPushToTalk)
 	{
-		SetTimer(0.25, false, 'ClientStopNetworkedVoice');
+		`TimerHelper.SetTimer(0.25, false, 'ClientStopNetworkedVoice');
 	}
 }
 
@@ -2811,9 +2827,9 @@ defaultproperties
     LookSensitivityScaleCurve=(Points=((InVal=0.000000,OutVal=0.000000,ArriveTangent=0.500000,LeaveTangent=0.500000,InterpMode=CIM_CurveAuto),(InVal=0.800000,OutVal=0.600000,ArriveTangent=2.000000,LeaveTangent=2.000000,InterpMode=CIM_CurveAuto),(InVal=1.000000,OutVal=1.300000,ArriveTangent=8.000000,LeaveTangent=8.000000,InterpMode=CIM_CurveAuto)),InterpMethod=IMT_UseFixedTangentEvalAndNewAutoTangents)
     MoveSensitivityScaleCurve=(Points=((InVal=0.000000,OutVal=0.300000,ArriveTangent=0.000000,LeaveTangent=0.000000,InterpMode=CIM_Constant),(InVal=0.300000,OutVal=0.300000,ArriveTangent=0.000000,LeaveTangent=0.000000,InterpMode=CIM_Linear),(InVal=0.900000,OutVal=1.000000,ArriveTangent=0.000000,LeaveTangent=0.000000,InterpMode=CIM_Linear)),InterpMethod=IMT_UseFixedTangentEvalAndNewAutoTangents)
 
-
 	DoubleTapDelay=0.25f
 	bShowGamepadWeaponSelectHint=TRUE
+	ZedAutoSprintAnalogThreshold=0.75f
 
 	// ---------------------------------------------
 	// Aim assists

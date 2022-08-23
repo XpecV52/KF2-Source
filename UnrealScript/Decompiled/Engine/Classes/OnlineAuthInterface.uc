@@ -20,13 +20,13 @@ enum EAuthStatus
 
 struct native BaseAuthSession
 {
-    var const int EndPointIP;
+    var const IpAddr EndPointIP;
     var const int EndPointPort;
     var const UniqueNetId EndPointUID;
 
     structdefaultproperties
     {
-        EndPointIP=0
+        EndPointIP=(AddrA=0,AddrB=0,AddrC=0,AddrD=0,Port=0)
         EndPointPort=0
         EndPointUID=(Uid=none)
     }
@@ -51,25 +51,25 @@ function AddAuthReadyDelegate(delegate<OnAuthReady> AuthReadyDelegate);
 
 function ClearAuthReadyDelegate(delegate<OnAuthReady> AuthReadyDelegate);
 
-delegate OnClientAuthRequest(UniqueNetId ServerUID, int ServerIP, int ServerPort, bool bSecure);
+delegate OnClientAuthRequest(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort, bool bSecure);
 
 function AddClientAuthRequestDelegate(delegate<OnClientAuthRequest> ClientAuthRequestDelegate);
 
 function ClearClientAuthRequestDelegate(delegate<OnClientAuthRequest> ClientAuthRequestDelegate);
 
-delegate OnServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID, int ClientIP, int ClientPort);
+delegate OnServerAuthRequest(Player ClientConnection, UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort);
 
 function AddServerAuthRequestDelegate(delegate<OnServerAuthRequest> ServerAuthRequestDelegate);
 
 function ClearServerAuthRequestDelegate(delegate<OnServerAuthRequest> ServerAuthRequestDelegate);
 
-delegate OnClientAuthResponse(UniqueNetId ClientUID, int ClientIP, int AuthTicketUID);
+delegate OnClientAuthResponse(UniqueNetId ClientUID, IpAddr ClientIP, int AuthTicketUID);
 
 function AddClientAuthResponseDelegate(delegate<OnClientAuthResponse> ClientAuthResponseDelegate);
 
 function ClearClientAuthResponseDelegate(delegate<OnClientAuthResponse> ClientAuthResponseDelegate);
 
-delegate OnServerAuthResponse(UniqueNetId ServerUID, int ServerIP, int AuthTicketUID);
+delegate OnServerAuthResponse(UniqueNetId ServerUID, IpAddr ServerIP, int AuthTicketUID);
 
 function AddServerAuthResponseDelegate(delegate<OnServerAuthResponse> ServerAuthResponseDelegate);
 
@@ -123,25 +123,25 @@ function bool SendClientAuthEndSessionRequest(Player ClientConnection);
 
 function bool SendServerAuthRetryRequest();
 
-function bool CreateClientAuthSession(UniqueNetId ServerUID, int ServerIP, int ServerPort, bool bSecure, out int OutAuthTicketUID);
+function bool CreateClientAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort, bool bSecure, out int OutAuthTicketUID);
 
-function bool VerifyClientAuthSession(UniqueNetId ClientUID, int ClientIP, int ClientPort, int AuthTicketUID);
+function bool VerifyClientAuthSession(UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort, int AuthTicketUID);
 
-function EndLocalClientAuthSession(UniqueNetId ServerUID, int ServerIP, int ServerPort);
+function EndLocalClientAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int ServerPort);
 
-function EndRemoteClientAuthSession(UniqueNetId ClientUID, int ClientIP);
+function EndRemoteClientAuthSession(UniqueNetId ClientUID, IpAddr ClientIP);
 
 function EndAllLocalClientAuthSessions();
 
 function EndAllRemoteClientAuthSessions();
 
-function bool CreateServerAuthSession(UniqueNetId ClientUID, int ClientIP, int ClientPort, out int OutAuthTicketUID);
+function bool CreateServerAuthSession(UniqueNetId ClientUID, IpAddr ClientIP, int ClientPort, out int OutAuthTicketUID);
 
-function bool VerifyServerAuthSession(UniqueNetId ServerUID, int ServerIP, int AuthTicketUID);
+function bool VerifyServerAuthSession(UniqueNetId ServerUID, IpAddr ServerIP, int AuthTicketUID);
 
-function EndLocalServerAuthSession(UniqueNetId ClientUID, int ClientIP);
+function EndLocalServerAuthSession(UniqueNetId ClientUID, IpAddr ClientIP);
 
-function EndRemoteServerAuthSession(UniqueNetId ServerUID, int ServerIP);
+function EndRemoteServerAuthSession(UniqueNetId ServerUID, IpAddr ServerIP);
 
 function EndAllLocalServerAuthSessions();
 
@@ -169,4 +169,4 @@ function bool FindLocalServerAuthSession(Player ClientConnection, out LocalAuthS
 
 function bool GetServerUniqueId(out UniqueNetId OutServerUID);
 
-function bool GetServerAddr(out int OutServerIP, out int OutServerPort);
+function bool GetServerAddr(out IpAddr OutServerIP, out int OutServerPort);

@@ -12,7 +12,6 @@ class KFWeap_Pistol_Dual9mm extends KFWeap_DualBase;
 
 defaultproperties
 {
-   LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_9MM_ARCH.Wep_Dual_9MM_MuzzleFlash_L'
    LeftFireOffset=(X=17.000000,Y=-4.000000,Z=-2.250000)
    SingleClass=Class'kfgamecontent.KFWeap_Pistol_9mm'
    BonesToLockOnEmpty_L(1)="LW_Bullets1"
@@ -63,6 +62,7 @@ defaultproperties
    RecoilISMinYawLimit=65485
    RecoilISMaxPitchLimit=250
    RecoilISMinPitchLimit=65485
+   AssociatedPerkClasses(0)=None
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

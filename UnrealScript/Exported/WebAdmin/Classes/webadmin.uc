@@ -325,7 +325,7 @@ function init()
 	local class/*<ISessionHandler>*/ sessClass;
 	local class/*<DataStoreCache>*/ dscClass;
 	local class<Actor> aclass;
-	local IpAddr ipaddr;
+	local IpAddr ipaddress;
 	local int i;
 	local bool doSaveConfig;
 
@@ -427,8 +427,8 @@ function init()
 		sessions = Worldinfo.spawn(aclass);
 	}
 
-	WebServer.GetLocalIP(ipaddr);
-	serverIp = WebServer.IpAddrToString(ipaddr);
+	WebServer.GetLocalIP(ipaddress);
+	serverIp = WebServer.IpAddrToString(ipaddress);
 	i = InStr(serverIp, ":");
 	if (i > INDEX_NONE)
 	{

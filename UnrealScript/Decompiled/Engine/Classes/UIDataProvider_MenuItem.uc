@@ -46,6 +46,7 @@ var() bool bSearchAllInis;
 var config bool bRemoveOn360;
 var config bool bRemoveOnPC;
 var config bool bRemoveOnPS3;
+var config bool bRemoveOnDingo;
 var config int EditBoxMaxLength;
 var config UIRangeData RangeData;
 var config array<config name> SchemaCellFields;

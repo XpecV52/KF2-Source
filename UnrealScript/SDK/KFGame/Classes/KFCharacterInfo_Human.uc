@@ -155,6 +155,12 @@ var(FaveWeapons) editconst name FavoriteWeaponClassNames[NUM_FAVE_WEAPS];
 var(FaveWeapons) editoronly class<KFWeaponDefinition> FavoriteWeaponClassDefs[NUM_FAVE_WEAPS]<AllowAbstract>;
 
 /************************************************************************/
+/*  Emote AnimSets                             					        */
+/************************************************************************/
+var Animset EmoteAnimset;
+
+
+/************************************************************************/
 /*  Native Functions												    */
 /************************************************************************/
 
@@ -867,4 +873,24 @@ simulated function SetArmsMeshAndSkin(
 			`warn("Character does not have a valid arms mesh");
 		}
 	}
+}
+
+static function int GetWeaponAnimSetIdx()
+{
+	return default.EmoteAnimset != none ? default.AnimSets.length + 1 : default.AnimSets.length;
+}
+
+simulated function SetCharacterAnimFromArch( KFPawn Pawn )
+{
+	super.SetCharacterAnimFromArch( Pawn );
+
+	if( EmoteAnimset != none )
+	{
+		Pawn.Mesh.Animsets.AddItem(EmoteAnimset);
+	}
+}
+
+defaultproperties
+{
+	EmoteAnimset=AnimSet'ECON_emote.ECON_Emotes'
 }

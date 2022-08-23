@@ -8,3 +8,25 @@
 class KFExplosion_PlayerBloatPukeMine extends KFExplosionActor
     config(Weapon)
     hidecategories(Navigation);
+
+simulated function SpawnExplosionParticleSystem(ParticleSystem Template)
+{
+    local editinline ParticleSystemComponent PSC;
+
+    if(!ExplosionTemplate.bAllowPerMaterialFX && Template == none)
+    {
+        Template = KFGameExplosion(ExplosionTemplate).ExplosionEffects.DefaultImpactEffect.ParticleTemplate;
+    }
+    PSC = WorldInfo.MyEmitterPool.SpawnEmitter(Template, Location, rotator(ExplosionTemplate.HitNormal), none);
+    if(PSC != none)
+    {
+        if(FastTrace(Location - vect(0, 0, 50), Location,, true))
+        {
+            PSC.SetFloatParameter('FX_Crater', 0);            
+        }
+        else
+        {
+            PSC.SetFloatParameter('FX_Crater', 1);
+        }
+    }
+}

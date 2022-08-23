@@ -339,7 +339,10 @@ function ClearFailedVoteFlag()
 
 function AddMapOption(string MapOption)
 {
-    MapList.AddItem(MapOption;
+    if(Outer.WorldInfo.NetMode != NM_Standalone)
+    {
+        MapList.AddItem(MapOption;
+    }
 }
 
 function int GetNextMap()
@@ -418,7 +421,14 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
             {
                 case 0:
                     TopVotesObject.Map1Votes = byte(MapVoteList[I].VoterPRIList.Length);
-                    TopVotesObject.Map1Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[I].MapIndex];
+                    if(Outer.WorldInfo.NetMode == NM_Standalone)
+                    {
+                        TopVotesObject.Map1Name = MapList[MapIndex];                        
+                    }
+                    else
+                    {
+                        TopVotesObject.Map1Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[I].MapIndex];
+                    }
                     if(CheckMajorityPlayersVotedOnMap(PRIs, MapVoteList[I].VoterPRIList.Length))
                     {
                         ShortenVoteTime(KFGI);
@@ -426,11 +436,25 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
                     break;
                 case 1:
                     TopVotesObject.Map2Votes = byte(MapVoteList[I].VoterPRIList.Length);
-                    TopVotesObject.Map2Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[I].MapIndex];
+                    if(Outer.WorldInfo.NetMode == NM_Standalone)
+                    {
+                        TopVotesObject.Map2Name = MapList[MapIndex];                        
+                    }
+                    else
+                    {
+                        TopVotesObject.Map2Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[I].MapIndex];
+                    }
                     break;
                 case 2:
                     TopVotesObject.Map3Votes = byte(MapVoteList[I].VoterPRIList.Length);
-                    TopVotesObject.Map3Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[I].MapIndex];
+                    if(Outer.WorldInfo.NetMode == NM_Standalone)
+                    {
+                        TopVotesObject.Map3Name = MapList[MapIndex];                        
+                    }
+                    else
+                    {
+                        TopVotesObject.Map3Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[I].MapIndex];
+                    }
                     break;
                 default:
                     break;
@@ -440,15 +464,15 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
         {
             ++ I;
             goto J0x1DF;
-        }/* !MISMATCHING REMOVE, tried Loop got Type:Else Position:0x518! */
+        }/* !MISMATCHING REMOVE, tried Loop got Type:Else Position:0x66B! */
         I = 0;
-        J0x531:
+        J0x684:
 
         if(I < PRIs.Length)
         {
             PRIs[I].RecieveTopMaps(TopVotesObject);
             ++ I;
-            goto J0x531;
+            goto J0x684;
         }
         if(CheckAllPlayerVoted(PRIs))
         {

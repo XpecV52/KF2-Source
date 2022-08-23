@@ -180,11 +180,14 @@ and also on net client when pawn gets bTearOff set to true (and bPlayedDeath is 
 simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 {
 	local KFGameReplicationInfo KFGRI;
+    local string ClassName;
 
     super.PlayDying( DamageType, HitLoc );
 
 	//@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
-	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(string(Class.Name), WorldInfo.GetMapName(true));
+    ClassName = string(Class.Name);
+    ClassName -= '_Versus';
+	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(ClassName, WorldInfo.GetMapName(true));
 	//@HSL_END
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);

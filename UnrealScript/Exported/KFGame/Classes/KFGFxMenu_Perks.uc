@@ -73,7 +73,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
-#linenumber 13
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;#linenumber 13
 
 var KFGFxPerksContainer_Selection 		SelectionContainer;
 var KFGFxPerksContainer_Header			HeaderContainer;
@@ -218,19 +219,26 @@ function CheckTiersForPopup()
 
 event OnClose()
 {
+	local bool bShouldUpdatePerk;
+
   	if( KFPC != none )
   	{
   		if( bModifiedPerk || bModifiedSkills )
   		{
+			bShouldUpdatePerk = bModifiedPerk && LastPerkIndex != KFPC.SavedPerkIndex;
+
 			SavePerkData();
 
-			if( KFPC.CanUpdatePerkInfo() )  
+			if( !bChangesMadeDuringLobby && (bShouldUpdatePerk || bModifiedSkills) && KFPC.CanUpdatePerkInfo() )
 			{
-  				if( !bChangesMadeDuringLobby )
-  				{
-  					KFPC.NotifyPerkUpdated();
-  				}
+				KFPC.NotifyPerkUpdated();
   			}
+
+			if( bShouldUpdatePerk )
+			{
+	  			SelectionContainer.SavePerk( LastPerkIndex );
+				Manager.CachedProfile.SetProfileSettingValueInt( KFID_SavedPerkIndex, LastPerkIndex );
+			}
 
   			bModifiedPerk = false;
   			bModifiedSkills = false;
@@ -274,10 +282,14 @@ function PerkChanged( byte NewPerkIndex, bool bClickedIndex)
 		{
 			LastPerkIndex = NewPerkIndex;
 	  		bModifiedPerk = true;
-			SavePerkData();
 
-  			SelectionContainer.SavePerk( NewPerkIndex );
-			Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPerkIndex, NewPerkIndex);
+	  		// Only update perk immediately if we don't have a valid pawn
+	  		if( KFPC.Pawn == none || !KFPC.Pawn.IsAliveAndWell() )
+	  		{
+				SavePerkData();
+	  			SelectionContainer.SavePerk( NewPerkIndex );
+				Manager.CachedProfile.SetProfileSettingValueInt( KFID_SavedPerkIndex, NewPerkIndex );
+			}
 		}
 
   		UpdateContainers( KFPC.PerkList[NewPerkIndex].PerkClass, bClickedIndex );
@@ -333,7 +345,7 @@ function UpdateContainers( class<KFPerk> PerkClass, optional bool bClickedIndex=
 		// Don't change the perk selection since we just selected another index to look at.
 		if( SelectionContainer != none && bClickedIndex )
 		{
-			SelectionContainer.UpdatePerkSelection( KFPC.SavedPerkIndex );
+			SelectionContainer.UpdatePerkSelection( LastPerkIndex );
 		}
 
 		UpdateSkillsUI( PerkClass );

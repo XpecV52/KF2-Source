@@ -84,7 +84,7 @@ package tripwire.menus
                 "id":this.bButtonSubString
             });
             TextFieldEx.setImageSubstitutions(this.textField,this.controllerIconObjects);
-            TextFieldEx.setVerticalAlign(this.textField,"center");
+            TextFieldEx.setVerticalAlign(this.textField,"bottom");
             this.loadingMC.visible = false;
             this.loadingMC.stop();
         }

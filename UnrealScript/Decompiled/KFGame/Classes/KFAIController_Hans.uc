@@ -771,7 +771,7 @@ function TickGunSystem()
             }
             return;
         }
-        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(33) && !MyKFPawn.IsDoingSpecialMove(32))
+        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(34) && !MyKFPawn.IsDoingSpecialMove(33))
         {
             if((Pawn.IsFiring() || IsTimerActive('FireTimer', self)) || IsTimerActive('StartFireTiming', self))
             {
@@ -873,7 +873,7 @@ function DrawRangedAttackInfo(HUD HUD)
     DrawDebugText(HUD, "Battle Phase: " $ string(MyHansPawn.CurrentBattlePhase));
     DrawDebugText(HUD, "--Guns--");
     DrawDebugText(HUD, (("Guns Equipped: " $ string(MyHansPawn.bGunsEquipped)) $ " Can Use Guns In This Phase: ") $ string(MyHansPawn.CanUseGunsInThisPhase()));
-    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(33))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
+    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(34))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
     if((WorldInfo.TimeSeconds - StartDrawGunsTime) > DrawGunFireDelay)
     {
         UsedDrawGunsCooldown = 0;        
@@ -1033,7 +1033,7 @@ function bool GrenadeAttackInterruptGuns()
 
 function bool SetupGrenadeAttack()
 {
-    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(33)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
+    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(34)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
     {
         CurrentNadeAttackType = 0;
         if(!IsWithinAttackRange())
@@ -1179,6 +1179,16 @@ function bool CanSwitchEnemies()
     return !bWantsToFlee && !bFleeing;
 }
 
+function DoFleeFrom(Actor FleeFrom, optional float FleeDuration, optional float FleeDistance, optional bool bShouldStopAtGoal, optional bool bFromFear)
+{
+    bShouldStopAtGoal = false;
+    bFromFear = false;
+    if(!bFromFear || !MyHansPawn.bInHuntAndHealMode)
+    {
+        super(KFAIController).DoFleeFrom(FleeFrom, FleeDuration, FleeDistance, bShouldStopAtGoal, bFromFear);
+    }
+}
+
 function Flee()
 {
     local Actor FleeFromTarget;
@@ -1270,6 +1280,10 @@ function NotifyFleeFinished(optional bool bAcquireNewEnemy)
     local KFAISpawnManager SpawnManager;
 
     bAcquireNewEnemy = true;
+    if(!MyHansPawn.bInHuntAndHealMode)
+    {
+        return;
+    }
     bFleeing = false;
     bWantsToFlee = false;
     ClearTimer('Timer_SearchForFleeObstructions');

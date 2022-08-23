@@ -723,6 +723,32 @@ state Open
         return true;
     }
 
+    function KeyboardInputComplete(bool bWasSuccessful)
+    {
+        local string Temp;
+        local byte bWasCancelled;
+        local OnlineSubsystem OnlineSub;
+
+        OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+        TypedStr = OnlineSub.PlayerInterface.GetKeyboardInputResults(bWasCancelled);
+        if(TypedStr != "")
+        {
+            Temp = TypedStr;
+            SetInputText("");
+            SetCursorPos(0);
+            if(Temp ~= "cls")
+            {
+                ClearOutput();                
+            }
+            else
+            {
+                ConsoleCommand(Temp);
+            }
+            UpdateCompleteIndices();
+        }
+        GotoState('None');
+    }
+
     function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event, optional float AmountDepressed, optional bool bGamepad)
     {
         local string Temp;
@@ -1098,14 +1124,28 @@ state Open
 
     event BeginState(name PreviousStateName)
     {
+        local OnlineSubsystem OnlineSub;
+
         bCaptureKeyInput = true;
         HistoryCur = HistoryTop;
         SBPos = 0;
         bCtrl = false;
+        OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+        OnlineSub.PlayerInterface.AddKeyboardInputDoneDelegate(KeyboardInputComplete);
+        OnlineSub.PlayerInterface.ShowKeyboardUI(0, "Console Input", "Input console commands");
         if(PreviousStateName == 'None')
         {
             FlushPlayerInput();
         }
+    }
+
+    event EndState(name NextStateName)
+    {
+        local OnlineSubsystem OnlineSub;
+
+        OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+        OnlineSub.PlayerInterface.HideKeyboardUI(0);
+        OnlineSub.PlayerInterface.ClearKeyboardInputDoneDelegate(KeyboardInputComplete);
     }
     stop;    
 }

@@ -18,7 +18,13 @@ defaultproperties
     WeaponDef=Class'KFGame.KFWeapDef_MicrowaveGun'
     bCanGib=true
     bCanObliterate=true
+    bIgnoreSelfInflictedScale=true
+    DoT_Type=EDamageOverTimeGroup.DOT_Fire
+    DoT_Duration=1.7
+    DoT_Interval=0.5
+    DoT_DamageScale=0.8
     StumblePower=30
+    BurnPower=5.5
     MicrowavePower=10
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=2000

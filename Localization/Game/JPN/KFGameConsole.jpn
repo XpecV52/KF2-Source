@@ -13,6 +13,7 @@ KF-Prison="Prisonをプレイ中"
 KF-ContainmentStation="Containment Stationをプレイ中"
 KF-InfernalRealm="Infernal Realmをプレイ中"
 KF-HostileGrounds="Hostile Groundsをプレイ中"
+KF-ZedLanding="Zed Landingをプレイ中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

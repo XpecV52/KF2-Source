@@ -151,7 +151,7 @@ function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
     {
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
     }
-    bIsLeader = KFPRI.UniqueId == AdminId;
+    bIsLeader = KFPRI.UniqueId == AdminId && AdminId != ZeroUniqueId;
     PlayerInfoObject.SetBool("bLeader", bIsLeader);
     bIsMyPlayer = PC.PlayerReplicationInfo.UniqueId == KFPRI.UniqueId;
     MemberSlots[SlotIndex].PlayerUID = KFPRI.UniqueId;

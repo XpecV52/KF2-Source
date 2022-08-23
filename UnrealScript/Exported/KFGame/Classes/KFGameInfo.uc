@@ -907,6 +907,7 @@ function CreateDifficultyInfo(string Options)
 
 		))
 	{
+		LogInternal("Using difficulty override class:"@DifficultyInfoConsoleClass);
 		DifficultyInfo = new(self) DifficultyInfoConsoleClass;
 	}
 	else
@@ -1011,8 +1012,9 @@ function ReplicateWelcomeScreen()
 	if(MyKFGRI != none)
 	{
 		MyKFGRI.ServerAdInfo.BannerLink = BannerLink;
-		MyKFGRI.ServerAdInfo.ServerMOTD = ServerMOTD;
+		MyKFGRI.ServerAdInfo.ServerMOTD = Repl(ServerMOTD, "@nl@", Chr(10));
 		MyKFGRI.ServerAdInfo.WebsiteLink= WebsiteLink;
+		MyKFGRI.ServerAdInfo.ClanMotto = ClanMotto;
 	}
 }
 
@@ -1479,25 +1481,25 @@ function RestartPlayer(Controller NewPlayer)
 	local KFPlayerController KFPC;
 	local KFPerk MyPerk;
 
-	local bool bIsBenchmark;
+
 
 
 	KFPC = KFPlayerController( NewPlayer );
 
 	// Make sure the perk is initialized before spawning in, if not, wait for it
 	// @NOTE: We still do this in standalone games because we may need to wait for Steam -MattF
-	
-	// Benchmark silliness. If we allow this code to run, it takes control away from the benchmark
-	// matinee director and the command fails. -MattF
-	if( !class'WorldInfo'.Static.IsConsoleBuild()
-		&& !class'WorldInfo'.Static.IsConsoleDedicatedServer()
-		&& InStr(WorldInfo.GetLocalURL(), "?CAUSEEVENT=BENCHMARK",, true) > -1 )
-	{
-		bIsBenchmark = true;
-	}
-    if( KFPC != none && KFPC.GetTeamNum() != 255 && !bIsBenchmark )
 
 
+
+
+
+
+
+
+
+
+
+	if( KFPC != none && KFPC.GetTeamNum() != 255 )
 
     {
     	MyPerk = KFPC.GetPerk();
@@ -1603,7 +1605,7 @@ function bool CheckSpawnProximity( NavigationPoint P, Controller Player, byte Te
 	local KFPawn_Customization CPawn;
 
 	foreach WorldInfo.AllControllers(class'PlayerController', PC)
-	{
+		{
 		if ( PC == Player )
 			continue;
 
@@ -2033,7 +2035,7 @@ function class<DamageType> GetLastHitByDamageType(class<DamageType> DT, KFPawn_M
 	{
 		if( RealDT.default.WeaponDef == none && P.HitFxInfo.DamageType != none && Killer == P.LastHitBy )
 		{
-			if(!RealDT.default.bCausedByWorld && RealDT.default.DoT_Type != DOT_Bleeding)
+			if(!RealDT.default.bAnyPerk && !RealDT.default.bCausedByWorld && RealDT.default.DoT_Type != DOT_Bleeding)
 			{
 				WarnInternal("Damage Type "@RealDT.Name@" has not had its weapon definition initialized");
 			}
@@ -2051,19 +2053,30 @@ function class<DamageType> GetLastHitByDamageType(class<DamageType> DT, KFPawn_M
 
 function BroadcastDeathMessage(Controller Killer, Controller Other, class<DamageType> damageType)
 {
-	if ( (Killer == Other) || (Killer == None) )
-	{	//suicide
-		BroadcastLocalized(self, class'KFLocalMessage_Game', KMT_Suicide, None, Other.PlayerReplicationInfo);
+	if( Killer == none )
+	{
+		// If a zed died from no killer, it's very likely that they killed themselves. Skip the death message.
+		if( Other.GetTeamNum() != 255 )
+		{
+			// Probably killed by an AI that no longer exists or a player that left the game
+			BroadcastLocalized(self, class'KFLocalMessage_Game', KMT_Killed, none, Other.PlayerReplicationInfo, damageType );
+		}
+	}
+	else if( Killer == Other )
+	{
+		// Suicide
+		BroadcastLocalized( self, class'KFLocalMessage_Game', KMT_Suicide, none, Other.PlayerReplicationInfo );		
 	}
 	else
 	{
-		if(Killer.IsA('KFAIController'))
+		// Optimization, try to use IsHumanControlled() before we cast
+		if( (Killer.Pawn != none && !Killer.Pawn.IsHumanControlled()) || KFAIController(Killer) != none )
 		{
-			BroadcastLocalized(self, class'KFLocalMessage_Game', KMT_Killed, none, Other.PlayerReplicationInfo, Killer.Pawn != none ? Killer.Pawn.Class : class'KFPawn_Human' );
+			BroadcastLocalized( self, class'KFLocalMessage_Game', KMT_Killed, none, Other.PlayerReplicationInfo, Killer.Pawn != none ? Killer.Pawn.Class : class'KFPawn_Human' );
 		}
 		else
 		{
-			BroadcastLocalized(self, class'KFLocalMessage_PlayerKills', KMT_PlayerKillPlayer, Killer.PlayerReplicationInfo, Other.PlayerReplicationInfo);
+			BroadcastLocalized( self, class'KFLocalMessage_PlayerKills', KMT_PlayerKillPlayer, Killer.PlayerReplicationInfo, Other.PlayerReplicationInfo );
 		}
 	}
 }
@@ -3206,7 +3219,7 @@ auto State PendingMatch
             // If this is a dedicated server locked for use by players,
 			// check if anyone is connected after ready-up time expires,
 			// and unlock the server if no one is has connected
-			if( KFGameEngine(class'Engine'.static.GetEngine()).IsLockedServer() && !IsTimerActive( nameof(CheckServerUnlock) ) )
+			if( !IsTimerActive( nameof(CheckServerUnlock) ) )
 			{
 				SetTimer( ReadyUpDelay, false, nameof(CheckServerUnlock) );
 			}
@@ -3273,25 +3286,36 @@ private function CheckServerUnlock()
 {
 	local bool bWasAvailableForTakeover;
 	local KFGameEngine KFEngine;
-
-	KFEngine = KFGameEngine(class'Engine'.static.GetEngine());
+    local PlayfabInterface Playfab;
 
 	if ( GetNumPlayers() == 0 )
 	{
-		bWasAvailableForTakeover = KFEngine.bAvailableForTakeover;
+        KFEngine = KFGameEngine(class'Engine'.static.GetEngine());
+        Playfab = KFEngine.GetPlayfabInterface();
+        
+        if( Playfab != none )
+	    {
+		    Playfab.serverDeallocate();
+	    }
 
 		// Won't unlock a server that's not lockable
-		KFEngine.UnlockServer();
-		if (!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
-		{
-			AccessControl.SetGamePassword("");
-			StripPasswordFromLastURL(KFEngine);
-		}
-		// If the status changed, update game settings immediately
-		if( bWasAvailableForTakeover != KFEngine.bAvailableForTakeover )
-		{
-			UpdateGameSettings();
-		}
+        if( KFEngine.IsLockedServer() )
+        {
+            bWasAvailableForTakeover = KFEngine.bAvailableForTakeover;
+            KFEngine.UnlockServer();
+            
+            if (!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
+            {
+                AccessControl.SetGamePassword("");
+                StripPasswordFromLastURL(KFEngine);
+            }
+            // If the status changed, update game settings immediately
+            if( bWasAvailableForTakeover != KFEngine.bAvailableForTakeover )
+            {
+                UpdateGameSettings();
+            }
+        }
+		
 	}
 }
 
@@ -3512,6 +3536,13 @@ function OnRetreivedPFInternalUserData( const string ForPlayerId, array<string> 
 
 //@HSL_END
 
+/**
+  * Checks if the next map exists.
+  * @param NextMap The map name to check
+  * @return NextMap if it exists, a default map name otherwise.
+  */
+native function string CheckNextMap(string NextMap);
+
 /*********************************************************************************************
  * @name AI
  *********************************************************************************************/
@@ -3570,7 +3601,7 @@ defaultproperties
    NumAlwaysRelevantZeds=3
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm"))
+   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

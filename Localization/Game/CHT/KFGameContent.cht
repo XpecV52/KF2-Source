@@ -197,6 +197,8 @@ ItemName="SA80 L85A2 小鬥牛"
 ItemCategory="突擊步槍"
 ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•SA80 是英國陸軍的標準配備，直到陸軍，呃，被吃了。"
 
+
+
 [KFWeap_Knife_Demolitionist]
 ItemName="多功能小刀"
 ItemCategory="近身"
@@ -267,6 +269,8 @@ ItemName="M4 戰鬥霰彈槍"
 ItemCategory="霰彈槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•Benelli 為美國軍隊設計了 M4 戰鬥霰彈槍。它是半自動發射，能以穩定頻率射出子彈。"
 
+
+
 [KFWeap_Knife_Berserker]
 ItemName="除草機刀片"
 ItemCategory="近身"
@@ -314,6 +318,11 @@ ItemCategory="近身"
 ItemDescription="•主要攻擊鍵：中 / 強傷害，控制力較佳。\n•次要攻擊鍵：較慢，但傷害較高。\n•輔助功能鍵：防禦 / 格擋。\n•一面前進一面攻擊傷害會更高。"
 SharedUnlockSource="騎士中古大戰 "
 
+[KFWeap_Blunt_MaceAndShield]
+ItemName="碎骨者"
+ItemCategory="近身"
+ItemDescription="•主要 - 快速鈍器攻擊，按住主要鍵即可進行連段攻擊。\n•次要 - 鈍器重擊，進一步活化盾牌的使用功能。\n•Alt - 阻擋/迴避。阻擋可減少僵屍群的噴射傷害。\n•擁有強力的盾牌重擊攻擊方式。"
+
 [KFWeap_Flame_CaulkBurn]
 ItemName="裝好就燒"
 ItemCategory="火焰"
@@ -353,6 +362,8 @@ ItemDescription="•主要攻擊模式會射出一枚手榴彈。\n•手榴彈�
 ItemName="RPG-7 "
 ItemCategory="炸藥"
 ItemDescription="•主要攻擊模式會射出一枚火箭。\n•火箭碰觸到物品即爆炸。\n•射出後才會解除保險，所以你不會炸爛自己的臉。\n•小心後座力！"
+
+
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="9 釐米雙槍"
@@ -403,6 +414,8 @@ ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，�
 ItemName="溫徹斯特 1894"
 ItemCategory="來福槍"
 ItemDescription="•主要攻擊模式只有單發。\n•經典的 1894 型溫徹斯特槓桿式步槍。"
+
+
 
 [KFWeap_Bow_Crossbow]
 ItemName="十字弓"

@@ -27,8 +27,6 @@ var byte MaxBlocks;  // The maximum number of blocks available
 
 var int PrevArmor;
 
-var array< STraderItem > ShopWeaponList;	// The Trader Item Info for each Item slot
-
 var int CostPerAutofillCycle;
 var int DoshBuffer;
 
@@ -256,7 +254,7 @@ function SellOnPerkWeapons()
 	
 	for (i = 0; i < OwnedItemList.length; i++)
 	{
-		if( OwnedItemList[i].DefaultItem.AssociatedPerkClass != none && OwnedItemList[i].DefaultItem.AssociatedPerkClass == CurrentPerk.Class && OwnedItemList[i].DefaultItem.BlocksRequired != -1)
+		if( OwnedItemList[i].DefaultItem.AssociatedPerkClasses.length > 0 && OwnedItemList[i].DefaultItem.AssociatedPerkClasses[0] == CurrentPerk.Class && OwnedItemList[i].DefaultItem.BlocksRequired != -1)
 		{
 			SellWeapon(OwnedItemList[i], i);
 			i=-1;
@@ -270,7 +268,7 @@ function SellOffPerkWeapons()
 	
 	for (i = 0; i < OwnedItemList.length; i++)
 	{
-		if( OwnedItemList[i].DefaultItem.AssociatedPerkClass != CurrentPerk.Class && OwnedItemList[i].DefaultItem.BlocksRequired != -1 && OwnedItemList[i].SellPrice != 0 )
+		if( OwnedItemList[i].DefaultItem.AssociatedPerkClasses[0] != CurrentPerk.Class && OwnedItemList[i].DefaultItem.BlocksRequired != -1 && OwnedItemList[i].SellPrice != 0 )
 		{
 			if(CurrentPerk.AutoBuyLoadOutPath.Find(OwnedItemList[i].DefaultItem.WeaponDef) == INDEX_NONE)
 			{
@@ -364,7 +362,7 @@ function int GetFillArmorCost()
 {
 	local float ArmorPercentage, FillCost, ArmorPricePerPercent;
 
-	ArmorPercentage = (float(ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount) / float(ArmorItem.MaxSpareAmmo)) * 100;
+	ArmorPercentage = (float(ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount) / float(ArmorItem.MaxSpareAmmo)) * 100.f;
 	ArmorPricePerPercent = ArmorItem.AmmoPricePerMagazine;
 	FillCost = FCeil( ArmorPercentage * ArmorPricePerPercent );
 
@@ -374,13 +372,14 @@ function int GetFillArmorCost()
 function int FillArmor( )
 {
 	local float ArmorPricePerPercent, FillCost;
-	local float PercentArmorBought;
+	local float PercentBoughtUnit, PercentArmorBought;
 	local int ActualArmorPointsAvailable;
 	
 	FillCost = GetFillArmorCost();
 	ActualArmorPointsAvailable = ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount;
 
-	PercentArmorBought = (float(ActualArmorPointsAvailable) / float(ArmorItem.MaxSpareAmmo)) * 100;
+	PercentBoughtUnit = float(ActualArmorPointsAvailable) / float(ArmorItem.MaxSpareAmmo);
+	PercentArmorBought = PercentBoughtUnit * 100.f;
 
 	// Buy as much armor as we possibly can
     if (FillCost > TotalDosh)
@@ -389,10 +388,13 @@ function int FillArmor( )
 
         // Because we are using ints this will round down and we can get how much we actually spent
     	PercentArmorBought = TotalDosh / ArmorPricePerPercent;
+    	PercentBoughtUnit = PercentArmorBought / 100.f;
 		FillCost = ArmorPricePerPercent * PercentArmorBought;
     }
 
-    ArmorItem.SpareAmmoCount = FMin( ArmorItem.SpareAmmoCount + PercentArmorBought, ArmorItem.MaxSpareAmmo );
+    PercentArmorBought = (PercentArmorBought > 0.f && PercentArmorBought < 1.f) ? 1.f : PercentArmorBought;
+    ArmorItem.SpareAmmoCount = FMin( float(ArmorItem.SpareAmmoCount) + (PercentBoughtUnit * float(ArmorItem.MaxSpareAmmo)), float(ArmorItem.MaxSpareAmmo) );
+	
 	BoughtAmmo(PercentArmorBought, FillCost, EIT_Armor);
 	return FillCost;
 }
@@ -823,7 +825,7 @@ function InitializeOwnedItemList()
 	   	GrenadeItem.DefaultItem.WeaponDef = CurrentPerk.GetGrenadeWeaponDef();
 
 		// @temp: fill in stuff that is normally serialized in the archetype
-		GrenadeItem.DefaultItem.AssociatedPerkClass = CurrentPerk.Class;
+		GrenadeItem.DefaultItem.AssociatedPerkClasses[0] = CurrentPerk.Class;
 
 		for ( Inv = MyKFIM.InventoryChain; Inv != none; Inv = Inv.Inventory )
 		{
@@ -984,7 +986,7 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 
 	// Magazine capacity affects both spare ammo and max spare ammo. modify this first
    	WeaponInfo.MagazineCapacity = DefaultItem.MagazineCapacity;
-	CurrentPerk.ModifyMagSizeAndNumber( none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass,, DefaultItem.ClassName );
+	CurrentPerk.ModifyMagSizeAndNumber( none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClasses,, DefaultItem.ClassName );
 	
 	// Newly bought weapons need to have their default values modified by the current perk
 	WeaponInfo.MaxSpareAmmo = DefaultItem.MaxSpareAmmo;
@@ -1004,7 +1006,10 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 			if( OwnedItemList[OwnedSingleIdx].DefaultItem.ClassName == DefaultItem.SingleClassName )
 			{
 				SingleDualAmmoDiff = OwnedItemList[OwnedSingleIdx].SpareAmmoCount - WeaponInfo.SpareAmmoCount;
-				WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount /*+ WeaponInfo.MagazineCapacity/2*/; // can't add mag/2 ammo here because it makes buying two singles better than buying a dual
+				if( OwnedItemList[OwnedSingleIdx].SpareAmmoCount >= WeaponInfo.SpareAmmoCount )
+				{
+					WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount /*+ WeaponInfo.MagazineCapacity/2*/; // can't add mag/2 ammo here because it makes buying two singles better than buying a dual
+				}
 				break;
 			}
 		}
@@ -1012,10 +1017,10 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 
 	// allow perk to set spare ammo to max (uses different params than ModifySpareAmmoAmount)
 	// mostly just used for firebug
-	CurrentPerk.MaximizeSpareAmmoAmount( DefaultItem.AssociatedPerkClass, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity );
+	CurrentPerk.MaximizeSpareAmmoAmount( DefaultItem.AssociatedPerkClasses, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity );
 
 	WeaponInfo.SecondaryAmmoCount = DefaultItem.InitialSecondaryAmmo;
-	CurrentPerk.ModifyMagSizeAndNumber( none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClass, true, DefaultItem.ClassName );
+	CurrentPerk.ModifyMagSizeAndNumber( none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClasses, true, DefaultItem.ClassName );
 	CurrentPerk.ModifySpareAmmoAmount( none, WeaponInfo.SecondaryAmmoCount, DefaultItem, true );
 
 	WeaponInfo.MaxSecondaryAmmo = DefaultItem.MaxSecondaryAmmo;
@@ -1166,7 +1171,7 @@ function int AddItemByPriority( out SItemInformation WeaponInfo )
 				break;
 			}
 			else if( WeaponPriority == OwnedItemList[i].DefaultItem.GroupPriority && 
-				CurrentPerk.Class == WeaponInfo.DefaultItem.AssociatedPerkClass )
+				WeaponInfo.DefaultItem.AssociatedPerkClasses.Find(CurrentPerk.Class) != INDEX_NONE )
 			{
 				// if the weapons have the same priority give the slot to the on perk weapon
 				BestIndex = i;
@@ -1212,8 +1217,8 @@ native private final function AddTransactionAmmo( byte ItemIndex, int Amount, bo
 
 defaultproperties
 {
-   GrenadeItem=(DefaultItem=(AltTraderFilter=FT_None))
-   ArmorItem=(DefaultItem=(AltTraderFilter=FT_None))
+   GrenadeItem=(DefaultItem=(AltTraderFilter=FT_None,ItemId=-1))
+   ArmorItem=(DefaultItem=(AltTraderFilter=FT_None,ItemId=-1))
    CostPerAutofillCycle=10
    DoshBuffer=150
    Name="Default__KFAutoPurchaseHelper"

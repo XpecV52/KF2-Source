@@ -30,6 +30,10 @@ var float FireballRandomizedValue;
 
 /** The maximum distance an enemy can be from our pawn for us to be able to do a flamethrower attack */
 var int MaxDistanceForFlameThrower;
+
+/** The minimum distance an enemy must be from our pawn for us to be able to do a fireball attack */
+var int MinDistanceForFireBall;
+
 /** The maximum distance an enemy can be from our pawn for us to be able to do a fireball attack */
 var int MaxDistanceForFireBall;
 
@@ -68,9 +72,6 @@ var const float					FireballFireIntervalHellOnEarth;
 
 /** How much to scale the used FireballInterval to get the low intensity attack scale */
 var const float                 LowIntensityAttackScaleOfFireballInterval;
-
-/** Offset for firing fireballs. */
-var vector							FireOffset;
 
 //var transient array<KFDoorMarker> Doors;
 
@@ -241,13 +242,10 @@ function bool CanDoFireball( float DistToTargetSq )
         return false;
     }
 
-	 if( (LastFireBallTime == 0 || (`TimeSince(LastFireBallTime) > TimeBetweenFireBalls)) &&
-		  DistToTargetSq <= MaxDistanceForFireBall * MaxDistanceForFireBall &&
-		  MyKFPawn.CanDoSpecialMove(SM_StandAndShootAttack))
-	 {
-		 return true;
-	 }
-	 return false;
+	 return ((LastFireBallTime == 0 || (`TimeSince(LastFireBallTime) > TimeBetweenFireBalls))
+	 	&& DistToTargetSq >= Square(MinDistanceForFireBall)
+	 	&& DistToTargetSq <= Square(MaxDistanceForFireBall)
+		&& MyKFPawn.CanDoSpecialMove(SM_StandAndShootAttack));
 }
 
 /** Overridden so the husk will not change to an enemy outside his view while doing the fireball attack */
@@ -285,7 +283,7 @@ function DoStrike()
 	super.DoStrike();
 }
 
-function ShootFireball(class<KFProj_Husk_Fireball> FireballClass)
+function ShootFireball( class<KFProj_Husk_Fireball> FireballClass, vector FireballOffset )
 {
 	local vector		SocketLocation, DirToEnemy, HitLocation, HitNormal;
 	local KFProj_Husk_Fireball MyFireball;
@@ -310,7 +308,7 @@ function ShootFireball(class<KFProj_Husk_Fireball> FireballClass)
 		return;
 	}
 
-	SocketLocation = MyKFPawn.GetPawnViewLocation() + (FireOffset >> Pawn.GetViewRotation());
+	SocketLocation = MyKFPawn.GetPawnViewLocation() + (FireballOffset >> Pawn.GetViewRotation());
 	if( MyKFPawn.Health > 0.f && Role == ROLE_Authority && MyKFPawn.IsDoingSpecialMove(SM_StandAndShootAttack) )
 	{
         AimLocation = Enemy.Location;
@@ -455,7 +453,6 @@ function DebugAimError()
 DefaultProperties
 {
 	BaseShapeOfProjectileForCalc=(X=10,Y=10,Z=10)
-	FireOffset=(X=15.f,Y=32,Z=-12)
 	FireballSocketName=FireballSocket
 	bUseDesiredRotationForMelee=false
 	bCanTeleportCloser=false
@@ -472,6 +469,7 @@ DefaultProperties
 	CheckSpecialMoveTime=0.25f
 
 	// Fireball
+	MinDistanceForFireBall=300
 	MaxDistanceForFireBall=4000
 
 	FireballFireIntervalNormal=5.0

@@ -9,30 +9,22 @@ class KFPawn_ZedCrawler extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
+var class<KFPawn_Monster> SpecialCrawlerPawnClass;
 var protected Actor LastBumpLevelActor;
 var protected float LastBumpLevelTime;
 var protected const KFGameExplosion DeathExplosionTemplate;
 var protected const float LowGoreExplosionImpulse;
-var protected repnotify bool bIsSpecialCrawler;
-var bool bShouldExplode;
 
-replication
+static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
-     if(bNetInitial)
-        bIsSpecialCrawler;
+    local WorldInfo WI;
 
-     if(bIsSpecialCrawler && bTearOff)
-        bShouldExplode;
-}
-
-simulated event ReplicatedEvent(name VarName)
-{
-    if(VarName == 'bIsSpecialCrawler')
+    WI = Class'WorldInfo'.static.GetWorldInfo();
+    if(FRand() < class<KFDifficulty_Crawler>(default.DifficultySettings).static.GetSpecialCrawlerChance(KFGameReplicationInfo(WI.GRI)))
     {
-        UpdateBodyMIC();
-        return;
+        return default.SpecialCrawlerPawnClass;
     }
-    super.ReplicatedEvent(VarName);
+    return super.GetAIPawnClassToSpawn();
 }
 
 event PossessedBy(Controller C, bool bVehicleTransition)
@@ -45,27 +37,6 @@ event PossessedBy(Controller C, bool bVehicleTransition)
     if(CrawlerController != none)
     {
         CrawlerController.OriginalMeshTranslation = Mesh.Translation;
-        if(FRand() < class<KFDifficulty_Crawler>(DifficultySettings).static.GetSpecialCrawlerChance(self, KFGameReplicationInfo(WorldInfo.GRI)))
-        {
-            bIsSpecialCrawler = true;
-            if(WorldInfo.NetMode != NM_DedicatedServer)
-            {
-                UpdateBodyMIC();
-            }
-        }
-    }
-}
-
-simulated event bool UsePlayerControlledZedSkin()
-{
-    return bIsSpecialCrawler || super.UsePlayerControlledZedSkin();
-}
-
-protected simulated function UpdateBodyMIC()
-{
-    if((GetCharacterMonsterInfo()) != none)
-    {
-        CharacterMICs[0].SetParent(GetCharacterMonsterInfo().PlayerControlledSkins[0]);
     }
 }
 
@@ -104,86 +75,6 @@ event SpiderBumpLevel(Vector HitLocation, Vector HitNormal, optional Actor Wall)
                 {
                     MyKFAIC.AILog_Internal((((("(Pawn) [PHYS_FALLING] " $ string(GetFuncName())) $ " Wall: ") $ string(Wall)) $ " HitNormal: ") $ string(HitNormal), 'Crawler');
                 }
-            }
-        }
-    }
-}
-
-simulated function CancelExplosion()
-{
-    if(bIsSpecialCrawler)
-    {
-        bShouldExplode = false;
-        if(IsTimerActive('Timer_CheckForExplode'))
-        {
-            ClearTimer('Timer_CheckForExplode');
-        }
-    }
-}
-
-function CauseHeadTrauma(optional float BleedOutTime)
-{
-    BleedOutTime = 5;
-    super.CauseHeadTrauma(BleedOutTime);
-    CancelExplosion();
-}
-
-simulated function PlayHeadAsplode()
-{
-    super.PlayHeadAsplode();
-    CancelExplosion();
-}
-
-function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLocation)
-{
-    if((bIsSpecialCrawler && !bPlayedDeath) && DamageType != Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType)
-    {
-        bShouldExplode = true;
-    }
-    return super.Died(Killer, DamageType, HitLocation);
-}
-
-simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
-{
-    super.PlayDying(DamageType, HitLoc);
-    if(bIsSpecialCrawler && bShouldExplode)
-    {
-        SetTimer(WorldInfo.DeltaSeconds, false, 'Timer_CheckForExplode');
-    }
-}
-
-simulated function Timer_CheckForExplode()
-{
-    local KFGoreManager GoreManager;
-    local array<name> OutGibBoneList;
-    local int NumGibs;
-    local Vector Impulse;
-
-    if(bShouldExplode)
-    {
-        Class'KFSM_PlayerCrawler_Suicide'.static.TriggerExplosion(self, DeathExplosionTemplate, true);
-        if(WorldInfo.NetMode != NM_DedicatedServer)
-        {
-            GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-            if((GoreManager != none) && GoreManager.AllowMutilation())
-            {
-                if(!bIsGoreMesh)
-                {
-                    SwitchToGoreMesh();
-                }
-                if(bIsGoreMesh)
-                {
-                    NumGibs = 10 + Rand(4);
-                    NumGibs *= GetCharacterMonsterInfo().ExplosionGibScale;
-                    GetClosestHitBones(NumGibs, Location, OutGibBoneList);
-                    GoreManager.CauseGibsAndApplyImpulse(self, Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType, Location, OutGibBoneList, none, Mesh.GetBoneLocation(Mesh.GetBoneName(0)));
-                    return;
-                }
-            }
-            if((NumGibs == 0) && Physics == 10)
-            {
-                Impulse = (vect(0, 0, 1) * LowGoreExplosionImpulse) * PhysRagdollImpulseScale;
-                Mesh.AddImpulse(Impulse, Location);
             }
         }
     }
@@ -274,6 +165,7 @@ function int GetSpotterDialogID()
 
 defaultproperties
 {
+    SpecialCrawlerPawnClass=Class'KFPawn_ZedCrawlerKing'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_Crawler_ARCH.ToxicGasAoE_Explosion'
         Damage=4

@@ -33,22 +33,27 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 }
 
 /** AnimNotify which launches the fireball projectile */
-function ANIMNOTIFY_HuskFireballAttack()
+simulated function ANIMNOTIFY_HuskFireballAttack()
 {
 	local float FireballStartTime;
 
-	// Determine how strong the fireball attack will be
-	if( IsDoingSpecialMove(SM_PlayerZedMove_LMB) )
+	if( WorldInfo.NetMode != NM_Client )
 	{
-		FireballStartTime = KFSM_PlayerHusk_FireBallAttack( SpecialMoves[SpecialMove] ).HoldStartTime;
-		FireballStrength = fClamp( (WorldInfo.TimeSeconds - FireballStartTime) * FireballStrengthPerSecond, FireballStrengthRange.X, FireballStrengthRange.Y );
-	}
-	else
-	{
-		FireballStrength = 1.f;
+		// Determine how strong the fireball attack will be
+		if( IsDoingSpecialMove(SM_PlayerZedMove_LMB) )
+		{
+			FireballStartTime = KFSM_PlayerHusk_FireBallAttack( SpecialMoves[SpecialMove] ).HoldStartTime;
+			FireballStrength = fClamp( (WorldInfo.TimeSeconds - FireballStartTime) * FireballStrengthPerSecond, FireballStrengthRange.X, FireballStrengthRange.Y );
+		}
+		else
+		{
+			FireballStrength = 1.f;
+		}
+
+		ShootFireball();
 	}
 
-	ShootFireball();
+	SetFireLightEnabled( false );
 }
 
 /** Shoots a fireball at the crosshair */
@@ -75,7 +80,7 @@ function ShootFireball()
 
 	    Dir = vector( Rotation );
 	    TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
-	    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + ( vector(PC.PlayerCamera.CameraCache.POV.Rotation)*100000 );
+	    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + ( vector(PC.PlayerCamera.CameraCache.POV.Rotation)*10000.f );
 
 		// Shoot the fireball
 		MyFireball = Spawn( FireballClass, self,, SocketLocation, Rotation );

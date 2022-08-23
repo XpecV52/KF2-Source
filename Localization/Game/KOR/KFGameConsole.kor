@@ -13,6 +13,7 @@ KF-Prison="감옥 플레이"
 KF-ContainmentStation="폐쇄 스테이션"
 KF-InfernalRealm="지옥의 왕국 플레이"
 KF-HostileGrounds="적진 플레이"
+KF-ZedLanding="제드 상륙 플레이"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

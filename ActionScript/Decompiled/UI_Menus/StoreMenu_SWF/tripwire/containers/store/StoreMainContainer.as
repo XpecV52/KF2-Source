@@ -36,11 +36,15 @@ package tripwire.containers.store
         
         public var cosmeticsButton:Button;
         
+        public var emotesButton:Button;
+        
         public var consumablesButton:Button;
         
         public var marketWeaponSkinsButton:Button;
         
         public var marketCosmeticsButton:Button;
+        
+        public var marketEmotesButton:Button;
         
         public var marketConsumableButton:Button;
         
@@ -77,9 +81,11 @@ package tripwire.containers.store
             this.allButton.label = !!param1.all ? param1.all : "new stuff";
             this.weaponSkinsButton.label = !!param1.weaponSkin ? param1.weaponSkin : "no string";
             this.cosmeticsButton.label = !!param1.cosmetics ? param1.cosmetics : "dudes";
+            this.emotesButton.label = !!param1.emotes ? param1.emotes : "lols";
             this.consumablesButton.label = !!param1.items ? param1.items : "shiny things";
             this.marketWeaponSkinsButton.label = !!param1.marketWeaponSkins ? param1.marketWeaponSkins : "w skins";
             this.marketCosmeticsButton.label = !!param1.marketCosmetics ? param1.marketCosmetics : "w skins";
+            this.marketEmotesButton.label = !!param1.marketEmotes ? param1.marketEmotes : "m lols";
             this.marketConsumableButton.label = !!param1.marketConsumables ? param1.marketConsumables : "w skins";
             this.pageHeaderText.text = this.allButton.label;
         }
@@ -185,7 +191,7 @@ package tripwire.containers.store
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.consumablesButton,this.marketWeaponSkinsButton,this.marketCosmeticsButton,this.marketConsumableButton);
+            this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.emotesButton,this.consumablesButton,this.marketWeaponSkinsButton,this.marketCosmeticsButton,this.marketEmotesButton,this.marketConsumableButton);
             var _loc2_:int = 0;
             while(_loc2_ < this.buttonList.length)
             {
@@ -215,6 +221,7 @@ package tripwire.containers.store
                 this.marketWeaponSkinsButton.visible = false;
                 this.marketCosmeticsButton.visible = false;
                 this.marketConsumableButton.visible = false;
+                this.marketEmotesButton.visible = false;
             }
         }
         
@@ -244,11 +251,13 @@ package tripwire.containers.store
             this.allButton.tabIndex = 1;
             this.weaponSkinsButton.tabIndex = 2;
             this.cosmeticsButton.tabIndex = 3;
-            this.consumablesButton.tabIndex = 4;
-            this.marketWeaponSkinsButton.tabIndex = 5;
-            this.marketCosmeticsButton.tabIndex = 6;
-            this.marketConsumableButton.tabIndex = 7;
-            this.storeItemScrollingList.tabIndex = 8;
+            this.emotesButton.tabIndex = 4;
+            this.consumablesButton.tabIndex = 5;
+            this.marketWeaponSkinsButton.tabIndex = 6;
+            this.marketCosmeticsButton.tabIndex = 7;
+            this.marketEmotesButton.tabIndex = 8;
+            this.marketConsumableButton.tabIndex = 9;
+            this.storeItemScrollingList.tabIndex = 10;
         }
         
         public function sectionButtonClicked(param1:ButtonEvent = null) : *
@@ -268,14 +277,20 @@ package tripwire.containers.store
                 case this.consumablesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",3);
                     break;
-                case this.marketWeaponSkinsButton:
+                case this.emotesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",4);
                     break;
-                case this.marketCosmeticsButton:
+                case this.marketWeaponSkinsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",5);
                     break;
-                case this.marketConsumableButton:
+                case this.marketCosmeticsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",6);
+                    break;
+                case this.marketConsumableButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",7);
+                    break;
+                case this.marketEmotesButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",8);
             }
             this.deselectButtons();
             this.storeItemScrollingList.focusable = true;
@@ -302,6 +317,7 @@ package tripwire.containers.store
             this.marketWeaponSkinsButton.selected = false;
             this.marketCosmeticsButton.selected = false;
             this.marketConsumableButton.selected = false;
+            this.marketEmotesButton.selected = false;
         }
         
         public function onStoreListFocusChange(param1:FocusHandlerEvent) : void

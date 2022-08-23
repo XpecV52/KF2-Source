@@ -110,6 +110,8 @@ var private const AkEvent						ReceivedAmmoAndArmorSound;
 
 var private const name 							BoomstickClassName;
 
+var	private	const array<Name>					AdditionalOnPerkDTNames;
+
 enum ESupportPerkSkills
 {
 	ESupportHighCapMags,
@@ -178,7 +180,7 @@ simulated final private function ResetSupplier()
 			SuppliedPawnList.Remove( 0, SuppliedPawnList.Length );
 		}
 
-		MyPRI.bPerkCanSupply = true;
+		MyPRI.PerkSupplyLevel = IsResupplyActive() ? 2 : 1;
 
 		if( InteractionTrigger != none )
 		{
@@ -228,7 +230,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 		KFW = GetWeaponFromDamageCauser( DamageCauser );
 	}
 
-	if( ((KFW != none && IsWeaponOnPerk( KFW )) || (DamageType != none && IsDamageTypeOnPerk( DamageType ))) &&
+	if( ((KFW != none && IsWeaponOnPerk( KFW,, self.class )) || (DamageType != none && IsDamageTypeOnPerk( DamageType ))) &&
 		!ClassIsChildOf( DamageType, class'KFDT_Explosive' )  )
 	{		
 		TempDamage += InDamage * GetPassiveValue( ShotgunDamage, CurrentLevel );
@@ -302,13 +304,13 @@ simulated function bool IgnoresPenetrationDmgReduction()
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassName)
 {
 	local float TempCapacity;
 
 	TempCapacity = MagazineCapacity;
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && (KFW == none || !KFW.bNoMagazine) &&
+	if( !bSecondary && IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && (KFW == none || !KFW.bNoMagazine) &&
 		WeaponClassName != BoomstickClassName )
 	{
 		if( IsHighCapMagsMagActive() )
@@ -330,10 +332,18 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
 simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary )
 {
 	local float TempSpareAmmoAmount;
-	local class<KFPerk> WeaponPerkClass;
+	local array< class<KFPerk> > WeaponPerkClass;
 
-	WeaponPerkClass = (KFW == none) ? TraderItem.AssociatedPerkClass : KFW.AssociatedPerkClass;
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) )
+	if(KFW == none)
+	{
+		WeaponPerkClass = TraderItem.AssociatedPerkClasses;
+	}
+	else
+	{
+		WeaponPerkClass = KFW.GetAssociatedPerkClasses();
+	}
+	
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) )
 	{
 		TempSpareAmmoAmount = PrimarySpareAmmo;
 		TempSpareAmmoAmount += PrimarySpareAmmo * GetPassiveValue( Ammo, CurrentLevel );
@@ -351,10 +361,18 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false )
 {
 	local float TempMaxSpareAmmoAmount;
-	local class<KFPerk> WeaponPerkClass;
+	local array< class<KFPerk> > WeaponPerkClass;
 
-	WeaponPerkClass = (KFW == none) ? TraderItem.AssociatedPerkClass : KFW.AssociatedPerkClass;
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && MaxSpareAmmo > 0 )
+	if(KFW == none)
+	{
+		WeaponPerkClass = TraderItem.AssociatedPerkClasses;
+	}
+	else
+	{
+		WeaponPerkClass = KFW.GetAssociatedPerkClasses();
+	}
+	
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && MaxSpareAmmo > 0 )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
 		TempMaxSpareAmmoAmount += MaxSpareAmmo * GetPassiveValue( Ammo, CurrentLevel );
@@ -383,7 +401,7 @@ simulated private static function float GetResupplyMaxSpareAmmoModifier()
  */
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
-	return IsTacticalReloadActive() && (IsWeaponOnPerk( KFW ) || IsBackupWeapon( KFW ));
+	return IsTacticalReloadActive() && (IsWeaponOnPerk( KFW,, self.class ) || IsBackupWeapon( KFW ));
 }
 
 /**
@@ -419,7 +437,7 @@ simulated function float GetTightChokeModifier()
  */
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
-	if( IsWeaponOnPerk( GetOwnerWeapon() ) && IsConcussionRoundsActive() )
+	if( IsWeaponOnPerk( GetOwnerWeapon(),, self.class ) && IsConcussionRoundsActive() )
 	{
 		return 1.f + GetSkillValue( PerkSkills[ESupportConcussionRounds] );
 	}
@@ -477,8 +495,10 @@ simulated function Interact( KFPawn_Human KFPH )
 
 	        if( KFW.CanRefillSecondaryAmmo() )
 	        {
-	        	// Use ammo pickup logic when resupplying secondary ammo
+	        	// resupply 1 mag for every 5 initial mags
 	        	;
+
+	        	// If our secondary ammo isn't mag-based (like the Eviscerator), restore a portion of max ammo instead
 	        	bReceivedAmmo = (KFW.AddSecondaryAmmo( Max(KFW.AmmoPickupScale[1] * KFW.MagazineCapacity[1], 1) ) > 0) ? true : bReceivedAmmo;
 	        }
 		}
@@ -600,7 +620,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	local name StateName;
 	StateName = W.GetStateName();
 
-	if( IsWeaponOnPerk( W ) && CouldBarrageActive() && 
+	if( IsWeaponOnPerk( W,, self.class ) && CouldBarrageActive() && 
 		ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 	{
 		return BarrageFiringRate;
@@ -634,6 +654,22 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	Increments[3] = "[" @ Left( string( default.Ammo.Increment * 100 ), InStr(string(default.Ammo.Increment * 100), ".") + 2 )								$ "% /" @ default.LevelString @ "]";
 	Increments[4] = "";
 	Increments[5] = "";
+}
+
+/**
+ * @brief DamageType on perk?
+ *
+ * @param KFDT The damage type
+ * @return true/false
+ */
+static function bool IsDamageTypeOnPerk( class<KFDamageType> KFDT )
+{
+	if( KFDT != none && default.AdditionalOnPerkDTNames.Find( KFDT.name ) != INDEX_NONE )
+	{
+		return true;
+	}
+
+	return super.IsDamageTypeOnPerk( KFDT );
 }
 
 /*********************************************************************************************
@@ -828,6 +864,9 @@ defaultproperties
    ReceivedArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
    ReceivedAmmoAndArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
    BoomstickClassName="KFWeap_Shotgun_DoubleBarrel"
+   AdditionalOnPerkDTNames(0)="KFDT_Ballistic_Shotgun_Medic"
+   AdditionalOnPerkDTNames(1)="KFDT_Ballistic_DragonsBreath"
+   AdditionalOnPerkDTNames(2)="KFDT_Ballistic_NailShotgun"
    ProgressStatID=20
    PerkBuildStatID=21
    SecondaryXPModifier(0)=6
@@ -863,6 +902,7 @@ defaultproperties
    ZedTimeModifyingStates(0)="WeaponFiring"
    ZedTimeModifyingStates(1)="WeaponBurstFiring"
    ZedTimeModifyingStates(2)="WeaponSingleFiring"
+   ZedTimeModifyingStates(3)="WeaponAltFiring"
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_MB500'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Support'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Support'

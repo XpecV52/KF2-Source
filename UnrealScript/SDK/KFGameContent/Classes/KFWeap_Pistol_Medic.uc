@@ -34,7 +34,8 @@ defaultproperties
 	bDropOnDeath=true
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicPistol'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-	AssociatedPerkClass=class'KFPerk_FieldMedic'
+	AssociatedPerkClasses(0)=class'KFPerk_FieldMedic'
+	AssociatedPerkClasses(1)=class'KFPerk_Gunslinger'
 
 	// Shooting Animations
 	FireSightedAnims[0]=Shoot_Iron

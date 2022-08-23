@@ -73,7 +73,7 @@ function Init()
 {
     local Class authClass, sessClass, dscClass;
     local class<Actor> aClass;
-    local IpAddr IpAddr;
+    local IpAddr IPAddress;
     local int I;
     local bool doSaveConfig;
 
@@ -159,8 +159,8 @@ function Init()
         aClass = class<Actor>(DynamicLoadObject("" $ string(sessClass), Class'Class'));
         Sessions = (WorldInfo.Spawn(aClass));
     }
-    WebServer.GetLocalIP(IpAddr);
-    ServerIP = WebServer.IpAddrToString(IpAddr);
+    WebServer.GetLocalIP(IPAddress);
+    ServerIP = WebServer.IpAddrToString(IPAddress);
     I = InStr(ServerIP, ":");
     if(I > -1)
     {

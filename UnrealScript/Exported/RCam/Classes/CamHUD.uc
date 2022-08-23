@@ -1,12 +1,12 @@
 //--------------------------------------------
 //   RypeL Cam for Red Orchestra 2, C, 2012
 //--------------------------------------------
-class CamHUD extends Interaction;
-		//config(RypelCam);
+class CamHUD extends Interaction
+		config(RypelCam);
 
 
-var /*config*/ float PauseCamMouseSensitivity, speccamspeed, TimedPathStartTime;
-var /*config*/ int dumpframes_fps;
+var config float PauseCamMouseSensitivity, speccamspeed, TimedPathStartTime;
+var config int dumpframes_fps;
 
 var Actor 	ap, HackLockedSavedActor, target_actor, target, targeta, ta;
 
@@ -53,7 +53,6 @@ exec function toggleMovieMode() {
 
 function LoadRCamConfig()
 {
-	LogInternal("***LOADING RYPELCAM CONFIG");
 	if(cc != none)
 		cc.destroy();
 	foreach pc.dynamicactors(class'Knoten', other3)
@@ -357,9 +356,9 @@ function bool InputKey(int ControllerId, name Key, EInputEvent Event, float Amou
 			bdumpframes = !bdumpframes;
 			break;
 		case 'F4':
-			//cc.conf = true;
-			//SaveConfig();
-			//cc.SaveConfig();
+			cc.conf = true;
+			SaveConfig();
+			cc.SaveConfig();
 			break;
 		case 'F5':
 			LoadRCamConfig();

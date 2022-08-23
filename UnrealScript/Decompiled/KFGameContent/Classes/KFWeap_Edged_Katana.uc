@@ -28,7 +28,7 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Edged_Katana.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
+    AssociatedPerkClasses=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

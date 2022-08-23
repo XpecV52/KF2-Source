@@ -378,7 +378,10 @@ function ClearFailedVoteFlag()
 
 function AddMapOption(string MapOption)
 {
-	MapList.AddItem(MapOption);
+	if(WorldInfo.NetMode != NM_Standalone)
+	{
+		MapList.AddItem(MapOption);
+	}
 }
 
 function int GetNextMap()
@@ -449,7 +452,15 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
 			{
 				case 0:
 					TopVotesObject.Map1Votes = MapVoteList[i].VoterPRIList.length;
-					TopVotesObject.Map1Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[i].MapIndex];
+					if(WorldInfo.NetMode == NM_StandAlone)
+					{
+						TopVotesObject.Map1Name = MapList[MapIndex];
+					}
+					else
+					{
+						TopVotesObject.Map1Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[i].MapIndex];
+					}
+					
 					if(CheckMajorityPlayersVotedOnMap(PRIs, MapVoteList[i].VoterPRIList.length))
 					{
 						ShortenVoteTime(KFGI);
@@ -458,12 +469,28 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
 			
 				case 1:
 					TopVotesObject.Map2Votes = MapVoteList[i].VoterPRIList.length;
-					TopVotesObject.Map2Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[i].MapIndex];
+					if(WorldInfo.NetMode == NM_StandAlone)
+					{
+						TopVotesObject.Map2Name = MapList[MapIndex];
+					}
+					else
+					{
+						TopVotesObject.Map2Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[i].MapIndex];
+					}
+					
 					break;
 					
 				case 2:
 					TopVotesObject.Map3Votes = MapVoteList[i].VoterPRIList.length;
-					TopVotesObject.Map3Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[i].MapIndex];
+					if(WorldInfo.NetMode == NM_StandAlone)
+					{
+						TopVotesObject.Map3Name = MapList[MapIndex];
+					}
+					else
+					{
+						TopVotesObject.Map3Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[i].MapIndex];
+					}
+					
 					break;					
 			}
 		}

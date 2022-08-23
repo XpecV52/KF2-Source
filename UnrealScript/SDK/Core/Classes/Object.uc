@@ -20,6 +20,13 @@ struct pointer
 	var native const int Dummy;
 };
 
+//@HSL_BEGIN_XBOX
+struct hatpointer
+{
+	var native const int Dummy;
+};
+//@HSL_END_XBOX
+
 struct {QWORD} qword
 {
 	var() native int A, B;
@@ -56,6 +63,20 @@ var() native const editconst					Object ObjectArchetype;
 
 //=============================================================================
 // Unreal base structures continued.
+
+//@HSL_BEGIN_XBOX
+// An IP address.
+// @igs(jtl) IPv6 compatible version of FIpAddr.  If native uses IPv6, AddrA-D are the IN6_ADDR struct.
+// Otherwise, the IPv4 address is in AddrD.
+struct {FIpAddr} IpAddr
+{
+	var int AddrA;
+	var int AddrB;
+	var int AddrC;
+	var int AddrD;
+	var int Port;
+};
+//@HSL_END_XBOX
 
 struct {DOUBLE} double
 {

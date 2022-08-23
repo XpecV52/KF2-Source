@@ -396,10 +396,6 @@ package tripwire.menus
             this.playerInventoryContainer.bCanUseMenu = false;
             this.exitButton.removeEventListener(ButtonEvent.PRESS,this.exitMenu);
             stage.removeEventListener(InputEvent.INPUT,this.handleInput);
-            if(bManagerUsingGamepad)
-            {
-                this.selectedMenuIndex = this.PlayerInventory;
-            }
             this.shopContainer.deselectContainer();
             this.playerInventoryContainer.deselectContainer();
             currentElement = null;

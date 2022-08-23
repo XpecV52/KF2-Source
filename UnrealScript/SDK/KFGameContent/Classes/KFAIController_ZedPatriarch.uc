@@ -1687,6 +1687,19 @@ function bool DoHeavyZedBump( Actor Other, vector HitNormal )
 	return false;
 }
 
+/* Starts Flee AICommand, with optional duration and distance */
+function DoFleeFrom( actor FleeFrom,
+	optional float FleeDuration,
+	optional float FleeDistance,
+	optional bool bShouldStopAtGoal=false,
+	optional bool bFromFear=false )
+{
+	if( !bFromFear || !MyPatPawn.bInFleeAndHealMode )
+	{
+        super.DoFleeFrom( FleeFrom, FleeDuration, FleeDistance, bShouldStopAtGoal, bFromFear );
+	}
+}
+
 /** Sets flee target if there is no enemy, starts flee command */
 function Flee()
 {
@@ -1758,6 +1771,12 @@ function Flee()
 /** We have finished fleeing for one reason or another, notify pawn to heal */
 function NotifyFleeFinished( optional bool bAcquireNewEnemy=true )
 {
+	// If this was not a flee for healing, don't do additional cleanup
+	if( !MyPatPawn.bInFleeAndHealMode )
+	{
+		return;
+	}
+
 	if( MyPatPawn != None )
 	{
 		MyPatPawn.SetCloaked( false );
@@ -1788,7 +1807,7 @@ function NotifyFleeFinished( optional bool bAcquireNewEnemy=true )
 	EnableMeleeRangeEventProbing();
 
     // Restart default command
-    BeginCombatCommand( GetDefaultCommand(), "Restarting default command" );
+	BeginCombatCommand( GetDefaultCommand(), "Restarting default command" );
 }
 
 /** Forces a heal regardless of what state we're in */

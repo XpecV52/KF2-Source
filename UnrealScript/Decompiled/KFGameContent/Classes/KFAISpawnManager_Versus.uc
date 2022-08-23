@@ -88,6 +88,19 @@ function SetupNextWave(byte NextWaveIndex)
     NumPlayerSpecialSquadSpawns = 0;
 }
 
+function int SpawnSquad(out array< class<KFPawn_Monster> > AIToSpawn, optional bool bSkipHumanZedSpawning)
+{
+    local int NumSpawned;
+
+    bSkipHumanZedSpawning = false;
+    NumSpawned = super.SpawnSquad(AIToSpawn, bSkipHumanZedSpawning);
+    if((NumSpawned > 0) && DesiredSquadType == 0)
+    {
+        bBossSpawned = true;
+    }
+    return NumSpawned;
+}
+
 function Timer_SpawnPlayerZeds()
 {
     local int RandNum;

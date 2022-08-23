@@ -20,10 +20,11 @@ var protected const float MaxFlickerBrightness;
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
     super(KFPawn).SetCharacterArch(Info, bForce);
-    if(WorldInfo.NetMode != NM_DedicatedServer)
+    if(((WorldInfo.NetMode != NM_DedicatedServer) && !NeckLightComponent.bAttached) && WorldInfo.GetDetailMode() > 0)
     {
         Mesh.AttachComponentToSocket(NeckLightComponent, NeckLightSocketName);
         NeckLightComponent.SetEnabled(true);
+        KFLightPool(WorldInfo.MyLightPool).RegisterPointLight(NeckLightComponent, 2);
     }
 }
 
@@ -44,7 +45,7 @@ simulated function ANIMNOTIFY_SirenScream()
 
 simulated function EnableScreamFlicker(bool bEnabled)
 {
-    if(((WorldInfo.NetMode == NM_DedicatedServer) || bPlayedDeath) || NeckLightComponent == none)
+    if((((WorldInfo.NetMode == NM_DedicatedServer) || bPlayedDeath) || NeckLightComponent == none) || !NeckLightComponent.bAttached)
     {
         return;
     }
@@ -70,20 +71,10 @@ simulated function EnableScreamFlicker(bool bEnabled)
     Mesh.AttachComponentToSocket(NeckLightComponent, NeckLightSocketName);
 }
 
-simulated event NotifyGoreMeshActive()
-{
-    super.NotifyGoreMeshActive();
-    if(NeckLightComponent != none)
-    {
-        NeckLightComponent.DetachFromAny();
-        Mesh.AttachComponentToSocket(NeckLightComponent, NeckLightSocketName);
-    }
-}
-
 simulated function TerminateEffectsOnDeath()
 {
     super(KFPawn).TerminateEffectsOnDeath();
-    if(NeckLightComponent != none)
+    if((NeckLightComponent != none) && NeckLightComponent.bAttached)
     {
         NeckLightComponent.DetachFromAny();
         NeckLightComponent = none;
@@ -141,6 +132,7 @@ defaultproperties
     XPValues[3]=15
     WeakSpotSocketNames=/* Array type was not detected. */
     DamageTypeModifiers=/* Array type was not detected. */
+    DifficultySettings=Class'KFDifficulty_Siren'
     OnDeathAchievementID=129
     PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
     LocalizationKey=KFPawn_ZedSiren

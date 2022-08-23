@@ -13,6 +13,7 @@ KF-Prison="Gefängnis wird gespielt"
 KF-ContainmentStation="Eindämmungszentrum wird gespielt"
 KF-InfernalRealm="Höllenebene wird gespielt"
 KF-HostileGrounds="Feindeszone wird gespielt"
+KF-ZedLanding="ZED-Landung wird gespielt"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

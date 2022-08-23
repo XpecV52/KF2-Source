@@ -11,7 +11,6 @@ class KFWeap_Revolver_DualRem1858 extends KFWeap_DualBase
 
 defaultproperties
 {
-    LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_MuzzleFlash_L'
     LeftFireOffset=(X=17,Y=-4,Z=-2.25)
     SingleClass=Class'KFWeap_Revolver_Rem1858'
     BonesToLockOnEmpty_L=/* Array type was not detected. */
@@ -62,7 +61,7 @@ defaultproperties
     RecoilISMaxPitchLimit=400
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.5
-    AssociatedPerkClass=Class'KFGame.KFPerk_Gunslinger'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

@@ -269,13 +269,13 @@ simulated function float GetSelfHealingSurgePct()
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
 	TempCapacity = MagazineCapacity;
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && (KFW == none || !KFW.bNoMagazine) && !bSecondary )
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && (KFW == none || !KFW.bNoMagazine) && !bSecondary )
 	{
 		if( IsCombatantActive() )
 		{
@@ -369,7 +369,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 	if( KFW != none )
 	{
-		if( IsEnforcerActive() && IsWeaponOnPerk( KFW )  )
+		if( IsEnforcerActive() && IsWeaponOnPerk( KFW,, self.class )  )
 		{
 			TempDamage += InDamage * GetSkillValue( PerkSkills[EMedicEnforcer] );
 			;
@@ -468,7 +468,7 @@ function bool IsAcidicCompoundActive()
  */
 function bool IsToxicDmgActive()
 {
-	return IsAcidicCompoundActive() && IsWeaponOnPerk( GetOwnerWeapon() );
+	return IsAcidicCompoundActive() && IsWeaponOnPerk( GetOwnerWeapon(),, self.class );
 }
 
 /**

@@ -48,7 +48,10 @@ var delegate<OnRequestTitleFileListComplete> __OnRequestTitleFileListComplete__D
 
 delegate OnReadTitleFileComplete(bool bWasSuccessful, string Filename);
 
-function bool ReadTitleFile(string FileToRead);
+function bool ReadTitleFile(string FileToRead, optional Engine.OnlineSubsystem.EOnlineFileType FileType)
+{
+    FileType = 1;
+}
 
 function AddReadTitleFileCompleteDelegate(delegate<OnReadTitleFileComplete> ReadTitleFileCompleteDelegate)
 {
@@ -77,9 +80,9 @@ function bool ClearDownloadedFiles();
 
 function bool ClearDownloadedFile(string Filename);
 
-function RequestTitleFileList();
+function bool RequestTitleFileList();
 
-delegate OnRequestTitleFileListComplete(bool bWasSuccessful, string ResultStr);
+delegate OnRequestTitleFileListComplete(bool bWasSuccessful, array<string> FilePaths);
 
 function AddRequestTitleFileListCompleteDelegate(delegate<OnRequestTitleFileListComplete> RequestTitleFileListDelegate)
 {

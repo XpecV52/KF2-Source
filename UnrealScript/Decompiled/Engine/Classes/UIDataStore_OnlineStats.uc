@@ -77,18 +77,13 @@ function SetStatsReadInfo()
 
 event bool RefreshStats(byte ControllerIndex)
 {
-    local array<UniqueNetId> Players;
-    local UniqueNetId PlayerID;
-
     SetStatsReadInfo();
     StatsInterface.FreeStats(StatsRead);
     OnReadComplete(true);
     switch(CurrentReadType)
     {
         case 0:
-            PlayerInterface.GetUniquePlayerId(ControllerIndex, PlayerID);
-            Players[0] = PlayerID;
-            if(StatsInterface.ReadOnlineStats(Players, StatsRead) == false)
+            if(StatsInterface.ReadOnlineStatsForPlayer(ControllerIndex, StatsRead) == false)
             {
                 WarnInternal("Querying Player failed.");
                 return false;
@@ -109,7 +104,7 @@ event bool RefreshStats(byte ControllerIndex)
             }
             return true;
         case 3:
-            if(StatsInterface.ReadOnlineStatsByRank(StatsRead) == false)
+            if(StatsInterface.ReadOnlineStatsByRank(ControllerIndex, StatsRead) == false)
             {
                 LogInternal("Querying Top Rankings failed.");
                 return false;

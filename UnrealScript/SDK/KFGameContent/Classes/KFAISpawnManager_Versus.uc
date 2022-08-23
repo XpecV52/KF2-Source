@@ -140,6 +140,22 @@ function SetupNextWave(byte NextWaveIndex)
     NumPlayerSpecialSquadSpawns = 0;
 }
 
+/** Find best spawn location and spawn a squad there */
+function int SpawnSquad( out array< class<KFPawn_Monster> > AIToSpawn, optional bool bSkipHumanZedSpawning=false )
+{
+    local int NumSpawned;
+
+    NumSpawned = super.SpawnSquad( AIToSpawn, bSkipHumanZedSpawning );
+
+    // If an AI boss spawned, we shouldn't allow a player boss to
+    if( NumSpawned > 0 && DesiredSquadType == EST_Boss )
+    {
+        bBossSpawned = true;
+    }
+
+    return NumSpawned;
+}
+
 /** Spawns the next squad of players, if possible */
 function Timer_SpawnPlayerZeds()
 {

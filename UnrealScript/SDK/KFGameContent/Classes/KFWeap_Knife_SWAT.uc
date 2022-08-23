@@ -23,7 +23,7 @@ defaultproperties
 	End Object
 
 	// Inventory
-	AssociatedPerkClass=class'KFPerk_SWAT'
+	AssociatedPerkClasses(0)=class'KFPerk_SWAT'
 	WeaponSelectTexture=Texture2D'wep_ui_swat_knife_tex.UI_WeaponSelect_SWATKnife'
 
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Slashing_Knife_SWAT'

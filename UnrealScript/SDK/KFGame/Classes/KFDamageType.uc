@@ -25,7 +25,10 @@ var float HeadDestructionDamageScale;
 /** Scale up ragdoll impulse force to the zed's body when the head is blown off by this amount. Used for weapons with multiple projectiles like shotguns so you get the effect of all pellets hitting the head */
 var float HeadDestructionImpulseForceScale;
 
-/** Whether this damagetype is used in consideration for indirect/AoE damage in the AAR (Player controlled Zed only) */
+/** 
+ * Whether this damagetype is used in consideration for indirect/AoE damage in the AAR 
+ * @note: AAR only, this is normally determined by TakeRadiusDamage()
+ */
 var bool bConsideredIndirectOrAoE;
 
 /** If true, this damagetype will destroy a door if closed and unwelded */
@@ -156,6 +159,29 @@ var bool bCanObliterate;
 var(Obliteration) int ObliterationHealthThreshold;
 /** How much damage this damage type must deal before causing obliteration */
 var(Obliteration) int ObliterationDamageThreshold;
+
+/** Maximum number of gibs that an obliterate can spawn, 0=MAX */
+var float MaxObliterationGibs;
+
+/** When bCanObliterate=TRUE, uses the hit location vector instead of the Victim's location when spawning gibs */
+var bool bUseHitLocationForGibImpulses;
+
+/** When ragdoll impulse is applied to a dismembered body part, reduce the impulse by this value.  While
+ * not physically accurate, this counters change in mass so those small parts are not launched into orbit! */
+var float GibImpulseScale;
+
+/**
+ * This creates an impulse direction aligned along instigator location and hitlocation -- this will push all gibs in
+ * the same direction, away from the pawn that caused the damage 
+ */
+var bool bPointImpulseTowardsOrigin;
+/**
+ * When used in conjunction with bPointImpulseTowardsOrigin, this determines how far back to pull the hit origin. Larger means
+ * more directional, smaller means more outward */
+var float ImpulseOriginScale;
+
+/** When used in conjunction with bPointImpulseTowardsOrigin, this adds additional Z lift to gibs */
+var float ImpulseOriginLift;
 
 /** If set, adds a random spread to the blood effects spawned by this damage type.
 	Usually used for things like shotgun shells
@@ -371,6 +397,8 @@ Defaultproperties
 	KDamageImpulse=400
 	HeadDestructionDamageScale=1.0
 	HeadDestructionImpulseForceScale=1.0
+	ImpulseOriginScale=50.0
+	GibImpulseScale=0.1
 
 	BloodSpread=0.0
 	BloodScale=1.0

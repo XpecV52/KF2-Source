@@ -145,7 +145,11 @@ struct native MobilePostProcessSettings
 	var	bool			bOverride_Mobile_DOF_MinRange;
 	/** Determines if DOF_MaxRange variable will be overridden. */
 	var	bool			bOverride_Mobile_DOF_MaxRange;
-	/** Determines if DOF_Factor variable will be overridden. */
+//@HSL_BEGIN_XBOX
+	/** Determines if DOF_Distance variable will be overridden. */
+	var	bool			bOverride_Mobile_DOF_NearBlurFactor;
+	/** Determines if DOF_Distance variable will be overridden. */
+//@HSL_END_XBOX
 	var	bool			bOverride_Mobile_DOF_FarBlurFactor;
 
 	/** Amount to blur the scene for mobile post-process effects (Bloom, DOF)					*/
@@ -167,8 +171,12 @@ struct native MobilePostProcessSettings
 	var(DOF)	interp float	Mobile_DOF_MinRange<editcondition=bOverride_Mobile_DOF_MinRange>;
 	/** Range of the fully and partially focused region around the DOF center, along the depth axis.	*/
 	var(DOF)	interp float	Mobile_DOF_MaxRange<editcondition=bOverride_Mobile_DOF_MaxRange>;
-	/** Blurriness of the out-of-focus region (0.0 - 1.0).														*/
-	var(DOF)	interp float	Mobile_DOF_FarBlurFactor<editcondition=bOverride_Mobile_DOF_FarBlurFactor | DisplayName=Mobile DOF Factor | ClampMin = 0.0 | ClampMax = 1.0>;
+//@HSL_BEGIN_XBOX
+	/** Blurriness of the near region (0.0 - 1.0).														*/
+	var(DOF)	interp float	Mobile_DOF_NearBlurFactor<editcondition=bOverride_Mobile_DOF_NearBlurFactor>;
+	/** Blurriness of the far region (0.0 - 1.0).														*/
+	var(DOF)	interp float	Mobile_DOF_FarBlurFactor<editcondition=bOverride_Mobile_DOF_FarBlurFactor>;
+//@HSL_END_XBOX
 
 	structcpptext
 	{
@@ -187,6 +195,9 @@ struct native MobilePostProcessSettings
 			bOverride_Mobile_DOF_Distance = FALSE;
 			bOverride_Mobile_DOF_MinRange = FALSE;
 			bOverride_Mobile_DOF_MaxRange = FALSE;
+//@HSL_BEGIN_XBOX
+			bOverride_Mobile_DOF_NearBlurFactor = FALSE;
+//@HSL_END_XBOX
 			bOverride_Mobile_DOF_FarBlurFactor = FALSE;
 
 			Mobile_BlurAmount = 16.0f;
@@ -197,6 +208,9 @@ struct native MobilePostProcessSettings
 			Mobile_DOF_Distance = 1500.0f;
 			Mobile_DOF_MinRange = 600.0f;
 			Mobile_DOF_MaxRange = 1200.0f;
+//@HSL_BEGIN_XBOX
+			Mobile_DOF_NearBlurFactor = 1.0f;
+//@HSL_END_XBOX
 			Mobile_DOF_FarBlurFactor = 1.0f;
 		}
 	}
@@ -211,6 +225,9 @@ struct native MobilePostProcessSettings
 		Mobile_DOF_Distance=1500.0
 		Mobile_DOF_MinRange=600.0
 		Mobile_DOF_MaxRange=1200.0
+//@HSL_BEGIN_XBOX
+		Mobile_DOF_NearBlurFactor=1.0
+//@HSL_END_XBOX
 		Mobile_DOF_FarBlurFactor=1.0
 	}
 };

@@ -8,49 +8,62 @@
 interface OnlineStatsInterface
 	dependson(OnlineStatsRead,OnlineStatsWrite);
 
+//@HSL_BEGIN_XBOX
+/**
+ * Reads a set of stats for a player
+ *
+ * @param LocalUserNum the local player having their stats queried
+ * @param StatsRead holds the names of the stats to be queried and
+ *		  results are copied into the specified object
+ *
+ * @return TRUE if the call is successful, FALSE otherwise
+ */
+function bool ReadOnlineStatsForPlayer(byte LocalUserNum, OnlineStatsRead StatsRead);
+
 /**
  * Reads a set of stats for the specified list of players
  *
  * @param Players the array of unique ids to read stats for
- * @param StatsRead holds the definitions of the tables to read the data from and
+ * @param StatsRead holds the names of the stats to be queried and
  *		  results are copied into the specified object
  *
  * @return TRUE if the call is successful, FALSE otherwise
  */
-function bool ReadOnlineStats(const out array<UniqueNetId> Players,OnlineStatsRead StatsRead);
+function bool ReadOnlineStats(byte LocalUserNum, const out array<UniqueNetId> Players, OnlineStatsRead StatsRead);
 
 /**
- * Reads a player's stats and all of that player's friends stats for the
- * specified set of stat views. This allows you to easily compare a player's
- * stats to their friends.
+ * Reads a player's stat and all of that player's friends' stats for the
+ * specified stat name. This allows you to easily compare a player's
+ * stat to their friends'.
  *
- * @param LocalUserNum the local player having their stats and friend's stats read for
- * @param StatsRead holds the definitions of the tables to read the data from and
+ * @param LocalUserNum the local player having their stats and friend's stats read
+ * @param StatsRead holds the name of the stat to query and
  *		  results are copied into the specified object
  *
  * @return TRUE if the call is successful, FALSE otherwise
  */
-function bool ReadOnlineStatsForFriends(byte LocalUserNum,OnlineStatsRead StatsRead);
+function bool ReadOnlineStatsForFriends(byte LocalUserNum, OnlineStatsRead StatsRead, optional bool FavoriteFriendsOnly=false, optional int NumToRead = 100);
 
 /**
  * Reads stats by ranking. This grabs the rows starting at StartIndex through
  * NumToRead and places them in the StatsRead object.
  *
- * @param StatsRead holds the definitions of the tables to read the data from and
+ * @param StatsRead holds the name of a leaderboard to be queried and
  *		  results are copied into the specified object
  * @param StartIndex the starting rank to begin reads at (1 for top)
  * @param NumToRead the number of rows to read (clamped at 100 underneath)
  *
  * @return TRUE if the call is successful, FALSE otherwise
  */
-function bool ReadOnlineStatsByRank(OnlineStatsRead StatsRead,optional int StartIndex = 1,optional int NumToRead = 100);
+function bool ReadOnlineStatsByRank(byte LocalUserNum, OnlineStatsRead StatsRead, optional int StartIndex = 1, optional int NumToRead = 100);
+//@HSL_END_XBOX
 
 /**
  * Reads stats by ranking centered around a player. This grabs a set of rows
  * above and below the player's current rank
  *
  * @param LocalUserNum the local player having their stats being centered upon
- * @param StatsRead holds the definitions of the tables to read the data from and
+ * @param StatsRead holds the name of the leaderboard to be queried and
  *		  results are copied into the specified object
  * @param NumRows the number of rows to read above and below the player's rank
  *
@@ -212,6 +225,20 @@ function bool RegisterStatGuid(UniqueNetId PlayerId,const out string ClientStatG
  * @param OutAggregateSigma - aggregate Sigma
  */
 function CalcAggregateSkill(array<double> Mus, array<double> Sigmas, out double OutAggregateMu, out double OutAggregateSigma);
+
+
+//@HSL_BEGIN_XBOX
+delegate OnStatisticChanged(UniqueNetId PlayerNetId, name StatName, string NewStatValue);
+
+function SubscribeToStatisticEvent(byte LocalUserNum, UniqueNetId PlayerNetId, name StatName, delegate<OnStatisticChanged> EventDelegate);
+function UnsubscribeToStatisticEvent(byte LocalUserNum, UniqueNetId PlayerNetId, name StatName);
+
+function bool SendPlayerSessionStart(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId);
+function bool SendPlayerSessionEnd(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId, int ExitStatusId);
+function bool SendPlayerSessionPause(byte LocalUserNum, string MultiplayerCorrelationId);
+function bool SendPlayerSessionResume(byte LocalUserNum, string MultiplayerCorrelationId, int GameplayModeId, int DifficultyLevelId);
+function bool SendTestEvent(byte LocalUserNum, string TestStatInstancing, int TestStatParameter);
+//@HSL_END_XBOX
 
 defaultproperties
 {

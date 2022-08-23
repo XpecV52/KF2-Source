@@ -19,6 +19,7 @@ defaultproperties
    StumblePower=50.000000
    GunHitPower=150.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Gunslinger'
+   ModifierPerkList(1)=Class'KFGame.KFPerk_Sharpshooter'
    KDamageImpulse=2500.000000
    KDeathVel=200.000000
    KDeathUpKick=-500.000000

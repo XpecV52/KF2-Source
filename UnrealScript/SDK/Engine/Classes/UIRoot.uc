@@ -173,7 +173,9 @@ structcpptext
 const DEFAULT_SIZE_X = 1024;
 const DEFAULT_SIZE_Y = 768;
 
-const MAX_SUPPORTED_GAMEPADS=4;
+//@HSL_BEGIN_XBOX
+const MAX_SUPPORTED_GAMEPADS=`MAX_NUM_CONTROLLERS;
+//@HSL_END_XBOX
 
 /**
  * Associates a UIAction with input key name.

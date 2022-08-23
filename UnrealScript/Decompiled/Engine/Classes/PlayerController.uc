@@ -171,10 +171,15 @@ var globalconfig bool bAimingHelp;
 var transient bool bCameraCut;
 var bool bClientSimulatingViewTarget;
 var bool bHasVoiceHandshakeCompleted;
+var bool bCanPlayOnline;
+var bool bCanShareUserCreatedContent;
+var bool bCanCommunicateVoice;
+var bool bPrivilegesInitialized;
 var bool bCinematicMode;
 var bool bInteractiveMode;
 var bool bCinemaDisableInputMove;
 var bool bCinemaDisableInputLook;
+var bool bRenderHUDFullScreen;
 var bool bIgnoreNetworkMessages;
 var config bool bShowKismetDrawText;
 var bool bReplicateAllPawns;
@@ -347,6 +352,120 @@ function ForceClearUnpauseDelegates()
     }
 }
 
+event CheckPrivileges()
+{
+    local LocalPlayer LP;
+    local int PlayerIdx;
+    local OnlineSubsystem.EFeaturePrivilegeLevel HintPrivLevel;
+
+    LP = LocalPlayer(Player);
+    bPrivilegesInitialized = true;
+    if(((LP != none) && OnlineSub != none) && NotEqual_InterfaceInterface(OnlineSub.PlayerInterface, (none)))
+    {
+        PlayerIdx = LP.ControllerId;
+        if(!OnlineSub.PlayerInterface.CanPlayOnline(byte(PlayerIdx), HintPrivLevel))
+        {
+            LogInternal("Failed to check CanPlayOnline");            
+        }
+        else
+        {
+            if(HintPrivLevel == 0)
+            {
+                bCanPlayOnline = false;                
+            }
+            else
+            {
+                bCanPlayOnline = true;
+            }
+        }
+        if(!OnlineSub.PlayerInterface.CanShareUserCreatedContent(byte(PlayerIdx), HintPrivLevel))
+        {
+            LogInternal("Failed to check CanShareUserCreatedContent");            
+        }
+        else
+        {
+            if(HintPrivLevel == 0)
+            {
+                bCanShareUserCreatedContent = false;                
+            }
+            else
+            {
+                bCanShareUserCreatedContent = true;
+            }
+        }
+        if(!OnlineSub.PlayerInterface.CanCommunicateVoice(byte(PlayerIdx), HintPrivLevel))
+        {
+            LogInternal("Failed to check CanCommunicateVoice");            
+        }
+        else
+        {
+            if(HintPrivLevel == 0)
+            {
+                bCanCommunicateVoice = false;                
+            }
+            else
+            {
+                bCanCommunicateVoice = true;
+            }
+            LogInternal(((bCanCommunicateVoice) ? "Voice is enabled" : "Voice is disabled"));
+        }        
+    }
+    else
+    {
+        LogInternal("PlayerController.CheckPrivileges failed");
+    }
+}
+
+function OnPrivilegeLevelChecked(byte LocalUserNum, OnlineSubsystem.EFeaturePrivilege Privilege, OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel, bool bDiffersFromHint)
+{
+    if(Privilege == 0)
+    {
+        LogInternal("OnlineSub.PlayerInterface.CanPlayOnline completed : " $ string(PrivilegeLevel));
+        if(PrivilegeLevel == 0)
+        {
+            bCanPlayOnline = false;            
+        }
+        else
+        {
+            bCanPlayOnline = true;
+        }
+        if(bCanPlayOnline)
+        {
+            OnlineSub.PlayerInterface.CheckForGameInviteOnLaunch();
+        }        
+    }
+    else
+    {
+        if(Privilege == 4)
+        {
+            LogInternal("OnlineSub.PlayerInterface.CanShareUserCreatedContent completed : " $ string(PrivilegeLevel));
+            if(PrivilegeLevel == 0)
+            {
+                bCanShareUserCreatedContent = false;                
+            }
+            else
+            {
+                bCanShareUserCreatedContent = true;
+            }            
+        }
+        else
+        {
+            if(Privilege == 3)
+            {
+                LogInternal("OnlineSub.PlayerInterface.CanCommunicateVoice completed : " $ string(PrivilegeLevel));
+                if(PrivilegeLevel == 0)
+                {
+                    bCanCommunicateVoice = false;                    
+                }
+                else
+                {
+                    bCanCommunicateVoice = true;
+                }
+            }
+        }
+    }
+}
+
 function OnExternalUIChanged(bool bIsOpening)
 {
     bIsExternalUIOpen = bIsOpening;
@@ -358,7 +477,7 @@ function bool CanUnpauseExternalUI()
     return ((!bIsExternalUIOpen || bPendingDelete) || bPendingDestroy) || bDeleteMe;
 }
 
-function OnControllerChanged(int ControllerId, bool bIsConnected)
+function OnControllerChanged(int ControllerId, bool bIsConnected, bool bPauseGame)
 {
     local LocalPlayer LP;
 
@@ -369,6 +488,16 @@ function OnControllerChanged(int ControllerId, bool bIsConnected)
         LogInternal((((("Received gamepad connection change for player" @ string(Class'UIInteraction'.static.GetPlayerIndex(ControllerId))) $ ": gamepad") @ string(ControllerId)) @ "is now") @ ((bIsConnected) ? "connected" : "disconnected"));
         SetPause(!bIsConnected, CanUnpauseControllerConnected);
     }
+}
+
+function ControllerChangedPause()
+{
+    SetPause(true, CanUnpauseControllerConnected);
+}
+
+function ControllerChangedUnpause()
+{
+    SetPause(false, CanUnpauseControllerConnected);
 }
 
 function bool CanUnpauseControllerConnected()
@@ -1711,6 +1840,10 @@ function RegisterOnlineDelegates()
             OnlineSub.PartyChatInterface.AddPartyMemberListChangedDelegate(byte(LP.ControllerId), OnPartyMemberListChanged);
             OnlineSub.PartyChatInterface.AddPartyMembersInfoChangedDelegate(byte(LP.ControllerId), OnPartyMembersInfoChanged);
         }
+        if(NotEqual_InterfaceInterface(OnlineSub.PlayerInterface, (none)))
+        {
+            OnlineSub.PlayerInterface.AddPrivilegeLevelCheckedDelegate(OnPrivilegeLevelChecked);
+        }
     }
 }
 
@@ -1745,6 +1878,10 @@ event ClearOnlineDelegates()
                 {
                     OnlineSub.PartyChatInterface.ClearPartyMemberListChangedDelegate(byte(LP.ControllerId), OnPartyMemberListChanged);
                     OnlineSub.PartyChatInterface.ClearPartyMembersInfoChangedDelegate(byte(LP.ControllerId), OnPartyMembersInfoChanged);
+                }
+                if(NotEqual_InterfaceInterface(OnlineSub.PlayerInterface, (none)))
+                {
+                    OnlineSub.PlayerInterface.ClearPrivilegeLevelCheckedDelegate(OnPrivilegeLevelChecked);
                 }
             }
         }
@@ -4343,27 +4480,7 @@ exec function ListConsoleEvents()
     local Sequence GameSeq;
     local int Idx;
 
-    GameSeq = WorldInfo.GetGameSequence();
-    if(GameSeq != none)
-    {
-        LogInternal("Console events:");
-        ClientMessage("Console events:",, 15);
-        GameSeq.FindSeqObjectsByClass(Class'SeqEvent_Console', true, ConsoleEvents);
-        Idx = 0;
-        J0xAA:
 
-        if(Idx < ConsoleEvents.Length)
-        {
-            ConsoleEvt = SeqEvent_Console(ConsoleEvents[Idx]);
-            if((ConsoleEvt != none) && ConsoleEvt.bEnabled)
-            {
-                LogInternal(("-" @ string(ConsoleEvt.ConsoleEventName)) @ ConsoleEvt.EventDesc);
-                ClientMessage(("-" @ string(ConsoleEvt.ConsoleEventName)) @ ConsoleEvt.EventDesc,, 15);
-            }
-            ++ Idx;
-            goto J0xAA;
-        }
-    }
 }
 
 exec function ListCE()
@@ -4409,25 +4526,6 @@ unreliable server function ServerRemoteEvent(name EventName)
                 ++ Idx;
                 goto J0x8C;
             }
-        }
-    }
-    if((!bFoundEvt && !Class'WorldInfo'.static.IsConsoleBuild()) && !Class'WorldInfo'.static.IsConsoleDedicatedServer())
-    {
-        LogInternal("Remote events:");
-        ClientMessage("Remote events:",, 15);
-        Idx = 0;
-        J0x1E7:
-
-        if(Idx < AllRemoteEvents.Length)
-        {
-            RemoteEvt = SeqEvent_RemoteEvent(AllRemoteEvents[Idx]);
-            if((RemoteEvt != none) && RemoteEvt.bEnabled)
-            {
-                LogInternal("-" @ string(RemoteEvt.EventName));
-                ClientMessage("-" @ string(RemoteEvt.EventName),, 15);
-            }
-            ++ Idx;
-            goto J0x1E7;
         }
     }
 }
@@ -5080,7 +5178,7 @@ function bool CanAllPlayersPlayOnline()
         LocPlayer = LocalPlayer(PC.Player);
         if(LocPlayer != none)
         {
-            if((OnlineSub.PlayerInterface.GetLoginStatus(byte(LocPlayer.ControllerId)) != 2) || OnlineSub.PlayerInterface.CanPlayOnline(byte(LocPlayer.ControllerId)) == 0)
+            if((OnlineSub.PlayerInterface.GetLoginStatus(byte(LocPlayer.ControllerId)) != 2) || !PC.bCanPlayOnline)
             {                
                 return false;
             }
@@ -5452,14 +5550,7 @@ reliable client simulated function ClientEndOnlineGame()
 
 function bool CanViewUserCreatedContent()
 {
-    local LocalPlayer LocPlayer;
-
-    LocPlayer = LocalPlayer(Player);
-    if(((LocPlayer != none) && OnlineSub != none) && NotEqual_InterfaceInterface(OnlineSub.PlayerInterface, (none)))
-    {
-        return OnlineSub.PlayerInterface.CanDownloadUserContent(byte(LocPlayer.ControllerId)) == 2;
-    }
-    return true;
+    return bCanShareUserCreatedContent;
 }
 
 function IncrementNumberOfMatchesPlayed()
@@ -6145,25 +6236,25 @@ exec function DumpVoiceMutingState()
         }
         LogInternal("    System mutes: ");
         MuteIndex = 0;
-        J0x1FB:
+        J0x1FC:
 
         if(MuteIndex < PC.VoiceMuteList.Length)
         {
             NetId = PC.VoiceMuteList[MuteIndex];
             LogInternal("      " $ Class'OnlineSubsystem'.static.UniqueNetIdToString(NetId));
             ++ MuteIndex;
-            goto J0x1FB;
+            goto J0x1FC;
         }
         LogInternal("    Voice packet filter: ");
         MuteIndex = 0;
-        J0x2C6:
+        J0x2C8:
 
         if(MuteIndex < PC.VoicePacketFilter.Length)
         {
             NetId = PC.VoicePacketFilter[MuteIndex];
             LogInternal("      " $ Class'OnlineSubsystem'.static.UniqueNetIdToString(NetId));
             ++ MuteIndex;
-            goto J0x2C6;
+            goto J0x2C8;
         }
         LogInternal("");        
     }    
@@ -6185,29 +6276,72 @@ exec function DumpPeers()
             LogInternal(((("  Player: " $ PC.PlayerReplicationInfo.PlayerName) $ "(") $ Class'OnlineSubsystem'.static.UniqueNetIdToString(PC.PlayerReplicationInfo.UniqueId)) $ ")");
             LogInternal("    Peer connections: ");
             PeerIdx = 0;
-            J0x15E:
+            J0x15F:
 
             if(PeerIdx < PC.ConnectedPeers.Length)
             {
                 PeerInfo = PC.ConnectedPeers[PeerIdx];
                 LogInternal((("      " $ Class'OnlineSubsystem'.static.UniqueNetIdToString(PeerInfo.PlayerID)) $ " HostLost=") $ string(PeerInfo.bLostConnectionToHost));
                 ++ PeerIdx;
-                goto J0x15E;
+                goto J0x15F;
             }
             LogInternal("    Best Hosts:");
             PeerIdx = 0;
-            J0x261:
+            J0x263:
 
             if(PeerIdx < PC.BestNextHostPeers.Length)
             {
                 NetId = PC.BestNextHostPeers[PeerIdx];
                 LogInternal("      " $ Class'OnlineSubsystem'.static.UniqueNetIdToString(NetId));
                 ++ PeerIdx;
-                goto J0x261;
+                goto J0x263;
             }
             LogInternal("");
         }        
     }    
+}
+
+exec function SetCallback()
+{
+    OnlineSub.GameInterface.AddJoinOnlineGameCompleteDelegate(OnInviteJoinComplete);
+}
+
+function OnFriendsReadComplete(bool bWasSuccessful)
+{
+    local OnlinePlayerInterface PlayerInterface;
+    local array<OnlineFriend> FriendsList;
+
+    if(bWasSuccessful == true)
+    {
+        if(OnlineSub != none)
+        {
+            PlayerInterface = OnlineSub.PlayerInterface;
+            if(NotEqual_InterfaceInterface(PlayerInterface, (none)))
+            {
+                PlayerInterface.GetFriendsList(0, FriendsList);
+            }
+        }        
+    }
+    else
+    {
+        LogInternal("Failed to read friends list", 'DevOnline');
+    }
+    OnlineSub.PlayerInterface.ClearReadFriendsCompleteDelegate(0, OnFriendsReadComplete);
+}
+
+exec function ReadFriendsList()
+{
+    local OnlinePlayerInterface PlayerInterface;
+
+    if(OnlineSub != none)
+    {
+        PlayerInterface = OnlineSub.PlayerInterface;
+        if(NotEqual_InterfaceInterface(PlayerInterface, (none)))
+        {
+            PlayerInterface.AddReadFriendsCompleteDelegate(0, OnFriendsReadComplete);
+            PlayerInterface.ReadFriendsList(0);
+        }
+    }
 }
 
 function DisableDebugAI()
@@ -6243,6 +6377,54 @@ function NotifyUnsuccessfulSearch();
 function OnLobbyStatusChanged(bool bInLobby);
 
 unreliable client simulated event ClientReplicationDebug(Vector CamLocation, Vector DebugLocation, bool bClear, Color DebugColor);
+
+simulated event SendReliableVoicePacketToServer(byte MessageType, UniqueNetId Receiver, int Length, byte InData[60])
+{
+    ServerReceiveReliableVoicePacket(MessageType, Receiver, Length, InData);
+}
+
+reliable server function ServerReceiveReliableVoicePacket(byte MessageType, UniqueNetId Receiver, int Length, byte InData[60])
+{
+    local UniqueNetId ZeroId;
+    local int I;
+
+    if(Receiver != ZeroId)
+    {
+        I = 0;
+        J0x29:
+
+        if(I < WorldInfo.GRI.PRIArray.Length)
+        {
+            if(WorldInfo.GRI.PRIArray[I].UniqueId == Receiver)
+            {
+                LogInternal((("Sending reliable voice packet of message type" @ string(MessageType)) @ "to") @ WorldInfo.GRI.PRIArray[I].PlayerName);
+                PlayerController(WorldInfo.GRI.PRIArray[I].Owner).ClientReceiveReliableVoicePacket(MessageType, PlayerReplicationInfo.UniqueId, Length, InData);
+                return;
+            }
+            ++ I;
+            goto J0x29;
+        }
+        LogInternal(("COULD NOT FIND RECIEVER" @ Class'OnlineSubsystem'.static.UniqueNetIdToString(Receiver, false)) @ "FOR RELIABLE VOICE PACKET.  CLIENT WILL NOT RECIEVE IT!");        
+    }
+    else
+    {
+        LogInternal("Sending reliable voice packet of message type" @ string(MessageType));
+        I = 0;
+        J0x2F4:
+
+        if(I < WorldInfo.GRI.PRIArray.Length)
+        {
+            PlayerController(WorldInfo.GRI.PRIArray[I].Owner).ClientReceiveReliableVoicePacket(MessageType, PlayerReplicationInfo.UniqueId, Length, InData);
+            ++ I;
+            goto J0x2F4;
+        }
+    }
+}
+
+reliable client simulated function ClientReceiveReliableVoicePacket(byte MessageType, UniqueNetId Sender, int Length, byte InData[60])
+{
+    OnlineSub.VoiceInterface.ReceiveReliableVoicePacket(MessageType, Sender, Length, InData);
+}
 
 state PlayerWalking
 {

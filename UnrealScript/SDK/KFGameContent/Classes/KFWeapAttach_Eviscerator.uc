@@ -26,11 +26,14 @@ event PreBeginPlay()
 }
 
 /** Custom firing animations */
-simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
+simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte )
 {
-	if ( Super.ThirdPersonFireEffects(HitLocation, P) )
+	local float Duration;
+
+	if( Super.ThirdPersonFireEffects(HitLocation, P, ThirdPersonAnimRateByte) )
 	{
-		WeapMesh.PlayAnim(WeaponShoot);
+		Duration = WeapMesh.GetAnimLength( WeaponShoot );
+		WeapMesh.PlayAnim( WeaponShoot, Duration / ThirdPersonAnimRate );
 		return true;
 	}
 

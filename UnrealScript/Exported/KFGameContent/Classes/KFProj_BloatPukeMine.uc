@@ -303,7 +303,7 @@ simulated function SpawnImpactDecal( vector HitLocation, vector HitNormal )
 simulated function bool ValidTouch( Pawn Other )
 {
 	// Make sure only enemies detonate
-	if( Other.GetTeamNum() == TeamNum )
+	if( Other.GetTeamNum() == TeamNum || !Other.IsAliveAndWell() )
 	{
 		return false;
 	}
@@ -313,21 +313,22 @@ simulated function bool ValidTouch( Pawn Other )
 }
 
 /** When touched by an actor */
-simulated singular event Touch( Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal )
+simulated event Touch( Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal )
 {
 	local Pawn P;
 
-	// Don't test for touches immediately after spawning
-	if( (WorldInfo.TimeSeconds - CreationTime) < 0.1f )
+	// If touched by an enemy pawn, explode
+	P = Pawn( Other );
+	if( P != None )
 	{
-		return;
+		if( (WorldInfo.TimeSeconds - CreationTime) >= 0.1f && ValidTouch(P) )
+		{
+			TriggerExplosion( Location, vect(0,0,1), P );
+		}
 	}
-
-	// If touched by a player pawn, let him pick this up.
-	P = Pawn(Other);
-	if( P != None && ValidTouch(P) )
+	else if( bBounce )
 	{
-		TriggerExplosion( Location, vect(0,0,1), P );
+		super.Touch( Other, OtherComp, HitLocation, HitNormal );
 	}
 }
 
@@ -540,8 +541,6 @@ defaultproperties
    FadeOutTime=1.750000
    bStopAmbientSoundOnExplode=True
    GlassShatterType=FMGS_ShatterAll
-   ExtraLineCollisionOffsets(0)=(X=0.000000,Y=0.000000,Z=50.000000)
-   ExtraLineCollisionOffsets(1)=()
    ExplosionActorClass=Class'kfgamecontent.KFExplosion_PlayerBloatPukeMine'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'ZED_Bloat_ARCH.Bloat_Mine_Explosion'

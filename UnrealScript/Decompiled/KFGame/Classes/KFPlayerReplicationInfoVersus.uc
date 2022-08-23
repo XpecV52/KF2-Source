@@ -143,16 +143,15 @@ reliable client simulated function ClientRecieveNewTeam()
     if((KFPC != none) && KFPC.IsLocalController())
     {
         MyGFxHUD = KFGFxHudWrapper(KFPC.myHUD);
-        KFPC.ClientRecieveNewTeam();        
-    }
-    else
-    {
-        return;
-    }
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(KFGRI.bMatchHasBegun)
-    {
-        MyGFxHUD.CreateHUDMovie(true);
+        if(MyGFxHUD != none)
+        {
+            KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+            if(KFGRI.bMatchHasBegun && KFPC.PlayerReplicationInfo.bReadyToPlay)
+            {
+                MyGFxHUD.CreateHUDMovie(true);
+            }
+        }
+        KFPC.ClientRecieveNewTeam();
     }
 }
 
@@ -187,7 +186,7 @@ function IncrementDeaths(optional int Amt)
 
     Amt = 1;
     super.IncrementDeaths(Amt);
-    if(GetTeamNum() == 0)
+    if((((bReadyToPlay && !bWaitingPlayer) && WorldInfo.GRI.bMatchHasBegun) && !WorldInfo.GRI.bMatchIsOver) && GetTeamNum() == 0)
     {
         MyGameInfo = KFGameInfo(WorldInfo.Game);
         if(MyGameInfo != none)

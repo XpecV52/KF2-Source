@@ -117,7 +117,8 @@ defaultproperties
    RecoilISMaxPitchLimit=500
    RecoilISMinPitchLimit=65485
    IronSightMeshFOVCompensationScale=1.400000
-   AssociatedPerkClass=Class'KFGame.KFPerk_Gunslinger'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
+   AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Sharpshooter'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

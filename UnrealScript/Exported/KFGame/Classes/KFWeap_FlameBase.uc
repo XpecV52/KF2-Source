@@ -123,12 +123,12 @@ simulated function SetFlameDebugFX(bool bDebugShowSeeds, bool bDebugShowBones, b
  */
 simulated event Tick(float DeltaTime)
 {
-	local int Idx;
+	local int i, Idx;
 	local float FlameHeat;
 
 	super.Tick(DeltaTime);
 
-	if( WorldInfo.NetMode != NM_DedicatedServer && WeaponMIC != None &&
+	if( WorldInfo.NetMode != NM_DedicatedServer && WeaponMICs.Length > 0 &&
         Instigator != None && Instigator.IsLocallyControlled() && Instigator.IsHumanControlled() )
 	{
         if( bFireSpraying && ActiveFlameSpray != None)
@@ -160,7 +160,13 @@ simulated event Tick(float DeltaTime)
 
         if( BarrelHeat != LastBarrelHeat )
         {
-            WeaponMIC.SetScalarParameterValue('Glow_Intensity', BarrelHeat);
+        	for( i = 0; i < WeaponMICs.Length; ++i )
+        	{
+        		if( WeaponMICs[i] != none )
+        		{
+					WeaponMICs[i].SetScalarParameterValue('Glow_Intensity', BarrelHeat);
+				}
+			}
         }
 
         LastBarrelHeat = BarrelHeat;

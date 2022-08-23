@@ -29,7 +29,7 @@ var transient int DownloadCount;
  *
  * @return true if the calls starts successfully, false otherwise
  */
-native function bool ReadTitleFile(string FileToRead);
+native function bool ReadTitleFile(string FileToRead, optional EOnlineFileType FileType = OFT_Binary);
 
 /**
  * Copies the file data into the specified buffer for the specified file

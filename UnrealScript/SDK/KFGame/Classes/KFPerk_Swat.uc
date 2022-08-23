@@ -24,6 +24,9 @@ var private const float 					SnarePower;
 var private const float 					TacticalMovementBobDamp;
 var private const class<KFWeaponDefinition>	BackupSecondaryWeaponDef;
 
+/** Percentage of how much armor should be damaged when the heavy armor skill is active */
+var private const float 					HeavyArmorAbsorptionPct;
+
 /** Selectable skills */
 enum ESWATPerkSkills
 {
@@ -119,13 +122,13 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
 	TempCapacity = MagazineCapacity;
 
-	if( !Is9mm(KFW) && IsWeaponOnPerk(KFW, WeaponPerkClass) && (KFW == none || !KFW.bNoMagazine) )
+	if( !bSecondary && !Is9mm( KFW ) && IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && (KFW == none || !KFW.bNoMagazine) )
 	{
 		TempCapacity += MagazineCapacity * GetPassiveValue( MagSize, CurrentLevel );
 	}
@@ -176,7 +179,7 @@ static simulated private function bool Is9mm( KFWeapon KFW )
  */
 simulated event float GetIronSightSpeedModifier( KFWeapon KFW )
 {
-	if( IsTacticalMovementActive() && (Is9mm(KFW) || IsWeaponOnPerk(KFW)) )
+	if( IsTacticalMovementActive() && (Is9mm( KFW ) || IsWeaponOnPerk( KFW,, self.class )) )
 	{
 		`QALog( "Tactical Movement Mod:" @ KFW @ GetSkillValue( PerkSkills[ESWAT_TacticalMovement] ),bLogPerk );
 		return  GetSkillValue( PerkSkills[ESWAT_TacticalMovement] );
@@ -193,7 +196,7 @@ simulated event float GetIronSightSpeedModifier( KFWeapon KFW )
  */
 simulated event float GetCrouchSpeedModifier( KFWeapon KFW )
 {
-	if( IsTacticalMovementActive() && (Is9mm(KFW) || IsWeaponOnPerk(KFW)) )
+	if( IsTacticalMovementActive() && (Is9mm( KFW ) || IsWeaponOnPerk( KFW,, self.class )) )
 	{
 		`QALog( "Tactical Movement Mod:" @ KFW @ GetSkillValue( PerkSkills[ESWAT_TacticalMovement] ),bLogPerk );
 		return  GetSkillValue( PerkSkills[ESWAT_TacticalMovement] );
@@ -204,7 +207,7 @@ simulated event float GetCrouchSpeedModifier( KFWeapon KFW )
 
 simulated function ModifyWeaponBopDamping( out float BobDamping, KFWeapon PawnWeapon )
 {
-	If( IsTacticalMovementActive() && (Is9mm(PawnWeapon) || IsWeaponOnPerk(PawnWeapon)) )
+	If( IsTacticalMovementActive() && (Is9mm( PawnWeapon ) || IsWeaponOnPerk( PawnWeapon,, self.class )) )
 	{
 		BobDamping *= default.TacticalMovementBobDamp;
 	}
@@ -238,7 +241,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 			`QALog( "Backup Damage" @ KFW @ GetPercentage( InDamage, InDamage * GetSkillValue(PerkSkills[ESWAT_Backup])), bLogPerk );
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ESWAT_Backup] );
 		}
-		else if( IsWeaponOnPerk(KFW) || (DamageType != none && IsDamageTypeOnPerk(DamageType)) )
+		else if( IsWeaponOnPerk( KFW,, self.class ) || (DamageType != none && IsDamageTypeOnPerk(DamageType)) )
 		{
 			`QALog( "Passive Damage" @KFW @ GetPercentage( InDamage, InDamage * GetPassiveValue(WeaponDamage, CurrentLevel)), bLogPerk );
 			TempDamage *= GetPassiveValue( WeaponDamage, CurrentLevel );
@@ -260,7 +263,7 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 {
 	local float TempMaxSpareAmmoAmount;
 
-	if( IsAmmoVestActive() && !Is9mm(KFW) && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClass ) )
+	if( IsAmmoVestActive() && !Is9mm(KFW) && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClasses, self.class ) )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
 		TempMaxSpareAmmoAmount += MaxSpareAmmo * GetSkillValue( PerkSkills[ESWAT_AmmoVest] );
@@ -312,7 +315,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	local name StateName;
 
 	StateName = W.GetStateName();
-	if( IsRapidAssaultActive() && (Is9mm(W) || IsWeaponOnPerk(W)) )
+	if( IsRapidAssaultActive() && (Is9mm(W) || IsWeaponOnPerk( W,, self.class )) )
 	{
 		if( ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 		{
@@ -336,7 +339,7 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	StumbleModifier = 1.f;
 
 	KFW = GetOwnerWeapon();
-	if( IsSpecialAmmunitionActive() && (Is9mm(KFW) || IsWeaponOnPerk(KFW)) )
+	if( IsSpecialAmmunitionActive() && (Is9mm(KFW) || IsWeaponOnPerk( KFW,, self.class )) )
 	{
 		StumbleModifier *= GetSkillValue( PerkSkills[ESWAT_SpecialAmmunition] );
 		`QALog( "Special Ammunition Modifier" @ GetSkillValue( PerkSkills[ESWAT_SpecialAmmunition] ), bLogPerk );
@@ -360,12 +363,22 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
  */
 simulated function bool GetIsUberAmmoActive( KFWeapon KFW )
 {
-	return IsRapidAssaultActive() && (Is9mm(KFW) || IsWeaponOnPerk(KFW));
+	return IsRapidAssaultActive() && (Is9mm(KFW) || IsWeaponOnPerk( KFW,, self.class ));
 }
 
 simulated function bool ShouldKnockDownOnBump()
 {
 	return IsSWATEnforcerActive() && WorldInfo.TimeDilation < 1.f;
+}
+
+simulated function int GetArmorDamageAmount( int AbsorbedAmt )
+{
+	if( HasHeavyArmor() )
+	{
+		return Max( Round(AbsorbedAmt * HeavyArmorAbsorptionPct), 1 );
+	}
+
+	return AbsorbedAmt;
 }
 
 /*********************************************************************************************
@@ -421,7 +434,7 @@ simulated private function bool IsTacticalReloadActive()
  */
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
-	return ( IsTacticalReloadActive() && (Is9mm(KFW) || IsWeaponOnPerk(KFW)) );
+	return ( IsTacticalReloadActive() && (Is9mm(KFW) || IsWeaponOnPerk( KFW,, self.class )) );
 }
 
 /**
@@ -539,6 +552,7 @@ DefaultProperties
 	BulletResistance=(Name="Bullet Resistance",Increment=0.01,Rank=0,StartingValue=0.05,MaxValue=0.3f)
 	MagSize=(Name="Increased Mag Size",Increment=0.04,Rank=0,StartingValue=0.f,MaxValue=1.f)
 	WeaponSwitchSpeed=(Name="Weapon Switch Speed",Increment=0.01,Rank=0,StartingValue=0.f,MaxValue=0.25)
+	HeavyArmorAbsorptionPct=0.65f
 
  	PerkSkills(ESWAT_HeavyArmor)=(Name="HeavyArmor",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_HeavyArmor", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)    //0.1
 	PerkSkills(ESWAT_TacticalMovement)=(Name="TacticalMovement",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalMovement", Increment=0.f,Rank=0,StartingValue=2.5f,MaxValue=2.5f)

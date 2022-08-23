@@ -59,6 +59,9 @@ simulated function Rotator GetMeleeAimRotation()
     return R;
 }
 
+// Export UKFMeleeHelperBase::execSetMeleeRange(FFrame&, void* const)
+native function SetMeleeRange(float NewRange);
+
 simulated function float GetMeleeRange()
 {
     return MaxHitRange;
@@ -206,6 +209,9 @@ native function BeginHitboxCollisionDetection(SkeletalMeshComponent SkelComp);
 
 // Export UKFMeleeHelperBase::execCreateHitboxChain(FFrame&, void* const)
 native function CreateHitboxChain(SkeletalMeshComponent SkelComp);
+
+// Export UKFMeleeHelperBase::execSetHitboxChain(FFrame&, void* const)
+native function SetHitboxChain(const array<MeleeHitboxInfo> NewChain);
 
 // Export UKFMeleeHelperBase::execHasCollidedWithHitbox(FFrame&, void* const)
 native function bool HasCollidedWithHitbox(Actor A);

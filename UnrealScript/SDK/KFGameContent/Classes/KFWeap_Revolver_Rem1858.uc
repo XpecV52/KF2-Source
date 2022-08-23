@@ -101,7 +101,8 @@ defaultproperties
 	bDropOnDeath=true
 	WeaponSelectTexture=Texture2D'WEP_UI_Remington_1858_TEX.UI_WeaponSelect_Remington'
 	bIsBackupWeapon=false
-	AssociatedPerkClass=class'KFPerk_Gunslinger'
+	AssociatedPerkClasses(0)=class'KFPerk_Gunslinger'
+	AssociatedPerkClasses(1)=class'KFPerk_Sharpshooter'
 
 	DualClass=class'KFWeap_Revolver_DualRem1858'
 

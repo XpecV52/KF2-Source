@@ -124,6 +124,7 @@ var int StartingWeaponClassIndex;
 /*********************************************************************************************
 * @name	 Perk init and spawning
 ******************************************************************************************** */
+
 /** On spawn, modify owning pawn based on perk selection */
 function SetPlayerDefaults( Pawn PlayerPawn )
 {
@@ -134,10 +135,9 @@ function SetPlayerDefaults( Pawn PlayerPawn )
 	if( OwnerPawn.Role == ROLE_Authority )
 	{
 		NewArmor = OwnerPawn.default.MaxArmor * GetPassiveValue( HeavyBodyArmor, CurrentLevel );
-		OwnerPawn.AddArmor( Round( NewArmor ) );	
+		OwnerPawn.AddArmor( Round( NewArmor ) );
 	}
 }
-
 
 /**
  * @brief(Server) Modify Instigator settings based on selected perk
@@ -313,6 +313,23 @@ simulated function float GetReloadRateScale( KFWeapon KFW )
 	return 1.f;
 }
 
+/**
+ * @brief Modifies the pawn's MaxArmor
+ *
+ * @param MaxArmor the maximum armor value
+ */
+function ModifyArmor( out byte MaxArmor )
+{
+	local float TempArmor;
+
+	if( HasHeavyArmor() )
+	{
+		TempArmor = MaxArmor;
+		TempArmor += MaxArmor * GetPassiveValue( HeavyBodyArmor, CurrentLevel );
+		MaxArmor = Round( TempArmor );
+	}
+}
+
 /*********************************************************************************************
 * @name	 Selectable skills functions
 ********************************************************************************************* */
@@ -333,9 +350,9 @@ simulated function bool IsWeaponOnPerkLight( KFWeapon KFW )
 {
 	if( KFW != none )
 	{
-		return (KFW.AssociatedPerkClass == class'KFPerk_Commando' ||
-				KFW.AssociatedPerkClass == class'KFPerk_Gunslinger' ||
-				KFW.AssociatedPerkClass == class'KFPerk_SWAT' );
+		return (class'KFPerk_Commando'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Commando' ) ||
+				class'KFPerk_Gunslinger'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Gunslinger' ) ||
+				class'KFPerk_SWAT'.static.IsWeaponOnPerk( KFW,, class'KFPerk_SWAT' ));
 	}
 
 	return false;
@@ -345,10 +362,11 @@ simulated function bool IsWeaponOnPerkHeavy( KFWeapon KFW )
 {
 	if( KFW != none )
 	{
-		return (KFW.AssociatedPerkClass == class'KFPerk_Demolitionist' ||
-				KFW.AssociatedPerkClass == class'KFPerk_Support' ||
-				KFW.AssociatedPerkClass == class'KFPerk_Sharpshooter');
+		return (class'KFPerk_Demolitionist'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Demolitionist' ) ||
+				class'KFPerk_Support'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Support' ) ||
+				class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Sharpshooter' ));
 	}
+
 
 	return false;
 }

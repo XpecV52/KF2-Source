@@ -190,6 +190,7 @@ function RefreshTimer()
 {
 	local Inventory Inv;
 	local int InvCount;
+	local KFInventoryManager KFIM;
 
 	for ( Inv = GetPC().Pawn.InvManager.InventoryChain; Inv != none; Inv = Inv.Inventory )
 	{
@@ -200,6 +201,16 @@ function RefreshTimer()
 	if ( InvCount != LastRefreshInvCount )
 	{
 		RefreshWeaponSelect();
+
+		// Make sure that we have a valid selection
+		if( GetPC().Pawn.InvManager != none )
+		{
+			KFIM = KFInventoryManager( GetPC().Pawn.InvManager );
+			if( KFIM != none )
+			{
+				KFIM.UpdateHUD();
+			}
+		}
 	}
 	LastRefreshInvCount = InvCount;
 }

@@ -254,7 +254,7 @@ MutatorsString="MUTATORI"
 JoinGameString="ENTRA PARTITA"
 SpectateGameString="SPETTATORE"
 ServerInfoString="INFO SERVER"
-UnfavoriteString="NON PREFERITO"
+UnfavoriteString="RIMUOVI PREFERITO"
 
 [KFGFxMenu_Trader]
 ExitMenuString="ESCI"
@@ -708,6 +708,7 @@ BackString="INDIETRO"
 NoneString="NESSUNO"
 WeaponsString="Armi"
 WeaponsInfoString="Personalizza"
+EmotesString="EMOTE"
 
 [KFGFxMenu_Inventory]
 NoItemsString="Nessun oggetto dell'Inventario trovato con il filtro selezionato."
@@ -723,6 +724,7 @@ UnequipString="RIMUOVI"
 AllString="Tutto"
 WeaponSkinString="Skin armi"
 CosmeticString="Estetica"
+EmotesString="Emote"
 CraftingMatsString="Costruisci"
 ItemString="Oggetti"
 FiltersString="FILTRI"
@@ -749,7 +751,7 @@ CraftRequirementString="Quantità di materiali da costruzione insufficiente"
 CraftCosmeticDescriptionString="Puoi costruire elementi estetici in questo menu utilizzando materiale per elementi estetici. Puoi ottenere materiale per elementi estetici riciclando gli elementi estetici che possiedi. Per riciclare, seleziona un oggetto e premi ricicla."
 CraftWeaponDescriptionString="Puoi costruire nuove skin arma in questo menu utilizzando materiale per skin arma. Puoi ottenere materiale per skin arma riciclando le skin arma che possiedi. Per riciclare, seleziona un oggetto e premi ricicla."
 RequiresString="Necessita: "
-PurchaseKeyString="COMPRA CHIAVE"
+PurchaseKeyString="COMPRA CHIAVE:"
 LookUpOnMarketString="Cerca oggetto:"
 
 [KFGFxPerksContainer]
@@ -796,6 +798,7 @@ WeaponSkinsRotationString="Skin armi"
 WeaponSkinsString="Skin armi in vendita"
 MarketConsumablesString="Casse/USB in vendita"
 MarketCosmeticsString="Estetica in vendita"
+MarketEmotesString="Vendita Emote"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="TROVA IN VENDITA"
@@ -890,6 +893,7 @@ VoiceCommsOptionStrings[4]="SEGUITEMI"
 VoiceCommsOptionStrings[5]="VERSO IL COMMERCIANTE"
 VoiceCommsOptionStrings[6]="AFFERMATIVO"
 VoiceCommsOptionStrings[7]="NEGATIVO"
+VoiceCommsOptionStrings[8]="EMOTE"
 
 [KFGFxMenu_Exit]
 HeaderString="ESCI DALLA PARTITA"
@@ -1182,6 +1186,7 @@ GBA_VoiceCommFollowMe="SEGUITEMI"
 GBA_VoiceCommGetToTheTrader="VERSO IL COMMERCIANTE"
 GBA_VoiceCommAffirmative="AFFERMATIVO"
 GBA_VoiceCommNegative="NEGATIVO"
+GBA_VoiceCommEmote="EMOTE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Sensibilità"
@@ -1745,7 +1750,7 @@ EXPAction2="Curare compagni di squadra"
 [KFPerk_Firebug]
 PerkName="Piromane"
 EXPAction1="Arrecare danni con arma Piromane"
-EXPAction2="Uccidere i Crawler con armi Piromane"
+EXPAction2="Uccidere Crawler e Bloat con armi Piromane"
 
 SkillCatagories[0]="Scorte"
 SkillCatagories[1]="Piccanti"
@@ -1810,7 +1815,7 @@ ShootnMove="Stabilizza"
 ShootnMoveDescription="Annulla la penalità della velocità di movimento del mirino e riduce drasticamente l'oscillazione delle armi di classe."
 
 QuickSwitch="Estrazione rapida"
-QuickSwitchDescription="Annulla la penalità del rinculo sparando dal fianco, aumenta la velocità di movimento del 5% e scambia le armi di classe più veloce del 50%."
+QuickSwitchDescription="Riduce la penalità del rinculo sparando dal fianco, aumenta la velocità di movimento del 5% e scambia le armi di classe più veloce del 50%."
 
 RhythmMethod="Esecuzione di massa"
 RhythmMethodDescription="I colpi alla testa consecutivi con armi di classe aumentano il danno del 10% fino a un massimo del 50%."
@@ -2113,6 +2118,7 @@ RandomLoadingStrings[37]="La rail gun può trapassare gli Zed se sono allineati 
 RandomLoadingStrings[38]="Il fucile a microonde infligge danni maggiori agli Zed con oggetti in metallo, come i Fleshpound e le Sirene."
 RandomLoadingStrings[39]="Prova la modalità di fuoco alternativa della tua arma. Non tutte le armi ne hanno una, ma potrebbe esserti d'aiuto in caso di difficoltà."
 RandomLoadingStrings[40]="Otterrai punti XP e denaro per gli assist, oltre che per le uccisioni, quindi non dispiacerti di aver aiutato un tuo alleato in un'uccisione."
+RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
 
 [WhatsNewMessages]
 Jaegorhorn="Segui la community per sbloccare Jaegorhorn"
@@ -2139,6 +2145,7 @@ USBSWATKey="Chiave USB SWAT- $2.49"
 USBTacticalHorzineKey="Chiave USB Tattica Horzine - $2.49"
 USBVictorianKey="Chiave USB Vittoriana - $2.49"
 USBZedKillerKey="Chiave USB Ammazza Zed - $2.49"
+USBBoneCrusher="USB Spezzaossa - $2.49"
 BullseyeUpdate="Nuovo contenuto - Aggiornamento Bullseye"
 LatestUpdate="Aggiornamento nuovo contenuto"
 Forums="Visita i forum della nostra community"
@@ -2159,6 +2166,7 @@ PS4WeaponSkinCrate1="Cassa skin armi Horzine | Serie #1"
 PS4WeaponSkinCrate2="Cassa skin armi Horzine | Serie #2"
 Artbook="Artbook digitale Killing Floor 2"
 Uncovered="Guarda il live action Killing Floor: Uncovered"
+NewEmotes="Novità! Chiave cassa Emote - $2.49"
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
@@ -2166,6 +2174,7 @@ KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedFleshPound="Fleshpound"
 KFPawn_ZedGorefast="Gorefast"
+KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
 KFPawn_ZedHusk="Husk"
 KFPawn_ZedStalker="Stalker"
@@ -2365,7 +2374,6 @@ DisplayName_DEU="Katakomben"
 DisplayName_ESL="Catacumbas"
 DisplayName_ESN="Catacumbas"
 DisplayName_FRA="Catacombes"
-DisplayName_FRC="Catacombes"
 DisplayName_INT="Catacombs"
 DisplayName_ITA="Catacombe"
 DisplayName_JPN="Catacombs"
@@ -2486,6 +2494,22 @@ DisplayName_POL="Piekielna domena"
 DisplayName_PTB="Reino Infernal"
 DisplayName_RUS="Царство ада"
 
+[KF-ZedLanding KFMapSummary]
+DisplayName_CHN="丧尸登陆"
+DisplayName_CHT="僵屍群登陸"
+DisplayName_DEU="ZED-Landung"
+DisplayName_ESL="Aterrizaje ZED"
+DisplayName_ESN="Aterrizaje ZED"
+DisplayName_FRA="Île des Zeds"
+DisplayName_FRC="Île des Zeds"
+DisplayName_INT="Zed Landing"
+DisplayName_ITA="Atterraggio ZED"
+DisplayName_JPN="zed Landing"
+DisplayName_KOR="제드 상륙"
+DisplayName_POL="Lądowanie zetów"
+DisplayName_PTB="Pouso Forçado ZED"
+DisplayName_RUS="Высадка среди мутантов"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio Biotics"
 
@@ -2524,6 +2548,9 @@ DisplayName="Terreno ostile"
 
 [KF-InfernalRealm KFMapSummary]
 DisplayName="Regno infernale"
+
+[KF-ZedLanding KFMapSummary]
+DisplayName="Atterraggio ZED"
 
 
 [KFMapInfo]

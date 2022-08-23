@@ -20,8 +20,9 @@ defaultproperties
    StumblePower=150.000000
    MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
+   GibImpulseScale=0.770000
    KDeathVel=250.000000
-   KDeathUpKick=500.000000
+   RadialDamageImpulse=500.000000
    Name="Default__KFDT_Explosive_HX25"
    ObjectArchetype=KFDT_Explosive'KFGame.Default__KFDT_Explosive'
 }

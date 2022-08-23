@@ -22,9 +22,7 @@ defaultproperties
 	End Object
 
 	AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_Deagle_ARCH.Wep_Dual_Deagle_3P'
-
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_Deagle_ARCH.Wep_Dual_Deagle_MuzzleFlash'
-	LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_Deagle_ARCH.Wep_Dual_Deagle_MuzzleFlash_L'
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -114,7 +112,7 @@ defaultproperties
 	bDropOnDeath=true
 	WeaponSelectTexture=Texture2D'WEP_UI_Dual_Deagle_TEX.UI_WeaponSelect_DualDeagle'
 	bIsBackupWeapon=false
-	AssociatedPerkClass=class'KFPerk_Gunslinger'
+	AssociatedPerkClasses(0)=class'KFPerk_Gunslinger'
 
     BonesToLockOnEmpty=(RW_Slide, RW_Bullets1)
     BonesToLockOnEmpty_L=(LW_Slide, LW_Bullets1)

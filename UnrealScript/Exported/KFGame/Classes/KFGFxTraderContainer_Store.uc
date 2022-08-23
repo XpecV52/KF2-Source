@@ -70,68 +70,103 @@ function SetSelectedIndex( int SelectedIndex )
 }
 
 // Grab the list of perk weapons that we do not already own and set their information
-function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemList)
+function RefreshWeaponListByPerk(byte FilterIndex, const out array<STraderItem> ItemList)
 {
  	local int i, SlotIndex;
 	local GFxObject ItemDataArray; // This array of information is sent to ActionScript to update the Item data
-	local array<STraderItem> FullItemList;
+	local array<STraderItem> OnPerkWeapons, SecondaryWeapons, OffPerkWeapons;
+	local class<KFPerk> TargetPerkClass;
 	if(FilterIndex == 255 || FilterIndex == INDEX_NONE)
 	{
 		return;
 	}
 	if (KFPC != none)
 	{
+		if(FilterIndex < KFPC.PerkList.Length)
+		{
+			TargetPerkClass = KFPC.PerkList[FilterIndex].PerkClass;
+		}
+		else
+		{
+			TargetPerkClass = none;
+		}
+
 		SlotIndex = 0;
-	    ItemList.length = 0;	    
 	    ItemDataArray = CreateArray();
 
-		FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
-
-		for (i = 0; i < FullItemList.Length; i++)
+		for (i = 0; i < ItemList.Length; i++)
 		{
-			if ( IsItemFiltered(FullItemList[i]) )
+			if ( IsItemFiltered(ItemList[i]) )
 			{
 				continue; // Skip this item if it's in our inventory
 			}
-			else if ( FullItemList[i].AssociatedPerkClass != None && KFPC.PerkList[FilterIndex].PerkClass != class'KFPerk_Survivalist'
-				&& (FilterIndex >= KFPC.PerkList.Length || FullItemList[i].AssociatedPerkClass != KFPC.PerkList[FilterIndex].PerkClass) )
+			else if ( ItemList[i].AssociatedPerkClasses.length > 0 && ItemList[i].AssociatedPerkClasses[0] != none && TargetPerkClass != class'KFPerk_Survivalist'
+				&& (FilterIndex >= KFPC.PerkList.Length || ItemList[i].AssociatedPerkClasses.Find(TargetPerkClass) == INDEX_NONE ) )
 			{
 				continue; // filtered by perk
 			}
 			else
 			{
-				ItemList.AddItem( FullItemList[i] );
-				SetItemInfo(ItemDataArray, FullItemList[i], SlotIndex);
-				SlotIndex++;
+				if(ItemList[i].AssociatedPerkClasses.length > 0)
+				{
+					switch (ItemList[i].AssociatedPerkClasses.Find(TargetPerkClass))
+					{
+						case 0: //primary perk
+							OnPerkWeapons.AddItem(ItemList[i]);
+							break;
+					
+						case 1: //secondary perk
+							SecondaryWeapons.AddItem(ItemList[i]);
+							break;
+					
+						default: //off perk
+							OffPerkWeapons.AddItem(ItemList[i]);
+							break;
+					}
+				}
 			}
 		}
+
+		for (i = 0; i < OnPerkWeapons.length; i++)
+		{
+			SetItemInfo(ItemDataArray, OnPerkWeapons[i], SlotIndex);
+			SlotIndex++;	
+		}
+
+		for (i = 0; i < SecondaryWeapons.length; i++)
+		{
+			SetItemInfo(ItemDataArray, SecondaryWeapons[i], SlotIndex);
+			SlotIndex++;
+		}
+
+		for (i = 0; i < OffPerkWeapons.length; i++)
+		{
+			SetItemInfo(ItemDataArray, OffPerkWeapons[i], SlotIndex);
+			SlotIndex++;
+		}		
 
 		SetObject("shopData", ItemDataArray);
 	}
 }
 
-function RefreshItemsByType(byte FilterIndex, out array<STraderItem> ItemList)
+function RefreshItemsByType(byte FilterIndex, const out array<STraderItem> ItemList)
 {
  	local int i, SlotIndex;
 	local GFxObject ItemDataArray; // This array of information is sent to ActionScript to update the Item data
-	local array<STraderItem> FullItemList;
 
     SlotIndex = 0;
-    ItemList.length = 0;
 	
     ItemDataArray = CreateArray();
-    FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
 
-	for (i = 0; i < FullItemList.Length; i++)
+	for (i = 0; i < ItemList.Length; i++)
 	{
-		if ( IsItemFiltered(FullItemList[i]) || !(FilterIndex == FullItemList[i].TraderFilter || FilterIndex == FullItemList[i].AltTraderFilter) )
+		if ( IsItemFiltered(ItemList[i]) || !(FilterIndex == ItemList[i].TraderFilter || FilterIndex == ItemList[i].AltTraderFilter) )
 		{
 			continue; // Skip this item if it's in our inventory
 		}
 		else
 		{
-			ItemList.AddItem( FullItemList[i] );
-			SetItemInfo(ItemDataArray, FullItemList[i], SlotIndex);
+			SetItemInfo(ItemDataArray, ItemList[i], SlotIndex);
 			SlotIndex++;
 		}
 	}
@@ -140,28 +175,24 @@ function RefreshItemsByType(byte FilterIndex, out array<STraderItem> ItemList)
 }
 
 // Grab the list of perk weapons that we do not already own and set their information
-function RefreshFavoriteItems(out array<STraderItem> ItemList)
+function RefreshFavoriteItems(const out array<STraderItem> ItemList)
 {
  	local int i, SlotIndex;
 	local GFxObject ItemDataArray; // This array of information is sent to ActionScript to update the Item data
-	local array<STraderItem> FullItemList;
 
     SlotIndex = 0;
-    ItemList.length = 0;
 
     ItemDataArray = CreateArray();
-	FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
 
-	for (i = 0; i < FullItemList.Length; i++)
+	for (i = 0; i < ItemList.Length; i++)
 	{
-		if ( IsItemFiltered(FullItemList[i]) || !MyTraderMenu.GetIsFavorite(FullItemList[i].ClassName) )
+		if ( IsItemFiltered(ItemList[i]) || !MyTraderMenu.GetIsFavorite(ItemList[i].ClassName) )
 		{
 			continue; // Skip this item if it's in our inventory
 		}
 		else
 		{
-			ItemList.AddItem( FullItemList[i] );
-			SetItemInfo(ItemDataArray, FullItemList[i], SlotIndex);
+			SetItemInfo(ItemDataArray, ItemList[i], SlotIndex);
 			SlotIndex++;
 		}
 	}
@@ -174,24 +205,19 @@ function RefreshAllItems(out array<STraderItem> ItemList)
 {
  	local int i, SlotIndex;
 	local GFxObject ItemDataArray; // This array of information is sent to ActionScript to update the Item data
-	local array<STraderItem> FullItemList;
 
     SlotIndex = 0;
-    ItemList.length = 0;
-	
     ItemDataArray = CreateArray();
-    FullItemList = KFPC.GetPurchaseHelper().TraderItems.SaleItems;
 
-	for (i = 0; i < FullItemList.Length; i++)
+	for (i = 0; i < ItemList.Length; i++)
 	{
-		if ( IsItemFiltered(FullItemList[i]) )
+		if ( IsItemFiltered(ItemList[i]) )
 		{
 			continue; // Skip this item if it's in our inventory
 		}
 		else
 		{
-			ItemList.AddItem( FullItemList[i] );
-			SetItemInfo(ItemDataArray, FullItemList[i], SlotIndex);
+			SetItemInfo(ItemDataArray, ItemList[i], SlotIndex);
 			SlotIndex++;
 		}
 	}
@@ -199,20 +225,26 @@ function RefreshAllItems(out array<STraderItem> ItemList)
 	SetObject("shopData", ItemDataArray);
 }
 
-function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, int SlotIndex)
+function SetItemInfo(out GFxObject ItemDataArray, STraderItem TraderItem, int SlotIndex)
 {
 	local GFxObject SlotObject;
 	local string ItemTexPath;
 	local string IconPath;
+	local string SecondaryIconPath;
 	local bool bCanAfford, bCanCarry;
 	local int AdjustedBuyPrice;
 
 	SlotObject = CreateObject( "Object" );
 
 	ItemTexPath = "img://"$TraderItem.WeaponDef.static.GetImagePath();
-	if( TraderItem.AssociatedPerkClass != none )
+	if( TraderItem.AssociatedPerkClasses.length > 0 && TraderItem.AssociatedPerkClasses[0] != none)
 	{
-		IconPath = "img://"$TraderItem.AssociatedPerkClass.static.GetPerkIconPath();
+
+		IconPath = "img://"$TraderItem.AssociatedPerkClasses[0].static.GetPerkIconPath();
+		if( TraderItem.AssociatedPerkClasses.length > 1 )
+		{
+			SecondaryIconPath = "img://"$TraderItem.AssociatedPerkClasses[1].static.GetPerkIconPath();
+		}
 	}
 	else
 	{
@@ -220,8 +252,10 @@ function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, in
 	}
 	SlotObject.SetString("buyText", Localize("KFGFxTraderContainer_ItemDetails", "BuyString", "KFGame"));
 
+	SlotObject.SetInt("itemID", TraderItem.ItemID);
 	SlotObject.SetString("weaponSource", ItemTexPath);
 	SlotObject.SetString( "perkIconSource", IconPath );
+	SlotObject.SetString( "perkSecondaryIconSource", SecondaryIconPath );
 
 	SlotObject.SetString( "weaponName", TraderItem.WeaponDef.static.GetItemName() );
 	SlotObject.SetString( "weaponType", TraderItem.WeaponDef.static.GetItemCategory() );
@@ -241,7 +275,7 @@ function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, in
 }
 
 /** returns true if this item should not be displayed */
-function bool IsItemFiltered(const out STraderItem Item)
+function bool IsItemFiltered(STraderItem Item)
 {
 	if ( KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.ClassName) )
 		return true;

@@ -29,6 +29,7 @@ struct native DialogResponseInfo
 
 var float LowHealthSpeedPenalty;
 var repnotify byte CurrentWeaponState;
+var protected byte WeaponAttachmentAnimRateByte;
 var byte ActivePerkMessageIdx;
 var byte HealthToRegen;
 var byte MaxArmor;
@@ -98,7 +99,8 @@ replication
         bObjectivePlayer;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
-        CurrentWeaponState, bFlashlightOn;
+        CurrentWeaponState, WeaponAttachmentAnimRateByte, 
+        bFlashlightOn;
 }
 
 simulated event Tick(float DeltaTime)
@@ -319,8 +321,18 @@ simulated function WeaponStateChanged(byte NewState, optional bool bViaReplicati
     }
     if(WeaponAttachment != none)
     {
-        WeaponAttachment.UpdateThirdPersonWeaponAction(CurrentWeaponState, self);
+        WeaponAttachment.UpdateThirdPersonWeaponAction(CurrentWeaponState, self, GetWeaponAttachmentAnimRateByte());
     }
+}
+
+function SetWeaponAttachmentAnimRateByte(float NewAnimRate)
+{
+    WeaponAttachmentAnimRateByte = FloatToByte(FClamp(NewAnimRate - 1, 0, 1));
+}
+
+simulated function byte GetWeaponAttachmentAnimRateByte()
+{
+    return WeaponAttachmentAnimRateByte;
 }
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
@@ -338,6 +350,14 @@ simulated function StopAllAnimations()
     FacePose = DeathFaceAnims[Rand(DeathFaceAnims.Length)];
     PlayBodyAnim(FacePose, 6,,,, true);
     super.StopAllAnimations();
+}
+
+simulated function CheckAndEndActiveEMoteSpecialMove()
+{
+    if(IsDoingSpecialMove() && SpecialMove == 32)
+    {
+        SpecialMoveHandler.EndSpecialMove(32);
+    }
 }
 
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bCanRepairArmor, optional bool bMessageHealer)
@@ -519,7 +539,7 @@ function ShieldAbsorb(out int InDamage)
     if((MyPerk != none) && MyPerk.HasHeavyArmor())
     {
         AbsorbedDmg = Min(InDamage, Armor);
-        Armor -= byte(AbsorbedDmg);
+        Armor -= byte(MyPerk.GetArmorDamageAmount(AbsorbedDmg));
         InDamage -= AbsorbedDmg;
         return;
     }
@@ -771,6 +791,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     }
     if((ActualDamageTaken > 0) && IsAliveAndWell())
     {
+        CheckAndEndActiveEMoteSpecialMove();
         if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
         {
             KFGameInfo(WorldInfo.Game).DialogManager.PlayPlayerDamageDialog(self, DamageType, ActualDamageTaken);
@@ -1141,10 +1162,10 @@ simulated event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal
     local KFPerk MyPerk;
     local KFPawn_Monster KFPM;
 
-    if((WorldInfo.TimeDilation < 1) && !IsZero(Velocity))
+    if(((WorldInfo.TimeDilation < 1) && !IsZero(Velocity)) && Other.GetTeamNum() != GetTeamNum())
     {
         MyPerk = GetPerk();
-        if(((MyPerk != none) && MyPerk.ShouldKnockDownOnBump()) && (Normal(Velocity) Dot Normal(vector(Rotation))) > 0.7)
+        if(((MyPerk != none) && MyPerk.ShouldKnockDownOnBump()) && (Normal(Velocity) Dot vector(Rotation)) > 0.7)
         {
             KFPM = KFPawn_Monster(Other);
             if(KFPM != none)
@@ -1420,7 +1441,43 @@ defaultproperties
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_Human.FirstPersonArms'
     ArmsMesh=FirstPersonArms
-    SpecialMoveHandler=KFSpecialMoveHandler'Default__KFPawn_Human.SpecialMoveHandler'
+    begin object name=SpecialMoveHandler class=KFSpecialMoveHandler
+        SpecialMoveClasses(0)=none
+        SpecialMoveClasses(1)=none
+        SpecialMoveClasses(2)=none
+        SpecialMoveClasses(3)=none
+        SpecialMoveClasses(4)=none
+        SpecialMoveClasses(5)=none
+        SpecialMoveClasses(6)=none
+        SpecialMoveClasses(7)=none
+        SpecialMoveClasses(8)=none
+        SpecialMoveClasses(9)=none
+        SpecialMoveClasses(10)=none
+        SpecialMoveClasses(11)=none
+        SpecialMoveClasses(12)=none
+        SpecialMoveClasses(13)=none
+        SpecialMoveClasses(14)=none
+        SpecialMoveClasses(15)=none
+        SpecialMoveClasses(16)=none
+        SpecialMoveClasses(17)=none
+        SpecialMoveClasses(18)=none
+        SpecialMoveClasses(19)=none
+        SpecialMoveClasses(20)=none
+        SpecialMoveClasses(21)=none
+        SpecialMoveClasses(22)=none
+        SpecialMoveClasses(23)=none
+        SpecialMoveClasses(24)=none
+        SpecialMoveClasses(25)=none
+        SpecialMoveClasses(26)=none
+        SpecialMoveClasses(27)=none
+        SpecialMoveClasses(28)=none
+        SpecialMoveClasses(29)=class'KFSM_GrappleVictim'
+        SpecialMoveClasses(30)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(31)=none
+        SpecialMoveClasses(32)=class'KFSM_Player_Emote'
+    object end
+    // Reference: KFSpecialMoveHandler'Default__KFPawn_Human.SpecialMoveHandler'
+    SpecialMoveHandler=SpecialMoveHandler
     AmbientAkComponent=AkComponent'Default__KFPawn_Human.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_Human.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_Human.WeaponAmbientEchoHandler'

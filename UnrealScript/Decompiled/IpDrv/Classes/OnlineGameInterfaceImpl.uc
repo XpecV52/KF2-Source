@@ -41,6 +41,13 @@ var delegate<OnUpdateOnlineGameComplete> __OnUpdateOnlineGameComplete__Delegate;
 var delegate<OnDestroyOnlineGameComplete> __OnDestroyOnlineGameComplete__Delegate;
 var delegate<OnCancelFindOnlineGamesComplete> __OnCancelFindOnlineGamesComplete__Delegate;
 var delegate<OnJoinOnlineGameComplete> __OnJoinOnlineGameComplete__Delegate;
+var delegate<OnMultiplayerSessionChange> __OnMultiplayerSessionChange__Delegate;
+var delegate<OnQueryMatchmakingForSessionComplete> __OnQueryMatchmakingForSessionComplete__Delegate;
+var delegate<OnDeleteMatchTicketComplete> __OnDeleteMatchTicketComplete__Delegate;
+var delegate<OnUpdateSessionPropertiesComplete> __OnUpdateSessionPropertiesComplete__Delegate;
+var delegate<OnGamePlayersChanged> __OnGamePlayersChanged__Delegate;
+var delegate<OnMatchStatusChanged> __OnMatchStatusChanged__Delegate;
+var delegate<OnQuerySessionsForUserComplete> __OnQuerySessionsForUserComplete__Delegate;
 var delegate<OnRegisterPlayerComplete> __OnRegisterPlayerComplete__Delegate;
 var delegate<OnUnregisterPlayerComplete> __OnUnregisterPlayerComplete__Delegate;
 var delegate<OnRetrievedGameSettingsForIP> __OnRetrievedGameSettingsForIP__Delegate;
@@ -198,6 +205,8 @@ native function bool FreeSearchResults(OnlineGameSearch Search);
 // Export UOnlineGameInterfaceImpl::execJoinOnlineGame(FFrame&, void* const)
 native function bool JoinOnlineGame(byte PlayerNum, name SessionName, const out OnlineGameSearchResult DesiredGame);
 
+function bool JoinOnlineGameBySessionHandle(byte PlayerNum, name SessionName, const string InSessionGuid);
+
 function bool JoinOnlineGameByMatchingParams(QWord RoomId, out OnlineGameSettings JoinedGameSettings);
 
 function bool IsJoinOperationInProgress()
@@ -232,6 +241,95 @@ function ClearJoinOnlineGameCompleteDelegate(delegate<OnJoinOnlineGameComplete> 
         JoinOnlineGameCompleteDelegates.Remove(RemoveIndex, 1;
     }
 }
+
+delegate OnMultiplayerSessionChange(name SessionName, SessionUpdateInfo SessionChanges);
+
+function AddMultiplayerSessionChangeDelegate(delegate<OnMultiplayerSessionChange> MultiplayerSessionChangeDelegate);
+
+function ClearMultiplayerSessionChangeDelegate(delegate<OnMultiplayerSessionChange> MultiplayerSessionChangeDelegate);
+
+function bool QueryMatchmakingForSession(byte ScoutingPlayerNum, name SessionName, int MatchTimeout, optional Engine.OnlineSubsystem.EOnlineCreateGameSessionFlag CreateGameSessionType)
+{
+    CreateGameSessionType = 0;
+    return false;
+}
+
+function bool QueryMatchmakingForSessionWithHopper(byte ScoutingPlayerNum, name SessionName, int MatchTimeout, string HopperName, optional Engine.OnlineSubsystem.EOnlineCreateGameSessionFlag CreateGameSessionType)
+{
+    CreateGameSessionType = 0;
+    return false;
+}
+
+delegate OnQueryMatchmakingForSessionComplete(name SessionName, bool bWasSuccessful);
+
+function AddQueryMatchmakingForSessionCompleteDelegate(delegate<OnQueryMatchmakingForSessionComplete> QueryMatchmakingForSessionCompleteDelegate);
+
+function ClearQueryMatchmakingForSessionCompleteDelegate(delegate<OnQueryMatchmakingForSessionComplete> QueryMatchmakingForSessionCompleteDelegate);
+
+function bool DeleteMatchTicket(byte ScoutingPlayerNum, name SessionName);
+
+function bool DeleteMatchTicketWithHopper(byte ScoutingPlayerNum, name SessionName, string HopperName);
+
+delegate OnDeleteMatchTicketComplete(name SessionName, bool bWasSuccessful);
+
+function AddDeleteMatchTicketCompleteDelegate(delegate<OnDeleteMatchTicketComplete> DeleteMatchTicketCompleteDelegate);
+
+function ClearDeleteMatchTicketCompleteDelegate(delegate<OnDeleteMatchTicketComplete> DeleteMatchTicketCompleteDelegate);
+
+function bool SetCustomSessionProperty(name SessionName, string PropertyName, string PropertyValue);
+
+function bool DeleteCustomSessionProperty(name SessionName, string PropertyName);
+
+function bool SetCustomMemberProperty(name SessionName, string PropertyName, string PropertyValue);
+
+function bool DeleteCustomMemberProperty(name SessionName, string PropertyName);
+
+function bool UpdateSessionProperties(byte ScoutingUserNum, name SessionName);
+
+delegate OnUpdateSessionPropertiesComplete(name SessionName, bool bWasSuccessful);
+
+function AddUpdateSessionPropertiesCompleteDelegate(delegate<OnUpdateSessionPropertiesComplete> UpdateSessionPropertiesCompleteDelegate);
+
+function ClearUpdateSessionPropertiesCompleteDelegate(delegate<OnUpdateSessionPropertiesComplete> UpdateSessionPropertiesCompleteDelegate);
+
+delegate OnGamePlayersChanged(name SessionName, array<UniqueNetId> Players);
+
+function AddGamePlayersChangedDelegate(delegate<OnGamePlayersChanged> GamePlayersChangedDelegate);
+
+function ClearGamePlayersChangedDelegate(delegate<OnGamePlayersChanged> GamePlayersChangedDelegate);
+
+delegate OnMatchStatusChanged(name SessionName, byte Status);
+
+function AddMatchStatusChangedDelegate(delegate<OnMatchStatusChanged> MatchStatusChangedDelegate);
+
+function ClearMatchStatusChangedDelegate(delegate<OnMatchStatusChanged> MatchStatusChangedDelegate);
+
+function bool LeaveOnlineSession(byte LocalPlayerNum, name SessionName, optional bool bClearSessionIfHost)
+{
+    bClearSessionIfHost = false;
+    return false;
+}
+
+function LeaveAllOnlineSessions(optional bool bClearSessionIfHost)
+{
+    bClearSessionIfHost = false;
+}
+
+function bool QuerySessionsForUser(byte LocalPlayerNum)
+{
+    return false;
+}
+
+function bool QuerySessionsByKeyword(byte LocalPlayerNum, string Keyword, OnlineGameSearch SearchSettings)
+{
+    return false;
+}
+
+delegate OnQuerySessionsForUserComplete(byte LocalPlayerNum, bool bWasSuccessful);
+
+function AddQuerySessionsForUserCompleteDelegate(delegate<OnQuerySessionsForUserComplete> QuerySessionsForUserCompleteDelegate);
+
+function ClearQuerySessionsForUserCompleteDelegate(delegate<OnQuerySessionsForUserComplete> QuerySessionsForUserCompleteDelegate);
 
 // Export UOnlineGameInterfaceImpl::execGetResolvedConnectString(FFrame&, void* const)
 native function bool GetResolvedConnectString(name SessionName, out string ConnectInfo);

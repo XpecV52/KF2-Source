@@ -47,7 +47,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Knife_Berserker:MeleeHelper_0'
-   AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_Knife_Berserker'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()

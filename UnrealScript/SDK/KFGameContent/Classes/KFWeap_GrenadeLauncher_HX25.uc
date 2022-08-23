@@ -226,7 +226,8 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=false
 
-   	AssociatedPerkClass=class'KFPerk_Demolitionist'
+   	AssociatedPerkClasses(0)=class'KFPerk_Demolitionist'
+   	AssociatedPerkClasses(1)=class'KFPerk_Gunslinger'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
 }

@@ -59,7 +59,7 @@ SetTakeoverServerPasswordTitle="Insira uma nova senha para proteger o jogo:"
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FALHA AO LOCALIZAR PARTIDA"
 FailedSearchString="Falha ao localizar uma partida com as opções fornecidas. Amplie sua busca ou considere usar o navegador do servidor para localizar uma partida."
-BrowseServersString="PROCURAR NOS SERVIDORES"
+BrowseServersString="PROCURAR SERVIDOR"
 HasInvitedToGameString=" convidou você para jogar"
 JoinGameString="Entrar no jogo?"
 
@@ -82,7 +82,7 @@ ExplosiveString="Alçapão:"
 CreateMatchString="CRIAR PARTIDA"
 MatchmakingString="PARTIDAS ON-LINE"
 ConsoleMatchmakingString="JOGAR ON-LINE"
-ServerBrowserString="Procurar nos servidores"
+ServerBrowserString="Procurar servidor"
 
 DifficultyTitle="DIFICULDADE"
 GameModeTitle="MODO DE JOGO"
@@ -194,7 +194,7 @@ NameString="NOME"
 RefreshString="ATUALIZAR"
 GamesFoundString="JOGOS ENCONTRADOS:"
 
-ServerBrowserString="SERVIDOR LISTA "
+ServerBrowserString="SERVIDOR LISTA"
 
 JoinString="ENTRAR"
 PasswordPromptString="INSERIR SENHA"
@@ -708,6 +708,7 @@ BackString="VOLTAR"
 NoneString="NENHUM"
 WeaponsString="Armas"
 WeaponsInfoString="Personalizar"
+EmotesString="EMOTES"
 
 [KFGFxMenu_Inventory]
 NoItemsString="Não há itens no inventário que correspondam ao filtro selecionado."
@@ -723,6 +724,7 @@ UnequipString="DESEQUIPAR"
 AllString="Todos"
 WeaponSkinString="Aparência de armas"
 CosmeticString="Cosméticos"
+EmotesString="Emotes"
 CraftingMatsString="Produção"
 ItemString="Itens"
 FiltersString="FILTROS"
@@ -796,6 +798,7 @@ WeaponSkinsRotationString="Aparência de armas"
 WeaponSkinsString="Apar. armas mercado"
 MarketConsumablesString="Caixotes/USBs do mercado"
 MarketCosmeticsString="Cosméticos do mercado"
+MarketEmotesString="Emotes do mercado"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="LOCALIZAR NO MERCADO"
@@ -816,7 +819,7 @@ MenuStrings[4]="LOJA"
 MenuStrings[5]="OPÇÕES"
 MenuStrings[6]="SAIR"
 
-ServerBrowserString="SERVIDOR LISTA "
+ServerBrowserString="SERVIDOR LISTA"
 MatchmakingString="CRIADOR DE PARTIDA"
 SoloString="SOLO"
 OverviewString="VISÃO GERAL"
@@ -890,6 +893,7 @@ VoiceCommsOptionStrings[4]="SIGA-ME"
 VoiceCommsOptionStrings[5]="VÁ AO COMERCIANTE"
 VoiceCommsOptionStrings[6]="AFIRMATIVO"
 VoiceCommsOptionStrings[7]="NEGATIVO"
+VoiceCommsOptionStrings[8]="EMOTE"
 
 [KFGFxMenu_Exit]
 HeaderString="SAIR DO JOGO"
@@ -1182,6 +1186,7 @@ GBA_VoiceCommFollowMe="SIGA-ME"
 GBA_VoiceCommGetToTheTrader="VÁ AO COMERCIANTE"
 GBA_VoiceCommAffirmative="AFIRMATIVO"
 GBA_VoiceCommNegative="NEGATIVO"
+GBA_VoiceCommEmote="EMOTE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Sensibilidade"
@@ -1745,7 +1750,7 @@ EXPAction2="Curando aliados"
 [KFPerk_Firebug]
 PerkName="Incendiária"
 EXPAction1="Causando dano de arma incendiária"
-EXPAction2="Matando rastejadores com armas incendiária"
+EXPAction2="Matando rastejadores e inchados com incendiárias"
 
 SkillCatagories[0]="Suprimentos"
 SkillCatagories[1]="Picante"
@@ -1810,7 +1815,7 @@ ShootnMove="Estável"
 ShootnMoveDescription="Ignora a penalidade de velocidade de movimento para mira metálica e reduz drasticamente o recuo da arma em armas de classe"
 
 QuickSwitch="Tirada rápida"
-QuickSwitchDescription="Ignora a penalidade de recuo para tiros usando o quadril, aumenta em 5% a velocidade de movimento e em 50% a troca de armas de classe."
+QuickSwitchDescription="Reduz a penalidade de recuo para tiros usando o quadril, aumenta em 5% a velocidade de movimento e em 50% a troca de armas de classe."
 
 RhythmMethod="Acaba com eles"
 RhythmMethodDescription="Aumenta em 10% o dano em tiros na cabeça consecutivos com armas de classe até 50%."
@@ -2113,6 +2118,7 @@ RandomLoadingStrings[37]="O canhão elétrico pode atirar em vários Zeds alinha
 RandomLoadingStrings[38]="A arma de micro-ondas causa mais dano contra Zeds que estejam carregando metal, como carniceiros e sereias."
 RandomLoadingStrings[39]="Experimente o modo de fogo alternativo de sua arma. Não são todas as armas que têm esse modo, mas pode ser útil em um local apertado."
 RandomLoadingStrings[40]="Além dos abates, você ganha EXP e grana por assistência, portanto não se sinta mal em deixar abates para seus aliados."
+RandomLoadingStrings[41]="To remove a weld from a door, equip your welder and press the iron sights button."
 
 [WhatsNewMessages]
 Jaegorhorn="Siga a comunidade para desbloq. o Jägerhorn"
@@ -2139,6 +2145,7 @@ USBSWATKey="Chave USB SWAT - US$2,49"
 USBTacticalHorzineKey="Chave USB Horzine Tático - US$2,49"
 USBVictorianKey="Chave USB Vitoriano - US$2,49"
 USBZedKillerKey="Chave USB Matador de Zed - US$2,49"
+USBBoneCrusher="Chave USB Esmaga-Osso - $ 2,49"
 BullseyeUpdate="Lançamento de conteúdo - atualização no alvo"
 LatestUpdate="Última atualização de conteúdo"
 Forums="Acesse nosso Fórum da Comunidade"
@@ -2159,6 +2166,7 @@ PS4WeaponSkinCrate1="Cx. de sup. de apar. de arma Horzine | Série 1"
 PS4WeaponSkinCrate2="Cx. de sup. de apar. de arma Horzine | Série 2"
 Artbook="Livro de arte digital do Killing Floor 2"
 Uncovered="Assista ao filme Killing Floor: Uncovered"
+NewEmotes="Novo! Chave de cx. de emotes - $ 2,49"
 
 [Zeds]
 KFPawn_ZedBloat="Inchado"
@@ -2166,6 +2174,7 @@ KFPawn_ZedClot="Coágulo"
 KFPawn_ZedCrawler="Rastejador"
 KFPawn_ZedFleshPound="Carniceiro"
 KFPawn_ZedGorefast="Chacinador"
+KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
 KFPawn_ZedHusk="Esfolador"
 KFPawn_ZedStalker="Perseguidor"
@@ -2365,7 +2374,6 @@ DisplayName_DEU="Katakomben"
 DisplayName_ESL="Catacumbas"
 DisplayName_ESN="Catacumbas"
 DisplayName_FRA="Catacombes"
-DisplayName_FRC="Catacombes"
 DisplayName_INT="Catacombs"
 DisplayName_ITA="Catacombe"
 DisplayName_JPN="Catacombs"
@@ -2486,6 +2494,22 @@ DisplayName_POL="Piekielna domena"
 DisplayName_PTB="Reino Infernal"
 DisplayName_RUS="Царство ада"
 
+[KF-ZedLanding KFMapSummary]
+DisplayName_CHN="丧尸登陆"
+DisplayName_CHT="僵屍群登陸"
+DisplayName_DEU="ZED-Landung"
+DisplayName_ESL="Aterrizaje ZED"
+DisplayName_ESN="Aterrizaje ZED"
+DisplayName_FRA="Île des Zeds"
+DisplayName_FRC="Île des Zeds"
+DisplayName_INT="Zed Landing"
+DisplayName_ITA="Atterraggio ZED"
+DisplayName_JPN="zed Landing"
+DisplayName_KOR="제드 상륙"
+DisplayName_POL="Lądowanie zetów"
+DisplayName_PTB="Pouso Forçado ZED"
+DisplayName_RUS="Высадка среди мутантов"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratório de Biótica"
 
@@ -2524,6 +2548,9 @@ DisplayName="Terrenos Hostis"
 
 [KF-InfernalRealm KFMapSummary]
 DisplayName="Reino Infernal"
+
+[KF-ZedLanding KFMapSummary]
+DisplayName="Pouso Forçado ZED"
 
 
 [KFMapInfo]

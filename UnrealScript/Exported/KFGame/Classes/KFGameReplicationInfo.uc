@@ -19,7 +19,8 @@ struct native PreGameServerAdInfo
 {
 	var string     	BannerLink;             // Link to the banner image
 	var string     	ServerMOTD;             // The server message of the day string
-	var string 		WebsiteLink;			//url to the website of the server
+	var string 		WebsiteLink;			//url to the website of the server\
+	var string 		ClanMotto;
 };
 
 var repnotify PreGameServerAdInfo ServerAdInfo;
@@ -388,11 +389,12 @@ simulated event ReplicatedEvent(name VarName)
     }
     else if( VarName == 'ServerAdInfo')
 	{
-			ShowPreGameServerWelcomeScreen();
+		ShowPreGameServerWelcomeScreen();
 	}
 	else if( VarName == 'WaveNum')
 	{
-			UpdateHUDWaveCount();
+		UpdateHUDWaveCount();
+		TriggerClientWaveStartEvents();
 	}
 //@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
 	else if( VarName == 'ConsoleGameSessionGuid' )
@@ -497,14 +499,10 @@ simulated function NotifyWaveEnded()
 	// Reset all supplier perks
 	foreach PRIArray( PRI )
 	{
-		if( !PRI.bBot )
+		KFPRI = KFPlayerReplicationInfo( PRI );
+		if( KFPRI != none )
 		{
-			KFPRI = KFPlayerReplicationInfo( PRI );
-			if( KFPRI != none )
-			{
-				KFPRI.bPerkPrimarySupplyUsed = false;
-				KFPRI.bPerkSecondarySupplyUsed = false;
-			}
+			KFPRI.NotifyWaveEnded();
 		}
 	}
 }
@@ -557,6 +555,11 @@ simulated function FadeOutLingeringExplosions()
 simulated function OpenTrader(optional int time)
 {
     local KFPlayerController KFPC;
+    local array<int> OutputLinksToActivate;
+	local array<SequenceObject> AllTraderOpenedEvents;
+	local KFSeqEvent_TraderOpened TraderOpenedEvt;
+	local Sequence GameSeq;
+	local int i;
 
 	if( OpenedTrader != none )
 	{
@@ -588,6 +591,34 @@ simulated function OpenTrader(optional int time)
 			if( KFPC.MyGFxHUD != none )
 			{
 				KFPC.MyGFxHUD.UpdateWaveCount();
+			}
+		}
+	}
+
+	if( WorldInfo.NetMode == NM_Client )
+	{
+		// Get the gameplay sequence.
+		GameSeq = WorldInfo.GetGameSequence();
+		if( GameSeq != none )
+		{
+			GameSeq.FindSeqObjectsByClass( class'KFSeqEvent_TraderOpened', true, AllTraderOpenedEvents );
+			for( i = 0; i < AllTraderOpenedEvents.Length; ++i )
+			{
+				TraderOpenedEvt = KFSeqEvent_TraderOpened( AllTraderOpenedEvents[i] );
+				if( TraderOpenedEvt != none && TraderOpenedEvt.bClientSideOnly )
+				{
+					TraderOpenedEvt.Reset();
+					TraderOpenedEvt.SetWaveNum( WaveNum, WaveMax );
+					if( WaveNum == WaveMax - 1 && TraderOpenedEvt.OutputLinks.Length > 1 )
+					{
+						OutputLinksToActivate.AddItem( 1 );
+					}
+					else
+					{
+						OutputLinksToActivate.AddItem( 0 );
+					}
+					TraderOpenedEvt.CheckActivate( self, self,, OutputLinksToActivate );
+				}
 			}
 		}
 	}
@@ -665,6 +696,43 @@ simulated function int GetTraderTimeRemaining()
 	return max(0, RemainingTime);
 }
 
+/** Triggers all client-side wave start events */
+simulated function TriggerClientWaveStartEvents()
+{
+	local array<SequenceObject> AllWaveStartEvents;
+	local array<int> OutputLinksToActivate;
+	local KFSeqEvent_WaveStart WaveStartEvt;
+	local Sequence GameSeq;
+	local int i;
+
+	if( WorldInfo.NetMode == NM_Client )
+	{
+		// Get the gameplay sequence.
+		GameSeq = WorldInfo.GetGameSequence();
+		if( GameSeq != none )
+		{
+			GameSeq.FindSeqObjectsByClass( class'KFSeqEvent_WaveStart', true, AllWaveStartEvents );
+			for( i = 0; i < AllWaveStartEvents.Length; ++i )
+			{
+				WaveStartEvt = KFSeqEvent_WaveStart( AllWaveStartEvents[i] );
+				if( WaveStartEvt != none && WaveStartEvt.bClientSideOnly )
+				{
+					WaveStartEvt.Reset();
+					WaveStartEvt.SetWaveNum( WaveNum, WaveMax );
+					if( WaveNum == WaveMax && WaveStartEvt.OutputLinks.Length > 1 )
+					{
+						OutputLinksToActivate.AddItem( 1 );
+					}
+					else
+					{
+						OutputLinksToActivate.AddItem( 0 );
+					}
+					WaveStartEvt.CheckActivate( self, self,, OutputLinksToActivate );
+				}
+			}
+		}
+	}
+}
 
 function float GetHeartbeatAccumulatorAmount()
 {

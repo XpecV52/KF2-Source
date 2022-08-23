@@ -9,33 +9,8 @@
 
 class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase;
 
-/** How long the shell should stay in the foreground until it changes to world depth */
-var float ForegroundShellDuration;
-
-/**
- * Causes the muzzle flash to turn on and setup a time to
- * turn it back off again.
- */
-/** notify to spawn a shell eject from the muzzle flash component */
-simulated function ANIMNOTIFY_ShellEject()
-{
-	super.ANIMNOTIFY_ShellEject();
-
-	MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup( SDPG_Foreground );
-	MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = true;
-
-	SetTimer( ForegroundShellDuration, false, nameOf(Timer_RestoreShellEjectDepth) );
-}
-
-simulated function Timer_RestoreShellEjectDepth()
-{
-	MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup( SDPG_World );
-	MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = false;
-}
-
 defaultproperties
 {
-   ForegroundShellDuration=1.500000
    InventorySize=5
    MagazineCapacity(0)=12
    bHasIronSights=True
@@ -68,6 +43,7 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Rifle_Winchester1894:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'wep_winchester_arch.Wep_Winchester_MuzzleFlash'
+   EjectedShellForegroundDuration=1.500000
    maxRecoilPitch=500
    minRecoilPitch=400
    maxRecoilYaw=150
@@ -83,7 +59,8 @@ defaultproperties
    RecoilISMaxPitchLimit=500
    RecoilISMinPitchLimit=65485
    IronSightMeshFOVCompensationScale=1.500000
-   AssociatedPerkClass=Class'KFGame.KFPerk_Sharpshooter'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Sharpshooter'
+   AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Gunslinger'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

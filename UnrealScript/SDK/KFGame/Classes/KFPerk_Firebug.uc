@@ -88,7 +88,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 		KFW = GetWeaponFromDamageCauser( DamageCauser );
 	}
 
-	if( (KFW != none && IsWeaponOnPerk( KFW )) || (DamageType != none && IsDamageTypeOnPerk( DamageType )) )
+	if( (KFW != none && IsWeaponOnPerk( KFW,, self.class )) || (DamageType != none && IsDamageTypeOnPerk( DamageType )) )
 	{
 		TempDamage *= GetPassiveValue( WeaponDamage, CurrentLevel );
 
@@ -120,7 +120,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
  */
 simulated function float GetReloadRateScale(KFWeapon KFW)
 {
-	if( IsWeaponOnPerk( KFW ) )
+	if( IsWeaponOnPerk( KFW,, self.class ) )
 	{
 		return 1.f - GetPassiveValue( WeaponReload, CurrentLevel );
 	}
@@ -168,18 +168,18 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary )
 {
 	local float TempSpareAmmoAmount;
-	local class<KFPerk> WeaponPerkClass;
+	local array< class<KFPerk> > WeaponPerkClass;
 
 	if( KFW == none )
 	{
-		WeaponPerkClass = TraderItem.AssociatedPerkClass;
+		WeaponPerkClass = TraderItem.AssociatedPerkClasses;
 	}
 	else
 	{
-		WeaponPerkClass = KFW.AssociatedPerkClass;
+		WeaponPerkClass = KFW.GetAssociatedPerkClasses();
 	}
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) )
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) )
 	{
 			TempSpareAmmoAmount = PrimarySpareAmmo;
 			TempSpareAmmoAmount *= 1 + GetStartingAmmoPercent( CurrentLevel );
@@ -195,7 +195,7 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
  * @param PrimarySpareAmmo "out" ammo amount
  * @param MaxPrimarySpareAmmo maximum to set spare ammo to
  */
-simulated function MaximizeSpareAmmoAmount( class<KFPerk> WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo )
+simulated function MaximizeSpareAmmoAmount( array< Class<KFPerk> >  WeaponPerkClass, out int PrimarySpareAmmo, int MaxPrimarySpareAmmo )
 {
 	// basically IsWeaponOnPerk
 }
@@ -223,20 +223,16 @@ simulated static private final function float GetStartingAmmoPercent( int Level 
  */
 function ModifyDoTScaler( out float DoTScaler, optional class<KFDamageType> KFDT, optional bool bNapalmInfected )
 {
-	local float TempScaler;
-	
 	if( IsFuseActive() && IsDamageTypeOnPerk( KFDT ) )
 	{
 		`QALog( "Fuse DotScaler" @ KFDT @ GetPercentage( DoTScaler, DoTScaler * GetSkillValue( PerkSkills[EFirebugFuse] ) ),bLogPerk );
-		TempScaler = GetSkillValue( PerkSkills[EFirebugFuse] );
+		DoTScaler = GetSkillValue( PerkSkills[EFirebugFuse] );
 	}
 
 	if( IsNapalmActive() && IsDamageTypeOnPerk( KFDT ) )
 	{
-		TempScaler += GetSkillValue( PerkSkills[EFirebugNapalm] );
+		DoTScaler += GetSkillValue( PerkSkills[EFirebugNapalm] );
 	}
-
-	DotScaler = TempScaler;
 }
 
 static function int GetNapalmDamage()
@@ -262,13 +258,13 @@ function bool InHeatRange( KFPawn KFP )
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
 	TempCapacity = MagazineCapacity;
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && IsHighCapFuelTankActive() )
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && IsHighCapFuelTankActive() )
 	{
 		TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[EFirebugHighCapFuelTank] );
 	}
@@ -343,7 +339,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 {
 	local name StateName;
 
-	if( GetScorchActive() && IsWeaponOnPerk(W) )
+	if( GetScorchActive() && IsWeaponOnPerk( W,, self.class ) )
 	{
 		StateName = W.GetStateName();
 		if( ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
@@ -396,7 +392,7 @@ simulated function float GetSnarePower( optional class<DamageType> DamageType, o
  */
 simulated function bool GetIsUberAmmoActive( KFWeapon KFW )
 {
-	return IsWeaponOnPerk( KFW ) && GetScorchActive();
+	return IsWeaponOnPerk( KFW,, self.class ) && GetScorchActive();
 }
 
 /*********************************************************************************************
@@ -445,7 +441,7 @@ simulated final private function bool IsGroundFireActive()
 
 simulated function bool IsFlarotovActive()
 { 
-	return IsGroundFireActive(); 
+	return true; 
 }
 
 /**
@@ -620,7 +616,7 @@ DefaultProperties
    	HeatWaveRadiusSQ=90000
 
     NapalmDamage=7 //50
-	NapalmCheckCollisionScale=1.0f //6.0
+	NapalmCheckCollisionScale=2.0f //6.0
 
    	ShrapnelChance=0.20   //0.2
 

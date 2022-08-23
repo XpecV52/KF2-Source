@@ -1674,7 +1674,7 @@ DelayMove:
 				}
 				if( PendingDoor != none && bPreparingMove && PendingDoor.WeldIntegrity > 0 && !PendingDoor.IsCompletelyOpen() )
 				{
-					if ( !Pawn.FastTrace(PendingDoor.Location, Pawn.Location) )
+					if( class'KFGameEngine'.static.FastTrace_PhysX(PendingDoor.Location, Pawn.Location) )
 					{
 						AIActionStatus = "Wants to attack door "$PendingDoor;
 						NotifyAttackDoor( PendingDoor );
@@ -1974,7 +1974,7 @@ function bool NotifyBump( Actor Other, Vector HitNormal )
 	local KFPawn KFP;
 	//local KFAIController OtherKFAIC;
 
-	if( IsDoingLatentMove() && MyKFPawn.Physics != PHYS_Falling )
+	if( IsDoingLatentMove() && MyKFPawn.Physics == PHYS_Walking )
 	{
 		KFP = KFPawn(Other);
 
@@ -1988,7 +1988,7 @@ function bool NotifyBump( Actor Other, Vector HitNormal )
 			}
 			if( KFDoorMarker(MoveTarget) != none )
 			{
-				if( PendingDoor == none && !KFDoorMarker(MoveTarget).MyKFDoor.IsCompletelyOpen() && VSize(MoveTarget.Location - MyKFPawn.Location) < 350.f )
+				if( PendingDoor == none && !KFDoorMarker(MoveTarget).MyKFDoor.IsCompletelyOpen() && VSizeSQ(MoveTarget.Location - MyKFPawn.Location) < 122500.f )
 				{
 					WaitForDoor( KFDoorMarker(MoveTarget).MyKFDoor );
 					return true;
@@ -2001,7 +2001,12 @@ function bool NotifyBump( Actor Other, Vector HitNormal )
 				return false;
 			}
 		}
-		AdjustAround( Other, HitNormal );
+
+		// Don't adjust around a non-walking pawn, causes odd results
+		if( Other.Physics == PHYS_Walking )
+		{
+			AdjustAround( Other, HitNormal );
+		}
 		return true;
 	}
 	return false;

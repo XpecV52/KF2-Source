@@ -165,7 +165,7 @@ function string GetAssociationIdentifier(KFMapSummary MapData)
 
 DefaultProperties
 {
-	TripWireOfficialMaps=("KF-BioticsLab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-VolterManor","KF-Outpost","KF-Prison")
+	TripWireOfficialMaps=("KF-BioticsLab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-VolterManor","KF-Outpost","KF-Prison","KF-ZedLanding")
 	CommunityOfficialMaps=("KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm")
 	//defaults
 	MessageFont=Font'UI_Canvas_Fonts.Font_Main'

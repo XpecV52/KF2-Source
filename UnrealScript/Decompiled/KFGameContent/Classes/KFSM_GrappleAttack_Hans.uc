@@ -175,12 +175,13 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     local KFPawn_ZedHansBase HansPawn;
 
     KFPOwner.ClearTimer('Timer_DrainHealth', self);
+    KFPOwner.ClearTimer('Timer_DetachFollower', self);
     if((((KFPOwner != none) && KFPOwner.MyKFAIC != none) && KFPOwner.MyKFAIC != none) && KFAIController_Hans(KFPOwner.MyKFAIC) != none)
     {
         HansPawn = KFPawn_ZedHansBase(KFPOwner);
         if(HansPawn != none)
         {
-            if(HansPawn.AmountHealedThisPhase > (EnemyDrawLifeThreshold * 0.75))
+            if(HansPawn.AmountHealedThisPhase > (HansPawn.GetHealAmountForThisPhase() * 0.75))
             {
                 HansPawn.SetHuntAndHealMode(false);
             }
@@ -255,11 +256,11 @@ function Timer_DetachFollower()
                 KFPOwner.MyKFAIC.FindNewEnemy();
             }
         }
+        if(bAlignPawns && !KFPOwner.IsHumanControlled())
+        {
+            Follower.ZeroMovementVariables();
+        }
         Follower.EndSpecialMove();
-    }
-    if(bAlignPawns && !KFPOwner.IsHumanControlled())
-    {
-        Follower.ZeroMovementVariables();
     }
     if(ExecutionCameraAnimInst_Follower != none)
     {

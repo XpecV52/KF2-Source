@@ -24,6 +24,7 @@ var localized string WiderString;
 var localized string NormalString;
 var localized string ClassicWeaponSelectString;
 var localized string KillTickerString;
+var localized string DisableAutoUpgradeString;
 
 var localized string HideBossHealthBarString;
 var localized string ShowWelderInInvString;
@@ -71,6 +72,7 @@ function LocalizeText()
     LocalizedObject.SetString("wider", WiderString);
     LocalizedObject.SetString("normal", NormalString);
     LocalizedObject.SetString("killTicker", KillTickerString);
+    LocalizedObject.SetString("disableAutoUpgrade", DisableAutoUpgradeString);
 	LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
 	LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics","DefaultString","KFGame"));
 
@@ -114,6 +116,7 @@ function  InitValues()
  	DataObject.SetBool("crosshair", 			class'WorldInfo'.static.IsConsoleBuild() ? Manager.CachedProfile.GetProfileBool(KFID_ShowConsoleCrossHair) : Manager.CachedProfile.GetProfileBool(KFID_ShowCrossHair));
 
  	DataObject.SetBool("killTicker",			Manager.CachedProfile.GetProfileBool(KFID_ShowKillTicker));
+ 	DataObject.SetBool("disableAutoUpgrade",	Manager.CachedProfile.GetProfileBool(KFID_DisableAutoUpgrade));
 
  	DataObject.SetBool("hideBossHealthBar", 	Manager.CachedProfile.GetProfileBool(KFID_HideBossHealthBar));
 	DataObject.SetBool("showWelderInInv", 		Manager.CachedProfile.GetProfileBool(KFID_ShowWelderInInventory));
@@ -230,6 +233,19 @@ function Callback_WeaponSelectChanged(bool bActive)
 	
 	Settings = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId);
 	Settings.SetProfileSettingValueInt(KFID_QuickWeaponSelect, bActive ? 1 : 0);
+}
+
+function Callback_DisableAutoUpgradeChanged(bool bActive)
+{
+	local KFPlayerController KFPC;
+	local OnlineProfileSettings Settings;
+
+	KFPC = KFPlayerController(GetPC());
+
+	KFPC.bDisableAutoUpgrade = bActive;
+
+	Settings = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId);
+	Settings.SetProfileSettingValueInt(KFID_DisableAutoUpgrade, bActive ? 1 : 0);
 }
 
 function Callback_KillTickerChanged(bool bActive)

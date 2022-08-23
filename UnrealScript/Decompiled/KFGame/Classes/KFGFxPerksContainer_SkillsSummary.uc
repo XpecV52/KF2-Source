@@ -17,7 +17,7 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     super(KFGFxObject_Container).Initialize(NewParentMenu);
     PerkMenu = KFGFxMenu_Perks(NewParentMenu);
     LocalizeContainer();
-    ParentMenu.Manager.TimerHelper.SetTimer(0.1, false, 'DelayedRefresh', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'DelayedRefresh', self);
 }
 
 function DelayedRefresh()

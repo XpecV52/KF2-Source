@@ -236,9 +236,16 @@ simulated function ProcessInstantHitEx( byte FiringMode, ImpactInfo Impact, opti
 {
     local KFPawn HealTarget;
     local KFPlayerController Healer;
+	local KFPerk InstigatorPerk;
 
     HealTarget = KFPawn(Impact.HitActor);
     Healer = KFPlayerController(Instigator.Controller);
+
+	InstigatorPerk = GetPerk();
+	if( InstigatorPerk != none )
+	{
+		InstigatorPerk.UpdatePerkHeadShots( Impact, InstantHitDamageTypes[FiringMode], ImpactNum );
+	}
 
 	if (FiringMode == ALTFIRE_FIREMODE && HealTarget != none && WorldInfo.GRI.OnSameTeam(Instigator,HealTarget) )
 	{

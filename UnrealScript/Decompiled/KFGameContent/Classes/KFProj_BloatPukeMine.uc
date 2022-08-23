@@ -223,25 +223,31 @@ simulated function SpawnImpactDecal(Vector HitLocation, Vector HitNormal)
 
 simulated function bool ValidTouch(Pawn Other)
 {
-    if(Other.GetTeamNum() == TeamNum)
+    if((Other.GetTeamNum() == TeamNum) || !Other.IsAliveAndWell())
     {
         return false;
     }
     return FastTrace(Other.Location, Location,, true);
 }
 
-singular simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
+simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
 {
     local Pawn P;
 
-    if((WorldInfo.TimeSeconds - CreationTime) < 0.1)
-    {
-        return;
-    }
     P = Pawn(Other);
-    if((P != none) && ValidTouch(P))
+    if(P != none)
     {
-        TriggerExplosion(Location, vect(0, 0, 1), P);
+        if(((WorldInfo.TimeSeconds - CreationTime) >= 0.1) && ValidTouch(P))
+        {
+            TriggerExplosion(Location, vect(0, 0, 1), P);
+        }        
+    }
+    else
+    {
+        if(bBounce)
+        {
+            super.Touch(Other, OtherComp, HitLocation, HitNormal);
+        }
     }
 }
 

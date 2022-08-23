@@ -29,7 +29,7 @@ simulated event PostBeginPlay()
 		KFPRI.bSplashActive = false;
 		KFPRI.bNukeActive = false;
 		KFPRI.bConcussiveActive = false;
-		KFPRI.bPerkCanSupply = false;
+		KFPRI.PerkSupplyLevel = 0;
 	}
 }
 

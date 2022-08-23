@@ -6,7 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFSeqAct_Objective extends SequenceAction
-    native
+    native(Sequence)
     forcescriptorder(true)
     hidecategories(Object);
 

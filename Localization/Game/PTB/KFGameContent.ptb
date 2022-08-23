@@ -197,6 +197,8 @@ ItemName="Bullpup SA80 L85A2"
 ItemCategory="Fuzil de assalto"
 ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•O SA80 era a arma padrão do exército britânico, antes do exército ser... devorado."
 
+
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Faca utilitária"
 ItemCategory="Corpo a corpo"
@@ -267,6 +269,8 @@ ItemName="Esping. de Combate M4"
 ItemCategory="Espingarda"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Benelli projetou a Espingarda de Combate M4 para o exército norte-americano. Como é semiautomática, tem uma cadência de tiro boa e estável."
 
+
+
 [KFWeap_Knife_Berserker]
 ItemName="Cortador de grama"
 ItemCategory="Corpo a corpo"
@@ -314,6 +318,11 @@ ItemCategory="Corpo a corpo"
 ItemDescription="•Principal - dano médio/pesado, funciona também como controle de multidão.\n•Secundário - mais lento, porém causa mais dano.\n•Alt - bloquear/aparar\n•Você causa ainda mais dano ao se mover para frente."
 SharedUnlockSource="Guerra Medieval" "
 
+[KFWeap_Blunt_MaceAndShield]
+ItemName="Esmaga-Osso"
+ItemCategory="Corpo a corpo"
+ItemDescription="•Principal - ataque contundente rápido; segure para ataque sequencial.\n•Secundário - ataque contundente pesado que usa mais o escudo.\n•Alt - bloqueio/aparo. O bloqueio reduz o dano de projéteis dos Zeds.\n• Tem um poderoso ataque de Pancada com Escudo"
+
 [KFWeap_Flame_CaulkBurn]
 ItemName="Pistola de Fogo"
 ItemCategory="Chamas"
@@ -353,6 +362,8 @@ ItemDescription="•Modo de tiro lança uma granada.\n•A granada explode com o
 ItemName="RPG-7"
 ItemCategory="Explosivos"
 ItemDescription="•Modo de tiro lança um foguete.\n•O foguete explode com o impacto.\n•Ela se arma a alguns metros de distância do objetivo para que você não exploda junto.\n•Tome cuidado ao ficar atrás deles!"
+
+
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="Duas Pistolas 9 mm"
@@ -403,6 +414,8 @@ ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Modo tiro único, somente.\n•O modelo clássico do rifle Winchester modelo 1894 com alavanca."
+
+
 
 [KFWeap_Bow_Crossbow]
 ItemName="Besta"

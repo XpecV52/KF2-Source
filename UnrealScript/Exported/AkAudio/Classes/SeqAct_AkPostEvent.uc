@@ -3,6 +3,9 @@ class SeqAct_AkPostEvent extends SeqAct_Latent
 
 var transient int Signal;		// signal (event) used for EndOfEvent
 
+/** If TRUE, will use PlayAkEvent() instead of the audio device to trigger the AkEvent on clients */
+var() bool bReplicateToClients;
+
 // (cpptext)
 // (cpptext)
 // (cpptext)

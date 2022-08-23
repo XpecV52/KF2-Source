@@ -101,12 +101,12 @@ function bool ShouldDealDamageToEnemy(Actor Target, optional float Range)
     {
         return false;
     }
-    HitActor = Outer.Trace(HitLoc, HitNormal, Target.Location, Outer.Location, false,, HitInfo);
-    if(((HitActor != none) && HitInfo.HitComponent != none) && HitInfo.HitComponent.BlockActors)
+    HitActor = Outer.Trace(HitLoc, HitNormal, Target.Location, Outer.Location, false,, HitInfo, Outer.8);
+    if((((HitActor != none) && HitInfo.HitComponent != none) && HitInfo.HitComponent.BlockActors) && HitActor.bWorldGeometry || HitActor.bGameRelevant)
     {
         TraceOffset = Outer.Instigator.BaseEyeHeight * vect(0, 0, 1);
-        HitActor = Outer.Trace(HitLoc, HitNormal, Target.Location + TraceOffset, Outer.Location + TraceOffset, false,, HitInfo);
-        if(((HitActor != none) && HitInfo.HitComponent != none) && HitInfo.HitComponent.BlockActors)
+        HitActor = Outer.Trace(HitLoc, HitNormal, Target.Location + TraceOffset, Outer.Location + TraceOffset, false,, HitInfo, Outer.8);
+        if((((HitActor != none) && HitInfo.HitComponent != none) && HitInfo.HitComponent.BlockActors) && HitActor.bWorldGeometry || HitActor.bGameRelevant)
         {
             return false;
         }
@@ -313,7 +313,7 @@ protected function bool DoSwipeImpact(int Damage, optional KFPawn.EPawnOctant Sw
             continue;            
         }
         HitActor = Outer.Trace(HitLoc, HitNorm, P.Location + (P.BaseEyeHeight * vect(0, 0, 1)), Outer.Location, false,,, Outer.8);
-        if((HitActor != none) && HitActor != P)
+        if(((HitActor != none) && HitActor != P) && HitActor.bWorldGeometry || HitActor.bGameRelevant)
         {
             if(bLogMelee)
             {

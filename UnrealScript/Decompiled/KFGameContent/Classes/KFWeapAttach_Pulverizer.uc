@@ -19,8 +19,9 @@ const CH_PulverizerShoot_R = 'Atk_R_Shoot_CH';
 
 var transient KFGame.KFWeaponAttachment.EWeaponState NextPulverizerShootType;
 
-simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
+simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
 {
+    DecodeThirdPersonAnimRate(ThirdPersonAnimRateByte);
     if(!P.IsDoingSpecialMove())
     {
         PlayPulverizerShoot(P);
@@ -37,16 +38,16 @@ simulated function PlayPulverizerShoot(KFPawn P)
 {
     switch(NextPulverizerShootType)
     {
-        case 21:
+        case 23:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Atk_B_Shoot_CH' : 'Atk_B_shoot'));
             break;
-        case 20:
+        case 22:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Atk_F_Shoot_CH' : 'Atk_F_shoot'));
             break;
-        case 18:
+        case 20:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Atk_L_Shoot_CH' : 'Atk_L_shoot'));
             break;
-        case 19:
+        case 21:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Atk_R_Shoot_CH' : 'Atk_R_shoot'));
             break;
         default:
@@ -55,20 +56,20 @@ simulated function PlayPulverizerShoot(KFPawn P)
     NextPulverizerShootType = 255;
 }
 
-simulated function UpdateThirdPersonWeaponAction(KFGame.KFWeaponAttachment.EWeaponState NewWeaponState, KFPawn P)
+simulated function UpdateThirdPersonWeaponAction(KFGame.KFWeaponAttachment.EWeaponState NewWeaponState, KFPawn P, byte ThirdPersonAnimRateByte)
 {
     switch(NewWeaponState)
     {
-        case 21:
+        case 23:
+        case 22:
         case 20:
-        case 18:
-        case 19:
+        case 21:
             NextPulverizerShootType = NewWeaponState;
             break;
         default:
             break;
     }
-    super.UpdateThirdPersonWeaponAction(NewWeaponState, P);
+    super.UpdateThirdPersonWeaponAction(NewWeaponState, P, ThirdPersonAnimRateByte);
 }
 
 defaultproperties

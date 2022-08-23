@@ -14,11 +14,21 @@ var GFxObject NoAwardsTextField;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
+    local KFPlayerController KFPC;
+
     super.Initialize(NewParentMenu);
     LocalizeText();
     NoAwardsTextField = GetObject("noAwardsTextField");
     SendTeamAwards();
     SendPersonalBests();
+    if((Outer.GetPC() != none) && Outer.GetPC().IsLocalPlayerController())
+    {
+        KFPC = KFPlayerController(Outer.GetPC());
+        if(KFPC != none)
+        {
+            KFPC.ClientWriteAndFlushStats();
+        }
+    }
 }
 
 function LocalizeText()

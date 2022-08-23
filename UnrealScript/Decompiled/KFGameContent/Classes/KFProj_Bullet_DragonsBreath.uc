@@ -8,17 +8,13 @@
 class KFProj_Bullet_DragonsBreath extends KFProj_Bullet
     hidecategories(Navigation);
 
-var export editinline PointLightComponent ProjLight;
-
-simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
-{
-    super.TriggerExplosion(HitLocation, HitNormal, HitActor);
-    ProjLight.SetEnabled(false);
-}
-
 defaultproperties
 {
-    begin object name=ProjPointLight class=PointLightComponent
+    bWarnAIWhenFired=true
+    GravityScale=0.35
+    TerminalVelocity=7000
+    ProjFlightTemplate=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer'
+    begin object name=PointLight0 class=PointLightComponent
         Radius=500
         FalloffExponent=10
         Brightness=0.5
@@ -28,12 +24,8 @@ defaultproperties
         CastDynamicShadows=false
         LightingChannels=(Outdoor=true)
     object end
-    // Reference: PointLightComponent'Default__KFProj_Bullet_DragonsBreath.ProjPointLight'
-    ProjLight=ProjPointLight
-    bWarnAIWhenFired=true
-    GravityScale=0.35
-    TerminalVelocity=7000
-    ProjFlightTemplate=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer'
+    // Reference: PointLightComponent'Default__KFProj_Bullet_DragonsBreath.PointLight0'
+    ProjFlightLight=PointLight0
     ProjFlightTemplateZedTime=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer_ZEDTime'
     AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Projectile_Loop'
     AmbientSoundStopEvent=AkEvent'WW_WEP_SA_DragonsBreath.Stop_SA_DragonsBreath_Projectile_Loop'
@@ -52,18 +44,6 @@ defaultproperties
     // Reference: CylinderComponent'Default__KFProj_Bullet_DragonsBreath.CollisionCylinder'
     Components(0)=CollisionCylinder
     Components(1)=AkComponent'Default__KFProj_Bullet_DragonsBreath.AmbientAkSoundComponent'
-    begin object name=ProjPointLight class=PointLightComponent
-        Radius=500
-        FalloffExponent=10
-        Brightness=0.5
-        LightColor=(B=171,G=218,R=252,A=255)
-        CastShadows=false
-        CastStaticShadows=false
-        CastDynamicShadows=false
-        LightingChannels=(Outdoor=true)
-    object end
-    // Reference: PointLightComponent'Default__KFProj_Bullet_DragonsBreath.ProjPointLight'
-    Components(2)=ProjPointLight
     Physics=EPhysics.PHYS_Falling
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

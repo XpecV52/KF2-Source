@@ -339,11 +339,11 @@ simulated protected function TurnOffFireSpray()
  * function is called from the pawn, and should only be called when on a remote client or
  * if the local client is in a 3rd person mode.
 */
-simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
+simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte )
 {
 	local bool bResult;
 
-	bResult = Super.ThirdPersonFireEffects(HitLocation,P);
+	bResult = Super.ThirdPersonFireEffects(HitLocation,P,ThirdPersonAnimRateByte);
 
 	// Wider effect distances for fire spray. Called on Instigator to go beyond the weapon mesh cull distance
 	if ( P.ActorEffectIsRelevant(P, false, 15000, 2000) )

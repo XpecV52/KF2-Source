@@ -64,6 +64,9 @@ var() array< DoorListInfo > DoorList;
 /** Rotation to use when spawning pawns from this volume */
 var() rotator 				SpawnRotation;
 
+/** Used to include or exclude spawn volumes from gameplay code */
+var bool bCanUseForSpawning;
+
 /*********************************************************************************************
  Rendering in Game ("show SpawnVolumes" and Editor (when volume is selected)
  ********************************************************************************************* */
@@ -244,6 +247,26 @@ event UnTouch(Actor Other)
 	}
 }
 
+/**	Handling Toggle event from Kismet. */
+simulated function OnToggle( SeqAct_Toggle Action )
+{
+	// Turn ON
+	if( Action.InputLinks[0].bHasImpulse )
+	{
+		bCanUseForSpawning = true;
+	}
+	// Turn OFF
+	else if (Action.InputLinks[1].bHasImpulse)
+	{
+		bCanUseForSpawning = false;
+	}
+	// Toggle
+	else if (Action.InputLinks[2].bHasImpulse)
+	{
+		bCanUseForSpawning = !bCanUseForSpawning;
+	}
+}
+
 /** Script implementation of RateVolume so mod authors can change things. Native implementation is commented out just
  *  in case we need it, or want to do something like handle KF2 spawning in native but calling this event to allow a
  *  complete override in script.
@@ -257,6 +280,10 @@ function bool IsValidForSpawn( ESquadType DesiredSquadType, Controller OtherCont
 	local int i;
 
 	// This volume is disabled
+	if( !bCanUseForSpawning )
+	{
+		return false;
+	}
 	if( SpawnMarkerInfoList.Length == 0 )
 	{
 		return false;
@@ -328,6 +355,12 @@ event float RateVolume( Controller RateController, bool bTeleporting, float Tele
 	local float DistSquared;
 	local String DebugText;
 	local vector TextOffset;
+
+	/** Skip rating if volume isn't enabled */
+	if( !bCanUseForSpawning )
+	{
+		return -1.f;
+	}
 
 	// Calculate UsageRating
 	UsageRating = 1.f;
@@ -439,10 +472,12 @@ DefaultProperties
 	DebugComponent=SpawnRenderer
 
 	// volume
+	bCanUseForSpawning=true
 	bColored=true
 	BrushColor=(R=135,G=206,B=250)
 	bNoDelete=false
 	bPawnsOnly=true
+	bForceAllowKismetModification=true // necessary to allow OnToggle event processing
 
 	// Editor
 	DefaultSpawnMarkerColor=(R=50,G=205,B=50,A=255)

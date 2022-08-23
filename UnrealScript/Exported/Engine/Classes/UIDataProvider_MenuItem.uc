@@ -80,6 +80,9 @@ var const string IniName;
 var config bool bRemoveOn360;
 var config bool bRemoveOnPC;
 var config bool bRemoveOnPS3;
+//@HSL_BEGIN_XBOX
+var config bool bRemoveOnDingo;
+//@HSL_END_XBOX
 
 defaultproperties
 {

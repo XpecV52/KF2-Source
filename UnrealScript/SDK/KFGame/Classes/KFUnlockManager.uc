@@ -85,6 +85,11 @@ static function bool GetWeaponSkinAvailable(INT ID)
 	return GetIDAvailable(ID);
 }
 
+static event bool GetEmoteAvailable( INT ID )
+{
+	return GetIDAvailable( ID );
+}
+
 //@HSL_BEGIN - JRO - 5/12/2016 - Need a native accessor method. Can't make GetAvailable an event due to the KFUnlockableAsset being a non-native interface
 static event bool GetAvailableCharacterArchetype(KFCharacterInfo_Human archetype)
 {

@@ -85,13 +85,21 @@ simulated event PostBeginPlay()
 	   SetTimer(FuseTime, false, 'ExplodeTimer');
 	}
 
-	// Enable the warning on listen servers who don't process ReplicatedEvent()
-	if( WorldInfo.NetMode == NM_ListenServer )
+	AdjustCanDisintigrate();
+}
+
+/**
+ * Spawns any effects needed for the flight of this projectile
+ */
+simulated function SpawnFlightEffects()
+{
+	super.SpawnFlightEffects();
+
+	// Enable the warning on listen servers (and standalone technically, but likely not used)
+	if( WorldInfo.Role == ROLE_Authority )
 	{
 		EnableGrenadeWarning();
 	}
-
-	AdjustCanDisintigrate();
 }
 
 /** Toggles an emitter in the projectile effects particle system to display a warning sprite */
@@ -99,7 +107,7 @@ simulated function EnableGrenadeWarning()
 {
 	local PlayerController LocalPC;	
 
-	if( bNetOwner || GetTeamNum() != 0 )
+	if( ProjEffects == none || GetTeamNum() != 0 )
 	{
 		return;
 	}

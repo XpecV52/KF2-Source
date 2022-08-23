@@ -1073,8 +1073,9 @@ function ResetPickups( array<KFPickupFactory> PickupList, int NumPickups )
 {
 	NumPickups *= (float(WaveNum) / float(WaveMax));
 
-	// make sure to have at least 1 ammo pickup in the level
-	if( NumPickups == 0 && PickupList.Length > 0 && KFPickupFactory_Ammo(PickupList[0]) != none )
+	// make sure to have at least 1 ammo pickup in the level, and if it's wave 2 or later make sure there's
+	// at least one weapon pickup
+	if( NumPickups == 0 && PickupList.Length > 0 && (WaveNum > 1 || KFPickupFactory_Ammo(PickupList[0]) != none) )
 	{
 		NumPickups = 1;
 	}
@@ -1123,6 +1124,7 @@ function byte DetermineNextTraderIndex()
 function WaveStarted()
 {
 	local array<SequenceObject> AllWaveStartEvents;
+	local array<int> OutputLinksToActivate;
 	local KFSeqEvent_WaveStart WaveStartEvt;
 	local Sequence GameSeq;
 	local int i;
@@ -1169,7 +1171,16 @@ function WaveStarted()
 			if( WaveStartEvt != None  )
 			{
 				WaveStartEvt.Reset();
-				WaveStartEvt.CheckActivate(self, self);
+				WaveStartEvt.SetWaveNum( WaveNum, WaveMax );
+				if( WaveNum == WaveMax && WaveStartEvt.OutputLinks.Length > 1 )
+				{
+					OutputLinksToActivate.AddItem( 1 );
+				}
+				else
+				{
+					OutputLinksToActivate.AddItem( 0 );
+				}
+				WaveStartEvt.CheckActivate( self, self,, OutputLinksToActivate );
 			}
 		}
 	}
@@ -1241,9 +1252,6 @@ function Timer_FinalizeEndOfWaveStats()
 	bOpeningTrader = MyKFGRI.bTraderIsOpen && !IsInState( 'MatchEnded' ) && !IsInState( 'RoundEnded ');
 	foreach WorldInfo.AllControllers( class'KFPlayerController', KFPC )
 	{
-		// save online stats
-		KFPC.ClientWriteAndFlushStats();
-
 		// submit online player analytics
 		LogWaveEndAnalyticsFor( KFPC );
 
@@ -1402,6 +1410,7 @@ Begin:
 function NotifyTraderOpened()
 {
 	local array<SequenceObject> AllTraderOpenedEvents;
+	local array<int> OutputLinksToActivate;
 	local KFSeqEvent_TraderOpened TraderOpenedEvt;
 	local Sequence GameSeq;
 	local int i;
@@ -1420,7 +1429,16 @@ function NotifyTraderOpened()
 			if( TraderOpenedEvt != None  )
 			{
 				TraderOpenedEvt.Reset();
-				TraderOpenedEvt.CheckActivate(self, self);
+				TraderOpenedEvt.SetWaveNum( WaveNum, WaveMax );
+				if( WaveNum == WaveMax - 1 && TraderOpenedEvt.OutputLinks.Length > 1 )
+				{
+					OutputLinksToActivate.AddItem( 1 );
+				}
+				else
+				{
+					OutputLinksToActivate.AddItem( 0 );
+				}
+				TraderOpenedEvt.CheckActivate( self, self,, OutputLinksToActivate );
 			}
 		}
 	}
@@ -1514,7 +1532,15 @@ function string GetNextMap()
 
 	if( NextMapIndex != INDEX_NONE )
 	{
-		return GameMapCycles[ActiveMapCycle].Maps[NextMapIndex];
+		if(WorldInfo.NetMode == NM_Standalone)
+		{
+			return KFGRI.VoteCollector.Maplist[NextMapIndex];
+		}
+		else
+		{
+			return GameMapCycles[ActiveMapCycle].Maps[NextMapIndex];
+		}
+		
 	}
 
 	return super.GetNextMap();

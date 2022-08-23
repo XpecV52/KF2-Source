@@ -267,7 +267,7 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
 		FinalMaxSpareAmmoCount = TraderItem.MaxSpareAmmo;
 		FinalMagazineCapacity = TraderItem.MagazineCapacity;
 
-		CurrentPerk.ModifyMagSizeAndNumber(none, FinalMagazineCapacity, TraderItem.AssociatedPerkClass,, TraderItem.ClassName);
+		CurrentPerk.ModifyMagSizeAndNumber(none, FinalMagazineCapacity, TraderItem.AssociatedPerkClasses,, TraderItem.ClassName);
 
 		// When a perk calculates total available weapon ammo, it expects MaxSpareAmmo+MagazineCapacity
 		CurrentPerk.ModifyMaxSpareAmmoAmount(none, FinalMaxSpareAmmoCount, TraderItem,);
@@ -287,9 +287,14 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
 	ItemData.SetBool("bIsFavorite", MyTraderMenu.GetIsFavorite(TraderItem.ClassName)); 	
 
  	ItemData.SetString("texturePath", "img://"$TraderItem.WeaponDef.static.GetImagePath());
- 	if( TraderItem.AssociatedPerkClass != none )
+ 	if( TraderItem.AssociatedPerkClasses.length > 0 && TraderItem.AssociatedPerkClasses[0] != none )
  	{
- 		ItemData.SetString("perkIconPath", "img://"$TraderItem.AssociatedPerkClass.static.GetPerkIconPath());
+ 		ItemData.SetString("perkIconPath", "img://"$TraderItem.AssociatedPerkClasses[0].static.GetPerkIconPath());
+ 		//secondary perk icon
+ 		if( TraderItem.AssociatedPerkClasses.length > 1 )
+ 		{
+ 			ItemData.SetString("perkIconPathSecondary", "img://"$TraderItem.AssociatedPerkClasses[1].static.GetPerkIconPath());
+ 		} 		
 	}
 	else
 	{

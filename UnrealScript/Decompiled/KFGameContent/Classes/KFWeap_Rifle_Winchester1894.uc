@@ -9,25 +9,8 @@ class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
-var float ForegroundShellDuration;
-
-simulated function ANIMNOTIFY_ShellEject()
-{
-    super(KFWeapon).ANIMNOTIFY_ShellEject();
-    MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup(2);
-    MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = true;
-    SetTimer(ForegroundShellDuration, false, 'Timer_RestoreShellEjectDepth');
-}
-
-simulated function Timer_RestoreShellEjectDepth()
-{
-    MuzzleFlash.ShellEjectPSC.SetDepthPriorityGroup(1);
-    MuzzleFlash.ShellEjectPSC.bDepthTestEnabled = false;
-}
-
 defaultproperties
 {
-    ForegroundShellDuration=1.5
     InventorySize=5
     MagazineCapacity=12
     bHasIronSights=true
@@ -53,6 +36,7 @@ defaultproperties
     AttachmentArchetype=KFWeaponAttachment'wep_winchester_arch.Wep_Winchester_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Rifle_Winchester1894.MeleeHelper'
     MuzzleFlashTemplate=KFMuzzleFlash'wep_winchester_arch.Wep_Winchester_MuzzleFlash'
+    EjectedShellForegroundDuration=1.5
     maxRecoilPitch=500
     minRecoilPitch=400
     maxRecoilYaw=150
@@ -68,7 +52,7 @@ defaultproperties
     RecoilISMaxPitchLimit=500
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.5
-    AssociatedPerkClass=Class'KFGame.KFPerk_Sharpshooter'
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

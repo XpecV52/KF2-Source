@@ -1,5 +1,5 @@
 //=============================================================================
-// KFDifficulty_Bloat
+// KFDifficulty_Gorefast
 //=============================================================================
 // Per Zed, per difficulty balance settings
 //=============================================================================
@@ -8,6 +8,24 @@
 //=============================================================================
 class KFDifficulty_Gorefast extends KFMonsterDifficultyInfo
 	abstract;
+
+/** Chances, by difficulty, to spawn as a special gorefast */
+var array<float> ChanceToSpawnAsSpecial;
+
+static function float GetSpecialGorefastChance( KFGameReplicationInfo KFGRI )
+{
+	if( KFGRI.bVersusGame )
+	{
+		return 0.f;
+	}
+	
+`if(`notdefined(ShippingPC))
+	if( default.bForceSpecialSpawn )
+		return 1.f;
+	else
+`endif
+	return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
+}
 
 defaultproperties
 {
@@ -57,4 +75,10 @@ defaultproperties
 	// Versus Rally settings
 	RallySettings_Versus={(bCauseSprint=true)}
 	RallySettings_Player_Versus={(DealtDamageModifier=1.2)}
+
+	// Special Gorefast spawn chances
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Normal)		=0.0
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Hard)		=0.05
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Suicidal)	=0.35//  0.15
+	ChanceToSpawnAsSpecial(`DIFFICULTY_HellOnEarth)	=0.45
 }

@@ -13,6 +13,7 @@ KF-Prison="Игра в Тюрьме"
 KF-ContainmentStation="Игра на Станции локализации"
 KF-InfernalRealm="Игра в Царстве ада"
 KF-HostileGrounds="Игра во Враждебных землях"
+KF-ZedLanding="Игра во Высадка среди мутантов"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

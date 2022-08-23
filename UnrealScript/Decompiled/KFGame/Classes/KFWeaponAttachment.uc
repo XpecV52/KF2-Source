@@ -54,10 +54,14 @@ const ReloadEmptyAnim = 'Reload_Empty';
 const ReloadHalfAnim = 'Reload_Half';
 const ReloadEmptyEliteAnim = 'Reload_Empty_Elite';
 const ReloadHalfEliteAnim = 'Reload_Half_Elite';
+const ReloadDualsOneEmptyAnim = 'Reload_Empty_Half';
+const ReloadDualsOneEmptyEliteAnim = 'Reload_Empty_Half_Elite';
 const CH_ReloadEmptyAnim = 'Reload_Empty_CH';
 const CH_ReloadHalfAnim = 'Reload_Half_CH';
 const CH_ReloadEmptyEliteAnim = 'Reload_Empty_Elite_CH';
 const CH_ReloadHalfEliteAnim = 'Reload_Half_Elite_CH';
+const CH_ReloadDualsOneEmptyAnim = 'Reload_Empty_Half_CH';
+const CH_ReloadDualsOneEmptyEliteAnim = 'Reload_Empty_Half_Elite_CH';
 const ReloadOpenAnim = 'Reload_Open';
 const ReloadInsertAnim = 'Reload_Insert';
 const ReloadCloseAnim = 'Reload_Close';
@@ -106,6 +110,8 @@ enum EWeaponState
     WEP_ReloadSingleEmpty_Elite,
     WEP_ReloadSecondary,
     WEP_ReloadSecondary_Elite,
+    WEP_ReloadDualsOneEmpty,
+    WEP_ReloadDualsOneEmpty_Elite,
     WEP_MeleeBasic,
     WEP_MeleeChain,
     WEP_MeleeSustained,
@@ -189,6 +195,7 @@ var float MaxFireEffectDistance;
 var() array<KFTracerInfo> TracerInfos;
 var transient MaterialInstanceConstant WeaponMIC;
 var transient float BloodParamValue;
+var protected transient float ThirdPersonAnimRate;
 var RecoilDef Recoil_Hand;
 var RecoilDef Recoil_Spine;
 /** (TEMP) blend settings */
@@ -208,7 +215,7 @@ var(Anims) name AimOffsetProfileName;
 var delegate<OnWeaponStateChanged> __OnWeaponStateChanged__Delegate;
 
 // Export UKFWeaponAttachment::execChangeVisibility(FFrame&, void* const)
-native function ChangeVisibility(bool bIsVisible);
+native event ChangeVisibility(bool bIsVisible);
 
 event PreBeginPlay()
 {
@@ -260,7 +267,7 @@ simulated function AttachTo(KFPawn P)
     }
     if(CharacterAnimSet != none)
     {
-        WeaponAnimSetIdx = byte(P.CharacterArch.AnimSets.Length);
+        WeaponAnimSetIdx = byte(P.CharacterArch.GetWeaponAnimSetIdx());
         P.Mesh.AnimSets[WeaponAnimSetIdx] = CharacterAnimSet;
         P.Mesh.UpdateAnimations();
     }
@@ -346,7 +353,7 @@ simulated function StopFirstPersonFireEffects(Weapon W)
     }
 }
 
-simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
+simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
 {
     local KFPawn.EAnimSlotStance AnimType;
 
@@ -355,6 +362,7 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
     {
         return false;
     }
+    DecodeThirdPersonAnimRate(ThirdPersonAnimRateByte);
     if(!bWeapMeshIsPawnMesh)
     {
         PlayWeaponFireAnim();
@@ -385,13 +393,17 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
 
 simulated function PlayWeaponFireAnim()
 {
+    local float Duration;
+
     if(Instigator.bIsWalking)
     {
-        WeapMesh.PlayAnim('Iron_Shoot',,, true);        
+        Duration = WeapMesh.GetAnimLength('Iron_Shoot');
+        WeapMesh.PlayAnim('Iron_Shoot', Duration / ThirdPersonAnimRate,, true);        
     }
     else
     {
-        WeapMesh.PlayAnim('Shoot',,, true);
+        Duration = WeapMesh.GetAnimLength('Shoot');
+        WeapMesh.PlayAnim('Shoot', Duration / ThirdPersonAnimRate,, true);
     }
 }
 
@@ -399,17 +411,17 @@ simulated function PlayPawnFireAnim(KFPawn P, KFPawn.EAnimSlotStance AnimType)
 {
     if(P.bIsCrouched)
     {
-        P.PlayBodyAnim('ADD_CH_Shoot', AnimType, 1, ShootBlendInTime, ShootBlendOutTime);        
+        P.PlayBodyAnim('ADD_CH_Shoot', AnimType, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);        
     }
     else
     {
         if(P.bIsWalking)
         {
-            P.PlayBodyAnim('ADD_Iron_Shoot', AnimType, 1, ShootBlendInTime, ShootBlendOutTime);            
+            P.PlayBodyAnim('ADD_Iron_Shoot', AnimType, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);            
         }
         else
         {
-            P.PlayBodyAnim('ADD_Shoot', AnimType, 1, ShootBlendInTime, ShootBlendOutTime);
+            P.PlayBodyAnim('ADD_Shoot', AnimType, ThirdPersonAnimRate, ShootBlendInTime, ShootBlendOutTime);
         }
     }
 }
@@ -524,7 +536,7 @@ simulated function float PlayCharacterMeshAnim(KFPawn P, name AnimName, optional
         return 0;
     }
     Stance = ((!P.bIsCrouched) ? 1 : 4);
-    Duration = P.PlayBodyAnim(AnimName, Stance, 1, DefaultBlendInTime, DefaultBlendOutTime, bLooping);
+    Duration = P.PlayBodyAnim(AnimName, Stance, ThirdPersonAnimRate, DefaultBlendInTime, DefaultBlendOutTime, bLooping);
     if((Duration > float(0)) && bPlaySynchedWeaponAnim)
     {
         PlayWeaponMeshAnim(AnimName, P.BodyStanceNodes[Stance], bLooping);
@@ -536,10 +548,16 @@ simulated function float PlayCharacterMeshAnim(KFPawn P, name AnimName, optional
     return Duration;
 }
 
-simulated function UpdateThirdPersonWeaponAction(KFWeaponAttachment.EWeaponState NewWeaponState, KFPawn P)
+function DecodeThirdPersonAnimRate(byte ThirdPersonAnimRateByte)
+{
+    ThirdPersonAnimRate = 1 + ByteToFloat(ThirdPersonAnimRateByte);
+}
+
+simulated function UpdateThirdPersonWeaponAction(KFWeaponAttachment.EWeaponState NewWeaponState, KFPawn P, byte ThirdPersonAnimRateByte)
 {
     ClearTimer('LoopWeaponMeleeAnim');
     bIsReloading = false;
+    DecodeThirdPersonAnimRate(ThirdPersonAnimRateByte);
     if(__OnWeaponStateChanged__Delegate != none)
     {
         OnWeaponStateChanged();
@@ -550,42 +568,42 @@ simulated function UpdateThirdPersonWeaponAction(KFWeaponAttachment.EWeaponState
     }
     switch(NewWeaponState)
     {
-        case 24:
+        case 26:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Equip_CH' : 'Equip'));
             break;
-        case 25:
+        case 27:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'PutAway_CH' : 'PutAway'));
             break;
-        case 26:
+        case 28:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Nade_Throw_CH' : 'Nade_Throw'));
             break;
-        case 27:
+        case 29:
             PlayHealAnim(P);
             break;
-        case 28:
+        case 30:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Heal_Quick_CH' : 'Heal_Quick'));
             break;
-        case 29:
+        case 31:
             PlayWeldAnim(P);
             break;
-        case 23:
+        case 25:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Clean_NoBlood_CH' : 'Clean_NoBlood'));
             break;
-        case 11:
-        case 17:
-        case 16:
-        case 14:
-        case 15:
-        case 21:
-        case 20:
-        case 18:
+        case 13:
         case 19:
+        case 18:
+        case 16:
+        case 17:
+        case 23:
+        case 22:
+        case 20:
+        case 21:
             PlayMeleeAtkAnim(NewWeaponState, P);
             break;
-        case 13:
+        case 15:
             PlayMeleeSustainedAnim(P);
             break;
-        case 22:
+        case 24:
             PlayMeleeBlockAnim(P);
             break;
         case 1:
@@ -594,6 +612,8 @@ simulated function UpdateThirdPersonWeaponAction(KFWeaponAttachment.EWeaponState
         case 4:
         case 9:
         case 10:
+        case 11:
+        case 12:
             bIsReloading = true;
             PlayReloadMagazineAnim(NewWeaponState, P);
             break;
@@ -620,31 +640,31 @@ simulated function float PlayMeleeAtkAnim(KFWeaponAttachment.EWeaponState NewWea
     }
     switch(NewWeaponState)
     {
-        case 11:
+        case 13:
             AnimName = ((P.bIsCrouched) ? 'Melee_CH' : 'Melee');
             break;
-        case 21:
+        case 23:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_B_CH' : 'Atk_H_B');
             break;
-        case 20:
+        case 22:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_F_CH' : 'Atk_H_F');
             break;
-        case 18:
+        case 20:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_L_CH' : 'Atk_H_L');
             break;
-        case 19:
+        case 21:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_R_CH' : 'Atk_H_R');
             break;
-        case 17:
+        case 19:
             AnimName = ((P.bIsCrouched) ? 'Atk_B_CH' : 'Atk_B');
             break;
-        case 16:
+        case 18:
             AnimName = ((P.bIsCrouched) ? 'Atk_F_CH' : 'Atk_F');
             break;
-        case 14:
+        case 16:
             AnimName = ((P.bIsCrouched) ? 'Atk_L_CH' : 'Atk_L');
             break;
-        case 15:
+        case 17:
             AnimName = ((P.bIsCrouched) ? 'Atk_R_CH' : 'Atk_R');
             break;
         default:
@@ -689,7 +709,7 @@ simulated function LoopWeaponMeleeAnim()
     P = KFPawn(Owner);
     if((P != none) && !P.IsDoingSpecialMove())
     {
-        UpdateThirdPersonWeaponAction(12, P);
+        UpdateThirdPersonWeaponAction(14, P, P.GetWeaponAttachmentAnimRateByte());
     }
 }
 
@@ -729,11 +749,17 @@ simulated function PlayReloadMagazineAnim(KFWeaponAttachment.EWeaponState NewWea
         case 2:
             AnimName = ((!P.bIsCrouched) ? 'Reload_Empty' : 'Reload_Empty_CH');
             break;
+        case 11:
+            AnimName = ((!P.bIsCrouched) ? 'Reload_Empty_Half' : 'Reload_Empty_Half_CH');
+            break;
         case 3:
             AnimName = ((!P.bIsCrouched) ? 'Reload_Half_Elite' : 'Reload_Half_Elite_CH');
             break;
         case 4:
             AnimName = ((!P.bIsCrouched) ? 'Reload_Empty_Elite' : 'Reload_Empty_Elite_CH');
+            break;
+        case 12:
+            AnimName = ((!P.bIsCrouched) ? 'Reload_Empty_Half_Elite' : 'Reload_Empty_Half_Elite_CH');
             break;
         default:
             break;
@@ -816,9 +842,12 @@ simulated function PlayWeldAnim(KFPawn P)
 
 simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool bLoop)
 {
+    local float Duration;
+
     if(!bWeapMeshIsPawnMesh)
     {
-        WeapMesh.PlayAnim(AnimName, 0, bLoop);
+        Duration = WeapMesh.GetAnimLength(AnimName);
+        WeapMesh.PlayAnim(AnimName, Duration / ThirdPersonAnimRate, bLoop);
         if(SyncNode != none)
         {
             bSynchronizeWeaponAnim = true;
@@ -940,20 +969,21 @@ simulated state LoopingWeaponAction
         }
     }
 
-    simulated function UpdateThirdPersonWeaponAction(KFWeaponAttachment.EWeaponState NewWeaponState, KFPawn P)
+    simulated function UpdateThirdPersonWeaponAction(KFWeaponAttachment.EWeaponState NewWeaponState, KFPawn P, byte ThirdPersonAnimRateByte)
     {
         GotoState('None');
         if(LoopOutroAnim != 'None')
         {
+            DecodeThirdPersonAnimRate(ThirdPersonAnimRateByte);
             PlayCharacterMeshAnim(P, LoopOutroAnim, bLoopSynchedWeaponAnim);
         }
-        global.UpdateThirdPersonWeaponAction(NewWeaponState, P);
+        global.UpdateThirdPersonWeaponAction(NewWeaponState, P, ThirdPersonAnimRateByte);
     }
 
-    simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
+    simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
     {
         GotoState('None');
-        return global.ThirdPersonFireEffects(HitLocation, P);
+        return global.ThirdPersonFireEffects(HitLocation, P, ThirdPersonAnimRateByte);
     }
 
     simulated function DetachFrom(KFPawn P)
@@ -983,6 +1013,7 @@ defaultproperties
     WeapMesh=SkeletalMeshComponent0
     LaserSightArchetype=KFLaserSightAttachment'FX_LaserSight_ARCH.Default_LaserSight_3P'
     MaxFireEffectDistance=5000
+    ThirdPersonAnimRate=1
     Recoil_Hand=(TimeToGo=0,TimeDuration=0.33,RotAmplitude=(X=0,Y=0,Z=0),RotFrequency=(X=0,Y=0,Z=0),RotSinOffset=(X=0,Y=0,Z=0),RotParams=(X=ERecoilStart.ERS_Zero,Y=ERecoilStart.ERS_Zero,Z=ERecoilStart.ERS_Zero,Padding=0),RotOffset=(Pitch=0,Yaw=0,Roll=0),LocAmplitude=(X=0,Y=0,Z=0),LocFrequency=(X=0,Y=0,Z=0),LocSinOffset=(X=0,Y=0,Z=0),LocParams=(X=ERecoilStart.ERS_Zero,Y=ERecoilStart.ERS_Zero,Z=ERecoilStart.ERS_Zero,Padding=0),LocOffset=(X=0,Y=0,Z=0))
     Recoil_Spine=(TimeToGo=0,TimeDuration=0.33,RotAmplitude=(X=0,Y=0,Z=0),RotFrequency=(X=0,Y=0,Z=0),RotSinOffset=(X=0,Y=0,Z=0),RotParams=(X=ERecoilStart.ERS_Zero,Y=ERecoilStart.ERS_Zero,Z=ERecoilStart.ERS_Zero,Padding=0),RotOffset=(Pitch=0,Yaw=0,Roll=0),LocAmplitude=(X=0,Y=0,Z=0),LocFrequency=(X=0,Y=0,Z=0),LocSinOffset=(X=0,Y=0,Z=0),LocParams=(X=ERecoilStart.ERS_Zero,Y=ERecoilStart.ERS_Zero,Z=ERecoilStart.ERS_Zero,Padding=0),LocOffset=(X=0,Y=0,Z=0))
     DefaultBlendInTime=0.2

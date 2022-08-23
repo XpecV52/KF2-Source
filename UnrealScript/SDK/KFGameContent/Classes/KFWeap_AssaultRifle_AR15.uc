@@ -108,6 +108,6 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=true
 
-	AssociatedPerkClass=class'KFPerk_Commando'
+	AssociatedPerkClasses(0)=class'KFPerk_Commando'
 }
 

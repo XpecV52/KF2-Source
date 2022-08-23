@@ -28,11 +28,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Rubio sueco"
@@ -150,11 +150,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="El negro más negro"
@@ -219,11 +219,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
@@ -287,11 +287,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Blanco original"
@@ -460,11 +460,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
@@ -515,11 +515,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Gris"
@@ -1349,15 +1349,18 @@ AttachmentSkin0="Sangriento"
 Attachment="Ojos Parca cuernos"
 AttachmentSkin0="Banda roja"
 AttachmentSkin1="Banda blanca"
+AttachmentSkin2="Precioso"
 
 [Cosmetic_ReaperRavenHat_ARCH]
 Attachment="Sombr. Parca cuernos"
 AttachmentSkin0="Blanco"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_ReaperRavenJaw_ARCH]
 Attachment="Bozal Parca cuernos"
 AttachmentSkin0="Banda roja"
 AttachmentSkin1="Banda blanca"
+AttachmentSkin2="Precioso"
 
 [Cosmetic_ReaperDeadEyes_ARCH]
 Attachment="Ojos muertos Parca"
@@ -1384,11 +1387,11 @@ AttachmentSkin2="Élite rojo"
 AttachmentSkin3="Élite blanco"
 AttachmentSkin4="Mark 7"
 AttachmentSkin5="Cámara en la nieve"
-AttachmentSkin6="Desert"
+AttachmentSkin6="Desierto"
 AttachmentSkin7="Multicam"
-AttachmentSkin8="Hazard"
-AttachmentSkin9="Adamant"
-AttachmentSkin10="Bounty Hunter"
+AttachmentSkin8="Amenaza"
+AttachmentSkin9="Inflexible"
+AttachmentSkin10="Cazarrecompensas"
 
 [Cosmetic_Chivalry_Knight_Helm01_ARCH]
 Attachment="Casco de caballero"
@@ -1430,11 +1433,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
@@ -1479,11 +1482,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Casco"
@@ -1540,11 +1543,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [CHR_Ana_Archetype.BodyMesh2]
 BodySkin0="Clásico"
@@ -1603,11 +1606,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Trato hecho"
@@ -1644,11 +1647,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Trato hecho"
@@ -1690,11 +1693,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acero oscuro"
@@ -1843,7 +1846,7 @@ AttachmentSkin3="Negro noche"
 
 [chr_rockabilly_archetype]
 CharacterName="Rae Higgins"
-Description="Rae Higgins es una australiana establecida en Europa. Nació en Melbourne, creció en Darwin y luego exploró el mundo que la rodeaba antes de establecerse en Londres por trabajo. Durante el día, es una tranquila analista de datos de buenas maneras, por la noche, deja salir la verdadera Rae rockabilly. Las discretas prendas de manga larga ocultaba su cuerpo de los conservadores gerentes, y su maquillaje y pelo eran los apropiados para una aburrida oficina. Hasta el fin de semana. Todo este triste y gris mundo se desterró y el mundo de Rae explotó en música, diversión y colores primarios. \n\nAfortunadamente para Rae, se encontraba en el festival High Rockabilly Festival en Calafell, España cuando estalló el primer brote, así que se perdió cuando hicieron añicos a sus aburridos compañeros. Y ya no tiene por qué seguir escondiéndose. ¡Cómo moláis, Zeds!"
+Description="Rae Higgins es una australiana establecida en Europa. Nació en Melbourne, creció en Darwin y luego exploró el mundo que la rodeaba antes de establecerse en Londres por trabajo. Durante el día, es una tranquila analista de datos de buenas maneras, por la noche, deja salir la verdadera Rae rockabilly. Las discretas prendas de manga larga ocultaba su cuerpo de los conservadores gerentes, y su maquillaje y pelo eran los apropiados para una aburrida oficina. Hasta el fin de semana. Todo este triste y gris mundo se desterró y el mundo de Rae explotó en música, diversión y colores primarios. \nAfortunadamente para Rae, se encontraba en el festival High Rockabilly Festival en Calafell, España cuando estalló el primer brote, así que se perdió cuando hicieron añicos a sus aburridos compañeros. Y ya no tiene por qué seguir escondiéndose. ¡Cómo moláis, Zeds!"
 BodyMesh0="Vestido por defecto"
 BodyMesh1="Seguridad de Horzine"
 BodyMesh2="Caballero de cartón"
@@ -1864,11 +1867,11 @@ BodySkin2="Élite rojo"
 BodySkin3="Élite blanco"
 BodySkin4="Mark 7"
 BodySkin5="Cámara en la nieve"
-BodySkin6="Desert"
+BodySkin6="Desierto"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
-BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin8="Amenaza"
+BodySkin9="Inflexible"
+BodySkin10="Cazarrecompensas"
 
 [chr_rockabilly_archetype.BodyMesh2]
 BodySkin0="Clásico"
@@ -2119,132 +2122,205 @@ AttachmentSkin2="Gris elegante"
 AttachmentSkin3="Azul oscuro"
 
 [Cosmetic_MinotaurHelmet_ARCH]
-Attachment="Minotaur Helmet"
+Attachment="Casco de minotauro"
 AttachmentSkin0="Agatha"
 AttachmentSkin1="Cleese"
 AttachmentSkin2="Jamie"
 AttachmentSkin3="Perceval"
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
-Attachment="Steampunk Gas Mask Basic"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="M. gas steampunk básica"
+AttachmentSkin0="Marrón"
+AttachmentSkin1="Negro"
 
 [Cosmetic_SteampunkGasMaskOpen_ARCH]
-Attachment="Steampunk Gas Mask Open"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="M. de gas steampunk abierta"
+AttachmentSkin0="Marrón"
+AttachmentSkin1="Negro"
 
 [Cosmetic_SteampunkGasMaskClosed_ARCH]
-Attachment="Steampunk Gas Mask Closed"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="M. de gas steampunk cerrada"
+AttachmentSkin0="Marrón"
+AttachmentSkin1="Negro"
+AttachmentSkin2="Precioso"
 
 [Cosmetic_SteampunkGasMaskFiltered_ARCH]
-Attachment="Steampunk Gas Mask Filtered"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="M. de gas steampunk filtrada"
+AttachmentSkin0="Marrón"
+AttachmentSkin1="Negro"
 
 [Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
-Attachment="Steampunk Gas Mask Open Filtered"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="M. de gas steampunk filtrada abierta"
+AttachmentSkin0="Marrón"
+AttachmentSkin1="Negro"
 
 [Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
-Attachment="Steampunk Gas Mask Closed Filtered"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="M. de gas steampunk filtrada cerrada"
+AttachmentSkin0="Marrón"
+AttachmentSkin1="Negro"
 
 [Cosmetic_RebelHelmet_ARCH]
-Attachment="Rebel Helmet"
-AttachmentSkin0="Black"
-AttachmentSkin1="Dark Blue"
-AttachmentSkin2="Dark Green"
-AttachmentSkin3="Dark Red"
-AttachmentSkin4="Light Blue"
-AttachmentSkin5="Light Green"
-AttachmentSkin6="Light Red"
-AttachmentSkin7="Tan"
-AttachmentSkin8="White"
+Attachment="Casco de rebelde"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul oscuro"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Rojo oscuro"
+AttachmentSkin4="Azul claro"
+AttachmentSkin5="Verde claro"
+AttachmentSkin6="Rojo claro"
+AttachmentSkin7="Tostado"
+AttachmentSkin8="Blanco"
 
 [Cosmetic_RebelHelmetGogglesDown_ARCH]
-Attachment="Rebel Helmet Goggles Down"
-AttachmentSkin0="Black"
-AttachmentSkin1="Dark Blue"
-AttachmentSkin2="Dark Green"
-AttachmentSkin3="Dark Red"
-AttachmentSkin4="Light Blue"
-AttachmentSkin5="Light Green"
-AttachmentSkin6="Light Red"
-AttachmentSkin7="Tan"
-AttachmentSkin8="White"
+Attachment="Casco de rebelde gafas abajo"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul oscuro"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Rojo oscuro"
+AttachmentSkin4="Azul claro"
+AttachmentSkin5="Verde claro"
+AttachmentSkin6="Rojo claro"
+AttachmentSkin7="Tostado"
+AttachmentSkin8="Blanco"
+AttachmentSkin9="Precioso"
 
 [Cosmetic_RebelHelmetGogglesUp_ARCH]
-Attachment="Rebel Helmet Goggles Up"
-AttachmentSkin0="Black"
-AttachmentSkin1="Dark Blue"
-AttachmentSkin2="Dark Green"
-AttachmentSkin3="Dark Red"
-AttachmentSkin4="Light Blue"
-AttachmentSkin5="Light Green"
-AttachmentSkin6="Light Red"
-AttachmentSkin7="Tan"
-AttachmentSkin8="White"
+Attachment="Casco de rebelde gafas arriba"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul oscuro"
+AttachmentSkin2="Verde oscuro"
+AttachmentSkin3="Rojo oscuro"
+AttachmentSkin4="Azul claro"
+AttachmentSkin5="Verde claro"
+AttachmentSkin6="Rojo claro"
+AttachmentSkin7="Tostado"
+AttachmentSkin8="Blanco"
 
 [Cosmetic_JacksCowboyHat_ARCH]
-Attachment="Jack's Cowboy Hat"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Cow Brown"
-AttachmentSkin3="Cow White"
-AttachmentSkin4="White"
+Attachment="Gorro vaquero Jack"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Marrón vaca"
+AttachmentSkin3="Blanco vaca"
+AttachmentSkin4="Blanco"
 
 [Cosmetic_DeepstrikeHelmet_ARCH]
-Attachment="Deepstrike Helmet"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Olive"
-AttachmentSkin4="Red"
-AttachmentSkin5="White"
+Attachment="Casco Deepstrike"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Verde aceituna"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Blanco"
 
 [Cosmetic_DeepstrikeGoggles_ARCH]
-Attachment="Deepstrike Goggles"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Red"
-AttachmentSkin4="White"
+Attachment="Gafas Deepstrike"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Blanco"
 
 [Cosmetic_DeepstrikeMask_ARCH]
-Attachment="Deepstrike Mask"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Red"
-AttachmentSkin4="White"
+Attachment="Máscara Deepstrike"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Blanco"
 
 [Cosmetic_DeepstrikeHelmetMask_ARCH]
-Attachment="Deepstrike Helmet Mask"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Olive"
-AttachmentSkin4="Red"
-AttachmentSkin5="White"
+Attachment="Máscara Deepstrike"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Verde aceituna"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Blanco"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_DeepstrikeTacticalBackbag_ARCH]
+Attachment="Mochila táctica Deepstrike"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Verde aceituna"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Blanco"
+AttachmentSkin6="Precioso"
 
 [Cosmetic_RebelMask_ARCH]
-Attachment="Rebel Mask"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Red"
-AttachmentSkin4="Tan"
+Attachment="Máscara de rebelde"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Tostado"
 
 [Cosmetic_RebelNeckWarmer_ARCH]
-Attachment="Rebel Neck Warmer"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Red"
-AttachmentSkin4="Tan"
+Attachment="Braga de rebelde"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Tostado"
+
+[LetsGetCrazy] 
+EmoteName="Hagamos locuras"
+
+[ThunderClap]
+EmoteName="Baile nalgas"
+
+[UncleCharlie] 
+EmoteName="Tío Charlie"
+
+[WackyWave]
+EmoteName="Saludo absurdo"
+
+[RainingDosh] 
+EmoteName="Llueve pasta"
+
+[LionUppercut] 
+EmoteName="Gancho leonino"
+
+[MatingRitual] 
+EmoteName="Apareamiento"
+
+[KickinIt]
+EmoteName="A patadas"
+
+[Fireball] 
+EmoteName="Bola de fuego"
+
+[Makeitrain]
+EmoteName="Todo para mí"
+
+[Fireball_Deluxe]
+EmoteName="Bola de fuego+"
+
+[Makeitrain_Deluxe] 
+EmoteName="Todo para mí+"
+
+[ThunderClap_Deluxe] 
+EmoteName="Baile nalgas+"
+
+[UncleCharlie_Deluxe]
+EmoteName="Tío Charlie+"
+
+[LetsGetCrazy_Deluxe]
+EmoteName="Hagamos locuras+"
+
+[WackyWave_Deluxe]
+EmoteName="Saludo absurdo+"
+
+[RainingDosh_Deluxe] 
+EmoteName="Llueve pasta+"
+
+[LionUppercut_Deluxe]
+EmoteName="Gancho leonino+"
+
+[MatingRitual_Deluxe]
+EmoteName="Apareamiento+"
+
+[KickinIt_Deluxe]
+EmoteName="A patadas+"

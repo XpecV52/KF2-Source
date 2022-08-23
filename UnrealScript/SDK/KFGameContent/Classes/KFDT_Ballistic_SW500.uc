@@ -41,4 +41,5 @@ defaultproperties
 
 	WeaponDef=class'KFWeapDef_SW500'
 	ModifierPerkList(0)=class'KFPerk_Gunslinger'
+	ModifierPerkList(1)=class'KFPerk_Sharpshooter'
 }

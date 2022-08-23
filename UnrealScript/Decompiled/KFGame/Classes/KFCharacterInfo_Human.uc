@@ -155,6 +155,7 @@ var(FirstPerson) SkeletalMesh ArmMesh;
 var(FirstPerson) string ArmSkinPackageName;
 var(FaveWeapons) editconst name FavoriteWeaponClassNames[8];
 var(FaveWeapons) editoronly class<KFWeaponDefinition> FavoriteWeaponClassDefs[8]<AllowAbstract=>;
+var AnimSet EmoteAnimset;
 
 function int GetAssetId()
 {
@@ -716,4 +717,23 @@ simulated function SetArmsMeshAndSkin(byte ArmsMeshIndex, byte ArmsSkinIndex, KF
             }
         }
     }
+}
+
+static function int GetWeaponAnimSetIdx()
+{
+    return ((default.EmoteAnimset != none) ? default.AnimSets.Length + 1 : default.AnimSets.Length);
+}
+
+simulated function SetCharacterAnimFromArch(KFPawn Pawn)
+{
+    super.SetCharacterAnimFromArch(Pawn);
+    if(EmoteAnimset != none)
+    {
+        Pawn.Mesh.AnimSets.AddItem(EmoteAnimset;
+    }
+}
+
+defaultproperties
+{
+    EmoteAnimset=AnimSet'ECON_emote.ECON_Emotes'
 }

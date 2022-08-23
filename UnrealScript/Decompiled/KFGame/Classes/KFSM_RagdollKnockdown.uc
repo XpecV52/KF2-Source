@@ -176,7 +176,7 @@ protected function EndKnockdown()
     }
     KFPOwner.KnockdownImpulse.LinearVelocity = vect(0, 0, 0);
     KFPOwner.KnockdownImpulse.AngularVelocity = vect(0, 0, 0);
-    if(KFPOwner.InjuredHitZones > 0)
+    if(KFPOwner.HasInjuredHitZones())
     {
         KnockdownFailsafe();
     }
@@ -226,7 +226,7 @@ static function TermKnockdownRagdoll(KFPawn P)
     {
         Mesh.PhysicsAssetInstance.SetFullAnimWeightBonesFixed(false, Mesh);
     }
-    if(P.bHasBrokenConstraints && P.InjuredHitZones > 0)
+    if(P.bHasBrokenConstraints && P.HasInjuredHitZones())
     {
         P.InitPartialKinematics();
         P.Mesh.UpdateMeshForBrokenConstraints();

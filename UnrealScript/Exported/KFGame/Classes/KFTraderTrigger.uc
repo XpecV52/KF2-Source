@@ -142,7 +142,7 @@ simulated function StartTraderLoopAnim()
 /** Spawn emitter path to the active trader */
 simulated function ShowTraderPath()
 {
-	local KFPlayerController KFPC;
+	local PlayerController PC;
 	local KFGameReplicationInfo KFGRI;
 	local EPathSearchType OldSearchType;
 	local KFEmit_TraderPath Path;
@@ -153,23 +153,23 @@ simulated function ShowTraderPath()
 
 	if( bCollideActors && KFGRI != none && KFGRI.bTraderIsOpen && KFGRI.OpenedTrader == self )
 	{
-		foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
+		foreach LocalPlayerControllers( class'PlayerController', PC )
 		{
-			if( KFPC.Pawn == none || KFPC.GetTeamNum() == 255 || !KFPC.Pawn.IsAliveAndWell() )
+			if( PC.Pawn == none || PC.GetTeamNum() == 255 || !PC.Pawn.IsAliveAndWell() )
 			{
 				continue;
 			}
 
 			// Cache off our previous path search type
-			OldSearchType = KFPC.Pawn.PathSearchType;
+			OldSearchType = PC.Pawn.PathSearchType;
 
 			// Generate a path network that excludes bIgnoredByTraderTrail navpoints
-			KFPC.Pawn.PathSearchType = PST_Constraint;
-			class'Path_ToTrader'.static.ToTrader( KFPC.Pawn );
-			class'Goal_AtActor'.static.AtActor( KFPC.Pawn, self,, false );
+			PC.Pawn.PathSearchType = PST_Constraint;
+			class'Path_ToTrader'.static.ToTrader( PC.Pawn );
+			class'Goal_AtActor'.static.AtActor( PC.Pawn, self,, false );
 
 			// Generate path
-			nodePathRoot = KFPC.FindPathToward(self);
+			nodePathRoot = PC.FindPathToward(self);
 			if( nodePathRoot != none )
 			{
 				bPathFound = true;
@@ -181,7 +181,7 @@ simulated function ShowTraderPath()
 
 			if( bPathFound )
 			{
-				Path = Spawn(class'KFEmit_TraderPath', KFPC,, KFPC.Pawn.Location);
+				Path = Spawn(class'KFEmit_TraderPath', PC,, PC.Pawn.Location);
 
 				// instead of using the routecache for the last waypoint, use the trader pod mesh
 				Path.SetDestination(TraderMeshActor != None ? TraderMeshActor.Location + vect(0,0,100): Location);
@@ -190,14 +190,14 @@ simulated function ShowTraderPath()
 			{
 				if( class'KFEmit_TraderPath'.default.bShowEmitPathDebugArtifacts )
 				{
-					DrawDebugLine( KFPC.Pawn.Location, Location, 255, 0, 0, true);
+					DrawDebugLine( PC.Pawn.Location, Location, 255, 0, 0, true);
 				}
-				if (bLogTrader) LogInternal("ShowTraderPath - No Path Found, KFGRI.OpenedTrader: " @ KFGRI.OpenedTrader @ " trader trigger loc: " @ Location @ " - player loc: " @ KFPC.Pawn.Location);
+				if (bLogTrader) LogInternal("ShowTraderPath - No Path Found, KFGRI.OpenedTrader: " @ KFGRI.OpenedTrader @ " trader trigger loc: " @ Location @ " - player loc: " @ PC.Pawn.Location);
 			}
 
 			// Clear path constraints and restore previous path search type
-			KFPC.Pawn.ClearConstraints();
-			KFPC.Pawn.PathSearchType = OldSearchType;
+			PC.Pawn.ClearConstraints();
+			PC.Pawn.PathSearchType = OldSearchType;
 		}
 
 		// This timer only needs to run once, not on all controllers

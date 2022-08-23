@@ -20,9 +20,6 @@ var(Animations) const editconst	array<name>	LeftFireSightedAnims;
 /** A muzzle flash instance for left weapon */
 var KFMuzzleFlash LeftMuzzleFlash;
 
-/** A reference to the left muzzle flash template */
-var(Attachments) const KFMuzzleFlash LeftMuzzleFlashTemplate;
-
 /** Holds an offest for spawning protectile effects for left weapon */
 var() vector LeftFireOffset;
 
@@ -57,8 +54,8 @@ var(Animations) const editconst name LeftFireLastSightedAnim;
 var(Animations) const editconst name FireLastSightedAnim_Alt;
 var(Animations) const editconst name LeftFireLastSightedAnim_Alt;
 
-const ReloadEmptyHalfAnim = 'Reload_Empty_Half';
-const ReloadEmptyHalfEliteAnim = 'Reload_Empty_Half_Elite';
+const ReloadOneEmptyAnim = 'Reload_Empty_Half';
+const ReloadOneEmptyEliteAnim = 'Reload_Empty_Half_Elite';
 
 /*********************************************************************************************
  * @name	Revolver vars
@@ -121,8 +118,8 @@ simulated function AttachMuzzleFlash()
 	{
 		if (MuzzleFlashTemplate != None)
 		{
-			LeftMuzzleFlash = new(self) Class'KFMuzzleFlash'(LeftMuzzleFlashTemplate);
-			LeftMuzzleFlash.AttachMuzzleFlash(MySkelMesh);
+			LeftMuzzleFlash = new(self) Class'KFMuzzleFlash'(MuzzleFlashTemplate);
+			LeftMuzzleFlash.AttachMuzzleFlash(MySkelMesh, 'MuzzleFlash_L', 'ShellEject_L');
 		}
 	}
 }
@@ -287,6 +284,22 @@ simulated state Reloading
 			ResetCylinderLeft();
 		}
 	}
+
+	simulated function byte GetWeaponStateId()
+	{
+		local KFPerk Perk;
+		local bool bTacticalReload;
+
+		Perk = GetPerk();
+		bTacticalReload = (Perk != None && Perk.GetUsingTactialReload(self));
+
+		if( AmmoCount[0] == 1 )
+		{
+			return bTacticalReload ? WEP_ReloadDualsOneEmpty_Elite : WEP_ReloadDualsOneEmpty;
+		}
+
+		return super.GetWeaponStateId();
+	}
 }
 
 /** Returns animation to play based on reload type and status */
@@ -295,7 +308,7 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 	if( AmmoCount[0] == 1 )
 	{
 		// if one gun is empty (always the right), play our half empty reload
-		return bTacticalReload ? ReloadEmptyHalfEliteAnim : ReloadEmptyHalfAnim;
+		return bTacticalReload ? ReloadOneEmptyEliteAnim : ReloadOneEmptyAnim;
 	}
 	else
 	{

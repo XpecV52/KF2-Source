@@ -18,10 +18,10 @@ defaultproperties
 	EffectGroup=FXG_Fire
 
 	// physics impact
-	RadialDamageImpulse=3000
-	KDeathUpKick=800
+	RadialDamageImpulse=2000//3000
+	GibImpulseScale=0.15
+	KDeathUpKick=1000
 	KDeathVel=300
-	KDamageImpulse=3000
 
 	KnockdownPower=150
 	StumblePower=400

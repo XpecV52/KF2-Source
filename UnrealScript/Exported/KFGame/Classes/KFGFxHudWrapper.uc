@@ -134,6 +134,12 @@ event DrawHUD()
 		DrawActorOverlays(Viewpoint, ViewRotation);
 	}*/
 
+    // Don't draw canvas HUD in cinematic mode
+    if( KFPlayerOwner != none && KFPlayerOwner.bCinematicMode )
+    {
+        return;
+    }
+
 	if ( bCrosshairOnFriendly )
 	{
 		// verify that crosshair trace might hit friendly

@@ -643,10 +643,11 @@ defaultproperties
       SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerPatriarch_MissileAttack'
       SpecialMoveClasses(27)=Class'kfgamecontent.KFSM_PlayerPatriarch_Heal'
       SpecialMoveClasses(28)=Class'kfgamecontent.KFSM_PlayerPatriarch_MortarAttack'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=None
       SpecialMoveClasses(31)=None
-      SpecialMoveClasses(32)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(32)=None
+      SpecialMoveClasses(33)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedPatriarch:SpecialMoveHandler_0'
    End Object

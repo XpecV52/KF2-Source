@@ -81,7 +81,8 @@ const KFID_ReduceHightPitchSounds = 162;
 const KFID_ShowConsoleCrossHair = 163;
 const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
-#linenumber 21
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;#linenumber 21
 
 enum EItemType
 {
@@ -404,10 +405,10 @@ function SetTraderItemDetails(int ItemIndex)
 	SelectedList = TL_Shop;
     if (ItemDetails != none && ShopContainer != none)
     {
-    	if (MyKFPC.GetPurchaseHelper().ShopWeaponList.length >= 0 && ItemIndex < MyKFPC.GetPurchaseHelper().ShopWeaponList.length)
+    	if (MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.length >= 0 && ItemIndex < MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.length)
     	{
 			SelectedItemIndex = ItemIndex;
-			SelectedItem = MyKFPC.GetPurchaseHelper().ShopWeaponList[ItemIndex];
+			SelectedItem = MyKFPC.GetPurchaseHelper().TraderItems.SaleItems[ItemIndex];
 
 			bCanAfford = MyKFPC.GetPurchaseHelper().GetCanAfford( MyKFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(SelectedItem) );
 			bCanCarry = MyKFPC.GetPurchaseHelper().CanCarry( SelectedItem );
@@ -481,7 +482,7 @@ function OnPerkChanged(int PerkIndex)
 	{
 		CurrentFilterIndex = PerkIndex;
 		RefreshShopItemList(CurrentTab, CurrentFilterIndex);
-	}
+	}	
 }
 
 function RefreshItemComponents(optional bool bInitOwnedItems=false)
@@ -522,19 +523,19 @@ function RefreshShopItemList( TabIndices TabIndex, byte FilterIndex )
 		switch (TabIndex)
 		{
 			case (TI_Perks):
-				ShopContainer.RefreshWeaponListByPerk(FilterIndex, MyKFPC.GetPurchaseHelper().ShopWeaponList);
+				ShopContainer.RefreshWeaponListByPerk(FilterIndex, MyKFPC.GetPurchaseHelper().TraderItems.SaleItems);
 				FilterContainer.SetPerkFilterData(FilterIndex);
 			break;
 			case (TI_Type):
-				ShopContainer.RefreshItemsByType(FilterIndex, MyKFPC.GetPurchaseHelper().ShopWeaponList);
+				ShopContainer.RefreshItemsByType(FilterIndex, MyKFPC.GetPurchaseHelper().TraderItems.SaleItems);
 				FilterContainer.SetTypeFilterData(FilterIndex);
 			break;
 			case (TI_Favorites):
-				ShopContainer.RefreshFavoriteItems(MyKFPC.GetPurchaseHelper().ShopWeaponList);
+				ShopContainer.RefreshFavoriteItems(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems);
 				FilterContainer.ClearFilters();
 			break;
 			case (TI_All):
-				ShopContainer.RefreshAllItems(MyKFPC.GetPurchaseHelper().ShopWeaponList);
+				ShopContainer.RefreshAllItems(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems);
 				FilterContainer.ClearFilters();
 			break;
 		}
@@ -543,9 +544,9 @@ function RefreshShopItemList( TabIndices TabIndex, byte FilterIndex )
 
 		if(SelectedList == TL_Shop)
 		{
-			if( SelectedItemIndex >= MyKFPC.GetPurchaseHelper().ShopWeaponList.length )
+			if( SelectedItemIndex >= MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.length )
 			{
-				SelectedItemIndex = MyKFPC.GetPurchaseHelper().ShopWeaponList.length - 1;
+				SelectedItemIndex = MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.length - 1;
 			}
 
 			SetTraderItemDetails(SelectedItemIndex);
@@ -611,10 +612,10 @@ function Callback_BuyOrSellItem()
 	{
 		if (SelectedList == TL_Shop)
 		{
-			ShopItem = MyKFPC.GetPurchaseHelper().ShopWeaponList[SelectedItemIndex];
+			ShopItem = MyKFPC.GetPurchaseHelper().TraderItems.SaleItems[SelectedItemIndex];
 
 			MyKFPC.GetPurchaseHelper().PurchaseWeapon(ShopItem);
-			SetNewSelectedIndex(MyKFPC.GetPurchaseHelper().ShopWeaponList.length);
+			SetNewSelectedIndex(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.length);
 	    	SetTraderItemDetails(SelectedItemIndex);
 	    	ShopContainer.ActionScriptVoid("itemBought");
 		}
@@ -632,7 +633,7 @@ function Callback_BuyOrSellItem()
 	}
 	else if( SelectedList == TL_Shop )
 	{
-		ShopItem = MyKFPC.GetPurchaseHelper().ShopWeaponList[SelectedItemIndex];
+		ShopItem = MyKFPC.GetPurchaseHelper().TraderItems.SaleItems[SelectedItemIndex];
 		
 		MyKFPC.PlayTraderSelectItemDialog( !MyKFPC.GetPurchaseHelper().GetCanAfford( MyKFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(ShopItem) ), !MyKFPC.GetPurchaseHelper().CanCarry( ShopItem ) );
 	}
@@ -643,10 +644,10 @@ function Callback_FavoriteItem()
 {
 	if (SelectedList == TL_Shop)
 	{
-		ToggleFavorite(MyKFPC.GetPurchaseHelper().ShopWeaponList[SelectedItemIndex].ClassName);
+		ToggleFavorite(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems[SelectedItemIndex].ClassName);
 		if (CurrentTab == TI_Favorites)
 		{
-			SetNewSelectedIndex(MyKFPC.GetPurchaseHelper().ShopWeaponList.length);
+			SetNewSelectedIndex(MyKFPC.GetPurchaseHelper().TraderItems.SaleItems.length);
 		}
 		SetTraderItemDetails(SelectedItemIndex);
 	}
@@ -794,8 +795,8 @@ function Callback_Close()
 
 defaultproperties
 {
-   LastDefaultItemInfo=(AltTraderFilter=FT_None)
-   LastItemInfo=(DefaultItem=(AltTraderFilter=FT_None))
+   LastDefaultItemInfo=(AltTraderFilter=FT_None,ItemId=-1)
+   LastItemInfo=(DefaultItem=(AltTraderFilter=FT_None,ItemId=-1))
    ExitMenuString="EXIT MENU"
    SubWidgetBindings(0)=(WidgetName="GameInfoContainer",WidgetClass=Class'KFGame.KFGFxTraderContainer_GameInfo')
    SubWidgetBindings(1)=(WidgetName="FilterContainer",WidgetClass=Class'KFGame.KFGFxTraderContainer_Filter')

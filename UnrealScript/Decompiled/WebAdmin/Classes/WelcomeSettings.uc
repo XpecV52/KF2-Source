@@ -30,7 +30,7 @@ function bool advSaveSettings(WebRequest Request, WebAdminMessages Messages)
     Class'KFGameInfo'.default.ClanMottoColor = Class'WebAdminUtils'.static.HTMLColorToColor(Request.GetVariable("ClanMottoColor", ""));
     Class'KFGameInfo'.default.ServerMOTD = Repl(Repl(Request.GetVariable("ServerMOTD", ""), Chr(10), "@nl@"), Chr(13), "");
     Class'KFGameInfo'.default.ServerMOTDColor = Class'WebAdminUtils'.static.HTMLColorToColor(Request.GetVariable("ServerMOTDColor", ""));
-    Class'KFGameInfo'.default.WebsiteLink = Request.GetVariable("WebSiteLink", "");
+    Class'KFGameInfo'.default.WebsiteLink = Request.GetVariable("WebLink", "");
     Class'KFGameInfo'.default.WebLinkColor = Class'WebAdminUtils'.static.HTMLColorToColor(Request.GetVariable("WebLinkColor", ""));
     Class'KFGameInfo'.static.StaticSaveConfig();
     if(GameInfo != none)

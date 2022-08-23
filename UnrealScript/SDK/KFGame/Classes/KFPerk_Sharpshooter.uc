@@ -132,7 +132,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 		KFW = GetWeaponFromDamageCauser( DamageCauser );
 	}
 
-	if( (KFW != none && IsWeaponOnPerk(KFW)) || (DamageType != none && IsDamageTypeOnPerk(DamageType)) )
+	if( (KFW != none && IsWeaponOnPerk( KFW,, self.class )) || (DamageType != none && IsDamageTypeOnPerk(DamageType)) )
 	{
 		if( MyKFPM != none && HitZoneIdx == HZI_HEAD )
 		{
@@ -193,7 +193,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
  */
 simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
 {
-	if( IsTriggerActive() && IsWeaponOnPerk(KFW) )
+	if( IsTriggerActive() && IsWeaponOnPerk( KFW,, self.class ) )
 	{
 		`QALog( "(Trigger)" @ KFW @ GetPercentage( InRate, ( InRate - InRate * GetSkillValue( PerkSkills[ESharpshooterTrigger] ) ) ), bLogPerk );
 		InRate -= InRate * GetSkillValue( PerkSkills[ESharpshooterTrigger] );
@@ -226,7 +226,7 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 {
 	CurrentRecoilModifier -= CurrentRecoilModifier * GetPassiveValue( Recoil, CurrentLevel );
 
-	if( GetScopedActive(KFW) && IsWeaponOnPerk(KFW) )
+	if( GetScopedActive(KFW) && IsWeaponOnPerk( KFW,, self.class ) )
 	{
 		`QALog( "(Scoped)" @ KFW @ GetPercentage( CurrentRecoilModifier, CurrentRecoilModifier - CurrentRecoilModifier * GetSkillValue( PerkSkills[ESharpshooterScoped] ) ), bLogPerk );
 		CurrentRecoilModifier -= CurrentRecoilModifier * GetSkillValue( PerkSkills[ESharpshooterScoped] );
@@ -259,7 +259,7 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 {
 	local float TempMaxSpareAmmoAmount;
 
-	if( IsAmmoPouchActive() && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClass ) )
+	if( IsAmmoPouchActive() && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClasses, self.class ) )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
 		TempMaxSpareAmmoAmount += TempMaxSpareAmmoAmount * GetSkillValue( PerkSkills[ESharpshooterAmmoPouch] );
@@ -310,7 +310,7 @@ event Destroyed()
  */
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
-	`QALog( "Tactical Reload Active =" @ (IsTacticalReloadActive() && IsWeaponOnPerk( KFW )), bLogPerk );
+	`QALog( "Tactical Reload Active =" @ (IsTacticalReloadActive() && IsWeaponOnPerk( KFW,, self.class )), bLogPerk );
 	return IsTacticalReloadActive() && (IsWeaponOnPerk( KFW ) || IsBackupWeapon( KFW ));
 }
 
@@ -364,7 +364,7 @@ simulated function bool IsTriggerActive()
  */
 simulated function bool IsCrouchAimActive( KFWeapon W )
 {
-	return PerkSkills[ESharpshooterCrouchAim].bActive && CheckOwnerPawn() && OwnerPawn.bIsCrouched && IsWeaponOnPerk(W);
+	return PerkSkills[ESharpshooterCrouchAim].bActive && CheckOwnerPawn() && OwnerPawn.bIsCrouched && IsWeaponOnPerk( W,, self.class );
 }
 
 /**
@@ -534,14 +534,14 @@ reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, o
 		case 4:	
 			if( !bMissed )
 			{
-				OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShot');
+				//OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShot');
 				TempAkEvent = RhythmMethodSoundHit;
 			}
 			break;
 		case 5:
 			if( !bMissed )
 			{
-				OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShotPing');
+				//OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShotPing');
 				TempAkEvent = RhythmMethodSoundTop;
 				i = 6;
 			}
@@ -627,7 +627,7 @@ static function bool IsDamageTypeOnPerk( class<KFDamageType> KFDT )
  *
  * @return true/false
  */
-static simulated function bool IsWeaponOnPerk( KFWeapon W, optional class<KFPerk> WeaponPerkClass )
+static simulated function bool IsWeaponOnPerk( KFWeapon W, optional array < class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass )
 {
 	if( W != none && default.AdditionalOnPerkWeaponNames.Find( W.class.name ) != INDEX_NONE )
 	{
@@ -660,7 +660,12 @@ DefaultProperties
 
 	AdditionalOnPerkWeaponNames(0)="KFWeap_Pistol_9mm"
    	AdditionalOnPerkWeaponNames(1)="KFWeap_Pistol_Dual9mm"
+   	AdditionalOnPerkWeaponNames(2)="KFWeap_Revolver_Rem1858"
+   	AdditionalOnPerkWeaponNames(3)="KFWeap_Revolver_SW500"
 	AdditionalOnPerkDTNames(0)="KFDT_Ballistic_9mm"
+	AdditionalOnPerkDTNames(1)="KFDT_Ballistic_SW500"
+	AdditionalOnPerkDTNames(2)="KFDT_Ballistic_Rem1858"
+
 
    	HeadshotDamage=(Name="Headshot Damage",Increment=0.01f,Rank=0,StartingValue=0.0f,MaxValue=0.25f)
    	Recoil=(Name="Recoil",Increment=0.01f,Rank=0,StartingValue=0.0f,MaxValue=0.25f)

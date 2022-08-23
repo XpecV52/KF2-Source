@@ -75,25 +75,30 @@ simulated state WeaponBurstFiring
 			PlayFiringSound(CurrentFireMode);
 		}
 
-		if( Instigator != none && Instigator.IsFirstPerson() )
+		if( Instigator != none )
 		{
-			if ( !bPlayingLoopingFireAnim && (FireModeNum != ALTFIRE_FIREMODE || (FireModeNum == ALTFIRE_FIREMODE &&
-				!bBurstPlayedFireEffects)) )
+			UpdateWeaponAttachmentAnimRate( GetThirdPersonAnimRate() );
+
+			if( Instigator.IsFirstPerson() )
 			{
-				WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
-
-				if ( WeaponFireAnimName != '' )
+				if ( !bPlayingLoopingFireAnim && (FireModeNum != ALTFIRE_FIREMODE || (FireModeNum == ALTFIRE_FIREMODE &&
+					!bBurstPlayedFireEffects)) )
 				{
-					PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),,FireTweenTime);
+					WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
+
+					if ( WeaponFireAnimName != '' )
+					{
+						PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),,FireTweenTime);
+					}
 				}
+
+				HandleRecoil();
+
+				ShakeView();
+
+				// Start muzzle flash effect
+				CauseMuzzleFlash(FireModeNum);
 			}
-
-			HandleRecoil();
-
-			ShakeView();
-
-			// Start muzzle flash effect
-			CauseMuzzleFlash(FireModeNum);
 		}
 
 		bBurstPlayedFireEffects = true;
@@ -226,7 +231,7 @@ defaultproperties
    RecoilISMaxPitchLimit=375
    RecoilISMinPitchLimit=65460
    IronSightMeshFOVCompensationScale=2.500000
-   AssociatedPerkClass=Class'KFGame.KFPerk_Commando'
+   AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Commando'
    FiringStatesArray(1)="WeaponBurstFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

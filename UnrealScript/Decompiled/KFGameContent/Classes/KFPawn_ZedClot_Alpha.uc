@@ -9,117 +9,18 @@ class KFPawn_ZedClot_Alpha extends KFPawn_ZedClot
     config(Game)
     hidecategories(Navigation);
 
-var protected repnotify bool bIsSpecialAlpha;
-var bool bWasSelfRally;
-var protected float SelfRallyDealtDamageModifier;
-var protected float SelfRallyTakenDamageModifier;
+var class<KFPawn_Monster> SpecialAlphaPawnClass;
 
-replication
+static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
-     if(bNetInitial)
-        bIsSpecialAlpha;
-}
+    local WorldInfo WI;
 
-simulated event ReplicatedEvent(name VarName)
-{
-    if(VarName == 'bIsSpecialAlpha')
+    WI = Class'WorldInfo'.static.GetWorldInfo();
+    if(FRand() < class<KFDifficulty_ClotAlpha>(default.DifficultySettings).static.GetSpecialAlphaChance(KFGameReplicationInfo(WI.GRI)))
     {
-        UpdateBodyMIC();
-        return;
+        return default.SpecialAlphaPawnClass;
     }
-    super(KFPawn_Monster).ReplicatedEvent(VarName);
-}
-
-simulated event PostBeginPlay()
-{
-    local class<KFDifficulty_ClotAlpha> MyDifficultySettings;
-    local KFGameReplicationInfo KFGRI;
-
-    super(KFPawn_Monster).PostBeginPlay();
-    if(bIsSpecialAlpha)
-    {
-        MyDifficultySettings = class<KFDifficulty_ClotAlpha>(DifficultySettings);
-        if(MyDifficultySettings != none)
-        {
-            KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-            if(KFGRI != none)
-            {
-                SelfRallyDealtDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GameDifficulty].SelfDealtDamageModifier;
-                SelfRallyTakenDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GameDifficulty].SelfTakenDamageModifier;
-            }
-        }
-    }
-}
-
-event PossessedBy(Controller C, bool bVehicleTransition)
-{
-    local KFAIController_ZedClot_Alpha AlphaController;
-
-    super(KFPawn_Monster).PossessedBy(C, bVehicleTransition);
-    AlphaController = KFAIController_ZedClot_Alpha(MyKFAIC);
-    if(AlphaController != none)
-    {
-        AlphaController.InitRallySettings();
-        if(AlphaController.IsSpecialAlpha())
-        {
-            bIsSpecialAlpha = true;
-            if(WorldInfo.NetMode != NM_DedicatedServer)
-            {
-                UpdateBodyMIC();
-            }
-        }
-    }
-}
-
-simulated event bool UsePlayerControlledZedSkin()
-{
-    return bIsSpecialAlpha || super(KFPawn_Monster).UsePlayerControlledZedSkin();
-}
-
-protected simulated function UpdateBodyMIC()
-{
-    if((GetCharacterMonsterInfo()) != none)
-    {
-        CharacterMICs[0].SetParent(GetCharacterMonsterInfo().PlayerControlledSkins[0]);
-    }
-}
-
-simulated function Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem AltRallyEffect, name AltEffectBoneNames[2], Vector AltEffectOffset, optional bool bSkipEffects)
-{
-    bSkipEffects = false;
-    super(KFPawn_Monster).Rally(RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects);
-    if(RallyInstigator == self)
-    {
-        bWasSelfRally = true;        
-    }
-    else
-    {
-        bWasSelfRally = false;
-    }
-}
-
-simulated function int GetRallyBoostDamage(int NewDamage)
-{
-    if(bWasSelfRally && SelfRallyDealtDamageModifier > 0)
-    {
-        return int(float(NewDamage) * ((IsTimerActive('Timer_EndRallyBoost')) ? SelfRallyDealtDamageModifier : 1));        
-    }
-    else
-    {
-        return super(KFPawn_Monster).GetRallyBoostDamage(NewDamage);
-    }
-}
-
-simulated function int GetRallyBoostResistance(int NewDamage)
-{
-    if(bWasSelfRally && SelfRallyTakenDamageModifier > 0)
-    {
-        return int(float(NewDamage) * ((IsTimerActive('Timer_EndRallyBoost')) ? SelfRallyTakenDamageModifier : 1));        
-    }
-    else
-    {
-        return GetRallyBoostDamage(NewDamage);
-    }
+    return super(KFPawn_Monster).GetAIPawnClassToSpawn();
 }
 
 static function int GetTraderAdviceID()
@@ -129,6 +30,7 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
+    SpecialAlphaPawnClass=Class'KFPawn_ZedClot_AlphaKing'
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Alpha_Archetype'
     GrabAttackFrequency=0.33
     ParryResistance=0

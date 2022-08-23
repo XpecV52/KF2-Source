@@ -12,22 +12,17 @@ class KFDifficulty_Crawler extends KFMonsterDifficultyInfo
 /** Chances, by difficulty, to spawn as a special crawler */
 var array<float> ChanceToSpawnAsSpecial;
 
-static function float GetSpecialCrawlerChance( KFPawn_ZedCrawler CrawlerPawn , KFGameReplicationInfo KFGRI )
+static function float GetSpecialCrawlerChance( KFGameReplicationInfo KFGRI )
 {
 	if( KFGRI.bVersusGame )
 	{
-		if( CrawlerPawn.bVersusZed )
-		{
-			return 0.f;
-		}
-
 		return 0.f;
 	}
 	
 
-	if( default.bForceSpecialSpawn )
-		return 1.f;
-	else
+
+
+
 
 	return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
 }

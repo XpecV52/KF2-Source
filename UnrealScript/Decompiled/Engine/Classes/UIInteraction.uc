@@ -47,7 +47,7 @@ var const config int DoubleClickPixelTolerance;
 var const transient UIKeyRepeatData MouseButtonRepeatInfo;
 var const config array<config UIAxisEmulationDefinition> ConfiguredAxisEmulationDefinitions;
 var native const transient map<0, 0> AxisEmulationDefinitions;
-var transient UIAxisEmulationData AxisInputEmulation[4];
+var transient UIAxisEmulationData AxisInputEmulation[24];
 
 // Export UUIInteraction::execGetPlayerCount(FFrame&, void* const)
 native static final function int GetPlayerCount();
@@ -78,7 +78,7 @@ function NotifyPlayerAdded(int PlayerIndex, LocalPlayer AddedPlayer)
 {
     local UIAxisEmulationData Empty;
 
-    if((PlayerIndex >= 0) && PlayerIndex < 4)
+    if((PlayerIndex >= 0) && PlayerIndex < 24)
     {
         Empty.CurrentRepeatKey = 'None';
         AxisInputEmulation[PlayerIndex] = Empty;
@@ -98,7 +98,7 @@ function NotifyPlayerRemoved(int PlayerIndex, LocalPlayer RemovedPlayer)
     local int PlayerCount, NextPlayerIndex, I;
     local UIAxisEmulationData Empty;
 
-    if((PlayerIndex >= 0) && PlayerIndex < 4)
+    if((PlayerIndex >= 0) && PlayerIndex < 24)
     {
         PlayerCount = GetPlayerCount();
         I = PlayerIndex;
@@ -205,7 +205,7 @@ static final function int GetLoggedInPlayerCount(optional bool bRequireOnlineLog
     ControllerId = 0;
     J0x0C:
 
-    if(ControllerId < 4)
+    if(ControllerId < 24)
     {
         if(IsLoggedIn(ControllerId, bRequireOnlineLogin))
         {
@@ -228,7 +228,7 @@ static final function int GetNumGuestsLoggedIn()
         ControllerId = 0;
         J0x7A:
 
-        if(ControllerId < 4)
+        if(ControllerId < 24)
         {
             if(OnlineSub.PlayerInterface.IsGuestLogin(byte(ControllerId)))
             {
@@ -266,7 +266,7 @@ static final function int GetConnectedGamepadCount(optional array<bool> Controll
     I = 0;
     J0x0C:
 
-    if(I < 4)
+    if(I < 24)
     {
         if(I < ControllerConnectionStatusOverrides.Length)
         {
@@ -338,4 +338,24 @@ defaultproperties
     AxisInputEmulation[1]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
     AxisInputEmulation[2]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
     AxisInputEmulation[3]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[4]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[5]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[6]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[7]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[8]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[9]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[10]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[11]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[12]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[13]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[14]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[15]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[16]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[17]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[18]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[19]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[20]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[21]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[22]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
+    AxisInputEmulation[23]=(bEnabled=true,CurrentRepeatKey=None,NextRepeatTime=none)
 }

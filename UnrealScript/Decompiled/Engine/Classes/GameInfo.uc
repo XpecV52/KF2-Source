@@ -743,11 +743,16 @@ function RemoveMutator(Mutator MutatorToRemove)
 
 }
 
+function string CheckNextMap(string NextMap)
+{
+    return NextMap;
+}
+
 function ProcessServerTravel(string URL, optional bool bAbsolute)
 {
     local PlayerController LocalPlayer;
     local bool bSeamless;
-    local string NextMap;
+    local string NextMap, EncodedPlayerName;
     local Guid NextMapGuid;
     local int OptionStart;
 
@@ -770,13 +775,24 @@ function ProcessServerTravel(string URL, optional bool bAbsolute)
             NextMap = Left(URL, OptionStart);
         }
     }
+    NextMap = CheckNextMap(NextMap);
+    if(OptionStart == -1)
+    {
+        URL = NextMap;        
+    }
+    else
+    {
+        URL = NextMap $ Right(URL, Len(URL) - OptionStart);
+    }
     NextMapGuid = GetPackageGuid(name(NextMap));
     LocalPlayer = ProcessClientTravel(URL, NextMapGuid, bSeamless, bAbsolute);
     LogInternal("ProcessServerTravel:" @ URL);
     WorldInfo.NextURL = URL;
     if((WorldInfo.NetMode == NM_ListenServer) && LocalPlayer != none)
-    {        
-        WorldInfo.NextURL $= ((((((("?Team=" $ LocalPlayer.GetDefaultURL("Team")) $ "?Name=") $ LocalPlayer.GetDefaultURL("Name")) $ "?Class=") $ LocalPlayer.GetDefaultURL("Class")) $ "?Character=") $ LocalPlayer.GetDefaultURL("Character"));
+    {
+        EncodedPlayerName = LocalPlayer.GetDefaultURL("Name");
+        Class'GameEngine'.static.EncodeURLString(EncodedPlayerName);        
+        WorldInfo.NextURL $= ((((((("?Team=" $ LocalPlayer.GetDefaultURL("Team")) $ "?Name=") $ EncodedPlayerName) $ "?Class=") $ LocalPlayer.GetDefaultURL("Class")) $ "?Character=") $ LocalPlayer.GetDefaultURL("Character"));
     }
     if(AccessControl != none)
     {
@@ -897,6 +913,8 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
     }
     bPerfTesting = (ParseOption(Options, "AutomatedPerfTesting")) ~= "1";
     bSpectator = bPerfTesting || (ParseOption(Options, "SpectatorOnly")) ~= "1";
+    InName = ParseOption(Options, "Name");
+    Class'GameEngine'.static.DecodeURLString(InName);
     InName = Left(ParseOption(Options, "Name"), 32);
     InTeam = byte(GetIntOption(Options, "Team", 255));
     InPassword = ParseOption(Options, "Password");
@@ -2898,6 +2916,7 @@ defaultproperties
     GameInfoClassAliases(0)=(ShortName="BenchMark",GameClassName="KFGameContent.KFGameInfo_BenchMark")
     GameInfoClassAliases(1)=(ShortName="Survival",GameClassName="KFGameContent.KFGameInfo_Survival")
     GameInfoClassAliases(2)=(ShortName="Versus",GameClassName="KFGameContent.KFGameInfo_VersusSurvival")
+    GameInfoClassAliases(3)=(ShortName="Tutorial",GameClassName="KFGameContent.KFGameInfo_Tutorial")
     DefaultGameType="KFGameContent.KFGameInfo_Survival"
     Components=none
     CollisionType=ECollisionType.COLLIDE_CustomDefault

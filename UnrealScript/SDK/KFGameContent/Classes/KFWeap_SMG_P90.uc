@@ -104,5 +104,5 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=true
 
-	AssociatedPerkClass=class'KFPerk_Swat'
+	AssociatedPerkClasses(0)=class'KFPerk_Swat'
 }

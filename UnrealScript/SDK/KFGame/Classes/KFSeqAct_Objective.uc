@@ -8,7 +8,7 @@
 // - Christian "schneidzekk" Schneider
 //=============================================================================
 class KFSeqAct_Objective extends SequenceAction
-	native;
+	native(Sequence);
 
 enum EObjectiveDifficulty
 {

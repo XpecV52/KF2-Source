@@ -14,6 +14,7 @@ package
             this.__setProp_headButton_GearMenuMC_Head_0();
             this.__setProp_bioTextArea_GearMenuMC_Bio_0();
             this.__setProp_characterButton_GearMenuMC_Character_0();
+            this.__setProp_emoteButton_GearMenuMC_Character_0();
         }
         
         function __setProp_attachmentButton_GearMenuMC_Accessory_0() : *
@@ -161,6 +162,35 @@ package
             try
             {
                 characterButton["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_emoteButton_GearMenuMC_Character_0() : *
+        {
+            try
+            {
+                emoteButton["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            emoteButton.autoRepeat = false;
+            emoteButton.autoSize = "none";
+            emoteButton.data = "";
+            emoteButton.enabled = true;
+            emoteButton.enableInitCallback = false;
+            emoteButton.focusable = true;
+            emoteButton.infoString = "INFO";
+            emoteButton.label = "TITLE";
+            emoteButton.selected = false;
+            emoteButton.toggle = false;
+            emoteButton.visible = true;
+            try
+            {
+                emoteButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

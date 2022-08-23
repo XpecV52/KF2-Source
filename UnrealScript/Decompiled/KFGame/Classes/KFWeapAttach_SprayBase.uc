@@ -237,11 +237,11 @@ protected simulated function TurnOffFireSpray()
     bFireSpraying = false;
 }
 
-simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
+simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
 {
     local bool bResult;
 
-    bResult = super.ThirdPersonFireEffects(HitLocation, P);
+    bResult = super.ThirdPersonFireEffects(HitLocation, P, ThirdPersonAnimRateByte);
     if(P.ActorEffectIsRelevant(P, false, 15000, 2000))
     {
         TurnOnFireSpray();

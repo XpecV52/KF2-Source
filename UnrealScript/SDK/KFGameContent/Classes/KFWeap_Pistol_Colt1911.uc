@@ -96,7 +96,7 @@ defaultproperties
 	bDropOnDeath=true
 	WeaponSelectTexture=Texture2D'WEP_UI_M1911_TEX.UI_WeaponSelect_M1911Colt'
 	bIsBackupWeapon=false
-	AssociatedPerkClass=class'KFPerk_Gunslinger'
+	AssociatedPerkClasses(0)=class'KFPerk_Gunslinger'
 
 	DualClass=class'KFWeap_Pistol_DualColt1911'
 

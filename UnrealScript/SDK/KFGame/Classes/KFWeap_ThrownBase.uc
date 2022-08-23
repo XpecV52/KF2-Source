@@ -131,6 +131,12 @@ simulated function bool ShouldAutoReload( byte FireModeNum )
 	return false;
 }
 
+/** Don't sprint until we've finished our throw and reload cycle */
+simulated function bool AllowSprinting()
+{
+	return !IsTimerActive( nameOf(PerformArtificialReload) );
+}
+
 /*********************************************************************************************
  * State Active
  * A Weapon this is being held by a pawn should be in the active state.  In this state,
@@ -142,13 +148,15 @@ simulated state Active
 {
 	simulated event BeginState( name PreviousStateName )
 	{
-		super.BeginState( PreviousStateName );
-
 		// Reload immediately after coming back to active state if we managed to pick up ammo while sprinting
 		if( PreviousStateName == 'WeaponSprinting' && !HasAmmo(THROW_FIREMODE) && HasSpareAmmo() )
 		{
+			// If there was a previous reload timer active for whatever reason, cancel it
+			ClearTimer( nameOf(PerformArtificialReload) );
 			PerformArtificialReload();
 		}
+
+		super.BeginState( PreviousStateName );
 	}
 	
 	/** overridden to add "idle last" anims if out of ammo */
@@ -209,11 +217,16 @@ reliable client function ClientNotifyAmmoAddedEmpty()
 {
 	local int IdleIndex;
 
-	IdleIndex = Rand(IdleLastPickupAnims.Length);
-	PlayAnimation(IdleLastPickupAnims[IdleIndex], 0.0, false, 0.2);
-	
-	// time forcereload to when we pull up a new projectile
-	SetTimer( ConsumeSpareAmmoDelay, false, nameof(PerformArtificialReload) );
+	// We only need to do this if ammo is actually empty and we don't already have a pending reload active
+	// @NOTE: We need this in case the weapon state changes before the call gets to the client. -MattF
+	if( !HasAmmo(THROW_FIREMODE) && !IsTimerActive(nameOf(PerformArtificialReload)) )
+	{
+		IdleIndex = Rand(IdleLastPickupAnims.Length);
+		PlayAnimation(IdleLastPickupAnims[IdleIndex], 0.0, false, 0.2);
+		
+		// time forcereload to when we pull up a new projectile
+		SetTimer( ConsumeSpareAmmoDelay - GetFireInterval(THROW_FIREMODE), false, nameof(PerformArtificialReload) );
+	}
 }
 
 /*********************************************************************************************
@@ -279,6 +292,17 @@ simulated function PerformArtificialReload()
 		ServerSyncReload(SpareAmmoCount[0]);
 	}
 `endif
+}
+
+ /** Overridden to ignore reload state changes, so we can still use ServerSendToReload() and ServerSyncReload() */
+simulated function SendToFiringState(byte FireModeNum)
+{
+	if( FireModeNum == RELOAD_FIREMODE )
+	{
+		return;
+	}
+
+	super.SendToFiringState( FireModeNum );
 }
 
 /** Called from KFWeapon.ProjectileFire(), overridden because we call IncrementFlashCount in WeaponThrowing.BeginState */

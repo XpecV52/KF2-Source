@@ -22,6 +22,6 @@ defaultproperties
 	End Object
 
 	// Inventory
-	AssociatedPerkClass=class'KFPerk_Demolitionist'
+	AssociatedPerkClasses(0)=class'KFPerk_Demolitionist'
 	WeaponSelectTexture=Texture2D'WEP_UI_Demo_Knife_TEX.UI_WeaponSelect_DemoKnife'
 }

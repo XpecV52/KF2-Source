@@ -28,6 +28,8 @@ enum ESettingsDataType
     SDT_Float,
     SDT_Blob,
     SDT_DateTime,
+    SDT_UInt32,
+    SDT_UInt64,
     SDT_MAX
 };
 

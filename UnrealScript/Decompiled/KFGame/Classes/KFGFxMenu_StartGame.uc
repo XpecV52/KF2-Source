@@ -74,7 +74,7 @@ var config string TestLobbyOwnerPassword;
 var transient string CurrentConnectMap;
 
 // Export UKFGFxMenu_StartGame::execGetMapList(FFrame&, void* const)
-native function GetMapList(out array<string> MapList);
+native static function GetMapList(out array<string> MapList);
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
@@ -92,7 +92,7 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     if(Class'GameEngine'.static.GetOnlineSubsystem() != none)
     {
         GameInterface = Class'GameEngine'.static.GetOnlineSubsystem().GameInterface;
-        bIsPlayGoRun = !Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled();
+        bIsPlayGoRun = ((NotEqual_InterfaceInterface(Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface, (none))) ? !Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled() : false);
         if(PC.WorldInfo.IsConsoleBuild(8) && bIsPlayGoRun)
         {
             Manager.DelayedOpenPopup(2, 0, Localize("Notifications", "PlayGoBusyTitle", "KFGameConsole"), Localize("Notifications", "PlayGoBusyMessage", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
@@ -180,7 +180,7 @@ function CheckGameFullyInstalled()
         {
             MatchMakingButton.SetBool("enabled", false);
             ServerBrowserButton.SetBool("enabled", false);
-            Manager.TimerHelper.SetTimer(1, false, 'CheckGameFullyInstalled', self);
+            Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(1, false, 'CheckGameFullyInstalled', self);
         }
     }
 }
@@ -190,7 +190,7 @@ native function ReloadSounds();
 
 function SetOverview(optional bool bInitialize)
 {
-    local UniqueNetId AdminId, MyUID;
+    local UniqueNetId AdminId, MyUID, ZeroId;
     local bool bCurrentlyLeader, bCurrentlyInParty;
 
     if(OverviewContainer != none)
@@ -201,7 +201,7 @@ function SetOverview(optional bool bInitialize)
     {
         MyUID = OnlineLobby.GetMyId();
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
-        bCurrentlyLeader = MyUID == AdminId;
+        bCurrentlyLeader = MyUID == AdminId && MyUID != ZeroId;
         bCurrentlyInParty = OnlineLobby.IsInLobby();
     }
     if((((bIsLeader != bCurrentlyLeader) || bCurrentlyInParty != bIsInParty) || bInitialize) || bLeaderInServerBrowser != bLeaderWasInServerBrowser)
@@ -440,7 +440,7 @@ function Callback_OnWhatsNewClicked(int Index)
 
                 if(I < OnlineSub.ItemPropertiesList.Length)
                 {
-                    if(OnlineSub.ItemPropertiesList[I].ProductId == FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId)
+                    if(OnlineSub.ItemPropertiesList[I].ProductID == FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId)
                     {
                         if(OnlineSub.ItemPropertiesList[I].SignedOfferId != "")
                         {
@@ -579,7 +579,7 @@ function Callback_OpenServerBrowser()
     }
 }
 
-function OnCanPlayOnlineCheckComplete(byte LocalUserNum, Engine.OnlineSubsystem.EFeaturePrivilege Privilege, Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel)
+function OnCanPlayOnlineCheckComplete(byte LocalUserNum, Engine.OnlineSubsystem.EFeaturePrivilege Privilege, Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel, bool bDiffersFromHint)
 {
     if(Privilege == 0)
     {
@@ -864,7 +864,7 @@ function ConnectToPlayfabServer(string ServerIP)
     bInParty = ((OnlineLobby != none) && OnlineLobby.IsInLobby()) && OnlineLobby.IsLobbyOwner();
     if(bInParty)
     {
-        OnlineLobby.LobbyJoinServer(ServerIP);
+        PendingResolvedAddress = ServerIP;
     }
     if(bAttemptingServerCreate)
     {        
@@ -882,7 +882,7 @@ function ConnectToPlayfabServer(string ServerIP)
         OpenCommand $= (BuildJoinFiltersRequestURL());
     }
     KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
-    Manager.TimerHelper.SetTimer(float(ServerConnectTimeout), false, 'ServerConnectGiveUp', self);    
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(float(((bAttemptingServerCreate) ? 8 : ServerConnectTimeout)), false, 'ServerConnectGiveUp', self);    
     OpenCommand $= ("?PlayfabPlayerId=" $ Class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId);
     LogInternal("Going to connect with URL:" @ OpenCommand);
     Outer.ConsoleCommand(OpenCommand);
@@ -890,7 +890,7 @@ function ConnectToPlayfabServer(string ServerIP)
 
 event SetServerConnectGiveUpTimer(bool ServerTakover)
 {
-    Manager.TimerHelper.SetTimer(float(((ServerTakover) ? ServerTakeoverTimeout : ServerConnectTimeout)), false, 'ServerConnectGiveUp', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(float(((ServerTakover) ? ServerTakeoverTimeout : ServerConnectTimeout)), false, 'ServerConnectGiveUp', self);
 }
 
 event AddJoinGameCompleteDelegate(OnlineGameSearch LatestGameSearch)
@@ -939,14 +939,21 @@ function bool OnHandshakeComplete(bool bSuccess, string Description, out int Sup
     }
     AttemptingJoin = false;
     KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = None;
-    Manager.TimerHelper.ClearTimer('ServerConnectGiveUp', self);
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('ServerConnectGiveUp', self);
     if(bSuccess)
     {
         if(bLogSearchInfo)
         {
             LogInternal("KFGFxMenu_StartGame.OnHandShakeComplete: LobbyJoinServer" @ PendingResolvedAddress);
         }
-        if(!Class'WorldInfo'.static.IsConsoleBuild())
+        if(Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            if(((OnlineLobby != none) && OnlineLobby.IsInLobby()) && OnlineLobby.IsLobbyOwner())
+            {
+                OnlineLobby.LobbyJoinServer(PendingResolvedAddress);
+            }            
+        }
+        else
         {
             if(Len(LobbyOwnerPassword) > 0)
             {
@@ -962,7 +969,10 @@ function bool OnHandshakeComplete(bool bSuccess, string Description, out int Sup
         {
             LogInternal("KFGFxMenu_StartGame.OnHandShakeComplete:  TryNextServer");
         }
-        GameInterface.DestroyOnlineGame('Game');
+        if(!Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            GameInterface.DestroyOnlineGame('Game');
+        }
         PendingResolvedAddress = "";
         TryNextServer();
     }
@@ -1132,7 +1142,7 @@ event StartOnlineGame()
     else
     {
         bPauseTryingServers = true;
-        Manager.TimerHelper.SetTimer(InitialSearchPause, false, 'UnpauseTryingServers', self);
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(InitialSearchPause, false, 'UnpauseTryingServers', self);
         bSearchingForGame = true;
         OptionsComponent.SetSearching(bSearchingForGame);
     }
@@ -1266,5 +1276,7 @@ defaultproperties
     StockMaps(8)="kf-prison"
     StockMaps(9)="kf-containmentstation"
     StockMaps(10)="kf-hostilegrounds"
+    StockMaps(11)="kf-infernalrealm"
+    StockMaps(12)="kf-zedlanding"
     SubWidgetBindings=/* Array type was not detected. */
 }

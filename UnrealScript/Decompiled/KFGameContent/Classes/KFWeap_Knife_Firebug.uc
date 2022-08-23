@@ -14,7 +14,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Firebug_Knife_TEX.UI_WeaponSelect_FirebugKnife'
     AttachmentArchetype=KFWeaponAttachment'WEP_FireBug_Knife_ARCH.Wep_FirebugKnife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Firebug.MeleeHelper'
-    AssociatedPerkClass=Class'KFGame.KFPerk_Firebug'
+    AssociatedPerkClasses=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         SkeletalMesh=SkeletalMesh'WEP_1P_FireBug_Knife_MESH.Wep_1stP_FirebugKnife_Rig'
         ReplacementPrimitive=none

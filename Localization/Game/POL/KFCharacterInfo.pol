@@ -28,11 +28,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Szwedzki blondyn"
@@ -150,11 +150,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Najczarniejsza czerń"
@@ -219,11 +219,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Oryginalny"
@@ -287,11 +287,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Oryginalny Biały"
@@ -460,11 +460,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
@@ -515,11 +515,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Szary"
@@ -1349,15 +1349,18 @@ AttachmentSkin0="Krwawy"
 Attachment="Krucze oczy Reaper"
 AttachmentSkin0="Czerwona opaska"
 AttachmentSkin1="Biała opaska"
+AttachmentSkin2="Cenny egzemplarz"
 
 [Cosmetic_ReaperRavenHat_ARCH]
 Attachment="Krucza czapka Reaper"
 AttachmentSkin0="Biały"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_ReaperRavenJaw_ARCH]
 Attachment="Krucza szczęka Reaper"
 AttachmentSkin0="Czerwona opaska"
 AttachmentSkin1="Biała opaska"
+AttachmentSkin2="Cenny egzemplarz"
 
 [Cosmetic_ReaperDeadEyes_ARCH]
 Attachment="Martwe oczy Reaper"
@@ -1384,11 +1387,11 @@ AttachmentSkin2="Elitarny czerwony"
 AttachmentSkin3="Elitarny biały"
 AttachmentSkin4="Mark 7"
 AttachmentSkin5="Śnieżny cyfrowy"
-AttachmentSkin6="Desert"
+AttachmentSkin6="Pustynny"
 AttachmentSkin7="Multicam"
-AttachmentSkin8="Hazard"
+AttachmentSkin8="Zagrożenie"
 AttachmentSkin9="Adamant"
-AttachmentSkin10="Bounty Hunter"
+AttachmentSkin10="Łowca nagród"
 
 [Cosmetic_Chivalry_Knight_Helm01_ARCH]
 Attachment="Hełm rycerza"
@@ -1430,11 +1433,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
@@ -1479,11 +1482,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Hełm"
@@ -1540,11 +1543,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [CHR_Ana_Archetype.BodyMesh2]
 BodySkin0="Klasyczny"
@@ -1603,11 +1606,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
@@ -1644,11 +1647,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
@@ -1690,11 +1693,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Ciemny stalowy"
@@ -1864,11 +1867,11 @@ BodySkin2="Elitarny czerwony"
 BodySkin3="Elitarny biały"
 BodySkin4="Mark 7"
 BodySkin5="Śnieżny cyfrowy"
-BodySkin6="Desert"
+BodySkin6="Pustynny"
 BodySkin7="Multicam"
-BodySkin8="Hazard"
+BodySkin8="Zagrożenie"
 BodySkin9="Adamant"
-BodySkin10="Bounty Hunter"
+BodySkin10="Łowca nagród"
 
 [chr_rockabilly_archetype.BodyMesh2]
 BodySkin0="Klasyczny"
@@ -2119,132 +2122,205 @@ AttachmentSkin2="Elegancka szarość"
 AttachmentSkin3="Ciemnoniebieski"
 
 [Cosmetic_MinotaurHelmet_ARCH]
-Attachment="Minotaur Helmet"
-AttachmentSkin0="Agatha"
+Attachment="Hełm minotaura"
+AttachmentSkin0="Agata"
 AttachmentSkin1="Cleese"
 AttachmentSkin2="Jamie"
-AttachmentSkin3="Perceval"
+AttachmentSkin3="Parsifal"
 
 [Cosmetic_SteampunkGasMaskBasic_ARCH]
-Attachment="Steampunk Gas Mask Basic"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="Steampunk. maska zw."
+AttachmentSkin0="Brązowy"
+AttachmentSkin1="Czarny"
 
 [Cosmetic_SteampunkGasMaskOpen_ARCH]
-Attachment="Steampunk Gas Mask Open"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="Otw. steampunkowa maska"
+AttachmentSkin0="Brązowy"
+AttachmentSkin1="Czarny"
 
 [Cosmetic_SteampunkGasMaskClosed_ARCH]
-Attachment="Steampunk Gas Mask Closed"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="Zam. steampunkowa maska"
+AttachmentSkin0="Brązowy"
+AttachmentSkin1="Czarny"
+AttachmentSkin2="Cenny egzemplarz"
 
 [Cosmetic_SteampunkGasMaskFiltered_ARCH]
-Attachment="Steampunk Gas Mask Filtered"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="Steamp. maska filtr."
+AttachmentSkin0="Brązowy"
+AttachmentSkin1="Czarny"
 
 [Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
-Attachment="Steampunk Gas Mask Open Filtered"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="Otw. steamp. maska filtr."
+AttachmentSkin0="Brązowy"
+AttachmentSkin1="Czarny"
 
 [Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
-Attachment="Steampunk Gas Mask Closed Filtered"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
+Attachment="Zam. steamp. maska filtr."
+AttachmentSkin0="Brązowy"
+AttachmentSkin1="Czarny"
 
 [Cosmetic_RebelHelmet_ARCH]
-Attachment="Rebel Helmet"
-AttachmentSkin0="Black"
-AttachmentSkin1="Dark Blue"
-AttachmentSkin2="Dark Green"
-AttachmentSkin3="Dark Red"
-AttachmentSkin4="Light Blue"
-AttachmentSkin5="Light Green"
-AttachmentSkin6="Light Red"
-AttachmentSkin7="Tan"
-AttachmentSkin8="White"
+Attachment="Hełm rebelianta"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Ciemnoniebieski"
+AttachmentSkin2="Ciemnozielony"
+AttachmentSkin3="Ciemnoczerwony"
+AttachmentSkin4="Jasnoniebieski"
+AttachmentSkin5="Jasnozielony"
+AttachmentSkin6="Jasnoczerwony"
+AttachmentSkin7="Jasnobrązowy"
+AttachmentSkin8="Biały"
 
 [Cosmetic_RebelHelmetGogglesDown_ARCH]
-Attachment="Rebel Helmet Goggles Down"
-AttachmentSkin0="Black"
-AttachmentSkin1="Dark Blue"
-AttachmentSkin2="Dark Green"
-AttachmentSkin3="Dark Red"
-AttachmentSkin4="Light Blue"
-AttachmentSkin5="Light Green"
-AttachmentSkin6="Light Red"
-AttachmentSkin7="Tan"
-AttachmentSkin8="White"
+Attachment="Hełm rebel. gogle dół"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Ciemnoniebieski"
+AttachmentSkin2="Ciemnozielony"
+AttachmentSkin3="Ciemnoczerwony"
+AttachmentSkin4="Jasnoniebieski"
+AttachmentSkin5="Jasnozielony"
+AttachmentSkin6="Jasnoczerwony"
+AttachmentSkin7="Jasnobrązowy"
+AttachmentSkin8="Biały"
+AttachmentSkin9="Cenny egzemplarz"
 
 [Cosmetic_RebelHelmetGogglesUp_ARCH]
-Attachment="Rebel Helmet Goggles Up"
-AttachmentSkin0="Black"
-AttachmentSkin1="Dark Blue"
-AttachmentSkin2="Dark Green"
-AttachmentSkin3="Dark Red"
-AttachmentSkin4="Light Blue"
-AttachmentSkin5="Light Green"
-AttachmentSkin6="Light Red"
-AttachmentSkin7="Tan"
-AttachmentSkin8="White"
+Attachment="Hełm rebel. gogle góra"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Ciemnoniebieski"
+AttachmentSkin2="Ciemnozielony"
+AttachmentSkin3="Ciemnoczerwony"
+AttachmentSkin4="Jasnoniebieski"
+AttachmentSkin5="Jasnozielony"
+AttachmentSkin6="Jasnoczerwony"
+AttachmentSkin7="Jasnobrązowy"
+AttachmentSkin8="Biały"
 
 [Cosmetic_JacksCowboyHat_ARCH]
-Attachment="Jack's Cowboy Hat"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Cow Brown"
-AttachmentSkin3="Cow White"
-AttachmentSkin4="White"
+Attachment="Kap. kowbojski Jacka"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Brązowy"
+AttachmentSkin2="Krowi brąz"
+AttachmentSkin3="Krowia biel"
+AttachmentSkin4="Biały"
 
 [Cosmetic_DeepstrikeHelmet_ARCH]
-Attachment="Deepstrike Helmet"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Olive"
-AttachmentSkin4="Red"
-AttachmentSkin5="White"
+Attachment="Hełm Deepstrike"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Zielony"
+AttachmentSkin3="Oliwkowy"
+AttachmentSkin4="Czerwony"
+AttachmentSkin5="Biały"
 
 [Cosmetic_DeepstrikeGoggles_ARCH]
-Attachment="Deepstrike Goggles"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Red"
-AttachmentSkin4="White"
+Attachment="Gogle Deepstrike"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Zielony"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Biały"
 
 [Cosmetic_DeepstrikeMask_ARCH]
-Attachment="Deepstrike Mask"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Red"
-AttachmentSkin4="White"
+Attachment="Maska Deepstrike"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Zielony"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Biały"
 
 [Cosmetic_DeepstrikeHelmetMask_ARCH]
-Attachment="Deepstrike Helmet Mask"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Olive"
-AttachmentSkin4="Red"
-AttachmentSkin5="White"
+Attachment="Maska hełmu Deepstrike"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Zielony"
+AttachmentSkin3="Oliwkowy"
+AttachmentSkin4="Czerwony"
+AttachmentSkin5="Biały"
+AttachmentSkin6="Cenny egzemplarz"
+
+[Cosmetic_DeepstrikeTacticalBackbag_ARCH]
+Attachment="Plecak takt. Deepstrike"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Zielony"
+AttachmentSkin3="Oliwkowy"
+AttachmentSkin4="Czerwony"
+AttachmentSkin5="Biały"
+AttachmentSkin6="Cenny egzemplarz"
 
 [Cosmetic_RebelMask_ARCH]
-Attachment="Rebel Mask"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Red"
-AttachmentSkin4="Tan"
+Attachment="Maska rebelianta"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Zielony"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Jasnobrązowy"
 
 [Cosmetic_RebelNeckWarmer_ARCH]
-Attachment="Rebel Neck Warmer"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Red"
-AttachmentSkin4="Tan"
+Attachment="Komin rebelianta"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Zielony"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Jasnobrązowy"
+
+[LetsGetCrazy] 
+EmoteName="Zaszalejmy"
+
+[ThunderClap]
+EmoteName="Kręć, kręć"
+
+[UncleCharlie] 
+EmoteName="Wujek Charlie"
+
+[WackyWave]
+EmoteName="Zakręcona fala"
+
+[RainingDosh] 
+EmoteName="Deszcz forsy"
+
+[LionUppercut] 
+EmoteName="Lwi hak"
+
+[MatingRitual] 
+EmoteName="Rytuał godowy"
+
+[KickinIt]
+EmoteName="Bez spiny"
+
+[Fireball] 
+EmoteName="Kula ognia"
+
+[Makeitrain]
+EmoteName="Sypnij kasą"
+
+[Fireball_Deluxe]
+EmoteName="Kula ognia+"
+
+[Makeitrain_Deluxe] 
+EmoteName="Sypnij kasą+"
+
+[ThunderClap_Deluxe] 
+EmoteName="Kręć, kręć+"
+
+[UncleCharlie_Deluxe]
+EmoteName="Wujek Charlie+"
+
+[LetsGetCrazy_Deluxe]
+EmoteName="Zaszalejmy+"
+
+[WackyWave_Deluxe]
+EmoteName="Zakręcona fala+"
+
+[RainingDosh_Deluxe] 
+EmoteName="Deszcz forsy+"
+
+[LionUppercut_Deluxe]
+EmoteName="Lwi hak+"
+
+[MatingRitual_Deluxe]
+EmoteName="Rytuał godowy+"
+
+[KickinIt_Deluxe]
+EmoteName="Wykop+"

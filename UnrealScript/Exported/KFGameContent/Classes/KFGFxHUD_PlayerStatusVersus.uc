@@ -25,7 +25,7 @@ function UpdateCharacterName()
 // Overridden to not need human pawns
 function UpdateHealth()
 {
-    if( MyPC != none && MyPC.Pawn == none )
+    if( MyPC == none || MyPC.Pawn == none )
     {
         LastHealth = 0;
         SetInt("playerHealth" , LastHealth);
