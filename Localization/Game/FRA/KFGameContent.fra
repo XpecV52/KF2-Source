@@ -1,4 +1,4 @@
-//NOTES: 
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -379,6 +379,11 @@ ItemName="RPG-7"
 ItemCategory="Explosifs"
 ItemDescription="•Lance une roquette.\n• La roquette explose à l'impact.\n•Ne s'arme qu'à quelques mètres pour que tu ne te fasses pas exploser la cervelle.\n•Attention au retour de flamme !"
 
+[KFWeap_RocketLauncher_Seeker6]
+ItemName="Chercheur 6"
+ItemCategory="Explosifs"
+ItemDescription="•Lance une roquette non guidée.\n•Le tir alternatif propose une visée laser et des roquettes guidées.\n•Une arme polyvalente et explosive qui peut poursuivre et éliminer plusieurs cibles à la fois."
+
 [KFWeap_Pistol_Dual9mm]
 ItemName="Double pistolet 9 mm"
 ItemCategory="Arme de poing"
@@ -475,6 +480,10 @@ ItemName="Kriss SMG"
 ItemCategory="Pistolet mitrailleur"
 ItemDescription="•Mode de tir au choix entre automatique et semi-automatique.\n•Tir alternatif pour changer de mode de tir.\n•Le dernier cri en matière de redistribution de bastos, un bel outil de destruction."
 
+[KFWeap_Rifle_Hemogoblin]
+ItemName="Hemogoblin"
+ItemCategory="Fusil"
+ItemDescription="•Tire une seringue qui draine, ralentit et affaiblit les Zeds. \n•Le mode alternatif tire des fléchettes de guérison pour soigner les coéquipiers\n• Ne permet pas de perdre du poids."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

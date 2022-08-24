@@ -79,6 +79,29 @@ function EnterZedVictoryState()
     GotoState('ZedVictory', 'Begin');
 }
 
+event Possess(Pawn inPawn, bool bVehicleTransition)
+{
+    local KFGameReplicationInfo KFGRI;
+
+    super.Possess(inPawn, bVehicleTransition);
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.WaveNum >= KFGRI.WaveMax)
+    {
+        Class'AICommand_BossTheatrics'.static.DoTheatrics(self, 0);
+    }
+}
+
+state ZedVictory
+{Begin:
+
+    Sleep(0.1);
+    if(MyKFPawn != none)
+    {
+        Class'AICommand_BossTheatrics'.static.DoTheatrics(self, 1, -1);
+    }
+    stop;        
+}
+
 defaultproperties
 {
     bCanTeleportCloser=false

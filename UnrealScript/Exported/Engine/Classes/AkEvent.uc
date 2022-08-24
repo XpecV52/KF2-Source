@@ -24,9 +24,11 @@ var(TW)     const bool    bUseDoppler;
 var(TW)     const bool    bForceHearSoundLocational;
 
 /** Whether this event needs its occlusion updated over time */
-var(TW)     const bool    bNeedsOcclusionUpdates;
+var(TW)     const bool    bNeedsOcclusionUpdates<EditCondition=!bNeverOcclude>;
 /** How often to update occlusion or obstruction on owning component. Zero means never check. */
 var         const float   OcclusionUpdateInterval;
+/** If set, skip occlusion trace for updates (overrides bNeedsOcclusionUpdates) AND the initial audible test */
+var(TW)     const bool    bNeverOcclude;
 
 /** Whether this event is a background music track or not (used to set up exit cue callback) */
 var(TW)     const bool    bIsMusicTrack;

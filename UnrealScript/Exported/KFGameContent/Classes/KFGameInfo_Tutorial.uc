@@ -423,15 +423,12 @@ State TraderOpen
                 }
             }
         }
-        else
-        {
-
-        }
 
         if( MyPC.bClientTraderMenuOpen )
         {
             MyKFGRI.RemainingTime = TimeBetweenWaves;
             MyKFGRI.RemainingMinute = TimeBetweenWaves;
+            ClearTimer(nameof(CloseTraderTimer));
         }
 
         Global.CheckPlayerAction();

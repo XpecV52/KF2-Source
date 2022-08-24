@@ -147,8 +147,8 @@ defaultproperties
     BurstFire3RdAnim=Shoot_Burst
     BurstFire2RdSightedAnim=Shoot_Burst2_Iron
     BurstFire3RdSightedAnim=Shoot_Burst_Iron
-    WeaponFire2RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_S')
-    WeaponFire3RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_S')
+    WeaponFire2RdSnd=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_2RdBurst_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_2RdBurst_S')
+    WeaponFire3RdSnd=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Burst_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Burst_S')
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     BurstAmount=3

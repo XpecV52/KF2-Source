@@ -22,7 +22,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         KFPC = KFPlayerController(KFPOwner.WorldInfo.GetALocalPlayerController());
         if(((KFPC != none) && KFPC.Pawn != none) && KFPC.Pawn.IsAliveAndWell())
         {
-            KFPC.MyGFxHUD.ShowNonCriticalMessage(Repl(VortexGrabTeamWarningMsg, "%x%", KFPOwner.PlayerReplicationInfo.PlayerName));
+            KFPC.myGfxHUD.ShowNonCriticalMessage(Repl(VortexGrabTeamWarningMsg, "%x%", KFPOwner.PlayerReplicationInfo.PlayerName));
         }
     }
 }

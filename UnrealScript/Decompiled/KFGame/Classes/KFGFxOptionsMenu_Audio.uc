@@ -65,6 +65,7 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;
 
 var const localized string SectionNameString;
 var const localized string OptionsString;
@@ -202,7 +203,7 @@ function Callback_ScreenSizePress()
 
 function Callback_CloseMenu()
 {
-    Manager.OpenMenu(5);
+    Manager.OpenMenu(6);
 }
 
 function Callback_ConfigureMicPress()

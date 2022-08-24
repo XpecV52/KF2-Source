@@ -30,7 +30,7 @@ var bool bVersusZed;
 
  /** Path for DLO of the MonsterArch */
 var private const string MonsterArchPath;
-/** 
+/**
  * Default content loaded by this pawn.  Private, use GetCharacterMonsterInfo()
  * NOTE: DO NOT statically reference in defaults as it needs to be loaded dynamically
  */
@@ -44,6 +44,9 @@ var() ViewOffsetData	ThirdPersonViewOffset;
 
 /** Randomized color index from the monster arch if it exists for this zed */
 var int RandomColorIdx;
+
+/** List of static attachments from the character info */
+var array<StaticMeshComponent> StaticAttachList;
 
 /*********************************************************************************************
  * @name	Combat
@@ -147,8 +150,8 @@ var class<KFMonsterDifficultyInfo> DifficultySettings;
  * @name	Player-controlled
 ********************************************************************************************* */
 
-/* 
- * Move list classification used by MoveListGamepadScheme 
+/*
+ * Move list classification used by MoveListGamepadScheme
  * Must be aligned firemode
  * -- label w/ default bind for readability
  */
@@ -232,6 +235,12 @@ var float InflationExplosionTimer;
 
 /** Deflate value when affected by bleed */
 var repnotify byte RepBleedInflateMatParam;
+
+// Base emitter to use for incap effect
+var const ParticleSystem BleedIncapFX;
+
+// PSC attached to effected pawn when incap is in effect
+var ParticleSystemComponent BleedIncapPSC;
 
 /*********************************************************************************************
  * @name	Anim Tree Controls
@@ -474,24 +483,6 @@ var protected const int OnDeathAchievementID;
 var protected bool bOnDeathAchivementbDisabled;
 
 /*********************************************************************************************
- * @name    Shared Boss Functionality
- ********************************************************************************************/
-/** Whether or not the game info has overriden this pawn as a boss replacement */
-var bool                bOverrideAsBoss;
-
-var localized string BossName;
-var localized array<string> BossCaptionStrings;
-
-/** Whether this pawn is in theatric camera mode */
-var 			bool 				bUseAnimatedTheatricCamera;
-
-/** The name of the socket to use as a camera base for theatric sequences */
-var 			Name 				TheatricCameraSocketName;
-
-/** The relative offset to use for the cinematic camera */
-var 			vector 				TheatricCameraAnimOffset;
-
-/*********************************************************************************************
  * @name	Delegates
 ********************************************************************************************* */
 
@@ -504,7 +495,7 @@ replication
 	// Replicated to ALL
 	if (bNetDirty)
 		bIsHeadless, bIsPoisoned, bPlayPanicked, bPlayShambling, MaxHeadChunkGoreWhileAlive,
-		RepInflateMatParam, RepDamageInflateParam, RepBleedInflateMatParam, bDisableGoreMeshWhileAlive, bOverrideAsBoss,
+		RepInflateMatParam, RepDamageInflateParam, RepBleedInflateMatParam, bDisableGoreMeshWhileAlive,
         bDisableHeadless, InflateDeathGravity, InflationExplosionTimer, bUseDamageInflation, bUseExplosiveDeath;
 	if ( bNetDirty && bCanCloak )
 		bIsCloakingSpottedByTeam;
@@ -565,6 +556,7 @@ simulated event ReplicatedEvent(name VarName)
 
     case nameof(RepBleedInflateMatParam):
         AfflictionHandler.UpdateMaterialParameter(AF_Bleed, ByteToFloat(RepBleedInflateMatParam));
+		UpdateBleedIncapFX();
         break;
 
 	case nameof(Controller):
@@ -761,11 +753,6 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	SetSwitch( 'Player_Zed', IsHumanControlled() ? 'Player' : 'NotPlayer' );
 
 `endif
-
-    if (IsActiveBoss())
-    {
-        ServerDoSpecialMove(SM_BossTheatrics);
-    }
 }
 
 simulated event FellOutOfWorld(class<DamageType> dmgType)
@@ -817,6 +804,8 @@ function ApplySpecialZoneHealthMod(float HealthMod)
     HitZones[HZI_HEAD].MaxGoreHealth = HitZones[HZI_HEAD].GoreHealth;
 }
 
+function SetShieldScale(float InScale);
+
 /** Used by the Versus takeover code to determine if this zed can be taken over */
 function bool CanTakeOver()
 {
@@ -867,7 +856,7 @@ function AdjustMovementSpeed( float SpeedAdjust )
 	}
 	else
 	{
-	    DesiredAdjustedSprintSpeed = fMax( default.SprintSpeed * SpeedAdjust * InitialGroundSpeedModifier, DesiredAdjustedGroundSpeed );   		
+	    DesiredAdjustedSprintSpeed = fMax( default.SprintSpeed * SpeedAdjust * InitialGroundSpeedModifier, DesiredAdjustedGroundSpeed );
 	}
 
     NormalGroundSpeed = DesiredAdjustedGroundSpeed;
@@ -929,6 +918,20 @@ function HandleMonsterBump( KFPawn_Monster Other, Vector HitNormal )
 /** Override to handle special berserker functionality */
 event HitWall( vector HitNormal, actor Wall, PrimitiveComponent WallComp )
 {
+    local KFDoorActor Door;
+
+    if (IsHumanControlled())
+    {
+        if (!Wall.bStatic && IsAliveAndWell())
+        {
+            Door = KFDoorActor(Wall);
+            if (Door != none)
+            {
+                TryDestroyDoor(Door);
+            }
+        }
+    }
+
 	`AILog_Ext( GetFuncName()$"() Wall: "$Wall, 'BumpEvent', MyKFAIC );
 	// Call our special notification
 	NotifyCollideWithActor(HitNormal, Wall);
@@ -936,7 +939,36 @@ event HitWall( vector HitNormal, actor Wall, PrimitiveComponent WallComp )
 }
 
 /** Allows pawn to handle door bump events instead of controller */
-function bool HandleAIDoorBump( KFDoorActor Door );
+function bool HandleAIDoorBump(KFDoorActor Door)
+{
+    return TryDestroyDoor(Door);
+}
+
+/** Destroy unwelded doors instantly when there are few players remaining if I'm a boss */
+function bool TryDestroyDoor(KFDoorActor Door)
+{
+    if (IsABoss() && Door != none && !Door.bIsDoorOpen && !Door.bIsDestroyed && Door.WeldIntegrity == 0 && CanObliterateDoors())
+    {
+        Door.IncrementHitCount(self);
+        Door.DestroyDoor(Controller);
+        return true;
+    }
+
+    return false;
+}
+
+/** Determines if this pawn can plow through doors */
+function bool CanObliterateDoors()
+{
+    // We only want the kool-aid man effect if we're sprinting
+    if (IsABoss() && !bIsSprinting)
+    {
+        return false;
+    }
+
+    // Only allow door obliteration if there is one player remaining in a multiplayer game
+    return true;
+}
 
 /** Notification that Zed collided with an actor */
 function bool NotifyCollideWithActor( Vector HitNormal, Actor Other )
@@ -1144,16 +1176,16 @@ function CrushedBy(Pawn OtherPawn)
 {
 	Super.CrushedBy(OtherPawn);
 
-	if ( bKnockdownWhenJumpedOn 
+	if ( bKnockdownWhenJumpedOn
 		// Still alive after crush damage
-		&& Health > 0 
+		&& Health > 0
 		// Not emerging
 		&& !IsDoingSpecialMove(SM_Emerge)
 		// Actually above and not a side-swipe
 		&& ((OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderCOmponent.CollisionHeight))
 		// Opposing team; player only
-		&& !IsHumanControlled() 
-		&& GetTeamNum() != OtherPawn.GetTeamNum() 
+		&& !IsHumanControlled()
+		&& GetTeamNum() != OtherPawn.GetTeamNum()
 		)
 	{
 		Knockdown(, vect(1,1,1), OtherPawn.Location, 1000, 100 );
@@ -1461,11 +1493,6 @@ simulated function AdjustAffliction( out float AfflictionPower )
 	super.AdjustAffliction( AfflictionPower );
 }
 
-simulated event bool IsActiveBoss()
-{
-    return bOverrideAsBoss;
-}
-
 /** Used by subclasses to determine if the boss icon can be rendered */
 function bool ShouldDrawBossIcon()
 {
@@ -1488,7 +1515,8 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 
 	super.PlayDying(DamageType, HitLoc);
 
-    if (IsActiveBoss())
+    //Shared functionality for boss death
+    if (IsABoss())
     {
         KFPC = KFPlayerController(GetALocalPlayerController());
         if(KFPC != none)
@@ -1499,7 +1527,7 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
         //@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
         ClassName = string(Class.Name);
         ClassName -= '_Versus';
-        class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(ClassName, WorldInfo.GetMapName(true));
+        class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(GetLocalizedName(), ClassName, WorldInfo.GetMapName(true));
         //@HSL_END
     }
 
@@ -1512,6 +1540,8 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
     {
         PlayInflationDeath();
     }
+
+	UpdateBleedIncapFX();
 }
 
 simulated function PlayInflationDeath()
@@ -1576,7 +1606,7 @@ State Dying
     {
         local int i;
 
-        // Shrink shadow cull distance when dead. We don't do this for characters because they 
+        // Shrink shadow cull distance when dead. We don't do this for characters because they
         // have extra cosmetics and custom head components. Must reattach component so render data gets updated.
 		Mesh.PerObjectShadowCullDistance *= 0.6;
 		ReattachComponent(Mesh);
@@ -1590,7 +1620,7 @@ State Dying
                 ReattachComponent(ThirdPersonAttachments[i]);
             }
         }
-        
+
         Super.OnSleepRBPhysics();
     }
 	event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
@@ -1687,7 +1717,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	{
 		bCouldTurnIntoShrapnel = InstigatorPerk.CouldBeZedShrapnel( KFDT );
 	}
-	
+
 	super.TakeDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser );
 
 	if( InstigatedBy != none && InstigatedBy.Pawn != none )
@@ -2011,7 +2041,7 @@ function BleedOutTimer()
 }
 
 /** Applies the rally buff and spawns a rally effect */
-simulated function Rally(
+simulated function bool Rally(
 							KFPawn 			RallyInstigator,
 							ParticleSystem 	RallyEffect,
 							name 			EffectBoneName,
@@ -2028,9 +2058,9 @@ simulated function Rally(
 
     GetDifficultyRallyInfo( RallyInfo );
 
-    if( !RallyInfo.bCanRally )
+    if( !RallyInfo.bCanRally || !IsAliveAndWell() )
     {
-    	return;
+    	return false;
     }
 
 	if( RallyInfo.DealtDamageModifier > 1.f )
@@ -2041,7 +2071,7 @@ simulated function Rally(
 			bStartedBoostRally = true;
 		}
 	}
-    
+
     if( Role == ROLE_Authority && Controller != none && RallyInfo.bCauseSprint )
     {
 	    KFAIC = KFAIController( Controller );
@@ -2085,6 +2115,8 @@ simulated function Rally(
 			}
 		}
 	}
+
+    return true;
 }
 
 /** Ends the rally boost and cancels effects */
@@ -2126,7 +2158,7 @@ simulated function int GetRallyBoostResistance( int NewDamage )
 {
 	local sRallyInfo RallyInfo;
 
-	GetDifficultyRallyInfo( RallyInfo );	
+	GetDifficultyRallyInfo( RallyInfo );
 	return NewDamage * ( IsTimerActive(nameOf(Timer_EndRallyBoost)) ? RallyInfo.TakenDamageModifier : 1.f );
 }
 
@@ -2158,16 +2190,16 @@ function bool Died(Controller Killer, class<DamageType> DamageType, vector HitLo
 			}
 		}
 
-        if (bOverrideAsBoss)
-        {
-            KFGameInfo(WorldInfo.Game).BossDied(Killer);
-        }
+        OnZedDied(Killer);
 
-	 	return true;
+        return true;
 	}
 
 	return false;
 }
+
+/** Handle any subclassed functionality for when a zed dies */
+function OnZedDied(Controller Killer);
 
 /** Handle this pawn being destroyed
 */
@@ -2706,7 +2738,7 @@ simulated function PlayDeadHitEffects(vector HitLocation, vector HitDirection, i
 	local KFGoreManager GoreManager;
 	local bool bIsDismemberingHit;
 	local bool bWasObliterated;
-	
+
 	// If ragdoll and gore is not allowed for dead bodies, check the time of death
 	// to see when the pawn died, and skip if he has been dead for a while
 	if( bAllowRagdollAndGoreOnDeadBodies || `TimeSince(TimeOfDeath) <= 3.f )
@@ -2745,10 +2777,10 @@ simulated function PlayDeadHitEffects(vector HitLocation, vector HitDirection, i
 			   DeadPawn = self;
 	           PinProjectileClass.static.CreatePin(DeadPawn, HitLocation, HitDirection, HitBoneName);
 			}
-			
+
             HandlePartialGoreAndGibs(DmgType, HitLocation, HitDirection, HitBoneName, false);
         }
-		
+
 		// Apply an impulse to attached limbs and ragdoll
 		HandleRagdollImpulseEffects( HitLocation, HitDirection, HitZoneName, HitBoneName, DmgType, bIsDismemberingHit, bUseHitImpulse );
 	}
@@ -3004,7 +3036,7 @@ simulated function HandleGoreChunkAttachments(name DismemberedBone)
                     {
                         AttachComp.SetCullDistance(1000);
                     }
-					
+
 					AttachComp.SetShadowParent(mesh);
 					AttachComp.bAllowApproximateOcclusion=True;
 					AttachComp.SetTraceBlocking(False,False);
@@ -3123,7 +3155,7 @@ simulated function ApplyBloodDecals(int HitZoneIndex, vector HitLocation, vector
 	}
 }
 
-/** 
+/**
  *	Gibbing, partial gore and gib impusle effects handled here.
  *
  *  @param	ObliterateGibs	If true this function will rip apart all limbs. If false, the default behavior is to select random bones to rip apart.
@@ -3173,7 +3205,7 @@ simulated function HandlePartialGoreAndGibs(
 	}
 }
 
-/** 
+/**
  *	Apply any gibbing from radial damage
  *
  *  @param	ObliterateGibs	If true this function will rip apart all limbs. If false, the default behavior is to select random bones to rip apart.
@@ -3210,7 +3242,7 @@ simulated function ApplyRadialFxGore( KFGoreManager GoreManager, KFCharacterInfo
 	}
 }
 
-/** 
+/**
  *	This function will dismember all rigid body bones in the mesh.
 */
 simulated function ApplyObliterationFxGore( KFGoreManager GoreManager, KFCharacterInfo_Monster MonsterInfo, class<KFDamageType> DmgType )
@@ -3246,7 +3278,7 @@ simulated function ApplyObliterationFxGore( KFGoreManager GoreManager, KFCharact
 			}
 			else
 			{
-				ObliterationLocation.Z = Location.Z - CylinderComponent.CollisionHeight * 0.25f;			
+				ObliterationLocation.Z = Location.Z - CylinderComponent.CollisionHeight * 0.25f;
 			}
 		}
 		else
@@ -3666,12 +3698,38 @@ simulated function HandleDamageInflation()
     }
 }
 
+simulated function UpdateBleedIncapFX()
+{
+	local float CurrentStrength;
+	if (WorldInfo.NetMode != NM_DedicatedServer)
+	{
+		CurrentStrength = ByteToFloat(RepBleedInflateMatParam);
+		//We've gone past the threshold, create a PSC
+		if ((CurrentStrength != 0 && IsAliveAndWell()) && BleedIncapPSC == none)
+		{
+			BleedIncapPSC = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(BleedIncapFX, Mesh, class'KFSM_Stunned'.default.DazedFXSocketName, true);
+			if (BleedIncapPSC != none)
+			{
+				BleedIncapPSC.SetAbsolute(false, true, false);
+				BleedIncapPSC.SetRotation(rotator(vect(0, 0, 1)) + class'KFSM_Stunned'.default.DazedFXRelativeRotation);
+			}
+		}
+		//We've underrun the threshold, remove PSC
+		else if ((CurrentStrength == 0 || !IsAliveAndWell()) && BleedIncapPSC != none)
+		{
+			BleedIncapPSC.DeactivateSystem();
+			DetachComponent(BleedIncapPSC);
+			BleedIncapPSC = none;
+		}
+	}
+}
+
 /*********************************************************************************************
  * @name	Ephemeral Stats tracking
 ********************************************************************************************* */
 static function bool IsLargeZed(){ return default.bLargeZed; }
 
-static function bool IsABoss(){ return false; }
+static event bool IsABoss(){ return false; }
 
 /*********************************************************************************************
  * @name	Perk related
@@ -4109,13 +4167,40 @@ function MotivatePlayerToAttack( float Percentage, class<DamageType> AntiGriefDa
  * @name    UI / Localization
  ********************************************************************************************* */
 /**Looks up and returns localized name */
-function string GetLocalizedName()
+static function string GetLocalizedName()
 {
 	local string MonsterName;
 
-	MonsterName = Localize("Zeds", String(LocalizationKey), "KFGame");
+	//check if we have a seasonal variant
+	MonsterName = Localize("Zeds", String(default.LocalizationKey) $ GetSeasonalLocalizationSuffix(), "KFGame");
+
+	//Has a question mark in it, which would indicate failure. return default.
+	if (InStr(MonsterName, "?") >= 0)
+	{
+		MonsterName = Localize("Zeds", String(default.LocalizationKey), "KFGame");
+	}
 
     return MonsterName;
+}
+
+static function string GetSeasonalLocalizationSuffix()
+{
+	//Remove any year information, just get 1s digit
+	switch (class'KFGameEngine'.static.GetSeasonalEventID() % 10)
+	{
+	case SEI_Spring:
+		return "_Spring";
+	case SEI_Summer:
+		return "_Summer";
+	case SEI_Fall:
+		return "_Fall";
+	case SEI_Winter:
+		return "_Winter";
+	default:
+		return "";
+	}
+
+	return "";
 }
 
 /*********************************************************************************************
@@ -4277,6 +4362,8 @@ DefaultProperties
 
 	// List of BodySetups turned to phycsi for arm injury
 	ArmPhysicsBoneList=("RightShoulder","RightArm","RightForeArm","RightHand")
+
+	BleedIncapFX=ParticleSystem'FX_Gameplay_EMIT_THREE.FX_Incap_Bleed_01'
 
 	// ---------------------------------------------
 	// Animation

@@ -497,6 +497,8 @@ class KFDT_Slashing_Patriarch extends KFDT_Slashing
 
 
 
+
+
 #linenumber 14
 
 static function int GetKillerDialogID()

@@ -26,6 +26,8 @@ var bool bDestroyOnSystemFinish;
 var() bool bPostUpdateTickGroup;
 var repnotify bool bCurrentlyActive;
 var transient bool bDepthTestEnabled;
+/** Allow this emitter to be rendered in the depth pass and be used as an occluder */
+var(Rendering) const bool bUseAsOccluder;
 
 replication
 {
@@ -51,6 +53,8 @@ simulated event PostBeginPlay()
     {
         ParticleSystemComponent.__OnSystemFinished__Delegate = OnParticleSystemFinished;
         bCurrentlyActive = ParticleSystemComponent.bAutoActivate;
+        ParticleSystemComponent.bUseAsOccluder = bUseAsOccluder;
+        ReattachComponent(ParticleSystemComponent);
     }
 }
 

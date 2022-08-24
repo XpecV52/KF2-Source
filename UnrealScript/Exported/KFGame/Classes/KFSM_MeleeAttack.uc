@@ -129,7 +129,7 @@ function PlayAnimation()
 		PawnOwner.SetTimer(InterruptTime, false, nameof(InterruptCheckTimer), self);
 	}
 
-	PlaySpecialMoveAnim( AnimName, AnimStance, BlendInTime, BlendOutTime, 1.f );
+	PlaySpecialMoveAnim( AnimName, AnimStance, BlendInTime, BlendOutTime, KFPOwner.AttackSpeedModifier);
 }
 
 /** Notification from the pawn that a medium (aka gun) or heavy (aka melee) affliction has been activated */

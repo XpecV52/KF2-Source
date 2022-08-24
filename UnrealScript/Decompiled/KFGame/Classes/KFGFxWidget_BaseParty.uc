@@ -174,7 +174,19 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
     local GFxObject DataProvider;
     local int OptionIndex;
     local string ProfileString;
+    local array<KFPlayerReplicationInfo> PRIs;
+    local KFGameReplicationInfo KFGRI;
+    local WorldInfo TempWorldInfo;
 
+    TempWorldInfo = Class'WorldInfo'.static.GetWorldInfo();
+    if((TempWorldInfo != none) && TempWorldInfo.GRI != none)
+    {
+        KFGRI = KFGameReplicationInfo(TempWorldInfo.GRI);
+        if(KFGRI != none)
+        {
+            KFGRI.GetKFPRIArray(PRIs);
+        }
+    }
     DataProvider = Outer.CreateArray();
     OptionIndex = 0;
     DataProvider.SetInt("index", SlotIndex);
@@ -198,8 +210,11 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
         {
             AddStringOptionToList(MuteKey, OptionIndex, ((PC.IsPlayerMuted(PlayerID)) ? UnmuteString : MuteString), DataProvider);
             ++ OptionIndex;
-            AddStringOptionToList(KickKey, OptionIndex, VoteKickString, DataProvider);
-            ++ OptionIndex;
+            if(PRIs.Length > 2)
+            {
+                AddStringOptionToList(KickKey, OptionIndex, VoteKickString, DataProvider);
+                ++ OptionIndex;
+            }
         }
     }
     if(Class'WorldInfo'.static.IsConsoleBuild(8))
@@ -452,7 +467,7 @@ defaultproperties
     PartyLeaderInOtherMenuString="is in another menu..."
     SearchingForGameString="Searching for online game..."
     PartHostLeftString="The party host has left"
-    PartyLeaderChangedString="is now the new party host"
+    PartyLeaderChangedString="New Party Host Selected"
     DownloadingString="Downloading:"
     RemainingString="Remaining:"
     MatchOverString="MATCH OVER 

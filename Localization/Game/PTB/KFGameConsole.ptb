@@ -17,6 +17,7 @@ KF-ZedLanding="Jogando Pouso Forçado ZED"
 KF-TheDescent="Jogando a Descida"
 KF-Nuked="Jogando Bombardeio"
 KF-TragicKingdom="Jogando Reino Trágico"
+KF-Nightmare="Jogando o Pesadelo"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -140,14 +141,17 @@ NoOnlinePlay="Impossível jogar on-line"
 TooYoung="Serviços on-line desativados na conta do Sony Entertainment Network por restrições de controle parental."
 PatchAvailable="Atualização disponível. Você deve atualizar o aplicativo para usar os recursos de rede."
 NotLoggedInOnlinePSN="Você deve estar conectar à PlayStation™Network para usar os recursos on-line."
+LiveRequiredMessage="É necessário estar conectado a um perfil habilitado no Xbox Live e ter uma conexão de rede ativa para jogar no Xbox Live."
 NetworkError="Ocorreu um erro de rede. Verifique a conexão."
 ErrorNoPlayfabDescription="Não foi possível estabelecer uma conexão com os servidores mestres. Repita daqui a alguns minutos."
 ErrorTSSFailedDescription="Não foi possível estabelecer uma conexão com o servidor de equilíbrio do jogo. Confira se há uma conexão, se você está conectado e tente de novo."
 NotSignedInTitle="Não conectado."
+PlayOffline="Quer jogar off-line? Os recursos do Xbox Live não estarão disponíveis e os dados não serão salvos."
 
 [Notifications]
 ControllerDisconnectedTitle="Controle desconectado"
 ControllerDisconnectedPS4Message="Controle sem fio desconectado. Reconecte o controle sem fio do usuário que iniciou o jogo."
+ControllerDisconnectedXB1="Controle sem fio do Xbox One desconectado. Reconecte o controle."
 PlayGoBusyTitle="Ainda instalando"
 PlayGoBusyMessage="O conteúdo e os recursos disponíveis ficam limitados enquanto o jogo termina de ser instalado."
 UnableToJoinInviteTitle="Não foi possível entrar"
@@ -160,11 +164,14 @@ CheckPlusTitle="Verificando PlayStation®Plus"
 CheckPlusMessage="Espere enquanto verificamos o status do PlayStation®Plus."
 ConnectionLostTitle="Perda de conexão"
 ConnectionLostMessage="A conexão com o jogo encerrou.  Você voltou ao menu inicial."
+ConnectionLostMessageLive="Conexão com o Xbox Live perdida. Você voltou ao menu principal."
 PSNSignoutMessage="Você se desconectou da PlayStation™Network. Você voltou ao menu inicial."
 InviteMessage="Vamos explodir uns Zeds juntos!"
 NotConnectedTitle="Erro de rede"
 NotConnectedMessage="Não conectado à internet. Verifique a conexão e tente de novo."
 NotConnectedForOnlinePlay="Não conectado à internet. Verifique a conexão e tente de novo para usar os recursos on-line."
+NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+MultiplayerNotAllowed_MessageLive="Para jogar, é necessário estar conectado a um perfil habilitado no Xbox Live com privilégios de multijogador."
 MultiplayerNotAllowed_Title="Multijogador não permitido"
 LoggedOutMessage="O perfil ativo foi alterado. Você voltou à tela inicial."
 LoggedOutTitle="Desconectado"
@@ -174,6 +181,7 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Exibir perfil do jogador"
+ViewProfileStringXB1="Exibir cartão do jogo"
 
 [KFGFxObject_Menu]
 ResetDefaults="Redefinir as configurações para os valores iniciais?"
@@ -193,12 +201,15 @@ ControllerSound="Som do controle"
 MatchmakingRegionString="REGIÃO"
 LeaveMenuString="Se você sair do criador de partidas, também sairá do grupo"
 
+[KFGFxMenu_Store]
+StoreStringXB1="LOJA XBOX"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGIÃO"
 MapPreference="MAPA FAVORITO"
 
 [KFGFxMenu_Exit]
+HeaderStringXB1="DESCONECTAR"
 LogoutKF2="Voltar à tela inicial."
 
 [Misc]

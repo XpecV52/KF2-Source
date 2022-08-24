@@ -102,6 +102,7 @@ defaultproperties
       CastShadows=False
       CastStaticShadows=False
       CastDynamicShadows=False
+      bCastPerObjectShadows=False
       LightingChannels=(Outdoor=True)
       MaxBrightness=1.500000
       MinBrightness=0.500000

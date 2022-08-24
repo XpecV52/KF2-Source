@@ -23,6 +23,20 @@ function SetLocalizedText()
     SetObject("localizeText", TempObj);
 }
 
+function FinishedDailyEvent(int EventIndex)
+{
+    local KFPlayerController MyKFPC;
+    local DailyEventInformation EventInfo;
+
+    MyKFPC = KFPlayerController(Outer.GetPC());
+    if(MyKFPC == none)
+    {
+        return;
+    }
+    EventInfo = MyKFPC.GetDailyObjective(EventIndex);
+    ShowAchievementNotification(ObjectiveCompleteString, Class'KFGFxDailyObjectivesContainer'.static.FormTitleForObjective(EventInfo), Class'KFGFxDailyObjectivesContainer'.static.FormDescriptionForObjective(EventInfo), Class'KFGFxDailyObjectivesContainer'.static.GetIconForObjective(EventInfo), true);
+}
+
 function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 {
     local class<KFGFxSpecialEventObjectivesContainer> SpecialEventClass;
@@ -36,21 +50,21 @@ function ShowLevelUpNotification(class<KFPerk> PerkClass, byte PerkLevel, bool b
     ShowAchievementNotification(LevelUpString, PerkClass.default.PerkName, TierUnlockedString, "img://" $ PerkClass.static.GetPerkIconPath(), bTierUnlocked, PerkLevel);
 }
 
-function ShowObjectiveCompleteNotification(string ObjectiveName, string ObjectiveDescription, string ImagePath)
+function ShowObjectiveCompleteNotification(string ObjectiveName, string ObjectiveDescription, string ImagePath, optional bool bShowSecondary)
 {
-    ShowAchievementNotification(ObjectiveCompleteString, ObjectiveName, " ", ImagePath, true, -1);
+    ShowAchievementNotification(ObjectiveCompleteString, ObjectiveName, " ", ImagePath, bShowSecondary, -1);
 }
 
-function ShowAchievementNotification(string TitleString, string MainString, string SecondaryString, string ImagePath, bool bShowSecondary, optional int NumericValue)
+function ShowAchievementNotification(string TitleString, string MainString, string SecondaryString, string ImagePath, bool bShowSecondary, optional int numericValue)
 {
     local GFxObject TempObj;
 
-    NumericValue = -1;
+    numericValue = -1;
     TempObj = Outer.CreateObject("Object");
     TempObj.SetString("titleString", TitleString);
     TempObj.SetString("mainString", MainString);
     TempObj.SetString("secondaryString", SecondaryString);
-    TempObj.SetInt("newValue", NumericValue);
+    TempObj.SetInt("newValue", numericValue);
     TempObj.SetString("iconPath", ImagePath);
     TempObj.SetBool("bShowSecondary", bShowSecondary);
     SetObject("showAchievementPopUp", TempObj);

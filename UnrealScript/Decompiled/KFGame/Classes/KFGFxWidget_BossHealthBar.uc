@@ -8,7 +8,7 @@
 class KFGFxWidget_BossHealthBar extends GFxObject within GFxMoviePlayer;
 
 var GFxObject bossNameTextField;
-var KFPawn_Monster BossPawn;
+var KFInterface_MonsterBoss BossPawn;
 var float UpdateTickTime;
 var float LastUpdateTime;
 var array<int> BattlePhaseColors;
@@ -32,7 +32,7 @@ function TickHud(float DeltaTime)
         }
         else
         {
-            if(BossPawn != none)
+            if(NotEqual_InterfaceInterface(BossPawn, (none)))
             {
                 SetVisible(true);
             }
@@ -42,7 +42,7 @@ function TickHud(float DeltaTime)
     {
         return;
     }
-    if(BossPawn != none)
+    if(NotEqual_InterfaceInterface(BossPawn, (none)))
     {
         if((Outer.GetPC() != none) && (Outer.GetPC().WorldInfo.TimeSeconds - LastUpdateTime) > UpdateTickTime)
         {
@@ -51,19 +51,19 @@ function TickHud(float DeltaTime)
     }
 }
 
-function SetBossPawn(KFPawn_Monster NewBossPawn)
+function SetBossPawn(KFInterface_MonsterBoss NewBoss)
 {
     local string BossNameText;
 
-    if(NewBossPawn == none)
+    if(EqualEqual_InterfaceInterface(NewBoss, (none)))
     {
         return;
     }
-    BossPawn = NewBossPawn;
-    BossNameText = BossPawn.BossName;
-    if(BossPawn.IsHumanControlled())
+    BossPawn = NewBoss;
+    BossNameText = BossPawn.GetMonsterPawn().GetLocalizedName();
+    if(BossPawn.GetMonsterPawn().IsHumanControlled())
     {
-        BossNameText = ((BossNameText $ "(") $ string(BossPawn.Controller.PlayerReplicationInfo)) $ ")";
+        BossNameText = ((BossNameText $ "(") $ string(BossPawn.GetMonsterPawn().Controller.PlayerReplicationInfo)) $ ")";
     }
     SetBossName(BossNameText);
     if(KFPC.bHideBossHealthBar)
@@ -79,7 +79,7 @@ function OnNamePlateHidden()
     {
         return;
     }
-    if(BossPawn != none)
+    if(NotEqual_InterfaceInterface(BossPawn, (none)))
     {
         SetVisible(true);
     }
@@ -95,7 +95,7 @@ function SetBossName(string BossName)
 
 function UpdateBossHealth()
 {
-    SetFloat("currentHealthPercentValue", float(BossPawn.Health) / float(BossPawn.HealthMax));
+    SetFloat("currentHealthPercentValue", BossPawn.GetHealthPercent());
 }
 
 function UpdateBossBattlePhase(int BattlePhase)

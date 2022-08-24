@@ -283,9 +283,9 @@ function NotifyHUDofWeapon(Pawn P)
     local KFPlayerController KFPC;
 
     KFPC = KFPlayerController(P.Owner);
-    if((KFPC != none) && KFPC.MyGFxHUD != none)
+    if((KFPC != none) && KFPC.myGfxHUD != none)
     {
-        KFPC.MyGFxHUD.NotifyHUDofWeapon();
+        KFPC.myGfxHUD.NotifyHUDofWeapon();
     }
 }
 

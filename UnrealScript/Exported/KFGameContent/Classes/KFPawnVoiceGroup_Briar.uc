@@ -486,6 +486,8 @@ class KFPawnVoiceGroup_Briar extends KFPawnVoiceGroup;
 
 
 
+
+
 #linenumber 3
 
 defaultproperties

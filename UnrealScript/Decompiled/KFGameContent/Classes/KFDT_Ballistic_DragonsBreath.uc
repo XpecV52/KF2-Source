@@ -39,10 +39,12 @@ static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDir
     super(KFDamageType).PlayImpactHitEffects(P, HitLocation, HitDirection, HitZoneIndex, HitInstigator);
 }
 
-static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
+static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Controller InstigatedBy)
 {
-    KFDT = default.BurnDamageType;
-    return KFDT.default.DoT_Type != 0;
+    if(default.BurnDamageType.default.DoT_Type != 0)
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, default.BurnDamageType);
+    }
 }
 
 defaultproperties

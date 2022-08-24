@@ -1557,7 +1557,7 @@ native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delega
 
 function bool AddInGamePost(int InPostID, optional string InPostParam);
 
-function PostActivityFeedBossKill(string BossName, string MapName);
+function PostActivityFeedBossKill(string BossName, string ClassName, string MapName);
 
 function PostActivityFeedTeamAward(string AwardName);
 

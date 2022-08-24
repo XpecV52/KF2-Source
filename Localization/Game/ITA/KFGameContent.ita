@@ -1,4 +1,4 @@
-//NOTES: 
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -379,6 +379,11 @@ ItemName="RPG-7"
 ItemCategory="Esplosivi"
 ItemDescription="•Lancia un razzo.\n•I razzi esplodono all’impatto.\n•Si arma lungo la traiettoria, così non ti farai esplodere la faccia.\n•E attento al ritorno di fiamma!"
 
+[KFWeap_RocketLauncher_Seeker6]
+ItemName="Seeker 6"
+ItemCategory="Esplosivi"
+ItemDescription="•La modalità di fuoco lancia un razzo senza guida.\n•Mirando in modalità Fuoco alternativo si attivano un laser mirato e razzi guidati.\n•Un’arma versatile e esplosiva che può tracciare e sparare a più obiettivi in una sola volta."
+
 [KFWeap_Pistol_Dual9mm]
 ItemName="Doppia pistola 9mm"
 ItemCategory="Pistola"
@@ -475,6 +480,10 @@ ItemName="Mitra Kriss"
 ItemCategory="Mitra"
 ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico.\n•Usa il fuoco alternativo per cambiare modalità.\n•L'ultimo ritrovato in fatto di distribuzione compatta di proiettili, un concentrato di distruzione."
 
+[KFWeap_Rifle_Hemogoblin]
+ItemName="Hemogoblin"
+ItemCategory="Fucile da caccia"
+ItemDescription="•La modalità fuoco spara un cilindro di sangue che ferisce, rallenta e indebolisce gli Zed. \n•La modalità Fuoco alternativo spara dardi curativi ai membri della squadra.\n•Un programma di dimagrimento non attuabile."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

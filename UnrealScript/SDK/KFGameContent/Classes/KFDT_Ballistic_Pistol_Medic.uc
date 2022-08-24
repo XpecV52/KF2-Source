@@ -12,10 +12,17 @@ class KFDT_Ballistic_Pistol_Medic extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
-/** Whether this damage type can apply damage over time */
-static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy ) 
+
+/** Called when damage is dealt to apply additional damage type (e.g. Damage Over Time) */
+static function ApplySecondaryDamage( KFPawn Victim, int DamageTaken, optional Controller InstigatedBy )
 {
-	return class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicToxic( InDamage, KFDT, InstigatedBy );
+	local class<KFDamageType> ToxicDT;
+
+	ToxicDT = class'KFDT_Ballistic_Assault_Medic'.static.GetMedicToxicDmgType( DamageTaken, InstigatedBy );
+  	if ( ToxicDT != None )
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, ToxicDT);
+    }
 }
 
 defaultproperties

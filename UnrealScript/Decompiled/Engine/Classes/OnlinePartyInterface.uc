@@ -39,3 +39,9 @@ delegate OnNotifyLeaderChanged(UniqueNetId NewLeader);
 function AddNotifyLeaderChangedDelegate(delegate<OnNotifyLeaderChanged> InDelegate);
 
 function ClearNotifyLeaderChangedDelegate(delegate<OnNotifyLeaderChanged> InDelegate);
+
+delegate OnNotifyStatusUpdated(OnlineSubsystem.EPartyNotificationStatus PartyStatus);
+
+function AddNotifyStatusUpdatedDelegate(delegate<OnNotifyStatusUpdated> InDelegate);
+
+function ClearNotifyStatusUpdatedDelegate(delegate<OnNotifyStatusUpdated> InDelegate);

@@ -62,9 +62,41 @@ FreeConsolePlayOverString="Killing Floor 2をプレイしてくれてありが�
 BuyGameString="ストア"
 CustomString="カスタム"
 
+RarityStrings[0]="コモン"
+RarityStrings[1]="アンコモン"
+RarityStrings[2]="レア"
+RarityStrings[3]="神話上の"
+RarityStrings[4]="伝説上の"
+RarityStrings[5]="極めてレア"
+RarityStrings[6]="何でも"
+
+WeaponTypeStrings[0]="ピストル"
+WeaponTypeStrings[1]="ショットガン"
+WeaponTypeStrings[2]="ライフル"
+WeaponTypeStrings[3]="発射武器"
+WeaponTypeStrings[4]="火"
+WeaponTypeStrings[5]="テクノロジー"
+WeaponTypeStrings[6]="ランチャー"
+WeaponTypeStrings[7]="アサルト"
+WeaponTypeStrings[8]="近接"
+WeaponTypeStrings[9]="SMG"
+WeaponTypeStrings[10]="すべて"
+
+MixerGaveAmmoString=" Mixer視聴者のがあなたに弾薬をくれた。"
+MixerGaveArmorString=" Mixer視聴者のがあなたにアーマーをくれた。 "
+MixerGaveDoshString=" Mixer視聴者のがあなたにdoshをくれた。"
+MixerGaveGrenadeString=" Mixer視聴者のがあなたに手榴弾をくれた。"
+MixerGaveHealthString=" Mixer視聴者のがあなたを回復してくれた。"
+MixerZedTimeString=" Mixer視聴者のがZed-Timeを発動した。"
+MixerRageZedsString=" Mixer視聴者のが近くのzedを激怒させた。"
+MixerPukeString=" Mixer視聴者のがあなたに吐き掛けた"
+MixerSpawnedFPString=" Mixer視聴者のがフレッシュパウンドを生み出した。"
+
+
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="アウトブレイククリア報酬"
 WeeklyString="ホージンウィークリーアウトブレイク"
+DailyObjectiveString="毎日"
 CurrentWeeklySettingsString="現在のアウトブレイク設定"
 SpecialEventString="サマーサイドショー"
 ShortWeeklyString="ウィークリー"
@@ -72,9 +104,18 @@ SeasonalString="シーズナル"
 SpecialEventChanceDropString="限定ドロップアイテム"
 GrantedSpecialEventString="クリア報酬"
 RewardsString="アウトブレイククリア報酬"
+RewardString="報酬"
 WeeklyOverview="毎週歯ごたえのある新しいゲームモードがリリース！"
 ObjectivesString="目標切り替え"
+VaultDoshString="ヴォールトDosh"
 
+DealDamageString="与えたダメージ："
+EarnXPString="XPの獲得："
+CompleteMapString="マップでマッチを終了："
+KillZedsString="Zedを殺す："
+VersusKillsString="次のロールで対戦プレイヤーを殺す："
+DealVersusDamageString="次のロールで対戦プレイヤーにダメージを与える："
+VersusCompletionString="次のロールででマッチを終了："
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="マッチが見つかりませんでした"
@@ -701,7 +742,7 @@ PartyLeaderInOtherMenuString="は他のメニューにいます..."
 SearchingForGameString="オンラインゲームを検索中..."
 
 PartHostLeftString="パーティーホストが離れました"
-PartyLeaderChangedString="が新たなパーティーホストです"
+PartyLeaderChangedString="新規パーティーホスト選択中"
 
 MuteString="プレイヤーをミュートする"
 UnmuteString="プレイヤーをミュート解除する"
@@ -717,6 +758,16 @@ PartyLeaderString="リーダー"
 [KFGFxWidget_PartyInGame_Versus]
 SwitchTeamsString="チーム変更"
 balanceWarningString="警告：チームは自動でバランス調整が行われます"
+
+[KFGFxMenu_DoshVault]
+YourDoshString="あなたのdosh"
+NextRewardString="次の報酬"
+OpenCrateString="木箱を開く"
+DoshVaultString="DOSHヴォールト"
+YourCratesString="あなたの木箱："
+OpenCratesString="木箱を開く"
+CrateUnlockedString="木箱を解錠！"
+DelayedCrateString="* Doshヴォールトの木箱は、次のゲームが始まらないと受け取れない場合があります。"
 
 [KFGFxMenu_Gear]
 GearHeaderString="装備をカスタマイズ"
@@ -775,6 +826,9 @@ CraftWeaponDescriptionString="このメニューで、武器スキン素材か�
 RequiresString="必要： "
 PurchaseKeyString="鍵を購入"
 LookUpOnMarketString="市場を調べる"
+RarityFilterString="レア度"
+PerkFilterString="Perk"
+WeaponTypeFilterString="武器タイプ"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -836,10 +890,11 @@ ConfirmString="選択"
 MenuStrings[0]="ホーム"
 MenuStrings[1]="Perk"
 MenuStrings[2]="装備"
-MenuStrings[3]="インベントリ"
-MenuStrings[4]="ストア"
-MenuStrings[5]="オプション"
-MenuStrings[6]="閉じる"
+MenuStrings[3]="ヴォールト"
+MenuStrings[4]="インベントリ"
+MenuStrings[5]="ストア"
+MenuStrings[6]="オプション"
+MenuStrings[7]="閉じる"
 
 ServerBrowserString="サーバーブラウザー"
 MatchmakingString="マッチメイキング"
@@ -917,6 +972,7 @@ VoiceCommsOptionStrings[5]="トレーダーに行く"
 VoiceCommsOptionStrings[6]="了解"
 VoiceCommsOptionStrings[7]="却下"
 VoiceCommsOptionStrings[8]="顔文字"
+VoiceCommsOptionStrings[9]="ありがとう"
 
 [KFGFxMenu_Exit]
 HeaderString="ゲームを閉じる"
@@ -1132,6 +1188,8 @@ AntiMotionSicknessString="乗り物酔い防止"
 AutoTurnOffString="クロトの掴みで自動ターンなし"
 ReduceHighPitchNoiseString="高ピッチ音を減少"
 DisableAutoUpgradeString="オートアップグレード無効化"
+
+EnableMixerString="Mixer設定"
 
 [LocalizedControls]
 ControllerLayoutDefault="初期設定"
@@ -1362,6 +1420,7 @@ ZedGroupRegroupingString="zedの大群が再編成しています！"
 NextRoundBeginString="次 ラ ウ ン ド"
 PlayerCanChangePerksString="Perk変更は許可されています"
 ZedWaitingForNextRoundString="zedの大群の侵略が迫っています！"
+LastPlayerStandingString="生き残ったプレイヤー"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="トレーダー<%HOLD%>オートアップグレードを使用"
@@ -1596,8 +1655,8 @@ SkillCatagories[4]="高度訓練"
 
 Passives[0]=(Title="バーサーカーダメージ",Description="レベル毎に、Perk武器ダメージがx%x増加する");
 Passives[1]=(Title="ダメージ耐性",Description="5レベル毎に、ダメージ耐性がx%x増加する");
-Passives[2]=(Title="+暗視能力",Description="懐中電灯―プラス暗視ゴーグル");
-Passives[3]=(Title="+クロトが掴み不可",Description="クロトがバーサーカーをホールドできません");
+Passives[2]=(Title="暗視能力",Description="懐中電灯―プラス暗視ゴーグル");
+Passives[3]=(Title="クロトは掴めない",Description="クロトはバーサーカーを掴むことができません");
 
 EXPAction1="バーサーカーに武器ダメージを与える"
 EXPAction2="バーサーカー武器でプレイヤーの近くのzedをキルする"
@@ -1645,8 +1704,8 @@ Passives[0]=(Title="Perk武器ダメージ",Description="レベル毎に、Perk�
 Passives[1]=(Title="クロークした敵＆ヘルスバー検知",Description="レベル毎に、レンジが5m+%x%m");
 Passives[2]=(Title="Zed-Time延長",Description="5レベル毎に、Zed-Timeが%x%増加する");
 Passives[3]=(Title="リロード速度",Description="5レベル毎に、Perk武器のリロード速度が%x%%増加する");
-Passives[4]=(Title="+暗視能力",Description="懐中電灯―プラス暗視ゴーグル");
-Passives[5]=(Title="+クロークしたzedを呼ぶ",Description="チームメイトがクロークしたユニットを見られるようになる");
+Passives[4]=(Title="暗視能力",Description="懐中電灯―プラス暗視ゴーグル");
+Passives[5]=(Title="クロークしたZedの存在を知らせる",Description="チームメイトはクロークしたユニットを見れる");
 
 EXPAction1="コマンドー武器ダメージを与える"
 EXPAction2="コマンドー武器でストーカーをキルする"
@@ -1695,8 +1754,8 @@ SkillCatagories[4]="高度爆発物"
 Passives[0]=(Title="Perk武器ダメージ",Description="レベル毎に、Perk武器ダメージが%x%増加する");
 Passives[1]=(Title="爆発物耐性",Description="爆発物耐性が10%上昇し、レベル毎に%x%増加する");
 Passives[2]=(Title="追加爆発弾",Description="5レベル毎に、爆発弾が%x%増加する");
-Passives[3]=(Title="+手榴弾サプライヤー",Description="チームメイトは、各ウェーブであなたから手榴弾を1つもらう");
-Passives[4]=(Title="+ドアトラップ",Description="溶接したドアを破壊すると、爆発する");
+Passives[3]=(Title="手榴弾サプライヤー",Description="チームメイトは各ウェーブで手榴弾を1つもらう");
+Passives[4]=(Title="ドアトラップ",Description="溶接したドアを破壊すると爆発する");
 Passives[5]=(Title="反応性アーマー",Description="ヘルスが最初に0まで減少した際、アーマーが爆発して1ヘルス残される");
 
 
@@ -2209,6 +2268,7 @@ USBSpitfire="スピットファイアUSBの鍵―$2.49"
 USBHighVoltage="ハイボルテージUSBの鍵―$2.49"
 MerchSale="お得なKF2セール！2017年4月30日まで25%オフ、プロモコード：ZED"
 
+
 [Zeds]
 KFPawn_ZedBloat="ブロート"
 KFPawn_ZedClot="クロト"
@@ -2229,6 +2289,7 @@ KFPawn_ZedClot_AlphaKing="エリートアルファ"
 KFPawn_ZedScrake="スクレイク"
 KFPawn_ZedSiren="サイレン"
 KFPawn_ZedPatriarch="ペイトリアーク"
+
 ;Human zeds
 KFPawn_ZedBloat_Versus="ブロート―プレイヤー"
 KFPawn_ZedClot_Versus="クロト―プレイヤー"
@@ -2376,6 +2437,15 @@ AllCompleteRewardDescriptionString="サイドショウ防護服"
 
 ChanceDropDescriptionStrings[0]="サイドショウ景品チケット"
 ChanceDropDescriptionStrings[1]="サイドショウゴールデンチケット"
+
+;============================================
+; Daily Localization
+;============================================
+[KFGFxDailyObjectivesContainer]
+TitleString="毎日の目標"
+OverviewString="毎日の目標はランダムに日替わりで決まる目標です。毎日の目標をこなすと、doshヴォールトでdoshを稼ぐことができます。"
+SubtitleString="現在の毎日の目標"
+KnifeString="ナイフ"
 
 ;============================================
 ; Weekly Localization
@@ -2716,6 +2786,22 @@ DisplayName_POL="Królestwo Tragedii"
 DisplayName_PTB="Reino Trágico"
 DisplayName_RUS="Королевство Трагедий"
 
+[KF-Nightmare KFMapSummary]
+DisplayName_CHN="梦魇"
+DisplayName_CHT="夢魘"
+DisplayName_DEU="Albtraum"
+DisplayName_ESL="Pesadilla"
+DisplayName_ESN="Pesadilla"
+DisplayName_FRA="Cauchemar"
+DisplayName_FRC="Cauchemar"
+DisplayName_INT="Nightmare"
+DisplayName_ITA="Incubo"
+DisplayName_JPN="悪夢"
+DisplayName_KOR="악몽"
+DisplayName_POL="Koszmar"
+DisplayName_PTB="Pesadelo"
+DisplayName_RUS="Кошмар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2769,6 +2855,9 @@ DisplayName="Nuked"
 
 [KF-TragicKingdom KFMapSummary]
 DisplayName="The Tragic Kingdom"
+
+[KF-Nightmare KFMapSummary]
+DisplayName="悪夢"
 
 [KFMapInfo]
 ; defaults

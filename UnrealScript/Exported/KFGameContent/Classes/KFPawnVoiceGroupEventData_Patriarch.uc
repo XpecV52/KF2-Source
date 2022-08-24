@@ -495,6 +495,8 @@ class KFPawnVoiceGroupEventData_Patriarch extends KFPawnVoiceGroupEventData;
 
 
 
+
+
 #linenumber 12
 
 defaultproperties

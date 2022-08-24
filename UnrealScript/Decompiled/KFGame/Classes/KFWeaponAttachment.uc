@@ -272,6 +272,10 @@ simulated function AttachTo(KFPawn P)
         P.Mesh.UpdateAnimations();
     }
     P.SetAimOffsetNodesProfile(AimOffsetProfileName);
+    if((KFPawn_Human(P) != none) && KFPawn_Human(P).WeaponSkinItemId > 0)
+    {
+        SetWeaponSkin(KFPawn_Human(P).WeaponSkinItemId);
+    }
 }
 
 simulated function DetachFrom(KFPawn P)

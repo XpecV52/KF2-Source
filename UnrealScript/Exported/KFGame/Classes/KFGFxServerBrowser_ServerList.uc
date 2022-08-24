@@ -898,6 +898,7 @@ function UpdateListDataProvider()
 				Ping = 									TempOnlineGamesSettings.PingInMs;
 				TempObj.SetString("ping",          		(Ping < 0) ? ("-") : (String(Ping)) );
 				TempObj.SetString("difficulty",          Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(TempOnlineGamesSettings.difficulty));
+				
 				TempObj.SetString("mode",           	class'KFCommon_LocalizedStrings'.static.GetGameModeString(TempOnlineGamesSettings.Mode) );
 				TempObj.SetString("map",           		TempOnlineGamesSettings.MapName);
 				TempObj.SetBool("locked",           	TempOnlineGamesSettings.bRequiresPassword);

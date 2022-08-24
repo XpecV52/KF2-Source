@@ -78,7 +78,8 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
-const KFID_SafeFrameScale = 168;#linenumber 16
+const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;#linenumber 16
 //@HSL_MOD_END
 /** Debug scene related properties */
 var bool					bDebugSceneEnabled;
@@ -115,6 +116,9 @@ exec native final function FindTranslucencyInheritDominantShadowMaterials();
 /** Create and save an empty upk */
 native final function MakeEmptyPackage();
 
+exec native function ResetDailyObjectives();
+exec native function GiveVaultDosh(int Amount);
+
 /*********************************************************************************************
  * script cheats
  *********************************************************************************************/
@@ -147,6 +151,33 @@ exec function SetFakeDownloadProgress (bool bDownloading, float PercentageComple
     KFVP.NotifyDownloadProgress(PMT_DownloadProgress, "TEST", "59");
 }
 
+exec function SetInventoryFilter (string FilterType, int NewEnum)
+{
+    local string MyFilterType;
+    local KFPlayerController KFPC;
+    LogInternal("Set Filter Called: " @FilterType @NewEnum);
+    MyFilterType = Caps(FilterType);
+
+    KFPC = KFPlayerController(Outer);
+    if(KFPC != none && KFPC.MyGFxManager != none && KFPC.MyGFxManager.InventoryMenu != none)
+    {
+        switch (MyFilterType)
+        {
+            case "WEAPON":
+                KFPC.MyGFxManager.InventoryMenu.Callback_WeaponTypeFilterChanged(NewEnum);
+                break;
+            case "RARITY":
+                KFPC.MyGFxManager.InventoryMenu.Callback_RarityTypeFilterChanged(NewEnum);
+                break;
+            case "PERK":
+                KFPC.MyGFxManager.InventoryMenu.Callback_PerkTypeFilterChanged(NewEnum);
+                break;
+            default:
+                LogInternal("Bad filter type provided!"@FilterType);
+        }
+    }
+}
+
 exec function OpenScreenSizeMovie()
 {
 	KFPlayerController(Outer).MyGFxManager.OpenScreenSizeMovie();
@@ -157,7 +188,6 @@ exec function CloseScreenSizeMovie()
 {
 	KFPlayerController(Outer).MyGFxManager.ScreenSizeMovie.SaveAndClose();
 }
-
 
 exec function OpenIIS ()
 {
@@ -194,7 +224,7 @@ exec function TestSongInfoWidget(String S)
     {
         KFPC.MyGFxHUD.MusicNotification.ShowSongInfo(S);
     }
-    
+
 }
 
 exec function TestNumbPrompts(int NumberOfPrompts)
@@ -213,7 +243,7 @@ exec function TestNumbPrompts(int NumberOfPrompts)
     if(KFPC.MyGFxManager != none )
     {
         KFPC.MyGFxManager.ManagerObject.SetInt("numPrompts", NumberOfPrompts);
-    }   
+    }
 }
 
 exec function MakeFakePopUp()
@@ -266,7 +296,7 @@ exec function PrintOutCharacterCosmeticInfo()
 
     LogInternal("PRINTING OUT COSMETIC INFO!");
     for(i = 0; i < 3 /*MAX_COSMETIC_ATTACHMENTS*/; ++i)
-    {  
+    {
         LogInternal("Item on slot index: " @i @"Mesh index: " @KFPRI.RepCustomizationInfo.AttachmentMeshIndices[i] @"Skin index" @KFPRI.RepCustomizationInfo.AttachmentSkinIndices[i]);
     }
 
@@ -773,7 +803,7 @@ simulated exec function SetMusicVolume( float NewVolume )
 	Profile = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(LocalPlayer(Player).ControllerId);
 	MusicVolumeMultiplier = NewVolume ;
 	GetALocalPlayerController().SetAudioGroupVolume( 'Music', MusicVolumeMultiplier );
-	Profile.SetProfileSettingValueFloat(KFID_MusicVolumeMultiplier, MusicVolumeMultiplier);	
+	Profile.SetProfileSettingValueFloat(KFID_MusicVolumeMultiplier, MusicVolumeMultiplier);
 	KFProfileSettings(Profile).Save( LocalPlayer(Player).ControllerId );
 //@HSL_MOD_END
 	class'KFGameEngine'.static.StaticSaveConfig();
@@ -937,6 +967,7 @@ simulated exec function Demo()
     GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_M79" );
     GiveWeapon( "KFGameContent.KFWeap_RocketLauncher_RPG7" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_M16M203" );
+    GiveWeapon( "KFGameContent.KFWeap_RocketLauncher_Seeker6" );
 }
 
 /**
@@ -948,6 +979,7 @@ simulated exec function Medic()
     GiveWeapon( "KFGameContent.KFWeap_Shotgun_Medic" );
     GiveWeapon( "KFGameContent.KFWeap_SMG_Medic" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_Medic" );
+    GiveWeapon( "KFGameContent.KFWeap_Rifle_Hemogoblin" );
 }
 
 /**
@@ -1014,6 +1046,7 @@ simulated exec function SMG()
 /** Give the player all survivalist weapons */
 exec function Surv()
 {
+    GiveWeapon( "KFGameContent.KFWeap_Ice_FreezeThrower" );
 }
 
 /* AllWeapons
@@ -3509,33 +3542,19 @@ exec function HansGas()
 
 exec function AISummonZeds(int BattlePhase, int DifficultyIndex)
 {
-	local KFAIController_ZedBoss KFAIC;
-    local KFAIWaveInfo MinionWave;
-    local KFPawn_MonsterBoss BossPawn;
+	local KFAIController KFAIC;
+    local KFInterface_MonsterBoss BossRef;
 
-	foreach allactors( class'KFAIController_ZedBoss', KFAIC )
+	foreach allactors( class'KFAIController', KFAIC )
 	{
-        BossPawn = KFPawn_MonsterBoss(KFAIC.MyKFPawn);
+        BossRef = KFInterface_MonsterBoss(KFAIC.MyKFPawn);
 
-        if( BossPawn == none )
+        if(BossRef == none )
         {
             return;
         }
 
-        if( BattlePhase == 0 )
-        {
-            MinionWave = BossPawn.SummonWaves[DifficultyIndex].PhaseOneWave;
-        }
-        else if( BattlePhase == 1 )
-        {
-            MinionWave = BossPawn.SummonWaves[DifficultyIndex].PhaseTwoWave;
-        }
-        else if( BattlePhase == 2 )
-        {
-            MinionWave = BossPawn.SummonWaves[DifficultyIndex].PhaseThreeWave;
-        }
-
-		class'AICommand_SummonZeds'.static.Summon( KFAIC, MinionWave, BossPawn.GetNumMinionsToSpawn() );
+		class'AICommand_SummonZeds'.static.Summon( KFAIC, BossRef.GetWaveInfo(BattlePhase, DifficultyIndex), BossRef.GetNumMinionsToSpawn() );
 	}
 }
 
@@ -5747,6 +5766,32 @@ exec function DisableAtkAnimDifficultyScaling()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /** Prints out a pawns modifier and final default values when spawned */
 exec function ToggleAIDefaultsLog()
 {
@@ -6684,6 +6729,11 @@ exec function ShowXboxProductDetails( optional string ProductId )
 }
 
 
+exec function ShowXboxStoreUI()
+{
+	 OnlineSub.PlayerInterfaceEx.ShowContentMarketplaceUI( LocalPlayer(Player).ControllerId, 1, 1, "65656f5b-117f-43d2-ae4c-74aea578c32d");
+}
+
 
 exec function DumpGameProducts() { DumpStoreCatalog(MIT_Game); }
 exec function DumpApplicationProducts() { DumpStoreCatalog(MIT_Application); }
@@ -6812,9 +6862,249 @@ exec function DebugSetSafeFrame(float NewScale)
 	KFGameEngine(class'Engine'.static.GetEngine()).SafeFrameScale = NewScale;
 }
 
-
 // Playfab debugging End
 /////////////////////////////////////////////////////////////
+
+//-----------------------------------------------------------------------------
+// Mixer Debugging
+exec function StartMixer()
+{
+    KFPlayerController(Outer).InitializeMixer();
+}
+
+exec function StopMixer()
+{
+    KFPlayerController(Outer).ShutdownMixer();
+}
+
+exec function TestGaveAmmo (string Username)
+{
+    KFPlayerController(Outer).MyGFxHUD.ShowNonCriticalMessage( Username @class'KFCommon_LocalizedStrings'.default.MixerGaveAmmoString);
+}
+
+exec function TestMixerButton(string Button, string metadata, int amount, int cooldown)
+{
+    local array<string> MetaKeys, MetaProps;
+
+    if (metadata != "")
+    {
+        MetaKeys.AddItem("Type");
+        MetaProps.AddItem(metadata);
+    }
+
+    if (amount > 0)
+    {
+        MetaKeys.AddItem("Amount");
+        MetaProps.AddItem(string(amount));
+    }
+
+    if (cooldown > 0)
+    {
+        MetaKeys.AddItem("Cooldown");
+        MetaProps.AddItem(string(cooldown));
+    }
+
+    KFPlayerController(Outer).TestMixerCall(Button, MetaKeys, MetaProps);
+}
+
+//-----------------------------------------------------------------------------
+// LED Debugging
+exec function InitLEDEffects()
+{
+    local LogitechLEDInterface LogtitechLED;
+    local RazerLEDInterface RazerFXLED;
+    local AlienFXLEDInterface AlienFXLED;
+
+    AlienFXLED = class'PlatformInterfaceBase'.static.GetAlienFXIntegration();
+    RazerFXLED = class'PlatformInterfaceBase'.static.GetRazerIntegration();
+    LogtitechLED = class'PlatformInterfaceBase'.static.GetLogitechIntegration();
+
+    if (RazerFXLED == none)
+    {
+       LogInternal("RazerFXLED == none");
+    }
+
+    if (LogtitechLED == none)
+    {
+        LogInternal("LogtitechLED == none");
+    }
+
+    if(AlienFXLED == none)
+    {
+        LogInternal("AlienFXLED == none");
+    }
+    else
+    {
+        AlienFXLED.Activate();
+    }
+}
+
+exec function SetLEDRGB(byte RedPercent, byte GreenPercent, byte BluePercent)
+{
+    local LogitechLEDInterface LogtitechLED;
+    local RazerLEDInterface RazerFXLED;
+    local AlienFXLEDInterface AlienFXLED;
+
+    LogtitechLED = class'PlatformInterfaceBase'.static.GetLogitechIntegration();
+    RazerFXLED = class'PlatformInterfaceBase'.static.GetRazerIntegration();
+    AlienFXLED = class'PlatformInterfaceBase'.static.GetAlienFXIntegration();
+
+    if (LogtitechLED != none)
+    {
+       LogtitechLED.SetColor(RedPercent, GreenPercent, BluePercent);
+    }
+
+    if(RazerFXLED != none)
+    {
+        RazerFXLED.SetColor(RedPercent, GreenPercent, BluePercent);
+    }
+
+    if (AlienFXLED != none)
+    {
+        if(!AlienFXLED.SetColor(RedPercent, GreenPercent, BluePercent))
+        {
+            LogInternal("Failed to set color for AlienFX");
+        }
+    }
+}
+
+exec function LEDSetFlashingRBG (int RedPercent, int GreenPercent, int BluePercent,
+int MilliSecondsDuration, int MilliSecondsInterval)
+{
+    local LogitechLEDInterface LogtitechLED;
+    local RazerLEDInterface RazerFXLED;
+    LogtitechLED = class'PlatformInterfaceBase'.static.GetLogitechIntegration();
+    RazerFXLED = class'PlatformInterfaceBase'.static.GetRazerIntegration();
+
+    if (LogtitechLED != none)
+    {
+       LogtitechLED.LEDSetFlashingRBG(RedPercent, GreenPercent, BluePercent,
+            MilliSecondsDuration, MilliSecondsInterval);
+    }
+
+    if(RazerFXLED != none)
+    {
+        RazerFXLED.LEDSetFlashingRBG(RedPercent, GreenPercent, BluePercent,
+            MilliSecondsDuration, MilliSecondsInterval);
+    }
+}
+
+
+exec function LEDPulseLighting(int RedPercent, int GreenPercent, int BluePercent, int
+MilliSecondsDuration, int MilliSecondsInterval)
+{
+    local LogitechLEDInterface LogtitechLED;
+    local RazerLEDInterface RazerFXLED;
+
+    LogtitechLED = class'PlatformInterfaceBase'.static.GetLogitechIntegration();
+    RazerFXLED = class'PlatformInterfaceBase'.static.GetRazerIntegration();
+
+    if (LogtitechLED != none)
+    {
+       LogtitechLED.LEDPulseLighting(RedPercent, GreenPercent, BluePercent,
+        MilliSecondsDuration, MilliSecondsInterval);
+    }
+
+    if(RazerFXLED != none)
+    {
+        RazerFXLED.LEDPulseLighting(RedPercent, GreenPercent, BluePercent,
+        MilliSecondsDuration, MilliSecondsInterval);
+    }
+}
+
+
+exec function LedStopEffects()
+{
+    local LogitechLEDInterface LogtitechLED;
+    local RazerLEDInterface RazerFXLED;
+
+    LogtitechLED = class'PlatformInterfaceBase'.static.GetLogitechIntegration();
+    RazerFXLED = class'PlatformInterfaceBase'.static.GetRazerIntegration();
+
+    if (LogtitechLED != none)
+    {
+       LogtitechLED.LedStopEffects();
+    }
+
+    if(RazerFXLED != none)
+    {
+        RazerFXLED.LedStopEffects();
+    }
+}
+
+
+exec function LedRestoreLighting ()
+{
+    local LogitechLEDInterface LogtitechLED;
+    LogtitechLED = class'PlatformInterfaceBase'.static.GetLogitechIntegration();
+
+    if (LogtitechLED != none)
+    {
+       LogtitechLED.LedRestoreLighting();
+    }
+    else
+    {
+        LogInternal("LogtitechLED == none");
+    }
+}
+
+exec function SetMissionObjectiveProgress(float ProgressValue)
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+
+    if(P == none || KFPC == None)
+    {
+        return;
+    }
+
+    if(KFPC.MyGFxHUD != none )
+    {
+        KFPC.MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetCurrentProgress(ProgressValue);
+    }
+}
+
+exec function SetMissionObjectiveActive(bool bActive)
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+
+    if(P == none || KFPC == None)
+    {
+        return;
+    }
+
+    if(KFPC.MyGFxHUD != none )
+    {
+        KFPC.MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetActive(bActive);
+    }
+}
+
+
+exec function SetMissionObjectiveVisible(bool bVisible)
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+
+    if(P == none || KFPC == None)
+    {
+        return;
+    }
+
+    if(KFPC.MyGFxHUD != none )
+    {
+        KFPC.MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetVisible(bVisible);
+    }
+}
 
 defaultproperties
 {

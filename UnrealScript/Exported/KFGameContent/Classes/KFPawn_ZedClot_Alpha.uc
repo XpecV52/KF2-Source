@@ -59,7 +59,8 @@ defaultproperties
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Explosive')
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Piercing')
    DamageTypeModifiers(12)=(DamageType=Class'KFGame.KFDT_Toxic')
-   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Knife')
+   DamageTypeModifiers(13)=(DamageType=Class'KFGame.KFDT_Bleeding')
+   DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Knife')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_ClotAlpha'
    LocalizationKey="KFPawn_ZedClot_Alpha"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:ThirdPersonHead0'
@@ -87,7 +88,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
    IncapSettings(9)=(Duration=4.000000,Cooldown=1.500000,Vulnerability=(2.500000))
    IncapSettings(10)=(Duration=2.000000,Cooldown=10.000000,Vulnerability=(0.500000))
-   IncapSettings(11)=(Vulnerability=(0.500000))
+   IncapSettings(11)=(Vulnerability=(2.000000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=500.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:FirstPersonArms'

@@ -35,6 +35,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp0"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -44,6 +45,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp0_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -53,6 +55,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp1"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -62,6 +65,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp1_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -71,6 +75,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp2"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -80,6 +85,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp2_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -89,6 +95,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp3"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -98,6 +105,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp3_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -107,6 +115,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp4"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -116,6 +125,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp4_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -125,6 +135,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp5"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -134,6 +145,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp5_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -159,10 +171,10 @@ defaultproperties
    InitialSpareMags(0)=7
    IdleFidgetAnims(3)="Guncheck_v4"
    BonesToLockOnEmpty(0)="RW_Hammer"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_DryFire'
-   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_DryFire'
    PlayerViewOffset=(X=23.000000,Y=0.000000,Z=-1.000000)
    AttachmentArchetype=KFWeapAttach_DualBase'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_DualBase:MeleeHelper_0'

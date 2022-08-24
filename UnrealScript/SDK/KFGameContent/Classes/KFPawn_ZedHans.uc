@@ -1125,8 +1125,6 @@ DefaultProperties
 	HeavyBumpDamageType=class'KFGameContent.KFDT_HeavyZedBump'
     DifficultySettings=class'KFDifficulty_Hans'
 
-    TheatricCameraSocketName=TheatricCameraRootSocket
-
 	// ---------------------------------------------
 	// Special Moves
 	Begin Object Name=SpecialMoveHandler_0
@@ -1153,7 +1151,7 @@ DefaultProperties
     IncapSettings(AF_EMP)=      (Vulnerability=(0.95),                      Cooldown=10.0, Duration=2.5)   //0.95
     IncapSettings(AF_Freeze)=   (Vulnerability=(0.5),                       Cooldown=10.0, Duration=1.0)   //0.95
     IncapSettings(AF_Snare)=    (Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0),   Cooldown=10.5, Duration=3.0)
-    IncapSettings(AF_Bleed)=    (Vulnerability=(0.08))
+    IncapSettings(AF_Bleed)=    (Vulnerability=(0.20),                      Cooldown=10.0)
 
 	ParryResistance=4
 
@@ -1371,6 +1369,7 @@ DefaultProperties
         CastShadows=False
         CastStaticShadows=FALSE
         CastDynamicShadows=True
+		bCastPerObjectShadows=false
         bEnabled=FALSE
         LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
     End Object
@@ -1415,6 +1414,7 @@ DefaultProperties
         Radius=128.f
         LightColor=(R=168,G=222,B=173,A=255)
         CastShadows=false
+		bCastPerObjectShadows=false
         LightingChannels=(Indoor=true,Outdoor=true,bInitialized=TRUE)
     End Object
     BattlePhaseLightTemplateGreen=PointLightComponent0
@@ -1424,6 +1424,7 @@ DefaultProperties
         Radius=128.f
         LightColor=(R=231,G=215,B=161,A=255)
         CastShadows=false
+		bCastPerObjectShadows=false
         LightingChannels=(Indoor=true,Outdoor=true,bInitialized=TRUE)
     End Object
     BattlePhaseLightTemplateYellow=PointLightComponent1
@@ -1433,6 +1434,7 @@ DefaultProperties
         Radius=128.f
         LightColor=(R=231,G=144,B=0,A=255)
         CastShadows=false
+		bCastPerObjectShadows=false
         LightingChannels=(Indoor=true,Outdoor=true,bInitialized=TRUE)
     End Object
     BattlePhaseLightTemplateRed=PointLightComponent2
@@ -1442,6 +1444,7 @@ DefaultProperties
         Radius=128.f
         LightColor=(R=255,G=64,B=64,A=255)
         CastShadows=false
+		bCastPerObjectShadows=false
         LightingChannels=(Indoor=true,Outdoor=true,bInitialized=TRUE)
 
         // light anim

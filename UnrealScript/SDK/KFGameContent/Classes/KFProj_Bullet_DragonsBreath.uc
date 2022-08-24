@@ -32,6 +32,7 @@ defaultproperties
 		CastShadows=False
 		CastStaticShadows=FALSE
 		CastDynamicShadows=False
+		bCastPerObjectShadows=false
 		bEnabled=true
 		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
 	End Object

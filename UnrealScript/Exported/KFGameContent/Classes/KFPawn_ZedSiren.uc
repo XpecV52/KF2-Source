@@ -113,6 +113,7 @@ defaultproperties
       LightColor=(B=50,G=50,R=250,A=255)
       bEnabled=False
       CastShadows=False
+      bCastPerObjectShadows=False
       LightingChannels=(Outdoor=True)
       MaxBrightness=1.200000
       MinBrightness=0.750000
@@ -217,7 +218,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
    IncapSettings(9)=(Duration=4.200000,Cooldown=1.500000,Vulnerability=(2.000000))
    IncapSettings(10)=(Duration=4.000000,Cooldown=6.500000,Vulnerability=(3.000000))
-   IncapSettings(11)=(Vulnerability=(3.000000))
+   IncapSettings(11)=(Vulnerability=(1.000000))
    PhysRagdollImpulseScale=0.500000
    KnockdownImpulseScale=0.500000
    SprintSpeed=200.000000

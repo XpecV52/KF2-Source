@@ -10,7 +10,7 @@
 class KFPawn_ZedHuskFriendlyTest extends KFPawn_ZedHusk;
 
 /** Can this pawn be grabbed by Zed performing grab special move (clots & Hans's energy drain) */
-function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling)
+function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling, optional bool bAllowSameTeamGrab)
 {
     return false;
 }

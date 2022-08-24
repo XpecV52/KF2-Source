@@ -4,8 +4,8 @@ Description="Этот крупный парень из Швеции любил �
 BodyMesh0="Время байкера"
 BodyMesh1="Картонный рыцарь"
 BodyMesh2="Охрана Horzine"
-BodyMesh3=""
 BodyMesh4="Защитный"
+BodyMesh5="Курица-коммандос"
 HeadMesh0="Сила бороды!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -14,6 +14,7 @@ BodySkin1="Horzine"
 BodySkin2="Ди-джей Скалли"
 BodySkin3="Открытый протест"
 BodySkin4="Охотник на демонов"
+BodySkin5="Batcat из хранилища"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -37,13 +38,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[CHR_Jagerhorn_Archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Jagerhorn_Archetype.BodyMesh4]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -52,11 +46,19 @@ BodySkin3="Horzine"
 BodySkin4="Фон Браун"
 BodySkin5="Команда Корол. Трагедий"
 
+[CHR_Jagerhorn_Archetype.BodyMesh5]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Швед-блондин"
 HeadSkin1="Черный альбом"
 HeadSkin2="Кроваво-красный"
 HeadSkin3="Маска рокера"
+HeadSkin4="Большой плохой швед"
+HeadSkin5="Головокружение"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Ковбойская шляпа"
@@ -64,13 +66,6 @@ AttachmentSkin0="Темный всадник"
 AttachmentSkin1="Поношенная кожа"
 AttachmentSkin2="Безупречность"
 AttachmentSkin3="Кроваво-красный"
-
-[Cosmetic_Coleman_yuri_1_ARCH]
-Attachment="Лазутчик"
-AttachmentSkin0="Красный"
-AttachmentSkin1="Синий"
-AttachmentSkin2="Зеленый"
-AttachmentSkin3="Дорогой"
 
 [Cosmetic_RussianGasmask_Alberts_1_ARCH]
 Attachment="Русский противогаз"
@@ -145,8 +140,9 @@ Description="Скалли — лучший голландский ди-джей
 BodyMesh0="Куртка с капюшоном"
 BodyMesh1="Картонный рыцарь"
 BodyMesh2="Охрана Horzine"
-BodyMesh3=""
+
 BodyMesh4="Защитный"
+BodyMesh5="Курица-коммандос"
 HeadMesh0="Маска Скалли"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -155,6 +151,7 @@ BodySkin1="Экстра-красный"
 BodySkin2="Желтый GearXT"
 BodySkin3="Ядовито-зеленый"
 BodySkin4="Ретро-Скалли"
+BodySkin5="Дорогой из хранилища"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -178,13 +175,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[chr_DJSkully_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_DJSkully_archetype.BodyMesh4]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -193,6 +183,12 @@ BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
 
+[CHR_DJSkully_Archetype.BodyMesh5]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Черный-черный"
 HeadSkin1="Экстра-красный"
@@ -200,6 +196,7 @@ HeadSkin2="Желтый GearXT"
 HeadSkin3="Ядовито-зеленый"
 HeadSkin4="Ретро-Скалли"
 HeadSkin5="Безмолвный крик Скалли"
+HeadSkin6="BatCat"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Наушники Скалли"
@@ -227,8 +224,9 @@ BodyMesh0="Полицейская броня"
 BodyMesh1="Лондон"
 BodyMesh2="Картонный рыцарь"
 BodyMesh3="Охрана Horzine"
-BodyMesh4=""
+
 BodyMesh5="Защитный"
+BodyMesh6="Курица-коммандос"
 HeadMesh0="Волосы"
 
 [chr_briar_archetype.BodyMesh0]
@@ -266,13 +264,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[chr_briar_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_briar_archetype.BodyMesh5]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -281,11 +272,18 @@ BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
 
+[chr_briar_archetype.BodyMesh6]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Оригинальный"
 HeadSkin1="Подсветка"
 HeadSkin2="Черный"
 HeadSkin3="Марионетка"
+HeadSkin4="День мертвых"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Маска врача"
@@ -309,8 +307,9 @@ BodyMesh0="Кожаная куртка"
 BodyMesh1="Классический костюм"
 BodyMesh2="Картонный рыцарь"
 BodyMesh3="Охрана Horzine"
-BodyMesh4=""
+
 BodyMesh5="Защитный"
+BodyMesh6="Курица-коммандос"
 HeadMesh0="Противогаз"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -353,13 +352,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[CHR_MrFoster_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_MrFoster_archetype.BodyMesh5]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -368,6 +360,12 @@ BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
 
+[CHR_MrFoster_archetype.BodyMesh6]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
+
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Оригинальный белый"
 HeadSkin1="Красный PCG"
@@ -375,6 +373,8 @@ HeadSkin2="Мой дружок Скалли"
 HeadSkin3="Вулканический красный"
 HeadSkin4="Британский класс"
 HeadSkin5="Красная пелена"
+HeadSkin6="Г-н Ганс"
+HeadSkin7="Деньголюб"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Наушники Скалли"
@@ -427,6 +427,8 @@ AttachmentSkin2="Черный"
 AttachmentSkin3="Черный с белым"
 AttachmentSkin4="Казино"
 AttachmentSkin5="Шмот"
+AttachmentSkin6="Magma"
+AttachmentSkin7="Dark Red Stripe"
 
 [Cosmetic_Ana_CyberneticGasmask_ARCH]
 Attachment="Киберпротивогаз"
@@ -513,8 +515,9 @@ Description="Донован — крупный мужчина, способны
 BodyMesh0="Куртка с капюшоном RQ"
 BodyMesh1="Картонный рыцарь"
 BodyMesh2="Охрана Horzine"
-BodyMesh3=""
+
 BodyMesh4="Защитный"
+BodyMesh5="Курица-коммандос"
 HeadMesh0="Лицо"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -522,6 +525,7 @@ BodySkin0="Гоночный зеленый"
 BodySkin1="Ржаво-красный"
 BodySkin2="Классный серый"
 BodySkin3="Бледно-земляной"
+BodySkin4="Дорогой из хранилища"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -545,13 +549,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[CHR_Coleman_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Coleman_archetype.BodyMesh4]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -560,11 +557,18 @@ BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
 
+[CHR_Coleman_archetype.BodyMesh5]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Донован"
 HeadSkin1="Невзрачный"
 HeadSkin2="Блестящий"
 HeadSkin3="Ухмылка"
+HeadSkin4="Рык"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Боксерский шлем"
@@ -587,8 +591,9 @@ Description="Родившийся в англо-шотландской семь�
 BodyMesh0="Воротничок священника"
 BodyMesh1="Картонный рыцарь"
 BodyMesh2="Охрана Horzine"
-BodyMesh3=""
+
 BodyMesh4="Защитный"
+BodyMesh5="Курица-коммандос"
 HeadMesh0="Волосы"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -596,6 +601,7 @@ BodySkin0="Обычный черный"
 BodySkin1="Рубиновый красный"
 BodySkin2="Кричащий синий"
 BodySkin3="Тропический белый"
+BodySkin4="Дорогое священное солнце"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -619,13 +625,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[CHR_Alberts_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Alberts_archetype.BodyMesh4]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -634,12 +633,19 @@ BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
 
+[CHR_Alberts_archetype.BodyMesh5]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
+
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Серый"
 HeadSkin1="Коричневый"
 HeadSkin2="Черный"
 HeadSkin3="Белый"
 HeadSkin4="Пьеро"
+HeadSkin5="Видение"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Очки"
@@ -893,8 +899,8 @@ AttachmentSkin6="Сине-тигровый"
 
 [Cosmetic_Coleman_yuri_ARCH]
 Attachment="Лазутчик"
-AttachmentSkin0="Красный"
-AttachmentSkin1="Синий"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Красный цвет"
 AttachmentSkin2="Зеленый"
 AttachmentSkin3="Дорогой"
 
@@ -1521,14 +1527,17 @@ Description="Армейская карьера Билла Мастерсона �
 BodyMesh0="Боевой костюм"
 BodyMesh1="Картонный рыцарь"
 BodyMesh2="Охрана Horzine"
-BodyMesh3=""
+
 BodyMesh4="Защитный"
+BodyMesh5="Курица-коммандос"
 HeadMesh0="Лицо"
 
 [CHR_Masterson_archetype.HeadMesh0]
 HeadSkin0="Чистое"
 HeadSkin1="Камуфляж"
 HeadSkin2="Клоун"
+HeadSkin3="Вампир"
+HeadSkin4="Гильотина"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Зеленый"
@@ -1558,13 +1567,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[CHR_Masterson_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Masterson_archetype.BodyMesh4]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -1573,6 +1575,12 @@ BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
 
+[CHR_Masterson_archetype.BodyMesh5]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Хаято Танака"
 Description="Танака — сложная личность, отягощенная комплексом стремления к смерти. Он родился на Окинаве и вырос на американской военной базе. Вернувшись с семьей на основной остров Японии, «американец» Танака не вписался в общество. Он стал брать уроки сценического искусства. После колледжа он перебрался в Лос-Анжелес, где сыграл несколько «типовых» ролей в плохих фильмах, после чего переехал в Европу в поисках «настоящей» работы. Но его ждали лишь образы «плохих парней» во французских гангстерских лентах. Теперь же, когда наступил апокалипсис, он, кажется, путает реальность с сыгранными ролями. Среди его персонажей — мафиози-якудза, демоны и что-то из голливудского представления о самураях."
@@ -1580,20 +1588,24 @@ BodyMesh0="Спокойная смерть"
 BodyMesh1="Мотоцикл"
 BodyMesh2="Картонный рыцарь"
 BodyMesh3="Охрана Horzine"
-BodyMesh4=""
+
 BodyMesh5="Защитный"
+BodyMesh6="Курица-коммандос"
 HeadMesh0="Волосы"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
 HeadSkin0="Черный"
 HeadSkin1="Блондин"
 HeadSkin2="Кумадори"
+HeadSkin3="Титан"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="Стильный"
 BodySkin1="Какихара-сан"
 BodySkin2="Весь-в-черном"
 BodySkin3="Синий дракон"
+BodySkin4="Ретро из хранилища"
+BodySkin5="Дорогой карп из хранилища"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="Красный с черным"
@@ -1626,13 +1638,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[CHR_Tanaka_Archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Tanaka_Archetype.BodyMesh5]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -1640,6 +1645,12 @@ BodySkin2="Жара"
 BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
+
+[CHR_Tanaka_Archetype.BodyMesh6]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Шлем"
@@ -1674,8 +1685,9 @@ Description="Избранные причислили бы Ану к катего
 BodyMesh0="Металлист"
 BodyMesh1="Охрана Horzine"
 BodyMesh2="Картонный рыцарь"
-BodyMesh3=""
+
 BodyMesh4="Защитный"
+BodyMesh5="Курица-коммандос"
 HeadMesh0="Ирокез"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -1684,6 +1696,8 @@ HeadSkin1="Яркая кровь"
 HeadSkin2="Зеленая биокола"
 HeadSkin3="Синенький"
 HeadSkin4="Дэт-метал"
+HeadSkin5="Г-жа Штейн"
+HeadSkin6="Цветы"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Дождь смерти"
@@ -1714,13 +1728,6 @@ BodySkin3="Склад Horzine"
 BodySkin4="Колючая проволока"
 BodySkin5="ZedEx"
 
-[CHR_Ana_Archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Ana_Archetype.BodyMesh4]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -1728,6 +1735,12 @@ BodySkin2="Жара"
 BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
+
+[CHR_Ana_Archetype.BodyMesh5]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D-очки"
@@ -1748,8 +1761,9 @@ BodyMesh0="Полицейская броня"
 BodyMesh1="Лондон"
 BodyMesh2="Картонный рыцарь"
 BodyMesh3="Охрана Horzine"
-BodyMesh4=""
+
 BodyMesh5="Защитный"
+BodyMesh6="Курица-коммандос"
 HeadMesh0="Волосы"
 
 [chr_mark_archetype.BodyMesh0]
@@ -1787,13 +1801,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[chr_mark_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_mark_archetype.BodyMesh5]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -1802,12 +1809,20 @@ BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
 
+[chr_mark_archetype.BodyMesh6]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
 HeadSkin1="Кровавый полдник"
 HeadSkin2="Чоткий коричневый"
 HeadSkin3="Швед-блондин"
 HeadSkin4="Улыбнись мне"
+HeadSkin5="Г-н Сок"
+HeadSkin6="Хорошая игра"
 
 [chr_alan_archetype]
 CharacterName="Классический Мастерсон"
@@ -1815,8 +1830,9 @@ Description="Никто никогда не мог понять, как это �
 BodyMesh0="Полицейская броня"
 BodyMesh1="Картонный рыцарь"
 BodyMesh2="Охрана Horzine"
-BodyMesh3=""
+
 BodyMesh4="Защитный"
+BodyMesh5="Курица-коммандос"
 HeadMesh0="Лицо"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -1847,13 +1863,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[CHR_alan_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_alan_archetype.BodyMesh4]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -1862,12 +1871,20 @@ BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
 
+[CHR_alan_archetype.BodyMesh5]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
 HeadSkin1="Рыжий! В самом деле?"
 HeadSkin2="Трудный день, братан?"
 HeadSkin3="Камуфлируй!"
 HeadSkin4="Веселее, приятель!"
+HeadSkin5="Ты сдох, дружок!"
+HeadSkin6="Цифровой"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="Кепка RQ"
@@ -1882,13 +1899,15 @@ Description="Впервые на войну Штрассер попал в 1939-
 BodyMesh0="RO2: Герой Сталинграда"
 BodyMesh1="Картонный рыцарь"
 BodyMesh2="Охрана Horzine"
-BodyMesh3=""
+
 BodyMesh4="Защитный"
+BodyMesh5="Курица-коммандос"
 HeadMesh0="Волосы"
 
 [CHR_strasser_archetype.BodyMesh0]
 BodySkin0="Новобранец"
 BodySkin1="Ветеран"
+BodySkin2="Камуфляж из хранилища"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -1912,13 +1931,6 @@ BodySkin9="Адамант"
 BodySkin10="Охотник на головами"
 BodySkin11="Дорогой"
 
-[CHR_strasser_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_strasser_archetype.BodyMesh4]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -1927,10 +1939,17 @@ BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
 
+[CHR_strasser_archetype.BodyMesh5]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
+
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Темная сталь"
 HeadSkin1="Светлая сталь"
 HeadSkin2="Мистер Смерть"
+HeadSkin3="Г-н Штейн"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="Немецкая стальная каска"
@@ -1975,6 +1994,8 @@ HeadSkin1="Свобода!"
 HeadSkin2="Идем на войну!"
 HeadSkin3="Вальгалла!"
 HeadSkin4="О, счастливый денек!"
+HeadSkin5="Дерьмовый день!"
+HeadSkin6="Шов"
 
 [Cosmetic_Chivalry_Knight_Helm02HP_ARCH]
 Attachment="Шлем всадника"
@@ -2080,8 +2101,9 @@ Description="Рэй Хиггинс приехала в Европу из Авс�
 BodyMesh0="Обычное платье"
 BodyMesh1="Охрана Horzine"
 BodyMesh2="Картонный рыцарь"
-BodyMesh3
+
 BodyMesh4="Защитный"
+BodyMesh5="Курица-коммандос"
 HeadMesh0="Обычная голова"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2091,6 +2113,7 @@ BodySkin2="Харизматичный"
 BodySkin3="Сила природы"
 BodySkin4="Красная полоска"
 BodySkin5="Матрос"
+BodySkin6="Черепа из хранилища"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="Элитный синий"
@@ -2114,13 +2137,6 @@ BodySkin3="Склад Horzine"
 BodySkin4="Колючая проволока"
 BodySkin5="ZedEx"
 
-[chr_rockabilly_archetype.BodyMesh3]
-BodySkin0
-BodySkin1
-BodySkin2
-BodySkin3
-BodySkin4
-
 [chr_rockabilly_archetype.BodyMesh4]
 BodySkin0="Крокер"
 BodySkin1="Гловер"
@@ -2128,6 +2144,12 @@ BodySkin2="Жара"
 BodySkin3="Horzine"
 BodySkin4="фон Браун"
 BodySkin5="Команда Корол. Трагедий"
+
+[chr_rockabilly_archetype.BodyMesh5]
+BodySkin0 ="Потрепанный вид"
+BodySkin1 ="Аккуратный вид"
+BodySkin2 ="Ночь"
+BodySkin3 ="Тяжелое ранение"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Черный"
@@ -2137,6 +2159,7 @@ HeadSkin3="Золотой"
 HeadSkin4="Зеленовато-голубой"
 HeadSkin5="Розовый"
 HeadSkin6="Мисс Смерть"
+HeadSkin7="Олень"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Повязка на глаз"
@@ -2575,6 +2598,66 @@ EmoteName="Ритуал братания+"
 [KickinIt_Deluxe]
 EmoteName="Пинай+"
 
+[TheCossack]
+EmoteName="Казак"
+
+[TheCossack_Deluxe]
+EmoteName="Казак+"
+
+[TheWave]
+EmoteName="Волна"
+
+[TheWave_Deluxe]
+EmoteName="Волна+"
+
+[Breakin]
+EmoteName="Прорыв"
+
+[Breakin_Deluxe]
+EmoteName="Прорыв+"
+
+[NoHands]
+EmoteName="Без рук"
+
+[NoHands_Deluxe]
+EmoteName="Без рук+"
+
+[HealClick]
+EmoteName="Прыжок вверх"
+
+[HealClick_Deluxe]
+EmoteName="Прыжок вверх+"
+
+[TheSprinkler]
+EmoteName="Ороситель"
+
+[TheSprinkler_Deluxe]
+EmoteName="Ороситель+"
+
+[Maniac]
+EmoteName="Маньяк"
+
+[Maniac_Deluxe]
+EmoteName="Маньяк+"
+
+[RunningMan]
+EmoteName="Бегущий человек"
+
+[RunningMan_Deluxe]
+EmoteName="Бегущий человек+"
+
+[TheRobot]
+EmoteName="Робот"
+
+[TheRobot_Deluxe]
+EmoteName="Робот+"
+
+[AirMetal]
+EmoteName="Воображаемый металл"
+
+[AirMetal_Deluxe]
+EmoteName="Воображаемый металл+"
+
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="Пожарный шлем"
 AttachmentSkin0="Черный"
@@ -2586,7 +2669,7 @@ AttachmentSkin5="Желтый"
 AttachmentSkin6="Дорогой"
 
 [Cosmetic_FirefighterHelmetDown_ARCH]
-Attachment="Шлем с опущ. щитком"
+Attachment="Пожарный шлем закрытый"
 AttachmentSkin0="Черный"
 AttachmentSkin1="Синий"
 AttachmentSkin2="Оливковый"
@@ -2596,7 +2679,7 @@ AttachmentSkin5="Желтый"
 AttachmentSkin6="Дорогой"
 
 [Cosmetic_FirefighterHelmetUp_ARCH]
-Attachment="Шлем с подн. щитком"
+Attachment="Пожарный шлем открытый"
 AttachmentSkin0="Черный"
 AttachmentSkin1="Синий"
 AttachmentSkin2="Оливковый"
@@ -2780,3 +2863,175 @@ AttachmentSkin1="Дорогой"
 [Cosmetic_BoomHat_ARCH]
 Attachment="Динамит говорит «бум»"
 AttachmentSkin0="Взрыв мозга"
+
+[Cosmetic_BoomHat_ARCH]
+Attachment="Динамит говорит «бум»"
+AttachmentSkin0="Взрыв мозга"
+
+[Cosmetic_Bear_ARCH]
+Attachment="Маска медведя"
+AttachmentSkin0 ="Бурый медведь"
+AttachmentSkin1 ="Панда"
+AttachmentSkin2 ="Дорогая вещь"
+
+[Cosmetic_Cat_ARCH]
+Attachment="Маска кошки"
+AttachmentSkin0 ="Коричневый цвет"
+AttachmentSkin1 ="Серая"
+AttachmentSkin2 ="Белый цвет"
+AttachmentSkin3 ="Дорогая вещь"
+
+[Cosmetic_Chicken_ARCH]
+Attachment="Маска курицы"
+AttachmentSkin0 ="Бело-красная"
+AttachmentSkin1 ="Дорогая вещь"
+
+[Cosmetic_Cow_ARCH]
+Attachment="Маска коровы"
+AttachmentSkin0 ="Бело-черная"
+AttachmentSkin1 ="Дорогая вещь"
+
+[Cosmetic_Dog_ARCH]
+Attachment="Маска собаки"
+AttachmentSkin0 ="Коричневая собака"
+AttachmentSkin1 ="Дорогая вещь"
+
+[Cosmetic_Fox_ARCH]
+Attachment="Маска лисы"
+AttachmentSkin0 ="Коричневая лиса"
+AttachmentSkin1 ="Дорогая вещь"
+
+[Cosmetic_Goat_ARCH]
+Attachment="Маска козла"
+AttachmentSkin0 ="Цветной козел"
+AttachmentSkin1 ="Дорогая вещь"
+
+[Cosmetic_Horse_ARCH]
+Attachment="Маска коня"
+AttachmentSkin0 ="Коричневый конь"
+AttachmentSkin1 ="Дорогая вещь"
+
+[Cosmetic_Pig_ARCH]
+Attachment="Маска свиньи"
+AttachmentSkin0 ="Розовая свинья"
+AttachmentSkin1 ="Дорогая вещь"
+
+[Cosmetic_Rabbit_ARCH]
+Attachment="Маска кролика"
+AttachmentSkin0 ="Коричневый кролик"
+AttachmentSkin1 ="Белый кролик"
+AttachmentSkin2 ="Дорогая вещь"
+
+[Cosmetic_CommandoChickenHelmet_ARCH]
+Attachment="Курица-коммандос"
+AttachmentSkin0 ="Потрепанный вид"
+AttachmentSkin1 ="Аккуратный вид"
+AttachmentSkin2 ="Ночь"
+AttachmentSkin3 ="Тяжелое ранение"
+
+[Cosmetic_bobBatcat_ARCH]
+Attachment="Боб"
+AttachmentSkin0 ="Черный цвет"
+AttachmentSkin1 ="Зеленый цвет"
+AttachmentSkin2 ="Пурпурный цвет"
+AttachmentSkin3 ="Бирюзовый цвет"
+AttachmentSkin4 ="Дорогая вещь"
+
+[Cosmetic_crown_ARCH]
+Attachment="Корона"
+AttachmentSkin0 ="Дорогая вещь"
+AttachmentSkin1 ="Серебристая"
+
+[Cosmetic_DGlasses_ARCH]
+Attachment="Денежные очки"
+AttachmentSkin0 ="Зеленый цвет"
+AttachmentSkin1 ="Черный цвет"
+AttachmentSkin2 ="Дорогая вещь"
+
+[Cosmetic_hansBackpack_ARCH]
+Attachment="Рюкзак Ганса"
+AttachmentSkin0 ="Черный цвет"
+AttachmentSkin1 ="Дорогая вещь"
+
+[Cosmetic_scrakeMask_ARCH]
+Attachment="Маска мясника"
+AttachmentSkin0 ="Сталь"
+AttachmentSkin1 ="Дорогая вещь"
+
+[Cosmetic_sharkHat_ARCH]
+Attachment="Акула"
+AttachmentSkin0 ="Серая"
+AttachmentSkin1 ="Песок"
+AttachmentSkin2 ="Косатка"
+AttachmentSkin3 ="Кровавая"
+AttachmentSkin4 ="Дорогая вещь"
+
+[Cosmetic_VGlasses_ARCH]
+Attachment="Очки из хранилища"
+AttachmentSkin0 ="Зеленый цвет"
+AttachmentSkin1 ="Черный цвет"
+AttachmentSkin2 ="Дорогая вещь"
+
+[Cosmetic_Halloween_Arrowed_ARCH]
+Attachment="Стрелки"
+AttachmentSkin0 ="Классика"
+
+[Cosmetic_Halloween_Axed_ARCH]
+Attachment="Топоры"
+AttachmentSkin0 ="Классический топор"
+AttachmentSkin1 ="Дорогой топор"
+
+[Cosmetic_Halloween_Bolts_ARCH]
+Attachment="Болты"
+AttachmentSkin0 ="Металлические болты"
+
+[Cosmetic_Halloween_Halo_ARCH]
+Attachment="Нимб"
+AttachmentSkin0 ="Святой ангел"
+
+[Cosmetic_Halloween_Pumpkin_Classic_ARCH]
+Attachment="Тыквенная голова классическая"
+AttachmentSkin0 ="Тыквенная голова классическая"
+AttachmentSkin1 ="Тыква классическая дорогая"
+
+[Cosmetic_Halloween_Pumpkin_Dosh_ARCH]
+Attachment="Тыквенная голова денежная"
+AttachmentSkin0 ="Зрелая денежная"
+AttachmentSkin1 ="Тыкв. голова денежная дорогая"
+
+[Cosmetic_Halloween_Pumpkin_Fang_ARCH]
+Attachment="Тыквенная голова зубастая"
+AttachmentSkin0 ="Тыквенная голова гнилая"
+
+[Cosmetic_Halloween_Pumpkin_Goofy_ARCH]
+Attachment="Тыквенная голова чокнутая"
+AttachmentSkin0 ="Тыквенная голова чокнутая"
+
+[Cosmetic_Halloween_Pumpkin_Happy_ARCH]
+Attachment="Тыквенная голова радостная"
+AttachmentSkin0 ="Тыквенная голова радостная"
+
+[Cosmetic_Halloween_Pumpkin_Sad_ARCH]
+Attachment="Тыквенная голова грустная"
+AttachmentSkin0 ="Тыквенная голова грустная"
+
+[Cosmetic_Halloween_Pumpkin_Scared_ARCH]
+Attachment="Тыквенная голова испуганная"
+AttachmentSkin0 ="Тыквенная голова испуганная"
+
+[Cosmetic_Halloween_Pumpkin_Scary_ARCH]
+Attachment="Тыквенная голова страшная"
+AttachmentSkin0 ="Тыкв. голова зрелая страшная"
+AttachmentSkin1 ="Тыкв. голова страшная дорогая"
+
+[Cosmetic_Halloween_Pumpkin_Sneaky_ARCH]
+Attachment="Тыквенная голова хитрая"
+AttachmentSkin0 ="Тыквенная голова хитрая"
+
+[Cosmetic_Halloween_Pumpkin_Squeal_ARCH]
+Attachment="Тыквенная голова визгливая"
+AttachmentSkin0 ="Тыквенная голова визгливая"
+
+[Cosmetic_Halloween_Pumpkin_Winky_ARCH]
+Attachment="Тыквенная голова подмигивающая"
+AttachmentSkin0 ="Тыквенная голова радиоактивная"

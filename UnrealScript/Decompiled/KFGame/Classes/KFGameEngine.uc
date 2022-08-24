@@ -20,7 +20,10 @@ enum SupportedPlatform
 enum SeasonalEventIndex
 {
     SEI_None,
+    SEI_Spring,
     SEI_Summer,
+    SEI_Fall,
+    SEI_Winter,
     SEI_MAX
 };
 
@@ -45,6 +48,7 @@ var config bool bAntiMotionSickness;
 var private config bool bShowCrossHair;
 var private bool bShowCrossHairConsole;
 var config bool bMuteOnLossOfFocus;
+var config bool bEnableNative4k;
 var config bool bEnableAdvDebugLines;
 var private const int SeasonalEventId;
 var private int WeeklyEventIndex;
@@ -374,6 +378,12 @@ native static function bool IsFullScreenMoviePlaying();
 
 // Export UKFGameEngine::execSetGamma(FFrame&, void* const)
 native static function SetGamma(float InGammaMultiplier);
+
+// Export UKFGameEngine::execSetNative4k(FFrame&, void* const)
+native static function SetNative4k(bool InEnableNative4k);
+
+// Export UKFGameEngine::execSwitchNative4k(FFrame&, void* const)
+native static function SwitchNative4k();
 
 static function KFGameEngine.EConnectionError GetConnectionErrorForMessage(out string Message, out string Title)
 {

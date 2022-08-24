@@ -25,6 +25,7 @@ enum EGameMessageType
     GMT_HumansWin,
     GMT_AttackHumanPlayers,
     GMT_NextRoundBegin,
+    GMT_LastPlayerStanding,
     GMT_MAX
 };
 
@@ -49,15 +50,18 @@ var const localized string ZedGroupRegroupingString;
 var const localized string NextRoundBeginString;
 var const localized string PlayerCanChangePerksString;
 var const localized string ZedWaitingForNextRoundString;
+var const localized string LastPlayerStandingString;
 
 static function ClientReceive(PlayerController P, optional int Switch, optional PlayerReplicationInfo RelatedPRI_1, optional PlayerReplicationInfo RelatedPRI_2, optional Object OptionalObject)
 {
     local string MessageString, SecondaryMessageString;
-    local KFGFxMoviePlayer_HUD MyGFxHUD;
+    local KFGFxMoviePlayer_HUD myGfxHUD;
     local KFGameReplicationInfo KFGRI;
     local TeamInfo TeamInfo;
     local byte TeamIndex;
+    local KFPlayerController KFPC;
 
+    KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
     TeamIndex = P.PlayerReplicationInfo.GetTeamNum();
     if(OptionalObject != none)
     {
@@ -68,12 +72,12 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
         }
     }
     MessageString = GetMessageString(Switch, SecondaryMessageString, TeamIndex);
-    if((MessageString != "") && KFGFxHudWrapper(P.myHUD) != none)
+    if(((MessageString != "") && KFGFxHudWrapper(P.myHUD) != none) && ShouldShowPriortyMessage(P, Switch))
     {
-        MyGFxHUD = KFGFxHudWrapper(P.myHUD).HudMovie;
-        if(MyGFxHUD != none)
+        myGfxHUD = KFGFxHudWrapper(P.myHUD).HudMovie;
+        if(myGfxHUD != none)
         {
-            MyGFxHUD.DisplayPriorityMessage(MessageString, SecondaryMessageString, int(GetMessageLifeTime(Switch)));
+            myGfxHUD.DisplayPriorityMessage(MessageString, SecondaryMessageString, int(GetMessageLifeTime(Switch)));
         }
     }
     switch(Switch)
@@ -81,6 +85,10 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
         case 0:
             if(!P.PlayerReplicationInfo.bOnlySpectator && P.PlayerReplicationInfo.bReadyToPlay)
             {
+                if((KFPC != none) && KFPC.LEDEffectsManager != none)
+                {
+                    KFPC.LEDEffectsManager.PlayEffectWaveIncoming();
+                }
                 CloseMenus();
             }
             Class'KFMusicStingerHelper'.static.PlayWaveStartStinger(P);
@@ -102,6 +110,10 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
             {
                 Class'KFMusicStingerHelper'.static.PlayMatchWonStinger(P);
             }
+            if((KFPC != none) && KFPC.LEDEffectsManager != none)
+            {
+                KFPC.LEDEffectsManager.PlayEffectShowMatchOutcome(P.PlayerReplicationInfo.GetTeamNum() != 255);
+            }
             break;
         case 3:
             if(P.PlayerReplicationInfo.GetTeamNum() == 255)
@@ -111,6 +123,10 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
             else
             {
                 Class'KFMusicStingerHelper'.static.PlayMatchLostStinger(P);
+            }
+            if((KFPC != none) && KFPC.LEDEffectsManager != none)
+            {
+                KFPC.LEDEffectsManager.PlayEffectShowMatchOutcome(P.PlayerReplicationInfo.GetTeamNum() == 255);
             }
             break;
         case 13:
@@ -127,6 +143,10 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
             {
                 Class'KFMusicStingerHelper'.static.PlayRoundWonStinger(P);
             }
+            if((KFPC != none) && KFPC.LEDEffectsManager != none)
+            {
+                KFPC.LEDEffectsManager.PlayEffectShowMatchOutcome(P.PlayerReplicationInfo.GetTeamNum() != 255);
+            }
             break;
         case 12:
             if(P.PlayerReplicationInfo.GetTeamNum() == 255)
@@ -136,6 +156,10 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
             else
             {
                 Class'KFMusicStingerHelper'.static.PlayRoundLostStinger(P);
+            }
+            if((KFPC != none) && KFPC.LEDEffectsManager != none)
+            {
+                KFPC.LEDEffectsManager.PlayEffectShowMatchOutcome(P.PlayerReplicationInfo.GetTeamNum() == 255);
             }
             break;
         case 9:
@@ -152,6 +176,8 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
             break;
         case 11:
             Class'KFMusicStingerHelper'.static.PlayPlayerDiedStinger(P);
+            break;
+        case 16:
             break;
         default:
             break;
@@ -238,10 +264,27 @@ static function string GetMessageString(int Switch, optional out string Secondar
                 OpenPerkMenu();
             }
             return default.NextRoundBeginString;
+        case 16:
+            return default.LastPlayerStandingString;
         default:
             return "";
             break;
     }
+}
+
+static function bool ShouldShowPriortyMessage(PlayerController P, int Switch)
+{
+    local PlayerController PC;
+
+    if(Switch == 16)
+    {
+        PC = Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController();
+        if((PC != none) && (PC.Pawn != none) && PC.Pawn.Health > 0)
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 static function CloseMenus()
@@ -291,6 +334,8 @@ static function float GetMessageLifeTime(int Switch)
             return 2;
         case 15:
             return 5;
+        case 16:
+            return 1.5;
         default:
             return default.Lifetime;
             break;
@@ -320,4 +365,5 @@ defaultproperties
     NextRoundBeginString="N E X T  R O U N D"
     PlayerCanChangePerksString="Perk changes are allowed"
     ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
+    LastPlayerStandingString="LAST PLAYER STANDING"
 }

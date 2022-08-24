@@ -19,29 +19,28 @@ var KFGFxExpandedObjectivesContainer ExpandedObjectiveContainer;
 var bool bInitialAutoExpandCheckComplete;
 var bool bLastShowSpecialEvent;
 var bool bLastShowWeekly;
+var KFPlayerController KFPC;
 
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
     super.Initialize( NewParentMenu );
-    
+
+    KFPC = KFPlayerController(GetPC());
     //expanded on delay to ensure all widget are initialized
-    GetPC().SetTimer( 0.25f, true, nameof(UpdateMissionObjectiveState), self );
+    KFPC.SetTimer( 0.25f, true, nameof(UpdateMissionObjectiveState), self );
 }
 
 function UpdateMissionObjectiveState()
 {
-    local KFPlayerController KFPC;
     local bool bShouldShow;
     local bool bShouldExpand;
     local int TargetPage;
     local bool bShowWeekly;
-    local bool bShowSpecialEvent;
-
-    KFPC = KFPlayerController(GetPC());
+    local bool bShowSpecialEvent;    
 
     bShouldExpand = false;
-    TargetPage = INDEX_NONE;
-    bShouldShow = false;
+    TargetPage = 0;
+    bShouldShow = true;
 
     bShowWeekly = KFPC != none && KFPC.isA('KFPlayerController_WeeklySurvival') || class'WorldInfo'.static.IsMenuLevel();
     bShowSpecialEvent = ShowShouldSpecialEvent();
@@ -52,12 +51,9 @@ function UpdateMissionObjectiveState()
         {
             //auto expand to weekly1
             bShouldExpand = true;
-            TargetPage = 0;
-            bShouldShow = true;
-
+            
+            TargetPage = 1;
             SetBool("expanded", true);
-            ExpandedObjectiveContainer.SetInt("pageIndex", 0);
-
         }
         else //shows by default. 
         {
@@ -71,9 +67,7 @@ function UpdateMissionObjectiveState()
         if(bShowSpecialEvent)
         {
             bShouldExpand = true;
-            TargetPage = 1;
-            bShouldShow = true;   
-            ExpandedObjectiveContainer.SetInt("pageIndex", TargetPage);   
+            TargetPage = 2;
         }
         
         bLastShowSpecialEvent = bShowSpecialEvent;
@@ -82,12 +76,13 @@ function UpdateMissionObjectiveState()
 
     if(class'WorldInfo'.static.IsMenuLevel()) //main menu
     {
-        bShouldShow = true;
         bShouldExpand = false;
+        TargetPage = 0;
     }
-    
+
     if(!bInitialAutoExpandCheckComplete)
     {
+        ExpandedObjectiveContainer.SetInt("pageIndex", TargetPage);
         SetVisible(bShouldShow);
         SetBool("expanded", bShouldExpand);
         SetString("buttonPromptString", class'KFMission_LocalizedStrings'.default.ObjectivesString);
@@ -109,20 +104,19 @@ function UpdateSpecialEventActive()
 
 function bool ShowShouldSpecialEvent()
 {
-    local KFPlayerController KFPC;
-
-    KFPC = KFPlayerController(GetPC());
-
     return class'KFGameEngine'.static.GetSeasonalEventId() != SEI_None 
             && class'KFGameEngine'.static.GetSeasonalEventId() != INDEX_NONE
             && ( KFPC.IsValidSpecialEventMap() || class'WorldInfo'.static.IsMenuLevel() );
 }
 
-function Refresh(optional bool bRepopulateCollapsed)
+function Refresh(optional bool bForceRefreshOfDaily)
 {
-    if(ExpandedObjectiveContainer.Refresh())
+    if(KFPC.MyGFxManager.bMenusOpen)
     {
-        CollapsedObjectiveContainer.PopulateData();
+        if(ExpandedObjectiveContainer.Refresh(bForceRefreshOfDaily))
+        {
+            CollapsedObjectiveContainer.PopulateData();
+        }
     }
 }
 

@@ -84,7 +84,7 @@ defaultproperties
    IncapSettings(8)=()
    IncapSettings(9)=()
    IncapSettings(10)=()
-   IncapSettings(11)=()
+   IncapSettings(11)=(Vulnerability=(0.500000))
    SprintSpeed=650.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True

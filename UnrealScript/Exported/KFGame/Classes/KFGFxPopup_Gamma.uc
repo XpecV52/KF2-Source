@@ -76,7 +76,8 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
-const KFID_SafeFrameScale = 168;#linenumber 14;
+const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;#linenumber 14;
 //@HSL_MOD_END
 var GFxObject GammaSlider;
 var string GammaImagePath;

@@ -17,6 +17,7 @@ KF-ZedLanding="Zed Landingをプレイ中"
 KF-TheDescent="The Descentをプレイ中"
 KF-Nuked="Nukedをプレイ中"
 KF-TragicKingdom="The Tragic Kingdomをプレイ中"
+KF-Nightmare="Nightmareをプレイ中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -140,14 +141,17 @@ NoOnlinePlay="オンラインプレイができません"
 TooYoung="ペアレンタル・コントロールの制限により、Sony Entertainment Networkアカウントのオンラインサービスが無効となっています。"
 PatchAvailable="パッチを入手可能です。ネットワーク機能を使用するには、アプリケーションをアップデートする必要があります。"
 NotLoggedInOnlinePSN="オンライン機能を使うにはPlayStation™Networkにサインインしなければなりません。"
+LiveRequiredMessage="Xbox Liveでプレイするには、ネットワーク接続が確立された状態で、プロフィールを有効化してXbox Liveにサインインする必要があります。"
 NetworkError="ネットワークエラーが発生しました。ネットワーク接続をご確認ください。"
 ErrorNoPlayfabDescription="ゲームのマスターサーバーへの接続を確立できませんでした。数分後に再試行してください。"
 ErrorTSSFailedDescription="ゲームのバランスサーバーへの接続を確立できませんでした。インターネットに接続されていることをご確認の上、再試行してください。"
 NotSignedInTitle="サインインしていません。"
+PlayOffline="オフラインでプレイしますか？Xbox Liveの機能は利用できず、データもセーブされません。"
 
 [Notifications]
 ControllerDisconnectedTitle="コントローラーの接続が切れました"
 ControllerDisconnectedPS4Message="ワイヤレスコントローラーの接続が切れました。ゲームをブートしたユーザーのワイヤレスコントローラーを再接続してください。"
+ControllerDisconnectedXB1="Xbox One ワイヤレスコントローラーの接続が切れました。コントローラーを再接続してください。"
 PlayGoBusyTitle="インストール中です"
 PlayGoBusyMessage="ゲームのインストールを完了するまで、利用可能なコンテンツおよび機能には制限があります。"
 UnableToJoinInviteTitle="参加できません"
@@ -160,11 +164,14 @@ CheckPlusTitle="PlayStation®Plusステータスを確認中"
 CheckPlusMessage="PlayStation®Plusステータスを確認する間、お待ちください。"
 ConnectionLostTitle="接続が失われました"
 ConnectionLostMessage="オンライン接続が失われました。ホームメニューに戻されました。"
+ConnectionLostMessageLive="Xbox Liveの接続が切断されました。メインメニューに戻りました。"
 PSNSignoutMessage="PlayStation™Networkからサインアウトしました。 ホームメニューに戻りました。"
 InviteMessage="一緒にzedを爆破しよう！"
 NotConnectedTitle="ネットワークエラー"
 NotConnectedMessage="インターネットに接続されていません。接続をご確認の上、再試行してください。"
 NotConnectedForOnlinePlay="インターネットに接続されていません。 接続を確認してからもう一度オンライン機能の使用を試みてください"
+NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+MultiplayerNotAllowed_MessageLive="プレイするには、マルチプレイ権限のあるプロフィールを有効化してXbox Liveにサインインする必要があります。"
 MultiplayerNotAllowed_Title="マルチプレイ制限中"
 LoggedOutMessage="プロフィールが変更されました。タイトル画面に戻りました。"
 LoggedOutTitle="サインアウト済み"
@@ -174,6 +181,7 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="プレイヤープロフィールを確認"
+ViewProfileStringXB1="ゲーマーカードを確認"
 
 [KFGFxObject_Menu]
 ResetDefaults="本当に設定を初期値にリセットしますか？"
@@ -193,12 +201,15 @@ ControllerSound="コントローラー音"
 MatchmakingRegionString="地域"
 LeaveMenuString="マッチメイキングから離脱すると、パーティーからも離脱することになります。"
 
+[KFGFxMenu_Store]
+StoreStringXB1="Xbox ストア"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="地域"
 MapPreference="最適マップ"
 
 [KFGFxMenu_Exit]
+HeaderStringXB1="ログアウト"
 LogoutKF2="タイトル画面に戻る"
 
 [Misc]

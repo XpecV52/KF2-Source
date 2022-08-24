@@ -42,10 +42,10 @@ defaultproperties
    InitialSpareMags(0)=5
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_1P_Loop')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_1P_Single')
-   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_3P_EndLoop',FirstPersonCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_1P_EndLoop')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Handling_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_medicsmg.Play_SA_MedicSMG_Fire_3P_Loop',FirstPersonCue=AkEvent'ww_wep_sa_medicsmg.Play_SA_MedicSMG_Fire_1P_Loop')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_medicsmg.Play_SA_MedicSMG_Fire_3P_Single',FirstPersonCue=AkEvent'ww_wep_sa_medicsmg.Play_SA_MedicSMG_Fire_1P_Single')
+   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_medicsmg.Play_SA_MedicSMG_Fire_3P_EndLoop',FirstPersonCue=AkEvent'ww_wep_sa_medicsmg.Play_SA_MedicSMG_Fire_1P_EndLoop')
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_medicsmg.Play_SA_MedicSMG_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_DryFire'
    PlayerViewOffset=(X=22.000000,Y=10.000000,Z=-4.500000)
    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_SMG_ARCH.Wep_Medic_SMG_3P'

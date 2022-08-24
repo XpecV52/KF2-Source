@@ -85,6 +85,10 @@ simulated function AttachTo(KFPawn P)
             P.Mesh.AttachComponent(LeftWeapMesh, 'LW_Weapon');
         }
     }
+    if((KFPawn_Human(P) != none) && KFPawn_Human(P).WeaponSkinItemId > 0)
+    {
+        SetWeaponSkin(KFPawn_Human(P).WeaponSkinItemId);
+    }
 }
 
 simulated function DetachFrom(KFPawn P)
@@ -122,7 +126,7 @@ function SetWeaponSkin(int ItemId)
 {
     local array<MaterialInterface> SkinMICs;
 
-    if((ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer)
+    if((((WeapMesh != none) && LeftWeapMesh != none) && ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer)
     {
         SkinMICs = Class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, 1);
         if(SkinMICs.Length > 0)

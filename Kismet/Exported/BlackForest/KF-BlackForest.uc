@@ -4,7 +4,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
    bDrawBox=True
    FillColor=(B=74,G=0,R=255,A=16)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=40
    ObjPosY=-992
    ObjComment="Dynamic Fog / Lighting"
@@ -19,11 +19,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
    InputLinks(1)=(DrawY=-726,OverrideDelta=35)
    InputLinks(2)=(DrawY=-705,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-726,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6'),DrawX=2422,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6'),DrawX=2422,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2473,OverrideDelta=76)
    EventLinks(0)=(DrawX=2522,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2384
    ObjPosY=-784
    DrawWidth=173
@@ -33,15 +33,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_1'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_1'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=-755,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=-755,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-734,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-713,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2226,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2144
    ObjPosY=-824
    ObjName="TriggerVolume_1 Touch"
@@ -56,7 +56,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_3
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2088
    ObjPosY=-872
    ObjComment="Portal Spawns - Mill Interior"
@@ -67,9 +67,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_1'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2352
    ObjPosY=-624
    ObjComment="PARENT - Mill Wall"
@@ -80,9 +80,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_0'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3160
    ObjPosY=-640
    ObjComment="PARENT - Mill Water Tree"
@@ -97,7 +97,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_5
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2896
    ObjPosY=-888
    ObjComment="Portal Spawns - Mill Water"
@@ -108,15 +108,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_5
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_3'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_3'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=-771,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=-771,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-750,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-729,OverrideDelta=56)
    VariableLinks(0)=(DrawX=3034,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2952
    ObjPosY=-840
    ObjName="TriggerVolume_3 Touch"
@@ -131,11 +131,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
    InputLinks(1)=(DrawY=-742,OverrideDelta=35)
    InputLinks(2)=(DrawY=-721,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-742,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10'),DrawX=3230,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10'),DrawX=3230,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3281,OverrideDelta=76)
    EventLinks(0)=(DrawX=3330,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3192
    ObjPosY=-800
    DrawWidth=173
@@ -149,11 +149,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
    InputLinks(1)=(DrawY=74,OverrideDelta=35)
    InputLinks(2)=(DrawY=95,OverrideDelta=56)
    OutputLinks(0)=(DrawY=74,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),DrawX=4766,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),DrawX=4766,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4817,OverrideDelta=76)
    EventLinks(0)=(DrawX=4866,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4728
    ObjPosY=16
    DrawWidth=173
@@ -163,15 +163,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_0
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_0'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_0'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=53,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=53,OverrideDelta=14)
    OutputLinks(1)=(DrawY=74,OverrideDelta=35)
    OutputLinks(2)=(DrawY=95,OverrideDelta=56)
    VariableLinks(0)=(DrawX=4570,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4488
    ObjPosY=-16
    ObjName="TriggerVolume_0 Touch"
@@ -186,7 +186,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
    SizeY=653
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4472
    ObjPosY=-48
    ObjComment="Portal Spawns - Rock 3"
@@ -197,9 +197,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_14'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4696
    ObjPosY=152
    ObjComment="PARENT - Rock 3"
@@ -210,9 +210,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
-   ObjValue=ExponentialHeightFog'KF-BlackForest.TheWorld:PersistentLevel.ExponentialHeightFog_0'
+   ObjValue=ExponentialHeightFog'KF-BLACKFOREST.TheWorld:PersistentLevel.ExponentialHeightFog_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=480
    ObjPosY=-544
    DrawWidth=32
@@ -235,7 +235,7 @@ Begin Object Class=InterpData Name=InterpData_4
          Name="InterpTrackColorProp_3"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_9.InterpTrackColorProp_3'
+      InterpTracks(0)=InterpTrackColorProp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_9.InterpTrackColorProp_3'
       GroupName="Mill_Light_04"
       GroupColor=(B=0,G=172,R=167,A=255)
       Name="InterpGroup_9"
@@ -249,7 +249,7 @@ Begin Object Class=InterpData Name=InterpData_4
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_8.InterpTrackColorProp_2'
+      InterpTracks(0)=InterpTrackColorProp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_8.InterpTrackColorProp_2'
       GroupName="Mill_Light_03"
       GroupColor=(B=92,G=0,R=218,A=255)
       Name="InterpGroup_8"
@@ -263,7 +263,7 @@ Begin Object Class=InterpData Name=InterpData_4
          Name="InterpTrackColorProp_1"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_7.InterpTrackColorProp_1'
+      InterpTracks(0)=InterpTrackColorProp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_7.InterpTrackColorProp_1'
       GroupName="Mill_Light_02"
       GroupColor=(B=0,G=231,R=30,A=255)
       Name="InterpGroup_7"
@@ -277,7 +277,7 @@ Begin Object Class=InterpData Name=InterpData_4
          Name="InterpTrackColorProp_0"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_6.InterpTrackColorProp_0'
+      InterpTracks(0)=InterpTrackColorProp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_6.InterpTrackColorProp_0'
       GroupName="Mill_Light_01"
       GroupColor=(B=0,G=159,R=179,A=255)
       Name="InterpGroup_6"
@@ -305,9 +305,9 @@ Begin Object Class=InterpData Name=InterpData_4
          Name="InterpTrackColorProp_0"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackColorProp_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackFloatProp_0'
-      InterpTracks(2)=InterpTrackFloatProp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackFloatProp_2'
+      InterpTracks(0)=InterpTrackColorProp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackColorProp_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackFloatProp_0'
+      InterpTracks(2)=InterpTrackFloatProp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackFloatProp_2'
       GroupName="Main_Light"
       GroupColor=(B=126,G=0,R=203,A=255)
       Name="InterpGroup_3"
@@ -320,7 +320,7 @@ Begin Object Class=InterpData Name=InterpData_4
          Name="InterpTrackAkRTPC_0"
          ObjectArchetype=InterpTrackAkRTPC'AkAudio.Default__InterpTrackAkRTPC'
       End Object
-      InterpTracks(0)=InterpTrackAkRTPC'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_2.InterpTrackAkRTPC_0'
+      InterpTracks(0)=InterpTrackAkRTPC'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_2.InterpTrackAkRTPC_0'
       GroupName="SFX"
       GroupColor=(B=161,G=178,R=0,A=255)
       Name="InterpGroup_2"
@@ -334,7 +334,7 @@ Begin Object Class=InterpData Name=InterpData_4
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0.InterpTrackColorProp_2'
+      InterpTracks(0)=InterpTrackColorProp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0.InterpTrackColorProp_2'
       GroupName="Fog"
       GroupColor=(B=69,G=225,R=0,A=255)
       Name="InterpGroup_0"
@@ -346,19 +346,19 @@ Begin Object Class=InterpData Name=InterpData_4
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=59.986534
-   InterpGroups(0)=InterpGroup'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0'
-   InterpGroups(1)=InterpGroupDirector'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroupDirector_0'
-   InterpGroups(2)=InterpGroup'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_2'
-   InterpGroups(3)=InterpGroup'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3'
-   InterpGroups(4)=InterpGroup'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_6'
-   InterpGroups(5)=InterpGroup'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_7'
-   InterpGroups(6)=InterpGroup'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_8'
-   InterpGroups(7)=InterpGroup'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_9'
-   CurveEdSetup=InterpCurveEdSetup'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpCurveEdSetup_1'
+   InterpGroups(0)=InterpGroup'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0'
+   InterpGroups(1)=InterpGroupDirector'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroupDirector_0'
+   InterpGroups(2)=InterpGroup'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_2'
+   InterpGroups(3)=InterpGroup'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3'
+   InterpGroups(4)=InterpGroup'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_6'
+   InterpGroups(5)=InterpGroup'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_7'
+   InterpGroups(6)=InterpGroup'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_8'
+   InterpGroups(7)=InterpGroup'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_9'
+   CurveEdSetup=InterpCurveEdSetup'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpCurveEdSetup_1'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=59.986534
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=376
    ObjPosY=-560
    DrawWidth=32
@@ -377,16 +377,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
    InputLinks(4)=(DrawY=-714,OverrideDelta=103)
    OutputLinks(0)=(DrawY=-786,OverrideDelta=31)
    OutputLinks(1)=(DrawY=-730,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=463,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_13'),LinkDesc="Fog",MinVars=0,DrawX=507,OverrideDelta=63)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=463,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_13'),LinkDesc="Fog",MinVars=0,DrawX=507,OverrideDelta=63)
    VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="SFX",MinVars=0,DrawX=548,OverrideDelta=103)
-   VariableLinks(3)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),LinkDesc="Main_Light",MinVars=0,DrawX=596,OverrideDelta=145)
-   VariableLinks(4)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27'),LinkDesc="Mill_Light_01",MinVars=0,DrawX=659,OverrideDelta=199)
-   VariableLinks(5)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28'),LinkDesc="Mill_Light_02",MinVars=0,DrawX=731,OverrideDelta=271)
-   VariableLinks(6)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29'),LinkDesc="Mill_Light_03",MinVars=0,DrawX=803,OverrideDelta=343)
-   VariableLinks(7)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30'),LinkDesc="Mill_Light_04",MinVars=0,DrawX=875,OverrideDelta=415)
+   VariableLinks(3)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),LinkDesc="Main_Light",MinVars=0,DrawX=596,OverrideDelta=145)
+   VariableLinks(4)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27'),LinkDesc="Mill_Light_01",MinVars=0,DrawX=659,OverrideDelta=199)
+   VariableLinks(5)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28'),LinkDesc="Mill_Light_02",MinVars=0,DrawX=731,OverrideDelta=271)
+   VariableLinks(6)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29'),LinkDesc="Mill_Light_03",MinVars=0,DrawX=803,OverrideDelta=343)
+   VariableLinks(7)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30'),LinkDesc="Mill_Light_04",MinVars=0,DrawX=875,OverrideDelta=415)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=432
    ObjPosY=-840
    ObjComment="Fog"
@@ -400,10 +400,10 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_3
    bClientSideOnly=True
    MaxWidth=207
    OutputLinks(0)=(DrawY=-859,OverrideDelta=14)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2')),DrawY=-838,OverrideDelta=35)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2')),DrawY=-838,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-817,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=120
    ObjPosY=-928
    ObjComment="Start transitioning to nighttime when the match starts rather than in the customization screen"
@@ -417,7 +417,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_2
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1984
    ObjPosY=1104
    ObjComment="Portal Spawns - Tree 1"
@@ -428,15 +428,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_2
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_1
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_6'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_6'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=1245,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=1245,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1266,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1287,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2138,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2056
    ObjPosY=1176
    ObjName="TriggerVolume_6 Touch"
@@ -451,11 +451,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    InputLinks(1)=(DrawY=1274,OverrideDelta=35)
    InputLinks(2)=(DrawY=1295,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1274,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17'),DrawX=2334,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17'),DrawX=2334,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2385,OverrideDelta=76)
    EventLinks(0)=(DrawX=2434,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2296
    ObjPosY=1216
    DrawWidth=173
@@ -469,11 +469,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
    InputLinks(1)=(DrawY=1282,OverrideDelta=35)
    InputLinks(2)=(DrawY=1303,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1282,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),DrawX=3230,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),DrawX=3230,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3281,OverrideDelta=76)
    EventLinks(0)=(DrawX=3330,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3192
    ObjPosY=1224
    DrawWidth=173
@@ -483,15 +483,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_4
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_5'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_5'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),DrawY=1253,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),DrawY=1253,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1274,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1295,OverrideDelta=56)
    VariableLinks(0)=(DrawX=3034,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2952
    ObjPosY=1184
    ObjName="TriggerVolume_5 Touch"
@@ -506,7 +506,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_4
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2880
    ObjPosY=1112
    ObjComment="Portal Spawns - Trees 2 and 3"
@@ -517,9 +517,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_4'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3160
    ObjPosY=1384
    ObjComment="PARENT - Tree 2"
@@ -530,9 +530,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_9'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4056
    ObjPosY=1368
    ObjComment="PARENT - Tree 4"
@@ -547,7 +547,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_7
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3776
    ObjPosY=1096
    ObjComment="Portal Spawns - Tree 4"
@@ -558,15 +558,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_7
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_6
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_7'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_7'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=1237,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=1237,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1258,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1279,OverrideDelta=56)
    VariableLinks(0)=(DrawX=3930,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3848
    ObjPosY=1168
    ObjName="TriggerVolume_7 Touch"
@@ -581,11 +581,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
    InputLinks(1)=(DrawY=1266,OverrideDelta=35)
    InputLinks(2)=(DrawY=1287,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1266,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15'),DrawX=4126,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15'),DrawX=4126,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4177,OverrideDelta=76)
    EventLinks(0)=(DrawX=4226,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4088
    ObjPosY=1208
    DrawWidth=173
@@ -599,11 +599,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
    InputLinks(1)=(DrawY=1266,OverrideDelta=35)
    InputLinks(2)=(DrawY=1287,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1266,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=4974,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=4974,OverrideDelta=16)
    VariableLinks(1)=(DrawX=5025,OverrideDelta=76)
    EventLinks(0)=(DrawX=5074,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4936
    ObjPosY=1208
    DrawWidth=173
@@ -613,15 +613,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_8'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_8'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=1237,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=1237,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1258,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1279,OverrideDelta=56)
    VariableLinks(0)=(DrawX=4778,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4696
    ObjPosY=1168
    ObjName="TriggerVolume_8 Touch"
@@ -636,7 +636,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_8
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4624
    ObjPosY=1096
    ObjComment="Portal Spawns - Tree 5"
@@ -647,9 +647,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_10'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4904
    ObjPosY=1368
    ObjComment="PARENT - Tree 5"
@@ -660,9 +660,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_11'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2288
    ObjPosY=144
    ObjComment="PARENT - Rock 1"
@@ -677,7 +677,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_9
    SizeY=662
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2064
    ObjPosY=-64
    ObjComment="Portal Spawns - Rock 1"
@@ -688,15 +688,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_9
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_8
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_9'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_9'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=37,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=37,OverrideDelta=14)
    OutputLinks(1)=(DrawY=58,OverrideDelta=35)
    OutputLinks(2)=(DrawY=79,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2162,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2080
    ObjPosY=-32
    ObjName="TriggerVolume_9 Touch"
@@ -711,11 +711,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
    InputLinks(1)=(DrawY=58,OverrideDelta=35)
    InputLinks(2)=(DrawY=79,OverrideDelta=56)
    OutputLinks(0)=(DrawY=58,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_19'),DrawX=2358,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_19'),DrawX=2358,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2409,OverrideDelta=76)
    EventLinks(0)=(DrawX=2458,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2320
    DrawWidth=173
    DrawHeight=109
@@ -724,9 +724,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_17'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_17'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2304
    ObjPosY=1392
    ObjComment="PARENT - Tree 1"
@@ -741,11 +741,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
    InputLinks(1)=(DrawY=66,OverrideDelta=35)
    InputLinks(2)=(DrawY=87,OverrideDelta=56)
    OutputLinks(0)=(DrawY=66,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0'),DrawX=3398,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0'),DrawX=3398,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3449,OverrideDelta=76)
    EventLinks(0)=(DrawX=3498,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3360
    ObjPosY=8
    DrawWidth=173
@@ -755,15 +755,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_11
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_10'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_10'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),DrawY=45,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),DrawY=45,OverrideDelta=14)
    OutputLinks(1)=(DrawY=66,OverrideDelta=35)
    OutputLinks(2)=(DrawY=87,OverrideDelta=56)
    VariableLinks(0)=(DrawX=3206,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3120
    ObjPosY=-24
    ObjName="TriggerVolume_10 Touch"
@@ -778,7 +778,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_12
    SizeY=411
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3104
    ObjPosY=-56
    ObjComment="Portal Spawns - Rock 2"
@@ -789,9 +789,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_12
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_12'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3328
    ObjPosY=144
    ObjComment="PARENT - Rock 2"
@@ -806,11 +806,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
    InputLinks(1)=(DrawY=1994,OverrideDelta=35)
    InputLinks(2)=(DrawY=2015,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1994,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23'),DrawX=3198,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23'),DrawX=3198,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3249,OverrideDelta=76)
    EventLinks(0)=(DrawX=3298,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3160
    ObjPosY=1936
    DrawWidth=173
@@ -820,15 +820,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_12
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_12'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_12'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=1965,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=1965,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1986,OverrideDelta=35)
    OutputLinks(2)=(DrawY=2007,OverrideDelta=56)
    VariableLinks(0)=(DrawX=3006,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2920
    ObjPosY=1896
    ObjName="TriggerVolume_12 Touch"
@@ -843,7 +843,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_13
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2848
    ObjPosY=1824
    ObjComment="Portal Spawns - Tree 7"
@@ -854,9 +854,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_13
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_13'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3128
    ObjPosY=2096
    ObjComment="PARENT - Tree 7"
@@ -867,9 +867,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_5'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2328
    ObjPosY=2096
    ObjComment="PARENT - Tree 6"
@@ -884,7 +884,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2048
    ObjPosY=1824
    ObjComment="Portal Spawns - Tree 6"
@@ -895,15 +895,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_5
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_13'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_13'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),DrawY=1965,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),DrawY=1965,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1986,OverrideDelta=35)
    OutputLinks(2)=(DrawY=2007,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2206,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2120
    ObjPosY=1896
    ObjName="TriggerVolume_13 Touch"
@@ -918,11 +918,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
    InputLinks(1)=(DrawY=1994,OverrideDelta=35)
    InputLinks(2)=(DrawY=2015,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1994,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11'),DrawX=2398,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11'),DrawX=2398,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2449,OverrideDelta=76)
    EventLinks(0)=(DrawX=2498,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2360
    ObjPosY=1936
    DrawWidth=173
@@ -936,7 +936,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_10
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3736
    ObjPosY=1816
    ObjComment="Portal Spawns - Tree 8"
@@ -947,15 +947,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_10
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_9
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_2'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_2'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=1957,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=1957,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1978,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1999,OverrideDelta=56)
    VariableLinks(0)=(DrawX=3890,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3808
    ObjPosY=1888
    ObjName="TriggerVolume_2 Touch"
@@ -970,11 +970,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
    InputLinks(1)=(DrawY=1986,OverrideDelta=35)
    InputLinks(2)=(DrawY=2007,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1986,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26'),DrawX=4086,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26'),DrawX=4086,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4137,OverrideDelta=76)
    EventLinks(0)=(DrawX=4186,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4048
    ObjPosY=1928
    DrawWidth=173
@@ -984,9 +984,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_3'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3336
    ObjPosY=1384
    ObjComment="CHILD - Tree 3"
@@ -997,9 +997,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_2'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4056
    ObjPosY=2096
    ObjComment="PARENT - Tree 8"
@@ -1010,9 +1010,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_16'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_16'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3432
    ObjPosY=216
    ObjComment="CHILD - Tree 9"
@@ -1023,9 +1023,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
-   ObjValue=KFSpawner'KF-BlackForest.TheWorld:PersistentLevel.KFSpawner_23'
+   ObjValue=KFSpawner'KF-BLACKFOREST.TheWorld:PersistentLevel.KFSpawner_23'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3552
    ObjPosY=216
    ObjComment="CHILD - Tree 10"
@@ -1041,12 +1041,12 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
    InputLinks(2)=(DrawY=-22,OverrideDelta=59)
    InputLinks(3)=(OverrideDelta=81)
    InputLinks(4)=(DrawY=22,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=-50,OverrideDelta=31)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=-50,OverrideDelta=31)
    OutputLinks(1)=(DrawY=6,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=433,OverrideDelta=18)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),LinkDesc="FlythroughCamera",MinVars=0,DrawX=500,OverrideDelta=65)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=433,OverrideDelta=18)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),LinkDesc="FlythroughCamera",MinVars=0,DrawX=500,OverrideDelta=65)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=400
    ObjPosY=-104
    DrawWidth=154
@@ -1062,7 +1062,7 @@ Begin Object Class=InterpData Name=InterpData_1
          Name="InterpTrackDirector_0"
          ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
       End Object
-      InterpTracks(0)=InterpTrackDirector'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
+      InterpTracks(0)=InterpTrackDirector'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
       GroupColor=(B=69,G=225,R=0,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
@@ -1082,8 +1082,8 @@ Begin Object Class=InterpData Name=InterpData_1
          Name="InterpTrackFloatProp_0"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackFloatProp_0'
+      InterpTracks(0)=InterpTrackMove'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackFloatProp_0'
       GroupName="FlythroughCamera"
       GroupColor=(B=213,G=105,R=0,A=255)
       Name="InterpGroup_0"
@@ -1095,14 +1095,14 @@ Begin Object Class=InterpData Name=InterpData_1
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=295.000000
-   InterpGroups(0)=InterpGroup'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
-   InterpGroups(1)=InterpGroupDirector'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0'
-   CurveEdSetup=InterpCurveEdSetup'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_0'
+   InterpGroups(0)=InterpGroup'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
+   InterpGroups(1)=InterpGroupDirector'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0'
+   CurveEdSetup=InterpCurveEdSetup'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionStart=284.500000
    EdSectionEnd=295.000000
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=400
    ObjPosY=88
    DrawWidth=32
@@ -1112,9 +1112,9 @@ Begin Object Class=InterpData Name=InterpData_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
-   ObjValue=CameraActor'KF-BlackForest.TheWorld:PersistentLevel.CameraActor_0'
+   ObjValue=CameraActor'KF-BLACKFOREST.TheWorld:PersistentLevel.CameraActor_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=512
    ObjPosY=88
    DrawWidth=32
@@ -1126,10 +1126,10 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
    ConsoleEventName="Benchmark"
    MaxWidth=190
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=18,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=18,OverrideDelta=11)
    VariableLinks(0)=(DrawX=167,OverrideDelta=63)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=72
    ObjPosY=-48
    DrawWidth=115
@@ -1142,9 +1142,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_0
    Commands(0)="startbenchmark"
    InputLinks(0)=(DrawY=266,OverrideDelta=11)
    OutputLinks(0)=(DrawY=266,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=296,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=296,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=232
    ObjPosY=232
    ObjComment="startbenchmark"
@@ -1158,9 +1158,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
    Commands(0)="endbenchmark"
    InputLinks(0)=(DrawY=-54,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-54,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=744,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=744,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=680
    ObjPosY=-88
    ObjComment="endbenchmark"
@@ -1172,7 +1172,7 @@ End Object
 
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_0
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=456
    ObjPosY=336
    DrawWidth=32
@@ -1187,7 +1187,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_14
    bDrawBox=True
    FillColor=(B=74,G=0,R=255,A=16)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=40
    ObjPosY=-136
    ObjComment="Benchmark"
@@ -1198,9 +1198,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_14
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
-   ObjValue=DominantDirectionalLight'KF-BlackForest.TheWorld:PersistentLevel.DominantDirectionalLight_0'
+   ObjValue=DominantDirectionalLight'KF-BLACKFOREST.TheWorld:PersistentLevel.DominantDirectionalLight_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=576
    ObjPosY=-528
    DrawWidth=32
@@ -1211,15 +1211,15 @@ End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_14
    ClassProximityTypes(2)=Class'KFGame.KFPawn'
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_14'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_14'
    bPlayerOnly=False
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),DrawY=349,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),DrawY=349,OverrideDelta=14)
    OutputLinks(1)=(DrawY=370,OverrideDelta=35)
    OutputLinks(2)=(DrawY=391,OverrideDelta=56)
    VariableLinks(0)=(DrawX=4598,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4512
    ObjPosY=280
    ObjName="TriggerVolume_14 Touch"
@@ -1234,11 +1234,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
    InputLinks(1)=(DrawY=378,OverrideDelta=35)
    InputLinks(2)=(DrawY=399,OverrideDelta=56)
    OutputLinks(0)=(DrawY=378,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=4878,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=4878,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4929,OverrideDelta=76)
    EventLinks(0)=(DrawX=4978,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4840
    ObjPosY=320
    DrawWidth=173
@@ -1248,9 +1248,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
-   ObjValue=Emitter'KF-BlackForest.TheWorld:PersistentLevel.Emitter_1'
+   ObjValue=Emitter'KF-BLACKFOREST.TheWorld:PersistentLevel.Emitter_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4848
    ObjPosY=456
    DrawWidth=32
@@ -1264,7 +1264,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_16
    SizeY=293
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4512
    ObjPosY=256
    ObjComment="Looping emitter"
@@ -1276,15 +1276,15 @@ End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_15
    ClassProximityTypes(2)=Class'KFGame.KFPawn'
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_15'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_15'
    bPlayerOnly=False
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_15')),DrawY=357,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_15')),DrawY=357,OverrideDelta=14)
    OutputLinks(1)=(DrawY=378,OverrideDelta=35)
    OutputLinks(2)=(DrawY=399,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2198,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2112
    ObjPosY=288
    ObjName="TriggerVolume_15 Touch"
@@ -1299,11 +1299,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_15
    InputLinks(1)=(DrawY=370,OverrideDelta=35)
    InputLinks(2)=(DrawY=391,OverrideDelta=56)
    OutputLinks(0)=(DrawY=370,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_12'),DrawX=2422,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_12'),DrawX=2422,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2473,OverrideDelta=76)
    EventLinks(0)=(DrawX=2522,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2384
    ObjPosY=312
    DrawWidth=173
@@ -1313,9 +1313,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_15
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
-   ObjValue=Emitter'KF-BlackForest.TheWorld:PersistentLevel.Emitter_4'
+   ObjValue=Emitter'KF-BLACKFOREST.TheWorld:PersistentLevel.Emitter_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2384
    ObjPosY=448
    DrawWidth=32
@@ -1329,7 +1329,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_17
    SizeY=277
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2112
    ObjPosY=264
    ObjComment="Looping emitter"
@@ -1341,15 +1341,15 @@ End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_16
    ClassProximityTypes(2)=Class'KFGame.KFPawn'
-   Originator=TriggerVolume'KF-BlackForest.TheWorld:PersistentLevel.TriggerVolume_16'
+   Originator=TriggerVolume'KF-BLACKFOREST.TheWorld:PersistentLevel.TriggerVolume_16'
    bPlayerOnly=False
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16')),DrawY=125,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16')),DrawY=125,OverrideDelta=14)
    OutputLinks(1)=(DrawY=146,OverrideDelta=35)
    OutputLinks(2)=(DrawY=167,OverrideDelta=56)
    VariableLinks(0)=(DrawX=3798,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3712
    ObjPosY=56
    ObjName="TriggerVolume_16 Touch"
@@ -1364,11 +1364,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
    InputLinks(1)=(DrawY=130,OverrideDelta=35)
    InputLinks(2)=(DrawY=151,OverrideDelta=56)
    OutputLinks(0)=(DrawY=130,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14'),DrawX=4014,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14'),DrawX=4014,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4065,OverrideDelta=76)
    EventLinks(0)=(DrawX=4114,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3976
    ObjPosY=72
    DrawWidth=173
@@ -1378,9 +1378,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
-   ObjValue=Emitter'KF-BlackForest.TheWorld:PersistentLevel.Emitter_248'
+   ObjValue=Emitter'KF-BLACKFOREST.TheWorld:PersistentLevel.Emitter_248'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3976
    ObjPosY=200
    DrawWidth=32
@@ -1394,7 +1394,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_18
    SizeY=292
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3712
    ObjPosY=16
    ObjComment="Looping emitter"
@@ -1405,9 +1405,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_18
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
-   ObjValue=SpotLight'KF-BlackForest.TheWorld:PersistentLevel.SpotLight_5'
+   ObjValue=SpotLight'KF-BLACKFOREST.TheWorld:PersistentLevel.SpotLight_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=752
    ObjPosY=-544
    DrawWidth=32
@@ -1417,9 +1417,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
-   ObjValue=SpotLight'KF-BlackForest.TheWorld:PersistentLevel.SpotLight_9'
+   ObjValue=SpotLight'KF-BLACKFOREST.TheWorld:PersistentLevel.SpotLight_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=832
    ObjPosY=-544
    DrawWidth=32
@@ -1429,9 +1429,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
-   ObjValue=SpotLight'KF-BlackForest.TheWorld:PersistentLevel.SpotLight_10'
+   ObjValue=SpotLight'KF-BLACKFOREST.TheWorld:PersistentLevel.SpotLight_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=904
    ObjPosY=-552
    DrawWidth=32
@@ -1441,9 +1441,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
-   ObjValue=SpotLight'KF-BlackForest.TheWorld:PersistentLevel.SpotLight_11'
+   ObjValue=SpotLight'KF-BLACKFOREST.TheWorld:PersistentLevel.SpotLight_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=976
    ObjPosY=-568
    DrawWidth=32
@@ -1458,7 +1458,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_11
    bDrawBox=True
    FillColor=(B=125,G=255,R=123,A=16)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1952
    ObjPosY=-1000
    ObjComment="Portal Spawns - Mill "
@@ -1474,7 +1474,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_15
    bDrawBox=True
    FillColor=(B=125,G=255,R=123,A=16)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1952
    ObjPosY=-232
    ObjComment="Portal Spawns - Rocks"
@@ -1490,7 +1490,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_19
    bDrawBox=True
    FillColor=(B=125,G=255,R=123,A=16)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1944
    ObjPosY=896
    ObjComment="Portal Spawns - Trees"
@@ -1505,11 +1505,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_24
    InputLinks(1)=(DrawY=946,OverrideDelta=35)
    InputLinks(2)=(DrawY=967,OverrideDelta=56)
    OutputLinks(0)=(DrawY=946,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_117',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_118',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_119',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_120',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_121',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_122',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_123',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_124'),DrawX=198,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_117',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_118',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_119',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_120',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_121',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_122',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_123',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_124'),DrawX=198,OverrideDelta=16)
    VariableLinks(1)=(DrawX=249,OverrideDelta=76)
    EventLinks(0)=(DrawX=298,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=160
    ObjPosY=888
    DrawWidth=173
@@ -1519,9 +1519,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_24
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_117
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_34'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_34'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=40
    ObjPosY=1088
    ObjComment="Cave"
@@ -1532,9 +1532,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_117
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_118
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_27'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_27'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=128
    ObjPosY=1088
    ObjComment="Cave"
@@ -1545,9 +1545,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_118
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_119
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_28'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_28'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=232
    ObjPosY=1088
    ObjComment="Cave"
@@ -1558,9 +1558,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_119
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_120
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_29'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_29'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=328
    ObjPosY=1088
    ObjComment="Cave"
@@ -1571,9 +1571,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_120
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_121
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_30'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_30'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=24
    ObjPosY=1160
    ObjComment="Cave"
@@ -1584,9 +1584,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_121
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_122
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_31'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_31'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=112
    ObjPosY=1160
    ObjComment="Cave"
@@ -1597,9 +1597,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_122
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_123
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_33'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_33'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=216
    ObjPosY=1160
    ObjComment="Cave"
@@ -1610,9 +1610,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_123
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_124
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_32'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_32'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=312
    ObjPosY=1160
    ObjComment="Cave"
@@ -1627,11 +1627,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
    InputLinks(1)=(DrawY=1346,OverrideDelta=35)
    InputLinks(2)=(DrawY=1367,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1346,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_20',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31'),DrawX=182,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_20',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31'),DrawX=182,OverrideDelta=16)
    VariableLinks(1)=(DrawX=233,OverrideDelta=76)
    EventLinks(0)=(DrawX=282,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=144
    ObjPosY=1288
    DrawWidth=173
@@ -1641,9 +1641,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=88
    ObjPosY=1448
    ObjComment="Waterfall"
@@ -1654,9 +1654,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=192
    ObjPosY=1448
    ObjComment="Waterfall"
@@ -1667,9 +1667,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8
    ObjPosY=1504
    ObjComment="Waterfall"
@@ -1680,9 +1680,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=80
    ObjPosY=1504
    ObjComment="Waterfall"
@@ -1693,9 +1693,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=184
    ObjPosY=1504
    ObjComment="Waterfall"
@@ -1706,9 +1706,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=280
    ObjPosY=1504
    ObjComment="Waterfall"
@@ -1723,11 +1723,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
    InputLinks(1)=(DrawY=1682,OverrideDelta=35)
    InputLinks(2)=(DrawY=1703,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1682,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37'),DrawX=142,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37'),DrawX=142,OverrideDelta=16)
    VariableLinks(1)=(DrawX=193,OverrideDelta=76)
    EventLinks(0)=(DrawX=242,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=104
    ObjPosY=1624
    DrawWidth=173
@@ -1737,9 +1737,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_8'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=32
    ObjPosY=1792
    ObjComment="Forest"
@@ -1750,9 +1750,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_10'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=136
    ObjPosY=1792
    ObjComment="Forest"
@@ -1763,9 +1763,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_11'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=232
    ObjPosY=1792
    ObjComment="Forest"
@@ -1776,9 +1776,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_9'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=16
    ObjPosY=1856
    ObjComment="Forest"
@@ -1789,9 +1789,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_6'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=112
    ObjPosY=1856
    ObjComment="Forest"
@@ -1802,9 +1802,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_7'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=216
    ObjPosY=1856
    ObjComment="Forest"
@@ -1819,11 +1819,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_17
    InputLinks(1)=(DrawY=2114,OverrideDelta=35)
    InputLinks(2)=(DrawY=2135,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2114,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_51',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_52',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_53',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_54',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_55'),DrawX=190,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_51',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_52',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_53',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_54',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_55'),DrawX=190,OverrideDelta=16)
    VariableLinks(1)=(DrawX=241,OverrideDelta=76)
    EventLinks(0)=(DrawX=290,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=152
    ObjPosY=2056
    DrawWidth=173
@@ -1836,12 +1836,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_18
    InputLinks(0)=(DrawY=1101,OverrideDelta=14)
    InputLinks(1)=(DrawY=1122,OverrideDelta=35)
    InputLinks(2)=(DrawY=1143,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),ActivateDelay=1.000000,DrawY=1122,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_20',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_117',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_118',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_119',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_120',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_121',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_122',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_123',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_124',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_51',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_52',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_53',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_54',SeqVar_Object'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_55'),DrawX=-1114,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),ActivateDelay=1.000000,DrawY=1122,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_20',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_117',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_118',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_119',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_120',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_121',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_122',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_123',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_124',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_51',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_52',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_53',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_54',SeqVar_Object'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_55'),DrawX=-1114,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-1063,OverrideDelta=76)
    EventLinks(0)=(DrawX=-1014,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1152
    ObjPosY=1064
    DrawWidth=173
@@ -1853,11 +1853,11 @@ End Object
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    MaxTriggerCount=0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=1469,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=1469,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1490,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_18')),DrawY=1511,OverrideDelta=56)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_18')),DrawY=1511,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1576
    ObjPosY=1400
    DrawWidth=137
@@ -1870,13 +1870,13 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
    IncrementAmount=0
    InputLinks(0)=(DrawY=1512,OverrideDelta=25)
    InputLinks(1)=(DrawY=1556,OverrideDelta=69)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_24')),DrawY=1501,OverrideDelta=14)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),LinkDesc="Link 2",DrawY=1523,OverrideDelta=36)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),LinkDesc="Link 3",DrawY=1545,OverrideDelta=58)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_17')),LinkDesc="Link 4",DrawY=1567,OverrideDelta=80)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_24')),DrawY=1501,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),LinkDesc="Link 2",DrawY=1523,OverrideDelta=36)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),LinkDesc="Link 3",DrawY=1545,OverrideDelta=58)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_17')),LinkDesc="Link 4",DrawY=1567,OverrideDelta=80)
    VariableLinks(0)=(DrawX=-1132,OverrideDelta=23)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1176
    ObjPosY=1464
    DrawWidth=89
@@ -1886,9 +1886,9 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_50
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_12'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=80
    ObjPosY=2240
    DrawWidth=32
@@ -1898,9 +1898,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_50
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_51
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_13'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=176
    ObjPosY=2240
    DrawWidth=32
@@ -1910,9 +1910,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_51
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_14'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=280
    ObjPosY=2240
    DrawWidth=32
@@ -1922,9 +1922,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_15'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_15'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=80
    ObjPosY=2328
    DrawWidth=32
@@ -1934,9 +1934,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_16'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_16'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=184
    ObjPosY=2328
    DrawWidth=32
@@ -1946,9 +1946,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
-   ObjValue=KFPlayerStart'KF-BlackForest.TheWorld:PersistentLevel.KFPlayerStart_17'
+   ObjValue=KFPlayerStart'KF-BLACKFOREST.TheWorld:PersistentLevel.KFPlayerStart_17'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BlackForest.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-BLACKFOREST.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=280
    ObjPosY=2328
    DrawWidth=32

@@ -23,6 +23,9 @@ var const float DamageModifier;
 // Speed modifier applied while in deflate state
 var const float SpeedModifier;
 
+// Melee animation speed applied in deflate state
+var const float AttackSpeedModifier;
+
 // State tracking for speed mod reset
 var float PrevStrength;
 
@@ -102,12 +105,23 @@ function float GetSpeedModifier()
     return 1.f;
 }
 
+function float GetAttackSpeedModifier()
+{
+	if (CurrentStrength > DeflateThreshold)
+	{
+		return AttackSpeedModifier;
+	}
+
+	return 1.f;
+}
+
 function Accrue(float InPower)
 {
     super.Accrue(InPower);
     if (PawnOwner != none)
     {
         PawnOwner.SetAfflictionSpeedModifier();
+		PawnOwner.SetAttackSpeedModifier();
     }
 }
 
@@ -117,6 +131,7 @@ function Tick(float DeltaTime)
     if (PawnOwner != none && CurrentStrength < DeflateThreshold && PrevStrength > DeflateThreshold)
     {
         PawnOwner.SetAfflictionSpeedModifier();
+		PawnOwner.SetAttackSpeedModifier();
     }
     UpdateDeflateMaterialParam(DeltaTime);
 
@@ -126,6 +141,14 @@ function Tick(float DeltaTime)
 /** Network: Server */
 protected function UpdateDeflateMaterialParam(float DeltaTime)
 {
+	MonsterOwner.UpdateBleedIncapFX();
+
+	//Don't allow updates while dead, leave at last known state
+	if (!MonsterOwner.IsAliveAndWell())
+	{
+		return;
+	}
+
     //Check each state. If we're in the none state, we want to trigger state changes as appropriate to
     //      kick the visual changes in the next frame.  Otherwise we can simply get out of here.
     switch (CurrentDeflateState)
@@ -210,11 +233,12 @@ function SetMaterialParameter(float ParamValue)
 defaultproperties
 {
     bNeedsTick=true
-    DissipationRate=5.0
-    DeflateThreshold=30.0
+    DissipationRate=20.0 //5.0 25
+    DeflateThreshold=65.0  //need to test when I get back upstairs
     IncapModifier=0.3
     DamageModifier=-0.3
     SpeedModifier=0.7f
-    MaxDeflate=0.5
-    DeflateChangeRate=0.5
+	AttackSpeedModifier=0.8f
+    MaxDeflate=1.0 //0.2
+    DeflateChangeRate=0.75 //0.5 //0.25  speed that you see them deflate
 }

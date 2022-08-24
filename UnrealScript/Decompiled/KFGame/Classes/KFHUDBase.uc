@@ -69,6 +69,7 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;
 
 struct sHiddenHumanPawnInfo
 {
@@ -535,7 +536,7 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     }
     Canvas.SetDrawColorStruct(PlayerBarIconColor);
     Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - (BarHeight * 2));
-    Canvas.DrawTile(KFPRI.CurrentPerkClass.default.PerkIcon, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256);
+    Canvas.DrawTile(KFPRI.GetCurrentIconToDisplay(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256);
     Canvas.SetDrawColorStruct(PlayerBarTextColor);
     Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), ScreenPos.Y + (BarHeight * 0.6));
     Canvas.DrawText(string(KFPRI.GetActivePerkLevel()) @ KFPRI.CurrentPerkClass.default.PerkName,, FontScale * FriendlyHudScale, FontScale * FriendlyHudScale, MyFontRenderInfo);
@@ -590,11 +591,17 @@ simulated function bool DrawObjectiveHUD()
     {
         return false;
     }
-    Percentage = FMin(KFGRI.ObjectiveInterface.GetProgress(), 1);
-    DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, HealthColor);
-    Canvas.SetDrawColorStruct(PlayerBarIconColor);
-    Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - (BarHeight * 2));
-    Canvas.DrawTile(KFGRI.ObjectiveInterface.GetIcon(), PlayerStatusIconSize, PlayerStatusIconSize, 0, 0, 256, 256);
+    if(KFGRI.ObjectiveInterface.UsesProgress())
+    {
+        Percentage = FMin(KFGRI.ObjectiveInterface.GetProgress(), 1);
+        DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, HealthColor);
+    }
+    if(KFGRI.ObjectiveInterface.GetIcon() != none)
+    {
+        Canvas.SetDrawColorStruct(PlayerBarIconColor);
+        Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - (BarHeight * 2));
+        Canvas.DrawTile(KFGRI.ObjectiveInterface.GetIcon(), PlayerStatusIconSize, PlayerStatusIconSize, 0, 0, 256, 256);
+    }
     return true;
 }
 
@@ -697,7 +704,7 @@ function DrawHiddenHumanPlayerIcon(PlayerReplicationInfo PRI, Vector IconWorldLo
     {
         return;
     }
-    PlayerIcon = ((PlayerOwner.GetTeamNum() == 0) ? KFPRI.CurrentPerkClass.default.PerkIcon : GenericHumanIconTexture);
+    PlayerIcon = ((PlayerOwner.GetTeamNum() == 0) ? KFPRI.GetCurrentIconToDisplay() : GenericHumanIconTexture);
     Canvas.SetDrawColor(255, 255, 255, 255);
     Canvas.SetPos(ScreenPos.X, ScreenPos.Y);
     Canvas.DrawTile(PlayerIcon, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256);

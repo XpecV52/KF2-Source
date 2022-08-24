@@ -137,7 +137,7 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	if(class'GameEngine'.static.GetOnlineSubsystem() != none)
 	{
 		GameInterface = class'GameEngine'.static.GetOnlineSubsystem().GameInterface;
-		
+
 		//@HSL_BEGIN - JRO - 4/28/2016 - Show a message when we're still installing
 		bIsPlayGoRun = !class'GameEngine'.static.IsGameFullyInstalled();
 		if( bIsPlayGoRun )
@@ -162,29 +162,42 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 {
 	switch (SpecialEventID)
 	{
+		case SEI_Spring:
+			return class'KFGFxSpecialEventObjectivesContainer';
 		case SEI_Summer:
 			return class'KFGFxSummerSideShowObjectivesContainer';
+		case SEI_Fall:
+			return class'KFGFxSpecialEventObjectivesContainer';
+		case SEI_Winter:
+			return class'KFGFxSpecialEventObjectivesContainer';
 	}
-	
+
 	return class'KFGFxSpecialEventObjectivesContainer';
 }
 
 /** Ties the GFxClikWidget variables to the .swf components and handles events */
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
-{	
+{
 	switch(WidgetName)
 	{
 		//mission objectives UI
 		case ('missionObjectivesContainerMC'):
-		
+
 			if(MissionObjectiveContainer == none)
 			{
 				MissionObjectiveContainer = KFGFxMissionObjectivesContainer(Widget);
 				MissionObjectiveContainer.Initialize( self );
 			}
 			break;
+		case ('dailyContainerMC'):
+			if(MissionObjectiveContainer.ExpandedObjectiveContainer.DailyObjectiveContainer == none)
+			{
+				MissionObjectiveContainer.ExpandedObjectiveContainer.DailyObjectiveContainer = KFGFxDailyObjectivesContainer(Widget);
+				MissionObjectiveContainer.ExpandedObjectiveContainer.DailyObjectiveContainer.Initialize( self );
+			}
+			break;
 		case ('expandedMissionObjectivesMC'):
-		
+
 			if(MissionObjectiveContainer.ExpandedObjectiveContainer == none) //this is not the normal way we do this. This is a special case
 			{
 				MissionObjectiveContainer.ExpandedObjectiveContainer = KFGFxExpandedObjectivesContainer(Widget);
@@ -192,7 +205,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			}
 			break;
 		case ('collapsedMissionObjectivesMC'):
-		
+
 			if(MissionObjectiveContainer.CollapsedObjectiveContainer == none)
 			{
 				MissionObjectiveContainer.CollapsedObjectiveContainer = KFGFxCollapsedObjectivesContainer(Widget);
@@ -200,7 +213,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			}
 			break;
 		case ('specialEventContainerMC'):
-		
+
 			if(MissionObjectiveContainer.ExpandedObjectiveContainer.SpecialEventsContainer == none)
 			{
 				MissionObjectiveContainer.ExpandedObjectiveContainer.SpecialEventsContainer = KFGFxSpecialEventObjectivesContainer(Widget);
@@ -208,14 +221,14 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			}
 			break;
 		case ('weeklyContainerMC'):
-		
+
 			if(MissionObjectiveContainer.ExpandedObjectiveContainer.WeeklyEventContainer == none)
 			{
 				MissionObjectiveContainer.ExpandedObjectiveContainer.WeeklyEventContainer = KFGFxWeeklyObjectivesContainer(Widget);
 				MissionObjectiveContainer.ExpandedObjectiveContainer.WeeklyEventContainer.Initialize( self );
 			}
 			break;
-		//end mission objectives UI 
+		//end mission objectives UI
 	    case ('findGameContainer'):
 			if ( FindGameContainer == none )
 			{
@@ -233,7 +246,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         case ('overviewContainer'):
 			if ( OverviewContainer == none )
 			{
-			    OverviewContainer = KFGFxStartContainer_InGameOverview( Widget );	
+			    OverviewContainer = KFGFxStartContainer_InGameOverview( Widget );
 			    OverviewContainer.Initialize( self );
 			    SetOverview(true);
 		    }
@@ -241,7 +254,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         case ('serverBrowserOverviewContainer'):
 			if ( ServerBrowserOverviewContainer == none )
 			{
-			    ServerBrowserOverviewContainer = KFGFxStartContainer_ServerBrowserOverview( Widget );	
+			    ServerBrowserOverviewContainer = KFGFxStartContainer_ServerBrowserOverview( Widget );
 			    ServerBrowserOverviewContainer.Initialize( self );
 		    }
         break;
@@ -313,16 +326,16 @@ function SetOverview(optional bool bInitialize)
 	{
     	OverviewContainer.UpdateOverviewInGame();
 	}
-	
+
 	if(OnlineLobby != none)
 	{
 		MyUID = OnlineLobby.GetMyId();
 		OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
-		
+
 		bCurrentlyLeader = (MyUID == AdminId && MyUID != ZeroId);
 		bCurrentlyInParty = OnlineLobby.IsInLobby();
 	}
-		
+
     // Update what our start game looks like if any important options have changed
 	if ( bIsLeader != bCurrentlyLeader || bCurrentlyInParty != bIsInParty || bInitialize || bLeaderInServerBrowser != bLeaderWasInServerBrowser )
 	{
@@ -350,8 +363,8 @@ function SetOverview(optional bool bInitialize)
 				{
 					ShowOverview(!bIsLeader, bIsLeader, class'WorldInfo'.static.IsMenuLevel(), bLeaderInServerBrowser);
 				}
-				
-				
+
+
 			}
 		}
 		else
@@ -389,15 +402,18 @@ function OnPlayerReadiedUp()
 }
 
 function OneSecondLoop()
-{	
+{
 	SetOverview();
-	UpdateMenu();
+	if(Manager.CurrentMenuIndex != UI_IIS)
+	{
+		UpdateMenu();
+	}
 
 	if(OverviewContainer != none && Manager.CurrentMenu == self)
-	{	
+	{
 		OverviewContainer.UpdateSharedContent();
 	}
-	
+
 }
 
 //==============================================================
@@ -409,7 +425,7 @@ function byte GetStartMenuState()
 	return GetInt("menuState");
 }
 
-//get the map's image path from the dataProvider and set it in flash. 
+//get the map's image path from the dataProvider and set it in flash.
 function string GetMapSource(string MapName)
 {
 	local KFMapSummary MapData;
@@ -420,12 +436,12 @@ function string GetMapSource(string MapName)
 		return "img://" $MapData.ScreenshotPathName;
     }
     else
-    {    	
+    {
     	// Failed to find map image, use the default instead
     	MapData = class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName("KF-Default");
     	if ( MapData != none )
 		{
-			return "img://" $MapData.ScreenshotPathName;			
+			return "img://" $MapData.ScreenshotPathName;
     	}
     }
 }
@@ -433,12 +449,12 @@ function string GetMapSource(string MapName)
 //==============================================================
 // Component Functions
 //==============================================================
-//When the leader of the lobby is either changed or assigned. 
+//When the leader of the lobby is either changed or assigned.
 function HandleSteamLobbyLeaderTakeOver(UniqueNetId AdminId)
 {
 	local bool bClientIsLeader;
 
-	bClientIsLeader = GetPC().PlayerReplicationInfo.UniqueId == AdminId;		
+	bClientIsLeader = GetPC().PlayerReplicationInfo.UniqueId == AdminId;
 	switch (GetStartMenuState())
 	{
 		case EOverview:
@@ -447,7 +463,7 @@ function HandleSteamLobbyLeaderTakeOver(UniqueNetId AdminId)
 				OpenMultiplayerMenu();
 				return;
 			}
-	
+
 		case EServerBrowserOverview:
 			if(bClientIsLeader)
 			{
@@ -466,7 +482,7 @@ function SendToOverviewOnChange()
 {
 	Manager.SetStartMenuState(EOverview);
 	Manager.OpenMenu(UI_Start);
-	SetOverview(true);	
+	SetOverview(true);
 }
 
 // Make sure our menu information is up to date
@@ -486,7 +502,7 @@ function UpdateMenu()
 		}
 		else
 		{
-			// We are a party member			
+			// We are a party member
 			ReceiveLeaderOptions();
 			CurrentPartyLeaderName = OnlineLobby.GetFriendNickname(AdminId);
 			if(CurrentPartyLeaderName != "")
@@ -494,7 +510,7 @@ function UpdateMenu()
 		    	ServerBrowserOverviewContainer.SetDescriptionString(CurrentPartyLeaderName);
 		    }
 		}
-		
+
 	}
 }
 
@@ -521,7 +537,7 @@ function ReceiveLeaderOptions()
 
 	OptionIndex = Int(OnlineLobby.GetLobbyData(0, ModeKey));
 	OverviewContainer.UpdateGameMode(class'KFCommon_LocalizedStrings'.static.GetGameModeString(OptionIndex));
-		
+
 	OptionIndex = Int(OnlineLobby.GetLobbyData(0, GameLengthKey));
 	OverviewContainer.UpdateLength(class'KFCommon_LocalizedStrings'.static.GetLengthString(OptionIndex));
 
@@ -552,7 +568,7 @@ function ApproveMatchMakingLeave()
 		CancelGameSearch();
 		OptionsComponent.SetBool("approveMatchMakingLeave", true);
 		UpdateStartMenuState();
-		
+
 	}
 }
 
@@ -629,8 +645,8 @@ function Callback_OnWhatsNewClicked(int Index)
     	{
     		OnlineSub.OpenURL(class'KFGFxStartGameContainer_FindGame'.default.WhatsNewItems[Index].RedirectURL);
     	}
-		
-	}	
+
+	}
 }
 
 function Callback_StartTutorial()
@@ -672,7 +688,7 @@ function Callback_RequestLeaveMatchmaking()
 			{
 				Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString,
 					Localize("KFGFxMenu_StartGame", "LeaveMenuString", "KFGameConsole"),
-					LeaveString, Class'KFCommon_LocalizedStrings'.default.CancelString, 
+					LeaveString, Class'KFCommon_LocalizedStrings'.default.CancelString,
 					ApproveMatchMakingLeave, CancelLeaveMenu );
 			}
 			else
@@ -685,7 +701,7 @@ function Callback_RequestLeaveMatchmaking()
 		else
 		{
 			 ApproveMatchMakingLeave();
-		}		
+		}
 	}
 }
 
@@ -713,7 +729,7 @@ function Callback_OptionListOpened(string ListName, int OptionIndex)
 }
 
 function Callback_InGamePermissionChange( int Index )
-{	
+{
 	if( OnlineLobby != none )
 	{
 		if( OnlineLobby.SetVisibility( Index )  && OptionsComponent != none )
@@ -824,7 +840,7 @@ function Callback_MapSelection( string MapKeyString )
 		MapName = MapKeyString;
 	}
 
-	OptionsComponent.MapChanged( MapName );	
+	OptionsComponent.MapChanged( MapName );
 }
 
 function Callback_ServerType( int Index )
@@ -989,7 +1005,7 @@ function OnJoinGameComplete(name SessionName, bool bSuccessful)
 	{
 		GameInterface.ClearJoinOnlineGameCompleteDelegate(OnJoinGameComplete);
 	}
-	
+
 	if (!bSuccessful)
 	{
 		AttemptingJoin = false;
@@ -1036,7 +1052,7 @@ function ConnectToPlayfabServer(string ServerIp)
 	{
 		PendingResolvedAddress = ServerIp;
 	}
-	
+
 	if( bAttemptingServerCreate )
 	{
 		OpenCommand @= BuildTakeoverURL();
@@ -1105,7 +1121,7 @@ function OnOpen()
 	}
 	if(MissionObjectiveContainer != none)
 	{
-		MissionObjectiveContainer.Refresh();
+		MissionObjectiveContainer.Refresh(true);
 	}
 }
 
@@ -1114,7 +1130,7 @@ function bool OnHandshakeComplete(bool bSuccess, string Description, out int Sup
 {
 	if (bLogSearchInfo) LogInternal("KFGFxMenu_StartGame.OnHandShakeComplete");
 	AttemptingJoin = false;
-	
+
 	KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = None;
 	class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer(nameof(ServerConnectGiveUp), self);
 	if (bSuccess)
@@ -1244,7 +1260,7 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
             {
                 Search.AddGametagFilter(GameTagFilters, 'Difficulty', string(GameDifficulty));
             }
-        }		
+        }
 
         //For modes that don't use filtered length, don't even attempt to send this (Ex: Weekly)
         if (ShouldUseLengthFilter(GameMode))
@@ -1254,8 +1270,8 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
             {
                 Search.AddGametagFilter(GameTagFilters, 'NumWaves', string(GameLength));
             }
-        }		
-	
+        }
+
 		Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
 
 		AllowInProgress = OptionsComponent.GetAllowInProgress();
@@ -1409,9 +1425,9 @@ function Callback_StartOnlineGame()
 {
 	if ( class'KFGameEngine'.static.IsFreeConsolePlayOver() )
 	{
-		Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, "", 
-			class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString, 
-			class'KFCommon_LocalizedStrings'.default.BuyGameString, 
+		Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, "",
+			class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString,
+			class'KFCommon_LocalizedStrings'.default.BuyGameString,
 			class'KFCommon_LocalizedStrings'.default.OKString, OnBuyGamePressed);
 		return;
 	}
@@ -1460,7 +1476,7 @@ function UnpauseTryingServers()
 event CancelGameSearch()
 {
 	local KFOnlineGameSearch ActiveGameSearch;
-	
+
 	ActiveGameSearch = KFOnlineGameSearch(SearchDataStore.GetActiveGameSearch());
 
 	if(ActiveGameSearch != none)
@@ -1487,7 +1503,7 @@ function OnCancelSearchComplete(bool bWasSuccessful)
 {
 	bSearchingForGame = false;
 	OptionsComponent.SetSearching(bSearchingForGame);
-	Manager.SetSearchingForMatch(bSearchingForGame);	
+	Manager.SetSearchingForMatch(bSearchingForGame);
 }
 
 /********************************************************************************/
@@ -1495,7 +1511,7 @@ function OnCancelSearchComplete(bool bWasSuccessful)
 /********************************************************************************/
 
 function ShowOverview( bool bShowOverview, bool bLeader, bool bInMainMenu, bool bhostInServerBrowser)
-{	
+{
 	ActionScriptVoid("showOverview");
 }
 
@@ -1548,14 +1564,15 @@ defaultproperties
    StockMaps(13)="kf-thedescent"
    StockMaps(14)="kf-nuked"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
-   SubWidgetBindings(1)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')
-   SubWidgetBindings(2)=(WidgetName="OverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_InGameOverview')
-   SubWidgetBindings(3)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
-   SubWidgetBindings(4)=(WidgetName="missionObjectivesContainerMC",WidgetClass=Class'KFGame.KFGFxMissionObjectivesContainer')
-   SubWidgetBindings(5)=(WidgetName="collapsedMissionObjectivesMC",WidgetClass=Class'KFGame.KFGFxCollapsedObjectivesContainer')
-   SubWidgetBindings(6)=(WidgetName="expandedMissionObjectivesMC",WidgetClass=Class'KFGame.KFGFxExpandedObjectivesContainer')
-   SubWidgetBindings(7)=(WidgetName="weeklyContainerMC",WidgetClass=Class'KFGame.KFGFxWeeklyObjectivesContainer')
+   SubWidgetBindings(1)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
+   SubWidgetBindings(2)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')
+   SubWidgetBindings(3)=(WidgetName="OverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_InGameOverview')
+   SubWidgetBindings(4)=(WidgetName="dailyContainerMC",WidgetClass=Class'KFGame.KFGFxDailyObjectivesContainer')
+   SubWidgetBindings(5)=(WidgetName="weeklyContainerMC",WidgetClass=Class'KFGame.KFGFxWeeklyObjectivesContainer')
+   SubWidgetBindings(6)=(WidgetName="missionObjectivesContainerMC",WidgetClass=Class'KFGame.KFGFxMissionObjectivesContainer')
+   SubWidgetBindings(7)=(WidgetName="collapsedMissionObjectivesMC",WidgetClass=Class'KFGame.KFGFxCollapsedObjectivesContainer')
    SubWidgetBindings(8)=(WidgetName="specialEventContainerMC",WidgetClass=Class'KFGame.KFGFxSpecialEventObjectivesContainer')
+   SubWidgetBindings(9)=(WidgetName="expandedMissionObjectivesMC",WidgetClass=Class'KFGame.KFGFxExpandedObjectivesContainer')
    Name="Default__KFGFxMenu_StartGame"
    ObjectArchetype=KFGFxObject_Menu'KFGame.Default__KFGFxObject_Menu'
 }

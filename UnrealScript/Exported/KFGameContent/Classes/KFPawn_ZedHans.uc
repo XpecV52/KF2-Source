@@ -1164,6 +1164,13 @@ defaultproperties
    SummonWaves(3)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Three')
    NumMinionsToSpawn=(X=1.000000,Y=18.000000)
    CurrentBattlePhase=1
+   BossCaptionStrings(0)="When seriously injured Hans puts a shield up while he seeks a victim to drain health from. If you destroy this shield he cannot heal!"
+   BossCaptionStrings(1)="Watch his power core: Hans is more aggressive as it changes color."
+   BossCaptionStrings(2)="Aim for his emissive power core. It is a vulnerable zone."
+   BossCaptionStrings(3)="Gas from Hans' grenades clings to you, like Bloat bile. Try to avoid it!"
+   BossCaptionStrings(4)="His slashing attacks are too strong to parry. You'll still take full damage."
+   BossCaptionStrings(5)="Watch for red grenade warning indicators, which may help you spot where they land."
+   BossCaptionStrings(6)="When Hans pulls out his guns, stay out of the line of sight. Obvious, but important!"
    bLargeZed=True
    bCanGrabAttack=True
    MonsterArchPath="ZED_ARCH.ZED_Hans_Archetype"
@@ -1202,15 +1209,6 @@ defaultproperties
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Hans'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    OnDeathAchievementID=133
-   BossName="Dr. Hans Volter"
-   BossCaptionStrings(0)="When seriously injured Hans puts a shield up while he seeks a victim to drain health from. If you destroy this shield he cannot heal!"
-   BossCaptionStrings(1)="Watch his power core: Hans is more aggressive as it changes color."
-   BossCaptionStrings(2)="Aim for his emissive power core. It is a vulnerable zone."
-   BossCaptionStrings(3)="Gas from Hans' grenades clings to you, like Bloat bile. Try to avoid it!"
-   BossCaptionStrings(4)="His slashing attacks are too strong to parry. You'll still take full damage."
-   BossCaptionStrings(5)="Watch for red grenade warning indicators, which may help you spot where they land."
-   BossCaptionStrings(6)="When Hans pulls out his guns, stay out of the line of sight. Obvious, but important!"
-   TheatricCameraSocketName="TheatricCameraRootSocket"
    PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
    LocalizationKey="KFPawn_ZedHans"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_ZedHansBase:ThirdPersonHead0'
@@ -1259,7 +1257,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.500000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
-   IncapSettings(11)=(Vulnerability=(0.080000))
+   IncapSettings(11)=(Cooldown=10.000000,Vulnerability=(0.200000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=675.000000
    DefaultInventory(0)=Class'kfgamecontent.KFWeap_AssaultRifle_DualMKb42_Hans'

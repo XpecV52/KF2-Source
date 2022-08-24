@@ -435,10 +435,10 @@ defaultproperties
    bLoopingFireSnd(0)=True
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_1P_Loop')
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_3P_Loop',FirstPersonCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_1P_Loop')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_S')
-   WeaponFireSnd(2)=(DefaultCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_1P_Single')
-   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_3P_EndLoop',FirstPersonCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_1P_EndLoop')
+   WeaponFireSnd(2)=(DefaultCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_3P_Single',FirstPersonCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_1P_Single')
+   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_3P_EndLoop',FirstPersonCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_1P_EndLoop')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Handling_DryFire'
    PlayerViewOffset=(X=22.000000,Y=9.000000,Z=-2.000000)

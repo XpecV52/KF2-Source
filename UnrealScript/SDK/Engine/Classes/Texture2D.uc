@@ -192,28 +192,28 @@ public:
 
 	// UObject interface.
 	void InitializeIntrinsicPropertyValues();
-	virtual void Serialize(FArchive& Ar);
+	void Serialize(FArchive& Ar) override;
 #if !CONSOLE
 	// SetLinker is only virtual on consoles.
-	virtual void SetLinker( ULinkerLoad* L, INT I );
+	void SetLinker( ULinkerLoad* L, INT I ) override;
 #endif
-	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent);
+	void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 
 	/**
 	 * Called after the garbage collection mark phase on unreachable objects.
 	 */
-	virtual void BeginDestroy();
+	void BeginDestroy() override;
 	UBOOL IsReadyForFinishDestroy() override;
 	void FinishDestroy() override;
 
 	/**
  	 * Called after object and all its dependencies have been serialized.
 	 */
-	virtual void PostLoad();
+	void PostLoad() override;
 	/**
  	 * Called after object has been duplicated.
 	 */
-	virtual void PostDuplicate();
+	void PostDuplicate() override;
 
 	/** 
 	 * Generates a GUID for the texture if one doesn't already exist. 
@@ -223,19 +223,19 @@ public:
 	void GenerateTextureFileCacheGUID(UBOOL bForceGeneration=FALSE);
 
 	// USurface interface
-	virtual FLOAT GetSurfaceWidth() const { return SizeX; }
-	virtual FLOAT GetSurfaceHeight() const { return SizeY; }
+	FLOAT GetSurfaceWidth() const override { return SizeX; }
+	FLOAT GetSurfaceHeight() const override { return SizeY; }
 
 	/**
 	 * @return Width/height this surface was before cooking or other modifications
 	 */
-	virtual FLOAT GetOriginalSurfaceWidth() const { return OriginalSizeX; }
-	virtual FLOAT GetOriginalSurfaceHeight() const { return OriginalSizeY; }
+	FLOAT GetOriginalSurfaceWidth() const override { return OriginalSizeX; }
+	FLOAT GetOriginalSurfaceHeight() const override { return OriginalSizeY; }
 
 	// UTexture interface.
-	virtual FTextureResource* CreateResource();
-	virtual void Compress();
-	virtual EMaterialValueType GetMaterialType() { return MCT_Texture2D; }
+	FTextureResource* CreateResource() override;
+	void Compress() override;
+	EMaterialValueType GetMaterialType() override { return MCT_Texture2D; }
 
 	/**
 	 * Scale the actual texture data of the top mip. This allows non-uniform scaling - use with care :)
@@ -250,7 +250,7 @@ public:
 	/**
 	 * Creates a new resource for the texture, and updates any cached references to the resource.
 	 */
-	virtual void UpdateResource();
+	void UpdateResource() override;
 
 	/**
 	 * Used by various commandlets to purge editor only and platform-specific data from various objects
@@ -258,7 +258,7 @@ public:
 	 * @param PlatformsToKeep Platforms for which to keep platform-specific data
 	 * @param bStripLargeEditorData If TRUE, data used in the editor, but large enough to bloat download sizes, will be removed
 	 */
-	virtual void StripData(UE3::EPlatformType PlatformsToKeep, UBOOL bStripLargeEditorData);
+	void StripData(UE3::EPlatformType PlatformsToKeep, UBOOL bStripLargeEditorData) override;
 
 	/**
 	 *	Gets the average brightness of the texture in linear space
@@ -268,7 +268,7 @@ public:
 	 *
 	 *	@return	FLOAT					The average brightness of the texture
 	 */
-	virtual FLOAT GetAverageBrightness(UBOOL bIgnoreTrueBlack, UBOOL bUseGrayscale);
+	FLOAT GetAverageBrightness(UBOOL bIgnoreTrueBlack, UBOOL bUseGrayscale) override;
 
 	// UTexture2D interface.
 	void Init(UINT InSizeX,UINT InSizeY,EPixelFormat InFormat);
@@ -285,12 +285,12 @@ public:
 	/** 
 	 * Returns a one line description of an object for viewing in the thumbnail view of the generic browser
 	 */
-	virtual FString GetDesc();
+	FString GetDesc() override;
 
 	/** 
 	 * Returns detailed info to populate listview columns
 	 */
-	virtual FString GetDetailedDescription( INT InIndex );
+	FString GetDetailedDescription( INT InIndex ) override;
 
 	/**
 	 * Calculates the size of this texture in bytes if it had MipCount miplevels streamed in.
@@ -306,7 +306,7 @@ public:
 	 * @param	MipCount	Which mips to calculate size for.
 	 * @return	Total size of all specified mips, in bytes
 	 */
-	virtual INT CalcTextureMemorySize( ETextureMipCount MipCount ) const;
+	INT CalcTextureMemorySize( ETextureMipCount MipCount ) const override;
 
 	/**
 	 * Returns the size of this texture in bytes on 360 if it had MipCount miplevels streamed in.
@@ -330,19 +330,19 @@ public:
 	 *
 	 * @return	TRUE if the texture has source art. FALSE, otherwise.
 	 */
-	virtual UBOOL HasSourceArt() const;
+	UBOOL HasSourceArt() const override;
 
 	/**
 	 * Compresses the source art, if needed
 	 */
-	virtual void CompressSourceArt();
+	void CompressSourceArt() override;
 
 	/**
 	 * Returns uncompressed source art.
 	 *
 	 * @param	OutSourceArt	[out]A buffer containing uncompressed source art.
 	 */
-	virtual void GetUncompressedSourceArt( TArray<BYTE>& OutSourceArt );
+	void GetUncompressedSourceArt( TArray<BYTE>& OutSourceArt ) override;
 
 	/**
 	 * Sets the given buffer as the uncompressed source art.
@@ -350,7 +350,7 @@ public:
 	 * @param	UncompressedData	Uncompressed source art data. 
 	 * @param	DataSize			Size of the UncompressedData.
 	 */
-	virtual void SetUncompressedSourceArt( const void* UncompressedData, INT DataSize );
+	void SetUncompressedSourceArt( const void* UncompressedData, INT DataSize ) override;
 	
 	/**
 	 * Sets the given buffer as the compressed source art. 
@@ -358,7 +358,7 @@ public:
 	 * @param	CompressedData		Compressed source art data. 
 	 * @param	DataSize			Size of the CompressedData.
 	 */
-	virtual void SetCompressedSourceArt( const void* CompressedData, INT DataSize );
+	void SetCompressedSourceArt( const void* CompressedData, INT DataSize ) override;
 	
 	/**
 	 *	See if the source art of the two textures matches...
@@ -396,7 +396,7 @@ public:
 	/**
 	 * Waits until all streaming requests for this texture has been fully processed.
 	 */
-	virtual void WaitForStreaming();
+	void WaitForStreaming() override;
 	
 	/**
 	 * Updates the streaming status of the texture and performs finalization when appropriate. The function returns
@@ -405,7 +405,7 @@ public:
 	 * @param bWaitForMipFading	Whether to wait for Mip Fading to complete before finalizing.
 	 * @return					TRUE if there are requests in flight, FALSE otherwise
 	 */
-	virtual UBOOL UpdateStreamingStatus( UBOOL bWaitForMipFading = FALSE );
+	UBOOL UpdateStreamingStatus( UBOOL bWaitForMipFading = FALSE ) override;
 
 	/**
 	 * Tries to cancel a pending mip change request. Requests cannot be canceled if they are in the
@@ -420,7 +420,7 @@ public:
 	 *
 	 * @return size of resource as to be displayed to artists/ LDs in the Editor.
 	 */
-	virtual INT GetResourceSize();
+	INT GetResourceSize() override;
 
 	/**
 	 * Returns whether miplevels should be forced resident.
@@ -524,7 +524,7 @@ public:
 
 	/** Called after an editor or undo operation is formed on texture
 	*/
-	virtual void PostEditUndo();
+	void PostEditUndo() override;
 
 	/** Returns system memory data for read only purposes **/
 	const TArray<BYTE>& AccessSystemMemoryData() const { return SystemMemoryData; }

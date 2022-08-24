@@ -74,7 +74,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
    IncapSettings(9)=(Duration=4.000000,Cooldown=1.500000,Vulnerability=(2.500000))
    IncapSettings(10)=(Duration=2.000000,Vulnerability=(0.500000))
-   IncapSettings(11)=(Vulnerability=(0.500000))
+   IncapSettings(11)=(Vulnerability=(2.000000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=500.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:FirstPersonArms'

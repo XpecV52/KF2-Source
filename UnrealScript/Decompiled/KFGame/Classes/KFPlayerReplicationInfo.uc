@@ -68,17 +68,18 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
 {
-    var const byte CharacterIndex;
-    var const byte HeadMeshIndex;
-    var const byte HeadSkinIndex;
-    var const byte BodyMeshIndex;
-    var const byte BodySkinIndex;
-    var const byte AttachmentMeshIndices[3];
-    var const byte AttachmentSkinIndices[3];
+    var const int CharacterIndex;
+    var const int HeadMeshIndex;
+    var const int HeadSkinIndex;
+    var const int BodyMeshIndex;
+    var const int BodySkinIndex;
+    var const int AttachmentMeshIndices[3];
+    var const int AttachmentSkinIndices[3];
 
     structdefaultproperties
     {
@@ -104,8 +105,10 @@ var private byte ActivePerkLevel;
 var byte PlayerHealth;
 var byte PlayerHealthPercent;
 var byte PerkSupplyLevel;
+var KFLocalMessage_VoiceComms.EVoiceCommsType CurrentVoiceCommsRequest;
 var byte SharedUnlocks;
 var bool bHasSpawnedIn;
+var bool bAllowDoshEarning;
 var repnotify bool bVOIPRegisteredWithOSS;
 var bool bExtraFireRange;
 var bool bSplashActive;
@@ -123,6 +126,10 @@ var Texture CharPortrait;
 var int DamageDealtOnTeam;
 var class<KFPerk> CurrentPerkClass;
 var int Assists;
+var float VoiceCommsStatusDisplayInterval;
+var int VoiceCommsStatusDisplayIntervalCount;
+var int VoiceCommsStatusDisplayIntervalMax;
+var Texture2D CurrentIconToDisplay;
 var private Vector PawnLocationCompressed;
 var private Vector LastReplicatedSmoothedLocation;
 var KFPlayerController KFPlayerOwner;
@@ -430,7 +437,7 @@ simulated function VOIPStatusChanged(PlayerReplicationInfo Talker, bool bIsTalki
 {
     local KFPlayerController KFPC;
     local KFPlayerReplicationInfo TalkerKFPRI;
-    local KFGFxHudWrapper MyGFxHUD;
+    local KFGFxHudWrapper myGfxHUD;
     local OnlineSubsystem OSS;
 
     OSS = Class'GameEngine'.static.GetOnlineSubsystem();
@@ -440,7 +447,7 @@ simulated function VOIPStatusChanged(PlayerReplicationInfo Talker, bool bIsTalki
         {            
             return;
         }
-        MyGFxHUD = KFGFxHudWrapper(KFPC.myHUD);
+        myGfxHUD = KFGFxHudWrapper(KFPC.myHUD);
         TalkerKFPRI = KFPlayerReplicationInfo(Talker);
         if(TalkerKFPRI != none)
         {
@@ -449,9 +456,9 @@ simulated function VOIPStatusChanged(PlayerReplicationInfo Talker, bool bIsTalki
                 return;
             }
         }
-        if((MyGFxHUD != none) && MyGFxHUD.HudMovie != none)
+        if((myGfxHUD != none) && myGfxHUD.HudMovie != none)
         {
-            MyGFxHUD.HudMovie.VOIPWidget.VOIPEventTriggered(Talker, bIsTalking);
+            myGfxHUD.HudMovie.VOIPWidget.VOIPEventTriggered(Talker, bIsTalking);
         }
         if(KFPC.MyGFxManager != none)
         {
@@ -512,9 +519,9 @@ reliable client simulated function ShowKickVote(PlayerReplicationInfo PRI, byte 
     local KFPlayerController KFPC;
 
     KFPC = KFPlayerController(Owner);
-    if((KFPC != none) && KFPC.MyGFxHUD != none)
+    if((KFPC != none) && KFPC.myGfxHUD != none)
     {
-        KFPC.MyGFxHUD.ShowKickVote(PRI, VoteDuration, bShowChoices);
+        KFPC.myGfxHUD.ShowKickVote(PRI, VoteDuration, bShowChoices);
     }
     if(((KFPC != none) && KFPC.MyGFxManager != none) && bShowChoices)
     {
@@ -527,9 +534,9 @@ reliable client simulated function HideKickVote()
     local KFPlayerController KFPC;
 
     KFPC = KFPlayerController(Owner);
-    if((KFPC != none) && KFPC.MyGFxHUD != none)
+    if((KFPC != none) && KFPC.myGfxHUD != none)
     {
-        KFPC.MyGFxHUD.HideKickVote();
+        KFPC.myGfxHUD.HideKickVote();
     }
     if((KFPC != none) && KFPC.MyGFxManager != none)
     {
@@ -833,8 +840,15 @@ simulated function Vector GetSmoothedPawnIconLocation(float BlendSpeed)
 
 simulated function SetPlayerReady(bool bReady)
 {
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Owner);
     bReadyToPlay = bReady;
     ServerSetPlayerReady(bReady);
+    if((KFPC != none) && KFPC.LEDEffectsManager != none)
+    {
+        KFPC.LEDEffectsManager.PlayEffectSetReady(bReadyToPlay);
+    }
 }
 
 private reliable server final function ServerSetPlayerReady(bool bReady)
@@ -844,6 +858,10 @@ private reliable server final function ServerSetPlayerReady(bool bReady)
 
 function AddDosh(int DoshAmount, optional bool bEarned)
 {
+    if(!bAllowDoshEarning && bEarned)
+    {
+        return;
+    }
     Score = float(Max(0, int(Score + float(DoshAmount))));
     if(WorldInfo.NetMode == NM_ListenServer)
     {
@@ -883,9 +901,9 @@ simulated function NotifyHUDofPRIDestroyed()
     ServerNotifyStopVOIP();
     if(KFPC != none)
     {
-        if(KFPC.MyGFxHUD != none)
+        if(KFPC.myGfxHUD != none)
         {
-            KFPC.MyGFxHUD.NotifyHUDofPRIDestroyed(self);
+            KFPC.myGfxHUD.NotifyHUDofPRIDestroyed(self);
         }
         if((KFPC != Owner) && KFPC.MyGFxManager != none)
         {
@@ -947,23 +965,71 @@ simulated function NotifyWaveEnded()
 // Export UKFPlayerReplicationInfo::execHasHadInitialSpawn(FFrame&, void* const)
 native simulated function bool HasHadInitialSpawn();
 
+simulated function SetCurrentVoiceCommsRequest(int NewValue)
+{
+    CurrentVoiceCommsRequest = byte(NewValue);
+    ClearVoiceCommsRequest();
+    SetCurrentIconToVoiceCommsIcon();
+}
+
+simulated function SetCurrentIconToPerkIcon()
+{
+    CurrentIconToDisplay = none;
+    if(VoiceCommsStatusDisplayIntervalCount < VoiceCommsStatusDisplayIntervalMax)
+    {
+        ++ VoiceCommsStatusDisplayIntervalCount;
+        SetTimer(VoiceCommsStatusDisplayInterval, false, 'SetCurrentIconToVoiceCommsIcon');        
+    }
+    else
+    {
+        ClearVoiceCommsRequest();
+    }
+}
+
+simulated function SetCurrentIconToVoiceCommsIcon()
+{
+    CurrentIconToDisplay = Class'KFLocalMessage_VoiceComms'.default.VoiceCommsIcons[CurrentVoiceCommsRequest];
+    SetTimer(VoiceCommsStatusDisplayInterval, false, 'SetCurrentIconToPerkIcon');
+}
+
+simulated function ClearVoiceCommsRequest()
+{
+    ClearTimer('SetCurrentIconToPerkIcon');
+    ClearTimer('SetCurrentIconToVoiceCommsIcon');
+    VoiceCommsStatusDisplayIntervalCount = 0;
+    CurrentIconToDisplay = none;
+}
+
+simulated function Texture2D GetCurrentIconToDisplay()
+{
+    if((CurrentIconToDisplay == none) && CurrentPerkClass != none)
+    {
+        return CurrentPerkClass.default.PerkIcon;
+    }
+    return CurrentIconToDisplay;
+}
+
 defaultproperties
 {
+    CurrentVoiceCommsRequest=EVoiceCommsType.VCT_NONE
+    bAllowDoshEarning=true
     bShowNonRelevantPlayers=true
     SecondsOfGameplay=-1
     CharacterArchetypes(0)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype'
-    CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Knight_Archetype'
+    CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_knight_archetype'
     CharacterArchetypes(2)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype'
-    CharacterArchetypes(3)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Mark_archetype'
+    CharacterArchetypes(3)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_mark_archetype'
     CharacterArchetypes(4)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype'
     CharacterArchetypes(5)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Jagerhorn_Archetype'
     CharacterArchetypes(6)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype'
-    CharacterArchetypes(7)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_Archetype'
-    CharacterArchetypes(8)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alan_Archetype'
+    CharacterArchetypes(7)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_archetype'
+    CharacterArchetypes(8)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_alan_archetype'
     CharacterArchetypes(9)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Coleman_archetype'
     CharacterArchetypes(10)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_DJSkully_archetype'
-    CharacterArchetypes(11)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Strasser_Archetype'
+    CharacterArchetypes(11)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_strasser_archetype'
     CharacterArchetypes(12)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
     CharacterArchetypes(13)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype'
     RepCustomizationInfo=(CharacterIndex=0,HeadMeshIndex=0,HeadSkinIndex=0,BodyMeshIndex=0,BodySkinIndex=0,AttachmentMeshIndices=255,AttachmentMeshIndices[1]=255,AttachmentMeshIndices[2]=255,AttachmentSkinIndices=0,AttachmentSkinIndices[1]=0,AttachmentSkinIndices[2]=0)
+    VoiceCommsStatusDisplayInterval=0.5
+    VoiceCommsStatusDisplayIntervalMax=5
 }

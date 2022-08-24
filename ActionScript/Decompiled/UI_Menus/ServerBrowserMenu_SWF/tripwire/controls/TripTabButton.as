@@ -3,6 +3,7 @@ package tripwire.controls
     import flash.events.MouseEvent;
     import scaleform.clik.controls.Button;
     import scaleform.gfx.Extensions;
+    import scaleform.gfx.TextFieldEx;
     
     public class TripTabButton extends Button
     {
@@ -15,6 +16,12 @@ package tripwire.controls
         public function TripTabButton()
         {
             super();
+        }
+        
+        override protected function updateText() : void
+        {
+            TextFieldEx.setVerticalAlign(textField,TextFieldEx.VALIGN_CENTER);
+            super.updateText();
         }
         
         override protected function handlePress(param1:uint = 0) : void

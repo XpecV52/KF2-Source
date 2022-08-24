@@ -21,7 +21,7 @@ function Init(webadmin webapp)
     webadmin = webapp;
 }
 
-function delayedInit()
+function DelayedInit()
 {
     local IQueryHandler qh;
     local Object O;
@@ -110,7 +110,7 @@ function handleSettings(WebAdminQuery Q)
 
     if(SettingsRenderer == none)
     {
-        delayedInit();
+        DelayedInit();
         loadSettings();
         SettingsRenderer = new Class'SettingsRenderer';
         SettingsRenderer.Init(webadmin.Path);

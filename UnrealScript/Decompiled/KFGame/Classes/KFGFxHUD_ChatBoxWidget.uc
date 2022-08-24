@@ -15,9 +15,9 @@ function Init()
 
     SetVisible(false);
     KFPC = KFPlayerController(Outer.GetPC());
-    if((((KFPC != none) && KFPC.MyGFxHUD != none) && KFPC.MyGFxHUD.HudChatBox != none) && KFPC.MyGFxHUD.HudChatBox != self)
+    if((((KFPC != none) && KFPC.myGfxHUD != none) && KFPC.myGfxHUD.HudChatBox != none) && KFPC.myGfxHUD.HudChatBox != self)
     {
-        SetDataObjects(KFPC.MyGFxHUD.HudChatBox.GetDataObjects());
+        SetDataObjects(KFPC.myGfxHUD.HudChatBox.GetDataObjects());
     }
 }
 

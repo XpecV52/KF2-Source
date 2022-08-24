@@ -67,7 +67,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[9])));
         }
     }
-    if(KFW != none)
+    if((KFW != none) && !DamageCauser.IsA('KFProj_Grenade'))
     {
         if(IsBackupActive() && IsBackupWeapon(KFW))
         {

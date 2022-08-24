@@ -17,6 +17,7 @@ KF-ZedLanding="Gra w Lądowanie zetów"
 KF-TheDescent="Gra na mapie Zejście"
 KF-Nuked="Gra na mapie Wysadzeni"
 KF-TragicKingdom="Rozgrywanie Królestwa Tragedii"
+KF-Nightmare="Gra na mapie Koszmar"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -140,14 +141,17 @@ NoOnlinePlay="Nie można zagrać online"
 TooYoung="Usługa online jest wyłączona na twoim konto Sony Entertainment Network z powodu ograniczeń kontroli rodzicielskiej."
 PatchAvailable="Dostępna poprawka. Musisz zaktualizować aplikację, aby móc korzystać z funkcji online."
 NotLoggedInOnlinePSN="Aby korzystać z funkcji online, należy się wpisać do PlayStation™Network."
+LiveRequiredMessage="Aby grać za pośrednictwem usługi Xbox Live, musisz zalogować się do profilu z aktywowaną usługą Xbox Live i mieć aktywne połączenie internetowe."
 NetworkError="Wystąpił błąd sieci, sprawdź swoje połączenie sieciowe."
 ErrorNoPlayfabDescription="Nie można nawiązać połączenia z serwerami głównymi gry. Spróbuj ponownie za kilka minut."
 ErrorTSSFailedDescription="Nie można nawiązać połączenia z serwerem balansowym gry. Sprawdź, czy podłączenie internetu i spróbuj ponownie."
 NotSignedInTitle="Nie zalogowano."
+PlayOffline="Czy chcesz grać offline? Funkcje Xbox Live nie będą dostępne i dane nie zostaną zapisane."
 
 [Notifications]
 ControllerDisconnectedTitle="Kontroler odłączony"
 ControllerDisconnectedPS4Message="Kontroler bezprzewodowy został odłączony. Podłącz kontroler bezprzewodowy dla użytkownika, który uruchomił grę."
+ControllerDisconnectedXB1="Kontroler bezprzewodowy konsoli Xbox One został odłączony. Podłącz kontroler ponownie."
 PlayGoBusyTitle="Trwa instalacja"
 PlayGoBusyMessage="Podczas zakańczania instalacji gry dostępna jest ograniczona zawartość i funkcje."
 UnableToJoinInviteTitle="Nie można dołączyć"
@@ -160,11 +164,14 @@ CheckPlusTitle="Sprawdzanie stanu PlayStation®Plus"
 CheckPlusMessage="Poczekaj na sprawdzenie stanu PlayStation®Plus."
 ConnectionLostTitle="Utracono połączenie"
 ConnectionLostMessage="Utracono połączenie z internetem.  Nastąpił powrót do menu głównego."
+ConnectionLostMessageLive="Utracono połączenie z usługą Xbox Live. Nastąpił powrót do menu głównego."
 PSNSignoutMessage="Wypisano z PlayStation™Network. Nastąpił powrót do menu głównego."
 InviteMessage="Zapraszam na rozwałkę zetów!"
 NotConnectedTitle="Błąd sieci"
 NotConnectedMessage="Brak połączenia z internetem. Sprawdź połączenie i spróbuj ponownie."
 NotConnectedForOnlinePlay="Brak połączenia z internetem. Aby korzystać z funkcji online, sprawdź połączenie i spróbuj ponownie"
+NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+MultiplayerNotAllowed_MessageLive="Aby grać, musisz zalogować się do profilu z aktywowaną usługą Xbox Live i mieć uprawnienia do gry wieloosobowej."
 MultiplayerNotAllowed_Title="Gra wieloosobowa niedozwolona"
 LoggedOutMessage="Aktywny profil został zmieniony. Nastąpił powrót do ekranu tytułowego."
 LoggedOutTitle="Wylogowano"
@@ -174,6 +181,7 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Zobacz profil gracza"
+ViewProfileStringXB1="Pokaż kartę gracza"
 
 [KFGFxObject_Menu]
 ResetDefaults="Czy na pewno chcesz zresetować ustawienia do wartości domyślnych?"
@@ -193,12 +201,15 @@ ControllerSound="Dźwięk kontrolera"
 MatchmakingRegionString="REGION"
 LeaveMenuString="Opuszczenie matchmakingu spowoduje opuszczenie imprezy."
 
+[KFGFxMenu_Store]
+StoreStringXB1="SKLEP XBOX"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGION"
 MapPreference="PREFEROWANA MAPA"
 
 [KFGFxMenu_Exit]
+HeaderStringXB1="WYLOGUJ"
 LogoutKF2="Powrót do ekranu tytuł."
 
 [Misc]

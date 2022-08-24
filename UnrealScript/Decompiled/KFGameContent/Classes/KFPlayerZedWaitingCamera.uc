@@ -209,6 +209,7 @@ defaultproperties
         CastShadows=false
         CastStaticShadows=false
         CastDynamicShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
     object end
     // Reference: PointLightComponent'Default__KFPlayerZedWaitingCamera.PointLightTemplate'

@@ -2910,9 +2910,9 @@ unreliable client simulated function NotifyHUDofWeapon(Pawn P)
     if(Role < ROLE_Authority)
     {
         KFPC = KFPlayerController(P.Owner);
-        if((KFPC != none) && KFPC.MyGFxHUD != none)
+        if((KFPC != none) && KFPC.myGfxHUD != none)
         {
-            KFPC.MyGFxHUD.NotifyHUDofWeapon();
+            KFPC.myGfxHUD.NotifyHUDofWeapon();
         }
     }
 }

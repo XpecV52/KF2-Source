@@ -829,11 +829,6 @@ simulated function bool TryPutDown()
     return true;
 }
 
-simulated function bool CanProcessPendingFire(name PrevStateName, byte FireModeNum)
-{
-    return true;
-}
-
 simulated function HandleFinishedFiring()
 {
     GotoState('Active');
@@ -997,17 +992,17 @@ simulated state Active
 
                 if(I < GetPendingFireLength())
                 {
-                    if((CanProcessPendingFire(PreviousStateName, byte(I))) && PendingFire(I))
+                    if(PendingFire(I))
                     {
                         BeginFire(byte(I));
-                        goto J0x186;
+                        goto J0x163;
                     }
                     ++ I;
                     goto J0x10F;
                 }
             }
         }
-        J0x186:
+        J0x163:
 
     }
 

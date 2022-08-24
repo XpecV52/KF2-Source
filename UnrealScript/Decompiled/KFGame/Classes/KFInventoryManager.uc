@@ -368,9 +368,9 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
     if((Instigator != none) && Instigator.IsLocallyControlled())
     {
         KFPC = KFPlayerController(Instigator.Controller);
-        if((((KFPC != none) && KFPC.MyGFxHUD != none) && KFPC.MyGFxHUD.WeaponSelectWidget != none) && KFPC.IsTimerActive('RefreshTimer', KFPC.MyGFxHUD.WeaponSelectWidget))
+        if((((KFPC != none) && KFPC.myGfxHUD != none) && KFPC.myGfxHUD.WeaponSelectWidget != none) && KFPC.IsTimerActive('RefreshTimer', KFPC.myGfxHUD.WeaponSelectWidget))
         {
-            KFPC.MyGFxHUD.WeaponSelectWidget.RefreshTimer();
+            KFPC.myGfxHUD.WeaponSelectWidget.RefreshTimer();
         }
     }
 }
@@ -437,6 +437,8 @@ function bool ClassIsInInventory(class<Inventory> ItemClass)
 simulated function SwitchToLastWeapon()
 {
     local Weapon CurrentWeapon, DesiredWeapon;
+    local KFWeapon CheckedWeapon, DesiredKFWeapon;
+    local int WeaponIndex;
 
     CurrentWeapon = ((PendingWeapon != none) ? PendingWeapon : Instigator.Weapon);
     if((PreviousEquippedWeapons[0] != none) && PreviousEquippedWeapons[0] != CurrentWeapon)
@@ -457,6 +459,22 @@ simulated function SwitchToLastWeapon()
     bAutoswitchWeapon = true;
     SetCurrentWeapon(DesiredWeapon);
     bAutoswitchWeapon = false;
+    DesiredKFWeapon = KFWeapon(DesiredWeapon);
+    WeaponIndex = 0;
+    if(DesiredKFWeapon != none)
+    {
+        foreach InventoryActors(Class'KFWeapon', CheckedWeapon)
+        {
+            if(CheckedWeapon.InventoryGroup == DesiredKFWeapon.InventoryGroup)
+            {
+                if(CheckedWeapon == DesiredKFWeapon)
+                {
+                    SelectedGroupIndicies[CheckedWeapon.InventoryGroup] = WeaponIndex;
+                }
+                ++ WeaponIndex;
+            }            
+        }        
+    }
 }
 
 simulated function KFWeapon GetBestPerkWeaponWithAmmo(class<KFPerk> PerkClass, optional bool bBackupIfEmpty)
@@ -812,7 +830,7 @@ simulated event ShowOnlyHUDGroup(byte GroupIndex)
 {
     local KFGFxMoviePlayer_HUD KFGFxHUD;
 
-    KFGFxHUD = KFPlayerController(Instigator.Controller).MyGFxHUD;
+    KFGFxHUD = KFPlayerController(Instigator.Controller).myGfxHUD;
     if((KFGFxHUD != none) && KFGFxHUD.WeaponSelectWidget != none)
     {
         KFGFxHUD.WeaponSelectWidget.ShowOnlyHUDGroup(GroupIndex);
@@ -825,7 +843,7 @@ simulated function ShowAllHUDGroups()
 
     if((Instigator != none) && Instigator.Controller != none)
     {
-        KFGFxHUD = KFPlayerController(Instigator.Controller).MyGFxHUD;
+        KFGFxHUD = KFPlayerController(Instigator.Controller).myGfxHUD;
         if((KFGFxHUD != none) && KFGFxHUD.WeaponSelectWidget != none)
         {
             KFGFxHUD.WeaponSelectWidget.ShowAllHUDGroups();
@@ -865,7 +883,7 @@ simulated function UpdateHUD()
     }    
     if(KFPlayerController(Instigator.Controller) != none)
     {
-        KFGFxHUD = KFPlayerController(Instigator.Controller).MyGFxHUD;
+        KFGFxHUD = KFPlayerController(Instigator.Controller).myGfxHUD;
     }
     if((KFGFxHUD != none) && KFGFxHUD.WeaponSelectWidget != none)
     {
@@ -908,9 +926,9 @@ simulated function AttemptQuickHeal()
     if(Instigator.Health >= Instigator.HealthMax)
     {
         KFPC = KFPlayerController(Instigator.Owner);
-        if((KFPC != none) && KFPC.MyGFxHUD != none)
+        if((KFPC != none) && KFPC.myGfxHUD != none)
         {
-            KFPC.MyGFxHUD.ShowNonCriticalMessage(FullHealthMsg);
+            KFPC.myGfxHUD.ShowNonCriticalMessage(FullHealthMsg);
         }
         return;
     }
@@ -1200,6 +1218,25 @@ function bool AddArmorFromPickup()
         PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 10);
         PlayGiveInventorySound(ArmorPickupSound);
         KFPH.GiveMaxArmor();
+        return true;        
+    }
+    else
+    {
+        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 11);
+        return false;
+    }
+}
+
+function bool AddArmor(int Amount)
+{
+    local KFPawn_Human KFPH;
+
+    KFPH = KFPawn_Human(Instigator);
+    if(KFPH.Armor != KFPH.GetMaxArmor())
+    {
+        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 10);
+        PlayGiveInventorySound(ArmorPickupSound);
+        KFPH.AddArmor(Amount);
         return true;        
     }
     else

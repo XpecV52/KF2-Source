@@ -152,7 +152,7 @@ private static final event bool CheckCustomizationOwnership(KFPlayerReplicationI
             return false;
         }
         I = 0;
-        J0x262:
+        J0x258:
 
         if(I < 3)
         {
@@ -167,7 +167,7 @@ private static final event bool CheckCustomizationOwnership(KFPlayerReplicationI
                 }
             }
             ++ I;
-            goto J0x262;
+            goto J0x258;
         }
     }
     return true;

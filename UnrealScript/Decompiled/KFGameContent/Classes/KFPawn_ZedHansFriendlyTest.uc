@@ -9,7 +9,7 @@ class KFPawn_ZedHansFriendlyTest extends KFPawn_ZedHans
     config(Game)
     hidecategories(Navigation);
 
-function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling)
+function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling, optional bool bAllowSameTeamGrab)
 {
     return false;
 }

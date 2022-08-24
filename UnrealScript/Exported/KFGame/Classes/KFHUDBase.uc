@@ -79,7 +79,8 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
-const KFID_SafeFrameScale = 168;#linenumber 17
+const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;#linenumber 17
 
 /** Cached a typed Player controller.  Unlike PawnOwner we only set this once in PostBeginPlay */
 var KFPlayerController KFPlayerOwner;
@@ -759,7 +760,7 @@ simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 	//draw perk icon
 	Canvas.SetDrawColorStruct(PlayerBarIconColor);
 	Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2.0);
-	Canvas.DrawTile(KFPRI.CurrentPerkClass.default.PerkIcon, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
+	Canvas.DrawTile(KFPRI.GetCurrentIconToDisplay(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
 
 	//Draw perk level and name text
 	Canvas.SetDrawColorStruct(PlayerBarTextColor);
@@ -820,13 +821,19 @@ simulated function bool DrawObjectiveHUD()
 	}
 
 	//Draw health bar
-	Percentage = FMin(KFGRI.ObjectiveInterface.GetProgress(), 1);
-	DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y, HealthColor);
+    if (KFGRI.ObjectiveInterface.UsesProgress())
+    {
+        Percentage = FMin(KFGRI.ObjectiveInterface.GetProgress(), 1);
+        DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y, HealthColor);
+    }	
 
 	//draw perk icon
-	Canvas.SetDrawColorStruct(PlayerBarIconColor);
-	Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2.0);
-	Canvas.DrawTile(KFGRI.ObjectiveInterface.GetIcon(), PlayerStatusIconSize, PlayerStatusIconSize, 0, 0, 256, 256 );
+    if (KFGRI.ObjectiveInterface.GetIcon() != none)
+    {
+        Canvas.SetDrawColorStruct(PlayerBarIconColor);
+        Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2.0);
+        Canvas.DrawTile(KFGRI.ObjectiveInterface.GetIcon(), PlayerStatusIconSize, PlayerStatusIconSize, 0, 0, 256, 256);
+    }	
 
 	return true;
 }
@@ -970,7 +977,7 @@ function DrawHiddenHumanPlayerIcon( PlayerReplicationInfo PRI, vector IconWorldL
         return;
     }
 
-    PlayerIcon = PlayerOwner.GetTeamNum() == 0 ? KFPRI.CurrentPerkClass.default.PerkIcon : GenericHumanIconTexture;
+    PlayerIcon = PlayerOwner.GetTeamNum() == 0 ? KFPRI.GetCurrentIconToDisplay() : GenericHumanIconTexture;
 
     // Draw human icon
     Canvas.SetDrawColor(255,255,255,255);

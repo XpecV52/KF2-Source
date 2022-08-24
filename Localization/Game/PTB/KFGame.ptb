@@ -62,9 +62,40 @@ FreeConsolePlayOverString="Agradecemos por jogar Killing Floor 2! O evento gratu
 BuyGameString="LOJA"
 CustomString="Personaliz."
 
+RarityStrings[0]="COMUM"
+RarityStrings[1]="INCOMUM"
+RarityStrings[2]="RARO"
+RarityStrings[3]="MÍTICO"
+RarityStrings[4]="LENDÁRIO"
+RarityStrings[5]="EXTREMAMENTE RARO"
+RarityStrings[6]="QUALQUER"
+
+WeaponTypeStrings[0]="PISTOLA"
+WeaponTypeStrings[1]="ESPINGARDA"
+WeaponTypeStrings[2]="RIFLE"
+WeaponTypeStrings[3]="PROJÉTIL"
+WeaponTypeStrings[4]="FOGO"
+WeaponTypeStrings[5]="TECNOLÓGICA"
+WeaponTypeStrings[6]="LANÇA-PROJÉTEIS"
+WeaponTypeStrings[7]="ATAQUE"
+WeaponTypeStrings[8]="CORPO A CORPO"
+WeaponTypeStrings[9]="SUBMETRALHADORA"
+WeaponTypeStrings[10]="TODOS"
+
+MixerGaveAmmoString=", visualizador Mixer, lhe deu munição."
+MixerGaveArmorString=", visualizador Mixer, lhe deu armadura."
+MixerGaveDoshString=", visualizador Mixer, lhe deu Grana."
+MixerGaveGrenadeString=", visualizador Mixer, lhe deu uma granada."
+MixerGaveHealthString=", visualizador Mixer, curou você."
+MixerZedTimeString=", visualizador Mixer, ativou Hora dos Zeds."
+MixerRageZedsString=", visualizador Mixer, enfureceu os Zeds próximos. "
+MixerPukeString=", visualizador Mixer, vomitou em você."
+MixerSpawnedFPString=", visualizador Mixer, evocou um carniceiro."
+
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RECOMPENSA DE CONCLUSÃO DE SURTO"
 WeeklyString="SURTO SEMANAL HORZINE"
+DailyObjectiveString="DIÁRIO"
 CurrentWeeklySettingsString="CONFIGURAÇÕES DE SURTO ATUAIS"
 SpecialEventString="FESTIVAL DE VERÃO"
 ShortWeeklyString="SEMANAL"
@@ -72,9 +103,18 @@ SeasonalString="SAZONAL"
 SpecialEventChanceDropString="ITENS DE SAQUE LIMITADOS"
 GrantedSpecialEventString="RECOMPENSA DE CONCLUSÃO"
 RewardsString="RECOMPENSA DE CONCLUSÃO DE SURTO"
+RewardString="RECOMPENSA"
 WeeklyOverview="Um novo modo de jogo a cada semana!"
 ObjectivesString="Ativar/desativar objetivos"
+VaultDoshString="Cofre de Grana"
 
+DealDamageString="Cause dano:"
+EarnXPString="Ganhe EXP:"
+CompleteMapString="Complete a partida no mapa:"
+KillZedsString="Mate Zeds:"
+VersusKillsString="Mate jogadores como:"
+DealVersusDamageString="Cause dano em jogadores como:"
+VersusCompletionString="Complete uma partida como:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FALHA AO LOCALIZAR PARTIDA"
@@ -701,7 +741,7 @@ PartyLeaderInOtherMenuString="está em outro menu..."
 SearchingForGameString="Buscando jogo on-line..."
 
 PartHostLeftString="O host do grupo saiu"
-PartyLeaderChangedString="agora é o novo host do grupo"
+PartyLeaderChangedString="Novo host do grupo selec."
 
 MuteString="Desativar som do jogador"
 UnmuteString="Reativar som do jogador"
@@ -717,6 +757,16 @@ PartyLeaderString="Líder"
 [KFGFxWidget_PartyInGame_Versus]
 SwitchTeamsString="TROCAR EQUIPE"
 balanceWarningString="AVISO: as equipes serão reequilibradas."
+
+[KFGFxMenu_DoshVault]
+YourDoshString="Sua grana"
+NextRewardString="Próxima recompensa"
+OpenCrateString="Abrir caixote"
+DoshVaultString="COFRE DE GRANA"
+YourCratesString="Seus caixotes:"
+OpenCratesString="Abrir caixote(s)"
+CrateUnlockedString="CAIXOTE DESBLOQUEADO!"
+DelayedCrateString="* A entrega do Caixote de Cofre de Grana pode ser feita após reiniciar o jogo."
 
 [KFGFxMenu_Gear]
 GearHeaderString="PERSONALIZAR EQUIPAMENTO"
@@ -775,6 +825,9 @@ CraftWeaponDescriptionString="Neste menu, é possível produzir novas aparência
 RequiresString="Necessário: "
 PurchaseKeyString="COMPRAR CHAVE"
 LookUpOnMarketString="Pesquisar no mercado"
+RarityFilterString="RARIDADE"
+PerkFilterString="CLASSE"
+WeaponTypeFilterString="TIPO DE ARMA"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -836,10 +889,11 @@ ConfirmString="SELECIONAR"
 MenuStrings[0]="INÍCIO"
 MenuStrings[1]="CLASSES"
 MenuStrings[2]="EQUIPAMENTO"
-MenuStrings[3]="INVENTÁRIO"
-MenuStrings[4]="LOJA"
-MenuStrings[5]="OPÇÕES"
-MenuStrings[6]="SAIR"
+MenuStrings[3]="COFRE"
+MenuStrings[4]="INVENTÁRIO"
+MenuStrings[5]="LOJA"
+MenuStrings[6]="OPÇÕES"
+MenuStrings[7]="SAIR"
 
 ServerBrowserString="SERVIDOR LISTA"
 MatchmakingString="CRIADOR DE PARTIDA"
@@ -917,6 +971,7 @@ VoiceCommsOptionStrings[5]="VÁ AO COMERCIANTE"
 VoiceCommsOptionStrings[6]="AFIRMATIVO"
 VoiceCommsOptionStrings[7]="NEGATIVO"
 VoiceCommsOptionStrings[8]="EMOTE"
+VoiceCommsOptionStrings[9]="OBRIGADO"
 
 [KFGFxMenu_Exit]
 HeaderString="SAIR DO JOGO"
@@ -1132,6 +1187,8 @@ AntiMotionSicknessString="Anticinetose"
 AutoTurnOffString="Sem ativ. aut. para coágulo"
 ReduceHighPitchNoiseString="Reduzir ruído de alta freq."
 DisableAutoUpgradeString="Desativar atualização automática"
+
+EnableMixerString="Ativar/desativar interatividade do Mixer"
 
 [LocalizedControls]
 ControllerLayoutDefault="Padrão"
@@ -1362,6 +1419,7 @@ ZedGroupRegroupingString="Leva de Zeds reagrupando!"
 NextRoundBeginString="P R Ó X I M A R O D A D A"
 PlayerCanChangePerksString="Alterações de classe disponíveis"
 ZedWaitingForNextRoundString="Invasão de leva de Zeds iminente!"
+LastPlayerStandingString="ÚLTIMO JOGADOR RESTANTE"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="COMERCIANTE <%HOLD%> USAR ATUALIZAÇÃO AUT."
@@ -1596,9 +1654,8 @@ SkillCatagories[4]="Treinamento avançado"
 
 Passives[0]=(Title="Dano do berserker",Description="Aumento de x%x de dano de arma de classe por nível");
 Passives[1]=(Title="Resistência a dano",Description="Aumento de x%x de resistência a dano a cada 5 níveis");
-Passives[2]=(Title="+Capacidade de visão noturna",Description="Lanterna - *e* óculos de visão noturna");
-Passives[3]=(Title="+Resistência a coágulos",Description="Os coágulos não funcionam em um berserker");
-
+Passives[2]=(Title="Capacidade de visão noturna",Description="Lanterna - *e* óculos de visão noturna");
+Passives[3]=(Title="Resistência a coágulos",Description="Os coágulos não funcionam em berserkers");
 
 EXPAction1="Causando dano de arma berserker"
 EXPAction2="Matando Zeds próximos com uma arma de berserker"
@@ -1646,8 +1703,8 @@ Passives[0]=(Title="Dano de arma de classe",Description="Aumenta em %x% o dano d
 Passives[1]=(Title="Inimigo oculto e detecção de vida",Description="Distância de 5 m mais %x% m por nível");
 Passives[2]=(Title="Extensão da hora dos Zeds",Description="A hora dos Zeds aumenta %x% a cada 5 níveis");
 Passives[3]=(Title="Velocidade de recarga",Description="Aumenta em %x%% a velocidade de recarga de arma da classe a cada 5 níveis");
-Passives[4]=(Title="+Capacidade de visão noturna",Description="Lanternas - *e* óculos de visão noturna");
-Passives[5]=(Title="+Chamado de Zeds ocultos",Description="Permite aos aliados ver as unidades ocultas");
+Passives[4]=(Title="Capacidade de visão noturna",Description="Lanternas - *e* óculos de visão noturna");
+Passives[5]=(Title="Chamado de Zeds ocultos",Description="Permite aos aliados ver as unidades ocultas");
 
 EXPAction1="Causando dano de arma comando"
 EXPAction2="Abatendo perseguidores com armas comando"
@@ -1696,9 +1753,10 @@ SkillCatagories[4]="Explosivos avançados"
 Passives[0]=(Title="Dano de arma de classe",Description="Aumenta em %x% o dano de arma da classe por nível");
 Passives[1]=(Title="Resistência explosiva",Description="Ganha 10% em resistência de explosivo e aumenta %x% por nível");
 Passives[2]=(Title="Munição explosiva extra",Description="Aumenta em %x% a munição explosiva a cada cinco níveis");
-Passives[3]=(Title="+Suprimento de granadas",Description="Aliados ganham uma granada a cada leva");
-Passives[4]=(Title="+Armadilha de porta",Description="As portas que você soldar explodirão quando destruídas");
+Passives[3]=(Title="Suprimento de granadas",Description="Aliados ganham uma granada a cada leva");
+Passives[4]=(Title="Armadilha de porta",Description="As portas que você soldar explodirão quando destruídas");
 Passives[5]=(Title="Armadura reativa",Description="Quando sua vida for reduzida a 0, sua armadura explodirá e o deixará com 1 de vida");
+
 
 Damage="Bombardeiro"
 DamageDescription="Aumenta em 25% o dano de armas de classe explosivas"
@@ -2031,6 +2089,7 @@ Passives[1]=(Title="Resistência de dano global",Description="Aumenta em %x% a r
 Passives[2]=(Title="Armadura pesada",Description="%x% (máx. de 25%) a cada nível que não recebe nenhum dano caso tenha armadura.");
 Passives[3]=(Title="Recarga da hora dos Zeds",Description="Aumenta em %x% por nível a velocidade de recarga na Hora dos Zeds");
 
+
 HeavyWeaponsReload="Treinamento de armas pesadas"
 HeavyWeaponsReloadDescription="Aumenta a velocidade de recarga de armas de demolidor, atirador exímio e apoio."
 
@@ -2208,6 +2267,7 @@ USBSpitfire="Chave USB Cospe-fogo - US$2,49"
 USBHighVoltage="Chave de USB Alta Tensão - US$2,49"
 MerchSale="Promoção KF2! 25% menos até 30/4/17, cód. prom. ZED"
 
+
 [Zeds]
 KFPawn_ZedBloat="Inchado"
 KFPawn_ZedClot="Coágulo"
@@ -2228,6 +2288,7 @@ KFPawn_ZedClot_AlphaKing="Alfa Elite"
 KFPawn_ZedScrake="Retalhador"
 KFPawn_ZedSiren="Sereia"
 KFPawn_ZedPatriarch="Patriarca"
+
 ;Human zeds
 KFPawn_ZedBloat_Versus="Inchado - Jogador"
 KFPawn_ZedClot_Versus="Coágulo - Jogador"
@@ -2375,6 +2436,15 @@ AllCompleteRewardDescriptionString="Conjunto Hazmat de Festival"
 
 ChanceDropDescriptionStrings[0]="Bilhete de Prêmio de Festival"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado de Festival"
+
+;============================================
+; Daily Localization
+;============================================
+[KFGFxDailyObjectivesContainer]
+TitleString="OBJETIVOS DIÁRIOS"
+OverviewString="Os Objetivos Diários são um conjunto de objetivos aleatórios que mudam a cada dia. Completar um objetivo diário coloca Grana no seu Cofre de Grana."
+SubtitleString="Objetivos Diários atuais"
+KnifeString="Faca"
 
 ;============================================
 ; Weekly Localization
@@ -2715,6 +2785,22 @@ DisplayName_POL="Królestwo Tragedii"
 DisplayName_PTB="Reino Trágico"
 DisplayName_RUS="Королевство Трагедий"
 
+[KF-Nightmare KFMapSummary]
+DisplayName_CHN="梦魇"
+DisplayName_CHT="夢魘"
+DisplayName_DEU="Albtraum"
+DisplayName_ESL="Pesadilla"
+DisplayName_ESN="Pesadilla"
+DisplayName_FRA="Cauchemar"
+DisplayName_FRC="Cauchemar"
+DisplayName_INT="Nightmare"
+DisplayName_ITA="Incubo"
+DisplayName_JPN="悪夢"
+DisplayName_KOR="악몽"
+DisplayName_POL="Koszmar"
+DisplayName_PTB="Pesadelo"
+DisplayName_RUS="Кошмар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratório de Biótica"
 
@@ -2768,6 +2854,9 @@ DisplayName="Bombardeio"
 
 [KF-TragicKingdom KFMapSummary]
 DisplayName="Reino Trágico"
+
+[KF-Nightmare KFMapSummary]
+DisplayName="Pesadelo"
 
 [KFMapInfo]
 ; defaults

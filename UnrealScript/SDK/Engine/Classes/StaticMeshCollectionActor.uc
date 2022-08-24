@@ -34,6 +34,10 @@ cpptext
 	  * Make sure all static mesh components which can become dynamic are returned
 	  */
 	virtual UBOOL ForceReturnComponent(UPrimitiveComponent* TestPrimitive);
+
+#if __TW_PHYSICS_
+    virtual UBOOL ShouldTrace(UPrimitiveComponent* Primitive, AActor *SourceActor, DWORD TraceFlags);
+#endif
 }
 
 DefaultProperties

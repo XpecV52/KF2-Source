@@ -56,6 +56,9 @@ var() AkEvent BulletWhipSnd;
 var() bool bMakeSplash;
 var() ParticleSystem SplashEffectTemplate<EditCondition=bMakeSplash>;
 
+/** List of particles that play for any impact material type */
+var() array<ParticleSystem> GlobalImpactEffectEffects;
+
 defaultproperties
 {
 }

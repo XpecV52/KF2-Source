@@ -10,7 +10,7 @@ class KFDifficulty_Stalker extends KFMonsterDifficultyInfo
 
 defaultproperties
 {
-    Normal=(HealthMod=0.75,HeadHealthMod=0.75,EvadeOnDamageSettings=(Chance=0.1,DamagedHealthPctToTrigger=0.01),RallySettings=(bCanRally=false))
+    Normal=(HealthMod=0.75,HeadHealthMod=0.75,SoloDamageMod=0.5,EvadeOnDamageSettings=(Chance=0.1,DamagedHealthPctToTrigger=0.01),RallySettings=(bCanRally=false))
     Hard=(DamagedSprintChance=0.05,DamageMod=0.75,EvadeOnDamageSettings=(Chance=0.4,DamagedHealthPctToTrigger=0.01),RallySettings=(bCanRally=false))
     Suicidal=(SprintChance=0.6,DamagedSprintChance=1,MovementSpeedMod=1.3,EvadeOnDamageSettings=(Chance=1,DamagedHealthPctToTrigger=0.01),RallySettings=(TakenDamageModifier=0.9,DealtDamageModifier=1.2))
     HellOnEarth=(SprintChance=0.75,DamagedSprintChance=1,MovementSpeedMod=1.4,EvadeOnDamageSettings=(Chance=1,DamagedHealthPctToTrigger=0.01),RallySettings=(bCauseSprint=true,TakenDamageModifier=0.9,DealtDamageModifier=1.2))

@@ -36,6 +36,10 @@ var const private INT LastAuthRefreshTime;
 /** The time in seconds for when auth should be refreshed */
 var const private INT SecondsForAuthRefreshTime;
 
+/** The number of login attempts we've had */
+var int LoginAttempts;
+var const private int MaxRetryLoginAttempts;
+
 
 /** The name of the catalog to use */
 var const private{private} config string CatalogName;
@@ -46,7 +50,7 @@ struct native RegionDefinition
 	var bool		RegionUp;
 	var init string Name;
 	var init string Address;
-	
+
 	structdefaultproperties
 	{
 		Ping=-1.0
@@ -169,7 +173,7 @@ native function string GetTitleDataForKey( string InKey );
 native function UnlockContainer(string ContainerId);
 
 // Consumes entitlements
-native function ConsumeEntitlements();
+native function ConsumeEntitlements(optional bool bWasPurchase = false);
 
 // Find online games. Results will show up in the search settings supplied if successful
 native function bool FindOnlineGames( OnlineGameSearch SearchSettings );
@@ -385,6 +389,7 @@ private native function OnlineServiceAuthComplete( string ForURL, string Token, 
 defaultproperties
 {
    SecondsForAuthRefreshTime=3600
+   MaxRetryLoginAttempts=3
    PlayfabNPServiceLabel=1
    HeartbeatInterval=60.000000
    ReregisterInterval=10.000000

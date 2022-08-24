@@ -235,6 +235,12 @@ simulated state Reloading
 	}
 }
 
+/** Called during reload state */
+simulated function bool CanOverrideMagReload(byte FireModeNum)
+{
+	return super.CanOverrideMagReload(FireModeNum) || FireModeNum == BLOCK_FIREMODE || FireModeNum == HEAVY_ATK_FIREMODE;
+}
+
 /*********************************************************************************************
  * State MeleeBlocking
   * This is the default Blocking State.  It's performed on both the client and the server.
@@ -330,7 +336,7 @@ simulated state WeaponSingleFiring
 
 	/** Check for pending fire */
 	simulated function BlockInterruptTimer()
-	{		
+	{
 		if ( PendingFire(BLOCK_FIREMODE) && HasAmmo(BLOCK_FIREMODE) )
 		{
 			SendToFiringState(BLOCK_FIREMODE);

@@ -25,7 +25,7 @@ defaultproperties
     ChanceToSpawnAsSpecial(1)=0
     ChanceToSpawnAsSpecial(2)=0
     ChanceToSpawnAsSpecial(3)=0
-    Normal=(HealthMod=0.75,HeadHealthMod=0.75,DamageMod=0.31,SoloDamageMod=0.5,BlockSettings=(Duration=1.25,MaxBlocks=2,Cooldown=4.5,DamagedHealthPctToTrigger=0.05,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=0.1),RallySettings=(bCanRally=false))
+    Normal=(HealthMod=0.75,HeadHealthMod=0.75,DamageMod=0.31,SoloDamageMod=0.31,BlockSettings=(Duration=1.25,MaxBlocks=2,Cooldown=4.5,DamagedHealthPctToTrigger=0.05,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=0.1),RallySettings=(bCanRally=false))
     Hard=(DamageMod=0.65,SoloDamageMod=0.5,BlockSettings=(Chance=0.01,Duration=1.25,MaxBlocks=3,Cooldown=4.5,DamagedHealthPctToTrigger=0.05,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=0.1),RallySettings=(bCanRally=false))
     Suicidal=(HealthMod=1.1,HeadHealthMod=1.05,DamageMod=1.125,SoloDamageMod=0.5,BlockSettings=(Chance=0.2,Duration=1.25,MaxBlocks=4,Cooldown=6.5,DamagedHealthPctToTrigger=0.05,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=0.1),RallySettings=(TakenDamageModifier=0.9,DealtDamageModifier=1.2))
     HellOnEarth=(HealthMod=1.2,HeadHealthMod=1.1,DamageMod=1.25,SoloDamageMod=0.65,BlockSettings=(Chance=0.3,Duration=1.25,MaxBlocks=5,Cooldown=6.5,DamagedHealthPctToTrigger=0.05,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=0.2),RallySettings=(TakenDamageModifier=0.9,DealtDamageModifier=1.2))

@@ -153,6 +153,12 @@ function float GetSpeedModifier()
     return 1.f;
 }
 
+/** Accessor to get known melee speed modifier */
+function float GetAttackSpeedModifier()
+{
+	return 1.f;
+}
+
 defaultproperties
 {
    DissipationRate=20.000000

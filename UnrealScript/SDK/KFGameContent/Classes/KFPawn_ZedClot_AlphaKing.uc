@@ -52,7 +52,7 @@ event PossessedBy( Controller C, bool bVehicleTransition )
 
 
 /** Applies the rally buff and spawns a rally effect */
-simulated function Rally(
+simulated function bool Rally(
 							KFPawn 			RallyInstigator,
 							ParticleSystem 	RallyEffect,
 							name 			EffectBoneName,
@@ -63,8 +63,6 @@ simulated function Rally(
 							optional bool	bSkipEffects=false
 						)
 {
-	super.Rally( RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects );
-
 	if( RallyInstigator == self )
 	{
 		bWasSelfRally = true;
@@ -73,6 +71,8 @@ simulated function Rally(
 	{
 		bWasSelfRally = false;
 	}
+
+    return super.Rally(RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects);
 }
 
 /** Applies the rally damage boost if applicable */

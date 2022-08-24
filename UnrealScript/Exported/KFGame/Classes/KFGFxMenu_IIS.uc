@@ -25,6 +25,9 @@ var bool bForceConnectionAtLogin;
 /** TRUE if stats has finished reading in. This menu will block at login until this happens */
 var bool bStatsRead;
 
+/** Set once after menu has been closed for the first time */
+var bool bClosed;
+
 delegate OnAutoLoginComplete();
 
 event AttemptAutoLogin(delegate<OnAutoLoginComplete> del = none)
@@ -95,6 +98,8 @@ event OnClose()
 {
 	local KFGameViewportClient GVC;
 
+	bClosed = true;
+
 	// Closing this menu.  Let the Game Viewport know that we've been here since it is persistent.
 	GVC = KFGameViewportClient(GetGameViewportClient());
 	if ( GVC != None )
@@ -118,6 +123,13 @@ function UnRegisterDelegates()
 
 event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent InputEvent)
 {
+	if( bClosed )
+	{
+		// sanity check to prevent adding new delegates.  does not unclose -tripwire ZG
+		WarnInternal("FilterButtonInput called after IIS menu has been closed!");
+		return false;
+	}
+
 	if( InputEvent == IE_Pressed && Manager != None && Manager.CurrentPopup == None )
 	{
 		if( ButtonName == 'XboxTypeS_A' )

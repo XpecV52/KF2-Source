@@ -23,6 +23,25 @@ function PopulateData()
     KFPC = KFPlayerController(Outer.GetPC());
     DataProvider = Outer.CreateArray();
     ItemIndex = 0;
+    if(DataProvider == none)
+    {
+        return;
+    }
+    I = 0;
+    J0x82:
+
+    if(I < 3)
+    {
+        DataObject = Outer.CreateObject("Object");
+        if(DataObject != none)
+        {
+            Class'KFGFxDailyObjectivesContainer'.static.MakeDailyDataObject(KFPC.GetDailyObjective(I), I, KFPC, DataObject);
+            DataProvider.SetElementObject(ItemIndex, DataObject);
+        }
+        ++ ItemIndex;
+        ++ I;
+        goto J0x82;
+    }
     if(KFPC.IsA('KFPlayerController_WeeklySurvival') || Class'WorldInfo'.static.IsMenuLevel())
     {
         DataProvider.SetElementObject(ItemIndex, GetWeeklyDataObject());
@@ -32,7 +51,7 @@ function PopulateData()
     if((SpecialEventClass != none) && SpecialEventClass != Class'KFGFxSpecialEventObjectivesContainer')
     {
         I = 0;
-        J0x166:
+        J0x280:
 
         if(I < SpecialEventClass.default.SpecialEventObjectiveInfoList.Length)
         {
@@ -47,7 +66,7 @@ function PopulateData()
             DataProvider.SetElementObject(ItemIndex, DataObject);
             ++ ItemIndex;
             ++ I;
-            goto J0x166;
+            goto J0x280;
         }
     }
     SetObject("objectives", DataProvider);
@@ -62,9 +81,16 @@ function GFxObject GetWeeklyDataObject()
     KFPC = KFPlayerController(Outer.GetPC());
     WeeklyInfo = Class'KFMission_LocalizedStrings'.static.GetCurrentWeeklyOutbreakInfo();
     DataObject = Outer.CreateObject("Object");
+    if(WeeklyInfo == none)
+    {
+        return DataObject;
+    }
     DataObject.SetString("label", WeeklyInfo.FriendlyName);
-    DataObject.SetString("description", (WeeklyInfo.DescriptionStrings[0] @ "
+    if(WeeklyInfo.DescriptionStrings.Length > 0)
+    {
+        DataObject.SetString("description", (WeeklyInfo.DescriptionStrings[0] @ "
 ") @ WeeklyInfo.DescriptionStrings[1]);
+    }
     DataObject.SetString("iconPath", "img://" $ WeeklyInfo.IconPath);
     DataObject.SetBool("complete", KFPC.IsWeeklyEventComplete());
     DataObject.SetBool("showProgres", false);

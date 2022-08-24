@@ -44,6 +44,14 @@ class PlatformInterfaceBase extends Object
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
 /** An enum for the types of data used in a PlatformInterfaceData struct, below */
 enum EPlatformInterfaceDataType
@@ -135,6 +143,18 @@ native static function AppNotificationsBase GetAppNotificationsInterface();
 
 /** @return the InAppMessageBase singleton object */
 native static function InAppMessageBase GetInAppMessageInterface();
+
+/** @return - TWI - dweiss - the MixerIntegration singleton object*/
+native static function MixerIntegration GetMixerIntegration();
+
+/** @return - TWI - ZGholson - the Logitech LED singleton object*/
+native static function LogitechLEDInterface GetLogitechIntegration();
+
+/** @return - TWI - ZGholson - the AlienFX LED singleton object*/
+native static function AlienFXLEDInterface GetAlienFXIntegration();
+
+/** @return - TWI - ZGholson - the Razer LED singleton object*/
+native static function RazerLEDInterface GetRazerIntegration();
 
 /**
  * Adds a typed delegate (the value of the type is subclass dependent, make an enum per subclass)

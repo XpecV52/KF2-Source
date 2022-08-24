@@ -33,6 +33,7 @@ defaultproperties
    Components(0)=BrushComponent0
    CollisionType=COLLIDE_CustomDefault
    bWorldGeometry=True
+   BlockRigidBody=True
    bCollideActors=False
    bBlockActors=True
    CollisionComponent=BrushComponent0

@@ -345,8 +345,6 @@ function InitPlayerReplicationInfo()
 /** Set MyKFPawn to avoid casting */
 event Possess( Pawn inPawn, bool bVehicleTransition )
 {
-    local KFGameReplicationInfo KFGRI;
-
 	if( KFPawn_Monster(inPawn) != none )
 	{
 		MyKFPawn = KFPawn_Monster( inPawn );
@@ -359,16 +357,6 @@ event Possess( Pawn inPawn, bool bVehicleTransition )
 	super.Possess( inPawn, bVehicleTransition );
 
 	SetPawnDefaults();
-
-    if (MyKFPawn != None && MyKFPawn.IsActiveBoss())
-    {
-        // Play entrance animation
-        KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
-        if( KFGRI != none && KFGRI.WaveNum >= KFGRI.WaveMax )
-        {
-            class'AICommand_BossTheatrics'.static.DoTheatrics( self, THEATRIC_Entrance );
-        }
-    }
 }
 
 function SetPawnDefaults()
@@ -763,16 +751,6 @@ event RunOverWarning( KFPawn IncomingKFP, float IncomingSpeedSquared, vector Run
 		Delay = ( VSize(IncomingKFP.Location - MyKFPawn.Location) / Sqrt(IncomingSpeedSquared) ) * RunOverEvadeDelayScale;
 		DoEvade( GetBestEvadeDir(RunOverPoint,, false), IncomingKFP,, Delay, true );
 	}
-}
-
-state ZedVictory
-{
-Begin:
-    Sleep(0.1f);
-    if (MyKFPawn != none && MyKFPawn.IsActiveBoss())
-    {
-        class'AICommand_BossTheatrics'.static.DoTheatrics( self, THEATRIC_Victory, -1 );
-    }    
 }
 
 defaultproperties

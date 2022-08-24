@@ -418,7 +418,9 @@
 `define TRAD_ObjCollItemsWonGood		152
 `define TRAD_ObjCollItemsWonPerf		153
 
-`define TRADER_DIALOG_COUNT           	154
+`define TRAD_LastManStanding			154
+
+`define TRADER_DIALOG_COUNT           	155
 
 // Common Boss dialog IDs
 `define BOSS_Intro			 			0

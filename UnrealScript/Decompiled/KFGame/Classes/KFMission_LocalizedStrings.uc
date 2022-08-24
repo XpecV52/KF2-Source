@@ -14,11 +14,21 @@ var const localized string CurrentWeeklySettingsString;
 var const localized string SpecialEventString;
 var const localized string SpecialEventChanceDropString;
 var const localized string GrantedSpecialEventString;
+var const localized string DailyObjectiveString;
 var const localized string RewardsString;
+var const localized string RewardString;
 var const localized string WeeklyOverview;
 var const localized string ShortWeeklyString;
 var const localized string ObjectivesString;
 var const localized string SeasonalString;
+var const localized string DealDamageString;
+var const localized string EarnXPString;
+var const localized string CompleteMapString;
+var const localized string KillZedsString;
+var const localized string DealVersusDamageString;
+var const localized string VersusKillsString;
+var const localized string VersusCompletionString;
+var const localized string VaultDoshString;
 var private native const transient Map_Mirror WeeklyOutbreakInfo;
 
 // Export UKFMission_LocalizedStrings::execGetCurrentWeeklyOutbreakInfo(FFrame&, void* const)
@@ -37,12 +47,22 @@ defaultproperties
     GrantedWeeklyString="OUTBREAK COMPLETION REWARD"
     WeeklyString="HORZINE WEEKLY OUTBREAK"
     CurrentWeeklySettingsString="CURRENT OUTBREAK SETTINGS"
-    SpecialEventString="SUMMER SIDE SHOW"
+    SpecialEventString="SUMMER SIDESHOW"
     SpecialEventChanceDropString="LIMITED DROP ITEMS"
     GrantedSpecialEventString="COMPLETION REWARD"
+    DailyObjectiveString="DAILY"
     RewardsString="OUTBREAK COMPLETION REWARD"
+    RewardString="REWARD"
     WeeklyOverview="A new challenging game mode each week!"
     ShortWeeklyString="WEEKLY"
     ObjectivesString="Toggle Objectives"
     SeasonalString="SEASONAL"
+    DealDamageString="Deal Damage:"
+    EarnXPString="Earn XP:"
+    CompleteMapString="Complete Match in Map:"
+    KillZedsString="Kill Zeds:"
+    DealVersusDamageString="Damage Versus Players as:"
+    VersusKillsString="Kill Versus Players as:"
+    VersusCompletionString="Complete Match as:"
+    VaultDoshString="Vault Dosh"
 }

@@ -1,13 +1,13 @@
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_1
-   Originator=TriggerVolume'KF-Farmhouse.TheWorld:PersistentLevel.TriggerVolume_0'
+   Originator=TriggerVolume'KF-FARMHOUSE.TheWorld:PersistentLevel.TriggerVolume_0'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=293,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=293,OverrideDelta=14)
    OutputLinks(1)=(DrawY=314,OverrideDelta=35)
    OutputLinks(2)=(DrawY=335,OverrideDelta=56)
    VariableLinks(0)=(DrawX=210,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=128
    ObjPosY=224
    ObjName="TriggerVolume_0 Touch"
@@ -22,11 +22,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
    InputLinks(1)=(DrawY=362,OverrideDelta=35)
    InputLinks(2)=(DrawY=383,OverrideDelta=56)
    OutputLinks(0)=(DrawY=362,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),DrawX=414,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),DrawX=414,OverrideDelta=16)
    VariableLinks(1)=(DrawX=465,OverrideDelta=76)
    EventLinks(0)=(DrawX=514,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=376
    ObjPosY=304
    DrawWidth=173
@@ -36,9 +36,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
-   ObjValue=KFSpawner'KF-Farmhouse.TheWorld:PersistentLevel.KFSpawner_0'
+   ObjValue=KFSpawner'KF-FARMHOUSE.TheWorld:PersistentLevel.KFSpawner_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=200
    ObjPosY=488
    ObjComment="Parent"
@@ -49,9 +49,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
-   ObjValue=KFSpawner'KF-Farmhouse.TheWorld:PersistentLevel.KFSpawner_5'
+   ObjValue=KFSpawner'KF-FARMHOUSE.TheWorld:PersistentLevel.KFSpawner_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=520
    ObjPosY=496
    ObjComment="Child"
@@ -66,7 +66,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
    SizeY=396
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=96
    ObjPosY=192
    ObjComment="Upstairs Portal Spawns"
@@ -77,9 +77,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
-   ObjValue=KFSpawner'KF-Farmhouse.TheWorld:PersistentLevel.KFSpawner_6'
+   ObjValue=KFSpawner'KF-FARMHOUSE.TheWorld:PersistentLevel.KFSpawner_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1064
    ObjPosY=560
    ObjComment="Parent"
@@ -94,11 +94,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
    InputLinks(1)=(DrawY=450,OverrideDelta=35)
    InputLinks(2)=(DrawY=471,OverrideDelta=56)
    OutputLinks(0)=(DrawY=450,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=1158,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=1158,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1209,OverrideDelta=76)
    EventLinks(0)=(DrawX=1258,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1120
    ObjPosY=392
    DrawWidth=173
@@ -108,15 +108,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
-   Originator=TriggerVolume'KF-Farmhouse.TheWorld:PersistentLevel.TriggerVolume_1'
+   Originator=TriggerVolume'KF-FARMHOUSE.TheWorld:PersistentLevel.TriggerVolume_1'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=442,OverrideDelta=35)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=442,OverrideDelta=35)
    OutputLinks(1)=(DrawY=463,OverrideDelta=56)
    OutputLinks(2)=(DrawY=421,OverrideDelta=14)
    VariableLinks(0)=(DrawX=914,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=832
    ObjPosY=352
    ObjName="TriggerVolume_1 Touch"
@@ -131,7 +131,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
    SizeY=348
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=808
    ObjPosY=328
    ObjComment="Base Floor Portals"
@@ -142,9 +142,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
-   ObjValue=KFSpawner'KF-Farmhouse.TheWorld:PersistentLevel.KFSpawner_22'
+   ObjValue=KFSpawner'KF-FARMHOUSE.TheWorld:PersistentLevel.KFSpawner_22'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=464
    ObjPosY=888
    ObjComment="Parent"
@@ -155,15 +155,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
-   Originator=TriggerVolume'KF-Farmhouse.TheWorld:PersistentLevel.TriggerVolume_2'
+   Originator=TriggerVolume'KF-FARMHOUSE.TheWorld:PersistentLevel.TriggerVolume_2'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=781,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=781,OverrideDelta=14)
    OutputLinks(1)=(DrawY=802,OverrideDelta=35)
    OutputLinks(2)=(DrawY=823,OverrideDelta=56)
    VariableLinks(0)=(DrawX=306,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=224
    ObjPosY=712
    ObjName="TriggerVolume_2 Touch"
@@ -178,11 +178,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    InputLinks(1)=(DrawY=778,OverrideDelta=35)
    InputLinks(2)=(DrawY=799,OverrideDelta=56)
    OutputLinks(0)=(DrawY=778,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),DrawX=518,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),DrawX=518,OverrideDelta=16)
    VariableLinks(1)=(DrawX=569,OverrideDelta=76)
    EventLinks(0)=(DrawX=618,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=480
    ObjPosY=720
    DrawWidth=173
@@ -196,7 +196,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_2
    SizeY=318
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=192
    ObjPosY=680
    ObjComment="BasementPortals"
@@ -207,9 +207,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_2
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
-   ObjValue=KFSpawner'KF-Farmhouse.TheWorld:PersistentLevel.KFSpawner_4'
+   ObjValue=KFSpawner'KF-FARMHOUSE.TheWorld:PersistentLevel.KFSpawner_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1176
    ObjPosY=584
    ObjComment="Child"
@@ -220,9 +220,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
-   ObjValue=KFSpawner'KF-Farmhouse.TheWorld:PersistentLevel.KFSpawner_1'
+   ObjValue=KFSpawner'KF-FARMHOUSE.TheWorld:PersistentLevel.KFSpawner_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=568
    ObjPosY=912
    ObjComment="Child"
@@ -233,9 +233,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
-   ObjValue=KFSpawner'KF-Farmhouse.TheWorld:PersistentLevel.KFSpawner_2'
+   ObjValue=KFSpawner'KF-FARMHOUSE.TheWorld:PersistentLevel.KFSpawner_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=392
    ObjPosY=496
    ObjComment="Child"
@@ -250,7 +250,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_14
    SizeY=572
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-176
    ObjPosY=1352
    ObjComment="Benchmark"
@@ -262,7 +262,7 @@ End Object
 
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_0
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=240
    ObjPosY=1832
    DrawWidth=32
@@ -275,9 +275,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
    Commands(0)="endbenchmark"
    InputLinks(0)=(DrawY=1434,OverrideDelta=11)
    OutputLinks(0)=(DrawY=1434,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=528,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=528,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=464
    ObjPosY=1400
    ObjComment="endbenchmark"
@@ -291,9 +291,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_0
    Commands(0)="startbenchmark"
    InputLinks(0)=(DrawY=1762,OverrideDelta=11)
    OutputLinks(0)=(DrawY=1762,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=80,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=80,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=16
    ObjPosY=1728
    ObjComment="startbenchmark"
@@ -306,10 +306,10 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
    ConsoleEventName="Benchmark"
    MaxWidth=190
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=1506,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=1506,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-49,OverrideDelta=63)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-144
    ObjPosY=1440
    DrawWidth=115
@@ -319,9 +319,9 @@ Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
-   ObjValue=CameraActor'KF-Farmhouse.TheWorld:PersistentLevel.CameraActor_2'
+   ObjValue=CameraActor'KF-FARMHOUSE.TheWorld:PersistentLevel.CameraActor_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=296
    ObjPosY=1584
    DrawWidth=32
@@ -337,7 +337,7 @@ Begin Object Class=InterpData Name=InterpData_1
          Name="InterpTrackDirector_0"
          ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
       End Object
-      InterpTracks(0)=InterpTrackDirector'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
+      InterpTracks(0)=InterpTrackDirector'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
       GroupColor=(B=69,G=225,R=0,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
@@ -357,8 +357,8 @@ Begin Object Class=InterpData Name=InterpData_1
          Name="InterpTrackFloatProp_0"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackFloatProp_0'
+      InterpTracks(0)=InterpTrackMove'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackFloatProp_0'
       GroupName="FlythroughCamera"
       GroupColor=(B=213,G=105,R=0,A=255)
       Name="InterpGroup_0"
@@ -370,13 +370,13 @@ Begin Object Class=InterpData Name=InterpData_1
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=242.500000
-   InterpGroups(0)=InterpGroup'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
-   InterpGroups(1)=InterpGroupDirector'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0'
-   CurveEdSetup=InterpCurveEdSetup'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_1'
+   InterpGroups(0)=InterpGroup'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
+   InterpGroups(1)=InterpGroupDirector'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0'
+   CurveEdSetup=InterpCurveEdSetup'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_1'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=242.500000
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=168
    ObjPosY=1592
    DrawWidth=32
@@ -391,12 +391,12 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
    InputLinks(2)=(DrawY=1466,OverrideDelta=59)
    InputLinks(3)=(DrawY=1488,OverrideDelta=81)
    InputLinks(4)=(DrawY=1510,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=1438,OverrideDelta=31)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=1438,OverrideDelta=31)
    OutputLinks(1)=(DrawY=1494,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=217,OverrideDelta=18)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),LinkDesc="FlythroughCamera",MinVars=0,DrawX=284,OverrideDelta=65)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=217,OverrideDelta=18)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),LinkDesc="FlythroughCamera",MinVars=0,DrawX=284,OverrideDelta=65)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=184
    ObjPosY=1384
    DrawWidth=154
@@ -406,9 +406,9 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
-   ObjValue=StaticMeshActor'KF-Farmhouse.TheWorld:PersistentLevel.StaticMeshActor_957'
+   ObjValue=StaticMeshActor'KF-FARMHOUSE.TheWorld:PersistentLevel.StaticMeshActor_957'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3688
    ObjPosY=472
    DrawWidth=32
@@ -422,7 +422,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_3
    SizeY=355
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3272
    ObjPosY=240
    ObjComment="Zed_NoGo_01"
@@ -433,9 +433,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
-   ObjValue=StaticMeshActor'KF-Farmhouse.TheWorld:PersistentLevel.StaticMeshActor_958'
+   ObjValue=StaticMeshActor'KF-FARMHOUSE.TheWorld:PersistentLevel.StaticMeshActor_958'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3712
    ObjPosY=888
    DrawWidth=32
@@ -449,7 +449,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_4
    SizeY=284
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3264
    ObjPosY=696
    ObjComment="Zed_NoGo_02"
@@ -460,9 +460,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
-   ObjValue=StaticMeshActor'KF-Farmhouse.TheWorld:PersistentLevel.StaticMeshActor_954'
+   ObjValue=StaticMeshActor'KF-FARMHOUSE.TheWorld:PersistentLevel.StaticMeshActor_954'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3720
    ObjPosY=1248
    DrawWidth=32
@@ -476,7 +476,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_5
    SizeY=284
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3248
    ObjPosY=1056
    ObjComment="Zed_NoGo_03"
@@ -487,9 +487,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_5
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
-   ObjValue=StaticMeshActor'KF-Farmhouse.TheWorld:PersistentLevel.StaticMeshActor_956'
+   ObjValue=StaticMeshActor'KF-FARMHOUSE.TheWorld:PersistentLevel.StaticMeshActor_956'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3726
    ObjPosY=1561
    DrawWidth=32
@@ -503,7 +503,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
    SizeY=261
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3240
    ObjPosY=1392
    ObjComment="Zed_NoGo_04"
@@ -518,11 +518,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
    InputLinks(1)=(DrawY=2394,OverrideDelta=35)
    InputLinks(2)=(DrawY=2415,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2394,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_12',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_19'),DrawX=2758,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_12',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_19'),DrawX=2758,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2809,OverrideDelta=76)
    EventLinks(0)=(DrawX=2858,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2720
    ObjPosY=2336
    DrawWidth=173
@@ -532,9 +532,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2672
    ObjPosY=2480
    DrawWidth=32
@@ -544,9 +544,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2768
    ObjPosY=2480
    DrawWidth=32
@@ -556,9 +556,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2600
    ObjPosY=2544
    DrawWidth=32
@@ -568,9 +568,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2704
    ObjPosY=2544
    DrawWidth=32
@@ -580,9 +580,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_13'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2800
    ObjPosY=2544
    DrawWidth=32
@@ -592,9 +592,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2600
    ObjPosY=2624
    DrawWidth=32
@@ -604,9 +604,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2696
    ObjPosY=2624
    DrawWidth=32
@@ -616,9 +616,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_12'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2800
    ObjPosY=2624
    DrawWidth=32
@@ -632,11 +632,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
    InputLinks(1)=(DrawY=2810,OverrideDelta=35)
    InputLinks(2)=(DrawY=2831,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2810,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_20',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27'),DrawX=2750,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_20',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27'),DrawX=2750,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2801,OverrideDelta=76)
    EventLinks(0)=(DrawX=2850,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2712
    ObjPosY=2752
    DrawWidth=173
@@ -646,9 +646,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_19'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_19'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2568
    ObjPosY=2928
    DrawWidth=32
@@ -658,9 +658,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_18'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_18'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2664
    ObjPosY=2928
    DrawWidth=32
@@ -670,9 +670,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_21'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_21'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2768
    ObjPosY=2928
    DrawWidth=32
@@ -682,9 +682,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_17'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_17'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2864
    ObjPosY=2928
    DrawWidth=32
@@ -694,9 +694,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_15'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_15'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2568
    ObjPosY=3016
    DrawWidth=32
@@ -706,9 +706,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_16'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_16'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2664
    ObjPosY=3016
    DrawWidth=32
@@ -718,9 +718,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_20'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_20'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2768
    ObjPosY=3016
    DrawWidth=32
@@ -730,9 +730,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_14'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2864
    ObjPosY=3016
    DrawWidth=32
@@ -746,11 +746,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
    InputLinks(1)=(DrawY=2034,OverrideDelta=35)
    InputLinks(2)=(DrawY=2055,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2034,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33'),DrawX=2750,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33'),DrawX=2750,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2801,OverrideDelta=76)
    EventLinks(0)=(DrawX=2850,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2712
    ObjPosY=1976
    DrawWidth=173
@@ -760,9 +760,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_8'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2616
    ObjPosY=2128
    DrawWidth=32
@@ -772,9 +772,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_11'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2720
    ObjPosY=2128
    DrawWidth=32
@@ -784,9 +784,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_9'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2816
    ObjPosY=2128
    DrawWidth=32
@@ -796,9 +796,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_6'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2624
    ObjPosY=2208
    DrawWidth=32
@@ -808,9 +808,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_10'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2720
    ObjPosY=2208
    DrawWidth=32
@@ -820,9 +820,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_7'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2824
    ObjPosY=2208
    DrawWidth=32
@@ -836,11 +836,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
    InputLinks(1)=(DrawY=3242,OverrideDelta=35)
    InputLinks(2)=(DrawY=3263,OverrideDelta=56)
    OutputLinks(0)=(DrawY=3242,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_38',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_39',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_40',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_41'),DrawX=2726,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_38',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_39',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_40',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_41'),DrawX=2726,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2777,OverrideDelta=76)
    EventLinks(0)=(DrawX=2826,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2688
    ObjPosY=3184
    DrawWidth=173
@@ -850,9 +850,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_26'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_26'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2616
    ObjPosY=3328
    DrawWidth=32
@@ -862,9 +862,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_22'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_22'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2712
    ObjPosY=3328
    DrawWidth=32
@@ -874,9 +874,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_27'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_27'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2816
    ObjPosY=3328
    DrawWidth=32
@@ -886,9 +886,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_28'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_28'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2488
    ObjPosY=3392
    DrawWidth=32
@@ -898,9 +898,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_25'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_25'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2592
    ObjPosY=3392
    DrawWidth=32
@@ -910,9 +910,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_24'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_24'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2688
    ObjPosY=3392
    DrawWidth=32
@@ -922,9 +922,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_23'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_23'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2792
    ObjPosY=3392
    DrawWidth=32
@@ -934,9 +934,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_29'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_29'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2888
    ObjPosY=3392
    DrawWidth=32
@@ -948,11 +948,11 @@ End Object
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    MaxTriggerCount=0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=2573,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=2573,OverrideDelta=14)
    OutputLinks(1)=(DrawY=2594,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7',InputLinkIdx=1)),DrawY=2615,OverrideDelta=56)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7',InputLinkIdx=1)),DrawY=2615,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=744
    ObjPosY=2504
    DrawWidth=137
@@ -965,13 +965,13 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
    IncrementAmount=0
    InputLinks(0)=(DrawY=2536,OverrideDelta=25)
    InputLinks(1)=(DrawY=2580,OverrideDelta=69)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),DrawY=2525,OverrideDelta=14)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),LinkDesc="Link 2",DrawY=2547,OverrideDelta=36)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),LinkDesc="Link 3",DrawY=2569,OverrideDelta=58)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),LinkDesc="Link 4",DrawY=2591,OverrideDelta=80)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),DrawY=2525,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),LinkDesc="Link 2",DrawY=2547,OverrideDelta=36)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),LinkDesc="Link 3",DrawY=2569,OverrideDelta=58)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),LinkDesc="Link 4",DrawY=2591,OverrideDelta=80)
    VariableLinks(0)=(DrawX=1140,OverrideDelta=23)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1096
    ObjPosY=2488
    DrawWidth=89
@@ -984,12 +984,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
    InputLinks(0)=(DrawY=1941,OverrideDelta=14)
    InputLinks(1)=(DrawY=1962,OverrideDelta=35)
    InputLinks(2)=(DrawY=1983,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),ActivateDelay=1.000000,DrawY=1962,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_45',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_46',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_47',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_48',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_49',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_51',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_52',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_53',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_54',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_55',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_56',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_57',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_58',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_59',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_60',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_61',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_62',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_63',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_64',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_65',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_66',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_67',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_68',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_69',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_70',SeqVar_Object'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_71'),DrawX=1822,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),ActivateDelay=1.000000,DrawY=1962,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_45',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_46',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_47',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_48',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_49',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_51',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_52',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_53',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_54',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_55',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_56',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_57',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_58',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_59',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_60',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_61',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_62',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_63',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_64',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_65',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_66',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_67',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_68',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_69',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_70',SeqVar_Object'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_71'),DrawX=1822,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1873,OverrideDelta=76)
    EventLinks(0)=(DrawX=1922,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1784
    ObjPosY=1904
    DrawWidth=173
@@ -999,9 +999,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_26'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_26'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1664
    ObjPosY=2056
    DrawWidth=32
@@ -1011,9 +1011,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_22'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_22'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1760
    ObjPosY=2056
    DrawWidth=32
@@ -1023,9 +1023,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_27'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_27'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1864
    ObjPosY=2056
    DrawWidth=32
@@ -1035,9 +1035,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_45
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_28'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_28'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1960
    ObjPosY=2056
    DrawWidth=32
@@ -1047,9 +1047,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_45
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_25'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_25'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2064
    ObjPosY=2056
    DrawWidth=32
@@ -1059,9 +1059,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_47
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_24'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_24'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2160
    ObjPosY=2056
    DrawWidth=32
@@ -1071,9 +1071,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_47
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_23'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_23'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2264
    ObjPosY=2056
    DrawWidth=32
@@ -1083,9 +1083,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_49
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_29'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_29'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2360
    ObjPosY=2056
    DrawWidth=32
@@ -1095,9 +1095,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_49
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_50
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_8'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1336
    ObjPosY=2248
    DrawWidth=32
@@ -1107,9 +1107,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_50
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_51
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_11'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1432
    ObjPosY=2248
    DrawWidth=32
@@ -1119,9 +1119,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_51
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_10'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1536
    ObjPosY=2248
    DrawWidth=32
@@ -1131,9 +1131,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_6'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1632
    ObjPosY=2248
    DrawWidth=32
@@ -1143,9 +1143,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_7'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1736
    ObjPosY=2248
    DrawWidth=32
@@ -1155,9 +1155,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_9'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1832
    ObjPosY=2248
    DrawWidth=32
@@ -1167,9 +1167,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1936
    ObjPosY=2248
    DrawWidth=32
@@ -1179,9 +1179,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_57
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2032
    ObjPosY=2248
    DrawWidth=32
@@ -1191,9 +1191,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_57
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_13'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2136
    ObjPosY=2248
    DrawWidth=32
@@ -1203,9 +1203,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2232
    ObjPosY=2248
    DrawWidth=32
@@ -1215,9 +1215,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2336
    ObjPosY=2248
    DrawWidth=32
@@ -1227,9 +1227,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_12'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2432
    ObjPosY=2248
    DrawWidth=32
@@ -1239,9 +1239,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1464
    ObjPosY=2160
    DrawWidth=32
@@ -1251,9 +1251,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1560
    ObjPosY=2160
    DrawWidth=32
@@ -1263,9 +1263,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_64
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_17'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_17'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1664
    ObjPosY=2160
    DrawWidth=32
@@ -1275,9 +1275,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_64
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_65
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_21'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_21'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1760
    ObjPosY=2160
    DrawWidth=32
@@ -1287,9 +1287,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_65
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_66
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_18'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_18'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1864
    ObjPosY=2160
    DrawWidth=32
@@ -1299,9 +1299,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_66
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_67
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_15'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_15'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1960
    ObjPosY=2160
    DrawWidth=32
@@ -1311,9 +1311,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_67
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_68
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_20'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_20'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2064
    ObjPosY=2160
    DrawWidth=32
@@ -1323,9 +1323,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_68
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_69
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_16'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_16'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2160
    ObjPosY=2160
    DrawWidth=32
@@ -1335,9 +1335,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_69
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_70
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_14'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2264
    ObjPosY=2160
    DrawWidth=32
@@ -1347,9 +1347,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_70
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_71
-   ObjValue=KFPlayerStart'KF-Farmhouse.TheWorld:PersistentLevel.KFPlayerStart_19'
+   ObjValue=KFPlayerStart'KF-FARMHOUSE.TheWorld:PersistentLevel.KFPlayerStart_19'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Farmhouse.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-FARMHOUSE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2360
    ObjPosY=2160
    DrawWidth=32

@@ -62,9 +62,40 @@ FreeConsolePlayOverString="Danke, dass du Killing Floor 2 spielst! Das kostenlos
 BuyGameString="SHOP"
 CustomString="Benutzerdef."
 
+RarityStrings[0]="GEWÖHNLICH"
+RarityStrings[1]="UNGEWÖHNLICH"
+RarityStrings[2]="SELTEN"
+RarityStrings[3]="MYTHISCH"
+RarityStrings[4]="LEGENDÄR"
+RarityStrings[5]="EXTREM SELTEN"
+RarityStrings[6]="BELIEBIG"
+
+WeaponTypeStrings[0]="PISTOLE"
+WeaponTypeStrings[1]="SCHROTFLINTE"
+WeaponTypeStrings[2]="GEWEHR"
+WeaponTypeStrings[3]="GESCHOSS"
+WeaponTypeStrings[4]="FEUER"
+WeaponTypeStrings[5]="TECH"
+WeaponTypeStrings[6]="WERFER"
+WeaponTypeStrings[7]="STURM"
+WeaponTypeStrings[8]="NAHKAMPF"
+WeaponTypeStrings[9]="MP"
+WeaponTypeStrings[10]="ALLE"
+
+MixerGaveAmmoString=", ein Mixer-Zuschauer, hat dir Munition gegeben."
+MixerGaveArmorString=", ein Mixer-Zuschauer,hat dir Panzerung gegeben. "
+MixerGaveDoshString=", ein Mixer-Zuschauer,hat dir Kohle gegeben."
+MixerGaveGrenadeString=", ein Mixer-Zuschauer,hat dir eine Granate gegeben."
+MixerGaveHealthString=", ein Mixer-Zuschauer,hat dich geheilt. "
+MixerZedTimeString=", ein Mixer-Zuschauer,hat Zed-Zeit aktiviert. "
+MixerRageZedsString=", ein Mixer-Zuschauer,hat Zeds in der Nähe wütend gemacht. "
+MixerPukeString=", ein Mixer-Zuschauer,hat auf dich gekotzt."
+MixerSpawnedFPString=", ein Mixer-Zuschauer,hat einen Fleshpound gespawnt."
+
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="AUSBRUCH-ABSCHLUSS-BELOHNUNG"
 WeeklyString="WÖCHENTLICHER HORZINE-AUSBRUCH"
+DailyObjectiveString="TÄGLICH"
 CurrentWeeklySettingsString="AKTUELLE AUSBRUCH-EINSTELLUNGEN"
 SpecialEventString="SUMMER SIDESHOW"
 ShortWeeklyString="WÖCHENTLICH"
@@ -72,9 +103,18 @@ SeasonalString="SAISONAL"
 SpecialEventChanceDropString="LIMITIERTE AUFSAMMELGEGENSTÄNDE"
 GrantedSpecialEventString="ABSCHLUSS-BELOHNUNG"
 RewardsString="AUSBRUCH-ABSCHLUSS-BELOHNUNG"
+RewardString="BELOHNUNG"
 WeeklyOverview="Jede Woche ein neuer, schwieriger Modus!"
 ObjectivesString="Aufgaben schalten"
+VaultDoshString="Kammerkohle"
 
+DealDamageString="Verursache Schaden:"
+EarnXPString="Erhalte EP:"
+CompleteMapString="Schließe ein Spiel ab in Karte:"
+KillZedsString="Töte Zeds:"
+VersusKillsString="Töte Versus-Spieler als:"
+DealVersusDamageString="Füge Versus-Spielern Schaden zu als:"
+VersusCompletionString="Schließe ein Spiel ab als:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="SPIELSUCHE GESCHEITERT"
@@ -701,7 +741,7 @@ PartyLeaderInOtherMenuString="ist in einem anderen Menü …"
 SearchingForGameString="Suche nach Online-Spiel …"
 
 PartHostLeftString="Der Gruppen-Host ist gegangen"
-PartyLeaderChangedString="ist jetzt der Gruppen-Host"
+PartyLeaderChangedString="Neuer Gruppen-Host gewählt"
 
 MuteString="Spieler stummschalten"
 UnmuteString="Spieler kann sprechen"
@@ -717,6 +757,16 @@ PartyLeaderString="Anführer"
 [KFGFxWidget_PartyInGame_Versus]
 SwitchTeamsString="TEAM WECHSELN"
 balanceWarningString="WARNUNG: Automatischer Teamausgleich"
+
+[KFGFxMenu_DoshVault]
+YourDoshString="Deine Kohle"
+NextRewardString="Nächste Belohnung"
+OpenCrateString="Kiste öffnen"
+DoshVaultString="KOHLEKAMMER"
+YourCratesString="Deine Kisten:"
+OpenCratesString="Kiste(n) öffnen"
+CrateUnlockedString="KISTE FREIGESCHALTET!"
+DelayedCrateString="* Erhalt der Kohlekammerkiste könnte sich bis zum nächsten Spielstart verzögern"
 
 [KFGFxMenu_Gear]
 GearHeaderString="AUSRÜSTUNG ANPASSEN"
@@ -775,6 +825,9 @@ CraftWeaponDescriptionString="In diesem Menü kannst du aus Waffen-Skin-Material
 RequiresString="Benötigt: "
 PurchaseKeyString="SCHLÜ. KAUF."
 LookUpOnMarketString="Im Markt nachsehen"
+RarityFilterString="SELTENHEIT"
+PerkFilterString="VORTEIL"
+WeaponTypeFilterString="WAFFENART"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -836,10 +889,11 @@ ConfirmString="AUSWÄHLEN"
 MenuStrings[0]="START"
 MenuStrings[1]="VORTEILE"
 MenuStrings[2]="AUSRÜSTUNG"
-MenuStrings[3]="INVENTAR"
-MenuStrings[4]="SHOP"
-MenuStrings[5]="OPTIONEN"
-MenuStrings[6]="BEENDEN"
+MenuStrings[3]="KAMMER"
+MenuStrings[4]="INVENTAR"
+MenuStrings[5]="SHOP"
+MenuStrings[6]="OPTIONEN"
+MenuStrings[7]="BEENDEN"
 
 ServerBrowserString="SERVER-BROWSER"
 MatchmakingString="SPIELSUCHE"
@@ -917,6 +971,7 @@ VoiceCommsOptionStrings[5]="AB ZUR HÄNDLERIN"
 VoiceCommsOptionStrings[6]="POSITIV"
 VoiceCommsOptionStrings[7]="NEGATIV"
 VoiceCommsOptionStrings[8]="EMOTE"
+VoiceCommsOptionStrings[9]="DANKE"
 
 [KFGFxMenu_Exit]
 HeaderString="SPIEL BEENDEN"
@@ -1132,6 +1187,8 @@ AntiMotionSicknessString="Anti-Spielübelkeit"
 AutoTurnOffString="Clot-Griff: Kein Autodreh"
 ReduceHighPitchNoiseString="Hohen Tonrausch reduzieren"
 DisableAutoUpgradeString="Auto-Verbesserung deaktivieren"
+
+EnableMixerString="Mixer-Interaktivität aktivieren/deaktivieren"
 
 [LocalizedControls]
 ControllerLayoutDefault="Default"
@@ -1362,6 +1419,7 @@ ZedGroupRegroupingString="Zed-Horde gruppiert sich neu!"
 NextRoundBeginString="N Ä C H S T E  R U N D E"
 PlayerCanChangePerksString="Änderung der Vorteile erlaubt"
 ZedWaitingForNextRoundString="Zed-Horden-Invasion bevorstehend!"
+LastPlayerStandingString="LETZTER ÜBERLEBENDER"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="NUTZE HÄNDLERIN<%HOLD%>AUTO-VERBESSERUNG"
@@ -1596,8 +1654,8 @@ SkillCatagories[4]="Fortgeschrittenes Training"
 
 Passives[0]=(Title="Berserker-Schaden",Description="Vorteils-Waffen-Schaden erhöht um x%x/Level");
 Passives[1]=(Title="Schadensresistenz",Description="Schadensresistenz erhöht um x%x alle 5 Lvl");
-Passives[2]=(Title="+Nachtsichtfähigkeit",Description="Lampen- UND Nachtsicht-Brille");
-Passives[3]=(Title="+Clots können dich nicht greifen",Description="Clots halten Berserker nicht fest");
+Passives[2]=(Title="Nachtsichtfähigkeit",Description="Lampen- UND Nachtsicht-Brille");
+Passives[3]=(Title="Clots können dich nicht greifen",Description="Clots halten Berserker nicht fest");
 
 EXPAction1="Berserker-Waffenschaden verursachen"
 EXPAction2="Zeds bei Spieler mit Berserker-Waffe töten"
@@ -1645,8 +1703,8 @@ Passives[0]=(Title="Vorteils-Waffen-Schaden",Description="Vorteils-Waffen-Schade
 Passives[1]=(Title="Sieht getarnte Gegner & LP-Balken",Description="Reichweite 5m plus %x%m pro Level");
 Passives[2]=(Title="Zed-Zeit-Verlängerung",Description="Zed-Zeit erhöht sich um %x% alle 5 Level");
 Passives[3]=(Title="Nachladegeschwindigkeit",Description="Vort.-Waffen-NL-Geschw. + %x%% alle 5 Lvl");
-Passives[4]=(Title="+Nachtsichtfähigkeit",Description="Lampen- UND Nachtsicht-Brille");
-Passives[5]=(Title="+Aufzeigen getarnter Zeds",Description="Teamkollegen sehen getarnte Einheiten");
+Passives[4]=(Title="Nachtsichtfähigkeit",Description="Lampen- UND Nachtsicht-Brille");
+Passives[5]=(Title="Aufzeigen getarnter Zeds",Description="Teamkollegen sehen getarnte Einheiten");
 
 EXPAction1="Kommando-Waffenschaden verursachen"
 EXPAction2="Stalker mit Kommando-Waffen töten"
@@ -1695,8 +1753,8 @@ SkillCatagories[4]="Fortgeschrittene Sprengstoffe"
 Passives[0]=(Title="Vorteils-Waffen-Schaden",Description="Vorteils-Waffen-Schaden erhöht um x%x/Lvl");
 Passives[1]=(Title="Sprengstoff-Resistenz",Description="Sprengstoff-Resistenz +10% und erhöht um %x% pro Level");
 Passives[2]=(Title="Extra-explosive Munition",Description="Explosive Munition erhöht sich um %x% alle 5 Lvl");
-Passives[3]=(Title="+Granaten-Lieferant",Description="Teamkollegen können pro Welle eine Granate von dir erhalten");
-Passives[4]=(Title="+Tür-Fallen",Description="Türen, die du schweißt, explodieren bei Zerstörung");
+Passives[3]=(Title="Granaten-Lieferant",Description="1 Granate/Welle für Teamkollegen möglich");
+Passives[4]=(Title="Tür-Fallen",Description="Türen, die du schweißt, explod. bei Zerst.");
 Passives[5]=(Title="Reaktive Rüstung",Description="Das erste Mal, das du auf 0 LP gebracht wirst, explodiert deine Rüstung und du verbleibst mit 1 LP.");
 
 
@@ -2209,6 +2267,7 @@ USBSpitfire="Spitfire-USB-Schlüssel – $2.49"
 USBHighVoltage="Hochspannungs-USB-Schlüssel – $2.49"
 MerchSale="KF2-Ware-Sale! 25 % Rabatt bis 30.04.17, Code: ZED"
 
+
 [Zeds]
 KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="Clot"
@@ -2229,6 +2288,7 @@ KFPawn_ZedClot_AlphaKing="Elite-Alpha"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Sirene"
 KFPawn_ZedPatriarch="Patriarch"
+
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bloat – Spieler"
 KFPawn_ZedClot_Versus="Clot – Spieler"
@@ -2376,6 +2436,15 @@ AllCompleteRewardDescriptionString="Sideshow-Schutzanzug"
 
 ChanceDropDescriptionStrings[0]="Sideshow-Gewinnschein"
 ChanceDropDescriptionStrings[1]="Goldener Sideshow-Schein"
+
+;============================================
+; Daily Localization
+;============================================
+[KFGFxDailyObjectivesContainer]
+TitleString="TAGESAUFGABEN"
+OverviewString="Die Tagesaufgaben sind eine täglich wechselnde, zufällige Sammlung von Zielen. Wenn du eine Tagesaufgabe erfüllst, erhältst du Kohle für deine Kohlekammer."
+SubtitleString="Aktuelle Tagesaufgaben"
+KnifeString="Messer"
 
 ;============================================
 ; Weekly Localization
@@ -2716,6 +2785,22 @@ DisplayName_POL="Królestwo Tragedii"
 DisplayName_PTB="Reino Trágico"
 DisplayName_RUS="Королевство Трагедий"
 
+[KF-Nightmare KFMapSummary]
+DisplayName_CHN="梦魇"
+DisplayName_CHT="夢魘"
+DisplayName_DEU="Albtraum"
+DisplayName_ESL="Pesadilla"
+DisplayName_ESN="Pesadilla"
+DisplayName_FRA="Cauchemar"
+DisplayName_FRC="Cauchemar"
+DisplayName_INT="Nightmare"
+DisplayName_ITA="Incubo"
+DisplayName_JPN="悪夢"
+DisplayName_KOR="악몽"
+DisplayName_POL="Koszmar"
+DisplayName_PTB="Pesadelo"
+DisplayName_RUS="Кошмар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotika-Labor"
 
@@ -2769,6 +2854,9 @@ DisplayName="Atomisiert"
 
 [KF-TragicKingdom KFMapSummary]
 DisplayName="Das Tragische Königreich"
+
+[KF-Nightmare KFMapSummary]
+DisplayName="Albtraum"
 
 [KFMapInfo]
 ; defaults

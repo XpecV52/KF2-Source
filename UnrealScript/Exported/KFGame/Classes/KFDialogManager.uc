@@ -498,6 +498,8 @@ class KFDialogManager extends Actor
 
 
 
+
+
 #linenumber 15
 
 var bool bEnabled;

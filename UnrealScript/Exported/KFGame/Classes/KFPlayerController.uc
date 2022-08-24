@@ -71,6 +71,15 @@ const STATID_FleshpoundKills	 =			203;
  
 const STATID_SpecialEventProgress =     300;
 const STATID_WeeklyEventProgress =      301;
+const STATID_DailyEventInfo =           302;
+const STATID_DailyEventIDs =            303;
+const STATID_DailyEventStats1 =         304;
+const STATID_DailyEventStats2 =         305;
+
+ 
+const STATID_DoshVaultTotal =           400;
+const STATID_LastViewedDoshVaultTotal = 401;
+const STATID_DoshVaultProgress =		402;
 
  
 const STATID_AchievementPlaceholder	 =	500;
@@ -130,7 +139,8 @@ const STATID_ACHIEVE_HostileGroundsCollectibles		= 4032;
 const STATID_ACHIEVE_ZedLandingCollectibles			= 4035;
 const STATID_ACHIEVE_DescentCollectibles			= 4036;
 const STATID_ACHIEVE_NukedCollectibles				= 4037;
-const STATID_ACHIEVE_TragicKingdomCollectibles      = 4038;
+const STATID_ACHIEVE_TragicKingdomCollectibles		= 4038;
+const STATID_ACHIEVE_NightmareCollectibles			= 4039;
  
 #linenumber 15
 
@@ -198,7 +208,8 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
-const KFID_SafeFrameScale = 168;#linenumber 16
+const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;#linenumber 16
 
 
 
@@ -681,6 +692,30 @@ var transient KFPawn_Customization LocalCustomizationPawn;
 
 var bool bDownloadingContent;
 
+var string DefaultAvatarPath;
+
+/*********************************************************************************************
+ * @name Mixer
+********************************************************************************************* */
+const AmmoButton 		= "AmmoButton";
+const ArmorButton 		= "ArmorButton";
+const DoshButton 		= "DoshButton";
+const GrenadeButton 	= "GrenadeButton";
+const HealButton 		= "HealButton";
+const ZedTimeButton 	= "ZedTimeButton";
+const EnrageButton 		= "EnrageButton";
+const PukeButton 		= "PukeButton";
+const FleshpoundButton 	= "FleshpoundButton";
+var name        MixerRallyBoneNames[2];
+var string      MixerCurrentDefaultScene;
+
+/*********************************************************************************************
+ * @name LED Effects
+********************************************************************************************* */
+
+var class<KFLEDEffectsManager> LEDEffectsManagerClass;
+var KFLEDEffectsManager LEDEffectsManager;
+
 /*********************************************************************************************
  * @name Audio
 ********************************************************************************************* */
@@ -1120,6 +1155,14 @@ enum EGameConductorDebugMode
 var transient EGameConductorDebugMode CurrentGameConductorDebugMode;
 
 /*********************************************************************************************
+ * @name Dosh Vault Debug Values
+********************************************************************************************* */
+
+var int DebugLastSeenDoshVaultValue;
+var int DebugCurrentDoshVaultValue;
+var int DebugCurrentDoshVaultTier;
+
+/*********************************************************************************************
  * @name NoGoZones
 ********************************************************************************************* */
 var transient	float 	NoGoStartTime;
@@ -1223,6 +1266,8 @@ simulated event PostBeginPlay()
     UpdateSeasonalState();
 	MatchStats = new(Self) MatchStatsClass;
 	ClearDownloadInfo();
+    InitMixerDelegates();
+    InitLEDManager();
 }
 
 simulated function CheckSpecialEventID()
@@ -1259,7 +1304,7 @@ simulated event UpdateSeasonalState()
 function ClearDownloadInfo()
 {
 	local KFGameViewportClient GVC;
-	
+
 	//clear download
 	GVC = KFGameViewportClient( class'Engine'.static.GetEngine().GameViewport );
 
@@ -1274,8 +1319,14 @@ simulated event name GetSeasonalStateName()
     //Remove any year information, just get 1s digit
     switch (class'KFGameEngine'.static.GetSeasonalEventID() % 10)
     {
-    case 1:
-        return 'Summer_Sideshow';
+	case SEI_Spring:
+		return 'Spring';
+	case SEI_Summer:
+		return 'Summer_Sideshow';
+	case SEI_Fall:
+		return 'Fall';
+	case SEI_Winter:
+		return 'Winter';
     default:
         return 'No_Event';
     }
@@ -1335,7 +1386,7 @@ simulated event ReceivedPlayer()
 		}
 
 		// If we joined a server, we need to strip old options so we don't carry them around on map transition
-		// They are used in KFGameInfo PreLogin() to prevent matchmaking if the server recently changed 
+		// They are used in KFGameInfo PreLogin() to prevent matchmaking if the server recently changed
 		// options, but should never be used to prevent login during server travel.
 		if (WorldInfo.NetMode == NM_Client)
 		{
@@ -1423,6 +1474,8 @@ event Possess(Pawn aPawn, bool bVehicleTransition)
 		KFPRI.bNetDirty = true;
 	}
 
+    ClientMatchStarted();
+
 	super.Possess( aPawn, bVehicleTransition );
 }
 
@@ -1455,7 +1508,7 @@ reliable client function ClientRestart(Pawn NewPawn)
 	if(MyGFxHUD != none && MyGFxHUD.SpectatorInfoWidget != none)
 	{
 		MyGFxHUD.SpectatorInfoWidget.SetVisible(!PlayerReplicationInfo.bOnlySpectator);
-	}	
+	}
 
 	// Clear out persistant dead bodies when players respawn
 	if( WorldInfo.MyGoreEffectManager != none )
@@ -1487,7 +1540,7 @@ reliable client function ClientRestart(Pawn NewPawn)
     {
     	MyGFxHUD.ReceivePawn(KFPawn(Pawn));
     }
-    
+
 }
 
 /** Need to handle death of our customization pawn */
@@ -1779,10 +1832,10 @@ function RegisterOnlineDelegates()
 function ShowBestRegionSelectedPopup(int RegionIndex)
 {
 	local string LocRegionName;
-	
+
 	LocRegionName = PlayfabInter.GetLocalizedRegionName(RegionIndex);
 	;
-	
+
 }
 
 exec function TestRegionQuery()
@@ -1819,7 +1872,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		{
 			KFPRI.SelectCharacter(Profile.GetProfileInt(KFID_StoredCharIndex));
 		}
-	
+
 		KFInput = KFPlayerInput(PlayerInput);
 		if(KFInput != none)
 		{
@@ -1837,14 +1890,14 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		}
 
 		// Chris - Moved the HUD setting import to the actual HUD class,
-		// this might run before the HUD is created 
-	
+		// this might run before the HUD is created
+
 		KFGI = KFGameInfo(WorldInfo.Game);
 		if(KFGI != none)
 		{
 			KFGI.GoreLevel = Profile.GetProfileInt(KFID_GoreLevel);
 		}
-		
+
 		KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
 		if(KFEngine != none)
 		{
@@ -1859,6 +1912,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 			KFEngine.bAntiMotionSickness 	= Profile.GetProfileBool(KFID_AntiMotionSickness);
 			KFEngine.bMinimalChatter		= Profile.GetProfileBool(KFID_MinimalChatter);
 			KFEngine.SafeFrameScale			= Profile.GetProfileFloat(KFID_SafeFrameScale);
+			KFEngine.bEnableNative4k		= Profile.GetProfileBool(KFID_Native4kResolution);
 
 			// Ensure this never goes bad
 			if( KFEngine.SafeFrameScale == 0.f )
@@ -1877,9 +1931,11 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 			{
 				class'KFGameEngine'.static.SetCrosshairEnabled(Profile.GetProfileBool(KFID_ShowCrossHair));
 			}
-			
+
 			KFEngine.GammaMultiplier  = Profile.GetProfileFloat(KFID_GammaMultiplier);
 			KFEngine.SetGamma(KFEngine.GammaMultiplier);
+
+			KFEngine.SetNative4k(KFEngine.bEnableNative4k);
 
 			KFEngine.PadVolumeMultiplier = Profile.GetProfileBool(KFID_ControllerSoundEnabled) ? 100.0f : 0.0f;
 			KFEngine.InitAudioOptions();
@@ -1911,7 +1967,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		{
 			MyGFxManager.OnProfileSettingsRead();
 		}
-		
+
 		GoreMgr = KFGoreManager(class'WorldInfo'.static.GetWorldInfo().MyGoreEffectManager);
 		if(GoreMgr != none)
 		{
@@ -2289,7 +2345,7 @@ event PreClientTravel( string PendingURL, ETravelType TravelType, bool bIsSeamle
 	super.PreClientTravel(PendingURL, TravelType, bIsSeamlessTravel);
 
 	// If this is a serveraltravel start loading movie early
-	if( TravelType == TRAVEL_Relative && !bIsSeamlessTravel ) 
+	if( TravelType == TRAVEL_Relative && !bIsSeamlessTravel )
 	{
 		ShowPreClientTravelMovie(PendingURL);
 	}
@@ -2348,7 +2404,7 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, OnG
 				return;
 			}
 		}
-		
+
 		if( Viewport.bSeenIIS )
 		{
 			StartLogin( OnLoginForGameInviteComplete, true );
@@ -2514,7 +2570,7 @@ function NotifyInviteFailed(optional string LocKey = "UnableToJoinInvite")
 {
 	bProcessingGameInvite = false;
 	Super.NotifyInviteFailed();
-	
+
 	LogInternal("NotifyInviteFailed:"@LocKey $ "Title"@LocKey $ "Message");
 
 	MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_Misc,
@@ -2684,6 +2740,83 @@ function NotifyPlayTogetherFailed(optional string LocKey = "UnableToPlayTogether
 }
 
 //@HSL_END
+
+/*********************************************************************************************
+ * @name Dosh Vault
+********************************************************************************************* */
+
+function float GetDoshVaultTierValue()
+{
+	if(StatsWrite != none)
+	{
+		return StatsWrite.GetDoshVaultTierValue();
+	}
+	return INDEX_NONE;
+}
+
+function int GetTotalDoshCount()
+{
+	if(DebugCurrentDoshVaultValue != INDEX_NONE)
+	{
+		LogInternal("DEBUG GetTotalDoshCount:" @DebugCurrentDoshVaultValue);
+		return DebugCurrentDoshVaultValue;
+	}
+	if(StatsWrite != none)
+	{
+		return StatsWrite.GetTotalDoshCount();
+	}
+	return INDEX_NONE;
+}
+
+function int GetLastSeenDoshCount()
+{
+	if(DebugLastSeenDoshVaultValue != INDEX_NONE)
+	{
+		return DebugLastSeenDoshVaultValue;
+	}
+	if(StatsWrite != none)
+	{
+		return StatsWrite.GetLastSeenDoshCount();
+	}
+	return INDEX_NONE;
+}
+
+function int GetUnseenDoshCount()
+{
+	if(DebugLastSeenDoshVaultValue != INDEX_NONE)
+	{
+		return DebugCurrentDoshVaultValue - DebugLastSeenDoshVaultValue;
+	}
+	if(StatsWrite != none)
+	{
+		return StatsWrite.GetUnseenDoshCount();
+	}
+	return INDEX_NONE;
+}
+
+function CheckUnlockDoshVaultReward()
+{
+	if (StatsWrite != none)
+	{
+		StatsWrite.CheckUnlockDoshVaultReward();
+	}
+}
+
+function MarkDoshVaultSeen()
+{
+	if(StatsWrite != none)
+	{
+		StatsWrite.MarkDoshVaultSeen();
+	}
+}
+
+function CheckHasViewedDoshVault()
+{
+	if (StatsWrite != none)
+	{
+		StatsWrite.CheckHasViewedDoshVault();
+	}
+}
 
 /*********************************************************************************************
  * @name Skill Tracking
@@ -2962,7 +3095,7 @@ event SetHaveUpdatePerk( bool bUsedUpdate )
 	{
 		bPlayerUsedUpdatePerk = bUsedUpdate;
 	}
-	
+
 }
 
 event NotifyPendingPerkChanges()
@@ -3000,7 +3133,7 @@ function NotifyXPGain( class<KFPerk> PerkClass, int Amount )
 	}
 
 	KFGameReplicationInfo(WorldInfo.GRI).PrimaryXPAccumulator += Amount;
-	
+
 	if(self!= none && self.MatchStats != none && PerkClass!= none){self.MatchStats.RecordPerkXPGain(PerkClass,Amount);};
 }
 
@@ -3339,7 +3472,7 @@ function ResetFOV()
 reliable client function ClientSetCameraMode( name NewCamMode )
 {
 	local KFPawn KFP;
-	local KFPawn_Monster KFBoss;
+	local KFInterface_MonsterBoss KFBoss;
 
 	// Debugging - Show/Hide the player model using exec Camera()
 	KFP = KFPawn(ViewTarget);
@@ -3358,9 +3491,9 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 		SetNightVision(false);
 
 		// If our current view target is not a boss, make sure we find one
-		if( ViewTarget != KFBoss )
+		if( ViewTarget != KFBoss.GetMonsterPawn())
 		{
-			SetViewTarget(KFBoss);
+			SetViewTarget(KFBoss.GetMonsterPawn());
 		}
 
 		if(MyGFxHUD != none)
@@ -3430,15 +3563,15 @@ function bool IsEmoteCameraMode()
 	return false;
 }
 
-function KFPawn_Monster GetBoss()
+function KFInterface_MonsterBoss GetBoss()
 {
 	local KFPawn_Monster KFBoss;
 
 	foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFBoss )
 	{
-        if (KFBoss.IsActiveBoss())
+        if (KFInterface_MonsterBoss(KFBoss) != none)
         {
-            return KFBoss;
+            return KFInterface_MonsterBoss(KFBoss);
         }
 	}
 
@@ -3484,7 +3617,7 @@ function MoveToAdjustedFreeCamPosition()
 	Trace( HitLocation, HitNormal, Pos, Loc, false, vect(12,12,12) );
 
 	SetLocation( IsZero(HitLocation) ? Pos : HitLocation );
-	SetRotation( Rot );	
+	SetRotation( Rot );
 }
 
 /** LandingShake()
@@ -3518,16 +3651,16 @@ function ProcessViewRotation( float DeltaTime, out Rotator out_ViewRotation, Rot
 	super.ProcessViewRotation( DeltaTime, out_ViewRotation, DeltaRot );
 }
 
-function SetBossCamera( KFPawn Boss )
+function SetBossCamera( KFInterface_MonsterBoss Boss )
 {
 	// If our view target has been obliterated, the camera will default to view the player controller.
 	// So, put the player controller where the view target was.
-	if( Boss != none && Boss.HitFxInfo.bObliterated )
+	if( Boss != none && Boss.GetMonsterPawn().HitFxInfo.bObliterated )
 	{
-		SetLocation( Boss.Location );
+		SetLocation( Boss.GetMonsterPawn().Location );
 	}
 
-	SetViewTarget( Boss );
+	SetViewTarget( Boss.GetMonsterPawn() );
 
 	if( Role == ROLE_Authority && !IsLocalPlayerController() )
 	{
@@ -3633,7 +3766,7 @@ exec function Camera( name NewMode )
 
 	if(StatsWrite != none && StatsWrite.HasCheated())
 	{
-		super.Camera( NewMode );	
+		super.Camera( NewMode );
 	}
 
 }
@@ -4276,8 +4409,8 @@ function float GetServerMoveDeltaTime(float TimeStamp)
  * @name Aim Assist
 ********************************************************************************************* */
 
-/** 
- * Toggle ForceLookAt (e.g. while grappled) 
+/**
+ * Toggle ForceLookAt (e.g. while grappled)
  * Network: Local Player
  */
 function SetForceLookAtPawn(KFPawn P)
@@ -4292,7 +4425,7 @@ function SetForceLookAtPawn(KFPawn P)
 		else
 		{
 		    ForceLookAtPawn = P;
-		    bLockToForceLookAtPawn = true;		
+		    bLockToForceLookAtPawn = true;
 		}
 	}
 }
@@ -4506,7 +4639,7 @@ reliable client event ReceiveLocalizedMessage( class<LocalMessage> Message, opti
 					{
 						class'KFMusicStingerHelper'.static.PlayZedPlayerSuicideStinger( Self );
 					}
-					
+
 					if(RelatedPRI_2.GetTeamNum() == class'KFTeamInfo_Human'.default.TeamIndex && RelatedPRI_2.GetTeamNum() == PlayerReplicationInfo.GetTeamNum())
 					{
 						if(RelatedPRI_2.UniqueID == PlayerReplicationInfo.UniqueID)
@@ -4515,7 +4648,7 @@ reliable client event ReceiveLocalizedMessage( class<LocalMessage> Message, opti
 						}
 						else
 						{
-							class'KFMusicStingerHelper'.static.PlayTeammateDeathStinger( Self );							
+							class'KFMusicStingerHelper'.static.PlayTeammateDeathStinger( Self );
 						}
 					}
 				}
@@ -4530,11 +4663,11 @@ reliable client event ReceiveLocalizedMessage( class<LocalMessage> Message, opti
 						}
 						else
 						{
-							class'KFMusicStingerHelper'.static.PlayTeammateDeathStinger( Self );							
+							class'KFMusicStingerHelper'.static.PlayTeammateDeathStinger( Self );
 						}
 					}
 				}
-				
+
 				MyGFxHUD.ShowKillMessage( RelatedPRI_1, RelatedPRI_2, true, OptionalObject );
 			}
 		}
@@ -4565,17 +4698,17 @@ reliable client event ReceiveLocalizedMessage( class<LocalMessage> Message, opti
 					//zed killed human
 					if(RelatedPRI_1.GetTeamNum() == 255)
 					{
-						class'KFMusicStingerHelper'.static.PlayZedKillHumanStinger( Self );							
+						class'KFMusicStingerHelper'.static.PlayZedKillHumanStinger( Self );
 					}
 					else if(RelatedPRI_2.GetTeamNum() == PlayerReplicationInfo.GetTeamNum()) //in the case of friendly fire
 					{
 						if(RelatedPRI_2.UniqueID == PlayerReplicationInfo.UniqueID)
 						{
-							class'KFMusicStingerHelper'.static.PlayPlayerDiedStinger( Self );							
+							class'KFMusicStingerHelper'.static.PlayPlayerDiedStinger( Self );
 						}
 						else
 						{
-							class'KFMusicStingerHelper'.static.PlayTeammateDeathStinger( Self );							
+							class'KFMusicStingerHelper'.static.PlayTeammateDeathStinger( Self );
 						}
 					}
 				}
@@ -4584,9 +4717,9 @@ reliable client event ReceiveLocalizedMessage( class<LocalMessage> Message, opti
 					if(RelatedPRI_2.UniqueID == PlayerReplicationInfo.UniqueID)
 					{
 						//zed death
-						class'KFMusicStingerHelper'.static.PlayZedPlayerKilledStinger( Self );	
+						class'KFMusicStingerHelper'.static.PlayZedPlayerKilledStinger( Self );
 					}
-					
+
 				}
 			}
 			MyGFxHUD.ShowKillMessage( RelatedPRI_1, RelatedPRI_2, false, OptionalObject );
@@ -4712,16 +4845,33 @@ simulated function PlayScreenMaterialEffects(class<KFDamageType> KFDT, bool bSho
 		switch (KFDT.default.ScreenMaterialName)
 		{
 			case EffectSirenScreamParamName:
+				if(LEDEffectsManager != none && SirenScreamEffectTimeRemaining == 0)
+				{
+					LEDEffectsManager.PlayEffectSiren(default.SonicScreamEffectDuration);
+				}
 				SirenScreamEffectTimeRemaining = default.SonicScreamEffectDuration;
+
 				CheckForReducedSirenScreamEffect();
 			break;
 			case EffectBloatsPukeParamName:
+				if(LEDEffectsManager != none && BloatPukeEffectTimeRemaining == 0)
+				{
+					LEDEffectsManager.PlayEffectPuke(default.BloatPukeEffectDuration);
+				}
 				BloatPukeEffectTimeRemaining = default.BloatPukeEffectDuration;
 			break;
 			case EffectHealParamName:
+				if(LEDEffectsManager != none && HealEffectTimeRemaining == 0)
+				{
+					LEDEffectsManager.PlayEffectHeal(default.HealEffectDuration);
+				}
 				HealEffectTimeRemaining = default.HealEffectDuration;
 			break;
 			case EffectFlashBangParamName:
+				if(LEDEffectsManager != none && FlashBangEffectDuration == 0)
+				{
+					LEDEffectsManager.PlayEffectFlashbang(default.FlashBangEffectDuration);
+				}
 				FlashBangEffectTimeRemaining = default.FlashBangEffectDuration;
 			break;
 		}
@@ -5081,7 +5231,7 @@ simulated function UpdateEarRingEffect(float DeltaTime)
 
 			if( EarsRingingStopEvent != none )
 			{
-				PlaySoundBase(EarsRingingStopEvent, true);			
+				PlaySoundBase(EarsRingingStopEvent, true);
 			}
 		}
 
@@ -5112,6 +5262,11 @@ function UpdateLowHealthEffect(float DeltaTime)
 			{
 				PostAkEvent( LowHealthStartEvent );
 				bPlayingLowHealthSFX = true;
+				//Flash low health effect on keyboard
+				if(LEDEffectsManager != none)
+				{
+					LEDEffectsManager.PlayEffectLowHealth();
+				}
 			}
 		}
 		else
@@ -5120,6 +5275,10 @@ function UpdateLowHealthEffect(float DeltaTime)
 			{
 				PostAkEvent( LowHealthStopEvent );
 				bPlayingLowHealthSFX = false;
+				if(LEDEffectsManager != none)
+				{
+					LEDEffectsManager.LedStopEffects();
+				}
 			}
 		}
 
@@ -5338,6 +5497,17 @@ function FadeOutZedTime()
 	ClientFadeOutZedTime();
 }
 
+function CompleteZedTime()
+{
+	ClientCompleteZedTime();
+}
+
+//Force completion of zed time to kill any effects remaining (in case of large > 0.5s spike)
+reliable client function ClientCompleteZedTime()
+{
+	SetZedTimeEffectIntensity(0.0, 0.0);
+}
+
 /** Called by the server when the game enters zed time. Used to play the effects */
 reliable client function ClientEnterZedTime(bool bPartialOnly)
 {
@@ -5352,6 +5522,11 @@ reliable client function ClientEnterZedTime(bool bPartialOnly)
 	{
 		PlaySoundBase(ZedTimeEnterSound, True);
 		SetZedTimeEffectIntensity(1.f);
+	}
+
+	if(LEDEffectsManager != none)
+	{
+		LEDEffectsManager.PlayEffectZedTime();
 	}
 }
 
@@ -5369,6 +5544,11 @@ reliable client function ClientFadeOutZedTime()
 
 	PlaySoundBase((bIsPartialZedTime) ? ZedTimePartialExitSound : ZedTimeExitSound, True);
 	SetZedTimeEffectIntensity(0.f);
+
+	if(LEDEffectsManager != none)
+	{
+		LEDEffectsManager.ClearEffectZedTime();
+	}
 }
 
 /*********************************************************************************************
@@ -5393,11 +5573,11 @@ function SetGFxHUD( KFGFxMoviePlayer_HUD NewGFxHud )
 	}
 }
 
-function ShowBossNameplate( KFPawn_Monster KFBoss, optional string PlayerName)
+function ShowBossNameplate( KFInterface_MonsterBoss KFBoss, optional string PlayerName)
 {
 	if(MyGFxHUD != none)
 	{
-		MyGFxHUD.ShowBossNameplate(KFBoss.default.BossName$PlayerName, KFBoss.default.BossCaptionStrings[Rand(KFBoss.default.BossCaptionStrings.length)]);
+		MyGFxHUD.ShowBossNameplate(KFBoss.GetMonsterPawn().static.GetLocalizedName() $ PlayerName, KFBoss.GetRandomBossCaption());
 	}
 }
 
@@ -5494,7 +5674,7 @@ function string GetSteamAvatar( UniqueNetId NetID )
 			bFoundAvatar = true;
 			if(AvatarList[i].Avatar != none)
 			{
-				AvatarPath = "img://" $ AvatarList[i].Avatar.GetPackageName() $ "." $ AvatarList[i].Avatar.Name;
+				AvatarPath = AvatarList[i].Avatar.GetPackageName() $ "." $ AvatarList[i].Avatar.Name;
 			}
 		}
 	}
@@ -5506,7 +5686,7 @@ function string GetSteamAvatar( UniqueNetId NetID )
 		if(OnlineSub != none)
 		{
 		        OnlineSub.ReadOnlineAvatar(NetID, 64, OnAvatarReceived);
-	        }
+	    }
 	}
 
 	return AvatarPath;
@@ -5548,7 +5728,7 @@ function string GetPS4Avatar( const string InPlayerName )
 			if( AvatarListPS4[i].ImageDownloader != none &&
 				AvatarListPS4[i].ImageDownloader.TheTexture != none )
 			{
-				AvatarPath = "img://" $ AvatarListPS4[i].ImageDownloader.TheTexture.GetPackageName() $ "." $ AvatarListPS4[i].ImageDownloader.TheTexture.Name;
+				AvatarPath = AvatarListPS4[i].ImageDownloader.TheTexture.GetPackageName() $ "." $ AvatarListPS4[i].ImageDownloader.TheTexture.Name;
 			}
 		}
 	}
@@ -5889,7 +6069,7 @@ function DoAutoPurchase()
 	local KFGameReplicationInfo KFGRI;
 
    	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if(KFGRI != none && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial' || bDisableAutoUpgrade)	
+	if(KFGRI != none && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial' || bDisableAutoUpgrade)
 	{
 		OpenTraderMenu();
 		return;
@@ -5902,7 +6082,7 @@ function DoAutoPurchase()
 reliable server function ServerSetEnablePurchases(bool bEnalbe)
 {
 	local KFInventoryManager KFIM;
-	
+
 	if( Role == ROLE_Authority && Pawn != none )
 	{
 		KFIM = KFInventoryManager(Pawn.InvManager);
@@ -5937,7 +6117,7 @@ reliable client function ClientOpenTraderMenu( optional bool bForce=false )
 	}
 
 	SyncInventoryProperties();
-	
+
 	if( MyGFxManager != none )
 	{
 		MyGFxManager.OpenMenu( UI_Trader, false );
@@ -5948,7 +6128,7 @@ reliable client function ClientOpenTraderMenu( optional bool bForce=false )
 function CloseTraderMenu()
 {if ( MyGFxManager != none )
 	{
-		
+
 		MyGFxManager.CloseTraderMenu();
 	}if ( MyGFxManager != none )
 	{
@@ -6001,7 +6181,7 @@ reliable client function ClientOpenRoundSummary()
 function ClosePostRoundSummary()
 {
 	SyncInventoryProperties();
-	
+
 	if ( MyGFxPostRoundMenu != none )
 	{
 		MyGFxPostRoundMenu.Close(true);
@@ -6011,7 +6191,7 @@ function ClosePostRoundSummary()
 		{
 			MyGFxManager.CloseMenus(true);
 		}
-	}	
+	}
 }
 
 /*********************************************************************************************
@@ -6071,14 +6251,14 @@ function SetObjectiveUIActive(bool bActive)
 	}
 }
 
-//pass value between 0 and 1 
+//pass value between 0 and 1
 function UpdateObjectiveUIProgress(float Progress)
 {
 	if(MyGFxHUD != none && MyGFxHUD.WaveInfoWidget != none
 	 	&& MyGFxHUD.WaveInfoWidget.ObjectiveContainer != none)
 	{
 		MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetCurrentProgress(Progress);
-	}	
+	}
 }
 
 
@@ -6346,7 +6526,7 @@ function bool SetPause( bool bPause, optional delegate<CanUnpause> CanUnpauseDel
 	bWasPaused = IsPaused();
 
 	bIsPaused = super.SetPause( bPause, CanUnpauseDelegate );
-	
+
 	if( bWasPaused != bIsPaused )
 	{
 		PauseWwiseForAllPlayers( !bWasPaused && bIsPaused );
@@ -6435,7 +6615,7 @@ exec function changeSafeFrame(float frameScale)
 	local Vector2D ViewportSize;
 	local GameViewportClient GVC;
 
-	
+
 	GVC = MyGFxManager != None ? MyGFxManager.GetGameViewportClient() : MyGFxHUD != None ? MyGFxHUD.GetGameViewportClient() : None;
 
 	if ( GVC == None )
@@ -6468,8 +6648,64 @@ function SetUIScale(float fScale)
 }
 
 /*********************************************************************************************
- * @name Stats Weekly and Special Event
+ * @name Stats Daily, Weekly and Special Event
  *********************************************************************************************/
+
+ simulated event CompletedDaily(int Index)
+ {
+ 	//notify the hud
+ 	if( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && !StatsWrite.IsDailyObjectiveComplete(Index) )
+	{
+		if( MyGFxHUD != none && MyGFxHUD.LevelUpNotificationWidget != none )
+		{
+			MyGFxHUD.LevelUpNotificationWidget.FinishedDailyEvent(Index);
+		}
+		//refresh the hud
+		if(MyGFxManager != none && MyGFxManager.StartMenu != none
+				&& MyGFxManager.StartMenu.MissionObjectiveContainer != none)
+		{
+			MyGFxManager.StartMenu.MissionObjectiveContainer.Refresh();
+		}
+	}
+ }
+
+ function DailyEventInformation GetDailyObjective(int Index)
+ {
+ 	local DailyEventInformation DefaultObject;
+ 	if (StatsWrite != none)
+	{
+		return StatsWrite.GetDailyEventStruct(Index);
+	}
+	return DefaultObject;
+ }
+
+function int GetCurrentDailyValue(int Index)
+{
+ 	if (StatsWrite != none)
+	{
+		return StatsWrite.GetCurrentDailyValue(Index);
+	}
+	return INDEX_NONE;
+}
+
+function int GetMaxDailyValue(int Index)
+{
+ 	if (StatsWrite != none)
+	{
+		return StatsWrite.GetMaxDailyValue(Index);
+	}
+	return INDEX_NONE;
+}
+
+ function bool IsDailyObjectiveComplete(int Index)
+ {
+ 	if (StatsWrite != none)
+	{
+		return StatsWrite.IsDailyObjectiveComplete(Index);
+	}
+	LogInternal("Stats write is none.  Cannont read daily data");
+	return false;
+ }
 
 function bool IsWeeklyEventComplete()
 {
@@ -6478,7 +6714,7 @@ function bool IsWeeklyEventComplete()
 		return StatsWrite.IsWeeklyEventComplete();
 	}
 	LogInternal("Stats write is none.  Cannont read weekly data");
-	return false;	
+	return false;
 }
 
 function bool IsEventObjectiveComplete(int Index)
@@ -6559,7 +6795,7 @@ simulated function ReadStats()
 	local array<UniqueNetId> Players;
 
 	if (StatsRead.bLogStatsRead) LogInternal("ReadStats called! OnlineSub=" $ OnlineSub @ "StatsRead.UserStatsReceivedState=" $ StatsRead.UserStatsReceivedState @ "StatsRead.OwningUniqueID=" $ Class'OnlineSubsystem'.static.UniqueNetIdToString(StatsRead.OwningUniqueID));
-	
+
 	// Initialize stats for people using local profile (xbox one only)
 	if( KFGameEngine(class'Engine'.static.GetEngine()).LocalLoginStatus == LS_UsingLocalProfile )
 	{
@@ -6592,7 +6828,7 @@ simulated function OnStatsInitialized( bool bWasSuccessful )
 
 	// Attempt stats re-read if it fails for XB1. May be a network problem
 	if( !bWasSuccessful &&
-		WorldInfo.IsConsoleBuild(CONSOLE_Durango) && 
+		WorldInfo.IsConsoleBuild(CONSOLE_Durango) &&
 		KFGameViewportClient(class'Engine'.static.GetEngine().GameViewport).bSeenIIS &&
 		KFEngine.CachedStatRows.Length > 0 )
 	{
@@ -6615,9 +6851,9 @@ simulated function OnStatsInitialized( bool bWasSuccessful )
         else
         {
             StatsWrite.NotifyReadFailure();
-        }        
+        }
     }
-    
+
     //On all platforms, notify of successful read
     if (bWasSuccessful && StatsWrite != none)
     {
@@ -6661,7 +6897,7 @@ simulated function OnStatsInitialized( bool bWasSuccessful )
 
 
 /** Called from the server at the end of a wave to write stats */
-reliable client function ClientWriteAndFlushStats()
+reliable client event ClientWriteAndFlushStats()
 {
 	if( WorldInfo.NetMode == NM_DedicatedServer ||
 		KFGameEngine(class'Engine'.static.GetEngine()).LocalLoginStatus != LS_LoggedIn )
@@ -6687,6 +6923,11 @@ reliable client function ClientWriteAndFlushStats()
 	}
 }
 
+function bool HasReadStats()
+{
+	return StatsWrite != none && StatsWrite.HasReadStats();
+}
+
 /**
  * @brief The player won a game while still alve. Client and listen only
   *
@@ -6705,7 +6946,7 @@ reliable client function ClientWonGame( string MapName, byte Difficulty, byte Ga
 }
 
 reliable client function ClientRoundEnded( byte WinningTeam )
-{ 
+{
 	if( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() )
 	{
 		StatsWrite.OnRoundEnd( WinningTeam );
@@ -6720,6 +6961,7 @@ final function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
         ClientFinishedSpecialEvent(EventIndex, ObjectiveIndex);
     }
 }
+
 reliable final client event ClientFinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 {
     if( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && IsValidSpecialEventMap() && !StatsWrite.IsEventObjectiveComplete(ObjectiveIndex))
@@ -6729,7 +6971,7 @@ reliable final client event ClientFinishedSpecialEvent(int EventIndex, int Objec
 		{
 			MyGFxHUD.LevelUpNotificationWidget.FinishedSpecialEvent(EventIndex, ObjectiveIndex);
 		}
-		if(MyGFxManager != none && MyGFxManager.StartMenu != none 
+		if(MyGFxManager != none && MyGFxManager.StartMenu != none
 				&& MyGFxManager.StartMenu.MissionObjectiveContainer != none)
 		{
 			MyGFxManager.StartMenu.MissionObjectiveContainer.Refresh();
@@ -6834,6 +7076,12 @@ function AddZedKill( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<
 }
 native reliable client private function ClientAddZedKill( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT );
 
+function AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
+{
+    ClientAddNonZedKill(KilledClass, Difficulty);
+}
+native reliable client private function ClientAddNonZedKill(class<Pawn> KilledClass, byte Difficulty);
+
 /** Headshot stat */
 function AddZedHeadshot( byte Difficulty, class<DamageType> DT )
 {
@@ -6873,6 +7121,20 @@ function AddHealPoints( int PointsHealed )
 	ClientAddHealPoints( PointsHealed );
 }
 native reliable client private function ClientAddHealPoints(int PointsHealed);
+
+/** Damage tracked stats.  Base implementation is for player vs. zed. Check weekly PC for additional variant. */
+function AddTrackedDamage(int Amount, class<DamageType> DamageType, class<Pawn> DamagerClass, class<Pawn> VictimClass)
+{
+    ClientAddTrackedDamage(Amount, DamageType);
+}
+native reliable client private function ClientAddTrackedDamage(int Amount, class<DamageType> DamageType);
+
+/** Vs Survival tracked stats */
+function AddTrackedVsDamage(int Amount, class<Pawn> DamagerClass)
+{
+    ClientAddTrackedVsDamage(Amount, DamagerClass);
+}
+native reliable client private function ClientAddTrackedVsDamage(int Amount, class<Pawn> DamagerClass);
 
 /** Console command to reset this users stats on steam */
 exec function ResetStats(string ConfirmSteamNickInQuotes, bool bResetAchievements=false)
@@ -8575,6 +8837,9 @@ event Destroyed()
 		LocalCustomizationPawn.Destroy();
 	}
 
+    ClearMixerDelegates();
+    ClientMatchEnded();
+
 	Super.Destroyed();
 }
 
@@ -8649,7 +8914,7 @@ state Dead
 
 	function SetViewTarget( Actor NewViewTarget, optional ViewTargetTransitionParams TransitionParams )
 	{
-		if( PlayerCamera.CameraStyle == 'Boss' && KFPawn_Monster(NewViewTarget) != none && KFPawn_Monster(NewViewTarget).IsActiveBoss())
+		if( PlayerCamera.CameraStyle == 'Boss' && KFPawn_Monster(NewViewTarget) != none && KFPawn_Monster(NewViewTarget).static.IsABoss())
 		{
 			super.SetViewTarget( NewViewTarget, TransitionParams );
 		}
@@ -8771,7 +9036,7 @@ state Spectating
 
 		// Make sure we nuke our customization pawn!
 		if( Pawn != none && KFPawn_Customization(Pawn) != none )
-		{		
+		{
 			if( WorldInfo.NetMode != NM_Client )
 			{
 				Pawn.Destroy();
@@ -8827,7 +9092,7 @@ state Spectating
 		{
 			KFPRI.PlayerHealth = 0;
 			KFPRI.PlayerHealthPercent = 0;
-			KFPRI.bNetDirty = true;				
+			KFPRI.bNetDirty = true;
 		}
 
 		if( MyGFxManager != none )
@@ -9465,7 +9730,7 @@ reliable client event bool ShowConnectionProgressPopup( EProgressMessageType Pro
         	if(MyGFxManager != none && MyGFxManager.PartyWidget != none)
 			{
 				MyGFxManager.PartyWidget.ShowDownLoadNotification(CachedTitle, float(CachedMessage));
-			}        	
+			}
 	        //MyGFxManager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, CachedTitle, CachedMessage, "", "", None, None, class'KFCommon_LocalizedStrings'.default.CancelString, CancelDownload);
 	        return true;
         break;
@@ -9699,7 +9964,7 @@ simulated function CheckForConnectedControllers()
 
 simulated function bool HasActiveUserEstablished()
 {
-	return KFGameViewportClient(class'Engine'.static.GetEngine().GameViewport).bSeenIIS || 
+	return KFGameViewportClient(class'Engine'.static.GetEngine().GameViewport).bSeenIIS ||
 		( MyGFxManager != none && MyGFxManager.IISMenu != none && MyGFxManager.IISMenu.bLoggingIn );
 }
 
@@ -9869,11 +10134,11 @@ function CheckPrivilegesForMultiplayer()
 
 	if ( class'KFGameEngine'.static.IsFreeConsolePlayOver() )
 	{
-		MyGFxManager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, "", 
-			class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString, 
-			class'KFCommon_LocalizedStrings'.default.BuyGameString, 
+		MyGFxManager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, "",
+			class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString,
+			class'KFCommon_LocalizedStrings'.default.BuyGameString,
 			class'KFCommon_LocalizedStrings'.default.OKString, OnBuyGamePressed);
-		
+
 		OnLoginCompleted(false);
 		return;
 	}
@@ -9975,7 +10240,9 @@ function OnClientTitleDataRead()
 
 
 simulated function PerformLogout()
-{	
+{
+	ClientWriteAndFlushStats();
+
 	// Clear the stats read/write objects. They need to be recreated
 	StatsRead = none;
 	StatsWrite = none;
@@ -10011,6 +10278,598 @@ simulated function PerformLogout()
 	}
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// Mixer Integration
+//-----------------------------------------------------------------------------
+reliable client function ClientMatchStarted()
+{
+    local bool bTriggerGroups;
+
+    bTriggerGroups = MixerCurrentDefaultScene != "SelectSide" ? true : false;
+    MixerCurrentDefaultScene = "SelectSide";
+    if (bTriggerGroups)
+    {
+        MixerMoveUsersToDefaultGroup();
+    }
+}
+
+reliable client function ClientMatchEnded()
+{
+    MixerCurrentDefaultScene = "default";
+    MixerMoveUsersToDefaultGroup();
+}
+
+//Triggered when mixer has finished its internal initialization routines
+//      Triggers a timer to move all users to the startup default group after a short
+//      delay intended to avoid any final spinup of scenes and groups in the background.
+simulated final function MixerStartupComplete()
+{
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+    MixerCurrentDefaultScene = (KFPRI != none && KFPRI.bHasSpawnedIn) ? "SelectSide" : "default";
+    SetTimer(1.f, false, nameof(MixerMoveUsersToDefaultGroup));
+}
+
+simulated final function GetCurrentDefaultMixerScene(out string DefaultSceneName)
+{
+    DefaultSceneName = MixerCurrentDefaultScene;
+}
+
+simulated final private function MixerMoveUsersToDefaultGroup()
+{
+    local MixerIntegration Mixer;
+    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+
+    if (Mixer != none)
+    {
+        Mixer.MoveAllUsersToGroup(MixerCurrentDefaultScene);
+    }
+}
+
+simulated final function InitializeMixer()
+{
+    local MixerIntegration Mixer;
+    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+
+    if (Mixer != none)
+    {
+        Mixer.StartInteractiveSession(LocalPlayer(Player).ControllerId);
+    }
+}
+
+simulated final function ShutdownMixer()
+{
+    local MixerIntegration Mixer;
+    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+
+    if (Mixer != none)
+    {
+        if (class'MixerIntegration'.static.IsMixerInteractionEnabled())
+        {
+            Mixer.StopInteractiveSession();
+        }
+    }
+}
+
+simulated final function InitMixerDelegates()
+{
+    local MixerIntegration Mixer;
+    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+
+    if (Mixer != none)
+    {
+        Mixer.MixerStartupComplete = MixerStartupComplete;
+        Mixer.HandleMixerButtonEvent = HandleMixerButtonEvent;
+        Mixer.GetGroupBuildList = GetGroupList;
+        Mixer.GetIntendedDefaultScene = GetCurrentDefaultMixerScene;
+    }
+}
+
+simulated function InitLEDManager()
+{
+	if(!WorldInfo.IsConsoleBuild( ) && IsLocalController() && LEDEffectsManager == none)
+	{
+		LEDEffectsManager = new(self) LEDEffectsManagerClass;
+		LEDEffectsManager.InitLEDEffects();
+	}
+}
+
+simulated final function ClearMixerDelegates()
+{
+    local MixerIntegration Mixer;
+    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+
+    if (Mixer != none)
+    {
+        Mixer.MixerStartupComplete = None;
+        Mixer.HandleMixerButtonEvent = none;
+        Mixer.GetGroupBuildList = none;
+        Mixer.GetIntendedDefaultScene = None;
+    }
+}
+
+simulated final event UpdateMixer()
+{
+    local MixerIntegration Mixer;
+    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+
+    if (Mixer != none)
+    {
+        Mixer.TickMixer();
+    }
+}
+
+simulated final event UpdateAlienFX()
+{
+    local AlienFXLEDInterface AlienFXLED;
+    AlienFXLED = class'PlatformInterfaceBase'.static.GetAlienFXIntegration();
+
+    if (AlienFXLED != none)
+    {
+        AlienFXLED.TickAlienFX();
+    }
+}
+
+simulated final function GetGroupList(out array<string> GroupsToBuild)
+{
+    GroupsToBuild.AddItem("SelectSide");
+    GroupsToBuild.AddItem("Helpers");
+    GroupsToBuild.AddItem("Hurters");
+}
+
+simulated final function TestMixerCall(string Button, out array<string> MetaKeys, out array<string> MetaProps)
+{
+
+    HandleMixerButtonEvent(Button, "", "UserTest", MetaKeys, MetaProps);
+
+}
+
+//Delegate params:
+//      ControlID - Button that triggered the event
+//      TransactionID - Unique ID for the event
+//      Username - Participant that triggered the event if it's useful info
+simulated private final function HandleMixerButtonEvent(string ControlId, string TransactionId, string Username, out array<string> MetaKeys, out array<string> MetaProps)
+{
+    local int AmountValue, CooldownValue, Idx;
+    local string StringMetadata;
+
+    //Allow high level group flow regardless of user state
+    if (ControlId == "HelpButton" || ControlId == "HurtButton")
+    {
+        MixerMoveUserToGroup(ControlId, Username);
+        return;
+    }
+
+    //Throw out other inputs if we're paused
+    if (IsPaused())
+    {
+        MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+        return;
+    }
+
+    //Situation should never occur, but verify to be safe
+    if (MetaKeys.Length != MetaProps.Length)
+    {
+        LogInternal("*** Key/Prop pairs mismatch in Mixer button event.  This should never occur.");
+        MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+        return;
+    }
+
+    //Get vals from metadata
+    for (Idx = 0; Idx < MetaKeys.Length; ++Idx)
+    {
+        if (MetaKeys[Idx] ~= "Amount")
+        {
+            AmountValue = int(MetaProps[Idx]);
+        }
+        else if (MetaKeys[Idx] ~= "Type")
+        {
+            StringMetadata = MetaProps[Idx];
+        }
+        else if (MetaKeys[Idx] ~= "Cooldown")
+        {
+            CooldownValue = int(MetaProps[Idx]) * 1000; //to MS
+        }
+    }
+
+    switch (ControlId)
+    {
+    case "AmmoButton":
+        MixerGiveAmmo(ControlId, TransactionId, AmountValue, CooldownValue, Username);
+        break;
+    case "ArmorButton":
+        MixerGiveArmor(ControlId, TransactionId, AmountValue, CooldownValue, Username);
+        break;
+    case "DoshButton":
+        MixerGiveDosh(ControlId, TransactionId, AmountValue, CooldownValue, Username);
+        break;
+    case "GrenadeButton":
+        MixerGiveGrenades(ControlId, TransactionId, AmountValue, CooldownValue, Username);
+        break;
+    case "HealButton":
+        MixerHealUser(ControlId, TransactionId, AmountValue, CooldownValue, Username);
+        break;
+    case "ZedTimeButton":
+        MixerCauseZedTime(ControlId, TransactionId, AmountValue, CooldownValue, Username);
+        break;
+    case "EnrageButton":
+        MixerEnrageZeds(ControlId, TransactionId, AmountValue, CooldownValue, Username);
+        break;
+    case "PukeButton":
+        MixerPukeUser(ControlId, TransactionId, AmountValue, CooldownValue, Username);
+        break;
+    case "FleshpoundButton":
+        MixerSpawnZed(ControlId, TransactionId, StringMetadata, CooldownValue, Username);
+        break;
+    //Couple examples for future use
+    //Client authority events should be called immediately. Within the function, SendMixerEventResult() should be called if valid
+    case "ClientTest":
+        MixerClientTest(ControlId, TransactionId);
+        break;
+        //Server authority events need to do two steps:
+        //      1. Client will directly call the server and pass the control and transaction IDs along with the call
+        //      2. Server will call the client with the result.  If the result is invalid, calling the client is optional as unhandled transactions refund after 5 minutes
+        //      Once the client receives a callback, it should call SendMixerEventResult() with a cooldown and result from the server
+    case "ServerTest":
+        MixerServerTest(ControlId, TransactionId);
+        break;
+    }
+}
+
+simulated private final function MixerClientTest(string ControlId, string TransactionId)
+{
+    local MixerIntegration Mixer;
+    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+
+    if (Mixer != none)
+    {
+        LogInternal("*** Mixer: This is a totally valid action on the client!");
+        Mixer.SendMixerEventResult(ControlId, TransactionId, 1, 5000);
+    }
+}
+
+reliable private final server function MixerServerTest(string ControlId, string TransactionId)
+{
+    local int Random;
+
+    Random = Rand(2);
+    if (Random == 0)
+    {
+        LogInternal("*** Mixer: Server decided the action failed!");
+        MixerServerCallback(ControlId, TransactionId, 0, 5000);
+    }
+    else if (Random == 1)
+    {
+        LogInternal("*** Mixer: Server decided the action was valid!");
+        MixerServerCallback(ControlId, TransactionId, 1, 5000);
+    }
+}
+
+reliable private final client function MixerServerCallback(string ControlId, string TransactionId, int Result, int Cooldown, optional string Username)
+{
+    local MixerIntegration Mixer;
+
+    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+
+    if (Mixer != none)
+    {
+        LogInternal("*** Mixer: Server told us something happened!" @ Result);
+        Mixer.SendMixerEventResult(ControlId, TransactionId, Result, Cooldown);
+        if(Result == 1 && MyGFxHUD != none)
+        {
+        	switch (ControlId)
+        	{
+            case AmmoButton:
+                PlayAKEvent(class'KFPerk_Support'.static.GetReceivedAmmoSound());
+                MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerGaveAmmoString);
+                break;
+            case ArmorButton:
+                PlayAKEvent(class'KFPerk_Support'.static.GetReceivedArmorSound());
+	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerGaveArmorString);
+                break;
+            case DoshButton:
+                Pawn.PlaySoundBase(AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Dosh');
+	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerGaveDoshString);
+                break;
+            case GrenadeButton:
+                PlayAKEvent(class'KFPerk_Support'.static.GetReceivedAmmoSound());
+	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerGaveGrenadeString);
+                break;
+            case HealButton:
+	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerGaveHealthString);
+                break;
+            case ZedTimeButton:
+	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerZedTimeString);
+                break;
+            case EnrageButton:
+	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerRageZedsString);
+                break;
+            case FleshpoundButton:
+	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerSpawnedFPString);
+                break;
+        	}
+        }
+    }
+}
+
+reliable private final server function MixerGiveAmmo(string ControlId, string TransactionId, int Amount, int Cooldown, optional string Username)
+{
+    local KFInventoryManager KFIM;
+
+    KFIM = KFInventoryManager(Pawn.InvManager);
+    if (KFIM != none && KFIM.GiveWeaponsAmmo(false))
+    {
+        MixerServerCallback(ControlId, TransactionId, 1, Cooldown, Username);
+    }
+    else
+    {
+        MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+    }
+}
+
+reliable private final server function MixerGiveArmor(string ControlId, string TransactionId, int Amount, int Cooldown, string Username)
+{
+    local KFInventoryManager KFIM;
+
+    KFIM = KFInventoryManager(Pawn.InvManager);
+    if (KFIM != none && KFIM.AddArmor(Amount))
+    {
+        MixerServerCallback(ControlId, TransactionId, 1, Cooldown, Username);
+    }
+    else
+    {
+        MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+    }
+}
+
+reliable private final server function MixerGiveDosh(string ControlId, string TransactionId, int Amount, int Cooldown, string Username)
+{
+    local KFPlayerReplicationInfo KFPRI;
+    local KFPawn_Human KFPH;
+
+    KFPH = KFPawn_Human(Pawn);
+    KFPRI = KFPlayerReplicationInfo(Pawn.PlayerReplicationInfo);
+    if (KFPH != none && KFPRI != none)
+    {
+        KFPRI.AddDosh(Amount);
+        MixerServerCallback(ControlId, TransactionId, 1, Cooldown, Username);
+    }
+    else
+    {
+        MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+    }
+}
+
+reliable private final server function MixerGiveGrenades(string ControlId, string TransactionId, int Amount, int Cooldown, string Username)
+{
+    local KFInventoryManager KFIM;
+    local KFPawn_Human KFPH;
+
+    KFPH = KFPawn_Human(Pawn);
+    KFIM = KFInventoryManager(Pawn.InvManager);
+    if (KFPH != none && KFIM != none && KFIM.AddGrenades(Amount))
+    {
+        MixerServerCallback(ControlId, TransactionId, 1, Cooldown, Username);
+    }
+    else
+    {
+        MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+    }
+}
+
+reliable private final server function MixerHealUser(string ControlId, string TransactionId, int Amount, int Cooldown, string Username)
+{
+    local KFPawn KFP;
+
+    KFP = KFPawn(Pawn);
+    if (KFP != none && KFP.Health < KFP.HealthMax)
+    {
+        KFP.HealDamage(Amount, self, class'KFDT_Healing', false, false);
+        MixerServerCallback(ControlId, TransactionId, 1, Cooldown, Username);
+    }
+    else
+    {
+        MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+    }
+}
+
+reliable private final server function MixerCauseZedTime(string ControlId, string TransactionId, int Amount, int Cooldown, string Username)
+{
+    local KFGameInfo KFGI;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    KFGRI = KFGameReplicationInfo(WorldInfo.Game.GameReplicationInfo);
+    if (KFGI != none && KFGRI != None && !KFGRI.bTraderIsOpen)
+    {
+        bForcePartialZedTime = true;
+        KFGI.DramaticEvent(100, Amount);
+        bForcePartialZedTime = default.bForcePartialZedTime;
+
+        MixerServerCallback(ControlId, TransactionId, 1, Cooldown, Username);
+    }
+    else
+    {
+        MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+    }
+}
+
+reliable private final server function MixerEnrageZeds(string ControlId, string TransactionId, int Radius, int Cooldown, string Username)
+{
+    local int RalliedCount;
+    local KFPawn_Monster KFPM;
+    local KFPawn KFPOwner;
+
+    RalliedCount = 0;
+    KFPOwner = KFPawn(Pawn);
+
+    if (KFPOwner != None)
+    {
+        // Rally nearby zeds
+        foreach KFPOwner.WorldInfo.GRI.VisibleCollidingActors(class'KFPawn_Monster', KFPM, Radius, Pawn.Location)
+        {
+            if (KFPM.Rally(KFPOwner, ParticleSystem'ZED_Clot_EMIT.FX_ClotA_Rage_01', 'Root', vect(0, 0, 2), ParticleSystem'ZED_Clot_EMIT.FX_Player_Zed_Buff_01', MixerRallyBoneNames, vect(0, 0, 0)))
+            {
+                ++RalliedCount;
+            }
+        }
+    }
+
+    if (RalliedCount > 0)
+    {
+        MixerServerCallback(ControlId, TransactionId, 1, Cooldown, Username);
+    }
+    else
+    {
+        MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+    }
+}
+
+simulated private final function MixerPukeUser(string ControlId, string TransactionId, float PukeLength, int Cooldown, string UserName)
+{
+    local MixerIntegration Mixer;
+    local bool bRestartPuke;
+
+    bRestartPuke = BloatPukeEffectTimeRemaining <= 0.f;
+    BloatPukeEffectTimeRemaining = Max(BloatPukeEffectTimeRemaining, PukeLength);
+
+    if (bRestartPuke)
+    {
+        //TBD: Allow perk to use the light effect, or always use default as a mixer feature?
+        ClientSpawnCameraLensEffect(class'KFCameraLensEmit_Puke');
+    }
+
+    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+    if (Mixer != none)
+    {
+        PlayAkEvent(AkEvent'WW_ZED_Gore.Impact_Puke_Damage');
+        MyGFxHUD.ShowNonCriticalMessage(Username$class'KFCommon_LocalizedStrings'.default.MixerPukeString);
+        Mixer.SendMixerEventResult(ControlId, TransactionId, 1, Cooldown);
+    }
+}
+
+reliable private final server function MixerSpawnZed(string ControlId, string TransactionId, string ZedClass, int Cooldown, string UserName)
+{
+    local class<KFPawn_Monster> SpawnClass;
+    local array<class<KFPawn_Monster> > AIToSpawn;
+    local KFGameInfo KFGI;
+    local int SpawnCount;
+    local KFPawn_Monster BossCheck;
+    local bool bFoundBoss;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if (KFGI != None)
+    {
+        if (KFGI.MyKFGRI.WaveNum == KFGI.MyKFGRI.WaveMax)
+        {
+            bFoundBoss = false;
+            foreach WorldInfo.AllPawns(class'KFPawn_Monster', BossCheck)
+            {
+                if (BossCheck.IsABoss())
+                {
+                    bFoundBoss = true;
+
+                    //Don't allow spawn during boss camera
+                    if (KFInterface_MonsterBoss(BossCheck) != none && KFInterface_MonsterBoss(BossCheck).UseAnimatedBossCamera())
+                    {
+                        MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+                        return;
+                    }
+                }
+            }
+
+            //Boss hasn't spawned, don't allow spawning of fleshpounds yet
+            if (!bFoundBoss)
+            {
+                MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+                return;
+            }
+        }
+
+        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent." $ ZedClass, class'Class'));
+        if (SpawnClass != None)
+        {
+            AIToSpawn.AddItem(SpawnClass);
+            SpawnCount = KFGI.SpawnManager.SpawnSquad(AIToSpawn);
+            if (SpawnCount > 0)
+            {
+                KFGameReplicationInfo(KFGI.GameReplicationInfo).AIRemaining += SpawnCount;
+                MixerServerCallback(ControlId, TransactionId, 1, Cooldown, Username);
+                return;
+            }
+        }
+    }
+
+    MixerServerCallback(ControlId, TransactionId, 0, 0, Username);
+}
+
+simulated private final function MixerMoveUserToGroup(string ControlId, string UserName)
+{
+    local string GroupName;
+    local MixerIntegration Mixer;
+    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+
+    if (Mixer != none)
+    {
+        GroupName = "";
+        switch (ControlId)
+        {
+        case "HelpButton":
+            GroupName = "Helpers";
+            break;
+        case "HurtButton":
+            GroupName = "Hurters";
+            break;
+        }
+
+        if (GroupName != "")
+        {
+            Mixer.MoveUserToGroup(Username, GroupName);
+        }
+    }
+}
+
+//LED overrides
+//int RedPercent, int GreenPercent, int BluePercent, int MilliSecondsDuration, int MilliSecondsInterval
+unreliable client event ClientSpawnCameraLensEffect( class<EmitterCameraLensEffectBase> LensEffectEmitterClass )
+{
+	super.ClientSpawnCameraLensEffect( LensEffectEmitterClass );
+
+	if(IsLocalController() && LEDEffectsManager != none)
+	{
+		switch (LensEffectEmitterClass)
+		{
+			case class'KFCameraLensEmit_Puke_Light':
+				LEDEffectsManager.PlayEffectGas();
+				break;
+			case class'KFCameraLensEmit_Fire':
+				LEDEffectsManager.PlayEffectFire();
+					break;
+		}
+	}
+}
+
 defaultproperties
 {
    PerkList(0)=(PerkClass=Class'KFGame.KFPerk_Berserker')
@@ -10021,8 +10880,8 @@ defaultproperties
    PerkList(5)=(PerkClass=Class'KFGame.KFPerk_Firebug')
    PerkList(6)=(PerkClass=Class'KFGame.KFPerk_Gunslinger')
    PerkList(7)=(PerkClass=Class'KFGame.KFPerk_Sharpshooter')
-   PerkList(8)=(PerkClass=Class'KFGame.KFPerk_Survivalist')
-   PerkList(9)=(PerkClass=Class'KFGame.KFPerk_SWAT')
+   PerkList(8)=(PerkClass=Class'KFGame.KFPerk_SWAT')
+   PerkList(9)=(PerkClass=Class'KFGame.KFPerk_Survivalist')
    ServPendingPerkBuild=-1
    ServPendingPerkLevel=-1
    bReflectionsEnabled=True
@@ -10033,6 +10892,11 @@ defaultproperties
    RefreshObjectiveUITime=1.000000
    PurchaseHelperClass=Class'KFGame.KFAutoPurchaseHelper'
    NextSpectatorDelay=2.000000
+   DefaultAvatarPath="UI_World_TEX.KF2Icon_Default"
+   MixerRallyBoneNames(0)="RightHand"
+   MixerRallyBoneNames(1)="LeftHand"
+   MixerCurrentDefaultScene="default"
+   LEDEffectsManagerClass=Class'KFGame.KFLEDEffectsManager'
    ZedTimeEnterSound=AkEvent'WW_GLO_Runtime.Set_ZEDTime_On'
    ZedTimeExitSound=AkEvent'WW_GLO_Runtime.Set_ZEDTime_Off'
    ZedTimePartialEnterSound=AkEvent'WW_GLO_Runtime.Set_ZEDTime_Partial_On'
@@ -10125,6 +10989,9 @@ defaultproperties
    TrackerSpawnVolumeSizeX=15.000000
    TrackerSpawnVolumeSizeY=13.000000
    TrackingMapRange=5000.000000
+   DebugLastSeenDoshVaultValue=-1
+   DebugCurrentDoshVaultValue=-1
+   DebugCurrentDoshVaultTier=-1
    CameraClass=Class'KFGame.KFPlayerCamera'
    bCheckSoundOcclusion=True
    DesiredFOV=90.000000
@@ -10141,6 +11008,7 @@ defaultproperties
    bSkipExtraLOSChecks=True
    Components(0)=CollisionCylinder
    Components(1)=AkComponent_0
+   bAlwaysTick=True
    CollisionComponent=CollisionCylinder
    Name="Default__KFPlayerController"
    ObjectArchetype=GamePlayerController'GameFramework.Default__GamePlayerController'

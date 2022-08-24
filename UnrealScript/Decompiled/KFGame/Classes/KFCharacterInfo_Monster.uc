@@ -23,6 +23,20 @@ struct native ZedColorMod
     }
 };
 
+struct native StaticAttachments
+{
+    var() StaticMesh StaticAttachment;
+    var() name AttachBoneName;
+    var() Rotator RelativeRotation;
+
+    structdefaultproperties
+    {
+        StaticAttachment=none
+        AttachBoneName=None
+        RelativeRotation=(Pitch=0,Yaw=0,Roll=0)
+    }
+};
+
 struct native DoorSoundFx
 {
     var() AkEvent Metal;
@@ -72,6 +86,8 @@ var(Effects) array<int> ExtraMICIndices;
 var(ThirdPerson) array<SkeletalMesh> PACMeshList;
 /** List of possible randomized colors to apply to zed */
 var(ThirdPerson) array<ZedColorMod> RandomizedColors;
+/** List of static mesh attachments that will be paired to specific bones */
+var(ThirdPerson) array<StaticAttachments> StaticAttachList;
 var(Effects) DoorSoundFx DoorHitSound;
 var MaterialInstance BloodSplatterDecalMaterial;
 /** Gore mesh with alternate bone weights */
@@ -115,6 +131,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
 {
     local int I, MaterialIndex;
     local editinline SkeletalMeshComponent PACAttachment;
+    local editinline StaticMeshComponent StaticAttachment;
     local LinearColor AppliedColor;
 
     super.SetCharacterMeshFromArch(KFP, KFPRI);
@@ -192,6 +209,26 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             ++ I;
             goto J0x3AC;
         }
+        I = 0;
+        J0x5E1:
+
+        if(I < StaticAttachList.Length)
+        {
+            StaticAttachment = new (KFP) Class'StaticMeshComponent';
+            if(StaticAttachment != none)
+            {
+                KFPawn_Monster(KFP).StaticAttachList.AddItem(StaticAttachment;
+                StaticAttachment.SetActorCollision(false, false);
+                StaticAttachment.SetStaticMesh(StaticAttachList[I].StaticAttachment);
+                StaticAttachment.SetShadowParent(KFP.Mesh);
+                StaticAttachment.SetLightingChannels(KFP.PawnLightingChannel);
+                StaticAttachment.CreateAndSetMaterialInstanceConstant(0);
+                KFP.AttachComponent(StaticAttachment);
+                KFP.Mesh.AttachComponent(StaticAttachment, StaticAttachList[I].AttachBoneName,, StaticAttachList[I].RelativeRotation);
+            }
+            ++ I;
+            goto J0x5E1;
+        }
     }
     if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFP.Mesh != none)
     {
@@ -205,7 +242,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
     if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFPawn_Monster(KFP) != none)
     {
         I = 0;
-        J0x78C:
+        J0x9D5:
 
         if(I < KFP.CharacterMICs.Length)
         {
@@ -219,7 +256,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 KFP.CharacterMICs[I].SetVectorParameterValue('vector_TrimColor', AppliedColor);
             }
             ++ I;
-            goto J0x78C;
+            goto J0x9D5;
         }
     }
 }

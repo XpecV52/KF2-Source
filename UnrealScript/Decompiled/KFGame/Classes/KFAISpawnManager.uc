@@ -31,6 +31,7 @@ enum EBossAIType
 {
     BAT_Hans,
     BAT_Patriarch,
+    BAT_KingFleshpound,
     BAT_MAX
 };
 
@@ -41,6 +42,16 @@ struct native DifficultyWaveInfo
     structdefaultproperties
     {
         Waves=none
+    }
+};
+
+struct native PerPlayerMaxMonsters
+{
+    var array<int> MaxMonsters;
+
+    structdefaultproperties
+    {
+        MaxMonsters=none
     }
 };
 
@@ -63,10 +74,7 @@ var float WaveStartTime;
 var float TotalWavesActiveTime;
 var float TimeUntilNextSpawn;
 var int WaveTotalAI;
-var byte MaxMonsters;
-/** Maximum number of AI that can be active at one time in solo, by difficulty */
-var() byte MaxMonstersSolo[4];
-var KFSpawnVolume.ESquadType DesiredSquadType;
+var array<PerPlayerMaxMonsters> PerDifficultyMaxMonsters;
 /** How much to modify the spawn rate for solo play by difficulty */
 var() SpawnRateModifier SoloWaveSpawnRateModifier[4];
 /** How much to modify the spawn rate for early waves. Generally used to make early waves more intense */
@@ -89,8 +97,8 @@ var int NumSpecialSquadRecycles;
 var int NumSpawnListCycles;
 var array<KFSpawnVolume> SpawnVolumes;
 var KFSpawnVolume LastAISpawnVolume;
+var KFSpawnVolume.ESquadType DesiredSquadType;
 var KFSpawner ActiveSpawner;
-var const int ObjExtraAI;
 var array< class<KFPawn_Monster> > LeftoverSpawnSquad;
 var array<KFAISpawnSquad> BossMinionsSpawnSquads;
 var int MaxBossMinions;
@@ -657,11 +665,12 @@ function SetSineWaveFreq(float NewFreq)
     SineWaveFreq = NewFreq;
 }
 
-function SummonBossMinions(array<KFAISpawnSquad> NewMinionSquad, int NewMaxBossMinions)
+function SummonBossMinions(array<KFAISpawnSquad> NewMinionSquad, int NewMaxBossMinions, optional bool bUseLivingPlayerScale)
 {
     local int NumLivePlayers;
     local float UsedMaxBossMinionsScale;
 
+    bUseLivingPlayerScale = true;
     if(bSummoningBossMinions)
     {
         StopSummoningBossMinions();
@@ -671,20 +680,27 @@ function SummonBossMinions(array<KFAISpawnSquad> NewMinionSquad, int NewMaxBossM
     AvailableSquads = BossMinionsSpawnSquads;
     MaxBossMinions = NewMaxBossMinions;
     NumLivePlayers = Outer.GetLivingPlayerCount();
-    if(NumLivePlayers <= 6)
+    if(bUseLivingPlayerScale)
     {
-        if(NumLivePlayers == 0)
+        if(NumLivePlayers <= 6)
         {
-            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers];            
+            if(NumLivePlayers == 0)
+            {
+                UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers];                
+            }
+            else
+            {
+                UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers - 1];
+            }            
         }
         else
         {
-            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers - 1];
+            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[6 - 1];
         }        
     }
     else
     {
-        UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[6 - 1];
+        UsedMaxBossMinionsScale = 1;
     }
     MaxBossMinions *= UsedMaxBossMinionsScale;
     MaxBossMinions = Min(MaxBossMinions, GetMaxMonsters());
@@ -835,24 +851,11 @@ function bool ShouldAddAI()
 
 function int GetMaxMonsters()
 {
-    local int UsedMaxMonsters;
+    local int LivingPlayerCount, Difficulty;
 
-    if((Outer.WorldInfo.NetMode == NM_Standalone) && Outer.GetLivingPlayerCount() == 1)
-    {
-        if(Outer.GameDifficulty < float(4))
-        {
-            UsedMaxMonsters = MaxMonstersSolo[int(Outer.GameDifficulty)];            
-        }
-        else
-        {
-            UsedMaxMonsters = MaxMonstersSolo[4 - 1];
-        }        
-    }
-    else
-    {
-        UsedMaxMonsters = MaxMonsters;
-    }
-    return UsedMaxMonsters;
+    LivingPlayerCount = Clamp(Outer.GetLivingPlayerCount() - 1, 0, 5);
+    Difficulty = Clamp(int(Outer.GameDifficulty), 0, 3);
+    return PerDifficultyMaxMonsters[Difficulty].MaxMonsters[LivingPlayerCount];
 }
 
 function int GetNumAINeeded()
@@ -1044,31 +1047,30 @@ function ResetSpawnManager();
 defaultproperties
 {
     SineWaveFreq=0.04
-    MaxMonsters=32
-    MaxMonstersSolo[0]=16
-    MaxMonstersSolo[1]=16
-    MaxMonstersSolo[2]=16
-    MaxMonstersSolo[3]=16
+    PerDifficultyMaxMonsters(0)=(MaxMonsters=(10,14,32,32,32,32))
+    PerDifficultyMaxMonsters(1)=(MaxMonsters=(11,18,32,32,32,32))
+    PerDifficultyMaxMonsters(2)=(MaxMonsters=(12,18,32,32,32,32))
+    PerDifficultyMaxMonsters(3)=(MaxMonsters=(12,18,32,32,32,32))
     SoloWaveSpawnRateModifier[0]=(RateModifier=(1,1,1,1))
     SoloWaveSpawnRateModifier[1]=(RateModifier=(1,1,1,1))
     SoloWaveSpawnRateModifier[2]=(RateModifier=(1,1,1,1))
     SoloWaveSpawnRateModifier[3]=(RateModifier=(1,1,1,1))
-    EarlyWaveSpawnRateModifier[0]=1
-    EarlyWaveSpawnRateModifier[1]=0.8
-    EarlyWaveSpawnRateModifier[2]=0.8
-    EarlyWaveSpawnRateModifier[3]=0.7
+    EarlyWaveSpawnRateModifier[0]=0.8
+    EarlyWaveSpawnRateModifier[1]=0.6
+    EarlyWaveSpawnRateModifier[2]=0.5
+    EarlyWaveSpawnRateModifier[3]=0.5
     EarlyWaveIndex=7
     EarlyWavesSpawnTimeModByPlayers[0]=1
-    EarlyWavesSpawnTimeModByPlayers[1]=1
-    EarlyWavesSpawnTimeModByPlayers[2]=1
-    EarlyWavesSpawnTimeModByPlayers[3]=0.85
-    EarlyWavesSpawnTimeModByPlayers[4]=0.65
+    EarlyWavesSpawnTimeModByPlayers[1]=1.3
+    EarlyWavesSpawnTimeModByPlayers[2]=0.9
+    EarlyWavesSpawnTimeModByPlayers[3]=0.7
+    EarlyWavesSpawnTimeModByPlayers[4]=0.4
     EarlyWavesSpawnTimeModByPlayers[5]=0.3
     LateWavesSpawnTimeModByPlayers[0]=1.1
-    LateWavesSpawnTimeModByPlayers[1]=1.1
-    LateWavesSpawnTimeModByPlayers[2]=1.1
-    LateWavesSpawnTimeModByPlayers[3]=1
-    LateWavesSpawnTimeModByPlayers[4]=0.75
+    LateWavesSpawnTimeModByPlayers[1]=1.45
+    LateWavesSpawnTimeModByPlayers[2]=0.9
+    LateWavesSpawnTimeModByPlayers[3]=0.8
+    LateWavesSpawnTimeModByPlayers[4]=0.7
     LateWavesSpawnTimeModByPlayers[5]=0.6
     RecycleSpecialSquad(0)=
 /* Exception thrown while deserializing RecycleSpecialSquad
@@ -1091,7 +1093,6 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     MaxSpecialSquadRecycles=-1
-    ObjExtraAI=16
     MaxBossMinionScaleByPlayers[0]=1
     MaxBossMinionScaleByPlayers[1]=1.5
     MaxBossMinionScaleByPlayers[2]=1.5

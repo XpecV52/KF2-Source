@@ -229,4 +229,5 @@ DefaultProperties
 	IconPaths[VCT_AFFIRMATIVE]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Affirmative"
 	IconPaths[VCT_NEGATIVE]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Negative"
 	IconPaths[VCT_EMOTE]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Emote"
+	IconPaths[VCT_THANK_YOU]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_ThankYou"
 }

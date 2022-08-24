@@ -1,4 +1,4 @@
-//NOTES: 
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -174,7 +174,7 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•標準�
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50デザートイーグル"
-ItemCategory="ハンドガン"
+ItemCategory=""
 ItemDescription="•ファイアモードはセミオートのみ。\n•デザートイーグルはハンドガンの王様で、「ハンドキャノン」として知られている所以です。"
 
 [KFWeap_AssaultRifle_AR15]
@@ -275,7 +275,7 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•ベネ�
 [KFWeap_Shotgun_HZ12]
 ItemName="HZ12マルチアクション"
 ItemCategory="ショットガン"
-ItemDescription="•ファイアモードはデュアルセミオート／ポンプアクション。\n•HZ12ショットガンはホージンセキュリティによりテストが行われた実験プロトタイプである。この武器の開発において何体ものZedが殺されている。"
+ItemDescription=""
 
 [KFWeap_Knife_Berserker]
 ItemName="芝刈り機の刃"
@@ -379,6 +379,11 @@ ItemName="RPG-7"
 ItemCategory="爆発物"
 ItemDescription="•ファイアモードはロケット弾を発射します。\n•ロケット弾は当たると爆発します。\n•顔を吹き飛ばされないように、射程の数メートル先でのみ作動します。\n後方爆風に注意してください！"
 
+[KFWeap_RocketLauncher_Seeker6]
+ItemName="シーカーシックス"
+ItemCategory="爆発物"
+ItemDescription="•ファイアモードはロケット弾を発射します。\n•オルトファイアを狙うとターゲットレーザーを起動し誘導ロケットを発射可能な状態にします。\n•複数のターゲットを追跡して倒すことのできる万能榴弾です。"
+
 [KFWeap_Pistol_Dual9mm]
 ItemName="デュアル9mmピストル"
 ItemCategory="ハンドガン"
@@ -396,7 +401,7 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•オル�
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50デザートイーグル"
-ItemCategory="ハンドガン"
+ItemCategory=""
 ItemDescription="•ファイアモードはセミオートのみ。\n•デザートイーグルはハンドガンの王様で、「ハンドキャノン」として知られている所以です。"
 
 [KFWeap_Pistol_DualDeagle]
@@ -432,7 +437,7 @@ ItemDescription="•ファイアモードは単発のみ。\n•定番のモデ�
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464センターファイア"
 ItemCategory="ライフル"
-ItemDescription="•ファイアモードは単発のみ。\n•反動が低く、高いストッピングパワーを持つ近代的なモスバーグセンターファイア・レバーアクションライフル。標準武器のアップデート版。"
+ItemDescription=""
 
 [KFWeap_Bow_Crossbow]
 ItemName="クロスボウ"
@@ -475,6 +480,10 @@ ItemName="クリスサブマシンガン"
 ItemCategory="サブマシンガン"
 ItemDescription="•ファイアモードはフルオートまたはセミオートを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•最新のコンパクトな銃弾再配分で、破壊の消火ホースです。"
 
+[KFWeap_Rifle_Hemogoblin]
+ItemName="Hemogoblin"
+ItemCategory="ライフル"
+ItemDescription="•ファイアモードはZedに怪我を負わせ、動きを遅くし、弱体化させるブラッドボアを発射します。\n•オルトファイアはチームメンバーを回復させる回復ダーツを発射します。\n•実行可能なダイエット計画ではありません。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -525,7 +534,7 @@ BossCaptionStrings[4]="ああ、ペイトリアークはクローキングし、
 BossCaptionStrings[5]="選択肢があるわけではないが、ペイトリアークの「子ども」を殺すと、(さらに)怒らせるだけだ。"
 
 [KFPawn_ZedFleshpoundKing]
-BossName="King Fleshpound"
+BossName=""
 BossName_CHN="闪击丧尸之王"
 BossName_CHT="絞碎者之王"
 BossName_DEU="King Fleshpound"
@@ -540,12 +549,12 @@ BossName_KOR="King 플래시 파운드"
 BossName_POL="Król mięśniaków"
 BossName_PTB="Carniceiro Rei"
 BossName_RUS="Король-отбивальщик"
-BossCaptionStrings[0]="キングフレッシュパウンドは攻撃を受ければ受けるほど、クォーターパウンドを呼ぶ間隔が速くなる。気をつけて！"
-BossCaptionStrings[1]="伏せろ！キングフレッシュパウンドの胸から出るビームは、地面に近いターゲットを狙うことができない。"
-BossCaptionStrings[2]="キングフレッシュパウンドが痛手を負っているからといって、戦闘が終わったわけじゃない。シールドを張るぞ。 "
-BossCaptionStrings[3]="キングフレッシュパウンドの胸から出るビームは、他のzedにダメージを与えることができる。うまく射線におびき寄せよう。"
-BossCaptionStrings[4]="キングフレッシュパウンドは通常のフレッシュパウンドと同様の弱点を持っている。ただ単に大きいだけだ。"
-BossCaptionStrings[5]="キングフレッシュパウンドは常にたくさんのクォーターパウンドを従えている。無視すると命取りになるぞ！"
+BossCaptionStrings[0]=""
+BossCaptionStrings[1]=""
+BossCaptionStrings[2]=""
+BossCaptionStrings[3]=""
+BossCaptionStrings[4]=""
+BossCaptionStrings[5]=""
 
 [KFGameInfo_Tutorial]
 GameName="基本トレーニング"
@@ -557,7 +566,7 @@ GameName="サバイバル"
 GameName="VSサバイバル"
 
 [KFGameInfo_WeeklySurvival]
-GameName="ウィークリーアウトブレイク"
+GameName=""
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="回復が残っていません"

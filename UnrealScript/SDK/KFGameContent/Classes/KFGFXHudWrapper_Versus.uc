@@ -35,15 +35,18 @@ var int LastTeamIndex;
 
 simulated function PostBeginPlay()
 {
-    local KFPawn_MonsterBoss KFPMB;
+    local KFPawn_Monster KFP;
 
     super.PostBeginPlay();
  
     // If we have a new HUD, try to cache a reference to boss pawn
-    foreach WorldInfo.AllPawns( class'KFPawn_MonsterBoss', KFPMB )
+    foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFP )
     {
-        BossPawn = KFPMB;
-        break;
+        if (KFP.static.IsABoss())
+        {
+            BossRef = KFInterface_MonsterBoss(KFP);
+            break;
+        }
     }
 }
 
@@ -133,9 +136,8 @@ function DrawHUD()
             if( TestPawn.IsAliveAndWell()
                 && TestPawn.Mesh.SkeletalMesh != none
                 && TestPawn.Mesh.bAnimTreeInitialised
-                && TestPawn != BossPawn
                 && TestPawn != KFPlayerOwner.Pawn )
-            {
+            {	
                 if( TestPawn.Mesh != none && `TimeSince( TestPawn.Mesh.LastRenderTime ) < 0.2f )
                 {
                     TestPawnLocation = TestPawn.Mesh.GetPosition() + ( TestPawn.CylinderComponent.CollisionHeight * vect(0,0,1) );
@@ -211,6 +213,14 @@ simulated function CheckAndDrawBossPawnIcon( vector ViewLocation, vector ViewVec
 {
     local float ThisDot;
     local vector BossPawnLocation;
+    local KFPawn_Monster BossPawn;
+
+    if (BossRef == none)
+    {
+        return;
+    }
+
+    BossPawn = BossRef.GetMonsterPawn();
 
     if( BossPawn != none
         && BossPawn.Mesh.SkeletalMesh != none
@@ -297,7 +307,6 @@ function bool DrawPreciseHumanPlayerInfo( KFPawn_Human KFPH )
     {
         return true;
     }
-
     //Draw health bar
     Percentage = FMin( float(KFPH.Health) / float(KFPH.HealthMax), 100  );
     DrawKFBar( Percentage, BarLength, BarHeight, ScreenPos.X - BarLength * 0.5f, ScreenPos.Y, HealthColor );
@@ -325,7 +334,12 @@ function DrawBossPawnIcon( vector BossLocation )
     local vector ScreenPos, TargetLocation;
     local float IconSizeMult;
 
-    TargetLocation = BossLocation + ( BossPawn.CylinderComponent.CollisionHeight * vect(0,0,2.2f) );
+	if (BossRef == none)
+	{
+		return;
+	}
+
+    TargetLocation = BossLocation + ( BossRef.GetMonsterPawn().CylinderComponent.CollisionHeight * vect(0,0,2.2f) );
     ScreenPos = Canvas.Project( TargetLocation );
     IconSizeMult = PlayerStatusIconSize * FriendlyHudScale * 0.5f;
     ScreenPos.X -= IconSizeMult;

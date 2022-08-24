@@ -15,6 +15,7 @@ package tripwire.controls.postGameMenu
         public function MapVoteLineRenderer()
         {
             super();
+            preventAutosizing = true;
         }
         
         override public function set data(param1:Object) : void

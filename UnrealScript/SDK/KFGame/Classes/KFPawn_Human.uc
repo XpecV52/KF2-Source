@@ -1490,10 +1490,17 @@ simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNorma
 			KFPM = KFPawn_Monster(Other);
 			if( KFPM != none )
 			{
+                //First priority is a knockdown if it is allowed
 				if( KFPM.CanDoSpecialMove( SM_Knockdown ) )
 				{
 					KFPM.Knockdown( Velocity * 3, vect(1,1,1), KFPM.Location, 1000, 100 );
 				}
+                //If they can't be knocked down, but are headless, kill them outright
+                else if (KFPM.IsHeadless())
+                {
+                    KFPM.TakeDamage(KFPM.HealthMax, Controller, Location, vect(0, 0, 0), class'KFDT_NPCBump_Large');
+                }
+                //Last priority is a stumble as a backup
 				else if( KFPM.CanDoSpecialMove( SM_Stumble ) )
 				{
 					KFPM.DoSpecialMove(SM_Stumble,,, class'KFSM_Stumble'.static.PackRandomSMFlags(KFPM));

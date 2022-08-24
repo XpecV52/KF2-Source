@@ -12,24 +12,24 @@ var KFGFxExpandedObjectivesContainer ExpandedObjectiveContainer;
 var bool bInitialAutoExpandCheckComplete;
 var bool bLastShowSpecialEvent;
 var bool bLastShowWeekly;
+var KFPlayerController KFPC;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
-    Outer.GetPC().SetTimer(0.25, true, 'UpdateMissionObjectiveState', self);
+    KFPC = KFPlayerController(Outer.GetPC());
+    KFPC.SetTimer(0.25, true, 'UpdateMissionObjectiveState', self);
 }
 
 function UpdateMissionObjectiveState()
 {
-    local KFPlayerController KFPC;
     local bool bShouldShow, bShouldExpand;
     local int TargetPage;
     local bool bShowWeekly, bShowSpecialEvent;
 
-    KFPC = KFPlayerController(Outer.GetPC());
     bShouldExpand = false;
-    TargetPage = -1;
-    bShouldShow = false;
+    TargetPage = 0;
+    bShouldShow = true;
     bShowWeekly = ((KFPC != none) && KFPC.IsA('KFPlayerController_WeeklySurvival')) || Class'WorldInfo'.static.IsMenuLevel();
     bShowSpecialEvent = ShowShouldSpecialEvent();
     if(!bInitialAutoExpandCheckComplete || bShowWeekly != bLastShowWeekly)
@@ -37,10 +37,8 @@ function UpdateMissionObjectiveState()
         if(bShowWeekly)
         {
             bShouldExpand = true;
-            TargetPage = 0;
-            bShouldShow = true;
-            SetBool("expanded", true);
-            ExpandedObjectiveContainer.SetInt("pageIndex", 0);            
+            TargetPage = 1;
+            SetBool("expanded", true);            
         }
         else
         {
@@ -53,20 +51,19 @@ function UpdateMissionObjectiveState()
         if(bShowSpecialEvent)
         {
             bShouldExpand = true;
-            TargetPage = 1;
-            bShouldShow = true;
-            ExpandedObjectiveContainer.SetInt("pageIndex", TargetPage);
+            TargetPage = 2;
         }
         bLastShowSpecialEvent = bShowSpecialEvent;
         UpdateSpecialEventActive();
     }
     if(Class'WorldInfo'.static.IsMenuLevel())
     {
-        bShouldShow = true;
         bShouldExpand = false;
+        TargetPage = 0;
     }
     if(!bInitialAutoExpandCheckComplete)
     {
+        ExpandedObjectiveContainer.SetInt("pageIndex", TargetPage);
         SetVisible(bShouldShow);
         SetBool("expanded", bShouldExpand);
         SetString("buttonPromptString", Class'KFMission_LocalizedStrings'.default.ObjectivesString);
@@ -87,16 +84,16 @@ function UpdateSpecialEventActive()
 
 function bool ShowShouldSpecialEvent()
 {
-    local KFPlayerController KFPC;
-
-    KFPC = KFPlayerController(Outer.GetPC());
     return ((Class'KFGameEngine'.static.GetSeasonalEventID() != 0) && Class'KFGameEngine'.static.GetSeasonalEventID() != -1) && KFPC.IsValidSpecialEventMap() || Class'WorldInfo'.static.IsMenuLevel();
 }
 
-function Refresh(optional bool bRepopulateCollapsed)
+function Refresh(optional bool bForceRefreshOfDaily)
 {
-    if(ExpandedObjectiveContainer.Refresh())
+    if(KFPC.MyGFxManager.bMenusOpen)
     {
-        CollapsedObjectiveContainer.PopulateData();
+        if(ExpandedObjectiveContainer.Refresh(bForceRefreshOfDaily))
+        {
+            CollapsedObjectiveContainer.PopulateData();
+        }
     }
 }

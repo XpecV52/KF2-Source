@@ -33,7 +33,7 @@ var KFOnlineLobbyDingo LobbyInterface;
 
 /**
  * This is the array of queued async tasks that will be held until
- * the game is activated and will then be transferred to the standard async 
+ * the game is activated and will then be transferred to the standard async
  * task array.
  */
 var native const array<pointer> QueuedActivationAsyncTasks{FQueuedOnlineAsyncTaskDingo};
@@ -50,7 +50,7 @@ var config string ProfileDataDirectory;
 /** The file extension to use when saving profile data */
 var config string ProfileDataExtension;
 
-/** The array of delegates that notify the completion of OnlineProfile reads */ 
+/** The array of delegates that notify the completion of OnlineProfile reads */
 var array<delegate<OnReadOnlineProfilesComplete> > ReadOnlineProfileDelegates;
 
 /** The cached profile for the player */
@@ -193,7 +193,7 @@ var native const bool bCurrentUserChanged;
 var native const bool bConnectionStatusUpdated;
 
 /** Do we need to refresh Marketplace Inventory */
-var native const bool bRefreshMarketplaceInventory; 
+var native const bool bRefreshMarketplaceInventory;
 
 /** Are we connected to the LIVE network? */
 var native const bool bConnectedToLIVENetwork;
@@ -611,7 +611,7 @@ function AddSystemUserContrllerPairingChangedDelegate(delegate<OnSystemUserContr
 }
 
 /**
- * Removes the specified delegate from the notification list 
+ * Removes the specified delegate from the notification list
  *
  * @param PairingChangeDelegate the delegate to remove from notification
  */
@@ -621,7 +621,7 @@ function ClearSystemUserContrllerPairingChangedDelegate(delegate<OnSystemUserCon
 }
 
 /**
- * Gets added into UserControllerPairingChangeDelegates 
+ * Gets added into UserControllerPairingChangeDelegates
  * @param NewLocalUserNum the index of the user now associated with the controller, INDEX_NONE if the controller no longer has a paired user
  * @param PreviousLocalUserNum the index of the user previously associated with the controller, INDEX_NONE if the controller was not previously paired
  */
@@ -694,7 +694,7 @@ native function ELoginStatus GetLoginStatus(byte LocalUserNum);
 native function bool GetUniquePlayerId(byte LocalUserNum,out UniqueNetId PlayerId);
 
 /**
- * Gets the ControllerId for the platform specific unique Id 
+ * Gets the ControllerId for the platform specific unique Id
  *
  * @param PlayerId the platform specific unique Id
  * @param ControllerId the byte that will receive the controllerId
@@ -1442,7 +1442,7 @@ native function bool AreAnyLocalTalkersRegistered();
  *
  * @param MessageType the type of message sent
  * @param Sender the Unique Net Id for the sender who sent the packet
- * @param InData the reliable voice data 
+ * @param InData the reliable voice data
  *
  */
 native function ReceiveReliableVoicePacket( byte MessageType, UniqueNetId Sender, int Length, byte InData[60]);
@@ -2029,7 +2029,7 @@ function bool ReadPlayerStorage(byte LocalUserNum,OnlinePlayerStorage PlayerStor
 delegate OnReadPlayerStorageComplete(byte LocalUserNum,bool bWasSuccessful);
 
 /**
- * Sets the delegate used to notify the gameplay code that the last read request has completed 
+ * Sets the delegate used to notify the gameplay code that the last read request has completed
  *
  * @param LocalUserNum which user to watch for read complete notifications
  * @param ReadPlayerStorageCompleteDelegate the delegate to use for notifications
@@ -2459,7 +2459,7 @@ native function EOnlineEnumerationReadState GetAchievements(byte LocalUserNum,ou
 native function ClearAchievements(byte LocalUserNum, optional int TitleId = 0);
 
 /**
- * Displays the UI for a products details 
+ * Displays the UI for a products details
  *
  * @param LocalUserNum the local user viewing available content
  * @param ParentProductId the product ID of the parent product for which to show child content
@@ -2470,7 +2470,7 @@ native function bool ShowProductDetailsUI(byte LocalUserNum, optional string Par
  * Displays the marketplace UI for content
  *
  * @param LocalUserNum the local user viewing available content
- * @param ParentProductType the type of the parent product specified by ParentProductId 
+ * @param ParentProductType the type of the parent product specified by ParentProductId
  *                          (use constants defined in OnlineSubsyste.uc, generally this should be PIT_Game)
  * @param RequestedProductTypes the types of child products to show in the marketplace UI
  *                          (use constants defined in OnlineSubsyste.uc, generally this should be PIT_Durable | PIT_Consumable)
@@ -2570,8 +2570,8 @@ native function OpenURL(string WebsiteLink);
 
 
 //@HSL_BEGIN_XBOX
-/** 
- * Delegate called when OSS-side tokens are acquired 
+/**
+ * Delegate called when OSS-side tokens are acquired
  */
 delegate OnTokenAndSignatureRetrieved(byte LocalUserNum, string URL, string Token, string Signature);
 
@@ -3199,7 +3199,7 @@ native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delega
 
 //@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
 function bool AddInGamePost( int InPostID, optional string InPostParam ); // Unused...
-function PostActivityFeedBossKill(string BossName, string MapName);
+function PostActivityFeedBossKill(string BossName, string ClassName, string MapName);
 function PostActivityFeedTeamAward(string AwardName);
 function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
 //@HSL_END
@@ -3209,7 +3209,7 @@ function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
 function ReadStoreData();
 delegate OnStoreDataRead( bool bSuccessful );
 function AddStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate );
-function ClearStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate ); 
+function ClearStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate );
 
 function ReadEntitlements();
 delegate OnEntitlementsRead( bool bSuccess );

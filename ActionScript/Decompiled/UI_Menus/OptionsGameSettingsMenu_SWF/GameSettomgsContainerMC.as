@@ -14,11 +14,9 @@ package
             this.__setProp_autoTurnOffCheckBox_GameSettomgsContainerMC_crosshairCheckBox_0();
             this.__setProp_classicWeaponSelectCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
             this.__setProp_showWelderInInvCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
-            this.__setProp_reduceHighPitchNoiseCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
+            this.__setProp_disableAutoUpgradeCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
             this.__setProp_killTickerCheckBox_GameSettomgsContainerMC_killTickerCheckBox_0();
             this.__setProp_useAltAimOnDualCheckBox_GameSettomgsContainerMC_killTickerCheckBox_0();
-            this.__setProp_antiMotionSicknessCheckBox_GameSettomgsContainerMC_killTickerCheckBox_0();
-            this.__setProp_disableAutoUpgradeCheckBox_GameSettomgsContainerMC_killTickerCheckBox_0();
             this.__setProp_closeButton_GameSettomgsContainerMC_header_0();
             this.__setProp_defaultButton_GameSettomgsContainerMC_header_0();
         }
@@ -153,26 +151,26 @@ package
             }
         }
         
-        function __setProp_reduceHighPitchNoiseCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0() : *
+        function __setProp_disableAutoUpgradeCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0() : *
         {
             try
             {
-                reduceHighPitchNoiseCheckBox["componentInspectorSetting"] = true;
+                disableAutoUpgradeCheckBox["componentInspectorSetting"] = true;
             }
             catch(e:Error)
             {
             }
-            reduceHighPitchNoiseCheckBox.autoSize = "none";
-            reduceHighPitchNoiseCheckBox.data = "";
-            reduceHighPitchNoiseCheckBox.enabled = true;
-            reduceHighPitchNoiseCheckBox.enableInitCallback = false;
-            reduceHighPitchNoiseCheckBox.focusable = true;
-            reduceHighPitchNoiseCheckBox.label = "Music Vocals";
-            reduceHighPitchNoiseCheckBox.selected = false;
-            reduceHighPitchNoiseCheckBox.visible = true;
+            disableAutoUpgradeCheckBox.autoSize = "none";
+            disableAutoUpgradeCheckBox.data = "";
+            disableAutoUpgradeCheckBox.enabled = true;
+            disableAutoUpgradeCheckBox.enableInitCallback = false;
+            disableAutoUpgradeCheckBox.focusable = true;
+            disableAutoUpgradeCheckBox.label = "Music Vocals";
+            disableAutoUpgradeCheckBox.selected = false;
+            disableAutoUpgradeCheckBox.visible = true;
             try
             {
-                reduceHighPitchNoiseCheckBox["componentInspectorSetting"] = false;
+                disableAutoUpgradeCheckBox["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {
@@ -225,58 +223,6 @@ package
             try
             {
                 useAltAimOnDualCheckBox["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_antiMotionSicknessCheckBox_GameSettomgsContainerMC_killTickerCheckBox_0() : *
-        {
-            try
-            {
-                antiMotionSicknessCheckBox["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            antiMotionSicknessCheckBox.autoSize = "none";
-            antiMotionSicknessCheckBox.data = "";
-            antiMotionSicknessCheckBox.enabled = true;
-            antiMotionSicknessCheckBox.enableInitCallback = false;
-            antiMotionSicknessCheckBox.focusable = true;
-            antiMotionSicknessCheckBox.label = "Music Vocals";
-            antiMotionSicknessCheckBox.selected = false;
-            antiMotionSicknessCheckBox.visible = true;
-            try
-            {
-                antiMotionSicknessCheckBox["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_disableAutoUpgradeCheckBox_GameSettomgsContainerMC_killTickerCheckBox_0() : *
-        {
-            try
-            {
-                disableAutoUpgradeCheckBox["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            disableAutoUpgradeCheckBox.autoSize = "none";
-            disableAutoUpgradeCheckBox.data = "";
-            disableAutoUpgradeCheckBox.enabled = true;
-            disableAutoUpgradeCheckBox.enableInitCallback = false;
-            disableAutoUpgradeCheckBox.focusable = true;
-            disableAutoUpgradeCheckBox.label = "Music Vocals";
-            disableAutoUpgradeCheckBox.selected = false;
-            disableAutoUpgradeCheckBox.visible = true;
-            try
-            {
-                disableAutoUpgradeCheckBox["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

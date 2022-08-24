@@ -12,6 +12,7 @@ class KFGFxExpandedObjectivesContainer extends KFGFxObject_Container;
 
 var KFGFxSpecialeventObjectivesContainer 	SpecialEventsContainer;
 var KFGFxWeeklyObjectivesContainer 			WeeklyEventContainer;
+var KFGFxDailyObjectivesContainer           DailyObjectiveContainer;
 
 var KFGfxMenu_StartGame StartMenu;
 
@@ -26,9 +27,13 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 }
 
 //returns true is data is changed
-function bool Refresh()
-{
-    return SpecialEventsContainer.PopulateData() || WeeklyEventContainer.PopulateData();
+function bool Refresh(optional bool bForceRefreshOfDaily)
+{   if(SpecialEventsContainer != none && WeeklyEventContainer != none)
+    {
+        return SpecialEventsContainer.PopulateData() || WeeklyEventContainer.PopulateData() || DailyObjectiveContainer.PopulateData(bForceRefreshOfDaily);
+    }
+
+    return false;
 }
 
 function LocalizeMenu()
@@ -37,6 +42,7 @@ function LocalizeMenu()
     TextObject = CreateObject("Object");
     // Localize static text
     TextObject.SetString("specialEvent",	class'KFMission_LocalizedStrings'.default.SeasonalString);  
-    TextObject.SetString("weekly",			class'KFMission_LocalizedStrings'.default.ShortWeeklyString);  
+    TextObject.SetString("daily",			class'KFMission_LocalizedStrings'.default.DailyObjectiveString);  
+    TextObject.SetString("weekly",          class'KFMission_LocalizedStrings'.default.ShortWeeklyString);  
     SetObject("localizedText", TextObject);
 }

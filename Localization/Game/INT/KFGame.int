@@ -62,19 +62,60 @@ FreeConsolePlayOverString="Thanks for playing Killing Floor 2! The free event is
 BuyGameString="STORE"
 CustomString="Custom"
 
+RarityStrings[0]="COMMON"
+RarityStrings[1]="UNCOMMON"
+RarityStrings[2]="RARE"
+RarityStrings[3]="EXCEPTIONAL"
+RarityStrings[4]="MASTERCRAFTED"
+RarityStrings[5]="EXCEEDINGLYRARE"
+RarityStrings[6]="ANY"
+
+WeaponTypeStrings[0]="PISTOL"
+WeaponTypeStrings[1]="SHOTGUN"
+WeaponTypeStrings[2]="RIFLE"
+WeaponTypeStrings[3]="PROJECTILE"
+WeaponTypeStrings[4]="FIRE"
+WeaponTypeStrings[5]="TECH"
+WeaponTypeStrings[6]="LAUNCHER"
+WeaponTypeStrings[7]="ASSAULT"
+WeaponTypeStrings[8]="MELEE"
+WeaponTypeStrings[9]="SMG"
+WeaponTypeStrings[10]="ALL"
+
+MixerGaveAmmoString=", a Mixer viewer, has given you ammo"
+MixerGaveArmorString=", a Mixer viewer, has given you armor"
+MixerGaveDoshString=", a Mixer viewer, has given you Dosh"
+MixerGaveGrenadeString=", a Mixer viewer, has given you a grenade"
+MixerGaveHealthString=", a Mixer viewer, has healed you"
+MixerZedTimeString=", a Mixer viewer, has actived ZedTime"
+MixerRageZedsString=", a Mixer viewer, has enraged nearby Zeds!"
+MixerPukeString=", a Mixer viewer, has puked on you!"
+MixerSpawnedFPString=", a Mixer viewer, has spawned a Fleshpound!"
+
+
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="OUTBREAK COMPLETION REWARD"
 WeeklyString="HORZINE WEEKLY OUTBREAK"
+DailyObjectiveString="DAILY"
 CurrentWeeklySettingsString="CURRENT OUTBREAK SETTINGS"
-SpecialEventString="SUMMER SIDE SHOW"
+SpecialEventString="SUMMER SIDESHOW"
 ShortWeeklyString="WEEKLY"
 SeasonalString="SEASONAL"
 SpecialEventChanceDropString="LIMITED DROP ITEMS"
 GrantedSpecialEventString="COMPLETION REWARD"
 RewardsString="OUTBREAK COMPLETION REWARD"
+RewardString="REWARD"
 WeeklyOverview="A new challenging game mode each week!"
 ObjectivesString="Toggle Objectives"
+VaultDoshString="Vault Dosh"
 
+DealDamageString="Deal Damage:"
+EarnXPString="Earn XP:"
+CompleteMapString="Complete Match in Map:"
+KillZedsString="Kill Zeds:"
+VersusKillsString=Kill Versus Players as:
+DealVersusDamageString=Damage Versus Players as:
+VersusCompletionString=Complete Match as:
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FAILED TO FIND MATCH"
@@ -701,7 +742,7 @@ PartyLeaderInOtherMenuString="is in another menu..."
 SearchingForGameString="Searching for online game..."
 
 PartHostLeftString="The party host has left"
-PartyLeaderChangedString="is now the new party host"
+PartyLeaderChangedString="New Party Host Selected"
 
 MuteString="Mute Player"
 UnmuteString="Unmute Player"
@@ -717,6 +758,16 @@ PartyLeaderString="Leader"
 [KFGFxWidget_PartyInGame_Versus]
 SwitchTeamsString="SWITCH TEAMS"
 balanceWarningString="WARNING: Teams will be auto-balanced"
+
+[KFGFxMenu_DoshVault]
+YourDoshString="Your Dosh"
+NextRewardString="Next Reward"
+OpenCrateString="OPEN CRATE"
+DoshVaultString="DOSH VAULT"
+YourCratesString="Your Crates:"
+OpenCratesString="OPEN CRATE(S)"
+CrateUnlockedString="CRATE UNLOCKED!"
+DelayedCrateString="* Dosh Vault Crate granting may be delayed until next game restart"
 
 [KFGFxMenu_Gear]
 GearHeaderString="CUSTOMIZE GEAR"
@@ -775,6 +826,9 @@ CraftWeaponDescriptionString="You can craft new weapon skin items from this menu
 RequiresString="Requires: "
 PurchaseKeyString="BUY KEY"
 LookUpOnMarketString="Lookup on Market"
+RarityFilterString="RARITY"
+PerkFilterString="PERK"
+WeaponTypeFilterString="WEAPON TYPE"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -836,10 +890,11 @@ ConfirmString="SELECT"
 MenuStrings[0]="HOME"
 MenuStrings[1]="PERKS"
 MenuStrings[2]="GEAR"
-MenuStrings[3]="INVENTORY"
-MenuStrings[4]="STORE"
-MenuStrings[5]="OPTIONS"
-MenuStrings[6]="EXIT"
+MenuStrings[3]="VAULT"
+MenuStrings[4]="INVENTORY"
+MenuStrings[5]="STORE"
+MenuStrings[6]="OPTIONS"
+MenuStrings[7]="EXIT"
 
 ServerBrowserString="SERVER BROWSER"
 MatchmakingString="MATCHMAKING"
@@ -917,6 +972,7 @@ VoiceCommsOptionStrings[5]="GET TO THE TRADER"
 VoiceCommsOptionStrings[6]="AFFIRMATIVE"
 VoiceCommsOptionStrings[7]="NEGATIVE"
 VoiceCommsOptionStrings[8]="EMOTE"
+VoiceCommsOptionStrings[9]="THANK YOU"
 
 [KFGFxMenu_Exit]
 HeaderString="EXIT GAME"
@@ -1132,6 +1188,8 @@ AntiMotionSicknessString="Anti Motion Sickness"
 AutoTurnOffString="No Auto Turn On Clot Grab"
 ReduceHighPitchNoiseString="Reduce High Pitch Noise"
 DisableAutoUpgradeString="Disable Auto-Upgrade"
+
+EnableMixerString="Enable Mixer"
 
 [LocalizedControls]
 ControllerLayoutDefault="Default"
@@ -1362,6 +1420,7 @@ ZedGroupRegroupingString="Zed Horde regrouping!"
 NextRoundBeginString="N E X T  R O U N D"
 PlayerCanChangePerksString="Perk changes are allowed"
 ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
+LastPlayerStandingString="LAST PLAYER STANDING"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="USE TRADER<%HOLD%>AUTO-UPGRADE"
@@ -2209,6 +2268,7 @@ USBSpitfire="Spit Fire USB Key - $2.49"
 USBHighVoltage="High Voltage USB Key - $2.49"
 MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 
+
 [Zeds]
 KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="Clot"
@@ -2352,11 +2412,11 @@ Source0="Chivalry Promo"
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
-SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
-SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
-SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
-SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1")
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2")
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3")
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4")
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5")
 
 AllCompleteRewardDescriptionString="Item description for all comeplete"
 
@@ -2366,16 +2426,25 @@ ChanceDropDescriptionStrings[1]="Drop 2"
 [KFGFxSummerSideShowObjectivesContainer]
 CurrentSpecialEventString="A time limited special event with exclusive items."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Power Up",DescriptionString="Power up the Generator In The Tragic Kingdom");
-SpecialEventObjectiveInfoList[1]=(TitleString="Pop the Clot",DescriptionString="Pop the Clot in The Tragic Kingdom");
-SpecialEventObjectiveInfoList[2]=(TitleString="Dunk the Bloat",DescriptionString="Dunk the Bloat in The Tragic Kingdom");
-SpecialEventObjectiveInfoList[3]=(TitleString="Dosh Toss",DescriptionString="Dosh Toss in The Tragic Kingdom");
-SpecialEventObjectiveInfoList[4]=(TitleString="Carnevil",DescriptionString="Win a match on Hard or higher In The Tragic Kingdom");
+SpecialEventObjectiveInfoList[0]=(TitleString="Power Up",DescriptionString="Power up the Generator In The Tragic Kingdom")
+SpecialEventObjectiveInfoList[1]=(TitleString="Pop the Clot",DescriptionString="Pop the Clot in The Tragic Kingdom")
+SpecialEventObjectiveInfoList[2]=(TitleString="Dunk the Bloat",DescriptionString="Dunk the Bloat in The Tragic Kingdom")
+SpecialEventObjectiveInfoList[3]=(TitleString="Dosh Toss",DescriptionString="Dosh Toss in The Tragic Kingdom")
+SpecialEventObjectiveInfoList[4]=(TitleString="Carnevil",DescriptionString="Win a match on Hard or higher In The Tragic Kingdom")
 
 AllCompleteRewardDescriptionString="Sideshow Hazmat Suit"
 
 ChanceDropDescriptionStrings[0]="Sideshow Prize Ticket"
 ChanceDropDescriptionStrings[1]="Sideshow Golden Ticket"
+
+;============================================
+; Daily Localization
+;============================================
+[KFGFxDailyObjectivesContainer]
+TitleString="DAILY OBJECTIVES"
+OverviewString="Daily Objectives are a randomly determined set of goals that change each day. Completing a Daily Objective will earn Dosh for your Dosh Vault."
+SubtitleString="Current Daily Objectives"
+KnifeString="Knife"
 
 ;============================================
 ; Weekly Localization
@@ -2414,7 +2483,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Up, Up, and Decay"
 DescriptionStrings[0]="Try to make ninety-nine Zed balloons."
 DescriptionStrings[1]="Length: Medium (7 waves)"
-ModifierDescriptions[0]="Shooting Zeds in this outbreak will cause them to inflate like balloons, even to the point of floating away and popping! Select the Weekly game mode on the Matchmaking page. Perk level 15+."
+ModifierDescriptions[0]="Shooting Zeds in this outbreak will cause them to inflate like balloons, but you better pop them or they start regenerating! Select the Weekly game mode on the Matchmaking page. Perk level 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2716,6 +2785,22 @@ DisplayName_POL="Królestwo Tragedii"
 DisplayName_PTB="Reino Trágico"
 DisplayName_RUS="Королевство Трагедий"
 
+[KF-Nightmare KFMapSummary]
+DisplayName_CHN="梦魇"
+DisplayName_CHT="夢魘"
+DisplayName_DEU="Albtraum"
+DisplayName_ESL="Pesadilla"
+DisplayName_ESN="Pesadilla"
+DisplayName_FRA="Cauchemar"
+DisplayName_FRC="Cauchemar"
+DisplayName_INT="Nightmare"
+DisplayName_ITA="Incubo"
+DisplayName_JPN="悪夢"
+DisplayName_KOR="악몽"
+DisplayName_POL="Koszmar"
+DisplayName_PTB="Pesadelo"
+DisplayName_RUS="Кошмар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2769,6 +2854,9 @@ DisplayName="Nuked"
 
 [KF-TragicKingdom KFMapSummary]
 DisplayName="The Tragic Kingdom"
+
+[KF-Nightmare KFMapSummary]
+DisplayName="Nightmare"
 
 [KFMapInfo]
 ; defaults

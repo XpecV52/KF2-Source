@@ -9,7 +9,8 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
     abstract
     native(Pawn)
     config(Game)
-    hidecategories(Navigation);
+    hidecategories(Navigation)
+    implements(KFInterface_MonsterBoss);
 
 struct native BossMinionWaveInfo
 {
@@ -37,11 +38,96 @@ var protected const float TimeUntilSpeedIncrease;
 var protected const float SpeedLimitScalar;
 var protected const float SpeedPctIncreasePerMinute;
 var protected float ActualSprintSpeed;
+var bool bUseAnimatedCamera;
+var Vector AnimatedBossCameraOffset;
+var const localized array<localized string> BossCaptionStrings;
 
 replication
 {
      if(bNetDirty)
         CurrentBattlePhase;
+}
+
+simulated function KFPawn_Monster GetMonsterPawn()
+{
+    return self;
+}
+
+simulated function string GetRandomBossCaption()
+{
+    if(default.BossCaptionStrings.Length <= 0)
+    {
+        return "";
+    }
+    return default.BossCaptionStrings[Rand(default.BossCaptionStrings.Length)];
+}
+
+static simulated event bool IsABoss()
+{
+    return true;
+}
+
+simulated function float GetHealthPercent()
+{
+    return float(Health) / float(HealthMax);
+}
+
+simulated function SetAnimatedBossCamera(bool bEnable, optional Vector CameraOffset)
+{
+    bUseAnimatedCamera = bEnable;
+    if(bUseAnimatedCamera)
+    {
+        AnimatedBossCameraOffset = CameraOffset;        
+    }
+    else
+    {
+        AnimatedBossCameraOffset = vect(0, 0, 0);
+    }
+}
+
+simulated function bool UseAnimatedBossCamera()
+{
+    return bUseAnimatedCamera;
+}
+
+simulated function name GetBossCameraSocket()
+{
+    return 'TheatricCameraRootSocket';
+}
+
+simulated function Vector GetBossCameraOffset()
+{
+    return AnimatedBossCameraOffset;
+}
+
+function OnZedDied(Controller Killer)
+{
+    super.OnZedDied(Killer);
+    KFGameInfo(WorldInfo.Game).BossDied(Killer);
+}
+
+function KFAIWaveInfo GetWaveInfo(int BattlePhase, int Difficulty)
+{
+    switch(BattlePhase)
+    {
+        case 1:
+            return SummonWaves[Difficulty].PhaseOneWave;
+            break;
+        case 2:
+            return SummonWaves[Difficulty].PhaseTwoWave;
+            break;
+        case 3:
+            return SummonWaves[Difficulty].PhaseThreeWave;
+            break;
+        default:
+            break;
+    }
+    return none;
+}
+
+function byte GetNumMinionsToSpawn()
+{
+    return byte(Lerp(NumMinionsToSpawn.X, NumMinionsToSpawn.Y, FMax(float(WorldInfo.Game.NumPlayers), 1) / float(WorldInfo.Game.MaxPlayers)));
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -79,6 +165,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super.PossessedBy(C, bVehicleTransition);
     PlayBossMusic();
+    ServerDoSpecialMove(34);
     if(!IsHumanControlled())
     {
         ActualSprintSpeed = SprintSpeed;
@@ -102,11 +189,6 @@ function Timer_IncreaseSpeed()
         LastPlayerAliveStartTime = 0;
         SprintSpeed = ActualSprintSpeed;
     }
-}
-
-function byte GetNumMinionsToSpawn()
-{
-    return byte(Lerp(NumMinionsToSpawn.X, NumMinionsToSpawn.Y, FMax(float(WorldInfo.Game.NumPlayers), 1) / float(WorldInfo.Game.MaxPlayers)));
 }
 
 function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum, Actor DamageCauser)
@@ -172,54 +254,11 @@ simulated function OnBattlePhaseChanged()
 
 simulated function UpdateBattlePhaseOnLocalPlayerUI()
 {
-    if(((KFPC == none) || KFPC.MyGFxHUD == none) || KFPC.MyGFxHUD.bossHealthBar == none)
+    if(((KFPC == none) || KFPC.myGfxHUD == none) || KFPC.myGfxHUD.bossHealthBar == none)
     {
         return;
     }
-    KFPC.MyGFxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);
-}
-
-function bool HandleAIDoorBump(KFDoorActor door)
-{
-    return TryDestroyDoor(door);
-}
-
-function bool TryDestroyDoor(KFDoorActor door)
-{
-    if(((((door != none) && !door.bIsDoorOpen) && !door.bIsDestroyed) && door.WeldIntegrity == 0) && CanObliterateDoors())
-    {
-        door.IncrementHitCount(self);
-        door.DestroyDoor(Controller);
-        return true;
-    }
-    return false;
-}
-
-event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
-{
-    local KFDoorActor door;
-
-    if(IsHumanControlled())
-    {
-        if(!Wall.bStatic && IsAliveAndWell())
-        {
-            door = KFDoorActor(Wall);
-            if(door != none)
-            {
-                TryDestroyDoor(door);
-            }
-        }
-    }
-    super.HitWall(HitNormal, Wall, WallComp);
-}
-
-function bool CanObliterateDoors()
-{
-    if(!bIsSprinting)
-    {
-        return false;
-    }
-    return true;
+    KFPC.myGfxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);
 }
 
 function float GetAttackRangeScale()
@@ -243,16 +282,6 @@ function bool IsOnePlayerLeftInTeamGame()
 // Export UKFPawn_MonsterBoss::execLocalIsOnePlayerLeftInTeamGame(FFrame&, void* const)
 native function bool LocalIsOnePlayerLeftInTeamGame();
 
-simulated event bool IsActiveBoss()
-{
-    return true;
-}
-
-static function bool IsABoss()
-{
-    return true;
-}
-
 function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLocation)
 {
     local bool Result;
@@ -274,8 +303,6 @@ function CauseHeadTrauma(optional float BleedOutTime)
 }
 
 simulated function PlayHeadAsplode();
-
-function PlayMonologue(byte MonologueType);
 
 function PlayGrabDialog()
 {
@@ -319,11 +346,10 @@ defaultproperties
     TimeUntilSpeedIncrease=60
     SpeedLimitScalar=1.3
     SpeedPctIncreasePerMinute=0.2
-    MinSpawnSquadSizeType=ESquadType.EST_Boss
-    MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_MonsterBoss.MeleeHelper'
-    BossName="Boss"
     BossCaptionStrings(0)="Boss caption 1"
     BossCaptionStrings(1)="Boss caption 2"
+    MinSpawnSquadSizeType=ESquadType.EST_Boss
+    MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_MonsterBoss.MeleeHelper'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

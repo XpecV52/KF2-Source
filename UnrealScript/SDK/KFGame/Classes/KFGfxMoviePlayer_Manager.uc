@@ -27,6 +27,7 @@ enum EUIIndex
 	UI_Start,
 	UI_Perks,
 	UI_Gear,
+	UI_Dosh_Vault,
 	UI_Inventory,
 	UI_Store,
 	UI_OptionsSelection,
@@ -86,6 +87,7 @@ var KFGFxMenu_Trader TraderMenu;
 var KFGFxMenu_ServerBrowser ServerBrowserMenu;
 var KFGFxMenu_Exit ExitMenu;
 var KFGFxMenu_IIS IISMenu;
+var KFGFxMenu_DoshVault DoshVaultMenu;
 
 /** The screen size movie used to adjusted safe frame */
 var KFGFxMoviePlayer_ScreenSize ScreenSizeMovie;
@@ -127,9 +129,9 @@ enum EPopUpType
 struct DelayedPopup
 {
 	var bool bShown;
-	var int Priority; 
-	var EPopUpType PopUpType; 
-	var string TitleString; 
+	var int Priority;
+	var EPopUpType PopUpType;
+	var string TitleString;
 	var string DescriptionString;
 	var string LeftButtonString;
 	var string RightButtonString;
@@ -188,6 +190,8 @@ var array<string> WidgetPaths;
  *  Misc
  ************************************/
 
+var bool bStatsInitialized;
+
 //The target PRI for currnet vote
 var PlayerReplicationInfo VotePRI;
 
@@ -232,6 +236,9 @@ var OnlineSubsystem OnlineSub;
 /** The playfab interface used for console */
 var PlayfabInterface PlayfabInter;
 
+//Inventory Pending item
+var int SelectIDOnOpen;
+
 //Delegates for popups.  These are used to hold the delegates while the swf is loading. once it is loaded, it will pass it to the GFX object
 //@TODO: Rewrite the pop up system to keep the pop ups loaded in at all times so the pending delegates are not needed. (Hide and show them as needed)
 delegate PendingRightButtonDelegate();
@@ -244,7 +251,7 @@ function Init(optional LocalPlayer LocPlay)
 	local Vector2D ViewportSize;
 	local GameViewportClient GVC;
 	local float ScaleStage;
-	
+
 	// Initialize datastores
 	class'KFUIDataStore_GameResource'.static.InitializeProviders();
 
@@ -314,6 +321,10 @@ function LaunchMenus( optional bool bForceSkipLobby )
 	local TextureMovie BGTexture;
 
 	GVC = KFGameViewportClient(GetGameViewportClient());
+	KFPC = KFPlayerController(GetPC());
+
+	bStatsInitialized = KFPC.HasReadStats();
+
 	// Add either the in game party or out of game party widget
 	WidgetBinding.WidgetName = 'partyWidget';
 	if ( class'WorldInfo'.static.IsMenuLevel() )
@@ -326,7 +337,7 @@ function LaunchMenus( optional bool bForceSkipLobby )
 		UpdateBackgroundMovie();
 
 		BGTexture = (GetPC().WorldInfo.IsConsoleBuild() && bShowIIS) ? IISMovie : CurrentBackgroundMovie;
-		
+
 		bShowMenuBg = GVC.bSeenIIS || !GetPC().WorldInfo.IsConsoleBuild();
 		ManagerObject.SetBool("backgroundVisible", bShowMenuBg);
 		ManagerObject.SetBool("IISMovieVisible", !bShowMenuBg);
@@ -385,7 +396,6 @@ function LaunchMenus( optional bool bForceSkipLobby )
 		}
 		if(GVC.bHandlePlayTogether)
 		{
-			KFPC = KFPlayerController(GetPC());
 			KFPC.OnGameDestroyedForPlayTogetherComplete('Party', true);
 			GVC.bHandlePlayTogether = false;
 		}
@@ -429,7 +439,11 @@ function UpdateBackgroundMovie()
 	}
 	else
 	{
-		CurrentBackgroundMovie.Stop();
+		if(CurrentBackgroundMovie != none)
+		{
+			CurrentBackgroundMovie.Stop();
+		}
+
         NewBackgroundMovie.Stop();
 	}
     CurrentBackgroundMovie = NewBackgroundMovie;
@@ -496,13 +510,13 @@ function DelayedOpenPopup( EPopUpType PopUpType, int PopupPriority, string Title
 
 
 	// Special Case - RegionBest Popup replaces RegionWait popup
-	if(PopupPriority == EDPPID_RegionBest 
+	if(PopupPriority == EDPPID_RegionBest
 		&& DelayedPopups[DelayedPopups.Length - 1].Priority == EDPPID_RegionWait)
 	{
 		UnloadCurrentPopup();
 	}
 	// Check to see if the new one is more important, usurper case.
-	else if(CurrentPopup != none && DelayedPopups.Length > 0)	
+	else if(CurrentPopup != none && DelayedPopups.Length > 0)
 	{
 		if(DelayedPopups[DelayedPopups.Length - 1].Priority < PopupPriority)
 		{
@@ -527,7 +541,7 @@ function DelayedOpenPopup( EPopUpType PopUpType, int PopupPriority, string Title
 			return;
 		}
 	}
-	
+
 	// Empty case, simply insert and show
 	DelayedPopups.InsertItem(0, Popup);
 	`TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
@@ -553,7 +567,7 @@ function ShowDelayedPopupMessage()
 					DelayedPopups[DelayedPopups.Length - 1].MiddleButtonString,
 					DelayedPopups[DelayedPopups.Length - 1].MiddleButtonDelegate,
 					DelayedPopups[DelayedPopups.Length - 1].OverridingSoundEffect);
-		
+
 		// Setting shown after OpenPopup, in case OpenPopup closes a usurped popup
 		DelayedPopups[DelayedPopups.Length - 1].bShown = true;
 	}
@@ -594,6 +608,14 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 				// Let the menuManager know if we are on console.
 				ManagerObject.SetBool("bConsoleBuild",class'WorldInfo'.static.IsConsoleBuild());
 			}
+		break;
+		case ( 'doshVaultMenu' ):
+			if(DoshVaultMenu == none)
+			{
+				DoshVaultMenu = KFGFxMenu_DoshVault(Widget);
+				DoshVaultMenu.InitializeMenu( self );
+			}
+			OnMenuOpen( WidgetPath, DoshVaultMenu );
 		break;
 		case ( 'exitMenu' ):
 			if( ExitMenu == none )
@@ -647,7 +669,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			}
 			OnMenuOpen( WidgetPath, InventoryMenu );
 		break;
-		
+
 		case ( 'storeMenu' ):
 			if (StoreMenu == none)
 			{
@@ -776,11 +798,17 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 
 function StatsInitialized()
 {
+	if(StartMenu != none && StartMenu.MissionObjectiveContainer != none)
+	{
+		StartMenu.MissionObjectiveContainer.Refresh(true);
+	}
 	// Notify IIS menu that stats have been read
 	if( IISMenu != none )
 	{
 		IISMenu.bStatsRead = true;
 	}
+
+	bStatsInitialized = true;
 }
 
 function AllowCloseMenu()
@@ -845,7 +873,7 @@ function SetMenusOpen(bool bIsOpen)
 	SetMovieCanReceiveInput(bIsOpen);
 	if(bUsingGamepad)
 	{
-		FlushPlayerInput(false); 
+		FlushPlayerInput(false);
 	}
 	HudWrapper = KFGFxHudWrapper(HUD);
 	if( HudWrapper != none && HudWrapper.HudMovie != none )
@@ -874,6 +902,14 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		if( MenuBarWidget != none && !MenuBarWidget.CanUseGearButton(PC, self) )
 		{
 			return;
+		}
+	}
+
+	if(CurrentMenuIndex == UI_Dosh_Vault && NewMenuIndex != UI_Dosh_Vault)
+	{
+		if(DoshVaultMenu != none)
+		{
+			DoshVaultMenu.AbortSquence();
 		}
 	}
 
@@ -963,7 +999,7 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		 	}
 		 }
 	}
-	
+
 	UpdateMenuBar();
 	if ( class'WorldInfo'.static.IsConsoleBuild() && MenuSWFPaths[NewMenuIndex].ConsoleSWFPath != "" )
 	{
@@ -1107,7 +1143,7 @@ function bool ToggleMenus()
 
 		if (CurrentMenu != TraderMenu)
 		{
-			PlaySoundFromTheme('MAINMENU_CLOSE', 'UI'); 
+			PlaySoundFromTheme('MAINMENU_CLOSE', 'UI');
 		}
 
     	CloseMenus();
@@ -1207,7 +1243,7 @@ function CloseTraderMenu()
 }
 
 /*********************************************************************************************
-* @name Server Welcome Screen	
+* @name Server Welcome Screen
 ********************************************************************************************* */
 
 function ShowWelcomeScreen()
@@ -1314,6 +1350,11 @@ private function OpenPopup( EPopUpType PopUpType, string TitleString, string Des
 		{
 			PlaySoundFromTheme(OverridingSoundEffect, SoundThemeName);
 		}
+
+		if (!bMenusOpen)
+		{
+			ToggleMenus();
+		}
 	}
 }
 
@@ -1329,7 +1370,7 @@ function LoadPopup( string Path, optional string TitleString, optional string De
 function UnloadCurrentPopup()
 {
 	ManagerObject.ActionScriptVoid("unloadCurrentPopup");
-	
+
 	`log(`location@`showvar(CurrentPopup));
 
 	if ( CurrentPopup != none )
@@ -1345,7 +1386,7 @@ function UnloadCurrentPopup()
         	bCaptureInput = false;
     	}
 	}
-	
+
 	if( DelayedPopups.Length > 0 )
 	{
 		if(DelayedPopups[DelayedPopups.Length - 1].bShown)
@@ -1353,7 +1394,7 @@ function UnloadCurrentPopup()
 			DelayedPopups.Remove(DelayedPopups.Length - 1, 1);
 		}
 	}
-	
+
 	`TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
 }
 
@@ -1371,7 +1412,7 @@ function UnloadPopups()
 function ConditionalPauseGame(bool bPause)
 {
 	local WorldInfo WI;
-	
+
 	WI = class'WorldInfo'.static.GetWorldInfo();
 	if( WI.NetMode == NM_Standalone )
 	{
@@ -1451,7 +1492,7 @@ function bool GetMultiplayerMenuActive()
 		return true;
 	}
 
-	/*if( CurrentMenuIndex == UI_Store ) //This is not a multiplayer menu. -ZG 
+	/*if( CurrentMenuIndex == UI_Store ) //This is not a multiplayer menu. -ZG
 	{
 		return true;
 	}*/
@@ -1525,7 +1566,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 	local bool bLoading;
 
 	KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
-	
+
 	if ( class'KFGameEngine'.static.IsFullScreenMoviePlaying() )
 	{
 		return true;
@@ -1533,7 +1574,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 
 	// Handle closing out of currently active menu
 	if ( (bAfterLobby || GetPC().WorldInfo.GRI.bMatchIsOver) && InputEvent == EInputEvent.IE_Pressed
-		&& (ButtonName == 'Escape' || ButtonName == 'XboxTypeS_Start') 
+		&& (ButtonName == 'Escape' || ButtonName == 'XboxTypeS_Start')
 		&& bMenusOpen && (bCanCloseMenu || bPostGameState))
 	{
 		return ToggleMenus();
@@ -1578,17 +1619,17 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 		}
 
 	}
-	
+
 		if ( CurrentMenu != none )
 		{
-		
+
 			if ( !class'WorldInfo'.static.IsConsoleBuild() )
     		{
 				CheckIfUsingGamepad();
 			}
 
 			return CurrentMenu.FilterButtonInput( ControllerId, ButtonName, InputEvent );
-		}		
+		}
 
  	return false;
 }
@@ -1817,7 +1858,10 @@ defaultproperties
 {
 	InGamePartyWidgetClass=class'KFGFxWidget_PartyInGame'
 	BackgroundMovies(SEI_None)=TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Spring)=TextureMovie'UI_Managers.MenuBG'
 	BackgroundMovies(SEI_Summer)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
+	BackgroundMovies(SEI_Fall)=TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Winter)=TextureMovie'UI_Managers.MenuBG'
 	IISMovie = TextureMovie'UI_Managers.IIS'
     MovieInfo=SwfMovie'UI_Managers.LoaderManager_SWF'
 	bCaptureInput=true
@@ -1826,6 +1870,7 @@ defaultproperties
 	MouseInputChangedThreshold=5
 
 	SoundThemeName=ButtonSoundTheme
+	SoundThemes.Add((ThemeName="SoundTheme_DoshVault",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Crate'))
 	SoundThemes.Add((ThemeName="SoundTheme_Crate",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Crate'))
 	SoundThemes.Add((ThemeName="ButtonSoundTheme",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Buttons'))
 	SoundThemes.Add((ThemeName="AAR",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_AAR'))
@@ -1839,6 +1884,7 @@ defaultproperties
 	MenuSWFPaths[UI_Perks]=(BaseSWFPath="../UI_Menus/PerksMenu_SWF.swf")
 	MenuSWFPaths[UI_ServerBrowserMenu]=(BaseSWFPath="../UI_Menus/ServerBrowserMenu_SWF.swf")
 	MenuSWFPaths[UI_Gear]=(BaseSWFPath="../UI_Menus/GearMenu_SWF.swf")
+	MenuSWFPaths[UI_Dosh_Vault]=(BaseSWFPath="../UI_Menus/DoshVaultMenu_SWF.swf")
 	MenuSWFPaths[UI_Inventory]=(BaseSWFPath="../UI_Menus/InventoryMenu_SWF.swf")
 	MenuSWFPaths[UI_Store]=(BaseSWFPath="../UI_Menus/StoreMenu_SWF.swf")
 	MenuSWFPaths[UI_OptionsSelection]=(BaseSWFPath="../UI_Menus/OptionsSelectionMenu_SWF.swf")
@@ -1865,6 +1911,7 @@ defaultproperties
 	WidgetBindings.Add((WidgetName="InputPromptPopup",WidgetClass=class'KFGFxPopup_InputPrompt'))
 
 	// Widgets
+	WidgetBindings.Add((WidgetName="doshVaultMenu",WidgetClass=class'KFGFxMenu_DoshVault'))
 	WidgetBindings.Add((WidgetName="serverBrowserMenu",WidgetClass=class'KFGFxMenu_ServerBrowser'))
 	WidgetBindings.Add((WidgetName="root1",WidgetClass=class'GFxObject'))
 	WidgetBindings.Add((WidgetName="startMenu",WidgetClass=class'KFGFxMenu_StartGame'))
@@ -1888,4 +1935,6 @@ defaultproperties
 
 	WidgetBindings.Add((WidgetName="MenuBarWidget",WidgetClass=class'KFGFxWidget_MenuBar'))
 	WidgetBindings.Add((WidgetName="ButtonPromptWidgetContainer", WidgetClass=class'KFGFxWidget_ButtonPrompt'))
+
+	SelectIDOnOpen=-1
 }

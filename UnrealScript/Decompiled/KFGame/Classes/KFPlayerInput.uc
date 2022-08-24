@@ -556,7 +556,7 @@ exec function GamepadSwitchFire()
 
     if(bGamePadWeaponSelectOpen)
     {
-        if(Outer.MyGFxHUD.WeaponSelectWidget != none)
+        if(Outer.myGfxHUD.WeaponSelectWidget != none)
         {
             W = ((Outer.Pawn.InvManager.PendingWeapon != none) ? Outer.Pawn.InvManager.PendingWeapon : Outer.Pawn.Weapon);
             if((W != none) && W.bCanThrow)
@@ -897,9 +897,9 @@ exec function ReleaseGamepadWeaponSelect()
     {
         return;
     }
-    if(bGamePadWeaponSelectOpen && Outer.MyGFxHUD.WeaponSelectWidget != none)
+    if(bGamePadWeaponSelectOpen && Outer.myGfxHUD.WeaponSelectWidget != none)
     {
-        Outer.MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(false);
+        Outer.myGfxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(false);
         bGamePadWeaponSelectOpen = false;
     }
     if(Outer.Pawn != none)
@@ -948,7 +948,7 @@ function GamepadWeaponMenuTimer()
 {
     local KFWeapon KFW;
 
-    if(((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.VoiceCommsWidget != none) && Outer.MyGFxHUD.VoiceCommsWidget.bActive)
+    if(((Outer.myGfxHUD != none) && Outer.myGfxHUD.VoiceCommsWidget != none) && Outer.myGfxHUD.VoiceCommsWidget.bActive)
     {
         return;
     }
@@ -959,10 +959,10 @@ function GamepadWeaponMenuTimer()
         {
             return;
         }
-        if(Outer.MyGFxHUD.WeaponSelectWidget != none)
+        if(Outer.myGfxHUD.WeaponSelectWidget != none)
         {
             bGamePadWeaponSelectOpen = true;
-            Outer.MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(true);
+            Outer.myGfxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(true);
             KFInventoryManager(Outer.Pawn.InvManager).HighlightWeapon(Outer.Pawn.Weapon);
         }
     }
@@ -982,7 +982,7 @@ exec function SwitchWeaponGroup(byte GroupID)
     {
         return;
     }
-    if(((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.VoiceCommsWidget != none) && Outer.MyGFxHUD.VoiceCommsWidget.bActive)
+    if(((Outer.myGfxHUD != none) && Outer.myGfxHUD.VoiceCommsWidget != none) && Outer.myGfxHUD.VoiceCommsWidget.bActive)
     {
         return;
     }
@@ -1160,49 +1160,49 @@ exec function ShowVoiceComms()
     {
         return;
     }
-    if((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.VoiceCommsWidget != none)
+    if((Outer.myGfxHUD != none) && Outer.myGfxHUD.VoiceCommsWidget != none)
     {
-        Outer.MyGFxHUD.ShowVoiceComms(true);
+        Outer.myGfxHUD.ShowVoiceComms(true);
     }
 }
 
 exec function HideVoiceComms()
 {
-    if((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.VoiceCommsWidget != none)
+    if((Outer.myGfxHUD != none) && Outer.myGfxHUD.VoiceCommsWidget != none)
     {
-        Outer.MyGFxHUD.ShowVoiceComms(false);
+        Outer.myGfxHUD.ShowVoiceComms(false);
     }
 }
 
 exec function OnVoteYesPressed()
 {
-    if((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.KickVoteWidget != none)
+    if((Outer.myGfxHUD != none) && Outer.myGfxHUD.KickVoteWidget != none)
     {
-        Outer.MyGFxHUD.KickVoteWidget.OnYesPressed();
+        Outer.myGfxHUD.KickVoteWidget.OnYesPressed();
     }
 }
 
 exec function OnVoteYesRelease()
 {
-    if((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.KickVoteWidget != none)
+    if((Outer.myGfxHUD != none) && Outer.myGfxHUD.KickVoteWidget != none)
     {
-        Outer.MyGFxHUD.KickVoteWidget.OnYesReleased();
+        Outer.myGfxHUD.KickVoteWidget.OnYesReleased();
     }
 }
 
 exec function OnVoteNoPressed()
 {
-    if((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.KickVoteWidget != none)
+    if((Outer.myGfxHUD != none) && Outer.myGfxHUD.KickVoteWidget != none)
     {
-        Outer.MyGFxHUD.KickVoteWidget.OnNoPressed();
+        Outer.myGfxHUD.KickVoteWidget.OnNoPressed();
     }
 }
 
 exec function OnVoteNoRelease()
 {
-    if((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.KickVoteWidget != none)
+    if((Outer.myGfxHUD != none) && Outer.myGfxHUD.KickVoteWidget != none)
     {
-        Outer.MyGFxHUD.KickVoteWidget.OnNoReleased();
+        Outer.myGfxHUD.KickVoteWidget.OnNoReleased();
     }
 }
 

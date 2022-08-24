@@ -11,7 +11,8 @@ class KFGameDifficulty_Survival extends KFGameDifficultyInfo;
 defaultproperties
 {
 	Normal={(TraderTime=75,
-   		MovementSpeedMod=0.870000,
+         SpawnRateModifier=0.8,
+   		MovementSpeedMod=0.90000, //0.87 //0.82
    		WaveCountMod=0.850000,
    		DoshKillMod=1.200000,
    		StartingDosh=300,
@@ -21,11 +22,16 @@ defaultproperties
    		SelfInflictedDamageMod=0.100000)}
 
 	Hard={(RespawnDosh=300,
+         SpawnRateModifier=0.8,
+         MovementSpeedMod=0.95,
+         //SpawnRateModifier=1.0,
    		AmmoPickupsMod=0.300000,
    		ItemPickupsMod=0.350000,
    		SelfInflictedDamageMod=0.200000)}
 
 	Suicidal={(WaveCountMod=1.300000,
+         SpawnRateModifier=0.7,   //1.0
+         MovementSpeedMod=0.95,  //1.0 
          DoshKillMod=1.000000,  //1.0
    		AmmoPickupsMod=0.40000, //0.25
    		ItemPickupsMod=0.250000,
@@ -33,7 +39,8 @@ defaultproperties
    		HardAttackChance=0.500000,
    		SelfInflictedDamageMod=0.200000)}
 
-	HellOnEarth={(MovementSpeedMod=1.050000,
+	HellOnEarth={(MovementSpeedMod=0.95, //1.05  
+         SpawnRateModifier=0.68, //1.0           
    		WaveCountMod=1.700000,
    		DoshKillMod=0.900000,
    		StartingDosh=250, //200
@@ -41,6 +48,6 @@ defaultproperties
    		AmmoPickupsMod=0.250000,
    		ItemPickupsMod=0.100000,
    		MediumAttackChance=1.000000,
-         HardAttackChance=1.000000,
+   		HardAttackChance=1.000000,
          SelfInflictedDamageMod=0.50000)}
 }

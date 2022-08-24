@@ -59,6 +59,20 @@ var localized string CustomString;
 
 var localized string CancelConnectionString;
 
+var localized array<string> WeaponTypeStrings;
+var localized array<string> RarityStrings;
+
+
+var localized string MixerGaveAmmoString;
+var localized string MixerGaveArmorString;
+var localized string MixerGaveDoshString;
+var localized string MixerGaveGrenadeString;
+var localized string MixerGaveHealthString;
+var localized string MixerZedTimeString;
+var localized string MixerRageZedsString;
+var localized string MixerPukeString;
+var localized string MixerSpawnedFPString;
+
 static function array<string> GetDifficultyStringsArray()
 {
 	return default.DifficultyStrings;
@@ -212,6 +226,33 @@ defaultproperties
    BuyGameString="STORE"
    CustomString="Custom"
    CancelConnectionString="Cancel Loading"
+   WeaponTypeStrings(0)="PISTOL"
+   WeaponTypeStrings(1)="SHOTGUN"
+   WeaponTypeStrings(2)="RIFLE"
+   WeaponTypeStrings(3)="PROJECTILE"
+   WeaponTypeStrings(4)="FIRE"
+   WeaponTypeStrings(5)="TECH"
+   WeaponTypeStrings(6)="LAUNCHER"
+   WeaponTypeStrings(7)="ASSAULT"
+   WeaponTypeStrings(8)="MELEE"
+   WeaponTypeStrings(9)="SMG"
+   WeaponTypeStrings(10)="ALL"
+   RarityStrings(0)="COMMON"
+   RarityStrings(1)="UNCOMMON"
+   RarityStrings(2)="RARE"
+   RarityStrings(3)="EXCEPTIONAL"
+   RarityStrings(4)="MASTERCRAFTED"
+   RarityStrings(5)="EXCEEDINGLYRARE"
+   RarityStrings(6)="ANY"
+   MixerGaveAmmoString=", a Mixer viewer, has given you ammo"
+   MixerGaveArmorString=", a Mixer viewer, has given you armor"
+   MixerGaveDoshString=", a Mixer viewer, has given you Dosh"
+   MixerGaveGrenadeString=", a Mixer viewer, has given you a grenade"
+   MixerGaveHealthString=", a Mixer viewer, has healed you"
+   MixerZedTimeString=", a Mixer viewer, has actived ZedTime"
+   MixerRageZedsString=", a Mixer viewer, has enraged nearby Zeds!"
+   MixerPukeString=", a Mixer viewer, has puked on you!"
+   MixerSpawnedFPString=", a Mixer viewer, has spawned a Fleshpound!"
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

@@ -11,7 +11,8 @@ class KFSpawnVolume extends Volume
     dependson(KFScout)
 	hidecategories(Volume,Collision,Attachment,Physics,Mobile)
 	native
-	placeable;
+	placeable
+	config(Game);
 
 `include(KFGame\KFGameAnalytics.uci);
 
@@ -90,7 +91,7 @@ var() vector SpawnBoundsScale;
 var bool bDebugVisibilityChecks;
 
 /** Will log out/display info on Rating Checks for this spawn volume */
-var bool bDebugRatingChecks;
+var config bool bDebugRatingChecks;
 
 /** Will spit out minimal debug rating checks */
 var bool bMinimalDebugRatingChecks;
@@ -253,17 +254,20 @@ simulated function OnToggle( SeqAct_Toggle Action )
 	// Turn ON
 	if( Action.InputLinks[0].bHasImpulse )
 	{
+		`log("*** turning volume on:" @ self, bDebugRatingChecks);
 		bCanUseForSpawning = true;
 	}
 	// Turn OFF
 	else if (Action.InputLinks[1].bHasImpulse)
 	{
+		`log("*** turning volume off:" @ self, bDebugRatingChecks);
 		bCanUseForSpawning = false;
 	}
 	// Toggle
 	else if (Action.InputLinks[2].bHasImpulse)
 	{
 		bCanUseForSpawning = !bCanUseForSpawning;
+		`log("*** toggling volume:" @ self @ bCanUseForSpawning, bDebugRatingChecks);
 	}
 }
 

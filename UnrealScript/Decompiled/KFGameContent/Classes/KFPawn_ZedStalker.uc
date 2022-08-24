@@ -239,7 +239,7 @@ function CallOutCloakingExpired()
     UpdateGameplayMICParams();
 }
 
-simulated function Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem AltRallyEffect, name AltEffectBoneNames[2], Vector AltEffectOffset, optional bool bSkipEffects)
+simulated function bool Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem AltRallyEffect, name AltEffectBoneNames[2], Vector AltEffectOffset, optional bool bSkipEffects)
 {
     local PlayerController PC;
 
@@ -252,7 +252,7 @@ simulated function Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, nam
             bSkipEffects = true;
         }
     }
-    super.Rally(RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects);
+    return super.Rally(RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects);
 }
 
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)

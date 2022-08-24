@@ -498,6 +498,7 @@ DefaultProperties
         Radius=160.f
         LightColor=(R=250,G=155,B=40,A=255)
         CastShadows=false
+		bCastPerObjectShadows=false
         bEnabled=false
         LightingChannels=(Indoor=true,Outdoor=true,bInitialized=true)
 
@@ -519,6 +520,7 @@ DefaultProperties
 	// Explosion light
 	Begin Object Class=PointLightComponent Name=ExplosionPointLight
 	    LightColor=(R=245,G=190,B=140,A=255)
+		bCastPerObjectShadows=false
 	End Object
 
 	// Backpack/Suicide Explosion
@@ -574,7 +576,7 @@ DefaultProperties
 	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=8.5,  Duration=4.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5,  Duration=1.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0), Cooldown=5.5,  Duration=3.0)
-    IncapSettings(AF_Bleed)=    (Vulnerability=(3))
+    IncapSettings(AF_Bleed)=    (Vulnerability=(1.0))
 
 	Begin Object Name=Afflictions_0
 		FireFullyCharredDuration=5

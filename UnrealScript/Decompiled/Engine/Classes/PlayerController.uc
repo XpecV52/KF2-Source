@@ -4438,12 +4438,16 @@ unreliable server function ServerCauseEvent(name EventName)
     local int Idx;
     local bool bFoundEvt;
 
+    if(EventName == 'Benchmark')
+    {
+        return;
+    }
     GameSeq = WorldInfo.GetGameSequence();
     if((GameSeq != none) && EventName != 'None')
     {
         GameSeq.FindSeqObjectsByClass(Class'SeqEvent_Console', true, AllConsoleEvents);
         Idx = 0;
-        J0x8E:
+        J0xA7:
 
         if(Idx < AllConsoleEvents.Length)
         {
@@ -4454,7 +4458,7 @@ unreliable server function ServerCauseEvent(name EventName)
                 ConsoleEvt.CheckActivate(self, Pawn);
             }
             ++ Idx;
-            goto J0x8E;
+            goto J0xA7;
         }
     }
     if(!bFoundEvt)

@@ -51,6 +51,23 @@ var OnlineNewsInterface NewsInterface;
 /** The interface to use for accessing online party chat methods */
 var OnlinePartyChatInterface PartyChatInterface;
 
+
+/** The different statuses for a party */
+enum EPartyNotificationStatus
+{
+	/** Party has not been created yet */
+	PNS_NonExistent,
+	/** Party is in the process of being created */
+	PNS_Creating,
+	/** Party has been created */
+	PNS_Created,
+	/** Party is in the process of being dissolved/destroyed */
+	PNS_Dissolving,
+	/** Party has been dissolved/destroyed */
+	PNS_Dissolved
+};
+
+
 //@HSL_BEGIN - JRO - 7/16/2016 - Support for PS4 party interface
 /** The interface for party functionality */
 var OnlinePartyInterface PartyInterface;
@@ -1467,10 +1484,14 @@ struct native ItemProperties
 	var string IconURLLarge;
 	var bool Tradeable;
 	var bool Commodity;
+	var bool Marketable;
 	var string Description;
 	var string Exchange;
 	var string Bundle;
 	var bool UniqueToOwn;
+	var int  PerkId; //index bassed off our array
+	var int  AltPerkId; //index bassed off our array
+	var int  WeaponType;
 
 	structcpptext
 	{

@@ -7,3 +7,9 @@
  *******************************************************************************/
 class KFDifficulty_GorefastDualBlade extends KFDifficulty_Gorefast
     abstract;
+
+defaultproperties
+{
+    Suicidal=(BlockSettings=(Chance=0.6))
+    HellOnEarth=(BlockSettings=(Chance=0.6))
+}

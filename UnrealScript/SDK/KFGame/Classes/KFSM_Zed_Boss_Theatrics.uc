@@ -79,7 +79,7 @@ static function byte PackSMFlags( KFPawn P, byte InTauntType )
 
 function SpecialMoveStarted( bool bForced, Name PrevMove )
 {
-	local KFPawn_Monster KFBoss;
+	local KFInterface_MonsterBoss KFBoss;
 
 	super.SpecialMoveStarted( bForced, PrevMove );
 
@@ -90,20 +90,22 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 	// Cache hud reference
 	if( KFPOwner.WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		KFBoss = KFPawn_Monster(KFPOwner);
-
-		KFGFxHudWrapper(KFPOwner.WorldInfo.GetALocalPlayerController().myHUD).BossPawn = KFBoss;
-		if( KFBoss.WorldInfo.TimeSeconds - KFBoss.CreationTime < 1.f ) //Boss intro
-		{
-			if(KFBoss.bVersusZed)
-			{
-				KFPlayerController(KFPOwner.WorldInfo.GetALocalPlayerController()).ShowBossNameplate(KFBoss, "("$KFBoss.PlayerReplicationInfo.PlayerName$")");
-			}
-			else
-			{
-				KFPlayerController(KFPOwner.WorldInfo.GetALocalPlayerController()).ShowBossNameplate(KFBoss);
-			}
-		}
+		KFBoss = KFInterface_MonsterBoss(KFPOwner);
+        if (KFBoss != none)
+        {
+            KFGFxHudWrapper(KFPOwner.WorldInfo.GetALocalPlayerController().myHUD).BossRef = KFBoss;
+            if (KFBoss.GetMonsterPawn().WorldInfo.TimeSeconds - KFBoss.GetMonsterPawn().CreationTime < 1.f) //Boss intro
+            {
+                if (KFBoss.GetMonsterPawn().bVersusZed)
+                {
+                    KFPlayerController(KFPOwner.WorldInfo.GetALocalPlayerController()).ShowBossNameplate(KFBoss, "(" $ KFBoss.GetMonsterPawn().PlayerReplicationInfo.PlayerName $ ")");
+                }
+                else
+                {
+                    KFPlayerController(KFPOwner.WorldInfo.GetALocalPlayerController()).ShowBossNameplate(KFBoss);
+                }
+            }
+        }		
 	}
 }
 
@@ -111,35 +113,36 @@ function PlayAnimation()
 {
 	local byte Variant;
 	local Controller BossController;
-	local KFPawn_Monster BossPawn;
+	local KFInterface_MonsterBoss BossRef;
+    local KFPawn BossPawn;
 	local KFPlayerController KFPC;
 	local KFWeapon KFW;
-	local vector CameraAnimOffset;
+    local vector CameraAnimOffset;
 
 	CurrentTheatricType = KFPOwner.SpecialMoveFlags & 15;
 	Variant = KFPOwner.SpecialMoveFlags >> 4;
 
-	switch ( CurrentTheatricType )
-	{
-	case THEATRIC_Entrance:
-		AnimName = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].AnimationName;
-		CameraAnim = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimation;
-		CameraAnimOffset = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimOffset;
-		BlendInTime = 0.f;
-		BlendOutTime = 0.f;
-		KFPOwner.SetPhysics(PHYS_Falling);
-		break;
-	case THEATRIC_Victory:
-		AnimName = KFPOwner.PawnAnimInfo.TheatricBossVictoryAnimInfos[Variant].AnimationName;
-		CameraAnim = KFPOwner.PawnAnimInfo.TheatricBossVictoryAnimInfos[Variant].CameraAnimation;
-		CameraAnimOffset = KFPOwner.PawnAnimInfo.TheatricBossVictoryAnimInfos[Variant].CameraAnimOffset;
-		break;
-	default:
-		AnimName = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].AnimationName;
-		CameraAnim = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimation;
-		CameraAnimOffset = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimOffset;
-		break;
-	}
+    switch (CurrentTheatricType)
+    {
+    case THEATRIC_Entrance:
+        AnimName = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].AnimationName;
+        CameraAnim = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimation;
+        CameraAnimOffset = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimOffset;
+        BlendInTime = 0.f;
+        BlendOutTime = 0.f;
+        KFPOwner.SetPhysics(PHYS_Falling);
+        break;
+    case THEATRIC_Victory:
+        AnimName = KFPOwner.PawnAnimInfo.TheatricBossVictoryAnimInfos[Variant].AnimationName;
+        CameraAnim = KFPOwner.PawnAnimInfo.TheatricBossVictoryAnimInfos[Variant].CameraAnimation;
+        CameraAnimOffset = KFPOwner.PawnAnimInfo.TheatricBossVictoryAnimInfos[Variant].CameraAnimOffset;
+        break;
+    default:
+        AnimName = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].AnimationName;
+        CameraAnim = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimation;
+        CameraAnimOffset = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimOffset;
+        break;
+    }
 
 	`AILog_Ext( GetFuncName()$" "$self$" chose theatric animation "$AnimName, 'AIController', AIOwner );
 	PlaySpecialMoveAnim( AnimName, AnimStance, BlendInTime, BlendOutTime, 1.f );
@@ -148,7 +151,13 @@ function PlayAnimation()
 	BossController = AIOwner != none ? AIOwner : PCOwner;
 
 	// Cache pawn
-	BossPawn = KFPawn_Monster( KFPOwner );
+    BossRef = KFInterface_MonsterBoss( KFPOwner );
+    if (BossRef == none)
+    {
+        return;
+    }
+
+    BossPawn = BossRef.GetMonsterPawn();
 
 	// Set camera to boss camera
 	if( BossController != none && BossController.Role == ROLE_Authority )
@@ -160,12 +169,12 @@ function PlayAnimation()
 				continue;
 			}
 
-			KFPC.SetBossCamera( BossPawn );
+			KFPC.SetBossCamera(BossRef);
 		}
 	}
 
 	// Boss was obliterated or invalid
-	if( BossPawn == none || BossPawn.bPlayedDeath || BossPawn.bPendingDelete || BossPawn.HitFxInfo.bObliterated || !BossPawn.IsActiveBoss() )
+	if(BossPawn == none || BossPawn.bPlayedDeath || BossPawn.bPendingDelete || BossPawn.HitFxInfo.bObliterated )
 	{
 		return;
 	}
@@ -186,9 +195,7 @@ function PlayAnimation()
 			// Play a camera anim if we have one
 			if( CameraAnim != none )
 			{
-				BossPawn.bUseAnimatedTheatricCamera = true;
-				BossPawn.TheatricCameraAnimOffset = CameraAnimOffset;
-
+                BossRef.SetAnimatedBossCamera(true, CameraAnimOffset);
 				// Set cinematic mode
 				KFPC.SetCinematicMode( true, false, false, true, true, true );
 
@@ -208,32 +215,25 @@ function PlayAnimation()
 				KFPC.ClientPlayCameraAnim( CameraAnim, 1.f, 0.99f, BlendInTime, BlendOutTime + 0.03f, false, false );
                 if(KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.BossHealthBar != none)
                 {
-                    KFPC.MyGFxHUD.BossHealthBar.SetBossPawn(BossPawn);
+                    KFPC.MyGFxHUD.BossHealthBar.SetBossPawn(BossRef);
                 }
 			}
 		}
-	}
-
-	if( KFPawn_MonsterBoss(BossPawn) != none && BossPawn.Role == ROLE_Authority )
-	{	
-		KFPawn_MonsterBoss(BossPawn).PlayMonologue( CurrentTheatricType );
 	}
 }
 
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
 	local KFPlayerController KFPC, OtherKFPC;
-	local KFPawn_Monster BossPawn;
+	local KFInterface_MonsterBoss BossRef;
 
-	BossPawn = KFPawn_Monster( KFPOwner );
+    BossRef = KFInterface_MonsterBoss( KFPOwner );
 	KFPC = GetALocalKFPlayerController();
 
-	if( BossPawn != none )
+	if(BossRef != none )
 	{
-		BossPawn.bUseAnimatedTheatricCamera = false;
-		BossPawn.TheatricCameraAnimOffset = vect(0,0,0);
-
-		if( BossPawn.WorldInfo.NetMode != NM_DedicatedServer && KFPC.CanViewCinematics() )
+        BossRef.SetAnimatedBossCamera(false);
+		if(BossRef.GetMonsterPawn().WorldInfo.NetMode != NM_DedicatedServer && KFPC.CanViewCinematics() )
 		{	
 			if( CurrentTheatricType == THEATRIC_Entrance )
 			{
@@ -248,9 +248,9 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 		}
 
 		// abort animation if something ended the taunt early
-	 	if ( BossPawn.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim )
+	 	if (BossRef.GetMonsterPawn().BodyStanceNodes[AnimStance].bIsPlayingCustomAnim )
 	 	{
-			BossPawn.StopBodyAnim( AnimStance, 0.2 );
+            BossRef.GetMonsterPawn().StopBodyAnim( AnimStance, 0.2 );
 		}
 	}
 
@@ -315,7 +315,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 		}
 
 		// Reset cinematic mode on clients
-		if( BossPawn.WorldInfo.NetMode != NM_DedicatedServer && KFPC.CanViewCinematics() )
+		if(BossRef.GetMonsterPawn().WorldInfo.NetMode != NM_DedicatedServer && KFPC.CanViewCinematics() )
 		{
 			KFPC.SetCinematicMode( false, false, true, true, true, false );
 			if( KFPC.Pawn != none )

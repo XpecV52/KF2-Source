@@ -26,7 +26,7 @@ simulated function AltFireMode()
     {
         return;
     }
-    if(AmmoCount[0] < 2)
+    if(AmmoCount[0] == 1)
     {
         StartFire(0);        
     }
@@ -38,7 +38,7 @@ simulated function AltFireMode()
 
 simulated function SendToFiringState(byte FireModeNum)
 {
-    if((FireModeNum == 1) && AmmoCount[0] < 2)
+    if((FireModeNum == 1) && AmmoCount[0] == 1)
     {
         super(KFWeapon).SendToFiringState(0);        
     }

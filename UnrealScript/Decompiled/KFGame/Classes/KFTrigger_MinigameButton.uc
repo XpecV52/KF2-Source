@@ -137,7 +137,8 @@ function ActivateGame()
                 {
                     MinigameActor.Activated(self);                    
                 }                
-            }            
+            }
+            SetTimer(ReactivationTime, false, 'AllowReactivation');            
         }
         else
         {
@@ -146,7 +147,6 @@ function ActivateGame()
                 DeActivate();
             }
         }
-        SetTimer(ReactivationTime, false, 'AllowReactivation');
     }
 }
 
@@ -210,8 +210,10 @@ function DeActivate()
     }
     ClearTimer('DeActivate');
     bInProgress = false;
+    bAllowActivation = false;
+    SetTimer(ReactivationTime, false, 'AllowReactivation');
     I = 0;
-    J0x60:
+    J0x83:
 
     if(I < GeneratedEvents.Length)
     {
@@ -221,7 +223,7 @@ function DeActivate()
             ActivationEvent.NotifyDeactivation(self, self);
         }
         ++ I;
-        goto J0x60;
+        goto J0x83;
     }
     if(MinigameActors.Length > 0)
     {

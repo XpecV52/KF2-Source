@@ -45,6 +45,17 @@ var const localized string FreeConsolePlayOverString;
 var const localized string BuyGameString;
 var const localized string CustomString;
 var const localized string CancelConnectionString;
+var const localized array<localized string> WeaponTypeStrings;
+var const localized array<localized string> RarityStrings;
+var const localized string MixerGaveAmmoString;
+var const localized string MixerGaveArmorString;
+var const localized string MixerGaveDoshString;
+var const localized string MixerGaveGrenadeString;
+var const localized string MixerGaveHealthString;
+var const localized string MixerZedTimeString;
+var const localized string MixerRageZedsString;
+var const localized string MixerPukeString;
+var const localized string MixerSpawnedFPString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -193,4 +204,31 @@ defaultproperties
     BuyGameString="STORE"
     CustomString="Custom"
     CancelConnectionString="Cancel Loading"
+    WeaponTypeStrings(0)="PISTOL"
+    WeaponTypeStrings(1)="SHOTGUN"
+    WeaponTypeStrings(2)="RIFLE"
+    WeaponTypeStrings(3)="PROJECTILE"
+    WeaponTypeStrings(4)="FIRE"
+    WeaponTypeStrings(5)="TECH"
+    WeaponTypeStrings(6)="LAUNCHER"
+    WeaponTypeStrings(7)="ASSAULT"
+    WeaponTypeStrings(8)="MELEE"
+    WeaponTypeStrings(9)="SMG"
+    WeaponTypeStrings(10)="ALL"
+    RarityStrings(0)="COMMON"
+    RarityStrings(1)="UNCOMMON"
+    RarityStrings(2)="RARE"
+    RarityStrings(3)="EXCEPTIONAL"
+    RarityStrings(4)="MASTERCRAFTED"
+    RarityStrings(5)="EXCEEDINGLYRARE"
+    RarityStrings(6)="ANY"
+    MixerGaveAmmoString=", a Mixer viewer, has given you ammo"
+    MixerGaveArmorString=", a Mixer viewer, has given you armor"
+    MixerGaveDoshString=", a Mixer viewer, has given you Dosh"
+    MixerGaveGrenadeString=", a Mixer viewer, has given you a grenade"
+    MixerGaveHealthString=", a Mixer viewer, has healed you"
+    MixerZedTimeString=", a Mixer viewer, has actived ZedTime"
+    MixerRageZedsString=", a Mixer viewer, has enraged nearby Zeds!"
+    MixerPukeString=", a Mixer viewer, has puked on you!"
+    MixerSpawnedFPString=", a Mixer viewer, has spawned a Fleshpound!"
 }

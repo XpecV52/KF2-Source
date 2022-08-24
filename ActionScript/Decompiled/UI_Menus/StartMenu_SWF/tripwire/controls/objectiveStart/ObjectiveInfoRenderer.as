@@ -24,6 +24,8 @@ package tripwire.controls.objectiveStart
         
         public var statusColor:Color;
         
+        public var bumperColor:Color;
+        
         public var inProgressColor:uint = 12453376;
         
         public var completeColor:uint = 15573775;
@@ -35,6 +37,7 @@ package tripwire.controls.objectiveStart
         public function ObjectiveInfoRenderer()
         {
             this.statusColor = new Color();
+            this.bumperColor = new Color();
             super();
             preventAutosizing = true;
         }
@@ -42,6 +45,7 @@ package tripwire.controls.objectiveStart
         override public function set data(param1:Object) : void
         {
             var _loc2_:uint = 0;
+            var _loc3_:uint = 0;
             super.data = param1;
             if(data)
             {
@@ -61,6 +65,7 @@ package tripwire.controls.objectiveStart
             if(this.checkBoxCheck.visible == true)
             {
                 _loc2_ = this.completeColor;
+                _loc3_ = this.completeColor;
                 textField.textColor = this.completeColor;
                 this.iconImageLoader.alpha = 0.32;
                 this.progressBar.progressText.textColor = this.completeTextColor;
@@ -68,13 +73,17 @@ package tripwire.controls.objectiveStart
             else
             {
                 _loc2_ = this.inProgressColor;
+                _loc3_ = this.inProgressTextColor;
                 textField.textColor = this.inProgressTextColor;
                 this.iconImageLoader.alpha = 1;
                 this.progressBar.progressText.textColor = this.inProgressTextColor;
             }
             this.statusColor.setTint(_loc2_,1);
+            this.bumperColor.setTint(_loc3_,1);
             this.iconFrame.transform.colorTransform = this.statusColor;
-            this.progressBar.transform.colorTransform = this.statusColor;
+            this.progressBar.fillBar.transform.colorTransform = this.statusColor;
+            this.progressBar.bumper_0.transform.colorTransform = this.bumperColor;
+            this.progressBar.bumper_1.transform.colorTransform = this.bumperColor;
         }
     }
 }

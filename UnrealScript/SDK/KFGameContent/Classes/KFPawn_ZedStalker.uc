@@ -286,7 +286,7 @@ function CallOutCloakingExpired()
 }
 
 /** Applies the rally buff and spawns a rally effect */
-simulated function Rally(
+simulated function bool Rally(
 							KFPawn 			RallyInstigator,
 							ParticleSystem 	RallyEffect,
 							name 			EffectBoneName,
@@ -315,7 +315,7 @@ simulated function Rally(
 		}
 	}
 
-	super.Rally( RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects );
+	return super.Rally( RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects );
 }
 
 /* PlayDying() is called on server/standalone game when killed
@@ -464,7 +464,7 @@ DefaultProperties
 	IncapSettings(AF_Microwave)=(Vulnerability=(0.5),                     Cooldown=20.5, Duration=5.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=4.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
-    IncapSettings(AF_Bleed)=    (Vulnerability=(0.5))
+    IncapSettings(AF_Bleed)=    (Vulnerability=(2.0))
 
 	ParryResistance=1
 

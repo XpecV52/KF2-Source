@@ -62,9 +62,40 @@ FreeConsolePlayOverString="Killing Floor 2를 플레이해 주셔서 감사합�
 BuyGameString="상점"
 CustomString="커스텀"
 
+RarityStrings[0]="보통"
+RarityStrings[1]="흔치 않은"
+RarityStrings[2]="희소"
+RarityStrings[3]="신화"
+RarityStrings[4]="전설"
+RarityStrings[5]="초희귀"
+RarityStrings[6]="모두"
+
+WeaponTypeStrings[0]="권총"
+WeaponTypeStrings[1]="산탄총"
+WeaponTypeStrings[2]="소총"
+WeaponTypeStrings[3]="투사체"
+WeaponTypeStrings[4]="발사"
+WeaponTypeStrings[5]="기술"
+WeaponTypeStrings[6]="발사기"
+WeaponTypeStrings[7]="돌격"
+WeaponTypeStrings[8]="백병전"
+WeaponTypeStrings[9]="SMG"
+WeaponTypeStrings[10]="전체"
+
+MixerGaveAmmoString=", 믹서 뷰어가 플레이어에게 탄약을 주었습니다."
+MixerGaveArmorString=", 믹서 뷰어가 플레이어에게 장갑을 주었습니다."
+MixerGaveDoshString=", 믹서 뷰어가 플레이어에게 도쉬를 주었습니다."
+MixerGaveGrenadeString=", 믹서 뷰어가 플레이어에게 수류탄을 주었습니다."
+MixerGaveHealthString=", 믹서 뷰어가 플레이어를 치료해주었습니다."
+MixerZedTimeString=", 믹서 뷰어가 제드 타임을 활성화하였습니다."
+MixerRageZedsString=", 믹서 뷰어가 가까이 있는 제드들을 분노하게 만들었습니다."
+MixerPukeString=", 믹서 뷰어가 플레이어에게 구토를 하였습니다."
+MixerSpawnedFPString=", 믹서 뷰어가 Fleshpound를 낳았습니다."
+
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="아웃브레이크 완료 보상"
 WeeklyString="HORZINE 주간 아웃브레이크"
+DailyObjectiveString="일간"
 CurrentWeeklySettingsString="현재 아웃브레이크 설정"
 SpecialEventString="여름 사이드쇼"
 ShortWeeklyString="주간"
@@ -72,9 +103,18 @@ SeasonalString="시즌별"
 SpecialEventChanceDropString="제한된 드롭 아이템"
 GrantedSpecialEventString="완료 보상"
 RewardsString="아웃브레이크 완료 보상"
+RewardString="보상"
 WeeklyOverview="매주 도전적인 새로운 게임 모드가 추가됩니다!"
 ObjectivesString="목표 토글"
+VaultDoshString="볼트 도쉬"
 
+DealDamageString="데미지:"
+EarnXPString="XP 획득:"
+CompleteMapString="대전 완료 맵:"
+KillZedsString="제드 처치:"
+VersusKillsString="킬 VS 플레이어:"
+DealVersusDamageString="데미지 VS 플레이어:"
+VersusCompletionString="대전 완료:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="대전상대를 찾지 못했습니다."
@@ -701,7 +741,7 @@ PartyLeaderInOtherMenuString="님이 다른 메뉴에 있습니다..."
 SearchingForGameString="온라인 게임 검색..."
 
 PartHostLeftString="부대 호스트가 나갔습니다"
-PartyLeaderChangedString="님이 새로운 부대 호스트입니다"
+PartyLeaderChangedString="새로운 부대 호스트 선택"
 
 MuteString="플레이어 뮤트"
 UnmuteString="플레이어 뮤트 해제"
@@ -717,6 +757,16 @@ PartyLeaderString="리더"
 [KFGFxWidget_PartyInGame_Versus]
 SwitchTeamsString="팀 전환"
 balanceWarningString="경고: 팀은 자동으로 균형이 맞춰집니다"
+
+[KFGFxMenu_DoshVault]
+YourDoshString="나의 도쉬"
+NextRewardString="다음 보상"
+OpenCrateString="상자 열기"
+DoshVaultString="도쉬 금고"
+YourCratesString="나의 상자:"
+OpenCratesString="상자 열기"
+CrateUnlockedString="상자 잠금해제!"
+DelayedCrateString="다음 게임 재시작 시까지 도쉬 볼트 상자 제공이 지연됩니다."
 
 [KFGFxMenu_Gear]
 GearHeaderString="장비 커스터마이즈"
@@ -775,6 +825,9 @@ CraftWeaponDescriptionString="이 메뉴에서 무기 스킨 재료를 이용하
 RequiresString="필요: "
 PurchaseKeyString="키 구입"
 LookUpOnMarketString="시장 살펴보기"
+RarityFilterString="희귀도"
+PerkFilterString="병과"
+WeaponTypeFilterString="무기 유형"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -836,10 +889,11 @@ ConfirmString="선택"
 MenuStrings[0]="홈"
 MenuStrings[1]="병과"
 MenuStrings[2]="장비"
-MenuStrings[3]="인벤토리"
-MenuStrings[4]="상점"
-MenuStrings[5]="옵션"
-MenuStrings[6]="나가기"
+MenuStrings[3]="금고"
+MenuStrings[4]="인벤토리"
+MenuStrings[5]="상점"
+MenuStrings[6]="옵션"
+MenuStrings[7]="나가기"
 
 ServerBrowserString="서버 브라우저"
 MatchmakingString="대전상대 찾기"
@@ -917,6 +971,7 @@ VoiceCommsOptionStrings[5]="상점에 가기"
 VoiceCommsOptionStrings[6]="확인"
 VoiceCommsOptionStrings[7]="거부"
 VoiceCommsOptionStrings[8]="EMOTE"
+VoiceCommsOptionStrings[9]="감사합니다"
 
 [KFGFxMenu_Exit]
 HeaderString="게임 종료"
@@ -1132,6 +1187,8 @@ AntiMotionSicknessString="멀미 방지"
 AutoTurnOffString="클롯 잡기 자동 켜짐 방지"
 ReduceHighPitchNoiseString="고음역 소음 감소"
 DisableAutoUpgradeString="자동 업그레이드 해제"
+
+EnableMixerString="토글 Mixer 상호작용"
 
 [LocalizedControls]
 ControllerLayoutDefault="초기 설정"
@@ -1362,6 +1419,7 @@ ZedGroupRegroupingString="제드 무리가 다시 집결하고 있습니다!"
 NextRoundBeginString="다 음   라 운 드"
 PlayerCanChangePerksString="병과 변경이 허용되었습니다"
 ZedWaitingForNextRoundString="제드 무리가 곧 침입합니다!"
+LastPlayerStandingString="최후의 승자"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="상점<%HOLD%>자동 업그레이드 이용"
@@ -1596,8 +1654,8 @@ SkillCatagories[4]="고급 훈련"
 
 Passives[0]=(Title="버서커 데미지",Description="병과 무기 데미지가 레벨 당 x%x 증가합니다");
 Passives[1]=(Title="데미지 저항력",Description="5 레벨마다 데미지 저항력이 x%x 증가합니다");
-Passives[2]=(Title="+야간투시경 기능",Description="플래시라이트 - 및 야간투시경 고글");
-Passives[3]=(Title="+클롯이 플레이어를 잡지 못합니다",Description="클롯은 버서커를 계속 잡고 있을 수 없습니다.");
+Passives[2]=(Title="야간투시경 기능",Description="플래시라이트 - 및 야간투시경 고글");
+Passives[3]=(Title="클롯이 플레이어를 잡지 못합니다",Description="클롯은 버서커를 계속 잡고 있을 수 없습니다.");
 
 EXPAction1="버서커 무기 데미지"
 EXPAction2="버서커 무기를 이용하여 플레이어 근처의 제드 죽이기"
@@ -1645,8 +1703,8 @@ Passives[0]=(Title="병과 무기 데미지",Description="병과 무기 데미�
 Passives[1]=(Title="은폐한 적 및 체력 감지",Description="5m 범위에 레벨 당 %x%m 추가");
 Passives[2]=(Title="제드 타임 연장",Description="제드 타임이 5 레벨 마다 %x% 증가");
 Passives[3]=(Title="재장전 속도",Description="병과 무기 재장전 속도가 5 레벨 마다 %x% 증가");
-Passives[4]=(Title="+야간투시경 기능",Description="플래시라이트 - 및 야간투시경 고글");
-Passives[5]=(Title="+은폐한 적 부르기",Description="팀원들이 은폐한 유닛을 볼 수 있도록 함");
+Passives[4]=(Title="야간투시경 기능",Description="플래시라이트 - 및 야간투시경 고글");
+Passives[5]=(Title="은폐한 제드 부르기",Description="팀원들이 은폐한 유닛을 볼 수 있도록 함");
 
 EXPAction1="코만도 무기 데미지"
 EXPAction2="코만도 무기로 Stalker 처치"
@@ -1695,8 +1753,8 @@ SkillCatagories[4]="고급 폭발물"
 Passives[0]=(Title="병과 무기 데미지",Description="병과 무기 데미지가 레벨 당 %x% 증가");
 Passives[1]=(Title="폭발물 저항력",Description="폭발물 저항력 10% 증가 및 레벨 당 %x% 증가");
 Passives[2]=(Title="특별 폭발물 탄약",Description="폭발물 탄약이 5 레벨 마다 %x% 증가");
-Passives[3]=(Title="+수류탄 공급자",Description="팀원들에게 매 웨이브마다 수류탄을 하나씩 지급");
-Passives[4]=(Title="+도어 트랩",Description="용접한 도어가 파괴되면 폭발");
+Passives[3]=(Title="수류탄 공급자",Description="팀원들에게 매 웨이브마다 수류탄을 하나씩 지급");
+Passives[4]=(Title="도어 트랩",Description="용접한 도어가 파괴되면 폭발");
 Passives[5]=(Title="반응형 장갑",Description="처음 체력이 0으로 줄어들면 장갑이 폭발하고 체력 1이 남음");
 
 
@@ -1935,7 +1993,6 @@ Passives[2]=(Title="샷건 관통",Description="병과 무기 관통 파워가 �
 Passives[3]=(Title="탄약",Description="탄약 15% 증가 후 레벨 당 %x% 증가");
 Passives[4]=(Title="무게 및 용량 증가",Description="무게 용량이 5 레벨마다 1씩 증가");
 Passives[5]=(Title="탄약 백팩 + 도어 수리",Description="라운드 당 한 번씩 플레이어가 백팩에서 탄약을 꺼낼 수 있음 - 부서진 도어 수리");
-
 
 EXPAction1="서포트 무기 데미지"
 EXPAction2="도어 용접"
@@ -2210,6 +2267,7 @@ USBSpitfire="스핏 파이어 USB 키 - $2.49"
 USBHighVoltage="고전압 USB 키 - $2.49"
 MerchSale="KF2 장비 세일! 2017년 4월 30일까지 25% 할인됩니다. 프로모 코드 ZED"
 
+
 [Zeds]
 KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="클롯"
@@ -2230,6 +2288,7 @@ KFPawn_ZedClot_AlphaKing="Elite Alpha"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
 KFPawn_ZedPatriarch="Patriarch"
+
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bloat - 플레이어"
 KFPawn_ZedClot_Versus="클롯 - 플레이어"
@@ -2377,6 +2436,15 @@ AllCompleteRewardDescriptionString="사이드쇼 방호복"
 
 ChanceDropDescriptionStrings[0]="사이드쇼 상품권"
 ChanceDropDescriptionStrings[1]="사이드쇼 황금 티켓"
+
+;============================================
+; Daily Localization
+;============================================
+[KFGFxDailyObjectivesContainer]
+TitleString="일간 목표"
+OverviewString="일간 목표는 매일 무작위로 바뀌며 설정되는 목표입니다. 일간 목표를 완료하면 도쉬 금고에 도쉬를 받습니다."
+SubtitleString="현재 일간 목표"
+KnifeString="나이프"
 
 ;============================================
 ; Weekly Localization
@@ -2717,6 +2785,22 @@ DisplayName_POL="Królestwo Tragedii"
 DisplayName_PTB="Reino Trágico"
 DisplayName_RUS="Королевство Трагедий"
 
+[KF-Nightmare KFMapSummary]
+DisplayName_CHN="梦魇"
+DisplayName_CHT="夢魘"
+DisplayName_DEU="Albtraum"
+DisplayName_ESL="Pesadilla"
+DisplayName_ESN="Pesadilla"
+DisplayName_FRA="Cauchemar"
+DisplayName_FRC="Cauchemar"
+DisplayName_INT="Nightmare"
+DisplayName_ITA="Incubo"
+DisplayName_JPN="悪夢"
+DisplayName_KOR="악몽"
+DisplayName_POL="Koszmar"
+DisplayName_PTB="Pesadelo"
+DisplayName_RUS="Кошмар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="바이오틱스 연구소"
 
@@ -2770,6 +2854,9 @@ DisplayName="방사능 누출지"
 
 [KF-TragicKingdom KFMapSummary]
 DisplayName="비극의 왕국"
+
+[KF-Nightmare KFMapSummary]
+DisplayName="악몽"
 
 [KFMapInfo]
 ; defaults

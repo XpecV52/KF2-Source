@@ -28,7 +28,7 @@ defaultproperties
    FireModeIconPaths(1)=()
    SingleFireSoundIndex=1
    InventorySize=7
-   MagazineCapacity(0)=30
+   MagazineCapacity(0)=40
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -42,16 +42,16 @@ defaultproperties
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
    AmmoCost(1)=30
-   SpareAmmoCapacity(0)=390
-   InitialSpareMags(0)=3
+   SpareAmmoCapacity(0)=400
+   InitialSpareMags(0)=2
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_1P_Loop')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_1P_Single')
-   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_3P_EndLoop',FirstPersonCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_1P_EndLoop')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Handling_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_medicassault.Play_SA_MedicAssault_Fire_3P_Loop',FirstPersonCue=AkEvent'ww_wep_sa_medicassault.Play_SA_MedicAssault_Fire_1P_Loop')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_medicassault.Play_SA_MedicAssault_Fire_3P_Single',FirstPersonCue=AkEvent'ww_wep_sa_medicassault.Play_SA_MedicAssault_Fire_1P_Single')
+   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_medicassault.Play_SA_MedicAssault_Fire_3P_EndLoop',FirstPersonCue=AkEvent'ww_wep_sa_medicassault.Play_SA_MedicAssault_Fire_1P_EndLoop')
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_medicassault.Play_SA_MedicAssault_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_DryFire'
    PlayerViewOffset=(X=15.000000,Y=6.500000,Z=-3.000000)
    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_3P'
@@ -62,11 +62,11 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_Medic:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_MuzzleFlash'
-   maxRecoilPitch=200
-   minRecoilPitch=150
-   maxRecoilYaw=175
-   minRecoilYaw=-125
-   RecoilRate=0.085000
+   maxRecoilPitch=140
+   minRecoilPitch=105
+   maxRecoilYaw=122
+   minRecoilYaw=-122
+   RecoilRate=0.075000
    RecoilMaxYawLimit=500
    RecoilMinYawLimit=65035
    RecoilMaxPitchLimit=900
@@ -75,19 +75,20 @@ defaultproperties
    RecoilISMinYawLimit=65460
    RecoilISMaxPitchLimit=375
    RecoilISMinPitchLimit=65460
+   HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Commando'
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    WeaponProjectiles(1)=()
-   FireInterval(0)=0.092300
+   FireInterval(0)=0.080000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.008500
    Spread(1)=()
-   InstantHitDamage(0)=40.000000
+   InstantHitDamage(0)=35.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=27.000000

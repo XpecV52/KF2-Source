@@ -12,19 +12,21 @@ class KFDifficulty_FleshpoundMini extends KFMonsterDifficultyInfo
 defaultproperties
 {
     // Normal difficulty
-    Normal={(HealthMod=0.750000,
-        HeadHealthMod=0.750000,
+    Normal={(HealthMod=0.50000, //0.75
+        HeadHealthMod=0.50000, //0.75
         SprintChance=0.0,
         DamagedSprintChance=0.0,
         DamageMod=0.310000,
-        SoloDamageMod=0.500000,
+        SoloDamageMod=0.310000, //0.5
         BlockSettings={(Chance=0.0, Duration=1.25, MaxBlocks=2, Cooldown=4.5, DamagedHealthPctToTrigger=0.05,
         MeleeDamageModifier=0.9, DamageModifier=0.9, AfflictionModifier=0.2, SoloChanceMultiplier=0.1)},
         RallySettings={(bCanRally=false)}
     )}
 
     // Hard difficulty
-    Hard={(SprintChance=0.0,
+    Hard={(HealthMod=0.75,
+        HeadHealthMod=0.75,
+        SprintChance=0.0,
         DamagedSprintChance=0.0,
         DamageMod=0.650000,
         SoloDamageMod=0.500000,
@@ -46,11 +48,11 @@ defaultproperties
     )}
 
     // Hell On Earth difficulty
-    HellOnEarth={(HealthMod=1.200000,
-        HeadHealthMod=1.100000,
+    HellOnEarth={(HealthMod=1.1500000,
+        HeadHealthMod=1.080000,
         SprintChance=0.0,
         DamagedSprintChance=0.0,
-        DamageMod=1.25, //1.487500
+        DamageMod=1.05, //1.487500  // 1.2
         SoloDamageMod=0.650000,
         BlockSettings={(Chance=0.3, Duration=1.25, MaxBlocks=5, Cooldown=6.5, DamagedHealthPctToTrigger=0.05,
         MeleeDamageModifier=0.9, DamageModifier=0.9, AfflictionModifier=0.2, SoloChanceMultiplier=0.2)},

@@ -17,6 +17,7 @@ KF-ZedLanding="Проходит «Высадку среди мутантов»"
 KF-TheDescent="Проходит «Спуск»"
 KF-Nuked="Проходит «Ядерный удар»"
 KF-TragicKingdom="Игра в Королевство Трагедий"
+KF-Nightmare="Игра в Кошмар"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -140,14 +141,17 @@ NoOnlinePlay="Онлайн-игра невозможна"
 TooYoung="Онлайновые сервисы для вашей учетная запись Sony Entertainment Network отключены ограничениями родительского контроля."
 PatchAvailable="Есть доступный патч. Чтобы использовать сетевые функции, необходимо обновить приложение."
 NotLoggedInOnlinePSN="Для использования этих функций войдите в сеть PlayStation™Network."
+LiveRequiredMessage="Для игры в Xbox Live требуется вход в профиль с активированной службой Xbox Live и подключение к Интернету."
 NetworkError="Произошла сетевая ошибка. Пожалуйста, проверьте подключение к сети."
 ErrorNoPlayfabDescription="Необходимо установить подключение к мастер-серверам игры. Повторите попытку через несколько минут."
 ErrorTSSFailedDescription="Не удалось связаться с сервером игрового баланса. Пожалуйста, проверьте подключение к интернету и повторите попытку."
 NotSignedInTitle="Не выполнен вход."
+PlayOffline="Хотите играть автономно? Будут недоступны функции Xbox Live и сохранение данных."
 
 [Notifications]
 ControllerDisconnectedTitle="Контроллер отключен"
 ControllerDisconnectedPS4Message="Беспроводной контроллер отключен. Пожалуйста, восстановите подключение беспроводного контроллер у игрока, запустившего игру."
+ControllerDisconnectedXB1="Беспроводной контроллер Xbox One отключен. Подключите контроллер заново."
 PlayGoBusyTitle="Установка не завершена"
 PlayGoBusyMessage="Пока установка игры не завершится, контент и функции доступны в ограниченном режиме."
 UnableToJoinInviteTitle="Присоединиться не удалось"
@@ -160,11 +164,14 @@ CheckPlusTitle="Проверка статуса PlayStation®Plus"
 CheckPlusMessage="Просим дождаться результатов проверки статуса PlayStation®Plus."
 ConnectionLostTitle="Связь потеряна"
 ConnectionLostMessage="Онлайн-подключение потеряно. Вы возвращаетесь в домашнее меню."
+ConnectionLostMessageLive="Отсутствует подключение к Xbox Live. Вы вернулись в главное меню."
 PSNSignoutMessage="Вы вышли из сети PlayStation™Network. Вы вернулись в домашнее меню."
 InviteMessage="Пошли со мной мочить мутантов!"
 NotConnectedTitle="Сетевая ошибка"
 NotConnectedMessage="Нет подключения к Интернету. Проверьте подключение и повторите попытку."
 NotConnectedForOnlinePlay="Нет подключения к Интернету. Проверьте подключение и повторите обращение к онлайн-функциям."
+NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+MultiplayerNotAllowed_MessageLive="Для игры нужно войти в профиль с активированной службой Xbox Live с привилегиями для многопользовательской игры."
 MultiplayerNotAllowed_Title="Многопользов. игра недоступна"
 LoggedOutMessage="Активный профиль изменен. Вы вернулись к главному экрану."
 LoggedOutTitle="Выполнен выход"
@@ -174,6 +181,7 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Просмотреть профиль игрока"
+ViewProfileStringXB1="Смотреть карту игрока"
 
 [KFGFxObject_Menu]
 ResetDefaults="Вы уверены, что хотите вернуть настройки по умолчанию?"
@@ -193,12 +201,15 @@ ControllerSound="Звуковой контроллер"
 MatchmakingRegionString="РЕГИОН"
 LeaveMenuString="Выходя из матча, вы также покидаете свою команду"
 
+[KFGFxMenu_Store]
+StoreStringXB1="МАГАЗИН XBOX"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="РЕГИОН"
 MapPreference="ЛЮБИМАЯ КАРТА"
 
 [KFGFxMenu_Exit]
+HeaderStringXB1="ВЫХОД"
 LogoutKF2="К главному экрану"
 
 [Misc]

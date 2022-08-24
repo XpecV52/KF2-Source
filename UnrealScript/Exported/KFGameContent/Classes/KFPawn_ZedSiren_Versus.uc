@@ -26,6 +26,7 @@ defaultproperties
       LightColor=(B=50,G=50,R=250,A=255)
       bEnabled=False
       CastShadows=False
+      bCastPerObjectShadows=False
       LightingChannels=(Outdoor=True)
       MaxBrightness=1.200000
       MinBrightness=0.750000
@@ -140,8 +141,8 @@ defaultproperties
    IncapSettings(7)=(Duration=1.500000,Cooldown=8.500000,Vulnerability=(0.700000,0.700000,1.000000,0.700000))
    IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.300000))
    IncapSettings(9)=(Duration=2.000000,Vulnerability=(1.000000))
-   IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(0.000000))
-   IncapSettings(11)=(Vulnerability=(0.000000))
+   IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(0.500000))
+   IncapSettings(11)=(Vulnerability=(0.250000))
    SprintSpeed=430.000000
    SprintStrafeSpeed=300.000000
    TeammateCollisionRadiusPercent=0.300000

@@ -18,6 +18,8 @@ var repnotify bool bCurrentlyActive;
 `if(`__TW_)
 /** Allows particle emitters to omit depth testing (by setting to false) */
 var transient bool bDepthTestEnabled;
+/** Allow this emitter to be rendered in the depth pass and be used as an occluder */
+var(Rendering) const bool bUseAsOccluder;
 `endif
 
 struct CheckpointRecord
@@ -78,6 +80,10 @@ cpptext
 	 *	Intended for use in editor only
 	 */
 	void ResetInLevel();
+
+#if __TW_
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent);
+#endif 
 }
 
 native noexport event SetTemplate(ParticleSystem NewTemplate, optional bool bDestroyOnFinish);
@@ -104,6 +110,12 @@ simulated event PostBeginPlay()
 	{
 		ParticleSystemComponent.OnSystemFinished = OnParticleSystemFinished;
 		bCurrentlyActive = ParticleSystemComponent.bAutoActivate;
+
+`if(`__TW_)
+		// Allow certain emitters to be rendered in the depth pass and be used as occluders
+		ParticleSystemComponent.bUseAsOccluder = bUseAsOccluder;
+		ReattachComponent(ParticleSystemComponent);
+`endif
 	}
 }
 

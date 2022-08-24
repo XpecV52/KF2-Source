@@ -435,19 +435,7 @@ function SummonChildren()
     MyKFGameInfo.GetAIDirector().bForceFrustration = true;
 
     // Select the correct batch of zeds to spawn during this battle phase
-    if( CurrentBattlePhase == 1 )
-    {
-        MinionWave = SummonWaves[MyKFGameInfo.GameDifficulty].PhaseOneWave;
-    }
-    else if( CurrentBattlePhase == 2 )
-    {
-        MinionWave = SummonWaves[MyKFGameInfo.GameDifficulty].PhaseTwoWave;
-    }
-    else if( CurrentBattlePhase == 3 )
-    {
-        MinionWave = SummonWaves[MyKFGameInfo.GameDifficulty].PhaseThreeWave;
-    }
-
+    MinionWave = GetWaveInfo(CurrentBattlePhase, MyKFGameInfo.GameDifficulty);
     if( MinionWave != none )
     {
 		if( MyKFGameInfo.SpawnManager != none )
@@ -2061,6 +2049,12 @@ defaultproperties
    SummonWaves(3)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Three')
    NumMinionsToSpawn=(X=6.000000,Y=10.000000)
    CurrentBattlePhase=1
+   BossCaptionStrings(0)="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
+   BossCaptionStrings(1)="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+   BossCaptionStrings(2)="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+   BossCaptionStrings(3)="Running off on your own isn't an escape - it makes you easy prey he will target first."
+   BossCaptionStrings(4)="Yes, the Patriarch can still cloak, go invisible, run off, and heal himself. Some things don't change."
+   BossCaptionStrings(5)="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
    bLargeZed=True
    bCanGrabAttack=True
    MonsterArchPath="ZED_ARCH.ZED_Patriarch_Archetype"
@@ -2100,14 +2094,6 @@ defaultproperties
    FootstepCameraShakeOuterRadius=1000.000000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedPatriarch:FootstepCameraShake0'
    OnDeathAchievementID=130
-   BossName="The Patriarch"
-   BossCaptionStrings(0)="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
-   BossCaptionStrings(1)="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
-   BossCaptionStrings(2)="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
-   BossCaptionStrings(3)="Running off on your own isn't an escape - it makes you easy prey he will target first."
-   BossCaptionStrings(4)="Yes, the Patriarch can still cloak, go invisible, run off, and heal himself. Some things don't change."
-   BossCaptionStrings(5)="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
-   TheatricCameraSocketName="TheatricCameraRootSocket"
    PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
    LocalizationKey="KFPawn_ZedPatriarch"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_MonsterBoss:ThirdPersonHead0'
@@ -2174,7 +2160,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.500000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
-   IncapSettings(11)=(Vulnerability=(0.080000))
+   IncapSettings(11)=(Cooldown=10.000000,Vulnerability=(0.150000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=650.000000
    DefaultInventory(0)=Class'kfgamecontent.KFWeap_Minigun_Patriarch'

@@ -79,8 +79,8 @@ simulated function SpawnTracer(Vector EffectLocation, Vector HitLocation)
 
 defaultproperties
 {
-    AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Loop'
-    AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Railgun.Stop_Railgun_Loop'
+    AmbientSoundPlayEvent=AkEvent'ww_wep_sa_railgun.Play_Railgun_Loop'
+    AmbientSoundStopEvent=AkEvent'ww_wep_sa_railgun.Stop_Railgun_Loop'
     begin object name=SkeletalMeshComponent0 class=SkeletalMeshComponent
         Animations=AnimNodeSequence'Default__KFWeapAttach_Railgun.SkeletalMeshComponent0.MeshSequenceA'
         ReplacementPrimitive=none

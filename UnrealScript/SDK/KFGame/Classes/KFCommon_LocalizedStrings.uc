@@ -59,6 +59,20 @@ var localized string CustomString;
 
 var localized string CancelConnectionString;
 
+var localized array<string> WeaponTypeStrings;
+var localized array<string> RarityStrings;
+
+
+var localized string MixerGaveAmmoString;
+var localized string MixerGaveArmorString;
+var localized string MixerGaveDoshString;
+var localized string MixerGaveGrenadeString;
+var localized string MixerGaveHealthString;
+var localized string MixerZedTimeString;
+var localized string MixerRageZedsString;
+var localized string MixerPukeString;
+var localized string MixerSpawnedFPString;
+
 static function array<string> GetDifficultyStringsArray()
 {
 	return default.DifficultyStrings;

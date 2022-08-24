@@ -1,7 +1,8 @@
 //=============================================================================
 // KFPawn_MonsterBoss
 //=============================================================================
-// A base (abstract) class for the boss character at the end of a wave
+// A base (abstract) class for bosses based on unique designs.  Bosses based on
+//      existing zeds simply implement the boss interface.
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
@@ -9,7 +10,8 @@
 
 class KFPawn_MonsterBoss extends KFPawn_Monster
 	abstract
-	native(Pawn);
+	native(Pawn)
+    implements(KFInterface_MonsterBoss);
 
 `include(KFGameDialog.uci)
 
@@ -55,12 +57,114 @@ var protected const	float 			SpeedPctIncreasePerMinute;
 /** The final sprint speed after being modified by SetMonsterDefaults() */
 var protected 	float 				ActualSprintSpeed;
 
+//Intro Camera
+var bool bUseAnimatedCamera;
+var vector AnimatedBossCameraOffset;
+
+//Localization
+var localized array<string> BossCaptionStrings;
+
 replication
 {
 	if( bNetDirty )
 		CurrentBattlePhase;
 }
 
+/************************************
+* @name	KFInterface_MonsterBoss
+************************************/
+//Quick access to a pawn reference
+simulated function KFPawn_Monster GetMonsterPawn()
+{
+    return self;
+}
+
+simulated function string GetRandomBossCaption()
+{
+    if (default.BossCaptionStrings.Length <= 0)
+    {
+        return "";
+    }
+
+    return default.BossCaptionStrings[Rand(default.BossCaptionStrings.Length)];
+}
+
+//Status Accessors
+static simulated event bool IsABoss()
+{
+    return true;
+}
+
+simulated function float GetHealthPercent()
+{
+    return float(Health) / float(HealthMax);
+}
+
+//Intro functionality
+/** Turn on the boss camera animation mode */
+simulated function SetAnimatedBossCamera(bool bEnable, optional vector CameraOffset)
+{
+    bUseAnimatedCamera = bEnable;
+    if (bUseAnimatedCamera)
+    {
+        AnimatedBossCameraOffset = CameraOffset;
+    }
+    else
+    {
+        AnimatedBossCameraOffset = vect(0, 0, 0);
+    }
+}
+
+/** Whether this pawn is in theatric camera mode */
+simulated function bool UseAnimatedBossCamera()
+{
+    return bUseAnimatedCamera;
+}
+
+/** The name of the socket to use as a camera base for theatric sequences */
+simulated function name GetBossCameraSocket()
+{
+    return 'TheatricCameraRootSocket';
+}
+
+/** The relative offset to use for the cinematic camera */
+simulated function vector GetBossCameraOffset()
+{
+    return AnimatedBossCameraOffset;
+}
+
+function OnZedDied(Controller Killer)
+{
+    super.OnZedDied(Killer);
+
+    KFGameInfo(WorldInfo.Game).BossDied(Killer);
+}
+
+function KFAIWaveInfo GetWaveInfo(int BattlePhase, int Difficulty)
+{
+    switch (BattlePhase)
+    {
+    case 1:
+        return SummonWaves[Difficulty].PhaseOneWave;
+        break;
+    case 2:
+        return SummonWaves[Difficulty].PhaseTwoWave;
+        break;
+    case 3:
+        return SummonWaves[Difficulty].PhaseThreeWave;
+        break;
+    }
+
+    return none;
+}
+
+/** Returns the number of minions to spawn based on number of players */
+function byte GetNumMinionsToSpawn()
+{
+    return byte(Lerp(NumMinionsToSpawn.X, NumMinionsToSpawn.Y, fMax(WorldInfo.Game.NumPlayers, 1) / float(WorldInfo.Game.MaxPlayers)));
+}
+
+//
 simulated event ReplicatedEvent(name VarName)
 {
 	if( VarName == nameOf(CurrentBattlePhase) )
@@ -98,6 +202,7 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	Super.PossessedBy( C, bVehicleTransition );
 
 	PlayBossMusic();
+    ServerDoSpecialMove(SM_BossTheatrics);
 
 	// Set a timer to begin increasing this boss's speed after enough time has elapsed
 	if( !IsHumanControlled() )
@@ -120,7 +225,7 @@ function Timer_IncreaseSpeed()
 		}
 
 		// Adjust sprint speed but don't let it go below original or higher than 2x
-		SprintSpeed = fClamp( ActualSprintSpeed + ((`TimeSince(LastPlayerAliveStartTime) / 60.f) 
+		SprintSpeed = fClamp( ActualSprintSpeed + ((`TimeSince(LastPlayerAliveStartTime) / 60.f)
 						* (ActualSprintSpeed * SpeedPctIncreasePerMinute)), ActualSprintSpeed, ActualSprintSpeed * SpeedLimitScalar );
 	}
 	else
@@ -128,12 +233,6 @@ function Timer_IncreaseSpeed()
 		LastPlayerAliveStartTime = 0.f;
 		SprintSpeed = ActualSprintSpeed;
 	}
-}
-
-/** Returns the number of minions to spawn based on number of players */
-function byte GetNumMinionsToSpawn()
-{
-	return byte( Lerp(NumMinionsToSpawn.X, NumMinionsToSpawn.Y, fMax(WorldInfo.Game.NumPlayers, 1)/float(WorldInfo.Game.MaxPlayers)) );
 }
 
 /** sends any notifications to anything that needs to know this pawn has taken damage */
@@ -219,59 +318,7 @@ simulated function UpdateBattlePhaseOnLocalPlayerUI()
 		return;
 	}
 
-    KFPC.MyGFxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);   
-}
-
-/** Called from AICommand_MoveToGoal::NotifyHitWall() and AICommand_MoveToGoal::ReachedIntermediateMoveGoal() */
-function bool HandleAIDoorBump( KFDoorActor Door )
-{
-	return TryDestroyDoor( Door );
-}
-
-/** Destroy unwelded doors instantly when there are few players remaining */
-function bool TryDestroyDoor( KFDoorActor Door )
-{
-	if( Door != none && !Door.bIsDoorOpen && !Door.bIsDestroyed && Door.WeldIntegrity == 0 && CanObliterateDoors() )
-	{
-		Door.IncrementHitCount( self );
-		Door.DestroyDoor( Controller );
-		return true;
-	}
-
-	return false;
-}
-
-/** If we're a player, process hitwall and destroy doors here if all conditions are met */
-event HitWall( vector HitNormal, actor Wall, PrimitiveComponent WallComp )
-{
-	local KFDoorActor Door;
-
-	if( IsHumanControlled() )
-	{
-		if( !Wall.bStatic && IsAliveAndWell() )
-		{
-			Door = KFDoorActor( Wall );
-			if( Door != none )
-			{
-				TryDestroyDoor( Door );
-			}
-		}
-	}
-
-	super.HitWall( HitNormal, Wall, WallComp );
-}
-
-/** Determines if this boss can plow through doors */
-function bool CanObliterateDoors()
-{
-	// We only want the kool-aid man effect if we're sprinting
-	if( !bIsSprinting )
-	{
-		return false;
-	}
-
-	// Only allow door obliteration if there is one player remaining in a multiplayer game
-	return true;//IsOnePlayerLeftInTeamGame();
+    KFPC.MyGFxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);
 }
 
 /** Returns the attack range scalar when there is only one player remaining */
@@ -300,17 +347,6 @@ function bool IsOnePlayerLeftInTeamGame()
 /** Similar to IsOnePlayerLeftInTeamGame(), but more expensive and can be called on clients */
 native function bool LocalIsOnePlayerLeftInTeamGame();
 
-simulated event bool IsActiveBoss()
-{
-    return true;
-}
-
-/************************************
- * @name	Ephemeral Stats Tracking
- ************************************/
-
-static function bool IsABoss(){ return true; }
-
 /**
  * This pawn has died.
  */
@@ -335,11 +371,6 @@ function PlayBossMusic();
 // bosses cannot be decapitated
 function CauseHeadTrauma(float BleedOutTime=5.f);
 simulated function PlayHeadAsplode();
-
-function PlayMonologue( byte MonologueType )
-{
-	//`DialogManager.PlayBossMonologue( self, MonologueType );
-}
 
 function PlayGrabDialog()
 {

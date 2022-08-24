@@ -17,6 +17,7 @@ var const localized string XPString;
 var const localized string VictoryString;
 var const localized string DefeatString;
 var const localized string ItemDropTitleString;
+var TopVotes CurrentTopVoteObject;
 var KFGFxPostGameContainer_PlayerStats PlayerStatsContainer;
 var KFGFxPostGameContainer_MapVote MapVoteContainer;
 var KFGFxPostGameContainer_TeamAwards TeamAwardsContainer;
@@ -228,11 +229,11 @@ function SendVoipData()
                 TempObj.SetBool("bTalking", TalkerPRIs.Find(CurrentPlayerList[I] != -1);
                 if(Class'WorldInfo'.static.IsConsoleBuild(8))
                 {
-                    TempObj.SetString("avatar", KFPC.GetPS4Avatar(CurrentPlayerList[I].PlayerName));                    
+                    TempObj.SetString("avatar", "img://" $ KFPC.GetPS4Avatar(CurrentPlayerList[I].PlayerName));                    
                 }
                 else
                 {
-                    TempObj.SetString("avatar", KFPC.GetSteamAvatar(CurrentPlayerList[I].UniqueId));
+                    TempObj.SetString("avatar", "img://" $ KFPC.GetSteamAvatar(CurrentPlayerList[I].UniqueId));
                 }
                 DataProvider.SetElementObject(I, TempObj);
             }
@@ -401,6 +402,7 @@ function ReceiveMessage(string Message, optional string MessageColor)
 
 function RecieveTopMaps(const out TopVotes VoteObject)
 {
+    CurrentTopVoteObject = VoteObject;
     if(MapVoteContainer != none)
     {
         MapVoteContainer.RecieveTopMaps(VoteObject);
@@ -425,6 +427,29 @@ function Callback_MapVote(int MapVoteIndex, bool bDoubleClick)
     KFPRI.CastMapVote(MapVoteIndex, bDoubleClick);
 }
 
+function Callback_TopMapClicked(int MapVoteIndex, bool bDoubleClick)
+{
+    local int SearchIndex;
+    local string SearchString;
+
+    switch(MapVoteIndex)
+    {
+        case 0:
+            SearchString = CurrentTopVoteObject.Map1Name;
+            break;
+        case 1:
+            SearchString = CurrentTopVoteObject.Map2Name;
+            break;
+        case 2:
+            SearchString = CurrentTopVoteObject.Map3Name;
+            break;
+        default:
+            break;
+    }
+    SearchIndex = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI).VoteCollector.MapList.Find(SearchString;
+    Callback_MapVote(SearchIndex, bDoubleClick);
+}
+
 defaultproperties
 {
     MapVoteString="MAP VOTE"
@@ -437,5 +462,6 @@ defaultproperties
     VictoryString="Victory"
     DefeatString="Defeat"
     ItemDropTitleString="NEW ITEM OBTAINED!"
+    CurrentTopVoteObject=(Map1Name="",Map1Votes=255,Map2Name="",Map2Votes=255,Map3Name="",Map3Votes=255)
     SubWidgetBindings=/* Array type was not detected. */
 }

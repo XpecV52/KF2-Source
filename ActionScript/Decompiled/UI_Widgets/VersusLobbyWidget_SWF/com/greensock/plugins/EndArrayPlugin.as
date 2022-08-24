@@ -63,7 +63,10 @@ package com.greensock.plugins
                 while(--_loc2_ > -1)
                 {
                     _loc3_ = this._info[_loc2_];
-                    this._a[_loc3_.i] = (_loc4_ = _loc3_.c * param1 + _loc3_.s) > 0 ? _loc4_ + 0.5 >> 0 : _loc4_ - 0.5 >> 0;
+                    §§push(this._a);
+                    §§push(_loc3_.i);
+                    §§push((_loc4_ = _loc3_.c * param1 + _loc3_.s) > 0 ? _loc4_ + 0.5 >> 0 : _loc4_ - 0.5 >> 0);
+                    §§pop()[§§pop()] = §§pop();
                 }
             }
             else

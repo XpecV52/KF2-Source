@@ -89,24 +89,30 @@ event ChangeVisibility( bool bIsVisible )
 /** Added second weapon */
 simulated function AttachTo(KFPawn P)
 {
-	Super.AttachTo(P);
+    Super.AttachTo(P);
 
-	if ( bWeapMeshIsPawnMesh )
-	{
-		LeftWeapMesh = P.Mesh;
-	}
-	else if ( LeftWeapMesh != None )
-	{
-		if( LeftHandSkelMesh == none )
-		{
-		// Create a duplicate of the right-hand weapn mesh
-		LeftWeapMesh = new(self) Class'SkeletalMeshComponent'(WeapMesh);
-		}
+    if ( bWeapMeshIsPawnMesh )
+    {
+        LeftWeapMesh = P.Mesh;
+    }
+    else if ( LeftWeapMesh != None )
+    {
+        if( LeftHandSkelMesh == none )
+        {
+            // Create a duplicate of the right-hand weapn mesh
+            LeftWeapMesh = new(self) Class'SkeletalMeshComponent'(WeapMesh);
+        }
 
-		// Attach Weapon mesh to player skel mesh
-		LeftWeapMesh.SetShadowParent(P.Mesh);
-		P.Mesh.AttachComponent(LeftWeapMesh, LeftWeaponSocket);
-	}
+        // Attach Weapon mesh to player skel mesh
+        LeftWeapMesh.SetShadowParent(P.Mesh);
+        P.Mesh.AttachComponent(LeftWeapMesh, LeftWeaponSocket);
+    }
+
+    //Do a first chance weapon skin switch (EX: changed weapon w/o ID changing by throwing a dualie)
+    if (KFPawn_Human(P) != None && KFPawn_Human(P).WeaponSkinItemId > 0)
+    {
+        SetWeaponSkin(KFPawn_Human(P).WeaponSkinItemId);
+    }
 }
 
 /** Added second weapon */
@@ -151,7 +157,7 @@ function SetWeaponSkin(int ItemId)
 {
 	local array<MaterialInterface> SkinMICs;
 
-	if ( ItemId > 0 && WorldInfo.NetMode != NM_DedicatedServer )
+	if ( WeapMesh != none && LeftWeapMesh != none && ItemId > 0 && WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		SkinMICs = class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, WST_ThirdPerson);
 		if ( SkinMICs.Length > 0 )

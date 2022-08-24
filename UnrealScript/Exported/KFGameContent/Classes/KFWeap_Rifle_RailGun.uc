@@ -910,12 +910,12 @@ defaultproperties
    LockAim=0.995000
    MaxScopeScreenDot=0.200000
    LockTargetingSoundInterval=0.090000
-   LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locked'
-   LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Lost'
-   LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locking'
+   LockAcquiredSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Locked'
+   LockLostSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Lost'
+   LockTargetingSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Locking'
    TargetLocationReplicationInterval=0.016000
-   AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Loop'
-   AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Railgun.Stop_Railgun_Loop'
+   AmbientSoundPlayEvent=AkEvent'ww_wep_sa_railgun.Play_Railgun_Loop'
+   AmbientSoundStopEvent=AkEvent'ww_wep_sa_railgun.Stop_Railgun_Loop'
    AmbientSoundSocketName="AmbientSound"
    Begin Object Class=TWSceneCapture2DDPGComponent Name=SceneCapture2DComponent0 Archetype=TWSceneCapture2DDPGComponent'KFGame.Default__KFWeap_ScopedBase:SceneCapture2DComponent0'
       bRenderForegroundDPG=False
@@ -985,10 +985,10 @@ defaultproperties
    BonesToLockOnEmpty(24)="RW_Bullets1"
    BonesToLockOnEmpty(25)="RW_AcceleratorMagnetrons"
    BonesToLockOnEmpty(26)="RW_Bolt"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_DryFire'
-   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_DryFire'
    PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-2.000000)
    AttachmentArchetype=KFWeapAttach_Railgun'WEP_RailGun_ARCH.Wep_RailGun_3P_Updated'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ScopedBase:MeleeHelper_0'

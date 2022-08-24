@@ -153,6 +153,17 @@ var float MinShootingRange;
 /** min delay between shooting attacks */
 var float ShootingCooldown;
 
+enum EHansNadeType
+{
+    HNT_None,
+    HNT_HEGrenade,
+    HNT_NerveGas,
+    HNT_Smoke,
+    HNT_HEGrenadeBarrage,
+    HNT_NerveGasBarrage,
+    HNT_SmokeBarrage,
+};
+
 /* The grenade attack type we have queued up to do */
 var EHansNadeType CurrentNadeAttackType;
 

@@ -15,7 +15,7 @@ protected function bool InternalCanDoSpecialMove()
     MyPatPawnV.ClearMortarTargets();
     if(MyPatPawnV.IsLocallyControlled() && !MyPatPawnV.CollectMortarTargets(true, true))
     {
-        MyPatPawnV.MyKFPC.MyGFxHUD.ShowNonCriticalMessage(MyPatPawnV.NoMortarTargetsMsg);
+        MyPatPawnV.MyKFPC.myGfxHUD.ShowNonCriticalMessage(MyPatPawnV.NoMortarTargetsMsg);
         return false;
     }
     return super(KFSpecialMove).InternalCanDoSpecialMove();

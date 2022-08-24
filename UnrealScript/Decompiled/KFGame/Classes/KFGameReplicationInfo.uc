@@ -392,9 +392,9 @@ simulated function UpdateHUDWaveCount()
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         KFPC = KFPlayerController(GetALocalPlayerController());
-        if((KFPC != none) && KFPC.MyGFxHUD != none)
+        if((KFPC != none) && KFPC.myGfxHUD != none)
         {
-            KFPC.MyGFxHUD.UpdateWaveCount();
+            KFPC.myGfxHUD.UpdateWaveCount();
         }
     }
 }
@@ -513,9 +513,9 @@ simulated function OpenTrader(optional int Time)
             {
                 KFPC.MyGFxManager.OnTraderTimeStart();
             }
-            if(KFPC.MyGFxHUD != none)
+            if(KFPC.myGfxHUD != none)
             {
-                KFPC.MyGFxHUD.UpdateWaveCount();
+                KFPC.myGfxHUD.UpdateWaveCount();
             }
         }
     }
@@ -1337,7 +1337,7 @@ function StartNextObjective()
     local KFMapInfo KFMI;
 
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
-    if(KFMI != none)
+    if((KFMI != none) && WaveNum != WaveMax)
     {
         if(KFMI.bUsePresetObjectives)
         {
@@ -1386,10 +1386,23 @@ function StartNextPresetObjective(KFMapInfo KFMI)
 
 function StartNextRandomObjective(KFMapInfo KFMI)
 {
-    AttemptObjectiveActivation(KFMI.RandomWaveObjectives);
+    local int Idx;
+
+    if((KFMI.RandomWaveObjectives.Length > 0) && KFMI.RandomObjectiveWavesToDisable.Find(WaveNum == -1)
+    {
+        if(KFMI.CurrentAvailableRandomWaveObjectives.Length == 0)
+        {
+            KFMI.CurrentAvailableRandomWaveObjectives = KFMI.RandomWaveObjectives;
+        }
+        Idx = AttemptObjectiveActivation(KFMI.CurrentAvailableRandomWaveObjectives);
+        if(Idx >= 0)
+        {
+            KFMI.CurrentAvailableRandomWaveObjectives.Remove(Idx, 1;
+        }
+    }
 }
 
-function AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives)
+function int AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives)
 {
     local int RandID;
 
@@ -1400,11 +1413,12 @@ function AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObje
         if(PossibleObjectives[RandID].CanActivateObjective())
         {
             ActivateObjective(PossibleObjectives[RandID]);
-            return;
+            return RandID;
         }
         PossibleObjectives.Remove(RandID, 1;
         goto J0x00;
     }
+    return -1;
 }
 
 function ActivateObjective(KFInterface_MapObjective NewObjective)

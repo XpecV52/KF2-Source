@@ -15,7 +15,7 @@ var protected const float ANTI_GRIEF_DELAY;
 var protected const float ANTI_GRIEF_INTERVAL;
 var protected const float ANTI_GRIEF_DAMAGE_PERCENTAGE;
 var protected const array< class<KFPawn_Monster> > PlayerZedClasses;
-var protected const array< class<KFPawn_MonsterBoss> > PlayerBossClassList;
+var protected const array< class<KFPawn_Monster> > PlayerBossClassList;
 var KFGameReplicationInfoVersus MyKFGRIV;
 var class<KFDamageType> AntiGriefDamageTypeClass;
 var config bool bTeamBalanceEnabled;
@@ -756,7 +756,7 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
 
 function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType)
 {
-    local KFPawn_MonsterBoss BossPawn;
+    local KFInterface_MonsterBoss BossRef;
 
     if((((InstigatedBy == none) || !InstigatedBy.bIsPlayer) || InstigatedBy.PlayerReplicationInfo == none) || InstigatedBy.GetTeamNum() == DamagedPawn.GetTeamNum())
     {
@@ -766,8 +766,8 @@ function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller Instig
     KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
     if(InstigatedBy.PlayerReplicationInfo.GetTeamNum() == 255)
     {
-        BossPawn = KFPawn_MonsterBoss(InstigatedBy.Pawn);
-        if(BossPawn != none)
+        BossRef = KFInterface_MonsterBoss(InstigatedBy.Pawn);
+        if(NotEqual_InterfaceInterface(BossRef, (none)))
         {
             if(DamagedPawn.IsA('KFPawn_Human'))
             {
@@ -777,8 +777,8 @@ function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller Instig
     }
     else
     {
-        BossPawn = KFPawn_MonsterBoss(DamagedPawn);
-        if(BossPawn != none)
+        BossRef = KFInterface_MonsterBoss(DamagedPawn);
+        if(NotEqual_InterfaceInterface(BossRef, (none)))
         {
             BossDamageDone += DamageAmount;
         }
@@ -816,7 +816,7 @@ function ScoreKill(Controller Killer, Controller Other)
     }
     else
     {
-        if((WaveNum == WaveMax) && KFPawn_MonsterBoss(Other.Pawn) != none)
+        if((WaveNum == WaveMax) && NotEqual_InterfaceInterface(KFInterface_MonsterBoss(Other.Pawn), (none)))
         {
             BossDamageDone = POINTS_FOR_BOSS_KILL;
         }

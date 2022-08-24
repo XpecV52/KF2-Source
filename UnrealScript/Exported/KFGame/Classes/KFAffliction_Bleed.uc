@@ -23,6 +23,9 @@ var const float DamageModifier;
 // Speed modifier applied while in deflate state
 var const float SpeedModifier;
 
+// Melee animation speed applied in deflate state
+var const float AttackSpeedModifier;
+
 // State tracking for speed mod reset
 var float PrevStrength;
 
@@ -102,12 +105,23 @@ function float GetSpeedModifier()
     return 1.f;
 }
 
+function float GetAttackSpeedModifier()
+{
+	if (CurrentStrength > DeflateThreshold)
+	{
+		return AttackSpeedModifier;
+	}
+
+	return 1.f;
+}
+
 function Accrue(float InPower)
 {
     super.Accrue(InPower);
     if (PawnOwner != none)
     {
         PawnOwner.SetAfflictionSpeedModifier();
+		PawnOwner.SetAttackSpeedModifier();
     }
 }
 
@@ -117,6 +131,7 @@ function Tick(float DeltaTime)
     if (PawnOwner != none && CurrentStrength < DeflateThreshold && PrevStrength > DeflateThreshold)
     {
         PawnOwner.SetAfflictionSpeedModifier();
+		PawnOwner.SetAttackSpeedModifier();
     }
     UpdateDeflateMaterialParam(DeltaTime);
 
@@ -126,6 +141,14 @@ function Tick(float DeltaTime)
 /** Network: Server */
 protected function UpdateDeflateMaterialParam(float DeltaTime)
 {
+	MonsterOwner.UpdateBleedIncapFX();
+
+	//Don't allow updates while dead, leave at last known state
+	if (!MonsterOwner.IsAliveAndWell())
+	{
+		return;
+	}
+
     //Check each state. If we're in the none state, we want to trigger state changes as appropriate to
     //      kick the visual changes in the next frame.  Otherwise we can simply get out of here.
     switch (CurrentDeflateState)
@@ -209,13 +232,13 @@ function SetMaterialParameter(float ParamValue)
 
 defaultproperties
 {
-   DeflateThreshold=30.000000
+   DeflateThreshold=65.000000
    IncapModifier=0.300000
    DamageModifier=-0.300000
    SpeedModifier=0.700000
-   MaxDeflate=0.500000
-   DeflateChangeRate=0.500000
-   DissipationRate=5.000000
+   AttackSpeedModifier=0.800000
+   MaxDeflate=1.000000
+   DeflateChangeRate=0.750000
    bNeedsTick=True
    Name="Default__KFAffliction_Bleed"
    ObjectArchetype=KFAfflictionAdvanced'KFGame.Default__KFAfflictionAdvanced'

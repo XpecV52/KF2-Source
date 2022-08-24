@@ -48,14 +48,16 @@ static function PlayImpactHitEffects( KFPawn P, vector HitLocation, vector HitDi
 	super.PlayImpactHitEffects(P, HitLocation, HitDirection, HitZoneIndex, HitInstigator);
 }
 
-/** Whether this damage type can apply damage over time */
-static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamageType> KFDT,  optional Controller InstigatedBy )
-{
+/** Called when damage is dealt to apply additional damage type (e.g. Damage Over Time) */
+static function ApplySecondaryDamage( KFPawn Victim, int DamageTaken, optional Controller InstigatedBy )
+{	
 	// Overriden to specific a different damage type to do the burn damage over
 	// time. We do this so we don't get shotgun pellet impact sounds/fx during
 	// the DOT burning.
-    KFDT = default.BurnDamageType;
-    return KFDT.default.DoT_Type != DOT_None;
+    if ( default.BurnDamageType.default.DoT_Type != DOT_None )
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, default.BurnDamageType);
+    }
 }
 
 defaultproperties

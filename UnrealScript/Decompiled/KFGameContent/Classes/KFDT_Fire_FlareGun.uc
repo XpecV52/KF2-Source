@@ -10,10 +10,12 @@ class KFDT_Fire_FlareGun extends KFDT_Ballistic_Handgun
 
 var class<KFDamageType> BurnDamageType;
 
-static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
+static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Controller InstigatedBy)
 {
-    KFDT = default.BurnDamageType;
-    return KFDT.default.DoT_Type != 0;
+    if(default.BurnDamageType.default.DoT_Type != 0)
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, default.BurnDamageType);
+    }
 }
 
 defaultproperties

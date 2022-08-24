@@ -198,7 +198,7 @@ function NotifyMenuOpened(byte MenuIndex)
                 return;
             }
             break;
-        case 3:
+        case 4:
             if(!bShowedInventoryMenuTutorial)
             {
                 CreateTutorialHUD(InventoryMenuTutorial);
@@ -206,7 +206,7 @@ function NotifyMenuOpened(byte MenuIndex)
                 return;
             }
             break;
-        case 4:
+        case 5:
             if(!bShowedStoreMenuTutorial)
             {
                 CreateTutorialHUD(StoreMenuTutorial);
@@ -364,12 +364,13 @@ state TraderOpen
                         MyKFGRI.RemainingMinute = TimeBetweenWaves;
                     }
                 }
-            }            
+            }
         }
         if(MyPC.bClientTraderMenuOpen)
         {
             MyKFGRI.RemainingTime = TimeBetweenWaves;
             MyKFGRI.RemainingMinute = TimeBetweenWaves;
+            ClearTimer('CloseTraderTimer');
         }
         global.CheckPlayerAction();
     }

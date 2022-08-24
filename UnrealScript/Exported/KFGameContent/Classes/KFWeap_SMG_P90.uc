@@ -28,9 +28,9 @@ defaultproperties
    InitialSpareMags(0)=2
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_P90.Play_P90_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_P90.Play_P90_Fire_1P_Loop')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_P90.Play_P90_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_P90.Play_P90_Fire_1P_Single')
-   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_P90.Play_P90_Fire_3P_EndLoop',FirstPersonCue=AkEvent'WW_WEP_P90.Play_P90_Fire_1P_EndLoop')
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_p90.Play_P90_Fire_3P_Loop',FirstPersonCue=AkEvent'ww_wep_p90.Play_P90_Fire_1P_Loop')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_p90.Play_P90_Fire_3P_Single',FirstPersonCue=AkEvent'ww_wep_p90.Play_P90_Fire_1P_Single')
+   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'ww_wep_p90.Play_P90_Fire_3P_EndLoop',FirstPersonCue=AkEvent'ww_wep_p90.Play_P90_Fire_1P_EndLoop')
    WeaponDryFireSnd(0)=None
    WeaponDryFireSnd(1)=None
    PlayerViewOffset=(X=19.000000,Y=10.000000,Z=-0.500000)

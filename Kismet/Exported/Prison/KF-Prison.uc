@@ -1,13 +1,13 @@
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
-   Originator=TriggerVolume'KF-Prison.TheWorld:PersistentLevel.TriggerVolume_11'
+   Originator=TriggerVolume'KF-PRISON.TheWorld:PersistentLevel.TriggerVolume_11'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=1061,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=1061,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1082,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1103,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-434,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-520
    ObjPosY=992
    ObjName="TriggerVolume_11 Touch"
@@ -22,11 +22,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
    InputLinks(1)=(DrawY=1082,OverrideDelta=35)
    InputLinks(2)=(DrawY=1103,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1082,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14'),DrawX=-282,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14'),DrawX=-282,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-231,OverrideDelta=76)
    EventLinks(0)=(DrawX=-182,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-320
    ObjPosY=1024
    DrawWidth=173
@@ -36,9 +36,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_38'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_38'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-312
    ObjPosY=1168
    ObjComment="paremt"
@@ -53,7 +53,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_2
    SizeY=294
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-552
    ObjPosY=960
    ObjComment="Big Courtyard"
@@ -68,11 +68,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
    InputLinks(1)=(DrawY=1410,OverrideDelta=35)
    InputLinks(2)=(DrawY=1431,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1410,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22'),DrawX=-290,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22'),DrawX=-290,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-239,OverrideDelta=76)
    EventLinks(0)=(DrawX=-190,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-328
    ObjPosY=1352
    DrawWidth=173
@@ -82,9 +82,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_43'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_43'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-320
    ObjPosY=1496
    ObjComment="parent"
@@ -99,7 +99,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_3
    SizeY=297
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-552
    ObjPosY=1280
    ObjComment="Cell Block 2"
@@ -110,15 +110,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_3
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_4
-   Originator=TriggerVolume'KF-Prison.TheWorld:PersistentLevel.TriggerVolume_4'
+   Originator=TriggerVolume'KF-PRISON.TheWorld:PersistentLevel.TriggerVolume_4'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),DrawY=1709,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),DrawY=1709,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1730,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1751,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-438,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-520
    ObjPosY=1640
    ObjName="TriggerVolume_4 Touch"
@@ -133,11 +133,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
    InputLinks(1)=(DrawY=1730,OverrideDelta=35)
    InputLinks(2)=(DrawY=1751,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1730,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=-282,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=-282,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-231,OverrideDelta=76)
    EventLinks(0)=(DrawX=-182,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-320
    ObjPosY=1672
    DrawWidth=173
@@ -151,7 +151,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_4
    SizeY=305
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-552
    ObjPosY=1608
    ObjComment="Shower 1"
@@ -162,15 +162,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_4
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_6
-   Originator=TriggerVolume'KF-Prison.TheWorld:PersistentLevel.TriggerVolume_6'
+   Originator=TriggerVolume'KF-PRISON.TheWorld:PersistentLevel.TriggerVolume_6'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=2109,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=2109,OverrideDelta=14)
    OutputLinks(1)=(DrawY=2130,OverrideDelta=35)
    OutputLinks(2)=(DrawY=2151,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-446,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-528
    ObjPosY=2040
    ObjName="TriggerVolume_6 Touch"
@@ -185,11 +185,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
    InputLinks(1)=(DrawY=2130,OverrideDelta=35)
    InputLinks(2)=(DrawY=2151,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2130,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37'),DrawX=-274,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37'),DrawX=-274,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-223,OverrideDelta=76)
    EventLinks(0)=(DrawX=-174,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-312
    ObjPosY=2072
    DrawWidth=173
@@ -199,9 +199,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_29'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_29'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-304
    ObjPosY=2216
    ObjComment="parent"
@@ -216,7 +216,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
    SizeY=296
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-552
    ObjPosY=2008
    ObjComment="Courtyard Connector"
@@ -227,15 +227,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
-   Originator=TriggerVolume'KF-Prison.TheWorld:PersistentLevel.TriggerVolume_10'
+   Originator=TriggerVolume'KF-PRISON.TheWorld:PersistentLevel.TriggerVolume_10'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=2477,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=2477,OverrideDelta=14)
    OutputLinks(1)=(DrawY=2498,OverrideDelta=35)
    OutputLinks(2)=(DrawY=2519,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-450,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-536
    ObjPosY=2408
    ObjName="TriggerVolume_10 Touch"
@@ -250,11 +250,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
    InputLinks(1)=(DrawY=2498,OverrideDelta=35)
    InputLinks(2)=(DrawY=2519,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2498,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_39'),DrawX=-266,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_39'),DrawX=-266,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-215,OverrideDelta=76)
    EventLinks(0)=(DrawX=-166,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-304
    ObjPosY=2440
    DrawWidth=173
@@ -264,9 +264,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_3'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-304
    ObjPosY=2576
    ObjComment="parent"
@@ -277,9 +277,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_0'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-208
    ObjPosY=2576
    ObjComment="child"
@@ -294,7 +294,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_7
    SizeY=289
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-568
    ObjPosY=2376
    ObjComment="Rec Yard"
@@ -305,15 +305,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_7
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_8
-   Originator=TriggerVolume'KF-Prison.TheWorld:PersistentLevel.TriggerVolume_9'
+   Originator=TriggerVolume'KF-PRISON.TheWorld:PersistentLevel.TriggerVolume_9'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=2837,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=2837,OverrideDelta=14)
    OutputLinks(1)=(DrawY=2858,OverrideDelta=35)
    OutputLinks(2)=(DrawY=2879,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-462,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-544
    ObjPosY=2768
    ObjName="TriggerVolume_9 Touch"
@@ -328,11 +328,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
    InputLinks(1)=(DrawY=2858,OverrideDelta=35)
    InputLinks(2)=(DrawY=2879,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2858,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43'),DrawX=-282,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43'),DrawX=-282,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-231,OverrideDelta=76)
    EventLinks(0)=(DrawX=-182,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-320
    ObjPosY=2800
    DrawWidth=173
@@ -346,7 +346,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_8
    SizeY=291
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-576
    ObjPosY=2736
    ObjComment="Mess Hall"
@@ -357,15 +357,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_8
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_11
-   Originator=TriggerVolume'KF-Prison.TheWorld:PersistentLevel.TriggerVolume_12'
+   Originator=TriggerVolume'KF-PRISON.TheWorld:PersistentLevel.TriggerVolume_12'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),DrawY=3149,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),DrawY=3149,OverrideDelta=14)
    OutputLinks(1)=(DrawY=3170,OverrideDelta=35)
    OutputLinks(2)=(DrawY=3191,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-450,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-536
    ObjPosY=3080
    ObjName="TriggerVolume_12 Touch"
@@ -380,11 +380,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
    InputLinks(1)=(DrawY=3170,OverrideDelta=35)
    InputLinks(2)=(DrawY=3191,OverrideDelta=56)
    OutputLinks(0)=(DrawY=3170,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_62'),DrawX=-290,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_62'),DrawX=-290,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-239,OverrideDelta=76)
    EventLinks(0)=(DrawX=-190,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-328
    ObjPosY=3112
    DrawWidth=173
@@ -398,7 +398,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_11
    SizeY=303
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-576
    ObjPosY=3064
    ObjComment="Cell Block 1"
@@ -409,15 +409,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_11
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_13
-   Originator=TriggerVolume'KF-Prison.TheWorld:PersistentLevel.TriggerVolume_3'
+   Originator=TriggerVolume'KF-PRISON.TheWorld:PersistentLevel.TriggerVolume_3'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=1389,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=1389,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1410,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1431,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-454,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-536
    ObjPosY=1320
    ObjName="TriggerVolume_3 Touch"
@@ -428,9 +428,9 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_13
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_7'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-216
    ObjPosY=1168
    ObjComment="child"
@@ -441,9 +441,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_64
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_63'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_63'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-120
    ObjPosY=1168
    ObjComment="child"
@@ -454,9 +454,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_64
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_65
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_2'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-16
    ObjPosY=1168
    ObjComment="child"
@@ -467,9 +467,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_65
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_66
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_37'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_37'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=72
    ObjPosY=1168
    ObjComment="child"
@@ -480,9 +480,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_66
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_67
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_36'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_36'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=176
    ObjPosY=1168
    ObjComment="child"
@@ -493,9 +493,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_67
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_5'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-112
    ObjPosY=2576
    ObjComment="child"
@@ -506,9 +506,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_19'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_19'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8
    ObjPosY=2576
    ObjComment="child"
@@ -519,9 +519,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_35'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_35'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=80
    ObjPosY=2576
    ObjComment="child"
@@ -532,9 +532,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_13'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-312
    ObjPosY=1824
    ObjComment="parent"
@@ -545,9 +545,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_40'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_40'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-328
    ObjPosY=3264
    ObjComment="parent"
@@ -558,9 +558,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_69
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_1'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-216
    ObjPosY=3264
    ObjComment="child"
@@ -571,9 +571,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_69
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_62'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_62'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=264
    ObjPosY=1168
    ObjComment="child"
@@ -588,11 +588,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
    InputLinks(1)=(DrawY=2234,OverrideDelta=35)
    InputLinks(2)=(DrawY=2255,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2234,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_19',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_20',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26'),DrawX=2822,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_19',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_20',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26'),DrawX=2822,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2873,OverrideDelta=76)
    EventLinks(0)=(DrawX=2922,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2784
    ObjPosY=2176
    DrawWidth=173
@@ -604,11 +604,11 @@ End Object
 Begin Object Class=SeqEvent_PlayerSpawned Name=SeqEvent_PlayerSpawned_0
    MaxTriggerCount=0
    MaxWidth=156
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6',InputLinkIdx=1),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),DrawY=2402,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6',InputLinkIdx=1),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),DrawY=2402,OverrideDelta=11)
    VariableLinks(0)=(DrawX=1936,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2006,OverrideDelta=96)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1888
    ObjPosY=2336
    DrawWidth=98
@@ -621,7 +621,7 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_0
    SizeX=688
    SizeY=184
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2544
    ObjPosY=2400
    ObjComment="Courtyard Spawn"
@@ -636,9 +636,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
    OutputLinks(0)=(DrawY=2186,OverrideDelta=35)
    VariableLinks(0)=(DrawX=1966,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2017,OverrideDelta=76)
-   EventLinks(0)=(LinkedEvents=(SeqEvent_PlayerSpawned'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqEvent_PlayerSpawned_0'),DrawX=2066,OverrideDelta=119)
+   EventLinks(0)=(LinkedEvents=(SeqEvent_PlayerSpawned'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqEvent_PlayerSpawned_0'),DrawX=2066,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1928
    ObjPosY=2128
    DrawWidth=173
@@ -649,11 +649,11 @@ End Object
 
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=2093,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=2093,OverrideDelta=14)
    OutputLinks(1)=(DrawY=2114,OverrideDelta=35)
    OutputLinks(2)=(DrawY=2135,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1680
    ObjPosY=2024
    DrawWidth=137
@@ -662,9 +662,9 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_8'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2616
    ObjPosY=2472
    DrawWidth=32
@@ -674,9 +674,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_10'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2720
    ObjPosY=2472
    DrawWidth=32
@@ -686,9 +686,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_11'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2816
    ObjPosY=2472
    DrawWidth=32
@@ -698,9 +698,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_6'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2920
    ObjPosY=2472
    DrawWidth=32
@@ -710,9 +710,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_9'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3016
    ObjPosY=2472
    DrawWidth=32
@@ -722,9 +722,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_7'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3120
    ObjPosY=2472
    DrawWidth=32
@@ -734,9 +734,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_33'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_33'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-200
    ObjPosY=1824
    ObjComment="child"
@@ -747,9 +747,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_25'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_25'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-304
    ObjPosY=2944
    ObjComment="parent"
@@ -760,9 +760,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_45
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_22'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_22'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-200
    ObjPosY=2944
    ObjComment="child"
@@ -773,9 +773,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_45
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_47
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_20'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_20'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-104
    ObjPosY=2944
    ObjComment="child"
@@ -790,11 +790,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
    InputLinks(1)=(DrawY=3538,OverrideDelta=35)
    InputLinks(2)=(DrawY=3559,OverrideDelta=56)
    OutputLinks(0)=(DrawY=3538,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32'),DrawX=-282,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32'),DrawX=-282,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-231,OverrideDelta=76)
    EventLinks(0)=(DrawX=-182,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-320
    ObjPosY=3480
    DrawWidth=173
@@ -804,9 +804,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_49'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_49'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-320
    ObjPosY=3624
    ObjComment="parent"
@@ -817,15 +817,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
-   Originator=TriggerVolume'KF-Prison.TheWorld:PersistentLevel.TriggerVolume_1'
+   Originator=TriggerVolume'KF-PRISON.TheWorld:PersistentLevel.TriggerVolume_1'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),DrawY=3517,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),DrawY=3517,OverrideDelta=14)
    OutputLinks(1)=(DrawY=3538,OverrideDelta=35)
    OutputLinks(2)=(DrawY=3559,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-462,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-544
    ObjPosY=3448
    ObjName="TriggerVolume_1 Touch"
@@ -840,7 +840,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_9
    SizeY=308
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-576
    ObjPosY=3416
    ObjComment="Security / Infirmary Corridor"
@@ -851,9 +851,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
-   ObjValue=CameraActor'KF-Prison.TheWorld:PersistentLevel.CameraActor_0'
+   ObjValue=CameraActor'KF-PRISON.TheWorld:PersistentLevel.CameraActor_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2472
    ObjPosY=1248
    DrawWidth=32
@@ -869,7 +869,7 @@ Begin Object Class=InterpData Name=InterpData_0
          Name="InterpTrackDirector_0"
          ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
       End Object
-      InterpTracks(0)=InterpTrackDirector'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
+      InterpTracks(0)=InterpTrackDirector'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
       GroupColor=(B=99,G=216,R=0,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
@@ -883,19 +883,19 @@ Begin Object Class=InterpData Name=InterpData_0
          Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(0)=InterpTrackMove'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackMove_0'
       GroupName="Cam"
       GroupColor=(B=31,G=0,R=231,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=600.075928
-   InterpGroups(0)=InterpGroup'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
-   InterpGroups(1)=InterpGroupDirector'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0'
+   InterpGroups(0)=InterpGroup'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
+   InterpGroups(1)=InterpGroupDirector'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=600.075928
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2368
    ObjPosY=1264
    DrawWidth=32
@@ -910,12 +910,12 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
    InputLinks(2)=(DrawY=1146,OverrideDelta=59)
    InputLinks(3)=(DrawY=1168,OverrideDelta=81)
    InputLinks(4)=(DrawY=1190,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=1118,OverrideDelta=31)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=1118,OverrideDelta=31)
    OutputLinks(1)=(DrawY=1174,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.InterpData_0'),DrawX=2422,OverrideDelta=39)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29'),LinkDesc="Cam",MinVars=0,DrawX=2468,OverrideDelta=86)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.InterpData_0'),DrawX=2422,OverrideDelta=39)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29'),LinkDesc="Cam",MinVars=0,DrawX=2468,OverrideDelta=86)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2368
    ObjPosY=1064
    DrawWidth=154
@@ -928,9 +928,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
    Commands(0)="startbenchmark"
    InputLinks(0)=(DrawY=1370,OverrideDelta=11)
    OutputLinks(0)=(DrawY=1370,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=2192,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=2192,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2128
    ObjPosY=1336
    ObjComment="startbenchmark"
@@ -944,9 +944,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_0
    Commands(0)="endbenchmark"
    InputLinks(0)=(DrawY=1098,OverrideDelta=11)
    OutputLinks(0)=(DrawY=1098,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=2696,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=2696,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2632
    ObjPosY=1064
    ObjComment="endbenchmark"
@@ -958,7 +958,7 @@ End Object
 
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_1
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2392
    ObjPosY=1512
    DrawWidth=32
@@ -970,10 +970,10 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
    ConsoleEventName="Benchmark"
    MaxWidth=190
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1'),(LinkedOp=SeqAct_Interp'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0')),DrawY=1130,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1'),(LinkedOp=SeqAct_Interp'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0')),DrawY=1130,OverrideDelta=11)
    VariableLinks(0)=(DrawX=2191,OverrideDelta=63)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2096
    ObjPosY=1064
    DrawWidth=115
@@ -987,7 +987,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
    SizeY=572
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2064
    ObjPosY=1040
    ObjComment="Benchmark"
@@ -1002,7 +1002,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
    SizeY=767
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1648
    ObjPosY=1992
    ObjComment="Player starts"
@@ -1013,9 +1013,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
-   ObjValue=KFSpawner'KF-Prison.TheWorld:PersistentLevel.KFSpawner_4'
+   ObjValue=KFSpawner'KF-PRISON.TheWorld:PersistentLevel.KFSpawner_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=176
    ObjPosY=2576
    ObjComment="child"
@@ -1030,11 +1030,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    InputLinks(1)=(DrawY=2018,OverrideDelta=35)
    InputLinks(2)=(DrawY=2039,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2018,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27'),DrawX=4342,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27'),DrawX=4342,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4393,OverrideDelta=76)
    EventLinks(0)=(DrawX=4442,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4304
    ObjPosY=1960
    DrawWidth=173
@@ -1044,9 +1044,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_14'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4232
    ObjPosY=2104
    ObjComment="Cafeteria"
@@ -1057,9 +1057,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_18'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_18'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4336
    ObjPosY=2104
    ObjComment="Cafeteria"
@@ -1070,9 +1070,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_17'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_17'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4432
    ObjPosY=2104
    ObjComment="Cafeteria"
@@ -1083,9 +1083,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_16'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_16'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4200
    ObjPosY=2160
    ObjComment="Cafeteria"
@@ -1096,9 +1096,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_13'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4304
    ObjPosY=2160
    ObjComment="Cafeteria"
@@ -1109,9 +1109,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_12'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4400
    ObjPosY=2160
    ObjComment="Cafeteria"
@@ -1122,9 +1122,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_15'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_15'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4504
    ObjPosY=2160
    ObjComment="Cafeteria"
@@ -1139,11 +1139,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
    InputLinks(1)=(DrawY=1714,OverrideDelta=35)
    InputLinks(2)=(DrawY=1735,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1714,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36'),DrawX=4318,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36'),DrawX=4318,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4369,OverrideDelta=76)
    EventLinks(0)=(DrawX=4418,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4280
    ObjPosY=1656
    DrawWidth=173
@@ -1153,9 +1153,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4216
    ObjPosY=1808
    ObjComment="Main Entrance"
@@ -1166,9 +1166,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4320
    ObjPosY=1808
    ObjComment="Main Entrance"
@@ -1179,9 +1179,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4416
    ObjPosY=1808
    ObjComment="Main Entrance"
@@ -1192,9 +1192,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4216
    ObjPosY=1872
    ObjComment="Main Entrance"
@@ -1205,9 +1205,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4312
    ObjPosY=1872
    ObjComment="Main Entrance"
@@ -1218,9 +1218,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4416
    ObjPosY=1872
    ObjComment="Main Entrance"
@@ -1233,10 +1233,10 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_0
    EventName="SpawnOFF"
    MaxWidth=187
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11',InputLinkIdx=1)),DrawY=1986,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11',InputLinkIdx=1)),DrawY=1986,OverrideDelta=11)
    VariableLinks(0)=(DrawX=3629,OverrideDelta=61)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3536
    ObjPosY=1920
    ObjComment="SpawnOFF"
@@ -1249,10 +1249,10 @@ End Object
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_0
    EventName="SpawnOFF"
    InputLinks(0)=(DrawY=2226,ActivateDelay=20.000000,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=2226,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=2226,OverrideDelta=11)
    VariableLinks(0)=(DrawX=2452,OverrideDelta=92)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2328
    ObjPosY=2192
    ObjComment="SpawnOFF"
@@ -1267,11 +1267,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
    InputLinks(1)=(DrawY=2314,OverrideDelta=35)
    InputLinks(2)=(DrawY=2335,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2314,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_38',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_41',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_46',SeqVar_Object'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_48'),DrawX=4350,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_38',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_41',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_46',SeqVar_Object'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_48'),DrawX=4350,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4401,OverrideDelta=76)
    EventLinks(0)=(DrawX=4450,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4312
    ObjPosY=2256
    DrawWidth=173
@@ -1281,9 +1281,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_20'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_20'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4232
    ObjPosY=2392
    ObjComment="Cell Block"
@@ -1294,9 +1294,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_21'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_21'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4336
    ObjPosY=2392
    ObjComment="Cell Block"
@@ -1307,9 +1307,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_19'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_19'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4432
    ObjPosY=2392
    ObjComment="Cell Block"
@@ -1320,9 +1320,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_22'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_22'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4240
    ObjPosY=2448
    ObjComment="Cell Block"
@@ -1333,9 +1333,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_23'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_23'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4336
    ObjPosY=2448
    ObjComment="Cell Block"
@@ -1346,9 +1346,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
-   ObjValue=KFPlayerStart'KF-Prison.TheWorld:PersistentLevel.KFPlayerStart_24'
+   ObjValue=KFPlayerStart'KF-PRISON.TheWorld:PersistentLevel.KFPlayerStart_24'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4440
    ObjPosY=2448
    ObjComment="Cell Block"
@@ -1361,11 +1361,11 @@ End Object
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_1
    MaxTriggerCount=0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=2189,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=2189,OverrideDelta=14)
    OutputLinks(1)=(DrawY=2210,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_1')),DrawY=2231,OverrideDelta=56)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_1')),DrawY=2231,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3576
    ObjPosY=2120
    DrawWidth=137
@@ -1378,12 +1378,12 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
    IncrementAmount=0
    InputLinks(0)=(DrawY=2322,OverrideDelta=19)
    InputLinks(1)=(DrawY=2354,OverrideDelta=51)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=2317,OverrideDelta=14)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),LinkDesc="Link 2",DrawY=2338,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),LinkDesc="Link 3",DrawY=2359,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=2317,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),LinkDesc="Link 2",DrawY=2338,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),LinkDesc="Link 3",DrawY=2359,OverrideDelta=56)
    VariableLinks(0)=(DrawX=3940,OverrideDelta=23)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3896
    ObjPosY=2280
    DrawWidth=89
@@ -1395,10 +1395,10 @@ End Object
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_1
    EventName="SpawnOFF"
    InputLinks(0)=(DrawY=2170,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),ActivateDelay=1.000000,DrawY=2170,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),ActivateDelay=1.000000,DrawY=2170,OverrideDelta=11)
    VariableLinks(0)=(DrawX=3916,OverrideDelta=92)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-Prison.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-PRISON.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3792
    ObjPosY=2136
    ObjComment="SpawnOFF"

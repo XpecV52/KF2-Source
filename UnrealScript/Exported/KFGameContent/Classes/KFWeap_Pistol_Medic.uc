@@ -41,8 +41,8 @@ defaultproperties
    InitialSpareMags(0)=8
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicPistol.Play_SA_MedicPistol_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicPistol.Play_SA_MedicPistol_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_MedicPistol.Play_SA_MedicPistol_Handling_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_medicpistol.Play_SA_MedicPistol_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_medicpistol.Play_SA_MedicPistol_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_medicpistol.Play_SA_MedicPistol_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_DryFire'
    PlayerViewOffset=(X=29.000000,Y=13.000000,Z=-4.000000)
    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Pistol_ARCH.Wep_Medic_Pistol_3P'

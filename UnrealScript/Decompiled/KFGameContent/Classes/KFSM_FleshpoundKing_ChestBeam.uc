@@ -7,10 +7,16 @@
  *******************************************************************************/
 class KFSM_FleshpoundKing_ChestBeam extends KFSM_PlaySingleAnim;
 
+var KFPawn_ZedFleshpoundKing KingPawnOwner;
 var const ParticleSystem BeamPSCTemplate;
 var export editinline ParticleSystemComponent BeamPSC;
 var const ParticleSystem BeamHitPSCTemplate;
 var export editinline ParticleSystemComponent BeamHitPSC;
+var AkEvent BeamStartSFX;
+var AkEvent BeamEndSFX;
+var AkEvent BeamHitSFX;
+var AkEvent BeamHitStopSFX;
+var CameraShake BeamHitShake;
 var const name ChestBeamSocketName;
 var const float TimeUntilTargetChange;
 var const class<KFDamageType> BeamDamageType;
@@ -29,6 +35,8 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         KFPOwner.SetTimer(TimeUntilTargetChange, false, 'Timer_AttemptTargetChange', self);
     }
     KFPOwner.UpdateGameplayMICParams();
+    KFPOwner.SetWeaponAmbientSound(BeamStartSFX);
+    KingPawnOwner = KFPawn_ZedFleshpoundKing(KFPOwner);
 }
 
 function Tick(float DeltaTime)
@@ -72,9 +80,13 @@ function SetBeamTarget()
         }        
     }    
     BeamPSC.SetBeamTargetPoint(0, BeamEnd, 0);
-    if(bShouldActivateHit && BeamHitPSC == none)
+    if(bShouldActivateHit)
     {
-        BeamHitPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitter(BeamHitPSCTemplate, BeamEnd);
+        if(BeamHitPSC == none)
+        {
+            BeamHitPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitter(BeamHitPSCTemplate, BeamEnd);
+            KingPawnOwner.BeamHitAC.PlayEvent(BeamHitSFX);
+        }
     }
     if(BeamHitPSC != none)
     {
@@ -85,8 +97,10 @@ function SetBeamTarget()
         {
             BeamHitPSC.DeactivateSystem();
             BeamHitPSC = none;
+            KingPawnOwner.BeamHitAC.PlayEvent(BeamHitStopSFX);
         }
     }
+    KingPawnOwner.BeamHitAC.Location = BeamEnd;
     if(bDrawDebugBeam)
     {
         KFPOwner.FlushPersistentDebugLines();
@@ -116,12 +130,12 @@ function ToggleBeam(bool bEnable)
     }
     else
     {
-        DisableBeamPSC();
+        DisableBeamFX();
         KFPOwner.ClearTimer('Timer_TickDamage', self);
     }
 }
 
-function DisableBeamPSC()
+function DisableBeamFX()
 {
     if((BeamPSC != none) && BeamPSC.bIsActive)
     {
@@ -132,6 +146,10 @@ function DisableBeamPSC()
     {
         BeamHitPSC.DeactivateSystem();
         BeamHitPSC = none;
+    }
+    if(KingPawnOwner.BeamHitAC != none)
+    {
+        KingPawnOwner.BeamHitAC.StopEvents();
     }
 }
 
@@ -187,6 +205,10 @@ function Timer_TickDamage()
             if(HitActor.bCanBeDamaged)
             {
                 HitActor.TakeDamage(DamagePerTick, KFPOwner.Controller, HitLocation, BeamDir * DamageMomentumImpulse, BeamDamageType, HitInfo, KFPOwner);
+                if((Pawn(HitActor) != none) && PlayerController(Pawn(HitActor).Controller) != none)
+                {
+                    PlayerController(Pawn(HitActor).Controller).ClientPlayCameraShake(BeamHitShake, 1, true);
+                }
             }            
             return;
         }        
@@ -196,7 +218,8 @@ function Timer_TickDamage()
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     super.SpecialMoveEnded(PrevMove, NextMove);
-    DisableBeamPSC();
+    DisableBeamFX();
+    KFPOwner.SetWeaponAmbientSound(BeamEndSFX);
     if((KFPOwner != none) && KFPOwner.IsAliveAndWell())
     {
         KFPOwner.UpdateGameplayMICParams();
@@ -206,15 +229,26 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 
 defaultproperties
 {
-    BeamPSCTemplate=ParticleSystem'ZED_Fleshpound_King_EMIT.FX_ChestBeam'
-    BeamHitPSCTemplate=ParticleSystem'ZED_Fleshpound_King_EMIT.FX_ChestBeam_Impact'
+    BeamPSCTemplate=ParticleSystem'zed_fleshpound_king_emit.FX_ChestBeam'
+    BeamHitPSCTemplate=ParticleSystem'zed_fleshpound_king_emit.FX_ChestBeam_Impact'
+    BeamStartSFX=AkEvent'ww_zed_fleshpound_2.Play_King_FP_Beam_Start_LP'
+    BeamEndSFX=AkEvent'ww_zed_fleshpound_2.Play_King_FP_Beam_End'
+    BeamHitSFX=AkEvent'ww_zed_fleshpound_2.Play_FP_Beam_Hit_LP'
+    BeamHitStopSFX=AkEvent'ww_zed_fleshpound_2.Stop_FP_Beam_Hit_LP'
+    begin object name=BeamHitShake0 class=CameraShake
+        bSingleInstance=true
+        OscillationDuration=0.35
+        RotOscillation=(Pitch=(Amplitude=250,Frequency=60),Yaw=(Amplitude=150,Frequency=70),Roll=(Amplitude=150,Frequency=100))
+    object end
+    // Reference: CameraShake'Default__KFSM_FleshpoundKing_ChestBeam.BeamHitShake0'
+    BeamHitShake=BeamHitShake0
     ChestBeamSocketName=ChestBeamSocket
     TimeUntilTargetChange=0.75
     BeamDamageType=Class'KFDT_FleshpoundKing_ChestBeam'
     MaxBeamLength=2500
     BeamExtent=(X=15,Y=15,Z=15)
     DamageInterval=0.1
-    DamagePerTick=7
+    DamagePerTick=10
     DamageMomentumImpulse=100
     AnimName=Atk_ChestBeam
     bUseCustomRotationRate=true

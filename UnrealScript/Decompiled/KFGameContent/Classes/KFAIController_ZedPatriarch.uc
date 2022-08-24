@@ -101,7 +101,7 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
     LastMortarAttackTime = WorldInfo.TimeSeconds;
     NextAttackCheckTime = 2.5 + FRand();
     bCanEvaluateAttacks = true;
-    super(KFAIController_Monster).Possess(inPawn, bVehicleTransition);
+    super.Possess(inPawn, bVehicleTransition);
 }
 
 function PawnDied(Pawn inPawn)

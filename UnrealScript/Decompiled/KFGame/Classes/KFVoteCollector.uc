@@ -204,9 +204,9 @@ function UnPackVotes()
         NoVotes = byte(Outer.RepKickVotes & 15);
         YesVotes = byte(Outer.RepKickVotes >> 4);
         KFPC = KFPlayerController(Outer.GetALocalPlayerController());
-        if((KFPC != none) && KFPC.MyGFxHUD != none)
+        if((KFPC != none) && KFPC.myGfxHUD != none)
         {
-            KFPC.MyGFxHUD.UpdateKickVoteCount(YesVotes, NoVotes);
+            KFPC.myGfxHUD.UpdateKickVoteCount(YesVotes, NoVotes);
         }
         LastKickVoteValue = Outer.RepKickVotes;
     }

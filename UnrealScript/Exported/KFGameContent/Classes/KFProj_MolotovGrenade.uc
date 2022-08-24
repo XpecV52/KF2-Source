@@ -170,6 +170,7 @@ defaultproperties
       CastShadows=False
       CastStaticShadows=False
       CastDynamicShadows=False
+      bCastPerObjectShadows=False
       LightingChannels=(Outdoor=True)
       Name="FlightPointLight"
       ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'

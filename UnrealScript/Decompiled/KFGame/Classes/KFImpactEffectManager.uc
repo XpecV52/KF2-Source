@@ -44,6 +44,7 @@ simulated function PlayImpactEffects(const Vector HitLocation, const Pawn Effect
     local MaterialImpactEffect ImpactEffect;
     local KFImpactEffectInfo ImpactEffectInfo;
     local KFFracturedMeshActor FracturedMeshActor;
+    local int I;
 
     ImpactEffectInfo = ((CustomImpactEffects != none) ? CustomImpactEffects : DefaultImpactEffects);
     if(IsZero(HitNormal) && EffectInstigator != none)
@@ -99,6 +100,15 @@ simulated function PlayImpactEffects(const Vector HitLocation, const Pawn Effect
                     HitNormal = Normal(FireDir - ((float(2) * HitNormal) * (FireDir Dot HitNormal)));
                 }
                 WorldInfo.MyEmitterPool.SpawnEmitter(ImpactEffect.ParticleTemplate, HitLocation, rotator(HitNormal), HitActor);
+            }
+            I = 0;
+            J0x77A:
+
+            if(I < ImpactEffectInfo.GlobalImpactEffectEffects.Length)
+            {
+                WorldInfo.MyEmitterPool.SpawnEmitter(ImpactEffectInfo.GlobalImpactEffectEffects[I], HitLocation, rotator(HitNormal), HitActor);
+                ++ I;
+                goto J0x77A;
             }
             if(((!WorldInfo.bDropDetail && Pawn(HitActor) == none) && (EffectInstigator != none) && VSizeSq(EffectInstigator.Location - HitLocation) < MaxDecalRangeSq) && ((WorldInfo.GetDetailMode() != 0) && !Class'Engine'.static.IsSplitScreen()) || EffectInstigator.IsLocallyControlled() && EffectInstigator.IsHumanControlled())
             {

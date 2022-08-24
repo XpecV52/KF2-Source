@@ -46,26 +46,32 @@ DefaultProperties
 	// ---------------------------------------------
 	// Solo Spawn Rates
 	// Normal
-	SoloWaveSpawnRateModifier(0)={(RateModifier[0]=1.65,     // Wave 1
+	SoloWaveSpawnRateModifier(0)={(RateModifier[0]=1.55,     // Wave 1  //1.65
                                    RateModifier[1]=1.65,     // Wave 2
-                                   RateModifier[2]=1.65,     // Wave 3
-                                   RateModifier[3]=1.65)}    // Wave 4
+                                   RateModifier[2]=1.75,     // Wave 3
+                                   RateModifier[3]=1.85)}    // Wave 4
 
 	// Hard
-	SoloWaveSpawnRateModifier(1)={(RateModifier[0]=1.8,     // Wave 1
-                                   RateModifier[1]=1.8,     // Wave 2
-                                   RateModifier[2]=1.8,     // Wave 3
+	SoloWaveSpawnRateModifier(1)={(RateModifier[0]=1.55,     // Wave 1
+                                   RateModifier[1]=1.65,     // Wave 2
+                                   RateModifier[2]=1.75,     // Wave 3
                                    RateModifier[3]=1.8)}    // Wave 4
 
 	// Suicidal
-	SoloWaveSpawnRateModifier(2)={(RateModifier[0]=1.8,     // Wave 1
-                                   RateModifier[1]=1.8,     // Wave 2
-                                   RateModifier[2]=1.8,     // Wave 3
-                                   RateModifier[3]=1.8)}    // Wave 4
+	SoloWaveSpawnRateModifier(2)={(RateModifier[0]=1.55,     // Wave 1  //1.8
+                                   RateModifier[1]=1.65,     // Wave 2  //1.8
+                                   RateModifier[2]=1.75,     // Wave 3  //1.8
+                                   RateModifier[3]=1.80)}    // Wave 4  //1.8  experimenting with slowly increasing wave spawn to acount for bigger zeds.
 
 	// Hell On Earth
-	SoloWaveSpawnRateModifier(3)={(RateModifier[0]=1.4,     // Wave 1
-                                   RateModifier[1]=1.4,     // Wave 2
-                                   RateModifier[2]=1.4,     // Wave 3
-                                   RateModifier[3]=1.4)}    // Wave 4
+	SoloWaveSpawnRateModifier(3)={(RateModifier[0]=1.55,     // Wave 1
+                                   RateModifier[1]=1.65,     // Wave 2 //1.1
+                                   RateModifier[2]=1.75,     // Wave 3
+                                   RateModifier[3]=1.80)}    // Wave 4  //1.4
+
+	// Suicidal
+	//SoloWaveSpawnRateModifier(2)={(RateModifier[0]=1.45,     // Wave 1  //1.8
+                                   //RateModifier[1]=1.55,     // Wave 2  //1.8
+                                   //RateModifier[2]=1.65,     // Wave 3  //1.8
+                                  // RateModifier[3]=1.65)}    // Wave 4  //1.8
 }

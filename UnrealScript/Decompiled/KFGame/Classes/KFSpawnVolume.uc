@@ -7,6 +7,7 @@
  *******************************************************************************/
 class KFSpawnVolume extends Volume
     native
+    config(Game)
     hidecategories(Navigation,Object,Movement,Display,Volume,Collision,Attachment,Physics,Mobile);
 
 enum ESquadType
@@ -67,7 +68,7 @@ var bool bNoCollisionFailForSpawn;
 /** Whether this volume should more aggressively check its visibility against where the viewer is moving to */
 var() bool bUsePredictiveVisibilityChecks;
 var bool bDebugVisibilityChecks;
-var bool bDebugRatingChecks;
+var config bool bDebugRatingChecks;
 var bool bMinimalDebugRatingChecks;
 var bool bDebugSpawning;
 /** If set, players cannot spawn here, only AI (Versus) */
@@ -154,12 +155,20 @@ simulated function OnToggle(SeqAct_Toggle Action)
 {
     if(Action.InputLinks[0].bHasImpulse)
     {
+        if(bDebugRatingChecks)
+        {
+            LogInternal("*** turning volume on:" @ string(self));
+        }
         bCanUseForSpawning = true;        
     }
     else
     {
         if(Action.InputLinks[1].bHasImpulse)
         {
+            if(bDebugRatingChecks)
+            {
+                LogInternal("*** turning volume off:" @ string(self));
+            }
             bCanUseForSpawning = false;            
         }
         else
@@ -167,6 +176,10 @@ simulated function OnToggle(SeqAct_Toggle Action)
             if(Action.InputLinks[2].bHasImpulse)
             {
                 bCanUseForSpawning = !bCanUseForSpawning;
+                if(bDebugRatingChecks)
+                {
+                    LogInternal(("*** toggling volume:" @ string(self)) @ string(bCanUseForSpawning));
+                }
             }
         }
     }

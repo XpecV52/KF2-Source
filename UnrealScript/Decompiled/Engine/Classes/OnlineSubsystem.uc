@@ -17,6 +17,16 @@ const PIT_Durable = 0x0008;
 const PIT_GameDemo = 0x0010;
 const PIT_All = 0x001F;
 
+enum EPartyNotificationStatus
+{
+    PNS_NonExistent,
+    PNS_Creating,
+    PNS_Created,
+    PNS_Dissolving,
+    PNS_Dissolved,
+    PNS_MAX
+};
+
 enum ELoginStatus
 {
     LS_NotLoggedIn,
@@ -1116,10 +1126,14 @@ struct native ItemProperties
     var string IconURLLarge;
     var bool Tradeable;
     var bool Commodity;
+    var bool Marketable;
     var string Description;
     var string Exchange;
     var string Bundle;
     var bool UniqueToOwn;
+    var int PerkId;
+    var int AltPerkId;
+    var int WeaponType;
 
     structdefaultproperties
     {
@@ -1138,10 +1152,14 @@ struct native ItemProperties
         IconURLLarge=""
         Tradeable=false
         Commodity=false
+        Marketable=false
         Description=""
         Exchange=""
         Bundle=""
         UniqueToOwn=false
+        PerkId=0
+        AltPerkId=0
+        WeaponType=0
     }
 };
 

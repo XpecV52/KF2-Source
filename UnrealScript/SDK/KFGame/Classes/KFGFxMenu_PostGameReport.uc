@@ -21,6 +21,8 @@ var localized string VictoryString;
 var localized string DefeatString;
 var localized string ItemDropTitleString;
 
+var TopVotes CurrentTopVoteObject;
+
 var KFGFxPostGameContainer_PlayerStats 		PlayerStatsContainer;
 var KFGFxPostGameContainer_MapVote 			MapVoteContainer;
 var KFGFxPostGameContainer_TeamAwards 		TeamAwardsContainer;
@@ -269,11 +271,11 @@ function SendVoipData()
 				TempObj.SetBool("bTalking", (TalkerPRIs.Find(CurrentPlayerList[i]) != INDEX_NONE));
 				if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
 				{
-					TempObj.SetString("avatar", (KFPC.GetPS4Avatar(CurrentPlayerList[i].PlayerName)));
+					TempObj.SetString("avatar", ("img://"$KFPC.GetPS4Avatar(CurrentPlayerList[i].PlayerName)));
 				}
 				else
 				{
-					TempObj.SetString("avatar", (KFPC.GetSteamAvatar(CurrentPlayerList[i].UniqueId)));
+					TempObj.SetString("avatar", ("img://"$KFPC.GetSteamAvatar(CurrentPlayerList[i].UniqueId)));
 				}
 				DataProvider.SetElementObject( i, TempObj );
 			}
@@ -449,7 +451,7 @@ function ReceiveMessage(string Message, optional string MessageColor)
 function RecieveTopMaps(const out TopVotes VoteObject)
 {
 	//Store them for the persistent display of top maps
-
+	CurrentTopVoteObject = VoteObject;
 	//send them to map vote container
 	if(MapVoteContainer != none)
 	{
@@ -474,6 +476,29 @@ function Callback_MapVote(int MapVoteIndex, bool bDoubleClick)
 	KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
 
 	KFPRI.CastMapVote(MapVoteIndex, bDoubleClick);
+}
+
+function Callback_TopMapClicked(int MapVoteIndex, bool bDoubleClick)
+{
+	local int SearchIndex;
+	local string SearchString;
+
+	switch (MapVoteIndex)
+	{
+		case 0:
+			SearchString = CurrentTopVoteObject.Map1Name;
+			break;
+		case 1:
+			SearchString = CurrentTopVoteObject.Map2Name;
+			break;
+		case 2:
+			SearchString = CurrentTopVoteObject.Map3Name;
+			break;			
+	}
+
+	SearchIndex = KFGameReplicationInfo(GetPC().WorldInfo.GRI).VoteCollector.MapList.Find(SearchString);
+
+	Callback_MapVote(SearchIndex, bDoubleClick);
 }
 
 

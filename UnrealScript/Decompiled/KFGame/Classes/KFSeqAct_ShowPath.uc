@@ -11,7 +11,7 @@ class KFSeqAct_ShowPath extends SequenceAction
 
 enum eVolumeCheckType
 {
-    VCT_None,
+    VCT_NONE,
     VCT_InVolume,
     VCT_NotInVolume,
     VCT_MAX

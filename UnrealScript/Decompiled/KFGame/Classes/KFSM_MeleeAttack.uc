@@ -104,7 +104,7 @@ function PlayAnimation()
         InterruptTime = KFSkeletalMeshComponent(PawnOwner.Mesh).GetAnimInterruptTime(AnimName);
         PawnOwner.SetTimer(InterruptTime, false, 'InterruptCheckTimer', self);
     }
-    PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1);
+    PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, KFPOwner.AttackSpeedModifier);
 }
 
 function NotifyHitReactionInterrupt()

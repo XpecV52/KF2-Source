@@ -40,6 +40,15 @@ var(ThirdPerson) array<SkeletalMesh> PACMeshList;
 /** List of possible randomized colors to apply to zed */
 var(ThirdPerson) array<ZedColorMod> RandomizedColors;
 
+struct native StaticAttachments
+{
+    var() StaticMesh StaticAttachment;
+    var() name AttachBoneName;
+    var() Rotator RelativeRotation;
+};
+/** List of static mesh attachments that will be paired to specific bones */
+var(ThirdPerson) array<StaticAttachments> StaticAttachList;
+
 /************************************************************************/
 /*  Audio                                                   */
 /************************************************************************/
@@ -125,6 +134,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 	local int i;
 	local int MaterialIndex;
     local SkeletalMeshComponent PACAttachment;
+    local StaticMeshComponent StaticAttachment;
     local LinearColor AppliedColor;
 
 	super.SetCharacterMeshFromArch( KFP, KFPRI );
@@ -195,6 +205,22 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
                 PACAttachment.CreateAndSetMaterialInstanceConstant(0);
                 KFP.AttachComponent(PACAttachment);
             }            
+        }
+
+        for (i = 0; i < StaticAttachList.Length; ++i)
+        {
+            StaticAttachment = new (KFP) class'StaticMeshComponent';
+            if (StaticAttachment != none)
+            {
+                KFPawn_Monster(KFP).StaticAttachList.AddItem(StaticAttachment);
+                StaticAttachment.SetActorCollision(false, false);
+                StaticAttachment.SetStaticMesh(StaticAttachList[i].StaticAttachment);
+                StaticAttachment.SetShadowParent(KFP.Mesh);
+                StaticAttachment.SetLightingChannels(KFP.PawnLightingChannel);
+                StaticAttachment.CreateAndSetMaterialInstanceConstant(0);
+                KFP.AttachComponent(StaticAttachment);
+                KFP.Mesh.AttachComponent(StaticAttachment, StaticAttachList[i].AttachBoneName,, StaticAttachList[i].RelativeRotation);
+            }
         }
 	}
 

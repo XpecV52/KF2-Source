@@ -17,6 +17,7 @@ KF-ZedLanding="正在玩丧尸登陆"
 KF-TheDescent="正在玩后裔"
 KF-Nuked="正在玩核武器"
 KF-TragicKingdom="游戏悲惨王国"
+KF-Nightmare="玩梦魇"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -140,14 +141,17 @@ NoOnlinePlay="无法在线玩"
 TooYoung="你的Sony Entertainment Network账号由于家长控制限制，在线服务被禁用。"
 PatchAvailable="可提供补丁。要使用网络功能，你必须更新应用程序。"
 NotLoggedInOnlinePSN="要使用在线功能，你必须注册 PlayStation™Network。"
+LiveRequiredMessage="您必须登录 Xbox Live 在能启用配置文件，而且必须有活动的网络连接，才能在 Xbox Live 上游戏。"
 NetworkError="出现网络错误，请检查你的网络连接。"
 ErrorNoPlayfabDescription="无法与游戏主服务器建立连接。请几分钟后重试。"
 ErrorTSSFailedDescription="无法与游戏均衡服务器建立连接。请确保你已连接到网络，并重试。"
 NotSignedInTitle="未登录。"
+PlayOffline="您想要离线游戏？Xbox Live 功能将无法使用，数据也将无法保存。"
 
 [Notifications]
 ControllerDisconnectedTitle="控制器断开连接"
 ControllerDisconnectedPS4Message="无线控制器已断开连接。请为启动游戏的用户重新连接无线控制器。"
+ControllerDisconnectedXB1="Xbox One 无线控制器的连接已断开。请重新连接控制器。"
 PlayGoBusyTitle="仍然正在安装"
 PlayGoBusyMessage="游戏安装完成后会有受限制的内容和功能。"
 UnableToJoinInviteTitle="无法加入"
@@ -160,11 +164,14 @@ CheckPlusTitle="正在检查 PlayStation®Plus 状态"
 CheckPlusMessage="我们正在检查 PlayStation®Plus 状态，请稍等。"
 ConnectionLostTitle="连接丢失"
 ConnectionLostMessage="你的在线连接已丢失。你已返回到主页菜单。"
+ConnectionLostMessageLive="您的 Xbox Live 连接已丢失。您已被返回到“主菜单”。"
 PSNSignoutMessage="你已经从 PlayStation™Network 注销。你已返回到主页菜单。"
 InviteMessage="和我一起炸飞丧尸吧！"
 NotConnectedTitle="网络错误"
 NotConnectedMessage="未连接到网络。检查你的连接并重试。"
 NotConnectedForOnlinePlay="未连接到网络。请检查你的连接并重试，以使用在线功能"
+NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+MultiplayerNotAllowed_MessageLive="您必须登录启用拥有多人游戏特权的配置文件的 Xbox Live，才能游戏。"
 MultiplayerNotAllowed_Title="不允许多人游戏"
 LoggedOutMessage="激活的配置文件已被修改。您已被返回标题界面。"
 LoggedOutTitle="已退出"
@@ -174,6 +181,7 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="查看玩家档案"
+ViewProfileStringXB1="查看玩家卡"
 
 [KFGFxObject_Menu]
 ResetDefaults="你确定希望将设置重置到默认值吗？"
@@ -193,12 +201,15 @@ ControllerSound="控制器音效"
 MatchmakingRegionString="区域"
 LeaveMenuString="离开比赛匹配也将意味着离开你的小队"
 
+[KFGFxMenu_Store]
+StoreStringXB1="XBOX 商店"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="区域"
 MapPreference="首选地图"
 
 [KFGFxMenu_Exit]
+HeaderStringXB1="退出"
 LogoutKF2="返回到标题界面"
 
 [Misc]

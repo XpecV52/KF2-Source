@@ -129,13 +129,19 @@ function LocalizeMenu()
 
 DefaultProperties
 {
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Event", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/4928"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_HazmatBundle", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/4858"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Mark7Bundle", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/4857"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Firefighter_14", Textfield="FeaturedCrateKey", RedirectURL="https://store.steampowered.com/buyitem/232090/5011"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_Vietnam_18", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/4980"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_Junkyard_19", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/4994"))
+// Latest Update
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_Event", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
+// Featured Time Limited Item
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/5246"))
+// Featured Uniform Bundle
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_CommandoChicken_Bundle", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/5286"))
+// Featured Emote Crate
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Emote_02_16", Textfield="FeaturedCrateKey", RedirectURL="https://store.steampowered.com/buyitem/232090/5142"))
+// Featured Cosmetic Crate
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_HorzineKey_Slaughterhouse_15", Textfield="FeaturedCrateKey", RedirectURL="https://store.steampowered.com/buyitem/232090/5241"))
+// Featured Weapon Skin Crate
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_USBKey_Neon_20", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/5195"))
+// Misc Community Links
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub", Textfield="Jaegorhorn", RedirectURL="https://steamcommunity.com/app/232090"))    
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums", Textfield="Forums", RedirectURL="http://forums.tripwireinteractive.com/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey", Textfield="Survey", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/"))

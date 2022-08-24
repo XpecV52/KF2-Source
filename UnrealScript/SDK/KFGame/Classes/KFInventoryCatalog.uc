@@ -30,10 +30,12 @@ enum ECrateSeries
 	ECrate_HorzineSupply_S9,
 	ECrate_PSNHorzineSupply_CS1,
 	ECrate_PSNHorzineSupply_CS2,
+	ECrate_PSNHorzineSupply_CS3,
 	ECrate_PSNHorzineSupply_WS1,
 	ECrate_PSNHorzineSupply_WS2,
 	ECrate_PSNHorzineSupply_WS3,
 	ECrate_PSNHorzineSupply_WS4,
+	ECrate_PSNHorzineSupply_WS5,
 	ECrate_HorzineSupply_S10,
 	ECrate_HorzineSupply_S11,
 	ECrate_Emote_S1,
@@ -46,6 +48,10 @@ enum ECrateSeries
 	ECrate_HorzineSupply_S14,
 	ECrate_Junkyard,
 	ECrate_Vietnam,
+	ECrate_Emote_S2,
+	ECrate_HorzineSupply_S16,
+	ECrate_Neon,
+	ECrate_Vault,
 };
 
 enum EItemDisplayContainerType
@@ -123,10 +129,12 @@ DefaultProperties
 	ItemKeyArray[ECrate_HorzineSupply_S9]=(ContainerID=4207, KeyID=4208, ItemSeriesName=horzine9, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS1]=(ContainerID=4304, KeyID=4303, ItemSeriesName=psncrate_cs1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS2]=(ContainerID=4305, KeyID=4303, ItemSeriesName=psncrate_cs2, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_CS3]=(ContainerID=5371, KeyID=4303, ItemSeriesName=psncrate_cs3, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS1]=(ContainerID=4307, KeyID=4303, ItemSeriesName=psncrate_ws1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS2]=(ContainerID=4306, KeyID=4303, ItemSeriesName=psncrate_ws2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS3]=(ContainerID=4569, KeyID=4303, ItemSeriesName=psncrate_ws3, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS4]=(ContainerID=4790, KeyID=4303, ItemSeriesName=psncrate_ws4, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS5]=(ContainerID=5369, KeyID=4303, ItemSeriesName=psncrate_ws5, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S10]=(ContainerID=4499, KeyID=4501, ItemSeriesName=horzine10, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S11]=(ContainerID=4500, KeyID=4502, ItemSeriesName=horzine11, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_TacticalHorzineMKII]=(ContainerID=4514, KeyID=4513, ItemSeriesName=tacticalhorzineII, ContainerType=IDT_USB)
@@ -140,4 +148,8 @@ DefaultProperties
 	ItemKeyArray[ECrate_HorzineSupply_S14]=(ContainerID=5010, KeyID=5011, ItemSeriesName=horzine14, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_Vietnam]=(ContainerID=4979, KeyID=4980, ItemSeriesName=vietnam, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_Junkyard]=(ContainerID=4993, KeyID=4994, ItemSeriesName=junkyard, ContainerType=IDT_USB)
-}
+	ItemKeyArray[ECrate_Emote_S2]=(ContainerID=5143, KeyID=5142, ItemSeriesName=emote2, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_HorzineSupply_S16]=(ContainerID=5240, KeyID=5241, ItemSeriesName=horzine16, ContainerType=IDT_Crate)
+	ItemKeyArray[Ecrate_Neon]=(ContainerID=5194, KeyID=5195, ItemSeriesName=neon, ContainerType=IDT_USB)
+	ItemKeyArray[ECrate_Vault]=(ContainerID=5313, KeyID=-1, ItemSeriesName=vaultcrate, ContainerType=IDT_Crate)
+} 

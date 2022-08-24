@@ -53,7 +53,7 @@ function SetPlayerDefaults( Pawn PlayerPawn )
 	if( OwnerPawn.Role == ROLE_Authority && IsHealthIncreaseActive() )
 	{
 		NewArmor = OwnerPawn.default.MaxArmor * static.GetHealthArmorModifier();
-		OwnerPawn.AddArmor( Round( NewArmor ) );		
+		OwnerPawn.AddArmor( Round( NewArmor ) );
 	}
 }
 
@@ -92,7 +92,10 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 		}
 	}
 
-	if( KFW != none )
+	//Specific exclusion of grenades here so as not to cause issues in other areas of the code that would have required more extensive changes.
+	//		Basically, GetWeaponFromDamageCauser should never have been returning the equipped weapon for grenades, but now that we
+	//		have the perks so tied into using that, it's easier to just specifically fix commando here.
+	if( KFW != none && !DamageCauser.IsA('KFProj_Grenade'))
 	{
 		if( IsBackupActive() && IsBackupWeapon( KFW ) )
 		{
@@ -255,7 +258,7 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
 		}
 
 		if( IsEatLeadActive() )
-		{				
+		{
        		TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ECommandoEatLead] );
 		}
 	}
@@ -301,7 +304,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 
 	if( IsProfessionalActive() && (IsWeaponOnPerk( W,, self.class ) || IsBackupWeapon( W )) )
 	{
-		if( StateName == 'Reloading' || 
+		if( StateName == 'Reloading' ||
 			StateName == 'AltReloading' )
 		{
 			return 1.f;
@@ -523,7 +526,7 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 
 	Increments[0] = "["@Left( string( default.WeaponDamage.Increment * 100 ), InStr(string(default.WeaponDamage.Increment * 100), ".") + 2 ) 	$"% /" @default.LevelString @"]";
 	Increments[1] = "["@ Int(default.CloakedEnemyDetection.StartingValue / 100 ) @"+" @Int(default.CloakedEnemyDetection.Increment / 100 ) 		$"m /" @default.LevelString @"]";
-	Increments[2] = "["@Left( string( default.ZedTimeExtension.StartingValue ), InStr(string(default.ZedTimeExtension.StartingValue ), ".") + 2 )@"+" 
+	Increments[2] = "["@Left( string( default.ZedTimeExtension.StartingValue ), InStr(string(default.ZedTimeExtension.StartingValue ), ".") + 2 )@"+"
 						@Left( string( default.ZedTimeExtension.Increment ), InStr(string(default.ZedTimeExtension.Increment ), ".") + 2 )		@"sec / 5" @default.LevelString @"]";
 	Increments[3] = "["@Left( string( default.ReloadSpeed.Increment * 100 ), InStr(string(default.ReloadSpeed.Increment * 100), ".") + 2 ) 		$ "% / 5" @ default.LevelString @ "]";
 	Increments[4] = "";

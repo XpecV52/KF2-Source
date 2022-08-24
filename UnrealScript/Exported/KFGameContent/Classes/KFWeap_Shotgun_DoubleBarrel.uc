@@ -35,7 +35,7 @@ simulated function AltFireMode()
 		return;
 	}
 
-    if (AmmoCount[0] < 2)
+    if (AmmoCount[0] == 1)
     {
         StartFire(DEFAULT_FIREMODE);
     }
@@ -50,7 +50,7 @@ simulated function AltFireMode()
  */
 simulated function SendToFiringState(byte FireModeNum)
 {
-	if( FireModeNum == ALTFIRE_FIREMODE && AmmoCount[0] < 2 )
+	if( FireModeNum == ALTFIRE_FIREMODE && AmmoCount[0] == 1)
     {
 		// not enough ammo for altfire
 		Super.SendToFiringState(DEFAULT_FIREMODE);

@@ -2,7 +2,7 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_0
    SizeX=2203
    SizeY=1791
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=336
    ObjPosY=312
    ObjComment="Floor_Portals"
@@ -14,7 +14,7 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_1
    SizeX=746
    SizeY=466
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1840
    ObjPosY=1680
    ObjComment="Wall_Portals"
@@ -23,14 +23,14 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_1
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_0
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_1'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_1'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=677,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=677,OverrideDelta=14)
    OutputLinks(1)=(DrawY=698,OverrideDelta=35)
    OutputLinks(2)=(DrawY=719,OverrideDelta=56)
    VariableLinks(0)=(DrawX=498,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=416
    ObjPosY=608
    ObjName="TriggerVolume_1 Touch"
@@ -45,11 +45,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
    InputLinks(1)=(DrawY=658,OverrideDelta=35)
    InputLinks(2)=(DrawY=679,OverrideDelta=56)
    OutputLinks(0)=(DrawY=658,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0'),DrawX=694,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0'),DrawX=694,OverrideDelta=16)
    VariableLinks(1)=(DrawX=745,OverrideDelta=76)
    EventLinks(0)=(DrawX=794,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=656
    ObjPosY=600
    DrawWidth=173
@@ -59,9 +59,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_13'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=640
    ObjPosY=760
    DrawWidth=32
@@ -71,14 +71,14 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_1
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_2'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_2'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=1277,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=1277,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1298,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1319,OverrideDelta=56)
    VariableLinks(0)=(DrawX=482,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=400
    ObjPosY=1208
    ObjName="TriggerVolume_2 Touch"
@@ -93,11 +93,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    InputLinks(1)=(DrawY=1266,OverrideDelta=35)
    InputLinks(2)=(DrawY=1287,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1266,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),DrawX=662,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),DrawX=662,OverrideDelta=16)
    VariableLinks(1)=(DrawX=713,OverrideDelta=76)
    EventLinks(0)=(DrawX=762,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=624
    ObjPosY=1208
    DrawWidth=173
@@ -107,9 +107,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_2'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=608
    ObjPosY=1360
    DrawWidth=32
@@ -119,14 +119,14 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_0'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_0'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=1293,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=1293,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1314,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1335,OverrideDelta=56)
    VariableLinks(0)=(DrawX=1394,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1312
    ObjPosY=1224
    ObjName="TriggerVolume_0 Touch"
@@ -141,11 +141,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
    InputLinks(1)=(DrawY=1274,OverrideDelta=35)
    InputLinks(2)=(DrawY=1295,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1274,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),DrawX=1558,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),DrawX=1558,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1609,OverrideDelta=76)
    EventLinks(0)=(DrawX=1658,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1520
    ObjPosY=1216
    DrawWidth=173
@@ -155,9 +155,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_7'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1512
    ObjPosY=1360
    DrawWidth=32
@@ -168,7 +168,7 @@ End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_0
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1304
    ObjPosY=1216
    ObjComment="Center_Chamber"
@@ -179,14 +179,14 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_3'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_3'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=1517,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=1517,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1538,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1559,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2074,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1992
    ObjPosY=1448
    ObjName="TriggerVolume_3 Touch"
@@ -201,11 +201,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
    InputLinks(1)=(DrawY=1498,OverrideDelta=35)
    InputLinks(2)=(DrawY=1519,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1498,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),DrawX=2238,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),DrawX=2238,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2289,OverrideDelta=76)
    EventLinks(0)=(DrawX=2338,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2200
    ObjPosY=1440
    DrawWidth=173
@@ -215,9 +215,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_6'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2176
    ObjPosY=1600
    DrawWidth=32
@@ -228,7 +228,7 @@ End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_2
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1992
    ObjPosY=1440
    ObjComment="Torch_Room"
@@ -240,7 +240,7 @@ End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_4
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=392
    ObjPosY=1192
    ObjComment="West_View"
@@ -252,7 +252,7 @@ End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_6
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=416
    ObjPosY=616
    ObjComment="Green_Statue"
@@ -263,14 +263,14 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_5
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_5'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_5'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5',InputLinkIdx=2)),DrawY=1261,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5',InputLinkIdx=2)),DrawY=1261,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1282,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1303,OverrideDelta=56)
    VariableLinks(0)=(DrawX=954,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=872
    ObjPosY=1192
    ObjName="TriggerVolume_5 Touch"
@@ -285,11 +285,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
    InputLinks(1)=(DrawY=1271,OverrideDelta=56)
    InputLinks(2)=(DrawY=1229,OverrideDelta=14)
    OutputLinks(0)=(DrawY=1250,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),DrawX=1126,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),DrawX=1126,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1177,OverrideDelta=76)
    EventLinks(0)=(DrawX=1226,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1088
    ObjPosY=1192
    DrawWidth=173
@@ -299,9 +299,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_4'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1056
    ObjPosY=1336
    DrawWidth=32
@@ -312,7 +312,7 @@ End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_1
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=864
    ObjPosY=1168
    ObjComment="Behind_Door_Tall_Stairs"
@@ -323,14 +323,14 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_6
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_6'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_6'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=1805,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=1805,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1826,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1847,OverrideDelta=56)
    VariableLinks(0)=(DrawX=1466,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1384
    ObjPosY=1736
    ObjName="TriggerVolume_6 Touch"
@@ -345,11 +345,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
    InputLinks(1)=(DrawY=1786,OverrideDelta=35)
    InputLinks(2)=(DrawY=1807,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1786,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6'),DrawX=1638,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6'),DrawX=1638,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1689,OverrideDelta=76)
    EventLinks(0)=(DrawX=1738,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1600
    ObjPosY=1728
    DrawWidth=173
@@ -359,9 +359,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_0'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1584
    ObjPosY=1864
    DrawWidth=32
@@ -372,7 +372,7 @@ End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_5
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1368
    ObjPosY=1720
    ObjComment="South_View_Lower_Hall"
@@ -383,14 +383,14 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_5
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_7'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_7'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=909,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=909,OverrideDelta=14)
    OutputLinks(1)=(DrawY=930,OverrideDelta=35)
    OutputLinks(2)=(DrawY=951,OverrideDelta=56)
    VariableLinks(0)=(DrawX=1996,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1914
    ObjPosY=840
    ObjName="TriggerVolume_7 Touch"
@@ -405,11 +405,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
    InputLinks(1)=(DrawY=890,OverrideDelta=35)
    InputLinks(2)=(DrawY=911,OverrideDelta=56)
    OutputLinks(0)=(DrawY=890,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=2150,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=2150,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2201,OverrideDelta=76)
    EventLinks(0)=(DrawX=2250,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2112
    ObjPosY=832
    DrawWidth=173
@@ -419,9 +419,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_9'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2136
    ObjPosY=1000
    DrawWidth=32
@@ -434,7 +434,7 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_3
    SizeX=471
    SizeY=557
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1896
    ObjPosY=800
    ObjComment="Abaddon_Chamber"
@@ -443,14 +443,14 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_3
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_9
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_9'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_9'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=565,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=565,OverrideDelta=14)
    OutputLinks(1)=(DrawY=586,OverrideDelta=35)
    OutputLinks(2)=(DrawY=607,OverrideDelta=56)
    VariableLinks(0)=(DrawX=1938,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1856
    ObjPosY=496
    ObjName="TriggerVolume_9 Touch"
@@ -465,11 +465,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
    InputLinks(1)=(DrawY=546,OverrideDelta=35)
    InputLinks(2)=(DrawY=567,OverrideDelta=56)
    OutputLinks(0)=(DrawY=546,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=2094,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=2094,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2145,OverrideDelta=76)
    EventLinks(0)=(DrawX=2194,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2056
    ObjPosY=488
    DrawWidth=173
@@ -479,9 +479,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_1'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2032
    ObjPosY=648
    DrawWidth=32
@@ -492,7 +492,7 @@ End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_8
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1848
    ObjPosY=488
    ObjComment="NorthEast_Corner"
@@ -507,11 +507,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
    InputLinks(1)=(DrawY=1770,OverrideDelta=35)
    InputLinks(2)=(DrawY=1791,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1770,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10'),DrawX=774,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10'),DrawX=774,OverrideDelta=16)
    VariableLinks(1)=(DrawX=825,OverrideDelta=76)
    EventLinks(0)=(DrawX=874,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=736
    ObjPosY=1712
    DrawWidth=173
@@ -521,9 +521,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_3'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=736
    ObjPosY=1864
    DrawWidth=32
@@ -534,7 +534,7 @@ End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_7
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=528
    ObjPosY=1720
    ObjComment="South_West"
@@ -545,14 +545,14 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_7
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_11
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_10'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_10'
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=1805,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=1805,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1826,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1847,OverrideDelta=56)
    VariableLinks(0)=(DrawX=574,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=488
    ObjPosY=1736
    ObjName="TriggerVolume_10 Touch"
@@ -564,7 +564,7 @@ End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_9
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1128
    ObjPosY=424
    ObjComment="Start"
@@ -575,14 +575,14 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_9
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_10
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_11'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_11'
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),DrawY=509,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),DrawY=509,OverrideDelta=14)
    OutputLinks(1)=(DrawY=530,OverrideDelta=35)
    OutputLinks(2)=(DrawY=551,OverrideDelta=56)
    VariableLinks(0)=(DrawX=1222,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1136
    ObjPosY=440
    ObjName="TriggerVolume_11 Touch"
@@ -597,11 +597,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
    InputLinks(1)=(DrawY=482,OverrideDelta=35)
    InputLinks(2)=(DrawY=503,OverrideDelta=56)
    OutputLinks(0)=(DrawY=482,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11'),DrawX=1414,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11'),DrawX=1414,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1465,OverrideDelta=76)
    EventLinks(0)=(DrawX=1514,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1376
    ObjPosY=424
    DrawWidth=173
@@ -611,9 +611,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_10'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1384
    ObjPosY=584
    DrawWidth=32
@@ -623,14 +623,14 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_4
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_4'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_4'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21')),DrawY=1837,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21')),DrawY=1837,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1858,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1879,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2002,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1920
    ObjPosY=1768
    ObjName="TriggerVolume_4 Touch"
@@ -645,11 +645,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_21
    InputLinks(1)=(DrawY=1834,OverrideDelta=35)
    InputLinks(2)=(DrawY=1855,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1834,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=2150,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=2150,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2201,OverrideDelta=76)
    EventLinks(0)=(DrawX=2250,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2112
    ObjPosY=1776
    DrawWidth=173
@@ -659,9 +659,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_21
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_30'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_30'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2112
    ObjPosY=1920
    DrawWidth=32
@@ -672,7 +672,7 @@ End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_3
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1880
    ObjPosY=1752
    ObjComment="Wall_South_View"
@@ -685,11 +685,11 @@ End Object
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    MaxTriggerCount=0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=1061,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=1061,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1082,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=1103,OverrideDelta=56)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=1103,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1904
    ObjPosY=992
    DrawWidth=137
@@ -704,9 +704,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
    OutputLinks(0)=(DrawY=1098,OverrideDelta=35)
    VariableLinks(0)=(DrawX=-1634,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-1583,OverrideDelta=76)
-   EventLinks(0)=(LinkedEvents=(SeqEvent_PlayerSpawned'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqEvent_PlayerSpawned_0'),DrawX=-1534,OverrideDelta=119)
+   EventLinks(0)=(LinkedEvents=(SeqEvent_PlayerSpawned'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqEvent_PlayerSpawned_0'),DrawX=-1534,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1672
    ObjPosY=1040
    DrawWidth=173
@@ -718,11 +718,11 @@ End Object
 Begin Object Class=SeqEvent_PlayerSpawned Name=SeqEvent_PlayerSpawned_0
    MaxTriggerCount=0
    MaxWidth=156
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12',InputLinkIdx=1),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_1')),DrawY=1338,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12',InputLinkIdx=1),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_1')),DrawY=1338,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-1672,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-1602,OverrideDelta=96)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1720
    ObjPosY=1272
    DrawWidth=98
@@ -736,11 +736,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
    InputLinks(1)=(DrawY=1146,OverrideDelta=35)
    InputLinks(2)=(DrawY=1167,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1146,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_45',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_46',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_47',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_48',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_49'),DrawX=-866,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_45',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_46',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_47',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_48',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_49'),DrawX=-866,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-815,OverrideDelta=76)
    EventLinks(0)=(DrawX=-766,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-904
    ObjPosY=1088
    DrawWidth=173
@@ -753,7 +753,7 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_4
    SizeX=1499
    SizeY=680
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1968
    ObjPosY=944
    ObjComment="Move_Player_Starts"
@@ -766,11 +766,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
    InputLinks(1)=(DrawY=-678,OverrideDelta=35)
    InputLinks(2)=(DrawY=-657,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-678,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_38',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_39',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_40',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_41'),DrawX=-994,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_38',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_39',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_40',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_41'),DrawX=-994,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-943,OverrideDelta=76)
    EventLinks(0)=(DrawX=-894,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1032
    ObjPosY=-736
    DrawWidth=173
@@ -782,11 +782,11 @@ End Object
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_6
    bClientSideOnly=True
    MaxWidth=207
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2')),DrawY=2109,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2')),DrawY=2109,OverrideDelta=14)
    OutputLinks(1)=(DrawY=2130,OverrideDelta=35)
    OutputLinks(2)=(DrawY=2151,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2168
    ObjPosY=2040
    DrawWidth=172
@@ -803,10 +803,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
    InputLinks(4)=(DrawY=2174,OverrideDelta=103)
    OutputLinks(0)=(DrawY=2102,OverrideDelta=31)
    OutputLinks(1)=(DrawY=2158,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=-1916,OverrideDelta=29)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28'),LinkDesc="Pend_2",MinVars=0,DrawX=-1860,OverrideDelta=76)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=-1916,OverrideDelta=29)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28'),LinkDesc="Pend_2",MinVars=0,DrawX=-1860,OverrideDelta=76)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1960
    ObjPosY=2048
    DrawWidth=154
@@ -831,8 +831,8 @@ Begin Object Class=InterpData Name=InterpData_1
          Name="InterpTrackAkEvent_0"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackMove_2'
-      InterpTracks(1)=InterpTrackAkEvent'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackAkEvent_0'
+      InterpTracks(0)=InterpTrackMove'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackMove_2'
+      InterpTracks(1)=InterpTrackAkEvent'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackAkEvent_0'
       GroupName="Pend_2"
       GroupColor=(B=163,G=176,R=0,A=255)
       Name="InterpGroup_1"
@@ -843,12 +843,12 @@ Begin Object Class=InterpData Name=InterpData_1
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.997440
-   InterpGroups(0)=InterpGroup'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1'
-   CurveEdSetup=InterpCurveEdSetup'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_1'
+   InterpGroups(0)=InterpGroup'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1'
+   CurveEdSetup=InterpCurveEdSetup'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_1'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=1.997440
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1928
    ObjPosY=2296
    DrawWidth=32
@@ -858,9 +858,9 @@ Begin Object Class=InterpData Name=InterpData_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
-   ObjValue=InterpActor'KF-InfernalRealm.TheWorld:PersistentLevel.InterpActor_12'
+   ObjValue=InterpActor'KF-INFERNALREALM.TheWorld:PersistentLevel.InterpActor_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1860
    ObjPosY=2205
    DrawWidth=32
@@ -874,7 +874,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_10
    SizeY=763
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2240
    ObjPosY=1896
    ObjComment="Pendulums"
@@ -885,14 +885,14 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_10
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_8
-   Originator=TriggerVolume'KF-InfernalRealm.TheWorld:PersistentLevel.TriggerVolume_8'
+   Originator=TriggerVolume'KF-INFERNALREALM.TheWorld:PersistentLevel.TriggerVolume_8'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=1789,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=1789,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1810,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1831,OverrideDelta=56)
    VariableLinks(0)=(DrawX=1066,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=984
    ObjPosY=1720
    ObjName="TriggerVolume_8 Touch"
@@ -907,11 +907,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
    InputLinks(1)=(DrawY=1786,OverrideDelta=35)
    InputLinks(2)=(DrawY=1807,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1786,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33'),DrawX=1206,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33'),DrawX=1206,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1257,OverrideDelta=76)
    EventLinks(0)=(DrawX=1306,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1168
    ObjPosY=1728
    DrawWidth=173
@@ -921,9 +921,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
-   ObjValue=KFSpawner'KF-InfernalRealm.TheWorld:PersistentLevel.KFSpawner_8'
+   ObjValue=KFSpawner'KF-INFERNALREALM.TheWorld:PersistentLevel.KFSpawner_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1152
    ObjPosY=1896
    DrawWidth=32
@@ -935,10 +935,10 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
    ConsoleEventName="Benchmark"
    MaxWidth=190
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1'),(LinkedOp=SeqAct_Interp'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_5')),DrawY=-814,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1'),(LinkedOp=SeqAct_Interp'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_5')),DrawY=-814,OverrideDelta=11)
    VariableLinks(0)=(DrawX=1199,OverrideDelta=63)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1104
    ObjPosY=-880
    DrawWidth=115
@@ -949,7 +949,7 @@ End Object
 
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_1
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1400
    ObjPosY=-432
    DrawWidth=32
@@ -962,9 +962,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_0
    Commands(0)="endbenchmark"
    InputLinks(0)=(DrawY=-846,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-846,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=1704,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=1704,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1640
    ObjPosY=-880
    ObjComment="endbenchmark"
@@ -978,9 +978,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
    Commands(0)="startbenchmark"
    InputLinks(0)=(DrawY=-574,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-574,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=1200,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=1200,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1136
    ObjPosY=-608
    ObjComment="startbenchmark"
@@ -996,12 +996,12 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_5
    InputLinks(2)=(DrawY=-798,OverrideDelta=59)
    InputLinks(3)=(DrawY=-776,OverrideDelta=81)
    InputLinks(4)=(DrawY=-754,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=-826,OverrideDelta=31)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=-826,OverrideDelta=31)
    OutputLinks(1)=(DrawY=-770,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_5'),DrawX=1399,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35'),LinkDesc="NewCameraGroup",MinVars=0,DrawX=1469,OverrideDelta=63)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5'),DrawX=1399,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35'),LinkDesc="NewCameraGroup",MinVars=0,DrawX=1469,OverrideDelta=63)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1368
    ObjPosY=-880
    DrawWidth=156
@@ -1017,7 +1017,7 @@ Begin Object Class=InterpData Name=InterpData_5
          Name="InterpTrackDirector_1"
          ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
       End Object
-      InterpTracks(0)=InterpTrackDirector'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroupDirector_1.InterpTrackDirector_1'
+      InterpTracks(0)=InterpTrackDirector'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroupDirector_1.InterpTrackDirector_1'
       GroupColor=(B=147,G=189,R=0,A=255)
       Name="InterpGroupDirector_1"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
@@ -1037,8 +1037,8 @@ Begin Object Class=InterpData Name=InterpData_5
          Name="InterpTrackFloatProp_1"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1.InterpTrackFloatProp_1'
+      InterpTracks(0)=InterpTrackMove'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1.InterpTrackFloatProp_1'
       GroupName="NewCameraGroup"
       GroupColor=(B=115,G=209,R=0,A=255)
       Name="InterpGroup_1"
@@ -1049,12 +1049,12 @@ Begin Object Class=InterpData Name=InterpData_5
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=197.348663
-   InterpGroups(0)=InterpGroup'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1'
-   InterpGroups(1)=InterpGroupDirector'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroupDirector_1'
-   CurveEdSetup=InterpCurveEdSetup'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpCurveEdSetup_1'
+   InterpGroups(0)=InterpGroup'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1'
+   InterpGroups(1)=InterpGroupDirector'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroupDirector_1'
+   CurveEdSetup=InterpCurveEdSetup'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpCurveEdSetup_1'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1368
    ObjPosY=-632
    DrawWidth=32
@@ -1064,9 +1064,9 @@ Begin Object Class=InterpData Name=InterpData_5
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
-   ObjValue=CameraActor'KF-InfernalRealm.TheWorld:PersistentLevel.CameraActor_1'
+   ObjValue=CameraActor'KF-INFERNALREALM.TheWorld:PersistentLevel.CameraActor_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1504
    ObjPosY=-680
    DrawWidth=32
@@ -1080,7 +1080,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_13
    SizeY=572
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1072
    ObjPosY=-904
    ObjComment="Benchmark"
@@ -1091,9 +1091,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_13
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_15'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_15'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1144
    ObjPosY=-552
    DrawWidth=32
@@ -1103,9 +1103,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_8'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1040
    ObjPosY=-552
    DrawWidth=32
@@ -1115,9 +1115,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_14'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-944
    ObjPosY=-552
    DrawWidth=32
@@ -1127,9 +1127,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_11'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1160
    ObjPosY=-464
    DrawWidth=32
@@ -1139,9 +1139,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_13'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1032
    ObjPosY=-472
    DrawWidth=32
@@ -1151,9 +1151,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_10'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-928
    ObjPosY=-464
    DrawWidth=32
@@ -1163,9 +1163,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_12'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-968
    ObjPosY=-400
    DrawWidth=32
@@ -1175,9 +1175,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_9'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1104
    ObjPosY=-400
    DrawWidth=32
@@ -1187,9 +1187,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-952
    ObjPosY=1432
    DrawWidth=32
@@ -1199,9 +1199,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-920
    ObjPosY=1280
    DrawWidth=32
@@ -1211,9 +1211,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-816
    ObjPosY=1280
    DrawWidth=32
@@ -1223,9 +1223,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_45
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_6'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-768
    ObjPosY=1432
    DrawWidth=32
@@ -1235,9 +1235,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_45
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1008
    ObjPosY=1360
    DrawWidth=32
@@ -1247,9 +1247,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_47
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_7'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-912
    ObjPosY=1360
    DrawWidth=32
@@ -1259,9 +1259,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_47
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-808
    ObjPosY=1360
    DrawWidth=32
@@ -1271,9 +1271,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_49
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-712
    ObjPosY=1360
    DrawWidth=32
@@ -1287,11 +1287,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
    InputLinks(1)=(DrawY=-190,OverrideDelta=35)
    InputLinks(2)=(DrawY=-169,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-190,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_102',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_103',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_104',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_105',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_106',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_107',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_108',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_12'),DrawX=-1026,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_102',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_103',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_104',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_105',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_106',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_107',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_108',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_12'),DrawX=-1026,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-975,OverrideDelta=76)
    EventLinks(0)=(DrawX=-926,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1064
    ObjPosY=-248
    DrawWidth=173
@@ -1301,9 +1301,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_102
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_67'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_67'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1144
    ObjPosY=-56
    DrawWidth=32
@@ -1313,9 +1313,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_102
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_103
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_68'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_68'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1040
    ObjPosY=-56
    DrawWidth=32
@@ -1325,9 +1325,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_103
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_104
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_65'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_65'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-944
    ObjPosY=-56
    DrawWidth=32
@@ -1337,9 +1337,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_104
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_105
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_66'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_66'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1192
    ObjPosY=40
    DrawWidth=32
@@ -1349,9 +1349,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_105
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_106
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_63'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_63'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1096
    ObjPosY=40
    DrawWidth=32
@@ -1361,9 +1361,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_106
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_107
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_64'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_64'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-992
    ObjPosY=40
    DrawWidth=32
@@ -1373,9 +1373,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_107
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_108
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_62'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_62'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-896
    ObjPosY=40
    DrawWidth=32
@@ -1389,11 +1389,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_17
    InputLinks(1)=(DrawY=226,OverrideDelta=35)
    InputLinks(2)=(DrawY=247,OverrideDelta=56)
    OutputLinks(0)=(DrawY=226,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_109',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_110',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_111',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_112',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_113',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_114',SeqVar_Object'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_115'),DrawX=-1026,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_109',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_110',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_111',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_112',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_113',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_114',SeqVar_Object'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_115'),DrawX=-1026,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-975,OverrideDelta=76)
    EventLinks(0)=(DrawX=-926,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1064
    ObjPosY=168
    DrawWidth=173
@@ -1403,9 +1403,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_17
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_109
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_56'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_56'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1176
    ObjPosY=320
    DrawWidth=32
@@ -1415,9 +1415,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_109
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_110
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_57'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_57'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1072
    ObjPosY=320
    DrawWidth=32
@@ -1427,9 +1427,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_110
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_111
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_58'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_58'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-976
    ObjPosY=320
    DrawWidth=32
@@ -1439,9 +1439,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_111
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_112
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_60'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_60'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1208
    ObjPosY=408
    DrawWidth=32
@@ -1451,9 +1451,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_112
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_113
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_61'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_61'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1112
    ObjPosY=408
    DrawWidth=32
@@ -1463,9 +1463,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_113
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_114
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_59'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_59'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1008
    ObjPosY=408
    DrawWidth=32
@@ -1475,9 +1475,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_114
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_115
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_54'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_54'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-912
    ObjPosY=408
    DrawWidth=32
@@ -1489,10 +1489,10 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_0
    EventName="SpawnsOff"
    MaxWidth=188
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_17',InputLinkIdx=1)),DrawY=-758,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_17',InputLinkIdx=1)),DrawY=-758,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-1522,OverrideDelta=62)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1616
    ObjPosY=-824
    ObjComment="SpawnsOff"
@@ -1505,10 +1505,10 @@ End Object
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_1
    EventName="SpawnsOff"
    InputLinks(0)=(DrawY=1202,ActivateDelay=20.000000,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),DrawY=1202,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),DrawY=1202,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-1188,OverrideDelta=92)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1312
    ObjPosY=1168
    ObjComment="SpawnsOff"
@@ -1521,11 +1521,11 @@ End Object
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_2
    MaxTriggerCount=0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_2')),DrawY=-491,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_2')),DrawY=-491,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-470,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),DrawY=-449,OverrideDelta=56)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),DrawY=-449,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2032
    ObjPosY=-560
    DrawWidth=137
@@ -1538,12 +1538,12 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_2
    IncrementAmount=0
    InputLinks(0)=(DrawY=-430,OverrideDelta=19)
    InputLinks(1)=(DrawY=-398,OverrideDelta=51)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),DrawY=-435,OverrideDelta=14)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16')),LinkDesc="Link 2",DrawY=-414,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_17')),LinkDesc="Link 3",DrawY=-393,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),DrawY=-435,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16')),LinkDesc="Link 2",DrawY=-414,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_17')),LinkDesc="Link 3",DrawY=-393,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-1556,OverrideDelta=23)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1600
    ObjPosY=-472
    DrawWidth=89
@@ -1555,10 +1555,10 @@ End Object
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_0
    EventName="SpawnsOff"
    InputLinks(0)=(DrawY=-550,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_2')),DrawY=-550,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_2')),DrawY=-550,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-1556,OverrideDelta=92)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1680
    ObjPosY=-584
    ObjComment="SpawnsOff"
@@ -1569,9 +1569,9 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
-   ObjValue=KFPlayerStart'KF-InfernalRealm.TheWorld:PersistentLevel.KFPlayerStart_55'
+   ObjValue=KFPlayerStart'KF-INFERNALREALM.TheWorld:PersistentLevel.KFPlayerStart_55'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-InfernalRealm.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-INFERNALREALM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-832
    ObjPosY=-32
    DrawWidth=32

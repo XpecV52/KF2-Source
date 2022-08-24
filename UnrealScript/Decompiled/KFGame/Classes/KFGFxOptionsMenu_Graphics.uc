@@ -66,6 +66,7 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;
 
 enum PerfWarning
 {
@@ -2361,13 +2362,13 @@ function OnSaveConfirm()
     {
         Outer.ConsoleCommand("RESTART");
     }
-    Manager.OpenMenu(5);
+    Manager.OpenMenu(6);
 }
 
 function OnSaveCancel()
 {
     ResetValues();
-    Manager.OpenMenu(5);
+    Manager.OpenMenu(6);
 }
 
 function Callback_CloseMenu()
@@ -2434,7 +2435,7 @@ function Callback_CloseMenu()
     else
     {
         ResetValues();
-        Manager.OpenMenu(5);
+        Manager.OpenMenu(6);
     }
 }
 
@@ -2454,7 +2455,7 @@ function Callback_ApplyVideo()
 function Callback_CancelVideo()
 {
     ResetValues();
-    Manager.OpenMenu(5);
+    Manager.OpenMenu(6);
 }
 
 function Callback_ResetDefaultVideo()

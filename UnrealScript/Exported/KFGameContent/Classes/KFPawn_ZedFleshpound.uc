@@ -456,7 +456,6 @@ defaultproperties
    bCanRage=True
    bIsFleshpoundClass=True
    MonsterArchPath="ZED_ARCH.ZED_Fleshpound_Archetype"
-   ElitePawnClass=Class'kfgamecontent.KFPawn_ZedFleshpoundKing'
    HeadlessBleedOutTime=7.000000
    ParryResistance=4
    MinSpawnSquadSizeType=EST_Large
@@ -553,7 +552,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.250000,0.250000,0.500000,0.250000,0.400000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.500000,Vulnerability=(0.950000))
    IncapSettings(10)=(Duration=2.500000,Cooldown=17.000000,Vulnerability=(0.800000))
-   IncapSettings(11)=(Vulnerability=(0.800000))
+   IncapSettings(11)=(Vulnerability=(0.250000))
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=2.000000
    SprintSpeed=725.000000

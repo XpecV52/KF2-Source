@@ -15,7 +15,7 @@ class KFPlayerReplicationInfo extends PlayerReplicationInfo
 	config(Game)
 	native(ReplicationInfo)
 	nativereplication
-	dependson(KFVoteCollector);
+	dependson(KFVoteCollector, KFLocalMessage_VoiceComms);
 
 
 
@@ -390,7 +390,8 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
-const KFID_SafeFrameScale = 168;#linenumber 22;
+const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;#linenumber 22;
 
 /** The time at which this PRI left the game */
 var float LastQuitTime;
@@ -404,6 +405,9 @@ var bool bHasSpawnedIn;
 var string LastCrateGiftTimestamp;
 /** Seconds of gameplay for this player for crate gifting. Tracked by server only */
 var int SecondsOfGameplay;
+
+/** Whether or not dosh can be earned */
+var bool bAllowDoshEarning;
 
 /************************************
  *  Character class related variables
@@ -419,13 +423,13 @@ var const array<KFCharacterInfo_Human> CharacterArchetypes;
 struct native CustomizationInfo
 {
 	/** Index of the current char archetype among the AvailableCharArchetypes array */
-	var const byte CharacterIndex;
-	var const byte HeadMeshIndex;
-	var const byte HeadSkinIndex;
-	var const byte BodyMeshIndex;
-	var const byte BodySkinIndex;
-	var const byte AttachmentMeshIndices[3];
-	var const byte AttachmentSkinIndices[3];
+	var const int CharacterIndex;
+	var const int HeadMeshIndex;
+	var const int HeadSkinIndex;
+	var const int BodyMeshIndex;
+	var const int BodySkinIndex;
+	var const int AttachmentMeshIndices[3];
+	var const int AttachmentSkinIndices[3];
 
 	structcpptext
 	{
@@ -501,9 +505,20 @@ var 			bool 			bPerkPrimarySupplyUsed;
 var 			bool 			bPerkSecondarySupplyUsed;
 
 /************************************
+ *  Not replicated Voice Comms Request
+ *  local client only -ZG
+ ************************************/
+
+var 			EVoiceCommsType CurrentVoiceCommsRequest;
+var				float 			VoiceCommsStatusDisplayInterval;
+var				int 			VoiceCommsStatusDisplayIntervalCount;
+var				int 			VoiceCommsStatusDisplayIntervalMax;
+var 			Texture2D 		CurrentIconToDisplay;
+
+/************************************
  *  Replicated Unlocks
  ************************************/
- var  		byte		SharedUnlocks;	
+ var  		byte		SharedUnlocks;
 
 /************************************
  *  Objective
@@ -585,7 +600,7 @@ simulated event ReplicatedEvent(name VarName)
 		OnTalkerRegistered();
 	}
 
-	
+
 	if ( VarName == 'Team' )
 	{
 		ClientRecieveNewTeam();
@@ -714,12 +729,12 @@ reliable server function ServerNotifyStartTeamVoip()
 		{
 			bNetDirty = true;
 			bForceNetUpdate = true;
-		
+
 			if(!KFPC.IsLocalController())
 			{
 				VOIPStatusChanged(self, true);
 			}
-            
+
             VOIPStatus = 2;
 
 			KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length);
@@ -840,7 +855,7 @@ simulated function VOIPStatusChanged( PlayerReplicationInfo Talker, bool bIsTalk
 	local OnlineSubsystem OSS;
 
 	OSS = class'GameEngine'.static.GetOnlineSubsystem();
-	
+
     foreach WorldInfo.LocalPlayerControllers(class'KFPlayerController', KFPC)
 	{
 		// BWJ - 10-4-16 - Exit out immediately if local player has a chat restriction
@@ -1005,7 +1020,7 @@ simulated function CastMapVote(int MapIndex, bool bDoubleClick)
 {
 	local KFGameInfo KFGI;
 
-	ServerCastMapVote(self, KFGameReplicationInfo(WorldInfo.GRI).VoteCollector.MapList[MapIndex]);	
+	ServerCastMapVote(self, KFGameReplicationInfo(WorldInfo.GRI).VoteCollector.MapList[MapIndex]);
 
 	if(WorldInfo.NetMode == NM_StandAlone)
 	{
@@ -1099,8 +1114,8 @@ simulated function ClientInitialize(Controller C)
 	}
 }
 
-/** 
- * Network: Local Player 
+/**
+ * Network: Local Player
  * INDEX_NONE will load last character from config
  */
 simulated event SelectCharacter( optional int CharIndex=INDEX_None )
@@ -1165,7 +1180,7 @@ simulated event CharacterCustomizationChanged()
 	local KFCharacterInfoBase NewCharArch;
 
 	if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("character_change", self, CharacterArchetypes[RepCustomizationInfo.CharacterIndex].Name);
-				   
+
 	foreach WorldInfo.AllPawns(class'KFPawn_Human', KFP)
 	{
 		if (KFP.PlayerReplicationInfo == self ||
@@ -1225,10 +1240,10 @@ function SetPlayerTeam( TeamInfo NewTeam )
 
 function UpdateReplicatedVariables()
 {
-	if( !bIsSpectator && 
-		KFPlayerOwner != none && 
+	if( !bIsSpectator &&
+		KFPlayerOwner != none &&
 		KFPlayerOwner.GetTeamNum() == 0 &&
-		KFPlayerOwner.Pawn != none && 
+		KFPlayerOwner.Pawn != none &&
 		KFPlayerOwner.Pawn.IsAliveAndWell() )
 	{
 		UpdatePawnLocation();
@@ -1287,7 +1302,7 @@ simulated function vector GetSmoothedPawnIconLocation(float BlendSpeed)
 	}
 	else
 	{
-		LastReplicatedSmoothedLocation = UncompressedLocation;		
+		LastReplicatedSmoothedLocation = UncompressedLocation;
 	}
 
 	return LastReplicatedSmoothedLocation;
@@ -1295,8 +1310,16 @@ simulated function vector GetSmoothedPawnIconLocation(float BlendSpeed)
 
 simulated function SetPlayerReady( bool bReady )
 {
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Owner);
+
    	bReadyToPlay = bReady;
 	ServerSetPlayerReady( bReady );
+	if(KFPC != none && KFPC.LEDEffectsManager != none)
+	{
+		KFPC.LEDEffectsManager.PlayEffectSetReady(bReadyToPlay);
+	}
 }
 
 reliable server private function ServerSetPlayerReady( bool bReady )
@@ -1307,6 +1330,12 @@ reliable server private function ServerSetPlayerReady( bool bReady )
 /** Called on server to +/- dosh.  Do not modify score directly */
 function AddDosh( int DoshAmount, optional bool bEarned )
 {
+    //If the game has turned off dosh earning for this PRI, early out.
+    if (!bAllowDoshEarning && bEarned)
+    {
+        return;
+    }
+
 	// Dosh is stored in PRI->Score
 	Score = Max(0, Score + DoshAmount);
 
@@ -1399,11 +1428,11 @@ simulated function ResetSupplierUsed()
 	local int i;
 
 	KFGameReplicationInfo(WorldInfo.GRI).GetKFPRIArray( KFPRIArray );
- 
+
 	for( i = 0; i < KFPRIArray.Length; ++i )
 	{
-		KFPRIArray[i].bPerkPrimarySupplyUsed = false;	
-		KFPRIArray[i].bPerkSecondarySupplyUsed = false;	
+		KFPRIArray[i].bPerkPrimarySupplyUsed = false;
+		KFPRIArray[i].bPerkSecondarySupplyUsed = false;
 	}
 }
 
@@ -1421,25 +1450,81 @@ simulated function NotifyWaveEnded()
 // BWJ - 10-5-16 - Check to see if player has had initial spawn. used for PS4 realtime multiplay
 native simulated function bool HasHadInitialSpawn();
 
+
+simulated function SetCurrentVoiceCommsRequest(int NewValue)
+{
+	//cast it
+	CurrentVoiceCommsRequest = EVoiceCommsType(NewValue);
+
+	//clear timers
+	ClearVoiceCommsRequest();
+	//set timers
+	SetCurrentIconToVoiceCommsIcon();
+}
+
+//this and SetCurrentIconToVoiceCommsIcon used for flashing last voice comms request icon
+simulated function SetCurrentIconToPerkIcon()
+{
+	CurrentIconToDisplay = None;
+	if(VoiceCommsStatusDisplayIntervalCount < VoiceCommsStatusDisplayIntervalMax)
+	{
+		//clear both timers and reset the count
+		VoiceCommsStatusDisplayIntervalCount++;
+		SetTimer( VoiceCommsStatusDisplayInterval, false, nameof(SetCurrentIconToVoiceCommsIcon) );
+	}
+	else
+	{
+		ClearVoiceCommsRequest();
+	}
+}
+
+simulated function SetCurrentIconToVoiceCommsIcon()
+{
+	CurrentIconToDisplay = class'KFLocalMessage_VoiceComms'.default.VoiceCommsIcons[CurrentVoiceCommsRequest];
+	SetTimer( VoiceCommsStatusDisplayInterval, false, nameof(SetCurrentIconToPerkIcon) );
+}
+
+simulated function ClearVoiceCommsRequest()
+{
+	ClearTimer('SetCurrentIconToPerkIcon');
+	ClearTimer('SetCurrentIconToVoiceCommsIcon');
+	VoiceCommsStatusDisplayIntervalCount = 0;
+	CurrentIconToDisplay = None;
+}
+
+simulated function Texture2D GetCurrentIconToDisplay()
+{
+	if(CurrentIconToDisplay == none && CurrentPerkClass != none)
+	{
+		return CurrentPerkClass.default.PerkIcon;
+	}
+
+	return CurrentIconToDisplay;
+}
+
 defaultproperties
 {
+   CurrentVoiceCommsRequest=VCT_NONE
+   bAllowDoshEarning=True
    bShowNonRelevantPlayers=True
    SecondsOfGameplay=-1
    CharacterArchetypes(0)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype'
-   CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Knight_Archetype'
+   CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_knight_archetype'
    CharacterArchetypes(2)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype'
-   CharacterArchetypes(3)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Mark_archetype'
+   CharacterArchetypes(3)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_mark_archetype'
    CharacterArchetypes(4)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype'
    CharacterArchetypes(5)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Jagerhorn_Archetype'
    CharacterArchetypes(6)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype'
-   CharacterArchetypes(7)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_Archetype'
-   CharacterArchetypes(8)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alan_Archetype'
+   CharacterArchetypes(7)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_archetype'
+   CharacterArchetypes(8)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_alan_archetype'
    CharacterArchetypes(9)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Coleman_archetype'
    CharacterArchetypes(10)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_DJSkully_archetype'
-   CharacterArchetypes(11)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Strasser_Archetype'
+   CharacterArchetypes(11)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_strasser_archetype'
    CharacterArchetypes(12)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
    CharacterArchetypes(13)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype'
    RepCustomizationInfo=(AttachmentMeshIndices[0]=255,AttachmentMeshIndices[1]=255,AttachmentMeshIndices[2]=255)
+   VoiceCommsStatusDisplayInterval=0.500000
+   VoiceCommsStatusDisplayIntervalMax=5
    Name="Default__KFPlayerReplicationInfo"
    ObjectArchetype=PlayerReplicationInfo'Engine.Default__PlayerReplicationInfo'
 }

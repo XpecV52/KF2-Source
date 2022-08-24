@@ -344,7 +344,7 @@ reliable client simulated function HeadShotMessage(byte HeadShotNum, byte Displa
     local AkEvent TempAkEvent;
 
     bMissed = false;    
-    if(((OwnerPC == none) || OwnerPC.MyGFxHUD == none) || !IsRhythmMethodActive())
+    if(((OwnerPC == none) || OwnerPC.myGfxHUD == none) || !IsRhythmMethodActive())
     {
         return;
     }

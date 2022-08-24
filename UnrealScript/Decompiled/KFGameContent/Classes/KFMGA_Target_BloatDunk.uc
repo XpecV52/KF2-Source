@@ -61,8 +61,16 @@ simulated event SetInactive()
 
 defaultproperties
 {
-    OnLight=PointLightComponent'Default__KFMGA_Target_BloatDunk.PointLight0'
-    OffLight=PointLightComponent'Default__KFMGA_Target_BloatDunk.PointLight1'
+    begin object name=PointLight0 class=PointLightComponent
+        bCastPerObjectShadows=false
+    object end
+    // Reference: PointLightComponent'Default__KFMGA_Target_BloatDunk.PointLight0'
+    OnLight=PointLight0
+    begin object name=PointLight1 class=PointLightComponent
+        bCastPerObjectShadows=false
+    object end
+    // Reference: PointLightComponent'Default__KFMGA_Target_BloatDunk.PointLight1'
+    OffLight=PointLight1
     begin object name=Mesh1 class=StaticMeshComponent
         ReplacementPrimitive=none
     object end
@@ -90,8 +98,16 @@ defaultproperties
     // Reference: StaticMeshComponent'Default__KFMGA_Target_BloatDunk.Mesh0'
     Components(1)=Mesh0
     Components(2)=AkComponent'Default__KFMGA_Target_BloatDunk.DeathSFX0'
-    Components(3)=PointLightComponent'Default__KFMGA_Target_BloatDunk.PointLight0'
-    Components(4)=PointLightComponent'Default__KFMGA_Target_BloatDunk.PointLight1'
+    begin object name=PointLight0 class=PointLightComponent
+        bCastPerObjectShadows=false
+    object end
+    // Reference: PointLightComponent'Default__KFMGA_Target_BloatDunk.PointLight0'
+    Components(3)=PointLight0
+    begin object name=PointLight1 class=PointLightComponent
+        bCastPerObjectShadows=false
+    object end
+    // Reference: PointLightComponent'Default__KFMGA_Target_BloatDunk.PointLight1'
+    Components(4)=PointLight1
     begin object name=Mesh1 class=StaticMeshComponent
         ReplacementPrimitive=none
     object end

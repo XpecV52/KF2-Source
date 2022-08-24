@@ -35,6 +35,7 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
         Zed = KFPawn_Monster(P);
         if((Zed != none) && !Zed.bUseDamageInflation)
         {
+            Zed.RepBleedInflateMatParam = 0;
             GoreManager = KFGoreManager(P.WorldInfo.MyGoreEffectManager);
             if((GoreManager != none) && GoreManager.AllowMutilation())
             {
@@ -74,14 +75,14 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
         P.CharacterMICs[MICIndex].SetScalarParameterValue('Scalar_Ice', IceScalar);
     }
     I = 0;
-    J0x48E:
+    J0x4AF:
 
     if(I < 3)
     {
         if(P.ThirdPersonAttachments[I] != none)
         {
             J = 0;
-            J0x4D7:
+            J0x4F8:
 
             if(J < P.ThirdPersonAttachments[I].Materials.Length)
             {
@@ -91,11 +92,11 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
                     MIC.SetScalarParameterValue('Scalar_Ice', IceScalar);
                 }
                 ++ J;
-                goto J0x4D7;
+                goto J0x4F8;
             }
         }
         ++ I;
-        goto J0x48E;
+        goto J0x4AF;
     }
 }
 

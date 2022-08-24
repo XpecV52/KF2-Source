@@ -65,6 +65,7 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;
 
 var KFGFxControlsContainer_Keybinding KeybindingsContainer;
 var KFGFxControlsContainer_Input InputContainer;
@@ -301,7 +302,7 @@ function Callback_AcceptBind()
 
 function Callback_CloseMenu()
 {
-    Manager.OpenMenu(5);
+    Manager.OpenMenu(6);
     Manager.CachedProfile.Save(byte(Outer.GetLP().ControllerId));
 }
 

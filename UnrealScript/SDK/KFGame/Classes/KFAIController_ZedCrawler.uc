@@ -575,9 +575,15 @@ DefaultProperties
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
 								SoloChanceMultiplier=1.0)}
+	DangerEvadeSettings(20)={(ClassName="KFProj_HighExplosive_M16M203",
+								Cooldowns=(3.0, 1.0, 0.1, 0.0), // Normal, Hard, Suicidal, HoE
+								EvadeChances=(0.0, 0.5, 0.9, 1.0),
+								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
+								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
+								SoloChanceMultiplier=1.0)}
 
 	// Flashlight
-	DangerEvadeSettings(20)={(ClassName="KFFlashlightAttachment",
+	DangerEvadeSettings(21)={(ClassName="KFFlashlightAttachment",
 								Cooldowns=(3.0, 1.0, 0.75, 0.5), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.5, 0.8, 0.9),
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},

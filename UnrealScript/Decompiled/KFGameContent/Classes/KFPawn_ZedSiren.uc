@@ -104,6 +104,7 @@ defaultproperties
         LightColor=(B=50,G=50,R=250,A=255)
         bEnabled=false
         CastShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
         MaxBrightness=1.2
         MinBrightness=0.75

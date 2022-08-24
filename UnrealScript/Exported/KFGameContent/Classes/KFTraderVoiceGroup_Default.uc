@@ -486,6 +486,8 @@ class KFTraderVoiceGroup_Default extends KFTraderVoiceGroupBase;
 
 
 
+
+
 #linenumber 3																																							
 
 defaultproperties
@@ -644,6 +646,7 @@ defaultproperties
    DialogEvents(151)=(EventID=151,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COL9_WonJust',Priority=1)
    DialogEvents(152)=(EventID=152,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COL9_WonGood',Priority=1)
    DialogEvents(153)=(EventID=153,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COL9_WonPerfect',Priority=1)
+   DialogEvents(154)=(EventID=154,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_TeamLastOne',Priority=1)
    Name="Default__KFTraderVoiceGroup_Default"
    ObjectArchetype=KFTraderVoiceGroupBase'KFGame.Default__KFTraderVoiceGroupBase'
 }

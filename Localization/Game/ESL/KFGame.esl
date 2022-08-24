@@ -62,9 +62,40 @@ FreeConsolePlayOverString="¡Gracias por jugar a Killing Floor 2! El evento grat
 BuyGameString="TIENDA"
 CustomString="Personaliz."
 
+RarityStrings[0]="COMÚN"
+RarityStrings[1]="POCO COMÚN"
+RarityStrings[2]="INFRECUENTE"
+RarityStrings[3]="DE MITO"
+RarityStrings[4]="DE LEYENDA"
+RarityStrings[5]="SUMAMENTE INFRECUENTE"
+RarityStrings[6]="CUALQUIERA"
+
+WeaponTypeStrings[0]="PISTOLA"
+WeaponTypeStrings[1]="ESCOPETA"
+WeaponTypeStrings[2]="RIFLE"
+WeaponTypeStrings[3]="PROYECTIL"
+WeaponTypeStrings[4]="DE FUEGO"
+WeaponTypeStrings[5]="TECNOLÓGICA"
+WeaponTypeStrings[6]="LANZADOR"
+WeaponTypeStrings[7]="DE ASALTO"
+WeaponTypeStrings[8]="DE CUERPO A CUERPO"
+WeaponTypeStrings[9]="SUBFUSIL"
+WeaponTypeStrings[10]="TODAS"
+
+MixerGaveAmmoString=", un espectador de Mixer, te ha dado munición."
+MixerGaveArmorString=", un espectador de Mixer,te ha dado armadura."
+MixerGaveDoshString=", un espectador de Mixer,te ha dado Dosh."
+MixerGaveGrenadeString=", un espectador de Mixer,te ha dado una granada."
+MixerGaveHealthString=", un espectador de Mixer,te ha curado."
+MixerZedTimeString=", un espectador de Mixer,ha activado el momento zed."
+MixerRageZedsString=", un espectador de Mixer,ha enfurecido a los zeds cercanos."
+MixerPukeString=", un espectador de Mixer,te ha vomitado encima."
+MixerSpawnedFPString=", un espectador de Mixer,ha engendrado un fleshpound."
+
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RECOMPENSA POR COMPLETAR UN BROTE"
 WeeklyString="BROTE SEMANAL DE HORZINE"
+DailyObjectiveString="DIARIO"
 CurrentWeeklySettingsString="AJUSTES DE BROTE ACTUALES"
 SpecialEventString="FERIA DE VERANO"
 ShortWeeklyString="SEMANAL"
@@ -72,9 +103,18 @@ SeasonalString="ESTACIONAL"
 SpecialEventChanceDropString="OBJETOS DE OBTENCIÓN LIMITADA"
 GrantedSpecialEventString="RECOMPENSA POR COMPLETAR"
 RewardsString="RECOMPENSA POR COMPLETAR UN BROTE"
+RewardString="RECOMPENSA"
 WeeklyOverview="¡Un nuevo y desafiante modo cada semana!"
 ObjectivesString="Alternar objetivos"
+VaultDoshString="Cámara del dinero"
 
+DealDamageString="Daño que infligir:"
+EarnXPString="EXP que obtener:"
+CompleteMapString="Completa una partida en el mapa:"
+KillZedsString="Zeds que matar:"
+VersusKillsString="Mata a jugadores como:"
+DealVersusDamageString="Daña a jugadores como:"
+VersusCompletionString="Completa la partida como:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="PARTIDA NO ENCONTRADA"
@@ -701,7 +741,7 @@ PartyLeaderInOtherMenuString="está en otro menú..."
 SearchingForGameString="Buscando partida online..."
 
 PartHostLeftString="El anfitrión se ha marchado"
-PartyLeaderChangedString="es el nuevo anfitrión ahora"
+PartyLeaderChangedString="Nuevo anfitrión elegido"
 
 MuteString="Silenciar jugador"
 UnmuteString="Desactivar silencio"
@@ -717,6 +757,16 @@ PartyLeaderString="Líder"
 [KFGFxWidget_PartyInGame_Versus]
 SwitchTeamsString="CAMB. EQUIPO"
 balanceWarningString="AVISO: Los equipos se equilibrarán"
+
+[KFGFxMenu_DoshVault]
+YourDoshString="Tu dinero"
+NextRewardString="Siguiente recompensa"
+OpenCrateString="Abrir caja"
+DoshVaultString="CÁMARA DEL DINERO"
+YourCratesString="Tus cajas:"
+OpenCratesString="Abrir caja(s)"
+CrateUnlockedString="¡CAJA DESBLOQUEADA!"
+DelayedCrateString="* La caja de la cámara del dinero puede retrasarse que reinicies el juego"
 
 [KFGFxMenu_Gear]
 GearHeaderString="PERSONALIZAR EQUIPAMIENTO"
@@ -775,6 +825,9 @@ CraftWeaponDescriptionString="Puedes fabricar nuevos objetos de apariencia de ar
 RequiresString="Requiere: "
 PurchaseKeyString="COMP. LLAVE"
 LookUpOnMarketString="Buscar en mercado"
+RarityFilterString="RAREZA"
+PerkFilterString="ESPECIALIZACIÓN"
+WeaponTypeFilterString="TIPO DE ARMA"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -836,10 +889,11 @@ ConfirmString="SELECCIONAR"
 MenuStrings[0]="INICIO"
 MenuStrings[1]="ESPECIALIZ."
 MenuStrings[2]="EQUIPAMIENTO"
-MenuStrings[3]="INVENTARIO"
-MenuStrings[4]="TIENDA"
-MenuStrings[5]="OPCIONES"
-MenuStrings[6]="SALIR"
+MenuStrings[3]="CÁMARA"
+MenuStrings[4]="INVENTARIO"
+MenuStrings[5]="TIENDA"
+MenuStrings[6]="OPCIONES"
+MenuStrings[7]="SALIR"
 
 ServerBrowserString="EXPLORAR SERVIDORES"
 MatchmakingString="EMPAREJAMIENTO"
@@ -917,6 +971,7 @@ VoiceCommsOptionStrings[5]="AL MERCADER"
 VoiceCommsOptionStrings[6]="AFIRMATIVO"
 VoiceCommsOptionStrings[7]="NEGATIVO"
 VoiceCommsOptionStrings[8]="EMOTE"
+VoiceCommsOptionStrings[9]="GRACIAS"
 
 [KFGFxMenu_Exit]
 HeaderString="SALIR DE LA PARTIDA"
@@ -1132,6 +1187,8 @@ AntiMotionSicknessString="Anticinetosis"
 AutoTurnOffString="No girar por clot"
 ReduceHighPitchNoiseString="Reducir sonidos agudos"
 DisableAutoUpgradeString="Desactivar Actualización auto."
+
+EnableMixerString="Activar interactividad con Mixer"
 
 [LocalizedControls]
 ControllerLayoutDefault="Por defecto"
@@ -1362,6 +1419,7 @@ ZedGroupRegroupingString="¡Horda zed reagrupándose!"
 NextRoundBeginString="P R Ó X I M A R O N D A"
 PlayerCanChangePerksString="No se permite cambiar de espec."
 ZedWaitingForNextRoundString="¡Invasión zed inminente!"
+LastPlayerStandingString="ÚLTIMO JUGADOR EN PIE"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="USAR MEJORA<%HOLD%>AUTO. MERCADER"
@@ -1596,7 +1654,7 @@ SkillCatagories[4]="Entrenamiento avanzado"
 
 Passives[0]=(Title="Daño de berserker",Description="+x%x/nivel al daño de armas de espec.");
 Passives[1]=(Title="Resistencia al daño",Description="+x%x/5 niveles a la resistencia al daño");
-Passives[2]=(Title="+Capacidad de visión nocturna",Description="Linterna - Y gafas de visión nocturna");
+Passives[2]=(Title="Capacidad de visión nocturna",Description="Linterna y gafas de visión nocturna");
 Passives[3]=(Title="Los clots no pueden agarrarte",Description="Los clots no pueden agarrar a un berserker");
 
 EXPAction1="Hacer daño con armas de berserker"
@@ -1645,8 +1703,8 @@ Passives[0]=(Title="Daño con armas de esp.",Description="+%x%/nivel al daño co
 Passives[1]=(Title="Detección enem. ocultos y vida",Description="Alcance 5 m + %x% m/nivel");
 Passives[2]=(Title="Momento zed extendido",Description="El momento zed aumenta %x% cada 5 niveles");
 Passives[3]=(Title="Velocidad de recarga",Description="+%x% %/5 nv. vel. recarga de armas de esp.");
-Passives[4]=(Title="+Capacidad de visión nocturna",Description="Linterna - Y gafas de visión nocturna");
-Passives[5]=(Title="+Avisar de zeds ocultos",Description="Permite a los compañeros ver enem. ocultos");
+Passives[4]=(Title="Capacidad de visión nocturna",Description="Linternas y gafas de visión nocturna");
+Passives[5]=(Title="Avisar de zeds ocultos",Description="Permite a los compañeros ver enem. ocultos");
 
 EXPAction1="Infligir daño con armas de comando"
 EXPAction2="Matar stalkers con armas de comando"
@@ -1695,8 +1753,8 @@ SkillCatagories[4]="Explosivos avanzados"
 Passives[0]=(Title="Daño con armas de esp.",Description="+%x%/nivel al daño con armas de esp.");
 Passives[1]=(Title="Resistencia a explosiones",Description="+10 % a la res. a explosiones y +%x%/nv.");
 Passives[2]=(Title="Munición superexplosiva",Description="La munición explosiva aumenta %x% cada 5 nv.");
-Passives[3]=(Title="+Proveedor de granadas",Description="Tus compañeros ganan 1 granada por cada oleada");
-Passives[4]=(Title="+Trampas de puerta",Description="Las puertas que sueldas explotan al ser destruidas");
+Passives[3]=(Title="Proveedor de granadas",Description="Tus compañeros ganan 1 granada por cada oleada");
+Passives[4]=(Title="Trampas de puerta",Description="Las puertas que sueldas explotan al ser destruidas");
 Passives[5]=(Title="Armadura reactiva",Description="Cuando tu salud llega a 0, tu armadura explota y te deja a 1 de salud");
 
 
@@ -2209,6 +2267,7 @@ USBSpitfire="Llave USB Escupefuego - 2,49 $"
 USBHighVoltage="Llave USB Alto voltaje - 2,49 $"
 MerchSale="¡Rebajas KF2! 25% menos hasta 30/4/17 (cód.: ZED)"
 
+
 [Zeds]
 KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="Clot"
@@ -2229,6 +2288,7 @@ KFPawn_ZedClot_AlphaKing="Élite alfa"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
 KFPawn_ZedPatriarch="Patriarca"
+
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bloat - Jugador"
 KFPawn_ZedClot_Versus="Clot - Jugador"
@@ -2376,6 +2436,15 @@ AllCompleteRewardDescriptionString="Traje NBQ de feria"
 
 ChanceDropDescriptionStrings[0]="Boleto premiado de feria"
 ChanceDropDescriptionStrings[1]="Boleto dorado de feria"
+
+;============================================
+; Daily Localization
+;============================================
+[KFGFxDailyObjectivesContainer]
+TitleString="OBJETIVOS DIARIOS"
+OverviewString="Los objetivos diarios son un conjunto de metas determinadas de forma aleatoria que cambian cada día. Al completar un objetivo diario ganarás dinero para tu cámara del dinero."
+SubtitleString="Objetivos diarios actuales"
+KnifeString="Cuchillo"
 
 ;============================================
 ; Weekly Localization
@@ -2716,6 +2785,22 @@ DisplayName_POL="Królestwo Tragedii"
 DisplayName_PTB="Reino Trágico"
 DisplayName_RUS="Королевство Трагедий"
 
+[KF-Nightmare KFMapSummary]
+DisplayName_CHN="梦魇"
+DisplayName_CHT="夢魘"
+DisplayName_DEU="Albtraum"
+DisplayName_ESL="Pesadilla"
+DisplayName_ESN="Pesadilla"
+DisplayName_FRA="Cauchemar"
+DisplayName_FRC="Cauchemar"
+DisplayName_INT="Nightmare"
+DisplayName_ITA="Incubo"
+DisplayName_JPN="悪夢"
+DisplayName_KOR="악몽"
+DisplayName_POL="Koszmar"
+DisplayName_PTB="Pesadelo"
+DisplayName_RUS="Кошмар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio biótico"
 
@@ -2769,6 +2854,9 @@ DisplayName="Bombardeado"
 
 [KF-TragicKingdom KFMapSummary]
 DisplayName="El reino trágico"
+
+[KF-Nightmare KFMapSummary]
+DisplayName="Pesadilla"
 
 [KFMapInfo]
 ; defaults

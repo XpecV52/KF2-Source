@@ -75,7 +75,7 @@ var bool bDebugLog;
 var float FireFullyCharredDuration;
 var float FireCharPercentThreshhold;
 
-function NotifyTakeHit(Controller DamageInstigator, Vector HitDir, class<KFDamageType> DamageType)
+function NotifyTakeHit(Controller DamageInstigator, Vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
 {
     local KFPerk InstigatorPerk;
 
@@ -89,7 +89,7 @@ function NotifyTakeHit(Controller DamageInstigator, Vector HitDir, class<KFDamag
     }
     if((Outer.GetTeamNum() > 254) && !Outer.bPlayedDeath)
     {
-        ProcessSpecialMoveAfflictions(InstigatorPerk, HitDir, DamageType);
+        ProcessSpecialMoveAfflictions(InstigatorPerk, HitDir, DamageType, DamageCauser);
         ProcessHitReactionAfflictions(InstigatorPerk, DamageType);
     }
     ProcessEffectBasedAfflictions(InstigatorPerk, DamageType);
@@ -111,12 +111,14 @@ function byte GetPredictedHitReaction(class<KFDamageType> DamageType, KFAfflicti
     return 0;
 }
 
-protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector HitDir, class<KFDamageType> DamageType)
+protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
 {
     local KFAfflictionManager.EHitZoneBodyPart BodyPart;
     local byte HitZoneIdx;
     local float KnockdownPower, StumblePower, StunPower, SnarePower, KnockdownModifier, StumbleModifier,
 	    StunModifier;
+
+    local KFInterface_DamageCauser KFDmgCauser;
 
     if(IsZero(HitDir))
     {
@@ -128,6 +130,14 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     StumblePower = DamageType.default.StumblePower;
     StunPower = DamageType.default.StunPower;
     SnarePower = DamageType.default.SnarePower;
+    KFDmgCauser = KFInterface_DamageCauser(DamageCauser);
+    if(NotEqual_InterfaceInterface(KFDmgCauser, (none)))
+    {
+        KnockdownPower *= KFDmgCauser.GetIncapMod();
+        StumblePower *= KFDmgCauser.GetIncapMod();
+        StunPower *= KFDmgCauser.GetIncapMod();
+        SnarePower *= KFDmgCauser.GetIncapMod();
+    }
     KnockdownModifier = 1;
     StumbleModifier = 1;
     StunModifier = 1;
@@ -425,6 +435,27 @@ function float GetAfflictionSpeedModifier()
         if(Afflictions[I] != none)
         {
             SpeedModifier *= Afflictions[I].GetSpeedModifier();
+        }
+        ++ I;
+        goto J0x1A;
+    }
+    return SpeedModifier;
+}
+
+function float GetAfflictionAttackSpeedModifier()
+{
+    local float SpeedModifier;
+    local int I;
+
+    SpeedModifier = 1;
+    I = 0;
+    J0x1A:
+
+    if(I < Afflictions.Length)
+    {
+        if(Afflictions[I] != none)
+        {
+            SpeedModifier *= Afflictions[I].GetAttackSpeedModifier();
         }
         ++ I;
         goto J0x1A;

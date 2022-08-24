@@ -69,16 +69,16 @@ function Callback_MenuSelected(int MenuIndex)
     switch(MenuIndex)
     {
         case 0:
-            Manager.OpenMenu(9);
+            Manager.OpenMenu(10);
             break;
         case 1:
-            Manager.OpenMenu(8);
+            Manager.OpenMenu(9);
             break;
         case 2:
-            Manager.OpenMenu(7);
+            Manager.OpenMenu(8);
             break;
         case 3:
-            Manager.OpenMenu(10);
+            Manager.OpenMenu(11);
             break;
         case 4:
             ActionScriptVoid("selectContainer");

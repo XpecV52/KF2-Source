@@ -95,7 +95,9 @@ var(Objectives) bool bUsePresetObjectives<EditCondition=!bUseRandomObjectives>;
 /** Whether or not to use the random wave objective type */
 var(Objectives) bool bUseRandomObjectives<EditCondition=!bUsePresetObjectives>;
 var(Objectives) PresetWavePairs PresetWaveObjectives<EditCondition=bUsePresetObjectives>;
-var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives<EditCondition=bUseRandomObjectives>;
+var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives;
+var(Objectives) array<int> RandomObjectiveWavesToDisable;
+var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 
 function MusicTrackStruct GetNextMusicTrackStruct(optional bool bActionTrack)
 {

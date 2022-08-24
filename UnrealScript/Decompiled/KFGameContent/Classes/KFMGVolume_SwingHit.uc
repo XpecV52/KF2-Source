@@ -5,82 +5,11 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFMGVolume_SwingHit extends KFDynamicPhysicsVolume
+class KFMGVolume_SwingHit extends KFvolume_RagdollThrow
     hidecategories(Navigation,Object,Display);
-
-struct SwingHitTracking
-{
-    var Actor HitActor;
-    var float HitTime;
-
-    structdefaultproperties
-    {
-        HitActor=none
-        HitTime=0
-    }
-};
-
-var array<SwingHitTracking> TrackedHits;
-var() float RateLimiter;
-var() bool bKnockdownZeds;
-
-simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
-{
-    local KFPawn_Human KFPH;
-    local KFPawn_Monster KFPM;
-    local Vector HitDirection;
-    local int LastHitIdx;
-    local SwingHitTracking NewHit;
-
-    super(PhysicsVolume).Touch(Other, OtherComp, HitLocation, HitNormal);
-    if(Role != ROLE_Authority)
-    {
-        return;
-    }
-    LastHitIdx = TrackedHits.Find('HitActor', Other;
-    if(LastHitIdx != -1)
-    {
-        if((WorldInfo.TimeSeconds - TrackedHits[LastHitIdx].HitTime) < RateLimiter)
-        {
-            return;
-        }
-        TrackedHits.Remove(LastHitIdx, 1;
-    }
-    KFPH = KFPawn_Human(Other);
-    KFPM = KFPawn_Monster(Other);
-    if((KFPH != none) || KFPM != none)
-    {
-        HitDirection = Other.Location - Location;
-        HitDirection.Z = DamageType.default.KDeathUpKick;
-        HitDirection = Normal(HitDirection);
-        if(KFPH != none)
-        {
-            KFPH.HandleMomentum(HitDirection * DamageType.default.KDamageImpulse, HitLocation, DamageType);            
-        }
-        else
-        {
-            if(KFPM != none)
-            {
-                if(bKnockdownZeds)
-                {
-                    KFPM.Knockdown(HitDirection * DamageType.default.KDamageImpulse, vect(1, 1, 1),,,, DamageType.default.KDamageImpulse * HitDirection, Location);                    
-                }
-                else
-                {
-                    KFPM.HandleMomentum(HitDirection * DamageType.default.KDamageImpulse, HitLocation, DamageType);
-                }
-            }
-        }
-        NewHit.HitActor = Other;
-        NewHit.HitTime = WorldInfo.TimeSeconds;
-        TrackedHits.AddItem(NewHit;
-    }
-}
 
 defaultproperties
 {
-    RateLimiter=0.1
-    bKnockdownZeds=true
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end

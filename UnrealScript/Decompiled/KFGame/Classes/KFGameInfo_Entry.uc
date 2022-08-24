@@ -10,7 +10,23 @@ class KFGameInfo_Entry extends KFGameInfo
     hidecategories(Navigation,Movement,Collision);
 
 var bool bInitialized;
+var bool bInitPiles;
 var int LastSystemTimeMinutes;
+var array<KFActor_DoshPile> DoshVaultStacks;
+var array<MaterialInstanceActor> TierLights;
+var int FrontPilesInWorld;
+var int FrontPilesActive;
+var array<int> TierThreshold;
+var string LightMICTagName;
+var string LightConeTagName;
+var string LightBulbTagName;
+var string CustomPawnSpawnPointTagName;
+var int FilledPalletCount;
+var int LastUpdateDoshAmount;
+var() LinearColor WhiteColor;
+var() LinearColor OffColor;
+var KFPawn_Customization VaultCustomPawn;
+var int CalcultedTierValue;
 
 static function PreloadContentClasses();
 
@@ -22,7 +38,7 @@ function InitSpawnManager();
 
 function InitTraderList();
 
-function StartMatch()
+function InitVault()
 {
     local PlayerController PC;
     local LocalPlayer LP;
@@ -38,8 +54,323 @@ function StartMatch()
             {
                 PC.myHUD.NotifyBindPostProcessEffects();
             }
+            if(KFPlayerController(PC) != none)
+            {
+                InitDoshPiles(KFPlayerController(PC));
+                SpawnVaultCustomizationPawn(KFPlayerController(PC));
+            }
         }        
     }    
+}
+
+function SpawnVaultCustomizationPawn(KFPlayerController KFPC)
+{
+    local KFGameInfo KFGI;
+    local NavigationPoint BestStart;
+
+    if(VaultCustomPawn != none)
+    {
+        return;
+    }
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if((KFGI == none) || (KFGI.bRestartLevel && WorldInfo.NetMode != NM_DedicatedServer) && WorldInfo.NetMode != NM_ListenServer)
+    {
+        WarnInternal("bRestartLevel && !server, abort from RestartPlayer" @ string(WorldInfo.NetMode));
+        return;
+    }
+    BestStart = GetVaultCustomizationSpawnPoint(KFGI);
+    VaultCustomPawn = KFPawn_Customization(KFGI.SpawnCustomizationPawn(BestStart));
+    if(VaultCustomPawn != none)
+    {
+        VaultCustomPawn.InitializeCustomizationPawn(KFPC, BestStart);
+    }
+}
+
+function NavigationPoint GetVaultCustomizationSpawnPoint(KFGameInfo KFGI)
+{
+    local NavigationPoint BestStartSpot;
+
+    foreach AllActors(Class'NavigationPoint', BestStartSpot)
+    {
+        if(string(BestStartSpot.Tag) == CustomPawnSpawnPointTagName)
+        {            
+            return BestStartSpot;
+        }        
+    }    
+    return BestStartSpot;
+}
+
+event InitDoshPiles(KFPlayerController KFPC)
+{
+    if(KFPC == none)
+    {
+        return;
+    }
+    ActiveLightActorsForTier(0);
+    CalcultedTierValue = GetTotalDoshTier(KFPC);
+    CollectDoshPiles();
+    SortDoshPiles();
+    SpawnDoshPilesForAmount(KFPC.GetLastSeenDoshCount());
+    bInitPiles = true;
+}
+
+function CollectDoshPiles()
+{
+    local KFActor_DoshPile DoshPile;
+
+    DoshVaultStacks.Length = 0;
+    foreach AllActors(Class'KFActor_DoshPile', DoshPile)
+    {
+        DoshVaultStacks.AddItem(DoshPile;
+        DoshPile.SetHidden(true);
+        DoshPile.SetValue(0);        
+    }    
+}
+
+function SortDoshPiles()
+{
+    DoshVaultStacks.Sort(CompareItemTags;
+}
+
+function int CompareItemTags(Actor Actor1, Actor Actor2)
+{
+    local string Tag1, Tag2;
+
+    Tag1 = string(Actor1.Tag);
+    Tag2 = string(Actor2.Tag);
+    if(Tag1 == Tag2)
+    {
+        return 0;
+    }
+    if(Len(Tag1) != Len(Tag2))
+    {
+        return ((Len(Tag1) > Len(Tag2)) ? -1 : 1);
+    }
+    return ((Tag1 > Tag2) ? -1 : 1);
+}
+
+function int GetTotalDoshTier(KFPlayerController KFPC)
+{
+    local int TierValue, NumPiles, I;
+
+    NumPiles = int(float(KFPC.GetTotalDoshCount()) / Class'KFActor_DoshPile'.default.DoshPileMax);
+    I = 0;
+    J0x58:
+
+    if(I < TierThreshold.Length)
+    {
+        if(NumPiles >= TierThreshold[I])
+        {
+            TierValue = I;
+        }
+        ++ I;
+        goto J0x58;
+    }
+    SetKismetDoshTier(TierValue);
+    return TierValue;
+}
+
+function SetKismetDoshTier(int TierValue)
+{
+    local array<SequenceObject> ActivationEvents;
+    local KFSeqEvent_DoshVault ActivationEvent;
+    local int I;
+
+    WorldInfo.GetGameSequence().FindSeqObjectsByClass(Class'KFSeqEvent_DoshVault', true, ActivationEvents);
+    I = 0;
+    J0x53:
+
+    if(I < ActivationEvents.Length)
+    {
+        ActivationEvent = KFSeqEvent_DoshVault(ActivationEvents[I]);
+        if(ActivationEvent != none)
+        {
+            ActivationEvent.SetDoshTier(TierValue + 1);
+        }
+        ++ I;
+        goto J0x53;
+    }
+}
+
+function SpawnDoshPilesForAmount(int LastSeenDoshAmount)
+{
+    local int NumPiles, DoshAccountedFor, I, UpdateID;
+    local KFActor_DoshPile DoshPile;
+
+    NumPiles = int(float(LastSeenDoshAmount) / Class'KFActor_DoshPile'.default.DoshPileMax);
+    FrontPilesActive = (NumPiles % FrontPilesInWorld) + 1;
+    DoshAccountedFor = LastSeenDoshAmount;
+    I = 0;
+    J0x76:
+
+    if(I < DoshVaultStacks.Length)
+    {
+        if(I < FrontPilesInWorld)
+        {
+            DoshVaultStacks[I].SetHidden(false);            
+        }
+        else
+        {
+            DoshVaultStacks[I].SetHidden(true);
+        }
+        DoshVaultStacks[I].SetValue(0);
+        ++ I;
+        goto J0x76;
+    }
+    UpdateID = FrontPilesInWorld;
+    J0x14B:
+
+    if((float(DoshAccountedFor) >= (float(FrontPilesActive) * Class'KFActor_DoshPile'.default.DoshPileMax)) && DoshAccountedFor > 0)
+    {
+        DoshPile = DoshVaultStacks[UpdateID];
+        DoshPile.SetHidden(false);
+        DoshPile.SetValue(FMin(float(DoshAccountedFor), Class'KFActor_DoshPile'.default.DoshPileMax) / Class'KFActor_DoshPile'.default.DoshPileMax);
+        DoshAccountedFor -= int(Class'KFActor_DoshPile'.default.DoshPileMax);
+        DoshAccountedFor = int(FMax(float(DoshAccountedFor), 0));
+        ++ UpdateID;
+        goto J0x14B;
+    }
+    UpdateID = 1;
+    J0x2A0:
+
+    if(DoshAccountedFor > 0)
+    {
+        if(float(DoshAccountedFor) >= Class'KFActor_DoshPile'.default.DoshPileMax)
+        {
+            DoshPile = DoshVaultStacks[UpdateID];            
+        }
+        else
+        {
+            DoshPile = DoshVaultStacks[0];
+        }
+        DoshPile.SetValue(FMin(float(DoshAccountedFor), Class'KFActor_DoshPile'.default.DoshPileMax) / Class'KFActor_DoshPile'.default.DoshPileMax);
+        DoshAccountedFor -= int(Class'KFActor_DoshPile'.default.DoshPileMax);
+        DoshAccountedFor = int(FMax(float(DoshAccountedFor), 0));
+        ++ UpdateID;
+        goto J0x2A0;
+    }
+}
+
+function ActivateLights(int CurrentPileCount)
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < TierThreshold.Length)
+    {
+        if(CurrentPileCount > TierThreshold[I])
+        {
+            ActiveLightActorsForTier(I);            
+        }
+        else
+        {
+            goto J0x6C;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    J0x6C:
+
+}
+
+exec function ActiveLightActorsForTier(int LightTier, optional bool bActive)
+{
+    local Light LightActor;
+    local MaterialInstanceActor LightMIC;
+    local StaticMeshActor LightCone;
+    local MaterialInstanceConstant MICInst;
+
+    bActive = true;
+    foreach AllActors(Class'MaterialInstanceActor', LightMIC)
+    {
+        if(string(LightMIC.Tag) == (LightMICTagName $ string(LightTier)))
+        {
+            MICInst = new (self) Class'MaterialInstanceConstant';
+            MICInst.SetParent(LightMIC.MatInst);
+            MICInst.SetVectorParameterValue('Emissive_Color', ((bActive) ? WhiteColor : OffColor));
+            LightMIC.MatInst = MICInst;
+        }        
+    }    
+    foreach AllActors(Class'Light', LightActor)
+    {
+        if(string(LightActor.Tag) == (LightBulbTagName $ string(LightTier)))
+        {
+            LightActor.LightComponent.SetEnabled(bActive);
+        }        
+    }    
+    foreach AllActors(Class'StaticMeshActor', LightCone)
+    {
+        if(string(LightCone.Tag) == (LightConeTagName $ string(LightTier)))
+        {
+            LightCone.SetHidden(!bActive);
+        }        
+    }    
+}
+
+function UpdateDoshPiles(int NewDoshAmount)
+{
+    local int UpdateID, Idx, I, ValueMultiple;
+
+    if(!bInitPiles)
+    {
+        InitVault();
+    }
+    if(LastUpdateDoshAmount == NewDoshAmount)
+    {
+        return;
+    }
+    if(NewDoshAmount <= 0)
+    {
+        return;
+    }
+    ValueMultiple = int(float(NewDoshAmount) / Class'KFActor_DoshPile'.default.DoshPileMax);
+    UpdateID = (ValueMultiple % FrontPilesInWorld) + 1;
+    if(((float(NewDoshAmount) % (Class'KFActor_DoshPile'.default.DoshPileMax * float(FrontPilesInWorld))) == float(0)) && LastUpdateDoshAmount != -1)
+    {
+        I = 0;
+        J0xFB:
+
+        if(I < FrontPilesInWorld)
+        {
+            DoshVaultStacks[I].SpawnCompleteParticleEffects(false);
+            ++ I;
+            goto J0xFB;
+        }
+        VaultCustomPawn.PlayEmoteAnimation();
+        SpawnDoshPilesForAmount(NewDoshAmount);        
+    }
+    else
+    {
+        if(((float(NewDoshAmount) % Class'KFActor_DoshPile'.default.DoshPileMax) == float(0)) && LastUpdateDoshAmount != -1)
+        {
+            if(UpdateID > 1)
+            {
+                DoshVaultStacks[0].SetValue(0);
+                DoshVaultStacks[0].SpawnCompleteParticleEffects(false);
+                DoshVaultStacks[UpdateID - 1].SpawnCompleteParticleEffects();
+                VaultCustomPawn.PlayEmoteAnimation();
+            }
+        }
+    }
+    Idx = 0;
+    J0x277:
+
+    if(Idx <= UpdateID)
+    {
+        if(Idx == UpdateID)
+        {
+            DoshVaultStacks[0].SetValue((float(NewDoshAmount) % Class'KFActor_DoshPile'.default.DoshPileMax) / Class'KFActor_DoshPile'.default.DoshPileMax);            
+        }
+        else
+        {
+            DoshVaultStacks[Idx].SetValue(1);
+        }
+        ++ Idx;
+        goto J0x277;
+    }
+    LastUpdateDoshAmount = NewDoshAmount;
 }
 
 event InitGame(string Options, out string ErrorMessage)
@@ -58,6 +389,7 @@ event InitGame(string Options, out string ErrorMessage)
     }
     LastSystemTimeMinutes = GetSystemTimeMinutes();
     BroadcastHandler = Spawn(BroadcastHandlerClass);
+    InitVault();
 }
 
 private final function int GetSystemTimeMinutes()
@@ -113,4 +445,22 @@ auto state PendingMatch
         bWaitingToStartMatch = true;
     }
     stop;    
+}
+
+defaultproperties
+{
+    FrontPilesInWorld=10
+    TierThreshold(0)=10
+    TierThreshold(1)=40
+    TierThreshold(2)=70
+    TierThreshold(3)=100
+    TierThreshold(4)=130
+    LightMICTagName="TieMIC_"
+    LightConeTagName="TierCone_"
+    LightBulbTagName="TierLight_"
+    CustomPawnSpawnPointTagName="KFCustomizationPoint_Vault"
+    LastUpdateDoshAmount=-1
+    WhiteColor=(R=1,G=1,B=1,A=1)
+    OffColor=(R=0,G=0,B=0,A=1)
+    SupportedEvents=/* Array type was not detected. */
 }

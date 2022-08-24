@@ -120,6 +120,7 @@ defaultproperties
 		CastShadows=False
 		CastStaticShadows=FALSE
 		CastDynamicShadows=False
+		bCastPerObjectShadows=false
 		bEnabled=TRUE
 		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
 		Translation=(Z=6)

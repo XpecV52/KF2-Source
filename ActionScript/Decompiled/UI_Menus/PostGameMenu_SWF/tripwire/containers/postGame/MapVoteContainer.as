@@ -114,6 +114,7 @@ package tripwire.containers.postGame
             this.mapVoteList.addEventListener(ListEvent.ITEM_PRESS,this.mapSelected,false,0,true);
             this.mapVoteList.addEventListener(ListEvent.ITEM_DOUBLE_CLICK,this.mapSelectedDoubleClick,false,0,true);
             this.mapVoteList.addEventListener(MouseEvent.MOUSE_OUT,this.mouseOffMapVote,false,0,true);
+            this.currentVotesList.addEventListener(ListEvent.ITEM_CLICK,this.onTopVoteClicked,false,0,true);
         }
         
         override protected function onOpened(param1:TweenEvent = null) : void
@@ -190,11 +191,17 @@ package tripwire.containers.postGame
             super.closeContainer();
             this.mapVoteList.removeEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver);
             this.mapVoteList.removeEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver);
+            this.currentVotesList.removeEventListener(ListEvent.ITEM_CLICK,this.onTopVoteClicked);
         }
         
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+        }
+        
+        public function onTopVoteClicked(param1:ListEvent) : void
+        {
+            ExternalInterface.call("Callback_TopMapClicked",param1.index);
         }
         
         public function setTabIndexOnElements() : *

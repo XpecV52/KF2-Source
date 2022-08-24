@@ -8,9 +8,15 @@
 class KFDT_Ballistic_SMG_Medic extends KFDT_Ballistic_Submachinegun
     abstract;
 
-static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
+static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Controller InstigatedBy)
 {
-    return Class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicToxic(InDamage, KFDT, InstigatedBy);
+    local class<KFDamageType> ToxicDT;
+
+    ToxicDT = Class'KFDT_Ballistic_Assault_Medic'.static.GetMedicToxicDmgType(DamageTaken, InstigatedBy);
+    if(ToxicDT != none)
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, ToxicDT);
+    }
 }
 
 defaultproperties

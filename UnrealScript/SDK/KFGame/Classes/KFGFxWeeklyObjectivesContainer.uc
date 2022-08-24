@@ -13,23 +13,27 @@ dependson(KFMission_LocalizedStrings);
 
 var bool bInitialDataPopulated;
 var bool bLastWeeklyComplete;
+var KFPlayerController KFPC;
 
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
     super.Initialize( NewParentMenu );
     
-    LocalizeMenu();
-    PopulateData();
+    KFPC = KFPlayerController(GetPC());
+    if(KFPC != none)
+    {
+    	LocalizeMenu();
+    	PopulateData();
+    }
 }
 
 function bool PopulateData()
 {
 	local GFxObject DataObject;
 	local KFWeeklyOutbreakInformation WeeklyInfo;
-	local KFPlayerController KFPC;
+	
 	local bool bWeeklyComplete;
 
-	KFPC = KFPlayerController(GetPC());
 	bWeeklyComplete = KFPC.IsWeeklyEventComplete();
 
 	if(bWeeklyComplete != bLastWeeklyComplete || !bInitialDataPopulated)
@@ -37,8 +41,15 @@ function bool PopulateData()
 		WeeklyInfo = class'KFMission_LocalizedStrings'.static.GetCurrentWeeklyOutbreakInfo();
 
 		DataObject = CreateObject("Object");
+		if(WeeklyInfo == none)
+		{
+			return false;
+		}
 		DataObject.SetString("label", WeeklyInfo.FriendlyName);
-		DataObject.SetString("description", WeeklyInfo.DescriptionStrings[0]@"\n"@WeeklyInfo.DescriptionStrings[1]);
+		if(WeeklyInfo != none && WeeklyInfo.ModifierDescriptions.length > 0)
+    	{
+			DataObject.SetString("description", WeeklyInfo.DescriptionStrings[0]@"\n"@WeeklyInfo.DescriptionStrings[1]);
+		}
 		DataObject.SetString("iconPath", "img://"$WeeklyInfo.IconPath);
 
 		DataObject.SetBool("complete", bWeeklyComplete);
@@ -72,7 +83,10 @@ function PopulateModifiers()
 	{
 		DataObject = CreateObject("Object");
 		DataObject.SetString("label", ""); //no lable at the moment
-		DataObject.SetString("description", WeeklyInfo.ModifierDescriptions[i]);
+		if(WeeklyInfo != none && WeeklyInfo.ModifierDescriptions.length > 0)
+    	{
+			DataObject.SetString("description", WeeklyInfo.ModifierDescriptions[i]);
+		}
 		//DataObject.SetString("iconPath", "img://"$WeeklyInfo.ModifierIconPaths[i]);
 
 		DataProvider.SetElementObject(i, DataObject); //add it to the array
@@ -104,6 +118,12 @@ function PopulateRewards()
 	}
 
 	SetObject("rewards", DataProvider); //pass to SWF
+	UpdateDoshVaultRewardValue();
+}
+
+function UpdateDoshVaultRewardValue()
+{
+	SetInt("vaultDoshReward", class'KFOnlineStatsWrite'.static.GetWeeklyEventReward());
 }
 
 function GFxObject CreateRewardItem(KFWeeklyOutbreakInformation WeeklyInfo,int ItemID)
@@ -121,7 +141,7 @@ function GFxObject CreateRewardItem(KFWeeklyOutbreakInformation WeeklyInfo,int I
 	}
 	
 	ItemIndex = OnlineSub.ItemPropertiesList.Find('Definition',ItemID);
-	;
+	
 	if( ItemIndex == INDEX_NONE ) 
 	{
 		`log("ItemID not found: " @ItemID);
@@ -151,7 +171,9 @@ function LocalizeMenu()
     TextObject.SetString("granted", 		class'KFMission_LocalizedStrings'.default.GrantedWeeklyString);  
     TextObject.SetString("weekly",			class'KFMission_LocalizedStrings'.default.WeeklyString);  
     TextObject.SetString("overview",		class'KFMission_LocalizedStrings'.default.WeeklyOverview);  
-    if(WeeklyInfo != none)
+    TextObject.SetString("vaultDosh",		class'KFMission_LocalizedStrings'.default.VaultDoshString);  
+
+    if(WeeklyInfo != none && WeeklyInfo.ModifierDescriptions.length > 0)
     {
     	TextObject.SetString("description",		WeeklyInfo.ModifierDescriptions[0]);  
     }

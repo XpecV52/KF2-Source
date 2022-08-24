@@ -294,24 +294,7 @@ function SummonChildren()
 
     MyKFGameInfo = KFGameInfo(WorldInfo.Game);
     MyKFGameInfo.GetAIDirector().bForceFrustration = true;
-    if(CurrentBattlePhase == 1)
-    {
-        MinionWave = SummonWaves[int(MyKFGameInfo.GameDifficulty)].PhaseOneWave;        
-    }
-    else
-    {
-        if(CurrentBattlePhase == 2)
-        {
-            MinionWave = SummonWaves[int(MyKFGameInfo.GameDifficulty)].PhaseTwoWave;            
-        }
-        else
-        {
-            if(CurrentBattlePhase == 3)
-            {
-                MinionWave = SummonWaves[int(MyKFGameInfo.GameDifficulty)].PhaseThreeWave;
-            }
-        }
-    }
+    MinionWave = GetWaveInfo(CurrentBattlePhase, int(MyKFGameInfo.GameDifficulty));
     if(MinionWave != none)
     {
         if(MyKFGameInfo.SpawnManager != none)
@@ -1735,6 +1718,7 @@ defaultproperties
         LightColor=(B=50,G=200,R=50,A=255)
         bEnabled=false
         CastShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
     object end
     // Reference: PointLightComponent'Default__KFPawn_ZedPatriarch.BoilLightComponent0'
@@ -1779,7 +1763,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_296' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_304' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1825,6 +1809,7 @@ Parameter name: index
     SummonWaves[3]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Three')
     NumMinionsToSpawn=(X=6,Y=10)
     CurrentBattlePhase=1
+    BossCaptionStrings=/* Array type was not detected. */
     bLargeZed=true
     bCanGrabAttack=true
     MonsterArchPath="ZED_ARCH.ZED_Patriarch_Archetype"
@@ -1857,9 +1842,6 @@ Parameter name: index
     // Reference: CameraShake'Default__KFPawn_ZedPatriarch.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
     OnDeathAchievementID=130
-    BossName="The Patriarch"
-    BossCaptionStrings=/* Array type was not detected. */
-    TheatricCameraSocketName=TheatricCameraRootSocket
     PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
     LocalizationKey=KFPawn_ZedPatriarch
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

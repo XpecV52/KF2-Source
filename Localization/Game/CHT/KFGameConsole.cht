@@ -17,6 +17,8 @@ KF-ZedLanding="正在進行：僵屍群登陸"
 KF-TheDescent="正在進行：地下鐵"
 KF-Nuked="正在進行：核電廠"
 KF-TragicKingdom="正在進行：悲慘王國"
+KF-Nightmare="正在進行：夢魘"
+
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -140,14 +142,17 @@ NoOnlinePlay="無法連線遊玩"
 TooYoung="你的 Sony Entertainment Network 賬戶連線功能由於家長控制設定，已被關閉。"
 PatchAvailable="有新的更新。你必須更新應用程式以使用線上的內容。"
 NotLoggedInOnlinePSN="你必須登入 PlayStation™Network 以使用連線功能。"
+LiveRequiredMessage="您必須登入Xbox Live並開啟個人檔案，並擁有Xbox Live正常運作的網路連線功能。"
 NetworkError="連線發生錯誤，請檢查你的網路連線。"
 ErrorNoPlayfabDescription="無法連線至遊戲主伺服器。請稍後再試。"
 ErrorTSSFailedDescription="無法連線至遊戲平衡伺服器。請確定你有連線至網際網路，然後再試一次。"
 NotSignedInTitle="未登入。"
+PlayOffline="您想要離線遊玩嗎？Xbox Live特別功能將無法使用，並且無法儲存遊戲資料。"
 
 [Notifications]
 ControllerDisconnectedTitle="已中斷連接控制器"
 ControllerDisconnectedPS4Message="已中斷連接無線控制器。請重新連接開啟遊戲的使用者的無線控制器。"
+ControllerDisconnectedXB1="Xbox One無線搖桿已經取消連線。請重新連線無線搖桿。"
 PlayGoBusyTitle="仍在安裝中"
 PlayGoBusyMessage="遊戲安裝完成前僅可使用部分內容。"
 UnableToJoinInviteTitle="無法加入"
@@ -160,11 +165,14 @@ CheckPlusTitle="正在檢查 PlayStation®Plus 狀態"
 CheckPlusMessage="正在檢查 PlayStation®Plus 狀態，請稍候。"
 ConnectionLostTitle="已失去連線"
 ConnectionLostMessage="已失去你的網路連線。你已經回到主頁。"
+ConnectionLostMessageLive="Xbox Live連線已經失效。你已經回到主要選單。"
 PSNSignoutMessage="你已經登出 PlayStation™Network。你已經回到主頁。"
 InviteMessage="來跟我一起獵殺 Zed 吧！"
 NotConnectedTitle="網路錯誤"
 NotConnectedMessage="未連線至網路。請檢查連線後再試。"
 NotConnectedForOnlinePlay="未連線至網路。檢查你的連線狀態，再嘗試使用連線功能"
+NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+MultiplayerNotAllowed_MessageLive="您必須登入Xbox Live並開啟多重玩家個人檔案才能遊玩。"
 MultiplayerNotAllowed_Title="無法開啟多重玩家"
 LoggedOutMessage="已經修改該個人檔案。已經回到標題畫面。"
 LoggedOutTitle="已登出"
@@ -174,6 +182,7 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="檢視玩家個人檔案"
+ViewProfileStringXB1="查看玩家卡片"
 
 [KFGFxObject_Menu]
 ResetDefaults="你確定要重設至預設值嗎？"
@@ -193,12 +202,15 @@ ControllerSound="控制器音效"
 MatchmakingRegionString="地區"
 LeaveMenuString="離開配對也會解散你的隊伍"
 
+[KFGFxMenu_Store]
+StoreStringXB1="XBOX商店"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="地區"
 MapPreference="偏好地圖"
 
 [KFGFxMenu_Exit]
+HeaderStringXB1="登出"
 LogoutKF2="回到標題畫面"
 
 [Misc]

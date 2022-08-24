@@ -34,10 +34,10 @@ defaultproperties
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Handling_DryFire'
-   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Handling_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_aa12.Play_WEP_SA_AA12_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_aa12.Play_WEP_SA_AA12_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_aa12.Play_WEP_SA_AA12_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_aa12.Play_WEP_SA_AA12_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_aa12.Play_WEP_SA_AA12_Handling_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_aa12.Play_WEP_SA_AA12_Handling_DryFire'
    PlayerViewOffset=(X=15.000000,Y=8.500000,Z=0.000000)
    AttachmentArchetype=KFWeaponAttachment'WEP_AA12_ARCH.Wep_AA12_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'

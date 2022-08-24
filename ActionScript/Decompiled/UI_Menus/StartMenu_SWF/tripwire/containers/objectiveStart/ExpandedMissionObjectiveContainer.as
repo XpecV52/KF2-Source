@@ -23,6 +23,8 @@ package tripwire.containers.objectiveStart
         
         public var dailyButton:TripTabButton;
         
+        public var dailyContainerMC:DailyMissionContainer;
+        
         public var specialEventContainerMC:SpecialEventMissionContainer;
         
         public var weeklyContainerMC:WeeklyMissionContainer;
@@ -31,11 +33,17 @@ package tripwire.containers.objectiveStart
         
         protected var bSeasonalActive:Boolean = true;
         
-        public const Weekly = 0;
+        protected var bWeeklyActive:Boolean = true;
         
-        public const SpecialEvent = 1;
+        public const Daily = 0;
         
-        public const Daily = 2;
+        public const Weekly = 1;
+        
+        public const SpecialEvent = 2;
+        
+        public const ButtonSlotWidth:Number = 640;
+        
+        public const ButtonSlotBuffer:Number = 64;
         
         protected var containerList:Vector.<TripContainer>;
         
@@ -52,12 +60,11 @@ package tripwire.containers.objectiveStart
             this.collapseButton.focusable = false;
             this.weeklyButton.focusable = false;
             this.specialEventButton.focusable = false;
-            this.dailyButton.visible = false;
-            this.containerList.push(this.weeklyContainerMC,this.specialEventContainerMC);
+            this.containerList.push(this.dailyContainerMC,this.weeklyContainerMC,this.specialEventContainerMC);
             this.specialEventButton.addEventListener(ButtonEvent.CLICK,this.onTabButtonClick,false,0,true);
             this.dailyButton.addEventListener(ButtonEvent.CLICK,this.onTabButtonClick,false,0,true);
             this.weeklyButton.addEventListener(ButtonEvent.CLICK,this.onTabButtonClick,false,0,true);
-            this.pageIndex = this.Weekly;
+            this.pageIndex = this.Daily;
         }
         
         public function set localizedText(param1:Object) : void
@@ -71,13 +78,36 @@ package tripwire.containers.objectiveStart
         {
             this.bSeasonalActive = param1;
             this.specialEventButton.visible = param1;
-            this.weeklyButton.x = !!param1 ? Number(60) : Number(222);
+            this.validateButtonSizes();
         }
         
         public function updateWeeklyEventActive(param1:Boolean) : void
         {
+            this.bWeeklyActive = param1;
             this.weeklyButton.visible = param1;
-            this.specialEventButton.x = !!param1 ? Number(60) : Number(222);
+            this.validateButtonSizes();
+        }
+        
+        protected function validateButtonSizes() : void
+        {
+            var _loc1_:int = 1;
+            this.dailyButton.visible = true;
+            this.weeklyButton.visible = this.bWeeklyActive;
+            this.specialEventButton.visible = this.bSeasonalActive;
+            if(this.bWeeklyActive)
+            {
+                _loc1_++;
+            }
+            if(this.bSeasonalActive)
+            {
+                _loc1_++;
+            }
+            this.dailyButton.x = this.ButtonSlotBuffer + this.ButtonSlotWidth / _loc1_ * this.Daily;
+            this.weeklyButton.x = this.ButtonSlotBuffer + this.ButtonSlotWidth / _loc1_ * this.Weekly;
+            this.specialEventButton.x = this.ButtonSlotBuffer + this.ButtonSlotWidth / _loc1_ * this.SpecialEvent;
+            this.dailyButton.width = this.ButtonSlotWidth / _loc1_;
+            this.weeklyButton.width = this.ButtonSlotWidth / _loc1_;
+            this.specialEventButton.width = this.ButtonSlotWidth / _loc1_;
         }
         
         public function onTabButtonClick(param1:ButtonEvent) : void
@@ -91,6 +121,7 @@ package tripwire.containers.objectiveStart
                     this.pageIndex = this.SpecialEvent;
                     break;
                 case this.dailyButton:
+                    this.pageIndex = this.Daily;
             }
         }
         
@@ -114,18 +145,23 @@ package tripwire.containers.objectiveStart
                     {
                         return param1;
                     }
-                    return this.Weekly;
+                    if(this.weeklyButton.visible)
+                    {
+                        return this.Weekly;
+                    }
                     break;
                 case this.Weekly:
                     if(this.weeklyButton.visible)
                     {
                         return param1;
                     }
-                    return this.SpecialEvent;
+                    if(this.bSeasonalActive)
+                    {
+                        return this.SpecialEvent;
+                    }
                     break;
-                default:
-                    return this.Weekly;
             }
+            return this.Daily;
         }
         
         public function get pageIndex() : int
@@ -139,15 +175,23 @@ package tripwire.containers.objectiveStart
             var _loc3_:TripContainer = null;
             switch(param1)
             {
+                case this.Daily:
+                    _loc2_ = this.dailyContainerMC;
+                    this.dailyButton.selected = true;
+                    this.weeklyButton.selected = false;
+                    this.specialEventButton.selected = false;
+                    break;
                 case this.Weekly:
                     _loc2_ = this.weeklyContainerMC;
                     this.weeklyButton.selected = true;
                     this.specialEventButton.selected = false;
+                    this.dailyButton.selected = false;
                     break;
                 case this.SpecialEvent:
                     _loc2_ = this.specialEventContainerMC;
                     this.specialEventButton.selected = true;
                     this.weeklyButton.selected = false;
+                    this.dailyButton.selected = false;
             }
             for each(_loc3_ in this.containerList)
             {

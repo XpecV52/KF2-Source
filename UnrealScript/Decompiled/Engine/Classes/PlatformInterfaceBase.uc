@@ -99,6 +99,18 @@ native static function AppNotificationsBase GetAppNotificationsInterface();
 // Export UPlatformInterfaceBase::execGetInAppMessageInterface(FFrame&, void* const)
 native static function InAppMessageBase GetInAppMessageInterface();
 
+// Export UPlatformInterfaceBase::execGetMixerIntegration(FFrame&, void* const)
+native static function MixerIntegration GetMixerIntegration();
+
+// Export UPlatformInterfaceBase::execGetLogitechIntegration(FFrame&, void* const)
+native static function LogitechLEDInterface GetLogitechIntegration();
+
+// Export UPlatformInterfaceBase::execGetAlienFXIntegration(FFrame&, void* const)
+native static function AlienFXLEDInterface GetAlienFXIntegration();
+
+// Export UPlatformInterfaceBase::execGetRazerIntegration(FFrame&, void* const)
+native static function RazerLEDInterface GetRazerIntegration();
+
 function AddDelegate(int DelegateType, delegate<PlatformInterfaceDelegate> InDelegate)
 {
     if(AllDelegates.Length < (DelegateType + 1))

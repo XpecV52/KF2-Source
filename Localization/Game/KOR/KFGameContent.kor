@@ -1,4 +1,4 @@
-//NOTES: 
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -379,6 +379,11 @@ ItemName="RPG-7"
 ItemCategory="폭발물"
 ItemDescription="•사격 모드 시 로켓 발사.\n•로켓이 충격을 받으면 폭발합니다.\n•발사 거리가 몇 미터에 불과하므로 본인의 얼굴을 날려버리지 않도록 주의하십시오.\n•후폭풍도 주의하세요!"
 
+[KFWeap_RocketLauncher_Seeker6]
+ItemName="시커 6"
+ItemCategory="폭탄"
+ItemDescription="•발사 모드는 유도 기능이 없는 로켓을 발사합니다.\n•Alt-발사로 조준하면 레이저 조준점을 작동하고 유도 로켓을 쓸 수 있습니다.\n•한 번에 여러 목표물을 추적하여 공격하는 다용도 고성능 폭탄 무기."
+
 [KFWeap_Pistol_Dual9mm]
 ItemName="듀얼 9mm 권총"
 ItemCategory="핸드건"
@@ -475,6 +480,10 @@ ItemName="크리스 SMG"
 ItemCategory="서브머신건"
 ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•컴팩트탄을 사방으로 뿌리는 최신 무기, 파괴의 소방 호스라고 할 수 있습니다."
 
+[KFWeap_Rifle_Hemogoblin]
+ItemName="Hemogoblin"
+ItemCategory="소총"
+ItemDescription="•발사 모드에서는 제드에게 상처를 입히며 느리고 약하게 만드는 블러드 보어를 발사합니다. \n•Alt-발사는 치료 다트를 발사하여 팀원을 치료합니다.\n• 무게를 줄이기에는 좋지 않습니다."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

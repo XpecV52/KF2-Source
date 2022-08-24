@@ -17,6 +17,7 @@ KF-ZedLanding="ZED-Landung wird gespielt"
 KF-TheDescent="Der Abstieg wird gespielt"
 KF-Nuked="Atomisiert wird gespielt"
 KF-TragicKingdom="Das Tragisches Königreich wird gesp."
+KF-Nightmare="Albtraum wird gespielt"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -140,14 +141,17 @@ NoOnlinePlay="Online spielen nicht möglich"
 TooYoung="Die Online-Dienste sind wegen deiner Kindersicherungseinstellungen für dein Sony Entertainment Network-Konto deaktiviert."
 PatchAvailable="Patch verfügbar. Du musst die Anwendung aktualisieren, um die Netzwerk-Funktionen verwenden zu können."
 NotLoggedInOnlinePSN="Du musst beim PlayStation™Network angemeldet sein, um die Online-Funktionen verwenden zu können."
+LiveRequiredMessage="Du musst mit einem für Xbox Live freigegebenen Profil angemeldet sein und über eine aktive Netzwerk-Verbindung verfügen, um auf Xbox Live zu spielen."
 NetworkError="Ein Netzwerk-Fehler ist aufgetreten, bitte überprüfe deine Netzwerk-Verbindung."
 ErrorNoPlayfabDescription="Es konnte keine Verbindung zu den Hauptservern des Spiels hergestellt werden. Bitte versuch es in einigen Minuten nochmal."
 ErrorTSSFailedDescription="Es konnte keine Verbindung zu den Balance-Servern des Spiels hergestellt werden. Bitte vergewissere dich, dass du mit dem Internet verbunden bist und versuch es nochmal."
 NotSignedInTitle="Nicht angemeldet."
+PlayOffline="Möchtest du offline spielen? Die Funktionen für Xbox Live sind dann nicht verfügbar und Daten werden nicht gespeichert."
 
 [Notifications]
 ControllerDisconnectedTitle="Controller getrennt"
 ControllerDisconnectedPS4Message="Die Verbindung zum Wireless-Controller wurde getrennt. Bitte verbinde den Wireless-Controller des Benutzers, der das Spiel gestartet hat."
+ControllerDisconnectedXB1="Die Verbindung zum Xbox One Wireless Controller wurde getrennt. Bitte schließe den Controller wieder an."
 PlayGoBusyTitle="Installation erfolgt"
 PlayGoBusyMessage="Nur begrenzte Inhalte und Funktionen sind verfügbar, solange die Installation des Spiels noch nicht abgeschlossen wurde."
 UnableToJoinInviteTitle="Beitritt nicht möglich"
@@ -160,11 +164,14 @@ CheckPlusTitle="PlayStation®Plus wird überprüft"
 CheckPlusMessage="Bitte warten, bis wir den PlayStation®Plus-Status überprüft haben."
 ConnectionLostTitle="Verbindung unterbrochen"
 ConnectionLostMessage="Deine Online-Verbindung wurde unterbrochen. Du bist zum Home-Menü zurückgekehrt."
+ConnectionLostMessageLive="Deine Verbindung zu Xbox Live wurde unterbrochen. Du bist zum Hauptmenü zurückgekehrt."
 PSNSignoutMessage="Du wurdest vom PlayStation™Network abgemeldet. Du bist zum Home-Menü zurückgekehrt."
 InviteMessage="Jage mit mir Zeds in die Luft!"
 NotConnectedTitle="Netzwerk-Fehler"
 NotConnectedMessage="Nicht mit dem Internet verbunden. Überprüfe deine Verbindung und versuch es nochmal."
 NotConnectedForOnlinePlay="Nicht mit dem Internet verbunden. Überprüfe deine Verbindung und versuch es nochmal, um Online-Funktionen verwenden zu können"
+NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+MultiplayerNotAllowed_MessageLive="Du musst mit einem für Xbox Live freigegebenen Profil mit Mehrspielerrechten angemeldet sein, um zu spielen."
 MultiplayerNotAllowed_Title="Mehrspieler nicht erlaubt"
 LoggedOutMessage="Das aktive Profil wurde geändert. Du bist zum Titelbildschirm zurückgekehrt."
 LoggedOutTitle="Abgemeldet"
@@ -174,6 +181,7 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Spieler-Profil ansehen"
+ViewProfileStringXB1="Spielerkarte ansehen"
 
 [KFGFxObject_Menu]
 ResetDefaults="Bist du sicher, dass du die Standardeinstellungen wiederherstellen möchtest?"
@@ -193,12 +201,15 @@ ControllerSound="Controller-Sound"
 MatchmakingRegionString="REGION"
 LeaveMenuString="Verlässt du die Spielsuche, verlässt du auch die Gruppe."
 
+[KFGFxMenu_Store]
+StoreStringXB1="XBOX STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGION"
 MapPreference="LIEBLINGSKARTE"
 
 [KFGFxMenu_Exit]
+HeaderStringXB1="ABMELDUNG"
 LogoutKF2="Zum Titelbildschirm"
 
 [Misc]

@@ -28,7 +28,7 @@ package tripwire.widgets
         
         public var initialZ:Number;
         
-        private const NUM_OPTIONS:int = 9;
+        private const NUM_OPTIONS:int = 10;
         
         private const BOUNDARY_BUFFER:Number = 32;
         
@@ -53,6 +53,8 @@ package tripwire.widgets
         public var Item7:VoiceCommsOptionRenderer;
         
         public var Item8:VoiceCommsOptionRenderer;
+        
+        public var Item9:VoiceCommsOptionRenderer;
         
         public var ItemBound0:MovieClip;
         

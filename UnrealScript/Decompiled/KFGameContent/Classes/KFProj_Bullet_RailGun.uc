@@ -10,7 +10,7 @@ class KFProj_Bullet_RailGun extends KFProj_Bullet
 
 defaultproperties
 {
-    ProjFlightTemplate=ParticleSystem'WEP_1P_L85A2_EMIT.FX_L85A2_Tracer_ZEDTime'
+    ProjFlightTemplate=ParticleSystem'wep_railgun_emit.FX_Railgun_Projectile_01'
     AmbientComponent=AkComponent'Default__KFProj_Bullet_RailGun.AmbientAkSoundComponent'
     Speed=30000
     MaxSpeed=30000

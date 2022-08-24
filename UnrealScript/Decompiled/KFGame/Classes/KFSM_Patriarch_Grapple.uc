@@ -28,6 +28,8 @@ var class<KFDamageType> TentacleDmgType;
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
+    local KFPawn_MonsterBoss BossPawn;
+
     super.SpecialMoveStarted(bForced, PrevMove);
     bAlignFollowerLookSameDirAsMe = default.bAlignFollowerLookSameDirAsMe;
     bAlignFollowerRotation = default.bAlignFollowerRotation;
@@ -40,16 +42,20 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     bAlignPawns = false;
     bTentacleCtrlStarted = false;
     bGrabMissed = false;
-    if(KFPOwner.Role == ROLE_Authority)
+    BossPawn = KFPawn_MonsterBoss(KFPOwner);
+    if(BossPawn != none)
     {
-        KFPawn_Monster(KFPOwner).SetCloaked(false);
-    }
-    KFPawn_Monster(KFPOwner).BumpFrequency = 0;
-    KFPawn_MonsterBoss(KFPOwner).PlayGrabDialog();
-    KFPOwner.SetTimer(TentacleStartTime, false, 'BeginTentacleControls', self);
-    if(Follower != none)
-    {
-        DetachDistance = (KFPOwner.CylinderComponent.CollisionRadius + Follower.CylinderComponent.CollisionRadius) + default.DetachDistance;
+        if(KFPOwner.Role == ROLE_Authority)
+        {
+            BossPawn.SetCloaked(false);
+        }
+        BossPawn.BumpFrequency = 0;
+        BossPawn.PlayGrabDialog();
+        BossPawn.SetTimer(TentacleStartTime, false, 'BeginTentacleControls', self);
+        if(Follower != none)
+        {
+            DetachDistance = (BossPawn.CylinderComponent.CollisionRadius + Follower.CylinderComponent.CollisionRadius) + default.DetachDistance;
+        }
     }
 }
 

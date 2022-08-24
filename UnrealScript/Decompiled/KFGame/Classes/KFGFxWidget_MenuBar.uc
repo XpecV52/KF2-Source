@@ -80,7 +80,7 @@ function UpdateMenu(byte CurrentMenuIndex)
 function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 {
     GfxButton.SetInt("index", ButtonIndex);
-    if(((ButtonIndex == 6) && Class'WorldInfo'.static.IsMenuLevel()) && Class'WorldInfo'.static.IsConsoleBuild(9))
+    if(((ButtonIndex == 7) && Class'WorldInfo'.static.IsMenuLevel()) && Class'WorldInfo'.static.IsConsoleBuild(9))
     {
         GfxButton.SetString("label", ConsoleLocalize("LogoutTitle"));        
     }
@@ -90,19 +90,25 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
     }
     switch(ButtonIndex)
     {
+        case 3:
+            GfxButton.SetBool("enabled", CanUseDoshVault());
+            return;
         case 2:
             bGearButtonEnabled = CanUseGearButton(Outer.GetPC(), Manager);
             GfxButton.SetBool("enabled", bGearButtonEnabled);
             return;
+        case 3:
+            GfxButton.SetBool("enabled", Class'WorldInfo'.static.IsMenuLevel());
+            break;
         case 0:
             GfxButton.SetString("label", GetHomeButtonName());
             GfxButton.SetBool("bPulsing", ShouldStartMenuPulse());
             break;
-        case 3:
+        case 4:
             GfxButton.SetBool("enabled", CanUseInventory());
             InventoryButton = GfxButton;
             return;
-        case 4:
+        case 5:
             if(Class'WorldInfo'.static.IsConsoleBuild(9))
             {
                 GfxButton.SetString("label", ConsoleLocalize("StoreStringXB1", "KFGFxMenu_Store"));
@@ -197,7 +203,7 @@ function string GetHomeButtonName()
 
     if((Manager != none) && Manager.StartMenu != none)
     {
-        if(Manager.CurrentMenuIndex == 15)
+        if(Manager.CurrentMenuIndex == 16)
         {
             LastHomeString = ServerBrowserString;
             return LastHomeString;
@@ -240,7 +246,7 @@ function bool ShouldStartMenuPulse()
 
 static function bool CanUseGearButton(PlayerController PC, KFGFxMoviePlayer_Manager GfxManager)
 {
-    if((!GfxManager.bAfterLobby || Class'WorldInfo'.static.IsMenuLevel()) || PC.IsSpectating() && !PC.PlayerReplicationInfo.bOnlySpectator)
+    if((!GfxManager.bAfterLobby && !PC.PlayerReplicationInfo.bOnlySpectator) || Class'WorldInfo'.static.IsMenuLevel())
     {
         return true;
     }
@@ -258,6 +264,11 @@ function bool CanUseInventory()
         return true;
     }
     return false;
+}
+
+function bool CanUseDoshVault()
+{
+    return Class'WorldInfo'.static.IsMenuLevel();
 }
 
 function bool CanUseStore()
@@ -278,10 +289,11 @@ defaultproperties
     MenuStrings(0)="HOME"
     MenuStrings(1)="PERKS"
     MenuStrings(2)="GEAR"
-    MenuStrings(3)="INVENTORY"
-    MenuStrings(4)="STORE"
-    MenuStrings(5)="OPTIONS"
-    MenuStrings(6)="EXIT"
+    MenuStrings(3)="VAULT"
+    MenuStrings(4)="INVENTORY"
+    MenuStrings(5)="STORE"
+    MenuStrings(6)="OPTIONS"
+    MenuStrings(7)="EXIT"
     ExitString="EXIT"
     CancelString="CANCEL"
     ServerBrowserString="SERVER BROWSER"

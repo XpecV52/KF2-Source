@@ -34,7 +34,8 @@ defaultproperties
 		HeadHealthMod=0.750000,
 		SprintChance=1.000000,
 		DamagedSprintChance=1.000000,
-		SoloDamageMod=0.6500000,
+		DamageMod=0.4,  //1
+		SoloDamageMod=0.4, //0.65
 		BlockSettings={(Chance=0.2, Duration=1.0, MaxBlocks=4, Cooldown=1.0, DamagedHealthPctToTrigger=0.01,
 							MeleeDamageModifier=0.8, DamageModifier=0.8, AfflictionModifier=0.2, SoloChanceMultiplier=0.2)},
 		RallySettings={(bCanRally=false)}

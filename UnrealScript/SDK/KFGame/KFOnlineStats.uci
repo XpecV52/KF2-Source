@@ -57,6 +57,15 @@ const STATID_FleshpoundKills	 =			203;
 /** Events */
 const STATID_SpecialEventProgress =     300;
 const STATID_WeeklyEventProgress =      301;
+const STATID_DailyEventInfo =           302;
+const STATID_DailyEventIDs =            303;
+const STATID_DailyEventStats1 =         304;
+const STATID_DailyEventStats2 =         305;
+
+/** Dosh Vault */
+const STATID_DoshVaultTotal =           400;
+const STATID_LastViewedDoshVaultTotal = 401;
+const STATID_DoshVaultProgress =		402;
 
 /** Achievement Progress */
 const STATID_AchievementPlaceholder	 =	500;
@@ -116,5 +125,6 @@ const STATID_ACHIEVE_HostileGroundsCollectibles		= 4032;
 const STATID_ACHIEVE_ZedLandingCollectibles			= 4035;
 const STATID_ACHIEVE_DescentCollectibles			= 4036;
 const STATID_ACHIEVE_NukedCollectibles				= 4037;
-const STATID_ACHIEVE_TragicKingdomCollectibles      = 4038;
+const STATID_ACHIEVE_TragicKingdomCollectibles		= 4038;
+const STATID_ACHIEVE_NightmareCollectibles			= 4039;
 /** `endif */

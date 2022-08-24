@@ -496,6 +496,8 @@ class KFPawnVoiceGroupEventData extends Object;
 
 
 
+
+
 #linenumber 13
 
 enum ECooldownCategory

@@ -8,7 +8,8 @@
 //  - Zane Gholson 3/28/2017
 //=============================================================================
 
-class KFGFxCollapsedObjectivesContainer extends KFGFxObject_Container;
+class KFGFxCollapsedObjectivesContainer extends KFGFxObject_Container
+dependson (KFOnlineStatsWrite);
 
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
@@ -28,6 +29,24 @@ function PopulateData()
 	DataProvider = CreateArray();
 	ItemIndex = 0;
 
+	if(DataProvider == none)
+	{
+		return;
+	}
+	//DAILY ITEMS
+	for (i = 0; i < 3; i++)
+	{
+		DataObject = CreateObject("Object");
+		if(DataObject != none)
+		{
+			class'KFGFxDailyObjectivesContainer'.static.MakeDailyDataObject(KFPC.GetDailyObjective(i), i, KFPC, DataObject);
+			DataProvider.SetElementObject(ItemIndex, DataObject);
+		}
+		
+		ItemIndex++;
+	}
+	//end DAILY
+	
 	//get weekly
 	if( KFPC.isA('KFPlayerController_WeeklySurvival') ||  class'WorldInfo'.static.IsMenuLevel())
 	{
@@ -70,8 +89,15 @@ function GFxObject GetWeeklyDataObject()
 	WeeklyInfo = class'KFMission_LocalizedStrings'.static.GetCurrentWeeklyOutbreakInfo();
 
 	DataObject = CreateObject("Object");
+	if(WeeklyInfo == none)
+	{
+		return DataObject;
+	}
 	DataObject.SetString("label", WeeklyInfo.FriendlyName);
-	DataObject.SetString("description", WeeklyInfo.DescriptionStrings[0]@"\n"@WeeklyInfo.DescriptionStrings[1]);
+	if(WeeklyInfo.DescriptionStrings.length > 0)
+	{
+		DataObject.SetString("description", WeeklyInfo.DescriptionStrings[0]@"\n"@WeeklyInfo.DescriptionStrings[1]);
+	}
 	DataObject.SetString("iconPath", "img://"$WeeklyInfo.IconPath);
 
 	DataObject.SetBool("complete", KFPC.IsWeeklyEventComplete());

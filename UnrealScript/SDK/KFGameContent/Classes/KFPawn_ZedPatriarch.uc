@@ -435,19 +435,7 @@ function SummonChildren()
     MyKFGameInfo.GetAIDirector().bForceFrustration = true;
 
     // Select the correct batch of zeds to spawn during this battle phase
-    if( CurrentBattlePhase == 1 )
-    {
-        MinionWave = SummonWaves[MyKFGameInfo.GameDifficulty].PhaseOneWave;
-    }
-    else if( CurrentBattlePhase == 2 )
-    {
-        MinionWave = SummonWaves[MyKFGameInfo.GameDifficulty].PhaseTwoWave;
-    }
-    else if( CurrentBattlePhase == 3 )
-    {
-        MinionWave = SummonWaves[MyKFGameInfo.GameDifficulty].PhaseThreeWave;
-    }
-
+    MinionWave = GetWaveInfo(CurrentBattlePhase, MyKFGameInfo.GameDifficulty);
     if( MinionWave != none )
     {
 		if( MyKFGameInfo.SpawnManager != none )
@@ -1996,13 +1984,12 @@ defaultproperties
         Radius=190.f
         LightColor=(R=50,G=200,B=50,A=255)
         CastShadows=false
+		bCastPerObjectShadows=false
         bEnabled=false
         LightingChannels=(Indoor=true,Outdoor=true,bInitialized=true)
     End Object
     BoilLightComponent=BoilLightComponent0
     BoilLightSocketName=BoilLightSocket
-
-    TheatricCameraSocketName=TheatricCameraRootSocket
 
     Begin Object Name=KFPawnSkeletalMeshComponent
 		// Enabling kinematic for physics interaction while alive.  (see also MinDistFactorForKinematicUpdate)
@@ -2129,7 +2116,7 @@ defaultproperties
     IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                      Cooldown=10.0, Duration=2.2)
     IncapSettings(AF_Freeze)=   (Vulnerability=(0.5),                       Cooldown=10.0, Duration=1.0)
     IncapSettings(AF_Snare)=    (Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0),   Cooldown=10.5, Duration=3.0)
-    IncapSettings(AF_Bleed)=    (Vulnerability=(0.08))
+    IncapSettings(AF_Bleed)=    (Vulnerability=(0.15),                      Cooldown=10.0)
 
 	Begin Object Class=Name=Afflictions_0
 		FireFullyCharredDuration=50.f

@@ -125,9 +125,9 @@ reliable client simulated function ClientRefusedTeamSwitch()
         }
         else
         {
-            if(KFPC.MyGFxHUD != none)
+            if(KFPC.myGfxHUD != none)
             {
-                KFPC.MyGFxHUD.ShowNonCriticalMessage(Class'KFCommon_LocalizedStrings'.default.NoSwitchReasonString);
+                KFPC.myGfxHUD.ShowNonCriticalMessage(Class'KFCommon_LocalizedStrings'.default.NoSwitchReasonString);
             }
         }
     }
@@ -136,19 +136,19 @@ reliable client simulated function ClientRefusedTeamSwitch()
 reliable client simulated function ClientRecieveNewTeam()
 {
     local KFGameReplicationInfo KFGRI;
-    local KFGFxHudWrapper MyGFxHUD;
+    local KFGFxHudWrapper myGfxHUD;
     local KFPlayerController KFPC;
 
     KFPC = KFPlayerController(Owner);
     if((KFPC != none) && KFPC.IsLocalController())
     {
-        MyGFxHUD = KFGFxHudWrapper(KFPC.myHUD);
-        if(MyGFxHUD != none)
+        myGfxHUD = KFGFxHudWrapper(KFPC.myHUD);
+        if(myGfxHUD != none)
         {
             KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
             if(KFGRI.bMatchHasBegun && KFPC.PlayerReplicationInfo.bReadyToPlay)
             {
-                MyGFxHUD.CreateHUDMovie(true);
+                myGfxHUD.CreateHUDMovie(true);
             }
         }
         KFPC.ClientRecieveNewTeam();

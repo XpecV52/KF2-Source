@@ -422,6 +422,7 @@ var repnotify Vector ReplicatedFloor;
 var float TeammateCollisionRadiusPercent;
 var protected float ZedTimeSpeedScale;
 var float AfflictionSpeedModifier;
+var float AttackSpeedModifier;
 var int NumJumpsAllowed;
 var int NumJumpsRemaining;
 /** Base crouched eye height from bottom of the collision cylinder. */
@@ -506,13 +507,14 @@ var Texture2D DebugRadarTexture;
 replication
 {
      if(bNetDirty)
-        AmbientSound, InjuredHitZones, 
-        IntendedBodyScale, IntendedHeadScale, 
-        KnockdownImpulse, RepFireBurnedAmount, 
-        ReplicatedSpecialMove, WeaponAttachmentTemplate, 
-        bEmpDisrupted, bEmpPanicked, 
-        bFirePanicked, bIsSprinting, 
-        bMovesFastInZedTime, bUnaffectedByZedTime;
+        AmbientSound, AttackSpeedModifier, 
+        InjuredHitZones, IntendedBodyScale, 
+        IntendedHeadScale, KnockdownImpulse, 
+        RepFireBurnedAmount, ReplicatedSpecialMove, 
+        WeaponAttachmentTemplate, bEmpDisrupted, 
+        bEmpPanicked, bFirePanicked, 
+        bIsSprinting, bMovesFastInZedTime, 
+        bUnaffectedByZedTime;
 
      if(bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout)
         HitFxAddedHitCount, HitFxAddedRelativeLocs, 
@@ -1073,6 +1075,11 @@ function UpdateGroundSpeed();
 function SetAfflictionSpeedModifier()
 {
     AfflictionSpeedModifier = AfflictionHandler.GetAfflictionSpeedModifier();
+}
+
+function SetAttackSpeedModifier()
+{
+    AttackSpeedModifier = AfflictionHandler.GetAfflictionAttackSpeedModifier();
 }
 
 simulated function ToggleEquipment();
@@ -1770,6 +1777,10 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     bAllowHeadshot = CanCountHeadshots();
     OldHealth = Health;
     super(Pawn).TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
+    if(AfflictionHandler != none)
+    {
+        AfflictionHandler.NotifyTakeHit(InstigatedBy, Normal(Momentum), HitFxInfo.DamageType, DamageCauser);
+    }
     actualDamage = OldHealth - Health;
     if(actualDamage > 0)
     {
@@ -1778,9 +1789,9 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     if((Health < OldHealth) && DamageCauser != none)
     {
         KFDT = class<KFDamageType>(DamageType);
-        if((KFDT != none) && KFDT.static.CanApplyDamageOverTime(Damage, KFDT, InstigatedBy))
+        if(KFDT != none)
         {
-            ApplyDamageOverTime(Damage, InstigatedBy, KFDT);
+            KFDT.static.ApplySecondaryDamage(self, Damage, InstigatedBy);
         }
     }
     if(((bAllowHeadshot && HitFxInfo.HitBoneIndex == 0) && OldHealth > 0) && WorldInfo.Game != none)
@@ -2413,10 +2424,6 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
             TakeHitZoneDamage(Damage, HitFxInfo.DamageType, HitZoneIdx, vect(0, 0, 0));
         }
     }
-    if(AfflictionHandler != none)
-    {
-        AfflictionHandler.NotifyTakeHit(InstigatedBy, Normal(Momentum), HitFxInfo.DamageType);
-    }
     bNeedsProcessHitFx = true;
     LastPainTime = WorldInfo.TimeSeconds;
     if(KFDT != none)
@@ -2464,14 +2471,17 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
     local class<KFDamageType> KFDmgType;
     local name HitZoneName;
 
+    KFDmgType = class<KFDamageType>(DamageType);
+    HitZoneName = HitZones[HitZoneIdx].ZoneName;
     if((!bPlayedDeath || WorldInfo.TimeSeconds == TimeOfDeath) && HitZoneIdx == 0)
     {
-        return true;
+        if(KFDmgType.static.CanDismemberHitZoneWhileAlive(HitZoneName))
+        {
+            return true;
+        }
     }
     if(bPlayedDeath)
     {
-        KFDmgType = class<KFDamageType>(DamageType);
-        HitZoneName = HitZones[HitZoneIdx].ZoneName;
         if((KFDmgType != none) && KFDmgType.static.CanDismemberHitZone(HitZoneName))
         {
             return true;
@@ -2738,7 +2748,7 @@ function ApplyDamageOverTime(int Damage, Controller InstigatedBy, class<KFDamage
     local int DoTIndex, NewDoTDamage, NewTotalDamage, RemainingTotalDamage;
     local float NewDoTDuration;
 
-    DoTIndex = DamageOverTimeArray.Find('DoT_Type', KFDT.default.DoT_Type;
+    DoTIndex = ((KFDT.default.bStackDoT) ? -1 : DamageOverTimeArray.Find('DoT_Type', KFDT.default.DoT_Type);
     NewDoTDamage = Round(float(Damage) * KFDT.default.DoT_DamageScale);
     NewDoTDuration = KFDT.default.DoT_Duration * (GetPerkDoTScaler(InstigatedBy, KFDT));
     if(DoTIndex < 0)
@@ -3306,9 +3316,9 @@ simulated event bool IsMovementDisabledDuringSpecialMove()
     return false;
 }
 
-function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling)
+function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling, optional bool bAllowSameTeamGrab)
 {
-    if((((Health <= 0) || (Physics == 2) && !bIgnoreFalling) || IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(29))
+    if((((Health <= 0) || (Physics == 2) && !bIgnoreFalling) || !bAllowSameTeamGrab && IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(29))
     {
         return false;
     }
@@ -3452,7 +3462,7 @@ native static function bool ShouldCorpseCollideWithDeadAfterSleep();
 // Export UKFPawn::execShouldCorpseCollideWithLivingAfterSleep(FFrame&, void* const)
 native static function bool ShouldCorpseCollideWithLivingAfterSleep();
 
-function string GetLocalizedName()
+static function string GetLocalizedName()
 {
     return "";
 }
@@ -3595,6 +3605,7 @@ defaultproperties
     TeammateCollisionRadiusPercent=0.8
     ZedTimeSpeedScale=1
     AfflictionSpeedModifier=1
+    AttackSpeedModifier=1
     NumJumpsAllowed=1
     BaseCrouchEyeHeight=48
     Bob=0.01

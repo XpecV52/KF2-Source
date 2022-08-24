@@ -320,7 +320,7 @@ simulated function AttachTo(KFPawn P)
 {
 	local byte WeaponAnimSetIdx;
 
-	if ( bWeapMeshIsPawnMesh )
+    if ( bWeapMeshIsPawnMesh )
 	{
 		WeapMesh = P.Mesh;
 	}
@@ -348,6 +348,12 @@ simulated function AttachTo(KFPawn P)
 
 	// update aim offset nodes with new profile for this weapon
 	P.SetAimOffsetNodesProfile(AimOffsetProfileName);
+
+    //Do a first chance weapon skin switch (EX: changed weapon w/o ID changing by throwing a dualie)
+    if (KFPawn_Human(P) != None && KFPawn_Human(P).WeaponSkinItemId > 0)
+    {
+        SetWeaponSkin(KFPawn_Human(P).WeaponSkinItemId);
+    }
 }
 
 /** Detach weapon from owner's skeletal mesh */

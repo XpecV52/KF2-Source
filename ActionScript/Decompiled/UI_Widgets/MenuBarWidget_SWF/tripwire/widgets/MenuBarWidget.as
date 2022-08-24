@@ -33,7 +33,7 @@ package tripwire.widgets
         
         private const EXIT_INDEX = 6;
         
-        private const MAX_INDEX = 7;
+        private const MAX_INDEX = 8;
         
         public function MenuBarWidget()
         {

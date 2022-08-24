@@ -32,11 +32,11 @@ defaultproperties
    bLoopingFireSnd(0)=True
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Fire_Loop_M',FirstPersonCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Fire_Loop_S')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Single_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Single_Fire_S')
-   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Fire_Loop_End_M',FirstPersonCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Fire_Loop_End_S')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Handling_DryFire'
-   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Handling_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_scar.Play_WEP_SA_SCAR_Fire_Loop_M',FirstPersonCue=AkEvent'ww_wep_sa_scar.Play_WEP_SA_SCAR_Fire_Loop_S')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_scar.Play_WEP_SA_SCAR_Single_Fire_M',FirstPersonCue=AkEvent'ww_wep_sa_scar.Play_WEP_SA_SCAR_Single_Fire_S')
+   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_scar.Play_WEP_SA_SCAR_Fire_Loop_End_M',FirstPersonCue=AkEvent'ww_wep_sa_scar.Play_WEP_SA_SCAR_Fire_Loop_End_S')
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_scar.Play_WEP_SA_SCAR_Handling_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_scar.Play_WEP_SA_SCAR_Handling_DryFire'
    PlayerViewOffset=(X=18.000000,Y=9.000000,Z=-3.500000)
    AttachmentArchetype=KFWeaponAttachment'WEP_SCAR_ARCH.Wep_SCAR_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'

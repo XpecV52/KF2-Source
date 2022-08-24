@@ -618,12 +618,12 @@ defaultproperties
     LockAim=0.995
     MaxScopeScreenDot=0.2
     LockTargetingSoundInterval=0.09
-    LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locked'
-    LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Lost'
-    LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locking'
+    LockAcquiredSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Locked'
+    LockLostSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Lost'
+    LockTargetingSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Locking'
     TargetLocationReplicationInterval=0.016
-    AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Loop'
-    AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Railgun.Stop_Railgun_Loop'
+    AmbientSoundPlayEvent=AkEvent'ww_wep_sa_railgun.Play_Railgun_Loop'
+    AmbientSoundStopEvent=AkEvent'ww_wep_sa_railgun.Stop_Railgun_Loop'
     AmbientSoundSocketName=AmbientSound
     begin object name=SceneCapture2DComponent0 class=TWSceneCapture2DDPGComponent
         FieldOfView=23

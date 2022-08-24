@@ -122,10 +122,10 @@ defaultproperties
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Dryfire'
-   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Dryfire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Dryfire'
+   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Dryfire'
    PlayerViewOffset=(X=10.000000,Y=8.000000,Z=-4.000000)
    AttachmentArchetype=KFWeaponAttachment'WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'

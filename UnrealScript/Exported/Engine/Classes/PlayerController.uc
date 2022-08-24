@@ -594,7 +594,7 @@ event CheckPrivileges()
 	local LocalPlayer LP;
 	local int PlayerIdx;
 	local EFeaturePrivilegeLevel HintPrivLevel;
-	
+
 	LP = LocalPlayer(Player);
 
     bPrivilegesInitialized = TRUE;
@@ -6844,6 +6844,16 @@ unreliable server function ServerCauseEvent(Name EventName)
 	local Sequence GameSeq;
 	local int Idx;
 	local bool bFoundEvt;
+
+//@TWI_BEGIN - Don't allow ce benchmark on shipping/final release builds
+
+	if (EventName == 'Benchmark')
+	{
+		return;
+	}
+
+//@TWI_END
+
 	// Get the gameplay sequence.
 	GameSeq = WorldInfo.GetGameSequence();
 	if ( (GameSeq != None) && (EventName != '') )
@@ -7727,7 +7737,7 @@ reliable server event ServerUnmutePlayer(UniqueNetId PlayerNetId, optional bool 
 	if(!bUnmuteOther)
 	{
 		// Add them to the packet filter list if not already on it
-		RemoveIndex = VoicePacketFilter.Find('Uid',PlayerNetId.Uid); 
+		RemoveIndex = VoicePacketFilter.Find('Uid',PlayerNetId.Uid);
 		if (RemoveIndex != INDEX_NONE)
 		{
 			VoicePacketFilter.Remove(RemoveIndex,1);

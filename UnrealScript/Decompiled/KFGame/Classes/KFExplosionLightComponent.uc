@@ -30,5 +30,6 @@ defaultproperties
     Brightness=8
     LightColor=(B=255,G=255,R=255,A=255)
     CastShadows=false
+    bCastPerObjectShadows=false
     LightingChannels=(Outdoor=true)
 }

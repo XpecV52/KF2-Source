@@ -124,6 +124,10 @@ function RefreshParty()
     local GFxObject DataProvider;
 
     DataProvider = Outer.CreateArray();
+    if(!Manager.bStatsInitialized)
+    {
+        return;
+    }
     super.RefreshParty();
     GetKFPRIArray(KFPRIArray);
     if(KFPRIArray.Length <= 0)
@@ -137,7 +141,7 @@ function RefreshParty()
     UpdateInLobby(KFPRIArray.Length > 1);
     OccupiedSlots = KFPRIArray.Length;
     SlotIndex = 0;
-    J0xC9:
+    J0xEF:
 
     if(SlotIndex < PlayerSlots)
     {
@@ -146,7 +150,7 @@ function RefreshParty()
             DataProvider.SetElementObject(SlotIndex, RefreshSlot(SlotIndex, KFPRIArray[SlotIndex]));
         }
         ++ SlotIndex;
-        goto J0xC9;
+        goto J0xEF;
     }
     SetBool("bInParty", bInLobby || Outer.GetPC().WorldInfo.NetMode != NM_Standalone);
     SetObject("squadInfo", DataProvider);
@@ -160,6 +164,7 @@ function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
     local bool bIsLeader, bIsMyPlayer;
     local PlayerController PC;
     local GFxObject PlayerInfoObject;
+    local string AvatarPath;
 
     PlayerInfoObject = Outer.CreateObject("Object");
     PC = Outer.GetPC();
@@ -195,11 +200,15 @@ function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
     PlayerInfoObject.SetString("playerName", PlayerName);
     if(Class'WorldInfo'.static.IsConsoleBuild(8))
     {
-        PlayerInfoObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));        
+        AvatarPath = KFPC.GetPS4Avatar(PlayerName);        
     }
     else
     {
-        PlayerInfoObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+        AvatarPath = KFPC.GetSteamAvatar(KFPRI.UniqueId);
+    }
+    if(AvatarPath != "")
+    {
+        PlayerInfoObject.SetString("profileImageSource", "img://" $ AvatarPath);
     }
     if(KFGRI != none)
     {

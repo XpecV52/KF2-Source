@@ -11,7 +11,10 @@
 
 class KFFlashlightAttachment extends Object
 	hidecategories(Object)
+	config(Game)
 	native(Effect);
+
+var config bool bSkipBestFlashlightCheck;
 
 /** Cached parent (attachment) mesh */
 var protected transient SkeletalMeshComponent OwnerMesh;
@@ -331,6 +334,12 @@ simulated function UpdateFlashlightFor(KFPawn_Human InPawn)
 	local PlayerController PC;
 	local KFPawn_Human P;
 
+	if ( bSkipBestFlashlightCheck )
+	{
+		InPawn.Flashlight.SetEnabled(InPawn.bFlashlightOn);
+		return;
+	}
+
 	if ( !InPawn.bFlashlightOn )
 	{
 		// If the active flashlight is being turned off, choose another
@@ -458,6 +467,7 @@ defaultproperties
 		CastShadows=FALSE
 		CastStaticShadows=FALSE
 		CastDynamicShadows=FALSE
+		bCastPerObjectShadows=false
 		ForceCastDynamicShadows=FALSE
 		Function=FlashLightFunction_0
 		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)

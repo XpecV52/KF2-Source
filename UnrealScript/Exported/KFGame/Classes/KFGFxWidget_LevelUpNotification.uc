@@ -29,6 +29,23 @@ function SetLocalizedText()
 }
 
 //Called from KFPlayerController::ClientFinishedSpecialEvent
+function FinishedDailyEvent(int EventIndex)
+{
+	local KFPlayerController MyKFPC;
+	local DailyEventInformation EventInfo;
+
+	MyKFPC = KFPlayerController(GetPC());
+
+	if(MyKFPC == none)
+	{
+		return;
+	}
+
+	EventInfo = MyKFPC.GetDailyObjective(EventIndex);
+	ShowAchievementNotification(ObjectiveCompleteString, class'KFGFxDailyObjectivesContainer'.static.FormTitleForObjective( EventInfo ), class'KFGFxDailyObjectivesContainer'.static.FormDescriptionForObjective( EventInfo ), class'KFGFxDailyObjectivesContainer'.static.GetIconForObjective( EventInfo ), true);
+}
+
+//Called from KFPlayerController::ClientFinishedSpecialEvent
 function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 {
 	local class<KFGFxSpecialeventObjectivesContainer> SpecialEventClass;
@@ -45,9 +62,9 @@ function ShowLevelUpNotification(Class<KFPerk> PerkClass, byte PerkLevel, bool b
 }
 
 
-function ShowObjectiveCompleteNotification(string ObjectiveName, string ObjectiveDescription, string ImagePath)
+function ShowObjectiveCompleteNotification(string ObjectiveName, string ObjectiveDescription, string ImagePath, optional bool bShowSecondary)
 {
-	ShowAchievementNotification(ObjectiveCompleteString, ObjectiveName, " ", ImagePath, true, INDEX_NONE);
+	ShowAchievementNotification(ObjectiveCompleteString, ObjectiveName, " ", ImagePath, bShowSecondary, INDEX_NONE);
 }
 
 function ShowAchievementNotification(string TitleString, string MainString, string SecondaryString, string ImagePath, bool bShowSecondary, optional int NumericValue = -1)

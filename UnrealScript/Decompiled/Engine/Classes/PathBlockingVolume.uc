@@ -34,6 +34,7 @@ defaultproperties
     Components(0)=BrushComponent0
     CollisionType=ECollisionType.COLLIDE_CustomDefault
     bWorldGeometry=true
+    BlockRigidBody=true
     bCollideActors=false
     bBlockActors=true
     begin object name=BrushComponent0 class=BrushComponent

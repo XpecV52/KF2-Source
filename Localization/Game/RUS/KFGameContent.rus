@@ -1,4 +1,4 @@
-//NOTES: 
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -379,6 +379,11 @@ ItemName="RPG-7"
 ItemCategory="Взрывчатка"
 ItemDescription="•В режиме огня стреляет ракетой.\n•Ракета взрывается при ударе.\n•Взрыватель активируется спустя некоторое время, чтобы избежать поражения стрелка.\n•Берегитесь реактивного «хвоста»!"
 
+[KFWeap_RocketLauncher_Seeker6]
+ItemName="Гранатомет SeekerSix"
+ItemCategory="Взрывчатка"
+ItemDescription="•В режиме огня стреляет неуправляемой ракетой.\n•В режиме альтернативного огня прицеливание включает лазерное целеуказание для ракеты.\n•Универсальное оружие с боеприпасами бризантного действия, способными наводиться на несколько целей сразу."
+
 [KFWeap_Pistol_Dual9mm]
 ItemName="Парные 9-мм пистолеты"
 ItemCategory="Ручной пистолет"
@@ -475,6 +480,10 @@ ItemName="ПП Kriss"
 ItemCategory="Пистолет-пулемет"
 ItemDescription="•Выбор автоматического и полуавтоматического режимов ведения огня.\n•Переключение режимов — по кнопке альтернативного огня.\nНовейший образец на рынке массового уничтожения противника."
 
+[KFWeap_Rifle_Hemogoblin]
+ItemName="Гемогоблин"
+ItemCategory="Винтовка"
+ItemDescription="•В режиме огня стреляет кровяными снарядами, которые ранят, замедляют и ослабляют мутантов. \n•Альтернативный огонь — медицинские дротики для лечения членов отряда.\n• Не самый лучший способ сбросить вес."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -4,8 +4,8 @@ Description="Jägerhorn 是来自瑞典的大块头，喜欢啤酒和泡吧，�
 BodyMesh0="飞车党时期"
 BodyMesh1="硬纸板骑士"
 BodyMesh2="霍因保安"
-BodyMesh3=""
 BodyMesh4="危险品"
+BodyMesh5="突击部队"
 HeadMesh0="胡子的力量！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -14,6 +14,7 @@ BodySkin1="霍因"
 BodySkin2="DJ 斯库利"
 BodySkin3="真正的反抗"
 BodySkin4="恶魔猎人"
+BodySkin5="拱形 Batcat"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="经典"
@@ -37,13 +38,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[CHR_Jagerhorn_Archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Jagerhorn_Archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -52,11 +46,19 @@ BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
 
+[CHR_Jagerhorn_Archetype.BodyMesh5]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="瑞典金发"
 HeadSkin1="黑唱片"
 HeadSkin2="血红"
 HeadSkin3="金属脸孔"
+HeadSkin4="大坏蛋瑞典人"
+HeadSkin5="眩晕"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="尖顶牛仔帽"
@@ -64,13 +66,6 @@ AttachmentSkin0="黑骑手"
 AttachmentSkin1="旧牛皮"
 AttachmentSkin2="从头再来"
 AttachmentSkin3="血红"
-
-[Cosmetic_Coleman_yuri_1_ARCH]
-Attachment="潜入者"
-AttachmentSkin0="红色"
-AttachmentSkin1="蓝色"
-AttachmentSkin2="绿色"
-AttachmentSkin3="宝贵的"
 
 [Cosmetic_RussianGasmask_Alberts_1_ARCH]
 Attachment="俄罗斯防毒面具"
@@ -145,8 +140,9 @@ Description="斯库利是他这一代人中最酷的荷兰地下 DJ，简而言�
 BodyMesh0="连帽衫"
 BodyMesh1="硬纸板骑士"
 BodyMesh2="霍因保安"
-BodyMesh3=""
+
 BodyMesh4="危险品"
+BodyMesh5="突击部队"
 HeadMesh0="斯库利面具"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -155,6 +151,7 @@ BodySkin1="超红"
 BodySkin2="GearXT 黄"
 BodySkin3="绿色灾难"
 BodySkin4="复古斯库利"
+BodySkin5="宝物金库"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -178,13 +175,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[chr_DJSkully_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_DJSkully_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -193,6 +183,12 @@ BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
 
+[CHR_DJSkully_Archetype.BodyMesh5]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="乌黑"
 HeadSkin1="超红"
@@ -200,6 +196,7 @@ HeadSkin2="GearXT 黄"
 HeadSkin3="绿色灾难"
 HeadSkin4="复古斯库利"
 HeadSkin5="无声尖叫斯库利"
+HeadSkin6="BatCat"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="斯库利电话"
@@ -227,8 +224,9 @@ BodyMesh0="暴乱装备"
 BodyMesh1="伦敦"
 BodyMesh2="硬纸板骑士"
 BodyMesh3="霍因保安"
-BodyMesh4=""
+
 BodyMesh5="危险品"
+BodyMesh6="突击部队"
 HeadMesh0="头发"
 
 [chr_briar_archetype.BodyMesh0]
@@ -266,13 +264,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[chr_briar_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_briar_archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -281,11 +272,18 @@ BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
 
+[chr_briar_archetype.BodyMesh6]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
 HeadSkin1="亮点"
 HeadSkin2="黑色"
 HeadSkin3="木偶"
+HeadSkin4="死亡之日"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="博士面具"
@@ -309,8 +307,9 @@ BodyMesh0="皮夹克"
 BodyMesh1="经典西装"
 BodyMesh2="硬纸板骑士"
 BodyMesh3="霍因保安"
-BodyMesh4=""
+
 BodyMesh5="危险品"
+BodyMesh6="突击部队"
 HeadMesh0="防毒面具"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -353,13 +352,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[CHR_MrFoster_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_MrFoster_archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -368,6 +360,12 @@ BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
 
+[CHR_MrFoster_archetype.BodyMesh6]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
+
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
 HeadSkin1="PCG 红"
@@ -375,6 +373,8 @@ HeadSkin2="我的助手斯库利"
 HeadSkin3="熔岩红"
 HeadSkin4="英式"
 HeadSkin5="红色危机"
+HeadSkin6="汉斯先生"
+HeadSkin7="财迷"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="斯库利电话"
@@ -427,6 +427,8 @@ AttachmentSkin2="黑色"
 AttachmentSkin3="黑白"
 AttachmentSkin4="赌场"
 AttachmentSkin5="材料"
+AttachmentSkin6="Magma"
+AttachmentSkin7="Dark Red Stripe"
 
 [Cosmetic_Ana_CyberneticGasmask_ARCH]
 Attachment="控制论防毒面具"
@@ -513,8 +515,9 @@ Description="多诺万是个高大强壮的人，无论遇到什么问题他都�
 BodyMesh0="RQ 连帽衫"
 BodyMesh1="硬纸板骑士"
 BodyMesh2="霍因保安"
-BodyMesh3=""
+
 BodyMesh4="危险品"
+BodyMesh5="突击部队"
 HeadMesh0="面部"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -522,6 +525,7 @@ BodySkin0="赛车绿"
 BodySkin1="乡村红"
 BodySkin2="冷灰"
 BodySkin3="苍白大地"
+BodySkin4="宝物金库"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -545,13 +549,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[CHR_Coleman_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Coleman_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -560,11 +557,18 @@ BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
 
+[CHR_Coleman_archetype.BodyMesh5]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="多诺万"
 HeadSkin1="梭织"
 HeadSkin2="眩光"
 HeadSkin3="露齿而笑"
+HeadSkin4="Rawr"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="拳击帽"
@@ -587,8 +591,9 @@ Description="艾伯特斯是英国和苏格兰混血儿，体格健壮，乐于�
 BodyMesh0="狗脖套"
 BodyMesh1="硬纸板骑士"
 BodyMesh2="霍因保安"
-BodyMesh3=""
+
 BodyMesh4="危险品"
+BodyMesh5="突击部队"
 HeadMesh0="头发"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -596,6 +601,7 @@ BodySkin0="基础黑"
 BodySkin1="宝石红"
 BodySkin2="锋利蓝"
 BodySkin3="热带白"
+BodySkin4="圣太阳宝物"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -619,13 +625,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[CHR_Alberts_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Alberts_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -634,12 +633,19 @@ BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
 
+[CHR_Alberts_archetype.BodyMesh5]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
+
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰色"
 HeadSkin1="棕色"
 HeadSkin2="黑色"
 HeadSkin3="白色"
 HeadSkin4="丑角"
+HeadSkin5="假想线"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="眼镜"
@@ -893,8 +899,8 @@ AttachmentSkin6="蓝老虎"
 
 [Cosmetic_Coleman_yuri_ARCH]
 Attachment="潜入者"
-AttachmentSkin0="红色"
-AttachmentSkin1="蓝色"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="红色"
 AttachmentSkin2="绿色"
 AttachmentSkin3="宝贵的"
 
@@ -1521,14 +1527,17 @@ Description="比尔-马斯特森的军队生涯充满波折。他的理想是在
 BodyMesh0="战斗服"
 BodyMesh1="硬纸板骑士"
 BodyMesh2="霍因保安"
-BodyMesh3=""
+
 BodyMesh4="危险品"
+BodyMesh5="突击部队"
 HeadMesh0="面部"
 
 [CHR_Masterson_archetype.HeadMesh0]
 HeadSkin0="干净"
 HeadSkin1="迷彩"
 HeadSkin2="小丑"
+HeadSkin3="吸血鬼"
+HeadSkin4="断头台"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="绿色"
@@ -1558,13 +1567,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[CHR_Masterson_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Masterson_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1573,6 +1575,12 @@ BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
 
+[CHR_Masterson_archetype.BodyMesh5]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
+
 [CHR_Tanaka_Archetype]
 CharacterName="田中勇人"
 Description="田中是一个矛盾的个体，因为他有着严重的自杀倾向。他在日本冲绳县出生，在美国军队中长大。和家人搬到日本大陆后，习惯美国文化的田中无法融入社会，于是参加了戏剧班。大学毕业后，他搬到了洛杉矶，在三流电影中演一些小角色，后来搬到欧洲尝试寻找更加“正式”的工作。他总是在法国匪徒电影中演坏人和流氓。现在，在灾难中，他似乎把实际和所扮演的角色搞混了。他觉得自己是在好莱坞电影中扮演一个有着武士道精神的黑帮、恶棍。"
@@ -1580,20 +1588,24 @@ BodyMesh0="冷酷死亡"
 BodyMesh1="摩托车"
 BodyMesh2="硬纸板骑士"
 BodyMesh3="霍因保安"
-BodyMesh4=""
+
 BodyMesh5="危险品"
+BodyMesh6="突击部队"
 HeadMesh0="头发"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
 HeadSkin0="黑色"
 HeadSkin1="金发"
 HeadSkin2="脸谱"
+HeadSkin3="巨人"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="和经典"
 BodySkin1="柿原先生"
 BodySkin2="黑色"
 BodySkin3="蓝龙"
+BodySkin4="复古金库"
+BodySkin5="锦鲤金库"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="红黑"
@@ -1626,13 +1638,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[CHR_Tanaka_Archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Tanaka_Archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1640,6 +1645,12 @@ BodySkin2="热浪"
 BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
+
+[CHR_Tanaka_Archetype.BodyMesh6]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="头盔"
@@ -1674,8 +1685,9 @@ Description="安娜喜欢到欧洲各国旅游，把被遗弃的地方拍成照�
 BodyMesh0="金属核"
 BodyMesh1="霍因保安"
 BodyMesh2="硬纸板骑士"
-BodyMesh3=""
+
 BodyMesh4="危险品"
+BodyMesh5="突击部队"
 HeadMesh0="莫霍克族"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -1684,6 +1696,8 @@ HeadSkin1="亮血"
 HeadSkin2="Bio Cola 绿"
 HeadSkin3="迷人蓝"
 HeadSkin4="死亡金属"
+HeadSkin5="斯坦夫人"
+HeadSkin6="花"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="死亡之雨"
@@ -1714,13 +1728,6 @@ BodySkin3="霍因仓库"
 BodySkin4="绊网"
 BodySkin5="ZedEx"
 
-[CHR_Ana_Archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Ana_Archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1728,6 +1735,12 @@ BodySkin2="热浪"
 BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
+
+[CHR_Ana_Archetype.BodyMesh5]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 眼镜"
@@ -1748,8 +1761,9 @@ BodyMesh0="暴乱装备"
 BodyMesh1="伦敦"
 BodyMesh2="硬纸板骑士"
 BodyMesh3="霍因保安"
-BodyMesh4=""
+
 BodyMesh5="危险品"
+BodyMesh6="突击部队"
 HeadMesh0="头发"
 
 [chr_mark_archetype.BodyMesh0]
@@ -1787,13 +1801,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[chr_mark_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_mark_archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1802,12 +1809,20 @@ BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
 
+[chr_mark_archetype.BodyMesh6]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="如假包换"
 HeadSkin1="血腥 5 点钟"
 HeadSkin2="漂亮的棕色，老爸？"
 HeadSkin3="瑞典金发"
 HeadSkin4="对我微笑"
+HeadSkin5="朱斯先生"
+HeadSkin6="竞技游戏"
 
 [chr_alan_archetype]
 CharacterName="经典马斯特森"
@@ -1815,8 +1830,9 @@ Description="没有人知道马斯特森是如何升到现在的职位，某些�
 BodyMesh0="暴乱装备"
 BodyMesh1="硬纸板骑士"
 BodyMesh2="霍因保安"
-BodyMesh3=""
+
 BodyMesh4="危险品"
+BodyMesh5="突击部队"
 HeadMesh0="面部"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -1847,13 +1863,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[CHR_alan_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_alan_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1862,12 +1871,20 @@ BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
 
+[CHR_alan_archetype.BodyMesh5]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="如假包换"
 HeadSkin1="姜！真的吗？"
 HeadSkin2="辛苦的一天，伙计？"
 HeadSkin3="来吧，伙计们！"
 HeadSkin4="高兴起来，伙伴！"
+HeadSkin5="你阵亡了，伙计！"
+HeadSkin6="数码"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQ 帽"
@@ -1882,13 +1899,15 @@ Description="斯特拉瑟 1939 年作为德国士兵第一次上战场入侵波�
 BodyMesh0="RO2：斯大林格勒的英雄"
 BodyMesh1="硬纸板骑士"
 BodyMesh2="霍因保安"
-BodyMesh3=""
+
 BodyMesh4="危险品"
+BodyMesh5="突击部队"
 HeadMesh0="头发"
 
 [CHR_strasser_archetype.BodyMesh0]
 BodySkin0="新手"
 BodySkin1="身经百战"
+BodySkin2="卡莫金库"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -1912,13 +1931,6 @@ BodySkin9="坚石"
 BodySkin10="赏金猎人"
 BodySkin11="宝贵"
 
-[CHR_strasser_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_strasser_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1927,10 +1939,17 @@ BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
 
+[CHR_strasser_archetype.BodyMesh5]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
+
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑钢"
 HeadSkin1="金钢"
 HeadSkin2="死亡先生"
+HeadSkin3="斯坦先生"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="德国钢盔"
@@ -1975,6 +1994,8 @@ HeadSkin1="自由！"
 HeadSkin2="战斗！"
 HeadSkin3="瓦尔哈拉殿堂！"
 HeadSkin4="噢，快乐的日子！"
+HeadSkin5="糟糕的一天！"
+HeadSkin6="结合"
 
 [Cosmetic_Chivalry_Knight_Helm02HP_ARCH]
 Attachment="骑马者头盔"
@@ -2080,8 +2101,9 @@ Description="瑞伊-希金斯是一名从澳大利亚来到欧洲的移民。她
 BodyMesh0="默认服装"
 BodyMesh1="霍因保安"
 BodyMesh2="硬纸板骑士"
-BodyMesh3
+
 BodyMesh4="危险品"
+BodyMesh5="突击部队"
 HeadMesh0="默认头部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2091,6 +2113,7 @@ BodySkin2="有魅力的"
 BodySkin3="自然之力"
 BodySkin4="红条纹"
 BodySkin5="水手"
+BodySkin6="骷髅金库"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="蓝色精英"
@@ -2114,13 +2137,6 @@ BodySkin3="霍因仓库"
 BodySkin4="绊网"
 BodySkin5="ZedEx"
 
-[chr_rockabilly_archetype.BodyMesh3]
-BodySkin0
-BodySkin1
-BodySkin2
-BodySkin3
-BodySkin4
-
 [chr_rockabilly_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -2128,6 +2144,12 @@ BodySkin2="热浪"
 BodySkin3="霍因"
 BodySkin4="布劳恩"
 BodySkin5="悲惨王国员工"
+
+[chr_rockabilly_archetype.BodyMesh5]
+BodySkin0 ="已用"
+BodySkin1 ="干净"
+BodySkin2 ="夜间"
+BodySkin3 ="重伤"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑色"
@@ -2137,6 +2159,7 @@ HeadSkin3="金色"
 HeadSkin4="水鸭色"
 HeadSkin5="粉红"
 HeadSkin6="死亡小姐"
+HeadSkin7="鹿"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="眼罩"
@@ -2575,6 +2598,66 @@ EmoteName="配对仪式+"
 [KickinIt_Deluxe]
 EmoteName="脚踢+"
 
+[TheCossack]
+EmoteName="哥萨克人"
+
+[TheCossack_Deluxe]
+EmoteName="哥萨克人+"
+
+[TheWave]
+EmoteName="波浪"
+
+[TheWave_Deluxe]
+EmoteName="波浪+"
+
+[Breakin]
+EmoteName="霹雳舞"
+
+[Breakin_Deluxe]
+EmoteName="霹雳舞+"
+
+[NoHands]
+EmoteName="不用手"
+
+[NoHands_Deluxe]
+EmoteName="不用手+"
+
+[HealClick]
+EmoteName="治愈点击"
+
+[HealClick_Deluxe]
+EmoteName="治愈点击+"
+
+[TheSprinkler]
+EmoteName="洒水车"
+
+[TheSprinkler_Deluxe]
+EmoteName="洒水车+"
+
+[Maniac]
+EmoteName="狂人"
+
+[Maniac_Deluxe]
+EmoteName="狂人+"
+
+[RunningMan]
+EmoteName="跑步者"
+
+[RunningMan_Deluxe]
+EmoteName="跑步者+"
+
+[TheRobot]
+EmoteName="机器人"
+
+[TheRobot_Deluxe]
+EmoteName="机器人+"
+
+[AirMetal]
+EmoteName="空军奖章"
+
+[AirMetal_Deluxe]
+EmoteName="空军奖章+"
+
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="消防员头盔"
 AttachmentSkin0="黑色"
@@ -2586,7 +2669,7 @@ AttachmentSkin5="黄色"
 AttachmentSkin6="宝贵"
 
 [Cosmetic_FirefighterHelmetDown_ARCH]
-Attachment="消防员头盔面具放下"
+Attachment="卸下消防员头盔"
 AttachmentSkin0="黑色"
 AttachmentSkin1="蓝色"
 AttachmentSkin2="橄榄色"
@@ -2596,7 +2679,7 @@ AttachmentSkin5="黄色"
 AttachmentSkin6="宝贵"
 
 [Cosmetic_FirefighterHelmetUp_ARCH]
-Attachment="消防员头盔面具收起"
+Attachment="戴上消防员头盔"
 AttachmentSkin0="黑色"
 AttachmentSkin1="蓝色"
 AttachmentSkin2="橄榄色"
@@ -2780,3 +2863,175 @@ AttachmentSkin1="宝贵"
 [Cosmetic_BoomHat_ARCH]
 Attachment="炸药爆炸"
 AttachmentSkin0="脑袋爆炸"
+
+[Cosmetic_BoomHat_ARCH]
+Attachment="炸药爆炸"
+AttachmentSkin0="脑袋爆炸"
+
+[Cosmetic_Bear_ARCH]
+Attachment="熊面具"
+AttachmentSkin0 ="棕熊"
+AttachmentSkin1 ="熊猫"
+AttachmentSkin2 ="宝物"
+
+[Cosmetic_Cat_ARCH]
+Attachment="猫面具"
+AttachmentSkin0 ="棕色"
+AttachmentSkin1 ="灰色"
+AttachmentSkin2 ="白色"
+AttachmentSkin3 ="宝物"
+
+[Cosmetic_Chicken_ARCH]
+Attachment="小鸡面具"
+AttachmentSkin0 ="白红"
+AttachmentSkin1 ="宝物"
+
+[Cosmetic_Cow_ARCH]
+Attachment="牛面具"
+AttachmentSkin0 ="白黑"
+AttachmentSkin1 ="宝物"
+
+[Cosmetic_Dog_ARCH]
+Attachment="狗面具"
+AttachmentSkin0 ="棕色狗"
+AttachmentSkin1 ="宝物"
+
+[Cosmetic_Fox_ARCH]
+Attachment="狐狸面具"
+AttachmentSkin0 ="棕色狐狸"
+AttachmentSkin1 ="宝物"
+
+[Cosmetic_Goat_ARCH]
+Attachment="山羊面具"
+AttachmentSkin0 ="彩色山羊"
+AttachmentSkin1 ="宝物"
+
+[Cosmetic_Horse_ARCH]
+Attachment="马面具"
+AttachmentSkin0 ="棕色马"
+AttachmentSkin1 ="宝物"
+
+[Cosmetic_Pig_ARCH]
+Attachment="猪头面具"
+AttachmentSkin0 ="粉色猪"
+AttachmentSkin1 ="宝物"
+
+[Cosmetic_Rabbit_ARCH]
+Attachment="兔子面具"
+AttachmentSkin0 ="棕色兔子"
+AttachmentSkin1 ="白色兔子"
+AttachmentSkin2 ="宝物"
+
+[Cosmetic_CommandoChickenHelmet_ARCH]
+Attachment="突击部队"
+AttachmentSkin0 ="已用"
+AttachmentSkin1 ="干净"
+AttachmentSkin2 ="夜间"
+AttachmentSkin3 ="重伤"
+
+[Cosmetic_bobBatcat_ARCH]
+Attachment="短发"
+AttachmentSkin0 ="黑色"
+AttachmentSkin1 ="绿色"
+AttachmentSkin2 ="紫色"
+AttachmentSkin3 ="水鸭色"
+AttachmentSkin4 ="宝物"
+
+[Cosmetic_crown_ARCH]
+Attachment="肩盖"
+AttachmentSkin0 ="宝物"
+AttachmentSkin1 ="银色"
+
+[Cosmetic_DGlasses_ARCH]
+Attachment="钱币镜"
+AttachmentSkin0 ="绿色"
+AttachmentSkin1 ="黑色"
+AttachmentSkin2 ="宝物"
+
+[Cosmetic_hansBackpack_ARCH]
+Attachment="汉斯背包"
+AttachmentSkin0 ="黑色"
+AttachmentSkin1 ="宝物"
+
+[Cosmetic_scrakeMask_ARCH]
+Attachment="刮痕丧尸面具"
+AttachmentSkin0 ="钢色"
+AttachmentSkin1 ="宝物"
+
+[Cosmetic_sharkHat_ARCH]
+Attachment="沙基"
+AttachmentSkin0 ="灰色"
+AttachmentSkin1 ="砂子"
+AttachmentSkin2 ="杀人鲸"
+AttachmentSkin3 ="血腥"
+AttachmentSkin4 ="宝物"
+
+[Cosmetic_VGlasses_ARCH]
+Attachment="金库镜"
+AttachmentSkin0 ="绿色"
+AttachmentSkin1 ="黑色"
+AttachmentSkin2 ="宝物"
+
+[Cosmetic_Halloween_Arrowed_ARCH]
+Attachment="佩戴箭"
+AttachmentSkin0 ="经典"
+
+[Cosmetic_Halloween_Axed_ARCH]
+Attachment="佩戴战斧"
+AttachmentSkin0 ="经典战斧"
+AttachmentSkin1 ="宝物战斧"
+
+[Cosmetic_Halloween_Bolts_ARCH]
+Attachment="螺栓"
+AttachmentSkin0 ="金属螺栓"
+
+[Cosmetic_Halloween_Halo_ARCH]
+Attachment="光环"
+AttachmentSkin0 ="圣天使"
+
+[Cosmetic_Halloween_Pumpkin_Classic_ARCH]
+Attachment="经典杰克南瓜灯"
+AttachmentSkin0 ="经典杰克南瓜灯"
+AttachmentSkin1 ="经典杰克南瓜灯宝物"
+
+[Cosmetic_Halloween_Pumpkin_Dosh_ARCH]
+Attachment="杰克南瓜灯钱币"
+AttachmentSkin0 ="钱币已满"
+AttachmentSkin1 ="杰克南瓜灯钱币宝物"
+
+[Cosmetic_Halloween_Pumpkin_Fang_ARCH]
+Attachment="杰克南瓜灯陷井"
+AttachmentSkin0 ="腐烂的杰克南瓜灯"
+
+[Cosmetic_Halloween_Pumpkin_Goofy_ARCH]
+Attachment="傻瓜杰克南瓜灯"
+AttachmentSkin0 ="傻瓜杰克南瓜灯"
+
+[Cosmetic_Halloween_Pumpkin_Happy_ARCH]
+Attachment="快乐杰克南瓜灯"
+AttachmentSkin0 ="快乐杰克南瓜灯"
+
+[Cosmetic_Halloween_Pumpkin_Sad_ARCH]
+Attachment="悲伤杰克南瓜灯"
+AttachmentSkin0 ="悲伤杰克南瓜灯"
+
+[Cosmetic_Halloween_Pumpkin_Scared_ARCH]
+Attachment="恐惧杰克南瓜灯"
+AttachmentSkin0 ="恐惧杰克南瓜灯"
+
+[Cosmetic_Halloween_Pumpkin_Scary_ARCH]
+Attachment="可怕杰克南瓜灯"
+AttachmentSkin0 ="可怕成熟杰克南瓜灯"
+AttachmentSkin1 ="可怕杰克南瓜灯宝物"
+
+[Cosmetic_Halloween_Pumpkin_Sneaky_ARCH]
+Attachment="卑鄙杰克南瓜灯"
+AttachmentSkin0 ="卑鄙杰克南瓜灯"
+
+[Cosmetic_Halloween_Pumpkin_Squeal_ARCH]
+Attachment="尖叫杰克南瓜灯"
+AttachmentSkin0 ="尖叫杰克南瓜灯"
+
+[Cosmetic_Halloween_Pumpkin_Winky_ARCH]
+Attachment="闪闪杰克南瓜灯"
+AttachmentSkin0 ="放射性杰克南瓜灯"

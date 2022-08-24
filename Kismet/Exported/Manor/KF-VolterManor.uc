@@ -1,7 +1,7 @@
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
-   ObjValue=KFSpawnVolume'KF-VolterManor.TheWorld:PersistentLevel.KFSpawnVolume_4'
+   ObjValue=KFSpawnVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawnVolume_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4816
    ObjPosY=-1288
    DrawWidth=32
@@ -11,9 +11,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
-   ObjValue=KFSpawnVolume'KF-VolterManor.TheWorld:PersistentLevel.KFSpawnVolume_35'
+   ObjValue=KFSpawnVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawnVolume_35'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4776
    ObjPosY=-1208
    DrawWidth=32
@@ -23,9 +23,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
-   ObjValue=KFSpawnVolume'KF-VolterManor.TheWorld:PersistentLevel.KFSpawnVolume_51'
+   ObjValue=KFSpawnVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawnVolume_51'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4696
    ObjPosY=-1288
    DrawWidth=32
@@ -39,7 +39,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_11
    SizeY=321
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4914
    ObjPosY=-1270
    ObjComment="Sub Basement Feeder Volumes"
@@ -50,9 +50,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_11
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
-   ObjValue=KFSpawnVolume'KF-VolterManor.TheWorld:PersistentLevel.KFSpawnVolume_37'
+   ObjValue=KFSpawnVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawnVolume_37'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4656
    ObjPosY=-1160
    DrawWidth=32
@@ -62,9 +62,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
-   ObjValue=KFSpawnVolume'KF-VolterManor.TheWorld:PersistentLevel.KFSpawnVolume_39'
+   ObjValue=KFSpawnVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawnVolume_39'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4544
    ObjPosY=-1224
    DrawWidth=32
@@ -74,9 +74,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
-   ObjValue=KFSpawnVolume'KF-VolterManor.TheWorld:PersistentLevel.KFSpawnVolume_38'
+   ObjValue=KFSpawnVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawnVolume_38'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4688
    ObjPosY=-1056
    DrawWidth=32
@@ -86,9 +86,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_15'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_15'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3944
    ObjPosY=-960
    ObjComment="Parent"
@@ -99,15 +99,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_1
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_12'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_12'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),DrawY=-1019,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),DrawY=-1019,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-998,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-977,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-4114,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4200
    ObjPosY=-1088
    ObjName="TriggerVolume_12 Touch"
@@ -123,11 +123,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
    InputLinks(1)=(DrawY=-1070,OverrideDelta=35)
    InputLinks(2)=(DrawY=-1049,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-1070,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=-3906,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=-3906,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3855,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3806,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3944
    ObjPosY=-1128
    DrawWidth=173
@@ -137,9 +137,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_17'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_17'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3976
    ObjPosY=-528
    ObjComment="Parent"
@@ -150,15 +150,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_3'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_3'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_22')),DrawY=-611,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_22')),DrawY=-611,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-590,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-569,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-4134,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4216
    ObjPosY=-680
    ObjName="TriggerVolume_3 Touch"
@@ -174,11 +174,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_22
    InputLinks(1)=(DrawY=-654,OverrideDelta=35)
    InputLinks(2)=(DrawY=-633,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-654,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6'),DrawX=-3946,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6'),DrawX=-3946,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3895,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3846,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3984
    ObjPosY=-712
    DrawWidth=173
@@ -188,15 +188,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_22
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_17'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_17'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=37,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=37,OverrideDelta=14)
    OutputLinks(1)=(DrawY=58,OverrideDelta=35)
    OutputLinks(2)=(DrawY=79,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-4098,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4184
    ObjPosY=-32
    ObjName="TriggerVolume_17 Touch"
@@ -208,9 +208,9 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_8'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3896
    ObjPosY=176
    ObjComment="Parent"
@@ -221,9 +221,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_6'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3808
    ObjPosY=200
    ObjComment="Child"
@@ -234,15 +234,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_4
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_4'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_4'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21')),DrawY=-307,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21')),DrawY=-307,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-286,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-265,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-4094,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4176
    ObjPosY=-376
    ObjName="TriggerVolume_4 Touch"
@@ -258,11 +258,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
    InputLinks(1)=(DrawY=58,OverrideDelta=35)
    InputLinks(2)=(DrawY=79,OverrideDelta=56)
    OutputLinks(0)=(DrawY=58,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=-3866,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=-3866,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3815,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3766,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3904
    DrawWidth=173
    DrawHeight=109
@@ -271,9 +271,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_22'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_22'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3984
    ObjPosY=680
    ObjComment="Parent"
@@ -284,9 +284,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_19'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_19'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4016
    ObjPosY=768
    ObjComment="Child"
@@ -297,9 +297,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_0'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3912
    ObjPosY=768
    ObjComment="Child"
@@ -310,9 +310,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_3'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3816
    ObjPosY=768
    ObjComment="Child"
@@ -323,15 +323,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_5
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_5'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_5'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=565,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=565,OverrideDelta=14)
    OutputLinks(1)=(DrawY=586,OverrideDelta=35)
    OutputLinks(2)=(DrawY=607,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-4198,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4280
    ObjPosY=496
    ObjName="TriggerVolume_5 Touch"
@@ -347,11 +347,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
    InputLinks(1)=(DrawY=578,OverrideDelta=35)
    InputLinks(2)=(DrawY=599,OverrideDelta=56)
    OutputLinks(0)=(DrawY=578,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),DrawX=-3962,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),DrawX=-3962,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3911,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3862,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4000
    ObjPosY=520
    DrawWidth=173
@@ -361,9 +361,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_23'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_23'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3920
    ObjPosY=1176
    ObjComment="Parent"
@@ -374,15 +374,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_6
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_6'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_6'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=1109,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=1109,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1130,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1151,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-4110,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4192
    ObjPosY=1040
    ObjName="TriggerVolume_6 Touch"
@@ -398,11 +398,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
    InputLinks(1)=(DrawY=1082,OverrideDelta=35)
    InputLinks(2)=(DrawY=1103,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1082,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21'),DrawX=-3882,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21'),DrawX=-3882,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3831,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3782,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3920
    ObjPosY=1024
    DrawWidth=173
@@ -412,9 +412,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_25'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_25'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3792
    ObjPosY=1704
    ObjComment="Parent"
@@ -425,15 +425,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_7'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_7'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),DrawY=1621,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),DrawY=1621,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1642,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1663,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-4038,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4120
    ObjPosY=1552
    ObjName="TriggerVolume_7 Touch"
@@ -449,11 +449,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
    InputLinks(1)=(DrawY=1586,OverrideDelta=35)
    InputLinks(2)=(DrawY=1607,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1586,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33'),DrawX=-3770,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33'),DrawX=-3770,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3719,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3670,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3808
    ObjPosY=1528
    DrawWidth=173
@@ -463,9 +463,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_26'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_26'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3784
    ObjPosY=1976
    ObjComment="Parent"
@@ -476,9 +476,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_11'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3816
    ObjPosY=2040
    ObjComment="Child"
@@ -489,9 +489,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_44'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_44'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3720
    ObjPosY=2040
    ObjComment="Child"
@@ -502,15 +502,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_8
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_8'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_8'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=1925,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=1925,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1946,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1967,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-3990,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4072
    ObjPosY=1856
    ObjName="TriggerVolume_8 Touch"
@@ -526,11 +526,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
    InputLinks(1)=(DrawY=1882,OverrideDelta=35)
    InputLinks(2)=(DrawY=1903,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1882,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35'),DrawX=-3794,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35'),DrawX=-3794,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3743,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3694,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3832
    ObjPosY=1824
    DrawWidth=173
@@ -540,9 +540,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_41'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_41'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3784
    ObjPosY=2352
    ObjComment="Parent"
@@ -553,9 +553,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_45'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_45'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3824
    ObjPosY=2424
    ObjComment="Child"
@@ -566,9 +566,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_13'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3720
    ObjPosY=2424
    ObjComment="Child"
@@ -579,15 +579,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_9
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_9'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_9'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),DrawY=2165,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),DrawY=2165,OverrideDelta=14)
    OutputLinks(1)=(DrawY=2186,OverrideDelta=35)
    OutputLinks(2)=(DrawY=2207,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-3974,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4056
    ObjPosY=2096
    ObjName="TriggerVolume_9 Touch"
@@ -603,11 +603,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
    InputLinks(1)=(DrawY=2242,OverrideDelta=35)
    InputLinks(2)=(DrawY=2263,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2242,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34'),DrawX=-3738,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34'),DrawX=-3738,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3687,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3638,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3776
    ObjPosY=2184
    DrawWidth=173
@@ -617,9 +617,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_49
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_5'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3568
    ObjPosY=3104
    ObjComment="Parent"
@@ -630,15 +630,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_49
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_11
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_11'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_11'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_15')),DrawY=3061,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_15')),DrawY=3061,OverrideDelta=14)
    OutputLinks(1)=(DrawY=3082,OverrideDelta=35)
    OutputLinks(2)=(DrawY=3103,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-3762,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3848
    ObjPosY=2992
    ObjName="TriggerVolume_11 Touch"
@@ -654,11 +654,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_15
    InputLinks(1)=(DrawY=3026,OverrideDelta=35)
    InputLinks(2)=(DrawY=3047,OverrideDelta=56)
    OutputLinks(0)=(DrawY=3026,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_49'),DrawX=-3546,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_49'),DrawX=-3546,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3495,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3446,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3584
    ObjPosY=2968
    DrawWidth=173
@@ -668,9 +668,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_15
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_38'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_38'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2512
    ObjPosY=-168
    ObjComment="Parent"
@@ -681,9 +681,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_21'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_21'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2384
    ObjPosY=-152
    ObjComment="Child"
@@ -694,15 +694,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_12
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_14'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_14'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16')),DrawY=-243,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16')),DrawY=-243,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-222,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-201,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-2842,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2928
    ObjPosY=-312
    ObjName="TriggerVolume_14 Touch"
@@ -718,11 +718,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
    InputLinks(1)=(DrawY=-294,OverrideDelta=35)
    InputLinks(2)=(DrawY=-273,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-294,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_55'),DrawX=-2482,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_55'),DrawX=-2482,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-2431,OverrideDelta=76)
    EventLinks(0)=(DrawX=-2382,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2520
    ObjPosY=-352
    DrawWidth=173
@@ -732,9 +732,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_24'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_24'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2616
    ObjPosY=152
    ObjComment="Parent"
@@ -745,9 +745,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_20'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_20'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2520
    ObjPosY=192
    ObjComment="Child"
@@ -758,15 +758,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_13
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_13'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_13'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_17')),DrawY=93,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_17')),DrawY=93,OverrideDelta=14)
    OutputLinks(1)=(DrawY=114,OverrideDelta=35)
    OutputLinks(2)=(DrawY=135,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-2818,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2904
    ObjPosY=24
    ObjName="TriggerVolume_13 Touch"
@@ -782,11 +782,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_17
    InputLinks(1)=(DrawY=66,OverrideDelta=35)
    InputLinks(2)=(DrawY=87,OverrideDelta=56)
    OutputLinks(0)=(DrawY=66,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_58'),DrawX=-2594,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_58'),DrawX=-2594,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-2543,OverrideDelta=76)
    EventLinks(0)=(DrawX=-2494,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2632
    ObjPosY=8
    DrawWidth=173
@@ -796,9 +796,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_17
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_4'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2888
    ObjPosY=776
    ObjComment="Parent"
@@ -809,9 +809,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_40'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_40'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2856
    ObjPosY=864
    ObjComment="Child"
@@ -822,9 +822,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_28'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_28'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2752
    ObjPosY=864
    ObjComment="Child"
@@ -835,15 +835,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_14
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_2'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_2'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_18')),DrawY=709,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_18')),DrawY=709,OverrideDelta=14)
    OutputLinks(1)=(DrawY=730,OverrideDelta=35)
    OutputLinks(2)=(DrawY=751,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-3094,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3176
    ObjPosY=640
    ObjName="TriggerVolume_2 Touch"
@@ -859,11 +859,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_18
    InputLinks(1)=(DrawY=674,OverrideDelta=35)
    InputLinks(2)=(DrawY=695,OverrideDelta=56)
    OutputLinks(0)=(DrawY=674,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_60'),DrawX=-2850,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_60'),DrawX=-2850,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-2799,OverrideDelta=76)
    EventLinks(0)=(DrawX=-2750,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2888
    ObjPosY=616
    DrawWidth=173
@@ -873,9 +873,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_18
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_65
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_6'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2320
    ObjPosY=1344
    ObjComment="Parent"
@@ -886,9 +886,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_65
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_66
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_42'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_42'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2936
    ObjPosY=1280
    ObjComment="Parent"
@@ -899,9 +899,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_66
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_67
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_43'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_43'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2872
    ObjPosY=1352
    ObjComment="Child"
@@ -912,15 +912,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_67
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_15
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_15'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_15'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_19')),DrawY=1245,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_19')),DrawY=1245,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1266,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1287,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-3106,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3192
    ObjPosY=1176
    ObjName="TriggerVolume_15 Touch"
@@ -936,11 +936,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_19
    InputLinks(1)=(DrawY=1186,OverrideDelta=35)
    InputLinks(2)=(DrawY=1207,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1186,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_66'),DrawX=-2906,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_66'),DrawX=-2906,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-2855,OverrideDelta=76)
    EventLinks(0)=(DrawX=-2806,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2944
    ObjPosY=1128
    DrawWidth=173
@@ -950,9 +950,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_19
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_35'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_35'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2592
    ObjPosY=248
    ObjComment="Child"
@@ -963,9 +963,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_39'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_39'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3624
    ObjPosY=3184
    ObjComment="Child"
@@ -976,9 +976,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_37'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_37'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3528
    ObjPosY=3184
    ObjComment="Child"
@@ -989,9 +989,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_1'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3424
    ObjPosY=3184
    ObjComment="Child"
@@ -1002,9 +1002,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_7'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3624
    ObjPosY=3256
    ObjComment="Child"
@@ -1015,9 +1015,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_48'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_48'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3624
    ObjPosY=3328
    ObjComment="Child"
@@ -1028,9 +1028,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_49'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_49'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3528
    ObjPosY=3328
    ObjComment="Child"
@@ -1041,9 +1041,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_50'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_50'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3424
    ObjPosY=3328
    ObjComment="Child"
@@ -1054,9 +1054,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_57
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_10'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3400
    ObjPosY=3088
    ObjComment="Child"
@@ -1072,12 +1072,12 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
    InputLinks(2)=(DrawY=-1302,OverrideDelta=59)
    InputLinks(3)=(DrawY=-1280,OverrideDelta=81)
    InputLinks(4)=(DrawY=-1258,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=-1330,OverrideDelta=31)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=-1330,OverrideDelta=31)
    OutputLinks(1)=(DrawY=-1274,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.InterpData_0'),DrawX=-2745,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),LinkDesc="NewCameraGroup",MinVars=0,DrawX=-2675,OverrideDelta=63)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.InterpData_0'),DrawX=-2745,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),LinkDesc="NewCameraGroup",MinVars=0,DrawX=-2675,OverrideDelta=63)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2776
    ObjPosY=-1384
    DrawWidth=156
@@ -1093,7 +1093,7 @@ Begin Object Class=InterpData Name=InterpData_0
          Name="InterpTrackDirector_0"
          ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
       End Object
-      InterpTracks(0)=InterpTrackDirector'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
+      InterpTracks(0)=InterpTrackDirector'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
       GroupColor=(B=0,G=79,R=222,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
@@ -1113,8 +1113,8 @@ Begin Object Class=InterpData Name=InterpData_0
          Name="InterpTrackFloatProp_0"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackFloatProp_0'
+      InterpTracks(0)=InterpTrackMove'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackFloatProp_0'
       GroupName="NewCameraGroup"
       GroupColor=(B=177,G=0,R=163,A=255)
       Name="InterpGroup_0"
@@ -1125,12 +1125,12 @@ Begin Object Class=InterpData Name=InterpData_0
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=366.555389
-   InterpGroups(0)=InterpGroup'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
-   InterpGroups(1)=InterpGroupDirector'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0'
-   CurveEdSetup=InterpCurveEdSetup'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_0'
+   InterpGroups(0)=InterpGroup'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
+   InterpGroups(1)=InterpGroupDirector'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0'
+   CurveEdSetup=InterpCurveEdSetup'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2776
    ObjPosY=-1184
    DrawWidth=32
@@ -1140,9 +1140,9 @@ Begin Object Class=InterpData Name=InterpData_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
-   ObjValue=CameraActor'KF-VolterManor.TheWorld:PersistentLevel.CameraActor_0'
+   ObjValue=CameraActor'KF-VOLTERMANOR.TheWorld:PersistentLevel.CameraActor_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2656
    ObjPosY=-1184
    DrawWidth=32
@@ -1155,9 +1155,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
    Commands(0)="startbenchmark"
    InputLinks(0)=(DrawY=-1030,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-1030,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=-2928,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=-2928,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2992
    ObjPosY=-1064
    ObjComment="startbenchmark"
@@ -1171,9 +1171,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_0
    Commands(0)="endbenchmark"
    InputLinks(0)=(DrawY=-1334,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-1334,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=-2472,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=-2472,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2536
    ObjPosY=-1368
    ObjComment="endbenchmark"
@@ -1186,10 +1186,10 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_1
    ConsoleEventName="Benchmark"
    MaxWidth=190
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1'),(LinkedOp=SeqAct_Interp'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0')),DrawY=-1294,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1'),(LinkedOp=SeqAct_Interp'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0')),DrawY=-1294,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-2937,OverrideDelta=63)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3032
    ObjPosY=-1360
    DrawWidth=115
@@ -1200,7 +1200,7 @@ End Object
 
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_0
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2744
    ObjPosY=-904
    DrawWidth=32
@@ -1214,7 +1214,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
    SizeY=604
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3056
    ObjPosY=-1408
    ObjComment="Benchmark"
@@ -1225,12 +1225,12 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
 End Object
 
 Begin Object Class=TWSeqEvent_LightFlicker Name=TWSeqEvent_LightFlicker_0
-   Originator=DominantDirectionalLight'KF-VolterManor.TheWorld:PersistentLevel.DominantDirectionalLight_0'
+   Originator=DominantDirectionalLight'KF-VOLTERMANOR.TheWorld:PersistentLevel.DominantDirectionalLight_0'
    MaxWidth=383
    OutputLinks(0)=(DrawY=-1270,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-1673,OverrideDelta=159)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1864
    ObjPosY=-1336
    ObjName="DominantDirectionalLight_0 Light Flicker"
@@ -1246,11 +1246,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    InputLinks(1)=(DrawY=-1854,OverrideDelta=35)
    InputLinks(2)=(DrawY=-1833,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-1854,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),DrawX=-4442,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),DrawX=-4442,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-4391,OverrideDelta=76)
    EventLinks(0)=(DrawX=-4342,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4480
    ObjPosY=-1912
    DrawWidth=173
@@ -1260,15 +1260,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_17
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_19'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_19'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=-1787,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=-1787,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-1766,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-1745,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-4674,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4760
    ObjPosY=-1856
    ObjName="TriggerVolume_19 Touch"
@@ -1280,15 +1280,15 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_17
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_18
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_21'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_21'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=-1811,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=-1811,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-1790,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-1769,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-4018,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4104
    ObjPosY=-1880
    ObjName="TriggerVolume_21 Touch"
@@ -1304,11 +1304,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
    InputLinks(1)=(DrawY=-1878,OverrideDelta=35)
    InputLinks(2)=(DrawY=-1857,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-1878,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),DrawX=-3786,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),DrawX=-3786,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3735,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3686,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3824
    ObjPosY=-1936
    DrawWidth=173
@@ -1322,11 +1322,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_20
    InputLinks(1)=(DrawY=-1854,OverrideDelta=35)
    InputLinks(2)=(DrawY=-1833,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-1854,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),DrawX=-3050,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),DrawX=-3050,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-2999,OverrideDelta=76)
    EventLinks(0)=(DrawX=-2950,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3088
    ObjPosY=-1912
    DrawWidth=173
@@ -1336,15 +1336,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_20
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_0
-   Originator=TriggerVolume'KF-VolterManor.TheWorld:PersistentLevel.TriggerVolume_20'
+   Originator=TriggerVolume'KF-VOLTERMANOR.TheWorld:PersistentLevel.TriggerVolume_20'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_20')),DrawY=-1787,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_20')),DrawY=-1787,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-1766,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-1745,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-3282,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3368
    ObjPosY=-1856
    ObjName="TriggerVolume_20 Touch"
@@ -1356,9 +1356,9 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_12'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4400
    ObjPosY=-1696
    ObjComment="Parent"
@@ -1369,9 +1369,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_18'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_18'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3768
    ObjPosY=-1736
    ObjComment="Parent"
@@ -1382,9 +1382,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_29'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_29'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3032
    ObjPosY=-1712
    ObjComment="Parent"
@@ -1400,7 +1400,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_10
    OutputLinks(0)=(DrawY=-2278,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4702,OverrideDelta=98)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4832
    ObjPosY=-2312
    ObjComment="Lightning_10"
@@ -1416,7 +1416,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_8
    OutputLinks(0)=(DrawY=-2510,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4698,OverrideDelta=94)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4824
    ObjPosY=-2544
    ObjComment="Lightning_8"
@@ -1432,7 +1432,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_11
    OutputLinks(0)=(DrawY=-2390,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4706,OverrideDelta=94)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4832
    ObjPosY=-2424
    ObjComment="Lightning_9"
@@ -1448,7 +1448,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_6
    OutputLinks(0)=(DrawY=-2614,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4698,OverrideDelta=94)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4824
    ObjPosY=-2648
    ObjComment="Lightning_7"
@@ -1464,7 +1464,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_5
    OutputLinks(0)=(DrawY=-2710,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4714,OverrideDelta=94)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4840
    ObjPosY=-2744
    ObjComment="Lightning_6"
@@ -1480,7 +1480,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_4
    OutputLinks(0)=(DrawY=-2806,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4730,OverrideDelta=94)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4856
    ObjPosY=-2840
    ObjComment="Lightning_5"
@@ -1496,7 +1496,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_3
    OutputLinks(0)=(DrawY=-2918,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4746,OverrideDelta=94)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4872
    ObjPosY=-2952
    ObjComment="Lightning_4"
@@ -1512,7 +1512,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_2
    OutputLinks(0)=(DrawY=-3022,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4762,OverrideDelta=94)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4888
    ObjPosY=-3056
    ObjComment="Lightning_3"
@@ -1528,7 +1528,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_1
    OutputLinks(0)=(DrawY=-3126,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4754,OverrideDelta=94)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4880
    ObjPosY=-3160
    ObjComment="Lightning_2"
@@ -1544,7 +1544,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_0
    OutputLinks(0)=(DrawY=-3230,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4750,OverrideDelta=90)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4872
    ObjPosY=-3264
    ObjComment="Lighting_1"
@@ -1559,21 +1559,21 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
    IncrementAmount=0
    InputLinks(0)=(DrawY=-2848,OverrideDelta=73)
    InputLinks(1)=(DrawY=-2708,OverrideDelta=213)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),DrawY=-2904,OverrideDelta=17)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_1')),LinkDesc="Link 2",DrawY=-2881,OverrideDelta=40)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_2')),LinkDesc="Link 3",DrawY=-2858,OverrideDelta=63)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_3')),LinkDesc="Link 4",DrawY=-2835,OverrideDelta=86)
-   OutputLinks(4)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_4')),LinkDesc="Link 5",DrawY=-2812,OverrideDelta=109)
-   OutputLinks(5)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_5')),LinkDesc="Link 6",DrawY=-2789,OverrideDelta=132)
-   OutputLinks(6)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_6')),LinkDesc="Link 7",DrawY=-2766,OverrideDelta=155)
-   OutputLinks(7)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_8')),LinkDesc="Link 8",DrawY=-2743,OverrideDelta=178)
-   OutputLinks(8)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_11')),LinkDesc="Link 9",DrawY=-2720,OverrideDelta=201)
-   OutputLinks(9)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_10')),LinkDesc="Link 10",DrawY=-2697,OverrideDelta=224)
-   OutputLinks(10)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_7')),LinkDesc="Link 11",DrawY=-2674,OverrideDelta=247)
-   OutputLinks(11)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_9')),LinkDesc="Link 12",DrawY=-2651,OverrideDelta=270)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),DrawY=-2904,OverrideDelta=17)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_1')),LinkDesc="Link 2",DrawY=-2881,OverrideDelta=40)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_2')),LinkDesc="Link 3",DrawY=-2858,OverrideDelta=63)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_3')),LinkDesc="Link 4",DrawY=-2835,OverrideDelta=86)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_4')),LinkDesc="Link 5",DrawY=-2812,OverrideDelta=109)
+   OutputLinks(5)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_5')),LinkDesc="Link 6",DrawY=-2789,OverrideDelta=132)
+   OutputLinks(6)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_6')),LinkDesc="Link 7",DrawY=-2766,OverrideDelta=155)
+   OutputLinks(7)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_8')),LinkDesc="Link 8",DrawY=-2743,OverrideDelta=178)
+   OutputLinks(8)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_11')),LinkDesc="Link 9",DrawY=-2720,OverrideDelta=201)
+   OutputLinks(9)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_10')),LinkDesc="Link 10",DrawY=-2697,OverrideDelta=224)
+   OutputLinks(10)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_7')),LinkDesc="Link 11",DrawY=-2674,OverrideDelta=247)
+   OutputLinks(11)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_9')),LinkDesc="Link 12",DrawY=-2651,OverrideDelta=270)
    VariableLinks(0)=(DrawX=-5152,OverrideDelta=27)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5200
    ObjPosY=-2944
    DrawWidth=97
@@ -1583,14 +1583,14 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
 End Object
 
 Begin Object Class=TWSeqEvent_LightFlicker Name=TWSeqEvent_LightFlicker_1
-   Originator=DominantDirectionalLight'KF-VolterManor.TheWorld:PersistentLevel.DominantDirectionalLight_0'
+   Originator=DominantDirectionalLight'KF-VOLTERMANOR.TheWorld:PersistentLevel.DominantDirectionalLight_0'
    MaxTriggerCount=0
    ReTriggerDelay=1.000000
    MaxWidth=383
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=-2958,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=-2958,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-5617,OverrideDelta=159)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5808
    ObjPosY=-3024
    ObjName="DominantDirectionalLight_0 Light Flicker"
@@ -1602,11 +1602,11 @@ End Object
 
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=-371,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=-371,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-350,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-329,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-7112
    ObjPosY=-440
    DrawWidth=137
@@ -1621,9 +1621,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
    OutputLinks(0)=(DrawY=-278,OverrideDelta=35)
    VariableLinks(0)=(DrawX=-6826,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6775,OverrideDelta=76)
-   EventLinks(0)=(LinkedEvents=(SeqEvent_PlayerSpawned'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqEvent_PlayerSpawned_0'),DrawX=-6726,OverrideDelta=119)
+   EventLinks(0)=(LinkedEvents=(SeqEvent_PlayerSpawned'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqEvent_PlayerSpawned_0'),DrawX=-6726,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6864
    ObjPosY=-336
    DrawWidth=173
@@ -1636,7 +1636,7 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_0
    SizeX=688
    SizeY=184
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6248
    ObjPosY=-64
    ObjComment="Devil Courtyard Spawn"
@@ -1647,11 +1647,11 @@ End Object
 Begin Object Class=SeqEvent_PlayerSpawned Name=SeqEvent_PlayerSpawned_0
    MaxTriggerCount=0
    MaxWidth=156
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6',InputLinkIdx=1),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_12')),DrawY=-62,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6',InputLinkIdx=1),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_12')),DrawY=-62,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-6856,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6786,OverrideDelta=96)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6904
    ObjPosY=-128
    DrawWidth=98
@@ -1665,11 +1665,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
    InputLinks(1)=(DrawY=-230,OverrideDelta=35)
    InputLinks(2)=(DrawY=-209,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-230,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_71',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_72',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_73',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_74',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_75',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_76'),DrawX=-5970,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_71',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_72',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_73',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_74',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_75',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_76'),DrawX=-5970,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-5919,OverrideDelta=76)
    EventLinks(0)=(DrawX=-5870,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6008
    ObjPosY=-288
    DrawWidth=173
@@ -1679,9 +1679,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_71
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_6'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6184
    ObjPosY=8
    DrawWidth=32
@@ -1691,9 +1691,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_71
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_72
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_7'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6088
    ObjPosY=8
    DrawWidth=32
@@ -1703,9 +1703,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_72
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_73
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_8'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5984
    ObjPosY=8
    DrawWidth=32
@@ -1715,9 +1715,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_73
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_74
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_10'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5888
    ObjPosY=8
    DrawWidth=32
@@ -1727,9 +1727,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_74
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_75
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_11'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5784
    ObjPosY=8
    DrawWidth=32
@@ -1739,9 +1739,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_75
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_76
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_9'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5688
    ObjPosY=8
    DrawWidth=32
@@ -1751,9 +1751,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_76
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_27'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_27'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3816
    ObjPosY=-960
    ObjComment="child"
@@ -1764,9 +1764,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_16'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_16'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3720
    ObjPosY=-960
    ObjComment="child"
@@ -1777,9 +1777,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_31'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_31'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3616
    ObjPosY=-960
    ObjComment="child"
@@ -1790,9 +1790,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_14'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3520
    ObjPosY=-960
    ObjComment="child"
@@ -1807,11 +1807,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_21
    InputLinks(1)=(DrawY=-278,OverrideDelta=35)
    InputLinks(2)=(DrawY=-257,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-278,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23'),DrawX=-3874,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23'),DrawX=-3874,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3823,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3774,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3912
    ObjPosY=-336
    DrawWidth=173
@@ -1821,9 +1821,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_21
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_36'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_36'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3906
    ObjPosY=-207
    ObjComment="parent"
@@ -1834,9 +1834,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_51'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_51'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3792
    ObjPosY=-160
    ObjComment="child"
@@ -1847,9 +1847,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
-   ObjValue=KFSpawner'KF-VolterManor.TheWorld:PersistentLevel.KFSpawner_2'
+   ObjValue=KFSpawner'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFSpawner_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2656
    ObjPosY=864
    ObjComment="child"
@@ -1865,7 +1865,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_7
    OutputLinks(0)=(DrawY=-2166,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4702,OverrideDelta=98)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4832
    ObjPosY=-2200
    ObjComment="Lightning_11"
@@ -1881,7 +1881,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_9
    OutputLinks(0)=(DrawY=-2054,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4702,OverrideDelta=98)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4832
    ObjPosY=-2088
    ObjComment="Lightning_12"
@@ -1896,11 +1896,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
    InputLinks(1)=(DrawY=290,OverrideDelta=35)
    InputLinks(2)=(DrawY=311,OverrideDelta=56)
    OutputLinks(0)=(DrawY=290,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_77',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_78',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_79',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_80',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_81',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_82'),DrawX=-6098,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_77',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_78',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_79',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_80',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_81',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_82'),DrawX=-6098,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6047,OverrideDelta=76)
    EventLinks(0)=(DrawX=-5998,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6136
    ObjPosY=232
    DrawWidth=173
@@ -1910,9 +1910,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_77
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_21'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_21'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6176
    ObjPosY=472
    ObjComment="Spawn 1"
@@ -1923,9 +1923,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_77
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_78
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_20'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_20'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6072
    ObjPosY=472
    ObjComment="Spawn 1"
@@ -1936,9 +1936,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_78
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_79
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_18'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_18'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5976
    ObjPosY=472
    ObjComment="Spawn 1"
@@ -1949,9 +1949,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_79
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_80
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_19'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_19'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6120
    ObjPosY=552
    ObjComment="Spawn 1"
@@ -1962,9 +1962,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_80
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_81
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_23'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_23'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6024
    ObjPosY=552
    ObjComment="Spawn 1"
@@ -1975,9 +1975,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_81
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_82
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_22'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_22'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5920
    ObjPosY=552
    ObjComment="Spawn 1"
@@ -1990,11 +1990,11 @@ End Object
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_1
    MaxTriggerCount=0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),DrawY=861,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),DrawY=861,OverrideDelta=14)
    OutputLinks(1)=(DrawY=882,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_13')),DrawY=903,OverrideDelta=56)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_13')),DrawY=903,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-7128
    ObjPosY=792
    DrawWidth=137
@@ -2007,13 +2007,13 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_1
    IncrementAmount=0
    InputLinks(0)=(DrawY=912,OverrideDelta=25)
    InputLinks(1)=(DrawY=956,OverrideDelta=69)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=901,OverrideDelta=14)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),LinkDesc="Link 2",DrawY=923,OverrideDelta=36)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),LinkDesc="Link 3",DrawY=945,OverrideDelta=58)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_23')),LinkDesc="Link 4",DrawY=967,OverrideDelta=80)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=901,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),LinkDesc="Link 2",DrawY=923,OverrideDelta=36)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),LinkDesc="Link 3",DrawY=945,OverrideDelta=58)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_23')),LinkDesc="Link 4",DrawY=967,OverrideDelta=80)
    VariableLinks(0)=(DrawX=-6700,OverrideDelta=23)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6744
    ObjPosY=864
    DrawWidth=89
@@ -2027,11 +2027,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
    InputLinks(1)=(DrawY=730,OverrideDelta=35)
    InputLinks(2)=(DrawY=751,OverrideDelta=56)
    OutputLinks(0)=(DrawY=730,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_95',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_98',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_96',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_99',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_97',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_100'),DrawX=-6066,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_95',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_98',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_96',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_99',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_97',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_100'),DrawX=-6066,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6015,OverrideDelta=76)
    EventLinks(0)=(DrawX=-5966,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6104
    ObjPosY=672
    DrawWidth=173
@@ -2045,11 +2045,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
    InputLinks(1)=(DrawY=1130,OverrideDelta=35)
    InputLinks(2)=(DrawY=1151,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1130,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_104',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_105',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_101',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_106',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_102',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_103'),DrawX=-6026,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_104',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_105',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_101',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_106',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_102',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_103'),DrawX=-6026,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-5975,OverrideDelta=76)
    EventLinks(0)=(DrawX=-5926,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6064
    ObjPosY=1072
    DrawWidth=173
@@ -2063,11 +2063,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_23
    InputLinks(1)=(DrawY=1570,OverrideDelta=35)
    InputLinks(2)=(DrawY=1591,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1570,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_89',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_90',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_91',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_92',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_93',SeqVar_Object'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_94'),DrawX=-5978,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_89',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_90',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_91',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_92',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_93',SeqVar_Object'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_94'),DrawX=-5978,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-5927,OverrideDelta=76)
    EventLinks(0)=(DrawX=-5878,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6016
    ObjPosY=1512
    DrawWidth=173
@@ -2077,9 +2077,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_23
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_89
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_12'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6016
    ObjPosY=1696
    ObjComment="Spawn 4"
@@ -2090,9 +2090,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_89
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_90
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_14'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5920
    ObjPosY=1696
    ObjComment="Spawn 4"
@@ -2103,9 +2103,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_90
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_91
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_13'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5952
    ObjPosY=1784
    ObjComment="Spawn 4"
@@ -2116,9 +2116,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_91
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_92
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_17'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_17'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5856
    ObjPosY=1784
    ObjComment="Spawn 4"
@@ -2129,9 +2129,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_92
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_93
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_16'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_16'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5752
    ObjPosY=1784
    ObjComment="Spawn 4"
@@ -2142,9 +2142,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_93
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_94
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_15'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_15'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5816
    ObjPosY=1696
    ObjComment="Spawn 4"
@@ -2155,9 +2155,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_94
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_95
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_24'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_24'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6112
    ObjPosY=856
    ObjComment="Spawn 2"
@@ -2168,9 +2168,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_95
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_96
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_25'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_25'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6008
    ObjPosY=856
    ObjComment="Spawn 2"
@@ -2181,9 +2181,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_96
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_97
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_26'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_26'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5912
    ObjPosY=856
    ObjComment="Spawn 2"
@@ -2194,9 +2194,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_97
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_98
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_27'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_27'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6056
    ObjPosY=936
    ObjComment="Spawn 2"
@@ -2207,9 +2207,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_98
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_99
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_28'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_28'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5960
    ObjPosY=936
    ObjComment="Spawn 2"
@@ -2220,9 +2220,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_99
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_100
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_29'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_29'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5856
    ObjPosY=936
    ObjComment="Spawn 2"
@@ -2233,9 +2233,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_100
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_101
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5992
    ObjPosY=1344
    ObjComment="Spawn 3"
@@ -2246,9 +2246,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_101
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_102
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5896
    ObjPosY=1344
    ObjComment="Spawn 3"
@@ -2259,9 +2259,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_102
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_103
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5792
    ObjPosY=1344
    ObjComment="Spawn 3"
@@ -2272,9 +2272,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_103
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_104
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6048
    ObjPosY=1240
    ObjComment="Spawn 3"
@@ -2285,9 +2285,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_104
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_105
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5944
    ObjPosY=1240
    ObjComment="Spawn 3"
@@ -2298,9 +2298,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_105
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_106
-   ObjValue=KFPlayerStart'KF-VolterManor.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjValue=KFPlayerStart'KF-VOLTERMANOR.TheWorld:PersistentLevel.KFPlayerStart_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5848
    ObjPosY=1240
    ObjComment="Spawn 3"
@@ -2313,10 +2313,10 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_1
    EventName="SpawnOFF"
    MaxWidth=187
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_23',InputLinkIdx=1)),DrawY=682,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_23',InputLinkIdx=1)),DrawY=682,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-6699,OverrideDelta=61)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6792
    ObjPosY=616
    ObjComment="SpawnOFF"
@@ -2329,10 +2329,10 @@ End Object
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_13
    EventName="SpawnOFF"
    InputLinks(0)=(DrawY=1042,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),ActivateDelay=1.000000,DrawY=1042,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),ActivateDelay=1.000000,DrawY=1042,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-7020,OverrideDelta=92)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-7144
    ObjPosY=1008
    ObjComment="SpawnOFF"
@@ -2345,10 +2345,10 @@ End Object
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_12
    EventName="SpawnOFF"
    InputLinks(0)=(DrawY=-198,ActivateDelay=20.000000,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),ActivateDelay=1.000000,DrawY=-198,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),ActivateDelay=1.000000,DrawY=-198,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-6396,OverrideDelta=92)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-VolterManor.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-VOLTERMANOR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6520
    ObjPosY=-232
    ObjComment="SpawnOFF"

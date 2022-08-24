@@ -117,9 +117,9 @@ defaultproperties
    SpareAmmoCapacity(0)=80
    InitialSpareMags(0)=3
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Handling_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_medicshotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_medicshotgun.Play_SA_MedicShotgun_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_medicshotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_medicshotgun.Play_SA_MedicShotgun_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_medicshotgun.Play_SA_MedicShotgun_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_DryFire'
    PlayerViewOffset=(X=14.000000,Y=6.500000,Z=-3.500000)
    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_3P'

@@ -42,8 +42,6 @@ package tripwire.containers.serverBrowser
         
         public var filterCheckBox9:TripCheckBox;
         
-        public var filterCheckBox10:TripCheckBox;
-        
         public var filterChangeFunction:Function;
         
         public var titleText:Label;
@@ -115,7 +113,10 @@ package tripwire.containers.serverBrowser
             var _loc1_:int = 0;
             while(_loc1_ < this.NUM_OF_FILTERS)
             {
-                this["filterCheckBox" + _loc1_].removeEventListener(ButtonEvent.PRESS,this.onFilterClick);
+                if(this["filterCheckBox" + _loc1_])
+                {
+                    this["filterCheckBox" + _loc1_].removeEventListener(ButtonEvent.PRESS,this.onFilterClick);
+                }
                 _loc1_++;
             }
             this.backButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
@@ -159,16 +160,21 @@ package tripwire.containers.serverBrowser
             var _loc2_:int = 0;
             while(_loc2_ < this.NUM_OF_FILTERS + 1)
             {
-                if(_loc2_ < param1.length)
+                if(this["filterCheckBox" + _loc2_])
                 {
-                    this["filterCheckBox" + _loc2_].visible = true;
-                    this["filterCheckBox" + _loc2_].label = param1[_loc2_].label;
-                    this["filterCheckBox" + _loc2_].Key = param1[_loc2_].key;
-                    this["filterCheckBox" + _loc2_].selected = param1[_loc2_].selected;
-                }
-                else
-                {
-                    this["filterCheckBox" + _loc2_].visible = false;
+                    if(_loc2_ < param1.length && _loc2_ != 5 && _loc2_ != 1)
+                    {
+                        this["filterCheckBox" + _loc2_].visible = true;
+                        this["filterCheckBox" + _loc2_].enabled = true;
+                        this["filterCheckBox" + _loc2_].label = param1[_loc2_].label;
+                        this["filterCheckBox" + _loc2_].Key = param1[_loc2_].key;
+                        this["filterCheckBox" + _loc2_].selected = param1[_loc2_].selected;
+                    }
+                    else
+                    {
+                        this["filterCheckBox" + _loc2_].visible = false;
+                        this["filterCheckBox" + _loc2_].enabled = false;
+                    }
                 }
                 _loc2_++;
             }
@@ -189,8 +195,11 @@ package tripwire.containers.serverBrowser
             var _loc1_:int = 0;
             while(_loc1_ < this.NUM_OF_FILTERS)
             {
-                this["filterCheckBox" + _loc1_].addEventListener(Event.SELECT,this.onFilterClick,false,0,true);
-                this["filterCheckBox" + _loc1_].tabIndex = _loc1_ + this.STARTING_TABINDEX;
+                if(this["filterCheckBox" + _loc1_])
+                {
+                    this["filterCheckBox" + _loc1_].addEventListener(Event.SELECT,this.onFilterClick,false,0,true);
+                    this["filterCheckBox" + _loc1_].tabIndex = _loc1_ + this.STARTING_TABINDEX;
+                }
                 _loc1_++;
             }
             this._lastTabIndex = _loc1_;
@@ -240,7 +249,10 @@ package tripwire.containers.serverBrowser
             var _loc1_:int = 0;
             while(_loc1_ < this.NUM_OF_FILTERS)
             {
-                this["filterCheckBox" + _loc1_].selected = false;
+                if(this["filterCheckBox" + _loc1_])
+                {
+                    this["filterCheckBox" + _loc1_].selected = false;
+                }
                 _loc1_++;
             }
             this.gameModeScrollingList.selectedIndex = 0;

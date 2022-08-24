@@ -400,6 +400,9 @@ var protected float ZedTimeSpeedScale;
 /** Scale to use when moving with a speed reducing affliction. */
 var float AfflictionSpeedModifier;
 
+/** Scale to use when doing an attack */
+var float AttackSpeedModifier;
+
 /** Whether or not we are currently jumping.  Allows for more specific checking of PHYS_Falling */
 var bool bJumping;
 
@@ -813,7 +816,7 @@ replication
 	if ( bNetDirty )
 		AmbientSound, WeaponAttachmentTemplate, bIsSprinting, InjuredHitZones,
 		KnockdownImpulse, ReplicatedSpecialMove, bEmpDisrupted, bEmpPanicked, bFirePanicked,
-        RepFireBurnedAmount, bUnaffectedByZedTime, bMovesFastInZedTime, IntendedBodyScale, IntendedHeadScale;
+        RepFireBurnedAmount, bUnaffectedByZedTime, bMovesFastInZedTime, IntendedBodyScale, IntendedHeadScale, AttackSpeedModifier;
 	if ( bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout )
 		HitFxInfo, HitFxRadialInfo, HitFxInstigator, HitFxAddedRelativeLocs, HitFxAddedHitCount;
 	if ( Physics == PHYS_RigidBody && !bTearOff )
@@ -1621,6 +1624,10 @@ function UpdateGroundSpeed();
 function SetAfflictionSpeedModifier()
 {
     AfflictionSpeedModifier = AfflictionHandler.GetAfflictionSpeedModifier();
+}
+function SetAttackSpeedModifier()
+{
+	AttackSpeedModifier = AfflictionHandler.GetAfflictionAttackSpeedModifier();
 }
 
 /** Toggle the flashlight on and off */
@@ -2483,6 +2490,12 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	OldHealth = Health;
 	Super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
 
+    //Handle afflictions
+    if (AfflictionHandler != None)
+    {
+        AfflictionHandler.NotifyTakeHit(InstigatedBy, Normal(Momentum), HitFxInfo.DamageType, DamageCauser);
+    }
+
 	ActualDamage = OldHealth - Health;
 	if( ActualDamage > 0 )
 	{
@@ -2494,9 +2507,9 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	if ( Health < OldHealth && DamageCauser != None )
 	{
 		KFDT = class<KFDamageType>(DamageType);
-        if ( KFDT != None && KFDT.static.CanApplyDamageOverTime(Damage, KFDT, InstigatedBy) )
+        if ( KFDT != None )
 		{
-			ApplyDamageOverTime(Damage, InstigatedBy, KFDT);
+			KFDT.static.ApplySecondaryDamage(self, Damage, InstigatedBy);
 		}
 	}
 
@@ -2511,10 +2524,10 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 			KFPC.AddZedHeadshot( KFGI.GameDifficulty, HitFxInfo.DamageType );
 			`RecordWeaponHeadShot(KFPC, HitFxInfo.DamageType)
 		}
-		
+
 		// Notify game info of a headshot kill.  Done here instead of Died() so we have an accurate HitInfo/HitZone
 		if ( bPlayedDeath )
-		{	
+		{
 			KFGameInfo(WorldInfo.Game).NotifyHeadshotKill(InstigatedBy, self);
 		}
 	}
@@ -2907,7 +2920,7 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 		HitDamageType	= DamageType;
 		TakeHitLocation	= HitLoc;
 	}
-	
+
 	// Abort current special move
 	if( IsDoingSpecialMove() )
 	{
@@ -2980,7 +2993,7 @@ simulated function PlayRagdollDeath(class<DamageType> DamageType, vector HitLoc)
     }
 
 	PrepareRagdoll();
-	
+
 	if ( InitRagdoll() )
 	{
 		// Switch to a good RigidBody TickGroup to fix projectiles passing through the mesh
@@ -3224,8 +3237,8 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 `endif
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 
-	// We don't process any new effects until we are done processing old ones. 
-	if ( bNeedsProcessHitFx ) 
+	// We don't process any new effects until we are done processing old ones.
+	if ( bNeedsProcessHitFx )
 	{
 		if ( InstigatedBy != none && InstigatedBy.Pawn == HitFxInstigator && KFDT != none && KFDT == HitFXInfo.DamageType )
 		{
@@ -3304,11 +3317,6 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 		}
 	}
 
-	if ( AfflictionHandler != None )
-	{
-		AfflictionHandler.NotifyTakeHit(InstigatedBy, Normal(Momentum), HitFxInfo.DamageType);
-	}
-
 	bNeedsProcessHitFx = true;
 	LastPainTime = WorldInfo.TimeSeconds;
 
@@ -3369,16 +3377,19 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 	local class<KFDamageType> KFDmgType;
 	local name HitZoneName;
 
+	KFDmgType = class<KFDamageType>(DamageType);
+	HitZoneName = HitZones[HitZoneIdx].ZoneName;
 	// Added TimeOfDeath check, so if we've just died always do head gore
 	if( (!bPlayedDeath || WorldInfo.TimeSeconds == TimeOfDeath) && HitZoneIdx == HZI_HEAD )
 	{
-		return true;
+        if (KFDmgType.static.CanDismemberHitZoneWhileAlive(HitZoneName))
+        {
+            return true;
+        }
 	}
 
 	if ( bPlayedDeath )
 	{
-		KFDmgType = class<KFDamageType>(DamageType);
-		HitZoneName = HitZones[HitZoneIdx].ZoneName;
 		if ( KFDmgType != none && KFDmgType.static.CanDismemberHitZone( HitZoneName ) )
 		{
 			return true;
@@ -3738,7 +3749,7 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects( int HitZoneIdx )
 	return CharacterArch.ImpactSkins[HitZoneSkinID];
 }
 
-/** 
+/**
  * Used to adjust strength of all incoming afflictions (similar to AdjustDamage)
  * based on current situation / state.
  */
@@ -3757,7 +3768,7 @@ function ApplyDamageOverTime(int Damage, Controller InstigatedBy, class<KFDamage
 	local float NewDoTDuration;
 
 	// Check to see if we already have this type of damage in the array
-	DoTIndex = DamageOverTimeArray.Find('DoT_Type', KFDT.default.DoT_Type);
+	DoTIndex = KFDT.default.bStackDot ? -1 : DamageOverTimeArray.Find('DoT_Type', KFDT.default.DoT_Type);
 
     NewDoTDamage = Round( Damage * KFDT.default.DoT_DamageScale );
     NewDoTDuration = KFDT.default.DoT_Duration * GetPerkDoTScaler( InstigatedBy, KFDT );
@@ -3890,7 +3901,7 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 
 /** Event called when an AnimNodeSequence reaches the end and stops. */
 simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
-{	
+{
 	if( SpecialMove != SM_None )
 	{
 		//`Log"SpecialMove ==" @ SpecialMove @ "calling AnimEndNotify()");
@@ -3902,7 +3913,7 @@ simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float Exce
 		else
 		{
 			SpecialMoves[SpecialMove].AnimEndNotify(SeqNode, PlayedTime, ExcessTime);
-		}		
+		}
 	}
 }
 
@@ -4426,9 +4437,9 @@ simulated event bool IsMovementDisabledDuringSpecialMove()
 }
 
 /** Can this pawn be grabbed by Zed performing grab special move (clots & Hans's energy drain) */
-function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling)
+function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling, optional bool bAllowSameTeamGrab)
 {
-	if( Health <= 0 || (Physics == PHYS_Falling && !bIgnoreFalling) || IsSameTeam(GrabbingPawn) || IsDoingSpecialMove(SM_GrappleVictim) )
+	if( Health <= 0 || (Physics == PHYS_Falling && !bIgnoreFalling) || (!bAllowSameTeamGrab && IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(SM_GrappleVictim) )
 	{
 		return false;
 	}
@@ -4782,7 +4793,7 @@ State Dying
  ********************************************************************************************* */
 /**Looks up and returns localized name */
 
-function string GetLocalizedName()
+static function string GetLocalizedName()
 {
 	return "";
 }
@@ -4983,7 +4994,7 @@ defaultproperties
 	bCanJumpOverWalls=true
 	bCanUseHiddenSpeed=true
 	Mass=65.f // (in kilograms) Used by HandleMomentum()
-	
+
 	MeshRotSmoothingInterpSpeed=30.f
 	TurnInPlaceAnimRate=1.0f
 
@@ -5009,6 +5020,7 @@ defaultproperties
 	IncapSettings(AF_FirePanic)=(Duration=5.0,Cooldown=5.0)
 
 	AfflictionSpeedModifier=1.f
+	AttackSpeedModifier=1.f
 
 	// ---------------------------------------------
 	// AI / Navigation

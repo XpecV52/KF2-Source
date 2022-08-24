@@ -10,18 +10,6 @@ class KFPawn_ZedHansBase extends KFPawn_MonsterBoss
     config(Game)
     hidecategories(Navigation);
 
-enum EHansNadeType
-{
-    HNT_None,
-    HNT_HEGrenade,
-    HNT_NerveGas,
-    HNT_Smoke,
-    HNT_HEGrenadeBarrage,
-    HNT_NerveGasBarrage,
-    HNT_SmokeBarrage,
-    HNT_MAX
-};
-
 struct HansBattlePhaseInfo
 {
     var bool bCanFrenzy;
@@ -79,6 +67,7 @@ var() float HuntAndHealModeDamageReduction;
 var float IncapPowerScaleWhenHealing;
 var float ShieldHealth;
 var float ShieldHealthMax;
+var float ShieldHealthScale;
 var repnotify byte ShieldHealthPctByte;
 var int NumHuntAndHealEnemyBumps;
 var float LastHuntAndHealEnemyBumpTime;
@@ -383,7 +372,7 @@ simulated function SetHuntAndHealMode(bool bOn)
             {
                 KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
             }
-            ShieldHealthMax = float(BattlePhases[CurrentBattlePhase - 1].MaxShieldHealth[int(WorldInfo.Game.GameDifficulty)]) * HealthMod;
+            ShieldHealthMax = (float(BattlePhases[CurrentBattlePhase - 1].MaxShieldHealth[int(WorldInfo.Game.GameDifficulty)]) * HealthMod) * ShieldHealthScale;
             ShieldHealth = ShieldHealthMax;
             UpdateShieldHealth();
             NumHuntAndHealEnemyBumps = 0;
@@ -413,6 +402,11 @@ simulated function SetHuntAndHealMode(bool bOn)
         bHealedThisPhase = false;
         SetTimer(0.1, false, 'Timer_ResetShieldHealthPct');
     }
+}
+
+function SetShieldScale(float InScale)
+{
+    ShieldHealthScale = InScale;
 }
 
 function Timer_ResetShieldHealthPct()
@@ -459,27 +453,10 @@ function SummonMinions()
             }
         }
     }
-    if(CurrentBattlePhase == 1)
-    {
-        MinionWave = SummonWaves[DifficultyIndex].PhaseOneWave;        
-    }
-    else
-    {
-        if(CurrentBattlePhase == 2)
-        {
-            MinionWave = SummonWaves[DifficultyIndex].PhaseTwoWave;            
-        }
-        else
-        {
-            if(CurrentBattlePhase == 3)
-            {
-                MinionWave = SummonWaves[DifficultyIndex].PhaseThreeWave;
-            }
-        }
-    }
     MyKFGameInfo.GetAIDirector().bForceFrustration = true;
+    MinionWave = GetWaveInfo(CurrentBattlePhase, DifficultyIndex);
     SpawnManager = MyKFGameInfo.SpawnManager;
-    if(SpawnManager != none)
+    if((MinionWave != none) && SpawnManager != none)
     {
         SpawnManager.SummonBossMinions(MinionWave.Squads, GetNumMinionsToSpawn());
     }
@@ -572,6 +549,7 @@ simulated function DetachShieldFX();
 
 defaultproperties
 {
+    ShieldHealthScale=1
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHansBase.MeleeHelper'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

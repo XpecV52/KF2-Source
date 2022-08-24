@@ -19,6 +19,7 @@ var const float DeflateThreshold;
 var const float IncapModifier;
 var const float DamageModifier;
 var const float SpeedModifier;
+var const float AttackSpeedModifier;
 var float PrevStrength;
 var const float MaxDeflate;
 var float CurDeflate;
@@ -70,12 +71,22 @@ function float GetSpeedModifier()
     return 1;
 }
 
+function float GetAttackSpeedModifier()
+{
+    if(CurrentStrength > DeflateThreshold)
+    {
+        return AttackSpeedModifier;
+    }
+    return 1;
+}
+
 function Accrue(float InPower)
 {
     super(KFAfflictionBase).Accrue(InPower);
     if(PawnOwner != none)
     {
         PawnOwner.SetAfflictionSpeedModifier();
+        PawnOwner.SetAttackSpeedModifier();
     }
 }
 
@@ -85,6 +96,7 @@ function Tick(float DeltaTime)
     if(((PawnOwner != none) && CurrentStrength < DeflateThreshold) && PrevStrength > DeflateThreshold)
     {
         PawnOwner.SetAfflictionSpeedModifier();
+        PawnOwner.SetAttackSpeedModifier();
     }
     UpdateDeflateMaterialParam(DeltaTime);
     PrevStrength = CurrentStrength;
@@ -92,6 +104,11 @@ function Tick(float DeltaTime)
 
 protected function UpdateDeflateMaterialParam(float DeltaTime)
 {
+    MonsterOwner.UpdateBleedIncapFX();
+    if(!MonsterOwner.IsAliveAndWell())
+    {
+        return;
+    }
     switch(CurrentDeflateState)
     {
         case 0:
@@ -168,12 +185,12 @@ function SetMaterialParameter(float ParamValue)
 
 defaultproperties
 {
-    DeflateThreshold=30
+    DeflateThreshold=65
     IncapModifier=0.3
     DamageModifier=-0.3
     SpeedModifier=0.7
-    MaxDeflate=0.5
-    DeflateChangeRate=0.5
-    DissipationRate=5
+    AttackSpeedModifier=0.8
+    MaxDeflate=1
+    DeflateChangeRate=0.75
     bNeedsTick=true
 }

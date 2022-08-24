@@ -74,7 +74,8 @@ const KFID_VOIPVolumeMultiplier = 164;
 const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
-const KFID_SafeFrameScale = 168;#linenumber 12
+const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;#linenumber 12
 
 struct native WeaponSkinPairs
 {
@@ -311,6 +312,7 @@ defaultproperties
    DefaultSettings(54)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=163,Data=(Type=SDT_Int32,Value1=1)))
    DefaultSettings(55)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=166,Data=(Type=SDT_Int32,Value1=-1)))
    DefaultSettings(56)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=168,Data=(Type=SDT_Float)))
+   DefaultSettings(57)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=169,Data=(Type=SDT_Int32)))
    VersionNumber=4
    ProfileMappings(0)=(Id=100,Name="Quick Weapon Select",MappingType=PVMT_RawValue,ValueMappings=((Id=0),))
    ProfileMappings(1)=(Id=101,Name="Current Layout Index",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))
@@ -369,6 +371,7 @@ defaultproperties
    ProfileMappings(54)=(Id=163,Name="Show Console Crosshair")
    ProfileMappings(55)=(Id=166,Name="Saved Emote ID")
    ProfileMappings(56)=(Id=168,Name="Safe Frame")
+   ProfileMappings(57)=(Id=169,Name="Native 4k Resolution")
    Name="Default__KFProfileSettings"
    ObjectArchetype=OnlineProfileSettings'Engine.Default__OnlineProfileSettings'
 }

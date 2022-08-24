@@ -19,6 +19,22 @@ enum EINventory_Filter
     EInv_MAX
 };
 
+enum EInventoryWeaponType_Filter
+{
+    EInvWT_Pistol,
+    EInvWT_Shotgun,
+    EInvWT_Rifle,
+    EInvWT_Projectile,
+    EInvWT_Fire,
+    EInvWT_Tech,
+    EInvWT_Launcher,
+    EInvWT_AssaultRifle,
+    EInvWT_Melee,
+    EInvWT_SMG,
+    EInvWT_None,
+    EInvWT_MAX
+};
+
 struct InventoryHelper
 {
     var int ItemDefinition;
@@ -71,6 +87,9 @@ var const localized string CraftWeaponDescriptionString;
 var const localized string RequiresString;
 var const localized string PurchaseKeyString;
 var const localized string LookUpOnMarketString;
+var const localized string RarityFilterString;
+var const localized string WeaponTypeFilterString;
+var const localized string PerkFilterString;
 var GFxObject CraftingSubMenu;
 var GFxObject ItemListContainer;
 var GFxObject ItemDetailsContainer;
@@ -100,14 +119,19 @@ var name SoundThemeName;
 var KFPlayerController KFPC;
 var int ValueToPromptDuplicateRecycle;
 var array<int> SpecialEventItemIDs;
+var array<int> KeylessCrateIDs;
+var KFGFxMenu_Inventory.EInventoryWeaponType_Filter CurrentWeaponTypeFilter;
+var Engine.OnlineSubsystem.ItemRarity CurrentRarityFilter;
 var KFGFxMenu_Inventory.EINventory_Filter CurrentInventoryFilter;
+var int CurrentPerkIndexFilter;
 var ExchangeRuleSets RuleToExchange;
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
     super.InitializeMenu(InManager);
-    LocalizeText();
     KFPC = KFPlayerController(Outer.GetPC());
+    CurrentPerkIndexFilter = KFPC.PerkList.Length;
+    LocalizeText();
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
     if(Class'WorldInfo'.static.IsConsoleBuild())
@@ -193,6 +217,7 @@ function InitInventory()
     local array<InventoryHelper> ActiveItems;
     local InventoryHelper HelperItem;
     local array<ExchangeRuleSets> ExchangeRules;
+    local GFxObject PendingItem;
 
     ItemArray = Outer.CreateArray();
     if(OnlineSub == none)
@@ -209,7 +234,7 @@ function InitInventory()
         if((ItemIndex != -1) && OnlineSub.CurrentInventory[I].Definition != 0)
         {
             TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
-            if(((CurrentInventoryFilter == 0) || CurrentInventoryFilter == (TempItemDetailsHolder.Type + 1)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
+            if((((CurrentInventoryFilter == 0) || CurrentInventoryFilter == (TempItemDetailsHolder.Type + 1)) && DoesMatchFilter(TempItemDetailsHolder)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
             {
                 ItemObject = Outer.CreateObject("Object");
                 HelperIndex = ActiveItems.Find('ItemDefinition', OnlineSub.CurrentInventory[I].Definition;
@@ -241,6 +266,10 @@ function InitInventory()
                 ItemObject.SetInt("definition", TempItemDetailsHolder.Definition);
                 ItemObject.SetBool("newlyAdded", bool(OnlineSub.CurrentInventory[I].NewlyAdded));
                 ActiveItems[HelperIndex].GfxItemObject = ItemObject;
+                if(OnlineSub.CurrentInventory[I].Definition == Manager.SelectIDOnOpen)
+                {
+                    PendingItem = ItemObject;
+                }
                 if(bool(OnlineSub.CurrentInventory[I].NewlyAdded) && bInitialInventoryPassComplete)
                 {
                     SetMatineeColor(TempItemDetailsHolder.Rarity);                    
@@ -254,16 +283,43 @@ function InitInventory()
     }
     OnlineSub.ClearNewlyAdded();
     I = 0;
-    J0xA2C:
+    J0xAB5:
 
     if(I < ActiveItems.Length)
     {
         ItemArray.SetElementObject(I, ActiveItems[I].GfxItemObject);
         ++ I;
-        goto J0xA2C;
+        goto J0xAB5;
     }
     SetObject("inventoryList", ItemArray);
+    if(Manager.SelectIDOnOpen != -1)
+    {
+        CallBack_ItemDetailsClicked(Manager.SelectIDOnOpen);
+        SetObject("details", PendingItem);
+        Manager.SelectIDOnOpen = -1;
+    }
     bInitialInventoryPassComplete = true;
+}
+
+function bool DoesMatchFilter(ItemProperties InventoryItem)
+{
+    if((CurrentRarityFilter != 6) && InventoryItem.Rarity != CurrentRarityFilter)
+    {
+        if(((CurrentInventoryFilter == 5) || CurrentInventoryFilter == 3) && CurrentInventoryFilter == (InventoryItem.Type + 1))
+        {
+            return true;
+        }
+        return false;
+    }
+    if((CurrentWeaponTypeFilter != 10) && CurrentWeaponTypeFilter != InventoryItem.WeaponType)
+    {
+        return false;
+    }
+    if((CurrentPerkIndexFilter != KFPC.PerkList.Length) && !(CurrentPerkIndexFilter == InventoryItem.PerkId) || CurrentPerkIndexFilter == InventoryItem.AltPerkId)
+    {
+        return false;
+    }
+    return true;
 }
 
 function OnItemExhangeTimeOut()
@@ -333,17 +389,22 @@ function bool IsItemRecyclable(ItemProperties ItemDetailsHolder, const out array
     local int RequireRulesToRecycle;
 
     RequireRulesToRecycle = ((Class'WorldInfo'.static.IsConsoleBuild()) ? 1 : 2);
-    return ((ExchangeRules.Length > 0) && ((ItemDetailsHolder.Type == 0) || ItemDetailsHolder.Type == 1) || ItemDetailsHolder.Type == 5) || (ItemDetailsHolder.Type == 2) && ExchangeRules.Length == RequireRulesToRecycle;
+    return !IsKeylessCrate(ItemDetailsHolder.Definition) && ((ExchangeRules.Length > 0) && ((ItemDetailsHolder.Type == 0) || ItemDetailsHolder.Type == 1) || ItemDetailsHolder.Type == 5) || (ItemDetailsHolder.Type == 2) && ExchangeRules.Length == RequireRulesToRecycle;
 }
 
 function bool IsItemExchangeable(out ItemProperties ItemDetailsHolder, const out array<ExchangeRuleSets> ExchangeRules)
 {
-    return ((ExchangeRules.Length > 0) || ItemDetailsHolder.RequiredKeyId != "") && (ItemDetailsHolder.Type == 2) || IsSpecialEventItem(ItemDetailsHolder.Definition);
+    return (IsKeylessCrate(ItemDetailsHolder.Definition)) || ((ExchangeRules.Length > 0) || ItemDetailsHolder.RequiredKeyId != "") && (ItemDetailsHolder.Type == 2) || IsSpecialEventItem(ItemDetailsHolder.Definition);
 }
 
 function bool IsSpecialEventItem(int ItemId)
 {
     return SpecialEventItemIDs.Find(ItemId != -1;
+}
+
+function bool IsKeylessCrate(int ItemId)
+{
+    return KeylessCrateIDs.Find(ItemId != -1;
 }
 
 function bool IsItemActive(int ItemDefinition)
@@ -366,7 +427,9 @@ function bool IsItemActive(int ItemDefinition)
 
 function LocalizeText()
 {
-    local GFxObject LocalizedObject;
+    local GFxObject LocalizedObject, WeaponTypeList, RarityList, PerkList, TempObject;
+
+    local int I;
 
     LocalizedObject = Outer.CreateObject("Object");
     LocalizedObject.SetString("noItems", ((KFGameEngine(Class'Engine'.static.GetEngine()).bReadingPlayfabStoreData) ? InventoryPopulatingString : NoItemsString));
@@ -386,6 +449,72 @@ function LocalizeText()
     LocalizedObject.SetString("filters", FiltersString);
     LocalizedObject.SetString("craftWeapon", CraftWeaponString);
     LocalizedObject.SetString("craftCosmetic", CraftCosmeticString);
+    LocalizedObject.SetString("filterName_0", RarityFilterString);
+    LocalizedObject.SetString("filterName_1", PerkFilterString);
+    LocalizedObject.SetString("filterName_2", WeaponTypeFilterString);
+    RarityList = Outer.CreateArray();
+    I = 0;
+    J0x4DC:
+
+    if(I <= 6)
+    {
+        TempObject = Outer.CreateObject("Object");
+        if(I == 6)
+        {
+            TempObject.SetString("label", Class'KFCommon_LocalizedStrings'.default.NoPreferenceString);            
+        }
+        else
+        {
+            TempObject.SetString("label", Class'KFCommon_LocalizedStrings'.default.RarityStrings[I]);
+        }
+        RarityList.SetElementObject(I, TempObject);
+        ++ I;
+        goto J0x4DC;
+    }
+    PerkList = Outer.CreateArray();
+    I = 0;
+    J0x639:
+
+    if(I <= KFPC.PerkList.Length)
+    {
+        TempObject = Outer.CreateObject("Object");
+        if(I == KFPC.PerkList.Length)
+        {
+            TempObject.SetString("label", Class'KFCommon_LocalizedStrings'.default.NoPreferenceString);            
+        }
+        else
+        {
+            TempObject.SetString("label", KFPC.PerkList[I].PerkClass.default.PerkName);
+        }
+        PerkList.SetElementObject(I, TempObject);
+        ++ I;
+        goto J0x639;
+    }
+    WeaponTypeList = Outer.CreateArray();
+    I = 0;
+    J0x7F8:
+
+    if(I <= 10)
+    {
+        TempObject = Outer.CreateObject("Object");
+        if(I == 10)
+        {
+            TempObject.SetString("label", Class'KFCommon_LocalizedStrings'.default.NoPreferenceString);            
+        }
+        else
+        {
+            TempObject.SetString("label", Class'KFCommon_LocalizedStrings'.default.WeaponTypeStrings[I]);
+        }
+        WeaponTypeList.SetElementObject(I, TempObject);
+        ++ I;
+        goto J0x7F8;
+    }
+    LocalizedObject.SetInt("filterIndex_0", CurrentRarityFilter);
+    LocalizedObject.SetInt("filterIndex_1", CurrentPerkIndexFilter);
+    LocalizedObject.SetInt("filterIndex_2", CurrentWeaponTypeFilter);
+    LocalizedObject.SetObject("filterData_0", RarityList);
+    LocalizedObject.SetObject("filterData_1", PerkList);
+    LocalizedObject.SetObject("filterData_2", WeaponTypeList);
     SetObject("localizedText", LocalizedObject);
 }
 
@@ -847,9 +976,9 @@ function Callback_UseItem(int ItemDefinition)
         Callback_CraftOption(TempItemIdHolder);
         return;
     }
-    if(CurrItem.RequiredKeyId != "")
+    if((CurrItem.RequiredKeyId != "") || (IsKeylessCrate(ItemDefinition)) && Class'WorldInfo'.static.IsConsoleBuild())
     {
-        if(OnlineSub.HasKeyForItem(ItemDefinition, NeededItemID))
+        if(OnlineSub.HasKeyForItem(ItemDefinition, NeededItemID) || IsKeylessCrate(ItemDefinition))
         {
             PlayfabInter.UnlockContainer(string(ItemDefinition));
             SetVisible(false);
@@ -861,11 +990,11 @@ function Callback_UseItem(int ItemDefinition)
     {
         OnlineSub.IsExchangeable(TempItemIdHolder, ExchangeRules);
         RuleIndex = 0;
-        J0x1D8:
+        J0x22D:
 
         if(RuleIndex < ExchangeRules.Length)
         {
-            if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]) && ExchangeRules[RuleIndex].Sources.Length == 2)
+            if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]) && (ExchangeRules[RuleIndex].Sources.Length == 2) || IsKeylessCrate(ItemDefinition))
             {
                 PerformExchange(ExchangeRules[RuleIndex]);
                 SetVisible(false);
@@ -874,12 +1003,12 @@ function Callback_UseItem(int ItemDefinition)
                 bExchangeFound = true;
             }
             ++ RuleIndex;
-            goto J0x1D8;
+            goto J0x22D;
         }
         if(!bExchangeFound)
         {
             RuleIndex = 0;
-            J0x324:
+            J0x391:
 
             if(RuleIndex < ExchangeRules.Length)
             {
@@ -893,14 +1022,14 @@ function Callback_UseItem(int ItemDefinition)
                     {
                         NeededItemID = ExchangeRules[RuleIndex].Sources[0].Definition;
                     }
-                    goto J0x451;
+                    goto J0x4BE;
                 }
                 ++ RuleIndex;
-                goto J0x324;
+                goto J0x391;
             }
         }
     }
-    J0x451:
+    J0x4BE:
 
     if(NeededItemID > 0)
     {
@@ -962,6 +1091,24 @@ function Callback_CraftOption(int ItemDefinition)
         goto J0x4F;
     }
     Manager.DelayedOpenPopup(2, 0, FailedToCraftItemString, CraftRequirementString, Class'KFCommon_LocalizedStrings'.default.OKString);
+}
+
+function Callback_WeaponTypeFilterChanged(int NewFilterIndex)
+{
+    CurrentWeaponTypeFilter = byte(NewFilterIndex);
+    InitInventory();
+}
+
+function Callback_RarityTypeFilterChanged(int NewFilterIndex)
+{
+    CurrentRarityFilter = byte(NewFilterIndex);
+    InitInventory();
+}
+
+function Callback_PerkTypeFilterChanged(int NewFilterIndex)
+{
+    CurrentPerkIndexFilter = NewFilterIndex;
+    InitInventory();
 }
 
 function CallBack_RequestCosmeticCraftInfo()
@@ -1033,6 +1180,9 @@ Cosmetic"
     RequiresString="Requires: "
     PurchaseKeyString="BUY KEY"
     LookUpOnMarketString="Lookup on Market"
+    RarityFilterString="RARITY"
+    WeaponTypeFilterString="WEAPON TYPE"
+    PerkFilterString="PERK"
     UncommonCosmeticID=3708
     RareCosmeticID=3709
     ExceptionalCosmeticID=3710
@@ -1052,4 +1202,11 @@ Cosmetic"
     SpecialEventItemIDs(0)=4896
     SpecialEventItemIDs(1)=4928
     SpecialEventItemIDs(2)=4929
+    SpecialEventItemIDs(3)=5247
+    SpecialEventItemIDs(4)=5246
+    SpecialEventItemIDs(5)=5245
+    SpecialEventItemIDs(6)=5304
+    KeylessCrateIDs(0)=5313
+    CurrentWeaponTypeFilter=EInventoryWeaponType_Filter.EInvWT_None
+    CurrentRarityFilter=ItemRarity.ITR_NONE
 }

@@ -14,6 +14,8 @@ defaultproperties
 	// Normal difficulty
 	Normal={(HealthMod=0.750000,
 		HeadHealthMod=0.750000,
+		DamageMod=0.5,  //1
+		SoloDamageMod=0.5,
 		EvadeOnDamageSettings={(Chance=0.1, DamagedHealthPctToTrigger=0.01)},
 		RallySettings={(bCanRally=false)}
 	)}

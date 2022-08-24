@@ -26,7 +26,7 @@ var CameraOffsets BackupOffsets;
 var CameraOffsets DeadOffsets;
 var export editinline PointLightComponent PointLightTemplate;
 var export editinline transient PointLightComponent PointLight;
-var KFPawn_Monster ViewedPawn;
+var KFInterface_MonsterBoss ViewedBoss;
 
 function OnBecomeActive(GameCameraBase NewCamera)
 {
@@ -45,14 +45,14 @@ function OnBecomeInActive(GameCameraBase NewCamera)
     }
     if(PointLight != none)
     {
-        if(ViewedPawn != none)
+        if(NotEqual_InterfaceInterface(ViewedBoss, (none)))
         {
-            ViewedPawn.DetachComponent(PointLight);
+            ViewedBoss.GetMonsterPawn().DetachComponent(PointLight);
         }
         PointLight.SetEnabled(false);
         PointLight = none;
     }
-    ViewedPawn = none;
+    ViewedBoss = none;
 }
 
 function UpdateCamera(Pawn P, GamePlayerCamera CameraActor, float DeltaTime, out TViewTarget OutVT)
@@ -61,23 +61,23 @@ function UpdateCamera(Pawn P, GamePlayerCamera CameraActor, float DeltaTime, out
     local Rotator Rot;
     local CameraOffsets FinalOffsets;
 
-    if(ViewedPawn == none)
+    if(EqualEqual_InterfaceInterface(ViewedBoss, (none)))
     {
-        ViewedPawn = KFPawn_Monster(P);
+        ViewedBoss = KFInterface_MonsterBoss(P);
     }
     if(((P != none) && PointLight != none) && !PointLight.bAttached)
     {
-        if(ViewedPawn != none)
+        if(NotEqual_InterfaceInterface(ViewedBoss, (none)))
         {
-            ViewedPawn.AttachComponent(PointLight);
+            ViewedBoss.GetMonsterPawn().AttachComponent(PointLight);
         }
         PointLight.SetTranslation(Loc - OutVT.Target.Location);
     }
-    if(((ViewedPawn != none) && ViewedPawn.bUseAnimatedTheatricCamera) && ViewedPawn.TheatricCameraSocketName != 'None')
+    if((NotEqual_InterfaceInterface(ViewedBoss, (none)) && ViewedBoss.UseAnimatedBossCamera()) && ViewedBoss.GetBossCameraSocket() != 'None')
     {
-        ViewedPawn.Mesh.GetSocketWorldLocationAndRotation(ViewedPawn.TheatricCameraSocketName, Loc, Rot);
+        ViewedBoss.GetMonsterPawn().Mesh.GetSocketWorldLocationAndRotation(ViewedBoss.GetBossCameraSocket(), Loc, Rot);
         GetAxes(Rot, X, Y, Z);
-        Loc += (((X * ViewedPawn.TheatricCameraAnimOffset.X) + (Y * ViewedPawn.TheatricCameraAnimOffset.Y)) + (Z * ViewedPawn.TheatricCameraAnimOffset.Z));
+        Loc += (((X * ViewedBoss.GetBossCameraOffset().X) + (Y * ViewedBoss.GetBossCameraOffset().Y)) + (Z * ViewedBoss.GetBossCameraOffset().Z));
         OutVT.POV.Location = Loc;
         OutVT.POV.Rotation = Rot;
         PlayerCamera.ApplyCameraModifiers(DeltaTime, OutVT.POV);        
@@ -120,6 +120,7 @@ defaultproperties
         FalloffExponent=10
         LightColor=(B=255,G=255,R=255,A=255)
         bEnabled=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
     object end
     // Reference: PointLightComponent'Default__KFBossCamera.PointLightTemplate'

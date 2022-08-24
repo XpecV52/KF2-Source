@@ -18,6 +18,11 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_HansFriendlyTest:MeleeHelper_0'
+   FireInterval(0)=0.050000
+   FireInterval(1)=()
+   FireInterval(2)=()
+   FireInterval(3)=()
+   FireInterval(4)=()
    Spread(0)=0.025000
    InstantHitDamage(0)=35.000000
    InstantHitDamage(1)=()

@@ -33,6 +33,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp0"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -42,6 +43,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp0_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -51,6 +53,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp1"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -60,6 +63,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp1_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -69,6 +73,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp2"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -78,6 +83,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp2_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -87,6 +93,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp3"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -96,6 +103,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp3_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -105,6 +113,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp4"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
@@ -114,6 +123,7 @@ defaultproperties
       SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
       ReplacementPrimitive=None
       DepthPriorityGroup=SDPG_Foreground
+      bUseAsOccluder=False
       CastShadow=False
       Name="BulletMeshComp4_L"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'

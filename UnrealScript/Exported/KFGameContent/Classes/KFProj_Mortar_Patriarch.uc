@@ -29,6 +29,7 @@ defaultproperties
       CastShadows=False
       CastStaticShadows=False
       CastDynamicShadows=False
+      bCastPerObjectShadows=False
       LightingChannels=(Outdoor=True)
       Name="FlightPointLight"
       ObjectArchetype=PointLightComponent'kfgamecontent.Default__KFProj_Missile_Patriarch:FlightPointLight'

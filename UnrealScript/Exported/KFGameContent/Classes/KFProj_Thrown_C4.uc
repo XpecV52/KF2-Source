@@ -712,6 +712,7 @@ defaultproperties
       CastShadows=False
       CastStaticShadows=False
       CastDynamicShadows=False
+      bCastPerObjectShadows=False
       LightingChannels=(Outdoor=True)
       Name="BlinkPointLight"
       ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'

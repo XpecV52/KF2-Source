@@ -146,7 +146,10 @@ package com.greensock.plugins
                         while(_loc12_ < _loc14_)
                         {
                             _loc15_ = _loc13_[_loc12_ + 1].da / _r2[_loc12_] + _loc13_[_loc12_].da / _r1[_loc12_];
-                            _r3[_loc12_] = (_r3[_loc12_] || 0) + _loc15_ * _loc15_;
+                            §§push(_r3);
+                            §§push(_loc12_);
+                            §§push(_r3[_loc12_] || 0);
+                            §§pop()[§§pop()] = §§pop() + _loc15_ * _loc15_;
                             _loc12_++;
                         }
                     }

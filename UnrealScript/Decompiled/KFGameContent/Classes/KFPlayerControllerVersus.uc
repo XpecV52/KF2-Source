@@ -75,6 +75,14 @@ function AwardZedDamage(int DamageAmount, bool bDamagerIsMe)
     ZedXPAmount += DamageAmount;
 }
 
+function AddTrackedDamage(int Amount, class<DamageType> DamageType, class<Pawn> DamagerClass, class<Pawn> VictimClass)
+{
+    if(VictimClass == Class'KFPawn_Human_Versus')
+    {
+        AddTrackedVsDamage(Amount, DamagerClass);
+    }
+}
+
 function bool ShouldDisplayGameplayPostProcessFX()
 {
     return super.ShouldDisplayGameplayPostProcessFX() || ((GetTeamNum() == 255) && Pawn != none) && ((float(Pawn.Health) / float(Pawn.HealthMax)) * 100) <= float(default.LowHealthThreshold);
@@ -85,17 +93,17 @@ function RecieveChatMessage(PlayerReplicationInfo PRI, string ChatMessage, name 
     if(PRI.bAdmin)
     {
         ChatMessage = Class'KFLocalMessage'.default.AdminString $ ChatMessage;
-        MyGFxHUD.HudChatBox.AddChatMessage(ChatMessage, Class'KFLocalMessage'.default.PriorityColor);        
+        myGfxHUD.HudChatBox.AddChatMessage(ChatMessage, Class'KFLocalMessage'.default.PriorityColor);        
     }
     else
     {
         if(Type == 'TeamSay')
         {
-            MyGFxHUD.HudChatBox.AddChatMessage(ChatMessage, Class'KFLocalMessage'.default.TeamSayColor);            
+            myGfxHUD.HudChatBox.AddChatMessage(ChatMessage, Class'KFLocalMessage'.default.TeamSayColor);            
         }
         else
         {
-            MyGFxHUD.HudChatBox.AddChatMessage(ChatMessage, Class'KFLocalMessage'.default.SayColor);
+            myGfxHUD.HudChatBox.AddChatMessage(ChatMessage, Class'KFLocalMessage'.default.SayColor);
         }
     }
 }
@@ -103,7 +111,7 @@ function RecieveChatMessage(PlayerReplicationInfo PRI, string ChatMessage, name 
 unreliable client simulated function NotifyOfAutoBalance()
 {
     MyGFxManager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.TeamSwappedString, Class'KFCommon_LocalizedStrings'.default.OKString);
-    MyGFxHUD.ShowNonCriticalMessage(Class'KFCommon_LocalizedStrings'.default.TeamSwappedString);
+    myGfxHUD.ShowNonCriticalMessage(Class'KFCommon_LocalizedStrings'.default.TeamSwappedString);
 }
 
 exec function ChangeTeam(optional string TeamName)

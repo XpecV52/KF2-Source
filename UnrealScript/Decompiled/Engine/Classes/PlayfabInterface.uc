@@ -38,6 +38,8 @@ var private bool bServerAllocated;
 var private bool bServerDeallocated;
 var private const int LastAuthRefreshTime;
 var private const int SecondsForAuthRefreshTime;
+var int LoginAttempts;
+var private const int MaxRetryLoginAttempts;
 var private const config string CatalogName;
 var const config array<config RegionDefinition> KnownRegions;
 var string CurrRegionName;
@@ -186,7 +188,10 @@ native function string GetTitleDataForKey(string InKey);
 native function UnlockContainer(string ContainerId);
 
 // Export UPlayfabInterface::execConsumeEntitlements(FFrame&, void* const)
-native function ConsumeEntitlements();
+native function ConsumeEntitlements(optional bool bWasPurchase)
+{
+    bWasPurchase = false;            
+}
 
 // Export UPlayfabInterface::execFindOnlineGames(FFrame&, void* const)
 native function bool FindOnlineGames(OnlineGameSearch SearchSettings);
@@ -472,6 +477,7 @@ private native final function OnlineServiceAuthComplete(string ForURL, string To
 defaultproperties
 {
     SecondsForAuthRefreshTime=3600
+    MaxRetryLoginAttempts=3
     PlayfabNPServiceLabel=1
     HeartbeatInterval=60
     ReregisterInterval=10

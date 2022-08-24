@@ -252,9 +252,6 @@ simulated function AddRandomOption( int OptionID, out byte NumOptions, out int B
 		}
 	}
 
-	`log("KFTraderDialogManager::AddRandomOption " $ TraderVoiceGroupClass.default.DialogEvents[OptionID].AudioCue);
-    ScriptTrace();
-
 	NumOptions++;
 	if( Frand() <= 1.f / float(NumOptions) )
 	{
@@ -623,6 +620,11 @@ simulated function PlayOpenTraderMenuDialog( KFPlayerController KFPC )
 simulated function PlayObjectiveDialog( Controller C, int ObjDialogID )
 {
 	PlayDialog( ObjDialogID, C );
+}
+
+function PlayLastManStandingDialog( WorldInfo WI )
+{
+	PlayGlobalDialog( `TRAD_LastManStanding, WI );	
 }
 
 /** Plays dialog if selected item in trader menu is unobtainable */

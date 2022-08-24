@@ -64,6 +64,7 @@ simulated function PlayImpactEffects(const vector HitLocation, const Pawn Effect
 	local MaterialImpactEffect ImpactEffect;
     local KFImpactEffectInfo ImpactEffectInfo;
 	local KFFracturedMeshActor FracturedMeshActor;
+	local int i;
 
 	// allow optional parameter to override impact effects
 	ImpactEffectInfo = (CustomImpactEffects != None) ? CustomImpactEffects : DefaultImpactEffects;	
@@ -139,6 +140,12 @@ simulated function PlayImpactEffects(const vector HitLocation, const Pawn Effect
 					HitNormal = normal(FireDir - ( 2 *  HitNormal * (FireDir dot HitNormal) ) ) ;
 				}
 				WorldInfo.MyEmitterPool.SpawnEmitter(ImpactEffect.ParticleTemplate, HitLocation, rotator(HitNormal), HitActor);
+			}
+
+			//Spawn any global emitters
+			for (i = 0; i < ImpactEffectInfo.GlobalImpactEffectEffects.Length; ++i)
+			{
+				WorldInfo.MyEmitterPool.SpawnEmitter(ImpactEffectInfo.GlobalImpactEffectEffects[i], HitLocation, rotator(HitNormal), HitActor);
 			}
 
 			if ( !WorldInfo.bDropDetail

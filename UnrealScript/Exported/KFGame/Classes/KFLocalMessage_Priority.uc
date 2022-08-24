@@ -31,6 +31,7 @@ var localized string			ZedGroupRegroupingString;
 var localized string 			NextRoundBeginString;
 var localized string 			PlayerCanChangePerksString;
 var localized string 			ZedWaitingForNextRoundString;
+var localized string 			LastPlayerStandingString;
 
 enum EGameMessageType
 {
@@ -49,7 +50,8 @@ enum EGameMessageType
 	GMT_ZedsWin,
 	GMT_HumansWin,
 	GMT_AttackHumanPlayers,
-	GMT_NextRoundBegin
+	GMT_NextRoundBegin,
+	GMT_LastPlayerStanding,
 };
 
 static function ClientReceive(
@@ -65,6 +67,8 @@ static function ClientReceive(
 	local KFGameReplicationInfo KFGRI;
 	local TeamInfo TeamInfo;
 	local byte TeamIndex;
+	local KFPlayerController KFPC;
+	KFPC = KFPlayerController(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
 
 	TeamIndex = P.PlayerReplicationInfo.GetTeamNum();
 	if( OptionalObject != none )
@@ -77,10 +81,10 @@ static function ClientReceive(
 	}
 
 	MessageString = static.GetMessageString( Switch, SecondaryMessageString, TeamIndex );
-	if ( MessageString != "" && KFGFxHudWrapper(p.myHUD) != none)
+	if ( MessageString != "" && KFGFxHudWrapper(p.myHUD) != none && ShouldShowPriortyMessage(P, Switch))
 	{
 	    myGfxHUD = KFGFxHudWrapper(p.myHUD).HudMovie;
-		if ( myGfxHUD != None )
+		if ( myGfxHUD != None  )
 		{
             myGfxHUD.DisplayPriorityMessage(MessageString,SecondaryMessageString,static.GetMessageLifeTime(Switch) );
 		}
@@ -91,6 +95,10 @@ static function ClientReceive(
 		case GMT_WaveStart:
 			if(!P.PlayerReplicationInfo.bOnlySpectator && P.PlayerReplicationInfo.bReadyToPlay)
 			{
+				if(KFPC != none && KFPC.LEDEffectsManager != none)
+				{
+					KFPC.LEDEffectsManager.PlayEffectWaveIncoming();
+				}
 				CloseMenus();
 			}	
 			class'KFMusicStingerHelper'.static.PlayWaveStartStinger( P );
@@ -113,7 +121,10 @@ static function ClientReceive(
 			{
 				class'KFMusicStingerHelper'.static.PlayMatchWonStinger( P );
 			}
-			
+			if(KFPC != none && KFPC.LEDEffectsManager != none)
+			{
+				KFPC.LEDEffectsManager.PlayEffectShowMatchOutcome(P.PlayerReplicationInfo.GetTeamNum() != 255);
+			}
 			break;
 
 		case GMT_MatchLost:
@@ -125,7 +136,10 @@ static function ClientReceive(
 			{
 				class'KFMusicStingerHelper'.static.PlayMatchLostStinger( P );
 			}
-			
+			if(KFPC != none && KFPC.LEDEffectsManager != none)
+			{
+				KFPC.LEDEffectsManager.PlayEffectShowMatchOutcome(P.PlayerReplicationInfo.GetTeamNum() == 255);
+			}
 			break;
 
 		case GMT_HumansWin:
@@ -142,7 +156,10 @@ static function ClientReceive(
 			{
 				class'KFMusicStingerHelper'.static.PlayRoundWonStinger( P );
 			}
-			
+			if(KFPC != none && KFPC.LEDEffectsManager != none)
+			{
+				KFPC.LEDEffectsManager.PlayEffectShowMatchOutcome(P.PlayerReplicationInfo.GetTeamNum() != 255);
+			}
 			break;
 
 		case GMT_ZedsWin:
@@ -154,7 +171,10 @@ static function ClientReceive(
 			{
 				class'KFMusicStingerHelper'.static.PlayRoundLostStinger( P );
 			}
-			
+			if(KFPC != none && KFPC.LEDEffectsManager != none)
+			{
+				KFPC.LEDEffectsManager.PlayEffectShowMatchOutcome(P.PlayerReplicationInfo.GetTeamNum() == 255);
+			}
 			break;
 
 		// make sure only local player
@@ -178,6 +198,9 @@ static function ClientReceive(
 		// make sure only local player
 		case GMT_Died:
 			class'KFMusicStingerHelper'.static.PlayPlayerDiedStinger( P );
+			break;
+		case GMT_LastPlayerStanding:
+			//@TODO: Mark, do we have a stinger or dialog for this?
 			break;
 	};
 }
@@ -267,9 +290,28 @@ static function string GetMessageString(int Switch, optional out String Secondar
 				OpenPerkMenu();
 			}
 			return default.NextRoundBeginString;
+		case GMT_LastPlayerStanding:
+			return default.LastPlayerStandingString;
 		default:
 			return "";
 	}
+}
+
+static function bool ShouldShowPriortyMessage(PlayerController P, int Switch)
+{
+	local PlayerController PC;
+
+	if(Switch == GMT_LastPlayerStanding)
+	{
+		PC = class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController();
+		
+		if(PC != none && (PC.Pawn != none && PC.Pawn.Health > 0) )
+		{
+			return false;
+		}	
+	}
+	
+	return true;
 }
 
 static function CloseMenus()
@@ -321,6 +363,8 @@ static function float GetMessageLifeTime(int Switch)
 			return 2.f;
 		case GMT_NextRoundBegin:
 			return 5.f;
+		case GMT_LastPlayerStanding:
+			return 1.5f;
 	}
 
     return default.LifeTime;
@@ -349,6 +393,7 @@ defaultproperties
    NextRoundBeginString="N E X T  R O U N D"
    PlayerCanChangePerksString="Perk changes are allowed"
    ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
+   LastPlayerStandingString="LAST PLAYER STANDING"
    Name="Default__KFLocalMessage_Priority"
    ObjectArchetype=KFLocalMessage'KFGame.Default__KFLocalMessage'
 }

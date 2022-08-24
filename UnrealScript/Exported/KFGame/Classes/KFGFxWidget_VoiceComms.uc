@@ -225,6 +225,7 @@ defaultproperties
    IconPaths(6)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Affirmative"
    IconPaths(7)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Negative"
    IconPaths(8)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Emote"
+   IconPaths(9)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_ThankYou"
    MouseDampening=0.200000
    ControllerDampening=2.500000
    Name="Default__KFGFxWidget_VoiceComms"

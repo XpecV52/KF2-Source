@@ -65,6 +65,7 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;
 
 var const localized string SectionNameString;
 var const localized string GameSettingsString;
@@ -83,6 +84,7 @@ var const localized string UseAltAimOnDualString;
 var const localized string AntiMotionSicknessString;
 var const localized string AutoTurnOffString;
 var const localized string ReduceHighPitchNoiseString;
+var const localized string EnableMixerString;
 var const localized array<localized string> GoreOptionStrings;
 var float FOVMinValue;
 var float FOVMaxValue;
@@ -130,9 +132,8 @@ function LocalizeText()
     LocalizedObject.SetString("hideBossHealthBar", HideBossHealthBarString);
     LocalizedObject.SetString("showWelderInInv", ShowWelderInInvString);
     LocalizedObject.SetString("useAltAimOnDual", UseAltAimOnDualString);
-    LocalizedObject.SetString("antiMotionSickness", AntiMotionSicknessString);
     LocalizedObject.SetString("autoTurnOff", AutoTurnOffString);
-    LocalizedObject.SetString("reduceHighPitchNoise", ReduceHighPitchNoiseString);
+    LocalizedObject.SetString("enableMixer", EnableMixerString);
     SetObject("localizedText", LocalizedObject);
 }
 
@@ -162,9 +163,12 @@ function InitValues()
     DataObject.SetBool("hideBossHealthBar", Manager.CachedProfile.GetProfileBool(158));
     DataObject.SetBool("showWelderInInv", Manager.CachedProfile.GetProfileBool(160));
     DataObject.SetBool("useAltAimOnDual", Manager.CachedProfile.GetProfileBool(157));
-    DataObject.SetBool("antiMotionSickness", Manager.CachedProfile.GetProfileBool(159));
     DataObject.SetBool("autoTurnOff", Manager.CachedProfile.GetProfileBool(161));
-    DataObject.SetBool("reduceHighPitchNoise", Manager.CachedProfile.GetProfileBool(162));
+    if(Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        DataObject.SetBool("bDingo", true);
+        DataObject.SetBool("bMixerEnabled", Class'MixerIntegration'.static.IsMixerInteractionEnabled());
+    }
     SetObject("dataValues", DataObject);
 }
 
@@ -181,7 +185,25 @@ function SetFriendlyHudMinMax(float MinVol, float MaxVol)
 function Callback_CloseMenu()
 {
     Manager.CachedProfile.Save(byte(Outer.GetLP().ControllerId));
-    Manager.OpenMenu(5);
+    Manager.OpenMenu(6);
+}
+
+function Callback_ToggleMixer(bool bActive)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Outer.GetPC());
+    if(KFPC != none)
+    {
+        if(bActive)
+        {
+            KFPC.InitializeMixer();            
+        }
+        else
+        {
+            KFPC.ShutdownMixer();
+        }
+    }
 }
 
 function Callback_ToggleCrosshair(bool bShow)
@@ -471,6 +493,7 @@ defaultproperties
     AntiMotionSicknessString="Anti Motion Sickness"
     AutoTurnOffString="No Auto Turn On Clot Grab"
     ReduceHighPitchNoiseString="Reduce High Pitch Noise"
+    EnableMixerString="Enable Mixer"
     GoreOptionStrings(0)="Low Gore"
     GoreOptionStrings(1)="Medium Gore"
     GoreOptionStrings(2)="High Gore"

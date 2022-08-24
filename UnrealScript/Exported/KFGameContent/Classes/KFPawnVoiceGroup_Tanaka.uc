@@ -486,6 +486,8 @@ class KFPawnVoiceGroup_Tanaka extends KFPawnVoiceGroup;
 
 
 
+
+
 #linenumber 3
 
 defaultproperties

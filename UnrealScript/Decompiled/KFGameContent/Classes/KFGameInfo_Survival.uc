@@ -65,6 +65,8 @@ function InitSpawnManager()
 
 function StartMatch()
 {
+    local KFPlayerController KFPC;
+
     WaveNum = 0;
     super.StartMatch();
     if(Class'KFGameEngine'.static.CheckNoAutoStart() || Class'KFGameEngine'.static.IsEditor())
@@ -75,6 +77,10 @@ function StartMatch()
     {
         GotoState('PlayingWave');
     }
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        KFPC.ClientMatchStarted();        
+    }    
 }
 
 function PlayWaveStartDialog()
@@ -986,6 +992,10 @@ function EndOfMatch(bool bVictory)
         BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 3);
         SetZedsToVictoryState();
     }
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        KFPC.ClientMatchEnded();        
+    }    
     WorldInfo.TWPushLogs();
     GotoState('MatchEnded');
 }

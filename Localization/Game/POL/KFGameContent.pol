@@ -1,4 +1,4 @@
-//NOTES: 
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -379,6 +379,11 @@ ItemName="RPG-7"
 ItemCategory="Materiały wybuchowe"
 ItemDescription="•Tryb ataku: wystrzeliwuje rakietę.\n•Rakieta wybucha przy uderzeniu.\n•Uzbraja się dopiero po kilku metrach, żeby strzelający nie urwał sobie twarzy.\n•Uwaga na gazy wylotowe!"
 
+[KFWeap_RocketLauncher_Seeker6]
+ItemName="Seeker Six"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="•Tryb ataku: miotanie niekierowanych rakiet.\n•Celowanie w trybie alternatywnym aktywuje celownik laserowy i kierowane rakiety.\n•Wszechstronna, wysoce wybuchowa broń, która pozwala namierzać i atakować wiele celów jednocześnie."
+
 [KFWeap_Pistol_Dual9mm]
 ItemName="Dwa pistolety 9 mm"
 ItemCategory="Broń krótka"
@@ -475,6 +480,10 @@ ItemName="SMG Kriss"
 ItemCategory="Pistolet maszynowy"
 ItemDescription="•Tryb ataku: ogień ciągły lub pojedynczy.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Najnowsze osiągnięcie w dziedzinie zwartego skupienia pocisków. Prawdziwe narzędzie destrukcji."
 
+[KFWeap_Rifle_Hemogoblin]
+ItemName="Hemogoblin"
+ItemCategory="Karabin"
+ItemDescription="•Tryb ataku: miotanie strzykawkami, które ranią, spowalniają i osłabiają zety. \n•Tryb alternatywny pozwala strzelać strzałkami leczącymi członków drużyny.\n• Nie nadaje się do odchudzania."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

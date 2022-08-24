@@ -10,6 +10,18 @@ class KFAIController_Hans extends KFAIController_ZedBoss
     config(AI)
     hidecategories(Navigation);
 
+enum EHansNadeType
+{
+    HNT_None,
+    HNT_HEGrenade,
+    HNT_NerveGas,
+    HNT_Smoke,
+    HNT_HEGrenadeBarrage,
+    HNT_NerveGasBarrage,
+    HNT_SmokeBarrage,
+    HNT_MAX
+};
+
 struct native TrackedEnemyInfo
 {
     var KFPawn TrackedEnemy;
@@ -93,7 +105,7 @@ var(Firing) float GrenadeGunInterruptDelay;
 var float StartShootingRange;
 var float MinShootingRange;
 var float ShootingCooldown;
-var KFPawn_ZedHansBase.EHansNadeType CurrentNadeAttackType;
+var KFAIController_Hans.EHansNadeType CurrentNadeAttackType;
 /** How often to check if we want to do a grenade attack */
 var() float GrenadeAttackEvalInterval;
 var float LastGrenadeAttackEvalTime;
@@ -115,7 +127,7 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
     }
     LastRetargetTime = WorldInfo.TimeSeconds;
     ActualRetargetWaitTime = RandRange(RetargetWaitTimeRange.X, RetargetWaitTimeRange.Y);
-    super(KFAIController_Monster).Possess(inPawn, bVehicleTransition);
+    super.Possess(inPawn, bVehicleTransition);
 }
 
 function PawnDied(Pawn inPawn)

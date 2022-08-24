@@ -81,7 +81,7 @@ simulated function PlayDialog(int EventID, Controller C)
     {
         return;
     }
-    if((EventID < 0) || EventID >= 154)
+    if((EventID < 0) || EventID >= 155)
     {
         return;
     }
@@ -217,8 +217,6 @@ simulated function AddRandomOption(int OptionID, out byte NumOptions, out int Be
             }
         }
     }
-    LogInternal("KFTraderDialogManager::AddRandomOption " $ string(TraderVoiceGroupClass.default.DialogEvents[OptionID].AudioCue));
-    ScriptTrace();
     ++ NumOptions;
     if(FRand() <= (1 / float(NumOptions)))
     {
@@ -536,6 +534,11 @@ simulated function PlayOpenTraderMenuDialog(KFPlayerController KFPC)
 simulated function PlayObjectiveDialog(Controller C, int ObjDialogID)
 {
     PlayDialog(ObjDialogID, C);
+}
+
+function PlayLastManStandingDialog(WorldInfo WI)
+{
+    PlayGlobalDialog(154, WI);
 }
 
 simulated function PlaySelectItemDialog(Controller C, bool bTooExpensive, bool bTooHeavy)

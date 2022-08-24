@@ -112,9 +112,9 @@ function DoAutoPurchase()
             }
         }
     }
-    if(Outer.MyGFxHUD != none)
+    if(Outer.myGfxHUD != none)
     {
-        Outer.MyGFxHUD.ShowNonCriticalMessage(Class'KFCommon_LocalizedStrings'.default.AutoTradeCompleteString $ AutoFillMessageString);
+        Outer.myGfxHUD.ShowNonCriticalMessage(Class'KFCommon_LocalizedStrings'.default.AutoTradeCompleteString $ AutoFillMessageString);
     }
 }
 

@@ -62,9 +62,40 @@ FreeConsolePlayOverString="Merci de jouer à Killing Floor 2 ! L'événement gr
 BuyGameString="MAGASIN"
 CustomString="Personnalisé"
 
+RarityStrings[0]="COMMUN"
+RarityStrings[1]="PEU COMMUN"
+RarityStrings[2]="RARE"
+RarityStrings[3]="MYTHIQUE"
+RarityStrings[4]="LÉGENDAIRE"
+RarityStrings[5]="EXTRÊMEMENT RARE"
+RarityStrings[6]="TOUT"
+
+WeaponTypeStrings[0]="PISTOLET"
+WeaponTypeStrings[1]="FUSIL À POMPE"
+WeaponTypeStrings[2]="FUSIL"
+WeaponTypeStrings[3]="PROJECTILE"
+WeaponTypeStrings[4]="FEU"
+WeaponTypeStrings[5]="TECHNOLOGIE"
+WeaponTypeStrings[6]="LANCEUR"
+WeaponTypeStrings[7]="ASSAUT"
+WeaponTypeStrings[8]="MÊLÉE"
+WeaponTypeStrings[9]="MITRAILLETTE"
+WeaponTypeStrings[10]="TOUT"
+
+MixerGaveAmmoString=", un spectateur Mixer, vous a donné des munitions."
+MixerGaveArmorString=", un spectateur Mixer, vous a donné une armure."
+MixerGaveDoshString=", un spectateur Mixer, vous a donné du fric."
+MixerGaveGrenadeString=", un spectateur Mixer, vous a donné une grenade."
+MixerGaveHealthString=", un spectateur Mixer, a soigné vos blessures."
+MixerZedTimeString=", un spectateur Mixer, a activé le Zed time."
+MixerRageZedsString=", un spectateur Mixer, a enragé des Zeds proches."
+MixerPukeString=", un spectateur Mixer, vous a vomi dessus."
+MixerSpawnedFPString=", un spectateur Mixer, a fait apparaître un Barback."
+
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RÉCOMPENSE D'ACCOMPLISSEMENT D'ÉPIDÉMIE"
 WeeklyString="ÉPIDÉMIE HEBDOMADAIRE DE HORZINE"
+DailyObjectiveString="QUOTIDIENS"
 CurrentWeeklySettingsString="PARAMÈTRES DE L'ÉPIDÉMIE EN COURS"
 SpecialEventString="CIRQUE ESTIVAL"
 ShortWeeklyString="HEBDOMADAIRE"
@@ -72,9 +103,18 @@ SeasonalString="SAISONNIER"
 SpecialEventChanceDropString="OBJETS LIMITÉS"
 GrantedSpecialEventString="RÉCOMPENSE D'ACCOMPLISSEMENT"
 RewardsString="RÉCOMPENSE D'ACCOMPLISSEMENT D'ÉPIDÉMIE"
+RewardString="RÉCOMPENSE"
 WeeklyOverview="Un nouveau mode de jeu chaque semaine !"
 ObjectivesString="Afficher/masquer les objectifs"
+VaultDoshString="Fric du coffre"
 
+DealDamageString="Infliger des dégâts :"
+EarnXPString="Gagner de l'XP :"
+CompleteMapString="Gagner le match sur la carte :"
+KillZedsString="Tuer des Zeds :"
+VersusKillsString="Tuer un joueur versus en tant que :"
+DealVersusDamageString="Blesser un joueur versus en tant que :"
+VersusCompletionString="Finir le match en tant que :"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="AUCUN MATCH TROUVÉ"
@@ -701,7 +741,7 @@ PartyLeaderInOtherMenuString="est dans un autre menu..."
 SearchingForGameString="Recherche de partie en ligne..."
 
 PartHostLeftString="L'hôte du groupe est parti"
-PartyLeaderChangedString="est le nouvel hôte du groupe"
+PartyLeaderChangedString="Hôte du groupe choisi"
 
 MuteString="Muet"
 UnmuteString="Activer voix"
@@ -717,6 +757,16 @@ PartyLeaderString="Leader"
 [KFGFxWidget_PartyInGame_Versus]
 SwitchTeamsString="CHANG. D'ÉQUIPE"
 balanceWarningString="AVERTISSEMENT : Rééquilibre d'équipe auto"
+
+[KFGFxMenu_DoshVault]
+YourDoshString="Votre fric"
+NextRewardString="Prochaine récompense"
+OpenCrateString="Ouvrir la caisse"
+DoshVaultString="COFFRE À FRIC"
+YourCratesString="Vos caisses :"
+OpenCratesString="Ouvrir la(les) caisse(s)"
+CrateUnlockedString="CAISSE DÉBLOQUÉE !"
+DelayedCrateString="* La Caisse Coffre à fric pourrait n'être attribuée qu'au prochain redémarrage"
 
 [KFGFxMenu_Gear]
 GearHeaderString="PERSONNALISER L'ÉQUIPEMENT"
@@ -775,6 +825,9 @@ CraftWeaponDescriptionString="Vous pouvez fabriquer de nouveaux éléments de mo
 RequiresString="Nécessite : "
 PurchaseKeyString="ACHETER CLÉ"
 LookUpOnMarketString="Rechercher Marché"
+RarityFilterString="RARETÉ"
+PerkFilterString="CLASSE"
+WeaponTypeFilterString="TYPE D'ARME"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -836,10 +889,11 @@ ConfirmString="SÉLÉCTIONNER"
 MenuStrings[0]="ACCUEIL"
 MenuStrings[1]="CLASSES"
 MenuStrings[2]="ÉQUIPEMENT"
-MenuStrings[3]="INVENTAIRE"
-MenuStrings[4]="MAGASIN"
-MenuStrings[5]="OPTIONS"
-MenuStrings[6]="SORTIE"
+MenuStrings[3]="COFFRE"
+MenuStrings[4]="INVENTAIRE"
+MenuStrings[5]="MAGASIN"
+MenuStrings[6]="OPTIONS"
+MenuStrings[7]="SORTIE"
 
 ServerBrowserString="NAVIG. SERVEURS"
 MatchmakingString="MATCHMAKING"
@@ -917,6 +971,7 @@ VoiceCommsOptionStrings[5]="À LA MARCHANDE"
 VoiceCommsOptionStrings[6]="AFFIRMATIF"
 VoiceCommsOptionStrings[7]="NÉGATIF"
 VoiceCommsOptionStrings[8]="EMOTE"
+VoiceCommsOptionStrings[9]="MERCI"
 
 [KFGFxMenu_Exit]
 HeaderString="QUITTER LA PARTIE"
@@ -1132,6 +1187,8 @@ AntiMotionSicknessString="Anti mal des transports"
 AutoTurnOffString="Pas vir. auto. si attrapé"
 ReduceHighPitchNoiseString="Réduction du bruit élevé"
 DisableAutoUpgradeString="Désactiver la mise à niveau automatique"
+
+EnableMixerString="Bouton d'interaction du Mixer"
 
 [LocalizedControls]
 ControllerLayoutDefault="Par défaut"
@@ -1362,6 +1419,7 @@ ZedGroupRegroupingString="La Horde Zed se regroupe !"
 NextRoundBeginString="M A N C H E S U I V A N T E"
 PlayerCanChangePerksString="Changements de classes autorisés"
 ZedWaitingForNextRoundString="Invasion de la Horde Zed imminente !"
+LastPlayerStandingString="DERNIER JOUEUR DEBOUT"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="UTILISER MARCHANDE<%HOLD%>AMÉLIO. AUTO"
@@ -1596,8 +1654,8 @@ SkillCatagories[4]="Entraînement avancé"
 
 Passives[0]=(Title="Dégâts de Fou furieux",Description="Dégâts de l'arme de classe + x%x par niveau");
 Passives[1]=(Title="Résistance aux dégâts",Description="Résistance aux dégâts + x%x tous les 5 niveaux");
-Passives[2]=(Title="+Vision nocturne",Description="Lampe torche - ET Lunettes de vision nocturne");
-Passives[3]=(Title="+Insaisissable par Andouilles",Description="Andouilles ne tiennent pas Fou furieux");
+Passives[2]=(Title="Vision nocturne",Description="Lampe torche - Lunettes de vision nocturne");
+Passives[3]=(Title="Insaisissable par Andouilles",Description="Andouilles n'agrippent pas Fous furieux");
 
 EXPAction1="Infliger des dégâts d'arme de Fou furieux"
 EXPAction2="Tuer des Zeds près d'un J avec arme de Fou furieux"
@@ -1645,8 +1703,8 @@ Passives[0]=(Title="Dégâts d'arme de classe",Description="Dégâts de l'arme d
 Passives[1]=(Title="Détection des ennemis & barres de santé",Description="Portée de 5 m -%x% m par niveau");
 Passives[2]=(Title="Extension du Zed Time",Description="Le Zed time augmente de %x% tous les 5 niveaux");
 Passives[3]=(Title="Vitesse rechargement",Description="Rechargement arme de classe +%x%% tous les 5 niveaux");
-Passives[4]=(Title="+Vision nocturne",Description="Lampes torches - ET Lunettes de vision nocturne");
-Passives[5]=(Title="+Révéler les Zeds",Description="Permet aux équipiers de voir les unités camouflées");
+Passives[4]=(Title="Vision nocturne",Description="Lampes torches - Lunettes vision nocturne");
+Passives[5]=(Title="Révéler les Zeds",Description="Les équipiers voient les unités camouflées");
 
 EXPAction1="Infliger des dégâts d'arme de Commando"
 EXPAction2="Tuer des Rôdeuses avec armes de Commando"
@@ -1695,8 +1753,8 @@ SkillCatagories[4]="Explosifs avancés"
 Passives[0]=(Title="Dégâts d'arme de classe",Description="Dégâts de l'arme de classe + %x% par niveau");
 Passives[1]=(Title="Résistance aux explosifs",Description="Résistance aux explosifs +10 %, et +%x% par niveau");
 Passives[2]=(Title="Munitions explosives sup",Description="+%x% munitions explosives tous les 5 niveaux");
-Passives[3]=(Title="+Fournisseur de grenades",Description="Donnez aux équipiers une grenade à chaque vague");
-Passives[4]=(Title="+Portes piégées",Description="Les portes que vous soudez explosent une fois détruites");
+Passives[3]=(Title="Fournisseur de grenades",Description="Une grenade à chaque vague aux équipiers");
+Passives[4]=(Title="Portes piégées",Description="Les portes que vous soudez exploseront");
 Passives[5]=(Title="Armure réactive",Description="La première fois que vous arrivez à 0 points de Santé, votre armure explose et vous laisse 1 point de Santé");
 
 
@@ -2209,6 +2267,7 @@ USBSpitfire="Clé USB Cracheur de feu - 2,49 $"
 USBHighVoltage="Clé USB Haute tension - 2,49 $"
 MerchSale="Super promo KF2 ! -25 % jusqu'au 30/04. Code : ZED"
 
+
 [Zeds]
 KFPawn_ZedBloat="Bouffi"
 KFPawn_ZedClot="Andouille"
@@ -2229,6 +2288,7 @@ KFPawn_ZedClot_AlphaKing="Alpha élite"
 KFPawn_ZedScrake="Dingue"
 KFPawn_ZedSiren="Sirène"
 KFPawn_ZedPatriarch="Patriarche"
+
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bouffi - Joueur"
 KFPawn_ZedClot_Versus="Andouille - Joueur"
@@ -2376,6 +2436,15 @@ AllCompleteRewardDescriptionString="Combinaison de cirque Hazmat"
 
 ChanceDropDescriptionStrings[0]="Ticket de récompense du cirque"
 ChanceDropDescriptionStrings[1]="Ticket doré du cirque"
+
+;============================================
+; Daily Localization
+;============================================
+[KFGFxDailyObjectivesContainer]
+TitleString="OBJECTIFS QUOTIDIENS"
+OverviewString="Les Objectifs Quotidiens sont déterminés aléatoirement et changent chaque jour. Remplir les Objectifs Quotidiens rapporte du Fric pour votre Coffre à Fric."
+SubtitleString="Objectifs quotidiens en cours."
+KnifeString="Couteau"
 
 ;============================================
 ; Weekly Localization
@@ -2716,6 +2785,22 @@ DisplayName_POL="Królestwo Tragedii"
 DisplayName_PTB="Reino Trágico"
 DisplayName_RUS="Королевство Трагедий"
 
+[KF-Nightmare KFMapSummary]
+DisplayName_CHN="梦魇"
+DisplayName_CHT="夢魘"
+DisplayName_DEU="Albtraum"
+DisplayName_ESL="Pesadilla"
+DisplayName_ESN="Pesadilla"
+DisplayName_FRA="Cauchemar"
+DisplayName_FRC="Cauchemar"
+DisplayName_INT="Nightmare"
+DisplayName_ITA="Incubo"
+DisplayName_JPN="悪夢"
+DisplayName_KOR="악몽"
+DisplayName_POL="Koszmar"
+DisplayName_PTB="Pesadelo"
+DisplayName_RUS="Кошмар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Labo biotique"
 
@@ -2769,6 +2854,9 @@ DisplayName="Atomisé"
 
 [KF-TragicKingdom KFMapSummary]
 DisplayName="Le Royaume déchanté"
+
+[KF-Nightmare KFMapSummary]
+DisplayName="Cauchemar"
 
 [KFMapInfo]
 ; defaults

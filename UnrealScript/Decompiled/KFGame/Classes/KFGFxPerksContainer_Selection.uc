@@ -136,14 +136,14 @@ function SetPendingPerkChanges(string PerkClassName, string PerkIconPath, string
     ActionScriptVoid("setPendingPerkChanges");
 }
 
-function SavePerk(int PerkID)
+function SavePerk(int PerkId)
 {
     local KFPlayerController KFPC;
 
     KFPC = KFPlayerController(Outer.GetPC());
     if(KFPC != none)
     {
-        KFPC.RequestPerkChange(byte(PerkID));
+        KFPC.RequestPerkChange(byte(PerkId));
         if(KFPC.CanUpdatePerkInfo())
         {
             KFPC.SetHaveUpdatePerk(true);

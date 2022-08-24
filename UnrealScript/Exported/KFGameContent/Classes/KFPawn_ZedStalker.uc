@@ -286,7 +286,7 @@ function CallOutCloakingExpired()
 }
 
 /** Applies the rally buff and spawns a rally effect */
-simulated function Rally(
+simulated function bool Rally(
 							KFPawn 			RallyInstigator,
 							ParticleSystem 	RallyEffect,
 							name 			EffectBoneName,
@@ -315,7 +315,7 @@ simulated function Rally(
 		}
 	}
 
-	super.Rally( RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects );
+	return super.Rally( RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects );
 }
 
 /* PlayDying() is called on server/standalone game when killed
@@ -496,7 +496,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.500000))
    IncapSettings(9)=(Duration=4.000000,Cooldown=1.500000,Vulnerability=(2.500000))
    IncapSettings(10)=(Cooldown=20.500000,Vulnerability=(0.500000))
-   IncapSettings(11)=(Vulnerability=(0.500000))
+   IncapSettings(11)=(Vulnerability=(2.000000))
    PhysRagdollImpulseScale=0.900000
    KnockdownImpulseScale=0.900000
    SprintSpeed=500.000000

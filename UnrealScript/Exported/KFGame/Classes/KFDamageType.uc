@@ -498,6 +498,8 @@ class KFDamageType extends DamageType
 
 
 
+
+
 #linenumber 15
 
 var class<KFWeaponDefinition> WeaponDef;
@@ -544,6 +546,8 @@ var float DoT_Interval;
   * then the 5 damage would be applied at the DoT_Interval for DoT_Interval seconds
   */
 var float DoT_DamageScale;
+/** Whether or not to create a new DoT instance each time this damage type is applied */
+var bool bStackDoT;
 
 /*********************************************************************************************
 Status Effects
@@ -761,6 +765,14 @@ static function float GetOnDeathGoreScale()
 static simulated function bool CanDismemberHitZone(name InHitZoneName);
 
 /**
+* Allows the damage type to customize exactly which hit zones it can dismember while the zed is alive
+*/
+static simulated function bool CanDismemberHitZoneWhileAlive(name InHitZoneName)
+{
+    return true;
+}
+
+/**
  * Allows the damage type to map a hit zone to a different bone for dismemberment purposes.
  * This is used by some melee weapons to get a desired cut/slice effect.
  * NOTE: You do not need to set up this function for each dismemberment type. You only
@@ -810,10 +822,13 @@ static function int GetDamageeDialogID()
 	return INDEX_NONE;
 }
 
-/** Whether this damage type can apply damage over time */
-static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamageType> KFDT,  optional Controller InstigatedBy )
+/** Called when damage is dealt to apply additional damage type (e.g. Damage Over Time) */
+static function ApplySecondaryDamage( KFPawn Victim, int DamageTaken, optional Controller InstigatedBy )
 {
-	return default.DoT_Type != DOT_None;
+	if ( default.DoT_Type != DOT_None )
+	{
+		Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, default.class);
+	}
 }
 
 /** Play damage type specific impact effects when taking damage */

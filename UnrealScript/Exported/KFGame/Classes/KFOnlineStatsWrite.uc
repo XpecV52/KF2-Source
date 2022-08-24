@@ -71,6 +71,15 @@ const STATID_FleshpoundKills	 =			203;
  
 const STATID_SpecialEventProgress =     300;
 const STATID_WeeklyEventProgress =      301;
+const STATID_DailyEventInfo =           302;
+const STATID_DailyEventIDs =            303;
+const STATID_DailyEventStats1 =         304;
+const STATID_DailyEventStats2 =         305;
+
+ 
+const STATID_DoshVaultTotal =           400;
+const STATID_LastViewedDoshVaultTotal = 401;
+const STATID_DoshVaultProgress =		402;
 
  
 const STATID_AchievementPlaceholder	 =	500;
@@ -130,7 +139,8 @@ const STATID_ACHIEVE_HostileGroundsCollectibles		= 4032;
 const STATID_ACHIEVE_ZedLandingCollectibles			= 4035;
 const STATID_ACHIEVE_DescentCollectibles			= 4036;
 const STATID_ACHIEVE_NukedCollectibles				= 4037;
-const STATID_ACHIEVE_TragicKingdomCollectibles      = 4038;
+const STATID_ACHIEVE_TragicKingdomCollectibles		= 4038;
+const STATID_ACHIEVE_NightmareCollectibles			= 4039;
  
 #linenumber 15
 
@@ -238,10 +248,31 @@ var private int 	PersonalBest_LargeZedKil;
 var private int 	PersonalBest_Dosh;
 
 /** Cached Event Stats */
+//Seasonal event tracking
 var private int     SpecialEventInfo;
 var private int     InitialSpecialEventInfo;
+
+//Weekly Outbreak tracking
 var private int     WeeklyEventInfo;
 var private int     InitialWeeklyEventInfo;
+
+//Daily event completion/date tracking
+var private int     DailyEventInfo;
+//Whether or not to ignore reading of other daily event stats.  Allows for clearing of data if stats come in out of order.
+var private bool    bIgnoreDailyStatReads;
+//Selected IDs that the user is completing for their daily events
+var private int     DailyEventIDs;
+//Bit fields holding the persistent current stat for each daily objective.  Reserving 16 bit per objective
+var private int     DailyEventStats1;
+var private int     DailyEventStats2;
+
+/** Dosh Vault Stats */
+//Current total including any since passed events
+var private int     DoshVaultTotal;
+//Last total that the player viewed in the main menu.  Let's us VFX spam them with LastViewed - Current amount of dosh.
+var private int     LastViewedDoshVaultTotal;
+//Generic bit field for any progress stats we'll need for the dosh vault
+var private int		DoshVaultProgress;
 
 /** Achievement IDs **/
 // ids must be sequential (no gaps)
@@ -463,6 +494,12 @@ const KFACHID_TragicKingdomSuicidal             =   190;
 const KFACHID_TragicKingdomHellOnEarth          =   191;
 const KFACHID_TragicKingdomCollectibles         =   192;
 
+const KFACHID_NightmareNormal					=   193;
+const KFACHID_NightmareHard						=   194;
+const KFACHID_NightmareSuicidal					=   195;
+const KFACHID_NightmareHellOnEarth				=   196;
+const KFACHID_NightmareCollectibles				=   197;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -481,9 +518,56 @@ var private const   bool bReadSuccessful;
 var	config	bool	bAllowPerkCheats;
 var	private	const	bool	bDisabled;
 
+/** Daily Event Information */
+enum eDailyObjectiveType
+{
+    DOT_WeaponDamage,
+    DOT_PerkXP,
+    DOT_Maps,
+};
+
+enum eDailyObjectiveSecondaryType
+{
+    DOST_PlayPerk,
+    DOST_KillZeds,
+    DOST_KillBoss,
+    DOST_MapCompletion,
+    DOST_VersusDamage,
+    DOST_VersusKills,
+    DOST_CharacterCompletion,
+};
+
+struct native DailyEventInformation
+{
+    //Category of the objective.
+    var eDailyObjectiveType ObjectiveType;
+
+    //Secondary category for ones that share information (Ex: Versus kills / Versus damage)
+    var eDailyObjectiveSecondaryType SecondaryType;
+
+    //Any classes tied to this objective
+    var array<name> ObjectiveClasses;
+
+    //Amount of stat necessary to complete this objective
+    var int CompletionAmount;
+};
+
+var array<DailyEventInformation> DailyEvents;
+
 /** Debugging */
 var 		bool 	bLogStatsWrite;
 
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -540,8 +624,14 @@ simulated function LogStatValue(int StatId)
     LogInternal("*** Stat value for ID" @ StatId @ ": " @ LogSubsystemIntStat(StatId));
 }
 
+//In case we ever use this?
+event CacheFloatStatsValue(int StatID, float Value)
+{
+	LogInternal("*** Not caching float value, please do something with this:" @ StatID @ Value);
+}
+
 //Steam stats -> the gameplay variables
-event CacheStatsValue(int StatID, float Value)
+event CacheStatsValue(int StatID, int Value)
 {
 	switch( StatID )
 	{
@@ -689,6 +779,40 @@ event CacheStatsValue(int StatID, float Value)
             InitialWeeklyEventInfo = Value;
             if (bLogStatsWrite) LogInternal(GetFuncName() @ "Weekly Event:" @ WeeklyEventInfo);
             break;
+        case STATID_DailyEventInfo:
+            CacheDailyEventProgress(Value);
+            if (bLogStatsWrite) LogInternal(GetFuncName() @ "Daily Event:" @ DailyEventInfo);
+            break;
+        case STATID_DailyEventIDs:
+            //Ignore if we've flagged to not read these values.  If we've done that, we're getting new IDs.
+            if (!bIgnoreDailyStatReads)
+            {
+                DailyEventIDs = Value;
+            }
+            if (bLogStatsWrite) LogInternal(GetFuncName() @ "Daily Event IDs:" @ DailyEventIDs);
+            break;
+        case STATID_DailyEventStats1:
+            if (bIgnoreDailyStatReads)
+            {
+                DailyEventStats1 = 0;
+            }
+            else
+            {
+                DailyEventStats1 = Value;
+            }
+            if (bLogStatsWrite) LogInternal(GetFuncName() @ "Daily Event Stats 1:" @ DailyEventStats1);
+            break;
+        case STATID_DailyEventStats2:
+            if (bIgnoreDailyStatReads)
+            {
+                DailyEventStats2 = 0;
+            }
+            else
+            {
+                DailyEventStats2 = Value;
+            }
+            if (bLogStatsWrite) LogInternal(GetFuncName() @ "Daily Event Stats 2:" @ DailyEventStats2);
+            break;
 		case STATID_PersonalBest_KnifeKills:
 			PersonalBest_KnifeKills = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_KnifeKills:" @ PersonalBest_KnifeKills);
@@ -720,6 +844,18 @@ event CacheStatsValue(int StatID, float Value)
 		case STATID_PersonalBest_Dosh:
 			PersonalBest_Dosh = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_Dosh:" @ PersonalBest_Dosh);
+			break;
+        case STATID_DoshVaultTotal:
+            DoshVaultTotal = Value;
+            if (bLogStatsWrite) LogInternal(GetFuncName() @ "DoshVaultTotal:" @ DoshVaultTotal);
+            break;
+        case STATID_LastViewedDoshVaultTotal:
+            LastViewedDoshVaultTotal = Value;
+            if (bLogStatsWrite) LogInternal(GetFuncName() @ "LastViewedDoshVaultTotal:" @ LastViewedDoshVaultTotal);
+            break;
+		case STATID_DoshVaultProgress:
+			DoshVaultProgress = Value;
+			if (bLogStatsWrite) LogInternal(GetFuncName() @ "DoshVaultProgress:" @ DoshVaultProgress);
 			break;
 	}
 }
@@ -814,7 +950,7 @@ private event NotifyLevelUp(class<KFPerk> PerkClass, int NewLVL)
 	{
 		MyKFPC.NotifyLevelUp( PerkClass, NewLVL );
 		if (bLogStatsWrite) LogInternal(GetFuncName() @ "PerkClass:" @ PerkClass @ "New LVL:" @ NewLVL);
-		
+
 		if( NewLVL % 5 == 0 )
 		{
 			CheckPerkLvlAchievement( PerkCLass, NewLVL );
@@ -855,8 +991,8 @@ private event int GetPerkLVLInternal( int StatID )
 		case STATID_Demo_Progress:			return DemoLVL;
 		case STATID_Guns_Progress:			return GunslingerLVL;
 		case STATID_Shrp_Progress:			return SharpshooterLVL;
-		case STATID_Swat_Progress:			return SwatLVL;		
-		case STATID_Surv_Progress:			return SurvLVL;		
+		case STATID_Swat_Progress:			return SwatLVL;
+		case STATID_Surv_Progress:			return SurvLVL;
 	}
 
 	return 0;
@@ -907,7 +1043,7 @@ function int GetPersonalBest( EPersonalBests PersonalBestID )
 		case EPB_LargeZedKill:			return PersonalBest_LargeZedKil;
 		case EPB_Dosh:					return PersonalBest_Dosh;
 	}
-	
+
 	return 0;
 }
 
@@ -923,7 +1059,7 @@ function SavePersonalBest( EPersonalBests PersonalBestID, int Value )
 		case EPB_Assists:				SetIntStat(STATID_PersonalBest_Assists, Value); 		break;
 		case EPB_LargeZedKill:			SetIntStat(STATID_PersonalBest_LargeZedKill, Value); 	break;
 		case EPB_Dosh:					SetIntStat(STATID_PersonalBest_Dosh, Value); 			break;
-	}	
+	}
 }
 
 /*********************************************************************************************
@@ -966,9 +1102,22 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
 	{
 		AddBloatKill( Difficulty );
 	}
-	
+
 	if(MyKFPC!= none && MyKFPC.MatchStats != none ){MyKFPC.MatchStats.RecordZedKill(MonsterClass,DT);};
+
+    AddToKillObjectives(MonsterClass);
 }
+
+private event AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
+{
+    if (MyKFPC != none && (KilledClass.Name == 'KFPawn_Human_Versus' || KilledClass.Name == 'KFPawn_Human'))
+    {
+        AddToVersusKillObjectives(MyKFPC.Pawn.class);
+    }
+}
+
+private native function AddToKillObjectives(class<KFPawn_Monster> ZedClass);
+private native function AddToVersusKillObjectives(class<Pawn> KillerClass);
 
 /**
  * @brief Adds EXP for a qualified stalker kill
@@ -992,7 +1141,7 @@ private function AddStalkerKill( byte Difficulty )
 /**
  * @brief Adds EXP for a small radius kill
  * @details Berserker gains XP when killing a zed close to another player
- * 			
+ *
  * @param Difficulty current game difficulty
  */
 private event AddSmallRadiusKill( byte Difficulty )
@@ -1067,7 +1216,7 @@ private function AddClotKill( byte Difficulty )
 private function AddBloatKill( byte Difficulty )
 {
 	AddXP( class'KFPerk_Firebug', class'KFPerk_Firebug'.static.GetBloatKillXP( Difficulty ) );
-	
+
 	//AAR
 	if(MyKFPC!= none && MyKFPC.MatchStats != none && class'KFPerk_Firebug'!= none){MyKFPC.MatchStats.RecordSecondaryXPGain(class'KFPerk_Firebug',class'KFPerk_Firebug'.static.GetBloatKillXP( Difficulty ));};
 	KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_Firebug'.static.GetBloatKillXP( Difficulty );
@@ -1146,7 +1295,7 @@ private final function bool IsBloatKill( class<KFPawn_Monster> MonsterClass, cla
 private function int ComputeWeldingXP( int Points )
 {
 	local int XPEarned;
-	local KFGameReplicationInfo KFGRI;	
+	local KFGameReplicationInfo KFGRI;
 
 	XPEarned = FFloor( float(Points) / float(WeldingPointsRequired) );
 	if( XPEarned >= 1 )
@@ -1192,7 +1341,7 @@ private event int AddWeldingPoints( int PointsWelded )
 }
 
 /** Repairing doors is another source of secondary XP for the Support class. It uses different
- *      values for the XP earned, and is only earned on completion.  However, it tallies into 
+ *      values for the XP earned, and is only earned on completion.  However, it tallies into
  *      the same end stat.
  */
 private event int DoorRepaired()
@@ -1212,7 +1361,7 @@ private event int DoorRepaired()
 
             LogInternal(GetFuncName() @ "Door Repair XP earned :" @ XPEarned);
         }
-    }    
+    }
 
     return XPEarned;
 }
@@ -1224,7 +1373,7 @@ private event int DoorRepaired()
 private function int ComputeHealingXP( int Points )
 {
 	local int XPEarned;
-	local KFGameReplicationInfo KFGRI;	
+	local KFGameReplicationInfo KFGRI;
 
 	XPEarned = FFloor( float(Points) / float(HealingPointsRequired) );
 	if( XPEarned >= 1 )
@@ -1287,7 +1436,7 @@ private event AddToHeadshots( byte Difficulty, class<DamageType> DT )
 	{
 		AddGunslingerHeadshot( Difficulty );
 	}
-	
+
     if( IsSharpshooterHeadshot(DT) )
 	{
 		AddSharpshooterHeadshot( Difficulty );
@@ -1394,7 +1543,7 @@ native final function CheckMapEndAchievements( string MapName, byte Difficulty, 
 
 /**
  * @brief Check if a new perk tier has been reached
- * 
+ *
  * @param PerkClass Perk leveled up
  * @param NewLVL The new perk level
  */
@@ -1402,7 +1551,7 @@ native final private function CheckPerkLvlAchievement( class<KFPerk> PerkClass, 
 
 /**
  * @brief Check if a new difficulty with the selected perk was won
- * 
+ *
  * @param PerkClass Selected perk class
  * @param Difficulty Difficulty played
  */
@@ -1482,6 +1631,56 @@ native final function bool IsWeeklyEventComplete();
 /** Get a list of IDs associated with the prizes given out for completing a weekly */
 native static final function array<int> GetWeeklyOutbreakRewards(int Index = -1);
 
+/*********************************************************************************************
+* @name Dailies and daily-specific tracking
+********************************************************************************************* */
+/** Cache the state of our daily event progress.  If we find a day change while doing so, clear progress */
+native final function CacheDailyEventProgress(int Value);
+
+/** Tracking for DOT_WeaponDamage type events */
+native final function AddTrackedDamage(int Amount, class<DamageType> DamageType);
+
+/** Tracking for DOT_Versus damage type events */
+native final function AddTrackedVsDamage(int Amount, class<KFPawn> DamagerClass);
+
+/** Tracking for DOT_PerkXP daily objectives */
+native private final function AddTrackedXP(class<KFPerk> PerkClass, int XPGain);
+
+/** Tracking for DOT_MapCompletion daily objectives */
+native private final function AddTrackedMapCompletion(string MapName, byte Difficulty);
+
+/** Tracking for DOT_Versus objectives that use round end for completion */
+native private final function AddTrackedRoundEnd(byte WinningTeam);
+
+/** Get a copy of the struct for the requested daily event */
+native final function DailyEventInformation GetDailyEventStruct(int Index);
+
+/** Whether or not a specific daily is complete */
+native final function bool IsDailyObjectiveComplete(int Index);
+
+/** Accessor for objective current value */
+native final function int GetCurrentDailyValue(int Index);
+
+/** Accessor for objective max value */
+native final function int GetMaxDailyValue(int Index);
+
+/** Accessor for objective reward value */
+native static final function int GetDailyEventReward();
+
+/** Accessor for objective reward value */
+native static final function int GetWeeklyEventReward();
+
+/*********************************************************************************************
+* @name Dosh Vault
+********************************************************************************************* */
+native final function int GetTotalDoshCount();
+native final function int GetLastSeenDoshCount();
+native final function int GetUnseenDoshCount();
+native final function MarkDoshVaultSeen();
+native static final function float GetDoshVaultTierValue();
+native final function CheckUnlockDoshVaultReward();
+native final function CheckHasViewedDoshVault();
+
 defaultproperties
 {
    XPTable(0)=795
@@ -1509,6 +1708,148 @@ defaultproperties
    XPTable(22)=31999
    XPTable(23)=37852
    XPTable(24)=44775
+   DailyEvents(0)=(ObjectiveClasses=("KFWeap_Edged_Knife","KFDT_Slashing_Knife","KFDT_Piercing_KnifeStab"),CompletionAmount=2500)
+   DailyEvents(1)=(ObjectiveClasses=("KFWeap_Pistol_9mm","KFDT_Ballistic_9mm","KFDT_Bludgeon_9mm"),CompletionAmount=2500)
+   DailyEvents(2)=(ObjectiveClasses=("KFWeap_SMG_MP7","KFDT_Ballistic_MP7","KFDT_Bludgeon_MP7"),CompletionAmount=3000)
+   DailyEvents(3)=(ObjectiveClasses=("KFWeap_SMG_MP5RAS","KFDT_Ballistic_MP5RAS","KFDT_Bludgeon_MP5RAS"),CompletionAmount=5000)
+   DailyEvents(4)=(ObjectiveClasses=("KFWeap_SMG_P90","KFDT_Ballistic_P90","KFDT_Bludgeon_P90"),CompletionAmount=7000)
+   DailyEvents(5)=(ObjectiveClasses=("KFWeap_SMG_Kriss","KFDT_Ballistic_Kriss","KFDT_Bludgeon_Kriss"),CompletionAmount=10000)
+   DailyEvents(6)=(ObjectiveClasses=("KFWeap_AssaultRifle_AR15","KFDT_Ballistic_AR15","KFDT_Bludgeon_AR15"),CompletionAmount=3000)
+   DailyEvents(7)=(ObjectiveClasses=("KFWeap_AssaultRifle_Bullpup","KFDT_Ballistic_Bullpup","KFDT_Bludgeon_Bullpup"),CompletionAmount=5000)
+   DailyEvents(8)=(ObjectiveClasses=("KFWeap_AssaultRifle_AK12","KFDT_Ballistic_AK12","KFDT_Bludgeon_AK12"),CompletionAmount=7000)
+   DailyEvents(9)=(ObjectiveClasses=("KFWeap_AssaultRifle_SCAR","KFDT_Ballistic_SCAR","KFDT_Bludgeon_SCAR"),CompletionAmount=10000)
+   DailyEvents(10)=(ObjectiveClasses=("KFWeap_LMG_Stoner63A","KFDT_Ballistic_Stoner63A","KFDT_Bludgeon_Stoner63A"),CompletionAmount=10000)
+   DailyEvents(11)=(ObjectiveClasses=("KFWeap_Shotgun_MB500","KFDT_Ballistic_MB500","KFDT_Bludgeon_MB500"),CompletionAmount=3000)
+   DailyEvents(12)=(ObjectiveClasses=("KFWeap_Shotgun_DoubleBarrel","KFDT_Ballistic_DBShotgun","KFDT_Bludgeon_DBShotgun"),CompletionAmount=5000)
+   DailyEvents(13)=(ObjectiveClasses=("KFWeap_Shotgun_M4","KFDT_Ballistic_M4Shotgun","KFDT_Bludgeon_M4Shotgun"),CompletionAmount=7000)
+   DailyEvents(14)=(ObjectiveClasses=("KFWeap_Shotgun_AA12","KFDT_Ballistic_AA12Shotgun","KFDT_Bludgeon_AA12Shotgun"),CompletionAmount=10000)
+   DailyEvents(15)=(ObjectiveClasses=("KFWeap_Shotgun_HZ12","KFDT_Ballistic_HZ12","KFDT_Bludgeon_HZ12"),CompletionAmount=10000)
+   DailyEvents(16)=(ObjectiveClasses=("KFWeap_Pistol_Medic","KFDT_Ballistic_Pistol_Medic","KFDT_Bludgeon_Pistol_Medic"),CompletionAmount=3000)
+   DailyEvents(17)=(ObjectiveClasses=("KFWeap_SMG_Medic","KFDT_Ballistic_SMG_Medic","KFDT_Bludgeon_SMG_Medic"),CompletionAmount=5000)
+   DailyEvents(18)=(ObjectiveClasses=("KFWeap_Shotgun_Medic","KFDT_Ballistic_Shotgun_Medic","KFDT_Bludgeon_Shotgun_Medic"),CompletionAmount=7000)
+   DailyEvents(19)=(ObjectiveClasses=("KFWeap_AssaultRifle_Medic","KFDT_Ballistic_Assault_Medic","KFDT_Bludgeon_Assault_Medic"),CompletionAmount=9000)
+   DailyEvents(20)=(ObjectiveClasses=("KFWeap_Rifle_Hemogoblin","KFDT_Ballistic_Hemogoblin","KFDT_Bludgeon_Hemogoblin"),CompletionAmount=9000)
+   DailyEvents(21)=(ObjectiveClasses=("KFWeap_GrenadeLauncher_HX25","KFDT_Ballistic_HX25Impact","KFDT_Ballistic_HX25SubmunitionImpact","KFDT_Bludgeon_HX25"),CompletionAmount=3000)
+   DailyEvents(22)=(ObjectiveClasses=("KFWeap_Thrown_C4","KFDT_Explosive_C4","KFDT_Bludgeon_C4"),CompletionAmount=2500)
+   DailyEvents(23)=(ObjectiveClasses=("KFWeap_GrenadeLauncher_M79","KFDT_Ballistic_M79Impact","KFDT_Explosive_M79","KFDT_Bludgeon_M79"),CompletionAmount=7000)
+   DailyEvents(24)=(ObjectiveClasses=("KFWeap_RocketLauncher_RPG7","KFDT_Ballistic_RPG7Impact","KFDT_Explosive_RPG7","KFDT_Explosive_RPG7BackBlast","KFDT_Bludgeon_RPG7"),CompletionAmount=7500)
+   DailyEvents(25)=(ObjectiveClasses=("KFWeap_AssaultRifle_M16M203","KFDT_Ballistic_M16M203","KFDT_Bludgeon_M16M203"),CompletionAmount=7000)
+   DailyEvents(26)=(ObjectiveClasses=("KFWeap_RocketLauncher_Seeker6","KFDT_Explosive_Seeker6","KFDT_Bludgeon_Seeker6","KFDT_Ballistic_Seeker6Impact"),CompletionAmount=10000)
+   DailyEvents(27)=(ObjectiveClasses=("KFWeap_Flame_CaulkBurn","KFDT_Bludgeon_CaulkBurn","KFDT_Fire_CaulkBurn","KFDT_Fire_Ground_CaulkNBurn"),CompletionAmount=3000)
+   DailyEvents(28)=(ObjectiveClasses=("KFWeap_Pistol_Flare","KFDT_Fire_FlareGun","KFDT_Fire_FlareGun_Dual","KFDT_Bludgeon_FlareGun"),CompletionAmount=5000)
+   DailyEvents(29)=(ObjectiveClasses=("KFWeap_Shotgun_DragonsBreath","KFDT_Ballistic_DragonsBreath","KFDT_Bludgeon_DragonsBreath","KFDT_Fire_DragonsBreathDoT"),CompletionAmount=5000)
+   DailyEvents(30)=(ObjectiveClasses=("KFWeap_Flame_Flamethrower","KFDT_Bludgeon_Flamethrower","KFDT_Fire_FlameThrower","KFDT_Fire_Ground_FlameThrower"),CompletionAmount=7000)
+   DailyEvents(31)=(ObjectiveClasses=("KFWeap_Beam_Microwave","KFDT_Bludgeon_MicrowaveGun","KFDT_Fire_Ground_MicrowaveGun","KFDT_Microwave","KFDT_Microwave_Beam","KFDT_Microwave_Blast"),CompletionAmount=10000)
+   DailyEvents(32)=(ObjectiveClasses=("KFWeap_Blunt_Crovel","KFDT_Bludgeon_Crovel","KFDT_Bludgeon_CrovelBash","KFDT_Slashing_Crovel"),CompletionAmount=3000)
+   DailyEvents(33)=(ObjectiveClasses=("KFWeap_Shotgun_Nailgun","KFDT_Ballistic_NailShotgun","KFDT_Bludgeon_NailShotgun"),CompletionAmount=5000)
+   DailyEvents(34)=(ObjectiveClasses=("KFWeap_Blunt_Pulverizer","KFDT_Bludgeon_Pulverizer","KFDT_Bludgeon_PulverizerBash","KFDT_Bludgeon_PulverizerHeavy","KFDT_Explosive_Pulverizer"),CompletionAmount=7000)
+   DailyEvents(35)=(ObjectiveClasses=("KFWeap_Eviscerator","KFDT_Slashing_Eviscerator","KFDT_Slashing_EvisceratorProj"),CompletionAmount=10000)
+   DailyEvents(36)=(ObjectiveClasses=("KFWeap_Blunt_MaceAndShield","KFDT_Bludgeon_MaceAndShield","KFDT_Bludgeon_MaceAndShield_Bash","KFDT_Bludgeon_MaceAndShield_MaceHeavy","KFDT_Bludgeon_MaceAndShield_ShieldHeavy","KFDT_Bludgeon_MaceAndShield_ShieldLight"),CompletionAmount=10000)
+   DailyEvents(37)=(ObjectiveClasses=("KFWeap_Revolver_Rem1858","KFDT_Bludgeon_Rem1858","KFDT_Ballistic_Rem1858","KFDT_Ballistic_Rem1858_Dual"),CompletionAmount=3000)
+   DailyEvents(38)=(ObjectiveClasses=("KFWeap_Pistol_Colt1911","KFDT_Bludgeon_Colt1911","KFDT_Ballistic_Colt1911"),CompletionAmount=5000)
+   DailyEvents(39)=(ObjectiveClasses=("KFWeap_Pistol_Deagle","KFDT_Bludgeon_Deagle","KFDT_Ballistic_Deagle"),CompletionAmount=7000)
+   DailyEvents(40)=(ObjectiveClasses=("KFWeap_Revolver_SW500","KFDT_Bludgeon_SW500","KFDT_Ballistic_SW500","KFDT_Ballistic_SW500_Dual"),CompletionAmount=10000)
+   DailyEvents(41)=(ObjectiveClasses=("KFWeap_Rifle_Winchester1894","KFDT_Bludgeon_Winchester","KFDT_Ballistic_Winchester"),CompletionAmount=2000)
+   DailyEvents(42)=(ObjectiveClasses=("KFWeap_Bow_Crossbow","KFDT_Bludgeon_Crossbow","KFDT_Piercing_Crossbow"),CompletionAmount=5000)
+   DailyEvents(43)=(ObjectiveClasses=("KFWeap_Rifle_M14EBR","KFDT_Bludgeon_M14EBR","KFDT_Ballistic_M14EBR"),CompletionAmount=7000)
+   DailyEvents(44)=(ObjectiveClasses=("KFWeap_Rifle_RailGun","KFDT_Bludgeon_RailGun","KFDT_Ballistic_RailGun"),CompletionAmount=5000)
+   DailyEvents(45)=(ObjectiveClasses=("KFWeap_Rifle_CenterfireMB464","KFDT_Bludgeon_CenterfireMB464","KFDT_Ballistic_CenterfireMB464"),CompletionAmount=5000)
+   DailyEvents(46)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedClot_Alpha"),CompletionAmount=20)
+   DailyEvents(47)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedClot_AlphaKing"),CompletionAmount=5)
+   DailyEvents(48)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedClot_Cyst"),CompletionAmount=30)
+   DailyEvents(49)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedClot_Slasher"),CompletionAmount=25)
+   DailyEvents(50)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedCrawler"),CompletionAmount=30)
+   DailyEvents(51)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedCrawlerKing"),CompletionAmount=5)
+   DailyEvents(52)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedStalker"),CompletionAmount=10)
+   DailyEvents(53)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedBloat"),CompletionAmount=5)
+   DailyEvents(54)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedSiren"),CompletionAmount=5)
+   DailyEvents(55)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedHusk"),CompletionAmount=3)
+   DailyEvents(56)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedGorefast"),CompletionAmount=20)
+   DailyEvents(57)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedGorefastDualBlade"),CompletionAmount=8)
+   DailyEvents(58)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedScrake"),CompletionAmount=1)
+   DailyEvents(59)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedFleshpound"),CompletionAmount=1)
+   DailyEvents(60)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=("KFPawn_ZedFleshpoundMini"),CompletionAmount=2)
+   DailyEvents(61)=(ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillBoss,CompletionAmount=1)
+   DailyEvents(62)=(ObjectiveType=DOT_PerkXP,ObjectiveClasses=("KFPerk_Berserker"),CompletionAmount=1500)
+   DailyEvents(63)=(ObjectiveType=DOT_PerkXP,ObjectiveClasses=("KFPerk_Commando"),CompletionAmount=1500)
+   DailyEvents(64)=(ObjectiveType=DOT_PerkXP,ObjectiveClasses=("KFPerk_Demolitionist"),CompletionAmount=1500)
+   DailyEvents(65)=(ObjectiveType=DOT_PerkXP,ObjectiveClasses=("KFPerk_FieldMedic"),CompletionAmount=1500)
+   DailyEvents(66)=(ObjectiveType=DOT_PerkXP,ObjectiveClasses=("KFPerk_Firebug"),CompletionAmount=1500)
+   DailyEvents(67)=(ObjectiveType=DOT_PerkXP,ObjectiveClasses=("KFPerk_Gunslinger"),CompletionAmount=1500)
+   DailyEvents(68)=(ObjectiveType=DOT_PerkXP,ObjectiveClasses=("KFPerk_Sharpshooter"),CompletionAmount=1500)
+   DailyEvents(69)=(ObjectiveType=DOT_PerkXP,ObjectiveClasses=("KFPerk_Support"),CompletionAmount=1500)
+   DailyEvents(70)=(ObjectiveType=DOT_PerkXP,ObjectiveClasses=("KFPerk_Survivalist"),CompletionAmount=1500)
+   DailyEvents(71)=(ObjectiveType=DOT_PerkXP,ObjectiveClasses=("KFPerk_SWAT"),CompletionAmount=1500)
+   DailyEvents(72)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-BURNINGPARIS"),CompletionAmount=1)
+   DailyEvents(73)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-BURNINGPARIS"),CompletionAmount=2)
+   DailyEvents(74)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-BURNINGPARIS"),CompletionAmount=3)
+   DailyEvents(75)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-OUTPOST"),CompletionAmount=1)
+   DailyEvents(76)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-OUTPOST"),CompletionAmount=2)
+   DailyEvents(77)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-OUTPOST"),CompletionAmount=3)
+   DailyEvents(78)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-BIOTICSLAB"),CompletionAmount=1)
+   DailyEvents(79)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-BIOTICSLAB"),CompletionAmount=2)
+   DailyEvents(80)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-BIOTICSLAB"),CompletionAmount=3)
+   DailyEvents(81)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-VOLTERMANOR"),CompletionAmount=1)
+   DailyEvents(82)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-VOLTERMANOR"),CompletionAmount=2)
+   DailyEvents(83)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-VOLTERMANOR"),CompletionAmount=3)
+   DailyEvents(84)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-EVACUATIONPOINT"),CompletionAmount=1)
+   DailyEvents(85)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-EVACUATIONPOINT"),CompletionAmount=2)
+   DailyEvents(86)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-EVACUATIONPOINT"),CompletionAmount=3)
+   DailyEvents(87)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-CATACOMBS"),CompletionAmount=1)
+   DailyEvents(88)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-CATACOMBS"),CompletionAmount=2)
+   DailyEvents(89)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-CATACOMBS"),CompletionAmount=3)
+   DailyEvents(90)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-BLACKFOREST"),CompletionAmount=1)
+   DailyEvents(91)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-BLACKFOREST"),CompletionAmount=2)
+   DailyEvents(92)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-BLACKFOREST"),CompletionAmount=3)
+   DailyEvents(93)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-FARMHOUSE"),CompletionAmount=1)
+   DailyEvents(94)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-FARMHOUSE"),CompletionAmount=2)
+   DailyEvents(95)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-FARMHOUSE"),CompletionAmount=3)
+   DailyEvents(96)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-PRISON"),CompletionAmount=1)
+   DailyEvents(97)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-PRISON"),CompletionAmount=2)
+   DailyEvents(98)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-PRISON"),CompletionAmount=3)
+   DailyEvents(99)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-CONTAINMENTSTATION"),CompletionAmount=1)
+   DailyEvents(100)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-CONTAINMENTSTATION"),CompletionAmount=2)
+   DailyEvents(101)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-CONTAINMENTSTATION"),CompletionAmount=3)
+   DailyEvents(102)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-HOSTILEGROUNDS"),CompletionAmount=1)
+   DailyEvents(103)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-HOSTILEGROUNDS"),CompletionAmount=2)
+   DailyEvents(104)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-HOSTILEGROUNDS"),CompletionAmount=3)
+   DailyEvents(105)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-INFERNALREALM"),CompletionAmount=1)
+   DailyEvents(106)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-INFERNALREALM"),CompletionAmount=2)
+   DailyEvents(107)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-INFERNALREALM"),CompletionAmount=3)
+   DailyEvents(108)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-ZEDLANDING"),CompletionAmount=1)
+   DailyEvents(109)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-ZEDLANDING"),CompletionAmount=2)
+   DailyEvents(110)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-ZEDLANDING"),CompletionAmount=3)
+   DailyEvents(111)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-THEDESCENT"),CompletionAmount=1)
+   DailyEvents(112)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-THEDESCENT"),CompletionAmount=2)
+   DailyEvents(113)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-THEDESCENT"),CompletionAmount=3)
+   DailyEvents(114)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-NUKED"),CompletionAmount=1)
+   DailyEvents(115)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-NUKED"),CompletionAmount=2)
+   DailyEvents(116)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-NUKED"),CompletionAmount=3)
+   DailyEvents(117)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-TRAGICKINGDOM"),CompletionAmount=1)
+   DailyEvents(118)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-TRAGICKINGDOM"),CompletionAmount=2)
+   DailyEvents(119)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-TRAGICKINGDOM"),CompletionAmount=3)
+   DailyEvents(120)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-NIGHTMARE"),CompletionAmount=1)
+   DailyEvents(121)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-NIGHTMARE"),CompletionAmount=2)
+   DailyEvents(122)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=("KF-NIGHTMARE"),CompletionAmount=3)
+   DailyEvents(123)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=("KFPawn_ZedClot_Alpha","KFPawn_ZedClot_Alpha_Versus"),CompletionAmount=1)
+   DailyEvents(124)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=("KFPawn_ZedClot_Slasher","KFPawn_ZedClot_Slasher_Versus"),CompletionAmount=1)
+   DailyEvents(125)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=("KFPawn_ZedCrawler","KFPawn_ZedCrawler_Versus"),CompletionAmount=1)
+   DailyEvents(126)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=("KFPawn_ZedStalker","KFPawn_ZedStalker_Versus"),CompletionAmount=1)
+   DailyEvents(127)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=("KFPawn_ZedBloat","KFPawn_ZedBloat_Versus"),CompletionAmount=1)
+   DailyEvents(128)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=("KFPawn_ZedSiren","KFPawn_ZedSiren_Versus"),CompletionAmount=1)
+   DailyEvents(129)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=("KFPawn_ZedHusk","KFPawn_ZedHusk_Versus"),CompletionAmount=1)
+   DailyEvents(130)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=("KFPawn_ZedGorefast","KFPawn_ZedGorefast_Versus"),CompletionAmount=1)
+   DailyEvents(131)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusKills,ObjectiveClasses=("KFPawn_ZedScrake","KFPawn_ZedScrake_Versus"),CompletionAmount=1)
+   DailyEvents(132)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusKills,ObjectiveClasses=("KFPawn_ZedFleshpound","KFPawn_ZedFleshPound_Versus"),CompletionAmount=1)
+   DailyEvents(133)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusKills,ObjectiveClasses=("KFPawn_ZedPatriarch","KFPawn_ZedPatriarch_Versus"),CompletionAmount=1)
+   DailyEvents(134)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=("chr_briar_archetype"),CompletionAmount=1)
+   DailyEvents(135)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=("CHR_MrFoster_archetype"),CompletionAmount=1)
+   DailyEvents(136)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=("CHR_Coleman_archetype"),CompletionAmount=1)
+   DailyEvents(137)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=("CHR_Alberts_archetype"),CompletionAmount=1)
+   DailyEvents(138)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=("CHR_Masterson_archetype"),CompletionAmount=1)
+   DailyEvents(139)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=("CHR_Tanaka_Archetype"),CompletionAmount=1)
+   DailyEvents(140)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=("CHR_Ana_Archetype"),CompletionAmount=1)
+   DailyEvents(141)=(ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=("chr_rockabilly_archetype"),CompletionAmount=1)
    Properties(0)=(PropertyId=1,Data=(Type=SDT_Int32))
    Properties(1)=(PropertyId=2,Data=(Type=SDT_Int32))
    Properties(2)=(PropertyId=10,Data=(Type=SDT_Int32))
@@ -1537,15 +1878,22 @@ defaultproperties
    Properties(25)=(PropertyId=203,Data=(Type=SDT_Int32))
    Properties(26)=(PropertyId=300,Data=(Type=SDT_Int32))
    Properties(27)=(PropertyId=301,Data=(Type=SDT_Int32))
-   Properties(28)=(PropertyId=2000,Data=(Type=SDT_Int32))
-   Properties(29)=(PropertyId=2001,Data=(Type=SDT_Int32))
-   Properties(30)=(PropertyId=2002,Data=(Type=SDT_Int32))
-   Properties(31)=(PropertyId=2003,Data=(Type=SDT_Int32))
-   Properties(32)=(PropertyId=2004,Data=(Type=SDT_Int32))
-   Properties(33)=(PropertyId=2005,Data=(Type=SDT_Int32))
-   Properties(34)=(PropertyId=2006,Data=(Type=SDT_Int32))
-   Properties(35)=(PropertyId=2007,Data=(Type=SDT_Int32))
-   Properties(36)=(PropertyId=3000,Data=(Type=SDT_Int32))
+   Properties(28)=(PropertyId=302,Data=(Type=SDT_Int32))
+   Properties(29)=(PropertyId=303,Data=(Type=SDT_Int32))
+   Properties(30)=(PropertyId=304,Data=(Type=SDT_Int32))
+   Properties(31)=(PropertyId=305,Data=(Type=SDT_Int32))
+   Properties(32)=(PropertyId=2000,Data=(Type=SDT_Int32))
+   Properties(33)=(PropertyId=2001,Data=(Type=SDT_Int32))
+   Properties(34)=(PropertyId=2002,Data=(Type=SDT_Int32))
+   Properties(35)=(PropertyId=2003,Data=(Type=SDT_Int32))
+   Properties(36)=(PropertyId=2004,Data=(Type=SDT_Int32))
+   Properties(37)=(PropertyId=2005,Data=(Type=SDT_Int32))
+   Properties(38)=(PropertyId=2006,Data=(Type=SDT_Int32))
+   Properties(39)=(PropertyId=2007,Data=(Type=SDT_Int32))
+   Properties(40)=(PropertyId=3000,Data=(Type=SDT_Int32))
+   Properties(41)=(PropertyId=400,Data=(Type=SDT_Int32))
+   Properties(42)=(PropertyId=401,Data=(Type=SDT_Int32))
+   Properties(43)=(PropertyId=402,Data=(Type=SDT_Int32))
    ViewIds(0)=1
    Name="Default__KFOnlineStatsWrite"
    ObjectArchetype=OnlineStatsWrite'Engine.Default__OnlineStatsWrite'

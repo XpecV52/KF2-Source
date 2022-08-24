@@ -96,6 +96,7 @@ var             float           IncapPowerScaleWhenHealing;
 /** Amount of health shield has remaining */
 var             float           ShieldHealth;
 var             float           ShieldHealthMax;
+var				float			ShieldHealthScale;
 
 /** Replicated shield health percentage */
 var repnotify   byte            ShieldHealthPctByte;
@@ -122,17 +123,6 @@ var const class<KFProj_Grenade>	    SmokeGrenadeClass;
 var name RightHandSocketName;
 /** Socket where grenade spawns when Hans throws with his left hand */
 var name LeftHandSocketName;
-
-enum EHansNadeType
-{
-	HNT_None,
-	HNT_HEGrenade,
-	HNT_NerveGas,
-	HNT_Smoke,
-	HNT_HEGrenadeBarrage,
-	HNT_NerveGasBarrage,
-	HNT_SmokeBarrage,
-};
 
 /** Grenade accuracy TODO: Make this based on skill level for AI*/
 var vector GrenadeTossSpread;
@@ -213,7 +203,7 @@ function IncrementBattlePhase()
 
 /** Set the correct phase based cooldown for this battle phase */
 function SetPhaseCooldowns( int BattlePhase )
-{  
+{
     GlobalOffensiveNadeCooldown = BattlePhases[BattlePhase].GlobalOffensiveNadePhaseCooldown;
     HENadeTossCooldown = BattlePhases[BattlePhase].HENadeTossPhaseCooldown;
     HENadeBarrageCooldown = BattlePhases[BattlePhase].HENadeBarragePhaseCooldown;
@@ -509,7 +499,7 @@ simulated function SetHuntAndHealMode( bool bOn )
             }
 
             // Initialize shield health
-            ShieldHealthMax = BattlePhases[CurrentBattlePhase-1].MaxShieldHealth[WorldInfo.Game.GameDifficulty] * HealthMod;
+            ShieldHealthMax = BattlePhases[CurrentBattlePhase-1].MaxShieldHealth[WorldInfo.Game.GameDifficulty] * HealthMod * ShieldHealthScale;
             ShieldHealth = ShieldHealthMax;
             UpdateShieldHealth();
 
@@ -546,6 +536,11 @@ simulated function SetHuntAndHealMode( bool bOn )
 		bHealedThisPhase = false;
         SetTimer( 0.1, false, nameOf(Timer_ResetShieldHealthPct) );
 	}
+}
+
+function SetShieldScale(float InScale)
+{
+	ShieldHealthScale = InScale;
 }
 
 /** Sets shield health pct back to 0 for next phase */
@@ -594,26 +589,13 @@ function SummonMinions()
         DifficultyIndex = 3;
     }
 
-    // Select the correct batch of zeds to spawn during this battle phase
-    if( CurrentBattlePhase == 1 )
-    {
-        MinionWave = SummonWaves[DifficultyIndex].PhaseOneWave;
-    }
-    else if( CurrentBattlePhase == 2 )
-    {
-        MinionWave = SummonWaves[DifficultyIndex].PhaseTwoWave;
-    }
-    else if( CurrentBattlePhase == 3 )
-    {
-        MinionWave = SummonWaves[DifficultyIndex].PhaseThreeWave;
-    }
-
     // Force frustration mode on
     MyKFGameInfo.GetAIDirector().bForceFrustration = true;
 
     // Spawn our minions
+    MinionWave = GetWaveInfo(CurrentBattlePhase, DifficultyIndex);
     SpawnManager = MyKFGameInfo.SpawnManager;
-    if ( SpawnManager != none )
+    if ( MinionWave != none && SpawnManager != none )
     {
         SpawnManager.SummonBossMinions( MinionWave.Squads, GetNumMinionsToSpawn() );
     }
@@ -632,7 +614,7 @@ simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNorma
 
     if( !bGunsEquipped )
     {
-        if( Role == ROLE_Authority && bInHuntAndHealMode && MyHansController != none && NumHuntAndHealEnemyBumps >= 0 && !IsDoingSpecialMove() 
+        if( Role == ROLE_Authority && bInHuntAndHealMode && MyHansController != none && NumHuntAndHealEnemyBumps >= 0 && !IsDoingSpecialMove()
             && Other.GetTeamNum() != GetTeamNum() && MyHansController.FindCommandOfClass(class'AICommand_Attack_Grab') == none )
         {
             KFP = KFPawn( Other );
@@ -724,5 +706,5 @@ simulated function DetachShieldFX();
 
 DefaultProperties
 {
-    
+	ShieldHealthScale=1.f
 }

@@ -19,10 +19,14 @@ enum SupportedPlatform
 	PLATFORM_PC_DX10
 };
 
+//Pre-allocating seasonal events based on quarterly-ish patch cycle even if we aren't currently using them.
 enum SeasonalEventIndex
 {
-    SEI_None,
-    SEI_Summer
+	SEI_None,
+	SEI_Spring,
+	SEI_Summer,
+	SEI_Fall,
+	SEI_Winter
 };
 
 /** The game state we were in (paused, in game, etc.) when we lost focus */
@@ -67,6 +71,9 @@ var private bool 		bShowCrossHairConsole;
 /** Whether to mute the game if focus is lost. */
 var config bool bMuteOnLossOfFocus;
 
+/** Whether to use native 4k resolution on Xbox One X (Scorpio) */
+var config bool bEnableNative4k;
+
 /** Cached stat rows used by XB1 only if there's ever a network interruption that won't allow a re-read of existing stats, We use this. */
 var array<OnlineStatsRow> CachedStatRows;
 
@@ -94,7 +101,7 @@ enum EConnectionError
 var EConnectionError LastConnectionError;
 
 //@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
-var string ConsoleGameSessionGuid; 
+var string ConsoleGameSessionGuid;
 //@HSL_END
 
 /** The game settings for a pending invite. Used when an idle profile accepts an invite and we need to switch profiles for XB1 */
@@ -124,7 +131,7 @@ cpptext
 	// static members
 	static FString GetSeasonalEventPrefix();
 	static FString GetSeasonalEventPackageName(INT EventId = -1);
-	
+
 	// UEngine interface.
 	void Init();
 	void FinishDestroy();
@@ -186,7 +193,7 @@ native static function int GetKFGameVersion();
 /** Gets the current game Steam AppID */
 native static function int GetAppID();
 
-native static function SupportedPlatform GetPlatform(); 
+native static function SupportedPlatform GetPlatform();
 native static function InitEventContent();
 native static function RefreshEventContent();
 
@@ -328,11 +335,11 @@ function OnLoginChange(byte LocalUserNum)
 	{
 		// Kick previously active player back to IIS with an error message.
 		if( LocalUserNum == GamePlayers[0].ControllerId && PlayerInterface.GetLoginStatus(LocalUserNum) != LS_LoggedIn )
-		{	
+		{
 			KickBackToIIS("LoggedOutTitle", "LoggedOutMessage");
 		}
 		// Also kick back offline player if a user has signed in
-		else if( LocalLoginStatus == LS_UsingLocalProfile && PlayerInterface.GetLoginStatus(LocalUserNum) == LS_LoggedIn ) 
+		else if( LocalLoginStatus == LS_UsingLocalProfile && PlayerInterface.GetLoginStatus(LocalUserNum) == LS_LoggedIn )
 		{
 			KickBackToIIS("LoggedInTitle", "LoggedOutMessage");
 		}
@@ -464,6 +471,8 @@ native static function bool IsFullScreenMoviePlaying();
 * @param New Gamma Value, must be between 0.0 and 1.0
 */
 native static function SetGamma(float InGammaMultiplier);
+native static function SetNative4k(bool InEnableNative4k);
+native static function SwitchNative4k();
 
 /***********************************************************************************
 * @name		Server takeover/reconfigure
@@ -595,7 +604,7 @@ static function bool IsCrosshairEnabled()
 static function SetCrosshairEnabled(bool bEnable)
 {
 	default.bShowCrossHair = bEnable;
-		
+
 	if ( !Class'WorldInfo'.Static.IsConsoleBuild() )
 	{
 		StaticSaveConfig();

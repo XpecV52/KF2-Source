@@ -15,7 +15,7 @@ class KFPlayerReplicationInfo extends PlayerReplicationInfo
 	config(Game)
 	native(ReplicationInfo)
 	nativereplication
-	dependson(KFVoteCollector);
+	dependson(KFVoteCollector, KFLocalMessage_VoiceComms);
 
 `include(KFGame\KFGameAnalytics.uci);
 `include(KFGame\KFMatchStats.uci);
@@ -34,6 +34,9 @@ var string LastCrateGiftTimestamp;
 /** Seconds of gameplay for this player for crate gifting. Tracked by server only */
 var int SecondsOfGameplay;
 
+/** Whether or not dosh can be earned */
+var bool bAllowDoshEarning;
+
 /************************************
  *  Character class related variables
  ************************************/
@@ -48,13 +51,13 @@ var const array<KFCharacterInfo_Human> CharacterArchetypes;
 struct native CustomizationInfo
 {
 	/** Index of the current char archetype among the AvailableCharArchetypes array */
-	var const byte CharacterIndex;
-	var const byte HeadMeshIndex;
-	var const byte HeadSkinIndex;
-	var const byte BodyMeshIndex;
-	var const byte BodySkinIndex;
-	var const byte AttachmentMeshIndices[`MAX_COSMETIC_ATTACHMENTS];
-	var const byte AttachmentSkinIndices[`MAX_COSMETIC_ATTACHMENTS];
+	var const int CharacterIndex;
+	var const int HeadMeshIndex;
+	var const int HeadSkinIndex;
+	var const int BodyMeshIndex;
+	var const int BodySkinIndex;
+	var const int AttachmentMeshIndices[`MAX_COSMETIC_ATTACHMENTS];
+	var const int AttachmentSkinIndices[`MAX_COSMETIC_ATTACHMENTS];
 
 	structcpptext
 	{
@@ -130,9 +133,20 @@ var 			bool 			bPerkPrimarySupplyUsed;
 var 			bool 			bPerkSecondarySupplyUsed;
 
 /************************************
+ *  Not replicated Voice Comms Request
+ *  local client only -ZG
+ ************************************/
+
+var 			EVoiceCommsType CurrentVoiceCommsRequest;
+var				float 			VoiceCommsStatusDisplayInterval;
+var				int 			VoiceCommsStatusDisplayIntervalCount;
+var				int 			VoiceCommsStatusDisplayIntervalMax;
+var 			Texture2D 		CurrentIconToDisplay;
+
+/************************************
  *  Replicated Unlocks
  ************************************/
- var  		byte		SharedUnlocks;	
+ var  		byte		SharedUnlocks;
 
 /************************************
  *  Objective
@@ -214,7 +228,7 @@ simulated event ReplicatedEvent(name VarName)
 		OnTalkerRegistered();
 	}
 
-	
+
 	if ( VarName == 'Team' )
 	{
 		ClientRecieveNewTeam();
@@ -343,12 +357,12 @@ reliable server function ServerNotifyStartTeamVoip()
 		{
 			bNetDirty = true;
 			bForceNetUpdate = true;
-		
+
 			if(!KFPC.IsLocalController())
 			{
 				VOIPStatusChanged(self, true);
 			}
-            
+
             VOIPStatus = 2;
 
 			KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length);
@@ -469,7 +483,7 @@ simulated function VOIPStatusChanged( PlayerReplicationInfo Talker, bool bIsTalk
 	local OnlineSubsystem OSS;
 
 	OSS = class'GameEngine'.static.GetOnlineSubsystem();
-	
+
     foreach WorldInfo.LocalPlayerControllers(class'KFPlayerController', KFPC)
 	{
 		// BWJ - 10-4-16 - Exit out immediately if local player has a chat restriction
@@ -634,7 +648,7 @@ simulated function CastMapVote(int MapIndex, bool bDoubleClick)
 {
 	local KFGameInfo KFGI;
 
-	ServerCastMapVote(self, KFGameReplicationInfo(WorldInfo.GRI).VoteCollector.MapList[MapIndex]);	
+	ServerCastMapVote(self, KFGameReplicationInfo(WorldInfo.GRI).VoteCollector.MapList[MapIndex]);
 
 	if(WorldInfo.NetMode == NM_StandAlone)
 	{
@@ -728,8 +742,8 @@ simulated function ClientInitialize(Controller C)
 	}
 }
 
-/** 
- * Network: Local Player 
+/**
+ * Network: Local Player
  * INDEX_NONE will load last character from config
  */
 simulated event SelectCharacter( optional int CharIndex=INDEX_None )
@@ -794,7 +808,7 @@ simulated event CharacterCustomizationChanged()
 	local KFCharacterInfoBase NewCharArch;
 
 	`AnalyticsLog(("character_change", self, CharacterArchetypes[RepCustomizationInfo.CharacterIndex].Name));
-				   
+
 	foreach WorldInfo.AllPawns(class'KFPawn_Human', KFP)
 	{
 		if (KFP.PlayerReplicationInfo == self ||
@@ -854,10 +868,10 @@ function SetPlayerTeam( TeamInfo NewTeam )
 
 function UpdateReplicatedVariables()
 {
-	if( !bIsSpectator && 
-		KFPlayerOwner != none && 
+	if( !bIsSpectator &&
+		KFPlayerOwner != none &&
 		KFPlayerOwner.GetTeamNum() == 0 &&
-		KFPlayerOwner.Pawn != none && 
+		KFPlayerOwner.Pawn != none &&
 		KFPlayerOwner.Pawn.IsAliveAndWell() )
 	{
 		UpdatePawnLocation();
@@ -916,7 +930,7 @@ simulated function vector GetSmoothedPawnIconLocation(float BlendSpeed)
 	}
 	else
 	{
-		LastReplicatedSmoothedLocation = UncompressedLocation;		
+		LastReplicatedSmoothedLocation = UncompressedLocation;
 	}
 
 	return LastReplicatedSmoothedLocation;
@@ -924,8 +938,16 @@ simulated function vector GetSmoothedPawnIconLocation(float BlendSpeed)
 
 simulated function SetPlayerReady( bool bReady )
 {
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Owner);
+
    	bReadyToPlay = bReady;
 	ServerSetPlayerReady( bReady );
+	if(KFPC != none && KFPC.LEDEffectsManager != none)
+	{
+		KFPC.LEDEffectsManager.PlayEffectSetReady(bReadyToPlay);
+	}
 }
 
 reliable server private function ServerSetPlayerReady( bool bReady )
@@ -936,6 +958,12 @@ reliable server private function ServerSetPlayerReady( bool bReady )
 /** Called on server to +/- dosh.  Do not modify score directly */
 function AddDosh( int DoshAmount, optional bool bEarned )
 {
+    //If the game has turned off dosh earning for this PRI, early out.
+    if (!bAllowDoshEarning && bEarned)
+    {
+        return;
+    }
+
 	// Dosh is stored in PRI->Score
 	Score = Max(0, Score + DoshAmount);
 
@@ -1028,11 +1056,11 @@ simulated function ResetSupplierUsed()
 	local int i;
 
 	KFGameReplicationInfo(WorldInfo.GRI).GetKFPRIArray( KFPRIArray );
- 
+
 	for( i = 0; i < KFPRIArray.Length; ++i )
 	{
-		KFPRIArray[i].bPerkPrimarySupplyUsed = false;	
-		KFPRIArray[i].bPerkSecondarySupplyUsed = false;	
+		KFPRIArray[i].bPerkPrimarySupplyUsed = false;
+		KFPRIArray[i].bPerkSecondarySupplyUsed = false;
 	}
 }
 
@@ -1050,6 +1078,57 @@ simulated function NotifyWaveEnded()
 // BWJ - 10-5-16 - Check to see if player has had initial spawn. used for PS4 realtime multiplay
 native simulated function bool HasHadInitialSpawn();
 
+
+simulated function SetCurrentVoiceCommsRequest(int NewValue)
+{
+	//cast it
+	CurrentVoiceCommsRequest = EVoiceCommsType(NewValue);
+
+	//clear timers
+	ClearVoiceCommsRequest();
+	//set timers
+	SetCurrentIconToVoiceCommsIcon();
+}
+
+//this and SetCurrentIconToVoiceCommsIcon used for flashing last voice comms request icon
+simulated function SetCurrentIconToPerkIcon()
+{
+	CurrentIconToDisplay = None;
+	if(VoiceCommsStatusDisplayIntervalCount < VoiceCommsStatusDisplayIntervalMax)
+	{
+		//clear both timers and reset the count
+		VoiceCommsStatusDisplayIntervalCount++;
+		SetTimer( VoiceCommsStatusDisplayInterval, false, nameof(SetCurrentIconToVoiceCommsIcon) );
+	}
+	else
+	{
+		ClearVoiceCommsRequest();
+	}
+}
+
+simulated function SetCurrentIconToVoiceCommsIcon()
+{
+	CurrentIconToDisplay = class'KFLocalMessage_VoiceComms'.default.VoiceCommsIcons[CurrentVoiceCommsRequest];
+	SetTimer( VoiceCommsStatusDisplayInterval, false, nameof(SetCurrentIconToPerkIcon) );
+}
+
+simulated function ClearVoiceCommsRequest()
+{
+	ClearTimer('SetCurrentIconToPerkIcon');
+	ClearTimer('SetCurrentIconToVoiceCommsIcon');
+	VoiceCommsStatusDisplayIntervalCount = 0;
+	CurrentIconToDisplay = None;
+}
+
+simulated function Texture2D GetCurrentIconToDisplay()
+{
+	if(CurrentIconToDisplay == none && CurrentPerkClass != none)
+	{
+		return CurrentPerkClass.default.PerkIcon;
+	}
+
+	return CurrentIconToDisplay;
+}
 
 defaultproperties
 {
@@ -1072,4 +1151,11 @@ defaultproperties
 	bShowNonRelevantPlayers=true
 
 	SecondsOfGameplay=-1
+
+    bAllowDoshEarning=true
+    VoiceCommsStatusDisplayInterval = 0.5f
+    VoiceCommsStatusDisplayIntervalMax=5;
+    VoiceCommsStatusDisplayIntervalCount=0;
+    CurrentVoiceCommsRequest = VCT_NONE
+
 }

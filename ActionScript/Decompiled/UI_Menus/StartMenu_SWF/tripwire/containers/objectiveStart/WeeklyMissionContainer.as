@@ -1,5 +1,6 @@
 package tripwire.containers.objectiveStart
 {
+    import flash.display.MovieClip;
     import flash.events.Event;
     import flash.text.TextField;
     import tripwire.containers.TripContainer;
@@ -28,6 +29,12 @@ package tripwire.containers.objectiveStart
         
         public var weeklyDescriptionTextField:TextField;
         
+        public var vaultDoshTextField:TextField;
+        
+        public var vaultDoshValueField:TextField;
+        
+        public var vaultDoshIcon:MovieClip;
+        
         public var modifer_0:WeeklyModifierRenderer;
         
         public var modifer_1:WeeklyModifierRenderer;
@@ -39,8 +46,6 @@ package tripwire.containers.objectiveStart
         public var modifer_4:WeeklyModifierRenderer;
         
         public var reward_0:RewardRenderer;
-        
-        public var reward_1:RewardRenderer;
         
         public var iconImageLoader:TripUILoader;
         
@@ -59,7 +64,7 @@ package tripwire.containers.objectiveStart
             this.modifierList = new Vector.<WeeklyModifierRenderer>();
             this.modifierList.push(this.modifer_0,this.modifer_1,this.modifer_2,this.modifer_3,this.modifer_4);
             this.rewardList = new Vector.<RewardRenderer>();
-            this.rewardList.push(this.reward_0,this.reward_1);
+            this.rewardList.push(this.reward_0);
             this.hideRewardItems();
         }
         
@@ -71,6 +76,7 @@ package tripwire.containers.objectiveStart
                 this.rewardList[_loc1_].visible = false;
                 _loc1_++;
             }
+            this.vaultDoshReward = -1;
         }
         
         public function set localizedText(param1:Object) : void
@@ -80,6 +86,15 @@ package tripwire.containers.objectiveStart
             this.weeklyTextfield.text = !!param1.weekly ? param1.weekly : "";
             this.weeklyOverviewTextField.text = !!param1.overview ? param1.overview : "";
             this.weeklyDescriptionTextField.text = !!param1.description ? param1.description : "";
+            this.vaultDoshTextField.text = !!param1.vaultDosh ? param1.vaultDosh : "";
+        }
+        
+        public function set vaultDoshReward(param1:int) : void
+        {
+            this.vaultDoshValueField.text = param1.toString();
+            this.vaultDoshTextField.visible = param1 > 0;
+            this.vaultDoshValueField.visible = param1 > 0;
+            this.vaultDoshIcon.visible = param1 > 0;
         }
         
         public function set weeklyObjectiveData(param1:Object) : void

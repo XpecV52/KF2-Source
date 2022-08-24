@@ -91,7 +91,7 @@ function SetCharacterImage()
     KFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
     if(KFPRI != none)
     {
-        CharacterIndex = KFPRI.RepCustomizationInfo.CharacterIndex;
+        CharacterIndex = byte(KFPRI.RepCustomizationInfo.CharacterIndex);
         CharacterImage = PathName(KFPRI.CharacterArchetypes[CharacterIndex].DefaultHeadPortrait);
         CharacterImage = "img://" $ CharacterImage;
         SetString("characterImage", CharacterImage);

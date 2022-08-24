@@ -21,7 +21,7 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=7
-    MagazineCapacity=30
+    MagazineCapacity=40
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -35,8 +35,8 @@ defaultproperties
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=390
-    InitialSpareMags=3
+    SpareAmmoCapacity=400
+    InitialSpareMags=2
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */
@@ -47,11 +47,11 @@ defaultproperties
     AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_Medic.MeleeHelper'
     MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_MuzzleFlash'
-    maxRecoilPitch=200
-    minRecoilPitch=150
-    maxRecoilYaw=175
-    minRecoilYaw=-125
-    RecoilRate=0.085
+    maxRecoilPitch=140
+    minRecoilPitch=105
+    maxRecoilYaw=122
+    minRecoilYaw=-122
+    RecoilRate=0.075
     RecoilMaxYawLimit=500
     RecoilMinYawLimit=65035
     RecoilMaxPitchLimit=900
@@ -60,6 +60,7 @@ defaultproperties
     RecoilISMinYawLimit=65460
     RecoilISMaxPitchLimit=375
     RecoilISMinPitchLimit=65460
+    HippedRecoilModifier=1.5
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

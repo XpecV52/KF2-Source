@@ -48,6 +48,9 @@ struct StatAdjustments
     //Scale for gore health of the head hit zone
     var() float HeadHealthScale;
 
+	//Scale for shield for zeds that support this
+	var() float ShieldScale;
+
     //Start enraged
     var() bool bStartEnraged;
 
@@ -81,23 +84,24 @@ struct StatAdjustments
     /** Override of the global deflation rate to define a different per-zed rate, LERP between X and Y by player count */
     var() Vector2D OverrideDeflationRate;
 
-    /** Additional sub wave to use when one of this type of zed spawns */ 
+    /** Additional sub wave to use when one of this type of zed spawns */
     var() KFAIWaveInfo AdditionalSubSpawns;
 
     /** 1 to max player count range of how many AI should spawn during the sub wave */
     var() Vector2D AdditionalSubSpawnCount;
-    
+
     structdefaultproperties
     {
-        HealthScale = 1.f;
-        HeadHealthScale = 1.f;
-        bExplosiveDeath = false
+        HealthScale=1.f;
+        HeadHealthScale=1.f;
+		ShieldScale=1.f;
+        bExplosiveDeath=false
 
-        MaxBeefcake = 1.5
-        MaxBeefcakeHealth = 1.5
+        MaxBeefcake=1.5
+        MaxBeefcakeHealth=1.5
 
-        DamageDealtScale = 1.0
-        DamageTakenScale = 1.0
+        DamageDealtScale=1.0
+        DamageTakenScale=1.0
         OverrideDeflationRate=(X=0.0,Y=0.0)
 
         AdditionalSubSpawnCount=(X=1,Y=1)
@@ -147,7 +151,7 @@ struct WeeklyOverrides
 
     /** If this array is not empty, modifies the trader's list of available weapons */
     var() KFGFxObject_TraderItems TraderWeaponList;
-    
+
     /** Whether or not grenades are disabled at spawn and for purchase */
     var() bool bDisableGrenades;
 
@@ -251,7 +255,7 @@ struct WeeklyOverrides
     /** Whether or not we should allow ground speed to become sprint if the melee backup is active */
     var() bool bBackupMeleeSprintSpeed;
 
-    /** Additional wave info to use during boss phase */ 
+    /** Additional wave info to use during boss phase */
     var() KFAIWaveInfo AdditionalBossWaveInfo;
 
     /** Frequency of additional wave spawn */
@@ -277,7 +281,7 @@ struct WeeklyOverrides
 
     /** Whether to turn on inflation rules within KFPawn_Monster */
     var() bool bUseZedDamageInflation;
-    
+
     /** Maximum pawn inflation (0 health) */
     var() float ZeroHealthInflation;
 
@@ -412,7 +416,7 @@ event InitGame( string Options, out string ErrorMessage )
         if (ActiveEventIdx <= TestEvents.Length && ActiveEventIdx >= 0)
         {
             ActiveEvent = TestEvents[ActiveEventIdx];
-        }        
+        }
     }
     else
     {
@@ -486,7 +490,7 @@ function SetPickupItemList()
                 }
             }
         }
-    }    
+    }
 }
 
 function SetZedTimeOverrides()
@@ -494,7 +498,7 @@ function SetZedTimeOverrides()
     if (ZedTimeSlomoScale != ActiveEvent.OverrideZedTimeSlomoScale)
     {
         ZedTimeSlomoScale = ActiveEvent.OverrideZedTimeSlomoScale;
-    }    
+    }
 }
 
 function SetSpawnPointOverrides()
@@ -745,7 +749,7 @@ function StartWave()
         {
             //Enable permanent zed time
             SetPermanentZedTime();
-        }        
+        }
     }
 
     if (ActiveEvent.AdditionalBossWaveInfo != none && WaveNum == WaveMax)
@@ -757,20 +761,25 @@ function StartWave()
 function BossCameraZedTimeRecheck()
 {
     local KFPawn_Monster KFM;
+    local KFInterface_MonsterBoss BossRef;
 
     foreach WorldInfo.AllPawns(class'KFPawn_Monster', KFM)
     {
-        if (KFM.IsActiveBoss())
+        if (KFM.static.IsABoss())
         {
-            if (KFM.bUseAnimatedTheatricCamera)
+            BossRef = KFInterface_MonsterBoss(KFM);
+            if (BossRef != none)
             {
-                return;
-            }
-            //We have a boss that isn't animating.  Go ahead and start zed time
-            else
-            {
-                Cleartimer(nameof(BossCameraZedTimeRecheck));
-                SetPermanentZedTime();
+                if (BossRef.UseAnimatedBossCamera())
+                {
+                    return;
+                }
+                //We have a boss that isn't animating.  Go ahead and start zed time
+                else
+                {
+                    ClearTimer(nameof(BossCameraZedTimeRecheck));
+                    SetPermanentZedTime();
+                }
             }
         }
     }
@@ -806,7 +815,7 @@ function OpenTrader()
     {
         ClearZedTimePCTimers();
         ZedTimeRemaining = ZedTimeBlendOutTime;
-    }    
+    }
 
     if (!ActiveEvent.bDisableTraders)
     {
@@ -935,7 +944,7 @@ function class<KFPawn_Monster> GetAISpawnType(EAIType AIType)
                 return Replacement.NewClass;
             }
         }
-    }    
+    }
 
     //No override, return default
     return AIClassList[AIType];
@@ -946,7 +955,7 @@ function class<KFPawn_Monster> GetBossAISpawnType()
 {
     local SpawnReplacement Replacement;
     local int BossIdx;
-   
+
     BossIdx = Rand(AIBossClassList.Length);
 
     //Check if our current weekly event has any overrides available
@@ -961,37 +970,12 @@ function class<KFPawn_Monster> GetBossAISpawnType()
     return AIBossClassList[BossIdx];
 }
 
-//Anything that should occur prior to Possess is called on the controller paired with the new pawn
-event PrePossessAdjustments(KFPawn NewSpawn)
-{
-    local SpawnReplacement Replacement;
-    local KFPawn_Monster KFPM;
-
-    if (NewSpawn == none)
-    {
-        return;
-    }
-
-    KFPM = KFPawn_Monster(NewSpawn);
-
-    //Check if we're a boss replacement.  If so, set override boss flag so our
-    //      death chain can properly function.
-    foreach ActiveEvent.BossSpawnReplacementList(Replacement)
-    {
-        if (KFPM != none && Replacement.NewClass == NewSpawn.class && KFPawn_MonsterBoss(NewSpawn) == none)
-        {
-            KFPM.bOverrideAsBoss = true;
-            KFPM.bAlwaysRelevant = true;
-        }
-    }
-}
-
 function SetMonsterDefaults( KFPawn_Monster P )
 {
     local StatAdjustments ToAdjust;
 
     //Allow game type to set the defaults first, then override
-    super.SetMonsterDefaults(P);   
+    super.SetMonsterDefaults(P);
 
     if (P == none)
     {
@@ -1017,12 +1001,13 @@ function SetMonsterDefaults( KFPawn_Monster P )
     //Per class overrides
     foreach ActiveEvent.ZedsToAdjust(ToAdjust)
     {
-        if (P.class == ToAdjust.ClassToAdjust)
+        if (ClassIsChildOf(P.class, ToAdjust.ClassToAdjust))
         {
             P.Health *= ToAdjust.HealthScale;
             P.HealthMax *= ToAdjust.HealthScale;
             P.HitZones[HZI_HEAD].GoreHealth *= ToAdjust.HeadHealthScale;
             P.HitZones[HZI_HEAD].MaxGoreHealth = P.HitZones[HZI_HEAD].GoreHealth;
+			P.SetShieldScale(ToAdjust.ShieldScale);
 
             if (ToAdjust.bStartEnraged)
             {
@@ -1030,7 +1015,7 @@ function SetMonsterDefaults( KFPawn_Monster P )
                 if (KFAIController(P.Controller) == none || !KFAIController(P.Controller).SpawnEnraged())
                 {
                     P.SetEnraged(true);
-                }                
+                }
             }
 
             if (ToAdjust.bExplosiveDeath && ToAdjust.ExplosionTemplate != none)
@@ -1122,13 +1107,13 @@ function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller Insti
     {
         AdjustPawnScale(DamagedPawn);
     }
-    
+
     if (ActiveEvent.bUseBeefcakeRules)
     {
         if (InstigatedBy != none)
         {
             AdjustForBeefcakeRules(InstigatedBy.Pawn);
-        }       
+        }
 
         if (DamagedPawn != none && damageType == class'KFDT_Toxic_PlayerCrawlerSuicide')
         {
@@ -1166,7 +1151,7 @@ function ScoreKill( Controller Killer, Controller Other )
     {
         foreach ActiveEvent.ZedsToAdjust(ToAdjust)
         {
-            if (ToAdjust.ClassToAdjust == Other.Pawn.class)
+            if (ClassIsChildOf(Other.Pawn.class, ToAdjust.ClassToAdjust))
             {
                 if (ToAdjust.bExplosiveDeath && ToAdjust.ExplosionTemplate != none)
                 {
@@ -1180,7 +1165,7 @@ function ScoreKill( Controller Killer, Controller Other )
                 }
             }
         }
-    }    
+    }
 }
 
 function NotifyRally(KFPawn RalliedPawn)
@@ -1219,7 +1204,7 @@ function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, clas
             ExploActor.Explode(ExplosionTemplate, vect(0, 0, 1));
             ++CurrentFrameBooms;
         }
-    }    
+    }
 }
 
 function AdjustPawnScale(Pawn Pawn)
@@ -1270,7 +1255,7 @@ function AdjustForBeefcakeRules(Pawn Pawn, optional BeefcakeType Type = EBT_Dama
     {
         foreach ActiveEvent.ZedsToAdjust(StatAdjust)
         {
-            if (StatAdjust.ClassToAdjust == Pawn.class)
+            if (ClassIsChildOf(Pawn.class, StatAdjust.ClassToAdjust))
             {
                 CurrentScale = KFP.IntendedBodyScale;
 
@@ -1293,7 +1278,7 @@ function AdjustForBeefcakeRules(Pawn Pawn, optional BeefcakeType Type = EBT_Dama
                         KFP.Health += KFP.default.Health * PercentIncrease;
                         KFP.Health = Min(KFP.Health, KFP.HealthMax);
                     }
-                }                
+                }
 
                 //Heads in beefcake are supposed to stay at the original scale.  Do that here.
                 IntendedHeadScaling = 1.0 / CurrentScale;
@@ -1301,7 +1286,7 @@ function AdjustForBeefcakeRules(Pawn Pawn, optional BeefcakeType Type = EBT_Dama
                 KFP.SetHeadScale(IntendedHeadScaling, KFP.CurrentHeadScale);
             }
         }
-        
+
     }
 }
 
@@ -1336,18 +1321,18 @@ function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vec
             {
                 Damage *= ActiveEvent.JumpDamageScale;
             }
-        }    
+        }
     }
 
     foreach ActiveEvent.ZedsToAdjust(ToAdjust)
     {
         //Injured zed reduction
-        if (Injured.Class == ToAdjust.ClassToAdjust)
+        if (ClassIsChildOf(Injured.class, ToAdjust.ClassToAdjust))
         {
-            Damage *= ToAdjust.DamageTakenScale;            
+            Damage *= ToAdjust.DamageTakenScale;
         }
 
-        if (InstigatorPawn != none && InstigatorPawn.Class == ToAdjust.ClassToAdjust)
+        if (InstigatorPawn != none && ClassIsChildOf(InstigatorPawn.class, ToAdjust.ClassToAdjust))
         {
             Damage *= ToAdjust.DamageDealtScale;
         }
@@ -1395,6 +1380,7 @@ defaultproperties
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedGorefastDualBlade',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedHusk',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedScrake',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedSiren',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),
@@ -1409,8 +1395,10 @@ defaultproperties
                     GameLength=GL_Normal,
                     bHeadshotsOnly=true,
                     ZedsToAdjust={(
-                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthScale=0.25),
-                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthScale=0.25)
+                                    //(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthScale=0.25,ShieldScale=0.25), Patriarch doesn't use a shield currently.
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale=0.75,ShieldScale=0.5),
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthScale=0.25,ShieldScale=1.0),
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundmini',HealthScale=0.9) //1.0
                                  )}
                     )}
 
@@ -1447,10 +1435,12 @@ defaultproperties
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedGorefastDualBlade',HealthScale=3.0,HeadHealthScale=2.0),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthScale=1.0,HeadHealthScale=1.5),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthScale=1.0,HeadHealthScale=1.5),
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale=1.0,HeadHealthScale=1.5),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedHusk',HealthScale=2.0,HeadHealthScale=2.5),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedScrake',HealthScale=3.0,HeadHealthScale=3.0),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedSiren',HealthScale=3.0,HeadHealthScale=3.0),
-                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedStalker',HealthScale=3.0,HeadHealthScale=2.5)
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedStalker',HealthScale=3.0,HeadHealthScale=2.5),
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundmini',HealthScale=1.1,HeadHealthScale=1.1)
                                  )}
                     )}
 
@@ -1470,10 +1460,10 @@ defaultproperties
                                             )},
                     BossSpawnReplacementList={(
                                             (SpawnEntry=BAT_Hans,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundKing'),
-                                            (SpawnEntry=BAT_Patriarch,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundKing')
+                                            (SpawnEntry=BAT_Patriarch,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundKing'),
                                             )},
                     ZedsToAdjust={(
-                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale=3.75,bStartEnraged=true) //3.45
+                                    //(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale=1.0,bStartEnraged=true) //3.45
                                  )}
                     )}
 
@@ -1500,10 +1490,12 @@ defaultproperties
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedGorefastDualBlade',HealthScale=0.75,HeadHealthScale=1.0),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthScale=0.8,HeadHealthScale=1.0,OverrideDeflationRate=(X=0.01,Y=0.01)),     //health 0.5
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthScale=1.1,HeadHealthScale=1.0,OverrideDeflationRate=(X=0.01,Y=0.02)),   //health 0.5
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale=2.0,HeadHealthScale=1.0,OverrideDeflationRate=(X=0.01,Y=0.02)),   //health 0.5 Healthscale 1.1
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedHusk',HealthScale=1.0,HeadHealthScale=1.0),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedScrake',HealthScale=0.5,HeadHealthScale=1.0),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedSiren',HealthScale=1.0,HeadHealthScale=1.0),
-                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedStalker',HealthScale=3.5,HeadHealthScale=5.0)
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedStalker',HealthScale=3.5,HeadHealthScale=5.0),
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundmini',HealthScale=2.0,HeadHealthScale=2.0)
                                  )}
                     )}
     //Zed Time
@@ -1518,6 +1510,7 @@ defaultproperties
                     ZedsToAdjust={(
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthScale=0.8,DamageDealtScale=0.85),  //health0.75way to weak   damage0.6
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthScale=0.7,DamageDealtScale=0.7),  //health0.75  damage0.6
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale=0.8,DamageDealtScale=0.85),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedClot_AlphaKing',DamageDealtScale=0.6), //4
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedClot_Slasher',DamageDealtScale=0.6), //5
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedClot_Alpha',DamageDealtScale=0.6),
@@ -1535,7 +1528,7 @@ defaultproperties
                                  )},
                     SpawnReplacementList={(
 
-                                            (SpawnEntry=AT_Stalker,NewClass=class'KFGameContent.KFPawn_ZedScrake',PercentChance=0.07) 
+                                            (SpawnEntry=AT_Stalker,NewClass=class'KFGameContent.KFPawn_ZedScrake',PercentChance=0.07)
                                             )},
                     PermanentZedTimeCutoff = 6,
                     OverrideSpawnDerateTime = 0.0,
@@ -1572,7 +1565,9 @@ defaultproperties
                                 (ClassToAdjust=class'KFGameContent.KFPawn_ZedScrake',BeefcakeScaleIncreases=(0.05,0.2,0.02,0.02),MaxBeefcake=1.25,BeefcakeHealthIncreases=(0.0,0.0,0.0,0.0),MaxBeefcakeHealth=1.0),
                                 (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpound',BeefcakeScaleIncreases=(0.05,0.2,0.02,0.02),MaxBeefcake=1.25,BeefcakeHealthIncreases=(0.0,0.0,0.0,0.0),MaxBeefcakeHealth=1.0),
                                 (ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',BeefcakeScaleIncreases=(0.01,0.01,0.01,0.01),MaxBeefcake=1.25,BeefcakeHealthIncreases=(0.0,0.0,0.0,0.0),MaxBeefcakeHealth=1.0),
-                                (ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',BeefcakeScaleIncreases=(0.01,0.01,0.01,0.01),MaxBeefcake=1.25,BeefcakeHealthIncreases=(0.0,0.0,0.0,0.0),MaxBeefcakeHealth=1.0)
+                                (ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',BeefcakeScaleIncreases=(0.01,0.01,0.01,0.01),MaxBeefcake=1.25,BeefcakeHealthIncreases=(0.0,0.0,0.0,0.0),MaxBeefcakeHealth=1.0),
+                                (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',BeefcakeScaleIncreases=(0.01,0.01,0.01,0.01),MaxBeefcake=1.25,BeefcakeHealthIncreases=(0.0,0.0,0.0,0.0),MaxBeefcakeHealth=1.0),
                                 )},
                     )}
+
 }

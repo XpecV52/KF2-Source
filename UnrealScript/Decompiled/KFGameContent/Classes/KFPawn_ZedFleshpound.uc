@@ -389,7 +389,6 @@ defaultproperties
     bCanRage=true
     bIsFleshpoundClass=true
     MonsterArchPath="ZED_ARCH.ZED_Fleshpound_Archetype"
-    ElitePawnClass=Class'KFPawn_ZedFleshpoundKing'
     HeadlessBleedOutTime=7
     ParryResistance=4
     MinSpawnSquadSizeType=ESquadType.EST_Large

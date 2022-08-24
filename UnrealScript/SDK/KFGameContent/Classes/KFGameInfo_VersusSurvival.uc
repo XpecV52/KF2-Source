@@ -19,7 +19,7 @@ var protected const float ANTI_GRIEF_DAMAGE_PERCENTAGE;
 
 /** Zed pawn classes used by players */
 var protected const array<class<KFPawn_Monster> > PlayerZedClasses;
-var protected const array<class<KFPawn_MonsterBoss> > PlayerBossClassList;
+var protected const array<class<KFPawn_Monster> > PlayerBossClassList;
 
 /** Cached reference to versus gamereplicationinfo */
 var KFGameReplicationInfoVersus MyKFGRIV;
@@ -840,7 +840,7 @@ function ReduceDamage( out int Damage, Pawn Injured, Controller InstigatedBy, ve
 
 function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> damageType )
 {
-    local KFPawn_MonsterBoss BossPawn;
+    local KFInterface_MonsterBoss BossRef;
 
     if( InstigatedBy == none
         || !InstigatedBy.bIsPlayer
@@ -855,8 +855,8 @@ function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller Insti
 
     if(InstigatedBy.PlayerReplicationInfo.GetTeamNum() == 255)
     {
-        BossPawn = KFPawn_MonsterBoss(InstigatedBy.Pawn);
-        if(BossPawn != none)
+        BossRef = KFInterface_MonsterBoss(InstigatedBy.Pawn);
+        if(BossRef != none)
         {
             if(DamagedPawn.IsA('KFPawn_Human'))
             {
@@ -867,8 +867,8 @@ function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller Insti
     }
     else
     {
-        BossPawn = KFPawn_MonsterBoss(DamagedPawn);
-        if(BossPawn != none)
+        BossRef = KFInterface_MonsterBoss(DamagedPawn);
+        if(BossRef != none)
         {
             //damage done to boss
             BossDamageDone += DamageAmount;
@@ -904,7 +904,7 @@ function ScoreKill(Controller Killer, Controller Other)
             }
         }
     }
-    else if( WaveNum == WaveMax && KFPawn_MonsterBoss(Other.Pawn) != none )
+    else if( WaveNum == WaveMax && KFInterface_MonsterBoss(Other.Pawn) != none )
     {
         // Add our boss kill points
         BossDamageDone = POINTS_FOR_BOSS_KILL;

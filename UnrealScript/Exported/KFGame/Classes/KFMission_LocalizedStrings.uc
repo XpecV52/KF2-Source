@@ -19,12 +19,25 @@ var localized string SpecialEventString;
 var localized string SpecialEventChanceDropString;
 var localized string GrantedSpecialEventString;
 
+var localized string DailyObjectiveString;
+
 var localized string RewardsString;
+var localized string RewardString;
 
 var localized string WeeklyOverview;
 var localized string ShortWeeklyString;
 var localized string ObjectivesString;
 var localized string SeasonalString;
+
+var localized string DealDamageString;
+var localized string EarnXPString;
+var localized string CompleteMapString;
+var localized string KillZedsString;
+var localized string DealVersusDamageString;
+var localized string VersusKillsString;
+var localized string VersusCompletionString;
+
+var localized string VaultDoshString;
 
 
 var	const private native transient Map_Mirror WeeklyOutbreakInfo{TMultiMap<INT,class UKFWeeklyOutbreakInformation*>};
@@ -47,14 +60,24 @@ defaultproperties
    GrantedWeeklyString="OUTBREAK COMPLETION REWARD"
    WeeklyString="HORZINE WEEKLY OUTBREAK"
    CurrentWeeklySettingsString="CURRENT OUTBREAK SETTINGS"
-   SpecialEventString="SUMMER SIDE SHOW"
+   SpecialEventString="SUMMER SIDESHOW"
    SpecialEventChanceDropString="LIMITED DROP ITEMS"
    GrantedSpecialEventString="COMPLETION REWARD"
+   DailyObjectiveString="DAILY"
    RewardsString="OUTBREAK COMPLETION REWARD"
+   RewardString="REWARD"
    WeeklyOverview="A new challenging game mode each week!"
    ShortWeeklyString="WEEKLY"
    ObjectivesString="Toggle Objectives"
    SeasonalString="SEASONAL"
+   DealDamageString="Deal Damage:"
+   EarnXPString="Earn XP:"
+   CompleteMapString="Complete Match in Map:"
+   KillZedsString="Kill Zeds:"
+   DealVersusDamageString="Damage Versus Players as:"
+   VersusKillsString="Kill Versus Players as:"
+   VersusCompletionString="Complete Match as:"
+   VaultDoshString="Vault Dosh"
    Name="Default__KFMission_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

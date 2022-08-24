@@ -233,6 +233,7 @@ defaultproperties
         CastShadows=false
         CastStaticShadows=false
         CastDynamicShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
     object end
     // Reference: PointLightComponent'Default__KFProj_Missile_Patriarch.FlightPointLight'
@@ -295,6 +296,7 @@ defaultproperties
         CastShadows=false
         CastStaticShadows=false
         CastDynamicShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
     object end
     // Reference: PointLightComponent'Default__KFProj_Missile_Patriarch.FlightPointLight'

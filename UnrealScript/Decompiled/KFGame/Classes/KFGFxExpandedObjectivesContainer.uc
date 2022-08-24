@@ -9,6 +9,7 @@ class KFGFxExpandedObjectivesContainer extends KFGFxObject_Container within GFxM
 
 var KFGFxSpecialEventObjectivesContainer SpecialEventsContainer;
 var KFGFxWeeklyObjectivesContainer WeeklyEventContainer;
+var KFGFxDailyObjectivesContainer DailyObjectiveContainer;
 var KFGFxMenu_StartGame StartMenu;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
@@ -19,9 +20,13 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     StartMenu.MissionObjectiveContainer.UpdateSpecialEventActive();
 }
 
-function bool Refresh()
+function bool Refresh(optional bool bForceRefreshOfDaily)
 {
-    return SpecialEventsContainer.PopulateData() || WeeklyEventContainer.PopulateData();
+    if((SpecialEventsContainer != none) && WeeklyEventContainer != none)
+    {
+        return (SpecialEventsContainer.PopulateData() || WeeklyEventContainer.PopulateData()) || DailyObjectiveContainer.PopulateData(bForceRefreshOfDaily);
+    }
+    return false;
 }
 
 function LocalizeMenu()
@@ -30,6 +35,7 @@ function LocalizeMenu()
 
     TextObject = Outer.CreateObject("Object");
     TextObject.SetString("specialEvent", Class'KFMission_LocalizedStrings'.default.SeasonalString);
+    TextObject.SetString("daily", Class'KFMission_LocalizedStrings'.default.DailyObjectiveString);
     TextObject.SetString("weekly", Class'KFMission_LocalizedStrings'.default.ShortWeeklyString);
     SetObject("localizedText", TextObject);
 }

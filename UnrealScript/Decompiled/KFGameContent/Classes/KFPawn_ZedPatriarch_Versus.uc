@@ -298,10 +298,10 @@ private final function CheckHealth()
                 DoSpecialMove(27, true);
             }
         }
-        if((((!bWarnedLowHealthThisPhase && IsLocallyControlled()) && MyKFPC.MyGFxHUD != none) && HealthPct <= LowHealthThreshold) && SpecialMoveCooldowns[5].Charges > 0)
+        if((((!bWarnedLowHealthThisPhase && IsLocallyControlled()) && MyKFPC.myGfxHUD != none) && HealthPct <= LowHealthThreshold) && SpecialMoveCooldowns[5].Charges > 0)
         {
             bWarnedLowHealthThisPhase = true;
-            MyKFPC.MyGFxHUD.ShowNonCriticalMessage(LowHealthMsg);
+            MyKFPC.myGfxHUD.ShowNonCriticalMessage(LowHealthMsg);
         }
     }
 }
@@ -401,7 +401,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_296' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_304' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -425,7 +425,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(3)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_1002' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_1033' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

@@ -120,6 +120,11 @@ function float GetSpeedModifier()
     return 1;
 }
 
+function float GetAttackSpeedModifier()
+{
+    return 1;
+}
+
 defaultproperties
 {
     DissipationRate=20

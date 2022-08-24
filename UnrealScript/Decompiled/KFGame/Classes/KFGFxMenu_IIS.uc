@@ -12,6 +12,7 @@ var delegate<OnAutoLoginComplete> AutoLoginCompleteDelegate;
 var bool bLoggingIn;
 var bool bForceConnectionAtLogin;
 var bool bStatsRead;
+var bool bClosed;
 var OnlineSubsystem OnlineSub;
 var PlayfabInterface PlayfabInter;
 var delegate<OnAutoLoginComplete> __OnAutoLoginComplete__Delegate;
@@ -70,6 +71,7 @@ event OnClose()
 {
     local KFGameViewportClient GVC;
 
+    bClosed = true;
     GVC = KFGameViewportClient(Outer.GetGameViewportClient());
     if(GVC != none)
     {
@@ -89,6 +91,11 @@ function UnRegisterDelegates()
 
 event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInputEvent InputEvent)
 {
+    if(bClosed)
+    {
+        WarnInternal("FilterButtonInput called after IIS menu has been closed!");
+        return false;
+    }
     if(((InputEvent == 0) && Manager != none) && Manager.CurrentPopup == none)
     {
         if(ButtonName == 'XboxTypeS_A')
@@ -159,9 +166,7 @@ function OnConfirmPlayOffline()
     ProfileSettings.SetToDefaults();
     ProfileSettings.ExpandExtraFromProfileSettings();
     OnlineSub.SetCachedProfile(ProfileSettings);
-    KFPlayerController(Outer.GetPC()).case assert((@NULL != @NULL) != assert((@NULL != (true != )) != KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus = 1)) != :
-        default.@NULL
-        @NULL
+    KFPlayerController(Outer.GetPC()).NativeFunctionToken(ArgumentOutOfRangeException);
 }
 
 function OnLoginStatusChanged(Engine.OnlineSubsystem.ELoginStatus NewStatus, UniqueNetId NewId)

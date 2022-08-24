@@ -236,21 +236,21 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
         WarnInternal("Does not have a KFPRI" @ string(self));
         return;
     }
-    SetBodyMeshAndSkin(KFPRI.RepCustomizationInfo.BodyMeshIndex, KFPRI.RepCustomizationInfo.BodySkinIndex, KFP);
-    SetHeadMeshAndSkin(KFPRI.RepCustomizationInfo.HeadMeshIndex, KFPRI.RepCustomizationInfo.HeadSkinIndex, KFP);
+    SetBodyMeshAndSkin(byte(KFPRI.RepCustomizationInfo.BodyMeshIndex), byte(KFPRI.RepCustomizationInfo.BodySkinIndex), KFP);
+    SetHeadMeshAndSkin(byte(KFPRI.RepCustomizationInfo.HeadMeshIndex), byte(KFPRI.RepCustomizationInfo.HeadSkinIndex), KFP);
     if(KFP.WorldInfo.NetMode != NM_DedicatedServer)
     {
         AttachmentIdx = 0;
-        J0x17F:
+        J0x187:
 
         if(AttachmentIdx < 3)
         {
             DetachAttachment(AttachmentIdx, KFP);
             ++ AttachmentIdx;
-            goto J0x17F;
+            goto J0x187;
         }
         AttachmentIdx = 0;
-        J0x1C4:
+        J0x1CC:
 
         if(AttachmentIdx < 3)
         {
@@ -258,10 +258,10 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             if(CosmeticMeshIdx != 255)
             {
                 bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
-                SetAttachmentMeshAndSkin(byte(CosmeticMeshIdx), KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx], KFP, KFPRI);
+                SetAttachmentMeshAndSkin(byte(CosmeticMeshIdx), byte(KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx]), KFP, KFPRI);
             }
             ++ AttachmentIdx;
-            goto J0x1C4;
+            goto J0x1CC;
         }
         InitCharacterMICs(KFP, bMaskHeadMesh);
     }
@@ -307,6 +307,11 @@ private final function SetBodyMeshAndSkin(byte CurrentBodyMeshIndex, byte Curren
     local string CharBodyMeshName;
     local SkeletalMesh CharBodyMesh;
 
+    if(KFP.WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        CurrentBodyMeshIndex = 0;
+        CurrentBodySkinIndex = 0;
+    }
     if(BodyVariants.Length > 0)
     {
         CurrentBodyMeshIndex = ((CurrentBodyMeshIndex < BodyVariants.Length) ? CurrentBodyMeshIndex : 0);
@@ -677,7 +682,7 @@ simulated function SetFirstPersonArmsFromArch(KFPawn KFP, optional KFPlayerRepli
         WarnInternal("Does not have a KFPRI" @ string(self));
         return;
     }
-    SetArmsMeshAndSkin(KFPRI.RepCustomizationInfo.BodyMeshIndex, KFPRI.RepCustomizationInfo.BodySkinIndex, KFP);
+    SetArmsMeshAndSkin(byte(KFPRI.RepCustomizationInfo.BodyMeshIndex), byte(KFPRI.RepCustomizationInfo.BodySkinIndex), KFP);
 }
 
 simulated function SetArmsMeshAndSkin(byte ArmsMeshIndex, byte ArmsSkinIndex, KFPawn KFP)

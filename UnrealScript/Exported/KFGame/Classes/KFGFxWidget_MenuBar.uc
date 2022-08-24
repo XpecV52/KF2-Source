@@ -96,7 +96,7 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 	GfxButton.SetInt( "index", ButtonIndex );
 
 	// For XB1, we change the EXIT button to logout while in the menus
-	if (ButtonIndex == 6 && class'WorldInfo'.static.IsMenuLevel() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
+	if (ButtonIndex == UI_Exit_Menu && class'WorldInfo'.static.IsMenuLevel() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
 	{
 		GfxButton.SetString( "label",  ConsoleLocalize("LogoutTitle") );
 	}
@@ -107,11 +107,18 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 
 	switch (ButtonIndex)
 	{
+		case UI_Dosh_Vault:
+			GfxButton.SetBool( "enabled", CanUseDoshVault() );
+			return;
 		case UI_GEAR:
 			// Disable the gear button if we're a spectator (must be done through data provider since buttons don't exist yet)
 			bGearButtonEnabled = CanUseGearButton( GetPC(), Manager );
 			GfxButton.SetBool( "enabled", bGearButtonEnabled );
 			return;
+
+		case UI_Dosh_Vault:
+			GfxButton.SetBool( "enabled", class'WorldInfo'.static.IsMenuLevel() );
+			break;
 		case UI_Start:
 			GfxButton.SetString( "label",  GetHomeButtonName());
 			GfxButton.SetBool( "bPulsing", ShouldStartMenuPulse() );
@@ -269,9 +276,8 @@ function bool ShouldStartMenuPulse()
 
 static function bool CanUseGearButton( PlayerController PC, KFGfxMoviePlayer_Manager GfxManager )
 {
-	if( !GfxManager.bAfterLobby
-		|| class'WorldInfo'.static.IsMenuLevel()
-		|| (PC.IsSpectating() && !PC.PlayerReplicationInfo.bOnlySpectator) )
+	if( !GfxManager.bAfterLobby && (!PC.PlayerReplicationInfo.bOnlySpectator)
+		|| class'WorldInfo'.static.IsMenuLevel() )
 	{
 		return true;
 	}
@@ -291,6 +297,11 @@ function bool CanUseInventory()
 		return true;
 	}
 	return false;
+}
+
+function bool CanUseDoshVault()
+{
+	return class'WorldInfo'.static.IsMenuLevel();
 }
 
 
@@ -314,10 +325,11 @@ defaultproperties
    MenuStrings(0)="HOME"
    MenuStrings(1)="PERKS"
    MenuStrings(2)="GEAR"
-   MenuStrings(3)="INVENTORY"
-   MenuStrings(4)="STORE"
-   MenuStrings(5)="OPTIONS"
-   MenuStrings(6)="EXIT"
+   MenuStrings(3)="VAULT"
+   MenuStrings(4)="INVENTORY"
+   MenuStrings(5)="STORE"
+   MenuStrings(6)="OPTIONS"
+   MenuStrings(7)="EXIT"
    ExitString="EXIT"
    CancelString="CANCEL"
    ServerBrowserString="SERVER BROWSER"

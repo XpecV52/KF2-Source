@@ -118,6 +118,11 @@ function RefreshParty()
 	local GFxObject DataProvider;
 	DataProvider = CreateArray();
 
+	if(Manager.CurrentMenuIndex == UI_IIS)
+	{
+		return;
+	}
+
 	super.RefreshParty();
 	
 	if ( OnlineLobby != none && OnlineLobby.GetCurrentLobby(LobbyInfo) )
@@ -171,17 +176,10 @@ function RefreshParty()
 
 function HandleLeaderChange(UniqueNetId AdminId)
 {
-	local string HostName;
-	if(OnlineLobby != none)
-	{
-		HostName = OnlineLobby.GetFriendNickname(AdminId);
-	}
-	
-	HostName = OnlineLobby.GetFriendNickname(AdminId);
 	Manager.HandleSteamLobbyLeaderTakeOver(AdminId);
 	if(LastLeaderID != ZeroUniqueId )
 	{
-		Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, PartHostLeftString, HostName@PartyLeaderChangedString, class'KFCommon_LocalizedStrings'.default.OKString);
+		Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, PartHostLeftString, PartyLeaderChangedString, class'KFCommon_LocalizedStrings'.default.OKString);
 	}
 	LastLeaderID = AdminId;
 }
@@ -196,6 +194,7 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 	local PlayerController PC;
 	local GFxObject PlayerInfoObject;
 	local KFPerk CurrentPerk;
+	local string AvatarPath;
 
 
 	PlayerInfoObject = CreateObject("Object");
@@ -250,14 +249,20 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 	}
 	PlayerInfoObject.SetString("playerName", PlayerName);
 	//player icon
+
 	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
 	{
-		PlayerInfoObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));
+		AvatarPath = KFPC.GetPS4Avatar(PlayerName);
 	}
 	else
 	{
-		PlayerInfoObject.SetString("profileImageSource", KFPC.GetSteamAvatar(PlayerUID));
+		AvatarPath = KFPC.GetSteamAvatar(PlayerUID);
 	}	
+
+	if(AvatarPath != "")
+	{
+		PlayerInfoObject.SetString("profileImageSource", "img://"$AvatarPath);
+	}
 
 	MemberSlots[SlotIndex].PlayerUID = PlayerUID;	
 

@@ -2,7 +2,7 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_1
    SizeX=1743
    SizeY=1031
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1296
    ObjPosY=888
    ObjComment="Primary Nuke Sequence"
@@ -14,12 +14,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
    InputLinks(0)=(DrawY=997,OverrideDelta=14)
    InputLinks(1)=(DrawY=1018,OverrideDelta=35)
    InputLinks(2)=(DrawY=1039,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2')),DrawY=1018,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=4734,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2')),DrawY=1018,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=4734,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4785,OverrideDelta=76)
    EventLinks(0)=(DrawX=4834,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4696
    ObjPosY=960
    DrawWidth=173
@@ -29,9 +29,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_0'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4904
    ObjPosY=976
    DrawWidth=32
@@ -41,9 +41,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_1'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4904
    ObjPosY=1144
    DrawWidth=32
@@ -53,9 +53,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_86'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_86'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4904
    ObjPosY=1312
    DrawWidth=32
@@ -65,9 +65,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_4'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4904
    ObjPosY=1440
    DrawWidth=32
@@ -77,9 +77,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_2'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4896
    ObjPosY=1584
    DrawWidth=32
@@ -89,9 +89,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_10'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4888
    ObjPosY=1728
    DrawWidth=32
@@ -101,9 +101,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_3'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4896
    ObjPosY=1880
    DrawWidth=32
@@ -113,9 +113,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_113
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_5'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4880
    ObjPosY=2008
    DrawWidth=32
@@ -129,17 +129,17 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_1
    bAutoDisableLinks=True
    InputLinks(0)=(DrawY=992,OverrideDelta=49)
    InputLinks(1)=(DrawY=1084,OverrideDelta=141)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=958,OverrideDelta=15)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),LinkDesc="Link 2",DrawY=981,OverrideDelta=38)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),LinkDesc="Link 3",DrawY=1004,OverrideDelta=61)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),LinkDesc="Link 4",DrawY=1027,OverrideDelta=84)
-   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),LinkDesc="Link 5",DrawY=1050,OverrideDelta=107)
-   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),LinkDesc="Link 6",DrawY=1073,OverrideDelta=130)
-   OutputLinks(6)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),LinkDesc="Link 7",DrawY=1096,OverrideDelta=153)
-   OutputLinks(7)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),LinkDesc="Link 8",DrawY=1119,OverrideDelta=176)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=958,OverrideDelta=15)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),LinkDesc="Link 2",DrawY=981,OverrideDelta=38)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),LinkDesc="Link 3",DrawY=1004,OverrideDelta=61)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),LinkDesc="Link 4",DrawY=1027,OverrideDelta=84)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),LinkDesc="Link 5",DrawY=1050,OverrideDelta=107)
+   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_14')),LinkDesc="Link 6",DrawY=1073,OverrideDelta=130)
+   OutputLinks(6)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),LinkDesc="Link 7",DrawY=1096,OverrideDelta=153)
+   OutputLinks(7)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),LinkDesc="Link 8",DrawY=1119,OverrideDelta=176)
    VariableLinks(0)=(DrawX=4540,OverrideDelta=23)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4496
    ObjPosY=920
    DrawWidth=89
@@ -152,12 +152,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
    InputLinks(0)=(DrawY=1157,OverrideDelta=14)
    InputLinks(1)=(DrawY=1178,OverrideDelta=35)
    InputLinks(2)=(DrawY=1199,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3')),DrawY=1178,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_8'),DrawX=4742,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3')),DrawY=1178,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_8'),DrawX=4742,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4793,OverrideDelta=76)
    EventLinks(0)=(DrawX=4842,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4704
    ObjPosY=1120
    DrawWidth=173
@@ -170,12 +170,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
    InputLinks(0)=(DrawY=1317,OverrideDelta=14)
    InputLinks(1)=(DrawY=1338,OverrideDelta=35)
    InputLinks(2)=(DrawY=1359,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4')),DrawY=1338,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10'),DrawX=4750,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4')),DrawY=1338,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10'),DrawX=4750,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4801,OverrideDelta=76)
    EventLinks(0)=(DrawX=4850,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4712
    ObjPosY=1280
    DrawWidth=173
@@ -188,12 +188,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
    InputLinks(0)=(DrawY=1469,OverrideDelta=14)
    InputLinks(1)=(DrawY=1490,OverrideDelta=35)
    InputLinks(2)=(DrawY=1511,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_5')),DrawY=1490,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_12'),DrawX=4742,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_5')),DrawY=1490,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_12'),DrawX=4742,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4793,OverrideDelta=76)
    EventLinks(0)=(DrawX=4842,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4704
    ObjPosY=1432
    DrawWidth=173
@@ -206,12 +206,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
    InputLinks(0)=(DrawY=1613,OverrideDelta=14)
    InputLinks(1)=(DrawY=1634,OverrideDelta=35)
    InputLinks(2)=(DrawY=1655,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_6')),DrawY=1634,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_13'),DrawX=4742,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_6')),DrawY=1634,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_13'),DrawX=4742,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4793,OverrideDelta=76)
    EventLinks(0)=(DrawX=4842,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4704
    ObjPosY=1576
    DrawWidth=173
@@ -224,12 +224,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
    InputLinks(0)=(DrawY=1749,OverrideDelta=14)
    InputLinks(1)=(DrawY=1770,OverrideDelta=35)
    InputLinks(2)=(DrawY=1791,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_7')),DrawY=1770,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14'),DrawX=4726,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_7')),DrawY=1770,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14'),DrawX=4726,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4777,OverrideDelta=76)
    EventLinks(0)=(DrawX=4826,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4688
    ObjPosY=1712
    DrawWidth=173
@@ -242,12 +242,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
    InputLinks(0)=(DrawY=1877,OverrideDelta=14)
    InputLinks(1)=(DrawY=1898,OverrideDelta=35)
    InputLinks(2)=(DrawY=1919,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_8')),DrawY=1898,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17'),DrawX=4726,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_8')),DrawY=1898,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17'),DrawX=4726,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4777,OverrideDelta=76)
    EventLinks(0)=(DrawX=4826,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4688
    ObjPosY=1840
    DrawWidth=173
@@ -260,12 +260,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
    InputLinks(0)=(DrawY=2013,OverrideDelta=14)
    InputLinks(1)=(DrawY=2034,OverrideDelta=35)
    InputLinks(2)=(DrawY=2055,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_9')),DrawY=2034,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_113'),DrawX=4710,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_9')),DrawY=2034,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_113'),DrawX=4710,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4761,OverrideDelta=76)
    EventLinks(0)=(DrawX=4810,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4672
    ObjPosY=1976
    DrawWidth=173
@@ -276,12 +276,12 @@ End Object
 
 Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_1
    MaxWidth=248
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareFloat'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareFloat_1')),LinkDesc="Start wave Logic",DrawY=1042,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareFloat'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareFloat_1')),LinkDesc="Start wave Logic",DrawY=1042,OverrideDelta=11)
    VariableLinks(0)=(DrawX=1387,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1448,OverrideDelta=86)
-   VariableLinks(2)=(LinkedVariables=(SeqVar_Float'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_2'),DrawX=1529,OverrideDelta=139)
+   VariableLinks(2)=(LinkedVariables=(SeqVar_Float'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_2'),DrawX=1529,OverrideDelta=139)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1344
    ObjPosY=976
    DrawWidth=188
@@ -298,11 +298,11 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
    InputLinks(4)=(DrawY=846,OverrideDelta=103)
    OutputLinks(0)=(DrawY=774,OverrideDelta=31)
    OutputLinks(1)=(DrawY=830,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_10'),DrawX=5071,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27'),LinkDesc="distant_nuke_light",MinVars=0,DrawX=5163,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142'),LinkDesc="Sound",MinVars=0,DrawX=5260,OverrideDelta=200)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_10'),DrawX=5071,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27'),LinkDesc="distant_nuke_light",MinVars=0,DrawX=5163,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142'),LinkDesc="Sound",MinVars=0,DrawX=5260,OverrideDelta=200)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5040
    ObjPosY=720
    DrawWidth=257
@@ -319,7 +319,7 @@ Begin Object Class=InterpData Name=InterpData_10
          Name="InterpTrackAkEvent_1"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_2.InterpTrackAkEvent_1'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_2.InterpTrackAkEvent_1'
       GroupName="Sound"
       GroupColor=(B=103,G=0,R=214,A=255)
       Name="InterpGroup_2"
@@ -339,8 +339,8 @@ Begin Object Class=InterpData Name=InterpData_10
          Name="InterpTrackFloatProp_0"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_0.InterpTrackToggle_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_0.InterpTrackFloatProp_0'
+      InterpTracks(0)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_0.InterpTrackToggle_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_0.InterpTrackFloatProp_0'
       GroupName="distant_nuke_light"
       GroupColor=(B=192,G=143,R=0,A=255)
       Name="InterpGroup_0"
@@ -351,13 +351,13 @@ Begin Object Class=InterpData Name=InterpData_10
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.526468
-   InterpGroups(0)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_0'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_2'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpCurveEdSetup_0'
+   InterpGroups(0)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_0'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_2'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpCurveEdSetup_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=20.526468
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5024
    ObjPosY=896
    DrawWidth=32
@@ -367,9 +367,9 @@ Begin Object Class=InterpData Name=InterpData_10
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
-   ObjValue=DirectionalLightToggleable'KF-Nuked.TheWorld:PersistentLevel.DirectionalLightToggleable_3'
+   ObjValue=DirectionalLightToggleable'KF-NUKED.TheWorld:PersistentLevel.DirectionalLightToggleable_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5144
    ObjPosY=904
    DrawWidth=32
@@ -386,11 +386,11 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_3
    InputLinks(4)=(DrawY=1102,OverrideDelta=103)
    OutputLinks(0)=(DrawY=1030,OverrideDelta=31)
    OutputLinks(1)=(DrawY=1086,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_2'),DrawX=5287,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5379,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_150'),LinkDesc="Sound",MinVars=0,DrawX=5476,OverrideDelta=200)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_2'),DrawX=5287,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5379,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_150'),LinkDesc="Sound",MinVars=0,DrawX=5476,OverrideDelta=200)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5256
    ObjPosY=976
    DrawWidth=257
@@ -406,7 +406,7 @@ Begin Object Class=InterpData Name=InterpData_2
          Name="InterpTrackAkEvent_2"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_3.InterpTrackAkEvent_2'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_3.InterpTrackAkEvent_2'
       GroupName="Sound"
       GroupColor=(B=106,G=0,R=213,A=255)
       Name="InterpGroup_3"
@@ -426,8 +426,8 @@ Begin Object Class=InterpData Name=InterpData_2
          Name="InterpTrackFloatProp_1"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackToggle_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackFloatProp_1'
+      InterpTracks(0)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackToggle_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackFloatProp_1'
       GroupName="nuke_distant_light"
       GroupColor=(B=0,G=231,R=30,A=255)
       Name="InterpGroup_1"
@@ -438,13 +438,13 @@ Begin Object Class=InterpData Name=InterpData_2
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.363140
-   InterpGroups(0)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_3'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpCurveEdSetup_1'
+   InterpGroups(0)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_3'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpCurveEdSetup_1'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=20.363140
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5256
    ObjPosY=1168
    DrawWidth=32
@@ -454,9 +454,9 @@ Begin Object Class=InterpData Name=InterpData_2
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
-   ObjValue=DirectionalLightToggleable'KF-Nuked.TheWorld:PersistentLevel.DirectionalLightToggleable_4'
+   ObjValue=DirectionalLightToggleable'KF-NUKED.TheWorld:PersistentLevel.DirectionalLightToggleable_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5360
    ObjPosY=1168
    DrawWidth=32
@@ -473,11 +473,11 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_4
    InputLinks(4)=(DrawY=1358,OverrideDelta=103)
    OutputLinks(0)=(DrawY=1286,OverrideDelta=31)
    OutputLinks(1)=(DrawY=1342,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_3'),DrawX=5327,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29'),LinkDesc="nuke_light_distant",MinVars=0,DrawX=5419,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_151'),LinkDesc="Sound",MinVars=0,DrawX=5516,OverrideDelta=200)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_3'),DrawX=5327,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29'),LinkDesc="nuke_light_distant",MinVars=0,DrawX=5419,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_151'),LinkDesc="Sound",MinVars=0,DrawX=5516,OverrideDelta=200)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5296
    ObjPosY=1232
    DrawWidth=257
@@ -493,7 +493,7 @@ Begin Object Class=InterpData Name=InterpData_3
          Name="InterpTrackAkEvent_3"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackAkEvent_3'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackAkEvent_3'
       GroupName="Sound"
       GroupColor=(B=201,G=0,R=131,A=255)
       Name="InterpGroup_4"
@@ -513,8 +513,8 @@ Begin Object Class=InterpData Name=InterpData_3
          Name="InterpTrackFloatProp_2"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2.InterpTrackToggle_2'
-      InterpTracks(1)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2.InterpTrackFloatProp_2'
+      InterpTracks(0)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2.InterpTrackToggle_2'
+      InterpTracks(1)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2.InterpTrackFloatProp_2'
       GroupName="nuke_light_distant"
       GroupColor=(B=161,G=178,R=0,A=255)
       Name="InterpGroup_2"
@@ -525,13 +525,13 @@ Begin Object Class=InterpData Name=InterpData_3
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.606586
-   InterpGroups(0)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpCurveEdSetup_2'
+   InterpGroups(0)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpCurveEdSetup_2'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=20.433596
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5264
    ObjPosY=1416
    DrawWidth=32
@@ -541,9 +541,9 @@ Begin Object Class=InterpData Name=InterpData_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
-   ObjValue=DirectionalLightToggleable'KF-Nuked.TheWorld:PersistentLevel.DirectionalLightToggleable_5'
+   ObjValue=DirectionalLightToggleable'KF-NUKED.TheWorld:PersistentLevel.DirectionalLightToggleable_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5392
    ObjPosY=1400
    DrawWidth=32
@@ -560,11 +560,11 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_5
    InputLinks(4)=(DrawY=1590,OverrideDelta=103)
    OutputLinks(0)=(DrawY=1518,OverrideDelta=31)
    OutputLinks(1)=(DrawY=1574,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=5391,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5483,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_152'),LinkDesc="Sound",MinVars=0,DrawX=5580,OverrideDelta=200)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=5391,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5483,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_152'),LinkDesc="Sound",MinVars=0,DrawX=5580,OverrideDelta=200)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5360
    ObjPosY=1464
    DrawWidth=257
@@ -580,7 +580,7 @@ Begin Object Class=InterpData Name=InterpData_4
          Name="InterpTrackAkEvent_4"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5.InterpTrackAkEvent_4'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5.InterpTrackAkEvent_4'
       GroupName="Sound"
       GroupColor=(B=179,G=159,R=0,A=255)
       Name="InterpGroup_5"
@@ -600,8 +600,8 @@ Begin Object Class=InterpData Name=InterpData_4
          Name="InterpTrackFloatProp_3"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackToggle_3'
-      InterpTracks(1)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackFloatProp_3'
+      InterpTracks(0)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackToggle_3'
+      InterpTracks(1)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackFloatProp_3'
       GroupName="nuke_distant_light"
       GroupColor=(B=207,G=0,R=120,A=255)
       Name="InterpGroup_3"
@@ -612,13 +612,13 @@ Begin Object Class=InterpData Name=InterpData_4
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.407019
-   InterpGroups(0)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpCurveEdSetup_3'
+   InterpGroups(0)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpCurveEdSetup_3'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=20.407019
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5344
    ObjPosY=1640
    DrawWidth=32
@@ -628,9 +628,9 @@ Begin Object Class=InterpData Name=InterpData_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
-   ObjValue=DirectionalLightToggleable'KF-Nuked.TheWorld:PersistentLevel.DirectionalLightToggleable_1'
+   ObjValue=DirectionalLightToggleable'KF-NUKED.TheWorld:PersistentLevel.DirectionalLightToggleable_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5440
    ObjPosY=1632
    DrawWidth=32
@@ -647,11 +647,11 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_6
    InputLinks(4)=(DrawY=1814,OverrideDelta=103)
    OutputLinks(0)=(DrawY=1742,OverrideDelta=31)
    OutputLinks(1)=(DrawY=1798,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_5'),DrawX=5695,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5787,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_153'),LinkDesc="Sound",MinVars=0,DrawX=5884,OverrideDelta=200)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_5'),DrawX=5695,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5787,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_153'),LinkDesc="Sound",MinVars=0,DrawX=5884,OverrideDelta=200)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5664
    ObjPosY=1688
    DrawWidth=257
@@ -667,7 +667,7 @@ Begin Object Class=InterpData Name=InterpData_5
          Name="InterpTrackAkEvent_5"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_6.InterpTrackAkEvent_5'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_6.InterpTrackAkEvent_5'
       GroupName="Sound"
       GroupColor=(B=0,G=58,R=228,A=255)
       Name="InterpGroup_6"
@@ -687,8 +687,8 @@ Begin Object Class=InterpData Name=InterpData_5
          Name="InterpTrackFloatProp_4"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_4.InterpTrackToggle_4'
-      InterpTracks(1)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_4.InterpTrackFloatProp_4'
+      InterpTracks(0)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_4.InterpTrackToggle_4'
+      InterpTracks(1)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_4.InterpTrackFloatProp_4'
       GroupName="nuke_distant_light"
       GroupColor=(B=0,G=163,R=176,A=255)
       Name="InterpGroup_4"
@@ -699,13 +699,13 @@ Begin Object Class=InterpData Name=InterpData_5
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=21.178783
-   InterpGroups(0)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_4'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_6'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpCurveEdSetup_4'
+   InterpGroups(0)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_4'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_6'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpCurveEdSetup_4'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=21.178783
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5640
    ObjPosY=1848
    DrawWidth=32
@@ -722,11 +722,11 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
    InputLinks(4)=(DrawY=2062,OverrideDelta=103)
    OutputLinks(0)=(DrawY=1990,OverrideDelta=31)
    OutputLinks(1)=(DrawY=2046,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_6'),DrawX=5511,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5603,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_154'),LinkDesc="Sound",MinVars=0,DrawX=5700,OverrideDelta=200)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_6'),DrawX=5511,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5603,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_154'),LinkDesc="Sound",MinVars=0,DrawX=5700,OverrideDelta=200)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5480
    ObjPosY=1936
    DrawWidth=257
@@ -743,7 +743,7 @@ Begin Object Class=InterpData Name=InterpData_6
          Name="InterpTrackAkEvent_6"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_7.InterpTrackAkEvent_6'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_7.InterpTrackAkEvent_6'
       GroupName="Sound"
       GroupColor=(B=228,G=58,R=0,A=255)
       Name="InterpGroup_7"
@@ -763,8 +763,8 @@ Begin Object Class=InterpData Name=InterpData_6
          Name="InterpTrackFloatProp_5"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_5.InterpTrackToggle_5'
-      InterpTracks(1)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_5.InterpTrackFloatProp_5'
+      InterpTracks(0)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_5.InterpTrackToggle_5'
+      InterpTracks(1)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_5.InterpTrackFloatProp_5'
       GroupName="nuke_distant_light"
       GroupColor=(B=203,G=126,R=0,A=255)
       Name="InterpGroup_5"
@@ -775,13 +775,13 @@ Begin Object Class=InterpData Name=InterpData_6
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.973984
-   InterpGroups(0)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_5'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_7'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpCurveEdSetup_5'
+   InterpGroups(0)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_5'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_7'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpCurveEdSetup_5'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=20.973984
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5448
    ObjPosY=2120
    DrawWidth=32
@@ -798,11 +798,11 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_8
    InputLinks(4)=(DrawY=2318,OverrideDelta=103)
    OutputLinks(0)=(DrawY=2246,OverrideDelta=31)
    OutputLinks(1)=(DrawY=2302,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_7'),DrawX=5431,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5523,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_155'),LinkDesc="Sound",MinVars=0,DrawX=5620,OverrideDelta=200)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_7'),DrawX=5431,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5523,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_155'),LinkDesc="Sound",MinVars=0,DrawX=5620,OverrideDelta=200)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5400
    ObjPosY=2192
    DrawWidth=257
@@ -818,7 +818,7 @@ Begin Object Class=InterpData Name=InterpData_7
          Name="InterpTrackAkEvent_7"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_8.InterpTrackAkEvent_7'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_8.InterpTrackAkEvent_7'
       GroupName="Sound"
       GroupColor=(B=200,G=0,R=133,A=255)
       Name="InterpGroup_8"
@@ -838,8 +838,8 @@ Begin Object Class=InterpData Name=InterpData_7
          Name="InterpTrackFloatProp_6"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_6.InterpTrackToggle_6'
-      InterpTracks(1)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_6.InterpTrackFloatProp_6'
+      InterpTracks(0)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_6.InterpTrackToggle_6'
+      InterpTracks(1)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_6.InterpTrackFloatProp_6'
       GroupName="nuke_distant_light"
       GroupColor=(B=0,G=42,R=230,A=255)
       Name="InterpGroup_6"
@@ -850,13 +850,13 @@ Begin Object Class=InterpData Name=InterpData_7
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.260254
-   InterpGroups(0)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_6'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_8'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpCurveEdSetup_6'
+   InterpGroups(0)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_6'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_8'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpCurveEdSetup_6'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=20.260254
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5400
    ObjPosY=2368
    DrawWidth=32
@@ -873,11 +873,11 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_9
    InputLinks(4)=(DrawY=2502,OverrideDelta=103)
    OutputLinks(0)=(DrawY=2430,OverrideDelta=31)
    OutputLinks(1)=(DrawY=2486,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_8'),DrawX=5079,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5171,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_156'),LinkDesc="Sound",MinVars=0,DrawX=5268,OverrideDelta=200)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_8'),DrawX=5079,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34'),LinkDesc="nuke_distant_light",MinVars=0,DrawX=5171,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_156'),LinkDesc="Sound",MinVars=0,DrawX=5268,OverrideDelta=200)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5048
    ObjPosY=2376
    DrawWidth=257
@@ -894,7 +894,7 @@ Begin Object Class=InterpData Name=InterpData_8
          Name="InterpTrackAkEvent_8"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_9.InterpTrackAkEvent_8'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_9.InterpTrackAkEvent_8'
       GroupName="Sound"
       GroupColor=(B=0,G=136,R=197,A=255)
       Name="InterpGroup_9"
@@ -914,8 +914,8 @@ Begin Object Class=InterpData Name=InterpData_8
          Name="InterpTrackFloatProp_7"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_7.InterpTrackToggle_7'
-      InterpTracks(1)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_7.InterpTrackFloatProp_7'
+      InterpTracks(0)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_7.InterpTrackToggle_7'
+      InterpTracks(1)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_7.InterpTrackFloatProp_7'
       GroupName="nuke_distant_light"
       GroupColor=(B=208,G=0,R=118,A=255)
       Name="InterpGroup_7"
@@ -926,13 +926,13 @@ Begin Object Class=InterpData Name=InterpData_8
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.359615
-   InterpGroups(0)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_7'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_9'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpCurveEdSetup_7'
+   InterpGroups(0)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_7'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_9'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpCurveEdSetup_7'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=20.359615
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5056
    ObjPosY=2568
    DrawWidth=32
@@ -942,9 +942,9 @@ Begin Object Class=InterpData Name=InterpData_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
-   ObjValue=DirectionalLightToggleable'KF-Nuked.TheWorld:PersistentLevel.DirectionalLightToggleable_7'
+   ObjValue=DirectionalLightToggleable'KF-NUKED.TheWorld:PersistentLevel.DirectionalLightToggleable_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5744
    ObjPosY=1872
    DrawWidth=32
@@ -954,9 +954,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
-   ObjValue=DirectionalLightToggleable'KF-Nuked.TheWorld:PersistentLevel.DirectionalLightToggleable_8'
+   ObjValue=DirectionalLightToggleable'KF-NUKED.TheWorld:PersistentLevel.DirectionalLightToggleable_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5568
    ObjPosY=2112
    DrawWidth=32
@@ -966,9 +966,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
-   ObjValue=DirectionalLightToggleable'KF-Nuked.TheWorld:PersistentLevel.DirectionalLightToggleable_9'
+   ObjValue=DirectionalLightToggleable'KF-NUKED.TheWorld:PersistentLevel.DirectionalLightToggleable_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5488
    ObjPosY=2376
    DrawWidth=32
@@ -978,9 +978,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
-   ObjValue=DirectionalLightToggleable'KF-Nuked.TheWorld:PersistentLevel.DirectionalLightToggleable_0'
+   ObjValue=DirectionalLightToggleable'KF-NUKED.TheWorld:PersistentLevel.DirectionalLightToggleable_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5128
    ObjPosY=2576
    DrawWidth=32
@@ -997,22 +997,22 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_10
    InputLinks(4)=(DrawY=1138,OverrideDelta=147)
    OutputLinks(0)=(DrawY=1008,OverrideDelta=17)
    OutputLinks(1)=(DrawY=1052,OverrideDelta=61)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_1')),LinkDesc="Start",DrawY=1030,OverrideDelta=39)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1'),(LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2',InputLinkIdx=1),(LinkedOp=SeqAct_AkPostEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_2'),(LinkedOp=SeqAct_AkPostEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_3')),LinkDesc="Boom",DrawY=1074,OverrideDelta=83)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_1')),LinkDesc="Start",DrawY=1030,OverrideDelta=39)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1'),(LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2',InputLinkIdx=1),(LinkedOp=SeqAct_AkPostEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_2'),(LinkedOp=SeqAct_AkPostEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_3')),LinkDesc="Boom",DrawY=1074,OverrideDelta=83)
    OutputLinks(4)=(LinkDesc="Flash",DrawY=1096,OverrideDelta=105)
-   OutputLinks(5)=(Links=((LinkedOp=SeqAct_CameraShake'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraShake_1')),LinkDesc="Rumble",DrawY=1118,OverrideDelta=127)
-   OutputLinks(6)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_0'),(LinkedOp=SeqAct_AkPostEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_4')),LinkDesc="Stop_Rumble",DrawY=1140,OverrideDelta=149)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9'),DrawX=2071,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),LinkDesc="nuke_light",MinVars=0,DrawX=2136,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),LinkDesc="Light",MinVars=0,DrawX=2202,OverrideDelta=146)
-   VariableLinks(3)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),LinkDesc="Fog",MinVars=0,DrawX=2246,OverrideDelta=194)
-   VariableLinks(4)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_135'),LinkDesc="nuke_shockwave",MinVars=0,DrawX=2330,OverrideDelta=234)
-   VariableLinks(5)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_136'),LinkDesc="nuke_sprite",MinVars=0,DrawX=2440,OverrideDelta=362)
-   VariableLinks(6)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0'),LinkDesc="akamb",MinVars=0,DrawX=2515,OverrideDelta=454)
+   OutputLinks(5)=(Links=((LinkedOp=SeqAct_CameraShake'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraShake_1')),LinkDesc="Rumble",DrawY=1118,OverrideDelta=127)
+   OutputLinks(6)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_0'),(LinkedOp=SeqAct_AkPostEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_4')),LinkDesc="Stop_Rumble",DrawY=1140,OverrideDelta=149)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9'),DrawX=2071,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),LinkDesc="nuke_light",MinVars=0,DrawX=2136,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),LinkDesc="Light",MinVars=0,DrawX=2202,OverrideDelta=146)
+   VariableLinks(3)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),LinkDesc="Fog",MinVars=0,DrawX=2246,OverrideDelta=194)
+   VariableLinks(4)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_135'),LinkDesc="nuke_shockwave",MinVars=0,DrawX=2330,OverrideDelta=234)
+   VariableLinks(5)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_136'),LinkDesc="nuke_sprite",MinVars=0,DrawX=2440,OverrideDelta=362)
+   VariableLinks(6)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0'),LinkDesc="akamb",MinVars=0,DrawX=2515,OverrideDelta=454)
    VariableLinks(7)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="Events",MinVars=0,DrawX=2574,OverrideDelta=512)
    VariableLinks(8)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="akamb2",MinVars=0,DrawX=2638,OverrideDelta=573)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2040
    ObjPosY=968
    DrawWidth=639
@@ -1029,7 +1029,7 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackToggle_2"
          ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_9.InterpTrackToggle_2'
+      InterpTracks(0)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_9.InterpTrackToggle_2'
       GroupName="nuke_sprite"
       GroupColor=(B=168,G=0,R=172,A=255)
       Name="InterpGroup_9"
@@ -1042,7 +1042,7 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackToggle_1"
          ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_8.InterpTrackToggle_1'
+      InterpTracks(0)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_8.InterpTrackToggle_1'
       GroupName="nuke_shockwave"
       GroupColor=(B=179,G=159,R=0,A=255)
       Name="InterpGroup_8"
@@ -1055,7 +1055,7 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackAkEvent_3"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_6.InterpTrackAkEvent_3'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_6.InterpTrackAkEvent_3'
       GroupName="akamb"
       GroupColor=(B=115,G=209,R=0,A=255)
       Name="InterpGroup_6"
@@ -1068,7 +1068,7 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackAkEvent_0"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_3.InterpTrackAkEvent_0'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_3.InterpTrackAkEvent_0'
       GroupName="akamb2"
       GroupColor=(B=203,G=126,R=0,A=255)
       Name="InterpGroup_3"
@@ -1082,7 +1082,7 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackFloatProp_1"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_2.InterpTrackFloatProp_1'
+      InterpTracks(0)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_2.InterpTrackFloatProp_1'
       GroupName="Light"
       GroupColor=(B=212,G=109,R=0,A=255)
       Name="InterpGroup_2"
@@ -1099,7 +1099,7 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackEvent_0"
          ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
       End Object
-      InterpTracks(0)=InterpTrackEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_11.InterpTrackEvent_0'
+      InterpTracks(0)=InterpTrackEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_11.InterpTrackEvent_0'
       GroupName="Events"
       GroupColor=(B=228,G=0,R=64,A=255)
       Name="InterpGroup_11"
@@ -1113,7 +1113,7 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackFloatProp_0"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_1.InterpTrackFloatProp_0'
+      InterpTracks(0)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_1.InterpTrackFloatProp_0'
       GroupName="Fog"
       GroupColor=(B=162,G=0,R=178,A=255)
       Name="InterpGroup_1"
@@ -1133,8 +1133,8 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackFloatProp_0"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackFloatProp_0'
-      InterpTracks(1)=InterpTrackToggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackToggle_3'
+      InterpTracks(0)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackFloatProp_0'
+      InterpTracks(1)=InterpTrackToggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackToggle_3'
       GroupName="nuke_light"
       GroupColor=(B=58,G=0,R=228,A=255)
       Name="InterpGroup_0"
@@ -1145,19 +1145,19 @@ Begin Object Class=InterpData Name=InterpData_9
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=240.165314
-   InterpGroups(0)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_2'
-   InterpGroups(2)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_1'
-   InterpGroups(3)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_8'
-   InterpGroups(4)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_9'
-   InterpGroups(5)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_6'
-   InterpGroups(6)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_11'
-   InterpGroups(7)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_3'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpCurveEdSetup_0'
+   InterpGroups(0)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_2'
+   InterpGroups(2)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_1'
+   InterpGroups(3)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_8'
+   InterpGroups(4)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_9'
+   InterpGroups(5)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_6'
+   InterpGroups(6)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_11'
+   InterpGroups(7)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_3'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpCurveEdSetup_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=240.165314
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1960
    ObjPosY=1208
    DrawWidth=32
@@ -1167,9 +1167,9 @@ Begin Object Class=InterpData Name=InterpData_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
-   ObjValue=DirectionalLightToggleable'KF-Nuked.TheWorld:PersistentLevel.DirectionalLightToggleable_6'
+   ObjValue=DirectionalLightToggleable'KF-NUKED.TheWorld:PersistentLevel.DirectionalLightToggleable_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2048
    ObjPosY=1208
    DrawWidth=32
@@ -1182,7 +1182,7 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_4
    SizeX=786
    SizeY=654
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4096
    ObjPosY=3216
    ObjComment="gusts"
@@ -1191,9 +1191,9 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_158
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_103'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_103'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4256
    ObjPosY=3256
    DrawWidth=32
@@ -1203,9 +1203,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_158
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_159
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_241'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_241'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4336
    ObjPosY=3256
    DrawWidth=32
@@ -1215,9 +1215,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_159
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_160
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_102'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_102'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4424
    ObjPosY=3256
    DrawWidth=32
@@ -1227,9 +1227,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_160
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_55'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_55'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4512
    ObjPosY=3256
    DrawWidth=32
@@ -1239,9 +1239,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_144'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_144'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4600
    ObjPosY=3256
    DrawWidth=32
@@ -1251,9 +1251,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_143'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_143'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4680
    ObjPosY=3248
    DrawWidth=32
@@ -1263,9 +1263,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_161
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_109'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_109'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4248
    ObjPosY=3336
    DrawWidth=32
@@ -1275,9 +1275,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_161
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_162
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_45'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_45'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4336
    ObjPosY=3336
    DrawWidth=32
@@ -1287,9 +1287,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_162
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_163
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_50'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_50'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4416
    ObjPosY=3336
    DrawWidth=32
@@ -1299,9 +1299,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_163
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_165
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_65'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_65'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4592
    ObjPosY=3328
    DrawWidth=32
@@ -1311,9 +1311,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_165
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_166
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_56'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_56'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4680
    ObjPosY=3336
    DrawWidth=32
@@ -1323,9 +1323,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_166
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_167
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_237'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_237'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4240
    ObjPosY=3424
    DrawWidth=32
@@ -1335,9 +1335,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_167
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_169
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_238'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_238'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4432
    ObjPosY=3424
    DrawWidth=32
@@ -1347,9 +1347,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_169
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_187
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_72'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_72'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4528
    ObjPosY=3424
    DrawWidth=32
@@ -1359,9 +1359,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_187
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_186
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_60'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_60'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4608
    ObjPosY=3416
    DrawWidth=32
@@ -1371,9 +1371,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_186
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_185
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_61'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_61'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4696
    ObjPosY=3424
    DrawWidth=32
@@ -1383,9 +1383,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_185
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_184
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_111'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_111'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4232
    ObjPosY=3512
    DrawWidth=32
@@ -1395,9 +1395,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_184
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_183
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_239'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_239'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4336
    ObjPosY=3520
    DrawWidth=32
@@ -1407,9 +1407,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_183
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_182
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_117'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_117'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4432
    ObjPosY=3520
    DrawWidth=32
@@ -1419,9 +1419,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_182
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_176
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_99'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_99'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4536
    ObjPosY=3520
    DrawWidth=32
@@ -1431,9 +1431,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_176
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_177
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_145'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_145'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4624
    ObjPosY=3520
    DrawWidth=32
@@ -1443,9 +1443,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_177
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_178
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_240'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_240'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4712
    ObjPosY=3520
    DrawWidth=32
@@ -1455,9 +1455,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_178
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_179
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_141'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_141'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4224
    ObjPosY=3600
    DrawWidth=32
@@ -1467,9 +1467,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_179
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_180
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_142'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_142'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4336
    ObjPosY=3600
    DrawWidth=32
@@ -1479,9 +1479,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_180
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_181
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_153'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_153'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4432
    ObjPosY=3600
    DrawWidth=32
@@ -1491,9 +1491,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_181
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_170
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_151'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_151'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4536
    ObjPosY=3600
    DrawWidth=32
@@ -1503,9 +1503,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_170
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_171
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_158'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_158'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4632
    ObjPosY=3600
    DrawWidth=32
@@ -1515,9 +1515,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_171
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_172
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_161'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_161'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4736
    ObjPosY=3600
    DrawWidth=32
@@ -1527,9 +1527,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_172
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_173
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_150'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_150'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4216
    ObjPosY=3688
    DrawWidth=32
@@ -1539,9 +1539,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_173
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_174
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_162'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_162'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4320
    ObjPosY=3688
    DrawWidth=32
@@ -1551,9 +1551,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_174
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_175
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_148'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_148'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4424
    ObjPosY=3688
    DrawWidth=32
@@ -1563,9 +1563,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_175
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_69
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_156'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_156'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4520
    ObjPosY=3688
    DrawWidth=32
@@ -1575,9 +1575,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_69
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_70
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_157'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_157'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4624
    ObjPosY=3688
    DrawWidth=32
@@ -1587,9 +1587,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_70
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_71
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_155'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_155'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4720
    ObjPosY=3688
    DrawWidth=32
@@ -1599,9 +1599,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_71
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_72
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_152'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_152'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4216
    ObjPosY=3784
    DrawWidth=32
@@ -1611,9 +1611,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_72
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_73
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_59'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_59'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4320
    ObjPosY=3776
    DrawWidth=32
@@ -1623,9 +1623,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_73
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
-   ObjValue=DominantDirectionalLight'KF-Nuked.TheWorld:PersistentLevel.DominantDirectionalLight_2'
+   ObjValue=DominantDirectionalLight'KF-NUKED.TheWorld:PersistentLevel.DominantDirectionalLight_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2128
    ObjPosY=1208
    DrawWidth=32
@@ -1635,9 +1635,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
-   ObjValue=ExponentialHeightFog'KF-Nuked.TheWorld:PersistentLevel.ExponentialHeightFog_0'
+   ObjValue=ExponentialHeightFog'KF-NUKED.TheWorld:PersistentLevel.ExponentialHeightFog_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2208
    ObjPosY=1208
    DrawWidth=32
@@ -1647,14 +1647,14 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_6
-   Originator=TriggerVolume'KF-Nuked.TheWorld:PersistentLevel.TriggerVolume_4'
+   Originator=TriggerVolume'KF-NUKED.TheWorld:PersistentLevel.TriggerVolume_4'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_17')),DrawY=3477,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_17')),DrawY=3477,OverrideDelta=14)
    OutputLinks(1)=(DrawY=3498,OverrideDelta=35)
    OutputLinks(2)=(DrawY=3519,OverrideDelta=56)
    VariableLinks(0)=(DrawX=146,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=64
    ObjPosY=3408
    ObjName="TriggerVolume_4 Touch"
@@ -1669,11 +1669,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_17
    InputLinks(1)=(DrawY=3490,OverrideDelta=35)
    InputLinks(2)=(DrawY=3511,OverrideDelta=56)
    OutputLinks(0)=(DrawY=3490,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6'),DrawX=278,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6'),DrawX=278,OverrideDelta=16)
    VariableLinks(1)=(DrawX=329,OverrideDelta=76)
    EventLinks(0)=(DrawX=378,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=240
    ObjPosY=3432
    DrawWidth=173
@@ -1683,9 +1683,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_17
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
-   ObjValue=KFSpawner'KF-Nuked.TheWorld:PersistentLevel.KFSpawner_2'
+   ObjValue=KFSpawner'KF-NUKED.TheWorld:PersistentLevel.KFSpawner_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=256
    ObjPosY=3576
    DrawWidth=32
@@ -1695,14 +1695,14 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
-   Originator=TriggerVolume'KF-Nuked.TheWorld:PersistentLevel.TriggerVolume_1'
+   Originator=TriggerVolume'KF-NUKED.TheWorld:PersistentLevel.TriggerVolume_1'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=3765,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=3765,OverrideDelta=14)
    OutputLinks(1)=(DrawY=3786,OverrideDelta=35)
    OutputLinks(2)=(DrawY=3807,OverrideDelta=56)
    VariableLinks(0)=(DrawX=154,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=72
    ObjPosY=3696
    ObjName="TriggerVolume_1 Touch"
@@ -1713,9 +1713,9 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
-   ObjValue=KFSpawner'KF-Nuked.TheWorld:PersistentLevel.KFSpawner_0'
+   ObjValue=KFSpawner'KF-NUKED.TheWorld:PersistentLevel.KFSpawner_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=272
    ObjPosY=3872
    DrawWidth=32
@@ -1729,11 +1729,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
    InputLinks(1)=(DrawY=3780,OverrideDelta=35)
    InputLinks(2)=(DrawY=3801,OverrideDelta=56)
    OutputLinks(0)=(DrawY=3780,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=296,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=296,OverrideDelta=16)
    VariableLinks(1)=(DrawX=347,OverrideDelta=76)
    EventLinks(0)=(DrawX=396,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=258
    ObjPosY=3722
    DrawWidth=173
@@ -1743,14 +1743,14 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_8
-   Originator=TriggerVolume'KF-Nuked.TheWorld:PersistentLevel.TriggerVolume_0'
+   Originator=TriggerVolume'KF-NUKED.TheWorld:PersistentLevel.TriggerVolume_0'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=4053,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=4053,OverrideDelta=14)
    OutputLinks(1)=(DrawY=4074,OverrideDelta=35)
    OutputLinks(2)=(DrawY=4095,OverrideDelta=56)
    VariableLinks(0)=(DrawX=138,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=56
    ObjPosY=3984
    ObjName="TriggerVolume_0 Touch"
@@ -1761,9 +1761,9 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
-   ObjValue=KFSpawner'KF-Nuked.TheWorld:PersistentLevel.KFSpawner_43'
+   ObjValue=KFSpawner'KF-NUKED.TheWorld:PersistentLevel.KFSpawner_43'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=312
    ObjPosY=4144
    DrawWidth=32
@@ -1777,11 +1777,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
    InputLinks(1)=(DrawY=4066,OverrideDelta=35)
    InputLinks(2)=(DrawY=4087,OverrideDelta=56)
    OutputLinks(0)=(DrawY=4066,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11'),DrawX=294,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11'),DrawX=294,OverrideDelta=16)
    VariableLinks(1)=(DrawX=345,OverrideDelta=76)
    EventLinks(0)=(DrawX=394,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=256
    ObjPosY=4008
    DrawWidth=173
@@ -1791,14 +1791,14 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_9
-   Originator=TriggerVolume'KF-Nuked.TheWorld:PersistentLevel.TriggerVolume_3'
+   Originator=TriggerVolume'KF-NUKED.TheWorld:PersistentLevel.TriggerVolume_3'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16')),DrawY=4309,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16')),DrawY=4309,OverrideDelta=14)
    OutputLinks(1)=(DrawY=4330,OverrideDelta=35)
    OutputLinks(2)=(DrawY=4351,OverrideDelta=56)
    VariableLinks(0)=(DrawX=138,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=56
    ObjPosY=4240
    ObjName="TriggerVolume_3 Touch"
@@ -1813,11 +1813,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
    InputLinks(1)=(DrawY=4330,OverrideDelta=35)
    InputLinks(2)=(DrawY=4351,OverrideDelta=56)
    OutputLinks(0)=(DrawY=4330,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15'),DrawX=262,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15'),DrawX=262,OverrideDelta=16)
    VariableLinks(1)=(DrawX=313,OverrideDelta=76)
    EventLinks(0)=(DrawX=362,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=224
    ObjPosY=4272
    DrawWidth=173
@@ -1827,9 +1827,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
-   ObjValue=KFSpawner'KF-Nuked.TheWorld:PersistentLevel.KFSpawner_1'
+   ObjValue=KFSpawner'KF-NUKED.TheWorld:PersistentLevel.KFSpawner_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=256
    ObjPosY=4416
    DrawWidth=32
@@ -1839,9 +1839,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
-   ObjValue=CameraActor'KF-Nuked.TheWorld:PersistentLevel.CameraActor_1'
+   ObjValue=CameraActor'KF-NUKED.TheWorld:PersistentLevel.CameraActor_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1656
    ObjPosY=424
    DrawWidth=32
@@ -1856,14 +1856,14 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
    InputLinks(2)=(DrawY=306,OverrideDelta=59)
    InputLinks(3)=(DrawY=328,OverrideDelta=81)
    InputLinks(4)=(DrawY=350,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=264,OverrideDelta=17)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=264,OverrideDelta=17)
    OutputLinks(1)=(DrawY=320,OverrideDelta=73)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_10')),LinkDesc="1st",DrawY=292,OverrideDelta=45)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0')),LinkDesc="2nd",DrawY=348,OverrideDelta=101)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=1610,OverrideDelta=35)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18'),LinkDesc="Cam1",MinVars=0,DrawX=1660,OverrideDelta=82)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_10')),LinkDesc="1st",DrawY=292,OverrideDelta=45)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0')),LinkDesc="2nd",DrawY=348,OverrideDelta=101)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=1610,OverrideDelta=35)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18'),LinkDesc="Cam1",MinVars=0,DrawX=1660,OverrideDelta=82)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1560
    ObjPosY=224
    DrawWidth=154
@@ -1875,10 +1875,10 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
    ConsoleEventName="Benchmark"
    MaxWidth=190
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=346,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=346,OverrideDelta=11)
    VariableLinks(0)=(DrawX=1327,OverrideDelta=63)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1232
    ObjPosY=280
    DrawWidth=115
@@ -1891,9 +1891,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_0
    Commands(0)="startbenchmark"
    InputLinks(0)=(DrawY=594,OverrideDelta=11)
    OutputLinks(0)=(DrawY=594,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=1456,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=1456,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1392
    ObjPosY=560
    ObjComment="startbenchmark"
@@ -1907,9 +1907,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
    Commands(0)="endbenchmark"
    InputLinks(0)=(DrawY=274,OverrideDelta=11)
    OutputLinks(0)=(DrawY=274,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=1904,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=1904,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1840
    ObjPosY=240
    ObjComment="endbenchmark"
@@ -1921,7 +1921,7 @@ End Object
 
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_0
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1616
    ObjPosY=664
    DrawWidth=32
@@ -1936,7 +1936,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_14
    bDrawBox=True
    FillColor=(B=74,G=0,R=255,A=16)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1200
    ObjPosY=192
    ObjComment="Benchmark"
@@ -1947,9 +1947,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_14
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_167'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_167'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1328
    ObjPosY=1816
    DrawWidth=32
@@ -1959,9 +1959,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_77
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_163'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_163'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1432
    ObjPosY=1816
    DrawWidth=32
@@ -1971,9 +1971,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_77
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_114
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_168'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_168'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1528
    ObjPosY=1816
    DrawWidth=32
@@ -1983,9 +1983,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_114
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_115
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_171'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_171'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1632
    ObjPosY=1816
    DrawWidth=32
@@ -1995,9 +1995,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_115
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_116
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_182'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_182'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1728
    ObjPosY=1816
    DrawWidth=32
@@ -2007,9 +2007,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_116
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_117
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_172'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_172'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1832
    ObjPosY=1816
    DrawWidth=32
@@ -2019,9 +2019,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_117
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_118
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_174'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_174'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1928
    ObjPosY=1816
    DrawWidth=32
@@ -2031,9 +2031,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_118
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_119
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_181'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_181'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2032
    ObjPosY=1816
    DrawWidth=32
@@ -2043,9 +2043,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_119
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_120
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_175'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_175'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2128
    ObjPosY=1816
    DrawWidth=32
@@ -2055,9 +2055,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_120
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_121
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_176'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_176'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2232
    ObjPosY=1816
    DrawWidth=32
@@ -2067,9 +2067,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_121
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_122
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_173'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_173'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2328
    ObjPosY=1816
    DrawWidth=32
@@ -2079,9 +2079,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_122
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_123
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_160'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_160'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2432
    ObjPosY=1816
    DrawWidth=32
@@ -2091,9 +2091,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_123
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_124
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_192'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_192'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2528
    ObjPosY=1816
    DrawWidth=32
@@ -2103,9 +2103,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_124
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_125
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_84'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_84'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2632
    ObjPosY=1816
    DrawWidth=32
@@ -2115,9 +2115,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_125
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_126
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_197'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_197'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2728
    ObjPosY=1816
    DrawWidth=32
@@ -2127,9 +2127,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_126
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_127
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_198'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_198'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2832
    ObjPosY=1816
    DrawWidth=32
@@ -2139,9 +2139,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_127
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_128
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_183'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_183'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2928
    ObjPosY=1816
    DrawWidth=32
@@ -2157,7 +2157,7 @@ Begin Object Class=InterpData Name=InterpData_1
          Name="InterpTrackDirector_0"
          ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
       End Object
-      InterpTracks(0)=InterpTrackDirector'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
+      InterpTracks(0)=InterpTrackDirector'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
       GroupColor=(B=69,G=225,R=0,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
@@ -2184,9 +2184,9 @@ Begin Object Class=InterpData Name=InterpData_1
          Name="InterpTrackEvent_0"
          ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackFloatProp_0'
-      InterpTracks(2)=InterpTrackEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackEvent_0'
+      InterpTracks(0)=InterpTrackMove'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackFloatProp_0'
+      InterpTracks(2)=InterpTrackEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackEvent_0'
       GroupName="Cam1"
       GroupColor=(B=190,G=0,R=147,A=255)
       Name="InterpGroup_1"
@@ -2197,13 +2197,13 @@ Begin Object Class=InterpData Name=InterpData_1
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=280.614594
-   InterpGroups(0)=InterpGroupDirector'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_1'
+   InterpGroups(0)=InterpGroupDirector'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_1'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=280.614594
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1536
    ObjPosY=424
    DrawWidth=32
@@ -2213,9 +2213,9 @@ Begin Object Class=InterpData Name=InterpData_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_129
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_100'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_100'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4392
    ObjPosY=3768
    DrawWidth=32
@@ -2225,9 +2225,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_129
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_130
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_44'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_44'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4496
    ObjPosY=3768
    DrawWidth=32
@@ -2237,9 +2237,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_130
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_131
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_115'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_115'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4592
    ObjPosY=3768
    DrawWidth=32
@@ -2249,9 +2249,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_131
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_132
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_149'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_149'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4696
    ObjPosY=3768
    DrawWidth=32
@@ -2261,9 +2261,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_132
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_133
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_242'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_242'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4792
    ObjPosY=3768
    DrawWidth=32
@@ -2278,11 +2278,11 @@ Begin Object Class=SeqCond_CompareFloat Name=SeqCond_CompareFloat_1
    OutputLinks(1)=(DrawY=1028,OverrideDelta=37)
    OutputLinks(2)=(DrawY=1050,OverrideDelta=59)
    OutputLinks(3)=(DrawY=1072,OverrideDelta=81)
-   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_10')),DrawY=1094,OverrideDelta=103)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Float'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_2'),DrawX=1728,OverrideDelta=36)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Float'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_3'),DrawX=1753,OverrideDelta=61)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_10')),DrawY=1094,OverrideDelta=103)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Float'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_2'),DrawX=1728,OverrideDelta=36)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Float'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_3'),DrawX=1753,OverrideDelta=61)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1688
    ObjPosY=968
    DrawWidth=105
@@ -2293,7 +2293,7 @@ End Object
 
 Begin Object Class=SeqVar_Float Name=SeqVar_Float_2
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1520
    ObjPosY=1176
    DrawWidth=32
@@ -2305,7 +2305,7 @@ End Object
 Begin Object Class=SeqVar_Float Name=SeqVar_Float_3
    FloatValue=33.000000
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1760
    ObjPosY=1184
    DrawWidth=32
@@ -2318,9 +2318,9 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    MaxWidth=136
    OutputLinks(0)=(DrawY=325,OverrideDelta=14)
    OutputLinks(1)=(DrawY=346,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_10',InputLinkIdx=2),(LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=2)),DrawY=367,OverrideDelta=56)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_10',InputLinkIdx=2),(LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=2)),DrawY=367,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2896
    ObjPosY=256
    DrawWidth=137
@@ -2329,9 +2329,9 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_135
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_64'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_64'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2304
    ObjPosY=1200
    DrawWidth=32
@@ -2341,9 +2341,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_135
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_136
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_6'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2408
    ObjPosY=1192
    DrawWidth=32
@@ -2353,9 +2353,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_136
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
-   ObjValue=InterpActor'KF-Nuked.TheWorld:PersistentLevel.InterpActor_0'
+   ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2488
    ObjPosY=1192
    DrawWidth=32
@@ -2369,11 +2369,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    InputLinks(1)=(DrawY=1626,OverrideDelta=35)
    InputLinks(2)=(DrawY=1647,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1626,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_77',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_115',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_116',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_117',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_118',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_119',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_120',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_121',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_122',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_123',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_124',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_125',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_126',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_127',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_128',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_114'),DrawX=1982,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_77',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_115',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_116',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_117',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_118',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_119',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_120',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_121',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_122',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_123',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_124',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_125',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_126',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_127',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_128',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_114'),DrawX=1982,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2033,OverrideDelta=76)
    EventLinks(0)=(DrawX=2082,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1944
    ObjPosY=1568
    ObjComment="Big wind"
@@ -2384,9 +2384,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_164
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_208'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_208'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2384
    ObjPosY=1584
    DrawWidth=32
@@ -2396,9 +2396,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_164
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_168
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_217'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_217'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2488
    ObjPosY=1584
    DrawWidth=32
@@ -2408,9 +2408,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_168
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_134
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_101'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_101'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2584
    ObjPosY=1584
    DrawWidth=32
@@ -2420,9 +2420,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_134
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_137
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_235'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_235'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2688
    ObjPosY=1584
    DrawWidth=32
@@ -2436,11 +2436,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
    InputLinks(1)=(DrawY=1498,OverrideDelta=35)
    InputLinks(2)=(DrawY=1519,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1498,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_164',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_168',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_134',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_137',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_143',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_144',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_145',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_146',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_147',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_148',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_149'),DrawX=2350,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_164',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_168',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_134',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_137',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_143',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_144',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_145',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_146',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_147',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_148',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_149'),DrawX=2350,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2401,OverrideDelta=76)
    EventLinks(0)=(DrawX=2450,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2312
    ObjPosY=1440
    ObjComment="static dust clouds"
@@ -2451,9 +2451,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_143
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_236'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_236'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2280
    ObjPosY=1664
    DrawWidth=32
@@ -2463,9 +2463,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_143
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_144
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_243'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_243'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2376
    ObjPosY=1664
    DrawWidth=32
@@ -2475,9 +2475,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_144
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_145
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_244'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_244'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2480
    ObjPosY=1664
    DrawWidth=32
@@ -2487,9 +2487,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_145
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_146
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_245'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_245'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2576
    ObjPosY=1664
    DrawWidth=32
@@ -2499,9 +2499,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_146
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_147
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_229'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_229'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2680
    ObjPosY=1664
    DrawWidth=32
@@ -2511,9 +2511,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_147
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_148
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_230'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_230'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2776
    ObjPosY=1664
    DrawWidth=32
@@ -2523,9 +2523,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_148
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_149
-   ObjValue=Emitter'KF-Nuked.TheWorld:PersistentLevel.Emitter_231'
+   ObjValue=Emitter'KF-NUKED.TheWorld:PersistentLevel.Emitter_231'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2880
    ObjPosY=1664
    DrawWidth=32
@@ -2536,7 +2536,7 @@ End Object
 
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_2
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2800
    ObjPosY=1448
    DrawWidth=32
@@ -2554,15 +2554,15 @@ Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_1
       Name="CameraShake_1"
       ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
    End Object
-   Shake=CameraShake'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraShake_1.CameraShake_1'
+   Shake=CameraShake'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraShake_1.CameraShake_1'
    ShakeScale=0.700000
    InputLinks(0)=(DrawY=1372,OverrideDelta=13)
    InputLinks(1)=(DrawY=1392,OverrideDelta=33)
    OutputLinks(0)=(DrawY=1382,OverrideDelta=23)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_2'),DrawX=2782,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_2'),DrawX=2782,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2848,OverrideDelta=76)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2744
    ObjPosY=1336
    DrawWidth=148
@@ -2577,7 +2577,7 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_0
    OutputLinks(0)=(DrawY=1322,OverrideDelta=11)
    VariableLinks(0)=(DrawX=3176,OverrideDelta=26)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3128
    ObjPosY=1288
    DrawWidth=96
@@ -2589,12 +2589,12 @@ End Object
 Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_0
    MaxWidth=248
    OutputLinks(0)=(LinkDesc="Start wave Logic",DrawY=988,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0')),DrawY=1008,OverrideDelta=33)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0')),DrawY=1008,OverrideDelta=33)
    VariableLinks(0)=(DrawX=3811,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3872,OverrideDelta=86)
    VariableLinks(2)=(DrawX=3953,OverrideDelta=139)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3768
    ObjPosY=920
    DrawWidth=188
@@ -2611,21 +2611,21 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
    InputLinks(4)=(DrawY=1160,OverrideDelta=233)
    OutputLinks(0)=(DrawY=943,OverrideDelta=16)
    OutputLinks(1)=(DrawY=966,OverrideDelta=39)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_5')),LinkDesc="Start",DrawY=989,OverrideDelta=62)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke1",DrawY=1012,OverrideDelta=85)
-   OutputLinks(4)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke2",DrawY=1035,OverrideDelta=108)
-   OutputLinks(5)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1'),(LinkedOp=SeqAct_CameraShake'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraShake_0')),LinkDesc="Nuke3",DrawY=1058,OverrideDelta=131)
-   OutputLinks(6)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke4",DrawY=1081,OverrideDelta=154)
-   OutputLinks(7)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke5",DrawY=1104,OverrideDelta=177)
-   OutputLinks(8)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke6",DrawY=1127,OverrideDelta=200)
-   OutputLinks(9)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1'),(LinkedOp=SeqAct_AkPostEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_2')),LinkDesc="Nuke7",DrawY=1150,OverrideDelta=223)
-   OutputLinks(10)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke8",DrawY=1173,OverrideDelta=246)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_0'),DrawX=4207,OverrideDelta=16)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_5')),LinkDesc="Start",DrawY=989,OverrideDelta=62)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke1",DrawY=1012,OverrideDelta=85)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke2",DrawY=1035,OverrideDelta=108)
+   OutputLinks(5)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1'),(LinkedOp=SeqAct_CameraShake'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraShake_0')),LinkDesc="Nuke3",DrawY=1058,OverrideDelta=131)
+   OutputLinks(6)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke4",DrawY=1081,OverrideDelta=154)
+   OutputLinks(7)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke5",DrawY=1104,OverrideDelta=177)
+   OutputLinks(8)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke6",DrawY=1127,OverrideDelta=200)
+   OutputLinks(9)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1'),(LinkedOp=SeqAct_AkPostEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_2')),LinkDesc="Nuke7",DrawY=1150,OverrideDelta=223)
+   OutputLinks(10)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),LinkDesc="Nuke8",DrawY=1173,OverrideDelta=246)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_0'),DrawX=4207,OverrideDelta=16)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="Events",MinVars=0,DrawX=4261,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_157'),LinkDesc="akamb",MinVars=0,DrawX=4321,OverrideDelta=124)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_157'),LinkDesc="akamb",MinVars=0,DrawX=4321,OverrideDelta=124)
    VariableLinks(3)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="akamb2",MinVars=0,DrawX=4383,OverrideDelta=182)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4176
    ObjPosY=904
    DrawWidth=248
@@ -2641,7 +2641,7 @@ Begin Object Class=InterpData Name=InterpData_0
          Name="InterpTrackAkEvent_10"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11.InterpTrackAkEvent_10'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11.InterpTrackAkEvent_10'
       GroupName="akamb2"
       GroupColor=(B=74,G=224,R=0,A=255)
       Name="InterpGroup_11"
@@ -2653,7 +2653,7 @@ Begin Object Class=InterpData Name=InterpData_0
          Name="InterpTrackAkEvent_9"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_10.InterpTrackAkEvent_9'
+      InterpTracks(0)=InterpTrackAkEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_10.InterpTrackAkEvent_9'
       GroupName="akamb"
       GroupColor=(B=146,G=0,R=191,A=255)
       Name="InterpGroup_10"
@@ -2673,7 +2673,7 @@ Begin Object Class=InterpData Name=InterpData_0
          Name="InterpTrackEvent_0"
          ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
       End Object
-      InterpTracks(0)=InterpTrackEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackEvent_0'
+      InterpTracks(0)=InterpTrackEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackEvent_0'
       GroupName="Events"
       GroupColor=(B=0,G=217,R=95,A=255)
       Name="InterpGroup_0"
@@ -2684,14 +2684,14 @@ Begin Object Class=InterpData Name=InterpData_0
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=58.330200
-   InterpGroups(0)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
-   InterpGroups(1)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_10'
-   InterpGroups(2)=InterpGroup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11'
-   CurveEdSetup=InterpCurveEdSetup'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_0'
+   InterpGroups(0)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
+   InterpGroups(1)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_10'
+   InterpGroups(2)=InterpGroup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_11'
+   CurveEdSetup=InterpCurveEdSetup'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=58.330200
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4144
    ObjPosY=1288
    DrawWidth=32
@@ -2704,7 +2704,7 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_0
    SizeX=2439
    SizeY=1981
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3672
    ObjPosY=704
    ObjComment="Boss Wave Nuke Sequence"
@@ -2713,9 +2713,9 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_142
-   ObjValue=InterpActor'KF-Nuked.TheWorld:PersistentLevel.InterpActor_1'
+   ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5240
    ObjPosY=936
    DrawWidth=32
@@ -2725,9 +2725,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_142
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_150
-   ObjValue=InterpActor'KF-Nuked.TheWorld:PersistentLevel.InterpActor_8'
+   ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5472
    ObjPosY=1152
    DrawWidth=32
@@ -2737,9 +2737,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_150
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_151
-   ObjValue=InterpActor'KF-Nuked.TheWorld:PersistentLevel.InterpActor_7'
+   ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5504
    ObjPosY=1392
    DrawWidth=32
@@ -2749,9 +2749,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_151
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_152
-   ObjValue=InterpActor'KF-Nuked.TheWorld:PersistentLevel.InterpActor_6'
+   ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5560
    ObjPosY=1640
    DrawWidth=32
@@ -2761,9 +2761,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_152
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_153
-   ObjValue=InterpActor'KF-Nuked.TheWorld:PersistentLevel.InterpActor_5'
+   ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5864
    ObjPosY=1880
    DrawWidth=32
@@ -2773,9 +2773,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_153
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_154
-   ObjValue=InterpActor'KF-Nuked.TheWorld:PersistentLevel.InterpActor_4'
+   ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5672
    ObjPosY=2120
    DrawWidth=32
@@ -2785,9 +2785,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_154
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_155
-   ObjValue=InterpActor'KF-Nuked.TheWorld:PersistentLevel.InterpActor_3'
+   ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5600
    ObjPosY=2384
    DrawWidth=32
@@ -2797,9 +2797,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_155
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_156
-   ObjValue=InterpActor'KF-Nuked.TheWorld:PersistentLevel.InterpActor_2'
+   ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5232
    ObjPosY=2568
    DrawWidth=32
@@ -2809,9 +2809,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_156
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_157
-   ObjValue=InterpActor'KF-Nuked.TheWorld:PersistentLevel.InterpActor_5'
+   ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4304
    ObjPosY=1240
    DrawWidth=32
@@ -2829,15 +2829,15 @@ Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_0
       Name="CameraShake_1"
       ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
    End Object
-   Shake=CameraShake'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraShake_0.CameraShake_1'
+   Shake=CameraShake'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraShake_0.CameraShake_1'
    ShakeScale=0.500000
    InputLinks(0)=(DrawY=1364,OverrideDelta=13)
    InputLinks(1)=(DrawY=1384,OverrideDelta=33)
    OutputLinks(0)=(DrawY=1374,OverrideDelta=23)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=4446,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=4446,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4512,OverrideDelta=76)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4408
    ObjPosY=1328
    DrawWidth=148
@@ -2848,7 +2848,7 @@ End Object
 
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_1
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4464
    ObjPosY=1440
    DrawWidth=32
@@ -2861,9 +2861,9 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_4
    MaxWidth=136
    OutputLinks(0)=(DrawY=1373,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1394,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=1415,OverrideDelta=56)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=1415,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1584
    ObjPosY=1304
    DrawWidth=137
@@ -2876,11 +2876,11 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
    InputLinks(0)=(DrawY=1501,OverrideDelta=14)
    InputLinks(1)=(DrawY=1522,OverrideDelta=35)
    InputLinks(2)=(DrawY=1543,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_10')),DrawY=1506,OverrideDelta=19)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_10')),DrawY=1506,OverrideDelta=19)
    OutputLinks(1)=(DrawY=1538,OverrideDelta=51)
    VariableLinks(0)=(DrawX=-1028,OverrideDelta=25)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1080
    ObjPosY=1464
    DrawWidth=106
@@ -2894,11 +2894,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
    InputLinks(1)=(DrawY=1506,OverrideDelta=35)
    InputLinks(2)=(DrawY=1527,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1506,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_194',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_195',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_196',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_197',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_198',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_199'),DrawX=-522,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_194',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_195',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_196',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_197',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_198',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_199'),DrawX=-522,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-471,OverrideDelta=76)
    EventLinks(0)=(DrawX=-422,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-560
    ObjPosY=1448
    DrawWidth=173
@@ -2910,10 +2910,10 @@ End Object
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_10
    EventName="SpawnsOff"
    InputLinks(0)=(DrawY=1506,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),DrawY=1506,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),DrawY=1506,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-772,OverrideDelta=92)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-896
    ObjPosY=1472
    ObjComment="SpawnsOff"
@@ -2930,9 +2930,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
    OutputLinks(0)=(DrawY=1410,OverrideDelta=35)
    VariableLinks(0)=(DrawX=-1322,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-1271,OverrideDelta=76)
-   EventLinks(0)=(LinkedEvents=(SeqEvent_PlayerSpawned'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqEvent_PlayerSpawned_0'),DrawX=-1222,OverrideDelta=119)
+   EventLinks(0)=(LinkedEvents=(SeqEvent_PlayerSpawned'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqEvent_PlayerSpawned_0'),DrawX=-1222,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1360
    ObjPosY=1352
    DrawWidth=173
@@ -2944,11 +2944,11 @@ End Object
 Begin Object Class=SeqEvent_PlayerSpawned Name=SeqEvent_PlayerSpawned_0
    MaxTriggerCount=0
    MaxWidth=156
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10',InputLinkIdx=1),(LinkedOp=SeqAct_Delay'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_1')),DrawY=1562,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10',InputLinkIdx=1),(LinkedOp=SeqAct_Delay'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_1')),DrawY=1562,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-1312,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-1242,OverrideDelta=96)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1360
    ObjPosY=1496
    DrawWidth=98
@@ -2960,10 +2960,10 @@ End Object
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_11
    EventName="SpawnsOff"
    InputLinks(0)=(DrawY=810,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=810,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=810,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-1316,OverrideDelta=92)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1440
    ObjPosY=776
    ObjComment="SpawnsOff"
@@ -2976,10 +2976,10 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_0
    EventName="SpawnsOff"
    MaxWidth=188
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_30',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_19',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_28',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_18',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_29',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_31',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_22',InputLinkIdx=1)),DrawY=578,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_30',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_19',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_28',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_18',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_29',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_31',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_22',InputLinkIdx=1)),DrawY=578,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-682,OverrideDelta=62)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-776
    ObjPosY=512
    ObjComment="SpawnsOff"
@@ -2991,11 +2991,11 @@ End Object
 
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_1
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=725,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=725,OverrideDelta=14)
    OutputLinks(1)=(DrawY=746,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_11')),DrawY=767,OverrideDelta=56)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_11')),DrawY=767,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1672
    ObjPosY=656
    DrawWidth=137
@@ -3008,17 +3008,17 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
    IncrementAmount=0
    InputLinks(0)=(DrawY=784,OverrideDelta=49)
    InputLinks(1)=(DrawY=876,OverrideDelta=141)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_30')),DrawY=750,OverrideDelta=15)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_19')),LinkDesc="Link 2",DrawY=773,OverrideDelta=38)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_18')),LinkDesc="Link 3",DrawY=796,OverrideDelta=61)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_28')),LinkDesc="Link 4",DrawY=819,OverrideDelta=84)
-   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_29')),LinkDesc="Link 5",DrawY=842,OverrideDelta=107)
-   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21')),LinkDesc="Link 6",DrawY=865,OverrideDelta=130)
-   OutputLinks(6)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_31')),LinkDesc="Link 7",DrawY=888,OverrideDelta=153)
-   OutputLinks(7)=(Links=((LinkedOp=SeqAct_Toggle'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_22')),LinkDesc="Link 8",DrawY=911,OverrideDelta=176)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_30')),DrawY=750,OverrideDelta=15)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_19')),LinkDesc="Link 2",DrawY=773,OverrideDelta=38)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_18')),LinkDesc="Link 3",DrawY=796,OverrideDelta=61)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_28')),LinkDesc="Link 4",DrawY=819,OverrideDelta=84)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_29')),LinkDesc="Link 5",DrawY=842,OverrideDelta=107)
+   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21')),LinkDesc="Link 6",DrawY=865,OverrideDelta=130)
+   OutputLinks(6)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_31')),LinkDesc="Link 7",DrawY=888,OverrideDelta=153)
+   OutputLinks(7)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_22')),LinkDesc="Link 8",DrawY=911,OverrideDelta=176)
    VariableLinks(0)=(DrawX=-1100,OverrideDelta=23)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1144
    ObjPosY=712
    DrawWidth=89
@@ -3032,11 +3032,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_30
    InputLinks(1)=(DrawY=714,OverrideDelta=35)
    InputLinks(2)=(DrawY=735,OverrideDelta=56)
    OutputLinks(0)=(DrawY=714,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_206',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_207',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_208',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_209',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_210',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_211'),DrawX=110,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_206',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_207',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_208',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_209',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_210',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_211'),DrawX=110,OverrideDelta=16)
    VariableLinks(1)=(DrawX=161,OverrideDelta=76)
    EventLinks(0)=(DrawX=210,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=72
    ObjPosY=656
    DrawWidth=173
@@ -3050,11 +3050,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_19
    InputLinks(1)=(DrawY=690,OverrideDelta=35)
    InputLinks(2)=(DrawY=711,OverrideDelta=56)
    OutputLinks(0)=(DrawY=690,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_212',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_213',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_214',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_215',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_216',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_217'),DrawX=518,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_212',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_213',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_214',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_215',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_216',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_217'),DrawX=518,OverrideDelta=16)
    VariableLinks(1)=(DrawX=569,OverrideDelta=76)
    EventLinks(0)=(DrawX=618,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=480
    ObjPosY=632
    DrawWidth=173
@@ -3068,11 +3068,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_18
    InputLinks(1)=(DrawY=1186,OverrideDelta=35)
    InputLinks(2)=(DrawY=1207,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1186,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_200',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_201',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_202',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_203',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_204',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_205'),DrawX=-114,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_200',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_201',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_202',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_203',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_204',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_205'),DrawX=-114,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-63,OverrideDelta=76)
    EventLinks(0)=(DrawX=-14,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-152
    ObjPosY=1128
    DrawWidth=173
@@ -3086,11 +3086,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_28
    InputLinks(1)=(DrawY=1122,OverrideDelta=35)
    InputLinks(2)=(DrawY=1143,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1122,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_218',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_219',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_220',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_221',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_222',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_223'),DrawX=590,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_218',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_219',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_220',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_221',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_222',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_223'),DrawX=590,OverrideDelta=16)
    VariableLinks(1)=(DrawX=641,OverrideDelta=76)
    EventLinks(0)=(DrawX=690,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=552
    ObjPosY=1064
    DrawWidth=173
@@ -3104,7 +3104,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_32
    SizeY=1655
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1776
    ObjPosY=400
    ObjComment="Random Start Location"
@@ -3115,9 +3115,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_32
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_194
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-704
    ObjPosY=1704
    DrawWidth=32
@@ -3127,9 +3127,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_194
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_195
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-600
    ObjPosY=1704
    DrawWidth=32
@@ -3139,9 +3139,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_195
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_196
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-504
    ObjPosY=1704
    DrawWidth=32
@@ -3151,9 +3151,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_196
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_197
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-400
    ObjPosY=1704
    DrawWidth=32
@@ -3163,9 +3163,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_197
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_198
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-304
    ObjPosY=1704
    DrawWidth=32
@@ -3175,9 +3175,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_198
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_199
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-200
    ObjPosY=1704
    DrawWidth=32
@@ -3187,9 +3187,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_199
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_200
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_23'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_23'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-208
    ObjPosY=1328
    DrawWidth=32
@@ -3199,9 +3199,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_200
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_201
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_18'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_18'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-112
    ObjPosY=1328
    DrawWidth=32
@@ -3211,9 +3211,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_201
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_202
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_19'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_19'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-24
    ObjPosY=1328
    DrawWidth=32
@@ -3223,9 +3223,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_202
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_203
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_20'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_20'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-184
    ObjPosY=1424
    DrawWidth=32
@@ -3235,9 +3235,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_203
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_204
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_21'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_21'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-96
    ObjPosY=1424
    DrawWidth=32
@@ -3247,9 +3247,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_204
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_205
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_22'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_22'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosY=1424
    DrawWidth=32
    DrawHeight=32
@@ -3258,9 +3258,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_205
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_206
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_7'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-24
    ObjPosY=832
    DrawWidth=32
@@ -3270,9 +3270,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_206
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_207
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_8'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=72
    ObjPosY=832
    DrawWidth=32
@@ -3282,9 +3282,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_207
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_208
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_9'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=168
    ObjPosY=832
    DrawWidth=32
@@ -3294,9 +3294,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_208
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_209
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_10'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=16
    ObjPosY=912
    DrawWidth=32
@@ -3306,9 +3306,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_209
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_210
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_11'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=112
    ObjPosY=912
    DrawWidth=32
@@ -3318,9 +3318,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_210
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_211
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_6'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=216
    ObjPosY=912
    DrawWidth=32
@@ -3330,9 +3330,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_211
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_212
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_15'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_15'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=472
    ObjPosY=816
    DrawWidth=32
@@ -3342,9 +3342,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_212
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_213
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_14'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=568
    ObjPosY=816
    DrawWidth=32
@@ -3354,9 +3354,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_213
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_214
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_13'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=672
    ObjPosY=816
    DrawWidth=32
@@ -3366,9 +3366,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_214
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_215
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_12'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=520
    ObjPosY=904
    DrawWidth=32
@@ -3378,9 +3378,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_215
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_216
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_17'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_17'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=624
    ObjPosY=904
    DrawWidth=32
@@ -3390,9 +3390,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_216
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_217
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_16'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_16'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=720
    ObjPosY=904
    DrawWidth=32
@@ -3402,9 +3402,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_217
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_218
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_29'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_29'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=536
    ObjPosY=1256
    DrawWidth=32
@@ -3414,9 +3414,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_218
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_219
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_28'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_28'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=640
    ObjPosY=1256
    DrawWidth=32
@@ -3426,9 +3426,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_219
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_220
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_27'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_27'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=736
    ObjPosY=1256
    DrawWidth=32
@@ -3438,9 +3438,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_220
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_221
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_26'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_26'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=568
    ObjPosY=1352
    DrawWidth=32
@@ -3450,9 +3450,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_221
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_222
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_25'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_25'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=664
    ObjPosY=1352
    DrawWidth=32
@@ -3462,9 +3462,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_222
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_223
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_24'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_24'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=768
    ObjPosY=1352
    DrawWidth=32
@@ -3478,11 +3478,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_29
    InputLinks(1)=(DrawY=1354,OverrideDelta=35)
    InputLinks(2)=(DrawY=1375,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1354,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_224',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_225',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_226',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_227',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_228',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_229'),DrawX=262,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_224',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_225',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_226',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_227',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_228',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_229'),DrawX=262,OverrideDelta=16)
    VariableLinks(1)=(DrawX=313,OverrideDelta=76)
    EventLinks(0)=(DrawX=362,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=224
    ObjPosY=1296
    DrawWidth=173
@@ -3492,9 +3492,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_29
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_224
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_34'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_34'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=208
    ObjPosY=1536
    DrawWidth=32
@@ -3504,9 +3504,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_224
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_225
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_33'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_33'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=312
    ObjPosY=1536
    DrawWidth=32
@@ -3516,9 +3516,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_225
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_226
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_32'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_32'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=408
    ObjPosY=1536
    DrawWidth=32
@@ -3528,9 +3528,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_226
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_227
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_31'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_31'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=248
    ObjPosY=1632
    DrawWidth=32
@@ -3540,9 +3540,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_227
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_228
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_30'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_30'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=344
    ObjPosY=1632
    DrawWidth=32
@@ -3552,9 +3552,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_228
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_229
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_35'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_35'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=448
    ObjPosY=1632
    DrawWidth=32
@@ -3564,9 +3564,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_229
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_230
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_57'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_57'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=512
    ObjPosY=1768
    DrawWidth=32
@@ -3576,9 +3576,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_230
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_231
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_58'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_58'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=616
    ObjPosY=1768
    DrawWidth=32
@@ -3588,9 +3588,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_231
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_232
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_59'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_59'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=712
    ObjPosY=1768
    DrawWidth=32
@@ -3600,9 +3600,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_232
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_233
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_54'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_54'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=568
    ObjPosY=1864
    DrawWidth=32
@@ -3612,9 +3612,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_233
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_234
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_55'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_55'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=664
    ObjPosY=1864
    DrawWidth=32
@@ -3624,9 +3624,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_234
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_235
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_56'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_56'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=768
    ObjPosY=1864
    DrawWidth=32
@@ -3640,11 +3640,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_21
    InputLinks(1)=(DrawY=1602,OverrideDelta=35)
    InputLinks(2)=(DrawY=1623,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1602,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_231',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_232',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_234',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_235',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_230',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_233'),DrawX=718,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_231',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_232',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_234',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_235',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_230',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_233'),DrawX=718,OverrideDelta=16)
    VariableLinks(1)=(DrawX=769,OverrideDelta=76)
    EventLinks(0)=(DrawX=818,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=680
    ObjPosY=1544
    DrawWidth=173
@@ -3658,11 +3658,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_31
    InputLinks(1)=(DrawY=1082,OverrideDelta=35)
    InputLinks(2)=(DrawY=1103,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1082,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_236',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_237',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_238',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_239',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_240',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_241'),DrawX=-506,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_236',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_237',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_238',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_239',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_240',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_241'),DrawX=-506,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-455,OverrideDelta=76)
    EventLinks(0)=(DrawX=-406,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-544
    ObjPosY=1024
    DrawWidth=173
@@ -3672,9 +3672,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_31
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_236
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-600
    ObjPosY=1200
    DrawWidth=32
@@ -3684,9 +3684,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_236
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_237
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-504
    ObjPosY=1200
    DrawWidth=32
@@ -3696,9 +3696,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_237
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_238
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-400
    ObjPosY=1200
    DrawWidth=32
@@ -3708,9 +3708,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_238
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_239
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-544
    ObjPosY=1280
    DrawWidth=32
@@ -3720,9 +3720,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_239
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_240
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-440
    ObjPosY=1280
    DrawWidth=32
@@ -3732,9 +3732,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_240
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_241
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-352
    ObjPosY=1280
    DrawWidth=32
@@ -3748,11 +3748,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_22
    InputLinks(1)=(DrawY=1082,OverrideDelta=35)
    InputLinks(2)=(DrawY=1103,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1082,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_242',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_243',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_244',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_245',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_246',SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_247'),DrawX=-890,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_242',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_243',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_244',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_245',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_246',SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_247'),DrawX=-890,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-839,OverrideDelta=76)
    EventLinks(0)=(DrawX=-790,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-928
    ObjPosY=1024
    DrawWidth=173
@@ -3762,9 +3762,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_22
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_242
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_40'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_40'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1024
    ObjPosY=1208
    DrawWidth=32
@@ -3774,9 +3774,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_242
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_243
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_41'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_41'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-928
    ObjPosY=1208
    DrawWidth=32
@@ -3786,9 +3786,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_243
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_244
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_36'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_36'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-824
    ObjPosY=1208
    DrawWidth=32
@@ -3798,9 +3798,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_244
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_245
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_37'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_37'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-968
    ObjPosY=1296
    DrawWidth=32
@@ -3810,9 +3810,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_245
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_246
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_38'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_38'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-864
    ObjPosY=1296
    DrawWidth=32
@@ -3822,9 +3822,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_246
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_247
-   ObjValue=KFPlayerStart'KF-Nuked.TheWorld:PersistentLevel.KFPlayerStart_39'
+   ObjValue=KFPlayerStart'KF-NUKED.TheWorld:PersistentLevel.KFPlayerStart_39'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-768
    ObjPosY=1296
    DrawWidth=32
@@ -3839,7 +3839,7 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_1
    OutputLinks(0)=(DrawY=842,OverrideDelta=11)
    VariableLinks(0)=(DrawX=3200,OverrideDelta=26)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3152
    ObjPosY=808
    DrawWidth=96
@@ -3854,7 +3854,7 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_2
    OutputLinks(0)=(DrawY=970,OverrideDelta=11)
    VariableLinks(0)=(DrawX=3176,OverrideDelta=26)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3128
    ObjPosY=936
    DrawWidth=96
@@ -3869,7 +3869,7 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_3
    OutputLinks(0)=(DrawY=1090,OverrideDelta=11)
    VariableLinks(0)=(DrawX=3184,OverrideDelta=26)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3136
    ObjPosY=1056
    DrawWidth=96
@@ -3884,7 +3884,7 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_4
    OutputLinks(0)=(DrawY=1202,OverrideDelta=11)
    VariableLinks(0)=(DrawX=3192,OverrideDelta=26)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3144
    ObjPosY=1168
    DrawWidth=96
@@ -3897,9 +3897,9 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_5
    Event=AkEvent'WW_ENV_Nuked.Play_ENV_Nuked_Siren_Distant'
    InputLinks(0)=(DrawY=970,OverrideDelta=11)
    OutputLinks(0)=(DrawY=970,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_157'),DrawX=3512,OverrideDelta=26)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_157'),DrawX=3512,OverrideDelta=26)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Nuked.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3464
    ObjPosY=936
    DrawWidth=96

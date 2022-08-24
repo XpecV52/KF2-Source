@@ -1956,7 +1956,7 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum, int TitleId);
 
 function bool ShowCustomMessageUI(byte LocalUserNum, const out array<UniqueNetId> Recipients, string MessageTitle, string NonEditableMessage, optional string EditableMessage);
 
-function PostActivityFeedBossKill(string BossName, string MapName);
+function PostActivityFeedBossKill(string BossName, string ClassName, string MapName);
 
 function PostActivityFeedTeamAward(string AwardName);
 

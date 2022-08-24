@@ -296,10 +296,12 @@ var float								TotalWavesActiveTime;
 var float								TimeUntilNextSpawn;
 /** Total num AI spawned in this wave */
 var	int									WaveTotalAI;
-/** Maximum number of AI that can be active at one time */
-var byte							    MaxMonsters;
-/** Maximum number of AI that can be active at one time in solo, by difficulty */
-var() byte							    MaxMonstersSolo[4];
+
+struct native PerPlayerMaxMonsters
+{
+	var array<int> MaxMonsters;
+};
+var array<PerPlayerMaxMonsters> PerDifficultyMaxMonsters;
 
 /** Used for arrays to modify spawn rate */
 struct native SpawnRateModifier
@@ -340,9 +342,6 @@ var ESquadType							DesiredSquadType;
 /** If set, can be used to spawn in place of the KF1 style volume spawns */
 var	KFSpawner							ActiveSpawner;
 
-/** Amount of extra zeds added to the pool when zeds are short during an objective */
-var const int							ObjExtraAI;
-
 /** IDs into the AIClassList array */
 enum EAIType
 {
@@ -366,6 +365,7 @@ enum EBossAIType
 {
     BAT_Hans,
     BAT_Patriarch,
+    BAT_KingFleshpound,
 };
 
 /** The list of zeds the spawn manager currently has queued up to spawn*/
@@ -644,6 +644,13 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 
 
 
+
+
+
+
+
+
+
                     //Always have the squad type be a boss if we're spawning one in case of override
 					TempSpawnList.AddItem(GetBossAISpawnType());
                     LargestMonsterSquadType = EST_Boss;
@@ -690,7 +697,7 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     {
     	LeftoverSpawnSquad.Length = 0;
     }
-	
+
 	if( LeftoverSpawnSquad.Length > 0 )
     {
         if( bLogAISpawning )
@@ -1034,7 +1041,7 @@ function SetSineWaveFreq(float NewFreq)
 }
 
 /** special spawning for boss summon ability */
-function SummonBossMinions( array<KFAISpawnSquad> NewMinionSquad, int NewMaxBossMinions )
+function SummonBossMinions( array<KFAISpawnSquad> NewMinionSquad, int NewMaxBossMinions, optional bool bUseLivingPlayerScale = true )
 {
 	local int NumLivePlayers;
 	local float UsedMaxBossMinionsScale;
@@ -1056,21 +1063,28 @@ function SummonBossMinions( array<KFAISpawnSquad> NewMinionSquad, int NewMaxBoss
     NumLivePlayers = GetLivingPlayerCount();
 
     // Scale boss minions numbers by player count
-    if( NumLivePlayers <= ArrayCount(MaxBossMinionScaleByPlayers) )
-	{
-        if( NumLivePlayers == 0 )
+    if (bUseLivingPlayerScale)
+    {
+        if (NumLivePlayers <= ArrayCount(MaxBossMinionScaleByPlayers))
         {
-            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers];
+            if (NumLivePlayers == 0)
+            {
+                UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers];
+            }
+            else
+            {
+                UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers - 1];
+            }
         }
         else
         {
-            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers - 1];
+            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[ArrayCount(MaxBossMinionScaleByPlayers) - 1];
         }
-	}
-	else
-	{
-	   UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[ArrayCount(MaxBossMinionScaleByPlayers) - 1];
-	}
+    }
+    else
+    {
+        UsedMaxBossMinionsScale = 1.f;
+    }
 
 	MaxBossMinions *= UsedMaxBossMinionsScale;
 
@@ -1271,25 +1285,12 @@ function bool ShouldAddAI()
 
 function int GetMaxMonsters()
 {
-    local int UsedMaxMonsters;
+	local int LivingPlayerCount;
+	local int Difficulty;
 
-    if( WorldInfo.NetMode == NM_StandAlone && GetLivingPlayerCount() == 1 )
-    {
-    	if( GameDifficulty < ArrayCount(MaxMonstersSolo) )
-    	{
-    	   UsedMaxMonsters = MaxMonstersSolo[GameDifficulty];
-    	}
-    	else
-    	{
-    	   UsedMaxMonsters = MaxMonstersSolo[ArrayCount(MaxMonstersSolo) - 1];
-    	}
-    }
-    else
-    {
-        UsedMaxMonsters = MaxMonsters;
-    }
-
-    return UsedMaxMonsters;
+	LivingPlayerCount = Clamp(GetLivingPlayerCount() - 1, 0, 5);
+	Difficulty = Clamp(GameDifficulty, 0, 3);
+	return PerDifficultyMaxMonsters[Difficulty].MaxMonsters[LivingPlayerCount];
 }
 
 /** Max currently wanted AI num */
@@ -1440,7 +1441,7 @@ function KFSpawnVolume GetBestSpawnVolume( optional array< class<KFPawn_Monster>
 
 	for ( VolumeIndex = 0; VolumeIndex < SpawnVolumes.Length; VolumeIndex++ )
 	{
-		if ( SpawnVolumes[VolumeIndex].IsValidForSpawn(DesiredSquadType, OtherController) 
+		if ( SpawnVolumes[VolumeIndex].IsValidForSpawn(DesiredSquadType, OtherController)
 			&& SpawnVolumes[VolumeIndex].CurrentRating > 0 )
 		{
 			if (bLogAISpawning) LogInternal(GetFuncName()@"returning chosen spawn volume"@SpawnVolumes[VolumeIndex]@"with a rating of"@SpawnVolumes[VolumeIndex].CurrentRating);
@@ -1476,38 +1477,36 @@ function ResetSpawnManager();
 defaultproperties
 {
    SineWaveFreq=0.040000
-   MaxMonsters=32
-   MaxMonstersSolo(0)=16
-   MaxMonstersSolo(1)=16
-   MaxMonstersSolo(2)=16
-   MaxMonstersSolo(3)=16
+   PerDifficultyMaxMonsters(0)=(MaxMonsters=(10,14,32,32,32,32))
+   PerDifficultyMaxMonsters(1)=(MaxMonsters=(11,18,32,32,32,32))
+   PerDifficultyMaxMonsters(2)=(MaxMonsters=(12,18,32,32,32,32))
+   PerDifficultyMaxMonsters(3)=(MaxMonsters=(12,18,32,32,32,32))
    SoloWaveSpawnRateModifier(0)=(RateModifier=(1.000000,1.000000,1.000000,1.000000))
    SoloWaveSpawnRateModifier(1)=(RateModifier=(1.000000,1.000000,1.000000,1.000000))
    SoloWaveSpawnRateModifier(2)=(RateModifier=(1.000000,1.000000,1.000000,1.000000))
    SoloWaveSpawnRateModifier(3)=(RateModifier=(1.000000,1.000000,1.000000,1.000000))
-   EarlyWaveSpawnRateModifier(0)=1.000000
-   EarlyWaveSpawnRateModifier(1)=0.800000
-   EarlyWaveSpawnRateModifier(2)=0.800000
-   EarlyWaveSpawnRateModifier(3)=0.700000
+   EarlyWaveSpawnRateModifier(0)=0.800000
+   EarlyWaveSpawnRateModifier(1)=0.600000
+   EarlyWaveSpawnRateModifier(2)=0.500000
+   EarlyWaveSpawnRateModifier(3)=0.500000
    EarlyWaveIndex=7
    EarlyWavesSpawnTimeModByPlayers(0)=1.000000
-   EarlyWavesSpawnTimeModByPlayers(1)=1.000000
-   EarlyWavesSpawnTimeModByPlayers(2)=1.000000
-   EarlyWavesSpawnTimeModByPlayers(3)=0.850000
-   EarlyWavesSpawnTimeModByPlayers(4)=0.650000
+   EarlyWavesSpawnTimeModByPlayers(1)=1.300000
+   EarlyWavesSpawnTimeModByPlayers(2)=0.900000
+   EarlyWavesSpawnTimeModByPlayers(3)=0.700000
+   EarlyWavesSpawnTimeModByPlayers(4)=0.400000
    EarlyWavesSpawnTimeModByPlayers(5)=0.300000
    LateWavesSpawnTimeModByPlayers(0)=1.100000
-   LateWavesSpawnTimeModByPlayers(1)=1.100000
-   LateWavesSpawnTimeModByPlayers(2)=1.100000
-   LateWavesSpawnTimeModByPlayers(3)=1.000000
-   LateWavesSpawnTimeModByPlayers(4)=0.750000
+   LateWavesSpawnTimeModByPlayers(1)=1.450000
+   LateWavesSpawnTimeModByPlayers(2)=0.900000
+   LateWavesSpawnTimeModByPlayers(3)=0.800000
+   LateWavesSpawnTimeModByPlayers(4)=0.700000
    LateWavesSpawnTimeModByPlayers(5)=0.600000
    RecycleSpecialSquad(0)=False
    RecycleSpecialSquad(1)=False
    RecycleSpecialSquad(2)=True
    RecycleSpecialSquad(3)=True
    MaxSpecialSquadRecycles=-1
-   ObjExtraAI=16
    MaxBossMinionScaleByPlayers(0)=1.000000
    MaxBossMinionScaleByPlayers(1)=1.500000
    MaxBossMinionScaleByPlayers(2)=1.500000

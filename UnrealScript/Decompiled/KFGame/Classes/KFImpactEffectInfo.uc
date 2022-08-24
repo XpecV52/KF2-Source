@@ -56,6 +56,8 @@ var() AkEvent BulletWhipSnd;
 /** If true, make splash effect for local player when hit water */
 var() bool bMakeSplash;
 var() ParticleSystem SplashEffectTemplate<EditCondition=bMakeSplash>;
+/** List of particles that play for any impact material type */
+var() array<ParticleSystem> GlobalImpactEffectEffects;
 
 defaultproperties
 {

@@ -287,7 +287,7 @@ simulated function TempMessagePlayers(coerce string msg)
     LogInternal(("!!!!" @ msg) @ "!!!!");
     foreach LocalPlayerControllers(Class'KFPlayerController', KFPC)
     {
-        KFPC.MyGFxHUD.ShowNonCriticalMessage(msg);        
+        KFPC.myGfxHUD.ShowNonCriticalMessage(msg);        
     }    
 }
 

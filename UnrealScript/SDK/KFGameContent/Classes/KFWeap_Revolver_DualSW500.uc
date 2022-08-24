@@ -143,6 +143,7 @@ defaultproperties
 		bAcceptsStaticDecals=false
 		bAcceptsDecals=false
 		CastShadow=false
+		bUseAsOccluder=false
 		DepthPriorityGroup=SDPG_Foreground // First person only
 	End Object
 	Components.Add(BulletMeshComp0)
@@ -158,6 +159,7 @@ defaultproperties
 		bAcceptsStaticDecals=false
 		bAcceptsDecals=false
 		CastShadow=false
+		bUseAsOccluder=false
 		DepthPriorityGroup=SDPG_Foreground // First person only
 	End Object
 	Components.Add(BulletMeshComp0_L)
@@ -173,6 +175,7 @@ defaultproperties
 		bAcceptsStaticDecals=false
 		bAcceptsDecals=false
 		CastShadow=false
+		bUseAsOccluder=false
 		DepthPriorityGroup=SDPG_Foreground // First person only
 	End Object
 	Components.Add(BulletMeshComp1)
@@ -188,6 +191,7 @@ defaultproperties
 		bAcceptsStaticDecals=false
 		bAcceptsDecals=false
 		CastShadow=false
+		bUseAsOccluder=false
 		DepthPriorityGroup=SDPG_Foreground // First person only
 	End Object
 	Components.Add(BulletMeshComp1_L)
@@ -203,6 +207,7 @@ defaultproperties
 		bAcceptsStaticDecals=false
 		bAcceptsDecals=false
 		CastShadow=false
+		bUseAsOccluder=false
 		DepthPriorityGroup=SDPG_Foreground // First person only
 	End Object
 	Components.Add(BulletMeshComp2)
@@ -218,6 +223,7 @@ defaultproperties
 		bAcceptsStaticDecals=false
 		bAcceptsDecals=false
 		CastShadow=false
+		bUseAsOccluder=false
 		DepthPriorityGroup=SDPG_Foreground // First person only
 	End Object
 	Components.Add(BulletMeshComp2_L)
@@ -233,6 +239,7 @@ defaultproperties
 		bAcceptsStaticDecals=false
 		bAcceptsDecals=false
 		CastShadow=false
+		bUseAsOccluder=false
 		DepthPriorityGroup=SDPG_Foreground // First person only
 	End Object
 	Components.Add(BulletMeshComp3)
@@ -248,6 +255,7 @@ defaultproperties
 		bAcceptsStaticDecals=false
 		bAcceptsDecals=false
 		CastShadow=false
+		bUseAsOccluder=false
 		DepthPriorityGroup=SDPG_Foreground // First person only
 	End Object
 	Components.Add(BulletMeshComp3_L)
@@ -263,6 +271,7 @@ defaultproperties
 		bAcceptsStaticDecals=false
 		bAcceptsDecals=false
 		CastShadow=false
+		bUseAsOccluder=false
 		DepthPriorityGroup=SDPG_Foreground // First person only
 	End Object
 	Components.Add(BulletMeshComp4)
@@ -278,6 +287,7 @@ defaultproperties
 		bAcceptsStaticDecals=false
 		bAcceptsDecals=false
 		CastShadow=false
+		bUseAsOccluder=false
 		DepthPriorityGroup=SDPG_Foreground // First person only
 	End Object
 	Components.Add(BulletMeshComp4_L)

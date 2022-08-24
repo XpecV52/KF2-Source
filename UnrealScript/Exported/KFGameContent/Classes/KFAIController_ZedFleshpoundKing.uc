@@ -40,7 +40,15 @@ var const int ChestBeamMinPhase;
 
 event Possess(Pawn inPawn, bool bVehicleTransition)
 {
+    local KFGameReplicationInfo KFGRI;
     super.Possess(inPawn, bVehicleTransition);
+
+    // Play entrance animation
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if (KFGRI != none && KFGRI.WaveNum >= KFGRI.WaveMax)
+    {
+        class'AICommand_BossTheatrics'.static.DoTheatrics(self, THEATRIC_Entrance);
+    }
 
     MyPawn = KFPawn_ZedFleshpoundKing(inPawn);
 }
@@ -89,6 +97,12 @@ function CheckForBeamAttack()
 
     // Don't allow beam when not in the correct phase
     if (CurrentPhase < ChestBeamMinPhase)
+    {
+        return;
+    }
+
+    // Don't allow beam while enraged
+    if (RagePlugin.bIsEnraged)
     {
         return;
     }
@@ -238,6 +252,16 @@ function ForceTargetChange( Pawn NewEnemy )
 	super.ChangeEnemy( NewEnemy, false );
 }
 
+state ZedVictory
+{
+Begin:
+    Sleep(0.1f);
+    if (MyKFPawn != none)
+    {
+        class'AICommand_BossTheatrics'.static.DoTheatrics(self, THEATRIC_Victory, -1);
+    }
+}
+
 defaultproperties
 {
    BeamAttackWaitTimeRange=(X=1.500000,Y=3.000000)
@@ -246,8 +270,12 @@ defaultproperties
    PhaseThresholds(0)=1.000000
    PhaseThresholds(1)=0.650000
    PhaseThresholds(2)=0.500000
-   PhaseThresholds(3)=0.100000
+   PhaseThresholds(3)=0.200000
    ChestBeamMinPhase=2
+   SpawnRagedChance(0)=1.000000
+   SpawnRagedChance(1)=1.000000
+   SpawnRagedChance(2)=1.000000
+   SpawnRagedChance(3)=1.000000
    Name="Default__KFAIController_ZedFleshpoundKing"
    ObjectArchetype=KFAIController_ZedFleshpound'KFGame.Default__KFAIController_ZedFleshpound'
 }

@@ -90,6 +90,7 @@ defaultproperties
 		CastShadows=False
 		CastStaticShadows=FALSE
 		CastDynamicShadows=TRUE
+		bCastPerObjectShadows=false
 		bEnabled=FALSE
 		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
 	End Object
@@ -102,6 +103,7 @@ defaultproperties
 		CastShadows=False
 		CastStaticShadows=FALSE
 		CastDynamicShadows=TRUE
+		bCastPerObjectShadows=false
 		bEnabled=FALSE
 		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
 	End Object

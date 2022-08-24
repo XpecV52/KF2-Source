@@ -65,8 +65,8 @@ defaultproperties
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MkB42.Play_WEP_SA_MkB42_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_SA_MkB42.Play_WEP_SA_MkB42_Fire_3P_Loop')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_MkB42.Play_WEP_SA_MkB42_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_SA_MkB42.Play_WEP_SA_MkB42_Fire_3P_Single')
    WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MkB42.Play_WEP_SA_MkB42_Fire_3P_EndLoop',FirstPersonCue=AkEvent'WW_WEP_SA_MkB42.Play_WEP_SA_MkB42_Fire_3P_EndLoop')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Handling_DryFire'
-   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Handling_DryFire'
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Handling_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Handling_DryFire'
    PlayerViewOffset=(X=2.000000,Y=8.000000,Z=-3.000000)
    AttachmentArchetype=KFWeapAttach_DualBase'WEP_DualMKB42_ARCH.Wep_DualMKB42_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
@@ -100,12 +100,12 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
-   FireInterval(0)=0.050000
+   FireInterval(0)=0.060000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   Spread(0)=0.145000
+   Spread(0)=0.174000
    InstantHitDamage(0)=10.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()

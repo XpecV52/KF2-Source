@@ -3,11 +3,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    InputLinks(1)=(DrawY=306,OverrideDelta=35)
    InputLinks(2)=(DrawY=327,OverrideDelta=56)
    OutputLinks(0)=(DrawY=306,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),DrawX=2374,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),DrawX=2374,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2425,OverrideDelta=76)
    EventLinks(0)=(DrawX=2474,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2336
    ObjPosY=248
    DrawWidth=173
@@ -17,15 +17,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_1
-   Originator=TriggerVolume'KF-EvacuationPoint.TheWorld:PersistentLevel.TriggerVolume_0'
+   Originator=TriggerVolume'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.TriggerVolume_0'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=277,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=277,OverrideDelta=14)
    OutputLinks(1)=(DrawY=298,OverrideDelta=35)
    OutputLinks(2)=(DrawY=319,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2178,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2096
    ObjPosY=208
    ObjName="TriggerVolume_0 Touch"
@@ -40,7 +40,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
    SizeY=308
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2064
    ObjPosY=184
    ObjComment="Portal Spawns - Tower 1"
@@ -51,9 +51,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_1'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2328
    ObjPosY=416
    ObjComment="PARENT - Tower 1 Vent"
@@ -68,7 +68,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
    SizeY=308
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2064
    ObjPosY=640
    ObjComment="Portal Spawns - Tower 2"
@@ -79,15 +79,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
-   Originator=TriggerVolume'KF-EvacuationPoint.TheWorld:PersistentLevel.TriggerVolume_4'
+   Originator=TriggerVolume'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.TriggerVolume_4'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=733,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=733,OverrideDelta=14)
    OutputLinks(1)=(DrawY=754,OverrideDelta=35)
    OutputLinks(2)=(DrawY=775,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2178,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2096
    ObjPosY=664
    ObjName="TriggerVolume_4 Touch"
@@ -102,11 +102,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
    InputLinks(1)=(DrawY=762,OverrideDelta=35)
    InputLinks(2)=(DrawY=783,OverrideDelta=56)
    OutputLinks(0)=(DrawY=762,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=2374,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=2374,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2425,OverrideDelta=76)
    EventLinks(0)=(DrawX=2474,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2336
    ObjPosY=704
    DrawWidth=173
@@ -116,9 +116,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_0'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2336
    ObjPosY=864
    ObjComment="PARENT - Tower 2 Vent"
@@ -133,7 +133,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_7
    SizeY=365
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2688
    ObjPosY=160
    ObjComment="Portal Spawns - Ferry Upper Deck Front"
@@ -144,15 +144,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_7
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_8
-   Originator=TriggerVolume'KF-EvacuationPoint.TheWorld:PersistentLevel.TriggerVolume_11'
+   Originator=TriggerVolume'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.TriggerVolume_11'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=253,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=253,OverrideDelta=14)
    OutputLinks(1)=(DrawY=274,OverrideDelta=35)
    OutputLinks(2)=(DrawY=295,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2806,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2720
    ObjPosY=184
    ObjName="TriggerVolume_11 Touch"
@@ -167,11 +167,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
    InputLinks(1)=(DrawY=282,OverrideDelta=35)
    InputLinks(2)=(DrawY=303,OverrideDelta=56)
    OutputLinks(0)=(DrawY=282,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_19'),DrawX=2998,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_19'),DrawX=2998,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3049,OverrideDelta=76)
    EventLinks(0)=(DrawX=3098,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2960
    ObjPosY=224
    DrawWidth=173
@@ -185,11 +185,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
    InputLinks(1)=(DrawY=834,OverrideDelta=35)
    InputLinks(2)=(DrawY=855,OverrideDelta=56)
    OutputLinks(0)=(DrawY=834,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23'),DrawX=3062,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_23'),DrawX=3062,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3113,OverrideDelta=76)
    EventLinks(0)=(DrawX=3162,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3024
    ObjPosY=776
    DrawWidth=173
@@ -199,15 +199,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_9
-   Originator=TriggerVolume'KF-EvacuationPoint.TheWorld:PersistentLevel.TriggerVolume_6'
+   Originator=TriggerVolume'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.TriggerVolume_6'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=805,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=805,OverrideDelta=14)
    OutputLinks(1)=(DrawY=826,OverrideDelta=35)
    OutputLinks(2)=(DrawY=847,OverrideDelta=56)
    VariableLinks(0)=(DrawX=2866,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2784
    ObjPosY=736
    ObjName="TriggerVolume_6 Touch"
@@ -222,7 +222,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_9
    SizeY=409
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2752
    ObjPosY=712
    ObjComment="Portal Spawns - Ferry Upper Deck Back"
@@ -233,9 +233,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_23'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_23'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2968
    ObjPosY=384
    ObjComment="PARENT - Upper Deck Front Vent 1"
@@ -246,9 +246,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_14'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3064
    ObjPosY=424
    ObjComment="CHILD"
@@ -259,9 +259,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_15'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_15'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3016
    ObjPosY=944
    ObjComment="PARENT - Upper Deck Back Vent 1"
@@ -272,9 +272,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_8'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3128
    ObjPosY=992
    ObjComment="CHILD - Upper Deck Back Vent 2"
@@ -289,11 +289,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
    InputLinks(1)=(DrawY=818,OverrideDelta=35)
    InputLinks(2)=(DrawY=839,OverrideDelta=56)
    OutputLinks(0)=(DrawY=818,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15'),DrawX=1134,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15'),DrawX=1134,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1185,OverrideDelta=76)
    EventLinks(0)=(DrawX=1234,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1096
    ObjPosY=760
    DrawWidth=173
@@ -303,15 +303,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_6
-   Originator=TriggerVolume'KF-EvacuationPoint.TheWorld:PersistentLevel.TriggerVolume_13'
+   Originator=TriggerVolume'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.TriggerVolume_13'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=789,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=789,OverrideDelta=14)
    OutputLinks(1)=(DrawY=810,OverrideDelta=35)
    OutputLinks(2)=(DrawY=831,OverrideDelta=56)
    VariableLinks(0)=(DrawX=942,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=856
    ObjPosY=720
    ObjName="TriggerVolume_13 Touch"
@@ -326,7 +326,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_5
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=824
    ObjPosY=696
    ObjComment="Portal Spawns - Ticketing Building Upstairs Right"
@@ -341,11 +341,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
    InputLinks(1)=(DrawY=1986,OverrideDelta=35)
    InputLinks(2)=(DrawY=2007,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1986,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_38'),DrawX=1094,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_38'),DrawX=1094,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1145,OverrideDelta=76)
    EventLinks(0)=(DrawX=1194,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1056
    ObjPosY=1928
    DrawWidth=173
@@ -355,15 +355,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
-   Originator=TriggerVolume'KF-EvacuationPoint.TheWorld:PersistentLevel.TriggerVolume_16'
+   Originator=TriggerVolume'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.TriggerVolume_16'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=1957,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=1957,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1978,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1999,OverrideDelta=56)
    VariableLinks(0)=(DrawX=902,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=816
    ObjPosY=1888
    ObjName="TriggerVolume_16 Touch"
@@ -378,7 +378,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_8
    SizeY=355
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=784
    ObjPosY=1864
    ObjComment="Portal Spawns - Ticketing Building Downstairs Right"
@@ -389,9 +389,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_11'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_11'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1056
    ObjPosY=2080
    ObjComment="PARENT - Downstairs Ceiling 1"
@@ -402,9 +402,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_3'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1144
    ObjPosY=2112
    ObjComment="CHILD"
@@ -415,9 +415,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_7'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1208
    ObjPosY=960
    ObjComment="PARENT - Upstairs Right Ceiling Vent 1"
@@ -428,9 +428,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_9'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-184
    ObjPosY=976
    ObjComment="PARENT - Triage Area Wall Vent"
@@ -441,9 +441,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_37'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_37'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8
    ObjPosY=1032
    ObjComment="CHILD"
@@ -454,9 +454,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_49
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_5'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=80
    ObjPosY=1080
    ObjComment="CHILD"
@@ -471,11 +471,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
    InputLinks(1)=(DrawY=250,OverrideDelta=35)
    InputLinks(2)=(DrawY=271,OverrideDelta=56)
    OutputLinks(0)=(DrawY=250,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),DrawX=-34,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),DrawX=-34,OverrideDelta=16)
    VariableLinks(1)=(DrawX=17,OverrideDelta=76)
    EventLinks(0)=(DrawX=66,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-72
    ObjPosY=192
    DrawWidth=173
@@ -485,15 +485,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
-   Originator=TriggerVolume'KF-EvacuationPoint.TheWorld:PersistentLevel.TriggerVolume_18'
+   Originator=TriggerVolume'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.TriggerVolume_18'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=221,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=221,OverrideDelta=14)
    OutputLinks(1)=(DrawY=242,OverrideDelta=35)
    OutputLinks(2)=(DrawY=263,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-210,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-296
    ObjPosY=152
    ObjName="TriggerVolume_18 Touch"
@@ -508,7 +508,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_18
    SizeY=469
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-320
    ObjPosY=128
    ObjComment="Portal Spawns - Outside Ticketing Building"
@@ -523,11 +523,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
    InputLinks(1)=(DrawY=842,OverrideDelta=35)
    InputLinks(2)=(DrawY=863,OverrideDelta=56)
    OutputLinks(0)=(DrawY=842,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_46'),DrawX=-50,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_46'),DrawX=-50,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1,OverrideDelta=76)
    EventLinks(0)=(DrawX=50,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-88
    ObjPosY=784
    DrawWidth=173
@@ -537,15 +537,15 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_12
-   Originator=TriggerVolume'KF-EvacuationPoint.TheWorld:PersistentLevel.TriggerVolume_10'
+   Originator=TriggerVolume'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.TriggerVolume_10'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=813,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),DrawY=813,OverrideDelta=14)
    OutputLinks(1)=(DrawY=834,OverrideDelta=35)
    OutputLinks(2)=(DrawY=855,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-202,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-288
    ObjPosY=744
    ObjName="TriggerVolume_10 Touch"
@@ -560,7 +560,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_12
    SizeY=449
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-312
    ObjPosY=720
    ObjComment="Portal Spawns - Outside Triage Area"
@@ -571,9 +571,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_12
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_2'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-48
    ObjPosY=416
    ObjComment="PARENT - Outside Vent 2"
@@ -584,9 +584,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_40'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_40'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=40
    ObjPosY=472
    ObjComment="CHILD"
@@ -605,7 +605,7 @@ Begin Object Class=SeqEvent_Mover Name=SeqEvent_Mover_0
    VariableLinks(0)=(DrawX=-432,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-366,OverrideDelta=96)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-480
    ObjPosY=3296
    ObjName="InterpActor_0 Mover"
@@ -624,11 +624,11 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
    InputLinks(4)=(DrawY=3398,OverrideDelta=103)
    OutputLinks(0)=(DrawY=3326,OverrideDelta=31)
    OutputLinks(1)=(DrawY=3382,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_0'),DrawX=-97,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11'),LinkDesc="Base",MinVars=0,DrawX=-50,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_13'),LinkDesc="Light",MinVars=0,DrawX=-2,OverrideDelta=110)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0'),DrawX=-97,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11'),LinkDesc="Base",MinVars=0,DrawX=-50,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_13'),LinkDesc="Light",MinVars=0,DrawX=-2,OverrideDelta=110)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-128
    ObjPosY=3272
    DrawWidth=158
@@ -646,7 +646,7 @@ Begin Object Class=InterpData Name=InterpData_0
          Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_4.InterpTrackMove_1'
+      InterpTracks(0)=InterpTrackMove'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_4.InterpTrackMove_1'
       GroupName="Light"
       GroupColor=(B=0,G=178,R=161,A=255)
       Name="InterpGroup_4"
@@ -660,7 +660,7 @@ Begin Object Class=InterpData Name=InterpData_0
          Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1.InterpTrackMove_1'
+      InterpTracks(0)=InterpTrackMove'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1.InterpTrackMove_1'
       GroupName="Base"
       GroupColor=(B=214,G=102,R=0,A=255)
       Name="InterpGroup_1"
@@ -671,13 +671,13 @@ Begin Object Class=InterpData Name=InterpData_0
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
-   InterpGroups(0)=InterpGroup'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1'
-   InterpGroups(1)=InterpGroup'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_4'
-   CurveEdSetup=InterpCurveEdSetup'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_4'
+   InterpGroups(0)=InterpGroup'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1'
+   InterpGroups(1)=InterpGroup'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_4'
+   CurveEdSetup=InterpCurveEdSetup'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_4'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=0.000000
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-128
    ObjPosY=3472
    DrawWidth=32
@@ -688,7 +688,7 @@ End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-48
    ObjPosY=3472
    DrawWidth=32
@@ -702,7 +702,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_2
    SizeY=1145
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-552
    ObjPosY=3048
    ObjComment="Searchlights - NO LONGER USED"
@@ -718,7 +718,7 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    OutputLinks(1)=(DrawY=3170,OverrideDelta=35)
    OutputLinks(2)=(DrawY=3191,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-456
    ObjPosY=3080
    DrawWidth=137
@@ -728,7 +728,7 @@ End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=8
    ObjPosY=3440
    DrawWidth=32
@@ -738,9 +738,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_25'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_25'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1032
    ObjPosY=1472
    ObjComment="PARENT - Inside 1"
@@ -755,7 +755,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_16
    SizeY=469
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=784
    ObjPosY=1256
    ObjComment="Portal Spawns - Restaurant"
@@ -766,15 +766,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_16
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_16
-   Originator=TriggerVolume'KF-EvacuationPoint.TheWorld:PersistentLevel.TriggerVolume_14'
+   Originator=TriggerVolume'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.TriggerVolume_14'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16')),DrawY=1349,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_16')),DrawY=1349,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1370,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1391,OverrideDelta=56)
    VariableLinks(0)=(DrawX=894,OverrideDelta=54)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=808
    ObjPosY=1280
    ObjName="TriggerVolume_14 Touch"
@@ -789,11 +789,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
    InputLinks(1)=(DrawY=1370,OverrideDelta=35)
    InputLinks(2)=(DrawY=1391,OverrideDelta=56)
    OutputLinks(0)=(DrawY=1370,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_56'),DrawX=1078,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_56'),DrawX=1078,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1129,OverrideDelta=76)
    EventLinks(0)=(DrawX=1178,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1040
    ObjPosY=1312
    DrawWidth=173
@@ -803,9 +803,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_38'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_38'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=144
    ObjPosY=504
    ObjComment="CHILD"
@@ -817,7 +817,7 @@ End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=72
    ObjPosY=4016
    DrawWidth=32
@@ -832,7 +832,7 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_1
    OutputLinks(1)=(DrawY=3738,OverrideDelta=35)
    OutputLinks(2)=(DrawY=3759,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-392
    ObjPosY=3648
    DrawWidth=137
@@ -842,7 +842,7 @@ End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=8
    ObjPosY=4040
    DrawWidth=32
@@ -860,7 +860,7 @@ Begin Object Class=InterpData Name=InterpData_2
          Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_4.InterpTrackMove_1'
+      InterpTracks(0)=InterpTrackMove'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_4.InterpTrackMove_1'
       GroupName="Light"
       GroupColor=(B=0,G=178,R=161,A=255)
       Name="InterpGroup_4"
@@ -874,7 +874,7 @@ Begin Object Class=InterpData Name=InterpData_2
          Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackMove_1'
+      InterpTracks(0)=InterpTrackMove'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackMove_1'
       GroupName="Base"
       GroupColor=(B=214,G=102,R=0,A=255)
       Name="InterpGroup_1"
@@ -885,13 +885,13 @@ Begin Object Class=InterpData Name=InterpData_2
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
-   InterpGroups(0)=InterpGroup'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1'
-   InterpGroups(1)=InterpGroup'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_4'
-   CurveEdSetup=InterpCurveEdSetup'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpCurveEdSetup_0'
+   InterpGroups(0)=InterpGroup'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1'
+   InterpGroups(1)=InterpGroup'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_4'
+   CurveEdSetup=InterpCurveEdSetup'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpCurveEdSetup_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=0.000000
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-64
    ObjPosY=4040
    DrawWidth=32
@@ -909,11 +909,11 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_4
    InputLinks(4)=(DrawY=3966,OverrideDelta=103)
    OutputLinks(0)=(DrawY=3894,OverrideDelta=31)
    OutputLinks(1)=(DrawY=3950,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_2'),DrawX=-33,OverrideDelta=16)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),LinkDesc="Base",MinVars=0,DrawX=14,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_12'),LinkDesc="Light",MinVars=0,DrawX=62,OverrideDelta=110)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2'),DrawX=-33,OverrideDelta=16)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),LinkDesc="Base",MinVars=0,DrawX=14,OverrideDelta=63)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_12'),LinkDesc="Light",MinVars=0,DrawX=62,OverrideDelta=110)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-64
    ObjPosY=3840
    DrawWidth=158
@@ -931,7 +931,7 @@ Begin Object Class=SeqEvent_Mover Name=SeqEvent_Mover_1
    VariableLinks(0)=(DrawX=-368,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-302,OverrideDelta=96)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-416
    ObjPosY=3864
    ObjName="InterpActor_0 Mover"
@@ -942,9 +942,9 @@ Begin Object Class=SeqEvent_Mover Name=SeqEvent_Mover_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_45
-   ObjValue=KFSpawner'KF-EvacuationPoint.TheWorld:PersistentLevel.KFSpawner_33'
+   ObjValue=KFSpawner'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFSpawner_33'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1144
    ObjPosY=392
    ObjComment="PARENT - Upstairs Right Ceiling Vent 1"
@@ -959,7 +959,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_13
    SizeY=395
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=816
    ObjPosY=136
    ObjComment="Portal Spawns - Office Building"
@@ -970,15 +970,15 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_13
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_13
-   Originator=TriggerVolume'KF-EvacuationPoint.TheWorld:PersistentLevel.TriggerVolume_7'
+   Originator=TriggerVolume'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.TriggerVolume_7'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),DrawY=229,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),DrawY=229,OverrideDelta=14)
    OutputLinks(1)=(DrawY=250,OverrideDelta=35)
    OutputLinks(2)=(DrawY=271,OverrideDelta=56)
    VariableLinks(0)=(DrawX=930,OverrideDelta=50)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=848
    ObjPosY=160
    ObjName="TriggerVolume_7 Touch"
@@ -993,11 +993,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
    InputLinks(1)=(DrawY=258,OverrideDelta=35)
    InputLinks(2)=(DrawY=279,OverrideDelta=56)
    OutputLinks(0)=(DrawY=258,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_45'),DrawX=1126,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_45'),DrawX=1126,OverrideDelta=16)
    VariableLinks(1)=(DrawX=1177,OverrideDelta=76)
    EventLinks(0)=(DrawX=1226,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1088
    ObjPosY=200
    DrawWidth=173
@@ -1012,12 +1012,12 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
    InputLinks(2)=(DrawY=3066,OverrideDelta=59)
    InputLinks(3)=(DrawY=3088,OverrideDelta=81)
    InputLinks(4)=(DrawY=3110,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=3038,OverrideDelta=31)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=3038,OverrideDelta=31)
    OutputLinks(1)=(DrawY=3094,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=1217,OverrideDelta=18)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),LinkDesc="FlythroughCamera",MinVars=0,DrawX=1284,OverrideDelta=65)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=1217,OverrideDelta=18)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),LinkDesc="FlythroughCamera",MinVars=0,DrawX=1284,OverrideDelta=65)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1184
    ObjPosY=2984
    DrawWidth=154
@@ -1033,7 +1033,7 @@ Begin Object Class=InterpData Name=InterpData_1
          Name="InterpTrackDirector_0"
          ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
       End Object
-      InterpTracks(0)=InterpTrackDirector'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
+      InterpTracks(0)=InterpTrackDirector'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
       GroupColor=(B=69,G=225,R=0,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
@@ -1053,8 +1053,8 @@ Begin Object Class=InterpData Name=InterpData_1
          Name="InterpTrackFloatProp_0"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackFloatProp_0'
+      InterpTracks(0)=InterpTrackMove'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackFloatProp_0'
       GroupName="FlythroughCamera"
       GroupColor=(B=213,G=105,R=0,A=255)
       Name="InterpGroup_0"
@@ -1065,12 +1065,12 @@ Begin Object Class=InterpData Name=InterpData_1
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=266.542908
-   InterpGroups(0)=InterpGroup'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
-   InterpGroups(1)=InterpGroupDirector'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0'
-   CurveEdSetup=InterpCurveEdSetup'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_0'
+   InterpGroups(0)=InterpGroup'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
+   InterpGroups(1)=InterpGroupDirector'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0'
+   CurveEdSetup=InterpCurveEdSetup'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1184
    ObjPosY=3184
    DrawWidth=32
@@ -1080,9 +1080,9 @@ Begin Object Class=InterpData Name=InterpData_1
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
-   ObjValue=CameraActor'KF-EvacuationPoint.TheWorld:PersistentLevel.CameraActor_0'
+   ObjValue=CameraActor'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.CameraActor_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1296
    ObjPosY=3184
    DrawWidth=32
@@ -1094,10 +1094,10 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
    ConsoleEventName="Benchmark"
    MaxWidth=190
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=3106,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=3106,OverrideDelta=11)
    VariableLinks(0)=(DrawX=943,OverrideDelta=63)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=848
    ObjPosY=3040
    DrawWidth=115
@@ -1110,9 +1110,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_0
    Commands(0)="startbenchmark"
    InputLinks(0)=(DrawY=3362,OverrideDelta=11)
    OutputLinks(0)=(DrawY=3362,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=1080,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=1080,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1016
    ObjPosY=3328
    ObjComment="startbenchmark"
@@ -1126,9 +1126,9 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
    Commands(0)="endbenchmark"
    InputLinks(0)=(DrawY=3034,OverrideDelta=11)
    OutputLinks(0)=(DrawY=3034,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=1528,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=1528,OverrideDelta=42)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1464
    ObjPosY=3000
    ObjComment="endbenchmark"
@@ -1140,7 +1140,7 @@ End Object
 
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_0
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1240
    ObjPosY=3432
    DrawWidth=32
@@ -1154,7 +1154,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_14
    SizeY=572
    bDrawBox=True
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=816
    ObjPosY=2952
    ObjComment="Benchmark"
@@ -1169,11 +1169,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
    InputLinks(1)=(DrawY=2706,OverrideDelta=35)
    InputLinks(2)=(DrawY=2727,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2706,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_8',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18'),DrawX=3342,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_8',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18'),DrawX=3342,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3393,OverrideDelta=76)
    EventLinks(0)=(DrawX=3442,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3304
    ObjPosY=2648
    DrawWidth=173
@@ -1183,9 +1183,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_9'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_9'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3216
    ObjPosY=2848
    ObjComment="Scanline"
@@ -1196,9 +1196,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_10'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_10'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3312
    ObjPosY=2848
    ObjComment="Scanline"
@@ -1209,9 +1209,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_14'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_14'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3416
    ObjPosY=2848
    ObjComment="Scanline"
@@ -1222,9 +1222,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_8'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_8'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3128
    ObjPosY=2928
    ObjComment="Scanline"
@@ -1235,9 +1235,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_12'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_12'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3232
    ObjPosY=2928
    ObjComment="Scanline"
@@ -1248,9 +1248,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_7'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_7'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3328
    ObjPosY=2928
    ObjComment="Scanline"
@@ -1261,9 +1261,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_6'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_6'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3432
    ObjPosY=2928
    ObjComment="Scanline"
@@ -1274,9 +1274,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_13'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_13'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3528
    ObjPosY=2928
    ObjComment="Scanline"
@@ -1291,11 +1291,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
    InputLinks(1)=(DrawY=3114,OverrideDelta=35)
    InputLinks(2)=(DrawY=3135,OverrideDelta=56)
    OutputLinks(0)=(DrawY=3114,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30'),DrawX=3326,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30'),DrawX=3326,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3377,OverrideDelta=76)
    EventLinks(0)=(DrawX=3426,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3288
    ObjPosY=3056
    DrawWidth=173
@@ -1305,9 +1305,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_16'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_16'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3160
    ObjPosY=3232
    ObjComment="Vending"
@@ -1318,9 +1318,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_22'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_22'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3264
    ObjPosY=3232
    ObjComment="Vending"
@@ -1331,9 +1331,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_18'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_18'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3360
    ObjPosY=3232
    ObjComment="Vending"
@@ -1344,9 +1344,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_20'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_20'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3080
    ObjPosY=3304
    ObjComment="Vending"
@@ -1357,9 +1357,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_26
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_15'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_15'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3176
    ObjPosY=3304
    ObjComment="Vending"
@@ -1370,9 +1370,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_17'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_17'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3280
    ObjPosY=3304
    ObjComment="Vending"
@@ -1383,9 +1383,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_21'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_21'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3376
    ObjPosY=3304
    ObjComment="Vending"
@@ -1396,9 +1396,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_19'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_19'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3480
    ObjPosY=3304
    ObjComment="Vending"
@@ -1413,11 +1413,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
    InputLinks(1)=(DrawY=3506,OverrideDelta=35)
    InputLinks(2)=(DrawY=3527,OverrideDelta=56)
    OutputLinks(0)=(DrawY=3506,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_40'),DrawX=3310,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_40'),DrawX=3310,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3361,OverrideDelta=76)
    EventLinks(0)=(DrawX=3410,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3272
    ObjPosY=3448
    DrawWidth=173
@@ -1427,9 +1427,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_24'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_24'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3176
    ObjPosY=3624
    DrawWidth=32
@@ -1439,9 +1439,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_30'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_30'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3272
    ObjPosY=3624
    DrawWidth=32
@@ -1451,9 +1451,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_25'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_25'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3376
    ObjPosY=3624
    DrawWidth=32
@@ -1463,9 +1463,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_27'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_27'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3080
    ObjPosY=3704
    DrawWidth=32
@@ -1475,9 +1475,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_28'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_28'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3184
    ObjPosY=3704
    DrawWidth=32
@@ -1487,9 +1487,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_29'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_29'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3280
    ObjPosY=3704
    DrawWidth=32
@@ -1499,9 +1499,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_23'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_23'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3384
    ObjPosY=3704
    DrawWidth=32
@@ -1511,9 +1511,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_26'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_26'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3480
    ObjPosY=3704
    DrawWidth=32
@@ -1527,11 +1527,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
    InputLinks(1)=(DrawY=2402,OverrideDelta=35)
    InputLinks(2)=(DrawY=2423,OverrideDelta=56)
    OutputLinks(0)=(DrawY=2402,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_41',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_47',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50'),DrawX=3366,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_41',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_47',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50'),DrawX=3366,OverrideDelta=16)
    VariableLinks(1)=(DrawX=3417,OverrideDelta=76)
    EventLinks(0)=(DrawX=3466,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3328
    ObjPosY=2344
    DrawWidth=173
@@ -1541,9 +1541,9 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_3'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_3'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3240
    ObjPosY=2496
    ObjComment="Street"
@@ -1554,9 +1554,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_0'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_0'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3344
    ObjPosY=2496
    ObjComment="Street"
@@ -1567,9 +1567,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_2'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_2'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3440
    ObjPosY=2496
    ObjComment="Street"
@@ -1580,9 +1580,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_1'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_1'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3232
    ObjPosY=2552
    ObjComment="Street"
@@ -1593,9 +1593,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_47
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_5'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_5'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3336
    ObjPosY=2552
    ObjComment="Street"
@@ -1606,9 +1606,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_47
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_50
-   ObjValue=KFPlayerStart'KF-EvacuationPoint.TheWorld:PersistentLevel.KFPlayerStart_4'
+   ObjValue=KFPlayerStart'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.KFPlayerStart_4'
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3432
    ObjPosY=2552
    ObjComment="Street"
@@ -1621,11 +1621,11 @@ End Object
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_2
    MaxTriggerCount=0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=2837,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=2837,OverrideDelta=14)
    OutputLinks(1)=(DrawY=2858,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11',InputLinkIdx=1)),DrawY=2879,OverrideDelta=56)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11',InputLinkIdx=1)),DrawY=2879,OverrideDelta=56)
    ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2096
    ObjPosY=2768
    DrawWidth=137
@@ -1638,13 +1638,13 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
    IncrementAmount=0
    InputLinks(0)=(DrawY=2832,OverrideDelta=25)
    InputLinks(1)=(DrawY=2876,OverrideDelta=69)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=2821,OverrideDelta=14)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),LinkDesc="Link 2",DrawY=2843,OverrideDelta=36)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),LinkDesc="Link 3",DrawY=2865,OverrideDelta=58)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),LinkDesc="Link 4",DrawY=2887,OverrideDelta=80)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=2821,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),LinkDesc="Link 2",DrawY=2843,OverrideDelta=36)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),LinkDesc="Link 3",DrawY=2865,OverrideDelta=58)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),LinkDesc="Link 4",DrawY=2887,OverrideDelta=80)
    VariableLinks(0)=(DrawX=2588,OverrideDelta=23)
    ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2544
    ObjPosY=2784
    DrawWidth=89
@@ -1657,12 +1657,12 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
    InputLinks(0)=(DrawY=2613,OverrideDelta=14)
    InputLinks(1)=(DrawY=2634,OverrideDelta=35)
    InputLinks(2)=(DrawY=2655,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=2634,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_41',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_47',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_8',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_40'),DrawX=2382,OverrideDelta=16)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=2634,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_41',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_47',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_8',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_25',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_26',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_33',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_35',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_37',SeqVar_Object'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_40'),DrawX=2382,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2433,OverrideDelta=76)
    EventLinks(0)=(DrawX=2482,OverrideDelta=119)
    ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-EvacuationPoint.TheWorld:PersistentLevel.Main_Sequence'
+   ParentSequence=Sequence'KF-EVACUATIONPOINT.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2344
    ObjPosY=2576
    DrawWidth=173

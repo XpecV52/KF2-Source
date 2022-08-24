@@ -62,18 +62,18 @@ defaultproperties
 	IronSightPosition=(X=12,Y=0,Z=0)
 
 	// Ammo
-	MagazineCapacity[0]=30
-	SpareAmmoCapacity[0]=390
-	InitialSpareMags[0]=3
+	MagazineCapacity[0]=40 //30
+	SpareAmmoCapacity[0]=400 //390
+	InitialSpareMags[0]=2  //3
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
 	// Recoil
-	maxRecoilPitch=200
-	minRecoilPitch=150
-	maxRecoilYaw=175
-	minRecoilYaw=-125
-	RecoilRate=0.085
+	maxRecoilPitch=140  //200
+	minRecoilPitch=105  //150
+	maxRecoilYaw=122    //175
+	minRecoilYaw=-122   //-125
+	RecoilRate=0.075
 	RecoilMaxYawLimit=500
 	RecoilMinYawLimit=65035
 	RecoilMaxPitchLimit=900
@@ -83,6 +83,7 @@ defaultproperties
 	RecoilISMaxPitchLimit=375
 	RecoilISMinPitchLimit=65460
 	IronSightMeshFOVCompensationScale=1.5
+	HippedRecoilModifier=1.5
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
@@ -90,9 +91,9 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Assault_Medic'
-	FireInterval(DEFAULT_FIREMODE)=+0.0923 // 650 RPM
+	FireInterval(DEFAULT_FIREMODE)=+0.08 // //750  0.08    650 RPM 0.0923
 	Spread(DEFAULT_FIREMODE)=0.0085
-	InstantHitDamage(DEFAULT_FIREMODE)=40.0
+	InstantHitDamage(DEFAULT_FIREMODE)=35.0
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALTFIRE_FIREMODE

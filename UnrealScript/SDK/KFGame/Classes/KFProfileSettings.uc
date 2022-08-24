@@ -264,6 +264,10 @@ defaultproperties
 	//Added 2/27/2017 - Support for safe frame setting
 	ProfileMappings.Add((Id=KFID_SafeFrameScale, Name="Safe Frame", MappingType=PVMT_RawValue))
 	
+	//Added 8/21/2017 - Support for native 4k rendering on Xbox One X (Scorpio)
+	ProfileMappings.Add((Id=KFID_Native4kResolution, Name="Native 4k Resolution", MappingType=PVMT_RawValue))
+
+
 	// Hex values for SDT_Float values, I use http://www.h-schmidt.net/FloatConverter/IEEE754.html for conversion
 
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_QuickWeaponSelect,Data=(Type=SDT_Int32,Value1=1))))
@@ -331,4 +335,7 @@ defaultproperties
 
 	//Added 2/27/2017 - Support for safe frame setting
 	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_SafeFrameScale,Data=(Type=SDT_Float,Value1=0))))
+
+	//Added 8/21/2017 - Support for native 4k rendering on Xbox One X (Scorpio)
+	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_Native4kResolution,Data=(Type=SDT_Int32,Value1=0))))
 }

@@ -11,6 +11,8 @@ class KFDifficulty_GorefastDualBlade extends KFDifficulty_Gorefast
 
 defaultproperties
 {
+   Suicidal=(BlockSettings=(Chance=0.600000))
+   HellOnEarth=(BlockSettings=(Chance=0.600000))
    Name="Default__KFDifficulty_GorefastDualBlade"
    ObjectArchetype=KFDifficulty_Gorefast'kfgamecontent.Default__KFDifficulty_Gorefast'
 }

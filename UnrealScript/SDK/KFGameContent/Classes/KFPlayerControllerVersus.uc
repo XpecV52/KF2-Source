@@ -117,6 +117,14 @@ function AwardZedDamage( int DamageAmount, bool bDamagerIsMe )
 //    `log("ZedXPAmount = "$ZedXPAmount$" ZedXPLevel = "$ZedXPLevel);
 }
 
+function AddTrackedDamage(int Amount, class<DamageType> DamageType, class<Pawn> DamagerClass, class<Pawn> VictimClass)
+{
+    if (VictimClass == class'KFPawn_Human_Versus')
+    {
+        AddTrackedVsDamage(Amount, DamagerClass);
+    }    
+}
+
 /** @return TRUE if any of the gameplay post process effects have a strength greater than 0.
 	Append to this list if additional effects are added. */
 function bool ShouldDisplayGameplayPostProcessFX()

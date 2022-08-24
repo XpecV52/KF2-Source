@@ -486,6 +486,8 @@ class KFPawnVoiceGroup_Patriarch extends KFPawnVoiceGroup;
 
 
 
+
+
 #linenumber 3
 
 defaultproperties

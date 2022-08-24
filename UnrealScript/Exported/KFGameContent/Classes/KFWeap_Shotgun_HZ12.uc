@@ -131,8 +131,8 @@ defaultproperties
    SpareAmmoCapacity(0)=80
    InitialSpareMags(0)=1
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_1P')
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_hz12.Play_WEP_HZ12_Fire_3P',FirstPersonCue=AkEvent'ww_wep_hz12.Play_WEP_HZ12_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_hz12.Play_WEP_HZ12_Fire_3P',FirstPersonCue=AkEvent'ww_wep_hz12.Play_WEP_HZ12_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'
    PlayerViewOffset=(X=20.000000,Y=7.600000,Z=-3.000000)

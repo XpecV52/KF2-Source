@@ -1521,7 +1521,7 @@ function StartNextObjective()
     local KFMapInfo KFMI;
 
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
-    if (KFMI != none)
+    if (KFMI != none && WaveNum != WaveMax)
     {
         if (KFMI.bUsePresetObjectives)
         {
@@ -1568,10 +1568,26 @@ function StartNextPresetObjective(KFMapInfo KFMI)
 
 function StartNextRandomObjective(KFMapInfo KFMI)
 {
-    AttemptObjectiveActivation(KFMI.RandomWaveObjectives);
+    local int Idx;
+    //Start a random objective if we have any set
+    if (KFMI.RandomWaveObjectives.Length > 0 && KFMI.RandomObjectiveWavesToDisable.Find(WaveNum) == INDEX_NONE)
+    {
+        //Attempt to reset if we've run out
+        if (KFMI.CurrentAvailableRandomWaveObjectives.Length == 0)
+        {
+            KFMI.CurrentAvailableRandomWaveObjectives = KFMI.RandomWaveObjectives;
+        }
+
+        Idx = AttemptObjectiveActivation(KFMI.CurrentAvailableRandomWaveObjectives);
+        if (Idx >= 0)
+        {
+            KFMI.CurrentAvailableRandomWaveObjectives.Remove(Idx, 1);
+        }
+        
+    }    
 }
 
-function AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives)
+function int AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives)
 {
     local int RandID;
 
@@ -1582,11 +1598,13 @@ function AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObje
         if (PossibleObjectives[RandID].CanActivateObjective())
         {
             ActivateObjective(PossibleObjectives[RandID]);
-            return;
+            return RandID;
         }
 
         PossibleObjectives.Remove(RandID, 1);
     }
+
+    return -1;
 }
 
 function ActivateObjective(KFInterface_MapObjective NewObjective)

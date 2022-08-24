@@ -9,42 +9,8 @@ package
         public function MapVoteContainerMC()
         {
             super();
-            this.__setProp_mapVoteList_MapVoteContainerMC_scrollingList_0();
             this.__setProp_currentVotesList_MapVoteContainerMC_topVoteList_0();
-        }
-        
-        function __setProp_mapVoteList_MapVoteContainerMC_scrollingList_0() : *
-        {
-            try
-            {
-                mapVoteList["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            mapVoteList.enabled = true;
-            mapVoteList.enableInitCallback = false;
-            mapVoteList.focusable = true;
-            mapVoteList.itemRendererName = "";
-            mapVoteList.itemRendererInstanceName = "mapChoice_";
-            mapVoteList.margin = 0;
-            mapVoteList.inspectablePadding = {
-                "top":0,
-                "right":0,
-                "bottom":0,
-                "left":0
-            };
-            mapVoteList.rowHeight = 0;
-            mapVoteList.scrollBar = "scollBar";
-            mapVoteList.visible = true;
-            mapVoteList.wrapping = "stick";
-            try
-            {
-                mapVoteList["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
+            this.__setProp_mapVoteList_MapVoteContainerMC_scrollingList_0();
         }
         
         function __setProp_currentVotesList_MapVoteContainerMC_topVoteList_0() : *
@@ -75,6 +41,40 @@ package
             try
             {
                 currentVotesList["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_mapVoteList_MapVoteContainerMC_scrollingList_0() : *
+        {
+            try
+            {
+                mapVoteList["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            mapVoteList.enabled = true;
+            mapVoteList.enableInitCallback = false;
+            mapVoteList.focusable = true;
+            mapVoteList.itemRendererName = "";
+            mapVoteList.itemRendererInstanceName = "mapChoice_";
+            mapVoteList.margin = 0;
+            mapVoteList.inspectablePadding = {
+                "top":0,
+                "right":0,
+                "bottom":0,
+                "left":0
+            };
+            mapVoteList.rowHeight = 0;
+            mapVoteList.scrollBar = "scollBar";
+            mapVoteList.visible = true;
+            mapVoteList.wrapping = "stick";
+            try
+            {
+                mapVoteList["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

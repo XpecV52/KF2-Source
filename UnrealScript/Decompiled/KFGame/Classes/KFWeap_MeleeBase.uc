@@ -469,40 +469,6 @@ static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
     return 8;
 }
 
-simulated state Active
-{
-    simulated function bool CanProcessPendingFire(name PrevStateName, byte FireModeNum)
-    {
-        return false;
-    }
-
-    simulated event BeginState(name PreviousStateName)
-    {
-        local int I;
-
-        super.BeginState(PreviousStateName);
-        if((Instigator != none) && Instigator.IsLocallyControlled())
-        {
-            I = 0;
-            J0x51:
-
-            if(I < GetPendingFireLength())
-            {
-                if(PendingFire(I))
-                {
-                    StartFire(byte(I));
-                    goto J0xA5;
-                }
-                ++ I;
-                goto J0x51;
-            }
-        }
-        J0xA5:
-
-    }
-    stop;    
-}
-
 simulated state WeaponUpkeep
 {
     simulated function byte GetWeaponStateId()

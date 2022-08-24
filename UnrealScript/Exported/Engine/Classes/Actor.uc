@@ -789,11 +789,11 @@ var(Advanced) bool bLoadIfPhysXLevel2;
 var(Collision)	bool	bCrawlable;
 
 /** Don't check collision against this actor for audio occlusion */
-var(Collision)	bool	bIgnoreAudioOcclusion<EditCondition=bOverride_OcclusionFlags>;
+var const		bool	bIgnoreAudioOcclusion<EditCondition=bOverride_OcclusionFlags>;
 /** Don't check collision against this actor for network relevancy */
 var const		bool	bIgnoreNetRelevancyCollision<EditCondition=bOverride_OcclusionFlags>;
 /** If set, bIgnoreNetRelevancyCollision & bIgnoreAudioOcclusion are set manually */
-var(Collision)  bool	bOverride_OcclusionFlags;
+var const		bool	bOverride_OcclusionFlags;
 
 /** Controls how this actor is affected by zed time */
 enum EZedTimeType

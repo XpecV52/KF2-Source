@@ -1199,9 +1199,16 @@ simulated event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal
                 }
                 else
                 {
-                    if(KFPM.CanDoSpecialMove(4))
+                    if(KFPM.IsHeadless())
                     {
-                        KFPM.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackRandomSMFlags(KFPM));
+                        KFPM.TakeDamage(KFPM.HealthMax, Controller, Location, vect(0, 0, 0), Class'KFDT_NPCBump_Large');                        
+                    }
+                    else
+                    {
+                        if(KFPM.CanDoSpecialMove(4))
+                        {
+                            KFPM.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackRandomSMFlags(KFPM));
+                        }
                     }
                 }
             }

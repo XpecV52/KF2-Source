@@ -41,8 +41,9 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
 	{
 		// Switch to gore mesh first so we can apply our gore material param
 		Zed = KFPawn_Monster(P);
-		if ( Zed != None && !Zed.bUseDamageInflation)
+		if ( Zed != None && !Zed.bUseDamageInflation )
 		{
+			Zed.RepBleedInflateMatParam = 0;
 			GoreManager = KFGoreManager( P.WorldInfo.MyGoreEffectManager );
 			if( GoreManager != none && GoreManager.AllowMutilation() )
 			{

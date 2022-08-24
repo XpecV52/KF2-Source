@@ -42,6 +42,8 @@ defaultproperties
 	// Normal difficulty
 	Normal={(HealthMod=0.750000,
 		HeadHealthMod=0.750000,
+		DamageMod=0.35,
+		SoloDamageMod=0.3500000,
 		RallySettings={(bCanRally=false)}
 	)}
 
@@ -51,6 +53,7 @@ defaultproperties
 	
 	// Suicidal difficulty
 	Suicidal={(DamagedSprintChance=0.500000,
+		SoloDamageMod=0.7500000,
 		RallySettings={(DealtDamageModifier=1.2, TakenDamageModifier=0.9)}
 	)}
 
@@ -60,6 +63,7 @@ defaultproperties
 		SprintChance=0.750000,
 		DamagedSprintChance=1.000000,
 		DamageMod=1.500000,
+		SoloDamageMod=0.7500000,
 		RallySettings={(bCauseSprint=true, DealtDamageModifier=1.2, TakenDamageModifier=0.9)}
 	)}
 

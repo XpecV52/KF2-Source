@@ -287,6 +287,11 @@ struct native DoorMeshAttachment
     var() StaticMeshComponent     Component;         // Component which needs to be attached
 	var() name                    AttachTo;			 // Bone or socket name to which the attachment should be attached
 	var() bool                    bSocketAttach;	 // Whether to attach it to a socket or a bone
+
+    structdefaultproperties
+    {
+        AttachTo=DoorLeft
+    }
 };
 
 /** Information of all the mesh attachments for the vehicle */
@@ -741,34 +746,37 @@ simulated function InitializeDoorMIC()
 /** Set up skel control for open/close */
 simulated function InitSkelControl()
 {
-	MovementControl.BlendInTime = OpenBlendTime;
-	MovementControl.BlendOutTime = OpenBlendTime;
-	switch (DoorMechanism)
-	{
-	case EDM_Hinge:
-		MovementControl.bApplyTranslation = false;
-		MovementControl.bApplyRotation = true;
-		MovementControl.BoneRotation.Yaw = HingedRotation * DegToUnrRot;
-		break;
-	case EDM_Slide:
-		MovementControl.bApplyTranslation = true;
-		MovementControl.bApplyRotation = false;
-		MovementControl.BoneTranslation.Y = SlideTranslation;
-		MovementControl.BoneTranslation.Z = 0;
-		break;
-	case EDM_Lift:
-		MovementControl.bApplyTranslation = true;
-		MovementControl.bApplyRotation = false;
-		MovementControl.BoneTranslation.Y = 0;
-		MovementControl.BoneTranslation.Z = LiftTranslation;
-		break;
-	}
+    MovementControl.BlendInTime = OpenBlendTime;
+    MovementControl.BlendOutTime = OpenBlendTime;
+    switch (DoorMechanism)
+    {
+    case EDM_Hinge:
+        MovementControl.bApplyTranslation = false;
+        MovementControl.bApplyRotation = true;
+        MovementControl.BoneRotation.Yaw = HingedRotation * DegToUnrRot;
+        break;
+    case EDM_Slide:
+        MovementControl.bApplyTranslation = true;
+        MovementControl.bApplyRotation = false;
+        MovementControl.BoneTranslation.Y = SlideTranslation;
+        MovementControl.BoneTranslation.Z = 0;
+        break;
+    case EDM_Lift:
+        MovementControl.bApplyTranslation = true;
+        MovementControl.bApplyRotation = false;
+        MovementControl.BoneTranslation.Y = 0;
+        MovementControl.BoneTranslation.Z = LiftTranslation;
+        break;
+    }
 
-	// start in level-set state.  default is open.
-	MovementControl.SetSkelControlStrength(bStartDoorOpen ? 1.f : 0.f, 0.f);
-	bIsDoorOpen = bStartDoorOpen;
-	bLocalIsDoorOpen = bStartDoorOpen;
-    WeldIntegrity = (bStartWelded && !bStartDoorOpen) ? MaxWeldIntegrity : 0;
+    // start in level-set state.  default is open.
+    if (Role == ROLE_Authority)
+    {
+        MovementControl.SetSkelControlStrength(bStartDoorOpen ? 1.f : 0.f, 0.f);
+        bIsDoorOpen = bStartDoorOpen;
+        bLocalIsDoorOpen = bStartDoorOpen;
+        WeldIntegrity = (bStartWelded && !bStartDoorOpen) ? MaxWeldIntegrity : 0;
+    }
 }
 
 /*********************************************************************************************
@@ -2123,7 +2131,7 @@ simulated function Reset()
 
 defaultproperties
 {
-   MeshAttachments(0)=(Component=StaticMeshComponent0,AttachTo="DoorLeft")
+   MeshAttachments(0)=(Component=StaticMeshComponent0)
    MeshAttachments(1)=(Component=StaticMeshComponent1,AttachTo="DoorRight")
    Begin Object Class=StaticMeshComponent Name=StaticMeshComponent2
       ReplacementPrimitive=None

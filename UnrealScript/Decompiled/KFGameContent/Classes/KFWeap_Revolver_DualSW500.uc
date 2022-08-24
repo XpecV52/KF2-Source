@@ -93,6 +93,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.BulletMeshComp0'
@@ -101,6 +102,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.BulletMeshComp0_L'
@@ -109,6 +111,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.BulletMeshComp1'
@@ -117,6 +120,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.BulletMeshComp1_L'
@@ -125,6 +129,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.BulletMeshComp2'
@@ -133,6 +138,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.BulletMeshComp2_L'
@@ -141,6 +147,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.BulletMeshComp3'
@@ -149,6 +156,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.BulletMeshComp3_L'
@@ -157,6 +165,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.BulletMeshComp4'
@@ -165,6 +174,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Bullet'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.BulletMeshComp4_L'

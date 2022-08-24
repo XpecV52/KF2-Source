@@ -463,7 +463,7 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
         {
             if(KFPM != none)
             {
-                KillerName = Localize("Zeds", string(KFPM.default.LocalizationKey), "KFGame");
+                KillerName = KFPM.static.GetLocalizedName();
                 KillerTextColor = ZEDTeamTextColor;
                 KillerIconPath = "img://" $ Class'KFPerk_Monster'.static.GetPerkIconPath();
             }            
@@ -472,7 +472,7 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
         {
             if(KFPM != none)
             {
-                KilledName = Localize("Zeds", string(KFPM.default.LocalizationKey), "KFGame");
+                KilledName = KFPM.static.GetLocalizedName();
                 bHumanDeath = false;                
             }
             else

@@ -4,8 +4,8 @@ Description="Being a big guy from Sweden who enjoyed beer and getting loud in ba
 BodyMesh0="Biker Time"
 BodyMesh1="Cardboard Knight"
 BodyMesh2="Horzine Security"
-BodyMesh3=""
 BodyMesh4="Hazmat"
+BodyMesh5="Commando Chicken"
 HeadMesh0="Beard Power!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -14,6 +14,7 @@ BodySkin1="Horzine"
 BodySkin2="DJ Scully"
 BodySkin3="True Defiance"
 BodySkin4="Demon Hunter"
+BodySkin5="Vault Batcat"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -37,13 +38,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[CHR_Jagerhorn_Archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Jagerhorn_Archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -52,11 +46,19 @@ BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
 
+[CHR_Jagerhorn_Archetype.BodyMesh5]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Swedish Blonde"
 HeadSkin1="The Black Album"
 HeadSkin2="Blood Red"
 HeadSkin3="Metal Face"
+HeadSkin4="Big Bad Swede"
+HeadSkin5="Vertigo"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Spiky Cowboy Hat"
@@ -64,13 +66,6 @@ AttachmentSkin0="Dark Rider"
 AttachmentSkin1="Worn Leather"
 AttachmentSkin2="Clean Slate"
 AttachmentSkin3="Blood Red"
-
-[Cosmetic_Coleman_yuri_1_ARCH]
-Attachment="Infiltrator"
-AttachmentSkin0="Red"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
 
 [Cosmetic_RussianGasmask_Alberts_1_ARCH]
 Attachment="Russian Gas Mask"
@@ -145,8 +140,9 @@ Description="The coolest Dutch underground DJ of his generation, Scully can't he
 BodyMesh0="Hoodie"
 BodyMesh1="Cardboard Knight"
 BodyMesh2="Horzine Security"
-BodyMesh3=""
+
 BodyMesh4="Hazmat"
+BodyMesh5="Commando Chicken"
 HeadMesh0="Scully Mask"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -155,6 +151,7 @@ BodySkin1="Xtra Red"
 BodySkin2="GearXT Yellow"
 BodySkin3="Green Hazard"
 BodySkin4="Retro Scully"
+BodySkin5="Vault Precious"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -178,13 +175,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[chr_DJSkully_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_DJSkully_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -193,6 +183,12 @@ BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
 
+[CHR_DJSkully_Archetype.BodyMesh5]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Blackest Black"
 HeadSkin1="Xtra Red"
@@ -200,6 +196,7 @@ HeadSkin2="GearXT Yellow"
 HeadSkin3="Green Hazard"
 HeadSkin4="Retro Scully"
 HeadSkin5="Silent Scream Scully"
+HeadSkin6="BatCat"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Scullyphones"
@@ -227,8 +224,9 @@ BodyMesh0="Riot Gear"
 BodyMesh1="London"
 BodyMesh2="Cardboard Knight"
 BodyMesh3="Horzine Security"
-BodyMesh4=""
+
 BodyMesh5="Hazmat"
+BodyMesh6="Commando Chicken"
 HeadMesh0="Hair"
 
 [chr_briar_archetype.BodyMesh0]
@@ -266,13 +264,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[chr_briar_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_briar_archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -281,11 +272,18 @@ BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
 
+[chr_briar_archetype.BodyMesh6]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Highlights"
 HeadSkin2="Black"
 HeadSkin3="Puppet"
+HeadSkin4="Day of the Dead"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Doctor's Mask"
@@ -309,8 +307,9 @@ BodyMesh0="Leather Jacket"
 BodyMesh1="Classic Suit"
 BodyMesh2="Cardboard Knight"
 BodyMesh3="Horzine Security"
-BodyMesh4=""
+
 BodyMesh5="Hazmat"
+BodyMesh6="Commando Chicken"
 HeadMesh0="Gas Mask"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -353,13 +352,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[CHR_MrFoster_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_MrFoster_archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -368,6 +360,12 @@ BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
 
+[CHR_MrFoster_archetype.BodyMesh6]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
+
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Original White"
 HeadSkin1="PCG Red"
@@ -375,6 +373,8 @@ HeadSkin2="My Mate Scully"
 HeadSkin3="Magma Red"
 HeadSkin4="British Class"
 HeadSkin5="Seeing Red"
+HeadSkin6="Mr. Hans"
+HeadSkin7="Dosh Lover"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Scullyphones"
@@ -427,6 +427,8 @@ AttachmentSkin2="Black"
 AttachmentSkin3="Black and White"
 AttachmentSkin4="Casino"
 AttachmentSkin5="The Stuff"
+AttachmentSkin6="Magma"
+AttachmentSkin7="Dark Red Stripe"
 
 [Cosmetic_Ana_CyberneticGasmask_ARCH]
 Attachment="Cybernetic Gas Mask"
@@ -513,8 +515,9 @@ Description="Donovan is big, tough, and can handle himself in almost any situati
 BodyMesh0="RQ Hoodie"
 BodyMesh1="Cardboard Knight"
 BodyMesh2="Horzine Security"
-BodyMesh3=""
+
 BodyMesh4="Hazmat"
+BodyMesh5="Commando Chicken"
 HeadMesh0="Face"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -522,6 +525,7 @@ BodySkin0="Racing Green"
 BodySkin1="Rustic Red"
 BodySkin2="Cool Grey"
 BodySkin3="Pale Earth"
+BodySkin4="Vault Precious"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -545,13 +549,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[CHR_Coleman_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Coleman_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -560,11 +557,18 @@ BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
 
+[CHR_Coleman_archetype.BodyMesh5]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
 HeadSkin2="Glare"
 HeadSkin3="Grin"
+HeadSkin4="Rawr"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Boxing Headgear"
@@ -587,8 +591,9 @@ Description="Half English, half Scottish, Alberts was always physically tough, t
 BodyMesh0="Dog Collar"
 BodyMesh1="Cardboard Knight"
 BodyMesh2="Horzine Security"
-BodyMesh3=""
+
 BodyMesh4="Hazmat"
+BodyMesh5="Commando Chicken"
 HeadMesh0="Hair"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -596,6 +601,7 @@ BodySkin0="Basic Black"
 BodySkin1="Ruby Red"
 BodySkin2="Sharp Blue"
 BodySkin3="Tropical White"
+BodySkin4="Holy Sun Precious"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -619,13 +625,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[CHR_Alberts_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Alberts_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -634,12 +633,19 @@ BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
 
+[CHR_Alberts_archetype.BodyMesh5]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
+
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grey"
 HeadSkin1="Brown"
 HeadSkin2="Black"
 HeadSkin3="White"
 HeadSkin4="Pierrot"
+HeadSkin5="Phantom"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Glasses"
@@ -893,8 +899,8 @@ AttachmentSkin6="Blue Tiger"
 
 [Cosmetic_Coleman_yuri_ARCH]
 Attachment="Infiltrator"
-AttachmentSkin0="Red"
-AttachmentSkin1="Blue"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
 AttachmentSkin2="Green"
 AttachmentSkin3="Precious"
 
@@ -1521,14 +1527,17 @@ Description="Bill Masterson had a checkered career in the Army. He wanted heroic
 BodyMesh0="Combat Dress"
 BodyMesh1="Cardboard Knight"
 BodyMesh2="Horzine Security"
-BodyMesh3=""
+
 BodyMesh4="Hazmat"
+BodyMesh5="Commando Chicken"
 HeadMesh0="Face"
 
 [CHR_Masterson_archetype.HeadMesh0]
 HeadSkin0="Clean"
 HeadSkin1="Camo"
 HeadSkin2="Clown"
+HeadSkin3="Vampire"
+HeadSkin4="Guillotine"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Green"
@@ -1558,13 +1567,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[CHR_Masterson_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Masterson_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1573,6 +1575,12 @@ BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
 
+[CHR_Masterson_archetype.BodyMesh5]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka is a conflicted individual with a serious death-wish problem. Born in Okinawa, he was brought up around Americans in the military. Moving to mainland Japan with his family, the Americanized Tanaka failed to fit in and took up drama classes. After college he moved to LA, playing cliched bit-parts in bad movies, before moving on to Europe trying to find more 'serious' work. All he got there were bad-guy roles in French gangster films and some tats. Now, in the apocalypse, he seems to be confusing his own reality with some of the movie parts he has played. This seems to involve visions of the Yakuza, demon, and a Hollywood take on bushido."
@@ -1580,20 +1588,24 @@ BodyMesh0="Die Cool"
 BodyMesh1="Motorcycle"
 BodyMesh2="Cardboard Knight"
 BodyMesh3="Horzine Security"
-BodyMesh4=""
+
 BodyMesh5="Hazmat"
+BodyMesh6="Commando Chicken"
 HeadMesh0="Hair"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
 HeadSkin0="Black"
 HeadSkin1="Blonde"
 HeadSkin2="Kumadori"
+HeadSkin3="Titan"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="And Classy"
 BodySkin1="Kakihara-san"
 BodySkin2="In Black"
 BodySkin3="Blue Dragon"
+BodySkin4="Vault Retro"
+BodySkin5="Vault Koi Precious"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="Red and Black"
@@ -1626,13 +1638,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[CHR_Tanaka_Archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Tanaka_Archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1640,6 +1645,12 @@ BodySkin2="Heatwave"
 BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
+
+[CHR_Tanaka_Archetype.BodyMesh6]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Helmet"
@@ -1674,8 +1685,9 @@ Description="She would probably be assigned to that group the establishment call
 BodyMesh0="Metalcore"
 BodyMesh1="Horzine Security"
 BodyMesh2="Cardboard Knight"
-BodyMesh3=""
+
 BodyMesh4="Hazmat"
+BodyMesh5="Commando Chicken"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -1684,6 +1696,8 @@ HeadSkin1="Bright Blood"
 HeadSkin2="Bio-Cola Green"
 HeadSkin3="Pretty Blue"
 HeadSkin4="Death Metal"
+HeadSkin5="Mrs. Stein"
+HeadSkin6="Flowers"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Death Rain"
@@ -1714,13 +1728,6 @@ BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
 
-[CHR_Ana_Archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Ana_Archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1728,6 +1735,12 @@ BodySkin2="Heatwave"
 BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
+
+[CHR_Ana_Archetype.BodyMesh5]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D Glasses"
@@ -1748,8 +1761,9 @@ BodyMesh0="Riot Gear"
 BodyMesh1="London"
 BodyMesh2="Cardboard Knight"
 BodyMesh3="Horzine Security"
-BodyMesh4=""
+
 BodyMesh5="Hazmat"
+BodyMesh6="Commando Chicken"
 HeadMesh0="Hair"
 
 [chr_mark_archetype.BodyMesh0]
@@ -1787,13 +1801,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[chr_mark_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_mark_archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1802,12 +1809,20 @@ BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
 
+[chr_mark_archetype.BodyMesh6]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
 HeadSkin1="Bloody 5 O'Clock"
 HeadSkin2="A Nice Brown, Guv?"
 HeadSkin3="Swedish Blonde"
 HeadSkin4="Smile For Me"
+HeadSkin5="Mr. Juice"
+HeadSkin6="Good Game"
 
 [chr_alan_archetype]
 CharacterName="Classic Masterson"
@@ -1815,8 +1830,9 @@ Description="No one has ever really understood how this Masterson rose through t
 BodyMesh0="Riot Gear"
 BodyMesh1="Cardboard Knight"
 BodyMesh2="Horzine Security"
-BodyMesh3=""
+
 BodyMesh4="Hazmat"
+BodyMesh5="Commando Chicken"
 HeadMesh0="Face"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -1847,13 +1863,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[CHR_alan_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_alan_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1862,12 +1871,20 @@ BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
 
+[CHR_alan_archetype.BodyMesh5]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
 HeadSkin1="Ginger! Really?"
 HeadSkin2="Rough Day, Mate?"
 HeadSkin3="Camo Up, Chaps!"
 HeadSkin4="Cheer Up, Mate!"
+HeadSkin5="You're Dead, Mate!"
+HeadSkin6="Digi"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQ Cap"
@@ -1882,13 +1899,15 @@ Description="Strasser marched off to his first war in 1939 as a soldier in the G
 BodyMesh0="RO2: Hero of Stalingrad"
 BodyMesh1="Cardboard Knight"
 BodyMesh2="Horzine Security"
-BodyMesh3=""
+
 BodyMesh4="Hazmat"
+BodyMesh5="Commando Chicken"
 HeadMesh0="Hair"
 
 [CHR_strasser_archetype.BodyMesh0]
 BodySkin0="Raw Recruit"
 BodySkin1="Battle-hardened"
+BodySkin2="Vault Camo"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -1912,13 +1931,6 @@ BodySkin9="Adamant"
 BodySkin10="Bounty Hunter"
 BodySkin11="Precious"
 
-[CHR_strasser_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_strasser_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1927,10 +1939,17 @@ BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
 
+[CHR_strasser_archetype.BodyMesh5]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
+
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Dark Steel"
 HeadSkin1="Blond Steel"
 HeadSkin2="Mister Death"
+HeadSkin3="Mr Stein"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="German Steel Helmet"
@@ -1975,6 +1994,8 @@ HeadSkin1="Freedom!"
 HeadSkin2="To War!"
 HeadSkin3="Valhalla!"
 HeadSkin4="Oh Happy Day!"
+HeadSkin5="Crap Day!"
+HeadSkin6="Stitch"
 
 [Cosmetic_Chivalry_Knight_Helm02HP_ARCH]
 Attachment="Horseman's Helm"
@@ -2080,8 +2101,9 @@ Description="Rae Higgins is an Australian import into Europe. Born in Melbourne,
 BodyMesh0="Default Dress"
 BodyMesh1="Horzine Security"
 BodyMesh2="Cardboard Knight"
-BodyMesh3=""
+
 BodyMesh4="Hazmat"
+BodyMesh5="Commando Chicken"
 HeadMesh0="Default Head"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2091,6 +2113,7 @@ BodySkin2="Charismatic"
 BodySkin3="Force of Nature"
 BodySkin4="Red Stripe"
 BodySkin5="Sailor"
+BodySkin6="Vault Skulls"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="Elite Blue"
@@ -2114,13 +2137,6 @@ BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
 
-[chr_rockabilly_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_rockabilly_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -2128,6 +2144,12 @@ BodySkin2="Heatwave"
 BodySkin3="Horzine"
 BodySkin4="Von Braun"
 BodySkin5="Tragic Kingdom Crew"
+
+[chr_rockabilly_archetype.BodyMesh5]
+BodySkin0 = "Used"
+BodySkin1 = "Clean"
+BodySkin2 = "Night"
+BodySkin3 = "Heavy Wound"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Black"
@@ -2137,6 +2159,7 @@ HeadSkin3="Gold"
 HeadSkin4="Teal"
 HeadSkin5="Pink"
 HeadSkin6="Miss Death"
+HeadSkin7="Deer"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Eye Patch"
@@ -2575,6 +2598,66 @@ EmoteName="Mating Ritual+"
 [KickinIt_Deluxe]
 EmoteName="Kickin It+"
 
+[TheCossack]
+EmoteName="The Cossack"
+
+[TheCossack_Deluxe]
+EmoteName="The Cossack+"
+
+[TheWave]
+EmoteName="The Wave"
+
+[TheWave_Deluxe]
+EmoteName="The Wave+"
+
+[Breakin]
+EmoteName="Breakin"
+
+[Breakin_Deluxe]
+EmoteName="Breakin+"
+
+[NoHands]
+EmoteName="No Hands"
+
+[NoHands_Deluxe]
+EmoteName="No Hands+"
+
+[HealClick]
+EmoteName="Heel Click"
+
+[HealClick_Deluxe]
+EmoteName="Heel Click+"
+
+[TheSprinkler]
+EmoteName="The Sprinkler"
+
+[TheSprinkler_Deluxe]
+EmoteName="The Sprinkler+"
+
+[Maniac]
+EmoteName="Maniac"
+
+[Maniac_Deluxe]
+EmoteName="Maniac+"
+
+[RunningMan]
+EmoteName="The Running Man"
+
+[RunningMan_Deluxe]
+EmoteName="The Running Man+"
+
+[TheRobot]
+EmoteName="The Robot"
+
+[TheRobot_Deluxe]
+EmoteName="The Robot+"
+
+[AirMetal]
+EmoteName="Air Metal"
+
+[AirMetal_Deluxe]
+EmoteName="Air Metal+"
+
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="Firefighter Helmet"
 AttachmentSkin0="Black"
@@ -2780,3 +2863,175 @@ AttachmentSkin1="Precious"
 [Cosmetic_BoomHat_ARCH]
 Attachment="Boom Goes the Dynamite"
 AttachmentSkin0="Mind Blown"
+
+[Cosmetic_BoomHat_ARCH]
+Attachment="Boom Goes the Dynamite"
+AttachmentSkin0="Mind Blown"
+
+[Cosmetic_Bear_ARCH]
+Attachment="Bear Mask"
+AttachmentSkin0 = "Brown Bear"
+AttachmentSkin1 = "Panda Bear"
+AttachmentSkin2 = "Precious"
+
+[Cosmetic_Cat_ARCH]
+Attachment="Cat Mask"
+AttachmentSkin0 = "Brown"
+AttachmentSkin1 = "Gray"
+AttachmentSkin2 = "White"
+AttachmentSkin3 = "Precious"
+
+[Cosmetic_Chicken_ARCH]
+Attachment="Chicken Mask"
+AttachmentSkin0 = "White Red"
+AttachmentSkin1 = "Precious"
+
+[Cosmetic_Cow_ARCH]
+Attachment="Cow Mask"
+AttachmentSkin0 = "White Black"
+AttachmentSkin1 = "Precious"
+
+[Cosmetic_Dog_ARCH]
+Attachment="Dog Mask"
+AttachmentSkin0 = "Brown Dog"
+AttachmentSkin1 = "Precious"
+
+[Cosmetic_Fox_ARCH]
+Attachment="Fox Mask"
+AttachmentSkin0 = "Brown Fox"
+AttachmentSkin1 = "Precious"
+
+[Cosmetic_Goat_ARCH]
+Attachment="Goat Mask"
+AttachmentSkin0 = "Goat Colored"
+AttachmentSkin1 = "Precious"
+
+[Cosmetic_Horse_ARCH]
+Attachment="Horse Mask"
+AttachmentSkin0 = "Brown Horse"
+AttachmentSkin1 = "Precious"
+
+[Cosmetic_Pig_ARCH]
+Attachment="Pig Mask"
+AttachmentSkin0 = "Pinky Pig"
+AttachmentSkin1 = "Precious"
+
+[Cosmetic_Rabbit_ARCH]
+Attachment="Rabbit Mask"
+AttachmentSkin0 = "Brown Rabbit"
+AttachmentSkin1 = "White Rabbit"
+AttachmentSkin2 = "Precious"
+
+[Cosmetic_CommandoChickenHelmet_ARCH]
+Attachment="Commando Chicken"
+AttachmentSkin0 = "Used"
+AttachmentSkin1 = "Clean"
+AttachmentSkin2 = "Night"
+AttachmentSkin3 = "Heavy Wound"
+
+[Cosmetic_bobBatcat_ARCH]
+Attachment="Bob"
+AttachmentSkin0 = "Black"
+AttachmentSkin1 = "Green"
+AttachmentSkin2 = "Purple"
+AttachmentSkin3 = "Teal"
+AttachmentSkin4 = "Precious"
+
+[Cosmetic_crown_ARCH]
+Attachment="Crown"
+AttachmentSkin0 = "Precious"
+AttachmentSkin1 = "Silver"
+
+[Cosmetic_DGlasses_ARCH]
+Attachment="Dosh Glasses"
+AttachmentSkin0 = "Green"
+AttachmentSkin1 = "Black"
+AttachmentSkin2 = "Precious"
+
+[Cosmetic_hansBackpack_ARCH]
+Attachment="Hans Backpack"
+AttachmentSkin0 = "Black"
+AttachmentSkin1 = "Precious"
+
+[Cosmetic_scrakeMask_ARCH]
+Attachment="Scrake Mask"
+AttachmentSkin0 = "Steel"
+AttachmentSkin1 = "Precious"
+
+[Cosmetic_sharkHat_ARCH]
+Attachment="Sharky"
+AttachmentSkin0 = "Grey"
+AttachmentSkin1 = "Sand"
+AttachmentSkin2 = "Orca"
+AttachmentSkin3 = "Bloody"
+AttachmentSkin4 = "Precious"
+
+[Cosmetic_VGlasses_ARCH]
+Attachment="Vault Glasses"
+AttachmentSkin0 = "Green"
+AttachmentSkin1 = "Black"
+AttachmentSkin2 = "Precious"
+
+[Cosmetic_Halloween_Arrowed_ARCH]
+Attachment="Arrowed"
+AttachmentSkin0 = "Classic"
+
+[Cosmetic_Halloween_Axed_ARCH]
+Attachment="Axed"
+AttachmentSkin0 = "Classic Axe"
+AttachmentSkin1 = "Precious Axe"
+
+[Cosmetic_Halloween_Bolts_ARCH]
+Attachment="Bolts"
+AttachmentSkin0 = "Metal Bolts"
+
+[Cosmetic_Halloween_Halo_ARCH]
+Attachment="Halo"
+AttachmentSkin0 = "Holy Angel"
+
+[Cosmetic_Halloween_Pumpkin_Classic_ARCH]
+Attachment="Jack O' Lantern Classic"
+AttachmentSkin0 = "Jack O' Lantern Classic"
+AttachmentSkin1 = "Jack O' Lantern Classic Precious"
+
+[Cosmetic_Halloween_Pumpkin_Dosh_ARCH]
+Attachment="Jack O' Lantern Dosh"
+AttachmentSkin0 = "Ripe Dosh"
+AttachmentSkin1 = "Jack O' Lantern Dosh Precious"
+
+[Cosmetic_Halloween_Pumpkin_Fang_ARCH]
+Attachment="Jack O' Lantern Fang"
+AttachmentSkin0 = "Rotten Jack O' Lantern"
+
+[Cosmetic_Halloween_Pumpkin_Goofy_ARCH]
+Attachment="Jack O' Lantern Goofy"
+AttachmentSkin0 = "Jack O' Lantern Goofy"
+
+[Cosmetic_Halloween_Pumpkin_Happy_ARCH]
+Attachment="Jack O' Lantern Happy"
+AttachmentSkin0 = "Jack O' Lantern Happy"
+
+[Cosmetic_Halloween_Pumpkin_Sad_ARCH]
+Attachment="Jack O' Lantern Sad"
+AttachmentSkin0 = "Jack O' Lantern Sad"
+
+[Cosmetic_Halloween_Pumpkin_Scared_ARCH]
+Attachment="Jack O' Lantern Scared"
+AttachmentSkin0 = "Jack O' Lantern Scared"
+
+[Cosmetic_Halloween_Pumpkin_Scary_ARCH]
+Attachment="Jack O' Lantern Scary"
+AttachmentSkin0 = "Jack O' Lantern Ripe Scary"
+AttachmentSkin1 = "Jack O' Lantern Scary Precious"
+
+[Cosmetic_Halloween_Pumpkin_Sneaky_ARCH]
+Attachment="Jack O' Lantern Sneaky"
+AttachmentSkin0 = "Jack O' Lantern Sneaky"
+
+[Cosmetic_Halloween_Pumpkin_Squeal_ARCH]
+Attachment="Jack O' Lantern Squeal"
+AttachmentSkin0 = "Jack O' Lantern Squeal"
+
+[Cosmetic_Halloween_Pumpkin_Winky_ARCH]
+Attachment="Jack O' Lantern Winky"
+AttachmentSkin0 = "Jack O' Lantern Radioactive Winky"

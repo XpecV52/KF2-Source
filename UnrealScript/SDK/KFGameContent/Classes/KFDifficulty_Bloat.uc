@@ -37,7 +37,8 @@ defaultproperties
 	// Normal Difficulty
 	Normal={(HealthMod=0.750000,
 		HeadHealthMod=0.750000,
-		SoloDamageMod=0.500000,
+		DamageMod=0.4, //0.6
+		SoloDamageMod=0.300000, //0.5
 		BlockSettings={(Chance=0.0, Duration=1.25, MaxBlocks=3, Cooldown=3.5, DamagedHealthPctToTrigger=0.1,
 							MeleeDamageModifier=0.3, DamageModifier=0.3, AfflictionModifier=0.2, SoloChanceMultiplier=0.1)},
 		RallySettings={(bCanRally=false)}

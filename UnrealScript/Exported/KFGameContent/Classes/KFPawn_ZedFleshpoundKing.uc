@@ -7,7 +7,8 @@
 // Copyright (C) 2017 Tripwire Interactive LLC
 //  - Matt 'Squirrlz' Farber
 //=============================================================================
-class KFPawn_ZedFleshpoundKing extends KFPawn_ZedFleshpound;
+class KFPawn_ZedFleshpoundKing extends KFPawn_ZedFleshpound
+    implements(KFInterface_MonsterBoss);
 
 /** Explosion templates for our rage pound */
 var protected KFGameExplosion RagePoundExplosionTemplate, RagePoundFinalExplosionTemplate;
@@ -28,11 +29,15 @@ var	BossMinionWaveInfo				SummonWaves[4];
 /** The base amount of minions to spawn when boss goes into hunt and heal mode */
 var vector2D                        NumMinionsToSpawn;
 
+/** Component used by the beam special move to play a hit location sound effect */
+var AkComponent                     BeamHitAC;
+
 /** Shield Vars */
 /** Amount of health shield has remaining */
 var float                           ShieldHealth;
 var float                           ShieldHealthMax;
 var const array<float>              ShieldHealthMaxDefaults;
+var float							ShieldHealthScale;
 
 /** Replicated shield health percentage */
 var repnotify   byte                ShieldHealthPctByte;
@@ -54,12 +59,124 @@ var const color ShieldCoreColorOrange;
 var const color ShieldColorRed;
 var const color ShieldCoreColorRed;
 
+//Localization
+var localized array<string> BossCaptionStrings;
+
+//Intro Camera
+var bool bUseAnimatedCamera;
+var vector AnimatedBossCameraOffset;
+
 replication
 {
     if (bNetDirty)
         CurrentPhase, ShieldHealthPctByte;
 }
 
+/************************************
+* @name	KFInterface_MonsterBoss
+************************************/
+//Quick access to a pawn reference
+simulated function KFPawn_Monster GetMonsterPawn()
+{
+    return self;
+}
+
+//Localization Accessors
+simulated function string GetRandomBossCaption()
+{
+    if (default.BossCaptionStrings.Length <= 0)
+    {
+        return "";
+    }
+
+    return default.BossCaptionStrings[Rand(default.BossCaptionStrings.Length)];
+}
+
+//Status Accessors
+static simulated event bool IsABoss()
+{
+    return true;
+}
+
+simulated function float GetHealthPercent()
+{
+    return float(Health) / float(HealthMax);
+}
+
+//Intro functionality
+/** Turn on the boss camera animation mode */
+simulated function SetAnimatedBossCamera(bool bEnable, optional vector CameraOffset)
+{
+    bUseAnimatedCamera = bEnable;
+    if (bUseAnimatedCamera)
+    {
+        AnimatedBossCameraOffset = CameraOffset;
+    }
+    else
+    {
+        AnimatedBossCameraOffset = vect(0, 0, 0);
+    }
+}
+
+/** Whether this pawn is in theatric camera mode */
+simulated function bool UseAnimatedBossCamera()
+{
+    return bUseAnimatedCamera;
+}
+
+/** The name of the socket to use as a camera base for theatric sequences */
+simulated function name GetBossCameraSocket()
+{
+    return 'TheatricCameraRootSocket';
+}
+
+/** The relative offset to use for the cinematic camera */
+simulated function vector GetBossCameraOffset()
+{
+    return AnimatedBossCameraOffset;
+}
+
+function OnZedDied(Controller Killer)
+{
+    super.OnZedDied(Killer);
+
+    KFGameInfo(WorldInfo.Game).BossDied(Killer);
+}
+
+function KFAIWaveInfo GetWaveInfo(int BattlePhase, int Difficulty)
+{
+    switch (BattlePhase)
+    {
+    case 1:
+        return SummonWaves[Difficulty].PhaseTwoWave;
+        break;
+    case 2:
+        return SummonWaves[Difficulty].PhaseThreeWave;
+        break;
+    case 3:
+        return SummonWaves[Difficulty].PhaseFourWave;
+        break;
+    case 0:
+    default:
+        return SummonWaves[Difficulty].PhaseOneWave;
+    }
+
+    return none;
+}
+
+/** Returns the number of minions to spawn based on number of players */
+function byte GetNumMinionsToSpawn()
+{
+    if (KFGameInfo(WorldInfo.Game) != none)
+    {
+        return byte(Lerp(NumMinionsToSpawn.X, NumMinionsToSpawn.Y, KFGameInfo(WorldInfo.Game).GetLivingPlayerCount() / float(WorldInfo.Game.MaxPlayers)));
+    }
+
+    //Backup if we're in a weird state
+    return byte(Lerp(NumMinionsToSpawn.X, NumMinionsToSpawn.Y, fMax(WorldInfo.Game.NumPlayers, 1) / float(WorldInfo.Game.MaxPlayers)));
+}
+
+//
 simulated event ReplicatedEvent(name VarName)
 {
     if (VarName == nameof(ShieldHealthPctByte))
@@ -77,11 +194,8 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 {
     Super.PossessedBy(C, bVehicleTransition);
 
-    //Only allow this if we're using the king as a boss
-    if (bOverrideAsBoss)
-    {
-        PlayBossMusic();
-    }    
+    PlayBossMusic();
+    ServerDoSpecialMove(SM_BossTheatrics);
 }
 
 /** Play music for this boss (overridden for each boss) */
@@ -93,47 +207,27 @@ function PlayBossMusic()
     }
 }
 
-//Skip if boss
+//Skip for boss
 function CauseHeadTrauma(float BleedOutTime = 5.f)
 {
-    if (bOverrideAsBoss && IsAliveAndWell())
-    {
-        return;
-    }
-
-    super.CauseHeadTrauma(BleedOutTime);
+    return;
 }
 
 simulated function bool PlayDismemberment(int InHitZoneIndex, class<KFDamageType> InDmgType, optional vector HitDirection)
 {
-    if (bOverrideAsBoss && IsAliveAndWell())
-    {
-        return false;
-    }
-
-    return super.PlayDismemberment(InHitZoneIndex, InDmgType, HitDirection);
+    return false;
 }
 
 //Skip if boss
 simulated function PlayHeadAsplode()
 {
-    if (bOverrideAsBoss)
-    {
-        return;
-    }
-
-    super.PlayHeadAsplode();
+    return;
 }
 
 //Skip if boss
 simulated function ApplyHeadChunkGore(class<KFDamageType> DmgType, vector HitLocation, vector HitDirection)
 {
-    if (bOverrideAsBoss)
-    {
-        return;
-    }
-    
-    super.ApplyHeadChunkGore(DmgType, HitLocation, HitDirection);
+    return;
 }
 
 /** Turns the chest beam ON */
@@ -214,7 +308,7 @@ simulated function UpdateBattlePhaseLights()
 	        BattlePhaseLightFront = none;
 	    }
 
-	    LightTemplate = BattlePhaseLightTemplateBlue;    	
+	    LightTemplate = BattlePhaseLightTemplateBlue;
 
         if( LightTemplate != none )
         {
@@ -281,24 +375,8 @@ function SpawnSubWave()
 
     KFGI = KFGameInfo(WorldInfo.Game);
 
-    switch (CurrentPhase)
-    {
-    case 1:
-        SpawnInfo = SummonWaves[KFGI.GameDifficulty].PhaseTwoWave;
-        break;
-    case 2:
-        SpawnInfo = SummonWaves[KFGI.GameDifficulty].PhaseThreeWave;
-        break;
-    case 3:
-        SpawnInfo = SummonWaves[KFGI.GameDifficulty].PhaseFourWave;
-        break;
-    case 0:
-    default:
-        SpawnInfo = SummonWaves[KFGI.GameDifficulty].PhaseOneWave;
-        break;
-    }
-
-    KFGI.SpawnManager.SummonBossMinions(SpawnInfo.Squads, GetSubWaveSize());
+    SpawnInfo = GetWaveInfo(CurrentPhase, KFGI.GameDifficulty);
+    KFGI.SpawnManager.SummonBossMinions(SpawnInfo.Squads, GetNumMinionsToSpawn(), false);
 
     //King fleshpound summons once and stops.  Force the stop a couple seconds after spawn.
     SetTimer(2.f, true, nameof(PauseBossWave));
@@ -317,11 +395,6 @@ function PauseBossWave()
     }
 }
 
-function byte GetSubWaveSize()
-{
-    return byte(Lerp(NumMinionsToSpawn.X, NumMinionsToSpawn.Y, fMax(WorldInfo.Game.NumPlayers, 1) / float(WorldInfo.Game.MaxPlayers)));
-}
-
 simulated function TriggerRagePoundExplosion( vector ExploLocation, optional bool bIsFinalPound=false )
 {
 	local KFExplosionActor ExploActor;
@@ -330,7 +403,7 @@ simulated function TriggerRagePoundExplosion( vector ExploLocation, optional boo
 	ExploActor = Spawn( class'KFExplosionActor', self,, ExploLocation );
 	ExploActor.InstigatorController = Controller;
 	ExploActor.Instigator = self;
-	ExploActor.Explode( bIsFinalPound ? RagePoundFinalExplosionTemplate : RagePoundExplosionTemplate, vect(0,0,1) );	
+	ExploActor.Explode( bIsFinalPound ? RagePoundFinalExplosionTemplate : RagePoundExplosionTemplate, vect(0,0,1) );
 }
 
 /** Reduce damage when in hunt and heal mode */
@@ -357,6 +430,11 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
     }
 }
 
+function SetShieldScale(float InScale)
+{
+	ShieldHealthScale = InScale;
+}
+
 function ActivateShield()
 {
     local KFGameInfo KFGI;
@@ -369,11 +447,11 @@ function ActivateShield()
         HealthMod = 1.f;
         KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, KFGI.GetLivingPlayerCount(), HealthMod, HeadHealthMod);
 
-        ShieldHealth = ShieldHealthMaxDefaults[KFGI.GameDifficulty] * HealthMod;
+        ShieldHealth = ShieldHealthMaxDefaults[KFGI.GameDifficulty] * HealthMod * ShieldHealthScale;
         ShieldHealthMax = ShieldHealth;
         ShieldHealthPctByte = 1;
         UpdateShield();
-    }    
+    }
 }
 
 simulated function ActivateShieldFX()
@@ -515,11 +593,18 @@ defaultproperties
    SummonWaves(2)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Outbreak.KingFleshpoundSubWave',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Outbreak.KingFleshpoundSubWave',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Outbreak.KingFleshpoundSubWave',PhaseFourWave=KFAIWaveInfo'GP_Spawning_ARCH.Outbreak.KingFleshpoundSubWave')
    SummonWaves(3)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Outbreak.KingFleshpoundSubWave',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Outbreak.KingFleshpoundSubWave',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Outbreak.KingFleshpoundSubWave',PhaseFourWave=KFAIWaveInfo'GP_Spawning_ARCH.Outbreak.KingFleshpoundSubWave')
    NumMinionsToSpawn=(X=1.000000,Y=6.000000)
-   ShieldHealthMaxDefaults(0)=600.000000
-   ShieldHealthMaxDefaults(1)=800.000000
-   ShieldHealthMaxDefaults(2)=2000.000000
-   ShieldHealthMaxDefaults(3)=2500.000000
-   InvulnerableShieldFX=ParticleSystem'ZED_Fleshpound_King_EMIT.FX_King_Fleshpound_Shield'
+   Begin Object Class=AkComponent Name=BeamHitAC0
+      bStopWhenOwnerDestroyed=True
+      Name="BeamHitAC0"
+      ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
+   End Object
+   BeamHitAC=BeamHitAC0
+   ShieldHealthMaxDefaults(0)=1800.000000
+   ShieldHealthMaxDefaults(1)=2700.000000
+   ShieldHealthMaxDefaults(2)=4000.000000
+   ShieldHealthMaxDefaults(3)=5000.000000
+   ShieldHealthScale=1.000000
+   InvulnerableShieldFX=ParticleSystem'zed_fleshpound_king_emit.FX_King_Fleshpound_Shield'
    ShieldSocketName="hips"
    ShieldImpactEffects=KFSkinTypeEffects_HansShield'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:ShieldEffects'
    ShieldShatterExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:ShatterExploTemplate0'
@@ -531,6 +616,12 @@ defaultproperties
    ShieldCoreColorOrange=(B=0,G=105,R=255,A=0)
    ShieldColorRed=(B=20,G=20,R=255,A=0)
    ShieldCoreColorRed=(B=10,G=10,R=255,A=0)
+   BossCaptionStrings(0)="The more you hurt the King Fleshpound, the faster he calls in more Quarter Pounds. Pace yourself, don’t get overwhelmed!"
+   BossCaptionStrings(1)="Get down! The King Fleshpound’s chest beam has trouble hitting targets low to the ground."
+   BossCaptionStrings(2)="Don’t think the fight is almost over just because the King Fleshpound is badly hurt. He activates a shield when low on Health. "
+   BossCaptionStrings(3)="The King Fleshpound’s chest beam can hurt other Zeds if you can get them into his line of fire."
+   BossCaptionStrings(4)="The King Fleshpound has the same weakpoints as normal fleshpounds, just bigger."
+   BossCaptionStrings(5)="The King Fleshpound always has more Quarter Pounds. Ignore them at your peril!"
    Begin Object Class=AkComponent Name=RageAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:RageAkComponent0'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -571,14 +662,6 @@ defaultproperties
    DifficultySettings=Class'kfgamecontent.KFDifficulty_FleshpoundKing'
    MinBlockFOV=0.200000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:FootstepCameraShake0'
-   BossName="King Fleshpound"
-   BossCaptionStrings(0)="The more you hurt the King Fleshpound, the faster he calls in more Quarter Pounds. Pace yourself, don’t get overwhelmed!"
-   BossCaptionStrings(1)="Get down! The King Fleshpound’s chest beam has trouble hitting targets low to the ground."
-   BossCaptionStrings(2)="Don’t think the fight is almost over just because the King Fleshpound is badly hurt. He activates a shield when low on Health. "
-   BossCaptionStrings(3)="The King Fleshpound’s chest beam can hurt other Zeds, if you can get them into his line of fire."
-   BossCaptionStrings(4)="The King Fleshpound has the same weakpoints as normal fleshpounds, just bigger."
-   BossCaptionStrings(5)="The King Fleshpound always has more Quarter Pounds. Ignore them at your peril!"
-   TheatricCameraSocketName="TheatricCameraRootSocket"
    PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.King_Fleshpound_AnimGroup'
    LocalizationKey="KFPawn_ZedFleshpoundKing"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:ThirdPersonHead0'
@@ -636,7 +719,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.070000,0.300000,0.070000,0.070000,0.180000))
    IncapSettings(9)=(Cooldown=10.000000,Vulnerability=(0.370000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.060000))
-   IncapSettings(11)=(Vulnerability=(0.060000))
+   IncapSettings(11)=(Cooldown=10.000000,Vulnerability=(0.200000))
    SprintSpeed=700.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
@@ -710,14 +793,7 @@ defaultproperties
       ObjectArchetype=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:WeaponAmbientEchoHandler_0'
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:WeaponAmbientEchoHandler_0'
-   Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:FootstepAkSoundComponent'
-      BoneName="Dummy"
-      bStopWhenOwnerDestroyed=True
-      bForceOcclusionUpdateInterval=True
-      Name="FootstepAkSoundComponent"
-      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:FootstepAkSoundComponent'
-   End Object
-   FootstepAkComponent=FootstepAkSoundComponent
+   FootstepAkComponent=BeamHitAC0
    Begin Object Class=AkComponent Name=DialogAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:DialogAkSoundComponent'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -726,7 +802,7 @@ defaultproperties
    End Object
    DialogAkComponent=DialogAkSoundComponent
    GroundSpeed=300.000000
-   Health=2500
+   Health=8750
    ControllerClass=Class'kfgamecontent.KFAIController_ZedFleshpoundKing'
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
@@ -790,9 +866,18 @@ defaultproperties
    Components(3)=KFPawnSkeletalMeshComponent
    Components(4)=AmbientAkSoundComponent_0
    Components(5)=AmbientAkSoundComponent_1
+   Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:FootstepAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="FootstepAkSoundComponent"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:FootstepAkSoundComponent'
+   End Object
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=RageAkComponent0
+   Components(9)=BeamHitAC0
+   bAlwaysRelevant=True
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedFleshpoundKing"
    ObjectArchetype=KFPawn_ZedFleshpound'kfgamecontent.Default__KFPawn_ZedFleshpound'

@@ -1,4 +1,4 @@
-//NOTES: 
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -379,6 +379,11 @@ ItemName="RPG-7"
 ItemCategory="Sprengstoffe"
 ItemDescription="•Der Feuer-Modus feuert die Rakete ab.\n•Raketen explodieren beim Aufprall.\n•Die Munition wird erst dann scharf, nachdem sie einige Meter zurückgelegt hat, um das eigene Gesicht vor potentiellen Explosionen zu schützen.\n•Und pass auf den Rückstoß auf!"
 
+[KFWeap_RocketLauncher_Seeker6]
+ItemName="Seeker Six"
+ItemCategory="Sprengstoffe"
+ItemDescription="•Der Feuer-Modus feuert eine ungesteuerte Rakete ab.\n•Das Zielen mit Alt-Feuer aktiviert einen Ziellaser und ermöglicht das Abfeuern gesteuerter Raketen.\n•Eine vielseitige, hochexplosive Waffe, die mehrere Ziele auf einmal verfolgen und bekämpfen kann."
+
 [KFWeap_Pistol_Dual9mm]
 ItemName="Zwei 9mm Pistolen"
 ItemCategory="Handfeuerwaffe"
@@ -475,6 +480,10 @@ ItemName="Kriss-MP"
 ItemCategory="Maschinenpistole"
 ItemDescription="•Hier besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer wechselt den Feuer-Modus.\n•Der letzte Schrei in kompakter Munitionsverteilung. Ein wahrlicher Gartenschlauch der Vernichtung."
 
+[KFWeap_Rifle_Hemogoblin]
+ItemName="Hemogoblin"
+ItemCategory="Gewehr"
+ItemDescription="•Der Feuer-Modus feuert ein Blutgeschoss ab, das Zeds verletzt, verlangsamt und schwächt. \n•Alt-Feuer schießt Heilpfeile zum Heilen von Teammitgliedern.\n•Kein geeignetes Mittel zur Gewichtsabnahme."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

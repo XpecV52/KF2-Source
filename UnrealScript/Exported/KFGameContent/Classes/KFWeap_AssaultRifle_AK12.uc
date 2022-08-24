@@ -183,8 +183,8 @@ defaultproperties
    BurstFire3RdAnim="Shoot_Burst"
    BurstFire2RdSightedAnim="Shoot_Burst2_Iron"
    BurstFire3RdSightedAnim="Shoot_Burst_Iron"
-   WeaponFire2RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_S')
-   WeaponFire3RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_S')
+   WeaponFire2RdSnd=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_2RdBurst_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_2RdBurst_S')
+   WeaponFire3RdSnd=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Burst_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Burst_S')
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
    SingleFireSoundIndex=1
@@ -203,11 +203,11 @@ defaultproperties
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_S')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Single_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Single_S')
-   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_End_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_End_S')
-   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Handling_DryFire'
-   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Handling_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Loop_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Loop_S')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Single_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Single_S')
+   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Loop_End_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Loop_End_S')
+   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Handling_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Handling_DryFire'
    PlayerViewOffset=(X=2.000000,Y=8.000000,Z=-3.000000)
    AttachmentArchetype=KFWeaponAttachment'WEP_AK12_ARCH.Wep_AK12_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'

@@ -737,6 +737,9 @@ simulated function SwitchToLastWeapon()
 {
 	local Weapon CurrentWeapon;
 	local Weapon DesiredWeapon;
+    local KFWeapon CheckedWeapon;
+    local KFWeapon DesiredKFWeapon;
+    local int WeaponIndex;
 
 	// Check to see if we are in the process of switching to a new weapon during this move
 	CurrentWeapon = (PendingWeapon != none) ? PendingWeapon : Instigator.Weapon;
@@ -762,6 +765,24 @@ simulated function SwitchToLastWeapon()
 	//ShowAllHUDGroups();
 	SetCurrentWeapon(DesiredWeapon);
 	bAutoSwitchWeapon = false;
+
+    //Reset selected weapon index
+    DesiredKFWeapon = KFWeapon(DesiredWeapon);
+    WeaponIndex = 0;
+    if (DesiredKFWeapon != none)
+    {
+        foreach InventoryActors(class'KFWeapon', CheckedWeapon)
+        {
+            if (CheckedWeapon.InventoryGroup == DesiredKFWeapon.InventoryGroup)
+            {
+                if (CheckedWeapon == DesiredKFWeapon)
+                {
+                    SelectedGroupIndicies[CheckedWeapon.InventoryGroup] = WeaponIndex;
+                }
+                ++WeaponIndex;
+            }
+        }
+    }    
 }
 
 /**
@@ -1663,6 +1684,25 @@ function bool AddArmorFromPickup()
     	PlayerController( Instigator.Owner ).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_FullArmor);
     	return false;
 	}
+}
+
+function bool AddArmor(int Amount)
+{
+    local KFPawn_Human KFPH;
+
+    KFPH = KFPawn_Human(Instigator);
+    if (KFPH.Armor != KFPH.GetMaxArmor())
+    {
+        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(class'KFLocalMessage_Game', GMT_PickedupArmor);
+        PlayGiveInventorySound(ArmorPickupSound);
+        KFPH.AddArmor(Amount);
+        return true;
+    }
+    else
+    {
+        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(class'KFLocalMessage_Game', GMT_FullArmor);
+        return false;
+    }
 }
 
 function PlayGiveInventorySound( AkEvent SoundEvent )

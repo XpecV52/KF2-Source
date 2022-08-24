@@ -25,6 +25,12 @@ delegate OnNotifyLeaderChanged( UniqueNetId NewLeader );
 function AddNotifyLeaderChangedDelegate( delegate<OnNotifyLeaderChanged> InDelegate );
 function ClearNotifyLeaderChangedDelegate( delegate<OnNotifyLeaderChanged> InDelegate );
 
+
+// Notify that there is a new party status
+delegate OnNotifyStatusUpdated(EPartyNotificationStatus PartyStatus);
+function AddNotifyStatusUpdatedDelegate( delegate<OnNotifyStatusUpdated> InDelegate );
+function ClearNotifyStatusUpdatedDelegate( delegate<OnNotifyStatusUpdated> InDelegate );
+
 defaultproperties
 {
    Name="Default__OnlinePartyInterface"

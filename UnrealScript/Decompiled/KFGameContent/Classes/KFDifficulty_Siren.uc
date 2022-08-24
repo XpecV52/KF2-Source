@@ -10,7 +10,7 @@ class KFDifficulty_Siren extends KFMonsterDifficultyInfo
 
 defaultproperties
 {
-    Normal=(DamageMod=1,SoloDamageMod=0.5,RallySettings=(bCanRally=false))
+    Normal=(DamageMod=0.25,SoloDamageMod=0.3,RallySettings=(bCanRally=false))
     Hard=(SoloDamageMod=0.65,RallySettings=(bCanRally=false))
     Suicidal=(DamagedSprintChance=0.05,DamageMod=1,SoloDamageMod=0.65,RallySettings=(TakenDamageModifier=0.9,DealtDamageModifier=1.2))
     HellOnEarth=(DamagedSprintChance=0.1,DamageMod=1,SoloDamageMod=0.75,RallySettings=(bCauseSprint=true,TakenDamageModifier=0.9,DealtDamageModifier=1.2))

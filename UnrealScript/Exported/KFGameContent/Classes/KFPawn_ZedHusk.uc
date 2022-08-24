@@ -484,6 +484,7 @@ defaultproperties
       LightColor=(B=40,G=155,R=250,A=255)
       bEnabled=False
       CastShadows=False
+      bCastPerObjectShadows=False
       LightingChannels=(Outdoor=True)
       MaxBrightness=0.500000
       MinBrightness=0.400000
@@ -589,7 +590,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=3.000000,Vulnerability=(0.400000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=1.500000,Vulnerability=(1.000000))
    IncapSettings(10)=(Duration=4.000000,Cooldown=8.500000,Vulnerability=(3.000000))
-   IncapSettings(11)=(Vulnerability=(3.000000))
+   IncapSettings(11)=(Vulnerability=(1.000000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=450.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'

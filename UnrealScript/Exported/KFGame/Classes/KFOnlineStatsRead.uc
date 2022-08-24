@@ -70,6 +70,15 @@ const STATID_FleshpoundKills	 =			203;
  
 const STATID_SpecialEventProgress =     300;
 const STATID_WeeklyEventProgress =      301;
+const STATID_DailyEventInfo =           302;
+const STATID_DailyEventIDs =            303;
+const STATID_DailyEventStats1 =         304;
+const STATID_DailyEventStats2 =         305;
+
+ 
+const STATID_DoshVaultTotal =           400;
+const STATID_LastViewedDoshVaultTotal = 401;
+const STATID_DoshVaultProgress =		402;
 
  
 const STATID_AchievementPlaceholder	 =	500;
@@ -129,7 +138,8 @@ const STATID_ACHIEVE_HostileGroundsCollectibles		= 4032;
 const STATID_ACHIEVE_ZedLandingCollectibles			= 4035;
 const STATID_ACHIEVE_DescentCollectibles			= 4036;
 const STATID_ACHIEVE_NukedCollectibles				= 4037;
-const STATID_ACHIEVE_TragicKingdomCollectibles      = 4038;
+const STATID_ACHIEVE_TragicKingdomCollectibles		= 4038;
+const STATID_ACHIEVE_NightmareCollectibles			= 4039;
  
 #linenumber 14
 
@@ -196,15 +206,22 @@ defaultproperties
    ColumnIds(25)=203
    ColumnIds(26)=300
    ColumnIds(27)=301
-   ColumnIds(28)=2000
-   ColumnIds(29)=2001
-   ColumnIds(30)=2002
-   ColumnIds(31)=2003
-   ColumnIds(32)=2004
-   ColumnIds(33)=2005
-   ColumnIds(34)=2006
-   ColumnIds(35)=2007
-   ColumnIds(36)=3000
+   ColumnIds(28)=302
+   ColumnIds(29)=303
+   ColumnIds(30)=304
+   ColumnIds(31)=305
+   ColumnIds(32)=2000
+   ColumnIds(33)=2001
+   ColumnIds(34)=2002
+   ColumnIds(35)=2003
+   ColumnIds(36)=2004
+   ColumnIds(37)=2005
+   ColumnIds(38)=2006
+   ColumnIds(39)=2007
+   ColumnIds(40)=3000
+   ColumnIds(41)=400
+   ColumnIds(42)=401
+   ColumnIds(43)=402
    ColumnMappings(0)=(Id=1,Name="CmdoProgress")
    ColumnMappings(1)=(Id=2,Name="CmdoBuild")
    ColumnMappings(2)=(Id=10,Name="BsrkProgress")
@@ -233,15 +250,22 @@ defaultproperties
    ColumnMappings(25)=(Id=203,Name="FleshPoundKills")
    ColumnMappings(26)=(Id=300,Name="SpecialEventProgress")
    ColumnMappings(27)=(Id=301,Name="WeeklyEventProgress")
-   ColumnMappings(28)=(Id=2000,Name="PersonalBestKnifeKills")
-   ColumnMappings(29)=(Id=2001,Name="PersonalBestPistolKills")
-   ColumnMappings(30)=(Id=2002,Name="PersonalBestHeadshots")
-   ColumnMappings(31)=(Id=2003,Name="PersonalBestHealing")
-   ColumnMappings(32)=(Id=2004,Name="PersonalBestKills")
-   ColumnMappings(33)=(Id=2005,Name="PersonalBestAssists")
-   ColumnMappings(34)=(Id=2006,Name="PersonalBestLargeZedKills")
-   ColumnMappings(35)=(Id=2007,Name="PersonalBestDoshs")
-   ColumnMappings(36)=(Id=3000,Name="MatchWins")
+   ColumnMappings(28)=(Id=302,Name="DailyEventProgress")
+   ColumnMappings(29)=(Id=303,Name="DailyEventIDs")
+   ColumnMappings(30)=(Id=304,Name="DailyEventStats1")
+   ColumnMappings(31)=(Id=305,Name="DailyEventStats2")
+   ColumnMappings(32)=(Id=2000,Name="PersonalBestKnifeKills")
+   ColumnMappings(33)=(Id=2001,Name="PersonalBestPistolKills")
+   ColumnMappings(34)=(Id=2002,Name="PersonalBestHeadshots")
+   ColumnMappings(35)=(Id=2003,Name="PersonalBestHealing")
+   ColumnMappings(36)=(Id=2004,Name="PersonalBestKills")
+   ColumnMappings(37)=(Id=2005,Name="PersonalBestAssists")
+   ColumnMappings(38)=(Id=2006,Name="PersonalBestLargeZedKills")
+   ColumnMappings(39)=(Id=2007,Name="PersonalBestDosh")
+   ColumnMappings(40)=(Id=3000,Name="MatchWins")
+   ColumnMappings(41)=(Id=400,Name="DoshVaultTotal")
+   ColumnMappings(42)=(Id=401,Name="LastViewedDoshVaultTotal")
+   ColumnMappings(43)=(Id=402,Name="DoshVaultProgress")
    Name="Default__KFOnlineStatsRead"
    ObjectArchetype=OnlineStatsRead'Engine.Default__OnlineStatsRead'
 }

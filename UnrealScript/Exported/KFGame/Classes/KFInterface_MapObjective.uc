@@ -13,6 +13,7 @@ interface KFInterface_MapObjective;
 // Status
 simulated function ActivateObjective();
 simulated function DeactivateObjective();
+simulated function bool UsesProgress();
 function bool CanActivateObjective();
 simulated function float GetProgress();
 

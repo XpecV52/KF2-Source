@@ -4,8 +4,8 @@ Description="事發之前，耶格霍恩是個喜歡在酒吧喝酒大聲作亂�
 BodyMesh0="車手時間"
 BodyMesh1="紙板騎士"
 BodyMesh2="Horzine 保全"
-BodyMesh3=""
 BodyMesh4="災害應變"
+BodyMesh5="突雞部隊"
 HeadMesh0="鬍子的力量！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -14,6 +14,7 @@ BodySkin1="Horzine"
 BodySkin2="DJ 史骷利"
 BodySkin3="真正的蔑視"
 BodySkin4="惡魔獵人"
+BodySkin5="金庫蝙蝠貓"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="經典"
@@ -37,13 +38,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[CHR_Jagerhorn_Archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Jagerhorn_Archetype.BodyMesh4]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -52,11 +46,19 @@ BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
+[CHR_Jagerhorn_Archetype.BodyMesh5]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="金髮瑞典人"
 HeadSkin1="黑色相簿"
 HeadSkin2="血紅"
 HeadSkin3="鐵面"
+HeadSkin4="瑞典大壞蛋"
+HeadSkin5="眩暈"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="牛仔帽"
@@ -64,13 +66,6 @@ AttachmentSkin0="黑暗騎士"
 AttachmentSkin1="磨損的皮革"
 AttachmentSkin2="純白"
 AttachmentSkin3="血紅"
-
-[Cosmetic_Coleman_yuri_1_ARCH]
-Attachment="間諜"
-AttachmentSkin0="紅"
-AttachmentSkin1="藍"
-AttachmentSkin2="綠"
-AttachmentSkin3="珍貴"
 
 [Cosmetic_RussianGasmask_Alberts_1_ARCH]
 Attachment="俄羅斯防毒面具"
@@ -145,8 +140,9 @@ Description="史骷利是當代最酷的荷蘭地下 DJ，深受大家喜愛。�
 BodyMesh0="連帽衫"
 BodyMesh1="紙板騎士"
 BodyMesh2="Horzine 保全"
-BodyMesh3=""
+
 BodyMesh4="災害應變"
+BodyMesh5="突雞部隊"
 HeadMesh0="史骷利面具"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -155,6 +151,7 @@ BodySkin1="超級紅"
 BodySkin2="XT 工具黃"
 BodySkin3="綠色障礙"
 BodySkin4="復古史骷利"
+BodySkin5="金庫珍貴"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -178,13 +175,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[chr_DJSkully_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_DJSkully_archetype.BodyMesh4]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -193,6 +183,12 @@ BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
+[CHR_DJSkully_Archetype.BodyMesh5]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="黑中之黑"
 HeadSkin1="超級紅"
@@ -200,6 +196,7 @@ HeadSkin2="XT 工具黃"
 HeadSkin3="綠色障礙"
 HeadSkin4="復古史骷利"
 HeadSkin5="沉默的吶喊史骷利"
+HeadSkin6="蝙蝠貓"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="史骷利耳機"
@@ -227,8 +224,9 @@ BodyMesh0="鎮暴裝備"
 BodyMesh1="倫敦"
 BodyMesh2="紙板騎士"
 BodyMesh3="Horzine 保全"
-BodyMesh4=""
+
 BodyMesh5="災害應變"
+BodyMesh6="突雞部隊"
 HeadMesh0="頭髮"
 
 [chr_briar_archetype.BodyMesh0]
@@ -266,13 +264,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[chr_briar_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_briar_archetype.BodyMesh5]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -281,11 +272,18 @@ BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
+[chr_briar_archetype.BodyMesh6]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
 HeadSkin1="亮光"
 HeadSkin2="黑"
 HeadSkin3="寵物"
+HeadSkin4="死亡之日"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="醫生口罩"
@@ -309,8 +307,9 @@ BodyMesh0="皮夾克"
 BodyMesh1="經典西裝"
 BodyMesh2="紙板騎士"
 BodyMesh3="Horzine 保全"
-BodyMesh4=""
+
 BodyMesh5="災害應變"
+BodyMesh6="突雞部隊"
 HeadMesh0="防毒面具"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -353,13 +352,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[CHR_MrFoster_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_MrFoster_archetype.BodyMesh5]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -368,6 +360,12 @@ BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
+[CHR_MrFoster_archetype.BodyMesh6]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
+
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
 HeadSkin1="PCG 紅"
@@ -375,6 +373,8 @@ HeadSkin2="我的夥伴史骷利"
 HeadSkin3="岩漿紅"
 HeadSkin4="英國風"
 HeadSkin5="看見紅色"
+HeadSkin6="漢斯先生"
+HeadSkin7="守財奴"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="史骷利耳機"
@@ -427,6 +427,8 @@ AttachmentSkin2="黑"
 AttachmentSkin3="黑白"
 AttachmentSkin4="賭場"
 AttachmentSkin5="就是它"
+AttachmentSkin6="Magma"
+AttachmentSkin7="Dark Red Stripe"
 
 [Cosmetic_Ana_CyberneticGasmask_ARCH]
 Attachment="人體工學防毒面具"
@@ -513,8 +515,9 @@ Description="唐納文高大強壯，在大部分場合的舉手投足都很得�
 BodyMesh0="RQ 連帽衫"
 BodyMesh1="紙板騎士"
 BodyMesh2="Horzine 保全"
-BodyMesh3=""
+
 BodyMesh4="災害應變"
+BodyMesh5="突雞部隊"
 HeadMesh0="臉"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -522,6 +525,7 @@ BodySkin0="賽車綠"
 BodySkin1="鐵鏽紅"
 BodySkin2="冷酷灰"
 BodySkin3="蒼白大地"
+BodySkin4="金庫珍貴"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -545,13 +549,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[CHR_Coleman_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Coleman_archetype.BodyMesh4]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -560,11 +557,18 @@ BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
+[CHR_Coleman_archetype.BodyMesh5]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="唐納文"
 HeadSkin1="麻布"
 HeadSkin2="眩光"
 HeadSkin3="齜牙咧嘴"
+HeadSkin4="怒吼"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="拳擊頭盔"
@@ -587,8 +591,9 @@ Description="英格蘭與蘇格蘭混血的亞伯，身體強健，樂於助人�
 BodyMesh0="狗項圈"
 BodyMesh1="紙板騎士"
 BodyMesh2="Horzine 保全"
-BodyMesh3=""
+
 BodyMesh4="災害應變"
+BodyMesh5="突雞部隊"
 HeadMesh0="頭髮"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -596,6 +601,7 @@ BodySkin0="基本黑"
 BodySkin1="寶石紅"
 BodySkin2="銳利藍"
 BodySkin3="熱帶白"
+BodySkin4="神聖太陽珍貴"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -619,13 +625,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[CHR_Alberts_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Alberts_archetype.BodyMesh4]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -634,12 +633,19 @@ BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
+[CHR_Alberts_archetype.BodyMesh5]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
+
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰"
 HeadSkin1="棕"
 HeadSkin2="黑"
 HeadSkin3="白"
 HeadSkin4="丑角"
+HeadSkin5="幽靈"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="眼鏡"
@@ -893,8 +899,8 @@ AttachmentSkin6="藍虎斑"
 
 [Cosmetic_Coleman_yuri_ARCH]
 Attachment="間諜"
-AttachmentSkin0="紅"
-AttachmentSkin1="藍"
+AttachmentSkin0="藍"
+AttachmentSkin1="紅"
 AttachmentSkin2="綠"
 AttachmentSkin3="珍貴"
 
@@ -1521,14 +1527,17 @@ Description="比爾麥斯特森的軍旅生涯並不愉快。他想要英雄的�
 BodyMesh0="戰鬥裝"
 BodyMesh1="紙板騎士"
 BodyMesh2="Horzine 保全"
-BodyMesh3=""
+
 BodyMesh4="災害應變"
+BodyMesh5="突雞部隊"
 HeadMesh0="臉"
 
 [CHR_Masterson_archetype.HeadMesh0]
 HeadSkin0="乾淨"
 HeadSkin1="迷彩"
 HeadSkin2="小丑"
+HeadSkin3="吸血鬼"
+HeadSkin4="斷頭台"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="綠"
@@ -1558,13 +1567,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[CHR_Masterson_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Masterson_archetype.BodyMesh4]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -1573,6 +1575,12 @@ BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
+[CHR_Masterson_archetype.BodyMesh5]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
+
 [CHR_Tanaka_Archetype]
 CharacterName="田中隼人"
 Description="田中性格複雜，有時還有求死慾望。出生在沖繩，他從小就跟軍隊裡的美國人相處。後來跟父母搬到本州後，美國化的田中無法適應，開始對戲劇產生興趣。大學畢業後他搬到洛杉磯，在爛電影裡演了些小角色，後來又到歐洲找尋一些更好的機會。不過他還是只得到法國幫派電影的反派角色和一些跑龍套。天啟發生後，他似乎把現實跟一些之前扮演過的角色混淆了。這些角色包含黑社會、惡魔，還有好萊塢版的武士道。"
@@ -1580,20 +1588,24 @@ BodyMesh0="酷得要命"
 BodyMesh1="摩托車"
 BodyMesh2="紙板騎士"
 BodyMesh3="Horzine 保全"
-BodyMesh4=""
+
 BodyMesh5="災害應變"
+BodyMesh6="突雞部隊"
 HeadMesh0="頭髮"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
 HeadSkin0="黑"
 HeadSkin1="金髮"
 HeadSkin2="隈取妝"
+HeadSkin3="泰坦巨人"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="上等"
 BodySkin1="桐原先生"
 BodySkin2="黑色"
 BodySkin3="藍龍"
+BodySkin4="金庫復古"
+BodySkin5="金庫鯉魚珍貴"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="紅黑"
@@ -1626,13 +1638,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[CHR_Tanaka_Archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Tanaka_Archetype.BodyMesh5]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -1640,6 +1645,12 @@ BodySkin2="熱浪"
 BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
+
+[CHR_Tanaka_Archetype.BodyMesh6]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="頭盔"
@@ -1674,8 +1685,9 @@ Description="安娜應該會被政府機構歸類在叛逆青年這個族群，�
 BodyMesh0="金屬芯"
 BodyMesh1="Horzine 保全"
 BodyMesh2="紙板騎士"
-BodyMesh3=""
+
 BodyMesh4="災害應變"
+BodyMesh5="突雞部隊"
 HeadMesh0="莫霍克"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -1684,6 +1696,8 @@ HeadSkin1="閃亮鮮血"
 HeadSkin2="生化可樂綠"
 HeadSkin3="蔚藍"
 HeadSkin4="死亡金屬"
+HeadSkin5="史坦太太"
+HeadSkin6="鮮花"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="死亡之雨"
@@ -1714,13 +1728,6 @@ BodySkin3="Horzine 倉庫"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
 
-[CHR_Ana_Archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_Ana_Archetype.BodyMesh4]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -1728,6 +1735,12 @@ BodySkin2="熱浪"
 BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
+
+[CHR_Ana_Archetype.BodyMesh5]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 眼鏡"
@@ -1748,8 +1761,9 @@ BodyMesh0="鎮暴裝備"
 BodyMesh1="倫敦"
 BodyMesh2="紙板騎士"
 BodyMesh3="Horzine 保全"
-BodyMesh4=""
+
 BodyMesh5="災害應變"
+BodyMesh6="突雞部隊"
 HeadMesh0="頭髮"
 
 [chr_mark_archetype.BodyMesh0]
@@ -1787,13 +1801,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[chr_mark_archetype.BodyMesh4]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [chr_mark_archetype.BodyMesh5]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -1802,12 +1809,20 @@ BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
+[chr_mark_archetype.BodyMesh6]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="真品"
 HeadSkin1="血腥 5 點鐘"
 HeadSkin2="不錯的棕是吧？"
 HeadSkin3="金髮瑞典人"
 HeadSkin4="為我一笑"
+HeadSkin5="朱斯先生"
+HeadSkin6="甘敗下風"
 
 [chr_alan_archetype]
 CharacterName="典型麥斯特森"
@@ -1815,8 +1830,9 @@ Description="沒人真正理解麥斯特森是如何連續升級到現在的地�
 BodyMesh0="鎮暴裝備"
 BodyMesh1="紙板騎士"
 BodyMesh2="Horzine 保全"
-BodyMesh3=""
+
 BodyMesh4="災害應變"
+BodyMesh5="突雞部隊"
 HeadMesh0="臉"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -1847,13 +1863,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[CHR_alan_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_alan_archetype.BodyMesh4]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -1862,12 +1871,20 @@ BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
+[CHR_alan_archetype.BodyMesh5]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="真品"
 HeadSkin1="打起精神！真的？"
 HeadSkin2="今天不順利嗎，朋友？"
 HeadSkin3="來吧，兄弟！"
 HeadSkin4="加油，夥伴！"
+HeadSkin5="你死了，老兄！"
+HeadSkin6="數位"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQ 帽"
@@ -1882,13 +1899,15 @@ Description="史特拉什 1939 年第一次隨德國陸軍上戰場，攻打波�
 BodyMesh0="RO2：史達林格勒英雄"
 BodyMesh1="紙板騎士"
 BodyMesh2="Horzine 保全"
-BodyMesh3=""
+
 BodyMesh4="災害應變"
+BodyMesh5="突雞部隊"
 HeadMesh0="頭髮"
 
 [CHR_strasser_archetype.BodyMesh0]
 BodySkin0="新兵"
 BodySkin1="千錘百鍊"
+BodySkin2="金庫迷彩"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -1912,13 +1931,6 @@ BodySkin9="堅甲"
 BodySkin10="獎金獵人"
 BodySkin11="珍貴"
 
-[CHR_strasser_archetype.BodyMesh3]
-BodySkin0=""
-BodySkin1=""
-BodySkin2=""
-BodySkin3=""
-BodySkin4=""
-
 [CHR_strasser_archetype.BodyMesh4]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -1927,10 +1939,17 @@ BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
+[CHR_strasser_archetype.BodyMesh5]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
+
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑鋼"
 HeadSkin1="金鋼"
 HeadSkin2="死神"
+HeadSkin3="史坦先生"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="德國鋼頭盔"
@@ -1975,6 +1994,8 @@ HeadSkin1="自由！"
 HeadSkin2="敬戰爭！"
 HeadSkin3="瓦爾哈拉！"
 HeadSkin4="哦開心之日！"
+HeadSkin5="糟透的一天！"
+HeadSkin6="縫合"
 
 [Cosmetic_Chivalry_Knight_Helm02HP_ARCH]
 Attachment="騎士頭盔"
@@ -2080,8 +2101,9 @@ Description="蕾希金斯在澳洲出生，後來生活在歐洲。她生在墨�
 BodyMesh0="預設服裝"
 BodyMesh1="Horzine 保全"
 BodyMesh2="紙板騎士"
-BodyMesh3
+
 BodyMesh4="災害應變"
+BodyMesh5="突雞部隊"
 HeadMesh0="預設頭部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2091,6 +2113,7 @@ BodySkin2="魅力"
 BodySkin3="自然力量"
 BodySkin4="紅條紋"
 BodySkin5="水手"
+BodySkin6="金庫骷髏頭"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="精英藍"
@@ -2114,13 +2137,6 @@ BodySkin3="Horzine 倉庫"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
 
-[chr_rockabilly_archetype.BodyMesh3]
-BodySkin0
-BodySkin1
-BodySkin2
-BodySkin3
-BodySkin4
-
 [chr_rockabilly_archetype.BodyMesh4]
 BodySkin0="柯羅克"
 BodySkin1="葛洛佛"
@@ -2128,6 +2144,12 @@ BodySkin2="熱浪"
 BodySkin3="Horzine"
 BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
+
+[chr_rockabilly_archetype.BodyMesh5]
+BodySkin0 ="已使用"
+BodySkin1 ="乾淨"
+BodySkin2 ="夜晚"
+BodySkin3 ="重傷"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑"
@@ -2137,6 +2159,7 @@ HeadSkin3="金"
 HeadSkin4="水鴨"
 HeadSkin5="粉紅"
 HeadSkin6="女死神"
+HeadSkin7="鹿"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="眼罩"
@@ -2575,6 +2598,66 @@ EmoteName="交配儀式+"
 [KickinIt_Deluxe]
 EmoteName="給它踢下去+"
 
+[TheCossack]
+EmoteName="哥薩克"
+
+[TheCossack_Deluxe]
+EmoteName="哥薩克+"
+
+[TheWave]
+EmoteName="攻擊波數"
+
+[TheWave_Deluxe]
+EmoteName="攻擊波數+"
+
+[Breakin]
+EmoteName="霹靂舞"
+
+[Breakin_Deluxe]
+EmoteName="霹靂舞+"
+
+[NoHands]
+EmoteName="兩手空空"
+
+[NoHands_Deluxe]
+EmoteName="兩手空空+"
+
+[HealClick]
+EmoteName="療傷點擊"
+
+[HealClick_Deluxe]
+EmoteName="療傷點擊+"
+
+[TheSprinkler]
+EmoteName="灑水器"
+
+[TheSprinkler_Deluxe]
+EmoteName="灑水器+"
+
+[Maniac]
+EmoteName="狂人"
+
+[Maniac_Deluxe]
+EmoteName="狂人+"
+
+[RunningMan]
+EmoteName="跑跑人"
+
+[RunningMan_Deluxe]
+EmoteName="跑跑人+"
+
+[TheRobot]
+EmoteName="機器人"
+
+[TheRobot_Deluxe]
+EmoteName="機器人+"
+
+[AirMetal]
+EmoteName="空氣金屬"
+
+[AirMetal_Deluxe]
+EmoteName="空氣金屬+"
+
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="消防隊頭盔"
 AttachmentSkin0="黑"
@@ -2586,7 +2669,7 @@ AttachmentSkin5="黃"
 AttachmentSkin6="珍貴"
 
 [Cosmetic_FirefighterHelmetDown_ARCH]
-Attachment="全罩消防隊頭盔"
+Attachment="全罩式消防隊頭盔"
 AttachmentSkin0="黑"
 AttachmentSkin1="藍"
 AttachmentSkin2="橄欖綠"
@@ -2596,7 +2679,7 @@ AttachmentSkin5="黃"
 AttachmentSkin6="珍貴"
 
 [Cosmetic_FirefighterHelmetUp_ARCH]
-Attachment="半罩消防隊頭盔"
+Attachment="半罩式消防隊頭盔"
 AttachmentSkin0="黑"
 AttachmentSkin1="藍"
 AttachmentSkin2="橄欖綠"
@@ -2780,3 +2863,175 @@ AttachmentSkin1="珍貴"
 [Cosmetic_BoomHat_ARCH]
 Attachment="伴隨著爆炸聲的躁動"
 AttachmentSkin0="嚇死人了"
+
+[Cosmetic_BoomHat_ARCH]
+Attachment="伴隨著爆炸聲的躁動"
+AttachmentSkin0="嚇死人了"
+
+[Cosmetic_Bear_ARCH]
+Attachment="熊面具"
+AttachmentSkin0 ="棕熊"
+AttachmentSkin1 ="熊貓"
+AttachmentSkin2 ="珍貴"
+
+[Cosmetic_Cat_ARCH]
+Attachment="貓面具"
+AttachmentSkin0 ="棕"
+AttachmentSkin1 ="灰"
+AttachmentSkin2 ="白"
+AttachmentSkin3 ="珍貴"
+
+[Cosmetic_Chicken_ARCH]
+Attachment="雞面具"
+AttachmentSkin0 ="白紅"
+AttachmentSkin1 ="珍貴"
+
+[Cosmetic_Cow_ARCH]
+Attachment="乳牛面具"
+AttachmentSkin0 ="白黑"
+AttachmentSkin1 ="珍貴"
+
+[Cosmetic_Dog_ARCH]
+Attachment="狗面具"
+AttachmentSkin0 ="棕狗"
+AttachmentSkin1 ="珍貴"
+
+[Cosmetic_Fox_ARCH]
+Attachment="狐狸面具"
+AttachmentSkin0 ="棕狐狸"
+AttachmentSkin1 ="珍貴"
+
+[Cosmetic_Goat_ARCH]
+Attachment="山羊面具"
+AttachmentSkin0 ="彩色山羊"
+AttachmentSkin1 ="珍貴"
+
+[Cosmetic_Horse_ARCH]
+Attachment="馬面具"
+AttachmentSkin0 ="棕馬"
+AttachmentSkin1 ="珍貴"
+
+[Cosmetic_Pig_ARCH]
+Attachment="豬面具"
+AttachmentSkin0 ="粉紅豬"
+AttachmentSkin1 ="珍貴"
+
+[Cosmetic_Rabbit_ARCH]
+Attachment="兔子面具"
+AttachmentSkin0 ="棕兔"
+AttachmentSkin1 ="白兔"
+AttachmentSkin2 ="珍貴"
+
+[Cosmetic_CommandoChickenHelmet_ARCH]
+Attachment="突雞部隊"
+AttachmentSkin0 ="已使用"
+AttachmentSkin1 ="乾淨"
+AttachmentSkin2 ="夜晚"
+AttachmentSkin3 ="重傷"
+
+[Cosmetic_bobBatcat_ARCH]
+Attachment="Bob"
+AttachmentSkin0 ="黑"
+AttachmentSkin1 ="綠"
+AttachmentSkin2 ="紫"
+AttachmentSkin3 ="藍綠"
+AttachmentSkin4 ="珍貴"
+
+[Cosmetic_crown_ARCH]
+Attachment="皇冠"
+AttachmentSkin0 ="珍貴"
+AttachmentSkin1 ="銀"
+
+[Cosmetic_DGlasses_ARCH]
+Attachment="金錢眼鏡"
+AttachmentSkin0 ="綠"
+AttachmentSkin1 ="黑"
+AttachmentSkin2 ="珍貴"
+
+[Cosmetic_hansBackpack_ARCH]
+Attachment="漢斯背包"
+AttachmentSkin0 ="黑"
+AttachmentSkin1 ="珍貴"
+
+[Cosmetic_scrakeMask_ARCH]
+Attachment="電鋸殺人狂面具"
+AttachmentSkin0 ="鋼"
+AttachmentSkin1 ="珍貴"
+
+[Cosmetic_sharkHat_ARCH]
+Attachment="鯊魚"
+AttachmentSkin0 ="灰"
+AttachmentSkin1 ="黃沙"
+AttachmentSkin2 ="黑"
+AttachmentSkin3 ="血色"
+AttachmentSkin4 ="珍貴"
+
+[Cosmetic_VGlasses_ARCH]
+Attachment="金庫眼鏡"
+AttachmentSkin0 ="綠"
+AttachmentSkin1 ="黑"
+AttachmentSkin2 ="珍貴"
+
+[Cosmetic_Halloween_Arrowed_ARCH]
+Attachment="箭"
+AttachmentSkin0 ="經典"
+
+[Cosmetic_Halloween_Axed_ARCH]
+Attachment="斧頭"
+AttachmentSkin0 ="經典斧頭"
+AttachmentSkin1 ="珍貴斧頭"
+
+[Cosmetic_Halloween_Bolts_ARCH]
+Attachment="弩箭"
+AttachmentSkin0 ="金屬弩箭"
+
+[Cosmetic_Halloween_Halo_ARCH]
+Attachment="光環"
+AttachmentSkin0 ="神聖天使"
+
+[Cosmetic_Halloween_Pumpkin_Classic_ARCH]
+Attachment="傑克南瓜燈經典"
+AttachmentSkin0 ="傑克南瓜燈經典"
+AttachmentSkin1 ="傑克南瓜燈珍貴"
+
+[Cosmetic_Halloween_Pumpkin_Dosh_ARCH]
+Attachment="傑克南瓜燈金錢"
+AttachmentSkin0 ="成熟金錢"
+AttachmentSkin1 ="傑克南瓜燈金錢珍貴"
+
+[Cosmetic_Halloween_Pumpkin_Fang_ARCH]
+Attachment="傑克南瓜燈尖牙"
+AttachmentSkin0 ="腐爛的傑克南瓜燈"
+
+[Cosmetic_Halloween_Pumpkin_Goofy_ARCH]
+Attachment="傑克南瓜燈滑稽"
+AttachmentSkin0 ="傑克南瓜燈滑稽"
+
+[Cosmetic_Halloween_Pumpkin_Happy_ARCH]
+Attachment="傑克南瓜燈開心"
+AttachmentSkin0 ="傑克南瓜燈開心"
+
+[Cosmetic_Halloween_Pumpkin_Sad_ARCH]
+Attachment="傑克南瓜燈傷心"
+AttachmentSkin0 ="傑克南瓜燈傷心"
+
+[Cosmetic_Halloween_Pumpkin_Scared_ARCH]
+Attachment="傑克南瓜燈嚇呆"
+AttachmentSkin0 ="傑克南瓜燈嚇呆"
+
+[Cosmetic_Halloween_Pumpkin_Scary_ARCH]
+Attachment="傑克南瓜燈可怕"
+AttachmentSkin0 ="傑克南瓜燈成熟可怕"
+AttachmentSkin1 ="傑克南瓜燈可怕珍貴"
+
+[Cosmetic_Halloween_Pumpkin_Sneaky_ARCH]
+Attachment="傑克南瓜燈鬼祟"
+AttachmentSkin0 ="傑克南瓜燈鬼祟"
+
+[Cosmetic_Halloween_Pumpkin_Squeal_ARCH]
+Attachment="傑克南瓜燈長聲尖叫"
+AttachmentSkin0 ="傑克南瓜燈長聲尖叫"
+
+[Cosmetic_Halloween_Pumpkin_Winky_ARCH]
+Attachment="傑克南瓜燈眨眼"
+AttachmentSkin0 ="傑克南瓜燈放射性"

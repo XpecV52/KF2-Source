@@ -150,8 +150,8 @@ defaultproperties
    IncapSettings(7)=(Duration=1.500000,Cooldown=8.500000,Vulnerability=(0.700000,0.700000,1.000000,0.700000))
    IncapSettings(8)=(Cooldown=3.000000,Vulnerability=(0.500000))
    IncapSettings(9)=(Duration=2.000000,Vulnerability=(1.000000))
-   IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(0.000000))
-   IncapSettings(11)=(Vulnerability=(0.000000))
+   IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(0.250000))
+   IncapSettings(11)=(Vulnerability=(0.250000))
    SprintSpeed=700.000000
    SprintStrafeSpeed=425.000000
    TeammateCollisionRadiusPercent=0.300000

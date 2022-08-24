@@ -75,11 +75,13 @@ simulated event SetInactive()
 defaultproperties
 {
    Begin Object Class=PointLightComponent Name=PointLight0
+      bCastPerObjectShadows=False
       Name="PointLight0"
       ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'
    End Object
    OnLight=PointLight0
    Begin Object Class=PointLightComponent Name=PointLight1
+      bCastPerObjectShadows=False
       Name="PointLight1"
       ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'
    End Object

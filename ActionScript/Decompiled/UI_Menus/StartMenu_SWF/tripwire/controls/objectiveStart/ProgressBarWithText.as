@@ -13,6 +13,10 @@ package tripwire.controls.objectiveStart
         
         public var fillBar:MovieClip;
         
+        public var bumper_0:MovieClip;
+        
+        public var bumper_1:MovieClip;
+        
         public var fillBarOriginalWidth:Number;
         
         public function ProgressBarWithText()

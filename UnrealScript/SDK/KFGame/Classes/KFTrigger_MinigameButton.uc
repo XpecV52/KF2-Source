@@ -154,14 +154,14 @@ function ActivateGame()
                     Minigameactor.Activated(self);
                 }
             }
+
+			//Button spam prevention
+			SetTimer(ReactivationTime, false, 'AllowReactivation');
         }
         else if (bInProgress && bDeactivateOnPress)
         {
             Deactivate();
         }
-
-        //Button spam prevention
-        SetTimer(ReactivationTime, false, 'AllowReactivation');
     }
 }
 
@@ -229,6 +229,10 @@ function Deactivate()
     ClearTimer('Deactivate');
 
     bInProgress = false;
+	bAllowActivation = false;
+
+	//Button spam prevention
+	SetTimer(ReactivationTime, false, 'AllowReactivation');
 
     //Notify Kismet that minigame has been deactivated by timer
     for (i = 0; i < GeneratedEvents.Length; i++)

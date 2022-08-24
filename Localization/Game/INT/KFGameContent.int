@@ -1,4 +1,4 @@
-//NOTES: 
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -379,6 +379,11 @@ ItemName="RPG-7"
 ItemCategory="Explosives"
 ItemDescription="•Fire mode launches the rocket.\n•Rocket explodes on impact.\n•Only arms itself a few meters downrange so you don't blow your own face off.\n•And watch the back-blast!"
 
+[KFWeap_RocketLauncher_Seeker6]
+ItemName="Seeker Six"
+ItemCategory="Explosives"
+ItemDescription="•Fire mode launches an unguided rocket.\n•Aiming in Alt-fire activates a targetting laser and enables guided rockets.\n•A versatile, high-explosive weapon that can track and engage multiple targets at once."
+
 [KFWeap_Pistol_Dual9mm]
 ItemName="Dual 9mm Pistols"
 ItemCategory="Hand Gun"
@@ -475,6 +480,10 @@ ItemName="Kriss SMG"
 ItemCategory="Sub Machine Gun"
 ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest in compact bullet redistrbution, it is a firehose of destruction."
 
+[KFWeap_Rifle_Hemogoblin]
+ItemName="Hemogoblin"
+ItemCategory="Rifle"
+ItemDescription="•Fire mode shoots a blood bore that injures, slows, and weakens Zeds. \n•Alt-fire shoots healing darts to heal team members.\n• Not a viable weight loss plan."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -543,7 +552,7 @@ BossName_RUS="Король-отбивальщик"
 BossCaptionStrings[0]="The more you hurt the King Fleshpound, the faster he calls in more Quarter Pounds. Pace yourself, don’t get overwhelmed!"
 BossCaptionStrings[1]="Get down! The King Fleshpound’s chest beam has trouble hitting targets low to the ground."
 BossCaptionStrings[2]="Don’t think the fight is almost over just because the King Fleshpound is badly hurt. He activates a shield when low on Health. "
-BossCaptionStrings[3]="The King Fleshpound’s chest beam can hurt other Zeds, if you can get them into his line of fire."
+BossCaptionStrings[3]="The King Fleshpound’s chest beam can hurt other Zeds if you can get them into his line of fire."
 BossCaptionStrings[4]="The King Fleshpound has the same weakpoints as normal fleshpounds, just bigger."
 BossCaptionStrings[5]="The King Fleshpound always has more Quarter Pounds. Ignore them at your peril!"
 

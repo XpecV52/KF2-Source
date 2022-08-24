@@ -38,6 +38,7 @@ var class<KFWeaponDefinition> WeaponDef;
 var bool bNoInstigatorDamage;
 var bool bConsideredIndirectOrAoE;
 var bool bAllowAIDoorDestruction;
+var bool bStackDoT;
 var bool bAnyPerk;
 var bool bShouldSpawnBloodSplat;
 var bool bShouldSpawnPersistentBlood;
@@ -128,6 +129,11 @@ static function float GetOnDeathGoreScale()
 
 static simulated function bool CanDismemberHitZone(name InHitZoneName);
 
+static simulated function bool CanDismemberHitZoneWhileAlive(name InHitZoneName)
+{
+    return true;
+}
+
 static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDirection, name InHitZoneName, out name OutBoneName);
 
 static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster inPawn, name InHitZoneName, Vector HitDirection, out Vector OutImpulseDir, out Vector OutParentImpulseDir, out float OutImpluseScale, out float OutParentImpulseScale);
@@ -152,9 +158,12 @@ static function int GetDamageeDialogID()
     return -1;
 }
 
-static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
+static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Controller InstigatedBy)
 {
-    return default.DoT_Type != 0;
+    if(default.DoT_Type != 0)
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, default.Class);
+    }
 }
 
 static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDirection, byte HitZoneIndex, optional Pawn HitInstigator)

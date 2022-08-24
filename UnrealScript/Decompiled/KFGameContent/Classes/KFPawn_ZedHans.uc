@@ -680,9 +680,9 @@ simulated function UpdateShieldUIOnLocalController(float ShieldPercent)
     {
         return;
     }
-    if(((KFPC != none) && KFPC.MyGFxHUD != none) && KFPC.MyGFxHUD.bossHealthBar != none)
+    if(((KFPC != none) && KFPC.myGfxHUD != none) && KFPC.myGfxHUD.bossHealthBar != none)
     {
-        KFPC.MyGFxHUD.bossHealthBar.UpdateBossShield(ShieldPercent);
+        KFPC.myGfxHUD.bossHealthBar.UpdateBossShield(ShieldPercent);
     }
 }
 
@@ -957,6 +957,7 @@ defaultproperties
         Radius=128
         LightColor=(B=173,G=222,R=168,A=255)
         CastShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
     object end
     // Reference: PointLightComponent'Default__KFPawn_ZedHans.PointLightComponent0'
@@ -965,6 +966,7 @@ defaultproperties
         Radius=128
         LightColor=(B=161,G=215,R=231,A=255)
         CastShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
     object end
     // Reference: PointLightComponent'Default__KFPawn_ZedHans.PointLightComponent1'
@@ -973,6 +975,7 @@ defaultproperties
         Radius=128
         LightColor=(B=0,G=144,R=231,A=255)
         CastShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
     object end
     // Reference: PointLightComponent'Default__KFPawn_ZedHans.PointLightComponent2'
@@ -982,6 +985,7 @@ defaultproperties
         Brightness=2
         LightColor=(B=64,G=64,R=255,A=255)
         CastShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
         MaxBrightness=2
         MinBrightness=1
@@ -1051,6 +1055,7 @@ defaultproperties
     SummonWaves[3]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Three')
     NumMinionsToSpawn=(X=1,Y=18)
     CurrentBattlePhase=1
+    BossCaptionStrings=/* Array type was not detected. */
     bLargeZed=true
     bCanGrabAttack=true
     MonsterArchPath="ZED_ARCH.ZED_Hans_Archetype"
@@ -1074,9 +1079,6 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_Hans'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     OnDeathAchievementID=133
-    BossName="Dr. Hans Volter"
-    BossCaptionStrings=/* Array type was not detected. */
-    TheatricCameraSocketName=TheatricCameraRootSocket
     PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
     LocalizationKey=KFPawn_ZedHans
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

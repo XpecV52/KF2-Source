@@ -114,7 +114,13 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
     switch(SpecialEventID)
     {
         case 1:
+            return Class'KFGFxSpecialEventObjectivesContainer';
+        case 2:
             return Class'KFGFxSummerSideShowObjectivesContainer';
+        case 3:
+            return Class'KFGFxSpecialEventObjectivesContainer';
+        case 4:
+            return Class'KFGFxSpecialEventObjectivesContainer';
         default:
             return Class'KFGFxSpecialEventObjectivesContainer';
             break;
@@ -130,6 +136,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             {
                 MissionObjectiveContainer = KFGFxMissionObjectivesContainer(Widget);
                 MissionObjectiveContainer.Initialize(self);
+            }
+            break;
+        case 'dailyContainerMC':
+            if(MissionObjectiveContainer.ExpandedObjectiveContainer.DailyObjectiveContainer == none)
+            {
+                MissionObjectiveContainer.ExpandedObjectiveContainer.DailyObjectiveContainer = KFGFxDailyObjectivesContainer(Widget);
+                MissionObjectiveContainer.ExpandedObjectiveContainer.DailyObjectiveContainer.Initialize(self);
             }
             break;
         case 'expandedMissionObjectivesMC':
@@ -271,10 +284,10 @@ function SetOverview(optional bool bInitialize)
             {
                 if(bIsLeader)
                 {
-                    if(Manager.CurrentMenuIndex == 15)
+                    if(Manager.CurrentMenuIndex == 16)
                     {
                         ShowOverview(false, bIsLeader, Class'WorldInfo'.static.IsMenuLevel(), false);
-                        Manager.OpenMenu(15);                        
+                        Manager.OpenMenu(16);                        
                     }
                     else
                     {
@@ -321,7 +334,10 @@ function OnPlayerReadiedUp()
 function OneSecondLoop()
 {
     SetOverview();
-    UpdateMenu();
+    if(Manager.CurrentMenuIndex != 17)
+    {
+        UpdateMenu();
+    }
     if((OverviewContainer != none) && Manager.CurrentMenu == self)
     {
         OverviewContainer.UpdateSharedContent();
@@ -368,7 +384,7 @@ function HandleSteamLobbyLeaderTakeOver(UniqueNetId AdminId)
         case 4:
             if(bClientIsLeader)
             {
-                Manager.OpenMenu(15);
+                Manager.OpenMenu(16);
                 return;
             }
         default:
@@ -461,7 +477,7 @@ function ApproveMatchMakingLeave()
 
 function GoToServerBrowser()
 {
-    Manager.OpenMenu(15);
+    Manager.OpenMenu(16);
 }
 
 function CancelLeaveMenu();
@@ -638,7 +654,7 @@ function Callback_OpenServerBrowser()
     }
     else
     {
-        Manager.OpenMenu(15);
+        Manager.OpenMenu(16);
     }
 }
 
@@ -650,7 +666,7 @@ function OnCanPlayOnlineCheckComplete(byte LocalUserNum, Engine.OnlineSubsystem.
         Manager.UnloadCurrentPopup();
         if(PrivilegeLevel == 2)
         {
-            Manager.OpenMenu(15);            
+            Manager.OpenMenu(16);            
         }
         else
         {
@@ -994,7 +1010,7 @@ function OnOpen()
     }
     if(MissionObjectiveContainer != none)
     {
-        MissionObjectiveContainer.Refresh();
+        MissionObjectiveContainer.Refresh(true);
     }
 }
 

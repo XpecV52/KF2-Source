@@ -43,10 +43,9 @@ event PossessedBy(Controller C, bool bVehicleTransition)
     }
 }
 
-simulated function Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem AltRallyEffect, name AltEffectBoneNames[2], Vector AltEffectOffset, optional bool bSkipEffects)
+simulated function bool Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem AltRallyEffect, name AltEffectBoneNames[2], Vector AltEffectOffset, optional bool bSkipEffects)
 {
     bSkipEffects = false;
-    super(KFPawn_Monster).Rally(RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects);
     if(RallyInstigator == self)
     {
         bWasSelfRally = true;        
@@ -55,6 +54,7 @@ simulated function Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, nam
     {
         bWasSelfRally = false;
     }
+    return super(KFPawn_Monster).Rally(RallyInstigator, RallyEffect, EffectBoneName, EffectOffset, AltRallyEffect, AltEffectBoneNames, AltEffectOffset, bSkipEffects);
 }
 
 simulated function int GetRallyBoostDamage(int NewDamage)

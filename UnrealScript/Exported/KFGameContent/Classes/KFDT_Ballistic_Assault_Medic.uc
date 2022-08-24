@@ -30,27 +30,34 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 	return false;
 }
 
-/** Whether this damage type can apply damage over time */
-static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy ) 
+/** Called when damage is dealt to apply additional damage type (e.g. Damage Over Time) */
+static function ApplySecondaryDamage( KFPawn Victim, int DamageTaken, optional Controller InstigatedBy )
 {
-	return class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicToxic( InDamage, KFDT, InstigatedBy );
+    local class<KFDamageType> ToxicDT;
+
+    ToxicDT = class'KFDT_Ballistic_Assault_Medic'.static.GetMedicToxicDmgType( DamageTaken, InstigatedBy );
+    if ( ToxicDT != None )
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, ToxicDT);
+    }
 }
 
-/** Allows medic perk to add poison damage */
-static function bool CheckMedicToxic( out int InDamage, out class<KFDamageType> KFDT,  optional Controller InstigatedBy ) 
+/**
+ * Allows medic perk to add poison damage 
+ * @return: None if toxic skill is not available
+ */
+static function class<KFDamageType> GetMedicToxicDmgType( out int out_Damage, optional Controller InstigatedBy ) 
 {
 	local KFPerk InstigatorPerk;
 
 	InstigatorPerk = KFPlayerController(InstigatedBy).GetPerk();
 	if( InstigatorPerk == none || (!InstigatorPerk.IsToxicDmgActive() && !InstigatorPerk.IsSlugActive()) )
 	{
-		return false;
+		return None;
 	}	
 
-	InstigatorPerk.ModifyToxicDmg( InDamage );
-	KFDT = InstigatorPerk.GetToxicDmgTypeClass();
-
-	return true;
+	InstigatorPerk.ModifyToxicDmg( out_Damage );
+	return InstigatorPerk.GetToxicDmgTypeClass();
 }
 
 defaultproperties

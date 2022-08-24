@@ -1,4 +1,4 @@
-//NOTES: 
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -379,6 +379,11 @@ ItemName="RPG-7"
 ItemCategory="爆炸物"
 ItemDescription="•射击模式发射一枚火箭。\n•射出的火箭在冲击作用下爆炸。\n•射出的榴弹在经过几米的保险距离后装备完成，避免炸到自己的脸部。\n•小心向后爆破！"
 
+[KFWeap_RocketLauncher_Seeker6]
+ItemName="导引头六"
+ItemCategory="炸弹"
+ItemDescription="•射击模式发射一个非制导火箭。\n•瞄准备用射击激活瞄准激光并发射制导火箭。\n•一款通用的高爆炸武器，可以一次跟踪并吸引多个目标。"
+
 [KFWeap_Pistol_Dual9mm]
 ItemName="两把 9 毫米手枪。"
 ItemCategory="手枪"
@@ -475,6 +480,10 @@ ItemName="Kriss 冲锋枪"
 ItemCategory="冲锋枪"
 ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•最新密实子弹再分布，是破坏消防带。"
 
+[KFWeap_Rifle_Hemogoblin]
+ItemName="Hemogoblin"
+ItemCategory="步枪"
+ItemDescription="•射击模式发射一个血孔，伤害、减慢和削弱丧尸。\n•备用射击射出治愈飞镖治疗队友。\n•不是可行的减重计划。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

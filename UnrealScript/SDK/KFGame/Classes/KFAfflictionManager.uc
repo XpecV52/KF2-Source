@@ -122,7 +122,7 @@ cpptext
 ********************************************************************************************* */
 
 /** Check, and if needed activate afflictions after being hit (Server only) */
-function NotifyTakeHit(Controller DamageInstigator, vector HitDir, class<KFDamageType> DamageType)
+function NotifyTakeHit(Controller DamageInstigator, vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
 {
 	local KFPerk InstigatorPerk;
 
@@ -140,7 +140,7 @@ function NotifyTakeHit(Controller DamageInstigator, vector HitDir, class<KFDamag
     // For now all below effects are for Zeds
     if( GetTeamNum() > 254 && !bPlayedDeath )
     {
-        ProcessSpecialMoveAfflictions(InstigatorPerk, HitDir, DamageType);
+        ProcessSpecialMoveAfflictions(InstigatorPerk, HitDir, DamageType, DamageCauser);
         ProcessHitReactionAfflictions(InstigatorPerk, DamageType);
     }
 
@@ -173,12 +173,13 @@ function byte GetPredictedHitReaction(class<KFDamageType> DamageType, EHitZoneBo
 ********************************************************************************************* */
 
 /** Reaction based afflictions only apply to living pawns */
-protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector HitDir, class<KFDamageType> DamageType)
+protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
 {
 	local EHitZoneBodyPart BodyPart;
 	local byte HitZoneIdx;
 	local float KnockdownPower, StumblePower, StunPower, SnarePower;
     local float KnockdownModifier, StumbleModifier, StunModifier;
+    local KFInterface_DamageCauser KFDmgCauser;
 
 	// This is for damage over time, DoT shall never have momentum
 	if( IsZero( HitDir ) )
@@ -194,6 +195,15 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
     StumblePower = DamageType.default.StumblePower;
     StunPower = DamageType.default.StunPower;
     SnarePower = DamageType.default.SnarePower;
+
+    KFDmgCauser = KFInterface_DamageCauser(DamageCauser);
+    if (KFDmgCauser != None)
+    {
+        KnockdownPower *= KFDmgCauser.GetIncapMod();
+        StumblePower *= KFDmgCauser.GetIncapMod();
+        StunPower *= KFDmgCauser.GetIncapMod();
+        SnarePower *= KFDmgCauser.GetIncapMod();
+    }
 
     KnockdownModifier = 1.f;
     StumbleModifier = 1.f;
@@ -516,6 +526,23 @@ function float GetAfflictionSpeedModifier()
     }
 
     return SpeedModifier;
+}
+
+function float GetAfflictionAttackSpeedModifier()
+{
+	local float SpeedModifier;
+	local int i;
+
+	SpeedModifier = 1.f;
+	for (i = 0; i < Afflictions.Length; ++i)
+	{
+		if (Afflictions[i] != none)
+		{
+			SpeedModifier *= Afflictions[i].GetAttackSpeedModifier();
+		}
+	}
+
+	return SpeedModifier;
 }
 
 /** Turns off all affliction sounds / effects */

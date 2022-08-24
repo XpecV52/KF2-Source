@@ -180,7 +180,7 @@ var private const int NumAlwaysRelevantZeds;
 var KFAISpawnManager SpawnManager;
 var protected const array< class<KFPawn_Monster> > AIClassList;
 var protected const array< class<KFPawn_Monster> > AIBossClassList;
-/** What percentage of normal game speed to slow down the game during ZedTime */
+var protected const array< class<KFPawn_Monster> > AITestBossClassList;
 var() float ZedTimeSlomoScale;
 /** How long to blend out zed time dilation for */
 var() float ZedTimeBlendOutTime;
@@ -287,6 +287,10 @@ static function PreloadContentClasses()
         PawnClass.static.PreloadContent();        
     }    
     foreach default.AIBossClassList(PawnClass,)
+    {
+        PawnClass.static.PreloadContent();        
+    }    
+    foreach default.AITestBossClassList(PawnClass,)
     {
         PawnClass.static.PreloadContent();        
     }    
@@ -1344,6 +1348,20 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
             {
                 LogInternal("@@@@ ZED COUNT DEBUG: AIAliveCount =" @ string(AIAliveCount));
             }
+        }        
+    }
+    else
+    {
+        if(KilledPawn != none)
+        {
+            if(Killer != none)
+            {
+                KFPC = KFPlayerController(Killer);
+                if(KFPC != none)
+                {
+                    KFPC.AddNonZedKill(KilledPawn.Class, byte(GameDifficulty));
+                }
+            }
         }
     }
 }
@@ -1375,6 +1393,11 @@ function class<DamageType> GetLastHitByDamageType(class<DamageType> DT, KFPawn_M
     return RealDT;
 }
 
+function BroadCastLastManStanding()
+{
+    BroadcastLocalized(self, Class'KFLocalMessage_Priority', 16, none);
+}
+
 function BroadcastDeathMessage(Controller Killer, Controller Other, class<DamageType> DamageType)
 {
     if(Killer == none)
@@ -1400,6 +1423,19 @@ function BroadcastDeathMessage(Controller Killer, Controller Other, class<Damage
             {
                 BroadcastLocalized(self, Class'KFLocalMessage_PlayerKills', 0, Killer.PlayerReplicationInfo, Other.PlayerReplicationInfo);
             }
+        }
+    }
+    SetTimer(1, false, 'CheckShouldBroadcastLastManStanding');
+}
+
+function CheckShouldBroadcastLastManStanding()
+{
+    if(((((WorldInfo.NetMode != NM_Standalone) && (GetLivingPlayerCount()) == 1) && !MyKFGRI.bTraderIsOpen) && MyKFGRI.bMatchHasBegun) && !MyKFGRI.bMatchIsOver)
+    {
+        BroadCastLastManStanding();
+        if(((WorldInfo.NetMode != NM_DedicatedServer) && KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager != none)
+        {
+            KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager.PlayLastManStandingDialog(WorldInfo);
         }
     }
 }
@@ -1432,6 +1468,7 @@ function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller Instig
     }
     DamageAmount = Min(DamageAmount, HealthBeforeDamage);
     KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
+    KFPlayerController(InstigatedBy).AddTrackedDamage(DamageAmount, DamageType, InstigatedBy.Pawn.Class, DamagedPawn.Class);
 }
 
 function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn);
@@ -1695,7 +1732,14 @@ function TickZedTime(float DeltaTime)
     {
         bZedTimeBlendingOut = false;
         SetZedTimeDilation(1);
-        ZedTimeExtensionsUsed = 0;        
+        ZedTimeExtensionsUsed = 0;
+        foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+        {
+            if(KFPC != none)
+            {
+                KFPC.CompleteZedTime();
+            }            
+        }                
     }
     else
     {
@@ -2757,7 +2801,7 @@ defaultproperties
     NumAlwaysRelevantZeds=3
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

@@ -17,6 +17,7 @@ KF-ZedLanding="Playing Zed Landing"
 KF-TheDescent="Playing The Descent"
 KF-Nuked="Playing Nuked"
 KF-TragicKingdom="Playing The Tragic Kingdom"
+KF-Nightmare="Playing Nightmare"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -140,14 +141,17 @@ NoOnlinePlay="Can't play online"
 TooYoung="Online service is disabled on your Sony Entertainment Network account due to parental control restrictions."
 PatchAvailable="Patch available. You must update the application to use network features."
 NotLoggedInOnlinePSN="You must be signed in to PlayStation™Network to use online features."
+LiveRequiredMessage="You must be signed into an Xbox Live enabled Profile and have an active network connection to play on Xbox Live."
 NetworkError="A network error has occurred, please check your network connection."
 ErrorNoPlayfabDescription="A connection to the game Master Servers could not be established. Please try again in a few minutes."
 ErrorTSSFailedDescription="A connection to the game balance server could not be established. Please ensure you are connected to the internet and please try again."
 NotSignedInTitle="Not signed in."
+PlayOffline="Do you want to play offline? Xbox Live features won't be available and data will not save."
 
 [Notifications]
 ControllerDisconnectedTitle="Controller Disconnected"
 ControllerDisconnectedPS4Message="Wireless controller has been disconnected. Please reconnect the wireless controller for the User that booted the game."
+ControllerDisconnectedXB1="Xbox One Wireless Controller has been disconnected. Please reconnect controller."
 PlayGoBusyTitle="Still installing"
 PlayGoBusyMessage="Limited content and features are available while the game finishes installing."
 UnableToJoinInviteTitle="Unable to Join"
@@ -160,11 +164,14 @@ CheckPlusTitle="Checking PlayStation®Plus Status"
 CheckPlusMessage="Please wait while we check PlayStation®Plus status."
 ConnectionLostTitle="Connection Lost"
 ConnectionLostMessage="Your online connection has been lost.  You have been returned to the Home Menu."
+ConnectionLostMessageLive="Your connection to Xbox Live has been lost.  You have been returned to the Main Menu."
 PSNSignoutMessage="You have been signed out of PlayStation™Network. You have been returned to the Home Menu."
 InviteMessage="Come blow up some Zeds with me!"
 NotConnectedTitle="Network Error"
 NotConnectedMessage="Not connected to the internet. Check your connection and try again."
 NotConnectedForOnlinePlay="Not connected to the internet. Check your connection and try again to use online features."
+NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+MultiplayerNotAllowed_MessageLive="You must be signed into an Xbox Live enabled Profile with multiplayer privileges to play."
 MultiplayerNotAllowed_Title="Multiplayer Not Allowed"
 LoggedOutMessage="The active Profile has been changed.  You have been returned to the Title Screen."
 LoggedOutTitle="Signed out"
@@ -174,6 +181,7 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="View Player Profile"
+ViewProfileStringXB1="View gamercard"
 
 [KFGFxObject_Menu]
 ResetDefaults="Are you sure you want to reset settings to default values?"
@@ -193,12 +201,15 @@ ControllerSound="Controller Sound"
 MatchmakingRegionString="REGION"
 LeaveMenuString="Leaving matchmaking will also leave your party"
 
+[KFGFxMenu_Store]
+StoreStringXB1="XBOX STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGION"
 MapPreference="PREFERRED MAP"
 
 [KFGFxMenu_Exit]
+HeaderStringXB1="LOGOUT"
 LogoutKF2="Return to Title Screen"
 
 [Misc]

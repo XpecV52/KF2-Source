@@ -54,7 +54,7 @@ defaultproperties
 	Emotes.Add((Id=4518, ItemName = "WackyWave", 			AnimName="Emote_04_WackyWave", 			IconPath="EMOTE_TEX.Emote_WackyWave_512"))
 	Emotes.Add((Id=4519, ItemName = "RainingDosh", 			AnimName="Emote_05_RainingDosh", 		IconPath="EMOTE_TEX.Emote_RainingDosh_512"))
 	Emotes.Add((Id=4520, ItemName = "LionUppercut", 		AnimName="Emote_06_LionUppercut", 		IconPath="EMOTE_TEX.Emote_Uppercut_512"))
-	Emotes.Add((Id=0, ItemName = "MatingRitual", 		AnimName="Emote_07_MatingRitual", 		IconPath="EMOTE_TEX.Emote_MatingRitual_512"))
+	Emotes.Add((Id=0, ItemName = "MatingRitual", 			AnimName="Emote_07_MatingRitual", 		IconPath="EMOTE_TEX.Emote_MatingRitual_512"))
 	Emotes.Add((Id=4522, ItemName = "KickinIt", 			AnimName="Emote_08_KickinIt", 			IconPath="EMOTE_TEX.Emote_KicknIt_512"))
 	Emotes.Add((Id=4523, ItemName = "Fireball", 			AnimName="Emote_09_Fireball", 			IconPath="EMOTE_TEX.Emote_Fireball_512"))
 	Emotes.Add((Id=4524, ItemName = "Makeitrain", 			AnimName="Emote_10_Makeitrain", 		IconPath="EMOTE_TEX.Emote_MknRain_512"))
@@ -68,6 +68,29 @@ defaultproperties
 	Emotes.Add((Id=4532, ItemName = "LionUppercut_Deluxe", 	AnimName="Emote_06_LionUppercut_Deluxe",IconPath="EMOTE_TEX.Emote_Uppercut_DLX_512"))
 	Emotes.Add((Id=4533, ItemName = "MatingRitual_Deluxe", 	AnimName="Emote_07_MatingRitual_Deluxe",IconPath="EMOTE_TEX.Emote_MatingRitual_DLX_512"))
 	Emotes.Add((Id=4534, ItemName = "KickinIt_Deluxe", 		AnimName="Emote_08_KickinIt_Deluxe", 	IconPath="EMOTE_TEX.Emote_KicknIt_DLX_512"))
+
+	//Emote Crate 2
+
+	Emotes.Add((Id=4744, ItemName = "TheCossack", 			AnimName="Emote_01_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_Squat_Dance_512"))
+	Emotes.Add((Id=4754, ItemName = "TheCossack_Deluxe", 	AnimName="Emote_01_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_Squat_Dance_DLX_512"))
+	Emotes.Add((Id=4745, ItemName = "TheWave", 				AnimName="Emote_02_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_The_Wave_512"))
+	Emotes.Add((Id=4755, ItemName = "TheWave_Deluxe", 		AnimName="Emote_02_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_The_Wave_DLX_512"))
+	Emotes.Add((Id=4746, ItemName = "Breakin", 				AnimName="Emote_03_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_Handstand_512"))
+	Emotes.Add((Id=4756, ItemName = "Breakin_Deluxe", 		AnimName="Emote_03_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_Handstand_DLX_512"))
+	Emotes.Add((Id=4747, ItemName = "NoHands", 				AnimName="Emote_04_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_Kap_Kick_512"))
+	Emotes.Add((Id=4757, ItemName = "NoHands_Deluxe", 		AnimName="Emote_04_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_Kap_Kick_DLX_512"))
+	Emotes.Add((Id=4748, ItemName = "HealClick", 			AnimName="Emote_05_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_Click_It_512"))
+	Emotes.Add((Id=4758, ItemName = "HealClick_Deluxe", 	AnimName="Emote_05_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_Click_It_DLX_512"))
+	Emotes.Add((Id=4749, ItemName = "TheSprinkler", 		AnimName="Emote_06_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_The_Sprinkler_512"))
+	Emotes.Add((Id=4759, ItemName = "TheSprinkler_Deluxe", 	AnimName="Emote_06_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_The_Sprinkler_DLX_512"))
+	Emotes.Add((Id=4750, ItemName = "Maniac", 				AnimName="Emote_07_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_Running_Dosh_512"))
+	Emotes.Add((Id=4760, ItemName = "Maniac_Deluxe", 		AnimName="Emote_07_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_Running_Dosh_DLX_512"))
+	Emotes.Add((Id=4751, ItemName = "RunningMan", 			AnimName="Emote_08_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_Running_Man_512"))
+	Emotes.Add((Id=4761, ItemName = "RunningMan_Deluxe", 	AnimName="Emote_08_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_Running_Man_DLX_512"))
+	Emotes.Add((Id=4752, ItemName = "TheRobot", 			AnimName="Emote_09_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_The_Robot_512"))
+	Emotes.Add((Id=4762, ItemName = "TheRobot_Deluxe", 		AnimName="Emote_09_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_The_Robot_DLX_512"))
+	Emotes.Add((Id=4753, ItemName = "AirMetal", 			AnimName="Emote_10_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_Guitar_Solo_512"))
+	Emotes.Add((Id=4763, ItemName = "AirMetal_Deluxe", 		AnimName="Emote_10_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_Guitar_Solo_DLX_512"))
 
 	EquippedEmoteId=-1
 }

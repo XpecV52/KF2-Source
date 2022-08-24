@@ -110,7 +110,7 @@ package tripwire.containers.objectiveStart
         
         public function onLeftPressed() : *
         {
-            if(this.expandedMissionObjectivesMC.visible && this.expandedMissionObjectivesMC.pageIndex > this.expandedMissionObjectivesMC.Weekly && this.interactable)
+            if(this.expandedMissionObjectivesMC.visible && this.expandedMissionObjectivesMC.pageIndex >= this.expandedMissionObjectivesMC.Weekly && this.interactable)
             {
                 --this.expandedMissionObjectivesMC.pageIndex;
             }

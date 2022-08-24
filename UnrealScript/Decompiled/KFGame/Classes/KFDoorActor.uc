@@ -58,7 +58,7 @@ struct native DoorMeshAttachment
     structdefaultproperties
     {
         Component=none
-        AttachTo=None
+        AttachTo=DoorLeft
         bSocketAttach=false
     }
 };
@@ -386,10 +386,13 @@ simulated function InitSkelControl()
         default:
             break;
     }
-    MovementControl.SetSkelControlStrength(((bStartDoorOpen) ? 1 : 0), 0);
-    bIsDoorOpen = bStartDoorOpen;
-    bLocalIsDoorOpen = bStartDoorOpen;
-    WeldIntegrity = ((bStartWelded && !bStartDoorOpen) ? MaxWeldIntegrity : 0);
+    if(Role == ROLE_Authority)
+    {
+        MovementControl.SetSkelControlStrength(((bStartDoorOpen) ? 1 : 0), 0);
+        bIsDoorOpen = bStartDoorOpen;
+        bLocalIsDoorOpen = bStartDoorOpen;
+        WeldIntegrity = ((bStartWelded && !bStartDoorOpen) ? MaxWeldIntegrity : 0);
+    }
 }
 
 // Export UKFDoorActor::execIsCompletelyOpen(FFrame&, void* const)

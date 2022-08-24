@@ -25,23 +25,28 @@ static simulated function bool CanDismemberHitZone(name InHitZoneName)
     }
 }
 
-static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
+static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Controller InstigatedBy)
 {
-    return Class'KFDT_Ballistic_Assault_Medic'.static.CheckMedicToxic(InDamage, KFDT, InstigatedBy);
+    local class<KFDamageType> ToxicDT;
+
+    ToxicDT = Class'KFDT_Ballistic_Assault_Medic'.static.GetMedicToxicDmgType(DamageTaken, InstigatedBy);
+    if(ToxicDT != none)
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, ToxicDT);
+    }
 }
 
-static function bool CheckMedicToxic(out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy)
+static function class<KFDamageType> GetMedicToxicDmgType(out int out_Damage, optional Controller InstigatedBy)
 {
     local KFPerk InstigatorPerk;
 
     InstigatorPerk = KFPlayerController(InstigatedBy).GetPerk();
     if((InstigatorPerk == none) || !InstigatorPerk.IsToxicDmgActive() && !InstigatorPerk.IsSlugActive())
     {
-        return false;
+        return none;
     }
-    InstigatorPerk.ModifyToxicDmg(InDamage);
-    KFDT = InstigatorPerk.GetToxicDmgTypeClass();
-    return true;
+    InstigatorPerk.ModifyToxicDmg(out_Damage);
+    return InstigatorPerk.GetToxicDmgTypeClass();
 }
 
 defaultproperties

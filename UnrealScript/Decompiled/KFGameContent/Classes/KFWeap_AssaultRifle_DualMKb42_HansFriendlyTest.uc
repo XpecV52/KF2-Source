@@ -12,6 +12,7 @@ class KFWeap_AssaultRifle_DualMKb42_HansFriendlyTest extends KFWeap_AssaultRifle
 defaultproperties
 {
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_DualMKb42_HansFriendlyTest.MeleeHelper'
+    FireInterval=/* Array type was not detected. */
     Spread=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

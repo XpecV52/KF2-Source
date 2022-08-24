@@ -140,7 +140,10 @@ function RefreshParty()
 	local int SlotIndex;
 	local GFxObject DataProvider;
 	DataProvider = CreateArray();
-
+	if(!Manager.bStatsInitialized)
+	{
+		return;
+	}	
 	super.RefreshParty();
 
 	GetKFPRIArray( KFPRIArray );
@@ -178,7 +181,7 @@ function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
 	local bool bIsMyPlayer;
 	local PlayerController PC;
 	local GFxObject PlayerInfoObject;
-
+	local string AvatarPath;
 
 	PlayerInfoObject = CreateObject("Object");
 
@@ -227,12 +230,17 @@ function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
 	//player icon
 	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
 	{
-		PlayerInfoObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));
+		AvatarPath = KFPC.GetPS4Avatar(PlayerName);
 	}
 	else
 	{
-		PlayerInfoObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+		AvatarPath = KFPC.GetSteamAvatar(KFPRI.UniqueId);
 	}	
+
+	if(AvatarPath != "")
+	{
+		PlayerInfoObject.SetString("profileImageSource", "img://"$AvatarPath);
+	}
 	if(KFGRI != none)
 	{
 		PlayerInfoObject.SetBool("ready", KFPRI.bReadyToPlay && !KFGRI.bMatchHasBegun);

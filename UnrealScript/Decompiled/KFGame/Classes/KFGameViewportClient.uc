@@ -213,6 +213,7 @@ defaultproperties
     TripWireOfficialMaps(10)="KF-TheDescent"
     TripWireOfficialMaps(11)="KF-Nuked"
     TripWireOfficialMaps(12)="KF-TragicKingdom"
+    TripWireOfficialMaps(13)="KF-Nightmare"
     CommunityOfficialMaps(0)="KF-ContainmentStation"
     CommunityOfficialMaps(1)="KF-HostileGrounds"
     CommunityOfficialMaps(2)="KF-InfernalRealm"

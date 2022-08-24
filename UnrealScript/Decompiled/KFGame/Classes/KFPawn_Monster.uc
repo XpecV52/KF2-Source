@@ -157,14 +157,13 @@ var bool bDebug_DrawSprintingOverheadInfo;
 var const bool bDebug_UseIconForShowingSprintingOverheadInfo;
 var bool bReducedZedOnZedPinchPointCollisionStateActive;
 var protected bool bOnDeathAchivementbDisabled;
-var bool bOverrideAsBoss;
-var bool bUseAnimatedTheatricCamera;
 var private const string MonsterArchPath;
 var private const KFCharacterInfo_Monster CharacterMonsterArch;
 var const class<KFPawn_Monster> ElitePawnClass;
 /** Custom third person camera offsets */
 var() ViewOffsetData ThirdPersonViewOffset;
 var int RandomColorIdx;
+var export editinline array<export editinline StaticMeshComponent> StaticAttachList;
 /** The chance that this monster pawn will sprint */
 var(Combat) float SprintChance;
 /** Odds (0-1) of evaluating whether to do a grab attack instead of a basic melee attack */
@@ -208,6 +207,8 @@ var float IntendedDamageInflationPercent;
 var float DamageInflationPercent;
 var float InflateDeathGravity;
 var float InflationExplosionTimer;
+var const ParticleSystem BleedIncapFX;
+var export editinline ParticleSystemComponent BleedIncapPSC;
 var KFAnim_RandomScripted WalkBlendList;
 var protected transient sBlockInfo DifficultyBlockSettings;
 var protected const float MinBlockFOV;
@@ -250,10 +251,6 @@ var float DefaultCollisionRadius;
 var KFTrigger_ChokePoint CurrentChokePointTrigger;
 var const float CollisionRadiusForReducedZedOnZedPinchPointCollisionState;
 var protected const int OnDeathAchievementID;
-var const localized string BossName;
-var const localized array<localized string> BossCaptionStrings;
-var name TheatricCameraSocketName;
-var Vector TheatricCameraAnimOffset;
 var delegate<GoreChunkAttachmentCriteria> __GoreChunkAttachmentCriteria__Delegate;
 var delegate<GoreChunkDetachmentCriteria> __GoreChunkDetachmentCriteria__Delegate;
 
@@ -265,9 +262,8 @@ replication
         RepDamageInflateParam, RepInflateMatParam, 
         bDisableGoreMeshWhileAlive, bDisableHeadless, 
         bIsHeadless, bIsPoisoned, 
-        bOverrideAsBoss, bPlayPanicked, 
-        bPlayShambling, bUseDamageInflation, 
-        bUseExplosiveDeath;
+        bPlayPanicked, bPlayShambling, 
+        bUseDamageInflation, bUseExplosiveDeath;
 
      if(bNetDirty && bCanCloak)
         bIsCloakingSpottedByTeam;
@@ -306,6 +302,7 @@ simulated event ReplicatedEvent(name VarName)
             break;
         case 'RepBleedInflateMatParam':
             AfflictionHandler.UpdateMaterialParameter(11, ByteToFloat(RepBleedInflateMatParam));
+            UpdateBleedIncapFX();
             break;
         case 'Controller':
             SetSwitch('Player_Zed', ((IsHumanControlled()) ? 'Player' : 'NotPlayer'));
@@ -451,10 +448,6 @@ function PossessedBy(Controller C, bool bVehicleTransition)
         }
     }
     SetSwitch('Player_Zed', ((IsHumanControlled()) ? 'Player' : 'NotPlayer'));
-    if(IsActiveBoss())
-    {
-        ServerDoSpecialMove(34);
-    }
 }
 
 simulated event FellOutOfWorld(class<DamageType> dmgType)
@@ -501,6 +494,8 @@ function ApplySpecialZoneHealthMod(float HealthMod)
     HitZones[0].GoreHealth = int(float(default.HitZones[0].GoreHealth) * HealthMod);
     HitZones[0].MaxGoreHealth = HitZones[0].GoreHealth;
 }
+
+function SetShieldScale(float InScale);
 
 function bool CanTakeOver()
 {
@@ -585,6 +580,19 @@ function HandleMonsterBump(KFPawn_Monster Other, Vector HitNormal)
 
 event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
+    local KFDoorActor door;
+
+    if(IsHumanControlled())
+    {
+        if(!Wall.bStatic && IsAliveAndWell())
+        {
+            door = KFDoorActor(Wall);
+            if(door != none)
+            {
+                TryDestroyDoor(door);
+            }
+        }
+    }
     if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
     {
         MyKFAIC.AILog_Internal((string(GetFuncName()) $ "() Wall: ") $ string(Wall), 'BumpEvent');
@@ -593,7 +601,30 @@ event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
     super(Actor).HitWall(HitNormal, Wall, WallComp);
 }
 
-function bool HandleAIDoorBump(KFDoorActor door);
+function bool HandleAIDoorBump(KFDoorActor door)
+{
+    return TryDestroyDoor(door);
+}
+
+function bool TryDestroyDoor(KFDoorActor door)
+{
+    if((((((IsABoss()) && door != none) && !door.bIsDoorOpen) && !door.bIsDestroyed) && door.WeldIntegrity == 0) && CanObliterateDoors())
+    {
+        door.IncrementHitCount(self);
+        door.DestroyDoor(Controller);
+        return true;
+    }
+    return false;
+}
+
+function bool CanObliterateDoors()
+{
+    if((IsABoss()) && !bIsSprinting)
+    {
+        return false;
+    }
+    return true;
+}
 
 function bool NotifyCollideWithActor(Vector HitNormal, Actor Other)
 {
@@ -1062,11 +1093,6 @@ simulated function AdjustAffliction(out float AfflictionPower)
     super.AdjustAffliction(AfflictionPower);
 }
 
-simulated event bool IsActiveBoss()
-{
-    return bOverrideAsBoss;
-}
-
 function bool ShouldDrawBossIcon()
 {
     return false;
@@ -1079,16 +1105,16 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 
     Timer_EndRallyBoost();
     super.PlayDying(DamageType, HitLoc);
-    if(IsActiveBoss())
+    if(IsABoss())
     {
         KFPC = KFPlayerController(GetALocalPlayerController());
         if(KFPC != none)
         {
-            KFPC.SetBossCamera(self);
+            KFPC.SetBossCamera((self));
         }
         ClassName = string(Class.Name);        
         ClassName -= string('_Versus');
-        Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(ClassName, WorldInfo.GetMapName(true));
+        Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(GetLocalizedName(), ClassName, WorldInfo.GetMapName(true));
     }
     if(bUseExplosiveDeath)
     {
@@ -1098,6 +1124,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
     {
         PlayInflationDeath();
     }
+    UpdateBleedIncapFX();
 }
 
 simulated function PlayInflationDeath()
@@ -1481,7 +1508,7 @@ function BleedOutTimer()
     }
 }
 
-simulated function Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem AltRallyEffect, name AltEffectBoneNames[2], Vector AltEffectOffset, optional bool bSkipEffects)
+simulated function bool Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem AltRallyEffect, name AltEffectBoneNames[2], Vector AltEffectOffset, optional bool bSkipEffects)
 {
     local sRallyInfo RallyInfo;
     local KFAIController KFAIC;
@@ -1489,9 +1516,9 @@ simulated function Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, nam
 
     bSkipEffects = false;
     GetDifficultyRallyInfo(RallyInfo);
-    if(!RallyInfo.bCanRally)
+    if(!RallyInfo.bCanRally || !IsAliveAndWell())
     {
-        return;
+        return false;
     }
     if(RallyInfo.DealtDamageModifier > 1)
     {
@@ -1536,6 +1563,7 @@ simulated function Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, nam
             }
         }
     }
+    return true;
 }
 
 simulated function Timer_EndRallyBoost()
@@ -1605,14 +1633,13 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
                 }
             }
         }
-        if(bOverrideAsBoss)
-        {
-            KFGameInfo(WorldInfo.Game).BossDied(Killer);
-        }
+        OnZedDied(Killer);
         return true;
     }
     return false;
 }
+
+function OnZedDied(Controller Killer);
 
 simulated event Destroyed()
 {
@@ -2807,12 +2834,40 @@ simulated function HandleDamageInflation()
     }
 }
 
+simulated function UpdateBleedIncapFX()
+{
+    local float CurrentStrength;
+
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        CurrentStrength = ByteToFloat(RepBleedInflateMatParam);
+        if(((CurrentStrength != float(0)) && IsAliveAndWell()) && BleedIncapPSC == none)
+        {
+            BleedIncapPSC = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(BleedIncapFX, Mesh, Class'KFSM_Stunned'.default.DazedFXSocketName, true);
+            if(BleedIncapPSC != none)
+            {
+                BleedIncapPSC.SetAbsolute(false, true, false);
+                BleedIncapPSC.SetRotation(rotator(vect(0, 0, 1)) + Class'KFSM_Stunned'.default.DazedFXRelativeRotation);
+            }            
+        }
+        else
+        {
+            if(((CurrentStrength == float(0)) || !IsAliveAndWell()) && BleedIncapPSC != none)
+            {
+                BleedIncapPSC.DeactivateSystem();
+                DetachComponent(BleedIncapPSC);
+                BleedIncapPSC = none;
+            }
+        }
+    }
+}
+
 static function bool IsLargeZed()
 {
     return default.bLargeZed;
 }
 
-static function bool IsABoss()
+static event bool IsABoss()
 {
     return false;
 }
@@ -3213,12 +3268,35 @@ function MotivatePlayerToAttack(float Percentage, class<DamageType> AntiGriefDam
     TakeDamage(int(float(HealthMax) * 0.05), none, Location + (VRand() * 5), VRand(), AntiGriefDamageTypeClass);
 }
 
-function string GetLocalizedName()
+static function string GetLocalizedName()
 {
     local string MonsterName;
 
-    MonsterName = Localize("Zeds", string(LocalizationKey), "KFGame");
+    MonsterName = Localize("Zeds", string(default.LocalizationKey) $ (GetSeasonalLocalizationSuffix()), "KFGame");
+    if(InStr(MonsterName, "?") >= 0)
+    {
+        MonsterName = Localize("Zeds", string(default.LocalizationKey), "KFGame");
+    }
     return MonsterName;
+}
+
+static function string GetSeasonalLocalizationSuffix()
+{
+    switch(Class'KFGameEngine'.static.GetSeasonalEventID() % 10)
+    {
+        case 1:
+            return "_Spring";
+        case 2:
+            return "_Summer";
+        case 3:
+            return "_Fall";
+        case 4:
+            return "_Winter";
+        default:
+            return "";
+            break;
+    }
+    return "";
 }
 
 // Export UKFPawn_Monster::execShouldGrandOnDeathAchievement(FFrame&, void* const)
@@ -3329,6 +3407,7 @@ defaultproperties
     DamageInflationRate=1
     IntendedDamageInflationPercent=1
     DamageInflationPercent=1
+    BleedIncapFX=ParticleSystem'FX_Gameplay_EMIT_THREE.FX_Incap_Bleed_01'
     DifficultyBlockSettings=(Chance=0,Duration=0,MaxBlocks=0,Cooldown=0,DamagedHealthPctToTrigger=0,MeleeDamageModifier=1,DamageModifier=1,AfflictionModifier=1,SoloChanceMultiplier=0)
     MinBlockFOV=0.1
     BlockSprintSpeedModifier=0.75

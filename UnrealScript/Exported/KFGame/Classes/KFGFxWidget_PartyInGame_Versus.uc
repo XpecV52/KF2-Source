@@ -154,11 +154,11 @@ function GFxObject RefreshSlot( int SlotIndex, KFPlayerReplicationInfo KFPRI )
 	//player icon
 	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
 	{
-		PlayerInfoObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));
+		PlayerInfoObject.SetString("profileImageSource", "img://"$KFPC.GetPS4Avatar(PlayerName));
 	}
 	else
 	{
-		PlayerInfoObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+		PlayerInfoObject.SetString("profileImageSource", "img://"$KFPC.GetSteamAvatar(KFPRI.UniqueId));
 	}	
 	if(KFGRI != none)
 	{

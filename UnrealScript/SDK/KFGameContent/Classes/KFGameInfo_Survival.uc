@@ -92,6 +92,7 @@ Start the game - inform all actors that the match is starting, and spawn player 
 */
 function StartMatch()
 {
+    local KFPlayerController KFPC;
 	WaveNum = 0;
 
 	super.StartMatch();
@@ -104,6 +105,11 @@ function StartMatch()
 	{
 		GotoState('PlayingWave');
 	}
+
+    foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+    {
+        KFPC.ClientMatchStarted();
+    }
 }
 
 function PlayWaveStartDialog()
@@ -1252,6 +1258,11 @@ function EndOfMatch(bool bVictory)
 		SetZedsToVictoryState();
 	}
 
+    foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+    {
+        KFPC.ClientMatchEnded();
+    }
+
 	WorldInfo.TWPushLogs();
 
 	GotoState('MatchEnded');
@@ -1450,4 +1461,5 @@ DefaultProperties
 	AIClassList(AT_Husk)=class'KFGameContent.KFPawn_ZedHusk'
 	AIBossClassList(BAT_Hans)=class'KFGameContent.KFPawn_ZedHans'
 	AIBossClassList(BAT_Patriarch)=class'KFGameContent.KFPawn_ZedPatriarch'
+    AIBossClassList(BAT_KingFleshpound)=class'KFGameContent.KFPawn_ZedFleshpoundKing'
 }

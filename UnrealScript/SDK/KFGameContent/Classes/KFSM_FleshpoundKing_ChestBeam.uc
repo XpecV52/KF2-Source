@@ -9,6 +9,9 @@
 //=============================================================================
 class KFSM_FleshpoundKing_ChestBeam extends KFSM_PlaySingleAnim;
 
+/** Cached king pawn owner */
+var KFPawn_ZedFleshpoundKing KingPawnOwner;
+
 /** Template for the plasma beam */
 var const ParticleSystem BeamPSCTemplate;
 
@@ -20,6 +23,19 @@ var const ParticleSystem BeamHitPSCTemplate;
 
 /** PSC for the hit location. On when the beam is hitting anything, off when missing everything */
 var ParticleSystemComponent BeamHitPSC;
+
+/** AK Event for start of beam charge */
+var AkEvent BeamStartSFX;
+
+/** AK Event for end of special move */
+var AkEvent BeamEndSFX;
+
+/** Looping sound for beam hit */
+var AkEvent BeamHitSFX;
+var AkEvent BeamHitStopSFX;
+
+/** Camera shake impact */
+var CameraShake BeamHitShake;
 
 /** Socket to attach origin of beam */
 var const Name ChestBeamSocketName;
@@ -60,6 +76,11 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 
     // Use custom FX/lights
     KFPOwner.UpdateGameplayMICParams();
+
+    //Start KFP beam SFX
+    KFPOwner.SetWeaponAmbientSound(BeamStartSFX);
+
+    KingPawnOwner = KFPawn_ZedFleshpoundKing(KFPOwner);
 }
 
 /** Updates beam PSC */
@@ -106,15 +127,22 @@ function SetBeamTarget()
             bShouldActivateHit = HitActor != none;
             break;
         }
-    }    
+    }
 
 	BeamPSC.SetBeamTargetPoint( 0, BeamEnd, 0 );
 
-    //Setup impact effect if valid
-    if (bShouldActivateHit && BeamHitPSC == none)
+    //Setup impact sound/fx if valid
+    if (bShouldActivateHit)
     {
-        BeamHitPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitter(BeamHitPSCTemplate, BeamEnd);
+		//Trigger sound and VFX at the same time, use the more reliable SFX
+        if (BeamHitPSC == none)
+        {
+            BeamHitPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitter(BeamHitPSCTemplate, BeamEnd);
+			KingPawnOwner.BeamHitAC.PlayEvent(BeamHitSFX);
+        }
     }
+
+    //Update location of sound/fx
     if (BeamHitPSC != none)
     {
         BeamHitPSC.SetAbsolute(true, true, false);
@@ -124,8 +152,10 @@ function SetBeamTarget()
         {
             BeamHitPSC.DeactivateSystem();
             BeamHitPSC = none;
-        }             
+			KingPawnOwner.BeamHitAC.PlayEvent(BeamHitStopSFX);
+        }
     }
+	KingPawnOwner.BeamHitAC.Location = BeamEnd;
 
 	if( bDrawDebugBeam )
 	{
@@ -154,21 +184,21 @@ function ToggleBeam( bool bEnable )
 	            SetBeamTarget();
 	        }
 	    }
-        
+
 	    // Start damage timer. We'll do damage on the client too so we affect ragdolls!
 	    KFPOwner.SetTimer( DamageInterval, true, nameOf(Timer_TickDamage), self );
 	}
 	else
 	{
-		DisableBeamPSC();
+		DisableBeamFX();
 
 		// Stop dealing damage
 	    KFPOwner.ClearTimer( nameOf(Timer_TickDamage), self );
 	}
 }
 
-/** Turns the beam particle system OFF */
-function DisableBeamPSC()
+/** Turns the beam particle system/sound OFF */
+function DisableBeamFX()
 {
 	if( BeamPSC != none && BeamPSC.bIsActive )
 	{
@@ -180,6 +210,11 @@ function DisableBeamPSC()
     {
         BeamHitPSC.DeactivateSystem();
         BeamHitPSC = none;
+    }
+
+    if (KingPawnOwner.BeamHitAC != none)
+    {
+        KingPawnOwner.BeamHitAC.StopEvents();
     }
 }
 
@@ -244,6 +279,10 @@ function Timer_TickDamage()
             if (HitActor.bCanBeDamaged)
             {
                 HitActor.TakeDamage(DamagePerTick, KFPOwner.Controller, HitLocation, BeamDir*DamageMomentumImpulse, BeamDamageType, HitInfo, KFPOwner);
+				if (Pawn(HitActor) != none && PlayerController(Pawn(HitActor).Controller) != none)
+				{
+					PlayerController(Pawn(HitActor).Controller).ClientPlayCameraShake(BeamHitShake, 1.f, true);
+				}
             }
             return;
         }
@@ -254,7 +293,10 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 {
     super.SpecialMoveEnded(PrevMove, NextMove);
 
-    DisableBeamPSC();
+    DisableBeamFX();
+
+    //Start KFP beam SFX
+    KFPOwner.SetWeaponAmbientSound(BeamEndSFX);
 
     // Restore FX/lights
     if( KFPOwner != none && KFPOwner.IsAliveAndWell() )
@@ -262,7 +304,7 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 	    KFPOwner.UpdateGameplayMICParams();
 	}
 
-	KFPOwner.FlushPersistentDebugLines(); // temp, @todo: remove	
+	KFPOwner.FlushPersistentDebugLines(); // temp, @todo: remove
 }
 
 
@@ -285,6 +327,19 @@ DefaultProperties
     BeamPSCTemplate=ParticleSystem'ZED_Fleshpound_King_EMIT.FX_ChestBeam'
     BeamHitPSCTemplate=ParticleSystem'ZED_Fleshpound_King_EMIT.FX_ChestBeam_Impact'
     ChestBeamSocketName=ChestBeamSocket
+    BeamStartSFX=AkEvent'ww_zed_fleshpound_2.Play_King_FP_Beam_Start_LP'
+    BeamEndSFX=AkEvent'ww_zed_fleshpound_2.Play_King_FP_Beam_End'
+	BeamHitSFX=AkEvent'ww_zed_fleshpound_2.Play_FP_Beam_Hit_LP'
+	BeamHitStopSFX=AkEvent'ww_zed_fleshpound_2.Stop_FP_Beam_Hit_LP'
+
+	Begin Object Class=CameraShake Name=BeamHitShake0
+		bSingleInstance=true
+		OscillationDuration=0.35f
+		RotOscillation={(Pitch=(Amplitude=250.f,Frequency=60.f),
+						Yaw=(Amplitude=150.f,Frequency=70.f),
+						Roll=(Amplitude=150.f,Frequency=100.f))}
+	End Object
+	BeamHitShake=BeamHitShake0
 
 	// ---------------------------------------------
 	// KFSM_FleshpoundKing_ChestBeam
@@ -292,7 +347,7 @@ DefaultProperties
 	BeamExtent=(X=15.0f, Y=15.0f, Z=15.0f)
 	MaxBeamLength=2500.0f //1300
 	DamageInterval=0.1f
-	DamagePerTick=7 //15
+	DamagePerTick=10 //15 //7
 	DamageMomentumImpulse=100.0f
 	TimeUntilTargetChange=0.75f
 

@@ -398,6 +398,7 @@ Start the game - inform all actors that the match is starting, and spawn player 
 */
 function StartMatch()
 {
+    local KFPlayerController KFPC;
 	WaveNum = 0;
 
 	super.StartMatch();
@@ -410,6 +411,11 @@ function StartMatch()
 	{
 		GotoState('PlayingWave');
 	}
+
+    foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+    {
+        KFPC.ClientMatchStarted();
+    }
 }
 
 function PlayWaveStartDialog()
@@ -1558,6 +1564,11 @@ function EndOfMatch(bool bVictory)
 		SetZedsToVictoryState();
 	}
 
+    foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+    {
+        KFPC.ClientMatchEnded();
+    }
+
 	WorldInfo.TWPushLogs();
 
 	GotoState('MatchEnded');
@@ -1746,6 +1757,7 @@ defaultproperties
    AIClassList(11)=Class'kfgamecontent.KFPawn_ZedHusk'
    AIBossClassList(0)=Class'kfgamecontent.KFPawn_ZedHans'
    AIBossClassList(1)=Class'kfgamecontent.KFPawn_ZedPatriarch'
+   AIBossClassList(2)=Class'kfgamecontent.KFPawn_ZedFleshpoundKing'
    GameplayEventsWriterClass=Class'KFGame.KFGameplayEventsWriter'
    TraderVoiceGroupClass=Class'kfgamecontent.KFTraderVoiceGroup_Default'
    MaxPlayers=6

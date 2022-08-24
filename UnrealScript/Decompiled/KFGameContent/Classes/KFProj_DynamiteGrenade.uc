@@ -81,6 +81,7 @@ defaultproperties
         CastShadows=false
         CastStaticShadows=false
         CastDynamicShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
         MaxBrightness=1.5
         MinBrightness=0.5
@@ -137,6 +138,7 @@ defaultproperties
         CastShadows=false
         CastStaticShadows=false
         CastDynamicShadows=false
+        bCastPerObjectShadows=false
         LightingChannels=(Outdoor=true)
         MaxBrightness=1.5
         MinBrightness=0.5

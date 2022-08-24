@@ -396,8 +396,8 @@ function SetCurrentCharacterButtons()
     DataObject.SetString("characterBio", Localize(CharInfoPath, "Description", KFCharacterInfoString));
     DataObject.SetInt("selectedCharacterIndex", MyKFPRI.RepCustomizationInfo.CharacterIndex);
     SetObject("selectedCharacter", DataObject);
-    SetGearButtons(MyKFPRI.RepCustomizationInfo.HeadMeshIndex, MyKFPRI.RepCustomizationInfo.HeadSkinIndex, HeadMeshKey, HeadSkinKey, HeadFunctionKey);
-    SetGearButtons(MyKFPRI.RepCustomizationInfo.BodyMeshIndex, MyKFPRI.RepCustomizationInfo.BodySkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
+    SetGearButtons(byte(MyKFPRI.RepCustomizationInfo.HeadMeshIndex), byte(MyKFPRI.RepCustomizationInfo.HeadSkinIndex), HeadMeshKey, HeadSkinKey, HeadFunctionKey);
+    SetGearButtons(byte(MyKFPRI.RepCustomizationInfo.BodyMeshIndex), byte(MyKFPRI.RepCustomizationInfo.BodySkinIndex), BodyMeshKey, BodySkinKey, BodyFunctionKey);
     SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
     SetEmoteButton();
 }
@@ -458,7 +458,7 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
 
     if(I < 3)
     {
-        AttachmentIndex = MyKFPRI.RepCustomizationInfo.AttachmentMeshIndices[I];
+        AttachmentIndex = byte(MyKFPRI.RepCustomizationInfo.AttachmentMeshIndices[I]);
         if(AttachmentIndex == 255)
         {            
             FinishedString $= ("----" $ "

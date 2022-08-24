@@ -66,12 +66,14 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;
 
 enum EUIIndex
 {
     UI_Start,
     UI_Perks,
     UI_Gear,
+    UI_Dosh_Vault,
     UI_Inventory,
     UI_Store,
     UI_OptionsSelection,
@@ -206,9 +208,11 @@ var KFGFxMenu_Trader TraderMenu;
 var KFGFxMenu_ServerBrowser ServerBrowserMenu;
 var KFGFxMenu_Exit ExitMenu;
 var KFGFxMenu_IIS IISMenu;
+var KFGFxMenu_DoshVault DoshVaultMenu;
 var KFGFxMoviePlayer_ScreenSize ScreenSizeMovie;
 var KFProfileSettings CachedProfile;
 var bool bPostGameState;
+var bool bStatsInitialized;
 var bool bKickVotePopupActive;
 var bool bUsingGamepad;
 var bool bAfterLobby;
@@ -246,6 +250,7 @@ var name SoundThemeName;
 var const int MouseInputChangedThreshold;
 var OnlineSubsystem OnlineSub;
 var PlayfabInterface PlayfabInter;
+var int SelectIDOnOpen;
 var delegate<PendingRightButtonDelegate> __PendingRightButtonDelegate__Delegate;
 var delegate<PendingMiddleButtonDelegate> __PendingMiddleButtonDelegate__Delegate;
 var delegate<PendingLeftButtonDelegate> __PendingLeftButtonDelegate__Delegate;
@@ -317,6 +322,8 @@ function LaunchMenus(optional bool bForceSkipLobby)
     local TextureMovie BGTexture;
 
     GVC = KFGameViewportClient(GetGameViewportClient());
+    KFPC = KFPlayerController(GetPC());
+    bStatsInitialized = KFPC.HasReadStats();
     WidgetBinding.WidgetName = 'PartyWidget';
     if(Class'WorldInfo'.static.IsMenuLevel())
     {
@@ -360,7 +367,7 @@ function LaunchMenus(optional bool bForceSkipLobby)
         LogInternal((((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "11") @ "bShowIIS:'") $ string(bShowIIS)) $ "'");
         if(Class'WorldInfo'.static.IsConsoleBuild() && bShowIIS)
         {
-            OpenMenu(16, false);            
+            OpenMenu(17, false);            
         }
         else
         {
@@ -374,7 +381,6 @@ function LaunchMenus(optional bool bForceSkipLobby)
         }
         if(GVC.bHandlePlayTogether)
         {
-            KFPC = KFPlayerController(GetPC());
             KFPC.OnGameDestroyedForPlayTogetherComplete('Party', true);
             GVC.bHandlePlayTogether = false;
         }
@@ -412,7 +418,10 @@ function UpdateBackgroundMovie()
     }
     else
     {
-        CurrentBackgroundMovie.Stop();
+        if(CurrentBackgroundMovie != none)
+        {
+            CurrentBackgroundMovie.Stop();
+        }
         NewBackgroundMovie.Stop();
     }
     CurrentBackgroundMovie = NewBackgroundMovie;
@@ -540,6 +549,14 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 ManagerObject.SetBool("bConsoleBuild", Class'WorldInfo'.static.IsConsoleBuild());
             }
             break;
+        case 'DoshVaultMenu':
+            if(DoshVaultMenu == none)
+            {
+                DoshVaultMenu = KFGFxMenu_DoshVault(Widget);
+                DoshVaultMenu.InitializeMenu(self);
+            }
+            OnMenuOpen(WidgetPath, DoshVaultMenu);
+            break;
         case 'ExitMenu':
             if(ExitMenu == none)
             {
@@ -575,7 +592,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         case 'GearMenu':
             if((MenuBarWidget != none) && !MenuBarWidget.CanUseGearButton(GetPC(), self))
             {
-                goto J0xB0F;
+                goto J0xB85;
             }
             if(GearMenu == none)
             {
@@ -715,17 +732,22 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             bHandled = false;
             break;
     }
-    J0xB0F:
+    J0xB85:
 
     return bHandled;
 }
 
 function StatsInitialized()
 {
+    if((StartMenu != none) && StartMenu.MissionObjectiveContainer != none)
+    {
+        StartMenu.MissionObjectiveContainer.Refresh(true);
+    }
     if(IISMenu != none)
     {
         IISMenu.bStatsRead = true;
     }
+    bStatsInitialized = true;
 }
 
 function AllowCloseMenu()
@@ -806,8 +828,15 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
             return;
         }
     }
+    if((CurrentMenuIndex == 3) && NewMenuIndex != 3)
+    {
+        if(DoshVaultMenu != none)
+        {
+            DoshVaultMenu.AbortSquence();
+        }
+    }
     WI = Class'WorldInfo'.static.GetWorldInfo();
-    if(NewMenuIndex == 13)
+    if(NewMenuIndex == 14)
     {
         UnloadCurrentPopup();
     }
@@ -824,14 +853,14 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
         CurrentMenu.OnClose();
         CurrentMenu = none;
     }
-    if((CurrentMenuIndex == 16) && NewMenuIndex == 0)
+    if((CurrentMenuIndex == 17) && NewMenuIndex == 0)
     {
         IISMovie.Stop();
         ManagerObject.SetBool("IISMovieVisible", false);
         CurrentBackgroundMovie.Play();
         ManagerObject.SetBool("backgroundVisible", true);
     }
-    if(NewMenuIndex == 16)
+    if(NewMenuIndex == 17)
     {
         CurrentBackgroundMovie.Stop();
         ManagerObject.SetBool("backgroundVisible", false);
@@ -840,7 +869,7 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
         Class'Engine'.static.GetEngine().GameViewport.bAllowInputFromMultipleControllers = true;
         SetWidgetsVisible(false);
     }
-    if(NewMenuIndex != 14)
+    if(NewMenuIndex != 15)
     {
         CurrentMenuIndex = NewMenuIndex;        
     }
@@ -858,8 +887,8 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
     {
         if(StartMenuState == 1)
         {
-            CurrentMenuIndex = 15;
-            NewMenuIndex = 15;            
+            CurrentMenuIndex = 16;
+            NewMenuIndex = 16;            
         }
         else
         {
@@ -1024,7 +1053,7 @@ function bool ToggleMenus()
                 else
                 {
                     ManagerObject.SetBool("bOpenedInGame", false);
-                    OpenMenu(13);
+                    OpenMenu(14);
                     SetWidgetsVisible(false);
                 }
             }
@@ -1167,6 +1196,10 @@ private final function OpenPopup(KFGFxMoviePlayer_Manager.EPopUpType PopUpType, 
         {
             PlaySoundFromTheme(OverridingSoundEffect, SoundThemeName);
         }
+        if(!bMenusOpen)
+        {
+            ToggleMenus();
+        }
     }
 }
 
@@ -1276,7 +1309,7 @@ function bool IsInLobby()
 
 function bool GetMultiplayerMenuActive()
 {
-    if(CurrentMenuIndex == 15)
+    if(CurrentMenuIndex == 16)
     {
         return true;
     }
@@ -1603,20 +1636,21 @@ defaultproperties
     MenuSWFPaths(0)=(BaseSWFPath="../UI_Menus/StartMenu_SWF.swf",ConsoleSWFPath="")
     MenuSWFPaths(1)=(BaseSWFPath="../UI_Menus/PerksMenu_SWF.swf",ConsoleSWFPath="")
     MenuSWFPaths(2)=(BaseSWFPath="../UI_Menus/GearMenu_SWF.swf",ConsoleSWFPath="")
-    MenuSWFPaths(3)=(BaseSWFPath="../UI_Menus/InventoryMenu_SWF.swf",ConsoleSWFPath="")
-    MenuSWFPaths(4)=(BaseSWFPath="../UI_Menus/StoreMenu_SWF.swf",ConsoleSWFPath="")
-    MenuSWFPaths(5)=(BaseSWFPath="../UI_Menus/OptionsSelectionMenu_SWF.swf",ConsoleSWFPath="")
-    MenuSWFPaths(6)=(BaseSWFPath="../UI_Menus/ExitMenu_SWF.swf",ConsoleSWFPath="")
-    MenuSWFPaths(7)=(BaseSWFPath="../UI_Menus/OptionsControlsMenu_SWF.swf",ConsoleSWFPath="../UI_Menus/OptionsControlsMenu_SWF_Console.swf")
-    MenuSWFPaths(8)=(BaseSWFPath="../UI_Menus/OptionsAudioMenu_SWF.swf",ConsoleSWFPath="../UI_Menus/OptionsAudioMenu_SWF_Console.swf")
-    MenuSWFPaths(9)=(BaseSWFPath="../UI_Menus/OptionsGraphicsMenu_SWF.swf",ConsoleSWFPath="")
-    MenuSWFPaths(10)=(BaseSWFPath="../UI_Menus/OptionsGameSettingsMenu_SWF.swf",ConsoleSWFPath="../UI_Menus/OptionsGameSettingsMenu_SWF_Console.swf")
-    MenuSWFPaths(11)=(BaseSWFPath="",ConsoleSWFPath="")
+    MenuSWFPaths(3)=(BaseSWFPath="../UI_Menus/DoshVaultMenu_SWF.swf",ConsoleSWFPath="")
+    MenuSWFPaths(4)=(BaseSWFPath="../UI_Menus/InventoryMenu_SWF.swf",ConsoleSWFPath="")
+    MenuSWFPaths(5)=(BaseSWFPath="../UI_Menus/StoreMenu_SWF.swf",ConsoleSWFPath="")
+    MenuSWFPaths(6)=(BaseSWFPath="../UI_Menus/OptionsSelectionMenu_SWF.swf",ConsoleSWFPath="")
+    MenuSWFPaths(7)=(BaseSWFPath="../UI_Menus/ExitMenu_SWF.swf",ConsoleSWFPath="")
+    MenuSWFPaths(8)=(BaseSWFPath="../UI_Menus/OptionsControlsMenu_SWF.swf",ConsoleSWFPath="../UI_Menus/OptionsControlsMenu_SWF_Console.swf")
+    MenuSWFPaths(9)=(BaseSWFPath="../UI_Menus/OptionsAudioMenu_SWF.swf",ConsoleSWFPath="../UI_Menus/OptionsAudioMenu_SWF_Console.swf")
+    MenuSWFPaths(10)=(BaseSWFPath="../UI_Menus/OptionsGraphicsMenu_SWF.swf",ConsoleSWFPath="")
+    MenuSWFPaths(11)=(BaseSWFPath="../UI_Menus/OptionsGameSettingsMenu_SWF.swf",ConsoleSWFPath="../UI_Menus/OptionsGameSettingsMenu_SWF_Console.swf")
     MenuSWFPaths(12)=(BaseSWFPath="",ConsoleSWFPath="")
-    MenuSWFPaths(13)=(BaseSWFPath="../UI_Menus/PostGameMenu_SWF.swf",ConsoleSWFPath="")
-    MenuSWFPaths(14)=(BaseSWFPath="../UI_Menus/TraderMenu_SWF.swf",ConsoleSWFPath="")
-    MenuSWFPaths(15)=(BaseSWFPath="../UI_Menus/ServerBrowserMenu_SWF.swf",ConsoleSWFPath="")
-    MenuSWFPaths(16)=(BaseSWFPath="../UI_Menus/IISMenu_SWF.swf",ConsoleSWFPath="")
+    MenuSWFPaths(13)=(BaseSWFPath="",ConsoleSWFPath="")
+    MenuSWFPaths(14)=(BaseSWFPath="../UI_Menus/PostGameMenu_SWF.swf",ConsoleSWFPath="")
+    MenuSWFPaths(15)=(BaseSWFPath="../UI_Menus/TraderMenu_SWF.swf",ConsoleSWFPath="")
+    MenuSWFPaths(16)=(BaseSWFPath="../UI_Menus/ServerBrowserMenu_SWF.swf",ConsoleSWFPath="")
+    MenuSWFPaths(17)=(BaseSWFPath="../UI_Menus/IISMenu_SWF.swf",ConsoleSWFPath="")
     CurrentMenuIndex=255
     InGamePartyWidgetClass=Class'KFGFxWidget_PartyInGame'
     PopupData(0)=(SWFPath="../UI_PopUps/ConfirmationPopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")
@@ -1633,11 +1667,15 @@ defaultproperties
     WidgetPaths(1)="../UI_Widgets/PartyWidget_SWF.swf"
     WidgetPaths(2)="../UI_Widgets/ButtonPromptWidget_SWF.swf"
     BackgroundMovies(0)=TextureMovie'UI_Managers.MenuBG'
-    BackgroundMovies(1)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
+    BackgroundMovies(1)=TextureMovie'UI_Managers.MenuBG'
+    BackgroundMovies(2)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
+    BackgroundMovies(3)=TextureMovie'UI_Managers.MenuBG'
+    BackgroundMovies(4)=TextureMovie'UI_Managers.MenuBG'
     IISMovie=TextureMovie'UI_Managers.IIS'
     IgnoredCommands(0)="GBA_VoiceChat"
     SoundThemeName=ButtonSoundTheme
     MouseInputChangedThreshold=5
+    SelectIDOnOpen=-1
     MovieInfo=SwfMovie'UI_Managers.LoaderManager_SWF'
     bAutoPlay=true
     bCaptureInput=true

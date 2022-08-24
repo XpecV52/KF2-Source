@@ -388,36 +388,6 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
 }
 
 /*********************************************************************************************
- * State Active
- *********************************************************************************************/
-
-simulated state Active
-{
-	simulated function bool CanProcessPendingFire( Name PrevStateName, byte FireModeNum ) { return false; }
-
-	/** Initialize the weapon as being active and ready to go. */
-	simulated event BeginState( Name PreviousStateName )
-	{
-		local int i;
-
-		super.BeginState( PreviousStateName );
-		
-		if( Instigator != none && Instigator.IsLocallyControlled() )
-		{
-	        // We route our fire calls through startfire to take advantage of StartMeleeFire()
-			for( i = 0; i < GetPendingFireLength(); ++i )
-			{
-				if( PendingFire(i) )
-				{
-					StartFire(i);
-					break;
-				}
-			}
-		}
-	}
-}
-
-/*********************************************************************************************
  * State WeaponUpkeep
  * A firemode that replaces reload where the user cleans or sharpens the weapon
  *********************************************************************************************/

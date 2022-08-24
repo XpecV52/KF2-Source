@@ -47,6 +47,7 @@ cpptext
 
 function SpecialMoveStarted(bool bForced, Name PrevMove)
 {
+    local KFPawn_MonsterBoss BossPawn;
     // skip default (instant attach) behavior 
     Super.SpecialMoveStarted(bForced, PrevMove);
 
@@ -65,19 +66,23 @@ function SpecialMoveStarted(bool bForced, Name PrevMove)
     bTentacleCtrlStarted = FALSE;
     bGrabMissed = false;
 
-    // On the server start a timer to check collision
-    if ( KFPOwner.Role == ROLE_Authority )
-    {   
-        // Stop cloaking
-        KFPawn_Monster(KFPOwner).SetCloaked( false );
-    }
-
-    KFPawn_Monster(KFPOwner).BumpFrequency = 0.f;
-    KFPawn_MonsterBoss(KFPOwner).PlayGrabDialog();
-    KFPOwner.SetTimer(TentacleStartTime, false, nameof(BeginTentacleControls), Self);
-    if( Follower != none )
+    BossPawn = KFPawn_MonsterBoss(KFPOwner);
+    if (BossPawn != none)
     {
-        DetachDistance = KFPOwner.CylinderComponent.CollisionRadius + Follower.CylinderComponent.CollisionRadius + default.DetachDistance;
+        // On the server start a timer to check collision
+        if (KFPOwner.Role == ROLE_Authority)
+        {
+            // Stop cloaking
+            BossPawn.SetCloaked(false);
+        }
+
+        BossPawn.BumpFrequency = 0.f;
+        BossPawn.PlayGrabDialog();
+        BossPawn.SetTimer(TentacleStartTime, false, nameof(BeginTentacleControls), Self);
+        if (Follower != none)
+        {
+            DetachDistance = BossPawn.CylinderComponent.CollisionRadius + Follower.CylinderComponent.CollisionRadius + default.DetachDistance;
+        }
     }
 }
 

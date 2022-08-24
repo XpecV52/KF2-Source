@@ -358,6 +358,13 @@ private function SetBodyMeshAndSkin(
 	local string CharBodyMeshName;
 	local SkeletalMesh CharBodyMesh;
 
+    //Always use default body on servers
+    if (KFP.WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        CurrentBodyMeshIndex = 0;
+        CurrentBodySkinIndex = 0;
+    }
+
 	// Character Mesh
 	if( BodyVariants.length > 0 )
 	{

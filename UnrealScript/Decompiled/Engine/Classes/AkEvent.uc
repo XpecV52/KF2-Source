@@ -46,7 +46,9 @@ var(TW) const bool bUseDoppler;
 /** Forces this event to be played at a location (using a pooled component) when played from WwiseClientHearSound */
 var(TW) const bool bForceHearSoundLocational;
 /** Whether this event needs its occlusion updated over time */
-var(TW) const bool bNeedsOcclusionUpdates;
+var(TW) const bool bNeedsOcclusionUpdates<EditCondition=!bNeverOcclude>;
+/** If set, skip occlusion trace for updates (overrides bNeedsOcclusionUpdates) AND the initial audible test */
+var(TW) const bool bNeverOcclude;
 /** Whether this event is a background music track or not (used to set up exit cue callback) */
 var(TW) const bool bIsMusicTrack;
 /**  

@@ -486,6 +486,8 @@ class KFPawnVoiceGroup_MrFoster extends KFPawnVoiceGroup;
 
 
 
+
+
 #linenumber 3
 
 defaultproperties

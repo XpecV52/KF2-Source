@@ -362,7 +362,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
    IncapSettings(9)=(Duration=2.000000,Cooldown=3.000000,Vulnerability=(1.000000))
    IncapSettings(10)=(Duration=8.000000,Vulnerability=(4.000000))
-   IncapSettings(11)=(Vulnerability=(4.000000))
+   IncapSettings(11)=(Vulnerability=(1.000000))
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=1.500000
    SprintSpeed=210.000000

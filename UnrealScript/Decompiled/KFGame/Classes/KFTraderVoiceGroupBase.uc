@@ -23,8 +23,8 @@ struct TraderDialogEventInfo
     }
 };
 
-var TraderDialogEventInfo DialogEvents[154];
-var name EventNames[154];
+var TraderDialogEventInfo DialogEvents[155];
+var name EventNames[155];
 
 defaultproperties
 {

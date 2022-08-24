@@ -61,11 +61,11 @@ function UpdatePlayerData()
             TempData.SetInt("ping", int(float(KFPRI.Ping) * 4));
             if(Class'WorldInfo'.static.IsConsoleBuild(8))
             {
-                TempData.SetString("avatar", KFPC.GetPS4Avatar(KFPRI.PlayerName));                
+                TempData.SetString("avatar", "img://" $ KFPC.GetPS4Avatar(KFPRI.PlayerName));                
             }
             else
             {
-                TempData.SetString("avatar", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+                TempData.SetString("avatar", "img://" $ KFPC.GetSteamAvatar(KFPRI.UniqueId));
             }
             if(KFPRI.PlayerHealth < 0)
             {

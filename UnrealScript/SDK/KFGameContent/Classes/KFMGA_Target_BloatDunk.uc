@@ -75,11 +75,13 @@ simulated event SetInactive()
 defaultproperties
 {
     Begin Object Class=PointLightComponent Name=PointLight0
+		bCastPerObjectShadows=false
     End Object
     Components.Add(PointLight0)
     OnLight = PointLight0
 
     Begin Object Class=PointLightComponent Name=PointLight1
+		bCastPerObjectShadows=false
     End Object
     Components.Add(PointLight1)
     OffLight = PointLight1

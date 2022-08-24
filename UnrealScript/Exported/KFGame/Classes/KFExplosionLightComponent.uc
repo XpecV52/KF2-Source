@@ -43,6 +43,7 @@ defaultproperties
    Brightness=8.000000
    LightColor=(B=255,G=255,R=255,A=255)
    CastShadows=False
+   bCastPerObjectShadows=False
    LightingChannels=(Outdoor=True)
    Name="Default__KFExplosionLightComponent"
    ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'

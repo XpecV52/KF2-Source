@@ -48,6 +48,10 @@ var const private INT LastAuthRefreshTime;
 /** The time in seconds for when auth should be refreshed */
 var const private INT SecondsForAuthRefreshTime;
 
+/** The number of login attempts we've had */
+var int LoginAttempts;
+var const private int MaxRetryLoginAttempts;
+
 
 /** The name of the catalog to use */
 var const private{private} config string CatalogName;
@@ -58,7 +62,7 @@ struct native RegionDefinition
 	var bool		RegionUp;
 	var init string Name;
 	var init string Address;
-	
+
 	structdefaultproperties
 	{
 		Ping=-1.0
@@ -181,7 +185,7 @@ native function string GetTitleDataForKey( string InKey );
 native function UnlockContainer(string ContainerId);
 
 // Consumes entitlements
-native function ConsumeEntitlements();
+native function ConsumeEntitlements(optional bool bWasPurchase = false);
 
 // Find online games. Results will show up in the search settings supplied if successful
 native function bool FindOnlineGames( OnlineGameSearch SearchSettings );
@@ -373,7 +377,7 @@ cpptext
 	virtual void Tick( FLOAT DeltaSeconds );
 
 	virtual void Shutdown();
-	
+
 	UBOOL WasLaunchedByPlayfab() { return bLaunchedByPlayfab; }
 
 	virtual void SetLobbyId( const FString& InLobbyId ) { CachedLobbyId = InLobbyId; }
@@ -405,4 +409,5 @@ defaultproperties
 	DeallocateTimeUpdateInterval=30.0
 	PlayfabNPServiceLabel=1
 	ReregisterInterval=10.0
+	MaxRetryLoginAttempts=3
 }

@@ -66,6 +66,7 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;
 
 enum EItemType
 {
@@ -276,9 +277,9 @@ function int GetPerkIndex()
 event OnClose()
 {
     MyKFIM.ServerCloseTraderMenu();
-    if(MyKFPC.MyGFxHUD.WeaponSelectWidget != none)
+    if(MyKFPC.myGfxHUD.WeaponSelectWidget != none)
     {
-        MyKFPC.MyGFxHUD.WeaponSelectWidget.RefreshWeaponSelect();
+        MyKFPC.myGfxHUD.WeaponSelectWidget.RefreshWeaponSelect();
     }
     OwnedItemList.Length = 0;
     MyKFPC.GetPurchaseHelper().TotalDosh = 0;

@@ -132,7 +132,7 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 		}
 		else
 		{
-			if(StoreItemArray[i].Price == "" && IsFilterSame(StoreItemArray[i].Type, CurrentStoreFilter))
+			if(StoreItemArray[i].Price == "" && IsFilterSame(StoreItemArray[i].Type, CurrentStoreFilter) && StoreItemArray[i].Marketable)
 			{
 				DataProvider.SetElementObject(ItemCount, CreateStoreItem(StoreItemArray[i]));
 				ItemCount++;

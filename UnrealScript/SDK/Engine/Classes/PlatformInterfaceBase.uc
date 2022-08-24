@@ -26,6 +26,14 @@ cpptext
 	static UAppNotificationsBase* GetAppNotificationsInterfaceSingleton();
 	static UInAppMessageBase* GetInAppMessageInterfaceSingleton();
 
+    //@TWI - dweiss - Mixer integration
+    static UMixerIntegration* GetMixerIntegrationSingleton();
+
+    //@TWI - ZGholson - Logitech integration
+    static ULogitechLEDInterface* GetLogitechIntegrationSingleton();
+    static UAlienFXLEDInterface* GetAlienFXIntegrationSingleton();
+    static URazerLEDInterface* GetRazerIntegrationSingleton();
+
 	/**
 	 * Check for certain exec commands that map to the various subclasses (it will only
 	 * get/create the singleton if the first bit of the exec command matches a one of 
@@ -135,6 +143,18 @@ native static function AppNotificationsBase GetAppNotificationsInterface();
 
 /** @return the InAppMessageBase singleton object */
 native static function InAppMessageBase GetInAppMessageInterface();
+
+/** @return - TWI - dweiss - the MixerIntegration singleton object*/
+native static function MixerIntegration GetMixerIntegration();
+
+/** @return - TWI - ZGholson - the Logitech LED singleton object*/
+native static function LogitechLEDInterface GetLogitechIntegration();
+
+/** @return - TWI - ZGholson - the AlienFX LED singleton object*/
+native static function AlienFXLEDInterface GetAlienFXIntegration();
+
+/** @return - TWI - ZGholson - the Razer LED singleton object*/
+native static function RazerLEDInterface GetRazerIntegration();
 
 /**
  * Adds a typed delegate (the value of the type is subclass dependent, make an enum per subclass)

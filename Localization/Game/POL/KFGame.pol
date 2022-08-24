@@ -62,9 +62,40 @@ FreeConsolePlayOverString="Dziękujemy za grę w Killing Floor 2! Wydarzenie umo
 BuyGameString="SKLEP"
 CustomString="Niestandard."
 
+RarityStrings[0]="POSPOLITE"
+RarityStrings[1]="NIEPOSPOLITE"
+RarityStrings[2]="RZADKIE"
+RarityStrings[3]="MITYCZNE"
+RarityStrings[4]="LEGENDARNE"
+RarityStrings[5]="NIESŁYCHANIE RZADKIE"
+RarityStrings[6]="DOWOLNE"
+
+WeaponTypeStrings[0]="PISTOLETY"
+WeaponTypeStrings[1]="STRZELBY"
+WeaponTypeStrings[2]="KARABINY"
+WeaponTypeStrings[3]="BROŃ MIOTAJĄCA"
+WeaponTypeStrings[4]="BROŃ OGNIOWA"
+WeaponTypeStrings[5]="TECHNOLOGIA"
+WeaponTypeStrings[6]="WYRZUTNIE"
+WeaponTypeStrings[7]="KARABINY SZTURMOWE"
+WeaponTypeStrings[8]="BROŃ BIAŁA"
+WeaponTypeStrings[9]="SMG"
+WeaponTypeStrings[10]="WSZYSTKO"
+
+MixerGaveAmmoString=", obserwator z Mixera, przekazuje amunicję."
+MixerGaveArmorString=", obserwator z Mixera, przekazuje pancerz."
+MixerGaveDoshString=", obserwator z Mixera, przekazuje forsę."
+MixerGaveGrenadeString=", obserwator z Mixera, przekazuje granat."
+MixerGaveHealthString=", obserwator z Mixera, ulecza cię."
+MixerZedTimeString=", obserwator z Mixera, aktywuje czas zet."
+MixerRageZedsString=", obserwator z Mixera, rozjusza pobliskie zety."
+MixerPukeString=", obserwator z Mixera, wymiotuje na ciebie."
+MixerSpawnedFPString=", obserwator z Mixera, sprowadza mięśniaka."
+
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="NAGRODA ZA UKOŃCZENIE INCYDENTU"
 WeeklyString="TYGODNIOWY INCYDENT HORZINE"
+DailyObjectiveString="DZIENNA"
 CurrentWeeklySettingsString="OBECNE USTAWIENIA INCYDENTU"
 SpecialEventString="WAKACYJNA MISJA POBOCZNA"
 ShortWeeklyString="TYGODNIOWE"
@@ -72,9 +103,18 @@ SeasonalString="SEZONOWE"
 SpecialEventChanceDropString="OGRANICZENIE LICZBY PRZEDMIOTÓW"
 GrantedSpecialEventString="NAGRODA ZA UKOŃCZENIE"
 RewardsString="NAGRODA ZA UKOŃCZENIE INCYDENTU"
+RewardString="NAGRODA"
 WeeklyOverview="Co tydzień nowy, wymagający tryb gry!"
 ObjectivesString="Przełącz cele"
+VaultDoshString="Skarbiec z forsą"
 
+DealDamageString="Zadaj obrażenia:"
+EarnXPString="Zdobądź PD:"
+CompleteMapString="Ukończ mecz na mapie:"
+KillZedsString="Zabij zetów:"
+VersusKillsString="Zabij wrogich graczy jako:"
+DealVersusDamageString="Zadaj obrażenia wrogim graczom jako:"
+VersusCompletionString="Ukończ mecz jako:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="NIE UDAŁO SIĘ ZNALEŹĆ ROZGRYWKI"
@@ -701,7 +741,7 @@ PartyLeaderInOtherMenuString="jest w innym menu…"
 SearchingForGameString="Wyszukiwanie gry online…"
 
 PartHostLeftString="Gospodarz opuścił imprezę"
-PartyLeaderChangedString="jest teraz przywódcą imprezy"
+PartyLeaderChangedString="Nowy przywódca drużyny"
 
 MuteString="Wycisz gracza"
 UnmuteString="Wyłącz wyciszenie"
@@ -717,6 +757,16 @@ PartyLeaderString="Przywódca"
 [KFGFxWidget_PartyInGame_Versus]
 SwitchTeamsString="ZMIEŃ DRUŻYNĘ"
 balanceWarningString="UWAGA: automatyczne równoważenie drużyn"
+
+[KFGFxMenu_DoshVault]
+YourDoshString="Twoja forsa"
+NextRewardString="Następna nagroda"
+OpenCrateString="Otwórz skrzynię"
+DoshVaultString="SKARBIEC FORSY"
+YourCratesString="Twoje skrzynie:"
+OpenCratesString="Otwórz skrzynie"
+CrateUnlockedString="SKRZYNIA ODBLOKOWANA!"
+DelayedCrateString="* Przyznanie skarbca z forsą może zostać opóźnione do kolejnego uruchomienia gry"
 
 [KFGFxMenu_Gear]
 GearHeaderString="DOSTOSUJ SPRZĘT"
@@ -775,6 +825,9 @@ CraftWeaponDescriptionString="W tym menu możesz wytworzyć nowe skórki broni, 
 RequiresString="Wymagane: "
 PurchaseKeyString="KUP KLUCZ"
 LookUpOnMarketString="Sprawdź na rynku"
+RarityFilterString="RZADKOŚĆ"
+PerkFilterString="KLASA"
+WeaponTypeFilterString="TYP BRONI"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -836,10 +889,11 @@ ConfirmString="WYBIERZ"
 MenuStrings[0]="MENU"
 MenuStrings[1]="SPECJALIZACJE"
 MenuStrings[2]="SPRZĘT"
-MenuStrings[3]="EKWIPUNEK"
-MenuStrings[4]="SKLEP"
-MenuStrings[5]="OPCJE"
-MenuStrings[6]="WYJDŹ"
+MenuStrings[3]="SKARBIEC"
+MenuStrings[4]="EKWIPUNEK"
+MenuStrings[5]="SKLEP"
+MenuStrings[6]="OPCJE"
+MenuStrings[7]="WYJDŹ"
 
 ServerBrowserString="SERWERY"
 MatchmakingString="MATCHMAKING"
@@ -917,6 +971,7 @@ VoiceCommsOptionStrings[5]="IDŹ DO HANDLARKI"
 VoiceCommsOptionStrings[6]="ZGODA"
 VoiceCommsOptionStrings[7]="ODMAWIAM"
 VoiceCommsOptionStrings[8]="EMOCJA"
+VoiceCommsOptionStrings[9]="DZIĘKUJEMY"
 
 [KFGFxMenu_Exit]
 HeaderString="WYJDŹ Z GRY"
@@ -1132,6 +1187,8 @@ AntiMotionSicknessString="Ograniczanie kinetozy"
 AutoTurnOffString="Bez obrotu po złapaniu"
 ReduceHighPitchNoiseString="Redukcja wys. dźwięków"
 DisableAutoUpgradeString="Wyłącz automatyczne uaktualnienia"
+
+EnableMixerString="Wł./Wył. Mixer"
 
 [LocalizedControls]
 ControllerLayoutDefault="Domyślne"
@@ -1362,6 +1419,7 @@ ZedGroupRegroupingString="Zety się przegrupowują!"
 NextRoundBeginString="N A S T Ę P N A  R U N D A"
 PlayerCanChangePerksString="Zmiany specjalizacji są dozwolone"
 ZedWaitingForNextRoundString="Nadciąga inwazja hordy zetów!"
+LastPlayerStandingString="OSTATNIA KREW"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="HANDLARKA<%HOLD%>AUTOULEPSZENIE"
@@ -1596,8 +1654,8 @@ SkillCatagories[4]="Zaawansowane szkolenie"
 
 Passives[0]=(Title="Obrażenia berserkera",Description="Obr. broni spec. wzrastają o x%x na poziom");
 Passives[1]=(Title="Odporność na obrażenia",Description="Odp. na obrażenia wzrasta o x%x co 5 poziomów");
-Passives[2]=(Title="+Noktowizja",Description="Latarka ORAZ gogle noktowizyjne");
-Passives[3]=(Title="+Skrzepy nie mogą cię złapać",Description="Skrzepy nie mogą złapać berserkera");
+Passives[2]=(Title="Noktowizja",Description="Latarka ORAZ gogle noktowizyjne");
+Passives[3]=(Title="Skrzepy nie mogą cię złapać",Description="Skrzepy nie mogą złapać berserkera");
 
 EXPAction1="Zadawanie obrażeń bronią berserkera"
 EXPAction2="Zabijanie zetów obok gracza bronią berserkera"
@@ -1645,8 +1703,8 @@ Passives[0]=(Title="Obrażenia broni specjalizacji",Description="Obr. broni spec
 Passives[1]=(Title="Wykr. ukrytych wrogów i paska zdr.",Description="Zasięg 5 m oraz %x% m na poziom");
 Passives[2]=(Title="Wydłużenie czasu zet",Description="Czas zet wydłuża się o %x% co 5 poziomów");
 Passives[3]=(Title="Szybkość przeładowania",Description="Szyb. przeł. broni spec. + %x%% co 5 poz.");
-Passives[4]=(Title="+Noktowizja",Description="Latarki ORAZ gogle noktowizyjne");
-Passives[5]=(Title="+Wskazywanie ukrytych zetów",Description="Sojusznicy widzą ukryte jednostki");
+Passives[4]=(Title="Noktowizja",Description="Latarki ORAZ gogle noktowizyjne");
+Passives[5]=(Title="Wskazywanie ukrytych zetów",Description="Sojusznicy widzą ukryte jednostki");
 
 EXPAction1="Zadawanie obrażeń bronią komandosa"
 EXPAction2="Zabijanie zmór bronią komandosa"
@@ -1695,8 +1753,8 @@ SkillCatagories[4]="Zaawansowane ładunki wybuchowe"
 Passives[0]=(Title="Obrażenia broni specjalizacji",Description="Obr. broni spec. wzrastają o x%x na poziom");
 Passives[1]=(Title="Odporność na wybuchy",Description="Odp. na wyb. wzrasta o 10% oraz o %x% na poz.");
 Passives[2]=(Title="Dodatkowa wybuchowa amunicja",Description="Ilość wyb. amunicji wzrasta o %x% co 5 poz.");
-Passives[3]=(Title="+Dostawca granatów",Description="Sojusznicy mogą otrzymać po 1 granacie na falę");
-Passives[4]=(Title="+Zaminowane drzwi",Description="Zaspawane drzwi eksplodują przy zniszczeniu");
+Passives[3]=(Title="Dostawca granatów",Description="Sojusznicy otrzymają po 1 granacie na falę");
+Passives[4]=(Title="Zaminowane drzwi",Description="Spawane drzwi eksplodują przy zniszczeniu");
 Passives[5]=(Title="Pancerz reaktywny",Description="Gdy zdrowie pierwszy raz spadnie do 0, pancerz wybuchnie, zostawiając ci 1 pkt zdrowia");
 
 
@@ -1796,7 +1854,6 @@ Passives[1]=(Title="Przeładowywanie broni specjalizacji",Description="Szyb. prz
 Passives[2]=(Title="Odporność na ogień zetów",Description="Odporność na ogień zetów wzrasta o 30% oraz dodatkowo o %x% na poziom");
 Passives[3]=(Title="Odporność na własny ogień",Description="Odporność na własny ogień wzrasta o 25% oraz dodatkowo o %x% na poziom");
 Passives[4]=(Title="Amunicja początkowa",Description="Ilość amunicji pocz. wzrasta o %x% co 5 poz.");
-
 
 BringTheHeat="Gorączka"
 BringTheHeatDescription="Obrażenia broni ogniowej zwiększone o 35%."
@@ -2210,6 +2267,7 @@ USBSpitfire="Klucz USB: Spitfire – 2,49 $"
 USBHighVoltage="Klucz USB: Wysokie napięcie – 2,49 $"
 MerchSale="Wyprzedaż KF2! -25% do 30.04.17 Kod promocyjny ZED"
 
+
 [Zeds]
 KFPawn_ZedBloat="Spaślak"
 KFPawn_ZedClot="Skrzep"
@@ -2230,6 +2288,7 @@ KFPawn_ZedClot_AlphaKing="Elitarny alfa"
 KFPawn_ZedScrake="Rzeźnik"
 KFPawn_ZedSiren="Syrena"
 KFPawn_ZedPatriarch="Patriarcha"
+
 ;Human zeds
 KFPawn_ZedBloat_Versus="Spaślak – gracz"
 KFPawn_ZedClot_Versus="Skrzep – gracz"
@@ -2377,6 +2436,15 @@ AllCompleteRewardDescriptionString="Kombinezon ochronny Pokazu"
 
 ChanceDropDescriptionStrings[0]="Kupon Pokazu"
 ChanceDropDescriptionStrings[1]="Złoty kupon Pokazu"
+
+;============================================
+; Daily Localization
+;============================================
+[KFGFxDailyObjectivesContainer]
+TitleString="DZIENNE CELE"
+OverviewString="Dzienne cele to losowo generowane cele, które zmieniają się każdego dnia. Za wypełnienie codziennego celu otrzymujesz forsę do Skarbca Forsy."
+SubtitleString="Aktualne dzienne cele"
+KnifeString="Nóż"
 
 ;============================================
 ; Weekly Localization
@@ -2717,6 +2785,22 @@ DisplayName_POL="Królestwo Tragedii"
 DisplayName_PTB="Reino Trágico"
 DisplayName_RUS="Королевство Трагедий"
 
+[KF-Nightmare KFMapSummary]
+DisplayName_CHN="梦魇"
+DisplayName_CHT="夢魘"
+DisplayName_DEU="Albtraum"
+DisplayName_ESL="Pesadilla"
+DisplayName_ESN="Pesadilla"
+DisplayName_FRA="Cauchemar"
+DisplayName_FRC="Cauchemar"
+DisplayName_INT="Nightmare"
+DisplayName_ITA="Incubo"
+DisplayName_JPN="悪夢"
+DisplayName_KOR="악몽"
+DisplayName_POL="Koszmar"
+DisplayName_PTB="Pesadelo"
+DisplayName_RUS="Кошмар"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorium biotyczne"
 
@@ -2770,6 +2854,9 @@ DisplayName="Wysadzeni"
 
 [KF-TragicKingdom KFMapSummary]
 DisplayName="Królestwo Tragedii"
+
+[KF-Nightmare KFMapSummary]
+DisplayName="Koszmar"
 
 [KFMapInfo]
 ; defaults

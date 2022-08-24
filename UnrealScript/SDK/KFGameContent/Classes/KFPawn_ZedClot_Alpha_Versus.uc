@@ -75,12 +75,12 @@ defaultproperties
     IncapSettings(AF_GunHit)=	(Vulnerability=(0.2),                     Cooldown=1.7)
     IncapSettings(AF_MeleeHit)=	(Vulnerability=(0.5),                     Cooldown=1.35)
     IncapSettings(AF_Poison)=	(Vulnerability=(0.6),                     Cooldown=20.0, Duration=1.5)
-    IncapSettings(AF_Microwave)=(Vulnerability=(1.0),                     Cooldown=10.0, Duration=2.5)
+    IncapSettings(AF_Microwave)=(Vulnerability=(0.25),                     Cooldown=10.0, Duration=2.5)
     IncapSettings(AF_FirePanic)=(Vulnerability=(0.9),                     Cooldown=5.0,  Duration=3.0)
     IncapSettings(AF_EMP)=		(Vulnerability=(0.7),                     Cooldown=10.0, Duration=2.2) //0.98
     IncapSettings(AF_Freeze)=	(Vulnerability=(0.5),                     Cooldown=1.5,  Duration=0.5) //0.98
     IncapSettings(AF_Snare)=	(Vulnerability=(0.7, 0.7, 1.0, 0.7),      Cooldown=8.5,  Duration=1.5)
-    IncapSettings(AF_Bleed)=    (Vulnerability=(1.0))
+    IncapSettings(AF_Bleed)=    (Vulnerability=(0.25))
 
     Health=350 // 4.5x default //300.f  //455 //200
     // Override Head GoreHealth (aka HeadHealth)

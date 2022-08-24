@@ -1,4 +1,4 @@
-//NOTES: 
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -379,6 +379,11 @@ ItemName="RPG-7"
 ItemCategory="Explosivos"
 ItemDescription="•Modo de disparo: lanza una misil.\n•La el misil explota al impactar.\n•Se activa al acercase al objetivo para evitar que te explote en la cara.\n•¡Cuidado con el retroceso!"
 
+[KFWeap_RocketLauncher_Seeker6]
+ItemName="Seis letal"
+ItemCategory="Explosivos"
+ItemDescription="•En modo de disparo lanza un cohete sin guía.\n•Apuntar en el modo de disparo alternativo activa un puntero láser y permite guiar los cohetes.\n•Un arma versátil y altamente explosiva que puede perseguir y acabar con varios objetivos a la vez."
+
 [KFWeap_Pistol_Dual9mm]
 ItemName="2 pistolas de 9 mm"
 ItemCategory="Arma corta"
@@ -475,6 +480,10 @@ ItemName="Subfusil Kriss"
 ItemCategory="Subfusil"
 ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•Es lo último en redistribución de balas compactas: destruye zeds a chorrazo limpio."
 
+[KFWeap_Rifle_Hemogoblin]
+ItemName="Hemogoblin"
+ItemCategory="Rifle"
+ItemDescription="•En modo de disparo, dispara proyectiles desangradores que hieren, ralentizan y debilitan a los zeds. \n•En el modo de disparo alternativo, dispara dardos terapéuticos para curar a miembros del equipo.\n•No es una buena forma de perder peso."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

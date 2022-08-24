@@ -71,7 +71,7 @@ function UpdatePlayerData()
             {
                 if(SearchIndex == INDEX_NONE)
                 {
-                    AvatarIconPath = KFPC.GetPS4Avatar(KFPRI.PlayerName);
+                    AvatarIconPath = "img://"$KFPC.GetPS4Avatar(KFPRI.PlayerName);
                     ZedPlayerInfo.PlayerID = KFPRI.PlayerID;
                     ZedPlayerInfo.AvatarPath = AvatarIconPath;
                     ZedPlayerInfoList.AddItem(ZedPlayerInfo);
@@ -85,7 +85,7 @@ function UpdatePlayerData()
             {    
                 if(SearchIndex == INDEX_NONE)
                 {
-                    AvatarIconPath = KFPC.GetSteamAvatar(KFPRI.UniqueId);
+                    AvatarIconPath = "img://"$KFPC.GetSteamAvatar(KFPRI.UniqueId);
                     ZedPlayerInfo.PlayerID = KFPRI.PlayerID;
                     ZedPlayerInfo.AvatarPath = AvatarIconPath;
                     ZedPlayerInfoList.AddItem(ZedPlayerInfo);

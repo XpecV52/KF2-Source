@@ -33,6 +33,8 @@ var localized string AntiMotionSicknessString;
 var localized string AutoTurnOffString;
 var localized string ReduceHighPitchNoiseString;
 
+var localized string EnableMixerString;
+
 var localized array<string> GoreOptionStrings;
 
 var float FOVMinValue, FOVMaxValue, FOVCurrentValue;
@@ -79,9 +81,13 @@ function LocalizeText()
 	LocalizedObject.SetString("hideBossHealthBar", 		HideBossHealthBarString);
 	LocalizedObject.SetString("showWelderInInv", 		ShowWelderInInvString);
 	LocalizedObject.SetString("useAltAimOnDual", 		UseAltAimOnDualString);
-	LocalizedObject.SetString("antiMotionSickness", 	AntiMotionSicknessString);
+	
 	LocalizedObject.SetString("autoTurnOff", 			AutoTurnOffString);
-	LocalizedObject.SetString("reduceHighPitchNoise", 	ReduceHighPitchNoiseString);
+
+	LocalizedObject.SetString("enableMixer", 			EnableMixerString);
+	//woops these don't actually do anything
+	//LocalizedObject.SetString("reduceHighPitchNoise", 	ReduceHighPitchNoiseString);
+	//LocalizedObject.SetString("antiMotionSickness", 	AntiMotionSicknessString);
 
     SetObject("localizedText", LocalizedObject);
 }
@@ -121,9 +127,18 @@ function  InitValues()
  	DataObject.SetBool("hideBossHealthBar", 	Manager.CachedProfile.GetProfileBool(KFID_HideBossHealthBar));
 	DataObject.SetBool("showWelderInInv", 		Manager.CachedProfile.GetProfileBool(KFID_ShowWelderInInventory));
 	DataObject.SetBool("useAltAimOnDual", 		Manager.CachedProfile.GetProfileBool(KFID_UseAltAimOnDuals));
-	DataObject.SetBool("antiMotionSickness", 	Manager.CachedProfile.GetProfileBool(KFID_AntiMotionSickness));
+	
 	DataObject.SetBool("autoTurnOff", 			Manager.CachedProfile.GetProfileBool(KFID_AutoTurnOff));
-	DataObject.SetBool("reduceHighPitchNoise", 	Manager.CachedProfile.GetProfileBool(KFID_ReduceHightPitchSounds));
+
+	if(class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
+	{
+		DataObject.SetBool("bDingo", true);
+		DataObject.SetBool("bMixerEnabled", class'MixerIntegration'.static.IsMixerInteractionEnabled());
+	}
+	
+	//not implemented
+	//DataObject.SetBool("antiMotionSickness", 	Manager.CachedProfile.GetProfileBool(KFID_AntiMotionSickness));
+	//DataObject.SetBool("reduceHighPitchNoise", 	Manager.CachedProfile.GetProfileBool(KFID_ReduceHightPitchSounds));
 
  	SetObject("dataValues", DataObject);
 }
@@ -144,6 +159,24 @@ function Callback_CloseMenu()
 {
 	Manager.CachedProfile.Save( GetLP().ControllerId );
 	Manager.OpenMenu( UI_OptionsSelection );
+}
+
+function Callback_ToggleMixer(bool bActive)
+{
+	local KFPlayerController KFPC;	
+
+	KFPC = KFPlayerController(GetPC());
+	if( KFPC != none )
+	{
+		If(bActive)
+		{
+			KFPC.InitializeMixer();
+		}
+		else
+		{
+			KFPC.ShutdownMixer();
+		}
+	}
 }
 
 function Callback_ToggleCrosshair( bool bShow )

@@ -379,7 +379,7 @@ simulated function KFDoorActor FindRepairableDoor()
     if(Instigator.IsLocallyControlled())
     {
         KFPC = KFPlayerController(Instigator.Controller);
-        if(KFPC.MyGFxHUD.CurrentInteractionIndex != 7)
+        if(KFPC.myGfxHUD.CurrentInteractionIndex != 7)
         {
             return none;
         }

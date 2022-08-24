@@ -729,6 +729,7 @@ package tripwire.menus
         
         public function selectButton(param1:CategoryButton = null) : *
         {
+            this.emoteButton.selected = false;
             this.characterButton.selected = false;
             this.headButton.selected = false;
             this.bodyButton.selected = false;

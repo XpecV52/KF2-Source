@@ -42,10 +42,12 @@ var float								TotalWavesActiveTime;
 var float								TimeUntilNextSpawn;
 /** Total num AI spawned in this wave */
 var	int									WaveTotalAI;
-/** Maximum number of AI that can be active at one time */
-var byte							    MaxMonsters;
-/** Maximum number of AI that can be active at one time in solo, by difficulty */
-var() byte							    MaxMonstersSolo[4];
+
+struct native PerPlayerMaxMonsters
+{
+	var array<int> MaxMonsters;
+};
+var array<PerPlayerMaxMonsters> PerDifficultyMaxMonsters;
 
 /** Used for arrays to modify spawn rate */
 struct native SpawnRateModifier
@@ -86,9 +88,6 @@ var ESquadType							DesiredSquadType;
 /** If set, can be used to spawn in place of the KF1 style volume spawns */
 var	KFSpawner							ActiveSpawner;
 
-/** Amount of extra zeds added to the pool when zeds are short during an objective */
-var const int							ObjExtraAI;
-
 /** IDs into the AIClassList array */
 enum EAIType
 {
@@ -112,6 +111,7 @@ enum EBossAIType
 {
     BAT_Hans,
     BAT_Patriarch,
+    BAT_KingFleshpound,
 };
 
 /** The list of zeds the spawn manager currently has queued up to spawn*/
@@ -386,7 +386,14 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 `if(`notdefined(ShippingPC))
                     if( ForcedBossNum >= 0 )
                     {
-                        TempSpawnList.AddItem(AIBossClassList[ForcedBossNum]);
+                        if (ForcedBossNum < AIBossClassList.Length)
+                        {
+                            TempSpawnList.AddItem(AIBossClassList[ForcedBossNum]);
+                        }
+                        else if ((ForcedBossNum - AIBossClassList.Length) < AITestBossClassList.Length)
+                        {
+                            TempSpawnList.AddItem(AITestBossClassList[ForcedBossNum - AIBossClassList.Length]);
+                        }
                     }
                     else
 `endif
@@ -436,7 +443,7 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     {
     	LeftoverSpawnSquad.Length = 0;
     }
-	
+
 	if( LeftoverSpawnSquad.Length > 0 )
     {
         if( bLogAISpawning )
@@ -780,7 +787,7 @@ function SetSineWaveFreq(float NewFreq)
 }
 
 /** special spawning for boss summon ability */
-function SummonBossMinions( array<KFAISpawnSquad> NewMinionSquad, int NewMaxBossMinions )
+function SummonBossMinions( array<KFAISpawnSquad> NewMinionSquad, int NewMaxBossMinions, optional bool bUseLivingPlayerScale = true )
 {
 	local int NumLivePlayers;
 	local float UsedMaxBossMinionsScale;
@@ -802,21 +809,28 @@ function SummonBossMinions( array<KFAISpawnSquad> NewMinionSquad, int NewMaxBoss
     NumLivePlayers = GetLivingPlayerCount();
 
     // Scale boss minions numbers by player count
-    if( NumLivePlayers <= ArrayCount(MaxBossMinionScaleByPlayers) )
-	{
-        if( NumLivePlayers == 0 )
+    if (bUseLivingPlayerScale)
+    {
+        if (NumLivePlayers <= ArrayCount(MaxBossMinionScaleByPlayers))
         {
-            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers];
+            if (NumLivePlayers == 0)
+            {
+                UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers];
+            }
+            else
+            {
+                UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers - 1];
+            }
         }
         else
         {
-            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers - 1];
+            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[ArrayCount(MaxBossMinionScaleByPlayers) - 1];
         }
-	}
-	else
-	{
-	   UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[ArrayCount(MaxBossMinionScaleByPlayers) - 1];
-	}
+    }
+    else
+    {
+        UsedMaxBossMinionsScale = 1.f;
+    }
 
 	MaxBossMinions *= UsedMaxBossMinionsScale;
 
@@ -1017,25 +1031,12 @@ function bool ShouldAddAI()
 
 function int GetMaxMonsters()
 {
-    local int UsedMaxMonsters;
+	local int LivingPlayerCount;
+	local int Difficulty;
 
-    if( WorldInfo.NetMode == NM_StandAlone && GetLivingPlayerCount() == 1 )
-    {
-    	if( GameDifficulty < ArrayCount(MaxMonstersSolo) )
-    	{
-    	   UsedMaxMonsters = MaxMonstersSolo[GameDifficulty];
-    	}
-    	else
-    	{
-    	   UsedMaxMonsters = MaxMonstersSolo[ArrayCount(MaxMonstersSolo) - 1];
-    	}
-    }
-    else
-    {
-        UsedMaxMonsters = MaxMonsters;
-    }
-
-    return UsedMaxMonsters;
+	LivingPlayerCount = Clamp(GetLivingPlayerCount() - 1, 0, 5);
+	Difficulty = Clamp(GameDifficulty, 0, 3);
+	return PerDifficultyMaxMonsters[Difficulty].MaxMonsters[LivingPlayerCount];
 }
 
 /** Max currently wanted AI num */
@@ -1186,7 +1187,7 @@ function KFSpawnVolume GetBestSpawnVolume( optional array< class<KFPawn_Monster>
 
 	for ( VolumeIndex = 0; VolumeIndex < SpawnVolumes.Length; VolumeIndex++ )
 	{
-		if ( SpawnVolumes[VolumeIndex].IsValidForSpawn(DesiredSquadType, OtherController) 
+		if ( SpawnVolumes[VolumeIndex].IsValidForSpawn(DesiredSquadType, OtherController)
 			&& SpawnVolumes[VolumeIndex].CurrentRating > 0 )
 		{
 			`log(GetFuncName()@"returning chosen spawn volume"@SpawnVolumes[VolumeIndex]@"with a rating of"@SpawnVolumes[VolumeIndex].CurrentRating, bLogAISpawning);
@@ -1220,18 +1221,52 @@ protected function bool CanSpawnPlayerBoss();
 function ResetSpawnManager();
 
 defaultproperties
-{ 
+{
     ForcedBossNum=-1
 	SineWaveFreq=0.04
-	MaxMonsters=32
-	ObjExtraAI=16
 
     EarlyWaveIndex=7
 
-	MaxMonstersSolo(0)=16
-	MaxMonstersSolo(1)=16 //Hard //24
-	MaxMonstersSolo(2)=16 //Suicidal //24
-	MaxMonstersSolo(3)=16 //HOE //24
+	//This is a list of per-player count per-difficulty max monsters, starting with
+	//Normal
+	PerDifficultyMaxMonsters[0]={(
+			MaxMonsters[0]=10,
+			MaxMonsters[1]=14,
+			MaxMonsters[2]=32,
+			MaxMonsters[3]=32,
+			MaxMonsters[4]=32,
+			MaxMonsters[5]=32
+		)}
+
+	//Hard
+	PerDifficultyMaxMonsters[1]={(
+			MaxMonsters[0]=11,
+			MaxMonsters[1]=18,
+			MaxMonsters[2]=32,
+			MaxMonsters[3]=32,
+			MaxMonsters[4]=32,
+			MaxMonsters[5]=32
+		)}
+
+	//Suicidial
+	PerDifficultyMaxMonsters[2]={(
+			MaxMonsters[0]=12,
+			MaxMonsters[1]=18,
+			MaxMonsters[2]=32,
+			MaxMonsters[3]=32,
+			MaxMonsters[4]=32,
+			MaxMonsters[5]=32
+		)}
+
+	//Hell on Earth
+	PerDifficultyMaxMonsters[3]={(
+			MaxMonsters[0]=12, //16
+			MaxMonsters[1]=18,
+			MaxMonsters[2]=32,  //22
+			MaxMonsters[3]=32,  //26
+			MaxMonsters[4]=32,  //30
+			MaxMonsters[5]=32
+		)}
 
 	// Normal
     SoloWaveSpawnRateModifier(0)={(RateModifier[0]=1.0,     // Wave 1
@@ -1258,23 +1293,28 @@ defaultproperties
                                    RateModifier[3]=1.0)}    // Wave 4
 
 	EarlyWavesSpawnTimeModByPlayers(0)=1.0     // 1 player
-	EarlyWavesSpawnTimeModByPlayers(1)=1.0     // 2 players
-	EarlyWavesSpawnTimeModByPlayers(2)=1.0     // 3 players
-	EarlyWavesSpawnTimeModByPlayers(3)=0.85    // 4 players
-	EarlyWavesSpawnTimeModByPlayers(4)=0.65    // 5 players
+	EarlyWavesSpawnTimeModByPlayers(1)=1.3     // 2 players  //1.0 //1.38  //1.0--Aug15th
+	EarlyWavesSpawnTimeModByPlayers(2)=0.9    // 3 players  //1.0  //1.11
+	EarlyWavesSpawnTimeModByPlayers(3)=0.7    // 4 players  //0.85 //0.84
+	EarlyWavesSpawnTimeModByPlayers(4)=0.4     // 5 players //0.65  //0.57 //0.5--Aug15th
 	EarlyWavesSpawnTimeModByPlayers(5)=0.3     // 6 players
 
-	LateWavesSpawnTimeModByPlayers(0)=1.1      // 1 player
-	LateWavesSpawnTimeModByPlayers(1)=1.1      // 2 players
-	LateWavesSpawnTimeModByPlayers(2)=1.1      // 3 players
-	LateWavesSpawnTimeModByPlayers(3)=1.0      // 4 players
-	LateWavesSpawnTimeModByPlayers(4)=0.75     // 5 players
-	LateWavesSpawnTimeModByPlayers(5)=0.6      // 6 players
+	LateWavesSpawnTimeModByPlayers(0)=1.1      // 1 player   //1.1
+	LateWavesSpawnTimeModByPlayers(1)=1.45     // 2 players  //1.1  //1.2--Aug15th 1.35
+	LateWavesSpawnTimeModByPlayers(2)=0.9      // 3 players  //1.1
+	LateWavesSpawnTimeModByPlayers(3)=0.8      // 4 players  //1.0
+	LateWavesSpawnTimeModByPlayers(4)=0.7     // 5 players  //0.75
+	LateWavesSpawnTimeModByPlayers(5)=0.6      // 6 players  //0.6
 
-	EarlyWaveSpawnRateModifier(0)=1.0 // Normal
-	EarlyWaveSpawnRateModifier(1)=0.8 // Hard
-	EarlyWaveSpawnRateModifier(2)=0.8 // Suicidal
-	EarlyWaveSpawnRateModifier(3)=0.7 // Hell on Earth
+	EarlyWaveSpawnRateModifier(0)=0.8 // Normal //1.0 //0.6
+	EarlyWaveSpawnRateModifier(1)=0.6 // Hard
+	EarlyWaveSpawnRateModifier(2)=0.5 // Suicidal   //0.8
+	EarlyWaveSpawnRateModifier(3)=0.5 // Hell on Earth  //0.7  //!!!!!0.5!!!!!! change back
+
+	//LateWaveSpawnRateModifier(0)=1.0 // Normal
+	//LateWaveSpawnRateModifier(1)=0.8 // Hard
+	//LateWaveSpawnRateModifier(2)=0.8 // Suicidal
+	//LateWaveSpawnRateModifier(3)=0.7 // Hell on Earth
 
 	RecycleSpecialSquad(0)=false   // Normal
 	RecycleSpecialSquad(1)=false   // Hard

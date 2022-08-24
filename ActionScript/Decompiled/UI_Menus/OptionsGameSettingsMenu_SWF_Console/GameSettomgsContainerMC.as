@@ -16,6 +16,7 @@ package
             this.__setProp_showWelderInInvCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_useAltAimOnDualCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_disableAutoUpgradeCheckBox_GameSettomgsContainerMC_test_0();
+            this.__setProp_toggleMixerCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_closeButton_GameSettomgsContainerMC_header_0();
         }
         
@@ -195,6 +196,32 @@ package
             try
             {
                 disableAutoUpgradeCheckBox["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_toggleMixerCheckBox_GameSettomgsContainerMC_test_0() : *
+        {
+            try
+            {
+                toggleMixerCheckBox["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            toggleMixerCheckBox.autoSize = "none";
+            toggleMixerCheckBox.data = "";
+            toggleMixerCheckBox.enabled = true;
+            toggleMixerCheckBox.enableInitCallback = false;
+            toggleMixerCheckBox.focusable = true;
+            toggleMixerCheckBox.label = "Music Vocals";
+            toggleMixerCheckBox.selected = false;
+            toggleMixerCheckBox.visible = true;
+            try
+            {
+                toggleMixerCheckBox["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

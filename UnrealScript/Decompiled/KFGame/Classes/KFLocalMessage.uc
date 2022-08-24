@@ -93,9 +93,9 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
                 if(WI != none)
                 {
                     KFPC = KFPlayerController(WI.GetALocalPlayerController());
-                    if((KFPC != none) && KFPC.MyGFxHUD != none)
+                    if((KFPC != none) && KFPC.myGfxHUD != none)
                     {
-                        PlayerName = KFPC.MyGFxHUD.PendingKickPlayerName;
+                        PlayerName = KFPC.myGfxHUD.PendingKickPlayerName;
                     }
                 }
             }
@@ -120,9 +120,9 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
             if(WI != none)
             {
                 KFPC = KFPlayerController(WI.GetALocalPlayerController());
-                if((KFPC != none) && KFPC.MyGFxHUD != none)
+                if((KFPC != none) && KFPC.myGfxHUD != none)
                 {
-                    KFPC.MyGFxHUD.PendingKickPlayerName = RelatedPRI_1.PlayerName;
+                    KFPC.myGfxHUD.PendingKickPlayerName = RelatedPRI_1.PlayerName;
                 }
             }
             return default.KickVoteStartedString @ RelatedPRI_1.PlayerName;

@@ -21,6 +21,10 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 		case 'rupperarm':
 		case 'chest':
 		case 'heart':
+		case 'lcalf':
+		case 'rcalf':
+		case 'lthigh':
+		case 'rthigh':
 	 		return true;
 	}
 

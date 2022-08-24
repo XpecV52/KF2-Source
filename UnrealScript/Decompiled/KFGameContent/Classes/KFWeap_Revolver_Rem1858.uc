@@ -93,6 +93,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_Rem1858.BulletMeshComp0'
@@ -101,6 +102,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_Rem1858.BulletMeshComp1'
@@ -109,6 +111,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_Rem1858.BulletMeshComp2'
@@ -117,6 +120,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_Rem1858.BulletMeshComp3'
@@ -125,6 +129,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_Rem1858.BulletMeshComp4'
@@ -133,6 +138,7 @@ defaultproperties
         SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_NewCap'
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
+        bUseAsOccluder=false
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_Rem1858.BulletMeshComp5'

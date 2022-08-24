@@ -80,6 +80,7 @@ defaultproperties
       CastShadows=False
       CastStaticShadows=False
       CastDynamicShadows=False
+      bCastPerObjectShadows=False
       LightingChannels=(Outdoor=True)
       Name="PointLightComponent0"
       ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'

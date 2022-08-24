@@ -259,7 +259,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             if(HudChatBox == none)
             {
                 HudChatBox = KFGFxHUD_ChatBoxWidget(Widget);
-            } 
+            }
         }
         break;
     case 'voipWidget':
@@ -358,7 +358,7 @@ function TickHud(float DeltaTime)
     {
         SpectatorInfoWidget.TickHud( DeltaTime );
     }
-        
+
     if( !bIsSpectating )
     {
         // Update Health / Armor
@@ -371,7 +371,7 @@ function TickHud(float DeltaTime)
         if ( PlayerBackpackContainer != none )
         {
             PlayerBackpackContainer.TickHud( DeltaTime );
-        }  
+        }
     }
 
     if( TraderCompassWidget != none)
@@ -394,9 +394,9 @@ function UpdateWaveCount()
 {
     if(GfxScoreBoardPlayer != none)
     {
-        GfxScoreBoardPlayer.UpdateWaveCount();   
+        GfxScoreBoardPlayer.UpdateWaveCount();
     }
-    
+
     if(WaveInfoWidget != none)
     {
         WaveInfoWidget.UpdateWaveCount();
@@ -428,7 +428,7 @@ function UpdateVisibilityState()
     {
         if( HudChatBox != none )
         {
-            HudChatBox.ClearAndCloseChat();         
+            HudChatBox.ClearAndCloseChat();
         }
     }
     else
@@ -452,7 +452,7 @@ function ShowScoreboard(bool newShowScoreboard)
     {
         CreateScoreboard();
     }
-    
+
     if(GfxScoreBoardPlayer  != none)
     {
         GfxScoreBoardPlayer.ShowScoreboard(newShowScoreboard);
@@ -524,10 +524,10 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
 {
     local GFxObject DataObject;
     local bool bHumanDeath;
-    local string KilledName, KillerName, KilledIconpath, KillerIconPath; 
+    local string KilledName, KillerName, KilledIconpath, KillerIconPath;
     local string KillerTextColor, KilledTextColor;
     local class<KFPawn_Monster> KFPM;
-    
+
     if(KFPC == none)
     {
         return;
@@ -541,7 +541,7 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
         {
             if(KFPM != none)
             {
-                KillerName = Localize("Zeds", string(KFPM.default.LocalizationKey), "KFGame");
+                KillerName = KFPM.static.GetLocalizedName();
                 KillerTextColor = ZEDTeamTextColor;
                 KillerIconpath="img://"$class'KFPerk_Monster'.static.GetPerkIconPath();
             }
@@ -550,7 +550,7 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
         {
             if(KFPM != none)
             {
-                KilledName = Localize("Zeds", string(KFPM.default.LocalizationKey), "KFGame");
+                KilledName = KFPM.static.GetLocalizedName();
                 bHumanDeath = false;
             }
             else if(PRI1 != none)
@@ -565,7 +565,7 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
                     KillerTextColor = HumanTeamTextColor;
                     KillerIconpath="img://"$KFPlayerReplicationInfo(PRI1).CurrentPerkClass.static.GetPerkIconPath();
                 }
-                KillerName = PRI1.PlayerName;               
+                KillerName = PRI1.PlayerName;
             }
         }
 
@@ -573,7 +573,7 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
         {
             if(PRI2.GetTeamNum() == class'KFTeamInfo_Human'.default.TeamIndex)
             {
-                bHumanDeath = true; 
+                bHumanDeath = true;
                 KilledTextColor = HumanTeamTextColor;
             }
             else
@@ -647,7 +647,7 @@ function DisplayInteractionMessage( string MessageString, int MessageIndex, opti
         if( MessageIndex == IMT_None || KFPC.IsBossCameraMode() )
         {
             HideInteractionMessage();
-        }   
+        }
         // allow messages of the same priority to replace each other (unless it's the same message)
         else if( MessageIndex != CurrentInteractionIndex && GetInteractionMessagePriority(MessageIndex) >= GetInteractionMessagePriority(CurrentInteractionIndex) )
         {
@@ -662,17 +662,17 @@ function DisplayInteractionMessage( string MessageString, int MessageIndex, opti
             }
 
             //Check to see if removing the controller prefix will result in a single character.  If we send a single character
-            // bad things will happen. 
+            // bad things will happen.
             if(class'Actor'.static.Len(ButtonName) - class'Actor'.static.Len(ControllerStringPrefix) > 1)
             {
                 //Image Replacing a string in AS3 cannot take a substring larger than 15 characters.  We remove the prefix for controllers
-                //because these are common accross all controller inputs.  
+                //because these are common accross all controller inputs.
                 class'Actor'.static.ReplaceText(ButtonName, ControllerStringPrefix, "" );
             }
             // Put the command into the string so that it can be replaced  Scaleform will not try to image replace a keyboard command unless
-            // we actually put an icon and object for it. 
+            // we actually put an icon and object for it.
             //class'Actor'.static.ReplaceText(MessageString, "<%X%>", ButtonName );
-            
+
             SendInteractionMessageToGFX(MessageString, ButtonName);
             CurrentInteractionIndex = MessageIndex;
         }
@@ -703,7 +703,7 @@ function SendInteractionMessageToGFX(string MessageString, string ButtonName)
 
     if(StringArray.length > 1)
     {
-        TextObject.SetString("holdMessage", StringArray[1]);    
+        TextObject.SetString("holdMessage", StringArray[1]);
         TextObject.SetBool("bHoldCommand", true);
     }
     else
@@ -720,8 +720,8 @@ function SendInteractionMessageToGFX(string MessageString, string ButtonName)
     InteractionMessageContainer.ActionScriptVoid("showInteractionMessage"); //@TODO:Remove this once the new interaction message is implemented
 }
 
-/** 
-* Close the interaction message 
+/**
+* Close the interaction message
 */
 function HideInteractionMessage()
 {
@@ -729,7 +729,7 @@ function HideInteractionMessage()
     InteractionMessageContainer.ActionScriptVoid("outInteractionMessage");
 }
 
-/** Show less important messages */ 
+/** Show less important messages */
 function ShowNonCriticalMessage(string LocalizedMessage)
 {
     if(NonCriticalGameMessageWidget != none)
@@ -755,12 +755,12 @@ function UpdateRhythmCounterWidget(int value, int max)
 function EatMyInput(bool bValue)
 {
     local byte HUDPriority;
-    
+
     if( bValue )
     {
         GetPC().PlayerInput.ResetInput();
     }
-    
+
     // Set whether the HUD should eat the input
     SetMovieCanReceiveFocus(bValue);
     SetMovieCanReceiveInput(bValue);
@@ -859,7 +859,7 @@ function PawnDied()
     ClearBuffIcons();
 }
 
-function ReceivePawn(KFPawn NewPawn); 
+function ReceivePawn(KFPawn NewPawn);
 
 //==============================================================
 // ActionScript Callbacks
@@ -873,11 +873,11 @@ function Callback_BroadcastChatMessage(string NewMessage)
         {
             if(KFPC.CurrentTextChatChannel == ETCC_TEAM)
             {
-                GetPC().TeamSay(NewMessage);    
+                GetPC().TeamSay(NewMessage);
             }
             else
             {
-                GetPC().Say(NewMessage);    
+                GetPC().Say(NewMessage);
             }
         }
     }

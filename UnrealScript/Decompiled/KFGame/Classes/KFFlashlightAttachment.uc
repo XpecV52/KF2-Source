@@ -7,12 +7,14 @@
  *******************************************************************************/
 class KFFlashlightAttachment extends Object
     native(Effect)
+    config(Game)
     hidecategories(Object);
 
-var protected export editinline transient SkeletalMeshComponent OwnerMesh;
+var config bool bSkipBestFlashlightCheck;
 var protected transient bool bEnabled;
 var protected transient bool bLightInitialized;
 var bool bDebug;
+var protected export editinline transient SkeletalMeshComponent OwnerMesh;
 /** Spot Light */
 var() export editinline SpotLightComponent LightTemplate;
 var() export editinline transient SpotLightComponent Light;
@@ -252,6 +254,11 @@ simulated function UpdateFlashlightFor(KFPawn_Human inPawn)
     local PlayerController PC;
     local KFPawn_Human P;
 
+    if(bSkipBestFlashlightCheck)
+    {
+        inPawn.FlashLight.SetEnabled(inPawn.bFlashlightOn);
+        return;
+    }
     if(!inPawn.bFlashlightOn)
     {
         if(inPawn.FlashLight.bEnabled)
@@ -374,6 +381,7 @@ defaultproperties
         CastShadows=false
         CastStaticShadows=false
         CastDynamicShadows=false
+        bCastPerObjectShadows=false
         bUpdateOwnerRenderTime=true
         LightingChannels=(Outdoor=true)
     object end

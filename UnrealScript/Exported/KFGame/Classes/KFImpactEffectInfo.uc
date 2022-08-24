@@ -56,6 +56,9 @@ var() AkEvent BulletWhipSnd;
 var() bool bMakeSplash;
 var() ParticleSystem SplashEffectTemplate<EditCondition=bMakeSplash>;
 
+/** List of particles that play for any impact material type */
+var() array<ParticleSystem> GlobalImpactEffectEffects;
+
 defaultproperties
 {
    DefaultImpactEffect=(DecalDissolveParamName="DissolveAmount",DecalDuration=24.000000,DecalMinSize=16.000000,DecalMaxSize=16.000000)

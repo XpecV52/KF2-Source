@@ -45,7 +45,7 @@ package tripwire.containers.hud
             }
         }
         
-        public function set currentProgress(param1:*) : void
+        public function set currentProgress(param1:Number) : void
         {
             this.progressBarMC.gotoAndStop(param1 + 1);
         }
